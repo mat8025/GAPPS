@@ -10,8 +10,8 @@ float Target[4]
 #char Target[20]
 #char Target[4][2]
 
-float Rms[1000+]  //  contains rms error per sweep
 
+float Rms[1000+]  //  contains rms error per sweep
 
 # procs
 
@@ -26,7 +26,6 @@ proc usage()
  <<" [act  LOGISTIC (LOGISTIC|HYPERBOLIC|SINE) \n" 
  <<" [type sff (sff|dca)] \n"
  <<" [range 01] \n" 
-
  stop!
 }
 
@@ -65,7 +64,7 @@ float theta = 0.9
 
 ntype = "sff"
 
-nsweeps = 8000
+int nsweeps = 8000;
 
 cla = 1
 <<"%V$na \n"
