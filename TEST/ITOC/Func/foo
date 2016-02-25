@@ -1,0 +1,180 @@
+
+arg[0]	sv_arg0
+argtype	STRV
+vartype	STRV
+tag?	YES
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[1]	sv_arg1
+argtype	STRV
+vartype	STRV
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[2]	sv_arg2
+argtype	STRV
+vartype	STRV
+tag?	YES
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[3]	sv_arg3
+argtype	STRV
+vartype	STRV
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[4]	sv_arg4
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[5]	sv_arg5
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[6]	sv_arg6
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[7]	A
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	YES
+soffset	0
+sivp->offset	0
+START_ARG[0] 
+argtype STRV
+vartype STRV
+tag_arg
+soffset 0 
+sivp offset 0 
+name sv_arg0
+scalar
+str head
+
+START_ARG[1] 
+argtype STRV
+vartype STRV
+val_arg
+soffset 0 
+sivp offset 0 
+name sv_arg1
+scalar
+str big
+
+START_ARG[2] 
+argtype STRV
+vartype STRV
+tag_arg
+soffset 0 
+sivp offset 0 
+name sv_arg2
+scalar
+str tail
+
+START_ARG[3] 
+argtype STRV
+vartype STRV
+val_arg
+soffset 0 
+sivp offset 0 
+name sv_arg3
+scalar
+str tiny
+
+START_ARG[4] 
+argtype INT
+vartype INT
+val_arg
+soffset 0 
+sivp offset 0 
+name sv_arg4
+scalar
+val 1
+
+START_ARG[5] 
+argtype INT
+vartype INT
+val_arg
+soffset 0 
+sivp offset 0 
+name sv_arg5
+scalar
+val 2
+
+START_ARG[6] 
+argtype INT
+vartype INT
+val_arg
+soffset 0 
+sivp offset 0 
+name sv_arg6
+scalar
+val 3
+
+START_ARG[7] 
+argtype INT
+vartype INT
+ptr_arg
+soffset 0 
+sivp offset 0 
+name A
+array
+range NO
+subsc NO
+ele NO
+sz 5
+subsz 0
+nd 1
+[0] 0
+[1] 1
+[2] 2
+[3] 3
+[4] 4
+
+END_ARG[7] 90
+
+
+arg[0]	a
+argtype	UNSET
+vartype	DOUBLE
+tag?	NO
+argptr?	YES
+soffset	0
+sivp->offset	0
+
+arg[1]	b
+argtype	UNSET
+vartype	INT
+tag?	NO
+argptr?	YES
+soffset	0
+sivp->offset	0
+
+arg[2]	c
+argtype	UNSET
+vartype	INT
+tag?	NO
+argptr?	YES
+soffset	0
+sivp->offset	0

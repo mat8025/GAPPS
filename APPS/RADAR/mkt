@@ -1,0 +1,93 @@
+
+y=10
+echo "# test_case$y descent   then immediate 8 min climb" > test_case$y.ip 
+echo "# 0 to -1 hold then to 1.0 " >> test_case$y.ip
+asl make_fp_vt.asl a 20000  l 180 d 140 2000 c 480 1500 l 480 >> test_case$y.ip
+
+
+y=11
+echo "# test_case$y descent then immediate 7 min climb" > test_case$y.ip 
+echo "# 0 to -1 hold then to 1.0 " >> test_case$y.ip
+asl make_fp_vt.asl a 20000  l 180 d 140 2000 c 420 1500 l 480 >> test_case$y.ip
+
+
+y=12
+echo "# test_case$y after climb immediate emergency descent" > test_case$y.ip 
+echo "# 0 to -1 hold then to 0.0 " >> test_case$y.ip
+asl make_fp_vt.asl a 0 l 60  c 340 2500 d 125 4500 l 480 >> test_case$y.ip
+
+
+y=8
+echo "# test_case $y slow climb - level slow descent " > test_case$y.ip
+echo "# flight phase stays constant " >> test_case$y.ip
+asl make_fp_vt.asl l 60 c 420 90 l 120 d 420 80 l 180  >> test_case$y.ip
+
+
+y=14
+echo "# test_case$y  climb level off full descent - level off - repeat" > test_case$y.ip
+echo "# init 0 climb 1.0 descend immediate change in phase 2 mins to reach -1.0 - level off" >> test_case$y.ip
+asl make_fp_vt.asl l 60 c 180 1500 l 90 d 125 4100 l 180 c 120 200 l 420 c 180 2500 l 90 d 120 3000 l 420 >> test_case$y.ip
+
+
+y=15
+echo "# test_case$y after climb immediate emergency descent  " > test_case$y.ip 
+echo "# 0 to -1 hold then to 1.0 " >> test_case$y.ip
+asl make_fp_vt.asl a 0 l 60  c 340 2500 d 125 4500 l 430 c 240 500 l 120 d 240 1500 l 60 >> test_case$y.ip
+
+
+
+
+
+y=1
+echo "# test_case$y level - descend for 2 mins - level off " > test_case$y.ip 
+echo "# flight phase starts at 0 --> -1 in 2 min hold 5 mins slew from -1 to 0 in 2 mins" >> test_case$y.ip 
+asl make_fp_vt.asl a 20000  l 180 d 120 2000 l 500 >> test_case$y.ip 
+
+
+y=2
+echo "# test_case$y  climb level off - " > test_case$y.ip
+echo "# init 0 climb 1.0  level off hold 5 then slew to level" >> test_case$y.ip
+asl make_fp_vt.asl l 60 c 180 1500 l 420 >> test_case$y.ip
+
+
+
+y=3
+echo "# test_case$y  climb level-off descend level-off climb" > test_case$y.ip
+echo "# test_case$y  0->1 <1 slew-> 0 -->1 then climb --> 1.0" >> test_case$y.ip
+asl make_fp_vt.asl l 60 climb 180 1500 level 180 descend 270 2000 l 180 c 120 200 l 420  >> test_case$y.ip
+
+
+y=4
+echo "# test_case$y staged descent" > test_case$y.ip
+echo "# 1   ---> hold value if below 0 then next descent --> -1" >> test_case$y.ip
+asl make_fp_vt.asl a 20000  l 180 d 50 2000 l 180 d 240 1000 l 420 >> test_case$y.ip
+
+
+y=5
+echo "# test_case5 level then climb 3 mins then level off" > test_case$y.ip
+echo "# 0->1 hold  then slew back to 0" >> test_case$y.ip
+asl make_fp_vt.asl a 1000 l 180 c 180 2000 l 480 >> test_case$y.ip
+
+
+y=6
+echo "# test_case$y descent level 2 mins then climb" > test_case$y.ip
+echo "# 0->1 <1 slew-> 0 -->1 then climb --> 1.0" >> test_case$y.ip
+asl make_fp_vt.asl a 20000  l 180 d 120 2000 l 420 c 180 500 l 420 >> test_case$y.ip
+
+
+y=7
+echo "# test_case$y descent level 2 mins then climb 6 mins" > test_case$y.ip
+echo "# -1 to 1.0 " >> test_case$y.ip
+asl make_fp_vt.asl a 20000  l 180 d 120 2000 l 120 c 360 500 l 420 >> test_case$y.ip
+
+
+y=13
+echo "# test_case$y descent  level  then climb" > test_case$y.ip 
+echo "# -1 to 0 to 1.0 " >> test_case$y.ip
+asl make_fp_vt.asl a 20000  l 180 d 120 2000 l 120 c 360 1500 l 420 >> test_case$y.ip
+
+
+y=9
+echo "# test_case$y descent  then immediate climb" > test_case$y.ip 
+echo "# 0 to -1 hold stays at -1.0 after hold then goes to 1.0 " >> test_case$y.ip
+asl make_fp_vt.asl a 20000  l 180 d 140 2000 c 360 1500 l 480  >> test_case$y.ip

@@ -1,0 +1,51 @@
+
+                          KALMAN
+
+
+
+Demo of Kalman Filter 
+
+   Property of Kalman  is that it minimizes the variance of the estimation error.
+   Should be a linear system ! (are there any truly linear in the real world?)
+
+   should be good for aircraft altitude
+
+
+
+   States --- new state from last state
+
+   State eqn
+
+   x _k+1 = A x _k + B u _k + w_k
+
+
+   Output eqn
+
+   y _k = C x _k + z _k
+
+
+   A,B,C  are matrices
+
+
+   k is time index
+   x  is state of system
+
+   u  is known input
+   y  is measured output
+
+   w is process noise
+   z is measurement noise
+
+
+   y is corrupted by noise.
+
+
+
+
+
+
+
+
+
+
+Sources -- Dan Simon tutorial  June 2001

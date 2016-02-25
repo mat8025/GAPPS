@@ -1,0 +1,15 @@
+
+ usage  --
+ glidertask  boulder santaFe boulder
+ gives out & back distance
+
+
+ glidertask OB 500 boulder
+ gives all 500k OB tasks starting at boulder
+
+ glidertask OB South 500 boulder
+ gives all 500k OB tasks starting at boulder going south
+
+ ...
+
+

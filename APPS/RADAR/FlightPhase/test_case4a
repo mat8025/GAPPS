@@ -1,0 +1,2 @@
+# test_case4 staged descent
+asl make_fp_vt.asl a 20000  l 180 d 120 2000 l 180 d 120 200 l 420 | asl fp_fcV7.asl | asl plotfp2.asl "test_case4 staged descent"

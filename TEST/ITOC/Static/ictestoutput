@@ -1,0 +1,82 @@
+A 5
+ entered foo 2
+0 5
+FAIL test <3> @ [20] checkNum(a,A)
+
+a 0
+INT   0 
+k 3  x 1
+a 0  x 1
+1 6
+ entered foo 2
+1 6
+FAIL test <6> @ [20] checkNum(a,A)
+
+a 1
+INT   1 
+k 3  x 2
+a 1  x 2
+2 7
+ entered goo 2
+a 14
+INT   14 
+k 3  x 2
+a 14  x 2
+a 15 b 0
+ entered foo 2
+2 7
+FAIL test <9> @ [20] checkNum(a,A)
+
+a 2
+INT   2 
+k 3  x 3
+a 2  x 3
+3 8
+ entered goo 3
+a 15
+INT   15 
+k 3  x 3
+a 15  x 3
+a 16 b 0
+DONE: FAIL: ./static             :tests     10 :Fail      3 :Pass      7 :Score   70.0% 
+A 5
+ entered foo 2
+0 5
+FAIL test <3> @ [20] checkNum(a,A)
+
+a 0
+INT   0 
+k 3  x 1
+a 0  x 1
+1 6
+ entered foo 2
+1 6
+FAIL test <6> @ [20] checkNum(a,A)
+
+a 1
+INT   1 
+k 3  x 2
+a 1  x 2
+2 7
+ entered goo 2
+a 14
+INT   14 
+k 3  x 2
+a 14  x 2
+a 15 b 0
+ entered foo 2
+2 7
+FAIL test <9> @ [20] checkNum(a,A)
+
+a 2
+INT   2 
+k 3  x 3
+a 2  x 3
+3 8
+ entered goo 3
+a 15
+INT   15 
+k 3  x 3
+a 15  x 3
+a 16 b 0
+DONE: FAIL: ./static             :tests     10 :Fail      3 :Pass      7 :Score   70.0% 

@@ -1,0 +1,464 @@
+ ./func  
+
+arg[0]	N
+argtype	STRV
+vartype	STRV
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[1]	M
+argtype	STRV
+vartype	STRV
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+ START_ARG[0]  argtype STRV vartype STRV val_arg soffset 0  sivp offset 0  name N scalar str   START_ARG[1]  argtype STRV vartype STRV val_arg soffset 0  sivp offset 0  name M scalar str    END_ARG[1] 20    
+ k 0 kt INT  
+ ut 1451523038 
+ r 0.785398 
+Sin 0.785398 = 0.707107   
+Sin 45.000000 degs = 0.707107   
+Cos 45.000000 degs = 0.707107   
+ Sin 45.000000 * Cos 45.000000  = 0.500000
+ 0.707107 * 0.707107 = 0.500000 
+ 0.493883 
+ 0.493883 
+ 0.548732 
+ 0.548732 
+0.707107 0.353553 
+0.707107 0.380122 
+DONE: PASS: ./func               :tests      2 :Fail      0 :Pass      2 :Score  100.0% 
+ 0.841471 
+cos 1.000000 
+ pi 3.141593 
+ sin pi/2 1.000000 
+ 3.141590 == 3.14159 
+DONE: PASS: ./func0              :tests      3 :Fail      0 :Pass      3 :Score  100.0% 
+
+arg[0]	xic_result_0
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[1]	xic_result_1
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[0]	xic_result_0
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[1]	xic_result_1
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[2]	xic_result_2
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+START_ARG[0] argtype INTvartype INTval_argsoffset 0 sivp offset 0 name xic_result_0scalarval 6START_ARG[1] argtype INTvartype INTval_argsoffset 0 sivp offset 0 name xic_result_1scalarval 5START_ARG[2] argtype INTvartype INTval_argsoffset 0 sivp offset 0 name xic_result_2scalarval 8END_ARG[2] 30 
+val 6
+val6
+
+arg[0]	A
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[1]	xic_result_0
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[2]	xic_result_1
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[3]	xic_result_2
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+START_ARG[0] argtype INTvartype INTval_argsoffset 0 sivp offset 0 name Aarrayrange NOsubsc NOele NOsz 5subsz 0nd 1[0] 0[1] 1[2] 2[3] 3[4] 4START_ARG[1] argtype INTvartype INTval_argsoffset 0 sivp offset 0 name xic_result_0scalarval 1START_ARG[2] argtype INTvartype INTval_argsoffset 0 sivp offset 0 name xic_result_1scalarval 2START_ARG[3] argtype INTvartype INTval_argsoffset 0 sivp offset 0 name xic_result_2scalarval 3END_ARG[3] 50 
+
+arg[0]	F
+argtype	FLOAT
+vartype	FLOAT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+START_ARG[0] argtype FLOATvartype FLOATval_argsoffset 0 sivp offset 0 name Farrayrange NOsubsc NOele NOsz 6subsz 0nd 1[0] 0.000000[1] 1.000000[2] 2.000000[3] 3.000000[4] 4.000000[5] 5.000000END_ARG[0] 21 
+jal 14 
+[0] 0.000000
+[0]0.000000
+[1] 1.000000
+[1]1.000000
+[2] 2.000000
+[2]2.000000
+DONE: PASS: ./func1              :tests      4 :Fail      0 :Pass      4 :Score  100.0% 
+0.841471 
+0.666367 
+ 0.666367 
+ 0.618134 0.618134 
+ 0.711096 0.711096 
+
+arg[0]	xic_result_0
+argtype	STRV
+vartype	STRV
+tag?	YES
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[1]	xic_result_1
+argtype	STRV
+vartype	STRV
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[2]	xic_result_2
+argtype	STRV
+vartype	STRV
+tag?	YES
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[3]	xic_result_3
+argtype	STRV
+vartype	STRV
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[4]	xic_result_4
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[5]	xic_result_5
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[6]	xic_result_6
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[7]	A
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+whats in SV
+SV[0] START_ARG[0]  SV[1] argtype STRV SV[2] vartype STRV
+START_ARG[0] argtype STRVvartype STRVtag_argsoffset 0 sivp offset 0 name xic_result_0scalarstr headSTART_ARG[1] argtype STRVvartype STRVval_argsoffset 0 sivp offset 0 name xic_result_1scalarstr bigSTART_ARG[2] argtype STRVvartype STRVtag_argsoffset 0 sivp offset 0 name xic_result_2scalarstr tailSTART_ARG[3] argtype STRVvartype STRVval_argsoffset 0 sivp offset 0 name xic_result_3scalarstr tinySTART_ARG[4] argtype INTvartype INTval_argsoffset 0 sivp offset 0 name xic_result_4scalarval 1START_ARG[5] argtype INTvartype INTval_argsoffset 0 sivp offset 0 name xic_result_5scalarval 2START_ARG[6] argtype INTvartype INTval_argsoffset 0 sivp offset 0 name xic_result_6scalarval 3START_ARG[7] argtype INTvartype INTval_argsoffset 0 sivp offset 0 name Aarrayrange NOsubsc NOele NOsz 5subsz 0nd 1[0] 0[1] 1[2] 2[3] 3[4] 4END_ARG[7] 90
+
+arg[0]	a
+argtype	DOUBLE
+vartype	DOUBLE
+tag?	NO
+argptr?	YES
+soffset	0
+sivp->offset	0
+
+arg[1]	b
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	YES
+soffset	0
+sivp->offset	0
+
+arg[2]	c
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	YES
+soffset	0
+sivp->offset	0
+whats in SV
+SV[0] START_ARG[0]  SV[1] argtype DOUBLE SV[2] vartype DOUBLE
+ a 1.000000 b 80 c 48 
+DONE: PASS: ./funcargs           :tests      5 :Fail      0 :Pass      5 :Score  100.0% 
+ ./func  
+
+arg[0]	N
+argtype	STRV
+vartype	STRV
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[1]	M
+argtype	STRV
+vartype	STRV
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+ START_ARG[0]  argtype STRV vartype STRV val_arg soffset 0  sivp offset 0  name N scalar str   START_ARG[1]  argtype STRV vartype STRV val_arg soffset 0  sivp offset 0  name M scalar str    END_ARG[1] 20    
+ k 0 kt INT  
+ ut 1451523111 
+ r 0.785398 
+Sin 0.785398 = 0.707107   
+Sin 45.000000 degs = 0.707107   
+Cos 45.000000 degs = 0.707107   
+ Sin 45.000000 * Cos 45.000000  = 0.500000
+ 0.707107 * 0.707107 = 0.500000 
+ 0.493883 
+ 0.493883 
+ 0.548732 
+ 0.548732 
+0.707107 0.353553 
+0.707107 0.380122 
+DONE: PASS: ./func               :tests      2 :Fail      0 :Pass      2 :Score  100.0% 
+ 0.841471 
+cos 1.000000 
+ pi 3.141593 
+ sin pi/2 1.000000 
+ 3.141590 == 3.14159 
+DONE: PASS: ./func0              :tests      3 :Fail      0 :Pass      3 :Score  100.0% 
+
+arg[0]	xic_result_0
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[1]	xic_result_1
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[0]	xic_result_0
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[1]	xic_result_1
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[2]	xic_result_2
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+START_ARG[0] argtype INTvartype INTval_argsoffset 0 sivp offset 0 name xic_result_0scalarval 6START_ARG[1] argtype INTvartype INTval_argsoffset 0 sivp offset 0 name xic_result_1scalarval 5START_ARG[2] argtype INTvartype INTval_argsoffset 0 sivp offset 0 name xic_result_2scalarval 8END_ARG[2] 30 
+val 6
+val6
+
+arg[0]	A
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[1]	xic_result_0
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[2]	xic_result_1
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[3]	xic_result_2
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+START_ARG[0] argtype INTvartype INTval_argsoffset 0 sivp offset 0 name Aarrayrange NOsubsc NOele NOsz 5subsz 0nd 1[0] 0[1] 1[2] 2[3] 3[4] 4START_ARG[1] argtype INTvartype INTval_argsoffset 0 sivp offset 0 name xic_result_0scalarval 1START_ARG[2] argtype INTvartype INTval_argsoffset 0 sivp offset 0 name xic_result_1scalarval 2START_ARG[3] argtype INTvartype INTval_argsoffset 0 sivp offset 0 name xic_result_2scalarval 3END_ARG[3] 50 
+
+arg[0]	F
+argtype	FLOAT
+vartype	FLOAT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+START_ARG[0] argtype FLOATvartype FLOATval_argsoffset 0 sivp offset 0 name Farrayrange NOsubsc NOele NOsz 6subsz 0nd 1[0] 0.000000[1] 1.000000[2] 2.000000[3] 3.000000[4] 4.000000[5] 5.000000END_ARG[0] 21 
+jal 14 
+[0] 0.000000
+[0]0.000000
+[1] 1.000000
+[1]1.000000
+[2] 2.000000
+[2]2.000000
+DONE: PASS: ./func1              :tests      4 :Fail      0 :Pass      4 :Score  100.0% 
+0.841471 
+0.666367 
+ 0.666367 
+ 0.618134 0.618134 
+ 0.711096 0.711096 
+
+arg[0]	xic_result_0
+argtype	STRV
+vartype	STRV
+tag?	YES
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[1]	xic_result_1
+argtype	STRV
+vartype	STRV
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[2]	xic_result_2
+argtype	STRV
+vartype	STRV
+tag?	YES
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[3]	xic_result_3
+argtype	STRV
+vartype	STRV
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[4]	xic_result_4
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[5]	xic_result_5
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[6]	xic_result_6
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[7]	A
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+whats in SV
+SV[0] START_ARG[0]  SV[1] argtype STRV SV[2] vartype STRV
+START_ARG[0] argtype STRVvartype STRVtag_argsoffset 0 sivp offset 0 name xic_result_0scalarstr headSTART_ARG[1] argtype STRVvartype STRVval_argsoffset 0 sivp offset 0 name xic_result_1scalarstr bigSTART_ARG[2] argtype STRVvartype STRVtag_argsoffset 0 sivp offset 0 name xic_result_2scalarstr tailSTART_ARG[3] argtype STRVvartype STRVval_argsoffset 0 sivp offset 0 name xic_result_3scalarstr tinySTART_ARG[4] argtype INTvartype INTval_argsoffset 0 sivp offset 0 name xic_result_4scalarval 1START_ARG[5] argtype INTvartype INTval_argsoffset 0 sivp offset 0 name xic_result_5scalarval 2START_ARG[6] argtype INTvartype INTval_argsoffset 0 sivp offset 0 name xic_result_6scalarval 3START_ARG[7] argtype INTvartype INTval_argsoffset 0 sivp offset 0 name Aarrayrange NOsubsc NOele NOsz 5subsz 0nd 1[0] 0[1] 1[2] 2[3] 3[4] 4END_ARG[7] 90
+
+arg[0]	a
+argtype	DOUBLE
+vartype	DOUBLE
+tag?	NO
+argptr?	YES
+soffset	0
+sivp->offset	0
+
+arg[1]	b
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	YES
+soffset	0
+sivp->offset	0
+
+arg[2]	c
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	YES
+soffset	0
+sivp->offset	0
+whats in SV
+SV[0] START_ARG[0]  SV[1] argtype DOUBLE SV[2] vartype DOUBLE
+ a 1.000000 b 80 c 48 
+DONE: PASS: ./funcargs           :tests      5 :Fail      0 :Pass      5 :Score  100.0% 

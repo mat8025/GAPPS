@@ -1,0 +1,3 @@
+FAIL test <2> @ [15] checkFnum(rspo2,84.15)
+
+DONE: FAIL: ./bugfix_80          :tests      2 :Fail      1 :Pass      1 :Score   50.0% 

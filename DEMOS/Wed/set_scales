@@ -1,0 +1,12 @@
+
+title _SetScales_
+item	r__y	M_INT	rx	0	0.000000
+helppaint screen
+
+item	r_y	M_FLOAT	ry	0	1.000000
+help
+item	r_X	M_FLOAT	rX	0	0
+help
+item	r_Y	M_FLOAT	rY	0	1
+helpscreen snapshot
+

@@ -1,0 +1,88 @@
+
+arg[0]	xic_result_0
+argtype	STRV
+vartype	STRV
+tag?	YES
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[1]	xic_result_1
+argtype	STRV
+vartype	STRV
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[2]	xic_result_2
+argtype	STRV
+vartype	STRV
+tag?	YES
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[3]	xic_result_3
+argtype	STRV
+vartype	STRV
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[4]	xic_result_4
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[5]	xic_result_5
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[6]	xic_result_6
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[7]	A
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+
+arg[0]	a
+argtype	DOUBLE
+vartype	DOUBLE
+tag?	NO
+argptr?	YES
+soffset	0
+sivp->offset	0
+
+arg[1]	b
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	YES
+soffset	0
+sivp->offset	0
+
+arg[2]	c
+argtype	INT
+vartype	INT
+tag?	NO
+argptr?	YES
+soffset	0
+sivp->offset	0

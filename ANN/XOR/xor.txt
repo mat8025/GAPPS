@@ -1,0 +1,44 @@
+                   XOR
+
+ xor is simple demo of the neural-net library routines to solve the
+ xor problem --- construct a net that functions as an xor logic gate.
+
+
+ run as
+ asl xor.asl
+
+ For graphic representation run as
+
+ asl -X xor.asl
+
+
+
+
+  want to add value buttons for learning rates
+
+  eta
+  alpha
+
+
+
+
+
+
+
+ Graphic todo's 
+
+   update to values buttons is flashy - repaint problem?
+   fixed -- reimplemented update command to just redisplay value not a wo redraw
+   e.g.
+    setgwob(pc_wo,@value,pc,@update)
+
+   resize of net is flakey
+
+  Want some initial graphic setup --- via user --
+
+
+
+
+  Asl 
+
+   bug --- first line of include file ignored??

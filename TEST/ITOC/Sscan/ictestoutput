@@ -1,0 +1,38 @@
+3 f 3.100000 k 4 g hey
+ f <68><FLOAT>[G]  k <67><INT>[G]  g <70><STRV>[G] 
+na 4 f 6.123000 k 1 g hey s1 baby
+ 4 3.000000 1 hey baby
+ 4 4.500000 2 hey baby
+s1 <71><STRV>[G]    g <70><STRV>[G]  
+ s1 <71><STRV>[G]    g <70><STRV>[G]  
+ s1 <71><STRV>[G]    g <70><STRV>[G]  
+ f <68><FLOAT>[G]  k <67><INT>[G]  
+ f <68><FLOAT>[G]  k <67><INT>[G]  
+ f <68><FLOAT>[G]  k <67><INT>[G]  g <70><STRV>[G] 
+ f <68><FLOAT>[G]  k <67><INT>[G]  j <69><INT>[G]  g <70><STRV>[G] 
+ s <65><STRV>[G]  
+ SQ 
+3 1 4:hey baby you got the love I need
+8 3.000000 1 4 :hey baby you the
+ you
+news star bright g star s1  bright
+DONE: PASS: ./sscan              :tests      7 :Fail      0 :Pass      7 :Score  100.0% 
+3 f 3.100000 k 4 g hey
+ f <68><FLOAT>[G]  k <67><INT>[G]  g <70><STRV>[G] 
+na 4 f 6.123000 k 1 g hey s1 baby
+ 4 3.000000 1 hey baby
+ 4 4.500000 2 hey baby
+s1 <71><STRV>[G]    g <70><STRV>[G]  
+ s1 <71><STRV>[G]    g <70><STRV>[G]  
+ s1 <71><STRV>[G]    g <70><STRV>[G]  
+ f <68><FLOAT>[G]  k <67><INT>[G]  
+ f <68><FLOAT>[G]  k <67><INT>[G]  
+ f <68><FLOAT>[G]  k <67><INT>[G]  g <70><STRV>[G] 
+ f <68><FLOAT>[G]  k <67><INT>[G]  j <69><INT>[G]  g <70><STRV>[G] 
+ s <65><STRV>[G]  
+ SQ 
+3 1 4:hey baby you got the love I need
+8 3.000000 1 4 :hey baby you the
+ you
+news star bright g star s1  bright
+DONE: PASS: ./sscan              :tests      7 :Fail      0 :Pass      7 :Score  100.0% 

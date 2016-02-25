@@ -1,0 +1,74 @@
+ws Happy Hols
+CHAR  
+10 
+E Happy Hols
+
+72 
+H 
+97 
+a 
+72 97 112 112 121 32 72 111 108 115
+ 
+H a p p y   H o l s
+ 
+DONE: PASS: ./scat               :tests      4 :Fail      0 :Pass      4 :Score  100.0% 
+ok 1
+ok 0
+ok 1
+ok 0
+ok 1
+Now is the time for all Good men all the time
+Now is the time for all Good men all the time
+all
+INT   0
+5 
+INT   11
+0 0 0 0 0 1 0 0 1 0 0
+ 
+DONE: PASS: ./scmp               :tests      5 :Fail      0 :Pass      5 :Score  100.0% 
+The very next day - he started to improve
+The very next day - he started to improvase
+The very next day - he started to improvuse
+The very next day - he started to improvise
+DONE: PASS: ./ssub               :tests      4 :Fail      0 :Pass      4 :Score  100.0% 
+how
+STRV  
+ fine
+DONE: PASS: ./stropcmp           :tests      1 :Fail      0 :Pass      1 :Score  100.0% 
+ws Happy Hols
+CHAR  
+10 
+E Happy Hols
+
+72 
+H 
+97 
+a 
+72 97 112 112 121 32 72 111 108 115
+ 
+H a p p y   H o l s
+ 
+DONE: PASS: ./scat               :tests      4 :Fail      0 :Pass      4 :Score  100.0% 
+ok 1
+ok 0
+ok 1
+ok 0
+ok 1
+Now is the time for all Good men all the time
+Now is the time for all Good men all the time
+all
+INT   0
+5 
+INT   11
+0 0 0 0 0 1 0 0 1 0 0
+ 
+DONE: PASS: ./scmp               :tests      5 :Fail      0 :Pass      5 :Score  100.0% 
+The very next day - he started to improve
+The very next day - he started to improvase
+The very next day - he started to improvuse
+The very next day - he started to improvise
+DONE: PASS: ./ssub               :tests      4 :Fail      0 :Pass      4 :Score  100.0% 
+how
+STRV  
+ fine
+DONE: PASS: ./stropcmp           :tests      1 :Fail      0 :Pass      1 :Score  100.0% 

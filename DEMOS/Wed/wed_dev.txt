@@ -1,0 +1,22 @@
+
+
+carb, cal lookup   carb,protein,fat proportions
+
+energy expenditure - run,walk, cycle  --- weight/resistance exercise
+
+
+ need GUI to enter food -- and log compute  cal,carb,fat,protein  contents
+ record into XML data file ?
+
+ time of day -- meal type , snack 
+
+
+ need GUI to log Xercise activity for the day computes energy cal/content burnt
+
+ 
+
+
+ Graph of activity wt loss/gain  -- scrollable -- add notes
+
+
+

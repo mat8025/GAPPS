@@ -1,0 +1,12 @@
+1  ./prime_127  
+is 0 prime ?
+ a 0 UINT  a  
+ N 0 UINT  N  
+ m 0 UINT  m  
+ 0 div by 2 -- its even 
+1  ./prime_127  
+is 0 prime ?
+ a 0 UINT  a  
+ N 0 UINT  N  
+ m 0 UINT  m  
+ 0 div by 2 -- its even 

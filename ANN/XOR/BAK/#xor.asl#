@@ -1,0 +1,419 @@
+# "$Id: xor,v 1.1 1999/01/22 03:46:37 mark Exp mark $"
+# xor- problem - test of sip interface  ann library routines
+
+ascii W[60]
+
+float Input[100]
+#float Target[20]
+char Target[20]
+#char Target[4][2]
+
+
+Main_init = 1
+include lib/fop.g
+include lib/wo.g
+Main_init = 0
+
+
+# procs
+
+proc
+usage()
+{
+
+print("xor - use neural-net to build XOR gate : example prog\n")
+print("xor [eta (0.2)] [theta (0.9)] [alpha (0.9)] \ \n")
+print("act [LOGISTIC,HYPERBOLIC,SINE)] [type (sff,dca)] range01 \n")
+
+exit_si()
+}
+
+
+set_debug(0)
+
+# args
+na = argc()
+
+if (na < 1)   usage()
+
+print("arg 0 $0 \n")
+print("arg 1 $1 \n")
+print("arg 2 $2 \n")
+
+
+wid = -1
+gok = check_gwm()
+print("gok $gok \n")
+
+
+if (gok) {
+
+# get window for display
+
+wid = w_create(0,0)
+
+print("wid $wid \n")
+
+if (wid > 0) {
+w_resize(wid,0.1,0.1,0.9,0.9,1)
+
+w_map(wid)
+ff= w_clear(wid)
+w_set_rs(wid,0,0,1,1)
+
+sipw = sip_w ("XOR_")
+# wo's to display error - nc,pc 
+
+w_y0 = 0.90
+w_y1 = w_y0 + 0.09
+
+rms_wo=w_set_wo(wid,WBV," rms: ",3,.45,w_y0,0.6,w_y1,"0","blue","medium","white")
+pc_wo=w_set_wo(wid,WBV," pc: ",3,.62,w_y0,0.75,w_y1," ","blue","medium","white")
+pat_wo=w_set_wo(wid,WBV," pat: ",3,.77,w_y0,0.9,w_y1," ","blue","medium","white")
+nswps_wo=w_set_wo(wid,WBV," ns: ",3,.1,w_y0,.3,w_y1," ","red","medium","white")
+ff=w_redraw_wo(wid)
+}
+}
+
+
+N= get_net()
+
+print("Net $N \n")
+
+adjust_range = 0
+do_scale = 0
+
+# design net
+
+layers = 3
+nin = 2
+nout = 1
+n_first_hid = 2
+n_second_hid = 0
+rs = 7
+
+act = "LOGISTIC"
+eta = 0.2
+alpha = 0.9
+theta = 0.9
+ntype = "sff"
+
+
+nsweeps = 3000
+
+cla = 1
+
+while (cla <= na) {
+
+      arg=$cla
+
+     if (arg @= "act") {
+       cla++
+       act=$cla
+     }
+
+     if (arg @= "rs") {
+       cla++
+       rs=$cla
+     }
+
+     if (arg @= "type") {
+       cla++
+       ntype=$cla
+     }
+
+     if (arg @= "eta") {
+       cla++
+       eta=$cla
+     }
+
+     if (arg @= "range-1/1") {
+       adjust_range = 1
+     }
+
+     if (arg @= "range0/1") {
+       adjust_range = 0
+     }
+
+     if (arg @= "scale") {
+       do_scale = 1
+       cla++
+       scale = $cla
+     }
+
+     if (arg @= "alpha") {
+          cla++
+          alpha=$cla
+     }
+
+     if (arg @= "hidden1") {
+          cla++
+          n_first_hid=$cla
+     }
+
+     if (arg @= "hidden2") {
+          cla++
+          n_second_hid=$cla
+     }
+
+
+     if (arg @= "theta") {
+          cla++
+          theta=$cla
+     }
+
+     if (arg @= "nsweeps") {
+          cla++
+          nsweeps=$cla
+     }
+
+
+      cla++
+}
+
+# get net descriptor
+set_net_debug(0)
+
+
+# set up architecture
+
+
+if (n_first_hid > 0) {
+layers = 3
+}
+
+if (n_first_hid > 0 && n_second_hid > 0) {
+layers = 4
+}
+
+print("arch layers $layers fhid $n_first_hid shid $n_second_hid \n")
+
+ok=set_net_arch(N,layers,nin,nout,n_first_hid,n_second_hid)
+if (! ok) {
+print("arch setup failure \n")
+exit_si()
+}
+
+
+
+
+print("net type $ntype \n")
+set_net_type(N,ntype)
+
+set_net_act(N,act)
+print("activation type $act \n")
+
+ok=set_net_nodes(N)
+
+if (! ok) {
+print("arch node setup failure \n")
+exit_si()
+}
+
+ok = set_net_conn(N)
+
+if (! ok) {
+print("connection setup failure \n")
+ff=set_si_error(1)
+ff=exit_si()
+}
+else {
+print("connection setup ok \n")
+}
+
+rs = 8
+rs = set_net_wts(N,rs)
+
+print("random seed $rs \n")
+
+# defaults
+# set up teaching specs
+
+# learning parameters
+
+# learning exit pars
+
+# inputs
+Input[0] = 0
+Input[1] = 0
+
+Input[2] = 0
+Input[3] = 1
+
+Input[4] = 1
+Input[5] = 0
+
+Input[6] = 1
+Input[7] = 1
+
+
+ninputs = 8
+if (adjust_range) {
+ for (ni = 0 ; ni < ninputs ; ni++) {
+ Input[ni] *= 2 
+ Input[ni] -= 1
+ }
+ }
+
+if (do_scale) {
+ for (ni = 0 ; ni < ninputs ; ni++) {
+ Input[ni] *= scale
+ }
+
+}
+
+# targets
+#{
+Target[0] = 0
+Target[1] = 1
+Target[2] = 1
+Target[3] = 0
+#}
+
+
+Target[0] = 1
+ Target[1] = 0
+Target[2] = 1
+ Target[3] = 1
+Target[4] = 1
+ Target[5] = 1
+Target[6] = 1
+ Target[7] = 0
+
+#{
+for ( i = 0 ; i < 4 ; i++) {
+Target[i][0] = 1
+Target[i][1] = 0
+}
+
+for ( i = 1 ; i < 3 ; i++) {
+Target[i][1] = 1
+}
+#}
+
+
+ntargs = 4
+
+
+
+if (adjust_range) {
+ for (ni = 0 ; ni < ntargs ; ni++) {
+ Target[ni] = Target[ni] * 2 -1
+ }
+}
+
+
+
+
+npats=set_net_pats(N,4)
+
+print("$npats \n")
+
+
+# eta (learn rate) - alpha (momentum)  - theta ( bias)
+
+eta=set_net_learn(N,eta,alpha,theta)
+print("eta $eta \n")
+
+theta = get_net_theta(N)
+print("theta $theta \n")
+
+alpha = get_net_alpha(N)
+print("alpha $alpha \n")
+
+nc =train_net(N, &Input[0], &Target[0], 1)
+
+print_net(N, 1,&Input[0], &Target[0])
+
+set_net_debug(0)
+
+if (wid > 0) {
+ff=plot_net(N,wid,0,&Input[0], &Target[0])
+}
+
+
+
+
+ns = 1
+p = 0
+do_train = 1
+
+while (do_train) {
+
+pit = ! (ns % 50)
+
+nc =train_net(N, &Input[0], &Target[0], 1)
+
+if (pit) {
+print_net(N, 0,&Input[0], &Target[0])
+print_net(N, 1,&Input[0], &Target[0])
+print_net(N, 2,&Input[0], &Target[0])
+print_net(N, 3,&Input[0], &Target[0])
+}
+
+net_sweeps = get_nsweeps(N)
+ss = get_net_ss(N)
+rms = sqrt( ss/ 4)
+print("$ns  $nc $ss $rms\n")
+if ((rms < 0.1) && (nc == 4)) {
+break
+}
+ns++
+
+if (pit) {
+
+ if (wid > 0) {
+
+ff=w_clip_clear(wid)
+print("plot net \n")
+ff=plot_net(N,wid,p,&Input[0], &Target[0])
+si_pause(0.2)
+
+  pc = nc/npats *100
+  w_set_wo_value(wid,rms_wo,rms)
+  w_set_wo_value(wid,pc_wo,pc)
+  w_set_wo_value(wid,nswps_wo,net_sweeps)
+  w_set_wo_value(wid,pat_wo,p)
+  ff=w_redraw_wo(wid)
+  p++
+  p = p % npats
+ }
+}
+if (ns > nsweeps) {
+ break
+}
+
+}
+
+
+nc =train_net(N, &Input[0], &Target[0], 1)
+
+  pc = nc/npats * 100
+
+
+ok= save_net(N,"xor_net.wts")
+
+if (wid > 0) {
+  ff=w_set_wo_value(wid,rms_wo,rms)
+  ff=w_set_wo_value(wid,pc_wo,pc)
+ while(1) { 
+ for (p = 0 ; p < npats ; p++) {
+ff=w_clip_clear(wid)
+plot_net(N,wid,p,&Input[0], &Target[0])
+print_net(N,p,&Input[0], &Target[0])
+ff=w_set_wo_value(wid,pat_wo,p)
+si_pause(3.0)
+ }
+ }
+}
+
+
+# show results
+
+# show net arch - wts - hidden units
+
+print("done xor - $nc $rms\n")
+# save debug file - by causing at least one error
+set_si_error(1)
+ff=exit_si()
+

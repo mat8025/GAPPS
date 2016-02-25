@@ -1,0 +1,5 @@
+y=5
+echo "# test_case5 level then climb 3 mins then level off" > test_case$y.ip
+echo "# 0->1 hold  then slew back to 0" >> test_case$y.ip
+asl make_fp_vt.asl a 1000 l 180 c 180 2000 l 480 >> test_case$y.ip
+cat test_case$y.ip | asl fp_fcV8.asl | asl plotfp2.asl 

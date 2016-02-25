@@ -1,0 +1,2 @@
+#! /bin/bash
+grep $1 /usr/local/GASP/gasp/include/*.h

@@ -1,0 +1,28 @@
+
+  This is the start of an anagram solver --- I have yet to add the dictionary lookup
+  but for now it simply lists all the permutations of the letters of a word.
+
+  This is a recursive solution plus a key step of rotating the indices of the vector
+  addressing the string.
+
+  TBD --- The next step is to search the permutated string for subwords 
+
+  usage
+     ./strperm  word
+
+  e.g.
+
+[mark@mercury RELEASE]$ ./strperm cat
+
+ constructing 18 cat
+3 arg1 cat
+cat
+cat len 3
+
+1 :-> [ 0  1  2  ]  < c  a  t  > 
+2 :-> [ 0  2  1  ]  < c  t  a  > 
+3 :-> [ 1  2  0  ]  < a  t  c  > 
+4 :-> [ 1  0  2  ]  < a  c  t  > 
+5 :-> [ 2  0  1  ]  < t  c  a  > 
+6 :-> [ 2  1  0  ]  < t  a  c  > 
+ Perms All done -- number of iterations 16 permutations 6

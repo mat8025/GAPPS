@@ -1,0 +1,122 @@
+#/* -*- c -*- */
+
+gok = check_gwm()
+     if (gok) {
+Main_init = 1
+include lib/tools.g
+include lib/fop.g
+include lib/wo.g
+Main_init = 0
+  }
+
+proc logistic(netin, bias,om)
+{
+        ex = netin + bias
+	out = (1.0 / (1.0 + exp((-1.0 * ex/om))))
+	return (out)
+}
+
+
+proc hyperbolic(netin, bias,om)
+{
+        ex = netin + bias
+	out = 2.0 / (1.0 + exp (-2.0 * ex)) - 1.0;
+	return ( out)
+}
+
+proc 
+tanhb(netin, bias,om)
+{
+        ex = netin + bias
+ out = tanh ((0.5 * (ex)));
+	return ( out)
+}
+
+#
+activ = "hyperbolic"
+print("$activ \n")
+activ = $1
+om = $2
+print("%v$activ \n")
+
+ if ($1 @= "") activ = "logistic"
+print("%v$activ \n")
+
+ if (activ @= "") activ = "logistic"
+print("%v$activ \n")
+
+y = 0.0
+x= 0.0
+
+y = $activ(x,0,om)
+print("$activ $x $y\n")
+set_debug(0)
+#name_debug("DECLARE","EXP","VAR",0)
+float X[10+]
+float Y[10+]
+Y[9] = 3
+Y[10] = 4
+
+<<"$Y[9] $Y[10] $om\n"
+
+
+i= 0
+for (x = -10 ; x < 10.0 ; x += 0.1)  {
+y = $activ(x,0)
+Y[i] = y
+X[i] = x
+i++
+}
+
+for (k = 0; k <i;k++) <<"$k $X[k] $Y[k]\n"
+
+# plot it
+
+gok = check_gwm()
+     if (gok) {
+vp=w_create(0,0)
+w_map(vp)
+ff=w_resize(vp,0.05,0.05,0.95,0.95,1)
+w_set_clip(vp,0.17,0.15,0.77,0.90)
+w_set_rs(vp,-10,-1.5,10,1.5)
+w_clear(vp)
+w_title(vp,"netactivation",1)
+vv_draw(vp,&X[0],&Y[0],k)
+axis_label(vp,0.07, 2.0, 2.0)
+#grid_label(vp,0.05)
+w_store(vp)
+w_clear(vp)
+
+ff=w_refresh(vp)
+  }
+set_si_error(1)
+exit_si()
+
+
+
+bias = 0.0
+
+neti = 1
+
+neto = activ(neti,bias)
+
+<<"in $neti out $neto \n"
+
+neti = -1
+
+neto = activ(neti,bias)
+print("in ",neti," out ",neto,"\n")
+
+while (1) {
+neti = i_read()
+if (neti @= "q") {
+break
+}
+neto = activ(neti,bias)
+print("in ",neti," out ",neto,"\n")
+
+}
+
+
+
+ff=exit_si()

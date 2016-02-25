@@ -1,0 +1,5 @@
+FAIL test <1> @ [9] CheckFNum(a,1.2345678)
+
+FAIL test <2> @ [10] CheckFNum(b,-0.987654)
+
+DONE: FAIL: ./pan_type           :tests      2 :Fail      2 :Pass      0 :Score    0.0% 

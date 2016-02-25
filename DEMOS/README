@@ -1,0 +1,6 @@
+
+  various demos -- 
+  to add more just make a directory and add scripts the install will tar them up
+  with the top level make dist
+
+  Chaos --- shows mandelbrot set

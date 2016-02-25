@@ -1,0 +1,5 @@
+echo "#test_case1a level - full descent - level off" > test_case1a.ip 
+asl make_fp_vt.asl a 36000  l 180 d 180 2000 l 180 >> test_case1a.ip 
+cat test_case1a.ip | asl fp_fcV8.asl | asl plotfp2.asl 
+
+#cat test_case1.ip | asl fp_fcV8.asl | asl plotfp2.asl " test_case1 level - descend - level"

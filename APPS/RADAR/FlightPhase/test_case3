@@ -1,0 +1,5 @@
+y=3
+echo "# test_case$y  climb level-off descent level-off climb" > test_case$y.ip
+echo "# test_case$y  0->1 <1 slew-> 0 -->1 then climb --> 1.0" >> test_case$y.ip
+asl make_fp_vt.asl l 60 climb 280 2500 level 180 descend 270 2000 l 180 c 120 200 l 420  >> test_case$y.ip
+cat test_case$y.ip | asl fp_fcV8.asl | asl plotfp2.asl 

@@ -1,0 +1,118 @@
+ 12  
+ SHORT   
+ 12  
+
+arg[0]	xic_result_0
+argtype	STRV
+vartype	STRV
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+  as 99 
+  pi 8 
+ 700 
+ 700 200 699 150 698 100 697 50 0 0 0 0
+ 
+ 700 200 699 150 698 100 697 50 0 0 0 0
+ 
+  xyv[::] 700 200 699 150 698 100 697 50 0 0 0 0
+ 
+ 12  
+ xyv[::] 
+ 
+FAIL test <5> @ [85] CheckNum(xyv[2],77)
+
+FAIL test <6> @ [88] CheckNum(xyv[6],77)
+
+ xyv[::] 
+ 
+ xyv[::] 
+ 
+ 69 200 70 150 71 100 72 50 0 0 0 0
+ 
+  zx 23 2 3 4
+ 
+ xyv[*] 69 
+ xyv[::] 
+ 
+ 69 
+ j  :: xyv[0] 69 
+ zx 23 2 3 66
+ 
+ zx 46 4 6 132
+ 
+ j 1 :: xyv[0] 69 
+ j 1 :: xyv 69 46 70 4 71 6 72 132 0 0 0 0
+ 
+ zx 92 8 12 264
+ 
+ j 2 :: xyv[0] 69 
+ j 2 :: xyv 69 92 70 8 71 12 72 264 0 0 0 0
+ 
+ zx 184 16 24 528
+ 
+ j 3 :: xyv[0] 69 
+ j 3 :: xyv 69 184 70 16 71 24 72 528 0 0 0 0
+ 
+ 12  
+DONE: FAIL: ./xyassign           :tests      8 :Fail      2 :Pass      6 :Score   75.0% 
+ 12  
+ SHORT   
+ 12  
+
+arg[0]	xic_result_0
+argtype	STRV
+vartype	STRV
+tag?	NO
+argptr?	NO
+soffset	0
+sivp->offset	0
+  as 99 
+  pi 8 
+ 700 
+ 700 200 699 150 698 100 697 50 0 0 0 0
+ 
+ 700 200 699 150 698 100 697 50 0 0 0 0
+ 
+  xyv[::] 700 200 699 150 698 100 697 50 0 0 0 0
+ 
+ 12  
+ xyv[::] 
+ 
+FAIL test <5> @ [85] CheckNum(xyv[2],77)
+
+FAIL test <6> @ [88] CheckNum(xyv[6],77)
+
+ xyv[::] 
+ 
+ xyv[::] 
+ 
+ 69 200 70 150 71 100 72 50 0 0 0 0
+ 
+  zx 23 2 3 4
+ 
+ xyv[*] 69 
+ xyv[::] 
+ 
+ 69 
+ j  :: xyv[0] 69 
+ zx 23 2 3 66
+ 
+ zx 46 4 6 132
+ 
+ j 1 :: xyv[0] 69 
+ j 1 :: xyv 69 46 70 4 71 6 72 132 0 0 0 0
+ 
+ zx 92 8 12 264
+ 
+ j 2 :: xyv[0] 69 
+ j 2 :: xyv 69 92 70 8 71 12 72 264 0 0 0 0
+ 
+ zx 184 16 24 528
+ 
+ j 3 :: xyv[0] 69 
+ j 3 :: xyv 69 184 70 16 71 24 72 528 0 0 0 0
+ 
+ 12  
+DONE: FAIL: ./xyassign           :tests      8 :Fail      2 :Pass      6 :Score   75.0% 

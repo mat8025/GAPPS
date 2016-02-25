@@ -1,0 +1,48 @@
+>>> Z = Vgen(3,10,0,1)
+>>> Z[0] = 36
+>>> Z[8] = 28
+>>> <<"before calling proc\n"
+>>> <<"$Z\n"
+>>> Y = foo(&Z,3)  // FIXED -------- Y is now created correctly with the return vector 
+>>> {
+>>> <<"$_proc IN $vec \n"
+>>> <<"pa_arg2 %V$k\n"
+>>> vec[1] = 47
+>>> vec[2] = 79
+>>> vec[3] = 80
+>>> vec[4] = 78
+>>> vec[5] = 50
+>>> <<"OUT $vec \n"
+>>> return vec
+>>> <<"after calling proc $Z\n"
+>>> checkNum(Z[1],47)
+>>> checkNum(Z[8],28)
+>>> checkStage("&Array")
+>>> Z = Vgen(3,10,0,1)
+>>> Z[0] = 36
+>>> Z[8] = 28
+>>> <<"before calling proc $Z\n"
+>>> Y= foo(&Z[2],4)  
+>>> {
+>>> <<"$_proc IN $vec \n"
+>>> <<"pa_arg2 %V$k\n"
+>>> vec[1] = 47
+>>> vec[2] = 79
+>>> vec[3] = 80
+>>> vec[4] = 78
+>>> vec[5] = 50
+>>> <<"OUT $vec \n"
+>>> return vec
+>>> <<"after proc $Z\n"
+>>> if
+>>> {
+>>> <<"Z[3] and Z[8] correct \n"
+>>> }
+>>> if
+>>> {
+>>> <<"Z correct \n"
+>>> }
+>>> checkNum(Z[3],47)
+>>> checkNum(Z[8],28)
+>>> checkStage("&Array[2]")
+>>> showStatements(0)

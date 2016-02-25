@@ -1,0 +1,1805 @@
+0 2.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode ¾	0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+1 4.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+2 6.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+3 8.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+4 10.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+5 12.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+6 14.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+7 16.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+8 18.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+9 20.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+10 22.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+11 24.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+12 26.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+13 28.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+14 30.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+15 32.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+16 34.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+17 36.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+18 38.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+19 40.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+20 42.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+21 44.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+22 46.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+23 48.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+24 50.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+25 52.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+26 54.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+27 56.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+28 58.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+29 60.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+30 62.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+31 64.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+32 66.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+33 68.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+34 70.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+35 72.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+36 74.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+37 76.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+38 78.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+39 80.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+40 82.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+41 84.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+42 86.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+43 88.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+44 90.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+45 92.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+46 94.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+47 96.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+48 98.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+49 100.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+50 102.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+51 104.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+52 106.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+53 108.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+54 110.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+55 112.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+56 114.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+57 116.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+58 118.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+59 120.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+60 122.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+61 124.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+62 126.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+63 128.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+64 130.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+65 132.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+66 134.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+67 136.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+68 138.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+69 140.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+70 142.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+71 144.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+72 146.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+73 148.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+74 150.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+75 152.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+76 154.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+77 156.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+78 158.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+79 160.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+80 162.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+81 164.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+82 166.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+83 168.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+84 170.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+85 172.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+86 174.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+87 176.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+88 178.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+89 180.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.000000
+new_flight_mode 0 
+90 182.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -0.333333 flight_phase -0.016667
+new_flight_mode 0 
+91 184.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -0.666667 flight_phase -0.033333
+new_flight_mode 0 
+92 186.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.050000
+new_flight_mode 2 
+93 188.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.066667
+new_flight_mode 2 
+updating hold_flight_phase 0.000000 to flight_phase -0.066667 min_flight_phase_reached 0 
+94 190.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.083333
+new_flight_mode 2 
+updating hold_flight_phase -0.066667 to flight_phase -0.083333 min_flight_phase_reached 0 
+95 192.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.100000
+new_flight_mode 2 
+updating hold_flight_phase -0.083333 to flight_phase -0.100000 min_flight_phase_reached 0 
+96 194.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.116667
+new_flight_mode 2 
+updating hold_flight_phase -0.100000 to flight_phase -0.116667 min_flight_phase_reached 0 
+97 196.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.133333
+new_flight_mode 2 
+updating hold_flight_phase -0.116667 to flight_phase -0.133333 min_flight_phase_reached 0 
+98 198.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.150000
+new_flight_mode 2 
+updating hold_flight_phase -0.133333 to flight_phase -0.150000 min_flight_phase_reached 0 
+99 200.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.166667
+new_flight_mode 2 
+updating hold_flight_phase -0.150000 to flight_phase -0.166667 min_flight_phase_reached 0 
+100 202.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.183333
+new_flight_mode 2 
+updating hold_flight_phase -0.166667 to flight_phase -0.183333 min_flight_phase_reached 0 
+101 204.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.200000
+new_flight_mode 2 
+updating hold_flight_phase -0.183333 to flight_phase -0.200000 min_flight_phase_reached 0 
+102 206.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.216667
+new_flight_mode 2 
+updating hold_flight_phase -0.200000 to flight_phase -0.216667 min_flight_phase_reached 0 
+103 208.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.233333
+new_flight_mode 2 
+updating hold_flight_phase -0.216667 to flight_phase -0.233333 min_flight_phase_reached 0 
+104 210.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.250000
+new_flight_mode 2 
+updating hold_flight_phase -0.233333 to flight_phase -0.250000 min_flight_phase_reached 0 
+105 212.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.266667
+new_flight_mode 2 
+updating hold_flight_phase -0.250000 to flight_phase -0.266667 min_flight_phase_reached 0 
+106 214.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.283333
+new_flight_mode 2 
+updating hold_flight_phase -0.266667 to flight_phase -0.283333 min_flight_phase_reached 0 
+107 216.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.300000
+new_flight_mode 2 
+updating hold_flight_phase -0.283333 to flight_phase -0.300000 min_flight_phase_reached 0 
+108 218.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.316667
+new_flight_mode 2 
+updating hold_flight_phase -0.300000 to flight_phase -0.316667 min_flight_phase_reached 0 
+109 220.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.333333
+new_flight_mode 2 
+updating hold_flight_phase -0.316667 to flight_phase -0.333333 min_flight_phase_reached 0 
+110 222.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.350000
+new_flight_mode 2 
+updating hold_flight_phase -0.333333 to flight_phase -0.350000 min_flight_phase_reached 0 
+111 224.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.366667
+new_flight_mode 2 
+updating hold_flight_phase -0.350000 to flight_phase -0.366667 min_flight_phase_reached 0 
+112 226.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.383333
+new_flight_mode 2 
+updating hold_flight_phase -0.366667 to flight_phase -0.383333 min_flight_phase_reached 0 
+113 228.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.400000
+new_flight_mode 2 
+updating hold_flight_phase -0.383333 to flight_phase -0.400000 min_flight_phase_reached 0 
+114 230.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.416667
+new_flight_mode 2 
+updating hold_flight_phase -0.400000 to flight_phase -0.416667 min_flight_phase_reached 0 
+115 232.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.433333
+new_flight_mode 2 
+updating hold_flight_phase -0.416667 to flight_phase -0.433333 min_flight_phase_reached 0 
+116 234.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.450000
+new_flight_mode 2 
+updating hold_flight_phase -0.433333 to flight_phase -0.450000 min_flight_phase_reached 0 
+117 236.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.466667
+new_flight_mode 2 
+updating hold_flight_phase -0.450000 to flight_phase -0.466667 min_flight_phase_reached 0 
+118 238.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.483333
+new_flight_mode 2 
+updating hold_flight_phase -0.466667 to flight_phase -0.483333 min_flight_phase_reached 0 
+119 240.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.500000
+new_flight_mode 2 
+updating hold_flight_phase -0.483333 to flight_phase -0.500000 min_flight_phase_reached 0 
+120 242.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.516667
+new_flight_mode 2 
+updating hold_flight_phase -0.500000 to flight_phase -0.516667 min_flight_phase_reached 0 
+121 244.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.533333
+new_flight_mode 2 
+updating hold_flight_phase -0.516667 to flight_phase -0.533333 min_flight_phase_reached 0 
+122 246.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.550000
+new_flight_mode 2 
+updating hold_flight_phase -0.533333 to flight_phase -0.550000 min_flight_phase_reached 0 
+123 248.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.566667
+new_flight_mode 2 
+updating hold_flight_phase -0.550000 to flight_phase -0.566667 min_flight_phase_reached 0 
+124 250.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.583333
+new_flight_mode 2 
+updating hold_flight_phase -0.566667 to flight_phase -0.583333 min_flight_phase_reached 0 
+125 252.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.600000
+new_flight_mode 2 
+updating hold_flight_phase -0.583333 to flight_phase -0.600000 min_flight_phase_reached 0 
+126 254.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.616667
+new_flight_mode 2 
+updating hold_flight_phase -0.600000 to flight_phase -0.616667 min_flight_phase_reached 0 
+127 256.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.633333
+new_flight_mode 2 
+updating hold_flight_phase -0.616667 to flight_phase -0.633333 min_flight_phase_reached 0 
+128 258.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.650000
+new_flight_mode 2 
+updating hold_flight_phase -0.633333 to flight_phase -0.650000 min_flight_phase_reached 0 
+129 260.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.666667
+new_flight_mode 2 
+updating hold_flight_phase -0.650000 to flight_phase -0.666667 min_flight_phase_reached 0 
+130 262.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.683333
+new_flight_mode 2 
+updating hold_flight_phase -0.666667 to flight_phase -0.683333 min_flight_phase_reached 0 
+131 264.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.700000
+new_flight_mode 2 
+updating hold_flight_phase -0.683333 to flight_phase -0.700000 min_flight_phase_reached 0 
+132 266.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.716667
+new_flight_mode 2 
+updating hold_flight_phase -0.700000 to flight_phase -0.716667 min_flight_phase_reached 0 
+133 268.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.733333
+new_flight_mode 2 
+updating hold_flight_phase -0.716667 to flight_phase -0.733333 min_flight_phase_reached 0 
+134 270.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.750000
+new_flight_mode 2 
+updating hold_flight_phase -0.733333 to flight_phase -0.750000 min_flight_phase_reached 0 
+135 272.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.766667
+new_flight_mode 2 
+updating hold_flight_phase -0.750000 to flight_phase -0.766667 min_flight_phase_reached 0 
+136 274.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.783333
+new_flight_mode 2 
+updating hold_flight_phase -0.766667 to flight_phase -0.783333 min_flight_phase_reached 0 
+137 276.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.800000
+new_flight_mode 2 
+updating hold_flight_phase -0.783333 to flight_phase -0.800000 min_flight_phase_reached 0 
+138 278.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.816667
+new_flight_mode 2 
+updating hold_flight_phase -0.800000 to flight_phase -0.816667 min_flight_phase_reached 0 
+139 280.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.833333
+new_flight_mode 2 
+updating hold_flight_phase -0.816667 to flight_phase -0.833333 min_flight_phase_reached 0 
+140 282.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.850000
+new_flight_mode 2 
+updating hold_flight_phase -0.833333 to flight_phase -0.850000 min_flight_phase_reached 0 
+141 284.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.866667
+new_flight_mode 2 
+updating hold_flight_phase -0.850000 to flight_phase -0.866667 min_flight_phase_reached 0 
+142 286.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.883333
+new_flight_mode 2 
+updating hold_flight_phase -0.866667 to flight_phase -0.883333 min_flight_phase_reached 0 
+143 288.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.900000
+new_flight_mode 2 
+updating hold_flight_phase -0.883333 to flight_phase -0.900000 min_flight_phase_reached 0 
+144 290.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.916667
+new_flight_mode 2 
+updating hold_flight_phase -0.900000 to flight_phase -0.916667 min_flight_phase_reached 0 
+145 292.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.933333
+new_flight_mode 2 
+updating hold_flight_phase -0.916667 to flight_phase -0.933333 min_flight_phase_reached 0 
+146 294.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.950000
+new_flight_mode 2 
+updating hold_flight_phase -0.933333 to flight_phase -0.950000 min_flight_phase_reached 0 
+147 296.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.966667
+new_flight_mode 2 
+updating hold_flight_phase -0.950000 to flight_phase -0.966667 min_flight_phase_reached 0 
+148 298.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -0.983333
+new_flight_mode 2 
+updating hold_flight_phase -0.966667 to flight_phase -0.983333 min_flight_phase_reached 0 
+149 300.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -1.000000
+new_flight_mode 2 
+updating hold_flight_phase -0.983333 to flight_phase -1.000000 min_flight_phase_reached 0 
+ min_flight_phase_reached 1
+150 302.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro -100.000000 cr_val -1.000000 flight_phase -1.000000
+new_flight_mode 2 
+updating hold_flight_phase -1.000000 to flight_phase -1.000000 min_flight_phase_reached 1 
+setting flight_phase -1.000000 to min 
+ min_flight_phase_reached 1
+151 304.000000 flight_mode 2 hold_mode 0 hold_descent_mode 0 hold_climb_mode 0  delta_baro 0.000000 cr_val -0.666667 flight_phase -0.983333
+new_flight_mode 0 
+setting descent hold_mode from LEVEL transition flight_phase -1.000000  min_flight_phase_reached ¼1 
+152 306.000000 flight_mode 0 hold_mode 1 hold_descent_mode 298.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val -0.333333 flight_phase -1.000000
+new_flight_mode 0 
+153 308.000000 flight_mode 0 hold_mode 1 hold_descent_mode 296.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+154 310.000000 flight_mode 0 hold_mode 1 hold_descent_mode 294.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+155 312.000000 flight_mode 0 hold_mode 1 hold_descent_mode 292.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+156 314.000000 flight_mode 0 hold_mode 1 hold_descent_mode 290.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+157 316.000000 flight_mode 0 hold_mode 1 hold_descent_mode 288.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+158 318.000000 flight_mode 0 hold_mode 1 hold_descent_mode 286.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+159 320.000000 flight_mode 0 hold_mode 1 hold_descent_mode 284.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+160 322.000000 flight_mode 0 hold_mode 1 hold_descent_mode 282.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+161 324.000000 flight_mode 0 hold_mode 1 hold_descent_mode 280.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+162 326.000000 flight_mode 0 hold_mode 1 hold_descent_mode 278.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+163 328.000000 flight_mode 0 hold_mode 1 hold_descent_mode 276.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+164 330.000000 flight_mode 0 hold_mode 1 hold_descent_mode 274.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+165 332.000000 flight_mode 0 hold_mode 1 hold_descent_mode 272.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+166 334.000000 flight_mode 0 hold_mode 1 hold_descent_mode 270.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+167 336.000000 flight_mode 0 hold_mode 1 hold_descent_mode 268.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+168 338.000000 flight_mode 0 hold_mode 1 hold_descent_mode 266.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+169 340.000000 flight_mode 0 hold_mode 1 hold_descent_mode 264.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+170 342.000000 flight_mode 0 hold_mode 1 hold_descent_mode 262.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+171 344.000000 flight_mode 0 hold_mode 1 hold_descent_mode 260.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+172 346.000000 flight_mode 0 hold_mode 1 hold_descent_mode 258.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+173 348.000000 flight_mode 0 hold_mode 1 hold_descent_mode 256.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+174 350.000000 flight_mode 0 hold_mode 1 hold_descent_mode 254.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+175 352.000000 flight_mode 0 hold_mode 1 hold_descent_mode 252.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+176 354.000000 flight_mode 0 hold_mode 1 hold_descent_mode 250.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+177 356.000000 flight_mode 0 hold_mode 1 hold_descent_mode 248.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+178 358.000000 flight_mode 0 hold_mode 1 hold_descent_mode 246.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+179 360.000000 flight_mode 0 hold_mode 1 hold_descent_mode 244.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+180 362.000000 flight_mode 0 hold_mode 1 hold_descent_mode 242.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+181 364.000000 flight_mode 0 hold_mode 1 hold_descent_mode 240.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+182 366.000000 flight_mode 0 hold_mode 1 hold_descent_mode 238.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+183 368.000000 flight_mode 0 hold_mode 1 hold_descent_mode 236.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+184 370.000000 flight_mode 0 hold_mode 1 hold_descent_mode 234.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+185 372.000000 flight_mode 0 hold_mode 1 hold_descent_mode 232.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+186 374.000000 flight_mode 0 hold_mode 1 hold_descent_mode 230.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+187 376.000000 flight_mode 0 hold_mode 1 hold_descent_mode 228.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+188 378.000000 flight_mode 0 hold_mode 1 hold_descent_mode 226.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+189 380.000000 flight_mode 0 hold_mode 1 hold_descent_mode 224.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+190 382.000000 flight_mode 0 hold_mode 1 hold_descent_mode 222.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+191 384.000000 flight_mode 0 hold_mode 1 hold_descent_mode 220.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+192 386.000000 flight_mode 0 hold_mode 1 hold_descent_mode 218.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+193 388.000000 flight_mode 0 hold_mode 1 hold_descent_mode 216.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+194 390.000000 flight_mode 0 hold_mode 1 hold_descent_mode 214.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+195 392.000000 flight_mode 0 hold_mode 1 hold_descent_mode 212.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+196 394.000000 flight_mode 0 hold_mode 1 hold_descent_mode 210.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+197 396.000000 flight_mode 0 hold_mode 1 hold_descent_mode 208.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+198 398.000000 flight_mode 0 hold_mode 1 hold_descent_mode 206.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+199 400.000000 flight_mode 0 hold_mode 1 hold_descent_mode 204.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+200 402.000000 flight_mode 0 hold_mode 1 hold_descent_mode 202.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+201 404.000000 flight_mode 0 hold_mode 1 hold_descent_mode 200.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+202 406.000000 flight_mode 0 hold_mode 1 hold_descent_mode 198.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+203 408.000000 flight_mode 0 hold_mode 1 hold_descent_mode 196.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+204 410.000000 flight_mode 0 hold_mode 1 hold_descent_mode 194.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+205 412.000000 flight_mode 0 hold_mode 1 hold_descent_mode 192.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+206 414.000000 flight_mode 0 hold_mode 1 hold_descent_mode 190.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+207 416.000000 flight_mode 0 hold_mode 1 hold_descent_mode 188.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+208 418.000000 flight_mode 0 hold_mode 1 hold_descent_mode 186.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+209 420.000000 flight_mode 0 hold_mode 1 hold_descent_mode 184.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase -1.000000
+new_flight_mode 0 
+210 422.000000 flight_mode 0 hold_mode 1 hold_descent_mode 182.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 0.333333 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 210 delta_baro 100.000000 flight_phase -1.000000 cr_val 0.333333
+211 424.000000 flight_mode 1 hold_mode 1 hold_descent_mode 180.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 0.666667 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 211 delta_baro 100.000000 flight_phase -1.000000 cr_val 0.666667
+212 426.000000 flight_mode 1 hold_mode 1 hold_descent_mode 178.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 212 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+213 428.000000 flight_mode 1 hold_mode 1 hold_descent_mode 176.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 213 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+214 430.000000 flight_mode 1 hold_mode 1 hold_descent_mode 174.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 214 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+215 432.000000 flight_mode 1 hold_mode 1 hold_descent_mode 172.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 215 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+216 434.000000 flight_mode 1 hold_mode 1 hold_descent_mode 170.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 216 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+217 436.000000 flight_mode 1 hold_mode 1 hold_descent_mode 168.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 217 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+218 438.000000 flight_mode 1 hold_mode 1 hold_descent_mode 166.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 218 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+219 440.000000 flight_mode 1 hold_mode 1 hold_descent_mode 164.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 219 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+220 442.000000 flight_mode 1 hold_mode 1 hold_descent_mode 162.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 220 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+221 444.000000 flight_mode 1 hold_mode 1 hold_descent_mode 160.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 221 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+222 446.000000 flight_mode 1 hold_mode 1 hold_descent_mode 158.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 222 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+223 448.000000 flight_mode 1 hold_mode 1 hold_descent_mode 156.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 223 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+224 450.000000 flight_mode 1 hold_mode 1 hold_descent_mode 154.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 224 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+225 452.000000 flight_mode 1 hold_mode 1 hold_descent_mode 152.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 225 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+226 454.000000 flight_mode 1 hold_mode 1 hold_descent_mode 150.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 226 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+227 456.000000 flight_mode 1 hold_mode 1 hold_descent_mode 148.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 227 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+228 458.000000 flight_mode 1 hold_mode 1 hold_descent_mode 146.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 228 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+229 460.000000 flight_mode 1 hold_mode 1 hold_descent_mode 144.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 229 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+230 462.000000 flight_mode 1 hold_mode 1 hold_descent_mode 142.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 230 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+231 464.000000 flight_mode 1 hold_mode 1 hold_descent_mode 140.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 231 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+232 466.000000 flight_mode 1 hold_mode 1 hold_descent_mode 138.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 232 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+233 468.000000 flight_mode 1 hold_mode 1 hold_descent_mode 136.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 233 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+234 470.000000 flight_mode 1 hold_mode 1 hold_descent_mode 134.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 234 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+235 472.000000 flight_mode 1 hold_mode 1 hold_descent_mode 132.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 235 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+236 474.000000 flight_mode 1 hold_mode 1 hold_descent_mode 130.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 236 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+237 476.000000 flight_mode 1 hold_mode 1 hold_descent_mode 128.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 237 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+238 478.000000 flight_mode 1 hold_mode 1 hold_descent_mode 126.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 238 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+239 480.000000 flight_mode 1 hold_mode 1 hold_descent_mode 124.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 239 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+240 482.000000 flight_mode 1 hold_mode 1 hold_descent_mode 122.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 240 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+241 484.000000 flight_mode 1 hold_mode 1 hold_descent_mode 120.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 241 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+242 486.000000 flight_mode 1 hold_mode 1 hold_descent_mode 118.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 242 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+243 488.000000 flight_mode 1 hold_mode 1 hold_descent_mode 116.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 243 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+244 490.000000 flight_mode 1 hold_mode 1 hold_descent_mode 114.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 244 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+245 492.000000 flight_mode 1 hold_mode 1 hold_descent_mode 112.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 245 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+246 494.000000 flight_mode 1 hold_mode 1 hold_descent_mode 110.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 246 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+247 496.000000 flight_mode 1 hold_mode 1 hold_descent_mode 108.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 247 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+248 498.000000 flight_mode 1 hold_mode 1 hold_descent_mode 106.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 248 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+249 500.000000 flight_mode 1 hold_mode 1 hold_descent_mode 104.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 249 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+250 502.000000 flight_mode 1 hold_mode 1 hold_descent_mode 102.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 250 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+251 504.000000 flight_mode 1 hold_mode 1 hold_descent_mode 100.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 251 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+252 506.000000 flight_mode 1 hold_mode 1 hold_descent_mode 98.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 252 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+253 508.000000 flight_mode 1 hold_mode 1 hold_descent_mode 96.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 253 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+254 510.000000 flight_mode 1 hold_mode 1 hold_descent_mode 94.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 254 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+255 512.000000 flight_mode 1 hold_mode 1 hold_descent_mode 92.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 255 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+256 514.000000 flight_mode 1 hold_mode 1 hold_descent_mode 90.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 256 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+257 516.000000 flight_mode 1 hold_mode 1 hold_descent_mode 88.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 257 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+258 518.000000 flight_mode 1 hold_mode 1 hold_descent_mode 86.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 258 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+259 520.000000 flight_mode 1 hold_mode 1 hold_descent_mode 84.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 259 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+260 522.000000 flight_mode 1 hold_mode 1 hold_descent_mode 82.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 260 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+261 524.000000 flight_mode 1 hold_mode 1 hold_descent_mode 80.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 261 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+262 526.000000 flight_mode 1 hold_mode 1 hold_descent_mode 78.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 262 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+263 528.000000 flight_mode 1 hold_mode 1 hold_descent_mode 76.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 263 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+264 530.000000 flight_mode 1 hold_mode 1 hold_descent_mode 74.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 264 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+265 532.000000 flight_mode 1 hold_mode 1 hold_descent_mode 72.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 265 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+266 534.000000 flight_mode 1 hold_mode 1 hold_descent_mode 70.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 266 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+267 536.000000 flight_mode 1 hold_mode 1 hold_descent_mode 68.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 267 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+268 538.000000 flight_mode 1 hold_mode 1 hold_descent_mode 66.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 268 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+269 540.000000 flight_mode 1 hold_mode 1 hold_descent_mode 64.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 269 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+270 542.000000 flight_mode 1 hold_mode 1 hold_descent_mode 62.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 270 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+271 544.000000 flight_mode 1 hold_mode 1 hold_descent_mode 60.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 271 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+272 546.000000 flight_mode 1 hold_mode 1 hold_descent_mode 58.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 272 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+273 548.000000 flight_mode 1 hold_mode 1 hold_descent_mode 56.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 273 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+274 550.000000 flight_mode 1 hold_mode 1 hold_descent_mode 54.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 274 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+275 552.000000 flight_mode 1 hold_mode 1 hold_descent_mode 52.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 275 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+276 554.000000 flight_mode 1 hold_mode 1 hold_descent_mode 50.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 276 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+277 556.000000 flight_mode 1 hold_mode 1 hold_descent_mode 48.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 277 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+278 558.000000 flight_mode 1 hold_mode 1 hold_descent_mode 46.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 278 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+279 560.000000 flight_mode 1 hold_mode 1 hold_descent_mode 44.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 279 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+280 562.000000 flight_mode 1 hold_mode 1 hold_descent_mode 42.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 280 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+281 564.000000 flight_mode 1 hold_mode 1 hold_descent_mode 40.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 281 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+282 566.000000 flight_mode 1 hold_mode 1 hold_descent_mode 38.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 282 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+283 568.000000 flight_mode 1 hold_mode 1 hold_descent_mode 36.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 283 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+284 570.000000 flight_mode 1 hold_mode 1 hold_descent_mode 34.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 284 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+285 572.000000 flight_mode 1 hold_mode 1 hold_descent_mode 32.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 285 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+286 574.000000 flight_mode 1 hold_mode 1 hold_descent_mode 30.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 286 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+287 576.000000 flight_mode 1 hold_mode 1 hold_descent_mode 28.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 287 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+288 578.000000 flight_mode 1 hold_mode 1 hold_descent_mode 26.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 288 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+289 580.000000 flight_mode 1 hold_mode 1 hold_descent_mode 24.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 289 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+290 582.000000 flight_mode 1 hold_mode 1 hold_descent_mode 22.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 290 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+291 584.000000 flight_mode 1 hold_mode 1 hold_descent_mode 20.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 291 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+292 586.000000 flight_mode 1 hold_mode 1 hold_descent_mode 18.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 292 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+293 588.000000 flight_mode 1 hold_mode 1 hold_descent_mode 16.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 293 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+294 590.000000 flight_mode 1 hold_mode 1 hold_descent_mode 14.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 294 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+295 592.000000 flight_mode 1 hold_mode 1 hold_descent_mode 12.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 295 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+296 594.000000 flight_mode 1 hold_mode 1 hold_descent_mode 10.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 296 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+297 596.000000 flight_mode 1 hold_mode 1 hold_descent_mode 8.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 297 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+298 598.000000 flight_mode 1 hold_mode 1 hold_descent_mode 6.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 298 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+299 600.000000 flight_mode 1 hold_mode 1 hold_descent_mode 4.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 299 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+300 602.000000 flight_mode 1 hold_mode 1 hold_descent_mode 2.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -1.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 300 delta_baro 100.000000 flight_phase -1.000000 cr_val 1.000000
+301 604.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.966667
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 301 delta_baro 100.000000 flight_phase -0.966667 cr_val 1.000000
+302 606.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.933333
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 302 delta_baro 100.000000 flight_phase -0.933333 cr_val 1.000000
+303 608.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.900000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 303 delta_baro 100.000000 flight_phase -0.900000 cr_val 1.000000
+304 610.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.866667
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 304 delta_baro 100.000000 flight_phase -0.866667 cr_val 1.000000
+305 612.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.833333
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 305 delta_baro 100.000000 flight_phase -0.833333 cr_val 1.000000
+306 614.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.800000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 306 delta_baro 100.000000 flight_phase -0.800000 cr_val 1.000000
+307 616.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.766667
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 307 delta_baro 100.000000 flight_phase -0.766667 cr_val 1.000000
+308 618.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.733333
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 308 delta_baro 100.000000 flight_phase -0.733333 cr_val 1.000000
+309 620.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.700000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 309 delta_baro 100.000000 flight_phase -0.700000 cr_val 1.000000
+310 622.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.666667
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 310 delta_baro 100.000000 flight_phase -0.666667 cr_val 1.000000
+311 624.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.633333
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 311 delta_baro 100.000000 flight_phase -0.633333 cr_val 1.000000
+312 626.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.600000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 312 delta_baro 100.000000 flight_phase -0.600000 cr_val 1.000000
+313 628.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.566667
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 313 delta_baro 100.000000 flight_phase -0.566667 cr_val 1.000000
+314 630.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.533333
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 314 delta_baro 100.000000 flight_phase -0.533333 cr_val 1.000000
+315 632.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.500000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 315 delta_baro 100.000000 flight_phase -0.500000 cr_val 1.000000
+316 634.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.466667
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 316 delta_baro 100.000000 flight_phase -0.466667 cr_val 1.000000
+317 636.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.433333
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 317 delta_baro 100.000000 flight_phase -0.433333 cr_val 1.000000
+318 638.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.400000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 318 delta_baro 100.000000 flight_phase -0.400000 cr_val 1.000000
+319 640.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.366667
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 319 delta_baro 100.000000 flight_phase -0.366667 cr_val 1.000000
+320 642.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.333333
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 320 delta_baro 100.000000 flight_phase -0.333333 cr_val 1.000000
+321 644.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.300000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 321 delta_baro 100.000000 flight_phase -0.300000 cr_val 1.000000
+322 646.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.266667
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 322 delta_baro 100.000000 flight_phase -0.266667 cr_val 1.000000
+323 648.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.233333
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 323 delta_baro 100.000000 flight_phase -0.233333 cr_val 1.000000
+324 650.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.200000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 324 delta_baro 100.000000 flight_phase -0.200000 cr_val 1.000000
+325 652.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.166667
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 325 delta_baro 100.000000 flight_phase -0.166667 cr_val 1.000000
+326 654.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.133333
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 326 delta_baro 100.000000 flight_phase -0.133333 cr_val 1.000000
+327 656.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.100000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 327 delta_baro 100.000000 flight_phase -0.100000 cr_val 1.000000
+328 658.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.066667
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 328 delta_baro 100.000000 flight_phase -0.066667 cr_val 1.000000
+329 660.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase -0.033333
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 329 delta_baro 100.000000 flight_phase -0.033333 cr_val 1.000000
+330 662.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 100.000000 cr_val 1.000000 flight_phase 0.000000
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 330 delta_baro 100.000000 flight_phase 0.000000 cr_val 1.000000
+331 664.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.666667 flight_phase 0.016667
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 331 delta_baro 0.000000 flight_phase 0.016667 cr_val 0.666667
+332 666.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.333333 flight_phase 0.033333
+new_flight_mode 1 
+setting flight_mode to CLIMB transition i 332 delta_baro 0.000000 flight_phase 0.033333 cr_val 0.333333
+333 668.000000 flight_mode 1 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+setting hold_climb_mode from LEVEL transition flight_phase 0.050000 cr_val 0.000000
+334 670.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 298.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+335 672.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 296.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+336 674.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 294.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+337 676.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 292.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+338 678.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 290.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+339 680.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 288.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+340 682.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 286.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+341 684.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 284.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+342 686.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 282.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+343 688.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 280.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+344 690.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 278.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+345 692.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 276.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+346 694.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 274.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+347 696.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 272.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+348 698.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 270.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+349 700.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 268.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+350 702.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 266.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+351 704.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 264.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+352 706.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 262.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+353 708.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 260.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+354 710.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 258.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+355 712.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 256.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+356 714.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 254.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+357 716.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 252.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+358 718.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 250.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+359 720.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 248.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+360 722.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 246.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+361 724.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 244.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+362 726.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 242.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+363 728.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 240.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+364 730.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 238.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+365 732.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 236.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+366 734.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 234.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+367 736.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 232.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+368 738.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 230.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+369 740.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 228.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+370 742.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 226.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+371 744.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 224.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+372 746.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 222.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+373 748.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 220.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+374 750.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 218.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+375 752.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 216.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+376 754.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 214.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+377 756.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 212.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+378 758.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 210.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+379 760.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 208.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+380 762.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 206.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+381 764.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 204.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+382 766.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 202.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+383 768.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 200.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+384 770.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 198.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+385 772.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 196.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+386 774.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 194.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+387 776.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 192.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+388 778.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 190.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+389 780.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 188.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+390 782.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 186.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+391 784.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 184.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+392 786.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 182.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+393 788.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 180.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+394 790.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 178.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+395 792.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 176.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+396 794.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 174.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+397 796.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 172.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+398 798.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 170.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+399 800.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 168.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+400 802.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 166.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+401 804.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 164.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+402 806.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 162.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+403 808.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 160.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+404 810.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 158.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+405 812.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 156.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+406 814.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 154.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+407 816.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 152.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+408 818.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 150.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+409 820.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 148.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+410 822.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 146.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+411 824.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 144.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+412 826.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 142.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+413 828.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 140.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+414 830.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 138.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+415 832.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 136.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+416 834.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 134.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+417 836.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 132.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+418 838.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 130.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+419 840.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 128.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+420 842.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 126.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+421 844.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 124.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+422 846.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 122.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+423 848.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 120.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+424 850.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 118.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+425 852.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 116.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+426 854.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 114.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+427 856.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 112.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+428 858.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 110.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+429 860.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 108.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+430 862.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 106.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+431 864.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 104.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+432 866.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 102.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+433 868.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 100.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+434 870.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 98.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+435 872.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 96.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+436 874.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 94.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+437 876.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 92.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+438 878.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 90.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+439 880.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 88.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+440 882.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 86.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+441 884.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 84.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+442 886.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 82.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+443 888.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 80.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+444 890.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 78.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+445 892.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 76.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+446 894.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 74.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+447 896.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 72.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+448 898.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 70.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+449 900.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 68.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+450 902.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 66.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+451 904.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 64.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+452 906.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 62.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+453 908.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 60.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+454 910.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 58.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+455 912.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 56.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+456 914.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 54.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+457 916.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 52.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+458 918.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 50.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+459 920.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 48.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+460 922.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 46.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+461 924.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 44.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+462 926.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 42.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+463 928.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 40.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+464 930.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 38.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+465 932.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 36.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+466 934.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 34.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+467 936.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 32.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+468 938.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 30.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+469 940.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 28.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+470 942.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 26.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+471 944.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 24.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+472 946.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 22.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+473 948.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 20.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+474 950.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 18.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+475 952.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 16.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+476 954.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 14.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+477 956.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 12.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+478 958.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 10.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+479 960.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 8.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+480 962.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 6.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+481 964.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 4.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+482 966.000000 flight_mode 0 hold_mode 1 hold_descent_mode 0.000000 hold_climb_mode 2.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.050000
+new_flight_mode 0 
+483 968.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.039333
+new_flight_mode 0 
+484 970.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.038667
+new_flight_mode 0 
+485 972.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.038000
+new_flight_mode 0 
+486 974.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.037333
+new_flight_mode 0 
+487 976.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.036667
+new_flight_mode 0 
+488 978.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.036000
+new_flight_mode 0 
+489 980.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.035333
+new_flight_mode 0 
+490 982.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.034667
+new_flight_mode 0 
+491 984.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.034000
+new_flight_mode 0 
+492 986.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.033333
+new_flight_mode 0 
+493 988.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.032667
+new_flight_mode 0 
+494 990.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.032000
+new_flight_mode 0 
+495 992.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.031333
+new_flight_mode 0 
+496 994.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.030667
+new_flight_mode 0 
+497 996.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.030000
+new_flight_mode 0 
+498 998.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.029333
+new_flight_mode 0 
+499 1000.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.028667
+new_flight_mode 0 
+500 1002.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.028000
+new_flight_mode 0 
+501 1004.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.027333
+new_flight_mode 0 
+502 1006.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.026667
+new_flight_mode 0 
+503 1008.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.026000
+new_flight_mode 0 
+504 1010.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.025333
+new_flight_mode 0 
+505 1012.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.024667
+new_flight_mode 0 
+506 1014.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.024000
+new_flight_mode 0 
+507 1016.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.023333
+new_flight_mode 0 
+508 1018.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.022667
+new_flight_mode 0 
+509 1020.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.022000
+new_flight_mode 0 
+510 1022.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.021333
+new_flight_mode 0 
+511 1024.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.020667
+new_flight_mode 0 
+512 1026.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.020000
+new_flight_mode 0 
+513 1028.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.019333
+new_flight_mode 0 
+514 1030.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.018667
+new_flight_mode 0 
+515 1032.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.018000
+new_flight_mode 0 
+516 1034.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.017333
+new_flight_mode 0 
+517 1036.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.016667
+new_flight_mode 0 
+518 1038.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.016000
+new_flight_mode 0 
+519 1040.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.015333
+new_flight_mode 0 
+520 1042.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.014667
+new_flight_mode 0 
+521 1044.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.014000
+new_flight_mode 0 
+522 1046.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.013333
+new_flight_mode 0 
+523 1048.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.012667
+new_flight_mode 0 
+524 1050.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.012000
+new_flight_mode 0 
+525 1052.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.011333
+new_flight_mode 0 
+526 1054.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.010667
+new_flight_mode 0 
+527 1056.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.010000
+new_flight_mode 0 
+528 1058.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.009333
+new_flight_mode 0 
+529 1060.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.008667
+new_flight_mode 0 
+530 1062.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.008000
+new_flight_mode 0 
+531 1064.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.007333
+new_flight_mode 0 
+532 1066.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.006667
+new_flight_mode 0 
+533 1068.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.006000
+new_flight_mode 0 
+534 1070.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.005333
+new_flight_mode 0 
+535 1072.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.004667
+new_flight_mode 0 
+536 1074.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.004000
+new_flight_mode 0 
+537 1076.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.003333
+new_flight_mode 0 
+538 1078.000000 flight_mode 0 hold_mode 0 hold_descent_mode 0.000000 hold_climb_mode 0.000000  delta_baro 0.000000 cr_val 0.000000 flight_phase 0.002667
+new_flight_mode 0 
+kfc 0 
+#col_headings Tim Alt DB  FP 
+2.000000 20000.000000 0.000000 0.000000 
+4.000000 20000.000000 0.000000 0.000000 
+6.000000 20000.000000 0.000000 0.000000 
+8.000000 20000.000000 0.000000 0.000000 
+10.000000 20000.000000 0.000000 0.000000 
+12.000000 20000.000000 0.000000 0.000000 
+14.000000 20000.000000 0.000000 0.000000 
+16.000000 20000.000000 0.000000 0.000000 
+18.000000 20000.000000 0.000000 0.000000 
+20.000000 20000.000000 0.000000 0.000000 
+22.000000 20000.000000 0.000000 0.000000 
+24.000000 20000.000000 0.000000 0.000000 
+26.000000 20000.000000 0.000000 0.000000 
+28.000000 20000.000000 0.000000 0.000000 
+30.000000 20000.000000 0.000000 0.000000 
+32.000000 20000.000000 0.000000 0.000000 
+34.000000 20000.000000 0.000000 0.000000 
+36.000000 20000.000000 0.000000 0.000000 
+38.000000 20000.000000 0.000000 0.000000 
+40.000000 20000.000000 0.000000 0.000000 
+42.000000 20000.000000 0.000000 0.000000 
+44.000000 20000.000000 0.000000 0.000000 
+46.000000 20000.000000 0.000000 0.000000 
+48.000000 20000.000000 0.000000 0.000000 
+50.000000 20000.000000 0.000000 0.000000 
+52.000000 20000.000000 0.000000 0.000000 
+54.000000 20000.000000 0.000000 0.000000 
+56.000000 20000.000000 0.000000 0.000000 
+58.000000 20000.000000 0.000000 0.000000 
+60.000000 20000.000000 0.000000 0.000000 
+62.000000 20000.000000 0.000000 0.000000 
+64.000000 20000.000000 0.000000 0.000000 
+66.000000 20000.000000 0.000000 0.000000 
+68.000000 20000.000000 0.000000 0.000000 
+70.000000 20000.000000 0.000000 0.000000 
+72.000000 20000.000000 0.000000 0.000000 
+74.000000 20000.000000 0.000000 0.000000 
+76.000000 20000.000000 0.000000 0.000000 
+78.000000 20000.000000 0.000000 0.000000 
+80.000000 20000.000000 0.000000 0.000000 
+82.000000 20000.000000 0.000000 0.000000 
+84.000000 20000.000000 0.000000 0.000000 
+86.000000 20000.000000 0.000000 0.000000 
+88.000000 20000.000000 0.000000 0.000000 
+90.000000 20000.000000 0.000000 0.000000 
+92.000000 20000.000000 0.000000 0.000000 
+94.000000 20000.000000 0.000000 0.000000 
+96.000000 20000.000000 0.000000 0.000000 
+98.000000 20000.000000 0.000000 0.000000 
+100.000000 20000.000000 0.000000 0.000000 
+102.000000 20000.000000 0.000000 0.000000 
+104.000000 20000.000000 0.000000 0.000000 
+106.000000 20000.000000 0.000000 0.000000 
+108.000000 20000.000000 0.000000 0.000000 
+110.000000 20000.000000 0.000000 0.000000 
+112.000000 20000.000000 0.000000 0.000000 
+114.000000 20000.000000 0.000000 0.000000 
+116.000000 20000.000000 0.000000 0.000000 
+118.000000 20000.000000 0.000000 0.000000 
+120.000000 20000.000000 0.000000 0.000000 
+122.000000 20000.000000 0.000000 0.000000 
+124.000000 20000.000000 0.000000 0.000000 
+126.000000 20000.000000 0.000000 0.000000 
+128.000000 20000.000000 0.000000 0.000000 
+130.000000 20000.000000 0.000000 0.000000 
+132.000000 20000.000000 0.000000 0.000000 
+134.000000 20000.000000 0.000000 0.000000 
+136.000000 20000.000000 0.000000 0.000000 
+138.000000 20000.000000 0.000000 0.000000 
+140.000000 20000.000000 0.000000 0.000000 
+142.000000 20000.000000 0.000000 0.000000 
+144.000000 20000.000000 0.000000 0.000000 
+146.000000 20000.000000 0.000000 0.000000 
+148.000000 20000.000000 0.000000 0.000000 
+150.000000 20000.000000 0.000000 0.000000 
+152.000000 20000.000000 0.000000 0.000000 
+154.000000 20000.000000 0.000000 0.000000 
+156.000000 20000.000000 0.000000 0.000000 
+158.000000 20000.000000 0.000000 0.000000 
+160.000000 20000.000000 0.000000 0.000000 
+162.000000 20000.000000 0.000000 0.000000 
+164.000000 20000.000000 0.000000 0.000000 
+166.000000 20000.000000 0.000000 0.000000 
+168.000000 20000.000000 0.000000 0.000000 
+170.000000 20000.000000 0.000000 0.000000 
+172.000000 20000.000000 0.000000 0.000000 
+174.000000 20000.000000 0.000000 0.000000 
+176.000000 20000.000000 0.000000 0.000000 
+178.000000 20000.000000 0.000000 0.000000 
+180.000000 20000.000000 0.000000 0.000000 
+182.000000 19934.000000 -100.000000 -0.016667 
+184.000000 19868.000000 -100.000000 -0.033333 
+186.000000 19802.000000 -100.000000 -0.050000 
+188.000000 19736.000000 -100.000000 -0.066667 
+190.000000 19670.000000 -100.000000 -0.083333 
+192.000000 19604.000000 -100.000000 -0.100000 
+194.000000 19538.000000 -100.000000 -0.116667 
+196.000000 19472.000000 -100.000000 -0.133333 
+198.000000 19406.000000 -100.000000 -0.150000 
+200.000000 19340.000000 -100.000000 -0.166667 
+202.000000 19274.000000 -100.000000 -0.183333 
+204.000000 19208.000000 -100.000000 -0.200000 
+206.000000 19142.000000 -100.000000 -0.216667 
+208.000000 19076.000000 -100.000000 -0.233333 
+210.000000 19010.000000 -100.000000 -0.250000 
+212.000000 18944.000000 -100.000000 -0.266667 
+214.000000 18878.000000 -100.000000 -0.283333 
+216.000000 18812.000000 -100.000000 -0.300000 
+218.000000 18746.000000 -100.000000 -0.316667 
+220.000000 18680.000000 -100.000000 -0.333333 
+222.000000 18614.000000 -100.000000 -0.350000 
+224.000000 18548.000000 -100.000000 -0.366667 
+226.000000 18482.000000 -100.000000 -0.383333 
+228.000000 18416.000000 -100.000000 -0.400000 
+230.000000 18350.000000 -100.000000 -0.416667 
+232.000000 18284.000000 -100.000000 -0.433333 
+234.000000 18218.000000 -100.000000 -0.450000 
+236.000000 18152.000000 -100.000000 -0.466667 
+238.000000 18086.000000 -100.000000 -0.483333 
+240.000000 18020.000000 -100.000000 -0.500000 
+242.000000 17954.000000 -100.000000 -0.516667 
+244.000000 17888.000000 -100.000000 -0.533333 
+246.000000 17822.000000 -100.000000 -0.550000 
+248.000000 17756.000000 -100.000000 -0.566667 
+250.000000 17690.000000 -100.000000 -0.583333 
+252.000000 17624.000000 -100.000000 -0.600000 
+254.000000 17558.000000 -100.000000 -0.616667 
+256.000000 17492.000000 -100.000000 -0.633333 
+258.000000 17426.000000 -100.000000 -0.650000 
+260.000000 17360.000000 -100.000000 -0.666667 
+262.000000 17294.000000 -100.000000 -0.683333 
+264.000000 17228.000000 -100.000000 -0.700000 
+266.000000 17162.000000 -100.000000 -0.716667 
+268.000000 17096.000000 -100.000000 -0.733333 
+270.000000 17030.000000 -100.000000 -0.750000 
+272.000000 16964.000000 -100.000000 -0.766667 
+274.000000 16898.000000 -100.000000 -0.783333 
+276.000000 16832.000000 -100.000000 -0.800000 
+278.000000 16766.000000 -100.000000 -0.816667 
+280.000000 16700.000000 -100.000000 -0.833333 
+282.000000 16634.000000 -100.000000 -0.850000 
+284.000000 16568.000000 -100.000000 -0.866667 
+286.000000 16502.000000 -100.000000 -0.883333 
+288.000000 16436.000000 -100.000000 -0.900000 
+290.000000 16370.000000 -100.000000 -0.916667 
+292.000000 16304.000000 -100.000000 -0.933333 
+294.000000 16238.000000 -100.000000 -0.950000 
+296.000000 16172.000000 -100.000000 -0.966667 
+298.000000 16106.000000 -100.000000 -0.983333 
+300.000000 16040.000000 -100.000000 -1.000000 
+302.000000 15974.000000 -100.000000 -1.000000 
+304.000000 15974.000000 0.000000 -1.000000 
+306.000000 15974.000000 0.000000 -1.000000 
+308.000000 15974.000000 0.000000 -1.000000 
+310.000000 15974.000000 0.000000 -1.000000 
+312.000000 15974.000000 0.000000 -1.000000 
+314.000000 15974.000000 0.000000 -1.000000 
+316.000000 15974.000000 0.000000 -1.000000 
+318.000000 15974.000000 0.000000 -1.000000 
+320.000000 15974.000000 0.000000 -1.000000 
+322.000000 15974.000000 0.000000 -1.000000 
+324.000000 15974.000000 0.000000 -1.000000 
+326.000000 15974.000000 0.000000 -1.000000 
+328.000000 15974.000000 0.000000 -1.000000 
+330.000000 15974.000000 0.000000 -1.000000 
+332.000000 15974.000000 0.000000 -1.000000 
+334.000000 15974.000000 0.000000 -1.000000 
+336.000000 15974.000000 0.000000 -1.000000 
+338.000000 15974.000000 0.000000 -1.000000 
+340.000000 15974.000000 0.000000 -1.000000 
+342.000000 15974.000000 0.000000 -1.000000 
+344.000000 15974.000000 0.000000 -1.000000 
+346.000000 15974.000000 0.000000 -1.000000 
+348.000000 15974.000000 0.000000 -1.000000 
+350.000000 15974.000000 0.000000 -1.000000 
+352.000000 15974.000000 0.000000 -1.000000 
+354.000000 15974.000000 0.000000 -1.000000 
+356.000000 15974.000000 0.000000 -1.000000 
+358.000000 15974.000000 0.000000 -1.000000 
+360.000000 15974.000000 0.000000 -1.000000 
+362.000000 15974.000000 0.000000 -1.000000 
+364.000000 15974.000000 0.000000 -1.000000 
+366.000000 15974.000000 0.000000 -1.000000 
+368.000000 15974.000000 0.000000 -1.000000 
+370.000000 15974.000000 0.000000 -1.000000 
+372.000000 15974.000000 0.000000 -1.000000 
+374.000000 15974.000000 0.000000 -1.000000 
+376.000000 15974.000000 0.000000 -1.000000 
+378.000000 15974.000000 0.000000 -1.000000 
+380.000000 15974.000000 0.000000 -1.000000 
+382.000000 15974.000000 0.000000 -1.000000 
+384.000000 15974.000000 0.000000 -1.000000 
+386.000000 15974.000000 0.000000 -1.000000 
+388.000000 15974.000000 0.000000 -1.000000 
+390.000000 15974.000000 0.000000 -1.000000 
+392.000000 15974.000000 0.000000 -1.000000 
+394.000000 15974.000000 0.000000 -1.000000 
+396.000000 15974.000000 0.000000 -1.000000 
+398.000000 15974.000000 0.000000 -1.000000 
+400.000000 15974.000000 0.000000 -1.000000 
+402.000000 15974.000000 0.000000 -1.000000 
+404.000000 15974.000000 0.000000 -1.000000 
+406.000000 15974.000000 0.000000 -1.000000 
+408.000000 15974.000000 0.000000 -1.000000 
+410.000000 15974.000000 0.000000 -1.000000 
+412.000000 15974.000000 0.000000 -1.000000 
+414.000000 15974.000000 0.000000 -1.000000 
+416.000000 15974.000000 0.000000 -1.000000 
+418.000000 15974.000000 0.000000 -1.000000 
+420.000000 15974.000000 0.000000 -1.000000 
+422.000000 15990.000000 100.000000 -1.000000 
+424.000000 16006.000000 100.000000 -1.000000 
+426.000000 16022.000000 100.000000 -1.000000 
+428.000000 16038.000000 100.000000 -1.000000 
+430.000000 16054.000000 100.000000 -1.000000 
+432.000000 16070.000000 100.000000 -1.000000 
+434.000000 16086.000000 100.000000 -1.000000 
+436.000000 16102.000000 100.000000 -1.000000 
+438.000000 16118.000000 100.000000 -1.000000 
+440.000000 16134.000000 100.000000 -1.000000 
+442.000000 16150.000000 100.000000 -1.000000 
+444.000000 16166.000000 100.000000 -1.000000 
+446.000000 16182.000000 100.000000 -1.000000 
+448.000000 16198.000000 100.000000 -1.000000 
+450.000000 16214.000000 100.000000 -1.000000 
+452.000000 16230.000000 100.000000 -1.000000 
+454.000000 16246.000000 100.000000 -1.000000 
+456.000000 16262.000000 100.000000 -1.000000 
+458.000000 16278.000000 100.000000 -1.000000 
+460.000000 16294.000000 100.000000 -1.000000 
+462.000000 16310.000000 100.000000 -1.000000 
+464.000000 16326.000000 100.000000 -1.000000 
+466.000000 16342.000000 100.000000 -1.000000 
+468.000000 16358.000000 100.000000 -1.000000 
+470.000000 16374.000000 100.000000 -1.000000 
+472.000000 16390.000000 100.000000 -1.000000 
+474.000000 16406.000000 100.000000 -1.000000 
+476.000000 16422.000000 100.000000 -1.000000 
+478.000000 16438.000000 100.000000 -1.000000 
+480.000000 16454.000000 100.000000 -1.000000 
+482.000000 16470.000000 100.000000 -1.000000 
+484.000000 16486.000000 100.000000 -1.000000 
+486.000000 16502.000000 100.000000 -1.000000 
+488.000000 16518.000000 100.000000 -1.000000 
+490.000000 16534.000000 100.000000 -1.000000 
+492.000000 16550.000000 100.000000 -1.000000 
+494.000000 16566.000000 100.000000 -1.000000 
+496.000000 16582.000000 100.000000 -1.000000 
+498.000000 16598.000000 100.000000 -1.000000 
+500.000000 16614.000000 100.000000 -1.000000 
+502.000000 16630.000000 100.000000 -1.000000 
+504.000000 16646.000000 100.000000 -1.000000 
+506.000000 16662.000000 100.000000 -1.000000 
+508.000000 16678.000000 100.000000 -1.000000 
+510.000000 16694.000000 100.000000 -1.000000 
+512.000000 16710.000000 100.000000 -1.000000 
+514.000000 16726.000000 100.000000 -1.000000 
+516.000000 16742.000000 100.000000 -1.000000 
+518.000000 16758.000000 100.000000 -1.000000 
+520.000000 16774.000000 100.000000 -1.000000 
+522.000000 16790.000000 100.000000 -1.000000 
+524.000000 16806.000000 100.000000 -1.000000 
+526.000000 16822.000000 100.000000 -1.000000 
+528.000000 16838.000000 100.000000 -1.000000 
+530.000000 16854.000000 100.000000 -1.000000 
+532.000000 16870.000000 100.000000 -1.000000 
+534.000000 16886.000000 100.000000 -1.000000 
+536.000000 16902.000000 100.000000 -1.000000 
+538.000000 16918.000000 100.000000 -1.000000 
+540.000000 16934.000000 100.000000 -1.000000 
+542.000000 16950.000000 100.000000 -1.000000 
+544.000000 16966.000000 100.000000 -1.000000 
+546.000000 16982.000000 100.000000 -1.000000 
+548.000000 16998.000000 100.000000 -1.000000 
+550.000000 17014.000000 100.000000 -1.000000 
+552.000000 17030.000000 100.000000 -1.000000 
+554.000000 17046.000000 100.000000 -1.000000 
+556.000000 17062.000000 100.000000 -1.000000 
+558.000000 17078.000000 100.000000 -1.000000 
+560.000000 17094.000000 100.000000 -1.000000 
+562.000000 17110.000000 100.000000 -1.000000 
+564.000000 17126.000000 100.000000 -1.000000 
+566.000000 17142.000000 100.000000 -1.000000 
+568.000000 17158.000000 100.000000 -1.000000 
+570.000000 17174.000000 100.000000 -1.000000 
+572.000000 17190.000000 100.000000 -1.000000 
+574.000000 17206.000000 100.000000 -1.000000 
+576.000000 17222.000000 100.000000 -1.000000 
+578.000000 17238.000000 100.000000 -1.000000 
+580.000000 17254.000000 100.000000 -1.000000 
+582.000000 17270.000000 100.000000 -1.000000 
+584.000000 17286.000000 100.000000 -1.000000 
+586.000000 17302.000000 100.000000 -1.000000 
+588.000000 17318.000000 100.000000 -1.000000 
+590.000000 17334.000000 100.000000 -1.000000 
+592.000000 17350.000000 100.000000 -1.000000 
+594.000000 17366.000000 100.000000 -1.000000 
+596.000000 17382.000000 100.000000 -1.000000 
+598.000000 17398.000000 100.000000 -1.000000 
+600.000000 17414.000000 100.000000 -1.000000 
+602.000000 17430.000000 100.000000 -1.000000 
+604.000000 17446.000000 100.000000 -0.966667 
+606.000000 17462.000000 100.000000 -0.933333 
+608.000000 17478.000000 100.000000 -0.900000 
+610.000000 17494.000000 100.000000 -0.866667 
+612.000000 17510.000000 100.000000 -0.833333 
+614.000000 17526.000000 100.000000 -0.800000 
+616.000000 17542.000000 100.000000 -0.766667 
+618.000000 17558.000000 100.000000 -0.733333 
+620.000000 17574.000000 100.000000 -0.700000 
+622.000000 17590.000000 100.000000 -0.666667 
+624.000000 17606.000000 100.000000 -0.633333 
+626.000000 17622.000000 100.000000 -0.600000 
+628.000000 17638.000000 100.000000 -0.566667 
+630.000000 17654.000000 100.000000 -0.533333 
+632.000000 17670.000000 100.000000 -0.500000 
+634.000000 17686.000000 100.000000 -0.466667 
+636.000000 17702.000000 100.000000 -0.433333 
+638.000000 17718.000000 100.000000 -0.400000 
+640.000000 17734.000000 100.000000 -0.366667 
+642.000000 17750.000000 100.000000 -0.333333 
+644.000000 17766.000000 100.000000 -0.300000 
+646.000000 17782.000000 100.000000 -0.266667 
+648.000000 17798.000000 100.000000 -0.233333 
+650.000000 17814.000000 100.000000 -0.200000 
+652.000000 17830.000000 100.000000 -0.166667 
+654.000000 17846.000000 100.000000 -0.133333 
+656.000000 17862.000000 100.000000 -0.100000 
+658.000000 17878.000000 100.000000 -0.066667 
+660.000000 17894.000000 100.000000 -0.033333 
+662.000000 17910.000000 100.000000 0.000000 
+664.000000 17910.000000 0.000000 0.016667 
+666.000000 17910.000000 0.000000 0.033333 
+668.000000 17910.000000 0.000000 0.050000 
+670.000000 17910.000000 0.000000 0.050000 
+672.000000 17910.000000 0.000000 0.050000 
+674.000000 17910.000000 0.000000 0.050000 
+676.000000 17910.000000 0.000000 0.050000 
+678.000000 17910.000000 0.000000 0.050000 
+680.000000 17910.000000 0.000000 0.050000 
+682.000000 17910.000000 0.000000 0.050000 
+684.000000 17910.000000 0.000000 0.050000 
+686.000000 17910.000000 0.000000 0.050000 
+688.000000 17910.000000 0.000000 0.050000 
+690.000000 17910.000000 0.000000 0.050000 
+692.000000 17910.000000 0.000000 0.050000 
+694.000000 17910.000000 0.000000 0.050000 
+696.000000 17910.000000 0.000000 0.050000 
+698.000000 17910.000000 0.000000 0.050000 
+700.000000 17910.000000 0.000000 0.050000 
+702.000000 17910.000000 0.000000 0.050000 
+704.000000 17910.000000 0.000000 0.050000 
+706.000000 17910.000000 0.000000 0.050000 
+708.000000 17910.000000 0.000000 0.050000 
+710.000000 17910.000000 0.000000 0.050000 
+712.000000 17910.000000 0.000000 0.050000 
+714.000000 17910.000000 0.000000 0.050000 
+716.000000 17910.000000 0.000000 0.050000 
+718.000000 17910.000000 0.000000 0.050000 
+720.000000 17910.000000 0.000000 0.050000 
+722.000000 17910.000000 0.000000 0.050000 
+724.000000 17910.000000 0.000000 0.050000 
+726.000000 17910.000000 0.000000 0.050000 
+728.000000 17910.000000 0.000000 0.050000 
+730.000000 17910.000000 0.000000 0.050000 
+732.000000 17910.000000 0.000000 0.050000 
+734.000000 17910.000000 0.000000 0.050000 
+736.000000 17910.000000 0.000000 0.050000 
+738.000000 17910.000000 0.000000 0.050000 
+740.000000 17910.000000 0.000000 0.050000 
+742.000000 17910.000000 0.000000 0.050000 
+744.000000 17910.000000 0.000000 0.050000 
+746.000000 17910.000000 0.000000 0.050000 
+748.000000 17910.000000 0.000000 0.050000 
+750.000000 17910.000000 0.000000 0.050000 
+752.000000 17910.000000 0.000000 0.050000 
+754.000000 17910.000000 0.000000 0.050000 
+756.000000 17910.000000 0.000000 0.050000 
+758.000000 17910.000000 0.000000 0.050000 
+760.000000 17910.000000 0.000000 0.050000 
+762.000000 17910.000000 0.000000 0.050000 
+764.000000 17910.000000 0.000000 0.050000 
+766.000000 17910.000000 0.000000 0.050000 
+768.000000 17910.000000 0.000000 0.050000 
+770.000000 17910.000000 0.000000 0.050000 
+772.000000 17910.000000 0.000000 0.050000 
+774.000000 17910.000000 0.000000 0.050000 
+776.000000 17910.000000 0.000000 0.050000 
+778.000000 17910.000000 0.000000 0.050000 
+780.000000 17910.000000 0.000000 0.050000 
+782.000000 17910.000000 0.000000 0.050000 
+784.000000 17910.000000 0.000000 0.050000 
+786.000000 17910.000000 0.000000 0.050000 
+788.000000 17910.000000 0.000000 0.050000 
+790.000000 17910.000000 0.000000 0.050000 
+792.000000 17910.000000 0.000000 0.050000 
+794.000000 17910.000000 0.000000 0.050000 
+796.000000 17910.000000 0.000000 0.050000 
+798.000000 17910.000000 0.000000 0.050000 
+800.000000 17910.000000 0.000000 0.050000 
+802.000000 17910.000000 0.000000 0.050000 
+804.000000 17910.000000 0.000000 0.050000 
+806.000000 17910.000000 0.000000 0.050000 
+808.000000 17910.000000 0.000000 0.050000 
+810.000000 17910.000000 0.000000 0.050000 
+812.000000 17910.000000 0.000000 0.050000 
+814.000000 17910.000000 0.000000 0.050000 
+816.000000 17910.000000 0.000000 0.050000 
+818.000000 17910.000000 0.000000 0.050000 
+820.000000 17910.000000 0.000000 0.050000 
+822.000000 17910.000000 0.000000 0.050000 
+824.000000 17910.000000 0.000000 0.050000 
+826.000000 17910.000000 0.000000 0.050000 
+828.000000 17910.000000 0.000000 0.050000 
+830.000000 17910.000000 0.000000 0.050000 
+832.000000 17910.000000 0.000000 0.050000 
+834.000000 17910.000000 0.000000 0.050000 
+836.000000 17910.000000 0.000000 0.050000 
+838.000000 17910.000000 0.000000 0.050000 
+840.000000 17910.000000 0.000000 0.050000 
+842.000000 17910.000000 0.000000 0.050000 
+844.000000 17910.000000 0.000000 0.050000 
+846.000000 17910.000000 0.000000 0.050000 
+848.000000 17910.000000 0.000000 0.050000 
+850.000000 17910.000000 0.000000 0.050000 
+852.000000 17910.000000 0.000000 0.050000 
+854.000000 17910.000000 0.000000 0.050000 
+856.000000 17910.000000 0.000000 0.050000 
+858.000000 17910.000000 0.000000 0.050000 
+860.000000 17910.000000 0.000000 0.050000 
+862.000000 17910.000000 0.000000 0.050000 
+864.000000 17910.000000 0.000000 0.050000 
+866.000000 17910.000000 0.000000 0.050000 
+868.000000 17910.000000 0.000000 0.050000 
+870.000000 17910.000000 0.000000 0.050000 
+872.000000 17910.000000 0.000000 0.050000 
+874.000000 17910.000000 0.000000 0.050000 
+876.000000 17910.000000 0.000000 0.050000 
+878.000000 17910.000000 0.000000 0.050000 
+880.000000 17910.000000 0.000000 0.050000 
+882.000000 17910.000000 0.000000 0.050000 
+884.000000 17910.000000 0.000000 0.050000 
+886.000000 17910.000000 0.000000 0.050000 
+888.000000 17910.000000 0.000000 0.050000 
+890.000000 17910.000000 0.000000 0.050000 
+892.000000 17910.000000 0.000000 0.050000 
+894.000000 17910.000000 0.000000 0.050000 
+896.000000 17910.000000 0.000000 0.050000 
+898.000000 17910.000000 0.000000 0.050000 
+900.000000 17910.000000 0.000000 0.050000 
+902.000000 17910.000000 0.000000 0.050000 
+904.000000 17910.000000 0.000000 0.050000 
+906.000000 17910.000000 0.000000 0.050000 
+908.000000 17910.000000 0.000000 0.050000 
+910.000000 17910.000000 0.000000 0.050000 
+912.000000 17910.000000 0.000000 0.050000 
+914.000000 17910.000000 0.000000 0.050000 
+916.000000 17910.000000 0.000000 0.050000 
+918.000000 17910.000000 0.000000 0.050000 
+920.000000 17910.000000 0.000000 0.050000 
+922.000000 17910.000000 0.000000 0.050000 
+924.000000 17910.000000 0.000000 0.050000 
+926.000000 17910.000000 0.000000 0.050000 
+928.000000 17910.000000 0.000000 0.050000 
+930.000000 17910.000000 0.000000 0.050000 
+932.000000 17910.000000 0.000000 0.050000 
+934.000000 17910.000000 0.000000 0.050000 
+936.000000 17910.000000 0.000000 0.050000 
+938.000000 17910.000000 0.000000 0.050000 
+940.000000 17910.000000 0.000000 0.050000 
+942.000000 17910.000000 0.000000 0.050000 
+944.000000 17910.000000 0.000000 0.050000 
+946.000000 17910.000000 0.000000 0.050000 
+948.000000 17910.000000 0.000000 0.050000 
+950.000000 17910.000000 0.000000 0.050000 
+952.000000 17910.000000 0.000000 0.050000 
+954.000000 17910.000000 0.000000 0.050000 
+956.000000 17910.000000 0.000000 0.050000 
+958.000000 17910.000000 0.000000 0.050000 
+960.000000 17910.000000 0.000000 0.050000 
+962.000000 17910.000000 0.000000 0.050000 
+964.000000 17910.000000 0.000000 0.050000 
+966.000000 17910.000000 0.000000 0.050000 
+968.000000 17910.000000 0.000000 0.039333 
+970.000000 17910.000000 0.000000 0.038667 
+972.000000 17910.000000 0.000000 0.038000 
+974.000000 17910.000000 0.000000 0.037333 
+976.000000 17910.000000 0.000000 0.036667 
+978.000000 17910.000000 0.000000 0.036000 
+980.000000 17910.000000 0.000000 0.035333 
+982.000000 17910.000000 0.000000 0.034667 
+984.000000 17910.000000 0.000000 0.034000 
+986.000000 17910.000000 0.000000 0.033333 
+988.000000 17910.000000 0.000000 0.032667 
+990.000000 17910.000000 0.000000 0.032000 
+992.000000 17910.000000 0.000000 0.031333 
+994.000000 17910.000000 0.000000 0.030667 
+996.000000 17910.000000 0.000000 0.030000 
+998.000000 17910.000000 0.000000 0.029333 
+1000.000000 17910.000000 0.000000 0.028667 
+1002.000000 17910.000000 0.000000 0.028000 
+1004.000000 17910.000000 0.000000 0.027333 
+1006.000000 17910.000000 0.000000 0.026667 
+1008.000000 17910.000000 0.000000 0.026000 
+1010.000000 17910.000000 0.000000 0.025333 
+1012.000000 17910.000000 0.000000 0.024667 
+1014.000000 17910.000000 0.000000 0.024000 
+1016.000000 17910.000000 0.000000 0.023333 
+1018.000000 17910.000000 0.000000 0.022667 
+1020.000000 17910.000000 0.000000 0.022000 
+1022.000000 17910.000000 0.000000 0.021333 
+1024.000000 17910.000000 0.000000 0.020667 
+1026.000000 17910.000000 0.000000 0.020000 
+1028.000000 17910.000000 0.000000 0.019333 
+1030.000000 17910.000000 0.000000 0.018667 
+1032.000000 17910.000000 0.000000 0.018000 
+1034.000000 17910.000000 0.000000 0.017333 
+1036.000000 17910.000000 0.000000 0.016667 
+1038.000000 17910.000000 0.000000 0.016000 
+1040.000000 17910.000000 0.000000 0.015333 
+1042.000000 17910.000000 0.000000 0.014667 
+1044.000000 17910.000000 0.000000 0.014000 
+1046.000000 17910.000000 0.000000 0.013333 
+1048.000000 17910.000000 0.000000 0.012667 
+1050.000000 17910.000000 0.000000 0.012000 
+1052.000000 17910.000000 0.000000 0.011333 
+1054.000000 17910.000000 0.000000 0.010667 
+1056.000000 17910.000000 0.000000 0.010000 
+1058.000000 17910.000000 0.000000 0.009333 
+1060.000000 17910.000000 0.000000 0.008667 
+1062.000000 17910.000000 0.000000 0.008000 
+1064.000000 17910.000000 0.000000 0.007333 
+1066.000000 17910.000000 0.000000 0.006667 
+1068.000000 17910.000000 0.000000 0.006000 
+1070.000000 17910.000000 0.000000 0.005333 
+1072.000000 17910.000000 0.000000 0.004667 
+1074.000000 17910.000000 0.000000 0.004000 
+1076.000000 17910.000000 0.000000 0.003333 
+1078.000000 17910.000000 0.000000 0.002667 

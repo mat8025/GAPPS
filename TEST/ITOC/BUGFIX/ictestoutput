@@ -1,0 +1,148 @@
+A 1 2 4 9 8 6  
+ 1 2 4 9 8 6
+ 
+ 6 INT   
+A 1 2 4 9 8 6
+ 
+  e 0 
+ SUCCESS    
+FAIL test <1> @ [37] CheckNum(e,28)
+
+ A 1 2 4 9 8 6
+ 
+ 1 2 4 9 8 6
+ 
+ 6 INT   
+DONE: FAIL: ./bugfix_40          :tests      1 :Fail      1 :Pass      0 :Score    0.0% 
+ i 65 
+ vid 65 
+Fid 79 
+F[2] 79 
+Act cons of A 0
+Act cons of G 1
+  we 0 
+FAIL test <1> @ [85]              if
+
+DONE: FAIL: ./bugfix_46          :tests      1 :Fail      1 :Pass      0 :Score    0.0% 
+0 1 1 0 0 0 0 0 0 0  
+0 2 2 0 0 0 0 0 0 0
+ 
+0 3 3 0 0 0 0 0 0 0
+ 
+0 4 4 0 0 0 0 0 0 0
+ 
+0 5 5 0 0 0 0 0 0 0
+ 
+0 6 6 0 0 0 0 0 0 0
+ 
+DONE: PASS: ./bugfix_59          :tests      6 :Fail      0 :Pass      6 :Score  100.0% 
+x 0 1 2 3 4 
+y 0 1 2 3 4
+ 
+x 0 1 2 3 4
+
+x1 0 1 2 3 4
+
+y1 0 2 4 6 8
+
+y2 0 2 4 6 8
+
+x 0 1 2 3 4
+
+y1 0 3 10 21 36
+
+y2 0 3 10 21 36
+
+y1 0 3 14 39 84
+
+y2 0 3 14 39 84
+
+x 0 1 2 3 4
+
+y 0 1 2 3 4
+
+x 0 1 2 3 4
+
+y1 0 5 34 129 356
+
+y2 0 5 34 129 356
+
+y1 0 6 34 102 228
+
+y2 0 6 34 102 228
+
+DONE: PASS: ./bugfix_64          :tests      6 :Fail      0 :Pass      6 :Score  100.0% 
+A 1 2 4 9 8 6  
+ 1 2 4 9 8 6
+ 
+ 6 INT   
+A 1 2 4 9 8 6
+ 
+  e 0 
+ SUCCESS    
+FAIL test <1> @ [37] CheckNum(e,28)
+
+ A 1 2 4 9 8 6
+ 
+ 1 2 4 9 8 6
+ 
+ 6 INT   
+DONE: FAIL: ./bugfix_40          :tests      1 :Fail      1 :Pass      0 :Score    0.0% 
+ i 65 
+ vid 65 
+Fid 79 
+F[2] 79 
+Act cons of A 0
+Act cons of G 1
+  we 0 
+FAIL test <1> @ [85]              if
+
+DONE: FAIL: ./bugfix_46          :tests      1 :Fail      1 :Pass      0 :Score    0.0% 
+0 1 1 0 0 0 0 0 0 0  
+0 2 2 0 0 0 0 0 0 0
+ 
+0 3 3 0 0 0 0 0 0 0
+ 
+0 4 4 0 0 0 0 0 0 0
+ 
+0 5 5 0 0 0 0 0 0 0
+ 
+0 6 6 0 0 0 0 0 0 0
+ 
+DONE: PASS: ./bugfix_59          :tests      6 :Fail      0 :Pass      6 :Score  100.0% 
+x 0 1 2 3 4 
+y 0 1 2 3 4
+ 
+x 0 1 2 3 4
+
+x1 0 1 2 3 4
+
+y1 0 2 4 6 8
+
+y2 0 2 4 6 8
+
+x 0 1 2 3 4
+
+y1 0 3 10 21 36
+
+y2 0 3 10 21 36
+
+y1 0 3 14 39 84
+
+y2 0 3 14 39 84
+
+x 0 1 2 3 4
+
+y 0 1 2 3 4
+
+x 0 1 2 3 4
+
+y1 0 5 34 129 356
+
+y2 0 5 34 129 356
+
+y1 0 6 34 102 228
+
+y2 0 6 34 102 228
+
+DONE: PASS: ./bugfix_64          :tests      6 :Fail      0 :Pass      6 :Score  100.0% 

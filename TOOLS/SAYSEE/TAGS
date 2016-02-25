@@ -1,0 +1,31 @@
+
+seespec.asl,680
+setdebug(3,41
+proc closeAudio(40,534
+proc displayComment 48,625
+proc samp2time(55,731
+proc getNpixs(65,824
+int smic_factor 92,1175
+proc computeSpecandPlot(115,1556
+proc showSlice 237,3726
+proc playBuff(307,5164
+proc selSection(318,5320
+proc playSection(375,6383
+proc playBCtas(400,6877
+proc showSelectRegion(423,7313
+proc getVoxTime(492,8671
+proc voxFileRead(500,8698
+proc setUpNewVoxParams(525,9195
+vox_type 543,9466
+proc do_key_options(680,12632
+ Graphic 727,13719
+ int sb 735,13788
+float YS[YS753,13967
+int ds;757,14058
+int npts;758,14066
+   ds 764,14107
+ Sf 780,14367
+ wohtile(918,18301
+   else 962,19185
+    tasX 967,19270
+closeAudio(1128,21401

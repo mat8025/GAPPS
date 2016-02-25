@@ -1,0 +1,20 @@
+I 1 2 3 4 5  
+J 1 2 -3 8 9
+ 
+3 4
+
+0 0 0 1 1
+
+1 1 0 0 0
+
+DONE: PASS: ./cmp                :tests      5 :Fail      0 :Pass      5 :Score  100.0% 
+I 1 2 3 4 5  
+J 1 2 -3 8 9
+ 
+3 4
+
+0 0 0 1 1
+
+1 1 0 0 0
+
+DONE: PASS: ./cmp                :tests      5 :Fail      0 :Pass      5 :Score  100.0% 

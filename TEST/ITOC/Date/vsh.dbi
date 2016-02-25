@@ -1,0 +1,1249 @@
+     DEBUG FILE for vsh.dbi debug level 1  vers 4.100.9
+     Tue Jan 13 06:29:56 2015
+ siv_e.cpp setSize: @575 ignore it is svar 
+ args_e.cpp	init_svarg:2756 ID 0 na 0 maxna 20 
+ args_e.cpp	init_svarg:2798 alloc new svargs 20 
+ scope_e.cpp	AddScope:33 cscope <_> newscope <_>  proc_nest 0  proc_rn 0
+ scope_e.cpp	AddScope:54 newscope _   thread Proc_nest 0
+ args_e.cpp	NewSivArg:167 arg[0] added 1 
+ args_e.cpp	NewSivArg:186 NewSivArg  sv_arg0 id <66> 
+ args_e.cpp	GetStrOpt:3024 i 0 svarg->sarg.argc 1
+ args_e.cpp	GetStrOpt:3035 i 0 sv_arg0 SVAR offset 0 sivp NO 
+ args_e.cpp	GetStrOpt:3056  sv_arg0 type SVAR offset 0
+ args_e.cpp	GetStrOpt:3074 svar narg 2
+ args_e.cpp	GetStrOpt:3087 SVAR sv_arg0 offset 0 include "consts.asl" 
+ alias.cpp gs_set_file: @44 set_file file in consts.asl 10
+ alias.cpp gs_set_file: @106 set_file file out consts.asl 10
+ alias.cpp gs_set_file: @44 set_file file in consts.asl 10
+ alias.cpp gs_set_file: @106 set_file file out consts.asl 10
+     consts.asl -- zero length file
+ include_e.cpp XcodeBlock: @635 1 <2> 
+ include_e.cpp XcodeBlock: @635 2 <4> 
+------------------------------------------------------------------------
+
+### <4>[15]<0>{CONSTANT}		const double _E = exp(1.0)
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _E  pindex -1 init SIV_DECLARE pcw PCW:  type DOUBLE ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _E in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _E
+ scope_e.cpp	var_index:1254 final _E init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_E> init SIV_DECLARE array_check 0  type DOUBLE PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _E _E _E  type DOUBLE
+ scope_e.cpp	var_sindex:1648 main/global <|_E|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _E slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_E|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _E nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_E> slot 377 id 67
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _E DOUBLE classobj 0
+ scope_e.cpp	var_sindex:1783 made 377 
+ scope_e.cpp	var_sindex:1849 which_siv _E found ID 67 offset 0 DOUBLE ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _E type DOUBLE offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  exp(1.0) 9 lbcnt 1 rbcnt 1  filb 4 lilb 4 firb 8 lirb 8
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| exp(1.0)|>  
+ args_e.cpp	init_svarg:2756 ID 0 na 1 maxna 20 
+ args_e.cpp	init_svarg:2766 free old svarg 0 na 1 
+ args_e.cpp	init_svarg:2780 sv_arg0 ID 66 
+ args_e.cpp	init_svarg:2798 alloc new svargs 20 
+ args_e.cpp	parse_args:2097  (1.0)  _  
+ args_e.cpp	get_args:1032 rcn 0
+ args_e.cpp	get_args:1064 (1.0) 
+ args_e.cpp	get_args:1094 (1.0)  nal 5
+ args_e.cpp	get_args:1102 b4 sob (1.0) 
+ args_e.cpp	strip_outer_bracks:2220 (1.0) 5 lbcnt 1 rbcnt 1  filb 0 lilb 0 firb 4 lirb 4
+ args_e.cpp	strip_outer_bracks:2269 mlen 5 nc 5 <|(1.0)|> 
+ args_e.cpp	strip_outer_bracks:2295 sl 3 <|1.0|>  
+ args_e.cpp	get_args:1110 after sob 1.0 
+ args_e.cpp	get_args:1139 this arg starts at 1.0
+ args_e.cpp	get_args:1308 this arg[0] finishes at 
+ args_e.cpp	get_args:1323 [0] 1.0 cc 3
+ svar.cpp ncpy: @909  ERROR svar not innited ?!
+ args_e.cpp	get_args:1349 argc 1 1
+ args_e.cpp	process_args:825 parset 35009632 1 
+ args_e.cpp	process_args:850 0 chk_exp 3 1.0  type 0
+ args_e.cpp	NewSivArg:167 arg[0] added 2 
+ args_e.cpp	NewSivArg:186 NewSivArg  sv_arg0 id <72> 
+ args_e.cpp	process_args_type:646 fc 1  1.0
+ args_e.cpp	process_args_type:680 checking for array name 1.0 arg 0 scope _
+ args_e.cpp	process_args_type:715 arg_type 0 arg 1.0 
+ args_e.cpp	process_args:901 arg is 1.0
+ args_e.cpp	process_args:911 svarg->sv[i] sv_arg0  
+ args_e.cpp	process_args:912 result points to sv_arg0
+ args_e.cpp	process_args_exprn:610 GetExp 1.0
+ args_e.cpp	strip_outer_bracks:2220 1.0 3 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <|1.0|>  
+ args_e.cpp	process_args_exprn:630 result sv_arg0 ID 72 SVPTR? NO 
+ args_e.cpp	process_args:985 calling 0 1.0 offset 0
+ include_e.cpp XcodeBlock: @635 3 <5> 
+------------------------------------------------------------------------
+
+### <5>[21]<0>{CONSTANT}		const double _G = 6.672e-11
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _G  pindex -1 init SIV_DECLARE pcw PCW:  type DOUBLE ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _G in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _G
+ scope_e.cpp	var_index:1254 final _G init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_G> init SIV_DECLARE array_check 0  type DOUBLE PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _G _G _G  type DOUBLE
+ scope_e.cpp	var_sindex:1648 main/global <|_G|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _G slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_G|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _G nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_G> slot 375 id 75
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _G DOUBLE classobj 0
+ scope_e.cpp	var_sindex:1783 made 375 
+ scope_e.cpp	var_sindex:1849 which_siv _G found ID 75 offset 0 DOUBLE ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _G type DOUBLE offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  6.672e-11 10 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 6.672e-11|>  
+ include_e.cpp XcodeBlock: @635 4 <6> 
+------------------------------------------------------------------------
+
+### <6>[23]<0>{CONSTANT}		const double _g = 9.8 // m per sec per sec -- grav acc
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _g  pindex -1 init SIV_DECLARE pcw PCW:  type DOUBLE ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _g in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _g
+ scope_e.cpp	var_index:1254 final _g init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_g> init SIV_DECLARE array_check 0  type DOUBLE PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _g _g _g  type DOUBLE
+ scope_e.cpp	var_sindex:1648 main/global <|_g|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _g slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_g|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _g nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_g> slot 343 id 80
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _g DOUBLE classobj 0
+ scope_e.cpp	var_sindex:1783 made 343 
+ scope_e.cpp	var_sindex:1849 which_siv _g found ID 80 offset 0 DOUBLE ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _g type DOUBLE offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  9.8 // m per sec per sec -- grav acc 37 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 9.8 // m per sec per sec -- grav acc|>  
+ include_e.cpp XcodeBlock: @635 5 <7> 
+------------------------------------------------------------------------
+
+### <7>[25]<0>{CONSTANT}		const double _c = 299792458   // m per sec
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _c  pindex -1 init SIV_DECLARE pcw PCW:  type DOUBLE ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _c in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _c
+ scope_e.cpp	var_index:1254 final _c init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_c> init SIV_DECLARE array_check 0  type DOUBLE PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _c _c _c  type DOUBLE
+ scope_e.cpp	var_sindex:1648 main/global <|_c|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _c slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_c|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _c nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_c> slot 347 id 86
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _c DOUBLE classobj 0
+ scope_e.cpp	var_sindex:1783 made 347 
+ scope_e.cpp	var_sindex:1849 which_siv _c found ID 86 offset 0 DOUBLE ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _c type DOUBLE offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  299792458   // m per sec 25 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 299792458   // m per sec|>  
+ include_e.cpp XcodeBlock: @635 6 <8> 
+------------------------------------------------------------------------
+
+### <8>[27]<0>{CONSTANT}		const double _sos = 331.0 // m per sec 
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _sos  pindex -1 init SIV_DECLARE pcw PCW:  type DOUBLE ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _sos in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _sos
+ scope_e.cpp	var_index:1254 final _sos init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_sos> init SIV_DECLARE array_check 0  type DOUBLE PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _sos _sos _sos  type DOUBLE
+ scope_e.cpp	var_sindex:1648 main/global <|_sos|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _sos slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_sos|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _sos nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_sos> slot 1105 id 92
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _sos DOUBLE classobj 0
+ scope_e.cpp	var_sindex:1783 made 1105 
+ scope_e.cpp	var_sindex:1849 which_siv _sos found ID 92 offset 0 DOUBLE ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _sos type DOUBLE offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  331.0 // m per sec  20 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 331.0 // m per sec |>  
+ include_e.cpp XcodeBlock: @635 7 <9> 
+------------------------------------------------------------------------
+
+### <9>[29]<0>{CONSTANT}		const double _k = 1.38070e-23
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _k  pindex -1 init SIV_DECLARE pcw PCW:  type DOUBLE ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _k in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _k
+ scope_e.cpp	var_index:1254 final _k init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_k> init SIV_DECLARE array_check 0  type DOUBLE PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _k _k _k  type DOUBLE
+ scope_e.cpp	var_sindex:1648 main/global <|_k|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _k slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_k|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _k nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_k> slot 339 id 98
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _k DOUBLE classobj 0
+ scope_e.cpp	var_sindex:1783 made 339 
+ scope_e.cpp	var_sindex:1849 which_siv _k found ID 98 offset 0 DOUBLE ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _k type DOUBLE offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  1.38070e-23 12 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 1.38070e-23|>  
+ include_e.cpp XcodeBlock: @635 8 <10> 
+------------------------------------------------------------------------
+
+### <10>[33]<0>{CONSTANT}		const double _h = 6.626e-34
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _h  pindex -1 init SIV_DECLARE pcw PCW:  type DOUBLE ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _h in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _h
+ scope_e.cpp	var_index:1254 final _h init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_h> init SIV_DECLARE array_check 0  type DOUBLE PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _h _h _h  type DOUBLE
+ scope_e.cpp	var_sindex:1648 main/global <|_h|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _h slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_h|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _h nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_h> slot 342 id 103
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _h DOUBLE classobj 0
+ scope_e.cpp	var_sindex:1783 made 342 
+ scope_e.cpp	var_sindex:1849 which_siv _h found ID 103 offset 0 DOUBLE ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _h type DOUBLE offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  6.626e-34 10 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 6.626e-34|>  
+ include_e.cpp XcodeBlock: @635 9 <11> 
+------------------------------------------------------------------------
+
+### <11>[35]<0>{CONSTANT}		const double _ev =1.602e-29
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _ev  pindex -1 init SIV_DECLARE pcw PCW:  type DOUBLE ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _ev in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _ev
+ scope_e.cpp	var_index:1254 final _ev init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_ev> init SIV_DECLARE array_check 0  type DOUBLE PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _ev _ev _ev  type DOUBLE
+ scope_e.cpp	var_sindex:1648 main/global <|_ev|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _ev slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_ev|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _ev nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_ev> slot 647 id 108
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _ev DOUBLE classobj 0
+ scope_e.cpp	var_sindex:1783 made 647 
+ scope_e.cpp	var_sindex:1849 which_siv _ev found ID 108 offset 0 DOUBLE ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _ev type DOUBLE offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220 1.602e-29 9 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <|1.602e-29|>  
+ include_e.cpp XcodeBlock: @635 10 <12> 
+------------------------------------------------------------------------
+
+### <12>[38]<0>{CONSTANT}		const double _EarthRadius = 6371000.0 //  6371 km
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _EarthRadius  pindex -1 init SIV_DECLARE pcw PCW:  type DOUBLE ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _EarthRadius in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _EarthRadius
+ scope_e.cpp	var_index:1254 final _EarthRadius init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_EarthRadius> init SIV_DECLARE array_check 0  type DOUBLE PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _EarthRadius _EarthRadius _EarthRadius  type DOUBLE
+ scope_e.cpp	var_sindex:1648 main/global <|_EarthRadius|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _EarthRadius slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_EarthRadius|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _EarthRadius nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_EarthRadius> slot 1991 id 113
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _EarthRadius DOUBLE classobj 0
+ scope_e.cpp	var_sindex:1783 made 1991 
+ scope_e.cpp	var_sindex:1849 which_siv _EarthRadius found ID 113 offset 0 DOUBLE ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _EarthRadius type DOUBLE offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  6371000.0 //  6371 km 22 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 6371000.0 //  6371 km|>  
+ include_e.cpp XcodeBlock: @635 11 <13> 
+------------------------------------------------------------------------
+
+### <13>[40]<0>{CONSTANT}		const int _EarthDay = (24 * 60 *60) 
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _EarthDay  pindex -1 init SIV_DECLARE pcw PCW:  type INT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _EarthDay in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _EarthDay
+ scope_e.cpp	var_index:1254 final _EarthDay init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_EarthDay> init SIV_DECLARE array_check 0  type INT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _EarthDay _EarthDay _EarthDay  type INT
+ scope_e.cpp	var_sindex:1648 main/global <|_EarthDay|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _EarthDay slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_EarthDay|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _EarthDay nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_EarthDay> slot 229 id 119
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _EarthDay INT classobj 0
+ scope_e.cpp	var_sindex:1783 made 229 
+ scope_e.cpp	var_sindex:1849 which_siv _EarthDay found ID 119 offset 0 INT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _EarthDay type INT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  (24 * 60 *60)  15 lbcnt 1 rbcnt 1  filb 1 lilb 1 firb 13 lirb 13
+ args_e.cpp	strip_outer_bracks:2269 mlen 13 nc 13 <|(24 * 60 *60) |> 
+ args_e.cpp	strip_outer_bracks:2295 sl 11 <|24 * 60 *60|>  
+ args_e.cpp	strip_outer_bracks:2220 24 * 60 *60 11 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <|24 * 60 *60|>  
+ opera_debug_e.cpp Debug: @34 opera_c in h type INT  hold_L3  val 60
+ opera_debug_e.cpp Debug: @37 opera_c in r type INT  rhs 
+ opera_debug_e.cpp Debug: @38  r_array NO ELE NO h_array NO
+ opera_debug_e.cpp Debug: @39  r_ND 0 h_ND 0
+ opera_debug_e.cpp Debug: @76 resp val 24
+ opera_debug_e.cpp Debug: @82 MUL r rhs  INT h hold_L3  INT 
+ opera_debug_e.cpp Debug: @34 opera_c in h type INT  hold_L3  val 60
+ opera_debug_e.cpp Debug: @37 opera_c in r type INT  rhs 
+ opera_debug_e.cpp Debug: @38  r_array NO ELE NO h_array NO
+ opera_debug_e.cpp Debug: @39  r_ND 0 h_ND 0
+ opera_debug_e.cpp Debug: @76 resp val 1440
+ opera_debug_e.cpp Debug: @82 MUL r rhs  INT h hold_L3  INT 
+ include_e.cpp XcodeBlock: @635 12 <14> 
+------------------------------------------------------------------------
+
+### <14>[44]<0>{CONSTANT}		const double _EarthSun = 1.496e11  // meters AU 146 - 152  million km
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _EarthSun  pindex -1 init SIV_DECLARE pcw PCW:  type DOUBLE ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _EarthSun in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _EarthSun
+ scope_e.cpp	var_index:1254 final _EarthSun init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_EarthSun> init SIV_DECLARE array_check 0  type DOUBLE PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _EarthSun _EarthSun _EarthSun  type DOUBLE
+ scope_e.cpp	var_sindex:1648 main/global <|_EarthSun|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _EarthSun slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_EarthSun|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _EarthSun nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_EarthSun> slot 1416 id 128
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _EarthSun DOUBLE classobj 0
+ scope_e.cpp	var_sindex:1783 made 1416 
+ scope_e.cpp	var_sindex:1849 which_siv _EarthSun found ID 128 offset 0 DOUBLE ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _EarthSun type DOUBLE offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  1.496e11  // meters AU 146 - 152  million km 45 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 1.496e11  // meters AU 146 - 152  million km|>  
+ include_e.cpp XcodeBlock: @635 13 <15> 
+------------------------------------------------------------------------
+
+### <15>[46]<0>{CONSTANT}		const double _EarthMoon = 3.84e8  // meters
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _EarthMoon  pindex -1 init SIV_DECLARE pcw PCW:  type DOUBLE ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _EarthMoon in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _EarthMoon
+ scope_e.cpp	var_index:1254 final _EarthMoon init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_EarthMoon> init SIV_DECLARE array_check 0  type DOUBLE PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _EarthMoon _EarthMoon _EarthMoon  type DOUBLE
+ scope_e.cpp	var_sindex:1648 main/global <|_EarthMoon|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _EarthMoon slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_EarthMoon|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _EarthMoon nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_EarthMoon> slot 89 id 134
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _EarthMoon DOUBLE classobj 0
+ scope_e.cpp	var_sindex:1783 made 89 
+ scope_e.cpp	var_sindex:1849 which_siv _EarthMoon found ID 134 offset 0 DOUBLE ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _EarthMoon type DOUBLE offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  3.84e8  // meters 18 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 3.84e8  // meters|>  
+ include_e.cpp XcodeBlock: @635 14 <16> 
+------------------------------------------------------------------------
+
+### <16>[48]<0>{CONSTANT}		const double _SunMass = 2.0e30
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _SunMass  pindex -1 init SIV_DECLARE pcw PCW:  type DOUBLE ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _SunMass in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _SunMass
+ scope_e.cpp	var_index:1254 final _SunMass init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_SunMass> init SIV_DECLARE array_check 0  type DOUBLE PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _SunMass _SunMass _SunMass  type DOUBLE
+ scope_e.cpp	var_sindex:1648 main/global <|_SunMass|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _SunMass slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_SunMass|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _SunMass nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_SunMass> slot 1002 id 140
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _SunMass DOUBLE classobj 0
+ scope_e.cpp	var_sindex:1783 made 1002 
+ scope_e.cpp	var_sindex:1849 which_siv _SunMass found ID 140 offset 0 DOUBLE ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _SunMass type DOUBLE offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  2.0e30 7 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 2.0e30|>  
+ include_e.cpp XcodeBlock: @635 15 <17> 
+------------------------------------------------------------------------
+
+### <17>[50]<0>{CONSTANT}		const double _EarthMass = 5.980e24
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _EarthMass  pindex -1 init SIV_DECLARE pcw PCW:  type DOUBLE ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _EarthMass in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _EarthMass
+ scope_e.cpp	var_index:1254 final _EarthMass init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_EarthMass> init SIV_DECLARE array_check 0  type DOUBLE PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _EarthMass _EarthMass _EarthMass  type DOUBLE
+ scope_e.cpp	var_sindex:1648 main/global <|_EarthMass|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _EarthMass slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_EarthMass|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _EarthMass nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_EarthMass> slot 2444 id 145
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _EarthMass DOUBLE classobj 0
+ scope_e.cpp	var_sindex:1783 made 2444 
+ scope_e.cpp	var_sindex:1849 which_siv _EarthMass found ID 145 offset 0 DOUBLE ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _EarthMass type DOUBLE offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  5.980e24 9 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 5.980e24|>  
+ include_e.cpp XcodeBlock: @635 16 <18> 
+------------------------------------------------------------------------
+
+### <18>[52]<0>{CONSTANT}		const double _Avogadro = 6.022140e23
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _Avogadro  pindex -1 init SIV_DECLARE pcw PCW:  type DOUBLE ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _Avogadro in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _Avogadro
+ scope_e.cpp	var_index:1254 final _Avogadro init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_Avogadro> init SIV_DECLARE array_check 0  type DOUBLE PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _Avogadro _Avogadro _Avogadro  type DOUBLE
+ scope_e.cpp	var_sindex:1648 main/global <|_Avogadro|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _Avogadro slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_Avogadro|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _Avogadro nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_Avogadro> slot 1021 id 150
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _Avogadro DOUBLE classobj 0
+ scope_e.cpp	var_sindex:1783 made 1021 
+ scope_e.cpp	var_sindex:1849 which_siv _Avogadro found ID 150 offset 0 DOUBLE ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _Avogadro type DOUBLE offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  6.022140e23 12 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 6.022140e23|>  
+ include_e.cpp XcodeBlock: @635 17 <19> 
+------------------------------------------------------------------------
+
+### <19>[67]<0>{CONSTANT}		const float _inch2cm = 2.54
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _inch2cm  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _inch2cm in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _inch2cm
+ scope_e.cpp	var_index:1254 final _inch2cm init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_inch2cm> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _inch2cm _inch2cm _inch2cm  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_inch2cm|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _inch2cm slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_inch2cm|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _inch2cm nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_inch2cm> slot 132 id 155
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _inch2cm FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 132 
+ scope_e.cpp	var_sindex:1849 which_siv _inch2cm found ID 155 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _inch2cm type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  2.54 5 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 2.54|>  
+ include_e.cpp XcodeBlock: @635 18 <20> 
+------------------------------------------------------------------------
+
+### <20>[68]<0>{CONSTANT}		const float _ft2m = 12*2.54/100.0
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _ft2m  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _ft2m in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _ft2m
+ scope_e.cpp	var_index:1254 final _ft2m init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_ft2m> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _ft2m _ft2m _ft2m  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_ft2m|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _ft2m slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_ft2m|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _ft2m nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_ft2m> slot 2011 id 160
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _ft2m FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 2011 
+ scope_e.cpp	var_sindex:1849 which_siv _ft2m found ID 160 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _ft2m type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  12*2.54/100.0 14 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 12*2.54/100.0|>  
+ opera_debug_e.cpp Debug: @34 opera_c in h type DOUBLE  hold_L3  val 2.540000
+ opera_debug_e.cpp Debug: @37 opera_c in r type INT  rhs 
+ opera_debug_e.cpp Debug: @38  r_array NO ELE NO h_array NO
+ opera_debug_e.cpp Debug: @39  r_ND 0 h_ND 0
+ opera_debug_e.cpp Debug: @76 resp val 12
+ opera_debug_e.cpp Debug: @82 MUL r rhs  INT h hold_L3  DOUBLE 
+ opera_debug_e.cpp Debug: @34 opera_c in h type DOUBLE  hold_L3  val 100.000000
+ opera_debug_e.cpp Debug: @37 opera_c in r type DOUBLE  rhs 
+ opera_debug_e.cpp Debug: @38  r_array NO ELE NO h_array NO
+ opera_debug_e.cpp Debug: @39  r_ND 0 h_ND 0
+ opera_debug_e.cpp Debug: @76 resp val 30.480000
+ opera_debug_e.cpp Debug: @82 DIV r rhs  DOUBLE h hold_L3  DOUBLE 
+ include_e.cpp XcodeBlock: @635 19 <21> 
+------------------------------------------------------------------------
+
+### <21>[69]<0>{CONSTANT}		const float _cm2inch = 1.0/_inch2cm
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _cm2inch  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _cm2inch in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _cm2inch
+ scope_e.cpp	var_index:1254 final _cm2inch init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_cm2inch> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _cm2inch _cm2inch _cm2inch  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_cm2inch|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _cm2inch slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_cm2inch|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _cm2inch nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_cm2inch> slot 1743 id 169
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _cm2inch FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 1743 
+ scope_e.cpp	var_sindex:1849 which_siv _cm2inch found ID 169 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _cm2inch type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  1.0/_inch2cm 13 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 1.0/_inch2cm|>  
+ scope_e.cpp	FindVar:454 --->[0] _inch2cm init SIV_CHECK_ARG  scope _ cmscope [] type UNSET result->type DOUBLE vop 2
+ scope_e.cpp	var_ptr:910 _inch2cm 
+ scope_e.cpp	var_index:1065 ---> rn 1 name _inch2cm  pindex -1 init SIV_CHECK_ARG pcw PCW:  type UNSET ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _inch2cm in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _inch2cm
+ scope_e.cpp	var_index:1254 final _inch2cm init 4 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_inch2cm> init SIV_CHECK_ARG array_check 0  type UNSET PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _inch2cm _inch2cm _inch2cm  type UNSET
+ scope_e.cpp	var_sindex:1648 main/global <|_inch2cm|> 4 SIV_CHECK_ARG
+ scope_e.cpp	var_sindex:1682 main? <|_inch2cm|> @ slot 132 array? NO AOP_SET NO
+ scope_e.cpp	var_sindex:1849 which_siv _inch2cm found ID 155 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _inch2cm type FLOAT offset 0 array 0 sz 0
+ scope_e.cpp	var_ptr:931 Found _inch2cm
+ scope_e.cpp	FindVar:496 _inch2cm _inch2cm type  FLOAT  array? NO array_ele? NO
+ scope_e.cpp	CheckFindArraySiv:145 ---> -337886480  _inch2cm offset 0 subsc 0 type FLOAT size 0
+ scope_e.cpp	FindVar:513 _inch2cm  FLOAT  array? NO array_ele NO
+ scope_e.cpp	FindVar:537 _inch2cm exist and is set FLOAT
+ scope_e.cpp	FindVar:619 PUSH_SIV _inch2cm FLOAT scope point to result vresult
+ scope_e.cpp	FindVar:640 XIC PUSH_SIV _inch2cm
+ scope_e.cpp	FindVar:652  vresult pointing  at first token  --> _inch2cm
+ scope_e.cpp	FindVar:672 vresult ele offset  --> 0
+ scope_e.cpp	FindVar:681 name _inch2cm FLOAT vresult UNSET array? NO
+	@FindVar SIV _inch2cm ID 155 slot 132 type FLOAT CW 538968064 totalsize (96+0)
+	_inch2cm FLAGS: <GLOBAL | CONST | >
+	@FindVar SIV vresult ID 170 slot -1 type DOUBLE CW 1073807377 totalsize (96+1)
+	vresult POINTS to --> _inch2cm
+ siv_e.cpp findPsiv: @2200 vresult shifting to _inch2cm svptr? NO
+ opera_debug_e.cpp Debug: @34 opera_c in h type FLOAT  hold_L3  val 2.540000
+ opera_debug_e.cpp Debug: @37 opera_c in r type DOUBLE  rhs 
+ opera_debug_e.cpp Debug: @38  r_array NO ELE NO h_array NO
+ opera_debug_e.cpp Debug: @39  r_ND 0 h_ND 0
+ opera_debug_e.cpp Debug: @76 resp val 1.000000
+ opera_debug_e.cpp Debug: @82 DIV r rhs  DOUBLE h hold_L3  FLOAT 
+ include_e.cpp XcodeBlock: @635 20 <22> 
+------------------------------------------------------------------------
+
+### <22>[70]<0>{CONSTANT}		const float _m2ft = 3.280839
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _m2ft  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _m2ft in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _m2ft
+ scope_e.cpp	var_index:1254 final _m2ft init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_m2ft> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _m2ft _m2ft _m2ft  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_m2ft|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _m2ft slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_m2ft|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _m2ft nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_m2ft> slot 1557 id 177
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _m2ft FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 1557 
+ scope_e.cpp	var_sindex:1849 which_siv _m2ft found ID 177 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _m2ft type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  3.280839 9 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 3.280839|>  
+ include_e.cpp XcodeBlock: @635 21 <23> 
+------------------------------------------------------------------------
+
+### <23>[71]<0>{CONSTANT}		const float _mile2km = 1.6093
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _mile2km  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _mile2km in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _mile2km
+ scope_e.cpp	var_index:1254 final _mile2km init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_mile2km> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _mile2km _mile2km _mile2km  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_mile2km|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _mile2km slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_mile2km|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _mile2km nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_mile2km> slot 501 id 182
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _mile2km FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 501 
+ scope_e.cpp	var_sindex:1849 which_siv _mile2km found ID 182 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _mile2km type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  1.6093 7 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 1.6093|>  
+ include_e.cpp XcodeBlock: @635 22 <24> 
+------------------------------------------------------------------------
+
+### <24>[72]<0>{CONSTANT}		const float _km2mile = 1/_mile2km
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _km2mile  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _km2mile in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _km2mile
+ scope_e.cpp	var_index:1254 final _km2mile init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_km2mile> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _km2mile _km2mile _km2mile  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_km2mile|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _km2mile slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_km2mile|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _km2mile nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_km2mile> slot 652 id 187
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _km2mile FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 652 
+ scope_e.cpp	var_sindex:1849 which_siv _km2mile found ID 187 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _km2mile type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  1/_mile2km 11 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 1/_mile2km|>  
+ scope_e.cpp	FindVar:454 --->[0] _mile2km init SIV_CHECK_ARG  scope _ cmscope [] type UNSET result->type INT vop 2
+ scope_e.cpp	var_ptr:910 _mile2km 
+ scope_e.cpp	var_index:1065 ---> rn 1 name _mile2km  pindex -1 init SIV_CHECK_ARG pcw PCW:  type UNSET ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _mile2km in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _mile2km
+ scope_e.cpp	var_index:1254 final _mile2km init 4 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_mile2km> init SIV_CHECK_ARG array_check 0  type UNSET PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _mile2km _mile2km _mile2km  type UNSET
+ scope_e.cpp	var_sindex:1648 main/global <|_mile2km|> 4 SIV_CHECK_ARG
+ scope_e.cpp	var_sindex:1682 main? <|_mile2km|> @ slot 501 array? NO AOP_SET NO
+ scope_e.cpp	var_sindex:1849 which_siv _mile2km found ID 182 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _mile2km type FLOAT offset 0 array 0 sz 0
+ scope_e.cpp	var_ptr:931 Found _mile2km
+ scope_e.cpp	FindVar:496 _mile2km _mile2km type  FLOAT  array? NO array_ele? NO
+ scope_e.cpp	CheckFindArraySiv:145 ---> -337886480  _mile2km offset 0 subsc 0 type FLOAT size 0
+ scope_e.cpp	FindVar:513 _mile2km  FLOAT  array? NO array_ele NO
+ scope_e.cpp	FindVar:537 _mile2km exist and is set FLOAT
+ scope_e.cpp	FindVar:619 PUSH_SIV _mile2km FLOAT scope point to result vresult
+ scope_e.cpp	FindVar:640 XIC PUSH_SIV _mile2km
+ scope_e.cpp	FindVar:652  vresult pointing  at first token  --> _mile2km
+ scope_e.cpp	FindVar:672 vresult ele offset  --> 0
+ scope_e.cpp	FindVar:681 name _mile2km FLOAT vresult UNSET array? NO
+	@FindVar SIV _mile2km ID 182 slot 501 type FLOAT CW 538968064 totalsize (96+0)
+	_mile2km FLAGS: <GLOBAL | CONST | >
+	@FindVar SIV vresult ID 188 slot -1 type INT CW 1073807377 totalsize (96+1)
+	vresult POINTS to --> _mile2km
+ siv_e.cpp findPsiv: @2200 vresult shifting to _mile2km svptr? NO
+ opera_debug_e.cpp Debug: @34 opera_c in h type FLOAT  hold_L3  val 1.609300
+ opera_debug_e.cpp Debug: @37 opera_c in r type INT  rhs 
+ opera_debug_e.cpp Debug: @38  r_array NO ELE NO h_array NO
+ opera_debug_e.cpp Debug: @39  r_ND 0 h_ND 0
+ opera_debug_e.cpp Debug: @76 resp val 1
+ opera_debug_e.cpp Debug: @82 DIV r rhs  INT h hold_L3  FLOAT 
+ include_e.cpp XcodeBlock: @635 23 <25> 
+------------------------------------------------------------------------
+
+### <25>[73]<0>{CONSTANT}		const float _km2nm = 1.0/1.852
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _km2nm  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _km2nm in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _km2nm
+ scope_e.cpp	var_index:1254 final _km2nm init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_km2nm> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _km2nm _km2nm _km2nm  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_km2nm|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _km2nm slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_km2nm|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _km2nm nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_km2nm> slot 614 id 195
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _km2nm FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 614 
+ scope_e.cpp	var_sindex:1849 which_siv _km2nm found ID 195 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _km2nm type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  1.0/1.852 10 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 1.0/1.852|>  
+ opera_debug_e.cpp Debug: @34 opera_c in h type DOUBLE  hold_L3  val 1.852000
+ opera_debug_e.cpp Debug: @37 opera_c in r type DOUBLE  rhs 
+ opera_debug_e.cpp Debug: @38  r_array NO ELE NO h_array NO
+ opera_debug_e.cpp Debug: @39  r_ND 0 h_ND 0
+ opera_debug_e.cpp Debug: @76 resp val 1.000000
+ opera_debug_e.cpp Debug: @82 DIV r rhs  DOUBLE h hold_L3  DOUBLE 
+ include_e.cpp XcodeBlock: @635 24 <26> 
+------------------------------------------------------------------------
+
+### <26>[74]<0>{CONSTANT}		const float _usgal2liter = 3.78541178
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _usgal2liter  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _usgal2liter in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _usgal2liter
+ scope_e.cpp	var_index:1254 final _usgal2liter init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_usgal2liter> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _usgal2liter _usgal2liter _usgal2liter  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_usgal2liter|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _usgal2liter slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_usgal2liter|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _usgal2liter nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_usgal2liter> slot 412 id 203
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _usgal2liter FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 412 
+ scope_e.cpp	var_sindex:1849 which_siv _usgal2liter found ID 203 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _usgal2liter type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  3.78541178 11 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 3.78541178|>  
+ include_e.cpp XcodeBlock: @635 25 <27> 
+------------------------------------------------------------------------
+
+### <27>[75]<0>{CONSTANT}		const float _gal2liter = 4.546
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _gal2liter  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _gal2liter in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _gal2liter
+ scope_e.cpp	var_index:1254 final _gal2liter init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_gal2liter> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _gal2liter _gal2liter _gal2liter  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_gal2liter|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _gal2liter slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_gal2liter|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _gal2liter nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_gal2liter> slot 1802 id 208
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _gal2liter FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 1802 
+ scope_e.cpp	var_sindex:1849 which_siv _gal2liter found ID 208 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _gal2liter type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  4.546 6 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 4.546|>  
+ include_e.cpp XcodeBlock: @635 26 <28> 
+------------------------------------------------------------------------
+
+### <28>[76]<0>{CONSTANT}		const float _oz2gram = 28.35
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _oz2gram  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _oz2gram in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _oz2gram
+ scope_e.cpp	var_index:1254 final _oz2gram init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_oz2gram> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _oz2gram _oz2gram _oz2gram  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_oz2gram|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _oz2gram slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_oz2gram|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _oz2gram nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_oz2gram> slot 1481 id 213
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _oz2gram FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 1481 
+ scope_e.cpp	var_sindex:1849 which_siv _oz2gram found ID 213 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _oz2gram type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  28.35 6 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 28.35|>  
+ include_e.cpp XcodeBlock: @635 27 <29> 
+------------------------------------------------------------------------
+
+### <29>[77]<0>{CONSTANT}		const float _lb2kg = 0.4536
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _lb2kg  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _lb2kg in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _lb2kg
+ scope_e.cpp	var_index:1254 final _lb2kg init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_lb2kg> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _lb2kg _lb2kg _lb2kg  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_lb2kg|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _lb2kg slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_lb2kg|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _lb2kg nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_lb2kg> slot 309 id 218
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _lb2kg FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 309 
+ scope_e.cpp	var_sindex:1849 which_siv _lb2kg found ID 218 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _lb2kg type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  0.4536 7 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 0.4536|>  
+ include_e.cpp XcodeBlock: @635 28 <30> 
+------------------------------------------------------------------------
+
+### <30>[78]<0>{CONSTANT}		const float _kg2lb = 2.204586
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _kg2lb  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _kg2lb in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _kg2lb
+ scope_e.cpp	var_index:1254 final _kg2lb init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_kg2lb> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _kg2lb _kg2lb _kg2lb  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_kg2lb|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _kg2lb slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_kg2lb|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _kg2lb nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_kg2lb> slot 107 id 223
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _kg2lb FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 107 
+ scope_e.cpp	var_sindex:1849 which_siv _kg2lb found ID 223 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _kg2lb type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  2.204586 9 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 2.204586|>  
+ include_e.cpp XcodeBlock: @635 29 <31> 
+------------------------------------------------------------------------
+
+### <31>[79]<0>{CONSTANT}		const float _cuft2cum = 0.0283
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _cuft2cum  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _cuft2cum in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _cuft2cum
+ scope_e.cpp	var_index:1254 final _cuft2cum init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_cuft2cum> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _cuft2cum _cuft2cum _cuft2cum  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_cuft2cum|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _cuft2cum slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_cuft2cum|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _cuft2cum nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_cuft2cum> slot 2307 id 228
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _cuft2cum FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 2307 
+ scope_e.cpp	var_sindex:1849 which_siv _cuft2cum found ID 228 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _cuft2cum type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  0.0283 7 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 0.0283|>  
+ include_e.cpp XcodeBlock: @635 30 <32> 
+------------------------------------------------------------------------
+
+### <32>[81]<0>{CONSTANT}		const float _troyoz2gram = 31.103
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _troyoz2gram  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _troyoz2gram in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _troyoz2gram
+ scope_e.cpp	var_index:1254 final _troyoz2gram init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_troyoz2gram> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _troyoz2gram _troyoz2gram _troyoz2gram  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_troyoz2gram|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _troyoz2gram slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_troyoz2gram|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _troyoz2gram nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_troyoz2gram> slot 1215 id 233
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _troyoz2gram FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 1215 
+ scope_e.cpp	var_sindex:1849 which_siv _troyoz2gram found ID 233 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _troyoz2gram type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  31.103 7 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 31.103|>  
+ include_e.cpp XcodeBlock: @635 31 <33> 
+------------------------------------------------------------------------
+
+### <33>[85]<0>{CONSTANT}		const float _sqmile2acre = 259.0/0.4047
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _sqmile2acre  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _sqmile2acre in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _sqmile2acre
+ scope_e.cpp	var_index:1254 final _sqmile2acre init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_sqmile2acre> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _sqmile2acre _sqmile2acre _sqmile2acre  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_sqmile2acre|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _sqmile2acre slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_sqmile2acre|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _sqmile2acre nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_sqmile2acre> slot 1009 id 238
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _sqmile2acre FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 1009 
+ scope_e.cpp	var_sindex:1849 which_siv _sqmile2acre found ID 238 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _sqmile2acre type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  259.0/0.4047 13 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 259.0/0.4047|>  
+ opera_debug_e.cpp Debug: @34 opera_c in h type DOUBLE  hold_L3  val 0.404700
+ opera_debug_e.cpp Debug: @37 opera_c in r type DOUBLE  rhs 
+ opera_debug_e.cpp Debug: @38  r_array NO ELE NO h_array NO
+ opera_debug_e.cpp Debug: @39  r_ND 0 h_ND 0
+ opera_debug_e.cpp Debug: @76 resp val 259.000000
+ opera_debug_e.cpp Debug: @82 DIV r rhs  DOUBLE h hold_L3  DOUBLE 
+ include_e.cpp XcodeBlock: @635 32 <34> 
+------------------------------------------------------------------------
+
+### <34>[86]<0>{CONSTANT}		const float _knots2mph = 6080.0/5280.0
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _knots2mph  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _knots2mph in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _knots2mph
+ scope_e.cpp	var_index:1254 final _knots2mph init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_knots2mph> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _knots2mph _knots2mph _knots2mph  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_knots2mph|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _knots2mph slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_knots2mph|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _knots2mph nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_knots2mph> slot 2575 id 246
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _knots2mph FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 2575 
+ scope_e.cpp	var_sindex:1849 which_siv _knots2mph found ID 246 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _knots2mph type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  6080.0/5280.0 14 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 6080.0/5280.0|>  
+ opera_debug_e.cpp Debug: @34 opera_c in h type DOUBLE  hold_L3  val 5280.000000
+ opera_debug_e.cpp Debug: @37 opera_c in r type DOUBLE  rhs 
+ opera_debug_e.cpp Debug: @38  r_array NO ELE NO h_array NO
+ opera_debug_e.cpp Debug: @39  r_ND 0 h_ND 0
+ opera_debug_e.cpp Debug: @76 resp val 6080.000000
+ opera_debug_e.cpp Debug: @82 DIV r rhs  DOUBLE h hold_L3  DOUBLE 
+ include_e.cpp XcodeBlock: @635 33 <35> 
+------------------------------------------------------------------------
+
+### <35>[87]<0>{CONSTANT}		const float _nm2mile = 6076.0/5280.0
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _nm2mile  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _nm2mile in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _nm2mile
+ scope_e.cpp	var_index:1254 final _nm2mile init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_nm2mile> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _nm2mile _nm2mile _nm2mile  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_nm2mile|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _nm2mile slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_nm2mile|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _nm2mile nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_nm2mile> slot 649 id 254
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _nm2mile FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 649 
+ scope_e.cpp	var_sindex:1849 which_siv _nm2mile found ID 254 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _nm2mile type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  6076.0/5280.0 14 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 6076.0/5280.0|>  
+ opera_debug_e.cpp Debug: @34 opera_c in h type DOUBLE  hold_L3  val 5280.000000
+ opera_debug_e.cpp Debug: @37 opera_c in r type DOUBLE  rhs 
+ opera_debug_e.cpp Debug: @38  r_array NO ELE NO h_array NO
+ opera_debug_e.cpp Debug: @39  r_ND 0 h_ND 0
+ opera_debug_e.cpp Debug: @76 resp val 6076.000000
+ opera_debug_e.cpp Debug: @82 DIV r rhs  DOUBLE h hold_L3  DOUBLE 
+ include_e.cpp XcodeBlock: @635 34 <36> 
+------------------------------------------------------------------------
+
+### <36>[88]<0>{CONSTANT}		const float _nm2ft = 6076.0
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _nm2ft  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _nm2ft in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _nm2ft
+ scope_e.cpp	var_index:1254 final _nm2ft init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_nm2ft> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _nm2ft _nm2ft _nm2ft  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_nm2ft|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _nm2ft slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_nm2ft|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _nm2ft nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_nm2ft> slot 2701 id 262
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _nm2ft FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 2701 
+ scope_e.cpp	var_sindex:1849 which_siv _nm2ft found ID 262 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _nm2ft type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  6076.0 7 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 6076.0|>  
+ include_e.cpp XcodeBlock: @635 35 <37> 
+------------------------------------------------------------------------
+
+### <37>[89]<0>{CONSTANT}		const float _nm2km = 1.852
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _nm2km  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _nm2km in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _nm2km
+ scope_e.cpp	var_index:1254 final _nm2km init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_nm2km> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _nm2km _nm2km _nm2km  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_nm2km|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _nm2km slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_nm2km|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _nm2km nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_nm2km> slot 560 id 267
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _nm2km FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 560 
+ scope_e.cpp	var_sindex:1849 which_siv _nm2km found ID 267 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _nm2km type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  1.852 6 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 1.852|>  
+ include_e.cpp XcodeBlock: @635 36 <38> 
+------------------------------------------------------------------------
+
+### <38>[90]<0>{CONSTANT}		const float _mile2nm = 5280.0/6076
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _mile2nm  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _mile2nm in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _mile2nm
+ scope_e.cpp	var_index:1254 final _mile2nm init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_mile2nm> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _mile2nm _mile2nm _mile2nm  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_mile2nm|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _mile2nm slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_mile2nm|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _mile2nm nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_mile2nm> slot 824 id 272
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _mile2nm FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 824 
+ scope_e.cpp	var_sindex:1849 which_siv _mile2nm found ID 272 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _mile2nm type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  5280.0/6076 12 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 5280.0/6076|>  
+ opera_debug_e.cpp Debug: @34 opera_c in h type DOUBLE  hold_L3  val 6076.000000
+ opera_debug_e.cpp Debug: @37 opera_c in r type DOUBLE  rhs 
+ opera_debug_e.cpp Debug: @38  r_array NO ELE NO h_array NO
+ opera_debug_e.cpp Debug: @39  r_ND 0 h_ND 0
+ opera_debug_e.cpp Debug: @76 resp val 5280.000000
+ opera_debug_e.cpp Debug: @82 DIV r rhs  DOUBLE h hold_L3  DOUBLE 
+ include_e.cpp XcodeBlock: @635 37 <39> 
+------------------------------------------------------------------------
+
+### <39>[91]<0>{CONSTANT}		const float _mph2knots = 5280.0/6076.0
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _mph2knots  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _mph2knots in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _mph2knots
+ scope_e.cpp	var_index:1254 final _mph2knots init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_mph2knots> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _mph2knots _mph2knots _mph2knots  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_mph2knots|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _mph2knots slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_mph2knots|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _mph2knots nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_mph2knots> slot 1454 id 280
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _mph2knots FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 1454 
+ scope_e.cpp	var_sindex:1849 which_siv _mph2knots found ID 280 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _mph2knots type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  5280.0/6076.0 14 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 5280.0/6076.0|>  
+ opera_debug_e.cpp Debug: @34 opera_c in h type DOUBLE  hold_L3  val 6076.000000
+ opera_debug_e.cpp Debug: @37 opera_c in r type DOUBLE  rhs 
+ opera_debug_e.cpp Debug: @38  r_array NO ELE NO h_array NO
+ opera_debug_e.cpp Debug: @39  r_ND 0 h_ND 0
+ opera_debug_e.cpp Debug: @76 resp val 5280.000000
+ opera_debug_e.cpp Debug: @82 DIV r rhs  DOUBLE h hold_L3  DOUBLE 
+ include_e.cpp XcodeBlock: @635 38 <40> 
+------------------------------------------------------------------------
+
+### <40>[92]<0>{CONSTANT}		const float _atm2Nm2 = 1.01e5
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _atm2Nm2  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _atm2Nm2 in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _atm2Nm2
+ scope_e.cpp	var_index:1254 final _atm2Nm2 init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_atm2Nm2> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _atm2Nm2 _atm2Nm2 _atm2Nm2  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_atm2Nm2|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _atm2Nm2 slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_atm2Nm2|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _atm2Nm2 nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_atm2Nm2> slot 378 id 288
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _atm2Nm2 FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 378 
+ scope_e.cpp	var_sindex:1849 which_siv _atm2Nm2 found ID 288 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _atm2Nm2 type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  1.01e5 7 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 1.01e5|>  
+ include_e.cpp XcodeBlock: @635 39 <41> 
+------------------------------------------------------------------------
+
+### <41>[93]<0>{CONSTANT}		const float _atm2lbft2 = 2116.0
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _atm2lbft2  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _atm2lbft2 in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _atm2lbft2
+ scope_e.cpp	var_index:1254 final _atm2lbft2 init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_atm2lbft2> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _atm2lbft2 _atm2lbft2 _atm2lbft2  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_atm2lbft2|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _atm2lbft2 slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_atm2lbft2|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _atm2lbft2 nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_atm2lbft2> slot 1111 id 293
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _atm2lbft2 FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 1111 
+ scope_e.cpp	var_sindex:1849 which_siv _atm2lbft2 found ID 293 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _atm2lbft2 type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  2116.0 7 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 2116.0|>  
+ include_e.cpp XcodeBlock: @635 40 <42> 
+------------------------------------------------------------------------
+
+### <42>[94]<0>{CONSTANT}		const float _slug2lb = 32.2
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _slug2lb  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _slug2lb in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _slug2lb
+ scope_e.cpp	var_index:1254 final _slug2lb init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_slug2lb> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _slug2lb _slug2lb _slug2lb  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_slug2lb|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _slug2lb slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_slug2lb|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _slug2lb nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_slug2lb> slot 2122 id 298
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _slug2lb FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 2122 
+ scope_e.cpp	var_sindex:1849 which_siv _slug2lb found ID 298 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _slug2lb type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  32.2 5 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 32.2|>  
+ include_e.cpp XcodeBlock: @635 41 <43> 
+------------------------------------------------------------------------
+
+### <43>[95]<0>{CONSTANT}		const float _lightyr = 9.46e15
+
+------------------------------------------------------------------------
+ scope_e.cpp	var_index:1065 ---> rn 1 name _lightyr  pindex -1 init SIV_DECLARE pcw PCW:  type FLOAT ar_sz 0
+ scope_e.cpp	var_index:1088 scope _  _lightyr in CMF_BODY NO? 
+ scope_e.cpp	var_index:1129 cmf name? _lightyr
+ scope_e.cpp	var_index:1254 final _lightyr init 2 
+ scope_e.cpp	var_sindex:1310 ---> scope _ pindex -1 name <_lightyr> init SIV_DECLARE array_check 0  type FLOAT PCW: 
+ scope_e.cpp	var_sindex:1355 find_create_main var  _lightyr _lightyr _lightyr  type FLOAT
+ scope_e.cpp	var_sindex:1648 main/global <|_lightyr|> 2 SIV_DECLARE
+ scope_e.cpp	var_sindex:1719 _lightyr slot -1 init SIV_DECLARE
+ scope_e.cpp	var_sindex_create:1877 making <|_lightyr|> static? NO
+ scope_e.cpp	var_sindex_create:1897 made _lightyr nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ scope_e.cpp	var_sindex_create:1922 made <_lightyr> slot 401 id 303
+ scope_e.cpp	var_sindex_create:1932 WIC CREATEV _lightyr FLOAT classobj 0
+ scope_e.cpp	var_sindex:1783 made 401 
+ scope_e.cpp	var_sindex:1849 which_siv _lightyr found ID 303 offset 0 FLOAT ND 0 size 0
+ scope_e.cpp	SetArrayOff:2172 ---> name  _lightyr type FLOAT offset 0 array 0 sz 0
+ args_e.cpp	strip_outer_bracks:2220  9.46e15 8 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <| 9.46e15|>  
+ include_e.cpp XcodeBlock: @635 42 <44> 
+------------------------------------------------------------------------
+
+### <44>[98]<0>{DEF_PROC}		proc units()
+
+------------------------------------------------------------------------
+ include_e.cpp XcodeBlock: @635 43 <70> 
+------------------------------------------------------------------------
+
+### <70>[126]<0>{DEF_PROC}		proc consts()
+
+------------------------------------------------------------------------
+ include_e.cpp XcodeBlock: @635 44 <86> 
+------------------------------------------------------------------------
+
+### <86>[152]<0>{DEF_PROC}		proc ll2dd (the_ang)
+
+------------------------------------------------------------------------
+ include_e.cpp XcodeBlock: @635 45 <119> 
+------------------------------------------------------------------------
+
+### <119>[210]<0>{FUNCTION}		_codeend();
+
+------------------------------------------------------------------------
+ args_e.cpp	init_svarg:2756 ID 0 na 20 maxna 20 
+ args_e.cpp	init_svarg:2845 svarg reuse arg list  20 1
+ args_e.cpp	parse_args:2097  ()  _  
+ args_e.cpp	get_args:1032 rcn 0
+ args_e.cpp	get_args:1064 () 
+ args_e.cpp	get_args:1094 ()  nal 2
+ args_e.cpp	get_args:1102 b4 sob () 
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <||>  
+ args_e.cpp	get_args:1110 after sob  
+CodeEnd Pst statement <2> include "consts.asl" 
+ include_e.cpp XcodeBlock: @635 46 <3> 
+ include_e.cpp XcodeBlock: @635 47 <3> 
+------------------------------------------------------------------------
+
+### <3>[3]<0>{FUNCTION}		codeend()
+
+------------------------------------------------------------------------
+ args_e.cpp	init_svarg:2756 ID 0 na 20 maxna 20 
+ args_e.cpp	init_svarg:2845 svarg reuse arg list  20 0
+ args_e.cpp	parse_args:2097  ()  _  
+ args_e.cpp	get_args:1032 rcn 0
+ args_e.cpp	get_args:1064 () 
+ args_e.cpp	get_args:1094 ()  nal 2
+ args_e.cpp	get_args:1102 b4 sob () 
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <||>  
+ args_e.cpp	get_args:1110 after sob  
+ args_e.cpp	NewSivArg:197 arg [0] already exists sv_arg0 <72> 
+ args_e.cpp	GetStrOpt:3024 i 0 svarg->sarg.argc 1
+ args_e.cpp	GetStrOpt:3035 i 0 sv_arg0 SVAR offset 0 sivp NO 
+ args_e.cpp	GetStrOpt:3056  sv_arg0 type SVAR offset 0
+ args_e.cpp	GetStrOpt:3074 svar narg 2
+ args_e.cpp	GetStrOpt:3087 SVAR sv_arg0 offset 0 date(3,'-',':') 
+ include_e.cpp XcodeBlock: @635 1 <120> 
+------------------------------------------------------------------------
+
+### <120>[1]<0>{FUNCTION}		date(3,'-',':')
+
+------------------------------------------------------------------------
+ args_e.cpp	init_svarg:2756 ID 0 na 1 maxna 20 
+ args_e.cpp	init_svarg:2766 free old svarg 0 na 1 
+ args_e.cpp	init_svarg:2780 sv_arg0 ID 72 
+ args_e.cpp	init_svarg:2798 alloc new svargs 20 
+ args_e.cpp	parse_args:2097  (3,'-',':')  _  
+ args_e.cpp	get_args:1032 rcn 0
+ args_e.cpp	get_args:1064 (3,'-',':') 
+ args_e.cpp	get_args:1094 (3,'-',':')  nal 11
+ args_e.cpp	get_args:1102 b4 sob (3,'-',':') 
+ args_e.cpp	strip_outer_bracks:2220 (3,'-',':') 11 lbcnt 1 rbcnt 1  filb 0 lilb 0 firb 10 lirb 10
+ args_e.cpp	strip_outer_bracks:2269 mlen 11 nc 11 <|(3,'-',':')|> 
+ args_e.cpp	strip_outer_bracks:2295 sl 9 <|3,'-',':'|>  
+ args_e.cpp	get_args:1110 after sob 3,'-',':' 
+ args_e.cpp	get_args:1139 this arg starts at 3,'-',':'
+ args_e.cpp	get_args:1308 this arg[0] finishes at ,'-',':'
+ args_e.cpp	get_args:1323 [0] 3 cc 1
+ svar.cpp ncpy: @909  ERROR svar not innited ?!
+ args_e.cpp	get_args:1139 this arg starts at '-',':'
+ args_e.cpp	get_args:1188 SQ got_arg now at ,':'
+ args_e.cpp	get_args:1308 this arg[1] finishes at ,':'
+ args_e.cpp	get_args:1323 [1] '-' cc 5
+ args_e.cpp	get_args:1139 this arg starts at ':'
+ args_e.cpp	get_args:1188 SQ got_arg now at 
+ args_e.cpp	get_args:1308 this arg[2] finishes at 
+ args_e.cpp	get_args:1323 [2] ':' cc 9
+ args_e.cpp	get_args:1349 argc 3 1
+ args_e.cpp	process_args:825 parset 35009632 3 
+ args_e.cpp	process_args:850 0 chk_exp 1 3  type 0
+ args_e.cpp	NewSivArg:167 arg[0] added 3 
+ args_e.cpp	NewSivArg:186 NewSivArg  sv_arg0 id <308> 
+ args_e.cpp	process_args_type:646 fc 3  3
+ args_e.cpp	process_args_type:680 checking for array name 3 arg 0 scope _
+ args_e.cpp	process_args_type:715 arg_type 0 arg 3 
+ args_e.cpp	process_args:901 arg is 3
+ args_e.cpp	process_args:911 svarg->sv[i] sv_arg0  
+ args_e.cpp	process_args:912 result points to sv_arg0
+ args_e.cpp	process_args_exprn:610 GetExp 3
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <|3|>  
+ args_e.cpp	process_args_exprn:630 result sv_arg0 ID 308 SVPTR? NO 
+ args_e.cpp	process_args:985 calling 0 3 offset 0
+ args_e.cpp	process_args:850 1 chk_exp 3 '-'  type 0
+ args_e.cpp	NewSivArg:167 arg[1] added 4 
+ args_e.cpp	NewSivArg:186 NewSivArg  sv_arg1 id <311> 
+ args_e.cpp	process_args_type:646 fc '  '-'
+ args_e.cpp	process_args_type:680 checking for array name '-' arg 1 scope _
+ args_e.cpp	process_args_type:715 arg_type 0 arg '-' 
+ args_e.cpp	process_args:901 arg is '-'
+ args_e.cpp	process_args:911 svarg->sv[i] sv_arg1  
+ args_e.cpp	process_args:912 result points to sv_arg1
+ args_e.cpp	process_args_exprn:610 GetExp '-'
+ args_e.cpp	process_args_exprn:622  just do char assign? '-' 
+ args_e.cpp	strip_outer_bracks:2220 '-' 3 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <|'-'|>  
+ args_e.cpp	process_args_exprn:630 result sv_arg1 ID 311 SVPTR? NO 
+ args_e.cpp	process_args:985 calling 1 '-' offset 0
+ args_e.cpp	process_args:850 2 chk_exp 3 ':'  type 0
+ args_e.cpp	NewSivArg:167 arg[2] added 5 
+ args_e.cpp	NewSivArg:186 NewSivArg  sv_arg2 id <316> 
+ args_e.cpp	process_args_type:646 fc '  ':'
+ args_e.cpp	process_args_type:680 checking for array name ':' arg 2 scope _
+ args_e.cpp	process_args_type:715 arg_type 0 arg ':' 
+ args_e.cpp	process_args:901 arg is ':'
+ args_e.cpp	process_args:911 svarg->sv[i] sv_arg2  
+ args_e.cpp	process_args:912 result points to sv_arg2
+ args_e.cpp	process_args_exprn:610 GetExp ':'
+ args_e.cpp	process_args_exprn:622  just do char assign? ':' 
+ args_e.cpp	strip_outer_bracks:2220 ':' 3 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <|':'|>  
+ args_e.cpp	process_args_exprn:630 result sv_arg2 ID 316 SVPTR? NO 
+ args_e.cpp	process_args:985 calling 2 ':' offset 0
+ include_e.cpp XcodeBlock: @635 2 <121> 
+------------------------------------------------------------------------
+
+### <121>[3]<0>{FUNCTION}		codeend()
+
+------------------------------------------------------------------------
+ args_e.cpp	init_svarg:2756 ID 0 na 20 maxna 20 
+ args_e.cpp	init_svarg:2845 svarg reuse arg list  20 3
+ args_e.cpp	parse_args:2097  ()  _  
+ args_e.cpp	get_args:1032 rcn 0
+ args_e.cpp	get_args:1064 () 
+ args_e.cpp	get_args:1094 ()  nal 2
+ args_e.cpp	get_args:1102 b4 sob () 
+ args_e.cpp	strip_outer_bracks:2295 sl 0 <||>  
+ args_e.cpp	get_args:1110 after sob  

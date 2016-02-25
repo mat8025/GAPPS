@@ -1,0 +1,24 @@
+
+             Use Svar --- as a key,value table
+ 
+ Use a hash lookup --- hash of key gives up index to int vector
+ which gives us an index into Svar structure of key, value pairs
+ we can resize the key vector  and just add onto the Svar. The key vector will have gaps
+ and we need to take care of hash collision -- i.e. lookup doesn't match key which we then 
+ step through key vector index to find a unused location
+
+ The key vector index will be a int vector of the parent Siv
+
+ Option to have key, value1, value2, ...   record organization
+   - value->setNumFields(rl)
+
+
+ A non-hash version would simply search the key (first field ) of the Svar record.
+
+
+ Future extension may have svar fields as 'pointers' to objects
+ the type of each field could be stored as internal record
+
+
+ (1) Vmf function lookup  ---    rval = S->lookup(key)
+     where S is an Svar organized as key,value table

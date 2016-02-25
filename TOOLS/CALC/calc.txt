@@ -1,0 +1,9 @@
+
+  Dev for calc
+
+arbitary precision  --- using pan numbers - base 256
+
+Does pan still work ??
+
+12/1/08   - Bug   strcpy GetVarAsStr ---- (debug statement ??) fixed
+

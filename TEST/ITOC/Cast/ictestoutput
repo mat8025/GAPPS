@@ -1,0 +1,200 @@
+WARNING!!!! NON_DYNAMIC ARRAY but have to EXPAND to 0
+WARNING!!!! NON_DYNAMIC ARRAY but have to EXPAND to 0
+WARNING!!!! NON_DYNAMIC ARRAY but have to EXPAND to 0
+ UCHAR   
+ 202 254 186 190 250 206 190 173 222 173 192 222
+ 
+ ca fe ba be fa ce be ad de ad c0 de
+ 
+ just assign/copy to new vector 
+D 202 254 186 190 250 206 190 173 222 173 192 222
+
+ INT   4
+ 202 254 186 190 250 206 190 173 222 173 192 222
+ 
+ ca fe ba be fa ce be ad de ad c0 de
+ 
+ FLOAT   4
+ 202.000000 254.000000 186.000000 190.000000 250.000000 206.000000 190.000000 173.000000 222.000000 173.000000 192.000000 222.000000
+ 
+ 434a0000 437e0000 433a0000 433e0000 437a0000 434e0000 433e0000 432d0000 435e0000 432d0000 43400000 435e0000
+ 
+202.000000 254.000000 
+ UCHAR   
+ 202 254 186 190 250 206 190 173 222 173 192 222
+ 
+ ca fe ba be fa ce be ad de ad c0 de
+ 
+E INT   
+ 202 254 186 190 250 206 190 173 222 173 192 222
+ 
+ ca fe ba be fa ce be ad de ad c0 de
+ 
+now retype D CHAR vec to an INT vec
+ INT   
+D[] %d -1095041334 -1380004102 -557797922
+ 
+D[] %X  bebafeca adbecefa dec0adde
+ 
+  d0 cafebabe 
+  d0 -889275714 
+  d0 ca 
+  d0 202 
+ cafebabe 
+swabbed -889275714 -87114067 -559038242
+ 
+ cafebabe facebead deadc0de
+ 
+retype CHAR 1 --> 4 4 
+ FLOAT   
+ 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000
+ 
+ ca fe ba be fa ce be ad de ad c0 de
+ 
+ 3  4  1  5 
+ 4 
+ INT   
+D[] %f -889275714 -87114067 -559038242
+ 
+D[] %X  cafebabe facebead deadc0de
+ 
+float vec -889275712.000000 -87114064.000000 -559038272.000000
+
+float G[] -889275712.000000 -87114064.000000 -559038272.000000
+
+int IV[] -889275712 -87114064 -559038272
+
+long LV[] -889275712 -87114064 -559038272
+
+ p  UNSET  p  
+ 0 
+ 1 
+ 2 
+DONE: PASS: ./cast0              :tests      4 :Fail      0 :Pass      4 :Score  100.0% 
+ a 0 INT  a  
+ a 0 INT  a  
+FAIL test <1> @ [16] CheckNum(a,4)
+
+0.000000 1.000000 2.000000 3.000000 4.000000 5.000000 6.000000 7.000000 8.000000 9.000000
+ 
+ a 1 INT  a  
+ a 3 INT  a  
+ a 4 INT  a  
+ a 6 INT  a  
+ a 9 INT  a  
+ a 13 INT  a  
+ b 0.000000 FLOAT  b  
+ b 0.000000 FLOAT  b  
+FAIL test <3> @ [52] CheckNum(b,4.0)
+
+IV 0 1 2 3 4 5 6 7 8 9
+ 
+VI 0.000000 1.000000 2.000000 3.000000 4.000000 5.000000 6.000000 7.000000 8.000000 9.000000
+ 
+ a 13 INT  a  
+ b 3.000000 DOUBLE  b  
+ b 4.000000 DOUBLE  b  
+ b 6.000000 DOUBLE  b  
+ b 9.000000 DOUBLE  b  
+ b 13.000000 DOUBLE  b  
+DONE: FAIL: ./cast_vec           :tests      4 :Fail      2 :Pass      2 :Score   50.0% 
+WARNING!!!! NON_DYNAMIC ARRAY but have to EXPAND to 0
+WARNING!!!! NON_DYNAMIC ARRAY but have to EXPAND to 0
+WARNING!!!! NON_DYNAMIC ARRAY but have to EXPAND to 0
+ UCHAR   
+ 202 254 186 190 250 206 190 173 222 173 192 222
+ 
+ ca fe ba be fa ce be ad de ad c0 de
+ 
+ just assign/copy to new vector 
+D 202 254 186 190 250 206 190 173 222 173 192 222
+
+ INT   4
+ 202 254 186 190 250 206 190 173 222 173 192 222
+ 
+ ca fe ba be fa ce be ad de ad c0 de
+ 
+ FLOAT   4
+ 202.000000 254.000000 186.000000 190.000000 250.000000 206.000000 190.000000 173.000000 222.000000 173.000000 192.000000 222.000000
+ 
+ 434a0000 437e0000 433a0000 433e0000 437a0000 434e0000 433e0000 432d0000 435e0000 432d0000 43400000 435e0000
+ 
+202.000000 254.000000 
+ UCHAR   
+ 202 254 186 190 250 206 190 173 222 173 192 222
+ 
+ ca fe ba be fa ce be ad de ad c0 de
+ 
+E INT   
+ 202 254 186 190 250 206 190 173 222 173 192 222
+ 
+ ca fe ba be fa ce be ad de ad c0 de
+ 
+now retype D CHAR vec to an INT vec
+ INT   
+D[] %d -1095041334 -1380004102 -557797922
+ 
+D[] %X  bebafeca adbecefa dec0adde
+ 
+  d0 cafebabe 
+  d0 -889275714 
+  d0 ca 
+  d0 202 
+ cafebabe 
+swabbed -889275714 -87114067 -559038242
+ 
+ cafebabe facebead deadc0de
+ 
+retype CHAR 1 --> 4 4 
+ FLOAT   
+ 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000
+ 
+ ca fe ba be fa ce be ad de ad c0 de
+ 
+ 3  4  1  5 
+ 4 
+ INT   
+D[] %f -889275714 -87114067 -559038242
+ 
+D[] %X  cafebabe facebead deadc0de
+ 
+float vec -889275712.000000 -87114064.000000 -559038272.000000
+
+float G[] -889275712.000000 -87114064.000000 -559038272.000000
+
+int IV[] -889275712 -87114064 -559038272
+
+long LV[] -889275712 -87114064 -559038272
+
+ p  UNSET  p  
+ 0 
+ 1 
+ 2 
+DONE: PASS: ./cast0              :tests      4 :Fail      0 :Pass      4 :Score  100.0% 
+ a 0 INT  a  
+ a 0 INT  a  
+FAIL test <1> @ [16] CheckNum(a,4)
+
+0.000000 1.000000 2.000000 3.000000 4.000000 5.000000 6.000000 7.000000 8.000000 9.000000
+ 
+ a 1 INT  a  
+ a 3 INT  a  
+ a 4 INT  a  
+ a 6 INT  a  
+ a 9 INT  a  
+ a 13 INT  a  
+ b 0.000000 FLOAT  b  
+ b 0.000000 FLOAT  b  
+FAIL test <3> @ [52] CheckNum(b,4.0)
+
+IV 0 1 2 3 4 5 6 7 8 9
+ 
+VI 0.000000 1.000000 2.000000 3.000000 4.000000 5.000000 6.000000 7.000000 8.000000 9.000000
+ 
+ a 13 INT  a  
+ b 3.000000 DOUBLE  b  
+ b 4.000000 DOUBLE  b  
+ b 6.000000 DOUBLE  b  
+ b 9.000000 DOUBLE  b  
+ b 13.000000 DOUBLE  b  
+DONE: FAIL: ./cast_vec           :tests      4 :Fail      2 :Pass      2 :Score   50.0% 

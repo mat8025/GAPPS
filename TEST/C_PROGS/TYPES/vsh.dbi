@@ -1,0 +1,2625 @@
+     DEBUG FILE for vsh.dbi debug level 1  vers 4.98
+     Sun Jul 13 11:10:28 2014
+ setSize @ 598 siv_e.cpp: ignore it is svar 
+ GetStatement @ 411 icode_e.cpp: 2 1:0:1   
+ AddTxt @ 508 icode_e.cpp: 21  include "consts.asl"
+ 
+ Init @ 710 icode_e.cpp: id 2 1  
+ SetType @ 470 icode_e.cpp: sl 20  include "consts.asl"  type INCLUDE 
+ GetStatement @ 383 icode_e.cpp: GetStatement 2 1:0:1    
+ GetStatement @ 411 icode_e.cpp: 3 3:0:1   
+ AddTxt @ 508 icode_e.cpp: 10  codeend()
+ 
+ Init @ 710 icode_e.cpp: id 3 3  
+ SetType @ 470 icode_e.cpp: sl 9  codeend()  type PFCALL 
+ GetStatement @ 383 icode_e.cpp: GetStatement 3 3:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 2 1:0:1    
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <2> 1 INCLUDE  opc 7 0 sz 1 end @ 35887325 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <2> csz 45 msz 512 state 1345
+ Close @ 2743 icode_e.cpp: <---- Close St <2> msz 45 state 1475
+     consts.asl -- zero length file
+ GetStatement @ 411 icode_e.cpp: 4 15:0:1   
+ AddTxt @ 508 icode_e.cpp: 27  const double _E = exp(1.0)
+ 
+ Init @ 710 icode_e.cpp: id 4 15  
+ SetType @ 470 icode_e.cpp: sl 26  const double _E = exp(1.0)  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 4 15:0:1    
+ GetStatement @ 411 icode_e.cpp: 5 21:0:1   
+ AddTxt @ 508 icode_e.cpp: 28  const double _G = 6.672e-11
+ 
+ Init @ 710 icode_e.cpp: id 5 21  
+ SetType @ 470 icode_e.cpp: sl 27  const double _G = 6.672e-11  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 5 21:0:1    
+ GetStatement @ 411 icode_e.cpp: 6 23:0:1   
+ AddTxt @ 508 icode_e.cpp: 55  const double _g = 9.8 // m per sec per sec -- grav acc
+ 
+ Init @ 710 icode_e.cpp: id 6 23  
+ SetType @ 470 icode_e.cpp: sl 54  const double _g = 9.8 // m per sec per sec -- grav acc  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 6 23:0:1    
+ GetStatement @ 411 icode_e.cpp: 7 25:0:1   
+ AddTxt @ 508 icode_e.cpp: 43  const double _c = 299792458   // m per sec
+ 
+ Init @ 710 icode_e.cpp: id 7 25  
+ SetType @ 470 icode_e.cpp: sl 42  const double _c = 299792458   // m per sec  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 7 25:0:1    
+ GetStatement @ 411 icode_e.cpp: 8 27:0:1   
+ AddTxt @ 508 icode_e.cpp: 40  const double _sos = 331.0 // m per sec 
+ 
+ Init @ 710 icode_e.cpp: id 8 27  
+ SetType @ 470 icode_e.cpp: sl 39  const double _sos = 331.0 // m per sec   type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 8 27:0:1    
+ GetStatement @ 411 icode_e.cpp: 9 29:0:1   
+ AddTxt @ 508 icode_e.cpp: 30  const double _k = 1.38070e-23
+ 
+ Init @ 710 icode_e.cpp: id 9 29  
+ SetType @ 470 icode_e.cpp: sl 29  const double _k = 1.38070e-23  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 9 29:0:1    
+ GetStatement @ 411 icode_e.cpp: 10 33:0:1   
+ AddTxt @ 508 icode_e.cpp: 28  const double _h = 6.626e-34
+ 
+ Init @ 710 icode_e.cpp: id 10 33  
+ SetType @ 470 icode_e.cpp: sl 27  const double _h = 6.626e-34  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 10 33:0:1    
+ GetStatement @ 411 icode_e.cpp: 11 35:0:1   
+ AddTxt @ 508 icode_e.cpp: 28  const double _ev =1.602e-29
+ 
+ Init @ 710 icode_e.cpp: id 11 35  
+ SetType @ 470 icode_e.cpp: sl 27  const double _ev =1.602e-29  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 11 35:0:1    
+ GetStatement @ 411 icode_e.cpp: 12 38:0:1   
+ AddTxt @ 508 icode_e.cpp: 50  const double _EarthRadius = 6371000.0 //  6371 km
+ 
+ Init @ 710 icode_e.cpp: id 12 38  
+ SetType @ 470 icode_e.cpp: sl 49  const double _EarthRadius = 6371000.0 //  6371 km  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 12 38:0:1    
+ GetStatement @ 411 icode_e.cpp: 13 40:0:1   
+ AddTxt @ 508 icode_e.cpp: 37  const int _EarthDay = (24 * 60 *60) 
+ 
+ Init @ 710 icode_e.cpp: id 13 40  
+ SetType @ 470 icode_e.cpp: sl 36  const int _EarthDay = (24 * 60 *60)   type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 13 40:0:1    
+ GetStatement @ 411 icode_e.cpp: 14 44:0:1   
+ AddTxt @ 508 icode_e.cpp: 70  const double _EarthSun = 1.496e11  // meters AU 146 - 152  million km
+ 
+ Init @ 710 icode_e.cpp: id 14 44  
+ SetType @ 470 icode_e.cpp: sl 69  const double _EarthSun = 1.496e11  // meters AU 146 - 152  million km  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 14 44:0:1    
+ GetStatement @ 411 icode_e.cpp: 15 46:0:1   
+ AddTxt @ 508 icode_e.cpp: 44  const double _EarthMoon = 3.84e8  // meters
+ 
+ Init @ 710 icode_e.cpp: id 15 46  
+ SetType @ 470 icode_e.cpp: sl 43  const double _EarthMoon = 3.84e8  // meters  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 15 46:0:1    
+ GetStatement @ 411 icode_e.cpp: 16 48:0:1   
+ AddTxt @ 508 icode_e.cpp: 31  const double _SunMass = 2.0e30
+ 
+ Init @ 710 icode_e.cpp: id 16 48  
+ SetType @ 470 icode_e.cpp: sl 30  const double _SunMass = 2.0e30  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 16 48:0:1    
+ GetStatement @ 411 icode_e.cpp: 17 50:0:1   
+ AddTxt @ 508 icode_e.cpp: 35  const double _EarthMass = 5.980e24
+ 
+ Init @ 710 icode_e.cpp: id 17 50  
+ SetType @ 470 icode_e.cpp: sl 34  const double _EarthMass = 5.980e24  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 17 50:0:1    
+ GetStatement @ 411 icode_e.cpp: 18 52:0:1   
+ AddTxt @ 508 icode_e.cpp: 37  const double _Avogadro = 6.022140e23
+ 
+ Init @ 710 icode_e.cpp: id 18 52  
+ SetType @ 470 icode_e.cpp: sl 36  const double _Avogadro = 6.022140e23  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 18 52:0:1    
+ GetStatement @ 411 icode_e.cpp: 19 67:0:1   
+ AddTxt @ 508 icode_e.cpp: 28  const float _inch2cm = 2.54
+ 
+ Init @ 710 icode_e.cpp: id 19 67  
+ SetType @ 470 icode_e.cpp: sl 27  const float _inch2cm = 2.54  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 19 67:0:1    
+ GetStatement @ 411 icode_e.cpp: 20 68:0:1   
+ AddTxt @ 508 icode_e.cpp: 34  const float _ft2m = 12*2.54/100.0
+ 
+ Init @ 710 icode_e.cpp: id 20 68  
+ SetType @ 470 icode_e.cpp: sl 33  const float _ft2m = 12*2.54/100.0  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 20 68:0:1    
+ GetStatement @ 411 icode_e.cpp: 21 69:0:1   
+ AddTxt @ 508 icode_e.cpp: 36  const float _cm2inch = 1.0/_inch2cm
+ 
+ Init @ 710 icode_e.cpp: id 21 69  
+ SetType @ 470 icode_e.cpp: sl 35  const float _cm2inch = 1.0/_inch2cm  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 21 69:0:1    
+ GetStatement @ 411 icode_e.cpp: 22 70:0:1   
+ AddTxt @ 508 icode_e.cpp: 29  const float _m2ft = 3.280839
+ 
+ Init @ 710 icode_e.cpp: id 22 70  
+ SetType @ 470 icode_e.cpp: sl 28  const float _m2ft = 3.280839  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 22 70:0:1    
+ GetStatement @ 411 icode_e.cpp: 23 71:0:1   
+ AddTxt @ 508 icode_e.cpp: 30  const float _mile2km = 1.6093
+ 
+ Init @ 710 icode_e.cpp: id 23 71  
+ SetType @ 470 icode_e.cpp: sl 29  const float _mile2km = 1.6093  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 23 71:0:1    
+ GetStatement @ 411 icode_e.cpp: 24 72:0:1   
+ AddTxt @ 508 icode_e.cpp: 34  const float _km2mile = 1/_mile2km
+ 
+ Init @ 710 icode_e.cpp: id 24 72  
+ SetType @ 470 icode_e.cpp: sl 33  const float _km2mile = 1/_mile2km  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 24 72:0:1    
+ GetStatement @ 411 icode_e.cpp: 25 73:0:1   
+ AddTxt @ 508 icode_e.cpp: 31  const float _km2nm = 1.0/1.852
+ 
+ Init @ 710 icode_e.cpp: id 25 73  
+ SetType @ 470 icode_e.cpp: sl 30  const float _km2nm = 1.0/1.852  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 25 73:0:1    
+ GetStatement @ 411 icode_e.cpp: 26 74:0:1   
+ AddTxt @ 508 icode_e.cpp: 38  const float _usgal2liter = 3.78541178
+ 
+ Init @ 710 icode_e.cpp: id 26 74  
+ SetType @ 470 icode_e.cpp: sl 37  const float _usgal2liter = 3.78541178  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 26 74:0:1    
+ GetStatement @ 411 icode_e.cpp: 27 75:0:1   
+ AddTxt @ 508 icode_e.cpp: 31  const float _gal2liter = 4.546
+ 
+ Init @ 710 icode_e.cpp: id 27 75  
+ SetType @ 470 icode_e.cpp: sl 30  const float _gal2liter = 4.546  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 27 75:0:1    
+ GetStatement @ 411 icode_e.cpp: 28 76:0:1   
+ AddTxt @ 508 icode_e.cpp: 29  const float _oz2gram = 28.35
+ 
+ Init @ 710 icode_e.cpp: id 28 76  
+ SetType @ 470 icode_e.cpp: sl 28  const float _oz2gram = 28.35  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 28 76:0:1    
+ GetStatement @ 411 icode_e.cpp: 29 77:0:1   
+ AddTxt @ 508 icode_e.cpp: 28  const float _lb2kg = 0.4536
+ 
+ Init @ 710 icode_e.cpp: id 29 77  
+ SetType @ 470 icode_e.cpp: sl 27  const float _lb2kg = 0.4536  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 29 77:0:1    
+ GetStatement @ 411 icode_e.cpp: 30 78:0:1   
+ AddTxt @ 508 icode_e.cpp: 30  const float _kg2lb = 2.204586
+ 
+ Init @ 710 icode_e.cpp: id 30 78  
+ SetType @ 470 icode_e.cpp: sl 29  const float _kg2lb = 2.204586  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 30 78:0:1    
+ GetStatement @ 411 icode_e.cpp: 31 79:0:1   
+ AddTxt @ 508 icode_e.cpp: 31  const float _cuft2cum = 0.0283
+ 
+ Init @ 710 icode_e.cpp: id 31 79  
+ SetType @ 470 icode_e.cpp: sl 30  const float _cuft2cum = 0.0283  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 31 79:0:1    
+ GetStatement @ 411 icode_e.cpp: 32 81:0:1   
+ AddTxt @ 508 icode_e.cpp: 34  const float _troyoz2gram = 31.103
+ 
+ Init @ 710 icode_e.cpp: id 32 81  
+ SetType @ 470 icode_e.cpp: sl 33  const float _troyoz2gram = 31.103  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 32 81:0:1    
+ GetStatement @ 411 icode_e.cpp: 33 85:0:1   
+ AddTxt @ 508 icode_e.cpp: 40  const float _sqmile2acre = 259.0/0.4047
+ 
+ Init @ 710 icode_e.cpp: id 33 85  
+ SetType @ 470 icode_e.cpp: sl 39  const float _sqmile2acre = 259.0/0.4047  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 33 85:0:1    
+ GetStatement @ 411 icode_e.cpp: 34 86:0:1   
+ AddTxt @ 508 icode_e.cpp: 39  const float _knots2mph = 6080.0/5280.0
+ 
+ Init @ 710 icode_e.cpp: id 34 86  
+ SetType @ 470 icode_e.cpp: sl 38  const float _knots2mph = 6080.0/5280.0  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 34 86:0:1    
+ GetStatement @ 411 icode_e.cpp: 35 87:0:1   
+ AddTxt @ 508 icode_e.cpp: 37  const float _nm2mile = 6076.0/5280.0
+ 
+ Init @ 710 icode_e.cpp: id 35 87  
+ SetType @ 470 icode_e.cpp: sl 36  const float _nm2mile = 6076.0/5280.0  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 35 87:0:1    
+ GetStatement @ 411 icode_e.cpp: 36 88:0:1   
+ AddTxt @ 508 icode_e.cpp: 28  const float _nm2ft = 6076.0
+ 
+ Init @ 710 icode_e.cpp: id 36 88  
+ SetType @ 470 icode_e.cpp: sl 27  const float _nm2ft = 6076.0  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 36 88:0:1    
+ GetStatement @ 411 icode_e.cpp: 37 89:0:1   
+ AddTxt @ 508 icode_e.cpp: 27  const float _nm2km = 1.852
+ 
+ Init @ 710 icode_e.cpp: id 37 89  
+ SetType @ 470 icode_e.cpp: sl 26  const float _nm2km = 1.852  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 37 89:0:1    
+ GetStatement @ 411 icode_e.cpp: 38 90:0:1   
+ AddTxt @ 508 icode_e.cpp: 35  const float _mile2nm = 5280.0/6076
+ 
+ Init @ 710 icode_e.cpp: id 38 90  
+ SetType @ 470 icode_e.cpp: sl 34  const float _mile2nm = 5280.0/6076  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 38 90:0:1    
+ GetStatement @ 411 icode_e.cpp: 39 91:0:1   
+ AddTxt @ 508 icode_e.cpp: 39  const float _mph2knots = 5280.0/6076.0
+ 
+ Init @ 710 icode_e.cpp: id 39 91  
+ SetType @ 470 icode_e.cpp: sl 38  const float _mph2knots = 5280.0/6076.0  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 39 91:0:1    
+ GetStatement @ 411 icode_e.cpp: 40 92:0:1   
+ AddTxt @ 508 icode_e.cpp: 30  const float _atm2Nm2 = 1.01e5
+ 
+ Init @ 710 icode_e.cpp: id 40 92  
+ SetType @ 470 icode_e.cpp: sl 29  const float _atm2Nm2 = 1.01e5  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 40 92:0:1    
+ GetStatement @ 411 icode_e.cpp: 41 93:0:1   
+ AddTxt @ 508 icode_e.cpp: 32  const float _atm2lbft2 = 2116.0
+ 
+ Init @ 710 icode_e.cpp: id 41 93  
+ SetType @ 470 icode_e.cpp: sl 31  const float _atm2lbft2 = 2116.0  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 41 93:0:1    
+ GetStatement @ 411 icode_e.cpp: 42 94:0:1   
+ AddTxt @ 508 icode_e.cpp: 28  const float _slug2lb = 32.2
+ 
+ Init @ 710 icode_e.cpp: id 42 94  
+ SetType @ 470 icode_e.cpp: sl 27  const float _slug2lb = 32.2  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 42 94:0:1    
+ GetStatement @ 411 icode_e.cpp: 43 95:0:1   
+ AddTxt @ 508 icode_e.cpp: 31  const float _lightyr = 9.46e15
+ 
+ Init @ 710 icode_e.cpp: id 43 95  
+ SetType @ 470 icode_e.cpp: sl 30  const float _lightyr = 9.46e15  type CONSTANT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 43 95:0:1    
+ GetStatement @ 411 icode_e.cpp: 44 98:0:1   
+ AddTxt @ 508 icode_e.cpp: 13  proc units()
+ 
+ Init @ 710 icode_e.cpp: id 44 98  
+ SetType @ 470 icode_e.cpp: sl 12  proc units()  type DEF_PROC 
+ GetStatement @ 383 icode_e.cpp: GetStatement 44 98:0:1    
+ GetStatement @ 411 icode_e.cpp: 45 99:0:1   
+ AddTxt @ 508 icode_e.cpp: 1  { 
+ Init @ 710 icode_e.cpp: id 45 99  
+ SetType @ 470 icode_e.cpp: sl 1  {  type CODE_BLK_START 
+ GetStatement @ 383 icode_e.cpp: GetStatement 45 99:0:1    
+ GetStatement @ 411 icode_e.cpp: 46 100:0:1   
+ AddTxt @ 508 icode_e.cpp: 19  <<"%V$_inch2cm \n"
+ 
+ Init @ 710 icode_e.cpp: id 46 100  
+ SetType @ 470 icode_e.cpp: sl 18  <<"%V$_inch2cm \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 46 100:0:1    
+ GetStatement @ 411 icode_e.cpp: 47 101:0:1   
+ AddTxt @ 508 icode_e.cpp: 16  <<"%V$_ft2m \n"
+ 
+ Init @ 710 icode_e.cpp: id 47 101  
+ SetType @ 470 icode_e.cpp: sl 15  <<"%V$_ft2m \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 47 101:0:1    
+ GetStatement @ 411 icode_e.cpp: 48 102:0:1   
+ AddTxt @ 508 icode_e.cpp: 19  <<"%V$_cm2inch \n"
+ 
+ Init @ 710 icode_e.cpp: id 48 102  
+ SetType @ 470 icode_e.cpp: sl 18  <<"%V$_cm2inch \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 48 102:0:1    
+ GetStatement @ 411 icode_e.cpp: 49 103:0:1   
+ AddTxt @ 508 icode_e.cpp: 20  <<"%V$_mile2km  \n"
+ 
+ Init @ 710 icode_e.cpp: id 49 103  
+ SetType @ 470 icode_e.cpp: sl 19  <<"%V$_mile2km  \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 49 103:0:1    
+ GetStatement @ 411 icode_e.cpp: 50 104:0:1   
+ AddTxt @ 508 icode_e.cpp: 19  <<"%V$_nm2mile \n"
+ 
+ Init @ 710 icode_e.cpp: id 50 104  
+ SetType @ 470 icode_e.cpp: sl 18  <<"%V$_nm2mile \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 50 104:0:1    
+ GetStatement @ 411 icode_e.cpp: 51 105:0:1   
+ AddTxt @ 508 icode_e.cpp: 19  <<"%V$_mile2nm \n"
+ 
+ Init @ 710 icode_e.cpp: id 51 105  
+ SetType @ 470 icode_e.cpp: sl 18  <<"%V$_mile2nm \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 51 105:0:1    
+ GetStatement @ 411 icode_e.cpp: 52 106:0:1   
+ AddTxt @ 508 icode_e.cpp: 21  <<"%V$_mph2knots \n"
+ 
+ Init @ 710 icode_e.cpp: id 52 106  
+ SetType @ 470 icode_e.cpp: sl 20  <<"%V$_mph2knots \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 52 106:0:1    
+ GetStatement @ 411 icode_e.cpp: 53 107:0:1   
+ AddTxt @ 508 icode_e.cpp: 20  <<"%V$_km2mile  \n"
+ 
+ Init @ 710 icode_e.cpp: id 53 107  
+ SetType @ 470 icode_e.cpp: sl 19  <<"%V$_km2mile  \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 53 107:0:1    
+ GetStatement @ 411 icode_e.cpp: 54 108:0:1   
+ AddTxt @ 508 icode_e.cpp: 16  <<"%V$_m2ft \n"
+ 
+ Init @ 710 icode_e.cpp: id 54 108  
+ SetType @ 470 icode_e.cpp: sl 15  <<"%V$_m2ft \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 54 108:0:1    
+ GetStatement @ 411 icode_e.cpp: 55 109:0:1   
+ AddTxt @ 508 icode_e.cpp: 17  <<"%V$_nm2ft \n"
+ 
+ Init @ 710 icode_e.cpp: id 55 109  
+ SetType @ 470 icode_e.cpp: sl 16  <<"%V$_nm2ft \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 55 109:0:1    
+ GetStatement @ 411 icode_e.cpp: 56 110:0:1   
+ AddTxt @ 508 icode_e.cpp: 17  <<"%V$_nm2km \n"
+ 
+ Init @ 710 icode_e.cpp: id 56 110  
+ SetType @ 470 icode_e.cpp: sl 16  <<"%V$_nm2km \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 56 110:0:1    
+ GetStatement @ 411 icode_e.cpp: 57 111:0:1   
+ AddTxt @ 508 icode_e.cpp: 23  <<"%V$_usgal2liter \n"
+ 
+ Init @ 710 icode_e.cpp: id 57 111  
+ SetType @ 470 icode_e.cpp: sl 22  <<"%V$_usgal2liter \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 57 111:0:1    
+ GetStatement @ 411 icode_e.cpp: 58 112:0:1   
+ AddTxt @ 508 icode_e.cpp: 22  <<"%V$_gal2liter  \n"
+ 
+ Init @ 710 icode_e.cpp: id 58 112  
+ SetType @ 470 icode_e.cpp: sl 21  <<"%V$_gal2liter  \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 58 112:0:1    
+ GetStatement @ 411 icode_e.cpp: 59 113:0:1   
+ AddTxt @ 508 icode_e.cpp: 20  <<"%V$_oz2gram  \n"
+ 
+ Init @ 710 icode_e.cpp: id 59 113  
+ SetType @ 470 icode_e.cpp: sl 19  <<"%V$_oz2gram  \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 59 113:0:1    
+ GetStatement @ 411 icode_e.cpp: 60 114:0:1   
+ AddTxt @ 508 icode_e.cpp: 18  <<"%V$_lb2kg  \n"
+ 
+ Init @ 710 icode_e.cpp: id 60 114  
+ SetType @ 470 icode_e.cpp: sl 17  <<"%V$_lb2kg  \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 60 114:0:1    
+ GetStatement @ 411 icode_e.cpp: 61 115:0:1   
+ AddTxt @ 508 icode_e.cpp: 18  <<"%V$_kg2lb  \n"
+ 
+ Init @ 710 icode_e.cpp: id 61 115  
+ SetType @ 470 icode_e.cpp: sl 17  <<"%V$_kg2lb  \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 61 115:0:1    
+ GetStatement @ 411 icode_e.cpp: 62 116:0:1   
+ AddTxt @ 508 icode_e.cpp: 21  <<"%V$_cuft2cum \n" 
+ 
+ Init @ 710 icode_e.cpp: id 62 116  
+ SetType @ 470 icode_e.cpp: sl 20  <<"%V$_cuft2cum \n"   type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 62 116:0:1    
+ GetStatement @ 411 icode_e.cpp: 63 117:0:1   
+ AddTxt @ 508 icode_e.cpp: 24  <<"%V$_troyoz2gram  \n"
+ 
+ Init @ 710 icode_e.cpp: id 63 117  
+ SetType @ 470 icode_e.cpp: sl 23  <<"%V$_troyoz2gram  \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 63 117:0:1    
+ GetStatement @ 411 icode_e.cpp: 64 118:0:1   
+ AddTxt @ 508 icode_e.cpp: 24  <<"%V$_sqmile2acre  \n"
+ 
+ Init @ 710 icode_e.cpp: id 64 118  
+ SetType @ 470 icode_e.cpp: sl 23  <<"%V$_sqmile2acre  \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 64 118:0:1    
+ GetStatement @ 411 icode_e.cpp: 65 119:0:1   
+ AddTxt @ 508 icode_e.cpp: 22  <<"%V$_knots2mph  \n"
+ 
+ Init @ 710 icode_e.cpp: id 65 119  
+ SetType @ 470 icode_e.cpp: sl 21  <<"%V$_knots2mph  \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 65 119:0:1    
+ GetStatement @ 411 icode_e.cpp: 66 120:0:1   
+ AddTxt @ 508 icode_e.cpp: 20  <<"%V$_atm2Nm2  \n"
+ 
+ Init @ 710 icode_e.cpp: id 66 120  
+ SetType @ 470 icode_e.cpp: sl 19  <<"%V$_atm2Nm2  \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 66 120:0:1    
+ GetStatement @ 411 icode_e.cpp: 67 121:0:1   
+ AddTxt @ 508 icode_e.cpp: 20  <<"%V$_slug2lb  \n"
+ 
+ Init @ 710 icode_e.cpp: id 67 121  
+ SetType @ 470 icode_e.cpp: sl 19  <<"%V$_slug2lb  \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 67 121:0:1    
+ GetStatement @ 411 icode_e.cpp: 68 122:0:1   
+ AddTxt @ 508 icode_e.cpp: 19  <<"%V$_lightyr \n"
+ 
+ Init @ 710 icode_e.cpp: id 68 122  
+ SetType @ 470 icode_e.cpp: sl 18  <<"%V$_lightyr \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 68 122:0:1    
+ GetStatement @ 411 icode_e.cpp: 69 123:0:1   
+ AddTxt @ 508 icode_e.cpp: 1  } 
+ Init @ 710 icode_e.cpp: id 69 123  
+ SetType @ 470 icode_e.cpp: sl 1  }  type CODE_BLK_END 
+ GetStatement @ 383 icode_e.cpp: GetStatement 69 123:0:1    
+ GetStatement @ 411 icode_e.cpp: 70 126:0:1   
+ AddTxt @ 508 icode_e.cpp: 14  proc consts()
+ 
+ Init @ 710 icode_e.cpp: id 70 126  
+ SetType @ 470 icode_e.cpp: sl 13  proc consts()  type DEF_PROC 
+ GetStatement @ 383 icode_e.cpp: GetStatement 70 126:0:1    
+ GetStatement @ 411 icode_e.cpp: 71 127:0:1   
+ AddTxt @ 508 icode_e.cpp: 1  { 
+ Init @ 710 icode_e.cpp: id 71 127  
+ SetType @ 470 icode_e.cpp: sl 1  {  type CODE_BLK_START 
+ GetStatement @ 383 icode_e.cpp: GetStatement 71 127:0:1    
+ GetStatement @ 411 icode_e.cpp: 72 129:0:1   
+ AddTxt @ 508 icode_e.cpp: 14  <<"%V$_PI \n"
+ 
+ Init @ 710 icode_e.cpp: id 72 129  
+ SetType @ 470 icode_e.cpp: sl 13  <<"%V$_PI \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 72 129:0:1    
+ GetStatement @ 411 icode_e.cpp: 73 130:0:1   
+ AddTxt @ 508 icode_e.cpp: 13  <<"%V$_E \n"
+ 
+ Init @ 710 icode_e.cpp: id 73 130  
+ SetType @ 470 icode_e.cpp: sl 12  <<"%V$_E \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 73 130:0:1    
+ GetStatement @ 411 icode_e.cpp: 74 131:0:1   
+ AddTxt @ 508 icode_e.cpp: 54  <<"%V$_g  grav accelration meters per sec per sec \n"
+ 
+ Init @ 710 icode_e.cpp: id 74 131  
+ SetType @ 470 icode_e.cpp: sl 53  <<"%V$_g  grav accelration meters per sec per sec \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 74 131:0:1    
+ GetStatement @ 411 icode_e.cpp: 75 132:0:1   
+ AddTxt @ 508 icode_e.cpp: 63  <<"%Ve$_G Gravitational Constant 6.672 x 10E-11 Nm^2/Kg^2  \n"
+ 
+ Init @ 710 icode_e.cpp: id 75 132  
+ SetType @ 470 icode_e.cpp: sl 62  <<"%Ve$_G Gravitational Constant 6.672 x 10E-11 Nm^2/Kg^2  \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 75 132:0:1    
+ GetStatement @ 411 icode_e.cpp: 76 133:0:1   
+ AddTxt @ 508 icode_e.cpp: 35  <<"%Ve$_c speed of light    m/s\n"
+ 
+ Init @ 710 icode_e.cpp: id 76 133  
+ SetType @ 470 icode_e.cpp: sl 34  <<"%Ve$_c speed of light    m/s\n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 76 133:0:1    
+ GetStatement @ 411 icode_e.cpp: 77 134:0:1   
+ AddTxt @ 508 icode_e.cpp: 48  <<"%V$_sos speed of sound (Air 0 deg C m/s) \n"
+ 
+ Init @ 710 icode_e.cpp: id 77 134  
+ SetType @ 470 icode_e.cpp: sl 47  <<"%V$_sos speed of sound (Air 0 deg C m/s) \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 77 134:0:1    
+ GetStatement @ 411 icode_e.cpp: 78 135:0:1   
+ AddTxt @ 508 icode_e.cpp: 45  <<"%Ve$_k Boltzman = 1.3807 * 10^-23 J/K \n"
+ 
+ Init @ 710 icode_e.cpp: id 78 135  
+ SetType @ 470 icode_e.cpp: sl 44  <<"%Ve$_k Boltzman = 1.3807 * 10^-23 J/K \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 78 135:0:1    
+ GetStatement @ 411 icode_e.cpp: 79 136:0:1   
+ AddTxt @ 508 icode_e.cpp: 42  <<"%Ve$_h Planck = 6.626 * 10^-34 J-s \n"
+ 
+ Init @ 710 icode_e.cpp: id 79 136  
+ SetType @ 470 icode_e.cpp: sl 41  <<"%Ve$_h Planck = 6.626 * 10^-34 J-s \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 79 136:0:1    
+ GetStatement @ 411 icode_e.cpp: 80 137:0:1   
+ AddTxt @ 508 icode_e.cpp: 54  <<"%Ve$_ev Electron Volt 1.602 x 10^-19 J %Ve$_eV \n"
+ 
+ Init @ 710 icode_e.cpp: id 80 137  
+ SetType @ 470 icode_e.cpp: sl 53  <<"%Ve$_ev Electron Volt 1.602 x 10^-19 J %Ve$_eV \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 80 137:0:1    
+ GetStatement @ 411 icode_e.cpp: 81 138:0:1   
+ AddTxt @ 508 icode_e.cpp: 31  <<"%V$_EarthRadius  meters \n"
+ 
+ Init @ 710 icode_e.cpp: id 81 138  
+ SetType @ 470 icode_e.cpp: sl 30  <<"%V$_EarthRadius  meters \n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 81 138:0:1    
+ GetStatement @ 411 icode_e.cpp: 82 139:0:1   
+ AddTxt @ 508 icode_e.cpp: 24  <<"%Ve$_EarthMass Kg\n"
+ 
+ Init @ 710 icode_e.cpp: id 82 139  
+ SetType @ 470 icode_e.cpp: sl 23  <<"%Ve$_EarthMass Kg\n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 82 139:0:1    
+ GetStatement @ 411 icode_e.cpp: 83 140:0:1   
+ AddTxt @ 508 icode_e.cpp: 38  <<"%Ve$_Avogadro entities per mole\n"
+ 
+ Init @ 710 icode_e.cpp: id 83 140  
+ SetType @ 470 icode_e.cpp: sl 37  <<"%Ve$_Avogadro entities per mole\n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 83 140:0:1    
+ GetStatement @ 411 icode_e.cpp: 84 142:0:1   
+ AddTxt @ 508 icode_e.cpp: 7  <<"\n"
+ 
+ Init @ 710 icode_e.cpp: id 84 142  
+ SetType @ 470 icode_e.cpp: sl 6  <<"\n"  type PRSTDOUT 
+ GetStatement @ 383 icode_e.cpp: GetStatement 84 142:0:1    
+ GetStatement @ 411 icode_e.cpp: 85 144:0:1   
+ AddTxt @ 508 icode_e.cpp: 1  } 
+ Init @ 710 icode_e.cpp: id 85 144  
+ SetType @ 470 icode_e.cpp: sl 1  }  type CODE_BLK_END 
+ GetStatement @ 383 icode_e.cpp: GetStatement 85 144:0:1    
+ GetStatement @ 411 icode_e.cpp: 86 152:0:1   
+ AddTxt @ 508 icode_e.cpp: 21  proc ll2dd (the_ang)
+ 
+ Init @ 710 icode_e.cpp: id 86 152  
+ SetType @ 470 icode_e.cpp: sl 20  proc ll2dd (the_ang)  type DEF_PROC 
+ GetStatement @ 383 icode_e.cpp: GetStatement 86 152:0:1    
+ GetStatement @ 411 icode_e.cpp: 87 153:0:1   
+ AddTxt @ 508 icode_e.cpp: 1  { 
+ Init @ 710 icode_e.cpp: id 87 153  
+ SetType @ 470 icode_e.cpp: sl 1  {  type CODE_BLK_START 
+ GetStatement @ 383 icode_e.cpp: GetStatement 87 153:0:1    
+ GetStatement @ 411 icode_e.cpp: 88 157:0:1   
+ AddTxt @ 508 icode_e.cpp: 12  the_dir="" ; 
+ Init @ 710 icode_e.cpp: id 88 157  
+ SetType @ 470 icode_e.cpp: sl 12  the_dir="" ;  type EXPRESSION 
+ GetStatement @ 383 icode_e.cpp: GetStatement 88 157:0:1    
+ GetStatement @ 411 icode_e.cpp: 89 159:0:1   
+ AddTxt @ 508 icode_e.cpp: 9  float la
+ 
+ Init @ 710 icode_e.cpp: id 89 159  
+ SetType @ 470 icode_e.cpp: sl 8  float la  type DECLARE 
+ GetStatement @ 383 icode_e.cpp: GetStatement 89 159:0:1    
+ GetStatement @ 411 icode_e.cpp: 90 164:0:1   
+ AddTxt @ 508 icode_e.cpp: 31  the_parts = Split(the_ang,",")
+ 
+ Init @ 710 icode_e.cpp: id 90 164  
+ SetType @ 470 icode_e.cpp: sl 30  the_parts = Split(the_ang,",")  type EXPRESSION_T 
+ GetStatement @ 383 icode_e.cpp: GetStatement 90 164:0:1    
+ GetStatement @ 411 icode_e.cpp: 91 168:0:1   
+ AddTxt @ 508 icode_e.cpp: 29  the_deg = atof(the_parts[0])
+ 
+ Init @ 710 icode_e.cpp: id 91 168  
+ SetType @ 470 icode_e.cpp: sl 28  the_deg = atof(the_parts[0])  type EXPRESSION_T 
+ GetStatement @ 383 icode_e.cpp: GetStatement 91 168:0:1    
+ GetStatement @ 411 icode_e.cpp: 92 172:0:1   
+ AddTxt @ 508 icode_e.cpp: 29  the_min = atof(the_parts[1])
+ 
+ Init @ 710 icode_e.cpp: id 92 172  
+ SetType @ 470 icode_e.cpp: sl 28  the_min = atof(the_parts[1])  type EXPRESSION_T 
+ GetStatement @ 383 icode_e.cpp: GetStatement 92 172:0:1    
+ GetStatement @ 411 icode_e.cpp: 93 176:0:1   
+ AddTxt @ 508 icode_e.cpp: 17  sz= Caz(the_min)
+ 
+ Init @ 710 icode_e.cpp: id 93 176  
+ SetType @ 470 icode_e.cpp: sl 16  sz= Caz(the_min)  type EXPRESSION 
+ GetStatement @ 383 icode_e.cpp: GetStatement 93 176:0:1    
+ GetStatement @ 411 icode_e.cpp: 94 180:0:1   
+ AddTxt @ 508 icode_e.cpp: 23  the_dir = the_parts[2]
+ 
+ Init @ 710 icode_e.cpp: id 94 180  
+ SetType @ 470 icode_e.cpp: sl 22  the_dir = the_parts[2]  type EXPRESSION_T 
+ GetStatement @ 383 icode_e.cpp: GetStatement 94 180:0:1    
+ GetStatement @ 411 icode_e.cpp: 95 182:0:1   
+ AddTxt @ 508 icode_e.cpp: 17  y = the_min/60.0
+ 
+ Init @ 710 icode_e.cpp: id 95 182  
+ SetType @ 470 icode_e.cpp: sl 16  y = the_min/60.0  type EXPRESSION_T 
+ GetStatement @ 383 icode_e.cpp: GetStatement 95 182:0:1    
+ GetStatement @ 411 icode_e.cpp: 96 184:0:1   
+ AddTxt @ 508 icode_e.cpp: 17  la = the_deg + y
+ 
+ Init @ 710 icode_e.cpp: id 96 184  
+ SetType @ 470 icode_e.cpp: sl 16  la = the_deg + y  type EXPRESSION_T 
+ GetStatement @ 383 icode_e.cpp: GetStatement 96 184:0:1    
+ GetStatement @ 411 icode_e.cpp: 97 189:0:1   
+ AddTxt @ 508 icode_e.cpp: 2  if 
+ Init @ 710 icode_e.cpp: id 97 189  
+ SetType @ 470 icode_e.cpp: sl 2  if  type IF 
+ AddStatement @ 334 icode_e.cpp: si 1 ns 1 
+ GetStatement @ 411 icode_e.cpp: 98 189:1:2   
+ AddTxt @ 508 icode_e.cpp: 16  (the_dir @= "N") 
+ Init @ 710 icode_e.cpp: id 98 189  
+ SetType @ 470 icode_e.cpp: sl 16  (the_dir @= "N")  type EXPRESSION 
+ AddStatement @ 334 icode_e.cpp: si 2 ns 2 
+ GetStatement @ 411 icode_e.cpp: 99 189:2:3   
+ AddTxt @ 508 icode_e.cpp: 1  { 
+ Init @ 710 icode_e.cpp: id 99 189  
+ SetType @ 470 icode_e.cpp: sl 1  {  type CODE_BLK_START 
+ GetStatement @ 383 icode_e.cpp: GetStatement 97 189:0:3    
+ GetStatement @ 383 icode_e.cpp: GetStatement 98 189:1:3    
+ GetStatement @ 383 icode_e.cpp: GetStatement 99 189:2:3    
+ GetStatement @ 411 icode_e.cpp: 100 190:0:1   
+ AddTxt @ 508 icode_e.cpp: 8  la *= 1
+ 
+ Init @ 710 icode_e.cpp: id 100 190  
+ SetType @ 470 icode_e.cpp: sl 7  la *= 1  type EXPRESSION_T 
+ GetStatement @ 383 icode_e.cpp: GetStatement 100 190:0:1    
+ GetStatement @ 411 icode_e.cpp: 101 191:0:1   
+ AddTxt @ 508 icode_e.cpp: 1  } 
+ Init @ 710 icode_e.cpp: id 101 191  
+ SetType @ 470 icode_e.cpp: sl 1  }  type CODE_BLK_END 
+ GetStatement @ 383 icode_e.cpp: GetStatement 101 191:0:1    
+ GetStatement @ 411 icode_e.cpp: 102 192:0:1   
+ AddTxt @ 508 icode_e.cpp: 7  else if 
+ Init @ 710 icode_e.cpp: id 102 192  
+ SetType @ 470 icode_e.cpp: sl 7  else if  type ELSE_IF 
+ AddStatement @ 334 icode_e.cpp: si 1 ns 1 
+ GetStatement @ 411 icode_e.cpp: 103 192:1:2   
+ AddTxt @ 508 icode_e.cpp: 16  (the_dir @= "E") 
+ Init @ 710 icode_e.cpp: id 103 192  
+ SetType @ 470 icode_e.cpp: sl 16  (the_dir @= "E")  type EXPRESSION 
+ AddStatement @ 334 icode_e.cpp: si 2 ns 2 
+ GetStatement @ 411 icode_e.cpp: 104 192:2:3   
+ AddTxt @ 508 icode_e.cpp: 1  { 
+ Init @ 710 icode_e.cpp: id 104 192  
+ SetType @ 470 icode_e.cpp: sl 1  {  type CODE_BLK_START 
+ GetStatement @ 383 icode_e.cpp: GetStatement 102 192:0:3    
+ GetStatement @ 383 icode_e.cpp: GetStatement 103 192:1:3    
+ GetStatement @ 383 icode_e.cpp: GetStatement 104 192:2:3    
+ GetStatement @ 411 icode_e.cpp: 105 193:0:1   
+ AddTxt @ 508 icode_e.cpp: 8  la *= 1
+ 
+ Init @ 710 icode_e.cpp: id 105 193  
+ SetType @ 470 icode_e.cpp: sl 7  la *= 1  type EXPRESSION_T 
+ GetStatement @ 383 icode_e.cpp: GetStatement 105 193:0:1    
+ GetStatement @ 411 icode_e.cpp: 106 194:0:1   
+ AddTxt @ 508 icode_e.cpp: 1  } 
+ Init @ 710 icode_e.cpp: id 106 194  
+ SetType @ 470 icode_e.cpp: sl 1  }  type CODE_BLK_END 
+ GetStatement @ 383 icode_e.cpp: GetStatement 106 194:0:1    
+ GetStatement @ 411 icode_e.cpp: 107 196:0:1   
+ AddTxt @ 508 icode_e.cpp: 7  else if 
+ Init @ 710 icode_e.cpp: id 107 196  
+ SetType @ 470 icode_e.cpp: sl 7  else if  type ELSE_IF 
+ AddStatement @ 334 icode_e.cpp: si 1 ns 1 
+ GetStatement @ 411 icode_e.cpp: 108 196:1:2   
+ AddTxt @ 508 icode_e.cpp: 16  (the_dir @= "W") 
+ Init @ 710 icode_e.cpp: id 108 196  
+ SetType @ 470 icode_e.cpp: sl 16  (the_dir @= "W")  type EXPRESSION 
+ AddStatement @ 334 icode_e.cpp: si 2 ns 2 
+ GetStatement @ 411 icode_e.cpp: 109 196:2:3   
+ AddTxt @ 508 icode_e.cpp: 1  { 
+ Init @ 710 icode_e.cpp: id 109 196  
+ SetType @ 470 icode_e.cpp: sl 1  {  type CODE_BLK_START 
+ GetStatement @ 383 icode_e.cpp: GetStatement 107 196:0:3    
+ GetStatement @ 383 icode_e.cpp: GetStatement 108 196:1:3    
+ GetStatement @ 383 icode_e.cpp: GetStatement 109 196:2:3    
+ GetStatement @ 411 icode_e.cpp: 110 197:0:1   
+ AddTxt @ 508 icode_e.cpp: 9  la *= -1
+ 
+ Init @ 710 icode_e.cpp: id 110 197  
+ SetType @ 470 icode_e.cpp: sl 8  la *= -1  type EXPRESSION_T 
+ GetStatement @ 383 icode_e.cpp: GetStatement 110 197:0:1    
+ GetStatement @ 411 icode_e.cpp: 111 198:0:1   
+ AddTxt @ 508 icode_e.cpp: 1  } 
+ Init @ 710 icode_e.cpp: id 111 198  
+ SetType @ 470 icode_e.cpp: sl 1  }  type CODE_BLK_END 
+ GetStatement @ 383 icode_e.cpp: GetStatement 111 198:0:1    
+ GetStatement @ 411 icode_e.cpp: 112 200:0:1   
+ AddTxt @ 508 icode_e.cpp: 7  else if 
+ Init @ 710 icode_e.cpp: id 112 200  
+ SetType @ 470 icode_e.cpp: sl 7  else if  type ELSE_IF 
+ AddStatement @ 334 icode_e.cpp: si 1 ns 1 
+ GetStatement @ 411 icode_e.cpp: 113 200:1:2   
+ AddTxt @ 508 icode_e.cpp: 16  (the_dir @= "S") 
+ Init @ 710 icode_e.cpp: id 113 200  
+ SetType @ 470 icode_e.cpp: sl 16  (the_dir @= "S")  type EXPRESSION 
+ AddStatement @ 334 icode_e.cpp: si 2 ns 2 
+ GetStatement @ 411 icode_e.cpp: 114 200:2:3   
+ AddTxt @ 508 icode_e.cpp: 1  { 
+ Init @ 710 icode_e.cpp: id 114 200  
+ SetType @ 470 icode_e.cpp: sl 1  {  type CODE_BLK_START 
+ GetStatement @ 383 icode_e.cpp: GetStatement 112 200:0:3    
+ GetStatement @ 383 icode_e.cpp: GetStatement 113 200:1:3    
+ GetStatement @ 383 icode_e.cpp: GetStatement 114 200:2:3    
+ GetStatement @ 411 icode_e.cpp: 115 201:0:1   
+ AddTxt @ 508 icode_e.cpp: 9  la *= -1
+ 
+ Init @ 710 icode_e.cpp: id 115 201  
+ SetType @ 470 icode_e.cpp: sl 8  la *= -1  type EXPRESSION_T 
+ GetStatement @ 383 icode_e.cpp: GetStatement 115 201:0:1    
+ GetStatement @ 411 icode_e.cpp: 116 202:0:1   
+ AddTxt @ 508 icode_e.cpp: 1  } 
+ Init @ 710 icode_e.cpp: id 116 202  
+ SetType @ 470 icode_e.cpp: sl 1  }  type CODE_BLK_END 
+ GetStatement @ 383 icode_e.cpp: GetStatement 116 202:0:1    
+ GetStatement @ 411 icode_e.cpp: 117 206:0:1   
+ AddTxt @ 508 icode_e.cpp: 12  return (la)
+ 
+ Init @ 710 icode_e.cpp: id 117 206  
+ SetType @ 470 icode_e.cpp: sl 11  return (la)  type PROC_RETURN 
+ GetStatement @ 383 icode_e.cpp: GetStatement 117 206:0:1    
+ GetStatement @ 411 icode_e.cpp: 118 207:0:1   
+ AddTxt @ 508 icode_e.cpp: 1  } 
+ Init @ 710 icode_e.cpp: id 118 207  
+ SetType @ 470 icode_e.cpp: sl 1  }  type CODE_BLK_END 
+ GetStatement @ 383 icode_e.cpp: GetStatement 118 207:0:1    
+ GetStatement @ 411 icode_e.cpp: 119 210:0:1   
+ AddTxt @ 508 icode_e.cpp: 11  _codeend(); 
+ Init @ 710 icode_e.cpp: id 119 210  
+ SetType @ 470 icode_e.cpp: sl 11  _codeend();  type PFCALL 
+ GetStatement @ 383 icode_e.cpp: GetStatement 119 210:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 4 15:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 5 21:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 6 23:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 7 25:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 8 27:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 9 29:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 10 33:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 11 35:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 12 38:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 13 40:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 14 44:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 15 46:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 16 48:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 17 50:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 18 52:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 19 67:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 20 68:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 21 69:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 22 70:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 23 71:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 24 72:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 25 73:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 26 74:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 27 75:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 28 76:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 29 77:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 30 78:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 31 79:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 32 81:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 33 85:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 34 86:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 35 87:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 36 88:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 37 89:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 38 90:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 39 91:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 40 92:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 41 93:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 42 94:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 43 95:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 44 98:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 45 99:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 46 100:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 47 101:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 48 102:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 49 103:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 50 104:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 51 105:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 52 106:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 53 107:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 54 108:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 55 109:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 56 110:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 57 111:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 58 112:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 59 113:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 60 114:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 61 115:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 62 116:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 63 117:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 64 118:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 65 119:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 66 120:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 67 121:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 68 122:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 69 123:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 70 126:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 71 127:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 72 129:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 73 130:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 74 131:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 75 132:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 76 133:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 77 134:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 78 135:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 79 136:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 80 137:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 81 138:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 82 139:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 83 140:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 84 142:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 85 144:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 86 152:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 87 153:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 88 157:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 89 159:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 90 164:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 91 168:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 92 172:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 93 176:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 94 180:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 95 182:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 96 184:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 97 189:0:3    
+ GetStatement @ 383 icode_e.cpp: GetStatement 98 189:1:3    
+ GetStatement @ 383 icode_e.cpp: GetStatement 99 189:2:3    
+ GetStatement @ 383 icode_e.cpp: GetStatement 100 190:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 101 191:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 102 192:0:3    
+ GetStatement @ 383 icode_e.cpp: GetStatement 103 192:1:3    
+ GetStatement @ 383 icode_e.cpp: GetStatement 104 192:2:3    
+ GetStatement @ 383 icode_e.cpp: GetStatement 105 193:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 106 194:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 107 196:0:3    
+ GetStatement @ 383 icode_e.cpp: GetStatement 108 196:1:3    
+ GetStatement @ 383 icode_e.cpp: GetStatement 109 196:2:3    
+ GetStatement @ 383 icode_e.cpp: GetStatement 110 197:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 111 198:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 112 200:0:3    
+ GetStatement @ 383 icode_e.cpp: GetStatement 113 200:1:3    
+ GetStatement @ 383 icode_e.cpp: GetStatement 114 200:2:3    
+ GetStatement @ 383 icode_e.cpp: GetStatement 115 201:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 116 202:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 117 206:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 118 207:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 119 210:0:1    
+ XcodeBlock @ 635 include_e.cpp: 1 <2> 
+ XcodeBlock @ 635 include_e.cpp: 2 <4> 
+------------------------------------------------------------------------
+
+### <4>[15]<0>{CONSTANT}		const double _E = exp(1.0)
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _E UNSET
+ WriteIC @ 1478 icode_e.cpp: _E DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 377 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _E  DOUBLE id 67 slot 377 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 377 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <4> 1 CONSTANT  opc 1 0 sz 3 end @ 35917983 cisz 47
+ ncpy @ 909 svar.cpp:  ERROR svar not innited ?!
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 1.000000 
+ WriteIC @ 2003 icode_e.cpp:  <4> 2 FUNCTION  opc 10 0 sz 8 end @ 35918035 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type exp UNSET
+ WriteIC @ 1814 icode_e.cpp: CALLF exp ind 687 
+ WriteIC @ 2003 icode_e.cpp:  <4> 3 FUNCTION  opc 14 687 sz 4 end @ 35918083 cisz 48
+ WriteIC @ 1470 icode_e.cpp: ic->type _E UNSET
+ WriteIC @ 1478 icode_e.cpp: _E DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 377 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _E  DOUBLE id 67 slot 377 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 377 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <4> 4 FUNCTION  opc 5 0 sz 3 end @ 35918130 cisz 47
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _E DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 377 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _E  DOUBLE id 67 slot 377 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 377 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <4> 5 FUNCTION  opc 61 0 sz 3 end @ 35918177 cisz 47
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <4> 6 FUNCTION  opc 7 0 sz 1 end @ 35893742 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <4> csz 286 msz 768 state 8513
+ Close @ 2743 icode_e.cpp: <---- Close St <4> msz 286 state 8643
+ XcodeBlock @ 635 include_e.cpp: 3 <5> 
+------------------------------------------------------------------------
+
+### <5>[21]<0>{CONSTANT}		const double _G = 6.672e-11
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _G UNSET
+ WriteIC @ 1478 icode_e.cpp: _G DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 375 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _G  DOUBLE id 75 slot 375 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 375 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <5> 1 CONSTANT  opc 1 0 sz 3 end @ 35919199 cisz 47
+ WriteIC @ 1470 icode_e.cpp: ic->type _G UNSET
+ WriteIC @ 1478 icode_e.cpp: _G DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 375 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _G  DOUBLE id 75 slot 375 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 375 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <5> 2 CONSTANT  opc 5 0 sz 3 end @ 35919246 cisz 47
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _G DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 375 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _G  DOUBLE id 75 slot 375 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 375 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <5> 3 CONSTANT  opc 61 0 sz 3 end @ 35919293 cisz 47
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <5> 4 CONSTANT  opc 7 0 sz 1 end @ 35919338 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <5> csz 186 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <5> msz 186 state 451
+ XcodeBlock @ 635 include_e.cpp: 4 <6> 
+------------------------------------------------------------------------
+
+### <6>[23]<0>{CONSTANT}		const double _g = 9.8 // m per sec per sec -- grav acc
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _g UNSET
+ WriteIC @ 1478 icode_e.cpp: _g DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 343 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _g  DOUBLE id 80 slot 343 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 343 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <6> 1 CONSTANT  opc 1 0 sz 3 end @ 35920607 cisz 47
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 9.800000 
+ WriteIC @ 2003 icode_e.cpp:  <6> 2 CONSTANT  opc 10 0 sz 8 end @ 35920659 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _g UNSET
+ WriteIC @ 1478 icode_e.cpp: _g DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 343 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _g  DOUBLE id 80 slot 343 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 343 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <6> 3 CONSTANT  opc 5 0 sz 3 end @ 35920706 cisz 47
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _g DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 343 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _g  DOUBLE id 80 slot 343 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 343 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <6> 4 CONSTANT  opc 61 0 sz 3 end @ 35920753 cisz 47
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <6> 5 CONSTANT  opc 7 0 sz 1 end @ 35920798 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <6> csz 238 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <6> msz 238 state 451
+ XcodeBlock @ 635 include_e.cpp: 5 <7> 
+------------------------------------------------------------------------
+
+### <7>[25]<0>{CONSTANT}		const double _c = 299792458   // m per sec
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _c UNSET
+ WriteIC @ 1478 icode_e.cpp: _c DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 347 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _c  DOUBLE id 86 slot 347 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 347 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <7> 1 CONSTANT  opc 1 0 sz 3 end @ 35922047 cisz 47
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult LONG array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 2003 icode_e.cpp:  <7> 2 CONSTANT  opc 10 0 sz 8 end @ 35922099 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _c UNSET
+ WriteIC @ 1478 icode_e.cpp: _c DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 347 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _c  DOUBLE id 86 slot 347 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 347 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <7> 3 CONSTANT  opc 5 0 sz 3 end @ 35922146 cisz 47
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _c DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 347 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _c  DOUBLE id 86 slot 347 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 347 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <7> 4 CONSTANT  opc 61 0 sz 3 end @ 35922193 cisz 47
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <7> 5 CONSTANT  opc 7 0 sz 1 end @ 35922238 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <7> csz 238 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <7> msz 238 state 451
+ XcodeBlock @ 635 include_e.cpp: 6 <8> 
+------------------------------------------------------------------------
+
+### <8>[27]<0>{CONSTANT}		const double _sos = 331.0 // m per sec 
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _sos UNSET
+ WriteIC @ 1478 icode_e.cpp: _sos DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1105 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _sos  DOUBLE id 92 slot 1105 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1105 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <8> 1 CONSTANT  opc 1 0 sz 5 end @ 35923473 cisz 49
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 331.000000 
+ WriteIC @ 2003 icode_e.cpp:  <8> 2 CONSTANT  opc 10 0 sz 8 end @ 35923525 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _sos UNSET
+ WriteIC @ 1478 icode_e.cpp: _sos DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1105 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _sos  DOUBLE id 92 slot 1105 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1105 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <8> 3 CONSTANT  opc 5 0 sz 5 end @ 35923574 cisz 49
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _sos DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1105 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _sos  DOUBLE id 92 slot 1105 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1105 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <8> 4 CONSTANT  opc 61 0 sz 5 end @ 35923623 cisz 49
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <8> 5 CONSTANT  opc 7 0 sz 1 end @ 35923668 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <8> csz 244 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <8> msz 244 state 451
+ XcodeBlock @ 635 include_e.cpp: 7 <9> 
+------------------------------------------------------------------------
+
+### <9>[29]<0>{CONSTANT}		const double _k = 1.38070e-23
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _k UNSET
+ WriteIC @ 1478 icode_e.cpp: _k DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 339 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _k  DOUBLE id 98 slot 339 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 339 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <9> 1 CONSTANT  opc 1 0 sz 3 end @ 35924895 cisz 47
+ WriteIC @ 1470 icode_e.cpp: ic->type _k UNSET
+ WriteIC @ 1478 icode_e.cpp: _k DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 339 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _k  DOUBLE id 98 slot 339 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 339 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <9> 2 CONSTANT  opc 5 0 sz 3 end @ 35924942 cisz 47
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _k DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 339 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _k  DOUBLE id 98 slot 339 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 339 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <9> 3 CONSTANT  opc 61 0 sz 3 end @ 35924989 cisz 47
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <9> 4 CONSTANT  opc 7 0 sz 1 end @ 35925034 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <9> csz 186 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <9> msz 186 state 451
+ XcodeBlock @ 635 include_e.cpp: 8 <10> 
+------------------------------------------------------------------------
+
+### <10>[33]<0>{CONSTANT}		const double _h = 6.626e-34
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _h UNSET
+ WriteIC @ 1478 icode_e.cpp: _h DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 342 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _h  DOUBLE id 103 slot 342 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 342 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <10> 1 CONSTANT  opc 1 0 sz 3 end @ 35926303 cisz 47
+ WriteIC @ 1470 icode_e.cpp: ic->type _h UNSET
+ WriteIC @ 1478 icode_e.cpp: _h DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 342 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _h  DOUBLE id 103 slot 342 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 342 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <10> 2 CONSTANT  opc 5 0 sz 3 end @ 35926350 cisz 47
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _h DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 342 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _h  DOUBLE id 103 slot 342 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 342 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <10> 3 CONSTANT  opc 61 0 sz 3 end @ 35926397 cisz 47
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <10> 4 CONSTANT  opc 7 0 sz 1 end @ 35926442 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <10> csz 186 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <10> msz 186 state 451
+ XcodeBlock @ 635 include_e.cpp: 9 <11> 
+------------------------------------------------------------------------
+
+### <11>[35]<0>{CONSTANT}		const double _ev =1.602e-29
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _ev UNSET
+ WriteIC @ 1478 icode_e.cpp: _ev DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 647 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _ev  DOUBLE id 108 slot 647 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 647 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <11> 1 CONSTANT  opc 1 0 sz 4 end @ 35927712 cisz 48
+ WriteIC @ 1470 icode_e.cpp: ic->type _ev UNSET
+ WriteIC @ 1478 icode_e.cpp: _ev DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 647 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _ev  DOUBLE id 108 slot 647 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 647 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <11> 2 CONSTANT  opc 5 0 sz 4 end @ 35927760 cisz 48
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _ev DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 647 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _ev  DOUBLE id 108 slot 647 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 647 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <11> 3 CONSTANT  opc 61 0 sz 4 end @ 35927808 cisz 48
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <11> 4 CONSTANT  opc 7 0 sz 1 end @ 35927853 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <11> csz 189 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <11> msz 189 state 451
+ XcodeBlock @ 635 include_e.cpp: 10 <12> 
+------------------------------------------------------------------------
+
+### <12>[38]<0>{CONSTANT}		const double _EarthRadius = 6371000.0 //  6371 km
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _EarthRadius UNSET
+ WriteIC @ 1478 icode_e.cpp: _EarthRadius DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1991 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _EarthRadius  DOUBLE id 113 slot 1991 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1991 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <12> 1 CONSTANT  opc 1 0 sz 13 end @ 35929129 cisz 57
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 6371000.000000 
+ WriteIC @ 2003 icode_e.cpp:  <12> 2 CONSTANT  opc 10 0 sz 8 end @ 35929181 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _EarthRadius UNSET
+ WriteIC @ 1478 icode_e.cpp: _EarthRadius DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1991 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _EarthRadius  DOUBLE id 113 slot 1991 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1991 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <12> 3 CONSTANT  opc 5 0 sz 13 end @ 35929238 cisz 57
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _EarthRadius DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1991 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _EarthRadius  DOUBLE id 113 slot 1991 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1991 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <12> 4 CONSTANT  opc 61 0 sz 13 end @ 35929295 cisz 57
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <12> 5 CONSTANT  opc 7 0 sz 1 end @ 35894028 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <12> csz 268 msz 768 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <12> msz 268 state 451
+ XcodeBlock @ 635 include_e.cpp: 11 <13> 
+------------------------------------------------------------------------
+
+### <13>[40]<0>{CONSTANT}		const int _EarthDay = (24 * 60 *60) 
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _EarthDay UNSET
+ WriteIC @ 1478 icode_e.cpp: _EarthDay INT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 229 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _EarthDay  INT id 119 slot 229 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 229 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <13> 1 CONSTANT  opc 1 0 sz 10 end @ 35930550 cisz 54
+ storeICN @ 7385 icode_e.cpp: PUSHI vresult
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1828 icode_e.cpp: opcode 64 24
+ WriteIC @ 2003 icode_e.cpp:  <13> 2 CONSTANT  opc 64 24 sz 4 end @ 35930598 cisz 48
+ storeICN @ 7385 icode_e.cpp: PUSHI hold_L3
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1828 icode_e.cpp: opcode 64 60
+ WriteIC @ 2003 icode_e.cpp:  <13> 3 CONSTANT  opc 64 60 sz 4 end @ 35930646 cisz 48
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   MUL
+ WriteIC @ 2003 icode_e.cpp:  <13> 4 CONSTANT  opc 6 8 sz 1 end @ 35930691 cisz 45
+ storeICN @ 7385 icode_e.cpp: PUSHI hold_L3
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1828 icode_e.cpp: opcode 64 60
+ WriteIC @ 2003 icode_e.cpp:  <13> 5 CONSTANT  opc 64 60 sz 4 end @ 35930739 cisz 48
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   MUL
+ WriteIC @ 2003 icode_e.cpp:  <13> 6 CONSTANT  opc 6 8 sz 1 end @ 35894336 cisz 45
+ WriteIC @ 1470 icode_e.cpp: ic->type _EarthDay UNSET
+ WriteIC @ 1478 icode_e.cpp: _EarthDay INT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 229 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _EarthDay  INT id 119 slot 229 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 229 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <13> 7 CONSTANT  opc 5 0 sz 10 end @ 35894390 cisz 54
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _EarthDay INT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 229 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _EarthDay  INT id 119 slot 229 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 229 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <13> 8 CONSTANT  opc 61 0 sz 10 end @ 35894444 cisz 54
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <13> 9 CONSTANT  opc 7 0 sz 1 end @ 35894489 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <13> csz 441 msz 1024 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <13> msz 441 state 451
+ XcodeBlock @ 635 include_e.cpp: 12 <14> 
+------------------------------------------------------------------------
+
+### <14>[44]<0>{CONSTANT}		const double _EarthSun = 1.496e11  // meters AU 146 - 152  million km
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _EarthSun UNSET
+ WriteIC @ 1478 icode_e.cpp: _EarthSun DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1416 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _EarthSun  DOUBLE id 128 slot 1416 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1416 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <14> 1 CONSTANT  opc 1 0 sz 10 end @ 35931958 cisz 54
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 149600000000.000000 
+ WriteIC @ 2003 icode_e.cpp:  <14> 2 CONSTANT  opc 10 0 sz 8 end @ 35932010 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _EarthSun UNSET
+ WriteIC @ 1478 icode_e.cpp: _EarthSun DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1416 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _EarthSun  DOUBLE id 128 slot 1416 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1416 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <14> 3 CONSTANT  opc 5 0 sz 10 end @ 35932064 cisz 54
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _EarthSun DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1416 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _EarthSun  DOUBLE id 128 slot 1416 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1416 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <14> 4 CONSTANT  opc 61 0 sz 10 end @ 35932118 cisz 54
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <14> 5 CONSTANT  opc 7 0 sz 1 end @ 35895795 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <14> csz 259 msz 768 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <14> msz 259 state 451
+ XcodeBlock @ 635 include_e.cpp: 13 <15> 
+------------------------------------------------------------------------
+
+### <15>[46]<0>{CONSTANT}		const double _EarthMoon = 3.84e8  // meters
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _EarthMoon UNSET
+ WriteIC @ 1478 icode_e.cpp: _EarthMoon DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 89 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _EarthMoon  DOUBLE id 134 slot 89 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 89 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <15> 1 CONSTANT  opc 1 0 sz 11 end @ 35933399 cisz 55
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 384000000.000000 
+ WriteIC @ 2003 icode_e.cpp:  <15> 2 CONSTANT  opc 10 0 sz 8 end @ 35933451 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _EarthMoon UNSET
+ WriteIC @ 1478 icode_e.cpp: _EarthMoon DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 89 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _EarthMoon  DOUBLE id 134 slot 89 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 89 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <15> 3 CONSTANT  opc 5 0 sz 11 end @ 35933506 cisz 55
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _EarthMoon DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 89 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _EarthMoon  DOUBLE id 134 slot 89 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 89 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <15> 4 CONSTANT  opc 61 0 sz 11 end @ 35933561 cisz 55
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <15> 5 CONSTANT  opc 7 0 sz 1 end @ 35896070 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <15> csz 262 msz 768 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <15> msz 262 state 451
+ XcodeBlock @ 635 include_e.cpp: 14 <16> 
+------------------------------------------------------------------------
+
+### <16>[48]<0>{CONSTANT}		const double _SunMass = 2.0e30
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _SunMass UNSET
+ WriteIC @ 1478 icode_e.cpp: _SunMass DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1002 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _SunMass  DOUBLE id 140 slot 1002 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1002 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <16> 1 CONSTANT  opc 1 0 sz 9 end @ 35934821 cisz 53
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 2000000000000000039769249677312.000000 
+ WriteIC @ 2003 icode_e.cpp:  <16> 2 CONSTANT  opc 10 0 sz 8 end @ 35934873 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _SunMass UNSET
+ WriteIC @ 1478 icode_e.cpp: _SunMass DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1002 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _SunMass  DOUBLE id 140 slot 1002 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1002 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <16> 3 CONSTANT  opc 5 0 sz 9 end @ 35934926 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _SunMass DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1002 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _SunMass  DOUBLE id 140 slot 1002 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1002 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <16> 4 CONSTANT  opc 61 0 sz 9 end @ 35934979 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <16> 5 CONSTANT  opc 7 0 sz 1 end @ 35935024 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <16> csz 256 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <16> msz 256 state 451
+ XcodeBlock @ 635 include_e.cpp: 15 <17> 
+------------------------------------------------------------------------
+
+### <17>[50]<0>{CONSTANT}		const double _EarthMass = 5.980e24
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _EarthMass UNSET
+ WriteIC @ 1478 icode_e.cpp: _EarthMass DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 2444 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _EarthMass  DOUBLE id 143 slot 2444 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 2444 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <17> 1 CONSTANT  opc 1 0 sz 11 end @ 35936231 cisz 55
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 5980000000000000511705088.000000 
+ WriteIC @ 2003 icode_e.cpp:  <17> 2 CONSTANT  opc 10 0 sz 8 end @ 35936283 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _EarthMass UNSET
+ WriteIC @ 1478 icode_e.cpp: _EarthMass DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 2444 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _EarthMass  DOUBLE id 143 slot 2444 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 2444 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <17> 3 CONSTANT  opc 5 0 sz 11 end @ 35936338 cisz 55
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _EarthMass DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 2444 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _EarthMass  DOUBLE id 143 slot 2444 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 2444 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <17> 4 CONSTANT  opc 61 0 sz 11 end @ 35936393 cisz 55
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <17> 5 CONSTANT  opc 7 0 sz 1 end @ 35896342 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <17> csz 262 msz 768 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <17> msz 262 state 451
+ XcodeBlock @ 635 include_e.cpp: 16 <18> 
+------------------------------------------------------------------------
+
+### <18>[52]<0>{CONSTANT}		const double _Avogadro = 6.022140e23
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _Avogadro UNSET
+ WriteIC @ 1478 icode_e.cpp: _Avogadro DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1021 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _Avogadro  DOUBLE id 146 slot 1021 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1021 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <18> 1 CONSTANT  opc 1 0 sz 10 end @ 35937638 cisz 54
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 602213999999999969067008.000000 
+ WriteIC @ 2003 icode_e.cpp:  <18> 2 CONSTANT  opc 10 0 sz 8 end @ 35937690 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _Avogadro UNSET
+ WriteIC @ 1478 icode_e.cpp: _Avogadro DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1021 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _Avogadro  DOUBLE id 146 slot 1021 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1021 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <18> 3 CONSTANT  opc 5 0 sz 10 end @ 35937744 cisz 54
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _Avogadro DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1021 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _Avogadro  DOUBLE id 146 slot 1021 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1021 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <18> 4 CONSTANT  opc 61 0 sz 10 end @ 35937798 cisz 54
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <18> 5 CONSTANT  opc 7 0 sz 1 end @ 35896611 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <18> csz 259 msz 768 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <18> msz 259 state 451
+ XcodeBlock @ 635 include_e.cpp: 17 <19> 
+------------------------------------------------------------------------
+
+### <19>[67]<0>{CONSTANT}		const float _inch2cm = 2.54
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _inch2cm UNSET
+ WriteIC @ 1478 icode_e.cpp: _inch2cm FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 132 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _inch2cm  FLOAT id 149 slot 132 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 132 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <19> 1 CONSTANT  opc 1 0 sz 9 end @ 35939045 cisz 53
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 2.540000 
+ WriteIC @ 2003 icode_e.cpp:  <19> 2 CONSTANT  opc 10 0 sz 8 end @ 35939097 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _inch2cm UNSET
+ WriteIC @ 1478 icode_e.cpp: _inch2cm FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 132 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _inch2cm  FLOAT id 149 slot 132 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 132 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <19> 3 CONSTANT  opc 5 0 sz 9 end @ 35939150 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _inch2cm FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 132 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _inch2cm  FLOAT id 149 slot 132 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 132 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <19> 4 CONSTANT  opc 61 0 sz 9 end @ 35939203 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <19> 5 CONSTANT  opc 7 0 sz 1 end @ 35939248 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <19> csz 256 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <19> msz 256 state 451
+ XcodeBlock @ 635 include_e.cpp: 18 <20> 
+------------------------------------------------------------------------
+
+### <20>[68]<0>{CONSTANT}		const float _ft2m = 12*2.54/100.0
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _ft2m UNSET
+ WriteIC @ 1478 icode_e.cpp: _ft2m FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 2011 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _ft2m  FLOAT id 152 slot 2011 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 2011 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <20> 1 CONSTANT  opc 1 0 sz 6 end @ 35940450 cisz 50
+ storeICN @ 7385 icode_e.cpp: PUSHI vresult
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1828 icode_e.cpp: opcode 64 12
+ WriteIC @ 2003 icode_e.cpp:  <20> 2 CONSTANT  opc 64 12 sz 4 end @ 35940498 cisz 48
+ Cast @ 1945 convert_e.cpp: 
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: hold_L3 DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 2.540000 
+ WriteIC @ 2003 icode_e.cpp:  <20> 3 CONSTANT  opc 10 0 sz 8 end @ 35940550 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   MUL
+ WriteIC @ 2003 icode_e.cpp:  <20> 4 CONSTANT  opc 6 8 sz 1 end @ 35940595 cisz 45
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: hold_L3 DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 100.000000 
+ WriteIC @ 2003 icode_e.cpp:  <20> 5 CONSTANT  opc 10 0 sz 8 end @ 35940647 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   DIV
+ WriteIC @ 2003 icode_e.cpp:  <20> 6 CONSTANT  opc 6 9 sz 1 end @ 35896916 cisz 45
+ WriteIC @ 1470 icode_e.cpp: ic->type _ft2m UNSET
+ WriteIC @ 1478 icode_e.cpp: _ft2m FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 2011 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _ft2m  FLOAT id 152 slot 2011 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 2011 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <20> 7 CONSTANT  opc 5 0 sz 6 end @ 35896966 cisz 50
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _ft2m FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 2011 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _ft2m  FLOAT id 152 slot 2011 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 2011 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <20> 8 CONSTANT  opc 61 0 sz 6 end @ 35897016 cisz 50
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <20> 9 CONSTANT  opc 7 0 sz 1 end @ 35897061 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <20> csz 437 msz 1024 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <20> msz 437 state 451
+ XcodeBlock @ 635 include_e.cpp: 19 <21> 
+------------------------------------------------------------------------
+
+### <21>[69]<0>{CONSTANT}		const float _cm2inch = 1.0/_inch2cm
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _cm2inch UNSET
+ WriteIC @ 1478 icode_e.cpp: _cm2inch FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1743 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _cm2inch  FLOAT id 161 slot 1743 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1743 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <21> 1 CONSTANT  opc 1 0 sz 9 end @ 35941861 cisz 53
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 1.000000 
+ WriteIC @ 2003 icode_e.cpp:  <21> 2 CONSTANT  opc 10 0 sz 8 end @ 35941913 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _inch2cm FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 132 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: PUSH_SIV _inch2cm  FLOAT id 149 slot 132 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 132 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <21> 3 CONSTANT  opc 12 0 sz 9 end @ 35941966 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   DIV
+ WriteIC @ 2003 icode_e.cpp:  <21> 4 CONSTANT  opc 6 9 sz 1 end @ 35942011 cisz 45
+ WriteIC @ 1470 icode_e.cpp: ic->type _cm2inch UNSET
+ WriteIC @ 1478 icode_e.cpp: _cm2inch FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1743 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _cm2inch  FLOAT id 161 slot 1743 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1743 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <21> 5 CONSTANT  opc 5 0 sz 9 end @ 35942064 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _cm2inch FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1743 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _cm2inch  FLOAT id 161 slot 1743 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1743 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <21> 6 CONSTANT  opc 61 0 sz 9 end @ 36080181 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <21> 7 CONSTANT  opc 7 0 sz 1 end @ 36080226 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <21> csz 354 msz 768 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <21> msz 354 state 451
+ XcodeBlock @ 635 include_e.cpp: 20 <22> 
+------------------------------------------------------------------------
+
+### <22>[70]<0>{CONSTANT}		const float _m2ft = 3.280839
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _m2ft UNSET
+ WriteIC @ 1478 icode_e.cpp: _m2ft FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1557 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _m2ft  FLOAT id 169 slot 1557 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1557 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <22> 1 CONSTANT  opc 1 0 sz 6 end @ 35943266 cisz 50
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 3.280839 
+ WriteIC @ 2003 icode_e.cpp:  <22> 2 CONSTANT  opc 10 0 sz 8 end @ 35943318 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _m2ft UNSET
+ WriteIC @ 1478 icode_e.cpp: _m2ft FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1557 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _m2ft  FLOAT id 169 slot 1557 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1557 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <22> 3 CONSTANT  opc 5 0 sz 6 end @ 35943368 cisz 50
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _m2ft FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1557 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _m2ft  FLOAT id 169 slot 1557 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1557 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <22> 4 CONSTANT  opc 61 0 sz 6 end @ 35943418 cisz 50
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <22> 5 CONSTANT  opc 7 0 sz 1 end @ 35943463 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <22> csz 247 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <22> msz 247 state 451
+ XcodeBlock @ 635 include_e.cpp: 21 <23> 
+------------------------------------------------------------------------
+
+### <23>[71]<0>{CONSTANT}		const float _mile2km = 1.6093
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _mile2km UNSET
+ WriteIC @ 1478 icode_e.cpp: _mile2km FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 501 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _mile2km  FLOAT id 172 slot 501 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 501 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <23> 1 CONSTANT  opc 1 0 sz 9 end @ 35944677 cisz 53
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 1.609300 
+ WriteIC @ 2003 icode_e.cpp:  <23> 2 CONSTANT  opc 10 0 sz 8 end @ 35944729 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _mile2km UNSET
+ WriteIC @ 1478 icode_e.cpp: _mile2km FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 501 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _mile2km  FLOAT id 172 slot 501 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 501 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <23> 3 CONSTANT  opc 5 0 sz 9 end @ 35944782 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _mile2km FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 501 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _mile2km  FLOAT id 172 slot 501 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 501 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <23> 4 CONSTANT  opc 61 0 sz 9 end @ 35944835 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <23> 5 CONSTANT  opc 7 0 sz 1 end @ 35944880 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <23> csz 256 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <23> msz 256 state 451
+ XcodeBlock @ 635 include_e.cpp: 22 <24> 
+------------------------------------------------------------------------
+
+### <24>[72]<0>{CONSTANT}		const float _km2mile = 1/_mile2km
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _km2mile UNSET
+ WriteIC @ 1478 icode_e.cpp: _km2mile FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 652 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _km2mile  FLOAT id 175 slot 652 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 652 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <24> 1 CONSTANT  opc 1 0 sz 9 end @ 35946085 cisz 53
+ storeICN @ 7385 icode_e.cpp: PUSHI vresult
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1828 icode_e.cpp: opcode 64 1
+ WriteIC @ 2003 icode_e.cpp:  <24> 2 CONSTANT  opc 64 1 sz 4 end @ 35946133 cisz 48
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _mile2km FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 501 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: PUSH_SIV _mile2km  FLOAT id 172 slot 501 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 501 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <24> 3 CONSTANT  opc 12 0 sz 9 end @ 35946186 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   DIV
+ WriteIC @ 2003 icode_e.cpp:  <24> 4 CONSTANT  opc 6 9 sz 1 end @ 35946231 cisz 45
+ WriteIC @ 1470 icode_e.cpp: ic->type _km2mile UNSET
+ WriteIC @ 1478 icode_e.cpp: _km2mile FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 652 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _km2mile  FLOAT id 175 slot 652 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 652 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <24> 5 CONSTANT  opc 5 0 sz 9 end @ 35946284 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _km2mile FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 652 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _km2mile  FLOAT id 175 slot 652 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 652 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <24> 6 CONSTANT  opc 61 0 sz 9 end @ 36080545 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <24> 7 CONSTANT  opc 7 0 sz 1 end @ 36080590 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <24> csz 350 msz 768 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <24> msz 350 state 451
+ XcodeBlock @ 635 include_e.cpp: 23 <25> 
+------------------------------------------------------------------------
+
+### <25>[73]<0>{CONSTANT}		const float _km2nm = 1.0/1.852
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _km2nm UNSET
+ WriteIC @ 1478 icode_e.cpp: _km2nm FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 614 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _km2nm  FLOAT id 183 slot 614 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 614 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <25> 1 CONSTANT  opc 1 0 sz 7 end @ 35947491 cisz 51
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 1.000000 
+ WriteIC @ 2003 icode_e.cpp:  <25> 2 CONSTANT  opc 10 0 sz 8 end @ 35947543 cisz 52
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: hold_L3 DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 1.852000 
+ WriteIC @ 2003 icode_e.cpp:  <25> 3 CONSTANT  opc 10 0 sz 8 end @ 35947595 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   DIV
+ WriteIC @ 2003 icode_e.cpp:  <25> 4 CONSTANT  opc 6 9 sz 1 end @ 35947640 cisz 45
+ WriteIC @ 1470 icode_e.cpp: ic->type _km2nm UNSET
+ WriteIC @ 1478 icode_e.cpp: _km2nm FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 614 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _km2nm  FLOAT id 183 slot 614 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 614 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <25> 5 CONSTANT  opc 5 0 sz 7 end @ 35947691 cisz 51
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _km2nm FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 614 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _km2nm  FLOAT id 183 slot 614 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 614 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <25> 6 CONSTANT  opc 61 0 sz 7 end @ 36080910 cisz 51
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <25> 7 CONSTANT  opc 7 0 sz 1 end @ 36080955 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <25> csz 347 msz 768 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <25> msz 347 state 451
+ XcodeBlock @ 635 include_e.cpp: 24 <26> 
+------------------------------------------------------------------------
+
+### <26>[74]<0>{CONSTANT}		const float _usgal2liter = 3.78541178
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _usgal2liter UNSET
+ WriteIC @ 1478 icode_e.cpp: _usgal2liter FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 412 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _usgal2liter  FLOAT id 191 slot 412 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 412 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <26> 1 CONSTANT  opc 1 0 sz 13 end @ 35948905 cisz 57
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 3.785412 
+ WriteIC @ 2003 icode_e.cpp:  <26> 2 CONSTANT  opc 10 0 sz 8 end @ 35948957 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _usgal2liter UNSET
+ WriteIC @ 1478 icode_e.cpp: _usgal2liter FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 412 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _usgal2liter  FLOAT id 191 slot 412 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 412 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <26> 3 CONSTANT  opc 5 0 sz 13 end @ 35949014 cisz 57
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _usgal2liter FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 412 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _usgal2liter  FLOAT id 191 slot 412 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 412 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <26> 4 CONSTANT  opc 61 0 sz 13 end @ 35949071 cisz 57
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <26> 5 CONSTANT  opc 7 0 sz 1 end @ 36081244 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <26> csz 268 msz 768 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <26> msz 268 state 451
+ XcodeBlock @ 635 include_e.cpp: 25 <27> 
+------------------------------------------------------------------------
+
+### <27>[75]<0>{CONSTANT}		const float _gal2liter = 4.546
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _gal2liter UNSET
+ WriteIC @ 1478 icode_e.cpp: _gal2liter FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1802 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _gal2liter  FLOAT id 194 slot 1802 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1802 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <27> 1 CONSTANT  opc 1 0 sz 11 end @ 35950311 cisz 55
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 4.546000 
+ WriteIC @ 2003 icode_e.cpp:  <27> 2 CONSTANT  opc 10 0 sz 8 end @ 35950363 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _gal2liter UNSET
+ WriteIC @ 1478 icode_e.cpp: _gal2liter FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1802 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _gal2liter  FLOAT id 194 slot 1802 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1802 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <27> 3 CONSTANT  opc 5 0 sz 11 end @ 35950418 cisz 55
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _gal2liter FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1802 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _gal2liter  FLOAT id 194 slot 1802 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1802 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <27> 4 CONSTANT  opc 61 0 sz 11 end @ 35950473 cisz 55
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <27> 5 CONSTANT  opc 7 0 sz 1 end @ 36081526 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <27> csz 262 msz 768 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <27> msz 262 state 451
+ XcodeBlock @ 635 include_e.cpp: 26 <28> 
+------------------------------------------------------------------------
+
+### <28>[76]<0>{CONSTANT}		const float _oz2gram = 28.35
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _oz2gram UNSET
+ WriteIC @ 1478 icode_e.cpp: _oz2gram FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1481 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _oz2gram  FLOAT id 197 slot 1481 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1481 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <28> 1 CONSTANT  opc 1 0 sz 9 end @ 35951717 cisz 53
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 28.350000 
+ WriteIC @ 2003 icode_e.cpp:  <28> 2 CONSTANT  opc 10 0 sz 8 end @ 35951769 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _oz2gram UNSET
+ WriteIC @ 1478 icode_e.cpp: _oz2gram FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1481 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _oz2gram  FLOAT id 197 slot 1481 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1481 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <28> 3 CONSTANT  opc 5 0 sz 9 end @ 35951822 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _oz2gram FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1481 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _oz2gram  FLOAT id 197 slot 1481 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1481 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <28> 4 CONSTANT  opc 61 0 sz 9 end @ 35951875 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <28> 5 CONSTANT  opc 7 0 sz 1 end @ 35951920 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <28> csz 256 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <28> msz 256 state 451
+ XcodeBlock @ 635 include_e.cpp: 27 <29> 
+------------------------------------------------------------------------
+
+### <29>[77]<0>{CONSTANT}		const float _lb2kg = 0.4536
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _lb2kg UNSET
+ WriteIC @ 1478 icode_e.cpp: _lb2kg FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 309 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _lb2kg  FLOAT id 200 slot 309 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 309 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <29> 1 CONSTANT  opc 1 0 sz 7 end @ 35953123 cisz 51
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 0.453600 
+ WriteIC @ 2003 icode_e.cpp:  <29> 2 CONSTANT  opc 10 0 sz 8 end @ 35953175 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _lb2kg UNSET
+ WriteIC @ 1478 icode_e.cpp: _lb2kg FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 309 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _lb2kg  FLOAT id 200 slot 309 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 309 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <29> 3 CONSTANT  opc 5 0 sz 7 end @ 35953226 cisz 51
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _lb2kg FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 309 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _lb2kg  FLOAT id 200 slot 309 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 309 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <29> 4 CONSTANT  opc 61 0 sz 7 end @ 35953277 cisz 51
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <29> 5 CONSTANT  opc 7 0 sz 1 end @ 35953322 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <29> csz 250 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <29> msz 250 state 451
+ XcodeBlock @ 635 include_e.cpp: 28 <30> 
+------------------------------------------------------------------------
+
+### <30>[78]<0>{CONSTANT}		const float _kg2lb = 2.204586
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _kg2lb UNSET
+ WriteIC @ 1478 icode_e.cpp: _kg2lb FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 107 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _kg2lb  FLOAT id 203 slot 107 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 107 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <30> 1 CONSTANT  opc 1 0 sz 7 end @ 35954531 cisz 51
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 2.204586 
+ WriteIC @ 2003 icode_e.cpp:  <30> 2 CONSTANT  opc 10 0 sz 8 end @ 35954583 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _kg2lb UNSET
+ WriteIC @ 1478 icode_e.cpp: _kg2lb FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 107 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _kg2lb  FLOAT id 203 slot 107 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 107 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <30> 3 CONSTANT  opc 5 0 sz 7 end @ 35954634 cisz 51
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _kg2lb FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 107 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _kg2lb  FLOAT id 203 slot 107 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 107 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <30> 4 CONSTANT  opc 61 0 sz 7 end @ 35954685 cisz 51
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <30> 5 CONSTANT  opc 7 0 sz 1 end @ 35954730 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <30> csz 250 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <30> msz 250 state 451
+ XcodeBlock @ 635 include_e.cpp: 29 <31> 
+------------------------------------------------------------------------
+
+### <31>[79]<0>{CONSTANT}		const float _cuft2cum = 0.0283
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _cuft2cum UNSET
+ WriteIC @ 1478 icode_e.cpp: _cuft2cum FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 2307 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _cuft2cum  FLOAT id 206 slot 2307 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 2307 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <31> 1 CONSTANT  opc 1 0 sz 10 end @ 35955942 cisz 54
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 0.028300 
+ WriteIC @ 2003 icode_e.cpp:  <31> 2 CONSTANT  opc 10 0 sz 8 end @ 35955994 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _cuft2cum UNSET
+ WriteIC @ 1478 icode_e.cpp: _cuft2cum FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 2307 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _cuft2cum  FLOAT id 206 slot 2307 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 2307 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <31> 3 CONSTANT  opc 5 0 sz 10 end @ 35956048 cisz 54
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _cuft2cum FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 2307 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _cuft2cum  FLOAT id 206 slot 2307 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 2307 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <31> 4 CONSTANT  opc 61 0 sz 10 end @ 35956102 cisz 54
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <31> 5 CONSTANT  opc 7 0 sz 1 end @ 36081795 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <31> csz 259 msz 768 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <31> msz 259 state 451
+ XcodeBlock @ 635 include_e.cpp: 30 <32> 
+------------------------------------------------------------------------
+
+### <32>[81]<0>{CONSTANT}		const float _troyoz2gram = 31.103
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _troyoz2gram UNSET
+ WriteIC @ 1478 icode_e.cpp: _troyoz2gram FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1215 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _troyoz2gram  FLOAT id 209 slot 1215 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1215 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <32> 1 CONSTANT  opc 1 0 sz 13 end @ 35957353 cisz 57
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 31.103000 
+ WriteIC @ 2003 icode_e.cpp:  <32> 2 CONSTANT  opc 10 0 sz 8 end @ 35957405 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _troyoz2gram UNSET
+ WriteIC @ 1478 icode_e.cpp: _troyoz2gram FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1215 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _troyoz2gram  FLOAT id 209 slot 1215 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1215 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <32> 3 CONSTANT  opc 5 0 sz 13 end @ 35957462 cisz 57
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _troyoz2gram FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1215 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _troyoz2gram  FLOAT id 209 slot 1215 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1215 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <32> 4 CONSTANT  opc 61 0 sz 13 end @ 35957519 cisz 57
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <32> 5 CONSTANT  opc 7 0 sz 1 end @ 36082076 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <32> csz 268 msz 768 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <32> msz 268 state 451
+ XcodeBlock @ 635 include_e.cpp: 31 <33> 
+------------------------------------------------------------------------
+
+### <33>[85]<0>{CONSTANT}		const float _sqmile2acre = 259.0/0.4047
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _sqmile2acre UNSET
+ WriteIC @ 1478 icode_e.cpp: _sqmile2acre FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1009 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _sqmile2acre  FLOAT id 212 slot 1009 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1009 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <33> 1 CONSTANT  opc 1 0 sz 13 end @ 35958761 cisz 57
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 259.000000 
+ WriteIC @ 2003 icode_e.cpp:  <33> 2 CONSTANT  opc 10 0 sz 8 end @ 35958813 cisz 52
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: hold_L3 DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 0.404700 
+ WriteIC @ 2003 icode_e.cpp:  <33> 3 CONSTANT  opc 10 0 sz 8 end @ 35958865 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   DIV
+ WriteIC @ 2003 icode_e.cpp:  <33> 4 CONSTANT  opc 6 9 sz 1 end @ 35958910 cisz 45
+ WriteIC @ 1470 icode_e.cpp: ic->type _sqmile2acre UNSET
+ WriteIC @ 1478 icode_e.cpp: _sqmile2acre FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1009 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _sqmile2acre  FLOAT id 212 slot 1009 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1009 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <33> 5 CONSTANT  opc 5 0 sz 13 end @ 36082359 cisz 57
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _sqmile2acre FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1009 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _sqmile2acre  FLOAT id 212 slot 1009 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1009 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <33> 6 CONSTANT  opc 61 0 sz 13 end @ 36082416 cisz 57
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <33> 7 CONSTANT  opc 7 0 sz 1 end @ 36082461 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <33> csz 365 msz 768 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <33> msz 365 state 451
+ XcodeBlock @ 635 include_e.cpp: 32 <34> 
+------------------------------------------------------------------------
+
+### <34>[86]<0>{CONSTANT}		const float _knots2mph = 6080.0/5280.0
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _knots2mph UNSET
+ WriteIC @ 1478 icode_e.cpp: _knots2mph FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 2575 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _knots2mph  FLOAT id 220 slot 2575 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 2575 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <34> 1 CONSTANT  opc 1 0 sz 11 end @ 35960183 cisz 55
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 6080.000000 
+ WriteIC @ 2003 icode_e.cpp:  <34> 2 CONSTANT  opc 10 0 sz 8 end @ 35960235 cisz 52
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: hold_L3 DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 5280.000000 
+ WriteIC @ 2003 icode_e.cpp:  <34> 3 CONSTANT  opc 10 0 sz 8 end @ 35960287 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   DIV
+ WriteIC @ 2003 icode_e.cpp:  <34> 4 CONSTANT  opc 6 9 sz 1 end @ 35960332 cisz 45
+ WriteIC @ 1470 icode_e.cpp: ic->type _knots2mph UNSET
+ WriteIC @ 1478 icode_e.cpp: _knots2mph FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 2575 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _knots2mph  FLOAT id 220 slot 2575 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 2575 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <34> 5 CONSTANT  opc 5 0 sz 11 end @ 36082739 cisz 55
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _knots2mph FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 2575 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _knots2mph  FLOAT id 220 slot 2575 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 2575 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <34> 6 CONSTANT  opc 61 0 sz 11 end @ 36082794 cisz 55
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <34> 7 CONSTANT  opc 7 0 sz 1 end @ 36082839 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <34> csz 359 msz 768 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <34> msz 359 state 451
+ XcodeBlock @ 635 include_e.cpp: 33 <35> 
+------------------------------------------------------------------------
+
+### <35>[87]<0>{CONSTANT}		const float _nm2mile = 6076.0/5280.0
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _nm2mile UNSET
+ WriteIC @ 1478 icode_e.cpp: _nm2mile FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 649 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _nm2mile  FLOAT id 228 slot 649 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 649 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <35> 1 CONSTANT  opc 1 0 sz 9 end @ 35961605 cisz 53
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 6076.000000 
+ WriteIC @ 2003 icode_e.cpp:  <35> 2 CONSTANT  opc 10 0 sz 8 end @ 35961657 cisz 52
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: hold_L3 DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 5280.000000 
+ WriteIC @ 2003 icode_e.cpp:  <35> 3 CONSTANT  opc 10 0 sz 8 end @ 35961709 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   DIV
+ WriteIC @ 2003 icode_e.cpp:  <35> 4 CONSTANT  opc 6 9 sz 1 end @ 35961754 cisz 45
+ WriteIC @ 1470 icode_e.cpp: ic->type _nm2mile UNSET
+ WriteIC @ 1478 icode_e.cpp: _nm2mile FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 649 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _nm2mile  FLOAT id 228 slot 649 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 649 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <35> 5 CONSTANT  opc 5 0 sz 9 end @ 35961807 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _nm2mile FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 649 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _nm2mile  FLOAT id 228 slot 649 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 649 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <35> 6 CONSTANT  opc 61 0 sz 9 end @ 36083156 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <35> 7 CONSTANT  opc 7 0 sz 1 end @ 36083201 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <35> csz 353 msz 768 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <35> msz 353 state 451
+ XcodeBlock @ 635 include_e.cpp: 34 <36> 
+------------------------------------------------------------------------
+
+### <36>[88]<0>{CONSTANT}		const float _nm2ft = 6076.0
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _nm2ft UNSET
+ WriteIC @ 1478 icode_e.cpp: _nm2ft FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 2701 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _nm2ft  FLOAT id 236 slot 2701 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 2701 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <36> 1 CONSTANT  opc 1 0 sz 7 end @ 35963011 cisz 51
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 6076.000000 
+ WriteIC @ 2003 icode_e.cpp:  <36> 2 CONSTANT  opc 10 0 sz 8 end @ 35963063 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _nm2ft UNSET
+ WriteIC @ 1478 icode_e.cpp: _nm2ft FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 2701 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _nm2ft  FLOAT id 236 slot 2701 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 2701 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <36> 3 CONSTANT  opc 5 0 sz 7 end @ 35963114 cisz 51
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _nm2ft FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 2701 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _nm2ft  FLOAT id 236 slot 2701 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 2701 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <36> 4 CONSTANT  opc 61 0 sz 7 end @ 35963165 cisz 51
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <36> 5 CONSTANT  opc 7 0 sz 1 end @ 35963210 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <36> csz 250 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <36> msz 250 state 451
+ XcodeBlock @ 635 include_e.cpp: 35 <37> 
+------------------------------------------------------------------------
+
+### <37>[89]<0>{CONSTANT}		const float _nm2km = 1.852
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _nm2km UNSET
+ WriteIC @ 1478 icode_e.cpp: _nm2km FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 560 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _nm2km  FLOAT id 239 slot 560 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 560 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <37> 1 CONSTANT  opc 1 0 sz 7 end @ 35964419 cisz 51
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 1.852000 
+ WriteIC @ 2003 icode_e.cpp:  <37> 2 CONSTANT  opc 10 0 sz 8 end @ 35964471 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _nm2km UNSET
+ WriteIC @ 1478 icode_e.cpp: _nm2km FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 560 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _nm2km  FLOAT id 239 slot 560 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 560 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <37> 3 CONSTANT  opc 5 0 sz 7 end @ 35964522 cisz 51
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _nm2km FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 560 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _nm2km  FLOAT id 239 slot 560 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 560 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <37> 4 CONSTANT  opc 61 0 sz 7 end @ 35964573 cisz 51
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <37> 5 CONSTANT  opc 7 0 sz 1 end @ 35964618 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <37> csz 250 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <37> msz 250 state 451
+ XcodeBlock @ 635 include_e.cpp: 36 <38> 
+------------------------------------------------------------------------
+
+### <38>[90]<0>{CONSTANT}		const float _mile2nm = 5280.0/6076
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _mile2nm UNSET
+ WriteIC @ 1478 icode_e.cpp: _mile2nm FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 824 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _mile2nm  FLOAT id 242 slot 824 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 824 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <38> 1 CONSTANT  opc 1 0 sz 9 end @ 35965829 cisz 53
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 5280.000000 
+ WriteIC @ 2003 icode_e.cpp:  <38> 2 CONSTANT  opc 10 0 sz 8 end @ 35965881 cisz 52
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: hold_L3 DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 6076.000000 
+ WriteIC @ 2003 icode_e.cpp:  <38> 3 CONSTANT  opc 10 0 sz 8 end @ 35965933 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   DIV
+ WriteIC @ 2003 icode_e.cpp:  <38> 4 CONSTANT  opc 6 9 sz 1 end @ 35965978 cisz 45
+ WriteIC @ 1470 icode_e.cpp: ic->type _mile2nm UNSET
+ WriteIC @ 1478 icode_e.cpp: _mile2nm FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 824 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _mile2nm  FLOAT id 242 slot 824 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 824 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <38> 5 CONSTANT  opc 5 0 sz 9 end @ 35966031 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _mile2nm FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 824 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _mile2nm  FLOAT id 242 slot 824 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 824 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <38> 6 CONSTANT  opc 61 0 sz 9 end @ 36083524 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <38> 7 CONSTANT  opc 7 0 sz 1 end @ 36083569 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <38> csz 353 msz 768 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <38> msz 353 state 451
+ XcodeBlock @ 635 include_e.cpp: 37 <39> 
+------------------------------------------------------------------------
+
+### <39>[91]<0>{CONSTANT}		const float _mph2knots = 5280.0/6076.0
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _mph2knots UNSET
+ WriteIC @ 1478 icode_e.cpp: _mph2knots FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1454 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _mph2knots  FLOAT id 250 slot 1454 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1454 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <39> 1 CONSTANT  opc 1 0 sz 11 end @ 35967239 cisz 55
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 5280.000000 
+ WriteIC @ 2003 icode_e.cpp:  <39> 2 CONSTANT  opc 10 0 sz 8 end @ 35967291 cisz 52
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: hold_L3 DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 6076.000000 
+ WriteIC @ 2003 icode_e.cpp:  <39> 3 CONSTANT  opc 10 0 sz 8 end @ 35967343 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   DIV
+ WriteIC @ 2003 icode_e.cpp:  <39> 4 CONSTANT  opc 6 9 sz 1 end @ 35967388 cisz 45
+ WriteIC @ 1470 icode_e.cpp: ic->type _mph2knots UNSET
+ WriteIC @ 1478 icode_e.cpp: _mph2knots FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1454 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _mph2knots  FLOAT id 250 slot 1454 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1454 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <39> 5 CONSTANT  opc 5 0 sz 11 end @ 36083843 cisz 55
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _mph2knots FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1454 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _mph2knots  FLOAT id 250 slot 1454 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1454 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <39> 6 CONSTANT  opc 61 0 sz 11 end @ 36083898 cisz 55
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <39> 7 CONSTANT  opc 7 0 sz 1 end @ 36083943 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <39> csz 359 msz 768 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <39> msz 359 state 451
+ XcodeBlock @ 635 include_e.cpp: 38 <40> 
+------------------------------------------------------------------------
+
+### <40>[92]<0>{CONSTANT}		const float _atm2Nm2 = 1.01e5
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _atm2Nm2 UNSET
+ WriteIC @ 1478 icode_e.cpp: _atm2Nm2 FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 378 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _atm2Nm2  FLOAT id 258 slot 378 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 378 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <40> 1 CONSTANT  opc 1 0 sz 9 end @ 35968661 cisz 53
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 101000.000000 
+ WriteIC @ 2003 icode_e.cpp:  <40> 2 CONSTANT  opc 10 0 sz 8 end @ 35968713 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _atm2Nm2 UNSET
+ WriteIC @ 1478 icode_e.cpp: _atm2Nm2 FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 378 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _atm2Nm2  FLOAT id 258 slot 378 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 378 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <40> 3 CONSTANT  opc 5 0 sz 9 end @ 35968766 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _atm2Nm2 FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 378 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _atm2Nm2  FLOAT id 258 slot 378 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 378 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <40> 4 CONSTANT  opc 61 0 sz 9 end @ 35968819 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <40> 5 CONSTANT  opc 7 0 sz 1 end @ 35968864 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <40> csz 256 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <40> msz 256 state 451
+ XcodeBlock @ 635 include_e.cpp: 39 <41> 
+------------------------------------------------------------------------
+
+### <41>[93]<0>{CONSTANT}		const float _atm2lbft2 = 2116.0
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _atm2lbft2 UNSET
+ WriteIC @ 1478 icode_e.cpp: _atm2lbft2 FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1111 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _atm2lbft2  FLOAT id 261 slot 1111 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1111 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <41> 1 CONSTANT  opc 1 0 sz 11 end @ 35970071 cisz 55
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 2116.000000 
+ WriteIC @ 2003 icode_e.cpp:  <41> 2 CONSTANT  opc 10 0 sz 8 end @ 35970123 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _atm2lbft2 UNSET
+ WriteIC @ 1478 icode_e.cpp: _atm2lbft2 FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1111 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _atm2lbft2  FLOAT id 261 slot 1111 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1111 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <41> 3 CONSTANT  opc 5 0 sz 11 end @ 35970178 cisz 55
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _atm2lbft2 FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 1111 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _atm2lbft2  FLOAT id 261 slot 1111 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 1111 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <41> 4 CONSTANT  opc 61 0 sz 11 end @ 35970233 cisz 55
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <41> 5 CONSTANT  opc 7 0 sz 1 end @ 36084214 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <41> csz 262 msz 768 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <41> msz 262 state 451
+ XcodeBlock @ 635 include_e.cpp: 40 <42> 
+------------------------------------------------------------------------
+
+### <42>[94]<0>{CONSTANT}		const float _slug2lb = 32.2
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _slug2lb UNSET
+ WriteIC @ 1478 icode_e.cpp: _slug2lb FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 2122 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _slug2lb  FLOAT id 264 slot 2122 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 2122 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <42> 1 CONSTANT  opc 1 0 sz 9 end @ 35971477 cisz 53
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 32.200000 
+ WriteIC @ 2003 icode_e.cpp:  <42> 2 CONSTANT  opc 10 0 sz 8 end @ 35971529 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _slug2lb UNSET
+ WriteIC @ 1478 icode_e.cpp: _slug2lb FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 2122 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _slug2lb  FLOAT id 264 slot 2122 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 2122 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <42> 3 CONSTANT  opc 5 0 sz 9 end @ 35971582 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _slug2lb FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 2122 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _slug2lb  FLOAT id 264 slot 2122 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 2122 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <42> 4 CONSTANT  opc 61 0 sz 9 end @ 35971635 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <42> 5 CONSTANT  opc 7 0 sz 1 end @ 35971680 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <42> csz 256 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <42> msz 256 state 451
+ XcodeBlock @ 635 include_e.cpp: 41 <43> 
+------------------------------------------------------------------------
+
+### <43>[95]<0>{CONSTANT}		const float _lightyr = 9.46e15
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type _lightyr UNSET
+ WriteIC @ 1478 icode_e.cpp: _lightyr FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 401 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV _lightyr  FLOAT id 267 slot 401 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 401 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <43> 1 CONSTANT  opc 1 0 sz 9 end @ 35972885 cisz 53
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 9460000000000000.000000 
+ WriteIC @ 2003 icode_e.cpp:  <43> 2 CONSTANT  opc 10 0 sz 8 end @ 35972937 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type _lightyr UNSET
+ WriteIC @ 1478 icode_e.cpp: _lightyr FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 401 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER _lightyr  FLOAT id 267 slot 401 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 401 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <43> 3 CONSTANT  opc 5 0 sz 9 end @ 35972990 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: _lightyr FLOAT array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 401 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: AWON_SIV _lightyr  FLOAT id 267 slot 401 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 401 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <43> 4 CONSTANT  opc 61 0 sz 9 end @ 35973043 cisz 53
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <43> 5 CONSTANT  opc 7 0 sz 1 end @ 35973088 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <43> csz 256 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <43> msz 256 state 451
+ XcodeBlock @ 635 include_e.cpp: 42 <44> 
+------------------------------------------------------------------------
+
+### <44>[98]<0>{DEF_PROC}		proc units()
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 2003 icode_e.cpp:  <44> 1 DEF_PROC  opc 59 0 sz 1 end @ 35974285 cisz 45
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <44> 2 DEF_PROC  opc 7 0 sz 1 end @ 35974330 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <44> csz 90 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <44> msz 90 state 451
+ XcodeBlock @ 635 include_e.cpp: 43 <70> 
+------------------------------------------------------------------------
+
+### <70>[126]<0>{DEF_PROC}		proc consts()
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 2003 icode_e.cpp:  <70> 1 DEF_PROC  opc 59 0 sz 1 end @ 36010525 cisz 45
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <70> 2 DEF_PROC  opc 7 0 sz 1 end @ 36010570 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <70> csz 90 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <70> msz 90 state 451
+ XcodeBlock @ 635 include_e.cpp: 44 <86> 
+------------------------------------------------------------------------
+
+### <86>[152]<0>{DEF_PROC}		proc ll2dd (the_ang)
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 2003 icode_e.cpp:  <86> 1 DEF_PROC  opc 59 0 sz 1 end @ 36033069 cisz 45
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <86> 2 DEF_PROC  opc 7 0 sz 1 end @ 36033114 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <86> csz 90 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <86> msz 90 state 451
+ XcodeBlock @ 635 include_e.cpp: 45 <119> 
+------------------------------------------------------------------------
+
+### <119>[210]<0>{FUNCTION}		_codeend();
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type codeend UNSET
+ WriteIC @ 1814 icode_e.cpp: CALLF codeend ind 933 
+ WriteIC @ 2003 icode_e.cpp:  <119> 1 FUNCTION  opc 14 933 sz 4 end @ 36078944 cisz 48
+CodeEnd Pst statement <2> include "consts.asl" 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <119> 2 FUNCTION  opc 7 0 sz 1 end @ 36078989 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <119> csz 93 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <119> msz 93 state 451
+ XcodeBlock @ 635 include_e.cpp: 46 <3> 
+ XcodeBlock @ 635 include_e.cpp: 47 <3> 
+------------------------------------------------------------------------
+
+### <3>[3]<0>{FUNCTION}		codeend()
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type codeend UNSET
+ WriteIC @ 1814 icode_e.cpp: CALLF codeend ind 933 
+ WriteIC @ 2003 icode_e.cpp:  <3> 1 FUNCTION  opc 14 933 sz 4 end @ 35888720 cisz 48
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <3> 2 FUNCTION  opc 7 0 sz 1 end @ 35888765 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <3> csz 93 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <3> msz 93 state 451
+ GetStatement @ 411 icode_e.cpp: 120 1:0:1   
+ AddTxt @ 508 icode_e.cpp: 22  double d = 123456.789
+ 
+ Init @ 710 icode_e.cpp: id 120 1  
+ SetType @ 470 icode_e.cpp: sl 21  double d = 123456.789  type DECLARE 
+ GetStatement @ 383 icode_e.cpp: GetStatement 120 1:0:1    
+ GetStatement @ 411 icode_e.cpp: 121 3:0:1   
+ AddTxt @ 508 icode_e.cpp: 10  codeend()
+ 
+ Init @ 710 icode_e.cpp: id 121 3  
+ SetType @ 470 icode_e.cpp: sl 9  codeend()  type PFCALL 
+ GetStatement @ 383 icode_e.cpp: GetStatement 121 3:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 120 1:0:1    
+ XcodeBlock @ 635 include_e.cpp: 1 <120> 
+------------------------------------------------------------------------
+
+### <120>[1]<0>{DECLARE}		double d = 123456.789
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type d UNSET
+ WriteIC @ 1478 icode_e.cpp: d DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 200 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV d  DOUBLE id 270 slot 200 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 200 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <120> 1 DECLARE  opc 1 0 sz 2 end @ 35930542 cisz 46
+ storeICN @ 7403 icode_e.cpp: PUSHN 
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: vresult DOUBLE array NO GLB NO nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot -1 cmslot -1 free? 1
+ WriteIC @ 1805 icode_e.cpp: WRTIC -> PUSHN stored 123456.789000 
+ WriteIC @ 2003 icode_e.cpp:  <120> 2 DECLARE  opc 10 0 sz 8 end @ 35930594 cisz 52
+ WriteIC @ 1470 icode_e.cpp: ic->type d UNSET
+ WriteIC @ 1478 icode_e.cpp: d DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 200 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER d  DOUBLE id 270 slot 200 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 200 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <120> 3 DECLARE  opc 5 0 sz 2 end @ 35930640 cisz 46
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <120> 4 DECLARE  opc 7 0 sz 1 end @ 35930685 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <120> csz 189 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <120> msz 189 state 451
+ XcodeBlock @ 635 include_e.cpp: 2 <121> 
+------------------------------------------------------------------------
+
+### <121>[3]<0>{FUNCTION}		codeend()
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type codeend UNSET
+ WriteIC @ 1814 icode_e.cpp: CALLF codeend ind 933 
+ WriteIC @ 2003 icode_e.cpp:  <121> 1 FUNCTION  opc 14 933 sz 4 end @ 36155616 cisz 48
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <121> 2 FUNCTION  opc 7 0 sz 1 end @ 36155661 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <121> csz 93 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <121> msz 93 state 451
+check_stype chkfunc d 
+ chk_si_fun_name @ 310 func_e.cpp: WARNING cf d  function not found  - maybe XGS function ?
+ ncpy @ 909 svar.cpp:  ERROR svar not innited ?!
+ GetStatement @ 411 icode_e.cpp: 122 1:0:1   
+ AddTxt @ 508 icode_e.cpp: 10  sizeof(d)
+ 
+ Init @ 710 icode_e.cpp: id 122 1  
+ SetType @ 470 icode_e.cpp: sl 9  sizeof(d)  type PFCALL 
+ GetStatement @ 383 icode_e.cpp: GetStatement 122 1:0:1    
+ GetStatement @ 411 icode_e.cpp: 123 3:0:1   
+ AddTxt @ 508 icode_e.cpp: 10  codeend()
+ 
+ Init @ 710 icode_e.cpp: id 123 3  
+ SetType @ 470 icode_e.cpp: sl 9  codeend()  type PFCALL 
+ GetStatement @ 383 icode_e.cpp: GetStatement 123 3:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 122 1:0:1    
+ XcodeBlock @ 635 include_e.cpp: 1 <122> 
+------------------------------------------------------------------------
+
+### <122>[1]<0>{FUNCTION}		sizeof(d)
+
+------------------------------------------------------------------------
+ ncpy @ 909 svar.cpp:  ERROR svar not innited ?!
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1478 icode_e.cpp: d DOUBLE array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 200 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: PUSH_SIV d  DOUBLE id 270 slot 200 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 200 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <122> 1 FUNCTION  opc 12 0 sz 2 end @ 36204830 cisz 46
+ WriteIC @ 1470 icode_e.cpp: ic->type sizeof UNSET
+ WriteIC @ 1814 icode_e.cpp: CALLF sizeof ind 768 
+ WriteIC @ 2003 icode_e.cpp:  <122> 2 FUNCTION  opc 14 768 sz 4 end @ 36204878 cisz 48
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <122> 3 FUNCTION  opc 7 0 sz 1 end @ 36204923 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <122> csz 139 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <122> msz 139 state 451
+ XcodeBlock @ 635 include_e.cpp: 2 <123> 
+------------------------------------------------------------------------
+
+### <123>[3]<0>{FUNCTION}		codeend()
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type codeend UNSET
+ WriteIC @ 1814 icode_e.cpp: CALLF codeend ind 933 
+ WriteIC @ 2003 icode_e.cpp:  <123> 1 FUNCTION  opc 14 933 sz 4 end @ 36206000 cisz 48
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <123> 2 FUNCTION  opc 7 0 sz 1 end @ 36206045 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <123> csz 93 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <123> msz 93 state 451
+ GetStatement @ 411 icode_e.cpp: 124 2:0:1   
+ AddTxt @ 508 icode_e.cpp: 15  sizeof(DOUBLE)
+ 
+ Init @ 710 icode_e.cpp: id 124 2  
+ SetType @ 470 icode_e.cpp: sl 14  sizeof(DOUBLE)  type PFCALL 
+ GetStatement @ 383 icode_e.cpp: GetStatement 124 2:0:1    
+ GetStatement @ 411 icode_e.cpp: 125 4:0:1   
+ AddTxt @ 508 icode_e.cpp: 10  codeend()
+ 
+ Init @ 710 icode_e.cpp: id 125 4  
+ SetType @ 470 icode_e.cpp: sl 9  codeend()  type PFCALL 
+ GetStatement @ 383 icode_e.cpp: GetStatement 125 4:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 122 1:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 124 2:0:1    
+ XcodeBlock @ 635 include_e.cpp: 1 <124> 
+------------------------------------------------------------------------
+
+### <124>[2]<0>{FUNCTION}		sizeof(5)
+
+------------------------------------------------------------------------
+ ncpy @ 909 svar.cpp:  ERROR svar not innited ?!
+ storeICN @ 7385 icode_e.cpp: PUSHI vresult
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1828 icode_e.cpp: opcode 64 5
+ WriteIC @ 2003 icode_e.cpp:  <124> 1 FUNCTION  opc 64 5 sz 4 end @ 36197392 cisz 48
+ WriteIC @ 1470 icode_e.cpp: ic->type sizeof UNSET
+ WriteIC @ 1814 icode_e.cpp: CALLF sizeof ind 768 
+ WriteIC @ 2003 icode_e.cpp:  <124> 2 FUNCTION  opc 14 768 sz 4 end @ 36197440 cisz 48
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <124> 3 FUNCTION  opc 7 0 sz 1 end @ 36197485 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <124> csz 141 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <124> msz 141 state 451
+ XcodeBlock @ 635 include_e.cpp: 2 <125> 
+------------------------------------------------------------------------
+
+### <125>[4]<0>{FUNCTION}		codeend()
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type codeend UNSET
+ WriteIC @ 1814 icode_e.cpp: CALLF codeend ind 933 
+ WriteIC @ 2003 icode_e.cpp:  <125> 1 FUNCTION  opc 14 933 sz 4 end @ 36199520 cisz 48
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <125> 2 FUNCTION  opc 7 0 sz 1 end @ 36199565 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <125> csz 93 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <125> msz 93 state 451
+ GetStatement @ 411 icode_e.cpp: 126 3:0:1   
+ AddTxt @ 508 icode_e.cpp: 7  DOUBLE
+ 
+ Init @ 710 icode_e.cpp: id 126 3  
+ SetType @ 470 icode_e.cpp: sl 6  DOUBLE  type DECLARE 
+ GetStatement @ 383 icode_e.cpp: GetStatement 126 3:0:1    
+ GetStatement @ 411 icode_e.cpp: 127 5:0:1   
+ AddTxt @ 508 icode_e.cpp: 10  codeend()
+ 
+ Init @ 710 icode_e.cpp: id 127 5  
+ SetType @ 470 icode_e.cpp: sl 9  codeend()  type PFCALL 
+ GetStatement @ 383 icode_e.cpp: GetStatement 127 5:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 122 1:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 124 2:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 126 3:0:1    
+ XcodeBlock @ 635 include_e.cpp: 1 <126> 
+------------------------------------------------------------------------
+
+### <126>[3]<0>{EXPRESSION}		5
+
+------------------------------------------------------------------------
+ storeICN @ 7385 icode_e.cpp: PUSHI vresult
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1828 icode_e.cpp: opcode 64 5
+ WriteIC @ 2003 icode_e.cpp:  <126> 1 EXPRESSION  opc 64 5 sz 4 end @ 36200480 cisz 48
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <126> 2 EXPRESSION  opc 7 0 sz 1 end @ 36200525 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <126> csz 93 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <126> msz 93 state 451
+ XcodeBlock @ 635 include_e.cpp: 2 <127> 
+------------------------------------------------------------------------
+
+### <127>[5]<0>{FUNCTION}		codeend()
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type codeend UNSET
+ WriteIC @ 1814 icode_e.cpp: CALLF codeend ind 933 
+ WriteIC @ 2003 icode_e.cpp:  <127> 1 FUNCTION  opc 14 933 sz 4 end @ 36201872 cisz 48
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <127> 2 FUNCTION  opc 7 0 sz 1 end @ 36201917 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <127> csz 93 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <127> msz 93 state 451
+ ncpy @ 909 svar.cpp:  ERROR svar not innited ?!
+ GetStatement @ 411 icode_e.cpp: 128 4:0:1   
+ AddTxt @ 508 icode_e.cpp: 10  i= DOUBLE
+ 
+ Init @ 710 icode_e.cpp: id 128 4  
+ SetType @ 470 icode_e.cpp: sl 9  i= DOUBLE  type EXPRESSION 
+ GetStatement @ 383 icode_e.cpp: GetStatement 128 4:0:1    
+ GetStatement @ 411 icode_e.cpp: 129 6:0:1   
+ AddTxt @ 508 icode_e.cpp: 10  codeend()
+ 
+ Init @ 710 icode_e.cpp: id 129 6  
+ SetType @ 470 icode_e.cpp: sl 9  codeend()  type PFCALL 
+ GetStatement @ 383 icode_e.cpp: GetStatement 129 6:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 122 1:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 124 2:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 126 3:0:1    
+ GetStatement @ 383 icode_e.cpp: GetStatement 128 4:0:1    
+ XcodeBlock @ 635 include_e.cpp: 1 <128> 
+------------------------------------------------------------------------
+
+### <128>[4]<0>{EXPRESSION}		i= 5
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type i UNSET
+ WriteIC @ 1478 icode_e.cpp: i UNSET array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 210 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: CREATEV i  UNSET id 292 slot 210 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 210 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <128> 1 EXPRESSION  opc 1 0 sz 2 end @ 36204046 cisz 46
+ storeICN @ 7385 icode_e.cpp: PUSHI vresult
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1828 icode_e.cpp: opcode 64 5
+ WriteIC @ 2003 icode_e.cpp:  <128> 2 EXPRESSION  opc 64 5 sz 4 end @ 36204094 cisz 48
+ WriteIC @ 1470 icode_e.cpp: ic->type i UNSET
+ WriteIC @ 1478 icode_e.cpp: i UNSET array NO GLB YES nd 0
+ WriteIC @ 1482 icode_e.cpp: Cmember_flags 0 slot 210 cmslot -1 free? 0
+ StoreSiv @ 1275 icode_e.cpp: STORER i  UNSET id 292 slot 210 cmslot -1 array NO sz 0
+ StoreSiv @ 1309 icode_e.cpp: icslot 210 cmslot -1 
+ WriteIC @ 2003 icode_e.cpp:  <128> 3 EXPRESSION  opc 5 0 sz 2 end @ 36204140 cisz 46
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <128> 4 EXPRESSION  opc 7 0 sz 1 end @ 36204185 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <128> csz 185 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <128> msz 185 state 451
+ XcodeBlock @ 635 include_e.cpp: 2 <129> 
+------------------------------------------------------------------------
+
+### <129>[6]<0>{FUNCTION}		codeend()
+
+------------------------------------------------------------------------
+ WriteIC @ 1470 icode_e.cpp: ic->type codeend UNSET
+ WriteIC @ 1814 icode_e.cpp: CALLF codeend ind 933 
+ WriteIC @ 2003 icode_e.cpp:  <129> 1 FUNCTION  opc 14 933 sz 4 end @ 36215200 cisz 48
+ WriteIC @ 1470 icode_e.cpp: ic->type  UNSET
+ WriteIC @ 1959 icode_e.cpp: default xic ->   
+ WriteIC @ 2003 icode_e.cpp:  <129> 2 FUNCTION  opc 7 0 sz 1 end @ 36215245 cisz 45
+ Close @ 2698 icode_e.cpp: --->Close St <129> csz 93 msz 512 state 321
+ Close @ 2743 icode_e.cpp: <---- Close St <129> msz 93 state 451
+check_stype chkfunc i 
+ chk_si_fun_name @ 310 func_e.cpp: WARNING cf i  function not found  - maybe XGS function ?
+ ncpy @ 909 svar.cpp:  ERROR svar not innited ?!

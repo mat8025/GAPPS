@@ -1,0 +1,4 @@
+echo "#test_case 14  climb level off full descent - level off - repeat" > test_case14.ip
+echo "#init 0 climb 1.0 descend immediate change in phase 2 mins to reach -1.0 - level off" >> test_case14.ip
+asl make_fp_vt.asl l 60 c 180 1500 l 180 d 125 2000 l 180 c 120 200 l 420 c 180 2500 l 90 d 120 3000 l 420 >> test_case14.ip
+cat test_case14.ip | asl fp_fcV8.asl | asl plotfp2.asl 

@@ -1,0 +1,17 @@
+uchar C[] = { 0xCA , 0xFE, 0xBA, 0xBE, 0xFA, 0xCE, 0xBE, 0xAD , 0xDE,0xAD, 0xC0, 0xDE }
+
+<<" $C \n"
+<<"%x $C \n"
+
+uint k
+uint j
+
+
+ na = bscan(&C[1],0,&k,&j)
+
+<<"%V $na $k $j \n"
+
+<<"%x $k $j \n"
+
+iread()
+STOP!

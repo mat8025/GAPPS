@@ -1,0 +1,460 @@
+EVENT  E->keyc Ç 
+EVENT  E->keyc S 
+in keyControls keyControls  83 
+ checkRotate 
+2189 
+obpx -105.0 , obpy 2689.0 , obpz  36.1 , azim  83.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.956345 obpz 36.095699 xzvec  170852.281250 -97171.281250
+ 
+EVENT  E->keyc S 
+in keyControls keyControls  83 
+ rotate S 
+ checkRotate 
+2189 
+obpx -105.0 , obpy 2689.0 , obpz  36.1 , azim  85.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.956345 obpz 36.095699 xzvec  170852.281250 -97171.281250
+ 
+EVENT  E->keyc S 
+in keyControls keyControls  83 
+ rotate S 
+ checkRotate 
+2189 
+obpx -105.0 , obpy 2689.0 , obpz  36.1 , azim  87.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.956345 obpz 36.095699 xzvec  170852.281250 -97171.281250
+ 
+EVENT  E->keyc S 
+in keyControls keyControls  83 
+ rotate S 
+ checkRotate 
+2189 
+obpx -105.0 , obpy 2689.0 , obpz  36.1 , azim  89.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.956345 obpz 36.095699 xzvec  170852.281250 -97171.281250
+ 
+EVENT  E->keyc S 
+in keyControls keyControls  83 
+ rotate S 
+ checkRotate 
+2189 
+obpx -105.0 , obpy 2689.0 , obpz  36.1 , azim  91.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.956345 obpz 36.095699 xzvec  170852.281250 -97171.281250
+ 
+EVENT  E->keyc S 
+in keyControls keyControls  83 
+ rotate S 
+ checkRotate 
+2189 
+obpx -105.0 , obpy 2689.0 , obpz  36.1 , azim  93.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.956345 obpz 36.095699 xzvec  170852.281250 -97171.281250
+ 
+EVENT  E->keyc S 
+in keyControls keyControls  83 
+ rotate S 
+ checkRotate 
+2189 
+obpx -105.0 , obpy 2689.0 , obpz  36.1 , azim  95.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.956345 obpz 36.095699 xzvec  170852.281250 -97171.281250
+ 
+EVENT  E->keyc S 
+in keyControls keyControls  83 
+ rotate S 
+ checkRotate 
+2189 
+obpx -105.0 , obpy 2689.0 , obpz  36.1 , azim  97.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.956345 obpz 36.095699 xzvec  170852.281250 -97171.281250
+ 
+EVENT  E->keyc S 
+in keyControls keyControls  83 
+ rotate S 
+ checkRotate 
+2189 
+obpx -105.0 , obpy 2689.0 , obpz  36.1 , azim  99.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.956345 obpz 36.095699 xzvec  170852.281250 -97171.281250
+ 
+EVENT  E->keyc S 
+in keyControls keyControls  83 
+ rotate S 
+ checkRotate 
+2189 
+obpx -105.0 , obpy 2689.0 , obpz  36.1 , azim 101.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.956345 obpz 36.095699 xzvec  170852.281250 -97171.281250
+ 
+EVENT  E->keyc S 
+in keyControls keyControls  83 
+ rotate S 
+ checkRotate 
+2189 
+obpx -105.0 , obpy 2689.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.956345 obpz 36.095699 xzvec  170852.281250 -97171.281250
+ 
+EVENT  E->keyc S 
+in keyControls keyControls  83 
+ rotate S 
+ checkRotate 
+2189 
+obpx -105.0 , obpy 2689.0 , obpz  36.1 , azim 105.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.956345 obpz 36.095699 xzvec  170852.281250 -97171.281250
+ 
+EVENT  E->keyc S 
+in keyControls keyControls  83 
+ rotate S 
+ checkRotate 
+2189 
+obpx -105.0 , obpy 2689.0 , obpz  36.1 , azim 107.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.956345 obpz 36.095699 xzvec  170852.281250 -97171.281250
+ 
+EVENT  E->keyc R 
+in keyControls keyControls  82 
+ checkMove 
+2181 
+obpx -104.9 , obpy 2681.0 , obpz  36.1 , azim 107.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.946815 obpz 36.092663 xzvec  171715.062500 -97508.921875
+ 
+EVENT  E->keyc R 
+in keyControls keyControls  82 
+mv mdir 0.010000 azim 107.669495 obpx -104.937286 obpy 2681.000000  
+ checkMove 
+2177 
+obpx -104.9 , obpy 2677.0 , obpz  36.1 , azim 107.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.937286 obpz 36.089626 xzvec  172577.906250 -97846.562500
+ 
+EVENT  E->keyc R 
+in keyControls keyControls  82 
+mv mdir 0.010000 azim 107.669495 obpx -104.927757 obpy 2677.000000  
+ checkMove 
+2186 
+obpx -104.9 , obpy 2686.0 , obpz  36.1 , azim 107.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.927757 obpz 36.086590 xzvec  173440.812500 -98184.203125
+ 
+EVENT  E->keyc R 
+in keyControls keyControls  82 
+mv mdir 0.010000 azim 107.669495 obpx -104.918228 obpy 2686.000000  
+ checkMove 
+2180 
+obpx -104.9 , obpy 2680.0 , obpz  36.1 , azim 107.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.918228 obpz 36.083553 xzvec  174303.781250 -98521.851562
+ 
+EVENT  E->keyc R 
+in keyControls keyControls  82 
+mv mdir 0.010000 azim 107.669495 obpx -104.908699 obpy 2680.000000  
+ checkMove 
+2171 
+obpx -104.9 , obpy 2671.0 , obpz  36.1 , azim 107.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.908699 obpz 36.080517 xzvec  175166.828125 -98859.500000
+ 
+EVENT  E->keyc R 
+in keyControls keyControls  82 
+mv mdir 0.010000 azim 107.669495 obpx -104.899170 obpy 2671.000000  
+ checkMove 
+2163 
+obpx -104.9 , obpy 2663.0 , obpz  36.1 , azim 107.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.899170 obpz 36.077480 xzvec  176029.937500 -99197.132812
+ 
+EVENT  E->keyc R 
+in keyControls keyControls  82 
+mv mdir 0.010000 azim 107.669495 obpx -104.889641 obpy 2663.000000  
+ checkMove 
+2152 
+obpx -104.9 , obpy 2652.0 , obpz  36.1 , azim 107.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.889641 obpz 36.074444 xzvec  176893.093750 -99534.781250
+ 
+EVENT  E->keyc R 
+in keyControls keyControls  82 
+mv mdir 0.010000 azim 107.669495 obpx -104.880112 obpy 2652.000000  
+ checkMove 
+2135 
+obpx -104.9 , obpy 2635.0 , obpz  36.1 , azim 107.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.880112 obpz 36.071407 xzvec  177756.328125 -99872.421875
+ 
+EVENT  E->keyc R 
+in keyControls keyControls  82 
+mv mdir 0.010000 azim 107.669495 obpx -104.870583 obpy 2635.000000  
+ checkMove 
+2097 
+obpx -104.9 , obpy 2597.0 , obpz  36.1 , azim 107.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc Q 
+in keyControls keyControls  81 
+ checkRotate 
+2097 
+obpx -104.9 , obpy 2597.0 , obpz  36.1 , azim 105.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc Q 
+in keyControls keyControls  81 
+ checkRotate 
+2097 
+obpx -104.9 , obpy 2597.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 2647.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 2647.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 2697.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 2697.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 2747.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 2747.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 2797.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 2797.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 2847.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 2847.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 2897.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 2897.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 2947.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 2947.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 2997.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 2997.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 3047.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 3047.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 3097.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 3097.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 3147.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 3147.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 3197.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 3197.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 3247.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 3247.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 3297.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 3297.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 3347.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 3347.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 3397.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 3397.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 3447.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 3447.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 3497.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 3497.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 3547.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 3547.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 3597.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 3597.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 3647.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 3647.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 3697.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 3697.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 3747.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 3747.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 3797.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 3797.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 3847.0 , obpz  36.1 , azim 103.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc Q 
+in keyControls keyControls  81 
+ checkRotate 
+2097 
+obpx -104.9 , obpy 3847.0 , obpz  36.1 , azim 101.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 3847.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 3897.0 , obpz  36.1 , azim 101.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 3897.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 3947.0 , obpz  36.1 , azim 101.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 3947.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 3997.0 , obpz  36.1 , azim 101.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+EVENT  E->keyc y 
+in keyControls keyControls  121 
+obpy 3997.000000 
+observer control 
+ checkObserver 
+2097 
+obpx -104.9 , obpy 4047.0 , obpz  36.1 , azim 101.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 
+WOEVENT  E->keyc O 
+2097 
+obpx -104.9 , obpy 4047.0 , obpz  36.1 , azim 101.7  elev  -4.0  distance 125.0
+PV LongW -106.857918 LatN 36.969582 obpx -104.870583 obpz 36.068371 xzvec  178619.625000 -100210.070312
+ 

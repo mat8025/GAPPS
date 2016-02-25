@@ -1,0 +1,135 @@
+//
+//  test mutex wrappers
+
+setdebug(0)
+
+m_id = createMutex()
+<<"%V $m_id\n"
+
+ x = 2
+ y = 4
+
+<<"Globals to use %I $x $y \n"
+
+proc foo1()
+{
+<<" hey I am in $_proc and trying to get Mutex \n"
+
+   z = x + y
+
+   foo1tid = GthreadGetId()
+
+   ret=mutexLock(m_id)
+
+ // which thread am I
+
+<<"obtained mutex $_proc thread $foo1tid $_proc computed $z = $x + $y \n"
+   x++
+   y++
+
+   int j =0;
+
+   for (j = 0 ; j < 25; j++) {
+
+   z = x + y
+
+  <<"$j foo1 thread $foo1tid $_cproc computed $z = $x + $y \n"
+
+   x++;
+
+   y++;
+
+   sleep(0.2) // this would allow other threads to proceed
+              // if they can get the mutex!
+//     nanosleep(100000)
+   }
+
+<<" DONE foo1 $_cproc exiting %V$foo1tid and releasing mutex $m_id\n"
+      ret=mutexUnLock(m_id)
+
+      GthreadExit()
+
+}
+//==========================================================
+
+ret = -1;
+
+//setdebug(1,"pline")
+
+<<"%V $m_id\n"
+
+ x = 2
+ y = 4
+
+<<"Globals to use %I $x $y \n"
+
+      ret=mutexLock(m_id)
+
+     <<" got mutex $ret\n"
+    prior = mutexGetPriority(m_id)
+
+      <<"  mutex %V$prior\n"
+
+      prior = mutexSetPriority(m_id,10)
+
+      <<"  mutex %V$prior\n"
+
+     prior = mutexGetPriority(m_id)
+
+      <<"  mutex %V$prior\n"
+
+
+   tid = GthreadGetId()
+
+<<"in  main thread? $tid \n"
+
+
+//   I think this needs a kernel mod to work ??
+//   need to find out
+//   gthreadSetPriority(tid,0,"RR")
+
+   ret=mutexUnLock(m_id);
+
+ <<"in  Main thread? released mutex $m_id $ret\n";
+   sleep(1)
+<<" Creating thread \n"
+
+
+   foo1_id = gthreadcreate("foo1")
+
+   mypr = gthreadgetpriority(foo1_id)
+
+// have to wait until foo1 has the mutex
+<<"in Main -- sleeping allowing foo1 to get mutex\n"
+
+    ret=mutexLock(m_id);
+
+<<" In Main got the mutex can proceed! \n"
+
+   nt = gthreadHowMany()
+  <<" should be back in main thread %V$tid $foo1_id $nt \n"
+   nt = gthreadHowMany()
+  <<" should be back in main thread %V$nt \n"
+          nanosleep(3,1)
+
+<<"main is releasing mutex $m_id \n"
+     // ret=mutexUnLock(m_id)
+
+
+     // prior = mutexGetPrioCeiling(m_id)
+
+      <<"  mutex %V$prior\n"
+         nanosleep(1,1)
+
+<<"in main trying to get   Mutex $m_id \n"
+
+     // ret=mutexLock(m_id)
+
+   nt = gthreadHowMany()
+  <<" should be back in main thread %V$nt \n"
+
+  <<"bak in main after waiting on Mutex %V$m_id \n"
+
+
+
+stop!

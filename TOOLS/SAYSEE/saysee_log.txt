@@ -1,0 +1,14 @@
+
+11/17/13
+
+ Trying to resurrect this app!
+ It should continuously record , filter and display spectrogram, and some extracted audio features
+ such as rms,  cepstral pitch? 
+
+ Ideally we want it to recognize the phrase (also language, speaker?)
+
+
+ Fixed some GUI stuff -- 
+ Getting lots of can't convert errors --- type bugs
+
+

@@ -1,0 +1,19 @@
+
+mand.asl,278
+set_debug(7,94
+proc resize_mand(55,946
+proc screen_print(67,1127
+proc setup(83,1506
+proc zoom_mand(140,2270
+proc new_coors(192,3049
+proc pickCoors(227,3691
+laser 275,4448
+wx 320,5043
+ grwo=334,5199
+  wo_rctile(386,7271
+double yr0 479,8474
+proc rand_coors(589,10375
+
+orbitdgm.asl,24
+SetPCW(3,44
+aw 35,642

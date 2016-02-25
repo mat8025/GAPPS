@@ -1,0 +1,5 @@
+y=9
+echo "#test_case$y descent   then immediate climb" > test_case$y.ip 
+echo "# 0 to -1 hold then to 1.0 " >> test_case$y.ip
+asl make_fp_vt.asl a 20000  l 180 d 140 2000 c 240 1500 l 480  >> test_case$y.ip
+cat test_case$y.ip | asl fp_fcV8.asl | asl plotfp2.asl "test_case9 descent then immediate climb"

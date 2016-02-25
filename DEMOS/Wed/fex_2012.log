@@ -1,0 +1,19 @@
+# food,exercise
+# V1
+#D date, time
+#F what,how, how_much
+#E what, how_long, how_much
+#W weight 
+D 2012-10-28 10:02:27
+F eggs,fried,2
+F sausage,fried,2
+F tomatoe,fried,0.5
+F mushroom,fried,1
+F bread,toast,1
+F soup,splitpea,2
+E walk,50:0,2m
+
+
+
+
+#

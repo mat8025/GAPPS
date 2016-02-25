@@ -1,0 +1,5 @@
+FAIL test <1> @ [110] CheckStr("hey",Z[0])
+
+FAIL test <2> @ [111] CheckStr("make",Z[4])
+
+DONE: FAIL: ./svelepr            :tests      2 :Fail      2 :Pass      0 :Score    0.0% 

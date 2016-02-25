@@ -1,0 +1,44 @@
+ERROR [13] pid 10887 ./consts_test :  :
+ 'FPE_ERROR :  FPE':
+  @ [69] const float _cm2inch = 1.0/_inch2cm
+
+ERROR [13] pid 10887 ./consts_test :  :
+ 'FPE_ERROR :  FPE':
+  @ [72] const float _km2mile = 1/_mile2km
+
+a 3.141593 _PI 3.141593 
+tring to modify internal _PI --- won't work which is correct! 
+a 3.141593 _PI 3.141593 
+ ALV 0.000000  DOUBLE  ALV  
+FAIL test <3> @ [38] CheckFNum(ALV,59.0,6)
+
+trying to modify a declared const variable  --- which won't work error is correct behaviour! 
+ALV 0.000000  DOUBLE  ALV  
+ this should pass ALV == 59 !! 0.000000 
+FAIL test <4> @ [46] CheckFNum(ALV,59.0,6)
+
+ this should fail ALV == 23  0.000000 
+DONE: FAIL: ./consts_test        :tests      5 :Fail      2 :Pass      3 :Score   60.0% 
+Code errors 2  ICerrors 0
+ERROR [13] pid 12078 ./consts_test :  :
+ 'FPE_ERROR :  FPE':
+  @ [69] const float _cm2inch = 1.0/_inch2cm
+
+ERROR [13] pid 12078 ./consts_test :  :
+ 'FPE_ERROR :  FPE':
+  @ [72] const float _km2mile = 1/_mile2km
+
+a 3.141593 _PI 3.141593 
+tring to modify internal _PI --- won't work which is correct! 
+a 3.141593 _PI 3.141593 
+ ALV 0.000000  DOUBLE  ALV  
+FAIL test <3> @ [38] CheckFNum(ALV,59.0,6)
+
+trying to modify a declared const variable  --- which won't work error is correct behaviour! 
+ALV 0.000000  DOUBLE  ALV  
+ this should pass ALV == 59 !! 0.000000 
+FAIL test <4> @ [46] CheckFNum(ALV,59.0,6)
+
+ this should fail ALV == 23  0.000000 
+DONE: FAIL: ./consts_test        :tests      5 :Fail      2 :Pass      3 :Score   60.0% 
+Code errors 2  ICerrors 0

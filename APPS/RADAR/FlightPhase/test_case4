@@ -1,0 +1,5 @@
+y=4
+echo "# test_case$y staged descent" > test_case$y.ip
+echo "# 1   ---> hold value if below 0 then next descent --> -1" >> test_case$y.ip
+asl make_fp_vt.asl a 20000  l 180 d 50 2000 l 180 d 120 1000 l 420 >> test_case$y.ip
+cat test_case$y.ip | asl fp_fcV8.asl | asl plotfp2.asl 

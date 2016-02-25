@@ -1,0 +1,583 @@
+
+DEBUG FILE for .saysee.dbi debug level 0  vers 5.1.5
+     Sun Jan 10 11:47:35 2016
+ asl.cpp	main:844 READY TO GO on localhost
+ table_l.cpp VMF_Table_init: @158 79 VMF functions 
+
+saysee.asl 
+ asl.cpp	asl:246 @ 2
+ engine_e.cpp script: @142 found exe file saysee.asl time 1452451645
+ siv_e.cpp setSize: @576 ignore it is svar 
+ engine_e.cpp script: @248 status 1  
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ engine_e.cpp script: @261 ready to run !
+ siv_e.cpp isValid: @492  bad siv 1
+ siv_e.cpp isValid: @492  bad siv 2
+ siv_e.cpp isValid: @492  bad siv 3
+handle 27621024
+opened dyn lib /usr/local/GASP/gasp/lib/libaudio_asl.so handle 27621024
+ dll_l.cpp dll_open: @357 3 dll audio ret 71
+handle 27627840
+opened dyn lib /usr/local/GASP/gasp/lib/libimage_asl.so handle 27627840
+ dll_l.cpp dll_open: @357 2 dll image ret 9
+handle 27629072
+opened dyn lib /usr/local/GASP/gasp/lib/libstat_asl.so handle 27629072
+init_stat
+ dll_l.cpp dll_open: @357 1 dll stat ret 15
+ exp_e.cpp checkAssign: @924 found = =
+ exp_e.cpp checkAssign: @933 bpe  
+ siv_e.cpp isValid: @492  bad siv 4
+ exp_e.cpp checkAssign: @924 found = =
+ exp_e.cpp checkAssign: @933 bpe  
+ siv_e.cpp isValid: @492  bad siv 5
+ spawn_l.cpp Xspawn: @169 ASL->GASP /usr/local/GASP/gasp/bin/xgs pread 4 pwrite 5 
+ spawn_l.cpp Xspawn: @184 ASL-->GASP /usr/local/GASP/gasp/bin/xgs xgs  4 pread 6 pwrite 7
+ spawn_l.cpp Xspawn: @203 spawn pid 24190 
+ spawn_l.cpp Xspawn: @214  asl closing on 4 7
+ spawn_l.cpp Xspawn: @215 spawn pid 24190 written 116
+ spawn_l.cpp Xspawn: @222 read on GWM->ASL  6 write ASL->GWM  5
+ spawn_l.cpp Xspawn: @251 CHILD XGS ACTIVE  im.nb 43
+ spawn_l.cpp Xspawn: @257 CHILD says Gserver got file Descriptors asl pid 24189
+
+ wop_l.cpp setUpIPC: @468 nbr 40 @ 2439 Reading SHM key Info on 6
+ wop_l.cpp setUpIPC: @469 nbr 40 Got Shm info key 7893  
+ wop_l.cpp setUpIPC: @470 Shm size required 65536  
+ wop_l.cpp setUpIPC: @490 using Shared mem!
+0 0 2 3 4 5 6 7 8 9 
+@ 2439 asl wait 0  
+@ 2539 asl wait 1  
+@ 2640 asl wait 2  
+@ 2740 asl wait 3  
+@ 2840 asl wait 4  
+@ 2940 asl wait 5  
+@ 3040 asl wait 6  
+@ 3140 asl wait 7  
+@ 3240 asl wait 8  
+@ 3341 asl wait 9  
+@ 3441 SHM OK!! 
+ wop_l.cpp setUpSHM_IPC: @388 @ 3441 SHM OK!! 
+ wop_l.cpp setUpSHM_IPC: @415 IPC Established
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+ siv_e.cpp isValid: @492  bad siv 6
+------------------------------------------------------------------------
+
+### <17>[33]<0>{DECLARE}		int Freq  = 16000
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 7
+ declare_type_e.cpp declare_type: @591  dt 3
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to Freq 
+ siv_e.cpp isValid: @492  bad siv 8
+------------------------------------------------------------------------
+
+### <18>[34]<0>{DECLARE}		float Sfactor = 1.0
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 9
+ declare_type_e.cpp declare_type: @591  dt 4
+ declare_type_e.cpp declare_type: @596 need to convert types !
+ declare_type_e.cpp declare_type: @602 value is 1.000000 
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to Sfactor 
+ siv_e.cpp isValid: @492  bad siv 10
+------------------------------------------------------------------------
+
+### <19>[36]<0>{EXPRESSION_T}		nsecs = 20
+
+------------------------------------------------------------------------
+ exp_e.cpp checkAssign: @924 found = =
+ exp_e.cpp checkAssign: @933 bpe  
+------------------------------------------------------------------------
+
+### <20>[38]<0>{DECLARE}		int Nsamps = nsecs * Freq
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 11
+ declare_type_e.cpp declare_type: @591  dt 3
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to Nsamps 
+ siv_e.cpp isValid: @492  bad siv 12
+------------------------------------------------------------------------
+
+### <21>[42]<0>{EXPRESSION_T}		vsamps = Nsamps * 2
+
+------------------------------------------------------------------------
+ exp_e.cpp checkAssign: @924 found = =
+ exp_e.cpp checkAssign: @933 bpe  
+------------------------------------------------------------------------
+
+### <22>[44]<0>{DECLARE}		short Sbuf[]
+
+------------------------------------------------------------------------
+ declare_type_e.cpp declare_type: @591  dt 2
+ declare_type_e.cpp declare_type: @596 need to convert types !
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to Sbuf 
+------------------------------------------------------------------------
+
+### <23>[47]<0>{DECLARE}		float Dfbuf[]
+
+------------------------------------------------------------------------
+ declare_type_e.cpp declare_type: @591  dt 4
+ declare_type_e.cpp declare_type: @596 need to convert types !
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to Dfbuf 
+------------------------------------------------------------------------
+
+### <24>[50]<0>{DECLARE}		int RbKey[]   // ringbuffer status use to keep track of recording and filter threads
+
+------------------------------------------------------------------------
+ declare_type_e.cpp declare_type: @591  dt 3
+ declare_type_e.cpp declare_type: @596 need to convert types !
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to RbKey 
+------------------------------------------------------------------------
+
+### <25>[53]<0>{DECLARE}		float Fir[]
+
+------------------------------------------------------------------------
+ declare_type_e.cpp declare_type: @591  dt 4
+ declare_type_e.cpp declare_type: @596 need to convert types !
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to Fir 
+------------------------------------------------------------------------
+
+### <26>[56]<0>{DECLARE}		int RBOP = 8
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 13
+ declare_type_e.cpp declare_type: @591  dt 3
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to RBOP 
+ siv_e.cpp isValid: @492  bad siv 14
+------------------------------------------------------------------------
+
+### <27>[67]<0>{DECLAREARRAY}		Fir[] = {5,-0.25,-0.25,1.0,-0.25,-0.25}
+
+------------------------------------------------------------------------
+ declare_type_e.cpp declare_type: @591  dt 4
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to Fir 
+ siv_e.cpp isValid: @492  bad siv 15
+ siv_e.cpp isValid: @492  bad siv 16
+ siv_e.cpp isValid: @492  bad siv 17
+ siv_e.cpp isValid: @492  bad siv 18
+ siv_e.cpp isValid: @492  bad siv 19
+ siv_e.cpp isValid: @492  bad siv 20
+------------------------------------------------------------------------
+
+### <28>[68]<0>{PRSTDOUT}		<<" $Fir \n"
+
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+
+### <29>[69]<0>{EXPRESSION_T}		Fir[128] = 0.0
+
+------------------------------------------------------------------------
+ exp_e.cpp checkAssign: @924 found = =
+ exp_e.cpp checkAssign: @933 bpe  
+ siv_e.cpp isValid: @492  bad siv 21
+------------------------------------------------------------------------
+
+### <30>[74]<0>{DECLARE}		float RmsTrk[50]
+
+------------------------------------------------------------------------
+ declare_type_e.cpp declare_type: @591  dt 4
+ declare_type_e.cpp declare_type: @596 need to convert types !
+ siv_e.cpp isValid: @492  bad siv 22
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to RmsTrk 
+------------------------------------------------------------------------
+
+### <31>[75]<0>{DECLARE}		float ZxTrk[50]
+
+------------------------------------------------------------------------
+ declare_type_e.cpp declare_type: @591  dt 4
+ declare_type_e.cpp declare_type: @596 need to convert types !
+ siv_e.cpp isValid: @492  bad siv 23
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to ZxTrk 
+------------------------------------------------------------------------
+
+### <32>[77]<0>{EXPRESSION_T}		RmsTrk = 1.0
+
+------------------------------------------------------------------------
+ exp_e.cpp checkAssign: @924 found = =
+ exp_e.cpp checkAssign: @933 bpe  
+ siv_e.cpp isValid: @492  bad siv 24
+------------------------------------------------------------------------
+
+### <33>[78]<0>{EXPRESSION_T}		ZxTrk = 1.0
+
+------------------------------------------------------------------------
+ exp_e.cpp checkAssign: @924 found = =
+ exp_e.cpp checkAssign: @933 bpe  
+ siv_e.cpp isValid: @492  bad siv 25
+------------------------------------------------------------------------
+
+### <34>[79]<0>{PRSTDOUT}		<<" $(Caz(RmsTrk)) \n"
+
+------------------------------------------------------------------------
+ sint.cpp Csz: @336 sivp is what size? RmsTrk arg ? 0
+ sint.cpp Csz: @340 siv is array
+ siv_e.cpp isValid: @492  bad siv 26
+------------------------------------------------------------------------
+
+### <35>[86]<0>{DECLARE}		float Gain = 2.5;
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 27
+ declare_type_e.cpp declare_type: @591  dt 4
+ declare_type_e.cpp declare_type: @596 need to convert types !
+ declare_type_e.cpp declare_type: @602 value is 2.500000 
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to Gain 
+ siv_e.cpp isValid: @492  bad siv 28
+------------------------------------------------------------------------
+
+### <36>[88]<0>{EXPRESSION_T}		last_rbv = 0
+
+------------------------------------------------------------------------
+ exp_e.cpp checkAssign: @924 found = =
+ exp_e.cpp checkAssign: @933 bpe  
+------------------------------------------------------------------------
+
+### <37>[90]<0>{DECLARE}		int recblksz = 256
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 29
+ declare_type_e.cpp declare_type: @591  dt 3
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to recblksz 
+ siv_e.cpp isValid: @492  bad siv 30
+------------------------------------------------------------------------
+
+### <38>[93]<0>{DECLARE}		int mvt = 0
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 31
+ declare_type_e.cpp declare_type: @591  dt 3
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to mvt 
+ siv_e.cpp isValid: @492  bad siv 32
+------------------------------------------------------------------------
+
+### <39>[95]<0>{DEF_PROC}		proc RecVox( mv, spi )
+
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+
+### <72>[156]<0>{DEF_PROC}		proc RecBuff()
+
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+
+### <87>[186]<0>{DEF_PROC}		proc FiltBuff()
+
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+
+### <99>[218]<0>{DEF_PROC}		proc MixSignal()
+
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+
+### <111>[245]<0>{DECLARE}		int ncb = 96 //  each as a vertical pixel in SG window
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 33
+ declare_type_e.cpp declare_type: @591  dt 3
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to ncb 
+ siv_e.cpp isValid: @492  bad siv 34
+------------------------------------------------------------------------
+
+### <112>[247]<0>{DECLARE}		uchar pixstrip[4][ncb]
+
+------------------------------------------------------------------------
+ declare_type_e.cpp declare_type: @591  dt 6
+ declare_type_e.cpp declare_type: @596 need to convert types !
+ siv_e.cpp isValid: @492  bad siv 35
+ siv_e.cpp isValid: @492  bad siv 36
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to pixstrip 
+------------------------------------------------------------------------
+
+### <113>[250]<0>{DECLARE}		int sgx = 50
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 37
+ declare_type_e.cpp declare_type: @591  dt 3
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to sgx 
+ siv_e.cpp isValid: @492  bad siv 38
+------------------------------------------------------------------------
+
+### <114>[254]<0>{DECLARE}		float SpeechThres = 2.0
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 39
+ declare_type_e.cpp declare_type: @591  dt 4
+ declare_type_e.cpp declare_type: @596 need to convert types !
+ declare_type_e.cpp declare_type: @602 value is 2.000000 
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to SpeechThres 
+ siv_e.cpp isValid: @492  bad siv 40
+------------------------------------------------------------------------
+
+### <115>[256]<0>{DECLARE}		float cf = 440
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 41
+ declare_type_e.cpp declare_type: @591  dt 4
+ declare_type_e.cpp declare_type: @596 need to convert types !
+ declare_type_e.cpp declare_type: @602 value is 440.000000 
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to cf 
+ siv_e.cpp isValid: @492  bad siv 42
+------------------------------------------------------------------------
+
+### <116>[257]<0>{EXPRESSION_T}		cf_inc = -2.0
+
+------------------------------------------------------------------------
+ exp_e.cpp checkAssign: @924 found = =
+ exp_e.cpp checkAssign: @933 bpe  
+------------------------------------------------------------------------
+
+### <117>[258]<0>{DECLARE}		int  iend = 0
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 43
+ declare_type_e.cpp declare_type: @591  dt 3
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to iend 
+ siv_e.cpp isValid: @492  bad siv 44
+------------------------------------------------------------------------
+
+### <118>[261]<0>{DEF_CLASS}		Class Timekeeper 
+
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+
+### <120>[264]<0>{EXPRESSION}		public:
+
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+
+### <121>[265]<0>{DECLARE}		float skipsig;
+
+------------------------------------------------------------------------
+ declare_type_e.cpp declare_type: @591  dt 4
+ declare_type_e.cpp declare_type: @596 need to convert types !
+ siv_e.cpp isValid: @492  bad siv 45
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to Timekeeper_skipsig 
+------------------------------------------------------------------------
+
+### <122>[266]<0>{DECLARE}		float rsecs;
+
+------------------------------------------------------------------------
+ declare_type_e.cpp declare_type: @591  dt 4
+ declare_type_e.cpp declare_type: @596 need to convert types !
+ siv_e.cpp isValid: @492  bad siv 46
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to Timekeeper_rsecs 
+------------------------------------------------------------------------
+
+### <123>[267]<0>{DECLARE}		float dsecs;
+
+------------------------------------------------------------------------
+ declare_type_e.cpp declare_type: @591  dt 4
+ declare_type_e.cpp declare_type: @596 need to convert types !
+ siv_e.cpp isValid: @492  bad siv 47
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to Timekeeper_dsecs 
+------------------------------------------------------------------------
+
+### <124>[268]<0>{DECLARE}		float hrti;
+
+------------------------------------------------------------------------
+ declare_type_e.cpp declare_type: @591  dt 4
+ declare_type_e.cpp declare_type: @596 need to convert types !
+ siv_e.cpp isValid: @492  bad siv 48
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to Timekeeper_hrti 
+------------------------------------------------------------------------
+
+### <125>[269]<0>{DECLARE}		float last_t;
+
+------------------------------------------------------------------------
+ declare_type_e.cpp declare_type: @591  dt 4
+ declare_type_e.cpp declare_type: @596 need to convert types !
+ siv_e.cpp isValid: @492  bad siv 49
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to Timekeeper_last_t 
+------------------------------------------------------------------------
+
+### <126>[270]<0>{DECLARE}		float hl;
+
+------------------------------------------------------------------------
+ declare_type_e.cpp declare_type: @591  dt 4
+ declare_type_e.cpp declare_type: @596 need to convert types !
+ siv_e.cpp isValid: @492  bad siv 50
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to Timekeeper_hl 
+------------------------------------------------------------------------
+
+### <127>[271]<0>{DECLARE}		float syncsecs;
+
+------------------------------------------------------------------------
+ declare_type_e.cpp declare_type: @591  dt 4
+ declare_type_e.cpp declare_type: @596 need to convert types !
+ siv_e.cpp isValid: @492  bad siv 51
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to Timekeeper_syncsecs 
+------------------------------------------------------------------------
+
+### <128>[272]<0>{DECLARE}		float lags;
+
+------------------------------------------------------------------------
+ declare_type_e.cpp declare_type: @591  dt 4
+ declare_type_e.cpp declare_type: @596 need to convert types !
+ siv_e.cpp isValid: @492  bad siv 52
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to Timekeeper_lags 
+------------------------------------------------------------------------
+
+### <129>[273]<0>{DECLARE}		float catchup;
+
+------------------------------------------------------------------------
+ declare_type_e.cpp declare_type: @591  dt 4
+ declare_type_e.cpp declare_type: @596 need to convert types !
+ siv_e.cpp isValid: @492  bad siv 53
+ declare_type_e.cpp declare_type: @725  storing result siv_64 to Timekeeper_catchup 
+------------------------------------------------------------------------
+
+### <130>[275]<0>{DEF_PROC}		CMF Timekeeper()
+
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+
+### <139>[287]<0>{DEF_PROC}		CMF update()
+
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+
+### <171>[332]<0>{DEF_PROC}		CMF Print()
+
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+
+### <175>[337]<0>{DEF_PROC}		CMF Rec()
+
+------------------------------------------------------------------------
+ state_e.cpp CheckCodeBlock: @1094 setting CODE_BLK_END
+------------------------------------------------------------------------
+
+### <179>[342]<0>{CODE_BLK_END}		}
+
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+
+### <180>[346]<0>{ASSIGN_CLASS}		Timekeeper Tim
+
+------------------------------------------------------------------------
+ -1 -1
+------------------------------------------------------------------------
+
+### <131>[276]<0>{CODE_BLK_START}		{
+
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+
+### <132>[277]<0>{EXPRESSION_T}		skipsig = 0.0
+
+------------------------------------------------------------------------
+ exp_e.cpp checkAssign: @924 found = =
+ exp_e.cpp checkAssign: @933 bpe  
+Timekeeper 0 224
+ siv_e.cpp isValid: @492  bad siv 54
+------------------------------------------------------------------------
+
+### <133>[278]<0>{EXPRESSION_T}		rsecs = 0
+
+------------------------------------------------------------------------
+ exp_e.cpp checkAssign: @924 found = =
+ exp_e.cpp checkAssign: @933 bpe  
+Timekeeper 0 224
+ siv_e.cpp isValid: @492  bad siv 55
+------------------------------------------------------------------------
+
+### <134>[279]<0>{EXPRESSION_T}		dsecs = 0.0;
+
+------------------------------------------------------------------------
+ exp_e.cpp checkAssign: @924 found = =
+ exp_e.cpp checkAssign: @933 bpe  
+Timekeeper 0 224
+ siv_e.cpp isValid: @492  bad siv 56
+------------------------------------------------------------------------
+
+### <135>[280]<0>{EXPRESSION_T}		syncsecs = 0.0;
+
+------------------------------------------------------------------------
+ exp_e.cpp checkAssign: @924 found = =
+ exp_e.cpp checkAssign: @933 bpe  
+Timekeeper 0 224
+ siv_e.cpp isValid: @492  bad siv 57
+------------------------------------------------------------------------
+
+### <136>[281]<0>{EXPRESSION_T}		last_t = 0.0;
+
+------------------------------------------------------------------------
+ exp_e.cpp checkAssign: @924 found = =
+ exp_e.cpp checkAssign: @933 bpe  
+Timekeeper 0 224
+ siv_e.cpp isValid: @492  bad siv 58
+------------------------------------------------------------------------
+
+### <137>[282]<0>{EXPRESSION_T}		hrti = 1.0/Freq * (2 * wlen)
+
+------------------------------------------------------------------------
+ exp_e.cpp checkAssign: @924 found = =
+ exp_e.cpp checkAssign: @933 bpe  
+Timekeeper 0 224
+Timekeeper 0 224
+ siv_e.cpp isValid: @492  bad siv 59
+Timekeeper 0 224
+ siv_e.cpp isValid: @492  bad siv 60

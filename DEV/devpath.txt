@@ -1,0 +1,14 @@
+////////////// DEV  ///////////////////
+
+
+ 12/29/2015
+
+  Lets look  what we have now.
+  Improve the intermediate compiler.
+  Verify the socket commmunication
+  Add OpenGL  with a view to replacing Xwindows.
+  Develop additional audio signal processing modules and produce a real time analysis and recognition application.
+
+
+  Desarrollar módulos de procesamiento de señal de audio adicionales y
+  producir un análisis en tiempo real y la aplicación de reconocimiento.

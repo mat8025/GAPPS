@@ -1,0 +1,847 @@
+#! /usr/local/GASP/bin/spi -X
+#/* -*- c -*- */
+# 
+# MonitorResp
+
+include tools/PULSE/SeeLib
+
+SetDebug(0,"pline")
+
+     //SetDebug(-1)
+
+
+CLASS vec {
+
+  public:
+
+  float Y[]
+
+  float z = 67
+
+CMF set (k,fval)
+ {
+       Y[k] = fval
+       z = fval
+ }
+
+ CMF get ( int k)
+ {
+    w = Y[k]     
+    return w
+ }
+
+ CMF printY()
+ {
+    sz = Caz(Y)
+    dmn = Cab(Y)
+          <<" %v $sz $dmn  %v $Y[*] \n"
+      //    <<" %v $sz $dmn  %v $Y[sz-1] \n"
+ }
+
+ CMF printz()
+ {
+    <<" %v $z \n"
+ }
+
+ CMF vec() {
+   Y[10] = 1
+ }
+
+}
+
+
+
+ vec Bestpr[10]
+ vec Besto2[10]
+
+float CO[]
+float SO2[]
+float XV[]
+float AP[]
+
+int index = 13
+
+int npts
+int aprw[]
+int ao2w[]
+
+int kprw[]
+
+lstem = ""
+
+
+proc SyncBaud(pid)
+{
+  SendSig(pid, 2, 96 )
+}
+
+proc SendCS(val)
+{
+  SendSig(pid, 34, val )
+
+}
+
+float rs[]
+
+t1 = 0
+t2 = 10
+
+dotail = 1
+normalize = 0
+
+// seek to last two mins (x bytes) of a b50 file
+// convert to dat
+// read and display
+// do this for a list of b50 files
+// each in different window
+
+
+proc RedrawTheLines()
+{
+      rs = w_getRS(prw)
+
+      //  <<" $_cproc $prw $rs \n"
+
+      rx = rs[1] 
+      ry = rs[2]
+      rX = rs[3] 
+      rY = rs[4]
+
+
+    W_SetRS(prw,rx,0,rX,10)
+
+
+   W_SetRS(prw,rx,ymin,rX,ymax)
+
+
+     if (do_CO) {
+    DrawGline(cogl)
+      }
+
+     if (do_SO2) {
+    DrawGline(so2gl)
+     }
+
+     if (do_AP) {
+    DrawGline(apgl)
+     }
+
+}
+
+proc RedrawStuff()
+      {
+
+      W_ClearPixMap(prw)
+
+      W_clear(prw)
+
+      gsync()
+
+      DrawAxis(prw,0)
+
+      Xaxis2pts(prw)
+
+      // gline to use left or right axis - top or bottom
+
+      RedrawTheLines()
+
+      Xaxis2time(prw)
+
+      w_clipborder(prw)
+
+      DrawLabels(prw)
+
+      ShowFileN(prw, ctname)
+
+      W_ShowPixMap(prw)
+   
+      w_store(prw)
+
+      gsync()
+      }
+
+
+proc DrawAxis(ww)
+{
+  // should be in mins
+
+      rs = w_getRS(ww)
+
+	//<<" $_cproc $ww $rs \n"
+      
+      rx = rs[1] 
+      ry = rs[2]
+      rX = rs[3] 
+      rY = rs[4]
+
+      //<<" $rs \n"
+
+      if ((Fabs(rX -rx)) > 60)
+           minx = 5
+      else
+           minx = 1
+
+            dy = (rY - ry )
+
+            ix = minx
+
+            iy = get_incr ( dy)
+
+            int irx = rx/minx
+
+            rx = irx * minx
+
+      //<<" $rx a$ry $rX $rY \n"
+
+            int iry = ry/iy
+            ry = iry * iy
+
+            W_SetRS(ww,rx,ry,rX,rY)            
+
+            W_SetPen(ww,"black")
+            
+            ticks(ww,1,rx,rX,ix,0.02)
+
+            ticks(ww,2,ry,rY,iy,0.02)
+
+
+
+            axnum(ww,1,rx+ix,rX-ix,ix,3.0,"3.0f")
+		     // axnum title
+            axnum(ww,2,ry+iy,rY,4*iy,-13.0,"g")
+
+
+        w_clipborder(ww)
+}
+
+
+proc DoScale()
+{
+
+  ymin = 0.0
+  ymax = 1.0
+
+  if (do_AP) {
+
+    mm=Stats(AP)
+
+    yirmin = mm[1] - 5*mm[4]
+
+    yirmax = mm[1] + 5*mm[4]
+
+    ymin = yirmin
+    ymax = yirmax
+
+<<" AP scale %V $ymin $ymax \n"
+
+  }
+
+
+  if (do_SO2) {
+
+    mm=Stats(SO2)
+
+    yirmin = mm[1] - 5*mm[4]
+
+    yirmax = mm[1] + 5*mm[4]
+
+    ymin = yirmin
+    ymax = yirmax
+      //<<" SO2 scale %V $ymin $ymax \n"
+
+  }
+
+   if(do_CO) {
+
+    mm=Stats(CO)
+    yave = mm[1]
+    yrmin = yave - 3 * mm[4]
+
+    yrmax = yave + 3 * mm[4]
+
+      //<<" CO scale %V $yrmin $yrmax \n"
+
+        if (do_SO2) {
+           if (yrmin < yirmin) ymin = yrmin
+           if (yrmax > yirmax) ymax = yrmax
+	  }
+	else {
+        ymin = yrmin
+        ymax = yrmax
+      }
+
+    //<<" CO scale %V $ymin $ymax $yave\n"
+
+   }
+ 
+ if (ymin < 0) ymin = 0.0
+
+ float maxy = 3.0E10
+
+  if (ymax > maxy) {
+    ymax = maxy
+  }
+
+ //  <<" $_cproc %V  $ymin $ymax\n"
+
+      ymin = 2000 
+      ymax = 2300
+
+      //  <<" $_cproc FORCE Scales %V $maxy  $ymin $ymax\n"
+
+}
+
+
+proc Xaxis2time(ww)
+{
+
+      rs = w_getRS(ww)
+      
+	//<<" $_cproc $ww $rs \n"
+
+      rx = rs[1] 
+      ry = rs[2]
+      rX = rs[3] 
+      rY = rs[4]
+
+// set rx and rX in mins
+
+            rx /= (50*60)
+            rX /= (50*60)
+
+	if (Fabs(rX-rx) > 5) {
+            int irx = rx/5
+            rx = irx * 5
+        }
+
+       W_SetRS(ww,rx,ry,rX,rY)
+
+}
+
+
+
+proc Xaxis2pts(ww)
+{
+      rs = w_getRS(ww)
+
+	//<<" $_cproc $rs \n"      
+      rx = rs[1] 
+      ry = rs[2]
+      rX = rs[3] 
+      rY = rs[4]
+
+      rx *= (50*60)
+      rX *= (50*60)
+
+     W_SetRS(ww,rx,ry,rX,rY)
+
+}
+
+
+proc  DrawLabels(ww)
+{
+
+  Text(ww,"Time (mins)", 0.1, -0.05,1)
+
+  Text(ww,"RESP ", -0.15, 0.2,1, 90)
+
+}
+
+
+int cogl = -1
+int so2gl = -1
+int apgl = -1
+
+
+
+proc  Plot_RIR(aw)
+ {
+   //   static int fline = -1
+  int doit = 0
+
+
+    W_ClearPixMap(aw)
+
+    W_SetRS(aw,0,ymin,npts,ymax)
+
+     if (do_CO) {
+       if (cogl == -1) {
+      cogl=CreateGline("wid",aw,"type",2,"xvec",XV,"yvec",CO,"color","red","name","CO")
+       }
+      else
+	SetGline(cogl,"xvec",XV,"yvec",CO)
+
+      DrawGline(cogl)
+	  //      fline++
+      }
+
+     if (do_SO2) {
+       if (so2gl == -1)
+    so2gl=CreateGline("wid",aw,"type",2,"xvec",XV,"yvec",SO2,"color","blue","name","SO2")
+    else
+     	SetGline(so2gl,"xvec",XV,"yvec",SO2)
+
+    DrawGline(so2gl)
+   
+     }
+
+     if (do_AP) {
+
+       if (apgl == -1)
+    apgl=CreateGline("wid",aw,"type",2,"xvec",XV,"yvec",AP,"color","green","name","AP")
+    else
+           	SetGline(apgl,"yvec",AP)
+
+    DrawGline(apgl)
+
+     }
+
+
+
+    W_SetRS(aw,0,ymin,npts,ymax)
+
+    Xaxis2time(aw)
+
+    DrawAxis(aw,0)
+
+    DrawLabels(aw)
+
+      //    ShowFileN(aw, ctname)
+
+    W_ShowPixMap(aw)
+
+
+    gsync()
+
+
+#{
+    else {
+
+   mblks = CountMemBlocks()
+<<" $nloop skipping plot %v $mblks \n"
+    }
+#}
+
+  //<<" $_cproc %v $fline \n"
+
+ }
+
+
+
+
+proc CheckMemUse( inwhere)
+{
+   mblks = CountMemBlocks()
+
+   dmb = (mblks - lmblks)
+
+     if (dmb > 0) {
+  <<" %v $nloop  $inwhere %v $dmb %v $mblks \n\n"
+     }
+
+}
+
+
+jfile = "47_1.wav"
+
+proc Dodevice(wname, ww)
+   {
+
+    maxpts = ReadRespFile(A)
+
+    if (maxpts > 0) {
+    <<" %v $maxpts \n"
+
+<<" ${CO[0;3]} \n"
+
+    //<<" ${SO2[0;10]} \n"
+
+    //<<" ${AP[0;10]} \n"
+
+
+    XV= Fgen(maxpts,0,1)
+
+   DoScale()
+
+   npts = maxpts
+
+    // Sred = CO[0;npts]
+
+   ctname = wname
+
+   Plot_RIR(ww)
+
+    //   cf(A)
+    }
+    return maxpts
+
+   }
+
+
+
+itype = "float"
+
+  //int maxpts
+
+proc ReadRespFile(A)
+{
+
+  R = ReadAscii(A,itype,-1,0,4,1000)
+
+  maxpts = Caz(R)
+
+<<" read %v $maxpts \n"
+  if (maxpts > 0) {
+  dmn = Cab(R)
+
+  // <<" ascii read  R array  %v $maxpts  $dmn\n"
+
+  CO = R[*][0]
+
+  SO2 = R[*][1]
+
+  Redimn(CO)
+
+  Redimn(SO2)
+
+ dmn = Cab(CO)
+
+   // <<" after Redimn $dmn \n"
+
+   maxpts = Caz(CO)
+
+  //  <<" %v $maxpts in Red array \n"
+
+
+   AP = R[*][2]
+
+ Redimn(AP)
+
+ maxpts = Caz(CO)
+  }
+
+ return maxpts
+
+}
+
+
+int o2
+int pr
+int pi
+
+//int OP[]
+
+
+
+pid = 0
+
+//////////////////////////////////////////////////////// MAIN //////////////////////////////////////////////
+ 
+ narg = argc()
+
+ noxy = narg -2
+
+ if (noxy <= 0) {
+<<" no valid oxy files \n"
+     STOP!
+ }
+
+
+       head_start_mins = 0
+
+   fname = ""
+   j = 0
+   i = 2
+   while (i < narg) {
+
+    wd = $i
+
+    if (wd @= "head") {
+      dotail = 0
+
+       i++
+       head_start_mins = $i
+       noxy -= 2
+    }
+    else if (wd @= "pid") {
+       i++
+       pid = $i
+       noxy -= 2
+    }
+    else {
+      // check b50
+    fname[j] = $i
+
+     <<" ${fname[*]} \n"
+
+     j++
+    }
+
+    i++;
+   }
+
+
+
+<<" %v $noxy \n"
+
+<<" looking for ${fname[*]} \n"
+
+
+ koxy = 0
+
+<<" looking for ${fname[koxy]} \n"
+  
+
+ do_SO2 = 0
+ do_CO = 0
+ do_AP = 1
+
+  // want to display all active units
+
+ int wrc = 1
+
+ ac = 3
+
+ wo2 =""
+
+ ctname = fname[0]
+
+ fstem = Spat(ctname,".","<","<")
+
+  <<" %V $ctname $fstem  \n"
+
+
+ if (fstem @= "") {
+  fstem = ctname
+ }
+
+
+  lstem = ""
+
+  lstem = Spat(fstem,"/",">","<")
+
+  <<" %V $ctname $fstem $lstem \n"
+
+   ctname = lstem
+
+
+    if (lstem @= "") {
+     lstem = fstem
+    }
+
+#<<" %V $lstem \n"
+   // really wierd parsing check "" 
+
+   ctname = lstem
+
+  <<" %V $ctname $fstem $lstem \n"
+
+   // how many files
+
+   noxy = 1
+
+   for ( i= 0 ; i < noxy; i++) {
+
+      kprw[i] = setupwin("RESP$i",0,10000)
+
+  <<" %V $kprw[i] RESP$i \n"
+
+      prw = kprw[i]
+
+      w_redraw(prw)
+
+      w_move(prw,i)
+
+      W_DrawON(prw)
+
+      W_PixMapDrawON(prw)
+
+      W_resize(prw,0.1,0.2,0.8,0.95,i)
+
+   }
+
+   
+    prw = kprw[0]
+
+
+    woysp = 0.03
+    woht = 0.07
+
+    woy = 0.8
+    woY = woy + woht
+
+    woxwd = 0.09
+
+    wox = 0.9
+    woX = wox + woxwd
+
+
+    prwo=w_CreateWO(prw,"SHOW_VALUE_RIGHT","PR ",1,wox,woy,woX,woY,0,"blue")
+
+    woY = woy - woysp
+    woy = woY - woht
+
+
+    o2wo=w_CreateWO(prw,"SHOW_VALUE_RIGHT","O2 ",1,wox,woy,woX,woY,0,"red")
+
+    woY = woy - woysp
+    woy = woY - woht
+
+
+    redwo=w_CreateWO(prw,"ONOFF","CO",1,wox,woy,woX,woY,2,"red","medium","white")
+
+    woY = woy - woysp
+    woy = woY - woht
+
+    irwo=w_CreateWO(prw,"ONOFF","SO2",1,wox,woy,woX,woY,2,"blue","medium","white")
+
+    woY = woy - woysp
+    woy = woY - woht
+
+    apwo=w_CreateWO(prw,"ONOFF","AP",1,wox,woy,woX,woY,2,"green","medium","white")
+
+    woY = woy - woysp
+    woy = woY - woht
+    wox -= 0.03
+
+    ::inwo=w_CreateWO(prw,"BUTTON_VALUE","INDEX",1,wox,woy,woX,woY,11,"blue","medium","white")
+
+    woY = woy - woysp
+    woy = woY - woht
+
+    //   CONTROLS
+    woysp = 0.03
+    woht = 0.07
+
+    woy = 0.8
+    woY = woy + woht
+
+    woxwd = 0.09
+
+    wox = 0.05
+    woX = wox + woxwd
+
+
+    WoRedraw(prw)
+
+   SwitchScreen(0)
+
+<<" $kprw[*] \n"
+
+  ymin = 0
+  ymax = 1.0
+
+  nsecs = 5
+
+
+  // head start
+   nbytes = head_start_mins * 60  * 50 * 20 * 4
+
+   ninc = 5 * 50 * 20 * 4
+
+   // set up look at tail
+  //   nbytes_in_50hz_rec = 20 ?
+
+   tbytes = nsecs * 50 * 20 * 4
+
+
+   lmblks = 0
+   mblks = 0
+   nloop = 0
+
+   pfname =  "${ctname}_resp.ps"
+   int cs = 1
+
+   int newindex
+
+   prw = kprw[0]
+
+<<" $fname \n"
+
+     <<" $wname $ww \n"  
+    A= ofr(fname)
+
+     //   ab=s_file(A,nbytes,0)
+
+   Dodevice(fname,prw)
+
+
+
+   while (1) {
+
+   // for each device file
+       col = 2
+
+	 fsize = fstat(fname,"size")
+
+        ret=  Dodevice(fname,prw)
+
+       if (!ret) break
+
+     // if post - capture
+
+    nbytes += ninc
+
+   nloop++
+
+       // sleep if necessary - if fsize not increased?
+       //     if (dotail)     sleep(1)
+
+    w_activate(prw)
+
+    msg = MessageRead(Minfo)
+
+   if ( ! (msg @= "NO_MSG")) {
+
+    zmn = msg 
+    winid = Minfo[2]
+
+    if ( (msg @= "PRINT") ) {
+     open_laser(pfname)
+     scr_laser(prw)
+     gsync()
+    }
+
+    if ((msg @= "CO")) {
+          do_CO = ! do_CO
+	  //     <<" %v $do_CO \n"
+    }
+
+    if ((msg @= "SO2")) {
+          do_SO2 = ! do_SO2
+
+    }
+
+
+    if ((msg @= "AP")) {
+          do_AP = ! do_AP
+    }
+
+
+    if ((msg @= "INDEX")) {
+     <<" Which Index ? \n"
+     <<" $Minfo \n"
+
+    }
+
+
+    if ( (msg @= "REDRAW") || (msg @= "RESIZE") || (msg @= "PRINT")) {
+
+
+      RedrawStuff()
+
+    }
+
+
+    WoGetValue(inwo, newindex)
+
+    //  <<" new %v $index  $newindex\n"
+    index = newindex
+
+   }
+
+   }
+
+
+STOP!
+

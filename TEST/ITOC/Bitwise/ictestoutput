@@ -1,0 +1,86 @@
+FAIL test <1> @ [9] CheckNum(m,1)
+
+0 & 0 BAND  0 
+FAIL test <3> @ [21] CheckNum(m,4)
+
+0 | 4 BOR  4 
+FAIL test <4> @ [27] CheckNum(m,5)
+
+0 | 2 BOR  2 
+FAIL test <5> @ [33] CheckNum(m,7)
+
+0 ^ 4 XOR  4
+FAIL test <6> @ [42] CheckNum(m,1)
+
+0 ^ 1 XOR  1
+FAIL test <7> @ [50] CheckNum(m,4)
+
+
+ 4294967294   ~1  
+	1
+	fffffffe
+
+    ~k  
+	1
+	fffffffe
+	1
+	37777777776
+
+  j << 1  
+
+	1
+	2
+
+  j << 4  
+
+	1
+	16
+
+  32 >> 4  = m 
+
+	32
+	2
+DONE: FAIL: ./bitwise            :tests      9 :Fail      6 :Pass      3 :Score   33.3% 
+FAIL test <1> @ [9] CheckNum(m,1)
+
+0 & 0 BAND  0 
+FAIL test <3> @ [21] CheckNum(m,4)
+
+0 | 4 BOR  4 
+FAIL test <4> @ [27] CheckNum(m,5)
+
+0 | 2 BOR  2 
+FAIL test <5> @ [33] CheckNum(m,7)
+
+0 ^ 4 XOR  4
+FAIL test <6> @ [42] CheckNum(m,1)
+
+0 ^ 1 XOR  1
+FAIL test <7> @ [50] CheckNum(m,4)
+
+
+ 4294967294   ~1  
+	1
+	fffffffe
+
+    ~k  
+	1
+	fffffffe
+	1
+	37777777776
+
+  j << 1  
+
+	1
+	2
+
+  j << 4  
+
+	1
+	16
+
+  32 >> 4  = m 
+
+	32
+	2
+DONE: FAIL: ./bitwise            :tests      9 :Fail      6 :Pass      3 :Score   33.3% 

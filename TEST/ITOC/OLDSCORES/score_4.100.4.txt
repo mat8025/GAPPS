@@ -1,0 +1,127 @@
+ae.asl                        :tests	2	:____	0	:Pass	2	:Score	100.0%	PASS	
+arrayele0.asl                 :tests	6	:____	0	:Pass	6	:Score	100.0%	PASS
+arrayele1.asl                 :tests	18	:____	0	:Pass	18	:Score	100.0%	PASS
+arrayrange.asl                :tests	19	:____	0	:Pass	19	:Score	100.0%	PASS
+array_sr.asl                  :tests	7	:____	0	:Pass	7	:Score	100.0%	PASS
+arraysubsrange.asl            :tests	10	:____	0	:Pass	10	:Score	100.0%	PASS
+arraysubsref.asl              :tests	17	:____	0	:Pass	17	:Score	100.0%	PASS
+lhe.asl                       :tests	10	:____	0	:Pass	10	:Score	100.0%	PASS
+lhrange.asl                   :tests	6	:____	0	:Pass	6	:Score	100.0%	PASS
+mdele.asl                     :tests	2	:____	0	:Pass	2	:Score	100.0%	PASS
+vec_cat.asl                   :tests	7	:____	0	:Pass	7	:Score	100.0%	PASS
+vgen.asl                      :tests	1	:____	0	:Pass	1	:Score	100.0%	PASS
+vsp.asl                       :tests	3	:____	0	:Pass	3	:Score	100.0%	PASS
+bitwise.asl                   :tests	9	:____	0	:Pass	9	:Score	100.0%	PASS
+bops.asl                      :tests	19	:____	0	:Pass	19	:Score	100.0%	PASS
+fsc1.asl                      :tests	4	:____	0	:Pass	4	:Score	100.0%	PASS
+bscan.asl                     :tests	6	:____	0	:Pass	6	:Score	100.0%	PASS
+bugfix_46.asl                 :tests	1	:____	0	:Pass	1	:Score	100.0%	PASS
+bugfix_59.asl                 :tests	6	:____	0	:Pass	6	:Score	100.0%	PASS
+bugfix_64.asl                 :tests	6	:____	0	:Pass	6	:Score	100.0%	PASS
+cast0.asl                     :tests	4	:____	0	:Pass	4	:Score	100.0%	PASS
+cast_vec.asl                  :tests	4	:____	0	:Pass	4	:Score	100.0%	PASS
+chem0.asl                     :tests	5	:____	0	:Pass	5	:Score	100.0%	PASS
+class1.asl                    :tests	5	:____	0	:Pass	5	:Score	100.0%	PASS
+classbops.asl                 :tests	21	:____	0	:Pass	21	:Score	100.0%	PASS
+classvar.asl                  :tests	4	:____	0	:Pass	4	:Score	100.0%	PASS
+cmp.asl                       :tests	5	:____	0	:Pass	5	:Score	100.0%	PASS
+command.asl                   :tests	5	:____	0	:Pass	5	:Score	100.0%	PASS
+consts_test.asl               :tests	5	:____	0	:Pass	5	:Score	100.0%	PASS
+contin.asl                    :tests	2	:____	0	:Pass	2	:Score	100.0%	PASS
+cut.asl                       :tests	4	:____	0	:Pass	4	:Score	100.0%	PASS
+arraydeclare.asl              :tests	3	:____	0	:Pass	3	:Score	100.0%	PASS
+chardeclare.asl               :tests	15	:____	0	:Pass	15	:Score	100.0%	PASS
+declare.asl                   :tests	7	:____	0	:Pass	7	:Score	100.0%	PASS
+floatdeclare.asl              :tests	4	:____	0	:Pass	4	:Score	100.0%	PASS
+proc_arg_func.asl             :tests	4	:____	0	:Pass	4	:Score	100.0%	PASS
+scalar_dec.asl                :tests	5	:____	0	:Pass	5	:Score	100.0%	PASS
+define.asl                    :tests	2	:____	0	:Pass	2	:Score	100.0%	PASS
+do0.asl                       :tests	8	:____	0	:Pass	8	:Score	100.0%	PASS
+do1.asl                       :tests	5	:____	0	:Pass	5	:Score	100.0%	PASS
+dynv0.asl                     :tests	22	:____	0	:Pass	22	:Score	100.0%	PASS
+dynv2.asl                     :tests	5	:____	0	:Pass	5	:Score	100.0%	PASS
+colors_enum.asl               :tests	10	:____	0	:Pass	10	:Score	100.0%	PASS
+fact.asl                      :tests	4	:____	0	:Pass	4	:Score	100.0%	PASS
+for.asl                       :tests	3	:____	0	:Pass	3	:Score	100.0%	PASS
+func0.asl                     :tests	3	:____	0	:Pass	3	:Score	100.0%	PASS
+func1.asl                     :tests	4	:____	0	:Pass	4	:Score	100.0%	PASS
+funcargs.asl                  :tests	5	:____	0	:Pass	5	:Score	100.0%	PASS
+func.asl                      :tests	2	:____	0	:Pass	2	:Score	100.0%	PASS
+if0.asl                       :tests	7	:____	0	:Pass	7	:Score	100.0%	PASS
+if4.asl                       :tests	8	:____	0	:Pass	8	:Score	100.0%	PASS
+if5.asl                       :tests	4	:____	0	:Pass	4	:Score	100.0%	PASS
+if6.asl                       :tests	7	:____	0	:Pass	7	:Score	100.0%	PASS
+md_assign.asl                 :tests	5	:____	0	:Pass	5	:Score	100.0%	PASS
+ivar.asl                      :tests	4	:____	0	:Pass	4	:Score	100.0%	PASS
+listele.asl                   :tests	2	:____	0	:Pass	2	:Score	100.0%	PASS
+list.asl                      :tests	8	:____	0	:Pass	8	:Score	100.0%	PASS
+logic2.asl                    :tests	5	:____	0	:Pass	5	:Score	100.0%	PASS
+logic_def.asl                 :tests	5	:____	0	:Pass	5	:Score	100.0%	PASS
+logic.asl                     :tests	19	:____	0	:Pass	19	:Score	100.0%	PASS
+m3d.asl                       :tests	12	:____	0	:Pass	12	:Score	100.0%	PASS
+md_assign.asl                 :tests	2	:____	0	:Pass	2	:Score	100.0%	PASS
+inewton_cbrt.asl              :tests	1	:____	0	:Pass	1	:Score	100.0%	PASS
+inewton.asl                   :tests	1	:____	0	:Pass	1	:Score	100.0%	PASS
+opxeq.asl                     :tests	8	:____	0	:Pass	8	:Score	100.0%	PASS
+diag.asl                      :tests	5	:____	0	:Pass	5	:Score	100.0%	PASS
+mat_mul.asl                   :tests	6	:____	0	:Pass	6	:Score	100.0%	PASS
+msquare.asl                   :tests	4	:____	0	:Pass	4	:Score	100.0%	PASS
+mdimn0.asl                    :tests	2	:____	0	:Pass	2	:Score	100.0%	PASS
+median.asl                    :tests	4	:____	0	:Pass	4	:Score	100.0%	PASS
+mih.asl                       :tests	2	:____	0	:Pass	2	:Score	100.0%	PASS
+mod.asl                       :tests	4	:____	0	:Pass	4	:Score	100.0%	PASS
+xyassign.asl                  :tests	8	:____	0	:Pass	8	:Score	100.0%	PASS
+obcopy.asl                    :tests	6	:____	0	:Pass	6	:Score	100.0%	PASS
+class_array.asl               :tests	2	:____	0	:Pass	2	:Score	100.0%	PASS
+oa.asl                        :tests	7	:____	0	:Pass	7	:Score	100.0%	PASS
+rp2.asl                       :tests	1	:____	0	:Pass	1	:Score	100.0%	PASS
+sh.asl                        :tests	3	:____	0	:Pass	3	:Score	100.0%	PASS
+paraex.asl                    :tests	5	:____	0	:Pass	5	:Score	100.0%	PASS
+pow.asl                       :tests	2	:____	0	:Pass	2	:Score	100.0%	PASS
+prime_127.asl                 :tests	1	:____	0	:Pass	1	:Score	100.0%	PASS
+procrefarg.asl                :tests	4	:____	0	:Pass	4	:Score	100.0%	PASS
+procret0.asl                  :tests	11	:____	0	:Pass	11	:Score	100.0%	PASS
+proc_sv0.asl                  :tests	5	:____	0	:Pass	5	:Score	100.0%	PASS
+proc.asl                      :tests	5	:____	0	:Pass	5	:Score	100.0%	PASS
+scalarvec.asl                 :tests	12	:____	0	:Pass	12	:Score	100.0%	PASS
+sexp.asl                      :tests	8	:____	0	:Pass	8	:Score	100.0%	PASS
+scat.asl                      :tests	4	:____	0	:Pass	4	:Score	100.0%	PASS
+scmp.asl                      :tests	5	:____	0	:Pass	5	:Score	100.0%	PASS
+ssub.asl                      :tests	4	:____	0	:Pass	4	:Score	100.0%	PASS
+stropcmp.asl                  :tests	1	:____	0	:Pass	1	:Score	100.0%	PASS
+sscan.asl                     :tests	7	:____	0	:Pass	7	:Score	100.0%	PASS
+static.asl                    :tests	10	:____	0	:Pass	10	:Score	100.0%	PASS
+lharraysubsrange.asl          :tests	12	:____	0	:Pass	12	:Score	100.0%	PASS
+svar1.asl                     :tests	4	:____	0	:Pass	4	:Score	100.0%	PASS
+svar_declare.asl              :tests	2	:____	0	:Pass	2	:Score	100.0%	PASS
+swap.asl                      :tests	8	:____	0	:Pass	8	:Score	100.0%	PASS
+swap.asl                      :tests	15	:____	0	:Pass	15	:Score	100.0%	PASS
+switch2.asl                   :tests	3	:____	0	:Pass	3	:Score	100.0%	PASS
+switch.asl                    :tests	12	:____	0	:Pass	12	:Score	100.0%	PASS
+char.asl                      :tests	4	:____	0	:Pass	4	:Score	100.0%	PASS
+double.asl                    :tests	3	:____	0	:Pass	3	:Score	100.0%	PASS
+float.asl                     :tests	3	:____	0	:Pass	3	:Score	100.0%	PASS
+long.asl                      :tests	3	:____	0	:Pass	3	:Score	100.0%	PASS
+pan_type.asl                  :tests	2	:____	0	:Pass	2	:Score	100.0%	PASS
+short.asl                     :tests	3	:____	0	:Pass	3	:Score	100.0%	PASS
+vopsele.asl                   :tests	9	:____	0	:Pass	9	:Score	100.0%	PASS
+vops.asl                      :tests	3	:____	0	:Pass	3	:Score	100.0%	PASS
+while0.asl                    :tests	2	:____	0	:Pass	2	:Score	100.0%	PASS
+# FAILS 
+array_ele.asl                 :tests	20	:Fail	4	:Pass	16	:Score	80.0%	FAIL
+fvmeq.asl                     :tests	10	:Fail	4	:Pass	6	:Score	60.0%	FAIL
+checkvm.asl                   :tests	11	:Fail	1	:Pass	10	:Score	90.9%	FAIL
+polyn.asl                     :tests	6	:Fail	3	:Pass	3	:Score	50.0%	FAIL
+arrayarg1.asl                 :tests	4	:Fail	2	:Pass	2	:Score	50.0%	FAIL
+arrayarg2.asl                 :tests	2	:Fail	1	:Pass	1	:Score	50.0%	FAIL
+svelepr.asl                   :tests	2	:Fail	2	:Pass	0	:Score	0.0%	FAIL
+ 4.100.4 Fermium  tests 713  fail 17 pass 696 ipcc  97.62% 
+
+these 7 programs Fail :- 
+array_ele.asl
+fvmeq.asl
+checkvm.asl
+polyn.asl
+arrayarg1.asl
+arrayarg2.asl
+svelepr.asl 

@@ -1,0 +1,11 @@
+//  scripts to display and process speech
+
+
+showVox
+  asl showVox.asl demo.vox
+
+should display the vox,pcm, wav file
+and allow user to select a scetion for spectral display
+with options for windowing,fft parameters etc
+
+

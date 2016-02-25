@@ -1,0 +1,338 @@
+k 0 m 0  ref
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+ k 0 m 0 
+FAIL test <1> @ [38] CheckNum(k,3)
+
+k 0 m 0  value
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+ k 0 m 0 
+FAIL test <2> @ [44] CheckNum(k,3)
+
+k 0 m 0  ref
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+ k 0 m 0 
+FAIL test <3> @ [53] CheckNum(k,4)
+
+k 0 m 0  value
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+ NO SWAP k 0 m 0 
+FAIL test <4> @ [61] CheckNum(k,4)
+
+k 0 m 0  ref
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+ k 0 m 0 
+FAIL test <5> @ [67] CheckNum(k,3)
+
+k 0 m 0  ref
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+ k 0 m 0 
+FAIL test <6> @ [74] CheckNum(k,4)
+
+k 0 m 0  value
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+ k 0 m 0 
+FAIL test <7> @ [81] CheckNum(k,4)
+
+k 0 m 0  ref
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+ k 0 m 0 
+FAIL test <8> @ [88] CheckNum(k,3)
+
+ via main 
+k 0 m 0 w 
+ k 0 m 0 w 0
+FAIL test <9> @ [109] CheckNum(m,3)
+
+ via proc 
+ a 0 b 0 
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+FAIL test <10> @ [119] CheckNum(a,9)
+
+a 0 b 0 
+swap IN : x 7 y 11 t 0
+t 7
+x 11 y 11
+y 7 t 7
+ OUT: x 11 y 7 t 7
+g 0 a 11 b 7 
+swap IN : x 11 y 7 t 0
+t 11
+x 7 y 7
+y 11 t 11
+ OUT: x 7 y 11 t 11
+g 1 a 7 b 11 
+swap IN : x 7 y 11 t 0
+t 7
+x 11 y 11
+y 7 t 7
+ OUT: x 11 y 7 t 7
+g 2 a 11 b 7 
+swap IN : x 11 y 7 t 0
+t 11
+x 7 y 7
+y 11 t 11
+ OUT: x 7 y 11 t 11
+g 3 a 7 b 11 
+ diff vars k 0 m 0
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+g 0 k 0 m 0 
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+g 1 k 0 m 0 
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+g 2 k 0 m 0 
+ orig vars a 7 b 11
+swap IN : x 7 y 11 t 0
+t 7
+x 11 y 11
+y 7 t 7
+ OUT: x 11 y 7 t 7
+g 0 a 11 b 7 
+swap IN : x 11 y 7 t 0
+t 11
+x 7 y 7
+y 11 t 11
+ OUT: x 7 y 11 t 11
+g 1 a 7 b 11 
+swap IN : x 7 y 11 t 0
+t 7
+x 11 y 11
+y 7 t 7
+ OUT: x 11 y 7 t 7
+g 2 a 11 b 7 
+FAIL test <13> @ [161] CheckNum(r,3.0)
+
+ r 0.000000 q 0.000000
+swap IN : x 0.000000 y 0.000000 t 0
+t 0
+x 0.000000 y 0.000000
+y 0.000000 t 0
+ OUT: x 0.000000 y 0.000000 t 0
+FAIL test <14> @ [167] CheckNum(r,4.0)
+
+ r 0.000000 q 0.000000
+swap IN : x 0.000000 y 0.000000 t 0
+t 0
+x 0.000000 y 0.000000
+y 0.000000 t 0
+ OUT: x 0.000000 y 0.000000 t 0
+FAIL test <15> @ [174] CheckNum(r,3.0)
+
+ r 0.000000 q 0.000000
+DONE: FAIL: ./swap               :tests     15 :Fail     13 :Pass      2 :Score   13.3% 
+k 0 m 0  ref
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+ k 0 m 0 
+FAIL test <1> @ [38] CheckNum(k,3)
+
+k 0 m 0  value
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+ k 0 m 0 
+FAIL test <2> @ [44] CheckNum(k,3)
+
+k 0 m 0  ref
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+ k 0 m 0 
+FAIL test <3> @ [53] CheckNum(k,4)
+
+k 0 m 0  value
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+ NO SWAP k 0 m 0 
+FAIL test <4> @ [61] CheckNum(k,4)
+
+k 0 m 0  ref
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+ k 0 m 0 
+FAIL test <5> @ [67] CheckNum(k,3)
+
+k 0 m 0  ref
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+ k 0 m 0 
+FAIL test <6> @ [74] CheckNum(k,4)
+
+k 0 m 0  value
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+ k 0 m 0 
+FAIL test <7> @ [81] CheckNum(k,4)
+
+k 0 m 0  ref
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+ k 0 m 0 
+FAIL test <8> @ [88] CheckNum(k,3)
+
+ via main 
+k 0 m 0 w 
+ k 0 m 0 w 0
+FAIL test <9> @ [109] CheckNum(m,3)
+
+ via proc 
+ a 0 b 0 
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+FAIL test <10> @ [119] CheckNum(a,9)
+
+a 0 b 0 
+swap IN : x 7 y 11 t 0
+t 7
+x 11 y 11
+y 7 t 7
+ OUT: x 11 y 7 t 7
+g 0 a 11 b 7 
+swap IN : x 11 y 7 t 0
+t 11
+x 7 y 7
+y 11 t 11
+ OUT: x 7 y 11 t 11
+g 1 a 7 b 11 
+swap IN : x 7 y 11 t 0
+t 7
+x 11 y 11
+y 7 t 7
+ OUT: x 11 y 7 t 7
+g 2 a 11 b 7 
+swap IN : x 11 y 7 t 0
+t 11
+x 7 y 7
+y 11 t 11
+ OUT: x 7 y 11 t 11
+g 3 a 7 b 11 
+ diff vars k 0 m 0
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+g 0 k 0 m 0 
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+g 1 k 0 m 0 
+swap IN : x 0 y 0 t 0
+t 0
+x 0 y 0
+y 0 t 0
+ OUT: x 0 y 0 t 0
+g 2 k 0 m 0 
+ orig vars a 7 b 11
+swap IN : x 7 y 11 t 0
+t 7
+x 11 y 11
+y 7 t 7
+ OUT: x 11 y 7 t 7
+g 0 a 11 b 7 
+swap IN : x 11 y 7 t 0
+t 11
+x 7 y 7
+y 11 t 11
+ OUT: x 7 y 11 t 11
+g 1 a 7 b 11 
+swap IN : x 7 y 11 t 0
+t 7
+x 11 y 11
+y 7 t 7
+ OUT: x 11 y 7 t 7
+g 2 a 11 b 7 
+FAIL test <13> @ [161] CheckNum(r,3.0)
+
+ r 0.000000 q 0.000000
+swap IN : x 0.000000 y 0.000000 t 0
+t 0
+x 0.000000 y 0.000000
+y 0.000000 t 0
+ OUT: x 0.000000 y 0.000000 t 0
+FAIL test <14> @ [167] CheckNum(r,4.0)
+
+ r 0.000000 q 0.000000
+swap IN : x 0.000000 y 0.000000 t 0
+t 0
+x 0.000000 y 0.000000
+y 0.000000 t 0
+ OUT: x 0.000000 y 0.000000 t 0
+FAIL test <15> @ [174] CheckNum(r,3.0)
+
+ r 0.000000 q 0.000000
+DONE: FAIL: ./swap               :tests     15 :Fail     13 :Pass      2 :Score   13.3% 

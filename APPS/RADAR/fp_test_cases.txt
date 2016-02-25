@@ -1,0 +1,12 @@
+# test case full descent then level off
+asl make_fp.asl a 20000  l 180 d 120 2000 l 500 | asl fp_fcV5.asl | asl plotfp2.asl "level - descend - level"
+# test_case   climb level full descent
+asl make_fp.asl l 60 c 180 1500 l 180 d 120 2000 l 180 c 120 200 l 420 | asl fp_fcV5.asl | asl plotfp2.asl "climb level descend"
+# test_case   climb level partial descent
+asl make_fp.asl l 60 c 180 1500 l 180 d 60 2000 l 180 c 120 200 l 420 | asl fp_fcV5.asl | asl plotfp2.asl "climb level partial descent"
+# test_case staged descent
+asl make_fp.asl a 20000  l 180 d 120 2000 l 180 d 120 200 l 420 | asl fp_fcV5.asl | asl plotfp2.asl "staged descent"
+# test case level then climb 3 mins the level off
+ asl make_fp.asl a 1000  l 180 c 180 2000 l 420 | asl fp_fcV5.asl | asl plotfp2.asl  "climb level off "
+# test_case descent level 2 mins then climb
+asl make_fp.asl a 20000  l 180 d 120 2000 l 120 c 180 500 l 420 | asl fp_fcV5.asl | asl plotfp2.asl "descent 2 mins level 2 mins then climb"

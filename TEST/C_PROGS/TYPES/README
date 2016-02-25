@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+
+main()
+{
+ long l = 2;
+
+  printf("l %ld %d \n",l,sizeof(l));
+
+
+
+}

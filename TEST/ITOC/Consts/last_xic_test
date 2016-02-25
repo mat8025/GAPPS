@@ -1,0 +1,3 @@
+ this should fail ALV == 23  0.000000 
+DONE: FAIL: ./consts_test        :tests      5 :Fail      2 :Pass      3 :Score   60.0% 
+Code errors 2  ICerrors 0

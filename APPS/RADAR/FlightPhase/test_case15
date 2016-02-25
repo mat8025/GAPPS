@@ -1,0 +1,5 @@
+y=15
+echo "# test_case$y after climb immediate emergency descent  " > test_case$y.ip 
+echo "# 0 to -1 hold then to 1.0 " >> test_case$y.ip
+asl make_fp_vt.asl a 0 l 60  c 340 2500 d 125 4500 l 430 c 240 500 l 120 d 240 1500 l 60 >> test_case$y.ip
+cat test_case$y.ip |  asl fp_fcV8.asl | asl plotfp2.asl 

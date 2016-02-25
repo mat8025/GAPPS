@@ -1,0 +1,28 @@
+ERROR [13] pid 10644 ./mod :  :
+ 'FPE_ERROR :  FPE':
+  @ [18] x = k / d
+
+ERROR [13] pid 10644 ./mod :  :
+ 'FPE_ERROR :  FPE':
+  @ [25] yr = k -  d * floor(k/ d);
+
+ k -2 d 0.000000 x -2.000000 yf -2.000000 yr -2.000000 ir -2
+FAIL test <3> @ [31] CheckNum(ir,4)
+
+ f 2.000000 
+DONE: FAIL: ./mod                :tests      4 :Fail      1 :Pass      3 :Score   75.0% 
+Code errors 2  ICerrors 0
+ERROR [13] pid 11863 ./mod :  :
+ 'FPE_ERROR :  FPE':
+  @ [18] x = k / d
+
+ERROR [13] pid 11863 ./mod :  :
+ 'FPE_ERROR :  FPE':
+  @ [25] yr = k -  d * floor(k/ d);
+
+ k -2 d 0.000000 x -2.000000 yf -2.000000 yr -2.000000 ir -2
+FAIL test <3> @ [31] CheckNum(ir,4)
+
+ f 2.000000 
+DONE: FAIL: ./mod                :tests      4 :Fail      1 :Pass      3 :Score   75.0% 
+Code errors 2  ICerrors 0

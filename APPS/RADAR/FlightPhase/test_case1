@@ -1,0 +1,5 @@
+y=1
+echo "#test_case$y level - descend for 2 mins - level off " > test_case$y.ip 
+echo "#flight phase starts at 0 --> -1 in 2 min hold 5 mins slew from -1 to 0 in 2 mins" >> test_case$y.ip 
+asl make_fp_vt.asl a 20000  l 180 d 120 2000 l 500 >> test_case$y.ip 
+cat test_case$y.ip | asl fp_fcV8.asl | asl plotfp2.asl 

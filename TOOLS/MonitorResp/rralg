@@ -1,0 +1,1298 @@
+#! /usr/local/GASP/bin/spi 
+#/* -*- c -*- */
+# "$Id: rralg,v 1.3 2004/10/04 03:51:35 mark Exp mark $" 
+
+fname = $2
+
+  /////////////////////////////////////////////////////// ComputeParameters //////////////////////////////////////
+
+float real[]
+float imag[]
+
+float Rpowspec[]
+float Rlogspec[]
+float IRpowspec[]
+float IRlogspec[]
+
+float Wred[]
+float Wir[]
+
+int Pks[]
+int RRpks[]
+int Spks[]
+
+float Tddr[]
+float Tddir[]
+
+
+float RR1[]
+float XVRR[]
+
+float PR1[]
+
+
+
+float Tpr
+
+float LGtpr = 0
+
+int nrrpts = 0
+
+//////////////////////////// setup SPEC   DSP //////////////////////////
+
+Fftsz = 4096
+hfftsz = Fftsz/2
+Wlen = hfftsz
+specsz = hfftsz -1
+resphz =  2.0
+resp_fpt = hfftsz/25.0 * resphz
+
+float cswin[hfftsz]
+float swin[Wlen]
+
+  PwrScale = 1.0/ (Fftsz)
+
+
+Swindow(swin,Wlen,"Hanning")
+
+
+proc SmWindow( cwlen)
+{
+
+  wlm1 = cwlen -1
+
+  real = Fgen(Fftsz,0.0,0.0)
+
+  image = real
+
+  sreal = Wred[0;wlm1]
+
+    //  <<" $real[0;16]  $dmn\n"
+
+  simag = Wir[0;wlm1]
+
+  Rdc = Rms(sreal)
+
+  IRdc = Rms(simag)
+
+  MM=Stats(sreal)
+
+    //<<" %v $MM \n"
+    Ravedc = MM[1]
+
+    sreal = sreal -MM[1]
+
+
+    sreal = Dcfilter(sreal)
+
+  //  sreal = Vsmooth(sreal,cwlen-4,10)
+
+
+    MM=Stats(simag)
+
+//    imag -= MM[1]
+
+
+    if (doGUI) {
+
+      SetGwindow(inspw,"clearpixmap","clearclip","hue","red")
+      // plot input to spec routine
+      //      DrawY(inspw,sreal,1,0.75)
+
+//  SetGwindow(inspw,"hue","red")
+
+      DrawY(inspw,simag,1,0.75)
+    }
+
+    simag = simag - MM[1]
+
+    simag = Dcfilter(simag)
+
+   IRavedc = MM[1]
+
+   sreal *= swin
+
+   simag *= swin 
+
+
+
+    //   <<" %V $Rdc  $IRdc $Ravedc $IRavedc \n"
+
+    Rdc = Ravedc
+    IRdc = IRavedc
+
+    if (IRdc <=0) IRdc = 1.0
+
+    if (Rdc <=0) Rdc = 1.0
+
+    zplen = Fftsz - cwlen
+
+    if (zplen > 0) {
+
+    zp = Fgen((Fftsz-cwlen),0,0)
+    real = sreal  @+ zp
+    imag = simag @+ zp
+
+    }
+    else {
+   // real = sreal // error in direct copy
+
+    real = sreal * 1.0
+    imag = simag * 1.0
+   }
+}
+
+
+
+
+proc ComputeSpec()
+{
+
+   Fft(real,imag,Fftsz)
+
+   // get Copy to perform FFT convolution
+
+   // doing complex input RED in real IR in imag
+   // have to decode if we want separate RED and IR spec
+
+     // decode into red and IR
+     Rreal = fftdecode(real,imag,1)
+     //<<" %v $Rreal \n"
+     Rimag = fftdecode(real,imag,2)
+
+     IRreal = fftdecode(real,imag,3)
+     IRimag = fftdecode(real,imag,4)
+
+
+   //////////////////////
+
+   Rreal = Rreal * Rreal + Rimag * Rimag
+
+   IRreal = IRreal * IRreal + IRimag * IRimag
+
+   // this is Power Spec
+
+   Rreal  *=  PwrScale
+   IRreal *= PwrScale
+
+   Rlogspec = log10(Rreal[0 ; specsz ]) * 10.0
+   IRlogspec = log10(IRreal[0 ; specsz ]) * 10.0
+
+   Rpowspec = Rreal[0 ; specsz]
+
+   IRpowspec = IRreal[0 ; specsz]
+}
+
+
+
+proc ComputeEnvSpec()
+{
+
+  // envelop is in SLeir
+
+
+
+
+}
+
+proc  DisplayEnvSpec()
+{
+
+
+
+
+}
+
+
+
+// peak -pick plethwaveform and obtain modulation envelope
+
+float EIR[]
+float TEIR[]
+
+float Lteir[]
+float Leir[]
+float SLeir[]
+
+tdrr = 0.0
+tdrr1 = 0.0
+
+proc TDD(twlen)
+{
+
+  e1 = twlen -2
+
+  e2 = twlen -1
+
+  InIR = Wir[0;e2]
+
+    // repeat for IR
+  Tddir = (InIR[0; e1] - InIR[ 1 ;e2] )
+
+  IRnd = Tddir / ( InIR[0; e1] + InIR[ 1 ;e2] )
+
+  MM = Stats( Tddir)
+
+  ymax = MM[6]
+  
+  ymin = MM[5] ;  ymean = MM[1] ;  ysd = MM[4]
+
+				     //  <<" TDD %v $ymin $ymax $ymean $ysd \n"
+  Pks = Peaks(Tddir,(ymax * 0.50))
+
+  //  <<" $Pks[0;10] \n"
+				     // need to index values in InIR
+
+
+  //////////// SpikeDetection ////////////////////
+
+  pkind = Sel(Pks,">",0)
+
+  pksz = Caz(pkind)
+
+
+  if (pksz > 0) {
+
+  //  <<" %v $pksz  $pkind[0;5] \n"
+
+  iv = pkind[0]
+  pkval = InIR[iv]
+
+  //  <<" %V $iv  $pkval \n"
+
+  EIR = InIR[pkind]
+
+  //  <<" %8.0f $InIR[0;10] \n"
+
+  //  <<" %8.0f $EIR \n"
+
+  //  TEIR = pkind * 1/ 50.0
+
+  TEIR = pkind * 1.0
+
+  //<<" %6.2f $TEIR \n"
+
+  Lteir = Fgen(hfftsz,0,1)
+  Leir =  Fgen(hfftsz,0,0)
+
+  Lip(TEIR,EIR,pksz,Lteir,Leir,hfftsz)
+
+  //    <<"LIP EIR %8.0f $Leir[0;10] \n"
+
+  SLeir = Vsmooth(Leir,50)
+
+  //Cspline(TEIR,EIR,pksz,Lteir,Leir,hfftsz)
+  //  <<"Cspline EIR %8.0f $Leir[0;10] \n"
+
+	  }
+
+
+  // lets get an ave periodicity from indices of Pks
+
+    PdaRMS = Rms(Tddir)
+
+      //<<" %v $PdaRMS \n"
+
+    // extract RR from peaks in SLeir  
+
+    MM = Stats(Leir)
+    emax = MM[6]
+
+   RRpks = Peaks(Leir, emax * 0.6)
+
+    rpkind = Sel(RRpks,">",0)
+
+    rrpksz = Caz(rpkind)
+
+      if (rrpksz > 0)
+ 
+	//<<" RR pks $rrpksz   $rpkind \n"
+
+     // plot
+
+    tdpr = 0.0
+    tdpr1 = 0.0
+
+    if (pksz > 2) {
+
+       ph = pkind[1; pksz -1 ] - pkind[0; pksz -2 ]
+			     // actual want the most common interval not mean
+
+       MM = Stats(ph)
+
+       mnp = MM[1]
+
+       //<<" %v $ph \n"
+
+       hs= hist(ph,2,0,200,1)
+
+       // <<" $hs \n"
+
+       hci = hs[0] * 2
+
+       if (hci > 0)
+           tdpr1 =  3000.0/hci 
+
+       //<<"%v $mnp \n"
+
+       tdpr = 3000.0/mnp 
+
+	     //<<" $tdpr  $tdpr1 \n"
+    }
+
+
+    tdrr = 0.0
+    tdrr1 = 0.0
+
+    if (rrpksz > 2) {
+
+       ph = rpkind[1; rrpksz -1 ] - rpkind[0; rrpksz -2 ]
+			     // actual want the most common interval not mean
+
+       MM = Stats(ph)
+
+       mnp = MM[1]
+
+       //<<" %v $ph \n"
+
+       hs= hist(ph,2,0,200,1)
+
+       // <<" $hs \n"
+
+       hci = hs[0] * 2
+
+       if (hci > 0)
+           tdrr1 =  3000.0/hci 
+
+       //<<"%v $mnp \n"
+
+       tdrr = 3000.0/mnp 
+
+       <<" RR $tdrr  $tdrr1 \n"
+    }
+
+
+
+    Tpr = tdpr1
+
+    return tdpr1
+}
+
+  Rrate = 0.0
+
+
+
+proc ComputeRR()
+{
+
+ prwt = 0.7
+
+ good_pr = 0
+
+ if ((Tpr >= 10) && (Tpr < 200) ) {
+  prv = Tpr
+  good_pr =1
+ }
+  else
+  prv = LGtpr
+
+  good_rr = 0
+
+  rrv = (tdrr + tdrr1) /2.0
+
+    if (rrv < 120) {
+     good_rr =1
+
+    }
+
+ if (good_rr) {
+
+    if (prv < rrv) {
+       prv = rrv
+       prwt = 1.0
+    }
+ }
+ else {
+
+      rrv = prv * 0.5
+
+ }
+
+  Rrate = (rrv + (prv * prwt)) / 2.0 
+
+  Rrate *= 0.9
+
+<<[RF]" %6.2f $Tpr $LGtpr $rrv $prv $prwt $Rrate \n"
+
+	//  fix dropouts in Tpr/Rrate
+	if (good_pr)
+          LGtpr = Tpr
+
+}
+
+
+proc PlotRR()
+{
+
+<<" PlotRR $rrw $sst $Rrate  $Tpr\n"
+  PlotSymbol(rrw,sst+20,Rrate,"diamond",5,"green")
+
+  PlotSymbol(rrw,sst+20,Tpr,"triangle",5,"red")
+
+}
+
+
+
+//////////////////////// PLOT MODULATION //////////////////////////////////////////////////////
+
+
+proc DrawTDD()
+    {
+
+   //  SetGwindow(inspw,"clearpixmap","clearclip","hue","blue")
+
+    //  DrawY(inspw, Tddir,1,1.0)
+
+      tdrs = w_getRS(inspw)
+
+	//<<" $_cproc $ww $rs \n"
+      
+      rx = tdrs[1] 
+      ry = tdrs[2]
+      rX = tdrs[3] 
+      rY = tdrs[4]
+
+  MM = Stats(EIR)
+
+  max = MM[6]
+  min = MM[5]
+
+ 
+	//  <<" %V eir $min  $max \n"
+
+    //  W_SetRS(inspw,0,min,hfftsz,max * 1.2)
+
+	//  SetGwindow(inspw,"scales",0,ry,hfftsz,max * 1.2 ,"savescales",0)
+
+  SetGwindow(inspw,"scales",0,ry,hfftsz, rY ,"savescales",0)
+
+	//  SetGline(eirgl,"xvec",TEIR,"yvec",EIR )
+
+	//  SetGline(eirgl,"xvec",Lteir,"yvec",Leir )
+
+  SetGline(eirgl,"xvec",Lteir,"yvec",SLeir )
+
+
+	// FrqA Sleir - take lowest peak in spectrum
+ 
+
+	ComputeEnvSpec()
+
+
+        DisplayEnvSpec()
+
+
+  DrawGline(eirgl)
+
+  W_SetPen(inspw,"green")
+
+  DrawY(inspw,Pks,2,0.5)
+
+
+  W_SetPen(inspw,"black")
+
+  DrawY(inspw,RRpks,2,0.5)
+
+
+
+  W_ShowPixMap(inspw)
+
+  }
+
+
+
+//////////////////////// PLOT SPEC //////////////////////////////////////////////////////
+
+
+proc PlotSpec()
+{
+
+      if (!doGUI) return
+
+	// look at base-band
+      subspecr = 10
+
+      kspec = hfftsz / subspecr 
+
+      fbpm = (25.0  * 60) / subspecr
+     
+      wrspec = Rpowspec      
+      wirspec = IRpowspec
+
+      specsf = 0.8
+	MM = Stats(wrspec[0;kspec])
+
+      max = MM[6]
+   
+      SetGwindow(spw,"clearpixmap","scales",1,0,kspec,max * specsf,"savescales",0,"hue","red")
+
+      DrawY(spw,wrspec[1;kspec],0,1,2,1,kspec)
+
+	MM = Stats(wirspec[0;kspec])
+ 
+      max = MM[6]
+
+      SetGwindow(spw,"scales",1,0,kspec,max * specsf,"savescales",0,"hue","blue")
+
+      DrawY(spw,wirspec[1;kspec],0,1,2)
+
+      SetGwindow(spw,"showpixmap","scales",0,0,fbpm,max * specsf,"savescales",0)
+
+}
+
+
+
+
+///////////////////////   PLETH READ & DISPLAY    ////////////////////////////////////
+
+float Red[]
+float IR[]
+
+lstem = ""
+
+normalize = 1
+
+ do_IR = 1
+ do_Red =0
+ wpc = 3
+
+
+NPV = 10
+
+float PG[]
+float RD[]
+float IRD[]
+
+proc ReadPulseFile( Fh)
+{
+
+  R = ReadRecord(Fh,"type","uint","target",2,24,"target",0,wpc,"ncols",11)
+
+  maxpts = Caz(R)
+
+  <<" $maxpts $(typeof(R)) \n"
+
+<<" $R[0;10][*] "
+
+   dmn = Cab(R)
+
+  // <<" ascii read  R array  %v $maxpts  $dmn\n"
+
+ PG = R[*][6]
+
+    // <<" PG $PG[0;NPV] \n"
+
+//  |^  exp operator
+
+ PG = 4 |^ PG
+
+  // <<" PG $PG[0;NPV] \n"
+  // either 0 ,1,2, or 3 indicating gain of 1 ,4 , 16 or 64
+
+ RD = R[*][4]
+
+ RD = 4 |^ RD
+
+ IRD = R[*][5]
+
+ IRD = 4 |^ IRD
+
+ Red = R[*][8]
+
+  //  NRed = Red[("<",0)]
+  //<<" $NRed \n"
+
+  // <<" preNorm $Red[0;NPV] \n"
+  // <<" PG $PG[0;NPV] \n"
+
+ rsz = Caz(Red)
+
+ dmn = Cab(Red)
+
+ <<" %v $rsz $dmn\n"
+  // apply normalization ?
+
+  if (normalize) {
+  Red = Red / PG 
+  Red = Red / RD
+  }
+
+  // <<" postNorm $Red[0;NPV] \n"
+
+ Redimn(Red)
+
+ dmn = Cab(Red)
+
+  // <<" after Redimn $dmn \n"
+
+ maxpts = Caz(Red)
+
+  // <<" %v $maxpts in Red array \n"
+
+ IR = R[*][9]
+
+  //  NIR = IR[("<",0)]
+  //<<" $NIR \n"
+
+  // <<" $dmn $(typeof(IR))\n"
+
+  Redimn(IR)
+
+  if (normalize) {
+   IR = IR / PG
+   IR = IR / IRD
+  }
+
+ maxirpts = Caz(IR)
+
+  // <<" %v $maxirpts  \n"
+
+
+Fadc = R[*][3]
+ 
+//<<" $Fadc \n"
+ 
+sz = Caz(Fadc)
+   
+checkskip = 0  
+  if (checkskip) {
+ 
+<<" $sz \n"
+  nskips = 0
+  last_val = 0
+   for (i= 0 ; i < sz ; i++) {
+    val = Fadc[i]
+    if ( i > 0) {
+    if ((val - last_val) != 2) {
+     <<" $i $val $Fadc[i-1] $Fadc[i] \n"
+       nskips++
+    }
+    }
+    last_val = val
+   }
+ 
+ 
+<<" DONE $nskips \n"
+  }
+
+   return maxpts
+}
+
+  B= ofr("${fname}.dat")
+
+       RF = ofw("${fname}.rrt")
+
+  npleth  = ReadPulseFile(B)
+
+  maxpts = npleth
+
+  ctname = fname
+
+  fstem = Spat(ctname,".","<","<")
+
+  if (fstem @= "")
+      fstem = ctname
+
+  lstem = Spat(fstem,"/",">","<")
+
+	//  <<" $ctname $fstem $lstem \n"
+
+  if (lstem @= "") 
+     lstem = fstem
+
+   ctname = lstem
+
+// check Red &IR
+
+//   <<" %v $maxpts \n"
+
+  //  mm=MinMax(IR)
+
+  irsz = Caz(IR)
+
+  int padrir = irsz/20
+
+  plethmax = 35000000
+  plethmin = 0.0
+       //  mm=Stats(IR[padrir;irsz-padrir],plethmax,"<")
+
+       mm=Stats(IR[padrir;irsz-padrir])
+
+<<"%V IR stats %e $mm[1] $mm[4]  $mm[5] $mm[6]\n"
+  plethmax = mm[1] *1.1
+  plethmin = mm[5] * 2
+
+       mm=Stats(IR[padrir;irsz-padrir],">",plethmin,"<",plethmax)
+
+<<"%V IR stats %e $mm[1] $mm[4]  $mm[5] $mm[6]\n"
+
+       // glitch in pleth leads to very large numbers
+       // exclude them
+
+     // make sdsize arg
+  psdf = 2.0
+
+  plymin = mm[1] - psdf * mm[4]
+
+  plymax = mm[1] + psdf * mm[4]
+
+       if (plymin < 0) plymin = 0
+
+<<"%V %e $plymin $plymax \n"
+
+  redsz = Caz(Red)
+
+       //mm=Stats(Red[padrir;redsz-padrir],plethmax,"<")
+
+  mm=Stats(Red[padrir;redsz-padrir])
+
+
+<<"%V Red stats %e $mm[1] $mm[4] $mm[5] $mm[6]\n"
+
+  yrmin = mm[1] - psdf * mm[4]
+
+  yrmax = mm[1] + psdf * mm[4]
+  
+<<"%V %e $yrmin $yrmax \n"
+
+  scalered = (plymax-plymin) / (yrmax-yrmin)
+
+  <<" %v $scalered \n"
+
+  float maxy = 5.0E8
+
+   dtp = 1.0/50.0
+
+   XP= Fgen(maxpts,0,dtp)
+
+<<" $maxpts %v $dtp \n"
+
+/////////////////////// 4700 & Pleth Window /////////////////////////////////////
+
+
+   aw= CreateGwindow("title","Resrp47","scales",xmin,2000,xmax,3000,"savescales",1)
+
+    //<<" CGW $aw \n"
+
+    SetGwindow(aw,"resize",0.1,0.01,0.9,0.47,0)
+    SetGwindow(aw,"clip",0.1,0.1,0.8,0.95,"drawon")
+
+////////////////////   RR/PR WINDOW ///////////////////////////////
+
+    rrw= CreateGwindow("title","RRW","scales",0,0,1200.0,120,"savescales",0)
+
+    SetGwindow(rrw,"resize",0.1,0.472,0.9,0.67,0)
+    SetGwindow(rrw,"clip",0.1,0.1,0.8,0.95,"drawon")
+
+
+    ////////////////////   SPEC WINDOWS ///////////////////////////////
+
+
+    inspw= CreateGwindow("title","SMW","scales",0,-10000,1024,10000,"savescales",0)
+
+    SetGwindow(inspw,"resize",0.1,0.675,0.9,0.80,0)
+    SetGwindow(inspw,"clip",0.1,0.05,0.9,0.85,"drawon")
+
+    spw= CreateGwindow("title","SPEC","scales",0,-10000,1024,10000,"savescales",0)
+
+    SetGwindow(spw,"resize",0.1,0.805,0.9,0.99,0)
+    SetGwindow(spw,"clip",0.1,0.05,0.9,0.95,"drawon")
+
+   eirgl=CreateGline("wid",inspw,"type",2,"xvec",TEIR,"yvec",EIR,"color","black","name","EIR","usescales",0)
+
+/////////////////////////////// ECG WAVE /////////////////////////////
+
+
+C= ofr("${fname}.ecg")
+
+R3 = ReadRecord(C,"type","float")
+
+sz = Caz(R3)
+
+dmn = Cab(R3)
+
+<<" %V $sz $dmn \n"
+
+       //<<" $R3[0;10][*] \n"
+
+  RR = R3[*][5] 
+
+  Redimn(RR)
+
+
+  PR = R3[*][6] 
+
+  Redimn(PR)
+
+  XVRI = R3[*][1]
+
+  Redimn(XVRI)
+
+   ecgsz = Caz(XVRI)
+
+      ymin = 0
+      ymax = 120
+      xmin = 0
+      xmax = XVRI[ecgsz-1]
+
+		//<<" $XVRI[0] $XVRI[2] \n"
+  <<" ecg  $xmin $xmax \n"
+		//  <<" %6.0f $XVRI \n"
+		//  <<" %6.2f $RR \n"
+
+  SetGwindow(rrw,"scales",0,ymin,xmax,ymax,"savescales",0)    
+
+  rrgl=CreateGline("wid",rrw,"type","XY","xvec",XVRI,"yvec",RR,"color", "red","usescales",0)
+  DrawGline(rrgl)
+
+
+  rr1gl=CreateGline("wid",rrw,"type","XY","xvec",XVRI,"yvec",RR,"color", "green","usescales",0)
+  pr1gl=CreateGline("wid",rrw,"type","XY","xvec",XVRI,"yvec",RR,"color", "blackprwt","usescales",0)
+
+  prgl=CreateGline("wid",rrw,"type","XY","xvec",XVRI,"yvec",PR,"color", "blue","usescales",0)
+  DrawGline(prgl)
+
+  cf(C)
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+/////////////////////////////// 4700 RESP WAVE /////////////////////////////
+
+A = ofr("${fname}.wav")
+
+R = ReadRecord(A,"type","int")
+sz = Caz(R)
+dmn = Cab(R)
+
+	
+<<" $sz $dmn \n"
+
+//<<" $R \n"
+
+
+SO2 = R[*][1]
+
+      //      <<" $SO2[0;2000] \n"
+
+  sz = Caz(SO2)
+
+  Redimn(SO2)
+
+   MM= Stats(SO2)
+
+<<" %6.2f $(typeof(MM)) $MM \n"
+
+  // plot Spo2 V Fadc
+
+      ymin = 2000
+      ymax = 3000
+      xmin = 0.0
+
+    dtr = 1.0/250.0
+
+    XR= Fgen(sz,0,dtr)
+    
+    xmax = sz * dtr
+    respmaxtime = xmax
+
+
+ doGUI = CheckGwm()
+
+if (! doGUI) STOP!
+
+<<" %V $xmin $xmax  $dtr\n"
+
+    Gsync!
+
+	   dmn = Cab(SO2)
+
+<<" $dmn \n"
+
+
+
+  SetGwindow(aw,"scales",0,2000,xmax,3000,"savescales",1)    
+
+  refgl=CreateGline("wid",aw,"type","XY","xvec",XR,"yvec",SO2,"color", "green","usescales",1)
+       DrawGline(refgl)
+
+  //  interactive redraw
+
+         plw = aw
+
+<<" pleth scales $plymin  $plymax $yrmax \n"
+
+      SetGwindow(plw,"scales",0,plymin,respmaxtime,plymax,"savescales",0)
+
+  // scale red to match ir
+
+
+     if (do_Red) {
+       redgl=CreateGline("wid",plw,"type",2,"xvec",XP,"yvec",(scalered*Red),"color","red","name","RED","usescales",0)
+       DrawGline(redgl)
+      }
+
+     if (do_IR) {
+       irgl=CreateGline("wid",plw,"type",2,"xvec",XP,"yvec",IR,"color","blue","name","IR","usescales",0)
+       DrawGline(irgl)
+     }
+
+      // redraw
+      // if not gwm -exit
+
+//	cf(A)
+
+  // put some WOS - to control zooming
+
+    woysp = 0.03
+    woht = 0.07
+
+    woy = 0.8
+    woY = woy + woht
+
+    woxwd = 0.09
+
+    wox = 0.9
+    woX = wox + woxwd
+
+    zoywo=w_CreateWO(plw,"ONOFF","ZOY",1,wox,woy,woX,woY,2,"red","medium","white")
+
+    woset(zoywo,"help","Zoom out Y axis")
+
+    woY = woy - woysp
+    woy = woY - woht
+
+    ziywo=w_CreateWO(plw,"ONOFF","ZIY",1,wox,woy,woX,woY,2,"blue","medium","white")
+
+    woset(ziywo,"help","Zoom in Y axis")
+
+    woY = woy - woysp
+    woy = woY - woht
+
+    zoxwo=w_CreateWO(plw,"ONOFF","ZOX",1,wox,woy,woX,woY,2,"red","medium","white")
+
+    woset(zoxwo,"help","Zoom out X axis")
+
+    woY = woy - woysp
+    woy = woY - woht
+
+    zixwo=w_CreateWO(plw,"ONOFF","ZIX",1,wox,woy,woX,woY,2,"blue","medium","white")
+
+    woset(zixwo,"help","Zoom in X axis")
+
+    woY = woy - woysp
+    woy = woY - woht
+
+    puywo=w_CreateWO(plw,"ONOFF","PUY",1,wox,woy,woX,woY,2,"blue","medium","white")
+    woset(puwwo,"help","Pan up Y axis")
+
+    woY = woy - woysp
+    woy = woY - woht
+
+    pdywo=w_CreateWO(plw,"ONOFF","PDY",1,wox,woy,woX,woY,2,"blue","medium","white")
+    woset(pdywo,"help","Pan down ")
+
+    woY = woy - woysp
+    woy = woY - woht
+
+    plwo=w_CreateWO(plw,"ONOFF","PANL",1,wox,woy,woX,woY,2,"blue","medium","white")
+    woset(plwo,"help","Pan left ")
+
+    woY = woy - woysp
+    woy = woY - woht
+
+    prwo=w_CreateWO(plw,"ONOFF","PANR",1,wox,woy,woX,woY,2,"red","medium","white")
+    woset(prwo,"help","Pan right ")
+
+
+    //////////////////   READ in SIGNAL Compute SPEC /////////////////////////
+
+    int ss = npleth / 2
+ 
+proc  DoSpec (ss)
+{
+    fs = ss + Wlen
+
+ <<" %V $ss $fs \n"
+
+    Wred = Red[ss;fs]
+    Wir = IR[ss;fs]
+
+    TDD(Wlen)
+
+    SmWindow(Wlen)
+
+    DrawTDD()
+
+    ComputeSpec()
+
+    PlotSpec()
+
+    ComputeRR()
+
+    PlotRR()
+
+}
+
+    DoSpec (ss)
+
+   pfname =  "${fname}_resp.ps"
+
+     scrollr = 0
+     lscroll = 0
+
+cu_n = 1
+evcu_n = 2
+
+   while (1) {
+
+    WoRedraw(plw)
+
+    zoomit = 0
+
+    w_activate(plw)
+
+    msg = MessageWait(Minfo, Evec)
+
+     if ( ! (msg @= "NO_MSG") ) {
+
+<<" %V $msg \n"
+
+    zmn = msg 
+    winid = Minfo[2]
+
+    if ( msg @= "PRINT" ) {
+     open_laser(pfname)
+
+     scr_laser(aw)
+
+     scr_laser(rrw)
+
+     scr_laser(inspw)
+
+     scr_laser(spw)
+
+     gsync()
+
+    }
+
+    if (msg @= "ZOY") {
+      ZoomOutYaxis(plw)
+      //<<" %V $ymax $ymin \n"
+      zoomit = 1
+    }
+
+    if (msg @= "ZOX") {
+      ZoomOutXaxis(aw)
+      zoomit = 1
+    }
+
+    if (msg @= "PUY") {
+      SetGwindow(aw,"usescales",0)
+      PanUp(aw)
+      SetGwindow(aw,"usescales",1)
+      PanUp(aw)
+      zoomit = 1
+      scrollr = 0
+     lscroll = 0
+    }
+
+    if (msg @= "PDY") {
+      SetGwindow(aw,"usescales",0)
+      PanDown(aw)
+      SetGwindow(aw,"usescales",1)
+      PanDown(aw)
+      zoomit = 1
+      scrollr = 0
+     lscroll = 0
+    }
+
+    if (msg @= "PANL") {
+      PanLeft(aw)
+      zoomit = 1
+      scrollr = 0
+      lscroll = 0
+    }
+
+
+    if (msg @= "PANR") {
+      PanRight(aw)
+      zoomit = 1
+      scrollr = 0
+      lscroll = 0
+    }
+
+
+    if ((msg @= "ZIY")) {
+      ZoomInYaxis(plw)
+      zoomit = 1
+    }
+
+    if ((msg @= "ZIX")) {
+      ZoomInXaxis(aw)
+      zoomit = 1
+    }
+
+
+    if ( msg @= "EVENTCLIP") {
+
+   <<" $Evec[0;4] \n"
+      sst = Evec[3]
+      PlaceCurs(aw,sst,1,1,evcu_n)
+
+      ss = sst * 50
+
+      DoSpec(ss)
+
+      PlaceCurs(aw,(sst+40),1,1,cu_n)
+   // if midbutton do section
+      nrrpts = 0
+
+<<" $Minfo \n"
+
+      rs = w_getRS(aw)
+
+      rx = rs[1]
+      rX = rs[3]
+
+   wbutton = Minfo[8]
+   wwin = Minfo[2]
+   if (wwin == aw) {
+
+   if (wbutton == 2)
+   nsteps = 200
+   else
+   nsteps = 5
+
+
+   for ( i = 0; i < nsteps; i++) {
+
+      sst += 5
+
+      ss = sst * 50
+
+      DoSpec(ss)
+
+      PlaceCurs(aw,(sst+40),1,1,cu_n)
+       
+      if (sst > rX)
+        break
+   
+      PR1[i] = Tpr
+      RR1[i] = Rrate
+      XVRR[i] = sst
+
+      nrrpts++
+    }
+
+   SetGline(rr1gl,"xvec",XVRR,"yvec", RR1 )
+   DrawGline(rr1gl)
+
+   SetGline(pr1gl,"xvec",XVRR,"yvec", PR1 )
+   //   DrawGline(pr1gl)
+   }
+
+    }
+
+
+    if ( msg @= "RESCALE") {
+      rs = w_getRS(aw)
+      //<<" RESCALE new scales are $rs \n"
+       zoomit = 1
+    }
+
+    if ( (msg @= "REDRAW") || (msg @= "RESIZE") ||  zoomit || (msg @= "PRINT")) {
+
+
+      SetGwindow(aw,"clearpixmap","clearclip")
+      SetGwindow(rrw,"clearpixmap","clearclip")
+
+      //      DrawAxis(plw,0)
+      //      Xaxis2pts(plw)
+
+      rs = w_getRS(aw)
+
+      rx = rs[1]
+      rX = rs[3]
+
+      //<<" scales are $rx $rX \n"
+
+      RedrawGlines(aw)
+
+      SetGwindow(rrw,"scales",rx,0,rX,120,"savescales",0)    
+
+      RedrawGlines(rrw)
+
+      //      Xaxis2time(plw)
+
+      w_clipborder(plw)
+
+      //      DrawLabels(plw)
+      //      ShowFileN(plw, ctname)
+
+      ss = rs[1] * 50
+
+      DoSpec(ss)
+
+      PlaceCurs(aw,(rs[1]+40),1,1,cu_n)
+
+      SetGwindow(rrw,"showpixmap","store")
+      SetGwindow(aw,"showpixmap","store")
+
+    }
+
+
+    if ( (msg @= "PRINT") ) {
+          CloseLaser()
+          laser_scr(aw)
+          laser_scr(spw)
+          laser_scr(inspw)
+          laser_scr(rrspw)
+
+          gsync()
+
+              <<" PRINTING  $pfname \n "
+
+              si_pause(10)
+
+              <" cat $pfname | lpr "
+
+    }
+
+
+   }
+
+
+      if (scrollr) {
+      PanRight(aw)
+      SetGwindow(aw,"clearpixmap","clearclip")
+      RedrawGlines(aw)
+      SetGwindow(aw,"showpixmap","store")
+      }
+
+      if (lscroll) {
+      PanLeft(aw)
+      SetGwindow(aw,"clearpixmap","clearclip")
+      RedrawGlines(aw)
+      SetGwindow(aw,"showpixmap","store")
+      }
+
+   }
+
+
+
+ ///////////////////////////////////////////////////////////////////
+
+
+

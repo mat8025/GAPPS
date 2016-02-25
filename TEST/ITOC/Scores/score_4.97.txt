@@ -1,0 +1,29 @@
+bops.asl                      :tests	16	:____	0	:Pass	16	:Score	100.0%
+fsc1.asl                      :tests	4	:____	0	:Pass	4	:Score	100.0%
+fvmeq.asl                     :tests	10	:____	0	:Pass	10	:Score	100.0%
+cast0.asl                     :tests	4	:____	0	:Pass	4	:Score	100.0%
+cast_vec.asl                  :tests	4	:____	0	:Pass	4	:Score	100.0%
+consts_test.asl               :tests	5	:____	0	:Pass	5	:Score	100.0%
+contin.asl                    :tests	2	:____	0	:Pass	2	:Score	100.0%
+arraydeclare.asl              :tests	3	:____	0	:Pass	3	:Score	100.0%
+chardeclare.asl               :tests	15	:____	0	:Pass	15	:Score	100.0%
+declare.asl                   :tests	7	:____	0	:Pass	7	:Score	100.0%
+floatdeclare.asl              :tests	4	:____	0	:Pass	4	:Score	100.0%
+proc_arg_func.asl             :tests	4	:____	0	:Pass	4	:Score	100.0%
+scalar_dec.asl                :tests	5	:____	0	:Pass	5	:Score	100.0%
+mod.asl                       :tests	4	:____	0	:Pass	4	:Score	100.0%
+scat.asl                      :tests	4	:____	0	:Pass	4	:Score	100.0%
+scmp.asl                      :tests	5	:____	0	:Pass	5	:Score	100.0%
+char.asl                      :tests	4	:____	0	:Pass	4	:Score	100.0%
+double.asl                    :tests	3	:____	0	:Pass	3	:Score	100.0%
+float.asl                     :tests	3	:____	0	:Pass	3	:Score	100.0%
+long.asl                      :tests	3	:____	0	:Pass	3	:Score	100.0%
+pan_type.asl                  :tests	2	:____	0	:Pass	2	:Score	100.0%
+short.asl                     :tests	3	:____	0	:Pass	3	:Score	100.0%
+vopsele.asl                   :tests	9	:____	0	:Pass	9	:Score	100.0%
+vops.asl                      :tests	3	:____	0	:Pass	3	:Score	100.0%
+# FAILS 
+ 4.97 Berkelium  tests 126  fail 0 pass 126 ipcc 100.00% 
+
+these 1 programs Fail :- 
+ 

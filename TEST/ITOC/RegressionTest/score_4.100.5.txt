@@ -1,0 +1,241 @@
+# FAILS 
+ae.asl                        :tests	2	:Fail	0	:Pass	2	:Score	100.0%
+arrayele0.asl                 :tests	6	:Fail	0	:Pass	6	:Score	100.0%
+arrayele1.asl                 :tests	18	:Fail	0	:Pass	18	:Score	100.0%
+array_ele.asl                 :tests	20	:Fail	4	:Pass	16	:Score	80.0%
+arrayrange.asl                :tests	19	:Fail	0	:Pass	19	:Score	100.0%
+array_sr.asl                  :tests	7	:Fail	0	:Pass	7	:Score	100.0%
+arraysubsrange.asl            :tests	10	:Fail	0	:Pass	10	:Score	100.0%
+arraysubsref.asl              :tests	17	:Fail	0	:Pass	17	:Score	100.0%
+arraysubvec.asl               :tests	3	:Fail	0	:Pass	3	:Score	100.0%
+joinarray.asl                 :tests	3	:Fail	0	:Pass	3	:Score	100.0%
+lhe.asl                       :tests	10	:Fail	0	:Pass	10	:Score	100.0%
+lhrange.asl                   :tests	6	:Fail	0	:Pass	6	:Score	100.0%
+mdele.asl                     :tests	2	:Fail	0	:Pass	2	:Score	100.0%
+vec_cat.asl                   :tests	7	:Fail	0	:Pass	7	:Score	100.0%
+vgen.asl                      :tests	1	:Fail	0	:Pass	1	:Score	100.0%
+vsp.asl                       :tests	3	:Fail	0	:Pass	3	:Score	100.0%
+bitwise.asl                   :tests	9	:Fail	0	:Pass	9	:Score	100.0%
+bops.asl                      :tests	19	:Fail	0	:Pass	19	:Score	100.0%
+fsc1.asl                      :tests	4	:Fail	0	:Pass	4	:Score	100.0%
+fvmeq.asl                     :tests	10	:Fail	0	:Pass	10	:Score	100.0%
+bscan.asl                     :tests	6	:Fail	0	:Pass	6	:Score	100.0%
+bugfix_46.asl                 :tests	1	:Fail	0	:Pass	1	:Score	100.0%
+bugfix_59.asl                 :tests	6	:Fail	0	:Pass	6	:Score	100.0%
+bugfix_64.asl                 :tests	6	:Fail	0	:Pass	6	:Score	100.0%
+cast0.asl                     :tests	4	:Fail	0	:Pass	4	:Score	100.0%
+cast_vec.asl                  :tests	4	:Fail	0	:Pass	4	:Score	100.0%
+chem0.asl                     :tests	5	:Fail	0	:Pass	5	:Score	100.0%
+class1.asl                    :tests	5	:Fail	0	:Pass	5	:Score	100.0%
+classbops.asl                 :tests	21	:Fail	0	:Pass	21	:Score	100.0%
+classvar.asl                  :tests	4	:Fail	0	:Pass	4	:Score	100.0%
+cmp.asl                       :tests	5	:Fail	0	:Pass	5	:Score	100.0%
+command.asl                   :tests	5	:Fail	0	:Pass	5	:Score	100.0%
+consts_test.asl               :tests	5	:Fail	0	:Pass	5	:Score	100.0%
+contin.asl                    :tests	2	:Fail	0	:Pass	2	:Score	100.0%
+cut.asl                       :tests	4	:Fail	0	:Pass	4	:Score	100.0%
+arraydeclare.asl              :tests	3	:Fail	0	:Pass	3	:Score	100.0%
+chardeclare.asl               :tests	15	:Fail	0	:Pass	15	:Score	100.0%
+declare.asl                   :tests	7	:Fail	0	:Pass	7	:Score	100.0%
+floatdeclare.asl              :tests	4	:Fail	0	:Pass	4	:Score	100.0%
+proc_arg_func.asl             :tests	4	:Fail	0	:Pass	4	:Score	100.0%
+scalar_dec.asl                :tests	5	:Fail	0	:Pass	5	:Score	100.0%
+define.asl                    :tests	2	:Fail	0	:Pass	2	:Score	100.0%
+do0.asl                       :tests	8	:Fail	0	:Pass	8	:Score	100.0%
+do1.asl                       :tests	5	:Fail	0	:Pass	5	:Score	100.0%
+dynv0.asl                     :tests	22	:Fail	0	:Pass	22	:Score	100.0%
+dynv2.asl                     :tests	5	:Fail	0	:Pass	5	:Score	100.0%
+colors_enum.asl               :tests	10	:Fail	0	:Pass	10	:Score	100.0%
+fact.asl                      :tests	4	:Fail	0	:Pass	4	:Score	100.0%
+for.asl                       :tests	3	:Fail	0	:Pass	3	:Score	100.0%
+func0.asl                     :tests	3	:Fail	0	:Pass	3	:Score	100.0%
+func1.asl                     :tests	4	:Fail	0	:Pass	4	:Score	100.0%
+funcargs.asl                  :tests	5	:Fail	0	:Pass	5	:Score	100.0%
+func.asl                      :tests	2	:Fail	0	:Pass	2	:Score	100.0%
+if0.asl                       :tests	7	:Fail	0	:Pass	7	:Score	100.0%
+if4.asl                       :tests	8	:Fail	0	:Pass	8	:Score	100.0%
+if5.asl                       :tests	4	:Fail	0	:Pass	4	:Score	100.0%
+if6.asl                       :tests	7	:Fail	0	:Pass	7	:Score	100.0%
+md_assign.asl                 :tests	5	:Fail	0	:Pass	5	:Score	100.0%
+ivar.asl                      :tests	4	:Fail	0	:Pass	4	:Score	100.0%
+listele.asl                   :tests	2	:Fail	0	:Pass	2	:Score	100.0%
+list.asl                      :tests	9	:Fail	0	:Pass	9	:Score	100.0%
+logic2.asl                    :tests	5	:Fail	0	:Pass	5	:Score	100.0%
+logic_def.asl                 :tests	5	:Fail	0	:Pass	5	:Score	100.0%
+logic.asl                     :tests	19	:Fail	0	:Pass	19	:Score	100.0%
+m3d.asl                       :tests	12	:Fail	0	:Pass	12	:Score	100.0%
+md_assign.asl                 :tests	2	:Fail	0	:Pass	2	:Score	100.0%
+inewton_cbrt.asl              :tests	1	:Fail	0	:Pass	1	:Score	100.0%
+inewton.asl                   :tests	1	:Fail	0	:Pass	1	:Score	100.0%
+opxeq.asl                     :tests	8	:Fail	0	:Pass	8	:Score	100.0%
+diag.asl                      :tests	5	:Fail	0	:Pass	5	:Score	100.0%
+mat_mul.asl                   :tests	6	:Fail	0	:Pass	6	:Score	100.0%
+msquare.asl                   :tests	4	:Fail	0	:Pass	4	:Score	100.0%
+mdimn0.asl                    :tests	2	:Fail	0	:Pass	2	:Score	100.0%
+median.asl                    :tests	4	:Fail	0	:Pass	4	:Score	100.0%
+mih.asl                       :tests	2	:Fail	0	:Pass	2	:Score	100.0%
+mod.asl                       :tests	4	:Fail	0	:Pass	4	:Score	100.0%
+xyassign.asl                  :tests	8	:Fail	0	:Pass	8	:Score	100.0%
+obcopy.asl                    :tests	6	:Fail	0	:Pass	6	:Score	100.0%
+class_array.asl               :tests	2	:Fail	0	:Pass	2	:Score	100.0%
+oa.asl                        :tests	7	:Fail	0	:Pass	7	:Score	100.0%
+rp2.asl                       :tests	1	:Fail	0	:Pass	1	:Score	100.0%
+sh.asl                        :tests	3	:Fail	0	:Pass	3	:Score	100.0%
+paraex.asl                    :tests	5	:Fail	0	:Pass	5	:Score	100.0%
+checkvm.asl                   :tests	11	:Fail	1	:Pass	10	:Score	90.9%
+polyn.asl                     :tests	6	:Fail	3	:Pass	3	:Score	50.0%
+pow.asl                       :tests	2	:Fail	0	:Pass	2	:Score	100.0%
+prime_127.asl                 :tests	1	:Fail	0	:Pass	1	:Score	100.0%
+arrayarg1.asl                 :tests	4	:Fail	2	:Pass	2	:Score	50.0%
+arrayarg2.asl                 :tests	2	:Fail	1	:Pass	1	:Score	50.0%
+procrefarg.asl                :tests	4	:Fail	0	:Pass	4	:Score	100.0%
+procret0.asl                  :tests	11	:Fail	0	:Pass	11	:Score	100.0%
+proc_sv0.asl                  :tests	5	:Fail	0	:Pass	5	:Score	100.0%
+proc.asl                      :tests	5	:Fail	0	:Pass	5	:Score	100.0%
+scalarvec.asl                 :tests	12	:Fail	0	:Pass	12	:Score	100.0%
+sexp.asl                      :tests	8	:Fail	0	:Pass	8	:Score	100.0%
+shift.asl                     :tests	11	:Fail	0	:Pass	11	:Score	100.0%
+scat.asl                      :tests	4	:Fail	0	:Pass	4	:Score	100.0%
+scmp.asl                      :tests	5	:Fail	0	:Pass	5	:Score	100.0%
+ssub.asl                      :tests	4	:Fail	0	:Pass	4	:Score	100.0%
+stropcmp.asl                  :tests	1	:Fail	0	:Pass	1	:Score	100.0%
+sscan.asl                     :tests	7	:Fail	0	:Pass	7	:Score	100.0%
+static.asl                    :tests	10	:Fail	0	:Pass	10	:Score	100.0%
+lharraysubsrange.asl          :tests	12	:Fail	0	:Pass	12	:Score	100.0%
+svar1.asl                     :tests	4	:Fail	0	:Pass	4	:Score	100.0%
+svar_declare.asl              :tests	2	:Fail	0	:Pass	2	:Score	100.0%
+svelepr.asl                   :tests	2	:Fail	2	:Pass	0	:Score	0.0%
+swap.asl                      :tests	15	:Fail	0	:Pass	15	:Score	100.0%
+switch2.asl                   :tests	3	:Fail	0	:Pass	3	:Score	100.0%
+switch.asl                    :tests	12	:Fail	0	:Pass	12	:Score	100.0%
+char.asl                      :tests	4	:Fail	0	:Pass	4	:Score	100.0%
+double.asl                    :tests	3	:Fail	0	:Pass	3	:Score	100.0%
+float.asl                     :tests	3	:Fail	0	:Pass	3	:Score	100.0%
+long.asl                      :tests	3	:Fail	0	:Pass	3	:Score	100.0%
+pan_type.asl                  :tests	2	:Fail	0	:Pass	2	:Score	100.0%
+short.asl                     :tests	3	:Fail	0	:Pass	3	:Score	100.0%
+vopsele.asl                   :tests	9	:Fail	0	:Pass	9	:Score	100.0%
+vops.asl                      :tests	3	:Fail	0	:Pass	3	:Score	100.0%
+while0.asl                    :tests	2	:Fail	0	:Pass	2	:Score	100.0%
+ 4.100.5 Fermium  tests 723  fail 13 pass 710 ipcc @ 98.20% 
+
+these 119 programs Fail :- 
+ae.asl
+arrayele0.asl
+arrayele1.asl
+array_ele.asl
+arrayrange.asl
+array_sr.asl
+arraysubsrange.asl
+arraysubsref.asl
+arraysubvec.asl
+joinarray.asl
+lhe.asl
+lhrange.asl
+mdele.asl
+vec_cat.asl
+vgen.asl
+vsp.asl
+bitwise.asl
+bops.asl
+fsc1.asl
+fvmeq.asl
+bscan.asl
+bugfix_46.asl
+bugfix_59.asl
+bugfix_64.asl
+cast0.asl
+cast_vec.asl
+chem0.asl
+class1.asl
+classbops.asl
+classvar.asl
+cmp.asl
+command.asl
+consts_test.asl
+contin.asl
+cut.asl
+arraydeclare.asl
+chardeclare.asl
+declare.asl
+floatdeclare.asl
+proc_arg_func.asl
+scalar_dec.asl
+define.asl
+do0.asl
+do1.asl
+dynv0.asl
+dynv2.asl
+colors_enum.asl
+fact.asl
+for.asl
+func0.asl
+func1.asl
+funcargs.asl
+func.asl
+if0.asl
+if4.asl
+if5.asl
+if6.asl
+md_assign.asl
+ivar.asl
+listele.asl
+list.asl
+logic2.asl
+logic_def.asl
+logic.asl
+m3d.asl
+md_assign.asl
+inewton_cbrt.asl
+inewton.asl
+opxeq.asl
+diag.asl
+mat_mul.asl
+msquare.asl
+mdimn0.asl
+median.asl
+mih.asl
+mod.asl
+xyassign.asl
+obcopy.asl
+class_array.asl
+oa.asl
+rp2.asl
+sh.asl
+paraex.asl
+checkvm.asl
+polyn.asl
+pow.asl
+prime_127.asl
+arrayarg1.asl
+arrayarg2.asl
+procrefarg.asl
+procret0.asl
+proc_sv0.asl
+proc.asl
+scalarvec.asl
+sexp.asl
+shift.asl
+scat.asl
+scmp.asl
+ssub.asl
+stropcmp.asl
+sscan.asl
+static.asl
+lharraysubsrange.asl
+svar1.asl
+svar_declare.asl
+svelepr.asl
+swap.asl
+switch2.asl
+switch.asl
+char.asl
+double.asl
+float.asl
+long.asl
+pan_type.asl
+short.asl
+vopsele.asl
+vops.asl
+while0.asl
+ 

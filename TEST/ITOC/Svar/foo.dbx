@@ -1,0 +1,988 @@
+     DEBUG FILE for .svelepr.dbx debug level 0  vers 5.1.5
+     Thu Jan  7 18:35:50 2016
+ asl.cpp	main:844 READY TO GO on localhost
+ table_l.cpp VMF_Table_init: @158 79 VMF functions 
+
+./svelepr 
+ asl.cpp	asl:246 @ 2
+ engine_e.cpp script: @142 found exe file ./svelepr time 1452216949
+ storevar_e.cpp	store_str_value:1481 _lastp id 2 type SVAR offset 0 <-- value _ as SVAR
+ storevar_e.cpp	store_str_value:1567 svv -1 value _ _lastp offset 0 dtype SVAR nd 0  len 1
+ storevar_e.cpp	store_str_value:1855 <--- setting  _lastp to val _ type SVAR
+ storevar_e.cpp	store_str_value:1481 _clarg id 3 type SVAR offset 0 <-- value ./svelepr as SVAR
+ storevar_e.cpp	store_str_value:1567 svv -2 value ./svelepr _clarg offset 0 dtype SVAR nd 0  len 9
+ storevar_e.cpp	store_str_value:1855 <--- setting  _clarg to val ./svelepr type SVAR
+ siv_e.cpp setSize: @576 ignore it is svar 
+ storevar_e.cpp	storeNumber:2148 ----> _PI DOUBLE 3.141593
+ storevar_e.cpp	storeNumber:2198  _PI 0 type DOUBLE nd 0 3.141593
+ storevar_e.cpp	storeNumber:2310 <---- _PI DOUBLE sz 0
+ storevar_e.cpp	store_str_value:1481 _pstack id 60 type SVAR offset 0 <-- value _ as SVAR
+ storevar_e.cpp	store_str_value:1567 svv -3 value _ _pstack offset 0 dtype SVAR nd 0  len 1
+ storevar_e.cpp	store_str_value:1855 <--- setting  _pstack to val _ type SVAR
+ storevar_e.cpp	store_str_value:1481 _proc id 59 type STRV offset 0 <-- value _ as STRV
+ storevar_e.cpp	store_str_value:1567 svv -4 value _ _proc offset 0 dtype STRV nd 0  len 1
+ storevar_e.cpp	store_str_value:1855 <--- setting  _proc to val _ type STRV
+ engine_e.cpp script: @206 reading exe file ./svelepr
+ engine_e.cpp script: @261 ready to run !
+ icode_call.cpp	callf:23 1346() na 0 
+ storevar_e.cpp	storeNumber:2481 0
+ storevar_e.cpp	storeNumber:2505 siv_64 offset 0 type INT nd 0 inval 0
+ storevar_e.cpp	storeNumber:2613 siv_64 INT sz 0
+ icode_call.cpp	callf:29 result type INT
+ storevar_e.cpp	store_copy_var:1305 ---> xic_result_0 --> siv_64 store? 1
+ siv_e.cpp isValid: @492  bad siv 1
+ storevar_e.cpp	store_copy_var:1367 xic_result_0 INT ELE? NO----> siv_64 INT
+	@storevar SIV siv_64 ID 64 slot -1 type INT CW 17 totalsize (96+0)
+	siv_64 FLAGS: <FREE | DYNAMIC | PRIVATE | >
+	@? SIV xic_result_0 ID 9 slot -1 type INT CW 8388609 totalsize (96+0)
+	xic_result_0 FLAGS: <FREE | PRIVATE | STACKV | >
+ storevar_e.cpp	Store:1048 ---> xic_result_0 --> siv_64 SVPTR NO array NO sz 0 fsz 0 ovrwt 0
+ storevar_e.cpp	Store:1051 array NO SUBSC NO SUBSC_LH NO
+ storevar_e.cpp	Store:1088 ftype INT to INT
+ storevar_e.cpp	Store:1230 array? 0 size 0 ovw 0 is_scalar 1
+ storevar_e.cpp	storeConvert:301 from xic_result_0 type INT to siv_64  INT size 0
+ storevar_e.cpp	Store:1268 INT sz 0
+ storevar_e.cpp	Store:1286 <---- to  siv_64  type INT
+ icode_call.cpp	callf:23 660() na 1 
+ storevar_e.cpp	storeNumber:2481 8
+ storevar_e.cpp	storeNumber:2505 siv_64 offset 0 type INT nd 0 inval 8
+ storevar_e.cpp	storeNumber:2613 siv_64 INT sz 0
+ icode_call.cpp	callf:29 result type INT
+ storevar_e.cpp	store_copy_var:1305 ---> xic_result_0 --> siv_64 store? 1
+ siv_e.cpp isValid: @492  bad siv 2
+ storevar_e.cpp	store_copy_var:1367 xic_result_0 INT ELE? NO----> siv_64 INT
+	@storevar SIV siv_64 ID 64 slot -1 type INT CW 17 totalsize (96+0)
+	siv_64 FLAGS: <FREE | DYNAMIC | PRIVATE | >
+	@? SIV xic_result_0 ID 9 slot -1 type INT CW 8388609 totalsize (96+0)
+	xic_result_0 FLAGS: <FREE | PRIVATE | STACKV | >
+ storevar_e.cpp	Store:1048 ---> xic_result_0 --> siv_64 SVPTR NO array NO sz 0 fsz 0 ovrwt 0
+ storevar_e.cpp	Store:1051 array NO SUBSC NO SUBSC_LH NO
+ storevar_e.cpp	Store:1088 ftype INT to INT
+ storevar_e.cpp	Store:1230 array? 0 size 0 ovw 0 is_scalar 1
+ storevar_e.cpp	storeConvert:301 from xic_result_0 type INT to siv_64  INT size 0
+ storevar_e.cpp	Store:1268 INT sz 0
+ storevar_e.cpp	Store:1286 <---- to  siv_64  type INT
+
+###XIC <3>[5]<0>{DECLARE}		Svar W
+
+ icode_e.cpp	createv:1113 creating!? W as SVAR
+ storevar_e.cpp	store_str_value:1481 W id 65 type SVAR offset 0 <-- value  as SVAR
+ storevar_e.cpp	store_str_value:1567 svv 174 value  W offset 0 dtype SVAR nd 0  len 0
+ storevar_e.cpp	store_str_value:1855 <--- setting  W to val  type SVAR
+ icode_e.cpp	createv:1178 created W id 65 slot 174
+ storevar_e.cpp	store_copy_var:1305 ---> W --> siv_64 store? 1
+ siv_e.cpp isValid: @492  bad siv 3
+ storevar_e.cpp	store_copy_var:1367 W SVAR ELE? NO----> siv_64 UNSET
+	@storevar SIV siv_64 ID 64 slot -1 type UNSET CW 17 totalsize (96+0)
+	siv_64 FLAGS: <FREE | DYNAMIC | PRIVATE | >
+	@? SIV W ID 65 slot 174 type SVAR CW 2097160 totalsize (96+2)
+	W FLAGS: <ARRAY |GLOBAL | >
+
+	SVAR args 2  offset 0 cindex 0 
+	size 2 subsize 0 nd 1  offset 0 
+ storevar_e.cpp	store_copy_var:1388 IN VALUE  
+ storevar_e.cpp	Store:1048 ---> W --> siv_64 SVPTR NO array NO sz 0 fsz 2 ovrwt 0
+ storevar_e.cpp	Store:1051 array NO SUBSC NO SUBSC_LH NO
+ storevar_e.cpp	Store:1088 ftype SVAR to UNSET
+ storevar_e.cpp	storeIntoUnset:896 ftype SVAR to UNSET
+ storevar_e.cpp	storeIntoUnset:918 W is an ARRAY(not ELE) - siv_64 are UNSET so set to type 7 
+ -- make it array
+ storevar_e.cpp	storeCopySvar:570 ---> W
+ storevar_e.cpp	storeCopySvar:584  W IN  offset 0 nargs 2
+ storevar_e.cpp	storeCopySvar:585   from susbsc ? 0 
+ storevar_e.cpp	storeCopySvar:693  to siv_64 copy/splice in all @ offset 0
+ storevar_e.cpp	storeCopySvar:706 copy/splice in all toffset 0 i 0  
+ storevar_e.cpp	storeCopySvar:706 copy/splice in all toffset 1 i 1  
+ storevar_e.cpp	storeCopySvar:738  to value @[0]  @[0]  
+ storevar_e.cpp	storeCopySvar:740  to siv_64 OUT narg 2  size 2
+ storevar_e.cpp	storeCopySvar:743 <---
+ storevar_e.cpp	Store:1286 <---- to  siv_64  type SVAR
+
+###XIC <4>[8]<0>{EXPRESSION_T}		W[0] = "hey  "
+
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2097160 SVAR array YES sz 2 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE NO offset 0 sz 2
+ icode_e.cpp	GetSivp:644 NO icode_e.cpp	dynamicExpand:883 W id 65 size 2 2 memsize 0 roffset 0
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2097160 SVAR array YES sz 2 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE NO offset 0 sz 2
+ icode_e.cpp	GetSivp:644 NO storevar_e.cpp	store_copy_var:1305 ---> xic_result_1 --> W store? 1
+ siv_e.cpp isValid: @492  bad siv 4
+ storevar_e.cpp	store_copy_var:1367 xic_result_1 STRV ELE? NO----> W SVAR
+	@storevar SIV W ID 65 slot 174 type SVAR CW 2113544 totalsize (96+2)
+	W FLAGS: <ARRAY |ARRAY_ELE | GLOBAL | >
+
+	SVAR args 2  offset 0 cindex 0 
+	size 2 subsize 0 nd 1  offset 0 
+	@? SIV xic_result_1 ID 10 slot -1 type STRV CW 8388609 totalsize (96+0)
+	xic_result_1 FLAGS: <FREE | PRIVATE | STACKV | >
+ storevar_e.cpp	store_copy_var:1388 IN VALUE hey   
+ storevar_e.cpp	Store:1048 ---> xic_result_1 --> W SVPTR NO array YES sz 2 fsz 0 ovrwt 0
+ storevar_e.cpp	Store:1051 array YES SUBSC NO SUBSC_LH NO
+ storevar_e.cpp	Store:1088 ftype STRV to SVAR
+ storevar_e.cpp	Store:1111 into str|svar xic_result_1 type STRV W SVAR
+ storevar_e.cpp	Store:1268 SVAR sz 2
+ storevar_e.cpp	Store:1286 <---- to  W  type SVAR
+
+###XIC <5>[11]<0>{PRSTDOUT}		<<"%v $W[0] \n"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2113544 SVAR array YES sz 2 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 0 sz 2
+ icode_e.cpp	GetSivp:644 NO icode_parse_e.cpp	catSiv:241 -1  
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51  W[0] hey   
+
+
+###XIC <6>[13]<0>{EXPRESSION_T}		W[1] = "mark"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2113544 SVAR array YES sz 2 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 0 sz 2
+ icode_e.cpp	GetSivp:644 NO icode_e.cpp	dynamicExpand:883 W id 65 size 2 2 memsize 0 roffset 1
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2113544 SVAR array YES sz 2 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 0 sz 2
+ icode_e.cpp	GetSivp:644 NO storevar_e.cpp	store_copy_var:1305 ---> xic_result_1 --> W store? 1
+ siv_e.cpp isValid: @492  bad siv 5
+ storevar_e.cpp	store_copy_var:1367 xic_result_1 STRV ELE? NO----> W SVAR
+	@storevar SIV W ID 65 slot 174 type SVAR CW 2113544 totalsize (96+2)
+	W FLAGS: <ARRAY |ARRAY_ELE | GLOBAL | >
+
+	SVAR args 2  offset 1 cindex 0 
+	size 2 subsize 0 nd 1  offset 1 
+	@? SIV xic_result_1 ID 10 slot -1 type STRV CW 8388609 totalsize (96+0)
+	xic_result_1 FLAGS: <FREE | PRIVATE | STACKV | >
+ storevar_e.cpp	store_copy_var:1388 IN VALUE mark 
+ storevar_e.cpp	Store:1048 ---> xic_result_1 --> W SVPTR NO array YES sz 2 fsz 0 ovrwt 0
+ storevar_e.cpp	Store:1051 array YES SUBSC NO SUBSC_LH NO
+ storevar_e.cpp	Store:1088 ftype STRV to SVAR
+ storevar_e.cpp	Store:1111 into str|svar xic_result_1 type STRV W SVAR
+ storevar_e.cpp	Store:1268 SVAR sz 2
+ storevar_e.cpp	Store:1286 <---- to  W  type SVAR
+
+###XIC <7>[15]<0>{PRSTDOUT}		<<"%v $W[1] \n"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2113544 SVAR array YES sz 2 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 1 sz 2
+ icode_e.cpp	GetSivp:644 NO icode_parse_e.cpp	catSiv:241 -1  
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51  W[1] mark 
+
+
+###XIC <8>[17]<0>{PRSTDOUT}		<<"%v $W[0] \n"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2113544 SVAR array YES sz 2 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 1 sz 2
+ icode_e.cpp	GetSivp:644 NO icode_parse_e.cpp	catSiv:241 -1  
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51  W[0] hey   
+
+
+###XIC <9>[19]<0>{EXPRESSION_T}		W[2] = "can"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2113544 SVAR array YES sz 2 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 0 sz 2
+ icode_e.cpp	GetSivp:644 NO icode_e.cpp	dynamicExpand:883 W id 65 size 2 2 memsize 0 roffset 2
+ icode_e.cpp	dynamicExpand:890 DYNAMIC EXPANDING to 6
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2113544 SVAR array YES sz 2 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 0 sz 2
+ icode_e.cpp	GetSivp:644 NO storevar_e.cpp	store_copy_var:1305 ---> xic_result_1 --> W store? 1
+ siv_e.cpp isValid: @492  bad siv 6
+ storevar_e.cpp	store_copy_var:1367 xic_result_1 STRV ELE? NO----> W SVAR
+	@storevar SIV W ID 65 slot 174 type SVAR CW 2113544 totalsize (96+2)
+	W FLAGS: <ARRAY |ARRAY_ELE | GLOBAL | >
+
+	SVAR args 2  offset 2 cindex 0 
+	size 2 subsize 0 nd 1  offset 2 
+	@? SIV xic_result_1 ID 10 slot -1 type STRV CW 8388609 totalsize (96+0)
+	xic_result_1 FLAGS: <FREE | PRIVATE | STACKV | >
+ storevar_e.cpp	store_copy_var:1388 IN VALUE can 
+ storevar_e.cpp	Store:1048 ---> xic_result_1 --> W SVPTR NO array YES sz 2 fsz 0 ovrwt 0
+ storevar_e.cpp	Store:1051 array YES SUBSC NO SUBSC_LH NO
+ storevar_e.cpp	Store:1088 ftype STRV to SVAR
+ storevar_e.cpp	Store:1111 into str|svar xic_result_1 type STRV W SVAR
+ storevar_e.cpp	Store:1268 SVAR sz 2
+ storevar_e.cpp	Store:1286 <---- to  W  type SVAR
+
+###XIC <10>[21]<0>{PRSTDOUT}		<<" $W \n"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2113544 SVAR array YES sz 4 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 2 sz 4
+ icode_e.cpp	GetSivp:644 NO icode_parse_e.cpp	catSiv:241 -1  
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51  hey   mark can  
+
+
+###XIC <11>[23]<0>{EXPRESSION_T}		W[3] = "you"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2097160 SVAR array YES sz 4 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE NO offset 0 sz 4
+ icode_e.cpp	GetSivp:644 NO icode_e.cpp	dynamicExpand:883 W id 65 size 4 4 memsize 0 roffset 3
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2097160 SVAR array YES sz 4 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE NO offset 0 sz 4
+ icode_e.cpp	GetSivp:644 NO storevar_e.cpp	store_copy_var:1305 ---> xic_result_1 --> W store? 1
+ siv_e.cpp isValid: @492  bad siv 7
+ storevar_e.cpp	store_copy_var:1367 xic_result_1 STRV ELE? NO----> W SVAR
+	@storevar SIV W ID 65 slot 174 type SVAR CW 2113544 totalsize (96+4)
+	W FLAGS: <ARRAY |ARRAY_ELE | GLOBAL | >
+
+	SVAR args 4  offset 3 cindex 2 
+	size 4 subsize 0 nd 1  offset 3 
+	@? SIV xic_result_1 ID 10 slot -1 type STRV CW 8388609 totalsize (96+0)
+	xic_result_1 FLAGS: <FREE | PRIVATE | STACKV | >
+ storevar_e.cpp	store_copy_var:1388 IN VALUE you 
+ storevar_e.cpp	Store:1048 ---> xic_result_1 --> W SVPTR NO array YES sz 4 fsz 0 ovrwt 0
+ storevar_e.cpp	Store:1051 array YES SUBSC NO SUBSC_LH NO
+ storevar_e.cpp	Store:1088 ftype STRV to SVAR
+ storevar_e.cpp	Store:1111 into str|svar xic_result_1 type STRV W SVAR
+ storevar_e.cpp	Store:1268 SVAR sz 4
+ storevar_e.cpp	Store:1286 <---- to  W  type SVAR
+
+###XIC <12>[26]<0>{PRSTDOUT}		<<"%v $W[0] \n"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2113544 SVAR array YES sz 4 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 3 sz 4
+ icode_e.cpp	GetSivp:644 NO icode_parse_e.cpp	catSiv:241 -1  
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51  W[0] hey   
+
+
+###XIC <13>[28]<0>{EXPRESSION_T}		W[4] = "make"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2113544 SVAR array YES sz 4 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 0 sz 4
+ icode_e.cpp	GetSivp:644 NO icode_e.cpp	dynamicExpand:883 W id 65 size 4 4 memsize 0 roffset 4
+ icode_e.cpp	dynamicExpand:890 DYNAMIC EXPANDING to 8
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2113544 SVAR array YES sz 4 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 0 sz 4
+ icode_e.cpp	GetSivp:644 NO storevar_e.cpp	store_copy_var:1305 ---> xic_result_1 --> W store? 1
+ siv_e.cpp isValid: @492  bad siv 8
+ storevar_e.cpp	store_copy_var:1367 xic_result_1 STRV ELE? NO----> W SVAR
+	@storevar SIV W ID 65 slot 174 type SVAR CW 2113544 totalsize (96+4)
+	W FLAGS: <ARRAY |ARRAY_ELE | GLOBAL | >
+
+	SVAR args 4  offset 4 cindex 0 
+	size 4 subsize 0 nd 1  offset 4 
+	@? SIV xic_result_1 ID 10 slot -1 type STRV CW 8388609 totalsize (96+0)
+	xic_result_1 FLAGS: <FREE | PRIVATE | STACKV | >
+ storevar_e.cpp	store_copy_var:1388 IN VALUE make 
+ storevar_e.cpp	Store:1048 ---> xic_result_1 --> W SVPTR NO array YES sz 4 fsz 0 ovrwt 0
+ storevar_e.cpp	Store:1051 array YES SUBSC NO SUBSC_LH NO
+ storevar_e.cpp	Store:1088 ftype STRV to SVAR
+ storevar_e.cpp	Store:1111 into str|svar xic_result_1 type STRV W SVAR
+ storevar_e.cpp	Store:1268 SVAR sz 4
+ storevar_e.cpp	Store:1286 <---- to  W  type SVAR
+
+###XIC <14>[30]<0>{EXPRESSION_T}		W[5] = "your"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2113544 SVAR array YES sz 6 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 4 sz 6
+ icode_e.cpp	GetSivp:644 NO icode_e.cpp	dynamicExpand:883 W id 65 size 6 6 memsize 0 roffset 5
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2113544 SVAR array YES sz 6 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 4 sz 6
+ icode_e.cpp	GetSivp:644 NO storevar_e.cpp	store_copy_var:1305 ---> xic_result_1 --> W store? 1
+ siv_e.cpp isValid: @492  bad siv 9
+ storevar_e.cpp	store_copy_var:1367 xic_result_1 STRV ELE? NO----> W SVAR
+	@storevar SIV W ID 65 slot 174 type SVAR CW 2113544 totalsize (96+6)
+	W FLAGS: <ARRAY |ARRAY_ELE | GLOBAL | >
+
+	SVAR args 6  offset 5 cindex 4 
+	size 6 subsize 0 nd 1  offset 5 
+	@? SIV xic_result_1 ID 10 slot -1 type STRV CW 8388609 totalsize (96+0)
+	xic_result_1 FLAGS: <FREE | PRIVATE | STACKV | >
+ storevar_e.cpp	store_copy_var:1388 IN VALUE your 
+ storevar_e.cpp	Store:1048 ---> xic_result_1 --> W SVPTR NO array YES sz 6 fsz 0 ovrwt 0
+ storevar_e.cpp	Store:1051 array YES SUBSC NO SUBSC_LH NO
+ storevar_e.cpp	Store:1088 ftype STRV to SVAR
+ storevar_e.cpp	Store:1111 into str|svar xic_result_1 type STRV W SVAR
+ storevar_e.cpp	Store:1268 SVAR sz 6
+ storevar_e.cpp	Store:1286 <---- to  W  type SVAR
+
+###XIC <15>[32]<0>{EXPRESSION_T}		W[6] = "goal"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2113544 SVAR array YES sz 6 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 5 sz 6
+ icode_e.cpp	GetSivp:644 NO icode_e.cpp	dynamicExpand:883 W id 65 size 6 6 memsize 0 roffset 6
+ icode_e.cpp	dynamicExpand:890 DYNAMIC EXPANDING to 10
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2113544 SVAR array YES sz 6 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 5 sz 6
+ icode_e.cpp	GetSivp:644 NO storevar_e.cpp	store_copy_var:1305 ---> xic_result_1 --> W store? 1
+ siv_e.cpp isValid: @492  bad siv 10
+ storevar_e.cpp	store_copy_var:1367 xic_result_1 STRV ELE? NO----> W SVAR
+	@storevar SIV W ID 65 slot 174 type SVAR CW 2113544 totalsize (96+6)
+	W FLAGS: <ARRAY |ARRAY_ELE | GLOBAL | >
+
+	SVAR args 6  offset 6 cindex 5 
+	size 6 subsize 0 nd 1  offset 6 
+	@? SIV xic_result_1 ID 10 slot -1 type STRV CW 8388609 totalsize (96+0)
+	xic_result_1 FLAGS: <FREE | PRIVATE | STACKV | >
+ storevar_e.cpp	store_copy_var:1388 IN VALUE goal 
+ storevar_e.cpp	Store:1048 ---> xic_result_1 --> W SVPTR NO array YES sz 6 fsz 0 ovrwt 0
+ storevar_e.cpp	Store:1051 array YES SUBSC NO SUBSC_LH NO
+ storevar_e.cpp	Store:1088 ftype STRV to SVAR
+ storevar_e.cpp	Store:1111 into str|svar xic_result_1 type STRV W SVAR
+ storevar_e.cpp	Store:1268 SVAR sz 6
+ storevar_e.cpp	Store:1286 <---- to  W  type SVAR
+
+###XIC <16>[34]<0>{EXPRESSION_T}		W[7] = "weight"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2113544 SVAR array YES sz 8 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 6 sz 8
+ icode_e.cpp	GetSivp:644 NO icode_e.cpp	dynamicExpand:883 W id 65 size 8 8 memsize 0 roffset 7
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2113544 SVAR array YES sz 8 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 6 sz 8
+ icode_e.cpp	GetSivp:644 NO storevar_e.cpp	store_copy_var:1305 ---> xic_result_1 --> W store? 1
+ siv_e.cpp isValid: @492  bad siv 11
+ storevar_e.cpp	store_copy_var:1367 xic_result_1 STRV ELE? NO----> W SVAR
+	@storevar SIV W ID 65 slot 174 type SVAR CW 2113544 totalsize (96+8)
+	W FLAGS: <ARRAY |ARRAY_ELE | GLOBAL | >
+
+	SVAR args 8  offset 7 cindex 6 
+	size 8 subsize 0 nd 1  offset 7 
+	@? SIV xic_result_1 ID 10 slot -1 type STRV CW 8388609 totalsize (96+0)
+	xic_result_1 FLAGS: <FREE | PRIVATE | STACKV | >
+ storevar_e.cpp	store_copy_var:1388 IN VALUE weight 
+ storevar_e.cpp	Store:1048 ---> xic_result_1 --> W SVPTR NO array YES sz 8 fsz 0 ovrwt 0
+ storevar_e.cpp	Store:1051 array YES SUBSC NO SUBSC_LH NO
+ storevar_e.cpp	Store:1088 ftype STRV to SVAR
+ storevar_e.cpp	Store:1111 into str|svar xic_result_1 type STRV W SVAR
+ storevar_e.cpp	Store:1268 SVAR sz 8
+ storevar_e.cpp	Store:1286 <---- to  W  type SVAR
+
+###XIC <17>[38]<0>{PRSTDOUT}		<<"W $W[0:-1] \n"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2113544 SVAR array YES sz 8 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 7 sz 8
+ icode_e.cpp	GetSivp:644 NO icode_range.cpp	evalrangesiv:64 ---> EVALRANGE_SIV  1 W  wr 2
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 1 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2113544 SVAR array YES sz 8 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 7 sz 8
+ icode_e.cpp	GetSivp:644 NO icode_range.cpp	evalrangesiv:102 ic->state 1 used for ele ?
+ icode_range.cpp	evalrangesiv:113  ic->sivp->aop->crange->rc 0 set to ic->state
+ icode_range.cpp	evalrangesiv:120  icpar->cw 400 8
+ icode_range.cpp	evalrangesiv:128 trying to pop   
+ icode_range.cpp	evalrangesiv:136 popped ele is 0 
+ icode_range.cpp	evalrangesiv:140 ics 1 nd 1 wd 0 ele 0
+ icode_range.cpp	evalrangesiv:147 start 0 end 0 
+ icode_range.cpp	evalrangesiv:64 ---> EVALRANGE_SIV  1 W  wr 2
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 1 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 69255176 SVAR array YES sz 8 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 0 sz 8
+ icode_e.cpp	GetSivp:644 NO icode_range.cpp	evalrangesiv:102 ic->state 1 used for ele ?
+ icode_range.cpp	evalrangesiv:113  ic->sivp->aop->crange->rc 1 set to ic->state
+ icode_range.cpp	evalrangesiv:120  icpar->cw 700 8
+ icode_range.cpp	evalrangesiv:128 trying to pop   
+ icode_range.cpp	evalrangesiv:136 popped ele is -1 
+ icode_range.cpp	evalrangesiv:140 ics 1 nd 1 wd 0 ele -1
+ icode_range.cpp	evalrangesiv:147 start 0 end 7 
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 69255176 SVAR array YES sz 8 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 0 sz 8
+ icode_e.cpp	GetSivp:644 NO icode_parse_e.cpp	catSiv:241 -1  
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51 W hey   mark can you make your goal weight 
+
+
+###XIC <18>[40]<0>{PRSTDOUT}		<<"%(5,<<\s,\s,\s>>\n)$W[::] \n"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 69255176 SVAR array YES sz 8 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 0 sz 8
+ icode_e.cpp	GetSivp:644 NO icode_range.cpp	evalrangesiv:64 ---> EVALRANGE_SIV  1 W  wr 2
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 1 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 69255176 SVAR array YES sz 8 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 0 sz 8
+ icode_e.cpp	GetSivp:644 NO icode_range.cpp	evalrangesiv:102 ic->state 1 used for ele ?
+ icode_range.cpp	evalrangesiv:113  ic->sivp->aop->crange->rc 0 set to ic->state
+ icode_range.cpp	evalrangesiv:120  icpar->cw 408 8
+ icode_range.cpp	evalrangesiv:140 ics 1 nd 1 wd 0 ele 0
+ icode_range.cpp	evalrangesiv:147 start 0 end 7 
+ icode_range.cpp	evalrangesiv:64 ---> EVALRANGE_SIV  1 W  wr 2
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 1 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 69255176 SVAR array YES sz 8 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 0 sz 8
+ icode_e.cpp	GetSivp:644 NO icode_range.cpp	evalrangesiv:102 ic->state 1 used for ele ?
+ icode_range.cpp	evalrangesiv:113  ic->sivp->aop->crange->rc 0 set to ic->state
+ icode_range.cpp	evalrangesiv:120  icpar->cw 508 8
+ icode_range.cpp	evalrangesiv:140 ics 1 nd 1 wd 0 ele 0
+ icode_range.cpp	evalrangesiv:147 start 0 end 7 
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 69255176 SVAR array YES sz 8 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 0 sz 8
+ icode_e.cpp	GetSivp:644 NO icode_parse_e.cpp	catSiv:241 -1  
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51 hey   mark can you make your goal weight 
+
+
+###XIC <19>[41]<0>{PRSTDOUT}		<<"-----------------------\n"
+
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51 -----------------------
+
+
+###XIC <20>[42]<0>{PRSTDOUT}		<<"-----------------------\n"
+
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51 -----------------------
+
+
+###XIC <21>[44]<0>{PRSTDOUT}		<<"%(4,,\s,\n)$W"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 69255176 SVAR array YES sz 8 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE YES offset 0 sz 8
+ icode_e.cpp	GetSivp:644 NO icode_parse_e.cpp	catSiv:241 -1  
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51 hey   mark can you make your goal weight
+
+###XIC <22>[46]<0>{COMMAND_PSH}		!!"rm -f goal1"
+
+ icode_parse_e.cpp	shcom:57 trying SHCOM !!"rm -f goal1"
+ storevar_e.cpp	store_str_value:1481 siv_64 id 64 type UNSET offset 0 <-- value  as SVAR
+ storevar_e.cpp	store_str_value:1556 setting  siv_64 to  type SVAR
+ storevar_e.cpp	store_str_value:1567 svv -1 value  siv_64 offset 0 dtype SVAR nd 0  len 0
+ storevar_e.cpp	store_str_value:1855 <--- setting  siv_64 to val  type SVAR
+caught childsig 1 status -1
+ icode_parse_e.cpp	shcom:66 SHCOM returns SVAR
+ storevar_e.cpp	storeCopySvar:570 ---> siv_64
+ storevar_e.cpp	storeCopySvar:584  siv_64 IN  offset 0 nargs 2
+ storevar_e.cpp	storeCopySvar:585   from susbsc ? 0 
+ storevar_e.cpp	storeCopySvar:627 making svar 
+ storevar_e.cpp	storeCopySvar:693  to xic_result_0 copy/splice in all @ offset 0
+ storevar_e.cpp	storeCopySvar:706 copy/splice in all toffset 0 i 0  
+ storevar_e.cpp	storeCopySvar:706 copy/splice in all toffset 1 i 1  
+ storevar_e.cpp	storeCopySvar:738  to value @[0]  @[0]  
+ storevar_e.cpp	storeCopySvar:740  to xic_result_0 OUT narg 3  size 3
+ storevar_e.cpp	storeCopySvar:743 <---
+ storevar_e.cpp	store_copy_var:1305 ---> xic_result_0 --> siv_64 store? 1
+ siv_e.cpp isValid: @492  bad siv 12
+ storevar_e.cpp	store_copy_var:1367 xic_result_0 SVAR ELE? NO----> siv_64 UNSET
+	@storevar SIV siv_64 ID 64 slot -1 type UNSET CW 1 totalsize (96+0)
+	siv_64 FLAGS: <FREE | PRIVATE | >
+	@? SIV xic_result_0 ID 9 slot -1 type SVAR CW 142606345 totalsize (96+3)
+	xic_result_0 FLAGS: <FREE | ARRAY |PRIVATE | STACKV | REF_LH | >
+
+	SVAR args 3  offset 0 cindex 0 
+	size 3 subsize 0 nd 1  offset 0 
+ storevar_e.cpp	store_copy_var:1388 IN VALUE  
+ storevar_e.cpp	Store:1048 ---> xic_result_0 --> siv_64 SVPTR NO array NO sz 0 fsz 3 ovrwt 0
+ storevar_e.cpp	Store:1051 array NO SUBSC NO SUBSC_LH NO
+ storevar_e.cpp	Store:1088 ftype SVAR to UNSET
+ storevar_e.cpp	storeIntoUnset:896 ftype SVAR to UNSET
+ storevar_e.cpp	storeIntoUnset:918 xic_result_0 is an ARRAY(not ELE) - siv_64 are UNSET so set to type 7 
+ -- make it array
+ storevar_e.cpp	storeCopySvar:570 ---> xic_result_0
+ storevar_e.cpp	storeCopySvar:584  xic_result_0 IN  offset 0 nargs 3
+ storevar_e.cpp	storeCopySvar:585   from susbsc ? 0 
+ storevar_e.cpp	storeCopySvar:693  to siv_64 copy/splice in all @ offset 0
+ storevar_e.cpp	storeCopySvar:706 copy/splice in all toffset 0 i 0  
+ storevar_e.cpp	storeCopySvar:706 copy/splice in all toffset 1 i 1  
+ storevar_e.cpp	storeCopySvar:706 copy/splice in all toffset 2 i 2  
+ storevar_e.cpp	storeCopySvar:738  to value @[0]  @[0]  
+ storevar_e.cpp	storeCopySvar:740  to siv_64 OUT narg 4  size 4
+ storevar_e.cpp	storeCopySvar:743 <---
+ storevar_e.cpp	Store:1286 <---- to  siv_64  type SVAR
+
+###XIC <23>[48]<0>{FUNCTION}		A=ofw("goal1")
+
+ icode_e.cpp	createv:1113 creating!? A as UNSET
+ icode_e.cpp	createv:1178 created A id 66 slot 130
+ icode_call.cpp	callf:23 715() na 1 
+ alias.cpp gs_set_file: @44 set_file file in goal1 5
+ alias.cpp gs_set_file: @106 set_file file out goal1 5
+goal1  fnum 3
+ storevar_e.cpp	storeNumber:2481 3
+ storevar_e.cpp	storeNumber:2505 siv_64 offset 0 type INT nd 0 inval 3
+ storevar_e.cpp	storeNumber:2613 siv_64 INT sz 0
+ icode_call.cpp	callf:29 result type INT
+ icode_e.cpp	GetSivp:498 pindex -1 var A state 0 slot 130 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  130 
+ icode_e.cpp	GetSivp:537 A id 66 WCW 2097152 UNSET array NO sz 0 generic? 0
+ icode_e.cpp	GetSivp:574 A UNSET array? NO DYNAMIC NO ELE NO offset 0 sz 0
+ icode_e.cpp	GetSivp:644 NO
+###XIC <24>[50]<0>{PRSTDOUT}		<<[A]"%(4,,\s,\n) $W"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var A state 0 slot 130 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  130 
+ icode_e.cpp	GetSivp:537 A id 66 WCW 2097152 INT array NO sz 0 generic? 0
+ icode_e.cpp	GetSivp:574 A INT array? NO DYNAMIC NO ELE NO offset 0 sz 0
+ icode_e.cpp	GetSivp:644 NO icode_print.cpp	prtfh:277 PRT_FH 3  
+ icode_print.cpp	prtfh:288 PRT_FH popped fh 3  
+ icode_e.cpp	GetSivp:498 pindex -1 var W state 0 slot 174 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  174 
+ icode_e.cpp	GetSivp:537 W id 65 WCW 2129928 SVAR array YES sz 8 generic? 0
+ icode_e.cpp	GetSivp:574 W SVAR array? YES DYNAMIC NO ELE NO offset 0 sz 8
+ icode_e.cpp	GetSivp:644 NO icode_parse_e.cpp	catSiv:241 -1  
+ icode_print.cpp	prtout:25 Fh 3 
+ icode_print.cpp	prtout:51  hey   mark can you make your goal weight
+
+###XIC <25>[52]<0>{FUNCTION}		cf(A)
+
+ icode_e.cpp	GetSivp:498 pindex -1 var A state 0 slot 130 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  130 
+ icode_e.cpp	GetSivp:537 A id 66 WCW 2097152 INT array NO sz 0 generic? 0
+ icode_e.cpp	GetSivp:574 A INT array? NO DYNAMIC NO ELE NO offset 0 sz 0
+ icode_e.cpp	GetSivp:644 NO icode_call.cpp	callf:23 389() na 1 
+ storevar_e.cpp	storeNumber:2481 3
+ storevar_e.cpp	storeNumber:2505 siv_64 offset 0 type INT nd 0 inval 3
+ storevar_e.cpp	storeNumber:2613 siv_64 INT sz 0
+ icode_call.cpp	callf:29 result type INT
+ storevar_e.cpp	store_copy_var:1305 ---> xic_result_0 --> siv_64 store? 1
+ siv_e.cpp isValid: @492  bad siv 13
+ storevar_e.cpp	store_copy_var:1367 xic_result_0 INT ELE? NO----> siv_64 INT
+	@storevar SIV siv_64 ID 64 slot -1 type INT CW 17 totalsize (96+0)
+	siv_64 FLAGS: <FREE | DYNAMIC | PRIVATE | >
+	@? SIV xic_result_0 ID 9 slot -1 type INT CW 142606337 totalsize (96+0)
+	xic_result_0 FLAGS: <FREE | PRIVATE | STACKV | REF_LH | >
+ storevar_e.cpp	Store:1048 ---> xic_result_0 --> siv_64 SVPTR NO array NO sz 0 fsz 0 ovrwt 0
+ storevar_e.cpp	Store:1051 array NO SUBSC NO SUBSC_LH NO
+ storevar_e.cpp	Store:1088 ftype INT to INT
+ storevar_e.cpp	Store:1230 array? 0 size 0 ovw 0 is_scalar 1
+ storevar_e.cpp	storeConvert:301 from xic_result_0 type INT to siv_64  INT size 0
+ storevar_e.cpp	Store:1268 INT sz 0
+ storevar_e.cpp	Store:1286 <---- to  siv_64  type INT
+
+###XIC <26>[55]<0>{FUNCTION}		A=ofr("goal1")
+
+ icode_e.cpp	GetSivp:498 pindex -1 var A state 0 slot 130 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  130 
+ icode_e.cpp	GetSivp:537 A id 66 WCW 2097152 INT array NO sz 0 generic? 0
+ icode_e.cpp	GetSivp:574 A INT array? NO DYNAMIC NO ELE NO offset 0 sz 0
+ icode_e.cpp	GetSivp:644 NO icode_call.cpp	callf:23 690() na 1 
+goal1  fnum 3
+ storevar_e.cpp	storeNumber:2481 3
+ storevar_e.cpp	storeNumber:2505 siv_64 offset 0 type INT nd 0 inval 3
+ storevar_e.cpp	storeNumber:2613 siv_64 INT sz 0
+ icode_call.cpp	callf:29 result type INT
+ icode_e.cpp	GetSivp:498 pindex -1 var A state 0 slot 130 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  130 
+ icode_e.cpp	GetSivp:537 A id 66 WCW 2097152 INT array NO sz 0 generic? 0
+ icode_e.cpp	GetSivp:574 A INT array? NO DYNAMIC NO ELE NO offset 0 sz 0
+ icode_e.cpp	GetSivp:644 NO
+###XIC <27>[60]<0>{FUNCTION}		V=readfile(A)
+
+ icode_e.cpp	createv:1113 creating!? V as UNSET
+ icode_e.cpp	createv:1178 created V id 67 slot 172
+ icode_e.cpp	GetSivp:498 pindex -1 var A state 0 slot 130 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  130 
+ icode_e.cpp	GetSivp:537 A id 66 WCW 2097152 INT array NO sz 0 generic? 0
+ icode_e.cpp	GetSivp:574 A INT array? NO DYNAMIC NO ELE NO offset 0 sz 0
+ icode_e.cpp	GetSivp:644 NO icode_call.cpp	callf:23 1172() na 1 
+ storevar_e.cpp	store_svar:2081 offset 0 str 
+ storevar_e.cpp	store_str_value:1481 siv_64 id 64 type SVAR offset 0 <-- value  as SVAR
+ storevar_e.cpp	store_str_value:1567 svv -1 value  siv_64 offset 0 dtype SVAR nd 0  len 0
+ storevar_e.cpp	store_str_value:1855 <--- setting  siv_64 to val  type SVAR
+ icode_call.cpp	callf:29 result type SVAR
+ icode_e.cpp	GetSivp:498 pindex -1 var V state 0 slot 172 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  172 
+ icode_e.cpp	GetSivp:537 V id 67 WCW 2097152 UNSET array NO sz 0 generic? 0
+ icode_e.cpp	GetSivp:574 V UNSET array? NO DYNAMIC NO ELE NO offset 0 sz 0
+ icode_e.cpp	GetSivp:644 NO
+###XIC <28>[63]<0>{PRSTDOUT}		<<"$V \n"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var V state 0 slot 172 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  172 
+ icode_e.cpp	GetSivp:537 V id 67 WCW 2097152 SVAR array NO sz 2 generic? 0
+ icode_e.cpp	GetSivp:574 V SVAR array? NO DYNAMIC NO ELE NO offset 0 sz 2
+ icode_e.cpp	GetSivp:644 NO icode_parse_e.cpp	catSiv:241 -1  
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51  hey   mark can you make your goal weight  
+
+
+###XIC <29>[69]<0>{PRSTDOUT}		<<"------------- \n"
+
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51 ------------- 
+
+
+###XIC <30>[70]<0>{PRSTDOUT}		<<"V is  $(typeof(V)) \n"
+
+ storevar_e.cpp	store_svar:2081 offset 0 str SVAR
+ storevar_e.cpp	store_str_value:1481 vresult id 68 type SVAR offset 0 <-- value SVAR as SVAR
+ storevar_e.cpp	store_str_value:1567 svv -1 value SVAR vresult offset 0 dtype SVAR nd 0  len 4
+ storevar_e.cpp	store_str_value:1855 <--- setting  vresult to val SVAR type SVAR
+ storevar_e.cpp	storeCopySvar:570 ---> vresult
+ storevar_e.cpp	storeCopySvar:584  vresult IN SVAR offset 0 nargs 2
+ storevar_e.cpp	storeCopySvar:585   from susbsc ? 0 
+ storevar_e.cpp	storeCopySvar:627 making svar 
+ storevar_e.cpp	storeCopySvar:693  to siv_64 copy/splice in all @ offset 0
+ storevar_e.cpp	storeCopySvar:706 copy/splice in all toffset 0 i 0  SVAR
+ storevar_e.cpp	storeCopySvar:706 copy/splice in all toffset 1 i 1  
+ storevar_e.cpp	storeCopySvar:738  to value @[0] SVAR @[0]  SVAR
+ storevar_e.cpp	storeCopySvar:740  to siv_64 OUT narg 3  size 3
+ storevar_e.cpp	storeCopySvar:743 <---
+ storevar_e.cpp	store_copy_var:1305 ---> vresult --> siv_64 store? 1
+ siv_e.cpp isValid: @492  bad siv 14
+ storevar_e.cpp	store_copy_var:1367 vresult SVAR ELE? NO----> siv_64 SVAR
+	@storevar SIV siv_64 ID 64 slot -1 type SVAR CW 25 totalsize (96+3)
+	siv_64 FLAGS: <FREE | ARRAY |DYNAMIC | PRIVATE | >
+
+	SVAR args 3  offset 0 cindex 0 
+	size 3 subsize 0 nd 1  offset 0 
+	@? SIV vresult ID 68 slot -1 type SVAR CW 1073741833 totalsize (96+2)
+	vresult FLAGS: <FREE | ARRAY |PRIVATE | RDPHOLD | >
+
+	SVAR args 2  offset 0 cindex 0 
+	size 2 subsize 0 nd 1  offset 0 
+ storevar_e.cpp	store_copy_var:1388 IN VALUE SVAR 
+ storevar_e.cpp	Store:1048 ---> vresult --> siv_64 SVPTR NO array YES sz 3 fsz 2 ovrwt 0
+ storevar_e.cpp	Store:1051 array YES SUBSC NO SUBSC_LH NO
+ storevar_e.cpp	Store:1088 ftype SVAR to SVAR
+ storevar_e.cpp	Store:1111 into str|svar vresult type SVAR siv_64 SVAR
+ storevar_e.cpp	storeCopySvar:570 ---> vresult
+ storevar_e.cpp	storeCopySvar:584  vresult IN SVAR offset 0 nargs 2
+ storevar_e.cpp	storeCopySvar:585   from susbsc ? 0 
+ storevar_e.cpp	storeCopySvar:693  to siv_64 copy/splice in all @ offset 0
+ storevar_e.cpp	storeCopySvar:706 copy/splice in all toffset 0 i 0  SVAR
+ storevar_e.cpp	storeCopySvar:706 copy/splice in all toffset 1 i 1  
+ storevar_e.cpp	storeCopySvar:738  to value @[0] SVAR @[0]  SVAR
+ storevar_e.cpp	storeCopySvar:740  to siv_64 OUT narg 3  size 3
+ storevar_e.cpp	storeCopySvar:743 <---
+ storevar_e.cpp	Store:1268 SVAR sz 3
+ storevar_e.cpp	Store:1286 <---- to  siv_64  type SVAR
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51 V is  SVAR   
+
+
+###XIC <31>[73]<0>{PRSTDOUT}		<<"just first line: $V[0] \n"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var V state 0 slot 172 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  172 
+ icode_e.cpp	GetSivp:537 V id 67 WCW 2097160 SVAR array YES sz 2 generic? 0
+ icode_e.cpp	GetSivp:574 V SVAR array? YES DYNAMIC NO ELE NO offset 0 sz 2
+ icode_e.cpp	GetSivp:644 NO icode_parse_e.cpp	catSiv:241 -1  
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51 just first line:  hey   mark can you make your goal weight 
+
+
+###XIC <32>[74]<0>{PRSTDOUT}		<<"second $V[1] \n"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var V state 0 slot 172 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  172 
+ icode_e.cpp	GetSivp:537 V id 67 WCW 2113544 SVAR array YES sz 2 generic? 0
+ icode_e.cpp	GetSivp:574 V SVAR array? YES DYNAMIC NO ELE YES offset 0 sz 2
+ icode_e.cpp	GetSivp:644 NO icode_parse_e.cpp	catSiv:241 -1  
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51 second  
+
+
+###XIC <33>[75]<0>{PRSTDOUT}		<<"third $V[2] \n"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var V state 0 slot 172 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  172 
+ icode_e.cpp	GetSivp:537 V id 67 WCW 2113544 SVAR array YES sz 2 generic? 0
+ icode_e.cpp	GetSivp:574 V SVAR array? YES DYNAMIC NO ELE YES offset 1 sz 2
+ icode_e.cpp	GetSivp:644 NO icode_push.cpp pushsivele: @350 WARNING pushing null SVAR field 2 - extending
+ icode_parse_e.cpp	catSiv:241 -1  
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51 third   
+
+
+###XIC <34>[81]<0>{PRSTDOUT}		<<"V is $V[0:1:]\n"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var V state 0 slot 172 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  172 
+ icode_e.cpp	GetSivp:537 V id 67 WCW 2113544 SVAR array YES sz 4 generic? 0
+ icode_e.cpp	GetSivp:574 V SVAR array? YES DYNAMIC NO ELE YES offset 2 sz 4
+ icode_e.cpp	GetSivp:644 NO icode_range.cpp	evalrangesiv:64 ---> EVALRANGE_SIV  1 V  wr 2
+ icode_e.cpp	GetSivp:498 pindex -1 var V state 1 slot 172 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  172 
+ icode_e.cpp	GetSivp:537 V id 67 WCW 2113544 SVAR array YES sz 4 generic? 0
+ icode_e.cpp	GetSivp:574 V SVAR array? YES DYNAMIC NO ELE YES offset 2 sz 4
+ icode_e.cpp	GetSivp:644 NO icode_range.cpp	evalrangesiv:102 ic->state 1 used for ele ?
+ icode_range.cpp	evalrangesiv:113  ic->sivp->aop->crange->rc 0 set to ic->state
+ icode_range.cpp	evalrangesiv:120  icpar->cw 400 8
+ icode_range.cpp	evalrangesiv:128 trying to pop   
+ icode_range.cpp	evalrangesiv:136 popped ele is 0 
+ icode_range.cpp	evalrangesiv:140 ics 1 nd 1 wd 0 ele 0
+ icode_range.cpp	evalrangesiv:147 start 0 end 0 
+ icode_range.cpp	evalrangesiv:64 ---> EVALRANGE_SIV  2 V  wr 2
+ icode_e.cpp	GetSivp:498 pindex -1 var V state 2 slot 172 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  172 
+ icode_e.cpp	GetSivp:537 V id 67 WCW 69255176 SVAR array YES sz 4 generic? 0
+ icode_e.cpp	GetSivp:574 V SVAR array? YES DYNAMIC NO ELE YES offset 0 sz 4
+ icode_e.cpp	GetSivp:644 NO icode_range.cpp	evalrangesiv:102 ic->state 2 used for ele ?
+ icode_range.cpp	evalrangesiv:113  ic->sivp->aop->crange->rc 1 set to ic->state
+ icode_range.cpp	evalrangesiv:120  icpar->cw 500 8
+ icode_range.cpp	evalrangesiv:128 trying to pop   
+ icode_range.cpp	evalrangesiv:136 popped ele is 1 
+ icode_range.cpp	evalrangesiv:140 ics 2 nd 1 wd 0 ele 1
+ icode_range.cpp	evalrangesiv:147 start 0 end 1 
+ icode_e.cpp	GetSivp:498 pindex -1 var V state 0 slot 172 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  172 
+ icode_e.cpp	GetSivp:537 V id 67 WCW 69255176 SVAR array YES sz 4 generic? 0
+ icode_e.cpp	GetSivp:574 V SVAR array? YES DYNAMIC NO ELE YES offset 0 sz 4
+ icode_e.cpp	GetSivp:644 NO icode_parse_e.cpp	catSiv:241 -1  
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51 V is  hey   mark can you make your goal weight 
+
+
+###XIC <35>[82]<0>{PRSTDOUT}		<<"___________\n"
+
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51 ___________
+
+
+###XIC <36>[83]<0>{EXPRESSION}		Z= "$V"
+
+ icode_e.cpp	createv:1113 creating!? Z as UNSET
+ icode_e.cpp	createv:1178 created Z id 73 slot 180
+ icode_e.cpp	GetSivp:498 pindex -1 var V state 0 slot 172 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  172 
+ icode_e.cpp	GetSivp:537 V id 67 WCW 69255176 SVAR array YES sz 4 generic? 0
+ icode_e.cpp	GetSivp:574 V SVAR array? YES DYNAMIC NO ELE YES offset 0 sz 4
+ icode_e.cpp	GetSivp:644 NO icode_parse_e.cpp	catSiv:241 -1  
+ icode_e.cpp	GetSivp:498 pindex -1 var Z state 0 slot 180 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  180 
+ icode_e.cpp	GetSivp:537 Z id 73 WCW 2097152 UNSET array NO sz 0 generic? 0
+ icode_e.cpp	GetSivp:574 Z UNSET array? NO DYNAMIC NO ELE NO offset 0 sz 0
+ icode_e.cpp	GetSivp:644 NO
+###XIC <37>[85]<0>{VMF}		Z->split()
+
+ icode_e.cpp	GetSivp:498 pindex -1 var Z state 72 slot 180 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  180 
+ icode_e.cpp	GetSivp:537 Z id 73 WCW 2097152 SVAR array NO sz 1 generic? 0
+ icode_e.cpp	GetSivp:574 Z SVAR array? NO DYNAMIC NO ELE NO offset 0 sz 1
+ icode_e.cpp	GetSivp:644 NO icode_call.cpp	callvmf:127  72()vmf args na 0 
+ storevar_e.cpp	storeNumber:2481 7
+ storevar_e.cpp	storeNumber:2505 siv_64 offset 0 type INT nd 0 inval 7
+ storevar_e.cpp	storeNumber:2613 siv_64 INT sz 0
+ icode_call.cpp	callvmf:161 result 3 
+ storevar_e.cpp	store_copy_var:1305 ---> xic_result_0 --> siv_64 store? 1
+ siv_e.cpp isValid: @492  bad siv 15
+ storevar_e.cpp	store_copy_var:1367 xic_result_0 INT ELE? NO----> siv_64 INT
+	@storevar SIV siv_64 ID 64 slot -1 type INT CW 17 totalsize (96+0)
+	siv_64 FLAGS: <FREE | DYNAMIC | PRIVATE | >
+	@? SIV xic_result_0 ID 9 slot -1 type INT CW 142606353 totalsize (96+0)
+	xic_result_0 FLAGS: <FREE | DYNAMIC | PRIVATE | STACKV | REF_LH | >
+ storevar_e.cpp	Store:1048 ---> xic_result_0 --> siv_64 SVPTR NO array NO sz 0 fsz 0 ovrwt 0
+ storevar_e.cpp	Store:1051 array NO SUBSC NO SUBSC_LH NO
+ storevar_e.cpp	Store:1088 ftype INT to INT
+ storevar_e.cpp	Store:1230 array? 0 size 0 ovw 0 is_scalar 1
+ storevar_e.cpp	storeConvert:301 from xic_result_0 type INT to siv_64  INT size 0
+ storevar_e.cpp	Store:1268 INT sz 0
+ storevar_e.cpp	Store:1286 <---- to  siv_64  type INT
+
+###XIC <38>[87]<0>{PRSTDOUT}		<<"Z= $Z \n"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var Z state 0 slot 180 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  180 
+ icode_e.cpp	GetSivp:537 Z id 73 WCW 2097152 SVAR array NO sz 8 generic? 0
+ icode_e.cpp	GetSivp:574 Z SVAR array? NO DYNAMIC NO ELE NO offset 0 sz 8
+ icode_e.cpp	GetSivp:644 NO icode_parse_e.cpp	catSiv:241 -1  
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51 Z= hey mark can you make your goal weight 
+
+
+###XIC <39>[88]<0>{PRSTDOUT}		<<"Z[0] $Z[0] \n"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var Z state 0 slot 180 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  180 
+ icode_e.cpp	GetSivp:537 Z id 73 WCW 2097160 SVAR array YES sz 8 generic? 0
+ icode_e.cpp	GetSivp:574 Z SVAR array? YES DYNAMIC NO ELE NO offset 0 sz 8
+ icode_e.cpp	GetSivp:644 NO icode_parse_e.cpp	catSiv:241 -1  
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51 Z[0] hey 
+
+
+###XIC <40>[89]<0>{PRSTDOUT}		<<"Z[1] $Z[1] \n"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var Z state 0 slot 180 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  180 
+ icode_e.cpp	GetSivp:537 Z id 73 WCW 2113544 SVAR array YES sz 8 generic? 0
+ icode_e.cpp	GetSivp:574 Z SVAR array? YES DYNAMIC NO ELE YES offset 0 sz 8
+ icode_e.cpp	GetSivp:644 NO icode_parse_e.cpp	catSiv:241 -1  
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51 Z[1] mark 
+
+
+###XIC <41>[90]<0>{PRSTDOUT}		<<"Z[2] $Z[2] \n"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var Z state 0 slot 180 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  180 
+ icode_e.cpp	GetSivp:537 Z id 73 WCW 2113544 SVAR array YES sz 8 generic? 0
+ icode_e.cpp	GetSivp:574 Z SVAR array? YES DYNAMIC NO ELE YES offset 1 sz 8
+ icode_e.cpp	GetSivp:644 NO icode_parse_e.cpp	catSiv:241 -1  
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51 Z[2] can 
+
+
+###XIC <42>[91]<0>{PRSTDOUT}		<<"Z[3] $Z[3] \n"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var Z state 0 slot 180 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  180 
+ icode_e.cpp	GetSivp:537 Z id 73 WCW 2113544 SVAR array YES sz 8 generic? 0
+ icode_e.cpp	GetSivp:574 Z SVAR array? YES DYNAMIC NO ELE YES offset 2 sz 8
+ icode_e.cpp	GetSivp:644 NO icode_parse_e.cpp	catSiv:241 -1  
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51 Z[3] you 
+
+
+###XIC <43>[92]<0>{PRSTDOUT}		<<" $Z[4] \n"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var Z state 0 slot 180 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  180 
+ icode_e.cpp	GetSivp:537 Z id 73 WCW 2113544 SVAR array YES sz 8 generic? 0
+ icode_e.cpp	GetSivp:574 Z SVAR array? YES DYNAMIC NO ELE YES offset 3 sz 8
+ icode_e.cpp	GetSivp:644 NO icode_parse_e.cpp	catSiv:241 -1  
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51  make 
+
+
+###XIC <44>[97]<0>{FUNCTION}		CheckStr("hey",Z[0])
+
+ icode_e.cpp	GetSivp:498 pindex -1 var Z state 0 slot 180 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  180 
+ icode_e.cpp	GetSivp:537 Z id 73 WCW 2113544 SVAR array YES sz 8 generic? 0
+ icode_e.cpp	GetSivp:574 Z SVAR array? YES DYNAMIC NO ELE YES offset 4 sz 8
+ icode_e.cpp	GetSivp:644 NO icode_call.cpp	callf:23 781() na 2 
+ storevar_e.cpp	storeNumber:2481 1
+ storevar_e.cpp	storeNumber:2505 siv_64 offset 0 type INT nd 0 inval 1
+ storevar_e.cpp	storeNumber:2613 siv_64 INT sz 0
+ icode_call.cpp	callf:29 result type INT
+ storevar_e.cpp	store_copy_var:1305 ---> xic_result_0 --> siv_64 store? 1
+ siv_e.cpp isValid: @492  bad siv 16
+ storevar_e.cpp	store_copy_var:1367 xic_result_0 INT ELE? NO----> siv_64 INT
+	@storevar SIV siv_64 ID 64 slot -1 type INT CW 17 totalsize (96+0)
+	siv_64 FLAGS: <FREE | DYNAMIC | PRIVATE | >
+	@? SIV xic_result_0 ID 9 slot -1 type INT CW 142606337 totalsize (96+0)
+	xic_result_0 FLAGS: <FREE | PRIVATE | STACKV | REF_LH | >
+ storevar_e.cpp	Store:1048 ---> xic_result_0 --> siv_64 SVPTR NO array NO sz 0 fsz 0 ovrwt 0
+ storevar_e.cpp	Store:1051 array NO SUBSC NO SUBSC_LH NO
+ storevar_e.cpp	Store:1088 ftype INT to INT
+ storevar_e.cpp	Store:1230 array? 0 size 0 ovw 0 is_scalar 1
+ storevar_e.cpp	storeConvert:301 from xic_result_0 type INT to siv_64  INT size 0
+ storevar_e.cpp	Store:1268 INT sz 0
+ storevar_e.cpp	Store:1286 <---- to  siv_64  type INT
+
+###XIC <45>[98]<0>{FUNCTION}		CheckStr("make",Z[4])
+
+ icode_e.cpp	GetSivp:498 pindex -1 var Z state 0 slot 180 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  180 
+ icode_e.cpp	GetSivp:537 Z id 73 WCW 2113544 SVAR array YES sz 8 generic? 0
+ icode_e.cpp	GetSivp:574 Z SVAR array? YES DYNAMIC NO ELE YES offset 0 sz 8
+ icode_e.cpp	GetSivp:644 NO icode_call.cpp	callf:23 781() na 2 
+ storevar_e.cpp	storeNumber:2481 1
+ storevar_e.cpp	storeNumber:2505 siv_64 offset 0 type INT nd 0 inval 1
+ storevar_e.cpp	storeNumber:2613 siv_64 INT sz 0
+ icode_call.cpp	callf:29 result type INT
+ storevar_e.cpp	store_copy_var:1305 ---> xic_result_0 --> siv_64 store? 1
+ siv_e.cpp isValid: @492  bad siv 17
+ storevar_e.cpp	store_copy_var:1367 xic_result_0 INT ELE? NO----> siv_64 INT
+	@storevar SIV siv_64 ID 64 slot -1 type INT CW 17 totalsize (96+0)
+	siv_64 FLAGS: <FREE | DYNAMIC | PRIVATE | >
+	@? SIV xic_result_0 ID 9 slot -1 type INT CW 142606337 totalsize (96+0)
+	xic_result_0 FLAGS: <FREE | PRIVATE | STACKV | REF_LH | >
+ storevar_e.cpp	Store:1048 ---> xic_result_0 --> siv_64 SVPTR NO array NO sz 0 fsz 0 ovrwt 0
+ storevar_e.cpp	Store:1051 array NO SUBSC NO SUBSC_LH NO
+ storevar_e.cpp	Store:1088 ftype INT to INT
+ storevar_e.cpp	Store:1230 array? 0 size 0 ovw 0 is_scalar 1
+ storevar_e.cpp	storeConvert:301 from xic_result_0 type INT to siv_64  INT size 0
+ storevar_e.cpp	Store:1268 INT sz 0
+ storevar_e.cpp	Store:1286 <---- to  siv_64  type INT
+
+###XIC <46>[100]<0>{PRSTDOUT}		<<"$Z[4] \n"
+
+ icode_e.cpp	GetSivp:498 pindex -1 var Z state 0 slot 180 cmslot -1
+ icode_e.cpp	GetSivp:507 Looking up Global var slot  180 
+ icode_e.cpp	GetSivp:537 Z id 73 WCW 2113544 SVAR array YES sz 8 generic? 0
+ icode_e.cpp	GetSivp:574 Z SVAR array? YES DYNAMIC NO ELE YES offset 4 sz 8
+ icode_e.cpp	GetSivp:644 NO icode_parse_e.cpp	catSiv:241 -1  
+ icode_print.cpp	prtout:25 Fh 1 
+ icode_print.cpp	prtout:51 make 
+
+
+###XIC <47>[102]<0>{FUNCTION}		CheckOut()
+
+ icode_call.cpp	callf:23 575() na 0 
+ storevar_e.cpp	storeNumber:2481 2
+ storevar_e.cpp	storeNumber:2505 siv_64 offset 0 type INT nd 0 inval 2
+ storevar_e.cpp	storeNumber:2613 siv_64 INT sz 0
+ icode_call.cpp	callf:29 result type INT
+ storevar_e.cpp	store_copy_var:1305 ---> xic_result_0 --> siv_64 store? 1
+ siv_e.cpp isValid: @492  bad siv 18
+ storevar_e.cpp	store_copy_var:1367 xic_result_0 INT ELE? NO----> siv_64 INT
+	@storevar SIV siv_64 ID 64 slot -1 type INT CW 17 totalsize (96+0)
+	siv_64 FLAGS: <FREE | DYNAMIC | PRIVATE | >
+	@? SIV xic_result_0 ID 9 slot -1 type INT CW 142606337 totalsize (96+0)
+	xic_result_0 FLAGS: <FREE | PRIVATE | STACKV | REF_LH | >
+ storevar_e.cpp	Store:1048 ---> xic_result_0 --> siv_64 SVPTR NO array NO sz 0 fsz 0 ovrwt 0
+ storevar_e.cpp	Store:1051 array NO SUBSC NO SUBSC_LH NO
+ storevar_e.cpp	Store:1088 ftype INT to INT
+ storevar_e.cpp	Store:1230 array? 0 size 0 ovw 0 is_scalar 1
+ storevar_e.cpp	storeConvert:301 from xic_result_0 type INT to siv_64  INT size 0
+ storevar_e.cpp	Store:1268 INT sz 0
+ storevar_e.cpp	Store:1286 <---- to  siv_64  type INT
+
+###XIC <48>[104]<0>{FUNCTION}		STOP!
+
+ icode_call.cpp	callf:23 1133() na 0 
+ storevar_e.cpp	storeNumber:2481 1
+ storevar_e.cpp	storeNumber:2505 siv_64 offset 0 type INT nd 0 inval 1
+ storevar_e.cpp	storeNumber:2613 siv_64 INT sz 0
+ icode_call.cpp	callf:29 result type INT
+ storevar_e.cpp	store_copy_var:1305 ---> xic_result_0 --> siv_64 store? 1
+ siv_e.cpp isValid: @492  bad siv 19
+ storevar_e.cpp	store_copy_var:1367 xic_result_0 INT ELE? NO----> siv_64 INT
+	@storevar SIV siv_64 ID 64 slot -1 type INT CW 17 totalsize (96+0)
+	siv_64 FLAGS: <FREE | DYNAMIC | PRIVATE | >
+	@? SIV xic_result_0 ID 9 slot -1 type INT CW 142606337 totalsize (96+0)
+	xic_result_0 FLAGS: <FREE | PRIVATE | STACKV | REF_LH | >
+ storevar_e.cpp	Store:1048 ---> xic_result_0 --> siv_64 SVPTR NO array NO sz 0 fsz 0 ovrwt 0
+ storevar_e.cpp	Store:1051 array NO SUBSC NO SUBSC_LH NO
+ storevar_e.cpp	Store:1088 ftype INT to INT
+ storevar_e.cpp	Store:1230 array? 0 size 0 ovw 0 is_scalar 1
+ storevar_e.cpp	storeConvert:301 from xic_result_0 type INT to siv_64  INT size 0
+ storevar_e.cpp	Store:1268 INT sz 0
+ storevar_e.cpp	Store:1286 <---- to  siv_64  type INT
+ asl.cpp	main:870 Exit asl - cleanup @ 1452216950 
+debug_file is /home/mark/.GASP/WORK/Dbx/svelepr.dbx.6031 num_errors 1  invalidSiv 19 1 0 exit status 0

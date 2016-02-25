@@ -1,0 +1,194 @@
+gok 0 
+arch layers 3 fhid 2 shid 0 ntype sff act hyperbolic xor nbits 2
+eta 0.020000   theta 0.900000      alpha 0.900000   net_rseed 893  logicfunc xor npats 4 
+init net state before train 
+
+ 0.000  0.000 
+ <  0.000  0.000 
+ HiddenLayer 1
+ act -0.519022 delta 0.000000  (node [2]  wt -0.575000 to node [2])
+     wt 0.062500 to node [0])  
+     wt 0.112500 to node [1])  
+ act -0.545885 delta 0.000000  (node [3]  wt -0.612500 to node [3])
+     wt 0.125000 to node [0])  
+     wt 0.362500 to node [1])  
+ OutLayer 
+ act 0.244446 delta 0.000000  (node [4]  wt 0.325000 to node [4])
+     wt 0.237500 to node [2])  
+     wt -0.087500 to node [3])  
+ >  0.000 
+
+ 0.000  1.000 
+ <  0.000  1.000 
+ HiddenLayer 1
+ act -0.432120 delta 0.000000  (node [2]  wt -0.575000 to node [2])
+     wt 0.062500 to node [0])  
+     wt 0.112500 to node [1])  
+ act -0.244919 delta 0.000000  (node [3]  wt -0.612500 to node [3])
+     wt 0.125000 to node [0])  
+     wt 0.362500 to node [1])  
+ OutLayer 
+ act 0.239084 delta 0.000000  (node [4]  wt 0.325000 to node [4])
+     wt 0.237500 to node [2])  
+     wt -0.087500 to node [3])  
+ >  1.000 
+
+ 1.000  0.000 
+ <  1.000  0.000 
+ HiddenLayer 1
+ act -0.471891 delta 0.000000  (node [2]  wt -0.575000 to node [2])
+     wt 0.062500 to node [0])  
+     wt 0.112500 to node [1])  
+ act -0.452230 delta 0.000000  (node [3]  wt -0.612500 to node [3])
+     wt 0.125000 to node [0])  
+     wt 0.362500 to node [1])  
+ OutLayer 
+ act 0.247264 delta 0.000000  (node [4]  wt 0.325000 to node [4])
+     wt 0.237500 to node [2])  
+     wt -0.087500 to node [3])  
+ >  1.000 
+
+ 1.000  1.000 
+ <  1.000  1.000 
+ HiddenLayer 1
+ act -0.379949 delta 0.000000  (node [2]  wt -0.575000 to node [2])
+     wt 0.062500 to node [0])  
+     wt 0.112500 to node [1])  
+ act -0.124353 delta 0.000000  (node [3]  wt -0.612500 to node [3])
+     wt 0.125000 to node [0])  
+     wt 0.362500 to node [1])  
+ OutLayer 
+ act 0.240819 delta 0.000000  (node [4]  wt 0.325000 to node [4])
+     wt 0.237500 to node [2])  
+     wt -0.087500 to node [3])  
+ >  0.000 
+
+ nc 2
+net after one sweep 
+
+ 0.000  0.000 
+ <  0.000  0.000 
+ HiddenLayer 1
+ act -0.519022 delta -0.039882  (node [2]  wt -0.575798 to node [2])
+     wt 0.062500 to node [0])  
+     wt 0.112500 to node [1])  
+ act -0.545885 delta 0.014118  (node [3]  wt -0.612218 to node [3])
+     wt 0.125000 to node [0])  
+     wt 0.362500 to node [1])  
+ OutLayer 
+ act 0.244446 delta -0.229839  (node [4]  wt 0.320403 to node [4])
+     wt 0.239886 to node [2])  
+     wt -0.084991 to node [3])  
+ >  0.000 
+
+ 0.000  1.000 
+ <  0.000  1.000 
+ HiddenLayer 1
+ act -0.432768 delta 0.141410  (node [2]  wt -0.573687 to node [2])
+     wt 0.062500 to node [0])  
+     wt 0.115328 to node [1])  
+ act -0.244653 delta -0.057957  (node [3]  wt -0.613123 to node [3])
+     wt 0.125000 to node [0])  
+     wt 0.361341 to node [1])  
+ OutLayer 
+ act 0.233021 delta 0.725333  (node [4]  wt 0.330773 to node [4])
+     wt 0.235755 to node [2])  
+     wt -0.086281 to node [3])  
+ >  1.000 
+
+ 1.000  0.000 
+ <  1.000  0.000 
+ HiddenLayer 1
+ act -0.470870 delta 0.128242  (node [2]  wt -0.569223 to node [2])
+     wt 0.065065 to node [0])  
+     wt 0.117874 to node [1])  
+ act -0.452725 delta -0.047944  (node [3]  wt -0.614896 to node [3])
+     wt 0.124041 to node [0])  
+     wt 0.360298 to node [1])  
+ OutLayer 
+ act 0.253196 delta 0.698928  (node [4]  wt 0.354084 to node [4])
+     wt 0.225455 to node [2])  
+     wt -0.093771 to node [3])  
+ >  1.000 
+
+ 1.000  1.000 
+ <  1.000  1.000 
+ HiddenLayer 1
+ act -0.368153 delta -0.049681  (node [2]  wt -0.566199 to node [2])
+     wt 0.066380 to node [0])  
+     wt 0.119171 to node [1])  
+ act -0.129821 delta 0.023500  (node [3]  wt -0.616022 to node [3])
+     wt 0.123648 to node [0])  
+     wt 0.359829 to node [1])  
+ OutLayer 
+ act 0.275915 delta -0.254910  (node [4]  wt 0.369966 to node [4])
+     wt 0.218062 to node [2])  
+     wt -0.099851 to node [3])  
+ >  0.000 
+
+nc 2 
+net final state success 1 
+
+ 0.000  0.000 
+ <  0.000  0.000 
+ HiddenLayer 1
+ act -0.400690 delta -0.048973  (node [2]  wt -0.427013 to node [2])
+     wt 1.274426 to node [0])  
+     wt 1.313972 to node [1])  
+ act -0.980297 delta 0.002002  (node [3]  wt -2.303832 to node [3])
+     wt 1.464779 to node [0])  
+     wt 1.517033 to node [1])  
+ OutLayer 
+ act 0.034244 delta -0.037875  (node [4]  wt -0.678004 to node [4])
+     wt 1.541297 to node [2])  
+     wt -1.356572 to node [3])  
+ >  0.000 
+
+ 0.000  1.000 
+ <  0.000  1.000 
+ HiddenLayer 1
+ act 0.709888 delta -0.028940  (node [2]  wt -0.429880 to node [2])
+     wt 1.274627 to node [0])  
+     wt 1.313563 to node [1])  
+ act -0.656592 delta 0.029190  (node [3]  wt -2.302084 to node [3])
+     wt 1.466141 to node [0])  
+     wt 1.518966 to node [1])  
+ OutLayer 
+ act 0.863478 delta -0.037875  (node [4]  wt -0.678004 to node [4])
+     wt 1.541297 to node [2])  
+     wt -1.356572 to node [3])  
+ >  1.000 
+
+ 1.000  0.000 
+ <  1.000  0.000 
+ HiddenLayer 1
+ act 0.688315 delta -0.030700  (node [2]  wt -0.433075 to node [2])
+     wt 1.274194 to node [0])  
+     wt 1.313195 to node [1])  
+ act -0.683655 delta 0.027329  (node [3]  wt -2.299964 to node [3])
+     wt 1.467913 to node [0])  
+     wt 1.520706 to node [1])  
+ OutLayer 
+ act 0.864356 delta -0.037875  (node [4]  wt -0.678004 to node [4])
+     wt 1.541297 to node [2])  
+     wt -1.356572 to node [3])  
+ >  1.000 
+
+ 1.000  1.000 
+ <  1.000  1.000 
+ HiddenLayer 1
+ act 0.973453 delta -0.003056  (node [2]  wt -0.436011 to node [2])
+     wt 1.273743 to node [0])  
+     wt 1.312802 to node [1])  
+ act 0.597117 delta 0.033016  (node [3]  wt -2.297396 to node [3])
+     wt 1.470168 to node [0])  
+     wt 1.522933 to node [1])  
+ OutLayer 
+ act 0.012342 delta -0.037875  (node [4]  wt -0.678004 to node [4])
+     wt 1.541297 to node [2])  
+     wt -1.356572 to node [3])  
+ >  0.000 
+
+done net after completion  nc 4
+trial 1 1 eta 0.020000 theta 0.900000 alpha 0.900000  nh1 2 rs 893  swp 302  aveswp 302.0   100.00 
+exiting xor_wire 

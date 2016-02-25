@@ -1,0 +1,16 @@
+5 GREEN 
+ MAXN defined as 10 
+pt 82
+lead is Lead,Pb,82,207.190002
+ 0 0 0 0 0 0 0 0 0 77
+
+ 10 
+DONE: PASS: ./define             :tests      2 :Fail      0 :Pass      2 :Score  100.0% 
+5 GREEN 
+ MAXN defined as 10 
+pt 82
+lead is Lead,Pb,82,207.190002
+ 0 0 0 0 0 0 0 0 0 77
+
+ 10 
+DONE: PASS: ./define             :tests      2 :Fail      0 :Pass      2 :Score  100.0% 

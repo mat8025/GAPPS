@@ -1,0 +1,6 @@
+y=8
+echo "# test_case $y slow climb - level slow descent " > test_case$y.ip
+echo "# flight phase stays constant " >> test_case$y.ip
+asl make_fp_vt.asl l 60 c 420 90 l 120 d 420 80 l 180  >> test_case$y.ip
+cat test_case$y.ip |  asl fp_fcV8.asl | asl plotfp2.asl 
+

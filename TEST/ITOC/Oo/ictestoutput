@@ -1,0 +1,192 @@
+nbytes 40 
+OC 1
+Starting cons 
+cons for D  1 
+k 0 
+I 28 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0  
+k 28 
+Done cons 
+ done dec of D
+Starting cons 
+cons for E  2 
+k 1 
+I 28 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 
+k 28 
+Done cons 
+ 1 0 0 0 0 0 0 0 0 0 0
+
+ after cons
+ after set
+5 32 
+ trying D->I[5] = 32 32
+ after set D->I[5] = 33 33
+vi 79 = 79? 
+ E->I[9] 28 0 0 0 0 0 0 0 79 93 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 
+ show D 
+_cobj D 
+_cobj E 
+_cobj D 
+_cobj D 
+_cobj E 
+DONE: PASS: ./class_array        :tests      2 :Fail      0 :Pass      2 :Score  100.0% 
+ finished class def building 
+ finished class def house 
+ finished class def room 
+building_building constructor 
+  nr 4 
+reset rooms to 25 
+ nr 25 
+b has  rooms 25 floors 6
+make a house 
+building_building constructor 
+house_house  constructor 
+house_house   rooms 4 floors 2 baths 1
+after house UNKNOWN TYPE 
+ in getfloors 
+ _cobj h bedrooms 1 baths 1 ff 2
+h has 1 bedrooms 1 bathrooms and 2 floors 4 rooms  rooms 4 floors 2
+ nr 4 
+ in getfloors 
+ _cobj h bedrooms 1 baths 1 ff 3
+h has 1 bedrooms 1 bathrooms and 3 floors 5 rooms  rooms 5 floors 3
+b has  rooms 25 floors 6
+ in getfloors 
+ _cobj h bedrooms 1 baths 1 ff 12
+h has 1 bedrooms 1 bathrooms and 12 floors 7 rooms  rooms 7 floors 12
+ hf 12 
+ hr 7 
+ hr 7 
+  nr 7 
+  nr 18 
+  nbaths 20 
+ make house c 
+building_building constructor 
+house_house  constructor 
+house_house   rooms 4 floors 2 baths 1
+ after house c dec !! 
+ in getfloors 
+ _cobj h bedrooms 1 baths 20 ff 12
+h has 1 bedrooms 20 bathrooms and 12 floors 18 rooms  rooms 18 floors 12
+ make house d 
+building_building constructor 
+house_house  constructor 
+house_house   rooms 4 floors 2 baths 1
+ in getfloors 
+ _cobj h bedrooms 1 baths 20 ff 12
+h has 1 bedrooms 20 bathrooms and 12 floors 18 rooms  rooms 18 floors 12
+building_building constructor 
+house_house  constructor 
+house_house   rooms 4 floors 2 baths 1
+ room_room CONS 
+ after room 1
+ in getfloors 
+ grandparent constructor called  nf 2  from room object
+ now set  rnf 10 building member from room object 
+ in getfloors 
+  nf <142><INT>[G]  
+ in getfloors 
+ _cobj h bedrooms 1 baths 20 ff 12
+h has 1 bedrooms 20 bathrooms and 12 floors 18 rooms  rooms 18 floors 12
+ in getfloors 
+ _cobj h bedrooms 1 baths 20 ff 12
+h has 1 bedrooms 20 bathrooms and 12 floors 18 rooms  rooms 18 floors 12
+ baths 3 
+DONE: PASS: ./sh                 :tests      3 :Fail      0 :Pass      3 :Score  100.0% 
+nbytes 40 
+OC 1
+Starting cons 
+cons for D  1 
+k 0 
+I 28 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0  
+k 28 
+Done cons 
+ done dec of D
+Starting cons 
+cons for E  2 
+k 1 
+I 28 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 
+k 28 
+Done cons 
+ 1 0 0 0 0 0 0 0 0 0 0
+
+ after cons
+ after set
+5 32 
+ trying D->I[5] = 32 32
+ after set D->I[5] = 33 33
+vi 79 = 79? 
+ E->I[9] 28 0 0 0 0 0 0 0 79 93 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 
+ show D 
+_cobj D 
+_cobj E 
+_cobj D 
+_cobj D 
+_cobj E 
+DONE: PASS: ./class_array        :tests      2 :Fail      0 :Pass      2 :Score  100.0% 
+ finished class def building 
+ finished class def house 
+ finished class def room 
+building_building constructor 
+  nr 4 
+reset rooms to 25 
+ nr 25 
+b has  rooms 25 floors 6
+make a house 
+building_building constructor 
+house_house  constructor 
+house_house   rooms 4 floors 2 baths 1
+after house UNKNOWN TYPE 
+ in getfloors 
+ _cobj h bedrooms 1 baths 1 ff 2
+h has 1 bedrooms 1 bathrooms and 2 floors 4 rooms  rooms 4 floors 2
+ nr 4 
+ in getfloors 
+ _cobj h bedrooms 1 baths 1 ff 3
+h has 1 bedrooms 1 bathrooms and 3 floors 5 rooms  rooms 5 floors 3
+b has  rooms 25 floors 6
+ in getfloors 
+ _cobj h bedrooms 1 baths 1 ff 12
+h has 1 bedrooms 1 bathrooms and 12 floors 7 rooms  rooms 7 floors 12
+ hf 12 
+ hr 7 
+ hr 7 
+  nr 7 
+  nr 18 
+  nbaths 20 
+ make house c 
+building_building constructor 
+house_house  constructor 
+house_house   rooms 4 floors 2 baths 1
+ after house c dec !! 
+ in getfloors 
+ _cobj h bedrooms 1 baths 20 ff 12
+h has 1 bedrooms 20 bathrooms and 12 floors 18 rooms  rooms 18 floors 12
+ make house d 
+building_building constructor 
+house_house  constructor 
+house_house   rooms 4 floors 2 baths 1
+ in getfloors 
+ _cobj h bedrooms 1 baths 20 ff 12
+h has 1 bedrooms 20 bathrooms and 12 floors 18 rooms  rooms 18 floors 12
+building_building constructor 
+house_house  constructor 
+house_house   rooms 4 floors 2 baths 1
+ room_room CONS 
+ after room 1
+ in getfloors 
+ grandparent constructor called  nf 2  from room object
+ now set  rnf 10 building member from room object 
+ in getfloors 
+  nf <142><INT>[G]  
+ in getfloors 
+ _cobj h bedrooms 1 baths 20 ff 12
+h has 1 bedrooms 20 bathrooms and 12 floors 18 rooms  rooms 18 floors 12
+ in getfloors 
+ _cobj h bedrooms 1 baths 20 ff 12
+h has 1 bedrooms 20 bathrooms and 12 floors 18 rooms  rooms 18 floors 12
+ baths 3 
+DONE: PASS: ./sh                 :tests      3 :Fail      0 :Pass      3 :Score  100.0% 

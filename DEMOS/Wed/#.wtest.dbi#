@@ -1,0 +1,765 @@
+     DEBUG FILE for .wtest.dbi debug level 0  vers 4.100.4
+     Sun Oct 19 12:35:12 2014
+ main @ 844 asl.cpp: READY TO GO on mercury@rootmeansquare
+ VMF_Table_init @ 155 table_l.cpp: 76 VMF functions 
+
+wtest.asl 
+ asl @ 246 asl.cpp: @ 1
+ script @ 142 engine_e.cpp: found exe file wtest.asl 1413743635 
+ store_str_value @ 1481 storevar_e.cpp: _lastp id 2 type SVAR offset 0 <-- value _ as SVAR
+ store_str_value @ 1567 storevar_e.cpp: svv -1 value _ _lastp offset 0 dtype SVAR nd 0  len 1
+ store_str_value @ 1855 storevar_e.cpp: <--- setting  _lastp to val _ type SVAR
+ store_str_value @ 1481 storevar_e.cpp: _clarg id 3 type SVAR offset 0 <-- value wtest.asl as SVAR
+ store_str_value @ 1567 storevar_e.cpp: svv -2 value wtest.asl _clarg offset 0 dtype SVAR nd 0  len 9
+ store_str_value @ 1855 storevar_e.cpp: <--- setting  _clarg to val wtest.asl type SVAR
+ setSize @ 587 siv_e.cpp: ignore it is svar 
+ storeNumber @ 2149 storevar_e.cpp: ----> _PI DOUBLE 3.141593
+ storeNumber @ 2199 storevar_e.cpp:  _PI 0 type DOUBLE nd 0 3.141593
+ storeNumber @ 2311 storevar_e.cpp: <---- _PI DOUBLE sz 0
+ AddScope @ 40 scope_e.cpp: cscope <_> newscope <_>  proc_nest 0  proc_rn 0
+ store_str_value @ 1481 storevar_e.cpp: _pstack id 60 type SVAR offset 0 <-- value _ as SVAR
+ store_str_value @ 1567 storevar_e.cpp: svv -3 value _ _pstack offset 0 dtype SVAR nd 0  len 1
+ store_str_value @ 1855 storevar_e.cpp: <--- setting  _pstack to val _ type SVAR
+3 store_str_value @ 1481 storevar_e.cpp: _proc id 59 type STRV offset 0 <-- value _ as STRV
+ store_str_value @ 1567 storevar_e.cpp: svv -4 value _ _proc offset 0 dtype STRV nd 0  len 1
+ store_str_value @ 1855 storevar_e.cpp: <--- setting  _proc to val _ type STRV
+ AddScope @ 61 scope_e.cpp: newscope _   thread Proc_nest 0
+ script @ 249 engine_e.cpp: status 1  
+ script @ 262 engine_e.cpp: ready to run !
+ FindFunction @ 918 func_e.cpp: fn setdebug ind 660 
+ Sfunc @ 525 func_e.cpp: find parameters in  <setdebug(1)>
+ Sfunc @ 537 func_e.cpp: Sfunc setdebug(1) : setdebug(1)
+ Sfunc @ 568 func_e.cpp: find parameters <setdebug(1)> 
+ init_svarg @ 2754 args_e.cpp: ID 0 na 0 maxna 20 
+ init_svarg @ 2796 args_e.cpp: alloc new svargs 20 
+ Sfunc @ 613 func_e.cpp: ->>> setdebug  args (1)
+ parse_args @ 2095 args_e.cpp:  (1)  _  
+ get_args @ 1030 args_e.cpp: rcn 0
+ get_args @ 1062 args_e.cpp: (1) 
+ get_args @ 1092 args_e.cpp: (1)  nal 3
+ get_args @ 1100 args_e.cpp: b4 sob (1) 
+ strip_outer_bracks @ 2218 args_e.cpp: (1) 3 lbcnt 1 rbcnt 1  filb 0 lilb 0 firb 2 lirb 2
+ strip_outer_bracks @ 2267 args_e.cpp: mlen 3 nc 3 <|(1)|> 
+ strip_outer_bracks @ 2293 args_e.cpp: sl 1 <|1|>  
+ get_args @ 1108 args_e.cpp: after sob 1 
+ get_args @ 1137 args_e.cpp: this arg starts at 1
+ get_args @ 1306 args_e.cpp: this arg[0] finishes at 
+ get_args @ 1321 args_e.cpp: [0] 1 cc 1
+ get_args @ 1347 args_e.cpp: argc 1 1
+ process_args @ 822 args_e.cpp: parset 6393984 1 
+ process_args @ 847 args_e.cpp: 0 chk_exp 1 1  type 0
+ NewSivArg @ 170 args_e.cpp: arg[0] added 1 
+ NewSivArg @ 189 args_e.cpp: NewSivArg  sv_arg0 id <65> 
+ process_args_type @ 649 args_e.cpp: fc 1  1
+ process_args_type @ 682 args_e.cpp: checking for array name 1 arg 0 scope _
+ process_args_type @ 717 args_e.cpp: arg_type 0 arg 1 
+ process_args @ 898 args_e.cpp: arg is 1
+ process_args @ 908 args_e.cpp: svarg->sv[i] sv_arg0  
+ process_args @ 909 args_e.cpp: result points to sv_arg0
+ process_args_exprn @ 613 args_e.cpp: GetExp 1
+ GetExp @ 955 exp_e.cpp: ---> rn 1 <|1|>
+ GetExp @ 982 exp_e.cpp: St->ln 2 <1> 
+ GetExp @ 1005 exp_e.cpp: @ line 2  rn 1 in len 1 <|1|>
+ strip_outer_bracks @ 2293 args_e.cpp: sl 0 <|1|>  
+ Number @ 1234 token_e.cpp: 1
+ Number @ 1242 token_e.cpp: Number tok 1 exprn  this->ctype INT
+ store_str_value @ 1481 storevar_e.cpp: vresult id 66 type UNSET offset 0 <-- value 1 as INT
+ store_str_value @ 1556 storevar_e.cpp: setting  vresult to 1 type INT
+ store_str_value @ 1567 storevar_e.cpp: svv -1 value 1 vresult offset 0 dtype INT nd 0  len 1
+ store_str_value @ 1573 storevar_e.cpp: alloc 1 mem offset 0 for INT
+ store_str_value @ 1855 storevar_e.cpp: <--- setting  vresult to val 1 type INT
+ store_copy_var @ 1306 storevar_e.cpp: ---> vresult --> sv_arg0 store? 1
+ store_copy_var @ 1366 storevar_e.cpp: vresult INT ELE? NO----> sv_arg0 UNSET
+@storevar SIV sv_arg0 ID 65 slot -1 type UNSET CW 1 totalsize (88+0)
+
+sv_arg0 has FLAGS: <FREE | PRIVATE | >
+@? SIV vresult ID 66 slot -1 type INT CW 1073741841 totalsize (88+0)
+
+vresult has FLAGS: <FREE | DYNAMIC | PRIVATE | RDPHOLD | >
+ Store @ 1051 storevar_e.cpp: ---> vresult --> sv_arg0 SVPTR NO array NO ovrwt 0
+ Store @ 1054 storevar_e.cpp: array NO SUBSC NO SUBSC_LH NO
+ Store @ 1091 storevar_e.cpp: ftype INT to UNSET
+ Store @ 1287 storevar_e.cpp: <---- to  sv_arg0  type INT
+ GetExp @ 1420 exp_e.cpp: <--- parse_rn 0
+ process_args_exprn @ 633 args_e.cpp: result sv_arg0 ID 65 SVPTR? NO 
+ process_args @ 981 args_e.cpp: calling 0 1 sv_val H=ðÿÿs1ÃHƒìè>À
+ call_func @ 988 func_e.cpp: func setdebug
+ call_func @ 994 func_e.cpp: call_func setdebug 
+ FindFunction @ 918 func_e.cpp: fn setdebug ind 660 
+ call_func @ 1086 func_e.cpp: fname setdebug argc 1 hs 1 ind 660
+ call_func @ 1177 func_e.cpp: WRT ind 660 
+ storeNumber @ 2482 storevar_e.cpp: 8
+ storeNumber @ 2506 storevar_e.cpp: siv_64 offset 0 type INT nd 0 inval 8
+ storeNumber @ 2614 storevar_e.cpp: siv_64 INT sz 0
+ call_func @ 1200 func_e.cpp: func returns array? NO
+ Sfunc @ 707 func_e.cpp: done Sfunc siv_64 type INT
+ Sfunc @ 711 func_e.cpp: 			 func value computed  8
+------------------------------------------------------------------------
+
+### <2>[4]<0>{EXPRESSION}		A=1
+
+------------------------------------------------------------------------
+ Sexp @ 597 exp_e.cpp: @ 4 sl 3 A=1
+ Sexp @ 605 exp_e.cpp: Sexp @ 4   <2>  A=1
+ GetExp @ 955 exp_e.cpp: ---> rn 1 <|A=1|>
+ GetExp @ 982 exp_e.cpp: St->ln 4 <2> 
+ GetExp @ 1005 exp_e.cpp: @ line 4  rn 1 in len 3 <|A=1|>
+ strip_outer_bracks @ 2218 args_e.cpp: A=1 3 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ strip_outer_bracks @ 2293 args_e.cpp: sl 0 <|A=1|>  
+ GetExp @ 1077 exp_e.cpp: Expression! len 3 A=1 
+ GetExp @ 1080 exp_e.cpp: vresult vresult result siv_64
+ checkAssign @ 910 exp_e.cpp: was it an assignment expression ? YES
+ getLHS @ 764 exp_e.cpp: 
+START LHS--setting SLH on! ectxt YES
+ Get @ 2689 token_e.cpp: ---> sn[0] vresult id 68 memp (nil)  <A=1>
+ Get @ 2719 token_e.cpp: ttype TOKINIT 
+ Get @ 2752 token_e.cpp: last_type FIRST_TOKEN ctype UNKNOWN_TYPE  opr NON_OP tstate 0 <A=1>
+ Get @ 2775 token_e.cpp: UNKNOWN_TYPE 
+ Get @ 2841 token_e.cpp: token_parse_4 ttype -2 A
+ lookForFoV @ 2603 token_e.cpp: ctype 11  pre 0  post 0  
+ doVariable @ 2507 token_e.cpp: ctype VAR  build_array_exp A
+ doVariable @ 2508 token_e.cpp: get_token rn 1 TV <=1> 
+ doVariable @ 2509 token_e.cpp:  <A=1> 
+ doVariable @ 2518 token_e.cpp: nextOP? =1 
+ GetNextOp @ 1652 exp_e.cpp: <=1>
+ GetNextOp @ 1715 exp_e.cpp: <--- op EQU 
+ doVariable @ 2525 token_e.cpp: pre 0 post 0 A=1 
+ Variable @ 1523 token_e.cpp: ---><2> in A  result vresult  FIRST_TOKEN 
+ Variable @ 1528 token_e.cpp: tvc LHS? YES  
+ Variable @ 1534 token_e.cpp: ctoken A  ptoken A
+ Variable @ 1562 token_e.cpp: context?  processing_args NO  
+ Variable @ 1579 token_e.cpp: setting init to SIV_FIND_OR_MAKE pargs ? 0 
+ Variable @ 1593 token_e.cpp: init 3 vresult
+ Variable @ 1598 token_e.cpp: Var ctoken A  ptoken A 
+ Variable @ 1599 token_e.cpp: pre 0 post 0  vop 2
+ Variable @ 1636 token_e.cpp: opr is NON_OP context sivptraddr 0
+ FindVar @ 461 scope_e.cpp: --->[0] A init SIV_FIND_OR_MAKE  scope _ cmscope [] type UNSET result->type UNSET vop 2
+ var_ptr @ 916 scope_e.cpp: A 
+ var_index @ 1071 scope_e.cpp: ---> rn 1 name A  pindex -1 init SIV_FIND_OR_MAKE pcw PCW:  type UNSET ar_sz 0
+ var_index @ 1094 scope_e.cpp: scope _  A in CMF_BODY NO? 
+ var_index @ 1135 scope_e.cpp: cmf name? A
+ var_index @ 1260 scope_e.cpp: final A init 3 
+ var_sindex @ 1316 scope_e.cpp: ---> scope _ pindex -1 name <A> init SIV_FIND_OR_MAKE array_check 0  type UNSET PCW: 
+ var_sindex @ 1361 scope_e.cpp: find_create_main var  A A A  type UNSET
+ var_sindex @ 1634 scope_e.cpp: Not main still trying to find <|A|>  vc->init 3
+ var_sindex @ 1657 scope_e.cpp: main/global <|A|> 3 SIV_FIND_OR_MAKE
+ var_sindex @ 1728 scope_e.cpp: A slot -1 init SIV_FIND_OR_MAKE
+ var_sindex_create @ 1886 scope_e.cpp: making <|A|> static? NO
+ var_sindex_create @ 1906 scope_e.cpp: just made A nd 0  GLOBAL? YES STATIC? NO arraycheck? NO
+ var_sindex_create @ 1931 scope_e.cpp: made <A> slot 130 id 71
+ var_sindex_create @ 1941 scope_e.cpp: WIC CREATEV A UNSET classobj 0
+ var_sindex @ 1792 scope_e.cpp: made 130 
+ var_sindex @ 1858 scope_e.cpp: which_siv found ID 71 offset 0 UNSET ND 0 size 0
+ SetArrayOff @ 2181 scope_e.cpp: ---> name  A type UNSET offset 0 array 0 sz 0
+ var_ptr @ 937 scope_e.cpp: Found A
+ FindVar @ 503 scope_e.cpp: A A type  UNSET  array? NO array_ele? NO
+ CheckFindArraySiv @ 152 scope_e.cpp: @cfa SIV A ID 71 slot 130 type UNSET CW 2097152 totalsize (88+0)
+
+A has FLAGS: <GLOBAL | >
+---> 71 A A offset 0 subsc 0 type UNSET size 0
+ FindVar @ 520 scope_e.cpp: A  UNSET  array? NO array_ele NO
+@FindVar SIV A ID 71 slot 130 type UNSET CW 2097152 totalsize (88+0)
+
+A has FLAGS: <GLOBAL | >
+@FindVar SIV vresult ID 68 slot -1 type UNSET CW 1073741825 totalsize (88+0)
+
+vresult has FLAGS: <FREE | PRIVATE | RDPHOLD | >
+ FindVar @ 725 scope_e.cpp: <---[0] 
+ Variable @ 1656 token_e.cpp: vector ptr? A offset 0 vc transfer ? NO
+ Variable @ 1671 token_e.cpp: is vector ptr? proc_arg_ref  NO 
+ Variable @ 1707 token_e.cpp: tkn->result vresult -points to variable A !! slot 130 
+ Variable @ 1714 token_e.cpp: vresult type UNSET array? NO ele NO offset 0 size 0
+ Variable @ 1720 token_e.cpp: A type UNSET array? NO ele NO offset 0 size 0
+ Variable @ 1730 token_e.cpp: WARNING reset offset from previous expression ?
+ Variable @ 1831 token_e.cpp: A A 
+ Variable @ 1836 token_e.cpp: VARIABLE FIRST_TOKEN <vresult> RP_TRAN YES SVPTR YES
+ Variable @ 1842 token_e.cpp: variable found was A ID 71 psiv NO
+ ExprnAdvance @ 2042 exp_e.cpp: =1 out <=1>
+ Get @ 2944 token_e.cpp: ctype VARIABLE ltype VARIABLE psiv YES type UNSET token A 
+ Get @ 2962 token_e.cpp: <--- sn[0] res A id  71 res->memp (nil) res->memsize 0 <=1>
+ getLHS @ 782 exp_e.cpp: 
+
+-------- DONE LHS--------  
+ getLHS @ 784 exp_e.cpp: after first token =1  
+ getLHS @ 793 exp_e.cpp: vresult UNSET 
+@? SIV A ID 71 slot 130 type UNSET CW 2097152 totalsize (88+0)
+
+A has FLAGS: <GLOBAL | >
+now point lhs @ etkn->vptr
+ getLHS @ 833 exp_e.cpp: lhs A  lh_offset 0 - should not change
+ getLHS @ 868 exp_e.cpp: transfer over SUBSC/ELE lhs A type UNSET
+ getLHS @ 869 exp_e.cpp: 2 lhs A  lh_offset 0 - should not change
+@? SIV lhs ID 70 slot -1 type UNSET CW 65537 totalsize (88+0)
+lhs POINTS to --> A
+ getLHS @ 884 exp_e.cpp: 
+-------------Done  LHS  <A>--------------
+ getLHS @ 886 exp_e.cpp: lhs offset 0 0 
+ GetExp @ 1142 exp_e.cpp: 
+----CONTINUE  RHS--------
+
+ l_1 @ 1146 rdp_e.cpp: hold_n 0 result rhs vtok vtok result rhs token A
+ l1_check_siv @ 147 rdp_e.cpp: <l1_check_siv LH A slot 130 UNSET size 0 subsize 0 
+ l1_check_siv @ 150 rdp_e.cpp: <l_1 array? dynamic 0 0
+ l_1 @ 1202 rdp_e.cpp: l1 check assignment A =1 VARIABLE FIRST_TOKEN NON_OP
+ Get @ 2689 token_e.cpp: ---> sn[0] vresult id 68 memp (nil)  <=1>
+ Get @ 2719 token_e.cpp: ttype VARIABLE 
+ Get @ 2752 token_e.cpp: last_type VARIABLE ctype UNKNOWN_TYPE  opr NON_OP tstate 1 <=1>
+ Get @ 2775 token_e.cpp: UNKNOWN_TYPE 
+ GetDelimiter @ 193 token_e.cpp: ----> len 2 =1
+ GetDelimiter @ 240 token_e.cpp: <--- opr = from EQU
+ Delimiter @ 2313 token_e.cpp: after del EQU 
+ Delimiter @ 2324 token_e.cpp: now on RHS ?? SLH 0 
+ Delimiter @ 2393 token_e.cpp: EQU DELIMITER 
+ Delimiter @ 2394 token_e.cpp: <--- <1> 
+ ExprnAdvance @ 2042 exp_e.cpp: 1 out <1>
+ Get @ 2944 token_e.cpp: ctype DELIMITER ltype DELIMITER psiv YES type UNSET token = 
+ Get @ 2962 token_e.cpp: <--- sn[0] res A id  71 res->memp (nil) res->memsize 0 <1>
+ l_1 @ 1226 rdp_e.cpp: after chk assignment  <1>  <=1> <DELIMITER> <VARIABLE> <EQU>
+ l_1 @ 1229 rdp_e.cpp: token = opr EQU l1_tok_type DELIMITER 
+ Get @ 2689 token_e.cpp: ---> sn[0] vresult id 68 memp (nil)  <1>
+ Get @ 2719 token_e.cpp: ttype DELIMITER 
+ Get @ 2752 token_e.cpp: last_type DELIMITER ctype UNKNOWN_TYPE  opr EQU tstate 2 <1>
+ Get @ 2775 token_e.cpp: UNKNOWN_TYPE 
+ Number @ 1234 token_e.cpp: 1
+ Number @ 1242 token_e.cpp: Number tok 1 exprn  this->ctype INT
+ store_str_value @ 1481 storevar_e.cpp: vresult id 68 type UNSET offset 0 <-- value 1 as INT
+ store_str_value @ 1556 storevar_e.cpp: setting  vresult to 1 type INT
+ store_str_value @ 1567 storevar_e.cpp: svv -1 value 1 vresult offset 0 dtype INT nd 0  len 1
+ store_str_value @ 1573 storevar_e.cpp: alloc 1 mem offset 0 for INT
+ store_str_value @ 1855 storevar_e.cpp: <--- setting  vresult to val 1 type INT
+ ExprnAdvance @ 2042 exp_e.cpp:  out <>
+ Get @ 2944 token_e.cpp: ctype INT ltype INT psiv NO type INT token 1 
+ Get @ 2969 token_e.cpp: <--- sn[0] res vresult id  68 res->memp 0x630170 res->memsize 16 <>
+ l_1 @ 1249 rdp_e.cpp: l1->l2 ctype INT opr 7 val EQU
+ l_2 @ 1359 rdp_e.cpp: result rhs vtok vtok tkn vresult val 1
+ l_3 @ 1637 rdp_e.cpp: result rhs vtok vtok tkn vresult 1
+ l_4 @ 1727 rdp_e.cpp: >result rhs vtok vtok tkn vresult
+ l_5 @ 1806 rdp_e.cpp: result rhs vtok vtok tkn vresult
+ l_6 @ 1885 rdp_e.cpp: result rhs vtok vtok tkn vresult
+ primitive @ 1966 rdp_e.cpp: result rhs vtok vtok tkn vresult
+ primitive @ 1968 rdp_e.cpp: ctype INT ltype INT 
+ primitive @ 1997 rdp_e.cpp: result INT INT vresult 
+ primitive @ 1998 rdp_e.cpp: CHECK WIC? -- for  number, constant, string !!
+ primitive @ 2060 rdp_e.cpp: PUSHN number-> store
+ primitive @ 2061 rdp_e.cpp: result type INT pmr_res UNSET
+ primitive @ 2159 rdp_e.cpp: copying variable vresult to rhs 
+ Get @ 2689 token_e.cpp: ---> sn[0] vresult id 68 memp 0x630170  <>
+ Get @ 2719 token_e.cpp: ttype INT 
+ Get @ 2752 token_e.cpp: last_type INT ctype UNKNOWN_TYPE  opr EQU tstate 3 <>
+ Get @ 2775 token_e.cpp: UNKNOWN_TYPE 
+ GetDelimiter @ 193 token_e.cpp: ----> len 0 
+ GetDelimiter @ 240 token_e.cpp: <--- opr  from NON_OP
+ Delimiter @ 2313 token_e.cpp: after del NON_OP 
+ Delimiter @ 2393 token_e.cpp: NON_OP UNKNOWN_TYPE 
+ Delimiter @ 2394 token_e.cpp: <--- <> 
+ ExprnAdvance @ 2042 exp_e.cpp:  out <>
+ Get @ 2944 token_e.cpp: ctype UNKNOWN_TYPE ltype UNKNOWN_TYPE psiv NO type INT token  
+ Get @ 2969 token_e.cpp: <--- sn[0] res vresult id  68 res->memp 0x630170 res->memsize 16 <>
+ primitive @ 2218 rdp_e.cpp: gets token type UNKNOWN_TYPE
+ primitive @ 2234 rdp_e.cpp:  res vresult id  68 res->memp 0x630170 res->memsize 16 
+ l_5 @ 1851 rdp_e.cpp: 
+l_6->l_5 opr NON_OP ltype UNKNOWN_TYPE INT
+ l_4 @ 1786 rdp_e.cpp: rhs 
+  l_3 @ 1705 rdp_e.cpp: rhs array NO  opr UNKNOWN
+  l_2 @ 1372 rdp_e.cpp: l_3 out tok_type UNKNOWN_TYPE token  optype NON_OP
+ l_1 @ 1300 rdp_e.cpp: hold_n 1 
+ l_1 @ 1303 rdp_e.cpp: result vresult ID 68 SVPTR? NO
+ l_1 @ 1310 rdp_e.cpp: tkn opr -3 NON_OP 
+ l_1 @ 1311 rdp_e.cpp: lopr 7 EQU 
+ GetExp @ 1161 exp_e.cpp: 
+--------------DONE  RHS  ----------------<rhs>----------
+
+@? SIV rhs ID 72 slot -1 type INT CW 1 totalsize (88+0)
+
+rhs has FLAGS: <FREE | PRIVATE | >
+@? SIV rhs ID 72 slot -1 type INT CW 1 totalsize (88+0)
+
+rhs has FLAGS: <FREE | PRIVATE | >
+ GetExp @ 1193 exp_e.cpp: answer 1 
+ GetExp @ 1198 exp_e.cpp: 
+----Assigning------- RHS <rhs>----> LHS  <A>-----------
+
+ GetExp @ 1217 exp_e.cpp: l1_store rhs rhs ele? NO SVPTR? NO  
+ GetExp @ 1221 exp_e.cpp: lhs lhs -->  A
+ GetExp @ 1225 exp_e.cpp: lhs  ARRAY_ELE? NO
+ GetExp @ 1227 exp_e.cpp: AFTER RHS lhs offset 0
+ l1_store @ 524 rdp_e.cpp: --->
+ l1_store @ 534 rdp_e.cpp: ptoken 
+ l1_store @ 547 rdp_e.cpp: storev A points @ A
+ l1_store @ 551 rdp_e.cpp: l1_opr EQU A @ offset 0
+ l1_store @ 553 rdp_e.cpp: tok l1_opr NON_OP
+ l1_store @ 609 rdp_e.cpp: resp l1_opr 7  rhs type INT  nd 0 array?  0 memi 6483216 to A
+ l1_store @ 674 rdp_e.cpp: to A type UNSET array 0 from rhs type INT size 0 nd 0  
+@l1_store SIV A ID 71 slot 130 type UNSET CW 2097152 totalsize (88+0)
+
+A has FLAGS: <GLOBAL | >
+ l1_store @ 684 rdp_e.cpp: storev array? NO SVREF NO  SVPTR NO storev_scalar 0 NON_OP
+ l1_store @ 778 rdp_e.cpp: STORE to A size 0 nd 0 SUBSCRIPT? NO SUB_SVAR NO ELE NO
+ l1_store @ 798 rdp_e.cpp: STORER A was this a PROC_ARG_REF?? 
+ l1_store @ 799 rdp_e.cpp: STORER EQU  --> A 
+ l1_store @ 889 rdp_e.cpp: storev LH_SUB 0 offset 0 store_type UNSET from rhs
+ l1_store @ 926 rdp_e.cpp: store scalar shortcut to A
+ l1_store @ 958 rdp_e.cpp: ptoken 
+ l1_store @ 961 rdp_e.cpp: <---
+ GetExp @ 1398 exp_e.cpp: rn 1 result to lhs  expr 
+ GetExp @ 1420 exp_e.cpp: <--- parse_rn 0
+------------------------------------------------------------------------
+
+### <3>[7]<0>{PRSTDOUT}		<<"%V$A \n"
+
+------------------------------------------------------------------------
+ var_ptr @ 916 scope_e.cpp: A 
+ var_index @ 1071 scope_e.cpp: ---> rn 1 name A  pindex -1 init SIV_CHECK_EXIST pcw PCW:  type UNSET ar_sz 0
+ var_index @ 1094 scope_e.cpp: scope _  A in CMF_BODY NO? 
+ var_index @ 1135 scope_e.cpp: cmf name? A
+ var_index @ 1260 scope_e.cpp: final A init 0 
+ var_sindex @ 1316 scope_e.cpp: ---> scope _ pindex -1 name <A> init SIV_CHECK_EXIST array_check 0  type UNSET PCW: 
+ var_sindex @ 1361 scope_e.cpp: find_create_main var  A A A  type UNSET
+ var_sindex @ 1634 scope_e.cpp: Not main still trying to find <|A|>  vc->init 0
+ var_sindex @ 1657 scope_e.cpp: main/global <|A|> 0 SIV_CHECK_EXIST
+ var_sindex @ 1691 scope_e.cpp: main? <|A|> @ slot 130 array? NO AOP_SET NO
+ var_sindex @ 1858 scope_e.cpp: which_siv found ID 71 offset 0 INT ND 0 size 0
+ SetArrayOff @ 2181 scope_e.cpp: ---> name  A type INT offset 0 array 0 sz 0
+ var_ptr @ 937 scope_e.cpp: Found A
+
+### <4><5>[11]<0>{IF}		if (A==1)
+
+ GetNextOp @ 1652 exp_e.cpp: <(A==1)>
+ GetNextOp @ 1715 exp_e.cpp: <--- op EQV 
+ GetExp @ 955 exp_e.cpp: ---> rn 1 <|(A==1)|>
+ GetExp @ 982 exp_e.cpp: St->ln 11 <5> 
+ GetExp @ 1005 exp_e.cpp: @ line 11  rn 1 in len 6 <|(A==1)|>
+ strip_outer_bracks @ 2218 args_e.cpp: (A==1) 6 lbcnt 1 rbcnt 1  filb 0 lilb 0 firb 5 lirb 5
+ strip_outer_bracks @ 2267 args_e.cpp: mlen 6 nc 6 <|(A==1)|> 
+ strip_outer_bracks @ 2293 args_e.cpp: sl 4 <|A==1|>  
+ strip_outer_bracks @ 2218 args_e.cpp: A==1 4 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ strip_outer_bracks @ 2293 args_e.cpp: sl 0 <|A==1|>  
+ check_ma @ 76 rdp_e.cpp: check_ma n = 0
+ GetExp @ 1077 exp_e.cpp: Expression! len 4 A==1 
+ GetExp @ 1080 exp_e.cpp: vresult vresult result siv_64
+ checkAssign @ 910 exp_e.cpp: was it an assignment expression ? NO
+ GetExp @ 1125 exp_e.cpp: 
+---GET FIRST TOKEN RHS --
+
+ Get @ 2689 token_e.cpp: ---> sn[0] vresult id 75 memp (nil)  <A==1>
+ Get @ 2719 token_e.cpp: ttype TOKINIT 
+ Get @ 2752 token_e.cpp: last_type FIRST_TOKEN ctype UNKNOWN_TYPE  opr NON_OP tstate 0 <A==1>
+ Get @ 2775 token_e.cpp: UNKNOWN_TYPE 
+ Get @ 2841 token_e.cpp: token_parse_4 ttype -2 A
+ lookForFoV @ 2603 token_e.cpp: ctype 11  pre 0  post 0  
+ doVariable @ 2507 token_e.cpp: ctype VAR  build_array_exp A
+ doVariable @ 2508 token_e.cpp: get_token rn 1 TV <==1> 
+ doVariable @ 2509 token_e.cpp:  <A==1> 
+ doVariable @ 2518 token_e.cpp: nextOP? ==1 
+ GetNextOp @ 1652 exp_e.cpp: <==1>
+ GetNextOp @ 1715 exp_e.cpp: <--- op EQV 
+ doVariable @ 2525 token_e.cpp: pre 0 post 0 A==1 
+ Variable @ 1523 token_e.cpp: ---><5> in A  result vresult  FIRST_TOKEN 
+ Variable @ 1528 token_e.cpp: tvc LHS? NO  
+ Variable @ 1534 token_e.cpp: ctoken A  ptoken A
+ Variable @ 1562 token_e.cpp: context?  processing_args NO  
+ Variable @ 1579 token_e.cpp: setting init to SIV_FIND_OR_MAKE pargs ? 0 
+ Variable @ 1593 token_e.cpp: init 3 vresult
+ Variable @ 1598 token_e.cpp: Var ctoken A  ptoken A 
+ Variable @ 1599 token_e.cpp: pre 0 post 0  vop 2
+ Variable @ 1636 token_e.cpp: opr is NON_OP context sivptraddr 0
+ FindVar @ 461 scope_e.cpp: --->[0] A init SIV_FIND_OR_MAKE  scope _ cmscope [] type UNSET result->type UNSET vop 2
+ var_ptr @ 916 scope_e.cpp: A 
+ var_index @ 1071 scope_e.cpp: ---> rn 1 name A  pindex -1 init SIV_FIND_OR_MAKE pcw PCW:  type UNSET ar_sz 0
+ var_index @ 1094 scope_e.cpp: scope _  A in CMF_BODY NO? 
+ var_index @ 1135 scope_e.cpp: cmf name? A
+ var_index @ 1260 scope_e.cpp: final A init 3 
+ var_sindex @ 1316 scope_e.cpp: ---> scope _ pindex -1 name <A> init SIV_FIND_OR_MAKE array_check 0  type UNSET PCW: 
+ var_sindex @ 1361 scope_e.cpp: find_create_main var  A A A  type UNSET
+ var_sindex @ 1634 scope_e.cpp: Not main still trying to find <|A|>  vc->init 3
+ var_sindex @ 1657 scope_e.cpp: main/global <|A|> 3 SIV_FIND_OR_MAKE
+ var_sindex @ 1691 scope_e.cpp: main? <|A|> @ slot 130 array? NO AOP_SET NO
+ var_sindex @ 1858 scope_e.cpp: which_siv found ID 71 offset 0 INT ND 0 size 0
+ SetArrayOff @ 2181 scope_e.cpp: ---> name  A type INT offset 0 array 0 sz 0
+ var_ptr @ 937 scope_e.cpp: Found A
+ FindVar @ 503 scope_e.cpp: A A type  INT  array? NO array_ele? NO
+ CheckFindArraySiv @ 152 scope_e.cpp: @cfa SIV A ID 71 slot 130 type INT CW 2097152 totalsize (88+0)
+
+A has FLAGS: <GLOBAL | >
+---> 71 A A offset 0 subsc 0 type INT size 0
+ FindVar @ 520 scope_e.cpp: A  INT  array? NO array_ele NO
+ FindVar @ 544 scope_e.cpp: A exist and is set INT
+ FindVar @ 626 scope_e.cpp: PUSH_SIV A INT scope point to result vresult
+ FindVar @ 647 scope_e.cpp: XIC PUSH_SIV A
+ FindVar @ 659 scope_e.cpp:  vresult pointing  at first token  --> A
+ FindVar @ 679 scope_e.cpp: vresult ele offset  --> 0
+ FindVar @ 688 scope_e.cpp: name A INT vresult UNSET array? NO
+@FindVar SIV A ID 71 slot 130 type INT CW 2097152 totalsize (88+0)
+
+A has FLAGS: <GLOBAL | >
+@FindVar SIV vresult ID 75 slot -1 type UNSET CW 1073807361 totalsize (88+1)
+vresult POINTS to --> A
+ FindVar @ 725 scope_e.cpp: <---[0] 
+ Variable @ 1656 token_e.cpp: vector ptr? A offset 0 vc transfer ? NO
+ Variable @ 1671 token_e.cpp: is vector ptr? proc_arg_ref  NO 
+ Variable @ 1707 token_e.cpp: tkn->result vresult -points to variable A !! slot 130 
+ Variable @ 1714 token_e.cpp: vresult type UNSET array? NO ele NO offset 0 size 1
+ Variable @ 1720 token_e.cpp: A type INT array? NO ele NO offset 0 size 0
+ Variable @ 1730 token_e.cpp: WARNING reset offset from previous expression ?
+ Variable @ 1773 token_e.cpp: use the ele subset info? NO -result vresult not copy?  2
+ Variable @ 1831 token_e.cpp: A A 
+ Variable @ 1836 token_e.cpp: VARIABLE FIRST_TOKEN <vresult> RP_TRAN YES SVPTR YES
+ Variable @ 1842 token_e.cpp: variable found was A ID 71 psiv NO
+ ExprnAdvance @ 2042 exp_e.cpp: ==1 out <==1>
+ Get @ 2944 token_e.cpp: ctype VARIABLE ltype VARIABLE psiv YES type UNSET token A 
+ Get @ 2962 token_e.cpp: <--- sn[0] res A id  71 res->memp 0x630400 res->memsize 16 <==1>
+ GetExp @ 1142 exp_e.cpp: 
+----CONTINUE  RHS--------
+
+ l_1 @ 1146 rdp_e.cpp: hold_n 0 result rhs vtok vtok result rhs token A
+ l1_check_siv @ 147 rdp_e.cpp: <l1_check_siv LH A slot 130 INT size 0 subsize 0 
+ l1_check_siv @ 150 rdp_e.cpp: <l_1 array? dynamic 0 0
+ l_1 @ 1202 rdp_e.cpp: l1 check assignment A ==1 VARIABLE FIRST_TOKEN NON_OP
+ Get @ 2689 token_e.cpp: ---> sn[0] vresult id 75 memp (nil)  <==1>
+ Get @ 2719 token_e.cpp: ttype VARIABLE 
+ Get @ 2752 token_e.cpp: last_type VARIABLE ctype UNKNOWN_TYPE  opr NON_OP tstate 1 <==1>
+ Get @ 2775 token_e.cpp: UNKNOWN_TYPE 
+ GetDelimiter @ 193 token_e.cpp: ----> len 3 ==1
+ GetDelimiter @ 240 token_e.cpp: <--- opr == from EQV
+ Delimiter @ 2313 token_e.cpp: after del EQV 
+ Delimiter @ 2393 token_e.cpp: EQV DELIMITER 
+ Delimiter @ 2394 token_e.cpp: <--- <1> 
+ ExprnAdvance @ 2042 exp_e.cpp: 1 out <1>
+ Get @ 2944 token_e.cpp: ctype DELIMITER ltype DELIMITER psiv YES type UNSET token == 
+ Get @ 2962 token_e.cpp: <--- sn[0] res A id  71 res->memp 0x630400 res->memsize 16 <1>
+ l_1 @ 1226 rdp_e.cpp: after chk assignment  <1>  <==1> <DELIMITER> <VARIABLE> <EQV>
+ l_1 @ 1229 rdp_e.cpp: token == opr EQV l1_tok_type DELIMITER 
+ l_1 @ 1237 rdp_e.cpp: rn 1 pre putback 1
+ putBackTok @ 1075 rdp_e.cpp: hold_n 1 1
+ putBackTok @ 1083 rdp_e.cpp: thold A
+ putBackTok @ 1089 rdp_e.cpp: l1 PUTBACK ==1 A VARIABLE VARIABLE EQV 
+ l_1 @ 1282 rdp_e.cpp: 2 L1->L2 post_variable transfer_result 0 expr left ==1
+ l_2 @ 1359 rdp_e.cpp: result rhs vtok vtok tkn vresult val 1
+ l_3 @ 1637 rdp_e.cpp: result rhs vtok vtok tkn vresult 1
+ l_4 @ 1727 rdp_e.cpp: >result rhs vtok vtok tkn vresult
+ l_5 @ 1806 rdp_e.cpp: result rhs vtok vtok tkn vresult
+ l_6 @ 1885 rdp_e.cpp: result rhs vtok vtok tkn vresult
+ primitive @ 1966 rdp_e.cpp: result rhs vtok vtok tkn vresult
+ primitive @ 1968 rdp_e.cpp: ctype DELIMITER ltype VARIABLE 
+ primitive @ 1974 rdp_e.cpp: result->psiv A 
+ primitive @ 1997 rdp_e.cpp: result DELIMITER VARIABLE vresult 
+ primitive @ 1998 rdp_e.cpp: CHECK WIC? -- for  number, constant, string !!
+ primitive @ 2035 rdp_e.cpp: value tkn vresult points to A result rhs
+ primitive @ 2107 rdp_e.cpp: Switching result rhs to point to A 
+ Get @ 2689 token_e.cpp: ---> sn[0] vresult id 75 memp (nil)  <==1>
+ Get @ 2719 token_e.cpp: ttype DELIMITER 
+ Get @ 2752 token_e.cpp: last_type VARIABLE ctype UNKNOWN_TYPE  opr EQV tstate 2 <==1>
+ Get @ 2775 token_e.cpp: UNKNOWN_TYPE 
+ GetDelimiter @ 193 token_e.cpp: ----> len 3 ==1
+ GetDelimiter @ 240 token_e.cpp: <--- opr == from EQV
+ Delimiter @ 2313 token_e.cpp: after del EQV 
+ Delimiter @ 2393 token_e.cpp: EQV DELIMITER 
+ Delimiter @ 2394 token_e.cpp: <--- <1> 
+ ExprnAdvance @ 2042 exp_e.cpp: 1 out <1>
+ Get @ 2944 token_e.cpp: ctype DELIMITER ltype DELIMITER psiv YES type UNSET token == 
+ Get @ 2962 token_e.cpp: <--- sn[0] res A id  71 res->memp 0x630400 res->memsize 16 <1>
+ primitive @ 2218 rdp_e.cpp: gets token type DELIMITER
+ primitive @ 2234 rdp_e.cpp:  res vresult id  75 res->memp (nil) res->memsize 0 
+ l_5 @ 1851 rdp_e.cpp: 
+l_6->l_5 opr NON_OP ltype DELIMITER VARIABLE
+ l_4 @ 1786 rdp_e.cpp: rhs 
+  l_3 @ 1705 rdp_e.cpp: rhs array NO  opr EQV
+  l_2 @ 1372 rdp_e.cpp: l_3 out tok_type DELIMITER token == optype NON_OP
+ l_2 @ 1413 rdp_e.cpp: l2 loop exp 1 opr EQV  == 
+ l_2 @ 1463 rdp_e.cpp: L2 opr is binary EQV tkn_name vresult
+ check_for_logic_op @ 1756 exp_e.cpp: EQV  logic_state -3
+ Get @ 2689 token_e.cpp: ---> sn[0] vresult id 75 memp (nil)  <1>
+ Get @ 2719 token_e.cpp: ttype DELIMITER 
+ Get @ 2752 token_e.cpp: last_type DELIMITER ctype UNKNOWN_TYPE  opr NON_OP tstate 3 <1>
+ Get @ 2775 token_e.cpp: UNKNOWN_TYPE 
+ Number @ 1234 token_e.cpp: 1
+ Number @ 1242 token_e.cpp: Number tok 1 exprn  this->ctype INT
+ store_str_value @ 1481 storevar_e.cpp: vresult id 75 type UNSET offset 0 <-- value 1 as INT
+ store_str_value @ 1556 storevar_e.cpp: setting  vresult to 1 type INT
+ store_str_value @ 1567 storevar_e.cpp: svv -1 value 1 vresult offset 0 dtype INT nd 0  len 1
+ store_str_value @ 1573 storevar_e.cpp: alloc 1 mem offset 0 for INT
+ store_str_value @ 1855 storevar_e.cpp: <--- setting  vresult to val 1 type INT
+ ExprnAdvance @ 2042 exp_e.cpp:  out <>
+ Get @ 2944 token_e.cpp: ctype INT ltype INT psiv NO type INT token 1 
+ Get @ 2969 token_e.cpp: <--- sn[0] res vresult id  75 res->memp 0x621d10 res->memsize 16 <>
+ l_2 @ 1480 rdp_e.cpp: L_2 result vresult INT 1  
+ Transfer @ 518 token_e.cpp: to HOLD variable hold_L2  from vresult  INT ? 
+ Store @ 1051 storevar_e.cpp: ---> vresult --> hold_L2 SVPTR NO array NO ovrwt 1
+ Store @ 1054 storevar_e.cpp: array NO SUBSC NO SUBSC_LH NO
+ Store @ 1091 storevar_e.cpp: ftype INT to UNSET
+ Store @ 1287 storevar_e.cpp: <---- to  hold_L2  type INT
+ Transfer @ 565 token_e.cpp: transferred INT
+ l_3 @ 1637 rdp_e.cpp: result hold_L2 vtok vtok tkn vresult 1
+ l_4 @ 1727 rdp_e.cpp: >result hold_L2 vtok vtok tkn vresult
+ l_5 @ 1806 rdp_e.cpp: result hold_L2 vtok vtok tkn vresult
+ l_6 @ 1885 rdp_e.cpp: result hold_L2 vtok vtok tkn vresult
+ primitive @ 1966 rdp_e.cpp: result hold_L2 vtok vtok tkn vresult
+ primitive @ 1968 rdp_e.cpp: ctype INT ltype INT 
+ primitive @ 1997 rdp_e.cpp: result INT INT vresult 
+ primitive @ 1998 rdp_e.cpp: CHECK WIC? -- for  number, constant, string !!
+ primitive @ 2060 rdp_e.cpp: PUSHN number-> store
+ primitive @ 2061 rdp_e.cpp: result type UNSET pmr_res INT
+ Get @ 2689 token_e.cpp: ---> sn[0] vresult id 75 memp 0x621d10  <>
+ Get @ 2719 token_e.cpp: ttype INT 
+ Get @ 2752 token_e.cpp: last_type INT ctype UNKNOWN_TYPE  opr NON_OP tstate 4 <>
+ Get @ 2775 token_e.cpp: UNKNOWN_TYPE 
+ GetDelimiter @ 193 token_e.cpp: ----> len 0 
+ GetDelimiter @ 240 token_e.cpp: <--- opr  from NON_OP
+ Delimiter @ 2313 token_e.cpp: after del NON_OP 
+ Delimiter @ 2393 token_e.cpp: NON_OP UNKNOWN_TYPE 
+ Delimiter @ 2394 token_e.cpp: <--- <> 
+ ExprnAdvance @ 2042 exp_e.cpp:  out <>
+ Get @ 2944 token_e.cpp: ctype UNKNOWN_TYPE ltype UNKNOWN_TYPE psiv NO type UNSET token  
+ Get @ 2969 token_e.cpp: <--- sn[0] res vresult id  75 res->memp 0x621d10 res->memsize 16 <>
+ primitive @ 2218 rdp_e.cpp: gets token type UNKNOWN_TYPE
+ primitive @ 2234 rdp_e.cpp:  res vresult id  75 res->memp 0x621d10 res->memsize 16 
+ l_5 @ 1851 rdp_e.cpp: 
+l_6->l_5 opr NON_OP ltype UNKNOWN_TYPE INT
+ l_4 @ 1786 rdp_e.cpp: hold_L2 
+  l_3 @ 1705 rdp_e.cpp: hold_L2 array NO  opr UNKNOWN
+  l_2 @ 1486 rdp_e.cpp: do_opera 1  logic_op -3  opr EQV
+ l_2 @ 1516 rdp_e.cpp: EQV result 1 
+ l_1 @ 1300 rdp_e.cpp: hold_n 1 
+ l_1 @ 1303 rdp_e.cpp: result vresult ID 75 SVPTR? NO
+ l_1 @ 1310 rdp_e.cpp: tkn opr -3 NON_OP 
+ l_1 @ 1311 rdp_e.cpp: lopr 6 EQV 
+ GetExp @ 1255 exp_e.cpp: 
+----local exp? - RHS <rhs>----> getexp_result <siv_64>-----------
+
+ GetExp @ 1257 exp_e.cpp:  opr was -3 NON_OP
+ GetExp @ 1273 exp_e.cpp: already stored ?? siv_64
+ store_copy_var @ 1306 storevar_e.cpp: ---> rhs --> siv_64 store? 1
+ store_copy_var @ 1366 storevar_e.cpp: rhs INT ELE? NO----> siv_64 UNSET
+@storevar SIV siv_64 ID 64 slot -1 type UNSET CW 17 totalsize (88+0)
+
+siv_64 has FLAGS: <FREE | DYNAMIC | PRIVATE | >
+@? SIV rhs ID 78 slot -1 type INT CW 1 totalsize (88+0)
+
+rhs has FLAGS: <FREE | PRIVATE | >
+ Store @ 1051 storevar_e.cpp: ---> rhs --> siv_64 SVPTR NO array NO ovrwt 0
+ Store @ 1054 storevar_e.cpp: array NO SUBSC NO SUBSC_LH NO
+ Store @ 1091 storevar_e.cpp: ftype INT to UNSET
+ Store @ 1287 storevar_e.cpp: <---- to  siv_64  type INT
+ GetExp @ 1280 exp_e.cpp: rhs rhs --> result siv_64
+ GetExp @ 1289 exp_e.cpp: Answer of Expr is 1 
+ GetExp @ 1398 exp_e.cpp: rn 1 result to lhs  expr 
+ GetExp @ 1420 exp_e.cpp: <--- parse_rn 0
+------------------------------------------------------------------------
+
+### <6>[11]<0>{CODE_BLK_START}		{
+
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+
+### <7>[12]<0>{PRSTDOUT}		<<"Success $A  is 1 \n"
+
+------------------------------------------------------------------------
+ var_ptr @ 916 scope_e.cpp: A 
+ var_index @ 1071 scope_e.cpp: ---> rn 1 name A  pindex -1 init SIV_CHECK_EXIST pcw PCW:  type UNSET ar_sz 0
+ var_index @ 1094 scope_e.cpp: scope _  A in CMF_BODY NO? 
+ var_index @ 1135 scope_e.cpp: cmf name? A
+ var_index @ 1260 scope_e.cpp: final A init 0 
+ var_sindex @ 1316 scope_e.cpp: ---> scope _ pindex -1 name <A> init SIV_CHECK_EXIST array_check 0  type UNSET PCW: 
+ var_sindex @ 1361 scope_e.cpp: find_create_main var  A A A  type UNSET
+ var_sindex @ 1634 scope_e.cpp: Not main still trying to find <|A|>  vc->init 0
+ var_sindex @ 1657 scope_e.cpp: main/global <|A|> 0 SIV_CHECK_EXIST
+ var_sindex @ 1691 scope_e.cpp: main? <|A|> @ slot 130 array? NO AOP_SET NO
+ var_sindex @ 1858 scope_e.cpp: which_siv found ID 71 offset 0 INT ND 0 size 0
+ SetArrayOff @ 2181 scope_e.cpp: ---> name  A type INT offset 0 array 0 sz 0
+ var_ptr @ 937 scope_e.cpp: Found A
+------------------------------------------------------------------------
+
+### <8>[13]<0>{CODE_BLK_END}		}
+
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+
+### <13>[18]<0>{PRSTDOUT}		<<"%V$A \n"
+
+------------------------------------------------------------------------
+ var_ptr @ 916 scope_e.cpp: A 
+ var_index @ 1071 scope_e.cpp: ---> rn 1 name A  pindex -1 init SIV_CHECK_EXIST pcw PCW:  type UNSET ar_sz 0
+ var_index @ 1094 scope_e.cpp: scope _  A in CMF_BODY NO? 
+ var_index @ 1135 scope_e.cpp: cmf name? A
+ var_index @ 1260 scope_e.cpp: final A init 0 
+ var_sindex @ 1316 scope_e.cpp: ---> scope _ pindex -1 name <A> init SIV_CHECK_EXIST array_check 0  type UNSET PCW: 
+ var_sindex @ 1361 scope_e.cpp: find_create_main var  A A A  type UNSET
+ var_sindex @ 1634 scope_e.cpp: Not main still trying to find <|A|>  vc->init 0
+ var_sindex @ 1657 scope_e.cpp: main/global <|A|> 0 SIV_CHECK_EXIST
+ var_sindex @ 1691 scope_e.cpp: main? <|A|> @ slot 130 array? NO AOP_SET NO
+ var_sindex @ 1858 scope_e.cpp: which_siv found ID 71 offset 0 INT ND 0 size 0
+ SetArrayOff @ 2181 scope_e.cpp: ---> name  A type INT offset 0 array 0 sz 0
+ var_ptr @ 937 scope_e.cpp: Found A
+------------------------------------------------------------------------
+
+### <14>[22]<0>{EXPRESSION}		A=ofr("wfex.dat")
+
+------------------------------------------------------------------------
+ Sexp @ 597 exp_e.cpp: @ 22 sl 17 A=ofr("wfex.dat")
+ Sexp @ 605 exp_e.cpp: Sexp @ 22   <14>  A=ofr("wfex.dat")
+ GetExp @ 955 exp_e.cpp: ---> rn 1 <|A=ofr("wfex.dat")|>
+ GetExp @ 982 exp_e.cpp: St->ln 22 <14> 
+ GetExp @ 1005 exp_e.cpp: @ line 22  rn 1 in len 17 <|A=ofr("wfex.dat")|>
+ strip_outer_bracks @ 2218 args_e.cpp: A=ofr("wfex.dat") 17 lbcnt 1 rbcnt 1  filb 5 lilb 5 firb 16 lirb 16
+ strip_outer_bracks @ 2293 args_e.cpp: sl 0 <|A=ofr("wfex.dat")|>  
+ GetExp @ 1077 exp_e.cpp: Expression! len 17 A=ofr("wfex.dat") 
+ GetExp @ 1080 exp_e.cpp: vresult vresult result siv_64
+ checkAssign @ 910 exp_e.cpp: was it an assignment expression ? YES
+ getLHS @ 764 exp_e.cpp: 
+START LHS--setting SLH on! ectxt YES
+ Get @ 2689 token_e.cpp: ---> sn[0] vresult id 84 memp (nil)  <A=ofr("wfex.dat")>
+ Get @ 2719 token_e.cpp: ttype TOKINIT 
+ Get @ 2752 token_e.cpp: last_type FIRST_TOKEN ctype UNKNOWN_TYPE  opr NON_OP tstate 0 <A=ofr("wfex.dat")>
+ Get @ 2775 token_e.cpp: UNKNOWN_TYPE 
+ Get @ 2841 token_e.cpp: token_parse_4 ttype -2 A
+ lookForFoV @ 2603 token_e.cpp: ctype 11  pre 0  post 0  
+ doVariable @ 2507 token_e.cpp: ctype VAR  build_array_exp A
+ doVariable @ 2508 token_e.cpp: get_token rn 1 TV <=ofr("wfex.dat")> 
+ doVariable @ 2509 token_e.cpp:  <A=ofr("wfex.dat")> 
+ doVariable @ 2518 token_e.cpp: nextOP? =ofr("wfex.dat") 
+ GetNextOp @ 1652 exp_e.cpp: <=ofr("wfex.dat")>
+ GetNextOp @ 1715 exp_e.cpp: <--- op EQU 
+ doVariable @ 2525 token_e.cpp: pre 0 post 0 A=ofr("wfex.dat") 
+ Variable @ 1523 token_e.cpp: ---><14> in A  result vresult  FIRST_TOKEN 
+ Variable @ 1528 token_e.cpp: tvc LHS? YES  
+ Variable @ 1534 token_e.cpp: ctoken A  ptoken A
+ Variable @ 1562 token_e.cpp: context?  processing_args NO  
+ Variable @ 1579 token_e.cpp: setting init to SIV_FIND_OR_MAKE pargs ? 0 
+ Variable @ 1593 token_e.cpp: init 3 vresult
+ Variable @ 1598 token_e.cpp: Var ctoken A  ptoken A 
+ Variable @ 1599 token_e.cpp: pre 0 post 0  vop 2
+ Variable @ 1636 token_e.cpp: opr is NON_OP context sivptraddr 0
+ FindVar @ 461 scope_e.cpp: --->[0] A init SIV_FIND_OR_MAKE  scope _ cmscope [] type UNSET result->type UNSET vop 2
+ var_ptr @ 916 scope_e.cpp: A 
+ var_index @ 1071 scope_e.cpp: ---> rn 1 name A  pindex -1 init SIV_FIND_OR_MAKE pcw PCW:  type UNSET ar_sz 0
+ var_index @ 1094 scope_e.cpp: scope _  A in CMF_BODY NO? 
+ var_index @ 1135 scope_e.cpp: cmf name? A
+ var_index @ 1260 scope_e.cpp: final A init 3 
+ var_sindex @ 1316 scope_e.cpp: ---> scope _ pindex -1 name <A> init SIV_FIND_OR_MAKE array_check 0  type UNSET PCW: 
+ var_sindex @ 1361 scope_e.cpp: find_create_main var  A A A  type UNSET
+ var_sindex @ 1634 scope_e.cpp: Not main still trying to find <|A|>  vc->init 3
+ var_sindex @ 1657 scope_e.cpp: main/global <|A|> 3 SIV_FIND_OR_MAKE
+ var_sindex @ 1691 scope_e.cpp: main? <|A|> @ slot 130 array? NO AOP_SET NO
+ var_sindex @ 1858 scope_e.cpp: which_siv found ID 71 offset 0 INT ND 0 size 0
+ SetArrayOff @ 2181 scope_e.cpp: ---> name  A type INT offset 0 array 0 sz 0
+ var_ptr @ 937 scope_e.cpp: Found A
+ FindVar @ 503 scope_e.cpp: A A type  INT  array? NO array_ele? NO
+ CheckFindArraySiv @ 152 scope_e.cpp: @cfa SIV A ID 71 slot 130 type INT CW 2097152 totalsize (88+0)
+
+A has FLAGS: <GLOBAL | >
+---> 71 A A offset 0 subsc 0 type INT size 0
+ FindVar @ 520 scope_e.cpp: A  INT  array? NO array_ele NO
+ FindVar @ 544 scope_e.cpp: A exist and is set INT
+ FindVar @ 626 scope_e.cpp: PUSH_SIV A INT scope point to result vresult
+ FindVar @ 647 scope_e.cpp: XIC PUSH_SIV A
+ FindVar @ 659 scope_e.cpp:  vresult pointing  at first token  --> A
+ FindVar @ 679 scope_e.cpp: vresult ele offset  --> 0
+ FindVar @ 688 scope_e.cpp: name A INT vresult UNSET array? NO
+@FindVar SIV A ID 71 slot 130 type INT CW 2097152 totalsize (88+0)
+
+A has FLAGS: <GLOBAL | >
+@FindVar SIV vresult ID 84 slot -1 type UNSET CW 1073807361 totalsize (88+1)
+vresult POINTS to --> A
+ FindVar @ 725 scope_e.cpp: <---[0] 
+ Variable @ 1656 token_e.cpp: vector ptr? A offset 0 vc transfer ? NO
+ Variable @ 1671 token_e.cpp: is vector ptr? proc_arg_ref  NO 
+ Variable @ 1707 token_e.cpp: tkn->result vresult -points to variable A !! slot 130 
+ Variable @ 1714 token_e.cpp: vresult type UNSET array? NO ele NO offset 0 size 1
+ Variable @ 1720 token_e.cpp: A type INT array? NO ele NO offset 0 size 0
+ Variable @ 1730 token_e.cpp: WARNING reset offset from previous expression ?
+ Variable @ 1773 token_e.cpp: use the ele subset info? NO -result vresult not copy?  2
+ Variable @ 1831 token_e.cpp: A A 
+ Variable @ 1836 token_e.cpp: VARIABLE FIRST_TOKEN <vresult> RP_TRAN YES SVPTR YES
+ Variable @ 1842 token_e.cpp: variable found was A ID 71 psiv NO
+ ExprnAdvance @ 2042 exp_e.cpp: =ofr("wfex.dat") out <=ofr("wfex.dat")>
+ Get @ 2944 token_e.cpp: ctype VARIABLE ltype VARIABLE psiv YES type UNSET token A 
+ Get @ 2962 token_e.cpp: <--- sn[0] res A id  71 res->memp 0x630400 res->memsize 16 <=ofr("wfex.dat")>
+ getLHS @ 782 exp_e.cpp: 
+
+-------- DONE LHS--------  
+ getLHS @ 784 exp_e.cpp: after first token =ofr("wfex.dat")  
+ getLHS @ 793 exp_e.cpp: vresult UNSET 
+@? SIV A ID 71 slot 130 type INT CW 2097152 totalsize (88+0)
+
+A has FLAGS: <GLOBAL | >
+now point lhs @ etkn->vptr
+ getLHS @ 833 exp_e.cpp: lhs A  lh_offset 0 - should not change
+ getLHS @ 868 exp_e.cpp: transfer over SUBSC/ELE lhs A type INT
+ getLHS @ 869 exp_e.cpp: 2 lhs A  lh_offset 0 - should not change
+@? SIV lhs ID 86 slot -1 type UNSET CW 65537 totalsize (88+0)
+lhs POINTS to --> A
+ getLHS @ 884 exp_e.cpp: 
+-------------Done  LHS  <A>--------------
+ getLHS @ 886 exp_e.cpp: lhs offset 0 0 
+ GetExp @ 1142 exp_e.cpp: 
+----CONTINUE  RHS--------
+
+ l_1 @ 1146 rdp_e.cpp: hold_n 0 result rhs vtok vtok result rhs token A
+ l1_check_siv @ 147 rdp_e.cpp: <l1_check_siv LH A slot 130 INT size 0 subsize 0 
+ l1_check_siv @ 150 rdp_e.cpp: <l_1 array? dynamic 0 0
+ l_1 @ 1202 rdp_e.cpp: l1 check assignment A =ofr("wfex.dat") VARIABLE FIRST_TOKEN NON_OP
+ Get @ 2689 token_e.cpp: ---> sn[0] vresult id 84 memp (nil)  <=ofr("wfex.dat")>
+ Get @ 2719 token_e.cpp: ttype VARIABLE 
+ Get @ 2752 token_e.cpp: last_type VARIABLE ctype UNKNOWN_TYPE  opr NON_OP tstate 1 <=ofr("wfex.dat")>
+ Get @ 2775 token_e.cpp: UNKNOWN_TYPE 
+ GetDelimiter @ 193 token_e.cpp: ----> len 16 =ofr("wfex.dat")
+ GetDelimiter @ 240 token_e.cpp: <--- opr = from EQU
+ Delimiter @ 2313 token_e.cpp: after del EQU 
+ Delimiter @ 2324 token_e.cpp: now on RHS ?? SLH 0 
+ Delimiter @ 2393 token_e.cpp: EQU DELIMITER 
+ Delimiter @ 2394 token_e.cpp: <--- <ofr("wfex.dat")> 
+ ExprnAdvance @ 2042 exp_e.cpp: ofr("wfex.dat") out <ofr("wfex.dat")>
+ Get @ 2944 token_e.cpp: ctype DELIMITER ltype DELIMITER psiv YES type UNSET token = 
+ Get @ 2962 token_e.cpp: <--- sn[0] res A id  71 res->memp 0x630400 res->memsize 16 <ofr("wfex.dat")>
+ l_1 @ 1226 rdp_e.cpp: after chk assignment  <ofr("wfex.dat")>  <=ofr("wfex.dat")> <DELIMITER> <VARIABLE> <EQU>
+ l_1 @ 1229 rdp_e.cpp: token = opr EQU l1_tok_type DELIMITER 
+ Get @ 2689 token_e.cpp: ---> sn[0] vresult id 84 memp (nil)  <ofr("wfex.dat")>
+ Get @ 2719 token_e.cpp: ttype DELIMITER 
+ Get @ 2752 token_e.cpp: last_type DELIMITER ctype UNKNOWN_TYPE  opr EQU tstate 2 <ofr("wfex.dat")>
+ Get @ 2775 token_e.cpp: UNKNOWN_TYPE 
+ Get @ 2841 token_e.cpp: token_parse_4 ttype -2 ofr
+ BuildFunc @ 645 token_e.cpp: ---> fexpr ("wfex.dat")  k 3 tkn ofr
+ BuildFunc @ 646 token_e.cpp: <14> 
+ BuildFunc @ 724 token_e.cpp: <--- do func ofr("wfex.dat") 
+ lookForFoV @ 2603 token_e.cpp: ctype 1006  pre 0  post 0  
+ Func @ 1894 token_e.cpp: args ofr("wfex.dat") 
+ Func @ 1895 token_e.cpp: result vresult UNSET 
+ FindFunction @ 918 func_e.cpp: fn ofr ind 690 
+ Func @ 1991 token_e.cpp: func ofr("wfex.dat")
+ Sfunc @ 525 func_e.cpp: find parameters in  <ofr("wfex.dat")>
+ Sfunc @ 537 func_e.cpp: Sfunc ofr("wfex.dat") : ofr("wfex.dat")
+ Sfunc @ 568 func_e.cpp: find parameters <ofr("wfex.dat")> 
+ init_svarg @ 2754 args_e.cpp: ID 0 na 20 maxna 20 
+ init_svarg @ 2843 args_e.cpp: svarg reuse arg list  20 1
+ Sfunc @ 613 func_e.cpp: ->>> ofr  args ("wfex.dat")
+ parse_args @ 2095 args_e.cpp:  ("wfex.dat")  _  
+ get_args @ 1030 args_e.cpp: rcn 0
+ get_args @ 1062 args_e.cpp: ("wfex.dat") 
+ get_args @ 1092 args_e.cpp: ("wfex.dat")  nal 12
+ get_args @ 1100 args_e.cpp: b4 sob ("wfex.dat") 
+ strip_outer_bracks @ 2218 args_e.cpp: ("wfex.dat") 12 lbcnt 1 rbcnt 1  filb 0 lilb 0 firb 11 lirb 11
+ strip_outer_bracks @ 2267 args_e.cpp: mlen 12 nc 12 <|("wfex.dat")|> 
+ strip_outer_bracks @ 2293 args_e.cpp: sl 10 <|"wfex.dat"|>  
+ get_args @ 1108 args_e.cpp: after sob "wfex.dat" 
+ get_args @ 1137 args_e.cpp: this arg starts at "wfex.dat"
+ get_args @ 1163 args_e.cpp: DQ got_arg now at  arg is "wfex.dat"
+ get_args @ 1306 args_e.cpp: this arg[0] finishes at 
+ get_args @ 1321 args_e.cpp: [0] "wfex.dat" cc 10
+ get_args @ 1347 args_e.cpp: argc 1 1
+ process_args @ 822 args_e.cpp: parset 6393984 1 
+ process_args @ 847 args_e.cpp: 0 chk_exp 10 "wfex.dat"  type 2
+ NewSivArg @ 200 args_e.cpp: arg [0] already exists sv_arg0 <65> 
+ process_args_type @ 649 args_e.cpp: fc "  "wfex.dat"
+ process_args_type @ 682 args_e.cpp: checking for array name "wfex.dat" arg 0 scope _
+ process_args_type @ 717 args_e.cpp: arg_type 0 arg "wfex.dat" 
+ process_args @ 898 args_e.cpp: arg is "wfex.dat"
+ process_args @ 908 args_e.cpp: svarg->sv[i] sv_arg0  
+ process_args @ 909 args_e.cpp: result points to sv_arg0
+ process_args_exprn @ 613 args_e.cpp: GetExp "wfex.dat"
+ GetExp @ 955 exp_e.cpp: ---> rn 2 <|"wfex.dat"|>
+ GetExp @ 982 exp_e.cpp: St->ln 22 <14> 
+ GetExp @ 1005 exp_e.cpp: @ line 22  rn 2 in len 10 <|"wfex.dat"|>
+ strip_outer_bracks @ 2218 args_e.cpp: "wfex.dat" 10 lbcnt 0 rbcnt 0  filb -1 lilb -1 firb -1 lirb -1
+ strip_outer_bracks @ 2293 args_e.cpp: sl 0 <|"wfex.dat"|>  
+ GetExp @ 1077 exp_e.cpp: Expression! len 10 "wfex.dat" 
+ GetExp @ 1080 exp_e.cpp: vresult vresult result sv_arg0

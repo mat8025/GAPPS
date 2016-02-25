@@ -1,0 +1,91 @@
+Module                  Size  Used by
+ums_realtek            25145  0 
+vfat                   28501  0 
+fat                   130189  1 vfat
+usb_storage            90128  1 ums_realtek
+ipheth                 19522  0 
+nf_conntrack_netbios_ns    13078  0 
+nf_conntrack_broadcast    12722  1 nf_conntrack_netbios_ns
+ipt_MASQUERADE         13626  1 
+ip6table_nat           14187  1 
+nf_nat_ipv6            14803  1 ip6table_nat
+ip6table_mangle        13407  1 
+ip6table_security      13343  1 
+ip6table_raw           13261  1 
+ip6t_REJECT            13566  2 
+nf_conntrack_ipv6      26802  38 
+nf_defrag_ipv6         41926  1 nf_conntrack_ipv6
+iptable_nat            14174  1 
+nf_nat_ipv4            14861  1 iptable_nat
+nf_nat                 38575  5 ipt_MASQUERADE,nf_nat_ipv4,nf_nat_ipv6,ip6table_nat,iptable_nat
+iptable_mangle         13389  1 
+iptable_security       13327  1 
+iptable_raw            13245  1 
+nf_conntrack_ipv4      26660  34 
+nf_defrag_ipv4         13487  1 nf_conntrack_ipv4
+xt_conntrack           13922  70 
+nf_conntrack          190608  11 nf_conntrack_netbios_ns,ipt_MASQUERADE,nf_nat,nf_nat_ipv4,nf_nat_ipv6,xt_conntrack,ip6table_nat,nf_conntrack_broadcast,iptable_nat,nf_conntrack_ipv4,nf_conntrack_ipv6
+rfcomm                131679  10 
+ebtable_filter         13569  0 
+ebtables               52576  1 ebtable_filter
+ip6table_filter        13426  1 
+ip6_tables             45290  5 ip6table_filter,ip6table_mangle,ip6table_security,ip6table_nat,ip6table_raw
+bnep                   36301  2 
+arc4                   13194  2 
+iwldvm                432137  0 
+x86_pkg_temp_thermal    24951  0 
+coretemp               24274  0 
+kvm_intel             239931  0 
+mac80211             1306514  1 iwldvm
+kvm                   932960  1 kvm_intel
+snd_hda_codec_hdmi     72106  1 
+snd_hda_codec_realtek    93495  1 
+snd_hda_intel          87833  4 
+snd_hda_codec         378662  3 snd_hda_codec_realtek,snd_hda_codec_hdmi,snd_hda_intel
+iwlwifi               207159  1 iwldvm
+snd_hwdep              24485  1 snd_hda_codec
+snd_seq               141289  0 
+uvcvideo              157189  0 
+snd_seq_device         20587  1 snd_seq
+snd_pcm               210751  3 snd_hda_codec_hdmi,snd_hda_codec,snd_hda_intel
+cfg80211             1017282  3 iwlwifi,mac80211,iwldvm
+videobuf2_vmalloc      14667  1 uvcvideo
+videobuf2_memops       13712  1 videobuf2_vmalloc
+btusb                  43710  0 
+videobuf2_core         66268  1 uvcvideo
+bluetooth             738566  22 bnep,btusb,rfcomm
+videodev              255404  2 uvcvideo,videobuf2_core
+crc32_pclmul           14408  0 
+r8169                 154354  0 
+tpm_infineon           23516  0 
+crc32c_intel           27924  0 
+mei_me                 25967  0 
+tpm_tis                29823  0 
+tpm                    42444  2 tpm_tis,tpm_infineon
+snd_page_alloc         28988  2 snd_pcm,snd_hda_intel
+media                  38614  2 uvcvideo,videodev
+iTCO_wdt               14876  0 
+iTCO_vendor_support    14404  1 iTCO_wdt
+mii                    14687  1 r8169
+mei                   141830  1 mei_me
+snd_timer              56459  2 snd_pcm,snd_seq
+ghash_clmulni_intel    14919  0 
+serio_raw              23576  0 
+shpchp                 61306  0 
+joydev                 28629  0 
+tpm_bios               25969  1 tpm
+snd                   169109  17 snd_hda_codec_realtek,snd_hwdep,snd_timer,snd_hda_codec_hdmi,snd_pcm,snd_seq,snd_hda_codec,snd_hda_intel,snd_seq_device
+rfkill                 46036  4 cfg80211,bluetooth
+lpc_ich                22203  0 
+mfd_core               14391  1 lpc_ich
+soundcore              16456  1 snd
+pcspkr                 13476  0 
+i2c_i801               29138  0 
+microcode              41686  0 
+uinput                 29517  0 
+i915                 1475322  2 
+i2c_algo_bit           23269  1 i915
+drm_kms_helper         84497  1 i915
+drm                   540270  3 i915,drm_kms_helper
+i2c_core               63957  6 drm,i915,i2c_i801,drm_kms_helper,i2c_algo_bit,videodev
+video                  37467  1 i915

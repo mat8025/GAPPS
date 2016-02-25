@@ -1,0 +1,5 @@
+y=16
+echo "#test_case$y level - descend for 20 secs - level off 10 climb 6 mins " > test_case$y.ip 
+echo "#flight phase starts at 0 - check small dip descent does not get stuck in descent hold before the climb" >> test_case$y.ip 
+asl make_fp_vt.asl a 20000  l 60 d 15 300 l 10 c 500 2000 >> test_case$y.ip 
+cat test_case$y.ip | asl fp_fcV8.asl | asl plotfp2.asl 

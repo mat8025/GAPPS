@@ -1,0 +1,35 @@
+     DEBUG FILE for .gss.dbi debug level 0  vers 4.100.3
+     Sun Sep 14 12:16:09 2014
+ main @ 834 asl.cpp:  VMF_Table_init @ 155 table_l.cpp: 76 VMF functions 
+
+gss.asl 
+ asl @ 248 asl.cpp:  Xspawn @ 171 spawn_l.cpp: ASL->GASP /usr/local/GASP/gasp/bin/xgs pread 4 pwrite 5 
+ Xspawn @ 186 spawn_l.cpp: ASL-->GASP /usr/local/GASP/gasp/bin/xgs xgs  4 pread 6 pwrite 7
+ Xspawn @ 205 spawn_l.cpp: spawn pid 8568 
+ Xspawn @ 216 spawn_l.cpp:  asl closing on 4 7
+ Xspawn @ 217 spawn_l.cpp: spawn pid 8568 written 116
+ Xspawn @ 224 spawn_l.cpp: read on GWM->ASL  6 write ASL->GWM  5
+ Xspawn @ 253 spawn_l.cpp: CHILD XGS ACTIVE  im.nb 42
+ Xspawn @ 259 spawn_l.cpp: CHILD says Gserver got file Descriptors asl pid 8567
+
+ setupXGS @ 175 asl.cpp:  setupXGS @ 182 asl.cpp:  setupXGS @ 183 asl.cpp: setup IPC with 6
+ setUpIPC @ 437 wop_l.cpp:  setUpIPC @ 450 wop_l.cpp:  setUpIPC @ 470 wop_l.cpp: nbr 40 @ 2478 Reading SHM key Info on 6
+ setUpIPC @ 471 wop_l.cpp: nbr 40 Got Shm info key 7893  
+ setUpIPC @ 472 wop_l.cpp: Shm size required 65536  
+ setUpIPC @ 474 wop_l.cpp:  setUpIPC @ 475 wop_l.cpp:  setUpIPC @ 476 wop_l.cpp:  setUpIPC @ 492 wop_l.cpp: using Shared mem!
+ setUpSHM_IPC @ 323 wop_l.cpp:  setUpSHM_IPC @ 336 wop_l.cpp: 0 0 2 3 4 5 6 7 8 9 
+@ 2479 asl wait 0  
+@ 2579 asl wait 1  
+@ 2679 asl wait 2  
+@ 2779 asl wait 3  
+@ 2879 asl wait 4  
+@ 2980 asl wait 5  
+@ 3080 asl wait 6  
+@ 3180 asl wait 7  
+@ 3280 asl wait 8  
+@ 3380 asl wait 9  
+@ 3481 SHM OK!! 
+ setUpSHM_IPC @ 390 wop_l.cpp: @ 3481 SHM OK!! ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]hnbbbbbbb[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[M<  ZZZZ
+ setUpSHM_IPC @ 417 wop_l.cpp: IPC Established
+ setupXGS @ 189 asl.cpp: ipc ok ? 1
+ setupXGS @ 206 asl.cpp: no GWM plot thread ! --so exit

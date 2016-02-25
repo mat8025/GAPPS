@@ -1,0 +1,9 @@
+y=7
+echo "# test_case$y descent level 2 mins then climb 6 mins" > test_case$y.ip
+echo "# -1 to 1.0 " >> test_case$y.ip
+asl make_fp_vt.asl a 20000  l 180 d 120 2000 l 120 c 360 500 l 420 >> test_case$y.ip
+cat test_case$y.ip | asl fp_fcV8.asl | asl plotfp2.asl 
+# only go into climb hold mode when flight_phase > 0.0  i.e. out of a previous descent hold
+
+
+

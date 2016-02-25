@@ -1,0 +1,42 @@
+
+setdebug(1)
+int m = 1;
+int n = 1;
+
+n++;
+
+<<"%V$n $m\n"  
+m--
+<<"%V$n $m\n"  
+
+int l =3 ;
+
+ m -= l;
+
+<<"%V$n $m $l\n"  
+
+
+
+
+
+float a = 1;
+float b = 2.3;
+float c = 4.8;
+
+<<"%V$a $b $c\n"
+  b++ 
+<<"%V$a $b $c\n"  
+  Ut = fineTime()
+int N = 100;
+
+  for (i = 0 ; i <N ; i++) {
+      a = b * c;
+      c = a;
+//<<"%V$i $a $b $c\n"      
+      b++;
+  }
+ dt1 = fineTimeSince(Ut)
+ tpl = dt1/(1.0*N)
+ 
+<<"%V$a $b $c\n"
+<<"%V$dt1 $tpl\n"

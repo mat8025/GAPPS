@@ -1,0 +1,32 @@
+ finished class def building 
+b constructor 
+b has  rooms 4 floors 2
+ finished class A  
+ finished class B  
+ finished class C  
+a constructor 
+a has  x 4
+bc constructor 
+bc has  y 4
+c constructor 
+c constructor 
+C_C  constructor 
+c has  x 4 y 4 z 3
+c has  x 77 y 56 z 3
+DONE: PASS: ./mih                :tests      2 :Fail      0 :Pass      2 :Score  100.0% 
+ finished class def building 
+b constructor 
+b has  rooms 4 floors 2
+ finished class A  
+ finished class B  
+ finished class C  
+a constructor 
+a has  x 4
+bc constructor 
+bc has  y 4
+c constructor 
+c constructor 
+C_C  constructor 
+c has  x 4 y 4 z 3
+c has  x 77 y 56 z 3
+DONE: PASS: ./mih                :tests      2 :Fail      0 :Pass      2 :Score  100.0% 

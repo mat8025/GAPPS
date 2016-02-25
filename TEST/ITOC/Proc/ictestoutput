@@ -1,0 +1,770 @@
+ _proc _ x 20.200000 
+ 0.218573 
+ 0.216837 
+ IN foo 0.216837 
+20.200000 0.108419 
+ _proc _ x -20.200000 
+ 0.218573 
+ 0.216837 
+ IN foo 0.216837 
+-20.200000 0.108419 
+ 0.884022 
+ IN foo 0.884022 
+-15.200000 0.442011 
+ IN foo 0.773295 
+-15.200000 0.386648 
+ IN foo 0.879372 
+-15.200000 0.439686 
+ ./proc  
+ IN foo -0.873737 
+-15.200000 -0.436868 
+DONE: PASS: ./proc               :tests      5 :Fail      0 :Pass      5 :Score  100.0% 
+  2 
+ 2 > 1 should be returning 1 !
+ 2 1 
+  2 
+ 2 > 1 should be returning 1 !
+ 2 2 
+  1 
+ 1 <= 1 should be returning 0 !
+ 1 0 
+  3 
+ 3 > 1 should be returning 1 !
+ 3 out 1 
+  3 
+ 3 > 1 should be returning 1 !
+ 3 6 
+  -4 
+ -4 < 0 should be returning -1 !
+ -4 -6 
+  210 
+ 210 > 200 should be returning 20 !
+ 210 120 
+  310 
+ 310 > 300 should be returning 30 !
+ 310 210 
+  3 
+ 3 > 1 should be returning 1 !
+ 3 1 
+  3 
+ 3 > 1 should be returning 1 !
+ 3 1 
+  3 
+ 3 > 1 should be returning 1 !
+ 3 1 
+DONE: PASS: ./procret0           :tests     11 :Fail      0 :Pass     11 :Score  100.0% 
+ERROR can't  convert  procarg.asl --> to number  @ [20] <<"%I $pfname $len\n"
+
+0 1 2 3 4 5 6 7 8 9  
+ a 1 + b 2 = c 3 
+tot 3 
+ a 3 + b 7 = c 10 
+ 3 + 7 = 10 
+ fname procarg.asl 
+  pfname <78><STRV>[P]  
+ pfname <78><STRV>[P]  len <79><INT>[P] 
+ ReadPulseFile procarg.asl 
+ k 11 
+the message was gobbledegook 
+sen SVAR   
+the message was gobbledegook 
+the 
+ssa STRV   the 
+test 1 1
+test 2 1
+test 3 1
+test 4 1
+craash  the message was gobbledegook
+poo the message was gobbledegook 
+the message 
+s the m 
+1 0 setdebug(1)     
+poo setdebug(1)     
+setdebug(1)  
+s setdebug(1) m 
+3 4 proc sumarg(a, b)  
+poo proc sumarg(a, b)   
+proc sumarg(a, 
+s proc m 
+1 5 {     
+poo {     
+{  
+s { m 
+4 6 c = a+ b
+poo c = a+ b 
+c = 
+s c m 
+7 8 <<" %V$a + $b
+poo <<" %V$a + $b = $c \n" 
+<<" %V$a 
+s <<" m 
+2 10 return c   
+poo return c   
+return c 
+s return m 
+1 11 }     
+poo }     
+}  
+s } m 
+3 13 proc ReadPulseFile( pfname)  
+poo proc ReadPulseFile( pfname)   
+proc ReadPulseFile( 
+s proc m 
+1 14 {     
+poo {     
+{  
+s { m 
+4 15 <<" %i $pfname \n"
+poo <<" %i $pfname \n" 
+<<" %i 
+s <<" m 
+2 16 len =0   
+poo len =0   
+len =0 
+s len m 
+3 17 len = slen(pfname)  
+poo len = slen(pfname)   
+len = 
+s len m 
+3 19 <<"%I $pfname $len\n"  
+poo <<"%I $pfname $len\n"   
+<<"%I $pfname 
+s <<"%I m 
+4 21 <<" $_proc $pfname \n"
+poo <<" $_proc $pfname \n" 
+<<" $_proc 
+s <<" m 
+2 23 return len   
+poo return len   
+return len 
+s return m 
+1 24 }     
+poo }     
+}  
+s } m 
+3 26 proc poo (vstr)  
+poo proc poo (vstr)   
+proc poo 
+s proc m 
+1 27 {     
+poo {     
+{  
+s { m 
+3 29 <<"$_proc $vstr \n"  
+poo <<"$_proc $vstr \n"   
+<<"$_proc $vstr 
+s <<"$_proc m 
+3 30 <<"$vstr[0] $vstr[1] \n"  
+poo <<"$vstr[0] $vstr[1] \n"   
+<<"$vstr[0] $vstr[1] 
+s <<"$vstr[0] m 
+3 31 mstr = split(vstr)  
+poo mstr = split(vstr)   
+mstr = 
+s mstr m 
+3 33 s = mstr[0]  
+poo s = mstr[0]   
+s = 
+s s m 
+3 34 m = mstr[1]  
+poo m = mstr[1]   
+m = 
+s m m 
+4 35 // s = vstr[0]
+poo // s = vstr[0] 
+// s 
+s // m 
+4 36 // m = vstr[1]
+poo // m = vstr[1] 
+// m 
+s // m 
+2 38 <<"%V$s $m\n"   
+poo <<"%V$s $m\n"   
+<<"%V$s $m\n" 
+s <<"%V$s m 
+1 39 }     
+poo }     
+}  
+s } m 
+1 40 //------------------------------     
+poo //------------------------------     
+//------------------------------  
+s //------------------------------ m 
+2 42 proc foo(vstr)   
+poo proc foo(vstr)   
+proc foo(vstr) 
+s proc m 
+1 43 {     
+poo {     
+{  
+s { m 
+4 44 <<" $_proc $vstr \n"
+poo <<" $_proc $vstr \n" 
+<<" $_proc 
+s <<" m 
+3 45 mstr = split(vstr)  
+poo mstr = split(vstr)   
+mstr = 
+s mstr m 
+3 46 s = mstr[0]  
+poo s = mstr[0]   
+s = 
+s s m 
+3 47 m = mstr[1]  
+poo m = mstr[1]   
+m = 
+s m m 
+3 48 <<" $s $m\n"  
+poo <<" $s $m\n"   
+<<" $s 
+s <<" m 
+1 49 }     
+poo }     
+}  
+s } m 
+1 50 //------------------------------     
+poo //------------------------------     
+//------------------------------  
+s //------------------------------ m 
+1 52 CheckIn()     
+poo CheckIn()     
+CheckIn()  
+s CheckIn() m 
+3 55 I = Igen(10,0,1)  
+poo I = Igen(10,0,1)   
+I = 
+s I m 
+2 58 <<"$I \n"   
+poo <<"$I \n"   
+<<"$I \n" 
+s <<"$I m 
+3 60 tot = sumarg(I[1],I[2])  
+poo tot = sumarg(I[1],I[2])   
+tot = 
+s tot m 
+2 62 <<"%V$tot \n"   
+poo <<"%V$tot \n"   
+<<"%V$tot \n" 
+s <<"%V$tot m 
+1 64 CheckNum(tot,3)     
+poo CheckNum(tot,3)     
+CheckNum(tot,3)  
+s CheckNum(tot,3) m 
+3 68 x = 3  
+poo x = 3   
+x = 
+s x m 
+3 69 y = 7  
+poo y = 7   
+y = 
+s y m 
+3 70 z= sumarg( x,y)  
+poo z= sumarg( x,y)   
+z= sumarg( 
+s z= m 
+7 72 <<" $x + $y
+poo <<" $x + $y = $z \n" 
+<<" $x 
+s <<" m 
+2 75 fname= "procarg.asl"   
+poo fname= "procarg.asl"   
+fname= "procarg.asl" 
+s fname= m 
+3 76 <<" %V$fname \n"  
+poo <<" %V$fname \n"   
+<<" %V$fname 
+s <<" m 
+1 78 k=ReadPulseFile(fname)     
+poo k=ReadPulseFile(fname)     
+k=ReadPulseFile(fname)  
+s k=ReadPulseFile(fname) m 
+3 80 <<" %v$k \n"  
+poo <<" %v$k \n"   
+<<" %v$k 
+s <<" m 
+1 82 //ttyin()     
+poo //ttyin()     
+//ttyin()  
+s //ttyin() m 
+6 84 sen = Split("the message
+poo sen = Split("the message was gobbledegook") 
+sen = 
+s sen m 
+2 86 <<"$sen \n"   
+poo <<"$sen \n"   
+<<"$sen \n" 
+s <<"$sen m 
+3 88 <<"sen $(typeof(sen)) \n"  
+poo <<"sen $(typeof(sen)) \n"   
+<<"sen $(typeof(sen)) 
+s <<"sen m 
+5 90 //FIX <<" %i $sen
+poo //FIX <<" %i $sen \n" 
+//FIX <<" 
+s //FIX m 
+2 91 <<"$sen \n"   
+poo <<"$sen \n"   
+<<"$sen \n" 
+s <<"$sen m 
+2 92 <<"$sen[0] \n"   
+poo <<"$sen[0] \n"   
+<<"$sen[0] \n" 
+s <<"$sen[0] m 
+3 94 psa = "the"  
+poo psa = "the"   
+psa = 
+s psa m 
+3 96 ssa = sen[0]  
+poo ssa = sen[0]   
+ssa = 
+s ssa m 
+4 98 <<"ssa $(typeof(ssa)) $ssa \n"
+poo <<"ssa $(typeof(ssa)) $ssa \n" 
+<<"ssa $(typeof(ssa)) 
+s <<"ssa m 
+ done loop  k <77><INT>[G]  
+DONE: PASS: ./procarg            :tests      5 :Fail      0 :Pass      5 :Score  100.0% 
+Code errors 1  ICerrors 0
+ i <65><INT>[G]  
+FAIL test <1> @ [37] CheckNum(i,3)
+
+ i <67><INT>[P]  
+ i <67><INT>[P]  p <68><INT>[P] 
+ i <67><INT>[P]  p <68><INT>[P] 
+ i <65><INT>[G]  
+FAIL test <4> @ [44] CheckNum(i,3)
+
+DONE: FAIL: ./proc_sv0           :tests      5 :Fail      2 :Pass      3 :Score   60.0% 
+n 0 
+n 1 
+n 0 
+Scalar args 
+calling  n 0 m 0 
+args in   v 0 u 0 
+v 0 + u 0 = z 0
+ changing first arg  v 1
+ changing second arg  u 0 
+args out v 1 u 0 
+post  n 1 m 0 
+ proc returns k 0 
+FAIL test <1> @ [55] CheckNum(n,3)
+
+ badness !
+FAIL test <2> @ [66]             }
+
+ badness !
+FAIL test <3> @ [75]             }
+
+ badness !
+args in   v 7 u 14 
+v 7 + u 14 = z 21
+ changing first arg  v 8
+ changing second arg  u 28 
+args out v 8 u 28 
+ n 7 m 28 k 21 
+args in   v 0.000000 u 0.000000 
+v 0.000000 + u 0.000000 = z 0.000000
+ changing first arg  v 1.000000
+ changing second arg  u 0.000000 
+args out v 1.000000 u 0.000000 
+ x 1.000000 y 0.000000 w 0.000000 
+FAIL test <4> @ [103] CheckFNum(w,40.0,6)
+
+args in   v 79 u 47 
+v 79 + u 47 = z 126
+ changing first arg  v 80
+ changing second arg  u 94 
+args out v 80 u 94 
+ n 80 m 47 k 126 
+args in   v 20 u 28 
+v 20 + u 28 = z 48
+ changing first arg  v 21
+ changing second arg  u 56 
+args out v 21 u 56 
+ n 21 m 28 k 48 
+DONE: FAIL: ./procrefarg         :tests      4 :Fail      4 :Pass      0 :Score    0.0% 
+ _proc _ x 20.200000 
+ 0.218573 
+ 0.216837 
+ IN foo 0.216837 
+20.200000 0.108419 
+ _proc _ x -20.200000 
+ 0.218573 
+ 0.216837 
+ IN foo 0.216837 
+-20.200000 0.108419 
+ 0.884022 
+ IN foo 0.884022 
+-15.200000 0.442011 
+ IN foo 0.773295 
+-15.200000 0.386648 
+ IN foo 0.879372 
+-15.200000 0.439686 
+ ./proc  
+ IN foo -0.873737 
+-15.200000 -0.436868 
+DONE: PASS: ./proc               :tests      5 :Fail      0 :Pass      5 :Score  100.0% 
+  2 
+ 2 > 1 should be returning 1 !
+ 2 1 
+  2 
+ 2 > 1 should be returning 1 !
+ 2 2 
+  1 
+ 1 <= 1 should be returning 0 !
+ 1 0 
+  3 
+ 3 > 1 should be returning 1 !
+ 3 out 1 
+  3 
+ 3 > 1 should be returning 1 !
+ 3 6 
+  -4 
+ -4 < 0 should be returning -1 !
+ -4 -6 
+  210 
+ 210 > 200 should be returning 20 !
+ 210 120 
+  310 
+ 310 > 300 should be returning 30 !
+ 310 210 
+  3 
+ 3 > 1 should be returning 1 !
+ 3 1 
+  3 
+ 3 > 1 should be returning 1 !
+ 3 1 
+  3 
+ 3 > 1 should be returning 1 !
+ 3 1 
+DONE: PASS: ./procret0           :tests     11 :Fail      0 :Pass     11 :Score  100.0% 
+ERROR can't  convert  procarg.asl --> to number  @ [20] <<"%I $pfname $len\n"
+
+0 1 2 3 4 5 6 7 8 9  
+ a 1 + b 2 = c 3 
+tot 3 
+ a 3 + b 7 = c 10 
+ 3 + 7 = 10 
+ fname procarg.asl 
+  pfname <78><STRV>[P]  
+ pfname <78><STRV>[P]  len <79><INT>[P] 
+ ReadPulseFile procarg.asl 
+ k 11 
+the message was gobbledegook 
+sen SVAR   
+the message was gobbledegook 
+the 
+ssa STRV   the 
+test 1 1
+test 2 1
+test 3 1
+test 4 1
+craash  the message was gobbledegook
+poo the message was gobbledegook 
+the message 
+s the m 
+1 0 setdebug(1)     
+poo setdebug(1)     
+setdebug(1)  
+s setdebug(1) m 
+3 4 proc sumarg(a, b)  
+poo proc sumarg(a, b)   
+proc sumarg(a, 
+s proc m 
+1 5 {     
+poo {     
+{  
+s { m 
+4 6 c = a+ b
+poo c = a+ b 
+c = 
+s c m 
+7 8 <<" %V$a + $b
+poo <<" %V$a + $b = $c \n" 
+<<" %V$a 
+s <<" m 
+2 10 return c   
+poo return c   
+return c 
+s return m 
+1 11 }     
+poo }     
+}  
+s } m 
+3 13 proc ReadPulseFile( pfname)  
+poo proc ReadPulseFile( pfname)   
+proc ReadPulseFile( 
+s proc m 
+1 14 {     
+poo {     
+{  
+s { m 
+4 15 <<" %i $pfname \n"
+poo <<" %i $pfname \n" 
+<<" %i 
+s <<" m 
+2 16 len =0   
+poo len =0   
+len =0 
+s len m 
+3 17 len = slen(pfname)  
+poo len = slen(pfname)   
+len = 
+s len m 
+3 19 <<"%I $pfname $len\n"  
+poo <<"%I $pfname $len\n"   
+<<"%I $pfname 
+s <<"%I m 
+4 21 <<" $_proc $pfname \n"
+poo <<" $_proc $pfname \n" 
+<<" $_proc 
+s <<" m 
+2 23 return len   
+poo return len   
+return len 
+s return m 
+1 24 }     
+poo }     
+}  
+s } m 
+3 26 proc poo (vstr)  
+poo proc poo (vstr)   
+proc poo 
+s proc m 
+1 27 {     
+poo {     
+{  
+s { m 
+3 29 <<"$_proc $vstr \n"  
+poo <<"$_proc $vstr \n"   
+<<"$_proc $vstr 
+s <<"$_proc m 
+3 30 <<"$vstr[0] $vstr[1] \n"  
+poo <<"$vstr[0] $vstr[1] \n"   
+<<"$vstr[0] $vstr[1] 
+s <<"$vstr[0] m 
+3 31 mstr = split(vstr)  
+poo mstr = split(vstr)   
+mstr = 
+s mstr m 
+3 33 s = mstr[0]  
+poo s = mstr[0]   
+s = 
+s s m 
+3 34 m = mstr[1]  
+poo m = mstr[1]   
+m = 
+s m m 
+4 35 // s = vstr[0]
+poo // s = vstr[0] 
+// s 
+s // m 
+4 36 // m = vstr[1]
+poo // m = vstr[1] 
+// m 
+s // m 
+2 38 <<"%V$s $m\n"   
+poo <<"%V$s $m\n"   
+<<"%V$s $m\n" 
+s <<"%V$s m 
+1 39 }     
+poo }     
+}  
+s } m 
+1 40 //------------------------------     
+poo //------------------------------     
+//------------------------------  
+s //------------------------------ m 
+2 42 proc foo(vstr)   
+poo proc foo(vstr)   
+proc foo(vstr) 
+s proc m 
+1 43 {     
+poo {     
+{  
+s { m 
+4 44 <<" $_proc $vstr \n"
+poo <<" $_proc $vstr \n" 
+<<" $_proc 
+s <<" m 
+3 45 mstr = split(vstr)  
+poo mstr = split(vstr)   
+mstr = 
+s mstr m 
+3 46 s = mstr[0]  
+poo s = mstr[0]   
+s = 
+s s m 
+3 47 m = mstr[1]  
+poo m = mstr[1]   
+m = 
+s m m 
+3 48 <<" $s $m\n"  
+poo <<" $s $m\n"   
+<<" $s 
+s <<" m 
+1 49 }     
+poo }     
+}  
+s } m 
+1 50 //------------------------------     
+poo //------------------------------     
+//------------------------------  
+s //------------------------------ m 
+1 52 CheckIn()     
+poo CheckIn()     
+CheckIn()  
+s CheckIn() m 
+3 55 I = Igen(10,0,1)  
+poo I = Igen(10,0,1)   
+I = 
+s I m 
+2 58 <<"$I \n"   
+poo <<"$I \n"   
+<<"$I \n" 
+s <<"$I m 
+3 60 tot = sumarg(I[1],I[2])  
+poo tot = sumarg(I[1],I[2])   
+tot = 
+s tot m 
+2 62 <<"%V$tot \n"   
+poo <<"%V$tot \n"   
+<<"%V$tot \n" 
+s <<"%V$tot m 
+1 64 CheckNum(tot,3)     
+poo CheckNum(tot,3)     
+CheckNum(tot,3)  
+s CheckNum(tot,3) m 
+3 68 x = 3  
+poo x = 3   
+x = 
+s x m 
+3 69 y = 7  
+poo y = 7   
+y = 
+s y m 
+3 70 z= sumarg( x,y)  
+poo z= sumarg( x,y)   
+z= sumarg( 
+s z= m 
+7 72 <<" $x + $y
+poo <<" $x + $y = $z \n" 
+<<" $x 
+s <<" m 
+2 75 fname= "procarg.asl"   
+poo fname= "procarg.asl"   
+fname= "procarg.asl" 
+s fname= m 
+3 76 <<" %V$fname \n"  
+poo <<" %V$fname \n"   
+<<" %V$fname 
+s <<" m 
+1 78 k=ReadPulseFile(fname)     
+poo k=ReadPulseFile(fname)     
+k=ReadPulseFile(fname)  
+s k=ReadPulseFile(fname) m 
+3 80 <<" %v$k \n"  
+poo <<" %v$k \n"   
+<<" %v$k 
+s <<" m 
+1 82 //ttyin()     
+poo //ttyin()     
+//ttyin()  
+s //ttyin() m 
+6 84 sen = Split("the message
+poo sen = Split("the message was gobbledegook") 
+sen = 
+s sen m 
+2 86 <<"$sen \n"   
+poo <<"$sen \n"   
+<<"$sen \n" 
+s <<"$sen m 
+3 88 <<"sen $(typeof(sen)) \n"  
+poo <<"sen $(typeof(sen)) \n"   
+<<"sen $(typeof(sen)) 
+s <<"sen m 
+5 90 //FIX <<" %i $sen
+poo //FIX <<" %i $sen \n" 
+//FIX <<" 
+s //FIX m 
+2 91 <<"$sen \n"   
+poo <<"$sen \n"   
+<<"$sen \n" 
+s <<"$sen m 
+2 92 <<"$sen[0] \n"   
+poo <<"$sen[0] \n"   
+<<"$sen[0] \n" 
+s <<"$sen[0] m 
+3 94 psa = "the"  
+poo psa = "the"   
+psa = 
+s psa m 
+3 96 ssa = sen[0]  
+poo ssa = sen[0]   
+ssa = 
+s ssa m 
+4 98 <<"ssa $(typeof(ssa)) $ssa \n"
+poo <<"ssa $(typeof(ssa)) $ssa \n" 
+<<"ssa $(typeof(ssa)) 
+s <<"ssa m 
+ done loop  k <77><INT>[G]  
+DONE: PASS: ./procarg            :tests      5 :Fail      0 :Pass      5 :Score  100.0% 
+Code errors 1  ICerrors 0
+ i <65><INT>[G]  
+FAIL test <1> @ [37] CheckNum(i,3)
+
+ i <67><INT>[P]  
+ i <67><INT>[P]  p <68><INT>[P] 
+ i <67><INT>[P]  p <68><INT>[P] 
+ i <65><INT>[G]  
+FAIL test <4> @ [44] CheckNum(i,3)
+
+DONE: FAIL: ./proc_sv0           :tests      5 :Fail      2 :Pass      3 :Score   60.0% 
+n 0 
+n 1 
+n 0 
+Scalar args 
+calling  n 0 m 0 
+args in   v 0 u 0 
+v 0 + u 0 = z 0
+ changing first arg  v 1
+ changing second arg  u 0 
+args out v 1 u 0 
+post  n 1 m 0 
+ proc returns k 0 
+FAIL test <1> @ [55] CheckNum(n,3)
+
+ badness !
+FAIL test <2> @ [66]             }
+
+ badness !
+FAIL test <3> @ [75]             }
+
+ badness !
+args in   v 7 u 14 
+v 7 + u 14 = z 21
+ changing first arg  v 8
+ changing second arg  u 28 
+args out v 8 u 28 
+ n 7 m 28 k 21 
+args in   v 0.000000 u 0.000000 
+v 0.000000 + u 0.000000 = z 0.000000
+ changing first arg  v 1.000000
+ changing second arg  u 0.000000 
+args out v 1.000000 u 0.000000 
+ x 1.000000 y 0.000000 w 0.000000 
+FAIL test <4> @ [103] CheckFNum(w,40.0,6)
+
+args in   v 79 u 47 
+v 79 + u 47 = z 126
+ changing first arg  v 80
+ changing second arg  u 94 
+args out v 80 u 94 
+ n 80 m 47 k 126 
+args in   v 20 u 28 
+v 20 + u 28 = z 48
+ changing first arg  v 21
+ changing second arg  u 56 
+args out v 21 u 56 
+ n 21 m 28 k 48 
+DONE: FAIL: ./procrefarg         :tests      4 :Fail      4 :Pass      0 :Score    0.0% 

@@ -1,0 +1,444 @@
+     DEBUG FILE for vsh.dbi debug level 1  vers 5.1.6
+     Sun Jan 17 08:32:15 2016
+ siv_e.cpp setSize: @576 ignore it is svar 
+ alias.cpp gs_set_file: @44 set_file file in consts.asl 10
+ alias.cpp gs_set_file: @106 set_file file out consts.asl 10
+ alias.cpp gs_set_file: @44 set_file file in consts.asl 10
+ alias.cpp gs_set_file: @106 set_file file out consts.asl 10
+     consts.asl -- zero length file
+ include_e.cpp XcodeBlock: @633 1 <2> 
+ include_e.cpp XcodeBlock: @633 2 <4> 
+------------------------------------------------------------------------
+
+### <4>[15]<0>{CONSTANT}		const double _E = exp(1.0)
+
+------------------------------------------------------------------------
+ svar.cpp ncpy: @954  ERROR svar not innited ?!
+ siv_e.cpp isValid: @492  bad siv 1
+ siv_e.cpp isValid: @492  bad siv 2
+ siv_e.cpp isValid: @492  bad siv 3
+ siv_e.cpp isValid: @492  bad siv 4
+ include_e.cpp XcodeBlock: @633 3 <5> 
+------------------------------------------------------------------------
+
+### <5>[21]<0>{CONSTANT}		const double _G = 6.672e-11
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 5
+ siv_e.cpp isValid: @492  bad siv 6
+ include_e.cpp XcodeBlock: @633 4 <6> 
+------------------------------------------------------------------------
+
+### <6>[23]<0>{CONSTANT}		const double _g = 9.8 // m per sec per sec -- grav acc
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 7
+ siv_e.cpp isValid: @492  bad siv 8
+ include_e.cpp XcodeBlock: @633 5 <7> 
+------------------------------------------------------------------------
+
+### <7>[25]<0>{CONSTANT}		const double _c = 299792458   // m per sec
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 9
+ siv_e.cpp isValid: @492  bad siv 10
+ include_e.cpp XcodeBlock: @633 6 <8> 
+------------------------------------------------------------------------
+
+### <8>[27]<0>{CONSTANT}		const double _sos = 331.0 // m per sec 
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 11
+ siv_e.cpp isValid: @492  bad siv 12
+ include_e.cpp XcodeBlock: @633 7 <9> 
+------------------------------------------------------------------------
+
+### <9>[29]<0>{CONSTANT}		const double _k = 1.38070e-23
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 13
+ siv_e.cpp isValid: @492  bad siv 14
+ include_e.cpp XcodeBlock: @633 8 <10> 
+------------------------------------------------------------------------
+
+### <10>[33]<0>{CONSTANT}		const double _h = 6.626e-34
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 15
+ siv_e.cpp isValid: @492  bad siv 16
+ include_e.cpp XcodeBlock: @633 9 <11> 
+------------------------------------------------------------------------
+
+### <11>[35]<0>{CONSTANT}		const double _ev =1.602e-29
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 17
+ siv_e.cpp isValid: @492  bad siv 18
+ include_e.cpp XcodeBlock: @633 10 <12> 
+------------------------------------------------------------------------
+
+### <12>[38]<0>{CONSTANT}		const double _EarthRadius = 6371000.0 //  6371 km
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 19
+ siv_e.cpp isValid: @492  bad siv 20
+ include_e.cpp XcodeBlock: @633 11 <13> 
+------------------------------------------------------------------------
+
+### <13>[40]<0>{CONSTANT}		const int _EarthDay = (24 * 60 *60) 
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 21
+ siv_e.cpp isValid: @492  bad siv 22
+ siv_e.cpp isValid: @492  bad siv 23
+ siv_e.cpp isValid: @492  bad siv 24
+ include_e.cpp XcodeBlock: @633 12 <14> 
+------------------------------------------------------------------------
+
+### <14>[44]<0>{CONSTANT}		const double _EarthSun = 1.496e11  // meters AU 146 - 152  million km
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 25
+ siv_e.cpp isValid: @492  bad siv 26
+ include_e.cpp XcodeBlock: @633 13 <15> 
+------------------------------------------------------------------------
+
+### <15>[46]<0>{CONSTANT}		const double _EarthMoon = 3.84e8  // meters
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 27
+ siv_e.cpp isValid: @492  bad siv 28
+ include_e.cpp XcodeBlock: @633 14 <16> 
+------------------------------------------------------------------------
+
+### <16>[48]<0>{CONSTANT}		const double _SunMass = 2.0e30
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 29
+ siv_e.cpp isValid: @492  bad siv 30
+ include_e.cpp XcodeBlock: @633 15 <17> 
+------------------------------------------------------------------------
+
+### <17>[50]<0>{CONSTANT}		const double _EarthMass = 5.980e24
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 31
+ siv_e.cpp isValid: @492  bad siv 32
+ include_e.cpp XcodeBlock: @633 16 <18> 
+------------------------------------------------------------------------
+
+### <18>[52]<0>{CONSTANT}		const double _Avogadro = 6.022140e23
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 33
+ siv_e.cpp isValid: @492  bad siv 34
+ include_e.cpp XcodeBlock: @633 17 <19> 
+------------------------------------------------------------------------
+
+### <19>[67]<0>{CONSTANT}		const float _inch2cm = 2.54
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 35
+ siv_e.cpp isValid: @492  bad siv 36
+ include_e.cpp XcodeBlock: @633 18 <20> 
+------------------------------------------------------------------------
+
+### <20>[68]<0>{CONSTANT}		const float _ft2m = 12*2.54/100.0
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 37
+ siv_e.cpp isValid: @492  bad siv 38
+ siv_e.cpp isValid: @492  bad siv 39
+ siv_e.cpp isValid: @492  bad siv 40
+ include_e.cpp XcodeBlock: @633 19 <21> 
+------------------------------------------------------------------------
+
+### <21>[69]<0>{CONSTANT}		const float _cm2inch = 1.0/_inch2cm
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 41
+ siv_e.cpp isValid: @492  bad siv 42
+ siv_e.cpp isValid: @492  bad siv 43
+ include_e.cpp XcodeBlock: @633 20 <22> 
+------------------------------------------------------------------------
+
+### <22>[70]<0>{CONSTANT}		const float _m2ft = 3.280839
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 44
+ siv_e.cpp isValid: @492  bad siv 45
+ include_e.cpp XcodeBlock: @633 21 <23> 
+------------------------------------------------------------------------
+
+### <23>[71]<0>{CONSTANT}		const float _mile2km = 1.6093
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 46
+ siv_e.cpp isValid: @492  bad siv 47
+ include_e.cpp XcodeBlock: @633 22 <24> 
+------------------------------------------------------------------------
+
+### <24>[72]<0>{CONSTANT}		const float _km2mile = 1/_mile2km
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 48
+ siv_e.cpp isValid: @492  bad siv 49
+ siv_e.cpp isValid: @492  bad siv 50
+ include_e.cpp XcodeBlock: @633 23 <25> 
+------------------------------------------------------------------------
+
+### <25>[73]<0>{CONSTANT}		const float _km2nm = 1.0/1.852
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 51
+ siv_e.cpp isValid: @492  bad siv 52
+ siv_e.cpp isValid: @492  bad siv 53
+ include_e.cpp XcodeBlock: @633 24 <26> 
+------------------------------------------------------------------------
+
+### <26>[74]<0>{CONSTANT}		const float _usgal2liter = 3.78541178
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 54
+ siv_e.cpp isValid: @492  bad siv 55
+ include_e.cpp XcodeBlock: @633 25 <27> 
+------------------------------------------------------------------------
+
+### <27>[75]<0>{CONSTANT}		const float _gal2liter = 4.546
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 56
+ siv_e.cpp isValid: @492  bad siv 57
+ include_e.cpp XcodeBlock: @633 26 <28> 
+------------------------------------------------------------------------
+
+### <28>[76]<0>{CONSTANT}		const float _oz2gram = 28.35
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 58
+ siv_e.cpp isValid: @492  bad siv 59
+ include_e.cpp XcodeBlock: @633 27 <29> 
+------------------------------------------------------------------------
+
+### <29>[77]<0>{CONSTANT}		const float _lb2kg = 0.4536
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 60
+ siv_e.cpp isValid: @492  bad siv 61
+ include_e.cpp XcodeBlock: @633 28 <30> 
+------------------------------------------------------------------------
+
+### <30>[78]<0>{CONSTANT}		const float _kg2lb = 2.204586
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 62
+ siv_e.cpp isValid: @492  bad siv 63
+ include_e.cpp XcodeBlock: @633 29 <31> 
+------------------------------------------------------------------------
+
+### <31>[79]<0>{CONSTANT}		const float _cuft2cum = 0.0283
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 64
+ siv_e.cpp isValid: @492  bad siv 65
+ include_e.cpp XcodeBlock: @633 30 <32> 
+------------------------------------------------------------------------
+
+### <32>[81]<0>{CONSTANT}		const float _troyoz2gram = 31.103
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 66
+ siv_e.cpp isValid: @492  bad siv 67
+ include_e.cpp XcodeBlock: @633 31 <33> 
+------------------------------------------------------------------------
+
+### <33>[85]<0>{CONSTANT}		const float _sqmile2acre = 259.0/0.4047
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 68
+ siv_e.cpp isValid: @492  bad siv 69
+ siv_e.cpp isValid: @492  bad siv 70
+ include_e.cpp XcodeBlock: @633 32 <34> 
+------------------------------------------------------------------------
+
+### <34>[86]<0>{CONSTANT}		const float _knots2mph = 6080.0/5280.0
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 71
+ siv_e.cpp isValid: @492  bad siv 72
+ siv_e.cpp isValid: @492  bad siv 73
+ include_e.cpp XcodeBlock: @633 33 <35> 
+------------------------------------------------------------------------
+
+### <35>[87]<0>{CONSTANT}		const float _nm2mile = 6076.0/5280.0
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 74
+ siv_e.cpp isValid: @492  bad siv 75
+ siv_e.cpp isValid: @492  bad siv 76
+ include_e.cpp XcodeBlock: @633 34 <36> 
+------------------------------------------------------------------------
+
+### <36>[88]<0>{CONSTANT}		const float _nm2ft = 6076.0
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 77
+ siv_e.cpp isValid: @492  bad siv 78
+ include_e.cpp XcodeBlock: @633 35 <37> 
+------------------------------------------------------------------------
+
+### <37>[89]<0>{CONSTANT}		const float _nm2km = 1.852
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 79
+ siv_e.cpp isValid: @492  bad siv 80
+ include_e.cpp XcodeBlock: @633 36 <38> 
+------------------------------------------------------------------------
+
+### <38>[90]<0>{CONSTANT}		const float _mile2nm = 5280.0/6076
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 81
+ siv_e.cpp isValid: @492  bad siv 82
+ siv_e.cpp isValid: @492  bad siv 83
+ include_e.cpp XcodeBlock: @633 37 <39> 
+------------------------------------------------------------------------
+
+### <39>[91]<0>{CONSTANT}		const float _mph2knots = 5280.0/6076.0
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 84
+ siv_e.cpp isValid: @492  bad siv 85
+ siv_e.cpp isValid: @492  bad siv 86
+ include_e.cpp XcodeBlock: @633 38 <40> 
+------------------------------------------------------------------------
+
+### <40>[92]<0>{CONSTANT}		const float _atm2Nm2 = 1.01e5
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 87
+ siv_e.cpp isValid: @492  bad siv 88
+ include_e.cpp XcodeBlock: @633 39 <41> 
+------------------------------------------------------------------------
+
+### <41>[93]<0>{CONSTANT}		const float _atm2lbft2 = 2116.0
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 89
+ siv_e.cpp isValid: @492  bad siv 90
+ include_e.cpp XcodeBlock: @633 40 <42> 
+------------------------------------------------------------------------
+
+### <42>[94]<0>{CONSTANT}		const float _slug2lb = 32.2
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 91
+ siv_e.cpp isValid: @492  bad siv 92
+ include_e.cpp XcodeBlock: @633 41 <43> 
+------------------------------------------------------------------------
+
+### <43>[95]<0>{CONSTANT}		const float _lightyr = 9.46e15
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 93
+ siv_e.cpp isValid: @492  bad siv 94
+ include_e.cpp XcodeBlock: @633 42 <44> 
+------------------------------------------------------------------------
+
+### <44>[98]<0>{DEF_PROC}		proc units()
+
+------------------------------------------------------------------------
+ include_e.cpp XcodeBlock: @633 43 <70> 
+------------------------------------------------------------------------
+
+### <70>[126]<0>{DEF_PROC}		proc consts()
+
+------------------------------------------------------------------------
+ include_e.cpp XcodeBlock: @633 44 <86> 
+------------------------------------------------------------------------
+
+### <86>[152]<0>{DEF_PROC}		proc ll2dd (the_ang)
+
+------------------------------------------------------------------------
+ include_e.cpp XcodeBlock: @633 45 <119> 
+------------------------------------------------------------------------
+
+### <119>[210]<0>{FUNCTION}		_codeend();
+
+------------------------------------------------------------------------
+CodeEnd Pst statement <2> include "consts.asl" 
+ include_e.cpp XcodeBlock: @633 46 <3> 
+ include_e.cpp XcodeBlock: @633 47 <3> 
+------------------------------------------------------------------------
+
+### <3>[3]<0>{FUNCTION}		codeend()
+
+------------------------------------------------------------------------
+check_stype chkfunc pan a 
+ siv_e.cpp isValid: @492  bad siv 95
+check_stype chkfunc  
+ include_e.cpp XcodeBlock: @633 1 <120> 
+------------------------------------------------------------------------
+
+### <120>[1]<0>{EXPRESSION}		a =2.0
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 96
+ include_e.cpp XcodeBlock: @633 2 <121> 
+------------------------------------------------------------------------
+
+### <121>[3]<0>{FUNCTION}		codeend()
+
+------------------------------------------------------------------------
+check_stype chkfunc a 
+ svar.cpp ncpy: @954  ERROR svar not innited ?!
+ siv_e.cpp isValid: @492  bad siv 97
+ include_e.cpp XcodeBlock: @633 1 <122> 
+------------------------------------------------------------------------
+
+### <122>[1]<0>{EXPRESSION}		b= a * 3
+
+------------------------------------------------------------------------
+ siv_e.cpp isValid: @492  bad siv 98
+ siv_e.cpp isValid: @492  bad siv 99
+ include_e.cpp XcodeBlock: @633 2 <123> 
+------------------------------------------------------------------------
+
+### <123>[3]<0>{FUNCTION}		codeend()
+
+------------------------------------------------------------------------
+check_stype chkfunc b 
+ svar.cpp ncpy: @954  ERROR svar not innited ?!
+ siv_e.cpp isValid: @492  bad siv 100
+ include_e.cpp XcodeBlock: @633 1 <124> 
+------------------------------------------------------------------------
+
+### <124>[2]<0>{FUNCTION}		typeof(b)
+
+------------------------------------------------------------------------
+ svar.cpp ncpy: @954  ERROR svar not innited ?!
+ siv_e.cpp isValid: @492  bad siv 101
+ alias_l.cpp Typeof: @248 sv_arg0 type is DOUBLE
+ siv_e.cpp isValid: @492  bad siv 102
+ include_e.cpp XcodeBlock: @633 2 <125> 
+------------------------------------------------------------------------
+
+### <125>[4]<0>{FUNCTION}		codeend()
+
+------------------------------------------------------------------------
+ include_e.cpp XcodeBlock: @633 1 <126> 
+------------------------------------------------------------------------
+
+### <126>[3]<0>{FUNCTION}		typeof(a)
+
+------------------------------------------------------------------------
+ svar.cpp ncpy: @954  ERROR svar not innited ?!
+ siv_e.cpp isValid: @492  bad siv 103
+ alias_l.cpp Typeof: @248 sv_arg0 type is DOUBLE
+ siv_e.cpp isValid: @492  bad siv 104
+ include_e.cpp XcodeBlock: @633 2 <127> 
+------------------------------------------------------------------------
+
+### <127>[5]<0>{FUNCTION}		codeend()
+
+------------------------------------------------------------------------

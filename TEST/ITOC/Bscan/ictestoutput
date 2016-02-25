@@ -1,0 +1,54 @@
+ 202 254 186 190 250 206 190 173 222 173 192 222  
+ ca fe ba be fa ce be ad de ad c0 de
+ 
+ 202 254 186 190 250 206 190 173 222 173 192 222
+ 
+ ca fe ba be fa ce be ad de ad c0 de
+ 
+ 202 254 186 190 250 206 190 173 222 173 192 222
+ 
+ ca fe ba be fa ce be ad de ad c0 de
+ 
+  wbo 4D2  wbo 1234 
+ na 2 k 4206803710 j 3735928526 
+ fabebafe deadbece 
+FAIL test <2> @ [53] CheckNum(k,t)
+
+ na 2 k 3133078222 j 3199065773 
+ babeface beaddead 
+ na 2 k 3204107966 j 2917051840 
+ befacebe addeadc0 
+ na 2 k 4207853229 j 3735929054 
+ facebead deadc0de 
+ na 2 k 3199065773 j 3235774464 
+ beaddead c0de0000 
+ na 2 k1 3199065773 j1 3235774464 
+ beaddead c0de0000 
+DONE: FAIL: ./bscan              :tests      6 :Fail      1 :Pass      5 :Score   83.3% 
+ 202 254 186 190 250 206 190 173 222 173 192 222  
+ ca fe ba be fa ce be ad de ad c0 de
+ 
+ 202 254 186 190 250 206 190 173 222 173 192 222
+ 
+ ca fe ba be fa ce be ad de ad c0 de
+ 
+ 202 254 186 190 250 206 190 173 222 173 192 222
+ 
+ ca fe ba be fa ce be ad de ad c0 de
+ 
+  wbo 4D2  wbo 1234 
+ na 2 k 4206803710 j 3735928526 
+ fabebafe deadbece 
+FAIL test <2> @ [53] CheckNum(k,t)
+
+ na 2 k 3133078222 j 3199065773 
+ babeface beaddead 
+ na 2 k 3204107966 j 2917051840 
+ befacebe addeadc0 
+ na 2 k 4207853229 j 3735929054 
+ facebead deadc0de 
+ na 2 k 3199065773 j 3235774464 
+ beaddead c0de0000 
+ na 2 k1 3199065773 j1 3235774464 
+ beaddead c0de0000 
+DONE: FAIL: ./bscan              :tests      6 :Fail      1 :Pass      5 :Score   83.3% 

@@ -1,0 +1,266 @@
+jj 6 
+  k 34 
+ytest 0.000000 
+FAIL test <3> @ [26] CheckFNum(ytest,1.234,6)
+
+ Leg <71><FLOAT[]>[G]  
+sz 12 
+cb 12  
+ 12  12
+  
+ xr0 -1.500000 yr0 -1.500000 xr1 0.000000 yr1 0.000000 
+FAIL test <6> @ [68] CheckNum(xr1,1.5)
+
+DONE: FAIL: ./declare            :tests      7 :Fail      2 :Pass      5 :Score   71.4% 
+ entered foo 5 0
+FAIL test <1> @ [7] checkNum(k,2)
+
+ entered foo 6 0
+FAIL test <3> @ [7] checkNum(k,2)
+
+DONE: FAIL: ./declare_eq         :tests      4 :Fail      2 :Pass      2 :Score   50.0% 
+ c <65><CHAR>[G]  p <66><CHAR>[G]  
+ c <65><CHAR>[G]  p <66><CHAR>[G]  
+ s <67><STRV>[G]  s <67><STRV>[G]  
+<tease <68><STRV>[G] > a b c > 
+<tease <68><STRV>[G] > <a b c > 
+cv  
+  cv <69><UCHAR[]>[G]  
+  cv <69><UCHAR[]>[G]  
+ wc 71 INT  wc 
+ dv <82><CHAR[]>[G]  
+0 0 0 71 25 28 78 79 48 69
+ 
+ a <83><CHAR>[G]  
+ dv[0] 0 a 0 
+back in main after plain arg
+FAIL test <5> @ [64] CheckNum(dv[0], wc )
+
+back in main after different type  args
+FAIL test <6> @ [69] CheckNum(dv[0], 'G' )
+
+back in main after fun arg
+ dv 0 0 0 71 25 28 78 79 48 69
+  
+ dv[1] 0  
+FAIL test <7> @ [77] CheckNum(dv[1],25)
+
+FAIL test <8> @ [79] CheckNum(dv[4], 'O' )
+
+FAIL test <9> @ [82] CheckNum(dv[5], scnt('0') )
+
+FAIL test <10> @ [86] CheckNum(dv[5], '0' )
+
+ sz 36 
+ lv 0 0 65 66 67 68 69 70 32 77 65 82 75 36 32 84 69 82 82 89 32 78 69 69 68 83 32 84 79 32 70 79 67 85 83 32
+ 
+ 0 
+ 0 
+ev 65 66 67 68 69 70 32 77 65 82 75 32 84 69 82 82 89 32 78 69 69 68 83 32 84 79 32 70 79 67 85 83 32
+ 
+ sz 33 
+  ev <86><CHAR[]>[G]  
+  lv <84><CHAR[]>[G]  
+FAIL test <13> @ [123] CheckNum(lv[0],'A')
+
+FAIL test <14> @ [124] CheckNum(lv[7],'M')
+
+FAIL test <15> @ [125] CheckNum(lv[11],'$')
+
+DONE: FAIL: ./chardeclare        :tests     15 :Fail      9 :Pass      6 :Score   40.0% 
+ ag 0 
+FAIL test <1> @ [8] CheckNum(ag,47)
+
+FAIL test <2> @ [13] ok=CheckFNum(ep,12.567456,6)
+
+ep    0.0000000 ok 0
+FAIL test <3> @ [21] ok=CheckFNum(dv,7234.5678764,7)
+
+dv 0.000000 ok 0 
+ sx this is an input string 
+  a 0  a 0  a  
+FAIL test <5> @ [35] CheckNum(a,'G')
+
+DONE: FAIL: ./scalar_dec         :tests      5 :Fail      4 :Pass      1 :Score   20.0% 
+ v 0.000000 FLOAT  v  
+FAIL test <1> @ [11] CheckFNum(v,2.3,6)
+
+ z 0.000000 DOUBLE  z  
+FAIL test <2> @ [19] CheckFNum(z,3.6,6)
+
+ pi 3.141593 DOUBLE  pi  
+ pi2 3.141593 DOUBLE  pi2  
+DONE: FAIL: ./floatdeclare       :tests      4 :Fail      2 :Pass      2 :Score   50.0% 
+0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000
+
+0.000000 0.000000 1.000000 0.000000 2.000000 0.000000 3.000000 0.000000 4.000000 0.000000 5.000000 0.000000 6.000000 0.000000 7.000000 0.000000 8.000000 0.000000 9.000000 0.000000
+
+DONE: PASS: ./arraydeclare       :tests      3 :Fail      0 :Pass      3 :Score  100.0% 
+ wc 77 INT  wc 
+ mc 116 INT  mc 
+ lost 
+in
+ this is our first st 
+ d1 <87><CHAR>[P]  d2 <88><CHAR>[P]  
+ d1 65 d2 0 
+ returning? 0  GA 1
+out
+in
+ this is our first st 
+ d1 <90><INT>[P]  d2 <91><CHAR>[P]  
+ d1 149 d2 0 
+ returning? 0  GA 2
+out
+in
+ this is our first st 
+ d1 <93><CHAR>[P]  d2 <94><INT>[P]  
+ d1 0 d2 161 
+ returning? 0  GA 3
+out
+ a 0 
+ this is our first st 
+ d1 <96><CHAR>[P]  d2 <97><INT>[P]  
+ d1 0 d2 65 
+ returning? 0  GA 4
+ this is our first st 
+ d1 <99><INT>[P]  d2 <100><CHAR>[P]  
+ d1 65 d2 0 
+ returning? 0  GA 5
+ this is our first st 
+ d1 <102><CHAR>[P]  d2 <103><INT>[P]  
+ d1 0 d2 65 
+ returning? 0  GA 6
+DONE: PASS: ./proc_arg_func      :tests      4 :Fail      0 :Pass      4 :Score  100.0% 
+jj 6 
+  k 34 
+ytest 0.000000 
+FAIL test <3> @ [26] CheckFNum(ytest,1.234,6)
+
+ Leg <71><FLOAT[]>[G]  
+sz 12 
+cb 12  
+ 12  12
+  
+ xr0 -1.500000 yr0 -1.500000 xr1 0.000000 yr1 0.000000 
+FAIL test <6> @ [68] CheckNum(xr1,1.5)
+
+DONE: FAIL: ./declare            :tests      7 :Fail      2 :Pass      5 :Score   71.4% 
+ entered foo 5 0
+FAIL test <1> @ [7] checkNum(k,2)
+
+ entered foo 6 0
+FAIL test <3> @ [7] checkNum(k,2)
+
+DONE: FAIL: ./declare_eq         :tests      4 :Fail      2 :Pass      2 :Score   50.0% 
+ c <65><CHAR>[G]  p <66><CHAR>[G]  
+ c <65><CHAR>[G]  p <66><CHAR>[G]  
+ s <67><STRV>[G]  s <67><STRV>[G]  
+<tease <68><STRV>[G] > a b c > 
+<tease <68><STRV>[G] > <a b c > 
+cv  
+  cv <69><UCHAR[]>[G]  
+  cv <69><UCHAR[]>[G]  
+ wc 71 INT  wc 
+ dv <82><CHAR[]>[G]  
+0 0 0 71 25 28 78 79 48 69
+ 
+ a <83><CHAR>[G]  
+ dv[0] 0 a 0 
+back in main after plain arg
+FAIL test <5> @ [64] CheckNum(dv[0], wc )
+
+back in main after different type  args
+FAIL test <6> @ [69] CheckNum(dv[0], 'G' )
+
+back in main after fun arg
+ dv 0 0 0 71 25 28 78 79 48 69
+  
+ dv[1] 0  
+FAIL test <7> @ [77] CheckNum(dv[1],25)
+
+FAIL test <8> @ [79] CheckNum(dv[4], 'O' )
+
+FAIL test <9> @ [82] CheckNum(dv[5], scnt('0') )
+
+FAIL test <10> @ [86] CheckNum(dv[5], '0' )
+
+ sz 36 
+ lv 0 0 65 66 67 68 69 70 32 77 65 82 75 36 32 84 69 82 82 89 32 78 69 69 68 83 32 84 79 32 70 79 67 85 83 32
+ 
+ 0 
+ 0 
+ev 65 66 67 68 69 70 32 77 65 82 75 32 84 69 82 82 89 32 78 69 69 68 83 32 84 79 32 70 79 67 85 83 32
+ 
+ sz 33 
+  ev <86><CHAR[]>[G]  
+  lv <84><CHAR[]>[G]  
+FAIL test <13> @ [123] CheckNum(lv[0],'A')
+
+FAIL test <14> @ [124] CheckNum(lv[7],'M')
+
+FAIL test <15> @ [125] CheckNum(lv[11],'$')
+
+DONE: FAIL: ./chardeclare        :tests     15 :Fail      9 :Pass      6 :Score   40.0% 
+ ag 0 
+FAIL test <1> @ [8] CheckNum(ag,47)
+
+FAIL test <2> @ [13] ok=CheckFNum(ep,12.567456,6)
+
+ep    0.0000000 ok 0
+FAIL test <3> @ [21] ok=CheckFNum(dv,7234.5678764,7)
+
+dv 0.000000 ok 0 
+ sx this is an input string 
+  a 0  a 0  a  
+FAIL test <5> @ [35] CheckNum(a,'G')
+
+DONE: FAIL: ./scalar_dec         :tests      5 :Fail      4 :Pass      1 :Score   20.0% 
+ v 0.000000 FLOAT  v  
+FAIL test <1> @ [11] CheckFNum(v,2.3,6)
+
+ z 0.000000 DOUBLE  z  
+FAIL test <2> @ [19] CheckFNum(z,3.6,6)
+
+ pi 3.141593 DOUBLE  pi  
+ pi2 3.141593 DOUBLE  pi2  
+DONE: FAIL: ./floatdeclare       :tests      4 :Fail      2 :Pass      2 :Score   50.0% 
+0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000
+
+0.000000 0.000000 1.000000 0.000000 2.000000 0.000000 3.000000 0.000000 4.000000 0.000000 5.000000 0.000000 6.000000 0.000000 7.000000 0.000000 8.000000 0.000000 9.000000 0.000000
+
+DONE: PASS: ./arraydeclare       :tests      3 :Fail      0 :Pass      3 :Score  100.0% 
+ wc 77 INT  wc 
+ mc 116 INT  mc 
+ lost 
+in
+ this is our first st 
+ d1 <87><CHAR>[P]  d2 <88><CHAR>[P]  
+ d1 65 d2 0 
+ returning? 0  GA 1
+out
+in
+ this is our first st 
+ d1 <90><INT>[P]  d2 <91><CHAR>[P]  
+ d1 149 d2 0 
+ returning? 0  GA 2
+out
+in
+ this is our first st 
+ d1 <93><CHAR>[P]  d2 <94><INT>[P]  
+ d1 0 d2 161 
+ returning? 0  GA 3
+out
+ a 0 
+ this is our first st 
+ d1 <96><CHAR>[P]  d2 <97><INT>[P]  
+ d1 0 d2 65 
+ returning? 0  GA 4
+ this is our first st 
+ d1 <99><INT>[P]  d2 <100><CHAR>[P]  
+ d1 65 d2 0 
+ returning? 0  GA 5
+ this is our first st 
+ d1 <102><CHAR>[P]  d2 <103><INT>[P]  
+ d1 0 d2 65 
+ returning? 0  GA 6
+DONE: PASS: ./proc_arg_func      :tests      4 :Fail      0 :Pass      4 :Score  100.0% 

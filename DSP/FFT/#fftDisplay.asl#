@@ -1,0 +1,827 @@
+///////////////////////  fft Display //////////////////
+//#define DBPR  <<
+#define DBPR  ~!
+
+
+ Graphic = CheckGwm()
+
+ if (!Graphic) {
+     X=spawngwm()
+  }
+
+//======================================
+proc cfft ( CS , Size ,dir)
+{
+//<<" $_proc $Size\n"
+int js;
+int n_stages;
+int pair_sp =1;
+int inpt;
+int outpt;
+
+int n_grps;
+int n_bflys;
+float ang =0.0;
+float xang =0.0;
+float sang =0.0;
+
+float ca;
+float sa;
+float pi2;
+
+  pi2 = 2.0 *_PI;
+  pair_sp = 1;
+  n_grps = Size/2;
+  n_bflys = 1;
+  int gsi = 1;
+  int gsi2;
+
+cmplx twf;
+cmplx ri_j;
+cmplx ri_k;
+
+//<<"%V $pi2\n";
+  n_stages = log2(Size);
+//<<"%V$n_stages $Size\n"
+  vbitrev(CS,Size);  // check vbitrev works for cmplx  -yes!
+
+
+
+  for (js = 1 ; js <= n_stages ; js++) {
+   inpt = 0;
+
+//   <<"%V $js\n";
+
+     for (kb = 1 ; kb <= n_grps ; kb++) {
+       
+//<<"%V $kb\n"
+         sang = pi2  / (gsi *2);
+	 xang = 0.0;
+        for (lb = 1 ; lb <= n_bflys ; lb++) {
+          ca = cos(xang);
+	  sa = dir * sin(xang);
+	  outpt = inpt + pair_sp;
+
+          twf->Set(ca,sa) ;
+
+          ri_j = CS[inpt];
+	  ri_k = CS[outpt];
+// apply twiddle factor
+          ri_k = ri_k * twf;
+
+          CS[inpt] = ri_j + ri_k ;
+	  CS[outpt] = ri_j - ri_k ;
+
+
+if (inpt >= Size) {
+<<"out of range $inpt\n"
+}
+
+if (outpt >= Size) {
+<<"out of range $outpt\n"
+}
+	  
+          xang += sang;
+          inpt++;
+	 }
+	  inpt += gsi;
+       }
+
+
+    gsi *= 2;
+    pair_sp *= 2;
+    n_grps /= 2;
+    n_bflys *= 2;
+
+  }
+  
+}
+//======================================================
+
+
+proc gsFFT (Rev, Imv, size, dir)
+{
+int ok = 1;
+int js,kb,lb;
+int inpt;
+int outpt;
+int n_grps;
+int n_bflys;
+
+int pair_sp =1;
+int n_stages = log2(size);
+int gsi = 1;
+
+ pi2 = 6.283185307;
+ xang =0.0;
+ sang =0.0;
+ ca;
+ sa;
+ //re1,re2,im1,im2;
+
+  pair_sp = 1;
+  n_grps = size/2;
+  n_bflys = 1;
+
+  //for (int i = 0; i < size; i++) {
+  //  DBP("[%d] Rev %f Imv %f\n",i,Rev[i],Imv[i]);
+  // }
+  //DBP("\n");
+  
+  vBitRev(Rev,size);
+  vBitRev(Imv,size);
+
+
+  // for (int i = 0; i < size; i++) {
+  //  DBP("[%d] Rev %f Imv %f\n",i,Rev[i],Imv[i]);
+  //}
+
+  
+ for (js = 1 ; js <= n_stages ; js++) {
+
+   inpt = 0;
+
+     for (kb = 1 ; kb <= n_grps ; kb++) {
+         sang = pi2  / (gsi*2);
+	 xang = 0.0;
+       for (lb = 1 ; lb <= n_bflys ; lb++) {
+         ca = cos(xang);
+	 sa = dir * sin(xang);
+         outpt = inpt + pair_sp;
+	 //	 DBP("ca %f sa %f\n",ca,sa);
+         // store current for inplace stage update
+   
+	 re1 = Rev[inpt];
+	 im1 = Imv[inpt];
+	 //DBP("inpt %d outpt %d\n",inpt,outpt);
+	 //DBP("re1 %f im1 %f\n",re1,im1);
+         re2 = Rev[outpt];
+	 im2 = Imv[outpt];
+	 //DBP("re2 %f im2 %f\n",re2,im2);
+	 
+// apply twiddle factor W nN  e-j*2pi*n/n
+// complex multiply
+	 
+	 re2 = (Rev[outpt]*ca - Imv[outpt]*sa);
+	 im2 = (Rev[outpt]*sa + Imv[outpt]*ca);
+         //DBP("Twf mul re2 %f im1 %f\n",re2,im2);
+	 
+// sum butterfly inputs
+	 Rev[inpt] = re1 + re2 ;
+	 Imv[inpt] = im1 + im2 ;
+
+	 Rev[outpt] = re1 - re2 ;
+	 Imv[outpt] = im1 - im2 ;
+         //DBP("inpt %f %f\n",Rev[inpt],Imv[inpt]);
+	 //DBP("outpt %f %f\n",Rev[outpt],Imv[outpt]);
+         xang += sang;
+         inpt++;
+       }
+       inpt += gsi;
+    }
+    gsi *= 2;
+    pair_sp *= 2;
+    n_grps /= 2;
+    n_bflys *= 2;
+
+ }
+    return ok;
+}
+//============================================================
+
+
+proc clearArrays()
+{
+ Real = 0.0;
+ Imag = 0.0;
+ Mag = 0.0;
+ Ph = 0.0;
+}
+//==================
+
+ Pi = _PI
+
+<<"%V$Pi \n"
+
+ FFTSZ = 1024
+
+ Sf = 16000.0
+
+ dt = 1.0/Sf
+
+ frq = 100.0
+
+ int Dif = 1; //  or it is decimation in Time
+
+ Smfunc = "Rectangular"
+
+
+int dir = 1;
+
+float TW[]
+
+proc computeFFT()
+{
+
+
+//float TW[FFTSZ];//
+<<"TW $(typeof(TW))\n"
+  clearArrays()
+  
+  dt = 1.0/Sf
+
+  dft = 2*Pi*frq2*dt
+
+  pip = Fgen(FFTSZ,0,dft)
+
+  Real2 = Sin(pip)
+
+  dft = 2*Pi*frq3*dt
+
+  pip = Fgen(FFTSZ,0,dft)
+
+  Real3 = Sin(pip)
+
+  jf = frq1
+
+  sWo(frq1wo,@value,jf,@update)
+  sWo(frq2wo,@value,frq2,@update)
+  sWo(frq3wo,@value,frq3,@update)
+
+  dft = 2*Pi*jf*dt
+
+ //Hzres *= 0.25
+
+  pip = Fgen(FFTSZ,0,dft)
+
+  Real = Sin(pip) + Real2 + Real3
+
+  TW = swindow(Smfunc,FFTSZ)
+
+//<<"$TW\n"
+
+<<"TW $(typeof(TW))\n"
+
+<<"$(typeof(Real))\n"
+
+//  Real *= TW      // Fix should work -- Real will get promoted
+
+  Real  = Real * TW
+
+//<<"$Real \n"
+
+  magsc = minmax(Real)
+
+// <<"$magsc \n"
+
+  sWo(rinwo,@lhbscales,0,magsc[0],FFTSZ,magsc[1])
+  
+ // sWo(rinwo,@scales,0,magsc[0],FFTSZ,magsc[1],1)
+
+//<<" $Real \n"
+
+
+  Imag = Fgen(FFTSZ,0)
+
+  sWo(iminwo,@lhbscales,0,-2,FFTSZ,2)
+
+  magsc = minmax(Imag)
+
+// <<"$magsc \n"
+
+  drawGline(imin_gl)
+
+//<<" $Imag[0:10] \n"
+
+//sWo(allwo,@border,@clear,@clearpixmap)
+
+ sWo(allwo,@border,@clearpixmap)
+
+ drawGline(rein_gl)
+
+//Vdraw(rinwo,Real,1,0.9)
+
+ drawGline(imin_gl)
+
+ //Vdraw(imin,Imag,1,0.9)
+
+ sWo(allwo,@border,@showpixmap)
+
+  Ut = fineTime()
+
+ if (Dif == 1) {
+   fft(Real,Imag,FFTSZ,1) ; // decimation in Freq
+ }
+ 
+ if (Dif == 0)  {
+   fftDit(Real,Imag,FFTSZ,-1) ; // decimation in Time
+ }
+
+    dt1 = fineTimeSince(Ut)
+
+ if (Dif == -1) {
+
+   <<"Using script gsFFT $FFTSZ $(Caz(Real)) \n"
+
+Ut = fineTime()
+
+    gsFFT (Real,Imag, FFTSZ ,dir)
+
+    dt1 = fineTimeSince(Ut)
+}
+
+if (Dif == -2) {
+
+    //Cvec[0] = {0,0};
+    Cvec->setReal(Real);
+
+<<" $(typeof(Cvec)) $(caz(Cvec)) \n"
+    Re2= Cvec->getReal();
+    
+<<" $(typeof(Re2)) $(caz(Re2)) \n"
+
+    I= Cmp(Real,Re2,"!=")
+
+<<"Diff? $I \n"
+
+
+    Cvec->setImag(Imag);
+
+   <<"Using script CFFT $FFTSZ $(Caz(Cvec)) \n"
+
+Ut = fineTime()
+
+    cfft ( Cvec , FFTSZ ,dir)
+
+    dt1 = fineTimeSince(Ut)
+    Real= Cvec->getReal();
+    Imag= Cvec->getImag();
+
+}
+
+<<"Time Taken $dt1\n"
+
+
+
+ //Vdraw(rfout,Real,1,0.9)
+
+  magsc = minmax(Real)
+// <<"$magsc \n"
+  sWo(rfout,@lhbscales,0,magsc[0],FFTSZ,magsc[1])
+
+
+  drawGline(rfout_gl)
+
+  magsc = minmax(Imag)
+// <<"$magsc \n"
+  sWo(imout,@lhbscales,0,magsc[0],FFTSZ,magsc[1])
+  drawGline(imout_gl)
+
+ //Vdraw(imout,Imag,1,0.9)
+
+ Mag = Sqrt (Real * Real + Imag * Imag)
+
+ magsc = minmax(Mag)
+//<<"Mag $magsc \n"
+ sWo(magwo,@lhbscales,0,-100,FFTSZ,magsc[1]*2)
+//<<"$Mag\n"
+ //Vdraw(magwo,Mag,1,0.9)
+
+ drawGline(mag_gl)
+
+ Ph = Atan( Imag/ Real)
+
+ magsc = minmax(Ph)
+
+ sWo(phwo,@lhbscales,0,-3,FFTSZ,3)
+
+// Vdraw(phwo,Ph,1,0.9)
+
+ drawGline(ph_gl)
+
+ sWo(allwo,@showpixmap)
+
+}
+
+
+
+////////////// Window ///////////////////
+
+
+ aw = cWi(@title,"FFT_DEMO",@resize,0.1,0.1,0.8,0.8,0)
+
+<<"%V$aw \n"
+
+  setgw(aw,@hue,"blue",@bhue,"white",@drawon,@pixmapon)
+
+//////////////// Draw Area ////////////////////
+
+
+  rinwo= cWo(aw,@graph,@penhue,"red")
+  rfout= cWo(aw,@graph,@penhue,"black")
+  iminwo= cWo(aw,@graph,@penhue,"orange")
+  imout= cWo(aw,@graph,@penhue,"yellow")
+  magwo= cWo(aw,@GRAPH,@penhue,"blue")
+  phwo= cWo(aw,@GRAPH,@penhue,"green")
+
+ <<" $rin $phwo \n"
+ int allwo[] = {rinwo,iminwo,rfout,imout,magwo,phwo}
+
+
+<<"%V$rinwo $rfout $iminwo $imout\n"
+
+  wo_vtile(allwo,0.1,0.1,0.8,0.9, 0.01)
+
+
+
+  sWo(allwo,@save,@drawon,@pixmapon)
+  sWo(allwo,@clip,0.1,0.1,0.9,0.9,@savepixmap)
+  sWo(allwo,"setmod",1)
+
+
+// name value boxes
+
+     bx = 0.02
+     bX = 0.08
+     by = 0.6
+     bY = 0.85
+
+     sfwo= cWo(aw,@bv,@penhue,"red",@name,"SampleFrq",@value,"$Sf")
+
+     frq1wo= cWo(aw,@bv,@penhue,"blue",@name,"Frq1",@value,"100.0")
+
+     frq2wo= cWo(aw,@bv,@penhue,"green",@name,"Frq2",@value,"440.0")
+
+     frq3wo= cWo(aw,@bv,@penhue,"cyan",@name,"Frq3",@value,"3760.0")
+
+
+     int frqwo[] = {sfwo, frq1wo, frq2wo, frq3wo }
+     int nfrqwo
+     sWo(frqwo,@style,"SVB",@func,"inputValue")
+     wo_vtile(frqwo,bx,by,bX,bY, 0.01)
+     nfrqwo = Csz(frqwo)
+     int ifrqwo = 0  // index
+<<"%V$nfrqwo $(Caz(nfrqwo))\n" 
+
+     bx = 0.92
+     bX = 0.99
+     by = 0.6
+     bY = 0.85
+
+ smwo=cWo(aw,@bs,@name,"SmoothWin",@color,YELLOW_,@resize,bx,by,bX,bY)
+
+ sWo(smwo,@CSV,"Rectangular,Hamming,Hanning,Blackman,Kasier")
+ sWo(smwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,RED_,@STYLE,"SVB", @redraw)
+ sWo(smwo,@fhue,"orange",@clipbhue,"steelblue")
+
+ by -= 0.3
+ bY -= 0.35
+
+ difwo=cWo(aw,@bstate,@name,"Decimation",@color,GREEN_,@resize,bx,by,bX,bY)
+
+ sWo(difwo,@CSV,"In Freq,In Time,Script_FFT,Script_CFFT");
+ sWo(difwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,RED_,@STYLE,"SVB", @redraw);
+ sWo(difwo,@fhue,"orange",@clipbhue,"steelblue");
+
+     bx = 0.1
+     bX = 0.2
+     by = 0.01
+     bY = 0.05
+
+
+ runwo=cWo(aw,@bn,@name,"Compute",@color,LIGHTGREEN_)
+ sWo(runwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,RED_);
+
+ qwo=cWo(aw,@bn,@name,"Quit",@color,RED_)
+ sWo(qwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,RED_);
+
+ int butawo[] = { runwo , qwo }
+
+ wohtile(butawo, 0.2, 0.01, 0.5, 0.09)
+ sWo(butawo,@border,@drawon,@clipborder,@fonthue,BLACK_,@redraw)
+
+
+//  sWo(rin,"save")
+//  sWo(imout,"save")
+//  sWo(rfout,"save")
+
+
+
+
+///////////// Plot ////////////////////
+//setdebug(1,"pline")
+
+setdebug(1)
+
+ float Hzres = 512.0
+ float pip[]
+
+ Sf = 16000.0
+
+ dt = 1.0/Sf
+
+
+ frq = 100.0
+
+ dft = 2*Pi*frq*dt
+ 
+ float Real[]
+ float Imag[]
+
+ float Mag[]
+ float Ph[]
+
+ cmplx Cvec[FFTSZ]
+
+
+ float XV[FFTSZ]
+
+  XV = fgen(FFTSZ,0,1)
+
+   rein_gl = cGl(rinwo,@TY,Real,@color,"red")
+
+   imin_gl = cGl(iminwo,@TY,Imag,@color,"green")
+
+   mag_gl = cGl(magwo,@TY,Mag,@color,"blue")
+
+   rfout_gl = cGl(rfout,@TY,Real,@color,"red")
+
+   imout_gl = cGl(imout,@Ty,Imag,@color,"green")
+
+
+  frq1 = 10.0
+
+
+// mag_gl = cGl(magwo,@type,"XY",@XVEC,XV,@YVEC,Mag,@color,"blue")
+
+   sGl(rein_gl,@ltype,"solid",@usescales,0)
+   sGl(mag_gl,@ltype,"solid")
+
+   ph_gl = cGl(phwo,@TY,Ph,@color,"green")
+
+  frq2 = 440.0
+
+  dft = 2*Pi*frq2*dt
+
+  pip = Fgen(FFTSZ,0,dft)
+
+  Real2 = Sin(pip)
+
+  frq3 = 1760.0
+
+  dft = 2*Pi*frq3*dt
+
+  pip = Fgen(FFTSZ,0,dft)
+
+  Real3 = Sin(pip)
+
+  sWo(frq2wo,@update)
+  sWo(frq3wo,@update)
+
+  sWo(frqwo,@redraw)
+
+
+
+
+////////////////////////GUI/////////////////////////////////////////////////
+
+////////////////////////WONAME CALLBACKS///////////////////////////////////////
+
+proc SampleFrq()
+{
+//
+//    Sf = getWoValue(Woid)
+    Sf = atof(getWoValue(Woid))
+<<"%V$Sf\n"
+    computeFFT()
+}
+
+
+proc Frq1()
+{
+    frq1 = getWoValue(Woid)
+
+<<"%V$frq1 \n"
+
+  computeFFT()
+}
+
+proc Frq2()
+{
+    frq2 = getWoValue(frq2wo)
+    computeFFT()
+}
+
+proc Frq3()
+{
+
+  frq3 = getWoValue(frq3wo)
+  computeFFT()
+}
+
+proc SmoothWin()
+{
+  Smfunc = getWoValue(smwo)
+
+  computeFFT();
+}
+
+
+proc Compute()
+{
+   frq2 += 50;
+   computeFFT();
+}
+
+proc Quit()
+{
+   exitgs();
+}
+
+proc Decimation()
+{
+  dec_mode = getWoValue(difwo)
+  clearArrays()
+<<"%V$dec_mode\n"
+  Dif = -2;
+  if (dec_mode @= "In Freq") {
+       Dif = 1;
+  }
+  if (dec_mode @= "In Time") {
+      Dif = 0;
+  }
+  
+
+
+  if (dec_mode @= "Script_FFT") {
+      Dif = -1;
+  }
+
+  if (dec_mode @= "Script_CFFT") {
+      Dif = -2;
+  }
+
+  <<" %V$Dif\n"
+  //computeFFT()
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+proc processKeys()
+{
+float val
+
+       switch (keyc) {
+
+       case 'R':
+       {
+
+          val = getWoValue(frqwo[ifrqwo])
+//<<"%V$val\n"
+          val += 10
+          sWo(frqwo[ifrqwo],@value,val,@update)
+          
+       }
+       break;
+
+       case 'T':
+       {
+          val = getWoValue(frqwo[ifrqwo])
+          val -= 10
+          sWo(frqwo[ifrqwo],@value,val)
+          sWo(frqwo[ifrqwo],@highlight,1,@update)
+
+       }
+       break;
+
+       case 'S':
+       {
+          ifrqwo++
+
+          if (ifrqwo >= nfrqwo)
+              ifrqwo = 0
+<<"$ifrqwo \n"
+
+          sWo(frqwo,@highlight,0,@redraw)
+          sWo(frqwo[ifrqwo],@highlight,1,@redraw)
+          
+       }
+       break;
+
+       case 'Q':
+       {
+          ifrqwo--
+
+          if (ifrqwo < 0)
+              ifrqwo = nfrqwo-1
+//<<"$ifrqwo \n"
+          sWo(frqwo,@highlight,0,@redraw)
+          sWo(frqwo[ifrqwo],@highlight,1,@redraw)
+       }
+       break;
+
+       case 'h':
+       {
+
+       }
+       break;
+
+       case 's':
+       {
+
+       }
+       break;
+
+      }
+
+// set the values from the Wobs
+      frq1 = getWoValue(frq1wo)
+      frq2 = getWoValue(frq2wo)
+      frq3 = getWoValue(frq3wo)
+      Sf = getWoValue(sfwo)
+
+      computeFFT()
+}
+//---------------------------------------------------------------------
+proc checkEvents()
+{
+
+   E->getEventState(evs)
+
+   Woname = E->getEventWoName()    
+   Evtype = E->getEventType()    
+   Woid = E->getEventWoId()
+   Woproc = E->getEventWoProc()
+   Woaw =  E->getEventWoAw()
+   Woval = getWoValue(Woid)
+   button = E->getEventButton()
+   keyc = E->getEventKey()
+   keyw = E->getEventKeyW()
+
+<<"%V$Woname $Evtype \n"
+
+//   sWo(two,@clear,@texthue,"black",@textr,"%V$Woid\n$Woname\n $button\n $keyc\n $keyw\n$Woval",-0.9,0.3)
+
+/{
+   if (Woid == qwo) {
+    //   deleteWin(vp)
+    //   exit_gs()
+   }
+/}
+
+}
+//----------------------------------------------
+
+// make this a class
+
+float Rinfo[30]
+
+int evs[16];
+
+ E =1
+
+button = 0
+Woid = 0
+Woname = ""
+Woproc = "foo"
+Woval = ""
+Evtype = ""
+int Woaw = 0
+
+int keyc 
+
+keyw = ""
+
+    computeFFT()
+
+    while (1) {
+
+     msg = E->waitForMsg()
+
+     checkEvents()
+
+      if (Evtype @= "KEYPRESS") {
+          processKeys()
+      }
+
+       if (Evtype @= "PRESS") {
+        if (!(Woname @= "")) {
+        DBPR"calling function via $Woname !\n"
+            $Woname()
+        }
+      }
+
+  }
+
+
+STOP!
+
+
+
+///    TBD
+///  add direction of transform option
+///  option to use fft decimation in Freq vs decimation in Time
+///  and a script based FFT version
+///

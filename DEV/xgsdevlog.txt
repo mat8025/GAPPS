@@ -1,0 +1,127 @@
+                               XGS  DEVELOPMENT
+
+04/23/08   -- added wob showRxRy -- need to revise motion/pointer events -- fixed Menu Highlite MC_GC
+
+04/28/08   -- axnum added to setwo --- clipborder one pixel outside drawarea?? axislines on cliparea
+              need drawaxisborder
+
+
+11/18/08   --- restart development on XGS
+           ---  wob  buttons , onoff, state, radio , menu ,text
+
+11/29/08   --- events needs rework --- especially event linked queque
+
+12/02/08   ---  window sweep area release bug
+
+12/26/08   --- interact -WO_GRAPH to send event when clicked
+           --- need menu selection movement while no buttons
+
+12/27/08   --- added Wob::getRxRy send_event_msg -- now sends rx,ry of clicked in Wob
+
+12/28/08   --- sticking key event ?
+
+
+05/01/09   --- update_wo, drawValue -- just update (redraw the value field)   2.7.1
+
+06/11/09   --- reworking events using new, delete TBD check mem leak
+
+
+
+///  Wo function 
+       mFunc
+       asl has name of Wo function --- sets that into  wo's WTF field
+       when wo is activates  usually by click
+       xgs looks up function via hash table and calls that
+       the most recent event wo->cev that activates the wo --- is available
+       this has the info as to x,y button etc
+
+
+       The hash table has been set up with addresses to Wob functions via
+       following instructions in womf_init() ...
+       j = set_womf("ScreenNav");
+       Womf_Table[j].pmf = &Wob::ScreenNav;
+
+       so the lookup via name is relatively quick.
+
+       However once the funcion has been found then a shortcut using ptr to member function
+       will be used.
+
+
+11/22/09  Wo base class - other Wo types are derived Button,Graph, Text ...
+11/23/09  BUG 1 { resize of screen other than 0 -- mouse cursor initial pos is off screen }  
+11/23/09  rework axis_num - autonumber works now
+11/23/09  fhue,bhue,clipfhue,clipbhue   colors in wo area, cliparea
+11/24/09  wrctile -- tiles windows into screen
+11/24/09  why is XGS-ASL comm startup so slow ?
+11/24/09  ASL->GWM error win -- want it to show in screen 15 
+11/28/09  BUG 2 {plotStrInCR  -- bug pixmapstr? FIXED}
+12/02/09  fix BUG 2.1 symbol pixmap bug
+12/02/09  no autoredraw after move/resize ?
+          wo move altered to use llc for rmove 
+12/03/09  fix BUG 3 { clock text missing? }
+          fix BUG 4 { plotline into window -- limited to base wo only -- not in title area }
+          fix BUG 5 { wo move --- uncover background correctly ? }
+          fix BUG 6 { window uncover/pop/push not preserving window image correctly }
+
+          are pixmap draws to Wobs into a pixmap only for that Wob or into pixmap for parent window?
+          check hide_wo , delete_wo ops   
+          move wo while hidden - not working
+
+
+12/28/09  have added ivalue,fvalue to wo - use for alternate wo id in message to ASL - can preset ivalue  
+12/28/09  have activated wo cmf --- interact loop can directly call wo func
+12/29/09  
+02/15/10  need grid lines --- should be thinner than pen
+
+12/25/11  have both a clip region pixmap and an overlying wob pixmap 2.58
+12/25/11  need a socket version - for independent locations of xgs and asl
+12/25/11  fix BUG_7 plot symbols for circles in wrong place - polygons are OK 2.58
+12/25/11  fix BUG_8 windows overlaps 2.58
+
+05/02/13  updated debug (DBPR) in gwm modules
+05/03/13  BUG_9 wo print has the wrong spacing - check wob.font
+
+08/16/14  added/reworked plot threads -- thread_w.cpp -- added PT mutex
+08/17/14  refactor rp params as union -- want to use as monitor for ASL shared memory ops -also redraw in graphic windows
+
+
+///////////////////////////////////////////////////////////////////////////////////////
+08/17/14
+
+    Added plot threads to replace the gwm_switch_board round-robin graphic server -- thread_w.cpp.
+    Refactor of rp struct as union in win.h --- want to use this memory block to monitor processing of graphic operations
+    in ASL (spawned) processes.
+
+    Want to add in sockets --- xgs will listen to 4779 ? for asl clients --- then connect and provide graphics and monitoring.
+
+    ASL icon windows should be tied to launch screen.
+
+    Screen redraw option to tile windows.
+
+
+
+
+    Sockets
+
+
+     Have both xgs and asl sockets working -- as far as transferring txt messages to and fro
+
+     But now having xgs create an ASL monitor window causes xgs to crash ---
+     try creating asl window before the socket thread is created ---
+
+
+
+     add to ASL_options   ASL_USE_SOCK
+
+09/05/2014
+      ASL monitor crash fixed --- needed a plot mutex around the operation since the listen for new 
+      socket clients is another thread - all the X window ops have to operate via the PT mutex
+
+      added intitial handshake message between GWM and asl socket client
+
+      now have to fix the event queque between GWM and socket clients
+
+
+
+
+     

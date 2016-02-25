@@ -1,0 +1,6 @@
+for i in $*
+do
+echo $i 
+cat $i | sed s/vgen\(FLOAT,/vgen\(FLOAT_,/ > $i.bak
+cp $i.bak $i
+done

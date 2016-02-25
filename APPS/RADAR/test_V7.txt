@@ -1,0 +1,11 @@
+
+test_case1   PASS         :: test case full descent then level off
+test_case2   PASS         :: climb level full descent              --- drops to below 1.0 mode for hold
+test_case3   OK?          :: climb level partial descent climb  --- we don't hold flight_phase 
+                             since it nevers gets to negative terriority and we climb back
+test_case4   FAIL         :: staged descent   --- goes to -1 then a further descent causes increase in flight-phase!! 
+                             but want a partial-descent not full then further descent case 
+
+test_case5   PASS         :: level then climb 3 mins the level off  --- stays at 1.0 mode for hold
+test_case6   PASS         ::  descent level 2 mins then climb -- should stay in descent hold until hold time
+test_case7   PASS         ::  descent level 2 mins then climb 4 mins  -- should it move higher in climb phase?

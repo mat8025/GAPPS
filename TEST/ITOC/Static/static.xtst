@@ -1,0 +1,7 @@
+FAIL test <3> @ [18] checkNum(a,A)
+
+FAIL test <6> @ [18] checkNum(a,A)
+
+FAIL test <9> @ [18] checkNum(a,A)
+
+DONE: FAIL: ./static             :tests     10 :Fail      3 :Pass      7 :Score   70.0% 
