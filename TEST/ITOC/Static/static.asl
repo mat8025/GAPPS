@@ -1,7 +1,7 @@
 // test static statement
 
 
-setdebug(1)
+//setdebug(1,"pline")
 
 checkIn()
 
@@ -29,19 +29,20 @@ proc  foo ( x)
 
 
 //<<"%V$k $a $x\n"
-     a++
-     A++
-<<"%V$a $A\n"
+     a++;
+     A++;
+     
+<<"exiting $_proc %V$a $A\n"
 
 }
 
 proc  goo ( x)
 {
-static int a = 14 // does not work for xic
-static int b = 79
+static int a = 14; // does not work for xic
+static int b = 79;
 
 int k;
- k = 2 
+ k = 2; 
 <<" entered $_proc $x\n"
 <<"%V$a\n"
 
@@ -53,11 +54,12 @@ int k;
 
 <<"%V$a  $x\n"
 
-     a++
+     a++;
 
-<<"%V$a $b\n"
+<<"exit $_proc %V$a $b\n"
 
 }
+//==================================
 
 int A = 5;   
 
@@ -81,6 +83,6 @@ int A = 5;
 
  goo(3)
 
-
  checkOut()
+
 stop!

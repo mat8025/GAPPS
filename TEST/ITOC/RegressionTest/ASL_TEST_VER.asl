@@ -21,6 +21,8 @@ today=getDate(1)
 
 <<"$today $(get_version())\n"
 
+cwd=getdir()
+
 Opf=ofw("score_$(date(2,'-'))")
 
 
@@ -1018,10 +1020,11 @@ if ( do_all || do_svar ) {
 
     cart("svar1", "string operations are not always easy" )
 
-
     cart("svar_declare")
 
     cart("svelepr")
+
+    cart("svargetword")
 
 
     updir()
@@ -1302,6 +1305,16 @@ if (lsz > 1) {
 <<"$(date(5)) Modules $n_modules  Tests $rt_tests  Passed $rt_pass  Score %6.3f$pcc Fail %d $(flsz[0]-1) Crash $(lsz[0]-1) $(get_version())\n"
 
 
+fflush(Opf)
+cf(Opf)
+
+chdir(cwd)
+
+!!"pwd"
+
+<<"cp score_$(date(2,'-')) current_score \n"
+
+!!"cp score_$(date(2,'-')) current_score"
 
 STOP()
 
