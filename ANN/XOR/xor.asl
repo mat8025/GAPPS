@@ -323,6 +323,8 @@ Graphic = CheckGwm()
 
   }
 
+
+setPrintGWM(0)
 <<"%V$wid \n"
 
 
@@ -434,3 +436,10 @@ set_si_error(1)
 
 stop!
 
+//////////////////// TBD /////////////////
+
+// Quit/Pause button
+// show activity/bias values -- not just color codes
+// put up color activity code scale
+// (black 0? red 1.0 ?)
+//

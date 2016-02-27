@@ -20,7 +20,7 @@
     cy = 0.2
     cY = 0.95
 
-    gwo=CWo(wid,@GRAPH,@resize,0.15,0.1,0.8,0.5,@name,"XOR",@color,"cyan",@bhue,GREY_)
+    gwo=CWo(wid,@GRAPH,@resize,0.15,0.1,0.8,0.5,@name,"XOR",@color,"cyan",@bhue,WHITE_)
 
 <<"%V$gwo \n"
 
