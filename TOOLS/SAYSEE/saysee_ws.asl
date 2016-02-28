@@ -1,31 +1,41 @@
-
+///////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////  WINDOW SETUP   ///////////////////////////////////////////
 
- Vamp = 5000
+ int nw = 0
+ int allwins[]
+ int nwo = 0;
+ int allwos[]
 
- <<" create TAW \n"
+ Vamp = 32000
 
+<<" create TAW \n"
+
+ setdebug(1,"pline")
  tassw = cWi(@title,"TimeAmp",@scales,0,-Vamp,256,Vamp,@savescales,0)
 
 
  allwins[nw++] = tassw
 
- SetGwindow(tassw,@resize,0.1,0.1,0.6,0.48,0)
- SetGwindow(@pixmapon,"drawoff",@hue,"blue",@clip,0.01,0.01,0.99,0.99)
- setgw("clear","redraw","save")
+ sWi(tassw,@resize,0.1,0.05,0.8,0.49,0)
+ sWi(tassw,@pixmapon,@drawoff,@hue,BLUE_,@clip,0.01,0.01,0.99,0.99)
+ sWi(tassw,@clear,@redraw,@save,@savepixmap)
 
 <<"%V$tw $nw $allwins \n"
+<<" create SGW \n"
 
 
-     <<" create SGW \n"
  sgw = cWi(@title,"SG",@scales,0,0,800,140,@savescales,0)
- SetGwindow(@resize,0.1,0.50,0.65,0.95,0)
- SetGwindow(@pixmapon,@drawoff,@clear,@redraw,@save)
-
-
+ sWi(sgw,@resize,0.1,0.50,0.8,0.95,0)
+ sWi(sgw,@pixmapon,@drawoff,@clear,@redraw,@save,@savepixmap)
  allwins[nw++] = sgw
 
-<<"%V $sgw $nw $allwins \n"
+ cntrlw = cWi(@title,"Control")
+ sWi(cntrlw,@resize,0.82,0.10,0.95,0.95,0)
+ sWi(cntrlw,@pixmapon,@drawoff,@clear,@redraw,@save,@savepixmap)
+
+ allwins[nw++] = cntrlw
+
+<<"%V $tassw $sgw $nw $allwins \n"
 
      wo_wd = 0.2
      wox = 0.1
@@ -36,105 +46,186 @@
 
   Prop("Window Objects")
 
-  sgtogwo=cWo(sgw,"TB_BUTTON",@resize,0.02,woy,0.07,woY)
-
-  sWo(sgtogwo,@name,"SG",@color,"blue",@penhue,"red",@symbol,"triangle")
-
+  sgtogwo=cWo(sgw,TB_BUTTON_,@resize,0.02,woy,0.07,woY)
+  sWo(sgtogwo,@name,"SG",@color,BLUE_,@penhue,RED_,@symbol,TRIANGLE_)
   sWo(sgtogwo,@help,"toggle SG display",@redraw,@drawon)
 
-  sgwo=cWo(sgw,"GRAPH",@resize,0.05,0.35,0.95,0.70)
-  sWo(sgwo,@scales,0,-Vamp,1024,Vamp)
+ allwos[nwo] = sgtogwo
+
+<<"%V $nwo $sgtogwo  $allwos \n"
+//iread()
+ nwo = -1;
+ allwos[nwo++] = sgtogwo
+<<"%V $nwo $sgtogwo  $allwos \n"
+
+//iread()
+
+  sgwo=cWo(sgw,GRAPH_,@resize,0.05,0.35,0.95,0.70)
+  sWo(sgwo,@scales,0,0,600,100)
+  sWo(sgwo,@hue,BLACK_,@name,"sgraph",@pixmapon,@drawon ,@redraw,@save,@savepixmap)
+  sWo(sgwo,@clip,0.01,0.01,0.99,0.99, @clipborder,RED_)
+
+ allwos[nwo++] = sgwo
+
+//allwos[nwo] = sgwo
+ //nwo++;
+
+<<"%V $nwo $sgwo  $allwos \n"
 
 
-  sWo(sgwo,@hue,"black",@name,"sgraph",@pixmapon,@drawoff,@redraw,@save)
-
-  sWo(sgwo,@clip,0.01,0.01,0.99,0.99, @clipborder,"black")
 
 
-  fewo=cWo(sgw,"GRAPH",@resize,0.05,0.05,0.95,0.33,@scales,0,-0.1,700,1.1)
- 
-  sWo(fewo,@hue,"red",@name,"rmswave",@redraw,"save",@drawoff,@pixmapon)
-  sWo(fewo,@clip,0.01,0.01,0.99,0.99, @clipborder,"black")
+  fewo=cWo(sgw,GRAPH_,@resize,0.05,0.05,0.95,0.33,@scales,0,-0.1,50,10.1)
+  sWo(fewo,@hue,RED_,@name,"rmswave",@redraw,@save,@drawoff,@pixmapon,@savepixmap)
+  sWo(fewo,@clip,0.01,0.01,0.99,0.99, @clipborder,GREEN_)
+
+ allwos[nwo++] = fewo
+
+<<"%V $nwo $fewo  $allwos \n"
 
 
 
-  tawo=cWo(sgw,"GRAPH",@resize,0.05,0.71,0.95,0.99,@scales,0,-Vamp,1024,Vamp)
-  sWo(tawo,@hue,"black",@name,"tawave",@drawoff,@redraw,@save)
-  sWo(tawo,@clip,0.01,0.01,0.99,0.99, @clipborder,"black")
+  tawo=cWo(sgw,GRAPH_,@resize,0.05,0.71,0.95,0.99,@scales,0,-Vamp,1024,Vamp)
+  sWo(tawo,@hue,BLACK_,@name,"tawave",@drawoff,@redraw,@save,@savepixmap)
+  sWo(tawo,@clip,0.01,0.01,0.99,0.99, @clipborder,BLACK_)
+
+ allwos[nwo++] = tawo
+
+<<"%V $nwo $tawo  $allwos \n"
 
 
-  msg_wo=cWo(tassw,"TB_BUTTON",@resize,0.97,0.1,0.99,0.25,@name,"MSG",@color,"blue",@penhue,"red","symbol","triangle")
 
-//rms_wo=cWo(tassw,"BUTTON_SYM",@resize,0.1,0.1,0.13,0.25,@name,"RMS",@color,"blue",@penhue,"red","symbol","triangle")
+  msg_wo=cWo(tassw,TB_BUTTON_,@resize,0.97,0.1,0.99,0.25,@name,"MSG",@color,BLUE_,@penhue,RED_,@symbol,TRIANGLE_)
+  sWo(msg_wo,@help,"msg value",@drawon,@pixmapoff,@redraw, @style, "SVO")
 
-  sWo(msg_wo,@help,"msg value","drawon","pixmapoff",@redraw, @style, "SVO")
+ allwos[nwo++] = msg_wo
+ <<"%V $nwo $msgwo  $allwos \n"
 
 
-  tt_wo=cWo(tassw,"BV",@resize,0.86,0.91,0.99,0.99,@name,"TT",@color,"white",@penhue,"red","value",0)
+
+  rms_wo=cWo(tassw,BSYM_,@resize,0.1,0.1,0.13,0.25,@name,"RMS",@color,BLUE_,@penhue,RED_,@symbol,TRIANGLE_)
+
+ allwos[nwo++] = rms_wo
+
+<<"%V $nwo $rms_wo  $allwos \n"
+
+
+tt_wo=cWo(tassw,BVALUE_,@resize,0.86,0.91,0.99,0.99,@name,"TT",@color,WHITE_,@penhue,RED_,"value",0)
   sWo(tt_wo,@help,"total time","drawon",@redraw,@style, "SVO")
 
-  rt_wo=cWo(tassw,"BV",@resize,0.75,0.91,0.85,0.99,@name,"RecordT",@color,"blue",@penhue,"black","value",0)
-  sWo(rt_wo,@help,"rec time","drawon","pixmapoff",@redraw, @style, "SVO")
+ allwos[nwo++] = tt_wo
+<<"%V $nwo $tt_wo  $allwos \n"
 
-  st_wo=cWo(tassw,"BV",@resize,0.65,0.91,0.73,0.99,@name,"Power",@color,"blue",@penhue,"black","value",0)
-  sWo(st_wo,@help,"power","drawon","pixmapoff",@redraw, @style, "SVO")
 
-     wox = woX + 0.05
+
+rt_wo=cWo(tassw,BVALUE_,@resize,0.75,0.91,0.85,0.99,@name,"RecordT",@color,BLUE_,@penhue,BLACK_,"value",0)
+  sWo(rt_wo,@help,"rec time","drawon",@pixmapoff,@redraw, @style, "SVO")
+
+ allwos[nwo++] = rt_wo
+<<"%V $nwo $rt_wo  $allwos \n"
+
+
+st_wo=cWo(tassw,BVALUE_,@resize,0.65,0.91,0.73,0.99,@name,"Power",@color,BLUE_,@penhue,BLACK_,"value",0)
+  sWo(st_wo,@help,"power","drawon",@pixmapoff,@redraw, @style, "SVO")
+
+ allwos[nwo++] = st_wo
+<<"%V $nwo $st_wo  $allwos \n"
+
+wox = woX + 0.05
      woX = wox + wo_wd/3
 
 
 
-  tagwo=cWo(tassw,"GRAPH",@resize,0.05,0.05,0.54,0.90)
-  sWo(tagwo,"hue","blue",@name,"tawave",@redraw,"save","drawoff","pixmapon")
-  sWo(tagwo,@clip,0.01,0.01,0.99,0.99, "clipborder","black")
-  sWo(tagwo,@scales,0,-Vamp,1024,Vamp)
+  tagwo=cWo(tassw,GRAPH_,@resize,0.05,0.05,0.54,0.90)
+  sWo(tagwo,@hue,BLUE_,@name,"tawave",@redraw,@save ,@drawoff,@pixmapon,@savepixmap)
+  sWo(tagwo,@clip,0.01,0.01,0.99,0.99, @clipborder,BLACK_)
+  sWo(tagwo,@scales,0,-Vamp,1024,Vamp,@redraw,@save,@pixmapon,@savepixmap)
+
+ allwos[nwo++] = tagwo
+
+<<"%V $nwo $tag_wo  $allwos \n"
 
 
+  TF_wo=cWo(tassw,TB_BUTTON_,@resize,0.8,woy,0.87,woY,@name,"TF",@color,BLUE_,@symbol,TRIANGLE_)
+  sWo(TF_wo,@help,"toggle FIR convolve",@redraw,@pixmapon)
+
+ allwos[nwo++] = TF_wo
+
+<<"%V $nwo $TF_wo  $allwos \n"
 
 
-  TF_wo=cWo(tassw,"TB_BUTTON",@resize,0.8,woy,0.87,woY,@name,"TF",@color,"blue","symbol","triangle")
-  sWo(TF_wo,@help,"toggle FIR convolve",@redraw,"pixmapon")
-
-  TA_wo=cWo(tassw,"TB_BUTTON",@resize,0.75,woy,0.79,woY,@name,"TA",@color,"yellow","symbol","triangle")
+  TA_wo=cWo(tassw,TB_BUTTON_,@resize,0.75,woy,0.79,woY,@name,"TA",@color,YELLOW_,@symbol,TRIANGLE_)
   sWo(TA_wo,@help,"toggle TA display",@redraw)
 
+ allwos[nwo++] = TA_wo
+
+<<"%V $nwo $TA_wo  $allwos \n"
 
 
-  specwo=cWo(tassw,"GRAPH",@resize,0.55,0.05,0.95,0.90)
-  sWo(specwo,"hue","red",@name,"specslice",@redraw,"save","pixmapon")
-  sWo(specwo,@clip,0.01,0.01,0.99,0.99, "clipborder","black")
-  sWo(specwo,@scales,0,-20,128,140)
+  specwo=cWo(tassw,GRAPH_,@resize,0.55,0.05,0.95,0.90)
+  sWo(specwo,@hue,RED_,@name,"specslice",@redraw,@save,@pixmapon,@savepixmap)
+  sWo(specwo,@clip,0.01,0.01,0.99,0.99, @clipborder,BLACK_)
+  sWo(specwo,@scales,0,-20,128,140,@redraw,@save,@pixmapon,@savepixmap)
 
-     wox = woX + 0.05
-     woX = wox + wo_wd/2
+ allwos[nwo++] = specwo
 
-  FREQ_wo=cWo(tassw,"TB_MENU",@resize,0.1,woy,0.2,woY,  @color,"yellow", @style, "SVO", "drawon")
-  sWo(FREQ_wo,@help,"Set Freq",@name,"Freq",@penhue,"black", @func, "wo_menu", @menu,"8000,12000,16000", "value", "12000")
-
-  smw_wo=cWo(tassw,"TB_MENU",@resize,0.21,woy,0.32,woY,@name,"SMW", @color,"yellow", @style, "SVO", @drawon)
-
-  sWo(smw_wo,@penhue,"black",@help,"smoothing window type",@func,"wo_menu",@menu,"Hanning,Kaiser,Hamming", @value, "Hanning",  @redraw)
-
-     wox = woX + 0.05
-     woX = wox + wo_wd
+<<"%V $nwo $spec_wo  $allwos \n"
 
 
+  wox = woX + 0.05
+  woX = wox + wo_wd/2
 
-  CU_wo=cWo(tassw,"TB_BUTTON",@resize,0.02,woy,0.08,woY,@name,"CU",@color,"white",@penhue,"black","symbol","triangle")
+  FREQ_wo=cWo(cntrlw,WOMENU_,@resize,0.1,0.8,0.2,0.9,  @color,YELLOW_, @style, "SVO", @drawon)
+  
+  sWo(FREQ_wo,@help,"Set Freq",@name,"Freq",@penhue,BLACK_, @func, "wo_menu", @menu,"8000,12000,16000", @value, "12000")
+
+ allwos[nwo++] = FREQ_wo
+
+<<"%V $nwo $FREQ_wo  $allwos \n"
+
+
+  smw_wo=cWo(cntrlw,WOMENU_,@resize,0.3,0.8,0.42,0.9,@name,"SMW", @color,YELLOW_, @style, "SVO", @drawon)
+
+  sWo(smw_wo,@penhue,BLACK_,@help,"smoothing window type",@func, "wo_menu", @menu,"Hanning,Kaiser,Hamming", @value, "Hanning",  @redraw)
+
+ allwos[nwo++] = smw_wo
+
+<<"%V $nwo $smw_wo  $allwos \n"
+
+
+   wox = woX + 0.05
+   woX = wox + wo_wd
+
+  CU_wo=cWo(tassw,TB_BUTTON_,@resize,0.02,woy,0.08,woY,@name,"CU",@color,WHITE_,@penhue,BLACK_,@symbol,TRIANGLE_)
 
   sWo(CU_wo,@help,"toggle TA display",@redraw)
 
-  SS_wo=cWo(sgw,"TB_BUTTON",@resize,0.02,woy,0.07,woY,@name,"SS",@color,"yellow",@penhue,"black",@symbol,"triangle")
+
+ allwos[nwo++] = CU_wo
+
+<<"%V $nwo $CU_wo  $allwos \n"
+
+
+
+  SS_wo=cWo(sgw,TB_BUTTON_,@resize,0.02,woy,0.07,woY,@name,"SS",@color,YELLOW_,@penhue,BLACK_,@symbol,TRIANGLE_)
 
   sWo(SS_wo,@help,"toggle SS display",@redraw)
 
-  <<" $allwins[*] \n"
+ allwos[nwo++] = SS_wo
 
-  SetGwindow(allwins,"woredrawall")
+<<"%V $nwo $SS_wo  $allwos \n"
 
+
+<<" $allwins[*] \n"
+
+  sWi(allwins,@woredrawall)
 
   <<"Window Setup for saysee DONE\n"
   
+<<" all_wos $nwo  $allwos \n"
 
+
+//iread()
+ setdebug(0)
 
 //////////////////////////////////////////////////////////////////////////////////////

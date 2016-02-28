@@ -82,6 +82,7 @@ proc getNpixs()
     bufend = nxpts - FFTSZ
 
    return nxpixs
+   
 }
 //-----------------------------
 
@@ -195,7 +196,7 @@ proc computeSpecandPlot(rtb , rtf)
    else {
      pixstrip[1][::] = round(v_range(v_zoom(powspec,ncb),-10,100,0,ng))
 
-     plotPixRect(sgwo, pixstrip, Gindex, xp,0, 2,1)
+     plotPixRect(sgwo, pixstrip, Gindex, xp,0,2,1)
      //sWo(commwo,@clear,@textr," $tx $frames \n",0.1,0.5)
    }
 

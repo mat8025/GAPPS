@@ -437,7 +437,7 @@ set_si_error(1)
 stop!
 
 //////////////////// TBD /////////////////
-
+//
 // Quit/Pause button
 // show activity/bias values -- not just color codes
 // put up color activity code scale

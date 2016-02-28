@@ -1,13 +1,30 @@
-// must specifically open libraries if compiled version is used
+///
+/// SAYSEE
+///
 
 
-OpenDll("audio","image","stat")
+
 
 // swap these to switch  debug prints
-#define DBPR  <<
-//#define DBPR  ~! 
+//#define DBPR  <<
+#define DBPR  ~! 
 
-PI_ = 4.0 * atan(1.0)
+
+
+
+int see_ta_wave = 1
+int see_spec_slice = 1
+int see_features = 0
+int see_sg = 1
+int do_fir = 0
+int see_ta_env = 0
+int mix_signal = 0
+int sp_process = 1
+
+
+float last_secs = 0.0;
+
+setPrintGwm(0)
 
 
 proc Prop( what )
@@ -23,11 +40,12 @@ Graphic = CheckGwm()
 // overide with command line
  if (! Graphic) {
    SpawnGWM()
+   Graphic = 1;
   }
 
 
 
-SetDebug(1)
+SetDebug(0)
 
 
 int FFTSZ = 256
@@ -86,7 +104,7 @@ DBPR" $(Caz(RmsTrk)) \n"
 
 //////////////////////////////////////////////////////////
 
-float Gain = 2.5;
+float Gain = 1.0;
 
 last_rbv = 0
 
@@ -103,12 +121,11 @@ int wb
   dorec = 0
   mvt = 0
 
-//DBPR" %V $mv $spi \n"
-
-
+DBPR" %V $mv $spi \n"
+  
   if (mv > SpeechThres) {
 
-   SetGwob(st_wo,"color","yellow","value","%6.2f$mv","redraw")
+   SWo(st_wo,"color","yellow","value","%6.2f$mv",@redraw)
 
    wb = spi / recblksz
 
@@ -143,18 +160,19 @@ DBPR"\n $dorec  $mv $wb  $wbs $wbe ---> vox \n"
 
   }
   else {
-   SetGwob(st_wo,"color","blue")
-   SetGwob(st_wo,"value","%6.2f$mv","redraw")
-   SetGwob(rt_wo,"color","blue")
-   SetGwob(rt_wo,"value",Tim->rsecs,"redraw")
+   SWo(st_wo,"color","blue")
+   SWo(st_wo,"value","%6.2f$mv",@redraw)
+   SWo(rt_wo,"color","blue")
+   SWo(rt_wo,"value",Tim->rsecs,@redraw)
   }
 
 //DBPR" return %v $dorec \n"
 
      return dorec
 }
-
-
+//======================================================================
+//Tengo que esforzarse más para avanzar hacia mi objetivo
+int smic_factor = 0x5a5a // ? alters mic gain via mixer device /dev/mixer1
 
 proc RecBuff()
 {
@@ -162,29 +180,36 @@ proc RecBuff()
 
    tid = GthreadGetId()
 
-DBPR" Start Recording ! session fd $pcmfd \n"
+<<" Start Recording ! session fd $pcmfd \n"
 
    dt=FineTimeSince(T,1)
 
-   SetSoundParams(dspfd, mixfd, Freq, 1 )
+   SetSoundParams(dspfd, mixfd, Freq, 1 );
+   getSoundParams(dspfd,mixfd);
+
+<<"setRecord\n"
+   setRecordParams(dspfd,mixfd, Freq,1, smic_factor);
+   getSoundParams(dspfd,mixfd);
 
 // set recordstart time
+// this record forever routine
+// has to periodically
+// allow other threads to run
 
-     eret = RecordBuffer(Sbuf, dspfd, Nsamps, 1,  RbKey , pcmfd)
 
-//   eret = RecordBuffer(Sbuf, dspfd, Nsamps, 1,  RbKey )
+  eret = RecordBuffer(Sbuf, dspfd, Nsamps, 1,  RbKey , pcmfd)
 
 
    if (eret < 0) {
      DBPR" Error in Record Setup !! \n"
    }
 
-DBPR" Done Recording ! \n"
+   DBPR" Done Recording ! \n"
    
    GthreadExit(tid)
 
 }
-
+//============================================
 
 proc FiltBuff()
 {
@@ -204,7 +229,7 @@ proc FiltBuff()
    int trec = 0
    mode = 2
 
-       //  RbKey[RBOP] = 1
+   //  RbKey[RBOP] = 1
 
    RbKey[RBOP] = 0 // just copy
 
@@ -217,6 +242,7 @@ proc FiltBuff()
 
    GthreadExit(tid)
 }
+//====================================================
 
 proc MixSignal()
 {
@@ -224,7 +250,7 @@ proc MixSignal()
 
 //  DBPR" $Ysig[0:10] \n"
 
-       Ysig = Sin(Ysig * cf * 2.0 * PI_ ) * 500
+       Ysig = Sin(Ysig * cf * 2.0 * _PI) * 500
 
 //  DBPR" $Ysig[0:10] \n"
 
@@ -239,13 +265,13 @@ proc MixSignal()
           cf_inc *= -1
        }
 }
-
+//====================================================
 
 
 // use FineTime to pick where to display
 // circular buffer
 
-int ncb = 96 //  each as a vertical pixel in SG window
+int ncb = 128 // was 96 each as a vertical pixel in SG window
 
 uchar pixstrip[4][ncb]
 
@@ -253,8 +279,8 @@ uchar pixstrip[4][ncb]
 int sgx = 50
 
 
+float SpeechThres = 1.0 // adaptive?
 
-float SpeechThres = 2.0
 
 float cf = 440
 cf_inc = -2.0
@@ -297,14 +323,20 @@ Class Timekeeper
 
    syncsecs = last_t + hrti
    lags = syncsecs - dsecs   
-
+<
    catchup = (dsecs - syncsecs)
 
    if (dsecs < syncsecs) {
 //DBPR" ahead by $lags \n"
-     setgwob(CU_wo,"color","green","penhue","yellow","redraw")
-     sleep(lags * 0.8)
-     dsecs = syncsecs
+
+     sWo(CU_wo,"color","green","penhue","yellow",@redraw);
+//<<"%V$lags $(typeof(lags))\n"     
+
+     sleep(lags * 0.8);
+//<<"In update sleep $lags \n"
+
+
+     dsecs = syncsecs;
    }
 
      if ( catchup < 5.5) {
@@ -313,7 +345,7 @@ Class Timekeeper
      }
      else {
        skipsig += catchup
-       setgwob(CU_wo,"color","red","redraw")
+       sWo(CU_wo,"color","red",@redraw)
 //DBPR" skip ahead $skipsig \n"
      }
 
@@ -321,11 +353,11 @@ Class Timekeeper
 
    last_t = dsecs
 
-<<"%V$st $(typeof(st)) $nsecs $last_t $Freq\n"
+//<<"%V$st $(typeof(st)) $nsecs $last_t $Freq\n"
 
-   st = cast( (last_t - 0.5) * Freq) % (nsecs * Freq)), INT)
+   st = (round((last_t - 0.5) * Freq)) % (nsecs * Freq));
    
-<<"%V$st $(typeof(st)) $nsecs $last_t $Freq\n"
+//<<"%V$st $(typeof(st)) $nsecs $last_t $Freq\n"
 
    return st
 
@@ -359,17 +391,23 @@ float powspec[]
 
 
 int ScrollX = 600
+int ScrollY = 130
+
+
 
 
 
 proc DisplayBuff()
 {
+
 // display thread
 
-//  SetPCW("writepic")
 
   tid = GthreadGetId()
-  int slen = 4096
+
+
+  int slen = 4096 * 1;
+  
   int sinc = 1000
   int st = 0;
   int end = slen
@@ -378,11 +416,10 @@ proc DisplayBuff()
   int jpx = 100
   uint dp_loop =0
 
-
-
   while (1) {
 
     st = Tim->update()
+    
     //st = 0
     
 //DBPR" %v $st \n"
@@ -394,14 +431,14 @@ proc DisplayBuff()
 // need get correct blocks from ring buffer
 
    st -= slen
-<<"%V$st $(typeof(st)) \n"
+//<<"%V$st $(typeof(st)) \n"
    if (st < 0) {
        st = 0
    }
 
    end = st + slen
 
-   sWo(tt_wo,"value","%6.2f$Tim->dsecs","redraw")
+   sWo(tt_wo,"value","%6.2f$Tim->dsecs",@redraw)
 
 // lets use RbKey - last Recorded buffer
 // check has this time window been processed ??
@@ -422,7 +459,8 @@ DBPR"%V$st $end $Gain \n"
 
     rmsv = RMS(YS)
     dbv[0] = 0.0
-//DBPR" %V$rmsv \n"
+    
+DBPR" %V$rmsv \n"
 
     if (rmsv > 0.0) {
       dbv[0] = 10*log10(rmsv) -20
@@ -442,11 +480,25 @@ DBPR"%V$st $end $Gain \n"
 
     ZxTrk->ShiftL(zxv[0])
 
-    mv = Mean(RmsTrk)
+    mv = Mean(RmsTrk)*20.0
     sz = Caz(RmsTrk)
+
+   if ((dp_loop % 4 ) == 0) {
+    if (mv > 0.11) {
+   sWo(fewo,@ClearPixMap)
+     drawGline(rmsgl)
+   sWo(fewo,@showPixMap)     
+    }
+//<<"$dp_loop %V   $sz  $mv $fewo\n"
+//<<" $RmsTrk[0:10] \n"
+    }
 
 // DBPR" %V     $sz  $mv \n"
 // DBPR" $RmsTrk \n"
+
+
+
+
 //  mix in signal
 
     if (mix_signal) {
@@ -458,9 +510,11 @@ DBPR"%V$st $end $Gain \n"
 //DBPR"%V $Wlen $iend $fftend \n"
 //   real = YS[0:fftend] * swin
 
-   real = YS[0:fftend] 
-   zxv[0] = ZC(real,Zxthres)
+   real = YS[0:fftend]
 
+////////////// RMS ////////////////////
+
+   zxv[0] = ZC(real,Zxthres)
    ti = 0
    tas = 0.004
    tac = 20
@@ -479,29 +533,40 @@ DBPR"%V$st $end $Gain \n"
     dbv[0] = 10*log10(rv) -20
     }
 
+///////////////////////////////////////
+
    real *= swin
 
-DBPR" %6.4f$Tim->dsecs $lags $Tim->skipsig $hl $rmsv $dbv[0] Db $mv %d  DBPR $RbKey[*] >>\r"
+    if ((Tim->dsecs - last_secs)  > 0.25) {
 
+<<" %6.4f$Tim->dsecs $lags $Tim->skipsig $hl $rmsv $dbv[0] Db $mv %d   $RbKey[*] >>\r"
+
+    last_secs = Tim->dsecs ;
+    }
    end = st + Wlen
 
-
 //DBPR" imag sz $(Cab(imag)) \n"
+
+
    ist  = Wlen/2 
    iend = ist + Wlen -1
 
-   imag = YS[ist:iend] 
+///////// ZC ///////////////////////////
 
-   zxv[1] = ZC(imag,Zxthres)
+    imag = YS[ist:iend] 
+    zxv[1] = ZC(imag,Zxthres)
 
-    iv = Rms(imag)
-    dbv[1] = 0
-    if (iv > 0) {
-   dbv[1] = 10*log10(iv) -20
-    }
+      iv = Rms(imag);
+       dbv[1] = 0;
+      
+      if (iv > 0) {
+       dbv[1] = 10*log10(iv) -20;
+      }
 
     mm = MinMax(imag  * tas)
     taxyvec[5,7] = mm + tac
+
+////////////////////////////////////////
 
     imag *=  swin
 
@@ -518,48 +583,58 @@ DBPR" %6.4f$Tim->dsecs $lags $Tim->skipsig $hl $rmsv $dbv[0] Db $mv %d  DBPR $Rb
 
    powspec= real[1:endspec] 
 
-
+//<<"$powspec \n"
 
 //ttyin()
 
-   if ((mv > SpeechThres) || ((dp_loop % 10) == 0)) {
+
+ //mv += 0.11;
+//<<"%V$mv \n"
+
+ mv += 0.001
+
+ if ((mv >= SpeechThres) || ((dp_loop % 10) == 0)) {
 
    if (see_ta_wave) {
-      setgwob(tagwo,@ClearPixMap)
-      DrawY(tagwo,YS,0,1)
-      setgwob(tagwo,@ShowPixMap)
+      sWo(tagwo,@ClearPixMap)
+         DrawY(tagwo,YS,0,0.5)
+      sWo(tagwo,@ShowPixMap)
    }
 
 
-  if (see_spec_slice) {
-      if ((dp_loop % 2 ) == 0) {
-         setgwob(specwo,"ClearPixMap")
+   if (see_spec_slice) {
+     // if ((dp_loop % 2 ) == 0) {
+         sWo(specwo,@ClearPixMap)
          DrawY(specwo,powspec,0)
-         setgwob(specwo,"ShowPixMap")
-      }
-  }
+         sWo(specwo,@ShowPixMap)
+     // }
+    }
 
   }
 
-/////////////////  RECORD  ///////////////////////////////
+  ////////////  RECORD  ///////////////////////////////
   
 
    mvt = RecVox( mv, st) 
 
 DBPR" %V$mvt   $see_sg \r"
 
-  if ( Graphic && mvt ) {
+//<<" %V$mvt $see_sg \r"
+
+
+//<<"%V$sp_process $mvt $see_sg\n"
+
+if (  mvt ) {
 
 // make pixstrip [4][ncb]
 
    if (sp_process) {
 
+     pixstrip[0][::] = Round(vRange(vZoom(powspec,ncb),20,100,0,tgl))
 
-   pixstrip[0][::] = round(v_range(v_zoom(powspec,ncb),20,100,0,tgl))
+     powspec= imag[1:endspec] 
 
-   powspec= imag[1:endspec] 
-
-   pixstrip[1][::] = round(v_range(v_zoom(powspec,ncb),20,100,0,tgl))
+     pixstrip[1][::] = Round(vRange(vZoom(powspec,ncb),20,100,0,tgl))
   
    ki = iend
    ji = ki + FFTSZ-1
@@ -601,12 +676,11 @@ DBPR" %V$mvt   $see_sg \r"
 
    spec(real,imag,FFTSZ,1)
 
-   powspec= real[1:endspec]   // CHECK --- orig did not do this
-
+   powspec= real[1:endspec];   // CHECK --- orig did not do this
 
    pixstrip[2][::] = round(v_range(v_zoom(powspec,ncb),20,100,0,tgl))
 
-   powspec= imag[1:endspec] 
+   powspec= imag[1:endspec] ;
 
    pixstrip[3][::] = round(v_range(v_zoom(powspec,ncb),20,100,0,tgl))
 
@@ -623,15 +697,24 @@ DBPR" %V$mvt   $see_sg \r"
 
 
    if (see_sg) {
-//   PlotPixRect(sgwo, Transpose(pixstrip), ScrollX,97, 1)
-PlotPixRect(sgwo, Transpose(pixstrip), Gindex,ScrollX,97, 1)
-//     PlotPixRect(sgwo, pixstrip, Gindex, ScrollX, 0, 2,1)
-  
-   setgwob(sgwo,"scroll",4,0,"store")
+
+//<<"see_sg $pixstrip \n"
+
+//<<"$pixstrip \n"
+
+       //plotPixRect(sgwo, Transpose(pixstrip), Gindex,ScrollX, ScrollY, 1)
+
+plotPixRect(sgwo, pixstrip, Gindex,ScrollX, 0, 2,1)
+
+
+     //sWo(sgwo,@scroll,4,0,@store)
+
+      sWo(sgwo,@scrollclip,1,4,@store)
+
    }
 
    if (see_ta_env) {
-   setgwob(tawo,"hue","red","plotilines",taxyvec,"scroll",4,0,"store","pixmapon")
+     //sWo(tawo,"hue","red","plotilines",taxyvec,"scroll",4,0,"store","pixmapon")
    }
 
 // plotpoints
@@ -646,9 +729,10 @@ PlotPixRect(sgwo, Transpose(pixstrip), Gindex,ScrollX,97, 1)
 
 //DBPR" $powxyvec[*] \n"
 
-   setgwob(fewo,@hue,"red",@plotilines,powxyvec)
+   //sWo(fewo,@hue,"red",@plotilines,powxyvec)
 
-//   SetGwob(rms_wo,"move",0.1,dbv/20 )
+   //sWo(rms_wo,@move,0.1,dbv/20 )
+   
 //DBPR" %V $dbv1  \n"
 
    zxs = 50
@@ -659,27 +743,30 @@ PlotPixRect(sgwo, Transpose(pixstrip), Gindex,ScrollX,97, 1)
 
 //DBPR" $(Caz(zxxyvec)) %V $zxxyvec \n"
 
-   setgwob(fewo,"hue","blue","plotilines",zxxyvec)
+   //sWo(fewo,"hue","blue",@plotilines,zxxyvec)
    
 // ok write out vox file
 
-   setgwob(fewo,"scroll",4,0,"store","border")
+   //sWo(fewo,@scrollclip,4,0,@store,"border")
 
    }
 
    Tim->Rec()
 
-   SetGwob(rt_wo,"color","red","value",Tim->rsecs,"redraw")
+   SWo(rt_wo,"color","red","value",Tim->rsecs,@redraw)
 
    }
 
    dp_loop++
+   
+//   <<"%V$dp_loop \n"
+   
  }
 
    GthreadExit(tid)
 
 }
-
+//=========================================
 
 
 exit_see_wave = 0
@@ -689,9 +776,8 @@ msg = "xx"
 proc CheckMsg()
 {
 
-//  SetPCW("writepic")
-
- tid = GthreadGetId()
+// tid = GthreadGetId()
+ 
 int mloop = 0
 // 
     if (do_fir ) {
@@ -699,14 +785,13 @@ int mloop = 0
          RbKey[RBOP] = 0
         } 
 
-  while (1) {
+<<" $_proc $msg \n";
 
-     msg = MessageRead(Minfo)
-     mloop++
-
-     if ( !scmp(msg,"NO_MSG",6) ) {
 
        Mword=Split(msg)
+
+<<"$Mword \n"
+
 
        mlen = slen(msg)
      
@@ -727,7 +812,8 @@ int mloop = 0
           DBPR" toggle %v $see_ta_wave \n"
         }
 
-       if (scmp(msg_name,"s",1) || (msg_name @= "SS")) {
+       
+       if ( Keyc == 's' ) {
 
         if (!see_spec_slice ) {
          see_spec_slice = 1
@@ -735,8 +821,9 @@ int mloop = 0
         else { 
          see_spec_slice = 0
         }
-         DBPR" toggle %v $see_spec_slice \n"
-        }
+         <<" toggle %v $see_spec_slice \n"
+
+      }
 
 
 
@@ -754,7 +841,9 @@ int mloop = 0
         
         }
 
-       if (scmp(msg_name,"g",1) || (msg_name @= "SG")) {
+       if ( Keyc == 'g' ) {
+       
+          <<" toggle %v $see_sg \n"
 
         if (see_sg ) {
          see_sg  = 0
@@ -763,9 +852,10 @@ int mloop = 0
          see_sg = 1
         }
 
-//         see_sg =1   // always for now
+         //see_sg =1   // always for now
           DBPR" toggle %v $see_sg \n"
-        }
+
+      }
 
       if (scmp(msg_name,"SMW",3)) {
           Swindow(swin,Wlen,msg_val)
@@ -781,28 +871,9 @@ int mloop = 0
          SetGwindow(sgw,"activate")
 
        // CRASH SetGwindow({tassw,sgw},"activate")
+  
 
-     }
-     else {
-      sleep(1.5)
-      yieldthread()
-//      yieldthread()
-
-
-      if ((mloop % 2 ) == 0) {
-      SetGwob(msg_wo,"color","yellow","redraw")
-DBPR"%v $mloop \n" 
-      }  
-      else {
-      SetGwob(msg_wo,"color","red","redraw")
-      }
-
-
-     }
-
-  }
-
-   GthreadExit(tid)
+  // GthreadExit(tid)
 }
 
 short tvox[]
@@ -834,14 +905,7 @@ Hrti = 1.0/Freq * (2 * Wlen)
 DBPR" %V $Wlen $Hrti $dft \n"
 //ttyin()
 
-int see_ta_wave = 1
-int see_spec_slice = 0
-int see_features = 0
-int see_sg = 0
-int do_fir = 0
-int see_ta_env = 0
-int mix_signal = 0
-int sp_process = 0
+
 // 
 
 swin = Fgen(Wlen,0.5,0)
@@ -863,6 +927,7 @@ DBPR" $(Cab(swin)) \n"
 
 
 ////////////////////////////////////////// GREY SCALE ////////////////////////////////////////////////
+ int tgl;
  ng = 128
  Gindex = 150  //  150 is just above our resident HTLM color map
  tgl = Gindex + ng
@@ -870,8 +935,7 @@ DBPR" $(Cab(swin)) \n"
 
 
 
- int nw = 0
- int allwins[]
+
 
  // Screen Setup - One time only
 
@@ -885,12 +949,16 @@ DBPR" $(Cab(swin)) \n"
 ////////////////////////////////// GLINES for FEATURE TRACKS ///////////////////////////////////////
 
 // RMS
-//rmsgl = CreateGline("wid",powwo,"type","Y","yvec",RmsTrk,"color","red","name","RMS")
-//setgline(rmsgl,"scales",0,0,200,30,"ltype",1, "symbol","diamond","savescales",0,"usescales",0)
+rmsgl = CreateGline(fewo,@TY,RmsTrk,@color,RED_,@name,"RMS")
 
-//zxgl = CreateGline("wid",zxwo,"type","Y","yvec",ZxTrk,"color","blue","name","ZX")
-//setgline(zxgl,"scales",0,0,200,0.5,"ltype",1, "symbol","diamond","savescales",0,"usescales",0)
-//  
+sGl(rmsgl,@scales,0,0,200,30,@ltype,1, @symbol,"diamond",@savescales,0,@usescales,0)
+
+zxgl = CreateGline(fewo,@TY,ZxTrk,@color,BLUE_,"name","ZX")
+setgline(zxgl,@scales,0,0,200,0.5,@ltype,1, @symbol,"diamond","savescales",0,"usescales",0)
+//
+
+<<"%V$rmsgl $fewo $zxgl\n"
+//iread()
 
  yfreq = 200
  zfreq = 660
@@ -930,8 +998,10 @@ DBPR"%V $dspfd $mixfd \n"
    T=FineTime()
 
    recid = gthreadcreate("RecBuff")
+<<"%V$recid \n"
 
-   filtid = gthreadcreate("FiltBuff")
+
+   filtid = gthreadcreate("FiltBuff")  // has to operate even to just copy
 
 
 ////////////////////////////////////////
@@ -944,19 +1014,16 @@ DBPR"%V $dspfd $mixfd \n"
 
    displayid = gthreadcreate("DisplayBuff")
 
-
-
     if (do_fir ) {
          do_fir = 0
          RbKey[RBOP] = 0
-  
       } 
 
    if (Graphic) {
 
-      Prop("MESSAGE THREAD")
+      //Prop("MESSAGE THREAD")
 
-      msgid = gthreadcreate("CheckMsg")
+      //msgid = gthreadcreate("CheckMsg")
 
    }
 
@@ -976,13 +1043,32 @@ DBPR"%V $dspfd $mixfd \n"
 
   RbKey[RBOP] = 0
 
+E =1; // event handle
+int w_wo = 0
+int Button = 0
+int Keyc = 0
+
+
  while (1)
  {
      // see_spec_splice = ! see_spec_splice
     //DBPR" %v $see_spec_splice \n"
 
+    msg =  E->readMsg()  // are keyboard clicks quequed up ??
+    //msg =  E->waitForMsg()
+    Keyc = E->getEventKey()
+    Button = E->getEventButton()
+    evid = E->getEventID()
+//<<"%V$msg \n"
 
-  // CheckMsg()
+    sleep(0.1)
+    
+    if ( !scmp(msg,"NO_MSG",6) ) {
+ <<"Got    $msg \n"
+
+    CheckMsg()
+
+    }
 
    if (msg @= "q") {
   
@@ -997,9 +1083,9 @@ DBPR"%V $dspfd $mixfd \n"
 
 // yield _thread ??
 
-   yieldthread()
 
-   sleep(0.25)
+   sleep(0.1);
+
 
    if (exit_see_wave) {
         break

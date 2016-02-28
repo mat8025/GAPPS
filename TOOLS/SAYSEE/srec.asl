@@ -2,9 +2,6 @@
 
 OpenDll("audio","image")
 
-
-
-
 proc usage()
 {
 
@@ -18,8 +15,6 @@ proc usage()
 int Freq  = 16000
 
 int smic_factor = 0x5a5a
-
-
 
 
 float Sfactor = 1.0
