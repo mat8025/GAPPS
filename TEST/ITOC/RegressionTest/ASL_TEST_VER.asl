@@ -842,6 +842,12 @@ if ( do_all || do_array ) {
 
   updir()
 
+  chdir("PrePostOp")
+
+  cart("prepost_opr")
+
+  updir()
+
   chdir("M3D")
 
   cart("m3d")

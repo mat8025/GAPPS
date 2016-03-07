@@ -45,7 +45,7 @@ W[0] = "hey  "
 
 !!"rm -f goal1"
 
-sleep(1)
+//sleep(1)
 
 
 A=ofw("goal1")
@@ -68,11 +68,13 @@ exit()
 }
 
 // FIXME -- should not need explicit svar declare
-//svar V
-
-V=readfile(A)
+svar V
 
 
+
+ V=readfile(A)
+
+<<" file read as:-\n"
 <<"$V \n"
 
 
@@ -116,4 +118,3 @@ cf(A)
 
 CheckOut()
 
-STOP!

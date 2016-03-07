@@ -20,11 +20,16 @@ float fn=2.71828;
 CheckFNum(fn,2.71828)
 <<"%V$fn\n"
 int d= 7
+
 e = -6
 
-//CheckNum(d,8)
+
 CheckNum(d,7)
 CheckNum(e,-6)
+
+int b = 79;
+
+CheckNum(b,79)
 
 b = d * e
 
@@ -35,7 +40,8 @@ CheckNum(b,-42)
 //    CheckOut()
 //    exit()
 
-a = 2 + 2
+//a = 2 + 2
+int a = 2 + 2
 <<"%V$a\n"
 
 CheckNum(a,4)

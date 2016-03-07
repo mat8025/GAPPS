@@ -20,8 +20,8 @@ date,bnum,description, category [1-7] 7=severe, status
 01/25/16    77,  cmplx a = {23,47};   2, PENDING
 01/25/16    78,  Y[1:5] *= 3; crash subset opeq ,5, FIXED
 01/25/16    79,  Y *= T; vec *= vecb ,5, FIXED
-02/12/16    80,  a= b + +80  // ic does not do UPLUS ,4, PENDING
-02/20/16    81,  i= 0; A[i++] gets element one not element zero ,4, PENDING
+02/12/16    80,  a= b + +80  // ic does not do UPLUS ,4, FIXED
+02/20/16    81,  i= 0; A[i++] gets element one not element zero ,4, FIXED
 02/21/16    82,  <<" %4.2f $fv \n" first interp print can be corrupt xic print is OK, 4, FIXED, fix in svar->splice
 02/21/16    83,  xic(0) xic(1)  does not work - should mean all intermediate stmnts always interpd, 2, PENDING
 02/21/16    84,  reload src - reinclude code no longer works, 3, PENDING 

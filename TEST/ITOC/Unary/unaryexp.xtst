@@ -1,3 +1,1 @@
-FAIL test <5> @ [33] checkFnum(rspo2,84.15)
-
-DONE: FAIL: ./unaryexp           :tests      6 :Fail      1 :Pass      5 :Score   83.3% 
+DONE: PASS: ./unaryexp           :tests      8 :Fail      0 :Pass      8 :Score  100.0% 

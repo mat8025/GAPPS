@@ -1,17 +1,41 @@
 /////////////////////////////////////////
+
+setdebug(1)
 CheckIn()
 
+setap(30)
 
+pan a = 1.234567801012340001234567; 
+pan b = -0.98765400000001; 
+pan c = 1.234567801012340001234567;
 
-pan a = 1.2345678; 
-pan b = -0.987654; 
+<<"$a $(typeof(a)) \n"
 
-CheckFNum(a,1.2345678)
-CheckFNum(b,-0.987654)
+<<"$b $(typeof(b)) \n"
+
+<<"$c $(typeof(c)) \n"
+
+CheckFNum(a,c,6)
+CheckFNum(b,-0.987654000001,4)
+
+CheckFNum(a,1.234567801012340001234567,6)
+
+CheckFNum(a,1.234567801012340001234567,2)
+
+CheckFNum(b,-0.987654000001,2)
 
 
 CheckOut()
+
 stop!
+
+
+
+
+
+
+
+
 
 //  FIX Pan Arrays
 pan P[500]

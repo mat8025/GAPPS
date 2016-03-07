@@ -26,11 +26,14 @@ int A[6]  = { 1,2,4,9,8,6 }
 
 float  A[]  = { 3.14159, 2.71828, 0.707  };
 
-<<"float vec %V$A \n"
-
  e = checkError()
 
 <<" %v $e \n"
+
+
+<<"float vec %V$A \n"
+
+
 
 <<" $(getSiErrorName(e)) \n"
 

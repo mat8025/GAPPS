@@ -1858,3 +1858,6 @@ Iron
 12/19/15 ---   added naviwindow asl function to setup and run file locator xgs naviwin via SendReceive mechanism
                need similar for query window  -  also error notification?
 	       
+02/25/16 --- have revised threads and audio -- now have working speech capture and spectrum analysis
+
+03/01/16 --- need to check ap precision -- setting in base256 and checking in dec? - make consistent 

@@ -978,7 +978,7 @@ setgline(zxgl,@scales,0,0,200,0.5,@ltype,1, @symbol,"diamond","savescales",0,"us
 
   Prop("Recording Thread")
 
-  dspfd = dspopen("/dev/dsp1")
+  dspfd = dspopen("/dev/dsp") // mercury
   pcmfd = -1
 
 
@@ -989,7 +989,7 @@ setgline(zxgl,@scales,0,0,200,0.5,@ltype,1, @symbol,"diamond","savescales",0,"us
 
 // get/open  mixer
 
-  mixfd = mixeropen("/dev/mixer1")
+  mixfd = mixeropen("/dev/mixer")  // mercury
 
 // set dsp,mixer
 

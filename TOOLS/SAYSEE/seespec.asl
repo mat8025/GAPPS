@@ -13,11 +13,16 @@ proc openAudio()
 
 // get open dsp
 
-   dspfd = dspopen("/dev/dsp1")
+// what host are we on and what /dev/dsp* are there ?
+
+// if mercury laptop
+   dspfd = dspopen("/dev/dsp") // mercury host
+  
+   //dspfd = dspopen("/dev/dsp1") // mars desktop
 
 // get open  mixer
-
-   mixfd = mixeropen("/dev/mixer1")
+   mixfd = mixeropen("/dev/mixer") // mercury
+   //mixfd = mixeropen("/dev/mixer1") // mars
 
 // set dsp,mixer
 
