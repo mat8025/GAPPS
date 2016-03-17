@@ -172,7 +172,7 @@ DBPR"\n $dorec  $mv $wb  $wbs $wbe ---> vox \n"
 }
 //======================================================================
 //Tengo que esforzarse más para avanzar hacia mi objetivo
-int smic_factor = 0x3a3a // ? alters mic gain via mixer device /dev/mixer1
+int smic_factor = 0x5a5a // ? alters mic gain via mixer device /dev/mixer1
 
 proc RecBuff()
 {
@@ -978,7 +978,7 @@ setgline(zxgl,@scales,0,0,200,0.5,@ltype,1, @symbol,"diamond","savescales",0,"us
 
   Prop("Recording Thread")
 
-  dspfd = dspopen("/dev/dsp") // mercury
+  dspfd = dspopen("/dev/dsp1")
   pcmfd = -1
 
 
@@ -989,7 +989,7 @@ setgline(zxgl,@scales,0,0,200,0.5,@ltype,1, @symbol,"diamond","savescales",0,"us
 
 // get/open  mixer
 
-  mixfd = mixeropen("/dev/mixer")  // mercury
+  mixfd = mixeropen("/dev/mixer1")
 
 // set dsp,mixer
 

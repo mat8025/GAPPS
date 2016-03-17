@@ -1,6 +1,11 @@
+
 // test spectral processing of vox file
 
-setdebug(1)
+setdebug(1,"~trace") // should be 0 level
+
+
+int commwo = -1;
+<<"%V$commwo \n"
 
 
 Gain = 1.0
@@ -13,16 +18,13 @@ proc openAudio()
 
 // get open dsp
 
-// what host are we on and what /dev/dsp* are there ?
+// find out which host and which dsp/mixer devices are present !
 
-// if mercury laptop
-   dspfd = dspopen("/dev/dsp") // mercury host
-  
-   //dspfd = dspopen("/dev/dsp1") // mars desktop
+   dspfd = dspopen("/dev/dsp1") // correct for mars
 
 // get open  mixer
-   mixfd = mixeropen("/dev/mixer") // mercury
-   //mixfd = mixeropen("/dev/mixer1") // mars
+
+   mixfd = mixeropen("/dev/mixer1")
 
 // set dsp,mixer
 
@@ -47,11 +49,14 @@ proc closeAudio()
    close(mixfd)
 }
 
+
+
 proc displayComment ( cmsg) 
 {
-    <<" $csmg "
-    sWo(commwo,@clear,@clipborder,@textr,cmsg,0.1,0.5)
-
+    <<" $cmsg "
+    if (commwo != -1) {
+      sWo(commwo,@clear,@clipborder,@textr,cmsg,0.1,0.5)
+    }
 }
 
 proc samp2time( ns)
@@ -94,8 +99,6 @@ proc getNpixs()
 
 int smic_factor = 0x4a4a // ? alters mic gain via mixer device /dev/mixer1
 
-
-
 proc do_record()
 {
 
@@ -105,7 +108,8 @@ proc do_record()
 
      setRecordParams(dspfd,mixfd, SampFreq,1, smic_factor)
 
-     recordAudioBuffer(dspfd, sbn, 0, 15 * SampFreq )   // five seconds worth into beginning of buffer YS
+     recordAudioBuffer(dspfd, sbn, 0, 15 * SampFreq )
+     // 15 seconds worth into beginning of buffer YS
 
 
   closeAudio()
@@ -113,7 +117,7 @@ proc do_record()
 
 }
 //--------------------------------------------------
-
+ //--
 
 proc computeSpecandPlot(rtb , rtf)
 {
@@ -149,9 +153,12 @@ proc computeSpecandPlot(rtb , rtf)
    while (spi < stend) {
 
      end = st + wlen - 1
-
+//<<"%V$st $wlen $end \n"
+//<<"%V ysz $(Caz(YS)) \n"
      real = YS[st:end]
      rsz = Caz(real)
+
+//<<"%V$rsz\n"
 
 //<<"%V$frames $st $rsz $real[0] $real[fftend]\n"
 
@@ -217,7 +224,6 @@ proc computeSpecandPlot(rtb , rtf)
 
 
     if ((frames % 16)  == 0) {
-
         // sleep(0.7)  // SHM full check  -- need to check
     }
 
@@ -230,11 +236,12 @@ proc computeSpecandPlot(rtb , rtf)
 
   dtsecs = dt / 1000000.0
 
-<<"compute and plot time took $dtsecs  frames $frames \n"
+  <<"compute and plot time took $dtsecs  frames $frames \n"
 
   //sWo(commwo,@clear,@clipborder,@textr,"compute & plot time took $dtsecs  frames $frames \n",0.1,0.5)
 
-   displayComment("compute & plot time took $dtsecs  frames $frames \n")
+   displayComment("compute & plot time took $dtsecs  frames $frames \n");
+   
   }
   
 }
@@ -257,7 +264,7 @@ int sti;
 
      real = YS[sti:end]
 
-<<" $real[0:24] \n"
+//<<"$real[0:24] \n"
 
 
     // sWo({tawo,spwo},@clearpixmap)
@@ -268,15 +275,12 @@ int sti;
 // gline?
 //<<"$real[0:wlen-1] \n"
 
-
-
-     //vDraw(tawo,real[0:wlen-1],0,1.0,1,0,wlen-1)
      vDraw(tawo,real[0:wlen-1],0,1.0,0) // the real size may not be set here - use full spec 0:wlen-1
 //     vDraw(tawo,real,0,1.0) // the real size may not be set here - use full spec 0:wlen-1
 
      sWo(tawo, @clipborder,BLACK)
    rsz = Caz(real)
-<<"$rsz  \n"
+//<<"$rsz  \n"
      // swindow and compute powspec
 
      real *= swin
@@ -376,18 +380,14 @@ proc selSection( tx)
 
     sGl(co1_gl,@cursor,tx2,y0,tx2,y1)  // arg not parsed
 
-    //sWo(taswo,@clearpixmap,@clipborder,@clearclip,BLUE_)
-
-   // sWo(taswo,@clearpixmap,@clipborder,@clearclip,BLUE_)
-
- //   drawSignal(tawo, sbn, s1, s2)
+//   sWo(taswo,@clearpixmap,@clipborder,@clearclip,BLUE_)
+//   sWo(taswo,@clearpixmap,@clipborder,@clearclip,BLUE_)
+//   drawSignal(tawo, sbn, s1, s2)
 
     displayComment("select  $tx1 $tx2  --- $s1 $s2 \n")
 
-   // sWo(tawo,@scales, tx1,-26000, tx2, 26000)  // via SHM
-
+// sWo(tawo,@scales, tx1,-26000, tx2, 26000)  // via SHM
 //    sGl(co2_gl,@cursor,0)  // show if it is already active  
-
 //    sGl(co3_gl,@cursor)  // show if it is already active  
 
 
@@ -429,12 +429,12 @@ proc playSection( )
 
 //   sGl(co1_gl,@cursor,tx1,y0,tx1,y1)
 // FIX   sGl(co1_gl,@cursor,tx+3,y0,tx+3,y1)  // arg not parsed
-<<"Done $_proc \n"
+//<<"Done $_proc \n"
 }
 
 proc playBCtas( )
 {
-<<"In $_proc  \n"
+//<<"In $_proc  \n"
 // play a section of the buffer
 // play time between cursors in tas 
 //int s1;
@@ -449,14 +449,13 @@ proc playBCtas( )
      int s1 = ps_tx1 * Freq
      int s2 = ps_tx2 * Freq
 
-  
-
      <<"play section  %V$ps_tx1 $ps_tx2 $s1 $s2 \n"
 
      displayComment("play $ps_tx1 $ps_tx2 $s1 $s2 \n")
 
      playBuff(sbn, s1, s2)
-<<"Done $_proc \n"
+
+//<<"Done $_proc \n"
 }
 //---------------------------------------------
 
@@ -476,8 +475,6 @@ int s2;
 
      new_stx = GV[0]
      new_fin = GV1[0]
-
-
 
 //     int s1 = new_stx * Freq
 //     int s2 = new_fin * Freq
@@ -540,7 +537,6 @@ proc getVoxTime()
 }
 
 
-
 proc voxFileRead(vfname)
 {
 
@@ -553,36 +549,32 @@ proc voxFileRead(vfname)
   // find range of signal
   // just copy buffer back out so we can process it
   // we will add builtin processing later
-   isz= Caz(YS)
-   <<"%V$isz\n"
+
+isz= Caz(YS)
+ <<"%V$isz\n"
    YS = getSignalFromBuffer(sbn,0,vds-2)
    osz= Caz(YS)
    <<"%V$osz\n"
   //<<"%(16,, ,\n)$YS[0:32] \n"
 
 <<" $YS[3] \n"
-<<"Done $_proc \n"
-
-
-
+//<<"Done $_proc \n"
 
   return vds
 }//-------------------------------------
 
 proc setUpNewVoxParams()
 {
-<<"In $_proc  \n"
-
             npts = (ds/512) * 512
             sz = Caz(YS)
 
 <<"%V $ds $npts $sz $YS[3]\n"
 
-
             mm= minmax(YS)
             y0 = mm[0]
             y1 = mm[1]
-   <<"%V$mm \n"
+
+<<"%V$mm \n"
                 
 
 }//-------------------------------------
@@ -629,6 +621,7 @@ proc do_wo_options(w_wo)
 
         }
 /}
+
     else if (w_wo == voxwo) {
 
               tx = btn_rx // x val ---- time in voxwo
@@ -705,15 +698,18 @@ proc do_wo_options(w_wo)
 
 
             ds=voxFileRead(fname)
+            sWo(butawo,@border,@drawon,@clipborder,@fonthue,BLACK_,@redraw)
 
             <<"read $ds from file \n"
+            displayComment("reading $fname \n")
 
             setUpNewVoxParams()
+
+            axnum(voxwo,-1)
 
             // position cursors
             sGl(co2_gl,@cursor,0,y0,0,y1)
             sGl(co3_gl,@cursor,10,y0,10,y1)  
-
 
             sWo(voxwo, @redraw,@clearclip,WHITE_)
             drawSignal(voxwo, sbn, 0, npts)
@@ -725,6 +721,7 @@ proc do_wo_options(w_wo)
 
             sWo(butawo,@border,@drawon,@clipborder,@fonthue,BLACK_,@redraw)
         <<"done with read and process of vox file \n"
+	            displayComment("reading $fname \n")
         }	
         else if (w_wo == write_wo) {
             // write current select region to out.vox
@@ -771,8 +768,6 @@ proc do_key_options(key)
             sGl(co2_gl,@cursor,tx,y0,tx,y1)  
             sGl(cosg_gl,@cursor,tx,0,tx,100)  
          break;
-
-
        }
 
 }
@@ -785,6 +780,7 @@ proc do_key_options(key)
   if (!Graphic) {
      X=spawngwm()
   }
+
 
 
 
@@ -804,7 +800,6 @@ proc do_key_options(key)
 
 <<"%V$sbn \n"
 
-
 float SYS[];
 float YS[];
 
@@ -816,9 +811,8 @@ float y0
 float y1
 float mm[]
 
-
+   displayComment("processing $fname \n")
    ds = voxFileRead( fname)
-
    setUpNewVoxParams()
 
 // file read 
@@ -861,6 +855,7 @@ int Zxthres = 10
 
 float RmsTrk[]
 float ZxTrk[]
+
 RmsTrk = 1.0
 ZxTrk = 1.0
 
@@ -892,7 +887,7 @@ uchar pixstrip[2][ncb]
 
 
   ssw = cWi(@title,"TA_and_Spec",@resize,0.02,0.02,0.99,0.99,0)   // Main Window
-  setGwindow(ssw,@bhue,"skyblue")
+  sWi(ssw,@bhue,"skyblue")
   // whole signal
   wox = 0.01
   woX = 0.98
@@ -907,15 +902,14 @@ uchar pixstrip[2][ncb]
 
    //<<"%V%6.2f$RP\n"
 
-  //
   
-  taswo=CWo(ssw,"GRAPH",@resize,wox,0.70,woX,0.84)
+  taswo=cWo(ssw,"GRAPH",@resize,wox,0.70,woX,0.84)
   sWo(taswo,@name,"TA",@clip,0.01,0.15,0.99,0.99, @pixmapoff, @drawon,@save,@border, @clipborder,"green",@penhue,"pink")
   sWo(taswo,@scales,0,mm[0],ts/2,mm[1])
 
 
   // spectograph window 
-  sgwo=CWo(ssw,"GRAPH",@resize,wox,0.5,woX,0.68)
+  sgwo=cWo(ssw,"GRAPH",@resize,wox,0.5,woX,0.68)
   sWo(sgwo,@penhue,"green",@name,"SG",@pixmapon,@drawon,@save)
   sWo(sgwo,@clip,0.01,0.01,0.99,0.99, @border, @clipborder,"red")
   sWo(sgwo,@scales,0,0,npts,120)
@@ -949,7 +943,6 @@ uchar pixstrip[2][ncb]
   co3_gl = cGl(voxwo,@type,"CURSOR",@color,"blue")
 
 
-
   /// Buttons for AUDIO ops
 
  qwo=cWo(ssw,"BN",@name,"QUIT?",@VALUE,"QUIT",@color,ORANGE_,@help," quit application!")
@@ -971,7 +964,7 @@ uchar pixstrip[2][ncb]
 
  write_wo=cWo(ssw,"BN",@name,"WRITE FILE",@VALUE,"ON",@color,"blue",@help," write a vox file")
 
- int butawo[] = { playsr_wo, playbc_wo, slicesr_wo, selectsr_wo, record_wo, read_wo, write_wo, qwo }
+ int butawo[] = { read_wo, playsr_wo, playbc_wo, slicesr_wo, selectsr_wo, write_wo, record_wo, qwo }
 
  wohtile(butawo, 0.2, 0.1, 0.9, 0.14)
  sWo(butawo,@border,@drawon,@clipborder,@fonthue,BLACK_,@redraw)
@@ -979,10 +972,9 @@ uchar pixstrip[2][ncb]
 
 ///  text/command  area /////////
 
-  commwo=CWo(ssw,"GRAPH",@resize,0.1,0.02,0.95,0.09)
+  commwo=cWo(ssw,"GRAPH",@resize,0.1,0.02,0.95,0.09)
   sWo(commwo,@clip,0.01,0.01,0.99,0.99, @clipborder,"black")
   sWo(commwo,@penhue,BLACK_,@name,"comms",@pixmapon,@drawon,@save)
-
   sWo(commwo,@clear,@clipborder,@textr,"ta_spec",0.1,0.5)
 
 
@@ -1000,8 +992,9 @@ uchar pixstrip[2][ncb]
 
   getNpixs()
 
-  int xp = 0
-
+  displayComment("processing $fname ")
+  
+  int xp = 0;
   float tx = 0.0
   float txa = 0.0;
   float txb = 0.0;
@@ -1010,17 +1003,19 @@ uchar pixstrip[2][ncb]
 
 //  tx_shift = samp2time(wshift/2)
 //  tx_shift = samp2time(wshift)
-   tx_shift = 0.0125
 
-
+   tx_shift = 0.0125;
+   <<"%V$nxpts\n"
 
    if (nxpts < npts) {
-     SYS = YS[0:nxpts]  // want about 3 secs worth
+     SYS = YS[0:nxpts];  // Need about 3 secs worth
    }
    else {
-     SYS = YS  // want about 3 secs worth
+     SYS = YS ; // Need about 3 secs worth
      bufend = npts - FFTSZ
    }
+
+//iread()
 
     tasX = nxpts/ Sf 
 
@@ -1032,15 +1027,8 @@ uchar pixstrip[2][ncb]
 
     // I think drawSignal should update the xscales --- according to the number of signal points it plots
 
-
-
-
-  show_tas = 1
-  show_spec = 1
-
-
-
-
+   show_tas = 1
+   show_spec = 1
   
    old_end = 0
 
@@ -1084,19 +1072,14 @@ uchar pixstrip[2][ncb]
 
    tx = RP[3]/2
 
-   //selSection (tx)
-
-   //showSlice (tx)
-
-//   showSelectRegion()
-
-
-
+//selSection (tx)
+//showSlice (tx)
+//showSelectRegion()
 //   tx_shift = samp2time(wshift)
 //<<"%V$wshift $tx_shift \n"
 
 
-///////////////////////////////////  MAIN INTERACTIVE LOOP
+/////////////////  MAIN INTERACTIVE LOOP///////////
 
 
 Svar msg
@@ -1105,9 +1088,7 @@ Svar msgw
 int Minfo[]
 float Rinfo[]
 
-
-
-wScreen = 0
+ wScreen = 0
 
 
 
@@ -1120,7 +1101,7 @@ float btn_rx = 0
 float btn_ry = 0
 
 
-E =1 // event handle
+E =1; // event handle
 
 
                 sGl(co2_gl,@cursor,0,y0,0,y1)
@@ -1176,8 +1157,7 @@ int last_evid = -1;
        last_evid = evid;
 
 //     sWo({taswo,sgwo,voxwo},@showpixmap)
-
-   //  sleep(0.1)
+//  sleep(0.1)
 
    }
 
@@ -1198,7 +1178,6 @@ exitgs(1)
 
  record into buffer -kinda
  write selected region to file
- 
  rms track
  zx  track
  cep pitch track
@@ -1219,8 +1198,5 @@ exitgs(1)
 
      ta slice not displayed
      select_sr immediately after read in -- causes crash
-     
-
-
 
 /}
