@@ -1,5 +1,5 @@
 
-setdebug(1)
+//setdebug(1)
 
 checkIn()
 
@@ -203,12 +203,19 @@ CheckFnum(fb,3.3)
 
 <<"%V$fa $fb $fc\n"  
 
+int h = -4;
 
+<<"%V$h\n"
 
+CheckNum(h,-4);
 
-    CheckOut()
+float q=-7;<<"$q\n"
+
+CheckFNum(q,-7);
+
+CheckOut()
 
 //float ok = 47.2
 //<<"$ok \n"
 
-STOP!
+

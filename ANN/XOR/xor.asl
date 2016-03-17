@@ -26,7 +26,10 @@ proc usage()
  <<" [act  LOGISTIC (LOGISTIC|HYPERBOLIC|SINE) \n" 
  <<" [type sff (sff|dca)] \n"
  <<" [range 01] \n" 
- stop!
+<<" e.g. asl  -X xor.asl eta 0.2 theta 0.2 alpha 0.9 act HYPERBOLIC type sff hidden1 1 hidden2 2 \n"
+
+  stop!
+
 }
 
 

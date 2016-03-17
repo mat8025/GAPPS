@@ -24,5 +24,6 @@ date,bnum,description, category [1-7] 7=severe, status
 02/20/16    81,  i= 0; A[i++] gets element one not element zero ,4, FIXED
 02/21/16    82,  <<" %4.2f $fv \n" first interp print can be corrupt xic print is OK, 4, FIXED, fix in svar->splice
 02/21/16    83,  xic(0) xic(1)  does not work - should mean all intermediate stmnts always interpd, 2, PENDING
-02/21/16    84,  reload src - reinclude code no longer works, 3, PENDING 
-02/21/16    85,  mutex deadlock on different versions of linux ?timing ?pthread, 3, PENDING 
+02/21/16    86,  reload src - reinclude code no longer works, 3, PENDING 
+02/21/16    87,  mutex deadlock on different versions of linux ?timing ?pthread, 3, PENDING 
+03/16/16    84,  float Y[] = vgen(FLOAT_,10,0,1), 3, PENDING

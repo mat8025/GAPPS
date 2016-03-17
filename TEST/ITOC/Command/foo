@@ -1,4 +1,4 @@
-Sun Mar  6 22:40:21 MST 2016
+Wed Mar 16 17:18:54 MDT 2016
 AAA_COMMAND
 AAA_COMMAND.asl
 AAA_COMMAND.lic
@@ -15,6 +15,7 @@ gmon.out
 ictestoutput
 last_xic_test
 loop_cmd.asl
+
 /home/mark/gapps/TEST/ITOC/Command
 AAA_COMMAND
 AAA_COMMAND.asl

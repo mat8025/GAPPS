@@ -70,15 +70,10 @@ exit()
 // FIXME -- should not need explicit svar declare
 svar V
 
-
-
  V=readfile(A)
 
 <<" file read as:-\n"
 <<"$V \n"
-
-
-
 
 
 <<"------------- \n"

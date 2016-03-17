@@ -6,11 +6,9 @@ checkIn()
 
 Mol = ( "JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC" ) ;
 
-
 <<"$Mol \n"
 <<"$(caz(Mol))\n"
 <<"$(typeof(Mol))\n"
-
 
 sz = caz(Mol)
 
@@ -26,34 +24,49 @@ le = Mol[0]
 
 checkStr(le,"JAN")
 
+<<"le checked\n"
+
 checkStr(Mol[0],"JAN")
+
+<<"Mol[0] checked\n"
+
 
 checkStr("FEB",Mol[1])
 
+<<"Mol[1] checked\n"
+
 
 Svar Mo[] = {"JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC" }
+//Svar Mo = {"JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC" }
 
 sz= Caz(Mo)
 
-<<" %V$sz \n"
+<<" Mo %V$sz \n"
 
 <<"$Mo[0] \n"
 
 <<"$Mo[1] \n"
 
-
-
 for (i = 0; i < 12 ; i++) {
 
-<<"$i $Mo[i] \n"
+  <<"$i $Mo[i] \n"
 
 }
-
-
 
 checkStr(Mo[0],"JAN")
 
 checkStr(Mo[11],"DEC")
+
+
+int A[] = {1,2,3,4,5,6,7,8}
+
+<<"$A\n"
+
+<<"sz $(Caz(A)) cab $(Cab(A))\n"
+
+
+
+
 
 checkOut()
 

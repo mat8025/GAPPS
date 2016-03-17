@@ -802,6 +802,8 @@ if ( do_all || do_array ) {
 
   cart("ae")
 
+  cart("arraystore")
+
   cart("array_ele")
 
   cart("arrayele0")
@@ -830,7 +832,7 @@ if ( do_all || do_array ) {
 
   cart("array_sr")
 
-   cart("mdele")
+  cart("mdele")
 
   cart("vsp")
 
@@ -1250,7 +1252,9 @@ if ( do_all || do_bugs ) {
       cart("bugfix_76")
       cart("bugfix_78")
       cart("bugfix_79")
-      cart("bugfix_80")                        
+      cart("bugfix_80")
+      cart("bugfix_83")
+      cart("bugfix_84")                                    
       updir()
 }
 

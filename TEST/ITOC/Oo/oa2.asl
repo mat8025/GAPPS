@@ -1,4 +1,4 @@
-setDebug(1)
+setDebug(1,"trace","pline")
 
 CheckIn(0)
 
@@ -363,10 +363,6 @@ xov = 20
 <<" after class def \n"
 
 
-
-
-
-
 Dil H[2]
 
 
@@ -436,6 +432,7 @@ syt = 60 //
 
 k = 3
    CheckNum(gyt,60)
+
  E->A[1]->t = 92
  E->A[0]->t = 28
  E->A[k]->t = 72

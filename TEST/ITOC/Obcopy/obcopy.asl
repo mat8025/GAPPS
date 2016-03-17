@@ -1,9 +1,19 @@
 # test oop features
 // want to show that can use &obj as an arg to deliver ptr to that object to a script procedure
 
-//setdebug(1)
+setdebug(1,"trace")
 
-CheckIn()
+Checkin()
+
+int xyz = 1;
+
+<<"%V $xyz \n"
+
+  If (xyz) {
+   <<" if path followed \n"
+  }
+
+
 
 <<"%v $_proc \n"
 <<"%v $_pstack \n"
@@ -188,16 +198,18 @@ proc objcopy(fruit oba,  fruit obb)
  fruit cherry
 
 <<" after object declaration of $cherry !\n"
-<<" %I $cherry->color \n"
+//<<" %I $cherry->color \n"
+<<"%V $cherry->color \n"
   cherry->print() 
-<<" %I $apple->color \n"
+//<<" %I $apple->color \n"
+<<"  $apple->color \n"
 
   cherry->x = 77
 
   cherry->color = "black"
 
 <<"%V$cherry->color \n"
-<<"%I$cherry->x \n"
+//<<"%I$cherry->x \n"
 
   cherry->print()
   cherry->x = 76
@@ -317,9 +329,15 @@ proc objcopy(fruit oba,  fruit obb)
   apple->color = "red"
   cherry->color = "black"
 
-<<" %I$apple->color \n"
-<<" %I$orange->color \n"
-<<" %I$cherry->color \n"
+<<" %V $apple->color \n"
+
+<<" %I $xyz \n"
+
+<<" %I $apple->color \n"
+
+
+//<<" %I$orange->color \n"
+//<<" %I$cherry->color \n"
 
    apple->print()
    cherry->print()
@@ -328,13 +346,11 @@ proc objcopy(fruit oba,  fruit obb)
 
    apple->color = "green"
 
-<<" %I$apple->color \n"
+//<<" %I$apple->color \n"
 
    apple->print()
    cherry->print()
 
+   Checkout()
 
 
-   CheckOut()
-
-STOP!

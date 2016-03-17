@@ -2,7 +2,7 @@
 
 CheckIn()
 
-setdebug(1)
+//setdebug(1)
 
 uchar C[] = { 0xCA , 0xFE, 0xBA, 0xBE, 0xFA, 0xCE, 0xBE, 0xAD , 0xDE,0xAD, 0xC0, 0xDE }
 
@@ -16,7 +16,7 @@ D = C
 <<"D $D\n"
 // convert
 
-   C->Convert(INT)
+   C->Convert(INT_)
    checkNum(202,C[0])
 
    CI= C
@@ -25,7 +25,7 @@ D = C
 <<" $C \n"
 <<"%x $C \n"
 
-    C->Convert(FLOAT)
+    C->Convert(FLOAT_)
 
 <<" $(typeof(C)) $(sizeof(C))\n"
 <<" $C \n"
@@ -59,7 +59,7 @@ int E[]  ; E = D
 // retype vector to int
 <<"now retype D CHAR vec to an INT vec\n"
 
-   retype(D,INT)
+   retype(D,INT_)
 
 <<" $(typeof(D)) \n"
 <<"D[] \%d $D \n"
@@ -92,15 +92,15 @@ d0 = 0xca
    checkNum(d0,CI[0])
 
 
-<<"retype CHAR $(CHAR) --> FLOAT $(FLOAT) \n"
+<<"retype CHAR $(CHAR) --> FLOAT $(FLOAT_) \n"
 
-   E->retype(FLOAT)
+   E->retype(FLOAT_)
 
 <<" $(typeof(E)) \n"
 <<" $E \n"
 <<"%x $E \n"
 
-<<"%V $(INT) $(FLOAT) $(CHAR) $(DOUBLE)\n"
+<<"%V $(INT_) $(FLOAT_) $(CHAR_) $(DOUBLE_)\n"
 
 
 
@@ -108,7 +108,7 @@ d0 = 0xca
 
 //<<"now retype D INT vec to a FLOAT \n"
 
-//   retype(D,FLOAT)
+//   retype(D,FLOAT_)
 
 <<" $(Sizeof(D)) \n"
 <<" $(typeof(D)) \n"
@@ -118,7 +118,7 @@ d0 = 0xca
 <<"D[] \%X %x $D \n"
 
 
-// F= cast(D,FLOAT)
+// F= cast(D,FLOAT_)
 float F[]
 
  F = D
@@ -126,15 +126,15 @@ float F[]
 
 <<"float vec $F[0:-1]\n"
 
- G= cast(D,FLOAT)
+ G= cast(D,FLOAT_)
 
 <<"float G[] $G[0:-1]\n"
 
- IV = cast(G,INT)
+ IV = cast(G,INT_)
 
 <<"int IV[] $IV\n"
 
- LV = cast(G,LONG)
+ LV = cast(G,LONG_)
 
 <<"long LV[] $LV\n"
 

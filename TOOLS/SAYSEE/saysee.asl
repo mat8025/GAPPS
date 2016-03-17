@@ -172,7 +172,7 @@ DBPR"\n $dorec  $mv $wb  $wbs $wbe ---> vox \n"
 }
 //======================================================================
 //Tengo que esforzarse más para avanzar hacia mi objetivo
-int smic_factor = 0x5a5a // ? alters mic gain via mixer device /dev/mixer1
+int smic_factor = 0x3a3a // ? alters mic gain via mixer device /dev/mixer1
 
 proc RecBuff()
 {

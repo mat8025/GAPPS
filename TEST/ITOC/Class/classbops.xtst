@@ -1,7 +1,0 @@
- 4 PASS: ./classbops          :tests      9 :Fail      0 :Pass      9 :Score  100.0% 
- for 0 PASS: ./classbops          :tests     10 :Fail      0 :Pass     10 :Score  100.0% 
- for 1 PASS: ./classbops          :tests     11 :Fail      0 :Pass     11 :Score  100.0% 
- for 2 PASS: ./classbops          :tests     12 :Fail      0 :Pass     12 :Score  100.0% 
- for 3 PASS: ./classbops          :tests     13 :Fail      0 :Pass     13 :Score  100.0% 
-  v -= C->y  PASS: ./classbops          :tests     14 :Fail      0 :Pass     14 :Score  100.0% 
-DONE: PASS: ./classbops          :tests     21 :Fail      0 :Pass     21 :Score  100.0% 

@@ -1,7 +1,8 @@
+cd /usr/local/GASP/gasp/include/dbug
 for i in $*
 do
 echo $i 
-cp $i /usr/local/GASP/gasp/BAK
-cat $i | sed s/DBON/DBOFF/ > $i.bak
-mv $i.bak $i
+cp db$i.h /usr/local/GASP/gasp/BAK
+cat db$i.h | sed s/DBON/DBOFF/ > db$i.bak
+mv db$i.bak db$i.h
 done

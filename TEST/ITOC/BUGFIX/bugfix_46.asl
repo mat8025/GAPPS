@@ -1,5 +1,8 @@
 
-setDebug(1)
+//setDebug(1)
+
+///   --- retyping an existing variable
+/// should throw an error but not crash
 
 CheckIn()
 
@@ -15,8 +18,7 @@ vid = i->vid()
 <<"%V $vid \n"
 
 
-float F[10]
-
+float F[10];
 
 vid = F->vid()
 
@@ -73,15 +75,18 @@ Act A
 
 Act G[3]
 
+
+ checkNum(A->t,0)
+
 set_si_error(0)
 
 we = si_error()
 
 <<" %v $we \n"
 
-CheckNum(we,we)
+//CheckNum(we,we)
 
-Act F[3]
+Act A[3];
 
 we = si_error()
 
@@ -89,7 +94,7 @@ we = si_error()
  if (si_error()) {
 
 <<"we $(get_si_error_name())\n"
- CheckNum(we,28)
+  CheckNum(we,28)
 
  }
 

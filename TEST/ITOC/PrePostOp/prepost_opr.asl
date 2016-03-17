@@ -95,85 +95,122 @@ b= A[++k--]
 
 checkNum(k,3)
 checkNum(b,4)
-checkout()
-
-exit()
 
 
+int e = ++k ;
 
+<<"%V$e $k \n"
+
+
+int w = --k ;
+
+<<"%V$w $k \n"
+
+checkNum(e,4)
+checkNum(w,3)
+
+
+
+int Gc;
 
 
 proc foo(a,b)
 {
 <<"%V$a $b\n"
  c= a + b
+ 
 <<"sum %V$c \n"
+ return c;
 }
 
 
-int k = 0
+ k = 0
 
 <<"%v $k \n"
 k++
 <<"%v $k \n"
+checkNum(k,1)
 k--
 <<"%v $k \n"
+checkNum(k,0)
 ++k++
 <<"%v $k \n"
+checkNum(k,2)
 --k--
 <<"%v $k \n"
+checkNum(k,0)
 
-double x0 = 0.0
+double x0 = -10.0
 
 <<"%v $x0 \n"
 
+checkFNum(x0,-10)
+
 x0++
 
-k = 2
+checkFNum(x0,-9)
 
+k = 2
 m = 2
 
 n = k++ + m--
 
 <<"%V $n $k $m \n"
 
+checkNum(n,4)
+
+k = 2
+m = 2
 
 n = --k + ++m
+
+checkNum(n,4)
+
 
 <<"%V $n $k $m \n"
 
 
 <<"b4foo %V $k $m \n"
 
- foo(k++,m++)
+ r=foo(k++,m++)
 <<"%V $k $m \n"
+
+checkNum(k,2)
+checkNum(m,4)
+
+checkNum(r,4)
+
 
 
 <<"b4foo %V $k $m \n"
 
- foo(++k,++m)
-<<"%V $k $m \n"
+ r = foo(++k,++m)
+
+<<"%V $k $m $r\n"
+
+checkNum(k,3)
+checkNum(m,5)
+
+checkNum(r,8)
 
 
-exit()
+AV = igen(10,0,1)
 
- foo(--k,++m)
+<<"$AV\n"
 
-<<"%V $k $m \n"
+checkNum(AV[1],1)
 
-<<"%v $x0 \n"
+BV = AV++ ; // this should increment all elements in the vector
 
-A = igen(10,0,1)
+<<"$AV\n"
 
-<<"$A\n"
+checkNum(BV[1],2)
 
-B = A++
+<<"$BV\n"
 
-<<"$B\n"
 
-<<"$A\n"
+
+
 
 checkout()
-
-
-stop!
+exit()
