@@ -10,8 +10,6 @@
 #define DBPR  ~! 
 
 
-
-
 int see_ta_wave = 1
 int see_spec_slice = 1
 int see_features = 0
@@ -777,29 +775,29 @@ proc CheckMsg()
 {
 
 // tid = GthreadGetId()
- 
-int mloop = 0
-// 
-    if (do_fir ) {
-         do_fir = 0
-         RbKey[RBOP] = 0
-        } 
 
 <<" $_proc $msg \n";
 
 
+int mloop = 0;
+// 
+      if (do_fir ) {
+         do_fir = 0
+         RbKey[RBOP] = 0
+        } 
+
+
        Mword=Split(msg)
 
-<<"$Mword \n"
+<<"SplitMsg $Mword \n"
 
 
        mlen = slen(msg)
-     
        msg_name = Mword[0]
        msg_val = Mword[1]
 
      
-      DBPR"%V $msg $mlen $Minfo $msg_name\n"
+DBPR"%V $msg $mlen $Minfo $msg_name\n"
 
        if (scmp(msg_name,"t",1) || (msg_name @= "TA")) {
 
@@ -824,8 +822,6 @@ int mloop = 0
          <<" toggle %v $see_spec_slice \n"
 
       }
-
-
 
        if ((msg_name @= "TF")) {
 
@@ -859,19 +855,31 @@ int mloop = 0
 
       if (scmp(msg_name,"SMW",3)) {
           Swindow(swin,Wlen,msg_val)
-        DBPR"Smoothing window type:  $msg_val  \n"
+          DBPR"Smoothing window type:  $msg_val  \n"
       }
+
 
        if (scmp(msg_name,"q",1)) {
          exit_see_wave = 1
          break
        }
 
+     if (scmp(msg_name,"QUIT",4)) {
+         exit_see_wave = 1
+	 <<"trying to QUIT!\n"
+         break
+       }
+
+        if (Woid == qwo) {
+         exit_see_wave = 1
+	 <<"qwo trying to QUIT!\n"
+         break
+        }
+
          SetGwindow(tassw,"activate")
          SetGwindow(sgw,"activate")
 
        // CRASH SetGwindow({tassw,sgw},"activate")
-  
 
   // GthreadExit(tid)
 }
@@ -884,10 +892,9 @@ int vamp = 20000
 float Amp = 0.9
 int s1
 
- float swin[]
-
- float real[1024+]
- float imag[1024+]
+float swin[]
+float real[1024+]
+float imag[1024+]
 
 
 
@@ -1047,7 +1054,8 @@ E =1; // event handle
 int w_wo = 0
 int Button = 0
 int Keyc = 0
-
+int Woid;
+etype = "";
 
  while (1)
  {
@@ -1055,18 +1063,24 @@ int Keyc = 0
     //DBPR" %v $see_spec_splice \n"
 
     msg =  E->readMsg()  // are keyboard clicks quequed up ??
-    //msg =  E->waitForMsg()
     Keyc = E->getEventKey()
     Button = E->getEventButton()
     evid = E->getEventID()
+    etype = E->getEventType()
+
 //<<"%V$msg \n"
 
     sleep(0.1)
-    
+
+    if ( etype @= "PRESS" ) {
+            Woid = E->getEventWoId()
+     }
+
+
     if ( !scmp(msg,"NO_MSG",6) ) {
  <<"Got    $msg \n"
 
-    CheckMsg()
+       CheckMsg()
 
     }
 
@@ -1083,9 +1097,7 @@ int Keyc = 0
 
 // yield _thread ??
 
-
    sleep(0.1);
-
 
    if (exit_see_wave) {
         break
@@ -1094,7 +1106,7 @@ int Keyc = 0
  }
 
 
-
+exitgs()
 
  STOP!
 

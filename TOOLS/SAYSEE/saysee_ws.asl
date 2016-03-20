@@ -4,13 +4,15 @@
  int nw = 0
  int allwins[]
  int nwo = 0;
+ int ncwo =0;
  int allwos[]
+ int cntrlwos[]
 
  Vamp = 32000
 
 <<" create TAW \n"
 
- setdebug(1,"pline")
+// setdebug(1,"pline")
  tassw = cWi(@title,"TimeAmp",@scales,0,-Vamp,256,Vamp,@savescales,0)
 
 
@@ -30,7 +32,7 @@
  allwins[nw++] = sgw
 
  cntrlw = cWi(@title,"Control")
- sWi(cntrlw,@resize,0.82,0.10,0.95,0.95,0)
+ sWi(cntrlw,@resize,0.82,0.10,0.98,0.95,0)
  sWi(cntrlw,@pixmapon,@drawoff,@clear,@redraw,@save,@savepixmap)
 
  allwins[nw++] = cntrlw
@@ -83,8 +85,6 @@
 
 <<"%V $nwo $fewo  $allwos \n"
 
-
-
   tawo=cWo(sgw,GRAPH_,@resize,0.05,0.71,0.95,0.99,@scales,0,-Vamp,1024,Vamp)
   sWo(tawo,@hue,BLACK_,@name,"tawave",@drawoff,@redraw,@save,@savepixmap)
   sWo(tawo,@clip,0.01,0.01,0.99,0.99, @clipborder,BLACK_)
@@ -92,8 +92,6 @@
  allwos[nwo++] = tawo
 
 <<"%V $nwo $tawo  $allwos \n"
-
-
 
   msg_wo=cWo(tassw,TB_BUTTON_,@resize,0.97,0.1,0.99,0.25,@name,"MSG",@color,BLUE_,@penhue,RED_,@symbol,TRIANGLE_)
   sWo(msg_wo,@help,"msg value",@drawon,@pixmapoff,@redraw, @style, "SVO")
@@ -179,18 +177,20 @@ wox = woX + 0.05
   
   sWo(FREQ_wo,@help,"Set Freq",@name,"Freq",@penhue,BLACK_, @func, "wo_menu", @menu,"8000,12000,16000", @value, "12000")
 
- allwos[nwo++] = FREQ_wo
+
+  allwos[nwo++] = FREQ_wo
 
 <<"%V $nwo $FREQ_wo  $allwos \n"
 
 
   smw_wo=cWo(cntrlw,WOMENU_,@resize,0.3,0.8,0.42,0.9,@name,"SMW", @color,YELLOW_, @style, "SVO", @drawon)
 
-  sWo(smw_wo,@penhue,BLACK_,@help,"smoothing window type",@func, "wo_menu", @menu,"Hanning,Kaiser,Hamming", @value, "Hanning",  @redraw)
+  sWo(smw_wo,@penhue,BLACK_,@help,"smoothing window type",@func, "wo_menu", @menu,"Hanning,Kaiser,Hamming", @value, "Hanning")
 
- allwos[nwo++] = smw_wo
+  allwos[nwo++] = smw_wo
 
 <<"%V $nwo $smw_wo  $allwos \n"
+
 
 
    wox = woX + 0.05
@@ -206,15 +206,25 @@ wox = woX + 0.05
 <<"%V $nwo $CU_wo  $allwos \n"
 
 
-
   SS_wo=cWo(sgw,TB_BUTTON_,@resize,0.02,woy,0.07,woY,@name,"SS",@color,YELLOW_,@penhue,BLACK_,@symbol,TRIANGLE_)
 
   sWo(SS_wo,@help,"toggle SS display",@redraw)
 
- allwos[nwo++] = SS_wo
+  allwos[nwo++] = SS_wo
+
+
+  qwo=cWo(cntrlw,"BN",@name,"QUIT?",@VALUE,"QUIT",@color,ORANGE_,@help," quit application!")
+
+  allwos[nwo++] = qwo;
 
 <<"%V $nwo $SS_wo  $allwos \n"
 
+
+
+   int butawo[] = { FREQ_wo, smw_wo, qwo }
+
+   wohtile(butawo, 0.2, 0.7, 0.9, 0.8)
+   sWo(butawo,@border,@drawon,@clipborder,@fonthue,BLACK_,@redraw)
 
 <<" $allwins[*] \n"
 
@@ -225,7 +235,7 @@ wox = woX + 0.05
 <<" all_wos $nwo  $allwos \n"
 
 
-//iread()
- setdebug(0)
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////
