@@ -1,0 +1,12 @@
+\#*
+~*
+*.xout
+*.xerr
+*.xtst
+*.tst
+*.dbi
+*.dbx
+*.lic
+*.out
+*.err
+
