@@ -1,9 +1,7 @@
 
-
 ws = getScript()
 
 setdebug(1)
-
 
 <<" $ws \n"
 
@@ -35,15 +33,12 @@ m = Caz(J)
 
 <<"%V$fw $(typeof(fw))\n"
 
-
-
 checkStr(fw,"a")
 
 l1sz = Caz(L1)
 <<"%V$l1sz\n"
 
-
-   fw = L1[l1sz-1]
+fw = L1[l1sz-1]
 
 <<"%V$fw $(typeof(fw))\n"
 
@@ -224,9 +219,7 @@ stop!
 
  L2 = ( "say", "what", "can" ,"I", "do", "now", "with", "this", "amazingly", "lovely" ,"list" )
 
-
 <<"%v $L2 \n"
-
 
 <<"%v $L2 \n"
 
@@ -236,9 +229,7 @@ stop!
 <<"$L2 \n"
 
 
-    lw = L[-1]
 
-<<" %V $fw $lw\n"
 
  CheckOut()
 

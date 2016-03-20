@@ -1,31 +1,68 @@
 
-seespec.asl,680
-setdebug(3,41
-proc closeAudio(40,534
-proc displayComment 48,625
-proc samp2time(55,731
-proc getNpixs(65,824
-int smic_factor 92,1175
-proc computeSpecandPlot(115,1556
-proc showSlice 237,3726
-proc playBuff(307,5164
-proc selSection(318,5320
-proc playSection(375,6383
-proc playBCtas(400,6877
-proc showSelectRegion(423,7313
-proc getVoxTime(492,8671
-proc voxFileRead(500,8698
-proc setUpNewVoxParams(525,9195
-vox_type 543,9466
-proc do_key_options(680,12632
- Graphic 727,13719
- int sb 735,13788
-float YS[YS753,13967
-int ds;757,14058
-int npts;758,14066
-   ds 764,14107
- Sf 780,14367
- wohtile(918,18301
-   else 962,19185
-    tasX 967,19270
-closeAudio(1128,21401
+seespec.asl,503
+setdebug(4,42
+int FFTSZ 15,172
+float Freq 16,189
+int ds 17,211
+int npts 18,223
+  Tim 20,240
+int sb 41,783
+int SampFreq 55,944
+float SYS[SYS57,966
+short YS[YS59,980
+int nbp 65,1073
+int frames 66,1086
+int bufend;68,1103
+int nf;69,1115
+int nxpts;70,1123
+ Sf 72,1135
+float tx 102,1452
+float txb 104,1484
+float tx_shift;105,1501
+RmsTrk 108,1519
+   else 158,2452
+    tasX 164,2539
+   show_tas 178,2861
+   show_spec 179,2878
+   old_end 181,2899
+   sGl(242,3578
+closeAudio(300,4572
+
+seespec_audio.asl,185
+Gain 5,87
+proc closeAudio(45,928
+int smic_factor 54,1061
+proc playBuff(74,1439
+proc playBCtas(85,1642
+proc samp2time(111,2152
+proc playSection(122,2288
+proc getVoxTime(155,2944
+
+seespec_compute.asl,30
+proc computeSpecandPlot(5,48
+
+seespec_io.asl,76
+proc voxFileRead(6,75
+proc setUpNewVoxParams(43,703
+proc writeVox(63,995
+
+seespec_selshow.asl,101
+proc showSlice 5,33
+proc selSection(72,1435
+proc showSelectRegion(131,2591
+proc showVox(203,3981
+
+seespec_wko.asl,45
+vox_type 5,81
+proc do_key_options(142,3423
+
+seespec_ws.asl,162
+int commwo 4,84
+float y0 6,102
+float y1 7,121
+float mm[mm8,139
+float vox_tX 9,151
+  ssw 12,174
+ wohtile(93,3253
+proc getNpixs(124,3908
+int ncb 151,4258

@@ -629,6 +629,14 @@ int do_unary = 0;
   cart("strsplice")
   updir()
 
+  Run2Test("Sstr")
+  cart("sstr")
+  updir()
+
+  Run2Test("Regex")
+  cart("regex")
+  updir()
+
 
 
   }

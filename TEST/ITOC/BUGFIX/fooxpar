@@ -1,11 +1,18 @@
 [1;32m[4] checkIn()
 [0m
-[1;32m[7] float Y[] = vgen(4,10,0,1);
+[1;32m[6] float z = exp(1.0)
 [0m
-[1;32m[7] // fails
+[1;32m[8] <<"%V$z\n"
 [0m
-[1;32m[10] <<"Y $Y\n"
+[1;32m[11] Y = vgen(4,10,0,1);
 [0m
-[1;32m[12] checkFnum(Y[1],1)
+[1;32m[11] // fails
 [0m
-Code errors 0  ICerrors 1
+[1;32m[14] <<"Y $Y\n"
+[0m
+[1;32m[16] checkFnum(Y[1],1)
+[0m
+[1;32m[19] checkOut();
+[0m
+[1;32m[22] _codeend();
+[0m

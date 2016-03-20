@@ -1,4 +1,4 @@
-//////// wo.asl ////////////////////
+//////// pt.asl ////////////////////
 
 setdebug(0)
 
@@ -17,9 +17,9 @@ spawn_it = 1
        spawn_it  = 0;
      }
 
-    vp = CreateGwindow(@title,"Periodic_Table_Of_Elements",@resize,0.01,0.2,0.95,0.9,0)
+    vp = cWi(@title,"Periodic_Table_Of_Elements",@resize,0.01,0.2,0.95,0.9,0)
 
-    SetGwindow(vp,@pixmapon,@drawon,@save,@bhue,WHITE)
+    sWi(vp,@pixmapon,@drawon,@save,@bhue,WHITE_)
     setgwob(vp,@grid,11,20)
     sWi(vp,@clip,0.2,0.2,0.8,0.8)
 
@@ -39,7 +39,7 @@ spawn_it = 1
  elef = split(elespec,",")
  ewo[i]=cWo(vp,"BV",@name,"$elef[1]  $elef[2]",@color,ecolor[i],@resize,col,rb,col+1,rt,3)
 
-  setgwob(ewo[i],@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK,@VALUE,"$elef[0]\n $elef[3]",@STYLE,"SVB")
+  setgwob(ewo[i],@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@VALUE,"$elef[0]\n $elef[3]",@STYLE,"SVB")
  if (show) {
   setgwob(ewo[i],@redraw)
  }
@@ -57,7 +57,7 @@ spawn_it = 1
  elespec = Pt(i)
  elef = split(elespec,",")
  ewo[i]=cWo(vp,"BV",@name,"$elef[1]  $elef[2]",@color,ecolor[i],@resize,col,rb,col+1,rt,3)
- setgwob(ewo[i],@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK,@VALUE,"$elef[0]\n $elef[3]",@STYLE,"SVB")
+ setgwob(ewo[i],@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@VALUE,"$elef[0]\n $elef[3]",@STYLE,"SVB")
  if (show) {
     setgwob(ewo[i],@redraw)
  }
@@ -76,16 +76,16 @@ spawn_it = 1
  int ewo[120]
  int ecolor[120]
 
- ecolor = YELLOW;
+ ecolor = YELLOW_;
 
- ecolor[5,14,32,33,51,52,84,85] = GREEN;
- ecolor[1,2] = LILAC;
- ecolor[6:10] = LILAC;
- ecolor[15:18] = LILAC;
- ecolor[34:36] = LILAC;
+ ecolor[5,14,32,33,51,52,84,85] = GREEN_;
+ ecolor[1,2] = LILAC_;
+ ecolor[6:10] = LILAC_;
+ ecolor[15:18] = LILAC_;
+ ecolor[34:36] = LILAC_;
 
- ecolor[53:54] = LILAC;
- ecolor[36,53,54,86] = LILAC;
+ ecolor[53:54] = LILAC_;
+ ecolor[36,53,54,86] = LILAC_;
 
 
  int col =1;
