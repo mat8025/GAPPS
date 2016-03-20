@@ -39,6 +39,9 @@ checkStr("FEB",Mol[1])
 Svar Mo[] = {"JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC" }
 //Svar Mo = {"JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC" }
 
+
+<<" Mo $(typeof(Mo)) \n"
+
 sz= Caz(Mo)
 
 <<" Mo %V$sz \n"
@@ -58,11 +61,14 @@ checkStr(Mo[0],"JAN")
 checkStr(Mo[11],"DEC")
 
 
-int A[] = {1,2,3,4,5,6,7,8}
+int A[] = {0,1,2,3,4,5,6,7,8}
 
 <<"$A\n"
 
 <<"sz $(Caz(A)) cab $(Cab(A))\n"
+
+checkNum(A[1],1)
+checkNum(A[8],8)
 
 
 

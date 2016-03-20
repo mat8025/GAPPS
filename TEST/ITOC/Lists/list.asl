@@ -1,15 +1,4 @@
 
-proc PassFail ( val)
-{
- lans = "Pass"
- if (val != 1) {
-//  setdebug(1,"step")  
-  lans = "Fail"
-//  bad_ans = i_read()
- }
- <<"ans = $lans\n"
- return lans
-}
 
 ws = getScript()
 
@@ -46,17 +35,19 @@ m = Caz(J)
 
 <<"%V$fw $(typeof(fw))\n"
 
-// PassFail(checkStr(fw,"a"))
+
 
 checkStr(fw,"a")
 
-     fw = L1[-1]
+l1sz = Caz(L1)
+<<"%V$l1sz\n"
+
+
+   fw = L1[l1sz-1]
 
 <<"%V$fw $(typeof(fw))\n"
 
-  //PassFail(checkStr(fw,"violet"))
-
- checkStr(fw,"violet")
+checkStr(fw,"violet")
 
 
  L2 = ( "The", "colors", "of" ,"the", "rainbow", "are", "red", "orange", "yellow", "green", "blue" ,"indigo", "violet" )
@@ -72,8 +63,6 @@ checkStr(fw,"a")
 <<"%V$fw $(typeof(fw))\n"
 
 checkStr(fw,"The")
-
-
 
 
 //  PassFail(checkStr(fw,"The"))
@@ -145,7 +134,7 @@ checkStr(fw,"list")
 <<"fw $fw\n"
 checkStr(fw,"lovely")
 
-//   PassFail(checkStr(fw,"lovely"))
+
 
 
  litem = "focus"
@@ -205,13 +194,11 @@ stop!
 <<"-3->2%V$L3 \n"
 
 <<" %V$L3[1:7:2] \n"
+
+
 // FIXME <<" %V$L3[-3:1:-1] \n"
 // FIMXME
 //<<"%v\s$L3[-1:0:] \n"
-
-
-
-
 //iread(";>")
 
 
@@ -254,6 +241,7 @@ stop!
 <<" %V $fw $lw\n"
 
  CheckOut()
+
 
 stop!
 

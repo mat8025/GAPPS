@@ -1,16 +1,30 @@
-//setdebug(1)
+setdebug(1,"trace")
 checkIn()
+
+//
+// FIXME --- msg gets to be a STRV -- not svar
+//
+
 Svar msg = "we all have to try harder";
+
+//msg = "we all have to try harder";
 
 
 <<"$msg\n"
 
+<<"$(typeof(msg))\n"
 
 words = Split(msg)
 
 <<"$words[1] \n"
+<<"$words[2] \n"
+<<"$words[3] \n"
 
 <<"$words \n"
+
+w0 = msg->getWord(0)
+
+<<"%V$w0\n"
 
 
 w1 = msg[0]->getWord(1)

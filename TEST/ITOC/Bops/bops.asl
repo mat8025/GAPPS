@@ -1,5 +1,5 @@
 
-//setdebug(1)
+setdebug(1,"trace")
 
 checkIn()
 

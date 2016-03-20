@@ -1,6 +1,6 @@
 
 
-setDebug(1)
+setDebug(1,"trace")
 CheckIn()
 
 //FIXME --- have to have a declare statement afore LIST DECLARE ??
@@ -44,13 +44,16 @@ L = ( "say", "what", "can" ,"I", "do", "now", "with", "this", "amazingly", "love
  m = Caz(li)
 <<"list size is $m \n"
 
-
 <<"\n"
-  lib = L[2:6]
-<<"%V contains $lib \n"
-<<"lib type is $(typeof(lib)) \n"
+
+lib = L[2:6]
  m = Caz(lib)
 <<"list size is $m \n"
+
+
+<<"%V contains $lib \n"
+<<"lib type is $(typeof(lib)) \n"
+
 
 
 
@@ -85,6 +88,7 @@ L = ( "say", "what", "can" ,"I", "do", "now", "with", "this", "amazingly", "love
 
  L->sort()
 
+<<"sort list \n"
 <<" $L \n"
 
  le = L[1]
