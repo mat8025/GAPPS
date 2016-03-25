@@ -85,7 +85,7 @@ Graphic = checkGWM()
   // these are a list of values that the color wo have can - each click cycles thru them
 
 
-  frgb = vgen(FLOAT,41,0,0.025)
+  frgb = vgen(FLOAT_,41,0,0.025)
 
 //<<"%(,,\,,)4.2f$frgb \n"
 

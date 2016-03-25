@@ -36,9 +36,13 @@ proc computeSpecandPlot(rtb , rtf)
    winshift = (stend- st) / nxp
 
    ysz = Caz(YS);
-<<"%V $ysz  \n"
-   <<"$YS[0] $YS[ysz-1]\n"
-   while (spi < stend) {
+
+//<<"%V $ysz  \n"
+<<"$YS[0] $YS[ysz-1]\n"
+   
+    sWo(fewo,@ClearPixMap,@clearClip);
+    
+ while (spi < stend) {
 
      end = st + wlen - 1
     // <<"%V$st $wlen $end \n"
@@ -54,12 +58,12 @@ proc computeSpecandPlot(rtb , rtf)
 
 //<<"%V$frames $st $rsz $real[0] $real[fftend]\n"
 
-     if (show_tas) {
+     if (show_tas_rf) {
         sWo(tawo,@redraw,@clearclip)
         vdraw(tawo,real,0,1,0)
       }
 
-    rtx = st / Freq
+     rtx = st / Freq
 
      sGl(cop_gl,@cursor,rtx,y0,rtx,y1)
 
@@ -67,7 +71,17 @@ proc computeSpecandPlot(rtb , rtf)
 
      zx = ZC(real,Zxthres)
 
+//<<"$frames $zx\n"
+
+     ZxTrk[frames] = zx;
+
      rmsv = RMS(real)
+
+     RmsTrk[frames] = 0.0;
+
+     if (rmsv > 0.0) {
+       RmsTrk[frames] = 10*log10(rmsv) -20
+     }
 
      real *= swin
 
@@ -76,6 +90,7 @@ proc computeSpecandPlot(rtb , rtf)
      imag = 0.0
 
      isz = Caz(imag)
+
 
 //<<"%V$st $isz $imag[0] $imag[fftend]\n"
 //<<"%V$zx $rmsv \n"
@@ -86,7 +101,7 @@ proc computeSpecandPlot(rtb , rtf)
 
      st += winshift
 
-    if (show_spec) {
+    if (show_spec_rf) {
      sWo(spwo,@redraw,@clearclip,WHITE_)
      //vdraw(spwo,real[0:hwlen-1],0,1.0,0)
      Vdraw(spwo,real[0:hwlen-1],0,1.0,1,0,8000)
@@ -123,6 +138,22 @@ proc computeSpecandPlot(rtb , rtf)
   }
 
 
+   sWo(fewo,@ClearPixMap,@scales,0,0,frames,30);
+   sGl(rmsgl,@scales,0,0,frames,30,@ltype,1, @symbol,"diamond",@savescales,0,@usescales,0)
+   
+  drawGline(rmsgl);
+
+
+
+  sWo(fewo,@scales,0,0,frames,1.5,@savescales,1,@usescales,1)
+  sGl(zxgl,@scales,0,0,frames,1.5,@ltype,1, @symbol,"diamond",@savescales,1,@usescales,1)
+  drawGline(zxgl);
+    
+  <<"%V$frames \n"
+  <<"%V$ZxTrk[20]\n"
+  
+  sWo(fewo,@showPixMap) ;    
+  sWo(fewo,@clipBorder,BLACK_);
   dt = FineTimeSince(Tim,1)
 
   dtsecs = dt / 1000000.0

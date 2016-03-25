@@ -17,8 +17,6 @@ proc WC (c)
 
    switch (c) {
 
-
-
       case 'A':
            printf("A we  have %c %d\n",c,c);
       break;
@@ -26,8 +24,7 @@ proc WC (c)
       case 'B':
            printf("B we  have %c %d\n",c, c);
            <<"B we  have %c$c %d$c\n"
- 
-     break;
+      break;
 
 
       case 'C':

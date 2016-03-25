@@ -10,6 +10,7 @@
 
  Vamp = 32000
 
+
 <<" create TAW \n"
 
 // setdebug(1,"pline")
@@ -31,7 +32,7 @@
  sWi(sgw,@pixmapon,@drawoff,@clear,@redraw,@save,@savepixmap)
  allwins[nw++] = sgw
 
- cntrlw = cWi(@title,"Control")
+ cntrlw = cWi(@title,"SaySee_Control_$version")
  sWi(cntrlw,@resize,0.82,0.10,0.98,0.95,0)
  sWi(cntrlw,@pixmapon,@drawoff,@clear,@redraw,@save,@savepixmap)
 

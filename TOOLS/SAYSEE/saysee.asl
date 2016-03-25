@@ -1,8 +1,11 @@
 ///
 /// SAYSEE
 ///
+///
 
 
+version = "1.1" ; 
+<<"$_clarg[0] $version\n"
 
 
 // swap these to switch  debug prints
@@ -984,23 +987,35 @@ setgline(zxgl,@scales,0,0,200,0.5,@ltype,1, @symbol,"diamond","savescales",0,"us
 // get/open dsp
 
   Prop("Recording Thread")
+    dspfd = dspopen("/dev/dsp") // correct for mercury
+    if (dspfd == -1) {
+     dspfd = dspopen("/dev/dsp1") // correct for mars
+    }
+   
+// look for sound devices
+// get open  mixer
 
-  dspfd = dspopen("/dev/dsp1")
-  pcmfd = -1
+   mixfd = mixeropen("/dev/mixer")
+   if (mixfd == -1) {
+    mixfd = mixeropen("/dev/mixer1")
+   }
 
+   if (dspfd == -1) {
+    <<"Error opening /dev/dsp?\n"
+    <<" may need to load sound modules -- sudo modprobe snd-pcm-oss \n"
+    <<" check with ls /dev/dsp*  and retry if /dev/dsp* is listed\n"
+   }
+   if (mixfd == -1) {
+    <<"Error opening /dev/mixer?\n"
+   }
+
+   pcmfd = -1
 
    pcmfd = ofw("rb.vox")
 
    voxfd =ofw("session.vox")
 
-
-// get/open  mixer
-
-  mixfd = mixeropen("/dev/mixer1")
-
-// set dsp,mixer
-
-DBPR"%V $dspfd $mixfd \n"
+   DBPR"%V $dspfd $mixfd \n"
 
    T=FineTime()
 

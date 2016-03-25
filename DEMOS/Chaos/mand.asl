@@ -1,12 +1,9 @@
-#
-#/* -*- c -*- */
-# "$Id: mand.asl,v 1.1 1997/02/21 05:22:47 mark Exp mark $"
 
-# MANDELBROT
+// MANDELBROT
 
 set_debug(0)
 
-opendll("plot")
+//opendll("plot")
 
 Graphic = CheckGwm()
 
@@ -14,12 +11,13 @@ Graphic = CheckGwm()
 float RS[]
 float R[10]
 
-Event E 
+//Event E 
 E = 1
 float rinfo[12]
 int iv[16]
 int woival = 0
 int button
+float xr;
 
 //////////////////////////////////////////
 
@@ -93,13 +91,13 @@ proc resize_mand()
    nxp = nyp
 
 }
-
+//=========================================
 proc screen_print()
 {
                   for (x0 = 0 ; x0 < nxp ; x0++ ) {
                     c1 = xr0 + (xrange * x0 / nxp)
                     Mandel(c1,yr0,yr1,4,nyp,ni,CM,C)
-                    v_pc(w,C,x0,0,1)
+                    vpc(w,C,x0,0,1);
                     x0 = x0 + 1
                   }
                 close_laser()
@@ -216,7 +214,7 @@ proc zoom_mand(the_w)
       w_show_curs(the_w,2,ctype,MBS[4],MBS[5])
       x0 = 0
 }
-
+//========================================================
 
 proc new_coors(w_num)
 {
@@ -249,7 +247,7 @@ proc new_coors(w_num)
       x0 = 0
     }
 }
-
+//========================================================
 
 
 proc pickCoors()
@@ -335,20 +333,22 @@ proc pickCoors()
 <<"%V$button setting scales %12.8f$xr0 $yr0 $xr1 $yr1 $xrange $yrange \n"
 
 }
-
+//========================================================
 proc moveCoors()
 {
-<<"moveCoors\n"
+<<"moveCoors %V  $xr0 $yr0 $xr1 $yr1 \n"
   woival = E->geteventwoivalue() 
 
-  drx = xrange * 0.5
-  dry = yrange * 0.5
+  drx = xrange * 0.1
+  dry = yrange * 0.1
 
+<<"%V $drx $dry $xrange $yrange \n"
+<<"%V $woival \n"
   switch (woival) {
 
   case WLEFT:
-   xr0 -= drx
-   xr1 -= drx
+   xr0 -= drx;
+   xr1 -= drx;
 <<"shift LEFT $xr0 $xr1 \n"
   break;
 
@@ -370,6 +370,17 @@ proc moveCoors()
 <<"shift RIGHT $xr0 $xr1 \n"
   break;
 
+  case WLDWN;
+
+   xr0 -= drx;
+   xr1 -= drx;
+   yr0 -= dry;
+   //yr1 -= dry;
+   yr1 = yr1 -dry;
+<<"WLDWN   %V  $xr0 $yr0 $xr1 $yr1   \n";
+   break;
+
+
   case WCEN:
 
 /{
@@ -388,9 +399,13 @@ proc moveCoors()
   break;
  }
 
+<<"moveCoors DONE  $xr0 $yr0 $xr1 $yr1 \n";
+
+  sWo(mandwo,@scales,xr0,yr0,xr1,yr1);
+
 
 }
-
+//========================================================
 laser = 0
 
 
@@ -445,31 +460,31 @@ wy = 10
 wX = 300
 wY = 300
 
- vp =  CreateGwindow("title","Mand",@resize,0.1,0.05,0.99,0.99,0)
+ vp =  cWi("title","Mand",@resize,0.1,0.05,0.99,0.99,0)
 
  <<"$vp \n"
      
  w =vp
 
- int wc[] = {1,200,200,750,750}
+ int wc[] = {1,200,200,750,750};
 
 
  bx = 0.05
  by = 0.05
- bX = 0.80
- bY = 0.88
+ bX = 0.75
+ bY = 0.80
 
- mandwo=createGWOB(vp,"GRAPH",@name,"MANDEL_1",@color,"yellow",@resize,bx,by,bX,bY)
- setgwob(mandwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red", @redraw)
- setgwob(mandwo,@SCALES,0,0,1,1)
- setGwob(mandwo,@pixmapon,@drawon)
- SetGwob(mandwo,@clip,0.05,0.05,0.95,0.95)
+ mandwo=cWo(vp,"GRAPH",@name,"MANDEL_1",@color,"white",@resize,bx,by,bX,bY)
+ sWo(mandwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red", @redraw)
+ sWo(mandwo,@SCALES,0,0,1,1)
+ sWo(mandwo,@pixmapon,@drawon,@savepixmap)
+ sWo(mandwo,@clip,0.05,0.05,0.95,0.95)
 
 
 
-  msgwo=createGWOB(vp,"TEXT",@name,"COOR",@VALUE,"0.0 0.0",@color,"white",@resize,0.1,0.89,0.9,0.99)
+  msgwo=cWo(vp,"TEXT",@name,"COOR",@VALUE,"0.0 0.0",@color,"white",@resize,0.1,0.89,0.9,0.99)
 
-  setgwob(msgwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @pixmapoff,@drawon,@redraw,@save)
+  sWo(msgwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @pixmapoff,@drawon,@redraw,@save)
 
 
  bx = bX + 0.02
@@ -481,88 +496,86 @@ wY = 300
 
 
 
- qwo=createGWOB(vp,"BV",@name,"QUIT",@color,"blue",@resize,bx,by,bX,bY)
- setgwob(qwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@VALUE,"ON")
+ qwo=cWo(vp,"BV",@name,"QUIT",@color,RED_,@resize,bx,by,bX,bY)
+ sWo(qwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@VALUE,"ON")
 
 
  bY = by - pad
  by = bY - yht
 
- selwo=createGWOB(vp,"BN",@name,"SELECT",@VALUE,"SELECT",@color,"blue",@resize_fr,bx,by,bX,bY)
- setgwob(selwo,@help," click to select box")
- setgwob(selwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw)
+ selwo=cWo(vp,"BN",@name,"SELECT",@VALUE,"SELECT",@color,"blue",@resize_fr,bx,by,bX,bY)
+ sWo(selwo,@help," click to select box")
+ sWo(selwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw)
 
  bY = by - pad
  by = bY - yht
 
- resetwo=createGWOB(vp,"BN",@name,"RESET",@color,"blue",@resize_fr,bx,by,bX,bY)
- setgwob(resetwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw, @help," click to reset coors")
+ resetwo=cWo(vp,"BN",@name,"RESET",@color,"blue",@resize_fr,bx,by,bX,bY)
+ sWo(resetwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw, @help," click to reset coors")
 
  bY = by - pad
  by = bY - yht
 
- initwo=createGWOB(vp,"BN",@name,"INIT",@color,"blue",@resize_fr,bx,by,bX,bY)
- setgwob(initwo,@help," click to reset coors",@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw)
+ initwo=cWo(vp,"BN",@name,"INIT",@color,"blue",@resize_fr,bx,by,bX,bY)
+ sWo(initwo,@help," click to reset coors",@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw)
 
  bY = by - pad
  by = bY - yht
 
- xr0wo=createGWOB(vp,"BV",@name,"XR0",@VALUE,"0.0",@color,"blue",@resize_fr,bx,by,bX,bY)
- setgwob(xr0wo,@help," show xr0")
- setgwob(xr0wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@STYLE,"SVR", @redraw)
+ xr0wo=cWo(vp,"BV",@name,"XR0",@VALUE,"0.0",@color,"blue",@resize_fr,bx,by,bX,bY)
+ sWo(xr0wo,@help," show xr0")
+ sWo(xr0wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@STYLE,"SVR", @redraw)
 
  bY = by - pad
  by = bY - yht
 
- xr1wo=createGWOB(vp,"BV",@name,"XR1",@VALUE,"0.0",@color,"blue",@resize_fr,bx,by,bX,bY)
- setgwob(xr1wo,@help," show xr1")
- setgwob(xr1wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@STYLE,"SVR", @redraw)
+ xr1wo=cWo(vp,"BV",@name,"XR1",@VALUE,"0.0",@color,"blue",@resize_fr,bx,by,bX,bY)
+ sWo(xr1wo,@help," show xr1")
+ sWo(xr1wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@STYLE,"SVR", @redraw)
 
  bY = by - pad
  by = bY - yht
 
- yr0wo=createGWOB(vp,"BV",@name,"YR0",@VALUE,"0.0",@color,"blue",@resize_fr,bx,by,bX,bY)
- setgwob(yr0wo,@help," show yr0")
- setgwob(yr0wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@STYLE,"SVR", @redraw)
+ yr0wo=cWo(vp,"BV",@name,"YR0",@VALUE,"0.0",@color,"blue",@resize_fr,bx,by,bX,bY)
+ sWo(yr0wo,@help," show yr0")
+ sWo(yr0wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@STYLE,"SVR", @redraw)
 
  bY = by - pad
  by = bY - yht
 
- yr1wo=createGWOB(vp,"BV",@name,"YR1",@VALUE,"0.0",@color,"blue",@resize_fr,bx,by,bX,bY)
- setgwob(yr1wo,@help," show yr1")
- setgwob(yr1wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@STYLE,"SVR", @redraw)
+ yr1wo=cWo(vp,"BV",@name,"YR1",@VALUE,"0.0",@color,"blue",@resize_fr,bx,by,bX,bY)
+ sWo(yr1wo,@help," show yr1")
+ sWo(yr1wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@STYLE,"SVR", @redraw)
 
 
+ upwo=cWo(vp,SYMBOL_,@name,"UP",@value,WUP,@color,"green",@symbolshape,"tri")
 
+ dwnwo=cWo(vp,SYMBOL_,@name,"DOWN",@value,WDOWN,@color,"green",@symbol,"tri",@symang,180)
 
- upwo=createGWOB(vp,SYMBOL,@name,"UP",@IVALUE,WUP,@color,"green",@symbolshape,"tri")
+ ltwo=cWo(vp,SYMBOL_,@name,"LEFT",@value,WLEFT,@color,"green",@symbol,"tri",@rotate,90,@symang,90)
 
- dwnwo=createGWOB(vp,SYMBOL,@name,"DOWN",@IVALUE,WDOWN,@color,"green",@symbol,"i_tri")
+ rtwo=cWo(vp,SYMBOL_,@name,"RIGHT",@value,WRIGHT,@color,"green",@symbol,"tri",@symang,-90)
 
- ltwo=createGWOB(vp,SYMBOL,@name,"LEFT",@IVALUE,WLEFT,@color,"green",@symbol,"tri",@rotate,90,@symang,90)
+ ruwo=cWo(vp,SYMBOL_,@name,"RU",@value,WRUP,@color,"green",@symbol,"tri",@symang,-45)
 
- rtwo=createGWOB(vp,SYMBOL,@name,"RIGHT",@IVALUE,WRIGHT,@color,"green",@symbol,"tri",@symang,-90)
+ rdwo=cWo(vp,SYMBOL_,@name,"RD",@value,WRDWN,@color,"green",@symbol,"tri",@symang,-135)
 
- ruwo=createGWOB(vp,SYMBOL,@name,"RU",@IVALUE,WRUP,@color,"green",@symbol,"tri",@symang,-45)
+ luwo=cWo(vp,SYMBOL_,@name,"LU",@value,WLUP,@color,"green",@symbolhape,"tri",@symang,45)
 
- rdwo=createGWOB(vp,SYMBOL,@name,"RD",@IVALUE,WRDWN,@color,"green",@symbol,"tri",@symang,-135)
+ ldwo=cWo(vp,SYMBOL_,@name,"LD",@value,WLDWN,@color,"green",@symbolshape,"tri",@symang,135)
 
- luwo=createGWOB(vp,SYMBOL,@name,"LU",@VALUE,"1",@color,"green",@symbolhape,"tri",@symang,45)
-
- ldwo=createGWOB(vp,SYMBOL,@name,"LD",@VALUE,"1",@color,"green",@symbolshape,"tri",@symang,135)
-
- cenwo=createGWOB(vp,SYMBOL,@name,"CEN",@IVALUE,WCEN,@color,"orange",@symbol,"dia",@symang,0)
+ cenwo=cWo(vp,SYMBOL_,@name,"CEN",@value,WCEN,@color,"orange",@symbol,"dia",@symang,0)
 
  int pos_array[] = { luwo, upwo, ruwo,  ltwo,  cenwo, rtwo, ldwo, dwnwo, rdwo }
 
-  setgwob(pos_array ,@BORDER,@PIXMAPON,@CLIPBORDER,@FONTHUE,"black")
+  sWo(pos_array ,@BORDER,@PIXMAPON,@CLIPBORDER,@FONTHUE,"black")
 
   wo_rctile(pos_array,0.78, 0.05, 0.98, 0.25,3,3)
 
   setgwin(vp ,"woredrawall")
 
-  setgwob(cenwo,@pixmapon,@symbolshape,"cross",@symsize,5,@redraw)
-  setgwob(pos_array,@symsize,3,@showpixmap)
+  sWo(cenwo,@pixmapon,@symbolshape,"cross",@symsize,5,@redraw)
+  sWo(pos_array,@symsize,3,@showpixmap)
   // nxpixs = SGCL[3] -  SGCL[1]
   // nypixs = SGCL[4] -  SGCL[2]
 
@@ -609,15 +622,15 @@ wY = 300
 
 // reset the clip 
 
-    setgwob(mandwo,@CLIP,offx,offy,nxp,nyp,2,@redraw)
-    setgwob(mandwo,@ClipBorder,"pink")
+    sWo(mandwo,@CLIP,offx,offy,nxp,nyp,2,@redraw)
+    sWo(mandwo,@ClipBorder,"pink")
 
 //  the clip plot area is going to be square  --- nxp == nyp
 //  keep yscale 0-1 --- adjust xscale 0 --- nx/nxp
 
     float cwx1  = nx / (1.0 * nxp)
 
-    setgwob(mandwo,@SCALES,0,0,cwx1,1)
+    sWo(mandwo,@SCALES,0,0,cwx1,1)
 
 
 int kt
@@ -651,14 +664,16 @@ np = 16
 
 <<"%V$np \n"
 
+//np =2;
+
   if (np <= 2) {
     mono = 1
     CM[ni] =0
       for ( i = 0 ; i < (ni-4); i += 2 ) {
-        CM[i] = 1
+        CM[i] = 1;
       }
       for ( i = 1 ; i < (ni-4); i +=  2 ) {
-        CM[i] = 0
+        CM[i] = 0;
       }
   }
   else {
@@ -683,8 +698,6 @@ double yr0 = -2.0
 double yr1 = 2.0
 double xr0 = -2.0
 double xr1 = 2.0
-
-
 double x0 = 0.0
 double c1 = 0.0
 
@@ -727,21 +740,17 @@ double dinxp = 1.0/(1.0 * nxp)
 
   x0 = 0.0
 
-
-
+<<"$CM\n"
+<<"%V$ni\n"
         while (1) {
-
 
         x0++
 
         kmp = Mandel(c1,yr0,yr1,4.0,nyp,ni,CM,C)
 
+        vpc(mandwo,C,cmapi,x0,0,-1);
 
-        v_pc(mandwo,C,cmapi,x0,0,-1)
-
-
-
-  //      setGwob(mandwo,@clipborder,@showpixmap)
+        //sWo(mandwo,@clipborder,@showpixmap)
 
 //<<"%V$x0 $c1 $yr0 $yr1 $nyp $nxp $ni\n"
 //<<"%V $kmp \n"
@@ -754,7 +763,7 @@ double dinxp = 1.0/(1.0 * nxp)
          }
 
         }
-
+//////////////
 
          flush_messages()
 
@@ -775,9 +784,9 @@ double dinxp = 1.0/(1.0 * nxp)
 
   //pickCoors(vp)     
 
-  SetGwob(mandwo,@clipborder,@showpixmap,@save)
-  SetGwob(xr0wo,@VALUE,"%5.4f$xr0",@update)
-  SetGwob(yr0wo,@VALUE,"%5.4f$yr0",@update)
+  sWo(mandwo,@clipborder,@showpixmap,@savepixmap,@save)
+  sWo(xr0wo,@VALUE,"%5.4f$xr0",@update)
+  sWo(yr0wo,@VALUE,"%5.4f$yr0",@update)
 
   reset_xr0 = xr0
   reset_xr1 = xr1
@@ -798,23 +807,28 @@ double dinxp = 1.0/(1.0 * nxp)
 
            kmp = Mandel(c1, yr0, yr1, 4.0, nyp, ni,CM,C)
 
-           v_pc(mandwo,C,cmapi,x0,nyp,1)  // plot vector of pixels
-//        <<" $(Cab(C)) \n"
-//<<"%V$C[::] \n"
+//<<"%V$yr0 $yr1 $c1 $x0 $kmp\n"
+//<<"$C\n"
+//iread()
+           vpc(mandwo,C,cmapi,x0,nyp,1);
 
-           x0++
+// plot vector of pixels
+// <<" $(Cab(C)) \n"
+// <<"%V$C[::] \n"
 
-//           setGwob(mandwo,@clipborder,@showpixmap)
+           x0++;
+
+          //sWo(mandwo,@clipborder,@showpixmap)
 
       }
       else {
         // then check
-        SetGwob(mandwo,@clipborder,@showpixmap,@save)
+        sWo(mandwo,@clipborder,@showpixmap,@savepixmap,@save)
 
-  //setgwob(cenwo,@pixmapon,@symbolshape,"tri",@symsize,5,@redraw)
-  //setgwob(cenwo,@showpixmap)
-  setgwob(pos_array,@redraw)
-  setgwob(pos_array,@showpixmap)
+  //sWo(cenwo,@pixmapon,@symbolshape,"tri",@symsize,5,@redraw)
+  //sWo(cenwo,@showpixmap)
+  sWo(pos_array,@redraw)
+  sWo(pos_array,@showpixmap)
 //        save_image(mandwo,"mand_pic")
         jj++
 
@@ -822,7 +836,7 @@ double dinxp = 1.0/(1.0 * nxp)
 
        msg = messageWait()
 
-       setgwob(msgwo,@border,@clearclip,@textr,"$msg",0.1,0.5)
+       sWo(msgwo,@border,@clearclip,@textr,"$msg",0.1,0.5)
 
        woname = E->getEventWoName()    
 
@@ -843,7 +857,7 @@ double dinxp = 1.0/(1.0 * nxp)
        yr1 = reset_yr1 
 
 
-       SetGwob(mandwo,@scales,xr0,yr0,xr1,yr1)
+       sWo(mandwo,@scales,xr0,yr0,xr1,yr1)
 
        }
 
@@ -851,7 +865,7 @@ double dinxp = 1.0/(1.0 * nxp)
 
           yr0 = -2.5 ; yr1 = 2.5 ; xr0 = -2.5 ; xr1 = 2.5 ;
 
-          SetGwob(mandwo,@scales,xr0,yr0,xr1,yr1)
+          sWo(mandwo,@scales,xr0,yr0,xr1,yr1)
 
        }
        else if (scmp(woname,"SELECT",6)) {
@@ -862,18 +876,19 @@ double dinxp = 1.0/(1.0 * nxp)
 
         <<"%V$RS\n"
 
-        setgwob(msgwo,@border,@textr,"%V6.4f$RS",0.1,0.1)
+        sWo(msgwo,@border,@textr,"%V6.4f$RS",0.1,0.1)
         // now rescale 
         xr0 = RS[1]
         xr1 = RS[3]
         yr0 = RS[2]
         yr1 = RS[4]
 
+        sWo(mandwo,@scales,xr0,yr0,xr1,yr1)
 
 <<"%V$xr0 $yr0 $xr1 $yr1 $xrange $yrange $dinxp\n"
 
-          xval = xrange / 5.0 
-          yval = yrange / 5.0
+       xval = xrange / 5.0 
+       yval = yrange / 5.0
 
        reset_xr0 = xr0
        reset_xr1 = xr1 
@@ -894,11 +909,11 @@ double dinxp = 1.0/(1.0 * nxp)
 
          // setup the parameters for the calculation
 
-          SetGwob(xr0wo,@VALUE,"%5.4f$xr0",@update)
-          SetGwob(xr1wo,@VALUE,"%5.4f$xr1",@update)
-          SetGwob(yr0wo,@VALUE,"%5.4f$yr0",@update)
-          SetGwob(yr1wo,@VALUE,"%5.4f$yr1",@update)
-          setgwob(mandwo,@BORDER,@CLIPBORDER, @redraw)
+          sWo(xr0wo,@VALUE,"%5.4f$xr0",@update)
+          sWo(xr1wo,@VALUE,"%5.4f$xr1",@update)
+          sWo(yr0wo,@VALUE,"%5.4f$yr0",@update)
+          sWo(yr1wo,@VALUE,"%5.4f$yr1",@update)
+          sWo(mandwo,@BORDER,@CLIPBORDER, @redraw)
 
           xrange = xr1-xr0
           yrange = yr1-yr0
@@ -1046,10 +1061,10 @@ kt++
 
 
   if (rsfactor == 1.0) {
-   SetGwob(mandwo,@scales,xr0,yr0,xr1,yr1)
+   sWo(mandwo,@scales,xr0,yr0,xr1,yr1)
   }
   else {
-    SetGwob(mandwo,@scales,xr0,yr0,xr1,yr1)
+    sWo(mandwo,@scales,xr0,yr0,xr1,yr1)
    //SetGwindow(mandwo,@scales,xr0/rsfactor,yr0/rsfactor,xr1/rsfactor,yr1/rsfactor)
   }
 

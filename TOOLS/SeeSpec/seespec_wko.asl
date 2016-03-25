@@ -1,8 +1,10 @@
-
+///
 ///  seespec
 ///////////////////////  Wo and Key callbacks ///////////////////
 
-vox_type = 'vox\|pcm'
+vox_type = 'vox\|pcm' ; // regex for vox or pcm
+
+vox_dir= "/home/mark/barn/ASR/FL/spanish/"; // no trailing spaces for chdir to work
 
 proc do_wo_options(w_wo)
 {
@@ -108,11 +110,13 @@ proc do_wo_options(w_wo)
 
          // pop up a window to look for vox files?
 	 // chdir("/home/mark/barn/ASR/FL/spanish/faf");
+	 <<" NAVI window \n"
+	 sleep(1);
 	 
-  fname = naviwindow("Vox File Locator"," Search for vox/pcm files ", "sp_phrase.vox", vox_type, "/home/mark/barn/ASR/FL/spanish/faf");
+  fname = naviwindow("Vox/pcm Files ", " Search for vox/pcm files ", "a.vox", vox_type, vox_dir);
 
-             <<"got $fname\n"
-          //  fname = "ec1.0-9.vox"
+  <<"got $fname\n"
+        
 	  // check it exists then
 
             sWo(butawo,@border,@drawon,@clipborder,@fonthue,BLACK_,@redraw)
@@ -130,6 +134,7 @@ proc do_wo_options(w_wo)
           
 	    displayComment("reading $fname \n")
             <<"done with read and process of vox file \n"
+	    // parse out current dir - for next use
         }	
         else if (w_wo == write_wo) {
             // write current select region to out.vox

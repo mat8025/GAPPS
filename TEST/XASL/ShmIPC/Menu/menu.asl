@@ -1,4 +1,4 @@
-////////////  CREATE SIMPLE CHOICE MENU /////////////
+cd ////////////  CREATE SIMPLE CHOICE MENU /////////////
 A=ofw("Food.m")
 <<[A],"title Food\n"
 <<[A],"item Meat C_MENU Meats Pork\n"
@@ -181,6 +181,8 @@ cf(A)
  setgwob(gwo3,@sheetrow,0,0,"When,Food,Portion,Qty_Oz,Cals,Carbs,Fat_g,Prot_g")
  setgwob(gwo3,@sheetrow,1,0,"Breakfast,egg,2,20,90,1,7,6")
 
+
+
  when = "Breakfast"
  portion = "2"
  food = "egg"
@@ -208,7 +210,7 @@ cf(A)
 
 include "event"
 
-Event E
+Event E;
 
    while (1) {
 
@@ -239,11 +241,8 @@ Event E
           <<"run query with $food $portion \n" 
 
           }
-
         }
    }
-
-
 
 
 stop!

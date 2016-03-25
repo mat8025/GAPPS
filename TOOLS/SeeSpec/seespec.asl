@@ -1,7 +1,12 @@
 
 // test spectral processing of vox file
-
+// may have to do this: ulimit -c unlimited
+// to have the core file saved
 //setdebug(0,"pline","~trace") // should be 0 level
+
+version = "1.3" ; 
+<<"$_clarg[0] $version\n";
+
 
 setdebug(0,"~trace") // should be 0 level
 
@@ -28,8 +33,23 @@ float SYS[];
 short YS[];
 int sb = 0
 int sbn = -1
+version = "1.1" ; 
+<<"$_clarg[0] $version\n"
+
+/// OPTIONS ///////////////
+
+   show_tas = 1;
+   show_spec = 1;
+   show_tas_rf = 0;  // show on read in
+   show_spec_rf = 0;   
+
+//////ARGS ////////////////
 
 fname = _clarg[1];
+
+
+
+///////////////////////////
 
   Tim = FineTime();
 
@@ -63,9 +83,13 @@ sbn = createSignalBuffer() ; // create an audio buffer
 float real[wlen]
 float imag[wlen]
 
-float RmsTrk[]
-float ZxTrk[]
-int Zxthres = 10
+float RmsTrk[];
+float ZxTrk[];
+
+int Zxthres = 10;
+
+
+
 
 int xp = 0;
 float tx = 0.0
@@ -113,17 +137,13 @@ include "seespec_wko.asl" ; //// Wo and Key callbacks ////
 /////////////////////////////////////////
 
 
-
-
-////////////////////////////////////////////////////////////////////////////
-
 // file read 
 
 // work through buffer and produce spec-slice , rms and zx tracks
 // cepstral track
 // can we do a spec class ?
 
-<<" $(Caz(RmsTrk)) \n"
+//<<" $(Caz(RmsTrk)) \n"
 
 
 // real input --- simple version
@@ -155,7 +175,7 @@ include "seespec_wko.asl" ; //// Wo and Key callbacks ////
 
 
 
-    showVox()
+    showVox();
 
 
 /{    
@@ -168,16 +188,13 @@ include "seespec_wko.asl" ; //// Wo and Key callbacks ////
     // I think drawSignal should update the xscales
     // --- according to the number of signal points it plots
 
-   show_tas = 1;
-   show_spec = 1;
+
   
    old_end = 0
 
 // compute sg in one shot
 
    st = 0
-
-
 
   xp = 0
   st = 0
