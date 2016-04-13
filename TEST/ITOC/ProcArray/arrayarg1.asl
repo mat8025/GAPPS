@@ -24,7 +24,7 @@ proc foo(int vec[],k)
 }
 
 
-Z = Vgen(INT,10,0,1)
+Z = Vgen(INT_,10,0,1)
 
 
 Z[0] = 36

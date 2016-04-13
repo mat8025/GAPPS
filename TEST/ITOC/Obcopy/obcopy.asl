@@ -1,7 +1,7 @@
 # test oop features
 // want to show that can use &obj as an arg to deliver ptr to that object to a script procedure
 
-setdebug(1,"trace")
+setdebug(1)
 
 Checkin()
 

@@ -1,10 +1,11 @@
-setdebug(1)
+setdebug(1,"pline")
 
-setPrintIndent(3)
+//setPrintIndent(3)
 
 checkIn()
 
 proc foo(int vec[],k)
+//proc foo(vec, k)
 {
 <<"$_proc IN $vec \n"
 <<"pa_arg2 %V$k\n"
@@ -21,7 +22,7 @@ proc foo(int vec[],k)
 }
 
 ///////////////  Array name ////////////////////////////////////////
- Z = Vgen(INT,10,0,1)
+ Z = Vgen(INT_,10,0,1)
 
 <<"init $Z\n"
 
@@ -34,6 +35,8 @@ proc foo(int vec[],k)
   Y=foo(Z,3)  // TBD FIX -- default array name is ref call
 
 <<"after calling proc $Z\n"
+
+//iread()
 
   if ((Z[1] == 47)  && (Z[6] == 28)) {
    <<"Z[1] and Z[6] correct \n"
@@ -57,10 +60,10 @@ checkStage("ArrayName")
 
 ///////////////  &Array ////////////////////////////////////////
 
-  showStatements(1)
+//  showStatements(1)
 
 
-  Z = Vgen(INT,10,0,1)
+  Z = Vgen(INT_,10,0,1)
 
   Z[0] = 36
   Z[8] = 28
@@ -72,18 +75,21 @@ checkStage("ArrayName")
 
   <<"$Z\n"
 
-   Y = foo(&Z,3)  // FIXED -------- Y is now created correctly with the return vector 
+ //  Y = foo(&Z,3)  // FIXED -------- Y is now created correctly with the return vector
+   Y = foo(Z,3)  // FIXED -------- Y is now created correctly with the return vector 
 
 
 <<"after calling proc $Z\n"
 
+//iread()
   checkNum(Z[1],47)
+  
   checkNum(Z[8],28)
 
   checkStage("&Array")
 
 
-Z = Vgen(INT,10,0,1)
+Z = Vgen(INT_,10,0,1)
 
 Z[0] = 36
 Z[8] = 28
@@ -112,7 +118,7 @@ Z[8] = 28
   checkNum(Z[8],28)
 
   checkStage("&Array[2]")
-  showStatements(0)
+//  showStatements(0)
 
 <<"return Y vec $Y\n"
 

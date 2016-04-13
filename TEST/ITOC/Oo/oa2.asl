@@ -1,4 +1,6 @@
-setDebug(1,"trace","pline")
+//setDebug(1,"trace","pline")
+
+setDebug(1)
 
 CheckIn(0)
 
@@ -54,7 +56,7 @@ class Act {
 // FIXME   <<"cons of Act $_cobj $(_cobj->obid())  $(IDof(&_cobj))\n" 
 //   co = _cobj->offset()
 //   <<"cons of Act $_cobj   $(IDof(&_cobj)) $(offsetof(&_cobj)) co $co\n" 
-//   <<"Act cons of $_cobj $act_ocnt\n"
+   //<<"Act cons of $_cobj $act_ocnt\n"
    act_ocnt++
 
    type = 1
@@ -62,11 +64,11 @@ class Act {
    mins = 10;
 
    t = 0;
-
+//iread()
  }
 
-}
-
+};
+//================================
 
 Act a
 
@@ -345,14 +347,13 @@ class Dil {
 // FIXME each cons of A tacks on anotherstatement ??
 //
 
- Act A[5]
-
  Act B;
+ Act A[10];
 
  CMF Dil() 
  {
    w_day = 1
-   //<<"cons of Dil $_cobj $w_day $dil_ocnt\n"
+  // <<"cons of Dil $_cobj $w_day $dil_ocnt\n"
    dil_ocnt++ 
  }
 
@@ -451,9 +452,9 @@ k = 3
 <<"%V $yt3 \n"
 
 
- E->A[1]->t = 29
- E->A[2]->t = 92
- E->A[3]->t = 75
+ E->A[1]->t = 29;
+ E->A[2]->t = 92;
+ E->A[3]->t = 75;
 
  yt0 = E->A[0]->t
 
@@ -473,11 +474,16 @@ k = 3
 
  CheckNum(yt2,92)
 
+
+
+// FIX crash -- xic generation?
  yt3 = E->A[3]->t
 
 <<"%V $yt3 \n"
 
  CheckNum(yt3,75)
+
+//iread()
 
   j = 2
 
@@ -497,17 +503,51 @@ k = 3
 
  for (j = 0; j < 4 ; j++) {
 
-    E->A[j]->t = 50 + j
+    E->A[j]->t = 50 + j;
  }
 
 <<"\n"
 
+ E->A[8]->t = 47;
 
  for (j = 0; j < 4 ; j++) {
 
-    yt = E->A[j]->t
+    yt = E->A[j]->t;
     <<" [${j}] $yt \n"
  }
+
+//iread()
+
+yt2 = E->A[2]->t
+
+<<"%V $yt2 \n"
+
+yt1 = E->A[1]->t
+
+<<"%V $yt1 \n"
+
+j = 3
+ yt3 = E->A[j]->t
+
+<<"%V $yt3 \n"
+
+ yt3 = E->A[3]->t
+
+<<"bug? %V $yt3 \n"
+
+//iread()
+
+ yt4 = E->A[4]->t
+
+<<"?%V $yt4 \n"
+
+
+ yt8 = E->A[8]->t
+
+<<"%V $yt8 \n"
+
+
+
 
 
 <<"///////////////G[i]->A[j]->type////////////////////////////\n"
@@ -557,9 +597,7 @@ Dil G[10]
   k = 7
 
 
-  CheckOut()
 
-exit()
 
   for (i = 0; i < 3 ; i++) {
 
@@ -593,7 +631,7 @@ exit()
 
 ndiy = 365
 
-exit()
+
 
 
 Dil Yod[ndiy]
@@ -634,8 +672,10 @@ Dil D[3]
 
 <<" done dec of D \n"
 
-CheckOut()
-stop!
+CheckOut();
+
+exit()
+
 
 
 //////////////////////////  TBD //////////////////////////////////////

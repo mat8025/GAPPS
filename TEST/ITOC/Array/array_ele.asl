@@ -1,14 +1,17 @@
 
 setdebug(1)
 
-proc array_sub( rl)
+checkIn()
+
+proc array_sub(float rl[])
 {
 float t1
 float t2
 
 <<"In $_proc\n"
+<<"$rl \n"
 
-
+iread()
 //<<"%6.2f$rl \n"
 
      t1 = rl[4] 
@@ -53,16 +56,27 @@ checkFnum(t3,-2)
 <<"%V $k $j1 $j2 \n"
 //<<"%6.2f$rl \n"
 
-kp = 3
+kp = 3;
 
     rl[kp] = rl[j1] - rl[j2];
 
+
+<<"%V$rl\n"
+
+<<"%V $kp  $j1 $j2 \n"
+
+
 //<<"%6.2f$rl \n"
 //<<"%V $rl[kp] \n"
-    wrl = rl[kp]
-    rl[0] = 47
+
+    wrl = rl[kp];
+
+    rl[0] = 47;
+
+
 <<"%V $wrl \n"
 
+iread()
 
     checkFnum(rl[kp],-2)
 
@@ -106,7 +120,7 @@ return t3
 
 //////////////////////////////////////////////////////////////////////////////////////
 
-CheckIn()
+
 
 double Real[10]
 
@@ -231,8 +245,10 @@ checkFnum(Real[4],-2)
 ////// Now inside proc -- with proc stack variables  //////////////////////////////
 
    Real = fgen(10,0,1)
-
+<<"%V$Real\n"
    val = array_sub(Real)
+
+
 <<"$val \n"
 
 

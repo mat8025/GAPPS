@@ -3,11 +3,9 @@
 
    Graphic = CheckGwm()
 
-
      if (!Graphic) {
         X=spawngwm()
      }
-
 
     vp = cWi(@title,"BasicWindow")
 
@@ -43,8 +41,8 @@
 // show border
 // draw lines within clip area
 
-   plotline(vp,0,0,1,1,"blue")
-   plotline(vp,0,1,1,0,"red")
+  // plotline(vp,0,0,1,1,"blue")
+ //  plotline(vp,0,1,1,0,"red")
 
    axnum(vp,1)
    axnum(vp,2)

@@ -862,7 +862,7 @@ if ( do_all || do_array ) {
   chdir("M3D")
 
   cart("m3d")
-  cart("md_assign")
+  cart("m3d_assign")
 
   updir()
 
@@ -1136,11 +1136,11 @@ if ( do_all || do_class ) {
 
     Run2Test("Class")
 
-    cart ("classbops")
+    cart ("classbops");
 
-    cart ("class1")
+    cart ("class2");
 
-    cart ("classvar")
+    cart ("classvar");
 
     updir()
     }

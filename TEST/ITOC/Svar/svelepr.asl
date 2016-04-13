@@ -2,7 +2,9 @@ CheckIn()
 
 setdebug(1)
 
-Svar W
+!!"rm -f goal1"
+
+Svar W;
 
 
 W[0] = "hey  "
@@ -43,7 +45,7 @@ W[0] = "hey  "
 
 <<"%(4,,\s,\n)$W"
 
-!!"rm -f goal1"
+
 
 //sleep(1)
 
