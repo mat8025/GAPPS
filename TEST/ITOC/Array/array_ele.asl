@@ -11,7 +11,7 @@ float t2
 <<"In $_proc\n"
 <<"$rl \n"
 
-iread()
+
 //<<"%6.2f$rl \n"
 
      t1 = rl[4] 
@@ -76,7 +76,7 @@ kp = 3;
 
 <<"%V $wrl \n"
 
-iread()
+
 
     checkFnum(rl[kp],-2)
 

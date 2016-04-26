@@ -38,4 +38,6 @@ checkNum(I[9],1)
 <<"$B\n"
 <<"$C\n"
 
-checkOut()
+checkOut();
+
+exit();

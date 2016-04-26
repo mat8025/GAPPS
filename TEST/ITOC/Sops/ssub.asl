@@ -1,5 +1,5 @@
 
-//setdebug(1)
+setdebug(1)
 
 Checkin()
 
@@ -29,6 +29,22 @@ U= ssub(ssub(S,"improve","improvase"),"vase",ssub("vase","a","i"))
 CheckStr(U,"The very next day - he started to improvise")
 
 <<"$U\n"
+
+
+ W= "aaabbbcccdddxxxccceeecccfffhhh"
+
+ T= ssub(W,"ccc","qqq",0)
+ <<"$T\n"
+
+
+ RI= regex(W,"ccc")
+
+<<"$RI\n"
+<<"$W\n"
+ T= ssub(W,"ccc","qqq",1,10)
+
+ <<"$T\n"
+
 
 CheckOut()
 

@@ -1,12 +1,18 @@
 #
+
 CheckIn()
 
-setdebug(1)
+setdebug(1,"pline")
+
 char c = 65;
 char p = 'q';
 
 <<"%I $c $p \n"
 <<"%I %c$c %c$p \n"
+
+<<"%V $c\n"
+<<"%V $p\n"
+
 
 str s = "abc"
 
@@ -41,15 +47,7 @@ uchar cv[] = { 65,47,79,0xBA }
 
  CheckNum(cv[0],77)
 
-
-
-
-
-
-
-str ls = 'abc'
-
-
+ str ls = 'abc'
 
  CheckNum(cv[3],0xBA)
 
@@ -76,11 +74,7 @@ char a = 'G'
 
  CheckNum(dv[0],a)
 
-
-
-
 <<"back in main after plain arg\n"
-
 
  CheckNum(dv[0], wc )
 
@@ -131,14 +125,13 @@ sz = Caz(ev)
 
  CheckNum(ev[7],'M')
 
-
 <<"%I %s $lv \n"
 
  CheckNum(lv[0],'A')
  CheckNum(lv[7],'M')
  CheckNum(lv[11],'$')
 
-  CheckOut()
+ CheckOut()
 
 STOP!
 
