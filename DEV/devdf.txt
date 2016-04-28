@@ -1,0 +1,18 @@
+
+///  revise datafile format capabilities
+
+
+(1) read channel files --- channels can be any type (not PAN yet?)
+   but they are all converted to FLOAT on read. Revise so they return an
+   array of the channel datatype (it could always be converted by the setting
+   on LHS e.g.  Vec= readChannel(fanme, chn_nu)
+   If Vec is already set a conversion to Vec type will happen, otherwise Vec of
+   appropriate type will be converted.
+
+(2) Similar for frame files --- thses are typically FLOAT types - but should
+    work for any type and preserve the type.
+
+(3) Channels can have different BLK,SKP and sampling rates, but for cases where
+    all channels are the same,  we need a simplfied read routine that reads the
+    data into a 2d array where each row is made of the channels.
+
