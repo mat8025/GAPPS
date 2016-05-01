@@ -950,13 +950,13 @@ if ( do_all || do_unary ) {
   updir()
 }
 
-
 if ( do_all || do_command ) {
   hdg("COMMAND")
 
   chdir("Command")
 
   cart("command")
+  cart("command_parse")
 
   updir()
     }
