@@ -103,13 +103,13 @@ Float Rnvec[]
 
 //  xn_gl = cGl(@wid,gwo,@type,"XY",@xvec,XVEC,@yvec,Rnvec,@color,"red")
 
-  xn_gl = cGl(gwo,@TXY,XVEC,Rnvec,@color,RED)
+  xn_gl = cGl(gwo,@TXY,XVEC,Rnvec,@color,RED_)
 
-  xs_gl = cGl(gwo,@TXY,XVEC,SVEC,@color,BLUE)
+  xs_gl = cGl(gwo,@TXY,XVEC,SVEC,@color,BLUE_)
 
-  xz_gl = cGl(gwo,@TXY,XVEC,ZVEC,@hue,GREEN)
+  xz_gl = cGl(gwo,@TXY,XVEC,ZVEC,@hue,GREEN_)
 
-  sWo(gwo,@hue,GREEN,@refresh)
+  sWo(gwo,@hue,GREEN_,@refresh)
 
   sWo(gwo,@showpixmap)
 

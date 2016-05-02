@@ -1860,4 +1860,6 @@ Iron
 	       
 02/25/16 --- have revised threads and audio -- now have working speech capture and spectrum analysis
 
-03/01/16 --- need to check ap precision -- setting in base256 and checking in dec? - make consistent 
+03/01/16 --- need to check ap precision -- setting in base256 and checking in dec? - make consistent
+
+05/01/16 --- reworking data file operations header structures etc
