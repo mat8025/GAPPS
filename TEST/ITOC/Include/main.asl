@@ -1,10 +1,24 @@
 ////    test include statement
 int n = 0 
 //float y
-setdebug(1)
+setdebug(1,"pline")
 <<" before include\n"
 
-include "inc.asl"
+//include "alib/inc1";
+
+include "inc1";
+
+include "inc2";
+
+// inc2 includes inc3
+
+include "inc3";
+
+
+checkin();
+
+
+<<" after checkin\n"
 
 #define C_BLUE 7
 
@@ -31,6 +45,18 @@ arg2 = _clarg[2]
  s=foo(2,3)
 
 <<"%V$s\n"
+ checkNum(s,5)
+ t=goo(4,5)
+ checkNum(t,20)
+<<"%V$t\n"
+
+
+ h=hoo(21,7)
+ <<"%V$h\n"
+
+  checkNumber(h,3)
+
+checkOut()
 
 
 exit()

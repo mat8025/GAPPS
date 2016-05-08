@@ -19,4 +19,5 @@ date,bnum,description, category [1-7] 7=severe, status
 01/22/16    76, Re[inpt] = ri_j->getReal()  * ri_k->getReal(); --index bug but xc ok, 5, FIXED
 01/25/16    77,  cmplx a = {23,47};   2, PENDING
 01/25/16    78,  Y[1:5] *= 3; crash subset opeq ,5, FIXED
+05/05/16    87,  crash when using multiple include files- ? still does firstpass should not,6, PENDING
 
