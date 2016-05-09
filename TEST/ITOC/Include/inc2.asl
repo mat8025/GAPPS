@@ -6,11 +6,11 @@ proc goo( a,b)
 {
 
  c= a*b;
-
+<<"$_proc $a * $b = $c\n"
   return c;
 }
 
-//include "inc3";
+include "inc3";
 
 <<"included inc2 _scope \n"
 

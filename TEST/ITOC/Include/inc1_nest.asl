@@ -8,9 +8,8 @@ float y = 1.2345
 
 proc foo( a,b)
 {
-
    c= a+b;
-
+<<"$_proc $a + $b = $c\n"
   return c;
 }
 
@@ -18,14 +17,13 @@ proc foo( a,b)
 
 proc boo( a,b)
 {
-
    c= a-b;
-
+<<"$_proc $a - $b = $c\n"
   return c;
 }
 
 
-//include "inc2" ; // nested include
+include "inc2" ; // nested include
 
 <<"included inc1 _scope \n"
 

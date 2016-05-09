@@ -5,9 +5,8 @@ setdebug(2,"pline","trace")
 
 <<" before include\n"
 
-include "inc1";
+include "inc1_nest";
 
-include "inc2";
 
  checkin();
 
@@ -22,12 +21,22 @@ include "inc2";
  if (argc() > 1) {
    s=boo(2,3);
    <<"%V$s\n"
+ checknum(s,-1)   
    s=boo(47,79);
    <<"%V$s\n"
+ checknum(s,-32)      
  }
 
    g=goo(47,79);
    <<"%V$g\n"
+ checknum(g,47*79)
+
+
+     h=hoo(47.0,79);
+   <<"%V$h\n"
+ checknum(h,47.0/79)
+
+
 
  checkout()
 

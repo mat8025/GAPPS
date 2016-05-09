@@ -378,6 +378,7 @@ int do_vops = 0
 int do_sops = 0
 int do_class = 0
 int do_declare = 0
+int do_include = 0
 int do_exp = 0
 int do_if = 0
 int do_logic = 0
@@ -466,7 +467,10 @@ int do_unary = 0;
         do_if = 1  
 
    if (wt @= "for")
-        do_for = 1  
+        do_for = 1
+
+   if (wt @= "include")
+        do_include = 1  
 
    if (wt @= "while")
         do_while = 1  
@@ -679,8 +683,17 @@ if (( do_all ==1) || (do_declare == 1) ) {
 
     }
 
+if (( do_all ==1) || (do_include == 1) ) {
 
+  Run2Test("Include")
 
+  cart ("main_ni",2)
+  
+   updir()
+
+/////////////////////////////////////////////////////////////////////////////////
+
+    }
 
 chdir(tdir)
 
