@@ -14,6 +14,7 @@ proc pol2cdir( ang)
 //<<"%V$cd $ang\n"
     return cd
 }
+//====================================
 
 proc cd2pol( ang)
 {
@@ -26,7 +27,7 @@ float cd
 
     return cd
 }
-
+//====================================
 proc cdir2pol( ang)
 {
 float cd
@@ -38,11 +39,13 @@ float cd
 //<<"%V$cd $ang\n"
     return cd
 }
+//====================================
 
 proc rotate_vec( cdir)
 {
          azim +=  cdir
 }
+//====================================
 
 proc look_to(rx)
 {
@@ -56,13 +59,13 @@ proc look_to(rx)
 //<<" %V$MS[8] $ang $obpz \n"
 //         dz = rpx * cos(ang)
 }
-
-
+//====================================
 
 proc lookup( ve)
 {
    elev += ve
 }
+//====================================
 
 proc xy_move_to(button,rx,ry)
 {
@@ -78,6 +81,7 @@ proc xy_move_to(button,rx,ry)
  <<" moving target $targ_x $targ_z \n"
    }
 }
+//====================================
 
 
 proc look_at()
@@ -120,9 +124,13 @@ proc look_at()
     }
    }
    else {
-     azim = pazim - 90
-   }
+     azim = pazim - 90;
+     }
+
 }
+//---------------------------------
+
+
 
 proc xz_move_to(button,rx,ry)
 {
@@ -210,7 +218,7 @@ proc roll ( cdir)
 
            WoSetRotate(vpwo,(rang/Pi * 180))
 }
-
+//======================================
 
 proc pitch ( cdir)
 {
@@ -242,7 +250,7 @@ proc pitch ( cdir)
    }
 }
 
-
+//==========================================
 proc loop ( cdir)
 {
 //<<" pitching $cdir \n"
@@ -262,7 +270,7 @@ proc loop ( cdir)
           pitch(cdir)
 
 }
-
+//==========================================
 
 proc move_vec( mdir)
 {
@@ -352,7 +360,7 @@ distance = 50
 radius = 50
 
 }
-
+//==========================================
 
 proc rotate_z(n,dir)
 {
@@ -360,7 +368,7 @@ proc rotate_z(n,dir)
        obpx = radius * Cos(zalpha)
        obpy = radius * Sin(zalpha)
 }
-
+//==========================================
 
 proc rotate_y(n,dir)
 {
@@ -368,7 +376,7 @@ proc rotate_y(n,dir)
          obpz = radius * Cos(yalpha)
 	 obpx = radius * Sin(yalpha)
 }
-
+//==========================================
 
 proc rotate_x(n,dir)
 {
@@ -376,12 +384,13 @@ proc rotate_x(n,dir)
          obpy = radius * Cos(xalpha)
 	 obpz = radius * Sin(xalpha)
 }
+//==========================================
 
 dc = 0.0
 oldcompass = 0
 mapscale = 500
 
-
+//==========================================
 
 proc center_map()
 {
@@ -390,9 +399,10 @@ proc center_map()
      ry = obpz - mapscale
      rY = obpz + mapscale
 
-     SetGwob(pvwo,"scales",rx,ry,rX,rY)
+     sWo(pvwo,"scales",rx,ry,rX,rY)
 
 }
+//==========================================
 
 proc map_home()
 {
@@ -403,13 +413,13 @@ proc map_home()
 
 //<<" %V$rx $rX \n"
 
-     SetGwob(pvwo,"scales",rx,ry,rX,rY)
+     sWo(pvwo,"scales",rx,ry,rX,rY)
 }
-
+//==========================================
 
 proc PlanView()
 {
-     SetGwob(pvwo,@clearpixmap)
+     sWo(pvwo,@clearpixmap)
 
      plot3D(pvwo,scene,obpx,obpy,obpz, azim, elev,distance,4,1,  GridON)
 
@@ -418,8 +428,9 @@ proc PlanView()
      plotgw(pvwo,@symbol,targ_x,targ_z,"tri",3,"red",0)
 
 //     Setgwob(pvwo,@hue,"black",@showpixmap,@clipborder,@savepixmap)
-     Setgwob(pvwo,@hue,"black",@showpixmap,@clipborder)
+     sWo(pvwo,@hue,"black",@showpixmap,@clipborder)
 }
+//==========================================
 
 proc SideView()
 {
@@ -439,9 +450,9 @@ proc SideView()
 
 //<<" %V$rx $rX \n"
 
-     SetGwob(svwo,@scales,srx,sry,srX,srY)
+     sWo(svwo,@scales,srx,sry,srX,srY)
 
-     SetGwob(svwo,@clearpixmap)
+     sWo(svwo,@clearpixmap)
 
      //plot3D(pvwo,scene,obpx,obpy,obpz, azim, elev,distance,4,1)
 
@@ -450,9 +461,9 @@ proc SideView()
      plotgw(svwo,"symbol",targ_x,targ_y,"tri",4,"red",0)
      plotgw(svwo,"symbol",obpx,obpy,"diamond",6,"green",0)
 
-     //SetGwob(svwo,"showpixmap")
+     //sWo(svwo,"showpixmap")
 //     Setgwob(svwo,@hue,"black",@showpixmap,@savepixmap,@clipborder)
-     Setgwob(svwo,@hue,"black",@showpixmap,@clipborder)
+     sWo(svwo,@hue,"black",@showpixmap,@clipborder,@savepixmap)
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -485,7 +496,7 @@ proc checkRotate(char wc)
 
    return ret
 }
-
+//=============================================
 
 proc checkRoll (char wc)
 {
@@ -508,7 +519,7 @@ proc checkRoll (char wc)
 
    return ret
 }
-
+//==================================================
 
 proc checkMove(char wc)
 {
@@ -535,7 +546,7 @@ proc checkMove(char wc)
 
   return ret
 }
-
+//================================================
 proc checkObserver(char wc)
 {
  ret = 1
@@ -571,6 +582,7 @@ proc checkObserver(char wc)
 
      return ret
 }
+//====================================
 
 
 proc checkKeyCommands(char wc)
@@ -615,7 +627,7 @@ setgwob(vptxt,@textr,"o rotate ",0,-0.25)
           go_circle = 0
         break;
       case '//':
-       resetobs(2)
+        resetobs(2)
         break;
       case '.':
          go_on = 0
@@ -688,7 +700,7 @@ setgwob(vptxt,@textr,"a rotate object ",0,-0.25)
 
   return ret
 }
-
+//===================================
 
 
 proc keyControls(char ac)
@@ -699,7 +711,6 @@ proc keyControls(char ac)
 int did_con = 0
 
       if (checkRoll(ac)) {
-  
 //          return 1 
       }
       else if (checkMove(ac)) {
@@ -722,7 +733,7 @@ int did_con = 0
 
       case 'L':
           go_circle = 1
-          go_on = 1
+          go_on = 1;
           cir_d = 0.5
           go_straight = 0
           break;
@@ -769,7 +780,41 @@ int did_con = 0
 
       return 1 
 }
+//=============================================
+
+proc  checkGoDir( move_along)
+{
+int moved =0 ;
+
+
+  if (move_along) {
+
+
+     if (go_rotate) {
+        rotate_vec(speed)
+     } 
+
+     if (go_circle) {
+       circle_obs(cir_d)
+    }
+
+     if (go_loop) {
+       loop_obs(cir_d)
+     }
+
+     if (go_straight) {
+        <<" moving ON! \n"
+         move_vec(o_speed)
+     }
+
+   moved = 1;
+
+  }
+      return moved;
+}
+//----------------------------------------------
+
 
 <<"DONE loading of viewlib\n"
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
 

@@ -21,7 +21,7 @@ TASK_TYPE ( DESIGN, CODE, TEST, DOC, APP, DEMO, MAINTENANCE )
 
  PlotChannel, to extract section of select channel from data file and plot, DEMO, 1, ACTIVE, 90
 
- WavFiles, need a function to find out wav specs and read in the signal (maybe downsampling), CODE,3, RESEARCH, 0
+ WavFiles, need a function to find out wav specs and read in the signal (maybe downsampling), CODE,3, RESEARCH, 10
 
  CepFuncs, extract cepstrum and pitch track functions into alab, CODE,1, ACTIVE, 0
 

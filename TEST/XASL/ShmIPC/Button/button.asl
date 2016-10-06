@@ -1,6 +1,6 @@
 //////// button.asl ////////////////////
 
-setdebug(1)
+//setdebug(1)
 
 Graphic = checkGWM()
 
@@ -88,7 +88,7 @@ Graphic = checkGWM()
  sWo(gvwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @STYLE,"SVB")
  sWo(gvwo,@bhue,"teal",@clipbhue,"magenta",@FUNC,"inputValue")
 
-<<"%V$two $hwo $gwo $gvwo $lwo\n"
+
 
 
 
@@ -98,6 +98,9 @@ Graphic = checkGWM()
  lwo=cWo(vp,"ONOFF",@name,"PLAY",@VALUE,"ON",@color,"red",@resize,bx,by,bX,bY)
  sWo(lwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"blue", @STYLE,"SVL", @redraw)
  sWo(lwo,@fhue,"teal",@clipbhue,"violet")
+
+
+<<"%V$two $hwo $gwo $gvwo $lwo\n"
 
  bY = 0.95
  by = bY - yht

@@ -1,5 +1,5 @@
 #
-# view 3D object
+# view 3D woman (grid) plus object
 #
 
 
@@ -17,6 +17,9 @@ SetDebug(0)
 
 include "viewlib"
 
+//====================================================
+
+int scene[];
 int GridON = 0;
 
 wobj = 2
@@ -29,11 +32,10 @@ xalpha = 0
 
 float azim = 320
 float elev = 0.0
-
 float speed = 2.0
 int elewo = 0;
 
-int scene[]
+
 
 CFH = ofw("vo.debug")
 
@@ -123,23 +125,23 @@ SetGwindow(vp, @scales,-200,-200,200,200,0, @drawon,@pixmapon,@save,@bhue,"white
 
   vptxt=CreateGWOB(vp,"TEXT",@name,"TXT",@resize,0.1,0.01,0.75,0.1,@color,"blue")
 
-  setgwob(vptxt,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw,@pixmapoff,@drawon)
+  sWo(vptxt,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw,@pixmapoff,@drawon)
 
-  setgwob(vptxt,@scales,-1,-1,1,1)
+  sWo(vptxt,@scales,-1,-1,1,1)
 
-  vpwo=CreateGWOB(vp,"GRAPH",@name,"VP",@resize,0.2,0.2,0.8,0.90,@color,"white")
+  vpwo=cWo(vp,"GRAPH",@name,"VP",@resize,0.2,0.2,0.8,0.90,@color,"white")
 
-//  setgwob(vpwo,@scales,-20,-20,20,20, @save, @savepixmap,@redraw,@pixmapon,@drawoff)
+//  sWo(vpwo,@scales,-20,-20,20,20, @save, @savepixmap,@redraw,@pixmapon,@drawoff)
 
-  setgwob(vpwo,@scales,-20,-20,20,20, @save, @savepixmap, @redraw,@drawoff,@pixmapon)
+  sWo(vpwo,@scales,-20,-20,20,20, @save, @savepixmap, @redraw,@drawoff,@pixmapon)
 
-  pvwo = CreateGWOB(vp,"GRAPH",@resize,0.01,0.11,0.19,0.5,@name,"PLANVIEW",@color,"cyan")
+  pvwo = cWo(vp,"GRAPH",@resize,0.01,0.11,0.19,0.5,@name,"PLANVIEW",@color,"cyan")
 
-  setgwob(pvwo,@scales,-200,-200,200,200, @save,@savepixmap,@redraw,@drawon,@pixmapon)
+  sWo(pvwo,@scales,-200,-200,200,200, @save,@savepixmap,@redraw,@drawon,@pixmapon)
 
-  svwo = CreateGWOB(vp,"GRAPH",@resize,0.01,0.51,0.19,0.95,@name,"SIDEVIEW",@color,"pink")
+  svwo = cWo(vp,"GRAPH",@resize,0.01,0.51,0.19,0.95,@name,"SIDEVIEW",@color,"pink")
 
-  SetGwob(svwo,@scales,-200,-200,200,200, @save,@savepixmap,@redraw,@pixmapon,@drawon)
+  SWo(svwo,@scales,-200,-200,200,200, @save,@savepixmap,@redraw,@pixmapon,@drawon)
 
 <<" finish window setup \n"
 
@@ -154,22 +156,22 @@ SetGwindow(vp, @scales,-200,-200,200,200,0, @drawon,@pixmapon,@save,@bhue,"white
  by = bY - yht
 
  qwo=createGWOB(vp,"BV",@name,"QUIT?",@VALUE,"QUIT",@color,"orange",@resize,bx,by,bX,bY)
- setgwob(qwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", "redraw")
+ sWo(qwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", "redraw")
 
  azimwo=cWo(vp,"BV",@name,"AZIM",@VALUE,"1",@color,"white")
- setgwob(azimwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
+ sWo(azimwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
 
  distwo=cWo(vp,"BV",@name,"DIST",@VALUE,"1",@color,"white")
- setgwob(distwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
+ sWo(distwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
 
  elevwo=cWo(vp,"BV",@name,"ELEV",@VALUE,"1",@color,"white")
- setgwob(elevwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
+ sWo(elevwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
 
  int conwos[] = {  azimwo, distwo, elevwo } 
 
  wo_vtile(conwos,bx,0.2,bX,0.75)
 
- setgwob(conwos,@redraw)
+ sWo(conwos,@redraw)
 
 <<" finish control setup \n"
 
@@ -223,6 +225,7 @@ rang = 1
 <<"%V %5.1f$obpx , $obpy , $obpz , $azim  $elev  $distance \n"
 
   plot3D(vpwo, scene, obpx, obpy, obpz, azim, elev, distance)
+ // plot3D(vpwo, scene, obpx, obpy, obpz, azim, elev, distance,1,1,1)
 
   viewlock = 1
 
@@ -241,19 +244,22 @@ rang = 1
   hx = 50
   hy = 10
 
+
 ////////  Event variables //////////////////
   svar msg
-  int woid
-  float rx
-  float ry
+
+  float Erx;
+  float Ery;
+
   woname = ""
   etype = "" 
   button = 0
-  Woid = 0
+  Woid = 0;
   Woval = ""
+
   int evs[16];
 
-  E =1
+  E =1;
 ///////////////////////////////////////////
 
   float cir_d = 0.5
@@ -272,10 +278,6 @@ rang = 1
 
   uint ml = 0
 
-
-
-
-
   while (1) {
 
     ml++
@@ -283,56 +285,62 @@ rang = 1
       //<<"$kev %v $go_on \n"
 
     msg =E->waitForMsg()
-    E->geteventstate(evs)
-    Woid = E->getEventWoId()
-    //keyw =  E->checkKeyw()
-    etype = E->geteventType()
-    button = E->getButton()
-    E->geteventrxy(&rx,&ry)
-    Woval = getWoValue(Woid)
-   
-<<"%V$msg $etype $button $rx $ry \n"
 
     kev++
 
-    setgwob(vptxt,@clear,@clipborder,"red",@textr,msg,0,0.8) 
+    sWo(vptxt,@clear,@clipborder,"red",@textr,msg,0,0.8) 
 
     did_cont = 0
 
    if ( ! (msg @= "NO_MSG")) {
 
-     
+    etype = E->geteventType();
 
-     setgwob(vptxt,@textr,"$etype $Woval ",0,0.1) 
+    E->geteventstate(evs)
+
+
+
+<<"%V$msg $etype $button $Erx $Ery \n"
+
+     sWo(vptxt,@textr,"%V $etype $button $Woval ",0,0.1) 
 
      did_cont = 1
 
       if (etype @= "PRESS") {
 
-          woid = E->getEventWoid()
-  
-<<"$button  $woid $rx $ry\n"
+          Woid = E->getEventWoId()
+    
+          button = E->getButton();
+
+          Woval = getWoValue(Woid)
+    
+<<"$button  $Woid $Erx $Ery\n"
 
 
           //<<"%V$keyw  $woid  $svwo $pvwo \n"
 
-          if (woid == svwo) {
+          if (Woid == svwo) {
              //look_to(rx)
              <<" sv $svwo\n"
-             xy_move_to(button,rx,ry)
+	     E->geteventrxy(&Erx,&Ery)
+             xy_move_to(button,Erx,Ery)
              look_at()
           }
 
-          if (woid == pvwo) {
+          if (Woid == pvwo) {
              <<" pv $pvwo \n"
-             xz_move_to(button,rx,ry)
+	     E->geteventrxy(&Erx,&Ery)
+             xz_move_to(button,Erx,Ery)
              look_at()
           }
       }
-      else if (etype @= "KEYPRESS") {
-          keyc = E->geteventKey()
-          setgwob(vptxt,@clear,@clipborder,"blue",@textr,$keyc,0,0) 
-          keyControls(keyc)
+      else if ((etype @= "KEYPRESS") || (etype @= "KEYRELEASE")) {
+      
+          keyc = E->geteventKey();
+	  
+          sWo(vptxt,@clear,@clipborder,BLUE_,@textr,"KEY was %c$keyc",0,0)
+	  
+          keyControls(keyc);
       }
 
     }
@@ -385,25 +393,27 @@ rang = 1
     elev = -90
    }   
 
-   setgwob(azimwo,@VALUE, "%5.1f$azim" , @redraw)
-   setgwob(distwo,@VALUE, "%5.1f$distance" , @redraw)
-   setgwob(elewo,@VALUE, "%5.1f$elev" , @redraw)
+   sWo(azimwo,@VALUE, "%5.1f$azim" , @redraw)
+   sWo(distwo,@VALUE, "%5.1f$distance" , @redraw)
+   sWo(elewo,@VALUE, "%5.1f$elev" , @redraw)
 
 <<"%V %5.1f$obpx , $obpy , $obpz , $azim  $elev  $distance \n"
 
-    Setgwob(vpwo,@clearpixmap) 
+    sWo(vpwo,@clearpixmap) 
+
     plot3D(vpwo, scene, obpx, obpy, obpz, azim, elev,distance,1,1, GridON)
-    SetGwob(vpwo,@showpixmap,@clipborder) 
+    
+    sWo(vpwo,@showpixmap,@clipborder) 
 
 
 //    txtmsg = "%5.1f %V$obpx , $obpy , $obpz , $azim , $elev , $o_speed"
 
     txtmsg = "%V$obpx , %5.1f$obpy , $obpz , $azim , $elev , $o_speed"
-    setgwob(vptxt,"text",txtmsg,"redraw")
+    sWo(vptxt,"text",txtmsg,"redraw")
 
-     PlanView()
+    // PlanView()
 
-     SideView()
+   //  SideView()
 
   }
 

@@ -17,9 +17,9 @@ int N3 = 3000;
 <<" prior to goo def \n"
 proc goo()
 {
-<<" hey I am in $_cproc goo \n"
+  <<" hey I am in $_proc goo \n"
    gz = x + y
-<<" $_proc %v $gz \n"
+  <<" $_proc %v $gz \n"
 }
 
 <<" prior to foo1 def \n"
@@ -29,7 +29,8 @@ proc goo()
 
 proc foo1()
 {
-//<<" hey I am in foo1 \n"
+
+<<" hey I am in foo1 $_proc\n"
 
 int z1 = 0;
 int x1 = 1;
@@ -39,12 +40,12 @@ int y1 = 1;
 
    z1 = x1 + y1
 
-   foo1tid = GthreadGetId()
+    foo1tid = GthreadGetId()
 
  // which thread am I
     mypr =gthreadgetpriority(foo1tid);
 
-//  <<" foo1 thread $foo1tid pr $mypr $_proc computed $z = $x + $y \n"
+  <<" foo1 thread $foo1tid pr $mypr $_proc computed $z1 = $x1 + $y1 \n"
 
    x1++;
    y1++;
@@ -56,9 +57,9 @@ int y1 = 1;
      z1 = x1 + y1;
 
      //<<"foo1 $j \n"
-   if ( (j % 100) == 0) {
-    <<" foo1 thread $foo1tid $_proc computed $z1 = $x1 + $y1 \n"
-   }
+     if ( (j % 100) == 0) {
+      <<" foo1 thread $foo1tid $_proc computed $z1 = $x1 + $y1 \n"
+     }
      x1++;
 
      y1++;
@@ -66,18 +67,19 @@ int y1 = 1;
 //     Foo1++;
           Foo1 = Foo1 + 1;
     if (Nta > 2) {     
-     sleep(0.1)
+      //sleep(0.1)
     }
       //yieldprocess()   
    }
    
-<<"foo1 loop end\n"
 
+    nanosleep(3,5)
+   
      <<" DONE foo1 $_proc exiting %V $z1 $foo1tid \n"
 
       GthreadExit()
 
-     }
+}
 //========================================================
 
 int Foo2 = 0;
@@ -85,7 +87,8 @@ int Foo2 = 0;
 
 proc foo2()
 {
-//<<" hey I am in foo2 \n"
+
+<<" hey I am in foo2 $_proc\n"
 //<<" %V $x $y \n"
 int z2 = 0;
 int x2 = 1;
@@ -107,19 +110,20 @@ int y2 = 1;
      //<<" foo2 thread $foo2tid $_proc computed $z = $x + $y \n"
    y2++
    x2++
-   sleep(0.001);
+   
+   nanosleep(0,500);
 
    Foo2++;
 // yieldprocess()   
    }
 
     <<" DONE foo2 $_proc exiting %V $x2 %v $z2 $foo2tid \n"
-
+nanosleep(3,5)
    //GthreadExit(foo2tid)
      GthreadExit()
 
 <<" should not see this foo2 \n"
-     }
+}
 //===========================================
 
 int Foo3 =0;
@@ -129,13 +133,13 @@ proc foo3( t_arg1, t_arg2, t_arg3)
 <<" hey I am in foo3 \n"
 <<" %V new thread $_proc  my arg is $t_arg1 $t_arg2 $t_arg3\n" 
 
-<<" %V foo3 $x3 $y3 $z3 \n"
+
    foo3tid = GthreadGetId()
 
 int z3 = 0;
 int x3 = 1;
 int y3 = 1;
-
+<<" %V foo3 $x3 $y3 $z3 \n"
     
  // which thread am I
 
@@ -146,8 +150,7 @@ int y3 = 1;
 //   <<" foo3  thread $foo3tid my arg is < $t_arg1 > < $t_arg2 > < $t_arg3 > $_proc computed $z = $x + $y \n"
       y3++;       x3++;
     Foo3++;
-// sleep(0.001)
-//sleep(0.01)
+
      // yieldprocess()   
    }
 
@@ -155,7 +158,7 @@ int y3 = 1;
   
   <<" DONE $_proc exiting %V $x3 $z3 $foo3tid \n"
 
-
+nanosleep(3,5)
    GthreadExit(foo3tid)
 
 <<" should not see this foo3 \n"
@@ -182,14 +185,14 @@ int y2 = 1;
    int j =0
 
    for (j = 0 ; j < N3; j++) {
-   z2 = x2 + y2
+   z2 = x2 + y2;
    y2++
    x2++
    Foo4++;
    }
 
-    <<" DONE $_proc exiting %V $x2 %v $z2 $footid \n"
-
+    <<" DONE $_proc exiting %V $x2  $z2 $footid \n"
+nanosleep(3,5)
      GthreadExit()
      }
 //===========================================
@@ -215,12 +218,12 @@ int y2 = 1;
 
    for (j = 0 ; j < N3; j++) {
    z2 = x2 + y2
-   y2++
-   x2++
+   y2++;
+   x2++;
    Foo5++;
    }
 
-    <<" DONE $_proc exiting %V $x2 %v $z2 $footid \n"
+    <<" DONE $_proc exiting %V $x2  $z2 $footid \n"
 
      GthreadExit()
      }
@@ -252,8 +255,8 @@ int y2 = 1;
    sleep(0.01)
    }
 
-    <<" DONE $_proc exiting %V $x2 %v $z2 $footid \n"
-
+    <<" DONE $_proc exiting %V $x2  $z2 $footid \n"
+nanosleep(3,5)
      GthreadExit()
      }
 //===========================================
@@ -292,27 +295,32 @@ id5 = -1
 
      Nta = gthreadHowMany()
 
-  <<" should be in main thread $tid howmany threads $nt \n"
+  <<" should be in main thread $tid howmany threads $Nta \n"
 
 //    gthreadwait()
 
    tid2 = gthreadcreate("foo2")
 
-  <<" should be in main thread after creating thread $tid2  \n"
-  //gthreadsetpriority(id,20,"OTHER")
-   //mypr = gthreadgetpriority(tid2)
+  <<" should be in main thread after creating thread foo2 $tid2  \n"
 
+   //gthreadsetpriority(id,20,"OTHER")
 
-  <<"%V  created thread $tid2 with priority $mypr\n"
+    mypr2 = gthreadgetpriority(tid2);
 
-   wtid = GthreadGetId()
+  <<"%V  created thread $tid2 with priority $mypr2\n"
+
+   wtid = GthreadGetId();
+   
    tid1 = gthreadcreate("foo1")
-  //  gthreadsetpriority(id,0,"OTHER")
-   //mypr = gthreadgetpriority(tid1)
 
-  <<"%V created thread $tid1 $mypr\n"
-  <<" should be main thread after creating thread $tid1 prior $mypr mthread $wtid \n"
 
+//  gthreadsetpriority(id,0,"OTHER")
+
+   mypr1 = gthreadgetpriority(tid1)
+
+  <<"%V created thread $tid1 $mypr1\n"
+  <<" should be main thread after creating thread $tid1 prior $mypr1 mthread $wtid \n"
+   //iread("create foo1->")
    i++
 
 
@@ -320,17 +328,20 @@ id5 = -1
 
   //gthreadsetpriority(id3,10,"RR")
 
-   //mypr = gthreadgetpriority(tid3)
+  mypr3 = gthreadgetpriority(tid3)
 
-  <<" created thread $id3 priority $mypr \n"
+  <<" created thread $tid3 priority $mypr3 \n"
   <<" should be main thread after creating thread  $tid3 \n"
 
-   wtid = GthreadGetId()
+
 
   // gthreadsetpriority(id,10,"OTHER")
 
    tid4 = gthreadcreate("foo4")
    tid5 = gthreadcreate("foo5")
+
+
+   wtid = GthreadGetId()
 
    Nta = gthreadHowMany() 
   
@@ -343,7 +354,7 @@ id5 = -1
   while (1) {
   
        Nta = gthreadHowMany()
-	 //sleep(0.1)
+	 nanosleep(1,0)
 	 // yieldprocess();
 	 
        m++;
@@ -364,18 +375,21 @@ id5 = -1
 //xic(1)
 /}
 
-     if ((m % 100) == 0) {
-tmp1 = Foo1
-tmp2 = Foo2
-tmp3 = Foo3
-tmp4 = Foo4
-tmp5 = Foo5
-tmp6 = Foo6
-//<<"%V$m $tmp $tmp2 $tmp3\r"
-//<<"  Main thread loop %V $wtid $m  $nt $Foo1 $Foo2 $Foo3 $Foo4 $Foo5 $Foo6\r"
 
-<<"  Main thread loop %V $wtid $m  $Nta $tmp1 $tmp2 $tmp3 $tmp4 $tmp5 $tmp6\r"
-}
+  if ((m % 100) == 0) {
+   tmp1 = Foo1
+   tmp2 = Foo2
+   tmp3 = Foo3
+   tmp4 = Foo4
+   tmp5 = Foo5
+   tmp6 = Foo6
+
+
+  //<<"%V$m $tmp $tmp2 $tmp3\r"
+  //<<"  Main thread loop %V $wtid $m  $nt $Foo1 $Foo2 $Foo3 $Foo4 $Foo5 $Foo6\r"
+
+   <<"  Main thread loop %V $wtid $m  $Nta $tmp1 $tmp2 $tmp3 $tmp4 $tmp5 $tmp6\r"
+  }
 
 
      if (Nta <= 2) {
@@ -392,11 +406,11 @@ tmp6 = Foo6
   <<"  in main thread   $wtid after all other threads have finished\n"
   goo()
 
-    <<"  Main thread end %V $wtid $m  $nt $Foo1 $Foo2 $Foo3 $Foo4 $Foo5 $Foo6\n"
+  <<"  Main thread end %V $wtid $m  $Nta $Foo1 $Foo2 $Foo3 $Foo4 $Foo5 $Foo6\n"
 
 
 
-    exitsi()
+    exit()
 
 
 

@@ -4,7 +4,7 @@
 
  setdebug(0)
 
-
+OpenDll("plot")
 // default pipe records to script
 // choose  Y cols
     //
@@ -32,7 +32,7 @@ pars = i
 ycol = 1
 
 
-  R = ReadRecord(A,@type,FLOAT,@ncols,1)
+     R = ReadRecord(A,@type,FLOAT_,@ncols,1)
 
      sz = Caz(R)
 
@@ -40,9 +40,9 @@ ycol = 1
 
 nrows = dmn[0]
 
-  //<<"%v$nrows \n"
+  <<"%v$nrows \n"
 
-  //<<"%V$sz $dmn\n"
+  <<"%V$sz $dmn\n"
 
 sz = Caz(R)
 
@@ -106,73 +106,101 @@ sz = Caz(R)
   aslw = asl_w("PLOT_Y")
 
 // Window
-    aw= CreateGwindow(@title,"PLOTY",@scales,xmin,ymin,xmax+xpad,ymax,@savescales,0)
+    aw= cWi(@title,"PLOTY",@scales,xmin,ymin,xmax+xpad,ymax,@savescales,0)
 
 //<<" CGW $aw \n"
 
-    SetGwindow(aw,@resize,0.1,0.1,0.9,0.7,0)
-    SetGwindow(aw,@drawon)
-    SetGwindow(aw,@clip,0.1,0.1,0.8,0.9)
+    sWi(aw,@resize,0.1,0.1,0.9,0.7,0)
+    sWi(aw,@drawon,@pixmapon)
+    sWi(aw,@clip,0.1,0.1,0.8,0.9)
 
   // GraphWo
 
-   grwo=createGWOB(aw,@GRAPH,@resize,0.15,0.1,0.95,0.95,@name,"PY",@color,"white")
+   grwo = cWo(aw,@GRAPH,@resize,0.15,0.1,0.95,0.95,@name,"PY",@color,"red")
 
-   setgwob(grwo,@drawon,@pixmapon,@clip,0.1,0.1,0.9,0.9,@scales,xmin,ymin,xmax+xpad,ymax,@savescales,0)
+  //   sWo(grwo,@drawon,@clip,0.1,0.1,0.9,0.9,@scales,xmin,ymin,xmax+xpad,ymax,@savescales,0,@drawon,@pixmapon,@savepixmap)
+     sWo(grwo,@clip,0.1,0.1,0.9,0.9,@scales,xmin,ymin,xmax+xpad,ymax,@savescales,0,@drawon)
 
   //////////////////////////////////////////////////////////////////////////////////
 
  
-    dmn = Cab(YV)
+  dmn = Cab(YV)
 
   //<<" $dmn \n"
-  //<<" ${YV[0:3]} \n"
+  <<" ${YV[0:10]} \n"
 
-   refgl=CreateGline(@woid,grwo,@type,"Y",@yvec, YV, @color, "blue",@usescales,0)
+   refgl=cGl(grwo,@TY,YV, @color, "black"); // xincrement by default is one
+  
+  // refgl=cGl(grwo,@TY,YV, @color, "black",@XI,0.1); // xincrement by default is one
 
-   setGline(refgl,@draw)
+  XV= vgen(FLOAT_,nrows,0,1)
+  
+  //refgl = cGl(grwo,@TXY,XV,YV, @color, BLACK_)
+
+    // sGl(refgl,@draw)
 
       // redraw
       // if not gwm -exit
 
 
-  plw = aw
+    plw = aw;
 
-  pfname ="ypic"
+   pfname ="ypic"
 
 
     xsc = 1/360.0
     ysc = 1.0
 
-  //    RedrawGraph(aw)
+  // RedrawGlines(grwo)
+
 
   //  DrawAxis(aw, -1, -1, xsc,ysc)
 
-include "event"
+  dGl(refgl)
 
-Event E
+  //sWo(grwo,@showpixmap)
+
+
+
+  
+
+
+int E;
+
+keyw = "";
 
     setGwob(grwo,@clipborder)
     axnum(grwo,2)
     axnum(grwo,1)
 
-    setGline(refgl,@draw)
-
+dGl(refgl)
+  
+  // sGl(refgl,@draw)\
+  j=0
   while (1) {
 
+    sWo(grwo,@clearpixmap)
 
-    E->waitForMsg()
+    msg = E->waitForMsg()
+    keyw = E->getEventKeyW()
+    <<"%V $keyw  $msg\n"
 
-    if ((E->keyw @= "REDRAW") || (E->keyw @= "RESIZE")) {
-    <<"REDRAW \n"
-    setGwob(grwo,@clipborder)
+    if ( (keyw @= "REDRAW") || (keyw @= "RESIZE")) {
+      if ((j %2) == 0) {   
+       sWo(grwo,@clipborder,@clear,@color,BLUE_)
+      }
+      else {
+       sWo(grwo,@clipborder,@clear,@color,GREEN_)
+      }
     axnum(grwo,2)
     axnum(grwo,1)
-    setGline(refgl,@draw)
-
+    //setGline(refgl,@draw)
+     dGl(refgl)
+    //sWo(grwo,@showpixmap)
+    j++;
     }
 
-
+    //Plot(grwo,@line,j,YV[j],j+1,YV[j+1],"blue")
 
   }
 

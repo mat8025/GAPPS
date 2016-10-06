@@ -5,30 +5,13 @@
 
 checkIn()
 
-int N_boxes = 40
-
-int AB[N_boxes]
-int BB[N_boxes]
-int CB[N_boxes]
-
-ok = 0
-
-float sum_AB = 0
-float sum_CB = -1
-
-
- x = 2
- y = 4
-
-<<"Globals to use %I $x $y \n"
-
 <<" prior to goo def \n"
 
 proc goo()
 {
-<<" hey I am in $_cproc goo \n"
+<<" hey I am in $_proc goo \n"
    gz = x + y
-<<" $_cproc %v $gz \n"
+<<" $_proc %v $gz \n"
 for (j = 0; j < N_boxes ; j++) {
  <<"$AB[j] $BB[j] $CB[j]\n"
 }
@@ -36,24 +19,29 @@ for (j = 0; j < N_boxes ; j++) {
         ok =1
      }
 <<"%V$ok \n"
-checkNum(ok,1)
+  checkNum(ok,1)
 }
-
+//====================================
 <<" prior to foo1 def \n"
+
 
 proc foo1()
 {
+  
 <<" hey I am in foo1 \n"
-<<"foo1 %V$x $y \n"
 
-   z = x + y
+ <<"foo1 %V$x $y \n"
+
+   z = x + y;
 
    foo1tid = GthreadGetId()
 
  // which thread am I
 
-  <<" foo1 thread $foo1tid $_cproc computed $z = $x + $y \n"
-
+  <<" foo1 thread $foo1tid $_proc computed $z = $x + $y \n"
+     
+     // iread("foo1 --->")
+     
    x++
    y++
 
@@ -61,9 +49,10 @@ proc foo1()
 
    for (j = 0 ; j < N_boxes; j++) {
 
-   z = x + y
-    <<"foo1 $j \n"
-  <<" foo1 thread $foo1tid $_cproc computed $z = $x + $y \n"
+     z = x + y;
+     
+  <<"foo1 $j \n"
+  <<" foo1 thread $foo1tid $_proc computed $z = $x + $y \n"
 
    x++
 
@@ -74,13 +63,20 @@ proc foo1()
    nanosleep(0,50000)
    }
 
-<<" DONE foo1 $_cproc exiting %v $foo1tid \n"
+   for (j = 0 ; j < 100; j++) {
+        nanosleep(0,5)
+   }
+
+
+   
+<<" DONE foo1 $_proc exiting %v $foo1tid \n"
     sum_AB = Sum(AB)
 
    GthreadExit()
 
 }
-
+//=============================================
+  
 proc foo2()
 {
 <<" hey I am in foo2 \n"
@@ -110,27 +106,30 @@ proc foo2()
 	  nanosleep(0,200)
    }
 
-<<" DONE foo2 $_cproc exiting %v $x %v $foo2tid \n"
+<<" DONE foo2 $_proc exiting %v $x %v $foo2tid \n"
 
    //GthreadExit(foo2tid)
      GthreadExit()
 
 <<" should not see this foo2 \n"
 }
-
+//======================================================
 
 proc foo3( t_arg1, t_arg2, t_arg3)
 {
 <<" hey I am in foo3 \n"
-<<" new thread %V$_cproc  my arg is $t_arg1 $t_arg2 $t_arg3\n" 
+<<" new thread %V$_proc  my arg is $t_arg1 $t_arg2 $t_arg3\n" 
 
    foo3tid = GthreadGetId()
 
  // which thread am I
 
    int jf3 =0
-   int nt = 0
-    <<" foo3 thread $foo3tid of $nt  my arg is < $t_arg1 > < $t_arg2 > < $t_arg3 > $_cproc computed $z = $x + $y \n"
+    int nt = 0;
+  
+    <<" $_proc foo3 thread $foo3tid of $nt  \n"
+    
+    <<"my arg is < $t_arg1 > < $t_arg2 > < $t_arg3 >  \n"
    int ktimes = 0
 
     while (1) {
@@ -162,22 +161,38 @@ proc foo3( t_arg1, t_arg2, t_arg3)
 
 
     sum_CB = Sum(CB)
-<<" DONE $_cproc exiting %v $x %v $foo3tid $sum_CB\n"
+<<" DONE $_proc exiting %v $x %v $foo3tid $sum_CB\n"
    GthreadExit(foo3tid)
 
 <<" should not see this foo3 \n"
 }
+//========================================================
 
 
 
 
-int mi = 0
 
-mi++
+int N_boxes = 40
+
+int AB[N_boxes]
+int BB[N_boxes]
+int CB[N_boxes]
+
+ok = 0
+
+float sum_AB = 0
+float sum_CB = -1
+
+
+  x = 2;
+  y = 4;
+
+<<"Globals to use %V $x $y \n"
+
+ int mi = 0;
+
+  mi++;
 <<" ONLY ONCE $mi\n"
-
-
-
 
  // create some threads
 
@@ -190,23 +205,25 @@ mi++
  k = 0
  i = 1
 
-id5 = -1
+  id5 = -1
 
-     nt = gthreadHowMany()
+  nt = gthreadHowMany()
 
-     <<"Currently $nt threads active \n"
-  //  i_read()
-tname = "foo2"
+  <<"Currently $nt threads active \n"
+    // i_read("->")
+  
+  
+  tname = "foo2"
 
   id = gthreadCreate(tname)
 
-  <<" should be main thread after creating thread $i $wtid \n"
+  <<" should be main thread after creating thread $tname $i $id \n"
      nt = gthreadHowMany()
 <<" $nt threads active \n"
   //   gthreadsetpriority(id,10,"RR")
 
    mypr = gthreadgetpriority(id)
-   i++
+   i++;
 
 
   <<"created thread %V$id $mypr\n"
@@ -222,14 +239,15 @@ tname = "foo2"
 
 
    id = gthreadcreate("foo1")
-   gthreadsetpriority(id,20,"RR")
+    
+   //gthreadsetpriority(id,20,"RR")
 
    mypr = gthreadgetpriority(id)
 
   <<"created thread %V$id $mypr\n"
   <<"should be main thread after creating thread $i $wtid \n"
 
-   i++
+   i++;
 
 
    id3 = gthreadcreate("foo3", "mt", "nnngu", 77)
@@ -240,19 +258,24 @@ tname = "foo2"
 
   <<" created thread $id3 priority $mypr \n"
   <<" should be main thread after creating thread $i $id3 \n"
-
+     //i_read("-->")
+  
    wtid = GthreadGetId()
 
    nt = gthreadHowMany()
-  <<" should be back in main thread %V $wtid $m $nt \n"
+  
+  <<" should be back in main thread %V $wtid $nt \n"
   <<" waiting for $(nt-1) threads to finish\n"
-  //  i_read(": hit key to continue \n")
+
+     //i_read(": hit key to continue \n")
+  
   for (m = 0 ; m < 25; m++) {
      nt = gthreadHowMany()
      nanosleep(0,300)
   <<" main thread loop %V$wtid $m $nt \n"
-     if (nt <= 2) 
+     if (nt <= 2)  {
         break
+     }
   }
 
 

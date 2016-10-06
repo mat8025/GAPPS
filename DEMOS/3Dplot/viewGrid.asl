@@ -4,7 +4,7 @@
 
 Main_init = 1
 
-OpenDll("math")
+//OpenDll("math")
 
 set_ap(0)
 
@@ -39,17 +39,14 @@ int scene[]
 
 CFH = ofw("vo.debug")
 
-include "event"
+//include "event"
 
-Event E
+int  E
 
-  E->minfo[0] = 1.0
-  E->minfo[2] = 7.0
+ // E->minfo[0] = 1.0
+ // E->minfo[2] = 7.0
 
 //<<"%V$E->minfo \n"
-
-
-
 
 proc pol2cdir( ang)
 {
@@ -62,7 +59,7 @@ proc pol2cdir( ang)
 //<<"%V$cd $ang\n"
     return cd
 }
-
+//==================================
 proc cd2pol( ang)
 {
 float cd
@@ -114,15 +111,15 @@ proc lookup( ve)
 proc xy_move_to()
 {
 
-   if (E->button == 1) {
-          obpx =  E->rx
-          obpy =  E->ry
+   if (button == 1) {
+          obpx =  Erx
+          obpy =  Ery
      <<" moving observer $obpx $obpy \n"
    }
 
-   if (E->button == 3) {
-          targ_x =  E->rx
-          targ_y =  E->ry
+   if (button == 3) {
+          targ_x =  Erx
+          targ_y =  Ery
       <<" moving target $targ_x $targ_z \n"
    }
 
@@ -199,16 +196,16 @@ proc look_at()
 proc xz_move_to()
 {
 
-   if (E->button == 1) {
-          obpx =  E->rx
-          obpz =  E->ry
+   if (button == 1) {
+          obpx =  Erx
+          obpz =  Ery
 <<" moving observer $obpx $obpz \n"
    }
 
 
-   if (E->button == 3) {
-          targ_x =  E->rx
-          targ_z =  E->ry
+   if (button == 3) {
+          targ_x =  Erx
+          targ_z =  Ery
 //<<" moving target $targ_x $targ_z \n"
    }
 
@@ -480,7 +477,7 @@ proc center_map()
      ry = obpz - mapscale
      rY = obpz + mapscale
 
-     SetGwob(pvwo,"scales",rx,ry,rX,rY)
+     SWo(pvwo,"scales",rx,ry,rX,rY)
 
 }
 
@@ -493,14 +490,14 @@ proc map_home()
 
 //<<" %V$rx $rX \n"
 
-     SetGwob(pvwo,"scales",rx,ry,rX,rY)
+     SWo(pvwo,"scales",rx,ry,rX,rY)
 }
 
 
 proc PlanView()
 {
 
-     SetGwob(pvwo,@clearpixmap)
+     SWo(pvwo,@clearpixmap)
 
      //plot3D(pvwo,scene,obpx,obpy,obpz, azim, elev,distance,4,1,  GridON)
 
@@ -509,7 +506,7 @@ proc PlanView()
 
      plotgw(pvwo,"symbol",targ_x,targ_z,"tri",7,"red",0)
 
-     Setgwob(pvwo,@hue,"black",@showpixmap,@clipborder,@save)
+     SWo(pvwo,@hue,"black",@showpixmap,@clipborder,@save)
 
 
 //     plotgw(pvwo,"symbol",obpx,obpz,"arrow",25,"blue",cd2pol(azim)-90,1)
@@ -536,9 +533,9 @@ proc SideView()
 
 //<<" %V$rx $rX \n"
 
-     SetGwob(svwo,"scales",srx,sry,srX,srY)
+     SWo(svwo,"scales",srx,sry,srX,srY)
 
-     SetGwob(svwo,@clearpixmap)
+     SWo(svwo,@clearpixmap)
 
      //plot3D(pvwo,scene,obpx,obpy,obpz, azim, elev,distance,4,1)
 
@@ -547,8 +544,8 @@ proc SideView()
      plotgw(svwo,"symbol",targ_x,targ_y,"tri",7,"red",0)
      plotgw(svwo,"symbol",obpx,obpy,"diamond",10,"green",0)
 
-     //SetGwob(svwo,"showpixmap")
-     Setgwob(svwo,@hue,"black",@showpixmap,@save,@clipborder)
+     //SWo(svwo,"showpixmap")
+     SWo(svwo,@hue,"black",@showpixmap,@save,@clipborder)
 }
 
 
@@ -604,9 +601,6 @@ else {
       obid2 = MakeObject("G_CUBE",-200,0,50,1,1,1,50)
 
       //RotateObject(obid1,-90,0,0)
-
-
-
 }
 
 
@@ -633,23 +627,23 @@ else {
 
  //gwo=createGWOB(vp,"BV",@name,"B_V",@color,"green",@resize,bx,by,bX,bY)
 
-  vptxt=CreateGWOB(vp,"TEXT",@name,"TXT",@resize,0.1,0.01,0.75,0.1,@color,"blue")
+  vptxt=cWo(vp,"TEXT",@name,"TXT",@resize,0.1,0.01,0.75,0.1,@color,"blue")
 
-  setgwob(vptxt,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw,@pixmapoff,@drawon)
+  sWo(vptxt,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw,@pixmapoff,@drawon)
 
-  setgwob(vptxt,@scales,-1,-1,1,1)
+  sWo(vptxt,@scales,-1,-1,1,1)
 
-  vpwo=CreateGWOB(vp,"GRAPH",@name,"VP",@resize,0.2,0.2,0.8,0.90,@color,"white")
+  vpwo=cWo(vp,"GRAPH",@name,"VP",@resize,0.2,0.2,0.8,0.90,@color,"white")
 
-  setgwob(vpwo,@scales,-20,-20,20,20, @save,@redraw,@drawoff,@pixmapon)
+  sWo(vpwo,@scales,-20,-20,20,20, @save,@redraw,@drawoff,@pixmapon)
 
-  pvwo = CreateGWOB(vp,"GRAPH",@resize,0.01,0.11,0.19,0.5,"name","PLANVIEW","color","white")
+  pvwo = cWo(vp,"GRAPH",@resize,0.01,0.11,0.19,0.5,"name","PLANVIEW","color","white")
 
-  setgwob(pvwo,@scales,-200,-200,200,200, @save,@redraw,@drawoff,@pixmapon)
+  sWo(pvwo,@scales,-200,-200,200,200, @save,@redraw,@drawoff,@pixmapon)
 
-  svwo = CreateGWOB(vp,"GRAPH",@resize,0.01,0.51,0.19,0.95,@name,"SIDEVIEW","color","white")
+  svwo = cWo(vp,"GRAPH",@resize,0.01,0.51,0.19,0.95,@name,"SIDEVIEW","color","white")
 
-  SetGwob(svwo,@scales,-200,-200,200,200, @save,@redraw,@drawoff,@pixmapon)
+  SWo(svwo,@scales,-200,-200,200,200, @save,@redraw,@drawoff,@pixmapon)
 
 
 /////////////////////////////////////////////////// CONTROLS ////////////////////////////
@@ -661,23 +655,23 @@ else {
  bY = 0.95
  by = bY - yht
 
- qwo=createGWOB(vp,"BV",@name,"QUIT?",@VALUE,"QUIT",@color,"orange",@resize,bx,by,bX,bY)
- setgwob(qwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", "redraw")
+ qwo=createGWOB(vp,"BV",@name,"QUIT",@VALUE,"QUIT",@color,"orange",@resize,bx,by,bX,bY)
+ sWo(qwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", "redraw")
 
  azimwo=createGWOB(vp,"BV",@name,"AZIM",@VALUE,"1",@color,"white")
- setgwob(azimwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
+ sWo(azimwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
 
  distwo=createGWOB(vp,"BV",@name,"DIST",@VALUE,"1",@color,"white")
- setgwob(distwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
+ sWo(distwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
 
  elevwo=createGWOB(vp,"BV",@name,"ELEV",@VALUE,"1",@color,"white")
- setgwob(elevwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
+ sWo(elevwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
 
  int conwos[] = {  azimwo, distwo, elevwo } 
 
  wo_vtile(conwos,bx,0.2,bX,0.75)
 
- setgwob(conwos,@redraw)
+ sWo(conwos,@redraw)
 
 
 /////////////////////// KEYBD CONTROL ////////////////////////////////////////
@@ -692,14 +686,14 @@ proc checkRotate(char wc)
 
      case 'Q':
           rotate_vec(-2)
-          setgwob(vptxt,@textr,"R rotate ",0,-0.2) 
+          sWo(vptxt,@textr,"R rotate ",0,-0.2) 
           ret = 1
       break;
 
      case 'S':
         <<" rotate S \n"
           rotate_vec(2)
-          setgwob(vptxt,@textr,"S rotate ",0,-0.2) 
+          sWo(vptxt,@textr,"S rotate ",0,-0.2) 
           ret = 1
       break;
      }
@@ -721,22 +715,22 @@ proc checkRoll (char wc)
        case '[':
           roll(-2)
           ret = 1
-          setgwob(vptxt,@textr,"[ roll left",0,-0.25) 
+          sWo(vptxt,@textr,"[ roll left",0,-0.25) 
        break;
        case ']':
           roll(2)
           ret = 1
-          setgwob(vptxt,@textr,"] roll right",0,-0.25) 
+          sWo(vptxt,@textr,"] roll right",0,-0.25) 
           break;
       }
 
    return ret
 }
-
+//=========================================
 
 proc checkMove(char wc)
 {
- ret = 0
+ ret = 0;
 
 //<<" in $_proc checkMove $wc \n"
 
@@ -746,24 +740,26 @@ proc checkMove(char wc)
         go_straight = 1
         move_vec(2.0)
         ret = 1
-        setgwob(vptxt,@textr,"$E->nm R move forward ",0,-0.25) 
+        sWo(vptxt,@textr," R move forward ",0,-0.25) 
         break;
 
         case 'T':
         go_straight = 1
         move_vec(-2.0)
         ret = 1
-        setgwob(vptxt,@textr,"$E->nm T move back ",0,-0.25) 
+        sWo(vptxt,@textr," T move back ",0,-0.25) 
         break;
       }
 
   return ret
 }
+//=========================================
 
 proc checkObserver(char wc)
 {
  ret = 1
-//<<" in $_proc checkObserver $wc \n"
+
+<<" In $_proc  $wc %c$wc \n"
 
     switch (wc) {
      case 'y':
@@ -780,28 +776,28 @@ proc checkObserver(char wc)
           obpz -= 2
      break;
      case 'x':
-          obpx += 2
+          obpx += 2;
      break;
      case 'X':
-          obpx -= 2
+          obpx -= 2;
       break;
       default:
         ret = 0
      }
 
       if (ret == 1) {
-          setgwob(vptxt,@textr,"$wc  Observer posn  ",0,-0.2) 
+          sWo(vptxt,@textr,"$wc  Observer posn  ",0,-0.2) 
       }
 
-     return ret
+     return ret;
 }
-
+//=========================================
 
 proc checkKeyCommands(char wc)
 {
   ret = 1
-//<<" in $_proc checkKeyCommands $wc \n"
-<<[CFH]" in $_proc checkKeyCommands $wc \n"
+<<" in $_proc checkKeyCommands %c$wc \n"
+//<<[CFH]" in $_proc checkKeyCommands $wc \n"
 
     switch (wc) {
 
@@ -831,12 +827,12 @@ proc checkKeyCommands(char wc)
           go_rotate = 1
           rotate_vec(5)
           go_circle = 0
-        setgwob(vptxt,@textr,"p rotate ",0,-0.25) 
+        sWo(vptxt,@textr,"p rotate ",0,-0.25) 
         break;
       case 'o':
           go_rotate = 1
           rotate_vec(speed)
-setgwob(vptxt,@textr,"o rotate ",0,-0.25) 
+sWo(vptxt,@textr,"o rotate ",0,-0.25) 
           go_circle = 0
         break;
       case '//':
@@ -846,7 +842,7 @@ setgwob(vptxt,@textr,"o rotate ",0,-0.25)
          go_on = 0
          go_loop = 0
          go_circle = 0
-setgwob(vptxt,@textr,". stop ",0,-0.25) 
+sWo(vptxt,@textr,". stop ",0,-0.25) 
 //       resetobs(3)
         break;
       case ',':
@@ -886,7 +882,7 @@ setgwob(vptxt,@textr,". stop ",0,-0.25)
 //        break;
       case 'a':   
         RotateObject(wobj,0,0,10.0)
-setgwob(vptxt,@textr,"a rotate object ",0,-0.25) 
+sWo(vptxt,@textr,"a rotate object ",0,-0.25) 
             break;
       case 's':   
         RotateObject(wobj,0,0,-4.0)
@@ -902,18 +898,20 @@ setgwob(vptxt,@textr,"a rotate object ",0,-0.25)
             break;
       case 'r':   
        // rotate obj 0
-        RotateObject(wobj,0,-4,0.0)
+        RotateObject(wobj,0,-4,0.0);
             break;
       case '\'':   
-            resetobs(1)
+            resetobs(1);
             break;
+
       default:
            ret = 0;
+	   break;
       }
 
-  return ret
+  return ret;
 }
-
+//==================================================
 
 
 proc keyControls(char ac)
@@ -998,7 +996,7 @@ int did_con = 0
 
       return 1 
 }
-
+//==================================================
 
 
 
@@ -1084,8 +1082,10 @@ rang = 1
   float cir_d = 0.5
 
   SideView()
-
-  int kev = 0
+  int button;
+  woname = "XX";
+  
+  int kev = 0;
   int go_on = 0
   go_rotate = 0
   go_circle = 0
@@ -1096,9 +1096,11 @@ rang = 1
 
   map_home()
 
-
-
   uint ml = 0
+
+int Ev ; // event handle
+float Erx;
+float Ery;
 
   while (1) {
 
@@ -1108,53 +1110,59 @@ rang = 1
 
     //<<"$kev %v $go_on \n"
 
-    E->readMsg()
+    rmsg  = Ev->readMsg()
 
-    kev++
+    //<<"Rmsg $rmsg \n"
 
-    did_cont = 0
+    smsg = Split(rmsg)
 
-   if ( ! (E->keyw @= "NO_MSG")) {
+    //<<"SplotMsg $smsg \n"
 
-     setgwob(vptxt,@clear,@clipborder,"red",@textr,E->emsg,0,0.8) 
+    msg = smsg[2];
+
+    if ( ! (rmsg @= "NO_MSG") ) {
+
+       <<" <<$msg>> \n"
+	
+       button = Ev->getEventButton()
+
+       woname = Ev->getEventWoname()
+
+     //sWo(vptxt,@clear,@clipborder,"red",@textr,E->emsg,0,0.8) 
 
 //<<"%V$svwo $pvwo $vpwo \n"
 
-//<<"%V$E->keyw %c$E->keyc %d$E->keyc  $E->woname\n"
-
-    if (E->keyc != 0) {
-   <<[CFH]"$E->keyw  %V%c$E->keyc \n"
-    }
-
- setgwob(vptxt,@textr,"$E->nm $E->keyw %c$E->keyc %$E->woname",0,0.1) 
+     sWo(vptxt,@textr," $woname",0,0.1) 
 
 
-     did_cont = 1
+     did_cont = 1;
+     
+          woid =Ev->getEventWoid();
+          etype = Ev->geteventtype();
+          keyc = Ev->getEventkey();
+          Ev->geteventrxy(Erx,Ery) 
 
-
-      if (E->kws[1] @= "PRESS") {
+         if (etype @= "PRESS") {
 
           //<<"%V$E->keyw  $E->woid  $svwo $pvwo \n"
 
-          if (E->woid == svwo) {
+          if (woid == svwo) {
              //look_to()
              <<" sv $svwo\n"
              xy_move_to()
              look_at()
           }
 
-          if (E->woid == pvwo) {
+          if (woid == pvwo) {
              <<" pv $pvwo \n"
              xz_move_to()
              look_at()
           }
       }
-      else if (E->etype @= "KEYPRESS") {
+      else if (etype @= "KEYPRESS") {
 
-         setgwob(vptxt,@clear,@clipborder,"blue",@textr,E->kws[2],0,0) 
-
-
-          keyControls(E->keyc)
+          sWo(vptxt,@clear,@clipborder,"blue",@textr,keyc,0,0) 
+          keyControls(keyc)
 
       }
 
@@ -1208,24 +1216,24 @@ rang = 1
     elev = -90
    }   
 
-       setgwob(azimwo,@VALUE, "%5.1f$azim" , @redraw)
-       setgwob(distwo,@VALUE, "%5.1f$distance" , @redraw)
-       setgwob(elewo,@VALUE, "%5.1f$elev" , @redraw)
+       sWo(azimwo,@VALUE, "%5.1f$azim" , @redraw)
+       sWo(distwo,@VALUE, "%5.1f$distance" , @redraw)
+       sWo(elewo,@VALUE, "%5.1f$elev" , @redraw)
 
-    Setgwob(vpwo,@clearpixmap) 
+    sWo(vpwo,@clearpixmap) 
 
     plot3D(vpwo, scene, obpx, obpy, obpz, azim, elev,distance,1,1, GridON)
 
-    SetGwob(vpwo,@showpixmap,@clipborder) 
+    sWo(vpwo,@showpixmap,@clipborder) 
 
     
 
 //    txtmsg = "%5.1f %V$obpx , $obpy , $obpz , $azim , $elev , $o_speed"
     txtmsg = "%V$obpx , %5.1f$obpy , $obpz , $azim , $elev , $o_speed"
 
-//    setgwob(two,"text",txtmsg,"redraw") wrong woid  causes crash - should be robust
+//    sWo(two,"text",txtmsg,"redraw") wrong woid  causes crash - should be robust
 
-    //setgwob(vptxt,@text,txtmsg,@redraw) 
+    //sWo(vptxt,@text,txtmsg,@redraw) 
 
 //<<"%5.1f %V$obpx , $obpy , $obpz , $azim  $elev  $distance \n"
 
@@ -1233,7 +1241,7 @@ rang = 1
 
      SideView()
 
-     //setgwob(vptxt,@clear,@clipborder,"red",@textr,E->keyw,0,0) 
+     //sWo(vptxt,@clear,@clipborder,"red",@textr,E->keyw,0,0) 
 
      sleep(0.05)
 
@@ -1241,8 +1249,8 @@ rang = 1
   }
 
 
-  if (scmp(E->woname,"QUIT",4)) {
-       break
+  if (scmp(woname,"QUIT",4)) {
+       break;
   }
 
 

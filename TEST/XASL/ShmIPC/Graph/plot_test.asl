@@ -25,22 +25,22 @@
 
 
 
-  setgwob(gwo,@clipborder,"black",@line,0,-1,1,-1,BLUE)
+  setgwob(gwo,@clipborder,"black",@line,0,-1,1,-1,BLUE_)
 
   x =0.1
   y = 0.1
   X = 1.3
   Y = 1.4
 
-  plot(gwo,@box,x,y,X,Y,BLUE,@line,x,y,X,Y,RED,@line,x,Y,X,y,GREEN)
+  plot(gwo,@box,x,y,X,Y,BLUE_,@line,x,y,X,Y,RED_,@line,x,Y,X,y,GREEN_)
 
-  plot(gwo,@circle,x,y,0.7,GREEN)
+  plot(gwo,@circle,x,y,0.7,GREEN_)
 
   //plotgw(vp,@symbol,0.5,0.5,"triangle")
 
   SetGwob(gwo,@showpixmap)
 
-  setgwob(gwo,@usescales,1,@clipborder,BLUE,@border,BLACK)
+  setgwob(gwo,@usescales,1,@clipborder,BLUE,@border,BLACK_)
 
   SetGwob(gwo,@showpixmap)
 
