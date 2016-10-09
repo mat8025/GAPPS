@@ -1,128 +1,40 @@
 #
 
-setdebug(1)
-
-OpenDll("math")
+setdebug(0)
 
 
 Graphic = CheckGwm()
 
 <<"%V$Graphic \n"
+
      if (!Graphic) {
-//     X=spawngwm()
+//        X=spawngwm()
      }
 
+ if (Graphic) {
+  include "viewlib"
+ }
 
-include "event"
-
-
-
-
-
-
-fname = _clarg[1]
-
-// this is a must do --- to read in NED -- 1 arc second approx 30 m resolution
-ned_stem = _clarg[2]
+include "GlideDEM"
 
 
 ///////////////////////////  Scenery /////////////////////////////////////////////
 
-scene = CreateScene(fname)
+int scene[]
 
-<<"$fname scene is  $scene \n"
+wobj = 1
 
-
-
-
-int nrows = 10
-int ncols = 10
 
 // our elevation files usually in NED directory 
 
-if (scmp(ned_stem,"NED/",4)) {
-  ned_stem = spat(ned_stem,"NED/",1)
-}
+  ned_name = _clarg[1]
+
+//  read in a NED -- 1 arc second approx 30 m resolution
+
+  ReadNED(ned_name)
 
 
-<<"input  NED directory is $ned_stem \n"
-
-map_ul_lat = 0.0
-map_ul_long = 0.0
-map_deg = 1.0
-
-Svar Wd
-
-  nf = ofr("/home/mark/GLIDE/NED/$ned_stem/${ned_stem}.blw")
-
-  if (nf == -1) {
-
-  nf = ofr("/home/mark/NED/$ned_stem/${ned_stem}.blw")
-
-  if (nf == -1) {
-     <<" can't open ${ned_stem}.blw \n"
-     stop!
-  }
-
-  }
-
-
-
-   nwr=Wd->Read(nf)
-
-<<"%V$nwr \n"
-
-   map_deg = atof(Wd[0])
-
-<<"%V$map_deg \n"
-
-
-
-   nwr=Wd->Read(nf)
-   nwr=Wd->Read(nf,3)
-
-   map_ul_long = atof(Wd[0])
-   map_ul_long *= -1
-
-<<"  $map_ul_long \n"
-
-   nwr=Wd->Read(nf)
-   map_ul_lat = atof(Wd[0])
-
-<<" $map_ul_lat $map_ul_long $map_deg \n"
-
-   cf(nf)
-
-   nf = ofr("/home/mark/GLIDE/NED/$ned_stem/${ned_stem}.hdr")
-
-   nwr=Wd->Read(nf,2)
-
-
-   nrows = atoi(Wd[1])
-  //<<"$nrows \n"
-
-   nwr=Wd->Read(nf)
-  //<<" $Wd \n"
-   ncols = atoi(Wd[1])
-
-  //<<" %V $nrows $ncols \n"
-
-   Map = ReadBIL("/home/mark/GLIDE/NED/$ned_stem/${ned_stem}.bil", nrows, ncols)
-
-
-
-<<"%V$map_ul_lat $map_ul_long $map_deg\n"
-
-
-    mapok = SetWgrid(Map,map_ul_lat,map_ul_long, map_deg)
-
-<<"%V$mapok Dmn $(Cab(Map)) Sz $(Caz(Map)) \n"
-
-   wg =GetWgrid()
-
- <<"%V$wg \n"
-
-
+  <<"%V $LatN $LongW $LatS $LongE \n"
 
 
  LatN=wg[0]
@@ -134,11 +46,11 @@ Svar Wd
  <<"%V$LatN $LongW $LatS $LongE \n"
 
 
- setgwob(mapwo, "scales", LongW, LatS, LongE, LatN )
+// sWo(mapwo, "scales", LongW, LatS, LongE, LatN )
 
 
 
-mh = getElev( LatN,LongW)
+mh = getElev(LatN,LongW)
 
 <<"%V$mh \n"
 
@@ -157,7 +69,7 @@ mh = getElev( Lat_mid,Long_mid)
 
  for (j = 0; j < 10; j++) {
 
-<<"$Map[0][j] "
+     <<"$Map[0][j] "
 
  }
 
@@ -180,10 +92,10 @@ dmn = Cab(Track)
 
  Elev = getElev(Track)
 
-sz= Caz(Elev)
-dmn = Cab(Elev)
+ sz= Caz(Elev)
+ dmn = Cab(Elev)
 
-<<"%V$sz $dmn \n"
+<<"Elev %V$sz $dmn \n"
 
 
 
@@ -229,16 +141,33 @@ cf(A)
 
  }
 
+
+
+
 <<"\n"
 
+ssz = 128
+ssu = ssz -1
 
-short SG[128][128]
+short SG[ssz][ssz]
+
+   sgsz = Caz(SG)
+   sgdm = Cab(SG)
+
+<<"%V $sgsz $sgdm \n"
 
 
-   SG[0][::] = Map[0][0:127]
-   SG[1][::] = Map[1][0:127]
+   SG[0][::] = Map[0][0:ssu]
+   SG[1][::] = Map[1][0:ssu]
 
-<<"SG \n"
+
+
+   sgsz = Caz(SG)
+   sgdm = Cab(SG)
+
+<<"SG %V $sgsz $sgdm \n"
+
+
 
  for (j = 0; j < 10; j++) {
 
@@ -258,7 +187,13 @@ short SG[128][128]
 
 
 
-   SG[0:127][::] = Map[0:127][0:127]
+   SG[0:ssu][::] = Map[0:ssu][0:ssu]
+
+
+   sgsz = Caz(SG)
+   sgdm = Cab(SG)
+
+<<"SG %V $sgsz $sgdm \n"
 
 
  for (j = 0; j < 10; j++) {
@@ -278,23 +213,251 @@ short SG[128][128]
 <<"\n"
 
 
+/{
+
 //  get a subset of the Wgrid for display as a Matrix Object!
    offr = 10
    offc = 200
-   er = offr+127
-   ec = offc+127
+   er = offr+ssu
+   ec = offc+ssu
 
-   SG[0:127][::] = Map[offr:er][offc:ec]
+   SG[0:ssu][::] = Map[offr:er][offc:ec]
 
- for (j = 0; j < 10; j++) {
+ for (j = 0; j < 20; j++) {
 
-<<"$SG[3][j] "
+    <<"$SG[3][j] "
 
  }
 
 <<"\n"
+/}
+
+ obid1 = MakeObject("MATRIX",SG,-100,0,10,4,2,10,10,180,180,0,1)
+
+   sgsz = Caz(SG)
+   sgdm = Cab(SG)
+
+<<"SG %V $sgsz $sgdm \n"
+
+
+// obid1 = MakeObject("MATRIX",SG,-100,0,-100,1,0.1,1,20,0,0,0,0)
+
+ scene[0] = obid1;
 
 
 
+
+
+
+int GridON = 0;
+
+Pi =  4.0 * Atan(1.0)
+
+zalpha = 0
+yalpha = 0
+xalpha = 0
+
+float azim = 320
+float elev = -10.0
+float speed = 2.0
+int elewo = 0;
+
+
+float obpx = 75
+float obpy = 50
+float obpz = -140
+
+float targ_x = 0
+float targ_y = 10
+float targ_z = 35
+
+obsdz = 2
+float distance = 50.0
+radius = 20
+
+# setup buttons
+dty = 0.05
+twY = 0.98
+twy = twY - dty
+dtx = 0.07
+twx = 0.02
+twX = twx + dtx
+
+twx = 0.5
+twX = twx + dtx
+
+do_sidev = 1
+
+type = 1
+len = 1
+wid = 1
+
+
+zdst = 1
+togd = 1
+toga = 1
+rotd = 2
+rang = 1
+
+  //resetobs(1)
+
+  // scene is array of objects
+
+
+  sWo(vpwo,@scales,-500,-500,500,500);
+
+  sWo(svwo,@scales,-100,0,500,500);
+
+  sWo(pvwo,@scales,-500,-500,500,500);
+
+<<"try plot \n"
+<<"%V %5.1f$obpx , $obpy , $obpz , $azim  $elev  $distance \n"
+
+  plot3D(vpwo, scene, obpx, obpy, obpz, azim, elev, distance)
+  
+//  plot3D(vpwo, scene, obpx, obpy, obpz, azim, elev, distance,1,1,1)
+
+  viewlock = 1
+
+  cullit = 1  
+
+  wang = Pi/2.0
+  rang = 0.01
+  pang = 0.01
+  float rwa = 0.0
+
+// obj zero is the eye
+
+ allobjs = -1
+// rotation applied to all objs
+  hx = 50
+  hy = 10
+
+  float cir_d = 0.5
+
+  SideView()
+
+  int kev = 0
+  int go_on = 0
+  go_rotate = 0
+  go_circle = 0
+  go_loop = 0
+  go_straight = 0
+  o_speed = 0.5
+
+ // map_home()
+
+  uint ml = 0
+
+  while (1) {
+
+    ml++
+
+      //<<"$kev %v $go_on \n"
+
+    Emsg =E->waitForMsg()
+    
+    checkEvents()
+    
+    kev++
+
+    sWo(vptxt,@clear,@clipborder,"red",@textr,Emsg,0,0.8) 
+
+    did_cont = 1
+
+  if (Etype @= "PRESS") {
+
+          <<"%V$Ekeyw  $Woid  $svwo $pvwo \n"
+
+          if (Woid == svwo) {
+             //look_to()
+             <<" sv $svwo\n"
+             xy_move_to(Ebutton,Erx,Ery)
+             look_at()
+          }
+
+          if (Woid == pvwo) {
+             <<" pv $pvwo \n"
+             xz_move_to(Ebutton,Erx,Ery)
+             look_at()
+          }
+      }
+      else if (Etype @= "KEYPRESS") {
+
+         sWo(vptxt,@scrollclip,UP_,8,@clipborder,"blue",@textr," [%c${Ekeyc}] ",0,0) 
+
+       keyControls(Ekeyc)
+
+       sWo(azimwo,@VALUE, "%5.1f$azim" , @update)
+       sWo(distwo,@VALUE, "%5.1f $distance" , @update)
+       sWo(elevwo,@VALUE, "%5.1f$elev" , @update)
+
+      }
+      
+//<<"%V$ml $go_on \n"
+//<<[CFH]"%V$ml $go_on \n"
+
+   did_cont = checkGoDir(go_on);
+  
+  did_cont = 1; // DBG
+
+ if (did_cont ) {
+
+   azim = fmod(azim,360.0)
+
+   if (azim < 0) {
+    azim = 360.0 + azim
+   }   
+
+   //elev = fmod(elev,360.0)
+
+   if (elev > 90) {
+    elev = 90
+   }   
+
+   if (elev < -90) {
+    elev = -90
+   }
+   
+   sWo(azimwo,@VALUE, "%5.1f$azim" , @update)
+   sWo(distwo,@VALUE, "%5.1f $distance" , @update)
+   sWo(elewo,@VALUE, "%5.1f$elev" , @update)
+
+<<"%V %5.1f$obpx , $obpy , $obpz , $azim  $elev  $distance \n"
+
+    sWo(vpwo,@clearpixmap) 
+
+    plot3D(vpwo, scene, obpx, obpy, obpz, azim, elev,distance,1,1, GridON)
+    
+    sWo(vpwo,@showpixmap,@clipborder) 
+
+
+    txtmsg = "%V$obpx , %5.1f$obpy , $obpz , $azim , $elev , $o_speed"
+
+    sWo(vptxt,"text",txtmsg,@update)
+
+     PlanView()
+
+     SideView()
+
+  }
+
+     if (Woid == qwo ) {
+       break
+     }
+
+//     sleep(0.1)
+
+     gsync()
+     
+    if (scmp(Ewoname,"QUIT",4)) {
+       break;
+    }
+
+
+ } // main loop
+
+
+exitgs()
 
 stop!

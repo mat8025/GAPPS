@@ -22,7 +22,7 @@ include "viewlib"
 int scene[];
 int GridON = 0;
 
-wobj = 2
+wobj = 1
 
 Pi =  4.0 * Atan(1.0)
 
@@ -35,21 +35,16 @@ float elev = 0.0
 float speed = 2.0
 int elewo = 0;
 
-
-
 CFH = ofw("vo.debug")
 
-//Event E
-E =1
+// MX = vgen(FLOAT,50,5,0)
+// redimn(MX,5,10)
 
-//MX = vgen(FLOAT,50,5,0)
 
-//redimn(MX,5,10)
+ fp =  ofr("woman.pic")
 
-fp =  ofr("woman.pic")
-
-npx = 512*512
-uchar PX[npx+]
+ npx = 512*512
+ uchar PX[npx+]
 
 // read in image file
 
@@ -68,8 +63,6 @@ uchar PX[npx+]
 
 
 // Redimn(MX,128,128)
-
-
 // ramp - but just rotate
 // SX = vgen(INT,128,0,2)
 // MX  = MX + SX
@@ -78,106 +71,26 @@ uchar PX[npx+]
 
  <<" $(Cab(MX)) $sz\n"
 
-/{
-fname = getArgStr()
 
-<<"%V$fname \n"
-
-// no file -- then no objects
-
-if ( ! (fname @= "") ) {
-   scene = CreateScene(fname)
-<<"array of object ids $scene \n"
-<<" read scene \n"
-}
-/}
 
 //  we know we have to have some objects 
 
 <<"make some Objects - matrix/grid cube \n"
 
-  aslw = asl_w("VO")
+  aslw = asl_w("VW")
 
   obid1 = MakeObject("MATRIX",MX,-100,0,10,4,0.2,4,0.5,180,180,0,1)
 
-  obid2 = MakeObject("G_CUBE",-200,0,50,1,1,1,50)
+  //obid2 = MakeObject("G_CUBE",-200,0,50,1,1,1,50)
 
-<<"%V$obid1 $obid2 \n"
+<<"%V$obid1  \n"
 
 //        RotateObject(obid2,0,45,0)
 
   wobj = obid1
+  scene[0] = obid1;
+  
 
-
-///////////////////////// SETUP WINDOWS AND WOBJS //////////////////////////////
-<<" start window setup \n"
-
-  vp = CreateGwindow(@title,"vp",@resize,0.1,0.1,0.98,0.98,0)
-
-  SetGwindow(vp,@clip,0.01,0.1,0.95,0.99)
-
-// stray argument causes crash?
-SetGwindow(vp, @scales,-200,-200,200,200,0, @drawon,@pixmapon,@save,@bhue,"white")
-
- // SetGwindow(vp,@scales,-200,-200,200,200,0, "drawoff","pixmapon","save","bhue","white")
-
- //gwo=createGWOB(vp,"BV",@name,"B_V",@color,"green",@resize,bx,by,bX,bY)
-
-  vptxt=CreateGWOB(vp,"TEXT",@name,"TXT",@resize,0.1,0.01,0.75,0.1,@color,"blue")
-
-  sWo(vptxt,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw,@pixmapoff,@drawon)
-
-  sWo(vptxt,@scales,-1,-1,1,1)
-
-  vpwo=cWo(vp,"GRAPH",@name,"VP",@resize,0.2,0.2,0.8,0.90,@color,"white")
-
-//  sWo(vpwo,@scales,-20,-20,20,20, @save, @savepixmap,@redraw,@pixmapon,@drawoff)
-
-  sWo(vpwo,@scales,-20,-20,20,20, @save, @savepixmap, @redraw,@drawoff,@pixmapon)
-
-  pvwo = cWo(vp,"GRAPH",@resize,0.01,0.11,0.19,0.5,@name,"PLANVIEW",@color,"cyan")
-
-  sWo(pvwo,@scales,-200,-200,200,200, @save,@savepixmap,@redraw,@drawon,@pixmapon)
-
-  svwo = cWo(vp,"GRAPH",@resize,0.01,0.51,0.19,0.95,@name,"SIDEVIEW",@color,"pink")
-
-  SWo(svwo,@scales,-200,-200,200,200, @save,@savepixmap,@redraw,@pixmapon,@drawon)
-
-<<" finish window setup \n"
-
-/////////////////////////////////////////////////// CONTROLS ////////////////////////////
-<<" start control setup \n"
- bx = 0.93
- bX = 0.99
- yht = 0.1
- ypad = 0.05
-
- bY = 0.95
- by = bY - yht
-
- qwo=createGWOB(vp,"BV",@name,"QUIT?",@VALUE,"QUIT",@color,"orange",@resize,bx,by,bX,bY)
- sWo(qwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", "redraw")
-
- azimwo=cWo(vp,"BV",@name,"AZIM",@VALUE,"1",@color,"white")
- sWo(azimwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
-
- distwo=cWo(vp,"BV",@name,"DIST",@VALUE,"1",@color,"white")
- sWo(distwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
-
- elevwo=cWo(vp,"BV",@name,"ELEV",@VALUE,"1",@color,"white")
- sWo(elevwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
-
- int conwos[] = {  azimwo, distwo, elevwo } 
-
- wo_vtile(conwos,bx,0.2,bX,0.75)
-
- sWo(conwos,@redraw)
-
-<<" finish control setup \n"
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////
 <<"@main \n"
 //setdebug(1)
 
@@ -238,29 +151,10 @@ rang = 1
 
 // obj zero is the eye
 
-
  allobjs = -1
 // rotation applied to all objs
   hx = 50
   hy = 10
-
-
-////////  Event variables //////////////////
-  svar msg
-
-  float Erx;
-  float Ery;
-
-  woname = ""
-  etype = "" 
-  button = 0
-  Woid = 0;
-  Woval = ""
-
-  int evs[16];
-
-  E =1;
-///////////////////////////////////////////
 
   float cir_d = 0.5
 
@@ -284,96 +178,51 @@ rang = 1
 
       //<<"$kev %v $go_on \n"
 
-    msg =E->waitForMsg()
-
+    Emsg =E->waitForMsg()
+    
+    checkEvents()
+    
     kev++
 
-    sWo(vptxt,@clear,@clipborder,"red",@textr,msg,0,0.8) 
+    sWo(vptxt,@clear,@clipborder,"red",@textr,Emsg,0,0.8) 
 
-    did_cont = 0
+    did_cont = 1
 
-   if ( ! (msg @= "NO_MSG")) {
+  if (Etype @= "PRESS") {
 
-    etype = E->geteventType();
-
-    E->geteventstate(evs)
-
-
-
-<<"%V$msg $etype $button $Erx $Ery \n"
-
-     sWo(vptxt,@textr,"%V $etype $button $Woval ",0,0.1) 
-
-     did_cont = 1
-
-      if (etype @= "PRESS") {
-
-          Woid = E->getEventWoId()
-    
-          button = E->getButton();
-
-          Woval = getWoValue(Woid)
-    
-<<"$button  $Woid $Erx $Ery\n"
-
-
-          //<<"%V$keyw  $woid  $svwo $pvwo \n"
+          <<"%V$Ekeyw  $Woid  $svwo $pvwo \n"
 
           if (Woid == svwo) {
-             //look_to(rx)
+             //look_to()
              <<" sv $svwo\n"
-	     E->geteventrxy(&Erx,&Ery)
-             xy_move_to(button,Erx,Ery)
+             xy_move_to(Ebutton,Erx,Ery)
              look_at()
           }
 
           if (Woid == pvwo) {
              <<" pv $pvwo \n"
-	     E->geteventrxy(&Erx,&Ery)
-             xz_move_to(button,Erx,Ery)
+             xz_move_to(Ebutton,Erx,Ery)
              look_at()
           }
       }
-      else if ((etype @= "KEYPRESS") || (etype @= "KEYRELEASE")) {
-      
-          keyc = E->geteventKey();
-	  
-          sWo(vptxt,@clear,@clipborder,BLUE_,@textr,"KEY was %c$keyc",0,0)
-	  
-          keyControls(keyc);
+      else if (Etype @= "KEYPRESS") {
+
+         sWo(vptxt,@scrollclip,UP_,8,@clipborder,"blue",@textr," [%c${Ekeyc}] ",0,0) 
+
+       keyControls(Ekeyc)
+
+       sWo(azimwo,@VALUE, "%5.1f$azim" , @update)
+       sWo(distwo,@VALUE, "%5.1f $distance" , @update)
+       sWo(elevwo,@VALUE, "%5.1f$elev" , @update)
+
       }
-
-    }
-
+      
 //<<"%V$ml $go_on \n"
 //<<[CFH]"%V$ml $go_on \n"
 
-   if (go_on) {
-
-
-     if (go_rotate) {
-        rotate_vec(speed)
-     } 
-
-     if (go_circle) {
-       circle_obs(cir_d)
-    }
-
-     if (go_loop) {
-       loop_obs(cir_d)
-     }
-
-     if (go_straight) {
-        //<<" moving ON! \n"
-         move_vec(o_speed)
-     }
-
-   did_cont = 1
+   did_cont = checkGoDir(go_on);
   
-  }
-
-
-
+  did_cont = 1; // DBG
 
  if (did_cont ) {
 
@@ -391,11 +240,11 @@ rang = 1
 
    if (elev < -90) {
     elev = -90
-   }   
-
-   sWo(azimwo,@VALUE, "%5.1f$azim" , @redraw)
-   sWo(distwo,@VALUE, "%5.1f$distance" , @redraw)
-   sWo(elewo,@VALUE, "%5.1f$elev" , @redraw)
+   }
+   
+   sWo(azimwo,@VALUE, "%5.1f$azim" , @update)
+   sWo(distwo,@VALUE, "%5.1f $distance" , @update)
+   sWo(elewo,@VALUE, "%5.1f$elev" , @update)
 
 <<"%V %5.1f$obpx , $obpy , $obpz , $azim  $elev  $distance \n"
 
@@ -406,14 +255,13 @@ rang = 1
     sWo(vpwo,@showpixmap,@clipborder) 
 
 
-//    txtmsg = "%5.1f %V$obpx , $obpy , $obpz , $azim , $elev , $o_speed"
-
     txtmsg = "%V$obpx , %5.1f$obpy , $obpz , $azim , $elev , $o_speed"
-    sWo(vptxt,"text",txtmsg,"redraw")
 
-    // PlanView()
+    sWo(vptxt,"text",txtmsg,@update)
 
-   //  SideView()
+     PlanView()
+
+     SideView()
 
   }
 
@@ -424,6 +272,11 @@ rang = 1
 //     sleep(0.1)
 
      gsync()
+     
+    if (scmp(Ewoname,"QUIT",4)) {
+       break;
+    }
+
 
  } // main loop
 

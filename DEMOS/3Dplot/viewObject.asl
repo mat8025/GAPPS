@@ -95,94 +95,7 @@ else {
 
   wobj = obid1
 
-
-/////////////////////// SETUP WINDOWS AND WOBJS //////////////////////////////
-
-  vp = CreateGwindow(@title,"vp",@resize,0.1,0.01,0.98,0.98,0)
-
-  SetGwindow(vp,"clip",0.01,0.1,0.95,0.99)
-
-  vptxt=cWo(vp,"TEXT",@name,"TXT",@resize,0.1,0.01,0.75,0.1,@color,"blue")
-
-  sWo(vptxt,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw, @pixmapon, @drawon)
-
-  sWo(vptxt,@scales,-1,-1,1,1)
-
-  vpwo=cWo(vp,"GRAPH",@name,"VP",@resize,0.2,0.2,0.8,0.90,@color,"white")
-  // pixmap draw error?
-  sWo(vpwo,@scales,-20,-20,20,20, @save,@redraw,@drawoff,@pixmapon,@savepixmap)
-
-
-  pvwo = cWo(vp,"GRAPH",@resize,0.01,0.11,0.19,0.5,"name","PLANVIEW","color","white")
-
-  sWo(pvwo,@scales,-200,-200,200,200, @save,@redraw,@pixmapon,@drawon,@savepixmap)
-
-  svwo = cWo(vp,"GRAPH",@resize,0.01,0.51,0.19,0.95,@name,"SIDEVIEW","color","white")
-
-  sWo(svwo,@scales,-200,-200,200,200, @save,@redraw,@drawoff,@pixmapon, @drawon,@savepixmap)
-
-
-/////////////////////////////////////////////////// CONTROLS ////////////////////////////
- bx = 0.93
- bX = 0.99
- yht = 0.1
- ypad = 0.05
-
- bY = 0.95
- by = bY - yht
-
- qwo=cWo(vp,"BV",@name,"QUIT?",@VALUE,"QUIT",@color,"orange",@resize,bx,by,bX,bY)
- sWo(qwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", "redraw")
-
- azimwo=cWo(vp,"BV",@name,"AZIM",@VALUE,"1.0",@color,"white")
- sWo(azimwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
-
- distwo=cWo(vp,"BV",@name,"DIST",@VALUE,"1.0",@color,"white")
- sWo(distwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
-
- elevwo=cWo(vp,"BV",@name,"ELEV",@VALUE,"1.0",@color,"white")
- sWo(elevwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
-
- int conwos[] = {  azimwo, distwo, elevwo } 
-
- wo_vtile(conwos,bx,0.2,bX,0.75)
-
- sWo(conwos,@redraw)
-
-/////////////////////////////////////////////////////////
-
-
-
-proc checkEvents()
-{
-//   Mf = Split(msg)
-   Etype = E->getEventType()
-
-   E->getEventState(evs)
-
-   Woname = E->getEventWoName()    
-   
-   
-   Woid = E->getEventWoId()
-
-   Woproc = E->getEventWoProc()
-   Woaw =  E->getEventWoAw()
-   Woval = getWoValue(Woid)
-   Ebutton = E->getEventButton()
-   Ekeyc = E->getEventKey()
-   Ekeyw = E->getEventKeyW()
-   E->getEventRxy(Erx,Ery);
-   
-<<"%V $Etype $Woid  %c$Ekeyc\n"
-
-if (Woid == qwo) {
-       //deleteWin(vp)
-       exit_gs()
-   }
-}
-//----------------------------------------------
-
-wobj = 2
+  //wobj = 2
 
 Pi =  4.0 * Atan(1.0)
 
@@ -297,23 +210,6 @@ Svar msg
 
 
 
-E =1; // event handle
-
-int evs[20];
-
-
-Woid = 0
-Ewoname = ""
-Woproc = "foo"
-Woval = ""
-int Woaw = 0
-Erx=0.0;
-Ery=0.0;
-Ebutton = 0
-char Ekeyc = 0;
-Ekeyw = "";
-Etype = "";
-Emsg="";
 
 
   while (1) {
