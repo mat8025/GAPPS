@@ -14,7 +14,6 @@ Graphic = CheckGwm()
 
 include "viewlib"
 
-
 include "ReadDEM"
 
 
@@ -306,11 +305,14 @@ rang = 1
 
    sWo(vpwo,@scales,-400, -100 ,700,310,0);  // maybe
   
+   sWo(svwo,@scales,-106,500,-104,5000);
+
+   sWo(pvwo,@scales,0,-100000,500000,100000);
+
+   //lngW,latS,lngE,LatN
+   sWo(llwo,@scales,LongW-0.5, LatS-0.5, LongE+0.5, LatN+0.5);
 
 
-  sWo(svwo,@scales,-106,500,-104,5000);
-
-  sWo(pvwo,@scales,-106,37,-104,42);
 
 <<"try plot \n"
 <<"%V %5.1f$obpx , $obpy , $obpz , $azim  $elev  $distance \n"
@@ -318,6 +320,11 @@ rang = 1
 //  plot3D(vpwo, scene, obpx, obpy, obpz, azim, elev, distance)
   
  // plot3D(vpwo, scene, obpx, obpy, obpz, azim, elev, distance,1,1,1)
+
+
+     TerrPlanView(0)
+
+//iread("->")
 
   viewlock = 1
 
@@ -378,7 +385,7 @@ rang = 1
              look_at()
           }
 
-          if (Woid == pvwo) {
+          if (Woid == llwo) {
              <<" pv $pvwo \n"
              xz_move_to(Ebutton,Erx,Ery)
              look_at()
@@ -399,7 +406,7 @@ rang = 1
 //<<"%V$ml $go_on \n"
 //<<[CFH]"%V$ml $go_on \n"
 
-   did_cont = checkGoDir(go_on);
+  did_cont = checkGoDir(go_on);
   
   did_cont = 1; // DBG
 
@@ -414,11 +421,11 @@ rang = 1
    //elev = fmod(elev,360.0)
 
    if (elev > 90) {
-    elev = 90
+     elev = 90
    }   
 
    if (elev < -90) {
-    elev = -90
+     elev = -90
    }
    
    sWo(azimwo,@VALUE, "%5.1f$azim" , @update)
@@ -428,19 +435,21 @@ rang = 1
 <<"%V %5.1f$obpx , $obpy , $obpz , $azim  $elev  $distance \n"
 <<"%V %5.1f$targ_x , $targ_y , $targ_z  \n"
 
-    sWo(vpwo,@clearpixmap) 
+    sWo(vpwo,@clearpixmap);
+    
 <<"PlottingTerrain ! $ml \n"
 
     plot3D(vpwo, scene, obpx, obpy, obpz, azim, elev,distance,1,1, GridON)
     
-    sWo(vpwo,@showpixmap,@clipborder) 
+    sWo(vpwo,@showpixmap,@clipborder);
+    
 <<" Done 3D \n"
 
     txtmsg = "%V$obpx , %5.1f$obpy , $obpz , $azim , $elev , $o_speed"
 
     sWo(vptxt,"text",txtmsg,@update)
 
-     PlanView(1)
+     TerrPlanView(0)
 <<" Done Plan \n"
      SideView(0)
 <<" Done Side \n"

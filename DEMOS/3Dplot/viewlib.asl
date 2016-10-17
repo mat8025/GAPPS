@@ -89,7 +89,6 @@ proc look_at()
 // how about elev ??
 
 <<" look_at \n"
-
    zdir = obpz - targ_z
    xdir = obpx - targ_x
    ydir = targ_y -obpy
@@ -126,11 +125,8 @@ proc look_at()
    else {
      azim = pazim - 90;
      }
-
 }
 //---------------------------------
-
-
 
 proc xz_move_to(button,rx,ry)
 {
@@ -420,15 +416,34 @@ proc map_home()
 proc PlanView(plt_it)
 {
      sWo(pvwo,@clearpixmap)
+
      if (plt_it) {
-     plot3D(pvwo,scene,obpx,obpy,obpz, azim, elev,distance,4,1,  GridON)
+       plot3D(pvwo,scene,obpx,obpy,obpz, azim, elev,distance,4,1,  GridON)
      }
+     
      plotgw(pvwo,@symbol,obpx,obpz,"diamond",3,"blue",0)
      plotgw(pvwo,@symbol,obpx,obpz,"arrow",2,"blue",cd2pol(azim)-90,1)
      plotgw(pvwo,@symbol,targ_x,targ_z,"tri",3,"red",0)
 
+     sWo(pvwo,@hue,"black",@showpixmap,@clipborder)
+}
+//==========================================
+
+proc TerrPlanView(plt_it)
+{
+     sWo(pvwo,@clearpixmap)
+     sWo(llwo,@clearpixmap)
+
+     if (plt_it) {
+       plot3D(pvwo,scene,obpx,obpy,obpz, azim, elev,distance,4,1,  GridON)
+     }
+     
+     plotgw(llwo,@symbol,obpx,obpz,"diamond",3,"blue",0)
+     plotgw(llwo,@symbol,obpx,obpz,"arrow",2,"blue",cd2pol(azim)-90,1)
+     plotgw(llwo,@symbol,targ_x,targ_z,"tri",3,"red",0)
 
      sWo(pvwo,@hue,"black",@showpixmap,@clipborder)
+     sWo(llwo,@hue,"black",@showpixmap,@clipborder)
 }
 //==========================================
 
@@ -863,11 +878,11 @@ if (Woid == qwo) {
 
 
 ///////////////////////// SETUP WINDOWS AND WOBJS //////////////////////////////
-  vp = cWi(@title,"vp",@resize,0.1,0.01,0.98,0.98,0)
+  vp = cWi(@title,"vp",@resize,0.1,0.1,0.98,0.98,0)
 
   sWi(vp,"clip",0.01,0.1,0.95,0.99)
 
-  vptxt=cWo(vp,"TEXT",@name,"TXT",@resize,0.1,0.01,0.75,0.1,@color,"blue")
+  vptxt=cWo(vp,"TEXT",@name,"TXT",@resize,0.3,0.01,0.75,0.1,@color,"blue")
 
   sWo(vptxt,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw, @pixmapon, @drawon)
 
@@ -877,7 +892,7 @@ if (Woid == qwo) {
 
   sWo(vpwo,@scales,-20,-20,20,20, @save,@redraw,@drawoff,@pixmapon,@savepixmap)
 
-  pvwo = cWo(vp,"GRAPH",@resize,0.01,0.11,0.19,0.5,"name","PLANVIEW","color","white")
+  pvwo = cWo(vp,"GRAPH",@resize,0.01,0.21,0.19,0.5,"name","PLANVIEW","color","white")
 
   sWo(pvwo,@scales,-300,-300,300,300, @save,@redraw,@pixmapon,@drawon,@savepixmap)
 
@@ -886,6 +901,14 @@ if (Woid == qwo) {
   sWo(svwo,@scales,-300,-300,300,300, @save,@redraw,@drawoff,@pixmapon, @drawon,@savepixmap)
 
   sWo(vpwo,@redraw);
+
+
+  llwo = cWo(vp,"GRAPH",@resize,0.01,0.01,0.19,0.2,"name","LLVIEW","color","white")
+
+  sWo(llwo,@scales,-107,36,-104,42, @save,@redraw,@pixmapon,@drawon,@savepixmap)
+
+
+
 
 /////////////////////////////////////////////////// CONTROLS ////////////////////////////
  bx = 0.93
