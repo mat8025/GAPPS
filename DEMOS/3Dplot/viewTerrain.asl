@@ -8,14 +8,14 @@ Graphic = CheckGwm()
 <<"%V$Graphic \n"
 
      if (!Graphic) {
-//        X=spawngwm()
+        X=spawngwm()
      }
 
- if (Graphic) {
-  include "viewlib"
- }
 
-include "GlideDEM"
+include "viewlib"
+
+
+include "ReadDEM"
 
 
 ///////////////////////////  Scenery /////////////////////////////////////////////
@@ -37,31 +37,21 @@ wobj = 1
   <<"%V $LatN $LongW $LatS $LongE \n"
 
 
- LatN=wg[0]
- LongW=wg[1]
-
- LatS = LatN - (wg[2] * wg[5])
- LongE = LongW - (wg[2] * wg[6])
-
- <<"%V$LatN $LongW $LatS $LongE \n"
-
-
 // sWo(mapwo, "scales", LongW, LatS, LongE, LatN )
 
 
 
-mh = getElev(LatN,LongW)
+nw_mh = getElev(LatN,LongW)
 
-<<"%V$mh \n"
+<<"%V$nw_mh \n"
 
 
-mh = getElev( LatS,LongE)
+se_mh = getElev( LatS,LongE)
 
-<<"%V$mh \n"
+<<"%V$se_mh \n"
 
-Lat_mid = (LatN-LatS)/2.0 + LatN
+Lat_mid = (LatN-LatS)/2.0 + LatS
 Long_mid = (LongW-LongE)/2.0 + LongE
-
 
 mh = getElev( Lat_mid,Long_mid)
 
@@ -75,17 +65,18 @@ mh = getElev( Lat_mid,Long_mid)
 
 <<"\n"
 
-
+<<"%V $LatN $LongW $LatS $LongE \n"
+/{
 Track = getTrack(LatN,LongW,LatS,LongE)
 
-sz= Caz(Track)
+sz = Caz(Track)
 dmn = Cab(Track)
 
-<<"%V$sz $dmn \n"
+<<"Track %V$sz $dmn \n"
 
- for (j = 0; j < 10; j++) {
+ for (j = 0; j < 100; j++) {
 
-  <<"$Track[j][0] $Track[j][1]\n "
+  <<"$j $Track[j][0] $Track[j][1] $Track[j][2]\n "
 
  }
 
@@ -97,6 +88,7 @@ dmn = Cab(Track)
 
 <<"Elev %V$sz $dmn \n"
 
+<<"%(1,, ,\n)6.0f$Elev"
 
 
 A=ofw("ElevNW_SE")
@@ -211,10 +203,9 @@ short SG[ssz][ssz]
  }
 
 <<"\n"
-
+/}
 
 /{
-
 //  get a subset of the Wgrid for display as a Matrix Object!
    offr = 10
    offc = 200
@@ -224,32 +215,29 @@ short SG[ssz][ssz]
    SG[0:ssu][::] = Map[offr:er][offc:ec]
 
  for (j = 0; j < 20; j++) {
-
     <<"$SG[3][j] "
-
  }
-
 <<"\n"
 /}
 
- obid1 = MakeObject("MATRIX",SG,-100,0,10,4,2,10,10,180,180,0,1)
+ //obid1 = MakeObject("MATRIX",SG,-100,0,10,4,2,10,10,180,180,0,1)
 
-   sgsz = Caz(SG)
-   sgdm = Cab(SG)
+  // sgsz = Caz(SG)
+ //  sgdm = Cab(SG)
 
-<<"SG %V $sgsz $sgdm \n"
+//<<"SG %V $sgsz $sgdm \n"
 
 
 // obid1 = MakeObject("MATRIX",SG,-100,0,-100,1,0.1,1,20,0,0,0,0)
 
- scene[0] = obid1;
+ //scene[0] = obid1;
+
+scene = CreateScene("cube")
 
 
+  <<"%V $LatN $LongW $LatS $LongE \n"
 
-
-
-
-int GridON = 0;
+int GridON = 1;
 
 Pi =  4.0 * Atan(1.0)
 
@@ -257,22 +245,28 @@ zalpha = 0
 yalpha = 0
 xalpha = 0
 
-float azim = 320
+//float azim = 270
+float azim = 350
+
 float elev = -10.0
 float speed = 2.0
 int elewo = 0;
 
 
-float obpx = 75
-float obpy = 50
-float obpz = -140
+float obpx = -105.7
+float obpy = 3277
+//float obpy = 880
+float obpz = 40.0
 
-float targ_x = 0
-float targ_y = 10
-float targ_z = 35
+float targ_x = -106
+float targ_y =  2966
+float targ_z = 41
 
 obsdz = 2
-float distance = 50.0
+
+//float distance = 50.0
+float distance = 1000.0 // 500
+
 radius = 20
 
 # setup buttons
@@ -304,18 +298,26 @@ rang = 1
   // scene is array of objects
 
 
-  sWo(vpwo,@scales,-500,-500,500,500);
+   //sWo(vpwo,@scales,-100, -100 ,600,110,0); // works
 
-  sWo(svwo,@scales,-100,0,500,500);
+   sWo(vpwo,@scales,-100, -100 ,700,110,0); // works too
 
-  sWo(pvwo,@scales,-500,-500,500,500);
+   sWo(vpwo,@scales,-200, -100 ,700,110,0);  // maybe
+
+   sWo(vpwo,@scales,-400, -100 ,700,310,0);  // maybe
+  
+
+
+  sWo(svwo,@scales,-106,500,-104,5000);
+
+  sWo(pvwo,@scales,-106,37,-104,42);
 
 <<"try plot \n"
 <<"%V %5.1f$obpx , $obpy , $obpz , $azim  $elev  $distance \n"
 
-  plot3D(vpwo, scene, obpx, obpy, obpz, azim, elev, distance)
+//  plot3D(vpwo, scene, obpx, obpy, obpz, azim, elev, distance)
   
-//  plot3D(vpwo, scene, obpx, obpy, obpz, azim, elev, distance,1,1,1)
+ // plot3D(vpwo, scene, obpx, obpy, obpz, azim, elev, distance,1,1,1)
 
   viewlock = 1
 
@@ -335,7 +337,7 @@ rang = 1
 
   float cir_d = 0.5
 
-  SideView()
+  SideView(0)
 
   int kev = 0
   int go_on = 0
@@ -424,22 +426,24 @@ rang = 1
    sWo(elewo,@VALUE, "%5.1f$elev" , @update)
 
 <<"%V %5.1f$obpx , $obpy , $obpz , $azim  $elev  $distance \n"
+<<"%V %5.1f$targ_x , $targ_y , $targ_z  \n"
 
     sWo(vpwo,@clearpixmap) 
+<<"PlottingTerrain ! $ml \n"
 
     plot3D(vpwo, scene, obpx, obpy, obpz, azim, elev,distance,1,1, GridON)
     
     sWo(vpwo,@showpixmap,@clipborder) 
-
+<<" Done 3D \n"
 
     txtmsg = "%V$obpx , %5.1f$obpy , $obpz , $azim , $elev , $o_speed"
 
     sWo(vptxt,"text",txtmsg,@update)
 
-     PlanView()
-
-     SideView()
-
+     PlanView(1)
+<<" Done Plan \n"
+     SideView(0)
+<<" Done Side \n"
   }
 
      if (Woid == qwo ) {

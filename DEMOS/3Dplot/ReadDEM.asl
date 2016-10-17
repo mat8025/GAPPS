@@ -53,7 +53,7 @@ proc ReadNED(nedname)
    nwr=Wd->Read(nf,3)
    
    map_ul_long = atof(Wd[0])
-   map_ul_long *= -1;
+ //  map_ul_long *= -1;
 
 <<"%V $map_ul_long \n"
 
@@ -121,8 +121,7 @@ LongW= wg[1];
 
 LatS = LatN - (wg[2] * wg[5])
 
-LongE = LongW - (wg[2] * wg[6])
-
+LongE = LongW + (wg[2] * wg[6])
 
 <<"%V $LatN $LongW $LatS $LongE \n"
  

@@ -56,10 +56,11 @@ CFH = ofw("vo.debug")
 
 // int MX[]
 
- MX = PX[0:-1:4][0:-1:4]
+ //MX = PX[0:-1:4][0:-1:4]
+ MX = PX[0:-1:16][0:-1:16]
 
  msz = Caz(MX)
- <<" $(Cab(MX)) $sz\n"
+ <<" $(Cab(MX)) $msz\n"
 
 
 // Redimn(MX,128,128)
@@ -69,7 +70,7 @@ CFH = ofw("vo.debug")
 
  msz = Caz(MX)
 
- <<" $(Cab(MX)) $sz\n"
+ <<" $(Cab(MX)) $msz\n"
 
 
 

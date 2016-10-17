@@ -417,12 +417,12 @@ proc map_home()
 }
 //==========================================
 
-proc PlanView()
+proc PlanView(plt_it)
 {
      sWo(pvwo,@clearpixmap)
-
+     if (plt_it) {
      plot3D(pvwo,scene,obpx,obpy,obpz, azim, elev,distance,4,1,  GridON)
-
+     }
      plotgw(pvwo,@symbol,obpx,obpz,"diamond",3,"blue",0)
      plotgw(pvwo,@symbol,obpx,obpz,"arrow",2,"blue",cd2pol(azim)-90,1)
      plotgw(pvwo,@symbol,targ_x,targ_z,"tri",3,"red",0)
@@ -432,7 +432,7 @@ proc PlanView()
 }
 //==========================================
 
-proc SideView()
+proc SideView(plt_it)
 {
 
 /{
@@ -446,12 +446,14 @@ proc SideView()
 
      //sWo(svwo,@scales,srx,sry,srX,srY)
 
-     sWo(svwo,@clearpixmap)
+     sWo(svwo,@clearpixmap);
 
      //plot3D(pvwo,scene,obpx,obpy,obpz, azim, elev,distance,4,1)
 
-
-     plot3D(svwo,scene,obpx,obpy,obpz,azim,elev,distance,2,1)
+     if (plt_it) {
+       plot3D(svwo,scene,obpx,obpy,obpz,azim,elev,distance,2,1)
+     }
+     
      plotgw(svwo,"symbol",targ_x,targ_y,"tri",4,RED_,0)
      plotgw(svwo,"symbol",obpx,obpy,"diamond",6,GREEN_,0)
 
@@ -883,6 +885,7 @@ if (Woid == qwo) {
 
   sWo(svwo,@scales,-300,-300,300,300, @save,@redraw,@drawoff,@pixmapon, @drawon,@savepixmap)
 
+  sWo(vpwo,@redraw);
 
 /////////////////////////////////////////////////// CONTROLS ////////////////////////////
  bx = 0.93
