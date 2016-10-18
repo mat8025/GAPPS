@@ -530,6 +530,8 @@ proc checkRoll (char wc)
 }
 //==================================================
 
+float Mvec_step = 0.2
+
 proc checkMove(char wc)
 {
  ret = 0
@@ -540,14 +542,16 @@ proc checkMove(char wc)
 
         case 'R':
         go_straight = 1
-        move_vec(2.0)
+        //move_vec(2.0)
+	move_vec(Mvec_step)
         ret = 1
         sWo(vptxt,@textr," R move forward ",0,-0.25) 
         break;
 
         case 'T':
         go_straight = 1
-        move_vec(-2.0)
+        //move_vec(-2.0)
+	move_vec(-Mvec_step)
         ret = 1
         sWo(vptxt,@textr," T move back ",0,-0.25) 
         break;
@@ -878,13 +882,14 @@ if (Woid == qwo) {
 
 
 ///////////////////////// SETUP WINDOWS AND WOBJS //////////////////////////////
+
   vp = cWi(@title,"vp",@resize,0.1,0.1,0.98,0.98,0)
 
   sWi(vp,"clip",0.01,0.1,0.95,0.99)
 
   vptxt=cWo(vp,"TEXT",@name,"TXT",@resize,0.3,0.01,0.75,0.1,@color,"blue")
 
-  sWo(vptxt,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw, @pixmapon, @drawon)
+  sWo(vptxt,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw, @pixmapoff, @drawon)
 
   sWo(vptxt,@scales,-1,-1,1,1)
 
@@ -911,7 +916,7 @@ if (Woid == qwo) {
 
 
 /////////////////////////////////////////////////// CONTROLS ////////////////////////////
- bx = 0.93
+ bx = 0.91
  bX = 0.99
  yht = 0.1
  ypad = 0.05
@@ -920,18 +925,29 @@ if (Woid == qwo) {
  by = bY - yht
 
  qwo=cWo(vp,"BV",@name,"QUIT",@VALUE,"QUIT",@color,"orange",@resize,bx,by,bX,bY)
- sWo(qwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", "redraw")
+ sWo(qwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw)
 
  azimwo=cWo(vp,"BV",@name,"AZIM",@VALUE,"1",@color,"white")
- sWo(azimwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
+ sWo(azimwo,@FUNC,"inputValue",@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
 
  distwo=cWo(vp,"BV",@name,"DIST",@VALUE,"1",@color,"white")
- sWo(distwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
+ sWo(distwo,@FUNC,"inputValue",@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
 
- elevwo=cWo(vp,"BV",@name,"ELEV",@VALUE,"1",@color,"white")
+ elevwo=cWo(vp,@BV,@name,"EYE_ELEV",@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB",@VALUE,"10",@FUNC,"inputValue")
  sWo(elevwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
 
- int conwos[] = {  azimwo, distwo, elevwo } 
+ olatwo=cWo(vp,@BV,@name,"OLAT",@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB",@VALUE,"40",@FUNC,"inputValue")
+ sWo(olatwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
+
+ olngwo=cWo(vp,@BV,@name,"OLNG",@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB",@VALUE,"-104",@FUNC,"inputValue")
+ sWo(olngwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
+
+ altwo=cWo(vp,@BV,@name,"ALT",@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB",@VALUE,"2000",@FUNC,"inputValue")
+ sWo(altwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
+
+
+
+ int conwos[] = {  azimwo, distwo, elevwo, olatwo, olngwo, altwo } 
 
  wo_vtile(conwos,bx,0.2,bX,0.75)
 

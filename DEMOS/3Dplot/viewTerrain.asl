@@ -5,7 +5,7 @@ setdebug(0)
 
 Graphic = CheckGwm()
 
-<<"%V$Graphic \n"
+//<<"%V$Graphic \n"
 
      if (!Graphic) {
         X=spawngwm()
@@ -245,17 +245,18 @@ yalpha = 0
 xalpha = 0
 
 //float azim = 270
-float azim = 350
+float azim = 270
 
-float elev = -10.0
+float elev = 0.0
 float speed = 2.0
 int elewo = 0;
 
 
-float obpx = -105.7
-float obpy = 3277
-//float obpy = 880
-float obpz = 40.0
+float obpx = -106.0  // lng deg
+float obpy = 3000    // ht meters
+float obpz = 40.8    // lat deg
+
+
 
 float targ_x = -106
 float targ_y =  2966
@@ -390,6 +391,31 @@ rang = 1
              xz_move_to(Ebutton,Erx,Ery)
              look_at()
           }
+
+          if (Woid == elevwo) {
+            elev = atof(getWoValue(elevwo));
+          }
+          if (Woid == azimwo) {
+            azim = atof(getWoValue(azimwo));
+          }
+	  
+	  if (Woid == olatwo) {
+            obpz = atof(getWoValue(olatwo));
+          }
+	  if (Woid == olngwo) {
+            obpx = atof(getWoValue(olngwo));
+          }
+
+	  if (Woid == altwo) {
+            obpy = atof(getWoValue(altwo));
+          }
+
+	  if (Woid == distwo) {
+            distance = atof(getWoValue(distwo));
+          }
+
+
+
       }
       else if (Etype @= "KEYPRESS") {
 
@@ -400,7 +426,10 @@ rang = 1
        sWo(azimwo,@VALUE, "%5.1f$azim" , @update)
        sWo(distwo,@VALUE, "%5.1f $distance" , @update)
        sWo(elevwo,@VALUE, "%5.1f$elev" , @update)
-
+       sWo(olatwo,@VALUE, "%5.1f$obpz" , @update)
+       sWo(olngwo,@VALUE, "%5.1f$obpx" , @update)
+       sWo(altwo,@VALUE, "%5.1f$obpy" , @update)       
+       
       }
       
 //<<"%V$ml $go_on \n"
@@ -431,6 +460,9 @@ rang = 1
    sWo(azimwo,@VALUE, "%5.1f$azim" , @update)
    sWo(distwo,@VALUE, "%5.1f $distance" , @update)
    sWo(elewo,@VALUE, "%5.1f$elev" , @update)
+   sWo(olatwo,@VALUE, "%5.1f$obpz" , @update)
+   sWo(olngwo,@VALUE, "%5.1f$obpx" , @update)
+   sWo(altwo,@VALUE, "%5.1f$obpy" , @update)       
 
 <<"%V %5.1f$obpx , $obpy , $obpz , $azim  $elev  $distance \n"
 <<"%V %5.1f$targ_x , $targ_y , $targ_z  \n"

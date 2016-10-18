@@ -79,13 +79,14 @@ proc ReadNED(nedname)
 
 <<"%V $nrows $ncols \n"
 
- //  nrows = 2;
+ // nrows = 3000;
  //  ncols = 5;
 
   Map = ReadBIL("$ned_path/$ned_stem/${ned_stem}.bil", nrows, ncols)
+      msz = Caz(Map)
+      mbd = Cab(Map)
 
-
-<<"DONE READ of BIL $Map[0][0] $Map[1][1] \n"
+<<"DONE READ of BIL size $msz $Map[0][0] $Map[1][1] \n"
 
 /{
      for (km = 0; km < nrows ; km++) {
@@ -95,8 +96,7 @@ proc ReadNED(nedname)
      }
 /}
 
-      msz = Caz(Map)
-      mbd = Cab(Map)
+
      
 <<"Map %V $msz  $mbd \n"
 <<"now setwgrid \n"
