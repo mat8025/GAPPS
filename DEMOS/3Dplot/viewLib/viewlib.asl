@@ -287,11 +287,8 @@ float ma
           obpx += dx
 
 <<"mv %V$mdir $azim $obpx $obpy  \n"
-
 }
 //--------------------------------------------------------------------------
-
-
 
 proc resetobs(ww)
 {
@@ -560,6 +557,8 @@ proc checkMove(char wc)
   return ret
 }
 //================================================
+
+float obs_step = 0.05;
 proc checkObserver(char wc)
 {
  ret = 1
@@ -568,27 +567,27 @@ proc checkObserver(char wc)
 
     switch (wc) {
      case 'y':
-          obpy += 2
-        <<"%V$obpy \n"
+          obpy += 2;
+        <<"%V$obpy \n";
      break;
      case 'Y':
-          obpy -= 2
+          obpy -= 2;
      break;
      case 'z':
-          obpz += 2
+          obpz += obs_step;
      break;
      case 'Z':
-          obpz -= 2
+          obpz -= obs_step;
      break;
      case 'x':
-          obpx += 2
+          obpx += obs_step;
      break;
      case 'X':
-          obpx -= 2
+          obpx -= obs_step;
       break;
 
       default:
-        ret = 0
+        ret = 0;
      }
 
       if (ret == 1) {

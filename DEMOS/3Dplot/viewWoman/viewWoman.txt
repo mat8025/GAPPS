@@ -1,0 +1,17 @@
+
+  3D pic of woman's face
+
+  shows side, plan and 3d view of digitized mono image of Lisa
+
+  from brightness values constructs a grid (wire frame).
+  Can be rotated and moved.
+  The eye position can be manipulated.
+
+
+  TBD
+  -- revise key controls
+  -- add button up/down controls
+  
+  -- add looping contiuous movement and
+  -- add frame-rate measurement
+  

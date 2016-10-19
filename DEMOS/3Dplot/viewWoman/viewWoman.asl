@@ -56,8 +56,8 @@ CFH = ofw("vo.debug")
 
 // int MX[]
 
- //MX = PX[0:-1:4][0:-1:4]
- MX = PX[0:-1:16][0:-1:16]
+MX = PX[0:-1:2][0:-1:2]   // every other 4th
+// MX = PX[0:-1:16][0:-1:16]
 
  msz = Caz(MX)
  <<" $(Cab(MX)) $msz\n"

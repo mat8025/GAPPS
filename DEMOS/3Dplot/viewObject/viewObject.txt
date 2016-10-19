@@ -1,0 +1,20 @@
+  viewObject
+
+
+  Constructs a 3D scene of cubes and pyramids
+  allows movement among obejcts
+  rotation of selected object
+
+  TBD
+  --- frame rate measurement
+  --- reliable mouse click key press detection
+  ---
+  
+
+
+//  TBD
+//  fix wire mode -- missing outline
+//  toggle fill mode
+//  menu to select object --- cube , pyramid , diamond  ...
+//  add other objects
+//  select  object to move rotate

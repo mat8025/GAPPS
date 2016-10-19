@@ -252,10 +252,9 @@ float speed = 2.0
 int elewo = 0;
 
 
-float obpx = -106.0  // lng deg
+float obpx = -105.23  // lng deg
 float obpy = 3000    // ht meters
-float obpz = 40.8    // lat deg
-
+float obpz = 40.04    // lat deg
 
 
 float targ_x = -106
@@ -371,7 +370,7 @@ rang = 1
     
     kev++
 
-    sWo(vptxt,@clear,@clipborder,"red",@textr,Emsg,0,0.8) 
+   sWo(vptxt,@clear,@clipborder,"red",@textr,Emsg,0,0.8) 
 
     did_cont = 1
 
@@ -419,7 +418,7 @@ rang = 1
       }
       else if (Etype @= "KEYPRESS") {
 
-         sWo(vptxt,@scrollclip,UP_,8,@clipborder,"blue",@textr," [%c${Ekeyc}] ",0,0) 
+         //sWo(vptxt,@scrollclip,UP_,8,@clipborder,"blue",@textr," [%c${Ekeyc}] ",0,0) 
 
        keyControls(Ekeyc)
 
@@ -479,7 +478,7 @@ rang = 1
 
     txtmsg = "%V$obpx , %5.1f$obpy , $obpz , $azim , $elev , $o_speed"
 
-    sWo(vptxt,"text",txtmsg,@update)
+  //  sWo(vptxt,"text",txtmsg,@update)
 
      TerrPlanView(0)
 <<" Done Plan \n"
