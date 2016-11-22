@@ -4,7 +4,7 @@
 //  3 doors 2 goats one car
 
 // step 1 make a choice
-// step 2 they show you what is behind another door that has a gaot
+// step 2 they show you what is behind another door that has a goat
 // step 3 do you change your first choice ?
 
 
@@ -26,7 +26,7 @@
 
 //  strategy change 
 //  lets say you choose a goat  .6666
-//  if then then show you the other goat
+//  if they then show you the other goat
 //  then you swap choices you will pick the car
 
 

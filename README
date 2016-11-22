@@ -1,0 +1,11 @@
+//
+//
+//      some DEMOS and apps - written in asl
+//
+//      change to a directory -- find a file  xxx.asl
+//      execute via   asl xxx.asl
+//
+//      apps that use the xgs GUI
+//      are run  with asl -X xxx.asl
+//      but optionally the app itself can launch the xgs GUI
+//     
