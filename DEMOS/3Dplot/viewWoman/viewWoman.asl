@@ -80,9 +80,9 @@ MX = PX[0:-1:2][0:-1:2]   // every other 4th
 
   aslw = asl_w("VW")
 
-  obid1 = MakeObject("MATRIX",MX,-100,0,10,4,0.2,4,0.5,180,180,0,1)
+  obid1 = MakeObject("MATRIX",MX,-10,0,10,4,0.2,4,0.5,0,0,90,1)
 
-  //obid2 = MakeObject("G_CUBE",-200,0,50,1,1,1,50)
+ //obid2 = MakeObject("G_CUBE",-200,0,50,1,1,1,50)
 
 <<"%V$obid1  \n"
 
@@ -159,7 +159,7 @@ rang = 1
 
   float cir_d = 0.5
 
-  SideView()
+  SideView(1)
 
   int kev = 0
   int go_on = 0
@@ -171,7 +171,7 @@ rang = 1
 
   map_home()
 
-  uint ml = 0
+  uint ml = 0;
 
   while (1) {
 
@@ -255,14 +255,13 @@ rang = 1
     
     sWo(vpwo,@showpixmap,@clipborder) 
 
-
     txtmsg = "%V$obpx , %5.1f$obpy , $obpz , $azim , $elev , $o_speed"
 
     sWo(vptxt,"text",txtmsg,@update)
 
-     PlanView()
+     PlanView(0)
 
-     SideView()
+     SideView(0)
 
   }
 

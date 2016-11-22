@@ -196,17 +196,35 @@ checkNum(r,8)
 
 AV = igen(10,0,1)
 
-<<"$AV\n"
+<<"%V$AV\n"
 
 checkNum(AV[1],1)
 
+ AV++;
+ 
+<<"%V$AV\n"
+
+checkNum(AV[1],2);
+
+//setdebug(1,"trace")
+
+BV = ++AV ; // this should increment all elements in the vector
+
+<<"after ++ $AV\n"
+
+<<"%V $BV\n"
+
+checkNum(BV[1],3)
+
 BV = AV++ ; // this should increment all elements in the vector
 
-<<"$AV\n"
+<<"after  $AV ++\n"
 
-checkNum(BV[1],2)
+checkNum(AV[1],4)
 
-<<"$BV\n"
+checkNum(BV[1],3)
+
+<<"%V $BV\n"
 
 
 

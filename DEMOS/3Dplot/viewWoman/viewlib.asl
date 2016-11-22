@@ -381,7 +381,7 @@ proc rotate_x(n,dir)
 
 dc = 0.0
 oldcompass = 0
-mapscale = 500
+mapscale = 1000
 
 //==========================================
 
@@ -417,10 +417,12 @@ proc PlanView(plt_it)
      if (plt_it) {
        plot3D(pvwo,scene,obpx,obpy,obpz, azim, elev,distance,4,1,  GridON)
      }
+
+     sWo(pvwo,@hue,BLUE_,@showpixmap,@clipborder)
      
-     plotgw(pvwo,@symbol,obpx,obpz,"diamond",3,"blue",0)
+     plotgw(pvwo,@symbol,obpx,obpz,"diamond",2,BLUE_,0)
      plotgw(pvwo,@symbol,obpx,obpz,"arrow",2,"blue",cd2pol(azim)-90,1)
-     plotgw(pvwo,@symbol,targ_x,targ_z,"tri",3,"red",0)
+     plotgw(pvwo,@symbol,targ_x,targ_z,"tri",2,"red",0)
 
      sWo(pvwo,@hue,"black",@showpixmap,@clipborder)
 }
@@ -462,12 +464,14 @@ proc SideView(plt_it)
 
      //plot3D(pvwo,scene,obpx,obpy,obpz, azim, elev,distance,4,1)
 
+     sWo(svwo,@hue,RED_,@showpixmap,@clipborder)
+
      if (plt_it) {
        plot3D(svwo,scene,obpx,obpy,obpz,azim,elev,distance,2,1)
      }
      
-     plotgw(svwo,"symbol",targ_x,targ_y,"tri",4,RED_,0)
-     plotgw(svwo,"symbol",obpx,obpy,"diamond",6,GREEN_,0)
+     plotgw(svwo,"symbol",targ_x,targ_y,"tri",2,RED_,0)
+     plotgw(svwo,"symbol",obpx,obpy,"diamond",2,GREEN_,0)
 
      sWo(svwo,@hue,"black",@showpixmap,@clipborder,@savepixmap)
 }
@@ -485,7 +489,7 @@ proc checkRotate(char wc)
 
      case 'Q':
           rotate_vec(-2)
-          sWo(vptxt,@textr,"R rotate ",0,-0.2) 
+          sWo(vptxt,@textr,"key Q rotate ",0,-0.2) 
           ret = 1
       break;
 
@@ -637,7 +641,7 @@ proc checkKeyCommands(char wc)
       case 'o':
           go_rotate = 1
           rotate_vec(speed)
-sWo(vptxt,@textr,"o rotate ",0,-0.25) 
+          sWo(vptxt,@textr,"o rotate ",0,-0.25) 
           go_circle = 0
         break;
       case '//':
@@ -647,7 +651,7 @@ sWo(vptxt,@textr,"o rotate ",0,-0.25)
          go_on = 0
          go_loop = 0
          go_circle = 0
-sWo(vptxt,@textr,". stop ",0,-0.25) 
+         sWo(vptxt,@textr,". stop ",0,-0.25) 
 //       resetobs(3)
         break;
       case ',':
@@ -686,24 +690,24 @@ sWo(vptxt,@textr,". stop ",0,-0.25)
 //          MoveObject(wobj,0,0,-1)
 //        break;
       case 'a':   
-        RotateObject(wobj,0,0,10.0)
-       sWo(vptxt,@textr,"a rotate object ",0,-0.25) 
+          RotateObject(wobj,0,0,10.0)
+          sWo(vptxt,@textr,"a rotate object ",0,-0.25) 
             break;
       case 's':   
-        RotateObject(wobj,0,0,-4.0)
+        RotateObject(wobj,0,0,-5.0)
             break;
       case 'q':     // rotate obj 0
         RotateObject(wobj,10,0,0.0)
             break;
       case 'w':     // rotate obj 0   
-        RotateObject(wobj,-4,0,0.0)
+        RotateObject(wobj,-5,0,0.0)
             break;
       case 'e':     // rotate obj 0
         RotateObject(wobj,0,10,0.0)
             break;
       case 'r':   
        // rotate obj 0
-        RotateObject(wobj,0,-4,0.0)
+        RotateObject(wobj,0,-5,0.0)
             break;
       case '\'':   
             resetobs(1)
@@ -882,6 +886,8 @@ if (Woid == qwo) {
 
 ///////////////////////// SETUP WINDOWS AND WOBJS //////////////////////////////
 
+  DimL = 1000.0;
+
   vp = cWi(@title,"vp",@resize,0.1,0.1,0.98,0.98,0)
 
   sWi(vp,"clip",0.01,0.1,0.95,0.99)
@@ -898,11 +904,11 @@ if (Woid == qwo) {
 
   pvwo = cWo(vp,"GRAPH",@resize,0.01,0.21,0.19,0.5,"name","PLANVIEW","color","white")
 
-  sWo(pvwo,@scales,-300,-300,300,300, @save,@redraw,@pixmapon,@drawon,@savepixmap)
+  sWo(pvwo,@scales,-DimL,-DimL,DimL,DimL, @save,@redraw,@pixmapon,@drawon,@savepixmap)
 
   svwo = cWo(vp,@GRAPH,@resize,0.01,0.51,0.19,0.95,@name,"SIDEVIEW","color","white")
 
-  sWo(svwo,@scales,-300,-300,300,300, @save,@redraw,@drawoff,@pixmapon, @drawon,@savepixmap)
+  sWo(svwo,@scales,-DimL,-DimL,DimL,DimL, @save,@redraw,@drawoff,@pixmapon, @drawon,@savepixmap)
 
   sWo(vpwo,@redraw);
 

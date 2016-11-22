@@ -28,7 +28,17 @@ vid = F[2]->vid()
 
 <<"F[2] $vid \n"
 
-int act_ocnt = 0
+
+int act_ocnt = 0;
+
+
+act_ocnt++;
+
+
+<<"%V$act_ocnt \n";
+
+
+
 
 class Act {
 
@@ -61,7 +71,9 @@ class Act {
 //   co = _cobj->offset()
 //   <<"cons of Act $_cobj   $(IDof(&_cobj)) $(offsetof(&_cobj)) co $co\n" 
    <<"Act cons of $_cobj $act_ocnt\n"
+   //act_ocnt += 1;
    act_ocnt++
+   
    type = 1
    mins = 10;
    t = 0;
@@ -70,6 +82,13 @@ class Act {
 
 }
 
+setdebug(1,"trace")
+
+
+act_ocnt++;
+
+
+<<"%V$act_ocnt \n";
 
 Act A
 
@@ -86,6 +105,7 @@ we = si_error()
 
 //CheckNum(we,we)
 
+/{
 Act A[3];
 
 we = si_error()
@@ -97,7 +117,7 @@ we = si_error()
   CheckNum(we,28)
 
  }
-
+/}
 
  CheckOut()
 

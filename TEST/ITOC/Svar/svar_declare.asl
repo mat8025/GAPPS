@@ -6,7 +6,7 @@ checkIn()
 
 Mol = ( "JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC" ) ;
 
-<<"$Mol \n"
+<<"List is $Mol \n"
 <<"$(caz(Mol))\n"
 <<"$(typeof(Mol))\n"
 
@@ -33,8 +33,13 @@ checkStr(Mol[0],"JAN")
 
 checkStr("FEB",Mol[1])
 
-<<"Mol[1] checked\n"
+<<"$Mol[1] Mol[1] checked\n"
 
+checkStr(Mol[1],"FEB")
+
+le = Mol[1]
+
+checkStr(le,"FEB")
 
 Svar Mo[] = {"JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC" }
 //Svar Mo = {"JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC" }

@@ -1,1 +1,0 @@
-file ../*/* | grep binary | asl cleanexe.asl 

@@ -2,6 +2,12 @@
 
 setdebug(0)
 
+proc Usage()
+{
+  <<" asl viewTerrain.asl ~/NED/NED_51067233 \n"
+
+}
+
 
 Graphic = CheckGwm()
 
@@ -53,6 +59,7 @@ Lat_mid = (LatN-LatS)/2.0 + LatS
 Long_mid = (LongW-LongE)/2.0 + LongE
 
 mh = getElev( Lat_mid,Long_mid)
+Elev_mid = mh;
 
 <<"%V$Lat_mid  $Long_mid $mh \n"
 
@@ -252,14 +259,14 @@ float speed = 2.0
 int elewo = 0;
 
 
-float obpx = -105.23  // lng deg
-float obpy = 3000    // ht meters
-float obpz = 40.04    // lat deg
+float obpx = Long_mid  // lng deg
+float obpy = Elev_mid + 200;    // ht meters
+float obpz = Lat_mid    // lat deg
 
 
-float targ_x = -106
-float targ_y =  2966
-float targ_z = 41
+float targ_x = obpx
+float targ_y = obpy
+float targ_z = obpz
 
 obsdz = 2
 

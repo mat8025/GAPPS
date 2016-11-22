@@ -2,7 +2,7 @@
 // Show some colors
 //
 
-opendll("image")
+//opendll("image")
 
 Graphic = checkGWM()
 
@@ -50,32 +50,28 @@ Graphic = checkGWM()
   cbX = 0.5
 
 
-  rwo=CreateGWOB(vp,"BS",@resize,rx,cby,rX,cbY,@NAME,"Red",@VALUE,redv)
+  rwo=cWo(vp,"BS",@resize,rx,cby,rX,cbY,@NAME,"Red",@VALUE,redv)
 
-  setGWOB(rwo,@color,"red",@penhue,"black","symbol","tri",@style,"SVL","drawon")
+  sWo(rwo,@color,"red",@penhue,"black","symbol","tri",@style,"SVL","drawon")
 
-  gwo=CreateGWOB(vp,"BS",@resize,gx,cby,gX,cbY,@NAME,"Green",@VALUE,greenv)
+  gwo=cWo(vp,"BS",@resize,gx,cby,gX,cbY,@NAME,"Green",@VALUE,greenv)
 
-  setGWOB(gwo,@color,"green",@penhue,"black","symbol","tri",@style,"SVL","drawon")
+  sWo(gwo,@color,"green",@penhue,"black","symbol","tri",@style,"SVL","drawon")
 
+  bwo=cWo(vp,"BS",@resize,bx,cby,bX,cbY,@NAME,"Blue",@VALUE,bluev)
 
-  bwo=CreateGWOB(vp,"BS",@resize,bx,cby,bX,cbY,@NAME,"Blue",@VALUE,bluev)
+  sWo(bwo,@color,BLUE_,@penhue,WHITE_,"symbol","tri",@style,"SVL",@drawon)
 
-  setGWOB(bwo,@color,"blue","penhue","white","symbol","tri",@style,"SVL","drawon")
-
-
-
-
-  qwo=createGWOB(vp,"BN",@name,"QUIT?",@VALUE,"QUIT",@color,"orange",@resize_fr,bx,by,bX,bY)
+  qwo=cWo(vp,"BN",@name,"QUIT?",@VALUE,"QUIT",@color,"orange",@resize_fr,bx,by,bX,bY)
 
   by = bY + 0.02
   bY = by + dY
 
   cuwo=createGWOB(vp,"BN",@name,"Next",@VALUE,"NextColor",@color,"cyan",@resize_fr,bx,by,bX,bY)
 
-  setgwob(qwo,@BORDER,@DRAW,@CLIPBORDER,@FONTHUE,"black", @style, "SVB", "redraw")
+  sWo(qwo,@BORDER,@DRAW,@CLIPBORDER,@FONTHUE,"black", @style, "SVB", "redraw")
 
-  setgwob(cuwo,@BORDER,@DRAW,@CLIPBORDER,@FONTHUE,"black", @style, "SVB", "redraw")
+  sWo(cuwo,@BORDER,@DRAW,@CLIPBORDER,@FONTHUE,"black", @style, "SVB", "redraw")
 
   int rgbwo[] = { rwo, bwo, gwo }
 
@@ -90,11 +86,11 @@ Graphic = checkGWM()
 //<<"%(,,\,,)4.2f$frgb \n"
 
 \{
-  setGWOB(rgbwo,@CSV,"0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,\
+  sWo(rgbwo,@CSV,"0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,\
             0.65,0.7,0.75,0.8,0.85,0.9,0.95,1.0", @REDRAW)
 \}
 
-  setGWOB(rgbwo,@CSV,"%(,,\,,)4.2f$frgb",@REDRAW)
+  sWo(rgbwo,@CSV,"%(,,\,,)4.2f$frgb",@REDRAW)
 
   setgwin(vp,"woredrawall")
 
@@ -113,35 +109,35 @@ int awo[3]
      index = 150
 
      for (k = 0; k < 3; k++) { 
-        awo[k]=CreateGWOB(vp2,"GRAPH","name","${k}_col",@color,index,@value,k)
+        awo[k]=cWo(vp2,"GRAPH","name","${k}_col",@color,index,@value,k)
         index++
      }
 
 
 <<"%V$awo \n"
 
-  setgwob(awo,@BORDER,@DRAWON,@CLIPBORDER)
+  sWo(awo,@BORDER,@DRAWON,@CLIPBORDER)
 
   wo_vtile(awo,0.1,0.1,0.9,0.9)
 
   // make smaller clip area for awo[0]
 
-  setgwob(awo[0],@cbhue,152)
-  setgwob(awo[0],@clip,0.1,0.1,0.5,0.5)
+  sWo(awo[0],@cbhue,152)
+  sWo(awo[0],@clip,0.1,0.1,0.5,0.5)
 
 int htwo[3]
 
      index = 1
 
      for (k = 0; k < 3; k++) { 
-      htwo[k]=CreateGWOB(vp3,"GRAPH","name","${k}_col",@color,index,@value,k)
+      htwo[k]=cWo(vp3,"GRAPH","name","${k}_col",@color,index,@value,k)
       index++
      }
 
 
 <<"%V$htwo \n"
 
-  setgwob(htwo,@BORDER,@DRAWON,@CLIPBORDER)
+  sWo(htwo,@BORDER,@DRAWON,@CLIPBORDER)
 
   wo_vtile(htwo,0.1,0.1,0.9,0.9)
 
@@ -166,7 +162,7 @@ cindex = 0
 
    while (1) {
 
-   msg = E->waitForMsg()
+   msg = waitForMessage()
 
    E->geteventstate(evs)
 
@@ -208,42 +204,42 @@ cindex = 0
    
    }
 
-   setgwob(two,@clear,@textr,"$msg %V$redv $greenv $bluev",0,0.5)
+   sWo(two,@clear,@textr,"$msg %V$redv $greenv $bluev",0,0.5)
 
 
-   setgwob(awo,@bhue,cindex,@clear,@clipborder,@redraw)  // clears repaints
-   setgwob(awo[0],@clearclip,@redraw)  // clears repaints
+   sWo(awo,@bhue,cindex,@clear,@clipborder,@redraw)  // clears repaints
+   sWo(awo[0],@clearclip,@redraw)  // clears repaints
 
 
 
-   setgwob(htwo[0],@bhue,cindex,@texthue,"black",@clearclip,cindex,@clipborder,"black", @redraw)
+   sWo(htwo[0],@bhue,cindex,@texthue,"black",@clearclip,cindex,@clipborder,"black", @redraw)
 
 
    cname = getColorName(cindex)
-   setgwob(htwo[0],@texthue,"black",@textr,"$cname",0.51,0.52)
-   setgwob(htwo[0],@texthue,"white",@textr,"$cname",0.5,0.5)
+   sWo(htwo[0],@texthue,"black",@textr,"$cname",0.51,0.52)
+   sWo(htwo[0],@texthue,"white",@textr,"$cname",0.5,0.5)
 
    icindex = getColorIndexFromRGB(1-redv,1-greenv,1-bluev)
 
-   setgwob(htwo[1],@bhue,icindex,@texthue,"black",@clearclip,icindex,@clipborder,"red", @redraw)
+   sWo(htwo[1],@bhue,icindex,@texthue,"black",@clearclip,icindex,@clipborder,"red", @redraw)
    icname = getColorName(icindex)
 
-   setgwob(htwo[1],@texthue,"black",@textr,"$icname",0.5,0.5)
-   setgwob(htwo[1],@texthue,"white",@textr,"$icname",0.51,0.52)
+   sWo(htwo[1],@texthue,"black",@textr,"$icname",0.5,0.5)
+   sWo(htwo[1],@texthue,"white",@textr,"$icname",0.51,0.52)
    
    // swap red & blue
    scindex = getColorIndexFromRGB(bluev,greenv,redv)
    scname = getColorName(scindex)
 
-   setgwob(htwo[2],@bhue,scindex,@texthue,"black",@clearclip,scindex,@clipborder,"red", @redraw)
-   setgwob(htwo[2],@texthue,"black",@textr,"$scname",0.51,0.51)
-   setgwob(htwo[2],@texthue,"white",@textr,"$scname",0.5,0.5)
+   sWo(htwo[2],@bhue,scindex,@texthue,"black",@clearclip,scindex,@clipborder,"red", @redraw)
+   sWo(htwo[2],@texthue,"black",@textr,"$scname",0.51,0.51)
+   sWo(htwo[2],@texthue,"white",@textr,"$scname",0.5,0.5)
 
    cname = getColorName(windex)
 
    windex++
 
-   if (scmp(msg,"QUIT",4)) {
+   if (Woid == qwo) {
        break
    }
   }

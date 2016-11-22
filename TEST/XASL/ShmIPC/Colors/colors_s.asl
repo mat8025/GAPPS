@@ -1,43 +1,54 @@
-SetDebug(1)
+//SetDebug(1)
 
 
-OpenDLL("math")
+Graphic = checkGWM()
+
+  if (!Graphic) {
+    Xgm = spawnGWM()
+  }
+
 
     // oo version 
 
-    vp= CreateGwindow("title","VP","scales",0,0,1.0,1.5,"savescales",0)
-    SetGwindow(vp,"resize",0.1,0.05,0.95,0.75,0)
-    SetGwindow(vp,"clip",0.1,0.1,0.8,0.3,"drawon","pixmapon","redraw","save")
+    vp= cWi("title","VP","scales",0,-0.2,1.0,1.2,"savescales",0)
+    sWi(vp,@resize,0.1,0.05,0.95,0.75,0)
+    sWi(vp,@clip,0.1,0.1,0.8,0.8,@drawon,@pixmapon,@redraw,@save)
     gsync()
 
-sleep(2)
 
+
+
+//////////////////////////////////
 
 proc plotCols (awod)
 {
-<<" $awod \n"
-  setgwob(awod,"scales",0,0,1,1)
-
+//<<" $awod \n"
+  sWo(awod,"scales",0,0,1,1)
+csp = 0.01
 by = 0.0
-ty = 0.1
-bw = 0.06
+ty = 0.2
+bw = 0.08
 bx = 0.0
-index = 32
+
 bX = bw + bx
-#{
+index = 32;
+
+
    for (j = 0; j < 9 ; j++) {
-     PlotBox(awod,bx,by,bX,ty,index++,1)
+
+    //<<"PLotBox $j $index\n"
+     Plot(awod,@box,bx,by,bX,ty,index++,1)
      bx = bX
-     bX = bw + bx
+     bX = bw + bx +csp
    }
-#}
+
 by =ty
 ty = 0.95
 
-     PlotBox(awod,0,by,1,ty,39,1)
-
-
+//   Plot(awod,"box",0,by,1,ty,39,1)  // no plotbox function - FIX
 }
+
+//=====================================
 
 np = get_planes()
 
@@ -49,7 +60,10 @@ si_pause(1)
 }
 
 
-dx = 2 / 25
+//dx = 2 / 25
+
+
+dx = 0.05
 dy = 0.1
 
 x0 = -0.8
@@ -66,43 +80,49 @@ db = 0
 
 
 
-dx = .03
-rx = 0.75
-rX = rx + dx
+dx = 0.01
+
+dw = 0.05
+
+rx = 0.7
+
+rX = rx + dw
 
 gx = rX + dx
-gX = gx + dx
+gX = gx + dw
 
 bx = gX + dx
-bX = bx + dx
+bX = bx + dw
 
 
 dy = 0.1
-cby = 0.1
-cbY= cby + dy
+cby = 0.5
+cbY= cby + 0.1
 
 
-  pbwo=CreateGWOB(vp,"GRAPH","resize",0,0.1,0.4,0.7,0.9,"name","PB","color","white","drawon","pixmapon","save")
-
-  setgwob(pbwo,"scales",0,0,1,1)
-  setgwob(pbwo,"clear","clipborder","brown","save")
+  pbwo=cWo(vp,@GRAPH,@resize,0.1,0.1,0.5,0.25,"name","PB",@color,0,@drawon,@pixmapon,@save)
+  sWo(pbwo,"scales",-0.5,-0.5,1.5,1.5)
+  sWo(pbwo,"clear","clipborder","brown","save")
 
 <<" $pbwo \n"
 
-//  pbwo=CreateGWOB(vp,"GRAPH",{<resize,0,bx,cby,bX,cbY>,<name,"PB">,<color,"white">,drawon})
+
+  mixwo=cWo(vp,@GRAPH,@resize,0.1,0.5,0.65,0.95,"name","RGB_COL",@color,32,@drawon,@pixmapon,@save)
+  sWo(mixwo,"scales",-0.5,-0.5,1.5,1.5)
+  sWo(mixwo,"clear","clipborder","brown","save")
 
 
 
-  rwo=CreateGWOB(vp,"BV","resize",0,rx,cby,rX,cbY,"name","R")
-  setGWOB(rwo,"color","red","penhue","black","symbol","tri","style","SVO")
+    rwo=cWo(vp,"BV",@resize,rx,cby,rX,cbY,@name,"R",@value,0.5)
+    sWo(rwo,@color,"red",@penhue,BLACK_,@symbol,"tri",@style,"SVO")
 
 //  BADNESS "setvmove",1,"redraw")
 
-  gwo=CreateGWOB(vp,"BV","resize",0,gx,cby,gX,cbY,"name","G")
-  setGWOB(gwo,"color","green","penhue","black","symbol","tri","style","SVO")
+  gwo=cWo(vp,"BV",@resize,gx,cby,gX,cbY,"name","G",@value,0.5)
+  sWo(gwo,@color,GREEN_,@penhue,BLACK_,@symbol,"tri",@style,"SVO")
 
-  bwo=CreateGWOB(vp,"BV","resize",0,bx,cby,bX,cbY,"name","B")
-  setGWOB(bwo,"color","blue","penhue","black","symbol","tri","style","SVO")
+  bwo=cWo(vp,"BV",@resize,bx,cby,bX,cbY,"name","B",@value,0.5)
+  sWo(bwo,@color,BLUE_,@penhue,BLACK_,@symbol,"tri",@style,"SVO")
 
 
   int rgbwo[] = { rwo,gwo,bwo }
@@ -112,7 +132,7 @@ cbY= cby + dy
 //  SetGwob({rwo,gwo,bwo},"setvmove",1,"redraw")
 //  can't do anonymous array 
 
-  //SetGwob(rgbwo,"setvmove",1,"redraw")
+   sWo(rgbwo,@vmove,1,@redraw)
 
 
 // paintbox
@@ -122,24 +142,36 @@ k = 0
      index = 32
 
      for (k = 0; k < 8; k++) { 
-      awo[k]=CreateGWOB(vp,"GRAPH","name","${k}_col","color",index)
+      awo[k]=cWo(vp,@GRAPH,"name","${k}_col","color",index)
       index++
      }
 
 <<" $awo \n"
 
-
-
-
       wohtile(awo,0,0.2,0.1,0.75,0.3)
 
-      setgwob(awo,"clipborder","red","redraw")
+      sWo(awo,@clipborder,BLACK_,@redraw)
+
+      sWi(vp,@clipborder,BLACK_,@redraw);
+      
+      axis(vp,3,0,1,0.1,0.05,1.5);
+
+      axnum(vp,3,0,1,0.1,3,"3.2f");
 
 
-      axis(vp,2,0,1,0.1,0.05,1.5)
-      axnum(vp,2,0,1,0.1,3,"3.2f")
+
+     sWo(rgbwo,@redraw)
+
+    // go_on = yes_no_menu("GO ON?");
+      //mans = popamenu("/home/mark/.GASP/MENUS/yes_or_no.m");
+
+      //mans = popamenu("yes_or_no.m");
 
 
+      //mans = popamenu("~/.GASP/MENUS/yes_or_no.m");
+
+     // <<"%V$mans\n"
+       
      A=ofw("junk")
 
 
@@ -155,16 +187,26 @@ float WXY[4]
 
 	WXY=wogetposition(rwo)
 
+       axis(vp,2,0,1,0.1,0.05,1.5);
+       axnum(vp,2,0,1,0.1,3,"3.2f");
+
 <<"%v $WXY \n"
+int loop = 0;
+  while (1) {
+
+       loop++;
+       msg=waitForMessage()
+
+<<"$loop $msg\n"
+
+       sWo(rgbwo,@redraw)
+       sWo(mixwo,@redraw)       
+
+       WXY=wogetposition(rwo)
+
+<<"$rwo Red  $WXY \n"
 
 
-
-while (1) {
-
-
-	WXY=wogetposition(rwo)
-
-<<" $WXY \n"
 
 #w_file(A,"x ",WXY[1]," y ", WXY[2]," ",WXY[0],"\n")
 
@@ -174,12 +216,11 @@ while (1) {
 
         iredv = 1.0 - redv
 
-<<" $WXY \n"
+
 
 	WXY=wo_getposition(gwo)
 
-
-<<" $WXY \n"
+<<"$gwo Green $WXY \n"
 
 	greenv = WXY[2]
 
@@ -187,14 +228,13 @@ while (1) {
 
         igreenv = 1.0 - greenv
 
-
 	WXY=WoGetPosition(bwo)
+
+<<"$bwo Blue $WXY \n"
 
 	bluev = WXY[2]
 
-
         bluev = limitval(bluev,0.0,1.0)
-
 
         ibluev = 1.0 - bluev
 
@@ -208,9 +248,13 @@ while (1) {
        if (bluev != obluev) update = 1
 
         if (update) {
-        
+       
+        sWi(vp,@clearclip,WHITE_,@clipborder,BLACK_,@savepixmap);
+
+        sWo(mixwo,@redraw) ;
         index = 32
 
+	SetRGB(index++,redv,greenv,bluev)
 	SetRGB(index++,redv,0,0)
 	SetRGB(index++,0.0,greenv,0.0)
 	SetRGB(index++,0,0,bluev)
@@ -221,32 +265,36 @@ while (1) {
 
 //        SetRGB(index++,iredv,igreenv,ibluev)
 
-	SetRGB(index++,redv,greenv,bluev)
+        sWo(rwo,@value,redv)
+	sWo(gwo,@value,greenv)
+	sWo(bwo,@value,bluev)
+	
+       axis(vp,4,0,1,0.1,0.05,1.5);
+       axnum(vp,4,0,1,0.1,-3,"3.2f");
 
 //<<" %v $index \n"
 
-	SetRGB(767,redv,greenv,bluev)
+//	SetRGB(767,redv,greenv,bluev)
 
-        Setgwob(pbwo,"clipborder","black")
+        sWo(pbwo,"clipborder","black")
 
 	plotCols (pbwo)
 
-        gsync()
+        //gsync()
 
-        SetGwob(awo,"clear")
+        //sWo(awo,"clear")
 
        oredv = redv
        ogreenv = greenv
        obluev = bluev
 
 //<<"%V $redv $greenv $bluev  $iredv $igreenv $ibluev \n"
-
+       sWo(rgbwo,@redraw)
        }
-        si_pause(1.0)
+
+    //si_pause(0.2)
 
 }
-
-
 
 
  STOP!
