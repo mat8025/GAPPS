@@ -55,7 +55,8 @@ Graphic = checkGWM()
 <<"%V$vp4 \n"
 
 //////// Wob //////////////////
-
+ setdebug(1);
+ 
  bx = 0.1
  bX = 0.4
  yht = 0.2
@@ -78,15 +79,19 @@ Graphic = checkGWM()
  by = bY - yht
  
 
- hwo=cWo(vp,@ONOFF,@name,"ENGINE",@VALUE,"OFF",@color,"green",@resize,bx,by,bX,bY)
+// hwo=cWo(vp,@ONOFF,@name,"ENGINE",@VALUE,0,@color,GREEN_,@resize,bx,by,bX,bY)
+ hwo=cWo(vp,@ONOFF,@name,"ENGINE",@VALUE,"ON",@color,GREEN_,@resize,bx,by,bX,bY)
 
- sWo(hwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @STYLE,"SVR")
- sWo(hwo,@bhue,"teal",@clipbhue,"magenta")
+ sWo(hwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_, @STYLE,"SVR")
+ sWo(hwo,@bhue,"white",@clipbhue,"magenta");
 
- gvwo=cWo(vp,"BV",@name,"GMYVAL",@VALUE,0,@color,"green",@resize,0.5,by,0.9,bY)
 
- sWo(gvwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @STYLE,"SVB")
- sWo(gvwo,@bhue,"teal",@clipbhue,"magenta",@FUNC,"inputValue")
+ // GetValue after entering text
+ gvwo=cWo(vp,@BV,@name,"GMYVAL",@VALUE,0,@color,GREEN_,@resize,0.5,by,0.9,bY)
+ sWo(gvwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_, @STYLE,"SVB")
+ //sWo(gvwo,@bhue,"teal",@clipbhue,MAGENTA_,@FUNC,"inputValue",@MESSAGE,1)
+ //sWo(gvwo,@bhue,"teal",@clipbhue,MAGENTA_,@FUNC,"inputValue",@MESSAGE,1)
+ sWo(gvwo,@bhue,"white",@clipbhue,"red",@FUNC,"inputValue",@MESSAGE,1)
 
 
 
@@ -95,7 +100,7 @@ Graphic = checkGWM()
  bY = by - ypad
  by = bY - yht
 
- lwo=cWo(vp,"ONOFF",@name,"PLAY",@VALUE,"ON",@color,"red",@resize,bx,by,bX,bY)
+ lwo=cWo(vp,@ONOFF,@name,"PLAY",@VALUE,"ON",@color,"red",@resize,bx,by,bX,bY)
  sWo(lwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"blue", @STYLE,"SVL", @redraw)
  sWo(lwo,@fhue,"teal",@clipbhue,"violet")
 
@@ -138,7 +143,7 @@ Graphic = checkGWM()
  by = bY - yht
 
 
- qwo=cWo(vp2,"BN",@name,"QUIT",@VALUE,"QUIT",@color,"orange",@resize_fr,bx,by,bX,bY)
+ qwo=cWo(vp2,@BN,@name,"QUIT",@VALUE,"QUIT",@color,MAGENTA_,@resize_fr,bx,by,bX,bY)
  sWo(qwo,@help," click to quit")
  sWo(qwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", "redraw")
 
@@ -160,10 +165,13 @@ Graphic = checkGWM()
  sWi(vp3,"woredrawall")
  sWi(txtwin,"woredrawall")
 
+ int allwins[] = {vp,vp2,vp3,txtwin};
+ 
+ //omy = sWi( {vp,vp2,vp3,txtwin} ,@woredrawall)
+// BUG anonymous array as func argument
+// sWi( {vp,vp2,vp3,txtwin} ,@woredrawall)
 
- omy = sWi( {vp,vp2,vp3,txtwin} ,@woredrawall)
-
- sWi( {vp,vp2,vp3,txtwin} ,@woredrawall)
+sWi( allwins ,@woredrawall)
 
 //  now loop wait for message  and print
 
@@ -361,9 +369,9 @@ int kloop =0
       if (Evtype @= "PRESS") {
 
         if (!(Woname @= "")) {
-            DBPR"calling function via woname $woname !\n"
+            DBPR"calling function via woname $Woname !\n"
             $Woname()
-            continue
+            continue;
         }
 
        }
