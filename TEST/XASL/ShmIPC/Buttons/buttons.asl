@@ -65,15 +65,15 @@ Graphic = checkGWM()
  bY = 0.95
  by = bY - yht
 
- two=cWo(txtwin,"TEXT",@name,"Text",@VALUE,"howdy",@color,"orange",@resize_fr,0.1,0.1,0.9,0.9)
+ two=cWo(txtwin,@TEXT,@name,"Text",@VALUE,"howdy",@color,ORANGE_,@resize_fr,0.1,0.1,0.9,0.9)
  sWo(two,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@pixmapoff,@redraw)
  sWo(two,@SCALES,-1,-1,1,1)
  sWo(two,@help," Mouse & Key Info ")
 
 // sWo(gwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@VALUE,"ON",@STYLE,"SVB",@FUNC,"ringBell")
  gwo=cWo(vp,"BV",@name,"B_V",@color,"green",@resize,bx,by,bX,bY)
- sWo(gwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@VALUE,"ON",@STYLE,"SVB")
- sWo(gwo,@bhue,"red",@clipbhue,"skyblue")
+ sWo(gwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@VALUE,"color is teal",@STYLE,"SVB")
+ sWo(gwo,@bhue,TEAL_,@clipbhue,"skyblue")
 
  bY = by - ypad
  by = bY - yht
@@ -263,7 +263,7 @@ proc checkEvents()
    Woname = E->getEventWoName()    
    Evtype = E->getEventType()    
    Woid = E->getEventWoId()
-<<"%V$Woid \n"
+<<"%V$Woname $Woid \n"
    Woproc = E->getEventWoProc()
    Woaw =  E->getEventWoAw()
 

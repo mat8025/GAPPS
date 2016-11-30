@@ -1,0 +1,47 @@
+/// Track activities for a day
+///
+/// show summaries/stats for week/last month
+///
+
+
+
+    M  Tu  W Th F  Sa Sun
+
+    X
+    G
+    L De-Fr-Sp
+    Dsp
+    Asr
+    EL
+    House
+    Barn
+    Yard
+    ...
+    Gliding
+    Towing
+
+
+
+
+  insert activity duration - do it time order (allow delete , insert)
+
+  edit
+
+  total
+  effort
+
+
+  Show which week  - Year
+  Show Month and date
+  highlite day  column if in current week
+  
+
+  submenu for activities -- e.g. Lang -- (De,Fr,Sp,Jp ...)
+
+  database files --- need to be  Wk_Yr === DONE
+  
+  Score
+   pts for each type and duration of activity -- extra pts for balance
+
+
+   Last week This Week
