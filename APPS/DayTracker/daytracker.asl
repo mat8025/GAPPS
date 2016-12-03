@@ -236,7 +236,7 @@ str mans = "nos";
 
     wrow = ev_row;
     wcol = ev_col;
-    
+    last_hue = BLACK_;
     <<"%V $ev_rx $ev_ry $wrow $wcol\n"
     
     if ( (wrow > 0) && (wrow <= 48) && (wcol > 0) && ( wcol <= 8)) {
@@ -250,60 +250,51 @@ str mans = "nos";
         if (!(mans @= "NULL_CHOICE")) {
 	   sWi(aw,@tmsg,"adding activity $mans");
          if ((mans @= "Bike")) {
-           <<"Exercise $mans \n"
-           sWo(awo,@cellhue,wrow,wcol,RED_);
+           last_hue = RED_;
 	 }
          else if ((mans @= "Wtrain")) {
-           <<"Exercise $mans \n"
-           sWo(awo,@cellhue,wrow,wcol,RED_);
+           last_hue = RED_;
 	 }	 
 	 else if ((mans @= "Walk") ) {
-           <<"Exercise $mans \n"
-           sWo(awo,@cellhue,wrow,wcol,ORANGE_);
+             last_hue = ORANGE_
 	 }
 	 else if ((mans @= "Guitar") ) {
-           <<"skill $mans \n"
-           sWo(awo,@cellhue,wrow,wcol,BLUE_);
+            last_hue = GREEN_;
 	 }
 	 else if ((mans @= "Piano") ) {
-           <<"skill $mans \n"
-           sWo(awo,@cellhue,wrow,wcol,BLUE_);
+            last_hue = MAGENTA_;
 	 }	 
         else if ((mans @= "Francais") ) {
-           <<"skill $mans \n"
-           sWo(awo,@cellhue,wrow,wcol,YELLOW_);
+            last_hue = YELLOW_;
+	 }
+        else if ((mans @= "Flying") ) {
+            last_hue = BLUE_;
+	 }
+        else if ((mans @= "Sleep") ) {
+            last_hue = PINK_;
 	 }
         else if ((mans @= "Espanol") ) {
-           <<"skill $mans \n"
-           sWo(awo,@cellhue,wrow,wcol,YELLOW_);
-	 }	 
-        else if ((mans @= "Flying") ) {
-           <<"skill $mans \n"
-           sWo(awo,@cellhue,wrow,wcol,BLUE_);
-	 }	 
+            last_hue = RED_;
+	 }	 	 	 
 	 else {
 	   <<"work $mans \n"
 	   sWo(awo,@cellhue,wrow,wcol,BLACK_);
 	 }
 	 
 	 if ((mans @= "nada") ) {
-          sWo(awo,@sheetrow,wrow,wcol," ");
+             mans = " ";
 	 }
 	 else {
 	 <<" adding $mans to sheet $wrow $wcol\n"
-           sWo(awo,@sheetcol,wrow,wcol,"$mans");
+
 	 }
 
          nans = popamenu("Howlong.m")
          n_extra = atoi(nans);
-	 n_extra -= 1;
-	 for (i = 1; i <= n_extra; i++) {
+	 for (i = 0; i < n_extra; i++) {
+	  sWo(awo,@cellhue,wrow+i,wcol,last_hue);
           sWo(awo,@sheetcol,wrow+i,wcol,"$mans");
          }
-
-
-
-
 	
         }
     }
