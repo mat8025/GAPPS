@@ -1,3 +1,6 @@
+//
+// continue line test
+//
 
 Checkin()
 
@@ -11,7 +14,7 @@ float c = a + b
 CheckFNum(c,62,6)
 
   c = a * \
-  b;
+  b ;
 
 <<" $a * $b = $c \n"
 

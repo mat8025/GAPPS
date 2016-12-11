@@ -211,6 +211,7 @@ include "gevent.asl"
          eventWait();
          ev_woval = Ev->getEventWoValue();
          ev_woname = Ev->getEventWoName();
+
          if (ev_row > 0) {
             the_row = ev_row;
          }

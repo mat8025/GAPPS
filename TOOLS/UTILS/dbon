@@ -4,4 +4,5 @@ do
 echo $i 
 cat db$i.h | sed s/DBOFF/DBON/ > db$i.bak
 cp db$i.bak db$i.h
+rm db$i.bak
 done
