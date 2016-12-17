@@ -59,6 +59,8 @@ A=ofw("Exer.m")
 <<[A],"help Walking\n"
 <<[A],"item Gym M_VALUE Gym\n"
 <<[A],"help Gym weight training\n"
+<<[A],"item Ski M_VALUE Ski\n"
+<<[A],"help downhill excitement\n"
 cf(A)
 
 A=ofw("Howlong.m")
@@ -270,6 +272,9 @@ str mans = "nos";
 	 else if ((mans @= "Walk") ) {
              last_hue = ORANGE_
 	 }
+	 else if ((mans @= "Ski") ) {
+             last_hue = RED_
+	 }	 
 	 else if ((mans @= "Guitar") ) {
             last_hue = GREEN_;
 	 }
