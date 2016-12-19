@@ -71,9 +71,9 @@ Graphic = checkGWM()
  sWo(two,@help," Mouse & Key Info ")
 
 // sWo(gwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@VALUE,"ON",@STYLE,"SVB",@FUNC,"ringBell")
- gwo=cWo(vp,"BV",@name,"B_V",@color,"green",@resize,bx,by,bX,bY)
+ gwo=cWo(vp,@BV,@name,"ColorTeal",@color,"green",@resize,bx,by,bX,bY)
  sWo(gwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@VALUE,"color is teal",@STYLE,"SVB")
- sWo(gwo,@bhue,TEAL_,@clipbhue,"skyblue")
+ sWo(gwo,@bhue,TEAL_,@clipbhue,"skyblue",@redraw )
 
  bY = by - ypad
  by = bY - yht
@@ -101,7 +101,8 @@ Graphic = checkGWM()
  by = bY - yht
 
  lwo=cWo(vp,@ONOFF,@name,"PLAY",@VALUE,"ON",@color,"red",@resize,bx,by,bX,bY)
- sWo(lwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"blue", @STYLE,"SVL", @redraw)
+// sWo(lwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"blue", @STYLE,"SVL", @redraw)
+ sWo(lwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"blue", @STYLE,"SVL", "redraw")
  sWo(lwo,@fhue,"teal",@clipbhue,"violet")
 
 
@@ -113,7 +114,7 @@ Graphic = checkGWM()
  rwo=cWo(vp2,"BS",@name,"FRUIT",@color,"yellow",@resize,bx,by,bX,bY)
  sWo(rwo,@CSV,"mango,cherry,apple,banana,orange,Peach,pear")
 
- sWo(rwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@STYLE,"SVR", @redraw)
+ sWo(rwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@STYLE,"SVR", @redraw )
  sWo(rwo,@fhue,"orange",@clipbhue,"steelblue")
 
  boatwo=cWo(vp3,"BS",@name,"BOATS",@color,"yellow",@resize_fr,bx,by,bX,bY)
@@ -126,15 +127,15 @@ Graphic = checkGWM()
 <<"%V$boatwo \n"
 
  bsketchwo=cWo(vp3,@GRAPH,@name,"sketch",@color,"yellow",@resize,bx,0.1,0.9,bY)
- sWo(bsketchwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red", @redraw)
- sWo(bsketchwo,@clip,0.1,0.15,0.95,0.85,@bue,"lime")
+ sWo(bsketchwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red", @redraw )
+ sWo(bsketchwo,@clip,0.1,0.15,0.95,0.85,@bhue,"lime")
  sWo(bsketchwo,@SCALES,-1,-1,1,1)
 
 <<"%V$bsketchwo \n"
 
 
  grwo=cWo(vp2,@GRAPH,@name,"pic",@color,"yellow",@resize,bx,by,bX,bY)
- sWo(grwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red", @redraw)
+ sWo(grwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,RED_, @redraw )
  sWo(grwo,@SCALES,0,0,1,1)
 
 <<"%V$grwo \n"
@@ -145,7 +146,8 @@ Graphic = checkGWM()
 
  qwo=cWo(vp2,@BN,@name,"QUIT",@VALUE,"QUIT",@color,MAGENTA_,@resize_fr,bx,by,bX,bY)
  sWo(qwo,@help," click to quit")
- sWo(qwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", "redraw")
+ sWo(qwo,@BORDER ,@DRAWON ,@CLIPBORDER, @FONTHUE,BLUE_, @redraw ,@DRAWON)
+ //sWo(qwo,@BORDER,@DRAWON,@CLIPBORDER ,@FONTHUE,"black", "redraw")
 
 <<"%V$qwo \n"
 
@@ -155,7 +157,7 @@ Graphic = checkGWM()
 <<"%V$tbwo \n"
 
  symwo=cWo(vp2,"SYMBOL",@name,"sym",@color,"lime",@resize,0.5,0.5,0.8,0.9)
- sWo(symwo,@BORDER,@DRAWON,@PIXMAPON,@CLIPBORDER,@FONTHUE,"red", @symbol,"triangle", @symsize, 50, @redraw)
+ sWo(symwo,@BORDER,@DRAWON,@PIXMAPON,@CLIPBORDER,@FONTHUE,"red", @symbol,"triangle", @symsize, 50, @redraw ,@foo)
  sWo( symwo, @setmove,1 )
 
 <<"%V$symwo \n"
