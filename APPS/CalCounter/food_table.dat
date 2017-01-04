@@ -271,7 +271,7 @@ EGGPLANT  COOKED  STEAMED           , 1, CUP, 25, 6, 0, 1, 0, 0 , 96
 EGGS          FRIED                 , 1, ITM, 90, 1, 7, 6, 211, 1.9 , 46
 EGGS          BOILED                , 1, ITM, 75, 1, 5, 6, 213, 1.6 , 50
 EGGS          POACHED               , 1, ITM, 75, 1, 5, 6, 212, 1.5 , 50
-EGGS          SCRAMBLED             , 1, EGG, 100, 1, 7, 7, 215, 2.2 , 61
+EGGS          SCRAMBLED             , 1, ITM, 100, 1, 7, 7, 215, 2.2 , 61
 EGGS   WHITE RAW                    , 1, WHITE, 15, 0, 0, 4, 0, 0 , 33
 EGGS  RAW                           , 1, EGG, 75, 1, 5, 6, 213, 1.6 , 50
 EGGS  RAW  YOLK                     , 1, YOLK, 60, 0, 5, 3, 213, 1.6 , 17
@@ -334,7 +334,7 @@ HADDOCK  BREADED  FRIED             , 3, OZ, 175, 7, 9, 17, 75, 2.4 , 85
 CREAM HALF AND HALF                 , 1, CUP, 315, 10, 28, 7, 89, 17.3 , 242
 CREAM HALF AND HALF                 , 1, TBSP, 20, 1, 2, 0, 6, 1.1 , 15
 HALIBUT  BROILED  BUTTER LEMJU      , 3, OZ, 140, 0, 6, 20, 62, 3.3 , 85
-HAMBURGER  4OZ PATTY                , 1, ITM, 445, 38, 21, 25, 71, 7.1 , 174
+HAMBURGER  PATTY                    , 4, OZ, 445, 38, 21, 25, 71, 7.1 , 174
 HAMBURGER  REGULAR                  , 1, ITM, 245, 28, 11, 12, 32, 4.4 , 98
 HARD CANDY                          , 1, OZ, 110, 28, 0, 0, 0, 0 , 28.35
 HERRING  PICKLED                    , 3, OZ, 190, 0, 13, 17, 85, 4.3 , 85
@@ -463,7 +463,7 @@ OCEAN PERCH  BREADED  FRIED         , 1, FILLET, 185, 7, 11, 16, 66, 2.6 , 85
 OKRA PODS  COOKED                   , 8, PODS, 25, 6, 0, 2, 0, 0 , 85
 OLIVE OIL                           , 1, TBSP, 125, 0, 14, 0, 0, 1.9 , 14
 OLIVES  CANNED  GREEN               , 4, MEDIUM, 15, 0, 2, 0, 0, 0.2 , 13
-OLIVES  CANNED  RIPE  MISSION       , 3, SMALL, 15, 0, 2, 0, 0, 0.3 , 9
+OLIVES  CANNED  RIPE                , 3, SMALL, 15, 0, 2, 0, 0, 0.3 , 9
 ONION POWDER                        , 1, TSP, 5, 2, 0, 0, 0, 0 , 2.1
 ONION RINGS  BREADED FRZN PRPD      , 2, RINGS, 80, 8, 5, 1, 0, 1.7 , 20
 ONION SOUP  DEHYDRATD  PREPRED      , 1, PKT, 20, 4, 0, 1, 0, 0.1 , 184
@@ -478,7 +478,7 @@ ORANGE JUICE  RAW                   , 1, CUP, 110, 26, 0, 2, 0, 0.1 , 248
 ORANGE JUICE FROZEN CONCENTRTE      , 6, FLOZ, 340, 81, 0, 5, 0, 0.1 , 213
 ORANGE SODA                         , 12, FLOZ, 180, 46, 0, 0, 0, 0 , 372
 ORANGES  RAW                        , 1, ORANGE, 60, 15, 0, 1, 0, 0 , 131
-ORANGES  RAW  SECTIONS              , 1, CUP, 85, 21, 0, 2, 0, 0 , 180
+ORANGES  RAW                        , 1, CUP, 85, 21, 0, 2, 0, 0 , 180
 OREGANO                             , 1, TSP, 5, 1, 0, 0, 0, 0 , 1.5
 OYSTERS  BREADED  FRIED             , 1, OYSTER, 90, 5, 5, 5, 35, 1.4 , 45
 OYSTERS  RAW                        , 1, CUP, 160, 8, 4, 20, 120, 1.4 , 240

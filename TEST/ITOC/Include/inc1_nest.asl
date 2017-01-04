@@ -1,10 +1,13 @@
 //////////////
 
+<<"start including  nest\n"
+
 #define C_YELLOW 6
 
 
-float y = 1.2345
-<<"a global %V$y\n"
+float X = 1.2345;
+
+<<"inc1 a global %V$X\n"
 
 proc foo( a,b)
 {
@@ -25,5 +28,5 @@ proc boo( a,b)
 
 include "inc2" ; // nested include
 
-<<"included inc1 _scope \n"
+<<"included nest \n"
 

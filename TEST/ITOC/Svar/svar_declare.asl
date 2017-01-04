@@ -1,22 +1,31 @@
 #  
 
-setdebug(1)
+setdebug(1,"trace")
 
 checkIn()
+
+str le;
 
 Mol = ( "JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC" ) ;
 
 <<"List is $Mol \n"
-<<"$(caz(Mol))\n"
-<<"$(typeof(Mol))\n"
 
 sz = caz(Mol)
 
+<<"$(typeof(Mol)) size $(caz(Mol)) $sz \n"
+
 checkNum(sz,12)
-<<"$Mol[0]\n"
 
-<<"$Mol[1]\n"
 
+<<"first month $Mol[0]\n"
+
+<<"second month $Mol[1]\n"
+
+<<"twelveth month $Mol[11]\n"
+
+le12 = Mol[11];
+
+<<"$(typeof(le12)) %V$le12\n"
 
 le = Mol[0]
 
@@ -30,6 +39,11 @@ checkStr(Mol[0],"JAN")
 
 <<"Mol[0] checked\n"
 
+le = Mol[1]
+
+checkStr(le,"FEB")
+
+<<"$(typeof(le)) %V$le\n"
 
 checkStr("FEB",Mol[1])
 
@@ -37,9 +51,14 @@ checkStr("FEB",Mol[1])
 
 checkStr(Mol[1],"FEB")
 
-le = Mol[1]
 
-checkStr(le,"FEB")
+
+checkProgress()
+
+<<" DONE Lists \n"
+//////////////////////////////////
+
+
 
 Svar Mo[] = {"JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC" }
 //Svar Mo = {"JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC" }
@@ -74,10 +93,6 @@ int A[] = {0,1,2,3,4,5,6,7,8}
 
 checkNum(A[1],1)
 checkNum(A[8],8)
-
-
-
-
 
 checkOut()
 

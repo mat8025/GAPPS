@@ -85,10 +85,13 @@ Class Point
 <<"%V $C->x $C->y \n"
 
 
+
  wx = A->getx()
 
 
  ok=CheckFNum(wx,0.15,5)
+
+
 
 <<" 1/////////////////\n"
 
@@ -102,6 +105,7 @@ Class Point
 <<"%Vok y $wy 0.2\n"
 
 <<" 2/////////////////\n"
+
 
   z = A->getx() + B->gety()
 
@@ -164,11 +168,23 @@ Class Point
 
     CheckNum(i,4)
 
+checkProgress("$i  i == 4 ");
 
     v = B->gety()
-    v -= C->y
+<<" $v\n"
+  v1 = C->y;
+<<" $v1\n"  
+  v -= C->y
+
+<<" $v\n"
+
+checkProgress();
+
+checkProgress("  v xx C->y ");
 
 checkProgress("  v -= C->y ");
+
+
 
     my = B->gety() - C->y
 <<"%V$ok $my $v\n"

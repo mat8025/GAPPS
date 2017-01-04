@@ -23,6 +23,10 @@ class Food {
     float cals;
     int ok;
 
+    float mcals;
+    float mcarbs;    
+
+
 ///////////////////////////////
   CMF setval(fdw)
     {
@@ -225,10 +229,14 @@ DBPR">>> $descr $descr_w[0] $edsc $rind $fw \n"
     {
     <<"$mf $(typeof(mf))\n"
     if (mf == 1.0) {
- ans ="$descr[0], %3.2f$amt, $unit[0],%V $cals, $carbs, $fat, $prot, $chol,  $satfat, $wt"
+ ans ="$descr[0], %3.2f$amt, $unit[0], $cals, $carbs, $fat, $prot, $chol,  $satfat, $wt"
     }
     else {
-ans ="$descr[0], %3.2f$(amt*mf), $unit[0], %V $(cals*mf),  $(carbs*mf),  $(fat*mf),  $(prot*mf),  $(chol*mf),  $(satfat*mf), $(wt*mf)"
+    mcals = cals *mf;
+    mcarbs = mcarbs *mf;
+    
+ans ="$descr[0], %3.2f$(amt*mf), $unit[0], $mcals,  $mcarbs,  $(fat*mf),  $(prot*mf),  $(chol*mf),  $(satfat*mf), $(wt*mf)"
+
     }
     return ans;
     }
@@ -237,7 +245,7 @@ ans ="$descr[0], %3.2f$(amt*mf), $unit[0], %V $(cals*mf),  $(carbs*mf),  $(fat*m
   CMF print()
     {
     // <<" $descr[0] $amt $unit[0] %V$cals $carbs $fat $chol(mg) %4.1f$prot $satfat  $wt  \n"
-     <<" $descr[0] %2.1f$amt %s$unit[0] %d%V$cals $carbs $fat $chol mg  %4.1f $prot $satfat  $wt  \n"
+     <<" $descr[0] %2.1f$amt %s$unit[0] %d $cals $carbs $fat $chol mg  %4.1f $prot $satfat  $wt  \n"
     }
 ////////////////
   CMF printFound()

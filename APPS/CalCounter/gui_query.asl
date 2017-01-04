@@ -248,7 +248,7 @@ if (Graphic) {
 
 myfood ="POTATO"
 f_unit = "*"
-f_amt = "*"
+f_amt = 1;
 cooked = "raw"
 qty = "oz"
 

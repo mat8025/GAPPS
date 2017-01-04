@@ -14,8 +14,6 @@
 //  if set it will go into adb
 setdebug(1,"trace")
 
-
-
 int A[6]  = { 1,2,4,9,8,6 }
 
 <<"%V$A \n"
@@ -25,10 +23,14 @@ int A[6]  = { 1,2,4,9,8,6 }
 // error in first pass --- not in XIC
 
 float  A[]  = { 3.14159, 2.71828, 0.707  };
-<<" checkERROR\n"
- e = checkError()
 
-<<" %v $e \n"
+
+<<" checking ERROR\n"
+
+
+e = checkError()
+
+<<" %V $e \n"
 
 
 <<"float vec %V$A \n"

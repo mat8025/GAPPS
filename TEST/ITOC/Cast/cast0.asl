@@ -2,7 +2,7 @@
 
 CheckIn()
 
-//setdebug(1)
+setdebug(0)
 
 uchar C[] = { 0xCA , 0xFE, 0xBA, 0xBE, 0xFA, 0xCE, 0xBE, 0xAD , 0xDE,0xAD, 0xC0, 0xDE }
 
@@ -92,7 +92,7 @@ d0 = 0xca
    checkNum(d0,CI[0])
 
 
-<<"retype CHAR $(CHAR) --> FLOAT $(FLOAT_) \n"
+<<"retype CHAR $(CHAR_) --> FLOAT $(FLOAT_) \n"
 
    E->retype(FLOAT_)
 
@@ -100,7 +100,7 @@ d0 = 0xca
 <<" $E \n"
 <<"%x $E \n"
 
-<<"%V $(INT_) $(FLOAT_) $(CHAR_) $(DOUBLE_)\n"
+<<"Types values %V $(INT_) $(FLOAT_) $(CHAR_) $(DOUBLE_)\n"
 
 
 
@@ -121,40 +121,24 @@ d0 = 0xca
 // F= cast(D,FLOAT_)
 float F[]
 
- F = D
-   
+ F = D;
+ 
+<<" D $(typeof(D))\n"
+<<" F $(typeof(F))\n"  
 
 <<"float vec $F[0:-1]\n"
 
- G= cast(D,FLOAT_)
+ G= cast(FLOAT_,D)
 
 <<"float G[] $G[0:-1]\n"
 
- IV = cast(G,INT_)
+ IV = cast(INT_,G)
 
 <<"int IV[] $IV\n"
 
- LV = cast(G,LONG_)
+ LV = cast(LONG_,G)
 
 <<"long LV[] $LV\n"
-
-
- p = &D
-
-// should  PINT -- ptr to int
-<<"%V %ld$p $(typeof(p)) \n"
-
-// p[0] should first element 
-
-
-// *p++   operations
-// *p--   does this keep within the memory ranges
-
-
-<<" $p[0] \n"
-<<" $p[1] \n"
-k = 2
-<<" $p[k] \n"
 
 
 checkOut()

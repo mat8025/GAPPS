@@ -396,6 +396,7 @@ int do_mops = 0
 int do_oo = 0
 int do_sfunc = 0
 int do_svar = 0
+int do_record = 0
 int do_ivar = 0
 int do_lists = 0
 int do_stat = 0
@@ -443,7 +444,10 @@ int do_unary = 0;
         do_vops = 1  
 
    if (wt @= "svar")
-        do_svar = 1  
+        do_svar = 1
+
+   if (wt @= "record")
+        do_record = 1  
 
    if (wt @= "bugs")
         do_bugs = 1  
@@ -576,7 +580,7 @@ int do_unary = 0;
   if (do_all  || do_types) {
   
       Run2Test("Types")
-
+      cart("str")
       cart("char")
       cart("long")
       cart("short")
@@ -687,7 +691,7 @@ if (( do_all ==1) || (do_include == 1) ) {
 
   Run2Test("Include")
 
-  cart ("main_ni",2)
+   cart ("main_ni",2)
   
    updir()
 
@@ -1052,6 +1056,8 @@ if ( do_all || do_svar ) {
 
     cart("svar_declare")
 
+    cart("list_declare"); // should be other list tests elsewhere
+
     cart("svelepr")
 
     cart("svargetword")
@@ -1060,6 +1066,8 @@ if ( do_all || do_svar ) {
     updir()
 
     }
+
+
 
   if ( do_all || do_ivar ) {
 
@@ -1073,6 +1081,17 @@ if ( do_all || do_svar ) {
 
     }
 
+
+if ( do_all || do_record ) {
+
+    hdg("RECORS")
+
+    chdir("Record")
+
+    cart("record")
+
+    updir()
+}
 
  chdir(tdir)
 
@@ -1267,7 +1286,8 @@ if ( do_all || do_oo ) {
 if ( do_all || do_bugs ) {
       Run2Test("BUGFIX")
       // lets get a list and work through them
-      cart("bugfix_40")
+      //cart("bugfix_40")   // this has intentional error and exits before test checks
+      
       cart("bugfix_46")
       cart("bugfix_59")
       cart("bugfix_64")
@@ -1278,7 +1298,8 @@ if ( do_all || do_bugs ) {
       cart("bugfix_80")
       cart("bugfix_83")
       cart("bugfix_84")
-      cart("bugfix_89")                                          
+      cart("bugfix_89")
+      cart("bugfix_91")                                                
       updir()
 }
 
@@ -1336,7 +1357,7 @@ if (lsz > 1) {
    
 }
 <<"----------------------------------------------------------------------------\n"
-<<"$(date(5)) Modules $n_modules  Tests $rt_tests  Passed $rt_pass  Score %6.3f$pcc Fail %d $(flsz[0]-1) Crash $(lsz[0]-1) $(get_version())\n"
+<<"$(date(5)) Modules $n_modules  Tests $rt_tests  Passed $rt_pass  Score %6.3f$pcc Fail %d $(flsz[0]) Crash $(lsz[0]-1) $(get_version())\n"
 
 
 fflush(Opf)

@@ -1,10 +1,14 @@
 
-
+setdebug(1);
 CheckIn()
 
-Svar msg[] = { "we all have to try harder" }
+//Svar msg[];
+
+Svar msg[] = { "we all have to try harder", " yes indeed" }
 
 <<"$msg \n"
+
+<<"%V$msg[0] $msg[1] \n"
 
 <<"%I$msg \n"
 
@@ -49,6 +53,21 @@ msgstr = "we all have to try still harder"
 
 <<" $sargv \n"
 <<"%(1,<, ,>\n) $sargv \n"
+
+
+svar S = Split("how did we get here")
+
+
+ r00 = S[0];
+
+ r01 = S[1];
+
+
+<<"%V $r00 $r01\n"
+
+  CheckStr(r00,"how")
+  CheckStr(r01,"did")
+
 
 CheckOut()
 

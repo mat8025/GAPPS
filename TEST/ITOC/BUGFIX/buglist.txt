@@ -59,3 +59,25 @@ fix: 11/17/16
  use instead isSivValid(sivp)  which checks for NULL arg
 tbd: need to check for all instances in code
 //==========================
+91 01/03/17 5.57 6 PENDING
+descr:
+assignment in quotes triggers lhs eval
+fix: 
+ 
+tbd: 
+//==========================
+92 01/03/17 5.57 6 PENDING
+descr:
+
+fix: 
+ 
+tbd: 
+//==========================
+//==========================
+#num xx/x/x vers sevlev state 
+descr:
+
+fix: 
+ 
+tbd: 
+//==========================
