@@ -1,1 +1,1 @@
-rm -f junk* debug_* *.debug *.dbg *.dbg.* .*dbi .*dbx *.dbi *.dbi.* *.dbx *~ *.his \#*
+rm -f junk* debug_* *.debug *.dbg *.dbg.* *.idb *.xdb  *~ *.his \#*

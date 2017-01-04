@@ -14,7 +14,7 @@
 !!"rm -f ../*/*.out"
 !!"rm -f ../*/*.xout"
 
-//setdebug(1)
+setdebug(1)
 
 //<<"$tdir\n"
 
@@ -193,7 +193,13 @@ proc cart (aprg, a1)
   int wlen;
   in_pargc = _pargc;
   xwt_prog = "xxx";
+  cart_arg = ""
+  a1arg = "";
+  if (_pargc >1) {
   cart_arg = "arg is $a1"
+  a1arg = a1;
+  }
+  
   tim = time();
 
 //<<"$_proc $aprg $a1 $cart_arg \n"
@@ -212,7 +218,7 @@ proc cart (aprg, a1)
 
      !!"asl -o ${aprg}arg.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1  > foopar"
 
-     wt_prog = "$(time()) ${aprg}:$a1 "
+     wt_prog = "$(time()) ${aprg}:$a1arg "
      wlen = slen(wt_prog)
      padit =nsc(40-wlen," ")
 
@@ -307,7 +313,9 @@ proc cart (aprg, a1)
    // wt_prog = "$tim "
 
       //xwt_prog = "$tim ./${aprg}: wtf $cart_arg"
-      xwt_prog = "$tim ./${aprg}:$a1"
+
+   xwt_prog = "$tim ./${aprg}:$a1arg"
+
 //<<"$xwt_prog \n"
 
    if (in_pargc > 1) {
@@ -373,9 +381,10 @@ int do_all = 1
 int do_array = 0
 int do_matrix = 0
 int do_bugs = 0
-int do_bops = 1
+int do_bops = 0
 int do_vops = 0
 int do_sops = 0
+int do_fops = 0
 int do_class = 0
 int do_declare = 0
 int do_include = 0
@@ -438,7 +447,10 @@ int do_unary = 0;
         do_mops = 1  
 
    if (wt @= "sops")
-        do_sops = 1  
+        do_sops = 1
+
+   if (wt @= "fops")
+        do_fops = 1  
 
    if (wt @= "vops")
         do_vops = 1  
@@ -652,7 +664,15 @@ int do_unary = 0;
 
 
 
+  if (do_all  || do_fops) {
 
+  Run2Test("Fops")
+
+  cart("readfile")
+
+   updir()
+
+  }
 
 
 if (( do_all ==1) || (do_declare == 1) ) {
