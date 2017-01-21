@@ -1,5 +1,5 @@
-#/* -*- c -*- */
-# "$Id: plotxy,v 1.1 2003/06/25 07:08:30 mark Exp mark $"
+//
+// "$Id: plotxy,v 1.1 2003/06/25 07:08:30 mark Exp mark $"
 
 // default pipe records to script
 // choose X  & Y cols
@@ -10,18 +10,18 @@
     // this should be an alias to lib location
     // include should look in tools/PLOT/plotlib or LIB/plotlib
 
-include tools/PLOT/plotlib
+//include tools/PLOT/plotlib
 
     //include plotlib
 
 
-    SetDebug(0)
+SetDebug(1)
 
 
 proc ReadXY()
 {
 
- fname = $ac++
+   fname = $ac++
    // ac++
 
    A= ofr(fname)
@@ -70,6 +70,8 @@ proc ReadXY()
       //<<" $0 $1 $2 $3 \n"
  na= argc()
 
+  <<"%V $na\n";
+  
  set_ymin = 0
  set_ymax = 0
 
@@ -82,7 +84,7 @@ proc ReadXY()
 
        move_on = 0
 
-      while (1) {
+  while (1) {
        move_on = 1
          fa = $ac
       if (fa @= "ymin") {
@@ -109,20 +111,23 @@ proc ReadXY()
       }
 
 
-     int   nxyp = (na -ac) /3
+   int   nxyp = (na -ac) /3;
 
    // next
    // file and col args
- fname = $ac++
+    fname = $ac++
 
 <<" $na $nxyp $ac \n"
    A= ofr(fname)
 <<" %V $A $fname \n"
 
+      
      l_label = "L1"
-xcol = $ac++
 
-ycol = $ac++
+      
+      xcol = $ac++
+
+      ycol = $ac++
 
       if (do_labels)
         l_label = $ac++

@@ -44,9 +44,10 @@ A = 0
 
 ncols = 1
 
-int YCOL[10+]
+  int YCOL[10+];
 
  YCOL[0] = 0
+
  int ac =2
  int i = 0
 
@@ -65,8 +66,8 @@ pars = i
 ycol = 1
 
 
-    R = ReadRecord(A,@type,FLOAT,@ncols,1)
-  //  R = ReadRecord(A,@type,ASCII,@ncols,1)
+  R = ReadRecord(A,@type,FLOAT_,@ncols,1)
+
 
   sz = Caz(R)
   dmn = Cab(R)
@@ -137,7 +138,7 @@ sz = Caz(R)
 
   // scale this related to total number of pts
 
-float HS[]
+   float HS[];
 
   HS = H
   hs = (1.0 / npts) * 200000
@@ -175,7 +176,7 @@ float HS[]
 
 //   setGwob(histwo,@clearclip,@clipborder,@redraw)
 //   setGline(histgl,@draw)
-
+     sWo(fewos,@redraw)
   }
 
 
@@ -258,7 +259,14 @@ proc Zout()
   drawScreens()
 }
 //--------------------------------------------------
+proc Quit()
+{
 
+  exitgs();
+
+}
+
+  
 ///////////////////////// SCREENS ////////////////////////////////////////////////////////
 
 
@@ -280,12 +288,12 @@ proc Zout()
   // GraphWo
 
 
-   grwo=createGWOB(aw,@GRAPH,@resize,0.05,0.15,0.8,0.95,@name,"TimeSeries",@color,"white")
+   grwo=cWo(aw,@GRAPH,@resize,0.05,0.15,0.8,0.95,@name,"TimeSeries",@color,"white")
 
   //  setgwob(grwo,@drawon,@pixmapon,@clip,0.1,0.1,0.9,0.9,@scales,xmin,ymin-0.5,xmax+xpad,ymax,@savescales,0)
-   setgwob(grwo,@drawon,@pixmapon,@clip,0.1,0.1,0.9,0.9,@scales,xmin,ymin-0.1,xmax,ymax,@savescales,0)
+   sWo(grwo,@drawon,@pixmapon,@clip,0.1,0.1,0.9,0.9,@scales,xmin,ymin-0.1,xmax,ymax*1.1,@savescales,0)
 
-  //  histwo=createGWOB(aw,@GRAPH,@resize,0.85,0.15,0.99,0.95,@name,"Histogram",@color,"white")
+  //   histwo=createGWOB(aw,@GRAPH,@resize,0.85,0.15,0.99,0.95,@name,"Histogram",@color,"white")
   //   setgwob(histwo,@drawon,@pixmapon,@clip,0.1,0.1,0.9,0.9,@scales,ymin,0,ymax+0.1,10000,@savescales,0)
   //////////////////////////////////////////////////////////////////////////////////
 
@@ -299,9 +307,9 @@ proc Zout()
 //////////////////////////// GLINES & SYMBOLS //////////////////////////////////////////
 
 
-   refgl=cGL(grwo, @TY, YV, @color, "blue",@usescales,0)
+   refgl=cGl(grwo, @TY, YV, @color, "blue",@usescales,0)
 
-   setGline(refgl,@draw)
+   sGl(refgl,@draw)
 
       // redraw
       // if not gwm -exit
@@ -334,15 +342,17 @@ proc Zout()
 
   zoomwo=cWo(aw,@ONOFF,@name,"ZOUT",@color,"cadetblue",@callback,"Zout")
 
+  quitwo=cWo(aw,@ONOFF,@name,"Quit",@color,"cadetblue",@callback,"Quit")
 
-  int fewos[] = {zinwo,zoomwo }
+
+  int fewos[] = {zinwo,zoomwo, quitwo };
 
   wo_htile( fewos, 0.03,0.01,0.3,0.08,0.05)
   /////////////////////////////////////////////
   sWo(fewos,@redraw)
 
 
-  //    RedrawGraph(aw)
+  //  RedrawGraph(aw)
 
   //  DrawAxis(aw, -1, -1, xsc,ysc)
 
@@ -355,9 +365,9 @@ proc Zout()
     setGwob(grwo,@clipborder)
     axnum(grwo,2)
     axnum(grwo,1)
-    setGline(refgl,@draw)
+    sGl(refgl,@draw)
 
-    setGwob(histwo,@clearclip,@clipborder,@redraw)
+   //sWo(histwo,@clearclip,@clipborder,@redraw)
 
 
 int wScreen = 0
@@ -389,24 +399,20 @@ int button = 0
 
         msg  = E->waitForMsg()
 
-
-
         msgw = split(msg)
 
         Keyw = E->getEventKeyw()
 
-	//DBPR"%V$m_num $msg $Keyw \n"
+       DBPR"%V$m_num $msg $Keyw \n"
 
        button = E->getEventButton()
 
-
        woname = E->getEventWoname()
-
 
        Rinfo = E->getEventRinfo()
 
        Evtype = E->getEventType()    
-
+<<"%V$Evtype \n"
        Woproc = E->getEventWoProc()
 
 

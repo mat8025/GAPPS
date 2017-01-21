@@ -1,8 +1,0 @@
-
-arg[0]	sv_arg0
-argtype	STRV
-vartype	STRV
-tag?	NO
-argptr?	NO
-soffset	0
-sivp->offset	0

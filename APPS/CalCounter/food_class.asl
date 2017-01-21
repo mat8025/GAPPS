@@ -233,7 +233,7 @@ DBPR">>> $descr $descr_w[0] $edsc $rind $fw \n"
     }
     else {
     mcals = cals *mf;
-    mcarbs = mcarbs *mf;
+    mcarbs = carbs *mf;
     
 ans ="$descr[0], %3.2f$(amt*mf), $unit[0], $mcals,  $mcarbs,  $(fat*mf),  $(prot*mf),  $(chol*mf),  $(satfat*mf), $(wt*mf)"
 

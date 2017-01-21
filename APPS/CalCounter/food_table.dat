@@ -74,12 +74,13 @@ BRAZIL NUTS                         , 1, OZ, 185, 4, 19, 4, 0, 4.6 , 28.35
 BREAD STUFFING FROM MX DRYTYPE      , 1, CUP, 500, 50, 31, 9, 0, 6.1 , 140
 BREAD WHOLE-WHEAT                   , 1, SLICE, 70, 13, 1, 3, 0, 0.4 , 28
 BREAD WHITE                         , 1, SLICE, 65, 12, 1, 2, 0, 0.3 , 25
+BREAD LEMON POPPYSEED               , 1, SLICE, 160, 23, 2.3, 3.6, 61, 2.3, 25
 BREADCRUMBS  DRY  GRATED            , 1, CUP, 390, 73, 5, 13, 5, 1.5 , 100
 BROCCOLI  RAW                       , 1, PIECE, 40, 8, 1, 4, 0, 0.1 , 151
 BROCCOLI  RAW  COOKED  DRAINED      , 1, CUP, 45, 9, 0, 5, 0, 0.1 , 155
 PORK  SAUSAGE                       , 1, LINK, 65, 1, 5, 17, 4.5, 1.7 , 13
 BROWN GRAVY FROM DRY MIX            , 1, CUP, 80, 14, 2, 3, 2, 0.9 , 261
-BROWNIES    NUTS FRSTNG        , 1, PIECE, 100, 16, 4, 1, 14, 1.6 , 25
+BROWNIES    NUTS FRSTNG             , 1, PIECE, 100, 16, 4, 1, 14, 1.6 , 25
 BRUSSELS SPROUTS  RAW  COOKED       , 1, CUP, 60, 13, 1, 4, 0, 0.2 , 155
 BUCKWHEAT FLOUR  LIGHT  SIFTED      , 1, CUP, 340, 78, 1, 6, 0, 0.2 , 98
 BULGUR  UNCOOKED                    , 1, CUP, 600, 129, 3, 19, 0, 1.2 , 170
@@ -703,7 +704,7 @@ SOYBEAN OIL  HYDROGENATED           , 1, CUP, 1925, 0, 218, 0, 0, 32.5 , 218
 SOYBEAN OIL  HYDROGENATED           , 1, TBSP, 125, 0, 14, 0, 0, 2.1 , 14
 SOYBEANS  DRY  COOKED  DRAINED      , 1, CUP, 235, 19, 10, 20, 0, 1.3 , 180
 SPAGHETTI                           , 1, CUP, 155, 32, 1, 5, 0, 0.1 , 140
-SPAGHETTI  TOM SAUCE CHEES CND      , 1, CUP, 190, 39, 2, 6, 3, 0.4 , 250
+SPAGHETTI  CHEESE  TOMATO           , 1, CUP, 190, 39, 2, 6, 3, 0.4 , 250
 SPAGHETTI MEATBALLS TOMSAC CND      , 1, CUP, 260, 29, 10, 12, 23, 2.4 , 250
 SPINACH SOUFFLE                     , 1, CUP, 220, 3, 18, 11, 184, 7.1 , 136
 SPINACH  CANNED  DRND W/ SALT       , 1, CUP, 50, 7, 1, 6, 0, 0.2 , 214
@@ -711,6 +712,7 @@ SPINACH  CANNED  DRND W/O SALT      , 1, CUP, 50, 7, 1, 6, 0, 0.2 , 214
 SPINACH  COOKED FR FRZEN  DRND      , 1, CUP, 55, 10, 0, 6, 0, 0.1 , 190
 SPINACH  COOKED FROM RAW  DRND      , 1, CUP, 40, 7, 0, 5, 0, 0.1 , 180
 SPINACH  RAW                        , 1, CUP, 10, 2, 0, 2, 0, 0 , 55
+SPRING  ROLL                        , 1, ITM, 58, 7, 2.6, 1.7, 0, 0 , 28
 SQUASH  SUMMER  COOKED              , 1, CUP, 35, 8, 1, 2, 0, 0.1 , 180
 SQUASH  WINTER  BAKED               , 1, CUP, 80, 18, 1, 2, 0, 0.3 , 205
 SQUASH  ACORN   BAKED               , 1, CUP, 56, 15, 0.5, 0.5, 0, 0.0 , 140
@@ -798,7 +800,7 @@ WALNUTS  ENGLISH  PIECES            , 1, OZ, 180, 5, 18, 4, 0, 1.6 , 28.35
 WATER CHESTNUTS  CANNED             , 1, CUP, 70, 17, 0, 1, 0, 0 , 140
 WATERMELON  RAW                     , 1, PIECE, 155, 35, 2, 3, 0, 0.3 , 482
 WATERMELON  RAW  DICED              , 1, CUP, 50, 11, 1, 1, 0, 0.1 , 160
-WHEAT BREAD                         , 1, SLICE, 65, 12, 1, 2, 0, 0.2 , 25
+BREAD WHEAT                         , 1, SLICE, 65, 12, 1, 2, 0, 0.2 , 25
 WHEAT FLOUR  ALL-PURPOSE SIFTD      , 1, CUP, 420, 88, 1, 12, 0, 0.2 , 115
 WHEAT FLOUR  ALL-PURPOSE UNSIF      , 1, CUP, 455, 95, 1, 13, 0, 0.2 , 125
 WHEAT  THIN CRACKERS                , 4, ITM, 35, 5, 1, 1, 0, 0.5 , 8

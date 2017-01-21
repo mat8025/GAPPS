@@ -45,14 +45,17 @@ CheckIn()
 
 <<"whats in SV\n"
 <<"%V$SV[0] $SV[1] $SV[2]\n"
-
+<<"%(12,,\,,\n)$SV[0:10]\n"
 
 <<"%(1,,,\n)$SV\n"
+//<<"%(1,,,)$SV\n"
 
 
+<<"%V$SV[3] $SV[8] $SV[18]\n"
 
  checkstr(SV[3],"tag_arg")
  checkstr(SV[8],"str head")
+ 
  checkstr(SV[18],"str big")
 
 

@@ -1,6 +1,6 @@
 #  
 
-setdebug(1,"trace")
+setdebug(1,"~trace")
 
 checkIn()
 
@@ -8,13 +8,18 @@ str le;
 
 Mol = ( "JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC" ) ;
 
+<<"$(typeof(Mol)) size $(caz(Mol))  \n"
+
 <<"List is $Mol \n"
 
 sz = caz(Mol)
 
-<<"$(typeof(Mol)) size $(caz(Mol)) $sz \n"
+<<"%V$sz\n";
+
+
 
 checkNum(sz,12)
+
 
 
 <<"first month $Mol[0]\n"

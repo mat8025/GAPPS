@@ -6,29 +6,31 @@ setdebug(0)
 
 // default pipe records to script
 // choose  Y cols
+
 y_label = "Y-LABEL"
 x_label = "X-LABEL"
 
-
+  
 proc redraw_fig()
  {
-    setGwob(grwo,@clipborder,@border)
+   
+   sWo(grwo,@clipborder,@border,@clearclip,@clipborder)
 
     axnum(grwo,2)
     axnum(grwo,1)
 
+    sWo(grwo,@clearpixmap);
+    
     for (i = 0; i < nylines ; i++) {
-      //      setGline(ygl[i],@draw)
-      // FIXME
-       //setGline(ygl[i],@yvec,R[::][i+1], @draw)
-       setGline(ygl[i], @draw)
-
-
+      <<"$_proc $i $ygl[i] \n"
+      kl = ygl[i];
+      sGl(kl, @draw)
     }
-
-    //setGwob(grwo,@textr,x_label, 0.5,0.1)
-    //setGwob(grwo,@textr,y_label, -0.05,0.5,0,-90,"blue")
-
+    
+    //   sWo(grwo,@showpixmap);
+    
+    //sWo(grwo,@textr,x_label, 0.5,0.1)
+    //sWo(grwo,@textr,y_label, -0.05,0.5,0,-90,"blue")
     //text(grwo,"Y-label-above-axis", 0.5,0.05,1,0,0,"green")
 
     //    text(grwo,"X-label-below-axis", 0.7,-3,3,0,0,"blue")
@@ -83,7 +85,6 @@ ycol = 1
     if (key @= "xlabel") {
         x_label = val
     }
-
   }
 
 <<"DONE ARGS $na $ka \n"
@@ -91,13 +92,17 @@ ycol = 1
 
   ////////////////////////////////////////////////////////////////////////////////////
 
-float ymin = 0
-float ymax = 1
+float ymin = 0;
+float ymax = 1;
 
-  //R = ReadRecord(A,@type,FLOAT,@NCOLS,ncols)
-   R = ReadRecord(A,@type,FLOAT)
+  // R = ReadRecord(A,@type,FLOAT,@NCOLS,ncols)
+  
+  //  R = ReadRecord(A,@type,FLOAT_,@ncols,2)
+  
+  R = ReadRecord(A,@type,FLOAT_)
 
-
+  <<"done ReadRec \n"
+  
      sz = Caz(R)
 
      dmn = Cab(R)
@@ -108,8 +113,9 @@ nrows = dmn[0]
 
 ncols = dmn[1]
 nylines = ncols -1
-<<"%V$ncols \n"
 
+<<"%V$ncols \n"
+<<"%V$nylines \n"
 <<"%V$sz $dmn\n"
 
 sz = Caz(R)
@@ -120,17 +126,18 @@ sz = Caz(R)
   YV1 = R[::][1]
 
   Redimn(YV1)
+   
+    //  YV2 = R[::][2]
 
-  YV2 = R[::][2]
+    // Redimn(YV2)
 
-  Redimn(YV2)
-
+  
   
   for (i = 0; i < nylines; i++) {
 
-  YV = R[::][i+1]
+   YV = R[::][i+1]
 
-  Redimn(YV)
+   Redimn(YV)
 
   sz = Caz(YV)
 <<"ysz $sz \n"
@@ -142,31 +149,31 @@ sz = Caz(R)
 
   nsz = sz -1
 
-<<"%V6.4f${YV[0:nsz]} \n"
+<<"%(10, ,,\n)6.4f${YV[0:nsz]} \n"
 
 <<"%6.2f$(typeof(MM)) $MM \n"
 
 // setup scaling
 
-      yval = MM[1] - 2*MM[4]
-  if (yval < ymin) {
-        ymin = yval
-  }
+      yval = MM[1] 
 
-      yval = MM[1] + 5*MM[4]
+     if (yval < ymin) {
+        ymin = yval
+     }
+
+      yval = MM[1] + 2*MM[4]
 
 	//      ymax = MM[6]
-  if (yval > ymax) {
+    if (yval > ymax) {
         ymax = yval
-  }
+    }
 
   }
 
 
 
   XV = R[::][0]
-    
-      <<"%V$xmin $xmax \n"
+
   XMM = Stats(XV)
 
   xmin = XMM[5]
@@ -181,10 +188,6 @@ sz = Caz(R)
 
 <<" %V$ymin $ymax \n" 
 <<" %V$xmin $xmax \n" 
-
-
-
-
 
 
 
@@ -208,46 +211,66 @@ sz = Caz(R)
   // GraphWo
 
 
-   grwo=createGWOB(aw,@GRAPH,@resize,0.15,0.1,0.95,0.95,@name,"PXY",@color,"white")
+   grwo=cWo(aw,@GRAPH,@resize,0.15,0.1,0.95,0.95,@name,"PXY",@color,"white")
 
-   setgwob(grwo,@drawon,@pixmapon,@clip,0.1,0.2,0.9,0.9,@scales,xmin,ymin,xmax+xpad,ymax,@savescales,0)
+   sWo(grwo,@drawon,@pixmapon,@clip,0.1,0.2,0.9,0.9,@scales,xmin,ymin,xmax+xpad,ymax,@savescales,0)
 
   //////////////////////////////////////////////////////////////////////////////////
 
-  int hue = RED; 
-  int ygl[nylines];
+  int hue = RED_; 
+//  int ygl[nylines+2];
 
-// FIXME
-/{
-  ygl[0]=CreateGline(@woid,grwo,@type,"XY",@xvec, XV, @yvec, R[::][1], @color, "red",@usescales,0)
-  ygl[1]=CreateGline(@woid,grwo,@type,"XY",@xvec, XV, @yvec, R[::][2], @color, "blue",@usescales,0)
-/}
+  int ygl[10];
 
-  for (i = 1; i < nylines ; i++) {
-    YV3 = R[::][i+1];
+setdebug(1);
 
+
+int use_svar = 1;
+//ygl[0]=cGl(grwo,@TXY,XV,YV1, @color, RED_ ,@usescales,0)
+
+if (!use_svar) {
+  for (i = 0; i < nylines ; i++) {
+   vn = "YV$i"
+   $vn =  R[::][i+1]
+   redimn($vn)
+     // ygl[i]=cGl(grwo,@TXY,XV, R[::][i+1], @color, hue++ ,@usescales,0)
+     ygl[i]=cGl(grwo,@TXY,XV, $vn, @color, hue++ ,@usescales,0)
+     
+<<"cgl $i $ygl[i] \n"
+   //sGl(ygl[i],@draw)
   }
+  
+ }
+ else {
 
 
-  ygl[0]=CreateGline(@woid,grwo,@type,"XY",@xvec, XV, @yvec, YV1, @color, "red",@usescales,0)
-  ygl[1]=CreateGline(@woid,grwo,@type,"XY",@xvec, XV, @yvec, YV3, @color, "blue",@usescales,0)
+    // FIX TBD  
+svar vn;
+  for (i = 0; i < nylines ; i++) {
+   vn[i] = "YV$i"
+   $vn[i] =  R[::][i+1]
+     //   redimn($vn[i])
+     //ygl[i]=cGl(grwo,@TXY,XV, $vn[i], @color, hue++ ,@usescales,0)
 
-    /{
-  for (i = 1; i < nylines ; i++) {
+    agl = cGl(grwo,@TXY,XV, $vn[i], @color, hue++ ,@usescales,0);
+    ygl[i]= agl;
+   
+    //   AL = testargs(grwo,@TXY,XV, $vn[i], @color, hue++ ,@usescales,0)
+   // <<"%V$AL\n"
 
-
-  ygl[i]=CreateGline(@woid,grwo,@type,"XY",@xvec, XV, @yvec, R[::][i+1], @color, hue++ ,@usescales,0)
-  setGline(ygl[i],@draw)
-
+    
+   
+<<"cgl $i $agl $ygl[i] \n"
+<<"%V $vn[i] \n"
   }
-  /}
+  sz= Caz(vn)
+<<"%V$sz\n"
+
+  // exitgs();
+  
+ }
   // redraw
   // if not gwm -exit
-
-
-
-
-
 
   plw = aw
 
@@ -258,38 +281,43 @@ sz = Caz(R)
     ysc = 1.0
 
 
-
-include "event"
-
-Event E
-
-    setGwob(grwo,@clipborder)
+    sWo(grwo,@clipborder)
     axnum(grwo,2)
     axnum(grwo,1)
 
-    setGline(refgl,@draw)
+    //setGline(refgl,@draw)
 
 
   redraw_fig()
 
+    E =1;
+
   while (1) {
 
 
-    E->waitForMsg()
+    msg = E->waitForMsg()
 
-    if ((E->keyw @= "REDRAW") || (E->keyw @= "RESIZE")) {
+    msgw = split(msg) 
+      
+    Keyw = E->getEventKeyw()
+
+    woname = E->getEventWoname();
+
+    button = E->getEventButton()
+    
+    
+    if ((Keyw @= "REDRAW") || (Keyw @= "RESIZE")) {
       //    <<"REDRAW \n"
       redraw_fig()
 
-
     }
-
-
 
   }
 
 
 
+
+ 
 
   /////////////////////////  REDO the ZOOM - PAN features ///////////////////////////////
 

@@ -413,6 +413,7 @@ int do_threads = 0
 int do_while = 0
 int do_pan = 0
 int do_unary = 0;
+int do_ptrs = 0;
 
  CrashList = ( "",  )  // empty list
  CrashList->Delete(0)
@@ -525,7 +526,10 @@ int do_unary = 0;
       do_sfunc = 1
 
    if (wt @= "class")
-        do_class = 1  
+        do_class = 1
+
+   if (wt @= "ptrs")
+        do_ptrs = 1  
 
    if (wt @= "oo")
         do_oo = 1  
@@ -1104,11 +1108,13 @@ if ( do_all || do_svar ) {
 
 if ( do_all || do_record ) {
 
-    hdg("RECORS")
+    hdg("RECORDS")
 
     chdir("Record")
 
     cart("record")
+
+    cart("prtrecord")
 
     updir()
 }
@@ -1183,6 +1189,15 @@ if ( do_all || do_lists ) {
 
     }
 
+
+if ( do_all || do_ptrs ) {
+
+    Run2Test("Ptrs")
+
+    cart ("indirect");
+
+      updir()
+}
 
 if ( do_all || do_class ) {
 

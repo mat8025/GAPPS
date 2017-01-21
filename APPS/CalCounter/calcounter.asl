@@ -25,7 +25,7 @@
 //
 
 
-setdebug(0) ;
+setdebug(1) ;
 
 
 version = "1.3";
@@ -158,6 +158,7 @@ include "loopquery"
 do_loop = 1;
 
  if (do_loop ) {
+ 
     fnd =queryloop();
 
   if (fnd) {

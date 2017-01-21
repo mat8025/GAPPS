@@ -67,7 +67,7 @@ kp = 3;
 
 
 //<<"%6.2f$rl \n"
-//<<"%V $rl[kp] \n"
+<<"%V $rl[kp] \n"
 
     wrl = rl[kp];
 
@@ -75,8 +75,6 @@ kp = 3;
 
 
 <<"%V $wrl \n"
-
-
 
     checkFnum(rl[kp],-2)
 
@@ -119,6 +117,13 @@ return t3
 }
 
 //////////////////////////////////////////////////////////////////////////////////////
+
+
+   Real1 = fgen(10,0,1)
+<<"%V$Real1\n"
+
+
+ val = array_sub(Real1)
 
 
 
@@ -246,7 +251,9 @@ checkFnum(Real[4],-2)
 
    Real = fgen(10,0,1)
 <<"%V$Real\n"
-   val = array_sub(Real)
+
+
+ val = array_sub(Real)
 
 
 <<"$val \n"

@@ -6,16 +6,25 @@
 ///
 ///   guesses wt gain/loss
 ///
-
+setdebug(1)
 
 Record R[20];
 
 int Rn = 0;
 
+ ds=date(2)
 
 // find the day --- current or supplied
 
- ds=date(2)
+
+na =argc()
+if (na > 1) {
+
+ ds = _clarg[1]
+}
+
+
+
  ds=ssub(ds,"/","-",0)
 
  ok=fexist("dd_${ds}",0)
@@ -27,6 +36,11 @@ int Rn = 0;
  B= ofile("dd_${ds}","r+")
  //fseek(B,0,2);
  found_day = 1;
+ }
+ else {
+  <<"can't find dd file for the day $ds\n"
+  <<"dates should be in mm-dd-yyyy format\n"
+  exit()
  }
 
     res = readline(B)

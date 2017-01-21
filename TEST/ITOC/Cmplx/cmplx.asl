@@ -46,7 +46,8 @@ cmplx b;
 
 dcmplx  r
 dcmplx  t
-dcmplx  rt
+    dcmplx  rt;
+
   r->Set(2.5,0.5)
 
   rmag = r->Mag()
@@ -126,9 +127,10 @@ dcmplx  rt
 <<"%V$t /  $r  = $rt \n"  
   
     checkNum(1,1)
+
     checkOut()
     
-  stop()
+  
 
   cmplx f = {1,2}
 
