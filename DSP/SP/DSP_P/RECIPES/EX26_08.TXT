@@ -1,0 +1,21 @@
+
+	 ar_proc.cpp
+	 ar_src.cpp
+	 arma_est.cpp
+	 armaproc.cpp
+	 armaspec.cpp
+	 autometh.cpp
+	 complex.cpp
+	 ex26_08.cpp
+	 gausrand.cpp
+	 gen_lev.cpp
+	 levin.cpp
+	 matrix_T.cpp
+	 mod_yuwa.cpp
+	 sinc.cpp
+	 toeplitz.cpp
+	 uni_rand.cpp
+	 vector_T.cpp
+	 yulewalk.cpp
+
+

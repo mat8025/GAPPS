@@ -1,0 +1,21 @@
+	 acosh.cpp
+	 bessel.cpp
+	 dirform1.cpp
+	 dolph.cpp
+	 fir_dsgn.cpp
+	 fir_resp.cpp
+	 firideal.cpp
+	 gen_win.cpp
+	 hamming.cpp
+	 hann.cpp
+	 kaiser.cpp
+	 lin_dsgn.cpp
+	 lin_resp.cpp
+	 prog_12a.cpp
+	 rectnglr.cpp
+	 sinc.cpp
+	 sincsqrd.cpp
+	 swept.cpp
+	 trianglr.cpp
+
+

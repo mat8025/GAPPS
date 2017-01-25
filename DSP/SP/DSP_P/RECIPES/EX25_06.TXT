@@ -1,0 +1,18 @@
+
+	 bartpdgm.cpp
+	 cbitrev.cpp
+	 dan_pdgm.cpp
+	 dit_sino.cpp
+	 ex25_06.cpp
+	 fft.cpp
+	 gausrand.cpp
+	 gen_win.cpp
+	 hamming.cpp
+	 hann.cpp
+	 log2.cpp
+	 psd_est.cpp
+	 sinawgn.cpp
+	 trianglr.cpp
+	 uni_rand.cpp
+	 welcpdgm.cpp
+

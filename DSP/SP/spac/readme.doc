@@ -1,0 +1,130 @@
+                 SIGNAL PROCESSING ALGORITHMS IN FORTRAN AND C
+                          S.D. Stearns and R.A. David
+                              Prentice-Hall, 1992
+
+
+                                 DISK CONTENTS
+
+     The disk included with "Signal Processing Algorithms in
+Fortran and C" contains all of the source code described in
+Appendices A1 through B4 in the book, plus two demonstration
+programs.  The source code is in the form of source listings in the
+Fortran-77 and C programming languages.  The two demonstration
+programs are execute files that are designed to run only on IBM-
+compatible PC's with VGA graphics and MS-DOS 3.0 (or higher).
+     In addition to this document, the disk contents consist of
+four Fortran-77 source files, four C source files, and two execute
+files, plus backup copies of most of the files.  The Fortran and C
+source files are as follows:
+
+   Fortran file   Fortran Backup      C file     C Backup
+   ------------   --------------      --------   ----------
+   SPALIB.FOR     SPALIB.BAK          SPALIB.C   SPALIB.CBK
+   SPTEST.FOR     SPTEST.BAK          SPTEST.C   SPTEST.CBK
+   SPPLOT.FOR     SPPLOT.BAK          SPPLOT.C   SPPLOT.CBK
+   SPXAMP.FOR                         SPXAMP.C   
+
+     The source file contents are described briefly as follows:
+
+SPALIB:     Source listings of all signal processing routines (over
+            50 routines).  These should be compiled as described in
+            Appendices A1 and B1.  Important:  As suggested in
+            Appendix A1, you may wish (or need) to break SPALIB.FOR
+            into two files, SPALIB.FOR and FFTLIB.FOR, before
+            compiling.
+
+SPTEST:     A single program that can be compiled with SPALIB and
+            used to test the routines in SPALIB.  During execution,
+            SPTEST should print a pass/fail message after testing
+            each routine in SPALIB.  SPTEST is described in detail in
+            Appendices A2 and B2.
+
+SPPLOT:     Source listings of two subroutines that are used in the
+            text, and may be used by the reader if convenient, to
+            produce plot files.  The subroutines contain I/O
+            statements but should nevertheless be machine-independent
+            in most cases.  They produce plot files, which must then
+            be plotted by the user using his or her own plot
+            software.  The plot files are in the ASCII format
+            described in Appendix A3.
+
+SPXAMP:     Source listings of all programming examples in the text,
+            that is, SPA0301, SPA0302, and so on.  The text contains
+            only the Fortran versions of these examples, but both
+            Fortran and C versions are included on the disk.
+
+     The two execute files, each with a backup copy, are as
+follows:
+
+                DEMO1.EXE          DEMO1.BAK
+                DEMO2.EXE          DEMO2.BAK
+
+These should be helpful in demonstrating the use of many of the
+algorithms.  They should be executable in PC's with VGA graphics
+and MS-DOS 3.0 or higher.  They are easy to use and may be run
+simply by entering "DEMO1" or "DEMO2", then following the
+instructions that appear on the screen.
+
+     DEMO1 may be used to demonstrate the following:
+                Discrete transform routines
+                Power spectrum and gain routines
+                Filter design routines
+                Digital filtering routines
+
+     DEMO2 may be used to demonstrate the following:
+                Fast correlation
+                Digital interpolation
+                Least-squares routines
+                Parameter estimation
+                Windows
+                The Hilbert transformer
+                Adaptive filtering
+
+     These demonstration routines supplement the examples in the
+text.  They provide useful additional examples of how to use the
+algorithms and illustrate the algorithms in a way that cannot quite
+be achieved in the text, but are not considered essential to
+understanding the text.  That is, a PC with VGA graphics is not
+considered essential to the use of the text.
+
+
+                                GETTING STARTED
+
+     If you have a PC with VGA graphics running MS-DOS 3.0 or
+higher, a good first step is to run the DEMO programs and look at
+some examples of interest, for example, discrete transforms or
+filtering.  You will see that the routines in SPALIB have simple
+calling sequences and are easy to use in your Fortran or C
+programs.
+     The logical first step in actually using the routines in
+SPALIB is to compile SPTEST and SPALIB, link the two together, and
+try to execute SPTEST.  If there are no compile errors, if SPTEST
+executes successfully, and if all tests are passed, you should be
+able to set up SPALIB as a library in your system and begin using
+its routines.
+     All of the routines in SPALIB have been tested extensively. 
+Nevertheless, we know that compile and/or execution errors are
+possible in computing environments that we have not anticipated,
+particularly with the C version.  Appendices A1 and B1 contain
+suggestions for obtaining successful compilations and executions. 
+Furthermore, each routine in SPALIB is a short module, easy to
+understand in most cases.  With an editor, the user can extract a
+module from SPALIB and compile it separately or with a calling
+program, if needed.
+
+
+
+                               ACKNOWLEDGEMENTS
+
+     Beside the text authors, there are two major contributors to
+the SIGNAL PROCESSING ALGORITHMS software.  One is John Salas,
+Computer Systems Manager at the University of New Mexico,
+Albuquerque, NM 87131.  John has used his expert knowledge of the
+C language to translate all of the source code from Fortran into C,
+and to make the C code as universally applicable as possible.
+     The second contributor is Fred Vote at MicroGlyph Systems,
+Inc., Box 474, Lexington, MA 02173.  All of the plots in the DEMO1
+and DEMO2 demonstrations were made by SCIPLOT 4.0, a commercially
+available product of MicroGlyph Systems.  The authors wish to thank
+Fred and MicroGlyph for their cooperation.
+

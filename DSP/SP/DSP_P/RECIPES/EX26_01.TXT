@@ -1,0 +1,18 @@
+
+	 ar_est.cpp
+	 ar_proc.cpp
+	 ar_src.cpp
+	 arspec.cpp
+	 autometh.cpp
+	 complex.cpp
+	 ex26_01.cpp
+	 gausrand.cpp
+	 gen_lev.cpp
+	 levin.cpp
+	 matrix_T.cpp
+	 sinc.cpp
+	 toeplitz.cpp
+	 uni_rand.cpp
+	 vector_T.cpp
+	 yulewalk.cpp
+

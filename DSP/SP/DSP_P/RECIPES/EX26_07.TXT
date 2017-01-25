@@ -1,0 +1,15 @@
+
+	 ar_proc.cpp
+	 ar_src.cpp
+	 arspec.cpp
+	 autometh.cpp
+	 burg.cpp
+	 complex.cpp
+	 ex26_07.cpp
+	 gausrand.cpp
+	 matrix_T.cpp
+	 sinc.cpp
+	 toeplitz.cpp
+	 uni_rand.cpp
+	 vector_T.cpp
+

@@ -1,0 +1,12 @@
+
+	 cbitrev.cpp
+	 dan_pdgm.cpp
+	 dit_sino.cpp
+	 ex25_02.cpp
+	 fft.cpp
+	 gausrand.cpp
+	 log2.cpp
+	 psd_est.cpp
+	 sinawgn.cpp
+	 uni_rand.cpp
+

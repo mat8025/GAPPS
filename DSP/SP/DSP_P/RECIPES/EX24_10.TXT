@@ -1,0 +1,14 @@
+
+	 adap_fir.cpp
+	 ar_proc.cpp
+	 ar_src.cpp
+	 complex.cpp
+	 dirform1.cpp
+	 ex24_10.cpp
+	 gausrand.cpp
+	 learncur.cpp
+	 matrix_T.cpp
+	 rls_filt.cpp
+	 uni_rand.cpp
+	 vector_T.cpp
+

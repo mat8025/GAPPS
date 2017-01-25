@@ -1,0 +1,15 @@
+
+	 anlg_rcn.cpp
+	 croscorr.cpp
+	 dirform1.cpp
+	 filtmath.cpp
+	 fir_dsgn.cpp
+	 fir_resp.cpp
+	 fs_dsgn.cpp
+	 fs_spec.cpp
+	 gen_win.cpp
+	 mr_lpf.cpp
+	 prog_20c.cpp
+	 remezalg.cpp
+	 sinc.cpp
+

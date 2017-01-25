@@ -1,0 +1,16 @@
+GASP_vBORON 320     
+CHANNEL ADDH
+Wed Apr 20 13:37:59 2016
+mars x86_64 29568 0
+source addh -i fac-1.16k.left.pcm -o fac-1.16k.left.vox -O 0 -f 16000 -n 1 -H -b 0 
+STP 3.684394e+01
+SF 1.600000e+04
+
+CHN 0 0
+dfile fac-1.16k.left.pcm
+dtype short
+FS 6.250000e-05
+LL -3.276800e+04
+UL 3.276800e+04
+N 589503           
+     EHD

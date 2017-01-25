@@ -1,0 +1,26 @@
+
+	 ar_est.cpp
+	 ar_proc.cpp
+	 autometh.cpp
+	 bilinear.cpp
+	 cmpxpoly.cpp
+	 complex.cpp
+	 dir1_iir.cpp
+	 ex23_01.cpp
+	 filtfunc.cpp
+	 gausrand.cpp
+	 iir_dsgn.cpp
+	 laguerre.cpp
+	 levin.cpp
+	 numinteg.cpp
+	 pause.cpp
+	 polefunc.cpp
+	 poly.cpp
+	 polydiv.cpp
+	 toeplitz.cpp
+	 uni_rand.cpp
+	 unq_iir.cpp
+	 unwrap.cpp
+	 yulewalk.cpp
+
+

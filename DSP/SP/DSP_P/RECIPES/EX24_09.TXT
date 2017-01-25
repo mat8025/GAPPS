@@ -1,0 +1,10 @@
+
+	 adap_fir.cpp
+	 complex.cpp
+	 dirform1.cpp
+	 ex24_09.cpp
+	 gausrand.cpp
+	 learncur.cpp
+	 lms_filt.cpp
+	 uni_rand.cpp
+

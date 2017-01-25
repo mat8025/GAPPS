@@ -1,0 +1,20 @@
+	 anlgfilt.cpp
+	 bessfunc.cpp
+	 buttfunc.cpp
+	 chebfunc.cpp
+	 cmpxpoly.cpp
+	 complex.cpp
+	 elipfunc.cpp
+	 filtfunc.cpp
+	 impresp.cpp
+	 laguerre.cpp
+	 numinteg.cpp
+	 pause.cpp
+	 polefilt.cpp
+	 poly.cpp
+	 prog_05a.cpp
+	 pzfilt.cpp
+	 stepresp.cpp
+	 unwrap.cpp
+
+

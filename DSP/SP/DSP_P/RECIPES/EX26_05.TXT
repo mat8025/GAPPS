@@ -1,0 +1,18 @@
+
+	 adap_fir.cpp
+	 ar_proc.cpp
+	 ar_src.cpp
+	 arspec.cpp
+	 complex.cpp
+	 dirform1.cpp
+	 ex26_05.cpp
+	 gausrand.cpp
+	 learncur.cpp
+	 levin.cpp
+	 matrix_T.cpp
+	 rls_filt.cpp
+	 sinc.cpp
+	 uni_rand.cpp
+	 vector_T.cpp
+
+
