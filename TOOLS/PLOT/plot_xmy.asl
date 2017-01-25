@@ -14,7 +14,7 @@ x_label = "X-LABEL"
 proc redraw_fig()
  {
    
-   sWo(grwo,@clipborder,@border,@clearclip,@clipborder)
+    sWo(grwo,@clipborder,@border,@clearclip,@clipborder)
 
     axnum(grwo,2)
     axnum(grwo,1)
@@ -37,14 +37,21 @@ proc redraw_fig()
     // text(grwo,x_label, 0.7,-3,3,0,0,"blue")
 
     //    text(grwo,"X-label-below-axis", 0.2,-1,3,0,0,"black")
+
     // text(grwo,"Y-label-left-of-axis", 0.1,0.5,4,90,0,"red")
     //text(grwo,"Y-label-left-of-axis", -0.2,0.2,2,-90,0,"orange")
 
 
     // Axtext(grwo,4,y_label,0.5,2,"green")
     // Axtext(grwo,3,x_label,0.5,2,"red")
-    Axtext(grwo,1,x_label,0.5,2,"orange")
-    Axtext(grwo,2,y_label,0.5,2,"cyan",90)
+    //sWo(grwo,@FONT,2);
+    sWo(grwo,@FONT,"medium");
+    Axlabel(grwo,1,x_label,0.5,2,BLACK_,2)
+    // sWo(grwo,@FONT,4);
+    //Axlabel(grwo,2,y_label,0.6,2,BLACK_,90,1)
+    sWo(grwo,@FONT,"rotated");
+    Axlabel(grwo,2,y_label,0.6,1.2,BLACK_,1,90)
+    //   Axlabel(grwo,2,y_label,0.6,1.5,BLACK_,1)
  }
 
 
@@ -204,14 +211,14 @@ sz = Caz(R)
 
 //<<" CGW $aw \n"
 
-    SetGwindow(aw,@resize,0.1,0.1,0.9,0.7,0)
+    SetGwindow(aw,@resize,0.1,0.1,0.7,0.9,0)
     SetGwindow(aw,@drawon)
     SetGwindow(aw,@clip,0.1,0.1,0.8,0.9)
 
   // GraphWo
 
 
-   grwo=cWo(aw,@GRAPH,@resize,0.15,0.1,0.95,0.95,@name,"PXY",@color,"white")
+   grwo=cWo(aw,@GRAPH,@resize,0.1,0.1,0.95,0.95,@name,"PXY",@color,"white")
 
    sWo(grwo,@drawon,@pixmapon,@clip,0.1,0.2,0.9,0.9,@scales,xmin,ymin,xmax+xpad,ymax,@savescales,0)
 
@@ -222,7 +229,7 @@ sz = Caz(R)
 
   int ygl[10];
 
-setdebug(1);
+//setdebug(1);
 
 
 int use_svar = 1;
@@ -288,7 +295,7 @@ svar vn;
     //setGline(refgl,@draw)
 
 
-  redraw_fig()
+    redraw_fig()
 
     E =1;
 
