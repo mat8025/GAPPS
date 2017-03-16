@@ -1,3 +1,4 @@
+//
 // exercise weight display
 // calories burned (wt at 180) Walk 4mhr 397, Hike 477, R 10mhr 795 Cycle 12mhr 636  Wt lift 350
 // Scuba   556   Gardening 318
@@ -28,7 +29,11 @@ wherearewe=!!"pwd "
 
 #define NDAYS 1000
 
-svar Mo = { "JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC"}
+//svar Mo = { "JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC"}
+
+svar Mo[] = { "JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC"}
+
+
 
 class Activity {
 
@@ -623,15 +628,15 @@ proc drawGoals(ws)
    if (ws == 0) {
     Plot(gwo,@line,sc_startday,165,sc_endday,165, "green")
     Plot(calwo,@line,sc_startday,day_burn,sc_endday,day_burn, "green")
-    Plot(calwo,@line,sc_startday,out_cal,sc_endday,out_cal, "blue")
-    Plot(calwo,@line,sc_startday,in_cal,sc_endday,in_cal, "red")
-//    Plot(carbwo,@line,0,30,sc_endday,30, "blue")
-//    Plot(carbwo,@line,0,55,sc_endday,55, "red")
+    Plot(calwo,@line,sc_startday,out_cal,sc_endday,out_cal, BLUE_)
+    Plot(calwo,@line,sc_startday,in_cal,sc_endday,in_cal, RED_)
+//    Plot(carbwo,@line,0,30,sc_endday,30, BLUE_)
+//    Plot(carbwo,@line,0,55,sc_endday,55, RED_)
    }
 
   if (ws == 1) {
 DBPR"$ws $swo $kdays \n"
-   Plot(swo,@line,0,150,kdays-10,250, "blue")
+   Plot(swo,@line,0,150,kdays-10,250, BLUE_)
    }
 
 
@@ -680,14 +685,14 @@ proc  drawMonths(ws)
 
 DBPR"%V$mid_date $jd $the_date \n"
 
-   AxText(wwo, 1, the_date, mid_date, -0.25, BLUE)
+   AxText(wwo, 1, the_date, mid_date, -0.25, BLUE_)
 
    jd= q1_date +bday
    the_date = julmdy("$jd")
-   AxText(wwo, 1, the_date, q1_date, -0.25, BLUE)
+   AxText(wwo, 1, the_date, q1_date, -0.25, BLUE_)
    jd= q3_date +bday
    the_date = julmdy("$jd")
-   AxText(wwo, 1, the_date, q3_date, -0.25, BLUE)
+   AxText(wwo, 1, the_date, q3_date, -0.25, BLUE_)
 
  }
 //---------------------------------------------------------------
@@ -731,7 +736,7 @@ proc  drawGrids( ws )
   sWo(xwo,@clipborder,@save)
 
  }
-  sWo(allwo,@showpixmap,"black",@save)
+  sWo(allwo,@showpixmap,@save)
 
   sWo(allwo,@clipborder)
 }
@@ -825,11 +830,11 @@ Graphic = CheckGwm()
 /////////////////////////////  SCREEN --- WINDOW ////////////////////////////////////////////////////////////
 vptitle = "WED"
 
-    vp =  cWi(@title, "WED",@resize,0.01,0.05,0.80,0.9,0)
+    vp =  cWi(@title, "WED",@resize,0.01,0.05,0.95,0.9,0)
 
-    vp1 = cWi(@title,"XED",@resize,0.01,0.05,0.80,0.9,1)
+    vp1 = cWi(@title,"XED",@resize,0.01,0.05,0.90,0.9,1)
 
-    sWi(vp,@resize,0.1,0.1,0.6,0.8,@clip,0.1,0.1,0.7,0.9,@redraw)
+    sWi(vp,@resize,0.1,0.1,0.9,0.8,@clip,0.1,0.1,0.7,0.9,@redraw)
 
     int allwin[] = {vp,vp1}
 
@@ -867,7 +872,7 @@ DBPR"%V$wedwo \n"
 
     sWo(gwo,@scales,sc_startday,150,sc_endday+10,220,@savescales,0) 
 
-    sWo(extwo,@scales,sc_startday,0,sc_endday+10,260,@savescales,0)
+    sWo(extwo,@scales,sc_startday,0,sc_endday+10,360,@savescales,0)
 
     sWo(calwo,@scales,sc_startday,0,sc_endday+10,4500,@savescales,0)
 
@@ -928,30 +933,30 @@ DBPR"\n%V$PWTVEC[0:20] \n"
 DBPR"%V$pwt_gl \n"
 
 
- //ext_gl  = cGl(@wid,extwo,@TXY,DVEC,EXTV,@color,"blue",@ltype,"symbols","diamond")
+ //ext_gl  = cGl(@wid,extwo,@TXY,DVEC,EXTV,@color,BLUE_,@ltype,"symbols","diamond")
 
-   ext_gl  = cGl(extwo,@TXY,DVEC,EXTV,@color,"blue",@ltype,"symbols","diamond")
+   ext_gl  = cGl(extwo,@TXY,DVEC,EXTV,@color,BLUE_,@ltype,"symbols","diamond")
 
 //DBPR"%V$ext_gl \n"
 
-  sGl(ext_gl,@symsize,0.75,@symhue,GREEN)
+  sGl(ext_gl,@symsize,0.75,@symhue,GREEN_)
 
- //wt_gl   = cGl(@wid,gwo,@TXY,DVEC,WTVEC,@color,"red",@ltype,"symbols","diamond")
-  wt_gl    = cGl(gwo,@TXY,DVEC,WTVEC,@color,"red",@ltype,"symbols","diamond")
+ //wt_gl   = cGl(@wid,gwo,@TXY,DVEC,WTVEC,@color,RED_,@ltype,"symbols","diamond")
+  wt_gl    = cGl(gwo,@TXY,DVEC,WTVEC,@color,RED_,@ltype,"symbols","diamond")
 
 //DBPR"%V$wt_gl \n"
 
-  sGl(wt_gl,@symbol,"triangle",1.2, @fill_symbol,0,@symsize,0.75,@symhue,RED)
+  sGl(wt_gl,@symbol,"triangle",1.2, @fill_symbol,0,@symsize,0.75,@symhue,RED_)
 
   if ((wt_gl == -1)  || (ext_gl == -1)) {
     exit_si()
   }
 
-// wtpm_gl = cGl(gwo,@type_XY,DVEC,WTPMV,@color,"blue",@ltype,"symbols","diamond")
+// wtpm_gl = cGl(gwo,@type_XY,DVEC,WTPMV,@color,BLUE_,@ltype,"symbols","diamond")
 
- gw_gl   = cGl(gwo,@TXY,WDVEC,GVEC,@color,"blue")
+ gw_gl   = cGl(gwo,@TXY,WDVEC,GVEC,@color,BLUE_)
 
- bp_gl   = cGl(swo,@TXY,DVEC,BPVEC,@color,"red",@ltype,"symbols",@name,"benchpress")
+ bp_gl   = cGl(swo,@TXY,DVEC,BPVEC,@color,RED_,@ltype,"symbols",@name,"benchpress")
 
 DBPR"%(10,, ,\n)$BPVEC\n"
 
@@ -965,11 +970,11 @@ if ( gw_gl == -1 || bp_gl == -1) {
    exit_si()
  }
 
- calb_gl = cGl(calwo,@TXY,DVEC,CALBURN,@color,"blue",@ltype,"symbols","diamond")
+ calb_gl = cGl(calwo,@TXY,DVEC,CALBURN,@color,BLUE_,@ltype,"symbols","diamond")
 
- calc_gl = cGl(calwo,@TXY,DFVEC,CALCON,@color,"red",@ltype,"symbols","triangle",@symhue,BLUE)
+ calc_gl = cGl(calwo,@TXY,DFVEC,CALCON,@color,RED_,@ltype,"symbols","triangle",@symhue, BLUE_)
 
- ave_ext_gl  = cGl(extwo,@TXY,DVEC,AVE_EXTV,@color,"red",@ltype,"line")
+ ave_ext_gl  = cGl(extwo,@TXY,DVEC,AVE_EXTV,@color,RED_,@ltype,"line")
 
  se_gl   = cGl(extwo,@TXY,DVEC,SEVEC,@color,"green",@ltype,"symbols","diamond")
 
@@ -989,16 +994,16 @@ DBPR"%V$allgl \n"
   sGl(se_gl,@symbol,"diamond",1.2)
   //sGl(carb_gl,@symbol,"triangle",1.2,@fill_symbol,0)
   sGl(calb_gl,@symbol,"diamond",1.2,@fill_symbol,0)
-  sGl(calc_gl,@symbol,"triangle",@symsize,1.2,@symhue,BLUE)
+  sGl(calc_gl,@symbol,"triangle",@symsize,1.2,@symhue,BLUE_)
   sGl(bp_gl,@symbol,"inverted_triangle",1.2,@missing,0)
 
-  zinwo=cWo(vp,@Bname,@name,"ZIN",@color,"hotpink")
-  zoomwo=cWo(vp,@Bname,@name,"ZOUT",@color,"cadetblue")
+  zinwo=cWo(vp,@BN,@name,"ZIN",@color,"hotpink")
+  zoomwo=cWo(vp,@BN,@name,"ZOUT",@color,"cadetblue")
 
-  yrdecwo= cWo(vp,@Bname,@name,"YRD",@color,"violetred")
-  yrincwo= cWo(vp,@Bname,@name,"YRI",@color,"purple")
-  qrtdwo=  cWo(vp,@Bname,@name,"QRTD",@color,"violetred")
-  qrtiwo=  cWo(vp,@Bname,@name,"QRTI",@color,"purple")
+  yrdecwo= cWo(vp,@BN,@name,"YRD",@color,"violetred")
+  yrincwo= cWo(vp,@BN,@name,"YRI",@color,"purple")
+  qrtdwo=  cWo(vp,@BN,@name,"QRTD",@color,"violetred")
+  qrtiwo=  cWo(vp,@BN,@name,"QRTI",@color,"purple")
 
 
 
@@ -1028,7 +1033,7 @@ DBPR"%V$allgl \n"
 
 lc_gl   = cGl(gwo,@type,"XY",@color,"orange",@ltype,"cursor")
 
-rc_gl   = cGl(gwo,@type,"XY",@color,"blue",@ltype,"cursor")
+rc_gl   = cGl(gwo,@type,"XY",@color,BLUE_,@ltype,"cursor")
 
 
 ////////////////////////////////////// PLOT  ////////////////////////////////////////////
@@ -1118,7 +1123,7 @@ proc adjustQrt(updown)
  
    drawScreens()
 }
-
+//========================================================
 
 proc showWL()
 {
@@ -1135,7 +1140,7 @@ long we
 
        computeWL( ws, we)
 }
-
+//========================================================
 
 proc computeWL( wlsday, wleday)
 {
