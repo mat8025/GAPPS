@@ -8,8 +8,8 @@
 
 //setdebug(1)
 
-#define DBPR  <<
-//#define DBPR  ~!
+//#define DBPR  <<
+#define DBPR  ~!
 
 wed_dir = "./"
 
@@ -17,7 +17,7 @@ chdir(wed_dir)
 
 wherearewe=!!"pwd "
 
-<<"%V$wherearewe \n"
+//<<"%V$wherearewe \n"
 
 #define WALK 1
 #define HIKE 2
@@ -116,7 +116,7 @@ day_burn = sleep_burn + office_burn
 out_cal = day_burn * 5/4
 in_cal =  day_burn * 3/4
 
-<<"%V$out_cal $in_cal \n"
+//<<"%V$out_cal $in_cal \n"
 
 N = 1000
 
@@ -165,7 +165,7 @@ int dday
 
 A=ofr("wfex.dat")
 
-<<"%V$A \n"
+//<<"%V$A \n"
 
 
 
@@ -186,12 +186,12 @@ if (A == -1) {
 
 
 
-long sday = julday("4/1/2014")
+long sday = julday("4/1/2017")
 
 got_start = 0
 
-long yday = julday("1/1/2014")   // this should be found from data file
-long eday = julday("12/31/2014")  // this should be found from data file
+long yday = julday("1/1/2017")   // this should be found from data file
+long eday = julday("12/31/2017")  // this should be found from data file
 today = julday("$(date(2))")
 
 // check period
@@ -213,13 +213,13 @@ DBPR"%V$kdays \n"
      WDVEC= Igen(2*kdays,0,1)
 
     n = 0
-<<"%V$A \n"
+//<<"%V$A \n"
 
     S= readline(A)
 
     foe= ferror(A)
 
-<<"%V$A $foe\n"
+//<<"%V$A $foe\n"
 
 
 
@@ -304,7 +304,7 @@ int Nxy_obs = 0
 
    if (k < 0) {
       <<" $k neg offset ! \n"
-       break
+       break;
    }
 
    else {
@@ -384,7 +384,7 @@ Nxy_obs++
 
   }
 
-<<"there were $Nobs measurements \n"
+DBPR"there were $Nobs measurements \n"
 
 //////////////////////////////////////// PLOT GOAL LINE  ///////////////////////////////////////////
 //exitsi()
@@ -392,10 +392,10 @@ Nxy_obs++
 //    sc_endday = 75 * 365
 
 
-      sc_endday = (jtoday - bday) + 20
+      sc_endday = (jtoday - bday) + 10
 
-      gsday = julday("4/01/2013") -bday
-      gday =  julday("6/30/2013") -bday    // goal day 
+      gsday = julday("4/01/2017") -bday
+      gday =  julday("6/30/2017") -bday    // goal day 
 
 
 
@@ -603,7 +603,7 @@ if (DO_FOOD_LOG) {
 
     AVE_EXTV = vsmooth(EXTV,7)
 
-<<" Done calcs !\n"
+//<<" Done calcs !\n"
 <<"$Nxy_obs total exeburn %6.2f $tot_exeburn  cals  $(tot_exeburn/4000.0) lbs in $(tot_exetime/60.0) hrs\n"
 
 /{
@@ -747,6 +747,7 @@ proc  drawGrids( ws )
 proc drawScreens()
 {
 
+//<<" $_proc \n"
 
   if ( wScreen == 0) {
 
@@ -843,7 +844,7 @@ vptitle = "WED"
 
 /////////////////////////////  WOBS /////////////////////////////////////////////////////////////////////
 
-    sc_startday = sc_endday - 120
+    sc_startday = sc_endday - 40;   // last two months
 
     gwo=createGWOB(vp,@graph,@name,"WTLB",@value,0,@clipborder)
 
@@ -906,7 +907,7 @@ DBPR" Days $k \n"
  
    //  defaults are ?  @save,@redraw,@drawon,@pixmapon
 
-    sc_startday = sc_endday - 120
+    sc_startday = sc_endday - 60
 
     sWo(swo,@scales,sc_startday,110,sc_endday,bp_upper)
 
@@ -926,7 +927,7 @@ DBPR"SCALES %V$sc_startday $sc_endday $carb_upper\n"
 
 //////////////////////////// GLINES & SYMBOLS //////////////////////////////////////////
 DBPR"\n%(10,, ,\n)$DVEC \n"
-DBPR"\n%V$PWTVEC[0:20] \n"
+//DBPR"\n%V$PWTVEC[0:20] \n"
    pwt_gl = -1
 // pwt_gl  = cGl(@wid,gwo,@TXY,DVEC,PWTVEC,@color,"green",@ltype,"line")
 
@@ -958,7 +959,7 @@ DBPR"%V$pwt_gl \n"
 
  bp_gl   = cGl(swo,@TXY,DVEC,BPVEC,@color,RED_,@ltype,"symbols",@name,"benchpress")
 
-DBPR"%(10,, ,\n)$BPVEC\n"
+//DBPR"%(10,, ,\n)$BPVEC\n"
 
 // carb_gl = cGl(@wid,carbwo,@type_XY,DFVEC,CARBV,@color,"brown",@ltype,"symbols","diamond",@symhue,"brown")
 
@@ -984,7 +985,7 @@ if ( gw_gl == -1 || bp_gl == -1) {
 
   int wedgl[] = {wt_gl,gw_gl, ext_gl, calb_gl, se_gl, calc_gl}
 
-DBPR"%V$allgl \n"
+//DBPR"%V$allgl \n"
 
   sGl(allgl,@missing,0,@symbol,"diamond",5)
 
@@ -1177,7 +1178,7 @@ proc computeWL( wlsday, wleday)
 
   xhrs = (Nsel_exemins/60.0)
 
-<<"%V$Nxy_obs %6.2f $Nsel_exemins $(Nsel_exemins/60.0) $Nsel_exeburn $Nsel_lbs $xhrs\n"
+//<<"%V$Nxy_obs %6.2f $Nsel_exemins $(Nsel_exemins/60.0) $Nsel_exeburn $Nsel_lbs $xhrs\n"
 
   sWo(nobswo,@value,Nxy_obs,@update)
 
@@ -1279,6 +1280,10 @@ proc WTLB()
        }
 
 }
+//=========================================
+
+
+
 
 ////////////////////////KEYW CALLBACKS///////////////////////////////////////
 proc EXIT()
@@ -1322,21 +1327,22 @@ int button = 0
 
 
 
-   drawScreens()
-
-
+   //drawScreens()
 
    Keyw = ""
-   lcpx = 50.0
-   rcpx = 100.0
+ 
+   //drawScreens()
+
+   lcpx = sc_startday
+   rcpx = sc_endday
 
    sGl(lc_gl,@cursor,lcpx,0,lcpx,300)
 
    sGl(rc_gl,@cursor,rcpx,0,rcpx,300)
 
-   drawScreens()
 
 
+   ZIN();
 
    while (1) {
 
