@@ -1,3 +1,4 @@
+///
 ///  translation of out C cmpx fft routine
 ///
 
@@ -216,8 +217,9 @@ float Re[N];
 float Im[N];
  fscale = 1.0/N;
  pi = 4.0*atan(1.0);
- Sf= 10.0;
+
  f = 1.0;
+ Sf= N*f;
  dt = 1.0/Sf;
 
  sig  = fgen(N,0,2*pi*f*dt)
