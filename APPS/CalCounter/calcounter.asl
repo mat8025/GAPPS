@@ -32,11 +32,7 @@ version = "1.3";
 
 <<"$_clarg[0] $version \n"
 
-
-#define PGREEN '\033[1;32m'
-#define PRED '\033[1;31m'
-#define PBLACK '\033[1;39m'
-#define POFF  '\033[0m'
+adjust_day = 0;
 
 //#define DBPR <<
 #define DBPR
@@ -52,7 +48,6 @@ include "parse_foodtable" ;
 
 include "checkFood";
 
-// <<"$(PBLACK) yum \n"
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -96,8 +91,14 @@ DBPR"%v$nlines\n"
  wa = _clarg[1]
 
  if (! (wa @= "")) {
+   if (scmp(wa,"dd_",3)) {
+     adjust_day = 1;
+     the_day = wa;
+   }
+   else {
   myfood = wa
-//<<" looking for $myfood \n"
+<<" checking cals/carbs for $myfood \n";
+  }
  }
 
  if (na > 1) {
@@ -119,19 +120,18 @@ DBPR"%v$nlines\n"
 <<"$myfood  $f_unit  $f_amt\n"
 
 
+ if (na > 1 && !adjust_day) {
 
  fnd= checkFood();
 
 <<"again? %V$fnd \n"
 
-
-
-
  if (!fnd) {
    <<"Sorry could not find a match for $myfood\n";
  }
 
-
+  exit()
+ }
 
 
 /////////////////////////////// UI /////////////////////////////////
@@ -139,16 +139,25 @@ include "loopquery"
 
 
 ///////// dd_log_file ////////////
+if (!adjust_day) {
  ds= date(2)
- ds=ssub(ds,"/","-",0)
+ ds=ssub(ds,"/","-",0);
 
- ok=fexist("dd_${ds}",0)
- if (ok >0) {
- B= ofile("dd_${ds}","r+")
+ the_day = "dd_${ds}";
+}
+
+<<"checking this day $the_day\n";
+
+ ok=fexist(the_day,0);
+
+if (ok >0) {
+<<"$('PRED_') found the day $('POFF_')\n"
+ B= ofile(the_day,"r+");
+ readDD(B);
  fseek(B,0,2);
  }
  else {
-  B= ofile("dd_${ds}","w")
+  B= ofile(the_day,"w")
   <<[B]"#Food             Amt Unit Cals Carbs Fat Protein Chol(mg) SatFat Wt\n" 
  }
 
@@ -160,12 +169,13 @@ do_loop = 1;
  if (do_loop ) {
  
     fnd =queryloop();
-
+<<" qloop exit $fnd\n"
   if (fnd) {
 
 // write to daily log
 // post the total
-
+<<" post the total save to today $the_day\n"
+!!"cp $the_day today"
     }
  }
 

@@ -1,6 +1,11 @@
 
-//#define DBPR  <<
-#define DBPR  ~!
+#define DBPR  <<
+//#define DBPR  ~!
+
+#define DBPROC  <<
+//#define DBPROC  ~!
+
+
 
 
  Graphic = CheckGwm()
@@ -13,7 +18,7 @@
 
  Pi = _PI
 
-<<"%V$Pi \n"
+//<<"%V$Pi \n"
 
  FFTSZ = 1024
 
@@ -28,8 +33,8 @@
 
 proc computeFFT()
 {
-
-  dt = 1.0/Sf
+DBPROC" $('PBLUE_') in $_proc $('POFF_')\n"
+  dt = 1.0/Sf;
 
   dft = 2*Pi*frq2*dt
 
@@ -45,9 +50,11 @@ proc computeFFT()
 
   jf = frq1
 
-  setgwob(frq1wo,@value,jf,@update)
-  setgwob(frq2wo,@value,frq2,@update)
-  setgwob(frq3wo,@value,frq3,@update)
+  sWo(frq1wo,@value,jf,@update)
+
+  sWo(frq2wo,@value,frq2,@update)
+
+  sWo(frq3wo,@value,frq3,@update)
 
   dft = 2*Pi*jf*dt
 
@@ -65,7 +72,7 @@ proc computeFFT()
 
   magsc = minmax(Real)
 
- <<"$magsc \n"
+ //<<"$magsc \n"
 
   sWo(rinwo,@lhbscales,0,magsc[0],FFTSZ,magsc[1])
   
@@ -80,13 +87,13 @@ proc computeFFT()
 
   magsc = minmax(Imag)
 
- <<"$magsc \n"
+// <<"$magsc \n"
 
   drawGline(imin_gl)
 
 //<<" $Imag[0:10] \n"
 
-//setgwob(allwo,@border,@clear,@clearpixmap)
+//sWo(allwo,@border,@clear,@clearpixmap)
 
  sWo(allwo,@border,@clearpixmap)
 
@@ -106,25 +113,27 @@ proc computeFFT()
  //Vdraw(rfout,Real,1,0.9)
 
   magsc = minmax(Real)
- <<"$magsc \n"
+ //<<"$magsc \n"
   sWo(rfout,@lhbscales,0,magsc[0],FFTSZ,magsc[1])
 
 
   drawGline(rfout_gl)
 
   magsc = minmax(Imag)
- <<"$magsc \n"
+ //<<"$magsc \n"
   sWo(imout,@lhbscales,0,magsc[0],FFTSZ,magsc[1])
-  drawGline(imout_gl)
+  //drawGline(imout_gl)
+
+  dGl(imout_gl)
 
  //Vdraw(imout,Imag,1,0.9)
 
  Mag = Sqrt (Real * Real + Imag * Imag)
 
  magsc = minmax(Mag)
-<<"Mag $magsc \n"
+//<<"Mag $magsc \n"
  sWo(magwo,@lhbscales,0,-100,FFTSZ,magsc[1]*2)
-<<"$Mag\n"
+//<<"$Mag\n"
  //Vdraw(magwo,Mag,1,0.9)
 
  drawGline(mag_gl)
@@ -139,7 +148,7 @@ proc computeFFT()
 
  drawGline(ph_gl)
 
- setgwob(allwo,@showpixmap)
+ sWo(allwo,@showpixmap)
 
 }
 
@@ -150,7 +159,7 @@ proc computeFFT()
 
  aw = cWi(@title,"FFT_DEMO",@resize,0.1,0.1,0.8,0.8,0)
 
-<<"%V$aw \n"
+//<<"%V$aw \n"
 
   setgw(aw,@hue,"blue",@bhue,"white",@drawon,@pixmapon)
 
@@ -164,26 +173,26 @@ proc computeFFT()
   magwo= cWo(aw,@GRAPH,@penhue,"blue")
   phwo= cWo(aw,@GRAPH,@penhue,"green")
 
- <<" $rin $phwo \n"
+//<<" $rin $phwo \n"
  int allwo[] = {rinwo,iminwo,rfout,imout,magwo,phwo}
 
 
-<<"%V$rinwo $rfout $iminwo $imout\n"
+//<<"%V$rinwo $rfout $iminwo $imout\n"
 
   wo_vtile(allwo,0.1,0.1,0.8,0.9, 0.01)
 
 
 
-  setgwob(allwo,@save,@drawon,@pixmapon)
-  setgwob(allwo,@clip,0.1,0.1,0.9,0.9,@savepixmap)
-  setgwob(allwo,"setmod",1)
+  sWo(allwo,@save,@drawon,@pixmapon)
+  sWo(allwo,@clip,0.1,0.1,0.9,0.9,@savepixmap)
+  sWo(allwo,"setmod",1)
 
 
 // name value boxes
 
      bx = 0.02
      bX = 0.08
-     by = 0.6
+     by = 0.5
      bY = 0.85
 
      sfwo= cWo(aw,@bv,@penhue,"red",@name,"SampleFrq",@value,"$Sf")
@@ -197,11 +206,12 @@ proc computeFFT()
 
      int frqwo[] = {sfwo, frq1wo, frq2wo, frq3wo }
      int nfrqwo
-     setGwob(frqwo,@style,"SVB",@func,"inputValue")
-     wo_vtile(frqwo,bx,by,bX,bY, 0.01)
+
+     sWo(frqwo,@style,"SVB",@func,"inputValue")
+     wo_vtile(frqwo,bx,by,bX,bY, 0.03)
      nfrqwo = Csz(frqwo)
      int ifrqwo = 0  // index
-<<"%V$nfrqwo $(Caz(nfrqwo))\n" 
+//<<"%V$nfrqwo $(Caz(nfrqwo))\n" 
 
      bx = 0.92
      bX = 0.99
@@ -210,21 +220,21 @@ proc computeFFT()
 
  smwo=cWo(aw,"BS",@name,"SmoothWin",@color,"yellow",@resize,bx,by,bX,bY)
 
- setGWOB(smwo,@CSV,"Rectangular,Hamming,Hanning,Blackman,Kasier")
+ sWo(smwo,@CSV,"Rectangular,Hamming,Hanning,Blackman,Kasier")
 
- setgwob(smwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@STYLE,"SVB", @redraw)
- setgwob(smwo,@fhue,"orange",@clipbhue,"steelblue")
-
-
-//     setGwob(frqwo,@style,"SVO",@redraw)  // FIX not clearing
+ sWo(smwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@STYLE,"SVB", @redraw)
+ sWo(smwo,@fhue,"orange",@clipbhue,"steelblue")
 
 
+//     sWo(frqwo,@style,"SVO",@redraw)  // FIX not clearing
 
 
 
-//  setgwob(rin,"save")
-//  setgwob(imout,"save")
-//  setgwob(rfout,"save")
+
+
+//  sWo(rin,"save")
+//  sWo(imout,"save")
+//  sWo(rfout,"save")
 
 
 
@@ -291,10 +301,10 @@ proc computeFFT()
 
   Real3 = Sin(pip)
 
-  setgwob(frq2wo,@update)
-  setgwob(frq3wo,@update)
+  sWo(frq2wo,@update)
+  sWo(frq3wo,@update)
 
-  setgwob(frqwo,@redraw)
+  sWo(frqwo,@redraw)
 
 
 
@@ -315,6 +325,9 @@ proc SampleFrq()
 
 proc Frq1()
 {
+" $('PBLUE_') in $_proc $('POFF_')\n"
+
+
     frq1 = getWoValue(Woid)
 
 <<"%V$frq1 \n"
@@ -337,6 +350,7 @@ proc Frq3()
 
 proc SmoothWin()
 {
+DBPROC" in $_proc\n"
   Smfunc = getWoValue(smwo)
   computeFFT()
 }
@@ -344,7 +358,10 @@ proc SmoothWin()
 //////////////////////////////////////////////////////////////////////////////
 
 proc processKeys()
+
 {
+DBPROC" in $_proc\n"
+
 float val
 
        switch (keyc) {
@@ -412,8 +429,13 @@ float val
 
 // set the values from the Wobs
       frq1 = getWoValue(frq1wo)
+
+<<"%V$frq1\n"
+
       frq2 = getWoValue(frq2wo)
+
       frq3 = getWoValue(frq3wo)
+
       Sf = getWoValue(sfwo)
 
       computeFFT()
@@ -421,7 +443,7 @@ float val
 //---------------------------------------------------------------------
 proc checkEvents()
 {
-
+DBPROC" in $_proc\n"
    E->getEventState(evs)
 
    Woname = E->getEventWoName()    
@@ -436,7 +458,7 @@ proc checkEvents()
 
 <<"%V$Woname $Evtype \n"
 
-//   setgwob(two,@clear,@texthue,"black",@textr,"%V$Woid\n$Woname\n $button\n $keyc\n $keyw\n$Woval",-0.9,0.3)
+//   sWo(two,@clear,@texthue,"black",@textr,"%V$Woid\n$Woname\n $button\n $keyc\n $keyw\n$Woval",-0.9,0.3)
 
 /{
    if (Woid == qwo) {
@@ -482,10 +504,13 @@ keyw = ""
 
        if (Evtype @= "PRESS") {
         if (!(Woname @= "")) {
-        DBPR"calling function via $Woname !\n"
+            DBPR"calling function via $Woname !\n"
             $Woname()
         }
       }
+
+
+      computeFFT();
 
   }
 

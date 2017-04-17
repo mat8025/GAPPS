@@ -1,6 +1,7 @@
 ///
 //////////////////////////////////////
 <<"including checkFood\n"
+
 int txtwo = 0
 the_carbs = 0
 the_cals = 0
@@ -15,12 +16,17 @@ int Wfi = 0;
 
 proc checkFood()
 {
+int best_i = -1;
+int main_food_fit = -1;
+int qual1_fit = -1;
+int qual2_fit = -1;
+
 int found = 0;
 the_amt = 1.0;
 str the_unit
 svar food_d;
 int nfd = 0;
-
+str the_food;
 <<" $_proc looking for $f_amt $f_unit of $myfood \n"
 
   the_unit = "1";
@@ -31,7 +37,7 @@ int nfd = 0;
 
   fsz = Caz(food_d)
 
-  //<<"%V$fsz\n"
+//<<"%V$fsz\n"
 
   nfd = fsz;
 
@@ -43,14 +49,17 @@ int nfd = 0;
 
  do_first_word = 0
 
- qual1 = eatWhiteEnds(food_d[1])
- qual2 = eatWhiteEnds(food_d[2])
+ qual1 = eatWhiteEnds(food_d[1]);
+ qual2 = eatWhiteEnds(food_d[2]);
+
  q1len = slen(qual1);
  q2len = slen(qual2);
 
- //<<"Qualifiers %V <$qual1> $q1len <$qual2> $q2len\n"
+ the_food = food_d[0];
 
-looked_twice =0
+<<"$the_food Qualifiers %V <$qual1> $q1len <$qual2> $q2len\n"
+
+looked_twice =0;
 
   while (1) {
 
@@ -63,53 +72,60 @@ looked_twice =0
 
 //<<"$i $food_d[0]\n"
 
-      ynfood = Fd[i]->checkPrimary(food_d[0], do_first_word)
+      //ynfood = Fd[i]->checkPrimary(food_d[0], do_first_word)
+      ynfood = Fd[i]->checkPrimary(the_food, do_first_word)
 
 // got to check other qualifiers
 
 
      if (ynfood) {
 
-//<<" FOUND the food ! $food_d[0] %V$nfd\n" 
+//<<" FOUND the food ! $the_food  %V$nfd @ $i\n" 
 
         ynqual = 1;
 
-     //   Fd[i]->print()
+        Fd[i]->print()
 
-         if (nfd > 1) {
+//ans= i_read(" found - proceed with qualifiers:")
+
+
+        if (nfd > 1) {
 
          // qual = food_d[1]
 
-        //<<"$nfd now  checking qualifier1 $qual1\n"
+//<<"$nfd now  checking qualifier1 $qual1\n"
 
            //Fd[i]->print();
 
 
            ynqual = Fd[i]->checkQualifier(qual1);
 
-//           <<"Match %V$ynqual \n";
-
+         //<<"Match %V$ynqual \n";
+             main_food_fit = 1;
              if (ynqual) {
-//<<" $ynqual Qualifier1 FOUND $food_d[0] $food_d[1] $food_d[2]\n";
-		 // Fd[i]->print()
+<<" $ynqual FOUND_Qualifier1  $the_food $food_d[1] $food_d[2]\n";
+		  Fd[i]->print()
                   qual1_mat = 1;    
-                  //ans= i_read(" found_it")
+		  qual1_fit = i;
+               //ans= i_read(" found Qual1 @ $best_i");
              }
 
 
 //<<"%V$nfd $(typeof(nfd))\n"
-            if ((nfd > 2) && (q2len > 0)) {
 
-                  //<<"now  checking qualifier2 $qual2\n";
+             if ((nfd > 2) && (q2len > 0)) {
+
+                  //<<"now  checking qualifier2 $qual2 @ $i\n";
          
                   ynqual = Fd[i]->checkQualifier(qual2);
 
                  if (ynqual) {
-//<<"Qualifier2 FOUND $food_d[0] $food_d[1] $food_d[2]\n";
+<<"FOUND_Qualifier2  $food_d[0] $food_d[1] $food_d[2]\n";
                   //<<"\nFound the food item !!\n"
-                  //Fd[i]->print()
+                  Fd[i]->print()
                   qual2_mat = 1;
-                  //ans= i_read(" found_it") 
+		  qual2_fit = i;
+                  //ans= i_read(" found_it with two qualifiers @ $best_i");
                 }
 		
              }
@@ -123,7 +139,7 @@ looked_twice =0
         the_amt = Fd[i]->getamt()
         the_amt = Fd[i]->amt;
 
-//<<"$i setting the_amt to $the_amt \n"
+<<"$i setting the_amt to $the_amt \n"
 
         the_unit = Fd[i]->getunit()
 
@@ -179,13 +195,13 @@ looked_twice =0
 //         Fd[i]->print()
            Wans = Fd[i]->query(f_amt);
 	   Wfi = i;
-           <<"$(PRED) $Wans $(POFF)\n"
+           <<"$('PRED_') $Wans $('POFF_')\n"
 
 /{
-<<"$(PRED) $myfood \n $Fd[i]->descr %4.2f $the_amt "
+<<"$('PRED_') $myfood \n $Fd[i]->descr %4.2f $the_amt "
 <<"$the_unit %4.2f cals $Fd[i]->cals carbs  $Fd[i]->carbs "
 <<"fat %4.2f $Fd[i]->fat chol $Fd[i]->chol "
-<<"prot %4.2f $Fd[i]->prot satfat $Fd[i]->satfat $(POFF)\n"
+<<"prot %4.2f $Fd[i]->prot satfat $Fd[i]->satfat $('POFF_')\n"
 /}
 
            found = 1;
@@ -194,8 +210,8 @@ looked_twice =0
       }
      }
 
-    if (qual1_mat) {
-         // break
+    if (qual2_mat) {
+          break;
     }
    }
 
@@ -203,15 +219,32 @@ looked_twice =0
          break;
     } 
 
-   looked_twice =1
+   looked_twice =1;
    do_first_word = 0
 
     if (qual1_mat) {
           break;
     }
+    
  }
-// <<"%V$found\n"
-       return found;
+//=================================================
+
+
+   if (main_food_fit >= 0) {
+     found = 1;
+     if (qual2_fit >= 0) {
+          best_i = qual2_fit;
+     }
+     else {
+       if (qual1_fit >= 0) {
+            best_i = qual1_fit;
+       }
+     }
+<<"FOOD found %V$found  $best_i\n"
+   }
+
+
+return found;
 }
 ////////////////////////////////////////////////
 

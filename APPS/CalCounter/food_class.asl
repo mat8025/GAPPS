@@ -59,6 +59,7 @@ class Food {
 //<<"$_proc \n"
 //
      ok = 0;
+     
      fd_len = slen(edsc)
 
      descr_w = split(descr)
@@ -119,20 +120,22 @@ DBPR">>> $descr $descr_w[0] $edsc $rind $fw \n"
      // want word initial search so white-space then word
      // " PEAR" searches for pear won't get spear
 
-//<<"$_proc CQ $edsc\n"
+<<"$_proc CQ <$edsc>   <$descr>\n"
 
      fd_len = slen(edsc);
 
      ok = 0;
 
 //<<"%V$descr \n"
+//<<" [0]  $descr_w[0] [1] $descr_w[1] [2] $descr_w[2] is $edsc there?\n"
 
 
-     //descr_w = split(descr);
+     descr_w = split(descr);
      //descr_w = descr->Split();
 
-//<<" [0] $descr_w[0] [1] $descr_w[1] [2] $descr_w[2] $edsc \n"
-//iread()
+<<" [0]  $descr_w[0] [1] $descr_w[1] [2] $descr_w[2] is $edsc there?\n"
+
+//ans=iread("qualifier test:")
 
      if (!(edsc @= "")) {
 
@@ -145,11 +148,13 @@ DBPR">>> $descr $descr_w[0] $edsc $rind $fw \n"
 
 //<<"%V$f_qual $edsc $rind1\n"
 
-     if (rind1 != -1) {
+    // if (rind1 != -1) {
+     if (rind1 >= 0) {
 //<<" first Qualifier? $f_qual $descrs_w[1]  $edsc $rind1\n"
-//<<"first Qualifier? found $f_qual $descr_w[1]  $edsc $rind1\n"
-
-  }
+    <<"first Qualifier? found $f_qual $descr_w[1]  $edsc $rind1\n"
+    //ans=iread("fqual found")
+     ok = 1;
+    }
 
      rind2 = sstr(s_qual,edsc, 1)
 
@@ -157,8 +162,9 @@ DBPR">>> $descr $descr_w[0] $edsc $rind $fw \n"
 
     if (rind2 != -1) {
 //<<" second Qualifier? $s_qual $descr_w[2]  $edsc $rind2 \n"
-//<<"second qualifier found $s_qual $edsc $rind2\n"
-//iread()
+<<"second qualifier found $s_qual $edsc $rind2\n";
+//ans=iread("squal found");
+     ok = 1;
     }
 
 //<<">>> $descr $descr_w[0] $edsc $rind  \n"
@@ -206,7 +212,7 @@ DBPR">>> $descr $descr_w[0] $edsc $rind $fw \n"
 
     if (rind != -1) {
         if (scmp(descr_w[1],edsc,0,0)) {
-//<<">>> qualifier perfect fit $descr $descr_w[1] $edsc $rind $fw \n"
+<<">>> qualifier perfect fit $descr $descr_w[1] $edsc $rind $fw \n"
            ok = 2; // perfect fitappl
         }
         else 
@@ -217,7 +223,7 @@ DBPR">>> $descr $descr_w[0] $edsc $rind $fw \n"
 
 //<<"%V$ok\n"
     if (ok >= 1) {
-//   <<" <| $edsc |> is within  $descr ?? $ok $rind\n"
+   <<" <| $edsc |> is within  $descr ?? $ok $rind\n"
     }
     
       return ok;
