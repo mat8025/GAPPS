@@ -75,7 +75,9 @@ BREAD STUFFING FROM MX DRYTYPE      , 1, CUP, 500, 50, 31, 9, 0, 6.1 , 140
 BREAD WHOLE-WHEAT                   , 1, SLICE, 70, 13, 1, 3, 0, 0.4 , 28
 BREAD WHITE                         , 1, SLICE, 65, 12, 1, 2, 0, 0.3 , 25
 BREAD FRENCH                        , 1, SLICE, 100, 18, 1, 3, 0, 0.3 , 35
+BREAD ITALIAN                       , 1, SLICE, 85, 17, 0, 3, 0, 0 , 30
 BREAD PITA                          , 1, PITA, 165, 33, 1, 6, 0, 0.1 , 60
+RAISIN BREAD                        , 1, SLICE, 65, 13, 1, 2, 0, 0.2 , 25
 BREAD LEMON POPPYSEED               , 1, SLICE, 160, 23, 2.3, 3.6, 61, 2.3, 25
 BREADCRUMBS  DRY  GRATED            , 1, CUP, 390, 73, 5, 13, 5, 1.5 , 100
 BROCCOLI  RAW                       , 1, PIECE, 40, 8, 1, 4, 0, 0.1 , 151
@@ -349,7 +351,6 @@ ICE CREAM  VANLLA  REGULR           , 3, FLOZ, 100, 12, 5, 2, 22, 3.4 , 50
 ICE CREAM  VANLLA  RICH             , 1, CUP, 350, 32, 24, 4, 88, 14.7 , 148
 IMITATION CREAMERS  LIQUID FRZ      , 1, TBSP, 20, 2, 1, 0, 0, 1.4 , 15
 IMITATION CREAMERS  POWDERED        , 1, TSP, 10, 1, 1, 0, 0, 0.7 , 2
-ITALIAN BREAD                       , 1, SLICE, 85, 17, 0, 3, 0, 0 , 30
 ITALIAN SALAD DRESSING LOCALOR      , 1, TBSP, 5, 2, 0, 0, 0, 0 , 15
 ITALIAN SALAD DRESSING REGULAR      , 1, TBSP, 80, 1, 9, 0, 0, 1.3 , 15
 JAMS AND PRESERVES                  , 1, PKT, 40, 10, 0, 0, 0, 0 , 14
@@ -631,8 +632,6 @@ QUICHE LORRAINE                     , 1, SLICE, 600, 29, 48, 13, 285, 23.2 , 176
 RADISHES  RAW                       , 4, RADISH, 5, 1, 0, 0, 0, 0 , 18
 RAISIN BRAN  KELLOGG'S              , 1, OZ, 90, 21, 1, 3, 0, 0.1 , 28.35
 RAISIN BRAN  POST                   , 1, OZ, 85, 21, 1, 3, 0, 0.1 , 28.35
-RAISIN BREAD                        , 1, SLICE, 65, 13, 1, 2, 0, 0.2 , 25
-RAISIN BREAD  TOASTED               , 1, SLICE, 65, 13, 1, 2, 0, 0.2 , 21
 RAISINS                             , 1, CUP, 435, 115, 1, 5, 0, 0.2 , 145
 RAISINS                             , 1, PACKET, 40, 11, 0, 0, 0, 0 , 14
 RASPBERRIES  FROZEN  SWEETENED      , 1, CUP, 255, 65, 0, 2, 0, 0 , 250

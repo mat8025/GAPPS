@@ -25,10 +25,10 @@
 //
 
 
-setdebug(1) ;
+setdebug(0) ;
 
 
-version = "1.3";
+version = "1.4";
 
 <<"$_clarg[0] $version \n"
 
@@ -154,12 +154,12 @@ if (ok >0) {
 <<"$('PRED_') found the day $('POFF_')\n"
  B= ofile(the_day,"r+");
  readDD(B);
- fseek(B,0,2);
+ cf(B);
+ //fseek(B,0,2);
  }
- else {
-  B= ofile(the_day,"w")
-  <<[B]"#Food             Amt Unit Cals Carbs Fat Protein Chol(mg) SatFat Wt\n" 
- }
+
+
+
 
 
 

@@ -58,6 +58,32 @@ int k = 0;
 <<"%V $k $Rn\n"
 }
 //==================================
+proc writeDD()
+{
+  B= ofile(the_day,"w")
+  <<[B]"#Food                  Amt Unit Cals Carbs Fat Protein Chol(mg) SatFat Wt\n"
+  
+ for (ir =0; ir < Rn; ir++) {
+  if (!scmp(R[ir][0],"#",1)) {
+  <<[B]"$R[ir][0], $R[ir][1], $R[ir][2], $R[ir][3], $R[ir][4],  $R[ir][5], $R[ir][6], $R[ir][7], $R[ir][8], $R[ir][9],\n";
+  //<<[B]"$R[ir]\n";
+  }
+ }
+  computeTotals();
+ <<[B]"#totals %V%4.1f$Cal_tot $Carb_tot\n"
+  cf(B)
+}
+//==================================
+proc computeTotals()
+{
+     Cal_tot = 0;
+     Carb_tot = 0;     
+   for (ir =0; ir < Rn; ir++) { 
+      Cal_tot += atof(R[ir][3]);
+      Carb_tot += atof(R[ir][4]);      
+     }
+}
+//==================================
 
 proc queryloop()
 {
@@ -77,14 +103,8 @@ while (1) {
   if (scmp(ans,"quit",1)) {
   
    if (ret) {
-     Cal_tot = 0;
-     Carb_tot = 0;     
-   for (ir =0; ir < Rn; ir++) { 
-      Cal_tot += atof(R[ir][3]);
-      Carb_tot += atof(R[ir][4]);      
-     }
-
-   <<[B]"#totals %V%4.1f$Cal_tot $Carb_tot\n"
+     writeDD();  // update?
+  
    }
 
    break;
@@ -188,7 +208,7 @@ if (fnd) {
 
    ans = iread(" [a]ccept,[r]eject , [m]ultiply ?\n");
    if (ans @= "a") {
-<<[B]"$Wans \n"
+//<<[B]"$Wans \n"
      R[Rn] = Split(Wans,",");
      Rn++;
      ret = 1;
@@ -205,7 +225,7 @@ if (fnd) {
    <<"$Wans\n"
      ans = iread(" [a]ccept,[r]eject\n");
      if (ans @= "a") {
-     <<[B]"$Wans \n"
+    // <<[B]"$Wans \n"
      R[Rn] = Split(Wans,",");
      Rn++;
      ret = 1;
