@@ -29,8 +29,11 @@ or adjust previous date
 
 Features to add
 
-   after list food records  - allow delete of record - by prefixing # commnet char
+   after list food records  - allow delete of record - by prefixing # comment char
      this will remove entery from totalling and saving to file
+   print in grey in listing?
+
+
      
  
 

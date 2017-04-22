@@ -17,6 +17,27 @@ record R[10];
 
 <<"$R[0][3] \n"
 
+
+<<"all? $R \n"
+
+<<"all? $R[::] \n"
+
+<<"1:3 $R[1:3:] \n"
+
+<<"2 $R[2] \n"
+
+
+  NR = R;
+
+sz = Caz(NR);
+<<" $(typeof(NR)) $sz elements\n"
+
+<<"2 $NR[2] \n"
+<<"3 $NR[3] \n"
+
+
+exit()
+
 svar S
 
   S= R[0];

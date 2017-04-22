@@ -283,8 +283,8 @@ EGGS  RAW  YOLK                     , 1, YOLK, 60, 0, 5, 3, 213, 1.6 , 17
 ENCHILADA                           , 1, ENCHLD, 235, 24, 16, 20, 19, 7.7 , 230
 ENDIVE  CURLY  RAW                  , 1, CUP, 10, 2, 0, 1, 0, 0 , 50
 ENG MUFFIN  EGG  CHEESE  BACON      , 1, ITM, 360, 31, 18, 18, 213, 8 , 138
-ENGLISH MUFFINS  PLAIN              , 1, MUFFIN, 140, 27, 1, 5, 0, 0.3 , 57
-ENGLISH MUFFINS  PLAIN  TOASTD      , 1, MUFFIN, 140, 27, 1, 5, 0, 0.3 , 50
+MUFFINS ENGLISH  PLAIN              , 1, MUFFIN, 140, 27, 1, 5, 0, 0.3 , 57
+MUFFINS ENGLISH  PLAIN  TOASTD      , 1, MUFFIN, 140, 27, 1, 5, 0, 0.3 , 50
 EVAPORATED MILK  SKIM  CANNED       , 1, CUP, 200, 29, 1, 19, 9, 0.3 , 255
 EVAPORATED MILK  WHOLE  CANNED      , 1, CUP, 340, 25, 19, 17, 74, 11.6 , 252
 FETA CHEESE                         , 1, OZ, 75, 1, 6, 4, 25, 4.2 , 28.35
@@ -345,7 +345,7 @@ HERRING  PICKLED                    , 3, OZ, 190, 0, 13, 17, 85, 4.3 , 85
 HOLLANDAISE SCE  W/ H2O FRM MX      , 1, CUP, 240, 14, 20, 5, 52, 11.6 , 259
 HONEY                               , 1, TBSP, 65, 17, 0, 0, 0, 0 , 21
 HONEY                               , 1, CUP, 1030, 279, 0, 1, 0, 0 , 339
-HONEYDEW MELON  RAW                 , 0.1, MEL, 45, 12, 0, 1, 0, 0 , 129
+MELON HONEYDEW                      , 0.1, MEL, 45, 12, 0, 1, 0, 0 , 129
 ICE CREAM  VANLLA  REGULR           , 1, CUP, 270, 32, 14, 5, 59, 8.9 , 133
 ICE CREAM  VANLLA  REGULR           , 3, FLOZ, 100, 12, 5, 2, 22, 3.4 , 50
 ICE CREAM  VANLLA  RICH             , 1, CUP, 350, 32, 24, 4, 88, 14.7 , 148
@@ -669,7 +669,7 @@ SANDWICH SPREAD  PORK  BEEF         , 1, TBSP, 35, 2, 3, 1, 6, 0.9 , 15
 SANDWICH TYPE COOKIE                , 4, ITM, 195, 29, 8, 2, 0, 2 , 40
 SARDINES  ATLNTC CNNED OIL DRN      , 3, OZ, 175, 0, 9, 20, 85, 2.1 , 85
 SAUERKRAUT  CANNED                  , 1, CUP, 45, 10, 0, 2, 0, 0.1 , 236
-SCALLOPS  BREADED  FRZN REHEAT      , 6, SCALOP, 195, 10, 10, 15, 70, 2.5 , 90
+SCALLOPS  BREADED                   , 6, SCALOP, 195, 10, 10, 15, 70, 2.5 , 90
 SEAWEED  KELP  RAW                  , 1, OZ, 10, 3, 0, 0, 0, 0.1 , 28.35
 SEAWEED  SPIRULINA  DRIED           , 1, OZ, 80, 7, 2, 16, 0, 0.8 , 28.35
 SELF-RISING FLOUR  UNSIFTED         , 1, CUP, 440, 93, 1, 12, 0, 0.2 , 125
