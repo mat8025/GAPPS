@@ -1,7 +1,7 @@
 
 // parse_foodtable
 
-<<"inc parseFoodTable\n"
+//<<"inc parseFoodTable\n"
 
 proc parseFoodTable()
 {

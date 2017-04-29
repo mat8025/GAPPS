@@ -61,7 +61,6 @@ BEETS  COOKED  DRAINED  DICED       , 1, CUP, 55, 11, 0, 2, 0, 0 , 170
 BEETS  COOKED  DRAINED  WHOLE       , 2, ITEM, 30, 7, 0, 1, 0, 0 , 100
 BLACK-EYED PEAS  DRY  COOKED        , 1, CUP, 190, 35, 1, 13, 0, 0.2 , 250
 BLACKBERRIES  RAW                   , 1, CUP, 75, 18, 1, 1, 0, 0.2 , 144
-BLUE CHEESE                         , 1, OZ, 100, 1, 8, 6, 21, 5.3 , 28.35
 BLUE CHEESE SALAD DRESSING          , 1, TBSP, 75, 1, 8, 1, 3, 1.5 , 15
 BLUEBERRIES  FROZEN  SWEETENED      , 1, CUP, 185, 50, 0, 1, 0, 0 , 230
 BLUEBERRIES  RAW                    , 1, CUP, 80, 20, 1, 1, 0, 0 , 145
@@ -82,7 +81,7 @@ BREAD LEMON POPPYSEED               , 1, SLICE, 160, 23, 2.3, 3.6, 61, 2.3, 25
 BREADCRUMBS  DRY  GRATED            , 1, CUP, 390, 73, 5, 13, 5, 1.5 , 100
 BROCCOLI  RAW                       , 1, PIECE, 40, 8, 1, 4, 0, 0.1 , 151
 BROCCOLI  RAW  COOKED  DRAINED      , 1, CUP, 45, 9, 0, 5, 0, 0.1 , 155
-PORK  SAUSAGE                       , 1, LINK, 65, 1, 5, 17, 4.5, 1.7 , 13
+SAUSAGE PORK                        , 1, LINK, 65, 1, 5, 17, 4.5, 1.7 , 13
 BROWN GRAVY FROM DRY MIX            , 1, CUP, 80, 14, 2, 3, 2, 0.9 , 261
 BROWNIES    NUTS FRSTNG             , 1, PIECE, 100, 16, 4, 1, 14, 1.6 , 25
 BRUSSELS SPROUTS  RAW  COOKED       , 1, CUP, 60, 13, 1, 4, 0, 0.2 , 155
@@ -103,7 +102,6 @@ CABBAGE  COMMON  RAW                , 1, CUP, 15, 4, 0, 1, 0, 0 , 70
 CABBAGE  RED  RAW                   , 1, CUP, 20, 4, 0, 1, 0, 0 , 70
 CABBAGE  SAVOY  RAW                 , 1, CUP, 20, 4, 0, 1, 0, 0 , 70
 CAKE OR PASTRY FLOUR  SIFTED        , 1, CUP, 350, 76, 1, 7, 0, 0.1 , 96
-CAMEMBERT CHEESE                    , 1, PIECE, 115, 0, 9, 8, 27, 5.8 , 38
 CANTALOUP  RAW                      , 0.5, MELN, 95, 22, 1, 2, 0, 0.1 , 267
 CARAMELS  PLAIN OR CHOCOLATE        , 1, OZ, 115, 22, 3, 1, 1, 2.2 , 28.35
 CAROB FLOUR                         , 1, CUP, 255, 126, 0, 6, 0, 0 , 140
@@ -149,11 +147,21 @@ CEREAL SUPER SUGAR CRISP             , 1, OZ, 105, 26, 0, 2, 0, 0 , 28.35
 CEREAL TOTAL                         , 1, OZ, 100, 22, 1, 3, 0, 0.1 , 28.35
 CEREAL TRIX                          , 1, OZ, 110, 25, 0, 2, 0, 0.2 , 28.35
 CEREAL WHEATIES                      , 1, OZ, 100, 23, 0, 3, 0, 0.1 , 28.35
-CHEDDAR CHEESE                      , 1, SLICE, 80, 0, 7, 5, 25, 4.0 , 21
-CHEDDAR CHEESE                      , 1, OZ, 115, 0, 9, 7, 30, 6 , 28.35
-CHEDDAR CHEESE  SHREDDED            , 1, CUP, 455, 1, 37, 28, 119, 23.8 , 113
-CHEESE CRACKERS  PLAIN              , 10, ITEM, 50, 6, 3, 1, 6, 0.9 , 10
-CHEESE CRACKERS  SANDWCH PEANT      , 1, ITEM, 40, 5, 2, 1, 1, 0.4 , 8
+CHEESE BLUE                          , 1, OZ, 100, 1, 8, 6, 21, 5.3 , 28.35
+CHEESE CAMEMBERT                     , 1, PIECE, 115, 0, 9, 8, 27, 5.8 , 38
+CHEESE CHEDDAR                       , 1, OZ, 115, 0, 9, 7, 30, 6 , 28.35
+CHEESE CHEDDAR   SHREDDED            , 1, CUP, 455, 1, 37, 28, 119, 23.8 , 113
+CHEESE COTTAGE  CREAM                , 1, CUP, 235, 6, 10, 28, 34, 6.4 , 225
+CHEESE CREAM                         , 1, OZ, 100, 1, 10, 2, 31, 6.2 , 28.35
+CHEESE FETA                          , 1, OZ, 75, 1, 6, 4, 25, 4.2 , 28.35
+CHEESE MOZZARELLA   WHOLE MILK       , 1, OZ, 80, 1, 6, 6, 22, 3.7 , 28.35
+CHEESE MUENSTER                      , 1, OZ, 105, 0, 9, 7, 27, 5.4 , 28.35
+CHEESE PARMESAN   GRATED             , 1, OZ, 130, 1, 9, 12, 22, 5.4 , 28.35
+CHEESE PROVOLONE                     , 1, OZ, 100, 1, 8, 7, 20, 4.8 , 28.35
+CHEESE  SWISS                       , 1, OZ, 95, 1, 7, 7, 24, 4.5 , 28.35
+CHEESE AMERICAN                     , 1, OZ, 105, 0, 9, 6, 27, 5.6 , 28.35
+CHEESE FOOD AMR                     , 1, OZ, 95, 2, 7, 6, 18, 4.4 , 28.35
+CHEESE SPREAD AMERICAN              , 1, OZ, 80, 2, 6, 5, 16, 3.8 , 28.35
 CHEESE SAUCE W/ MILK  FRM MIX       , 1, CUP, 305, 23, 17, 16, 53, 9.3 , 279
 CHEESEBURGER  4OZ PATTY             , 1, ITEM, 525, 40, 31, 30, 104, 15.1 , 194
 CHEESEBURGER  REGULAR               , 1, ITEM, 300, 28, 15, 15, 44, 7.3 , 112
@@ -237,7 +245,6 @@ CORN CNND WHL KRNL WHTE NO SAL      , 1, CUP, 165, 41, 1, 5, 0, 0.2 , 210
 CORN CNND WHL KRNL WHTE W/SALT      , 1, CUP, 165, 41, 1, 5, 0, 0.2 , 210
 CORN CNND WHL KRNL YLLW NO SAL      , 1, CUP, 165, 41, 1, 5, 0, 0.2 , 210
 CORN CNND WHL KRNL YLLW W/SALT      , 1, CUP, 165, 41, 1, 5, 0, 0.2 , 210
-COTTAGE CHEESE CREMD LRGE CURD      , 1, CUP, 235, 6, 10, 28, 34, 6.4 , 225
 COTTAGE CHEESE CREMD SMLL CURD      , 1, CUP, 215, 6, 9, 26, 31, 6 , 210
 COTTAGE CHEESE CREMD W/FRUIT        , 1, CUP, 280, 30, 8, 22, 25, 4.9 , 226
 COTTAGE CHEESE LOWFAT 2%            , 1, CUP, 205, 8, 4, 31, 19, 2.8 , 226
@@ -247,11 +254,16 @@ CR OF CHICKEN SOUP W/ MLK CNND      , 1, CUP, 190, 15, 11, 7, 27, 4.6 , 248
 CR OF MUSHROM SOUP W/ H2O CNND      , 1, CUP, 130, 9, 9, 2, 2, 2.4 , 244
 CR OF MUSHROM SOUP W/ MLK CNND      , 1, CUP, 205, 15, 14, 6, 20, 5.1 , 248
 CRABMEAT  CANNED                    , 1, CUP, 135, 1, 3, 23, 135, 0.5 , 135
+CRACKER CHEESE   PLAIN              , 10, ITM, 50, 6, 3, 1, 6, 0.9 , 10
+CRACKER CHEESE   PEANUT             , 1, ITM, 40, 5, 2, 1, 1, 0.4 , 8
+CRACKER GRAHAM   PLAIN              , 2, ITM, 60, 11, 1, 1, 0, 0.4 , 14
+CRACKER CREAM    JACOB              , 1, ITM, 34, 5, 1, 0.8, 0, 0.0 , 8
+CRACKER WHEAT  THIN                 , 4, ITM, 35, 5, 1, 1, 0, 0.5 , 8
+CRACKER WHOLE-WHEAT                 , 2, ITM, 35, 5, 2, 1, 0, 0.5 , 8
 CRACKED-WHEAT BREAD                 , 1, SLICE, 65, 12, 1, 2, 0, 0.2 , 25
 CRACKED-WHEAT BREAD  TOASTED        , 1, SLICE, 65, 12, 1, 2, 0, 0.2 , 21
 CRANBERRY JUICE COCKTAL W/VITC      , 1, CUP, 145, 38, 0, 0, 0, 0 , 253
 CRANBERRY SAUCE  CANNED SWTND       , 1, CUP, 420, 108, 0, 1, 0, 0 , 277
-CREAM CHEESE                        , 1, OZ, 100, 1, 10, 2, 31, 6.2 , 28.35
 CREAM OF WHEAT CKD MIX N EAT        , 1, PKT, 100, 21, 0, 3, 0, 0 , 142
 CRM WHEAT CKD  QUICK  NO SALT       , 1, CUP, 140, 29, 0, 4, 0, 0.1 , 244
 CRM WHEAT CKD QUICK  W/  SALT       , 1, CUP, 140, 29, 0, 4, 0, 0.1 , 244
@@ -287,7 +299,6 @@ MUFFINS ENGLISH  PLAIN              , 1, MUFFIN, 140, 27, 1, 5, 0, 0.3 , 57
 MUFFINS ENGLISH  PLAIN  TOASTD      , 1, MUFFIN, 140, 27, 1, 5, 0, 0.3 , 50
 EVAPORATED MILK  SKIM  CANNED       , 1, CUP, 200, 29, 1, 19, 9, 0.3 , 255
 EVAPORATED MILK  WHOLE  CANNED      , 1, CUP, 340, 25, 19, 17, 74, 11.6 , 252
-FETA CHEESE                         , 1, OZ, 75, 1, 6, 4, 25, 4.2 , 28.35
 FIG BARS                            , 4, COOKIE, 210, 42, 4, 2, 27, 1 , 56
 FIGS  DRIED                         , 10, FIGS, 475, 122, 2, 6, 0, 0.4 , 187
 FILBERTS  (HAZELNUTS) CHOPPED       , 1, OZ, 180, 4, 18, 4, 0, 1.3 , 28.35
@@ -313,7 +324,6 @@ GINGERBREAD CAKE                    , 1, PIECE, 175, 32, 4, 2, 1, 1.1 , 63
 GIN RUM VODKA WHISKY 80-PROOF       , 1.5, FLOZ, 95, 0, 0, 0, 0, 0 , 42
 GIN RUM VODKA WHISKY 86-PROOF       , 1.5, FLOZ, 105, 0, 0, 0, 0, 0 , 42
 GIN RUM VODKA WHISKY 90-PROOF       , 1.5, FLOZ, 110, 0, 0, 0, 0, 0 , 42
-GRAHAM CRACKER  PLAIN               , 2, CRACKR, 60, 11, 1, 1, 0, 0.4 , 14
 GRAPE DRINK  CANNED                 , 6, FLOZ, 100, 26, 0, 0, 0, 0 , 187
 GRAPE JUICE  CANNED                 , 1, CUP, 155, 38, 0, 1, 0, 0.1 , 253
 GRAPE SODA                          , 12, FLOZ, 180, 46, 0, 0, 0, 0 , 372
@@ -442,9 +452,7 @@ MIXED NUTS W/ PEANTS DRY UNSLT      , 1, OZ, 170, 7, 15, 5, 0, 2 , 28.35
 MIXED NUTS W/ PEANTS OIL SALTD      , 1, OZ, 175, 6, 16, 5, 0, 2.5 , 28.35
 MIXED NUTS W/ PEANTS OIL UNSLT      , 1, OZ, 175, 6, 16, 5, 0, 2.5 , 28.35
 MOLASSES  CANE  BLACKSTRAP          , 2, TBSP, 85, 22, 0, 0, 0, 0 , 40
-MOZZARELLA CHEESE  WHOLE MILK       , 1, OZ, 80, 1, 6, 6, 22, 3.7 , 28.35
 MOZZARELLA CHESE SKIM  LOMOIST      , 1, OZ, 80, 1, 5, 8, 15, 3.1 , 28.35
-MUENSTER CHEESE                     , 1, OZ, 105, 0, 9, 7, 27, 5.4 , 28.35
 MUSHROOM GRAVY  CANNED              , 1, CUP, 120, 13, 6, 3, 0, 1 , 238
 MUSHROOMS  CANNED  DRND W/SALT      , 1, CUP, 35, 8, 0, 3, 0, 0.1 , 156
 MUSHROOMS  COOKED  DRAINED          , 1, CUP, 40, 8, 1, 3, 0, 0.1 , 156
@@ -489,15 +497,9 @@ PANCAKES  BUCKWHEAT  FROM MIX       , 1, ITM, 55, 6, 2, 2, 20, 0.9 , 27
 PANCAKES  PLAIN                     , 1, ITM, 60, 8, 2, 2, 16, 0.5 , 27
 PAPAYAS  RAW                        , 1, CUP, 65, 17, 0, 1, 0, 0.1 , 140
 PAPRIKA                             , 1, TSP, 5, 1, 0, 0, 0, 0 , 2.1
-PARMESAN CHEESE  GRATED             , 1, OZ, 130, 1, 9, 12, 22, 5.4 , 28.35
-PARMESAN CHEESE  GRATED             , 1, TBSP, 25, 0, 2, 2, 4, 1 , 5
 PARSLEY  FREEZE-DRIED               , 1, TBSP, 0, 0, 0, 0, 0, 0 , 0.4
 PARSLEY  RAW                        , 10, SPRIG, 5, 1, 0, 0, 0, 0 , 10
 PARSNIPS  COOKED  DRAINED           , 1, CUP, 125, 30, 0, 2, 0, 0.1 , 156
-CHEESE  SWISS                       , 1, OZ, 95, 1, 7, 7, 24, 4.5 , 28.35
-CHEESE AMERICAN                     , 1, OZ, 105, 0, 9, 6, 27, 5.6 , 28.35
-CHEESE FOOD AMR                     , 1, OZ, 95, 2, 7, 6, 18, 4.4 , 28.35
-CHEESE SPREAD AMERICAN              , 1, OZ, 80, 2, 6, 5, 16, 3.8 , 28.35
 PEAS     DRY  COOKED                , 1, CUP, 225, 40, 1, 15, 0, 0.1 , 190
 PEACHES  CANNED  HEAVY SYRUP        , 1, CUP, 190, 51, 0, 1, 0, 0 , 256
 PEACHES  CANNED  JUICE PACK         , 1, CUP, 110, 29, 0, 2, 0, 0 , 248
@@ -610,7 +612,6 @@ POUND CAKE                          , 1, SLICE, 120, 15, 5, 2, 32, 1.2 , 30
 PRETZELS  STICK                     , 10, PRETZ, 10, 2, 0, 0, 0, 0 , 3
 PRETZELS  TWISTED  DUTCH            , 1, PRETZ, 65, 13, 1, 2, 0, 0.1 , 16
 PRETZELS  TWISTED  THIN             , 10, PRETZ, 240, 48, 2, 6, 0, 0.4 , 60
-PROVOLONE CHEESE                    , 1, OZ, 100, 1, 8, 7, 20, 4.8 , 28.35
 PRUNE JUICE  CANNED                 , 1, CUP, 180, 45, 0, 2, 0, 0 , 256
 PRUNES  DRIED                       , 5, LARGE, 115, 31, 0, 1, 0, 0 , 49
 PRUNES  DRIED  COOKED UNSWTNED      , 1, CUP, 225, 60, 0, 2, 0, 0 , 212
@@ -802,7 +803,6 @@ WATERMELON  RAW  DICED              , 1, CUP, 50, 11, 1, 1, 0, 0.1 , 160
 BREAD WHEAT                         , 1, SLICE, 65, 12, 1, 2, 0, 0.2 , 25
 WHEAT FLOUR  ALL-PURPOSE SIFTD      , 1, CUP, 420, 88, 1, 12, 0, 0.2 , 115
 WHEAT FLOUR  ALL-PURPOSE UNSIF      , 1, CUP, 455, 95, 1, 13, 0, 0.2 , 125
-WHEAT  THIN CRACKERS                , 4, ITM, 35, 5, 1, 1, 0, 0.5 , 8
 WHIPPED TOPPING  PRESSURIZED        , 1, CUP, 155, 7, 13, 2, 46, 8.3 , 60
 WHIPPED TOPPING  PRESSURIZED        , 1, TBSP, 10, 0, 1, 0, 2, 0.4 , 3
 CREAM           HEAVY               , 1, CUP, 820, 7, 88, 5, 326, 54.8 , 238
@@ -813,7 +813,6 @@ WHITE CAKE W/ WHT FRSTNG COMML      , 1, PIECE, 260, 42, 9, 3, 3, 2.1 , 71
 WHITE SAUCE W/ MILK FROM MIX        , 1, CUP, 240, 21, 13, 10, 34, 6.4 , 264
 WHITE SAUCE  MEDIUM  HOME RECP      , 1, CUP, 395, 24, 30, 10, 32, 9.1 , 250
 WHOLE-WHEAT FLOUR HRD WHT STIR      , 1, CUP, 400, 85, 2, 16, 0, 0.3 , 120
-WHOLE-WHEAT WAFERS  CRACKERS        , 2, ITM, 35, 5, 2, 1, 0, 0.5 , 8
 WINE  DESSERT                       , 3.5, FLOZ, 140, 8, 0, 0, 0, 0 , 103
 WINE  TABLE  RED                    , 3.5, FLOZ, 75, 3, 0, 0, 0, 0 , 102
 WINE  TABLE  WHITE                  , 3.5, FLOZ, 80, 3, 0, 0, 0, 0 , 102

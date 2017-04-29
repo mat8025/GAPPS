@@ -1,6 +1,6 @@
 ///
 //////////////////////////////////////
-<<"including checkFood\n"
+//<<"including checkFood\n"
 
 int txtwo = 0
 the_carbs = 0
@@ -27,7 +27,7 @@ str the_unit
 svar food_d;
 int nfd = 0;
 str the_food;
-<<" $_proc looking for $f_amt $f_unit of $myfood \n"
+//<<" $_proc looking for $f_amt $f_unit of $myfood \n"
 
   the_unit = "1";
 
@@ -255,4 +255,4 @@ proc listFoods(n)
     }
 }
 //=================================
-<<"Done inc checkFood\n"
+//<<"Done inc checkFood\n"

@@ -25,10 +25,10 @@
 //
 
 
-setdebug(0) ;
+setdebug(1) ;
 
 
-version = "1.4";
+version = "1.5";
 
 <<"$_clarg[0] $version \n"
 
@@ -117,7 +117,7 @@ DBPR"%v$nlines\n"
   }
 }
 
-<<"$myfood  $f_unit  $f_amt\n"
+//<<"$myfood  $f_unit  $f_amt\n"
 
 
  if (na > 1 && !adjust_day) {
@@ -146,21 +146,26 @@ if (!adjust_day) {
  the_day = "dd_${ds}";
 }
 
-<<"checking this day $the_day\n";
+
 
  ok=fexist(the_day,0);
 
+<<"checking this day $the_day summary exists? $ok\n";
+found_day = 0;
 if (ok >0) {
-<<"$('PRED_') found the day $('POFF_')\n"
+//<<"$('PRED_') found the day $('POFF_')\n"
  B= ofile(the_day,"r+");
  readDD(B);
  cf(B);
+ found_day =1;
  //fseek(B,0,2);
  }
 
 
 
-
+ if (found_day) {
+   showFitems();
+ }
 
 
 

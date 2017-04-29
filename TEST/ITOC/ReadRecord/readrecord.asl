@@ -1,35 +1,43 @@
 setdebug(1)
 
-A=ofr("rec.dat")
-
-R=ReadRecord(A,@type,FLOAT)
-
-<<"$R\n"
 
 
-<<"%(3,, ,\n)$R\n"
-cf(A)
-
-
-A=ofr("rec.dat")
-int vec[] = {0,2}
-
-R=ReadRecord(A,@type,FLOAT,@selcol,vec)
-
-<<"$R\n"
+// read an record (all ascii fileds) to a RECORD variable
 
 
 
-cf(A)
-<<"%(2,, ,\n)$R\n"
+//R=ReadRecord("record.txt",@del,',',@comment,"")
+R=ReadRecord("record.txt",@del,',',@comment,"",@pickstr,"@=",0,"must")
 
 
-R[::][1] = R[::][1]/127.0
+<<"$(typeof(R)) $(cab(R))\n"
 
-<<"%(2,, ,\n)$R\n"
 
-B=ofw("new.dat")
+<<"$R[0]\n"
+<<"$R[1]\n"
+<<"$R[2]\n"
 
-wdata(B,R)
 
-stop!
+<<"================\n"
+<<"$R[0:4]\n"
+
+
+
+bd = Cab(R)
+<<"sz $(Caz(R)) bounds %V$bd\n"
+<<"================\n"
+<<"%(1,=>, || ,<=\n)$R[::]\n"
+
+
+I = igen(20,0,1)
+
+<<"$I\n"
+
+int vec[]= {2,-1,3};
+
+S = sgen(INT_,20,vec,10)
+
+//pre = "==>"
+pre = 4;
+
+<<"%(2,==>, || ,<=\n)$S\n"
