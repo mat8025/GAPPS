@@ -1,9 +1,10 @@
 
 ///
-  After query acceptance  - relist the current enteries and
+  After query acceptance  - relist the current entries and
   calculate daily totals
 
-  should be able to delete a list entry
+  should be able to delete a list entry --- check this happens
+  -- need writeRecord option to discard record based str match in selected field e.g. # first field
 
 number when food descr cooking method   cals carbs  fat prot chol  satfat wt
 1 B

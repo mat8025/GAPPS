@@ -1,3 +1,5 @@
+///
+///
 /// Track activities for a day
 ///
 /// show summaries/stats for week/last month
@@ -41,7 +43,39 @@
   database files --- need to be  Wk_Yr === DONE
   
   Score
+  
    pts for each type and duration of activity -- extra pts for balance
 
-
+   Display opts
    Last week This Week
+   This Month?
+
+
+   info store as records
+   // 2 Week Block ?
+
+   rec 0, :  Hour, Mo, Tu, We, Th, Fr, Sa, Su, Mo, Tu, We, Th,  Fr, Sa, Su
+   rec 1, :  0:0 - - - -------------------------
+   rec 2, :  0:30 - - - -------------------------
+   rec 3, :  1:00 - - - -------------------------
+   ...
+   rec 12,   Ex, -------------------------------
+   rec 12,   Guitar, -------------------------------
+
+
+   /////////////////////
+   / or
+   rec 0 Week 17 ----------------------------------------
+   rec 1, :  Hour, Mo, Tu, We, Th, Fr, Sa, Su
+   rec 2, :  0:0 - - - -------------------------
+
+
+
+  flip axis Hour 0,0:30 ... 23:30
+            Mon
+            T
+	    W
+	    T
+	    F
+	    S
+	    Z

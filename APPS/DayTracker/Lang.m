@@ -5,3 +5,5 @@ item German M_VALUE Deutsch
 help learn German
 item French M_VALUE Francais
 help learn French
+item Russian M_VALUE Russian
+help learn Russian

@@ -39,6 +39,7 @@ A=ofw("Activity.m")
 <<[A],"help nothing to see here\n"
 cf(A)
 
+////////////////////////////////
 
 
 A=ofw("Lang.m")
@@ -49,7 +50,11 @@ A=ofw("Lang.m")
 <<[A],"help learn German\n"
 <<[A],"item French M_VALUE Francais\n"
 <<[A],"help learn French\n"
+<<[A],"item Russian M_VALUE Russian\n"
+<<[A],"help learn Russian\n"
 cf(A)
+
+/////////////////////////////
 
 A=ofw("Exer.m")
 <<[A],"title Exercise\n"
@@ -62,6 +67,8 @@ A=ofw("Exer.m")
 <<[A],"item Ski M_VALUE Ski\n"
 <<[A],"help downhill excitement\n"
 cf(A)
+
+/////////////////////////////
 
 A=ofw("Howlong.m")
 <<[A],"title HowLong\n"
@@ -83,7 +90,7 @@ A=ofw("Howlong.m")
 <<[A],"help  four hours\n"
 cf(A)
 
-
+//////////////////////////
 
 
 ////////////////////
@@ -104,8 +111,8 @@ activ = "idle"
         X=spawngwm()
      }
 
- rows = 50;
- cols = 8;
+ rows = 9;
+ cols = 52;
 
  // check find and read in sheet_wk_year - 
  // what week are we in?
@@ -122,18 +129,18 @@ activ = "idle"
 
 // make a window
 
-    aw = cWi(@title,"DailyTracker",@resize,0.1,0.02,0.98,0.99)
+    aw = cWi(@title,"DailyTracker",@resize,0.05,0.02,0.97,0.99)
 
     sWi(aw,@pixmapon,@drawoff,@save,@bhue,LILAC_)
 
-    sWi(aw,@clip,0.1,0.1,0.9,0.95)
+    sWi(aw,@clip,0.05,0.1,0.9,0.97)
 
 
- awo=cWo(aw,"SHEET",@name,"$sheet_name",@color,GREEN_,@resize,0.1,0.01,0.98,0.99)
+    awo=cWo(aw,"SHEET",@name,"$sheet_name",@color,GREEN_,@resize,0.1,0.01,0.98,0.99)
  // does value remain or reset by menu?
 
- sWo(awo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,RED_,@VALUE,"SSWO")
- sWo(awo,@bhue,CYAN_,@clipbhue,"skyblue")
+    sWo(awo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,RED_,@VALUE,"SSWO")
+    sWo(awo,@bhue,CYAN_,@clipbhue,"skyblue")
 
 
   tfz = fexist(sfname);
@@ -159,17 +166,18 @@ activ = "idle"
          <<"creating cells\n"
 
   sWo(awo,@setrowscols,rows,cols);
-  sWo(awo,@sheetrow,0,1,"Mo,Tu,We,Th,Fr,Sa,Su");
+  sWo(awo,@sheetcol,0,0,"D/H,Mon,Tue,Wed,Thu,Fri,Sat,Sun");
 
 // TBF continue line  not correct
 
-  sWo(awo,@sheetcol,0,0,"Hour,0,0:30,1,1:30,2,2:30,3,3:30,4,4:30,\
-5,5:30,6,6:30,\
-7,7:30,8:0,8:30,\
-9,9:30,10,10:30,11,11:30,12,12:30,\
-13,13:30,14,14:30,15,15:30,16,16:30,\
-17,17:30,18,18:30,19,19:30,20,20:30,\
-21,21:30,22,22:30,23,23:30, Score")
+//  sWo(awo,@sheetcol,0,0,"Hour,0,0:30,1,1:30,2,2:30,3,3:30,4,4:30,\
+  sWo(awo,@sheetrow,0,1,"0,:30,1,:30,2,:30,3,:30,4,:30,\
+5,:30,6,:30,\
+7,:30,08,:30,\
+09,:30,10,:30,11,:30,12,:30,\
+13,:30,14,:30,15,:30,16,:30,\
+17,:30,18,:30,19,:30,20,:30,\
+21,:30,22,:30,23,:30,Wt,H, Score")
 
 
 
@@ -222,7 +230,13 @@ int wcol = 0;
 
 str mans = "nos";
 
- sWo(awo,@selectrowscols,0,49,0,7);
+ //sWo(awo,@selectrowscols,0,8,0,51);
+//sWo(awo,@selectrowscols,0,8,16,51);
+
+sWo(awo,@selectrowscols,0,8,0,0);
+//sWo(awo,@selectrowscols,0,0,0,0);
+sWo(awo,@displaycols,15,51,1);
+
  
  sWo(awo,@redraw);
  
@@ -250,10 +264,11 @@ str mans = "nos";
 
     wrow = ev_row;
     wcol = ev_col;
+    
     last_hue = BLACK_;
     <<"%V $ev_rx $ev_ry $wrow $wcol\n"
     
-    if ( (wrow > 0) && (wrow <= 48) && (wcol > 0) && ( wcol <= 8)) {
+    if ( (wrow > 0) && (wrow <= 8) && (wcol > 0) && ( wcol <= 51)) {
     
        mans = popamenu("Activity.m")
        
@@ -271,7 +286,8 @@ str mans = "nos";
 	 }	 
 	 else if ((mans @= "Walk") ) {
              last_hue = ORANGE_
-	 }
+
+         }
 	 else if ((mans @= "Ski") ) {
              last_hue = RED_
 	 }	 
@@ -284,6 +300,9 @@ str mans = "nos";
         else if ((mans @= "Francais") ) {
             last_hue = YELLOW_;
 	 }
+        else if ((mans @= "Russian") ) {
+            last_hue = RED_;
+	 }	 
         else if ((mans @= "Flying") ) {
             last_hue = BLUE_;
 	 }
@@ -291,7 +310,7 @@ str mans = "nos";
             last_hue = PINK_;
 	 }
         else if ((mans @= "Espanol") ) {
-            last_hue = RED_;
+            last_hue = YELLOW_;
 	 }	 	 	 
 	 else {
 	   <<"work $mans \n"
@@ -308,9 +327,10 @@ str mans = "nos";
          if (! (mans @= "NULL_CHOICE")) {
          nans = popamenu("Howlong.m")
          n_extra = atoi(nans);
+	 // these are selected row and col as displaeyd
 	 for (i = 0; i < n_extra; i++) {
-	  sWo(awo,@cellhue,wrow+i,wcol,last_hue);
-          sWo(awo,@sheetcol,wrow+i,wcol,"$mans");
+	  sWo(awo,@cellhue,wrow,wcol+i,last_hue);
+          sWo(awo,@sheetcol,wrow,wcol+i,"$mans");
          }
 	    sWo(awo,@redraw);
 	}

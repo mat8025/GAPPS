@@ -51,7 +51,7 @@ proc readDD( ddfn)
 
    //<<"$Rn Rsz $(Caz(R))\n"
 
-   R[15][0] = "more";
+   R[15][0] = "#";
 
  //  <<"Rsz $(Caz(R))\n"
 //
@@ -103,16 +103,6 @@ proc writeDD()
 
 
 <<"%(1,>>, || ,<<\n)$R[::]\n"
-// replace this with writerecord
-// writeRecord(B,R)
-/{
- for (ir =0; ir < Rn; ir++) {
-  if (!scmp(R[ir][0],"#",1)) {
-  <<[B]"$R[ir][0], $R[ir][1], $R[ir][2], $R[ir][3], $R[ir][4],  $R[ir][5], $R[ir][6], $R[ir][7],$R[ir][8],$R[ir][9],\n";
-  //<<[B]"$R[ir]\n";
-  }
- }
- /}
 
 //  NR = R[0:Rn];
 //<<"$NR[0] $NR[::]\n"
@@ -120,7 +110,7 @@ proc writeDD()
 
 
 
-  writeRecord(B,R);
+  writeRecord(B,R,"#");
 
   computeTotals();
  <<[B]"# totals %4.1f$Cal_tot $Carb_tot $Fat_tot $Prt_tot $Chol_tot $SatF_tot\n"

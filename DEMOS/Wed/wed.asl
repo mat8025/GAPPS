@@ -998,6 +998,8 @@ if ( gw_gl == -1 || bp_gl == -1) {
   sGl(calc_gl,@symbol,"triangle",@symsize,1.2,@symhue,BLUE_)
   sGl(bp_gl,@symbol,"inverted_triangle",1.2,@missing,0)
 
+
+  quitwo=cWo(vp,@BN,@name,"QUIT",@color,"red")
   zinwo=cWo(vp,@BN,@name,"ZIN",@color,"hotpink")
   zoomwo=cWo(vp,@BN,@name,"ZOUT",@color,"cadetblue")
 
@@ -1009,7 +1011,7 @@ if ( gw_gl == -1 || bp_gl == -1) {
 
 
 
-  int fewos[] = {zinwo,zoomwo, yrdecwo, yrincwo, qrtdwo, qrtiwo }
+  int fewos[] = {quitwo, zinwo,zoomwo, yrdecwo, yrincwo, qrtdwo, qrtiwo }
 
   wo_htile( fewos, 0.03,0.01,0.43,0.08,0.05)
 
@@ -1022,8 +1024,6 @@ if ( gw_gl == -1 || bp_gl == -1) {
   xlbswo= cWo(vp,@BV,@name,"xLbs",@color,"violetred",@value,0)
   
   int xwos[] = { nobswo, xtwo, xbwo, xlbswo }
-
-
   
 
   wo_htile( xwos, 0.45,0.01,0.83,0.08,0.05)
@@ -1220,6 +1220,14 @@ proc YRI()
 }
 //--------------------------------------------------
 
+
+proc QUIT()
+{
+
+  exit();
+
+}
+//===================================
 
 proc ZIN()
 {
