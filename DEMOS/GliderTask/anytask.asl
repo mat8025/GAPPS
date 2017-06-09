@@ -2,7 +2,7 @@
 
 // Object Orientated version of anytask
 
-
+setdebug(0)
 
 Main_init = 1
 
@@ -57,21 +57,34 @@ CLASS turnpt
    {
 
      //<<"Set $wval \n"
-     //<<"%V$_cproc  %i$_cobj   %i$wval \n"
+     //<<"%V$_proc  $wval[0] $wval[1] $wval[2]\n"
 
-    sz = wval->Caz()
-      //<<"%V$sz \n"
-       //<<"$(typeof(wval))\n"
-    Place = wval[0]
-      //<<"%V$Place\n"
+       //  sz = wval->Caz() ; // TBF
+        sz = Caz(wval)
+	  //  <<"%V$sz \n"
+	  //<<"$(typeof(wval)) $(Caz(wval))\n"
+       
+	  Place = wval[0];
+       
+	  //<<"%V$Place\n"
 
 
-    Idnt =  wval[1]
-      //<<"%V$Idnt\n"
-    Lat =    wval[2]
-    Lon = wval[3]
-    Alt = wval[4]
-    rway = wval[5]
+       Idnt =  wval[1];
+     
+	// <<"%V$Idnt\n";
+
+     
+       Lat =    wval[2];
+       //<<"%V$Lat\n"
+    //      Lat =    Wval[2]; <<"%V$Lat\n"
+    Lon = wval[3];
+    //<<"%V$Lon\n"
+    //    Lon = Wval[3]; <<"%V$Lon\n"    
+    
+    Alt = wval[4];
+
+     rway = wval[5];
+
     Radio = atof(wval[6])
 
       //<<"%V$Lat $Lon \n"
@@ -159,7 +172,7 @@ CLASS turnpt
    }
 
 }
-
+//===================================================
 
 
 proc ComputeTC(j, k)
@@ -242,17 +255,16 @@ proc ComputeTPD(j, k)
 //<<" done class def \n"
 
 
-turnpt  Wtp[10]
+turnpt  Wtp[10];
+
+Svar CLTPT;
+
+float Leg[10+];
+float TC[10+];
+float Dur[10+];
 
 
-  Svar CLTPT
-
-  float Leg[10+]
-  float TC[10+]
-  float Dur[10+]
-
-
-  svar Wval
+svar Wval;
 
   str tpb =""
   Units="KM"
@@ -293,16 +305,15 @@ via_cl = 1
 
 # 
 
-float LoD = 35
+    float LoD = 35;
 
 int istpt = 1
 
 int cltpt = 0
 
-svar targ
+    svar targ;
 
-
-
+//<<" %V $LoD \n"
 
   while (ac < na) {
 
@@ -311,20 +322,20 @@ svar targ
 
     targ = _argv[ac]
 
-
     sz = targ->Caz()
     ac++
 
-    //<<"%V $ac  $targ $sz $istpt \n"
+      //  <<"%V $ac  $targ $sz $istpt \n"
 
     if (targ @= "LD") {
 
-        LoD= _argv[ac]
+      LoD= atof(_argv[ac])
 
         ac++
 
         istpt = 0
-      }
+      //<<"setting LD %V $LoD \n"
+    }
 
     if ( targ @= "task") {
 
@@ -399,11 +410,23 @@ int input_lat_long = 0
 
 int i = -1
 
-  // <<"DONE ARGS  $cltpt\n"
+    //<<"DONE ARGS  $cltpt\n"
 
+    ////   do this to check routine    
+    //<<"Start  $the_start \n"
+    
+    i=Fsearch(A,the_start,0,1,0);
+    ki = seek_line(A,0)
+    nwr = Wval->Read(A);
+
+//<<"%V $i $nwr \n"
+    Wtp[0]->Set(Wval);
+/////////////////////////////
+    
+i = -1;    
   while ( i == -1) {
 
-    //      <<" iw %V$i %v $via_keyb \n"
+    //<<" iw %V$i %v $via_keyb $via_cl\n"
 
       Fseek(A,0,0)
 
@@ -411,7 +434,7 @@ int i = -1
 
 	//	 the_start = CLTPT[cnttpt++]
 	 the_start = CLTPT[cnttpt]
-	 //<<"$the_start $cnttpt \n"
+	   //	 <<"$the_start $cnttpt \n"
 
          cnttpt++;
 
@@ -420,10 +443,10 @@ int i = -1
          }
       }
       else {
-       the_start = get_word(the_start)
+        the_start = get_word(the_start)
       }
 
-      	//<<"Start %v $the_start \n"
+      //<<"Start  $the_start \n"
 	//    	prompt(" ? ")
 
       if (the_start @= "done") {
@@ -443,9 +466,9 @@ int i = -1
 
       // <<"index found was $i \n"
 
-      if (i == -1) {
+             if (i == -1) {
 	      <<"$the_start not found \n"
-        ok_to_compute = 0
+              ok_to_compute = 0
               if (!via_keyb) {
               STOP!
               }
@@ -465,7 +488,7 @@ int i = -1
   }
   else {
 
-      Fseek(A,i,0)
+        Fseek(A,i,0)
 
 	if (via_keyb) {
         w=pcl_file(A)
@@ -482,21 +505,25 @@ int i = -1
 	//<<" $ki back to beginning of line ?\n"
 	// need to step back a line
 
-    nwr = Wval->Read(A)
+        nwr = Wval->Read(A)
 
       //    <<" %i $Wval \n"
-	// <<"$nwr $Wval[0] $Wval[1] $Wval[2] $Wval[3] \n"
+	  //<<"$nwr $Wval[0] $Wval[1] $Wval[2] $Wval[3] \n"
 
-      msz = Wval->Caz()
+	  //    msz = Wval->Caz()
 
 	// <<"%V$msz \n"
 	// <<"%V$n_legs \n"
+	  tplace = Wval[0];
+	  tlon = Wval[3]
 
+	    //<<"%V$tplace $tlon \n"
+	  
       Wtp[n_legs]->Set(Wval)
 
 	  //Wtp[n_legs]->Print()
 
-	}
+	    }
 
 //<<"next \n"
 

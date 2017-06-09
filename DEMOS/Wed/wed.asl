@@ -1,9 +1,11 @@
-//
-// exercise weight display
-// calories burned (wt at 180) Walk 4mhr 397, Hike 477, R 10mhr 795 Cycle 12mhr 636  Wt lift 350
-// Scuba   556   Gardening 318
-// sleep 8 hours   71.5 per hour
-// office computer work (24-8-exercise hours) 119.3 per hour
+///
+/// exercise weight display
+/// calories burned (wt at 180) Walk 4mhr 397, Hike 477, R 10mhr 795 Cycle 12mhr 636  Wt lift 350
+/// Scuba   556   Gardening 318
+/// sleep 8 hours   71.5 per hour
+/// office computer work (24-8-exercise hours) 119.3 per hour
+
+
 
 
 //setdebug(1)
@@ -19,6 +21,7 @@ wherearewe=!!"pwd "
 
 //<<"%V$wherearewe \n"
 
+
 #define WALK 1
 #define HIKE 2
 #define RUN 3
@@ -29,10 +32,7 @@ wherearewe=!!"pwd "
 
 #define NDAYS 1000
 
-//svar Mo = { "JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC"}
-
 svar Mo[] = { "JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC"}
-
 
 
 class Activity {
@@ -56,25 +56,6 @@ class Measure {
 }
 //
 
-proc isData()
-{
-//<<"$S \n"
-
-   dok = 1
-
-   fword=""
-
-   sscan(S,'%s',&fword) // get first word -non WS
-
-   if (scmp(fword,"#",1)) {
-       dok = 0
-   }
-
-   //<<"$fword $dok\n"
-
-   return dok
-}
-//
 
 
 
@@ -85,38 +66,17 @@ jtoday = julday(today)
 
 DBPR"$today $jtoday \n"
 
+
+minWt = 160;
+topWt = 210;
 StartWt = 208
-GoalWt = 170
+GoalWt = 175
+NextGoalWt = 195;
 
 // rates per min
-
-rpm = 0.0166667
-
-w_rate = 397.0 * rpm
-h_rate = 477.0 * rpm
-c_rate = 636.0 * rpm
-run_rate = 795.0 * rpm
-wex_rate = 350.0 * rpm
-swim_rate = 477.0 * rpm
-yard_rate =  318.3 *rpm
-
-//  metabolic rate slowdown ??
-
-metaf = 0.95
-
-office_rate =  119.3 * rpm * metaf
-sleep_rate = 71.5 * rpm  * metaf
+include "wed_rates"
 
 
-sleep_burn = 8 * 60 * sleep_rate
-office_burn = 16 * 60 * office_rate
-day_burn = sleep_burn + office_burn
-
-
-out_cal = day_burn * 5/4
-in_cal =  day_burn * 3/4
-
-//<<"%V$out_cal $in_cal \n"
 
 N = 1000
 
@@ -141,9 +101,7 @@ float EXTV[10+]
 float AVE_EXTV[10+]
 float EXEBURN[10+]
 float CALBURN[10+]
-
 float CALCON[10+]
-
 
 float Nsel_exemins = 0.0
 float Nsel_exeburn = 0.0
@@ -158,8 +116,8 @@ int bday  // birthday
 int lday  // last day recorded in file
 int dday
 
-    bday = julday("04/09/1949")
-    maxday = julday("04/09/2049") -bday
+ bday = julday("04/09/1949")
+ maxday = julday("04/09/2049") -bday
 
 // this is a new format -- allowing us to put comment labels on graphs
 
@@ -221,13 +179,6 @@ DBPR"%V$kdays \n"
 
 //<<"%V$A $foe\n"
 
-
-
-
-
-
-
-//setdebug(1)
   k =0
 
 //  lpd = (sw2-gw2)/ (ng2day * 1.0)
@@ -238,176 +189,31 @@ long wday
 
 ////////////////// READ CEX DATA ///////////////////
 
+#burnfat!!
 
-   S= readline(A)
-
-   last_known_wt = 205
-
-tl = 0
-
-float tot_exeburn =0
-float tot_exetime = 0
-
-Nobs = 0
-nxobs = 0
-
-
-
-int Nxy_obs = 0
-
-
-  while (1) {
-
-   S= readline(A)
-   tl++
-
-   if (check_eof(A) ) {
-     break
-   }
-
-   ll = slen(S)
-
- //  DBPR"$tl $ll  $S "
-
-   if (ll < 9) {
-        continue
-   }
-
-
-//   sscan(S,'%s',&fword) // get first word -non WS
-//<<"%V$ll $fword\n"
-//   if (!scmp(fword,"#",1)) { // not a comment
-
-
-
-    if (isData()) {
-
-      col= split(S)
-
-//DBPR"$col \n"
-
-    day = col[1]
-
-    wday = julday(day) 
-
-    if (!got_start) {
-        sday = wday
-        got_start = 1;
-    }
-
-
-    k = wday - bday
-
-    lday = k
-
-//DBPR"%V$day $wday  $k \n"
-
-   if (k < 0) {
-      <<" $k neg offset ! \n"
-       break;
-   }
-
-   else {
-
-   // will need separate day vector for the food carb/protein/fat/calorie totals -(if we count/estimate those) 
-
-   if (col[0] @= "WEX") {
-
-   // variables are plotted against dates (juldays - birthday)
-
-   j = 2
-
-
-   LDVEC[Nobs] = wday
-
-   DVEC[Nobs] = k
-
-   WTVEC[Nobs] = atof(col[j++])
-
-//DBPR"$k  $DVEC[Nobs]  $WTVEC[Nobs] \n"
-
-    if (WTVEC[Nobs] > 0.0) {
-      last_known_wt = WTVEC[Nobs]
-    } 
-
-
-//   WTPMV[Nobs] = atof(col[j++])
-//   CARBV[Nobs] = atof(col[j++])
-   CARBV[Nobs] = 0
-   walk =  atof(col[j++])
-   hike = atof(col[j++]) 
-   run = atof(col[j++]) 
-   cycle =  atof(col[j++])
-   swim =  atof(col[j++])
-   yardwrk =  atof(col[j++])
-   wex = atof(col[j++])
-
-   EXTV[Nobs] =  ( walk + hike + run + cycle + swim + yardwrk + wex)
-
-//DBPR"$k $EXTV[Nobs] $walk $run \n"
-    if (wday > yday) {
-      tot_exetime += EXTV[Nobs]
-    }
-
-   SEVEC[Nobs] =  wex
-   BPVEC[Nobs] =  atof(col[j++])
-
-// any extra activities ?
-
-   tex = EXTV[Nobs]
-
-   exer_burn =  ( walk * w_rate + hike * h_rate + run * run_rate + cycle * c_rate )
-   exer_burn +=	 (swim * swim_rate + yardwrk * yard_rate + wex * wex_rate)
-
-   EXEBURN[Nobs] =  exer_burn
-
-   if (wday > yday) {
-     tot_exeburn += exer_burn
-//<<"%V$wday $yday $(typeof(wday)) $day %4.1f$exer_burn  $walk $run $cycle\n"
-Nxy_obs++
-   }
-
-  
-
-   wrk_sleep  = (sleep_burn + (16 * 60 - tex) * office_rate )  
-
-   CALBURN[Nobs] =  wrk_sleep + exer_burn
-
- //<<"$k $Nobs $day %6.1f $exer_burn $wrk_sleep $CALBURN[Nobs] $CARBV[Nobs]\n"
-
-   Nobs++
-   }
-
-   }
-
-   }
-
-  }
-
-DBPR"there were $Nobs measurements \n"
+// bug  #include "wed_read"  // should work
+include "wed_read"
 
 //////////////////////////////////////// PLOT GOAL LINE  ///////////////////////////////////////////
-//exitsi()
+
 //    sc_endday = lday + 10
 //    sc_endday = 75 * 365
 
 
-      sc_endday = (jtoday - bday) + 10
+      sc_endday = (jtoday - bday) + 60;
 
       gsday = julday("4/01/2017") -bday
-      gday =  julday("6/30/2017") -bday    // goal day 
+      gday =  julday("6/16/2017") -bday    // next goal day 
 
-
-
-       ngday = gday - gsday 
+      ngday = gday - gsday 
 
    DBPR"%V$ngday \n"
 
-gwt = GoalWt
+  gwt = NextGoalWt
 
   GVEC[0] = 0.0
 
-  GVEC[365] = GoalWt 
+  GVEC[365] = NextGoalWt 
 
   ty_gsday = gsday- (sday -bday)
 
@@ -419,9 +225,11 @@ gwt = GoalWt
   k =0
 
 //  lpd = 1.75/7.0      // 1.75 lb a  week
+
   lpd = 2.0/7.0      // 5 lb a  week
   sw = StartWt
   lw = sw
+
 
   for (i= 0; i < ngday; i++) {
 
@@ -434,9 +242,6 @@ gwt = GoalWt
         lw = 165
   }
 
-
-
-
 ///  revised goal line
 sz = Caz(GVEC)
 
@@ -448,71 +253,9 @@ DBPR"%V$i $sz\n"
   sw2 = 205
   gw2 = 170
 
+  cf(A);
 
- cf(A)
-
-
-
-///////////////////////  read FPC_LOG ///////////////////////////////
-#define DO_FOOD_LOG 0
-
-
-if (DO_FOOD_LOG) {
-
-   A=ofr("fpc_log.dat")
-
-   S= readfile(A)
-   cf(A)
-
-
- nlines = Caz(S)
- j = 0
-
- str fline
-
-   first_k = 0 
-   end_k = 0
-
-   nfobs = 0
-   for (j = 0 ; j < nlines; j++) {
-
-   fline = S[j]
-
-//DBPR"$j $fline \n"
-   
-    if (!scmp(fline,"#",1)) {
-
-    col= split(fline)
-
-    day = col[0]
-    calcon = col[7]
-    carbcon = col[2]
-
-//DBPR"$j $day $calcon $carbcon\n"
-
-    wday = julday(col[0]) 
-
-   k = wday - sday
-
-   if (!first_k) {
-       first_k = k;
-   }
-   else {
-       end_k = k
-   }
-
-   if (k >= 0) {
-
-      CALCON[nfobs] = atof(col[7])
-      CARBV[nfobs] = atof(col[2])
-//DBPR"carb $CARBV[nfobs]\n"
-      DFVEC[nfobs] = k
-      nfobs++
-   }
-   }
- }
-}
-//------------------------------------------------------------\\
+include "wed_foodlog"
 
 
 //////////////////   Predicted Wt   //////////////////////////////////
@@ -596,8 +339,6 @@ if (DO_FOOD_LOG) {
     //   DBPR"day $k $PWTVEC[k] $CALCON[k] $CALBURN[k]\n"
 
         }
-
-
 /////////////////////////////////////////////////////////////////////
 
 
@@ -606,726 +347,45 @@ if (DO_FOOD_LOG) {
 //<<" Done calcs !\n"
 <<"$Nxy_obs total exeburn %6.2f $tot_exeburn  cals  $(tot_exeburn/4000.0) lbs in $(tot_exetime/60.0) hrs\n"
 
-/{
- for (i= 0; i < Nobs; i++) {
-  <<"$i $DVEC[i] $WTVEC[i] \n"
- }
-/}
-
 
 
 //////////////////// DISPLAY /////////////////////////////
-msg ="x y z"     // event vars
-msgw =split(msg)
-
-
-DBPR"%V$msgw \n"
-
-////////////////////////////// GLINE ////////////////////
-proc drawGoals(ws)
-  {
-
-   if (ws == 0) {
-    Plot(gwo,@line,sc_startday,165,sc_endday,165, "green")
-    Plot(calwo,@line,sc_startday,day_burn,sc_endday,day_burn, "green")
-    Plot(calwo,@line,sc_startday,out_cal,sc_endday,out_cal, BLUE_)
-    Plot(calwo,@line,sc_startday,in_cal,sc_endday,in_cal, RED_)
-//    Plot(carbwo,@line,0,30,sc_endday,30, BLUE_)
-//    Plot(carbwo,@line,0,55,sc_endday,55, RED_)
-   }
-
-  if (ws == 1) {
-DBPR"$ws $swo $kdays \n"
-   Plot(swo,@line,0,150,kdays-10,250, BLUE_)
-   }
-
-
-  }
-//---------------------------------------------------------
-proc  drawMonths(ws)
- {
-  // as either Months Jan,Feb, ... Dec  
-
-  // or quarter and cross-quater days
-  // Candlemass Feb 2
-  // Lady Day   March 25
-  // Beltane (may day) May 1
-  // MidSummer   June 24
-  // Lughnasaid  Aug 1
-  // Michlemas   Sept 29
-  // Samhain     Oct 31
-  // Christmas   Dec 25
-  //
-  // Equinoxes Dec 21, March 21, June 21, Sep 21 - winter ,vernal, midsummer, fall
-
-   int sd
-   int k
-   int yd
-   int wd
-   int wm = 0
-
-   int wwo = gwo
-   float lty = 0
-   float qfwd = 0.0
- 
-   if (ws == 1) {
-       wwo = swo
-   }
-
-   RS=wogetrscales(wwo)
-
-// just plot at mid - the date
-
-   mid_date = (RS[3] - RS[1])/2 + RS[1]
-   q1_date = (RS[3] - RS[1])/4 + RS[1]
-   q3_date = 3*(RS[3] - RS[1])/4 + RS[1]
-
-   jd= mid_date +bday
-   the_date = julmdy("$jd")
-
-DBPR"%V$mid_date $jd $the_date \n"
-
-   AxText(wwo, 1, the_date, mid_date, -0.25, BLUE_)
-
-   jd= q1_date +bday
-   the_date = julmdy("$jd")
-   AxText(wwo, 1, the_date, q1_date, -0.25, BLUE_)
-   jd= q3_date +bday
-   the_date = julmdy("$jd")
-   AxText(wwo, 1, the_date, q3_date, -0.25, BLUE_)
-
- }
-//---------------------------------------------------------------
-
-proc  drawGrids( ws )
-{
-// DBPR" $ws \n"
-
- if (ws == 0) {
-
- //DBPR"drawing Grids for screen 0 \n"
-
-  //SetGwob(extwo,@axnum,1,0,kdays,7,1)
-
-  //SetGwob(gwo,@axnum,2,155,205,10,5)
-
-  axnum(gwo,2)
-
-  //sWo(gwo,@axnum,4)
-  //sWo(gwo,@axnum,1)
-
-  //sWo(calwo,@axnum,2,500,5500,500,100)
-  sWo(calwo,@axnum,2)
-  sWo(extwo,@axnum,2)
-
-  //sWo(extwo,@axnum,2,0,sc_endday,20,10)
-
-  Text(gwo,  "Weight lbs",-4,0.7,4,-90)
-  Text(extwo,"Exercise mins",-4,0.7,4,-90)
-  Text(calwo,"Cals In/Out",-4,0.7,4,-90)
-
- }
- else {
-
-  axnum(swo,2)
-
-  //sWo(swo,@axnum,2,150,bp_upper,50,10)
-  //sWo(carbwo,@axnum,2,0,carb_upper,50,10)
-
-  //sWo(carbwo,@axnum,2)
-  sWo(xwo,@clipborder,@save)
-
- }
-  sWo(allwo,@showpixmap,@save)
-
-  sWo(allwo,@clipborder)
-}
-//---------------------------------------------------------------------------------
-
-#define ALL_LINES 1
-
-proc drawScreens()
-{
-
-//<<" $_proc \n"
-
-  if ( wScreen == 0) {
-
-       sWo(wedwo,@clearclip,@save,@clearpixmap,@clipborder,"black")
-
-       sWo(extwo,@clipborder,@save)
-  
-      //DrawGline(wedgl)
-     
-  if (ALL_LINES) {
-
-      DrawGline(ext_gl)
-      DrawGline(gw_gl)
-
-      DrawGline(calc_gl)
-      DrawGline(calb_gl)
-
-      //DrawGline(carb_gl)
-     // DrawGline(ave_ext_gl)
-
-      DrawGline(wt_gl)
-   }
-
-      drawGoals(0)
-
-      drawGrids(0) 
-
-   //   setgwob(wedwo,@showpixmap)
-
-      sWo(allwo,@clipborder,"black")
-
-      drawMonths(0)
-
-      //Text(carbwo,"Carbs", 0.8,0.8,1)
-
-      Text(calwo,"Calories", 0.8,0.8,1)
-
-      Text(extwo,"ExerciseTime", 0.8,0.8,1)
-
-      //DrawGline(pwt_gl)
-
-      DrawGline(wt_gl)
-   
-
-      //DrawGline(carb_gl)
-      DrawGline(wt_gl)
-     }
-
-      if ( wScreen == 1) {
-
-DBPR" Drawscreen 1  BP!!\n"
- 
-      drawGoals(1)
-      drawGrids(1)
-      drawMonths(1)
-
-      DrawGline(bp_gl)
-
-      setgwob(swo,@showpixmap)
-       sWo(allwo,@clipborder,"green")
-//      sWo(swo,@clipborder,"green")
-      }
-
-    sWo(fewos,@redraw)
-
-}
-//-----------------------------------------------------------------------------------------
-
-
-
-
-
-
 Graphic = CheckGwm()
  if (!Graphic) {
      X=spawngwm()
   }
 
 
+msg ="x y z"     // event vars
+msgw =split(msg)
 
-/////////////////////////////  SCREEN --- WINDOW ////////////////////////////////////////////////////////////
-vptitle = "WED"
 
-    vp =  cWi(@title, "WED",@resize,0.01,0.05,0.95,0.9,0)
+DBPR"%V$msgw \n"
 
-    vp1 = cWi(@title,"XED",@resize,0.01,0.05,0.90,0.9,1)
 
-    sWi(vp,@resize,0.1,0.1,0.9,0.8,@clip,0.1,0.1,0.7,0.9,@redraw)
+include "wed_draw"
 
-    int allwin[] = {vp,vp1}
+include "wed_screen"
 
-    sWi(allwin,@drawon,@pixmapoff,@save,@bhue,"white")
+include "wed_glines"
 
-
-/////////////////////////////  WOBS /////////////////////////////////////////////////////////////////////
-
-    sc_startday = sc_endday - 40;   // last two months
-
-    gwo=createGWOB(vp,@graph,@name,"WTLB",@value,0,@clipborder)
-
-    calwo=createGWOB(vp,@graph,@name,"CAL",@value,0,@clipborder,"black")
-
-    extwo=createGWOB(vp,@graph,@name,"EXT",@value,0,@clipborder,"black")
-
-    //carbwo=createGWOB(vp,@type,"GRAPH",@name,"CARB_COUNT",@color,"white")
-
-    //int wedwo[] = { gwo, extwo, calwo, carbwo }
-
-      int wedwo[] = { gwo, extwo, calwo  }
-
-DBPR"%V$wedwo \n"
-
-    // vtile before set clip!
-
-    wo_vtile(wedwo,0.03,0.08,0.97,0.97,0.02)   // vertically tile the drawing areas into the main window
-
-    cx = 0.08 ;    cX = 0.95 ; cy = 0.2 ; cY = 0.97
-
-
-    sWo(wedwo,@clip,cx,cy,cX,cY, @color,"white")
-
-    sWo(wedwo,@border,@clipborder,"black",@drawon)
-
-    sWo(gwo,@scales,sc_startday,150,sc_endday+10,220,@savescales,0) 
-
-    sWo(extwo,@scales,sc_startday,0,sc_endday+10,360,@savescales,0)
-
-    sWo(calwo,@scales,sc_startday,0,sc_endday+10,4500,@savescales,0)
-
-//    sWo(carbwo,@scales,sc_startday,0,sc_endday+10,1200)
-//    sWo(extwo,@axnum,1,sc_startday,sc_endday,7,1)
-
-    sWo(extwo,@axnum,1)
-
-    swo= cWo(vp1,@type,"GRAPH",@name,"BenchPress",@color,"white")
-    
-    int xwo[] = { swo }
-
-    wo_vtile(xwo,0.01,0.05,0.97,0.97)   // vertically tile the drawing areas into the main window
-
-    sWo(xwo,@clip,cx,cy,cX,cY,@color,"white", @clipborder,"black")
-
-//DBPR" $DVEC[0:10] \n"
-
-//DBPR" %5\s\nR$WTVEC \n"
-
-//DBPR" %5\s->\s,\s<-\nR$CARBV \n"
-
-//DBPR" %10\s\nr$WTPMV \n"
-
-
-//////////////////////////// SCALES //////////////////////////////////////////
-DBPR" Days $k \n"
-
-    bp_upper = 400.0
-    carb_upper = 400
- 
-   //  defaults are ?  @save,@redraw,@drawon,@pixmapon
-
-    sc_startday = sc_endday - 60
-
-    sWo(swo,@scales,sc_startday,110,sc_endday,bp_upper)
-
-DBPR"SCALES %V$sc_startday $sc_endday $bp_upper\n"
-
-    //sWo(carbwo,@scales,sc_startday,0,sc_endday,carb_upper)
-
-DBPR"SCALES %V$sc_startday $sc_endday $carb_upper\n"
-
-    //int allwo[] = {gwo,swo,carbwo,calwo,extwo}
-    int allwo[] = {gwo,swo,calwo,extwo}
-
-//<<"%V $allwo \n"
-
-    sWo(allwo,@save,@redraw,@drawon,@pixmapon)
-
-
-//////////////////////////// GLINES & SYMBOLS //////////////////////////////////////////
-DBPR"\n%(10,, ,\n)$DVEC \n"
-//DBPR"\n%V$PWTVEC[0:20] \n"
-   pwt_gl = -1
-// pwt_gl  = cGl(@wid,gwo,@TXY,DVEC,PWTVEC,@color,"green",@ltype,"line")
-
-DBPR"%V$pwt_gl \n"
-
-
- //ext_gl  = cGl(@wid,extwo,@TXY,DVEC,EXTV,@color,BLUE_,@ltype,"symbols","diamond")
-
-   ext_gl  = cGl(extwo,@TXY,DVEC,EXTV,@color,BLUE_,@ltype,"symbols","diamond")
-
-//DBPR"%V$ext_gl \n"
-
-  sGl(ext_gl,@symsize,0.75,@symhue,GREEN_)
-
- //wt_gl   = cGl(@wid,gwo,@TXY,DVEC,WTVEC,@color,RED_,@ltype,"symbols","diamond")
-  wt_gl    = cGl(gwo,@TXY,DVEC,WTVEC,@color,RED_,@ltype,"symbols","diamond")
-
-//DBPR"%V$wt_gl \n"
-
-  sGl(wt_gl,@symbol,"triangle",1.2, @fill_symbol,0,@symsize,0.75,@symhue,RED_)
-
-  if ((wt_gl == -1)  || (ext_gl == -1)) {
-    exit_si()
-  }
-
-// wtpm_gl = cGl(gwo,@type_XY,DVEC,WTPMV,@color,BLUE_,@ltype,"symbols","diamond")
-
- gw_gl   = cGl(gwo,@TXY,WDVEC,GVEC,@color,BLUE_)
-
- bp_gl   = cGl(swo,@TXY,DVEC,BPVEC,@color,RED_,@ltype,"symbols",@name,"benchpress")
-
-//DBPR"%(10,, ,\n)$BPVEC\n"
-
-// carb_gl = cGl(@wid,carbwo,@type_XY,DFVEC,CARBV,@color,"brown",@ltype,"symbols","diamond",@symhue,"brown")
-
-
-//DBPR"%V$carb_gl \n"
-
- //if (wtpm_gl == -1 || gw_gl == -1 || bp_gl == -1) {
-if ( gw_gl == -1 || bp_gl == -1) {
-   exit_si()
- }
-
- calb_gl = cGl(calwo,@TXY,DVEC,CALBURN,@color,BLUE_,@ltype,"symbols","diamond")
-
- calc_gl = cGl(calwo,@TXY,DFVEC,CALCON,@color,RED_,@ltype,"symbols","triangle",@symhue, BLUE_)
-
- ave_ext_gl  = cGl(extwo,@TXY,DVEC,AVE_EXTV,@color,RED_,@ltype,"line")
-
- se_gl   = cGl(extwo,@TXY,DVEC,SEVEC,@color,"green",@ltype,"symbols","diamond")
-
-//  int allgl[] = {wtpm_gl,wt_gl,gw_gl,bp_gl,ext_gl,se_gl,calb_gl, calc_gl, pwt_gl}
-
-  int allgl[] = {wt_gl,gw_gl,bp_gl,ext_gl,se_gl,calb_gl, calc_gl}
-
-  int wedgl[] = {wt_gl,gw_gl, ext_gl, calb_gl, se_gl, calc_gl}
-
-//DBPR"%V$allgl \n"
-
-  sGl(allgl,@missing,0,@symbol,"diamond",5)
-
-  sGl(ext_gl,@symbol,"diamond",1.2, @fill_symbol,0)
-//  sGl(wt_gl,@symbol,"triangle",1.2, @fill_symbol,1)
-  sGl(wt_gl,@symbol,"triangle",1.2, @fill_symbol,0)
-  sGl(se_gl,@symbol,"diamond",1.2)
-  //sGl(carb_gl,@symbol,"triangle",1.2,@fill_symbol,0)
-  sGl(calb_gl,@symbol,"diamond",1.2,@fill_symbol,0)
-  sGl(calc_gl,@symbol,"triangle",@symsize,1.2,@symhue,BLUE_)
-  sGl(bp_gl,@symbol,"inverted_triangle",1.2,@missing,0)
-
-
-  quitwo=cWo(vp,@BN,@name,"QUIT",@color,"red")
-  zinwo=cWo(vp,@BN,@name,"ZIN",@color,"hotpink")
-  zoomwo=cWo(vp,@BN,@name,"ZOUT",@color,"cadetblue")
-
-  yrdecwo= cWo(vp,@BN,@name,"YRD",@color,"violetred")
-  yrincwo= cWo(vp,@BN,@name,"YRI",@color,"purple")
-  qrtdwo=  cWo(vp,@BN,@name,"QRTD",@color,"violetred")
-  qrtiwo=  cWo(vp,@BN,@name,"QRTI",@color,"purple")
-
-
-
-
-  int fewos[] = {quitwo, zinwo,zoomwo, yrdecwo, yrincwo, qrtdwo, qrtiwo }
-
-  wo_htile( fewos, 0.03,0.01,0.43,0.08,0.05)
-
-  nobswo= cWo(vp,@BV,@name,"Nobs",@color,"Cyan",@value,0)
-
-  xtwo= cWo(vp,@BV,@name,"xTime",@color,"violetred",@value,0)
-
-  xbwo= cWo(vp,@BV,@name,"xBurn",@color,"violetred",@value,0)
-
-  xlbswo= cWo(vp,@BV,@name,"xLbs",@color,"violetred",@value,0)
-  
-  int xwos[] = { nobswo, xtwo, xbwo, xlbswo }
-  
-
-  wo_htile( xwos, 0.45,0.01,0.83,0.08,0.05)
-
-  sWo(xwos,@style,"SVB",@redraw)
-
-//  CURSORS
-
-lc_gl   = cGl(gwo,@type,"XY",@color,"orange",@ltype,"cursor")
-
-rc_gl   = cGl(gwo,@type,"XY",@color,BLUE_,@ltype,"cursor")
 
 
 ////////////////////////////////////// PLOT  ////////////////////////////////////////////
-
-DBPR" $allgl \n"
-
 //  
 //  DrawGline(ext_gl)
 //  DrawGline(allgl)
-
-
-  sWo(gwo,@showpixmap,@save)
-  sWo(calwo,@showpixmap)
 //  sWo(carbwo,@showpixmap)
 
-//////////////////////// UTIL PROCS /////////////////////////////
+include "wed_compute"
 
-proc adjustYear(updown)
-{
+include "wed_callbacks"
 
-// find current mid-year
-// decrement - and set rx,RX to jan 1, dec 31 of that year
-// then label 1/4 days
-
-   RS=wogetrscales(gwo)
-
-// just plot at mid - the date
-   mid_date = (RS[3] - RS[1])/2 + RS[1]
-
-   jd= mid_date +bday
-   the_date = julmdy("$jd")
-
-   // which year?
-   yrs = sele(the_date,-1,4)
-   yrd = atoi(yrs)
-//DBPR"%V$jd $the_date $yrs $yrd \n"
-   if (updown > 0)
-    yrd++
-
-   if (updown < 0)
-    yrd--
-
-   st_jday = julday("01/01/$yrd")
-   ed_jday = julday("12/31/$yrd")
-
-   rx = st_jday - bday
-   rX = ed_jday - bday
-
-   sWo(wedwo,@xscales,rx,rX,@savescales,0)
-
-   sWo(swo,@xscales,rx,rX) 
-
-   sWo(gwo,@scales,rx,150,rX,220,@savescales,0)
-
-   drawScreens()
-}
-
-//////////////////////////////////////////////////////////////////////
-proc adjustQrt(updown)
-{
-// find mid-date 
-// adjust to a 90 day resolution
-// shift up/down by 30
-
-   RS=wogetrscales(gwo)
-
-// just plot at mid - the date
-   mid_date = (RS[3] - RS[1])/2 + RS[1]
-
-   jd= mid_date +bday
-   the_date = julmdy("$jd")
-
-   if (updown > 0) {
-     rx = mid_date -30
-     rX = mid_date +60
-   }
-   if (updown < 0) {
-     rx = mid_date -60
-     rX = mid_date +30
-   }
-
-   sWo(wedwo,@xscales,rx,rX,@savescales,0)
-
-    sWo(gwo,@scales,rx,150,rX,220,@savescales,0)
- 
-   sWo(swo,@xscales,rx,rX,@savescales,0)
- 
-   drawScreens()
-}
-//========================================================
-
-proc showWL()
-{
-
-       RS=wogetrscales(gwo)
-
-       rx = RS[1]
-       rX = RS[3]
-long ws
-long we
-
-       ws = rx + bday
-       we = rX + bday
-
-       computeWL( ws, we)
-}
-//========================================================
-
-proc computeWL( wlsday, wleday)
-{
-// use input of juldays
-// find the number of exe hours
-// read the number of cals burnt during exercise
-// compute the number of lbs burnt
-   int i
-
-   Nsel_exemins = 0
-   Nsel_exeburn = 0
-
-   Nxy_obs = 0
-
-   Nsel_lbs = 0.0
-
-
-   for (i = 0; i < Nobs ; i++) {
-
-     if (LDVEC[i] >= wlsday) {
-
-        Nxy_obs++
-
-        Nsel_exeburn += EXEBURN[i]
-        Nsel_exemins += EXTV[i]
-//<<"%V $i $Nsel_exeburn $Nsel_exemins \n"
-     }
-
-     if (LDVEC[i] > wleday) 
-             break; 
-   }
-
-   Nsel_lbs = Nsel_exeburn/ 4000.0
-
-  xhrs = (Nsel_exemins/60.0)
-
-//<<"%V$Nxy_obs %6.2f $Nsel_exemins $(Nsel_exemins/60.0) $Nsel_exeburn $Nsel_lbs $xhrs\n"
-
-  sWo(nobswo,@value,Nxy_obs,@update)
-
-  //sWo(xtwo,@value,"%4.1f$(Nsel_exemins/60.0)",@update)
-  sWo(xtwo,@value,xhrs,@update)
-  sWo(xbwo,@value,"%6.2f$Nsel_exeburn",@update)
-  sWo(xlbswo,@value,"%4.1f$Nsel_lbs",@update)
-
-
-}
-
-////////////////////////WONAME CALLBACKS///////////////////////////////////////
-proc QRTD()
-{
-  adjustQrt(-1)
-
-  showWL()
-
-}
-
-proc QRTI()
-{
-  adjustQrt(1)
-
-  showWL()
-
-}
-
-//////////////////////////////////////////////////////////////////////////////////
-
-proc YRD()
-{
-   adjustYear(-1)
-}
-//--------------------------------------------------
-proc YRI()
-{
-    adjustYear(1)
-}
-//--------------------------------------------------
-
-
-proc QUIT()
-{
-
-  exit();
-
-}
-//===================================
-
-proc ZIN()
-{
-
-       sWo(wedwo,@xscales,lcpx,rcpx) 
-
-       sWo(swo,@xscales,lcpx,rcpx) 
-
-       drawScreens()
-
-       showWL()
-
-}
-//--------------------------------------------------
-
-proc ZOUT()
-{
-
-float RS[10]
-
-       RS=wogetrscales(gwo)
-
-       rx = RS[1]
-       rX = RS[3]
-       rx /= 2.0
-       rX *= 2.0
-
-       if (rX > maxday) {
-          Rx = maxday
-       }
-
-       sWo(gwo,@scales,rx,150,rX,220) 
-
-       sWo(gwo,@redraw,@update)
-       sWo(swo,@xscales,rx,rX) 
-
-       DrawGline(wt_gl)
-
-       showWL()
-
-
-}
-
-//---------------------------------------------
-proc WTLB()
-{
-
-    DBPR" setting cursors $button $Rinfo\n"
-
-       if (button == 1) {
-         lcpx = Rinfo[1]
-         sGl(lc_gl,@cursor,lcpx,0,lcpx,300)
-        }
-
-       if (button == 3) {
-         rcpx = Rinfo[1]
-         sGl(rc_gl,@cursor,rcpx,0,rcpx,300)
-       }
-
-}
-//=========================================
-
-
-
-
-////////////////////////KEYW CALLBACKS///////////////////////////////////////
-proc EXIT()
-{
-  exit_gs()
-}
-//-------------------------------------------
-proc REDRAW()
-{
-  drawScreens()
-}
-//-------------------------------------------
-proc RESIZE()
-{
-  drawScreens()
-}
-//-------------------------------------------
-proc SWITCHSCREEN()
-{
-  if (msgw[0] @= "SWITCHSCREEN") { 
-     wScreen = atoi(msgw[1])
-DBPR"Setting %V$wScreen msgw[1]\n"
-      drawScreens()
-  }
-}
-///////////////////////////////////////////////////////////////////////////////////////
-
-//setdebug(0)
 
 int wScreen = 0
 float Rinfo[30]
 
-woname = ""
-E =1
+
 
 //DBPR"%(7,, ,\n)$CALBURN \n"
 //DBPR"%(7,, ,\n)$CALCON \n"
@@ -1333,13 +393,8 @@ E =1
 int m_num = 0
 int button = 0
 
-
-
-   //drawScreens()
-
    Keyw = ""
  
-   //drawScreens()
 
    lcpx = sc_startday
    rcpx = sc_endday
@@ -1351,6 +406,9 @@ int button = 0
 
 
    ZIN();
+
+woname = ""
+E =1
 
    while (1) {
 
