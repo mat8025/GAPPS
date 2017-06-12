@@ -153,69 +153,76 @@ include "gevent.asl"
  gwo=cWo(vp2,"MENU",@name,"When",@color,GREEN_,@resize,0.1,0.8,0.2,0.9)
  sWo(gwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@VALUE,"When",@STYLE,"SVB")
  sWo(gwo,@bhue,BLUE_,@clipbhue,"skyblue",@value,"Lunch",@MESSAGE,1)
- sWo(gwo,@menu,"Breakfast,AM-Snack,Lunch,PM-Snack,Dinner,Supper,MN-Snack")
+ sWo(gwo,@menu,"Breakfast,AM-Snack,Lunch,PM-Snack,Dinner,Supper,MN-Snack");
+ <<" made menu wo %V $gwo \n"
+
 
  gwo2=cWo(vp2,"MENU_FILE",@name,"FoodTypes",@color,"green",@resize,0.21,0.8,0.3,0.9)
  // does value remain or reset by menu?
  sWo(gwo2,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"blue",@VALUE,"Meat",@STYLE,"SVB",@menu,"Food.m")
- sWo(gwo2,@bhue,RED_,@clipbhue,"skyblue")
+ sWo(gwo2,@bhue,RED_,@clipbhue,"skyblue");
+
+ <<" made menu_file wo %V $gwo2 \n"
 
 
- portwo=createGWOB(vp2,"MENU",@name,"Portion",@color,"green",@resize,0.31,0.8,0.4,0.9)
+ portwo=cWo(vp2,"MENU",@name,"Portion",@color,"green",@resize,0.31,0.8,0.4,0.9)
  sWo(portwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@VALUE,"medium",@STYLE,"SVB")
  sWo(portwo,@bhue,BLUE_,@clipbhue,"skyblue")
- sWo(portwo,@menu,"1,2,3,Tiny,Small,Medium,Large,Huge")
+ sWo(portwo,@menu,"1,2,3,Tiny,Small,Medium,Large,Huge");
+
+ <<" made menu wo %V $portwo \n"
 
 
- querywo=createGWOB(vp2,"BN",@name,"QUERY",@color,"green",@resize,0.41,0.8,0.5,0.9)
+ querywo=cWo(vp2,"BN",@name,"QUERY",@color,"green",@resize,0.41,0.8,0.5,0.9)
  sWo(querywo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@VALUE,"QUERY",@STYLE,"SVB")
- sWo(querywo,@bhue,BLUE_,@clipbhue,"skyblue")
+ sWo(querywo,@bhue,BLUE_,@clipbhue,"skyblue");
+ 
+ <<" made query wo %V $querywo \n"
 
-
- gwo3=cWo(vp2,"SHEET",@name,"DailyDiet",@color,"green",@resize,0.1,0.1,0.9,0.5)
+ gwo3=cWo(vp2,"SHEET",@name,"DailyDiet",@color,"green",@resize,0.1,0.1,0.8,0.5)
  // does value remain or reset by menu?
-
  sWo(gwo3,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@VALUE,"SSWO",@FUNC,"inputValue")
-
  sWo(gwo3,@bhue,"cyan",@clipbhue,"skyblue")
+
+ <<" made sheet wo %V $gwo3 \n"
+
+//////
 
  rows = 8
  cols = 10
+ 
  sWo(gwo3,@setrowscols,rows,cols);
  sWo(gwo3,@sheetrow,0,0,"When,Food,Portion,Qty_Oz,Cals,Carbs,Fat_g,Prot_g")
  sWo(gwo3,@sheetrow,1,0,"Breakfast,egg,2,20,90,1,7,6")
 
-
+ sWo(gwo3,@selectrowscols,0,7,0,9);
 
  when = "Breakfast"
  portion = "2"
  food = "egg"
 
 // enable a menu
-
-
 // event loop to process menu's
 
-
-
-
-      setgwindow(vp2,@redraw)
+   sWi(vp2,@redraw)
 
 //wu = choice_menu("Units.m",0,0)
-
-
-
    the_row = 1;
+
+
+
    while (1) {
 
          eventWait();
+
          ev_woval = Ev->getEventWoValue();
          ev_woname = Ev->getEventWoName();
 
          if (ev_row > 0) {
             the_row = ev_row;
          }
-<<" $ev_msg %V $ev_keyw  $ev_woname $ev_woval \n"
+
+<<" $ev_msg %V $ev_keyw  $ev_woname $ev_woval $ev_row $ev_col\n"
          
   
         if (! (ev_keyw @= "NO_MSG")) {
@@ -227,19 +234,16 @@ include "gevent.asl"
              sWo(gwo3,@sheetrow,the_row,0,"$when,$food,$portion,20,90,1,7,6")
              sWo(gwo3,@redraw)
           }
-
-//          else if (ev_keyw @= "Portion") {
           else if (ev_woname @= "Portion") {
              portion = ev_woval;
 	     <<"%V$portion\n"	     
-         sWo(gwo3,@sheetrow,the_row,0,"$when,$food,$portion,20,90,1,7,6")
+              sWo(gwo3,@sheetrow,the_row,0,"$when,$food,$portion,20,90,1,7,6")
              sWo(gwo3,@clear,@redraw)
           }
-
           else if (ev_woname @= "FoodTypes") {
              food = ev_woval;
 	     <<"%V$food\n"
-         sWo(gwo3,@sheetrow,the_row,0,"$when,$food,$portion,20,90,1,7,6")
+             sWo(gwo3,@sheetrow,the_row,0,"$when,$food,$portion,20,90,1,7,6")
              sWo(gwo3,@redraw)
           }
           else if (ev_woname @= "QUERY") {
