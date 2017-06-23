@@ -7,8 +7,6 @@ setdebug(1)
 
 !!"rm -f goal1"
 
-
-
 Svar W;
 
 
@@ -83,7 +81,7 @@ rsz=fstat(goal_fn,"size")
 <<"\nfile size $rsz \n"
 if (rsz ==0) {
 
-sleep(5)
+sleep(5);
 }
 
 rsz=fstat("goal1","size")
@@ -97,7 +95,7 @@ if (B == -1) {
 }
 
 // FIXME -- should not need explicit svar declare
-svar V;
+//svar V;
 
  V=readfile(B)
 
@@ -133,8 +131,9 @@ Z->split()
 
 
 
-CheckStr("hey",Z[0])
-CheckStr("make",Z[4])
+CheckStr("hey",Z[0]);
+
+CheckStr("make",Z[4]);
 
 <<"$Z[4] \n"
 

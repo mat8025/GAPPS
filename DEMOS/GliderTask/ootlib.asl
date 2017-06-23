@@ -26,6 +26,143 @@ if (Main_init) {
   Main_init = 0
     //<<" read in unit conversions \n"
 }
+//============================================
+
+CLASS turnpt 
+ {
+
+ public:
+
+  str Lat;
+  str Lon;
+  str Place;
+  str Idnt;
+  str rway;
+  str Cltpt;
+  float Radio;
+
+  float Alt;
+  float Ladeg;
+  float Longdeg;
+
+#  method list
+
+  CMF Set (wval) 
+   {
+
+     //  <<"$_proc $wval \n"
+     //<<"%V$_cproc  %i$_cobj   %i$wval \n"
+     //sz = wval->Caz()
+
+      sz = Caz(wval);      
+       // <<"%V$sz \n"
+     //<<"$sz $wval[0] $wval[1] $wval[2] $wval[3] $wval[4] \n"
+    
+   
+    //    <<"$wval[0] $wval[1]\n"
+       //  <<"$(typeof(wval))\n"
+       //ans = iread("-->");
+     Place = wval[0];
+    
+     //  <<"%V$Place\n"
+
+
+     Idnt =  wval[1];
+      //<<"%V$Idnt\n"
+     //<<"%V$wval[2]\n"
+     
+     Lat = wval[2];
+     //  <<"%V$Lat\n"
+	
+     Lon = wval[3];
+     
+     Alt = wval[4];
+     
+     rway = wval[5];
+     
+     Radio = atof(wval[6]);
+
+     //  <<"%V$Lat $Lon $Radio\n"
+
+    Ladeg = GetDeg(Lat)
+
+    Longdeg = GetDeg(Lon)
+
+      }
+
+   CMF SetPlace (val)   
+   {
+       Place = val
+   }
+
+   CMF Print ()    
+   {
+
+     <<"$Place $Idnt $Lat $Lon $Alt $rway $Radio $Ladeg $Longdeg\n"
+   
+   }
+
+
+  CMF turnpt()
+    {
+      Place="ppp"
+	//      <<" CONS $_cobj %i $Place\n"
+     
+      Ladeg = 0.0
+      Longdeg = 0.0
+    }
+
+
+  CMF GetDeg ( the_ang)
+    {
+
+      //<<"in CMF GetDeg $the_ang\n"
+      //<<"input args is $the_ang \n"
+
+
+    float la
+
+
+      // <<"%V$_cproc %i $the_ang  \n"
+	
+
+    the_parts = Split(the_ang,",")
+
+      //<<"%V$the_parts \n"
+
+
+//FIX    float the_deg = atof(the_parts[0])
+
+    the_deg = atof(the_parts[0])
+
+//    float the_min = atof(the_parts[1])
+
+    the_min = atof(the_parts[1])
+
+      //<<"%V$the_deg $the_min \n"
+
+    sz= Caz(the_min)
+
+      //<<" %V$sz $(typeof(the_deg)) $(Cab(the_deg))  $(Cab(the_min)) \n"
+
+    the_dir = the_parts[2]
+
+    y = the_min/60.0
+
+    la = the_deg + y
+
+      if ((the_dir @= "E") || (the_dir @= "S")) {
+         la *= -1
+      }
+
+    //<<" %V $la  $y $(typeof(la)) $(Cab(la)) \n"
+      
+    return (la)
+   }
+
+}
+//=============================================================
+
 
 
 
@@ -59,7 +196,7 @@ proc get_word( defword)
 
     return h
  }
-
+//==================================================
 proc get_wcoors(sw,  rx,  ry,  rX,  rY)
 {
   float rs[20];
@@ -70,7 +207,7 @@ proc get_wcoors(sw,  rx,  ry,  rX,  rY)
   rY = rs[3]
   return ww
 }
-
+//==================================================
 //FIX proc compute_leg(int leg)
 
 
@@ -122,7 +259,7 @@ proc compute_leg(leg)
 
     return km
 }
-
+//==================================================
 proc screen_dump()
 {
 # make it monochrome
@@ -136,7 +273,7 @@ proc screen_dump()
   ff=close_laser()
   set_colors(nc)
 }
-
+//==================================================
 
 proc read_task(task_file, query)
 {
@@ -180,7 +317,7 @@ proc read_task(task_file, query)
       c_file(TF)
     }
 }
-
+//==================================================
 
 proc write_task()
 {
@@ -230,6 +367,8 @@ proc write_task()
       c_file(WF)
     }
 }
+//==================================================
+
 
 proc set_task()
 {
@@ -241,7 +380,7 @@ proc set_task()
   tot_units = scat(total,Units)
   ff=w_set_wo_value (tw,td_wo,tot_units,1)
 }
-
+//==================================================
 
 proc grid_label(w_num)
 {
@@ -279,7 +418,7 @@ proc grid_label(w_num)
 
   w_clip_border(w_num)
 }
-
+//==================================================
 
 proc magnify(w_num)
 {
@@ -312,13 +451,13 @@ proc magnify(w_num)
     }
     w_store(w_num)
 }
-
+//==================================================
 
 proc new_units()
 {
   Units = choice_menu("Units.m")
 }
-
+//==================================================
 
 proc new_coors(w_num)
 {
@@ -351,7 +490,7 @@ proc new_coors(w_num)
       draw_map(w_num)
     }
 }
-
+//==================================================
 
 proc zoom_to_task(w_num, draw)
 {
@@ -363,7 +502,7 @@ proc zoom_to_task(w_num, draw)
   draw_task(w_num,"red")
   }
 }
-
+//==================================================
 
 proc zoom_up(w_num)
 {
@@ -378,6 +517,7 @@ proc zoom_up(w_num)
   draw_map(w_num)
   draw_task(w_num,"red")
 }
+//==================================================
 
 proc zoom_in(w_num)
 {
@@ -396,6 +536,7 @@ proc zoom_in(w_num)
   draw_map(w_num)
   draw_task(w_num,"red")
 }
+//==================================================
 
 proc  draw_the_task ()
 {
@@ -403,6 +544,7 @@ proc  draw_the_task ()
   draw_map(tw)
   draw_task(tw,"red")
 }
+//==================================================
 
 proc zoom_out(w_num,draw)
 {
@@ -421,7 +563,7 @@ proc zoom_out(w_num,draw)
   draw_the_task()
   }
 }
-
+//==================================================
 
 proc zoom_rt(w_num)
 {

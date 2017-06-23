@@ -6,6 +6,8 @@
 
 Main_init = 1
 
+  setDebug(1,"~trace")
+  
 proc namemangle(aname)
 {
   // FIXIT --- bad return
@@ -30,127 +32,6 @@ proc namemangle(aname)
 
 include "ootlib"
 
-
-
-CLASS turnpt 
- {
-
- public:
-
-  str Lat;
-  str Lon;
-  str Place;
-  str Idnt;
-  str rway;
-  str Cltpt;
-  float Radio;
-
-  float Alt;
-  float Ladeg;
-  float Longdeg;
-
-#  method list
-
-  CMF Set (wval) 
-   {
-
-     //<<"Set $wval \n"
-     //<<"%V$_cproc  %i$_cobj   %i$wval \n"
-
-    sz = wval->Caz()
-      //<<"%V$sz \n"
-       //<<"$(typeof(wval))\n"
-    Place = wval[0]
-      //<<"%V$Place\n"
-
-
-    Idnt =  wval[1]
-      //<<"%V$Idnt\n"
-    Lat =    wval[2]
-    Lon = wval[3]
-    Alt = wval[4]
-    rway = wval[5]
-    Radio = atof(wval[6])
-
-      //<<"%V$Lat $Lon \n"
-
-    Ladeg = GetDeg(Lat)
-
-    Longdeg = GetDeg(Lon)
-
-      }
-
-   CMF SetPlace (val)   
-   {
-       Place = val
-   }
-
-   CMF Print ()    
-   {
-
-     <<"$Place $Idnt $Lat $Lon $Alt $rway $Radio $Ladeg $Longdeg\n"
-   
-   }
-
-
-  CMF turnpt()
-    {
-      Place="ppp"
-	//      <<" CONS $_cobj %i $Place\n"
-     
-      Ladeg = 0.0
-      Longdeg = 0.0
-    }
-
-
-  CMF GetDeg ( the_ang)
-    {
-
-      //<<"in CMF GetDeg $the_ang\n"
-      //<<"input args is $the_ang \n"
-
-
-    float la
-
-
-      // <<"%V$_cproc %i $the_ang  \n"
-	
-
-    the_parts = Split(the_ang,",")
-
-      //<<"%V$the_parts \n"
-
-
-//FIX    float the_deg = atof(the_parts[0])
-
-    the_deg = atof(the_parts[0])
-
-//    float the_min = atof(the_parts[1])
-
-    the_min = atof(the_parts[1])
-
-      //<<"%V$the_deg $the_min \n"
-
-    sz= Caz(the_min)
-
-      //<<" %V$sz $(typeof(the_deg)) $(Cab(the_deg))  $(Cab(the_min)) \n"
-
-    the_dir = the_parts[2]
-
-    y = the_min/60.0
-
-    la = the_deg + y
-
-      if ((the_dir @= "E") || (the_dir @= "S")) {
-         la *= -1
-      }
-
-    //<<" %V $la  $y $(typeof(la)) $(Cab(la)) \n"
-      
-    return (la)
-   }
-
-}
 
 
 // try Wtp as args
@@ -366,6 +247,18 @@ int input_lat_long = 0
 int i = -1
 
   // <<"DONE ARGS  $cltpt\n"
+
+
+    i=Fsearch(A,the_start,0,1,0);
+    ki = seek_line(A,0)
+    nwr = Wval->Read(A);
+
+//<<"%V $i $nwr \n"
+    Wtp[0]->Set(Wval);
+
+
+  
+i = -1;
 
   while ( i == -1) {
 
@@ -661,10 +554,11 @@ ild= abs(LoD)
   }
 
 
-dur =  (total*km_to_nm) /80.0  
+float avespd = 70.0;
+dur =  (total*km_to_nm) /avespd  
 
 //<<" polish \n"
-STOP("%6.1f$total km to fly %6.2f$dur hours @ 80 knots\n")
+STOP("%6.1f$total km to fly %6.2f$dur hours @ $avespd knots\n")
 
 
 

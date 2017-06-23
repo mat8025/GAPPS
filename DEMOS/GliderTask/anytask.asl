@@ -2,9 +2,9 @@
 
 // Object Orientated version of anytask
 
-setdebug(0)
 
-Main_init = 1
+
+Main_init = 1;
 
 proc namemangle(aname)
 {
@@ -30,149 +30,7 @@ proc namemangle(aname)
 
 include "ootlib"
 
-float Cruise_speed = 80 * nm_to_km
-
-//<<" DONE include \n"
-
-CLASS turnpt 
- {
-
- public:
-
-  str Lat;
-  str Lon;
-  str Place;
-  str Idnt;
-  str rway;
-  str Cltpt;
-  float Radio;
-
-  float Alt;
-  float Ladeg;
-  float Longdeg;
-
-#  method list
-
-  CMF Set (wval) 
-   {
-
-     //<<"Set $wval \n"
-     //<<"%V$_proc  $wval[0] $wval[1] $wval[2]\n"
-
-       //  sz = wval->Caz() ; // TBF
-        sz = Caz(wval)
-	  //  <<"%V$sz \n"
-	  //<<"$(typeof(wval)) $(Caz(wval))\n"
-       
-	  Place = wval[0];
-       
-	  //<<"%V$Place\n"
-
-
-       Idnt =  wval[1];
-     
-	// <<"%V$Idnt\n";
-
-     
-       Lat =    wval[2];
-       //<<"%V$Lat\n"
-    //      Lat =    Wval[2]; <<"%V$Lat\n"
-    Lon = wval[3];
-    //<<"%V$Lon\n"
-    //    Lon = Wval[3]; <<"%V$Lon\n"    
-    
-    Alt = wval[4];
-
-     rway = wval[5];
-
-    Radio = atof(wval[6])
-
-      //<<"%V$Lat $Lon \n"
-
-    Ladeg = GetDeg(Lat)
-
-    Longdeg = GetDeg(Lon)
-
-      }
-
-   CMF SetPlace (val)   
-   {
-       Place = val
-   }
-
-   CMF Print ()    
-   {
-
-     <<"$Place $Idnt $Lat $Lon $Alt $rway $Radio $Ladeg $Longdeg\n"
-   
-   }
-
-
-  CMF turnpt()
-    {
-      Place="ppp"
-	//      <<" CONS $_cobj %i $Place\n"
-     
-      Ladeg = 0.0
-      Longdeg = 0.0
-    }
-
-
-  CMF GetDeg ( the_ang)
-    {
-
-      //<<"in CMF GetDeg $the_ang\n"
-      //<<"input args is $the_ang \n"
-      str the_dir = "E" ;
-
-    float la
-
-
-      // <<"%V$_cproc %i $the_ang  \n"
-	
-
-    the_parts = Split(the_ang,",")
-
-      //<<"%V$the_parts \n"
-
-
-//FIX    float the_deg = atof(the_parts[0])
-
-    the_deg = atof(the_parts[0])
-
-//    float the_min = atof(the_parts[1])
-
-    the_min = atof(the_parts[1])
-
-      //<<"%V$the_deg $the_min \n"
-
-    sz= Caz(the_min)
-
-      //<<" %V$sz $(typeof(the_deg)) $(Cab(the_deg))  $(Cab(the_min)) \n"
-
-    the_dir = the_parts[2]
-
-    y = the_min/60.0
-
-    la = the_deg + y
-
-      //<<"%V$the_dir $(typeof(the_dir)) \n"
-
-   if (the_dir @= "W") {
-         la *= -1
-   }
-
-   else if (the_dir @= "S") {
-         la *= -1
-   }
-
-    //<<" %V $la  $y $(typeof(la)) $(Cab(la)) \n"
-      
-    return (la)
-   }
-
-}
-//===================================================
+float Cruise_speed = 80 * nm_to_km;
 
 
 proc ComputeTC(j, k)
@@ -414,13 +272,21 @@ int i = -1
 
     ////   do this to check routine    
     //<<"Start  $the_start \n"
-    
+    setdebug(1,"~trace");
+// first parse code bug on reading svar fields?
+
+/{
     i=Fsearch(A,the_start,0,1,0);
     ki = seek_line(A,0)
     nwr = Wval->Read(A);
 
-//<<"%V $i $nwr \n"
+<<"%V $i $nwr \n"
+<<"%V $Wval \n"
     Wtp[0]->Set(Wval);
+
+exit()
+/}
+
 /////////////////////////////
     
 i = -1;    
@@ -433,8 +299,9 @@ i = -1;
       if (via_cl) {
 
 	//	 the_start = CLTPT[cnttpt++]
-	 the_start = CLTPT[cnttpt]
-	   //	 <<"$the_start $cnttpt \n"
+	the_start = CLTPT[cnttpt];
+	
+	//<<"$the_start $cnttpt \n"
 
          cnttpt++;
 
@@ -446,7 +313,7 @@ i = -1;
         the_start = get_word(the_start)
       }
 
-      //<<"Start  $the_start \n"
+      // <<"Start  $the_start \n"
 	//    	prompt(" ? ")
 
       if (the_start @= "done") {
@@ -456,15 +323,17 @@ i = -1;
       
       if (the_start @= "input") {
         input_lat_long = 1
-        i = 0
-        break
+          i = 0;
+	  break;
           }
 
-      //<<"searching file for $the_start  \n"
+      //<<"searching file for $the_start  \n";
+      // <<"         \n";
+      //<<" \n";
 
-        i=Fsearch(A,the_start,0,1,0)
-
-      // <<"index found was $i \n"
+      i=Fsearch(A,the_start,0,1,0);
+<<"$i\n"
+      //<<"index found was $i \n"
 
              if (i == -1) {
 	      <<"$the_start not found \n"
@@ -508,7 +377,7 @@ i = -1;
         nwr = Wval->Read(A)
 
       //    <<" %i $Wval \n"
-	  //<<"$nwr $Wval[0] $Wval[1] $Wval[2] $Wval[3] \n"
+	  //   <<"$nwr $Wval[0] $Wval[1] $Wval[2] $Wval[3] \n"
 
 	  //    msz = Wval->Caz()
 

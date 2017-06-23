@@ -2,7 +2,7 @@
 
 CheckIn()
 
-setdebug(1,"pline")
+setdebug(1,"pline","trace")
 
 char c = 65;
 char p = 'q';
@@ -93,9 +93,12 @@ char a = 'G'
 
  CheckNum(dv[4], 'O' )
 
-//<<" whaat is happenning here \n"
+<<" whaat is happenning here $dv[5] \n"
+
+ tc = scnt('0');
+ <<"%V $tc\n";
  CheckNum(dv[5], scnt('0') )
-//<<" Imm not really cleaaaaaaar \n" 
+<<" Imm not really cleaaaaaaar \n" 
 
 
  CheckNum(dv[5], '0' )

@@ -94,7 +94,7 @@ proc scoreTest( tname)
           rtl = readline(RT)
           rtwords = Split(rtl)
           ntests = atoi(rtwords[4])
-          npass =  atoi(rtwords[8])
+          npass =  atoi(rtwords[6]);
           pcc = npass/(ntests*1.0) *100
 
           rt_tests += ntests;
@@ -1025,6 +1025,9 @@ hdg("FUNC")
   updir()
 
   chdir("ProcArray")
+  
+  hdg("ProcArray");  
+
   cart("arrayarg1")
   cart("arrayarg2")
 
@@ -1037,8 +1040,10 @@ hdg("FUNC")
   updir()
 
   chdir("Static")
+  
+  hdg("Static") ; 
 
-  cart("static")
+  cart("static");
 
   updir()
 
