@@ -56,7 +56,7 @@ DBPR"%V$wedwo \n"
 
     sWo(extwo,@axnum,1)
 
-    swo= cWo(vp1,@type,"GRAPH",@name,"BenchPress",@color,"white")
+    swo= cWo(vp1,@type,"GRAPH",@name,"BenchPress",@color,"white");
     
     int xwo[] = { swo }
 
