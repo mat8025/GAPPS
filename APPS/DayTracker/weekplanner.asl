@@ -104,14 +104,14 @@ activ = "idle"
   yrn = date(8);
   mon = date(18);
 
- Graphic = CheckGwm()
+  Graphic = CheckGwm()
 
 
      if (!Graphic) {
         X=spawngwm()
      }
 
- rows = 9;
+ rows = 15; // set row and log row per day
  cols = 52;
 
  // check find and read in sheet_wk_year - 
@@ -122,10 +122,8 @@ activ = "idle"
   need_new =1;
 
   isok = 0;
-  sheet_name = "Week_${wkn}_${yrn}";
-  sfname = "Week_${wkn}_${yrn}.txt";
-
-
+  sheet_name = "WeekPlan_${wkn}_${yrn}";
+  sfname = "WeekPlan_${wkn}_${yrn}.txt";
 
 // make a window
 
@@ -134,7 +132,6 @@ activ = "idle"
     sWi(aw,@pixmapon,@drawoff,@save,@bhue,LILAC_)
 
     sWi(aw,@clip,0.05,0.1,0.9,0.97)
-
 
     awo=cWo(aw,"SHEET",@name,"$sheet_name",@color,GREEN_,@resize,0.1,0.01,0.98,0.99)
  // does value remain or reset by menu?
@@ -159,18 +156,23 @@ activ = "idle"
      }
   }
 
-<<"%V$need_new\n"
+//===============================================================
+
+ //need_new =1;
+
+ <<"%V$need_new\n"
 
   if (need_new) {
   
-         <<"creating cells\n"
+  <<"creating cells\n"
 
   sWo(awo,@setrowscols,rows,cols);
-  sWo(awo,@sheetcol,0,0,"D/H,Mon,Tue,Wed,Thu,Fri,Sat,Sun");
+  // fill cols left legend
+  sWo(awo,@sheetcol,0,0,"D/H,Mon,+>,Tue,+>,Wed,+>,Thu,+>,Fri,+>,Sat,+>,Sun,+>");
 
 // TBF continue line  not correct
 
-//  sWo(awo,@sheetcol,0,0,"Hour,0,0:30,1,1:30,2,2:30,3,3:30,4,4:30,\
+// fill top row - top legend
   sWo(awo,@sheetrow,0,1,"0,:30,1,:30,2,:30,3,:30,4,:30,\
 5,:30,6,:30,\
 7,:30,08,:30,\
@@ -180,7 +182,6 @@ activ = "idle"
 21,:30,22,:30,23,:30,Wt,H, Score")
 
   }
-
 
 /{
  mwo=cWo(aw,"MENU_FILE",@name,"Activities",@color,"green",@resize,0.21,0.8,0.3,0.9)
@@ -193,7 +194,6 @@ activ = "idle"
  savewo=cWo(aw,"BN",@name,"SAVE",@value,"SAVE",@color,MAGENTA_,@resize_fr,0.02,0.15,0.1,0.30)
  sWo(savewo,@help," click to save sheet")
  sWo(savewo,@border,@drawon,@clipborder,@fonthue,BLACK_, @redraw)
-
 
 
  qwo=cWo(aw,"BN",@name,"QUIT?",@value,"QUIT",@color,"orange",@resize_fr,0.02,0.01,0.1,0.14)
@@ -224,13 +224,13 @@ include "gevent.asl";
 
 int wrow = 0;
 int wcol = 0;
-
+int appt = 0;
 str mans = "nos";
 
  //sWo(awo,@selectrowscols,0,8,0,51);
 //sWo(awo,@selectrowscols,0,8,16,51);
 
-sWo(awo,@selectrowscols,0,8,0,0);
+sWo(awo,@selectrowscols,0,14,0,0);
 //sWo(awo,@selectrowscols,0,0,0,0);
 sWo(awo,@displaycols,15,51,1);
 
@@ -244,14 +244,13 @@ sWo(awo,@displaycols,15,51,1);
 
         if (ev_woid == qwo) {
 	 sWi(aw,@tmsg,"Quit");
-	 
          break;
         }
 
         if (ev_woid == savewo) {
 	 sWo(awo,@sheetmod,1);
-	  sWi(aw,@tmsg,"saving_the_day ");
-            <<" saving_the_day \n"
+	 sWi(aw,@tmsg,"saving_the_week ");
+            <<" saving_the_week \n"
         }
 
 
@@ -265,14 +264,23 @@ sWo(awo,@displaycols,15,51,1);
     last_hue = BLACK_;
     <<"%V $ev_rx $ev_ry $wrow $wcol\n"
     
-    if ( (wrow > 0) && (wrow <= 8) && (wcol > 0) && ( wcol <= 51)) {
-    
+    if ( (wrow > 0) && (wrow <= 14) && (wcol > 0) && ( wcol <= 51)) {
+        appt = 0;
+        if ((wrow % 2) == 0) {
+	 sWi(aw,@tmsg,"stuff done! ");
+        }
+	else {
+         sWi(aw,@tmsg,"set appt? task?");
+	 appt = 1;
+        }
+
        mans = popamenu("Activity.m")
        
        //mans = choice_menu("Activity.m")
 
-        <<"%V$mans\n"
+       // <<"%V$mans\n"
 
+	
         if (!(mans @= "NULL_CHOICE")) {
 	   sWi(aw,@tmsg,"adding activity $mans");
          if ((mans @= "Bike")) {
@@ -325,10 +333,16 @@ sWo(awo,@displaycols,15,51,1);
          nans = popamenu("Howlong.m")
          n_extra = atoi(nans);
 	 // these are selected row and col as displaeyd
-	 for (i = 0; i < n_extra; i++) {
-	  sWo(awo,@cellhue,wrow,wcol+i,last_hue);
-          sWo(awo,@sheetcol,wrow,wcol+i,"$mans");
+
+         stuff = "$mans";
+         if (appt) {
+           stuff = scat(stuff,"?");
          }
+
+         for (i = 0; i < n_extra; i++) {
+	  sWo(awo,@cellhue,wrow,wcol+i,last_hue);
+          sWo(awo,@sheetcol,wrow,wcol+i,"$stuff");
+          }
 	    sWo(awo,@redraw);
 	}
         }
@@ -356,6 +370,10 @@ sWo(awo,@displaycols,15,51,1);
 
  score day
  score week
+// now have day as two rows -- top appointments/tasks  --- bottom stuff done
+// score can check performance of set tasks and stuff accomplished
+// also amount of activity
+
 
 */
 /}
