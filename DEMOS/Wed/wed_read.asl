@@ -8,17 +8,15 @@
 last_known_wt = 205;
 last_known_day = 0;
 
-tl = 0
+tl = 0;
 
 float tot_exeburn =0
 float tot_exetime = 0
 
-Nobs = 0
-nxobs = 0
+Nobs = 0;
+nxobs = 0;
 
 int Nxy_obs = 0
-
-
 
 //=========================================
 
@@ -33,82 +31,30 @@ proc isData()
    sscan(S,'%s',&fword) // get first word -non WS
 
    if (scmp(fword,"#",1)) {
-       dok = 0
+       dok = 0;
    }
 
-   //<<"$fword $dok\n"
+ //  <<"$fword $dok\n"
 
    return dok
 }
 //===========================================================
 
-
-S= readline(A)
-
-  while (1) {
-
-   S= readline(A)
-   tl++
-
-   if (check_eof(A) ) {
-     break
-   }
-
-   ll = slen(S)
-
- //  DBPR"$tl $ll  $S "
-
-   if (ll < 9) {
-        continue
-   }
+proc fillInObsVec()
+{
 
 
-//   sscan(S,'%s',&fword) // get first word -non WS
-//<<"%V$ll $fword\n"
-//   if (!scmp(fword,"#",1)) { // not a comment
+<<"%V$kd $Nobs\n";
+ <<" ";
+ 
+ if ((kd >= 0) && (col[0] @= "WEX")) {
+
+   j = 2;
 
 
-    if (isData()) {
+   LDVEC[Nobs] = wday;
 
-      col= split(S)
-
-//DBPR"$col \n"
-
-    day = col[1]
-
-    wday = julday(day) 
-
-    if (!got_start) {
-        sday = wday
-        got_start = 1;
-    }
-
-
-    k = wday - bday
-
-    lday = k
-
-//DBPR"%V$day $wday  $k \n"
-
-   if (k < 0) {
-      <<" $k neg offset ! \n"
-       break;
-   }
-
-   else {
-
-   // will need separate day vector for the food carb/protein/fat/calorie totals -(if we count/estimate those) 
-
-   if (col[0] @= "WEX") {
-
-   // variables are plotted against dates (juldays - birthday)
-
-   j = 2
-
-
-   LDVEC[Nobs] = wday
-
-   DVEC[Nobs] = k
+   DVEC[Nobs] = kd;
 
    WTVEC[Nobs] = atof(col[j++])
 
@@ -155,20 +101,100 @@ S= readline(A)
    if (wday > yday) {
      tot_exeburn += exer_burn
 //<<"%V$wday $yday $(typeof(wday)) $day %4.1f$exer_burn  $walk $run $cycle\n"
-Nxy_obs++
+     Nxy_obs++;
    }
 
    wrk_sleep  = (sleep_burn + (16 * 60 - tex) * office_rate )  
 
    CALBURN[Nobs] =  wrk_sleep + exer_burn
 
- //<<"$k $Nobs $day %6.1f $exer_burn $wrk_sleep $CALBURN[Nobs] $CARBV[Nobs]\n"
+ //<<"$kd $(Nobs+1) $day %6.1f $WTVEC[Nobs] $exer_burn $wrk_sleep $CALBURN[Nobs] $CARBV[Nobs]\n"
+      Nobs++;
+   }
+}
+//============================================================
 
-   Nobs++
+
+  S= readline(A);
+
+int kd;
+
+  while (1) {
+
+//<<"a";
+
+   S= readline(A);
+
+   tl++;
+
+   if (check_eof(A) ) {
+     <<"end of data \n";
+     break;
    }
 
+   ll = slen(S)
+
+ //DBPR"$tl $ll  $S \n"
+ 
+//<<"$tl $ll  $S \n"
+//<<"b"
+   if (ll < 9) {
+        continue;
    }
+
+//   sscan(S,'%s',&fword) // get first word -non WS
+//<<"%V$ll $fword\n"
+//<<"c"
+
+    if (isData()) {
+    
+//<<"d";
+
+      col= split(S);
+
+//<<"e";
+
+//DBPR"$col \n"
+
+    day = col[1]
+
+    wday = julday(day) 
+
+    if (!got_start) {
+        sday = wday
+        got_start = 1;
+    }
+
+
+    kd = wday - bday;
+
+    lday = kd;
+
+//DBPR"%V$day $wday  $k \n"
+// bug need a print statement here - or the else does not get used
+//<<"%V$day $wday  $kd \n"
+
+//<<"x";
+//<<" "
+
+   if (kd < 0) {
+       <<" $k neg offset ! \n";
+       break;
    }
+
+//  <<"z";
+//
+//<<" what day $k\n"
+   // will need separate day vector for the food carb/protein/fat/calorie totals
+   // -( we count/estimate those) 
+   // variables are plotted against dates (juldays - birthday)
+//<<"$kk wex measure $Nobs\n";
+
+    fillInObsVec();
+
   }
+ //<<"$Nobs\n" ; 
+ }
 
-DBPR"there were $Nobs measurements \n"
+
+<<"there were $Nobs measurements \n"

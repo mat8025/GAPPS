@@ -8,9 +8,10 @@
 
 
 
-//setdebug(1)
+setdebug(1);
 
 //#define DBPR  <<
+
 #define DBPR  ~!
 
 wed_dir = "./"
@@ -110,7 +111,7 @@ float Nsel_lbs = 0.0
 
 <<"%V $Nsel_exemins $Nsel_exeburn  $(typeof(Nsel_exemins))\n"
 
-int k = 0
+int k = 0;
 
 int bday  // birthday 
 int lday  // last day recorded in file
@@ -121,12 +122,9 @@ int dday
 
 // this is a new format -- allowing us to put comment labels on graphs
 
-A=ofr("wfex.dat")
+ A=ofr("wfex.dat")
 
-//<<"%V$A \n"
-
-
-
+ 
 if (A == -1) {
 
 <<"FILE not found \n"

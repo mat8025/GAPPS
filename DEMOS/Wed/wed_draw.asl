@@ -130,7 +130,6 @@ proc  drawGrids( ws )
 
 proc drawScreens()
 {
-
 //<<" $_proc \n"
 
   if ( wScreen == 0) {
@@ -142,22 +141,22 @@ proc drawScreens()
       //DrawGline(wedgl)
      
   if (ALL_LINES) {
-
+DBPR" draw lines \n"
       DrawGline(ext_gl)
       DrawGline(gw_gl)
 
       DrawGline(calc_gl)
       DrawGline(calb_gl)
 
-      //DrawGline(carb_gl)
+     // DrawGline(carb_gl)
      // DrawGline(ave_ext_gl)
 
       DrawGline(wt_gl)
    }
 
-      drawGoals(0)
+      drawGoals(0);
 
-      drawGrids(0) 
+      drawGrids(0);
 
    //   setgwob(wedwo,@showpixmap)
 
@@ -173,9 +172,9 @@ proc drawScreens()
 
       DrawGline(wt_gl)
    
-
       //DrawGline(carb_gl)
-      DrawGline(wt_gl)
+
+       DrawGline(wt_gl)
 
       showTarget();
      }

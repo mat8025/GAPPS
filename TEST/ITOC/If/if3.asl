@@ -1,20 +1,22 @@
-#! /usr/local/GASP/bin/spi
 
+setDebug(1);
 
+<<" $_argv \n"
 
+k = atoi(_argv[1]);
 
-int k = $2
-N = $3
+N = atoi(_argv[2])
 
 <<" comparing $k with $N \n"
 
-         if ( k > N ) 
+         if ( k > N )  {
 
          <<" $k > $N \n"
-         else if (k == N) 
+	 }
+         else if (k == N)  {
 
          <<" elseif1 $k == $N \n"
-
+         }
          else if (k >= (N -1)) {
 
          <<" elseif2 $k >= $N -1 \n"
@@ -24,7 +26,6 @@ N = $3
 
          <<" else $k < $N \n"
          }
-
 
 
 

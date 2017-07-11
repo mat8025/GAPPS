@@ -21,6 +21,8 @@ A=ofw("Food.m")
 <<[A],"help \n"
 <<[A],"item Snack C_MENU Snack\n"
 <<[A],"help \n"
+<<[A],"item ? C_INTER xx\n"
+<<[A],"help \n"
 cf(A)
 
 // maybe XML versions
@@ -205,6 +207,8 @@ include "gevent.asl"
 // event loop to process menu's
 
    sWi(vp2,@redraw)
+
+   
 
 //wu = choice_menu("Units.m",0,0)
    the_row = 1;

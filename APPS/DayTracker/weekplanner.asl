@@ -5,6 +5,7 @@
 ///
 setdebug(1,"~trace")
 
+vers = "1.3"
 ////////////// Menus /////////////
 
 A=ofw("Activity.m")
@@ -13,6 +14,8 @@ A=ofw("Activity.m")
 <<[A],"help what exercise\n"
 <<[A],"item Code M_VALUE Code\n"
 <<[A],"help \n"
+<<[A],"item Gapp M_VALUE Gapp\n"
+<<[A],"help gasp app dev\"
 <<[A],"item ASR M_VALUE ASR\n"
 <<[A],"help \n"
 <<[A],"item DSP M_VALUE DSP\n"
@@ -37,6 +40,8 @@ A=ofw("Activity.m")
 <<[A],"help must sleep now\n"
 <<[A],"item Nothing M_VALUE nada\n"
 <<[A],"help nothing to see here\n"
+<<[A],"item ? C_INTER que\n"
+<<[A],"help type the activity\n"
 cf(A)
 
 ////////////////////////////////
@@ -96,13 +101,26 @@ cf(A)
 ////////////////////
 activ = "idle"
 
+  dstr= !!"date "
+<<"$dstr \n"
+  wks = split(dstr);
+  yrn = atoi(wks[5])
+  mon = wks[1];
+  dayname = wks[0];
+  daydate = atoi(wks[2]);
+  
   wks= !!"date +\%V"
 <<"$wks $(typeof(wks)) $(Caz(wks))\n";
   wkn = atoi(wks[0]);
-<<" we are in week $wkn\n";
 
-  yrn = date(8);
-  mon = date(18);
+
+  dstr= !!"date +\%w"
+  dow = atoi(dstr);
+  
+
+
+
+<<" we are in week $wkn $yrn mon $mon $dayname $daydate\n";
 
   Graphic = CheckGwm()
 
@@ -127,13 +145,15 @@ activ = "idle"
 
 // make a window
 
-    aw = cWi(@title,"DailyTracker",@resize,0.05,0.02,0.97,0.99)
+    aw = cWi(@title,"DailyTracker_$vers",@resize,0.05,0.02,0.97,0.99)
 
     sWi(aw,@pixmapon,@drawoff,@save,@bhue,LILAC_)
 
-    sWi(aw,@clip,0.05,0.1,0.9,0.97)
+    sWi(aw,@clip,0.05,0.1,0.95,0.97)
 
-    awo=cWo(aw,"SHEET",@name,"$sheet_name",@color,GREEN_,@resize,0.1,0.01,0.98,0.99)
+    lbp = 0.09;
+
+    awo=cWo(aw,"SHEET",@name,"$sheet_name",@color,GREEN_,@resize,lbp,0.01,0.98,0.99)
  // does value remain or reset by menu?
 
     sWo(awo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,RED_,@VALUE,"SSWO")
@@ -168,7 +188,7 @@ activ = "idle"
 
   sWo(awo,@setrowscols,rows,cols);
   // fill cols left legend
-  sWo(awo,@sheetcol,0,0,"D/H,Mon,+>,Tue,+>,Wed,+>,Thu,+>,Fri,+>,Sat,+>,Sun,+>");
+  sWo(awo,@sheetcol,0,0,"D/H,Mon,+>,Tue,+>,Wed,+>,Thu,+>,Fri,+>,Sat,+>,Sun_9,+>");
 
 // TBF continue line  not correct
 
@@ -183,6 +203,11 @@ activ = "idle"
 
   }
 
+  // label the days' dates
+
+
+  sWo(awo,@sheetcol,0,0,"D/H,Mon,+>,Tue,+>,Wed,+>,Thu,+>,Fri,+>,Sat,+>,Sun ,+>");
+
 /{
  mwo=cWo(aw,"MENU_FILE",@name,"Activities",@color,"green",@resize,0.21,0.8,0.3,0.9)
  // does value remain or reset by menu?
@@ -191,12 +216,13 @@ activ = "idle"
 /}
 
 
- savewo=cWo(aw,"BN",@name,"SAVE",@value,"SAVE",@color,MAGENTA_,@resize_fr,0.02,0.15,0.1,0.30)
+ 
+ savewo=cWo(aw,"BN",@name,"SAVE",@value,"SAVE",@color,MAGENTA_,@resize_fr,0.02,0.15,lbp,0.30)
  sWo(savewo,@help," click to save sheet")
  sWo(savewo,@border,@drawon,@clipborder,@fonthue,BLACK_, @redraw)
 
 
- qwo=cWo(aw,"BN",@name,"QUIT?",@value,"QUIT",@color,"orange",@resize_fr,0.02,0.01,0.1,0.14)
+ qwo=cWo(aw,"BN",@name,"QUIT?",@value,"QUIT",@color,"orange",@resize_fr,0.02,0.01,lbp,0.14)
  sWo(qwo,@help," click to quit")
  sWo(qwo,@border,@drawon,@clipborder,@fonthue,BLACK_, @redraw)
  sWi(aw,@redraw)
@@ -214,9 +240,28 @@ activ = "idle"
 
  int dmywos[] = { wkwo,monwo,yrwo}
  sWo(dmywos,@border,@drawon,@clipborder,@STYLE,"SVR")
- wovtile (dmywos, 0.02,0.85,0.1,0.95)
+ wovtile (dmywos, 0.02,0.85,lbp,0.95)
  
- sWo(dmywos,@redraw)
+ sWo(dmywos,@redraw);
+ /////////////////////////////////////////////////////////////
+
+ amwo=cWo(aw,@BV,@name,"A.M.",@value,"",@color,BLUE_,@fonthue,RED_,@penhue,BLACK_)
+ sWo(amwo,@help," Show a.m.")
+
+ pmwo=cWo(aw,@BV,@name,"P.M.",@value,"",@color,YELLOW_,@fonthue,BLACK_)
+ sWo(pmwo,@help," Show pm")
+
+ daywo=cWo(aw,@BV,@name,"Day",@value,"",@color,YELLOW_,@fonthue,BLACK_)
+ sWo(daywo,@help," Show day")
+
+ int timewos[] = { amwo,pmwo,daywo}
+
+ wovtile (timewos, 0.02,0.55,lbp,0.70,0.01)
+ 
+ sWo(timewos,@redraw);
+
+
+
 
 /////////////////
 
@@ -230,20 +275,36 @@ str mans = "nos";
  //sWo(awo,@selectrowscols,0,8,0,51);
 //sWo(awo,@selectrowscols,0,8,16,51);
 
-sWo(awo,@selectrowscols,0,14,0,0);
-//sWo(awo,@selectrowscols,0,0,0,0);
-sWo(awo,@displaycols,15,51,1);
+sWo(awo,@selectrowscols,0,14,0,51);
+//sWo(awo,@displaycols,15,51,1);
+sWo(awo,@displaycols,0,51,0);
+sWo(awo,@displaycols,0,0,1);
+sWo(awo,@displaycols,15,25,1);
+//sWo(awo,@displaycols,25,51,1);
 
- 
+com_done = "stuff done";
+com_appt = "set appt?";
+
+act_menu = "Activity.m";
+how_long_menu = "Howlong.m";
+null_choice ="NULL_CHOICE";
+
+sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"yellow");
+
+
+
  sWo(awo,@redraw);
- 
+ sWi(aw,@tmsg,"weekplanner $vers");
+
    while (1) {
 
          eventWait();
 
+<<"%V $ev_woid  $qwo\n"
 
         if (ev_woid == qwo) {
 	 sWi(aw,@tmsg,"Quit");
+	 <<" exit planner \n"
          break;
         }
 
@@ -252,6 +313,40 @@ sWo(awo,@displaycols,15,51,1);
 	 sWi(aw,@tmsg,"saving_the_week ");
             <<" saving_the_week \n"
         }
+
+        if (ev_woid == amwo) {
+	 sWi(aw,@tmsg,"morning");
+	 <<" display morning cols\n"
+         sWo(awo,@selectrowscols,0,14,0,51);
+
+         sWo(awo,@displaycols,0,51,0); // clear
+	 sWo(awo,@displaycols,0,0,1);  // select
+         sWo(awo,@displaycols,15,25,1);
+	 sWo(awo,@displaycols,49,51,1);
+
+         sWo(awo,@redraw);
+        }
+
+        if (ev_woid == pmwo) {
+	 sWi(aw,@tmsg,"afternoon");
+	 <<" display pm cols\n"
+         sWo(awo,@selectrowscols,0,14,0,51);
+         sWo(awo,@displaycols,0,51,0);
+	 sWo(awo,@displaycols,25,51,1);
+         sWo(awo,@displaycols,0,0,1);
+	 sWo(awo,@redraw);
+         }
+
+
+        if (ev_woid == daywo) {
+	 sWi(aw,@tmsg,"wholeday");
+	 <<" display pm cols\n"
+         sWo(awo,@selectrowscols,0,14,0,51);
+	 sWo(awo,@displaycols,0,51,0);
+	 sWo(awo,@displaycols,0,0,1);	 
+         sWo(awo,@displaycols,15,51,1);
+	 sWo(awo,@redraw);
+         }
 
 
 
@@ -267,21 +362,21 @@ sWo(awo,@displaycols,15,51,1);
     if ( (wrow > 0) && (wrow <= 14) && (wcol > 0) && ( wcol <= 51)) {
         appt = 0;
         if ((wrow % 2) == 0) {
-	 sWi(aw,@tmsg,"stuff done! ");
+//	 sWi(aw,@tmsg,"stuff done! ");
+	 sWi(aw,@tmsg,com_done);
         }
 	else {
-         sWi(aw,@tmsg,"set appt? task?");
+         //sWi(aw,@tmsg,"set appt? task?");
+	 sWi(aw,@tmsg,com_appt);
 	 appt = 1;
         }
 
        mans = popamenu("Activity.m")
-       
-       //mans = choice_menu("Activity.m")
 
        // <<"%V$mans\n"
 
 	
-        if (!(mans @= "NULL_CHOICE")) {
+        if (!(mans @= null_choice)) {
 	   sWi(aw,@tmsg,"adding activity $mans");
          if ((mans @= "Bike")) {
            last_hue = RED_;
@@ -322,15 +417,21 @@ sWo(awo,@displaycols,15,51,1);
 	   sWo(awo,@cellhue,wrow,wcol,BLACK_);
 	 }
 	 
-	 if ((mans @= "nada") ) {
+
+         if ((mans @= "nada") ) {
              mans = " ";
 	 }
 	 else {
 	 <<" adding $mans to sheet $wrow $wcol\n"
 
 	 }
-         if (! (mans @= "NULL_CHOICE")) {
-         nans = popamenu("Howlong.m")
+
+         sWo(awo,@redraw);
+   
+         if (! (mans @= null_choice)) {
+
+         nans = popamenu("Howlong.m");
+	 //nans = popamenu(how_long_menu);
          n_extra = atoi(nans);
 	 // these are selected row and col as displaeyd
 
@@ -347,22 +448,19 @@ sWo(awo,@displaycols,15,51,1);
 	}
         }
     }
-
+        sWi(aw,@redraw);
         sWo(awo,@redraw);
     } // loop end
 
 //===================================================  
 
- //exit_gs(); // takes down XGS as well
+ exit_gs(); // takes down XGS as well
  
- exit();
-
 
 //////////// TBD ////////////////
-/{
-/*
+/{/*
 
- quit button
+ quit button DONE
  title message
  sheetwo -- should have wo cell per spreadsheet cell - 
  save  sheet -- done
@@ -370,10 +468,17 @@ sWo(awo,@displaycols,15,51,1);
 
  score day
  score week
-// now have day as two rows -- top appointments/tasks  --- bottom stuff done
-// score can check performance of set tasks and stuff accomplished
-// also amount of activity
+ now have day as two rows -- top appointments/tasks  --- bottom stuff done
+ score can check performance of set tasks and stuff accomplished
+ also amount of activity
 
+  am/pm view 
+  day/eve view
 
-*/
-/}
+  highlite today - done
+
+  save dialog - save changes
+
+  add dates
+
+/}*/

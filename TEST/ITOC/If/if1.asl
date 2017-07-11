@@ -1,10 +1,11 @@
-#! /usr/local/GASP/bin/spi
 
 
 
+k = atoi(_argv[1])
+N = atoi(_argv[2])
 
-int k = $2
-N = $3
+
+
 
 <<" comparing $k with $N \n"
 

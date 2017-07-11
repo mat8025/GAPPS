@@ -37,7 +37,7 @@ DBPR"%V$wedwo \n"
 
     wo_vtile(wedwo,0.03,0.08,0.97,0.97,0.02)   // vertically tile the drawing areas into the main window
 
-    cx = 0.08 ;    cX = 0.95 ; cy = 0.2 ; cY = 0.97
+    cx = 0.08 ;    cX = 0.95 ; cy = 0.2 ; cY = 0.97;
 
 
     sWo(wedwo,@clip,cx,cy,cX,cY, @color,"white")

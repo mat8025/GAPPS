@@ -24,7 +24,7 @@ today=getDate(1)
 
 cwd=getdir()
 
-Opf=ofw("score_$(date(2,'-'))")
+Opf=ofw("Scores/score_$(date(2,'-'))")
 
 
 <<[Opf]"$today $(get_version())\n"
@@ -1407,9 +1407,9 @@ chdir(cwd)
 
 !!"pwd"
 
-<<"cp score_$(date(2,'-')) current_score \n"
+<<"cp Scores/score_$(date(2,'-')) current_score \n"
 
-!!"cp score_$(date(2,'-')) current_score"
+!!"cp Scores/score_$(date(2,'-')) current_score"
 
 STOP()
 
