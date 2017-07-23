@@ -1,3 +1,6 @@
+
+setdebug(1);
+
 checkin()
 
 

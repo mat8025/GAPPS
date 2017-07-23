@@ -1,4 +1,5 @@
 setdebug(1)
+
 CheckIn()
 
 int ag = 47
@@ -55,7 +56,7 @@ char a = 'G';
 
  CheckNum(a,'G')
 
- a = 'V'
+ a = 'V';
 
 <<"%V$a    $(typeof(a)) $(Csz(a)) \n"
 

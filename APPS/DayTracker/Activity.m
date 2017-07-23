@@ -4,6 +4,7 @@ help what exercise
 item Code M_VALUE Code
 help 
 item Gapp M_VALUE Gapp
+help gasp app dev
 item ASR M_VALUE ASR
 help 
 item DSP M_VALUE DSP

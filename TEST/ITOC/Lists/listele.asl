@@ -1,6 +1,6 @@
 
 
-setDebug(1,"trace")
+setDebug(1,"trace","pline")
 CheckIn()
 
 //FIXME --- have to have a declare statement afore LIST DECLARE ??
@@ -33,20 +33,25 @@ L = ( "say", "what", "can" ,"I", "do", "now", "with", "this", "amazingly", "love
 
 <<" $(typeof(le)) $le\n"
 
- le = L[1]
+ le = L[1];
 
 <<"%V$le \n"
 <<"le type is $(typeof(le)) \n"
 
-  li = L[2]
-<<"%V$li \n"
+  li = L[2];
+  
+<<"%V$li $(typeof(li))\n"
+// FIX li shouldn be string !\n";
+
+
 <<"li type is $(typeof(li)) \n"
  m = Caz(li)
 <<"list size is $m \n"
 
 <<"\n"
 
-lib = L[2:6]
+lib = L[2:6];
+
  m = Caz(lib)
 <<"list size is $m \n"
 

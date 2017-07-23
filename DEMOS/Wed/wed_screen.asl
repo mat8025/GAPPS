@@ -2,9 +2,9 @@
 
 //////////////////  WED SCREEN --- WINDOWS ////////////////
 
-vptitle = "WED"
+vptitle = "Wed_$vers"
 
-    vp =  cWi(@title, "WED",@resize,0.01,0.05,0.95,0.95,0)
+    vp =  cWi(@title, "$vptitle",@resize,0.01,0.05,0.95,0.95,0)
 
     vp1 = cWi(@title,"XED",@resize,0.01,0.05,0.90,0.9,1)
 

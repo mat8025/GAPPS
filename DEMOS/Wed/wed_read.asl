@@ -4,7 +4,6 @@
 
 
 
-
 last_known_wt = 205;
 last_known_day = 0;
 
@@ -44,19 +43,21 @@ proc fillInObsVec()
 {
 
 
-<<"%V$kd $Nobs\n";
- <<" ";
+//<<"%V$kd $Nobs\n";
+// <<" ";
  
  if ((kd >= 0) && (col[0] @= "WEX")) {
 
    j = 2;
 
+   mywt = atof(col[j++]);
 
-   LDVEC[Nobs] = wday;
+   if (mywt > 0) {
+   
+    LDVEC[Nobs] = wday;
+    DVEC[Nobs] = kd;
 
-   DVEC[Nobs] = kd;
-
-   WTVEC[Nobs] = atof(col[j++])
+    WTVEC[Nobs] = mywt;
 
 //DBPR"$k  $DVEC[Nobs]  $WTVEC[Nobs] \n"
 
@@ -110,6 +111,7 @@ proc fillInObsVec()
 
  //<<"$kd $(Nobs+1) $day %6.1f $WTVEC[Nobs] $exer_burn $wrk_sleep $CALBURN[Nobs] $CARBV[Nobs]\n"
       Nobs++;
+      }
    }
 }
 //============================================================

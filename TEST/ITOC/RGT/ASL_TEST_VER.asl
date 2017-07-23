@@ -7,6 +7,7 @@
 #define PBLACK '\033[1;39m'
 #define POFF  '\033[0m'
 
+vers = "1.4";
 //ws= getenv("GS_SYS")
 
 !!"rm -f ../*/*.tst"
@@ -68,12 +69,17 @@ len = slen(atit)
 //!!"ps wax | grep asl | grep -v emacs"
 }
 
+Curr_dir = "xx";
+
 proc Run2Test(td)
 {
   hdg(td)
-  curr_dir = getDir()
-  //<<"changing to $td dir from $curr_dir\n"
+
+  Curr_dir = getDir();
   chdir(td)
+  Curr_dir = getDir();
+  
+  //<<"changing to $td dir from $Curr_dir\n"
 }
 
 /////////////////////////////
@@ -107,7 +113,6 @@ else {
 }
 <<[Opf]"DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\%\n"
  
-
           cf(RT)
 
           scored = 1;
@@ -116,7 +121,7 @@ else {
 
           if (pcc != 100.0) {
 	 //  <<"inserting $tname into failed list \n"
-            FailedList->Insert(tname)
+            FailedList->Insert("${Curr_dir}/${tname}")
           }
        }
 
@@ -233,7 +238,7 @@ proc cart (aprg, a1)
      else {
 
        //<<"CRASH FAIL:--failed to run inseting $aprg into crashed list\n"
-        CrashList->Insert("${aprg}")
+        CrashList->Insert("${Curr_dir}/${aprg}")
      }
 
    }
@@ -258,7 +263,7 @@ proc cart (aprg, a1)
 
        //<<"CRASH FAIL:--failed to run \n"
        // insert works??
-       CrashList->Insert("${aprg}")
+       CrashList->Insert("${Curr_dir}/${aprg}")
      }
 
 
@@ -347,7 +352,7 @@ proc cart (aprg, a1)
      else {
 
        //<<"CRASH FAIL:--failed to run\n"
-        CrashList->Insert("xic_${aprg}")
+        CrashList->Insert("${Curr_di}/xic_${aprg}")
      }
 
    }
@@ -1408,7 +1413,7 @@ chdir(cwd)
 !!"pwd"
 
 <<"cp Scores/score_$(date(2,'-')) current_score \n"
-
+<<"$vers\n";
 !!"cp Scores/score_$(date(2,'-')) current_score"
 
 STOP()

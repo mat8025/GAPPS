@@ -15,7 +15,7 @@ A=ofw("Activity.m")
 <<[A],"item Code M_VALUE Code\n"
 <<[A],"help \n"
 <<[A],"item Gapp M_VALUE Gapp\n"
-<<[A],"help gasp app dev\"
+<<[A],"help gasp app dev\n"
 <<[A],"item ASR M_VALUE ASR\n"
 <<[A],"help \n"
 <<[A],"item DSP M_VALUE DSP\n"
@@ -116,7 +116,35 @@ activ = "idle"
 
   dstr= !!"date +\%w"
   dow = atoi(dstr);
-  
+
+
+
+
+///////////////////////
+<<"-------------\n"
+ds = date(2);
+jd = julday(ds);
+<<"%V$ds $jd\n"
+dow2 = !!"date +\%u"
+dn= atoi(dow2);
+<<"%V$dow2 $dn\n"
+dn--;
+
+int wdn[8];
+int nd = 1;
+
+for (wd = jd-dn; wd < (jd+(7-dn)) ; wd++) {
+
+dstr = julmdy(wd);
+<<"$wd $dstr\n"
+dt = Split(dstr,"/");
+wdn[nd] = atoi(dt[1]);
+nd++;
+}
+
+<<"$wdn \n";
+
+////////////////////////
 
 
 
@@ -140,8 +168,8 @@ activ = "idle"
   need_new =1;
 
   isok = 0;
-  sheet_name = "WeekPlan_${wkn}_${yrn}";
-  sfname = "WeekPlan_${wkn}_${yrn}.txt";
+  sheet_name = "Journal/WeekPlan_${wkn}_${yrn}";
+  sfname = "Journal/WeekPlan_${wkn}_${yrn}.txt";
 
 // make a window
 
@@ -160,9 +188,10 @@ activ = "idle"
     sWo(awo,@bhue,CYAN_,@clipbhue,"skyblue")
 
 
-  tfz = fexist(sfname);
+   tfz = fexist(sfname);
 
 <<"$sfname $tfz\n"
+
   if (tfz > 0) {
      // handshake this - via srs
 
@@ -206,7 +235,8 @@ activ = "idle"
   // label the days' dates
 
 
-  sWo(awo,@sheetcol,0,0,"D/H,Mon,+>,Tue,+>,Wed,+>,Thu,+>,Fri,+>,Sat,+>,Sun ,+>");
+  sWo(awo,@sheetcol,0,0,"D/H,Mon $wdn[1],+>,Tue $wdn[2],+>,Wed $wdn[3],+>,Thu $wdn[4],\
++>,Fri $wdn[5],+>,Sat $wdn[6],+>,Sun $wdn[7],+>");
 
 /{
  mwo=cWo(aw,"MENU_FILE",@name,"Activities",@color,"green",@resize,0.21,0.8,0.3,0.9)
@@ -245,18 +275,24 @@ activ = "idle"
  sWo(dmywos,@redraw);
  /////////////////////////////////////////////////////////////
 
+ oowo=cWo(aw,@BV,@name,"OO",@value,"",@color,PINK_,@fonthue,RED_,@penhue,BLACK_)
+ sWo(oowo,@help," Show early a.m.")
+
  amwo=cWo(aw,@BV,@name,"A.M.",@value,"",@color,BLUE_,@fonthue,RED_,@penhue,BLACK_)
  sWo(amwo,@help," Show a.m.")
 
  pmwo=cWo(aw,@BV,@name,"P.M.",@value,"",@color,YELLOW_,@fonthue,BLACK_)
  sWo(pmwo,@help," Show pm")
 
+ evewo=cWo(aw,@BV,@name,"EVE",@value,"",@color,MAGENTA_,@fonthue,BLACK_)
+ sWo(evewo,@help," Show evening")
+
  daywo=cWo(aw,@BV,@name,"Day",@value,"",@color,YELLOW_,@fonthue,BLACK_)
  sWo(daywo,@help," Show day")
 
- int timewos[] = { amwo,pmwo,daywo}
+ int timewos[] = { oowo,amwo,pmwo,evewo,daywo}
 
- wovtile (timewos, 0.02,0.55,lbp,0.70,0.01)
+ wovtile (timewos, 0.02,0.55,lbp,0.80,0.01)
  
  sWo(timewos,@redraw);
 
@@ -289,15 +325,24 @@ act_menu = "Activity.m";
 how_long_menu = "Howlong.m";
 null_choice ="NULL_CHOICE";
 
-sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"yellow");
+
+// all days 
+
+for (iday = 1; iday <=7; iday++) {
+sWo(awo,@cellhue,(((iday+6)%7)*2+1),0,"yellow");
+}
+
+
+// highlite day if current week
+sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
 
 
 
  sWo(awo,@redraw);
  sWi(aw,@tmsg,"weekplanner $vers");
-
+ int nada = 0;
    while (1) {
-
+         nada = 0;
          eventWait();
 
 <<"%V $ev_woid  $qwo\n"
@@ -321,7 +366,20 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"yellow");
 
          sWo(awo,@displaycols,0,51,0); // clear
 	 sWo(awo,@displaycols,0,0,1);  // select
-         sWo(awo,@displaycols,15,25,1);
+         sWo(awo,@displaycols,15,26,1);
+	 sWo(awo,@displaycols,49,51,1);
+
+         sWo(awo,@redraw);
+        }
+
+        if (ev_woid == oowo) {
+	 sWi(aw,@tmsg,"good morning");
+	 <<" display morning cols\n"
+         sWo(awo,@selectrowscols,0,14,0,51);
+
+         sWo(awo,@displaycols,0,51,0); // clear
+	 sWo(awo,@displaycols,0,0,1);  // select
+         sWo(awo,@displaycols,1,16,1); // seite ahoras 
 	 sWo(awo,@displaycols,49,51,1);
 
          sWo(awo,@redraw);
@@ -332,7 +390,19 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"yellow");
 	 <<" display pm cols\n"
          sWo(awo,@selectrowscols,0,14,0,51);
          sWo(awo,@displaycols,0,51,0);
-	 sWo(awo,@displaycols,25,51,1);
+	 sWo(awo,@displaycols,25,39,1);
+         sWo(awo,@displaycols,0,0,1);
+	 sWo(awo,@displaycols,49,51,1);
+	 sWo(awo,@redraw);
+         }
+
+
+        if (ev_woid == evewo) {
+	 sWi(aw,@tmsg,"buenas noches");
+	 <<" display evening cols\n"
+         sWo(awo,@selectrowscols,0,14,0,51);
+         sWo(awo,@displaycols,0,51,0);
+	 sWo(awo,@displaycols,37,51,1);
          sWo(awo,@displaycols,0,0,1);
 	 sWo(awo,@redraw);
          }
@@ -420,6 +490,8 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"yellow");
 
          if ((mans @= "nada") ) {
              mans = " ";
+	     nada =1;
+	     <<" should be null string but <|$mans|>\n"
 	 }
 	 else {
 	 <<" adding $mans to sheet $wrow $wcol\n"
@@ -437,7 +509,9 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"yellow");
 
          stuff = "$mans";
          if (appt) {
+	   if (!nada) {  
            stuff = scat(stuff,"?");
+           }
          }
 
          for (i = 0; i < n_extra; i++) {
@@ -479,6 +553,13 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"yellow");
 
   save dialog - save changes
 
-  add dates
+  add dates - done
+  check for current week
+
+  weight entry
+
+  rudimentary score
+
+
 
 /}*/

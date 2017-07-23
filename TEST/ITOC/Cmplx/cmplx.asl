@@ -2,8 +2,112 @@
 
 // test complex & dcomplex types
 
-//SetDebug(1,"pline")
+SetDebug(1,"pline")
+
 checkIn()
+
+/{
+int A[] = {1,2,3}
+  sz = Caz(A)
+  <<"%V $sz $A\n"
+
+  sum = Sum(A);
+<<"%V$sum \n"
+
+
+sum = Sum({1,2,3,4});
+<<"%V$sum \n"
+
+
+exit();
+
+
+sz = Caz({1,2,3});
+
+<<"%V $sz\n"
+
+int I[10] = {0,1,2,3,4,5,6,7,8,9};
+
+<<"$I\n"
+
+
+float F[10] = {0,1,2,3,4,5,6,7,8,9};
+
+<<"$F\n"
+
+ I = {11,1,2,3,4,5,6,7,8,12};
+
+<<"$I\n"
+
+exit();
+ /}
+
+cmplx g[16] = {1,2,3,4,5,6,7,8,9,10};
+
+sz = Caz(g)
+<<"%V$sz $g\n"
+/{
+  g->SetReal(77);
+<<"%V$sz $g\n"
+  g->SetImag(-21);
+<<"%V$sz $g\n"
+
+g[0]->Set(80,15);
+<<"$g\n"
+
+/}
+  
+g[1:6:1]->SetReal({1,2,3,4,5,6})
+
+<<"$g\n"
+
+
+g[1:6:1]->SetImag({6.1,6.2,6.3,6.4,6.5,6.6})
+
+sz = Caz(g)
+<<"%V$sz $g\n"
+
+g[1:6:1]->SetReal({1,2,3,4,5,6})
+
+<<"$g\n"
+
+  
+  exit()
+
+  
+float rv[10];
+
+rv[0] = 19;
+rv[1] = 20;
+rv[2] = 21;
+rv[3] = 268;
+rv[4] = 166;
+rv[5] = 68;
+
+g[1:6:1]->SetReal({1,2,3,4,5,6})
+
+<<"$g\n"
+
+g[1:6:1]->SetImag({7,8,9,10,11,12})
+
+<<"$g\n"
+
+
+g[1:6:1]->SetImag({-1.0,-2.0,-3.0,-4,-5,-6.2})
+
+<<"$g\n"
+
+
+g[1:6:1]->SetReal(rv)
+
+<<"$g\n"
+
+g[1:6:1]->SetImag(rv)
+
+<<"$g\n"
+
+exit()
+
 
 cmplx a
 cmplx b;
@@ -35,7 +139,7 @@ cmplx b;
 
 <<"%V$a * $b $c \n"
 
-  d = a / b
+    d = a / b;
 
 <<"%V$a /  $b $d \n"
 
@@ -44,8 +148,8 @@ cmplx b;
 <<"%V$d *  $b  = $e \n"
 
 
-dcmplx  r
-dcmplx  t
+    dcmplx  r;
+    dcmplx  t;
     dcmplx  rt;
 
   r->Set(2.5,0.5)
@@ -128,16 +232,97 @@ dcmplx  t
   
     checkNum(1,1)
 
-    checkOut()
-    
-  
+    float fv[4] = {1,2,3,4};
 
-  cmplx f = {1,2}
+<<"$fv\n"
+
+
+
+
+
+
+
+
+
+  exit()
+
+  g[3]->Set(47,79)
+
+  <<"%V$sz $g\n"
+
+  g[4]->setReal(80)
+
+  g[5]->setImag(85)
+  
+     <<"%V $g\n"
+
+
+  
+  g->SetReal(rv)
+
+  
+     <<"%V $g\n"
+
+
+
+  g[6]->SetReal(1001)
+
+     <<"%V $g\n"
+
+
+
+       <<"%V $g\n"
+       
+  g[2:12:2]->SetReal(rv);
+
+     <<"%V $g\n"
+
+  g[0:12:2]->SetImag(rv);
+
+     <<"%V $g\n"
+
+     g[6:12:]->SetReal({4,5,6});
+
+     <<"%V $g\n"
+
+
+     g[0:2]->SetReal({1,2,3});
+
+     <<"%V $g\n"     
+     
+exit()
+
+g[0]->Set(1,2);
+<<"$g\n"
+
+
+g[1]->Set(3,4);
+
+<<"$g\n"
+
+
+g->Set(1,2,3,4);
+
+<<"$g\n"
+
+    cmplx f;
+
+f->set(1,2);
 
 <<"%V$f \n"
 
+     f = {1,2};
+  
 
- cmplx F[10]
+//cmplx f = {1,2};
+
+
+
+
+    checkOut();
+exit()
+
+cmplx F[10];
 
 <<"%V$F \n"
 F = vgen (CMPLX,10,1,1)
@@ -178,8 +363,6 @@ G = vgen (CMPLX,10,1,-1)
 
   Ph=G->Phase()
 <<"%V$Ph \n"
-
-
 
 
 STOP!

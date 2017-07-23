@@ -6,7 +6,7 @@
 /// office computer work (24-8-exercise hours) 119.3 per hour
 
 
-
+vers = "1.7";
 
 setdebug(1);
 

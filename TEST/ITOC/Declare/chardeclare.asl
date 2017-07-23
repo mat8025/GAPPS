@@ -2,7 +2,7 @@
 
 CheckIn()
 
-setdebug(1,"pline","trace")
+setdebug(1,"pline","trace","stoponerror")
 
 char c = 65;
 char p = 'q';
@@ -25,7 +25,8 @@ str tease = "a b c "
 <<"<%i$tease> %v<%s$tease> \n"
 <<"<%i$tease> <%s$tease> \n"
 
-uchar cv[] = { 65,47,79,0xBA }
+uchar cv[] = { 65,47,79,0xBA };
+
 
  sz= Caz(cv)
  
@@ -60,13 +61,14 @@ wc = scnt('G')
 
 <<"%V $wc $(typeof(wc))\n"
 
-char dv[] = { 'G', 25, 28, 78, 'O', '0', 69 }
-
+char dv[] = { 'G', 25, 28, 78, 'O', '0', 69, 75,76,77 }
 
 <<"%I $dv \n"
 <<"$dv \n"
 
-char a = 'G'
+
+
+char a = 'G';
 
 <<"%I $a \n"
 
@@ -74,16 +76,13 @@ char a = 'G'
 
  CheckNum(dv[0],a)
 
-<<"back in main after plain arg\n"
+
 
  CheckNum(dv[0], wc )
 
-<<"back in main after different type  args\n"
-
-
  CheckNum(dv[0], 'G' )
 
-<<"back in main after fun arg\n"
+
 
 <<"%V $dv  \n"
 
@@ -91,7 +90,15 @@ char a = 'G'
 
  CheckNum(dv[1],25)
 
+  char b = dv[4];
+
+<<"%V $b %d $b\n"
+<<"%V $dv[4]\n";
+
+//iread()
+
  CheckNum(dv[4], 'O' )
+
 
 <<" whaat is happenning here $dv[5] \n"
 
@@ -103,8 +110,9 @@ char a = 'G'
 
  CheckNum(dv[5], '0' )
 
+S="hey";
 
-char lv[] = { 'ABCDEF MARK$ TERRY NEEDS TO FOCUS ' }
+char lv[] = { 'ABCDEF MARK$S TERRY NEEDS TO FOCUS ' }
 
 sz = Caz(lv)
 <<"%v $sz \n"
@@ -112,8 +120,9 @@ sz = Caz(lv)
 
 <<" $lv[0] \n"
 <<" $lv[1] \n"
+//iread("->");
 
-char ev[] = { "ABCDEF MARK TERRY NEEDS TO FOCUS " }
+char ev[] = { "ABCDEF MARK$S TERRY NEEDS TO FOCUS " }
 
 
 <<"%V$ev \n"
@@ -121,11 +130,11 @@ sz = Caz(ev)
 <<"%v $sz \n"
 
 
-<<"%I %s $ev \n"
+<<"%V $ev \n"
 
+//iread("->");
 
  CheckNum(ev[0],'A')
-
  CheckNum(ev[7],'M')
 
 <<"%I %s $lv \n"
