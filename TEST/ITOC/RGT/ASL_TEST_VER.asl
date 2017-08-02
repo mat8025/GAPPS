@@ -7,7 +7,7 @@
 #define PBLACK '\033[1;39m'
 #define POFF  '\033[0m'
 
-vers = "1.4";
+vers = "1.5";
 //ws= getenv("GS_SYS")
 
 !!"rm -f ../*/*.tst"
@@ -26,6 +26,10 @@ today=getDate(1)
 cwd=getdir()
 
 Opf=ofw("Scores/score_$(date(2,'-'))")
+
+
+Tcf=ofw("test_crashes")
+Tff=ofw("test_fails")
 
 
 <<[Opf]"$today $(get_version())\n"
@@ -79,7 +83,7 @@ proc Run2Test(td)
   chdir(td)
   Curr_dir = getDir();
   
-  //<<"changing to $td dir from $Curr_dir\n"
+  <<"changing to $td dir from $Curr_dir\n"
 }
 
 /////////////////////////////
@@ -120,8 +124,9 @@ else {
           n_modules += 1 
 
           if (pcc != 100.0) {
-	 //  <<"inserting $tname into failed list \n"
+	  <<"${Curr_dir} inserting $tname into failed list \n"
             FailedList->Insert("${Curr_dir}/${tname}")
+	  //<<[Tff]"${Curr_dir}/${tname}\n"  
           }
        }
 
@@ -239,6 +244,7 @@ proc cart (aprg, a1)
 
        //<<"CRASH FAIL:--failed to run inseting $aprg into crashed list\n"
         CrashList->Insert("${Curr_dir}/${aprg}")
+//	<<[Tcf]"${Curr_dir}/${aprg}\n"
      }
 
    }
@@ -264,6 +270,7 @@ proc cart (aprg, a1)
        //<<"CRASH FAIL:--failed to run \n"
        // insert works??
        CrashList->Insert("${Curr_dir}/${aprg}")
+
      }
 
 
@@ -352,7 +359,8 @@ proc cart (aprg, a1)
      else {
 
        //<<"CRASH FAIL:--failed to run\n"
-        CrashList->Insert("${Curr_di}/xic_${aprg}")
+
+       CrashList->Insert("${Curr_dir}/xic_${aprg}")
      }
 
    }
@@ -1055,10 +1063,10 @@ hdg("FUNC")
   }
 
 if ( do_all || do_mops ) {
-    hdg("MOPS")
+     Run2Test("Mops")
 
 
-    chdir("Mops")
+    //chdir("Mops")
 
     cart("xyassign")
 
@@ -1082,9 +1090,9 @@ if ( do_all || do_mops ) {
 
 if ( do_all || do_svar ) {
 
-    hdg("SVAR")
+    Run2Test("Svar")
 
-    chdir("Svar")
+    //chdir("Svar")
 
     cart("svar1", "string operations are not always easy" )
 
@@ -1105,9 +1113,9 @@ if ( do_all || do_svar ) {
 
   if ( do_all || do_ivar ) {
 
-    hdg("IVAR")
+     Run2Test("Ivar")
 
-    chdir("Ivar")
+    //chdir("Ivar")
 
     cart("ivar")
 
@@ -1118,9 +1126,9 @@ if ( do_all || do_svar ) {
 
 if ( do_all || do_record ) {
 
-    hdg("RECORDS")
+     Run2Test("Record")
 
-    chdir("Record")
+    //chdir("Record")
 
     cart("record")
 
@@ -1366,7 +1374,7 @@ if ( do_all || do_threads ) {
 
 //<<"failed list size $flsz \n"
 
-  if (flsz > 1) {
+  if (flsz >= 1) {
 
 <<"\n These $flsz modules  failed! \n"
 <<[Opf]"\n These $flsz modules  failed! \n"
@@ -1378,6 +1386,7 @@ if ( do_all || do_threads ) {
    for (i = 0; i < flsz ; i++) {
        <<"$FailedList[i] \n"
        <<[Opf]"$FailedList[i] \n"
+       <<[Tff]"$FailedList[i] \n"
    }
 }
 <<"----------------------------------------------------------------------------\n"
@@ -1398,6 +1407,7 @@ if (lsz > 1) {
    for (i = 0; i < lsz ; i++) {
    <<"$CrashList[i] \n"
    <<[Opf]"$CrashList[i] \n"
+   <<[Tcf]"$CrashList[i] \n"   
    }
    
 }
@@ -1407,6 +1417,13 @@ if (lsz > 1) {
 
 fflush(Opf)
 cf(Opf)
+
+fflush(Tcf)
+cf(Tcf)
+
+fflush(Tff)
+cf(Tff);
+
 
 chdir(cwd)
 

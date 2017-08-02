@@ -104,7 +104,7 @@ proc  drawGrids( ws )
 
   //sWo(extwo,@axnum,2,0,sc_endday,20,10)
 
-  Text(gwo,  "Weight lbs",-4,0.7,4,-90)
+  Text(gwo,  "Weight (lbs)",-4,0.7,4,-90)
   Text(extwo,"Exercise mins",-4,0.7,4,-90)
   Text(calwo,"Cals In/Out",-4,0.7,4,-90)
 
@@ -164,7 +164,7 @@ DBPR" draw lines \n"
 
       drawMonths(0)
 
-      Text(gwo,  "Weight lbs",0.8,0.8,1)
+      Text(gwo,  "Weight (lbs)",0.8,0.8,1)
       Text(calwo,"Calories", 0.8,0.8,1)
       Text(extwo,"Exercise Time (mins)", 0.8,0.8,1)
 
@@ -206,8 +206,8 @@ proc showWL()
 
        rx = RS[1]
        rX = RS[3]
-long ws
-long we
+long ws;
+long we;
 
        ws = rx + bday
        we = rX + bday
@@ -305,6 +305,7 @@ proc showCompute()
   sWo(xlbswo,@value,"%4.1f$Nsel_lbs",@update)
 }
 //========================================================
+
 proc showTarget()
 {
 // target wt and date
@@ -326,8 +327,12 @@ proc showTarget()
   hlng = (last_known_wt - GoalWt) / 0.43; 
   if (hlng  > 0) {
   <<"$_proc %v $hlng\n"
-  plot(gwo,@symbol,last_known_day+hlng,GoalWt,"star",1, BLUE_);
+  plot(gwo,@symbol,last_known_day+hlng,GoalWt,"star",1, RED_);
   plot(gwo,@symbol,last_known_day+hlng,last_known_wt,"cross",1,GREEN_);
   }
+
+  plot(gwo,@symbol,targetday,GoalWt,"star",1, LILAC_);
+
+
   
 }

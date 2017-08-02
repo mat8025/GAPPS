@@ -6,7 +6,7 @@ SetDebug(1,"pline")
 
 checkIn()
 
-/{
+
 int A[] = {1,2,3}
   sz = Caz(A)
   <<"%V $sz $A\n"
@@ -19,7 +19,7 @@ sum = Sum({1,2,3,4});
 <<"%V$sum \n"
 
 
-exit();
+
 
 
 sz = Caz({1,2,3});
@@ -35,12 +35,10 @@ float F[10] = {0,1,2,3,4,5,6,7,8,9};
 
 <<"$F\n"
 
- I = {11,1,2,3,4,5,6,7,8,12};
+ I[] = {11,1,2,3,4,5,6,7,8,12};
 
 <<"$I\n"
 
-exit();
- /}
 
 cmplx g[16] = {1,2,3,4,5,6,7,8,9,10};
 
@@ -70,10 +68,6 @@ sz = Caz(g)
 g[1:6:1]->SetReal({1,2,3,4,5,6})
 
 <<"$g\n"
-
-  
-  exit()
-
   
 float rv[10];
 
@@ -105,9 +99,6 @@ g[1:6:1]->SetReal(rv)
 g[1:6:1]->SetImag(rv)
 
 <<"$g\n"
-
-exit()
-
 
 cmplx a
 cmplx b;
@@ -237,15 +228,6 @@ cmplx b;
 <<"$fv\n"
 
 
-
-
-
-
-
-
-
-  exit()
-
   g[3]->Set(47,79)
 
   <<"%V$sz $g\n"
@@ -254,14 +236,12 @@ cmplx b;
 
   g[5]->setImag(85)
   
-     <<"%V $g\n"
-
-
+<<"%V $g\n"
   
   g->SetReal(rv)
 
   
-     <<"%V $g\n"
+<<"%V $g\n"
 
 
 
@@ -290,8 +270,6 @@ cmplx b;
 
      <<"%V $g\n"     
      
-exit()
-
 g[0]->Set(1,2);
 <<"$g\n"
 
@@ -311,15 +289,12 @@ f->set(1,2);
 
 <<"%V$f \n"
 
-     f = {1,2};
-  
-
-//cmplx f = {1,2};
-
-
-
+     
+  //cmplx h = {1,2};
 
     checkOut();
+
+
 exit()
 
 cmplx F[10];

@@ -115,10 +115,12 @@ int k = 0;
 
 int bday  // birthday 
 int lday  // last day recorded in file
-int dday
+int dday;
 
  bday = julday("04/09/1949")
  maxday = julday("04/09/2049") -bday
+
+ targetday = julday("09/21/2017") -bday;
 
 // this is a new format -- allowing us to put comment labels on graphs
 
@@ -201,7 +203,7 @@ include "wed_read"
       sc_endday = (jtoday - bday) + 60;
 
       gsday = julday("4/01/2017") -bday
-      gday =  julday("6/16/2017") -bday    // next goal day 
+      gday =  julday("8/16/2017") -bday    // next goal day 
 
       ngday = gday - gsday 
 
@@ -375,9 +377,9 @@ include "wed_glines"
 //  DrawGline(allgl)
 //  sWo(carbwo,@showpixmap)
 
-include "wed_compute"
+include "wed_compute";
 
-include "wed_callbacks"
+include "wed_callbacks";
 
 
 int wScreen = 0
