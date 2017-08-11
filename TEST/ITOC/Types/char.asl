@@ -1,19 +1,129 @@
 //
 checkIn()
 //setdebug(1)
-int I[10]
 
-I[2] = 47
-I[3] = 79
-I[4] = 80
-<<" $I \n"
+char CV[20];
+
+CV[0] = 14
+CV[1] = 15
+
+CV[2] = 47
+CV[3] = 79
+CV[4] = 80
 
 
-int K[10+1]
+CV[5] = 'A';
 
-K[2] = 79
+<<"CV[] = $CV \n"
+<<" $CV[1] \n"
+<<" $CV[2] \n"
 
-<<" $K \n"
+checkNum(CV[0],14)
+checkNum(CV[1],15)
+checkNum(CV[2],47)
+
+cv0 = CV[0];
+cv1 = CV[1];
+
+<<"%V $cv0 $cv1 \n"
+
+
+checkNum(cv0,14)
+checkNum(cv1,15);
+
+char CMD[3][5];
+
+CMD[0][0] = 81
+CMD[0][1] = 82
+CMD[0][2] = 78
+CMD[0][3] = 79
+CMD[0][4] = 80
+
+
+CMD[1][0] = 97
+CMD[1][1] = 98
+CMD[1][2] = 99
+CMD[1][3] = 100
+CMD[1][4] = 101
+
+sz = Caz(CMD);
+bd = Cab(CMD);
+
+<<"%V$sz $bd\n";
+cv0 = CMD[0][0];
+
+checkNum(cv0,81);
+
+checkNum(CMD[0][1],82);
+
+
+<<"CMD[] :\n";
+<<"$CMD \n"
+
+CMD[2][3] = 28
+CMD[2][2] = 12
+CMD[2][0] = 17
+CMD[2][1] = 6
+
+<<"$CMD \n"
+
+B = CMD[2][1:4:];
+// B should be a vector!
+
+
+<<"%V$B \n"
+<<"$(typeof(B)) $(Cab(B)) \n"
+
+cv0 = B[0];
+<<"%V$cv0\n";
+
+cv1 = B[1];
+<<"%V$cv1\n";
+
+cv2 = B[2];
+<<"%V$cv2\n";
+
+
+
+checkNum(B[1],12);
+
+D = CMD[2][1:3:];
+
+<<"%V$D \n"
+<<"$(typeof(D)) $(Cab(D)) \n"
+
+checkNum(D[0],6);
+
+<<"\\\\\\ \n";
+
+E = CMD[0:2][1:3:];
+
+<<" $E \n"
+<<"$(typeof(E)) $(Cab(E)) \n"
+
+
+str s = "hey";
+
+<<"$s \n"
+
+ //scpy(s,"$CMD[0][::]");
+
+nc=scpy(s,CMD[0][::]);
+
+<<"$nc :: $s \n"
+
+<<"$(typeof(s)) $(Cab(s)) \n"
+
+
+nc=scpy(s,CMD[0:1][::]);
+
+<<"$nc :: $s \n"
+
+<<"$(typeof(s)) $(Cab(s)) \n"
+
+
+//////////////////////////////
+
 
 
 uchar UV[10]
@@ -32,37 +142,6 @@ CheckNum(UV[2],47)
 CheckNum(UV[5],'A')
 
 
-//char CV[10];
-char CV[20];
-
-CV[0] = 14
-CV[1] = 15
-
-CV[2] = 47
-CV[3] = 79
-CV[4] = 80
-
-
-// FIX this  xic version destroys array!!
-
-CV[5] = 'A'
-
-<<"CV[] = $CV \n"
-<<" $CV[1] \n"
-<<" $CV[2] \n"
-
-CheckNum(CV[0],14)
-CheckNum(CV[1],15)
-CheckNum(CV[2],47)
-
-cv0 = CV[0];
-cv1 = CV[1];
-
-<<"%V $cv0 $cv1 \n"
-
-
-CheckNum(cv0,14)
-CheckNum(cv1,15)
 
 
 

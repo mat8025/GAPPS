@@ -418,8 +418,6 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
 	 sWo(awo,@redraw);
          }
 
-
-
 // which row col should be an event
 // erow,ecol
 
@@ -556,10 +554,12 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
   add dates - done
   check for current week
 
-  weight entry
+  weight entry -done
 
   rudimentary score
 
+
+  add last actvity  whereever selected
 
 
 /}*/

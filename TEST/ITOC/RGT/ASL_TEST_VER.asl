@@ -663,6 +663,11 @@ int do_ptrs = 0;
   cart("date")
   updir()
 
+  Run2Test("Sele")
+  cart("sele")
+  updir()
+
+
   Run2Test("Splice")
   cart("strsplice")
   updir()

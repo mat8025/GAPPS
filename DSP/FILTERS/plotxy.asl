@@ -18,34 +18,39 @@ ln_label = "";
 
 proc redraw_fig()
  {
-   sWo(grwo,@clipborder,@border);
+    sWo(grwo,@clipborder,@border,@font,"small");
+
     axnum(grwo,2);
     axnum(grwo,1);
 
      setGline(refgl,@draw);
 
-     sWo(grwo,@textr,ln_label, 0.5,0.1);
+     //sWo(grwo,@textr,ln_label, 7000,0.1);
+
+     sWo(grwo,@font,"BIG",@textf,ln_label, 0.75,0.75,0,0,CYAN_);
    
-   //  sWo(grwo,@textr,y_label, 1,0.5,0,-90,"blue");
+     //sWo(grwo,@textr,y_label, 1,0.5,0,-90,"blue");
 
    //  sWo(grwo,@textr,y_label, 3,0.6,0,90,"red");
 
      //text(grwo,"Y-label-above-axis", 0.5,0.05,1,0,0,"green")
 
-      text(grwo,"X-label-above-axis", 0.7,-3,3,0,0,"blue")
+     //      text(grwo,"X-label-above-axis", 0.7,-3,3,0,0,"blue")
     // text(grwo,x_label, 0.7,-3,3,0,0,"blue")
 
-     text(grwo,"X-label-below-axis", 0.2,1,3,0,0,"black");
+    // text(grwo,"X-label-below-axis", 0.2,1,3,0,0,"black");
 
      
     // text(grwo,"Y-label-left-of-axis", 0.1,0.5,4,90,0,"red")
     // text(grwo,"Y-label-left-of-axis", -0.2,0.2,2,-90,0,"orange")
 
 
-      //     Axtext(grwo,4,y_label,0.5,4,"green");
+     //Axtext(grwo,4,y_label,0.5,4,"green");
     //Axtext(grwo,3,x_label,0.5,2,"red");
-      Axtext(grwo,1,x_label,2,0.5,"orange");
-      Axtext(grwo,2,y_label,0.5,2,"cyan");
+      AxLabel(grwo,1,x_label,0.5,2,BLACK_);
+      
+      AxLabel(grwo,2,y_label,0.2,2,BLACK_);
+      
  }
 
 //====================================================
@@ -141,7 +146,7 @@ sz = Caz(R)
 
       ymin = MM[1] - MM[4]
 
-      ymax = MM[1] + 2*MM[4]
+      ymax = MM[1] + 3*MM[4]
 
 	//      ymax = MM[6]
 
@@ -228,8 +233,8 @@ include "gevent.asl";
 
 
 sWo(grwo,@clipborder);
-axnum(grwo,2);
-axnum(grwo,1);
+//axnum(grwo,2);
+//axnum(grwo,1);
 
   sGl(refgl,@draw);
 
