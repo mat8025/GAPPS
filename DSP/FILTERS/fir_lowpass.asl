@@ -60,7 +60,11 @@ float Fcn = FC*T;
 
 <<"%V$err\n";
 
-<<"$B\n";
+<<"$(Caz(B))\n";
+n = 10;
+<<" %6.4f%($n,\s,\,,\n)$B\n"
+
+
 
 
 Cmplx cg;
@@ -75,6 +79,13 @@ float frq = 0;
 // fb=ofw("firl_${Wname[Wndo-1]}_mag")
 
 wn= Wname[Wndo-1];
+
+fb=ofw("firl_${wn}_ip")
+n = 1;
+<<[fb]" %6.4f%($n,\s,\,,\n)$B\n"
+
+cf(fb);
+
 fb=ofw("firl_${wn}_mag")
 
 float ma;
@@ -102,7 +113,7 @@ float cga;
 
 
 n = 10
-<<" %6.4f%($n,\s,\,,\n)$AMP\n"
+//<<" %6.4f%($n,\s,\,,\n)$AMP\n"
 
 //<<"$ma $(typeof(ma)) $(typeof(cga)) $(Cab(cga))\n"
 
