@@ -1,5 +1,5 @@
-//      crude de-convolution   of beam against reflectivity shape
-
+///      crude de-convolution   of beam against reflectivity shape
+///
 
 //    32 pixel positions
 
