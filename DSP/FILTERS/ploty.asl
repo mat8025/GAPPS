@@ -353,20 +353,16 @@ proc Quit()
 
   int fewos[] = {zinwo,zoomwo, quitwo };
 
-  wo_htile( fewos, 0.03,0.01,0.3,0.08,0.05)
+  wo_htile( fewos, 0.03,0.01,0.3,0.08,0.05);
   /////////////////////////////////////////////
-  sWo(fewos,@redraw)
-
+  sWo(fewos,@redraw);
 
   //  RedrawGraph(aw)
-
   //  DrawAxis(aw, -1, -1, xsc,ysc)
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
 //setdebug(0)
-
-
 
     setGwob(grwo,@clipborder)
     axnum(grwo,2)

@@ -29,11 +29,12 @@ proc eventDecode()
 <<"%V $ev_keyw $ev_woproc $ev_row $ev_col $ev_rx $ev_ry\n"
 
 }
-
+//==============================
 
 proc eventWait()
 {
     ev_kloop++;
+    ev_woid = -1;
     ev_msg = Ev->waitForMsg();
     <<"$ev_kloop %V$ev_msg \n"
     eventDecode();
@@ -56,7 +57,7 @@ Ev =1; // event handle
 
 int ev_kloop = 0
 int last_evid = -1;
-int do_loop = 1;
+int do_evloop = 1;
 
 float ev_rx = 0;
 float ev_ry = 0;

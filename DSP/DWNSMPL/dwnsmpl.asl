@@ -1,40 +1,36 @@
 SetDebug(1)
-SetPCW("writeexe","writepic")
 
-//<<" hello world \n"
-OpenDll("math","plot")
 
- Pi = 4.0 * Atan(1.0)
+// Pi = 4.0 * Atan(1.0)
 
  FFTSZ = 1024
+ 
+ Graphic = CheckGwm();
+ 
+ if (!Graphic) {
+    Xgm = spawnGwm("DWNSP")
+  }
 
-#{
- if (! CheckGWM()) {
-
- SpawnGwm("xxx")
-
- }
-#}
 
 ////////////// Window ///////////////////
- aw = CreateGw()
+ aw = cWi(@title,"DWNSMPL_100_80");
 <<" $aw \n"
 
-  setgw(aw,"title","DownSample_100_80","hue","blue","bhue","white","drawoff","pixmapon","bhue","white")
+  sWi(aw,@hue,BLUE_,@bhue,WHITE_,@pixmapon);
 
 //////////////// Draw Areas in window ////////
 
-  rin= creategwob(aw,"GRAPH","hue","red")
-  magwo= creategwob(aw,"GRAPH","hue","orange")
-  phwo= creategwob(aw,"GRAPH","hue","yellow")
+  rin= cWo(aw,@GRAPH,@hue,RED_)
+  magwo= cWo(aw,@GRAPH,"hue","orange")
+  phwo= cWo(aw,@GRAPH,"hue","yellow")
 
 
-  dsrin= creategwob(aw,"GRAPH","hue","blue")
-  dsmagwo= creategwob(aw,"GRAPH","hue","orange")
-  dsphwo= creategwob(aw,"GRAPH","hue","yellow")
+  dsrin= cWo(aw,@GRAPH,@hue, BLUE_)
+  dsmagwo= cWo(aw,@GRAPH,"hue","orange")
+  dsphwo= cWo(aw,@GRAPH,"hue","yellow")
 
-    setgwob(dsmagwo,"scales",0,0,40.0,3)
-    setgwob(magwo,"scales",0,0,40.0,3) // make end pt the same freq
+    sWo(dsmagwo,@scales,0,0,40.0,3)
+    sWo(magwo,@scales,0,0,40.0,3) // make end pt the same freq
 
  <<" $rin $phwo \n"
  int allwo[] = {rin,magwo,phwo,dsrin,dsmagwo,dsphwo}
@@ -43,9 +39,21 @@ OpenDll("math","plot")
 // ttyin()
  
   wo_vtile(allwo,0.1,0.1,0.95,0.95)
-  setgwob(allwo,"save","pixmapon")
-  setgwob(allwo,@clip,0.05,0.05,0.99,0.99)
-  setgwob(allwo,@drawclipborder)
+  sWo(allwo,@save,@pixmapon)
+  sWo(allwo,@clip,0.05,0.05,0.99,0.99)
+  sWo(allwo,@clipborder)
+
+
+  sWi(aw,@redraw);
+
+
+
+  sWo(allwo,@redraw);
+
+//////////////////////////////////////////////////////////////////////
+
+
+
 
 
 float DBSpec[]
@@ -60,8 +68,8 @@ XFREQ80 = Fgen(FFTSZ/2,0,80.0/FFTSZ)
 XFREQ100 = Fgen(FFTSZ/2,0,100.0/FFTSZ)
 
 
-  spec_gl = CreateGline(@wid,dsmagwo,@type,"XY",@xvec,XFREQ80,@yvec,DBSpec,@color,"blue")
-  tspec_gl = CreateGline(@wid,magwo,@type,"XY",@xvec,XFREQ100,@yvec,DBTSpec,@color,"red")
+  spec_gl = cGl(dsmagwo,@type,"XY",@xvec,XFREQ80,@yvec,DBSpec,@color,BLUE_)
+  tspec_gl = cGl(magwo,@type,"XY",@xvec,XFREQ100,@yvec,DBTSpec,@color,RED_)
 
 
 ///////////// Plot ////////////////////
@@ -84,19 +92,19 @@ float Swin[FFTSZ]
 
   Real = Fgen(FFTSZ,0,dt)
 
-  Real *= (2*Pi*freq)
+  Real *= (2*_PI*freq)
 
   Real = Sin(Real)
 
 //<<"$freq $Real[0] \n"
 
-<<"%5\nr $Real \n"
+<<"%(5,,,\n) $Real \n"
 
   Imag = Fgen(FFTSZ,0)
 
 //<<" $Imag \n"
  
- setgwob(allwo,"border","clearpixmap")
+ sWo(allwo,"border","clearpixmap")
 
  Vdraw(rin,Real,1,0.9)
 
@@ -147,7 +155,7 @@ float Swin[FFTSZ]
 
   DSReal = Y
 
-  DSReal *= (2*Pi*freq)
+  DSReal *= (2*_PI*freq)
 
   DSReal = Sin(DSReal)
 
@@ -170,7 +178,7 @@ float Swin[FFTSZ]
 
   DSMag = Sqrt (DSReal * DSReal + DSImag * DSImag)
 
-//<<"%8\nr  $DSMag \n"
+
 //<<" $(typeof(DSMag)) \n"
 //a=iread("DSMag")
 
@@ -187,9 +195,9 @@ float Swin[FFTSZ]
 
   Vdraw(dsphwo,DSPh,1,0.9)
 
-  setgwob(allwo,@showpixmap)
-  setgwob(allwo,@drawclipborder)
-  setgwob(allwo,@store,@save)
+  sWo(allwo,@showpixmap)
+  sWo(allwo,@drawclipborder)
+  sWo(allwo,@store,@save)
   sleep(0.2)
 
   

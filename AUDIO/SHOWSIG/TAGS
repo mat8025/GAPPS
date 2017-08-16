@@ -1,0 +1,28 @@
+
+showsig.asl,611
+proc displayComment 14,80
+proc samp2time(21,236
+proc getNpixs(31,379
+proc computeSpecandPlot(54,729
+proc showSlice 161,2833
+proc playBuff(212,3649
+proc selSection(221,3797
+proc playSection(267,4774
+proc playBCtas(291,5282
+proc showSelectRegion(313,5685
+proc getVoxTime(376,7172
+proc do_wo_options(383,7248
+proc do_key_options(462,9093
+ Graphic 505,10121
+ int sb 512,10195
+int dsz 573,11104
+    npts 576,11124
+ Sf 606,11487
+   wohtile(776,16063
+   else 818,16891
+    tasX 823,16976
+  show_tas 837,17285
+  show_spec 838,17301
+   old_end 840,17321
+int w_wo 908,18070
+closeAudio(941,18522

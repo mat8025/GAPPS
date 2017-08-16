@@ -1,52 +1,23 @@
 // test spectral processing of vox file
 
-setdebug(1)
+setdebug(1);
 
 
-Gain = 1.0
-int mixfd = -1
-int dspfd = -1
+include "audio";
 
-proc openAudio()
-{
-///////////////////////////  DSP AUDIO device SETUP ////////////////////////////// 
 
-// get open dsp
 
-   dspfd = dspopen()
 
-<<"%V$dspfd \n"
 
-// get open  mixer
 
-   mixfd = mixeropen()
-
-<<"%V$mixfd \n"
-
-// set dsp,mixer
-
-<<"%V$dspfd $mixfd \n"
-
-   ok = setSoundParams(dspfd,mixfd) 
-
-   Gain = 1.0
-}
-
-proc closeAudio()
-{
- if (dspfd != -1)
-   close(dspfd)
- if (mixfd != -1)
-   close(mixfd)
-}
 
 proc displayComment ( cmsg) 
 {
-    <<" $csmg "
-    setgwob(commwo,@clear,@clipborder,@textr,cmsg,0.1,0.5)
+    <<" $cmsg "
+    sWo(commwo,@clear,@clipborder,@textr,cmsg,0.1,0.5)
 
 }
-
+//================================================
 proc samp2time( ns)
 {
   float t 
@@ -56,7 +27,7 @@ proc samp2time( ns)
   return t
 
 }
-
+//================================================
 proc getNpixs()
 {
    SGCL = wogetclip(sgwo)
@@ -79,14 +50,14 @@ proc getNpixs()
 
     bufend = nxpts - FFTSZ
 }
-
+//================================================
 proc computeSpecandPlot( rtx)
 {
 
-// YS is our float buffer containing the whole signal
-// want to compute spectrogram for subregion
-// nxpts is number of xpixels in spectrograpg window 
-// one spec per pixel
+/// YS is our float buffer containing the whole signal
+/// want to compute spectrogram for subregion
+/// nxpts is number of xpixels in spectrograpg window 
+/// one spec per pixel
 
    dt = FineTimeSince(T,1)  // reset timer
 
@@ -95,7 +66,7 @@ proc computeSpecandPlot( rtx)
    bufend = st + nxpts - FFTSZ
    xp = 0
    frames = 0
-
+    sWo(sgwo,@clearclip,@clearpixmap);
    while (1) {
 
      end = st + wlen - 1
@@ -105,15 +76,17 @@ proc computeSpecandPlot( rtx)
 //<<"%V$frames $st $rsz $real[0] $real[fftend]\n"
 
      if (show_tas) {
-        setgwob(tawo,@clearclip)
-        DrawY(tawo,real,0,1)
+        sWo(tawo,@scales,0,-20000,FFTSZ,20000)
+        sWo(tawo,@clearclip,@clearpixmap);
+        DrawY(tawo,real,0,1);
+	sWo(tawo,@showpixmap);
       }
 
     rtx = st / Freq
 
-     setGline(cop_gl,@cursor,rtx,y0,rtx,y1)
+     sGl(cop_gl,@cursor,rtx,y0,rtx,y1)
 
-    //setGline(co_gl,@cursor,end,y0,end,y1)
+    //sGl(co_gl,@cursor,end,y0,end,y1)
 
      zx = ZC(real,Zxthres)
 
@@ -127,30 +100,36 @@ proc computeSpecandPlot( rtx)
 //<<"%V$st $isz $imag[0] $imag[fftend]\n"
 //<<"%V$zx $rmsv \n"
      
-    spec(real,imag,FFTSZ,0)
+    spec(real,imag,FFTSZ,0);
 
 //<<"$real[0:20]\n"
 
-    st += wshift 
+    st += wshift ;
 
     if (show_spec) {
-     setgwob(spwo,@clearclip)
-     DrawY(spwo,real[0:hwlen-1],0,1)
+    // scales
+    sWo(spwo,@scales,0,-20,FFTSZ/2,100)
+    
+    sWo(spwo,@clearclip,@clearpixmap);
+    // <<"DrawY spec $hwlen \n"
+     DrawY(spwo,real[0:hwlen-1],0,1);
+     sWo(spwo,@showpixmap);     
    }
 
    powspec = real[0:hwlen-1]
 
    if ((xp % 2) == 0) {
-     pixstrip[0][::] = round(v_range(v_zoom(powspec,ncb),-10,100,0,ng))
+     pixstrip[0][::] = round(reverse(v_range(v_zoom(powspec,ncb),-10,100,0,ng)))
    }
    else {
-     pixstrip[1][::] = round(v_range(v_zoom(powspec,ncb),-10,100,0,ng))
+     pixstrip[1][::] = round(reverse(v_range(v_zoom(powspec,ncb),-10,100,0,ng)))
+//<<"%V$pixstrip \n"
+    // plotPixRect(sgwo, pixstrip, Gindex, xp,ncb,2,1)
+     plotPixRect(sgwo, pixstrip, Gindex, xp,1,2,-1)
+     sWo(sgwo,@showpixmap);     
+     }
 
-     plotPixRect(sgwo, pixstrip, Gindex, xp,0, 2,1)
-     //setgwob(commwo,@clear,@textr," $tx $frames \n",0.1,0.5)
-   }
-
-   xp++
+   xp++;
 
     if (st > bufend)
         break
@@ -164,8 +143,6 @@ proc computeSpecandPlot( rtx)
     frames++
   }
 
-
-
   dt = FineTimeSince(T,1)
 
   dtsecs = dt / 1000000.0
@@ -177,7 +154,7 @@ proc computeSpecandPlot( rtx)
    displayComment("compute & plot time took $dtsecs  frames $frames \n")
 
 }
-
+//================================================
 
 
 
@@ -191,22 +168,23 @@ proc showSlice ( tx )
 
      real = YS[sti:end]
 
-    setGwob({tawo,spwo},@clearpixmap)
+     sWo({tawo,spwo},@clearpixmap)
     // setgwob(tawo,@clearclip)
 
-
-     DrawY(tawo,real,0,1)
+//<<"draw TA\n"
+     DrawY(tawo,real,0,1);
 
      // swindow and compute powspec
      real *= swin
 
      imag = 0.0
      
-     spec(real,imag,FFTSZ,0)
+     spec(real,imag,FFTSZ,0);
 
-     powspec = real[0:hwlen-1]
+     powspec = real[0:hwlen-1];
 
     // setgwob(spwo,@clearclip)
+//<<"draw Spec \n"
 
      DrawY(spwo,real[0:hwlen-1],0,1)
 
@@ -219,27 +197,27 @@ proc showSlice ( tx )
    rX = RP[3]
    rY = RP[4]
 
-    setGwob({tawo,spwo},@showpixmap,@clipborder)
+    sWo({tawo,spwo},@showpixmap,@clipborder)
 
     displayComment("time $tx sample $sti %V6.2f$rx $rX  $tx\n")
 
-//    setGline(co2_gl,@cursor,tx,y0,tx,y1)
+//    sGl(co2_gl,@cursor,tx,y0,tx,y1)
 
 
 
-//    setGline(co_gl,@cursor,tx,y0,tx,y1)
+//    sGl(co_gl,@cursor,tx,y0,tx,y1)
 
 }
-
+//================================================
 
 proc playBuff(wb, st, fi)
 {
-<<"play $dspfd $wb $st $fi \n"
+<<"play $Dspfd $wb $st $fi \n"
 
-   playBuffer(dspfd, wb, st, fi)
+   playBuffer(Dspfd, wb, st, fi)
 
 }
-
+//================================================
 
 proc selSection( tx)
 {
@@ -247,45 +225,45 @@ proc selSection( tx)
 
 <<" $_proc $tx \n"
 
-    int s1 = tx * Freq
+    int s1 = tx * Freq;
 
 // bracket around
-    s1 -= nxpts/2
+    s1 -= nxpts/2;
 
-    int s2 = s1 + nxpts
+    int s2 = s1 + nxpts;
 
-    float tx1 = s1/ Freq
+    float tx1 = s1/ Freq;
 
-    setGline(co_gl,@cursor,tx1,y0,tx1,y1)
+    sGl(co_gl,@cursor,tx1,y0,tx1,y1)
 
-// FIX   setGline(co1_gl,@cursor,tx+3,y0,tx+3,y1)  // arg not parsed
+// FIX   sGl(co1_gl,@cursor,tx+3,y0,tx+3,y1)  // arg not parsed
 
-    float tx2 = s2/ Freq
+    float tx2 = s2/ Freq;
 
-    setGline(co1_gl,@cursor,tx2,y0,tx2,y1)  // arg not parsed
+    sGl(co1_gl,@cursor,tx2,y0,tx2,y1)  // arg not parsed
 
-    setGwob(taswo,@clearpixmap,@clipborder)
+    sWo (taswo,@clearpixmap,@clipborder)
 
-    drawSignal(taswo, sbn, s1, s2)
+    drawSignal(taswo, sbn, s1, s2);
 
     displayComment("select  $tx1 $tx2  --- $s1 $s2 \n")
 
-    setGwob(taswo,@scales, tx1,-32000, tx2, 32000)  // via SHM
+    sWo(taswo,@scales, tx1,-32000, tx2, 32000)  // via SHM
 
-//    setGline(co2_gl,@cursor,0)  // show if it is already active  
+//    sGl(co2_gl,@cursor,0)  // show if it is already active  
 
-//    setGline(co3_gl,@cursor)  // show if it is already active  
+//    sGl(co3_gl,@cursor)  // show if it is already active  
 
 
     //axnum(taswo, 1, tx1,tx2,0.25,-1,"g")
      axnum(taswo, -1)
-   setGwob(taswo,@showpixmap)
+     sWo(taswo,@showpixmap)
 
-    setGline(co2_gl,@cursor)  // show if it is already active  
-    setGline(co3_gl,@cursor)  // show if it is already active  
+    sGl(co2_gl,@cursor)  // show if it is already active  
+    sGl(co3_gl,@cursor)  // show if it is already active  
 
 }
-
+//================================================
 
 proc playSection( )
 {
@@ -306,11 +284,11 @@ proc playSection( )
 
      playBuff(sbn, s1, s2)
 
-//   setGline(co1_gl,@cursor,tx1,y0,tx1,y1)
-// FIX   setGline(co1_gl,@cursor,tx+3,y0,tx+3,y1)  // arg not parsed
+//   sGl(co1_gl,@cursor,tx1,y0,tx1,y1)
+// FIX   sGl(co1_gl,@cursor,tx+3,y0,tx+3,y1)  // arg not parsed
 
 }
-
+//================================================
 proc playBCtas( )
 {
 // play a section of the buffer
@@ -331,44 +309,51 @@ proc playBCtas( )
      playBuff(sbn, s1, s2)
 
 }
-
+//================================================
 
 proc showSelectRegion()
 {
 
-      GV = glineGetValues(co_gl)
-      GV1 = glineGetValues(co1_gl)
+      GV = glineGetValues(co_gl);
+      GV1 = glineGetValues(co1_gl);
 
      //setgwob(commwo,@clear,@textr,"%V6.3f$GV \n",0.1,0.7)
      //setgwob(commwo,@textr,"%V6.3f$GV1 \n",0.1,0.3)
 
-     new_stx = GV[0]
-     new_fin = GV1[0]
+     new_stx = GV[0];
+     new_fin = GV1[0];
 
-<<"%V$new_stx $new_fin $s1 $s2 $nxpts \n"
+<<"%V$new_stx $new_fin  $nxpts \n"
+
+     if (new_fin < new_stx) {
+      tmpt = new_fin;
+      new_fin = new_stx;
+      new_stx = tmpt;
+<<"needed to swap times! %V$new_stx $new_fin  $nxpts \n"      
+     }
 
      int s1 = new_stx * Freq
      int s2 = new_fin * Freq
 
-//     setGwob(taswo,@clearclip,@clear,@clearpixmap)
+//     sWo(taswo,@clearclip,@clear,@clearpixmap)
 
-    // setGwob(taswo,@scales, new_stx,-32000, new_fin, 32000)  // via SHM
+// sWo(taswo,@scales, new_stx,-32000, new_fin, 32000)  // via SHM
 
-  //   drawSignal(taswo, sbn, s1, s2)
+//   drawSignal(taswo, sbn, s1, s2)
 
-     setGwob(taswo,@scales, new_stx,-32000, new_fin, 32000)  // via SHM
+     sWo(taswo,@scales, new_stx,-32000, new_fin, 32000)  // via SHM
 
-     setGwob(taswo,@save)
+     sWo(taswo,@save)
 
     // axnum(taswo, 1, new_stx,new_fin,1.0,-1,"g")
        axnum(taswo, -1)
     
    //displayComment("%V$rx $rX $ry $rY \n")
 
-     setGwob(sgwo,@clearclip,@clearpixmap)
-//     setGwob(taswo,@scales, new_stx,-32000, new_fin, 32000)  // via SHM
+     sWo(sgwo,@clearclip,@clearpixmap)
+//     sWo(taswo,@scales, new_stx,-32000, new_fin, 32000)  // via SHM
 
-     computeSpecandPlot(new_stx)
+   computeSpecandPlot(new_stx)
 
    RP = wogetrscales(taswo)   // via PIPE msg 
 
@@ -380,21 +365,21 @@ proc showSelectRegion()
 
    <<"%V$rx $rX $ry $rY \n"
 
-   setGwob(taswo,@scales, new_stx,-32000, new_fin, 32000)  // via SHM
-   setGwob(sgwo,@scales, new_stx,0, new_fin, 100)  
+   sWo(taswo,@scales, new_stx,-32000, new_fin, 32000)  // via SHM
+   sWo(sgwo,@scales, new_stx,0, new_fin, 100)  
 
    axnum(sgwo,-3)
    displayComment("%V6.2f$new_stx $new_fin $rx $rX\n")
-   setGwob({taswo,voxwo},@clipborder)  
+   sWo({taswo,voxwo},@clipborder)  
 }
-
+//================================================
 
 proc getVoxTime()
 {
 
 
 }
-
+//================================================
 
 proc do_wo_options(w_wo)
 {
@@ -432,47 +417,48 @@ proc do_wo_options(w_wo)
         }
         else if (w_wo == taswo) {
 
-              tx = Rinfo[1] // x val ---- time in voxwo
+              tx = ev_rx // x val ---- time in voxwo
 
-              if (Minfo[8] == 1) {
-                setGline(co2_gl,@cursor,tx,y0,tx,y1)  
+              if (ev_button == 1) {
+                sGl(co2_gl,@cursor,tx,y0,tx,y1)  
               }
-              else if (Minfo[8] == 3) {
-                setGline(co3_gl,@cursor,tx,y0,tx,y1)  
+              else if (ev_button == 3) {
+                sGl(co3_gl,@cursor,tx,y0,tx,y1)  
               }
 
-              setGline(cosg_gl,@cursor,tx,0,tx,100)  
+              sGl(cosg_gl,@cursor,tx,0,tx,100)  
 
-              showSlice (tx)
+              showSlice (tx);
 
 
         }
         else if (w_wo == sgwo) {
 
-              tx = Rinfo[1] // x val ---- time in voxwo
+              tx = ev_rx; // x val ---- time in voxwo
 
 
-              setGline(cosg_gl,@cursor,tx,0,tx,100)  
+              sGl(cosg_gl,@cursor,tx,0,tx,100)  
 
 
-              showSlice (tx)
-
+              showSlice (tx);
 
         }
         else if (w_wo == voxwo) {
 
-              tx = Rinfo[1] // time in voxwo
+              tx = ev_rx; // time in voxwo
 
-              selSection (tx)
-              txa = tx - 2.0
-              txb = tx + 2.0
-              setGwob(taswo,@scales, txa ,-30000, txb, 31000)  // via SHM
+              selSection (tx);
+              txa = tx - 2.0;
+              txb = tx + 2.0;
+	      
+              sWo(taswo,@scales, txa ,-30000, txb, 31000)  // via SHM
               showSlice (tx)
+
               displayComment("%6.2f$tx $txa $txb \n")
 
         }
 }
-
+//================================================
 
 proc do_key_options(key)
 {
@@ -481,37 +467,47 @@ proc do_key_options(key)
        {
 
          case 'R':
-            tx += 0.1
+              tx += 0.1
               selSection (tx)
               txa = tx - 2.0
               txb = tx + 2.0
-              setGwob(taswo,@scales, txa ,-30000, txb, 31000)  // via SHM
+              sWo(taswo,@scales, txa ,-30000, txb, 31000)  // via SHM
          break;
          case 'T':
-            tx -= 0.1
+              tx -= 0.1;
               selSection (tx)
               txa = tx - 2.0
               txb = tx + 2.0
-              setGwob(taswo,@scales, txa ,-30000, txb, 31000)  // via SHM
+              sWo(taswo,@scales, txa ,-30000, txb, 31000)  // via SHM
          break;
          case 'Q':
             tx -= tx_shift  // this should be adjustable by key
             showSlice (tx)
-            setGline(co2_gl,@cursor,tx,y0,tx,y1)  
-            setGline(cosg_gl,@cursor,tx,0,tx,100)  
+            sGl(co2_gl,@cursor,tx,y0,tx,y1)  
+            sGl(cosg_gl,@cursor,tx,0,tx,100)  
          break;
          case 'S':
-            tx += tx_shift
-            showSlice (tx)
-            setGline(co2_gl,@cursor,tx,y0,tx,y1)  
-            setGline(cosg_gl,@cursor,tx,0,tx,100)  
+            tx += tx_shift;
+            showSlice (tx);
+            sGl(co2_gl,@cursor,tx,y0,tx,y1)  
+            sGl(cosg_gl,@cursor,tx,0,tx,100)  
          break;
 
 
        }
 
 }
+//================================================
 
+
+
+/////////////////////// MAIN ////////////////////////////////
+
+ Graphic = CheckGwm();
+
+  if (!Graphic) {
+    Xgm = spawnGwm("XYZ")
+  }
 
 
  int sb = 0
@@ -528,7 +524,7 @@ proc do_key_options(key)
 
  sbn = createSignalBuffer()
 
-<<"%V$sbn \n"
+<<"signal buffer %V$sbn \n"
 
 ////////////// READ FILE INTO BUFFER   ///////////////////////////
 
@@ -570,14 +566,12 @@ proc do_key_options(key)
 
     B=rdata(A,SHORT)
 
-    int dsz = Caz(B)
-  
-
-
 <<"%(10,, ,\n)$B[0:99] \n"
 
 <<"B $mm \n"
 /}
+
+int dsz = Caz(B);
 
 
     npts = ds/512 * 512
@@ -609,7 +603,7 @@ float YS[]
 // can we do a spec class ?
 
 
- float Freq = 16000.0
+ float Freq = 16000.0;
  Sf = Freq
  dt = 1.0/Sf
 
@@ -658,7 +652,7 @@ int ncb = 90
 
 uchar pixstrip[2][ncb]
 
-////////////////////////////////////////// GREY SCALE ////////////////////////////////////////////////
+/////////////////////// GREY SCALE //////////////////////////////
  ng = 128
  Gindex = 150  //  150 is just above our resident HTLM color map
  tgl = Gindex + ng
@@ -667,67 +661,70 @@ uchar pixstrip[2][ncb]
 
  SetGSmap(ng,Gindex)  // grey scale  
 
+///////////////////// WINDOW - GRAPH SETUP //////////////////////
 
 
-
-///////////////////////////////// WINDOW - GRAPH SETUP ////////////////////////////////////////////////
-
-
-  ssw = CreateGwindow(@title,"TA_and_Spec",@resize,0.02,0.02,0.99,0.99,0)   // Main Window
-  setGwindow(ssw,@bhue,"skyblue")
+  ssw = cWi(@title,"TA_and_Spec",@resize,0.02,0.02,0.99,0.99,0)   // Main Window
+  sWi(ssw,@bhue,"skyblue")
   // whole signal
   wox = 0.01
   woX = 0.98
 
   ts = ds / Freq
   
-  voxwo=CreateGwob(ssw,"GRAPH",@resize,wox,0.85,woX,0.98)
-  SetGwob(voxwo,@name,"Vox",@clip,0.01,0.01,0.99,0.99, @pixmapon, @drawon,@save,@border, @clipborder,"red",@penhue,"green")
-  setGwob(voxwo,@scales,0,mm[0],ts,mm[1])
-  setgwob(voxwo,@help," audio signal in buffer ")
+  voxwo=cWo(ssw,@GRAPH,@resize,wox,0.85,woX,0.98)
+  sWo(voxwo,@name,"Vox",@clip,0.01,0.01,0.99,0.99, @pixmapon, @drawon,@save,@border, @clipborder,"red",@penhue,GREEN_)
+  sWo(voxwo,@scales,0,mm[0],ts,mm[1])
+  sWo(voxwo,@help," audio signal in buffer ")
   RP = wogetrscales(voxwo)
 
    <<"%V%6.2f$RP\n"
 
   //
-  taswo=CreateGwob(ssw,"GRAPH",@resize,wox,0.70,woX,0.84)
-  SetGwob(taswo,@name,"TA",@clip,0.01,0.15,0.99,0.99, @pixmapon, @drawon,@save,@border, @clipborder,"green",@penhue,"pink")
-  setGwob(taswo,@scales,0,mm[0],ts/2,mm[1])
-  setgwob(taswo,@help," selected section of audio signal ")
+  taswo=cWo(ssw,@GRAPH,@resize,wox,0.70,woX,0.84)
+  sWo(taswo,@name,"TA",@clip,0.01,0.15,0.99,0.99,
+  sWo(taswo,@pixmapon, @drawoff,@save,@border, @clipborder,"green",@penhue,"pink",@savepixmap)
+  sWo(taswo,@scales,0,mm[0],ts/2,mm[1]);
+  //sWo(taswo,@help," selected section of audio signal ")
 
   // spectograph window 
-  sgwo=CreateGwob(ssw,"GRAPH",@resize,wox,0.5,woX,0.68)
-  SetGwob(sgwo,@penhue,"green",@name,"SG",@pixmapon,@drawon,@save)
-  SetGwob(sgwo,@clip,0.01,0.01,0.99,0.99, @border, @clipborder,"red")
-  setGwob(sgwo,@scales,0,0,npts,120)
-  setgwob(sgwo,@help," spectrograph ")
+  sgwo=cWo(ssw,@GRAPH,@resize,wox,0.5,woX,0.68)
+  sWo(sgwo,@penhue,"green",@name,"SG",@pixmapon,@drawoff,@save,@savepixmap);
+  sWo(sgwo,@clip,0.01,0.01,0.99,0.99, @border, @clipborder,"red")
+  sWo(sgwo,@scales,0,0,npts,120)
+  sWo(sgwo,@help," spectrograph ")
 
-  cosg_gl  = CreateGline(@wid,sgwo,@type,"CURSOR",@color,"red") 
+  cosg_gl  = cGl(sgwo,@type,"CURSOR",@color,"red") 
 
 
   // slice windows
-  spwo=CreateGwob(ssw,"GRAPH",@resize,0.05,0.15,0.45,0.48)
-  setgwob(spwo,@scales,0,-20,1024,90)
-  //SetGwob(spwo,@penhue,"red",@name,"sgraph",@pixmapon,@drawon,@save)
-  SetGwob(spwo,@penhue,"red",@name,"sgraph",@pixmapon,@drawoff,@save)
-  SetGwob(spwo,@clip,0.01,0.01,0.99,0.99, @clipborder,"black")
-  setgwob(spwo,@help," spectral_slice ")
+  spwo=cWo(ssw,@GRAPH,@resize,0.05,0.15,0.45,0.48)
+  sWo(spwo,@scales,0,-20,FFTSZ/2,90)
+  //SWo(spwo,@penhue,"red",@name,"sgraph",@pixmapon,@drawon,@save)
+//  sWo(spwo,@penhue,"red",@name,"sgraph",@pixmapon,@drawoff,@save)
 
-  tawo=CreateGwob(ssw,"GRAPH",@resize,0.5,0.15,0.95,0.48)
-  setgwob(tawo,@scales,0,mm[0],1024,mm[1])
-  SetGwob(tawo,@penhue,"blue",@name,"timeamp",@pixmapon,@drawoff,@save)
-  SetGwob(tawo,@clip,0.01,0.01,0.99,0.99, @clipborder,"black")
-  setgwob(tawo,@help," time signal for spectral slice ")
+  sWo(spwo,@penhue,RED_,@name,"sgraph",@pixmapon,@drawoff,@save,@savepixmap)
+  sWo(spwo,@clip,0.01,0.01,0.99,0.99, @clipborder,BLACK_)
+  //sWo(spwo,@help," spectral_slice ")
 
-  co_gl  = CreateGline(@wid,voxwo,@type,"CURSOR",@color,"red")  // start time
-  co1_gl  = CreateGline(@wid,voxwo,@type,"CURSOR",@color,"blue") // finish time
+  tawo=cWo(ssw,@GRAPH,@resize,0.5,0.15,0.95,0.48)
 
+  //sWo(tawo,@scales,0,mm[0],1024,mm[1])
+  sWo(tawo,@scales,0,-20000,FFTSZ,20000)
+  
+  //sWo(tawo,@penhue,BLUE_,@name,"timeamp",@pixmapon,@drawoff,@save)
+  sWo(tawo,@penhue,BLUE_,@name,"timeamp",@pixmapon,@drawoff,@save,@savepixmap)
+  sWo(tawo,@clip,0.01,0.01,0.99,0.99, @clipborder,BLACK_)
+  //sWo(tawo,@help," time signal for spectral slice ")
 
-  cop_gl  = CreateGline(@wid,voxwo,@type,"CURSOR",@color,"orange") // compute frame time
+  co_gl  = cGl(voxwo,@type,"CURSOR",@color,RED_)  // start time
+  co1_gl = cGl(voxwo,@type,"CURSOR",@color,BLUE_) // finish time
+
+  cop_gl  = cGl(voxwo,@type,"CURSOR",@color,GREEN_) // compute frame time
 
 <<"%V $co_gl $co1_gl \n"
-  co2_gl = CreateGline(@wid,taswo,@type,"CURSOR",@color,"red")
-  co3_gl = CreateGline(@wid,taswo,@type,"CURSOR",@color,"blue")
+  co2_gl = cGl(taswo,@type,"CURSOR",@color,RED_)
+  co3_gl = cGl(taswo,@type,"CURSOR",@color,BLUE_)
 
 
 
@@ -741,55 +738,55 @@ uchar pixstrip[2][ncb]
  bpad = 0.01
 
  //qwo=createGWOB(ssw,"BV",@name,"QUIT?",@VALUE,"QUIT",@color,"orange",@resize,bx,by,bX,bY)
- qwo=createGWOB(ssw,"BN",@name,"QUIT?",@VALUE,"QUIT",@color,"orange")
- setgwob(qwo,@help," click to quit")
- setgwob(qwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", "redraw")
+ qwo=cWo(ssw,@ONOFF,@name,"QUIT?",@VALUE,"QUIT",@color,ORANGE_)
+ sWo(qwo,@help," click to quit")
+ sWo(qwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black")
 
  bx = bX + bpad
  bX = bx + bwidth
 
- playsr_wo=createGWOB(ssw,"BN",@name,"PLAY_SR",@VALUE,"ON",@color,"skyblue")
- setgwob(playsr_wo,@help," click to play selected region")
- setgwob(playsr_wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw)
+ playsr_wo=cWo(ssw,@ONOFF,@name,"PLAY_SR",@VALUE,"ON",@color,"skyblue")
+ sWo(playsr_wo,@help," click to play selected region")
+ sWo(playsr_wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black")
 
  bx = bX + bpad
  bX = bx + bwidth
 
- playbc_wo=createGWOB(ssw,"BN",@name,"PLAY_BC",@VALUE,"ON",@color,"magenta")
- setgwob(playbc_wo,@help," click to play between cursors")
- setgwob(playbc_wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw)
+ playbc_wo=cWo(ssw,@ONOFF,@name,"PLAY_BC",@VALUE,"ON",@color,"magenta")
+ sWo(playbc_wo,@help," click to play between cursors")
+ sWo(playbc_wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black")
 
 
- slicesr_wo=createGWOB(ssw,"BN",@name,"SLICE_SR",@VALUE,"ON",@color,"green")
- setgwob(slicesr_wo,@help," click to show spec slice for region")
- setgwob(slicesr_wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw)
+ slicesr_wo=cWo(ssw,@ONOFF,@name,"SLICE_SR",@VALUE,"ON",@color,"green")
+ sWo(slicesr_wo,@help," click to show spec slice for region")
+ sWo(slicesr_wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black")
 
- selectsr_wo=createGWOB(ssw,"BN",@name,"SELECT_SR",@VALUE,"ON",@color,"teal")
- setgwob(selectsr_wo,@help," click to activate selected region")
- setgwob(selectsr_wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw)
+ selectsr_wo=cWo(ssw,@ONOFF,@name,"SELECT_SR",@VALUE,"ON",@color,"teal")
+ sWo(selectsr_wo,@help," click to activate selected region")
+ sWo(selectsr_wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black")
 
- res_wo=createGWOB(ssw,"BS",@name,"RESOL",@VALUE,"ON",@color,"lime")
- setgwob(res_wo,@help," frame resolution ")
- setGWOB(res_wo,@STYLE,"SVR",@CSV,"low,med,high")
- setgwob(res_wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw)
+ // @MENU ?
+ res_wo=cWo(ssw,"BS",@name,"RESOL",@VALUE,"ON",@color,"lime")
+ sWo(res_wo,@help," frame resolution ")
+ sWo(res_wo,@STYLE,"SVR",@CSV,"low,med,high")
+ sWo(res_wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black")
 
 
  int butawo[] = { playsr_wo, playbc_wo, slicesr_wo, selectsr_wo, res_wo, qwo }
 
 // do a htile
-    wohtile(butawo, 0.2, by, 0.9, bY, 1, 0.1)
-    setgwob(butawo,@redraw)
+   wohtile(butawo, 0.2, by, 0.9, bY, 0.1)
+   sWo(butawo,@redraw)
 
   //  text/command wo
 
-  commwo=CreateGwob(ssw,"GRAPH",@resize,0.1,0.02,0.95,0.09)
-  SetGwob(commwo,@clip,0.01,0.01,0.99,0.99, @clipborder,"black")
-  SetGwob(commwo,@penhue,"black",@name,"comms",@pixmapon,@drawon,@save)
+  commwo=cWo(ssw,@GRAPH,@resize,0.1,0.02,0.95,0.09)
+  sWo(commwo,@clip,0.01,0.01,0.99,0.99, @clipborder,"black");
+  sWo(commwo,@penhue,"black",@name,"comms",@pixmapon,@drawon,@save);
+  sWo(commwo,@clear,@clipborder,@textr,"ta_spec",0.1,0.5);
 
-  setgwob(commwo,@clear,@clipborder,@textr,"ta_spec",0.1,0.5)
 
-
-  setGwindow(ssw,@redraw)
+  sWi(ssw,@redraw)
   gflush()
   gsync()
   sleep(1)
@@ -827,12 +824,11 @@ uchar pixstrip[2][ncb]
 
     tasX = nxpts/ Sf 
 
-    setGwob(taswo,@scales,0,mm[0],tasX,mm[1])
+    sWo(taswo,@scales,0,mm[0],tasX,mm[1])
 
-    drawSignal(voxwo, sbn, 0, npts)
-    
- 
-    drawSignal(taswo, sbn, 0, nxpts)
+    drawSignal(voxwo, sbn, 0, npts);
+  
+    drawSignal(taswo, sbn, 0, nxpts);
 
     // I think drawSignal should update the xscales --- according to the number of signal points it plots
 
@@ -840,12 +836,8 @@ uchar pixstrip[2][ncb]
 //  DrawY(voxwo,YS,1,0.75)
 //  DrawY(taswo,SYS,1,0.75)
 
-  show_tas = 0
-  show_spec = 0
-
-
-
-
+  show_tas = 1;
+  show_spec = 1;
   
    old_end = 0
 
@@ -854,9 +846,6 @@ uchar pixstrip[2][ncb]
    st = 0
 
    T = FineTime()
-
-   
-
 
 
   xp = 0
@@ -886,7 +875,7 @@ uchar pixstrip[2][ncb]
 
    sleep(1)
 
-//  setGwob({taswo,sgwo,voxwo},@save)
+//  sWo({taswo,sgwo,voxwo},@save)
 
 // mid 
    
@@ -917,41 +906,33 @@ float Rinfo[]
 
 wScreen = 0
 
-
-
-
-int do_loop = 1
+int do_loop = 1;
 int w_wo = 0
 
-//   setGwob({taswo,sgwo,voxwo},@showpixmap)
+include "gevent"
+
+//   sWo({taswo,sgwo,voxwo},@showpixmap)
 
    while (do_loop) {
 
-     msg = MessageWait(Minfo,Rinfo)
+       sWo({taswo,sgwo,voxwo},@clearpixmap);
+       
+       eventWait();
+ 
+     //msg = MessageWait(Minfo,Rinfo)
 
 // <<"%V$msg \n"
-
-     msgw = split(msg)
-
- //    <<"%V$msg $msgw[0] $msgw[1] $Minfo\n"
+//    <<"%V$msg $msgw[0] $msgw[1] $Minfo\n"
 //     <<"%V6.2f$Rinfo \n"
 
-        m_wo = Minfo[3]
 
-        if ( (Minfo[0] == 7) || (Minfo[0] == 2)) {
-            do_wo_options(m_wo)
-        }
-        else if (Minfo[0] == 29) {
-           do_key_options(Minfo[9])
-        }
+        do_wo_options(ev_woid);
+
+        do_key_options(ev_keyc);
 
 
-             if ( scmp(msg,"SWITCHSCREEN",12)) {
-                  wScreen = atoi(msgw[1])
-             }
 
-
-     setGwob({taswo,sgwo,voxwo},@showpixmap)
+       sWo({taswo,sgwo,voxwo},@showpixmap);
 
    //  sleep(0.1)
 
@@ -963,9 +944,10 @@ closeAudio()
 exitgs(1)
 
 
-/{
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///             TBD
+
+/{/*
+/////////////////// TBD //////////////////////////////////
+
  rms track
  zx  track
  cep pitch track
@@ -979,9 +961,11 @@ exitgs(1)
  a -c option to concatenate files ?
 
 
+
  FIX
      ta draw clears clipborder
      cursor lines - need to be re-inited after a redraw
      crash on FPE errors?
 
-/}
+
+/}*/
