@@ -2,11 +2,16 @@
 //  test file browser
 // 
 
+   Graphic = checkGWM()
 
+  if (!Graphic) {
+    Xgm = spawnGWM()
+  }
 
-vox_type = 'vox\|upe\|phn' ; // regex for vox or pcm
+//vox_type = 'vox\|pcm\|wav' ; // regex for vox or pcm
+vox_type = 'pcm\|vox\|wav' ; // regex for vox or pcm
 
-vox_dir= "/home/mark/barn/ASR/FL/spanish/fjm"; // no trailing spaces for chdir to work
+vox_dir= "/home/mark/Spanish_in_30"; // no trailing spaces for chdir to work
 vox_file =  "";
 
 proc get_the_file ()
@@ -15,13 +20,9 @@ proc get_the_file ()
  fname = naviwindow("Vox/pcm Files ", " Search for vox/pcm files ", \
                       "a.vox", vox_type, vox_dir);
 
- timit_file = scut(fname,-4);
-// sig_file =  scat (timit_file,".vox");
- sig_file =  scat (timit_file,".pcm");
- vox_file =  scat (timit_file,".vox");
- ok = fstat(sig_file,"size") ; // read 
+ ok = fstat(fname,"size") ; // read 
 
-<<"%V$timit_file  $sig_file $ok \n"
+<<"%V $fname $ok \n"
 
 // vox_dir should be updated
 
@@ -32,7 +33,7 @@ proc get_the_file ()
 
  while(1) {
   fn=get_the_file()
-<<"$fn\n"
+  <<"$fn\n"
 }
 
 

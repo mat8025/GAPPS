@@ -1,6 +1,7 @@
 //
-setdebug(1)
-Graphic = CheckGwm()
+setdebug(1);
+
+    Graphic = CheckGwm()
 
      if (!Graphic) {
         X=spawngwm()
@@ -22,9 +23,9 @@ Graphic = CheckGwm()
 
     daname = "PLOT_SCREEN"
 
-    gwo= cWo(vp,@GRAPH,@resize,0.15,0.15,0.95,0.95,@name,"GLines",@color,"white")
+    gwo= cWo(vp,@GRAPH,@resize,0.15,0.15,0.45,0.95,@name,"GLines",@color,"white")
 
-    setgwob(gwo,@clip,cx,cy,cX,cY)
+    sWo(gwo,@clip,cx,cy,cX,cY)
 
     // scales 
     sx = -3
@@ -32,9 +33,15 @@ Graphic = CheckGwm()
     sy = -3
     sY = 3.0
 
+    g2wo= cWo(vp,@GRAPH,@resize,0.55,0.15,0.95,0.95,@name,"GLines",@color,"white")
+
+    sWo(g2wo,@clip,cx,cy,cX,cY)
+
+    int gwos[] = {gwo,g2wo};
     //setgwob(gwo,@scales, sx, sy, sX, sY, @save,@redraw,@drawon,@pixmapon)
 
-   sWo(gwo,@scales, sx, sy, sX, sY,@save, @savepixmap,@redraw,@pixmapon,@drawoff)
+    sWo(gwo,@scales, sx, sy, sX, sY,@save, @savepixmap,@redraw,@pixmapon,@drawoff)
+    sWo(g2wo,@scales, sx, sy, sX, sY,@save, @savepixmap,@redraw,@pixmapon,@drawoff)
 
 
 /{
@@ -46,11 +53,14 @@ Graphic = CheckGwm()
     plot(gwo,@triangle,0.1,0.1,0.2,0.9,0.4,0.5,"green",1)
 /}
 
-    sWo(gwo,@savepixmap,@showpixmap)
+
+
+    sWo(gwos,@savepixmap,@showpixmap)
 
 
 //////////////////////////////////////////////////////////////////////////////////
 ang = 0.0
+
 proc redraw_po()
 {
 
@@ -58,35 +68,62 @@ proc redraw_po()
 
     sWo(gwo,@clearpixmap,@pixmapoff)
 
-    sWo(gwo,@clear,@border,BLUE,@clipborder,RED)
+    sWo(gwo,@clear,@border,BLUE_,@clipborder,RED_)
+
+
+    sWo(g2wo,@drawon)
+
+    sWo(g2wo,@clearpixmap,@pixmapoff)
+
+    sWo(g2wo,@clear,@border,BLUE_,@clipborder,GREEN_)
 
     axnum(gwo,1)
     axnum(gwo,2)
 
+    axnum(g2wo,2)
 
     axtext(gwo,1,"TIME",0.5,3)
  
-    axlabel(gwo,1,"TIDE",0.7,3)
+    axlabel(g2wo,1,"TIDE",0.7,3)
 
-    sWo(gwo,@drawon,@pixmapon)
+    sWo(gwos,@drawon,@pixmapon)
 
     ticks(gwo,1)
     ticks(gwo,2)
 
 
-    plot(gwo,@line,-2,-1,0,-1,ORANGE,@lineto,0,1,RED)
+    plot(gwo,@line,-2,-1,0,-1,ORANGE_,@lineto,0,1,RED_)
 
-    plot(gwo,@lineto,-2,1,"blue",@lineto,-2,-1,"red")
+    plot(gwo,@lineto,-2,1,"blue",@lineto,-2,-1,RED_)
 
     plot(gwo,@lineto,0,0,"blue",@lineto,-1,1,"red")
 
-    plot(gwo,@box,-0.5,-0.9,1,0.8,LILAC,1.0)
+    plot(gwo,@box,-0.5,-0.9,1,0.8,LILAC_,1.0)
 
-    plot(gwo,@arrow,-2,-1,2,1,5,YELLOW,1.0)
+    plot(gwo,@arrow,-2,-1,2,1,5,YELLOW_,1.0)
 
-    plot(gwo,@arrow,-1,-2,3,3,5,RED,1.0)
+    plot(gwo,@arrow,-1,-2,3,3,5,RED_,1.0)
 
-    plot(gwo,@polarline,0,0,2,ang,"blue")
+    plot(gwo,@polarline,0,0,2,ang,"blue");
+
+
+
+
+    plot(g2wo,@line,-2,-1,0,-1,ORANGE_,@lineto,0,1,RED_)
+
+    plot(g2wo,@lineto,-2,1,"blue",@lineto,-2,-1,RED_)
+
+    plot(g2wo,@lineto,0,0,"blue",@lineto,-1,1,"red")
+
+    plot(g2wo,@box,-0.5,-0.9,1,0.8,LILAC_,1.0)
+
+    plot(g2wo,@arrow,-2,-1,2,1,5,YELLOW_,1.0)
+
+    plot(g2wo,@arrow,-1,-2,3,3,5,RED_,1.0)
+
+    plot(g2wo,@polarline,0,0,2,ang,"blue");
+
+
 
     ang += 5;
 
@@ -96,37 +133,23 @@ proc redraw_po()
 
     plot(gwo,@triangle,0.1,0.1,0.2,0.9,0.4,0.5,"green",1)
 
-/{
-    plot(gwo,@polyreg,-0.5,-0.5,8,5,"blue",0,0)
 
-    plot(gwo,@polyreg,-0.1,-0.2,5,4,"green",0,0)
+    plot(g2wo,@circle,0,0,1)
 
-    plot(gwo,@polyreg,-3.1,-0.2,10,4,CYAN,1,0)
+    plot(g2wo,@ellipse,0,0,0.7,0.3)
 
-    plot(gwo,@polyreg,-5.1,-1.2,3,20,VIOLET,1,0)
-
-    plot(gwo,@polyreg,-5.1,-1.2,4,10,RED,0,0)
-
-    plot(gwo,@symbol,0,0,"circle",5,"yellow",1)
-
-    plot(gwo,@symbol,-2.5,0,"diamond",5,"green",1)
-
-    plot(gwo,@symbol,-2,2,"triangle",5,"blue",1)
-
-    plot(gwo,@points,Pts,LILAC)
-
-    plot(gwo,@symbols,Dpts,"diamond",2,BLUE,1,10)
-
-    plot(gwo,@symbols,Spts,"circle",5,GREEN,0,10)
-    
-/}
+    plot(g2wo,@triangle,0.1,0.1,0.2,0.9,0.4,0.5,BLUE_,1)
 
 
-    plot(gwo,@symbols,Spts,"triangle",2,RED,1,10)
-    plot(gwo,@symbols,Spts,"circle",2,ORANGE,1,10)
+    plot(gwo,@symbols,Spts,"triangle",2,RED_,1,10)
+    plot(gwo,@symbols,Spts,"circle",2,ORANGE_,1,10)
 
-    sWo(gwo,@showpixmap)
-    sWo(gwo,@border,BLUE,@clipborder,RED)
+    plot(g2wo,@symbols,Spts,"triangle",2,RED_,1,10)
+    plot(g2wo,@symbols,Spts,"circle",2,ORANGE_,1,10)
+
+    sWo(gwos,@showpixmap)
+    sWo(gwos,@border,BLUE_,@clipborder,RED_)
+
 
 }
 
@@ -143,7 +166,7 @@ float Dpts[128]
 
        sx = -3
        sy = -3
-       for (i =0 ; i < 128; i+= 2) {
+       for (i =0 ; i < 128; i += 2) {
 
         Pts[i] = x
         Pts[i+1] = y
@@ -164,43 +187,44 @@ float Dpts[128]
 
 ///////////////////////////////// EVENT HANDLE ////////////////////////////////////////
 
-include "event"
+include "gevent"
 
-Event E     // use asl event class to process any messages
+
 
   while (1) {
 
-      E->waitForMsg()
+           eventWait();
 
-       if (! (E->keyw @= "NO_MSG")) {
 
-           if (E->button == LEFT) {
-             panwo(gwo,"left",5)
+<<"%V $ev_keyw  $ev_button $ev_kloop \n"
+       if (! (ev_keyw @= "NO_MSG")) {
+
+           if (ev_button == LEFT_) {
+             panwo(gwos,"left",5)
+            // panwo(g2wo,"left",5)	     
            }
-           else if (E->button == RIGHT) {
-             panwo(gwo,"right",5)
+           else if (ev_button == RIGHT_) {
+             panwo(gwos,"right",5)
+             //panwo(g2wo,"right",5)	     
+	     
            }
 
-           else if (E->button == 2) {
-             zoomwo(gwo,"out",5)
+           else if (ev_button == 2) {
+             zoomwo(gwos,"out",5)
            }
 
-           else if (E->button == 4) {
+           else if (ev_button == 4) {
              zoomwo(gwo,"in",5)
+             zoomwo(g2wo,"in",5)	     
            }
 
-           else if (E->button == 5) {
-             zoomwo(gwo,"out",5)
+           else if (ev_button == 5) {
+             zoomwo(gwos,"out",5)
            }
 
            
-/{
-           setgwob(gwo,@scales, sx, sy, sX, sY)
-           sx += 0.1
-           sX -= 0.1
-/}
 
-         if (E->keyw @= "RESCALE") {
+         if (ev_keyw @= "RESCALE") {
        <<"doing rescale !\n"
           RS = wgetrscales(gwo)
        <<"doing rescale ! $RS\n"
