@@ -1,10 +1,7 @@
 # consts.asl
 // edit to expand constants units
 
-//OpenDll("math")
-//<<" init consts \n"
-//SetDEbug(0)
-// FIX AP LIBRARY
+
 //setap(50)
 
 //setap(10)
@@ -22,17 +19,18 @@ const double _G = 6.672e-11
 
 const double _g = 9.8 // m per sec per sec -- grav acc
 
-const double _c = 299792458   // m per sec
+const double _c = 299792458;  // m per sec
 
 const double _sos = 331.0 // m per sec 
 
-const double _k = 1.38070e-23
+//const double _k = 1.38070e-23
+const double _k = 1.38070 * 10^^-23;
 
 //<<"%Ve$_k\n"
 
-const double _h = 6.626e-34
+const double _h = 6.626e-34;
 
-const double _ev =1.602e-29
+const double _ev = 1.602e-29;
 
 
 const double _EarthRadius = 6371000.0 //  6371 km
@@ -128,7 +126,7 @@ proc consts()
 //<<"typically MKS  - note consts are preceeded by underscore e.g.speed of light  _c \n"
 <<"%V$_PI \n"
 <<"%V$_E \n"
-<<"%V$_g  grav accelration meters per sec per sec \n"
+<<"%V$_g  grav acceleration meters per sec per sec \n"
 <<"%Ve$_G Gravitational Constant 6.672 x 10E-11 Nm^2/Kg^2  \n"
 <<"%Ve$_c speed of light    m/s\n"
 <<"%V$_sos speed of sound (Air 0 deg C m/s) \n"

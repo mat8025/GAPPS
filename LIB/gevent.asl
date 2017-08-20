@@ -12,7 +12,10 @@ proc eventDecode()
     ev_woval = Ev->getEventWoValue();
     
 //    <<"$ev_kloop %V$ev_msg $ev_woval\n"
-
+    if (checkTerm()) {
+       ev_keyw = "EXIT";
+    }
+    else {
     ev_words = Split(ev_msg)
     ev_keyw = ev_words[2];
     ev_keyw2 = ev_words[3];    
@@ -25,7 +28,7 @@ proc eventDecode()
     ev_id = Ev->getEventID();
     Ev->geteventrxy(&ev_rx,&ev_ry);
     Ev->geteventrowcol(&ev_row,&ev_col);
-
+    }
 //<<"%V$ev_keyc $ev_button $ev_id $ev_woid $ev_woname $ev_woval\n"
 //<<"%V $ev_keyw $ev_woproc $ev_row $ev_col $ev_rx $ev_ry\n"
 

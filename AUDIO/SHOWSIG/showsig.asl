@@ -18,17 +18,55 @@ proc usage()
 }
 //===================================
 
+vox_type = 'vox\|pcm\|phn' ; // regex for vox or pcm
+str Sig_file = "";
+
+proc get_the_file ()
+{
+
+static str vox_dir = "/home/mark/Spanish_in_30/";
+
+// vox_type = 'vox\|pcm\|phn' ; // regex for vox or pcm
+
+<<"%V $vox_dir $vox_type\n";
+
+Sig_file = naviwindow("vox/pcm/wav Files ", " Search for vox/pcm/wav files ", \
+                      "a.vox", vox_type, vox_dir);
+
+  ok = fstat(Sig_file,"size") ; // read 
+
+<<"%V $Sig_file $ok \n"
+
+// vox_dir should be updated
+  if (ok) {
+    vox_dir = spat(Sig_file,"/",0,-1);
+  }
+  else {
+   Sig_file = "";
+  }
+  return ok;
+}
+//=======================================================
+
+
 
 proc checkForIntrpt()
 {
 int ret = 0;
-  eventRead();
+
+  if (checkReset(1)) {
+      ret =1
+  }
+  else {
+
+   eventRead();
 
   if (ev_woid == intrpwo) {
 <<"stop current action! ";
    ret =1;
   }
-   return ret;
+  }
+  return ret;
 }
 //===================================
 
@@ -59,10 +97,9 @@ proc getNpixs()
 
 <<"%V$SGCL \n"
 
-   CL = wogetclip(taselwo)
+   TACL = wogetclip(taselwo);
 
-
-<<"%V$CL \n"
+<<"%V$TACL \n"
 
     Nf = Npts/ wshift;
 
@@ -187,7 +224,7 @@ proc computeSpecandPlot( t1,t2)
     if (st > bufend)
         break;
 
-    if ((frames % 20)  == 0) {
+    if ((frames % 100)  == 0) {
         // sleep(0.7)  // SHM full check  -- need to check
      <<"%V$frames $st \n"
       // if (checkForIntrpt()) {
@@ -199,7 +236,7 @@ proc computeSpecandPlot( t1,t2)
     frames++;
   }
 
-  sWo(sgwo,@showpixmap);     
+  //sWo(sgwo,@showpixmap);     
 
   dt = FineTimeSince(T,1)
 
@@ -316,7 +353,7 @@ proc selSection( tx)
 //    sGl(co3_gl,@cursor)  // show if it is already active  
 
 
-    axnum(taselwo, 1, tx1,tx2,0.25,-1,"g")
+    axnum(taselwo, 1, tx1,tx2,0.25,-1,"4.2f")
     // axnum(taselwo, -1);
 
     sWo(taselwo,@showpixmap);
@@ -385,7 +422,7 @@ proc showSelectRegion()
      new_stx = GV[0];
      new_fin = GV1[0]; // can't control this
 <<"%V $new_stx $new_fin \n"
-     new_fin = new_stx + 5; // check for end
+     new_fin = new_stx + Timesw; // check for end
 
 
 
@@ -414,7 +451,7 @@ proc showSelectRegion()
 
      sWo(taselwo,@save)
 
-     axnum(taselwo, 1, new_stx,new_fin,1.0,-1,"g")
+     axnum(taselwo, 1, new_stx,new_fin,1.0,-1,"4.2f")
     // axnum(taselwo, -1)
     
    //displayComment("%V$rx $rX $ry $rY \n")
@@ -510,6 +547,20 @@ proc do_wo_options(w_wo)
               showSlice (tx);
 
         }
+        else if (w_wo == newf_wo) {
+               
+            ok= get_the_file();
+
+            if (ok) {
+	        fname = Sig_file;
+                readSignalToBuffer();
+                getSignalSpecs();
+                sWi(ssw, @redraw);
+                drawSignal(voxwo, sbn, 0, Npts);		
+
+            }
+
+        }	
         else if (w_wo == voxwo) {
 
               tx = ev_rx; // time in voxwo
@@ -599,15 +650,8 @@ proc do_key_options(key)
    na = GetArgc();
 
    ka = 1;
-   fname = _clarg[ka];
 
-   if (fname @= "") {
-<<"no file to view \n";
-   usage();
-   exit();
-   }
-
-   ka++;
+str fname = "";
     
     while (1) {
 
@@ -633,14 +677,17 @@ proc do_key_options(key)
     elif (opt @= "-c") {
      nchans = getArgI(ka)
      <<" setting %V$nchans  \n"
-     }     
+     ka++;
+    }     
     elif (opt @= "-s") {
      fstart = getArgF(ka)
      <<" setting file start time  \n"
      }          
-
+     else {
+       fname = _clarg[ka];
+        ka++;
      }
-
+     }
 
     }
 
@@ -649,6 +696,19 @@ proc do_key_options(key)
  //sb = atoi(_clarg[2])
 
 <<"%V$fname $sb\n"
+
+  if (fname @= "") {
+     ok= get_the_file();
+     if (ok) {
+      fname = Sig_file;
+     }
+  }
+
+   if (fname @= "") {
+<<"no file to view \n";
+   usage();
+   exit();
+   }
 
 
 // create an audio buffer
@@ -659,9 +719,14 @@ proc do_key_options(key)
 
 ////////////// READ FILE INTO BUFFER   ///////////////////////////
 
-  ds = readsignal(sbn,fname)
+short BV[];
+float MM[];
 
-<<"%V $sbn read $ds samples \n"
+proc readSignalToBuffer()
+{
+  ds = readsignal(sbn,Sig_file)
+
+<<"$Sig_file %V $sbn read $ds samples \n"
 
   Npts = ds;
 
@@ -669,11 +734,16 @@ proc do_key_options(key)
   // just copy buffer back out so we can process it
   // we will add builtin processing later
 
-  B = getSignalFromBuffer(sbn,0,ds)
+  BV = getSignalFromBuffer(sbn,0,ds);
 
-  <<"%(16,, ,\n)$B[0:32] \n"
+  <<"%(16,, ,\n)$BV[0:32] \n"
 
-  mm= minmax(B)
+  MM= minmax(BV);
+  <<"$MM\n";
+}
+//=========================================
+
+  readSignalToBuffer();
 
 
   openAudio();
@@ -687,60 +757,46 @@ proc do_key_options(key)
   }
 
 ////////////////////////////////////////////////////////
-/{
-    A=ofr(fname)
-
-<<"$A\n"
-//<<" $skp_head \n"
-
-    hdr_size = getHdrSize(A)
-
-<<"%V $hdr_size \n"
-
-    if (hdr_size > 0) {
-// does it have vox header - if so skip past it 
-<<" skipping hdr $hdr_size \n"
-      fseek(A,hdr_size,0)
-    }
-
-<<"%V$dsz $Npts $hdr_size\n"
-
-    B=rdata(A,SHORT)
-
-<<"%(10,, ,\n)$B[0:99] \n"
-
-<<"B $mm \n"
-/}
-
-int dsz = Caz(B);
-
-    Npts = ds/512 * 512 ; // should be number of frames
-
-    <<"%V$dsz $Npts \n"
 
 
-float SYS[]
-float YS[]
 
-      YS= B 
+int dsz;
 
-      mm= minmax(YS)
+float SYS[];
+float YS[];
+float y0;
+float y1;
 
-<<"%(10,, ,\n)$B[0:99]\n"
-<<"$mm \n"
+proc getSignalSpecs()
+{
 
+  dsz= Caz(BV);
 
-  y0 = mm[0];
-  y1 = mm[1];
+<<"%V $dsz $(typeof(BV)) $BV[0:5]\n";
 
+  YS = BV; 
+
+  Npts = dsz/512 * 512 ; // should be number of frames
+  <<"%V$Npts \n"
+  MM= minmax(YS)
+
+<<"%(10,, ,\n)$BV[0:99]\n"
+<<"$MM \n"
+
+  y0 = MM[0];
+  y1 = MM[1];
+}
+//======================================
+
+   getSignalSpecs();
 
 // file read 
 // work through buffer and produce spec-slice , rms and zx tracks
 // cepstral track
 
 
-   int nbp = 0;
-   int frames = 0;
+ int nbp = 0;
+ int frames = 0;
 
  Sf = Freq;
  dt = 1.0/Sf;
@@ -807,12 +863,12 @@ uchar pixstrip[2][ncb];
   wox = 0.01;
   woX = 0.98;
 
-  ts = ds / Freq;
+  ts = dsz / Freq;
   // whole signal
   voxwo=cWo(ssw,@GRAPH,@resize,wox,0.85,woX,0.98)
   sWo(voxwo,@name,"Vox",@clip,0.01,0.01,0.99,0.99)
   sWo(voxwo,@pixmapon, @drawon,@save,@border, @clipborder,"red",@penhue,GREEN_)
-  sWo(voxwo,@scales,0,mm[0],ts,mm[1])
+  sWo(voxwo,@scales,0,MM[0],ts,MM[1])
   sWo(voxwo,@help," audio signal in buffer ");
   
   RP = wogetrscales(voxwo);
@@ -830,16 +886,19 @@ uchar pixstrip[2][ncb];
   swoX = 0.7;
 
   // selected signal section
-  taselwo=cWo(ssw,@GRAPH,@resize,swox,0.70,swoX,0.84)
-  sWo(taselwo,@name,"TA",@clip,0.01,0.15,0.99,0.99,
-  sWo(taselwo,@pixmapon, @drawoff,@save,@border, @clipborder,"green",@penhue,PINK_,@savepixmap)
-  sWo(taselwo,@scales,0,mm[0],sts,mm[1]);
+  taselwo=cWo(ssw,@GRAPH,@resize,swox,0.70,swoX,0.84);
+  sWo(taselwo,@name,"TA",@clip,0.01,0.15,0.99,0.99);
+  sWo(taselwo,@pixmapon, @drawoff,@save,@border, @clipborder,GREEN_,\
+  @penhue,PINK_,@savepixmap);
+  
+  sWo(taselwo,@scales,0,MM[0],sts,MM[1]);
 
 
   // sWo(taselwo,@help," selected section of audio signal ")
   // spectograph window 
   sgwo=cWo(ssw,@GRAPH,@resize,swox,0.5,swoX,0.68)
-  sWo(sgwo,@penhue,"green",@name,"SGRAPH",@pixmapon,@drawon,@save,@savepixmap);
+  sWo(sgwo,@penhue,"green",@name,"SGRAPH",@pixmapoff,@drawon,@save,@savepixmap);
+  // TBC  pixmap save/restore/update
   sWo(sgwo,@clip,0.01,0.01,0.99,0.99, @border, @clipborder,"red")
   sWo(sgwo,@scales,0,0,Npts,120)
   sWo(sgwo,@help," spectrograph ")
@@ -859,7 +918,7 @@ uchar pixstrip[2][ncb];
 
   tawo=cWo(ssw,@GRAPH,@resize,0.5,0.15,0.95,0.48)
 
-  //sWo(tawo,@scales,0,mm[0],1024,mm[1])
+  //sWo(tawo,@scales,0,MM[0],1024,MM[1])
   sWo(tawo,@scales,0,-24000,FFTSZ,24000);
   
   //sWo(tawo,@penhue,BLUE_,@name,"timeamp",@pixmapon,@drawoff,@save)
@@ -883,7 +942,7 @@ uchar pixstrip[2][ncb];
   co2_gl = cGl(taselwo,@type,"CURSOR",@color,RED_)
   co3_gl = cGl(taselwo,@type,"CURSOR",@color,BLUE_)
 
-  // Buttons for AUDIO ops
+  ///////////////// Buttons for AUDIO ops ////////////////////////
 
  bx = 0.2
  by = 0.1
@@ -900,9 +959,9 @@ uchar pixstrip[2][ncb];
  bx = bX + bpad
  bX = bx + bwidth
 
- intrpwo=cWo(ssw,@ONOFF,@name,"Interrupt?",@VALUE,"QUIT",@color,ORANGE_)
+ intrpwo=cWo(ssw,@ONOFF,@name,"Interrupt?",@VALUE,"Intrp",@color,ORANGE_)
  sWo(intrpwo,@help," click to interrupt")
- sWo(intrpwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black")
+ sWo(intrpwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@FUNC,"window_intrp")
 
  bx = bX + bpad
  bX = bx + bwidth
@@ -927,6 +986,11 @@ uchar pixstrip[2][ncb];
  sWo(selectsr_wo,@help," click to activate selected region")
  sWo(selectsr_wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black")
 
+
+ newf_wo=cWo(ssw,@ONOFF,@name,"NewFile",@VALUE,"ON",@color,"teal")
+ sWo(newf_wo,@help," new file")
+ sWo(newf_wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black")
+
  // @MENU ?
  res_wo=cWo(ssw,"BS",@name,"RESOL",@VALUE,"ON",@color,"lime")
  sWo(res_wo,@help," frame resolution ")
@@ -934,7 +998,7 @@ uchar pixstrip[2][ncb];
  sWo(res_wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black")
 
 
- int butawo[] = { playsr_wo, playbc_wo, slicesr_wo, selectsr_wo, res_wo, intrpwo, qwo }
+ int butawo[] = { newf_wo,playsr_wo, playbc_wo, slicesr_wo, selectsr_wo, res_wo, intrpwo, qwo };
 
 // arrange using htile
    wohtile(butawo, 0.2, by, 0.9, bY);
@@ -985,17 +1049,14 @@ uchar pixstrip[2][ncb];
 
     tasX = Nxpts/ Sf; 
 
-    
-
     drawSignal(voxwo, sbn, 0, Npts);
 
-
-    sWo(taselwo,@scales,0,mm[0],10.0,mm[1]);
+    sWo(taselwo,@scales,0,MM[0],10.0,MM[1]);
 
     drawSignal(taselwo, sbn, 0, 10*Freq);
 
-    // I think drawSignal should update the xscales --- according to the number of signal points it plots
-
+    // I think drawSignal should update the xscales
+    //--- according to the number of signal points it plots
 
 //  DrawY(voxwo,YS,1,0.75)
 //  DrawY(taselwo,SYS,1,0.75)
@@ -1073,8 +1134,14 @@ include "gevent"
 
    while (do_loop) {
 
-       sWo({taselwo,sgwo,voxwo},@clearpixmap);
-       
+        sWo({taselwo,sgwo,voxwo},@clearpixmap);
+
+         if (checkTerm()) {
+          <<"we have TERM SIGNAL\n";
+	  break;
+         }
+
+
         eventWait();
 
         do_wo_options(ev_woid);
@@ -1090,7 +1157,8 @@ include "gevent"
 
 // close up
 closeAudio()
-exitgs(1)
+
+exit(1)
 
 
 
@@ -1118,3 +1186,29 @@ exitgs(1)
 
 
 /}*/
+
+
+/{
+    A=ofr(fname)
+
+<<"$A\n"
+//<<" $skp_head \n"
+
+    hdr_size = getHdrSize(A)
+
+<<"%V $hdr_size \n"
+
+    if (hdr_size > 0) {
+// does it have vox header - if so skip past it 
+<<" skipping hdr $hdr_size \n"
+      fseek(A,hdr_size,0)
+    }
+
+<<"%V$dsz $Npts $hdr_size\n"
+
+    BV=rdata(A,SHORT)
+
+<<"%(10,, ,\n)$BV[0:99] \n"
+
+<<"BV $MM \n"
+/}

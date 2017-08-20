@@ -195,7 +195,10 @@ include "gevent"
 
            eventWait();
 
-
+         if (checkTerm()) {
+          <<"we have TERM SIGNAL\n";
+	  break;
+         }
 <<"%V $ev_keyw  $ev_button $ev_kloop \n"
        if (! (ev_keyw @= "NO_MSG")) {
 
@@ -228,14 +231,22 @@ include "gevent"
        <<"doing rescale !\n"
           RS = wgetrscales(gwo)
        <<"doing rescale ! $RS\n"
-          
          }
+
+
+
+         if (ev_keyw @= "EXIT") {
+         <<"got SIG TERM to EXIT\n"
+         <<"cleanup?\n"	 
+	  break;
+         }
+
 
          redraw_po();
 
        }
   }
 
-
-
+<<"at the end of program!\n"
+  exit();
   stop!
