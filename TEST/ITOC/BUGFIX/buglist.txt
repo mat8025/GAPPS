@@ -69,7 +69,8 @@ tbd:
 93 08/20/17 5.81 6 PENDING
 descr:
  e format number not parsed e.g. const double _ev = 1.602e-29;
-fix: 
+fix: 08/20/17
+did not recogonize end of statement
  
 tbd: 
 //==========================

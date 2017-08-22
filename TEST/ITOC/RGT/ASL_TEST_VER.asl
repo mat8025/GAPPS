@@ -620,8 +620,11 @@ int do_ptrs = 0;
       Run2Test("Cast")
       cart("cast0")
       cart("cast_vec")
-      updir()
+      updir();
 
+      Run2Test("Efmt");
+      cart("efmt");
+      updir();
   }
 
 
