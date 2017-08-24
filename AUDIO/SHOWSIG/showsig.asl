@@ -142,12 +142,11 @@ proc computeSpecandPlot( t1,t2)
    
    
    winshift = (bufend- st) / Nxpts;
-
-
    
    if (winshift <= 0) {
        winshift = 10;
    }
+
    int nf =  (bufend- st) / Nxpts;
    
    <<"%V $nf $bufend $st $winshift \n";
@@ -157,18 +156,20 @@ proc computeSpecandPlot( t1,t2)
 
    // shift then depends on num of sample points in selected region --- TBC
 
+   sWo(tawo,@scales,0,-20000,FFTSZ,20000);
+   sWo(tawo,@save,@savepixmap);
+
    while (1) {
 
-     end = st + wlen - 1
-     real = YS[st:end]
-     rsz = Caz(real)
+     end = st + wlen - 1;
+     real = YS[st:end];
+     rsz = Caz(real);
 
       
 
      if (show_tas) {
-        sWo(tawo,@scales,0,-20000,FFTSZ,20000)
-        sWo(tawo,@clearclip,@clearpixmap);
-        DrawY(tawo,real,0,1);
+        sWo(tawo,@clearpixmap);
+          DrawY(tawo,real,0,1);
 	sWo(tawo,@showpixmap);
       }
 
@@ -178,9 +179,9 @@ proc computeSpecandPlot( t1,t2)
 
     //sGl(co_gl,@cursor,end,y0,end,y1)
 
-     zx = ZC(real,Zxthres)
+     zx = ZC(real,Zxthres);
 
-     rmsv = RMS(real)
+     rmsv = RMS(real);
 
      real *= swin;
 
@@ -203,9 +204,10 @@ proc computeSpecandPlot( t1,t2)
     sWo(spwo,@clearclip,@clearpixmap);
     // <<"DrawY spec $hwlen \n"
      DrawY(spwo,real[0:hwlen-1],0,1);
-     sWo(spwo,@showpixmap);     
+     //sWo(spwo,@showpixmap);     
    }
 
+   if (show_sg) {
    powspec = real[0:hwlen-1]
 
    if ((xp % 2) == 0) {
@@ -220,6 +222,8 @@ proc computeSpecandPlot( t1,t2)
      }
 
    xp++;
+    }
+
 
     if (st > bufend)
         break;
@@ -252,25 +256,27 @@ proc computeSpecandPlot( t1,t2)
 //================================================
 
 
-proc showSlice ( tx )
+proc showSlice ( stx )
 {
 
-     int sti = (tx * Freq);
+     int sti = (stx * Freq);
 
      end = sti + wlen - 1
 
      real = YS[sti:end]
 
-     sWo({tawo,spwo},@clearpixmap)
-    // setgwob(tawo,@clearclip)
+          sWo({tawo,spwo},@clearpixmap)
+          //sWo(tawo,@clearclip);
+          sWo(spwo,@clearclip);
 
 //<<"draw TA\n"
+
      DrawY(tawo,real,0,1);
 
      // swindow and compute powspec
-     real *= swin
+     real *= swin ;
 
-     imag = 0.0
+     imag = 0.0;
      
      spec(real,imag,FFTSZ,0);
 
@@ -279,25 +285,25 @@ proc showSlice ( tx )
     // setgwob(spwo,@clearclip)
 //<<"draw Spec \n"
 
-     DrawY(spwo,real[0:hwlen-1],0,1)
+     DrawY(spwo,real[0:hwlen-1],0,1);
+
+     //sWo({tawo,spwo},@showpixmap,@clipborder)
+     sWo(tawo,@showpixmap,@clipborder)
 
 
-   RP = wogetrscales(taselwo)   // via PIPE msg 
+ //  RP = wogetrscales(taselwo);   // via PIPE msg 
 
    //<<"%V$RP \n"
-   rx = RP[1]
-   ry = RP[2]
-   rX = RP[3]
-   rY = RP[4]
+ //  rx = RP[1]
+//   ry = RP[2]
+//   rX = RP[3]
+ //  rY = RP[4]
 
-    sWo({tawo,spwo},@showpixmap,@clipborder)
+//    sWo({tawo,spwo},@showpixmap,@clipborder)
 
-    displayComment("time $tx sample $sti %V6.2f$rx $rX  $tx\n")
+ //   displayComment("time $tx sample $sti %V6.2f$rx $rX  $tx\n")
 
 //    sGl(co2_gl,@cursor,tx,y0,tx,y1)
-
-
-
 //    sGl(co_gl,@cursor,tx,y0,tx,y1)
 
 }
@@ -410,7 +416,7 @@ proc playBCtas( )
 }
 //================================================
 
-proc showSelectRegion()
+proc showSelectRegion( do_sg)
 {
 
       GV =  glineGetValues(co_gl);
@@ -458,9 +464,10 @@ proc showSelectRegion()
 
      sWo(sgwo,@clearclip,@clearpixmap);
 //     sWo(taselwo,@scales, new_stx,-32000, new_fin, 32000)  // via SHM
-
-   computeSpecandPlot(new_stx, new_fin);
-
+    if (do_sg) {
+     computeSpecandPlot(new_stx, new_fin);
+    }
+    
    RP = wogetrscales(taselwo)   // via PIPE msg 
 
    <<"%V$RP \n"
@@ -501,7 +508,7 @@ proc do_wo_options(w_wo)
                 playBCtas();
         }
         else if (w_wo == selectsr_wo) {
-                showSelectRegion();
+                showSelectRegion(1);
         }
         else if (w_wo == res_wo) {
                  <<"%V$ev_keyw $wshift\n"
@@ -579,6 +586,27 @@ proc do_wo_options(w_wo)
               displayComment("%6.2f$tx $txa $txb \n");
 
         }
+	else if (w_wo == fwdsr_wo) {
+
+              tx += Timesw/4.0 * 3; // time in voxwo
+
+              selSection (tx);
+
+              txa = tx - 2.0;
+              txb = tx + 2.0;
+	      
+<<"taselwo %V $txa $txb \n";
+
+              sWo(taselwo,@scales, txa ,-30000, txb, 31000)  // via SHM
+
+              showSelectRegion(0);
+              //showSlice (tx)
+
+              displayComment("%6.2f$tx $txa $txb \n");
+
+        }
+
+
 }
 //================================================
 
@@ -616,7 +644,6 @@ proc do_key_options(key)
             sGl(cosg_gl,@cursor,tx,0,tx,100)  
          break;
 
-
        }
 
 }
@@ -645,7 +672,7 @@ proc do_key_options(key)
   int Nxpts =0;
   int Npts = 0;
 
-  float Timesw = 5.0;  // default length for selection
+  float Timesw = 6.0;  // default length for selection
 
    na = GetArgc();
 
@@ -801,7 +828,7 @@ proc getSignalSpecs()
  Sf = Freq;
  dt = 1.0/Sf;
 
- FFTSZ = 1024;
+ FFTSZ = 512;
  fftend = FFTSZ -1
 
  wlen = FFTSZ
@@ -882,13 +909,13 @@ uchar pixstrip[2][ncb];
       sts = 3.0;
   }
 
-  swox = 0.3;
-  swoX = 0.7;
+  swox = 0.1;
+  swoX = 0.9;
 
   // selected signal section
   taselwo=cWo(ssw,@GRAPH,@resize,swox,0.70,swoX,0.84);
   sWo(taselwo,@name,"TA",@clip,0.01,0.15,0.99,0.99);
-  sWo(taselwo,@pixmapon, @drawoff,@save,@border, @clipborder,GREEN_,\
+  sWo(taselwo,@pixmapoff, @drawon,@save,@border, @clipborder,GREEN_,\
   @penhue,PINK_,@savepixmap);
   
   sWo(taselwo,@scales,0,MM[0],sts,MM[1]);
@@ -912,11 +939,11 @@ uchar pixstrip[2][ncb];
   //SWo(spwo,@penhue,"red",@name,"sgraph",@pixmapon,@drawon,@save)
 //  sWo(spwo,@penhue,"red",@name,"sgraph",@pixmapon,@drawoff,@save)
 
-  sWo(spwo,@penhue,RED_,@name,"SSLICE",@pixmapon,@drawoff,@save,@savepixmap)
+  sWo(spwo,@penhue,RED_,@name,"SSLICE",@pixmapoff,@drawon,@save,@savepixmap)
   sWo(spwo,@clip,0.01,0.01,0.99,0.99, @clipborder,BLACK_)
   //sWo(spwo,@help," spectral_slice ")
 
-  tawo=cWo(ssw,@GRAPH,@resize,0.5,0.15,0.95,0.48)
+  tawo=cWo(ssw,@GRAPH,@resize,0.5,0.15,0.95,0.48);
 
   //sWo(tawo,@scales,0,MM[0],1024,MM[1])
   sWo(tawo,@scales,0,-24000,FFTSZ,24000);
@@ -949,7 +976,7 @@ uchar pixstrip[2][ncb];
  bX = 0.3
  bY = 0.14
  bwidth = 0.1
- bpad = 0.01
+ bpad = 0.01;
 
 
  qwo=cWo(ssw,@ONOFF,@name,"QUIT?",@VALUE,"QUIT",@color,ORANGE_)
@@ -969,6 +996,13 @@ uchar pixstrip[2][ncb];
  playsr_wo=cWo(ssw,@ONOFF,@name,"PLAY_SR",@VALUE,"ON",@color,"skyblue")
  sWo(playsr_wo,@help," click to play selected region")
  sWo(playsr_wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black")
+
+ bx = bX + bpad
+ bX = bx + bwidth
+
+ fwdsr_wo=cWo(ssw,@ONOFF,@name,"FWD_SR",@VALUE,"ON",@color,"skyblue")
+ sWo(fwdsr_wo,@help," advance SR ")
+ sWo(fwdsr_wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black")
 
  bx = bX + bpad
  bX = bx + bwidth
@@ -998,7 +1032,7 @@ uchar pixstrip[2][ncb];
  sWo(res_wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black")
 
 
- int butawo[] = { newf_wo,playsr_wo, playbc_wo, slicesr_wo, selectsr_wo, res_wo, intrpwo, qwo };
+ int butawo[] = { newf_wo,fwdsr_wo, playsr_wo, playbc_wo, slicesr_wo, selectsr_wo, res_wo, intrpwo, qwo };
 
 // arrange using htile
    wohtile(butawo, 0.2, by, 0.9, bY);
@@ -1027,7 +1061,7 @@ uchar pixstrip[2][ncb];
 
   int xp = 0
 
-  float tx = 0.0
+  float tx = 0.0;
   float txa = 0.0;
   float txb = 0.0;
 
@@ -1061,8 +1095,9 @@ uchar pixstrip[2][ncb];
 //  DrawY(voxwo,YS,1,0.75)
 //  DrawY(taselwo,SYS,1,0.75)
 
-  show_tas = 0;
+  show_tas = 1;
   show_spec = 0;
+  show_sg = 1;
   
    old_end = 0
 

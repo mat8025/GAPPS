@@ -22,7 +22,7 @@ short SO[];
 
   SO= X;
   
-B=ofw("chord.pcm")
+  B=ofw("op.pcm")
   w_data(B,SO)
   cf(B)
 

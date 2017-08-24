@@ -405,7 +405,7 @@ int button = 0
 
        eventWait();
 
-       DBPR"%V$ev_loop $ev_msg $ev_keyw $ev_type $ev_woproc\n"
+       DBPR"%V$ev_kloop $ev_msg $ev_keyw $ev_type $ev_woproc\n"
 
 
     if ( (ev_keyw @= "REDRAW") || (ev_keyw @= "RESIZE") || (ev_keyw @= "RESCALE") || (ev_keyw @= "PRINT")) {

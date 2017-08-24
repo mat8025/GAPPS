@@ -31,10 +31,10 @@ float A[1];
 
 float AMP[500];
 
-float FC = 2000.0;
+float FC = 8000.0;
 
 //float T = 0.001; // 1K
-float Sf = 16000.0; // 16K 
+float Sf = 44100.0; // 16K 
 float T = 1.0/Sf; 
 
 int Wndo = 1; // 1 Rec, 2 TapRec, 3 Tri, 4 Hanning, 5 Hamming, 6 Blackman

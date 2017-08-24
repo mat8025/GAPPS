@@ -6,7 +6,7 @@
  sfn= _clarg[1];
 
 // assume 16 bit words
-
+<<"$sfn\n"
 
  A= ofr(sfn);
 
@@ -14,6 +14,12 @@
 <<"file error $sfn \n"
    exit();
   }
+
+stem = scut(sfn,-4);
+
+<<"$stem \n";
+stem = spat(stem,"Track ",1)
+<<"$stem \n";
 
   R=rdata(A,SHORT_);
 
@@ -24,17 +30,17 @@
 <<"$R[0:10] \n";
 
 
-B=ofw("left")
+B=ofw("sp30_${stem}.pcm")
 
   wcdata(SHORT_,B,R[0:-1:2])
 
 cf(B);
-
-B=ofw("right")
+/{
+B=ofw("sp30_${stem}_r.pcm")
 
   wcdata(SHORT_,B,R[1:-1:2])
 
 cf(B);
-
+/}
 
 exit();

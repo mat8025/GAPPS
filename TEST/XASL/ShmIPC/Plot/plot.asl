@@ -199,7 +199,7 @@ include "gevent"
           <<"we have TERM SIGNAL\n";
 	  break;
          }
-<<"%V $ev_keyw  $ev_button $ev_kloop \n"
+//<<"%V $ev_keyw  $ev_button $ev_kloop \n"
        if (! (ev_keyw @= "NO_MSG")) {
 
            if (ev_button == LEFT_) {
