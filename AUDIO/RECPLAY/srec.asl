@@ -1,7 +1,7 @@
 // test record of vox  files
 
-OpenDll("audio")
-
+//OpenDll("audio")
+include "audio";
 proc usage()
 {
 
@@ -71,6 +71,8 @@ ka = 0
 // get Freq channel info etc
 // and use to set/ override defaults
 
+ openAudio();
+/{
 // get/open dsp
    dspfd = dspopen("/dev/dsp") // correct for mercury
     if (dspfd == -1) {
@@ -93,19 +95,25 @@ ka = 0
    }
 // set dsp,mixer
 
-<<"%V $dspfd $mixfd \n"
 
-   getSoundParams(dspfd,mixfd);
+/}
+<<"%V $Dspfd $Mixfd \n"
 
-   RecordFile(vox_file,dspfd,mixfd,how_long, Freq, 1,smic_factor);
 
-   getSoundParams(dspfd,mixfd);
+
+
+   getSoundParams(Dspfd,Mixfd);
+
+<<"RECORD Now!\n"
+   RecordFile(vox_file,Dspfd,Mixfd,how_long, Freq, 1,smic_factor);
+
+   getSoundParams(Dspfd,Mixfd);
 
 // release devices
 
-   close(dspfd)
+   close(Dspfd)
 
-   close(mixfd)
+   close(Mixfd)
 
 
 STOP("RECORDING COMPLETE to $vox_file \n")

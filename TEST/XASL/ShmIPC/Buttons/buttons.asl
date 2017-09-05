@@ -1,12 +1,25 @@
-//////// button.asl ////////////////////
+///
+/// $(nvd)
+///
 
-//setdebug(1)
+
+
+
+setdebug(1)
 
 Graphic = checkGWM()
 
   if (!Graphic) {
-    Xgm = spawnGWM()
-  }
+    Xgm_pid = spawnGWM()
+<<"xgs pid ? $Xgm_pid \n"
+
+
+}
+
+    rsig=checkTerm();
+    <<"%V$rsig \n";
+
+
 
     txtwin = CWi("title","Info_text_window")
 
@@ -151,7 +164,8 @@ Graphic = checkGWM()
 
 <<"%V$qwo \n"
 
- tbwo=cWo(vp2,"TB",@name,"tb_q",@color,"yellow",@VALUE,"QUIT",@resize,0.1,by,0.2,bY)
+// tbwo=cWo(vp2,@TB,@name,"tb_q",@color,"yellow",@VALUE,"QUIT",@func,"window_intrp",@resize,0.9,by,0.99,bY)
+ tbwo=cWo(vp2,@TB,@name,"tb_q",@color,"yellow",@VALUE,"QUIT",@func,"window_term",@resize,0.9,by,0.99,bY)
  sWo(tbwo,@BORDER,@DRAWON,@PIXMAPON,@CLIPBORDER,@FONTHUE,"red", @symbol,"triangle", @symsize, 120, @redraw)
 
 <<"%V$tbwo \n"
@@ -256,37 +270,8 @@ proc processKeys()
 }
 //---------------------------------------------------------------------
 
-proc checkEvents()
-{
-//   Mf = Split(msg)
-   <<"msg $msg \n"
-  // E->getEventState(evs)
 
-   Woname = E->getEventWoName()    
-   Evtype = E->getEventType()    
-   Woid = E->getEventWoId()
-<<"%V$Woname $Woid \n"
-   Woproc = E->getEventWoProc()
-   Woaw =  E->getEventWoAw()
 
-   Woval = getWoValue(Woid)
-<<"%V$Woval \n"
-   button = E->getEventButton()
-   keyc = E->getEventKey()
-   keyw = E->getEventKeyW()
-
-//<<"%V$Woid $qwo \n"
-  
-   // sWo(two,@redraw)
-  
-//   sWo(two,@clear,@texthue,"black",@textr,"%V$Woid\n$Woname\n $button\n $keyc\n $keyw\n$Woval",-0.9,0.3)
-
-   if (Woid == qwo) {
-    //   deleteWin(vp)
-    //   exit_gs()
-   }
-}
-//----------------------------------------------
 proc do_sketch()
 {
    sWo(bsketchwo,@clear,@clearclip,@clipborder,@plotline,0.1,0.1,0.8,yp,"red")
@@ -329,50 +314,32 @@ proc QUIT()
 
 }
 
+proc tb_q()
+{
 
+<<"expecting sig1 signal\n";
+}
 
-Svar msg
+////////////////////////////////////
 
-E =1 // event handle
-
-int evs[20];
-
-button = 0
-Woid = 0
-Woname = ""
-Woproc = "foo"
-Woval = ""
-Evtype = ""
-int Woaw = 0
-keyc = ""
-keyw = ""
-
-int kloop =0
-
-
-//ans = iread(":>")
+include "gevent"
 
    while (1) {
 
-     msg = E->waitForMsg()
+      eventWait();
 
- <<"%V$kloop  $msg \n"
+      if (ev_keyw @= "EXIT_ON_WIN_INTRP") {
+<<"have win interp -- exiting!\n"
+      break;
+      }
 
-     checkEvents()
- 
-     // Woname = E->getEventWoName()    
+      sWo(two,@texthue,"black",@clear,@textr,"$ev_msg $ev_woval",-0.9,0)
 
+      if (ev_type @= "PRESS") {
 
-
-     //E->getEventState(evs)
-
-     sWo(two,@texthue,"black",@clear,@textr,"$msg $Woval",-0.9,0)
-
-      if (Evtype @= "PRESS") {
-
-        if (!(Woname @= "")) {
-            DBPR"calling function via woname $Woname !\n"
-            $Woname()
+        if (!(ev_woname @= "")) {
+            DBPR"calling function via woname $ev_woname !\n"
+            $ev_woname()
             continue;
         }
 
@@ -380,7 +347,15 @@ int kloop =0
 
   }
 
- exit_gs()
+ //exitgs() // should close xgs if a child -- and exit
+<<" killing xgm $Xgm_pid \n";
+// sendsig(Xgm_pid, 12);
+
+
+ exitgs();
+ <<"kill xgs now exit!\n";
+ exit();
+ 
 
 
 

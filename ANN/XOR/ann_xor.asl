@@ -1,9 +1,8 @@
-#/* -*- c -*- */
-# "$Id: ann_xor,v 1.1 2000/05/12 20:21:34 mark Exp mark $"
-# sip version of ann - test vector matrix ops
+///
+/// asl version of ann - test vector matrix ops
 
 
-proc stop(){ set_si_error(1); ff=exit_si();}
+
 
 DB = 1
 
@@ -310,13 +309,14 @@ na = get_argc()
 generic arg
 
   while (cla <= na) {
-     arg = $cla++
-   if (arg @= "nsweeps") nsweeps = $cla++
-   if (arg @= "DB") DB = $cla++
-   if (arg @= "eta") eta = $cla++
-   if (arg @= "alpha") alpha = $cla++
-   if (arg @= "theta") theta = $cla++
-   if (arg @= "nh1") nh1 = $cla++
+    arg = _clarg[cla];
+    cla++;
+   if (arg @= "nsweeps") nsweeps = _clarg[cla++];
+   if (arg @= "DB") DB = _clarg[cla++];
+   if (arg @= "eta") eta = _clarg[cla++];
+   if (arg @= "alpha") alpha = _clarg[cla++];
+   if (arg @= "theta") theta = _clarg[cla++];
+   if (arg @= "nh1") nh1 = _clarg[cla++];
    if (arg @= "loop") loop = 1
   }
    if (nsweeps <= 0) nsweeps =1

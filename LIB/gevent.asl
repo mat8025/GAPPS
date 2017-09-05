@@ -1,9 +1,8 @@
+///
+/// gevent.asl 1.3 
+/// wait and catch mouse/key window events
 //
 //
-// wait and catch mouse/key window events
-//
-//
-// version 1.2
 
 proc eventDecode()
 {
@@ -13,7 +12,7 @@ proc eventDecode()
     
 //    <<"$ev_kloop %V$ev_msg $ev_woval\n"
     if (checkTerm()) {
-       ev_keyw = "EXIT";
+       ev_keyw = "EXIT_ON_WIN_INTRP";
     }
     else {
     ev_words = Split(ev_msg)
@@ -54,7 +53,6 @@ proc eventRead()
     eventDecode();
 }
 //==============================
-
 
 
 Ev =1; // event handle

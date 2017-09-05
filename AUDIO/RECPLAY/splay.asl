@@ -2,6 +2,8 @@
 
 SetDebug(1);
 
+include "audio";
+
 proc usage()
 {
 
@@ -17,7 +19,16 @@ proc usage()
 }
 // test play of vox and wav files
 
-OpenDll("audio")
+//OpenDll("audio")
+
+
+nchans = 1;
+
+
+
+  openAudio();
+
+
 
 <<"%V $_df_errno \n"
 
@@ -30,7 +41,7 @@ gain = 1.0;
 vlen = -1.0;
 fstart = 0.0;
 bstart = 0.0;
-nchans = 1;
+
 
 
   na = GetArgc()
@@ -111,6 +122,9 @@ nchans = 1;
 // and use to set/ override defaults
 
 
+
+
+/{
 // get/open dsp
 
    dspfd = dspopen("/dev/dsp1")
@@ -166,13 +180,22 @@ nchans = 1;
    exit()
    }
 
+/}
+
+   getSoundParams(Dspfd,Mixfd);
 
 
-   getSoundParams(dspfd,mixfd);
+  if (Dspfd != -1) {
+  ok = setSoundParams(Dspfd,Mixfd,Freq,nchans); 
+  }
+  else {
+
+<<"WARNING!!!  sound play not setup correctly!!\n";
+  }
 
 // set dsp,mixer
 
-<<"%V $dspfd $mixfd \n"
+<<"%V $Dspfd $Mixfd \n"
 <<" $gain $nchans \n"
 
 //iread()
@@ -209,7 +232,7 @@ nchans = 1;
 
 <<"%V$npts $mm \n"
 // set up sound params
-  ok = setSoundParams(dspfd,mixfd,Freq,nchans) 
+  ok = setSoundParams(Dspfd,Mixfd,Freq,nchans) 
 
 <<"%V$Freq $nchans \n"
 //iread()
@@ -217,7 +240,7 @@ nchans = 1;
        npts = vlen * Freq;
    }
   <<"playBuffer %V$npts\n"
-  playBuffer(dspfd, sbn, 0, npts, 1);
+  playBuffer(Dspfd, sbn, 0, npts, 1);
 
 //ans =iread();
 ///////////////////////////////////////////////////////
@@ -248,12 +271,12 @@ nchans = 1;
 
    sleep(1)
 
-   getSoundParams(dspfd,mixfd);
+   getSoundParams(Dspfd,Mixfd);
 
    fflush(1)
 
-   close(dspfd)
-   close(mixfd)
+   close(Dspfd)
+   close(Mixfd)
 
 <<"%V $_df_errno \n"
 

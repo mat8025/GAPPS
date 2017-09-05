@@ -1,4 +1,5 @@
-//   Graphic module for xor
+///
+///   Graphic module for xor
 
 ////////////  Window Setup ///////////////////////
 
@@ -8,19 +9,23 @@
 <<" this is first statement in include !\n"
 
 
-   wid = cGw(@title,"ANN",@resize,0.05,0.01,0.99,0.95,0)
+    wid = cWi(@title,"ANN",@resize,0.05,0.01,0.99,0.95,0)
 
+    <<"Wid is $wid \n"
 
-<<"Wid is $wid \n"
+    sWi(wid,@pixmapon,@drawon,@save,@bhue,WHITE_)
+    tbwo=cWo(wid,@TB,@name,"tb_q",@color,"yellow",@VALUE,"QUIT",@func,"window_term",@resize,0.9,0.9,0.99,0.99)
+    sWo(tbwo,@BORDER,@DRAWON,@PIXMAPON,@CLIPBORDER,@FONTHUE,"red", @symbol,"triangle", @symsize, 120, @redraw)
 
-    sGw(wid,@pixmapon,@drawon,@save,@bhue,"white")
+    /// window quit button
+
 
     cx = 0.1
     cX = 0.9
     cy = 0.2
     cY = 0.95
 
-    gwo=CWo(wid,@GRAPH,@resize,0.15,0.1,0.8,0.5,@name,"XOR",@color,"cyan",@bhue,WHITE_)
+    gwo=cWo(wid,@GRAPH,@resize,0.15,0.1,0.8,0.5,@name,"XOR",@color,"cyan",@bhue,WHITE_)
 
 <<"%V$gwo \n"
 
@@ -31,11 +36,11 @@
 
     // to plot the rms_error
 
-    rms_gwo=CWo(wid,@GRAPH,@resize,0.15,0.51,0.8,0.85,@name,"RMS",@color,"cyan",@bhue,"white")
+    rms_gwo=CWo(wid,@GRAPH,@resize,0.15,0.51,0.8,0.85,@name,"RMS",@color,"cyan",@bhue,"white",@drawoff);
 
     sWo(rms_gwo,@clip,cx,cy,cX,cY)
 
-    sWo(rms_gwo,@scales,0, 0, 1000, 5, @save,@redraw,@drawon,@pixmapon)
+    sWo(rms_gwo,@scales,0, 0, 1000, 5, @save,@redraw,@drawoff,@pixmapon,@save,@savepixmap);
 
 
     w_y0 = 0.90
@@ -59,11 +64,14 @@
 <<"%V$nswps_wo \n"
 
    sWo(pc_wo,@name,"PC",@value,0,@fonthue,"black",@style,"SVB")
-   sWo(rms_wo,@name,"RMS",@value,0,@color,"red",@bhue,"green",@fonthue,"black",@style,"SVB")
+   sWo(rms_wo,@name,"RMS",@value,0,@color,"red",@bhue,"green",@fonthue,"black",@style,"SVB",@pixmapon,@save)
    sWo(pat_wo,@name,"PAT",@value,0,@color,"green",@fonthue,"black",@style,"SVB")
    sWo(nswps_wo,@name,"NSWEEPS",@value,0,@fonthue,"black",@style,"SVB")
 
-   setgwindow(wid,@redraw)
+   sWi(wid,@redraw);
+   int nwos[] = {pc_wo,rms_wo,pat_wo,nswps_wo};
+   
+   sWo(nwos,@redraw);
 
 //////////////////  GLINE for RMS ///////////////////////////
 
@@ -71,6 +79,7 @@
 
 
   rms_gl = CreateGline(rms_gwo,@TY,Rms,@color,RED_)
+
   sGl(rms_gl,@hue,RED_)
 
 ///////////     Test Plot //////////////////////////////
@@ -84,10 +93,11 @@
 proc  net_display(int wpat)
 {
 
-   sWo(rms_gwo,@clear,@border)
+   sWo(rms_gwo,@clearpixmap,@border);
 
-   drawGline(rms_gl)
+   drawGline(rms_gl);
 
+   sWo(rms_gwo,@showpixmap);
  //for (p = 0 ; p < npats ; p++) {
 
    plot_net(N,gwo,wpat,&Input[0], &Target[0],1)
@@ -116,9 +126,19 @@ proc net_show_result()
   plot_net(N,gwo,p,&Input[0], &Target[0],1)
   //print_net(N,p,&Input[0], &Target[0])
   sWo(pat_wo,@value,p,@redraw)
-  si_pause(1.0)
+  si_pause(1.0);
  }
  }
 
 }
 //==========================================
+
+proc QUIT()
+{
+  wid = getAslWid()
+
+<<"ASL wid is $wid \n"
+
+  exitsi()
+
+}

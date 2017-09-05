@@ -1,10 +1,11 @@
-#! /usr/local/GASP/bin/asl
-#/* -*- c -*- */
+///
+/// Mlip
+///
 
-opendll("math","plot", "stat")
+
 
 //  
-set_debug(0)
+set_debug(1)
 
    R= Fgen(20,1,1)
 
@@ -12,7 +13,7 @@ set_debug(0)
 
    Redimn(R,5,4)
 
-   T = Mtrp(R)
+   T = transpose(R)
 
  <<"%v%r%6.2f \n $R \n"
 
@@ -34,15 +35,15 @@ set_debug(0)
 
 <<"\n %v%6.2f \n $NX \n"
   
- // C= Mlip(NX,T,V)
- C= Mcspline(NX,T,V)
+ C= Mlip(NX,T,V)
+      // C= Mcspline(NX,T,V)
 
 <<" %v $(Cab(C)) \n"
 
 <<"\n %v%6.2f \n $C \n"
 
 
-  D= Mtrp(C)
+  D= transpose(C)
 
 <<"\n %v%6.2f \n $D \n"
 

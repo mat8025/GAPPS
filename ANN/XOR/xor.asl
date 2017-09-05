@@ -1,8 +1,22 @@
-# xor- problem - test of asl interface  of ann library routines
+/// xor- problem - test of asl interface  of ann library routines
 
-opendll("ann")
 
-ascii W[60]
+setdebug(0);
+
+ok=opendll("ann")
+
+if (!ok) {
+<<"ddl ? could not open ann lib \n";
+exit();
+}
+
+str avers;
+
+avers = annversion();
+<<"version is $avers\n"
+
+
+ascii W[60];
 
 float Input[8]
 float Target[4]
@@ -10,8 +24,7 @@ float Target[4]
 #char Target[20]
 #char Target[4][2]
 
-
-float Rms[1000+]  //  contains rms error per sweep
+float Rms[1000+] ; //  contains rms error per sweep
 
 # procs
 
@@ -24,7 +37,7 @@ proc usage()
  <<" [theta 0.2 (0-1)] \n"
  <<" [alpha 0.9 (0-1)] \n"
  <<" [act  LOGISTIC (LOGISTIC|HYPERBOLIC|SINE) \n" 
- <<" [type sff (sff|dca)] \n"
+ <<" [type dca (sff|dca)] \n"
  <<" [range 01] \n" 
 <<" e.g. asl  -X xor.asl eta 0.2 theta 0.2 alpha 0.9 act HYPERBOLIC type sff hidden1 1 hidden2 2 \n"
 
@@ -44,7 +57,9 @@ if (na < 1)   usage()
 <<"arg 2 $_clarg[2] \n"
 
 
-N= get_net()
+
+
+N= getNet();
 
 <<"Net $N \n"
 
@@ -61,13 +76,13 @@ int n_second_hid = 0
 rs = 7
 
 act = "LOGISTIC"
-float eta = 0.2
-float alpha = 0.9
-float theta = 0.9
+float eta = 0.1;
+float alpha = 0.9;
+float theta = 0.95
 
 ntype = "sff"
 
-int nsweeps = 8000;
+int nsweeps = 20000;
 
 cla = 1
 <<"%V$na \n"
@@ -149,7 +164,7 @@ if (n_first_hid > 0 && n_second_hid > 0) {
 
 <<"arch layers $layers fhid $n_first_hid shid $n_second_hid \n"
 
-ok=setNetArch(N,layers,nin,nout,n_first_hid,n_second_hid)
+ok=setNetArch(N,layers,nin,nout,n_first_hid,n_second_hid);
 
 if (! ok) {
 <<"arch setup failure \n"
@@ -281,12 +296,9 @@ if (adjust_range) {
 }
 
 
-
-
 npats=set_net_pats(N,4)
 
 <<"$npats \n"
-
 
 # eta (learn rate) - alpha (momentum)  - theta ( bias)
 
@@ -295,9 +307,7 @@ npats=set_net_pats(N,4)
 <<"eta $eta $ret \n"
 
 
-
-
-theta = get_net_theta(N)
+theta = getNetTheta(N)
 <<"theta $theta \n"
 
 alpha = get_net_alpha(N)
@@ -321,9 +331,9 @@ int wid = -1
 Graphic = CheckGwm()
 
   if (Graphic) {
-
+    //opendll("plot");
     include "xor_g"
-
+    
   }
 
 
@@ -342,15 +352,13 @@ int pit;
 
 while (do_train) {
 
-  pit = (!(ns % 1000));
+  pit = (!(ns % 1500));
 
 //nc =train_net(N, &Input[0], &Target[0], 1)
 
  // nc= train_net(N, Input, Target, 1)
 
  nc= train_net(N, Input, Target, 1);
-
- 
 
  if (pit) {
 /{
@@ -373,7 +381,7 @@ Rms[ns] = rms
   }
 
 //nc = getNetNC()
-  if ((ns % 10) == 0) {
+  if ((ns % 200) == 0) {
 <<"%V$ns  $nc $ss $rms\n"
  }
 
@@ -392,26 +400,25 @@ Rms[ns] = rms
 
 
  if ( rms < 0.1) {
-
-   if (nc == 4) {
+    if (nc == 4) {
       break
    }
     
  }
 
- if (rms > 0.1) {
- if ((ns % 200) == 0) {
+ if (rms > 0.2) {
+ if ((ns % 10000) == 0) {
     <<"random shake !\n"
-    randNetWts(N,1,4)
+    randNetWts(N,1,4);
  }
  }
 
  if (ns > nsweeps) {
-  break
+  break;
  }
 
-
 }
+//===================================
 
 
 //  nc =train_net(N, &Input[0], &Target[0], 1)

@@ -564,9 +564,7 @@ proc do_wo_options(w_wo)
                 getSignalSpecs();
                 sWi(ssw, @redraw);
                 drawSignal(voxwo, sbn, 0, Npts);		
-
             }
-
         }	
         else if (w_wo == voxwo) {
 
@@ -578,7 +576,8 @@ proc do_wo_options(w_wo)
               txb = tx + 2.0;
 	      
 <<"taselwo %V $txa $txb \n";
-
+              showSelectRegion(0);
+	      
               sWo(taselwo,@scales, txa ,-30000, txb, 31000)  // via SHM
 
               showSlice (tx)
@@ -711,7 +710,7 @@ str fname = "";
      <<" setting file start time  \n"
      }          
      else {
-       fname = _clarg[ka];
+       fname = opt;
         ka++;
      }
      }

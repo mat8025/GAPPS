@@ -1,7 +1,5 @@
 
 
-openDll("stat")
-
 checkIn()
 
 X = vgen(FLOAT_,10,0,1)
