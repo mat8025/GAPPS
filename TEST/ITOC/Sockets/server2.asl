@@ -1,4 +1,4 @@
-#! /usr/local/GASP/bin/asl
+//#! /usr/local/GASP/bin/asl
 
 // want to listen/ write on multiple sockets to multiple clients
 // as one process
@@ -37,9 +37,6 @@ proc StrEcho( sock_handle )
 
      k++
    }
-
-        //     sleep (1)
-
   }
 
 }
@@ -59,8 +56,6 @@ proc server_t( sock_handle)
     Cfd = GsockAccept(sock_handle)
 
     <<" got connected $Cfd \n"
-
-   
 
             GsockClose(sock_handle,"listen")
             // do serving
@@ -85,8 +80,6 @@ proc server_t2( sock_handle)
     Cfd = GsockAccept(B)
 
     <<" got connected $Cfd \n"
-
-   
 
             GsockClose(B,"listen")
             // do serving
@@ -143,7 +136,7 @@ port2 = 9867
 
 <<" Create Socket index $A \n"
 
-// and GsockCreate does the bind
+     GsockBind(A);
 
 // now listen on that socket - port
 
@@ -152,6 +145,8 @@ port2 = 9867
   GsockListen(A)
 
   B = GsockCreate("any",port2)
+
+ GsockBind(B);
 
   GsockListen(B)
 
@@ -174,7 +169,7 @@ port2 = 9867
 
       nt = gthreadHowMany()
    <<" main thread sleeping $(ks++)  WAITING for $(nt-1) other threads to finish \n"
-      sleep(7)
+      sleep(2);
 
     }
 

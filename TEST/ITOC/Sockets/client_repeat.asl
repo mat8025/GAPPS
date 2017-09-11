@@ -10,17 +10,19 @@ char CR[64] = { "mark terry serving" }
 //<<"$Stat \n"
 
 
+
 proc StrCli( cfd)
 {
-
+ int k = 1;
  // 
 
   while (1) {
 
+    Stat = "echo_$k";
 
-    Stat=ireadln(";-) ",stype)
+//    Stat=ireadln(";-) ",stype)
 
-<<"%V$Stat \n"
+    <<"%V$Stat \n"
 
   // send to server socket
 
@@ -28,7 +30,7 @@ proc StrCli( cfd)
 
    n=GsockWrite(A,"listen",Stat)
 
-<<" done write $n \n"
+//<<" done write $n \n"
 
   // read from server socket
 
@@ -39,7 +41,7 @@ proc StrCli( cfd)
    <<"%s$CR \n"
 
    sleep(0.1);
-
+   k++;
   }
 
 }

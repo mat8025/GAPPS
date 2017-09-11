@@ -1,11 +1,10 @@
-#! /usr/local/GASP/bin/asl
-
+////
+///
+//setdebug(1)
 
 proc StrEcho( )
 {
-
- // 
-  int k = 0
+  int k = 0;
  
  while (1) {
 
@@ -18,37 +17,44 @@ proc StrEcho( )
    if (err == -1)
          STOP!
 
-
 //<<" msg sz $sz \n"
 
   if (sz > 0) {
 
  <<" $k read $sz chars >>> %s $CR \n"
 
-      RC = srev(CR)
+       RC = srev(CR)
 
        nw=GsockWrite(A,"connect",RC)
 
 // <<" %v $nw \n"
 
-     k++
+     k++;
    }
-
-        //     sleep (1)
 
   }
 
 }
 
+//===============================================
+
+na = argc();
+
+  if (na < 2) {
+<<" asl  server1.asl   port# \n"
+   exit();
+  }
+
+  Ipa = "any"
+
+  port = getArgI(1);
+
+  //port = 9871;
+
+<<" $_script %V$Ipa ${port}#\n"
 
 
 
-Ipa = "any"
-
-port = GetArgI(9871)
-
-
-<<"%V  $Ipa $port \n"
 
 
 // test socket code
@@ -65,17 +71,22 @@ port = GetArgI(9871)
 // it is of type SOCK_STREAM AF_INET by default
 
 //  A = GsockCreate("any",port,"TCP")
-  A = GsockCreate("any",port)
+
+//A = GsockCreate("any",port)
+
+A = GsockCreate("any",port,"TCP")
 
 <<" Create Socket index $A on port $port\n"
 
-// and GsockCreate does the bind
+   ok= GsockBind(A);
+   
+<<"Bind returns $ok\n"
 
 // now listen on that socket - port
 
 // backlog default is 1024
 
-  GsockListen(A)
+  GsockListen(A);
 
   cpid = 0
  
@@ -84,7 +95,7 @@ port = GetArgI(9871)
  // block till get connection
 <<" waiting on a friend \n"
 
-         Cfd = GsockAccept(A)
+   Cfd = GsockAccept(A)
 
 <<" got connected $Cfd \n"
 
@@ -94,9 +105,8 @@ port = GetArgI(9871)
            cpid = Clone()
 
           if (cpid == 0) {
-          <<" did clone $cpid \n"
+          <<" DID clone $cpid \n"
           <<" %v $cpid \n"
-
             GsockClose(A,"listen")
             // do serving
             StrEcho()
@@ -116,5 +126,4 @@ port = GetArgI(9871)
           GsockClose(A,"connect")
     }
 
-
-
+///////////////////////////////////////////////////

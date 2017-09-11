@@ -2,6 +2,9 @@
 
 //OpenDll("audio")
 include "audio";
+
+setdebug(1);
+
 proc usage()
 {
 
@@ -72,40 +75,14 @@ ka = 0
 // and use to set/ override defaults
 
  openAudio();
-/{
-// get/open dsp
-   dspfd = dspopen("/dev/dsp") // correct for mercury
-    if (dspfd == -1) {
-     dspfd = dspopen("/dev/dsp1") // correct for mars
-    }
 
-  if (dspfd == -1) {
-    <<"Error opening /dev/dsp?\n"
-    <<" may need to load sound modules -- sudo modprobe snd-pcm-oss \n"
-    <<" check with ls /dev/dsp*  and retry if /dev/dsp* is listed\n"
-    exit()
-   }
-
-// look for sound devices
-// get open  mixer
-
-   mixfd = mixeropen("/dev/mixer")
-   if (mixfd == -1) {
-    mixfd = mixeropen("/dev/mixer1")
-   }
-// set dsp,mixer
-
-
-/}
 <<"%V $Dspfd $Mixfd \n"
-
-
-
 
    getSoundParams(Dspfd,Mixfd);
 
 <<"RECORD Now!\n"
-   RecordFile(vox_file,Dspfd,Mixfd,how_long, Freq, 1,smic_factor);
+
+RecordFile(vox_file,Dspfd,Mixfd,how_long, Freq, 1,smic_factor);
 
    getSoundParams(Dspfd,Mixfd);
 

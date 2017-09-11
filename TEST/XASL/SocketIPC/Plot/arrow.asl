@@ -1,6 +1,8 @@
-//
-// test via sockets
-// asl -S 4779 arrow_socket.asl
+///
+/// test via sockets
+/// asl -S 127.0.0.1 arrow_socket.asl
+///    default port is 4779
+
 
 setdebug(1)
 
@@ -21,9 +23,9 @@ proc redraw_po()
 
    // plot(gwo,@arrow,-2,-1,2,1,5,YELLOW,1.0)
 
-    plot(gwo,@arrow,0,0,fx,fy,5,RED,1.0)
+    plot(gwo,@arrow,0,0,fx,fy,5,RED_,1.0)
 
-    plot(gwo,@arrow,0,0,-fx,-fy,5,BLUE,1.0)
+    plot(gwo,@arrow,0,0,-fx,-fy,5,BLUE_,1.0)
 
    // plot(gwo,@arrow,-1,2,0,-2.1,5,BLUE,1.0)
 
@@ -48,14 +50,14 @@ proc redraw_po()
 
 //<<"%V4.2f$ang $fx $fy $at\n"
 
-    plot(gwo,@arrow,-3,fy,-2,fy,5,GREEN,1.0)
-    plot(gwo,@arrow,4,fy,2,fy,5,BLACK,1.0)
-    plot(gwo,@arrow,fx,-3,fx,-1.9,5,BLACK,1.0)
-    plot(gwo,@arrow,fx,3,fx,2.1,5,BLACK,1.0)
+    plot(gwo,@arrow,-3,fy,-2,fy,5,GREEN_,1.0)
+    plot(gwo,@arrow,4,fy,2,fy,5,BLACK_,1.0)
+    plot(gwo,@arrow,fx,-3,fx,-1.9,5,BLACK_,1.0)
+    plot(gwo,@arrow,fx,3,fx,2.1,5,BLACK_,1.0)
 
     sWo(gwo,@showpixmap)
 
- //   sWo(gwo,@border,BLUE,@clipborder,RED)
+ //   sWo(gwo,@border,BLUE,@clipborder,RED_)
 
 }
 
@@ -65,9 +67,9 @@ proc redraw_po()
 
     vp = cWi(@title,"PLOT_OBJECTS",@resize,0.1,0.1,0.4,0.4)
 
-    SetGwindow(vp,@pixmapon,@drawon,@save,@bhue,"white")
+    sWi(vp,@pixmapon,@drawon,@save,@bhue,WHITE_)
 
-    sWi(vp,@pixmapon,@drawoff,@save,@bhue,"white")
+    sWi(vp,@pixmapon,@drawoff,@save,@bhue,WHITE_)
 
     cx = 0.1
     cX = 0.9
@@ -80,9 +82,9 @@ proc redraw_po()
 
     daname = "PLOT_SCREEN"
 
-    gwo= cWo(vp,@GRAPH,@resize,0.15,0.15,0.95,0.95,@name,"GL",@color,"white")
+    gwo= cWo(vp,@GRAPH,@resize,0.15,0.15,0.95,0.95,@name,"GL",@color,WHITE_)
 
-    setgwob(gwo,@clip,cx,cy,cX,cY)
+    sWo(gwo,@clip,cx,cy,cX,cY)
 
     // scales 
     sx = -4

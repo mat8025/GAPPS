@@ -121,66 +121,7 @@ bstart = 0.0;
 // get Freq channel info etc
 // and use to set/ override defaults
 
-
-
-
-/{
-// get/open dsp
-
-   dspfd = dspopen("/dev/dsp1")
-
-   if (dspfd != -1) {
-   <<"got dev/dsp1 $dspfd\n"
-
-   }
-   else {
-      dspfd = dspopen("/dev/dsp2") 
-      <<"trying dev/dsp2 \n"
-      if (dspfd != -1) {
-      <<"got dev/dsp2 $dspfd\n"
-      }
-      else {
-      dspfd = dspopen("/dev/dsp3") 
-      <<"trying dev/dsp3 \n"
-      }
-   }
-
-   if (dspfd == -1) {
-    <<"Error opening /dev/dsp?\n"
-    <<" may need to load sound modules -- sudo modprobe snd-pcm-oss \n"
-    <<" check with ls /dev/dsp*  and retry if /dev/dsp* is listed\n"
-    exit()
-   }
-
-// get/open  mixer
-   mixfd = mixeropen("/dev/mixer1")
-
-   if (mixfd != -1) {
-    <<"got mixer1 $mixfd\n"
-    
-   }
-   else {
-        mixfd = mixeropen("/dev/mixer2")
-        if (mixfd != -1) {
-        <<"got mixer2 $mixfd\n"
-        }
-	else {
-         mixfd = mixeropen("/dev/mixer3")
-         if (mixfd != -1) {
-         <<"got mixer3 $mixfd\n"
-         }
-
-        }
-   }
-
-
-
-   if (mixfd == -1) {
-<<"ERROR can't open mixer device - exiting!\n"
-   exit()
-   }
-
-/}
+<<"%V $Dspfd $Mixfd \n";
 
    getSoundParams(Dspfd,Mixfd);
 
@@ -195,7 +136,7 @@ bstart = 0.0;
 
 // set dsp,mixer
 
-<<"%V $Dspfd $Mixfd \n"
+
 <<" $gain $nchans \n"
 
 //iread()
@@ -240,6 +181,7 @@ bstart = 0.0;
        npts = vlen * Freq;
    }
   <<"playBuffer %V$npts\n"
+
   playBuffer(Dspfd, sbn, 0, npts, 1);
 
 //ans =iread();

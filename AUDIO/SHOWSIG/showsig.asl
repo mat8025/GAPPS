@@ -1,11 +1,13 @@
-// test spectral processing of vox file
+///
+///  show and test  processing of vox file
+///
 
-setdebug(1);
 
-vers = "1.2";
+setdebug(0);
+
+vers = "1.3";
 
 include "audio";
-
 
 proc usage()
 {
@@ -19,6 +21,7 @@ proc usage()
 //===================================
 
 vox_type = 'vox\|pcm\|phn' ; // regex for vox or pcm
+
 str Sig_file = "";
 
 proc get_the_file ()
@@ -30,7 +33,7 @@ static str vox_dir = "/home/mark/Spanish_in_30/";
 
 <<"%V $vox_dir $vox_type\n";
 
-Sig_file = naviwindow("vox/pcm/wav Files ", " Search for vox/pcm/wav files ", \
+  Sig_file = naviwindow("vox/pcm/wav Files ", " Search for vox/pcm/wav files ", \
                       "a.vox", vox_type, vox_dir);
 
   ok = fstat(Sig_file,"size") ; // read 
@@ -47,7 +50,6 @@ Sig_file = naviwindow("vox/pcm/wav Files ", " Search for vox/pcm/wav files ", \
   return ok;
 }
 //=======================================================
-
 
 
 proc checkForIntrpt()
@@ -534,11 +536,18 @@ proc do_wo_options(w_wo)
               tx = ev_rx; // x val ---- time in voxwo
 
               if (ev_button == 1) {
+	       <<"set start\n"
                 sGl(co2_gl,@cursor,tx,y0,tx,y1)  
               }
               else if (ev_button == 3) {
-                sGl(co3_gl,@cursor,tx,y0,tx,y1)  
+	       <<"set finish\n"
+               sGl(co3_gl,@cursor,tx,y0,tx,y1)  
               }
+              else if (ev_button == 2) {
+	       <<"B2 playBC\n"
+                   playBCtas();
+              }
+
 
               sGl(cosg_gl,@cursor,tx,0,tx,100)  
 
@@ -1007,7 +1016,7 @@ uchar pixstrip[2][ncb];
  bX = bx + bwidth
 
  playbc_wo=cWo(ssw,@ONOFF,@name,"PLAY_BC",@VALUE,"ON",@color,"magenta")
- sWo(playbc_wo,@help," click to play between cursors")
+ sWo(playbc_wo,@help,"click to play between cursors")
  sWo(playbc_wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black")
 
 
@@ -1189,31 +1198,30 @@ include "gevent"
    }
 
 
-// close up
-closeAudio()
 
-exit(1)
+   closeAudio() // close up devices
 
+   exit(1)
 
 
 /{/*
-/////////////////// TBD //////////////////////////////////
 
- rms track
- zx  track
+TBD:
+
+ rms track plot
+ zx  track plot
  cep pitch track
  format extraction
+
  phoneme label from database
  wo cursors
   
  A B comparisons with another vox
 
-
  a -c option to concatenate files ?
 
 
-
- FIX
+TBF:
      ta draw clears clipborder
      cursor lines - need to be re-inited after a redraw
      crash on FPE errors?
@@ -1221,28 +1229,3 @@ exit(1)
 
 /}*/
 
-
-/{
-    A=ofr(fname)
-
-<<"$A\n"
-//<<" $skp_head \n"
-
-    hdr_size = getHdrSize(A)
-
-<<"%V $hdr_size \n"
-
-    if (hdr_size > 0) {
-// does it have vox header - if so skip past it 
-<<" skipping hdr $hdr_size \n"
-      fseek(A,hdr_size,0)
-    }
-
-<<"%V$dsz $Npts $hdr_size\n"
-
-    BV=rdata(A,SHORT)
-
-<<"%(10,, ,\n)$BV[0:99] \n"
-
-<<"BV $MM \n"
-/}

@@ -10,11 +10,12 @@ yn = "y"
 
   svar A;
   
-A =!!"ps -ef"
+A =!!"ps -au"
   
  nl = Caz(A);
 
 <<"$nl processes\n"  
+<<"%(1,,,\n)$A\n"
 
 int pid = -1
 
@@ -36,7 +37,7 @@ match = 0;
     lsz = Caz(C);
     //   <<" ${C[1]} \n"
 
-    spat(C[7],zapp,1,1,&match);
+    spat(C[10],zapp,1,1,&match);
     smatch = 0;
       // <<" $lsz ${C[5]} \n"
       if ( ! (C[5] @= "")) {
@@ -47,13 +48,13 @@ match = 0;
     pid = C[1];
     if (pid != mypid) {
       <<" found process $C[1] id $C[0] \n";
-      <<" ${C[::]} \n";
+      <<" %(1, , ,,)${C[::]} \n";
 
       yn=ttyin(" Kill [n/y]?");
 
   if (yn @= "y") { // line has \n ?
     <<"Killing $pid \n";
-    !!"kill  $pid ";
+    !!"kill -9 $pid ";
     }
    }
  }

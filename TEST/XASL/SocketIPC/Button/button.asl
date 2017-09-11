@@ -2,16 +2,14 @@
 
 setdebug(1)
 
-Graphic = checkGWM()
-
-
+    Graphic = checkGWM()
 
 // Socket handshake
 
      
-    txtwin = CWi("title","Info_text_window")
+    txtwin = cWi("title","Info_text_window")
 
-    sWi(txtwin,@pixmapoff,@drawon,@save,@bhue,"white",@sticky,0)
+    sWi(txtwin,@pixmapoff,@drawon,@save,@bhue,"white",@sticky,0);
 
     vp = CWi(@title,"Buttons1")
 
@@ -21,7 +19,7 @@ Graphic = checkGWM()
 
     sWi(vp,@clip,0.1,0.2,0.9,0.9)
 
-    vp2 = CWi(@title,"Buttons2")
+    vp2 = cWi(@title,"Buttons2")
 
 <<"%V$vp2 \n"
 
@@ -54,7 +52,7 @@ Graphic = checkGWM()
 //       wrctile(vp1, 0.05,0.05,0.95,0.95, 1, 1,1,0) 
 
 <<"%V$vp4 \n"
-
+goon=iread()
 //////// Wob //////////////////
 
  bx = 0.1
@@ -257,7 +255,7 @@ proc checkEvents()
    Woproc = E->getEventWoProc()
    Woaw =  E->getEventWoAw()
 
-   Woval = getWoValue(Woid)
+   Woval = WoGetValue(Woid)
 <<"%V$Woval \n"
    button = E->getEventButton()
    keyc = E->getEventKey()
