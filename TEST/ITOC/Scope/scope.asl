@@ -1,61 +1,82 @@
 
 
-float X = 2
-float Y = 2
+setdebug(1,"trace")
 
-
-proc foo()
+proc soo()
 {
-int x = 1
-
-   X++
-   x++
-<<"$_proc %V $X $x \n"
-
-
-
+ int x = 1;
+ x++;
+ X++; // applies to global X
+<<"$_proc %V $x $X $Y\n"
 }
+//==========================
+
 
 proc goo()
 {
-int x = 1
-
-   Y++
-   x++
-<<"$_proc %V $Y $x \n"
-
-
-
+int x = 1;
+int X = 5; // local declaration hides global X
+   Y++;
+   x++;
+   X++;  // applies to local X
+<<"$_proc %V $x  $X $Y\n"
 }
+//==========================
+
 
 proc moo()
 {
-int x = 1
+int x = 1;
+int X = 7; // local declaration hides global X
+   X++; // applies to local X
+   x++;
+   :.X++; // scope :: operator allows access to global X
+   ::X++; // scope :: operator allows access to global X
 
-   Y++
-   x++
-<<"$_proc %V $Y $x \n"
-   foo()
-
-
+<<"$_proc %V $x $X $Y $::X \n"
 }
+//========================
 
 
-  X++
-<<"%V $X \n"
+float X = 2;
+float Y = 2;
 
-  foo()
+checkIn();
+
+<<"%V $X $Y\n"
+
+checkNum(X,2)
+
+ soo()
+
+checkNum(X,3)
+
+<<"%V $X $Y\n"
+
+ goo();
+
+checkNum(X,3)
 
 
-<<"%V $X \n"
 
-  foo()
+<<"%V $X $Y\n"
 
-<<"%V $X \n"
+ moo();
+
+checkNum(X,4)
+
+<<"%V $X $Y\n"
+ checkOut()
+ 
+exit();
+
+
+
   k = 0
   j = 0
   m = 1
-  while (j++ < 3) {
+
+ while (j++ < 3) {
 
   while (k++ < 3) {
 
@@ -87,5 +108,5 @@ int x = 1
   k = 0
   }
 
-stop!
+exit();
 ;

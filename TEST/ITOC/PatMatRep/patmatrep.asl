@@ -8,7 +8,7 @@
 
 setdebug(0)
 
-str tmpl =  'sfd_alias ("TAR,", &Imgsf::TAR, "TAR     ");'
+str tmpl =  'sfd_alias ("TAR,", &Gsocksf::TAR, "TAR     ");'
 
 <<"input pattern is :$tmpl\n\n";
 

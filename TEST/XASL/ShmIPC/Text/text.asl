@@ -52,70 +52,47 @@ setdebug(0)
 
   int txwos[] = {lvwo,rvwo,bigwo,two};
 
-Svar msg
-
-E =1 // event handle
-
-int evs[16];
-button = 0
-Woid = 0
-Woname = ""
-Woproc = "foo"
-Woval = ""
-Evtype = ""
-int Woaw = 0
-
+include "gevent"
 
 xp = 0.1
 yp = 0.5
 
 char txtip[256];
 
+
+
    while (1) {
 
-   msg = E->waitForMsg()
+    eventWait()
 
-//<<"msg $msg \n"
-
-
-   E->geteventstate(evs)
-
-   Woname = E->getEventWoName()    
-   Evtype = E->getEventType()    
-   Woid = E->getEventWoId()
-   Woproc = E->getEventWoProc()
-   Woaw =  E->getEventWoAw()
-   Woval = getWoValue(Woid)
-   button = E->getEventButton()
-
-<<"%V$Woid \n"
 
    sWo(two,@redraw)
 
-   msgw= split(msg)
-
+   msgw= split(ev_msg)
 
 <<"%V$msgw \n"
 
-    sWo(two,@textr,"$msg",0.1,0.8)
+    sWo(two,@textr,"$ev_msg",0.1,0.8)
 
-    sWo(stwo,@print,"$msg\n") ;
+    sWo(stwo,@print,"$ev_msg\n") ;
     
-    sWo(stwo,@print,"%V$Woname $button\n");
+    sWo(stwo,@print,"%V$ev_woname $ev_button\n");
 
-    
+     if (ev_woid == ipwo) {
 
-     if (Woid == ipwo) {
       sWo(txwos,@clear);
-      getWoText(ipwo,txtip,120);
+
+     woGetText(ipwo,txtip,120);
+      
   <<" got %s < $txtip >  as input \n";
+      // rotated text??
       sWo(lvwo,@textr,"%s $txtip",0.3,0.1,0,-90,RED_);
       sWo(rvwo,@textr,"%s $txtip",0.5,0.9,0,90,BLUE_);
+
       sWo(bigwo,@font,"big",@textr,"%s$txtip",0.0,0.1,0,0,LILAC_);
       sWo(bigwo,@font,"medium",@textr,"%s$txtip",0.0,0.4,0,0,MAGENTA_);
       sWo(bigwo,@font,"small",@textr,"%s$txtip",0.0,0.5,0,0,WHITE_);            
       
-
     }
 
   }
