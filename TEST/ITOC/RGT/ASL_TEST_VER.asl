@@ -7,7 +7,7 @@
 #define PBLACK '\033[1;39m'
 #define POFF  '\033[0m'
 
-vers = "1.5";
+vers = "1.6";
 //ws= getenv("GS_SYS")
 
 !!"rm -f ../*/*.tst"
@@ -15,7 +15,7 @@ vers = "1.5";
 !!"rm -f ../*/*.out"
 !!"rm -f ../*/*.xout"
 
-setdebug(1)
+setenvdebug();
 
 //<<"$tdir\n"
 
@@ -1078,11 +1078,16 @@ hdg("FUNC")
 
   updir()
 
+  Run2Test("Scope") ; 
+
+  cart("scope");
+
+  updir()
+
   }
 
 if ( do_all || do_mops ) {
      Run2Test("Mops")
-
 
     //chdir("Mops")
 
@@ -1102,7 +1107,9 @@ if ( do_all || do_mops ) {
     cart("cmplx")
 
     updir()
-
+    chdir("Rand")
+    cart("urand")
+    updir()
     }
 
 

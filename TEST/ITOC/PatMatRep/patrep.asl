@@ -8,7 +8,7 @@
 
 setdebug(0)
 
-str tmpl =  'sfd_alias ("TAR,", &Gsocksf::TAR, "TAR     ");'
+str tmpl =  'sfd_alias ("TAR,",&Sopsf::TAR, "TAR     ");'
 
 <<"input pattern is :$tmpl\n\n";
 
@@ -20,14 +20,14 @@ str tmpl =  'sfd_alias ("TAR,", &Gsocksf::TAR, "TAR     ");'
   if (f_error(A) == EOF_ERROR_)
   break;
 //<<"$bv\n"
-pat1 = spat(bv,"(Sv");
+pat1 = spat(bv,"\",",1);
 //<<"%V$pat1\n"
-pat2 = spat(pat1,"int ",1);
+pat2 = spat(pat1,");",-1);
 //<<"%V$pat2\n"
 res = ssub(tmpl,"TAR","$pat2",0)
 <<"     $res\n"
   k++;
- // if (k ==1)  break
+  //if (k ==3)  break
 
  }
 

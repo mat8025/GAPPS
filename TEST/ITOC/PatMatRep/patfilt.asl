@@ -8,9 +8,6 @@
 
 setdebug(0)
 
-str tmpl =  'sfd_alias ("TAR,", &Gsocksf::TAR, "TAR     ");'
-
-<<"input pattern is :$tmpl\n\n";
 
  A= 0; // stdin
  int k = 0;
@@ -20,14 +17,12 @@ str tmpl =  'sfd_alias ("TAR,", &Gsocksf::TAR, "TAR     ");'
   if (f_error(A) == EOF_ERROR_)
   break;
 //<<"$bv\n"
-pat1 = spat(bv,"(Sv");
+pat1 = spat(bv,"sfalias");
 //<<"%V$pat1\n"
-pat2 = spat(pat1,"int ",1);
-//<<"%V$pat2\n"
-res = ssub(tmpl,"TAR","$pat2",0)
-<<"     $res\n"
+ if (pat1 @="") 
+<<"     $bv\n"
   k++;
- // if (k ==1)  break
+  //if (k ==3)  break
 
  }
 

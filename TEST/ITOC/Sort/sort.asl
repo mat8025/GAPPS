@@ -1,5 +1,8 @@
 
-I = vgen(INT,10,0,2)
+setdebug(atoi(getenv(GS_DEBUG)));
+
+
+I = vgen(INT_,10,0,2)
 
 <<"$I \n"
 
@@ -22,7 +25,7 @@ K = Isort(I)
 
 <<"$K \n"
 
-exit()
+
 
 
 
@@ -33,7 +36,7 @@ K =Sort(I[0:5])
 <<"$I \n"
 
 
-M = vgen(INT,20,0,1)
+M = vgen(INT_,20,0,1)
 
 M->redimn(4,5)
 

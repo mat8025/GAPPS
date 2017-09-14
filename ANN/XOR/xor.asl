@@ -1,7 +1,10 @@
 /// xor- problem - test of asl interface  of ann library routines
 
 
-setdebug(0);
+DB=atoi(getenv("GS_DEBUG"))
+<<"%v $DB\n"
+
+setdebug(DB);
 
 ok=opendll("ann")
 
@@ -82,7 +85,7 @@ float theta = 0.95
 
 ntype = "sff"
 
-int nsweeps = 20000;
+int nsweeps = 60000;
 
 cla = 1
 <<"%V$na \n"
@@ -148,7 +151,7 @@ while (cla <= na) {
 }
 
 # get net descriptor
-//set_net_debug(0)
+
 
 
 # set up architecture
@@ -403,13 +406,12 @@ Rms[ns] = rms
     if (nc == 4) {
       break
    }
-    
  }
 
  if (rms > 0.2) {
- if ((ns % 10000) == 0) {
+ if ((ns % 20000) == 0) {
     <<"random shake !\n"
-    randNetWts(N,1,4);
+    randNetWts(N,8,4);
  }
  }
 
@@ -429,6 +431,12 @@ Rms[ns] = rms
 <<"done xor - $nc $rms\n"
 
  ok= save_net(N,"xor_net.wts")
+
+
+ A=ofw("net_wts");
+
+ printNetState(N,A)
+
 
  if (wid > 0) {
 

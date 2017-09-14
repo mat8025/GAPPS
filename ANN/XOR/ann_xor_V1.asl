@@ -1,17 +1,20 @@
 ///
 /// asl version of ann - test vector matrix ops
-//
-
-DB = atoi(getenv("GS_DEBUG"));
-<<"%V $DB\n";
-BIAS_LIMIT = 1000.0;
 
 
-float h1wts[];
-float ndelta[];
 
-float rms;
 
+DB = 1
+
+BIAS_LIMIT = 1000.0
+
+proc prv (vec, name)
+{
+:n=cab(&vec)
+#<<"vec $(typeof(&vec)) $n\n"
+<<"$name "
+for (:i=0;i<n;i++) <<"$vec[i] " ; <<"\n"
+}
 
 proc limit_bias (float bias)
 {
@@ -29,17 +32,17 @@ proc limit_bias (float bias)
 proc hyperactiv (hya)
 {
   hyae = (2.0 / (1.0 + exp (-2.0 * hya)) - 1.0)
-  //<<"$_proc %v$hya $hyae\n"
+  <<"$cproc %v$hya $hyae\n"
 
  return  hyae
 }
-//===========================
+
 proc diffhyper (hya)
 {
-
+#<<"$cproc %v$hya \n"
   return ((1.0 + hya) * (1.0 - hya))
 }
-//===========================
+
 proc pnet(i)
 {
 # act
@@ -93,10 +96,10 @@ proc fsweep(int patn)
   ik = patn * nin 
 
  // scale the data and activate the input nodes
-  for (j = 0 ; j < nin ; j++) {
-      inva  = scf * data[ik];
-      ae = hyperactiv(inva);
-      nact[j] = ae;
+  for (:j = 0 ; j < nin ; j++) {
+      inva  = scf * data[ik]
+      ae = hyperactiv(inva)
+      nact[j] = ae
       if (DB)   <<"$data[ik] %v$inva %v$nact[j] %v$j  \n";
       ik++
   }
@@ -105,7 +108,7 @@ if (DB)  <<"\n"
 
 # hidden 1 
 
-  for (j = 0 ; j < nh1; j++) {
+  for (:j = 0 ; j < nh1; j++) {
 
   a = 0.0
 
@@ -117,14 +120,14 @@ if (DB)  <<"\n"
   }
 
   if (theta > 0.0) {
-    if (DB) <<"adding theta_bias %v$theta $ntheta[ni] \n"
+ if (DB) <<"adding theta_bias %v$theta $ntheta[ni] \n"
    a += ntheta[ni]  
   }
 
   nact[ni] = hyperactiv(a)
 
   if (DB) <<"hidd $ni $nact[ni] $a "
-  ni++;
+  ni++
 
   }
 
@@ -165,8 +168,6 @@ if (DB) <<"adding theta_bias %v$theta $ntheta[ni] \n"
   if (DB)<<"\n"
 }
 
-
-//==============================
 proc output_error(i)
 {
   ss= 0.0
@@ -218,9 +219,9 @@ proc output_error(i)
 		      ntheta[ni] = limit_bias(ntheta[ni])
                       ntheta_wc[ni] = del_ch
             	}
-            ni++;
+            ni++
   }
-  return ss;
+  return ss
 }
 
 
@@ -232,11 +233,11 @@ proc hidden_error(i)
   nnill = nin
   // for all nodes in this hidden layer
 
-  for (j = 0 ; j < nh1 ; j++) {
+  for (:j = 0 ; j < nh1 ; j++) {
       act = nact[ni]
       dw = 0.0;
       owi = 0
-      for (kk = 0; kk < nniul ; kk++)
+      for (:kk = 0; kk < nniul ; kk++)
 	{
 // which node 
           k = nin + nh1 + kk
@@ -254,7 +255,7 @@ proc hidden_error(i)
       hwi = 0
       dc = ndelta[ni] * eta
 
-      for (ii = 0; ii < nnill ; ii++)
+      for (:ii = 0; ii < nnill ; ii++)
 	{
          change = dc * nact[i];
 	// momentum         hwc = (change + ann->net.alpha * node[j].conn[wc].wt_ch);
@@ -290,9 +291,8 @@ eta = 0.01
 alpha = 0.9
 theta = 0.9
 
-<<"data; $data\n"
-<<"truth: $truth\n"
-
+prv(&data,"data")
+prv(&truth,"truth")
 
 nreport = 10
 nin = 2
@@ -301,7 +301,7 @@ nh1 = 2
 scf = 1.0
 npats = 4
 rms = 0.0
-nsweeps = 1;
+nsweeps = 1
 loop = 0
 
 cla = 1
@@ -312,16 +312,14 @@ generic arg
     arg = _clarg[cla];
     cla++;
    if (arg @= "nsweeps") nsweeps = _clarg[cla++];
-   //if (arg @= "DB") DB = _clarg[cla++];
+   if (arg @= "DB") DB = _clarg[cla++];
    if (arg @= "eta") eta = _clarg[cla++];
    if (arg @= "alpha") alpha = _clarg[cla++];
    if (arg @= "theta") theta = _clarg[cla++];
    if (arg @= "nh1") nh1 = _clarg[cla++];
    if (arg @= "loop") loop = 1
   }
-  
-   if (nsweeps <= 0)
-      nsweeps =10;
+   if (nsweeps <= 0) nsweeps =1
 
 <<"%v$nsweeps %v$eta %v$theta %v$alpha %v$nh1\n"
 
@@ -334,77 +332,57 @@ nnodes = nh1+nout+nin
    best_rms = 1.0
    trial = 1
 
-float ntheta[nnodes+];
-float ntheta_wc[nnodes+];
+float ntheta[nnodes+]
+float ntheta_wc[nnodes+]
 
-
+name_debug("SI",0)
 
    while (1) {
 
-       //v_frand(&h1wts,nh1*nin)
-       h1wts = Urand(nh1*nin,0)
-       h1wts += -0.50;
+       v_frand(&h1wts,nh1*nin)
+       h1wts += -0.50
+       prv(&h1wts,"h1wts")
+       v_frand(&outwts,nout*nh1)
+       outwts += -0.50
+       prv(&outwts,"outwts")
 
-       <<"h1wts: $h1wts\n"
+	 outwts_old = outwts * 1.0
+	 h1wts_old = h1wts * 1.0
+	#prv(&h1wts_old,"h1wts_old")
 
-       outwts = Urand(nout*nh1,0);
-       outwts += -0.50;
-       <<"%V : $outwts\n"
-
-
-	 outwts_old = outwts * 1.0;
-	 h1wts_old = h1wts * 1.0;
-	 
-
-        nact = fgen(nnodes,0,0);
-
-
+        v_set(&nact,0.0,0.0,nnodes)
+	prv(&nact,"nact")
 // only need to keep deltas for non-input layers but easier to keep track by having same dimensions as act
-
-        ndelta = fgen(nnodes,0.0,0.0);
-
-
+	v_set(&ndelta,0.0,0.0,nnodes)
+	prv(&ndelta,"ndelta")
   // self -bias thresholds
-        ntheta = fgen(nnodes,0.0,0.0);
-
+	v_set(&ntheta,0.0,0.0,nnodes)
   // only need theta for hidden and output : input just used for activation
   // although conceivably adaptively adjusting input thresholds might be useful
-  //
-  
-	//v_frand(&ntheta[nin],nh1+nout) // index into ntheta
-        ntheta[nin:nin+nh1+nout-1:] =  Urand(nh1+nout,0) + -0.5;
 
-	//ntheta += -0.5
-         ntheta_wc= fgen(nnodes,0.0,0.0);
-	 
-	//v_set(&ntheta_wc,0.0,0.0,nnodes)
+	v_frand(&ntheta[nin],nh1+nout)
+	ntheta += -0.5
+
+	v_set(&ntheta_wc,0.0,0.0,nnodes)
 	# clear input theta
-
-         for(i=0;i<nin;i++) {
-	    ntheta[i] = 0.0;
-	    }
-
-         <<"%V $ntheta\n";
+		 for(i=0;i<nin;i++) ntheta[i] = 0.0
+				      prv(&ntheta,"ntheta")
 
 	<<"%v$best_rms \n"
 	
 	 for (nsi = 0 ; nsi < nsweeps ; nsi++) {
 	
-	  rms = 0.0;
+	  rms = 0.0
 	
 	  for (pi=0; pi<npats; pi++)  {
-
-            fsweep(pi);
-
-            rms += output_error(pi)
-
-            hidden_error(pi)
-
-           #  pnet(pi)
+	  fsweep(pi)
+	  rms += output_error(pi)
+	  hidden_error(pi)
+	#  pnet(pi)
 	  }
 	
-	  rms = rms/(npats * nout);
-	  rms = sqrt(rms);
+	  rms = rms/(npats * nout)
+	  rms = sqrt(rms)
 	
 	   if (!(nsi % nreport))  { <<"%v$nsi %v$rms \n" ; }
 	
@@ -427,11 +405,7 @@ float ntheta_wc[nnodes+];
 	   trial++
 	
 	 if (rms < 0.2) { <<"success %v$trial \n" ; break ;}
-
-         if (!loop){
-	  break;
-	  }
-	 
+	 if (!loop) break
    }
 	
-exit ()
+exit_si()
