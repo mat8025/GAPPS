@@ -1,10 +1,10 @@
 /// xor- problem - test of asl interface  of ann library routines
 
 
-DB=atoi(getenv("GS_DEBUG"))
-<<"%v $DB\n"
+DBG=atoi(getenv("GS_DEBUG"))
+<<"%v $DBG\n"
 
-setdebug(DB);
+setdebug(DBG);
 
 ok=opendll("ann")
 
@@ -85,7 +85,7 @@ float theta = 0.95
 
 ntype = "sff"
 
-int nsweeps = 60000;
+int nsweeps = 20000;
 
 cla = 1
 <<"%V$na \n"
@@ -112,6 +112,10 @@ while (cla <= na) {
        ntype=val
      }
 
+     if (arg @= "act") {
+       act=val
+     }
+
      if (arg @= "eta") {
        eta=val
      }
@@ -130,12 +134,15 @@ while (cla <= na) {
      }
 
      if (arg @= "hidden1") {
-
+       n_first_hid=atoi(val)
+       <<"%V$n_first_hid\n"
+     }
+     if (arg @= "nih1") {
        n_first_hid=atoi(val)
        <<"%V$n_first_hid\n"
      }
 
-     if (arg @= "hidden2") {
+     if ( (arg @= "hidden2")   || (arg @= "nih2")  ) {
           n_second_hid=atoi(val)
        <<"%V$n_second_hid\n"	  
      }
@@ -409,7 +416,7 @@ Rms[ns] = rms
  }
 
  if (rms > 0.2) {
- if ((ns % 20000) == 0) {
+ if ((ns % 5000) == 0) {
     <<"random shake !\n"
     randNetWts(N,8,4);
  }
