@@ -1,9 +1,6 @@
 ///
-///  generate hyper activation function
+///  generate hyperbolic activation function
 ///
-
-
-
 
 
 

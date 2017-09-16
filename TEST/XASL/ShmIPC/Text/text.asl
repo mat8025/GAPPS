@@ -1,6 +1,15 @@
 //////// text.asl ////////////////////
 
-setdebug(0)
+
+/// make sure rotated fonts are loaded!
+/// xset fp+ /usr/local/GASP/gasp/fonts
+/// check
+/// xlsfonts | grep font
+
+/// TBD ?? use XSetFontPath --- in ms/mc_font setup??
+
+
+envdebug()
 
   Graphic = checkGWM()
 
@@ -59,12 +68,13 @@ yp = 0.5
 
 char txtip[256];
 
-
+gevent E;
 
    while (1) {
 
     eventWait()
-
+    
+    E->setevent();
 
    sWo(two,@redraw)
 
