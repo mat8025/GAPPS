@@ -5,14 +5,13 @@
 
 
 
-setdebug(1)
+envDebug()
 
 Graphic = checkGWM()
 
   if (!Graphic) {
     Xgm_pid = spawnGWM()
 <<"xgs pid ? $Xgm_pid \n"
-
 
 }
 
@@ -68,7 +67,7 @@ Graphic = checkGWM()
 <<"%V$vp4 \n"
 
 //////// Wob //////////////////
- setdebug(1);
+// setdebug(1);
  
  bx = 0.1
  bX = 0.4

@@ -72,7 +72,7 @@ uint i
      stop!
      }
      r = N -i  
-     if ((i % 9999) == 0) {
+     if ((i % 25) == 0) {
 
      <<"checked $i  $r divisors still to check\n"
      <<". "

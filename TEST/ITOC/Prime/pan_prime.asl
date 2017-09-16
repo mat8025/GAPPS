@@ -10,6 +10,7 @@ n = argc()
 pan E
 pan p 
 
+<<"pan_prime \n"
 
  if (n >=2) {
 
@@ -71,7 +72,7 @@ pan i = 0
 
    rtf = trunc(tf)
 
-<<"sqrt is $tf $rtf\n"
+<<"sqrt is f$tf $rtf\n"
 
 
 
@@ -83,7 +84,7 @@ pan i = 0
 
       m = t * i
 
-//<<"%V$i $p $t $a $m \n"
+<<"%V$i $p $t $a $m \n"
 
      if (m == p) {
 
@@ -93,7 +94,7 @@ pan i = 0
      }
 
 
-       i += 2
+       i += 2;
 
 
    if (i > N) {
@@ -111,7 +112,8 @@ pan i = 0
 
    N = p/ i
    N = trunc(N)
-//<<"%V$i or $N \n"
+   
+<<"%V$i or $N \n"
 
   }
 

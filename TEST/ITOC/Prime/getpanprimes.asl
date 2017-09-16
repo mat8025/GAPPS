@@ -16,7 +16,7 @@ A=ofw("panprimes")
 proc is_n_prime(n)
 {
 
-  is_p = 1
+  is_p = 1;
 
 
   N = n/3
@@ -69,7 +69,7 @@ if (is_p) {
 }
 
 
-   KP = 100000 // get first 1000 primes
+   KP = 50000; // get first 1000 primes
    int jj =1
    int ip
    pan j = 1
@@ -118,7 +118,7 @@ fprintf(A,'%d %d %d\n',jj,ip,d)
     if (p) {
       d = k-lp
       j++
-      <<"$j $k $d \n"
+      <<"\t $j $k $d \n"
 //   <<[A]"$j $k $d\n"
       jj = j
       ip = k

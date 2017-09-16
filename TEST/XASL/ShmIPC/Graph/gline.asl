@@ -3,7 +3,7 @@
 //  Test Gline
 //
 ////////////////////////////////////////////////////////////
-OpenDll("plot","stat")
+
 
 Graphic = CheckGwm()
 
@@ -12,9 +12,9 @@ Graphic = CheckGwm()
      }
 
 
-//include "event"
 
-pi = 4.0 * atan(1.0)
+
+pi = 4.0 * atan(1.0);
 
 
 // GLINE DEMO 
@@ -43,12 +43,12 @@ pi = 4.0 * atan(1.0)
 
     daname = "RADAR_SCREEN"
 
-//    gwo=CreateGWOB(vp,@GRAPH,@resize,0.05,0.1,0.99,0.95,@name,daname,@color,"white")
+   // QUIT title button
+   tbwo=cWo(vp,@TB,@name,"tb_q",@color,"yellow",@VALUE,"QUIT",@func,"window_term",@resize,0.9,0.9,0.99,0.95);
+   sWo(tbwo,@border,@drawon,@clipborder,@fonthue,RED_, @symbol,"triangle", @symsize, 120, @redraw);
 
-    gwo= cWo(vp,@GRAPH,@resize,0.05,0.1,0.99,0.95,@name,"GL",@color,"white")
-
-
-    sWo(gwo,@clip,cx,cy,cX,cY)
+   gwo= cWo(vp,@GRAPH,@resize,0.05,0.1,0.99,0.95,@name,"GL",@color,"white")
+   sWo(gwo,@clip,cx,cy,cX,cY)
     
     // scales 
     sx = 0.0
@@ -66,17 +66,18 @@ pi = 4.0 * atan(1.0)
 
 ////////////////////////////// GLINE ////////////////////////////////////////
 
-setdebug(0,"steponerror")
+//setdebug(0,"steponerror")
+envDebug()
 
 N = 200
+
 float XVEC[];
 
-XVEC = Frange(N,0,6*pi)
+XVEC = Frange(N,0,6*pi);
 
-//float YVEC[] = Grand(N)
-//float YVEC[] 
 
-Float Rnvec[]
+
+Float Rnvec[];
 
 
   Rnvec = Grand(N)
@@ -85,7 +86,7 @@ Float Rnvec[]
 
 <<" $(Caz(XVEC)) \n"
 <<" $XVEC[0:10] \n"
-<<" $YVEC[0:10] \n"
+
 <<"%V $Rnvec[0:10] \n"
 
 <<"$(typeof(Rnvec)) \n"
@@ -109,9 +110,9 @@ Float Rnvec[]
 
   xz_gl = cGl(gwo,@TXY,XVEC,ZVEC,@hue,GREEN_)
 
-  sWo(gwo,@hue,GREEN_,@refresh)
+  sWo(gwo,@hue,GREEN_,@refresh);
 
-  sWo(gwo,@showpixmap)
+  sWo(gwo,@showpixmap);
 
   f = 0.5
 
@@ -141,7 +142,7 @@ Float Rnvec[]
 // filtered (signal + noise)
 // recovered signal
 
-  M = 200
+  M = 200;
 
 int i = 0;
 
@@ -171,7 +172,7 @@ int i = 0;
     ZVEC = Rnvec + (CVEC * 0.5)
 
 
-  sWo(gwo,@clearpixmap,@clipborder)
+    sWo(gwo,@clearpixmap,@clipborder);
 
   // DrawGline
   
@@ -181,7 +182,7 @@ int i = 0;
 
   dGl(xz_gl)
 
-  sWo(gwo,@showpixmap,@clipborder)
+  sWo(gwo,@showpixmap,@clipborder);
 
   if (i < M/2) {
     f += 0.005
@@ -208,6 +209,7 @@ int i = 0;
      exitgs()
     }
 /}
+
   }
 //==========================================
 

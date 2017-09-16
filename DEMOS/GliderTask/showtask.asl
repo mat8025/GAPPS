@@ -1,47 +1,20 @@
-# "$Id: showtask.asl,v 1.5 1997/07/21 15:01:08 mark Exp mark $"
-#/* -*- c -*- */
+// "$Id: showtask.asl,v 1.5 1997/07/21 15:01:08 mark Exp mark $"
+
 # map of turn_points
 
-SetDebug(1)
-//SetPCW("writeexe","writepic")
-//OpenDll("math")
+envDebug()
 
 PI = 4.0 * Atan(1.0)
 
 include "ootlib"
 
-CLASS Event
-{
- public:
-   Svar msg;
-   int minfo[20];
-   float wms[20];
-   float ems[16];
-   int wid
-   int button
- #  method list
 
+gevent E;
 
-   CMF Wait( awid)
-   {
-
-      w_activate(awid)
-
-      msg= MessageWait(minfo,ems)
-      <<" $msg $minfo $ems\n"
-      wms=GetMouseState()
-      <<"  $wms\n"
-      wid = wms[0]
-      button = wms[2]
-   }    
-}
-
-
-Event E
 
 turnpt  Wtp[500];
 
-
+taskpt  Tasktp[50];
 
 
 Units = "KM"
@@ -102,42 +75,45 @@ the_dir = "W"
 
 # create window and scale
 
-  vp = CreateGwindow("title","vp","resize",0.1,0.01,0.9,0.95,0)
+  vp = cWi("title","vp","resize",0.1,0.01,0.9,0.95,0)
 
-  SetGwindow(vp,"scales",-200,-200,200,200,0, "drawoff","pixmapon","save","bhue","white")
+  sWi(vp,"scales",-200,-200,200,200,0, "drawoff","pixmapon","save","bhue","white")
 
-  SetGwindow(vp,"clip",0.01,0.1,0.95,0.99)
+  sWi(vp,"clip",0.01,0.1,0.95,0.99)
 
-  vptxt=CreateGWOB(vp,"TEXT","resize_fr",0.55,0.01,0.75,0.1,"name","TXT","color","white","save","drawon","pixmapoff")
+  vptxt= cWo(vp,"TEXT","resize_fr",0.55,0.01,0.75,0.1,"name","TXT","color","white","save","drawon","pixmapoff")
 
-  tdwo=CreateGWOB(vp,"BV","resize_fr",0.01,0.01,0.14,0.1,"name","TaskDistance","color","white","style","SVB")
-  sawo=CreateGWOB(vp,"BV","resize_fr",0.15,0.01,0.54,0.1,"name","SafetyAlt","color","white","style","SVB")
+  tdwo= cWo(vp,"BV","resize_fr",0.01,0.01,0.14,0.1,"name","TaskDistance","color","white","style","SVB")
+  sawo= cWo(vp,"BV","resize_fr",0.15,0.01,0.54,0.1,"name","SafetyAlt","color","white","style","SVB")
 
-  mapwo=CreateGWOB(vp,"GRAPH","resize",0,0.2,0.11,0.95,0.95,"name","MAP","color","white")
-  setgwob(mapwo, "scales", LongW, LatS, LongE, LatN, "save", "redraw", "drawon", "pixmapon")
+  mapwo= cWo(vp,"GRAPH","resize",0,0.2,0.11,0.95,0.95,"name","MAP","color","white")
+  sWo(mapwo, "scales", LongW, LatS, LongE, LatN, "save", "redraw", "drawon", "pixmapon")
 
-  int tpwo[20]
-  tpwo[0]=CreateGwob(vp,"BV","name","_Start_","style","SVB","drawon", "pixmapoff")
+  int tpwo[20];
+  
+  tpwo[0]=cWo(vp,"BV","name","_Start_","style","SVB",@drawon)
 
-  tpwo[1] =CreateGwob(vp,"BV","name","_TP1_","style","SVB","drawon", "pixmapoff")
+  tpwo[1] =cWo(vp,"BV","name","_TP1_","style","SVB",@drawon)
 
-  tpwo[2] =CreateGwob(vp,"BV","name","_TP2_","style","SVB","drawon", "pixmapoff")
+  tpwo[2] =cWo(vp,"BV","name","_TP2_","style","SVB", @drawon)
 
-  tpwo[3] =CreateGwob(vp,"BV","name","_TP3_","style","SVB","drawon", "pixmapoff")
+  tpwo[3] =cWo(vp,"BV","name","_TP3_","style","SVB", @drawon)
 
-  tpwo[4] =CreateGwob(vp,"BV","name","_TP4_","style","SVB","drawon", "pixmapoff")
+  tpwo[4] =cWo(vp,"BV","name","_TP4_","style","SVB", @drawon)
 
+  tpwos = tpwo[0:4];
 
-  wovtile(tpwo[0:4],0, 0.02, 0.3, 0.15, 0.8)
+  <<"%V $tpwos\n"
+  wovtile(tpwos, 0.02, 0.3, 0.15, 0.8)
  
 
-  TASK_wo=CreateGwob(vp,"TB_MENU","resize",0,0.1,0,0.25,1)
+  TASK_wo=cWo(vp,"TB_MENU","resize",0,0.1,0,0.25,1)
 
 
-  SetGwob(TASK_wo, "help", "Set Task Type", "name", "TaskType", "function",  "wo_menu",  "menu", "SO,TRI,OAR,W,MT",  "value", "W")
+  sWo(TASK_wo, "help", "Set Task Type", "name", "TaskType", "function",  "wo_menu",  "menu", "SO,TRI,OAR,W,MT",  "value", "W")
 
 
-  igc_gl = CreateGline("wid",mapwo,"type","XY","xvec",IGCLONG,"yvec",IGCLAT,"color","blue")
+  igc_gl = cGl("wid",mapwo,"type","XY","xvec",IGCLONG,"yvec",IGCLAT,"color","blue")
 
 }
 
@@ -145,9 +121,9 @@ the_dir = "W"
 
 tp_file = GetArgStr()
 
-if (tp_file @= "")
+if (tp_file @= "") {
  tp_file = "turnpts.dat"  // open turnpoint file 
-
+}
 
   A=ofr(tp_file)
 
@@ -168,7 +144,7 @@ if (tp_file @= "")
   while (1) {
 
             nwr = Wtp[Ntp]->Read(A)
-
+<<"%V $nwr\n"
             if (nwr == -1) break
 
             if (nwr > 6) { 
@@ -183,7 +159,7 @@ if (tp_file @= "")
 
 <<" Read $Ntp turnpts \n"
 
-taskpt  Tasktp[50]
+
 
 
   while (AnotherArg()) {
@@ -267,12 +243,17 @@ set_task()
 #}
 
 c= "EXIT"
-igcfn = "spk.igc"
-      ReadIGC(igcfn)
+
+
+      igcfn = "spk.igc"
+
+      ReadIGC(igcfn);
 
 
 
-SetGline(igc_gl,"xvec",IGCLONG,"yvec",IGCLAT)
+    sGl(igc_gl,"xvec",IGCLONG,"yvec",IGCLAT);
+
+
 <<" $IGCLONG[0:20] \n"
 <<" $IGCLAT[0:20] \n"
 //ttyin()
@@ -297,7 +278,7 @@ SetGline(igc_gl,"xvec",IGCLONG,"yvec",IGCLAT)
 
 //   vp->RedrawWo()
 
-  SetGwindow(vp,"woredrawall")
+  sWi(vp,"woredrawall")
 
 int wwo = 0
 int witp = 0
@@ -306,52 +287,49 @@ msgv = ""
 
 float d_ll = 0.05
 
+keyw = "";
+
   while (1) {
     drawit = 1
 
-    E->Wait(vp)
+    E->waitForMsg()
 
-    msg = E->msg
-    msgv = Split(msg)
+    keyw = E->getEventKeyw();
+    
+       Text(  vptxt," $keyw   ",0,0.05,1)
 
-<<" %v $msg  $(slen(msg))\n"
-       Text(  vptxt," $msg   ",0,0.05,1)
-
-//<<" %V $msgv[0] $msgv[1] $msgv[2] \n"
-//<<" $(slen(msgv[1])) \n"
-
-       if ( ! (msg @= "NO_MSG")) {
+       if ( ! (keyw @= "NO_MSG")) {
 
        d_ll = (LatN-LatS)/ 10.0 
 
 
-       if (msg @= "Q") {
+       if (keyw @= "Q") {
            LongW += d_ll
            LongE += d_ll
 
        }
 
-       if (msg @= "S") {
+       if (keyw @= "S") {
            LongW -= d_ll
            LongE -= d_ll
 
        }
 
 
-       if (msg @= "R") {
+       if (keyw @= "R") {
            LatN += d_ll
            LatS += d_ll
 
        }
 
-       if (msg @= "T") {
+       if (keyw @= "T") {
            LatN -= d_ll
            LatS -= d_ll
 
        }
 
 
-       if (msg @= "x") {
+       if (keyw @= "x") {
            LatN += d_ll
            LatS -= d_ll
            LongW += d_ll
@@ -359,7 +337,7 @@ float d_ll = 0.05
 
        }
 
-       if (msg @= "z") {
+       if (keyw @= "z") {
            LatN -= (d_ll * 0.9)
            LatS += (d_ll * 0.9)
            LongW -= (d_ll * 0.9)
@@ -367,16 +345,16 @@ float d_ll = 0.05
        }
 
 
-       if (msg @= "_Start_") {
+       if (keyw @= "_Start_") {
              if (PickaTP(0)) {
-             setgwob(tpwo[0],"value",Tasktp[0]->cltpt)
+             sWo(tpwo[0],"value",Tasktp[0]->cltpt)
              }
        }
 
 
-       if (scmp(msg,"_TP",3)) {
+       if (scmp(keyw,"_TP",3)) {
 
-             np = spat(msg,"_TP",1)
+             np = spat(keyw,"_TP",1)
              np = spat(np,"_",-1)
 
              witp = atoi(np)
@@ -384,29 +362,29 @@ float d_ll = 0.05
 
              wcltpt = Tasktp[witp]->cltpt
 
-<<" %V $msg $np $witp $wwo $wcltpt\n"
+<<" %V $keyw $np $witp $wwo $wcltpt\n"
 
-            setgwob(wwo,"xor")
+            sWo(wwo,"xor")
 
              if (PickaTP(witp)) {
 
-//FIX	       setgwob(tpwo[witp],"value",Tasktp[witp]->cltpt)
+//FIX	       sWo(tpwo[witp],"value",Tasktp[witp]->cltpt)
 // witp must be scalar
 
-//       setgwob(tpwo[witp],"value",Tasktp[witp]->cltpt)
+//       sWo(tpwo[witp],"value",Tasktp[witp]->cltpt)
         wcltpt = Tasktp[witp]->cltpt
-       setgwob(wwo,"value",wcltpt)
+       sWo(wwo,"value",wcltpt)
 
 
     
              }
 
-           setgwob(,"xor")
+           sWo(,"xor")
 
        }
 
 
-       if (msg @= "MAP") {
+       if (keyw @= "MAP") {
            drawit = 0
                mrx=E->wms[7]
                mry=E->wms[8]
@@ -424,7 +402,7 @@ float d_ll = 0.05
                 ght = (mkm * km_to_feet) / LoD
                 sa = msl + ght + 2000
 
-          	setgwob(sawo,"value","$nval %5.1f $msl $mkm $sa")
+          	sWo(sawo,"value","$nval %5.1f $msl $mkm $sa")
 
              }
 
@@ -440,14 +418,14 @@ float d_ll = 0.05
        }
 
         if (drawit) {
-        setgwob(mapwo, "scales", LongW, LatS, LongE, LatN )
-        setgwob(mapwo,"clearpixmap","clipborder")
+        sWo(mapwo, "scales", LongW, LatS, LongE, LatN )
+        sWo(mapwo,"clearpixmap","clipborder")
         DrawTask(mapwo,"orange")
         DrawMap(mapwo)
 //        PlotIGC()
         DrawGline(igc_gl)
 //        vvdraw(mapwo,IGCLONG,IGCLAT);
-        setgwob(mapwo,"showpixmap")
+        sWo(mapwo,"showpixmap")
         }
 
       }

@@ -2,8 +2,9 @@
 # "$Id: showtlib.asl,v 1.2 1997/12/07 03:48:51 mark Exp mark $"
 
 
-if (Main_init) {
+//if (Main_init) {
   //  <<"ootlib include\n"
+
   DB = 0
   ntpts = 0
   Min_lat = 90.0
@@ -22,10 +23,10 @@ if (Main_init) {
   longit = "B"
 
   LegK =  0.5 * (7915.6 * 0.86838)
-   //<<" %v $LegK \n"
-  Main_init = 0
-    //<<" read in unit conversions \n"
-}
+  //<<" %v $LegK \n"
+  //  Main_init = 0
+  //<<" read in unit conversions \n"
+
 //============================================
 
 CLASS turnpt 
@@ -752,8 +753,6 @@ proc draw_task(w,col)
     ff=plot_line(w,LO[tpt[i]],LA[tpt[i]],LO[tpt[i+1]],LA[tpt[i+1]],col)
 }
 
-
-
 igc_file = "dd.igc"
 
 proc plot_igc(w)
@@ -765,7 +764,7 @@ proc plot_igc(w)
      return
    }
 
- while (1) {
+      while (1) {
 
                          tword=r_file(a)
 			 //<<"$tword \n"
@@ -784,7 +783,7 @@ proc plot_igc(w)
     w_store(w) 
  cf(a)
  }
-
+//==================================
 
 
 proc set_wo_task(w)
@@ -1298,6 +1297,319 @@ proc spin()
       <<" / \r "
  k++
 }
+//===============================================
+
+
+
+float IGCLONG[]
+float IGCLAT[]
+float IGCELE[]
+
+proc ReadIGC(igc_file)
+{
+
+ a=ofr(igc_file)
+
+   if (a == -1) {
+     <<" can't open IGC file $igc_file\n"
+     return
+   }
+
+
+ b= ofw("junk.ll")
+
+ igcval=""
+
+// svar igcval
+
+ nwr = igcval->Read (a)
+
+<<"$a $igc_file  $nwr $igcval[0] \n"
+jj = 0
+// read words ---
+int kk = 0
+ while (1) {
+
+                          nwr = igcval->Read (a)
+//<<" $nwr $igcval[0] \n"
+  
+//                         if (f_error(a) == 6) break
+                         if (nwr == -1) break
+                        if (nwr == 1) { 
+                        tword = igcval[0]
+  //                      <<"$tword \n"
+			 if (sele(tword,0) @= "B") {
+                          igclat = sele(tword,7,8)
+                          igclong = sele(tword,15,9)
+                          iele = sele(tword,25,5)
+                          lnum = igc_dmsd(igclat)
+                          lngnum = igc_longd(igclong)
+                         
+
+                           kk++
+                          if (kk > 3) {
+                          IGCLONG[jj] = lngnum
+                          IGCLAT[jj] = lnum
+                          IGCELE[jj++] = atof(iele)
+    <<[b]"$igclat $lnum $igclong $lngnum $iele\n"
+                          }
+         		 }
+                       }
+
+   }
+
+<<" read $jj lat,long values \n"
+
+ cf(a)
+ }
+
+
+
+CLASS taskpt 
+ {
+
+ public:
+
+  svar wval;  // holds all field info
+  svar cltpt; //
+  svar val;
+  float Alt;
+  float Ladeg;
+  float Longdeg;
+  float Leg
+
+#  method list
+
+  CMF Read ( fh) 
+  {
+     la_deg = "" 
+     long_deg = ""
+
+     nwr = wval->Read (fh)
+
+//<<"$nwr  $wval[0] $wval[1] $wval[2]  \n"
+
+
+      if (scmp(wval[0],"#",1)) {
+       // comment line in file
+//<<" found comment line \n"
+         return 0
+      }
+
+    xx= "$wval[0] \n"
+    
+    if (nwr > 6) {
+
+//<<" $wval[0]  \n"
+
+    Alt = atof(wval[4])
+
+//    Ladeg = GetDeg(la_deg)
+
+
+    Ladeg = GetDeg(wval[2])
+
+
+    Longdeg = GetDeg(wval[3])
+
+//    Longdeg = GetDeg(long_deg)
+//     <<"%V $Alt $Ladeg $Longdeg \n"
+
+    }
+
+    return nwr
+   }
+
+   CMF SetPlace (ival)   
+   {
+       wval[0] = ival
+   }
+
+   CMF GetPlace ()   
+   {
+      val = wval[0] 
+      return val
+   }
+
+   CMF GetTA ()   
+   {
+      val = wval[7] 
+      return val
+   }
+
+   CMF GetLat ()   
+   {
+      val = wval[2] 
+      return val
+   }
+
+   CMF GetLong ()   
+   {
+      val = wval[3] 
+      return val
+   }
+
+   CMF GetRadio ()   
+   {
+      val = wval[6] 
+      return val
+   }
+
+   CMF GetID ()   
+   {
+      val = wval[1] 
+      return val
+   }
+
+   CMF GetMSL ()   
+   {
+      int ival = Alt 
+      return ival
+   }
+
+   CMF Print ()    
+   {
+
+     <<"$wval[0] $wval[1]  $wval[2] $wval[3] $Ladeg $Longdeg\n"
+//     xx= "$wval[2:6]"
+//     <<"$xx \n"
+
+   }
+
+
+  CMF turnpt()
+    {
+	//      <<" CONS $_cobj %i $Place\n"
+      Ladeg = 40.0
+      Longdeg = 105.0
+    }
+
+
+
+  CMF GetDeg (svar the_ang)
+    {
+
+  //<<" $_cproc %v $the_ang \n"
+
+  //  <<"%V $the_ang $(typeof(the_ang)) \n"
+//ttyin()
+      float la
+
+      float the_deg
+      float the_min
+
+//<<" $_cproc  $the_ang  \n"
+
+      the_parts = Split(the_ang,",")
+
+//FIX    float the_deg = atof(the_parts[0])
+
+    //<<"%v $the_parts \n"
+
+//<<"%v $the_parts[0] \n"
+
+//      dv = the_parts[0]
+//      the_deg = atof(dv)
+    the_deg = atof(the_parts[0])
+
+//<<"%v $the_deg \n"
+
+the_min = atof(the_parts[1])
+//      dv = the_parts[1]
+//      the_min = atof(dv)
+
+//        <<" %V $the_deg $the_min \n"
+
+       sz= Caz(the_min)
+
+ // <<" %V $sz $(typeof(the_deg)) $(Cab(the_deg))  $(Cab(the_min)) \n"
+
+      the_dir = the_parts[2]
+
+      y = the_min/60.0
+
+      la = the_deg + y
+
+      if ((the_dir @= "E") || (the_dir @= "S")) {
+         la *= -1.0
+      }
+
+   //  <<" %V $la  $y $(typeof(la)) $(Cab(la)) \n"
+      
+    return (la)
+   }
+
+}
+
+//============================================
+
+proc DrawMap(w)
+{
+int msl
+float lat
+float longi
+
+
+    for (k = 0 ; k < Ntp ; k++) {
+        if (!Wtp[k]->GetTA()) {
+        lab = slower(Wtp[k]->GetPlace())
+        }
+        else {
+        lab = Wtp[k]->GetPlace()
+        }
+        msl = Wtp[k]->Alt
+
+        lat = Wtp[k]->Ladeg
+
+        longi = Wtp[k]->Longdeg
+
+//<<[-1]"%V $k $lab $msl $lat $longi $Wtp[k]->Ladeg\n"
+
+        if ( msl > 7000) {
+             Text(w,lab,longi,lat,0,0,1,"red")
+        }
+        else {
+            if ( msl > 5000){
+             Text(w,lab,longi,lat,0,0,1,"blue")
+            }
+            else {
+              Text(w,lab,longi,lat,0,0,1,"green")
+            }
+        }
+    }
+
+    setgwob(w,"showpixmap","clipborder")
+//  grid_label(w)
+
+}
+//====================================================
+
+proc DrawTask(w,col)
+{
+
+    TaskDist()
+
+    if ( (TaskType @= "OAR")   || (TaskType @= "SO")) {
+
+      plotgw(w,"line",Tasktp[0]->Longdeg,Tasktp[0]->Ladeg,Tasktp[1]->Longdeg,Tasktp[1]->Ladeg,col)
+
+    }
+    else {
+
+    for (i = 0 ; i < Nlegs ; i++ ) { 
+
+     // <<"$i %V $w, $Tasktp[i]->Longdeg $Tasktp[i]->Ladeg,$Tasktp[i+1]->Longdeg,$Tasktp[i+1]->Ladeg, $col \n "
+
+      plotgw(w,"line",Tasktp[i]->Longdeg,Tasktp[i]->Ladeg,Tasktp[i+1]->Longdeg,Tasktp[i+1]->Ladeg,col)
+
+    }
+
+    }
+
+    ShowTPS()
+
+}
+
 
 //<<" DONE reading showtlib !\n"
 
