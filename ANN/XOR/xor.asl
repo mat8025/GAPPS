@@ -435,7 +435,7 @@ Rms[ns] = rms
 
   pc = nc/npats * 100
 
-<<"done xor - $nc $rms\n"
+<<"done xor - $ns  $nc $rms\n"
 
  ok= save_net(N,"xor_net.wts")
 
@@ -468,3 +468,4 @@ stop!
 // put up color activity code scale
 // (black 0? red 1.0 ?)
 //
+// !!! for dca output to input direct -- connections not shown

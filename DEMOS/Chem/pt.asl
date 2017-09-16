@@ -1,6 +1,8 @@
+///
 //////// pt.asl ////////////////////
+///
 
-setdebug(0)
+envdebug()
 
 Graphic = CheckGwm()
 
@@ -20,7 +22,7 @@ spawn_it = 1
     vp = cWi(@title,"Periodic_Table_Of_Elements",@resize,0.01,0.2,0.95,0.9,0)
 
     sWi(vp,@pixmapon,@drawon,@save,@bhue,WHITE_)
-    setgwob(vp,@grid,11,20)
+    sWo(vp,@grid,11,20)
     sWi(vp,@clip,0.2,0.2,0.8,0.8)
 
 //////// Wob //////////////////
@@ -35,38 +37,46 @@ spawn_it = 1
 
  proc eleSpec(i) 
  {
+    <<"$i $(Pt(i))\n"
  elespec = Pt(i)
  elef = split(elespec,",")
  ewo[i]=cWo(vp,"BV",@name,"$elef[1]  $elef[2]",@color,ecolor[i],@resize,col,rb,col+1,rt,3)
 
-  setgwob(ewo[i],@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@VALUE,"$elef[0]\n $elef[3]",@STYLE,"SVB")
+  sWo(ewo[i],@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@VALUE,"$elef[0]\n $elef[3]",@STYLE,"SVB")
+   //sWo(ewo[i],@DRAWON,@BORDER,@FONTHUE,BLACK_,@VALUE,"$elef[0]\n $elef[3]",@STYLE,"SVB")
  if (show) {
-  setgwob(ewo[i],@redraw)
+  //sWo(ewo[i],@redraw)
  }
  else {
- setgwob(ewo[i],@clear)
+   sWo(ewo[i],@clear)
  }
+ 
  sWo(ewo[i],@help,"$elespec")
  col++;
+ 
  }
 
 
  proc peleSpec(si,fi) 
  {
- for (i = si ; i <=fi; i++) {
- elespec = Pt(i)
- elef = split(elespec,",")
- ewo[i]=cWo(vp,"BV",@name,"$elef[1]  $elef[2]",@color,ecolor[i],@resize,col,rb,col+1,rt,3)
- setgwob(ewo[i],@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@VALUE,"$elef[0]\n $elef[3]",@STYLE,"SVB")
- if (show) {
-    setgwob(ewo[i],@redraw)
- }
- else {
-    setgwob(ewo[i],@clear)
- }
- sWo(ewo[i],@help,"$elespec")
- col++;
- }
+  for (i = si ; i <=fi; i++) {
+   <<"$i $(Pt(i))\n"
+   elespec = Pt(i)
+   elef = split(elespec,",")
+   ewo[i]=cWo(vp,"BV",@name,"$elef[1]  $elef[2]",@color,ecolor[i],@resize,col,rb,col+1,rt,3)
+   sWo(ewo[i],@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@VALUE,"$elef[0]\n $elef[3]",@STYLE,"SVB")
+
+  // sWo(ewo[i],@DRAWON,@FONTHUE,BLACK_,@VALUE,"$elef[0]\n $elef[3]",@STYLE,"SVB")
+
+   if (show) {
+   // sWo(ewo[i],@redraw)
+   }
+   else {
+    sWo(ewo[i],@clear)
+   }
+   sWo(ewo[i],@help,"$elespec")
+   col++;
+  }
  }
 
 
@@ -117,15 +127,10 @@ spawn_it = 1
       peleSpec(3,4) 
 
 
-
-
-
 // ecolor = LILAC
  col = 13;
 
-
     peleSpec(5,10) 
- 
 
 
 ///////////////////////
@@ -145,7 +150,7 @@ spawn_it = 1
  
  col = 13;
 
- peleSpec(13,18) 
+  peleSpec(13,18) 
 
 
 
@@ -214,97 +219,22 @@ spawn_it = 1
  }
 
 
-////////////////////   EVENT PROCESSING ////////////////////////////
+// sWi(vp,@redraw);
 
-CLASS Event
-{
+Gevent E;
 
- public:
-
-   Svar emsg ;
-   Svar kws ;
-   Str keyw ;
-   Str woname ;
-
-   char keyc ;
-
-   int minfo[];
-   float rinfo[];
-   float wms[];
-
-
-   int woid
-   int button
-   int wo_ival
-
- #  method list
-
-
-   CMF getMsg()
-   {
-     emsg = ""
-     keyc = 0
-     emsg= MessageWait(minfo,rinfo)
-
-//<<"reading msg \n"
-
-       // emsg= MessageRead(minfo,rinfo)
-
-    <<"<|$emsg|> \n"
-
-     keyw = "NO_MSG"
-
-     if ( !(emsg[0] @= "NO_MSG")) { 
-
-
-//<<"%V$minfo \n"
-//<<"%V$rinfo \n"
-//<<"%V$emsg \n"
-
-      kws = Split(emsg)
-
-//<<"%V$kws \n"
-
-      keyw = kws[0]
-      woname = kws[1]
-
-//<<"%V$keyw\n"
-
-      keyc = pickc(kws[2],0)
-
-//      wms=GetMouseState()
-
-//<<"%V$wms\n"
-
-      woid = minfo[3]
-
-      button = minfo[8]
-
-      wo_ival = minfo[13]
-//      button = wms[2]
-    }
-     // sleep(0.1)
-   }   
-}
-
-Event E
-
-
-
-xp = 0.1
-yp = 0.5
+xp = 0.1;
+yp = 0.5;
 
    while (1) {
 
 
-    E->getMsg()
-
-
+    E->waitForMsg()
      
 
-  if (scmp(E->woname,"QUIT",4)) {
+    if (scmp(E->getEventWoName(),"QUIT",4)) {
        break
-  }
+    }
 
   }
 

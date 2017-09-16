@@ -5,7 +5,7 @@
 
 
 
-setdebug(1)
+envdebug()
 
 Graphic = checkGWM()
 
@@ -310,7 +310,7 @@ proc QUIT()
 //  sleep(10)
   //wdelete(vp,vp2,vp3)
 
-  exitsi()
+  exit()
 
 }
 
@@ -322,21 +322,29 @@ proc tb_q()
 
 ////////////////////////////////////
 
-include "gevent"
+gevent E;  // our Gevent variable - holds last message
+           // could use another or an array to compare events
 
    while (1) {
 
-      eventWait();
+      //eventWait();
+      
+      E->waitForMsg();
+      wid = E->getEventWoid();
+<<"gevent %V $wid\n"
+      eb = E->getEventButton();
+<<"gevent %V $eb\n"
 
-      if (ev_keyw @= "EXIT_ON_WIN_INTRP") {
+      if (E->getEventkeyw() @= "EXIT_ON_WIN_INTRP") {
 <<"have win interp -- exiting!\n"
       break;
       }
 
-      sWo(two,@texthue,"black",@clear,@textr,"$ev_msg $ev_woval",-0.9,0)
+      sWo(two,@texthue,"black",@clear,@textr,"$E->getEventWoValue()",-0.9,0)
 
-      if (ev_type @= "PRESS") {
-
+      if (E->getEventType() @= "PRESS") {
+            ev_woname = E->getEventWoName();
+	    <<"%V $ev_woname";
         if (!(ev_woname @= "")) {
             DBPR"calling function via woname $ev_woname !\n"
             $ev_woname()
