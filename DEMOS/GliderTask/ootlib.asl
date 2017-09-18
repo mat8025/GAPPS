@@ -1,6 +1,6 @@
-#/* -*- c -*- */
-# "$Id: showtlib.asl,v 1.2 1997/12/07 03:48:51 mark Exp mark $"
-
+///
+/// "$Id: showtlib.asl,v 1.2 1997/12/07 03:48:51 mark Exp mark $"
+/// 9/17/2017
 
 //if (Main_init) {
   //  <<"ootlib include\n"
@@ -25,11 +25,12 @@
   LegK =  0.5 * (7915.6 * 0.86838)
   //<<" %v $LegK \n"
   //  Main_init = 0
-  //<<" read in unit conversions \n"
+
+<<" read in unit conversions \n"
 
 //============================================
 
-CLASS turnpt 
+CLASS Turnpt 
  {
 
  public:
@@ -56,26 +57,30 @@ CLASS turnpt
      //sz = wval->Caz()
 
       sz = Caz(wval);      
-       // <<"%V$sz \n"
-     //<<"$sz $wval[0] $wval[1] $wval[2] $wval[3] $wval[4] \n"
+ // <<"%V$sz \n"
+ // <<"$sz 0: $wval[0] 1: $wval[1] 2: $wval[2] 3: $wval[3] 4: $wval[4] \n"
     
    
-    //    <<"$wval[0] $wval[1]\n"
+      //   <<"$wval[0]\n"
        //  <<"$(typeof(wval))\n"
        //ans = iread("-->");
      Place = wval[0];
     
-     //  <<"%V$Place\n"
+     //   <<"%V$Place\n"
 
 
      Idnt =  wval[1];
-      //<<"%V$Idnt\n"
-     //<<"%V$wval[2]\n"
+ //<<"%V$Idnt\n"
+ //    <<"%V$wval[2]\n"
      
      Lat = wval[2];
-     //  <<"%V$Lat\n"
-	
+
+     //   <<"%V$Lat  <| $wval[2] |>\n"
+
+     //   <<"%V$wval[3]\n"	 
      Lon = wval[3];
+
+     //       <<"%V$Lon  <| $wval[3] |>\n" 
      
      Alt = wval[4];
      
@@ -83,11 +88,18 @@ CLASS turnpt
      
      Radio = atof(wval[6]);
 
-     //  <<"%V$Lat $Lon $Radio\n"
+     //  <<"%V$Lat $Lon \n"
 
-    Ladeg = GetDeg(Lat)
+     //  <<" $(typeof(Lat)) \n"
 
-    Longdeg = GetDeg(Lon)
+     // <<" $(typeof(Lon)) \n"
+
+	 
+     //  <<" $(typeof(Ladeg)) \n"	 
+     Ladeg =  GetDeg(Lat);
+
+     //       <<" $(typeof(Longdeg)) \n"	 
+     Longdeg = GetDeg(Lon);
 
       }
 
@@ -98,9 +110,7 @@ CLASS turnpt
 
    CMF Print ()    
    {
-
      <<"$Place $Idnt $Lat $Lon $Alt $rway $Radio $Ladeg $Longdeg\n"
-   
    }
 
 
@@ -121,7 +131,7 @@ CLASS turnpt
       //<<"input args is $the_ang \n"
 
 
-    float la
+      float la;
 
 
       // <<"%V$_cproc %i $the_ang  \n"
@@ -142,13 +152,13 @@ CLASS turnpt
 
       //<<"%V$the_deg $the_min \n"
 
-    sz= Caz(the_min)
+      //  sz= Caz(the_min);
 
       //<<" %V$sz $(typeof(the_deg)) $(Cab(the_deg))  $(Cab(the_min)) \n"
 
     the_dir = the_parts[2]
 
-    y = the_min/60.0
+      y = the_min/60.0;
 
     la = the_deg + y
 
@@ -156,7 +166,7 @@ CLASS turnpt
          la *= -1
       }
 
-    //<<" %V $la  $y $(typeof(la)) $(Cab(la)) \n"
+      //<<" %V $la  $y $(typeof(la)) $(Cab(la)) \n"
       
     return (la)
    }
@@ -201,7 +211,7 @@ proc get_word( defword)
 proc get_wcoors(sw,  rx,  ry,  rX,  rY)
 {
   float rs[20];
-  ww= get_w_rscales(sw,&rs[0])
+  ww= get_w_rscales(sw,&rs[0]);
   rx= rs[0]
   ry = rs[1]
   rX= rs[2]
@@ -215,9 +225,9 @@ proc get_wcoors(sw,  rx,  ry,  rX,  rY)
 proc compute_leg(leg)
 {
 
-  //    <<" $_cproc  $leg \n"
+//<<" $_cproc  $leg \n"
 
-    //    double D
+//    double D
 
     float km
 
@@ -307,7 +317,7 @@ proc read_task(task_file, query)
 
             if ( (f_error(TF) > 0 ) || (atpt @= "EOF"))  break
 
-	   //          <<"TP $atpt $ti \n"
+//<<"TP $atpt $ti \n"
           key[ti] = atpt
           wi = find_key(key[ti])
           if (wi == -1) break
@@ -677,7 +687,9 @@ proc delete_alltps()
 proc get_tpt(wtpt)
 {
  float mse[20]
- int wn
+   int wn;
+
+ 
   get_mouse_event(&mse[0])
 
   wn = mse[3]
@@ -767,28 +779,29 @@ proc plot_igc(w)
       while (1) {
 
                          tword=r_file(a)
-			 //<<"$tword \n"
+//<<"$tword \n"
                          if (f_error(a) == 6) break
 
 			 if (sele(tword,0) @= "B") {
                           igclat = sele(tword,7,8)
                           igclong = sele(tword,15,9)
-                          lnum = igc_dmsd(igclat)
+                          latnum = igc_dmsd(igclat)
                           lngnum = igc_longd(igclong)
-#              <<"$igclat $lnum $igclong $lngnum\n"
-                          plot_line(w,lngnum,lnum ,"blue")
+#              <<"$igclat $latnum $igclong $lngnum\n"
+                          plot_line(w,lngnum,latnum ,"blue")
 			 }
  
    }
-    w_store(w) 
- cf(a)
+ w_store(w); 
+ cf(a);
  }
 //==================================
 
 
 proc set_wo_task(w)
 {
-  for (k = 1 ; k <= Ntp ; k++) tpt[k] = -1
+  for (k = 1 ; k <= Ntp ; k++)
+    tpt[k] = -1;
 
   nd_tpts = 0
 
@@ -811,7 +824,7 @@ proc set_wo_task(w)
 
   finish_key = get_wo_value(w,finish_wo)
 }
-
+//============================
 
 proc chk_start_finish()
 {
@@ -875,7 +888,7 @@ proc chk_start_finish()
   ff=w_set_wo_value (tw,ntp_wo,ntpts-1)
 
 }
-
+//============================
 
 proc task_menu(w)
 {
@@ -963,9 +976,7 @@ proc task_menu(w)
 proc get_dmsd (the_ang)
 {
 
-  //<<" $_cproc %v $the_ang \n"
-
-  //  <<"%V$the_deg $(typeof(the_deg)) $the_min $(typeof(the_min)) $the_dir\n"
+  //  <<" $_proc %v $the_ang \n"
 
     the_parts = Split(the_ang,",")
 
@@ -973,22 +984,22 @@ proc get_dmsd (the_ang)
 
     the_deg = atof(the_parts[0])
 
-    the_min = atof(the_parts[1])
+    the_min = atof(the_parts[1]);
 
-    sz= Caz(the_min)
+      //sz= Caz(the_min)
 
     the_dir = the_parts[2]
       //<<" %v $the_dir \n"
    
       //    <<" %v $the_ang \n"
-      //        <<"%V $the_deg $(typeof(the_deg)) $the_min $sz $(typeof(the_min)) $the_dir \n"
+      //     <<"%V $the_deg $(typeof(the_deg)) $the_min $sz $(typeof(the_min)) $the_dir \n"
 
-    y = the_min/60.0
+    y = the_min/60.0;
 
     la = the_deg + y
 
     //    sz= Caz(la)
-      //<<"%v $la  $(typeof(la))    $sz\n"
+    //<<"%v $la  $(typeof(la))    $sz\n"
 
       if (the_dir @= "W") {
          la *= -1
@@ -1002,21 +1013,23 @@ proc get_dmsd (the_ang)
       ;
  return (la)
  
-  }
+}
 
 
 proc dat_dmsd (the_ang)
 {
 
   //<<" $_cproc %V$the_ang \n"
-
+  float the_min;
+  float the_deg;
+  
     nang = ssub(the_ang,":",".")
 
     the_parts = Split(nang,".")
 
-    the_deg = the_parts[0]
+    the_deg = atof(the_parts[0]);
 
-    the_min = the_parts[1]
+    the_min =  atof(the_parts[1]);
 
     the_cdir = the_parts[2]
 
@@ -1040,37 +1053,51 @@ proc dat_dmsd (the_ang)
 
     return (la)
   }
+//============================
 
 
 
-
-proc igc_dmsd (sivar the_ang)
+proc igc_dmsd (the_ang)
   {
-    the_deg = the_min = 0.0
-    the_deg = sele(the_ang,0,2)
-    the_min = sele(the_ang,2,2)
-      //<<" $the_deg $the_min \n"
-    f = sele(the_ang,4,3)
-   the_min += (f/1000)
-    la = the_deg + the_min/60.0
+    
+    //the_deg = the_min = 0.0;
+    //the_deg =  0.0;
+    //the_min = 0.0;
+
+    the_deg = atof(sele(the_ang,0,2));
+    the_min = atof(sele(the_ang,2,2));
+    fr = atof(sele(the_ang,4,3));
+
+    //<<"$the_ang $the_deg $the_min $f\n"
+      
+    the_min += (fr/1000.0);
+    la = the_deg + the_min/60.0;
     the_dir = sele(the_ang,8)
-    if (the_dir @= "S") la *= -1
+
+      if (the_dir @= "S") la *= -1;
+    //<<"%V$la\n"
+	//ps=iread("::>")
     return (la)
   }
+//============================
 
-proc igc_longd (sivar the_ang)
+proc igc_longd (the_ang)
   {
-   the_deg = the_min = 0.0
-    the_deg = sele(the_ang,0,3)
-    the_min = sele(the_ang,3,2)
-    f = sele(the_ang,5,3)
-   the_min += (f/1000)
-    la = the_deg + the_min/60.0
+    //the_deg = the_min = 0.0;
+
+    
+      the_deg = atof(sele(the_ang,0,3))
+      the_min = atof(sele(the_ang,3,2))
+      fr = atof(sele(the_ang,5,3))
+    the_min += (fr/1000.0);
+    //<<"$the_ang $the_deg $the_min $f\n"
+    la = the_deg + the_min/60.0;
     the_dir = sele(the_ang,9)
-    if (the_dir @= "W")) la *= -1
+
+    if (the_dir @= "W")) la *= -1;
     return (la)
   }
-
+//============================
 
 # the_task
 # start - (tp1,...) - finish
@@ -1307,65 +1334,77 @@ float IGCELE[]
 
 proc ReadIGC(igc_file)
 {
-
- a=ofr(igc_file)
+  // think we want a C version of this
+<<"%V $igc_file \n"
+    T=fineTime();
+   a=ofr(igc_file)
 
    if (a == -1) {
      <<" can't open IGC file $igc_file\n"
      return
    }
 
+  //  B= ofw("junk.ll")
 
- b= ofw("junk.ll")
+   svar igcval;
 
- igcval=""
-
-// svar igcval
-
- nwr = igcval->Read (a)
+     nwr = igcval->Read (a)
 
 <<"$a $igc_file  $nwr $igcval[0] \n"
-jj = 0
+
 // read words ---
-int kk = 0
- while (1) {
+     int kk = 0;
+     int jj = 0;
+     
+   while (1) {
 
                           nwr = igcval->Read (a)
-//<<" $nwr $igcval[0] \n"
+			    //<<" $nwr $igcval[0] \n"
   
-//                         if (f_error(a) == 6) break
+// if (f_error(a) == 6) break
                          if (nwr == -1) break
-                        if (nwr == 1) { 
-                        tword = igcval[0]
-  //                      <<"$tword \n"
-			 if (sele(tword,0) @= "B") {
-                          igclat = sele(tword,7,8)
-                          igclong = sele(tword,15,9)
-                          iele = sele(tword,25,5)
-                          lnum = igc_dmsd(igclat)
-                          lngnum = igc_longd(igclong)
-                         
+					  
+                 if (nwr == 1) { 
+		   tword = igcval[0];
+		   //  <<"$tword \n"
+		   //"$(sele(tword,0)) \n"   
+			
 
+		   if (sele(tword,0,1) @= "B") {
+
+			  igclat = sele(tword,7,8)
+                          igclong = sele(tword,15,9)
+			    iele =  sele(tword,25,5)
+			    latnum = igc_dmsd(igclat);
+                          lngnum = igc_longd(igclong);
+			   //<<"$kk $tword \n"
                            kk++
-                          if (kk > 3) {
+                          if (kk > 10) {
+			  elev =  atof(iele);
                           IGCLONG[jj] = lngnum
-                          IGCLAT[jj] = lnum
-                          IGCELE[jj++] = atof(iele)
-    <<[b]"$igclat $lnum $igclong $lngnum $iele\n"
+                          IGCLAT[jj] = latnum
+                          IGCELE[jj] = elev;
+			  jj++;
+			  //<<[B]"$igclat $latnum $igclong $lngnum $iele\n"
+			  // <<"$latnum $lngnum $elev\n"			  
                           }
          		 }
-                       }
+		 }
 
    }
 
-<<" read $jj lat,long values \n"
+<<" read B $kk set $jj lat,long values \n"
 
- cf(a)
+    dt=fineTimeSince(T);
+<<" took $dt microsecs  $(dt/1000000.0) secs \n"
+    cf(a);
+   //  cf(B);
+    
  }
+//=================================================
 
 
-
-CLASS taskpt 
+CLASS Taskpt 
  {
 
  public:
@@ -1376,7 +1415,8 @@ CLASS taskpt
   float Alt;
   float Ladeg;
   float Longdeg;
-  float Leg
+  float Leg;
+  str Place;
 
 #  method list
 
@@ -1399,18 +1439,19 @@ CLASS taskpt
     xx= "$wval[0] \n"
     
     if (nwr > 6) {
-
+      
+      place = wval[0];
+      
 //<<" $wval[0]  \n"
 
-    Alt = atof(wval[4])
+     Alt = atof(wval[4])
 
 //    Ladeg = GetDeg(la_deg)
 
-
     Ladeg = GetDeg(wval[2])
 
-
     Longdeg = GetDeg(wval[3])
+
 
 //    Longdeg = GetDeg(long_deg)
 //     <<"%V $Alt $Ladeg $Longdeg \n"
@@ -1422,49 +1463,48 @@ CLASS taskpt
 
    CMF SetPlace (ival)   
    {
-       wval[0] = ival
+     Place = ival;
    }
 
    CMF GetPlace ()   
    {
-      val = wval[0] 
-      return val
+      return Place;
    }
 
    CMF GetTA ()   
    {
-      val = wval[7] 
-      return val
+     val = wval[7]; 
+     return val;
    }
 
    CMF GetLat ()   
    {
       val = wval[2] 
-      return val
+	return val;
    }
 
    CMF GetLong ()   
    {
       val = wval[3] 
-      return val
+	return val;
    }
 
    CMF GetRadio ()   
    {
       val = wval[6] 
-      return val
+	return val;
    }
 
    CMF GetID ()   
    {
-      val = wval[1] 
-      return val
+     val = wval[1]; 
+	return val;
    }
 
    CMF GetMSL ()   
    {
-      int ival = Alt 
-      return ival
+     int ival = Alt; 
+     return ival;
    }
 
    CMF Print ()    
@@ -1514,17 +1554,17 @@ CLASS taskpt
 
 //<<"%v $the_deg \n"
 
-the_min = atof(the_parts[1])
+        the_min = atof(the_parts[1])
 //      dv = the_parts[1]
 //      the_min = atof(dv)
 
 //        <<" %V $the_deg $the_min \n"
 
-       sz= Caz(the_min)
+	//sz= Caz(the_min);
 
  // <<" %V $sz $(typeof(the_deg)) $(Cab(the_deg))  $(Cab(the_min)) \n"
 
-      the_dir = the_parts[2]
+	the_dir = the_parts[2];
 
       y = the_min/60.0
 
@@ -1545,23 +1585,25 @@ the_min = atof(the_parts[1])
 
 proc DrawMap(w)
 {
-int msl
-float lat
-float longi
-
+  int msl;
+  float lat;
+  float longi;
+  str lab = "XX";
 
     for (k = 0 ; k < Ntp ; k++) {
+      
         if (!Wtp[k]->GetTA()) {
-        lab = slower(Wtp[k]->GetPlace())
+         lab = slower(Wtp[k]->Place)
         }
         else {
-        lab = Wtp[k]->GetPlace()
+	  lab = Wtp[k]->Place;
         }
-        msl = Wtp[k]->Alt
+	
+        msl = Wtp[k]->Alt;
 
-        lat = Wtp[k]->Ladeg
+        lat = Wtp[k]->Ladeg;
 
-        longi = Wtp[k]->Longdeg
+        longi = Wtp[k]->Longdeg;
 
 //<<[-1]"%V $k $lab $msl $lat $longi $Wtp[k]->Ladeg\n"
 
@@ -1578,11 +1620,13 @@ float longi
         }
     }
 
-    setgwob(w,"showpixmap","clipborder")
+    sWo(w,@showpixmap,@clipborder);
+    
 //  grid_label(w)
 
 }
 //====================================================
+str TaskType "OAR";
 
 proc DrawTask(w,col)
 {
@@ -1606,12 +1650,12 @@ proc DrawTask(w,col)
 
     }
 
-    ShowTPS()
+    ShowTPS();
 
 }
 
 
-//<<" DONE reading showtlib !\n"
+<<" DONE reading showtlib !\n"
 
 
 #

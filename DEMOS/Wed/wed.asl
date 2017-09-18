@@ -8,7 +8,7 @@
 
 vers = "1.7";
 
-setdebug(1);
+envdebug();
 
 //#define DBPR  <<
 
@@ -120,7 +120,7 @@ int dday;
  bday = julday("04/09/1949")
  maxday = julday("04/09/2049") -bday
 
- targetday = julday("09/21/2017") -bday;
+ targetday = julday("10/21/2017") -bday;
 
 // this is a new format -- allowing us to put comment labels on graphs
 

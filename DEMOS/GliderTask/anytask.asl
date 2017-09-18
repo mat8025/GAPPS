@@ -113,7 +113,7 @@ proc ComputeTPD(j, k)
 //<<" done class def \n"
 
 
-turnpt  Wtp[10];
+Turnpt  Wtp[10];
 
 Svar CLTPT;
 
@@ -275,17 +275,6 @@ int i = -1
     setdebug(1,"~trace");
 // first parse code bug on reading svar fields?
 
-/{
-    i=Fsearch(A,the_start,0,1,0);
-    ki = seek_line(A,0)
-    nwr = Wval->Read(A);
-
-<<"%V $i $nwr \n"
-<<"%V $Wval \n"
-    Wtp[0]->Set(Wval);
-
-exit()
-/}
 
 /////////////////////////////
     

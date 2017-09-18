@@ -1,5 +1,6 @@
-
-
+///
+///
+///
 setdebug(1,"trace")
 
 Class Scalc
@@ -70,3 +71,25 @@ d =4.0;
     acalc->set(47,79)
 
     acalc->print();
+
+FV = fgen(10,0,1);
+
+<<"$FV \n"
+
+    ok=examine(FV);
+
+<<"%V $ok\n"
+
+svar S;
+
+  S = "how can we move forward";
+
+    ok=examine(S);
+
+<<"%V $ok\n"
+
+
+    ok=examine(acalc);
+
+<<"%V $ok\n"
+

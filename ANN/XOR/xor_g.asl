@@ -14,10 +14,12 @@
     <<"Wid is $wid \n"
 
     sWi(wid,@pixmapon,@drawon,@save,@bhue,WHITE_)
+
+/// window quit button
     tbwo=cWo(wid,@TB,@name,"tb_q",@color,"yellow",@VALUE,"QUIT",@func,"window_term",@resize,0.9,0.9,0.99,0.99)
     sWo(tbwo,@BORDER,@DRAWON,@PIXMAPON,@CLIPBORDER,@FONTHUE,"red", @symbol,"triangle", @symsize, 120, @redraw)
 
-    /// window quit button
+    
 
 
     cx = 0.1
@@ -40,7 +42,7 @@
 
     sWo(rms_gwo,@clip,cx,cy,cX,cY)
 
-    sWo(rms_gwo,@scales,0, 0, 1000, 5, @save,@redraw,@drawoff,@pixmapon,@save,@savepixmap);
+    sWo(rms_gwo,@scales,0, 0, 5000, 5, @save,@redraw,@drawoff,@pixmapon,@save,@savepixmap);
 
 
     w_y0 = 0.90

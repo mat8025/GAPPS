@@ -3,7 +3,7 @@
 ///
 
 
-setdebug(0);
+envdebug();
 
 vers = "1.3";
 
@@ -51,7 +51,7 @@ static str vox_dir = "/home/mark/Spanish_in_30/";
 }
 //=======================================================
 
-
+/{/*
 proc checkForIntrpt()
 {
 int ret = 0;
@@ -70,6 +70,7 @@ int ret = 0;
   }
   return ret;
 }
+/}*/
 //===================================
 
 proc displayComment ( cmsg) 
@@ -500,6 +501,11 @@ proc getVoxTime()
 proc do_wo_options(w_wo)
 {
 
+ev_woval = E->getEventWoValue();
+ev_button = E->getEventButton();
+
+E->getEventRXY(ev_rx,ev_ry);
+ 
         if (w_wo == qwo) {
                   do_loop = 0;
         }
@@ -513,7 +519,7 @@ proc do_wo_options(w_wo)
                 showSelectRegion(1);
         }
         else if (w_wo == res_wo) {
-                 <<"%V$ev_keyw $wshift\n"
+                 <<"%V $wshift\n"
                  if (ev_woval @= "low") {
                     <<" res low\n"
                     wshift = hwlen
@@ -613,7 +619,6 @@ proc do_wo_options(w_wo)
               displayComment("%6.2f$tx $txa $txb \n");
 
         }
-
 
 }
 //================================================
@@ -1171,9 +1176,13 @@ wScreen = 0;
 int do_loop = 1;
 int w_wo = 0
 
-include "gevent"
+gevent E;
+
+float ev_rx;
+float ev_ry;
 
 //   sWo({taselwo,sgwo,voxwo},@showpixmap)
+
 
    while (do_loop) {
 
@@ -1184,14 +1193,18 @@ include "gevent"
 	  break;
          }
 
-
-        eventWait();
+        E->waitForMsg();
+	
+        ev_woid = E->getEventWoid();
 
         do_wo_options(ev_woid);
 
+        ev_keyc = E->getEventKey();
+	<<"%V $ev_keyc\n"
+	
         do_key_options(ev_keyc);
 
-       sWo({taselwo,sgwo,voxwo},@showpixmap);
+        sWo({taselwo,sgwo,voxwo},@showpixmap);
 
    //  sleep(0.1)
 

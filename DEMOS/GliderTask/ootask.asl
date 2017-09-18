@@ -91,7 +91,7 @@ proc ComputeTPD( j, k)
 //<<" done class def \n"
 
 
-turnpt  Wtp[10]
+Turnpt  Wtp[20];
 
 
   Svar CLTPT
@@ -341,7 +341,7 @@ i = -1;
 	//<<" $ki back to beginning of line ?\n"
 	// need to step back a line
 
-    nwr = Wval->Read(A)
+       nwr = Wval->Read(A)
 
       //    <<" %i $Wval \n"
 	// <<"$nwr $Wval[0] $Wval[1] $Wval[2] $Wval[3] \n"

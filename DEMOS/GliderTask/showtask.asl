@@ -9,124 +9,22 @@ PI = 4.0 * Atan(1.0)
 include "ootlib"
 
 
-gevent E;
+TaskType = "TRI"; 
+
+int Nlegs = 1;
+
+Turnpt  Wtp[500];
 
 
-turnpt  Wtp[500];
-
-taskpt  Tasktp[50];
-
-
-Units = "KM"
-    LatS= 38
-
-
-  if (LatS @= "")     LatS= 38
-
-
-LatN = 40
-
-
-
-  if (LatN @= "")  LatN= 40
-
-   LongW= 106
-
-  if (LongW @= "") LongW= 106
-
-    LongE= 104
-
-  if (LongE @= "")     LongE= 104
-
-
-
-float Mouse[20]
-
-
-int tp_wo[20]
-int gtp_wo[20]
-int ltp_wo[20]
-
-
-
-
-LoD = 30
-
-char MS[240]
-char Word[128]
-char Long[128]
-num_tpts = 700
-
-
-float R[10]
-
-
-
-
-the_min = "0"
-the_deg = "0"
-the_sec = "0"
-the_dir = "W"
-
- Graphic = CheckGWM()
-
-
- if (Graphic) {
-
-# create window and scale
-
-  vp = cWi("title","vp","resize",0.1,0.01,0.9,0.95,0)
-
-  sWi(vp,"scales",-200,-200,200,200,0, "drawoff","pixmapon","save","bhue","white")
-
-  sWi(vp,"clip",0.01,0.1,0.95,0.99)
-
-  vptxt= cWo(vp,"TEXT","resize_fr",0.55,0.01,0.75,0.1,"name","TXT","color","white","save","drawon","pixmapoff")
-
-  tdwo= cWo(vp,"BV","resize_fr",0.01,0.01,0.14,0.1,"name","TaskDistance","color","white","style","SVB")
-  sawo= cWo(vp,"BV","resize_fr",0.15,0.01,0.54,0.1,"name","SafetyAlt","color","white","style","SVB")
-
-  mapwo= cWo(vp,"GRAPH","resize",0,0.2,0.11,0.95,0.95,"name","MAP","color","white")
-  sWo(mapwo, "scales", LongW, LatS, LongE, LatN, "save", "redraw", "drawon", "pixmapon")
-
-  int tpwo[20];
-  
-  tpwo[0]=cWo(vp,"BV","name","_Start_","style","SVB",@drawon)
-
-  tpwo[1] =cWo(vp,"BV","name","_TP1_","style","SVB",@drawon)
-
-  tpwo[2] =cWo(vp,"BV","name","_TP2_","style","SVB", @drawon)
-
-  tpwo[3] =cWo(vp,"BV","name","_TP3_","style","SVB", @drawon)
-
-  tpwo[4] =cWo(vp,"BV","name","_TP4_","style","SVB", @drawon)
-
-  tpwos = tpwo[0:4];
-
-  <<"%V $tpwos\n"
-  wovtile(tpwos, 0.02, 0.3, 0.15, 0.8)
- 
-
-  TASK_wo=cWo(vp,"TB_MENU","resize",0,0.1,0,0.25,1)
-
-
-  sWo(TASK_wo, "help", "Set Task Type", "name", "TaskType", "function",  "wo_menu",  "menu", "SO,TRI,OAR,W,MT",  "value", "W")
-
-
-  igc_gl = cGl("wid",mapwo,"type","XY","xvec",IGCLONG,"yvec",IGCLAT,"color","blue")
-
-}
-
-# open file read turnpoint,lat,long and plot
+/// open turnpoint file lat,long 
 
 tp_file = GetArgStr()
 
-if (tp_file @= "") {
- tp_file = "turnpts.dat"  // open turnpoint file 
-}
+  if (tp_file @= "") {
+    tp_file = "turnpts.dat"  // open turnpoint file 
+   }
 
   A=ofr(tp_file)
-
   
 
   if (A == -1) {
@@ -137,73 +35,181 @@ if (tp_file @= "") {
 
 
  //  Read in a Task via command line
-  Ntaskpts = 0
-  Ntp = 0
+  Ntaskpts = 0;
+  Ntp = 0;
 
+ svar Wval;
+
+// nwr = Wval->Read(A)
+// nwr = Wval->Read(A);  // clear the header on this file
+
+//<<"%V $nwr $Wval\n"
+
+         C=readline(A);
+	 C=readline(A);
 
   while (1) {
 
-            nwr = Wtp[Ntp]->Read(A)
-<<"%V $nwr\n"
-            if (nwr == -1) break
+            nwr = Wval->Read(A)
 
-            if (nwr > 6) { 
+            //nwr = Wtp[Ntp]->Read(A);
+	    
+//<<"%V $nwr $Wval\n"
 
-              Wtp[Ntp]->Print()
-
-              Ntp++
+            if (nwr == -1) {
+	      break
             }
+	    
+            if (nwr > 6) { 
+//<<"$Wval[0]\n";
+             Wtp[Ntp]->Set(Wval);
 
+             //Wtp[Ntp]->Print()
+
+             Ntp++;
+            }
       }
-
 
 <<" Read $Ntp turnpts \n"
 
+ if (Ntp < 1) {
+  exit("BAD turnpts");
+ }
+////////////////////////////////////
+
+
+/////////////////// TASK DEF ////////////
+Taskpt Tasktp[50];
+
+Units = "KM"
 
 
 
+
+
+
+
+
+/////////////  Arrays : Globals //////////////
+
+LatS= 35.5;
+
+LatN = 41;
+
+LongW= 106.5;
+
+LongE= 104.5;
+
+
+
+int tp_wo[20];
+int gtp_wo[20];
+int ltp_wo[20];
+
+
+
+
+LoD = 30;
+
+char MS[240]
+char Word[128]
+char Long[128]
+num_tpts = 700
+
+float R[10];
+
+
+//////////////// PARSE COMMAND LINE ARGS ///////////////////////
   while (AnotherArg()) {
 
     Fseek(A,0,0)
     targ = GetArgStr()
-//<<" looking for  $targ \n"
+<<" looking for  $targ \n"
     i=Fsearch(A,targ,-1,1,0)
     if (i == -1)
         break
 <<" found $targ \n"
     Tasktp[Ntaskpts]->cltpt = targ
-
     nwr = Tasktp[Ntaskpts++]->Read(A)
-
   }
 
 
-if (Graphic) {
+
+///////////////////// SETUP GRAPHICS ///////////////////////////
+
+Graphic = CheckGwm();
+
+  if (!Graphic) {
+    Xgm = spawnGwm("ShowTask")
+  }
+
+// create window and scale
+
+  vp = cWi("title","vp","resize",0.1,0.01,0.9,0.95,0)
+
+  sWi(vp,"scales",-200,-200,200,200,0, @drawoff,@pixmapon,@save,@bhue,WHITE_); // but we dont draw to a window!
+
+  sWi(vp,"clip",0.01,0.1,0.95,0.99);
+
+  vptxt= cWo(vp,@TEXT,@resize_fr,0.55,0.01,0.75,0.1,@name,"TXT",@color,WHITE_,@save,@drawon,@pixmapoff);
+
+  tdwo= cWo(vp,@BV,@resize_fr,0.01,0.01,0.14,0.1,@name,"TaskDistance",@color,WHITE_,@style,"SVB");
+
+  sawo= cWo(vp,@BV,@resize_fr,0.15,0.01,0.54,0.1,"name","SafetyAlt",@color,WHITE_,@style,"SVB");
+
+  mapwo= cWo(vp,@GRAPH,@resize_fr,0.2,0.11,0.95,0.95,@name,"MAP",@color,WHITE_);
+
+<<"%V $mapwo \n"
+
+  sWo(mapwo, @scales, LongW, LatS, LongE, LatN, @save, @redraw, @drawon, @pixmapon);
+
+
+  int tpwo[20];
+  
+  tpwo[0]=cWo(vp,@BV,"name","_Start_",@style,"SVB",@drawon)
+
+  tpwo[1] =cWo(vp,@BV,"name","_TP1_",@style,"SVB",@drawon)
+
+  tpwo[2] =cWo(vp,@BV,"name","_TP2_",@style,"SVB", @drawon)
+
+  tpwo[3] =cWo(vp,@BV,"name","_TP3_",@style,"SVB", @drawon)
+
+  tpwo[4] =cWo(vp,@BV,"name","_TP4_",@style,"SVB", @drawon)
+
+  tpwos = tpwo[0:4];
+
+  <<"%V $tpwos\n"
+  wovtile(tpwos, 0.02, 0.3, 0.15, 0.8)
+
+  sWo(tpwos,@redraw);
+
+  TASK_wo=cWo(vp,@TB_MENU,@resize,0.1,0.9,0.2,0.99);
+  
+<<"%V$TASK_wo\n"
+
+  sWo(TASK_wo, @help, "Set Task Type", @name, "TaskType", @func,  "wo_menu",  @menu, "SO,TRI,OAR,W,MT",  @value, "W")
+
 
  if (Ntaskpts > 1) {
-  setgwob(tpwo[0],"value",Tasktp[0]->cltpt)
-  setgwob(tpwo[1],"value",Tasktp[1]->cltpt)
+  sWo(tpwo[0],"value",Tasktp[0]->cltpt)
+  sWo(tpwo[1],"value",Tasktp[1]->cltpt)
  }
 
  if (Ntaskpts > 2) {
-  setgwob(tpwo[2],"value",Tasktp[2]->cltpt)
+  sWo(tpwo[2],"value",Tasktp[2]->cltpt)
  }
 
-}
 
   for (k = 0; k < Ntaskpts ; k++) {
       Tasktp[k]->Print()
   }
 
 
-#{
-
+/{/*
 
 start_key = "sal"
 key[1] = "saf"
 finish_key = "sal"
-
-
 
 tpt[0] = find_key(start_key)
 tpt[1] = find_key(key[1])
@@ -224,8 +230,9 @@ ff=w_set_wo_value (tw,finish_wo,finish_key,1)
 
 TT="tri"
 
-  if ( !(TT @= "")) 
+  if ( !(TT @= ""))  {
     w_set_wo_value(tw,tclass_wo,TT)
+  }
 
 tfile= "cfi/TASKS/K300.tsk"
 
@@ -240,45 +247,38 @@ set_task()
       zoom_out(tw,0)
       zoom_out(tw,1)
 
-#}
 
-c= "EXIT"
+/}*/
 
+   c= "EXIT"
 
-      igcfn = "spk.igc"
+   sWi(vp,@redraw); // need a redraw proc for app
 
-      ReadIGC(igcfn);
+igcfn = "spk.igc"
 
-
-
-    sGl(igc_gl,"xvec",IGCLONG,"yvec",IGCLAT);
+   ReadIGC(igcfn);
 
 
 <<" $IGCLONG[0:20] \n"
 <<" $IGCLAT[0:20] \n"
-//ttyin()
 
-     ss= Stats(IGCLONG)
-<<" $ss \n"
+     sslng= Stats(IGCLONG)
+<<" $sslng \n"
 
-     ss= Stats(IGCLAT)
-<<" $ss \n"
+     sslt= Stats(IGCLAT)
+<<" $sslt \n"
 
-//ttyin()
-     DrawMap(mapwo)  
+//  set up the IGC track for plot
+    igc_gl = cGl(mapwo,@TXY,IGCLONG,IGCLAT,@color,BLUE_);
 
-     DrawGline(igc_gl)
+    DrawMap(mapwo);   // show the turnpts
+
+    DrawGline(igc_gl);  // plot the igc track -- if supplied
 
 # main
-  //      PlotIGC()
 
 
 
-//  redrawwo(vp)
-
-//   vp->RedrawWo()
-
-  sWi(vp,"woredrawall")
 
 int wwo = 0
 int witp = 0
@@ -289,47 +289,52 @@ float d_ll = 0.05
 
 keyw = "";
 
+float mrx;
+float mry;
+
+
+gevent E;
+
   while (1) {
+
     drawit = 1
 
     E->waitForMsg()
 
     keyw = E->getEventKeyw();
+    keyc = E->getEventKey();
+    E->getEventRXY(mrx,mry);    
     
-       Text(  vptxt," $keyw   ",0,0.05,1)
+    Text(  vptxt," $keyw   ",0,0.05,1)
 
-       if ( ! (keyw @= "NO_MSG")) {
+       if ( ! (keyc @= "")) {
 
        d_ll = (LatN-LatS)/ 10.0 
 
-
-       if (keyw @= "Q") {
+       if (keyc @= "Q") {
            LongW += d_ll
            LongE += d_ll
 
        }
 
-       if (keyw @= "S") {
+       if (keyc @= "S") {
            LongW -= d_ll
            LongE -= d_ll
-
        }
 
-
-       if (keyw @= "R") {
+       if (keyc @= "R") {
            LatN += d_ll
            LatS += d_ll
 
        }
 
-       if (keyw @= "T") {
+       if (keyc @= "T") {
            LatN -= d_ll
            LatS -= d_ll
-
        }
 
 
-       if (keyw @= "x") {
+       if (keyc @= "x") {
            LatN += d_ll
            LatS -= d_ll
            LongW += d_ll
@@ -337,7 +342,7 @@ keyw = "";
 
        }
 
-       if (keyw @= "z") {
+       if (keyc @= "z") {
            LatN -= (d_ll * 0.9)
            LatS += (d_ll * 0.9)
            LongW -= (d_ll * 0.9)
@@ -372,10 +377,9 @@ keyw = "";
 // witp must be scalar
 
 //       sWo(tpwo[witp],"value",Tasktp[witp]->cltpt)
-        wcltpt = Tasktp[witp]->cltpt
-       sWo(wwo,"value",wcltpt)
+            wcltpt = Tasktp[witp]->cltpt
 
-
+            sWo(wwo,"value",wcltpt)
     
              }
 
@@ -385,22 +389,24 @@ keyw = "";
 
 
        if (keyw @= "MAP") {
-           drawit = 0
-               mrx=E->wms[7]
-               mry=E->wms[8]
+
+               drawit = 0;
 
 
-             ntp = ClosestLand(mrx,mry)
+
+
+             ntp = ClosestLand(mrx,mry);
 
              if (ntp >= 0) {
                Wtp[ntp]->Print()
                nval = Wtp[ntp]->GetPlace()
+	       
               <<" found %V $ntp $nval \n"
-               Text(  vptxt," $ntp $nval   ",0,0.05,1)
-                msl = Wtp[ntp]->Alt
+                Text(  vptxt," $ntp $nval   ",0,0.05,1)
+                msl = Wtp[ntp]->Alt;
                 mkm = HowFar(mrx,mry, Wtp[ntp]->Longdeg, Wtp[ntp]->Ladeg)
-                ght = (mkm * km_to_feet) / LoD
-                sa = msl + ght + 2000
+                ght = (mkm * km_to_feet) / LoD;
+                sa = msl + ght + 2000;
 
           	sWo(sawo,"value","$nval %5.1f $msl $mkm $sa")
 
@@ -410,36 +416,54 @@ keyw = "";
 
 
 
-       if ( msgv[1] @= "Menu") {
-           <<" task type is $msgv[2] \n"
-           <<" $msgv[*] \n"
-           TaskType = msgv[2]
-           <<" Set %v $TaskType \n"
+       if ( keyw @= "Menu") {
+           <<" task type is $keyw \n"
+           TaskType = keyw;
+           <<" Set %V$TaskType \n"
        }
 
+
         if (drawit) {
-        sWo(mapwo, "scales", LongW, LatS, LongE, LatN )
-        sWo(mapwo,"clearpixmap","clipborder")
-        DrawTask(mapwo,"orange")
-        DrawMap(mapwo)
-//        PlotIGC()
-        DrawGline(igc_gl)
-//        vvdraw(mapwo,IGCLONG,IGCLAT);
-        sWo(mapwo,"showpixmap")
+	
+        sWo(mapwo, @scales, LongW, LatS, LongE, LatN )
+        sWo(mapwo,@clearpixmap,@clipborder);
+
+        //DrawTask(mapwo,"orange")
+        DrawMap(mapwo);
+        DrawGline(igc_gl);
+
+        sWo(mapwo,@showpixmap);
         }
 
       }
 
   }
+///
+
+//////////////////////////// TBD ///////////////////////////////////////////
+/{/*
 
 
+ BUGS:  crash on entering start,tp1,tp2
+        not showing all WOS -- title button
 
 
+ Task definition : intial via CL  type{OB,TRI,SO, W, OLC}   tp1,tp2,tp3 ...
+
+ Task definition : via WO click
+
+ should show TP,TA info when click on map
+
+ scroll map buttons
 
 
+ ADD:
+  readIGC - C++ function
+
+  can we plot on top sectional image - where to get those?
 
 
-////////////////////////////////////////////////////// TBD ///////////////////////////////////////////
+/}*/
 
 
 

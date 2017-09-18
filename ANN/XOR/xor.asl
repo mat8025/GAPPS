@@ -18,17 +18,20 @@ str avers;
 avers = annversion();
 <<"version is $avers\n"
 
-
+do_print = 0;
 ascii W[60];
 
-float Input[8]
-float Target[4]
+float Input[8];
+float Target[4];
+float Wvec[];
 
 #char Target[20]
 #char Target[4][2]
 
 float Rms[1000+] ; //  contains rms error per sweep
 
+
+int set_wts = 0;
 # procs
 
 proc usage()
@@ -86,7 +89,7 @@ float theta = 0.95
 ntype = "sff"
 
 int nsweeps = 20000;
-
+int rshaken = nsweeps;
 cla = 1
 <<"%V$na \n"
 
@@ -155,6 +158,18 @@ while (cla <= na) {
           nsweeps=val
      }
 
+     if (arg @= "rshaken") {
+          rshaken=val
+     }
+
+     if (arg @= "print") {
+          do_print=val
+     }
+
+     if (arg @= "wts") {
+          set_wts=val;
+     }
+
 }
 
 # get net descriptor
@@ -208,10 +223,26 @@ else {
 <<"connection setup ok \n"
 }
 
-rs = 8
-rs = set_net_wts(N,rs)
 
-<<"random seed $rs \n"
+
+
+
+ if (set_wts) {
+
+Wvec[] = {0.0,1.5,1.5, 0.0,1};
+
+<<"$Wvec \n"
+
+  ok = setNetWts(N,Wvec);
+
+}
+else {
+ rs = 8;
+ rs = randnetwts(N,rs);
+ <<"random seed $rs \n"
+}
+
+
 
 # defaults
 # set up teaching specs
@@ -266,34 +297,13 @@ Target[2] = 0
 Target[3] = 0
 
 //  XOR
-Target[0] = 0
-Target[1] = 1
-Target[2] = 1
-Target[3] = 0
 
+Target[0] = 0;
+Target[1] = 1;
+Target[2] = 1;
+Target[3] = 0;
 
-
-#{
-Target[0] = 1
- Target[1] = 0
-Target[2] = 1
- Target[3] = 1
-Target[4] = 1
- Target[5] = 1
-Target[6] = 1
- Target[7] = 0
-
-
-for ( i = 0 ; i < 4 ; i++) {
-Target[i][0] = 1;
-Target[i][1] = 0;
-}
-
-for ( i = 1 ; i < 3 ; i++) {
-Target[i][1] = 1
-}
-#}
-
+<<"$Target\n"
 
 ntargs = 4
 
@@ -318,19 +328,42 @@ npats=set_net_pats(N,4)
 
 
 theta = getNetTheta(N)
-<<"theta $theta \n"
+<<"%V$theta \n"
 
 alpha = get_net_alpha(N)
-<<"alpha $alpha \n"
+<<"%V$alpha \n"
 
+ns = 0
 //nc = train_net(N, &Input[0], &Target[0], 1)
 
-  nc = trainNet(N, Input, Target, 1)
+  //nc = trainNet(N, Input, Target, 1)
+  nc = testNet(N, Input, Target, 1)
+ns++
+<<"first sweep %V$ns  correct $nc \n"
+ss = get_net_ss(N)
+rms = sqrt( ss/ 4)
+Rms[ns] = rms;
 
+<<"%V $ss $rms \n"
+
+if (do_print) {
 //print_net(N, 1,&Input[0], &Target[0])
+<<"///0//\n"
+ print_net(N, 0,Input, Target);
+ <<"///1//\n" 
+ print_net(N, 1,Input, Target);
+<<"///2//\n"
+ print_net(N, 2,Input, Target);
+<<"///3//\n"
+ print_net(N, 3,Input, Target);
+if (ans @= "q") {
+ exit()
+}
 
- print_net(N, 1,Input, Target)
- print_net(N, 2,Input, Target)
+<<"/////////////\n"
+}
+
+
 
 
 set_net_debug(0)
@@ -351,7 +384,7 @@ setPrintGWM(0)
 <<"%V$wid \n"
 
 
-ns = 1
+
 p = 0
 do_train = 1
 
@@ -362,27 +395,33 @@ int pit;
 
 while (do_train) {
 
-  pit = (!(ns % 1500));
+  pit = (!(ns % 1));
 
 //nc =train_net(N, &Input[0], &Target[0], 1)
 
  // nc= train_net(N, Input, Target, 1)
 
- nc= train_net(N, Input, Target, 1);
+  nc= train_net(N, Input, Target, 1);
 
- if (pit) {
-/{
-   print_net(N, 0,&Input[0], &Target[0])
-   print_net(N, 1,&Input[0], &Target[0])
-   print_net(N, 2,&Input[0], &Target[0])
-   print_net(N, 3,&Input[0], &Target[0])
-/}
- }
 
 net_sweeps = getNetSweeps(N)
 ss = get_net_ss(N)
 rms = sqrt( ss/ 4)
 Rms[ns] = rms
+
+ if (do_print && pit && !Graphic) {
+
+  print_net(N, 0,&Input[0], &Target[0])
+  print_net(N, 1,&Input[0], &Target[0])
+  print_net(N, 2,&Input[0], &Target[0])
+  print_net(N, 3,&Input[0], &Target[0])
+
+  <<"%V$ns  $nc $ss $rms\n"
+ans=iread("goon:")
+if (ans @= "q") {
+ exit()
+}
+ }
 
   if (rms > 10) {
 <<"%V$rms \n"
@@ -416,10 +455,12 @@ Rms[ns] = rms
  }
 
  if (rms > 0.2) {
- if ((ns % 5000) == 0) {
+ 
+ if ((ns % rshaken) == 0) {
     <<"random shake !\n"
     randNetWts(N,8,4);
  }
+
  }
 
  if (ns > nsweeps) {
@@ -439,10 +480,28 @@ Rms[ns] = rms
 
  ok= save_net(N,"xor_net.wts")
 
+if (!Graphic) {
+<<"%V $nc \n"
+
+print_net(N, 0,&Input[0], &Target[0])
+
+print_net(N, 1,&Input[0], &Target[0])
+
+print_net(N, 2,&Input[0], &Target[0])
+
+print_net(N, 3,&Input[0], &Target[0])
+
+}
+
+
+if (nc == 4) {
+
+ <<"SUCCESS @ $ns sweeps\n";
+}
 
  A=ofw("net_wts");
 
- printNetState(N,A)
+ printNetState(N,A);
 
 
  if (wid > 0) {
