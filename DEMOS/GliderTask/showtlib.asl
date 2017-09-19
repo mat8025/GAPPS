@@ -1141,12 +1141,14 @@ proc nearest (tp)
   // compute distance from tp to others
   // if less than D
   // print
-
-
-
 }
-
-
+//============================
+proc pickaTP( wtp)
+{
+<<" click and get nearest tp!\n"
+    return 0;
+}
+//============================
 
 proc spin()
 {

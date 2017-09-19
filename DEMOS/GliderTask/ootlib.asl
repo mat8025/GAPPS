@@ -40,6 +40,8 @@ CLASS Turnpt
   str Place;
   str Idnt;
   str rway;
+  str tptype;
+  
   str Cltpt;
   float Radio;
 
@@ -47,7 +49,7 @@ CLASS Turnpt
   float Ladeg;
   float Longdeg;
 
-#  method list
+//  method list
 
   CMF Set (wval) 
    {
@@ -88,13 +90,11 @@ CLASS Turnpt
      
      Radio = atof(wval[6]);
 
+     tptype = wval[7];
+
      //  <<"%V$Lat $Lon \n"
-
      //  <<" $(typeof(Lat)) \n"
-
      // <<" $(typeof(Lon)) \n"
-
-	 
      //  <<" $(typeof(Ladeg)) \n"	 
      Ladeg =  GetDeg(Lat);
 
@@ -108,6 +108,12 @@ CLASS Turnpt
        Place = val
    }
 
+
+   CMF GetPlace ()   
+   {
+       return Place; 
+   }
+
    CMF Print ()    
    {
      <<"$Place $Idnt $Lat $Lon $Alt $rway $Radio $Ladeg $Longdeg\n"
@@ -116,13 +122,18 @@ CLASS Turnpt
 
   CMF turnpt()
     {
-      Place="ppp"
-	//      <<" CONS $_cobj %i $Place\n"
-     
-      Ladeg = 0.0
-      Longdeg = 0.0
+      Place="ppp";
+      Ladeg = 0.0;
+      Longdeg = 0.0;
     }
 
+ CMF GetTA()   
+   {
+      int amat =0;
+      val = tptype; 
+      spat (val,"A",-1,-1,amat)
+      return amat;
+   }
 
   CMF GetDeg ( the_ang)
     {
@@ -175,11 +186,8 @@ CLASS Turnpt
 //=============================================================
 
 
-
-
-proc get_word( defword)
+proc get_word(defword)
   {
-
   svar h
 
     //    <<" %V $defword $via_keyb $via_cl \n"
@@ -686,15 +694,17 @@ proc delete_alltps()
 
 proc get_tpt(wtpt)
 {
- float mse[20]
-   int wn;
 
- 
-  get_mouse_event(&mse[0])
+ int wn;
+ str lab;
 
-  wn = mse[3]
+<<"bad get_tpt \n"
+  return 0;
+ // get_mouse_event(&mse[0])
 
-  if (wn == -1) return -1
+ // wn = mse[3]
+
+ // if (wn == -1) return -1
 
   longit = mse[4]
   lat = mse[5]
@@ -720,12 +730,14 @@ proc get_tpt(wtpt)
     if (wtpt >=1)       w_set_wo_value (tw,tp_wo[wtpt],lab)
     if (wtpt == -1)       w_set_wo_value (tw,finish_wo,lab)
 
-    return 1
+    return 1;
 }
 
 
 proc draw_map(w)
 {
+str lab;
+
   w_clip_clear(w)
   ff=w_clip_border(w)
 
@@ -892,6 +904,7 @@ proc chk_start_finish()
 
 proc task_menu(w)
 {
+
   ur_c=choice_menu("task_opts.m")
 
           if (ur_c @= "zoom_to_task") {
@@ -1588,16 +1601,19 @@ proc DrawMap(w)
   int msl;
   float lat;
   float longi;
-  str lab = "XX";
-
+  str mlab;
+<<"$mlab $(typeof(mlab))\n";
     for (k = 0 ; k < Ntp ; k++) {
-      
+ setdebug(1);     
+
         if (!Wtp[k]->GetTA()) {
-         lab = slower(Wtp[k]->Place)
+         mlab = slower(Wtp[k]->Place)
         }
         else {
-	  lab = Wtp[k]->Place;
+	  mlab = Wtp[k]->Place;
         }
+	<<"$mlab $(typeof(mlab))\n";
+ setdebug(0);     	
 	
         msl = Wtp[k]->Alt;
 
@@ -1608,14 +1624,14 @@ proc DrawMap(w)
 //<<[-1]"%V $k $lab $msl $lat $longi $Wtp[k]->Ladeg\n"
 
         if ( msl > 7000) {
-             Text(w,lab,longi,lat,0,0,1,"red")
+             Text(w,mlab,longi,lat,0,0,1,"red")
         }
         else {
             if ( msl > 5000){
-             Text(w,lab,longi,lat,0,0,1,"blue")
+             Text(w,mlab,longi,lat,0,0,1,"blue")
             }
             else {
-              Text(w,lab,longi,lat,0,0,1,"green")
+              Text(w,mlab,longi,lat,0,0,1,"green")
             }
         }
     }
@@ -1653,7 +1669,202 @@ proc DrawTask(w,col)
     ShowTPS();
 
 }
+//=============================================
 
+
+proc PickTP(atarg,  witp) 
+{
+  int kk;
+
+    Fseek(A,0,0)
+// <<" looking for  $atarg \n"
+    i=Fsearch(A,atarg,-1,1,0)
+    if (i != -1) {
+     kk= witp
+//<<" %V $kk $witp $(typeof(witp)) \n"
+    Tasktp[kk]->cltpt = atarg
+    nwr = Tasktp[kk]->Read(A)
+<<" found $atarg $witp $nwr\n"
+
+   }
+}
+//=============================================
+
+
+proc ClosestTP(longx, laty)
+{
+ float mintp = 30;
+ int mkey = -1
+
+    for (k = 0 ; k < Ntp ; k++) {
+
+        lat = Wtp[k]->Ladeg
+        longi = Wtp[k]->Longdeg
+
+      dx = Fabs(longx - longi)
+      dy = Fabs(laty - lat)
+      dxy = dx + dy
+
+        if (dxy < mintp) {
+          mkey = k
+          mintp = dxy
+//<<" %V $dx $dy $dxy $mkey \n"
+        }
+
+    }
+//<<" found $mkey \n"
+   if (mkey != -1)
+   Wtp[mkey]->Print()
+
+     return  mkey;
+}
+//=============================================
+
+proc ClosestLand( longx,  laty)
+{
+ float mintp = 18000;
+ int mkey = -1
+ int isairport = 0
+ float sa 
+ float longa
+ float lata
+
+  longa = longx
+  lata = laty
+
+
+    for (k = 0 ; k < Ntp ; k++) {
+
+         isairport = Wtp[k]->GetTA()
+
+         if (isairport) { 
+                msl = Wtp[k]->Alt
+                mkm = HowFar(lata,longa, Wtp[k]->Ladeg,Wtp[k]->Longdeg)
+                ght = (mkm * km_to_feet) / LoD
+
+//FIX_PARSE_ERROR                sa = Wtp[k]->Alt + ght + 2000
+
+
+                sa = msl + ght + 2000
+
+//<<" $k $mkm $ght $sa \n"
+
+          if (sa < mintp) {
+          mkey = k
+          mintp = sa
+          }
+      }
+
+    }
+
+//<<" found $mkey \n"
+   if (mkey != -1)
+   Wtp[mkey]->Print()
+
+   return  mkey
+}
+//=============================================
+
+
+proc PickaTP( itp)
+{
+// 
+// use current lat,long to place curs
+//
+        <<" get task pt $itp \n"
+
+  float rx;
+  float ry;
+
+  rx = MidLong;
+  ry = MidLat;
+
+//          DrawMap(mapwo)
+
+  MouseCursor("left", mapwo, rx, ry);
+<<"Pick a TP\n";
+
+  E->waitForMsg();
+  E->getEventRXY(rx,ry);
+  woid = E->getEventWoid();
+
+          gsync()
+
+          sleep(0.2)
+
+          ntp = ClosestTP(rx,ry);
+
+//      ntp = ClosestLand(mev[7],mev[8])
+
+          MouseCursor("hand");
+
+        if (ntp >= 0) {
+
+             Wtp[ntp]->Print()
+
+             nval = Wtp[ntp]->GetPlace()
+<<" found %V $ntp $nval \n"
+            Fseek(A,0,0);
+            i=Fsearch(A,nval,-1,1,0)
+
+<<" %v $i \n"
+
+int kk = itp;
+
+           if (i != -1) {
+
+<<" setting tp $itp $kk  to $nval \n" 
+
+            Tasktp[kk]->cltpt = nval;
+
+            nwr = Tasktp[kk]->Read(A)
+
+            Tasktp[kk]->Print();
+
+            ret = 1;
+	    break;
+            }
+      }
+       return ret;
+}
+//=============================================
+
+proc get_tpt(wtpt)
+{
+ int wn;
+ float rx;
+ float ry;
+
+  E->waitForMsg();
+  E->getEventRXY(rx,ry);
+  woid = E->getEventWoid();
+
+  //get_mouse_event(&mse[0])
+  
+  if (woid != mapwo) {
+     return 0;
+  }
+
+  longit = rx;
+  lat =  ry;
+
+  min = 10;
+  mkey = 0;
+
+    for (k = 0 ; k < ntp ; k++) {
+      lab = Keys[k]
+      dx = Fabs(longit - LO[k])
+      dy = Fabs(lat - LA[k])
+      dxy = dx + dy
+        if (dxy < min) {
+          mkey = k
+          min = dxy
+        }
+    }
+
+    return 1
+}
+//=============================================
 
 <<" DONE reading showtlib !\n"
 

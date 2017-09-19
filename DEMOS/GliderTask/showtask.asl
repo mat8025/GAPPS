@@ -4,7 +4,6 @@
 
 envDebug()
 
-PI = 4.0 * Atan(1.0)
 
 include "ootlib"
 
@@ -100,6 +99,8 @@ LongW= 106.5;
 
 LongE= 104.5;
 
+MidLat = (LatN - LatS)/2.0 + LatS;
+MidLong = (LongW - LongE)/2.0 + LongE;
 
 
 int tp_wo[20];
@@ -275,17 +276,16 @@ igcfn = "spk.igc"
 
     DrawGline(igc_gl);  // plot the igc track -- if supplied
 
+
 # main
+setdebug(0,"proc");
 
+int wwo = 0;
+int witp = 0;
+int drawit = 0;
+msgv = "";
 
-
-
-int wwo = 0
-int witp = 0
-int drawit = 0
-msgv = ""
-
-float d_ll = 0.05
+float d_ll = 0.05;
 
 keyw = "";
 
@@ -303,9 +303,12 @@ gevent E;
 
     keyw = E->getEventKeyw();
     keyc = E->getEventKey();
+    woname = E->getEventWoName();    
     E->getEventRXY(mrx,mry);    
-    
-    Text(  vptxt," $keyw   ",0,0.05,1)
+
+<<"%V $keyw $keyc $woname\n"; 
+
+    Text(vptxt," $keyw   ",0,0.05,1)
 
        if ( ! (keyc @= "")) {
 
@@ -314,7 +317,6 @@ gevent E;
        if (keyc @= "Q") {
            LongW += d_ll
            LongE += d_ll
-
        }
 
        if (keyc @= "S") {
@@ -325,7 +327,6 @@ gevent E;
        if (keyc @= "R") {
            LatN += d_ll
            LatS += d_ll
-
        }
 
        if (keyc @= "T") {
@@ -349,7 +350,6 @@ gevent E;
            LongE += (d_ll * 0.9)
        }
 
-
        if (keyw @= "_Start_") {
              if (PickaTP(0)) {
              sWo(tpwo[0],"value",Tasktp[0]->cltpt)
@@ -369,7 +369,7 @@ gevent E;
 
 <<" %V $keyw $np $witp $wwo $wcltpt\n"
 
-            sWo(wwo,"xor")
+            sWo(wwo, @cxor)
 
              if (PickaTP(witp)) {
 
@@ -377,13 +377,15 @@ gevent E;
 // witp must be scalar
 
 //       sWo(tpwo[witp],"value",Tasktp[witp]->cltpt)
+
             wcltpt = Tasktp[witp]->cltpt
+	    
 
             sWo(wwo,"value",wcltpt)
     
              }
 
-           sWo(,"xor")
+           sWo(wwo,@cxor);
 
        }
 
@@ -391,9 +393,6 @@ gevent E;
        if (keyw @= "MAP") {
 
                drawit = 0;
-
-
-
 
              ntp = ClosestLand(mrx,mry);
 
