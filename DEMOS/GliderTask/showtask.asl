@@ -83,12 +83,6 @@ Taskpt Tasktp[50];
 Units = "KM"
 
 
-
-
-
-
-
-
 /////////////  Arrays : Globals //////////////
 
 LatS= 35.5;
@@ -152,13 +146,17 @@ Graphic = CheckGwm();
 
   sWi(vp,"clip",0.01,0.1,0.95,0.99);
 
-  vptxt= cWo(vp,@TEXT,@resize_fr,0.55,0.01,0.75,0.1,@name,"TXT",@color,WHITE_,@save,@drawon,@pixmapoff);
+  vptxt= cWo(vp,@TEXT,@resize_fr,0.55,0.01,0.95,0.1,@name,"TXT",@color,WHITE_,@save,@drawon,@pixmapoff);
 
   tdwo= cWo(vp,@BV,@resize_fr,0.01,0.01,0.14,0.1,@name,"TaskDistance",@color,WHITE_,@style,"SVB");
 
   sawo= cWo(vp,@BV,@resize_fr,0.15,0.01,0.54,0.1,"name","SafetyAlt",@color,WHITE_,@style,"SVB");
 
-  mapwo= cWo(vp,@GRAPH,@resize_fr,0.2,0.11,0.95,0.95,@name,"MAP",@color,WHITE_);
+  vvwo= cWo(vp,@GRAPH,@resize_fr,0.2,0.11,0.95,0.25,@name,"MAP",@color,WHITE_);
+
+  sWo(vvwo, @scales, 0, 0, 86400, 6000, @save, @redraw, @drawon, @pixmapon);
+
+  mapwo= cWo(vp,@GRAPH,@resize_fr,0.2,0.26,0.95,0.95,@name,"MAP",@color,WHITE_);
 
 <<"%V $mapwo \n"
 
@@ -177,10 +175,12 @@ Graphic = CheckGwm();
 
   tpwo[4] =cWo(vp,@BV,"name","_TP4_",@style,"SVB", @drawon)
 
-  tpwos = tpwo[0:4];
+  tpwo[5] =cWo(vp,@BV,"name","_TP5_",@style,"SVB", @drawon)
+
+  tpwos = tpwo[0:5];
 
   <<"%V $tpwos\n"
-  wovtile(tpwos, 0.02, 0.3, 0.15, 0.8)
+  wovtile(tpwos, 0.02, 0.4, 0.15, 0.95)
 
   sWo(tpwos,@redraw);
 
@@ -255,27 +255,41 @@ set_task()
 
    sWi(vp,@redraw); // need a redraw proc for app
 
-igcfn = "spk.igc"
+   igcfn = "spk.igc"
 
-   ReadIGC(igcfn);
+   Ntpts=IGC_Read(igcfn);
 
+<<"sz $Ntpts $(Caz(IGCLONG))   $(Caz(IGCLAT))\n"
 
-<<" $IGCLONG[0:20] \n"
-<<" $IGCLAT[0:20] \n"
+      k = Ntpts - 30;
+
+<<"%(10,, ,\n) $IGCLONG[0:30] \n"
+<<"%(10,, ,\n) $IGCLONG[k:Ntpts-1] \n"
+
+//<<"%(10,, ,\n) $IGCLAT[0:30] \n"
+//<<"%(10,, ,\n) $IGCELE[0:30] \n"
+//<<"%(10,, ,\n) $IGCTIM[0:30] \n"
 
      sslng= Stats(IGCLONG)
-<<" $sslng \n"
+<<"%V $sslng \n"
 
      sslt= Stats(IGCLAT)
-<<" $sslt \n"
+<<"%V $sslt \n"
+
 
 //  set up the IGC track for plot
-    igc_gl = cGl(mapwo,@TXY,IGCLONG,IGCLAT,@color,BLUE_);
+    igc_tgl = cGl(mapwo,@TXY,IGCLONG,IGCLAT,@color,BLUE_);
+
+    igc_vgl = cGl(vvwo,@TY,IGCELE,@color,RED_);
 
     DrawMap(mapwo);   // show the turnpts
 
-    DrawGline(igc_gl);  // plot the igc track -- if supplied
+   if (Ntpts > 0) {
+    DrawGline(igc_tgl);  // plot the igc track -- if supplied
 
+    sWo(vvwo, @scales, 0, 0, Ntpts, 6000 )
+    DrawGline(igc_vgl);  // plot the igc climb -- if supplied
+   }
 
 # main
 setdebug(0,"proc");
@@ -291,7 +305,7 @@ keyw = "";
 
 float mrx;
 float mry;
-
+str wcltpt="XY";
 
 gevent E;
 
@@ -304,7 +318,10 @@ gevent E;
     keyw = E->getEventKeyw();
     keyc = E->getEventKey();
     woname = E->getEventWoName();    
+    wwo = E->getEventWoid();
+    
     E->getEventRXY(mrx,mry);    
+
 
 <<"%V $keyw $keyc $woname\n"; 
 
@@ -351,9 +368,11 @@ gevent E;
        }
 
        if (keyw @= "_Start_") {
+             sWo(wwo, @cxor)
              if (PickaTP(0)) {
-             sWo(tpwo[0],"value",Tasktp[0]->cltpt)
+               sWo(tpwo[0],@value,Tasktp[0]->cltpt,@redraw)
              }
+	     sWo(wwo, @cxor)
        }
 
 
@@ -362,26 +381,23 @@ gevent E;
              np = spat(keyw,"_TP",1)
              np = spat(np,"_",-1)
 
-             witp = atoi(np)
+             witp = atoi(np);
              wwo = tpwo[witp]
 
              wcltpt = Tasktp[witp]->cltpt
 
 <<" %V $keyw $np $witp $wwo $wcltpt\n"
 
-            sWo(wwo, @cxor)
+             sWo(wwo, @cxor);
+	     gflush();
 
              if (PickaTP(witp)) {
 
-//FIX	       sWo(tpwo[witp],"value",Tasktp[witp]->cltpt)
-// witp must be scalar
+              wcltpt = Tasktp[witp]->cltpt;
 
-//       sWo(tpwo[witp],"value",Tasktp[witp]->cltpt)
+<<"%V $wwo $wcltpt\n"
 
-            wcltpt = Tasktp[witp]->cltpt
-	    
-
-            sWo(wwo,"value",wcltpt)
+              sWo(wwo,@value,wcltpt,@redraw);
     
              }
 
@@ -394,9 +410,10 @@ gevent E;
 
                drawit = 0;
 
-             ntp = ClosestLand(mrx,mry);
+               ntp = ClosestLand(mrx,mry);
 
              if (ntp >= 0) {
+
                Wtp[ntp]->Print()
                nval = Wtp[ntp]->GetPlace()
 	       
@@ -406,8 +423,7 @@ gevent E;
                 mkm = HowFar(mrx,mry, Wtp[ntp]->Longdeg, Wtp[ntp]->Ladeg)
                 ght = (mkm * km_to_feet) / LoD;
                 sa = msl + ght + 2000;
-
-          	sWo(sawo,"value","$nval %5.1f $msl $mkm $sa")
+          	sWo(sawo,@value,"$nval %5.1f $msl $mkm $sa",@redraw)
 
              }
 
@@ -429,9 +445,14 @@ gevent E;
 
         //DrawTask(mapwo,"orange")
         DrawMap(mapwo);
-        DrawGline(igc_gl);
-
+	if (Ntpts > 0) {
+        sWo(vvwo, @scales, 0, 0, Ntpts, 6000 )
+        DrawGline(igc_tgl);
+	sWo(vvwo,@clearpixmap,@clipborder);
+	DrawGline(igc_vgl);
         sWo(mapwo,@showpixmap);
+        sWo(vvwo,@showpixmap);
+	}
         }
 
       }
@@ -457,6 +478,7 @@ gevent E;
 
 
  ADD:
+
   readIGC - C++ function
 
   can we plot on top sectional image - where to get those?

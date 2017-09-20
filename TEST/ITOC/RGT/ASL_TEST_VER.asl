@@ -15,7 +15,7 @@ vers = "1.6";
 !!"rm -f ../*/*.out"
 !!"rm -f ../*/*.xout"
 
-setenvdebug();
+envdebug();
 
 //<<"$tdir\n"
 
@@ -1438,6 +1438,9 @@ if (lsz > 1) {
 }
 <<"----------------------------------------------------------------------------\n"
 <<"$(date(5)) Modules $n_modules  Tests $rt_tests  Passed $rt_pass  Score %6.3f$pcc Fail %d $(flsz[0]) Crash $(lsz[0]-1) $(get_version())\n"
+
+
+<<[Opf]"$(date(5)) Modules $n_modules  Tests $rt_tests  Passed $rt_pass  Score %6.3f$pcc Fail %d $(flsz[0]) Crash $(lsz[0]-1) $(get_version())\n"
 
 
 fflush(Opf)

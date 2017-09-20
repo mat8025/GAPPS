@@ -781,8 +781,18 @@ igc_file = "dd.igc"
 
 proc plot_igc(w)
 {
+<<" RECODE \n";
 
- a=ofr(igc_file)
+///  replace with
+///  A=ofr(igc_file)
+//   readIGG(A,latv,lngv,elev)
+///  drawGline (igc)
+///  cf(A)
+
+
+
+/{/*
+   a=ofr(igc_file)
    if (a == -1) {
      <<" can't open IGC file \n"
      return
@@ -806,6 +816,9 @@ proc plot_igc(w)
    }
  w_store(w); 
  cf(a);
+/}*/
+
+
  }
 //==================================
 
@@ -919,7 +932,9 @@ proc task_menu(w)
       draw_map(w)
     }
 
-    if (ur_c @= "plot_igc")        plot_igc(w)
+    if (ur_c @= "plot_igc") {
+       plot_igc(w)
+    }
 
     if (ur_c @= "delete_tp") {
       delete_tp(w)
@@ -984,134 +999,6 @@ proc task_menu(w)
     }
 }
 
-# conversion routines
-
-proc get_dmsd (the_ang)
-{
-
-  //  <<" $_proc %v $the_ang \n"
-
-    the_parts = Split(the_ang,",")
-
-      //<<" $the_parts \n"
-
-    the_deg = atof(the_parts[0])
-
-    the_min = atof(the_parts[1]);
-
-      //sz= Caz(the_min)
-
-    the_dir = the_parts[2]
-      //<<" %v $the_dir \n"
-   
-      //    <<" %v $the_ang \n"
-      //     <<"%V $the_deg $(typeof(the_deg)) $the_min $sz $(typeof(the_min)) $the_dir \n"
-
-    y = the_min/60.0;
-
-    la = the_deg + y
-
-    //    sz= Caz(la)
-    //<<"%v $la  $(typeof(la))    $sz\n"
-
-      if (the_dir @= "W") {
-         la *= -1
-      }
-
-    if (the_dir @= "S") {
-           la *= -1
-	     }
-
-    //     <<" %V $la  $y $(typeof(la)) \n"
-      ;
- return (la)
- 
-}
-
-
-proc dat_dmsd (the_ang)
-{
-
-  //<<" $_cproc %V$the_ang \n"
-  float the_min;
-  float the_deg;
-  
-    nang = ssub(the_ang,":",".")
-
-    the_parts = Split(nang,".")
-
-    the_deg = atof(the_parts[0]);
-
-    the_min =  atof(the_parts[1]);
-
-    the_cdir = the_parts[2]
-
-    sl= slen(the_cdir) 
-    sli = sl -1
-
-    the_dir = the_cdir{sli}
-
-  //     <<" %V $the_deg $the_min $sl  $the_cdir $the_dir\n"
-
-    float la
-    float y = the_min/60.0
-
-    la = the_deg + y
-
-    if (the_dir @= "W") la *= -1
-
-    if (the_dir @= "S") la *= -1
-
-      //      <<" %v $la  $y $(typeof(la)) \n"
-
-    return (la)
-  }
-//============================
-
-
-
-proc igc_dmsd (the_ang)
-  {
-    
-    //the_deg = the_min = 0.0;
-    //the_deg =  0.0;
-    //the_min = 0.0;
-
-    the_deg = atof(sele(the_ang,0,2));
-    the_min = atof(sele(the_ang,2,2));
-    fr = atof(sele(the_ang,4,3));
-
-    //<<"$the_ang $the_deg $the_min $f\n"
-      
-    the_min += (fr/1000.0);
-    la = the_deg + the_min/60.0;
-    the_dir = sele(the_ang,8)
-
-      if (the_dir @= "S") la *= -1;
-    //<<"%V$la\n"
-	//ps=iread("::>")
-    return (la)
-  }
-//============================
-
-proc igc_longd (the_ang)
-  {
-    //the_deg = the_min = 0.0;
-
-    
-      the_deg = atof(sele(the_ang,0,3))
-      the_min = atof(sele(the_ang,3,2))
-      fr = atof(sele(the_ang,5,3))
-    the_min += (fr/1000.0);
-    //<<"$the_ang $the_deg $the_min $f\n"
-    la = the_deg + the_min/60.0;
-    the_dir = sele(the_ang,9)
-
-    if (the_dir @= "W")) la *= -1;
-    return (la)
-  }
-//============================
-
 # the_task
 # start - (tp1,...) - finish
 
@@ -1142,7 +1029,7 @@ proc task_dist()
   t_d = Fround(t_d,2)
   return (t_d)
 }
-
+//============================================
 
 proc compute_leg2(t_1,t_2)
 {
@@ -1341,80 +1228,35 @@ proc spin()
 
 
 
-float IGCLONG[]
-float IGCLAT[]
-float IGCELE[]
+float IGCLONG[];
+float IGCLAT[];
+float IGCELE[];
+float IGCTIM[];
 
-proc ReadIGC(igc_file)
+
+proc IGC_Read(igc_file)
 {
-  // think we want a C version of this
 <<"%V $igc_file \n"
-    T=fineTime();
-   a=ofr(igc_file)
+   T=fineTime();
+
+   a=ofr(igc_file);
 
    if (a == -1) {
      <<" can't open IGC file $igc_file\n"
-     return
+     return 0;
    }
 
-  //  B= ofw("junk.ll")
-
-   svar igcval;
-
-     nwr = igcval->Read (a)
-
-<<"$a $igc_file  $nwr $igcval[0] \n"
-
-// read words ---
-     int kk = 0;
-     int jj = 0;
-     
-   while (1) {
-
-                          nwr = igcval->Read (a)
-			    //<<" $nwr $igcval[0] \n"
-  
-// if (f_error(a) == 6) break
-                         if (nwr == -1) break
-					  
-                 if (nwr == 1) { 
-		   tword = igcval[0];
-		   //  <<"$tword \n"
-		   //"$(sele(tword,0)) \n"   
-			
-
-		   if (sele(tword,0,1) @= "B") {
-
-			  igclat = sele(tword,7,8)
-                          igclong = sele(tword,15,9)
-			    iele =  sele(tword,25,5)
-			    latnum = igc_dmsd(igclat);
-                          lngnum = igc_longd(igclong);
-			   //<<"$kk $tword \n"
-                           kk++
-                          if (kk > 10) {
-			  elev =  atof(iele);
-                          IGCLONG[jj] = lngnum
-                          IGCLAT[jj] = latnum
-                          IGCELE[jj] = elev;
-			  jj++;
-			  //<<[B]"$igclat $latnum $igclong $lngnum $iele\n"
-			  // <<"$latnum $lngnum $elev\n"			  
-                          }
-         		 }
-		 }
-
-   }
-
-<<" read B $kk set $jj lat,long values \n"
-
-    dt=fineTimeSince(T);
-<<" took $dt microsecs  $(dt/1000000.0) secs \n"
-    cf(a);
-   //  cf(B);
+    ntps =ReadIGC(a,IGCTIM,IGCLAT,IGCLONG,IGCELE);
     
- }
-//=================================================
+<<"read $ntps from $igc_file \n"
+
+   dt=fineTimeSince(T);
+<<"$_proc took $(dt/1000000.0) secs \n"
+    cf(a);
+   return ntps;
+}
+//========================
+
 
 
 CLASS Taskpt 
@@ -1433,8 +1275,9 @@ CLASS Taskpt
 
 #  method list
 
-  CMF Read ( fh) 
+  CMF Read (fh) 
   {
+  
      la_deg = "" 
      long_deg = ""
 
@@ -1538,18 +1381,16 @@ CLASS Taskpt
     }
 
 
-
   CMF GetDeg (svar the_ang)
     {
 
   //<<" $_cproc %v $the_ang \n"
-
   //  <<"%V $the_ang $(typeof(the_ang)) \n"
 //ttyin()
-      float la
 
-      float the_deg
-      float the_min
+      float la;
+      float the_deg;
+      float the_min;
 
 //<<" $_cproc  $the_ang  \n"
 
@@ -1588,7 +1429,6 @@ CLASS Taskpt
       }
 
    //  <<" %V $la  $y $(typeof(la)) $(Cab(la)) \n"
-      
     return (la)
    }
 
@@ -1603,8 +1443,9 @@ proc DrawMap(w)
   float longi;
   str mlab;
 <<"$mlab $(typeof(mlab))\n";
+
     for (k = 0 ; k < Ntp ; k++) {
- setdebug(1);     
+
 
         if (!Wtp[k]->GetTA()) {
          mlab = slower(Wtp[k]->Place)
@@ -1612,8 +1453,8 @@ proc DrawMap(w)
         else {
 	  mlab = Wtp[k]->Place;
         }
-	<<"$mlab $(typeof(mlab))\n";
- setdebug(0);     	
+	//<<"$mlab $(typeof(mlab))\n";
+
 	
         msl = Wtp[k]->Alt;
 
@@ -1674,53 +1515,68 @@ proc DrawTask(w,col)
 
 proc PickTP(atarg,  witp) 
 {
+///
+/// 
   int kk;
 
     Fseek(A,0,0)
 // <<" looking for  $atarg \n"
     i=Fsearch(A,atarg,-1,1,0)
     if (i != -1) {
-     kk= witp
+     kk= witp;
 //<<" %V $kk $witp $(typeof(witp)) \n"
     Tasktp[kk]->cltpt = atarg
     nwr = Tasktp[kk]->Read(A)
-<<" found $atarg $witp $nwr\n"
+<<" found $atarg $kk $witp $nwr\n"
 
    }
 }
 //=============================================
 
 
-proc ClosestTP(longx, laty)
+proc ClosestTP (longx, laty)
 {
+///
+ T=fineTime();
  float mintp = 30;
- int mkey = -1
+ int mkey = -1;
+ float ctp_lat;
 
+int k = 3;
+<<"%V $Wtp[0]->Ladeg \n"
+<<"%V $Wtp[k]->Ladeg \n"
+    ctp_lat = Wtp[k]->Ladeg;
+<<"%V $ctp_lat \n"
     for (k = 0 ; k < Ntp ; k++) {
 
-        lat = Wtp[k]->Ladeg
-        longi = Wtp[k]->Longdeg
+        ctp_lat =   Wtp[k]->Ladeg;
 
-      dx = Fabs(longx - longi)
-      dy = Fabs(laty - lat)
-      dxy = dx + dy
+        longi = Wtp[k]->Longdeg;
+
+        dx = Fabs(longx - longi);
+        dy = Fabs(laty - ctp_lat);
+        dxy = dx + dy;
 
         if (dxy < mintp) {
-          mkey = k
-          mintp = dxy
-//<<" %V $dx $dy $dxy $mkey \n"
-        }
+          mkey = k;
+          mintp = dxy;
+<<"%V $Wtp[k]->Ladeg $ctp_lat $longi $laty $longx  $dx $dy $Wtp[k]->Place \n"
+      }
 
     }
-//<<" found $mkey \n"
-   if (mkey != -1)
-   Wtp[mkey]->Print()
 
+   if (mkey != -1) {
+<<" found $mkey \n"
+     Wtp[mkey]->Print()
+   }
+
+    dt=fineTimeSince(T);
+<<"$_proc took $(dt/1000000.0) secs \n"
      return  mkey;
 }
 //=============================================
 
-proc ClosestLand( longx,  laty)
+proc ClosestLand(longx,laty)
 {
  float mintp = 18000;
  int mkey = -1
@@ -1731,7 +1587,6 @@ proc ClosestLand( longx,  laty)
 
   longa = longx
   lata = laty
-
 
     for (k = 0 ; k < Ntp ; k++) {
 
@@ -1758,20 +1613,21 @@ proc ClosestLand( longx,  laty)
     }
 
 //<<" found $mkey \n"
-   if (mkey != -1)
-   Wtp[mkey]->Print()
-
+   if (mkey != -1) {
+       Wtp[mkey]->Print()
+   }
    return  mkey
 }
 //=============================================
 
 
-proc PickaTP( itp)
+proc PickaTP(itaskp)
 {
 // 
 // use current lat,long to place curs
 //
-        <<" get task pt $itp \n"
+
+<<" get task pt $itaskp \n"
 
   float rx;
   float ry;
@@ -1779,10 +1635,11 @@ proc PickaTP( itp)
   rx = MidLong;
   ry = MidLat;
 
-//          DrawMap(mapwo)
-
   MouseCursor("left", mapwo, rx, ry);
-<<"Pick a TP\n";
+
+
+
+<<"Pick a TP for the task\n";
 
   E->waitForMsg();
   E->getEventRXY(rx,ry);
@@ -1794,8 +1651,6 @@ proc PickaTP( itp)
 
           ntp = ClosestTP(rx,ry);
 
-//      ntp = ClosestLand(mev[7],mev[8])
-
           MouseCursor("hand");
 
         if (ntp >= 0) {
@@ -1803,26 +1658,28 @@ proc PickaTP( itp)
              Wtp[ntp]->Print()
 
              nval = Wtp[ntp]->GetPlace()
+
 <<" found %V $ntp $nval \n"
+
             Fseek(A,0,0);
             i=Fsearch(A,nval,-1,1,0)
 
 <<" %v $i \n"
 
-int kk = itp;
+//int kk = itaskp;
 
            if (i != -1) {
 
-<<" setting tp $itp $kk  to $nval \n" 
+<<" setting TASK_PT $itaskp  to $nval \n" 
 
-            Tasktp[kk]->cltpt = nval;
-
-            nwr = Tasktp[kk]->Read(A)
-
-            Tasktp[kk]->Print();
+            Tasktp[itaskp]->cltpt = nval;
+            // position at tp file entry -- why not search Wtp for entry
+	    
+            nwr = Tasktp[itaskp]->Read(A)
+<<"$itaskp  TaskPT \n"
+            Tasktp[itaskp]->Print();
 
             ret = 1;
-	    break;
             }
       }
        return ret;
@@ -1866,7 +1723,7 @@ proc get_tpt(wtpt)
 }
 //=============================================
 
-<<" DONE reading showtlib !\n"
+<<" DONE reading ootlib !\n"
 
 
 #
