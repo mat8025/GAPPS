@@ -33,11 +33,13 @@ vers = "1.0"
 
 
 
+ fnwo=cWo(aw,"BV",@name,"FNAME",@value,"font",@color,GREEN_,@resize_fr,0.02,0.51,lbp,0.70);
+ sWo(fnwo,@help," click to name sheet",@func,"inputValue",@style,"SVB");
+ sWo(fnwo,@border,@drcellwon,@clipborder,@fonthue,BLACK_, @redraw);
+
  clearwo=cWo(aw,"BN",@name,"CLEAR",@value,"SAVE",@color,MAGENTA_,@resize_fr,0.02,0.31,lbp,0.50);
- sWo(clearwo,@help," click to save sheet");
+ sWo(clearwo,@help," click to clear sheet");
  sWo(clearwo,@border,@drcellwon,@clipborder,@fonthue,BLACK_, @redraw);
-
-
 
  savewo=cWo(aw,"BN",@name,"SAVE",@value,"SAVE",@color,MAGENTA_,@resize_fr,0.02,0.15,lbp,0.30)
  sWo(savewo,@help," click to save sheet")
@@ -73,18 +75,26 @@ eventWait();
 
        sWo(cellwo,@cellhue,ev_row,ev_col,RED_);
    if (ev_woid == cellwo) {
+   
      if (ev_button ==1) {
-        sWo(cellwo,@cellbhue,ev_row,ev_col,LILAC_);
+         sWo(cellwo,@cellbhue,ev_row,ev_col,LILAC_);
 	 sWo(cellwo,@sheetcol,ev_row,ev_col,"1");
      }
      else {
         sWo(cellwo,@cellbhue,ev_row,ev_col,WHITE_);
         sWo(cellwo,@sheetcol,ev_row,ev_col,"0");
      }
-
+       cval = wogetValue(cellwo,ev_row,ev_col);
+       <<"cell val is $cval\n";
        sWo(cellwo,@redraw);
     }
-    
+
+       if (ev_woid == fnwo) {
+	 fname = wogetValue(fnwo);
+	 sWo(cellwo,@name,fname);
+        }
+
+
        if (ev_woid == savewo) {
 	 sWo(cellwo,@sheetmod,1);
 	 sWi(aw,@tmsg,"saving_the_font ");
