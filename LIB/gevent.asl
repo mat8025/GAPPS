@@ -38,6 +38,7 @@ proc eventWait()
 {
     ev_kloop++;
     ev_woid = -1;
+    ev_row = -1;
     ev_msg = Ev->waitForMsg();
     //<<"$ev_kloop %V$ev_msg \n"
     eventDecode();
@@ -55,7 +56,7 @@ proc eventRead()
 //==============================
 
 
-Ev =1; // event handle
+gevent Ev; // event type - can inspect for all event attributes
 
 int ev_kloop = 0;
 int last_evid = -1;
@@ -65,7 +66,7 @@ float ev_rx = 0;
 float ev_ry = 0;
 
 int ev_row = -1;
-int ev_col =-1;
+int ev_col = -1;
 int ev_button;
 int ev_id;
 int ev_keyc;

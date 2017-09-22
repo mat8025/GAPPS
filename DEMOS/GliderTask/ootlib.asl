@@ -132,6 +132,7 @@ CLASS Turnpt
       int amat =0;
       val = tptype; 
       spat (val,"A",-1,-1,amat)
+//<<"%V$amt $(typeof(amat)) \n"
       return amat;
    }
 
@@ -285,8 +286,8 @@ proc screen_dump()
   ff=open_laser("st.ps")
   scr_laser(tw)
   nc = get_colors()
-  set_colors(2)
-  draw_map(tw)
+  set_colors(2);
+  DrawMap(tw)
   draw_task(tw,"red")
   laser_scr(tw)  
   ff=close_laser()
@@ -394,7 +395,7 @@ proc set_task()
   chk_start_finish()
   set_wo_task(tw)
   total = task_dist()
-#  draw_map(tw)
+#  DrawMap(tw)
   draw_task(tw,"red")
   tot_units = scat(total,Units)
   ff=w_set_wo_value (tw,td_wo,tot_units,1)
@@ -506,7 +507,7 @@ proc new_coors(w_num)
       ff=w_clip_clear(w_num)
       ff=w_redraw_wo(w_num)
       x0 = 0
-      draw_map(w_num)
+      DrawMap(w_num)
     }
 }
 //==================================================
@@ -517,7 +518,7 @@ proc zoom_to_task(w_num, draw)
   ff=set_w_rs(w_num,Max_W,Min_lat,Min_W,Max_lat)
   if (draw) {
   ff=w_clip_clear(w_num)
-  draw_map(w_num)
+  DrawMap(w_num)
   draw_task(w_num,"red")
   }
 }
@@ -533,7 +534,7 @@ proc zoom_up(w_num)
   ff=set_w_rs(w_num,rx,ry,rX,rY)
   ff=w_clip_clear(w_num)
 #  ff=w_redraw_wo(w_num)
-  draw_map(w_num)
+  DrawMap(w_num)
   draw_task(w_num,"red")
 }
 //==================================================
@@ -552,7 +553,7 @@ proc zoom_in(w_num)
   ff=set_w_rs(w_num,rx,ry,rX,rY)
   ff=w_clip_clear(w_num)
   ff=w_redraw_wo(w_num)
-  draw_map(w_num)
+  DrawMap(w_num)
   draw_task(w_num,"red")
 }
 //==================================================
@@ -560,7 +561,7 @@ proc zoom_in(w_num)
 proc  draw_the_task ()
 {
   ff=w_clip_clear(tw)
-  draw_map(tw)
+  DrawMap(tw)
   draw_task(tw,"red")
 }
 //==================================================
@@ -595,7 +596,7 @@ proc zoom_rt(w_num)
   set_w_rs(w_num,rx,ry,rX,rY)
   w_clip_clear(w_num)
   ff=w_redraw_wo(w_num)
-  draw_map(w_num)
+  DrawMap(w_num)
   draw_task(w_num,"red")
 }
 
@@ -612,7 +613,7 @@ proc zoom_lt(w_num)
   ff=set_w_rs(w_num,rx,ry,rX,rY)
   ff=w_clip_clear(w_num)
   ff=w_redraw_wo(w_num)
-  draw_map(w_num)
+  DrawMap(w_num)
   draw_task(w_num,"red")
 }
 
@@ -620,7 +621,7 @@ proc zoom_lt(w_num)
 proc reset_map()
 {
   set_w_rs(tw,LongW,LatS,LongE,LatN)
-  draw_map(tw)
+  DrawMap(tw)
 }
 
 
@@ -733,33 +734,6 @@ proc get_tpt(wtpt)
     return 1;
 }
 
-
-proc draw_map(w)
-{
-str lab;
-
-  w_clip_clear(w)
-  ff=w_clip_border(w)
-
-    for (k = 0 ; k < ntp ; k++) {
-      lab = Keys[k]
-# print(lab,"\n")
-
-        if (MSL[k] > 7000) {
-          w_text(w,lab,LO[k],LA[k],0,0,1,"red")
-        }
-        else {
-            if (MSL[k] > 5000) w_text(w,lab,LO[k],LA[k],0,0,1,"blue")
-            else w_text(w,lab,LO[k],LA[k],0,0,1,"green")
-        }
-    }
-
-  ff=w_clip_border(w)
-  ts = 0.01
-  grid_label(w)
-#  ff=w_redraw_wo(w)
-
-}
 
 
 proc find_key(akey)
@@ -929,7 +903,7 @@ proc task_menu(w)
 
     if (ur_c @= "magnify") {
       magnify(w)
-      draw_map(w)
+      DrawMap(w)
     }
 
     if (ur_c @= "plot_igc") {
@@ -943,7 +917,7 @@ proc task_menu(w)
 
     if (ur_c @= "delete_all") {
       delete_alltps()
-      draw_map(w)
+      DrawMap(w)
       w_set_wo_value (tw,td_wo,"0",1)
     }
 
@@ -960,7 +934,7 @@ proc task_menu(w)
     }
 
     if (ur_c @= "set") {
-      draw_map(w)
+      DrawMap(w)
       draw_task(w,"red")
       total = task_dist()
       w_set_wo_value (tw,td_wo,total,1)
@@ -1132,7 +1106,7 @@ proc the_menu (c)
             chk_start_finish()
             set_wo_task(tw)
             total = task_dist()
-            draw_map(tw)
+            DrawMap(tw)
             draw_task(tw,"blue")
             w_set_wo_value (tw,td_wo,total,1)
             return
@@ -1144,7 +1118,7 @@ proc the_menu (c)
             set_wo_task(tw)
             chk_start_finish()
             total = task_dist()
-            draw_map(tw)
+            DrawMap(tw)
             draw_task(tw,"red")
             w_set_wo_value (tw,td_wo,total,1)
             return
@@ -1156,7 +1130,7 @@ proc the_menu (c)
             print("get ",wtpt)
             ret = get_tpt(wtpt)
             if (ret == -1) return
-            draw_map(tw)
+            DrawMap(tw)
             set_task()
             return 
           }
@@ -1272,6 +1246,7 @@ CLASS Taskpt
   float Longdeg;
   float Leg;
   str Place;
+  str tptype;
 
 #  method list
 
@@ -1308,10 +1283,7 @@ CLASS Taskpt
 
     Longdeg = GetDeg(wval[3])
 
-
-//    Longdeg = GetDeg(long_deg)
-//     <<"%V $Alt $Ladeg $Longdeg \n"
-
+    tptype = wval[7];
     }
 
     return nwr
@@ -1329,8 +1301,11 @@ CLASS Taskpt
 
    CMF GetTA ()   
    {
-     val = wval[7]; 
-     return val;
+      int amat =0;
+      val = tptype; 
+      spat (val,"A",-1,-1,amat)
+//<<"taskpt %V$amt $(typeof(amat)) \n"
+      return amat;
    }
 
    CMF GetLat ()   
@@ -1442,19 +1417,23 @@ proc DrawMap(w)
   float lat;
   float longi;
   str mlab;
-<<"$mlab $(typeof(mlab))\n";
+  int is_an_aiport = 0;
+
+
+//<<"$mlab $(typeof(mlab))\n";
 
     for (k = 0 ; k < Ntp ; k++) {
 
-
-        if (!Wtp[k]->GetTA()) {
+        is_an_airport = Wtp[k]->GetTA();
+	
+        if (! is_an_aiport) {
          mlab = slower(Wtp[k]->Place)
         }
         else {
 	  mlab = Wtp[k]->Place;
         }
-	//<<"$mlab $(typeof(mlab))\n";
 
+//<<"$k %V $is_an_airport  $mlab $(typeof(mlab))\n";
 	
         msl = Wtp[k]->Alt;
 
@@ -1543,10 +1522,10 @@ proc ClosestTP (longx, laty)
  float ctp_lat;
 
 int k = 3;
-<<"%V $Wtp[0]->Ladeg \n"
-<<"%V $Wtp[k]->Ladeg \n"
+//<<"%V $Wtp[0]->Ladeg \n"
+//<<"%V $Wtp[k]->Ladeg \n"
     ctp_lat = Wtp[k]->Ladeg;
-<<"%V $ctp_lat \n"
+//<<"%V $ctp_lat \n"
     for (k = 0 ; k < Ntp ; k++) {
 
         ctp_lat =   Wtp[k]->Ladeg;
@@ -1560,7 +1539,7 @@ int k = 3;
         if (dxy < mintp) {
           mkey = k;
           mintp = dxy;
-<<"%V $Wtp[k]->Ladeg $ctp_lat $longi $laty $longx  $dx $dy $Wtp[k]->Place \n"
+//<<"%V $Wtp[k]->Ladeg $ctp_lat $longi $laty $longx  $dx $dy $Wtp[k]->Place \n"
       }
 
     }
@@ -1579,21 +1558,25 @@ int k = 3;
 proc ClosestLand(longx,laty)
 {
  float mintp = 18000;
- int mkey = -1
- int isairport = 0
+ int mkey = -1;
+ int isairport = 0;
  float sa 
  float longa
  float lata
-
-  longa = longx
-  lata = laty
+ float msl;
+ float mkm;
+ float ght;
+ float sa;
+ 
+  longa = longx;
+  lata = laty;
 
     for (k = 0 ; k < Ntp ; k++) {
 
-         isairport = Wtp[k]->GetTA()
-
+         isairport = Wtp[k]->GetTA();
+//<<"$_proc %V $isairport \n"
          if (isairport) { 
-                msl = Wtp[k]->Alt
+                msl = Wtp[k]->Alt;
                 mkm = HowFar(lata,longa, Wtp[k]->Ladeg,Wtp[k]->Longdeg)
                 ght = (mkm * km_to_feet) / LoD
 
@@ -1612,9 +1595,10 @@ proc ClosestLand(longx,laty)
 
     }
 
-//<<" found $mkey \n"
+
    if (mkey != -1) {
-       Wtp[mkey]->Print()
+<<" found $mkey \n"
+      Wtp[mkey]->Print()
    }
    return  mkey
 }
@@ -1626,7 +1610,7 @@ proc PickaTP(itaskp)
 // 
 // use current lat,long to place curs
 //
-
+  int ret = 0;
 <<" get task pt $itaskp \n"
 
   float rx;
@@ -1682,7 +1666,8 @@ proc PickaTP(itaskp)
             ret = 1;
             }
       }
-       return ret;
+      
+      return ret;
 }
 //=============================================
 

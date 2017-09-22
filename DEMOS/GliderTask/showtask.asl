@@ -85,13 +85,13 @@ Units = "KM"
 
 /////////////  Arrays : Globals //////////////
 
-LatS= 35.5;
+LatS= 37.5;
 
-LatN = 41;
+LatN = 40.2;
 
-LongW= 106.5;
+LongW= 105.5;
 
-LongE= 104.5;
+LongE= 102.8;
 
 MidLat = (LatN - LatS)/2.0 + LatS;
 MidLong = (LongW - LongE)/2.0 + LongE;
@@ -370,7 +370,8 @@ gevent E;
        if (keyw @= "_Start_") {
              sWo(wwo, @cxor)
              if (PickaTP(0)) {
-               sWo(tpwo[0],@value,Tasktp[0]->cltpt,@redraw)
+	     wcltpt = Tasktp[0]->cltpt;
+               sWo(tpwo[0],@value,wcltpt,@redraw)
              }
 	     sWo(wwo, @cxor)
        }
@@ -464,7 +465,7 @@ gevent E;
 /{/*
 
 
- BUGS:  crash on entering start,tp1,tp2
+ BUGS:  
         not showing all WOS -- title button
 
 
@@ -479,9 +480,25 @@ gevent E;
 
  ADD:
 
-  readIGC - C++ function
+  readIGC - C++ function  done
 
   can we plot on top sectional image - where to get those?
+
+
+  projection  --  square degress - square map window --- conical??
+
+  plot plane position as scroll in vvwo
+
+
+  need task distance ---
+  and task plotting to work
+
+
+  ?? what happed to viewterrain and elevation - magic carpet viewer??
+
+
+  menus
+
 
 
 /}*/
