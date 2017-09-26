@@ -377,7 +377,7 @@ sWo(grwo,@clipborder);
       ZoomInXaxis(plw)
       zoomit = 1
     }
-
+    
     if (msg @= "PUY") {
       sWi(aw,"usescales",0)
       PanUp(aw)

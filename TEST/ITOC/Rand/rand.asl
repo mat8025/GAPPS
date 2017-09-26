@@ -1,7 +1,8 @@
-//  test rand
-openDll("math")
-openDll("stat")
-/{
+///
+///  test rand functions
+///
+
+/{/*
 
 Rand
 A= Rand(n,max)
@@ -12,7 +13,20 @@ as defined on Unix math rand() function.
 Use randseed() to seed the random function- 
 randseed with no arguments uses unix time function to seed random.
 
-/}
+R=Urand(n,seed)
+
+returns a vector of n numbers in the range 0 to 1.0  -- 
+if seed is zero the time function is used as a seed
+ 
+
+/}*/
+
+
+R=Urand(10,0);
+
+
+
+
 
 N = 6
 
@@ -53,5 +67,7 @@ L = H
 L->sort()
 
 <<"%(10,, ,\n)$L \n"
+
+
 stop!
 

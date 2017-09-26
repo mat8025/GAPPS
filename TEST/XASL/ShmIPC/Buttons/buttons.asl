@@ -166,6 +166,7 @@ Graphic = checkGWM()
 <<"%V$qwo \n"
 
 // tbwo=cWo(vp2,@TB,@name,"tb_q",@color,"yellow",@VALUE,"QUIT",@func,"window_intrp",@resize,0.9,by,0.99,bY)
+ // TITLE BUTTON QUIT
  tbwo=cWo(vp2,@TB,@name,"tb_q",@color,"yellow",@VALUE,"QUIT",@func,"window_term",@resize,0.9,by,0.99,bY)
  sWo(tbwo,@BORDER,@DRAWON,@PIXMAPON,@CLIPBORDER,@FONTHUE,"red", @symbol,"triangle", @symsize, 120, @redraw)
 

@@ -18,9 +18,7 @@ Class Timekeeper
 
    float skipsig ;
    float rsecs ;
-
    float dsecs;
-
    float hrti;
    float last_t;
    float syncsecs ;
@@ -85,8 +83,6 @@ Class Timekeeper
     <<"%I $rsecs $dsecs $lags $catchup $skipsig $Freq $Gdt\n"
     <<"%V $rsecs $dsecs $lags $catchup $skipsig $Freq $Gdt\n"
    }
-
-
  }
 //=====================
 
