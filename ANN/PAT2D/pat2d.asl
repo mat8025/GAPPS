@@ -1,5 +1,5 @@
 ///
-///  test ann on simple 2d block patterns  -- V ^ --/ \-- 
+///  test ann on simple 2d block patterns  -- A B C, drawn with stright lines
 ///
 
 
@@ -9,11 +9,13 @@ Graphic = 0;
 
 ok=opendll("ann");
 
-
 str avers;
 
 avers = annversion();
+
 <<"version is $avers\n"
+
+
 
 proc usage()
 {
@@ -32,6 +34,132 @@ proc usage()
 
 }
 
+int NBS = 100; // sweeps at one train call
+
+proc Rtrain()
+{
+
+do_train = 1;
+last_nc = 0;
+extend_train = 1;
+ns = 0;
+
+ rs = (utime() % 787)
+ rs = randnetwts(N,rs);
+ <<"random seed $rs \n"
+
+while (do_train) {
+
+  pit = (!(ns % 1000));
+
+  nc= train_net(N, Input, Target, NBS, Output, Opc);
+
+  nc /= NBS;
+
+  if (nc > last_nc) {
+    if (nc > 125) {
+     bell()
+     sleep(0.1);
+     }
+   last_nc = nc;
+  }
+  
+ net_sweeps = getNetSweeps(N)
+ ss = get_net_ss(N)
+ rms = sqrt( ss/ nip_pats)
+ Rms[ns] = rms;
+
+ 
+
+ if (do_print && pit && !Graphic) {
+<<"sweep $ns %V$nc $ss $rms \n"
+  print_net(N, 0,&Input[0], &Target[0])
+  print_net(N, 1,&Input[0], &Target[0])
+  print_net(N, 2,&Input[0], &Target[0])
+  print_net(N, 3,&Input[0], &Target[0])
+
+  <<"%V$ns  $nc $ss $rms\n"
+//ans=iread("goon:")
+//if (ans @= "q") {
+// exit()
+//}
+ }
+
+
+
+<<"$ma %V$ns  $nc $ss $rms\n"
+
+
+if ( rms < 0.1) {
+    if (nc == nip_pats) {
+      break
+   }
+ }
+
+ if (ns > nsweeps) {
+ if (extend_train && (nc == 129)) {
+     nsweeps += 10000;
+     extend_train = 0;
+  }
+  else 
+  break;
+ }
+
+ if (((ns % rshaken) == 0) && (nc < 129)) {
+    <<"random shake @ $ns !\n"
+   // randNetWts(N,8,2);
+  //   break;
+ }
+
+ ns += NBS;
+
+}
+//===================================
+
+
+<<"OPC: \n %(5,, ,\n)$Opc \n";
+
+
+  nc=train_net(N, Input, Target, 1);
+
+  pc =  (nc*1.0)/npats * 100.0
+
+<<"done train pat2d - %V $ns  $nc $rms $pc\n"
+
+
+ ok= save_net(N,"net.wts")
+
+if (nc >= 129) {
+ PrgFn= ofw("Progress_$ma");
+ <<"Progress_$ma ?\n";
+<<[PrgFn]"==$ma $nc ===================\n";
+ char ce = 65;
+ int j = 0;
+ for (i=1 ; i<=26; i++) {
+//<<[PrgFn]"\n %(5,, ,\n)$Opc \n";
+<<[PrgFn]"%c$ce %d% $Opc[j:j+4] \n";
+   j += 5;
+   ce++;
+ }
+<<[PrgFn]"=============================\n";
+  //goon = iread("again?\n");
+  cf(PrgFn);
+}
+  nc =test_net(N, Input, Target, 1); 
+
+/// TBF TBD   why the test nc 0??
+
+  pc = (nc*1.0)/npats * 100.0;
+  
+<<"test pat2d - %V   $nc $pc\n"
+
+ ok= save_net(N,"net2.wts")
+
+}
+
+//=========================================
+
+
 # args
 na = argc()
 
@@ -42,32 +170,33 @@ int do_print = 0;
 
 float Rms[1000+] ; //  contains rms error per sweep
 
-int Npats = 9;
+int Npats = 130;
 <<"$Npats \n"
 
-float Input[Npats*25];  // 5 x 5 matrix
+//float Input[Npats*25];  // 5 x 5 matrix
 
-<<"%(5,, ,\n)$Input \n";
+//<<"%(5,, ,\n)$Input \n";
 
-float Target[Npats*Npats];  // for each pat input which pat is active
 
-<<" TARGETS \n"
-
-<<"%(9,, ,\n)$Target \n";
 
 
 
  N= getNet();
 
  <<"Net is $N \n"
-
+//ans=iread();
 
 layers = 3;
-nin = 25;
-nout = Npats;
+nin = 100;
+nout = 26;
 
 <<"%V $layers $nin $nout \n"
 
+//float Target[Npats*26];  // for each pat input which pat is active
+
+<<" TARGETS \n"
+
+//<<"%(9,, ,\n)$Target \n";
 
 
 int n_first_hid = 9;
@@ -82,7 +211,7 @@ float theta = 0.95;
 ntype = "sff"
 
 int nsweeps = 20000;
-int rshaken = nsweeps;
+int rshaken = 20000;
 
 
 cla = 1
@@ -224,24 +353,33 @@ else {
 ntargs = Npats;
 nip_pats = ntargs;
 
-include "patprep.asl"
-
-Input = T;
-
-<<" Input sz $(Caz(Input))\n"
-
-// init of array is all zeros
-// each input should trigger  different cell in output vec
-int jj = 0
-for (k = 0; k < Npats ; k++) {
-  jj = (k*Npats) + k ;
-  Target[jj] =1;
-<<"$jj\n"
-}
+//include "patprep.asl"
 
 
-<<"%6.1f %($Npats,, ,\n)$Target \n"
+A=ofr("alptrip.dat")
+Input=rdata(A,FLOAT_);
+cf(A)
 
+<<" $(Caz(Input)) $(Cab(Input)) \n"
+
+A=ofr("alptrop.dat")
+Target=rdata(A,FLOAT_);
+cf(A)
+
+Output = Target;  // use to see actual net output per pattern
+
+int Opc[Npats];  // each pattern correct?
+
+
+<<" $(Npats * 26) $(Caz(Target)) $(Cab(Target)) \n"
+
+// ans=iread()
+// if (ans @= "q") {
+//  exit()
+// }
+
+
+//<<"%6.1f %(10,, ,\n)$Input\n"
 
 
 npats=set_net_pats(N,nip_pats)
@@ -252,17 +390,22 @@ npats=set_net_pats(N,nip_pats)
 
 <<"eta $eta $ret \n"
 
+nr =set_net_retrys(N,1,3); // if pattern not correct -- retry this input # times
 
-theta = getNetTheta(N)
+<<"$nr \n"
+
+theta = getNetTheta(N);
 <<"%V$theta \n"
 
-alpha = get_net_alpha(N)
+alpha = get_net_alpha(N);
 <<"%V$alpha \n"
 
 int ns = 0;
-
+int nc = 0;
 
 nc = testNet(N, Input, Target, 1);
+
+nc = testNet(N, Input, Target, 1, Output,Opc);
 
 ns++;
 <<"first sweep %V$ns  correct $nc \n"
@@ -278,70 +421,79 @@ set_net_debug(0);
 
 
 p = 0
-do_train = 1;
+
 
 float nts = 1;
 int wp = 1 
 
 int pit;
+int ma = 0;
+ while (1) {
 
+Rtrain()
 
+ma++
+<<"[${ma}] %V $nc \n"
 
-while (do_train) {
-
-  pit = (!(ns % 1000));
-
-  nc= train_net(N, Input, Target, 1);
-
-
- net_sweeps = getNetSweeps(N)
- ss = get_net_ss(N)
- rms = sqrt( ss/ nip_pats)
- Rms[ns] = rms;
-
- 
-
- if (do_print && pit && !Graphic) {
-<<"sweep $ns %V$nc $ss $rms \n"
-  print_net(N, 0,&Input[0], &Target[0])
-  print_net(N, 1,&Input[0], &Target[0])
-  print_net(N, 2,&Input[0], &Target[0])
-  print_net(N, 3,&Input[0], &Target[0])
-
-  <<"%V$ns  $nc $ss $rms\n"
-//ans=iread("goon:")
-//if (ans @= "q") {
-// exit()
-//}
- }
-
-
-  if ((ns % 50) == 0) {
-<<"%V$ns  $nc $ss $rms\n"
- }
-
-
-if ( rms < 0.1) {
-    if (nc == nip_pats) {
-      break
-   }
- }
-
- if (ns > nsweeps) {
-  break;
- }
- ns++;
+if (nc >= 129) {
+ ok= save_net(N,"net_${ma}.wts")
 }
-//===================================
-
-
- nc =test_net(N, Input, Target, 1)
-
-  pc = nc/npats * 100
-
-<<"done pat2d - $ns  $nc $rms\n"
-
- ok= save_net(N,"net.wts")
+ if (nc == 130) {
+<<" success @ $ma attempt \n"
+  }
+  
+ }
 
 
 exit()
+
+
+
+/{/*
+
+
+   now need to train on block letters in 4 diff positions
+   and test on letter in different position from test (or mix of positions)
+
+   // rotation ??
+
+   try read wts and test
+
+/}*/
+
+
+
+
+
+/{/*
+// init of array is all zeros
+// each input should trigger  different cell in output vec
+int jj = 0;
+int k1 = -1;
+
+for (k = 0; k < Npats ; k++) {
+  if ((k%2)==0) {
+     k1++;
+  }
+  jj = (k*nout) + k1 ;
+  Target[jj] =1;
+<<"$jj\n"
+}
+
+<<" $(Caz(Target)) $(Cab(Target))\n"
+<<"%6.1f $Target[0:25] \n"
+
+ti = 0
+fi = 25;
+
+<<"%6.1f $Target[ti:fi] \n"
+ for (j = 0; j < 52; j++) {
+<<"[${j}] $ti || %6.0f $Target[ti:fi] \n"
+ti += 26;
+fi += 26
+
+//ans=iread();
+}
+
+<<"%6.1f %($nout,, ,\n)$Target \n"
+/}*/
