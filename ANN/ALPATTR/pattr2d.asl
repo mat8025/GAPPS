@@ -1,5 +1,7 @@
 ///
 ///  test ann on simple 2d block patterns  -- A B C, ... drawn with straight lines
+///  training to  transpose the pattern from 10x10 to 7x6
+///  if works can be used to input to the pat2d net
 ///
 
 
@@ -147,8 +149,6 @@ if (nc >= 129) {
 }
   nc =testNet(N, Input, Target, 1); 
 
-/// TBF TBD   why the test nc 0??
-
   pc = (nc*1.0)/npats * 100.0;
   
 <<"test pat2d - %V   $nc $pc\n"
@@ -177,10 +177,6 @@ int Npats = 130;
 
 //<<"%(5,, ,\n)$Input \n";
 
-
-
-
-
  N= getNet();
 
  <<"Net is $N \n"
@@ -188,7 +184,7 @@ int Npats = 130;
 
  layers = 3;
  nin = 100;
- nout = 26;
+ nout = 48;  // reducing 10x10 to 8x6  == focusing on the pattern 
 
 <<"%V $layers $nin $nout \n"
 
@@ -196,14 +192,11 @@ int Npats = 130;
 
 <<" TARGETS \n"
 
-//<<"%(9,, ,\n)$Target \n";
-
-
 int n_first_hid = 9;
 int n_second_hid = 0;
 
-
 act = "LOGISTIC"
+
 float eta = 0.1;
 float alpha = 0.9;
 float theta = 0.95;
@@ -312,8 +305,6 @@ if (n_first_hid > 0 && n_second_hid > 0) {
 
 ok= setNetArch(N,layers,nin,nout,n_first_hid,n_second_hid);
 
-
-
 if (! ok) {
 <<"arch setup failure \n"
      exit()
@@ -356,13 +347,13 @@ nip_pats = ntargs;
 //include "patprep.asl"
 
 
-A=ofr("alptrip.dat")
+A=ofr("altptrip.dat")
 Input=rdata(A,FLOAT_);
 cf(A)
 
 <<" $(Caz(Input)) $(Cab(Input)) \n"
 
-A=ofr("alptrop.dat")
+A=ofr("altptrop.dat")
 Target=rdata(A,FLOAT_);
 cf(A)
 
@@ -371,12 +362,12 @@ Output = Target;  // use to see actual net output per pattern
 int Opc[Npats];  // each pattern correct?
 
 
-<<" $(Npats * 26) $(Caz(Target)) $(Cab(Target)) \n"
+<<" $(Npats * nout ) $(Caz(Target)) $(Cab(Target)) \n"
 
-// ans=iread()
-// if (ans @= "q") {
-//  exit()
-// }
+ ans=iread()
+if (ans @= "quit") {
+  exit()
+ }
 
 
 //<<"%6.1f %(10,, ,\n)$Input\n"
@@ -451,9 +442,10 @@ exit()
 
 
 /{/*
+   this tries to translate the letter pattern located in 10x10
+   to a 7x6 matirx just containing the letter
 
-
-   now need to train on block letters in 4 diff positions
+   train on block letters in 4 diff positions
    and test on letter in different position from test (or mix of positions)
 
    // rotation ??
@@ -465,36 +457,3 @@ exit()
 
 
 
-
-/{/*
-// init of array is all zeros
-// each input should trigger  different cell in output vec
-int jj = 0;
-int k1 = -1;
-
-for (k = 0; k < Npats ; k++) {
-  if ((k%2)==0) {
-     k1++;
-  }
-  jj = (k*nout) + k1 ;
-  Target[jj] =1;
-<<"$jj\n"
-}
-
-<<" $(Caz(Target)) $(Cab(Target))\n"
-<<"%6.1f $Target[0:25] \n"
-
-ti = 0
-fi = 25;
-
-<<"%6.1f $Target[ti:fi] \n"
- for (j = 0; j < 52; j++) {
-<<"[${j}] $ti || %6.0f $Target[ti:fi] \n"
-ti += 26;
-fi += 26
-
-//ans=iread();
-}
-
-<<"%6.1f %($nout,, ,\n)$Target \n"
-/}*/

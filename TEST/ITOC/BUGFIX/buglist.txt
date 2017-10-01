@@ -66,7 +66,7 @@ fix:
  check for within dquote in checkAssign - use find_match_dquote
 tbd: 
 //==========================
-93 08/20/17 5.81 6 PENDING
+93 08/20/17 5.81 6 FIXED
 descr:
  e format number not parsed e.g. const double _ev = 1.602e-29;
 fix: 08/20/17
@@ -74,6 +74,47 @@ did not recogonize end of statement
  
 tbd: 
 //==========================
+//==========================
+#94 09/29/17 5.90 4 PENDING
+descr:
+ vector print adds unwanted new line 
+fix: 
+ 
+tbd: 
+//==========================
+#95 09/29/17 5.90 4 PENDING
+descr:
+ %V print puts in unwanted leading space  
+fix: 
+ 
+tbd: 
+//==========================
+
+//==========================
+#num xx/x/x vers sevlev state 
+descr:
+
+fix: 
+ 
+tbd: 
+//==========================
+//==========================
+#num xx/x/x vers sevlev state 
+descr:
+
+fix: 
+ 
+tbd: 
+//==========================
+//==========================
+#num xx/x/x vers sevlev state 
+descr:
+
+fix: 
+ 
+tbd: 
+//==========================
+////////////////////// LEAVE LAST TEMPLATE /////////////////
 //==========================
 #num xx/x/x vers sevlev state 
 descr:

@@ -415,6 +415,7 @@ int do_command = 0
 int do_lhsubsc = 0
 int do_dynv = 0
 int do_mops = 0
+
 int do_oo = 0
 int do_sfunc = 0
 int do_svar = 0
@@ -458,7 +459,8 @@ int do_ptrs = 0;
         do_bops = 1  
 
    if (wt @= "mops")
-        do_mops = 1  
+        do_mops = 1
+
 
    if (wt @= "sops")
         do_sops = 1
@@ -953,6 +955,9 @@ updir()
     cart("diag")
 
 updir()
+   chdir("Setv")
+   cart("setv")
+updir()
 
     }
 
@@ -1087,6 +1092,7 @@ hdg("FUNC")
   }
 
 if ( do_all || do_mops ) {
+
      Run2Test("Mops")
 
     //chdir("Mops")
@@ -1111,6 +1117,10 @@ if ( do_all || do_mops ) {
     cart("urand")
     updir()
     }
+
+
+
+
 
 
 if ( do_all || do_svar ) {
@@ -1313,6 +1323,12 @@ if ( do_all || do_oo ) {
     chdir("Cmp")
 
     cart("cmp")
+
+    updir()
+
+    chdir("Sel")
+
+    cart("sel")
 
     updir()
 
