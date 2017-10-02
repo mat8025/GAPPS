@@ -7,13 +7,16 @@
 
 // then test pats
 
-//setdebug(1)
+setdebug(0)
 
 ok=opendll("ann");
 
 str avers;
 
 avers = annversion();
+
+Graphic = CheckGwm()
+
 
 //////////////////////////////////
 proc showCR()
@@ -55,6 +58,7 @@ A=ofr("altptrop.dat")
 Target=rdata(A,FLOAT_);
 cf(A)
 
+
 Output = Target;  // use to see actual net output per pattern
 
  ok =readNet(N,fname)
@@ -73,23 +77,25 @@ Nid = getNetId(N)
 
 <<"$Nid \n"
 
-
-Npats = getNetPats(N);
-
-//<<"%V $Npats\n"
-
 //ans=iread()
 
-int Opc[Npats];  // each pattern correct?
+int Opc[1000];  // each pattern correct?
 float Rms[];
 
-setnetinframes(N,10);// should be done in training
+
+
+setnetinframes(N,10,8);// should be done in training
    
 nc = testNet(N, Input, Target, 1, Output,Opc);
 
 nstats = get_net_ss(N);
 
 <<"%V$nstats"
+
+Npats = getNetPats(N);
+
+<<"%V $Npats\n"
+
 
 <<"correct $nc \n"
 rms = nstats[1];
@@ -101,28 +107,67 @@ showCR();
 
 ///////////////////////
 
+if (Graphic) {
+ include "net_g"
+
+include "gevent.asl";
+     eventWait();
+
+ wp =1
+
+while (1) {
+
+           eventWait();
+	   
+// <<"$ev_woname $ev_woid  \n"
+
+          if (ev_woid == pat_wo) {
+            wp = atoi(woGetValue(pat_wo));
+	    }
+
+      net_display(wp++,Input,Target);
+<<"$wp $Npats\n"
+  if ( wp >= Npats) { 
+         break;
+    }
+//  ans=iread()
+//  if (ans @= "g")
+//    break;
+}
+}
 
 
 
 
-
-
-
+<<"DOING TEST \n"
 
 
  A=ofr("altptstip.dat")
-Input=rdata(A,FLOAT_);
+InputTst=rdata(A,FLOAT_);
 cf(A)
+
 
 <<" $(Caz(Input)) $(Cab(Input)) \n"
 
 A=ofr("altptstop.dat")
-Target=rdata(A,FLOAT_);
+TargetTst=rdata(A,FLOAT_);
 cf(A)
 
-Output = Target;  // use to see actual net output per pattern
+<<"$(Caz(InputTst)) $(Cab(TargetTst)) \n"
+narch = getNetArch(N);
+<<"$narch\n"
+nin = narch[3]
+ntstpats = Caz(InputTst)/ nin;
+<<"%V$ntstpats\n"
+setnetPats(N,130)
+Npats = getNetPats(N);
 
-nc = testNet(N, Input, Target, 1, Output,Opc);
+<<"%V $Npats\n"
+//ans=iread();
+
+Output = TargetTst;  // use to see actual net output per pattern
+
+nc = testNet(N, InputTst, TargetTst, 1, Output,Opc);
 
 nstats = get_net_ss(N);
 
@@ -133,23 +178,23 @@ nstats = get_net_ss(N);
 showCR();
 
 
-Graphic = CheckGwm()
 
-  if (Graphic) {
-    //opendll("plot");
-    include "net_g"
-  }
-  else {
-   exit()
-  }
 
- wp =1
- if (wid > 0) {
-      net_display(wp++)
+if (Graphic) {
+wp  =1;
+while (1) {
+
+     eventWait();
+	if (ev_woid == pat_wo) {
+            wp = atoi(woGetValue(pat_wo));
+	    }
+      net_display(wp++, InputTst, TargetTst)
       if ( wp > Npats) { 
           wp = 1 
       }
-  }
+  
+}
 
+//net_show_result();
 
-net_show_result();
+}

@@ -84,17 +84,17 @@ float LM[rows][cols];
    lbp = 0.1;
   
    cellwo=cWo(aw,"SHEET",@name,"P",@color,GREEN_,@resize,lbp,0.01,0.9,0.99);
-   sWo(cellwo,@BORDER,@DRCELLWON,@CLIPBORDER,@FONTHUE,RED_,@VALUE,"SSWO")
+   sWo(cellwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,RED_,@VALUE,"SSWO")
    sWo(cellwo,@bhue,CYAN_,@clipbhue,"skyblue")
 
  rdwo=cWo(aw,"BN",@name,"READ",@value,"READ",@color,GREEN_,@resize_fr,0.02,0.71,lbp,0.90);
  sWo(rdwo,@help," click to read image");
- sWo(rdwo,@border,@drcellwon,@clipborder,@fonthue,BLACK_, @redraw);
+ sWo(rdwo,@border,@drawon,@clipborder,@fonthue,BLACK_, @redraw);
 
 
  nxtwo=cWo(aw,"BN",@name,"NEXT",@value,"READ",@color,GREEN_,@resize_fr,0.02,0.51,lbp,0.70);
  sWo(nxtwo,@help," click to read next image");
- sWo(nxtwo,@border,@drcellwon,@clipborder,@fonthue,BLACK_, @redraw);
+ sWo(nxtwo,@border,@drawon,@clipborder,@fonthue,BLACK_, @redraw);
 
 
 
@@ -107,32 +107,32 @@ float LM[rows][cols];
 
  savewo=cWo(aw,"BN",@name,"SAVE",@value,"SAVE",@color,MAGENTA_,@resize_fr,0.02,0.15,lbp,0.30)
  sWo(savewo,@help," click to save sheet")
- sWo(savewo,@border,@drcellwon,@clipborder,@fonthue,BLACK_, @redraw)
+ sWo(savewo,@border,@drawon,@clipborder,@fonthue,BLACK_, @redraw)
 
 
  qwo=cWo(aw,"BN",@name,"QUIT?",@value,"QUIT",@color,"orange",@resize_fr,0.02,0.01,lbp,0.14)
  sWo(qwo,@help," click to quit")
- sWo(qwo,@border,@drcellwon,@clipborder,@fonthue,BLACK_, @redraw)
+ sWo(qwo,@border,@drawon,@clipborder,@fonthue,BLACK_, @redraw)
  sWi(aw,@redraw)
 
 
   //////////////////////////////
  mopuwo=cWo(aw,"BN",@name,"UP",@value,"SAVE",@color,MAGENTA_)
  sWo(mopuwo,@help," click to move image up");
- sWo(mopuwo,@border,@drcellwon,@clipborder,@fonthue,BLACK_)
+ sWo(mopuwo,@border,@drawon,@clipborder,@fonthue,BLACK_)
 
  moplwo=cWo(aw,"BN",@name,"LEFT",@value,"LEFT",@color,MAGENTA_)
  sWo(moplwo,@help," click to move image left");
- sWo(moplwo,@border,@drcellwon,@clipborder,@fonthue,BLACK_);
+ sWo(moplwo,@border,@drawon,@clipborder,@fonthue,BLACK_);
 
  moprwo=cWo(aw,"BN",@name,"RIGHT",@value,"RIGHT",@color,MAGENTA_)
  sWo(moprwo,@help," click to move image right ");
- sWo(moprwo,@border,@drcellwon,@clipborder,@fonthue,BLACK_);
+ sWo(moprwo,@border,@drawon,@clipborder,@fonthue,BLACK_);
 
 
  mopdwo=cWo(aw,"BN",@name,"DOWN",@value,"DOWN",@color,MAGENTA_)
  sWo(mopdwo,@help," click to move image down ");
- sWo(mopdwo,@border,@drcellwon,@clipborder,@fonthue,BLACK_);
+ sWo(mopdwo,@border,@drawon,@clipborder,@fonthue,BLACK_);
 
 
 

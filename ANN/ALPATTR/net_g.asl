@@ -3,31 +3,26 @@
 
 ////////////  Window Setup ///////////////////////
 
-# get window for display
-// FIX -- it is missed
+// get window for display
+// FIX -- first line of include  is missed
+   ;
 
-<<" this is first statement in include !\n"
+    wid = cWi(@title,"ANN",@resize,0.05,0.01,0.99,0.95,0);
 
-
-    wid = cWi(@title,"ANN",@resize,0.05,0.01,0.99,0.95,0)
-
-    <<"Wid is $wid \n"
+   // <<"Wid is $wid \n"
 
     sWi(wid,@pixmapon,@drawon,@save,@bhue,WHITE_)
 
 /// window quit button
-    tbwo=cWo(wid,@TB,@name,"tb_q",@color,"yellow",@VALUE,"QUIT",@func,"window_term",@resize,0.9,0.9,0.99,0.99)
+    tbwo=cWo(wid,@TB,@name,"tb_q",@color,"yellow",@VALUE,"QUIT",@func,"window_term",@resize,0.9,0.9,0.99,0.99);
     sWo(tbwo,@BORDER,@DRAWON,@PIXMAPON,@CLIPBORDER,@FONTHUE,"red", @symbol,"triangle", @symsize, 120, @redraw)
 
-    
-
-
-    cx = 0.1
-    cX = 0.9
-    cy = 0.2
+    cx = 0.05
+    cX = 0.95
+    cy = 0.05
     cY = 0.95
 
-    gwo=cWo(wid,@GRAPH,@resize,0.15,0.1,0.8,0.8,@name,"XOR",@color,"cyan",@bhue,WHITE_)
+    gwo=cWo(wid,@GRAPH,@resize,0.1,0.01,0.9,0.84,@name,"P2D",@color,"cyan",@bhue,WHITE_)
 
 <<"%V$gwo \n"
 
@@ -38,7 +33,7 @@
 
     // to plot the rms_error
 
-    rms_gwo=CWo(wid,@GRAPH,@resize,0.15,0.81,0.8,0.95,@name,"RMS",@color,"cyan",@bhue,"white",@drawoff);
+    rms_gwo=cWo(wid,@GRAPH,@resize,0.85,0.85,0.95,0.90,@name,"RMS",@color,"cyan",@bhue,"white",@drawoff);
 
     sWo(rms_gwo,@clip,cx,cy,cX,cY)
 
@@ -48,20 +43,17 @@
     w_y0 = 0.90
     w_y1 = w_y0 + 0.09
 
+ rms_wo=cWo(wid,@BV,@color,"blue")
 
+//<<"%V$rms_wo   \n"
 
+ pc_wo=cWo(wid,@BV,@bhue,"green")
 
- rms_wo=cWo(wid,"BV",@resize,0.45,w_y0,0.6,w_y1,@color,"blue")
+//<<"%V$pc_wo    \n"
 
-<<"%V$rms_wo   \n"
+ pat_wo=cWo(wid,@BV,@bhue,YELLOW_,@func,"inputValue");
 
- pc_wo=cWo(wid,"BV",@resize,0.62,w_y0,0.75,w_y1,@bhue,"green")
-
-<<"%V$pc_wo    \n"
-
- pat_wo=cWo(wid,"BV",@resize,0.77,w_y0,0.9,w_y1)
-
- nswps_wo=cWo(wid,"BV",@resize,0.1,w_y0,.3,w_y1,@fhue,"red")
+ nswps_wo=cWo(wid,@BV,@fhue,RED_)
 
 <<"%V$nswps_wo \n"
 
@@ -70,8 +62,14 @@
    sWo(pat_wo,@name,"PAT",@value,0,@color,"green",@fonthue,"black",@style,"SVB")
    sWo(nswps_wo,@name,"NSWEEPS",@value,0,@fonthue,"black",@style,"SVB")
 
+
+int nwos[] = {pc_wo, rms_wo,pat_wo,nswps_wo};
+
+wohtile(nwos,0.1,w_y0,0.9,w_y1);
+
+
    sWi(wid,@redraw);
-   int nwos[] = {pc_wo,rms_wo,pat_wo,nswps_wo};
+
    
    sWo(nwos,@redraw);
 
@@ -92,7 +90,7 @@
 
 ////////////////////////////////////
 
-proc  net_display(int wpat)
+proc  net_display(int wpat, Ip, Tp)
 {
 
    sWo(rms_gwo,@clearpixmap,@border);
@@ -102,7 +100,7 @@ proc  net_display(int wpat)
    sWo(rms_gwo,@showpixmap);
  //for (p = 0 ; p < Npats ; p++) {
 
-   plot_net(N,gwo,wpat,&Input[0], &Target[0],0)
+   plot_net(N,gwo,wpat,Ip, Tp,0)
 
 //   si_pause(0.1)
 
@@ -144,6 +142,6 @@ proc QUIT()
 
 <<"ASL wid is $wid \n"
 
-  exitsi()
+  exitgs()
 
 }

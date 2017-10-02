@@ -59,7 +59,7 @@ while (do_train) {
   nc /= NBS;
 
   if (nc > last_nc) {
-    if (nc > 125) {
+    if (nc >= (Npats-4)) {
      bell()
      sleep(0.1);
      }
@@ -99,7 +99,7 @@ if ( rms < 0.1) {
  }
 
  if (ns > nsweeps) {
- if (extend_train && (nc == 129)) {
+ if (extend_train && (nc == (Npats-4))) {
      nsweeps += 10000;
      extend_train = 0;
   }
@@ -107,7 +107,7 @@ if ( rms < 0.1) {
   break;
  }
 
- if (((ns % rshaken) == 0) && (nc < 129)) {
+ if (((ns % rshaken) == 0) && (nc < 233)) {
     <<"random shake @ $ns !\n"
    // randNetWts(N,8,2);
   //   break;
@@ -131,7 +131,7 @@ if ( rms < 0.1) {
 
  ok= saveNet(N,"net.wts")
 
-if (nc >= 129) {
+if (nc >= (Npats-4)) {
  PrgFn= ofw("Progress_$ma");
  <<"Progress_$ma ?\n";
 <<[PrgFn]"==$ma $nc ===================\n";
@@ -170,7 +170,7 @@ int do_print = 0;
 
 float Rms[1000+] ; //  contains rms error per sweep
 
-int Npats = 130;
+int Npats = 234;
 <<"$Npats \n"
 
 //float Input[Npats*25];  // 5 x 5 matrix
@@ -427,10 +427,10 @@ Rtrain()
 ma++
 <<"[${ma}] %V $nc \n"
 
-if (nc >= 129) {
+if (nc >= (Npats-4)) {
  ok= saveNet(N,"net_${ma}.wts")
 }
- if (nc == 130) {
+ if (nc == Npats) {
 <<" success @ $ma attempt \n"
   }
   
