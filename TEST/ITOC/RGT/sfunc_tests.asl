@@ -16,7 +16,7 @@ gssys= GetEnv("GS_SYS");
 First = 1;
 long f_i = 0;
 
-proc pr_fun()
+proc pr_fun(dop)
 {
 DBG" $_proc %V$i\n"
 int ret = 1;
@@ -69,7 +69,7 @@ DBG"%V $j $k \n"
 
                         while (1) {
 //<<"pr\n"
-                            w=pcl_file(A,1)
+                            w=pcl_file(A,1,dop)
 //DBG"%V $w $k\n"
                             if ( w >= (k-4) ) {
                               break
@@ -96,7 +96,7 @@ DBG"%V $j $k \n"
 //========================================
 
 long i = 0;
-proc findit(pat)
+proc findit(pat, dop)
 {
 int keep_searching = 1;
 int search_success = 0;
@@ -178,20 +178,20 @@ DBG"<|${wd}|> \n"
 
 
                 if ( wd @= ".FD" ) {
-                    search_success =pr_fun();
+                    search_success =pr_fun(dop);
 		    //keep_searching = 0;
 		    //break;
                  }
 
 
                  else if ( wd @= ".(x" ) {
-                    search_success =pr_fun();
+                    search_success =pr_fun(dop);
 		    //keep_searching = 0;
 		   // break;		      
                  }
 		 
                  else if ( wd @= ".)x" ) {
-                      search_success =pr_fun();
+                      search_success =pr_fun(dop);
 
                     //keep_searching = 0;
 		    //break;
@@ -231,9 +231,10 @@ A=ofr("$gssys/DOCS/ASLMAN")
 // for each sfunc -- look it up in ASLMAN
 // report if found
 
+B=ofw("nondocs")
 
    sfunc = "vgen";
-   was_found = findit(sfunc);
+   was_found = findit(sfunc,1);
 <<"$sfunc $was_found\n";
 
 <<"$R[0]\n"
@@ -250,10 +251,13 @@ A=ofr("$gssys/DOCS/ASLMAN")
    sfunc = FW[0];
    fseek(A,0,0);
    
-   was_found = findit(sfunc);
+   was_found = findit(sfunc,0);
 <<"$sfunc $was_found\n";
    if (was_found) {
     ndocdone++;
+   }
+   else {
+<<[B]"$FW[0] $FW[1] \n"
    }
  //ans = iread("next:");
    }

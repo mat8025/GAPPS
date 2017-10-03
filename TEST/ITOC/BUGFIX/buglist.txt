@@ -91,17 +91,17 @@ tbd:
 //==========================
 
 //==========================
-#num xx/x/x vers sevlev state 
+#96 10/02/17 5.91 4 FIXED 
 descr:
-
+ pan checkNum xic crash
 fix: 
- 
+ was icode routine null hold var
 tbd: 
 //==========================
 //==========================
-#num xx/x/x vers sevlev state 
+#97 10/02/17 5.91 4 PENDING  
 descr:
-
+asl -i   typeof (p) pan crash
 fix: 
  
 tbd: 

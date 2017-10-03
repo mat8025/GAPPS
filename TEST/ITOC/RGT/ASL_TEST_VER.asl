@@ -1333,6 +1333,9 @@ if ( do_all || do_oo ) {
     updir()
 
 
+
+    
+
     Run2Test("Shift")
 
     cart("shift")
@@ -1365,11 +1368,21 @@ if ( do_all || do_oo ) {
 
     updir()
 
-    chdir("Lip")
+    chdir("Lip");
+    cart("lip");
+    updir();
 
-    cart("lip")
+//============================
+    chdir("BubbleSort");
+    cart("bubblesort");
+    updir();
+//============================
 
-    updir()
+//============================
+    chdir("Typeof");
+    cart("typeof");
+    updir();
+//============================    
 
     }
 

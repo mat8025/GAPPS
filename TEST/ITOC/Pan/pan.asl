@@ -1,18 +1,23 @@
-// FIX - compile as declare then assign
+///
+/// FIX - compile as declare then assign
 //int N = $2
 //double M
 
 
-//setdebug(1,"pline","steponerror")
+setdebug(1,"pline","steponerror","~trace")
 
 //setdebug(1,"pline","runtoerror")
 
-setap(100)    // set precision to 50 decimal places
+setap(100);    // set precision to 50 decimal places
 
 // FIX pan N  = GetArgN()
-checkIn()
+
+
+checkIn();
 pan N = 2.0;
 pan M = 4.0;
+
+
 
 
 checkNum(N,2.0);
@@ -23,23 +28,42 @@ checkNum(M,4.0);
 
 <<"%V%p$Q\n"
 
- checkNum(Q,6.0);
+ //checkNum(Q,6.0);
 
  Q= N * M ;
 
+<<"%V%p$Q\n"
+
+//checkFNum(Q,8.0);
+
 checkNum(Q,8.0);
+
 
  Q = M/N;
 
+<<"%V%p$Q\n"
+
 checkNum(Q,2.0);
 
+ M = M + 1;
+<<"$M\n"
+
+<<"M++\n"
 
  M++;
- checkNum(M,5.0);
+
+<<"%V%p$M\n"
+
+k = 1;
+
+ k++;
+
+<<"$k\n"
+
+checkNum(M,6.0);
 
  M--;
- checkNum(M,4.0);
-
+ checkNum(M,5.0);
 
 
 checkOut()
