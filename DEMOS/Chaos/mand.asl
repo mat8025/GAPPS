@@ -3,16 +3,13 @@
 
 set_debug(0)
 
-//opendll("plot")
-
 Graphic = CheckGwm()
 
 /////////////////////////////////////////////////////////////////////
 float RS[]
 float R[10]
 
-//Event E 
-E = 1
+
 float rinfo[12]
 int iv[16]
 int woival = 0
@@ -79,14 +76,14 @@ proc the_menu (the_choice)
              return 1
         }
 }
-
+//=========================================
 proc resize_mand()
 {
  int I[10]
   ff=get_w_clip(w,&I[0])
-   // o_print(I[0]," ",I[1]," ",I[2]," ",I[3])
- nyp = I[3] - I[1]
- nx = I[2] - I[0]
+ <<"$I\n";
+ nyp = I[3] - I[1];
+ nx = I[2] - I[0];
   if ( nyp % 2 ) nyp++
    nxp = nyp
 
@@ -496,54 +493,54 @@ wY = 300
 
 
 
- qwo=cWo(vp,"BV",@name,"QUIT",@color,RED_,@resize,bx,by,bX,bY)
+ qwo=cWo(vp,@BV,@name,"QUIT",@color,RED_,@resize,bx,by,bX,bY)
  sWo(qwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@VALUE,"ON")
 
 
  bY = by - pad
  by = bY - yht
 
- selwo=cWo(vp,"BN",@name,"SELECT",@VALUE,"SELECT",@color,"blue",@resize_fr,bx,by,bX,bY)
+ selwo=cWo(vp,@BN,@name,"SELECT",@VALUE,"SELECT",@color,WHITE_,@resize_fr,bx,by,bX,bY)
  sWo(selwo,@help," click to select box")
- sWo(selwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw)
+ sWo(selwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,RED_, @redraw)
 
  bY = by - pad
  by = bY - yht
 
- resetwo=cWo(vp,"BN",@name,"RESET",@color,"blue",@resize_fr,bx,by,bX,bY)
+ resetwo=cWo(vp,"BN",@name,"RESET",@color,WHITE_,@resize_fr,bx,by,bX,bY)
  sWo(resetwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw, @help," click to reset coors")
 
  bY = by - pad
  by = bY - yht
 
- initwo=cWo(vp,"BN",@name,"INIT",@color,"blue",@resize_fr,bx,by,bX,bY)
+ initwo=cWo(vp,"BN",@name,"INIT",@color,WHITE_,@resize_fr,bx,by,bX,bY)
  sWo(initwo,@help," click to reset coors",@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw)
 
  bY = by - pad
  by = bY - yht
 
- xr0wo=cWo(vp,"BV",@name,"XR0",@VALUE,"0.0",@color,"blue",@resize_fr,bx,by,bX,bY)
+ xr0wo=cWo(vp,@BV,@name,"XR0",@VALUE,"0.0",@color,WHITE_,@resize_fr,bx,by,bX,bY)
  sWo(xr0wo,@help," show xr0")
  sWo(xr0wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@STYLE,"SVR", @redraw)
 
  bY = by - pad
  by = bY - yht
 
- xr1wo=cWo(vp,"BV",@name,"XR1",@VALUE,"0.0",@color,"blue",@resize_fr,bx,by,bX,bY)
+ xr1wo=cWo(vp,@BV,@name,"XR1",@VALUE,"0.0",@color,WHITE_,@resize_fr,bx,by,bX,bY)
  sWo(xr1wo,@help," show xr1")
  sWo(xr1wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@STYLE,"SVR", @redraw)
 
  bY = by - pad
  by = bY - yht
 
- yr0wo=cWo(vp,"BV",@name,"YR0",@VALUE,"0.0",@color,"blue",@resize_fr,bx,by,bX,bY)
+ yr0wo=cWo(vp,@BV,@name,"YR0",@VALUE,"0.0",@color,WHITE_,@resize_fr,bx,by,bX,bY)
  sWo(yr0wo,@help," show yr0")
  sWo(yr0wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@STYLE,"SVR", @redraw)
 
  bY = by - pad
  by = bY - yht
 
- yr1wo=cWo(vp,"BV",@name,"YR1",@VALUE,"0.0",@color,"blue",@resize_fr,bx,by,bX,bY)
+ yr1wo=cWo(vp,@BV,@name,"YR1",@VALUE,"0.0",@color,WHITE_,@resize_fr,bx,by,bX,bY)
  sWo(yr1wo,@help," show yr1")
  sWo(yr1wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@STYLE,"SVR", @redraw)
 
@@ -742,6 +739,9 @@ double dinxp = 1.0/(1.0 * nxp)
 
 <<"$CM\n"
 <<"%V$ni\n"
+
+/// MAIN LOOP
+
         while (1) {
 
         x0++
@@ -774,7 +774,7 @@ double dinxp = 1.0/(1.0 * nxp)
   x0 = 0.0
 
 
-///////////////////////////////////////////  INTERACTIVE //////////////////////////////////////////////
+/////////////////  INTERACTIVE //////////////////////////////////////////////
 
   c= "EXIT"
 
@@ -796,6 +796,11 @@ double dinxp = 1.0/(1.0 * nxp)
   x0 = 0
 
   dinxp = xrange /(1.0 * nxp)
+
+
+gevent E;  // our Gevent variable - holds last message
+
+
 
   while (1) {
 
@@ -827,20 +832,20 @@ double dinxp = 1.0/(1.0 * nxp)
 
   //sWo(cenwo,@pixmapon,@symbolshape,"tri",@symsize,5,@redraw)
   //sWo(cenwo,@showpixmap)
-  sWo(pos_array,@redraw)
-  sWo(pos_array,@showpixmap)
+        sWo(pos_array,@redraw)
+        sWo(pos_array,@showpixmap)
 //        save_image(mandwo,"mand_pic")
-        jj++
+        jj++;
 
 # recheck window 
-
-       msg = messageWait()
+       msg=E->waitForMsg();
+       //msg = messageWait()
 
        sWo(msgwo,@border,@clearclip,@textr,"$msg",0.1,0.5)
 
        woname = E->getEventWoName()    
 
-<<"$woname   "
+<<"%V$woname   "
 
        E->getEventState(iv)    
 
@@ -865,23 +870,23 @@ double dinxp = 1.0/(1.0 * nxp)
 
           yr0 = -2.5 ; yr1 = 2.5 ; xr0 = -2.5 ; xr1 = 2.5 ;
 
-          sWo(mandwo,@scales,xr0,yr0,xr1,yr1)
+          sWo(mandwo,@scales,xr0,yr0,xr1,yr1);
 
        }
        else if (scmp(woname,"SELECT",6)) {
-    
+       <<"@SELECT\n";
 <<"%V$xr0 $yr0 $xr1 $yr1 $xrange $yrange\n"
 
-        RS=selectreal(mandwo)
+        RS=selectreal(mandwo);
 
         <<"%V$RS\n"
 
         sWo(msgwo,@border,@textr,"%V6.4f$RS",0.1,0.1)
         // now rescale 
-        xr0 = RS[1]
-        xr1 = RS[3]
-        yr0 = RS[2]
-        yr1 = RS[4]
+        xr0 = RS[1];
+        xr1 = RS[3];
+        yr0 = RS[2];
+        yr1 = RS[4];
 
         sWo(mandwo,@scales,xr0,yr0,xr1,yr1)
 
@@ -923,7 +928,6 @@ double dinxp = 1.0/(1.0 * nxp)
           axnum(mandwo,2,yr0,yr1,yval,0.5,"4.3f")
           dinxp = xrange /(1.0 * nxp)
           x0 = 0.0 // reset     
-
     }
 
   }

@@ -1382,6 +1382,10 @@ if ( do_all || do_oo ) {
     chdir("Typeof");
     cart("typeof");
     updir();
+//============================
+    chdir("Variables");
+    cart("variables");
+    updir();
 //============================    
 
     }
