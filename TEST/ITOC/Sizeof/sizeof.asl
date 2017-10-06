@@ -1,11 +1,11 @@
 ///
-/// Typeof
+/// Sizeof
 ///
 
 /{/*
 
-Typeof(V)
-typeof - returns the type of the variable V as a string FLOAT,INT,...
+Sizeof(V)
+  - returns the number of bytes for array elements of this type
 
 /}*/
 
@@ -27,6 +27,13 @@ sz = sizeof(f);
 
 checkNum(sz,4)
 
+char c;
+
+<<"$(typeof(c)) $(sizeof(c))  \n"
+sz = sizeof(c);
+
+checkNum(sz,1);
+
 wtype = typeof(f);
 
 <<"%V $wtype \n"
@@ -41,8 +48,17 @@ pan p = 3.14159;
 
 wtype = typeof(p);
 
-<<"%V $wtype $(sizeof(p))\n"
+<<" $wtype $(sizeof(p)) $(panlen(p))  $(sizeof(\"pan\"))\n"
 
 checkStr(wtype,"PAN");
+
+p = 123456789.987654321;
+
+<<" $wtype $(sizeof(p)) $(panlen(p))  $(sizeof(\"pan\"))\n"
+
+sz=sivSize()
+
+<<" size of a Siv $sz\n"
+
 
 checkOut();

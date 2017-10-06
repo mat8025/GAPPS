@@ -1,12 +1,14 @@
-// test svar indexing
+///
+/// test svar indexing
+///
 
 proc poo( pval	)
 {
-<<" $_cproc $pval \n"
+<<" $_proc $pval \n"
 
-<<" $_cproc $pval[0] \n"
+<<" $pval[0] \n"
 
-<<" $_cproc $pval[1] \n"
+<<" $pval[1] \n"
 
 <<" finding pval size \n"
 
@@ -26,8 +28,10 @@ proc poo( pval	)
 <<" got proc svar ele 3 $av \n"
   }
 
-<<" exit $_cproc $pval \n"
+<<" exit $_proc $pval \n"
 }
+
+checkIn()
 
 int k
 
@@ -64,19 +68,31 @@ svar W
 
 
 W[0] = "Calm"
+sz= Caz(W)
+<<"$sz $W\n"
 
 w = W[0]
 <<"%v $w \n"
 
 
 W[1] = "Down"
+sz= Caz(W)
+<<"$sz $W\n"
 w = W[1]
 <<"%v $w \n"
 
 W[3] = "Focus"
+sz= Caz(W)
+<<"$sz $W\n"
 W[2] = "and"
+sz= Caz(W)
+<<"$sz $W\n"
 W[4] = "gobbledygook"
+sz= Caz(W)
+<<"$sz $W\n"
 W[5] = "all"
+<<"$(Caz(w)) $W\n"
+ans=iread()
 W[6] = "speed"
 W[7] = "up"
 W[8] = "why"
@@ -87,6 +103,7 @@ w = W[0]
 
 <<"%v $w \n"
 <<" %v $W \n"
+<<" %v $W[3] \n"
 <<" %v $W[*] \n"
 
  W->Sort()
@@ -94,26 +111,32 @@ w = W[0]
 <<" %v $W \n"
 
 <<" $W[1:7:2] \n"
-j = 8
+
+j = 8;
+
 T= W[1:j-2:2]
 
 <<"%I $T \n"
+
 j = 0
-while (j++ < 7) {
+
+<<"$W\n"
 U= W[1,j,3]
 
-<<"$j %I $U \n"
+<<"$j $U \n"
+ans=iread()
+
+while (j++ < 7) {
+
+U= W[1,j,3]
+
+<<"$j $U \n"
 }
 
-
-STOP("DONE !\n")
+checkOut()
+exit()
 
 svar S
-
-
-
-
-
 
 S[0] = "Stay"
 S[1] = "Focused"

@@ -1,20 +1,25 @@
 // Caz  - Csz - 
-setdebug(1)
+///
+
+envDebug()
 
 <<" scalar \n"
 
 int d
 
+checkIn();
 
 asz= Csz(d)
 <<"array size (number of elements) is: $asz \n"
 
+checkNum(asz,0)
 nd = Cnd(d)
 <<"number of dimensions are: $nd \n"
+checkNum(nd,0)
 
 ab = Cab(d)
 <<"bounds are: $ab \n"
-
+checkNum(ab,0)
 
 ////////////////////////////////
 
@@ -31,13 +36,16 @@ a= A[0]
 
 asz= Csz(A)
 <<"array size (number of elements) is: $asz \n"
+checkNum(asz,6);
 
 nd = Cnd(A)
 <<"number of dimensions are: $nd \n"
-
+checkNum(nd,1)
 ab = Cab(A)
-<<"bounds are: $ab \n"
 
+
+
+<<"bounds are: $ab \n"
 
 
 <<" $(Caz(A)) $(typeof(A)) \n"
@@ -54,10 +62,47 @@ ab = Cab(A)
 <<"////\n Two dimensions \n"
 // FIXME  -- won't fill in rows
 
- int  B[2][3] = { {0,3,2 }, {-1,1,-2} };
+int  B[6] = { 0,3,2,-1,1,-2} ;
+
+
+
+ //int  B[2][3] = { {0,3,2 }, {-1,1,-2} };
 
 
  <<"$B\n"
+
+asz= Csz(B)
+<<"array size (number of elements) is: $asz \n"
+checkNum(asz,6);
+nd2 = Cnd(B)
+<<"number of dimensions are: $nd2 \n"
+checkNum(nd2,1)
+ab = Cab(B)
+
+<<"bounds are: $ab \n"
+
+ d= Cab(B)
+
+<<"%V $d \n"
+
+
+  B->redimn(2,3)
+
+
+asz= Csz(B)
+<<"array size (number of elements) is: $asz \n"
+checkNum(asz,6);
+nd2 = Cnd(B)
+<<"number of dimensions are: $nd2 \n"
+checkNum(nd2,2)
+ab = Cab(B)
+
+<<"bounds are: $ab \n"
+
+ d= Cab(B);
+
+
+checkOut()
 
 exit()
 

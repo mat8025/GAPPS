@@ -106,6 +106,41 @@ fix:
  
 tbd: 
 //==========================
+#98 10/05/17 5.91 2 PENDING  
+descr:
+ XIC  proc arg  M->redimn crash
+ Redimn(M) works
+fix: 
+ 
+tbd: 
+//==========================
+#99 10/05/17 5.91 4 PENDING  
+descr:
+ #define a=2;b=3;
+ multi statement , just first statement exe
+fix: 
+ 
+tbd: 
+//==========================
+#100 10/05/17 5.91 4 PENDING  
+descr:
+ Svar W; W[0] = "hey" ; W[3] = "jay" ;
+ W array does not expand to size 4;
+ 
+fix: 
+ 
+tbd: 
+//==========================
+#101 10/05/17 5.91 4 FIXED  
+descr:
+ int L[24]; L = 1; L[0:23] = 0; L = 2;
+ xic non subrange assign not working?
+fix: 
+  if siv is array then CLEARSUBI_SIV
+  before PUSH_SIV  for LH assign
+tbd:
+ check for paramexpand use
+//==========================
 //==========================
 #num xx/x/x vers sevlev state 
 descr:

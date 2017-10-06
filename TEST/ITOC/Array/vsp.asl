@@ -1,5 +1,13 @@
-//setdebug(1)
+//
+//
 // test vsp
+
+
+setdebug(1,"pline","trace")
+
+#define ASK ;
+//#define ASK ans=iread("->");
+
 
 CheckIn()
 
@@ -7,8 +15,8 @@ float Vsp[];
 float Tsp[];
 
 
-fftsz = 2^^6
-fftsz2 = fftsz/2
+fftsz = 2^^4;
+fftsz2 = fftsz/2;
 
 float Sf = 20480.0
 
@@ -36,7 +44,7 @@ proc setupVsp()
 }
 //-------------------------------------------------------------
 
-    setupVsp()
+setupVsp()
 
 <<"$Vsp\n"
 
@@ -53,9 +61,10 @@ proc setupTsp1()
 
   Tsp = fgen(fftsz2,615/Df,0) / fgen(fftsz2,0,1)
 
-  Tsp[0] = 0.000000001
-  Tsp[1] = 0.000000001
-  Tsp[2] = 0.000000001
+
+ // Tsp[0] = 0.000000001
+//  Tsp[1] = 0.000000001
+ // Tsp[2] = 0.000000001
 
 
   //mv = fgen(fftsz2,0,1)
@@ -70,8 +79,19 @@ proc setupTsp1()
 
 proc setupTsp()
 {
+<<" $fftsz2 \n"
 
-  Tsp = fgen(fftsz2,615/Df,0) / fgen(fftsz2,0,1)
+  //Tsp = fgen(fftsz2,615/Df,0) / fgen(fftsz2,0,1);
+
+    Tsp = fgen(fftsz2,615/Df,0)
+    Tsp /= fgen(fftsz2,0,1);
+
+
+<<"$(Caz(Tsp)) $(Cab(Tsp))\n"
+  <<"$Tsp\n";
+
+   ASK
+
   Tsp[0:2] = 0.10000000
 }
 

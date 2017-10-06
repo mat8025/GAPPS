@@ -1,9 +1,9 @@
 
-//setdebug(1)
+setdebug(1,"pline","trace")
 
 CheckIn()
 
- float HT[10][10]
+ int HT[10][10]
 
  HT[0][0] = 0
  HT[0][5] = 5
@@ -18,22 +18,35 @@ CheckIn()
 
 <<"$HT \n"
 
-jt = 0
-CT = HT[::][1:8:] 
+jt = 0;
 
+CT = HT[::][1:8:] 
+<<"HT $(Caz(HT)) $(Cab(HT)) \n"
+<<"CT $(Caz(CT)) $(Cab(CT)) \n"
 <<"$CT \n"
 
-val = CT[0][4]
+  val = CT[0][4]
 
 checkFNum(val,5)
 
-val = CT[1][4]
+ val = CT[1][4]
 
 checkFNum(val,15)
 
+R= vgen(INT_,10,0,1)
+<<"$R\n"
+
+T= R[2:8]
+
+<<"$T\n"
+<<"T $(Caz(T)) $(Cab(T)) \n"
+
+checkNum(R[0],0)
+checkNum(T[0],2)
+
 CheckOut()
 
-exitsi()
+exit()
 
 
 

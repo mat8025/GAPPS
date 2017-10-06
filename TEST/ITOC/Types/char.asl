@@ -1,6 +1,9 @@
-//
+///
+///  char.asl
+/// 
 checkIn()
-//setdebug(1)
+
+setdebug(1,"~pline")
 
 char CV[20];
 
@@ -59,20 +62,21 @@ checkNum(CMD[0][1],82);
 
 <<"CMD[] :\n";
 <<"$CMD \n"
-
+CMD[2][4] = 13
 CMD[2][3] = 28
 CMD[2][2] = 12
-CMD[2][0] = 17
 CMD[2][1] = 6
+CMD[2][0] = 17
+
 
 <<"$CMD \n"
 
 B = CMD[2][1:4:];
 // B should be a vector!
-
+B->Redimn()
 
 <<"%V$B \n"
-<<"$(typeof(B)) $(Cab(B)) \n"
+<<"$(typeof(B)) $(Cab(B)) $(Cnd(B))\n"
 
 cv0 = B[0];
 <<"%V$cv0\n";
@@ -82,7 +86,6 @@ cv1 = B[1];
 
 cv2 = B[2];
 <<"%V$cv2\n";
-
 
 
 checkNum(B[1],12);

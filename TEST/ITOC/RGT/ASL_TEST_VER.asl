@@ -124,7 +124,7 @@ else {
           n_modules += 1 
 
           if (pcc != 100.0) {
-	  <<"${Curr_dir} inserting $tname into failed list \n"
+	  //<<"${Curr_dir} inserting $tname into failed list \n"
             FailedList->Insert("${Curr_dir}/${tname}")
 	  //<<[Tff]"${Curr_dir}/${tname}\n"  
           }
@@ -919,7 +919,14 @@ if ( do_all || do_array ) {
 
   cart("scalarvec")
 
-  updir()
+  updir();
+
+  chdir("Subrange")
+
+  cart("subrange")
+  cart("subrange2")
+
+  updir();
 
   chdir("PrePostOp")
 
@@ -1385,6 +1392,22 @@ if ( do_all || do_oo ) {
 //============================
     chdir("Variables");
     cart("variables");
+    updir();
+//============================
+    chdir("Trig");
+    cart("trig");
+    updir();
+//============================
+    chdir("Caz");
+    cart("caz");
+    updir();
+//============================
+    chdir("Sizeof");
+    cart("sizeof");
+    updir();
+//============================
+    chdir("Limit");
+    cart("limit");
     updir();
 //============================    
 
