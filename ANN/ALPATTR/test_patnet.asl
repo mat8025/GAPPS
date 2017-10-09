@@ -125,7 +125,7 @@ while (1) {
             wp = atoi(woGetValue(pat_wo));
 	    }
 
-      net_display(wp++,Input,Target);
+      net_display(wp++,Input,Target2a);
 <<"$wp $Npats\n"
   if ( wp >= Npats) { 
          break;

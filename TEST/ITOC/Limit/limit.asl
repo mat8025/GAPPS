@@ -8,6 +8,15 @@ F= vgen(FLOAT_,20,-7,1)
 
 <<"%6.1f$F \n"
 
+H=limitVal(F,-6,6)
+
+<<"%6.1f$H \n"
+
+checkFnum(H[0],-6)
+
+checkFnum(H[19],6)
+
+
 F->limit(-5,5)
 
 

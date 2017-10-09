@@ -57,7 +57,7 @@ while (do_train) {
   nc /= NBS;
 
   if (nc > last_nc) {
-    if (nc >= (Npats-4)) {
+    if (nc >= (Npats-2)) {
      bell()
      sleep(0.1);
      }
@@ -69,28 +69,12 @@ while (do_train) {
  rms = ss[1];
  Rms[ns] = rms;
 
- 
 
- if (do_print && pit && !Graphic) {
-<<"sweep $ns %V$nc $ss $rms \n"
-  print_net(N, 0,&Input[0], &Target[0])
-  print_net(N, 1,&Input[0], &Target[0])
-  print_net(N, 2,&Input[0], &Target[0])
-  print_net(N, 3,&Input[0], &Target[0])
-
-  <<"%V$ns  $nc $ss $rms\n"
-//ans=iread("goon:")
-//if (ans @= "q") {
-// exit()
-//}
- }
+<<"\r$ma $(memused()) %V$ns  $nc $ss[0] $rms  "
+fflush();
 
 
-
-<<"$ma %V$ns  $nc $ss[0] $rms\n"
-
-
-if ( rms < 0.1) {
+if ( rms < 0.05) {
     if (nc == nip_pats) {
       break
    }
@@ -117,7 +101,7 @@ if ( rms < 0.1) {
 //===================================
 
 
-<<"OPC: \n %(5,, ,\n)$Opc \n";
+<<"OPC: \n %(16,, ,\n)$Opc \n";
 
 
   nc=trainNet(N, Input, Target, 1);
@@ -169,7 +153,7 @@ int do_print = 0;
 
 float Rms[1000+] ; //  contains rms error per sweep
 
-int Npats = 143;
+int Npats = 260;
 <<"$Npats \n"
 
 //float Input[Npats*25];  // 5 x 5 matrix
@@ -183,7 +167,7 @@ int Npats = 143;
 
  layers = 3;
  nin = 100;
- nout = 24;  // what shifts left/right/up/down to focus on the pattern 
+ nout = 20;  // what shifts left/right/up/down to focus on the pattern 
 
 <<"%V $layers $nin $nout \n"
 
@@ -338,8 +322,9 @@ else {
  <<"random seed $rs \n"
 
 ans=iread("proceed?")
-if (ans @= "q")
+if (ans @= "q") {
  exit()
+ }
 
 
 ntargs = Npats;
@@ -367,7 +352,7 @@ int Opc[Npats];  // each pattern correct?
 
 
  ans=iread()
-if (ans @= "quit") {
+if (ans @= "q") {
   exit()
  }
 
@@ -423,25 +408,37 @@ int wp = 1
 int pit;
 int ma = 0;
 
-ans=iread()
- while (1) {
+
+ans=iread("proceed?")
+ if (ans @= "q") {
+  exit()
+ }
+ 
+int n_success =0;
+
+while (1) {
 
 Rtrain()
 
 ma++
 <<"[${ma}] %V $nc \n"
 
-if (nc >= (Npats-4)) {
+if (nc >= (Npats-2)) {
  ok= saveNet(N,"net_${ma}.wts")
 }
  if (nc == Npats) {
-<<" success @ $ma attempt \n"
+ n_success++;
+<<" SUCCESS! @ the $ma attempt %V $n_success\n"
+
+   if (n_success == 2) {
+     break;
+    }
   }
   
  }
 
 
-exit()
+exit();
 
 
 

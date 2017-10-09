@@ -40,7 +40,8 @@ proc  drawMonths(ws)
   // Samhain     Oct 31
   // Christmas   Dec 25
   //
-  // Equinoxes Dec 21, March 21, June 21, Sep 21 - winter ,vernal, midsummer, fall
+  // Equinoxes Dec 21, March 21, June 21, Sep 21 -
+  // winter ,vernal, midsummer, fall
 
    int sd
    int k
@@ -142,8 +143,10 @@ proc drawScreens()
      
   if (ALL_LINES) {
 DBPR" draw lines \n"
+
       DrawGline(ext_gl)
-      DrawGline(gw_gl)
+<<" draw gw_gl\n"
+      dGl(gw_gl);
 
       DrawGline(calc_gl)
       DrawGline(calb_gl)

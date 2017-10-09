@@ -267,13 +267,13 @@ include "gevent.asl";
      }
      else if (ev_woid == moplwo) {
         wos2mat();
-        LM= cyclecol(LM,1)
+        LM= cyclecol(LM,-1)
         mat2wos();
 	sWo(cellwo,@redraw);
      }
      else if (ev_woid == moprwo) {
         wos2mat();
-        LM= cyclecol(LM,-1)
+        LM= cyclecol(LM,1)
         mat2wos();
 	sWo(cellwo,@redraw);
      }

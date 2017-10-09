@@ -1,4 +1,4 @@
-#Description of food                          Fat  Food Energy Carbohydrate Protein Cholesterol Weight Saturated Fat 
+#Description of food                          Fat  Calories Carbohydrate Protein Cholesterol Weight Saturated Fat 
 #                                           (Grams) (calories)   (Grams)   (Grams) (Milligrams) (Grams)  (Grams) 
 1000 ISLAND  SALAD DRSNG LOCAL 1 TBSP         2        25           2         0        2       15       0.2 
 1000 ISLAND  SALAD DRSNG REGLR 1 TBSP         6        60           2         0        4       16        1 
@@ -631,6 +631,7 @@ POPCORN  AIR-POPPED  UNSALTED  1 CUP          0        30           6         1 
 POPCORN  POPPED  VEG OIL SALTD 1 CUP          3        55           6         1        0       11       0.5 
 POPCORN  SUGAR SYRUP COATED    1 CUP          1       135          30         2        0       35       0.1 
 POPSICLE                       1 POPCLE       0        70          18         0        0       95        0 
+PORRIDGE OATS                  1 CUP     0        50         11        2      0       100      0
 PORK CHOP  LOIN  BROIL  LEAN   2.5 OZ         8       165           0        23       71       72       2.6 
 PORK CHOP  LOIN  BROIL  LEN+FT 3.1 OZ        19       275           0        24       84       87        7 
 PORK CHOP  LOIN PANFRY  LEAN   2.4 OZ        11       180           0        19       72       67       3.7 

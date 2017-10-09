@@ -1063,6 +1063,8 @@ hdg("FUNC")
 
   cart("proc_sv0")
 
+  cart("proc_rep")
+
   cart("procrefarg")
 
   updir()
@@ -1408,6 +1410,10 @@ if ( do_all || do_oo ) {
 //============================
     chdir("Limit");
     cart("limit");
+    updir();
+//============================
+    chdir("D2R");
+    cart("d2r");
     updir();
 //============================    
 

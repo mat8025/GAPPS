@@ -1,6 +1,7 @@
 ///
 /// exercise weight display
-/// calories burned (wt at 180) Walk 4mhr 397, Hike 477, R 10mhr 795 Cycle 12mhr 636  Wt lift 350
+/// calories burned (wt at 180)
+/// Walk 4mhr 397, Hike 477, R 10mhr 795 Cycle 12mhr 636  Wt lift 350
 /// Scuba   556   Gardening 318
 /// sleep 8 hours   71.5 per hour
 /// office computer work (24-8-exercise hours) 119.3 per hour
@@ -70,9 +71,11 @@ DBPR"$today $jtoday \n"
 
 minWt = 160;
 topWt = 210;
-StartWt = 208
-GoalWt = 175
-NextGoalWt = 195;
+StartWt = 200;
+
+GoalWt = 175;
+
+NextGoalWt = 190;
 
 // rates per min
 include "wed_rates"
@@ -93,7 +96,7 @@ float WTVEC[10+]
 float PWTVEC[10+] 
 
 float WTPMV[10+] 
-float GVEC[10+] // goal line
+float GVEC[10+]; // goal line
 float BPVEC[10+] 
 float SEVEC[10+] 
 float CARBV[10+] 
@@ -144,7 +147,7 @@ if (A == -1) {
 
 
 
-long sday = julday("4/1/2017")
+long sday = julday("4/1/2017") // start date
 
 got_start = 0
 
@@ -168,7 +171,7 @@ kdays = k
 
 DBPR"%V$kdays \n"
 
-     WDVEC= Igen(2*kdays,0,1)
+    //WDVEC= vgen(_INT_,2*kdays,0,1);
 
     n = 0
 //<<"%V$A \n"
@@ -194,7 +197,7 @@ long wday
 // bug  #include "wed_read"  // should work
 include "wed_read"
 
-//////////////////////////////////////// PLOT GOAL LINE  ///////////////////////////////////////////
+////////////// PLOT GOAL LINE  ///////////////////////////////////////////
 
 //    sc_endday = lday + 10
 //    sc_endday = 75 * 365
@@ -202,51 +205,56 @@ include "wed_read"
 
       sc_endday = (jtoday - bday) + 60;
 
-      gsday = julday("4/01/2017") -bday
-      gday =  julday("8/16/2017") -bday    // next goal day 
+      gsday = julday("10/07/2017") -bday;
+      gday =  julday("10/30/2017") -bday;    // next goal day 
 
-      ngday = gday - gsday 
+      ngday = gday - gsday;
 
    DBPR"%V$ngday \n"
 
-  gwt = NextGoalWt
+  gwt = NextGoalWt;
 
-  GVEC[0] = 0.0
+  GVEC[0] = 0.0;
 
-  GVEC[365] = NextGoalWt 
+  GVEC[1] = NextGoalWt;
 
-  ty_gsday = gsday- (sday -bday)
+  //ty_gsday = gsday- (sday -bday);
+  ty_gsday = gsday;
 
 
-  GVEC[ty_gsday] = StartWt
+  GVEC[0] = StartWt;  // start  Wt
 
-  GVEC[gday-sday] = gwt
-
+  GVEC[ngday-1] = gwt;  // goal wt
+  WDVEC[ngday-1] = gsday+ngday;
   k =0
 
 //  lpd = 1.75/7.0      // 1.75 lb a  week
 
-  lpd = 2.0/7.0      // 5 lb a  week
-  sw = StartWt
-  lw = sw
+  lpd = 4.0/7.0;      // 5 lb a  week
+  sw = StartWt;
+  lw = sw;
 
-
+// our goal line  wtloss per day!
   for (i= 0; i < ngday; i++) {
-
-//DBPR"$(ty_gsday+i) $lw \n"
-
-    GVEC[ty_gsday+i] = lw
-
-    lw -= lpd
+<<"$(ty_gsday+i) $lw \n"
+    GVEC[i] = lw;
+    WDVEC[i] = gsday+i;
+    lw -= lpd;
     if (lw < 165.0)
-        lw = 165
+        lw = 165;
   }
 
+
+
 ///  revised goal line
-sz = Caz(GVEC)
+  sz = Caz(GVEC);
+<<" days $sz to lose $(StartWt-gwt) \n"
+  sz = Caz(WDVEC);
 
+<<"$sz\n"
+<<"%6.1f%(7,, ,\n)$WDVEC\n"
+<<"%6.1f%(7,, ,\n)$GVEC\n"
 ////////////////////////////////////////////////////////////////////////
-
 
 DBPR"%V$i $sz\n"
 
@@ -268,7 +276,7 @@ include "wed_foodlog"
 
          first_k = 220
 
-         end_k = first_k + 90
+         end_k = first_k + 90;
 
          last_wt = last_known_wt
 
@@ -371,14 +379,13 @@ include "wed_glines"
 
 
 
-////////////////////////////////////// PLOT  ////////////////////////////////////////////
+///////////////////////// PLOT  ////////////////////////////////////////////
 //  
 //  DrawGline(ext_gl)
 //  DrawGline(allgl)
 //  sWo(carbwo,@showpixmap)
 
 include "wed_compute";
-
 include "wed_callbacks";
 
 
@@ -408,7 +415,7 @@ int button = 0
    ZIN();
 
 woname = ""
-E =1
+gevent E;
 
    while (1) {
 

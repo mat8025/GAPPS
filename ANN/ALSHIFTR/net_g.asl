@@ -47,23 +47,27 @@
 
 //<<"%V$rms_wo   \n"
 
- pc_wo=cWo(wid,@BV,@bhue,"green")
+ pc_wo=cWo(wid,@BV,@bhue,GREEN_)
+
+ pcorr_wo=cWo(wid,@BV,@value,0,@bhue,BLUE_,@fhue,WHITE_)
 
 //<<"%V$pc_wo    \n"
 
  pat_wo=cWo(wid,@BV,@bhue,YELLOW_,@func,"inputValue");
+
 
  nswps_wo=cWo(wid,@BV,@fhue,RED_)
 
 <<"%V$nswps_wo \n"
 
    sWo(pc_wo,@name,"PC",@value,0,@fonthue,"black",@style,"SVB")
+      sWo(pcorr_wo,@name,"CORRECT?",@value,0,@fonthue,WHITE_,@style,"SVB")
    sWo(rms_wo,@name,"RMS",@value,0,@color,"red",@bhue,"green",@fonthue,"black",@style,"SVB",@pixmapon,@save)
    sWo(pat_wo,@name,"PAT",@value,0,@color,"green",@fonthue,"black",@style,"SVB")
    sWo(nswps_wo,@name,"NSWEEPS",@value,0,@fonthue,"black",@style,"SVB")
 
 
-int nwos[] = {pc_wo, rms_wo,pat_wo,nswps_wo};
+int nwos[] = {pc_wo, pcorr_wo,rms_wo,pat_wo,nswps_wo};
 
 wohtile(nwos,0.1,w_y0,0.9,w_y1);
 

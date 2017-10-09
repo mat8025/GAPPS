@@ -4,7 +4,16 @@
 ///  train/test
 ///
 
-setdebug(1,"~pline");
+//setdebug(1,"~pline","~trace");
+
+dont_ask = 0;
+
+#define ASK ;
+
+//#define ASK ans=iread("->");
+
+int make_train = 0;
+int make_test = !make_train;
 
 float T[100];
 
@@ -20,7 +29,7 @@ proc add_pat(MP)
 <<"adding pat\n"
     check_shift(MP);
   //  MP->redimn();
-  redimn(MP);
+     redimn(MP);
     TRIV=vsplice(TRIV,MP);
     TROV=vsplice(TROV,LOP);
 }
@@ -28,9 +37,7 @@ proc add_pat(MP)
 proc shift_tar(l,r,t,b)
 {
 
-
-;
-   LOP[0:23] = 0.0;
+   LOP = 0.0;
    
    if (l > 0) 
      LOP[l-1] =1;
@@ -42,14 +49,17 @@ proc shift_tar(l,r,t,b)
      LOP[20+b] =1;  
 <<"%6.0f%(12,,,\n)$LOP\n"
 }
-
+//==========================
 proc make_tar(l,r,t,b)
 {
+
 //  how much to shift
 //<<"tar vec %6.2f$LOP\n"
+<<"%V $l $r $t $b \n"
+<<" $(infoof(l))\n"
+  int j = 0;
+  LOP = 0.0;
 
-  // LOP = 0.0;
-      LOP[0:23] = 0.0;
  <<"tar vec %6.0f$LOP\n"
 // ans=iread()
    if (l > 0)  {
@@ -89,8 +99,45 @@ proc make_tar(l,r,t,b)
 <<"$b %6.0f%(12,,,\n)$LOP\n"
 
 <<"%6.0f%(12,,,\n)$LOP\n"
+  <<"memused $(memused()) \n"
 }
+//======================
 
+proc pos_tar(l,r,t,b)
+{
+
+//  how mark start/end rows cols
+
+//<<"tar vec %6.2f$LOP\n"
+<<"%V $l $r $t $b \n"
+<<" $(infoof(l))\n"
+
+int j = 0;
+
+    LOP = 0.0;
+<<"%6.0f%(10,,,\n)$LOP\n"
+
+// ans=iread()
+
+     LOP[l] =1;
+  <<"$l \n%6.0f%(10,,,\n)$LOP\n"
+     LOP[r] =1;
+  <<"$r \n%6.0f%(10,,,\n)$LOP\n"
+  
+      tpi = t+10;
+      LOP[tpi] =1;
+      
+      //LOP[10+t] =1;
+    <<"$t $tpi \n"
+    <<" %6.0f%(10,,,\n)$LOP\n"
+      bpi = 10+b;
+      LOP[bpi] =1;
+
+  <<"$b $bpi \n"
+  <<"%6.0f%(10,,,\n)$LOP\n"
+  <<"memused $(memused()) \n"
+}
+//======================
 
 //
 proc check_lcol(M)
@@ -144,6 +191,7 @@ proc check_trow(M)
 
 proc check_brow(M)
 {
+<<"$_proc\n"
 // which row does letter shape end in?
   rs = 0;
   int i= Nrows -1;
@@ -159,23 +207,22 @@ proc check_brow(M)
 
 proc check_shift(W, lname)
 {
-
   lc = check_lcol(W);
   <<"shift left by $lc \n";
   rc = check_rcol(W);
-  rc = Ncols -rc -1;
-  <<"shift right by $rc \n";
+  
+  rci = Ncols -rc -1;
+  <<"shift right by $rci \n";
 
    tr = check_trow(W);
   <<"shift up by $tr \n";
 
    br = check_brow(W);
-   br = Nrows -br -1;
-  <<"shift down by $br \n";
+   bri = Nrows -br -1;
+  <<"shift down by $bri \n";
 
   sz = Cab(W)
   <<" $(Caz(W)) $(Cab(W)) \n"
-
 
    lcs = -1;
    rcs = -1;
@@ -219,12 +266,19 @@ proc check_shift(W, lname)
 <<"$Lname %V $lc $rc $tr $br $lcs $rcs $trs $brs \n"
 
    //shift_tar(lcs,rcs,trs,brs);
-   make_tar(lc,rc,tr,br);
-   
-//ans=iread("->");
-}
+  // make_tar(lc,rc,tr,br);
+   pos_tar(lc,rc,tr,br);
 
-float LOP[24];
+   ASK
+   
+
+}
+//==================
+
+
+
+
+float LOP[20];
 
 int Ncols = 10;
 int Nrows = 10;
@@ -281,8 +335,6 @@ int k = 0;
 
    R=T;
 
-
-
 /// train vecs
 <<"$LOP \n"
 
@@ -290,30 +342,7 @@ int k = 0;
 //ans=iread("T");
 
 
-  LML= cyclecol(T,1);
-
-  LML2= cyclecol(T,2)
-<<"$LML2 \n"
-
-//ans=iread("LML");
-  LML2U= cyclerow(LML2,-1)
-  LML2D= cyclerow(LML2,1)  
-
-  LMR= cyclecol(T,-1)
-<<"$LMR \n"
-
-  LMR2= cyclecol(T,-2)
-
-  LMR2D= cyclerow(LMR2,1)
-
-  LMR2U= cyclerow(LMR2,-1)  
-
-  LMU= cyclerow(T,-1)
-
-  LMD= cyclerow(T,1)
-
   check_shift(T);
-
 
   T->redimn()
   if (wa ==1) {
@@ -326,36 +355,111 @@ int k = 0;
     TRIV=vsplice(TRIV,T)
     TROV=vsplice(TROV,LOP)
   }
-
-   add_pat(LML);
   
-  //check_shift(LML);
-  //LML->redimn();
-  //TRIV=vsplice(TRIV,LML);
-  //TROV=vsplice(TROV,LOP);
+    TP = R;
+//  different positions
 
-    add_pat(LML2);
+    
+    // up
+    SP = cyclerow(TP,-1);
+    TP = SP
+    if (make_train)
+    add_pat(SP);
 
-    add_pat(LML2U);
-    add_pat(LML2D);
- 
-    add_pat(LMR);
-
-    add_pat(LMR2);
-
-    add_pat(LMR2D);
-    add_pat(LMR2U);
-
-    add_pat(LMU);
-
-    add_pat(LMD);
-
-// how much to shift left letter dependent!
-   
+    SP = cyclerow(TP,-1);
+    TP = SP
+    if (make_test)
+    add_pat(SP);
 
 
 
+    // left
+    SP = cyclecol(TP,-1);
+    TP = SP
+    if (make_train)
+     add_pat(SP);
 
+    SP = cyclecol(TP,-1);
+    TP = SP
+    if (make_test)
+      add_pat(SP);
+
+    
+    
+    // down
+    SP = cyclerow(TP,1);
+    TP = SP
+    if (make_train)
+    add_pat(SP);
+
+    SP = cyclerow(TP,1);
+    TP = SP
+    if (make_test)
+    add_pat(SP);
+
+    SP = cyclerow(TP,1);
+    TP = SP
+    if (make_train)
+    add_pat(SP);
+    
+
+// how much to shift  letter dependent!
+    
+    // right
+    SP = cyclecol(TP,1);
+    TP = SP
+    if (make_train)
+    add_pat(SP);
+
+    SP = cyclecol(TP,1);
+    TP = SP
+    if (make_train)
+    add_pat(SP);
+
+    SP = cyclecol(TP,1);
+    TP = SP
+    if (make_test)
+    add_pat(SP);
+
+    SP = cyclecol(TP,1);
+    TP = SP
+    if (make_test)
+    add_pat(SP);
+
+
+    SP = cyclecol(TP,1);
+    TP = SP
+    if (make_train)
+    add_pat(SP);
+
+
+
+
+
+    // up
+
+    SP = cyclerow(TP,-1);
+    TP = SP
+    if (make_train)
+    add_pat(SP);
+
+    SP = cyclerow(TP,-1);
+    TP = SP
+    if (make_test)
+    add_pat(SP);
+
+
+    SP = cyclerow(TP,-1);
+    TP = SP
+    if (make_train)
+    add_pat(SP);
+
+    
+// train 9 + start 
+
+// test  6 + start
+
+<<"memused $(memused()) \n"
 
 
 /// op
@@ -372,8 +476,6 @@ na = argc()
 
 //ans=iread()
 
-
-
   for (i=1 ; i < na ; i++) {
 
     letter(i);
@@ -383,8 +485,9 @@ na = argc()
 
 ////////////////////////////////////
 
-int make_test = 1;
+
  if (make_test) {
+ 
   B=ofw("shifttstip.dat")
   wdata(B,TRIV);
   cf(B)
@@ -395,6 +498,7 @@ int make_test = 1;
   cf(B)
 }
 else {
+
   B=ofw("shifttrip.dat")
   wdata(B,TRIV);
   cf(B)
@@ -402,7 +506,6 @@ else {
   B=ofw("shifttrop.dat")
   wdata(B,TROV);
   cf(B)
-
 }
 
 /////////////////////////////////////

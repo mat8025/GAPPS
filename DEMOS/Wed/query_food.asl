@@ -2,10 +2,13 @@
 ///
 ///
 
-#define DBPR <<
-//#define DBPR
+//#define DBPR <<
+#define DBPR ~!
 
-setdebug(1)
+#define TDBP <<
+#define ASK ans=iread();
+
+setdebug(1,"~pline")
 
 //<<"#                          Fat  Carbohydrate Protein  Cholesterol  Weight Saturated_Fat Calories \n"
 //<<"#                          (Grams) (Grams) (Grams) (Milligrams)    (Grams)  (Grams)     (cals) \n"
@@ -37,13 +40,11 @@ class Food {
   CMF setval(fdsc,rs)
     {
 
-
       if (slen(rs) < 40) {
-     // <<"$fdsc \n"
-     // <<"$rs \n"
-        <<"too short $rs \n"
-        //stop!
-
+      // <<"$fdsc \n"
+       //<<"$rs \n"
+        <<"description too short $rs \n"
+         exit();
       }
 
 
@@ -72,9 +73,10 @@ class Food {
 
   CMF check (edsc, fw)
     {
-     // find desc anywhere with table desc?
-     // want word initial search so white-space then word " PEAR" searches for pear won't get spear
-     // like to use regex
+    
+     /// find desc anywhere with table desc?
+     /// want word initial search so white-space then word " PEAR" searches for pear won't get spear
+     /// like to use regex
 
      fd_len = slen(edsc)
 
@@ -82,13 +84,22 @@ class Food {
 
      descr_w = split(descr)
 
-DBPR"$descr_w[0]  $edsc \n"
+//TDBP"$descr_w[0]  $edsc \n"
 
 
      rind = sstr(descr_w[0],edsc, 1)
 
-DBPR">>> $descr $descr_w[0] $edsc $rind $fw \n"
 
+
+ if (rind != -1) {
+ ok =1;
+TDBP">>> $descr $descr_w[0] $edsc $rind fw $fw \n"
+ASK
+  if (ans @="q")
+     exit()
+}
+
+     
      if (fw != 1) {
 
        if (rind != 0) {
@@ -113,13 +124,7 @@ DBPR<<"$descr $needle $rind\n"
          ok =1
      }
 
-    yn = ok
-
-
-    if (ok == 1) {
-//<<"is $edsc within  $descr ?? $ok $rind\n"
-//iread("within?")
-    }
+      yn = ok
 
       return (ok)
     }
@@ -265,8 +270,8 @@ the_descr = ""
 proc checkFood()
 {
 
-str the_amt
-str the_unit
+str the_amt;
+str the_unit;
 
 int nfd = 0;
 
@@ -311,7 +316,7 @@ looked_twice =0
 
     for (i = 0 ; i < jf ; i++) {
 
-//<<"$i  $food_d[0]\n"
+
 
       ynfood = Fd[i]->check(food_d[0], do_first_word)
 
@@ -320,6 +325,8 @@ looked_twice =0
 
       if (ynfood) {
 
+  <<"$i  $food_d[0]\n"
+       ASK
         ynqual = 1
 
         Fd[i]->print()
@@ -328,7 +335,7 @@ looked_twice =0
 
          qual = food_d[1]
 
-         // <<"$nfd now  checking qualifier $qual\n"
+         <<"$nfd now  checking qualifier $qual\n"
 
           ynqual = Fd[i]->checkQualifier(qual)
 
@@ -515,7 +522,7 @@ f_amt = "1"
 
 // split line into first 30 chars and rest
 
-// <<"[${k}] $nlines %V$fline \n"
+//<<"[${k}] $nlines %V$fline \n"
 
     fd = sele(fline,0,30)
 
@@ -523,7 +530,7 @@ f_amt = "1"
 
 //<<"trying sele \n"
 
-    rs = sele(fline,31,-1)
+    rs = sele(fline,31)
 
 //<<"%V$jf $rs \n"
 
@@ -664,17 +671,28 @@ do_loop = 0
  }
 
 }
-;
-          stop!
-}
 
 
-Graphic = CheckGwm()
+
 
 Graphic = CheckGwm()
 if (Graphic) {
-include "gui_query.asl"
+  include "gui_query.asl"
 }
 
-stop!
+exit();
 
+/// TBD ///
+/{/*
+
+ make food table CSV 
+ items parsed as float
+
+ script to add food
+
+
+
+
+
+
+/}*/

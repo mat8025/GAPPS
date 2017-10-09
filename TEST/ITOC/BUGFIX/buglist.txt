@@ -138,9 +138,26 @@ descr:
 fix: 
   if siv is array then CLEARSUBI_SIV
   before PUSH_SIV  for LH assign
+  also clearsubi was setting up subi?
 tbd:
  check for paramexpand use
 //==========================
+//==========================
+#num 102 10/07/17 5.91 4 PENDING
+descr:
+  tpi =10+t ;  !=  tpi = t + 10;
+  XIC ? order ?
+fix: 
+  can't replicate
+  
+tbd: 
+//==========================
+#num xx/x/x vers sevlev state 
+descr:
+
+fix: 
+ 
+tbd: 
 //==========================
 #num xx/x/x vers sevlev state 
 descr:

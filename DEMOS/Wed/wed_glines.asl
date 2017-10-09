@@ -27,7 +27,7 @@ DBPR"%V$pwt_gl \n"
   sGl(wt_gl,@symbol,"triangle",1.2, @fill_symbol,0,@symsize,0.75,@symhue,RED_)
 
   if ((wt_gl == -1)  || (ext_gl == -1)) {
-    exit_si()
+    exit()
   }
 
 // wtpm_gl = cGl(gwo,@type_XY,DVEC,WTPMV,@color,BLUE_,@ltype,"symbols","diamond")

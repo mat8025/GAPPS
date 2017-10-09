@@ -4,6 +4,10 @@
 ///  train/test
 ///
 
+setdebug(1,"~pline","~step","trace")
+
+//#define ASK ans=iread()
+#define ASK ;
 proc shift_tar(l,d)
 {
 //<<"tar vec %6.2f$LOP\n"
@@ -15,6 +19,20 @@ proc shift_tar(l,d)
 
 <<"tar vec %6.1f$LOP\n"
 }
+
+proc make_tar(l,d)
+{
+//<<"tar vec %6.2f$LOP\n"
+   LOP = 0.0;
+   if (l > 0) 
+     LOP[l-1] =1;
+   if (d > 0) 
+    LOP[8+d] =1;
+
+<<"tar vec %6.1f$LOP\n"
+}
+
+
 //
 proc check_lcol()
 {
@@ -33,7 +51,7 @@ proc check_lcol()
    return i;
 }
 //
-
+int make_test=0;
 float LOP[12];
 
 proc letter(wa)
@@ -48,7 +66,7 @@ if (A == -1) {
  exit();
 }
 
-
+lmu =memused()
 
 S=readline(A);
 S=readline(A);
@@ -67,17 +85,31 @@ int k = 0;
 
   while (1) {
 
-  W = split(readline(A),",");
+  wl=readline(A)
 
   if (feof(A)) {
+  <<"EOF $k line\n"
    break;
   }
+
+ W = split(wl,,",");
+
   
   
-//<<"[${k}] $W[0] $W[4]\n"
+ if (k > 100)
+   break;
+   
+
+
+
  T[k] = atof(W[4]);
- k++;
- }
+
+
+<<"[${k}] $W[0] $W[4] \n"
+k++;
+}
+
+
 
   T->redimn(10,10);
 
@@ -86,8 +118,6 @@ int k = 0;
   lc = check_lcol()
   <<"shift left by $lc \n";
   
-
-
   sz = Cab(T)
   <<" $(Caz(T)) $(Cab(T)) \n"
 
@@ -96,9 +126,14 @@ int k = 0;
    shift_tar(lc,1)
    
 /// train vecs
-<<"$LOP \n"
+<<"%6.0f$LOP \n"
 
-ans=iread();
+mu =memused()
+<<"memused $mu $lmu $(mu-lmu)\n"
+
+lmu = mu
+
+ASK
 
 
 <<"$T \n"
@@ -138,6 +173,8 @@ ans=iread();
   LMR->redimn();
   LMR2->redimn();
   LMR2D->redimn();
+
+  ASK
     
 
 
@@ -147,84 +184,60 @@ ans=iread();
     TROV = LOP;
   }
   else {
-    TRIV=vsplice(TRIV,T)
-    TROV=vsplice(TROV,LOP)
+    TRIV= vsplice(TRIV,T)
+    TROV= vsplice(TROV,LOP)
   }
 
+<<"$(Caz(TRIV)) $(Caz(TROV)) $(memused())\n"
+ASK
 // how much to shift left letter dependent!
     TRIV=vsplice(TRIV,LML);
     shift_tar(lc-1,1);
     TROV=vsplice(TROV,LOP);
-
-
-
+<<"$(Caz(TRIV)) $(Caz(TROV)) $(memused())\n"    
+ASK
     TRIV=vsplice(TRIV,LMR);
     shift_tar((lc+1),1);
     TROV=vsplice(TROV,LOP);
-
+<<"$(Caz(TRIV)) $(Caz(TROV)) $(memused())\n"    
+ASK
     TRIV=vsplice(TRIV,LMR2);
     shift_tar((lc+2),1);
     TROV=vsplice(TROV,LOP);
-	
+<<"$(Caz(TRIV)) $(Caz(TROV)) $(memused())\n"    
+ASK	
     TRIV=vsplice(TRIV,LMR2D);
     shift_tar(lc+2,0);
     TROV=vsplice(TROV,LOP);
-
+<<"$(Caz(TRIV)) $(Caz(TROV)) $(memused())\n"    
+ASK
 
     TRIV=vsplice(TRIV,LML2);
      shift_tar(lc-2,1);
     TROV=vsplice(TROV,LOP);
-    
+<<"$(Caz(TRIV)) $(Caz(TROV)) $(memused())\n"    
+ASK    
     TRIV=vsplice(TRIV,LML2U);	
      shift_tar(lc-2,2);
     TROV=vsplice(TROV,LOP);
-
+<<"$(Caz(TRIV)) $(Caz(TROV)) $(memused())\n"    
+ASK
     TRIV=vsplice(TRIV,LMU);
      shift_tar(lc,2);
     TROV=vsplice(TROV,LOP);
-
+<<"$(Caz(TRIV)) $(Caz(TROV)) $(memused())\n"    
+ASK
     TRIV=vsplice(TRIV,LMD);
      shift_tar(lc,0);
-
     TROV=vsplice(TROV,LOP);
-
+<<"$(Caz(TRIV)) $(Caz(TROV)) $(memused())\n"    
+ASK
 
 /// op
 /// test vecs
-/{
-  LML= cyclecol(R,1)
-  LMR= cyclecol(R,-1)
-  LMU= cyclerow(R,-1)
-  LMD= cyclerow(R,1)
 
-  LML= cyclerow(LML,1)
-  LMR= cyclerow(LMR,-1)
-  LMU= cyclecol(LMU,-1)
-  LMD= cyclecol(LMD,1)
-
-  LOP=  submat(R,2,2,9,7)
-
-  LOP->redimn()
-  if (wa ==1) {
-    TSTIV = R;
-    TSTOV=LOP;    
-  }
-  else {
-    TSTIV=vsplice(TSTIV,R);
-    TSTOV=vsplice(TSTOV,LOP);
-  }
-  
-    TSTIV=vsplice(TSTIV,LML);
-    TSTIV=vsplice(TSTIV,LMR);
-    TSTIV=vsplice(TSTIV,LMU);
-    TSTIV=vsplice(TSTIV,LMD);    
-
-  for (jj = 0; jj < 4; jj++) {
-    TSTOV=vsplice(TSTOV,LOP);
-  }
-/}
  cf(A);
-
+ASK
 }
 
 
@@ -248,6 +261,8 @@ float TSTOV[]
 
 ////////////////////////////////////
 
+if (make_test) {
+<<"writing TST IPOP \n"
   B=ofw("shifttstip.dat")
   wdata(B,TRIV);
   cf(B)
@@ -255,17 +270,18 @@ float TSTOV[]
   B=ofw("shifttstop.dat")
   wdata(B,TROV);
   cf(B)
-
-/{
-  B=ofw("shifttstip.dat")
+ }
+ else {
+ <<"writing TR IPOP \n"
+  B=ofw("shifttrip.dat")
   wdata(B,TSTIV);
   cf(B)
 
 
-  B=ofw("shifttstop.dat")
+  B=ofw("shifttrop.dat")
   wdata(B,TSTOV);
   cf(B)
-/}
+}
 /////////////////////////////////////
-
+<<"DONE\n"
   

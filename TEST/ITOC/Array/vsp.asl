@@ -8,14 +8,14 @@ setdebug(1,"pline","trace")
 #define ASK ;
 //#define ASK ans=iread("->");
 
-
+initmem=memused()
 CheckIn()
 
 float Vsp[];
 float Tsp[];
 
 
-fftsz = 2^^4;
+fftsz = 2^^6;
 fftsz2 = fftsz/2;
 
 float Sf = 20480.0
@@ -130,4 +130,7 @@ CheckNum(bad,0)
 
 CheckNum(Rcmp[1],1)
 
-Checkout()
+Checkout();
+
+finalmem=memused()
+<<"memused $(memused()) \n";  
