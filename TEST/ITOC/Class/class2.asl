@@ -1,10 +1,8 @@
 
-setdebug(1);
+setdebug(1,"pline","trace");
 
 checkIn()
 // simple class test
-
-
 
 class Rec {
 
@@ -15,7 +13,6 @@ class Rec {
 
 
 Rec FI[10];
-
 
  FI[0]->srec = Split("how did we get here")
 
@@ -79,14 +76,12 @@ Class Add
 
   CMF say()
   {
-<<"$_proc hey there I exist\n"
+   <<"$_proc hey there I exist\n"
    return "hey hey";
   }
 }
 
-
 //int s;
-
 
 Add  tc;   //FIX
 

@@ -2,7 +2,7 @@
 //  vector  subset opeq
 //
 
-//setdebug(1,"pline")
+setdebug(1,"pline","~step")
  //float X[] = vgen(FLOAT_,10,0,1);  // fails
 
 checkIn()

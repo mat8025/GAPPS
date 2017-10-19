@@ -1,4 +1,6 @@
-setDebug(1)
+
+
+setDebug(1,"pline","~step")
 
 checkIn()
 
@@ -8,7 +10,7 @@ record R[10];
 
  R[0] = Split("each to his own")
  R[1] = Split("and the devil take the hindmost")
- R[2] = Split("but everybody counts don't they matey")
+ R[2] = Split("you are as strong as your will")
  R[3] = Split("this is the 4th record")
 
 <<"$R[0]\n"
@@ -36,7 +38,6 @@ sz = Caz(NR);
 <<"3 $NR[3] \n"
 
 
-exit()
 
 svar S
 

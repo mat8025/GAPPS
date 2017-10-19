@@ -16,9 +16,10 @@ would limit vector between range -10,10.
 
 
 envDebug();
+
 proc limit_vec()
 {
-   set(I,">",1,10)
+   setv(I,">",1,10)
 }
 
 
@@ -32,11 +33,12 @@ I = vgen(INT_,20,0,1)
  {
   I += 5;
   <<"[${k}] $I \n"
-  set(I,">",50,10)
+  setv(I,">",50,10)
   <<"$I \n"
+//ans=iread()
 }
 
-checkNum(I[0],50)
+checkNum(I[0],10)
 /////
 
 

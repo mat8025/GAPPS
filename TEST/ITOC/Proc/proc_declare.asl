@@ -1,4 +1,6 @@
 
+
+
 //
 
 setdebug(1)
@@ -99,5 +101,8 @@ proc moo(a)
 <<"%V$m3\n"
 
     checkNum(m3,80)
+
+//int b = 67;
+
 
 checkOut()

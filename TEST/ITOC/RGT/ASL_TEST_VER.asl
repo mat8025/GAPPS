@@ -7,7 +7,8 @@
 #define PBLACK '\033[1;39m'
 #define POFF  '\033[0m'
 
-vers = "1.6";
+vers = 7;
+
 //ws= getenv("GS_SYS")
 
 !!"rm -f ../*/*.tst"
@@ -18,9 +19,9 @@ vers = "1.6";
 envdebug();
 
 //<<"$tdir\n"
+TM= FineTime();
 
-today=getDate(1)
-
+today=getDate(1);
 <<"$today $(get_version())\n"
 
 cwd=getdir()
@@ -74,6 +75,13 @@ len = slen(atit)
 }
 
 Curr_dir = "xx";
+
+proc changeDir(td)
+{
+  chdir(td)
+  Curr_dir = getDir();
+}
+
 
 proc Run2Test(td)
 {
@@ -589,13 +597,13 @@ int do_ptrs = 0;
 
   updir()
 
-  chdir("Contin")
+  changeDir("Contin")
 
   cart("contin")
 
   updir()
 
-  chdir("Mod")
+  changeDir("Mod")
 
   cart("mod")
 
@@ -618,6 +626,7 @@ int do_ptrs = 0;
       cart("double")
       cart("float")
       cart("pan_type")
+      cart("ato")
       updir()
       Run2Test("Cast")
       cart("cast0")
@@ -724,7 +733,7 @@ if (( do_all ==1) || (do_declare == 1) ) {
 
    updir()
 
-   chdir("Consts")
+   changeDir("Consts")
 
    cart ("consts_test")
 
@@ -746,13 +755,13 @@ if (( do_all ==1) || (do_include == 1) ) {
 
     }
 
-chdir(tdir)
+changeDir(tdir)
 
 if ( do_all || do_exp ) {
 
 hdg("EXPRESSION")
 
-chdir("Sexp")
+changeDir("Sexp")
 
    cart("sexp", 10)
 
@@ -915,26 +924,26 @@ if ( do_all || do_array ) {
 
   updir()
 
-  chdir("Scalarvec")
+  changeDir("Scalarvec")
 
   cart("scalarvec")
 
   updir();
 
-  chdir("Subrange")
+  changeDir("Subrange")
 
   cart("subrange")
   cart("subrange2")
 
   updir();
 
-  chdir("PrePostOp")
+  changeDir("PrePostOp")
 
   cart("prepost_opr")
 
   updir()
 
-  chdir("M3D")
+  changeDir("M3D")
 
   cart("m3d")
   cart("m3d_assign")
@@ -950,7 +959,7 @@ if ( do_all || do_array ) {
 if ( do_all || do_matrix ) {
    
 
-   chdir("Mdimn")
+   changeDir("Mdimn")
 
    cart("mdimn0")
 
@@ -962,7 +971,7 @@ updir()
     cart("diag")
 
 updir()
-   chdir("Setv")
+   changeDir("Setv")
    cart("setv")
 updir()
 
@@ -976,7 +985,7 @@ updir()
   hdg("DYNAMIC_V")
 
 
-  chdir("Dynv")
+  changeDir("Dynv")
 
   cart("dynv0")
 
@@ -991,7 +1000,7 @@ updir()
 
 if ( do_all || do_lhsubsc ) {
 
-  chdir("Subscript")
+  changeDir("Subscript")
 
   cart("lharraysubsrange")
 
@@ -1006,7 +1015,7 @@ if ( do_all || do_func ) {
 
   hdg("FUNC")
 
-  chdir("Func")
+  changeDir("Func")
 
   cart("func")
 
@@ -1025,7 +1034,7 @@ if ( do_all || do_unary ) {
 
   hdg("UNARY")
 
-  chdir("Unary")
+  changeDir("Unary")
 
   cart("unaryexp")
 
@@ -1037,7 +1046,7 @@ if ( do_all || do_unary ) {
 if ( do_all || do_command ) {
   hdg("COMMAND")
 
-  chdir("Command")
+  changeDir("Command")
 
   cart("command")
   cart("command_parse")
@@ -1048,10 +1057,10 @@ if ( do_all || do_command ) {
 
 /////////////////////////////////////////
 if ( do_all || do_proc ) {
-hdg("FUNC")
+  hdg("PROC")
 
 
-  chdir("Proc")
+  changeDir("Proc")
 
   cart ("proc")
 
@@ -1069,22 +1078,23 @@ hdg("FUNC")
 
   updir()
 
-  chdir("ProcArray")
+  changeDir("ProcArray")
   
   hdg("ProcArray");  
 
   cart("arrayarg1")
+  
   cart("arrayarg2")
 
   updir()
 
-  chdir("Swap")
+  changeDir("Swap")
 
   cart ("swap")
 
   updir()
 
-  chdir("Static")
+  changeDir("Static")
   
   hdg("Static") ; 
 
@@ -1104,7 +1114,7 @@ if ( do_all || do_mops ) {
 
      Run2Test("Mops")
 
-    //chdir("Mops")
+    //changeDir("Mops")
 
     cart("xyassign")
 
@@ -1112,18 +1122,21 @@ if ( do_all || do_mops ) {
 
     hdg("RECURSION")
 
-    chdir("Fact")
+    changeDir("Fact")
 
     cart("fact", 10)
 
     updir()
 
-    chdir("Cmplx")
+    changeDir("Cmplx")
     cart("cmplx")
 
     updir()
-    chdir("Rand")
+    
+    changeDir("Rand")
+
     cart("urand")
+
     updir()
     }
 
@@ -1136,7 +1149,7 @@ if ( do_all || do_svar ) {
 
     Run2Test("Svar")
 
-    //chdir("Svar")
+    //changeDir("Svar")
 
     cart("svar1", "string operations are not always easy" )
 
@@ -1159,7 +1172,7 @@ if ( do_all || do_svar ) {
 
      Run2Test("Ivar")
 
-    //chdir("Ivar")
+    //changeDir("Ivar")
 
     cart("ivar")
 
@@ -1172,7 +1185,7 @@ if ( do_all || do_record ) {
 
      Run2Test("Record")
 
-    //chdir("Record")
+    //changeDir("Record")
 
     cart("record")
 
@@ -1181,7 +1194,7 @@ if ( do_all || do_record ) {
     updir()
 }
 
- chdir(tdir)
+ changeDir(tdir)
 
  if ( do_all || do_mops ) {
  
@@ -1192,7 +1205,7 @@ if ( do_all || do_record ) {
     cart ("opxeq")
     updir()
 
-    chdir("Prime")
+    changeDir("Prime")
 
     //    cart ("prime_65119")
     cart ("prime_127")
@@ -1200,7 +1213,7 @@ if ( do_all || do_record ) {
     updir()
 
 
-    chdir("Pow")
+    changeDir("Pow")
 
     cart("pow")
 
@@ -1211,13 +1224,13 @@ if ( do_all || do_record ) {
     }
 
 
- chdir(tdir)
+ changeDir(tdir)
 
  if ( do_all || do_stat ) {
 
     hdg("STAT")
 
-    chdir("Polynom")
+    changeDir("Polynom")
     cart("checkvm")
     cart("polyn")
 
@@ -1229,7 +1242,7 @@ if ( do_all || do_record ) {
 
     hdg("PAN")
 
-    chdir("Pan")
+    changeDir("Pan")
     cart("pan")
     cart("derange",10)
     updir()
@@ -1279,7 +1292,7 @@ if ( do_all || do_class ) {
 
 if ( do_all || do_oo ) {
 
-  Run2Test("Oo")
+  Run2Test("OO")
 
   cart("class_array")
 
@@ -1291,13 +1304,13 @@ if ( do_all || do_oo ) {
 
   cart("sh")
 
-  chdir("../Obcopy/")
+  changeDir("../Obcopy/")
 
   cart("obcopy")
 
     //  cart("objivar")
 
-  chdir("../Mih/")
+  changeDir("../Mih/")
 
   cart("mih")
 
@@ -1311,31 +1324,31 @@ if ( do_all || do_oo ) {
 
     hdg("S-FUNCTIONS")
 
-    chdir("Sscan")
+    changeDir("Sscan")
 
     cart("sscan")
 
     updir()
 
-    chdir("Bscan")
+    changeDir("Bscan")
 
     cart("bscan")
 
     updir()
 
-    chdir("Cut")
+    changeDir("Cut")
 
     cart("cut")
 
     updir()
 
-    chdir("Cmp")
+    changeDir("Cmp")
 
     cart("cmp")
 
     updir()
 
-    chdir("Sel")
+    changeDir("Sel")
 
     cart("sel")
 
@@ -1362,7 +1375,7 @@ if ( do_all || do_oo ) {
 #{
 /// findval -- find a value in a vector
 
-    chdir("findval")
+    changeDir("findval")
 
     cart("findval0")
 
@@ -1377,43 +1390,51 @@ if ( do_all || do_oo ) {
 
     updir()
 
-    chdir("Lip");
+    changeDir("Lip");
     cart("lip");
     updir();
 
 //============================
-    chdir("BubbleSort");
+    changeDir("BubbleSort");
     cart("bubblesort");
     updir();
 //============================
 
 //============================
-    chdir("Typeof");
+    changeDir("Typeof");
     cart("typeof");
     updir();
 //============================
-    chdir("Variables");
+    changeDir("Variables");
     cart("variables");
     updir();
 //============================
-    chdir("Trig");
+    changeDir("Trig");
     cart("trig");
     updir();
 //============================
-    chdir("Caz");
+    changeDir("Caz");
     cart("caz");
     updir();
 //============================
-    chdir("Sizeof");
+    changeDir("Sizeof");
     cart("sizeof");
     updir();
 //============================
-    chdir("Limit");
+    changeDir("Limit");
     cart("limit");
     updir();
 //============================
-    chdir("D2R");
+    changeDir("D2R");
     cart("d2r");
+    updir();
+//============================
+    changeDir("Cbrt");
+    cart("cbrt");
+    updir();
+//============================
+    changeDir("Packb");
+    cart("packb");
     updir();
 //============================    
 
@@ -1426,20 +1447,20 @@ if ( do_all || do_oo ) {
 if ( do_all || do_bugs ) {
       Run2Test("BUGFIX")
       // lets get a list and work through them
-      //cart("bugfix_40")   // this has intentional error and exits before test checks
+      //cart("bf_40")   // this has intentional error and exits before test checks
       
-      cart("bugfix_46")
-      cart("bugfix_59")
-      cart("bugfix_64")
-      cart("bugfix_75")
-      cart("bugfix_76")
-      cart("bugfix_78")
-      cart("bugfix_79")
-      cart("bugfix_80")
-      cart("bugfix_83")
-      cart("bugfix_84")
-      cart("bugfix_89")
-      cart("bugfix_91")                                                
+      cart("bf_46")
+      cart("bf_59")
+      cart("bf_64")
+      cart("bf_75")
+      cart("bf_76")
+      cart("bf_78")
+      cart("bf_79")
+      cart("bf_80")
+      cart("bf_83")
+      cart("bf_84")
+      cart("bf_89")
+      cart("bf_91")                                                
       updir()
 }
 
@@ -1499,10 +1520,9 @@ if (lsz > 1) {
    
 }
 <<"----------------------------------------------------------------------------\n"
-<<"$(date(5)) Modules $n_modules  Tests $rt_tests  Passed $rt_pass  Score %6.3f$pcc Fail %d $(flsz[0]) Crash $(lsz[0]-1) $(get_version())\n"
+<<"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$(flsz[0]) Crash $(lsz[0]) vers $(get_version())\n"
 
-
-<<[Opf]"$(date(5)) Modules $n_modules  Tests $rt_tests  Passed $rt_pass  Score %6.3f$pcc Fail %d $(flsz[0]) Crash $(lsz[0]-1) $(get_version())\n"
+<<[Opf]"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$(flsz[0]) Crash $(lsz[0]) $(get_version())\n"
 
 
 fflush(Opf)
@@ -1515,13 +1535,20 @@ fflush(Tff)
 cf(Tff);
 
 
-chdir(cwd)
+changeDir(cwd)
 
-!!"pwd"
+//!!"pwd"
 
-<<"cp Scores/score_$(date(2,'-')) current_score \n"
-<<"$vers\n";
+//<<"cp Scores/score_$(date(2,'-')) current_score \n"
+
+
+
 !!"cp Scores/score_$(date(2,'-')) current_score"
+dtms= FineTimeSince(TM);
+secs = dtms/1000000.0
+
+
+<<"script vers $(periodicName(vers))($vers) took%6.3f$secs secs\n"
 
 STOP()
 

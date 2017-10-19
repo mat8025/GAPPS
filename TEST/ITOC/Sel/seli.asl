@@ -11,6 +11,7 @@ the default is to work through the vector.
 (see Cmp)
 /}*/
 
+setDebug(1,"pline","~step")
 
 checkIn()
 
@@ -27,9 +28,12 @@ S=Seli(I,GT_,5)
 checkNum(S[0],6)
 checkNum(S[3],9)
 
-S=Sel(I,">",5,1)
+<<"$I\n"
+
+S=Seli(I,">",5,1)
 
 <<"$S\n"
+
 
 S=Seli(I,">",5,0,1)
 
@@ -43,6 +47,7 @@ S=Seli(I,">",50)
 F=vgen(INT_,10,0,1);
 
 <<"$F\n"
+
 
 S=Seli(F,GT_,5)
 

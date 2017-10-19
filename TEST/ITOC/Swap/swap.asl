@@ -3,7 +3,7 @@
 
 checkIn()
 
-//setdebug(1)
+setdebug(1,"pline","~step")
 
 proc swap ( x, y)
 {
@@ -11,11 +11,11 @@ proc swap ( x, y)
 
 <<"$_proc IN : %V$x $y $t\n"
 
-  t = x
+  t = x;
 <<"%V$t\n"
-  x = y
+  x = y;
  <<"%V$x $y\n"
-  y = t
+  y = t;
  <<"%V$y $t\n"
 
 <<" OUT: %V$x $y $t\n"

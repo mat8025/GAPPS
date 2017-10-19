@@ -1,6 +1,12 @@
-//setDebug(1,"trace","pline")
+///
+/// oa2
+///
 
-setDebug(1)
+
+setDebug(1,"~trace","pline","~step")
+
+//#define  ASK ans=iread();
+#define  ASK ;
 
 CheckIn(0)
 
@@ -22,7 +28,6 @@ vid = F->vid()
 vid = F[2]->vid()
 
 <<" $vid \n"
-
 
 int act_ocnt = 0
 
@@ -46,9 +51,7 @@ class Act {
 
  CMF Get()
  {
-
-   return type
-
+   return type;
  }
 
  CMF Act() 
@@ -64,13 +67,12 @@ class Act {
    mins = 10;
 
    t = 0;
-//iread()
  }
 
 };
 //================================
 
-Act a
+Act a;
 
     a->type = 2
 <<"%V$a->type \n"
@@ -92,9 +94,10 @@ Act a
 
  <<" a $(IDof(&a)) obid $obid \n"
 
+ASK
 
- Act b
- Act c
+ Act b;
+ Act c;
 
  <<" b $(IDof(&b)) \n"
 
@@ -116,9 +119,9 @@ Act a
 
 <<"%V$obid $vid\n"
 
- Act X[4]
+ Act X[4];
 
- xobid = X[2]->obid()
+ xobid = X[2]->obid();
 
  <<"%V$xobid \n"
 
@@ -203,7 +206,7 @@ Act a
      pass = 0
   }
 
-
+ASK
 
  val = 50
  i = 2
@@ -233,7 +236,7 @@ Act a
 
 <<"PASS? $pass \n"
 
-
+ASK
 
 <<"\n//////////////// CMF Set-Get /////////////////\n"
 
@@ -332,7 +335,7 @@ Act a
    <<"%V  $yt  $X[1]->type \n"
 
 
-
+ASK
 
 <<"/////////////////// Nested Class /////////////\n"
 
@@ -393,8 +396,6 @@ Dil E
 
 //  FIXME ---- not going to first following statement in E has nested class!!
 
-
-
  x  = 52 * 2000
  y =   2 * 2
 <<" %V $y $x\n"
@@ -408,11 +409,11 @@ syt = 80 //
 //int gyt
 <<"nested class setting direct reference %V $syt \n"
 
-   E->B->t = syt
+   E->B->t = syt;
 
 <<"%V $E->B->t \n"
 
- gyt = E->B->t
+ gyt = E->B->t;
 
 <<" $gyt $(typeof(gyt)) \n"
 
@@ -421,7 +422,7 @@ syt = 80 //
 
 <<"nested class getting direct reference %V $gyt \n"
 
-syt = 60 //
+syt = 60; //
 
 <<"nested class setting direct reference %V $syt \n"
 
@@ -434,16 +435,34 @@ syt = 60 //
 k = 3
    CheckNum(gyt,60)
 
- E->A[1]->t = 92
- E->A[0]->t = 28
- E->A[k]->t = 72
+ E->A[0]->t = 28;
 
+ASK
+
+ t1 = E->A[0]->t;
+
+<<"$t1\n"
+
+ASK
+
+
+ E->A[1]->t = 92;
+
+ E->A[k]->t = 72;
+
+ t1 = E->A[k]->t;
+
+<<"$t1\n"
+
+ASK
 
  yt0 = E->A[0]->t
 
 <<"%V $yt0 \n"
 
- yt1 = E->A[1]->t
+
+
+ yt1 = E->A[1]->t;
 
 <<"%V $yt1 \n"
 
@@ -451,6 +470,7 @@ k = 3
 
 <<"%V $yt3 \n"
 
+ASK
 
  E->A[1]->t = 29;
  E->A[2]->t = 92;
@@ -460,6 +480,8 @@ k = 3
 
 <<"%V $yt0 \n"
 
+ASK
+
  CheckNum(yt0,28)
 
  yt1 = E->A[1]->t
@@ -468,22 +490,25 @@ k = 3
 
  CheckNum(yt1,29)
 
+ASK
+
  yt2 = E->A[2]->t
 
 <<"%V $yt2 \n"
 
  CheckNum(yt2,92)
 
-
+ASK
 
 // FIX crash -- xic generation?
+
  yt3 = E->A[3]->t
 
 <<"%V $yt3 \n"
 
  CheckNum(yt3,75)
 
-//iread()
+ASK
 
   j = 2
 

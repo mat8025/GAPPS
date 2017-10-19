@@ -22,9 +22,10 @@ ud = !!"date"
 udt = split(ud)
 
 <<"%V$udt \n"
-
 <<"$udt[3]\n"
+
 sdt = split(td)
+
 <<"%V$sdt \n"
 <<"$sdt[3]\n"
 

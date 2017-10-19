@@ -1,5 +1,5 @@
 
-setdebug(1)
+setdebug(1,"~pline")
 
 checkIn()
 
@@ -24,8 +24,10 @@ float t2
 //checknum(t1,4)
 
 
-checkFnum(t1,4.0)
+checkFnum(t1,4.0);
 
+
+//ans=iread()
 int k = 5
      t2 = rl[k] 
 <<"%V$t2\n"
@@ -119,7 +121,7 @@ return t3
 //////////////////////////////////////////////////////////////////////////////////////
 
 
-   Real1 = fgen(10,0,1)
+   Real1 = vgen(FLOAT_,10,0,1)
 <<"%V$Real1\n"
 
 
@@ -260,4 +262,4 @@ checkFnum(Real[4],-2)
 
 
 CheckOut()
-exitsi()
+exit()

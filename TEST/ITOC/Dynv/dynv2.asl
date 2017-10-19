@@ -1,3 +1,8 @@
+///
+///
+///
+setdebug(1,"pline","~step")
+
 CheckIn()
 
 int J[] 
@@ -6,14 +11,11 @@ int J[]
 
 <<"$J \n"
 
-  J[0:19:2]->Set(10,1)
+  J[0:19:2]->SetV(10,1)
 
 <<"$J \n"
 
-CheckNum(J[0],10)
-
-
-<<"$J \n"
+CheckNum(J[0],10);
 
 
   J[0:7] = 6
@@ -24,12 +26,16 @@ CheckNum(J[7],6)
 <<"$J \n"
 
 
-  J[-1:1:-2] = 35
+  J[-1:1:-2] = 35;
+
+<<"$J \n"
 
 CheckNum(J[19],35)
 CheckNum(J[1],35)
 
-<<"$J \n"
+
+
+
 CheckOut()
 
 stop!

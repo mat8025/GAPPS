@@ -56,10 +56,11 @@ float V[20];
 <<"$V\n"
 
 checkNum(V[0],0,EQU_);
+//ans=iread()
 
-<<"$V[15] $(GT_)\n"
+<<"%6.2f$V[15] %d $(GTE_)\n"
 
-checkNum(V[15],0.0,GT_);
+checkNum(V[15],0.0,GTE_);
 
 CheckOut()
 

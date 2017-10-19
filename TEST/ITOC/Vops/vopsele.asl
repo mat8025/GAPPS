@@ -4,7 +4,7 @@ CheckIn()
 // trailing + make it a dynamic expandable array
 int J[20+] 
 
-  J[0:30]->Set(10,2)
+  J[0:30]->SetV(10,2)
 
 <<"$J \n"
 int sum

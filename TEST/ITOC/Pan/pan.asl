@@ -14,14 +14,18 @@ setap(100);    // set precision to 50 decimal places
 
 
 checkIn();
-pan N = 2.0;
+x = 2.1234567
+pan N = x;
 pan M = 4.0;
 
+pan_prec = 1;
+
+checkFNum(N,x,pan_prec);
+
+<<" $N $x\n"
 
 
-
-checkNum(N,2.0);
-checkNum(M,4.0);
+checkFNum(M,4.0,3);
 
 
  Q= N +M ;
@@ -34,17 +38,19 @@ checkNum(M,4.0);
 
 <<"%V%p$Q\n"
 
+<<"$Q  $N $M \n"
 //checkFNum(Q,8.0);
 
-checkNum(Q,8.0);
+checkFNum(Q,(x*4.0),pan_prec);
 
+<<"$Q  $(x*4.0) \n"
 
- Q = M/N;
+ R = Q/N;
 
 <<"%V%p$Q\n"
 
-checkNum(Q,2.0);
-
+checkFNum(R,M,pan_prec);
+<<"$R $M \n"
  M = M + 1;
 <<"$M\n"
 
@@ -60,10 +66,10 @@ k = 1;
 
 <<"$k\n"
 
-checkNum(M,6.0);
+checkFNum(M,6.0,pan_prec);
 
  M--;
- checkNum(M,5.0);
+ checkFNum(M,5.0,pan_prec);
 
 
 checkOut()

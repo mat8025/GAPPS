@@ -152,8 +152,12 @@ fix:
   
 tbd: 
 //==========================
-#num xx/x/x vers sevlev state 
+#num 103 10/19/17 5.91 4 PENDING
 descr:
+// TBF --- format string should not take up space in output
+<<"took %6.2f$secs\n"
+versus
+<<"took%6.2f$secs\n"
 
 fix: 
  

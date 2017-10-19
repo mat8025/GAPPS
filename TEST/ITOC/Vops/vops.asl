@@ -1,6 +1,7 @@
 // vops  ----
 CheckIn()
-setdebug(1)
+
+setdebug(0)
 
  PFIV = Igen(10,0,1)
 

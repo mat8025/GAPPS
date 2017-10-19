@@ -7,20 +7,19 @@ sz=fexist("ftest.asl")
 
 <<"$sz  \n"
 
-a=ftest("ftest.asl","reg")
 
-<<" $a\n"
-
-typ=ftype("ftest.asl","type")
+typ=ftype("ftest.asl")
 
 <<" $typ\n"
 
+att= fstat( "ftest.asl","uid")
 
-a=ftest("ftest.asl","dir")
-
-<<" $a\n"
+<<"$att\n"
 
 
-a=ftest("../Ftest","dir")
+att= fstat( "ftest.asl","ctime")
 
-<<" $a\n"
+<<"$att\n"
+dt=time2date(att)
+
+<<"$dt\n"

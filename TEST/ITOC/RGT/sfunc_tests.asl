@@ -8,8 +8,8 @@
 
 
 
-//#define DBG <<
-#define DBG ~!
+#define DBG <<
+//#define DBG ~!
 
 gssys= GetEnv("GS_SYS");
 
@@ -231,17 +231,25 @@ A=ofr("$gssys/DOCS/ASLMAN")
 // for each sfunc -- look it up in ASLMAN
 // report if found
 
-B=ofw("nondocs")
+B=ofw("nondocs");
 
-   sfunc = "vgen";
+D=ofw("donedocs")
+
+   //sfunc = "caz";
+   sfunc = _clarg[1];
+   
    was_found = findit(sfunc,1);
 <<"$sfunc $was_found\n";
 
 <<"$R[0]\n"
 
 <<"$R[1]\n"
+
+//ans=iread(); if (ans @= "q") exit();
+
   int ndocdone = 0;
-  for (kf = 0; kf < nsz; kf++) {
+
+   for (kf = 0; kf < nsz; kf++) {
 <<"$R[kf]\n"
 
    FW= Split(R[kf],",");
@@ -255,6 +263,7 @@ B=ofw("nondocs")
 <<"$sfunc $was_found\n";
    if (was_found) {
     ndocdone++;
+<<[D]"$FW[0] $FW[1] \n"    
    }
    else {
 <<[B]"$FW[0] $FW[1] \n"
@@ -268,5 +277,6 @@ B=ofw("nondocs")
 
 
 // run the script ?? -- report the score ?
-
+cf(B)
+cf(D)
 

@@ -6,7 +6,7 @@
 
 checkIn();
 
-N = 10000;
+N = 1000;
 int K = 1;
 
 <<" START $K $N \n"

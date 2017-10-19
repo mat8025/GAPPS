@@ -1,11 +1,11 @@
-setdebug(1,"pline")
+setdebug(1,"pline","~step")
 
 //setPrintIndent(3)
 
 checkIn()
 
 proc foo(int vec[],k)
-//proc foo(vec, k)
+
 {
 <<"$_proc IN $vec \n"
 <<"pa_arg2 %V$k\n"
@@ -17,8 +17,8 @@ proc foo(int vec[],k)
   vec[5] = 50
 
 <<"OUT $vec \n"
-
-  return vec
+  rvec = vec;
+  return rvec
 }
 
 ///////////////  Array name ////////////////////////////////////////
@@ -81,7 +81,8 @@ checkStage("ArrayName")
 
 <<"after calling proc $Z\n"
 
-//iread()
+ // exityn()
+  
   checkNum(Z[1],47)
   
   checkNum(Z[8],28)
@@ -98,10 +99,16 @@ Z[8] = 28
 
 // TBD FIX it does not compute the offset - so proc does not operate on the third element in
 
-  Y= foo(&Z[2],4)  
+<<"before calling proc $Z\n"
 
-<<"after proc $Z\n"
+  Y2= foo(&Z[2],4)
 
+<<"after proc Z: $Z\n"
+
+
+<<"after proc Y2: $Y2\n"
+
+//exityn()
  if ((Z[3] == 47)  && (Z[8] == 28)) {
    <<"Z[3] and Z[8] correct \n"
  }
@@ -114,8 +121,8 @@ Z[8] = 28
  }
 
 
-  checkNum(Z[3],47)
-  checkNum(Z[8],28)
+  checkNum(Z[3],47);
+  checkNum(Z[8],28);
 
   checkStage("&Array[2]")
 //  showStatements(0)
@@ -125,7 +132,8 @@ Z[8] = 28
 
 
  checkNum(Y[1],47)
- checkNum(Y[6],28)
+//exityn()
+checkNum(Y[6],28)
 
   checkStage("ArrayReturn")
 
