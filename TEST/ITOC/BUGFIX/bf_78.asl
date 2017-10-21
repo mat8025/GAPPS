@@ -3,7 +3,8 @@
 //
 
 setdebug(1,"pline","~step")
- //float X[] = vgen(FLOAT_,10,0,1);  // fails
+
+//float X[] = vgen(FLOAT_,10,0,1);  // fails
 
 checkIn()
 
@@ -28,23 +29,30 @@ Y[2:8:2] *= 3;
 
 checkNum(Y[2],12)
 
-     Y[1:5] = Y[1:5] * 3;
+
+// BUG XIC -  array shifted left to index 1
+//     Y[1:5] = Y[1:5] * 3;
+
+Z= Y;
+
+     Y[1:5]  *= 3;
 
      <<"$Y\n"
 
 checkNum(Y[2],36)
 
+
+
+
+
 <<"$Y[2] == 36\n"
+
+
+    Z[1:5] = Z[1:5] * 3;
+
+checkNum(Z[2],36)
+
 
 checkOut()
 
 exit()
-/{
-
-
-
-
-
-exit()
-
-/}

@@ -3,7 +3,7 @@
 /// 
 checkIn()
 
-setdebug(1,"~pline")
+setdebug(1,"pline","~step")
 
 char CV[20];
 

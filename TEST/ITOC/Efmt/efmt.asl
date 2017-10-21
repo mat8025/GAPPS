@@ -2,17 +2,22 @@
 ///  parse scientific notation
 ///
 
-//setDebug(1,"trace");
+setDebug(1,"trace","pline","~step");
 
 
 checkIn();
 
 const double Ev = 1.602e-29 ;
 
+double ev1 = 3.1234567;
+
+
+checkNum(ev1,3.1234567);
+
 
 <<"%Ve $Ev\n"
 
-checkNum(Ev,1.602e-29);
+checkFNum(Ev,1.602e-29);
 
 const double Ev1 = 1.602e-10;
 
@@ -21,10 +26,6 @@ const double Ev1 = 1.602e-10;
 
 
 checkNum(Ev1,1.602e-10);
-
-
-
-
 
 const double Ev2 = 1.602 * 10^^-7;
 

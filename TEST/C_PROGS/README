@@ -1,1 +1,7 @@
 suite of c,c++ progs for testing and auxillary functions
+
+most can be compiled simply via
+
+g++  xxx.cpp -o xxx
+
+others have makefiles

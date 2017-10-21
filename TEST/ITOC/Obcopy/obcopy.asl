@@ -1,7 +1,13 @@
+#
 # test oop features
+#
+
 // want to show that can use &obj as an arg to deliver ptr to that object to a script procedure
 
-setdebug(1)
+setdebug(1,"pline","~step")
+
+//#define ASK ans=iread();
+#define ASK ;
 
 Checkin()
 
@@ -24,7 +30,7 @@ int GV = 4    // global
 
 # class definition
 
- CLASS fruit  {
+CLASS fruit  {
 
 #  variable list
 
@@ -57,8 +63,7 @@ int GV = 4    // global
 
     //   <<" $_proc setting x to $val \n"
    <<" setting x to $val \n"
-
-       x = val
+       x = val;
    }
 
    CMF get_x() {
@@ -95,7 +100,8 @@ int GV = 4    // global
   CMF fruit()
     {
 // FIXME  <<" doing constructor for %I $_cobj \n"
-  <<" doing constructor for %v $_cobj \n"
+
+<<" doing constructor for %v $_cobj \n"
   <<"%v $_pstack \n"
   //   <<" fruits %V $color  $x $y $z \n"
        x = 5
@@ -103,20 +109,61 @@ int GV = 4    // global
        z = 3
        j = 1
        color = "white"
-//   <<" fruits %I $color  $x $y $z \n"
-   <<" fruits %V $color  $x $y $z \n"
+
+   <<" fruits %V $color  $x $y $z \n";
+   
     }
+
+/{/*
+  CMF ~fruit()
+    {
+<<" doing destructor   for %v $_cobj \n"
+     ASK
+   }
+/}*/
 
  }
 
+<<" after class definition !\n"
 
-proc foo()
+
+ /////
+
+
+proc foo2 (a)
+{
+<<"$a\n"
+
+   int k = 47;
+   float d = exp(1);
+   str s = "hi";
+<<"in $_proc $k $d\n";
+<<" in foo2\n"
+ASK
+
+  fruit loc2fruit;
+   loc2fruit->print()
+
+
+}
+///////////
+
+
+
+
+ASK
+
+
+
+proc poo()
 {
 
+<<"HEY in $_proc\n"
+ASK
 
 <<"%v $_pstack \n"
 
-   apple->color = "vermillion"
+apple->color = "vermillion"
 
 <<" %v $apple->color \n"
 
@@ -126,7 +173,7 @@ proc foo()
 
 <<" %v $cherry->color \n"
 
-    cherry->x = apple->x
+    cherry->x = apple->x;
 
 <<" %v $cherry->x \n"
 
@@ -134,20 +181,26 @@ proc foo()
 
     cherry->print()
 }
+////////////////////////////////////
 
 
-<<" after class definition !\n"
+
 
 proc eat(fruit oba)
 {
-
     <<" $_proc $_cobj \n"
-
-    <<" $oba->name \n"
     <<"fruit thine name is $oba->name \n"
     <<" after oba name \n"
+   int k = 47;
+   float d = exp(1);
+ <<"$k $d\n"; 
+   ASK
+   
+    oba->print()
 
-//    oba->print()
+    locfruit = oba;
+
+    locfruit->print()
 
     <<" leaving $_proc $_cobj \n"
 }
@@ -155,30 +208,45 @@ proc eat(fruit oba)
 
 proc objcopy(fruit oba,  fruit obb)
 {
-
    // oba->print()
    // obb->print()
 
 <<" copying $obb->color to $oba->color \n"
 
+   int k = 47;
+   float d = exp(1);
+ <<"$k $d\n";
+ ASK
 
-    oba->x = obb->x
-    oba->y = obb->y
 
-    oba->color = obb->color
+    oba->x = obb->x;
+    oba->y = obb->y;
+
+    oba->color = obb->color;
 
  //   oba->print()
  //   obb->print()
 }
 
 
-<<"%V$_proc \n"
-<<"%V$_pstack \n"
+<<" IN MAIN\n"
+
+ASK
+
+//<<"%V$_proc \n"
+//<<"%V$_pstack \n"
+
+
+
+
+   foo2(2);
+
+ASK
 
 
 # object declaration
 
- fruit apple
+ fruit apple;
 
 <<" after object declaration !\n"
 
@@ -224,12 +292,12 @@ proc objcopy(fruit oba,  fruit obb)
 
 <<" doing class member assign \n"
 
-   apple->x = 8
+   apple->x = 8;
 
  <<" %V  $apple->x \n"
 
 
-  apple->set_y(5)
+  apple->set_y(5);
 
 //  apple->set_color("green")
 
@@ -245,6 +313,10 @@ proc objcopy(fruit oba,  fruit obb)
 <<" %v $apple->color \n"
 
    fruit orange
+
+<<"$(Infoof(orange))\n"
+
+<<"$(examine(orange))\n"
 
   orange->set_y(7)
 
@@ -277,13 +349,13 @@ proc objcopy(fruit oba,  fruit obb)
 
    cherry->print()
 
-   foo()
+   poo()
 
    apple->name = "apple"
 
     <<"fruit thine name is $apple->name \n"
 
-   eat(apple)
+
 
 <<" obj now copy orange apple \n"
 
@@ -295,14 +367,23 @@ proc objcopy(fruit oba,  fruit obb)
 
   orange->print()
 
+// use ref - objs   are not treated like arrays ??
 
-  objcopy( &orange, &apple)  // dont use ref - objs are treated like arrays
+<<"$(examine(apple))\n"
+<<"$(examine(orange))\n"
+ASK
+  objcopy( &orange, &apple)
+  
 
+
+   eat(&apple);
   //  objcopy( orange, apple)
 
   apple->print()
 
   orange->print()
+
+ //  eat(apple);
 
   CheckStr(orange->color,"green")
 
@@ -323,8 +404,6 @@ proc objcopy(fruit oba,  fruit obb)
 
   CheckStr(apple->color,"blue")
 
-
-
   apple->print()
   apple->color = "red"
   cherry->color = "black"
@@ -340,6 +419,8 @@ proc objcopy(fruit oba,  fruit obb)
 //<<" %I$cherry->color \n"
 
    apple->print()
+
+
    cherry->print()
 
 
@@ -349,6 +430,7 @@ proc objcopy(fruit oba,  fruit obb)
 //<<" %I$apple->color \n"
 
    apple->print()
+
    cherry->print()
 
    Checkout()

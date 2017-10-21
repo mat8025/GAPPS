@@ -60,10 +60,13 @@ class Dil {
  public:
  int w_day;
 
- Act B;
+
  
  Act A[5]; // BUG this does not construct each A objele!! 
 
+ Act B;
+
+////////////////
  CMF Dil() 
  {
    w_day = 1
