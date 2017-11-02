@@ -1,34 +1,60 @@
-//  demo ptr/ref args
-//
+///
+///  demo ptr/ref args
+///
+
+
+//#define ASK ans=iread();
+
+#define ASK ;
+
 
 checkIn()
 
 setdebug(1,"pline","~step")
 
+
+proc add ( x, y)
+{
+
+<<"$_proc IN : %V$x $y \n"
+  q = x;
+<<"%V$q  $(typeof(q))\n"  
+  t = x + y;
+<<"%V$t  $(typeof(t))\n"
+
+<<" OUT: %V$x $y $t\n"
+   return t;
+}
+//====================
+
+
 proc swap ( x, y)
 {
-  t = 0
+
+  t = x;
 
 <<"$_proc IN : %V$x $y $t\n"
 
-  t = x;
-<<"%V$t\n"
+<<"%V$t  $(typeof(t))\n"
   x = y;
- <<"%V$x $y\n"
+ <<"%V$x \n"
   y = t;
- <<"%V$y $t\n"
+ <<"%V$y \n"
 
 <<" OUT: %V$x $y $t\n"
 
 }
+//====================
 
+ int k = 4;
+ int m = 3;
 
- int k = 4
- int m = 3
+ int ans = 0;
 
- int ans = 0
+ ans = add(k, m)
 
-// swap (1,2)
+<<" $ans \n"
+
 
 
 <<"%V$k $m  ref\n"
@@ -36,70 +62,29 @@ proc swap ( x, y)
 <<" %V$k $m \n"
 
  CheckNum(k,3)
+ CheckNum(m,4)
 
-<<"%V$k $m  value\n"
- swap (k, m)
-<<" %V$k $m \n"
+<<"%V$k $m  \n"
 
- CheckNum(k,3)
-
-
-
-
-<<"%V$k $m  ref\n"
  swap (&k, &m)
+
 <<" %V$k $m \n"
 
  CheckNum(k,4)
+  CheckNum(m,3)
 
 <<"%V$k $m  value\n"
 
- swap (k, m)
-
-<<" NO SWAP %V$k $m \n"
-
- CheckNum(k,4)
-
-<<"%V$k $m  ref\n"
- swap (&k, &m)
-<<" %V$k $m \n"
-
- CheckNum(k,3)
-
-
-<<"%V$k $m  ref\n"
- swap (&k, &m)
-<<" %V$k $m \n"
-
- CheckNum(k,4)
-
-
-<<"%V$k $m  value\n"
- swap (k, m)
-<<" %V$k $m \n"
-
- CheckNum(k,4)
-
-<<"%V$k $m  ref\n"
- swap (&k, &m)
-<<" %V$k $m \n"
-
-
- CheckNum(k,3)
-
+checkStage()
+ASK
 
 <<" via main \n"
-
-<<"%V$k $m $w\n"
-
-
-
-
 
 
  int w = 0
 
 // a swap
+ k = 3;
  w = m
  m = k
  k = w
@@ -108,8 +93,8 @@ proc swap ( x, y)
 
  CheckNum(m,3)
 
-int a = 6
-int b = 9
+int a = 6;
+int b = 9;
 
 <<" via proc \n"
 <<"%V $a $b \n"
@@ -120,6 +105,8 @@ int b = 9
 
 <<"%V$a $b \n"
 
+ checkStage()
+ ASK
 
 a = 7
 b = 11

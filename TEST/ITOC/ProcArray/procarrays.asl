@@ -1,29 +1,39 @@
-# test proc arrays
+///
+/// # test proc arrays
+///
+
+
 
 setdebug(0)
-proc sumarg(V[],U[])
-{
 
-//<<" %V $V \n"
-//<<" %V $U \n"
-//<<"type $(typeof(V)) sz $(Caz(V)) \n"
-//<<"type $(typeof(U)) sz $(Caz(U)) \n"
+checkIn()
+
+//proc sumarg(int V[], int U[])
+proc sumarg(V,  U)
+{
+<<"in $_proc\n"
+
+<<" %V $V \n"
+
+<<" %V $U \n"
+
+
+<<"type $(typeof(V)) sz $(Caz(V)) \n"
+
+<<"type $(typeof(U)) sz $(Caz(U)) \n"
 
 //   a = V[2]
 //   b = U[2]
 
 //<<"%V $a $b\n"
 
-
    Z = V + U
 
 <<" %v $Z \n"
-
-
-
   return Z
 
 }
+///
 
 
 X = Igen(10,0,1)
@@ -41,19 +51,40 @@ Y = Igen(10,9,2)
 
  <<"type  $(typeof(W)) sz $(Caz(W)) \n"
 
+  S=sumarg(X,Y)
+
+
+ <<"\n%V $S \n"
+ <<"type  $(typeof(S)) sz $(Caz(S)) \n"
+
+Y[9] = 31
+Y[0] = 47
+X[9] = 66;
+X[0] = 79;
+
+<<"%V $Y\n"
+<<"%V $X\n"
+
+
+  S=sumarg(X,Y)
+
+ <<"\n%V $S \n"
+
+checkNum(S[9],97)
+
+
  T = X[0:5] + Y[1:6]
 
 <<"\n%V $T \n"
 
  <<"type  $(typeof(T)) sz $(Caz(T)) \n"
-
-
-
+X[9] = 69;
 
   S=sumarg(X,Y)
 
-// <<"\n%V $S \n"
-// <<"type  $(typeof(S)) sz $(Caz(S)) \n"
+checkNum(S[9],100)
+
+checkOut()
 
 stop!
 

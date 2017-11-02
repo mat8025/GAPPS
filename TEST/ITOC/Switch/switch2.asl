@@ -1,13 +1,20 @@
 
 CheckIn()
 
+setDebug(1,"pline","~step","trace")
+
+//#define ASK ans=iread();
+#define ASK ;
 
 proc foo (char wc)
 {
 
-int ret = -1
+int ret = -1;
 
-<<"in $_proc %V$wc %c$wc $(typeof(wc))\n"
+//<<"in $_proc %V$wc %c$wc $(typeof(wc))\n"
+
+<<"in $_proc %V$wc %c$wc \n"
+
 
    switch (wc) {
 
@@ -94,15 +101,23 @@ int ret = -1
 
 
 
+ci = 'a';
+
+<<" %V$ci %c$ci $(typeof(ci))\n"
+
+
+   rn = foo(ci)
+  checkNum(rn,'a');
+   
 
    rn = foo('a')
-
+  checkNum(rn,'a');
 
 
   if (!CheckNum('a',rn)) {
 <<"Fail 1\n"
   }
-
+ASK
 
    rn = foo('X')
 

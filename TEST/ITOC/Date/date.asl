@@ -1,6 +1,12 @@
+///
+///
+///
 
 checkin()
-setdebug(1,"pline")
+
+setdebug(1,"~pline","~step")
+
+
 td = date(1,'-')
 <<"1 $td\n"
 
@@ -12,16 +18,29 @@ td = date(i,dsep,tsep)
 <<"[${i}] $td  $(date(i))\n"
 }
 
+
+
+
+str ud;
+
 td = date(1)
+
+
+<<"$(typeof(td)) %V$td\n"
 
 ud = !!"date"
 
-<<"%V$ud\n"
-<<"%V$td\n"
+
+<<"$(typeof(ud)) %V$ud\n"
+
+
 
 udt = split(ud)
 
+
 <<"%V$udt \n"
+
+
 <<"$udt[3]\n"
 
 sdt = split(td)

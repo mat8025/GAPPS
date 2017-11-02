@@ -932,8 +932,10 @@ if ( do_all || do_array ) {
 
   changeDir("Subrange")
 
-  cart("subrange")
-  cart("subrange2")
+  cart("subrange");
+  
+  cart("subrange2");
+  
 
   updir();
 

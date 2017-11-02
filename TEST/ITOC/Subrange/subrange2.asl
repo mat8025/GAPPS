@@ -1,5 +1,8 @@
 
-setdebug(1,"trace")
+setdebug(1,"trace","~step","pline")
+//#define ASK ans=iread();
+#define ASK ;
+
 checkIn();
 
 int L[24];
@@ -29,53 +32,45 @@ checkNum(L[23],0)
 checkNum(L[5],1)
 checkNum(L[8],1)
 
-proc Hey(V)
+proc Hey(V[])
+//proc Hey(V)
 {
-<<"$V\n"
+<<"\nIN V: $V\n"
 
-L= 17
+ L= 17;
 
-<<"$L\n"
+<<"L: $L\n"
 
-<<"$V\n"
+ V = 18;
 
-V= 18
+<<"V: $V\n"
 
 }
+//==========================
 
-
-
-
-
-
-Hey(L)
+Hey(L);
 
 <<"$L\n"
 
 checkNum(L[0],18)
 checkNum(L[23],18)
-checkNum(L[5],18)
 
+ASK
 L= 80;
 
-checkNum(L[0],80)
-checkNum(L[23],80)
-checkNum(L[5],80)
-
-Hey(L)
+Hey(L);
 
 <<"$L\n"
 
 checkNum(L[0],18)
 checkNum(L[23],18)
-checkNum(L[5],18)
-
+//checkNum(L[5],18)
 
 L[5:8] = 74;
 <<"$L\n"
 
+ASK
 checkNum(L[5],74)
-
 
 checkOut()
 

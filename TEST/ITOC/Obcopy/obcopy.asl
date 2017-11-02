@@ -239,7 +239,7 @@ ASK
 
 
 
-   foo2(2);
+
 
 ASK
 
@@ -249,6 +249,15 @@ ASK
  fruit apple;
 
 <<" after object declaration !\n"
+
+<<"$(examine(apple))\n"
+
+
+
+
+ASK
+
+   foo2(2);
 
   apple->print() 
 
@@ -312,13 +321,13 @@ ASK
 
 <<" %v $apple->color \n"
 
-   fruit orange
+   fruit orange;
 
 <<"$(Infoof(orange))\n"
 
 <<"$(examine(orange))\n"
 
-  orange->set_y(7)
+  orange->set_y(7);
 
  // orange->set_color("orange")
 
@@ -370,7 +379,9 @@ ASK
 // use ref - objs   are not treated like arrays ??
 
 <<"$(examine(apple))\n"
+<<"$(examine(&apple))\n"
 <<"$(examine(orange))\n"
+<<"$(examine(&orange))\n"
 ASK
   objcopy( &orange, &apple)
   
@@ -383,7 +394,7 @@ ASK
 
   orange->print()
 
- //  eat(apple);
+ eat(apple);
 
   CheckStr(orange->color,"green")
 

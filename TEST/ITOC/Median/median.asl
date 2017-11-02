@@ -1,3 +1,10 @@
+///
+/// median
+/// 
+
+
+setDebug(1,"pline","~step")
+
 checkIn()
 
 I= vgen(INT_,10,0,1)
@@ -46,11 +53,17 @@ med = median(K)
 checkNum(med,22)
 
 
-s = Sum(K)
+s = Sum(K);
 
-<<"sum K is $s\n"
+<<"sum K is $s  $(typeof(s))\n"
+bd=Cab(s)
+sz = Caz(s)
 
-checkNum(s,292)
+<<"$bd $sz $(infoof(s)) \n"
+
+//ans = iread();
+
+checkNum(s[0],292)
 
 //ird!
 
