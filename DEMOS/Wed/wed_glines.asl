@@ -17,7 +17,7 @@ DBPR"%V$pwt_gl \n"
 
 //DBPR"%V$ext_gl \n"
 
-  sGl(ext_gl,@symsize,0.75,@symhue,GREEN_)
+  sGl(ext_gl,@symsize,3,@symhue,GREEN_)
 
  //wt_gl   = cGl(@wid,gwo,@TXY,DVEC,WTVEC,@color,RED_,@ltype,"symbols","diamond")
   wt_gl    = cGl(gwo,@TXY,DVEC,WTVEC,@color,RED_,@ltype,"symbols","diamond")
@@ -65,15 +65,16 @@ if ( gw_gl == -1 || bp_gl == -1) {
 //DBPR"%V$allgl \n"
 
   sGl(allgl,@missing,0,@symbol,"diamond",5)
+  symsz= 5;
+  
+  sGl(ext_gl,@symbol,DIAMOND_,symsz, @symfill,1)
 
-  sGl(ext_gl,@symbol,"diamond",1.2, @fill_symbol,0)
-//  sGl(wt_gl,@symbol,"triangle",1.2, @fill_symbol,1)
-  sGl(wt_gl,@symbol,"triangle",1.2, @fill_symbol,0)
-  sGl(se_gl,@symbol,"diamond",1.2)
-  //sGl(carb_gl,@symbol,"triangle",1.2,@fill_symbol,0)
-  sGl(calb_gl,@symbol,"diamond",1.2,@fill_symbol,0)
-  sGl(calc_gl,@symbol,"triangle",@symsize,1.2,@symhue,BLUE_)
-  sGl(bp_gl,@symbol,"inverted_triangle",1.2,@missing,0)
+  sGl(wt_gl,@symbol,TRI_,symsz, @symfill,1,@symhue,RED_)
+  sGl(se_gl,@symbol,DIAMOND_,symsz)
+
+  sGl(calb_gl,@symbol,DIAMOND_,symsz,@symfill,1)
+  sGl(calc_gl,@symbol,TRI_,@symsize,symsz,@symhue,BLUE_)
+  sGl(bp_gl,@symbol,ITRI_,symsz,@missing,0)
 
 
 

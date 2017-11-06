@@ -144,8 +144,8 @@ proc drawScreens()
   if (ALL_LINES) {
 DBPR" draw lines \n"
 
-      DrawGline(ext_gl)
-<<" draw gw_gl\n"
+      dGl(ext_gl)
+//<<" draw gw_gl\n"
       dGl(gw_gl);
 
       DrawGline(calc_gl)
@@ -154,7 +154,7 @@ DBPR" draw lines \n"
      // DrawGline(carb_gl)
      // DrawGline(ave_ext_gl)
 
-      DrawGline(wt_gl)
+      dGl(wt_gl)
    }
 
       drawGoals(0);
@@ -313,28 +313,30 @@ proc showTarget()
 {
 // target wt and date
 
-  <<"$_proc $gday $NextGoalWt $last_known_day\n"
+//  <<"$_proc $gday $NextGoalWt $last_known_day\n"
   
 //  plot(gwo,@symbol,gday,NextGoalWt, "triangle",1, YELLOW_);
 //  plot(gwo,@symbol,gday-1,NextGoalWt, 3,1,GREEN_);
-  plot(gwo,@symbol,gday,NextGoalWt,"diamond",1,BLUE_);
-  plot(gwo,@symbol,last_known_day,NextGoalWt,2,1,RED_);
+  symsz =5;
+  
+  plot(gwo,@symbol,gday,NextGoalWt,"diamond",symsz,BLUE_);
+  plot(gwo,@symbol,last_known_day,NextGoalWt,2,symsz,RED_);
 
   hlng = (last_known_wt - NextGoalWt) / 0.43; 
   if (hlng  > 0) {
-  <<"$_proc %v $hlng\n"
-  plot(gwo,@symbol,last_known_day+hlng,NextGoalWt,"star",1, BLUE_);
-  plot(gwo,@symbol,last_known_day+hlng,last_known_wt,"cross",1,GREEN_);
+//  <<"$_proc %v $hlng\n"
+  plot(gwo,@symbol,last_known_day+hlng,NextGoalWt,"star",symsz, BLUE_);
+  plot(gwo,@symbol,last_known_day+hlng,last_known_wt,"cross",symsz,GREEN_);
   }
 
   hlng = (last_known_wt - GoalWt) / 0.43; 
   if (hlng  > 0) {
-  <<"$_proc %v $hlng\n"
-  plot(gwo,@symbol,last_known_day+hlng,GoalWt,"star",1, RED_);
-  plot(gwo,@symbol,last_known_day+hlng,last_known_wt,"cross",1,GREEN_);
+ // <<"$_proc %v $hlng\n"
+  plot(gwo,@symbol,last_known_day+hlng,GoalWt,"star",symsz, RED_);
+  plot(gwo,@symbol,last_known_day+hlng,last_known_wt,"cross",symsz,GREEN_);
   }
 
-  plot(gwo,@symbol,targetday,GoalWt,"star",1, LILAC_);
+  plot(gwo,@symbol,targetday,GoalWt,"star",symsz, LILAC_);
 
 
   

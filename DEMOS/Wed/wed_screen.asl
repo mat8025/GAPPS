@@ -4,11 +4,11 @@
 
 vptitle = "Wed_$vers"
 
-    vp =  cWi(@title, "$vptitle",@resize,0.01,0.05,0.95,0.95,0)
+    vp =  cWi(@title, "$vptitle",@resize,0.01,0.02,0.98,0.98,0,@pixmapon,@save,@savepixmap);
 
     vp1 = cWi(@title,"XED",@resize,0.01,0.05,0.90,0.9,1)
 
-    sWi(vp,@resize,0.1,0.1,0.9,0.9,@clip,0.1,0.1,0.7,0.9,@redraw)
+    sWi(vp,@clip,0.1,0.1,0.7,0.9,@redraw)
 
     int allwin[] = {vp,vp1}
 
@@ -23,21 +23,26 @@ vptitle = "Wed_$vers"
 
     calwo=cWo(vp,@graph,@name,"CAL",@value,0,@clipborder,"black")
 
-    extwo=createGWOB(vp,@graph,@name,"EXT",@value,0,@clipborder,"black")
+    extwo=cWo(vp,@graph,@name,"EXT",@value,0,@clipborder,"black")
 
     //carbwo=createGWOB(vp,@type,"GRAPH",@name,"CARB_COUNT",@color,"white")
 
     //int wedwo[] = { gwo, extwo, calwo, carbwo }
 
-      int wedwo[] = { gwo, extwo, calwo  }
+      int wedwo[] = { gwo, calwo, extwo  }
 
 DBPR"%V$wedwo \n"
 
     // vtile before set clip!
 
-    wo_vtile(wedwo,0.03,0.08,0.97,0.97,0.02)   // vertically tile the drawing areas into the main window
+    wo_vtile(wedwo,0.03,0.08,0.97,0.97,0.01)   // vertically tile the drawing areas into the main window
 
     cx = 0.08 ;    cX = 0.95 ; cy = 0.2 ; cY = 0.97;
+
+ //////////////////////////////// TITLE BUTTON QUIT ////////////////////////////////////////////////
+ tbqwo=cWo(vp,@TB,@name,"tb_q",@color,WHITE_,@value,"QUIT",@func,"window_term",@resize,0.97,0,0.99,1);
+ sWo(tbqwo,@drawon,@pixmapon,@fonthue,RED_, @symbol,11, @symsize,45,   @clip,0,0,1,1,@redraw);
+
 
 
     sWo(wedwo,@clip,cx,cy,cX,cY, @color,"white")
@@ -101,17 +106,17 @@ DBPR"SCALES %V$sc_startday $sc_endday $carb_upper\n"
 
 ///////////////////////////////////////////////////////////
 
-  quitwo=cWo(vp,@BN,@name,"QUIT",@color,"red")
-  zinwo=cWo(vp,@BN,@name,"ZIN",@color,"hotpink")
+  //quitwo=cWo(vp,@BN,@name,"QUIT",@color,"red")
+  zinwo=cWo(vp,@BN,@name,"ZIN",@color,"hotpink",@help," zoom in on selected days ")
   zoomwo=cWo(vp,@BN,@name,"ZOUT",@color,"cadetblue")
 
-  yrdecwo= cWo(vp,@BN,@name,"YRD",@color,"violetred")
-  yrincwo= cWo(vp,@BN,@name,"YRI",@color,"purple")
-  qrtdwo=  cWo(vp,@BN,@name,"QRTD",@color,"violetred")
-  qrtiwo=  cWo(vp,@BN,@name,"QRTI",@color,"purple")
+  yrdecwo= cWo(vp,@BN,@name,"YRD",@color,"violetred",@help," show previous Year  ")
+  yrincwo= cWo(vp,@BN,@name,"YRI",@color,"purple",@help," show next Year  ")
+  qrtdwo=  cWo(vp,@BN,@name,"QRTD",@color,"violetred",@help," show previous Qtr period ")
+  qrtiwo=  cWo(vp,@BN,@name,"QRTI",@color,"purple",@help," show next Qtr period ")
 
 
-  int fewos[] = {quitwo, zinwo,zoomwo, yrdecwo, yrincwo, qrtdwo, qrtiwo }
+  int fewos[] = {zinwo,zoomwo, yrdecwo, yrincwo, qrtdwo, qrtiwo }
 
   wo_htile( fewos, 0.03,0.01,0.43,0.08,0.05)
 
@@ -133,3 +138,4 @@ DBPR"SCALES %V$sc_startday $sc_endday $carb_upper\n"
 
   sWo(gwo,@showpixmap,@save)
   sWo(calwo,@showpixmap)
+  sWo(tbqwo,@redraw)

@@ -7,7 +7,7 @@
 /// office computer work (24-8-exercise hours) 119.3 per hour
 
 
-vers = "1.7";
+vers = "1.9";
 
 envdebug();
 
@@ -58,9 +58,6 @@ class Measure {
 }
 //
 
-
-
-
 char sep = '/'
 today = getDate(2,sep)
 
@@ -71,11 +68,7 @@ DBPR"$today $jtoday \n"
 
 minWt = 160;
 topWt = 210;
-StartWt = 200;
-
-GoalWt = 175;
-
-NextGoalWt = 190;
+StartWt = 205;
 
 // rates per min
 include "wed_rates"
@@ -116,14 +109,12 @@ float Nsel_lbs = 0.0
 
 int k = 0;
 
-int bday  // birthday 
-int lday  // last day recorded in file
+int bday;  // birthday 
+int lday;  // last day recorded in file
 int dday;
 
  bday = julday("04/09/1949")
  maxday = julday("04/09/2049") -bday
-
- targetday = julday("10/21/2017") -bday;
 
 // this is a new format -- allowing us to put comment labels on graphs
 
@@ -131,45 +122,14 @@ int dday;
 
  
 if (A == -1) {
-
 <<"FILE not found \n"
   exitsi();
 }
 
 <<"%V$A \n"
-
-
-
-//A=ofr("wed_2012.dat")
-
-//  SET  START AND END DATES HERE
-//  --
-
-
-
-long sday = julday("4/1/2017") // start date
-
-got_start = 0
-
-long yday = julday("1/1/2017")   // this should be found from data file
-long eday = julday("12/31/2017")  // this should be found from data file
-today = julday("$(date(2))")
-
 // check period
 
-<<"%V$yday  $eday $today  $(date(2))\n"
 
-k = eday - sday
-
-if ( k < 0) {
- DBPR" time backwards !\n"
- exit_gs()
-}
-
-
-kdays = k
-
-DBPR"%V$kdays \n"
 
     //WDVEC= vgen(_INT_,2*kdays,0,1);
 
@@ -185,17 +145,18 @@ DBPR"%V$kdays \n"
   k =0
 
 //  lpd = (sw2-gw2)/ (ng2day * 1.0)
+//long wday
 
 
 
-long wday
+
+
 
 ////////////////// READ CEX DATA ///////////////////
-
-#burnfat!!
-
-// bug  #include "wed_read"  // should work
+include "wed_goals"
 include "wed_read"
+
+
 
 ////////////// PLOT GOAL LINE  ///////////////////////////////////////////
 
@@ -204,11 +165,6 @@ include "wed_read"
 
 
       sc_endday = (jtoday - bday) + 60;
-
-      gsday = julday("10/07/2017") -bday;
-      gday =  julday("10/30/2017") -bday;    // next goal day 
-
-      ngday = gday - gsday;
 
    DBPR"%V$ngday \n"
 
@@ -243,8 +199,6 @@ include "wed_read"
     if (lw < 165.0)
         lw = 165;
   }
-
-
 
 ///  revised goal line
   sz = Caz(GVEC);

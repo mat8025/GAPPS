@@ -42,6 +42,7 @@ proc foo(vec[],k)
 
  Y= foo(&Z[2], 31)
 
+<<"Y: $Y\n"
 
 checkNum(Y[0],28)
 

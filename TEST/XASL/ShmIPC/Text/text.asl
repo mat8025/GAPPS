@@ -4,7 +4,7 @@
 /// make sure rotated fonts are loaded!
 /// xset fp+ /usr/local/GASP/gasp/fonts
 /// check
-/// xlsfonts | grep font
+/// xlsfonts | grep rot
 
 /// TBD ?? use XSetFontPath --- in ms/mc_font setup??
 
@@ -23,6 +23,13 @@ envdebug()
  sWi(txtwin,@pixmapon,@drawon,@save,@bhue,"teal",@sticky,1)
  sWo(txtwin,@grid,20,20);
 
+ // TITLE BUTTON QUIT
+ tbqwo=cWo(txtwin,@TB,@name,"tb_q",@color,RED_,@VALUE,"QUIT",@func,"window_term",@resize,0.95,0,0.99,1)
+ sWo(tbqwo,@BORDER,@DRAWON,@PIXMAPON,@CLIPBORDER,RED_@FONTHUE,RED_, @symbol,"triangle", \
+ @symsize, 10, @redraw)
+
+
+
 
  // using grid positions for Wo boxes
  
@@ -35,13 +42,13 @@ envdebug()
  stwo=cWo(txtwin,"TEXT",@name,"PrintText",@VALUE,"howdy this is the first line",@color,"orange",@resize,2,10,8,15,3)
  sWo(stwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@pixmapoff,@drawon,@save)
  sWo(stwo,@SCALES,0,0,1,1)
- sWo(stwo,@font,2)
+ sWo(stwo,@font,3)
  sWo(stwo,@help," Mouse & Key Info ");
 
 
  bigwo=cWo(txtwin,"TEXT",@name,"BigText",@VALUE,"Big Font?",@color,"orange",@resize,9,10,18,15,3)
  sWo(bigwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@pixmapoff,@drawon,@save)
- sWo(bigwo,@SCALES,0,0,1,1)
+ sWo(bigwo,@bhue,WHITE_,@SCALES,0,0,1,1)
  sWo(bigwo,@font,"big")
 
 
@@ -69,6 +76,8 @@ yp = 0.5
 char txtip[256];
 
 gevent E;
+
+<<"xset fp+ /usr/local/GASP/gasp/fonts \n"
 
    while (1) {
 
@@ -99,9 +108,9 @@ gevent E;
       sWo(lvwo,@textr,"%s $txtip",0.3,0.1,0,-90,RED_);
       sWo(rvwo,@textr,"%s $txtip",0.5,0.9,0,90,BLUE_);
 
-      sWo(bigwo,@font,"big",@textr,"%s$txtip",0.0,0.1,0,0,LILAC_);
+      sWo(bigwo,@font,"big",@textr,"%s$txtip",0.0,0.6,0,0,BLACK_);
       sWo(bigwo,@font,"medium",@textr,"%s$txtip",0.0,0.4,0,0,MAGENTA_);
-      sWo(bigwo,@font,"small",@textr,"%s$txtip",0.0,0.5,0,0,WHITE_);            
+      sWo(bigwo,@font,"small",@textr,"%s$txtip",0.0,0.5,0,0,BLACK_);            
       
     }
 

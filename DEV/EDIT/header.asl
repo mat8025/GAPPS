@@ -9,6 +9,8 @@ hdr = scat(scut(fname,-3),"h")
 hdr = spat(hdr,"/",1,-1)
 <<"$hdr \n"
 main= spat(fname,"/",1,-1)
+where= spat(fname,"/",-1,-1)
+
 D=ofw(main)
 B=ofw(hdr);
 
@@ -66,4 +68,5 @@ if (founddbf) {
 !!"cat $hdr /usr/local/GASP/gasp/include/$dbf > tmp"
 !!"cp tmp $hdr"
 !!"mv $hdr /usr/local/GASP/gasp/include "
+!!"mv $main $where "
 }
