@@ -370,6 +370,11 @@ int button = 0
 
 woname = ""
 gevent E;
+resize_screen();
+drawScreens();
+showTarget();
+
+
 
    while (1) {
 
@@ -377,6 +382,7 @@ gevent E;
 
         msg  = E->waitForMsg()
 DBPR"got message\n $msg \n"
+<<"got message\n $msg \n"
         msgw = split(msg)
         Keyw = E->getEventKeyw()
 DBPR"$m_num $msg $Keyw \n"
@@ -393,6 +399,10 @@ DBPR"%V$Rinfo\n"
 DBPR"calling function via $woname !\n"
             $woname()
         }
+      }
+
+       if (Evtype @= "RESIZE") {
+         drawScreens();
       }
 
         

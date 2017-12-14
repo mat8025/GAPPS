@@ -2,12 +2,33 @@
 ///  parse scientific notation
 ///
 
-setDebug(1,"trace","pline","~step");
+setDebug(1,"~trace","pline","~step");
 
 
 checkIn();
 
-const double Ev = 1.602e-29 ;
+e = 1234.567
+
+f = 1.3e2;
+<<"$f\n"
+
+g = 1.3e-2;
+<<"$g\n"
+
+
+h = 1.3e-2 * 1.3e2;
+
+h1 = f *g;
+
+<<"%V $f $g $h $h1\n"
+
+
+
+
+
+checkFNum(e,1234.567);
+
+const double Ev = 1.602e-2;
 
 double ev1 = 3.1234567;
 
@@ -17,7 +38,29 @@ checkNum(ev1,3.1234567);
 
 <<"%Ve $Ev\n"
 
-checkFNum(Ev,1.602e-29);
+
+checkFNum(Ev,1.602e-2);
+
+Ev6 = 1.0e2;
+
+<<"$Ev6\n"
+
+Ev6 = 1.0e-2 ;
+
+<<"$Ev6\n"
+
+Ev6 = 1.0e-2 * 1.0e2;
+
+<<"$Ev6\n"
+
+Ev7 = 1.0e2 * 1.0e-2;
+
+<<"$Ev7\n"
+
+checkFNum(Ev6,Ev7);
+
+checkFNum(Ev6,(1.0e-2 * 1.0e2));
+
 
 const double Ev1 = 1.602e-10;
 

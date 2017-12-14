@@ -1,12 +1,13 @@
 
-setdebug(1,"~pline")
+setdebug(1,"pline","~step","~trace")
 
-checkIn()
+checkIn();
+
 
 proc array_sub(float rl[])
 {
-float t1
-float t2
+float t1;
+float t2;
 
 <<"In $_proc\n"
 <<"$rl \n"
@@ -121,13 +122,21 @@ return t3
 //////////////////////////////////////////////////////////////////////////////////////
 
 
-   Real1 = vgen(FLOAT_,10,0,1)
+Real1 = vgen(FLOAT_,10,0,1)
 <<"%V$Real1\n"
 
+float mt1;
 
- val = array_sub(Real1)
+  mt1 = Real1[4];
+checkFnum(mt1,4)
+<<"%V $mt1 \n"
 
 
+val = array_sub(Real1)
+
+
+
+////////////////////
 
 double Real[10]
 
@@ -147,7 +156,7 @@ k = 4
 
 checkFnum(val,4)
 
-<<" doing Caz !\n"
+
 
   sz = Csz(Real)
 
@@ -159,7 +168,6 @@ double t1 = 4
 
 
 
-<<" doing Caz !\n"
 
   sz = Csz(t1)
 
@@ -168,7 +176,7 @@ double t1 = 4
 
 <<"%V$t1  $(typeof(t1))\n"
 
-<<" doing Caz in print function !\n"
+
 
 <<"$(Caz(t1))\n"
 
@@ -179,7 +187,7 @@ double t1 = 4
      
 <<"%V$t1  $(typeof(t1))\n"
 
-<<" doing Caz !\n"
+
 
 <<"$(Caz(t1))\n"
 

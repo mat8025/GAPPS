@@ -12,15 +12,15 @@ Graphic = CheckGwm();
 
 
  //////////////// TITLE BUTTON QUIT
- tbqwo=cWo(vp,@TB,@name,"tb_q",@color,RED_,@VALUE,"QUIT",@func,"window_term",@resize,0.95,0,0.97,1)
+ tbqwo=cWo(vp,@TB,@name,"tb_q",@color,RED_,@VALUE,"QUIT",@func,"xwindow_term",@resize,0.95,0,0.97,1)
  sWo(tbqwo,@DRAWON,@PIXMAPON,@FONTHUE,RED_, @symbol,11,  @symsize, 3,\
  @clip,0,0,1,1,@redraw)
 
- tb2wo=cWo(vp,@TB,@name,"tb_2",@color,WHITE_,@VALUE,"QUIT",@func,"window_term",@resize,0.92,0,0.94,1)
- sWo(tb2wo,@DRAWON,@PIXMAPON,@FONTHUE,RED_, @symbol,12,  @symsize, 2, \
- @clip,0,0,1,1,@redraw)
+ tb2wo=cWo(vp,@TB,@name,"tb_2",@color,WHITE_,@VALUE,"QUIT",@func,"window_resize",@resize,0.92,0,0.94,1)
+ sWo(tb2wo,@DRAWON,@PIXMAPON,@FONTHUE,RED_, @symbol,PLUS_,  @symsize, 2, \
+ @clip,0,0,1,1,@redraw)w
 
- tb3wo=cWo(vp,@TB,@name,"tb_3",@color,GREEN_,@VALUE,"QUIT",@func,"window_term",@resize,0.89,0,0.91,1)
+ tb3wo=cWo(vp,@TB,@name,"tb_3",@color,GREEN_,@VALUE,"QUIT",@func,"window_move",@resize,0.89,0,0.91,1)
  sWo(tb3wo,@DRAWON,@PIXMAPON,@FONTHUE,RED_, @symbol,12,  @symsize, 2,\
  @clip,0,0,1,1,@redraw)
 

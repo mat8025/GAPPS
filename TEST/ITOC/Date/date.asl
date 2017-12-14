@@ -7,6 +7,12 @@ checkin()
 setdebug(1,"~pline","~step")
 
 
+setdebug(1,"~pline","~step")
+
+
+
+<<"$ans\n"
+
 td = date(1,'-')
 <<"1 $td\n"
 

@@ -2,6 +2,7 @@ CheckIn()
 
 setdebug(1)
 
+Nhouses = 0;
 class house {
 
   int rooms
@@ -39,26 +40,41 @@ class house {
  {
     floors = 7
     rooms = 4
-    area = floors * 200  
- <<" constructor for $_cobj setting  $floors  $rooms $area\n"
+    area = floors * 200;
+    Nhouses++;
+ <<"cons $Nhouses for $_cobj setting  $floors  $rooms $area\n"
  }
 
 }
 
 <<" after our class definition \n"
-setdebug(1)
+setdebug(1,"pline","~step","trace")
  int IV[7]
 
 IV[3] = 3
 <<"$IV\n"
 
- house C[6]
+ house C[6];
 
-<<" myhouse is $(typeof(&house)) \n"
+//<<" myhouse is $(typeof(&house)) \n" // TBF crash
 
 <<" myhouse is $(typeof(C)) \n"
+<<" myhouse is $(typeof(house)) \n"
+<<" myhouse is $(infoof(house)) \n"
+<<" myhouse is $(statusof(house)) \n"
+/{
+A=examine(C[0]);
+<<"$A\n"
 
+iread()
+A=examine(C[1]);
+<<"$A\n"
+
+iread()
+/}
 <<"sz $(Caz(C)) \n"
+
+
 
  C[1]->print()
 
@@ -116,7 +132,7 @@ a = 4
 
 
 
- x=C[a+1]->setrooms(C[a-1]->getrooms()) + C[a]->setrooms(C[a-2]->getrooms()) 
+ x=C[a+1]->setrooms(C[a-1]->getrooms()) + C[a]->setrooms(C[a-2]->getrooms()) ;
 
 <<"house $(a+1) and $a have $x rooms \n"
 

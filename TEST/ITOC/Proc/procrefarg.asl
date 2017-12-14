@@ -1,3 +1,8 @@
+///
+/// procrefarg
+
+setdebug(1,"pline","~step","trace")
+
 
 CheckIn()
 
@@ -5,11 +10,11 @@ proc sumarg ( v, u)
 {
 <<"args in %V  $v $u \n"
 
-   z = v + u
+   z = v + u;
 
 <<"%V$v + $u = $z\n"
 
-   v++
+   v++;
 <<" changing first arg  %V$v\n"
 
 //   v = 3
@@ -26,19 +31,19 @@ proc sumarg ( v, u)
 }
 
 
-int n = 2
-int m = 3
+int n = 2;
+int m = 3;
 
  pre_m = m
  pre_n = n
 
 <<"%V$n \n"
 
-    n++
+    n++;
 
 <<"%V$n \n"
 
-    n--
+    n--;
 
 <<"%V$n \n"
 
@@ -46,7 +51,7 @@ int m = 3
 <<"Scalar args \n"
 <<"calling %V $n $m \n"
 
-  k = sumarg(&n,&m)
+  k = sumarg(&n,&m);
 
 <<"post %V $n $m \n"
 
@@ -87,7 +92,7 @@ int m = 3
  m = 14
 
 
-k = sumarg(n,&m)
+k = sumarg(&n,&m)
 
 
 <<"%V $n $m $k \n"
@@ -97,15 +102,15 @@ k = sumarg(n,&m)
 float x = 13.3
 float y = 26.7
 
- w = sumarg(&x,y)
+ w = sumarg(&x,&y)
 <<"%V $x $y $w \n"
 
  CheckFNum(w,40.0,6)
 
- n = 79
- m = 47
+ n = 79;
+ m = 47;
 
-k = sumarg(&n,m)
+k = sumarg(n,m)
 
 <<"%V $n $m $k \n"
 
@@ -114,7 +119,7 @@ k = sumarg(&n,m)
  n = 20
  m = 28
 
-k = sumarg(&n,m)
+k = sumarg(n,m)
 
 <<"%V $n $m $k \n"
 

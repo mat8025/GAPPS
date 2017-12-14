@@ -2,7 +2,7 @@
 
 // test complex & dcomplex types
 
-SetDebug(1,"pline")
+SetDebug(1,"pline","~step")
 
 checkIn()
 

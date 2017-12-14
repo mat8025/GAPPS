@@ -1,5 +1,6 @@
 
 fname = _clarg[1];
+mvem = atoi(_clarg[2])
 
 A=ofr(fname)
 if (A == -1)
@@ -10,7 +11,7 @@ hdr = spat(hdr,"/",1,-1)
 <<"$hdr \n"
 main= spat(fname,"/",1,-1)
 where= spat(fname,"/",-1,-1)
-
+module = scut(main,-4)
 D=ofw(main)
 B=ofw(hdr);
 
@@ -20,6 +21,20 @@ dbname = "";
 founddbf = 0;
 first_inc = 0;
 done = 0;
+
+<<[D]"//////////////////////<**|**>/////////////////////////////////// "; 
+<<[D]"\n";
+<<[D]"/////                $module                      ";<<[D]"\n";  
+<<[D]"//// 	                                           ";<<[D]"\n";
+<<[D]"/// CopyRight  RootMeanSquare 1990,2017,...     ";<<[D]"\n";                 
+<<[D]"//  Mark Terry                          ";<<[D]"\n";
+<<[D]"//////////////////////<v_&_v>////////////////////////////////// ";<<[D]"\n";
+<<[D]"// /. .\\ ";<<[D]"\n";
+<<[D]"// \\ ' / ";<<[D]"\n";
+<<[D]"//   -   ";<<[D]"\n";
+<<[D]"\n";
+
+
 
  while (1) {
 
@@ -50,15 +65,23 @@ spat(C[1],"dbug",0,1,&mat);
      }
   }
   else {
-  
-  <<[D]"$S\n"
 
+  if (first_inc) {
+  <<[D]"$S\n"
+  }
   }
  }
 
 
  cf(B)
- 
+
+
+if (mvem) {
+!!"mv $hdr /usr/local/GASP/gasp/include "
+!!"mv $main $where "
+}
+
+/{
 if (founddbf) {
 
  <<"dbug file is $dbname \n"
@@ -67,6 +90,5 @@ if (founddbf) {
 //D= ofr("/usr/local/GASP/gasp/include/$dbf")
 !!"cat $hdr /usr/local/GASP/gasp/include/$dbf > tmp"
 !!"cp tmp $hdr"
-!!"mv $hdr /usr/local/GASP/gasp/include "
-!!"mv $main $where "
 }
+/}

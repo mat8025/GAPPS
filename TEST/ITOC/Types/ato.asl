@@ -1,5 +1,5 @@
 
-setdebug(1)
+setdebug(1,"pline")
 
 checkIn()
 
@@ -27,6 +27,9 @@ checkNum(l,-1)
 l =  2^^32 
 <<"$l $(typeof(l))\n"
 u=  atou(s);
+
+<<"$u $(typeof(u))\n"
+
 ul = l -1; 
 
 

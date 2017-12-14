@@ -1,27 +1,15 @@
 
-setdebug(1,"trace")
-
-
+setdebug(1,"~pline","~trace")
 
 checkIn()
 
 //prog= GetScript()
 
-
-na = argc()
-
-if (na >= 1) {
- for (i = 0; i < argc() ; i++) {
-<<"arg [${i}] $_clarg[i] \n"
- }
-}
-
 float fn=2.71828;
-
-
-CheckFNum(fn,2.71828)
 <<"%V$fn\n"
-int d= 7
+CheckFNum(fn,2.71828)
+
+int d= 7;
 
 e = -6
 
@@ -33,11 +21,36 @@ int b = 79;
 
 CheckNum(b,79)
 
-b = d * e
+b = d * e;
 
 <<"%V$b\n"
 
-CheckNum(b,-42)
+CheckNum(b,-42);
+
+
+b++;
+
+
+<<"%V$b\n"
+
+CheckNum(b,-41);
+
+
+na = argc()
+
+if (na >= 1) {
+ for (i = 0; i < argc() ; i++) {
+<<"arg [${i}] $_clarg[i] \n"
+ }
+}
+<<"args listed\n"
+
+
+
+
+
+
+
 
 //    CheckOut()
 //    exit()

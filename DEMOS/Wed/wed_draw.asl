@@ -341,3 +341,10 @@ proc showTarget()
 
   
 }
+
+proc resize_screen()
+{
+
+  sWi(vp,@resize,0.1,0.1,0.8,0.85,@redraw)
+
+}

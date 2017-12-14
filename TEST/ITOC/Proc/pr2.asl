@@ -6,47 +6,67 @@ setdebug(1,"pline","trace")
 
 
 checkIn();
-//proc foo(int vec[],k)
-proc foo(vec[],k)
+//proc foo(int vect[],k)
+proc foo(vect[],k)
 {
 
-<<"$_proc IN $vec \n"
+<<"$_proc IN $vect \n"
+
 <<"pa_arg2 %V$k\n"
 
-  vec[0] = 28
-  vec[1] = 47
-  vec[5] = k;
+  vect[0] = 28
+  vect[1] = 47
+  vect[5] = k;
 
-<<"vec OUT $vec \n"
+<<"vect OUT $vect \n"
+<<"vect[0] $vect[0] \n"
 
-  checkNum(vec[0],28)
+  checkNum(vect[0],28)
   
-  rvec = vec;
+  rvect = vect;
 
 
-<<"rvec OUT $rvec \n"
-  checkNum(rvec[0],28);
+<<"rvect OUT $rvect \n"
+  checkNum(rvect[0],28);
   
   checkNum(Z[0],0);
 
 <<"Z OUT $Z \n"
 
-  return rvec
+  return rvect
 
-  //  return vec
+  //  return vect
 }
 
 
-///////////////  Array name /////////////////////////
- Z= Vgen(INT_,15,0,1);
+///////////////  Array name ////////////////////////
+<<" main \n";
 
- Y= foo(&Z[2], 31)
+Z= Vgen(INT_,15,0,1);
+
+
+<<"Z: $Z\n"
+
+Y= foo(&Z[2], 31)
 
 <<"Y: $Y\n"
 
 checkNum(Y[0],28)
 
+checkStage()
+
+
 exit()
+
+
+ Z= Vgen(INT_,15,0,1);
+
+ Y= foo(Z, 31)
+
+<<"Y: $Y\n"
+
+checkNum(Y[0],28)
+
 <<"$Y \n"
 <<"Y $Y[0] == 28 ?\n"
 
@@ -57,6 +77,9 @@ checkNum(Z[0],0);
 
 
 checkStage()
+
+
+exit()
 
 ASK
 

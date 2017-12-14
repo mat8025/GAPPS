@@ -4,7 +4,7 @@
 
 vptitle = "Wed_$vers"
 
-    vp =  cWi(@title, "$vptitle",@resize,0.01,0.02,0.98,0.98,0,@pixmapon,@save,@savepixmap);
+    vp =  cWi(@title, "$vptitle",@resize,0.1,0.1,0.8,0.8,0,@pixmapon,@save,@savepixmap);
 
     vp1 = cWi(@title,"XED",@resize,0.01,0.05,0.90,0.9,1)
 
@@ -23,7 +23,8 @@ vptitle = "Wed_$vers"
 
     calwo=cWo(vp,@graph,@name,"CAL",@value,0,@clipborder,"black")
 
-    extwo=cWo(vp,@graph,@name,"EXT",@value,0,@clipborder,"black")
+
+extwo=cWo(vp,@graph,@name,"EXT",@value,0,@clipborder,"black")
 
     //carbwo=createGWOB(vp,@type,"GRAPH",@name,"CARB_COUNT",@color,"white")
 
@@ -41,7 +42,11 @@ DBPR"%V$wedwo \n"
 
  //////////////////////////////// TITLE BUTTON QUIT ////////////////////////////////////////////////
  tbqwo=cWo(vp,@TB,@name,"tb_q",@color,WHITE_,@value,"QUIT",@func,"window_term",@resize,0.97,0,0.99,1);
- sWo(tbqwo,@drawon,@pixmapon,@fonthue,RED_, @symbol,11, @symsize,45,   @clip,0,0,1,1,@redraw);
+ sWo(tbqwo,@drawon,@pixmapon,@fonthue,RED_, @symbol,X_, @symsize,45,   @clip,0,0,1,1,@redraw);
+
+ tbrszwo=cWo(vp,@TB,@name,"tb_2",@color,WHITE_,@VALUE,"QUIT",@func,"window_resize",@resize,0.94,0,0.96,1)
+ sWo(tbrszwo,@DRAWON,@PIXMAPON,@FONTHUE,RED_, @symbol,PLUS_,  @symsize, 45, \
+ @clip,0,0,1,1,@redraw)
 
 
 

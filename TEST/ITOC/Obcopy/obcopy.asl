@@ -43,7 +43,6 @@ CLASS fruit  {
    private:
    
    int y;
-   
    float z;
    int j;
    int edible;
@@ -54,7 +53,7 @@ CLASS fruit  {
    CMF print () {
      <<" in CMF print \n"
     // <<"CMF print %V$_proc of $_cobj   %V$color $x\n $y\n $z\n  $j\n"
- <<"CMF print %V$color $x\n $y\n $z\n  $j\n"
+      <<"CMF print %V$color $x\n $y\n $z\n  $j\n"
       j++
    }
 
@@ -142,7 +141,7 @@ proc foo2 (a)
 ASK
 
   fruit loc2fruit;
-   loc2fruit->print()
+  loc2fruit->print()
 
 
 }
@@ -216,7 +215,7 @@ proc objcopy(fruit oba,  fruit obb)
    int k = 47;
    float d = exp(1);
  <<"$k $d\n";
- ASK
+// ASK
 
 
     oba->x = obb->x;
@@ -252,7 +251,7 @@ ASK
 
 <<"$(examine(apple))\n"
 
-
+  apple->print();
 
 
 ASK
@@ -325,7 +324,7 @@ ASK
 
 <<"$(Infoof(orange))\n"
 
-<<"$(examine(orange))\n"
+//<<"$(examine(orange))\n"
 
   orange->set_y(7);
 
@@ -378,10 +377,10 @@ ASK
 
 // use ref - objs   are not treated like arrays ??
 
-<<"$(examine(apple))\n"
-<<"$(examine(&apple))\n"
-<<"$(examine(orange))\n"
-<<"$(examine(&orange))\n"
+<<"$(objinfo(apple))\n"
+//<<"$(examine(&apple))\n"
+//<<"$(examine(orange))\n"
+<<"$(objinfo(&orange))\n"
 ASK
   objcopy( &orange, &apple)
   

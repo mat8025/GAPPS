@@ -109,7 +109,7 @@
 <<"%V $nwo $rms_wo  $allwos \n"
 
 
-tt_wo=cWo(tassw,BVALUE_,@resize,0.86,0.91,0.99,0.99,@name,"TT",@color,WHITE_,@penhue,RED_,"value",0)
+tt_wo=cWo(tassw,BTN_VALUE_,@resize,0.86,0.91,0.99,0.99,@name,"TT",@color,WHITE_,@penhue,RED_,"value",0)
   sWo(tt_wo,@help,"total time","drawon",@redraw,@style, "SVO")
 
  allwos[nwo++] = tt_wo
@@ -117,14 +117,14 @@ tt_wo=cWo(tassw,BVALUE_,@resize,0.86,0.91,0.99,0.99,@name,"TT",@color,WHITE_,@pe
 
 
 
-rt_wo=cWo(tassw,BVALUE_,@resize,0.75,0.91,0.85,0.99,@name,"RecordT",@color,BLUE_,@penhue,BLACK_,"value",0)
+rt_wo=cWo(tassw,BTN_VALUE_,@resize,0.75,0.91,0.85,0.99,@name,"RecordT",@color,BLUE_,@penhue,BLACK_,"value",0)
   sWo(rt_wo,@help,"rec time","drawon",@pixmapoff,@redraw, @style, "SVO")
 
  allwos[nwo++] = rt_wo
 <<"%V $nwo $rt_wo  $allwos \n"
 
 
-st_wo=cWo(tassw,BVALUE_,@resize,0.65,0.91,0.73,0.99,@name,"Power",@color,BLUE_,@penhue,BLACK_,"value",0)
+st_wo=cWo(tassw,BTN_VALUE_,@resize,0.65,0.91,0.73,0.99,@name,"Power",@color,BLUE_,@penhue,BLACK_,"value",0)
   sWo(st_wo,@help,"power","drawon",@pixmapoff,@redraw, @style, "SVO")
 
  allwos[nwo++] = st_wo

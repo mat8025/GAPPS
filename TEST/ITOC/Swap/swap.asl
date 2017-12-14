@@ -160,7 +160,14 @@ float q = 4.0
 
  CheckNum(r,3.0)
 
-<<"%V $r $q\n"
+
+<<"pre- swap? %V $r $q\n"
+
+   swap(r,q)
+
+<<"no swap ? %V $r $q\n"
+
+ CheckNum(r,3.0)
 
  CheckOut()
 
