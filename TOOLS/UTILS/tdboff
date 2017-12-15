@@ -1,0 +1,10 @@
+cd /usr/local/GASP/gasp/include
+for y in $*
+do
+i="${y%.*}"
+echo $i
+cp $i.h /usr/local/GASP/gasp/BAK
+cat $i.h | sed s/DBON/DBOFF/ > $i.new
+cp $i.new $i.h
+rm $i.new
+done
