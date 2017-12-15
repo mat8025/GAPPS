@@ -7,7 +7,7 @@
 /// office computer work (24-8-exercise hours) 119.3 per hour
 
 
-vers = "1.9";
+vers = "2.0";
 
 envdebug();
 
@@ -68,7 +68,7 @@ DBPR"$today $jtoday \n"
 
 minWt = 160;
 topWt = 210;
-StartWt = 205;
+//StartWt = 205;
 
 // rates per min
 include "wed_rates"

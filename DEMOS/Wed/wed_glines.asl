@@ -6,12 +6,11 @@
 DBPR"\n%(10,, ,\n)$DVEC \n"
 //DBPR"\n%V$PWTVEC[0:20] \n"
    pwt_gl = -1
-   pwt_gl  = cGl(@wid,gwo,@TXY,DVEC,PWTVEC,@color,"green",@ltype,"line")
+   pwt_gl  = cGl(@wid,gwo,@TXY,DVEC,PWTVEC,@color,GREEN_,@ltype,"line")
 
 DBPR"%V$pwt_gl \n"
 
-
- //ext_gl  = cGl(@wid,extwo,@TXY,DVEC,EXTV,@color,BLUE_,@ltype,"symbols","diamond")
+   extwo = calwo;
 
    ext_gl  = cGl(extwo,@TXY,DVEC,EXTV,@color,BLUE_,@ltype,"symbols","diamond")
 

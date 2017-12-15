@@ -100,13 +100,14 @@ proc  drawGrids( ws )
   //sWo(gwo,@axnum,1)
 
   //sWo(calwo,@axnum,2,500,5500,500,100)
+  
   sWo(calwo,@axnum,2)
-  sWo(extwo,@axnum,2)
-
+      sWo(extwo,@yscales,0,600,@savescales,1);
+  sWo(extwo,@axnum,4)
   //sWo(extwo,@axnum,2,0,sc_endday,20,10)
 
   Text(gwo,  "Weight (lbs)",-4,0.7,4,-90)
-  Text(extwo,"Exercise mins",-4,0.7,4,-90)
+  Text(extwo,"Exercise mins",-4,0.5,4,-90)
   Text(calwo,"Cals In/Out",-4,0.7,4,-90)
 
  }
@@ -137,19 +138,24 @@ proc drawScreens()
 
        sWo(wedwo,@clearclip,@save,@clearpixmap,@clipborder,"black")
 
-       sWo(extwo,@clipborder,@save)
+       //sWo(extwo,@clipborder,@save)
   
       //DrawGline(wedgl)
      
   if (ALL_LINES) {
 DBPR" draw lines \n"
+    sWo(extwo,@scales,sc_startday,0,sc_endday+10,600,@savescales,1);
+
 
       dGl(ext_gl)
 //<<" draw gw_gl\n"
       dGl(gw_gl);
 
-      DrawGline(calc_gl)
-      DrawGline(calb_gl)
+
+
+    sWo(calwo,@scales,sc_startday,0,sc_endday+10,4500,@savescales,0)
+      dGl(calc_gl)
+      dGl(calb_gl)
 
      // DrawGline(carb_gl)
      // DrawGline(ave_ext_gl)
@@ -169,15 +175,15 @@ DBPR" draw lines \n"
 
       Text(gwo,  "Weight (lbs)",0.8,0.8,1)
       Text(calwo,"Calories", 0.8,0.8,1)
-      Text(extwo,"Exercise Time (mins)", 0.8,0.8,1)
+      //Text(extwo,"Exercise Time (mins)", 0.8,0.8,1)
 
       //DrawGline(pwt_gl)
 
-      DrawGline(wt_gl)
+       dGl(wt_gl)
    
       //DrawGline(carb_gl)
 
-       DrawGline(wt_gl)
+       dGl(wt_gl)
 
       showTarget();
      }
@@ -345,6 +351,6 @@ proc showTarget()
 proc resize_screen()
 {
 
-  sWi(vp,@resize,0.1,0.1,0.8,0.85,@redraw)
+  sWi(vp,@resize,0.1,0.1,0.9,0.9,@redraw)
 
 }

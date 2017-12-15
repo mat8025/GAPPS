@@ -43,9 +43,13 @@ proc QUIT()
 proc ZIN()
 {
 
-       sWo(wedwo,@xscales,lcpx,rcpx) 
+       sc_startday = lcpx;
+       sc_endday = rcpx;
+       
+       sWo(wedwo,@xscales,lcpx,rcpx);
 
-       sWo(swo,@xscales,lcpx,rcpx) 
+       sWo(swo,@xscales,lcpx,rcpx);
+
 
        drawScreens()
 
@@ -57,24 +61,36 @@ proc ZIN()
 proc ZOUT()
 {
 
-float RS[10]
+float RS[10];
 
        RS=wogetrscales(gwo)
 
+
        rx = RS[1]
        rX = RS[3]
-       rx /= 2.0
-       rX *= 2.0
+
+       rx -= 14.0;
+       rX += 14.0;
+
 
        if (rX > maxday) {
-          Rx = maxday
+          Rx = maxday;
        }
+
+       if (rx < 0) {
+          rx = 0;
+       }
+       
 
        sWo(gwo,@scales,rx,minWt,rX,topWt) 
        sWo(gwo,@redraw,@update)
-       sWo(swo,@xscales,rx,rX) 
 
-       DrawGline(wt_gl)
+       sWo(swo,@xscales,rx,rX) 
+       sc_startday = rx;
+       sc_endday = rX;
+       
+
+       dGl(wt_gl)
 
        showWL()
 

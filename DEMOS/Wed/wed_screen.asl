@@ -2,13 +2,13 @@
 
 //////////////////  WED SCREEN --- WINDOWS ////////////////
 
-vptitle = "Wed_$vers"
+    vptitle = "Wed_$vers"
 
-    vp =  cWi(@title, "$vptitle",@resize,0.1,0.1,0.8,0.8,0,@pixmapon,@save,@savepixmap);
+    vp =  cWi(@title, "$vptitle",@resize,0.1,0.1,0.9,0.9,0,@pixmapon,@save,@savepixmap);
 
     vp1 = cWi(@title,"XED",@resize,0.01,0.05,0.90,0.9,1)
 
-    sWi(vp,@clip,0.1,0.1,0.7,0.9,@redraw)
+    sWi(vp,@clip,0.1,0.1,0.9,0.9,@redraw)
 
     int allwin[] = {vp,vp1}
 
@@ -23,14 +23,15 @@ vptitle = "Wed_$vers"
 
     calwo=cWo(vp,@graph,@name,"CAL",@value,0,@clipborder,"black")
 
-
-extwo=cWo(vp,@graph,@name,"EXT",@value,0,@clipborder,"black")
+//    extwo=cWo(vp,@graph,@name,"EXT",@value,0,@clipborder,"black")
 
     //carbwo=createGWOB(vp,@type,"GRAPH",@name,"CARB_COUNT",@color,"white")
 
     //int wedwo[] = { gwo, extwo, calwo, carbwo }
 
-      int wedwo[] = { gwo, calwo, extwo  }
+    //  int wedwo[] = { gwo, calwo, extwo  }
+
+   int wedwo[] = { gwo, calwo  }
 
 DBPR"%V$wedwo \n"
 
@@ -48,23 +49,25 @@ DBPR"%V$wedwo \n"
  sWo(tbrszwo,@DRAWON,@PIXMAPON,@FONTHUE,RED_, @symbol,PLUS_,  @symsize, 45, \
  @clip,0,0,1,1,@redraw)
 
+    extwo = calwo;
 
 
     sWo(wedwo,@clip,cx,cy,cX,cY, @color,"white")
 
     sWo(wedwo,@border,@clipborder,"black",@drawon)
 
-
     sWo(gwo,@scales,sc_startday,160,sc_endday+10,220,@savescales,0) 
 
-    sWo(extwo,@scales,sc_startday,0,sc_endday+10,360,@savescales,0)
+    sWo(extwo,@rhtscales,sc_startday,0,sc_endday+10,600,@savescales,1);
+
+    sWo(extwo,@usescales,1,@axnum,3);
 
     sWo(calwo,@scales,sc_startday,0,sc_endday+10,4500,@savescales,0)
 
 //    sWo(carbwo,@scales,sc_startday,0,sc_endday+10,1200)
 //    sWo(extwo,@axnum,1,sc_startday,sc_endday,7,1)
 
-    sWo(extwo,@axnum,1)
+
 
     swo= cWo(vp1,@type,"GRAPH",@name,"BenchPress",@color,"white");
     
@@ -91,7 +94,7 @@ DBPR" Days $k \n"
  
    //  defaults are ?  @save,@redraw,@drawon,@pixmapon
 
-    sc_startday = sc_endday - 90
+    sc_startday = sc_endday - 90;
 
     sWo(swo,@scales,sc_startday,110,sc_endday,bp_upper)
 
@@ -102,7 +105,8 @@ DBPR"SCALES %V$sc_startday $sc_endday $bp_upper\n"
 DBPR"SCALES %V$sc_startday $sc_endday $carb_upper\n"
 
     //int allwo[] = {gwo,swo,carbwo,calwo,extwo}
-    int allwo[] = {gwo,swo,calwo,extwo}
+//    int allwo[] = {gwo,swo,calwo,extwo}
+    int allwo[] = {gwo,swo,calwo}
 
 //<<"%V $allwo \n"
 
@@ -133,14 +137,12 @@ DBPR"SCALES %V$sc_startday $sc_endday $carb_upper\n"
 
   xlbswo= cWo(vp,@BV,@name,"xLbs",@color,"violetred",@value,0)
   
-  int xwos[] = { nobswo, xtwo, xbwo, xlbswo }
+  int xwos[] = { nobswo, xtwo, xbwo, xlbswo };
   
+  wo_htile( xwos, 0.45,0.01,0.83,0.08,0.05);
 
-  wo_htile( xwos, 0.45,0.01,0.83,0.08,0.05)
+  sWo(xwos,@style,"SVB",@redraw);
+  sWo(gwo,@showpixmap,@save);
+  sWo(calwo,@showpixmap);
+  sWo(tbqwo,@redraw);
 
-  sWo(xwos,@style,"SVB",@redraw)
-
-
-  sWo(gwo,@showpixmap,@save)
-  sWo(calwo,@showpixmap)
-  sWo(tbqwo,@redraw)
