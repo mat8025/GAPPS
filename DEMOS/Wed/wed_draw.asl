@@ -102,8 +102,9 @@ proc  drawGrids( ws )
   //sWo(calwo,@axnum,2,500,5500,500,100)
   
   sWo(calwo,@axnum,2)
-      sWo(extwo,@yscales,0,600,@savescales,1);
+  sWo(extwo,@yscales,0,600,@savescales,1);
   sWo(extwo,@axnum,4)
+
   //sWo(extwo,@axnum,2,0,sc_endday,20,10)
 
   Text(gwo,  "Weight (lbs)",-4,0.7,4,-90)
@@ -119,7 +120,8 @@ proc  drawGrids( ws )
   //sWo(carbwo,@axnum,2,0,carb_upper,50,10)
 
   //sWo(carbwo,@axnum,2)
-  sWo(xwo,@clipborder,@save)
+
+  sWo(xwo,@clipborder,@save);
 
  }
   sWo(allwo,@showpixmap,@save)
@@ -143,17 +145,26 @@ proc drawScreens()
       //DrawGline(wedgl)
      
   if (ALL_LINES) {
-DBPR" draw lines \n"
-    sWo(extwo,@scales,sc_startday,0,sc_endday+10,600,@savescales,1);
+  
+  DBPR" draw lines \n"
+
+      sWo(extwo,@scales,sc_startday,0,sc_endday+10,600,@savescales,1);
 
 
       dGl(ext_gl)
+      
+      plot(extwo,@keysymbol,0.78 ,0.8,DIAMOND_,symsz,BLUE_,1);
+      plot(extwo,@keysymbol,0.78,0.7,TRI_,symsz,GREEN_,1);
+
+      //sWo(extwo,@symbol,sc_startday,2000,"diamond",5);
 //<<" draw gw_gl\n"
       dGl(gw_gl);
 
 
 
-    sWo(calwo,@scales,sc_startday,0,sc_endday+10,4500,@savescales,0)
+      sWo(calwo,@scales,sc_startday,0,sc_endday+10,4500,@savescales,0)
+
+      //plot(extwo,@symbol,sc_endday -10 ,300,TRI_,symsz,BLACK_);
       dGl(calc_gl)
       dGl(calb_gl)
 
@@ -174,8 +185,8 @@ DBPR" draw lines \n"
       drawMonths(0)
 
       Text(gwo,  "Weight (lbs)",0.8,0.8,1)
-      Text(calwo,"Calories", 0.8,0.8,1)
-      //Text(extwo,"Exercise Time (mins)", 0.8,0.8,1)
+      Text(calwo,"Calories Burnt", 0.8,0.8,1)
+      Text(extwo,"Exercise Time (mins)", 0.8,0.7,1)
 
       //DrawGline(pwt_gl)
 
@@ -326,7 +337,7 @@ proc showTarget()
   symsz =5;
   
   plot(gwo,@symbol,gday,NextGoalWt,"diamond",symsz,BLUE_);
-  plot(gwo,@symbol,last_known_day,NextGoalWt,2,symsz,RED_);
+  plot(gwo,@symbol,last_known_day,NextGoalWt,2,symsz,RED_,1);
 
   hlng = (last_known_wt - NextGoalWt) / 0.43; 
   if (hlng  > 0) {

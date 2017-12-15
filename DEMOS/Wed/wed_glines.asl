@@ -12,7 +12,7 @@ DBPR"%V$pwt_gl \n"
 
    extwo = calwo;
 
-   ext_gl  = cGl(extwo,@TXY,DVEC,EXTV,@color,BLUE_,@ltype,"symbols","diamond")
+   ext_gl  = cGl(extwo,@TXY,DVEC,EXTV,@color,BLUE_,@ltype,"symbols",TRI_)
 
 //DBPR"%V$ext_gl \n"
 
@@ -47,7 +47,7 @@ if ( gw_gl == -1 || bp_gl == -1) {
    exit_si()
  }
 
- calb_gl = cGl(calwo,@TXY,DVEC,CALBURN,@color,BLUE_,@ltype,"symbols","diamond")
+ calb_gl = cGl(calwo,@TXY,DVEC,CALBURN,@color,BLUE_,@ltype,"symbols",DIAMOND_)
 
  calc_gl = cGl(calwo,@TXY,DFVEC,CALCON,@color,RED_,@ltype,"symbols","triangle",@symhue, BLUE_)
 
@@ -66,12 +66,12 @@ if ( gw_gl == -1 || bp_gl == -1) {
   sGl(allgl,@missing,0,@symbol,"diamond",5)
   symsz= 5;
   
-  sGl(ext_gl,@symbol,DIAMOND_,symsz, @symfill,1)
+  sGl(ext_gl,@symbol,TRI_,symsz, @symfill,FILL_)
 
-  sGl(wt_gl,@symbol,TRI_,symsz, @symfill,1,@symhue,RED_)
+  sGl(wt_gl,@symbol,TRI_,symsz, @symfill,FILL_,@symhue,RED_)
   sGl(se_gl,@symbol,DIAMOND_,symsz)
 
-  sGl(calb_gl,@symbol,DIAMOND_,symsz,@symfill,1)
+  sGl(calb_gl,@symbol,DIAMOND_,symsz,@symfill,FILL_,@symhue,BLUE_)
   sGl(calc_gl,@symbol,TRI_,@symsize,symsz,@symhue,BLUE_)
   sGl(bp_gl,@symbol,ITRI_,symsz,@missing,0)
 
