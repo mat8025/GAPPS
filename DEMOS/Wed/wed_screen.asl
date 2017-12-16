@@ -1,4 +1,4 @@
-
+/// wed_screen
 
 //////////////////  WED SCREEN --- WINDOWS ////////////////
 
@@ -49,6 +49,11 @@ DBPR"%V$wedwo \n"
  sWo(tbrszwo,@DRAWON,@PIXMAPON,@FONTHUE,RED_, @symbol,PLUS_,  @symsize, 45, \
  @clip,0,0,1,1,@redraw)
 
+
+ tbrdrwo=cWo(vp,@TB,@name,"tb_3",@color,WHITE_,@VALUE,"QUIT",@func,"window_redraw",@resize,0.92,0,0.938,1)
+ sWo(tbrdrwo,@DRAWON,@PIXMAPON,@FONTHUE,RED_, @symbol,DIAMOND_,  @symsize, 45, \
+ @clip,0,0,1,1,@redraw)
+
     extwo = calwo;
 
 
@@ -75,7 +80,7 @@ DBPR"%V$wedwo \n"
 
     wo_vtile(xwo,0.01,0.05,0.97,0.97)   // vertically tile the drawing areas into the main window
 
-    sWo(xwo,@clip,cx,cy,cX,cY,@color,"white", @clipborder,"black")
+    sWo(xwo,@clip,cx,cy,cX,cY,@color,WHITE_, @clipborder,BLACK_)
 
 //DBPR" $DVEC[0:10] \n"
 
@@ -84,6 +89,10 @@ DBPR"%V$wedwo \n"
 //DBPR" %5\s->\s,\s<-\nR$CARBV \n"
 
 //DBPR" %10\s\nr$WTPMV \n"
+
+///  measurement
+
+
 
 
 //////////////////////////// SCALES //////////////////////////////////////////
@@ -145,4 +154,16 @@ DBPR"SCALES %V$sc_startday $sc_endday $carb_upper\n"
   sWo(gwo,@showpixmap,@save);
   sWo(calwo,@showpixmap);
   sWo(tbqwo,@redraw);
+
+  dtmwo=cWo(vp,@BV,@name,"DAY",@color,RED_,@help," date on day ")
+  wtmwo=cWo(vp,@BV,@name,"WTM",@color,RED_,@help," wt on day ")
+  cbmwo=cWo(vp,@BV,@name,"CBM",@color,BLUE_,@fonthue,WHITE_,@help," cals burnt on day ")
+  xtmwo=cWo(vp,@BV,@name,"ETM",@color,GREEN_,@help," xtime on day ")
+
+  int mwos[] = { dtmwo, wtmwo, cbmwo, xtmwo};
+
+  wo_vtile( mwos, 0.02,0.5,0.08,0.9,0.05);
+
+  sWo(mwos,@style,"SVB",@redraw);
+
 

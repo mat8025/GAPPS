@@ -3,15 +3,14 @@
 
 //
 
+<<"4/9/2018\n"
 
+  day = julday("4/9/2018")
 
-  day = julday("4/9/2008")
-
-
-<<" $day \n"
 
   wday = juldayofweek(day)
 
+<<" $day  $wday\n"
 
 <<" $wday \n"
 
@@ -20,11 +19,12 @@
 
 <<" $wday \n"
 
+  dt = "4/9/2019"
+  day = julday(dt)
+  wday = juldayofweek("4/9/2019")
 
-  wday = juldayofweek("4/9/2008")
 
-
-<<" $wday \n"
+<<"$dt $day $wday \n"
 
 
   wday = juldayofweek("4:9:2008")
@@ -32,24 +32,51 @@
 
 <<" $wday \n"
 
-  wday = juldayofweek("4-9-2008")
+  dt = "4-9-2019"
+  day = julday(dt)
+  wday = juldayofweek(dt)
+
+<<"$dt $day $wday \n"
+
+  dt = "4-9-1949"
+  day = julday(dt)
+  wday = juldayofweek(dt)
 
 
-<<" $wday \n"
-
-  wday = juldayofweek("4-9-1949")
+<<"$dt $day $wday \n"
 
 
-<<" $wday \n"
+  dt = "4-9-2017"
+  day = julday(dt)
+  wday = juldayofweek(dt)
 
-<<" $wday \n"
+  rdt = julmdy(day)
 
-  wday = juldayofweek("4.9.2009")
-
-
-<<" $wday \n"
-
-  wday = juldayofweek("4.9.2049")
+<<"Mark $dt $day $wday $rdt \n"
 
 
-<<" $wday \n"
+  dt = "5-22-1959"
+  day = julday(dt)
+  wday = juldayofweek(dt)
+
+  rdt = julmdy(day)
+
+<<"Dena $dt $day $wday $rdt \n"
+
+  dt = "12-3-1991"
+  day = julday(dt)
+  wday = juldayofweek(dt)
+
+  rdt = julmdy(day)
+
+<<"Nick $dt $day $wday $rdt \n"
+
+  dt = "2-10-1990"
+  day = julday(dt)
+  wday = juldayofweek(dt)
+
+  rdt = julmdy(day)
+
+<<"Lauren $dt $day $wday $rdt \n"
+
+

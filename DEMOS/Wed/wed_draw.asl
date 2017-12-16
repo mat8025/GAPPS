@@ -15,7 +15,7 @@ proc drawGoals(ws)
 //    Plot(carbwo,@line,0,30,sc_endday,30, BLUE_)
 //    Plot(carbwo,@line,0,55,sc_endday,55, RED_)
 
-}
+   }
 
   if (ws == 1) {
 DBPR"$ws $swo $kdays \n"
@@ -88,22 +88,22 @@ proc  drawGrids( ws )
 
  if (ws == 0) {
 
- //DBPR"drawing Grids for screen 0 \n"
+  //DBPR"drawing Grids for screen 0 \n"
 
   //SetGwob(extwo,@axnum,1,0,kdays,7,1)
 
   //SetGwob(gwo,@axnum,2,155,205,10,5)
 
-  axnum(gwo,2)
+  axnum(gwo,2);
 
   //sWo(gwo,@axnum,4)
   //sWo(gwo,@axnum,1)
 
   //sWo(calwo,@axnum,2,500,5500,500,100)
   
-  sWo(calwo,@axnum,2)
+  sWo(calwo,@axnum,2);
   sWo(extwo,@yscales,0,600,@savescales,1);
-  sWo(extwo,@axnum,4)
+  sWo(extwo,@axnum,4);
 
   //sWo(extwo,@axnum,2,0,sc_endday,20,10)
 
@@ -203,9 +203,9 @@ proc drawScreens()
 
 DBPR" Drawscreen 1  BP!!\n"
  
-      drawGoals(1)
-      drawGrids(1)
-      drawMonths(1)
+      drawGoals(1);
+      drawGrids(1);
+      drawMonths(1);
 
       DrawGline(bp_gl)
 
@@ -219,15 +219,17 @@ DBPR" Drawscreen 1  BP!!\n"
 }
 //=================================================
 
+
 proc showWL()
 {
 
        RS=wogetrscales(gwo)
 
-       rx = RS[1]
-       rX = RS[3]
-long ws;
-long we;
+       rx = RS[1];
+       rX = RS[3];
+       
+        long ws;
+        long we;
 
        ws = rx + bday
        we = rX + bday
@@ -258,20 +260,37 @@ proc adjustYear(updown)
    the_date = julmdy("$jd")
 
    // which year?
-   yrs = sele(the_date,-1,4)
+   yrs = sele(the_date,-4,4)
+   
    yrd = atoi(yrs)
 //DBPR"%V$jd $the_date $yrs $yrd \n"
-   if (updown > 0)
-    yrd++
 
-   if (updown < 0)
+<<"%V$jd $the_date $yrs $yrd \n"
+
+
+   if (updown > 0) {
+    yrd++
+   }
+   
+   if (updown < 0) {
     yrd--
+  }
+  <<"%V  $yrd \n"
+
 
    st_jday = julday("01/01/$yrd")
    ed_jday = julday("12/31/$yrd")
 
+  <<"%V  $yrd  $st_jday $ed_jday\n"
+
    rx = st_jday - bday
-   rX = ed_jday - bday
+  rX = ed_jday - bday
+
+     // rx = st_jday 
+    //  rX = ed_jday 
+
+       sc_startday = rx;
+       sc_endday = rX;
 
    sWo(wedwo,@xscales,rx,rX,@savescales,0)
 
@@ -302,10 +321,14 @@ proc adjustQrt(updown)
      rx = mid_date -30
      rX = mid_date +60
    }
+
    if (updown < 0) {
      rx = mid_date -60
      rX = mid_date +30
    }
+
+       sc_startday = rx;
+       sc_endday = rX;
 
    sWo(wedwo,@xscales,rx,rX,@savescales,0)
 
@@ -354,11 +377,9 @@ proc showTarget()
   }
 
   plot(gwo,@symbol,targetday,GoalWt,"star",symsz, LILAC_);
-
-
   
 }
-
+//===========================
 proc resize_screen()
 {
 

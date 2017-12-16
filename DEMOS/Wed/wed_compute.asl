@@ -3,12 +3,12 @@ xhrs = 0;
 
 proc computeWL( wlsday, wleday)
 {
-// use input of juldays
-// find the number of exe hours
+/// use input of juldays
+/// find the number of exe hours
 // read the number of cals burnt during exercise
 // compute the number of lbs burnt
 
-int i
+int i;
 
    Nsel_exemins = 0
    Nsel_exeburn = 0
@@ -43,5 +43,39 @@ int i
 
 
 }
+//=========================
+
+proc getDay( dayv)
+{
+
+ int m_day;
+ m_day= dayv + bday;
+
+   for (i = 0; i < Nobs ; i++) {
 
 
+
+     if (LDVEC[i] == m_day) {
+
+    xtm = EXTV[i]
+    wtm  = WTVEC[i]
+    cbm  = CALBURN[i]
+ 
+    <<"FOUND $i %V $dayv $m_day  $wtm $xtm $cbm\n"
+
+     dt = julmdy(m_day);
+     sWo(dtmwo,@value,dt,@redraw);
+     sWo(xtmwo,@value,xtm,@redraw);
+     sWo(wtmwo,@value,wtm,@redraw);
+     sWo(cbmwo,@value,cbm,@redraw);
+
+      break;
+     }
+  }
+
+
+
+}
+//
+
+//=================================

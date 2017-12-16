@@ -1,11 +1,13 @@
-
+///
 ////////////////////////WED CALLBACKS///////////////////////////////////////
+///
+
 
 ////////////////////////WONAME CALLBACKS///////////////////////////////////////
 proc QRTD()
 {
   adjustQrt(-1)
-
+  drawScreens()
   showWL()
 
 }
@@ -13,7 +15,7 @@ proc QRTD()
 proc QRTI()
 {
   adjustQrt(1)
-
+  drawScreens()
   showWL()
 
 }
@@ -23,6 +25,8 @@ proc QRTI()
 proc YRD()
 {
    adjustYear(-1)
+  drawScreens()
+  showWL()
 }
 //--------------------------------------------------
 proc YRI()
@@ -50,7 +54,6 @@ proc ZIN()
 
        sWo(swo,@xscales,lcpx,rcpx);
 
-
        drawScreens()
 
        showWL()
@@ -64,7 +67,6 @@ proc ZOUT()
 float RS[10];
 
        RS=wogetrscales(gwo)
-
 
        rx = RS[1]
        rX = RS[3]
@@ -88,9 +90,11 @@ float RS[10];
        sWo(swo,@xscales,rx,rX) 
        sc_startday = rx;
        sc_endday = rX;
-       
+       sWo(swo,@redraw,@update)       
 
        dGl(wt_gl)
+
+       drawScreens()
 
        showWL()
 
@@ -101,11 +105,14 @@ float RS[10];
 proc WTLB()
 {
 
-    DBPR" setting cursors $button $Rinfo\n"
+       DBPR" setting cursors $button $Rinfo\n"
 
        if (button == 1) {
-         lcpx = Rinfo[1]
+         lcpx = Rinfo[1];
+	 <<"%V $lcpx\n"
          sGl(lc_gl,@cursor,lcpx,0,lcpx,300)
+         getDay(lcpx);
+
         }
 
        if (button == 3) {
@@ -139,7 +146,7 @@ proc SWITCHSCREEN()
 {
   if (msgw[0] @= "SWITCHSCREEN") { 
      wScreen = atoi(msgw[1])
-DBPR"Setting %V$wScreen msgw[1]\n"
+    DBPR"Setting %V$wScreen msgw[1]\n"
       drawScreens()
   }
 }

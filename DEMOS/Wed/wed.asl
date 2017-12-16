@@ -11,6 +11,8 @@ vers = "2.0";
 
 envdebug();
 
+setDebug(1);
+
 //#define DBPR  <<
 
 #define DBPR  ~!
@@ -390,7 +392,7 @@ DBPR"$m_num $msg $Keyw \n"
 DBPR"%V$button \n"
        woname = E->getEventWoname()
 DBPR"%V$woname \n"
-       Rinfo = E->getEventRinfo()
+       Rinfo = E->getEventRinfo();
 DBPR"%V$Rinfo\n"
        Evtype = E->getEventType()    
 
