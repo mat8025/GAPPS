@@ -173,6 +173,7 @@ bstart = 0.0;
 
 <<"%V$npts $mm \n"
 // set up sound params
+
   ok = setSoundParams(Dspfd,Mixfd,Freq,nchans) 
 
 <<"%V$Freq $nchans \n"
@@ -215,10 +216,11 @@ bstart = 0.0;
 
    getSoundParams(Dspfd,Mixfd);
 
+<<"%V $Dspfd $Mixfd \n"
+
    fflush(1)
 
-   close(Dspfd)
-   close(Mixfd)
+   closeAudio()
 
 <<"%V $_df_errno \n"
 

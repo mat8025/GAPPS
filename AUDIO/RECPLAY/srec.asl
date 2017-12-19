@@ -88,9 +88,7 @@ RecordFile(vox_file,Dspfd,Mixfd,how_long, Freq, 1,smic_factor);
 
 // release devices
 
-   close(Dspfd)
-
-   close(Mixfd)
+   closeAudio()
 
 
 STOP("RECORDING COMPLETE to $vox_file \n")

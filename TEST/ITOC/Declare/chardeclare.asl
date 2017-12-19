@@ -77,7 +77,6 @@ char a = 'G';
  CheckNum(dv[0],a)
 
 
-
  CheckNum(dv[0], wc )
 
  CheckNum(dv[0], 'G' )

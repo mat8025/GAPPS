@@ -1,462 +1,464 @@
-Fri Dec 15 04:26:51 2017 5.97 B-Bk
+Tue Dec 19 09:02:35 2017 5.98 B-Cf
 
-4:26:51 ///////////////Bops////////////////
-4:26:51 bops:                           DONE tests 27	pass 27	score 100.00%
-4:26:51 ./bops:                         DONE tests 27	pass 27	score 100.00%
-4:26:51 bops:                           DONE tests 27	pass 27	score 100.00%
-4:26:51 ./bops:                         DONE tests 27	pass 27	score 100.00%
-4:26:51 fvmeq:                          DONE tests 10	pass 10	score 100.00%
-4:26:51 ./fvmeq:                        DONE tests 10	pass 10	score 100.00%
-4:26:51 fvmeq:                          DONE tests 10	pass 10	score 100.00%
-4:26:51 ./fvmeq:                        DONE tests 10	pass 10	score 100.00%
-4:26:51 fsc1:                           DONE tests 4	pass 4	score 100.00%
-4:26:51 ./fsc1:                         DONE tests 4	pass 4	score 100.00%
-4:26:51 contin:                         DONE tests 6	pass 6	score 100.00%
-4:26:51 ./contin:                       DONE tests 6	pass 6	score 100.00%
-4:26:51 mod:                            DONE tests 4	pass 4	score 100.00%
-4:26:51 ./mod:                          DONE tests 4	pass 4	score 100.00%
+9:2:35 ///////////////Bops////////////////
+9:2:35 bops:                            DONE tests 27	pass 27	score 100.00%
+9:2:35 ./bops:                          DONE tests 27	pass 27	score 100.00%
+9:2:35 bops:                            DONE tests 27	pass 27	score 100.00%
+9:2:35 ./bops:                          DONE tests 27	pass 27	score 100.00%
+9:2:35 fvmeq:                           DONE tests 10	pass 10	score 100.00%
+9:2:35 ./fvmeq:                         DONE tests 10	pass 10	score 100.00%
+9:2:35 fvmeq:                           DONE tests 10	pass 10	score 100.00%
+9:2:35 ./fvmeq:                         DONE tests 10	pass 10	score 100.00%
+9:2:35 fsc1:                            DONE tests 4	pass 4	score 100.00%
+9:2:35 ./fsc1:                          DONE tests 4	pass 4	score 100.00%
+9:2:35 contin:                          DONE tests 6	pass 6	score 100.00%
+9:2:35 ./contin:                        DONE tests 6	pass 6	score 100.00%
+9:2:35 mod:                             DONE tests 4	pass 4	score 100.00%
+9:2:35 ./mod:                           DONE tests 4	pass 4	score 100.00%
 
-4:26:51 ///////////////Types///////////////
-4:26:51 str:                            DONE tests 2	pass 2	score 100.00%
-4:26:51 ./str:                          DONE tests 2	pass 2	score 100.00%
-4:26:51 char:                           DONE tests 13	pass 13	score 100.00%
-4:26:51 ./char:                         DONE tests 13	pass 13	score 100.00%
-4:26:51 long:                           DONE tests 3	pass 3	score 100.00%
-4:26:51 ./long:                         DONE tests 3	pass 3	score 100.00%
-4:26:51 short:                          DONE tests 3	pass 3	score 100.00%
-4:26:51 ./short:                        DONE tests 3	pass 3	score 100.00%
-4:26:51 double:                         DONE tests 3	pass 3	score 100.00%
-4:26:51 ./double:                       DONE tests 3	pass 3	score 100.00%
-4:26:51 float:                          DONE tests 3	pass 3	score 100.00%
-4:26:51 ./float:                        DONE tests 3	pass 3	score 100.00%
-4:26:51 pan_type:                       DONE tests 5	pass 5	score 100.00%
-4:26:51 ./pan_type:                     DONE tests 5	pass 5	score 100.00%
-4:26:51 ato:                            DONE tests 6	pass 6	score 100.00%
-4:26:51 ./ato:                          DONE tests 6	pass 6	score 100.00%
+9:2:35 ///////////////Types///////////////
+9:2:35 str:                             DONE tests 2	pass 2	score 100.00%
+9:2:35 ./str:                           DONE tests 2	pass 2	score 100.00%
+9:2:35 char:                            DONE tests 13	pass 13	score 100.00%
+9:2:35 ./char:                          DONE tests 13	pass 13	score 100.00%
+9:2:35 long:                            DONE tests 3	pass 3	score 100.00%
+9:2:35 ./long:                          DONE tests 3	pass 3	score 100.00%
+9:2:35 short:                           DONE tests 3	pass 3	score 100.00%
+9:2:35 ./short:                         DONE tests 3	pass 3	score 100.00%
+9:2:35 double:                          DONE tests 3	pass 3	score 100.00%
+9:2:35 ./double:                        DONE tests 3	pass 3	score 100.00%
+9:2:35 float:                           DONE tests 3	pass 3	score 100.00%
+9:2:35 ./float:                         DONE tests 3	pass 3	score 100.00%
+9:2:35 pan_type:                        DONE tests 5	pass 5	score 100.00%
+9:2:35 ./pan_type:                      DONE tests 5	pass 5	score 100.00%
+9:2:35 ato:                             DONE tests 6	pass 6	score 100.00%
+9:2:35 ./ato:                           DONE tests 6	pass 6	score 100.00%
 
-4:26:51 ///////////////Cast////////////////
-4:26:51 cast0:                          DONE tests 4	pass 4	score 100.00%
-4:26:51 ./cast0:                        DONE tests 4	pass 4	score 100.00%
-4:26:51 cast_vec:                       DONE tests 4	pass 4	score 100.00%
-4:26:51 ./cast_vec:                     DONE tests 4	pass 4	score 100.00%
+9:2:35 ///////////////Cast////////////////
+9:2:35 cast0:                           DONE tests 4	pass 4	score 100.00%
+9:2:35 ./cast0:                         DONE tests 4	pass 4	score 100.00%
+9:2:35 cast_vec:                        DONE tests 4	pass 4	score 100.00%
+9:2:35 ./cast_vec:                      DONE tests 4	pass 4	score 100.00%
 
-4:26:51 ///////////////Efmt////////////////
-4:26:51 efmt:                           DONE tests 8	pass 8	score 100.00%
-4:26:51 ./efmt:                         DONE tests 8	pass 8	score 100.00%
+9:2:35 ///////////////Efmt////////////////
+9:2:35 efmt:                            DONE tests 8	pass 8	score 100.00%
+9:2:35 ./efmt:                          DONE tests 8	pass 8	score 100.00%
 
-4:26:51 ///////////////Vops////////////////
-4:26:51 vops:                           DONE tests 3	pass 3	score 100.00%
-4:26:51 ./vops:                         DONE tests 3	pass 3	score 100.00%
-4:26:51 vopsele:                        DONE tests 9	pass 9	score 100.00%
-4:26:51 ./vopsele:                      DONE tests 9	pass 9	score 100.00%
+9:2:35 ///////////////Vops////////////////
+9:2:35 vops:                            DONE tests 3	pass 3	score 100.00%
+9:2:35 ./vops:                          DONE tests 3	pass 3	score 100.00%
+9:2:35 vopsele:                         DONE tests 9	pass 9	score 100.00%
+9:2:35 ./vopsele:                       DONE tests 9	pass 9	score 100.00%
 
-4:26:51 ///////////////Sops////////////////
-4:26:51 scat:                           DONE tests 4	pass 4	score 100.00%
-4:26:51 ./scat:                         DONE tests 4	pass 4	score 100.00%
-4:26:51 scmp:                           DONE tests 7	pass 7	score 100.00%
-4:26:51 ./scmp:                         DONE tests 7	pass 7	score 100.00%
-4:26:51 ssub:                           DONE tests 4	pass 4	score 100.00%
-4:26:51 ./ssub:                         DONE tests 4	pass 4	score 100.00%
-4:26:51 stropcmp:                       DONE tests 1	pass 1	score 100.00%
-4:26:51 ./stropcmp:                     DONE tests 1	pass 1	score 100.00%
+9:2:35 ///////////////Sops////////////////
+9:2:35 scat:                            DONE tests 4	pass 4	score 100.00%
+9:2:35 ./scat:                          DONE tests 4	pass 4	score 100.00%
+9:2:35 scmp:                            DONE tests 7	pass 7	score 100.00%
+9:2:35 ./scmp:                          DONE tests 7	pass 7	score 100.00%
+9:2:35 ssub:                            DONE tests 4	pass 4	score 100.00%
+9:2:35 ./ssub:                          DONE tests 4	pass 4	score 100.00%
+9:2:35 stropcmp:                        DONE tests 1	pass 1	score 100.00%
+9:2:35 ./stropcmp:                      DONE tests 1	pass 1	score 100.00%
 
-4:26:51 ///////////////Date////////////////
-4:26:51 date:                           DONE tests 1	pass 1	score 100.00%
-4:26:51 ./date:                         DONE tests 1	pass 1	score 100.00%
+9:2:35 ///////////////Date////////////////
+9:2:35 date:                            DONE tests 1	pass 1	score 100.00%
+9:2:35 ./date:                          DONE tests 1	pass 1	score 100.00%
 
-4:26:51 ///////////////Sele////////////////
-4:26:51 sele:                           DONE tests 11	pass 11	score 100.00%
-4:26:51 ./sele:                         DONE tests 11	pass 11	score 100.00%
+9:2:35 ///////////////Sele////////////////
+9:2:35 sele:                            DONE tests 11	pass 11	score 100.00%
+9:2:35 ./sele:                          DONE tests 11	pass 11	score 100.00%
 
-4:26:51 ///////////////Splice//////////////
-4:26:52 strsplice:                      DONE tests 3	pass 3	score 100.00%
-4:26:52 ./strsplice:                    DONE tests 3	pass 3	score 100.00%
+9:2:35 ///////////////Splice//////////////
+9:2:35 strsplice:                       DONE tests 3	pass 3	score 100.00%
+9:2:35 ./strsplice:                     DONE tests 3	pass 3	score 100.00%
 
-4:26:52 ///////////////Sstr////////////////
-4:26:52 sstr:                           DONE tests 6	pass 6	score 100.00%
-4:26:52 ./sstr:                         DONE tests 6	pass 6	score 100.00%
+9:2:35 ///////////////Sstr////////////////
+9:2:35 sstr:                            DONE tests 6	pass 6	score 100.00%
+9:2:35 ./sstr:                          DONE tests 6	pass 6	score 100.00%
 
-4:26:52 ///////////////Regex///////////////
-4:26:52 regex:                          DONE tests 3	pass 3	score 100.00%
-4:26:52 ./regex:                        DONE tests 3	pass 3	score 100.00%
+9:2:35 ///////////////Regex///////////////
+9:2:35 regex:                           DONE tests 3	pass 3	score 100.00%
+9:2:35 ./regex:                         DONE tests 3	pass 3	score 100.00%
 
-4:26:52 ///////////////Fops////////////////
-4:26:52 readfile:                       DONE tests 3	pass 3	score 100.00%
-4:26:52 ./readfile:                     DONE tests 3	pass 3	score 100.00%
+9:2:35 ///////////////Fops////////////////
+9:2:35 readfile:                        DONE tests 3	pass 3	score 100.00%
+9:2:35 ./readfile:                      DONE tests 3	pass 3	score 100.00%
 
-4:26:52 ///////////////Declare/////////////
-4:26:52 declare:                        DONE tests 7	pass 7	score 100.00%
-4:26:52 ./declare:                      DONE tests 7	pass 7	score 100.00%
-4:26:52 promote:                        DONE tests 2	pass 2	score 100.00%
-4:26:52 ./promote:                      DONE tests 2	pass 2	score 100.00%
-4:26:52 declare_eq:                     DONE tests 4	pass 4	score 100.00%
-4:26:52 ./declare_eq:                   DONE tests 4	pass 4	score 100.00%
-4:26:52 chardeclare:                    DONE tests 15	pass 15	score 100.00%
-4:26:52 ./chardeclare:                  DONE tests 15	pass 15	score 100.00%
-4:26:52 scalar_dec:                     DONE tests 10	pass 10	score 100.00%
-4:26:52 ./scalar_dec:                   DONE tests 10	pass 10	score 100.00%
-4:26:52 floatdeclare:                   DONE tests 4	pass 4	score 100.00%
-4:26:52 ./floatdeclare:                 DONE tests 4	pass 4	score 100.00%
-4:26:52 arraydeclare:                   DONE tests 3	pass 3	score 100.00%
-4:26:52 ./arraydeclare:                 DONE tests 3	pass 3	score 100.00%
-4:26:52 proc_arg_func:                  DONE tests 4	pass 4	score 100.00%
-4:26:52 ./proc_arg_func:                DONE tests 4	pass 4	score 100.00%
-4:26:52 consts_test:                    DONE tests 5	pass 5	score 100.00%
-4:26:52 ./consts_test:                  DONE tests 5	pass 5	score 100.00%
+9:2:35 ///////////////Declare/////////////
+9:2:35 declare:                         DONE tests 7	pass 7	score 100.00%
+9:2:35 ./declare:                       DONE tests 7	pass 7	score 100.00%
+9:2:35 promote:                         DONE tests 2	pass 2	score 100.00%
+9:2:35 ./promote:                       DONE tests 2	pass 2	score 100.00%
+9:2:35 declare_eq:                      DONE tests 4	pass 4	score 100.00%
+9:2:35 ./declare_eq:                    DONE tests 4	pass 4	score 100.00%
+9:2:35 chardeclare:                     DONE tests 15	pass 15	score 100.00%
+9:2:35 ./chardeclare:                   DONE tests 15	pass 15	score 100.00%
+9:2:35 scalar_dec:                      DONE tests 10	pass 10	score 100.00%
+9:2:35 ./scalar_dec:                    DONE tests 10	pass 10	score 100.00%
+9:2:35 floatdeclare:                    DONE tests 4	pass 4	score 100.00%
+9:2:35 ./floatdeclare:                  DONE tests 4	pass 4	score 100.00%
+9:2:35 arraydeclare:                    DONE tests 3	pass 3	score 100.00%
+9:2:35 ./arraydeclare:                  DONE tests 3	pass 3	score 100.00%
+9:2:35 proc_arg_func:                   DONE tests 4	pass 4	score 100.00%
+9:2:35 ./proc_arg_func:                 DONE tests 4	pass 4	score 100.00%
+9:2:35 consts_test:                     DONE tests 5	pass 5	score 100.00%
+9:2:35 ./consts_test:                   DONE tests 5	pass 5	score 100.00%
 
-4:26:52 ///////////////Include/////////////
-4:26:52 main_ni:                        DONE tests 5	pass 5	score 100.00%
-4:26:52 ./main_ni:                      DONE tests 5	pass 5	score 100.00%
+9:2:35 ///////////////Include/////////////
+9:2:35 main_ni:                         DONE tests 5	pass 5	score 100.00%
+9:2:35 ./main_ni:                       DONE tests 5	pass 5	score 100.00%
 
-4:26:52 ///////////////EXPRESSION//////////
-4:26:52 sexp:                           DONE tests 8	pass 8	score 100.00%
-4:26:52 ./sexp:                         DONE tests 8	pass 8	score 100.00%
+9:2:35 ///////////////EXPRESSION//////////
+9:2:35 sexp:                            DONE tests 8	pass 8	score 100.00%
+9:2:35 ./sexp:                          DONE tests 8	pass 8	score 100.00%
 
-4:26:52 ///////////////If//////////////////
-4:26:52 if0:                            DONE tests 9	pass 9	score 100.00%
-4:26:52 ./if0:                          DONE tests 9	pass 9	score 100.00%
-4:26:52 if4:                            DONE tests 8	pass 8	score 100.00%
-4:26:52 ./if4:                          DONE tests 8	pass 8	score 100.00%
-4:26:52 md_assign:                      DONE tests 5	pass 5	score 100.00%
-4:26:52 ./md_assign:                    DONE tests 5	pass 5	score 100.00%
-4:26:52 if5:                            DONE tests 4	pass 4	score 100.00%
-4:26:52 ./if5:                          DONE tests 4	pass 4	score 100.00%
-4:26:52 if6:                            DONE tests 7	pass 7	score 100.00%
-4:26:52 ./if6:                          DONE tests 7	pass 7	score 100.00%
+9:2:35 ///////////////If//////////////////
+9:2:35 if0:                             DONE tests 9	pass 9	score 100.00%
+9:2:35 ./if0:                           DONE tests 9	pass 9	score 100.00%
+9:2:35 if4:                             DONE tests 8	pass 8	score 100.00%
+9:2:35 ./if4:                           DONE tests 8	pass 8	score 100.00%
+9:2:35 md_assign:                       DONE tests 5	pass 5	score 100.00%
+9:2:35 ./md_assign:                     DONE tests 5	pass 5	score 100.00%
+9:2:36 if5:                             DONE tests 4	pass 4	score 100.00%
+9:2:36 ./if5:                           DONE tests 4	pass 4	score 100.00%
+9:2:36 if6:                             DONE tests 7	pass 7	score 100.00%
+9:2:36 ./if6:                           DONE tests 7	pass 7	score 100.00%
 
-4:26:52 ///////////////Logic///////////////
-4:26:52 logic:                          DONE tests 19	pass 19	score 100.00%
-4:26:52 ./logic:                        DONE tests 19	pass 19	score 100.00%
-4:26:52 logic2:                         DONE tests 2	pass 2	score 100.00%
-4:26:52 ./logic2:                       DONE tests 2	pass 2	score 100.00%
-4:26:52 logic_def:                      DONE tests 5	pass 5	score 100.00%
-4:26:52 ./logic_def:                    DONE tests 5	pass 5	score 100.00%
+9:2:36 ///////////////Logic///////////////
+9:2:36 logic:                           DONE tests 19	pass 19	score 100.00%
+9:2:36 ./logic:                         DONE tests 19	pass 19	score 100.00%
+9:2:36 logic2:                          DONE tests 2	pass 2	score 100.00%
+9:2:36 ./logic2:                        DONE tests 2	pass 2	score 100.00%
+9:2:36 logic_def:                       DONE tests 5	pass 5	score 100.00%
+9:2:36 ./logic_def:                     DONE tests 5	pass 5	score 100.00%
 
-4:26:52 ///////////////Bitwise/////////////
-4:26:52 bitwise:                        DONE tests 9	pass 9	score 100.00%
-4:26:52 ./bitwise:                      DONE tests 9	pass 9	score 100.00%
+9:2:36 ///////////////Bitwise/////////////
+9:2:36 bitwise:                         DONE tests 9	pass 9	score 100.00%
+9:2:36 ./bitwise:                       DONE tests 9	pass 9	score 100.00%
 
-4:26:52 ///////////////Define//////////////
-4:26:52 define:                         DONE tests 2	pass 2	score 100.00%
-4:26:52 ./define:                       DONE tests 2	pass 2	score 100.00%
+9:2:36 ///////////////Define//////////////
+9:2:36 define:                          DONE tests 2	pass 2	score 100.00%
+9:2:36 ./define:                        DONE tests 2	pass 2	score 100.00%
 
-4:26:52 ///////////////Enum////////////////
-4:26:52 colors_enum:                    DONE tests 10	pass 10	score 100.00%
-4:26:52 ./colors_enum:                  DONE tests 10	pass 10	score 100.00%
+9:2:36 ///////////////Enum////////////////
+9:2:36 colors_enum:                     DONE tests 10	pass 10	score 100.00%
+9:2:36 ./colors_enum:                   DONE tests 10	pass 10	score 100.00%
 
-4:26:52 ///////////////For/////////////////
-4:26:52 for:                            DONE tests 3	pass 3	score 100.00%
-4:26:52 ./for:                          DONE tests 3	pass 3	score 100.00%
+9:2:36 ///////////////For/////////////////
+9:2:36 for:                             DONE tests 3	pass 3	score 100.00%
+9:2:36 ./for:                           DONE tests 3	pass 3	score 100.00%
 
-4:26:52 ///////////////While///////////////
-4:26:53 while0:                         DONE tests 2	pass 2	score 100.00%
-4:26:53 ./while0:                       DONE tests 2	pass 2	score 100.00%
+9:2:36 ///////////////While///////////////
+9:2:36 while0:                          DONE tests 2	pass 2	score 100.00%
+9:2:36 ./while0:                        DONE tests 2	pass 2	score 100.00%
 
-4:26:53 ///////////////Switch//////////////
-4:26:53 switch:                         DONE tests 12	pass 12	score 100.00%
-4:26:53 ./switch:                       DONE tests 12	pass 12	score 100.00%
-4:26:53 switch2:                        DONE tests 5	pass 5	score 100.00%
-4:26:53 ./switch2:                      DONE tests 5	pass 5	score 100.00%
+9:2:36 ///////////////Switch//////////////
+9:2:36 switch:                          DONE tests 12	pass 12	score 100.00%
+9:2:36 ./switch:                        DONE tests 12	pass 12	score 100.00%
+9:2:36 switch2:                         DONE tests 7	pass 7	score 100.00%
+9:2:36 ./switch2:                       DONE tests 7	pass 7	score 100.00%
 
-4:26:53 ///////////////Do//////////////////
-4:26:53 do0:                            DONE tests 8	pass 8	score 100.00%
-4:26:53 ./do0:                          DONE tests 8	pass 8	score 100.00%
-4:26:53 do1:                            DONE tests 5	pass 5	score 100.00%
-4:26:53 ./do1:                          DONE tests 5	pass 5	score 100.00%
+9:2:36 ///////////////Do//////////////////
+9:2:36 do0:                             DONE tests 8	pass 8	score 100.00%
+9:2:36 ./do0:                           DONE tests 8	pass 8	score 100.00%
+9:2:36 do1:                             DONE tests 5	pass 5	score 100.00%
+9:2:36 ./do1:                           DONE tests 5	pass 5	score 100.00%
 
-4:26:53 ///////////////ParaEx//////////////
-4:26:53 paraex:                         DONE tests 5	pass 5	score 100.00%
-4:26:53 ./paraex:                       DONE tests 5	pass 5	score 100.00%
+9:2:36 ///////////////ParaEx//////////////
+9:2:36 paraex:                          DONE tests 5	pass 5	score 100.00%
+9:2:36 ./paraex:                        DONE tests 5	pass 5	score 100.00%
 
-4:26:53 ///////////////Array///////////////
-4:26:53 ae:                             DONE tests 2	pass 2	score 100.00%
-4:26:53 ./ae:                           DONE tests 2	pass 2	score 100.00%
-4:26:53 arraystore:                     DONE tests 5	pass 5	score 100.00%
-4:26:53 ./arraystore:                   DONE tests 5	pass 5	score 100.00%
-4:26:53 array_ele:                      DONE tests 31	pass 31	score 100.00%
-4:26:53 ./array_ele:                    DONE tests 31	pass 31	score 100.00%
-4:26:53 arrayele0:                      DONE tests 6	pass 6	score 100.00%
-4:26:53 ./arrayele0:                    DONE tests 6	pass 6	score 100.00%
-4:26:53 arrayele1:                      DONE tests 18	pass 18	score 100.00%
-4:26:53 ./arrayele1:                    DONE tests 18	pass 18	score 100.00%
-4:26:53 arraysubset:                    DONE tests 4	pass 4	score 100.00%
-4:26:53 ./arraysubset:                  DONE tests 4	pass 4	score 100.00%
-4:26:53 arrayrange:                     DONE tests 19	pass 19	score 100.00%
-4:26:53 ./arrayrange:                   DONE tests 19	pass 19	score 100.00%
-4:26:53 arraysubvec:                    DONE tests 3	pass 3	score 100.00%
-4:26:53 ./arraysubvec:                  DONE tests 3	pass 3	score 100.00%
-4:26:53 arraysubsref:                   DONE tests 17	pass 17	score 100.00%
-4:26:53 ./arraysubsref:                 DONE tests 17	pass 17	score 100.00%
-4:26:53 arraysubsrange:                 DONE tests 10	pass 10	score 100.00%
-4:26:53 ./arraysubsrange:               DONE tests 10	pass 10	score 100.00%
-4:26:53 lhrange:                        DONE tests 6	pass 6	score 100.00%
-4:26:53 ./lhrange:                      DONE tests 6	pass 6	score 100.00%
-4:26:53 lhe:                            DONE tests 10	pass 10	score 100.00%
-4:26:53 ./lhe:                          DONE tests 10	pass 10	score 100.00%
-4:26:53 joinarray:                      DONE tests 3	pass 3	score 100.00%
-4:26:53 ./joinarray:                    DONE tests 3	pass 3	score 100.00%
-4:26:53 vec_cat:                        DONE tests 7	pass 7	score 100.00%
-4:26:53 ./vec_cat:                      DONE tests 7	pass 7	score 100.00%
-4:26:53 vgen:                           DONE tests 1	pass 1	score 100.00%
-4:26:53 ./vgen:                         DONE tests 1	pass 1	score 100.00%
-4:26:53 array_sr:                       DONE tests 7	pass 7	score 100.00%
-4:26:53 ./array_sr:                     DONE tests 7	pass 7	score 100.00%
-4:26:53 mdele:                          DONE tests 4	pass 4	score 100.00%
-4:26:53 ./mdele:                        DONE tests 4	pass 4	score 100.00%
-4:26:53 vsp:                            DONE tests 3	pass 3	score 100.00%
-4:26:53 ./vsp:                          DONE tests 3	pass 3	score 100.00%
-4:26:53 scalarvec:                      DONE tests 12	pass 12	score 100.00%
-4:26:53 ./scalarvec:                    DONE tests 12	pass 12	score 100.00%
-4:26:54 subrange:                       DONE tests 13	pass 13	score 100.00%
-4:26:54 ./subrange:                     DONE tests 13	pass 13	score 100.00%
-4:26:54 subrange2:                      DONE tests 15	pass 15	score 100.00%
-4:26:54 ./subrange2:                    DONE tests 15	pass 15	score 100.00%
-4:26:54 prepost_opr:                    DONE tests 32	pass 32	score 100.00%
-4:26:54 ./prepost_opr:                  DONE tests 32	pass 32	score 100.00%
-4:26:54 m3d:                            DONE tests 12	pass 12	score 100.00%
-4:26:54 ./m3d:                          DONE tests 12	pass 12	score 100.00%
-4:26:54 m3d_assign:                     DONE tests 2	pass 2	score 100.00%
-4:26:54 ./m3d_assign:                   DONE tests 2	pass 2	score 100.00%
-4:26:54 mdimn0:                         DONE tests 4	pass 4	score 100.00%
-4:26:54 ./mdimn0:                       DONE tests 4	pass 4	score 100.00%
+9:2:36 ///////////////Array///////////////
+9:2:36 ae:                              DONE tests 2	pass 2	score 100.00%
+9:2:36 ./ae:                            DONE tests 2	pass 2	score 100.00%
+9:2:36 arraystore:                      DONE tests 5	pass 5	score 100.00%
+9:2:36 ./arraystore:                    DONE tests 5	pass 5	score 100.00%
+9:2:36 array_ele:                       DONE tests 31	pass 31	score 100.00%
+9:2:36 ./array_ele:                     DONE tests 31	pass 31	score 100.00%
+9:2:36 arrayele0:                       DONE tests 6	pass 6	score 100.00%
+9:2:36 ./arrayele0:                     DONE tests 6	pass 6	score 100.00%
+9:2:36 arrayele1:                       DONE tests 18	pass 18	score 100.00%
+9:2:36 ./arrayele1:                     DONE tests 18	pass 18	score 100.00%
+9:2:36 arraysubset:                     DONE tests 4	pass 4	score 100.00%
+9:2:36 ./arraysubset:                   DONE tests 4	pass 4	score 100.00%
+9:2:36 arrayrange:                      DONE tests 19	pass 19	score 100.00%
+9:2:36 ./arrayrange:                    DONE tests 19	pass 19	score 100.00%
+9:2:36 arraysubvec:                     DONE tests 3	pass 3	score 100.00%
+9:2:36 ./arraysubvec:                   DONE tests 3	pass 3	score 100.00%
+9:2:36 arraysubsref:                    DONE tests 17	pass 17	score 100.00%
+9:2:36 ./arraysubsref:                  DONE tests 17	pass 17	score 100.00%
+9:2:36 arraysubsrange:                  DONE tests 10	pass 10	score 100.00%
+9:2:36 ./arraysubsrange:                DONE tests 10	pass 10	score 100.00%
+9:2:36 lhrange:                         DONE tests 6	pass 6	score 100.00%
+9:2:36 ./lhrange:                       DONE tests 6	pass 6	score 100.00%
+9:2:36 lhe:                             DONE tests 10	pass 10	score 100.00%
+9:2:36 ./lhe:                           DONE tests 10	pass 10	score 100.00%
+9:2:36 joinarray:                       DONE tests 3	pass 3	score 100.00%
+9:2:36 ./joinarray:                     DONE tests 3	pass 3	score 100.00%
+9:2:36 vec_cat:                         DONE tests 7	pass 7	score 100.00%
+9:2:36 ./vec_cat:                       DONE tests 7	pass 7	score 100.00%
+9:2:36 vgen:                            DONE tests 1	pass 1	score 100.00%
+9:2:36 ./vgen:                          DONE tests 1	pass 1	score 100.00%
+9:2:36 array_sr:                        DONE tests 7	pass 7	score 100.00%
+9:2:36 ./array_sr:                      DONE tests 7	pass 7	score 100.00%
+9:2:36 mdele:                           DONE tests 4	pass 4	score 100.00%
+9:2:36 ./mdele:                         DONE tests 4	pass 4	score 100.00%
+9:2:36 vsp:                             DONE tests 3	pass 3	score 100.00%
+9:2:36 ./vsp:                           DONE tests 3	pass 3	score 100.00%
+9:2:36 scalarvec:                       DONE tests 12	pass 12	score 100.00%
+9:2:36 ./scalarvec:                     DONE tests 12	pass 12	score 100.00%
+9:2:36 subrange:                        DONE tests 13	pass 13	score 100.00%
+9:2:36 ./subrange:                      DONE tests 13	pass 13	score 100.00%
+9:2:36 subrange2:                       DONE tests 15	pass 15	score 100.00%
+9:2:36 ./subrange2:                     DONE tests 15	pass 15	score 100.00%
+9:2:36 prepost_opr:                     DONE tests 32	pass 32	score 100.00%
+9:2:36 ./prepost_opr:                   DONE tests 32	pass 32	score 100.00%
+9:2:36 m3d:                             DONE tests 12	pass 12	score 100.00%
+9:2:36 ./m3d:                           DONE tests 12	pass 12	score 100.00%
+9:2:36 m3d_assign:                      DONE tests 2	pass 2	score 100.00%
+9:2:36 ./m3d_assign:                    DONE tests 2	pass 2	score 100.00%
+9:2:36 mdimn0:                          DONE tests 4	pass 4	score 100.00%
+9:2:36 ./mdimn0:                        DONE tests 4	pass 4	score 100.00%
 
-4:26:54 ///////////////Matrix//////////////
-4:26:54 mat_mul:                        DONE tests 6	pass 6	score 100.00%
-4:26:54 ./mat_mul:                      DONE tests 6	pass 6	score 100.00%
-4:26:54 msquare:                        DONE tests 4	pass 4	score 100.00%
-4:26:54 ./msquare:                      DONE tests 4	pass 4	score 100.00%
-4:26:54 diag:                           DONE tests 5	pass 5	score 100.00%
-4:26:54 ./diag:                         DONE tests 5	pass 5	score 100.00%
-4:26:54 setv:                           DONE tests 2	pass 2	score 100.00%
-4:26:54 ./setv:                         DONE tests 2	pass 2	score 100.00%
+9:2:36 ///////////////Matrix//////////////
+9:2:36 mat_mul:                         DONE tests 6	pass 6	score 100.00%
+9:2:36 ./mat_mul:                       DONE tests 6	pass 6	score 100.00%
+9:2:36 msquare:                         DONE tests 4	pass 4	score 100.00%
+9:2:36 ./msquare:                       DONE tests 4	pass 4	score 100.00%
+9:2:37 diag:                            DONE tests 5	pass 5	score 100.00%
+9:2:37 ./diag:                          DONE tests 5	pass 5	score 100.00%
+9:2:37 setv:                            DONE tests 2	pass 2	score 100.00%
+9:2:37 ./setv:                          DONE tests 2	pass 2	score 100.00%
 
-4:26:54 ///////////////DYNAMIC_V///////////
-4:26:54 dynv0:                          DONE tests 22	pass 22	score 100.00%
-4:26:54 ./dynv0:                        DONE tests 22	pass 22	score 100.00%
-4:26:54 dynv2:                          DONE tests 5	pass 5	score 100.00%
-4:26:54 ./dynv2:                        DONE tests 5	pass 5	score 100.00%
-4:26:54 lharraysubsrange:               DONE tests 12	pass 12	score 100.00%
-4:26:54 ./lharraysubsrange:             DONE tests 12	pass 12	score 100.00%
+9:2:37 ///////////////DYNAMIC_V///////////
+9:2:37 dynv0:                           DONE tests 22	pass 22	score 100.00%
+9:2:37 ./dynv0:                         DONE tests 22	pass 22	score 100.00%
+9:2:37 dynv2:                           DONE tests 5	pass 5	score 100.00%
+9:2:37 ./dynv2:                         DONE tests 5	pass 5	score 100.00%
+9:2:37 lharraysubsrange:                DONE tests 12	pass 12	score 100.00%
+9:2:37 ./lharraysubsrange:              DONE tests 12	pass 12	score 100.00%
 
-4:26:54 ///////////////FUNC////////////////
-4:26:54 func:                           DONE tests 2	pass 2	score 100.00%
-4:26:54 ./func:                         DONE tests 2	pass 2	score 100.00%
-4:26:54 func0:                          DONE tests 3	pass 3	score 100.00%
-4:26:54 ./func0:                        DONE tests 3	pass 3	score 100.00%
-4:26:54 func1:                          DONE tests 4	pass 4	score 100.00%
-4:26:54 ./func1:                        DONE tests 4	pass 4	score 100.00%
-4:26:54 funcargs:                       DONE tests 5	pass 5	score 100.00%
-4:26:54 ./funcargs:                     DONE tests 5	pass 5	score 100.00%
+9:2:37 ///////////////FUNC////////////////
+9:2:37 func:                            DONE tests 2	pass 2	score 100.00%
+9:2:37 ./func:                          DONE tests 2	pass 2	score 100.00%
+9:2:37 func0:                           DONE tests 3	pass 3	score 100.00%
+9:2:37 ./func0:                         DONE tests 3	pass 3	score 100.00%
+9:2:37 func1:                           DONE tests 4	pass 4	score 100.00%
+9:2:37 ./func1:                         DONE tests 4	pass 4	score 100.00%
+9:2:37 funcargs:                        DONE tests 5	pass 5	score 100.00%
+9:2:37 ./funcargs:                      DONE tests 5	pass 5	score 100.00%
 
-4:26:54 ///////////////UNARY///////////////
-4:26:54 unaryexp:                       DONE tests 8	pass 8	score 100.00%
-4:26:54 ./unaryexp:                     DONE tests 8	pass 8	score 100.00%
+9:2:37 ///////////////UNARY///////////////
+9:2:37 unaryexp:                        DONE tests 8	pass 8	score 100.00%
+9:2:37 ./unaryexp:                      DONE tests 8	pass 8	score 100.00%
 
-4:26:54 ///////////////COMMAND/////////////
-4:26:54 command:                        DONE tests 5	pass 5	score 100.00%
-4:26:54 command_parse:                  DONE tests 3	pass 3	score 100.00%
-4:26:54 ./command_parse:                DONE tests 3	pass 3	score 100.00%
+9:2:37 ///////////////COMMAND/////////////
+9:2:37 command:                         DONE tests 5	pass 5	score 100.00%
+9:2:37 command_parse:                   DONE tests 3	pass 3	score 100.00%
+9:2:37 ./command_parse:                 DONE tests 3	pass 3	score 100.00%
 
-4:26:54 ///////////////PROC////////////////
-4:26:54 proc:                           DONE tests 5	pass 5	score 100.00%
-4:26:54 ./proc:                         DONE tests 5	pass 5	score 100.00%
-4:26:54 proc_declare:                   DONE tests 9	pass 9	score 100.00%
-4:26:54 ./proc_declare:                 DONE tests 9	pass 9	score 100.00%
-4:26:55 procret0:                       DONE tests 11	pass 11	score 100.00%
-4:26:55 ./procret0:                     DONE tests 11	pass 11	score 100.00%
-4:26:55 procarg:                        DONE tests 5	pass 5	score 100.00%
-4:26:55 ./procarg:                      DONE tests 5	pass 5	score 100.00%
-4:26:55 proc_sv0:                       DONE tests 5	pass 5	score 100.00%
-4:26:55 ./proc_sv0:                     DONE tests 5	pass 5	score 100.00%
-4:26:55 proc_rep:                       DONE tests 1	pass 1	score 100.00%
-4:26:55 ./proc_rep:                     DONE tests 1	pass 1	score 100.00%
-4:26:55 procrefarg:                     DONE tests 4	pass 3	score 75.00%
+9:2:37 ///////////////PROC////////////////
+9:2:37 proc:                            DONE tests 5	pass 5	score 100.00%
+9:2:37 ./proc:                          DONE tests 5	pass 5	score 100.00%
+9:2:37 proc_var_define:                 DONE tests 10	pass 10	score 100.00%
+9:2:37 ./proc_var_define:               DONE tests 10	pass 10	score 100.00%
+9:2:37 proc_declare:                    DONE tests 9	pass 9	score 100.00%
+9:2:37 ./proc_declare:                  DONE tests 9	pass 9	score 100.00%
+9:2:37 procret0:                        DONE tests 11	pass 11	score 100.00%
+9:2:37 ./procret0:                      DONE tests 11	pass 11	score 100.00%
+9:2:37 procarg:                         DONE tests 5	pass 5	score 100.00%
+9:2:37 ./procarg:                       DONE tests 5	pass 5	score 100.00%
+9:2:37 proc_sv0:                        DONE tests 5	pass 5	score 100.00%
+9:2:37 ./proc_sv0:                      DONE tests 5	pass 5	score 100.00%
+9:2:37 proc_rep:                        DONE tests 1	pass 1	score 100.00%
+9:2:37 ./proc_rep:                      DONE tests 1	pass 1	score 100.00%
+9:2:37 procrefarg:                      DONE tests 4	pass 3	score 75.00%
 
-4:26:55 ///////////////ProcArray///////////
-4:26:55 arrayarg1:                      DONE tests 4	pass 4	score 100.00%
-4:26:55 ./arrayarg1:                    DONE tests 4	pass 4	score 100.00%
-4:26:55 arrayarg2:                      DONE tests 8	pass 6	score 75.00%
-4:26:55 ./arrayarg2:                    DONE tests 8	pass 6	score 75.00%
-4:26:55 swap:                           DONE tests 12	pass 12	score 100.00%
-4:26:55 ./swap:                         DONE tests 12	pass 12	score 100.00%
+9:2:37 ///////////////ProcArray///////////
+9:2:37 arrayarg1:                       DONE tests 4	pass 4	score 100.00%
+9:2:37 ./arrayarg1:                     DONE tests 4	pass 2	score 50.00%
+9:2:37 arrayarg2:                       DONE tests 8	pass 8	score 100.00%
+9:2:37 ./arrayarg2:                     DONE tests 8	pass 6	score 75.00%
+9:2:38 swap:                            DONE tests 12	pass 12	score 100.00%
+9:2:38 ./swap:                          DONE tests 12	pass 12	score 100.00%
 
-4:26:55 ///////////////Static//////////////
-4:26:55 static:                         DONE tests 10	pass 10	score 100.00%
-4:26:55 ./static:                       DONE tests 10	pass 10	score 100.00%
+9:2:38 ///////////////Static//////////////
+9:2:38 static:                          DONE tests 10	pass 10	score 100.00%
+9:2:38 ./static:                        DONE tests 10	pass 10	score 100.00%
 
-4:26:55 ///////////////Scope///////////////
-4:26:55 scope:                          DONE tests 4	pass 4	score 100.00%
-4:26:55 ./scope:                        DONE tests 4	pass 4	score 100.00%
+9:2:38 ///////////////Scope///////////////
+9:2:38 scope:                           DONE tests 4	pass 4	score 100.00%
+9:2:38 ./scope:                         DONE tests 4	pass 4	score 100.00%
 
-4:26:55 ///////////////Mops////////////////
-4:26:55 xyassign:                       DONE tests 8	pass 8	score 100.00%
-4:26:55 ./xyassign:                     DONE tests 8	pass 8	score 100.00%
+9:2:38 ///////////////Mops////////////////
+9:2:38 xyassign:                        DONE tests 8	pass 8	score 100.00%
+9:2:38 ./xyassign:                      DONE tests 8	pass 8	score 100.00%
 
-4:26:55 ///////////////RECURSION///////////
-4:26:55 fact:                           DONE tests 4	pass 4	score 100.00%
-4:26:55 ./fact:                         DONE tests 4	pass 4	score 100.00%
-4:26:56 cmplx:                          DONE tests 1	pass 1	score 100.00%
-4:26:56 ./cmplx:                        DONE tests 1	pass 1	score 100.00%
-4:26:56 urand:                          DONE tests 2	pass 2	score 100.00%
-4:26:56 ./urand:                        DONE tests 2	pass 2	score 100.00%
+9:2:38 ///////////////RECURSION///////////
+9:2:38 fact:                            DONE tests 4	pass 4	score 100.00%
+9:2:38 ./fact:                          DONE tests 4	pass 4	score 100.00%
+9:2:38 cmplx:                           DONE tests 1	pass 1	score 100.00%
+9:2:38 ./cmplx:                         DONE tests 1	pass 1	score 100.00%
+9:2:38 urand:                           DONE tests 2	pass 2	score 100.00%
+9:2:38 ./urand:                         DONE tests 2	pass 2	score 100.00%
 
-4:26:56 ///////////////Svar////////////////
-4:26:56 svar1:string operations are not always easy DONE tests 6	pass 6	score 100.00%
-4:26:56 ./svar1:string operations are not always easyDONE tests 6	pass 6	score 100.00%
-4:26:56 svar_declare:                   DONE tests 10	pass 10	score 100.00%
-4:26:56 ./svar_declare:                 DONE tests 10	pass 10	score 100.00%
-4:26:56 list_declare:                   DONE tests 7	pass 7	score 100.00%
-4:26:56 ./list_declare:                 DONE tests 7	pass 7	score 100.00%
-4:26:56 svelepr:                        DONE tests 2	pass 2	score 100.00%
-4:26:56 ./svelepr:                      DONE tests 2	pass 1	score 50.00%
-4:26:56 svargetword:                    DONE tests 3	pass 3	score 100.00%
-4:26:56 ./svargetword:                  DONE tests 3	pass 3	score 100.00%
+9:2:38 ///////////////Svar////////////////
+9:2:38 svar1:string operations are not always easy DONE tests 6	pass 6	score 100.00%
+9:2:38 ./svar1:string operations are not always easyDONE tests 6	pass 6	score 100.00%
+9:2:38 svar_declare:                    DONE tests 10	pass 10	score 100.00%
+9:2:38 ./svar_declare:                  DONE tests 10	pass 10	score 100.00%
+9:2:38 list_declare:                    DONE tests 7	pass 7	score 100.00%
+9:2:38 ./list_declare:                  DONE tests 7	pass 7	score 100.00%
+9:2:38 svelepr:                         DONE tests 2	pass 2	score 100.00%
+9:2:38 ./svelepr:                       DONE tests 2	pass 1	score 50.00%
+9:2:38 svargetword:                     DONE tests 3	pass 3	score 100.00%
+9:2:38 ./svargetword:                   DONE tests 3	pass 3	score 100.00%
 
-4:26:56 ///////////////Ivar////////////////
-4:26:56 ivar:                           DONE tests 4	pass 4	score 100.00%
-4:26:56 ./ivar:                         DONE tests 4	pass 4	score 100.00%
+9:2:38 ///////////////Ivar////////////////
+9:2:38 ivar:                            DONE tests 4	pass 4	score 100.00%
+9:2:38 ./ivar:                          DONE tests 4	pass 4	score 100.00%
 
-4:26:56 ///////////////Record//////////////
-4:26:56 record:                         DONE tests 12	pass 12	score 100.00%
-4:26:56 ./record:                       DONE tests 12	pass 12	score 100.00%
-4:26:56 prtrecord:                      DONE tests 2	pass 2	score 100.00%
-4:26:56 ./prtrecord:                    DONE tests 2	pass 2	score 100.00%
+9:2:38 ///////////////Record//////////////
+9:2:38 record:                          DONE tests 12	pass 12	score 100.00%
+9:2:38 ./record:                        DONE tests 12	pass 12	score 100.00%
+9:2:38 prtrecord:                       DONE tests 2	pass 2	score 100.00%
+9:2:38 ./prtrecord:                     DONE tests 2	pass 2	score 100.00%
 
-4:26:56 ///////////////Math////////////////
-4:26:56 inewton:                        DONE tests 1	pass 1	score 100.00%
-4:26:56 ./inewton:                      DONE tests 1	pass 1	score 100.00%
-4:26:56 inewton_cbrt:                   DONE tests 1	pass 1	score 100.00%
-4:26:56 ./inewton_cbrt:                 DONE tests 1	pass 1	score 100.00%
-4:26:56 opxeq:                          DONE tests 8	pass 8	score 100.00%
-4:26:56 ./opxeq:                        DONE tests 8	pass 8	score 100.00%
-4:26:56 prime_127:                      DONE tests 1	pass 1	score 100.00%
-4:26:56 ./prime_127:                    DONE tests 1	pass 1	score 100.00%
-4:26:56 pow:                            DONE tests 2	pass 2	score 100.00%
-4:26:56 ./pow:                          DONE tests 2	pass 2	score 100.00%
+9:2:38 ///////////////Math////////////////
+9:2:38 inewton:                         DONE tests 1	pass 1	score 100.00%
+9:2:38 ./inewton:                       DONE tests 1	pass 1	score 100.00%
+9:2:38 inewton_cbrt:                    DONE tests 1	pass 1	score 100.00%
+9:2:38 ./inewton_cbrt:                  DONE tests 1	pass 1	score 100.00%
+9:2:38 opxeq:                           DONE tests 8	pass 8	score 100.00%
+9:2:38 ./opxeq:                         DONE tests 8	pass 8	score 100.00%
+9:2:38 prime_127:                       DONE tests 1	pass 1	score 100.00%
+9:2:38 ./prime_127:                     DONE tests 1	pass 1	score 100.00%
+9:2:38 pow:                             DONE tests 2	pass 2	score 100.00%
+9:2:38 ./pow:                           DONE tests 2	pass 2	score 100.00%
 
-4:26:56 ///////////////STAT////////////////
-4:26:56 checkvm:                        DONE tests 11	pass 11	score 100.00%
-4:26:56 ./checkvm:                      DONE tests 11	pass 11	score 100.00%
-4:26:56 polyn:                          DONE tests 6	pass 6	score 100.00%
-4:26:56 ./polyn:                        DONE tests 6	pass 6	score 100.00%
+9:2:38 ///////////////STAT////////////////
+9:2:38 checkvm:                         DONE tests 11	pass 11	score 100.00%
+9:2:38 ./checkvm:                       DONE tests 11	pass 11	score 100.00%
+9:2:38 polyn:                           DONE tests 6	pass 6	score 100.00%
+9:2:38 ./polyn:                         DONE tests 6	pass 6	score 100.00%
 
-4:26:56 ///////////////PAN/////////////////
-4:26:56 pan:                            DONE tests 6	pass 6	score 100.00%
-4:26:56 ./pan:                          DONE tests 6	pass 6	score 100.00%
-4:26:57 derange:                        DONE tests 2	pass 2	score 100.00%
-4:26:57 ./derange:                      DONE tests 2	pass 2	score 100.00%
+9:2:38 ///////////////PAN/////////////////
+9:2:38 pan:                             DONE tests 6	pass 6	score 100.00%
+9:2:38 ./pan:                           DONE tests 6	pass 6	score 100.00%
+9:2:38 derange:                         DONE tests 2	pass 2	score 100.00%
+9:2:38 ./derange:                       DONE tests 2	pass 2	score 100.00%
 
-4:26:57 ///////////////Lists///////////////
-4:26:57 list:                           DONE tests 9	pass 9	score 100.00%
-4:26:57 ./list:                         DONE tests 9	pass 9	score 100.00%
-4:26:57 listele:                        DONE tests 2	pass 2	score 100.00%
-4:26:57 ./listele:                      DONE tests 2	pass 2	score 100.00%
-4:26:57 list_ins_del:                   DONE tests 1	pass 1	score 100.00%
-4:26:57 ./list_ins_del:                 DONE tests 1	pass 1	score 100.00%
+9:2:38 ///////////////Lists///////////////
+9:2:39 list:                            DONE tests 9	pass 9	score 100.00%
+9:2:39 ./list:                          DONE tests 9	pass 9	score 100.00%
+9:2:39 listele:                         DONE tests 2	pass 2	score 100.00%
+9:2:39 ./listele:                       DONE tests 2	pass 2	score 100.00%
+9:2:39 list_ins_del:                    DONE tests 1	pass 1	score 100.00%
+9:2:39 ./list_ins_del:                  DONE tests 1	pass 1	score 100.00%
 
-4:26:57 ///////////////Ptrs////////////////
-4:26:57 indirect:                       DONE tests 17	pass 17	score 100.00%
-4:26:57 ./indirect:                     DONE tests 17	pass 17	score 100.00%
+9:2:39 ///////////////Ptrs////////////////
+9:2:39 indirect:                        DONE tests 17	pass 17	score 100.00%
+9:2:39 ./indirect:                      DONE tests 17	pass 17	score 100.00%
 
-4:26:57 ///////////////Class///////////////
-4:26:57 classbops:                      DONE tests 21	pass 21	score 100.00%
-4:26:57 ./classbops:                    DONE tests 21	pass 21	score 100.00%
-4:26:57 class2:                         DONE tests 10	pass 10	score 100.00%
-4:26:57 ./class2:                       DONE tests 10	pass 10	score 100.00%
-4:26:57 classvar:                       DONE tests 4	pass 4	score 100.00%
-4:26:57 ./classvar:                     DONE tests 4	pass 4	score 100.00%
+9:2:39 ///////////////Class///////////////
+9:2:39 classbops:                       DONE tests 21	pass 21	score 100.00%
+9:2:39 ./classbops:                     DONE tests 21	pass 21	score 100.00%
+9:2:39 class2:                          DONE tests 10	pass 10	score 100.00%
+9:2:39 ./class2:                        DONE tests 10	pass 10	score 100.00%
+9:2:39 classvar:                        DONE tests 4	pass 4	score 100.00%
+9:2:39 ./classvar:                      DONE tests 4	pass 4	score 100.00%
 
-4:26:57 ///////////////OO//////////////////
-4:26:57 class_array:                    DONE tests 2	pass 2	score 100.00%
-4:26:57 ./class_array:                  DONE tests 2	pass 2	score 100.00%
-4:26:57 rp2:                            DONE tests 1	pass 1	score 100.00%
-4:26:57 ./rp2:                          DONE tests 1	pass 1	score 100.00%
-4:26:57 oa:                             DONE tests 7	pass 7	score 100.00%
-4:26:57 ./oa:                           DONE tests 7	pass 7	score 100.00%
-4:26:58 oa2:                            DONE tests 37	pass 37	score 100.00%
-4:26:58 ./oa2:                          DONE tests 37	pass 37	score 100.00%
-4:26:59 sh:                             DONE tests 3	pass 3	score 100.00%
-4:26:59 ./sh:                           DONE tests 3	pass 3	score 100.00%
-4:26:59 obcopy:                         DONE tests 6	pass 6	score 100.00%
-4:26:59 ./obcopy:                       DONE tests 6	pass 6	score 100.00%
-4:26:59 mih:                            DONE tests 2	pass 2	score 100.00%
-4:26:59 ./mih:                          DONE tests 2	pass 2	score 100.00%
+9:2:39 ///////////////OO//////////////////
+9:2:39 class_array:                     DONE tests 2	pass 2	score 100.00%
+9:2:39 ./class_array:                   DONE tests 2	pass 2	score 100.00%
+9:2:39 rp2:                             DONE tests 1	pass 1	score 100.00%
+9:2:39 ./rp2:                           DONE tests 1	pass 1	score 100.00%
+9:2:39 oa:                              DONE tests 7	pass 7	score 100.00%
+9:2:39 ./oa:                            DONE tests 7	pass 7	score 100.00%
+9:2:39 oa2:                             DONE tests 37	pass 37	score 100.00%
+9:2:39 ./oa2:                           DONE tests 37	pass 37	score 100.00%
+9:2:39 sh:                              DONE tests 3	pass 3	score 100.00%
+9:2:39 ./sh:                            DONE tests 3	pass 3	score 100.00%
+9:2:39 obcopy:                          DONE tests 6	pass 6	score 100.00%
+9:2:39 ./obcopy:                        DONE tests 6	pass 6	score 100.00%
+9:2:40 mih:                             DONE tests 2	pass 2	score 100.00%
+9:2:40 ./mih:                           DONE tests 2	pass 2	score 100.00%
 
-4:26:59 ///////////////S-FUNCTIONS/////////
-4:26:59 sscan:                          DONE tests 7	pass 7	score 100.00%
-4:26:59 ./sscan:                        DONE tests 7	pass 7	score 100.00%
-4:26:59 bscan:                          DONE tests 6	pass 6	score 100.00%
-4:26:59 ./bscan:                        DONE tests 6	pass 6	score 100.00%
-4:26:59 cut:                            DONE tests 4	pass 4	score 100.00%
-4:26:59 ./cut:                          DONE tests 4	pass 4	score 100.00%
-4:26:59 cmp:                            DONE tests 5	pass 5	score 100.00%
-4:26:59 ./cmp:                          DONE tests 5	pass 5	score 100.00%
-4:26:59 sel:                            DONE tests 4	pass 4	score 100.00%
-4:26:59 ./sel:                          DONE tests 4	pass 4	score 100.00%
+9:2:40 ///////////////S-FUNCTIONS/////////
+9:2:40 sscan:                           DONE tests 7	pass 7	score 100.00%
+9:2:40 ./sscan:                         DONE tests 7	pass 7	score 100.00%
+9:2:40 bscan:                           DONE tests 6	pass 6	score 100.00%
+9:2:40 ./bscan:                         DONE tests 6	pass 6	score 100.00%
+9:2:40 cut:                             DONE tests 4	pass 4	score 100.00%
+9:2:40 ./cut:                           DONE tests 4	pass 4	score 100.00%
+9:2:40 cmp:                             DONE tests 5	pass 5	score 100.00%
+9:2:40 ./cmp:                           DONE tests 5	pass 5	score 100.00%
+9:2:40 sel:                             DONE tests 4	pass 4	score 100.00%
+9:2:40 ./sel:                           DONE tests 4	pass 4	score 100.00%
 
-4:26:59 ///////////////Shift///////////////
-4:26:59 shift:                          DONE tests 11	pass 11	score 100.00%
-4:26:59 ./shift:                        DONE tests 11	pass 11	score 100.00%
+9:2:40 ///////////////Shift///////////////
+9:2:40 shift:                           DONE tests 11	pass 11	score 100.00%
+9:2:40 ./shift:                         DONE tests 11	pass 11	score 100.00%
 
-4:26:59 ///////////////Median//////////////
-4:26:59 median:                         DONE tests 4	pass 4	score 100.00%
-4:26:59 ./median:                       DONE tests 4	pass 4	score 100.00%
+9:2:40 ///////////////Median//////////////
+9:2:40 median:                          DONE tests 4	pass 4	score 100.00%
+9:2:40 ./median:                        DONE tests 4	pass 4	score 100.00%
 
-4:26:59 ///////////////Chem////////////////
-4:26:59 chem0:                          DONE tests 5	pass 5	score 100.00%
-4:26:59 ./chem0:                        DONE tests 5	pass 5	score 100.00%
-4:26:59 lip:                            DONE tests 4	pass 4	score 100.00%
-4:26:59 ./lip:                          DONE tests 4	pass 4	score 100.00%
-4:26:59 bubblesort:                     DONE tests 5	pass 5	score 100.00%
-4:26:59 ./bubblesort:                   DONE tests 5	pass 5	score 100.00%
-4:26:59 typeof:                         DONE tests 5	pass 5	score 100.00%
-4:26:59 ./typeof:                       DONE tests 5	pass 5	score 100.00%
-4:26:59 variables:                      DONE tests 2	pass 2	score 100.00%
-4:26:59 ./variables:                    DONE tests 2	pass 2	score 100.00%
-4:26:59 trig:                           DONE tests 8	pass 8	score 100.00%
-4:26:59 ./trig:                         DONE tests 8	pass 8	score 100.00%
-4:26:59 caz:                            DONE tests 9	pass 9	score 100.00%
-4:26:59 ./caz:                          DONE tests 9	pass 9	score 100.00%
-4:26:59 sizeof:                         DONE tests 6	pass 6	score 100.00%
-4:26:59 ./sizeof:                       DONE tests 6	pass 6	score 100.00%
-4:26:59 limit:                          DONE tests 6	pass 6	score 100.00%
-4:26:59 ./limit:                        DONE tests 6	pass 6	score 100.00%
-4:26:59 d2r:                            DONE tests 2	pass 2	score 100.00%
-4:26:59 ./d2r:                          DONE tests 2	pass 2	score 100.00%
-4:27:0 cbrt:                            DONE tests 1	pass 1	score 100.00%
-4:27:0 ./cbrt:                          DONE tests 1	pass 1	score 100.00%
-4:27:0 packb:                           DONE tests 5	pass 5	score 100.00%
-4:27:0 ./packb:                         DONE tests 5	pass 5	score 100.00%
+9:2:40 ///////////////Chem////////////////
+9:2:40 chem0:                           DONE tests 5	pass 5	score 100.00%
+9:2:40 ./chem0:                         DONE tests 5	pass 5	score 100.00%
+9:2:40 lip:                             DONE tests 4	pass 4	score 100.00%
+9:2:40 ./lip:                           DONE tests 4	pass 4	score 100.00%
+9:2:40 bubblesort:                      DONE tests 5	pass 5	score 100.00%
+9:2:40 ./bubblesort:                    DONE tests 5	pass 5	score 100.00%
+9:2:40 typeof:                          DONE tests 5	pass 5	score 100.00%
+9:2:40 ./typeof:                        DONE tests 5	pass 5	score 100.00%
+9:2:40 variables:                       DONE tests 2	pass 2	score 100.00%
+9:2:40 ./variables:                     DONE tests 2	pass 2	score 100.00%
+9:2:40 trig:                            DONE tests 8	pass 8	score 100.00%
+9:2:40 ./trig:                          DONE tests 8	pass 8	score 100.00%
+9:2:40 caz:                             DONE tests 9	pass 9	score 100.00%
+9:2:40 ./caz:                           DONE tests 9	pass 9	score 100.00%
+9:2:40 sizeof:                          DONE tests 6	pass 6	score 100.00%
+9:2:40 ./sizeof:                        DONE tests 6	pass 6	score 100.00%
+9:2:40 limit:                           DONE tests 6	pass 6	score 100.00%
+9:2:40 ./limit:                         DONE tests 6	pass 6	score 100.00%
+9:2:40 d2r:                             DONE tests 2	pass 2	score 100.00%
+9:2:40 ./d2r:                           DONE tests 2	pass 2	score 100.00%
+9:2:40 cbrt:                            DONE tests 1	pass 1	score 100.00%
+9:2:40 ./cbrt:                          DONE tests 1	pass 1	score 100.00%
+9:2:40 packb:                           DONE tests 5	pass 5	score 100.00%
+9:2:40 ./packb:                         DONE tests 5	pass 5	score 100.00%
 
-4:27:0 ///////////////BUGFIX//////////////
-4:27:0 bf_46:                           DONE tests 1	pass 1	score 100.00%
-4:27:0 ./bf_46:                         DONE tests 1	pass 1	score 100.00%
-4:27:0 bf_59:                           DONE tests 6	pass 6	score 100.00%
-4:27:0 ./bf_59:                         DONE tests 6	pass 6	score 100.00%
-4:27:0 bf_64:                           DONE tests 6	pass 6	score 100.00%
-4:27:0 ./bf_64:                         DONE tests 6	pass 6	score 100.00%
-4:27:0 bf_75:                           DONE tests 2	pass 2	score 100.00%
-4:27:0 ./bf_75:                         DONE tests 2	pass 2	score 100.00%
-4:27:0 bf_76:                           DONE tests 5	pass 5	score 100.00%
-4:27:0 ./bf_76:                         DONE tests 5	pass 5	score 100.00%
-4:27:0 bf_78:                           DONE tests 4	pass 4	score 100.00%
-4:27:0 ./bf_78:                         DONE tests 4	pass 3	score 75.00%
-4:27:0 bf_79:                           DONE tests 7	pass 7	score 100.00%
-4:27:0 ./bf_79:                         DONE tests 7	pass 7	score 100.00%
-4:27:0 bf_80:                           DONE tests 2	pass 2	score 100.00%
-4:27:0 ./bf_80:                         DONE tests 2	pass 2	score 100.00%
-4:27:0 bf_83:                           DONE tests 5	pass 5	score 100.00%
-4:27:0 ./bf_83:                         DONE tests 5	pass 5	score 100.00%
-4:27:0 bf_84:                           DONE tests 1	pass 1	score 100.00%
-4:27:0 ./bf_84:                         DONE tests 1	pass 1	score 100.00%
-4:27:0 bf_91:                           DONE tests 3	pass 3	score 100.00%
-4:27:0 ./bf_91:                         DONE tests 3	pass 3	score 100.00%
+9:2:40 ///////////////BUGFIX//////////////
+9:2:40 bf_46:                           DONE tests 1	pass 1	score 100.00%
+9:2:40 ./bf_46:                         DONE tests 1	pass 1	score 100.00%
+9:2:40 bf_59:                           DONE tests 6	pass 6	score 100.00%
+9:2:40 ./bf_59:                         DONE tests 6	pass 6	score 100.00%
+9:2:40 bf_64:                           DONE tests 6	pass 6	score 100.00%
+9:2:40 ./bf_64:                         DONE tests 6	pass 6	score 100.00%
+9:2:40 bf_75:                           DONE tests 2	pass 2	score 100.00%
+9:2:40 ./bf_75:                         DONE tests 2	pass 2	score 100.00%
+9:2:40 bf_76:                           DONE tests 5	pass 5	score 100.00%
+9:2:40 ./bf_76:                         DONE tests 5	pass 5	score 100.00%
+9:2:40 bf_78:                           DONE tests 4	pass 4	score 100.00%
+9:2:40 ./bf_78:                         DONE tests 4	pass 3	score 75.00%
+9:2:40 bf_79:                           DONE tests 7	pass 7	score 100.00%
+9:2:40 ./bf_79:                         DONE tests 7	pass 7	score 100.00%
+9:2:40 bf_80:                           DONE tests 2	pass 2	score 100.00%
+9:2:40 ./bf_80:                         DONE tests 2	pass 2	score 100.00%
+9:2:40 bf_83:                           DONE tests 5	pass 5	score 100.00%
+9:2:40 ./bf_83:                         DONE tests 5	pass 5	score 100.00%
+9:2:40 bf_84:                           DONE tests 1	pass 1	score 100.00%
+9:2:40 ./bf_84:                         DONE tests 1	pass 1	score 100.00%
+9:2:40 bf_91:                           DONE tests 3	pass 3	score 100.00%
+9:2:40 ./bf_91:                         DONE tests 3	pass 3	score 100.00%
 
  These 5 modules  failed! 
  /home/mark/gapps/TEST/ITOC/BUGFIX/bf_78.xtst 
  
 /home/mark/gapps/TEST/ITOC/Proc/procrefarg.tst 
-/home/mark/gapps/TEST/ITOC/ProcArray/arrayarg2.tst 
+/home/mark/gapps/TEST/ITOC/ProcArray/arrayarg1.xtst 
 /home/mark/gapps/TEST/ITOC/ProcArray/arrayarg2.xtst 
 /home/mark/gapps/TEST/ITOC/Svar/svelepr.xtst 
 
@@ -464,4 +466,4 @@ Fri Dec 15 04:26:51 2017 5.97 B-Bk
  /home/mark/gapps/TEST/ITOC/BUGFIX/bf_89 
  
 /home/mark/gapps/TEST/ITOC/Proc/xic_procrefarg 
-Fri Dec 15 04:27:00 2017 Modules 348 Tests 2303  Passed 2296  Score  99.70 Fail 5 Crash 2 5.97 B-Bk
+Tue Dec 19 09:02:40 2017 Modules 350 Tests 2327  Passed 2320  Score  99.70 Fail 5 Crash 2 5.98 B-Cf

@@ -1,7 +1,7 @@
 
 CheckIn()
 
-setDebug(1,"pline","~step","trace")
+setDebug(1,"pline","~step","~trace")
 
 //#define ASK ans=iread();
 #define ASK ;
@@ -100,6 +100,18 @@ int ret = -1;
 <<" after switch \n"
 
 
+   rn = foo('a')
+
+
+  pf=checkNum(rn,'a');
+
+<<"%V$rn $pf\n"
+
+
+ASK
+
+
+
 
 ci = 'a';
 
@@ -107,17 +119,39 @@ ci = 'a';
 
 
    rn = foo(ci)
-  checkNum(rn,'a');
-   
 
-   rn = foo('a')
+<<"%V$rn\n"
+
   checkNum(rn,'a');
+
+ASK
+
+   rn = foo(97)
+
+<<"%V$rn\n"
+
+  checkNum(rn,'a');
+
+ASK
+
+
+
+
+
+  pf=checkNum('a',rn);
+
+<<"%V$rn $pf\n"
+
+
+
 
 
   if (!CheckNum('a',rn)) {
 <<"Fail 1\n"
   }
+
 ASK
+
 
    rn = foo('X')
 

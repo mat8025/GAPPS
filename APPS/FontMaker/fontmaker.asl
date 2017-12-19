@@ -144,8 +144,8 @@ float LM[rows][cols];
     sWi(aw,@redraw);
 
     char ce;
-    fname = "Ah";
-    sfname ="Ah.txt"
+    fname = "A";
+    sfname ="A.sst"
     tfz = fexist(sfname);
     if (tfz > 0) {
     isok =sWo(cellwo,@sheetread,sfname);
@@ -213,7 +213,7 @@ include "gevent.asl";
        if (ev_woid == rdwo) {
             fname =  queryw("F_NAME","font name","A");
             sWo(cellwo,@name,fname);
-            sfname ="${fname}.txt"
+            sfname ="${fname}.sst"
 
             tfz = fexist(sfname);
 	    <<"$sfname $tfz\n"
@@ -237,7 +237,7 @@ include "gevent.asl";
              ce++;
              fname = "%c$ce";
             sWo(cellwo,@name,fname);
-            sfname ="${fname}.txt"
+            sfname ="${fname}.sst"
 
             tfz = fexist(sfname);
 	    <<"$sfname $tfz\n"

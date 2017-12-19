@@ -1,2 +1,0 @@
-rsync  -avzC --include="*/" --include='*.asl' --include='*.txt'  --exclude="*" . mars:/home/mark/gapps
-

@@ -1066,6 +1066,8 @@ if ( do_all || do_proc ) {
 
   cart ("proc")
 
+  cart("proc_var_define", 10)
+
   cart ("proc_declare")
 
   cart ("procret0")

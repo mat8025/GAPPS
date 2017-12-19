@@ -1,3 +1,11 @@
+///
+///  sstr
+///
+
+vers = "1.3"
+
+<<"%V$vers\n"
+
 checkIn()
 
 str A = "keep going until world tour"
@@ -42,7 +50,7 @@ str D = "terry.pcm"
 
 p = regex(C,"vox")
 
-<<"$p \n"
+<<"%V$p \n"
 
 checkNum(p[0],4)
 
@@ -61,6 +69,22 @@ p = regex(C,'vox\|pcm')
 p = regex(D,'vox\|pcm'  )
 
 <<"$p \n"
+
+
+str E = "abcxxxabcxxxabcyyy"
+
+
+pos = regex(E,'abc'  )
+
+<<"$pos \n"
+
+
+pos2 = regex(E,'xxx'  )
+
+<<"$pos2 \n"
+
+
+
 
 
 checkOut()
