@@ -6,7 +6,7 @@
 
 envdebug()
 
-vers = "1.1"
+vers = "1.2"
 
 /////////////////////////////////////////////////////////
 
@@ -57,6 +57,34 @@ proc cycleRow()
 //=============================
 
 
+proc centerImage()
+{
+   
+// balance surrounding white row/cols
+
+   wos2mat();
+
+// sum the rows
+
+
+// sum the cols
+
+// top edge
+
+// btm edge
+
+// move up/down by ?
+
+// left edge
+
+// right edge
+
+// move left/right by ?
+
+
+
+}
+
 
 /////////////////////////////////////////////////////////
 
@@ -67,13 +95,9 @@ float LM[rows][cols];
 
  Graphic = CheckGwm()
 
-
      if (!Graphic) {
         X=spawngwm()
      }
-
-
-
 
 //////////////////// WINDOW SETUP ////////////////////
 
@@ -87,33 +111,33 @@ float LM[rows][cols];
    sWo(cellwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,RED_,@VALUE,"SSWO")
    sWo(cellwo,@bhue,CYAN_,@clipbhue,"skyblue")
 
- rdwo=cWo(aw,@BN,@name,"READ",@value,"READ",@color,GREEN_,@resize_fr,0.02,0.71,lbp,0.90);
+
+ rdwo=cWo(aw,@BN,@name,"READ",@value,"READ",@color,GREEN_)
  sWo(rdwo,@help," click to read image");
- sWo(rdwo,@border,@drawon,@clipborder,@fonthue,BLACK_, @redraw);
 
-
- nxtwo=cWo(aw,@BN,@name,"NEXT",@value,"READ",@color,BLUE_,@resize_fr,0.02,0.51,lbp,0.70);
+ nxtwo=cWo(aw,@BN,@name,"NEXT",@value,"READ",@color,BLUE_)
  sWo(nxtwo,@help," click to read next image");
- sWo(nxtwo,@border,@drawon,@clipborder,@fonthue,BLACK_, @redraw);
 
-
-
-
- clearwo=cWo(aw,@BN,@name,"CLEAR",@value,"SAVE",@color,GREEN_,@resize_fr,0.02,0.31,lbp,0.50);
+ clearwo=cWo(aw,@BN,@name,"CLEAR",@value,"SAVE",@color,GREEN_)
  sWo(clearwo,@help," click to save sheet");
- sWo(clearwo,@border,@drawon,@clipborder,@fonthue,BLACK_, @redraw);
 
 
-
- savewo=cWo(aw,@BN,@name,"SAVE",@value,"SAVE",@color,MAGENTA_,@resize_fr,0.02,0.15,lbp,0.30)
+ savewo=cWo(aw,@BN,@name,"SAVE",@value,"SAVE",@color,MAGENTA_)
  sWo(savewo,@help," click to save sheet")
- sWo(savewo,@border,@drawon,@clipborder,@fonthue,BLACK_, @redraw)
 
-
- qwo=cWo(aw,@BN,@name,"QUIT?",@value,"QUIT",@color,"orange",@resize_fr,0.02,0.01,lbp,0.14)
+ qwo=cWo(aw,@BN,@name,"QUIT?",@value,"QUIT",@color,"orange")
  sWo(qwo,@help," click to quit")
- sWo(qwo,@border,@drawon,@clipborder,@fonthue,BLACK_, @redraw)
- sWi(aw,@redraw)
+
+
+ int edwos[] = {rdwo,nxtwo, clearwo,savewo,qwo};
+
+ sWo(edwos,@border,@drawon,@clipborder,@fonthue,BLACK_);
+ sWo(nxtwo,@fonthue,WHITE_);
+ wovtile ( edwos, 0.02,0.2,0.09,0.70);
+ sWo(edwos,@redraw);
+
+ 
+
 
 
   //////////////////////////////
@@ -134,9 +158,13 @@ float LM[rows][cols];
  sWo(mopdwo,@help," click to move image down ");
  sWo(mopdwo,@border,@drawon,@clipborder,@fonthue,BLACK_);
 
+ mocenwo=cWo(aw,@BN,@name,"CENTER",@value,"CENTER",@color,MAGENTA_)
+ sWo(mocenwo,@help," click to center image  ");
+ sWo(mocenwo,@border,@drawon,@clipborder,@fonthue,BLACK_);
 
 
- int mwos[] = { mopuwo, moplwo, moprwo, mopdwo};
+
+ int mwos[] = { mopuwo, moplwo, moprwo, mopdwo, mocenwo};
 
  wovtile ( mwos, 0.91,0.41,0.99,0.70);
 
@@ -144,11 +172,23 @@ float LM[rows][cols];
     sWi(aw,@redraw);
 
     char ce;
-    fname = "A";
-    sfname ="A.sst"
+
+    na = argc();
+    if (na >= 1)
+     fname = _clarg[1];
+    else
+     fname = "A";
+
+    sfname ="${fname}.sst"
+
+
     tfz = fexist(sfname);
     if (tfz > 0) {
     isok =sWo(cellwo,@sheetread,sfname);
+    }
+    else {
+
+<<" no initial font $sfname!\n"
     }
     
     sWo(cellwo,@setrowscols,rows,cols);
@@ -178,14 +218,17 @@ include "gevent.asl";
    if (ev_woid == cellwo) {
      if (ev_button ==1) {
          sWo(cellwo,@cellbhue,ev_row,ev_col,LILAC_);
-	 sWo(cellwo,@sheetcol,ev_row,ev_col,"1");
+//	 sWo(cellwo,@sheetcol,ev_row,ev_col,"1");
+	 sWo(cellwo,@cellval,ev_row,ev_col,"1");
      }
      else {
         sWo(cellwo,@cellbhue,ev_row,ev_col,WHITE_);
-        sWo(cellwo,@sheetcol,ev_row,ev_col,"0");
-     }
-
-         sWo(cellwo,@redraw);
+       // sWo(cellwo,@sheetcol,ev_row,ev_col,"0");
+	 sWo(cellwo,@cellval,ev_row,ev_col,"0");
+    }
+        // want update/redraw cell
+         //sWo(cellwo,@redraw);
+	 sWo(cellwo,@celldraw,ev_row,ev_col);
     }
     
        if (ev_woid == savewo) {
@@ -287,8 +330,11 @@ include "gevent.asl";
 
         sWo(mopdwo,@redraw);
      }
+     else if (ev_woid == mocenwo) {
 
 
+
+     }
 //    woid == save  then write values of sheet
 //    to name value  as save matrix rows x cols
 

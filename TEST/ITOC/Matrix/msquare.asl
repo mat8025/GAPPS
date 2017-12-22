@@ -1,8 +1,13 @@
-// magic square
+///
+/// magic square
+///
 
 CheckIn()
 
 setdebug(0)
+
+//#define ASK ans=iread();
+#define ASK ;
 
 
 int A[10+]
@@ -27,12 +32,23 @@ int B[] = {16, 3, 2, 13, 5, 10, 11, 8, 9, 6, 7, 12, 4 ,15, 14, 1}
 <<" $(typeof(A)) $(typeof(B)) \n"
 
 
+ R= RowSum(A)
+<<" ROW SUM\n"
+<<"$R\n"
+
+ C= ColSum(A)
+
+<<" COL SUM\n"
+<<"$C\n"
+
+ASK
 
  M = Sum(A)
 
- <<"%6.0f$M \n\n"
+ <<"$M \n\n"
 
   D = A
+
 <<"D= %(4,\t{\s, ,\s}\n)%3d$D \n"
 <<" Transpose \n"
 
@@ -46,7 +62,7 @@ int B[] = {16, 3, 2, 13, 5, 10, 11, 8, 9, 6, 7, 12, 4 ,15, 14, 1}
 <<"\n"
 
 
-<<" Sum %4.0f$M \n"
+<<" Sum $M \n"
 
 sz  = Caz(A)
 <<" %V$sz  $(Cab(A))\n"
@@ -111,10 +127,12 @@ V->redimn()
 
   D->Redimn(4,4)
 <<" $D[0][0] \n"
-<<"%V%6.2f%(4, , ,\n)$D \n"
+<<"%V%(4, , ,\n)$D \n"
 
 <<"\n"
 
+
+ASK
 
 
 float e[] = {1.1,2.2,3.3,4.4}
@@ -123,10 +141,10 @@ float e[] = {1.1,2.2,3.3,4.4}
 
  E = diag(e)
 
-<<"%v%6.2f$E \n"
+<<"%v$E \n"
 //<<" $(Cab(E)) $(Caz(E)) \n"
 
-<<"%(4,, ,\n)%6.2f$E \n"
+<<"%(4,, ,\n)$E \n"
 
 <<"\n %v$E[0][0] \n"
 <<"\n %v$E[0][1] \n"

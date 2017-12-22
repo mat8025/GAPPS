@@ -26,21 +26,33 @@ Graphic = CheckGwm()
 
 
 
-gwo3=cWo(vp,"SHEET",@name,"DailyDiet",@color,"green",@resize,0.1,0.1,0.9,0.5)
+ cellwo=cWo(vp,"SHEET",@name,"DailyDiet",@color,GREEN_,@resize,0.1,0.1,0.9,0.5)
  // does value remain or reset by menu?
 
- sWo(gwo3,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@VALUE,"SSWO",@FUNC,"inputValue")
+ sWo(cellwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,RED_,@VALUE,"SSWO",@FUNC,"inputValue")
 
- sWo(gwo3,@bhue,"cyan",@clipbhue,"skyblue")
+ sWo(cellwo,@bhue,CYAN_,@clipbhue,"skyblue")
 
  rows = 8
  cols = 10
- sWo(gwo3,@setrowscols,rows,cols);
- sWo(gwo3,@sheetrow,0,0,"0,1,2,3,4,5,,7")
- sWo(gwo3,@sheetcol,1,0,"A,B,C,D")
 
- sWi(vp,@redraw)
-  sWo(gwo3,@redraw)
+ sWo(cellwo,@setrowscols,rows,cols);
+ sWo(cellwo,@sheetrow,0,0,"0,1,2,3,4,5,,7")
+ sWo(cellwo,@sheetcol,1,0,"A,B,C,D")
+
+ sWo(cellwo,@selectrowscols,0,rows-1,0,cols-1);
+
+int cv = 0;
+for (i = 1; i< rows ; i++) {
+     for (j = 1; j< cols ; j++) {
+         sWo(cellwo,@cellbhue,i,j,LILAC_);
+	 sWo(cellwo,@sheetcol,i,j,"$cv");
+	 cv++;
+       }
+     }
+
+  sWi(vp,@redraw)
+  sWo(cellwo,@redraw)
 
   while (1) {
 

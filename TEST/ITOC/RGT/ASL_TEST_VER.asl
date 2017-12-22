@@ -690,6 +690,11 @@ int do_ptrs = 0;
   cart("sstr")
   updir()
 
+  Run2Test("Spat")
+  cart("spat")
+  cart("spat_pr")
+  updir()
+
   Run2Test("Regex")
   cart("regex")
   updir()
@@ -1359,9 +1364,6 @@ if ( do_all || do_oo ) {
     updir()
 
 
-
-    
-
     Run2Test("Shift")
 
     cart("shift")
@@ -1376,15 +1378,15 @@ if ( do_all || do_oo ) {
     updir()
 
 
-#{
+
 /// findval -- find a value in a vector
 
-    changeDir("findval")
+    changeDir("Findval")
 
-    cart("findval0")
+    cart("findval")
 
     updir()
-#}
+
 
 /// chem    -- find an atomic number for an element
 
