@@ -1,0 +1,10 @@
+////
+///   TBF
+///
+
+in print  vectors are followed by \n  ---  remove
+
+%(n,pre,inter,post)$Vec   ====  like each var controller in loop formater to be reevaluated each loop
+
+<<"%V$var\n" === var name has leading space -- remove
+

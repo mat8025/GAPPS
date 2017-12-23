@@ -1,0 +1,11 @@
+
+
+
+/// make sure rotated fonts are loaded!
+///  location
+
+/// xset fp+ /usr/local/GASP/gasp/fonts
+/// check
+/// xlsfonts | grep rot
+
+/// TBD ?? use XSetFontPath --- in ms/mc_font setup??

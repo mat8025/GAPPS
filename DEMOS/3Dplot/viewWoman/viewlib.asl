@@ -419,10 +419,10 @@ proc PlanView(plt_it)
      }
 
      sWo(pvwo,@hue,BLUE_,@showpixmap,@clipborder)
-     
-     plotgw(pvwo,@symbol,obpx,obpz,"diamond",2,BLUE_,0)
-     plotgw(pvwo,@symbol,obpx,obpz,"arrow",2,"blue",cd2pol(azim)-90,1)
-     plotgw(pvwo,@symbol,targ_x,targ_z,"tri",2,"red",0)
+     sWo(pvwo,@symbol,obpx,obpz,"diamond",2,BLUE_,0);
+
+    sWo(pvwo,@symbol,obpx,obpz,"arrow",2,"blue",cd2pol(azim)-90,1)
+    sWo(pvwo,@symbol,targ_x,targ_z,"tri",2,"red",0)
 
      sWo(pvwo,@hue,"black",@showpixmap,@clipborder)
 }
@@ -437,9 +437,9 @@ proc TerrPlanView(plt_it)
        plot3D(pvwo,scene,obpx,obpy,obpz, azim, elev,distance,4,1,  GridON)
      }
      
-     plotgw(llwo,@symbol,obpx,obpz,"diamond",3,"blue",0)
-     plotgw(llwo,@symbol,obpx,obpz,"arrow",2,"blue",cd2pol(azim)-90,1)
-     plotgw(llwo,@symbol,targ_x,targ_z,"tri",3,"red",0)
+     sWo(llwo,@symbol,obpx,obpz,"diamond",3,"blue",0)
+     sWo(llwo,@symbol,obpx,obpz,"arrow",2,"blue",cd2pol(azim)-90,1)
+     sWo(llwo,@symbol,targ_x,targ_z,"tri",3,"red",0)
 
      sWo(pvwo,@hue,"black",@showpixmap,@clipborder)
      sWo(llwo,@hue,"black",@showpixmap,@clipborder)
@@ -470,8 +470,8 @@ proc SideView(plt_it)
        plot3D(svwo,scene,obpx,obpy,obpz,azim,elev,distance,2,1)
      }
      
-     plotgw(svwo,"symbol",targ_x,targ_y,"tri",2,RED_,0)
-     plotgw(svwo,"symbol",obpx,obpy,"diamond",2,GREEN_,0)
+     sWo(svwo,@symbol,targ_x,targ_y,"tri",2,RED_,0)
+     sWo(svwo,@symbol,obpx,obpy,"diamond",2,GREEN_,0)
 
      sWo(svwo,@hue,"black",@showpixmap,@clipborder,@savepixmap)
 }
@@ -722,9 +722,10 @@ proc checkKeyCommands(char wc)
 
 
 proc keyControls(char ac)
+//proc keyControls(ac)
 {
 
-//<<[CFH]"in keyControls $_proc  $ac \n"
+<<[CFH]"in keyControls $_proc  $ac \n"
 
 int did_con = 0
 
@@ -831,57 +832,6 @@ int moved =0 ;
       return moved;
 }
 //----------------------------------------------
-
-////////////////////  Event Handling ////////////////////
-
-E =1; // event handle
-
-int evs[20];
-
-Woid = 0
-Ewoname = ""
-Woproc = "foo"
-Woval = ""
-int Woaw = 0
-Erx=0.0;
-Ery=0.0;
-Ebutton = 0
-char Ekeyc = 0;
-Ekeyw = "";
-Etype = "";
-Emsg="";
-
-////////////////////////////////////////////////
-
-proc checkEvents()
-{
-
-   Etype = E->getEventType()
-
-   E->getEventState(evs)
-
-   Woname = E->getEventWoName()    
-   
-   
-   Woid = E->getEventWoId()
-
-   Woproc = E->getEventWoProc()
-   Woaw =  E->getEventWoAw()
-   Woval = getWoValue(Woid)
-   Ebutton = E->getEventButton()
-   Ekeyc = E->getEventKey()
-   Ekeyw = E->getEventKeyW()
-   E->getEventRxy(Erx,Ery);
-   
-<<"%V $Etype $Woid  %c$Ekeyc\n"
-
-if (Woid == qwo) {
-       //deleteWin(vp)
-       exit_gs()
-   }
-}
-//----------------------------------------------
-
 
 
 ///////////////////////// SETUP WINDOWS AND WOBJS //////////////////////////////

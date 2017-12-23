@@ -7,7 +7,8 @@
 proc QRTD()
 {
   adjustQrt(-1)
-  drawScreens()
+
+ 
   showWL()
 
 }

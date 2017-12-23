@@ -7,7 +7,7 @@ Main_init = 1
 
 set_ap(0)
 
-SetDebug(0)
+SetDebug(1,"trace")
 
   Graphic = CheckGwm()
 
@@ -72,13 +72,11 @@ MX = PX[0:-1:2][0:-1:2]   // every other 4th
 
  <<" $(Cab(MX)) $msz\n"
 
-
-
 //  we know we have to have some objects 
 
 <<"make some Objects - matrix/grid cube \n"
 
-  aslw = asl_w("VW")
+ // aslw = asl_w("VW")   // BUGFIX ??
 
   obid1 = MakeObject("MATRIX",MX,-10,0,10,4,0.2,4,0.5,0,0,90,1)
 
@@ -159,7 +157,7 @@ rang = 1
 
   float cir_d = 0.5
 
-  SideView(1)
+  SideView(1);
 
   int kev = 0
   int go_on = 0
@@ -173,44 +171,51 @@ rang = 1
 
   uint ml = 0;
 
+
+
+include "gevent.asl";
+
+  eventWait();
+
+
   while (1) {
 
-    ml++
+    ml++;
+    
+   eventWait();
+  
+   <<"%V$ev_kloop $ev_woid  $ev_keyc\n"
 
       //<<"$kev %v $go_on \n"
-
-    Emsg =E->waitForMsg()
-    
-    checkEvents()
     
     kev++
 
-    sWo(vptxt,@clear,@clipborder,"red",@textr,Emsg,0,0.8) 
+    sWo(vptxt,@clear,@clipborder,"red",@textr,ev_msg,0,0.8) 
 
     did_cont = 1
 
-  if (Etype @= "PRESS") {
+  if (ev_type @= "PRESS") {
 
-          <<"%V$Ekeyw  $Woid  $svwo $pvwo \n"
+          <<"%V$ev_keyw  $ev_woid  $svwo $pvwo \n"
 
-          if (Woid == svwo) {
+          if (ev_woid == svwo) {
              //look_to()
              <<" sv $svwo\n"
-             xy_move_to(Ebutton,Erx,Ery)
+             xy_move_to(ev_button,ev_rx,ev_ry)
              look_at()
           }
 
-          if (Woid == pvwo) {
+          if (ev_woid == pvwo) {
              <<" pv $pvwo \n"
-             xz_move_to(Ebutton,Erx,Ery)
+             xz_move_to(ev_button,ev_rx,ev_ry)
              look_at()
           }
       }
-      else if (Etype @= "KEYPRESS") {
+      else if (ev_type @= "KEYPRESS") {
 
          sWo(vptxt,@scrollclip,UP_,8,@clipborder,"blue",@textr," [%c${Ekeyc}] ",0,0) 
 
-       keyControls(Ekeyc)
+       keyControls(ev_keyc)
 
        sWo(azimwo,@VALUE, "%5.1f$azim" , @update)
        sWo(distwo,@VALUE, "%5.1f $distance" , @update)
@@ -259,13 +264,15 @@ rang = 1
 
     sWo(vptxt,"text",txtmsg,@update)
 
-     PlanView(0)
+     PlanView(1)
 
-     SideView(0)
+`   SideView(0);
+
+     fflush()
 
   }
 
-     if (Woid == qwo ) {
+     if (ev_woid == qwo ) {
        break
      }
 
