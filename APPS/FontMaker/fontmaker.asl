@@ -59,29 +59,84 @@ proc cycleRow()
 
 proc centerImage()
 {
-   
 // balance surrounding white row/cols
+
+int le;
+int re;
+int te;
+int be;
 
    wos2mat();
 
 // sum the rows
-
-
+   Rsum=RowSum(LM)
+   Rsum->redimn();
+   
+<<"Rsum %6.1f$Rsum \n"
 // sum the cols
+
+     Csum=ColSum(LM);
+     Csum->redimn();
+
+<<"Csum %6.1f$Csum\n"
 
 // top edge
 
+ ivec = Rsum->findVal(0,0,1,0,LT_)
+
+<<"TE %V $ivec\n"
+   te = ivec[0];
+   if (te == -1) {
+     te = 0;
+   }
+
+
 // btm edge
+   ivec = Rsum->findVal(0,-1,-1,0,LT_)
+   be = ivec[0];
+   if (be == -1) {
+     be = 0;
+   }
+   be = rows -be -1;
 
 // move up/down by ?
+      us = (te - be)/2;
+      LM= cyclerow(LM,-us);
+      mat2wos();
+
+<<"%V$le $re $us\n"
+
 
 // left edge
 
+
+ ivec = Csum->findVal(0,0,1,0,LT_)
+
+<<"LE %V $ivec\n"
+   le = ivec[0];
+   if (le == -1) {
+     le = 0;
+   }
 // right edge
+
+   ivec = Csum->findVal(0,-1,-1,0,LT_)
+   //ivec = Csum->findVal(0,-1,-1,0,"<")
+   //ivec = findVal(Csum,0,-1,-1,0,"<")
+   
+<<"RE %V $ivec\n"
+   re = ivec[0];
+   if (re == -1) {
+     re = 0
+   }
+   re = cols -re -1;
 
 // move left/right by ?
 
+      ls = (re - le)/2;
+      LM= cyclecol(LM,ls);
+      mat2wos();
 
+  <<"%V$le $re $us $ls\n"
 
 }
 
@@ -202,12 +257,15 @@ float LM[rows][cols];
     sWo(cellwo,@redraw);
     
 include "gevent.asl";
-     eventWait();
+int kloop = 0;
+eventWait();
+
 
    while (1) {
    
         eventWait();
-
+        kloop++;
+   <<"%V$kloop $ev_woid \n"
 
    //  <<"%V $ev_row $ev_col \n"
        // get current cell value
@@ -308,36 +366,40 @@ include "gevent.asl";
 
         mat2wos();
 	sWo(cellwo,@redraw);
-		 sWo(mopuwo,@redraw);
+        sWo(mopuwo,@redraw);
      }
      else if (ev_woid == moplwo) {
         wos2mat();
         LM= cyclecol(LM,-1)
         mat2wos();
 	sWo(cellwo,@redraw);
+        sWo(moplwo,@redraw);	
      }
      else if (ev_woid == moprwo) {
         wos2mat();
         LM= cyclecol(LM,1)
         mat2wos();
 	sWo(cellwo,@redraw);
+        sWo(moprwo,@redraw);		
      }
      else if (ev_woid == mopdwo) {
         wos2mat();
         LM= cyclerow(LM,1)
         mat2wos();
 	sWo(cellwo,@redraw);
-
         sWo(mopdwo,@redraw);
      }
      else if (ev_woid == mocenwo) {
 
+           centerImage()
+	sWo(cellwo,@redraw);
+	sWo(mocenwo,@redraw);
 
-
+        
      }
 //    woid == save  then write values of sheet
 //    to name value  as save matrix rows x cols
-
+       fflush()
    }
 
 exitgs();

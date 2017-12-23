@@ -7,8 +7,40 @@ CheckIn()
 //#define ASK ans=iread();
 #define ASK ;
 
+<<"hey mark onward ever upward - higher and higher!!\n"
 
-setdebug(1)
+setdebug(1,"~pline","steponerror")
+
+Csum=vgen(FLOAT_,10,0)
+
+
+
+Csum[4] = 1;
+<<"$Csum\n"
+   ivec = findVal(Csum,0,0,1,0,LT_)
+
+   le = ivec[0];
+   if (le == -1) {
+     le = 0;
+   }
+<<"%V $ivec $le\n"
+
+CheckNum(le,4)
+
+ASK
+
+   ivec = findVal(Csum,0,0,1,0,"<")
+
+   le = ivec[0];
+   if (le == -1) {
+     le = 0;
+   }
+<<"%V $ivec $le\n"
+
+CheckNum(le,4)
+
+ASK
+
 
 I= Igen(20,0,1)
 
@@ -115,6 +147,27 @@ si = 19;
 <<"%V $fi \n"
 CheckNum(fi,17)
 ASK
+
+
+si = 19;
+
+//   found= I->findval(17,-1,-1,1,'>=')
+
+   found= I->findval(17,-1,-1,0,GTE_)
+
+nd= Cab(found);
+sz = Caz(found);
+<<"%V $nd $sz $(Cab(found))  \n"
+
+<<"%V $found  \n"
+
+<<"%V $fi \n"
+CheckNum(fi,17)
+ASK
+
+
+
+
 
 F= Fgen(20,0,1);
 
