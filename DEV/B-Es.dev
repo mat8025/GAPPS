@@ -1,0 +1,109 @@
+
+/// 5.99  B-Es (Einstenium)
+
+[1] ///////////////////////////////////////
+added CURRENT_RDL_LIB and CURRENT_HIS_LIB 
+
+#define CURRENT_RDL_LIB "libreadline.so.7"
+#define CURRENT_HIS_LIB "libhistory.so.7"
+
+in cw_l.h
+maybe better to have env variables?
+
+=============================================
+
+[2] /////////////////////////////////////////////
+
+need a update/redraw SS cell
+done
+
+=============================================
+
+[3] ////////////////////////////////////////////
+
+
+asl -i
+
+print out of double,pan constants
+
+double should use %e as default
+
+float precision ??
+
+pan ?? how controlled?
+=============================================
+
+
+[4] ////////////////////////////////////////////
+
+ ColSum(M) and RowSum(M)
+ for 2d matrix
+ done
+
+===============================================
+
+[5] ////////////////////////////////////////////
+
+  asl  prog
+  this will look for and run the src version
+  i.e. check for prog.asl
+
+  asl -x prog
+  this will look for and run the exe version
+
+  ./prog
+  uses asl to run the contained 'compiled' instructions
+
+
+  asl prog > pout 2>&1
+  would allow output and error inspection with
+  tail -f pout
+
+  mostly done
+  TBD
+  will not find an exe in LIB
+ 
+
+
+===============================================
+
+
+
+[6] ////////////////////////////////////////////
+
+   added isdigit, isalpha routines to 'classify' char parameter
+===============================================
+
+
+[7] ////////////////////////////////////////////
+
+   rework Msg passing between xgs, asl
+   motion events currently passed every 10 events
+   could be buffered up and sent as a multi-motion event
+   
+===============================================
+
+
+[8] ////////////////////////////////////////////
+    added getNumFromMem
+    i = getNumFromMem(long addr, iny type)
+    gets contents at long address - casts to type
+    
+===============================================
+
+
+[9] ////////////////////////////////////////////
+     rework asl_event
+     reduce size - now 1856
+===============================================
+
+[10] ////////////////////////////////////////////
+
+   Fix for pre-processor   -   vars named with leading _  prevented prep of line
+   actually searching for key of key,value pair
+   
+===============================================
+
+[] ////////////////////////////////////////////
+
+===============================================

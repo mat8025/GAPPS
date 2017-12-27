@@ -1,12 +1,24 @@
 // Caz  - Csz - 
 ///
 
-envDebug()
+//envDebug()
+DBIT = 2;
 
-<<" scalar \n"
+setDebug(1);
 
-int d
+<<"hey buddy move on up\n"
+<<"$_clarg[0] $_clarg[1] \n"
 
+<<" %V $DBIT\n";
+
+int d;
+
+d = 79;
+
+
+<<" $d scalar $(Sizeof(d))\n"
+ans=iread();
+exit()
 checkIn();
 
 asz= Csz(d)
@@ -23,7 +35,19 @@ checkNum(ab,0)
 
 ////////////////////////////////
 
+<<"\n Svar vector \n"
 
+Svar S;
+
+<<"$S scalar $(Sizeof(S))\n"
+
+S[0] = "hey"
+
+S[1] = "mark"
+
+asz= Csz(S)
+
+<<"$asz  $(Cab(S))\n"
 
 <<"\n vector \n"
 

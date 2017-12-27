@@ -1,12 +1,12 @@
 ///
-///  Make a crude block font
+///  Sketch a  font
 ///
 /// 
 ///
 
-envdebug()
 
-vers = "1.2"
+
+vers = "1.1"
 
 /////////////////////////////////////////////////////////
 
@@ -23,10 +23,8 @@ proc wos2mat()
 /}*/
 
    // need version that reads subset or all to a matrix - assumming conversion to float/double
-   
-   //LM=wossgetvalues(cellwo,0,0,15,15); //much faster
 
-   LM=wossgetvalues(cellwo,0,0,rows-1,cols-1); //much faster
+   LM=wossgetvalues(cellwo,0,0,15,15); //much faster
 
 }
 
@@ -146,7 +144,7 @@ int be;
 /////////////////////////////////////////////////////////
 
  rows = 32; //
- cols =  32;
+ cols = 32;
 
 float LM[rows][cols];
 
@@ -162,13 +160,10 @@ float LM[rows][cols];
 
  sWi(aw,@pixmapon,@drawoff,@save,@bhue,LILAC_);
 
-tbqwo=cWo(aw,@TB,@name,"tb_q",@color,RED_,@VALUE,"QUIT",@func,"window_term",@resize,0.95,0,0.97,1)
- sWo(tbqwo,@drawon,@pixmapon,@fonthue,RED_, @symbol,11,  @symsize, 3, @clip,0,0,1,1,@redraw)
-
    lbp = 0.1;
   
    cellwo=cWo(aw,"SHEET",@name,"P",@color,GREEN_,@resize,lbp,0.01,0.9,0.99);
-   sWo(cellwo,@BORDER,@drawon,@clipborder,@fonthue,RED_,@VALUE,"SSWO")
+   sWo(cellwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,RED_,@VALUE,"SSWO")
    sWo(cellwo,@bhue,CYAN_,@clipbhue,"skyblue")
 
 
@@ -178,11 +173,8 @@ tbqwo=cWo(aw,@TB,@name,"tb_q",@color,RED_,@VALUE,"QUIT",@func,"window_term",@res
  nxtwo=cWo(aw,@BN,@name,"NEXT",@value,"READ",@color,BLUE_)
  sWo(nxtwo,@help," click to read next image");
 
- clearwo=cWo(aw,@BN,@name,"CLEAR",@value,"CLEAR",@color,GREEN_)
- sWo(clearwo,@help," click to clear sheet");
-
- refreshwo=cWo(aw,@BN,@name,"REFRESH",@value,"REFRESH",@color,GREEN_)
- sWo(refreshwo,@help," click to  redraw sheet");
+ clearwo=cWo(aw,@BN,@name,"CLEAR",@value,"SAVE",@color,GREEN_)
+ sWo(clearwo,@help," click to save sheet");
 
 
  savewo=cWo(aw,@BN,@name,"SAVE",@value,"SAVE",@color,MAGENTA_)
@@ -192,12 +184,15 @@ tbqwo=cWo(aw,@TB,@name,"tb_q",@color,RED_,@VALUE,"QUIT",@func,"window_term",@res
  sWo(qwo,@help," click to quit")
 
 
- int edwos[] = {rdwo,nxtwo, clearwo,refreshwo,savewo,qwo};
+ int edwos[] = {rdwo,nxtwo, clearwo,savewo,qwo};
 
  sWo(edwos,@border,@drawon,@clipborder,@fonthue,BLACK_);
  sWo(nxtwo,@fonthue,WHITE_);
  wovtile ( edwos, 0.02,0.2,0.09,0.70);
  sWo(edwos,@redraw);
+
+ 
+
 
 
   //////////////////////////////
@@ -259,47 +254,57 @@ tbqwo=cWo(aw,@TB,@name,"tb_q",@color,RED_,@VALUE,"QUIT",@func,"window_term",@res
 
    wos2mat();
    mat2wos();
-    sWo(cellwo,@redraw);
-    
+   sWo(cellwo,@redraw);
+
+
 include "gevent.asl";
 
-eventWait();
+     eventWait();
 
-//   ans= iread("go_forth\n")
+
+
    while (1) {
    
         eventWait();
- 
-   <<"%V$_eloop $_ewoid \n"
+
+   <<"%V$_eloop $_ewoid $_erow  $_ecol\n"
+
    //  <<"%V $ev_row $ev_col \n"
        // get current cell value
        // toggle 0 <-> 1
        // toggle BLUE_ <-> WHITE
 
-       sWo(cellwo,@cellhue,_erow,_ecol,RED_);
-   if (_ewoid == cellwo) {
-        if (_ebutton ==1) {
-          sWo(cellwo,@cellbhue,_erow,_ecol,LILAC_);
-	  sWo(cellwo,@cellval,_erow,_ecol,"1");
-       }
-       else if (_ebutton ==3) {
-         sWo(cellwo,@cellbhue,_erow,_ecol,WHITE_);
-	 sWo(cellwo,@cellval,_erow,_ecol,"0");
-       }
-         // want update/redraw cell
-         //sWo(cellwo,@redraw);
-	 sWo(cellwo,@celldraw,_erow,_ecol);
-    }
-    
-       if (_ewoid == savewo) {
+      // sWo(cellwo,@cellhue,ev_row,ev_col,RED_);
 
+
+      if (_ewoid == cellwo) {
+         if (_etype == MOTION_) {
+         <<"$_ebutton $_erx $_ery $_erow $_ecol\n"
+
+	   if (_ebutton ==1) {
+           sWo(cellwo,@cellbhue,_erow,_ecol,LILAC_);
+	   sWo(cellwo,@cellval,_erow,_ecol,"1");
+	   <<"this cell should be on $_erow $_ecol\n"
+	   sWo(cellwo,@celldraw,_erow,_ecol);  
+          }
+         else if (_ebutton ==3) {
+           sWo(cellwo,@cellbhue,_erow,_ecol,WHITE_);
+    	   sWo(cellwo,@cellval,_erow,_ecol,"0");
+	    <<"this cell should be off $_erow $_ecol\n"
+	   sWo(cellwo,@celldraw,_erow,_ecol);
+           }
+
+	 }
+      }
+
+
+       if (_ewoid == savewo) {
          fname =  queryw("F_NAME","font name","A");
          sWo(cellwo,@name,fname);
 	 sWo(cellwo,@sheetmod,1); // this instructs GM to write the SS
 	 sWi(aw,@tmsg,"saving_the_font ");
          sWi(aw,@redraw)
-
-       }
+        }
 
       if (_ewoid == clearwo) {
 	 sWo(cellwo,@cellbhue,-2,-2,WHITE_); // row,col -2,-2 all cells
@@ -308,11 +313,6 @@ eventWait();
 	 sWo(cellwo,@redraw);
 	 sWo(clearwo,@redraw);
         }
-
-        if (_ewoid == refreshwo) {
-	   sWo(cellwo,@redraw);
-	   sWo(refreshwo,@redraw);
-         }
 	
        if (_ewoid == qwo) {
 	 sWi(aw,@tmsg,"Quit");
@@ -330,12 +330,13 @@ eventWait();
            if (tfz > 0) {
               isok =sWo(cellwo,@sheetread,sfname);
               sWi(aw,@tmsg,"reading_the_font $sfname $isok");
+	    //  sWo(cellwo,@setrowscols,rows,cols);
 	      sWo(cellwo,@selectrowscols,0,9,0,9);
              }
            	
 	         wos2mat();
 		 mat2wos();
-                sWi(aw,@redraw)
+         sWi(aw,@redraw)
         }
 
 
@@ -351,17 +352,24 @@ eventWait();
            if (tfz > 0) {
               isok =sWo(cellwo,@sheetread,sfname);
               sWi(aw,@tmsg,"reading_the_font $sfname $isok");
+	    //  sWo(cellwo,@setrowscols,rows,cols);
 	      sWo(cellwo,@selectrowscols,0,rows-1,0,cols-1);
              }
-	     wos2mat();
-             mat2wos();
-             sWi(aw,@redraw)
+           	
+	         wos2mat();
+		 mat2wos();
+                sWi(aw,@redraw)
         }
+
 
      if (_ewoid == mopuwo) {
 
-       wos2mat();
+        wos2mat();
        LM= cyclerow(LM,-1)
+
+// LM= reflectrow(LM,3);
+// LM= reflectcol(LM,3);	   
+
         mat2wos();
 	sWo(cellwo,@redraw);
         sWo(mopuwo,@redraw);
@@ -388,17 +396,13 @@ eventWait();
         sWo(mopdwo,@redraw);
      }
      else if (_ewoid == mocenwo) {
-
-         centerImage()
+        centerImage()
 	sWo(cellwo,@redraw);
 	sWo(mocenwo,@redraw);
      }
-//    _ewoid == save  then write values of sheet
+//    woid == save  then write values of sheet
 //    to name value  as save matrix rows x cols
-    
-
-//<<"fflush $_eloop\n"
-      fflush()
+       fflush()
    }
 
 exitgs();
@@ -411,11 +415,6 @@ exitgs();
    read from WOSS into matrix (all or subset) with conversion to numeric
 
    internal struct of SS within asl and <-> transfer
-   
-
-   
-
-
 
 
 /}*/

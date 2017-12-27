@@ -1,0 +1,49 @@
+///
+///
+setdebug(1,"pline","trace")
+
+#define ASK ans=iread();
+
+
+checkIn();
+
+proc goo(int k)
+{
+
+<<"pa_arg %V$k\n"
+
+  r = k;
+
+<<"%V $r \n"
+
+  r = k * 13;
+
+<<"%V $r \n"
+
+ // r *= 13;
+
+<<"%V $r \n"
+
+  return r;
+}
+
+
+///////////////  Array name /////////////////////////
+m = 60
+Y= goo(&m)
+
+<<"Y: $Y\n"
+
+checkNum(Y,(m*13))
+
+
+Y= goo(m)
+
+<<"Y: $Y\n"
+
+checkNum(Y,(m*13))
+
+
+
+checkOut();
+exit()
