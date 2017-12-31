@@ -365,15 +365,22 @@ rang = 1
 
   uint ml = 0
 
+
+include "gevent.asl";
+
+  eventWait();
+
+
+
   while (1) {
 
     ml++
 
       //<<"$kev %v $go_on \n"
 
-    Emsg =E->waitForMsg()
+     eventWait();
     
-    checkEvents()
+    
     
     kev++
 
@@ -381,53 +388,53 @@ rang = 1
 
     did_cont = 1
 
-  if (Etype @= "PRESS") {
+  if (ev_type @= "PRESS") {
 
           <<"%V$Ekeyw  $Woid  $svwo $pvwo \n"
 
-          if (Woid == svwo) {
+          if (ev_woid == svwo) {
              //look_to()
              <<" sv $svwo\n"
-             xy_move_to(Ebutton,Erx,Ery)
+             xy_move_to(ev_button,ev_rx,ev_ry)
              look_at()
           }
 
-          if (Woid == llwo) {
+          if (ev_woid == llwo) {
              <<" pv $pvwo \n"
-             xz_move_to(Ebutton,Erx,Ery)
+             xz_move_to(ev_button,ev_rx,ev_ry)
              look_at()
           }
 
-          if (Woid == elevwo) {
+          if (ev_woid == elevwo) {
             elev = atof(getWoValue(elevwo));
           }
-          if (Woid == azimwo) {
+          if (ev_woid == azimwo) {
             azim = atof(getWoValue(azimwo));
           }
 	  
-	  if (Woid == olatwo) {
+	  if (ev_woid == olatwo) {
             obpz = atof(getWoValue(olatwo));
           }
-	  if (Woid == olngwo) {
+	  if (ev_woid == olngwo) {
             obpx = atof(getWoValue(olngwo));
           }
 
-	  if (Woid == altwo) {
+	  if (ev_woid == altwo) {
             obpy = atof(getWoValue(altwo));
           }
 
-	  if (Woid == distwo) {
+	  if (ev_woid == distwo) {
             distance = atof(getWoValue(distwo));
           }
 
 
 
       }
-      else if (Etype @= "KEYPRESS") {
+      else if (ev_type @= "KEYPRESS") {
 
-         //sWo(vptxt,@scrollclip,UP_,8,@clipborder,"blue",@textr," [%c${Ekeyc}] ",0,0) 
+         //sWo(vptxt,@scrollclip,UP_,8,@clipborder,"blue",@textr," [%c${ev_keyc}] ",0,0) 
 
-       keyControls(Ekeyc)
+       keyControls(ev_keyc)
 
        sWo(azimwo,@VALUE, "%5.1f$azim" , @update)
        sWo(distwo,@VALUE, "%5.1f $distance" , @update)
@@ -487,13 +494,13 @@ rang = 1
 
   //  sWo(vptxt,"text",txtmsg,@update)
 
-     TerrPlanView(0)
+     TerrPlanView(1)
 <<" Done Plan \n"
-     SideView(0)
+     SideView(1)
 <<" Done Side \n"
   }
 
-     if (Woid == qwo ) {
+     if (ev_woid == qwo ) {
        break
      }
 
@@ -501,7 +508,7 @@ rang = 1
 
      gsync()
      
-    if (scmp(Ewoname,"QUIT",4)) {
+    if (scmp(ev_woname,"QUIT",4)) {
        break;
     }
 

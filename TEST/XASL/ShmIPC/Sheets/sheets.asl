@@ -57,6 +57,7 @@ for (i = 1; i< rows ; i++) {
   while (1) {
 
          eventWait();
+	 
          ev_woval = Ev->getEventWoValue();
          ev_woname = Ev->getEventWoName();
 

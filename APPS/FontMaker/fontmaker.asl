@@ -4,8 +4,8 @@
 /// 
 ///
 
-envdebug()
-
+//envdebug()
+setDebug(1);
 vers = "1.2"
 
 /////////////////////////////////////////////////////////
@@ -34,6 +34,7 @@ proc wos2mat()
 proc mat2wos()
 {
 /// set the wo ss cells to values in local matrix
+/// need LM=wosssetvalues(cellwo,0,0,rows-1,cols-1,LM); // much faster ?
 
    for (i = 0; i< rows ; i++) {
      for (j = 0; j< cols ; j++) {
@@ -234,10 +235,12 @@ tbqwo=cWo(aw,@TB,@name,"tb_q",@color,RED_,@VALUE,"QUIT",@func,"window_term",@res
     char ce;
 
     na = argc();
-    if (na >= 1)
+    if (na > 1)
      fname = _clarg[1];
     else
      fname = "A";
+
+<<"%V $na $fname\n"
 
     sfname ="${fname}.sst"
 
@@ -281,14 +284,16 @@ eventWait();
         if (_ebutton ==1) {
           sWo(cellwo,@cellbhue,_erow,_ecol,LILAC_);
 	  sWo(cellwo,@cellval,_erow,_ecol,"1");
+	  sWo(cellwo,@celldraw,_erow,_ecol);
        }
        else if (_ebutton ==3) {
          sWo(cellwo,@cellbhue,_erow,_ecol,WHITE_);
 	 sWo(cellwo,@cellval,_erow,_ecol,"0");
+	 sWo(cellwo,@celldraw,_erow,_ecol);
        }
          // want update/redraw cell
          //sWo(cellwo,@redraw);
-	 sWo(cellwo,@celldraw,_erow,_ecol);
+
     }
     
        if (_ewoid == savewo) {

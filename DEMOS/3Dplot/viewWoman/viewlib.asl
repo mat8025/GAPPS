@@ -606,7 +606,7 @@ proc checkObserver(char wc)
 proc checkKeyCommands(char wc)
 {
   ret = 1
-//<<" in $_proc checkKeyCommands $wc \n"
+<<" in $_proc checkKeyCommands $wc \n"
 //<<[CFH]" in $_proc checkKeyCommands $wc \n"
 
     switch (wc) {
@@ -842,31 +842,30 @@ int moved =0 ;
 
   sWi(vp,"clip",0.01,0.1,0.95,0.99)
 
-  vptxt=cWo(vp,"TEXT",@name,"TXT",@resize,0.3,0.01,0.75,0.1,@color,"blue")
+  vptxt=cWo(vp,"TEXT",@name,"TXT",@resize,0.3,0.01,0.75,0.1,@color,BLUE_)
 
   sWo(vptxt,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw, @pixmapoff, @drawon)
 
   sWo(vptxt,@scales,-1,-1,1,1)
 
-  vpwo=cWo(vp,"GRAPH",@name,"VP",@resize,0.2,0.2,0.8,0.90,@color,"white")
+  vpwo=cWo(vp,"GRAPH",@name,"VP",@resize,0.2,0.2,0.8,0.90,@color,WHITE_)
 
   sWo(vpwo,@scales,-20,-20,20,20, @save,@redraw,@drawoff,@pixmapon,@savepixmap)
 
-  pvwo = cWo(vp,"GRAPH",@resize,0.01,0.21,0.19,0.5,"name","PLANVIEW","color","white")
+  pvwo = cWo(vp,"GRAPH",@resize,0.01,0.21,0.19,0.5,"name","PLANVIEW",@color,WHITE_)
 
   sWo(pvwo,@scales,-DimL,-DimL,DimL,DimL, @save,@redraw,@pixmapon,@drawon,@savepixmap)
 
-  svwo = cWo(vp,@GRAPH,@resize,0.01,0.51,0.19,0.95,@name,"SIDEVIEW","color","white")
+  svwo = cWo(vp,@GRAPH,@resize,0.01,0.51,0.19,0.95,@name,"SIDEVIEW",@color,WHITE_)
 
   sWo(svwo,@scales,-DimL,-DimL,DimL,DimL, @save,@redraw,@drawoff,@pixmapon, @drawon,@savepixmap)
 
   sWo(vpwo,@redraw);
 
 
-  llwo = cWo(vp,"GRAPH",@resize,0.01,0.01,0.19,0.2,"name","LLVIEW","color","white")
+  llwo = cWo(vp,"GRAPH",@resize,0.01,0.01,0.19,0.2,"name","LLVIEW",@color,WHITE_)
 
   sWo(llwo,@scales,-107,36,-104,42, @save,@redraw,@pixmapon,@drawon,@savepixmap)
-
 
 
 
@@ -880,25 +879,25 @@ int moved =0 ;
  by = bY - yht
 
  qwo=cWo(vp,"BV",@name,"QUIT",@VALUE,"QUIT",@color,"orange",@resize,bx,by,bX,bY)
- sWo(qwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw)
+ sWo(qwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_, @redraw)
 
  azimwo=cWo(vp,"BV",@name,"AZIM",@VALUE,"1",@color,"white")
- sWo(azimwo,@FUNC,"inputValue",@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
+ sWo(azimwo,@FUNC,"inputValue",@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@style,"SVB")
 
  distwo=cWo(vp,"BV",@name,"DIST",@VALUE,"1",@color,"white")
- sWo(distwo,@FUNC,"inputValue",@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
+ sWo(distwo,@FUNC,"inputValue",@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@style,"SVB")
 
- elevwo=cWo(vp,@BV,@name,"EYE_ELEV",@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB",@VALUE,"10",@FUNC,"inputValue")
- sWo(elevwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
+ elevwo=cWo(vp,@BV,@name,"EYE_ELEV",@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@style,"SVB",@VALUE,"10",@FUNC,"inputValue")
+ sWo(elevwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@style,"SVB")
 
- olatwo=cWo(vp,@BV,@name,"OLAT",@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB",@VALUE,"40",@FUNC,"inputValue")
- sWo(olatwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
+ olatwo=cWo(vp,@BV,@name,"OLAT",@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@style,"SVB",@VALUE,"40",@FUNC,"inputValue")
+ sWo(olatwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@style,"SVB")
 
- olngwo=cWo(vp,@BV,@name,"OLNG",@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB",@VALUE,"-104",@FUNC,"inputValue")
- sWo(olngwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
+ olngwo=cWo(vp,@BV,@name,"OLNG",@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@style,"SVB",@VALUE,"-104",@FUNC,"inputValue")
+ sWo(olngwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@style,"SVB")
 
- altwo=cWo(vp,@BV,@name,"ALT",@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB",@VALUE,"2000",@FUNC,"inputValue")
- sWo(altwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@style,"SVB")
+ altwo=cWo(vp,@BV,@name,"ALT",@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@style,"SVB",@VALUE,"2000",@FUNC,"inputValue")
+ sWo(altwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@style,"SVB")
 
 
 

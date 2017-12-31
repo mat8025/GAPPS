@@ -7,7 +7,7 @@ Main_init = 1
 
 set_ap(0)
 
-SetDebug(1,"trace")
+SetDebug(0,"~trace")
 
   Graphic = CheckGwm()
 
@@ -30,7 +30,7 @@ zalpha = 0
 yalpha = 0
 xalpha = 0
 
-float azim = 320
+float azim = 0
 float elev = 0.0
 float speed = 2.0
 int elewo = 0;
@@ -213,7 +213,7 @@ include "gevent.asl";
       }
       else if (ev_type @= "KEYPRESS") {
 
-         sWo(vptxt,@scrollclip,UP_,8,@clipborder,"blue",@textr," [%c${Ekeyc}] ",0,0) 
+         sWo(vptxt,@scrollclip,UP_,8,@clipborder,"blue",@textr," [%c${ev_keyc}] ",0,0) 
 
        keyControls(ev_keyc)
 
@@ -264,9 +264,9 @@ include "gevent.asl";
 
     sWo(vptxt,"text",txtmsg,@update)
 
-     PlanView(1)
+     PlanView(0)
 
-`   SideView(0);
+     SideView(0);
 
      fflush()
 
@@ -280,7 +280,7 @@ include "gevent.asl";
 
      gsync()
      
-    if (scmp(Ewoname,"QUIT",4)) {
+    if (scmp(ev_woname,"QUIT",4)) {
        break;
     }
 

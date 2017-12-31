@@ -2,7 +2,7 @@
 ///
 ///
 
- setDebug(1,"trace");
+setDebug(1,"trace");
 
 
 int f = 7;
@@ -12,9 +12,6 @@ int f = 7;
 checkin();
 
 CheckFNum(f,7);
-
-
-
 
 int N =   79;
 
@@ -26,7 +23,6 @@ int c = atoi(_argv[1]);
 d = atoi(_argv[1]);
 
 <<" $_argv[1] $c $d\n"
-
 
 checkNum(c,d);
 
@@ -94,10 +90,6 @@ CheckNum(b,-42);
 
   return c
 }
-
-
-
-
 
 
     d=foo(2);

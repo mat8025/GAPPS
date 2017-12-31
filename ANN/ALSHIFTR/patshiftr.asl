@@ -1,6 +1,6 @@
 ///
 ///  test ann on simple 2d block patterns  -- A B C, ... drawn with straight lines
-///  training to  detect the amout to shift left and down 
+///  training to  detect the amount to shift left and down 
 ///  if works can be used to used shifited input (focused) to the pat2d net
 ///
 
@@ -442,9 +442,10 @@ exit();
 
 
 
-/{/*
+/{
+/*
    this tries to translate the letter pattern located in 10x10
-   to a 7x6 matirx just containing the letter
+   to a 7x6 matrix just containing the letter
 
    train on block letters in 4 diff positions
    and test on letter in different position from test (or mix of positions)
@@ -452,8 +453,8 @@ exit();
    // rotation ??
 
    try read wts and test
-
-/}*/
+*/
+/}
 
 
 
