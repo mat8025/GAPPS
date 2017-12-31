@@ -46,7 +46,30 @@ proc swap ( x, y)
 }
 //====================
 
- int k = 4;
+
+proc swapR (int& x, int& y)
+{
+
+  t = x;
+
+<<"$_proc IN : %V$x $y $t\n"
+
+<<"%V$t  $(typeof(t))\n"
+  x = y;
+ <<"%V$x \n"
+  y = t;
+ <<"%V$y \n"
+
+<<" OUT: %V$x $y $t\n"
+
+}
+//====================
+
+
+
+
+
+int k = 4;
  int m = 3;
 
  int ans = 0;
@@ -142,8 +165,8 @@ for (g = 0; g < 3; g++) {
 
  CheckNum(a,11)
 
-float r = 3.0
-float q = 4.0
+float r = 3.0;
+float q = 4.0;
 
  CheckNum(r,3.0)
 
@@ -168,6 +191,24 @@ float q = 4.0
 <<"no swap ? %V $r $q\n"
 
  CheckNum(r,3.0)
+
+
+   r = _PI ;
+   
+<<"pre- swap? %V $r $a\n"
+
+   swap(&r,&a)
+
+<<"post- swap? %V $r $a\n"
+
+
+
+
+// ref parameters?
+// not working
+//   swapR(r,q)
+
+//<<"swap ? %V $r $q\n"
 
  CheckOut()
 

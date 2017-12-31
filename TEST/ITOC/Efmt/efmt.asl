@@ -70,12 +70,12 @@ const double Ev1 = 1.602e-10;
 
 checkNum(Ev1,1.602e-10);
 
-const double Ev2 = 1.602 * 10^^-7;
+const double Ev2 = 1.602 * 10^-7;
 
 
 <<"%Ve $Ev2\n"
 
-checkNum(Ev2, 1.602 * 10^^-7);
+checkNum(Ev2, 1.602 * 10^-7);
 
 const double Ev3 = 1.602e29;
 

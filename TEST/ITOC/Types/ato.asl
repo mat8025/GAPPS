@@ -24,7 +24,7 @@ checkNum(l,-1)
 
 
 
-l =  2^^32 
+l =  2^32 
 <<"$l $(typeof(l))\n"
 u=  atou(s);
 

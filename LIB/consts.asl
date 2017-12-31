@@ -1,7 +1,5 @@
 # consts.asl
 // edit to expand constants units
-
-
 //setap(50)
 
 //setap(10)
@@ -9,7 +7,7 @@
 # define some Constants
 //<<" calc ap E \n"
 
-const double _E = exp(1.0)
+const double _E = exp(1.0);
 
 // _PI already known
 
@@ -30,7 +28,7 @@ const double _k = 1.38070 * 10^^-23;
 
 const double _h = 6.626e-34;
 
-const double _ev = 1.602e-29;
+const double _eV = 1.602e-29;
 
 
 const double _EarthRadius = 6371000.0 //  6371 km
@@ -132,7 +130,7 @@ proc consts()
 <<"%V$_sos speed of sound (Air 0 deg C m/s) \n"
 <<"%Ve$_k Boltzman = 1.3807 * 10^-23 J/K \n"
 <<"%Ve$_h Planck = 6.626 * 10^-34 J-s \n"
-<<"%Ve$_ev Electron Volt 1.602 x 10^-19 J %Ve$_eV \n"
+<<"%Ve$_eV Electron Volt 1.602 x 10^-19 J %Ve$_eV \n"
 <<"%V$_EarthRadius  meters \n"
 <<"%Ve$_EarthMass Kg\n"
 <<"%Ve$_Avogadro entities per mole\n"
@@ -204,3 +202,4 @@ proc ll2dd (the_ang)
     return (la)
 }
 
+//======================================================

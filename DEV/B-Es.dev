@@ -48,8 +48,15 @@ pan ?? how controlled?
   this will look for and run the src version
   i.e. check for prog.asl
 
+   asl -c prog
+  this will look for src version and 'compile' the exe version as prog
+  
+
   asl -x prog
   this will look for and run the exe version
+  will not find prog.asl and try to run that
+
+
 
   ./prog
   uses asl to run the contained 'compiled' instructions
@@ -59,9 +66,16 @@ pan ?? how controlled?
   would allow output and error inspection with
   tail -f pout
 
+  asl -i
+  starts up interactive shell  --
+  there is an output of all commands to vsh_'pid'.his
+
+  asl vsh_'pid'.his
+  will be run as a src file -- and should replicate the interactive session
+
   mostly done
-  TBD
-  will not find an exe in LIB
+  TBCD
+  will not find an exe in LIB ?
  
 
 
@@ -102,6 +116,30 @@ pan ?? how controlled?
    Fix for pre-processor   -   vars named with leading _  prevented prep of line
    actually searching for key of key,value pair
    
+===============================================
+
+[11] ////////////////////////////////////////////
+
+   swopped   EXP and XOR
+   so can use this
+   a = 10 ^ 3 ;
+   a will be a double.
+   b = 10.4 ^ -3.2
+
+
+   instead of 10 ^^ 3
+
+   more natural for the interactive shell.
+
+
+   the bitwise op is now ^^  but you can use BXOR_
+   m=  k ^^ j
+   m=  k BXOR_ j
+
+
+===============================================
+
+
 ===============================================
 
 [] ////////////////////////////////////////////

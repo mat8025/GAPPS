@@ -17,8 +17,7 @@ d = 79;
 
 
 <<" $d scalar $(Sizeof(d))\n"
-ans=iread();
-exit()
+
 checkIn();
 
 asz= Csz(d)

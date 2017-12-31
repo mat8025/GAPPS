@@ -1,5 +1,5 @@
 //  test the bitwise ops
-setdebug(1)
+setdebug(1,"~step")
 
 int  j = 5
 int  k = 1
@@ -34,18 +34,25 @@ CheckNum(m,7)
 
 k = 4
 
-m = ( j ^ k )
+m = ( j ^^ k )
 
-<<"$j ^ $k XOR  $m\n"
+<<"$j ^^ $k BXOR_  $m\n"
 
 
-CheckNum(m,1)
+CheckNum(m,1);
+
+m = ( j BXOR_ k )
+
+<<"$j BXOR_ $k  $m\n"
+
+CheckNum(m,1);
+
 
 k = 1
 
-m = ( j ^ k )
+m = ( j ^^ k )
 
-<<"$j ^ $k XOR  $m\n"
+<<"$j ^^ $k XOR  $m\n"
 
 CheckNum(m,4)
 

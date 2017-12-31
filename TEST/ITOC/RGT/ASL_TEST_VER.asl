@@ -692,7 +692,7 @@ int do_ptrs = 0;
 
   Run2Test("Spat")
   cart("spat")
-  cart("spat_pr")
+  
   updir()
 
   Run2Test("Regex")

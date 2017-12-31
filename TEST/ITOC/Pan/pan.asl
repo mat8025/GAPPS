@@ -3,12 +3,13 @@
 //int N = $2
 //double M
 
+include "consts"
 
-setdebug(1,"pline","steponerror","~trace")
+consts();
 
-//setdebug(1,"pline","runtoerror")
+setdebug(1,"pline","~steponerror","~trace","~step")
 
-setap(100);    // set precision to 50 decimal places
+setap(100);    // set precision to 100? decimal places
 
 // FIX pan N  = GetArgN()
 
@@ -17,6 +18,14 @@ checkIn();
 x = 2.1234567
 pan N = x;
 pan M = 4.0;
+
+pan c= 300000000.0;
+pan a = 1.0/c;
+
+<<"%e $a\n"
+
+//ans = iread()
+
 
 pan_prec = 1;
 
@@ -48,9 +57,16 @@ checkFNum(Q,(x*4.0),pan_prec);
  R = Q/N;
 
 <<"%V%p$Q\n"
+<<"%V$R\n"
+<<"%V$M\n"
 
-checkFNum(R,M,pan_prec);
-<<"$R $M \n"
+//checkFNum(R,M,pan_prec);
+ r= fround(R);
+
+<<"%V$r\n"
+checkFNum(r,M,2);
+
+
  M = M + 1;
 <<"$M\n"
 
@@ -209,9 +225,9 @@ int k
 <<"$ans \n"
 <<"$(typeof(ans))\n"
 
-  ans = (r * r) / .8765
+  ans = (r * r) / .8765;
 <<"$ans \n"
-  ans *= .8765
+  ans *= .8765;
 <<"$ans \n"
 
  i = 0
@@ -232,18 +248,18 @@ int k
 
  }
 
- P = 4
- i = 0
+ P = 4;
+ i = 0;
 
  while (i < NI) {
 
 <<"%V$P \n"  
-  P *=  2
+  P *=  2;
 <<"$i *= 2 %V$P\n"
 
 //<<" $(panilength(P)) \n"
 
-  i++
+  i++;
 
  }
 
