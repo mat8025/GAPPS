@@ -1,0 +1,17 @@
+
+/// 5.100  B-Fm (Fermium)
+
+
+[1] ///////////////////////////////////////
+ rework motion events  - wcom_msg.cpp
+===================
+
+[2] ///////////////////////////////////////
+switch - allows negative cases -- constant
+===========================
+
+[3] ////////////////////////////////////////
+ sWo( cellval, r,c,R,C, M)
+ sets subset of spreadsheet to values in matrix
+ ===========================
+ 
