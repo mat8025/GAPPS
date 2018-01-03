@@ -24,8 +24,6 @@ proc wos2mat()
 
    // need version that reads subset or all to a matrix - assumming conversion to float/double
    
-   //LM=wossgetvalues(cellwo,0,0,15,15); //much faster
-
    LM=wossgetvalues(cellwo,0,0,rows-1,cols-1); //much faster
 
 }
@@ -34,22 +32,11 @@ proc wos2mat()
 proc mat2wos()
 {
 /// set the wo ss cells to values in local matrix
-/// need LM=wosssetvalues(cellwo,0,0,rows-1,cols-1,LM); // much faster ?
-
-   for (i = 0; i< rows ; i++) {
-     for (j = 0; j< cols ; j++) {
-        if (LM[i][j] == 1) {
-         sWo(cellwo,@cellbhue,i,j,LILAC_);
-	 sWo(cellwo,@sheetcol,i,j,"1");
-	 }
-	 else {
-         sWo(cellwo,@cellbhue,i,j,WHITE_);
-	 sWo(cellwo,@sheetcol,i,j,"0");
-         }
-       }
-     }
+/// need wosssetvalues(cellwo,0,0,rows-1,cols-1,LM); // much faster ?
+	 sWo(cellwo,@cellval,0,0,rows-1,cols-1,LM);
+	 sWo(cellwo,@cellbhue,0,0,rows-1,cols-1,LM);
 }
-
+//========================
 /// move the shape around
 
 proc cycleRow()
@@ -176,8 +163,11 @@ tbqwo=cWo(aw,@TB,@name,"tb_q",@color,RED_,@VALUE,"QUIT",@func,"window_term",@res
  rdwo=cWo(aw,@BN,@name,"READ",@value,"READ",@color,GREEN_)
  sWo(rdwo,@help," click to read image");
 
- nxtwo=cWo(aw,@BN,@name,"NEXT",@value,"READ",@color,BLUE_)
+ nxtwo=cWo(aw,@BN,@name,"NEXT",@value,"NEXT",@color,BLUE_)
  sWo(nxtwo,@help," click to read next image");
+
+ prvwo=cWo(aw,@BN,@name,"PREV",@value,"PREV",@color,BLUE_)
+ sWo(prvwo,@help," click to read prev image");
 
  clearwo=cWo(aw,@BN,@name,"CLEAR",@value,"CLEAR",@color,GREEN_)
  sWo(clearwo,@help," click to clear sheet");
@@ -193,7 +183,7 @@ tbqwo=cWo(aw,@TB,@name,"tb_q",@color,RED_,@VALUE,"QUIT",@func,"window_term",@res
  sWo(qwo,@help," click to quit")
 
 
- int edwos[] = {rdwo,nxtwo, clearwo,refreshwo,savewo,qwo};
+ int edwos[] = { rdwo, nxtwo, prvwo,  clearwo, refreshwo, savewo, qwo};
 
  sWo(edwos,@border,@drawon,@clipborder,@fonthue,BLACK_);
  sWo(nxtwo,@fonthue,WHITE_);
@@ -224,11 +214,30 @@ tbqwo=cWo(aw,@TB,@name,"tb_q",@color,RED_,@VALUE,"QUIT",@func,"window_term",@res
  sWo(mocenwo,@border,@drawon,@clipborder,@fonthue,BLACK_);
 
 
+enum fmcase {
+     SHEET = 80,
+     READ = 0,
+     NEXT,
+     PREV,     
+     CLEAR,
+     REFRESH,
+     SAVE,
+     QUIT,
+     UP,
+     LEFT,
+     RIGHT,
+     DOWN,
+     CENTER,
+};
+
 
  int mwos[] = { mopuwo, moplwo, moprwo, mopdwo, mocenwo};
 
  wovtile ( mwos, 0.91,0.41,0.99,0.70);
 
+ allwos = edwos @+ mwos;
+
+<<"%V $allwos\n"
     
     sWi(aw,@redraw);
 
@@ -269,63 +278,77 @@ include "gevent.asl";
 eventWait();
 
 //   ans= iread("go_forth\n")
-   while (1) {
+   rloop =1;
+   
+   while (rloop) {
    
         eventWait();
  
-   <<"%V$_eloop $_ewoid \n"
+   <<"%V$_eloop $_ewoid $_etype $_ename \n"
    //  <<"%V $ev_row $ev_col \n"
-       // get current cell value
-       // toggle 0 <-> 1
-       // toggle BLUE_ <-> WHITE
 
-       sWo(cellwo,@cellhue,_erow,_ecol,RED_);
-   if (_ewoid == cellwo) {
-        if (_ebutton ==1) {
-          sWo(cellwo,@cellbhue,_erow,_ecol,LILAC_);
+      sWo(cellwo,@cellhue,_erow,_ecol,RED_);
+
+      if (_ewoid == cellwo) {
+          skey = 80;
+      }
+      else {
+      index = findVal(allwos,_ewoid);
+      skey = index[0] ;
+      }
+
+      cname = fmcase->enumNameFromValue(skey);
+<<"%V $index $_ewoid $skey $cname  \n"
+
+      switch (skey) {
+
+         case  SHEET:
+          <<" @ $cellwo \n"
+           if (_ebutton ==1) {
+          sWo(cellwo,@cellbhue,_erow,_ecol,BLACK_);
 	  sWo(cellwo,@cellval,_erow,_ecol,"1");
 	  sWo(cellwo,@celldraw,_erow,_ecol);
-       }
-       else if (_ebutton ==3) {
-         sWo(cellwo,@cellbhue,_erow,_ecol,WHITE_);
-	 sWo(cellwo,@cellval,_erow,_ecol,"0");
-	 sWo(cellwo,@celldraw,_erow,_ecol);
-       }
-         // want update/redraw cell
-         //sWo(cellwo,@redraw);
-
-    }
+          }
+          else if (_ebutton ==3) {
+           sWo(cellwo,@cellbhue,_erow,_ecol,WHITE_);
+	   sWo(cellwo,@cellval,_erow,_ecol,"0");
+	   sWo(cellwo,@celldraw,_erow,_ecol);
+          }
+           break;
     
-       if (_ewoid == savewo) {
-
-         fname =  queryw("F_NAME","font name","A");
+      case SAVE:
+          <<" @ %V $savewo \n"
+         fname =  queryw("F_NAME","font name","$fname");
          sWo(cellwo,@name,fname);
 	 sWo(cellwo,@sheetmod,1); // this instructs GM to write the SS
 	 sWi(aw,@tmsg,"saving_the_font ");
          sWi(aw,@redraw)
 
-       }
+       break;
 
-      if (_ewoid == clearwo) {
+      case CLEAR:
+                   <<" @ $clearwo \n"
 	 sWo(cellwo,@cellbhue,-2,-2,WHITE_); // row,col -2,-2 all cells
          sWo(cellwo,@cellval,-2,-2,"0");
 	 sWi(aw,@tmsg,"clearing_the_font ");
 	 sWo(cellwo,@redraw);
 	 sWo(clearwo,@redraw);
-        }
+       break;
 
-        if (_ewoid == refreshwo) {
+       case REFRESH:
 	   sWo(cellwo,@redraw);
 	   sWo(refreshwo,@redraw);
-         }
+       break;
 	
-       if (_ewoid == qwo) {
+      case  QUIT:
 	 sWi(aw,@tmsg,"Quit");
 	 <<" exit $(getscript()) \n"
-         break;
-        }
+          rloop = 0;
+       break;
 
-       if (_ewoid == rdwo) {
+       case READ:
+           <<" doing read  $rdwo\n";
+	   
             fname =  queryw("F_NAME","font name","A");
             sWo(cellwo,@name,fname);
             sfname ="${fname}.sst"
@@ -341,10 +364,8 @@ eventWait();
 	         wos2mat();
 		 mat2wos();
                 sWi(aw,@redraw)
-        }
-
-
-       if (_ewoid == nxtwo) {
+        break;
+       case NEXT:
 	     ce = pickc(fname,0);
              ce++;
              fname = "%c$ce";
@@ -361,48 +382,63 @@ eventWait();
 	     wos2mat();
              mat2wos();
              sWi(aw,@redraw)
-        }
+        
+       break;
+       case PREV:
+	     ce = pickc(fname,0);
+             ce--;
+             fname = "%c$ce";
+            sWo(cellwo,@name,fname);
+            sfname ="${fname}.sst"
 
-     if (_ewoid == mopuwo) {
+            tfz = fexist(sfname);
+	    <<"$sfname $tfz\n"
+           if (tfz > 0) {
+              isok =sWo(cellwo,@sheetread,sfname);
+              sWi(aw,@tmsg,"reading_the_font $sfname $isok");
+	      sWo(cellwo,@selectrowscols,0,rows-1,0,cols-1);
+             }
+	     wos2mat();
+             mat2wos();
+             sWi(aw,@redraw)
+       break;
+     case  UP:
 
        wos2mat();
        LM= cyclerow(LM,-1)
         mat2wos();
 	sWo(cellwo,@redraw);
         sWo(mopuwo,@redraw);
-     }
-     else if (_ewoid == moplwo) {
+       break;
+     case LEFT:
         wos2mat();
         LM= cyclecol(LM,-1)
         mat2wos();
 	sWo(cellwo,@redraw);
         sWo(moplwo,@redraw);	
-     }
-     else if (_ewoid == moprwo) {
+      break;
+     case RIGHT:
         wos2mat();
         LM= cyclecol(LM,1)
         mat2wos();
 	sWo(cellwo,@redraw);
         sWo(moprwo,@redraw);		
-     }
-     else if (_ewoid == mopdwo) {
+      break;
+     case DOWN:
         wos2mat();
         LM= cyclerow(LM,1)
         mat2wos();
 	sWo(cellwo,@redraw);
         sWo(mopdwo,@redraw);
-     }
-     else if (_ewoid == mocenwo) {
-
+       break;
+     case CENTER:
          centerImage()
 	sWo(cellwo,@redraw);
 	sWo(mocenwo,@redraw);
-     }
-//    _ewoid == save  then write values of sheet
-//    to name value  as save matrix rows x cols
-    
+       break;
 
-//<<"fflush $_eloop\n"
+    }
+
       fflush()
    }
 
