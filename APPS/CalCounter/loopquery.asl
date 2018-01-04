@@ -1,21 +1,21 @@
 ///
-
+///  loopquery
 ///
-/// want this to total up
-/// accept,reject or multiply quantity
+/// total up cals,carbs,...
+/// accept,reject or multiply quantity by factor
+/// cup to tablespoon 1/16
 /// for each query
-/// write to a day entry
+/// write to a day log file dd-04-09-2018
 /// 
 
 #define MAXFREC 50
 
-//Record R[MAXFREC];
 
 Record R[];
 
 int Rn = 0;
 
-float Cal_tot = 0;
+Cal_tot = 0.0;
 Carb_tot = 0.0;
 Fat_tot = 0.0;
 Prt_tot = 0.0;
@@ -41,80 +41,52 @@ proc showFitems()
 
 proc readDD( ddfn)
 {
-   //<<"Rsz $(Caz(R))\n"
-
+<<"$_proc \n"
+//<<"Rsz $(Caz(R))\n"
   // R=ReadRecord(ddfn,@del,',',@comment,"",@pickstr,"@=",0,"must")
 // found previous list
 // read in lines and add to record
-   R=ReadRecord(ddfn,@del,',') ; // reads as records all lines except those starting with #
+
+   R=ReadRecord(ddfn,@del,',') ;
+   //R=ReadRecord(ddfn,@del,44) ;
+   // reads as records all lines except those starting with #
    Rn = Caz(R);
 
-   //<<"$Rn Rsz $(Caz(R))\n"
+   <<"$Rn Rsz $(Caz(R))\n"
 
    R[15][0] = "#";
 
- //  <<"Rsz $(Caz(R))\n"
+<<" first rec $R[0]\n"
+<<"1 desc <|${R[0][0]}|>\n"
+<<"1 cals <|${R[0][1]}|>\n"
+<<"2 carbs $R[0][2] \n"
+
+//  <<"Rsz $(Caz(R))\n"
 //
 //  check for comment - else read and set food record item
 
-
-/{/*
-int maxlns = 100;
-int k = 0;
-     while (1) {
-     k++;
-     ddline = readline(ddfn,200);
-     if (ferror(ddfn) == 6) {
-<<" @ EOF   %v$Rn food items processsed\n"
-       break;
-     }
-
-     if (scmp(ddline,"#",1)) {
-<<"skip comment $ddline \n";
-     }
-     else {
-
-     R[Rn] = Split(ddline,",");
-<<"adding food record $Rn $ddline \n";
-<<"adding food record $R[Rn] \n";     
-     Rn++;
-     }
-     
-     if (Rn >= MAXFREC) {
-   <<" you should be fullup !\n"
-       break;
-     }
-     if (k > maxlns) {
-<<"file too long \n"
-      break;
-     }
-     
-    }
-
-<<"%V $k $Rn\n"
-/}*/
 
 }
 //==================================
 proc writeDD()
 {
-  B= ofile(the_day,"w")
-  <<[B]"# Food                  Amt Unit Cals Carbs Fat Protein Chol(mg) SatFat Wt\n"
-
-
-<<"%(1,>>, || ,<<\n)$R[::]\n"
+  B= ofile(the_day,"w");
+  
+  <<[B]"# Food                       Amt Unit Cals Carbs Fat Protein Chol(mg) SatFat Wt\n"
 
 //  NR = R[0:Rn];
 //<<"$NR[0] $NR[::]\n"
 //<<"%(1,>>, || ,<<\n)$NR[::]\n"
 
-
-
   writeRecord(B,R,"#");
+  //writeRecord(B,R,",");
 
   computeTotals();
- <<[B]"# totals %4.1f$Cal_tot $Carb_tot $Fat_tot $Prt_tot $Chol_tot $SatF_tot\n"
+
+<<[B]"# totals %4.1f$Cal_tot $Carb_tot $Fat_tot $Prt_tot $Chol_tot $SatF_tot\n"
   cf(B)
+
+<<"%(1,>>, || ,<<\n)$R[::]\n"
 }
 //==================================
 proc computeTotals()
@@ -128,14 +100,15 @@ proc computeTotals()
    for (ir =0; ir < Rn; ir++) {
      ok=scmp(R[ir][0],"#",1);
     if (!scmp(R[ir][0],"#",1)) {
-    //<<"adding rec $ir $ok\n"
+   //<<"adding rec $ir $R[ir][0] \n"
       Cal_tot += atof(R[ir][3]);
       Carb_tot += atof(R[ir][4]);
       Fat_tot += atof(R[ir][5]);
       Prt_tot += atof(R[ir][6]);
       Chol_tot += atof(R[ir][7]);
       SatF_tot += atof(R[ir][8]);                        
-      }
+     // <<"adding rec $ir $ok $Cal_tot \n"
+       }
      }
 }
 //==================================
@@ -157,10 +130,8 @@ while (1) {
 
   if (scmp(ans,"save",1)) {
   
-  // if (ret) {
      writeDD();  // update?
-  // }
-
+  
    continue;
   }
 
@@ -227,16 +198,22 @@ while (1) {
 
   cookans=i_read("cook method/extra description [f]ried, [b]oiled, [r]aw $cookans ? : ")
   x_desc = "raw";
-  if (! (cookans @="") ) {
-    if (cookans @="f"){
+  
+  if (! (cookans @= "") ) {
+    if (cookans @= "f"){
        x_desc = "fried";        
     }
-    if (cookans @="b"){
+    else if (cookans @= "b"){
        x_desc = "boiled";        
-    }    
+    }
+    //else if (cookans @="q"){
+   //    break;        
+   // }        
     else {
        x_desc = cookans
     }
+
+<<"cook method $cookans  $x_desc\n"
       myfood = scat(myfood,",$x_desc");
   }
 
@@ -271,6 +248,11 @@ while (1) {
   }
 
     f_amt = 1.0;
+    
+///
+///  if listed as cup and asked for tablespoon -- adjust quantities by 0.0625
+/// 
+
 /{
 //  aans = i_read("amt %3.2f$f_amt ?: ")
 if (!(aans @="") ) {
@@ -289,6 +271,7 @@ if (fnd) {
     float mf = 1.0;
     
     mf = f_amt;
+    
 //    <<"should be scalar!! %V $f_amt\n"
 //    <<"should be scalar! %V $mf \n"
     
@@ -329,3 +312,6 @@ if (fnd) {
  }
  return ret;
 }
+
+
+//========================================

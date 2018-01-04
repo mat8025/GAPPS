@@ -27,24 +27,25 @@
 
 setdebug(1) ;
 
-
 version = "1.5";
 
-<<"$_clarg[0] $version \n"
+ele = spat( pt(atoi(spat(version,".",1))) ,",");
+
+<<"$_clarg[0] $version $ele \n"
 
 adjust_day = 0;
 
 //#define DBPR <<
-#define DBPR
+#define DBPR ~!
 
  f_unit = "item";
  
  float f_amt = 1.0;
 
 
-include "food_class";
+include "foodclass";
 
-include "parse_foodtable" ;
+include "parsefood" ;
 
 include "checkFood";
 
@@ -135,7 +136,7 @@ DBPR"%v$nlines\n"
 
 
 /////////////////////////////// UI /////////////////////////////////
-include "loopquery"
+#include "loopquery"
 
 
 ///////// dd_log_file ////////////
@@ -146,14 +147,14 @@ if (!adjust_day) {
  the_day = "dd_${ds}";
 }
 
-
-
  ok=fexist(the_day,0);
 
 <<"checking this day $the_day summary exists? $ok\n";
+
 found_day = 0;
-if (ok >0) {
-//<<"$('PRED_') found the day $('POFF_')\n"
+
+ if (ok >0) {
+<<"$('PRED_') found the day $('POFF_')\n"
  B= ofile(the_day,"r+");
  readDD(B);
  cf(B);
@@ -161,12 +162,9 @@ if (ok >0) {
  //fseek(B,0,2);
  }
 
-
-
  if (found_day) {
    showFitems();
  }
-
 
 
 do_loop = 1;

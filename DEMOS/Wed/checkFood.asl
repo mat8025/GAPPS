@@ -1,6 +1,7 @@
 ///
 //////////////////////////////////////
 <<"including checkFood\n"
+
 int txtwo = 0
 the_carbs = 0
 the_cals = 0
@@ -21,7 +22,7 @@ str the_unit
 svar food_d;
 int nfd = 0;
 
-<<" $_proc looking for $f_amt $f_unit of $myfood \n"
+<<" $_proc looking for %6.2$f_amt $f_unit of $myfood \n"
 
   the_unit = "1";
 
@@ -156,7 +157,7 @@ looked_twice =0
 
 //i_read()
 
-<<"%V$the_amt $f_amt \n"
+<<"%V%4.2f$the_amt $f_amt \n"
 
         if (the_amt == f_amt) {
            amt_fit = 1;

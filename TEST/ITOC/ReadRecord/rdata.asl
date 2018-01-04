@@ -3,7 +3,7 @@
 A=ofr(_clarg[1])
 
 
-D=rdata(A,FLOAT)
+D=rdata(A,FLOAT_)
 
 <<"$D\n"
 

@@ -1,3 +1,7 @@
+///
+/// 
+///
+
 setdebug(1)
 
 
@@ -7,20 +11,68 @@ setdebug(1)
 
 
 //R=ReadRecord("record.txt",@del,',',@comment,"")
-R=ReadRecord("record.txt",@del,',',@comment,"",@pickstr,"@=",0,"must")
+
+//R=ReadRecord("record.txt",@del,',',@comment,"#",@pickstr,"@=",0,"must")
+
+//R=ReadRecord("record_sp.txt")
+
+R=ReadRecord("record_sp.txt",@del,32)
 
 
-<<"$(typeof(R)) $(cab(R))\n"
+<<"%V $(typeof(R)) $(cab(R))\n"
+
+nb = Cab(R);
 
 
-<<"$R[0]\n"
+<<"%V$nb $(typeof(nb))\n"
+
+<<"%V$R[0][0] \n"
+
+<<"%V$R[0][1]\n"
+
+<<"%V$R[0][2]\n"
+
 <<"$R[1]\n"
-<<"$R[2]\n"
+
+ for (i= 0; i < 3; i++) {
+<<"%V$R[2][i] \n"
+ }
 
 
 <<"================\n"
-<<"$R[0:4]\n"
 
+
+<<"$R[::]\n"
+
+
+R=ReadRecord("record.csv",@del,',');
+
+nb = Cab(R);
+
+
+<<"%V$nb $(typeof(nb))\n"
+
+<<"%V$R[0][0] \n"
+
+<<"%V$R[0][1]\n"
+
+<<"%V$R[0][2]\n"
+
+<<"$R[1]\n"
+
+ for (i= 0; i < 3; i++) {
+<<"%V$R[2][i] \n"
+ }
+
+
+<<"================\n"
+
+
+<<"$R[::]\n"
+
+
+
+exit();
 
 
 bd = Cab(R)

@@ -22,11 +22,31 @@ ret = 0
 
    switch (wc) {
 
-    case 1:
 
+    case -1:  // -1
+
+<<"in  case -1 \n"
+     foo()
+     ret = -1;
+
+     break;
+
+// alerts to missing :     case 0 34
+//    case 0 34 // bad
+     case 0:
+<<"in  case 0 \n"
+     foo()
+     ret = 0;
+
+     break;
+
+  //BUG  case (0+1): // no constant expression!!
+//BUG does not alert fo following code    case 1:  x+5
+     case 1: // 1
 <<"in  case 1 \n"
      foo()
      ret = 1;
+
      break;
 
     case 2:
@@ -71,7 +91,7 @@ ret = 0
 <<" in case 7 $kc\n"
 
         }
-       CheckNum((kc-1),wc)
+       CheckNum((kc-1),wc) // no ;
 
       ret = 7;
       }
@@ -79,7 +99,7 @@ ret = 0
 
     case 8:
       {
-        kc = 2
+        kc = 2 ; // here we are
         switch (kc) {
            case 1:
            <<" in embedded switch case 1\n"
@@ -92,10 +112,13 @@ ret = 0
       }
      break;
 
-    default:
+// BUG    default: // no trailing comment
 
-<<"in  default case  \n"
+// BUG is not ignoring trailing commnet   default:  // this is the default
+    default:
+    // x=2;
      ret = 1234567;
+<<"in $wc default case $ret \n"
      break;
   }
 
@@ -105,7 +128,7 @@ ret = 0
     return ret
 }
 
-
+//=====================
 
 
 
@@ -222,6 +245,14 @@ D = 0
     rc =testSW(8)
 
     CheckNum(rc,8)
+
+    rc =testSW(-1)
+
+    CheckNum(rc,-1)
+
+    rc =testSW(0)
+
+    CheckNum(rc,0)
 
     CheckOut()
 

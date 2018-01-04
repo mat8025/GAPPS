@@ -75,6 +75,8 @@ const float _kg2lb = 2.204586
 const float _cuft2cum = 0.0283
 
 const float _troyoz2gram = 31.103
+const float _tbspcup = 16;
+const float _tsptbsp = 3;
 
 //<<" %v $troyounce2gram = 31.103 \n"
 
