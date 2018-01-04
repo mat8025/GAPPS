@@ -44,12 +44,6 @@ proc eventDecode()
     ev_button = _ebutton;
     ev_keyc = _ekeyc;
 
-    // ev_id = Ev->getEventID();
-    // etype = Ev->getEventEtype();        
-    // ev_woid = Ev->getEventWoid();
-    // ev_woaw = Ev->getEventWoaw();        
-    // ev_button = Ev->getEventButton();
-    // ev_keyc = Ev->getEventKey();
 
     Cev->id = _eid;
     Cev->button = _ebutton;;
@@ -59,7 +53,12 @@ proc eventDecode()
     _ewoproc = Ev->getEventWoProc();
         ev_woproc = _ewoproc;
 
+
+//  Motion event -- will have 1 or more 'event' readings
+//  read these into array or rxy and erow-col
+
     Ev->geteventrxy(&_erx,&_ery);
+
     ev_rx = _erx;
     ev_ry = _ery;
     
