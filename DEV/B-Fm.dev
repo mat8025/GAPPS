@@ -7,11 +7,25 @@
 ===================
 
 [2] ///////////////////////////////////////
-switch - allows negative cases -- constant
+ switch - allows zero,negative cases -- was just positive
+
 ===========================
 
 [3] ////////////////////////////////////////
  sWo( cellval, r,c,R,C, M)
  sets subset of spreadsheet to values in matrix
  ===========================
- 
+
+[4] ////////////////////////////////////////
+ #include "abc"
+ and
+ include "abc"
+ both include the abc.asl file if found
+ ===========================
+
+
+
+
+////  Current Score /////
+Thu Jan  4 05:46:36 2018 Modules 355 Tests 2365  Passed 2343  Score  99.07 Fail 4 Crash 1 vers 5.100 B-Fm
+

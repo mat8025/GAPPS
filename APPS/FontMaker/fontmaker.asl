@@ -6,7 +6,7 @@
 
 //envdebug()
 setDebug(1);
-vers = "1.2"
+vers = "1.3"
 
 /////////////////////////////////////////////////////////
 
@@ -231,6 +231,7 @@ enum fmcase {
 };
 
 
+
  int mwos[] = { mopuwo, moplwo, moprwo, mopdwo, mocenwo};
 
  wovtile ( mwos, 0.91,0.41,0.99,0.70);
@@ -298,21 +299,31 @@ eventWait();
       }
 
       cname = fmcase->enumNameFromValue(skey);
-<<"%V $index $_ewoid $skey $cname  \n"
+
+<<"%V $index $_ewoid $skey $cname  $_ebutton \n"
 
       switch (skey) {
 
          case  SHEET:
-          <<" @ $cellwo \n"
+          <<" @ $cellwo $skey $_ebutton\n"
            if (_ebutton ==1) {
+           <<"%V $_ebutton $_erow $_ecol -->  1 BLACK\n"
+
           sWo(cellwo,@cellbhue,_erow,_ecol,BLACK_);
-	  sWo(cellwo,@cellval,_erow,_ecol,"1");
+	  sWo(cellwo,@cellval,_erow,_ecol,"1.0");
 	  sWo(cellwo,@celldraw,_erow,_ecol);
+	  
+	  
           }
-          else if (_ebutton ==3) {
+         // else if (_ebutton ==3) {
+	   elseif (_ebutton ==3) {
+
+           <<"%V $_ebutton $_erow $_ecol --> 0 WHITE\n"
            sWo(cellwo,@cellbhue,_erow,_ecol,WHITE_);
 	   sWo(cellwo,@cellval,_erow,_ecol,"0");
 	   sWo(cellwo,@celldraw,_erow,_ecol);
+	    
+	    
           }
            break;
     

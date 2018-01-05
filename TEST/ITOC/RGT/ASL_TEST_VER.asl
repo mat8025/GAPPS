@@ -780,7 +780,6 @@ if ( do_all || do_if ) {
 
   Run2Test("If")
 
-
   cart("if0",10)
 
   cart("if4")
@@ -788,6 +787,8 @@ if ( do_all || do_if ) {
   cart("md_assign")
 
   cart("if5")
+
+  cart("if_b")
 
   cart("if6")
 
@@ -838,6 +839,7 @@ if ( do_all || do_while ) {
   Run2Test("While")
 
   cart("while0", 10)
+  cart("while7", 10)
 
   updir()
 

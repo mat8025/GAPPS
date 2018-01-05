@@ -155,8 +155,8 @@ if (A == -1) {
 
 
 ////////////////// READ CEX DATA ///////////////////
-include "wed_goals"
-include "wed_read"
+#include "wed_goals"
+#include "wed_read"
 
 
 
