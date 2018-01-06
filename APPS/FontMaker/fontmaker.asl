@@ -314,10 +314,8 @@ eventWait();
 	  sWo(cellwo,@celldraw,_erow,_ecol);
 	  
 	  
-          }
-         // else if (_ebutton ==3) {
-	   elseif (_ebutton ==3) {
-
+          }         elseif (_ebutton ==3) {
+          //elif (_ebutton ==3) {
            <<"%V $_ebutton $_erow $_ecol --> 0 WHITE\n"
            sWo(cellwo,@cellbhue,_erow,_ecol,WHITE_);
 	   sWo(cellwo,@cellval,_erow,_ecol,"0");

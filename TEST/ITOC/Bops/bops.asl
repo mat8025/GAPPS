@@ -1,5 +1,5 @@
 
-setdebug(1,"~pline","~trace")
+setdebug(0,"~pline","~trace")
 
 checkIn()
 
@@ -227,6 +227,19 @@ CheckNum(h,-4);
 float q=-7;<<"$q\n"
 
 CheckFNum(q,-7);
+
+  int sum = 0;
+  double mi = 1;
+  N = 1000;
+  for (k = 0; k < N; k++) {
+
+    sum += k;
+    mi *= k;
+
+  }
+
+<<"%V $sum  $k  $(k*N/2) $mi\n"
+
 
 CheckOut()
 

@@ -44,7 +44,8 @@ int n_modules = 0
 int rt_tests = 0
 int rt_pass = 0
 int rt_fail = 0
-
+int i_time = 0;
+int x_time = 0;
 
 
 Todo=ofw("to_test")
@@ -104,24 +105,38 @@ proc scoreTest( tname)
 //<<"in scoreTest $c_proc $tname $RT \n"
 
        if (RT != -1) {
-
+//<<"$tname\n"
           fseek(RT,0,2)
 
           seekLine(RT,-1)
 
           rtl = readline(RT)
           rtwords = Split(rtl)
+	//  <<"%V $rtwords \n"
           ntests = atoi(rtwords[4])
           npass =  atoi(rtwords[6]);
           pcc = npass/(ntests*1.0) *100
 
           rt_tests += ntests;
           rt_pass += npass;
+	  took = rtwords[12];
+	  tmsecs =atoi(took);
+	  wextn = scut(tname,-4);
+	 // <<"$tname $wextn \n"
+          if ((sele(tname,-1,-4)) @= "xtst") {
+            x_time += tmsecs; 
+	    	    //<<"%V $x_time\n"
+          }
+	  else {
+	    i_time += tmsecs;
+	    //<<"%V $i_time\n"
+          }
+	  
 if (pcc < 100){
- <<"$(PRED)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\%$(POFF)\n"
+ <<"$(PRED)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\%$(POFF) took $took msecs\n"
 }
 else {
- <<"DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\%\n"
+ <<"DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs\n"
 }
 <<[Opf]"DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\%\n"
  
@@ -1556,7 +1571,7 @@ dtms= FineTimeSince(TM);
 secs = dtms/1000000.0
 
 
-<<"script vers $(periodicName(vers))($vers) took%6.3f$secs secs\n"
+<<"script vers $(periodicName(vers))($vers) took %6.3f$secs secs %d %V $i_time $x_time\n"
 
 STOP()
 
