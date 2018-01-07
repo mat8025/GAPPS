@@ -166,7 +166,7 @@ R = Tar1 @+ Tar2 @+ Tar3 @+ Tar4;
 <<"$(Caz(R))\n"
 /}*/
 
-<<"done prepare pattens --- all concatted to vec T\n"
+<<"done prepare patterns --- all concatted to vec T\n"
 
 // TBF xic @+   ???
 

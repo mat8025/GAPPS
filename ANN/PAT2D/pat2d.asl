@@ -3,7 +3,7 @@
 ///
 
 
-envdebug()
+//envdebug()
 
 Graphic = 0;
 
@@ -170,15 +170,19 @@ int do_print = 0;
 
 float Rms[1000+] ; //  contains rms error per sweep
 
-int Npats = 130;
+
+//int Npats = 130;
+
+int Nlet = 26; // the alphbet -- jostled around in the image matrix
+
+int Npats = Nlet * 5;
+
+
 <<"$Npats \n"
 
 //float Input[Npats*25];  // 5 x 5 matrix
 
 //<<"%(5,, ,\n)$Input \n";
-
-
-
 
 
  N= getNet();
@@ -187,7 +191,7 @@ int Npats = 130;
 //ans=iread();
 
  layers = 3;
- nin = 100;
+ nin = 32*20;
  nout = 26;
 
 <<"%V $layers $nin $nout \n"
@@ -199,7 +203,7 @@ int Npats = 130;
 //<<"%(9,, ,\n)$Target \n";
 
 
-int n_first_hid = 9;
+int n_first_hid = 20;
 int n_second_hid = 0;
 
 
@@ -210,8 +214,8 @@ float theta = 0.95;
 
 ntype = "sff"
 
-int nsweeps = 20000;
-int rshaken = 20000;
+int nsweeps = 30000;
+int rshaken = 8000;
 
 
 cla = 1
@@ -429,19 +433,26 @@ int wp = 1
 
 int pit;
 int ma = 0;
+
+int n_success = 0;
  while (1) {
 
 Rtrain()
 
-ma++
+ma++;
 <<"[${ma}] %V $nc \n"
 
-if (nc >= 129) {
- ok= saveNet(N,"net_${ma}.wts")
-}
- if (nc == 130) {
+ if (nc >= (Npats-1)) {
+   ok= saveNet(N,"net_${ma}.wts")
+ }
+ if (nc == Npats) {
 <<" success @ $ma attempt \n"
-  }
+     n_success++;
+     if (n_success ==3) {
+     <<" trained successfully $n_success times! enough already!\n"
+        break;
+     }
+ }
   
  }
 
@@ -451,7 +462,6 @@ exit()
 
 
 /{/*
-
 
    now need to train on block letters in 4 diff positions
    and test on letter in different position from test (or mix of positions)
@@ -465,36 +475,3 @@ exit()
 
 
 
-
-/{/*
-// init of array is all zeros
-// each input should trigger  different cell in output vec
-int jj = 0;
-int k1 = -1;
-
-for (k = 0; k < Npats ; k++) {
-  if ((k%2)==0) {
-     k1++;
-  }
-  jj = (k*nout) + k1 ;
-  Target[jj] =1;
-<<"$jj\n"
-}
-
-<<" $(Caz(Target)) $(Cab(Target))\n"
-<<"%6.1f $Target[0:25] \n"
-
-ti = 0
-fi = 25;
-
-<<"%6.1f $Target[ti:fi] \n"
- for (j = 0; j < 52; j++) {
-<<"[${j}] $ti || %6.0f $Target[ti:fi] \n"
-ti += 26;
-fi += 26
-
-//ans=iread();
-}
-
-<<"%6.1f %($nout,, ,\n)$Target \n"
-/}*/

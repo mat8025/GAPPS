@@ -661,11 +661,13 @@ int do_ptrs = 0;
 
   if (do_all  || do_vops) {
 
-   Run2Test("Vops")
+  Run2Test("Vops")
 
   cart("vops")
   cart("vopsele")
-
+  updir()
+  changeDir("Veccat")
+  cart("veccat")
   updir()
 
   }
