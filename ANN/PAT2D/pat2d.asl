@@ -53,7 +53,7 @@ while (do_train) {
   pit = (!(ns % 1000));
 
   nc= train_net(N, Input, Target, NBS, Output, Opc);
-
+  ns += NBS;
   nc /= NBS;
 
   if (nc > last_nc) {
@@ -87,7 +87,7 @@ while (do_train) {
 
 
 
-<<"$ma %V$ns  $nc $ss[0] $rms\n"
+<<"$ma $n_success %V$ns  $nc $ss[0] $rms\n"
 
 
 if ( rms < 0.1) {
@@ -111,7 +111,7 @@ if ( rms < 0.1) {
   //   break;
  }
 
- ns += NBS;
+
 
 }
 //===================================
@@ -132,7 +132,7 @@ if ( rms < 0.1) {
 if (nc >= 129) {
  PrgFn= ofw("Progress_$ma");
  <<"Progress_$ma ?\n";
-<<[PrgFn]"==$ma $nc ===================\n";
+<<[PrgFn]"==$ma $n_success $nc ===================\n";
  char ce = 65;
  int j = 0;
  for (i=1 ; i<=26; i++) {
@@ -361,16 +361,19 @@ nip_pats = ntargs;
 
 //include "patprep.asl"
 
+data_dir = "../DATA";
 
-A=ofr("trip.dat")
+A=ofr("$data_dir/trip.dat")
 Input=rdata(A,FLOAT_);
 cf(A)
 
 <<" $(Caz(Input)) $(Cab(Input)) \n"
 
-A=ofr("trop.dat")
+A=ofr("$data_dir/trop.dat")
 Target=rdata(A,FLOAT_);
 cf(A)
+
+<<" $(Caz(Target)) $(Cab(Target)) \n"
 
 Output = Target;  // use to see actual net output per pattern
 
