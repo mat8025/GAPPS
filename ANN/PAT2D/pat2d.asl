@@ -171,11 +171,13 @@ int do_print = 0;
 float Rms[1000+] ; //  contains rms error per sweep
 
 
-//int Npats = 130;
+int Nfnts = 2; // number of fnt sets
 
 int Nlet = 26; // the alphbet -- jostled around in the image matrix
 
-int Npats = Nlet * 5;
+int Njost = 4;
+
+int Npats = Nlet * (Njost+1) * Nfnts;
 
 
 <<"$Npats \n"
@@ -214,7 +216,7 @@ float theta = 0.95;
 
 ntype = "sff"
 
-int nsweeps = 30000;
+int nsweeps = 34000;
 int rshaken = 8000;
 
 
@@ -360,13 +362,13 @@ nip_pats = ntargs;
 //include "patprep.asl"
 
 
-A=ofr("alptrip.dat")
+A=ofr("trip.dat")
 Input=rdata(A,FLOAT_);
 cf(A)
 
 <<" $(Caz(Input)) $(Cab(Input)) \n"
 
-A=ofr("alptrop.dat")
+A=ofr("trop.dat")
 Target=rdata(A,FLOAT_);
 cf(A)
 
