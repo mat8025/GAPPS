@@ -36,6 +36,8 @@ proc usage()
 
 int NBS = 100; // sweeps at one train call
 
+
+
 proc Rtrain()
 {
 
@@ -57,7 +59,7 @@ while (do_train) {
   nc /= NBS;
 
   if (nc > last_nc) {
-    if (nc > 125) {
+    if (nc > (Nbar)) {
      bell()
      sleep(0.1);
      }
@@ -179,6 +181,7 @@ int Njost = 4;
 
 int Npats = Nlet * (Njost+1) * Nfnts;
 
+int Nbar = (Npats * 0.9);
 
 <<"$Npats \n"
 

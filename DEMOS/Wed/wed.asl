@@ -371,11 +371,12 @@ int button = 0
    ZIN();
 
 woname = ""
-gevent E;
+
 resize_screen();
 drawScreens();
 showTarget();
 
+include "gevent"
 
 
    while (1) {
