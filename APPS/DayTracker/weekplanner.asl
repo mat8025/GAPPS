@@ -95,7 +95,23 @@ A=ofw("Howlong.m")
 <<[A],"help  four hours\n"
 cf(A)
 
+
+
 //////////////////////////
+
+A=ofw("Quit.m")
+<<[A],"title QuitPlanner? \n"
+<<[A],"item Yes No Save M_VALUE Yes\n"
+<<[A],"help quit Save?\n"
+<<[A],"item Save->Quit M_VALUE Save\n"
+<<[A],"help quit Save first?\n"
+<<[A],"item No M_VALUE No\n"
+<<[A],"help return to planning\n"
+
+cf(A)
+
+/////////////////////////////
+
 
 
 ////////////////////
@@ -162,14 +178,14 @@ nd++;
 
  // check find and read in sheet_wk_year - 
  // what week are we in?
- // is Week_#_yr.txt there ?
+ // is Week_#_yr  sst there ?
  // yes -read it in
 
   need_new =1;
 
   isok = 0;
   sheet_name = "Journal/WeekPlan_${wkn}_${yrn}";
-  sfname = "Journal/WeekPlan_${wkn}_${yrn}.txt";
+  sfname = "Journal/WeekPlan_${wkn}_${yrn}.sst";
 
 // make a window
 
@@ -180,6 +196,21 @@ nd++;
     sWi(aw,@clip,0.05,0.1,0.95,0.97)
 
     lbp = 0.09;
+
+
+ //////////////////////////////// TITLE BUTTON QUIT ////////////////////////////////////////////////
+ tbqwo=cWo(aw,@TB,@name,"tb_q",@color,WHITE_,@value,"QUIT",@func,"window_term",@resize,0.97,0,0.99,1);
+ sWo(tbqwo,@drawon,@pixmapon,@fonthue,RED_, @symbol,X_, @symsize,45,   @clip,0,0,1,1,@redraw);
+
+ tbrszwo=cWo(aw,@TB,@name,"tb_2",@color,WHITE_,@value,"RESIZE",@func,"window_resize",@resize,0.94,0,0.96,1)
+ sWo(tbrszwo,@DRAWON,@PIXMAPON,@FONTHUE,RED_, @symbol,PLUS_,  @symsize, 45, \
+ @clip,0,0,1,1,@redraw)
+
+
+ tbrdrwo=cWo(aw,@TB,@name,"tb_3",@color,WHITE_,@value,"REDRAW",@func,"window_redraw",@resize,0.92,0,0.938,1)
+ sWo(tbrdrwo,@DRAWON,@PIXMAPON,@FONTHUE,RED_, @symbol,DIAMOND_,  @symsize, 45, \
+ @clip,0,0,1,1,@redraw)
+
 
     awo=cWo(aw,"SHEET",@name,"$sheet_name",@color,GREEN_,@resize,lbp,0.01,0.98,0.99)
  // does value remain or reset by menu?
@@ -252,10 +283,10 @@ nd++;
  sWo(savewo,@border,@drawon,@clipborder,@fonthue,BLACK_, @redraw)
 
 
- qwo=cWo(aw,"BN",@name,"QUIT?",@value,"QUIT",@color,"orange",@resize_fr,0.02,0.01,lbp,0.14)
- sWo(qwo,@help," click to quit")
+ qwo=cWo(aw,"BN",@name,"QUIT",@value,"QUIT",@color,RED_,@resize_fr,0.02,0.05,lbp,0.14)
+ sWo(qwo,@help," click to save sheet")
  sWo(qwo,@border,@drawon,@clipborder,@fonthue,BLACK_, @redraw)
- sWi(aw,@redraw)
+
 
 
  wkwo=cWo(aw,@BV,@name,"Week",@value," $wkn",@color,BLUE_,@fonthue,RED_,@penhue,BLACK_)
@@ -341,25 +372,47 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
  sWo(awo,@redraw);
  sWi(aw,@tmsg,"weekplanner $vers");
  int nada = 0;
-   while (1) {
+
+	 sWo(awo,@cellbhue,0,-2,RED_); // row,col -2,-2 all cells
+         wr=1;
+         for (j = 1;j <=7; j++) {
+	 sWo(awo,@cellbhue,wr,-2,LILAC_); // row,col wr,-2 all cells in row
+         wr+=2;
+         }
+
+   loopon = 1;
+
+   while (loopon) {
+   
          nada = 0;
          eventWait();
 
-<<"%V $ev_woid  $qwo\n"
+<<"%V $_ewoid \n"
 
-        if (ev_woid == qwo) {
-	 sWi(aw,@tmsg,"Quit");
-	 <<" exit planner \n"
-         break;
-        }
 
-        if (ev_woid == savewo) {
+        if (_ewoid == savewo) {
 	 sWo(awo,@sheetmod,1);
 	 sWi(aw,@tmsg,"saving_the_week ");
             <<" saving_the_week \n"
         }
 
-        if (ev_woid == amwo) {
+        if (_ewoid == qwo) {
+	 //sWo(awo,@sheetmod,1);
+
+         <<"need to save !?!\n"
+	 
+	 sWi(aw,@tmsg,"quit_the_week ");
+            <<" save first ? quit \n"
+	    ans = popamenu("Quit.m")
+	    <<"save $ans\n"
+	    if (ans @="Yes") {
+	        loopon = 0;
+               // break;
+            }
+
+         }
+
+        if (_ewoid == amwo) {
 	 sWi(aw,@tmsg,"morning");
 	 <<" display morning cols\n"
          sWo(awo,@selectrowscols,0,14,0,51);
@@ -372,7 +425,7 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
          sWo(awo,@redraw);
         }
 
-        if (ev_woid == oowo) {
+        if (_ewoid == oowo) {
 	 sWi(aw,@tmsg,"good morning");
 	 <<" display morning cols\n"
          sWo(awo,@selectrowscols,0,14,0,51);
@@ -385,7 +438,7 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
          sWo(awo,@redraw);
         }
 
-        if (ev_woid == pmwo) {
+        if (_ewoid == pmwo) {
 	 sWi(aw,@tmsg,"afternoon");
 	 <<" display pm cols\n"
          sWo(awo,@selectrowscols,0,14,0,51);
@@ -397,7 +450,7 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
          }
 
 
-        if (ev_woid == evewo) {
+        if (_ewoid == evewo) {
 	 sWi(aw,@tmsg,"buenas noches");
 	 <<" display evening cols\n"
          sWo(awo,@selectrowscols,0,14,0,51);
@@ -408,7 +461,7 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
          }
 
 
-        if (ev_woid == daywo) {
+        if (_ewoid == daywo) {
 	 sWi(aw,@tmsg,"wholeday");
 	 <<" display pm cols\n"
          sWo(awo,@selectrowscols,0,14,0,51);
@@ -421,8 +474,8 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
 // which row col should be an event
 // erow,ecol
 
-    wrow = ev_row;
-    wcol = ev_col;
+    wrow = _erow;
+    wcol = _ecol;
     
     last_hue = BLACK_;
     <<"%V $ev_rx $ev_ry $wrow $wcol\n"
@@ -453,7 +506,7 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
            last_hue = RED_;
 	 }	 
 	 else if ((mans @= "Walk") ) {
-             last_hue = ORANGE_
+             last_hue = BLACK_
 
          }
 	 else if ((mans @= "Ski") ) {
@@ -466,7 +519,7 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
             last_hue = MAGENTA_;
 	 }	 
         else if ((mans @= "Francais") ) {
-            last_hue = YELLOW_;
+            last_hue = RED_;
 	 }
         else if ((mans @= "Russian") ) {
             last_hue = RED_;
@@ -475,10 +528,10 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
             last_hue = BLUE_;
 	 }
         else if ((mans @= "Sleep") ) {
-            last_hue = PINK_;
+            last_hue = BLUE_;
 	 }
         else if ((mans @= "Espanol") ) {
-            last_hue = YELLOW_;
+            last_hue = BLACK_;
 	 }	 	 	 
 	 else {
 	   <<"work $mans \n"
@@ -526,7 +579,7 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
 
 //===================================================  
 
- exit_gs(); // takes down XGS as well
+ exit(); // takes down XGS as well
  
 
 //////////// TBD ////////////////
@@ -557,7 +610,6 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
   weight entry -done
 
   rudimentary score
-
 
   add last actvity  whereever selected
 
