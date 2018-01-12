@@ -113,9 +113,7 @@ if ( rms < 0.1) {
   //   break;
  }
 
-
-
-}
+ }
 //===================================
 
 
@@ -131,7 +129,7 @@ if ( rms < 0.1) {
 
  ok= saveNet(N,"net.wts")
 
-if (nc >= 129) {
+if (nc >= 1) {
  PrgFn= ofw("Progress_$ma");
  <<"Progress_$ma ?\n";
 <<[PrgFn]"==$ma $n_success $nc ===================\n";
@@ -147,6 +145,8 @@ if (nc >= 129) {
   //goon = iread("again?\n");
   cf(PrgFn);
 }
+
+
   nc =testNet(N, Input, Target, 1); 
 
 /// TBF TBD   why the test nc 0??
@@ -155,7 +155,7 @@ if (nc >= 129) {
   
 <<"test pat2d - %V   $nc $pc\n"
 
- ok= saveNet(N,"net_tst.wts")
+   ok= saveNet(N,"net_tst.wts")
 
 }
 
@@ -213,7 +213,7 @@ int n_second_hid = 0;
 
 
 act = "LOGISTIC"
-float eta = 0.1;
+float eta = 0.05;
 float alpha = 0.9;
 float theta = 0.95;
 
@@ -445,14 +445,15 @@ int ma = 0;
 int n_success = 0;
  while (1) {
 
-Rtrain()
+  Rtrain()
 
-ma++;
+ ma++;
 <<"[${ma}] %V $nc \n"
 
- if (nc >= (Npats-1)) {
-   ok= saveNet(N,"net_${ma}.wts")
- }
+ 
+  ok= saveNet(N,"net_${ma}.wts")
+ 
+
  if (nc == Npats) {
 <<" success @ $ma attempt \n"
      n_success++;
@@ -461,7 +462,12 @@ ma++;
         break;
      }
  }
-  
+
+   if (ma == 7) {
+
+      break;
+   }
+
  }
 
 
