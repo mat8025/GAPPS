@@ -1,4 +1,10 @@
-#number date vers category [1-7] (1 ignore, 7=severe) status (PENDING,RECHECK,FIXED)  descr:<...> fix:<...>
+#
+date, num, desc,  priority,  status,   update,  code
+#date num desc  priority [1-7] (1 ignore, 7=severe) status (PENDING,RECHECK,FIXED)  update code_location
+# see bf_XXX.asl script for details on the fix , further requirements etc -these are added to regression test suite
+# in gapps/TEST/ITOC/RGT there is script  ASL_TEST_VER.asl  - which runs tests and bugfixes
+# if bug not fixed script will fail and report when regression test is run - the script will test most script functions and asl syntax
+#
 03/25/10,   61, main var overshadows cmf/proc arg?,3, RECHECK
 04/11/10,   62, { in CMF  -- str the_dir;   XIC error -- thinks it needs a number stored },3, RECHECK
 # lots of bugs and fixes meantime -- now @ version 4.80 ASL Release Mercury

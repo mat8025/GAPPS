@@ -8,8 +8,6 @@ setdebug(1)
 
 // read an record (all ascii fileds) to a RECORD variable
 
-
-
 //R=ReadRecord("record.txt",@del,',',@comment,"")
 
 //R=ReadRecord("record.txt",@del,',',@comment,"#",@pickstr,"@=",0,"must")

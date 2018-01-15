@@ -1,30 +1,35 @@
-OpenDll("image")
 
-//setdebug(0)
+
+setdebug(0)
 Pi = 4.0 * atan(1.0)
 
  redv = 0.5
  greenv = 0.5
  bluev = 0.5
+
 Graphic = checkGWM()
 
   if (!Graphic) {
     Xgm = spawnGWM()
   }
 
+include "tbqrd"
 
-    vp = CreateGwindow(@title,"Button",@resize,0.01,0.01,0.45,0.49,0)
+    vp = cWi(@title,"Button",@resize,0.01,0.01,0.45,0.49,0)
 
-    SetGwindow(vp,@pixmapon,@drawon,@save,@bhue,"white")
-    SetGwindow(vp,"scales",0,-0.2,1.5,1.5)
-    SetGwindow(vp,"clip",0.2,0.2,0.9,0.9)
-    SetGwindow(vp,@clipborder,"black",@redraw,@save)
-
-    vp2 = CreateGwindow(@title,"Colors","resize",0.51,0.1,0.99,0.99,0)
-    SetGwindow(vp2,@pixmapon,@drawon,@save,@bhue,"white")
+   titleButtonsQRD(vp);
 
 
-    txtwin = CreateGwindow("title","MC_INFO","resize",0.01,0.51,0.49,0.99,0)
+    SWi(vp,@pixmapon,@drawon,@save,@bhue,"white")
+    SWi(vp,"scales",0,-0.2,1.5,1.5)
+    SWi(vp,"clip",0.2,0.2,0.9,0.9)
+    SWi(vp,@clipborder,"black",@redraw,@save)
+
+    vp2 = cWi(@title,"Colors","resize",0.51,0.1,0.99,0.99,0)
+    SWi(vp2,@pixmapon,@drawon,@save,@bhue,"white")
+
+
+    txtwin = cWi("title","MC_INFO","resize",0.01,0.51,0.49,0.99,0)
 
 
   rx = 0.2
@@ -43,35 +48,36 @@ Graphic = checkGWM()
   cbX = 0.6
 
 
-  rwo=CreateGWOB(vp,"BV",@name,"Red",@value,"$redv",@style,"SVB")
+  rwo=cWo(vp,"BV",@name,"Red",@value,"$redv",@style,"SVB")
 
-  setGWOB(rwo,@color,"red",@penhue,"black",@vmove,1)
+  sWo(rwo,@color,"red",@penhue,"black",@vmove,1)
 
-  gwo=CreateGWOB(vp,"BV",@resize,gx,cby,gX,cbY,@NAME,"Green",@VALUE,"$greenv")
+  gwo=cWo(vp,"BV",@resize,gx,cby,gX,cbY,@NAME,"Green",@VALUE,"$greenv")
 
-  setGWOB(gwo,@color,"green",@penhue,"black",@style,"SVB",@symbol,"tri")
+  sWo(gwo,@color,"green",@penhue,"black",@style,"SVB",@symbol,"tri")
 
-  bwo=CreateGWOB(vp,"BV",@resize,bx,cby,bX,cbY,@NAME,"Blue",@VALUE,bluev)
+  bwo=cWo(vp,"BV",@resize,bx,cby,bX,cbY,@NAME,"Blue",@VALUE,bluev)
 
-  setGWOB(bwo,@color,"blue",@penhue,"black",@style,"SVB")
+  sWo(bwo,@color,"blue",@penhue,"black",@style,"SVB")
 
 
   int rgbwo[] = { rwo, gwo, bwo }
 
   wo_htile( rgbwo, cbx,cby,cbX,cbY,0.02)
-  setGWOB( rgbwo, @vmove,1, "setmsg",1 )
+  //sWo( rgbwo, @vmove,1, "setmsg",1 )
+  sWo( rgbwo, @vmove,1)
 
-  qwo=createGWOB(vp,"BV",@name,"QUIT?",@VALUE,"QUIT",@color,"orange",@resize,0.8,0.1,0.95,0.2)
+  qwo=cWo(vp,"BV",@name,"QUIT?",@VALUE,"QUIT",@color,"orange",@resize,0.8,0.1,0.95,0.2)
 
-  setgwob(qwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw)
+  sWo(qwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw)
 
-  setgwin(vp,"woredrawall")
+  sWi(vp,"woredrawall")
 
- two=createGWOB(txtwin,"TEXT",@name,"Text",@VALUE,"howdy",@color,"orange",@resize_fr,0.1,0.1,0.9,0.9)
+ two=cWo(txtwin,"TEXT",@name,"Text",@VALUE,"howdy",@color,"orange",@resize_fr,0.1,0.1,0.9,0.9)
 
- setgwob(two,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", "redraw",@pixmapon,@drawon)
+ sWo(two,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", "redraw",@pixmapon,@drawon)
 
- setgwob(two,@scales,-1,-1,1,1)
+ sWo(two,@scales,-1,-1,1,1)
 
 int awo[100]
 k = 0
@@ -80,20 +86,20 @@ k = 0
 
      for (k = 0; k < 100; k++) { 
    
-      awo[k]=CreateGWOB(vp2,"GRAPH",@name,"${k}_col")
+      awo[k]=cWo(vp2,"GRAPH",@name,"${k}_col")
    
-      setgwob(awo[k],@drawon,@color,index,@value,k)
+      sWo(awo[k],@drawon,@color,index,@value,k)
       index++
      }
 
 //<<"%v $awo \n"
 
-     setgwob(awo,@BORDER,@DRAWON,@CLIPBORDER)
+     sWo(awo,@BORDER,@DRAWON,@CLIPBORDER)
 
      worctile(awo,0.1,0.1,0.9,0.9,10,10)
 
-     setgwin(vp,@redraw)
-     setgwin(vp2,@redraw)
+     sWi(vp,@redraw)
+     sWi(vp2,@redraw)
 
 
 
@@ -102,103 +108,32 @@ k = 0
 int rgb_index = 32
 float WXY[]
 
+include "gevent"
 
-Svar msg
-
-E =1 // event handle
-
-int evs[16];
-button = 0
-Woid = 0
-Woname = ""
-Woproc = "foo"
-Woval = ""
-Evtype = ""
-int Woaw = 0
-
- redv = 0.1
- greenv = 0.1
- bluev = 0.1
- dv = 0.01
 
    while (1) {
 
-   msg = E->waitForMsg()
-
-//<<"msg $msg \n"
-
-
-   Mf = Split(msg)
-   E->geteventstate(evs)
-
-   Woname = E->getEventWoName()    
-   Evtype = E->getEventType()    
-   Woid = E->getEventWoId()
-   Woproc = E->getEventWoProc()
-   Woaw =  E->getEventWoAw()
-   Woval = getWoValue(Woid)
-   button = E->getEventButton()
+     eventWait()
 
 //   redv = atof( getWoValue(rwo))
 //   greenv = atof ( getWoValue(gwo))
 //   bluev =  atof (getWoValue(bwo))
-/{  
-  if ( button == 3) {
-      dv = 0.02
-  }
-  else 
-      dv = -0.02
-
-  if (Woname @= "Green") {
-   greenv += dv
-  }
-
-  if (Woname @= "Red") {
-   redv +=  dv
-  }
-
-  if (Woname @= "Blue") {
-   bluev +=  dv
-  }
-
-//<<"%3.2f$bluev $greenv $redv\n"
 
 
-
-
-   if (greenv > 1.0)
-       greenv = 0.0
-
-   if (bluev > 1.0)
-       bluev = 0.0
-
-   if (redv > 1.0)
-       redv = 0.0
-
-   if (greenv < 0.0)
-       greenv = 1.0
-
-   if (bluev < 0.0)
-       bluev = 1.0
-
-   if (redv < 0.0)
-       redv = 1.0
-/}
-
-   WXY= getWoPosition(gwo)
+   WXY= WoGetPosition(gwo)
 
   <<" $WXY \n"
 
   greenv = limitval(WXY[2],0,1)
-  WXY= getWoPosition(rwo)
+  WXY= wogetposition(rwo)
   redv = limitval(WXY[2],0,1)
 
-   WXY= getWoPosition(bwo)
+   WXY= wogetposition(bwo)
    bluev = limitval(WXY[2],0,1)
 
-   setgwob(rwo,@value,"%3.2f$redv",@update)
-   setgwob(gwo,@value,"%3.2f$greenv",@update)
-   setgwob(bwo,@value,"%3.2f$bluev",@update)
+   sWo(rwo,@value,"%3.2f$redv",@update)
+   sWo(gwo,@value,"%3.2f$greenv",@update)
+   sWo(bwo,@value,"%3.2f$bluev",@update)
 
    setRGB(rgb_index,redv,greenv,bluev)
 
@@ -254,14 +189,14 @@ int Woaw = 0
    jv = 0.0
    for (j = 0; j < 10 ; j++) {
 
-     if (Woname @= "Red") {
+     if (_ename @= "Red") {
        setRGB(ki,redv,bv,jv)
      }
 
-      elif (Woname @= "Blue") {
+      elif (_ename @= "Blue") {
         setRGB(ki,bv,jv,bluev)
       }
-      elif (Woname @= "Green") {
+      elif (_ename @= "Green") {
        setRGB(ki,bv,greenv,jv)
       }
       //<<"$ki $redv $bv $jv \n"
@@ -272,21 +207,23 @@ int Woaw = 0
    }
 
   
-   setGWOB(awo,@redraw)
+   sWo(awo,@redraw)
 
-   setGWOB(rwo,@VALUE,redv)
-   setGWOB(bwo,@VALUE,bluev)
-   setGWOB(gwo,@VALUE,greenv)
+   sWo(rwo,@VALUE,redv)
+   sWo(bwo,@VALUE,bluev)
+   sWo(gwo,@VALUE,greenv)
 
-   setgwob(two,@clear,@texthue,"black",@textr,"$msg\n $cname\n%V$button \n %V3.2f$redv $greenv $bluev",-0.9,0)
+   sWo(two,@clear,@texthue,"black",@textr,"$_emsg\n $cname\n%V$_ebutton \n %V3.2f$redv $greenv $bluev",-0.9,0)
 
-   if (scmp(msg,"QUIT",4)) {
-       break
+   if (_ewoid == qwo) {
+        break;
    }
 
    sleep(0.05)
 
   }
+
+
 
 
  exit_gs()

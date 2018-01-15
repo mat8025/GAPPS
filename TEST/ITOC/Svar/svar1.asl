@@ -1,5 +1,6 @@
 
 setdebug(1);
+
 CheckIn()
 
 //Svar msg[];
@@ -69,6 +70,43 @@ svar S = Split("how did we get here")
   CheckStr(r01,"did")
 
 
+Svar wval[];
+
+
+Svar asv;
+
+
+     wval[0] = "mark"
+     wval[1] = "terry"
+      wval[2] = "step"
+       wval[3] = "by"
+
+<<"wval $(caz(wval)) :: $wval[::] \n"
+
+
+     wval[4] = "increase elements?";
+
+<<"wval $(caz(wval)) :: $wval[::] \n"
+
+     wval[7] = "working to skip elements?";
+
+
+
+    asv = wval[0];
+
+    CheckStr(asv,"mark")
+
+   asv2 = wval[1]
+
+
+
+ <<"%V $asv2 \n"
+
+    CheckStr(asv2,"terry")
+
+<<"wval $(caz(wval)) :: $wval[::] \n"
+
+
 CheckOut()
 
 
@@ -79,28 +117,10 @@ STOP!
 
 
 
-Svar wval
-
-
-Svar asv
-
-
-     wval[0] = "mark"
-     wval[1] = "terry"
-
-
- asv = wval[0]
-
-    CheckStr(asv,"mark")
 
  <<" $asv \n"
 
- asv = wval[1]
-
-
- <<" $asv \n"
-
-    CheckStr(asv,"terry")
+ 
 
     CheckStr(asv,wval[1])
 

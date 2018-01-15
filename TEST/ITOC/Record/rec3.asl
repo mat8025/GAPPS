@@ -10,6 +10,10 @@ setDebug(1);
 
 record R[10];
 
+
+sz = Caz(R)
+<<"%V $sz\n"
+
 R[0] = Split("how many cols in this record?")
 
 <<"in record[0] we have:-  $R[0] \n"
@@ -19,6 +23,12 @@ R[0] = Split("how many cols in this record?")
 rf = R[0][2];
 
 <<"%V$rf $R[0][2]\n"
+
+nd = Cab(R)
+<<"%V $nd\n"
+
+sz = Caz(R)
+<<"%V $sz\n"
 
 checkStr(rf,"cols")
 

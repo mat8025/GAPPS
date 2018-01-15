@@ -38,12 +38,14 @@ Graphic = CheckGwm()
 
  sWo(cellwo,@setrowscols,rows,cols);
  sWo(cellwo,@sheetrow,0,0,"0,1,2,3,4,5,,7")
- sWo(cellwo,@sheetcol,1,0,"A,B,C,D")
+ sWo(cellwo,@sheetcol,1,0,"A,B,C,D,E,F,G")
 
  sWo(cellwo,@selectrowscols,0,rows-1,0,cols-1);
 
 int cv = 0;
-for (i = 1; i< rows ; i++) {
+
+
+    for (i = 1; i< rows ; i++) {
      for (j = 1; j< cols ; j++) {
          sWo(cellwo,@cellbhue,i,j,LILAC_);
 	 sWo(cellwo,@sheetcol,i,j,"$cv");
@@ -57,17 +59,15 @@ for (i = 1; i< rows ; i++) {
   while (1) {
 
          eventWait();
-	 
-         ev_woval = Ev->getEventWoValue();
-         ev_woname = Ev->getEventWoName();
 
-         if (ev_row > 0) {
-            the_row = ev_row;
+         if (_erow > 0) {
+            the_row = _erow;
          }
 
-   <<" $ev_msg %V $ev_keyw  $ev_woname $ev_woval \n"
-
+   <<" $_emsg %V $_ekeyw  $_ewoname $_ewoval \n"
+           sWo(cellwo,@redraw);
 
  }
 
-   stop!
+   exit()
+   

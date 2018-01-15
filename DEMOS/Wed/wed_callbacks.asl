@@ -108,16 +108,16 @@ proc WTLB()
 
        DBPR" setting cursors $button $Rinfo\n"
 
-       if (button == 1) {
-         lcpx = Rinfo[1];
+       if (_ebutton == 1) {
+         lcpx = _erx;
 	 <<"%V $lcpx\n"
          sGl(lc_gl,@cursor,lcpx,0,lcpx,300)
          getDay(lcpx);
 
         }
 
-       if (button == 3) {
-         rcpx = Rinfo[1]
+       if (_ebutton == 3) {
+         rcpx = _erx
          sGl(rc_gl,@cursor,rcpx,0,rcpx,300)
        }
 
@@ -145,8 +145,8 @@ proc RESIZE()
 //-------------------------------------------
 proc SWITCHSCREEN()
 {
-  if (msgw[0] @= "SWITCHSCREEN") { 
-     wScreen = atoi(msgw[1])
+  if (_ename @= "SWITCHSCREEN") { 
+     wScreen = atoi(_ewords[1])
     DBPR"Setting %V$wScreen msgw[1]\n"
       drawScreens()
   }

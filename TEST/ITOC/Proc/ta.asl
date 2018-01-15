@@ -2,7 +2,7 @@
 ///
 ///
 
-setDebug(1,"pline","trace","step")
+setDebug(1,"pline","trace","~step")
 
 k = 1;
 <<"$k\n"
@@ -10,7 +10,7 @@ k++;
 
 <<"$k\n"
 
-exit()
+
 
 
 
@@ -29,7 +29,7 @@ A = testargs(3);
 
 A=testargs(k,"pline","trace","step");
 <<"%(1, , ,,\n)$A\n"
-exit()
+
 
 <<"///////////////\n"
 <<"%(1, , ,,\n)$A\n"
@@ -69,4 +69,24 @@ C = testargs("test_crashes");
 <<"%(1, , ,,\n)$C\n"
 
 
+wr=typeof(C)
+<<"%V$wr\n"
 
+<<"%V$(typeof(C))\n"
+
+
+D= testargs("$wr $k");
+<<"%(1, , ,,\n)$D\n"
+
+D= testargs("$(k+1)");
+<<"%(1, , ,,\n)$D\n"
+
+
+D= testargs("$(pow(k,2))");
+<<"%(1, , ,,\n)$D\n"
+
+E= testargs("$(caz(C))");
+<<"%(1, , ,,\n)$E\n"
+
+E= testargs("$(typeof(C))");
+<<"%(1, , ,,\n)$E\n"

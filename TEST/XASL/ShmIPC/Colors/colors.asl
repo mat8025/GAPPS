@@ -2,7 +2,6 @@
 // Show some colors
 //
 
-//opendll("image")
 
 Graphic = checkGWM()
 
@@ -14,23 +13,23 @@ Graphic = checkGWM()
  redv = 1.5
  greenv = 0.5
  bluev = 0.2
+include "tbqrd"
 
+    vp = cWi("title","Button",@resize,0.01,0.01,0.49,0.49,0)
 
-    vp = CreateGwindow("title","Button",@resize,0.01,0.01,0.49,0.49,0)
+    sWi(vp,@pixmapon,@drawon,"save","bhue","white")
+  titleButtonsQRD(vp);
+    txtwin = cWi("title","MC_INFO","resize",0.01,0.51,0.49,0.99,0)
 
-    SetGwindow(vp,@pixmapon,@drawon,"save","bhue","white")
+    sWi(txtwin,@pixmapon,@drawon,"save","bhue","white")
 
-    txtwin = CreateGwindow("title","MC_INFO","resize",0.01,0.51,0.49,0.99,0)
+    vp2 = cWi("title","Colors",@resize,0.51,0.51,0.99,0.99,0)
 
-    SetGwindow(txtwin,@pixmapon,@drawon,"save","bhue","white")
+    sWi(vp2,@pixmapon,@drawon,@save,@cbhue,"yellow")
 
-    vp2 = CreateGwindow("title","Colors",@resize,0.51,0.51,0.99,0.99,0)
+    vp3 = cWi(@title,"HTML_Colors",@resize,0.51,0.01,0.99,0.50,0)
 
-    SetGwindow(vp2,@pixmapon,@drawon,@save,@cbhue,"yellow")
-
-    vp3 = CreateGwindow(@title,"HTML_Colors",@resize,0.51,0.01,0.99,0.50,0)
-
-    SetGwindow(vp3,@pixmapon,@drawon,"save",@bhue,"yellow")
+    sWi(vp3,@pixmapon,@drawon,"save",@bhue,"yellow")
 
   rx = 0.2
   rX = 0.3
@@ -52,13 +51,13 @@ Graphic = checkGWM()
 
   rwo=cWo(vp,"BS",@resize,rx,cby,rX,cbY,@NAME,"Red",@VALUE,redv)
 
-  sWo(rwo,@color,"red",@penhue,"black","symbol","tri",@style,"SVL","drawon")
+  sWo(rwo,@color,"red",@penhue,"black",@bhue,RED_,"symbol","tri",@style,"SVL","drawon")
 
-  gwo=cWo(vp,"BS",@resize,gx,cby,gX,cbY,@NAME,"Green",@VALUE,greenv)
+  gwo=cWo(vp,"BS",@resize,gx,cby,gX,cbY,@clipbhue,GREEN_,@NAME,"Green",@VALUE,greenv)
 
   sWo(gwo,@color,"green",@penhue,"black","symbol","tri",@style,"SVL","drawon")
 
-  bwo=cWo(vp,"BS",@resize,bx,cby,bX,cbY,@NAME,"Blue",@VALUE,bluev)
+  bwo=cWo(vp,"BS",@resize,bx,cby,bX,cbY,@bhue,BLUE_,@NAME,"Blue",@VALUE,bluev)
 
   sWo(bwo,@color,BLUE_,@penhue,WHITE_,"symbol","tri",@style,"SVL",@drawon)
 
@@ -67,13 +66,13 @@ Graphic = checkGWM()
   by = bY + 0.02
   bY = by + dY
 
-  cuwo=createGWOB(vp,"BN",@name,"Next",@VALUE,"NextColor",@color,"cyan",@resize_fr,bx,by,bX,bY)
+  cuwo=cWo(vp,"BN",@name,"Next",@VALUE,"NextColor",@color,"cyan",@resize_fr,bx,by,bX,bY)
 
-  sWo(qwo,@BORDER,@DRAW,@CLIPBORDER,@FONTHUE,"black", @style, "SVB", "redraw")
+  sWo(qwo,@border,@draw,@clipborder,@fonthue,"black", @style, "SVB", "redraw")
 
   sWo(cuwo,@BORDER,@DRAW,@CLIPBORDER,@FONTHUE,"black", @style, "SVB", "redraw")
 
-  int rgbwo[] = { rwo, bwo, gwo }
+  int rgbwo[] = { rwo, gwo, bwo }
 
   wo_vtile( rgbwo, cbx,cby,cbX,cbY,0.05)
 
@@ -94,9 +93,9 @@ Graphic = checkGWM()
 
   setgwin(vp,"woredrawall")
 
- two=createGWOB(txtwin,"TEXT",@name,"Text",@VALUE,"howdy",@color,"orange",@resize,0.1,0.1,0.9,0.9)
+ two=cWo(txtwin,"TEXT",@name,"Text",@VALUE,"howdy",@color,"orange",@resize,0.1,0.1,0.9,0.9)
 
- setgwob(two,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", "redraw","pixmapoff")
+ sWo(two,@border,@drawon,@clipborder,@fonthue,"black", "redraw","pixmapoff")
 
 
 
@@ -116,14 +115,14 @@ int awo[3]
 
 <<"%V$awo \n"
 
-  sWo(awo,@BORDER,@DRAWON,@CLIPBORDER)
+  sWo(awo,@border,@drawon,@CLIPBORDER)
 
   wo_vtile(awo,0.1,0.1,0.9,0.9)
 
   // make smaller clip area for awo[0]
 
   sWo(awo[0],@cbhue,152)
-  sWo(awo[0],@clip,0.1,0.1,0.5,0.5)
+  //sWo(awo[0],@clip,0.1,0.1,0.5,0.5)
 
 int htwo[3]
 
@@ -137,53 +136,27 @@ int htwo[3]
 
 <<"%V$htwo \n"
 
-  sWo(htwo,@BORDER,@DRAWON,@CLIPBORDER)
+  sWo(htwo,@border,@drawon,@clipborder)
 
   wo_vtile(htwo,0.1,0.1,0.9,0.9)
 
 //////////////////// BKG LOOP ////////////////////////////////
 // Event vars
-Svar msg
-
-E =1 // event handle
-int evs[16];
-
-Woid = 0
-Woname = ""
-Woproc = "foo"
-Woval = ""
-Evtype = ""
-int Woaw = 0
-
-
-windex = 0
-cindex = 0
-
-
+include "gevent"
+   bctx=0.4;
+   wctx =0.6
+   
    while (1) {
 
-   msg = waitForMessage()
+    eventWait()
 
-   E->geteventstate(evs)
-
-   Woname = E->getEventWoName()    
-   Evtype = E->getEventType()    
-   Woid = E->getEventWoId()
-   Woproc = E->getEventWoProc()
-   Woaw =  E->getEventWoAw()
-   Woval = getWoValue(Woid)
-   
-<<"%V$Woproc \n"
-<<"%V$Woname $Evtype $Woid $Woaw $Woval\n"
-<<" callback ? $Woproc\n"
-
-   redv   = atof( getWoValue(rwo))
-   greenv = atof ( getWoValue(gwo))
-   bluev  =  atof (getWoValue(bwo))
+   redv   = atof( wogetValue(rwo))
+   greenv = atof ( wogetValue(gwo))
+   bluev  =  atof ( wogetValue(bwo))
 
 <<" $redv $bluev $greenv \n"
 
-   if (Woid == cuwo) {
+   if (_ewoid == cuwo) {
 <<"just next $cindex \n"
     cindex++
     rgb = getRGB(cindex)
@@ -216,30 +189,30 @@ cindex = 0
 
 
    cname = getColorName(cindex)
-   sWo(htwo[0],@texthue,"black",@textr,"$cname",0.51,0.52)
-   sWo(htwo[0],@texthue,"white",@textr,"$cname",0.5,0.5)
+   sWo(htwo[0],@texthue,"black",@textr,"$cname",bctx,0.52)
+   sWo(htwo[0],@texthue,"white",@textr,"$cname",wctx,0.5)
 
    icindex = getColorIndexFromRGB(1-redv,1-greenv,1-bluev)
 
    sWo(htwo[1],@bhue,icindex,@texthue,"black",@clearclip,icindex,@clipborder,"red", @redraw)
    icname = getColorName(icindex)
 
-   sWo(htwo[1],@texthue,"black",@textr,"$icname",0.5,0.5)
-   sWo(htwo[1],@texthue,"white",@textr,"$icname",0.51,0.52)
+   sWo(htwo[1],@texthue,"black",@textr,"$icname",bctx,0.5)
+   sWo(htwo[1],@texthue,"white",@textr,"$icname",wctx,0.52)
    
    // swap red & blue
    scindex = getColorIndexFromRGB(bluev,greenv,redv)
    scname = getColorName(scindex)
 
    sWo(htwo[2],@bhue,scindex,@texthue,"black",@clearclip,scindex,@clipborder,"red", @redraw)
-   sWo(htwo[2],@texthue,"black",@textr,"$scname",0.51,0.51)
-   sWo(htwo[2],@texthue,"white",@textr,"$scname",0.5,0.5)
+   sWo(htwo[2],@texthue,"black",@textr,"$scname",bctx,0.51)
+   sWo(htwo[2],@texthue,"white",@textr,"$scname",wctx,0.5)
 
-   cname = getColorName(windex)
+   //cname = getColorName(windex)
 
-   windex++
+   //windex++
 
-   if (Woid == qwo) {
+   if (_ewoid== qwo) {
        break
    }
   }

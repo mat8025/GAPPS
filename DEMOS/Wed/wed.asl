@@ -383,35 +383,23 @@ include "gevent"
 
         m_num++
 
-        msg  = E->waitForMsg()
-DBPR"got message\n $msg \n"
-<<"got message\n $msg \n"
-        msgw = split(msg)
-        Keyw = E->getEventKeyw()
-DBPR"$m_num $msg $Keyw \n"
-       button = E->getEventButton()
-DBPR"%V$button \n"
-       woname = E->getEventWoname()
-DBPR"%V$woname \n"
-       Rinfo = E->getEventRinfo();
-DBPR"%V$Rinfo\n"
-       Evtype = E->getEventType()    
+        eventWait()
 
-       if (Evtype @= "PRESS") {
-        if (!(woname @= "")) {
+       if (_ename @= "PRESS") {
+        if (!(_ewoname @= "")) {
 DBPR"calling function via $woname !\n"
-            $woname()
+            $_ewoname()
         }
       }
 
-       if (Evtype @= "RESIZE") {
+       if (_ename @= "RESIZE") {
          drawScreens();
       }
 
         
-       if (!(Keyw @= "")) {
-         DBPR"calling |${Keyw}| $(typeof(Keyw))\n"
-         $Keyw()        
+       if (!(_ekeyw @= "")) {
+         DBPR"calling |${_ekeyw}| $(typeof(_ekeyw))\n"
+         $_ekeyw()        
        }
 
         DBPR"%V$lcpx $rcpx \n"

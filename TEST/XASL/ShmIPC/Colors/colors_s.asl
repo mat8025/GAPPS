@@ -15,7 +15,9 @@ Graphic = checkGWM()
     sWi(vp,@clip,0.1,0.1,0.8,0.8,@drawon,@pixmapon,@redraw,@save)
     gsync()
 
+include "tbqrd"
 
+  titleButtonsQRD(vp);
 
 
 //////////////////////////////////
@@ -174,6 +176,7 @@ k = 0
        
      A=ofw("junk")
 
+include "gevent"
 
 int MI[10]
 
@@ -182,7 +185,7 @@ oredv = 0.0
 ogreenv = 0.0
 obluev = 0.0
 
-float WXY[4]
+float WXY[4];
 
 
 	WXY=wogetposition(rwo)
@@ -190,21 +193,21 @@ float WXY[4]
        axis(vp,2,0,1,0.1,0.05,1.5);
        axnum(vp,2,0,1,0.1,3,"3.2f");
 
-<<"%v $WXY \n"
+<<"%V $WXY \n"
 int loop = 0;
-  while (1) {
 
-       loop++;
-       msg=waitForMessage()
+while (1) {
 
-<<"$loop $msg\n"
+
+       eventWait()
+
 
        sWo(rgbwo,@redraw)
        sWo(mixwo,@redraw)       
 
        WXY=wogetposition(rwo)
 
-<<"$rwo Red  $WXY \n"
+<<"Red  $WXY \n"
 
 
 
@@ -220,7 +223,7 @@ int loop = 0;
 
 	WXY=wo_getposition(gwo)
 
-<<"$gwo Green $WXY \n"
+<<" Green $WXY \n"
 
 	greenv = WXY[2]
 
@@ -230,7 +233,7 @@ int loop = 0;
 
 	WXY=WoGetPosition(bwo)
 
-<<"$bwo Blue $WXY \n"
+<<" Blue $WXY \n"
 
 	bluev = WXY[2]
 
@@ -301,23 +304,3 @@ int loop = 0;
 
 
 
-
-////////////////////////////////////////////////////
-
-par_menu = "rgb"
-value = table_menu(par_menu)   	    
-
-while ( value == 1) {
- r= get_menu_value(par_menu,"red")
- b= get_menu_value(par_menu,"blue")
- g= get_menu_value(par_menu,"green")
- SetRGB(5,r,g,b)
- value = table_menu(par_menu)   	    
-}
-
-
-si_pause(3)
-
-rainbow()
-
-STOP!
