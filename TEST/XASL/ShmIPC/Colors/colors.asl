@@ -9,27 +9,35 @@ Graphic = checkGWM()
     Xgm = spawnGWM()
   }
 
+int index = 150;
+int rgb_index =  index++;  // place this outside of most colors
+int rg_index = index++
+int rb_index = index++
+int gb_index = index++
+int r_index = index++
+int g_index = index++
+int b_index = index++
 
- redv = 1.5
- greenv = 0.5
- bluev = 0.2
+
+ redv = 0.5;
+ greenv = 0.5;
+ bluev = 0.5;
+ 
 include "tbqrd"
 
-    vp = cWi("title","Button",@resize,0.01,0.01,0.49,0.49,0)
+    bvp = cWi("title","Button",@pixmapon,@drawon,"save",@bhue,WHITE_)
 
-    sWi(vp,@pixmapon,@drawon,"save","bhue","white")
-  titleButtonsQRD(vp);
-    txtwin = cWi("title","MC_INFO","resize",0.01,0.51,0.49,0.99,0)
+    txtwin = cWi("title","MC_INFO",@pixmapon,@drawon,"save","bhue","white")
 
-    sWi(txtwin,@pixmapon,@drawon,"save","bhue","white")
+    cvp = cWi("title","Colors",@pixmapon,@drawon,@save,@cbhue,"yellow")
 
-    vp2 = cWi("title","Colors",@resize,0.51,0.51,0.99,0.99,0)
+    vp3 = cWi(@title,"HTML_Colors",@pixmapon,@drawon,"save",@bhue,"yellow")
 
-    sWi(vp2,@pixmapon,@drawon,@save,@cbhue,"yellow")
+  int allwins[] =  {cvp,bvp,vp3,txtwin}
+  <<"$allwins\n"
+  w_rctile(allwins,0.1,0.1,0.9,0.9,2,2,0);
 
-    vp3 = cWi(@title,"HTML_Colors",@resize,0.51,0.01,0.99,0.50,0)
-
-    sWi(vp3,@pixmapon,@drawon,"save",@bhue,"yellow")
+  titleButtonsQRD(bvp);
 
   rx = 0.2
   rX = 0.3
@@ -49,38 +57,47 @@ include "tbqrd"
   cbX = 0.5
 
 
-  rwo=cWo(vp,"BS",@resize,rx,cby,rX,cbY,@NAME,"Red",@VALUE,redv)
+  rwo=cWo(bvp,@BS,@name,"Red",@value,redv)
 
-  sWo(rwo,@color,"red",@penhue,"black",@bhue,RED_,"symbol","tri",@style,"SVL","drawon")
+  //sWo(rwo,@color,r_index,@bhue,RED_)
+  //sWo(rwo,@color,RED_,@bhue,r_index)    // bhue is main background fill hue --
+  sWo(rwo,@color,RED_,@bhue,RED_)
 
-  gwo=cWo(vp,"BS",@resize,gx,cby,gX,cbY,@clipbhue,GREEN_,@NAME,"Green",@VALUE,greenv)
+  gwo=cWo(bvp,@BS,@clipbhue,GREEN_,@name,"Green",@value,greenv)
 
-  sWo(gwo,@color,"green",@penhue,"black","symbol","tri",@style,"SVL","drawon")
+  sWo(gwo,@color,GREEN_)
 
-  bwo=cWo(vp,"BS",@resize,bx,cby,bX,cbY,@bhue,BLUE_,@NAME,"Blue",@VALUE,bluev)
+  bwo=cWo(bvp,@Bstate,@bhue,BLUE_,@NAME,"Blue",@value,bluev)
 
-  sWo(bwo,@color,BLUE_,@penhue,WHITE_,"symbol","tri",@style,"SVL",@drawon)
+  sWo(bwo,@color,BLUE_,@penhue,WHITE_)
 
-  qwo=cWo(vp,"BN",@name,"QUIT?",@VALUE,"QUIT",@color,"orange",@resize_fr,bx,by,bX,bY)
+  int rgbwo[] = { rwo, gwo, bwo };
+  
+  sWo(rgbwo,@style,"SVL",@drawon,@penhue,BLACK_,@symbol,TRI_)
+
+  wo_vtile( rgbwo, cbx,cby,cbX,cbY,0.05)
+
+   redv   = atof( wogetValue(rwo))
+   greenv = atof ( wogetValue(gwo))
+   bluev  =  atof ( wogetValue(bwo))
+
+<<"%V $redv $greenv $bluev \n"
+
+  qwo=cWo(bvp,@BN,@name,"QUIT?",@VALUE,"QUIT",@color,"orange",@resize_fr,bx,by,bX,bY)
 
   by = bY + 0.02
   bY = by + dY
 
-  cuwo=cWo(vp,"BN",@name,"Next",@VALUE,"NextColor",@color,"cyan",@resize_fr,bx,by,bX,bY)
+  nxtcolwo=cWo(bvp,@BN,@name,"Next",@VALUE,"NextColor",@color,"cyan",@resize_fr,bx,by,bX,bY)
 
-  sWo(qwo,@border,@draw,@clipborder,@fonthue,"black", @style, "SVB", "redraw")
+  sWo(qwo,@border,@drawon,@clipborder,@fonthue,"black", @style, "SVB", "redraw")
 
-  sWo(cuwo,@BORDER,@DRAW,@CLIPBORDER,@FONTHUE,"black", @style, "SVB", "redraw")
+  sWo(nxtcolwo,@border,@drawon,@clipborder,@fonthue,"black", @style, "SVB", "redraw")
 
-  int rgbwo[] = { rwo, gwo, bwo }
-
-  wo_vtile( rgbwo, cbx,cby,cbX,cbY,0.05)
+  // these are a list of values that the color wo can have  - each click cycles thru them
 
 
-  // these are a list of values that the color wo have can - each click cycles thru them
-
-
-  frgb = vgen(FLOAT_,41,0,0.025)
+  frgb = vgen(FLOAT_,20,0,0.05)
 
 //<<"%(,,\,,)4.2f$frgb \n"
 
@@ -89,26 +106,21 @@ include "tbqrd"
             0.65,0.7,0.75,0.8,0.85,0.9,0.95,1.0", @REDRAW)
 \}
 
-  sWo(rgbwo,@CSV,"%(,,\,,)4.2f$frgb",@REDRAW)
+  sWo(rgbwo,@CSV,"%(,,\,,)4.2f$frgb",10,@REDRAW)
 
-  setgwin(vp,"woredrawall")
+  setgwin(bvp,"woredrawall")
 
  two=cWo(txtwin,"TEXT",@name,"Text",@VALUE,"howdy",@color,"orange",@resize,0.1,0.1,0.9,0.9)
 
- sWo(two,@border,@drawon,@clipborder,@fonthue,"black", "redraw","pixmapoff")
+ sWo(two,@border,@drawon,@clipborder,@fonthue,"black", @redraw,@pixmapoff)
 
 
+int awo[4]
 
-int rgb_index =  150  // place this outside of most colors
-int rgb_index2 = 151
-int rgb_index3 = 152
+     index = 150;
 
-int awo[3]
-
-     index = 150
-
-     for (k = 0; k < 3; k++) { 
-        awo[k]=cWo(vp2,"GRAPH","name","${k}_col",@color,index,@value,k)
+     for (k = 0; k < 4; k++) { 
+        awo[k]=cWo(cvp,"GRAPH","name","${k}_col",@color,index,@value,k)
         index++
      }
 
@@ -119,14 +131,15 @@ int awo[3]
 
   wo_vtile(awo,0.1,0.1,0.9,0.9)
 
-  // make smaller clip area for awo[0]
 
-  sWo(awo[0],@cbhue,152)
+  // contrast ?
+  // make smaller clip area for awo[0]
+  //sWo(awo[0],@cbhue,152)
   //sWo(awo[0],@clip,0.1,0.1,0.5,0.5)
 
 int htwo[3]
 
-     index = 1
+     index = 1;
 
      for (k = 0; k < 3; k++) { 
       htwo[k]=cWo(vp3,"GRAPH","name","${k}_col",@color,index,@value,k)
@@ -140,6 +153,31 @@ int htwo[3]
 
   wo_vtile(htwo,0.1,0.1,0.9,0.9)
 
+
+   redv   = atof( wogetValue(rwo))
+   greenv = atof ( wogetValue(gwo))
+   bluev  =  atof ( wogetValue(bwo))
+
+<<"%V $redv $greenv $bluev \n"
+
+ redv = 0.5;
+ greenv = 0.5;
+ bluev = 0.5;
+
+<<"%V $redv $greenv $bluev \n"
+
+ swo(rgbwo,@value,0.6,@redraw);
+
+   redv   = atof( wogetValue(rwo))
+   greenv = atof ( wogetValue(gwo))
+   bluev  =  atof ( wogetValue(bwo))
+
+<<"%V $redv $greenv $bluev \n"
+
+
+
+
+
 //////////////////// BKG LOOP ////////////////////////////////
 // Event vars
 include "gevent"
@@ -150,45 +188,48 @@ include "gevent"
 
     eventWait()
 
-   redv   = atof( wogetValue(rwo))
-   greenv = atof ( wogetValue(gwo))
-   bluev  =  atof ( wogetValue(bwo))
+     redv   = atof( wogetValue(rwo))
+     greenv = atof ( wogetValue(gwo))
+     bluev  =  atof ( wogetValue(bwo))
 
 <<" $redv $bluev $greenv \n"
 
-   if (_ewoid == cuwo) {
+   if (_ewoid == nxtcolwo) {
 <<"just next $cindex \n"
     cindex++
     rgb = getRGB(cindex)
     redv = rgb[0]
     greenv = rgb[1]
     bluev = rgb[2]
+   setRGB(r_index,redv,0,0)
    setRGB(rgb_index,redv,greenv,bluev)
-   setRGB(rgb_index2,1-redv,1-greenv,1-bluev)
-   setRGB(rgb_index3,bluev,greenv,redv) // swop red & blue
+   setRGB(rg_index,redv,greenv,0)
+   setRGB(rb_index,redv,0,bluev)
+   setRGB(gb_index,0,greenv,bluev) 
    }
    else {
-
+   setRGB(r_index,redv,0,0)
    setRGB(rgb_index,redv,greenv,bluev)
-   setRGB(rgb_index2,1-redv,1-greenv,1-bluev)
-   setRGB(rgb_index3,bluev,greenv,redv) // swop red & blue
+   setRGB(rg_index,redv,greenv,0)
+   setRGB(rb_index,redv,0,bluev)
+   setRGB(gb_index,0,greenv,bluev) 
 
-   cindex = getColorIndexFromRGB(redv,greenv,bluev)
+    cindex = getColorIndexFromRGB(redv,greenv,bluev)
    
    }
 
-   sWo(two,@clear,@textr,"$msg %V$redv $greenv $bluev",0,0.5)
+   sWo(rgbwo,@redraw)
 
+   sWo(two,@clear,@textr,"$_emsg %V $_ebutton $redv $greenv $bluev",0,0.5)
 
-   sWo(awo,@bhue,cindex,@clear,@clipborder,@redraw)  // clears repaints
-   sWo(awo[0],@clearclip,@redraw)  // clears repaints
-
-
+   //sWo(awo,@bhue,cindex,@clear,@clipborder,@redraw)  // clears repaints
+   sWo(awo,@clearclip,@redraw)  // clears repaints
 
    sWo(htwo[0],@bhue,cindex,@texthue,"black",@clearclip,cindex,@clipborder,"black", @redraw)
 
 
    cname = getColorName(cindex)
+   sWo(two,@textr,"%V $cname $cindex ",0,0.4)
    sWo(htwo[0],@texthue,"black",@textr,"$cname",bctx,0.52)
    sWo(htwo[0],@texthue,"white",@textr,"$cname",wctx,0.5)
 

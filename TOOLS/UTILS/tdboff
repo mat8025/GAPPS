@@ -4,7 +4,7 @@ do
 i="${y%.*}"
 echo $i
 cp $i.h /usr/local/GASP/gasp/BAK
-cat $i.h | sed s/DBON/DBOFF/ > $i.new
+cat $i.h | sed s/DBON/DBOFF/ | sed s/DBTMPON/DBTMPOFF/  > $i.new
 cp $i.new $i.h
 rm $i.new
 done

@@ -20,13 +20,13 @@ include "tbqrd"
    titleButtonsQRD(vp);
 
 
-    SWi(vp,@pixmapon,@drawon,@save,@bhue,"white")
-    SWi(vp,"scales",0,-0.2,1.5,1.5)
-    SWi(vp,"clip",0.2,0.2,0.9,0.9)
-    SWi(vp,@clipborder,"black",@redraw,@save)
+    sWi(vp,@pixmapon,@drawon,@save,@bhue,"white")
+    sWi(vp,"scales",0,-0.2,1.5,1.5)
+    sWi(vp,"clip",0.2,0.2,0.9,0.9)
+    sWi(vp,@clipborder,"black",@redraw,@save)
 
     vp2 = cWi(@title,"Colors","resize",0.51,0.1,0.99,0.99,0)
-    SWi(vp2,@pixmapon,@drawon,@save,@bhue,"white")
+    sWi(vp2,@pixmapon,@drawon,@save,@bhue,"white")
 
 
     txtwin = cWi("title","MC_INFO","resize",0.01,0.51,0.49,0.99,0)
