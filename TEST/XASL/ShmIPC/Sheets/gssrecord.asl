@@ -1,16 +1,33 @@
+///
+///
+////////////   SIMPLE SPREAD SHEET  EXAMPLE /////////////
 
 
-////////////  CREATE SIMPLE SPREAD SHEET /////////////
+//  each  cell has an input text function
+// 
+
+// open a csv/tsv/rec file
+// read contents and set up a spreadsheet
+// gui controls direct  manipulation of the
+// record data (asl side)
+// and the sheet is update xgs sid
+// user can enter text into cells via the gui interface
+
+//
+//  need a rapid and smart update changes only
+//
+
+// could have a number of sheets in different windows
 
 
-// each  cell input text function
 
-//  ability to sum cols and rows
 
 include "gevent.asl"
 
 
-setdebug(1,"keep");
+setdebug(0,"keep");
+
+
 
 
 Graphic = CheckGwm()
@@ -63,40 +80,76 @@ include "tbqrd"
 
  sWo(cellwo,@bhue,CYAN_,@clipbhue,SKYBLUE_)
 
- rows = 20;
- cols = 8;
+ 
 
- sWo(cellwo,@setrowscols,rows,cols);
- sWo(cellwo,@sheetrow,0,0,"0,1,2,3,4,5,,7")
- sWo(cellwo,@sheetcol,1,0,"A,B,C,D,E,F,G")
+ 
+ //sWo(cellwo,@sheetrow,0,0,"0,1,2,3,4,5,,7")
+ //sWo(cellwo,@sheetcol,1,0,"A,B,C,D,E,F,G")
 
- sWo(cellwo,@selectrowscols,0,rows-1,0,cols-1);
+
 
 int cv = 0;
 
 
-    for (i = 1; i< rows ; i++) {
-     for (j = 0; j< cols ; j++) {
-         sWo(cellwo,@cellbhue,i,j,YELLOW_);
-	 sWo(cellwo,@sheetcol,i,j,"");
-	 cv++;
-       }
-     }
 
 // setdebug(1,"step","pline");
 
   fname = "pp.rec"
   fname = "Stuff2Do.csv";
 
- isok =sWo(cellwo,@sheetread,fname,2);
- <<"%V$isok\n";
+ //isok =sWo(cellwo,@sheetread,fname,2);
+ //<<"%V$isok\n";
+
+A= ofr(fname)
+
+   R= readRecord(A,@del,',')
+
+   sz = Caz(R);
+
+<<"num of records $sz\n"
+
+  rows = sz;
+  cols = Caz(R[0])
+   
+ sWo(cellwo,@setrowscols,rows,cols);
  
-sWo(cellwo,@selectrowscols,0,rows-1,0,cols-1);
+
+
+for (i = 0; i < sz;i++) {
+<<"[${i}] $R[i]\n"
+}
+
+
+
+    for (i = 0; i< rows ; i++) {
+     for (j = 0; j< cols ; j++) {
+        if ((i%2)) {
+sWo(cellwo,@cellbhue,i,j,LILAC_);         
+	}
+	else {
+sWo(cellwo,@cellbhue,i,j,YELLOW_);
+
+	 }
+	 
+	 sWo(cellwo,@sheetcol,i,j,R[i][j]);
+	 cv++;
+       }
+     }
+
+
+  rows = sz + 3;
+  //cols = Caz(R[0])
+   
+   sWo(cellwo,@setrowscols,rows,cols);
+
+
+
+   sWo(cellwo,@selectrowscols,0,rows-1,0,cols-1);
 
 // sWo(cellwo,@cellbhue,1,-2,LILAC_); // row,col wr,-2 all cells in row
   sWi(vp,@redraw)
 
-  sWo(ssmods,@redraw)
+   sWo(ssmods,@redraw)
 
    sWo(cellwo,@redraw);
 
@@ -105,15 +158,34 @@ sWo(cellwo,@selectrowscols,0,rows-1,0,cols-1);
 
    swapcol_a = 1;
    swapcol_b = 2;
-
+<<"%V $cellwo\n"
   while (1) {
 
          eventWait();
+
+   <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
+
 
          if (_erow > 0) {
             the_row = _erow;
          }
 
+       if (_ewoid == cellwo) {
+       
+             if (_ekeyw @="CELLVAL") {
+                r= _erow;
+		c= Cev->col;
+		<<"%V$Cev->row $Cev->col\n"
+//R[Cev->row][Cev->col] = _ekeyw2;   // TBF
+                R[r][c] = _ekeyw2;
+		
+	//	<<"update cell val $r $c $_erow $_ecol $_ekeyw2 $R[_erow][_ecol] \n"
+		<<"update cell val $r $c $_erow $_ecol $_ekeyw2 $R[r][c] \n"
+		<<"updated row $R[r][::]\n"
+            }
+
+
+      }
          if (_ecol == 0  && (_erow >= 0) && (_ebutton == RIGHT_)) {
          swaprow_b = swaprow_a;
 	 swaprow_a = _erow;
@@ -128,7 +200,7 @@ sWo(cellwo,@selectrowscols,0,rows-1,0,cols-1);
 
 
 
-   <<" $_emsg %V $_ekeyw  $_ewoname $_ewoval $_erow $_ecol\n"
+
 
        if (_ewoid == swprwo) {
 <<"swap rows $swaprow_a and $swaprow_b\n"
@@ -144,8 +216,17 @@ sWo(cellwo,@selectrowscols,0,rows-1,0,cols-1);
 
        if (_ewoid == savewo) {
          <<"saving sheet\n"
-	 sWo(cellwo,@sheetmod,1);
-	 
+
+         for (i = 0; i < rows;i++) { 
+           <<"[${i}] $R[i][::]\n"
+         }
+
+
+            B=ofw("gss.csv")
+	    
+	    writeRecord(B,R);
+	    cf(B)
+          //sWo(cellwo,@sheetmod,1);
 	}
 	
         if (_ewoid == readwo) {
@@ -154,6 +235,6 @@ sWo(cellwo,@selectrowscols,0,rows-1,0,cols-1);
 	}
  }
 <<"out of loop\n"
-setdebug(2,"pline");
+
  exit()
    

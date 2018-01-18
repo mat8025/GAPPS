@@ -10,7 +10,8 @@ Class Cevent
  public:
   int  id;
   int button;
-
+  int row;
+  int col;
 };
 
 
@@ -46,7 +47,8 @@ proc eventDecode()
 
 
     Cev->id = _eid;
-    Cev->button = _ebutton;;
+    Cev->button = _ebutton;
+
     
     _ewoname = Ev->getEventWoName();
         ev_woname = _ewoname;
@@ -66,7 +68,8 @@ proc eventDecode()
 
     ev_row = _erow;
     ev_col = _ecol;
-
+    Cev->row = _erow;
+    Cev->col = _ecol;    
 
    }
 //<<"%V$ev_keyc $ev_button $ev_id $ev_woid $ev_woname $ev_woval\n"

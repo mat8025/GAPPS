@@ -18,7 +18,7 @@ vers = 7;
 
 envdebug();
 
-//<<"$tdir\n"
+//<<"$Testdir\n"
 TM= FineTime();
 
 today=getDate(1);
@@ -86,13 +86,17 @@ proc changeDir(td)
 
 proc Run2Test(td)
 {
+
+ changeDir(Testdir)
+
+!!"pwd"
   hdg(td)
 
-  Curr_dir = getDir();
+  Prev_dir = getDir();
   chdir(td)
   Curr_dir = getDir();
   
-  <<"changing to $td dir from $Curr_dir\n"
+  <<"changing to $td dir from $Prev_dir\n"
 }
 
 /////////////////////////////
@@ -458,8 +462,8 @@ int do_ptrs = 0;
  FailedList->Delete(0)
  
   updir()
-  tdir = getdir()
-
+  Testdir = getdir()
+<<"Test Dir is $Testdir\n"
 
 
   nargs = ArgC()
@@ -642,15 +646,15 @@ int do_ptrs = 0;
       cart("float")
       cart("pan_type")
       cart("ato")
-      updir()
+
       Run2Test("Cast")
       cart("cast0")
       cart("cast_vec")
-      updir();
+
 
       Run2Test("Efmt");
       cart("efmt");
-      updir();
+
   }
 
 
@@ -665,7 +669,7 @@ int do_ptrs = 0;
 
   cart("vops")
   cart("vopsele")
-  updir()
+
   changeDir("Veccat")
   cart("veccat")
   updir()
@@ -688,33 +692,30 @@ int do_ptrs = 0;
 
   cart("stropcmp")
 
-  updir()
-
   Run2Test("Date")
   cart("date")
-  updir()
+  <<"done date\n"
 
   Run2Test("Sele")
   cart("sele")
-  updir()
 
 
   Run2Test("Splice")
   cart("strsplice")
-  updir()
+
 
   Run2Test("Sstr")
   cart("sstr")
-  updir()
+
 
   Run2Test("Spat")
   cart("spat")
   
-  updir()
+
 
   Run2Test("Regex")
   cart("regex")
-  updir()
+
 
 
 
@@ -753,13 +754,11 @@ if (( do_all ==1) || (do_declare == 1) ) {
 
   cart("proc_arg_func")
 
-   updir()
 
-   changeDir("Consts")
+   Run2Test("Consts")
 
    cart ("consts_test")
 
-   updir()
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -771,23 +770,22 @@ if (( do_all ==1) || (do_include == 1) ) {
 
    cart ("main_ni",2)
   
-   updir()
+
 
 /////////////////////////////////////////////////////////////////////////////////
 
     }
 
-changeDir(tdir)
+changeDir(Testdir)
 
 if ( do_all || do_exp ) {
 
-hdg("EXPRESSION")
 
-changeDir("Sexp")
+   Run2Test("Sexp")
 
    cart("sexp", 10)
 
-updir()
+
 
     }
 
@@ -809,8 +807,6 @@ if ( do_all || do_if ) {
 
   cart("if6")
 
-  updir()
-
 
   Run2Test("Logic")
 
@@ -818,23 +814,16 @@ if ( do_all || do_if ) {
   cart("logic2")
   cart("logic_def")
 
-  updir()
-
   Run2Test("Bitwise")
   cart("bitwise")
-  updir()
 
   Run2Test("Define")
-
   cart("define")
-
-  updir()
 
   Run2Test("Enum")
 
   cart("colors_enum")
 
-  updir()
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -846,7 +835,7 @@ if ( do_all || do_for ) {
 
    cart("for")
 
-updir()
+
 
 ////////////////////////////////////////////////////////////////////////
     }
@@ -858,7 +847,7 @@ if ( do_all || do_while ) {
   cart("while0", 10)
   cart("while7", 10)
 
-  updir()
+
 
 ////////////////////////////////////////////////////////////////////////
     }
@@ -874,7 +863,7 @@ if ( do_all || do_switch ) {
 
   cart("switch2")
 
-  updir()
+
 }
 /////////////////////////////////////////////
 
@@ -887,7 +876,7 @@ if ( do_all || do_do ) {
 
    cart("do1", 6)
 
-   updir()
+
 
 ////////////////////////////////////////////////////////////////////////
     }
@@ -899,7 +888,7 @@ if ( do_all || do_do ) {
 
   cart("paraex")
 
-  updir()
+
 
  }
 
@@ -946,36 +935,27 @@ if ( do_all || do_array ) {
 
   cart("vsp")
 
-  updir()
 
-  changeDir("Scalarvec")
+
+  Run2Test("Scalarvec")
 
   cart("scalarvec")
 
-  updir();
-
-  changeDir("Subrange")
+  Run2Test("Subrange")
 
   cart("subrange");
   
   cart("subrange2");
   
-
-  updir();
-
-  changeDir("PrePostOp")
+  Run2Test("PrePostOp")
 
   cart("prepost_opr")
 
-  updir()
 
-  changeDir("M3D")
+  Run2Test("M3D")
 
   cart("m3d")
   cart("m3d_assign")
-
-  updir()
-
 
     }
 
@@ -985,11 +965,10 @@ if ( do_all || do_array ) {
 if ( do_all || do_matrix ) {
    
 
-   changeDir("Mdimn")
+   Run2Test("Mdimn")
 
    cart("mdimn0")
 
-updir()
 
     Run2Test("Matrix")
     cart("mat_mul")
@@ -997,7 +976,7 @@ updir()
     cart("diag")
 
 updir()
-   changeDir("Setv")
+   Run2Test("Setv")
    cart("setv")
 updir()
 
@@ -1011,7 +990,7 @@ updir()
   hdg("DYNAMIC_V")
 
 
-  changeDir("Dynv")
+  Run2Test("Dynv")
 
   cart("dynv0")
 
@@ -1026,11 +1005,11 @@ updir()
 
 if ( do_all || do_lhsubsc ) {
 
-  changeDir("Subscript")
+  Run2Test("Subscript")
 
   cart("lharraysubsrange")
 
-  updir()
+
 
 
     }
@@ -1039,9 +1018,9 @@ if ( do_all || do_lhsubsc ) {
 
 if ( do_all || do_func ) {
 
-  hdg("FUNC")
+  
 
-  changeDir("Func")
+  Run2Test("Func")
 
   cart("func")
 
@@ -1060,7 +1039,7 @@ if ( do_all || do_unary ) {
 
   hdg("UNARY")
 
-  changeDir("Unary")
+  Run2Test("Unary")
 
   cart("unaryexp")
 
@@ -1072,7 +1051,7 @@ if ( do_all || do_unary ) {
 if ( do_all || do_command ) {
   hdg("COMMAND")
 
-  changeDir("Command")
+  Run2Test("Command")
 
   cart("command")
   cart("command_parse")
@@ -1086,7 +1065,7 @@ if ( do_all || do_proc ) {
   hdg("PROC")
 
 
-  changeDir("Proc")
+  Run2Test("Proc")
 
   cart ("proc")
 
@@ -1106,7 +1085,7 @@ if ( do_all || do_proc ) {
 
   updir()
 
-  changeDir("ProcArray")
+  Run2Test("ProcArray")
   
   hdg("ProcArray");  
 
@@ -1116,13 +1095,13 @@ if ( do_all || do_proc ) {
 
   updir()
 
-  changeDir("Swap")
+  Run2Test("Swap")
 
   cart ("swap")
 
   updir()
 
-  changeDir("Static")
+  Run2Test("Static")
   
   hdg("Static") ; 
 
@@ -1142,7 +1121,7 @@ if ( do_all || do_mops ) {
 
      Run2Test("Mops")
 
-    //changeDir("Mops")
+    //Run2Test("Mops")
 
     cart("xyassign")
 
@@ -1150,18 +1129,18 @@ if ( do_all || do_mops ) {
 
     hdg("RECURSION")
 
-    changeDir("Fact")
+    Run2Test("Fact")
 
     cart("fact", 10)
 
     updir()
 
-    changeDir("Cmplx")
+    Run2Test("Cmplx")
     cart("cmplx")
 
     updir()
     
-    changeDir("Rand")
+    Run2Test("Rand")
 
     cart("urand")
 
@@ -1177,7 +1156,7 @@ if ( do_all || do_svar ) {
 
     Run2Test("Svar")
 
-    //changeDir("Svar")
+    //Run2Test("Svar")
 
     cart("svar1", "string operations are not always easy" )
 
@@ -1200,7 +1179,7 @@ if ( do_all || do_svar ) {
 
      Run2Test("Ivar")
 
-    //changeDir("Ivar")
+    //Run2Test("Ivar")
 
     cart("ivar")
 
@@ -1213,7 +1192,7 @@ if ( do_all || do_record ) {
 
      Run2Test("Record")
 
-    //changeDir("Record")
+    //Run2Test("Record")
 
     cart("record")
 
@@ -1222,7 +1201,7 @@ if ( do_all || do_record ) {
     updir()
 }
 
- changeDir(tdir)
+ changeDir(Testdir)
 
  if ( do_all || do_mops ) {
  
@@ -1233,7 +1212,7 @@ if ( do_all || do_record ) {
     cart ("opxeq")
     updir()
 
-    changeDir("Prime")
+    Run2Test("Prime")
 
     //    cart ("prime_65119")
     cart ("prime_127")
@@ -1241,7 +1220,7 @@ if ( do_all || do_record ) {
     updir()
 
 
-    changeDir("Pow")
+    Run2Test("Pow")
 
     cart("pow")
 
@@ -1252,13 +1231,13 @@ if ( do_all || do_record ) {
     }
 
 
- changeDir(tdir)
+ changeDir(Testdir)
 
  if ( do_all || do_stat ) {
 
     hdg("STAT")
 
-    changeDir("Polynom")
+    Run2Test("Polynom")
     cart("checkvm")
     cart("polyn")
 
@@ -1270,7 +1249,7 @@ if ( do_all || do_record ) {
 
     hdg("PAN")
 
-    changeDir("Pan")
+    Run2Test("Pan")
     cart("pan")
     cart("derange",10)
     updir()
@@ -1332,13 +1311,13 @@ if ( do_all || do_oo ) {
 
   cart("sh")
 
-  changeDir("../Obcopy/")
+  Run2Test("../Obcopy/")
 
   cart("obcopy")
 
     //  cart("objivar")
 
-  changeDir("../Mih/")
+  Run2Test("../Mih/")
 
   cart("mih")
 
@@ -1352,31 +1331,31 @@ if ( do_all || do_oo ) {
 
     hdg("S-FUNCTIONS")
 
-    changeDir("Sscan")
+    Run2Test("Sscan")
 
     cart("sscan")
 
     updir()
 
-    changeDir("Bscan")
+    Run2Test("Bscan")
 
     cart("bscan")
 
     updir()
 
-    changeDir("Cut")
+    Run2Test("Cut")
 
     cart("cut")
 
     updir()
 
-    changeDir("Cmp")
+    Run2Test("Cmp")
 
     cart("cmp")
 
     updir()
 
-    changeDir("Sel")
+    Run2Test("Sel")
 
     cart("sel")
 
@@ -1400,7 +1379,7 @@ if ( do_all || do_oo ) {
 
 /// findval -- find a value in a vector
 
-    changeDir("Findval")
+    Run2Test("Findval")
 
     cart("findval")
 
@@ -1415,50 +1394,50 @@ if ( do_all || do_oo ) {
 
     updir()
 
-    changeDir("Lip");
+    Run2Test("Lip");
     cart("lip");
     updir();
 
 //============================
-    changeDir("BubbleSort");
+    Run2Test("BubbleSort");
     cart("bubblesort");
     updir();
 //============================
 
 //============================
-    changeDir("Typeof");
+    Run2Test("Typeof");
     cart("typeof");
     updir();
 //============================
-    changeDir("Variables");
+    Run2Test("Variables");
     cart("variables");
     updir();
 //============================
-    changeDir("Trig");
+    Run2Test("Trig");
     cart("trig");
     updir();
 //============================
-    changeDir("Caz");
+    Run2Test("Caz");
     cart("caz");
     updir();
 //============================
-    changeDir("Sizeof");
+    Run2Test("Sizeof");
     cart("sizeof");
     updir();
 //============================
-    changeDir("Limit");
+    Run2Test("Limit");
     cart("limit");
     updir();
 //============================
-    changeDir("D2R");
+    Run2Test("D2R");
     cart("d2r");
     updir();
 //============================
-    changeDir("Cbrt");
+    Run2Test("Cbrt");
     cart("cbrt");
     updir();
 //============================
-    changeDir("Packb");
+    Run2Test("Packb");
     cart("packb");
     updir();
 //============================    
@@ -1558,7 +1537,6 @@ cf(Tcf)
 
 fflush(Tff)
 cf(Tff);
-
 
 changeDir(cwd)
 
