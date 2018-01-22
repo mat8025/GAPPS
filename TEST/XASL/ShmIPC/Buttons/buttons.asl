@@ -6,8 +6,8 @@
 
 
 
-envDebug()
-
+//envDebug()
+setdebug(1,"keep")
 
 Graphic = checkGWM()
 

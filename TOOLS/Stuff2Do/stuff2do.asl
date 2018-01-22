@@ -28,16 +28,42 @@ include "gevent.asl"
 setdebug(1,"keep");
 
 
+
+//  fname = "pp.rec"
+  fname = _clarg[1];
+
+
+  if (fname @= "")  {
+   fname = "stuff2do.csv";
+  }
+
+
+<<"%V $fname \n"
+//isok =sWo(cellwo,@sheetread,fname,2);
+ //<<"%V$isok\n";
+
+A= ofr(fname)
+ if (A == -1) {
+ <<"can't find file $fname \n";
+    exit(-1);
+ }
+
+   R= readRecord(A,@del,',')
+   cf(A);
+   sz = Caz(R);
+
+  ncols = Caz(R[0]);
+<<"num of records $sz  num cols $ncols\n"
+
+//////////////////////////////////
+
+
 proc SAVE()
 {
-         <<"saving sheet\n"
-       //  for (i = 0; i < rows;i++) { 
-       //    <<"[${i}] $R[i][::]\n"
-       //  }
-            B=ofw("gss.csv")
+         <<"saving sheet $fname\n"
+            B=ofw(fname)
 	    writeRecord(B,R);
 	    cf(B)
-          //sWo(cellwo,@sheetmod,1);
 }
 //======================
 
@@ -55,7 +81,7 @@ proc READ()
 //======================
 proc SORT()
 {
-
+<<"in $_proc\n"
   sortcol = swapcol_a;
   startrow = 1;
   alphasort = 0; // 0 auto alpha or number 1 alpha   2 number
@@ -69,7 +95,52 @@ proc SORT()
 
 }
 //======================
+proc SWOPROWS()
+{
+<<"in $_proc\n"
+<<"swap rows $swaprow_a and $swaprow_b\n"
+         //sWo(cellwo,@swaprows,swaprow_a,swaprow_b);
+//	SwapRows(R,swaprow_a,swaprow_b);
+	R->SwapRows(swaprow_a,swaprow_b);	  // code vmf
+        sWo(cellwo,@cellval,R);
+	sWo(cellwo,@redraw);
+}
+//======================
 
+proc SWOPCOLS()
+{     
+<<"swap cols $swapcol_a and $swapcol_b\n"
+       //  sWo(cellwo,@swapcols,swapcol_a,swapcol_b);
+	SwapCols(R,swapcol_a,swapcol_b);
+        sWo(cellwo,@cellval,R);
+	sWo(cellwo,@redraw);
+}
+//======================
+proc DELROW()
+{
+<<"in $_proc\n"
+	sz = Caz(R)
+       deleteRows(R,swaprow_a,swaprow_b);
+	nsz = Caz(R)
+<<"deleted $swaprow_a to $swaprow_b  $sz $nsz\n"
+         for (i = 0; i < nsz;i++) { 
+           <<"[${i}] $R[i][::]\n"
+         }
+        // clear deleted rows at end
+	// reset rows
+        sWo(cellwo,@cellval,nsz,0,sz,cols,"");
+        sWo(cellwo,@cellval,R);
+	sWo(cellwo,@redraw);
+
+}
+//======================
+proc DELCOL()
+{
+<<"in $_proc\n"
+
+
+}
+//======================
 
 Graphic = CheckGwm()
 
@@ -81,7 +152,7 @@ Graphic = CheckGwm()
 
 include "tbqrd"
 
-    vp = cWi(@title,"Simple Spread Sheet")
+    vp = cWi(@title,"S2D:$fname")
 
     sWi(vp,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
 
@@ -152,24 +223,11 @@ int cv = 0;
 
 // setdebug(1,"step","pline");
 
-  fname = "pp.rec"
-  fname = "Stuff2Do.csv";
-   fname = "gss.csv";
-
- //isok =sWo(cellwo,@sheetread,fname,2);
- //<<"%V$isok\n";
-
-A= ofr(fname)
-   R= readRecord(A,@del,',')
-cf(A)
-   sz = Caz(R);
-
-<<"num of records $sz\n"
 
   rows = sz;
   cols = Caz(R[0])
    
- sWo(cellwo,@setrowscols,rows,cols);
+ sWo(cellwo,@setrowscols,rows,cols+1);
  
 <<"%V$rows $sz \n"
 
@@ -202,11 +260,12 @@ sWo(cellwo,@cellbhue,i,j,YELLOW_);
 
 
   rows = sz + 3;
+
   //cols = Caz(R[0])
    
-   sWo(cellwo,@setrowscols,rows,cols);
+   sWo(cellwo,@setrowscols,rows,cols+1);
 
-   sWo(cellwo,@selectrowscols,0,rows-1,0,cols-1);
+   sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
 
 // sWo(cellwo,@cellbhue,1,-2,LILAC_); // row,col wr,-2 all cells in row
    sWi(vp,@redraw)
@@ -232,7 +291,6 @@ sWo(cellwo,@cellbhue,i,j,YELLOW_);
 
    <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
 
-
          if (_erow > 0) {
             the_row = _erow;
          }
@@ -253,65 +311,45 @@ sWo(cellwo,@cellbhue,i,j,YELLOW_);
 
 
       }
-         if (_ecol == 0  && (_erow >= 0) && (_ebutton == RIGHT_)) {
-         swaprow_b = swaprow_a;
+
+        whue = YELLOW_;
+        if (_ecol == 0  && (_erow >= 0) && (_ebutton == RIGHT_)) {
+        if ((_erow%2)) {
+          whue = LILAC_;
+	}
+
+
+sWo(cellwo,@cellbhue,swaprow_a,0,swaprow_a,cols,whue);         	 	 
+
+        swaprow_b = swaprow_a;
 	 swaprow_a = _erow;
+	 
 <<"%V $swaprow_a $swaprow_b\n"
+
+sWo(cellwo,@cellbhue,swaprow_a,0,CYAN_);         
          }
 
          if (_erow == 0 && (_ecol >= 0) && (_ebutton == RIGHT_)) {
-         swapcol_b = swapcol_a;
+
+         sWo(cellwo,@cellbhue,0,swapcol_a,0,cols,YELLOW_);         	 	 
+        swapcol_b = swapcol_a;
 	 swapcol_a = _ecol;
+
+sWo(cellwo,@cellbhue,0,swapcol_a,CYAN_);         	 
 <<"%V $swapcol_a $swapcol_b\n"
          }
 
-       if (_ewoid == swprwo) {
-<<"swap rows $swaprow_a and $swaprow_b\n"
-         sWo(cellwo,@swaprows,swaprow_a,swaprow_b);
-	 R->SwapRows(swaprow_a,swaprow_b);
-       }
-
-       if (_ewoid == swpcwo) {
-<<"swap cols $swapcol_a and $swapcol_b\n"
-         sWo(cellwo,@swapcols,swapcol_a,swapcol_b);
-	 	 R->SwapCols(swapcol_a,swapcol_b);
-       }
 
         sWo(cellwo,@redraw);
 
-
        if (_ename @= "PRESS") {
-        if (!(_ewoname @= "")) {
-DBPR"calling function via $woname !\n"
+
+       if (!(_ewoname @= "")) {
+           <<"calling script procedure  $_ewoname !\n"
             $_ewoname()
         }
       }
 
-
-/{
-       if (_ewoid == savewo) {   //SAVE
-         <<"saving sheet\n"
-       //  for (i = 0; i < rows;i++) { 
-       //    <<"[${i}] $R[i][::]\n"
-       //  }
-            B=ofw("gss.csv")
-	    
-	    writeRecord(B,R);
-	    cf(B)
-          //sWo(cellwo,@sheetmod,1);
-	}
-	
-        if (_ewoid == readwo) {
-         <<"reading $fname\n"
-       // isok =sWo(cellwo,@sheetread,fname,2)
-            A= ofr(fname)
-            R= readRecord(A,@del,',')
-           cf(A)
-           sz = Caz(R);
-          <<"num of records $sz\n"
-          sWo(cellwo,@cellval,R);
-       }
-/}
 
 }
 <<"out of loop\n"

@@ -32,7 +32,13 @@ proc eventDecode()
     ev_words = _ewords;
 
     _ekeyw = _ewords[2];
+
+    _evalue =  spat(_emsg,_ekeyw,1);
+      _evalue =eatWhiteEnds(_evalue);
+
     _ekeyw2 =_ ewords[3];
+    _ekeyw3 =_ ewords[4];
+    
    // can get all of these in one by using ref parameters
      _ename = Ev->getEventType(_eid,_etype,_ewoid,_ewoaw,_ebutton,_ekeyc);
 
@@ -165,8 +171,11 @@ svar _ewords;
 
 str _ename;
 str _ekeyw;
+
 str _ekeyw2;
+str _ekeyw3;
 str _emsg = "xyz";
+str _evalue;
 
 //str ev_woname = "";
 //str ev_woval = "";
