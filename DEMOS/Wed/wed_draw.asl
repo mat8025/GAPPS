@@ -7,8 +7,8 @@ proc drawGoals(ws)
   {
 
    if (ws == 0) {
-    Plot(gwo,@line,sc_startday,165,sc_endday,165, "green")
-    Plot(calwo,@line,sc_startday,day_burn,sc_endday,day_burn, "green")
+    Plot(gwo,@line,sc_startday,165,sc_endday,165, GREEN_)
+    Plot(calwo,@line,sc_startday,day_burn,sc_endday,day_burn, GREEN_)
     Plot(calwo,@line,sc_startday,out_cal,sc_endday,out_cal, BLUE_)
     Plot(calwo,@line,sc_startday,in_cal,sc_endday,in_cal, RED_)
 
@@ -108,7 +108,7 @@ proc  drawGrids( ws )
   //sWo(extwo,@axnum,2,0,sc_endday,20,10)
 
   Text(gwo,  "Weight (lbs)",-4,0.7,4,-90)
-  Text(extwo,"Exercise mins",-4,0.5,4,-90)
+
   Text(calwo,"Cals In/Out",-4,0.7,4,-90)
 
  }
@@ -153,8 +153,15 @@ proc drawScreens()
 
       dGl(ext_gl)
       
-      plot(extwo,@keysymbol,0.78 ,0.8,DIAMOND_,symsz,BLUE_,1);
-      plot(extwo,@keysymbol,0.78,0.7,TRI_,symsz,GREEN_,1);
+      plot(extwo,@keysymbol,0.78 ,0.9,DIAMOND_,symsz,BLUE_,1);
+      plot(extwo,@keysymbol,0.78,0.8,TRI_,symsz,GREEN_,1);
+      Text(extwo,"Exercise Time (mins)", 0.8,0.8,1)
+      Text(calwo,"Calories Burnt", 0.8,0.9,1)
+      
+
+
+
+
 
       //sWo(extwo,@symbol,sc_startday,2000,"diamond",5);
 //<<" draw gw_gl\n"
@@ -178,22 +185,16 @@ proc drawScreens()
 
       drawGrids(0);
 
-   //   setgwob(wedwo,@showpixmap)
 
       sWo(allwo,@clipborder,"black")
 
       drawMonths(0)
 
+      Text(extwo,"Exercise mins",-4,0.5,4,-90)
       Text(gwo,  "Weight (lbs)",0.8,0.8,1)
-      Text(calwo,"Calories Burnt", 0.8,0.8,1)
-      Text(extwo,"Exercise Time (mins)", 0.8,0.7,1)
-
-      //DrawGline(pwt_gl)
 
        dGl(wt_gl)
    
-      //DrawGline(carb_gl)
-
        dGl(wt_gl)
 
       showTarget();

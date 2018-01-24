@@ -61,7 +61,7 @@ proc getDay( dayv)
     wtm  = WTVEC[i]
     cbm  = CALBURN[i]
  
-    <<"FOUND $i %V $dayv $m_day  $wtm $xtm $cbm\n"
+   // <<"FOUND $i %V $dayv $m_day  $wtm $xtm $cbm\n"
 
      dt = julmdy(m_day);
      sWo(dtmwo,@value,dt,@redraw);
