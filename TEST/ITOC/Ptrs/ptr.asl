@@ -39,13 +39,42 @@ dv=testargs(1,2,3,n,&n,&a)
  y = 3
 <<"%V $x $y \n"
  add (x,y)
-<<"%V $x $y \n"
- add (&x,&y)
+
+ans=iread()
+
 <<"%V $x $y \n"
 
+add (&x,&y)
+
+<<"%V $x $y \n"
+
+
+
+int a_3 = 66
+
+vn = "a_3"
+
+k = $vn
+
+$vn = 77
+
+<<"%V$vn $k $a_3 \n"
+// output is :-
+
+//vn a_3 k 66 a_3 77 
 
 
 exit()
+
+
+
+ptr z = &x;
+
+   z = 6;
+<<"%V $(typeof(z)) $z $x\n"
+
+
+
 
 int I[N]
 

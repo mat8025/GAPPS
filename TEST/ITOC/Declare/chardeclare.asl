@@ -39,6 +39,8 @@ uchar cv[] = { 65,47,79,0xBA };
 
  CheckNum(cve,65)
 
+
+
  cv[0] = 'M';
  
  cve = cv[0]
@@ -47,6 +49,8 @@ uchar cv[] = { 65,47,79,0xBA };
 <<"%V$cv[0]\n"
 
  CheckNum(cv[0],77)
+
+
 
  str ls = 'abc'
 

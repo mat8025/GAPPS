@@ -4,7 +4,7 @@
 
 // want to show that can use &obj as an arg to deliver ptr to that object to a script procedure
 
-setdebug(1,"pline","~step")
+setdebug(1,"~pline","~step")
 
 //#define ASK ans=iread();
 #define ASK ;

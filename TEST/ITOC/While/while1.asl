@@ -1,7 +1,10 @@
-#! /usr/local/GASP/bin/asl
+///
+///
+///
 
 
-N = $2
+checkin()
+N = 10
 
 int k = 0
 
@@ -9,26 +12,29 @@ int k = 0
 
 <<" DONE $k $N \n"
 
- k =0
- int m = 0
+checkNum(k,N);
+
+ k =0;
+ int m = 0;
  while ( k++ < N) {
-   m++
+   m++;
    <<" $k $m \n"
 
  }
 
+<<" DONE $k $N \n"
+checkNum(k,N+1);
+ m = 0;
+ k = 0;
+ while ( ++k < N) {
+   m++;
+   <<" $k $m \n"
+ }
 
-#{
- k = 0
- while ( k < N)   { 
- <<" $k  \n" ; 
-  k++ ;
-   }
-#}
-
+checkNum(k,N);
 <<" DONE $k $N \n"
 
-STOP!
+checkOut()
 
 
 ///////////////////////////////

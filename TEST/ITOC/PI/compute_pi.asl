@@ -4,14 +4,14 @@
 <<" set a & b \n"
 
 pan a = 2.123456789
-pan b 
+pan b ;
 
-a = 2.43
-b = 4.567
+a = 2.43;
+b = 4.567;
 
 //b = 3
 
-c = a * b
+c = a * b;
 
 <<"%V$a  $b \n"
 <<"$c \n"
@@ -54,9 +54,9 @@ if (ret != 1) {
 
 index += 10
 if (index > 1000)
- break
+ break;
+ 
 }
-
 
 
 //<<"$s1[1] $s2[1]\n"

@@ -7,7 +7,7 @@
 #define PBLACK '\033[1;39m'
 #define POFF  '\033[0m'
 
-vers = 7;
+vers = 8;
 
 //ws= getenv("GS_SYS")
 
@@ -670,9 +670,10 @@ int do_ptrs = 0;
   cart("vops")
   cart("vopsele")
 
-  changeDir("Veccat")
+  Run2Test("Vector")
+  cart("vec")
   cart("veccat")
-  updir()
+
 
   }
 
@@ -694,7 +695,7 @@ int do_ptrs = 0;
 
   Run2Test("Date")
   cart("date")
-  <<"done date\n"
+
 
   Run2Test("Sele")
   cart("sele")
@@ -729,7 +730,6 @@ int do_ptrs = 0;
 
   cart("readfile")
 
-   updir()
 
   }
 
@@ -803,8 +803,6 @@ if ( do_all || do_if ) {
 
   cart("if5")
 
-  cart("if_b")
-
   cart("if6")
 
 
@@ -845,7 +843,8 @@ if ( do_all || do_while ) {
   Run2Test("While")
 
   cart("while0", 10)
-  cart("while7", 10)
+  cart("while1")
+
 
 
 
@@ -936,7 +935,6 @@ if ( do_all || do_array ) {
   cart("vsp")
 
 
-
   Run2Test("Scalarvec")
 
   cart("scalarvec")
@@ -975,10 +973,9 @@ if ( do_all || do_matrix ) {
     cart("msquare")
     cart("diag")
 
-updir()
    Run2Test("Setv")
    cart("setv")
-updir()
+
 
     }
 
@@ -995,8 +992,6 @@ updir()
   cart("dynv0")
 
   cart("dynv2")
-
-  updir()
 
 
     }
@@ -1030,33 +1025,30 @@ if ( do_all || do_func ) {
 
   cart ("funcargs")
 
-  updir()
 }
 
 /////////////////////////////////////////
 
 if ( do_all || do_unary ) {
 
-  hdg("UNARY")
 
   Run2Test("Unary")
 
   cart("unaryexp")
 
-  updir()
+
 }
 
 /////////////////////////////////////////
 
 if ( do_all || do_command ) {
-  hdg("COMMAND")
 
   Run2Test("Command")
 
   cart("command")
   cart("command_parse")
 
-  updir()
+
     }
 
 
@@ -1083,7 +1075,7 @@ if ( do_all || do_proc ) {
 
   cart("procrefarg")
 
-  updir()
+
 
   Run2Test("ProcArray")
   
@@ -1093,13 +1085,13 @@ if ( do_all || do_proc ) {
   
   cart("arrayarg2")
 
-  updir()
+
 
   Run2Test("Swap")
 
   cart ("swap")
 
-  updir()
+
 
   Run2Test("Static")
   
@@ -1113,7 +1105,7 @@ if ( do_all || do_proc ) {
 
   cart("scope");
 
-  updir()
+
 
   }
 
@@ -1121,11 +1113,9 @@ if ( do_all || do_mops ) {
 
      Run2Test("Mops")
 
-    //Run2Test("Mops")
-
     cart("xyassign")
 
-    updir()
+
 
     hdg("RECURSION")
 
@@ -1133,18 +1123,18 @@ if ( do_all || do_mops ) {
 
     cart("fact", 10)
 
-    updir()
+
 
     Run2Test("Cmplx")
     cart("cmplx")
 
-    updir()
+
     
     Run2Test("Rand")
 
     cart("urand")
 
-    updir()
+
     }
 
 
@@ -1168,9 +1158,6 @@ if ( do_all || do_svar ) {
 
     cart("svargetword")
 
-
-    updir()
-
     }
 
 
@@ -1183,7 +1170,7 @@ if ( do_all || do_svar ) {
 
     cart("ivar")
 
-    updir()
+
 
     }
 
@@ -1198,7 +1185,7 @@ if ( do_all || do_record ) {
 
     cart("prtrecord")
 
-    updir()
+
 }
 
  changeDir(Testdir)
@@ -1210,23 +1197,17 @@ if ( do_all || do_record ) {
     cart ("inewton")
     cart ("inewton_cbrt")
     cart ("opxeq")
-    updir()
+
 
     Run2Test("Prime")
 
     //    cart ("prime_65119")
     cart ("prime_127")
 
-    updir()
-
 
     Run2Test("Pow")
 
     cart("pow")
-
-    updir()
-
-
 
     }
 
@@ -1241,7 +1222,7 @@ if ( do_all || do_record ) {
     cart("checkvm")
     cart("polyn")
 
-  updir()
+
 
 }
 
@@ -1252,7 +1233,7 @@ if ( do_all || do_record ) {
     Run2Test("Pan")
     cart("pan")
     cart("derange",10)
-    updir()
+
 
 }
 
@@ -1267,7 +1248,7 @@ if ( do_all || do_lists ) {
 
     cart ("list_ins_del")
 
-    updir()
+    
 
     }
 
@@ -1276,10 +1257,12 @@ if ( do_all || do_ptrs ) {
 
     Run2Test("Ptrs")
 
+    cart ("ptrvec");
     cart ("indirect");
 
-      updir()
+
 }
+
 
 if ( do_all || do_class ) {
 
@@ -1291,7 +1274,6 @@ if ( do_all || do_class ) {
 
     cart ("classvar");
 
-    updir()
     }
 
 
@@ -1311,17 +1293,16 @@ if ( do_all || do_oo ) {
 
   cart("sh")
 
-  Run2Test("../Obcopy/")
+  Run2Test("Obcopy")
 
   cart("obcopy")
 
     //  cart("objivar")
 
-  Run2Test("../Mih/")
+  Run2Test("Mih")
 
   cart("mih")
 
-  updir()
 
 
   }
@@ -1335,45 +1316,45 @@ if ( do_all || do_oo ) {
 
     cart("sscan")
 
-    updir()
+
 
     Run2Test("Bscan")
 
     cart("bscan")
 
-    updir()
+
 
     Run2Test("Cut")
 
     cart("cut")
 
-    updir()
+
 
     Run2Test("Cmp")
 
     cart("cmp")
 
-    updir()
+
 
     Run2Test("Sel")
 
     cart("sel")
 
-    updir()
+
 
 
     Run2Test("Shift")
 
     cart("shift")
 
-    updir()
+
 
 
     Run2Test("Median")
 
     cart("median")
 
-    updir()
+
 
 
 
@@ -1383,7 +1364,7 @@ if ( do_all || do_oo ) {
 
     cart("findval")
 
-    updir()
+
 
 
 /// chem    -- find an atomic number for an element
@@ -1392,54 +1373,54 @@ if ( do_all || do_oo ) {
 
     cart("chem0")
 
-    updir()
+
 
     Run2Test("Lip");
     cart("lip");
-    updir();
+
 
 //============================
     Run2Test("BubbleSort");
     cart("bubblesort");
-    updir();
+
 //============================
 
 //============================
     Run2Test("Typeof");
     cart("typeof");
-    updir();
+
 //============================
     Run2Test("Variables");
     cart("variables");
-    updir();
+
 //============================
     Run2Test("Trig");
     cart("trig");
-    updir();
+    
 //============================
     Run2Test("Caz");
     cart("caz");
-    updir();
+    
 //============================
     Run2Test("Sizeof");
     cart("sizeof");
-    updir();
+    
 //============================
     Run2Test("Limit");
     cart("limit");
-    updir();
+    
 //============================
     Run2Test("D2R");
     cart("d2r");
-    updir();
+    
 //============================
     Run2Test("Cbrt");
     cart("cbrt");
-    updir();
+    
 //============================
     Run2Test("Packb");
     cart("packb");
-    updir();
+    
 //============================    
 
     }
@@ -1465,14 +1446,14 @@ if ( do_all || do_bugs ) {
       cart("bf_84")
       cart("bf_89")
       cart("bf_91")                                                
-      updir()
+    
 }
 
 /{
 if ( do_all || do_threads ) {
         Run2Test("Threads")
         cart("threads")
-        updir()
+    
 }
 /}
   ///////////////////////////////////////////////////////////////////////////////////////////
@@ -1554,7 +1535,6 @@ secs = dtms/1000000.0
 <<"script vers $(periodicName(vers))($vers) took %6.3f$secs secs %d %V $i_time $x_time\n"
 
 STOP()
-
 
 
 

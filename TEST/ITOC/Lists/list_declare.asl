@@ -4,6 +4,14 @@ Setdebug(1)
 
 
 
+// list H = (1,2,3);
+
+H = (1,2,3);
+
+ ///H = ("1","2","3");
+
+<<"%V $H\n";
+
  L = ( "say", "what", "do" ,"I", "do", "now", "with", "this", "list" )
 
 

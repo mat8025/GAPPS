@@ -1,9 +1,19 @@
 
 ws = getScript()
 
-setdebug(1)
+<<"%V $ws\n"
 
+//  setdebug(1."trace","keep")  /// TBF 1." crashes
+setdebug(1,"trace","keep")
+filterDebug(1,"Vdeclare")
+ CrashList = ( "x",  )  // empty list
+ CrashList->Delete(0)
+
+ FailedList = ( "y",  )  // empty list --- bug first item null? 
+// FailedList->Delete(0)
+ 
 <<" $ws \n"
+<<"%V$CrashList \n"
 
 CheckIn()
 
@@ -18,7 +28,8 @@ m = Caz(J)
 
 <<" $(CheckNum(m,4))\n"
 
-
+checkOut()
+exit()
 
 //PassFail(CheckNum(m,4))
 
@@ -28,6 +39,8 @@ m = Caz(J)
   L1 = ( "a", "small" , "list" , "1", "2", "3", "4", "5" ,"6" ,"yellow", "green", "blue" ,"indigo", "violet")
 
 <<"$L1 \n"
+
+exit()
 
  str fw = L1[0]
 

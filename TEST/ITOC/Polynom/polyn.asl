@@ -1,7 +1,8 @@
-//setdebug(1)
+////
+///
+///
 
-openDll("stat")
-
+// stats are in the math lib -- for now
 
 checkIn()
 

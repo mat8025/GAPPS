@@ -24,7 +24,55 @@ sz = Caz(R);
 
 j = sz;
 
+
+
+writeRecord(1,R)
+
+
+<<"\n $R[7]  @ \n $R[2]\n"
+insertRows(R,7,3,2)
+
+
+for (i= 0; i < 13; i++) {
+R[i][2] = "$i";
+}
+
+writeRecord(1,R)
+
+
+
+<<"\n $R[3]  @ \n $R[8]\n"
+insertRows(R,3,4,8)
+
+writeRecord(1,R)
+
+
+<<"\n 3 $R[3]  @ \n 12 $R[12]\n"
+
+insertRows(R,3,4,12)
+
+writeRecord(1,R)
+
+
+<<"\n 3 $R[3]  @ \n 13 end of record\n"
+
+insertRows(R,3,4,13)
+
+writeRecord(1,R)
+
+
+<<"\n 3 $R[3]  @ \n 0  start $R[0]\n"
+
+insertRows(R,3,4,0)
+
+writeRecord(1,R)
+
+
+
+
 exit()
+
+
 
 while (1) {
 
@@ -54,7 +102,7 @@ ans=iread("again?")
 
 j = sz;
 
-exit()
+
 
 <<" add a row 2 past current \n"
 R[sz+2] = R[1];
@@ -69,7 +117,7 @@ R[j] = R[1];
 
 writeRecord(1,R)
 
-exit()
+
 
 
 for (i = 0; i < sz;i++) {
@@ -230,4 +278,3 @@ writeRecord(1,R)
 
 R[j] = R[1];
 
-writeRecord(1,R)
