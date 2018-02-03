@@ -4,6 +4,7 @@
 /// total up cals,carbs,...
 /// accept,reject or multiply quantity by factor
 /// cup to tablespoon 1/16
+/// tablespoon -> teaspoon  1/3
 /// for each query
 /// write to a day log file dd-04-09-2018
 /// 
@@ -125,7 +126,7 @@ str ans = "";
 while (1) {
 
   <<" New Query\n"
-   ans = "new_query"
+   ans = "new query"
    ans=i_read("[n]ew,[l]ist,[d]elete,[s]ave,[q]uit ? :: $ans ")
 
   if (scmp(ans,"save",1)) {
@@ -176,7 +177,6 @@ while (1) {
 
       showFitems();
 //       <<"$Rn Rsz $(Caz(R))\n"
-
      continue;
   }
 
@@ -253,14 +253,6 @@ while (1) {
 ///  if listed as cup and asked for tablespoon -- adjust quantities by 0.0625
 /// 
 
-/{
-//  aans = i_read("amt %3.2f$f_amt ?: ")
-if (!(aans @="") ) {
-<<"should be scalar!! %V $f_amt $aans\n"    
-    f_amt = atof(aans);
-    <<"should be scalar!! %V $f_amt\n"    
-  }
-/}
 
 <<"%V$f_amt \n"
 
@@ -278,7 +270,8 @@ if (fnd) {
     Wans =  Fd[Wfi]->query(mf);
 
     ans = iread(" [a]ccept,[r]eject , [m]ultiply ?\n");
-    if (ans @= "a") {
+
+     if (ans @= "a") {
 
 //<<[B]"$Wans \n"
        <<"adding @ $Rn Rsz $(Caz(R))\n"
@@ -301,7 +294,7 @@ if (fnd) {
      ans = iread(" [a]ccept,[r]eject\n");
      if (ans @= "a") {
     // <<[B]"$Wans \n"
-       <<"adding @ $Rn Rsz $(Caz(R))\n"
+ <<"adding @ $Rn Rsz $(Caz(R))\n"
      R[Rn] = Split(Wans,",");
      Rn++;
      ret = 1;

@@ -25,13 +25,20 @@
 //
 
 
-setdebug(1) ;
+setdebug(1,"keep","~pline","steponerror") ;
+
+#define  ASK ans=iread(()
+//#define  ASK ;
+
 
 version = "1.5";
 
 ele = spat( pt(atoi(spat(version,".",1))) ,",");
 
 <<"$_clarg[0] $version $ele \n"
+
+
+svar Fdwords;
 
 adjust_day = 0;
 
@@ -42,9 +49,6 @@ adjust_day = 0;
  
  float f_amt = 1.0;
 
-
-include "foodclass";
-
 include "parsefood" ;
 
 include "checkFood";
@@ -52,32 +56,29 @@ include "checkFood";
 
 //////////////////////////////////////////////////////////////////////////
 
-ftfile = "food_table.dat" 
 
- A=  ofr(ftfile)
+ A=  ofr("foodtable.csv")
 
  if (A == -1) {
   <<" can't open food table $ftfile \n"
     exit();
  }
 
-  S=readfile(A)
-  nlines = Caz(S)
+   RF= readRecord(A,@del,',')
+   cf(A);
+  Nrecs = Caz(RF);
+  Ncols = Caz(RF[0]);
 
-DBPR"%v$nlines\n"
 
+<<"num of records $Nrecs  num cols $Ncols\n"
 
- Nfoods  = nlines + 10;
+  Nfoods  = Nrecs -1;
 
- DBPR" now for $Nfoods foods\n"
+  DBPR" now for $Nfoods foods\n"
 
- int n_f = Nfoods;
+  parseFoodTable();
 
- Food Fd[n_f];
-
- Nfoods=parseFoodTable();
-
-  myfood = "pie,apple"
+  myfood = "pie apple"
   f_unit = "slice"
   f_amt = 1.0;
 
@@ -86,6 +87,7 @@ DBPR"%v$nlines\n"
 //////  PARSE THE COMMAND LINE //////
 
  do_loop = 0; // default - single shot query via CL args
+
 
  na = argc()
 
@@ -102,6 +104,7 @@ DBPR"%v$nlines\n"
   }
  }
 
+
  if (na > 1) {
   f_unit = _clarg[2]
  }
@@ -109,7 +112,6 @@ DBPR"%v$nlines\n"
  if (na > 2) {
   f_amt = atof(_clarg[3])
  }
-
 
  if (na > 3) {
   val = _clarg[4]
@@ -119,22 +121,49 @@ DBPR"%v$nlines\n"
 }
 
 //<<"$myfood  $f_unit  $f_amt\n"
+int fnd = 0;
 
+int Bestpick[5][2];
 
  if (na > 1 && !adjust_day) {
 
- fnd= checkFood();
+while (1) {
 
-<<"again? %V$fnd \n"
+    Bestpick = -1;
+   <<"$Bestpick\n"
+   fnd= checkFood();
 
- if (!fnd) {
+   if (!fnd) {
    <<"Sorry could not find a match for $myfood\n";
- }
+   }
+   
+  // Best_pick->Sort();
 
+//<<"$Bestpick\n"
+
+
+ans= iread("search again? : [y]/n ")
+
+if ((ans @="n") ) {
   exit()
  }
 
+  ans=i_read("food $myfood ? : ")
 
+  if (scmp(ans,"quit",4)) {
+    exit()
+  }
+
+  if (! (ans @="") ) {
+    myfood = ans;
+    <<"nowsearching for %V$myfood \n"
+  }
+ 
+ }
+
+
+
+}
 /////////////////////////////// UI /////////////////////////////////
 #include "loopquery"
 
@@ -170,9 +199,12 @@ found_day = 0;
 do_loop = 1;
 
  if (do_loop ) {
- 
+ <<" in doloop \n"
     fnd =queryloop();
+
 <<" qloop exit $fnd\n"
+
+
   if (fnd) {
 
 // write to daily log
@@ -180,6 +212,7 @@ do_loop = 1;
 <<" post the total save to today $the_day\n"
 !!"cp $the_day today"
     }
+
  }
 
 
@@ -191,4 +224,4 @@ if (Graphic) {
 }
 
 
-stop!
+exit()

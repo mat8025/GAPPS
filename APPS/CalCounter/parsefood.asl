@@ -10,50 +10,14 @@ proc parseFoodTable()
  k = 0;
  jf = 0;
  int err = 0;
-
- while (1) {
-
-   fline = S[k]
-
-   if (fline @="") {
-        break;
-   }
-
-   k++
-
-   if (!scmp(fline,"#",1)) {
-
-//"[${k}] $nlines %V$fline \n"
-
-     fdwords = Split(fline,",");
-//  <<"$fdwords \n"
-      fd = fdwords[0];
-// <<"%V$fd \n"
-
-     err= Fd[jf]->setval(fdwords)
-
-//<<"ret setval $err\n"
-//<<"trying print \n"
-//   Fd[jf]->print()
-
-    jf++
-
-//<<"$k $jf <${fd}> $unit $amt $fat $cals $carbs $wt\n"
-//i_read()
-
-   if (err <= 0) { 
-       break;
-   }
-
-   }
+ svar fdwords;
 
 
-  if (k >= (nlines-1))
-     break;
+
+ for (k = 1; k < Nrecs; k++) {
+   <<"<$k> $RF[k]\n"
  }
-      return jf;
+
 }
 
-//<<" we have $jf foods \n"
-   //listFoods(jf)
 //////////////////////////////////////////////////////

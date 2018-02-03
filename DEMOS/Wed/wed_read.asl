@@ -159,7 +159,7 @@ int kd;
 
     day = col[1]
 
-    wday = julday(day) 
+    wday = julian(day) 
 
     if (!got_start) {
         sday = wday

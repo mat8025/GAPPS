@@ -15,8 +15,6 @@ avers = annversion();
 
 <<"version is $avers\n"
 
-
-
 proc usage()
 {
 
@@ -33,6 +31,7 @@ proc usage()
   stop!
 
 }
+
 
 int NBS = 100; // sweeps at one train call
 
@@ -99,7 +98,7 @@ if ( rms < 0.1) {
  }
 
  if (ns > nsweeps) {
- if (extend_train && (nc == 129)) {
+ if (extend_train && (nc > (Npats-5))) {
      nsweeps += 10000;
      extend_train = 0;
   }
@@ -107,7 +106,7 @@ if ( rms < 0.1) {
   break;
  }
 
- if (((ns % rshaken) == 0) && (nc < 129)) {
+ if (((ns % rshaken) == 0) && (nc < (Npats-10))) {
     <<"random shake @ $ns !\n"
    // randNetWts(N,8,2);
   //   break;
@@ -196,7 +195,7 @@ int Nbar = (Npats * 0.9);
 //ans=iread();
 
  layers = 3;
- nin = 32*20;
+ nin = 32*20;  // 32 rows20 colsfor our font images
  nout = 26;
 
 <<"%V $layers $nin $nout \n"
@@ -365,14 +364,28 @@ nip_pats = ntargs;
 //include "patprep.asl"
 
 data_dir = "../DATA";
+net_ip_data = "$data_dir/trip.dat";
+<<"Input data is $net_ip_data\n"
+A=ofr(net_ip_data)
+if (A == -1) {
+<<"Input data  $net_ip_data not found\n"
+exit(-1)
+}
 
-A=ofr("$data_dir/trip.dat")
 Input=rdata(A,FLOAT_);
 cf(A)
 
 <<" $(Caz(Input)) $(Cab(Input)) \n"
 
-A=ofr("$data_dir/trop.dat")
+
+net_op_data = "$data_dir/trop.dat";
+<<"net op data  $net_op_data\n"
+A=ofr(net_op_data);
+if (A == -1) {
+<<"net op data  $net_op_data not found\n"
+exit(-1)
+}
+
 Target=rdata(A,FLOAT_);
 cf(A)
 

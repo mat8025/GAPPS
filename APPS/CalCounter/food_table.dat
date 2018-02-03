@@ -4,21 +4,17 @@
 # V7
 SALAD DRESSING 1000 ISLAND          , 1, TBSP, 60, 2, 6, 0, 4, 1 , 16
 ALFALFA SEEDS  SPROUTED  RAW        , 1, CUP, 10, 1, 0, 1, 0, 0 , 33
-ALMONDS  SLIVERED                   , 1, CUP, 795, 28, 70, 27, 0, 6.7 , 135
 ALMONDS  WHOLE                      , 1, OZ, 165, 6, 15, 6, 0, 1.4 , 28.35
-ANGELFOOD CAKE  FROM MIX            , 1, PIECE, 125, 29, 0, 3, 0, 0 , 53
 APPLE JUICE  CANNED                 , 1, CUP, 115, 29, 0, 0, 0, 0 , 248
-APPLESAUCE  CANNED  SWEETENED       , 1, CUP, 195, 51, 0, 0, 0, 0.1 , 255
-APPLESAUCE  CANNED UNSWEETENED      , 1, CUP, 105, 28, 0, 0, 0, 0 , 244
+APPLESAUCE  CANNED                , 1, CUP, 105, 28, 0, 0, 0, 0 , 244
 APPLES  RAW  PEELED  SLICED         , 1, CUP, 65, 16, 0, 0, 0, 0.1 , 110
 APRICOT NECTAR  NO ADDED VIT C      , 1, CUP, 140, 36, 0, 1, 0, 0 , 251
 APRICOTS  CANNED  JUICE PACK        , 1, CUP, 120, 31, 0, 2, 0, 0 , 248
-APRICOTS  DRIED  COOKED UNSWTN      , 1, CUP, 210, 55, 0, 3, 0, 0 , 250
-APRICOTS  DRIED  UNCOOKED           , 1, CUP, 310, 80, 1, 5, 0, 0 , 130
+APRICOTS  DRIED                            , 1, CUP, 210, 55, 0, 3, 0, 0 , 250
+APRICOTS  DRIED  RAW              , 1, CUP, 310, 80, 1, 5, 0, 0 , 130
 APRICOTS  RAW                       , 1, ITEM, 17, 4, 0, 0.33, 0, 0 , 35
-APRICOT  CANNED  HEAVY SYRUP        , 1, CUP, 215, 55, 0, 1, 0, 0 , 258
+APRICOTS  CANNED    SYRUP        , 1, CUP, 215, 55, 0, 1, 0, 0 , 258
 ARTICHOKES  GLOBE                   , 1, ITEM, 55, 12, 0, 3, 0, 0 , 120
-ASPARAGUS  CKD FRM RAW  DR CUT      , 1, CUP, 45, 8, 1, 5, 0, 0.1 , 180
 ASPARAGUS  CKD FRM RAW DR SPER      , 4, ITEM, 15, 3, 0, 2, 0, 0 , 60
 ASPARAGUS CANNED SPEARS W/SALT      , 4, ITEM, 10, 2, 0, 1, 0, 0 , 80
 AVOCADOS  CALIFORNIA                , 1, ITEM, 305, 12, 30, 4, 0, 4.5 , 173
@@ -31,7 +27,6 @@ BANANAS  SLICED                     , 1, CUP, 140, 35, 1, 2, 0, 0.3 , 150
 BARBECUE SAUCE                      , 1, TBSP, 10, 2, 0, 0, 0, 0 , 16
 BARLEY  PEARLED LIGHT  UNCOOKD      , 1, CUP, 700, 158, 2, 16, 0, 0.3 , 200
 BEAN SPROUTS  MUNG  RAW             , 1, CUP, 30, 6, 0, 3, 0, 0 , 104
-BEAN WITH BACON SOUP  CANNED        , 1, CUP, 170, 23, 6, 8, 3, 1.5 , 253
 BEANS BLACK   DRY  COOKED           , 1, CUP, 225, 41, 1, 15, 0, 0.1 , 171
 BEANS DRY CANNED W/FRANKFURTER      , 1, CUP, 365, 32, 18, 19, 30, 7.4 , 255
 BEANS DRY CANNED W/PORK+SWTSCE      , 1, CUP, 385, 54, 12, 16, 10, 4.3 , 255
@@ -42,7 +37,6 @@ BEEF BROTH  BOULLN  CONSM CNND      , 1, CUP, 15, 0, 1, 3, 0, 0.3 , 240
 BEEF GRAVY  CANNED                  , 1, CUP, 125, 11, 5, 9, 7, 2.7 , 233
 BEEF HEART  BRAISED                 , 3, OZ, 150, 0, 5, 24, 164, 1.2 , 85
 BEEF LIVER  FRIED                   , 3, OZ, 185, 7, 7, 23, 410, 2.5 , 85
-BEEF NOODLE SOUP  CANNED            , 1, CUP, 85, 9, 3, 5, 5, 1.1 , 244
 BEEF ROAST  EYE O RND               , 3, OZ, 205, 0, 12, 23, 62, 4.9 , 85
 BEEF ROAST  RIB                     , 3, OZ, 315, 0, 26, 19, 72, 10.8 , 85
 BEEF STEAK SIRLOIN BROIL LEAN       , 2.5, OZ, 150, 0, 6, 22, 64, 2.6 , 72
@@ -64,19 +58,18 @@ BLACKBERRIES  RAW                   , 1, CUP, 75, 18, 1, 1, 0, 0.2 , 144
 BLUE CHEESE SALAD DRESSING          , 1, TBSP, 75, 1, 8, 1, 3, 1.5 , 15
 BLUEBERRIES  FROZEN  SWEETENED      , 1, CUP, 185, 50, 0, 1, 0, 0 , 230
 BLUEBERRIES  RAW                    , 1, CUP, 80, 20, 1, 1, 0, 0 , 145
-BLUEBERRY MUFFINS  HOME RECIPE      , 1, ITEM, 135, 20, 5, 3, 19, 1.5 , 45
-BLUEBERRY MUFFINS FROM COM MIX      , 1, ITEM, 140, 22, 5, 3, 45, 1.4 , 45
+BLUEBERRY MUFFINS                 , 1, ITEM, 140, 22, 5, 3, 45, 1.4 , 45
 BOLOGNA                             , 2, SLICE, 180, 2, 16, 7, 31, 6.1 , 57
-BRAN MUFFINS  FROM COMMERL MIX      , 1, ITEM, 140, 24, 4, 3, 28, 1.3 , 45
+BRAN MUFFINS                            , 1, ITEM, 140, 24, 4, 3, 28, 1.3 , 45
 BRAUNSCHWEIGER                      , 2, SLICES, 205, 2, 18, 8, 89, 6.2 , 57
 BRAZIL NUTS                         , 1, OZ, 185, 4, 19, 4, 0, 4.6 , 28.35
-BREAD STUFFING FROM MX DRYTYPE      , 1, CUP, 500, 50, 31, 9, 0, 6.1 , 140
+BREAD STUFFING                  , 1, CUP, 500, 50, 31, 9, 0, 6.1 , 140
 BREAD WHOLE-WHEAT                   , 1, SLICE, 70, 13, 1, 3, 0, 0.4 , 28
 BREAD WHITE                         , 1, SLICE, 65, 12, 1, 2, 0, 0.3 , 25
 BREAD FRENCH                        , 1, SLICE, 100, 18, 1, 3, 0, 0.3 , 35
 BREAD ITALIAN                       , 1, SLICE, 85, 17, 0, 3, 0, 0 , 30
 BREAD PITA                          , 1, PITA, 165, 33, 1, 6, 0, 0.1 , 60
-RAISIN BREAD                        , 1, SLICE, 65, 13, 1, 2, 0, 0.2 , 25
+BREAD RAISIN                         , 1, SLICE, 65, 13, 1, 2, 0, 0.2 , 25
 BREAD LEMON POPPYSEED               , 1, SLICE, 160, 23, 2.3, 3.6, 61, 2.3, 25
 BREADCRUMBS  DRY  GRATED            , 1, CUP, 390, 73, 5, 13, 5, 1.5 , 100
 BROCCOLI  RAW                       , 1, PIECE, 40, 8, 1, 4, 0, 0.1 , 151
@@ -87,25 +80,26 @@ BROWNIES    NUTS FRSTNG             , 1, PIECE, 100, 16, 4, 1, 14, 1.6 , 25
 BRUSSELS SPROUTS  RAW  COOKED       , 1, CUP, 60, 13, 1, 4, 0, 0.2 , 155
 BUCKWHEAT FLOUR  LIGHT  SIFTED      , 1, CUP, 340, 78, 1, 6, 0, 0.2 , 98
 BULGUR  UNCOOKED                    , 1, CUP, 600, 129, 3, 19, 0, 1.2 , 170
-BUTTERMILK  DRIED                   , 1, CUP, 465, 59, 7, 41, 83, 4.3 , 120
-BUTTERMILK  FLUID                   , 1, CUP, 100, 12, 2, 8, 9, 1.3 , 245
-BUTTER  SALTED                      , 1, PAT, 35, 0, 4, 0, 11, 2.5 , 5
+BUTTERMILK                          , 1, CUP, 100, 12, 2, 8, 9, 1.3 , 245
 BUTTER  SALTED                      , 1, TBSP, 100, 0, 11, 0, 31, 7.1 , 14
-BUTTER  SALTED                      , 0.5, CUP, 810, 0, 92, 1, 247, 57.1 , 113
-BUTTER  UNSALTED                    , 1, PAT, 35, 0, 4, 0, 11, 2.5 , 5
 BUTTER  UNSALTED                    , 1, TBSP, 100, 0, 11, 0, 31, 7.1 , 14
-BUTTER  UNSALTED                    , 0.5, CUP, 810, 0, 92, 1, 247, 57.1 , 113
 CABBAGE  CHINESE  PAK-CHOI CKD      , 1, CUP, 20, 3, 0, 3, 0, 0 , 170
 CABBAGE  CHINESE PE-TSAI  RAW       , 1, CUP, 10, 2, 0, 1, 0, 0 , 76
 CABBAGE  COMMON  COOKED  DRNED      , 1, CUP, 30, 7, 0, 1, 0, 0 , 150
 CABBAGE  COMMON  RAW                , 1, CUP, 15, 4, 0, 1, 0, 0 , 70
 CABBAGE  RED  RAW                   , 1, CUP, 20, 4, 0, 1, 0, 0 , 70
 CABBAGE  SAVOY  RAW                 , 1, CUP, 20, 4, 0, 1, 0, 0 , 70
-CAKE OR PASTRY FLOUR  SIFTED        , 1, CUP, 350, 76, 1, 7, 0, 0.1 , 96
+CAKE POUND                            , 1, SLICE, 120, 15, 5, 2, 32, 1.2 , 30
+CAKE GINGERBREAD                 , 1, PIECE, 175, 32, 4, 2, 1, 1.1 , 63
+CAKE ANGELFOOD                     , 1, PIECE, 125, 29, 0, 3, 0, 0 , 53
+CAKE CARROT CREAMCHEESE       , 1, PIECE, 385, 48, 21, 4, 74, 4.1 , 96
+CAKE COFFEECAKE                    , 1, PIECE, 230, 38, 7, 5, 47, 2 , 72
+CAKE DEVIL'S FOOD                 , 1, PIECE, 235, 40, 8, 3, 37, 3.5 , 69
+CAKE YELLOW                     , 1, PIECE, 245, 39, 11, 2, 38, 5.7 , 69
+CAKE FRUIT  DARK   	          , 1, PIECE, 165, 25, 7, 2, 20, 1.5 , 43
 CANTALOUP  RAW                      , 0.5, MELN, 95, 22, 1, 2, 0, 0.1 , 267
 CARAMELS  PLAIN OR CHOCOLATE        , 1, OZ, 115, 22, 3, 1, 1, 2.2 , 28.35
 CAROB FLOUR                         , 1, CUP, 255, 126, 0, 6, 0, 0 , 140
-CARROT CAKE CREMCHESE FRST REC      , 1, PIECE, 385, 48, 21, 4, 74, 4.1 , 96
 CARROTS  CANNED  DRN  W/ SALT       , 1, CUP, 35, 8, 0, 1, 0, 0.1 , 146
 CARROTS  CANNED DRND  W/O SALT      , 1, CUP, 35, 8, 0, 1, 0, 0.1 , 146
 CARROTS  COOKED FROM FROZEN         , 1, CUP, 55, 12, 0, 2, 0, 0 , 146
@@ -179,8 +173,6 @@ CHICKEN FRANKFURTER                 , 1, FRANK, 115, 3, 9, 6, 45, 2.5 , 45
 CHICKEN_GRAVY FROM DRY MIX          , 1, CUP, 85, 14, 2, 3, 3, 0.5 , 260
 CHICKEN_GRAVY  CANNED               , 1, CUP, 190, 13, 14, 5, 5, 3.4 , 238
 CHICKEN_LIVER  COOKED               , 1, LIVER, 30, 0, 1, 5, 126, 0.4 , 20
-CHICKEN_NOODLE SOUP  CANNED         , 1, CUP, 75, 9, 2, 4, 7, 0.7 , 241
-CHICKEN_RICE SOUP  CANNED           , 1, CUP, 60, 7, 2, 4, 7, 0.5 , 241
 CHICKEN ROLL  LIGHT                 , 2, SLICES, 90, 1, 4, 11, 28, 1.1 , 57
 CHICKEN  BOILED                     , 5, OZ, 235, 0, 11, 31, 88, 3.1 , 142
 CHICKEN  BREAST FRIED  BATTER       , 4.9, OZ, 365, 13, 18, 35, 119, 4.9 , 140
@@ -193,13 +185,12 @@ CHICKEN  STEWED                     , 1, CUP, 250, 0, 9, 38, 116, 2.6 , 140
 CHICKPEAS  COOKED  DRAINED          , 1, CUP, 270, 45, 4, 15, 0, 0.4 , 163
 CHILI CON CARNE W/ BEANS  CNND      , 1, CUP, 340, 31, 16, 19, 28, 5.8 , 255
 CHILI POWDER                        , 1, TSP, 10, 1, 0, 0, 0, 0.1 , 2.6
-CHOCOLATE CHIP COOKIES COMMRCL      , 4, COOKIE, 180, 28, 9, 2, 5, 2.9 , 42
+CHOCOLATE CHIP COOKIES       , 4, COOKIE, 180, 28, 9, 2, 5, 2.9 , 42
 CHOCOLATE MILK  LOWFAT 2%           , 1, CUP, 180, 26, 5, 8, 17, 3.1 , 250
 CHOCOLATE MILK  REGULAR             , 1, CUP, 210, 26, 8, 8, 31, 5.3 , 250
-CHOCOLATE  BITTER OT BAKING         , 1, OZ, 145, 8, 15, 3, 0, 9 , 28.35
+CHOCOLATE  BITTER OR BAKING         , 1, OZ, 145, 8, 15, 3, 0, 9 , 28.35
 CINNAMON                            , 1, TSP, 5, 2, 0, 0, 0, 0 , 2.3
-CLAM CHOWDER  MANHATTAN  CANND      , 1, CUP, 80, 12, 2, 4, 2, 0.4 , 244
-CLAM CHOWDER  NEW ENG  W/ MILK      , 1, CUP, 165, 17, 7, 9, 22, 3 , 248
+CLAM CHOWDER  NEW ENG        , 1, CUP, 165, 17, 7, 9, 22, 3 , 248
 CLAMS  CANNED  DRAINED              , 3, OZ, 85, 2, 2, 13, 54, 0.5 , 85
 CLAMS  RAW                          , 3, OZ, 65, 2, 1, 11, 43, 0.3 , 85
 CLUB SODA                           , 12, FLOZ, 0, 0, 0, 0, 0, 0 , 355
@@ -208,7 +199,6 @@ COCA PWDR W/O NONFAT DRY MILK       , 0.75, OZ, 75, 19, 1, 1, 0, 0.3 , 21
 COCONUT  DRIED  SWEETND SHREDD      , 1, CUP, 470, 44, 33, 3, 0, 29.3 , 93
 COCONUT  RAW  PIECE                 , 1, PIECE, 160, 7, 15, 1, 0, 13.4 , 45
 COCONUT  RAW  SHREDDED              , 1, CUP, 285, 12, 27, 3, 0, 23.8 , 80
-COFFEECAKE  CRUMB  FROM MIX         , 1, PIECE, 230, 38, 7, 5, 47, 2 , 72
 COFFEE  BREWED                      , 6, FLOZ, 0, 0, 0, 0, 0, 0 , 180
 COFFEE  INSTANT  PREPARED           , 6, FLOZ, 0, 1, 0, 0, 0, 0 , 182
 COLA  DIET  ASPARTAME ONLY          , 12, FLOZ, 0, 0, 0, 0, 0, 0 , 355
@@ -236,24 +226,18 @@ CORN  CNND CRM STL WHIT NO SAL      , 1, CUP, 185, 46, 1, 4, 0, 0.2 , 256
 CORN  CNND CRM STL WHIT W/SALT      , 1, CUP, 185, 46, 1, 4, 0, 0.2 , 256
 CORN  CNND CRM STL YLLW NO SAL      , 1, CUP, 185, 46, 1, 4, 0, 0.2 , 256
 CORN  CNND CRM STL YLLW W/SALT      , 1, CUP, 185, 46, 1, 4, 0, 0.2 , 256
-CORN  COOKED FRM FROZN  WHITE       , 1, CUP, 135, 34, 0, 5, 0, 0 , 165
-CORN  COOKED FRM FROZN  WHITE       , 1, EAR, 60, 14, 0, 2, 0, 0.1 , 63
-CORN  COOKED FRM FROZN  YELLOW      , 1, CUP, 135, 34, 0, 5, 0, 0 , 165
-CORN  COOKED FRM FROZN  YELLOW      , 1, EAR, 60, 14, 0, 2, 0, 0.1 , 63
-CORN  COOKED FROM RAW  WHITE        , 1, EAR, 85, 19, 1, 3, 0, 0.2 , 77
-CORN  COOKED FROM RAW  YELLOW       , 1, EAR, 85, 19, 1, 3, 0, 0.2 , 77
-CORN CNND WHL KRNL WHTE NO SAL      , 1, CUP, 165, 41, 1, 5, 0, 0.2 , 210
+CORN  COOKED          WHITE       , 1, CUP, 135, 34, 0, 5, 0, 0 , 165
+CORN  COOKED     WHITE       , 1, EAR, 60, 14, 0, 2, 0, 0.1 , 63
+CORN  COOKED     YELLOW      , 1, CUP, 135, 34, 0, 5, 0, 0 , 165
+CORN  COOKED     YELLOW      , 1, EAR, 60, 14, 0, 2, 0, 0.1 , 63
+CORN  COOKED  WHITE        , 1, EAR, 85, 19, 1, 3, 0, 0.2 , 77
+CORN  COOKED  YELLOW       , 1, EAR, 85, 19, 1, 3, 0, 0.2 , 77
 CORN CNND WHL KRNL WHTE W/SALT      , 1, CUP, 165, 41, 1, 5, 0, 0.2 , 210
-CORN CNND WHL KRNL YLLW NO SAL      , 1, CUP, 165, 41, 1, 5, 0, 0.2 , 210
 CORN CNND WHL KRNL YLLW W/SALT      , 1, CUP, 165, 41, 1, 5, 0, 0.2 , 210
 COTTAGE CHEESE CREMD SMLL CURD      , 1, CUP, 215, 6, 9, 26, 31, 6 , 210
 COTTAGE CHEESE CREMD W/FRUIT        , 1, CUP, 280, 30, 8, 22, 25, 4.9 , 226
 COTTAGE CHEESE LOWFAT 2%            , 1, CUP, 205, 8, 4, 31, 19, 2.8 , 226
 COTTAGE CHEESE UNCREAMED            , 1, CUP, 125, 3, 1, 25, 10, 0.4 , 145
-CR OF CHICKEN SOUP W/ H20 CNND      , 1, CUP, 115, 9, 7, 3, 10, 2.1 , 244
-CR OF CHICKEN SOUP W/ MLK CNND      , 1, CUP, 190, 15, 11, 7, 27, 4.6 , 248
-CR OF MUSHROM SOUP W/ H2O CNND      , 1, CUP, 130, 9, 9, 2, 2, 2.4 , 244
-CR OF MUSHROM SOUP W/ MLK CNND      , 1, CUP, 205, 15, 14, 6, 20, 5.1 , 248
 CRABMEAT  CANNED                    , 1, CUP, 135, 1, 3, 23, 135, 0.5 , 135
 CRACKER CHEESE   PLAIN              , 10, ITM, 50, 6, 3, 1, 6, 0.9 , 10
 CRACKER CHEESE   PEANUT             , 1, ITM, 40, 5, 2, 1, 1, 0.4 , 8
@@ -265,22 +249,17 @@ CRACKED-WHEAT BREAD                 , 1, SLICE, 65, 12, 1, 2, 0, 0.2 , 25
 CRACKED-WHEAT BREAD  TOASTED        , 1, SLICE, 65, 12, 1, 2, 0, 0.2 , 21
 CRANBERRY JUICE COCKTAL W/VITC      , 1, CUP, 145, 38, 0, 0, 0, 0 , 253
 CRANBERRY SAUCE  CANNED SWTND       , 1, CUP, 420, 108, 0, 1, 0, 0 , 277
-CREAM OF WHEAT CKD MIX N EAT        , 1, PKT, 100, 21, 0, 3, 0, 0 , 142
-CRM WHEAT CKD  QUICK  NO SALT       , 1, CUP, 140, 29, 0, 4, 0, 0.1 , 244
-CRM WHEAT CKD QUICK  W/  SALT       , 1, CUP, 140, 29, 0, 4, 0, 0.1 , 244
-CRM WHEAT CKD REG INST NO SALT      , 1, CUP, 140, 29, 0, 4, 0, 0.1 , 244
+CREAM OF WHEAT                       , 1, PKT, 100, 21, 0, 3, 0, 0 , 142
+CREAM OF  WHEAT        , 1, CUP, 140, 29, 0, 4, 0, 0.1 , 244
 CRM WHEAT CKD REG INST W/SALT       , 1, CUP, 140, 29, 0, 4, 0, 0.1 , 244
 CROISSANTS                          , 1, ITM, 235, 27, 12, 5, 13, 3.5 , 57
 CUCUMBER  W/ PEEL                   , 6, SLICES, 5, 1, 0, 0, 0, 0 , 28
 CURRY POWDER                        , 1, TSP, 5, 1, 0, 0, 0, 0 , 2
 CUSTARD  BAKED                      , 1, CUP, 305, 29, 15, 14, 278, 6.8 , 265
 DANISH PASTRY  FRUIT                , 1, PASTRY, 235, 28, 13, 4, 56, 3.9 , 65
-DANISH PASTRY  PLAIN  NO NUTS       , 1, OZ, 110, 13, 6, 2, 24, 1.8 , 28.35
-DANISH PASTRY  PLAIN  NO NUTS       , 1, PASTRY, 220, 26, 12, 4, 49, 3.6 , 57
+DANISH PASTRY  PLAIN        , 1, PASTRY, 220, 26, 12, 4, 49, 3.6 , 57
 DATES                               , 10, DATES, 230, 61, 0, 2, 0, 0.1 , 83
 DATES  CHOPPED                      , 1, CUP, 490, 131, 1, 4, 0, 0.3 , 178
-DEVIL'S FOOD CAKE CHOCFRST FMX      , 1, CUPCAK, 120, 20, 4, 2, 19, 1.8 , 35
-DEVIL'S FOOD CAKE CHOCFRST FMX      , 1, PIECE, 235, 40, 8, 3, 37, 3.5 , 69
 DOUGHNUTS  CAKE TYPE  PLAIN         , 1, DONUT, 210, 24, 12, 3, 20, 2.8 , 50
 DOUGHNUTS  YEAST-LEAVEND GLZED      , 1, DONUT, 235, 26, 13, 4, 21, 5.2 , 60
 DUCK  ROASTED  FLESH ONLY           , 0.5, DUCK, 445, 0, 25, 52, 197, 9.2 , 221
@@ -297,7 +276,6 @@ ENCHILADA                           , 1, ENCHLD, 235, 24, 16, 20, 19, 7.7 , 230
 ENDIVE  CURLY  RAW                  , 1, CUP, 10, 2, 0, 1, 0, 0 , 50
 ENG MUFFIN  EGG  CHEESE  BACON      , 1, ITM, 360, 31, 18, 18, 213, 8 , 138
 MUFFINS ENGLISH  PLAIN              , 1, MUFFIN, 140, 27, 1, 5, 0, 0.3 , 57
-MUFFINS ENGLISH  PLAIN  TOASTD      , 1, MUFFIN, 140, 27, 1, 5, 0, 0.3 , 50
 EVAPORATED MILK  SKIM  CANNED       , 1, CUP, 200, 29, 1, 19, 9, 0.3 , 255
 EVAPORATED MILK  WHOLE  CANNED      , 1, CUP, 340, 25, 19, 17, 74, 11.6 , 252
 FIG BARS                            , 4, COOKIE, 210, 42, 4, 2, 27, 1 , 56
@@ -315,13 +293,11 @@ FRENCH TOAST  HOME RECIPE           , 1, SLICE, 155, 17, 7, 6, 112, 1.6 , 65
 FRUIT COCKTAIL CNND HEAVYSYRUP      , 1, CUP, 185, 48, 0, 1, 0, 0 , 255
 FRUIT COCKTAIL CNND JUICE PACK      , 1, CUP, 115, 29, 0, 1, 0, 0 , 248
 FRUIT PUNCH DRINK  CANNED           , 6, FLOZ, 85, 22, 0, 0, 0, 0 , 190
-FRUITCAKE DARK  FROM HOMERECIP      , 1, PIECE, 165, 25, 7, 2, 20, 1.5 , 43
 FUDGE  CHOCOLATE  PLAIN             , 1, OZ, 115, 21, 3, 1, 1, 2.1 , 28.35
 GARLIC POWDER                       , 1, TSP, 10, 2, 0, 0, 0, 0 , 2.8
 GELATIN DESSERT  PREPARED           , 0.5, CUP, 70, 17, 0, 2, 0, 0 , 120
 GELATIN  DRY                        , 1, ENVELP, 25, 0, 0, 6, 0, 0 , 7
 GINGER ALE                          , 12, FLOZ, 125, 32, 0, 0, 0, 0 , 366
-GINGERBREAD CAKE                    , 1, PIECE, 175, 32, 4, 2, 1, 1.1 , 63
 GIN RUM VODKA WHISKY 80-PROOF       , 1.5, FLOZ, 95, 0, 0, 0, 0, 0 , 42
 GIN RUM VODKA WHISKY 86-PROOF       , 1.5, FLOZ, 105, 0, 0, 0, 0, 0 , 42
 GIN RUM VODKA WHISKY 90-PROOF       , 1.5, FLOZ, 110, 0, 0, 0, 0, 0 , 42
@@ -355,16 +331,12 @@ HARD CANDY                          , 1, OZ, 110, 28, 0, 0, 0, 0 , 28.35
 HERRING  PICKLED                    , 3, OZ, 190, 0, 13, 17, 85, 4.3 , 85
 HOLLANDAISE SCE  W/ H2O FRM MX      , 1, CUP, 240, 14, 20, 5, 52, 11.6 , 259
 HONEY                               , 1, TBSP, 65, 17, 0, 0, 0, 0 , 21
-HONEY                               , 1, CUP, 1030, 279, 0, 1, 0, 0 , 339
 MELON HONEYDEW                      , 0.1, MEL, 45, 12, 0, 1, 0, 0 , 129
 ICE CREAM  VANLLA  REGULR           , 1, CUP, 270, 32, 14, 5, 59, 8.9 , 133
 ICE CREAM  VANLLA  REGULR           , 3, FLOZ, 100, 12, 5, 2, 22, 3.4 , 50
 ICE CREAM  VANLLA  RICH             , 1, CUP, 350, 32, 24, 4, 88, 14.7 , 148
-IMITATION CREAMERS  LIQUID FRZ      , 1, TBSP, 20, 2, 1, 0, 0, 1.4 , 15
 IMITATION CREAMERS  POWDERED        , 1, TSP, 10, 1, 1, 0, 0, 0.7 , 2
-ITALIAN SALAD DRESSING LOCALOR      , 1, TBSP, 5, 2, 0, 0, 0, 0 , 15
 ITALIAN SALAD DRESSING REGULAR      , 1, TBSP, 80, 1, 9, 0, 0, 1.3 , 15
-JAMS AND PRESERVES                  , 1, PKT, 40, 10, 0, 0, 0, 0 , 14
 JAMS AND PRESERVES                  , 1, TBSP, 55, 14, 0, 0, 0, 0 , 20
 JELLIES                             , 1, PKT, 40, 10, 0, 0, 0, 0 , 14
 JELLIES                             , 1, TBSP, 50, 13, 0, 0, 0, 0 , 18
@@ -416,22 +388,18 @@ MACARONI  COOKED  FIRM              , 1, CUP, 190, 39, 1, 7, 0, 0.1 , 130
 MACARONI  COOKED  TENDER  HOT       , 1, CUP, 155, 32, 1, 5, 0, 0.1 , 140
 MACARONI  COOKED  TENDER COLD       , 1, CUP, 115, 24, 0, 4, 0, 0.1 , 105
 MALT-O-MEAL  WITH SALT              , 1, CUP, 120, 26, 0, 4, 0, 0 , 240
-MALT-O-MEAL  W/O SALT               , 1, CUP, 120, 26, 0, 4, 0, 0 , 240
 MALTED MILK  CHOCOLATE  POWDER      , 0.75, OZ, 85, 18, 1, 1, 1, 0.5 , 21
 MALTED MILK NATURAL  POWDER         , 0.75, OZ, 85, 15, 2, 3, 4, 0.9 , 21
 MANGOS  RAW                         , 1, MANGO, 135, 35, 1, 1, 0, 0.1 , 207
 MARGARINE  IMITATION 40% FAT        , 1, TBSP, 50, 0, 5, 0, 0, 1.1 , 14
-MARGARINE  IMITATION 40% FAT        , 8, OZ, 785, 1, 88, 1, 0, 17.5 , 227
 MARGARINE  REGULR HARD 80% FAT      , 1, PAT, 35, 0, 4, 0, 0, 0.8 , 5
 MARGARINE  REGULR HARD 80% FAT      , 1, TBSP, 100, 0, 11, 0, 0, 2.2 , 14
 MARGARINE  REGULR HARD 80% FAT      , 0.5, CUP, 810, 1, 91, 1, 0, 17.9 , 113
 MARGARINE  REGULR SOFT 80% FAT      , 1, TBSP, 100, 0, 11, 0, 0, 1.9 , 14
-MARGARINE  REGULR SOFT 80% FAT      , 8, OZ, 1625, 1, 183, 2, 0, 31.3 , 227
 MARGARINE  SPREAD HARD 60% FAT      , 0.5, CUP, 610, 0, 69, 1, 0, 15.9 , 113
 MARGARINE  SPREAD SOFT 60% FAT      , 8, OZ, 1225, 0, 138, 1, 0, 29.1 , 227
 MARSHMALLOWS                        , 1, OZ, 90, 23, 0, 1, 0, 0 , 28.35
 MAYONNAISE TYPE SALAD DRESSING      , 1, TBSP, 60, 4, 5, 0, 4, 0.7 , 15
-MAYONNAISE  IMITATION               , 1, TBSP, 35, 2, 3, 0, 4, 0.5 , 15
 MAYONNAISE  REGULAR                 , 1, TBSP, 100, 0, 11, 0, 8, 1.7 , 14
 MELBA TOAST  PLAIN                  , 1, PIECE, 20, 4, 0, 1, 0, 0.1 , 5
 MILK CHOCOLATE CANDY  PLAIN         , 1, OZ, 145, 16, 9, 2, 6, 5.4 , 28.35
@@ -444,8 +412,6 @@ MILK  LOWFAT 2%  ADDED SOLIDS       , 1, CUP, 125, 12, 5, 9, 18, 2.9 , 245
 MILK  SKIM  ADDED MILK SOLIDS       , 1, CUP, 90, 12, 1, 9, 5, 0.4 , 245
 MILK  SKIM  NO ADDED MILKSOLID      , 1, CUP, 85, 12, 0, 8, 4, 0.3 , 245
 MILK  WHOLE  3.3% FAT               , 1, CUP, 150, 11, 8, 8, 33, 5.1 , 244
-MINESTRONE SOUP  CANNED             , 1, CUP, 80, 11, 3, 4, 2, 0.6 , 241
-MISO                                , 1, CUP, 470, 65, 13, 29, 0, 1.8 , 276
 MIXED GRAIN BREAD                   , 1, SLICE, 65, 12, 1, 2, 0, 0.2 , 25
 MIXED GRAIN BREAD  TOASTED          , 1, SLICE, 65, 12, 1, 2, 0, 0.2 , 23
 MIXED NUTS W/ PEANTS DRY SALTD      , 1, OZ, 170, 7, 15, 5, 0, 2 , 28.35
@@ -478,20 +444,17 @@ OLIVES  CANNED  RIPE                , 3, SMALL, 15, 0, 2, 0, 0, 0.3 , 9
 ONION POWDER                        , 1, TSP, 5, 2, 0, 0, 0, 0 , 2.1
 ONION RINGS  BREADED FRZN PRPD      , 2, RINGS, 80, 8, 5, 1, 0, 1.7 , 20
 ONION SOUP  DEHYDRATD  PREPRED      , 1, PKT, 20, 4, 0, 1, 0, 0.1 , 184
-ONION SOUP  DEHYDRTD  UNPRPRED      , 1, PKT, 20, 4, 0, 1, 0, 0.1 , 7
 ONIONS  RAW  CHOPPED                , 1, CUP, 55, 12, 0, 2, 0, 0.1 , 160
 ONIONS  RAW  COOKED  DRAINED        , 1, CUP, 60, 13, 0, 2, 0, 0.1 , 210
 ONIONS  RAW  SLICED                 , 1, CUP, 40, 8, 0, 1, 0, 0.1 , 115
 ONIONS  SPRING  RAW                 , 6, ITM, 10, 2, 0, 1, 0, 0 , 30
 ORANGE JUICE  CANNED                , 1, CUP, 105, 25, 0, 1, 0, 0 , 249
-ORANGE JUICE  CHILLED               , 1, CUP, 110, 25, 1, 2, 0, 0.1 , 249
 ORANGE JUICE  RAW                   , 1, CUP, 110, 26, 0, 2, 0, 0.1 , 248
-ORANGE JUICE FROZEN CONCENTRTE      , 6, FLOZ, 340, 81, 0, 5, 0, 0.1 , 213
 ORANGE SODA                         , 12, FLOZ, 180, 46, 0, 0, 0, 0 , 372
 ORANGES  RAW                        , 1, ORANGE, 60, 15, 0, 1, 0, 0 , 131
 ORANGES  RAW                        , 1, CUP, 85, 21, 0, 2, 0, 0 , 180
 OREGANO                             , 1, TSP, 5, 1, 0, 0, 0, 0 , 1.5
-OYSTERS  BREADED  FRIED             , 1, OYSTER, 90, 5, 5, 5, 35, 1.4 , 45
+OYSTERS  BREADED  FRIED             , 1, ITM, 90, 5, 5, 5, 35, 1.4 , 45
 OYSTERS  RAW                        , 1, CUP, 160, 8, 4, 20, 120, 1.4 , 240
 PANCAKES  BUCKWHEAT  FROM MIX       , 1, ITM, 55, 6, 2, 2, 20, 0.9 , 27
 PANCAKES  PLAIN                     , 1, ITM, 60, 8, 2, 2, 16, 0.5 , 27
@@ -527,7 +490,6 @@ PEAS  GREEN CNND DRND  W/ SALT      , 1, CUP, 115, 21, 1, 8, 0, 0.1 , 170
 PEAS  GREEN CNND DRND W/O SALT      , 1, CUP, 115, 21, 1, 8, 0, 0.1 , 170
 PEAS  SPLIT  DRY  COOKED            , 1, CUP, 230, 42, 1, 16, 0, 0.1 , 200
 PEAS GRN  FROZEN COOKED DRANED      , 1, CUP, 125, 23, 0, 8, 0, 0.1 , 160
-PEA  GREEN  SOUP  CANNED            , 1, CUP, 165, 27, 3, 9, 0, 1.4 , 250
 PECANS  HALVES                      , 1, CUP, 720, 20, 73, 8, 0, 5.9 , 108
 PECANS  HALVES                      , 1, OZ, 190, 5, 19, 2, 0, 1.5 , 28.35
 PEPPER-TYPE SODA                    , 12, FLOZ, 160, 41, 0, 0, 0, 0 , 369
@@ -550,15 +512,13 @@ PIE LEMON MERINGUE                  , 1, PIECE, 355, 53, 14, 5, 143, 4.3 , 140
 PIE PEACH                           , 1, PIECE, 405, 60, 17, 4, 0, 4.1 , 158
 PIE PECAN                           , 1, PIECE, 575, 71, 32, 7, 95, 4.7 , 138
 PIE PUMPKIN                         , 1, PIECE, 320, 37, 17, 6, 109, 6.4 , 152
-PIECRUST  FROM MIX                  , 2, CRUST, 1485, 141, 93, 20, 0, 22.7 , 320
-PIECRUST FROM HOME RECIPE           , 1, SHELL, 900, 79, 60, 11, 0, 14.8 , 180
+PIECRUST                    , 2, CRUST, 1485, 141, 93, 20, 0, 22.7 , 320
 PINE NUTS                           , 1, OZ, 160, 5, 17, 3, 0, 2.7 , 28.35
 PINEAPPLE-GRAPEFRUIT JUICEDRNK      , 6, FLOZ, 90, 23, 0, 0, 0, 0 , 187
 PINEAPPLE JUICE  CANNED UNSWTN      , 1, CUP, 140, 34, 0, 1, 0, 0 , 250
 PINEAPPLE  CANNED  HEAVY SYRUP      , 1, CUP, 200, 52, 0, 1, 0, 0 , 255
 PINEAPPLE  CANNED  HEAVY SYRUP      , 1, SLICE, 45, 12, 0, 0, 0, 0 , 58
 PINEAPPLE  CANNED  JUICE PACK       , 1, CUP, 150, 39, 0, 1, 0, 0 , 250
-PINEAPPLE  CANNED  JUICE PACK       , 1, SLICE, 35, 9, 0, 0, 0, 0 , 58
 PINEAPPLE  RAW  DICED               , 1, CUP, 75, 19, 1, 1, 0, 0 , 155
 PINTO BEANS DRY COOKED DRAINED      , 1, CUP, 265, 49, 1, 15, 0, 0.1 , 180
 PISTACHIO NUTS                      , 1, OZ, 165, 7, 14, 6, 0, 1.7 , 28.35
@@ -608,7 +568,6 @@ POTATOES  MASHED RECPE W/ MILK      , 1, CUP, 160, 37, 1, 4, 4, 0.7 , 210
 POTATOES  SCALLOPED  FROM MIX       , 1, CUP, 230, 31, 11, 5, 27, 6.5 , 245
 POTATOES FRENCH-FRD FRZN FRIED      , 10, STRIP, 160, 20, 8, 2, 0, 2.5 , 50
 POTATOES FRENCH-FRD FRZN OVEN       , 10, STRIP, 110, 17, 4, 2, 0, 2.1 , 50
-POUND CAKE                          , 1, SLICE, 120, 15, 5, 2, 32, 1.2 , 30
 PRETZELS  STICK                     , 10, PRETZ, 10, 2, 0, 0, 0, 0 , 3
 PRETZELS  TWISTED  DUTCH            , 1, PRETZ, 65, 13, 1, 2, 0, 0.1 , 16
 PRETZELS  TWISTED  THIN             , 10, PRETZ, 240, 48, 2, 6, 0, 0.4 , 60
@@ -643,9 +602,6 @@ RELISH  SWEET                       , 1, TBSP, 20, 5, 0, 0, 0, 0 , 15
 RHUBARB  COOKED  ADDED SUGAR        , 1, CUP, 280, 75, 0, 1, 0, 0 , 240
 RICE  BROWN  COOKED                 , 1, CUP, 230, 50, 1, 5, 0, 0.3 , 195
 RICE  WHITE  COOKED                 , 1, CUP, 225, 50, 0, 4, 0, 0.1 , 205
-RICE  WHITE  INSTANT  COOKED        , 1, CUP, 180, 40, 0, 4, 0, 0.1 , 165
-RICE  WHITE  PARBOILED  COOKED      , 1, CUP, 185, 41, 0, 4, 0, 0 , 175
-RICE  WHITE  PARBOILED  RAW         , 1, CUP, 685, 150, 1, 14, 0, 0.1 , 185
 RICE  WHITE  RAW                    , 1, CUP, 670, 149, 1, 12, 0, 0.2 , 185
 RICOTTA CHEESE  PART SKIM MILK      , 1, CUP, 340, 13, 19, 28, 76, 12.1 , 246
 RICOTTA CHEESE  WHOLE MILK          , 1, CUP, 430, 7, 32, 28, 124, 20.4 , 246
@@ -673,7 +629,8 @@ SAUERKRAUT  CANNED                  , 1, CUP, 45, 10, 0, 2, 0, 0.1 , 236
 SCALLOPS  BREADED                   , 6, SCALOP, 195, 10, 10, 15, 70, 2.5 , 90
 SEAWEED  KELP  RAW                  , 1, OZ, 10, 3, 0, 0, 0, 0.1 , 28.35
 SEAWEED  SPIRULINA  DRIED           , 1, OZ, 80, 7, 2, 16, 0, 0.8 , 28.35
-SELF-RISING FLOUR  UNSIFTED         , 1, CUP, 440, 93, 1, 12, 0, 0.2 , 125
+SELF-RISING FLOUR                        , 1, CUP, 440, 93, 1, 12, 0, 0.2 , 125
+PASTRY CAKE FLOUR               , 1, CUP, 350, 76, 1, 7, 0, 0.1 , 96
 SEMISWEET CHOCOLATE                 , 1, CUP, 860, 97, 61, 7, 0, 36.2 , 170
 SESAME SEEDS                        , 1, TBSP, 45, 1, 4, 2, 0, 0.6 , 8
 SHAKE  CHOCOLATE                    , 10, OZ, 335, 60, 8, 9, 30, 4.8 , 283
@@ -755,9 +712,6 @@ TOMATO PASTE  CANNED W/O SALT       , 1, CUP, 220, 49, 2, 10, 0, 0.3 , 262
 TOMATO PUREE  CANNED WITH SALT      , 1, CUP, 105, 25, 0, 4, 0, 0 , 250
 TOMATO PUREE  CANNED W/O SALT       , 1, CUP, 105, 25, 0, 4, 0, 0 , 250
 TOMATO SAUCE  CANNED WITH SALT      , 1, CUP, 75, 18, 0, 3, 0, 0.1 , 245
-TOMATO SOUP WITH MILK  CANNED       , 1, CUP, 160, 22, 6, 6, 17, 2.9 , 248
-TOMATO SOUP W/ WATER  CANNED        , 1, CUP, 85, 17, 2, 2, 0, 0.4 , 244
-TOMATO VEG SOUP  DEHYD PREPRED      , 1, PKT, 40, 8, 1, 1, 0, 0.3 , 189
 TOMATOES  CANNED  S+L  W/ SALT      , 1, CUP, 50, 10, 1, 2, 0, 0.1 , 240
 TOMATOES  CANNED  S+L W/O SALT      , 1, CUP, 50, 10, 1, 2, 0, 0.1 , 240
 TOMATOES  RAW                       , 1, ITM, 25, 5, 0, 1, 0, 0 , 123
@@ -768,10 +722,8 @@ TUNA SALAD                          , 1, CUP, 375, 19, 19, 33, 80, 3.3 , 205
 TUNA  CANNED                        , 3, OZ, 165, 0, 7, 24, 55, 1.4 , 85
 TUNA  WHITE                         , 3, OZ, 135, 0, 1, 30, 48, 0.3 , 85
 TURKEY HAM  CURED TURKEY THIGH      , 2, SLICES, 75, 0, 3, 11, 32, 1 , 57
-TURKEY LOAF  BREAST MEAT W/O C      , 2, SLICES, 45, 0, 1, 10, 17, 0.2 , 42
-TURKEY LOAF  BREAST MEAT  W/ C      , 2, SLICES, 45, 0, 1, 10, 17, 0.2 , 42
+TURKEY LOAF  BREAST                            , 2, SLICES, 45, 0, 1, 10, 17, 0.2 , 42
 TURKEY PATTIES  BRD BATTD FRID      , 1, PATTY, 180, 10, 12, 9, 40, 3 , 64
-TURKEY ROAST  FRZN LGHT+DRK CK      , 3, OZ, 130, 3, 5, 18, 45, 1.6 , 85
 TURKEY  ROASTED  DARK MEAT          , 4, PIECES, 160, 0, 6, 24, 72, 2.1 , 85
 TURKEY  ROASTED  LIGHT MEAT         , 2, PIECES, 135, 0, 3, 25, 59, 0.9 , 85
 TURKEY  ROASTED                     , 1, CUP, 240, 0, 7, 41, 106, 2.3 , 140
@@ -782,13 +734,12 @@ TURNIPS  COOKED  DICED              , 1, CUP, 30, 8, 0, 1, 0, 0 , 156
 VANILLA WAFERS                      , 10, COOKE, 185, 29, 7, 2, 25, 1.8 , 40
 VEAL CUTLET  MED FAT BRSD BRLD      , 3, OZ, 185, 0, 9, 23, 86, 4.1 , 85
 VEAL RIB  MED FAT  ROASTED          , 3, OZ, 230, 0, 14, 23, 109, 6 , 85
-VEGETABLE BEEF SOUP  CANNED         , 1, CUP, 80, 10, 2, 6, 5, 0.9 , 244
 VEGETABLE JUICE COCKTAIL  CNND      , 1, CUP, 45, 11, 0, 2, 0, 0 , 242
 VEGETABLES  MIXED  CANNED           , 1, CUP, 75, 15, 0, 4, 0, 0.1 , 163
 VEGETABLES  MIXED  CKED FR FRZ      , 1, CUP, 105, 24, 0, 5, 0, 0.1 , 182
 VEGETARIAN SOUP  CANNED             , 1, CUP, 70, 12, 2, 2, 0, 0.3 , 241
 VIENNA BREAD                        , 1, SLICE, 70, 13, 1, 2, 0, 0.2 , 25
-VIENNA SAUSAGE                      , 1, SAUSAG, 45, 0, 4, 2, 8, 1.5 , 16
+VIENNA SAUSAGE                      , 1, LINK, 45, 0, 4, 2, 8, 1.5 , 16
 VINEGAR AND OIL SALAD DRESSING      , 1, TBSP, 70, 0, 8, 0, 0, 1.5 , 16
 VINEGAR  CIDER                      , 1, TBSP, 0, 1, 0, 0, 0, 0 , 15
 WAFFLES  FROM HOME RECIPE           , 1, WAFFLE, 245, 26, 13, 7, 102, 4 , 75
@@ -801,12 +752,9 @@ WATER CHESTNUTS  CANNED             , 1, CUP, 70, 17, 0, 1, 0, 0 , 140
 WATERMELON  RAW                     , 1, PIECE, 155, 35, 2, 3, 0, 0.3 , 482
 WATERMELON  RAW  DICED              , 1, CUP, 50, 11, 1, 1, 0, 0.1 , 160
 BREAD WHEAT                         , 1, SLICE, 65, 12, 1, 2, 0, 0.2 , 25
-WHEAT FLOUR  ALL-PURPOSE SIFTD      , 1, CUP, 420, 88, 1, 12, 0, 0.2 , 115
-WHEAT FLOUR  ALL-PURPOSE UNSIF      , 1, CUP, 455, 95, 1, 13, 0, 0.2 , 125
+WHEAT FLOUR  ALL-PURPOSE                , 1, CUP, 420, 88, 1, 12, 0, 0.2 , 115
 WHIPPED TOPPING  PRESSURIZED        , 1, CUP, 155, 7, 13, 2, 46, 8.3 , 60
-WHIPPED TOPPING  PRESSURIZED        , 1, TBSP, 10, 0, 1, 0, 2, 0.4 , 3
 CREAM           HEAVY               , 1, CUP, 820, 7, 88, 5, 326, 54.8 , 238
-CREAM           HEAVY               , 1, TBSP, 50, 0, 6, 0, 21, 3.5 , 15
 WHITE BREAD CRUMBS  SOFT            , 1, CUP, 120, 22, 2, 4, 0, 0.6 , 45
 WHITE BREAD CUBES                   , 1, CUP, 80, 15, 1, 2, 0, 0.4 , 30
 WHITE CAKE W/ WHT FRSTNG COMML      , 1, PIECE, 260, 42, 9, 3, 3, 2.1 , 71
@@ -817,7 +765,6 @@ WINE  DESSERT                       , 3.5, FLOZ, 140, 8, 0, 0, 0, 0 , 103
 WINE  TABLE  RED                    , 3.5, FLOZ, 75, 3, 0, 0, 0, 0 , 102
 WINE  TABLE  WHITE                  , 3.5, FLOZ, 80, 3, 0, 0, 0, 0 , 102
 YEAST  BREWERS  DRY                 , 1, TBSP, 25, 3, 0, 3, 0, 0 , 8
-YELLOWCAKE W/ CHOCFRSTNG COMML      , 1, PIECE, 245, 39, 11, 2, 38, 5.7 , 69
 YOGURT     LOWFAT MILK  PLAIN       , 8, OZ, 145, 16, 4, 12, 14, 2.3 , 227
 YOGURT  W/ LOWFAT MILK FRUITFL      , 8, OZ, 230, 43, 2, 10, 10, 1.6 , 227
 YOGURT  W/ NONFAT MILK              , 8, OZ, 125, 17, 0, 13, 4, 0.3 , 227
@@ -825,5 +772,17 @@ YOGURT  W/ WHOLE MILK               , 8, OZ, 140, 11, 7, 8, 29, 4.8 , 227
 # 
 BAR HARVEST TRAIL ATKINS            , 1, ITM, 170, 19, 13, 8, 0, 3 , 38
 SALAD CAFE-BOWL                     , 1, ITM, 280, 1,  6, 4, 0, 4 ,  80
+#
+SOUP BEAN WITH BACON        , 1, CUP, 170, 23, 6, 8, 3, 1.5 , 253
+SOUP BEEF NOODLE             , 1, CUP, 85, 9, 3, 5, 5, 1.1 , 244
+SOUP CHICKEN NOODLE         , 1, CUP, 75, 9, 2, 4, 7, 0.7 , 241
+SOUP CHICKEN RICE            , 1, CUP, 60, 7, 2, 4, 7, 0.5 , 241
+SOUP CHICKEN CREAM OF       , 1, CUP, 115, 9, 7, 3, 10, 2.1 , 244
+SOUP MUSHROOM CREAM OF   , 1, CUP, 205, 15, 14, 6, 20, 5.1 , 248
+SOUP MINESTRONE                    , 1, CUP, 80, 11, 3, 4, 2, 0.6 , 241
+SOUP MISO                                , 1, CUP, 470, 65, 13, 29, 0, 1.8 , 276
+SOUP PEA  GREEN                     , 1, CUP, 165, 27, 3, 9, 0, 1.4 , 250
+SOUP TOMATO                          , 1, CUP, 160, 22, 6, 6, 17, 2.9 , 248
+SOUP VEGETABLE BEEF           , 1, CUP, 80, 10, 2, 6, 5, 0.9 , 244
 
 

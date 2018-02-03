@@ -279,8 +279,8 @@ proc adjustYear(updown)
   <<"%V  $yrd \n"
 
 
-   st_jday = julday("01/01/$yrd")
-   ed_jday = julday("12/31/$yrd")
+   st_jday = julian("01/01/$yrd")
+   ed_jday = julian("12/31/$yrd")
 
   <<"%V  $yrd  $st_jday $ed_jday\n"
 

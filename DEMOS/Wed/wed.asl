@@ -63,7 +63,7 @@ class Measure {
 char sep = '/'
 today = getDate(2,sep)
 
-jtoday = julday(today)
+jtoday = julian(today)
 
 DBPR"$today $jtoday \n"
 
@@ -115,8 +115,8 @@ int bday;  // birthday
 int lday;  // last day recorded in file
 int dday;
 
- bday = julday("04/09/1949")
- maxday = julday("04/09/2049") -bday
+ bday = julian("04/09/1949")
+ maxday = julian("04/09/2049") -bday
 
 // this is a new format -- allowing us to put comment labels on graphs
 

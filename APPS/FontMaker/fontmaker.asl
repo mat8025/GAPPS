@@ -14,14 +14,6 @@ proc wos2mat()
 {
  // read out the current ss cells into a matrix
 
-/{/*
-   for (i = 0; i< rows ; i++) {
-     for (j = 0; j< cols ; j++) {
-       LM[i][j] = atof(wogetvalue(cellwo,i,j))
-     }
-   }
-/}*/
-
    // need version that reads subset or all to a matrix - assumming conversion to float/double
    
    LM=wossgetvalues(cellwo,0,0,rows-1,cols-1); //much faster
