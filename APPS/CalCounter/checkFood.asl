@@ -52,6 +52,7 @@ int ok = 0;
 int pk= 0;
 int score = 0;
 int best_score = 0;
+int best_pick = -1;
 int found = 0;
 the_amt = 1.0;
 str the_unit
@@ -139,17 +140,24 @@ str the_food;
 
 <<"$Bestpick\n"
 
-
+    best_score = 0;
+    
     for (i =0; i < 5; i++) {
         if (Bestpick[i][0] > 1) {
 	      wi = Bestpick[i][1] ;
-	    <<"$Bestpick[i][0] $Bestpick[i][1] " 
+              wscore = Bestpick[i][1] ;
+            <<"$Bestpick[i][0] $Bestpick[i][1] " 
             <<"$RF[wi] \n"
+	    if (wscore > best_score) {
+                 best_pick = wi;
+		 best_score = wscore;
+            }
+ 	     
         }
     }
    }
 
-      return best_score;
+      return best_pick; // bext_pick
 }
 
 ////////////////////////////////////////////////

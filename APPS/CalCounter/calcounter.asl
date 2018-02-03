@@ -122,7 +122,7 @@ include "checkFood";
 
 //<<"$myfood  $f_unit  $f_amt\n"
 int fnd = 0;
-
+int bpick;
 int Bestpick[5][2];
 
  if (na > 1 && !adjust_day) {
@@ -131,15 +131,11 @@ while (1) {
 
     Bestpick = -1;
    <<"$Bestpick\n"
-   fnd= checkFood();
+   bpick= checkFood();
 
-   if (!fnd) {
+   if (bpick == -1) {
    <<"Sorry could not find a match for $myfood\n";
    }
-   
-  // Best_pick->Sort();
-
-//<<"$Bestpick\n"
 
 
 ans= iread("search again? : [y]/n ")

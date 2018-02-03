@@ -24,6 +24,13 @@ Chol_tot = 0.0;
 SatF_tot = 0.0;     
 
 
+proc adjustAmount(ir)
+{
+
+<<"$RF[ir]\n"
+
+}
+//======================================//
 proc showFitems()
 {
     for (ir =0; ir < Rn; ir++) {
@@ -122,9 +129,12 @@ proc queryloop()
 int ret = 0;
 int reck = -1;
 str ans = "";
-
+int bpick;
 while (1) {
 
+
+  Bestpick = -1;  //clear the best pick choices
+       
   <<" New Query\n"
    ans = "new query"
    ans=i_read("[n]ew,[l]ist,[d]elete,[s]ave,[q]uit ? :: $ans ")
@@ -214,7 +224,8 @@ while (1) {
     }
 
 <<"cook method $cookans  $x_desc\n"
-      myfood = scat(myfood,",$x_desc");
+// WS del  or comma del ?  
+     myfood = scat(myfood," $x_desc");
   }
 
 
@@ -233,7 +244,7 @@ while (1) {
     else if (uans @="t"){
        f_unit = "tsp";        
     }
-    else if (uans @="b"){
+    else if (uans @="T" || uans @="b"){
        f_unit = "tbsp";        
     }        
     else if (uans @="o"){
@@ -256,9 +267,9 @@ while (1) {
 
 <<"%V$f_amt \n"
 
-   fnd= checkFood();
+   bpick= checkFood();
 
-if (fnd) {
+if (bpick != -1) {
 
     float mf = 1.0;
     
@@ -267,16 +278,21 @@ if (fnd) {
 //    <<"should be scalar!! %V $f_amt\n"
 //    <<"should be scalar! %V $mf \n"
     
-    Wans =  Fd[Wfi]->query(mf);
-
+   // Wans =  Fd[Wfi]->query(mf);
+    Wans = RF[bpick];
+   
     ans = iread(" [a]ccept,[r]eject , [m]ultiply ?\n");
 
      if (ans @= "a") {
 
 //<<[B]"$Wans \n"
        <<"adding @ $Rn Rsz $(Caz(R))\n"
-     R[Rn] = Split(Wans,",");
+
+    //R[Rn] = Split(Wans,",");
+    R[Rn] = RF[bpick];
+     
      <<"added @ $Rn Rsz $(Caz(R))\n"
+     <<"<$Rn> $R[Rn] \n"
      Rn++;
 
      ret = 1;
@@ -289,9 +305,13 @@ if (fnd) {
    <<"adjust by $mf $(typeof(mf)) $(Caz(mf)) \n"
    
    if (mf > 0) {
-   Wans =  Fd[Wfi]->query(mf);
-   <<"$Wans\n"
+
+    //Wans =  Fd[Wfi]->query(mf);
+      adjustAmount();
+
+
      ans = iread(" [a]ccept,[r]eject\n");
+
      if (ans @= "a") {
     // <<[B]"$Wans \n"
  <<"adding @ $Rn Rsz $(Caz(R))\n"
