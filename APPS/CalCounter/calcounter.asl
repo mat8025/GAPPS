@@ -57,40 +57,40 @@ include "checkFood";
 //////////////////////////////////////////////////////////////////////////
 
 
- A=  ofr("foodtable.csv")
+ A=  ofr("foodtable.csv");
 
  if (A == -1) {
-  <<" can't open food table $ftfile \n"
+  <<" can't open food table $ftfile \n";
     exit();
  }
 
    RF= readRecord(A,@del,',')
    cf(A);
   Nrecs = Caz(RF);
-  Ncols = Caz(RF[0]);
+  Ncols = Caz(RF,0);
 
 
-<<"num of records $Nrecs  num cols $Ncols\n"
+<<"num of records $Nrecs  num cols $Ncols\n";
 
 
    for (i= 0; i < 10; i++) {
-       nc = Caz(RF[i]);
+       nc = Caz(RF,i);
 <<"<$i> $nc $RF[i] \n";
     }
 
     for (i= Nrecs -10; i < Nrecs; i++) {
-    nc = Caz(RF[i]);
+    nc = Caz(RF,i);
 <<"<$i> $nc $RF[i] \n";
     }
 
   Nfoods  = Nrecs -1;
 
-  DBPR" now for $Nfoods foods\n"
+  DBPR" now for $Nfoods foods\n";
 
   //parseFoodTable();
 
-  myfood = "pie apple"
-  f_unit = "slice"
+  myfood = "pie apple";
+  f_unit = "slice";
   f_amt = 1.0;
 
   //checkFood()
@@ -100,9 +100,9 @@ include "checkFood";
  do_loop = 0; // default - single shot query via CL args
 
 
- na = argc()
+ na = argc();
 
- wa = _clarg[1]
+ wa = _clarg[1];
 
  if (! (wa @= "")) {
    if (scmp(wa,"dd_",3)) {
@@ -127,7 +127,7 @@ include "checkFood";
  if (na > 3) {
   val = _clarg[4]
   if (val @= "loop") {
-     do_loop = 1
+     do_loop = 1;
   }
 }
 
@@ -138,10 +138,10 @@ int Bestpick[5][2];
 
  if (na > 1 && !adjust_day) {
 
-while (1) {
+ while (1) {
 
     Bestpick = -1;
-   <<"$Bestpick\n"
+   <<"$Bestpick\n";
    bpick= checkFood();
 
    if (bpick == -1) {
@@ -149,16 +149,16 @@ while (1) {
    }
 
 
-ans= iread("search again? : [y]/n ")
+ans= iread("search again? : [y]/n ");
 
 if ((ans @="n") ) {
-  exit()
+  exit();
  }
 
-  ans=i_read("food $myfood ? : ")
+  ans=i_read("food $myfood ? : ");
 
   if (scmp(ans,"quit",4)) {
-    exit()
+    exit();
   }
 
   if (! (ans @="") ) {
@@ -166,18 +166,16 @@ if ((ans @="n") ) {
     <<"nowsearching for %V$myfood \n"
   }
  
- }
-
-
-
+  }
 }
 /////////////////////////////// UI /////////////////////////////////
 #include "loopquery"
 
 
 ///////// dd_log_file ////////////
+
 if (!adjust_day) {
- ds= date(2)
+ ds= date(2);
  ds=ssub(ds,"/","-",0);
 
  the_day = "dd_${ds}";
@@ -209,15 +207,15 @@ do_loop = 1;
  <<" in doloop \n"
     fnd =queryloop();
 
-<<" qloop exit $fnd\n"
+<<" qloop exit $fnd\n";
 
 
   if (fnd) {
 
 // write to daily log
 // post the total
-<<" post the total save to today $the_day\n"
-!!"cp $the_day today"
+<<" post the total save to today $the_day\n";
+!!"cp $the_day today";
     }
 
  }
@@ -231,4 +229,4 @@ if (Graphic) {
 }
 /}
 
-exit()
+exit();
