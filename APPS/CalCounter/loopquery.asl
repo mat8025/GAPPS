@@ -14,6 +14,8 @@
 
 Record R[];
 
+Svar Wans;
+
 int Rn = 0;
 
 Cal_tot = 0.0;
@@ -24,12 +26,52 @@ Chol_tot = 0.0;
 SatF_tot = 0.0;     
 
 
-proc adjustAmount(ir)
+proc adjustAmounts(svar irs, f)
+//proc adjustAmounts( f)
 {
+float a;
+int i;
+// BUG passing Wans in args fails
+// c
+//    irs = Wans;
+<<"%V $(typeof(irs)) $irs[::]\n"
+    for (i=0; i< Ncols; i++) {
+<<"<$i>  $irs[i] \n"
+    }
 
-<<"$RF[ir]\n"
+a = atof(irs[1]) * f;
+<<"%V$a\n"
+    
+  irs[1] = "%6.2f$a"
+  
+for (i = 3; i < 10; i++) {
+ a = atof(irs[i]) * f;
+<<"%V$a\n"
+  irs[i] = "%6.2f$a"
+}
+
+
+  for (i=0; i< Ncols; i++) {
+<<"<$i>  $irs[i] \n"
+    }
+
+/{
+  Wans = irs;
+<<"svar copy bak to Wans\n"
+  for (i=0; i< Ncols; i++) {
+<<"<$i>  $Wans[i] \n"
+    }
+<<"ele copy bak to Wans\n"
+  for (i=0; i< Ncols; i++) {
+     Wans[i] = irs[i];
+<<"<$i>  $Wans[i] \n"
+    }
+/}
+
 
 }
+
+
 //======================================//
 proc showFitems()
 {
@@ -130,6 +172,25 @@ int ret = 0;
 int reck = -1;
 str ans = "";
 int bpick;
+
+
+  Nrecs = Caz(RF);
+  Ncols = Caz(RF[0]);
+
+
+<<"num of records $Nrecs  num cols $Ncols\n"
+
+
+    for (i= 0; i < 10; i++) {
+    nc = Caz(RF[i]);
+<<"<$i> $nc $RF[i] \n";
+    }
+
+    for (i= Nrecs -10; i < Nrecs; i++) {
+    nc = Caz(RF[i]);
+<<"<$i> $nc $RF[i] \n";
+    }
+
 while (1) {
 
 
@@ -280,7 +341,9 @@ if (bpick != -1) {
     
    // Wans =  Fd[Wfi]->query(mf);
     Wans = RF[bpick];
-   
+    nc = Caz(RF[bpick]);
+<<"%V $bpick $nc $RF[bpick] \n";
+    
     ans = iread(" [a]ccept,[r]eject , [m]ultiply ?\n");
 
      if (ans @= "a") {
@@ -306,16 +369,29 @@ if (bpick != -1) {
    
    if (mf > 0) {
 
-    //Wans =  Fd[Wfi]->query(mf);
-      adjustAmount();
+     Wans =  RF[bpick];
 
+<<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n"
+
+    for (i=0; i< Ncols; i++) {
+<<"<$i>  $Wans[i] \n"
+    }
+
+
+   adjustAmounts(Wans, mf);
+
+    for (i=0; i< Ncols; i++) {
+<<"<$i>  $Wans[i] \n"
+    }
+
+<<"$Wans\n"
 
      ans = iread(" [a]ccept,[r]eject\n");
 
      if (ans @= "a") {
     // <<[B]"$Wans \n"
  <<"adding @ $Rn Rsz $(Caz(R))\n"
-     R[Rn] = Split(Wans,",");
+     R[Rn] = Wans
      Rn++;
      ret = 1;
    }

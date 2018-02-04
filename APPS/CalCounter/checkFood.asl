@@ -37,7 +37,7 @@ the_satfat = 0.0;
 
 query_res = ""
 the_descr = ""
-Wans = ""
+
 int Wfi = 0;
 
 proc checkFood()
@@ -145,7 +145,7 @@ str the_food;
     for (i =0; i < 5; i++) {
         if (Bestpick[i][0] > 1) {
 	      wi = Bestpick[i][1] ;
-              wscore = Bestpick[i][1] ;
+              wscore = Bestpick[i][0] ;
             <<"$Bestpick[i][0] $Bestpick[i][1] " 
             <<"$RF[wi] \n"
 	    if (wscore > best_score) {

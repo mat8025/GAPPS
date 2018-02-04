@@ -72,11 +72,22 @@ include "checkFood";
 
 <<"num of records $Nrecs  num cols $Ncols\n"
 
+
+   for (i= 0; i < 10; i++) {
+       nc = Caz(RF[i]);
+<<"<$i> $nc $RF[i] \n";
+    }
+
+    for (i= Nrecs -10; i < Nrecs; i++) {
+    nc = Caz(RF[i]);
+<<"<$i> $nc $RF[i] \n";
+    }
+
   Nfoods  = Nrecs -1;
 
   DBPR" now for $Nfoods foods\n"
 
-  parseFoodTable();
+  //parseFoodTable();
 
   myfood = "pie apple"
   f_unit = "slice"
@@ -213,11 +224,11 @@ do_loop = 1;
 
 
 
-
+/{
 Graphic = CheckGwm()
 if (Graphic) {
  include "gui_query.asl"
 }
-
+/}
 
 exit()
