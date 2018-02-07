@@ -32,10 +32,10 @@ proc adjustAmounts (svar irs, f)
   int i;
 
 <<"%V $(typeof(irs)) $irs[::]\n";
-  for (i = 0; i < Ncols; i++)
-    {
-    <<"<$i>  $irs[i] \n";
-    }
+//  for (i = 0; i < Ncols; i++)
+//    {
+//    <<"<$i>  $irs[i] \n";
+//    }
 
   a = atof (irs[1]) * f;
   <<"%V$a\n";
@@ -43,16 +43,9 @@ proc adjustAmounts (svar irs, f)
   for (i = 3; i < 10; i++)
     {
       a = atof (irs[i]) * f;
-    <<"%V$a\n" ;
+  //  <<"%V$a\n" ;
     irs[i] = "%6.2f$a";
     }
-
-
-  for (i = 0; i < Ncols; i++)
-    {
-    <<"<$i>  $irs[i] \n";
-    }
-
 
 }
 
@@ -89,7 +82,7 @@ proc readDD (ddfn)
 
   <<"$Rn Rsz $(Caz(R))\n";
 
-  R[15][0] = "#";
+  R[Rn+5][0] = "#";
 
   <<" first rec $R[0]\n";
   <<"1 desc <|${R[0][0]}|>\n";
@@ -110,11 +103,10 @@ proc writeDD ()
   B = ofile (the_day, "w");
 
   <<[B] "# Food                       Amt Unit Cals Carbs Fat Protein Chol(mg) SatFat Wt\n";
-//  NR = R[0:Rn];
-//<<"$NR[0] $NR[::]\n"
-//<<"%(1,>>, || ,<<\n)$NR[::]\n"
+
+<<"$R[1]\n"
     writeRecord (B, R, "#");
-  //writeRecord(B,R,",");
+
 
   computeTotals ();
 
@@ -338,7 +330,7 @@ proc queryloop ()
 ///  if listed as cup and asked for tablespoon -- adjust quantities by 0.0625
 /// 
 
-
+      Wans->vfree();
       <<"%V$f_amt \n";
       bpick = checkFood ();
 
@@ -352,8 +344,11 @@ proc queryloop ()
 //    <<"should be scalar!! %V $f_amt\n"
 //    <<"should be scalar! %V $mf \n"
 
-	  // Wans =  Fd[Wfi]->query(mf);
-	  Wans = RF[bpick];
+	  Wans->vfree();
+    <<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
+          Wans = RF[bpick];
+    <<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
+
 	  nc = Caz (RF[bpick]);
 	  <<"%V $bpick $nc $RF[bpick] \n";
 
@@ -366,9 +361,16 @@ proc queryloop ()
 	      <<"adding @ $Rn Rsz $(Caz(R))\n";
 
 	      //R[Rn] = Split(Wans,",");
-	      R[Rn] = RF[bpick];
+	      
+             <<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
+             Wans = RF[bpick];  // this does not set correct number of fields
+	      <<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
+              <<"%V $(typeof(RF))  $(Caz(RF,bpick)) $RF[bpick]\n";
+	      Wans->resize(10);
+	      <<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
+             R[Rn] = Wans;
 
-	      <<"added @ $Rn Rsz $(Caz(R))\n";
+	      <<"added @ $Rn Rsz $(Caz(R,Rn))\n";
 	      <<"<$Rn> $R[Rn] \n";
 	      Rn++;
 
@@ -385,21 +387,21 @@ proc queryloop ()
 		{
 
 		  Wans = RF[bpick];
-
+                   
 		  <<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
 		  
-		    for (i = 0; i < Ncols; i++)
-		    {
-		      <<"<$i>  $Wans[i] \n";
-		    }
+	//	    for (i = 0; i < Ncols; i++)
+	//	    {
+	//	      <<"<$i>  $Wans[i] \n";
+	//	    }
 
 
 		  adjustAmounts (Wans, mf);
 
-		  for (i = 0; i < Ncols; i++)
-		    {
-		      <<"<$i>  $Wans[i] \n";
-		    }
+//		  for (i = 0; i < Ncols; i++)
+//		    {
+//		      <<"<$i>  $Wans[i] \n";
+//		    }
 
 		  <<"$Wans\n";
 
@@ -408,7 +410,9 @@ proc queryloop ()
 		  if (ans @= "a")
 		    {
 		      // <<[B]"$Wans \n"
+		      <<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
 		      <<"adding @ $Rn Rsz $(Caz(R))\n";
+		      Wans->resize(10);
 		      R[Rn] = Wans;
 		      Rn++;
 		      ret = 1;

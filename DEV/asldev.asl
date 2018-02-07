@@ -20,6 +20,8 @@
 // could have a number of sheets in different windows
 
 
+
+
 include "gevent.asl"
 
 
@@ -54,7 +56,7 @@ cf(A)
 
 
   if (fname @= "")  {
-   fname = "foodtable.csv";
+   fname = "tasks.dev";
   }
 
 
@@ -79,33 +81,25 @@ DF[0] = Split("?,?,6,10,22/1/18,xx,31/1/18,x,",',');
    R= readRecord(A,@del,',')
    cf(A);
    sz = Caz(R);
+
   ncols = Caz(R[0]);
 <<"num of records $sz  num cols $ncols\n"
 
-//////////////////////////////////
 
-include "gss.asl"
+//////////////////////////////////
 
 
 Graphic = CheckGwm()
-
 
      if (!Graphic) {
         X=spawngwm()
      }
 
+include "gss.asl"
 
 include "tbqrd"
 
 include "gss_screen"
-
-
-
-
-
-   gflush()
-
-
 
 int cv = 0;
 
@@ -127,7 +121,20 @@ for (i = 0; i < rows;i++) {
 <<"[${i}] $R[i]\n"
 }
 
-//
+
+
+    for (i = 0; i< rows ; i++) {
+     for (j = 0; j< cols ; j++) {
+        if ((i%2)) {
+sWo(cellwo,@cellbhue,i,j,LILAC_);         
+	}
+	else {
+sWo(cellwo,@cellbhue,i,j,YELLOW_);
+
+	 }
+	 cv++;
+       }
+     }
 
 
 
@@ -140,32 +147,8 @@ for (i = 0; i < rows;i++) {
 
   //cols = Caz(R[0])
    
-   sWo(cellwo,@setrowscols,rows+3,cols+2);
-
-   //sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
-   sWo(cellwo,@selectrowscols,0,2,0,cols);
-//   curr_row = 3;
-   sWo(cellwo,@selectrowscols,curr_row,curr_row+20,0,cols);
-
-
-    for (i = 0; i< curr_row ; i++) {
-     for (j = 0; j< cols ; j++) {
-        if ((i%2)) {
-sWo(cellwo,@cellbhue,i,j,LILAC_);         
-	}
-	else {
-sWo(cellwo,@cellbhue,i,j,YELLOW_);
-
-	 }
-       }
-     }
-
-
-paintRows();
-
-
-//=================================
-
+   sWo(cellwo,@setrowscols,rows+10,cols+1);
+   sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
 
 // sWo(cellwo,@cellbhue,1,-2,LILAC_); // row,col wr,-2 all cells in row
    sWi(vp,@redraw)
@@ -257,6 +240,7 @@ sWo(cellwo,@cellbhue,0,swapcol_a,CYAN_);
             $_ewoname()
         }
       }
+
 
 }
 <<"out of loop\n"

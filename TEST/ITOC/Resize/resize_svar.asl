@@ -17,16 +17,16 @@ W=testargs(Wans)
 
 <<"%(1,,,\n)$W\n"
 
-ans = iread();
+//ans = iread();
 Wans[3] = "more stuff to do";
 
 <<"sz $(Caz(Wans)) $Wans\n"
 
-S=testargs(V,Wans)
+S=testargs(Wans)
 
 <<"%(1,,,\n)$S\n"
 
-ans = iread();
+//ans = iread();
 
    Wans->resize(10)
 
@@ -36,13 +36,13 @@ ans = iread();
     
 <<"sz $(Caz(Wans)) $Wans\n"
 
+delete(W)
+W=testargs(Wans)
 
-M=testargs(V,Wans)
 
+<<"%(1,,,\n)$W\n"
 
-<<"%(1,,,\n)$M\n"
-
-ans = iread();
+//ans = iread();
 
    Wans->resize(5)
 
@@ -55,16 +55,32 @@ R=testargs(Wans)
 
 <<"%V $(Typeof(Wans)) $Wans\n"
 
+<<"resize svar to sz 1 \n"
+
+ Wans->resize(1)
+
+<<"sz $(Caz(Wans)) $Wans\n"
+<<"check args \n"
+
+
+R1=testargs(Wans)
+
+<<"%(1,,,\n)$R1\n"
+
+
+//ans = iread();
+
+
 delete(Wans);
 
+
+Wans="again";
 
 L=testargs(Wans)
 
 <<"%(1,,,\n)$L\n"
 
 <<"%V $(Typeof(Wans)) $Wans\n"
-
-
 
 
 

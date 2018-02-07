@@ -10,7 +10,7 @@ FailedList = ("x",  )  // empty list --- bug first item null?
 
 <<"failed list size $flsz \n"
 
-  FailedList->Delete(0)
+  FailedList->LiDelete(0)
 
 <<" $FailedList \n"
 
@@ -84,14 +84,14 @@ if (flsz > 1) {
 
 // delete current, head, tail
 
-  FailedList->Delete(-1)
+  FailedList->LiDelete(-1)
 
 <<" $FailedList \n"
    flsz = caz(FailedList)
 
 <<"failed list size $flsz \n"
 
-  FailedList->Delete(0)
+  FailedList->LiDelete(0)
 
 <<" $FailedList \n"
 
@@ -102,7 +102,7 @@ if (flsz > 1) {
 // delete nth item
 
 
-  FailedList->Delete(2)
+  FailedList->LiDelete(2)
 
 <<" $FailedList \n"
 

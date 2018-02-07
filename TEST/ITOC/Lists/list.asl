@@ -4,16 +4,27 @@ ws = getScript()
 <<"%V $ws\n"
 
 //  setdebug(1."trace","keep")  /// TBF 1." crashes
+
 setdebug(1,"trace","keep")
 filterDebug(1,"Vdeclare")
- CrashList = ( "x",  )  // empty list
- CrashList->Delete(0)
 
- FailedList = ( "y",  )  // empty list --- bug first item null? 
-// FailedList->Delete(0)
+
+
+CrashList = ( "",  )  // empty list
+<<"%V$CrashList \n"
+
+CrashList->LiDelete(0)
+
+ FailedList = ( "",  )  // empty list --- bug first item null? 
+
+ FailedList->LiDelete(0)
  
 <<" $ws \n"
 <<"%V$CrashList \n"
+
+
+<<"%V$FailedList \n"
+
 
 CheckIn()
 

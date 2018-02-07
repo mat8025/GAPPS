@@ -457,9 +457,9 @@ int do_unary = 0;
 int do_ptrs = 0;
 
  CrashList = ( "",  )  // empty list
- CrashList->Delete(0)
+ CrashList->LiDelete(0)
  FailedList = ( "",  )  // empty list --- bug first item null? 
- FailedList->Delete(0)
+ FailedList->LiDelete(0)
  
   updir()
   Testdir = getdir()
@@ -758,6 +758,12 @@ if (( do_all ==1) || (do_declare == 1) ) {
    Run2Test("Consts")
 
    cart ("consts_test")
+
+   Run2Test("Resize")
+
+   cart ("resize_vec")
+
+
 
 
 /////////////////////////////////////////////////////////////////////////////////
