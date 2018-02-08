@@ -120,7 +120,8 @@ int dday;
 
 // this is a new format -- allowing us to put comment labels on graphs
 
- A=ofr("wfex.dat")
+ //A=ofr("wfex.dat")
+ A=ofr("wex.tsv")
 
  
 if (A == -1) {
@@ -132,32 +133,28 @@ if (A == -1) {
 // check period
 
 
+Record RX[];
+
+RX=readrecord(A,@del,-1)
+
+Nrecs = Caz(RX);
+
+<<"%V RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n"
+
+
 
     //WDVEC= vgen(_INT_,2*kdays,0,1);
 
-    n = 0
-//<<"%V$A \n"
-
-    S= readline(A)
-
-    foe= ferror(A)
-
-//<<"%V$A $foe\n"
-
-  k =0
-
-//  lpd = (sw2-gw2)/ (ng2day * 1.0)
-//long wday
-
-
-
-
+    n = 0;
+    k = 0;
 
 
 ////////////////// READ CEX DATA ///////////////////
 #include "wed_goals"
 #include "wed_read"
 
+
+readData();
 
 
 ////////////// PLOT GOAL LINE  ///////////////////////////////////////////

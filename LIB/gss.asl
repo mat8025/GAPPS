@@ -2,9 +2,8 @@
 ///   gss  procs
 ///
 
-
-///  routines for manipulating rows,cols edit of records
-
+Use_csv_fmt = 1;
+Delc = 44;
 curr_row = 3;  // for paging
 page_rows = 20;
 swaprow_a = 1;
@@ -17,7 +16,7 @@ proc SAVE()
 {
          <<"saving sheet $fname\n"
             B=ofw(fname)
-	    writeRecord(B,R);
+	    writeRecord(B,R,@del,Delc);
 	    cf(B)
 }
 //======================
@@ -27,7 +26,7 @@ proc READ()
       <<"reading $fname\n"
        // isok =sWo(cellwo,@sheetread,fname,2)
             A= ofr(fname)
-            R= readRecord(A,@del,',')
+            R= readRecord(A,@del,Delc)
            cf(A)
            sz = Caz(R);
           <<"num of records $sz\n"
@@ -129,7 +128,7 @@ proc ADDROW()
     R[er][6] =  julmdy(julian(date(2))+14)); // fortnight hence
     rows++;
     sz = Caz(R);
-    writeRecord(1,R);
+    writeRecord(1,R,@del,Delc);
   <<"New size %V $rows $cols $sz\n"  
    sWo(cellwo,@setrowscols,rows,cols+1);
    sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
@@ -166,7 +165,7 @@ proc PGUP()
 {
 
    sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0);
-   curr_row -= 10;
+   curr_row -= page_rows/2;
 
    if (curr_row <0) {
        curr_row = 0;
@@ -191,7 +190,7 @@ proc clearTags()
   for (i= 1;i< rows; i++) {
       R[i][tags_col] = " ";
    }
-	    writeRecord(1,R);
+   writeRecord(1,R,@del,Delc);
    sWo(cellwo,@cellval,R);
    sWo(cellwo,@redraw);
    }

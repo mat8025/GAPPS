@@ -2,6 +2,7 @@
 ///
 ///
 
+setdebug(1,"step")
 
 checkIn();
 

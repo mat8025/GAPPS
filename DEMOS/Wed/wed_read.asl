@@ -6,8 +6,6 @@
 last_known_wt = 205;
 last_known_day = 0;
 
-tl = 0;
-
 float tot_exeburn =0
 float tot_exetime = 0
 
@@ -16,6 +14,7 @@ nxobs = 0;
 
 int Nxy_obs = 0
 
+long wday;
 //=========================================
 
 
@@ -38,6 +37,9 @@ proc isData()
 }
 //===========================================================
 
+
+
+
 proc fillInObsVec()
 {
 
@@ -45,9 +47,9 @@ proc fillInObsVec()
 //<<"%V$kd $Nobs\n";
 // <<" ";
  
- if ((kd >= 0) && (col[0] @= "WEX")) {
+ if ((kd >= 0)) {
 
-   j = 2;
+   j = 1;
 
    mywt = atof(col[j++]);
 
@@ -116,48 +118,29 @@ proc fillInObsVec()
 //====================================================//
 
 
-  S= readline(A);
-
 int kd;
+svar col;
+
+
+proc readData()
+{
+
+tl = 0;
+
 
   while (1) {
 
-//<<"a";
+      tl++;
 
-   S= readline(A);
+      col= RX[tl];
+      
+ //<<"<$tl> $RX[tl]\n"
 
-   tl++;
-
-   if (check_eof(A) ) {
-     <<"end of data \n";
-     break;
-   }
-
-   ll = slen(S)
-
- //DBPR"$tl $ll  $S \n"
- 
-//<<"$tl $ll  $S \n"
-//<<"b"
-   if (ll < 9) {
-        continue;
-   }
-
-//   sscan(S,'%s',&fword) // get first word -non WS
-//<<"%V$ll $fword\n"
-//<<"c"
-
-    if (isData()) {
-    
-//<<"d";
-
-      col= split(S);
-
-//<<"e";
+<<"<$tl> $(typeof(col)) $col \n"
 
 //DBPR"$col \n"
 
-    day = col[1]
+    day = col[0];
 
     wday = julian(day) 
 
@@ -192,10 +175,12 @@ int kd;
 //<<"$kk wex measure $Nobs\n";
 
     fillInObsVec();
+    if (tl >= (Nrecs-1)) {
+       break;
+    }
+}
 
-  }
- //<<"$Nobs\n" ; 
- }
+//=======================================
 
-
-<<"there were $Nobs measurements \n"
+<<"$Nrecs there were $Nobs measurements \n"
+}
