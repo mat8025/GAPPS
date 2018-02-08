@@ -70,7 +70,7 @@ str the_food;
   else
       food_d = split(myfood)
       
-<<"%V <$food_d> $(typeof(myfood))\n"
+//<<"%V <$food_d> $(typeof(myfood))\n"
 
   fsz = Caz(food_d)
 
@@ -82,8 +82,6 @@ str the_food;
 
 //<<"$the_food \n"
 
-
-
      the_unit = "oz"
      the_amt = 1;
 
@@ -91,9 +89,7 @@ str the_food;
     
     for (i = 1 ; i < N ; i++) {
 
-
         score = Compare(food_d,RF[i][0]);
-
 
       if (score > 0) {
         //  <<"$('PRED_') $Wans $('POFF_')\n"
@@ -107,15 +103,12 @@ str the_food;
 	 if (pk >= 5) {
              pk = 0;
          }
-    
-
-   if (score > best_score) {
+  
+      if (score > best_score) {
           best_score = score;
 	  best_i = i;
-   }
-
+      }
   }
-
 }
 
  
@@ -129,16 +122,15 @@ str the_food;
 <<"FOOD found %V $best_score $best_i  \n"
       Wfi = best_i;
       
-<<"$Bestpick\n"
+//<<"$Bestpick\n"
 
-<<"$(typeof(Bestpick)) $(Cab(Bestpick))\n"
+//<<"$(typeof(Bestpick)) $(Cab(Bestpick))\n"
 
      bp = msortCol(Bestpick,0);
 
+     Bestpick = bp;
 
-    Bestpick = bp;
-
-<<"$Bestpick\n"
+//<<"$Bestpick\n"
 
     best_score = 0;
     
@@ -152,8 +144,7 @@ str the_food;
                  best_pick = wi;
 		 best_score = wscore;
             }
- 	     
-        }
+         }
     }
    }
 

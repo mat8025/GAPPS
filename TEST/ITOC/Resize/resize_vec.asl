@@ -2,7 +2,7 @@
 ///
 ///
 
-setdebug(1,"step")
+setdebug(1,"~step")
 
 checkIn();
 

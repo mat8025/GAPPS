@@ -31,7 +31,8 @@ proc adjustAmounts (svar irs, f)
   float a;
   int i;
 
-<<"%V $(typeof(irs)) $irs[::]\n";
+//<<"%V $(typeof(irs)) $irs[::]\n";
+<<"$irs[::]\n";
 //  for (i = 0; i < Ncols; i++)
 //    {
 //    <<"<$i>  $irs[i] \n";
@@ -205,7 +206,7 @@ proc queryloop ()
 	  <<"%V$wrec $ans $Rn $(Rn-1)\n";
 	  reck = atoi (wrec);
 	  <<"%V$wrec $ans $Rn $(Rn-1) $reck\n";
-	  <<" $(typeof(wrec)) $(typeof(reck))\n";
+	  //<<" $(typeof(wrec)) $(typeof(reck))\n";
 
 	  if (reck >= 0 & reck <= Rn)
 	    {
@@ -345,9 +346,9 @@ proc queryloop ()
 //    <<"should be scalar! %V $mf \n"
 
 	  Wans->vfree();
-    <<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
+    //<<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
           Wans = RF[bpick];
-    <<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
+   // <<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
 
 	  nc = Caz (RF[bpick]);
 	  <<"%V $bpick $nc $RF[bpick] \n";
@@ -362,16 +363,16 @@ proc queryloop ()
 
 	      //R[Rn] = Split(Wans,",");
 	      
-             <<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
+             //<<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
              Wans = RF[bpick];  // this does not set correct number of fields
-	      <<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
-              <<"%V $(typeof(RF))  $(Caz(RF,bpick)) $RF[bpick]\n";
+	      //<<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
+              //<<"%V $(typeof(RF))  $(Caz(RF,bpick)) $RF[bpick]\n";
 	      Wans->resize(10);
-	      <<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
+	      //<<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
              R[Rn] = Wans;
 
-	      <<"added @ $Rn Rsz $(Caz(R,Rn))\n";
-	      <<"<$Rn> $R[Rn] \n";
+	      //<<"added @ $Rn Rsz $(Caz(R,Rn))\n";
+	      <<"<$Rn> added $R[Rn] \n";
 	      Rn++;
 
 	      ret = 1;
@@ -382,13 +383,15 @@ proc queryloop ()
 
 	      ans = iread ("adjust by ? factor\n");
 	      mf = atof (ans);
-	      <<"adjust by $mf $(typeof(mf)) $(Caz(mf)) \n";
+	      //<<"adjust by $mf $(typeof(mf)) $(Caz(mf)) \n";
+	      <<"adjust by $mf  \n";
 	      if (mf > 0)
 		{
 
 		  Wans = RF[bpick];
                    
-		  <<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
+		  //<<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
+		  <<" $Wans\n";
 		  
 	//	    for (i = 0; i < Ncols; i++)
 	//	    {
@@ -410,7 +413,7 @@ proc queryloop ()
 		  if (ans @= "a")
 		    {
 		      // <<[B]"$Wans \n"
-		      <<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
+		      //<<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
 		      <<"adding @ $Rn Rsz $(Caz(R))\n";
 		      Wans->resize(10);
 		      R[Rn] = Wans;

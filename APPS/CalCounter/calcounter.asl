@@ -49,7 +49,7 @@ adjust_day = 0;
  
  float f_amt = 1.0;
 
-include "parsefood" ;
+//include "parsefood" ;
 
 include "checkFood";
 
@@ -73,12 +73,12 @@ include "checkFood";
 <<"num of records $Nrecs  num cols $Ncols\n";
 
 
-   for (i= 0; i < 10; i++) {
+   for (i= 0; i < 3; i++) {
        nc = Caz(RF,i);
 <<"<$i> $nc $RF[i] \n";
     }
 
-    for (i= Nrecs -10; i < Nrecs; i++) {
+    for (i= Nrecs -5; i < Nrecs; i++) {
     nc = Caz(RF,i);
 <<"<$i> $nc $RF[i] \n";
     }
@@ -148,12 +148,11 @@ int Bestpick[5][2];
    <<"Sorry could not find a match for $myfood\n";
    }
 
+   ans= iread("search again? : [y]/n ");
 
-ans= iread("search again? : [y]/n ");
-
-if ((ans @="n") ) {
-  exit();
- }
+   if ((ans @="n") ) {
+     exit();
+  }
 
   ans=i_read("food $myfood ? : ");
 
@@ -170,7 +169,6 @@ if ((ans @="n") ) {
 }
 /////////////////////////////// UI /////////////////////////////////
 #include "loopquery"
-
 
 ///////// dd_log_file ////////////
 
@@ -219,8 +217,6 @@ do_loop = 1;
     }
 
  }
-
-
 
 /{
 Graphic = CheckGwm()
