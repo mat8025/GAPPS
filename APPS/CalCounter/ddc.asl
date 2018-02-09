@@ -1,23 +1,21 @@
 ///
 ///
-////////////    SPREAD SHEET  for FOODS /////////////
+////////////    DDC  /////////////
 
 
-//  each  cell has an input text function
-// 
+setdebug(1)
+filterDebug(0,"win_receive_msg")
 
-// open a csv/tsv/rec file
-// read contents and set up a spreadsheet
-// gui controls direct  manipulation of the
-// record data (asl side)
-// and the sheet is update xgs sid
-// user can enter text into cells via the gui interface
+proc Search()
+{
 
+<<"what is myfood string? $_emsg $_ekeyw \n"
+
+<<"<$_ewords[3]> <$_ewords[4]> <$_ewords[5]> \n"
+myfood = "$_ewords[3] $_ewords[4] $_ewords[5]"
+  bpick = checkFood();
+}
 //
-//  need a rapid and smart update changes only
-//
-
-// could have a number of sheets in different windows
 
 
 include "gevent.asl"
@@ -47,28 +45,59 @@ A=ofw("Howlong.m")
 cf(A)
 
 
+  A=  ofr("foodtable.csv");
 
+ if (A == -1) {
+  <<" can't open food table $ftfile \n";
+    exit();
+ }
+
+   RF= readRecord(A,@del,',')
+   cf(A);
+
+  Nrecs = Caz(RF);
+  Ncols = Caz(RF,0);
+
+<<"num of records $Nrecs  num cols $Ncols\n";
+
+
+   for (i= 0; i < 3; i++) {
+       nc = Caz(RF,i);
+<<"<$i> $nc $RF[i] \n";
+    }
+
+    for (i= Nrecs -5; i < Nrecs; i++) {
+    nc = Caz(RF,i);
+<<"<$i> $nc $RF[i] \n";
+    }
+
+//===========================================
 
 //  fname = "pp.rec"
-  fname = _clarg[1];
 
-
-  if (fname @= "")  {
-   fname = "foodtable.csv";
-  }
-
+fname = _clarg[1];
 
 <<"%V $fname \n"
-//isok =sWo(cellwo,@sheetread,fname,2);
- //<<"%V$isok\n";
 
 A= ofr(fname)
  if (A == -1) {
  <<"can't find file $fname \n";
-    exit(-1);
+ A= ofr("today")
+   if (A == -1) {
+   exit(-1);
+   }
  }
 
-//record R[20+];
+
+  myfood = "pie apple";
+  f_unit = "slice";
+  f_amt = 1.0;
+
+int fnd = 0;
+int bpick;
+int Bestpick[5][2];
+
+
 
 Record DF[10];
 
@@ -79,39 +108,36 @@ DF[0] = Split("?,?,6,10,22/1/18,xx,31/1/18,x,",',');
    R= readRecord(A,@del,',')
    cf(A);
    sz = Caz(R);
+
   ncols = Caz(R[0]);
+  rows = sz;
 <<"num of records $sz  num cols $ncols\n"
 
 //////////////////////////////////
 
-include "gss.asl"
+
+
 
 
 Graphic = CheckGwm()
-
 
      if (!Graphic) {
         X=spawngwm()
      }
 
 
-include "tbqrd"
+include "gss.asl";
 
-include "gss_screen"
+include "tbqrd";
 
+include "ddc_screen";
 
+include "checkFood";
 
-
-
-   gflush()
-
-
+<<"%V swaprow_a $swaprow_b  $swapcol_a $swapcol_b \n";
 
 int cv = 0;
 
-
-
-// setdebug(1,"step","pline");
 
   sz= Caz(R);
   rows = sz;
@@ -119,36 +145,15 @@ int cv = 0;
 
   tags_col = cols-1;
   
- sWo(cellwo,@setrowscols,rows+5,cols+1);
+ sWo(cellwo,@setrowscols,rows+10,cols+1);
  
 <<"%V$rows $sz \n"
 
-for (i = 0; i < rows;i++) {
-<<"[${i}] $R[i]\n"
-}
+  for (i = 0; i < rows;i++) { 
+    <<"[${i}] $R[i]\n"
+   }
 
-//
-
-
-
-
-     sWo(cellwo,@cellval,R);
- //  sWo(cellwo,@cellval,R,1,1,5,5,1,1);
-
-
-  rows = sz;
-
-  //cols = Caz(R[0])
-   
-   sWo(cellwo,@setrowscols,rows+3,cols+2);
-
-   //sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
-   sWo(cellwo,@selectrowscols,0,2,0,cols);
-//   curr_row = 3;
-   sWo(cellwo,@selectrowscols,curr_row,curr_row+20,0,cols);
-
-
-    for (i = 0; i< curr_row ; i++) {
+    for (i = 0; i< rows ; i++) {
      for (j = 0; j< cols ; j++) {
         if ((i%2)) {
 sWo(cellwo,@cellbhue,i,j,LILAC_);         
@@ -157,42 +162,62 @@ sWo(cellwo,@cellbhue,i,j,LILAC_);
 sWo(cellwo,@cellbhue,i,j,YELLOW_);
 
 	 }
+	 cv++;
        }
      }
 
+     sWo(cellwo,@cellval,R);
+ //  sWo(cellwo,@cellval,R,1,1,5,5,1,1);
 
-paintRows();
 
+   rows = sz;
+   
+   sWo(cellwo,@setrowscols,rows+10,cols+1);
+   sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
 
-//=================================
+   sWo(choicewo,@setrowscols,6,cols+1);
+   sWo(choicewo,@selectrowscols,0,5,0,cols);
+
+   for (i = 0; i< 6 ; i++) {
+     for (j = 0; j< cols ; j++) {
+        if ((i%2)) {
+   sWo(choicewo,@cellbhue,i,j,CYAN_);         
+	}
+	else {
+   sWo(choicewo,@cellbhue,i,j,PINK_);
+	 }
+       }
+     }
+//============================
 
 
 // sWo(cellwo,@cellbhue,1,-2,LILAC_); // row,col wr,-2 all cells in row
-   sWi(vp,@redraw)
+   sWi(vp,@redraw);
 
-   sWo(ssmods,@redraw)
+   sWo(ssmods,@redraw);
 
    sWo(cellwo,@redraw);
+   
+   sWo(choicewo,@redraw);
 
-   swaprow_a = 1;
-   swaprow_b = 2;
+<<"%V $choicewo $cellwo \n"
 
-   swapcol_a = 1;
-   swapcol_b = 2;
-<<"%V $cellwo\n"
+
+
 
 
   while (1) {
 
          eventWait();
 
-   <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
+   <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ekeyw3 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
 
          if (_erow > 0) {
             the_row = _erow;
          }
 
-       if (_ewoid == cellwo) {
+
+         if (_ewoid == cellwo) {
        
              if (_ekeyw @="CELLVAL") {
                 r= _erow;
@@ -230,7 +255,7 @@ paintRows();
          swapcol_b = swapcol_a;
  	 swapcol_a = _ecol;
 
-sWo(cellwo,@cellbhue,0,swapcol_a,CYAN_);         	 
+         sWo(cellwo,@cellbhue,0,swapcol_a,CYAN_);         	 
 <<"%V $swapcol_a $swapcol_b\n"
          }
 
@@ -247,14 +272,14 @@ sWo(cellwo,@cellbhue,0,swapcol_a,CYAN_);
 		sWo(cellwo,@cellval,_erow,tags_col,"x")
 		sWo(cellwo,@celldraw,_erow,tags_col)
         }
-
    }
+
 
       if (_ename @= "PRESS") {
 
        if (!(_ewoname @= "")) {
            <<"calling script procedure  $_ewoname !\n"
-            $_ewoname()
+            $_ewoname();
         }
       }
 
@@ -262,3 +287,4 @@ sWo(cellwo,@cellbhue,0,swapcol_a,CYAN_);
 <<"out of loop\n"
 
  exit()
+   

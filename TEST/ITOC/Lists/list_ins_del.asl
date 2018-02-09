@@ -19,7 +19,7 @@ FailedList = ("x",  )  // empty list --- bug first item null?
 <<"failed list size $flsz \n"
 
 
-tname = "debe esforzarse más"
+  tname = "debe esforzarse más"
 
  <<"inserting $tname into failed list \n"
  

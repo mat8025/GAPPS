@@ -2,10 +2,14 @@
 ///   gss  procs
 ///
 
+<<"loading lib gss \n"
+
 Use_csv_fmt = 1;
 Delc = 44;
 curr_row = 3;  // for paging
 page_rows = 20;
+
+
 swaprow_a = 1;
 swaprow_b = 2;
 
@@ -212,3 +216,6 @@ sWo(cellwo,@cellbhue,i,j,YELLOW_);
      }
 }
 //=============================
+
+<<"%V $swaprow_a $swaprow_b  $swapcol_a $swapcol_b \n";
+<<" done include gss \n"
