@@ -24,7 +24,7 @@
     
       delrwo = cWo(vp,@BN,@name,"DELROWS",@color,RED_);
 
-      arwo = cWo(vp,@BN,@name,"ADDROW",@color,ORANGE_,@bhue,"lightblue");
+      arwo = cWo(vp,@BN,@name,"Addrow",@color,ORANGE_,@bhue,"lightblue");
 
       pgdwo = cWo(vp,@BN,@name,"PGDWN",@color,ORANGE_,@bhue,"pink");
 
@@ -43,21 +43,20 @@
 
  sWo(cellwo,@bhue,CYAN_,@clipbhue,SKYBLUE_,@redraw);
 
-
- choicewo=cWo(vp,"SHEET",@name,"FoodChoice",@color,GREEN_,@resize,0.12,0.2,0.9,0.49)
+ choicewo=cWo(vp,"SHEET",@name,"FoodChoice",@color,GREEN_,@resize,0.12,0.2,0.9,0.40)
 
  sWo(choicewo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"SSWO",@func,"xxx")
 
  sWo(choicewo,@bhue,CYAN_,@clipbhue,SKYBLUE_,@redraw);
 
 
- searchwo =cWo(vp,"BV",@name,"Search",@color,GREEN_,@resize,0.12,0.05,0.5,0.19)
- sWo(searchwo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"SSWO",@func,"inputValue");
+  searchwo =cWo(vp,"BV",@name,"Search",@color,GREEN_,@resize,0.12,0.05,0.5,0.19)
+  sWo(searchwo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"Type in food name",@func,"inputValue");
 
 //sWo(searchwo,@bhue,CYAN_,@clipbhue,LIGHTGREEN_,@style, SVL_, @redraw);
-sWo(searchwo,@bhue,CYAN_,@clipbhue,LIGHTGREEN_,@style, SVR_, @redraw);
+  sWo(searchwo,@bhue,CYAN_,@clipbhue,LIGHTGREEN_,@style, SVR_, @redraw);
 
- sWo(ssmods,@redraw);
+  sWo(ssmods,@redraw);
 
  // sWo(cellwo,@redraw);
 

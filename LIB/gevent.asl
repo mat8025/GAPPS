@@ -31,7 +31,7 @@ proc eventDecode()
 
     _ekeyw = _ewords[2];
 
-    _evalue =   spat(_emsg,_ekeyw,1);
+     _evalue =   spat(_emsg,_ekeyw,1);
      _evalue = eatWhiteEnds(_evalue);
 
     _ekeyw2 = _ewords[3];
@@ -120,7 +120,7 @@ str _ekeyw3;
 str _emsg = "xyz";
 str _evalue;
 
-str _ewoname = "xxx";
+str _ewoname = "";
 
 str _ewoval = "yyy";
 

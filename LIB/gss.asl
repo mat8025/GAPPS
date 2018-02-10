@@ -18,9 +18,9 @@ swapcol_b = 2;
    
 proc SAVE()
 {
-         <<"saving sheet $fname\n"
+         <<"saving sheet $fname  %V$Ncols \n"
             B=ofw(fname)
-	    writeRecord(B,R,@del,Delc);
+	    writeRecord(B,R,@del,Delc,@ncols,Ncols);
 	    cf(B)
 }
 //======================
@@ -138,8 +138,8 @@ proc ADDROW()
    sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
    sWo(cellwo,@cellval,R);
    sWo(cellwo,@redraw);
-	
 }
+
 //======================
 proc PGDWN()
 {
@@ -185,16 +185,16 @@ proc PGUP()
 proc clearTags()
 {
 
-
 //    R[::][7] = ""; // TBF
    ans= yesornomenu("ClearTags?")
    
    if (ans == 1) { // TBF
 
-  for (i= 1;i< rows; i++) {
+  for (i= 1; i< rows; i++) {
       R[i][tags_col] = " ";
    }
-   writeRecord(1,R,@del,Delc);
+   
+   //writeRecord(1,R,@del,Delc);
    sWo(cellwo,@cellval,R);
    sWo(cellwo,@redraw);
    }

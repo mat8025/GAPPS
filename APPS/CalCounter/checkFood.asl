@@ -15,12 +15,19 @@ proc Compare(phr1,phr2)
 
   n = Caz(phr1); // how may words/field in svar phr1
 
+  fwds = Split(phr2);
+  n2 = Caz (fwds);
   for (k = 0; k < n; k++) {
     wd = supper(phr1[k]);
     rs=spat(phr2,wd,0,1,&match,&charrem); // TBF if don't capture return
                                                                      // next if garbaged ???
     if ( match == 1) {
        fit += 10;
+       if (k < n2) {
+         if (wd @= fwds[k]) {
+           fit += (5 + (n-k));
+         }
+       }
      }
    }
     
@@ -96,11 +103,13 @@ str the_food;
 	//  <<"%V$score \n"
          found =1;        
         if (score > Bestpick[pk][0]) {
+	<<"%V $pk $score  $Bestpick[pk][0]\n"
            Bestpick[pk][0] = score;
 	   Bestpick[pk][1] = i;
 	   pk++;
 	 }
-	 if (pk >= 5) {
+	 
+	 if (pk > (Nbp-1)) {
              pk = 0;
          }
   
@@ -121,24 +130,43 @@ str the_food;
    <<"$('POFF_') "
 <<"FOOD found %V $best_score $best_i  \n"
       Wfi = best_i;
-      
-//<<"$Bestpick\n"
+
+/{
+<<"pre sort %V$Bestpick\n"
+
+     for (i= 0; i < Nbp; i++) {
+<<"$i $Bestpick[i][::]\n"
+     }
 
 //<<"$(typeof(Bestpick)) $(Cab(Bestpick))\n"
 
+/}
+
      bp = msortCol(Bestpick,0);
+/{
+     for (i= 0; i < Nbp; i++) {
+<<"$i $bp[i][::]\n"
+     }
+/}
 
      Bestpick = bp;
 
-//<<"$Bestpick\n"
+/{
+<<"after sort %V$Bestpick\n"
+
+     for (i= 0; i < Nbp; i++) {
+<<"$i $Bestpick[i][::]\n"
+     }
+/}
+
 
     best_score = 0;
     
-    for (i =0; i < 5; i++) {
+    for (i =0; i < Nbp; i++) {
         if (Bestpick[i][0] > 1) {
 	      wi = Bestpick[i][1] ;
               wscore = Bestpick[i][0] ;
-            <<"$Bestpick[i][0] $Bestpick[i][1] " 
+            <<"<$i> $Bestpick[i][0] $Bestpick[i][1] " 
             <<"$RF[wi] \n"
 	    if (wscore > best_score) {
                  best_pick = wi;
@@ -148,7 +176,7 @@ str the_food;
     }
    }
 
-      return best_pick; // bext_pick
+      return best_pick; 
 }
 
 ////////////////////////////////////////////////

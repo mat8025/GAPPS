@@ -3,19 +3,126 @@
 ////////////    DDC  /////////////
 
 
-setdebug(1)
+setdebug(1);
 filterDebug(0,"win_receive_msg")
 
-proc Search()
+proc Addrow()
 {
 
-<<"what is myfood string? $_emsg $_ekeyw \n"
+    sz= Caz(R)
+<<"in $_proc record $rows $sz\n"
+    er = rows;
 
-<<"<$_ewords[3]> <$_ewords[4]> <$_ewords[5]> \n"
-myfood = "$_ewords[3] $_ewords[4] $_ewords[5]"
-  bpick = checkFood();
+    R[er] = DF[0];
+ //   R[er][4] = date(2);
+ //   R[er][5] = date(2);
+ //   R[er][6] =  julmdy(julian(date(2))+14)); // fortnight hence
+    rows++;
+    sz = Caz(R);
+ //   writeRecord(1,R,@del,Delc);
+  <<"New size %V $rows $cols $sz\n";   // increase ??
+  
+   sWo(cellwo,@setrowscols,rows+1,cols+1);
+   
+   sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
+   sWo(cellwo,@cellval,R,0,0,rows,cols);
+   sWo(cellwo,@redraw);
 }
-//
+//============================
+
+
+
+proc FoodSearch()
+{
+int i;
+
+ Bestpick = -1;		//clear the best pick choices
+
+bpick = checkFood();
+  <<"$bpick \n"
+  j= Nbp-1;
+for (i=0; i<Nbp; i++) {
+  bpick = Bestpick[j][1];
+  if (bpick >0) {
+  RC[i] = RF[bpick];
+  <<"<$i> <$j> $bpick $RC[i][0]  $RC[i][1]  $RC[i][2]  $RC[i][3] \n"
+  }
+  else {
+   //RC[i][::] = " "; 
+  }
+  j--;
+}
+
+<<"best choice?: $RC[0] \n"
+<<"%V $cols\n"
+  //sWo(choicewo,@cellval,RC,0,0,2,cols);
+ sWo(choicewo,@selectrowscols,0,2,0,cols-1); // startrow,endrow,startcol,endcol
+ sWo(choicewo, @cellval, RC,0,0,3,cols);  // startrow,nrows,startcol,ncols
+ sWo(choicewo,@redraw);
+}
+//==================================
+proc Search()
+{
+int i;
+<<"what is myfood string? $_emsg $_ekeyw \n"
+<<"<$_ewords[3]> <$_ewords[4]> <$_ewords[5]> \n"
+ myfood = "$_ewords[3] $_ewords[4] $_ewords[5]"
+  FoodSearch()
+}
+//=======================================
+
+proc totalRows()
+{
+// last row contains totals
+<<"$_proc \n"
+  float cals = 0;
+  float carbs = 0;
+  float fat = 0;
+  float prt = 0;
+  float chol = 0;
+  float sfat = 0;
+  float twt = 0;  
+
+  frows = rows-1;
+
+<<"%V $frows  $R[frows][0]\n"
+
+  if (R[frows][0] @= "totals") {
+    //     frows--;
+  }
+
+  for (j = 1; j < frows ; j++) {
+
+     cals += atof(R[j][3]);
+     carbs += atof(R[j][4]);
+     fat += atof(R[j][5]);
+     prt += atof(R[j][6]);
+     chol += atof(R[j][7]);
+     sfat += atof(R[j][8]);
+     twt += atof(R[j][9]);                              
+
+  }
+  
+    j = frows;
+<<"<$j>%V $cals $carbs $fat $prt \n"
+   R[j][0] = "totals";
+   R[j][1] = "$(j-1)";
+   R[j][2] = "ITMS";   
+   R[j][3] = "$cals";
+   R[j][4] = "$carbs";
+   R[j][5] = "$fat";
+   R[j][6] = "$prt";
+   R[j][7] = "$chol";
+   R[j][8] = "$sfat";
+   R[j][9] = "$twt";            
+
+<<"$R[j][::]\n"
+
+}
+//=====================
+
+
+
 
 
 include "gevent.asl"
@@ -43,6 +150,10 @@ A=ofw("Howlong.m")
 <<[A],"item 8 M_VALUE 8\n"
 <<[A],"help  four hours\n"
 cf(A)
+
+//==========================
+Nbp = 3;
+
 
 
   A=  ofr("foodtable.csv");
@@ -95,23 +206,24 @@ A= ofr(fname)
 
 int fnd = 0;
 int bpick;
-int Bestpick[5][2];
 
-
+int Bestpick[Nbp][2];
 
 Record DF[10];
 
-DF[0] = Split("?,?,6,10,22/1/18,xx,31/1/18,x,",',');
+DF[0] = Split("?,?,?,?,?,?,?,?,?,?",',');
 
    
+Record R[];
 
    R= readRecord(A,@del,',')
    cf(A);
    sz = Caz(R);
 
-  ncols = Caz(R[0]);
-  rows = sz;
-<<"num of records $sz  num cols $ncols\n"
+  Ncols = Caz(R[0]);
+  rows = sz+1;
+  
+<<"num of records $sz  %V $rows $Ncols\n"
 
 //////////////////////////////////
 
@@ -143,16 +255,17 @@ int cv = 0;
   rows = sz;
   cols = Caz(R[0])
 
-  tags_col = cols-1;
+  tags_col = cols;
   
- sWo(cellwo,@setrowscols,rows+10,cols+1);
+ sWo(cellwo,@setrowscols,rows,cols+1);
  
 <<"%V$rows $sz \n"
 
   for (i = 0; i < rows;i++) { 
-    <<"[${i}] $R[i]\n"
+    <<"[${i}] $R[i]\n";
    }
 
+// color rows
     for (i = 0; i< rows ; i++) {
      for (j = 0; j< cols ; j++) {
         if ((i%2)) {
@@ -160,25 +273,36 @@ sWo(cellwo,@cellbhue,i,j,LILAC_);
 	}
 	else {
 sWo(cellwo,@cellbhue,i,j,YELLOW_);
-
 	 }
-	 cv++;
        }
      }
 
-     sWo(cellwo,@cellval,R);
- //  sWo(cellwo,@cellval,R,1,1,5,5,1,1);
 
+    totalRows();
 
-   rows = sz;
+   sWo(cellwo,@cellval,R,0,0,rows,cols);  
    
-   sWo(cellwo,@setrowscols,rows+10,cols+1);
    sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
 
-   sWo(choicewo,@setrowscols,6,cols+1);
-   sWo(choicewo,@selectrowscols,0,5,0,cols);
 
-   for (i = 0; i< 6 ; i++) {
+  sWo(cellwo,@cellval,0,tags_col,"Tags")
+  R[0][tags_col] = "Tags";
+
+record RC[6];
+
+ for (i=0; i < 3; i++) {
+  RC[i] = RF[i+1];   // BUG xic fix
+  <<"loop <$i> $RC[i][0] $RC[i][1] $RC[i][2]  $RC[i][3]\n"
+ }
+
+<<"$(Caz(RC,0)) \n";
+
+
+   sWo(choicewo,@setrowscols,4,cols+1);
+   sWo(choicewo,@selectrowscols,0,2,0,cols);
+   sWo(choicewo,@cellval,RC,0,0,3,cols); // RecordVar, startrow, startcol, nrows, ncols,
+
+  for (i = 0; i< 3 ; i++) {
      for (j = 0; j< cols ; j++) {
         if ((i%2)) {
    sWo(choicewo,@cellbhue,i,j,CYAN_);         
@@ -203,10 +327,13 @@ sWo(cellwo,@cellbhue,i,j,YELLOW_);
 <<"%V $choicewo $cellwo \n"
 
 
+  Addrow();
+
+  myfood = "pie apple"
+  FoodSearch();    // intial search bug
 
 
-
-  while (1) {
+ while (1) {
 
          eventWait();
 
@@ -278,8 +405,12 @@ sWo(cellwo,@cellbhue,i,j,YELLOW_);
       if (_ename @= "PRESS") {
 
        if (!(_ewoname @= "")) {
-           <<"calling script procedure  $_ewoname !\n"
-            $_ewoname();
+              nc=slen(_ewoname);
+    <<"calling script procedure $nc  <|${_ewoname}|> !\n"
+            if (nc > 3) {
+	      <<"calling script procedure  <$_ewoname> !\n"
+              $_ewoname();
+	      }
         }
       }
 
