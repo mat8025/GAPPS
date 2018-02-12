@@ -105,6 +105,7 @@ int n2d = 0;
          }
         // clear deleted rows at end
 	// reset rows
+	Nrows = nsz;
         sWo(cellwo,@cellval,nsz,0,sz,cols,"");
         sWo(cellwo,@cellval,R);
 	sWo(cellwo,@redraw);

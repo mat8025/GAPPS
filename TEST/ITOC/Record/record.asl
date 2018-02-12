@@ -170,6 +170,16 @@ checkStr(sr3,"and");
 checkStr(sr1,"muy bien");
 
 checkProgress();
+
+eh = R[3][-1]
+  
+<<"%V$eh \n"
+
+ah = R[-1][1]
+  
+<<"%V$ah \n"
+
+
 exit()
 
 

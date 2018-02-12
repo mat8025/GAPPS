@@ -3,7 +3,8 @@
 ////////////    DDC  /////////////
 
 
-setdebug(1);
+setdebug(1,"~trace","keep");
+
 filterDebug(0,"win_receive_msg")
 
 proc Addrow()
@@ -14,16 +15,14 @@ proc Addrow()
     er = rows;
 
     R[er] = DF[0];
- //   R[er][4] = date(2);
- //   R[er][5] = date(2);
- //   R[er][6] =  julmdy(julian(date(2))+14)); // fortnight hence
+
     rows++;
     sz = Caz(R);
  //   writeRecord(1,R,@del,Delc);
-  <<"New size %V $rows $cols $sz\n";   // increase ??
+
+   <<"New size %V $rows $cols $sz\n";   // increase ??
   
    sWo(cellwo,@setrowscols,rows+1,cols+1);
-   
    sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
    sWo(cellwo,@cellval,R,0,0,rows,cols);
    sWo(cellwo,@redraw);
@@ -32,7 +31,7 @@ proc Addrow()
 
 
 
-proc FoodSearch()
+proc foodSearch()
 {
 int i;
 
@@ -61,94 +60,169 @@ for (i=0; i<Nbp; i++) {
  sWo(choicewo,@redraw);
 }
 //==================================
-proc Search()
+proc FoodSearch()
 {
 int i;
 <<"what is myfood string? $_emsg $_ekeyw \n"
 <<"<$_ewords[3]> <$_ewords[4]> <$_ewords[5]> \n"
  myfood = "$_ewords[3] $_ewords[4] $_ewords[5]"
-  FoodSearch()
+  foodSearch()
 }
 //=======================================
 
 proc totalRows()
 {
-// last row contains totals
-<<"$_proc \n"
-  float cals = 0;
-  float carbs = 0;
-  float fat = 0;
-  float prt = 0;
-  float chol = 0;
-  float sfat = 0;
-  float twt = 0;  
+//
+// last row  should contain previous totals
+//
 
-  frows = rows-1;
+<<"$_proc \n"
+
+  float fc[10];  // cals,carbs,fat,prt,chol,sfat,txt
+
+
+  nr= Caz(R);
+  
+<<"%V $Nrows $rows $nr\n"
+
+  frows = Nrows-1;
 
 <<"%V $frows  $R[frows][0]\n"
-
-  if (R[frows][0] @= "totals") {
-    //     frows--;
-  }
+  tword = deWhite(R[frows][0]);
+  
+  if (!strcasecmp(tword, "totals")) {
 
   for (j = 1; j < frows ; j++) {
-
-     cals += atof(R[j][3]);
-     carbs += atof(R[j][4]);
-     fat += atof(R[j][5]);
-     prt += atof(R[j][6]);
-     chol += atof(R[j][7]);
-     sfat += atof(R[j][8]);
-     twt += atof(R[j][9]);                              
-
+    for (kc = 0; kc <7  ; kc++) {
+          fc[kc] += atof(R[j][3+kc]);
+    }
   }
-  
+
+
     j = frows;
-<<"<$j>%V $cals $carbs $fat $prt \n"
-   R[j][0] = "totals";
+
+   R[j][0] = "Totals";
    R[j][1] = "$(j-1)";
-   R[j][2] = "ITMS";   
-   R[j][3] = "$cals";
-   R[j][4] = "$carbs";
-   R[j][5] = "$fat";
-   R[j][6] = "$prt";
-   R[j][7] = "$chol";
-   R[j][8] = "$sfat";
-   R[j][9] = "$twt";            
+   R[j][2] = "ITMS";
+
+    for (kc = 0; kc <7  ; kc++) {
+        R[j][3+kc] = dewhite("%6.2f$fc[kc]");
+    }
+   // kc = 0;
+  //  R[j][3] = dewhite("%6.2f$fc[0]");
 
 <<"$R[j][::]\n"
-
+   sWo(cellwo,@cellval,R,0,0,Nrows,cols);
+   sWo(cellwo,@redraw);
+   }
 }
 //=====================
 
+proc FoodChoice()
+{
 
 
+float mf = 2;
+svar wans;
+<<"$_proc  $_ecol $_erow \n"
 
+   if (_ecol == 0) {
+            addFoodItem()
+   }
+   
+   if (_ecol == 1) {
+    mans = popamenu("HowMuch.m");
+    mf = atof(mans);
+    if (mf > 0.0) {
+     wans = RC[_erow];
+     adjustAmounts (wans, mf);
+     RC[_erow] = wans;
+   sWo(choicewo,@cellval,RC,0,0,3,Ncols); // RecordVar, startrow, startcol, nrows, ncols,
+   sWo(choicewo,@redraw);
+     }
+   }
+
+  
+
+}
+//=========================
+proc addFoodItem()
+{
+svar wans;
+     wans = RC[_erow];
+     
+    sz= Caz(R)
+<<"in $_proc record $rows $sz\n"
+    er = Nrows;
+
+    R[er] = wans;
+
+    rows++;
+    Nrows++;
+    sz = Caz(R);
+    
+  <<"%V $sz $rows $Nrows\n"
+
+   <<"New size %V $rows $cols $sz\n";   // increase ??
+  
+   sWo(cellwo,@setrowscols,rows+1,cols+1);
+   sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
+    // swap prev last and this row
+   swaprow_a = er;
+   swaprow_b = er-1;
+   
+   SWOPROWS();
+
+   totalRows();
+
+// sWo(cellwo,@cellval,R,0,0,rows,cols);
+  // sWo(cellwo,@redraw);
+
+}
+//=======================
+
+
+proc adjustAmounts (svar irs, f)
+{
+  float a;
+  int i;
+//<<"$irs[::]\n";
+
+  a = atof (irs[1]) * f; //  <<"%V$a\n";
+
+  irs[1] = dewhite("%6.2f$a");
+  for (i = 3; i < 10; i++)
+    {
+      a = atof (irs[i]) * f;
+      irs[i] = deWhite("%6.2f$a");
+    }
+}
+//==================================
 
 include "gevent.asl"
 
 
-setdebug(1,"keep");
+
 
 //////   create MENUS here  /////
-A=ofw("Howlong.m")
-<<[A],"title HowLong\n"
-<<[A],"item 1 M_VALUE 1\n"
-<<[A],"help half-hour\n"
-<<[A],"item 2 M_VALUE 2\n"
-<<[A],"help 1 hour\n"
-<<[A],"item 3 M_VALUE 3\n"
-<<[A],"help hour and half\n"
-<<[A],"item 4 M_VALUE 4\n"
-<<[A],"help two hours\n"
-<<[A],"item 5 M_VALUE 5\n"
-<<[A],"help two and half hours\n"
-<<[A],"item 6 M_VALUE 6\n"
-<<[A],"help three hours\n"
-<<[A],"item 7 M_VALUE 7\n"
-<<[A],"help three and half hours\n"
-<<[A],"item 8 M_VALUE 8\n"
-<<[A],"help  four hours\n"
+A=ofw("HowMuch.m")
+<<[A],"title HowMuchMore\n"
+<<[A],"item 2x M_VALUE 2\n"
+<<[A],"help twice\n"
+<<[A],"item 3x M_VALUE 3\n"
+<<[A],"help 3x \n"
+<<[A],"item 4x M_VALUE 4\n"
+<<[A],"help 4x\n"
+<<[A],"item 10x M_VALUE 10\n"
+<<[A],"help 10x\n"
+<<[A],"item 1/2 M_VALUE 0.5n"
+<<[A],"help half\n"
+<<[A],"item 1/3 M_VALUE 0.333\n"
+<<[A],"help third\n"
+<<[A],"item 1/4 M_VALUE 0.25\n"
+<<[A],"help quarter\n"
+<<[A],"item 1/10 M_VALUE 0.1\n"
+<<[A],"help  tenth\n"
 cf(A)
 
 //==========================
@@ -185,19 +259,47 @@ Nbp = 3;
 //===========================================
 
 //  fname = "pp.rec"
-
+adjust_day = 0;
 fname = _clarg[1];
 
 <<"%V $fname \n"
 
+if (! (fname @= "")) {
+
+  if (scmp(fname,"dd_",3)) {
+     adjust_day = 1;
+     the_day = fname;
+   }
 A= ofr(fname)
  if (A == -1) {
- <<"can't find file $fname \n";
- A= ofr("today")
+ <<"can't find file dd_ day $fname \n";
+   exit();
+ }
+}
+else {
+//  make up today and check
+
+if (!adjust_day) {
+ ds= date(2);
+ ds=ssub(ds,"/","-",0);
+
+ the_day = "dd_${ds}";
+}
+}
+fname = the_day;
+ ok=fexist(the_day,0);
+
+<<"checking this day $the_day summary exists? $ok\n";
+ found_day = 0;
+ if (ok > 0) {
+ 
+   A= ofr(fname)
    if (A == -1) {
    exit(-1);
    }
+   found_day =1;
  }
+
 
 
   myfood = "pie apple";
@@ -216,19 +318,26 @@ DF[0] = Split("?,?,?,?,?,?,?,?,?,?",',');
    
 Record R[];
 
+if (found_day) {
    R= readRecord(A,@del,',')
    cf(A);
-   sz = Caz(R);
+}
+else {
 
+R[0] = Split("Food,Amt,Unit,Cals,Carbs,Fat,Protein,Chol(mg),SatFat,Wt,",',');
+R[1] = Split("Totals,?,?,?,?,?,?,?,?,?",',');
+
+}
+
+  sz = Caz(R);
+  Nrows = sz;
+  
   Ncols = Caz(R[0]);
   rows = sz+1;
   
 <<"num of records $sz  %V $rows $Ncols\n"
 
 //////////////////////////////////
-
-
-
 
 
 Graphic = CheckGwm()
@@ -278,7 +387,8 @@ sWo(cellwo,@cellbhue,i,j,YELLOW_);
      }
 
 
-    totalRows();
+   totalRows();
+   totalRows();
 
    sWo(cellwo,@cellval,R,0,0,rows,cols);  
    
@@ -327,11 +437,12 @@ record RC[6];
 <<"%V $choicewo $cellwo \n"
 
 
-  Addrow();
+//  Addrow();
 
   myfood = "pie apple"
   FoodSearch();    // intial search bug
 
+ str rcword ="xxx"
 
  while (1) {
 
@@ -339,10 +450,17 @@ record RC[6];
 
    <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ekeyw3 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
 
-         if (_erow > 0) {
+         if ( _erow > 0) {
             the_row = _erow;
          }
 
+         if ( (_erow >= 0)  && (_ecol >= 0)) {
+	 <<"get rcword $_erow  $_ecol \n"
+           if (_erow < Nrows) {
+           <<"$R[_erow][_ecol] \n"
+            rcword= DeWhite(R[_erow][_ecol]);
+           }
+         }
 
          if (_ewoid == cellwo) {
        
@@ -350,28 +468,32 @@ record RC[6];
                 r= _erow;
 		c= Cev->col;
 		<<"%V$Cev->row $Cev->col\n"
-//R[Cev->row][Cev->col] = _ekeyw2;   // TBF
                 R[r][c] = _evalue;
 		<<"update cell val $r $c $_erow $_ecol $_ekeyw2 $R[r][c] \n"
 		<<"updated row $R[r]\n"
-            }
+             }
 
-      
+          if (!strcasecmp(rcword,"totals")) {
+               <<"compute totals\n"
+                    totalRows();
+          }
+
 
         whue = YELLOW_;
         if (_ecol == 0  && (_erow >= 0) && (_ebutton == RIGHT_)) {
-        if ((_erow%2)) {
-          whue = LILAC_;
-	}
+	
+             if ((_erow%2)) {
+              whue = LILAC_;
+	    }
 
-        sWo(cellwo,@cellbhue,swaprow_a,0,swaprow_a,cols,whue);         	 	 
+           sWo(cellwo,@cellbhue,swaprow_a,0,swaprow_a,cols,whue);         	 	 
 
-        swaprow_b = swaprow_a;
-	 swaprow_a = _erow;
+           swaprow_b = swaprow_a;
+  	   swaprow_a = _erow;
 	 
 <<"%V $swaprow_a $swaprow_b\n"
 
-         sWo(cellwo,@cellbhue,swaprow_a,0,CYAN_);         
+           sWo(cellwo,@cellbhue,swaprow_a,0,CYAN_);         
          }
 
                
@@ -399,7 +521,9 @@ record RC[6];
 		sWo(cellwo,@cellval,_erow,tags_col,"x")
 		sWo(cellwo,@celldraw,_erow,tags_col)
         }
-   }
+
+
+     }
 
 
       if (_ename @= "PRESS") {
@@ -415,6 +539,7 @@ record RC[6];
       }
 
 }
+
 <<"out of loop\n"
 
  exit()
