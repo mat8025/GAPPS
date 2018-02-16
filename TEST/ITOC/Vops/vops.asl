@@ -21,7 +21,7 @@ CheckNum(PFIV[9],9)
 CheckNum(PFIV[0],2)
 
 checkOut()
-stop!
+
 
  PFIV += 3
 
@@ -62,4 +62,3 @@ CheckNum(PFIV[0],5)
 
 CheckOut()
 
-stop!

@@ -7,7 +7,7 @@ int Anum[100];
 int sum = 0;
 int psum = 0;
 
-int np = 7;
+int np = 8;
 int totn=0;
 
 char nv[20];
@@ -18,8 +18,19 @@ int ks = 1 * 10^(np-1);
             totn += 9*10^i ;
       }
 
+   ks= 15440000;
 
-<<" from $ks to $totn\n";
+ks = atoi (_clarg[1])
+kstep = atoi (_clarg[2])
+endnum = ks + kstep;
+
+//<<" from $ks to $totn\n";
+
+if (endnum > totn) {
+  endnum = totn;
+}
+
+T = FineTime()
 
 n= 0;
 
@@ -31,17 +42,31 @@ int pw[10];
       }
 
 str s="123";
-int last_mu = memused();
+last_Mu = memused();
 // reset ks - to last session
-   ks= 8700000;
-    for (k=ks; k<= totn; k++) {
 
-     mu= memused();
-    
-    <<"$k\t \t $(mu-last_mu)      \r"
+    j= 0;
+    checkMemory(1);
+
+   for (k=ks; k<= endnum; k++) {
+
+
+     if ((j % 10000) == 0) {
+           Mu= memused();
+
+	  // dumpmemtable();
+	   <<"<$j>  %V $k  $Mu \n"
+            if ((Mu[0]) > 50000) {
+<<"too much mem used $Mu\n"
+            break;
+           }
+      }
+
+     j++;;
+    //<<"$k\t      \r"
    // <<"%V $mu\n"
   //    ans= iread();
-      last_mu = mu;
+   //   last_mu = mu;
       psum = 0;
       s="$k"
       scpy(nv,s);
@@ -63,8 +88,10 @@ int last_mu = memused();
       
     }
 
-<<"done there are $n armstrong numbers for $np place numbers\n"
-
+dt=FineTimeSince(T);
+secs = dt/1000000.0;
+<<"between $ks  and $k "
+<<"there are $n armstrong $np numbers took $secs\n "
  for (i=0; i< n; i++) {
   <<"$(i+1)  $Anum[i]\n"
  }

@@ -1,6 +1,7 @@
 /////////////////////////////////////////
 
 setdebug(1)
+
 CheckIn()
 
 setap(30)
@@ -27,7 +28,7 @@ CheckFNum(b,-0.987654000001,2)
 
 CheckOut()
 
-stop!
+exit()
 
 
 

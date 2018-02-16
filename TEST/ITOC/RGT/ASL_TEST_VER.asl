@@ -16,7 +16,9 @@ vers = 8;
 !!"rm -f ../*/*.out"
 !!"rm -f ../*/*.xout"
 
-envdebug();
+//envdebug();
+
+setDebug(1,"keep")
 
 //<<"$Testdir\n"
 TM= FineTime();
@@ -60,7 +62,7 @@ Ks = 0
     Ks++
   }
 }
-
+//===============================
 
 padtit =nsc(15,"/")
 
@@ -74,7 +76,7 @@ len = slen(atit)
 
 //!!"ps wax | grep asl | grep -v emacs"
 }
-
+//===============================
 Curr_dir = "xx";
 
 proc changeDir(td)
@@ -82,7 +84,7 @@ proc changeDir(td)
   chdir(td)
   Curr_dir = getDir();
 }
-
+//===============================
 
 proc Run2Test(td)
 {
@@ -90,15 +92,18 @@ proc Run2Test(td)
  changeDir(Testdir)
 
 !!"pwd"
+
   hdg(td)
 
   Prev_dir = getDir();
+
   chdir(td)
+  
   Curr_dir = getDir();
   
-  <<"changing to $td dir from $Prev_dir\n"
+  <<"changing to $td dir from $Prev_dir in $Curr_dir\n"
 }
-
+//===============================
 /////////////////////////////
 
 proc scoreTest( tname)
@@ -159,8 +164,8 @@ else {
 
     return scored;
 }
-
-//----------------------
+//===============================
+/
 
 
 
@@ -219,7 +224,7 @@ proc doxictest(prog, a1)
 //<<" NO xic $prog to test\n"
   }
 }
-
+//===============================
 
 
 // FIX --- optional args -- have to be default activated -- to work for XIC?
@@ -232,20 +237,26 @@ proc cart (aprg, a1)
   xwt_prog = "xxx";
   cart_arg = ""
   a1arg = "";
-  if (_pargc >1) {
+
+if (_pargc >1) {
   cart_arg = "arg is $a1"
   a1arg = a1;
   }
   
   tim = time();
 
-//<<"$_proc $aprg $a1 $cart_arg \n"
+<<"$_proc $aprg  $cart_arg $tim \n"
 
   !!"rm -f $aprg  ${aprg}.tst  last_test*"
+
+//<<"asl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl \n"
+
+  // !!"asl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl "
 
 //  !!" asl $CFLAGS ${aprg}.asl  | tee --append $tout "
 
    jpid  =0
+   
 // icompile(0)
 
   if (in_pargc > 1) {
@@ -360,9 +371,6 @@ proc cart (aprg, a1)
    if (in_pargc > 1) {
    
 //<<"%V$_pargc \n"
-
-
-
       
 //<<"./$aprg   $a1  $xwt_prog\n"
       doxictest("./$aprg", a1)
@@ -401,7 +409,8 @@ proc cart (aprg, a1)
  }
 
 }
-//-------------------------------------------------
+//===============================
+
 
 
 
@@ -532,7 +541,10 @@ int do_ptrs = 0;
         do_include = 1  
 
    if (wt @= "while")
-        do_while = 1  
+        do_while = 1
+
+   if (wt @= "declare")
+        do_declare = 1;  
 
    if (wt @= "exp")
         do_exp = 1  
@@ -736,8 +748,16 @@ int do_ptrs = 0;
 
 if (( do_all ==1) || (do_declare == 1) ) {
 
+   Run2Test("Consts")
+
+   cart ("consts_test")
+
   Run2Test("Declare")
 
+  Curr_dir = getDir();
+  
+  <<" now  in $Curr_dir\n"
+  
   cart ("declare")
 
   cart ("promote")
@@ -755,9 +775,7 @@ if (( do_all ==1) || (do_declare == 1) ) {
   cart("proc_arg_func")
 
 
-   Run2Test("Consts")
 
-   cart ("consts_test")
 
    Run2Test("Resize")
 

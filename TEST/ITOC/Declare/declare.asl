@@ -73,7 +73,8 @@ double xr9 = (-1.6 * 2)
    CheckFNum(xr9,-3.2000);
 
    CheckOut()
-   stop!
+
+exit()
 
 int M[10]
 
@@ -256,8 +257,5 @@ prec=setap(20)
    CheckOut()
 
 <<" done declare1 \n"
-
-
-STOP!
 
 

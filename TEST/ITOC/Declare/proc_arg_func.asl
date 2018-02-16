@@ -62,9 +62,6 @@ char a = 'A'
 
   CheckNum(GA,6)
 
-  CheckOut()
+  CheckOut();
 
- stop!
-
-
-;
+ 
