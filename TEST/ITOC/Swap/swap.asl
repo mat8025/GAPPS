@@ -69,7 +69,7 @@ proc swapR (int& x, int& y)
 
 
 
-int k = 4;
+ int k = 4;
  int m = 3;
 
  int ans = 0;
@@ -78,22 +78,24 @@ int k = 4;
 
 <<" $ans \n"
 
-
+ CheckNum(ans,7)
 
 <<"%V$k $m  ref\n"
  swap (&k, &m)
 <<" %V$k $m \n"
 
+
+
  CheckNum(k,3)
  CheckNum(m,4)
-
+ASK
 <<"%V$k $m  \n"
 
  swap (&k, &m)
 
 <<" %V$k $m \n"
 
- CheckNum(k,4)
+  CheckNum(k,4)
   CheckNum(m,3)
 
 <<"%V$k $m  value\n"
@@ -114,7 +116,7 @@ ASK
 
 <<"%V $k $m $w\n"
 
- CheckNum(m,3)
+CheckNum(m,3)
 
 int a = 6;
 int b = 9;
@@ -135,8 +137,10 @@ a = 7
 b = 11
 
 for (g = 0; g < 4; g++) {
+ <<"preswap %V$g $a $b \n"
   swap(&a,&b)
- <<"%V$g $a $b \n"
+ <<"postswap %V$g $a $b \n"
+ ASK
 }
 
  CheckNum(a,7)
@@ -148,7 +152,7 @@ for (g = 0; g < 3; g++) {
   swap(&k,&m)
 
 <<"%V$g $k $m \n"
-
+ASK
 }
 
 
@@ -165,6 +169,9 @@ for (g = 0; g < 3; g++) {
 
  CheckNum(a,11)
 
+checkStage()
+
+ASK
 float r = 3.0;
 float q = 4.0;
 
@@ -212,4 +219,4 @@ float q = 4.0;
 
  CheckOut()
 
-stop!
+

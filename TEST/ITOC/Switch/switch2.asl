@@ -54,7 +54,7 @@ int ret = -1;
 
     case '\s':
 
- <<"in  case space \n"
+ <<"in  case space \n";
 
      break;
 

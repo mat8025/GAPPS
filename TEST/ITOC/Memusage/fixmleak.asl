@@ -1,7 +1,15 @@
+checkMemory(1);
 
-setdebug(1,"keep","trace");
+setdebug(1,"keep","trace","showresults")
 
 filterDebug(0,"args")
+
+
+proc addf(a,b)
+{
+   c= a+b;
+   return c;
+}
 
 
 str s="xx";
@@ -11,6 +19,9 @@ i=0;
   //  while (1) {
 j= 0;
 float y ;
+float z;
+float x ;
+float w;
 N= atoi(_clarg[1]);
 
         Mu = memused();
@@ -21,7 +32,7 @@ float ST[20];
 int ok;
 
 
-      checkMemory(1);
+
 
 
 int nmem_changes =0;
@@ -33,24 +44,28 @@ do {
 //  <<"begin $mu \n"
 
       y = (i *.2);
+      z = (i*.3);
       s="$i";
       sz=Caz(nv); // does not leak
   //    S=testargs(0,y,x,s,nv,sz); // does not leak
-      ok=scpy(nv,s);  // does not leak
+  //    ok=scpy(nv,s);  // does not leak
        x= sin(y);   // does not leak
+       w= cos(z);   // does not leak
  
-      ST=stats(nv); // still leaks! this function call with arg is using up mem
+   //   ST=stats(nv); // still leaks! this function call with arg is using up mem
       //   x= soof(y);   // does not leak!
      // <<"%V$x $y\n"
 
-      t= FineTime(); // does not leak!
+     t= FineTime(); // does not leak!
       sum += i;
 
-   
+      r=addf(x,y);
+      //<<"%V$r\n"
   //    <<"end $(memused()) \n"
-       if ( (i % 10) == 0) {
-           <<"<$i> $s $sum $x $y  \n"
-	   <<"%V6.2f$ST\n"
+       if ( (i % 1) == 0) {
+    //   <<"<$i> Mu $Mu\n"
+       //    <<"<$i> $s $sum $x $y  \n"
+//	   <<"%V6.2f$ST\n"
           
 	   <<"<$i>  %V   $Mu\n"
            if (Mu[1] > last_Mu[1]) {
@@ -72,7 +87,7 @@ do {
 <<"%V $nmem_changes  \n"
 
        //ans = iread();
-       dumpmemtable();
+     //  dumpmemtable();
 
       Mu= memused(); // does not leak
       <<"$Mu\n"

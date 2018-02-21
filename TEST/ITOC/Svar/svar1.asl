@@ -3,7 +3,7 @@ setdebug(1);
 
 CheckIn()
 
-//Svar msg[];
+
 
 Svar msg[] = { "we all have to try harder", " yes indeed" }
 
@@ -58,11 +58,9 @@ msgstr = "we all have to try still harder"
 
 svar S = Split("how did we get here")
 
-
  r00 = S[0];
 
  r01 = S[1];
-
 
 <<"%V $r00 $r01\n"
 
@@ -78,8 +76,8 @@ Svar asv;
 
      wval[0] = "mark"
      wval[1] = "terry"
-      wval[2] = "step"
-       wval[3] = "by"
+     wval[2] = "step"
+     wval[3] = "by"
 
 <<"wval $(caz(wval)) :: $wval[::] \n"
 
@@ -110,11 +108,7 @@ Svar asv;
 CheckOut()
 
 
-STOP!
-
-
-
-
+exit()
 
 
 
@@ -244,7 +238,7 @@ lib="/usr/local/GASP/gasp-3.2.3/LIB"
 
 
 
-STOP!
+
 
 int cnttpt = 0
 
@@ -260,4 +254,3 @@ int cnttpt = 0
    }
 
 
-STOP("DONE")

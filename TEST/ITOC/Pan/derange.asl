@@ -1,25 +1,62 @@
-
+///
+///
 ///  --> 1/e
-setap(100)
+
+
+setDebug(1,"trace","~step","~stderr","pline")
+
+
+//filterDebug(3,"vfree","writecb","pan_copy","set");
+filterDebug(0);
+
+float g;
+
+g = 4.0 * atan(1.0);
+
+<<"%V $g\n"
+
+<<"$(typeof(g)) $g\n"
+
+float f = 4.0 * exp(1.0);
+
+<<"%V $f\n"
+
+setap(8);
 
 //setdebug(1,"pline")
 
 pan denom;
 pan Re =  1;
+pan e;
+<<"%V$Re\n"
 
-
-<<"$Re \n"
-
-
+<<"$(typeof(Re)) $Re\n"
   tadd = 0;
 
-N = atoi(_clarg[1]);
 
-e = exp(1.0)
+
+  N = atoi(_clarg[1]);
+
+<<"%V $N\n"
+
+
+
+
+setDebug(1,"trace","~step","~stderr","pline")
+filterDebug(2,"vfree");
+filterFileDebug(2,"ds_svar.cpp")
+
+e = exp(1.0);
+
+<<"%V $e\n"
+
+
+
+
 <<"$(typeof(e)) $e\n"
 
 r = 1.0/exp(1.0)
-
+filterDebug(3);
 <<"---->$(typeof(r)) $r \n"
 
 s = Sin(0.999)
@@ -83,20 +120,15 @@ int  j = 1;
 
 int tmp = 6;
 checkIn()
-//
-//for (j =1 ; j < N ; j += 1) {
-//while (i < N) {
-//
-
- for (j =1 ; j < N ; j++) {
 
 
+ for (j =0 ; j < N ; j++) {
  
-<<"%V $F *  $j \n"
+<<"%V $F *  $j +1 \n"
 
-     F = F * j;
+     F = F * (j+1);
 
-<<"%V$j $F  \n"
+<<"%V$F  \n"
 
      denom =  1/F;
      
@@ -104,7 +136,6 @@ checkIn()
 	  <<"add $denom to $Re\n"
            Re = Re + denom;
           tadd = 0;
-
      }
      else {
 	 <<"sub $denom from $Re\n"
@@ -112,11 +143,9 @@ checkIn()
          tadd = 1;
      }
 
+
 <<"%V$j $(typeof(j)) $F $denom  $Re \n"
-//
-        //   j += 1;
-       //    tmp = tmp +1;
-//
+
 
 }
 

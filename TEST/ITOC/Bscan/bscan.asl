@@ -1,4 +1,5 @@
 # test ASL function bscan
+
 CheckIn()
 
 uchar C[] = { 0xCA , 0xFE, 0xBA, 0xBE, 0xFA, 0xCE, 0xBE, 0xAD , 0xDE,0xAD, 0xC0, 0xDE }
@@ -12,10 +13,9 @@ D = C
 <<" $D \n"
 <<"%x $D \n"
 
-
-recast(D,"int")
-
-
+//recast(D,"int")
+    cast(INT_,D)
+    
 <<" $D \n"
 <<"%x $D \n"
 
@@ -105,8 +105,8 @@ uint j1
 
 CheckOut()
 
+exit()
 
-STOP!
 
  na = bscan(&C[0],1,&k,&j)
 
@@ -136,7 +136,7 @@ n = 2
 
 <<"%v $n \n"
 
-STOP!
+
 
 
 <<"%I $s1   $g \n"
@@ -153,7 +153,6 @@ CheckStr(s1,"baby")
 
 CheckOut()
 
-STOP!
 
 
 

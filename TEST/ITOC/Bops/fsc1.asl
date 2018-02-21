@@ -16,5 +16,3 @@ setdebug(0)
 CheckFNum(yp,-0.5,6)
 CheckFNum(xp,1.1,6)
 CheckOut()
-;
-stop!

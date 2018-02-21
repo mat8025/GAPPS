@@ -1,12 +1,18 @@
-//setdebug(1)
+
+setdebug(1,"stderr")
+
 CheckIn()
+
+
 ws=scat("Happy"," Hols")
 <<"%V$ws\n"
 
 checkStr(ws,"Happy Hols")
 
 char E[]
-E=scat("Happy"," Hols")
+
+E = scat("Happy"," Hols")
+
 <<"$(typeof(E))\n"
 <<"$(Caz(E)) \n"
 <<"%Vs$E\n"

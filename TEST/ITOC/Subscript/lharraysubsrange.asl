@@ -2,11 +2,23 @@
 // test sub vector range specification and subset value setting
 //
 
+proc ask()
+{
+   ok=checkStage();
+   <<"%6.2f$ok\n"
+   ans=iread(); 
+}
+
+
+//#define  ASK ask();
+#define  ASK ;
+
+
 CheckIn()
 
-setDebug(1)
+setDebug(1,"pline")
 
-float real[20+]  // dynamic array
+float real[]  // dynamic array
 
  wlen = 10
 
@@ -15,25 +27,42 @@ float real[20+]  // dynamic array
 
 <<"%V6.2f$real \n"
 
-   CheckFNum(real[2],77,1)   
+
+checkNum(wlen,10);
+
+CheckFNum(real[0],0,1)   
+
+CheckFNum(real[2],77,1)   
+
+
+ASK
 
 // FIX float YS[] = Fgen(32,0,1)
 
-  YS = Fgen(32,0,1)
+YS = vgen(FLOAT_,32,0,1)
 
 <<"%V6.2f$YS \n"
 
 <<"$wlen \n"
 
+CheckFNum(YS[1],1,1)
+CheckFNum(YS[31],31,1)   
 
 
-float swin[wlen]
+ASK
+
+float swin[wlen];
    
    swin = 1.0
 
 <<"%V$swin \n"
 
-rwlm = wlen -1
+CheckFNum(swin[0],1,1)
+
+CheckFNum(swin[wlen-1],1,1)   
+
+
+rwlm = wlen -1;
 
 ki = 2
 ji = ki + wlen -1
@@ -47,6 +76,8 @@ ji = ki + wlen -1
    CheckFNum(real[2],4.0,1)   
    CheckFNum(real[9],11.0,1)   
 
+
+ASK
 
 ki = 4
 ji = ki + wlen -1
@@ -66,7 +97,10 @@ ji = ki + wlen -1
   real[0:wlen-1] = YS[ki:ji] 
 <<"$ki %6.2f$real \n"
    CheckFNum(real[0],j,1)   
-   }
+
+ASK
+}
+
 
 
 
@@ -93,21 +127,25 @@ tv= sum(sr)
 
     real[0:wlen-1] = YS[ki:ji] 
 
-    av = real
-    
+    av = real;
+
+<<"%V$wlen \n"
 <<"%V$av \n"
 
-    tv = sum(real)
+    tv = sum(real);
 
-<<"Num Dims $(Cad(tv))\n"
+<<"Num Dims $(Cab(tv))\n"
 
-    <<"%V$tv is sum of vec\n"  
+    <<"%V6.2f $tv is sum of vec\n"  
 
     CheckNum(tv,142)  
 
 <<"$j %6.2f$real \n"
 
+ASK
+
    }
+
 
 
 <<" //FIX   real[0:(wlen-1)] = YS[ki:ji]  \n"
@@ -123,14 +161,16 @@ tv= sum(sr)
     CheckNum(tv,142)  
 
 <<"%V$j %$real \n"
-
+ASK
    }
 
    tv = sum(real)
 
 <<" $tv \n"  
 
+ASK
+
    CheckOut()
 
 
-STOP("DONE")
+

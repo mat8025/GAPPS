@@ -1,4 +1,5 @@
-// Caz  - Csz - 
+///
+/// Caz  - Csz - 
 ///
 
 //envDebug()
@@ -87,12 +88,8 @@ ab = Cab(A)
 
 int  B[6] = { 0,3,2,-1,1,-2} ;
 
+ <<"%V $B\n"
 
-
- //int  B[2][3] = { {0,3,2 }, {-1,1,-2} };
-
-
- <<"$B\n"
 
 asz= Csz(B)
 <<"array size (number of elements) is: $asz \n"

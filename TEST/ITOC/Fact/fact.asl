@@ -4,7 +4,7 @@
 //int N = $2
 //double M
 
-#define DBP //
+#define DBP <<
 
 CheckIn()
 
@@ -13,7 +13,7 @@ proc fact( pf)
 
 //generic mpf
 
-DBP<<" arg in $_proc %V $pf $(typeof(pf))\n"
+DBP" arg in $_proc %V $pf $(typeof(pf))\n"
 
 // FIX pan mpf
 ulong mpf;
@@ -23,12 +23,12 @@ ulong  t;
 
      if (pf <= 1) {
 
-DBP<<" $_proc end condition $pf \n"
+DBP" $_proc end condition $pf \n"
      }
    else {
      mpf = pf -1
 
-DBP<<"  $_proc %V$mpf\n"
+DBP"  $_proc %V$mpf\n"
 //ttyin("about to recurse !! \n")
 
     t = fact(mpf) * pf
@@ -37,6 +37,7 @@ DBP<<"  $_proc %V$mpf\n"
   }
      return t;
 }
+//=====================================
 
 
 int N
@@ -67,29 +68,29 @@ ulong fr;
 
 fr = 0;
 
-  fr= fact(1)
+  fr= fact(1);
 
 <<" 1! = $fr \n"
   CheckFNum(fr,1,6)
 
-  fr= fact(2)
+  fr= fact(2);
 
 <<"2! = $fr \n"
   CheckFNum(fr,2,)
 
-  fr= fact(3)
+  fr= fact(3);
 
 <<"3! = $fr \n"
 
   CheckFNum(fr,6,6)
-  fr= fact(4)
+  fr= fact(4);
 
 <<"4! = $fr \n"
 
   CheckFNum(fr,24.0,6)
 
 
-   fr =  fact(N)
+   fr =  fact(N);
 
  <<" Fact $N ! returns $fr \n"
 
@@ -97,7 +98,7 @@ fr = 0;
 
     CheckOut()
 
-STOP!
+exit();
 
 
 

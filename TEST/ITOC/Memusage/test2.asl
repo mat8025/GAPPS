@@ -2,7 +2,7 @@
 ///
 ///
 
-setDebug(1,"keep")
+setDebug(1)
 
 proc hdg(atit)
 {
@@ -63,7 +63,7 @@ Curr_dir = getDir();
 
   hdg("hey")
 
- Run2Test("MemUsage")
+ Run2Test("Memusage")
 
 !!"pwd"
 
@@ -74,3 +74,7 @@ Curr_dir = getDir();
 <<" we are here ? $Curr_dir\n"
 
 !!"echo  echo we are here ? $Curr_dir"
+
+!!"pwd"
+
+//xxx=yyy

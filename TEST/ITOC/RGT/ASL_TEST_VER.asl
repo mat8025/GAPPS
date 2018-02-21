@@ -18,7 +18,8 @@ vers = 8;
 
 //envdebug();
 
-setDebug(1,"keep")
+setDebug(1,"keep");
+filterDebug(0,"args");
 
 //<<"$Testdir\n"
 TM= FineTime();
@@ -91,7 +92,7 @@ proc Run2Test(td)
 
  changeDir(Testdir)
 
-!!"pwd"
+//!!"pwd"
 
   hdg(td)
 
@@ -101,7 +102,7 @@ proc Run2Test(td)
   
   Curr_dir = getDir();
   
-  <<"changing to $td dir from $Prev_dir in $Curr_dir\n"
+  //<<"changing to $td dir from $Prev_dir in $Curr_dir\n"
 }
 //===============================
 /////////////////////////////
@@ -110,8 +111,9 @@ proc scoreTest( tname)
 {
  int scored = 0;
 
-       RT=ofr(tname)
-//<<"in scoreTest $c_proc $tname $RT \n"
+        RT=ofr(tname);
+       
+//<<"$_proc $tname fh $RT \n"
 
        if (RT != -1) {
 //<<"$tname\n"
@@ -121,7 +123,7 @@ proc scoreTest( tname)
 
           rtl = readline(RT)
           rtwords = Split(rtl)
-	//  <<"%V $rtwords \n"
+	//<<"%V $rtwords \n"
           ntests = atoi(rtwords[4])
           npass =  atoi(rtwords[6]);
           pcc = npass/(ntests*1.0) *100
@@ -233,20 +235,25 @@ proc doxictest(prog, a1)
 proc cart (aprg, a1)
 {
   int wlen;
+  str tim;
   in_pargc = _pargc;
+  
   xwt_prog = "xxx";
   cart_arg = ""
   a1arg = "";
 
-if (_pargc >1) {
-  cart_arg = "arg is $a1"
-  a1arg = a1;
+   tim = time();
+
+  if (_pargc >1) {
+     cart_arg = "arg is $a1"
+     a1arg = a1;
   }
-  
-  tim = time();
 
-<<"$_proc $aprg  $cart_arg $tim \n"
+//<<"%V $_proc $aprg  $cart_arg <$a1arg> $tim \n"
 
+  //ans=iread("?")
+
+ 
   !!"rm -f $aprg  ${aprg}.tst  last_test*"
 
 //<<"asl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl \n"
@@ -358,22 +365,23 @@ if (_pargc >1) {
     if (fexist(aprg) != -1) {
 
       //<<"RUNNING XIC $cart_arg \n"
-     tim = time()
+
+      //tim = time() ;  //   TBC -- needs to reinstated
      
    // wt_prog = "$tim "
 
       //xwt_prog = "$tim ./${aprg}: wtf $cart_arg"
 
-   xwt_prog = "$tim ./${aprg}:$a1arg"
+     xwt_prog = "$(time()) ./${aprg}:$a1arg"
 
 //<<"$xwt_prog \n"
 
-   if (in_pargc > 1) {
+     if (in_pargc > 1) {
    
 //<<"%V$_pargc \n"
       
 //<<"./$aprg   $a1  $xwt_prog\n"
-      doxictest("./$aprg", a1)
+       doxictest("./$aprg", a1)
    }
    else {
    
@@ -650,12 +658,14 @@ int do_ptrs = 0;
   if (do_all  || do_types) {
   
       Run2Test("Types")
-      cart("str")
+      cart("float");
+      cart("str");
+      
       cart("char")
       cart("long")
       cart("short")
       cart("double")
-      cart("float")
+
       cart("pan_type")
       cart("ato")
 
@@ -670,11 +680,6 @@ int do_ptrs = 0;
   }
 
 
-
-
-
-
-
   if (do_all  || do_vops) {
 
   Run2Test("Vops")
@@ -685,6 +690,7 @@ int do_ptrs = 0;
   Run2Test("Vector")
   cart("vec")
   cart("veccat")
+  cart("vecopeq")
 
 
   }
@@ -755,9 +761,7 @@ if (( do_all ==1) || (do_declare == 1) ) {
   Run2Test("Declare")
 
   Curr_dir = getDir();
-  
-  <<" now  in $Curr_dir\n"
-  
+    
   cart ("declare")
 
   cart ("promote")
@@ -1097,6 +1101,8 @@ if ( do_all || do_proc ) {
 
   cart("proc_rep")
 
+cart("proc_str_ret")
+
   cart("procrefarg")
 
 
@@ -1346,13 +1352,9 @@ if ( do_all || do_oo ) {
 
     cart("bscan")
 
-
-
     Run2Test("Cut")
 
     cart("cut")
-
-
 
     Run2Test("Cmp")
 
@@ -1444,6 +1446,7 @@ if ( do_all || do_oo ) {
 //============================
     Run2Test("Packb");
     cart("packb");
+    cart("packalot");
     
 //============================    
 
@@ -1558,7 +1561,7 @@ secs = dtms/1000000.0
 
 <<"script vers $(periodicName(vers))($vers) took %6.3f$secs secs %d %V $i_time $x_time\n"
 
-STOP()
+exit()
 
 
 

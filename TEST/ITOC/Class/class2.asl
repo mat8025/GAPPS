@@ -1,7 +1,22 @@
 
+proc ask()
+{
+   ok=checkStage();
+//   <<"%6.2f$ok\n"
+   ans=iread(); 
+}
+
+
+//#define  ASK ask();
+#define  ASK ;
+
+
+
+
 setdebug(1,"pline","trace");
 
 checkIn()
+
 // simple class test
 
 class Rec {
@@ -26,13 +41,16 @@ Rec FI[10];
 
  r02 = FI[0]->srec[2];
 
-//<<"$(typeof(r00)) \n"
+<<"$(typeof(r00)) \n"
 
 <<"%V $r00 $r01 $r02\n"
 
  checkStr(r00,"how");
  
  checkStr(r02,"we");
+
+ ASK
+
 
  r10 = FI[1]->srec[0];
 
@@ -44,6 +62,8 @@ Rec FI[10];
 <<"%V $r10 $r11 $r12\n"
 
 checkStr(r12,"with");
+
+ASK
 
 ////////////////////////
 
@@ -77,8 +97,18 @@ Class Add
   CMF say()
   {
    <<"$_proc hey there I exist\n"
-   return "hey hey";
+   isay="hey hey"
+   return ("hey hey");
+   //return isay;
   }
+
+  CMF isay()
+  {
+   <<"$_proc hey there I exist\n"
+   isay="Do what I say"
+   return isay;
+  }
+  
 }
 
 //int s;
@@ -90,11 +120,16 @@ Add  tc;   //FIX
 checkNum(s,9)
 <<"%V $s $(typeof(s)) \n"
 
+
+ASK
     r= tc->sum(4.2,5.6);
 
 <<"%V $r $(typeof(r)) \n"
 
 checkNum(r,9.8)
+
+
+ASK
 
 Add  mc;
 
@@ -109,7 +144,7 @@ Add  nc[2];
 
     s= nc[0]->sum(4,5);
 
-<<"%V $s \n"
+<<"%V $s $(typeof(s))\n"
 
 
     s= nc[1]->sum(47,79);
@@ -118,25 +153,38 @@ Add  nc[2];
 
 checkNum(s,126)
 
+ASK
+
     s= nc[0]->diff(47,79);
 
 checkNum(s,-32);
 
-<<"%V $s \n"
+<<"%V $s $(typeof(s))\n"
+
+
+ASK
 
    s= mc->diff(47,79);
 
-<<"%V $s \n"
+<<"%V $s $(typeof(s))\n"
 
 checkNum(s,-32);
 
+ASK
     what = mc->say();
-
+<<"%V$what $(typeof(what))\n"
 checkStr(what,"hey hey");
 
     what=nc[0]->say()
-
+<<"%V$what $(typeof(what))\n"
 checkStr(what,"hey hey");
+
+    what = mc->isay();
+<<"%V$what $(typeof(what))\n"
+checkStr(what,"Do what I say");
+
+
+ASK
 
 checkOut()
 

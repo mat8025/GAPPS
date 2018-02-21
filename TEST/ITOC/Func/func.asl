@@ -1,4 +1,6 @@
-
+///
+///
+///
 
 
 CheckIn()
@@ -13,7 +15,7 @@ proc poo(a)
  return tmp
 
 }
-
+//=====================
 
 N = _clarg[1]
 M = _clarg[2]
@@ -121,6 +123,5 @@ M = _clarg[2]
 CheckOut()
 
 
-STOP!
 
 

@@ -46,12 +46,12 @@ last_Mu = memused();
 // reset ks - to last session
 
     j= 0;
-    checkMemory(1);
+  //checkMemory(1);
 
    for (k=ks; k<= endnum; k++) {
 
 
-     if ((j % 10000) == 0) {
+     if ((j % 5000) == 0) {
            Mu= memused();
 
 	  // dumpmemtable();
