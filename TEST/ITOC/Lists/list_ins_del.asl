@@ -1,7 +1,28 @@
 
+
+setdebug(1,"~pline","trace","~stderr");
+FilterDebug(0)
+FilterFileDebug( 2,"args_e.cpp")
+
+
+proc ask()
+{
+   ok=checkStage();
+   <<"%6.2f$ok\n"
+  if (ok[0] < 100.0) {
+  ans=iread();
+  }
+ans = iread()
+}
+
+//#define  ASK ask();
+#define  ASK ;
+
+
+
 checkIn()
 
-FailedList = ("x",  )  // empty list --- bug first item null?
+FailedList = ("xxx",  )  // empty list --- bug first item null?
 //FailedList = (  )  // empty list --- bug first item null?
 
 <<" $FailedList \n"
@@ -17,11 +38,11 @@ FailedList = ("x",  )  // empty list --- bug first item null?
    flsz = caz(FailedList)
 
 <<"failed list size $flsz \n"
-
+ASK
 
   tname = "debe esforzarse más"
 
- <<"inserting $tname into failed list \n"
+ <<"inserting <$tname> into failed list \n"
  
   FailedList->Insert(tname)
 
@@ -30,14 +51,19 @@ FailedList = ("x",  )  // empty list --- bug first item null?
 <<"failed list size $flsz \n"
 
 
+<<" $FailedList \n"
+
+ASK
 tname = "Camino a cinco kilómetros al día"
 
- <<"inserting $tname into failed list \n"
+ <<"inserting <$tname> into failed list \n"
             FailedList->Insert(tname)
 
    flsz = caz(FailedList)
 
 <<"failed list size $flsz \n"
+<<" $FailedList \n"
+ASK
 
 //  flab = cab(FailedList)
 //<<"failed list bounds $flab \n"
@@ -53,7 +79,7 @@ if (flsz > 1) {
 
  FailedList->Sort()
 
-<<" $FailedList \n"
+<<"%V $FailedList \n"
 
 <<"0 $FailedList[0] \n"
 
@@ -65,17 +91,22 @@ if (flsz > 1) {
 
   tname = "head here"
   FailedList->Insert(tname,0)
-
+<<"failed list size $flsz \n"
+<<" $FailedList \n"
   tname = "tail here"
   FailedList->Insert(tname,-1)
-
+<<"failed list size $flsz \n"
+<<" $FailedList \n"
   tname = "gracias"
   FailedList->Insert(tname,2)
-
+<<"failed list size $flsz \n"
+<<" $FailedList \n"
   tname = "que tal"
   FailedList->Insert(tname,3)
-
+<<"failed list size $flsz \n"
 <<" $FailedList \n"
+
+testargs(1,FailedList)
 
 // delete operations
 

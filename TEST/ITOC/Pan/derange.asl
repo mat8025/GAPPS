@@ -3,7 +3,7 @@
 ///  --> 1/e
 
 
-setDebug(1,"trace","~step","~stderr","pline")
+setDebug(1,"~trace","~step","~stderr","~pline")
 
 
 //filterDebug(3,"vfree","writecb","pan_copy","set");
@@ -21,9 +21,8 @@ float f = 4.0 * exp(1.0);
 
 <<"%V $f\n"
 
-setap(8);
+setap(100);
 
-//setdebug(1,"pline")
 
 pan denom;
 pan Re =  1;
@@ -42,7 +41,7 @@ pan e;
 
 
 
-setDebug(1,"trace","~step","~stderr","pline")
+setDebug(1,"trace","~step","~stderr","~pline")
 filterDebug(2,"vfree");
 filterFileDebug(2,"ds_svar.cpp")
 
@@ -120,31 +119,39 @@ int  j = 1;
 
 int tmp = 6;
 checkIn()
-
+double ReD = 1.0;
+double FD = 1.0;
+double ddenom;
 
  for (j =0 ; j < N ; j++) {
  
-<<"%V $F *  $j +1 \n"
+//<<"%V $F *  $j +1 \n"
 
      F = F * (j+1);
+     FD = FD * (j+1);
 
-<<"%V$F  \n"
+//<<"%V$j $FD $F  \n"
 
      denom =  1/F;
+
+     ddenom = 1.0/FD;
      
      if ( tadd) {
-	  <<"add $denom to $Re\n"
+	//  <<"add $denom to $Re\n"
            Re = Re + denom;
-          tadd = 0;
+           ReD = ReD + ddenom;
+           tadd = 0;
      }
      else {
-	 <<"sub $denom from $Re\n"
+//	 <<"sub $denom from $Re\n"
          Re = Re - denom;
+         ReD = ReD - ddenom;	 
          tadd = 1;
      }
 
 
-<<"%V$j $(typeof(j)) $F $denom  $Re \n"
+//<<"%V$j $(typeof(j)) $F $denom  $Re \n"
+<<"%V$j  $FD %12.9f $ddenom   $ReD \n"
 
 
 }
@@ -158,10 +165,15 @@ checkFnum(pt,1.0003450000000000000,5)
 testArgs(pt,1.00034500000000000000000000)
 
 
- pt= 0.367879188712522045000;
+pt = 0.3678794642857142857142857142857142857142857;
+
+<<"%V$pt\n"
+
+<<"%V$ReD\n"
+
+<<"%V$Re\n"
 
 
-<<"$(typeof(pt)) $pt\n"
 
 checkFnum(Re,pt,5)
 

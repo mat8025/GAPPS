@@ -4,6 +4,32 @@ setdebug (0)
 
 CheckIn() 
 
+varname = "a1"
+
+$varname = 2;
+
+<<"%V $a1 $(typeof(a1))\n"
+
+Record R[];
+ R[0] = Split("the best things in life are free");
+ R[1] = Split("but you can give them to the birds and bees");
+
+<<"R: $R[::]\n"
+//<<"$R[1]\n"
+
+<<"%V$R[0][1]\n"
+varname = "a2"
+
+
+$varname = R;
+
+
+<<"a2:$a2[::]\n"
+
+<<"$a2[1]\n"
+
+<<"$(Caz(R)) $(Caz(R,0))  $(Caz(R,1))   \n"
+
 int do_bops = 0
 
        do_bops = 3

@@ -1,5 +1,5 @@
 
-setdebug(1);
+setdebug(1,"pline","soe");
 
 CheckIn()
 
@@ -36,7 +36,7 @@ msgstr = "we all have to try still harder"
    }
   CheckStr(wmsg[1],"all")
   CheckStr(wmsg[5],"harder")
-
+ checkStage()
  vmsg = Split(msgstr)
 
 <<"$vmsg[*] \n"
@@ -55,17 +55,26 @@ msgstr = "we all have to try still harder"
 <<" $sargv \n"
 <<"%(1,<, ,>\n) $sargv \n"
 
+svar S;
 
-svar S = Split("how did we get here")
+//svar S = Split("how did we get here")
+S = Split("how did we get here")
 
  r00 = S[0];
 
  r01 = S[1];
 
-<<"%V $r00 $r01\n"
+ r02 = S[2];
+<<"%V $r00 $r01 $r02\n"
+<<"$S[::]\n"
 
   CheckStr(r00,"how")
   CheckStr(r01,"did")
+
+checkStage()
+
+
+
 
 
 Svar wval[];
@@ -94,7 +103,7 @@ Svar asv;
 
     CheckStr(asv,"mark")
 
-   asv2 = wval[1]
+   asv2 = wval[1];
 
 
 

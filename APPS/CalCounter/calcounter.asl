@@ -39,7 +39,7 @@ ele = spat( pt(atoi(spat(version,".",1))) ,",");
 
 
 svar Fdwords;
-
+int Nbp = 3;
 adjust_day = 0;
 
 //#define DBPR <<
@@ -57,6 +57,20 @@ include "checkFood";
 //////////////////////////////////////////////////////////////////////////
 
 
+int Bestpick[5][2];
+
+testargs(1,Bestpick);
+
+
+
+ans=iread()
+
+
+///////////////////////////////////////////////////////////////////////
+
+
+
+
  A=  ofr("foodtable.csv");
 
  if (A == -1) {
@@ -65,7 +79,7 @@ include "checkFood";
  }
 
    RF= readRecord(A,@del,',')
-   cf(A);
+
   Nrecs = Caz(RF);
   Ncols = Caz(RF,0);
 
@@ -83,9 +97,12 @@ include "checkFood";
 <<"<$i> $nc $RF[i] \n";
     }
 
+   cf(A);
+
   Nfoods  = Nrecs -1;
 
   DBPR" now for $Nfoods foods\n";
+
 
   //parseFoodTable();
 
@@ -96,16 +113,22 @@ include "checkFood";
   //checkFood()
 
 //////  PARSE THE COMMAND LINE //////
-
  do_loop = 0; // default - single shot query via CL args
 
 
  na = argc();
 
  wa = _clarg[1];
+<<"%V$wa\n"
+/{
+if (! (wa @= "")) {
+ 
+ <<"%V$wa\n"
+  
+ }
+/}
 
- if (! (wa @= "")) {
-   if (scmp(wa,"dd_",3)) {
+  if (scmp(wa,"dd_",3)) {
      adjust_day = 1;
      the_day = wa;
    }
@@ -113,7 +136,6 @@ include "checkFood";
   myfood = wa
 <<" checking cals/carbs for $myfood \n";
   }
- }
 
 
  if (na > 1) {
@@ -131,17 +153,19 @@ include "checkFood";
   }
 }
 
+
+
 //<<"$myfood  $f_unit  $f_amt\n"
 int fnd = 0;
 int bpick;
-int Bestpick[5][2];
+
 
  if (na > 1 && !adjust_day) {
 
  while (1) {
 
-    Bestpick = -1;
-   <<"$Bestpick\n";
+   // Bestpick = -1;
+   <<"$Bestpick[::]\n";
    bpick= checkFood();
 
    if (bpick == -1) {

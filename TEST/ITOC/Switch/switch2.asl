@@ -1,15 +1,30 @@
+///
+///
+///
+setdebug(1,"~pline","~trace","~stderr");
+FilterDebug(0)
+proc ask()
+{
+   ok=checkStage();
+   <<"%6.2f$ok\n"
+  if (ok[0] < 100.0) {
+  ans=iread();
+  }
+
+}
+
+#define  ASK ask();
+//#define  ASK ;
+
 
 CheckIn()
 
-setDebug(1,"pline","~step","~trace")
-
-//#define ASK ans=iread();
 #define ASK ;
 
 proc foo (char wc)
 {
 
-int ret = -1;
+int ret = -2;
 
 //<<"in $_proc %V$wc %c$wc $(typeof(wc))\n"
 
@@ -19,43 +34,35 @@ int ret = -1;
    switch (wc) {
 
     case 'a':
-
   <<"in  case a \n"
-     ret = 'a'
+     ret = 'a';
      break;
 
     case 'b':
-
   <<"in  case b \n"
-     ret = 'b'
+     ret = 'b';
      break;
 
     case 'd':
-
   <<"in  case d \n"
-     ret = 'd'
+     ret = 'd';
      break;
 
-
     case 'e':
-
   <<"in  case e \n"
-     ret = 'e'
+     ret = 'e';
      break;
 
 
     case '\t':
-
  <<"in  case tab \n"
-
-     ret = '\t'
-
+     ret = '\t';
      break;
 
     case '\s':
 
  <<"in  case space \n";
-
+      ret =32;
      break;
 
     case 19:
@@ -63,53 +70,69 @@ int ret = -1;
       // dup switch if use 9 --- which is correct
 
  <<"in  case tab 9 \n"
-
+      ret = 9;
      break;
 
     case '3':
 
  <<"in  case 3 \n"
 
+       ret = '3';
      break;
 
     case '\'':
 
  <<"in  case ' \n"
-
+                   ret = '\'';
      break;
 
     case ':':
-
- <<"in  case : \n"
-
+ <<"in  case <:> \n"
+       ret = ':';
+<<"case returns $ret %c $ret\n"       
      break;
-
-
 
     default:
  <<"default case $wc \n"
      ret = -1;
      break;
-
-
   }
+  
+<<"IN $wc %c$wc \n"
+<<"switch returns $ret  %c $ret\n"
 
   return ret
 }
 
 <<" after switch \n"
 
+//setDebug(1,"step")
 
-   rn = foo('a')
+   rn = foo(':')
 
+<<"%V$rn\n"
 
-  pf=checkNum(rn,'a');
+  pf=checkNum(rn,':');
 
 <<"%V$rn $pf\n"
 
 
-ASK
+   rn = foo(':')
 
+<<"%V$rn\n"
+
+  pf=checkNum(rn,':');
+
+<<"%V$rn $pf\n"
+
+
+
+ASK
+  c = '\s'
+
+<<"%V$c  %d$c %c$c\n"
+
+  foo(c)
 
 
 

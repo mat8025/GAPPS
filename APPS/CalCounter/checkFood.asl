@@ -131,33 +131,33 @@ str the_food;
 <<"FOOD found %V $best_score $best_i  \n"
       Wfi = best_i;
 
-/{
+    // testargs(1,Bestpick)
 <<"pre sort %V$Bestpick\n"
 
      for (i= 0; i < Nbp; i++) {
-<<"$i $Bestpick[i][::]\n"
+<<"$i $Bestpick[i][0] $Bestpick[i][1]\n"
      }
 
 //<<"$(typeof(Bestpick)) $(Cab(Bestpick))\n"
 
-/}
+
 
      bp = msortCol(Bestpick,0);
-/{
+     //testargs(1,Bestpick)
+
      for (i= 0; i < Nbp; i++) {
-<<"$i $bp[i][::]\n"
+<<"$i $bp[i][0] $bp[i][0]\n"
      }
-/}
+
 
      Bestpick = bp;
 
-/{
 <<"after sort %V$Bestpick\n"
 
      for (i= 0; i < Nbp; i++) {
 <<"$i $Bestpick[i][::]\n"
      }
-/}
+
 
 
     best_score = 0;

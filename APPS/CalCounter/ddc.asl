@@ -6,6 +6,11 @@
 setdebug(1,"~trace","keep");
 
 filterDebug(0,"win_receive_msg")
+filterFileDebug(2,"args_e.cpp")
+
+
+int Bestpick[3][2];
+
 
 proc Addrow()
 {
@@ -35,15 +40,17 @@ proc foodSearch()
 {
 int i;
 
+//sWo(choicewo,@selectrowscols,0,2,0,cols-1,1); // startrow,endrow,startcol,endcol
+//testargs(1,choicewo,@selectrowscols,0,2,0,cols-1,1); // startrow,endrow,startcol,endcol
  Bestpick = -1;		//clear the best pick choices
-
+  bpick = -1;
 bpick = checkFood();
   <<"$bpick \n"
   j= Nbp-1;
 for (i=0; i<Nbp; i++) {
   bpick = Bestpick[j][1];
   if (bpick >0) {
-  RC[i] = RF[bpick];
+    RC[i] = RF[bpick];
   <<"<$i> <$j> $bpick $RC[i][0]  $RC[i][1]  $RC[i][2]  $RC[i][3] \n"
   }
   else {
@@ -54,10 +61,20 @@ for (i=0; i<Nbp; i++) {
 
 <<"best choice?: $RC[0] \n"
 <<"%V $cols\n"
-  //sWo(choicewo,@cellval,RC,0,0,2,cols);
- sWo(choicewo,@selectrowscols,0,2,0,cols-1); // startrow,endrow,startcol,endcol
- sWo(choicewo, @cellval, RC,0,0,3,cols);  // startrow,nrows,startcol,ncols
- sWo(choicewo,@redraw);
+//sWo(choicewo,@cellval,RC,0,0,2,cols);
+
+<<"%V $choicewo $cellwo \n"
+
+<<"%V $cols \n"
+
+//testargs(1,choicewo,@selectrowscols,0,2,0,cols-1,1); // startrow,endrow,startcol,endcol
+
+sWo(choicewo,@selectrowscols,0,2,0,cols-1,1); // startrow,endrow,startcol,endcol
+
+sWo(choicewo, @cellval, RC,0,0,3,cols);  // startrow,nrows,startcol,ncols
+
+sWo(choicewo,@redraw);
+
 }
 //==================================
 proc FoodSearch()
@@ -72,6 +89,7 @@ int i;
 
 proc totalRows()
 {
+
 //
 // last row  should contain previous totals
 //
@@ -237,13 +255,16 @@ Nbp = 3;
     exit();
  }
 
+
+
    RF= readRecord(A,@del,',')
    cf(A);
 
   Nrecs = Caz(RF);
-  Ncols = Caz(RF,0);
+  Ncols = Caz(RF,1);
 
 <<"num of records $Nrecs  num cols $Ncols\n";
+
 
 
    for (i= 0; i < 3; i++) {
@@ -309,7 +330,7 @@ fname = the_day;
 int fnd = 0;
 int bpick;
 
-int Bestpick[Nbp][2];
+
 
 Record DF[10];
 
@@ -351,13 +372,18 @@ include "gss.asl";
 
 include "tbqrd";
 
+
 include "ddc_screen";
+
 
 include "checkFood";
 
 <<"%V swaprow_a $swaprow_b  $swapcol_a $swapcol_b \n";
 
 int cv = 0;
+
+
+
 
 
   sz= Caz(R);
@@ -435,7 +461,7 @@ record RC[6];
    sWo(choicewo,@redraw);
 
 <<"%V $choicewo $cellwo \n"
-
+//testargs(1,choicewo,@selectrowscols,0,2,0,cols-1,1); // startrow,endrow,startcol,endcol
 
 //  Addrow();
 

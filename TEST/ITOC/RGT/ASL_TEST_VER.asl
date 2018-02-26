@@ -7,7 +7,7 @@
 #define PBLACK '\033[1;39m'
 #define POFF  '\033[0m'
 
-vers = 8;
+vers = 9;
 
 //ws= getenv("GS_SYS")
 
@@ -110,7 +110,8 @@ proc Run2Test(td)
 proc scoreTest( tname)
 {
  int scored = 0;
-
+ int ntests;
+ int npass;
         RT=ofr(tname);
        
 //<<"$_proc $tname fh $RT \n"
@@ -123,9 +124,10 @@ proc scoreTest( tname)
 
           rtl = readline(RT)
           rtwords = Split(rtl)
-	//<<"%V $rtwords \n"
-          ntests = atoi(rtwords[4])
+//	<<"%V $rtwords \n"
+          ntests = atoi(rtwords[4]);
           npass =  atoi(rtwords[6]);
+//	  <<"%V $ntests $npass\n"
           pcc = npass/(ntests*1.0) *100
 
           rt_tests += ntests;
@@ -245,7 +247,7 @@ proc cart (aprg, a1)
    tim = time();
 
   if (_pargc >1) {
-     cart_arg = "arg is $a1"
+     cart_arg = " $a1"
      a1arg = a1;
   }
 
@@ -335,18 +337,6 @@ proc cart (aprg, a1)
 //    snooze(15000)
 // nanosleep(1,500)
 
-//!!" grep DONE\: res_${aprg}.txt >> $tout "
-//!!" tail -3 $tout > last_test_$aprg"
-
-//<<"$E\n"
-//  !!" tail -3 $tout > last_test_$aprg"
-// <<"$aprg %4d$(cbh++) $rt_tests $rt_pass \n"
-
-
-//<<" GREP\n"
-//!!" grep DONE last_test_$aprg"
-//!!" grep $aprg last_test_$aprg"
-
     if (do_pause) {
 
       onward = iread("ERRORS :)->")
@@ -366,13 +356,13 @@ proc cart (aprg, a1)
 
       //<<"RUNNING XIC $cart_arg \n"
 
-      //tim = time() ;  //   TBC -- needs to reinstated
+      tim = time() ;  //   TBC -- needs to reinstated
      
    // wt_prog = "$tim "
 
-      //xwt_prog = "$tim ./${aprg}: wtf $cart_arg"
+    xwt_prog = "$tim ./${aprg}: $cart_arg"
 
-     xwt_prog = "$(time()) ./${aprg}:$a1arg"
+     //xwt_prog = "$(time())./${aprg}:$a1arg"
 
 //<<"$xwt_prog \n"
 
@@ -386,9 +376,11 @@ proc cart (aprg, a1)
    else {
    
 //<<" no arg \n"
-
+      tim = time() ;  //   TBC -- needs to reinstated
       xwt_prog = "$tim ./${aprg}: "
-      doxictest("./$aprg")
+      //xwt_prog = "$(time()) ./${aprg}: "
+
+       doxictest("./$aprg")
    }
 
       if (f_exist("${aprg}.xtst") > 0) {
@@ -1032,9 +1024,6 @@ if ( do_all || do_lhsubsc ) {
 
   cart("lharraysubsrange")
 
-
-
-
     }
 
 /////////////////////////////////////////
@@ -1212,6 +1201,8 @@ if ( do_all || do_record ) {
     //Run2Test("Record")
 
     cart("record")
+
+    cart("readrecord")
 
     cart("prtrecord")
 

@@ -60,12 +60,6 @@ testargs(1,@head,"big",@tail,"tiny",1,2,3,A)
 
 <<"%V$SV[3] $SV[8] $SV[18]\n"
 
- checkstr(SV[3],"is_tag_arg")
- checkstr(SV[8],"str head")
- 
- checkstr(SV[18],"str big")
-
-
 
 
 int b = 79;
