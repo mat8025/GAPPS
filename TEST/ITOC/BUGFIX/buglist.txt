@@ -15,7 +15,7 @@ date, num, desc,  priority,  status,   update,  code
 01/09/15    67,  proc return  -- the return value needs a statement terminator ;  CRLF does not work, 2, PENDING
 12/28/15    68,  xic(0) , xic(1) inside function disrupts code path, 3, PENDING
 12/28/15    69,  not seeing REDRAW, RESIZE messages in asl getevent, 3, FIXED
-12/31/15    70,  proc with optional args - first call sets xic instructions so that subsequent optional arg may fail, 4, PENDING
+ 12/31/15    70,  proc with optional args - first call sets xic instructions so that subsequent optional arg may fail, 4, PENDING
 #  XIC problematic -- optional instructions (args, ...) have to be reworked - since first pass sets them
 //==========================
 01/02/16    71,  number of items in a list ---- reports one --- empty list

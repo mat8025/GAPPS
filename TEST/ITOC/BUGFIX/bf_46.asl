@@ -97,11 +97,16 @@ Act G[3]
 
  checkNum(A->t,0)
 
-set_si_error(0)
+setErrorNum(1)
+we = lastError()
+en =  ErrorName()
+<<" %v $we $en\n"
 
-we = si_error()
 
-<<" %v $we \n"
+seterrorNum(2)
+we = lastError()
+en =  ErrorName()
+<<" %v $we $en\n"
 
 //CheckNum(we,we)
 

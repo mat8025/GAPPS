@@ -15,7 +15,9 @@ swaprow_b = 2;
 
 swapcol_a = 1;
 swapcol_b = 2;
-   
+
+Ncols = 10;
+
 proc SAVE()
 {
          <<"saving sheet $fname  %V$Ncols \n"
@@ -122,26 +124,44 @@ proc DELCOL()
 //======================
 proc ADDROW()
 {
+/// should go to last page
 
     sz= Caz(R)
 <<"in $_proc record $rows $sz\n"
+
     er = rows;
+    sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0);
+  
+    curr_row = rows- page_rows +1;
+    if (curr_row < 0) {
+        curr_row = 0;
+    }
+    sWo(cellwo,@selectrowscols,0,2,0,cols,1);
 
-    R[er] = DF[0];
-    R[er][4] = date(2);
-    R[er][5] = date(2);
-    R[er][6] =  julmdy(julian(date(2))+14)); // fortnight hence
-    rows++;
+   rows++;
+    
+    R[er] = DF[0]; // whatever is the supplied default tof this table
+
+   // has to written over to display version
+    sWo(cellwo,@cellval,R);
+    // increase rows/colls
+
+
+    sWo(cellwo,@selectrowscols,curr_row,rows,0,cols,1);
+    
+    paintRows();
+    
+    sWo(cellwo,@redraw);
+
+
     sz = Caz(R);
-    writeRecord(1,R,@del,Delc);
-  <<"New size %V $rows $cols $sz\n"  
-   sWo(cellwo,@setrowscols,rows,cols+1);
-   sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
-   sWo(cellwo,@cellval,R);
-   sWo(cellwo,@redraw);
-}
 
-//======================
+  <<"New size %V $rows $cols $sz\n"  
+
+}
+//====================================
+
+
 proc PGDWN()
 {
    // need to unselect all
@@ -205,16 +225,23 @@ proc clearTags()
 
 proc paintRows()
 {
-    for (i = curr_row; i< (curr_row+page_rows) ; i++) {
-     for (j = 0; j< cols ; j++) {
-        if ((i%2)) {
-sWo(cellwo,@cellbhue,i,j,LILAC_);         
-	}
-	else {
-sWo(cellwo,@cellbhue,i,j,YELLOW_);
-	 }
-       }
-     }
+
+    endprow = curr_row + page_rows;
+    if (endprow >= rows) {
+       endprow = rows-1;  // fix xgs for oob error
+    }
+    // do a row at a time
+
+
+   for (i = curr_row; i< endprow ; i++) {
+      if ((i%2)) 
+       sWo(cellwo,@cellbhue,i,ALL_,LILAC_);         
+      else
+        sWo(cellwo,@cellbhue,i,ALL_,CYAN_);         
+   }
+
+
+
 }
 //=============================
 

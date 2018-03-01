@@ -1463,7 +1463,8 @@ if ( do_all || do_bugs ) {
       cart("bf_83")
       cart("bf_84")
       cart("bf_89")
-      cart("bf_91")                                                
+      cart("bf_91")
+      cart("bf_96")                                                      
     
 }
 

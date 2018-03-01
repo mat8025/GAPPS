@@ -1,7 +1,8 @@
 
 // vector vector opeq  
-setdebug(1,"pline","trace","~stderr")
-FilterDebug(0)
+setdebug(1,@pline,@trace,@filter,0,@~stderr)
+
+
 proc ask()
 {
    ok=checkStage();

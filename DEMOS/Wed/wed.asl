@@ -7,15 +7,15 @@
 /// office computer work (24-8-exercise hours) 119.3 per hour
 
 
-vers = "2.0";
+vers = "2.1";
 
-envdebug();
 
-setDebug(1);
 
-//#define DBPR  <<
+setDebug(0);
 
-#define DBPR  ~!
+#define DBPR  <<
+
+//#define DBPR  ~!
 
 wed_dir = "./"
 
@@ -63,6 +63,8 @@ class Measure {
 char sep = '/'
 today = getDate(2,sep)
 
+today = date(2);
+
 jtoday = julian(today)
 
 DBPR"$today $jtoday \n"
@@ -76,15 +78,14 @@ topWt = 210;
 include "wed_rates"
 
 
-
 N = 1000
 
 //float DVEC[200+];
 
 long LDVEC[10+]
-float DVEC[10+]
-float DFVEC[10+]
-float DXVEC[10+]
+float DVEC[10+];
+float DFVEC[10+];
+float DXVEC[10+];
 
 float WTVEC[10+] 
 
@@ -120,7 +121,7 @@ int dday;
 
 // this is a new format -- allowing us to put comment labels on graphs
 
- //A=ofr("wfex.dat")
+
  A=ofr("wex.tsv")
 
  
@@ -173,8 +174,9 @@ readData();
 
   GVEC[1] = NextGoalWt;
 
-  //ty_gsday = gsday- (sday -bday);
-  ty_gsday = gsday;
+
+
+ty_gsday = gsday;
 
 
   GVEC[0] = StartWt;  // start  Wt
@@ -190,7 +192,8 @@ readData();
   lw = sw;
 
 // our goal line  wtloss per day!
-  for (i= 0; i < ngday; i++) {
+
+for (i= 0; i < ngday; i++) {
 <<"$(ty_gsday+i) $lw \n"
     GVEC[i] = lw;
     WDVEC[i] = gsday+i;
@@ -406,8 +409,6 @@ DBPR"calling function via $woname !\n"
    }
 
 
-stop("Done!")
-;
 
 exit_si()
 

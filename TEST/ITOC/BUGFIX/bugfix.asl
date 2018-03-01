@@ -1,6 +1,6 @@
 ///
 ///
-////////////   SIMPLE SPREAD SHEET  EXAMPLE /////////////
+////////////   BUGLIST /////////////
 
 
 //  each  cell has an input text function
@@ -18,8 +18,6 @@
 //
 
 // could have a number of sheets in different windows
-
-
 
 
 include "gevent.asl"
@@ -56,7 +54,7 @@ cf(A)
 
 
   if (fname @= "")  {
-   fname = "stuff2do.csv";
+   fname = "buglist.csv";
   }
 
 
@@ -73,10 +71,10 @@ A= ofr(fname)
 //record R[20+];
 
 Record DF[10];
+today = date(2);
+DF[0] = Split("bug#,'desc',code,4,PENDING,$today,$today,$today,",',');
 
-DF[0] = Split("s2d,ASR,6,10,22/1/18,xx,31/1/18,x,",',');
-
-   
+   Ncols = 8;
 
    R= readRecord(A,@del,',')
    cf(A);
@@ -87,150 +85,6 @@ DF[0] = Split("s2d,ASR,6,10,22/1/18,xx,31/1/18,x,",',');
 
 //////////////////////////////////
 
-
-proc SAVE()
-{
-         <<"saving sheet $fname\n"
-            B=ofw(fname)
-	    writeRecord(B,R);
-	    cf(B)
-}
-//======================
-
-proc READ()
-{
-      <<"reading $fname\n"
-       // isok =sWo(cellwo,@sheetread,fname,2)
-            A= ofr(fname)
-            R= readRecord(A,@del,',')
-           cf(A)
-           sz = Caz(R);
-          <<"num of records $sz\n"
-          sWo(cellwo,@cellval,R);
-}
-//======================
-proc SORT()
-{
-<<"in $_proc\n"
-  sortcol = swapcol_a;
-  startrow = 1;
-  alphasort = 0; // 0 auto alpha or number 1 alpha   2 number
-  sortdir = 1;
-  
-  sortRows(R,sortcol,alphasort,sortdir,startrow)
-
-
-     sWo(cellwo,@cellval,R);
-     sWo(cellwo,@redraw);
-
-}
-//======================
-proc SWOPROWS()
-{
-<<"in $_proc\n"
-<<"swap rows $swaprow_a and $swaprow_b\n"
-         //sWo(cellwo,@swaprows,swaprow_a,swaprow_b);
-//	SwapRows(R,swaprow_a,swaprow_b);
-	R->SwapRows(swaprow_a,swaprow_b);	  // code vmf
-        sWo(cellwo,@cellval,R);
-	sWo(cellwo,@redraw);
-}
-//======================
-
-proc SWOPCOLS()
-{     
-<<"swap cols $swapcol_a and $swapcol_b\n"
-       //  sWo(cellwo,@swapcols,swapcol_a,swapcol_b);
-	SwapCols(R,swapcol_a,swapcol_b);
-        sWo(cellwo,@cellval,R);
-	sWo(cellwo,@redraw);
-}
-//======================
-proc DELROWS()
-{
-<<"in $_proc\n"
-//int drows[]; // TBF
-int drows[20+];
-int n2d = 0;
-        sz = Caz(R)
-	ans = yesornomenu("Delete Tagged Rows?")
-	if (ans == 1) {
-        for (i = 0; i < rows; i++) {
-            if (R[i][tags_col] @="x") {
-                
-		drows[n2d] = i;
-		n2d++;
-		<<"will delete row $i  $drows\n";
-           }
-        }
-	
-        if (n2d > 0) {
-        //deleteRows(R,swaprow_a,swaprow_b);
-	deleteRows(R,drows,n2d);
-	nsz = Caz(R)
-<<"deleted $drows  $sz $nsz\n"
-         for (i = 0; i < nsz;i++) { 
-           <<"[${i}] $R[i]\n"
-         }
-        // clear deleted rows at end
-	// reset rows
-        sWo(cellwo,@cellval,nsz,0,sz,cols,"");
-        sWo(cellwo,@cellval,R);
-	sWo(cellwo,@redraw);
-	}
-     }
-}
-//======================
-proc DELCOL()
-{
-<<"in $_proc\n"
-
-
-}
-//======================
-proc ADDROW()
-{
-
-    sz= Caz(R)
-<<"in $_proc record $rows $sz\n"
-    er = rows;
-
-    R[er] = DF[0];
-    R[er][4] = date(2);
-    R[er][5] = date(2);    
-    rows++;
-    sz = Caz(R);
-    writeRecord(1,R);
-  <<"New size %V $rows $cols $sz\n"  
-   sWo(cellwo,@setrowscols,rows,cols+1);
-   sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
-   sWo(cellwo,@cellval,R);
-   sWo(cellwo,@redraw);
-	
-}
-//======================
-
-
-proc clearTags()
-{
-
-
-//    R[::][7] = ""; // TBF
-   ans= yesornomenu("ClearTags?")
-   
-   if (ans == 1) { // TBF
-
-  for (i= 1;i< rows; i++) {
-      R[i][tags_col] = " ";
-   }
-	    writeRecord(1,R);
-   sWo(cellwo,@cellval,R);
-   sWo(cellwo,@redraw);
-   }
-   
-}
-//============================
-
 Graphic = CheckGwm()
 
 
@@ -238,6 +92,7 @@ Graphic = CheckGwm()
         X=spawngwm()
      }
 
+include "gss.asl";
 
 include "tbqrd"
 
@@ -261,16 +116,20 @@ include "tbqrd"
 
       swprwo = cWo(vp,@BN,@name,"SWOPROWS",@color,GREEN_);
 
-      swpcwo = cWo(vp,@BN,@name,"SWOPCOLS",@color,RED_);
+//      swpcwo = cWo(vp,@BN,@name,"SWOPCOLS",@color,RED_);
 
       delrwo = cWo(vp,@BN,@name,"DELROWS",@color,RED_);
 
-      delcwo = cWo(vp,@BN,@name,"DELCOL",@color,ORANGE_,@bhue,YELLOW_);
+ //     delcwo = cWo(vp,@BN,@name,"DELCOL",@color,ORANGE_,@bhue,YELLOW_);
 
       arwo = cWo(vp,@BN,@name,"ADDROW",@color,ORANGE_,@bhue,"lightblue");
       
+      pgdwo = cWo(vp,@BN,@name,"PGDWN",@color,ORANGE_,@bhue,"pink");
 
-      int ssmods[] = { readwo,savewo,sortwo,swprwo,swpcwo,delrwo, delcwo, arwo }
+      pguwo = cWo(vp,@BN,@name,"PGUP",@color,ORANGE_,@bhue,"golden");
+      
+
+      int ssmods[] = { readwo,savewo,sortwo,swprwo,delrwo,  arwo ,pguwo,pgdwo };
 
 
       wovtile(ssmods,0.05,0.1,0.1,0.9,0.05);
@@ -308,7 +167,7 @@ include "tbqrd"
 
 
 
-int cv = 0;
+
 
 
 
@@ -329,22 +188,9 @@ for (i = 0; i < rows;i++) {
 }
 
 
-
-    for (i = 0; i< rows ; i++) {
-     for (j = 0; j< cols ; j++) {
-        if ((i%2)) {
-sWo(cellwo,@cellbhue,i,j,LILAC_);         
-	}
-	else {
-sWo(cellwo,@cellbhue,i,j,YELLOW_);
-
-	 }
-	 cv++;
-       }
-     }
-
-
-
+      curr_row = 0;
+      paintRows();
+      curr_row = 1;
 
      sWo(cellwo,@cellval,R);
  //  sWo(cellwo,@cellval,R,1,1,5,5,1,1);
@@ -352,24 +198,17 @@ sWo(cellwo,@cellbhue,i,j,YELLOW_);
 
   rows = sz;
 
-  //cols = Caz(R[0])
    
-   sWo(cellwo,@setrowscols,rows+10,cols+1);
+   sWo(cellwo,@setrowscols,rows+20,cols+1);
    sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
 
-// sWo(cellwo,@cellbhue,1,-2,LILAC_); // row,col wr,-2 all cells in row
+
    sWi(vp,@redraw)
 
    sWo(ssmods,@redraw)
 
    sWo(cellwo,@redraw);
 
-   swaprow_a = 1;
-   swaprow_b = 2;
-
-   swapcol_a = 1;
-   swapcol_b = 2;
-<<"%V $cellwo\n"
 
 
   while (1) {

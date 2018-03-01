@@ -5,6 +5,7 @@
 
 DBPR"\n%(10,, ,\n)$DVEC \n"
 //DBPR"\n%V$PWTVEC[0:20] \n"
+
    pwt_gl = -1
    pwt_gl  = cGl(@wid,gwo,@TXY,DVEC,PWTVEC,@color,GREEN_,@ltype,"line")
 
@@ -64,6 +65,7 @@ if ( gw_gl == -1 || bp_gl == -1) {
 //DBPR"%V$allgl \n"
 
   sGl(allgl,@missing,0,@symbol,"diamond",5)
+
   symsz= 5;
   
   sGl(ext_gl,@symbol,TRI_,symsz, @symfill,FILL_)
@@ -79,8 +81,8 @@ if ( gw_gl == -1 || bp_gl == -1) {
 
 //  CURSORS
 
-lc_gl   = cGl(gwo,@type,"XY",@color,"orange",@ltype,"cursor")
+  lc_gl   = cGl(gwo,@type,"XY",@color,"orange",@ltype,"cursor")
 
-rc_gl   = cGl(gwo,@type,"XY",@color,BLUE_,@ltype,"cursor")
+ rc_gl   = cGl(gwo,@type,"XY",@color,BLUE_,@ltype,"cursor")
 
 

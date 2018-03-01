@@ -72,15 +72,15 @@ A= ofr(fname)
 
 Record DF[10];
 
-DF[0] = Split("?,?,6,10,22/1/18,xx,31/1/18,x,",',');
+DF[0] = Split("fooddesc,1,TBSP,100,10,0,0,0,0,0",',');
 
    
 
    R= readRecord(A,@del,',')
    cf(A);
    sz = Caz(R);
-  ncols = Caz(R[0]);
-<<"num of records $sz  num cols $ncols\n"
+   Ncols = Caz(R,0);
+<<"num of records $sz  num cols $Ncols\n"
 
 //////////////////////////////////
 
@@ -98,12 +98,10 @@ Graphic = CheckGwm()
 include "tbqrd"
 
 include "gss_screen"
-
-
-
-
-
    gflush()
+
+//////////////  local SS functions  - overide classic ////
+
 
 
 
@@ -115,7 +113,7 @@ int cv = 0;
 
   sz= Caz(R);
   rows = sz;
-  cols = Caz(R[0])
+  cols = Caz(R,0);
 
   tags_col = cols-1;
   
@@ -137,8 +135,6 @@ for (i = 0; i < rows;i++) {
 
 
   rows = sz;
-
-  //cols = Caz(R[0])
    
    sWo(cellwo,@setrowscols,rows+3,cols+2);
 
