@@ -228,20 +228,26 @@ proc paintRows()
 
     endprow = curr_row + page_rows;
     if (endprow >= rows) {
-       endprow = rows-1;  // fix xgs for oob error
+       endprow = rows-2;  // fix xgs for oob error
     }
     // do a row at a time
+    
+  <<"%V $rows $cols $curr_row $endprow \n"
+//      sWo(cellwo,@cellbhue,curr_row,ALL_,LILAC_);
+//      sWo(cellwo,@cellbhue,curr_row+1,ALL_,LILAC_);
+    
+//int i;
 
-
-   for (i = curr_row; i< endprow ; i++) {
-      if ((i%2)) 
-       sWo(cellwo,@cellbhue,i,ALL_,LILAC_);         
-      else
-        sWo(cellwo,@cellbhue,i,ALL_,CYAN_);         
+   for (i = curr_row; i < endprow ; i++) {
+   //<<"<$i> $(typeof(i))\n"
+	  if ((i%2)) {
+	      sWo(cellwo,@cellbhue,i,ALL_,CYAN_);
+	     }
+	  else {
+               sWo(cellwo,@cellbhue,i,ALL_,LILAC_);
+          }
    }
-
-
-
+   sWo(cellwo,@cellbhue,endprow,ALL_,YELLOW_);
 }
 //=============================
 

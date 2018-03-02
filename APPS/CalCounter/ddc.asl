@@ -400,18 +400,11 @@ int cv = 0;
     <<"[${i}] $R[i]\n";
    }
 
+ curr_row = 0
+   paintRows();
+   curr_row = 1;
+   
 // color rows
-    for (i = 0; i< rows ; i++) {
-     for (j = 0; j< cols ; j++) {
-        if ((i%2)) {
-sWo(cellwo,@cellbhue,i,j,LILAC_);         
-	}
-	else {
-sWo(cellwo,@cellbhue,i,j,YELLOW_);
-	 }
-       }
-     }
-
 
    totalRows();
    totalRows();

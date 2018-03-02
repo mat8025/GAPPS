@@ -67,7 +67,7 @@ today = date(2);
 
 jtoday = julian(today)
 
-DBPR"$today $jtoday \n"
+DBPR"%V $today $jtoday \n"
 
 
 minWt = 160;
@@ -164,7 +164,7 @@ readData();
 //    sc_endday = 75 * 365
 
 
-      sc_endday = (jtoday - bday) + 60;
+   sc_endday = (jtoday - bday) + 60;
 
    DBPR"%V$ngday \n"
 

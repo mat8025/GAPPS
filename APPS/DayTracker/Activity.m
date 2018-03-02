@@ -3,6 +3,8 @@ item Exercise C_MENU Exer
 help what exercise
 item Code M_VALUE Code
 help 
+item Gapp M_VALUE Gapp
+help gasp app dev
 item ASR M_VALUE ASR
 help 
 item DSP M_VALUE DSP
@@ -27,3 +29,5 @@ item Sleep M_VALUE Sleep
 help must sleep now
 item Nothing M_VALUE nada
 help nothing to see here
+item ? C_INTER que
+help type the activity

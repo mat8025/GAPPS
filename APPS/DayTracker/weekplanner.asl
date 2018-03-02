@@ -139,7 +139,7 @@ activ = "idle"
 ///////////////////////
 <<"-------------\n"
 ds = date(2);
-jd = julday(ds);
+jd = julian(ds);
 <<"%V$ds $jd\n"
 dow2 = !!"date +\%u"
 dn= atoi(dow2);
@@ -197,26 +197,19 @@ nd++;
 
     lbp = 0.09;
 
-
- //////////////////////////////// TITLE BUTTON QUIT ////////////////////////////////////////////////
- tbqwo=cWo(aw,@TB,@name,"tb_q",@color,WHITE_,@value,"QUIT",@func,"window_term",@resize,0.97,0,0.99,1);
- sWo(tbqwo,@drawon,@pixmapon,@fonthue,RED_, @symbol,X_, @symsize,45,   @clip,0,0,1,1,@redraw);
-
- tbrszwo=cWo(aw,@TB,@name,"tb_2",@color,WHITE_,@value,"RESIZE",@func,"window_resize",@resize,0.94,0,0.96,1)
- sWo(tbrszwo,@DRAWON,@PIXMAPON,@FONTHUE,RED_, @symbol,PLUS_,  @symsize, 45, \
- @clip,0,0,1,1,@redraw)
+include "tbqrd";
 
 
- tbrdrwo=cWo(aw,@TB,@name,"tb_3",@color,WHITE_,@value,"REDRAW",@func,"window_redraw",@resize,0.92,0,0.938,1)
- sWo(tbrdrwo,@DRAWON,@PIXMAPON,@FONTHUE,RED_, @symbol,DIAMOND_,  @symsize, 45, \
- @clip,0,0,1,1,@redraw)
+     titleButtonsQRD(aw);
 
 
     awo=cWo(aw,"SHEET",@name,"$sheet_name",@color,GREEN_,@resize,lbp,0.01,0.98,0.99)
- // does value remain or reset by menu?
+
+// does value remain or reset by menu?
 
     sWo(awo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,RED_,@VALUE,"SSWO")
-    sWo(awo,@bhue,CYAN_,@clipbhue,"skyblue")
+
+   sWo(awo,@bhue,CYAN_,@clipbhue,"skyblue")
 
 
    tfz = fexist(sfname);
@@ -253,13 +246,14 @@ nd++;
 // TBF continue line  not correct
 
 // fill top row - top legend
-  sWo(awo,@sheetrow,0,1,"0,:30,1,:30,2,:30,3,:30,4,:30,\
+
+sWo(awo,@sheetrow,0,1,"0,:30,1,:30,2,:30,3,:30,4,:30,\
 5,:30,6,:30,\
 7,:30,08,:30,\
 09,:30,10,:30,11,:30,12,:30,\
 13,:30,14,:30,15,:30,16,:30,\
 17,:30,18,:30,19,:30,20,:30,\
-21,:30,22,:30,23,:30,Wt,H, Score")
+21,:30,22,:30,23,:30,Wt,H, Score");
 
   }
 
@@ -268,6 +262,9 @@ nd++;
 
   sWo(awo,@sheetcol,0,0,"D/H,Mon $wdn[1],+>,Tue $wdn[2],+>,Wed $wdn[3],+>,Thu $wdn[4],\
 +>,Fri $wdn[5],+>,Sat $wdn[6],+>,Sun $wdn[7],+>");
+
+
+         sWo(awo,@redraw);
 
 /{
  mwo=cWo(aw,"MENU_FILE",@name,"Activities",@color,"green",@resize,0.21,0.8,0.3,0.9)
@@ -373,10 +370,10 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
  sWi(aw,@tmsg,"weekplanner $vers");
  int nada = 0;
 
-	 sWo(awo,@cellbhue,0,-2,RED_); // row,col -2,-2 all cells
+	 sWo(awo,@cellbhue,0,ALL_,RED_); // row,col ALL(-1), all cells
          wr=1;
          for (j = 1;j <=7; j++) {
-	 sWo(awo,@cellbhue,wr,-2,LILAC_); // row,col wr,-2 all cells in row
+	 sWo(awo,@cellbhue,wr,ALL_,LILAC_); // row,col wr, all cells in row
          wr+=2;
          }
 
@@ -393,7 +390,7 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
         if (_ewoid == savewo) {
 	 sWo(awo,@sheetmod,1);
 	 sWi(aw,@tmsg,"saving_the_week ");
-            <<" saving_the_week \n"
+          <<" saving_the_week \n"
         }
 
         if (_ewoid == qwo) {
@@ -407,7 +404,7 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
 	    <<"save $ans\n"
 	    if (ans @="Yes") {
 	        loopon = 0;
-               // break;
+               break;
             }
 
          }
@@ -478,7 +475,7 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
     wcol = _ecol;
     
     last_hue = BLACK_;
-    <<"%V $ev_rx $ev_ry $wrow $wcol\n"
+    <<"%V $_erx $_ery $wrow $wcol\n"
     
     if ( (wrow > 0) && (wrow <= 14) && (wcol > 0) && ( wcol <= 51)) {
         appt = 0;
@@ -558,18 +555,21 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
          n_extra = atoi(nans);
 	 // these are selected row and col as displaeyd
 
-         stuff = "$mans";
+         stuff = "$mans"; // no comma
          if (appt) {
 	   if (!nada) {  
            stuff = scat(stuff,"?");
            }
          }
 
+
          for (i = 0; i < n_extra; i++) {
 	  sWo(awo,@cellhue,wrow,wcol+i,last_hue);
-          sWo(awo,@sheetcol,wrow,wcol+i,"$stuff");
-          }
-	    sWo(awo,@redraw);
+          sWo(awo,@sheetcol,wrow,wcol+i,"$stuff,");
+<<"$i %V $stuff $wrow $(wcol+i) \n"
+         }
+	  
+//	  sWo(awo,@redraw);
 	}
         }
     }

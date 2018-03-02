@@ -3,22 +3,6 @@
 ////////////    SPREAD SHEET  for FOODS /////////////
 
 
-//  each  cell has an input text function
-// 
-
-// open a csv/tsv/rec file
-// read contents and set up a spreadsheet
-// gui controls direct  manipulation of the
-// record data (asl side)
-// and the sheet is update xgs sid
-// user can enter text into cells via the gui interface
-
-//
-//  need a rapid and smart update changes only
-//
-
-// could have a number of sheets in different windows
-
 
 include "gevent.asl"
 
@@ -98,7 +82,8 @@ Graphic = CheckGwm()
 include "tbqrd"
 
 include "gss_screen"
-   gflush()
+
+gflush()
 
 //////////////  local SS functions  - overide classic ////
 
@@ -144,38 +129,18 @@ for (i = 0; i < rows;i++) {
    sWo(cellwo,@selectrowscols,curr_row,curr_row+20,0,cols);
 
 
-    for (i = 0; i< curr_row ; i++) {
-     for (j = 0; j< cols ; j++) {
-        if ((i%2)) {
-sWo(cellwo,@cellbhue,i,j,LILAC_);         
-	}
-	else {
-sWo(cellwo,@cellbhue,i,j,YELLOW_);
-
-	 }
-       }
-     }
-
-
-paintRows();
-
+   curr_row = 0
+   paintRows();
+   curr_row = 1;
 
 //=================================
 
-
-// sWo(cellwo,@cellbhue,1,-2,LILAC_); // row,col wr,-2 all cells in row
    sWi(vp,@redraw)
 
    sWo(ssmods,@redraw)
 
    sWo(cellwo,@redraw);
 
-   swaprow_a = 1;
-   swaprow_b = 2;
-
-   swapcol_a = 1;
-   swapcol_b = 2;
-<<"%V $cellwo\n"
 
 
   while (1) {
