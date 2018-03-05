@@ -566,7 +566,7 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
          for (i = 0; i < n_extra; i++) {
 	  sWo(awo,@cellhue,wrow,wcol+i,last_hue);
           sWo(awo,@sheetcol,wrow,wcol+i,"$stuff,");
-<<"$i %V $stuff $wrow $(wcol+i) \n"
+//<<"$i %V $stuff $wrow $(wcol+i) \n"
          }
 	  
 //	  sWo(awo,@redraw);

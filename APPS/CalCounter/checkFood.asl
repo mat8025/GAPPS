@@ -140,25 +140,26 @@ str the_food;
 
 //<<"$(typeof(Bestpick)) $(Cab(Bestpick))\n"
 
+<<"//////////////////\n"
 
 
      bp = msortCol(Bestpick,0);
-     //testargs(1,Bestpick)
+
+//testargs(1,Bestpick)
 
      for (i= 0; i < Nbp; i++) {
 <<"$i $bp[i][0] $bp[i][0]\n"
      }
 
 
+<<"//////////////////\n"
      Bestpick = bp;
 
-<<"after sort %V$Bestpick\n"
+<<"after sort %V$Bestpick[::]\n"
 
      for (i= 0; i < Nbp; i++) {
 <<"$i $Bestpick[i][::]\n"
      }
-
-
 
     best_score = 0;
     
