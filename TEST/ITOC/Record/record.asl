@@ -12,6 +12,38 @@ SetDebug(1,"trace")
 
 CheckIn()
 
+
+Record DF[10];
+today = date(2);
+
+//S = Split("$today,0,10,0,0,0,0,0,0,0", 44);  // TBF CRASH
+
+//S = Split("$today 0 10 0 0 0 0 0 0 0");
+
+S = Split("$today,0,10,0,0,0,0,0,0,0", ",");  // TBF CRASH
+
+<<"$S\n"
+
+<<"$S[2]\n"
+
+
+
+DF[0] = Split("$today,0,10,0,0,0,0,0,0,0",",");
+
+
+
+//DF[0] = Split("$today 0 10 0 0 0 0 0 0 0");
+
+<<"$DF[0]\n"
+DF[1] = Split("$today,0,10,0,0,0,0,0,0,0",',');
+
+<<"$DF[1]\n"
+
+
+exit()
+
+
+
 int I[];
 
 sz= Caz(I);

@@ -126,7 +126,8 @@ proc ADDROW()
 {
 /// should go to last page
 
-    sz= Caz(R)
+    sz= Caz(R);
+    
 <<"in $_proc record $rows $sz\n"
 
     er = rows;

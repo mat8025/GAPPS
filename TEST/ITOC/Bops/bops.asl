@@ -1,5 +1,5 @@
 
-setdebug(0,"~pline","~trace")
+setdebug(1,@pline,@trace,@keep)
 
 checkIn()
 

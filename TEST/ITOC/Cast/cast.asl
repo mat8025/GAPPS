@@ -2,13 +2,34 @@
 
 CheckIn()
 
-setdebug(0)
+setdebug(1,@trace,@keep,@~step,@~pline,@showresults,@filter,0)
 
-uchar C[] = { 0xCA , 0xFE, 0xBA, 0xBE, 0xFA, 0xCE, 0xBE, 0xAD , 0xDE,0xAD, 0xC0, 0xDE }
+int IV[] = {47,79,80};
 
+<<"%V $IV\n"
+
+checkNum(IV[1],79);
+
+FV = vgen(FLOAT_,3,0,1)
+
+<<"%V $FV\n"
+
+
+
+
+
+uchar C[] = { 0xCA , 0xFE, 0xBA, 0xBE, 0xFA, 0xCE, 0xBE, 0xAD , 0xDE,0xAD, 0xC0, 0xDE };
+
+
+<<" $C[0]  $C[1]\n"
 <<" $(typeof(C)) \n"
 <<" $C \n"
 <<"%x $C \n"
+
+
+<<"%x $C \n"
+
+
 
 // just copy
 <<" just assign/copy to new vector \n"
@@ -16,8 +37,12 @@ D = C
 <<"D $D\n"
 // convert
 
-   C->Convert(INT_)
-   checkNum(202,C[0])
+   C->Convert(INT_);
+   
+   checkNum(202,C[0]);
+   
+
+//////////////////////////
 
    CI= C
 
@@ -36,9 +61,6 @@ D = C
 
    checknum(202.0,C[0])
    checknum(254.0,C[1])
-
-
-
 
 <<" $(typeof(D)) \n"
 <<" $D \n"
@@ -140,6 +162,6 @@ float F[]
 
 <<"long LV[] $LV\n"
 
-
 checkOut()
 
+exit()

@@ -662,7 +662,7 @@ int do_ptrs = 0;
       cart("ato")
 
       Run2Test("Cast")
-      cart("cast0")
+      cart("cast")
       cart("cast_vec")
 
 

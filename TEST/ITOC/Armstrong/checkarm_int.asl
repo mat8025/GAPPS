@@ -2,57 +2,50 @@
 ///  generate armstrong numbers
 ///
 
-setdebug(0,@keep,@trace)
-
 proc getArmN (char  cna[])
 {
-
-psum = 0;
+int psum = 0;
 <<"%V $cna[::] \n"
      cn = cna - 48;
-     
 <<"%V $cn[::]\n"
-
-psum = 0;
+    psum = 0;
       
       for (i=0; i < np ;i++) {
-       <<"<$i> %V $cn[i]\n"
+       <<"$i $cn[i]\n"
         psum += pw[cn[i]]; // get the nth pwr of the  ith place digit
       }
       
 <<" %V $psum\n"
       return psum;
 }
-//=======================
-//setdebug(1,@pline)
 
-pan Anum[100];
 
-pan sum = 0;
-pan psum = 0;
+
+int Anum[100];
+
+int sum = 0;
+int psum = 0;
 
 int np =  atoi (_clarg[1])
-pan totn=0;
+int totn=0;
 
 char nv[20];
 char nvm[np];
  nvm = 48;
-
-
-//pan ks = (1 * 10^(np-1));
-pan ks;
-
-ks = (1 * 10^(np-1));
-
-<<"%V $ks \n"
+ 
+int ks = 1 * 10^(np-1);
 
       for (i=0; i < np ;i++) {
             totn += 9*10^i ;
       }
 
+ks= 1000;
 
-<<"%V $totn\n"
+//ks = atoi (_clarg[1])
+//kstep = atoi (_clarg[2])
+//endnum = ks + kstep;
 
+//<<" from $ks to $totn\n";
 
 
 
@@ -60,10 +53,7 @@ T = FineTime()
 u1 = utime()
 na= 0;
 
-last_ut = u1;
-
-//pan pw[10];  //TBF
-long pw[10];  //TBF
+int pw[10];
 
       for (i=0; i < 10 ;i++) {
             pw[i] = i^np ;
@@ -72,98 +62,64 @@ long pw[10];  //TBF
 
 <<"%V$totn \n"
 // make begin
-
-//pan begin =1;
-pan begin;
-begin =1;
-
- for (i=0; i < (np-1) ;i++) {
-    begin *= 10;
- }
-
-<<"%V $begin\n"
-//ans=iread();
-
-pan maxn = 0;
-pan diff;
-int ip = 1;
-int jp =0
-
-///pan k = 9; // [] 0...9
-int k = 9;
-
-
-
-pan sumover;
+begin =1
+for (i=0; i < (np-1) ;i++) {
+begin *= 10;
+}
 
 maxn = 0;
+int ip = 1;
+int jp =0; // [] 0...9
 
-//setdebug(1,@step)
+int k = 9;
 
 while (jp < (np-1)) {
-
-  ip = 1;
-
+ip = 1;
   while (1) {
 
-    maxn += pw[k];   // pan += ?
-
+   maxn += pw[k];
 <<"%V $k $maxn $pw[k] \n"
-
    if (maxn > totn) {
      maxn -= pw[k];
-      break;
-   }
+     break;
+  }
 
-
-    nvm[jp] = k+48;    // pan k + 48 ---> nvm[jp] - does not work TBF
+  nvm[jp] = k+48;
 
 <<"%V $k $nvm  $jp $nvm[jp]\n"
 
-     ip++;
-     jp++;
-
-     if (jp == np) {
-       break;
-     }
-
-   }
+  ip++;
+  jp++;
+   if (jp == np) {
+    break;
+   } 
+ }
 
 diff = maxn-totn;
 
 <<"%V $k $ip $maxn $totn  $diff\n"
 
-    sumsofar =getArmN(nvm)
+   sumsofar =getArmN(nvm);
+   
+  <<"%V $k $sumsofar < $totn\n"
 
-   <<"$k $sumsofar < $totn\n"
    k--;
-   //ans=iread()
+   // ans=iread()
 }
-
-
 
 
 nvm[np-1] += 1;  // FIXED  -XIC VERS??
 
+
+
 //nvm[np-1] = 48+k+2;
+
 
 <<"%s $nvm\n"
 sumover =getArmN(nvm)
-
 <<"$sumover > $totn\n"
 
-
-
-pan endnum;
-
-<<"%V $nvm\n"
-
-endnum = atop("0000456")
-
-<<"%V $endnum \n"
-<<" %s $nvm \n"
-endnum = atop(nvm)
-
+endnum = atoi(nvm)
 <<" so do ArmNUmbers from $begin to %s $nvm %d $endnum\n"
 
 
@@ -173,72 +129,58 @@ if (endnum > totn) {
 }
 
 
+
+
 str s="123";
 last_Mu = memused();
 // reset ks - to last session
 
-    int  j= 0;
+    j= 0;
+  //checkMemory(1);
 
-   //long j= 0;
-
-
-checkMemory(0); // 1 - track memory use
+   for (k=begin; k<= endnum; k++) {
 
 
-pan pk;
-
-   for (pk=begin; pk<= endnum; pk++) {
-
-
-//   <<"$j  $pk \n"
-   
-     if (j++ == 200)  {  //  faster than pan mod
-           j = 0;
+     if ((j % 10000) == 0) {
            Mu= memused();
-	   
-           u3 = utime();
-	   
+
 	  // dumpmemtable();
-	 //  <<"<$j> $k  $Mu took $(u3-last_ut) secs \n"
-	   <<"<$j> $pk   memuse $Mu[0] took $(u3-last_ut) secs \n"
-	    <<"memuse $Mu\n"
-/{
-          if ((Mu[0]) > 50000) {
+	   <<"<$j>  %V $k  $Mu \n"
+            if ((Mu[0]) > 50000) {
 <<"too much mem used $Mu\n"
             break;
            }
-/}
-
+	   
             for (i=0; i< na; i++) {
              <<"found $(i+1)  $Anum[i]\n"
             }
-            last_ut = u3;
+
 	   
       }
 
-
-
+     j++;;
+    //<<"$k\t      \r"
+   // <<"%V $mu\n"
+  //    ans= iread();
+   //   last_mu = mu;
       psum = 0;
-
-      s="$pk"
-
+      s="$k"
       scpy(nv,s);
-
       nv -= 48;
       
       for (i=0; i < np ;i++) {
       
          psum += pw[nv[i]]; // get the nth pwr of the  ith place digit
-         if (psum > pk) {
+         if (psum > k) {
      // <<"$psum > $k\n";
            break;
 	 }
       }
       
-      if (pk == psum) {
-      Anum[na] = pk;
+      if (k == psum) {
+      Anum[na] = k;
       na++;
-      <<"$na $pk   $psum\n"
+      <<"$na $k   $psum\n"
       }
       
     }
@@ -247,7 +189,7 @@ pan pk;
 
 dt=FineTimeSince(T);
 
-<<"between $ks  and $pk "
+<<"between $ks  and $k "
 
 u2 =utime();
 

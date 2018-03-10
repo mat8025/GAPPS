@@ -2,8 +2,6 @@
 ///  generate armstrong numbers
 ///
 
-setdebug(0,@keep,@trace)
-
 proc getArmN (char  cna[])
 {
 
@@ -177,38 +175,28 @@ str s="123";
 last_Mu = memused();
 // reset ks - to last session
 
-    int  j= 0;
-
-   //long j= 0;
-
-
-checkMemory(0); // 1 - track memory use
+//    pan j= 0;
+    long j= 0;
 
 
-pan pk;
-
+  //checkMemory(1);
+   
    for (pk=begin; pk<= endnum; pk++) {
 
 
-//   <<"$j  $pk \n"
-   
-     if (j++ == 200)  {  //  faster than pan mod
-           j = 0;
+     if ((j % 5000) == 0) {  // not if pan j TBF
+
            Mu= memused();
 	   
            u3 = utime();
 	   
 	  // dumpmemtable();
-	 //  <<"<$j> $k  $Mu took $(u3-last_ut) secs \n"
-	   <<"<$j> $pk   memuse $Mu[0] took $(u3-last_ut) secs \n"
-	    <<"memuse $Mu\n"
-/{
-          if ((Mu[0]) > 50000) {
+	   <<"<$j> $k  $Mu took $(u3-last_ut) secs \n"
+            if ((Mu[0]) > 50000) {
 <<"too much mem used $Mu\n"
             break;
            }
-/}
-
+	   
             for (i=0; i< na; i++) {
              <<"found $(i+1)  $Anum[i]\n"
             }
@@ -216,14 +204,14 @@ pan pk;
 	   
       }
 
-
-
+     j++;;
+    //<<"$k\t      \r"
+   // <<"%V $mu\n"
+  //    ans= iread();
+   //   last_mu = mu;
       psum = 0;
-
-      s="$pk"
-
+      s="$k"
       scpy(nv,s);
-
       nv -= 48;
       
       for (i=0; i < np ;i++) {
@@ -235,7 +223,7 @@ pan pk;
 	 }
       }
       
-      if (pk == psum) {
+      if (k == psum) {
       Anum[na] = pk;
       na++;
       <<"$na $pk   $psum\n"
@@ -247,7 +235,7 @@ pan pk;
 
 dt=FineTimeSince(T);
 
-<<"between $ks  and $pk "
+<<"between $ks  and $k "
 
 u2 =utime();
 

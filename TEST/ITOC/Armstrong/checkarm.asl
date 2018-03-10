@@ -80,7 +80,7 @@ begin *= 10;
 
 <<"%V $begin \n";
 
-exit()
+
 
 
 long maxn = 0;

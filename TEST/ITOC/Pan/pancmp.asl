@@ -1,0 +1,24 @@
+///
+///
+///
+
+setdebug(1,@keep,@trace)
+
+checkMemory(1); // 1 - track memory use
+pan psum = 0;
+pan pk = 200;
+               Mu= memused();
+	       svm = Mu[0];
+  for (i = 0; i < 500 ; i++) {
+        psum += i;
+    if (psum > pk) {
+<<" $psum > $pk \n"
+       break;
+    }
+     Mu= memused();
+<<"<$i> $psum $(Mu[0] -svm) $Mu \n"
+      svm = Mu[0];
+  }
+
+
+exit()
