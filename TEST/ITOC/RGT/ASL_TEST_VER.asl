@@ -1253,7 +1253,7 @@ if ( do_all || do_record ) {
 
     Run2Test("Pan")
     cart("pan")
-    cart("derange",10)
+    cart("derange",100)
 
 
 }

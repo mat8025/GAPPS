@@ -2,7 +2,7 @@
 
 CheckIn()
 
-setdebug(1,"pline","trace","stoponerror")
+setdebug(1,@pline,@trace,@stoponerror)
 
 char c = 65;
 char p = 'q';
@@ -61,31 +61,30 @@ uchar cv[] = { 65,47,79,0xBA };
 <<"%I %hx $cv \n"
 <<"%I %s $cv \n"
 
-wc = scnt('G')
+wc = scnt("G")
 
 <<"%V $wc $(typeof(wc))\n"
 
 char dv[] = { 'G', 25, 28, 78, 'O', '0', 69, 75,76,77 }
 
-<<"%I $dv \n"
+
+<<"$(vinfo(dv))\n"
 <<"$dv \n"
-
-
 
 char a = 'G';
 
-<<"%I $a \n"
+<<" $(vinfo(a)) \n"
 
 <<"%V $dv[0] $a \n"
 
  CheckNum(dv[0],a)
-
 
  CheckNum(dv[0], wc )
 
  CheckNum(dv[0], 'G' )
 
 
+checkStage()
 
 <<"%V $dv  \n"
 
@@ -105,9 +104,9 @@ char a = 'G';
 
 <<" whaat is happenning here $dv[5] \n"
 
- tc = scnt('0');
+ tc = scnt("0");
  <<"%V $tc\n";
- CheckNum(dv[5], scnt('0') )
+ CheckNum(dv[5], scnt("0") )
 <<" Imm not really cleaaaaaaar \n" 
 
 

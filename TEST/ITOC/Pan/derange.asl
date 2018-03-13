@@ -3,7 +3,7 @@
 ///  --> 1/e
 
 
-setDebug(1,"~trace","~step","~stderr","~pline")
+setDebug(1,@~trace,@~step,@~stderr,@pline)
 
 
 //filterDebug(3,"vfree","writecb","pan_copy","set");
@@ -24,8 +24,12 @@ float f = 4.0 * exp(1.0);
 setap(100);
 
 
-pan denom;
+//pan denom;
+
+pan denom = 1;
+
 pan Re =  1;
+
 pan e;
 <<"%V$Re\n"
 
@@ -38,34 +42,28 @@ pan e;
 
 <<"%V $N\n"
 
+setDebug(1,@filter,1,"vfree",@filterfile,2,"ds_svar.cpp")
 
-
-
-setDebug(1,"trace","~step","~stderr","~pline")
-filterDebug(2,"vfree");
-filterFileDebug(2,"ds_svar.cpp")
 
 e = exp(1.0);
 
 <<"%V $e\n"
 
-
-
-
 <<"$(typeof(e)) $e\n"
 
 r = 1.0/exp(1.0)
-filterDebug(3);
+
 <<"---->$(typeof(r)) $r \n"
 
-s = Sin(0.999)
+s = Sin(0.999);
 
 <<"---->$(typeof(s)) $s \n"
 
-//double F = 1;
+
 pan F = 1;
 
 <<"$(typeof(F)) $F \n"
+
 int i;
 
 i = 1;
@@ -130,29 +128,34 @@ double ddenom;
      F = F * (j+1);
      FD = FD * (j+1);
 
-//<<"%V$j $FD $F  \n"
+<<"%V$j $FD $F  \n"
 
-     denom =  1/F;
+     denom =  1.0/F;
 
      ddenom = 1.0/FD;
-     
+
+//<<"%V $ddenom $denom\n"   // TBF - have to reference denom here -- otherwise not known!?!
+
      if ( tadd) {
-	//  <<"add $denom to $Re\n"
+	  <<"add $denom to $Re\n"
            Re = Re + denom;
            ReD = ReD + ddenom;
            tadd = 0;
      }
      else {
-//	 <<"sub $denom from $Re\n"
-         Re = Re - denom;
+	 <<"sub $ddenom from $ReD\n"
+
          ReD = ReD - ddenom;	 
+	 <<"sub $denom from $Re\n"
+         Re = Re - denom;
+
          tadd = 1;
      }
 
 
-//<<"%V$j $(typeof(j)) $F $denom  $Re \n"
+<<"%V$j $(typeof(j)) $F $denom  $Re \n"
 <<"%V$j  $FD %12.9f $ddenom   $ReD \n"
-
+//ans=iread()
 
 }
 
@@ -164,8 +167,8 @@ checkFnum(pt,1.0003450000000000000,5)
 
 testArgs(pt,1.00034500000000000000000000)
 
-
-pt = 0.3678794642857142857142857142857142857142857;
+pt = 1.0/exp(1.0);
+//pt = 0.3678794642857142857142857142857142857142857;
 
 <<"%V$pt\n"
 
@@ -175,6 +178,6 @@ pt = 0.3678794642857142857142857142857142857142857;
 
 
 
-checkFnum(Re,pt,5)
+checkFnum(Re,pt,2)
 
 checkOut()
