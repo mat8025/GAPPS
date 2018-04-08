@@ -3,7 +3,7 @@
 ///
 /// show summaries/stats for week/last month
 ///
-setdebug(1,"~trace")
+setdebug(1,@~trace,@filter,0)
 
 vers = "1.3"
 ////////////// Menus /////////////
@@ -103,7 +103,7 @@ A=ofw("Quit.m")
 <<[A],"title QuitPlanner? \n"
 <<[A],"item Yes No Save M_VALUE Yes\n"
 <<[A],"help quit Save?\n"
-<<[A],"item Save->Quit M_VALUE Save\n"
+<<[A],"item Save->Quit M_VALUE Yes\n"
 <<[A],"help quit Save first?\n"
 <<[A],"item No M_VALUE No\n"
 <<[A],"help return to planning\n"
@@ -112,9 +112,6 @@ cf(A)
 
 /////////////////////////////
 
-
-
-////////////////////
 activ = "idle"
 
   dstr= !!"date "
@@ -176,6 +173,9 @@ nd++;
  rows = 15; // set row and log row per day
  cols = 52;
 
+
+
+
  // check find and read in sheet_wk_year - 
  // what week are we in?
  // is Week_#_yr  sst there ?
@@ -216,6 +216,8 @@ include "tbqrd";
 
 <<"$sfname $tfz\n"
 
+  sWo(awo,@setrowscols,rows,cols);
+ 
   if (tfz > 0) {
      // handshake this - via srs
 

@@ -6,8 +6,8 @@
 
 
 
-//envDebug()
-setdebug(1,"keep")
+
+setdebug(1,@keep)
 
 Graphic = checkGWM()
 
@@ -20,13 +20,11 @@ Graphic = checkGWM()
     rsig=checkTerm();
     <<"%V$rsig \n";
 
-
-
-    txtwin = CWi("title","Info_text_window")
+    txtwin = cWi("title","Info_text_window")
 
     sWi(txtwin,@pixmapoff,@drawon,@save,@bhue,"white",@sticky,0)
 
-    vp = CWi(@title,"Buttons1")
+    vp = cWi(@title,"Buttons1")
 
 <<"%V$vp \n"
 
@@ -69,7 +67,7 @@ Graphic = checkGWM()
 <<"%V$vp4 \n"
 
 //////// Wob //////////////////
-// setdebug(1);
+
  
  bx = 0.1
  bX = 0.4
@@ -80,11 +78,11 @@ Graphic = checkGWM()
  by = bY - yht
 
  two=cWo(txtwin,@TEXT,@name,"Text",@VALUE,"howdy",@color,ORANGE_,@resize_fr,0.1,0.1,0.9,0.9)
+
  sWo(two,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@pixmapoff,@redraw)
  sWo(two,@SCALES,-1,-1,1,1)
  sWo(two,@help," Mouse & Key Info ")
 
-// sWo(gwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@VALUE,"ON",@STYLE,"SVB",@FUNC,"ringBell")
  gwo=cWo(vp,@BV,@name,"ColorTeal",@color,"green",@resize,bx,by,bX,bY)
  sWo(gwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@VALUE,"color is teal",@STYLE,"SVB")
  sWo(gwo,@bhue,TEAL_,@clipbhue,"skyblue",@redraw )
@@ -93,7 +91,7 @@ Graphic = checkGWM()
  by = bY - yht
  
 
-// hwo=cWo(vp,@ONOFF,@name,"ENGINE",@VALUE,0,@color,GREEN_,@resize,bx,by,bX,bY)
+
  hwo=cWo(vp,@ONOFF,@name,"ENGINE",@VALUE,"ON",@color,GREEN_,@resize,bx,by,bX,bY)
 
  sWo(hwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_, @STYLE,"SVR")
@@ -102,21 +100,15 @@ Graphic = checkGWM()
 
  // GetValue after entering text
  gvwo=cWo(vp,@BV,@name,"GMYVAL",@VALUE,0,@color,GREEN_,@resize,0.5,by,0.9,bY)
- sWo(gvwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_, @STYLE,"SVB")
- //sWo(gvwo,@bhue,"teal",@clipbhue,MAGENTA_,@FUNC,"inputValue",@MESSAGE,1)
- //sWo(gvwo,@bhue,"teal",@clipbhue,MAGENTA_,@FUNC,"inputValue",@MESSAGE,1)
+ sWo(gvwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_, @STYLE,"SVR")
  sWo(gvwo,@bhue,"white",@clipbhue,"red",@FUNC,"inputValue",@MESSAGE,1)
-
-
-
 
 
  bY = by - ypad
  by = bY - yht
 
  lwo=cWo(vp,@ONOFF,@name,"PLAY",@VALUE,"ON",@color,"red",@resize,bx,by,bX,bY)
-// sWo(lwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"blue", @STYLE,"SVL", @redraw)
- sWo(lwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"blue", @STYLE,"SVL", "redraw")
+ sWo(lwo,@border,@drawon,@clipborder,@fonthue,"blue", @style,"SVL", "redraw")
  sWo(lwo,@fhue,"teal",@clipbhue,"violet")
 
 
@@ -165,23 +157,17 @@ Graphic = checkGWM()
 
 <<"%V$qwo \n"
 
-// tbwo=cWo(vp2,@TB,@name,"tb_q",@color,"yellow",@VALUE,"QUIT",@func,"window_intrp",@resize,0.9,by,0.99,bY)
- // TITLE BUTTON QUIT
- tbwo=cWo(vp2,@TB,@name,"tb_q",@color,"yellow",@VALUE,"QUIT",@func,"window_term",@resize,0.9,by,0.99,bY)
- sWo(tbwo,@BORDER,@DRAWON,@PIXMAPON,@CLIPBORDER,@FONTHUE,"red", @symbol,"triangle", @symsize, 120, @redraw)
 
-<<"%V$tbwo \n"
 
- symwo=cWo(vp2,"SYMBOL",@name,"sym",@color,"lime",@resize,0.5,0.5,0.8,0.9)
- sWo(symwo,@BORDER,@DRAWON,@PIXMAPON,@CLIPBORDER,@FONTHUE,"red", @symbol,"triangle", @symsize, 50, @redraw ,@foo)
- sWo( symwo, @setmove,1 )
 
-<<"%V$symwo \n"
+include "tbqrd";
+
+titleButtonsQRD(vp);
 
  sWi(vp,@redraw)
  sWi(vp2,@redraw)
- sWi(vp3,"woredrawall")
- sWi(txtwin,"woredrawall")
+ sWi(vp3,@woredrawall)
+ sWi(txtwin,@woredrawall)
 
  int allwins[] = {vp,vp2,vp3,txtwin};
  
@@ -301,16 +287,6 @@ proc do_sketch()
 
 proc QUIT()
 {
-  wid = getAslWid()
-
-<<"ASL wid is $wid \n"
-
-//  sWi(vp,@detach) // will detach from asl and thus window will persist
-
-//  wdelete(wid)
-
-//  sleep(10)
-  //wdelete(vp,vp2,vp3)
 
   exit()
 
@@ -318,46 +294,38 @@ proc QUIT()
 
 proc tb_q()
 {
-
 <<"expecting sig1 signal\n";
 }
 
 ////////////////////////////////////
 
-gevent E;  // our Gevent variable - holds last message
-           // could use another or an array to compare events
+include "gevent" ;   // our Gevent variable - holds last message
+                            // could use another or an array to compare events
 
    while (1) {
 
-      //eventWait();
-      
-      E->waitForMsg();
-      wid = E->getEventWoid();
-<<"gevent %V $wid\n"
-      eb = E->getEventButton();
-<<"gevent %V $eb\n"
+      eventWait();
 
-      if (E->getEventkeyw() @= "EXIT_ON_WIN_INTRP") {
-<<"have win interp -- exiting!\n"
+      if (_ekeyw @= "EXIT_ON_WIN_INTRP") {
+<<"have win interup -- exiting!\n"
       break;
       }
 
-      sWo(two,@texthue,"black",@clear,@textr,"$E->getEventWoValue()",-0.9,0)
+      sWo(two,@texthue,"black",@clear,@textr,"$_ekeyw",-0.9,0)
 
-      if (E->getEventType() @= "PRESS") {
-            ev_woname = E->getEventWoName();
-	    <<"%V $ev_woname";
-        if (!(ev_woname @= "")) {
+      if (_ename @= "PRESS") {
+	    <<"%V $_ewoname";
+//        if (!(_ewoname @= "")) {
             DBPR"calling function via woname $ev_woname !\n"
-            $ev_woname()
+            $_ewoname()
             continue;
-        }
+  //      }
 
        }
 
   }
 
- //exitgs() // should close xgs if a child -- and exit
+
 <<" killing xgm $Xgm_pid \n";
 // sendsig(Xgm_pid, 12);
 

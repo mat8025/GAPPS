@@ -3,7 +3,7 @@
 
 Svar Ip;
 Svar F;
-fs= ' ';
+fs= " ";
 
 /// Begin Section
 
@@ -18,7 +18,11 @@ fs= ' ';
 
 ///>>> code insert  
 
-    nm= Scut(F[0],-1); if (sstr(Ip,"binary")!=-1) { <<"$nm\n"; !!"rm -f $nm";};
+    nm= Scut(F[0],-1);
+    if (sstr(Ip,"binary")!=-1) {
+    <<"$nm\n";
+    !!"rm -f $nm";
+    };
 
 
 ///<<< end code insert  

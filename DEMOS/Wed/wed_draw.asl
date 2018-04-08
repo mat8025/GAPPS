@@ -61,9 +61,9 @@ proc  drawMonths(ws)
 
 // just plot at mid - the date
 
-   mid_date = (RS[3] - RS[1])/2 + RS[1]
-   q1_date = (RS[3] - RS[1])/4 + RS[1]
-   q3_date = 3*(RS[3] - RS[1])/4 + RS[1]
+   mid_date = (RS[3] - RS[1])/2 + RS[1];
+   q1_date = (RS[3] - RS[1])/4 + RS[1];
+   q3_date = 3*(RS[3] - RS[1])/4 + RS[1];
 
    jd= mid_date +bday
    the_date = julmdy("$jd")
@@ -73,11 +73,11 @@ DBPR"%V$mid_date $jd $the_date \n"
    AxText(wwo, 1, the_date, mid_date, -0.25, BLUE_)
 
    jd= q1_date +bday
-   the_date = julmdy("$jd")
-   AxText(wwo, 1, the_date, q1_date, -0.25, BLUE_)
-   jd= q3_date +bday
-   the_date = julmdy("$jd")
-   AxText(wwo, 1, the_date, q3_date, -0.25, BLUE_)
+   the_date = julmdy("$jd");
+   AxText(wwo, 1, the_date, q1_date, -0.25, BLUE_);
+   jd= q3_date +bday;
+   the_date = julmdy("$jd");
+   AxText(wwo, 1, the_date, q3_date, -0.25, BLUE_);
 
  }
 //---------------------------------------------------------------
@@ -266,7 +266,7 @@ proc adjustYear(updown)
    yrd = atoi(yrs)
 //DBPR"%V$jd $the_date $yrs $yrd \n"
 
-<<"%V$jd $the_date $yrs $yrd \n"
+//<<"%V$jd $the_date $yrs $yrd \n"
 
 
    if (updown > 0) {
@@ -276,13 +276,13 @@ proc adjustYear(updown)
    if (updown < 0) {
     yrd--
   }
-  <<"%V  $yrd \n"
+//  <<"%V  $yrd \n"
 
 
    st_jday = julian("01/01/$yrd")
    ed_jday = julian("12/31/$yrd")
 
-  <<"%V  $yrd  $st_jday $ed_jday\n"
+  //<<"%V  $yrd  $st_jday $ed_jday\n"
 
    rx = st_jday - bday
   rX = ed_jday - bday

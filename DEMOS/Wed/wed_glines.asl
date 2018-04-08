@@ -86,3 +86,4 @@ if ( gw_gl == -1 || bp_gl == -1) {
  rc_gl   = cGl(gwo,@type,"XY",@color,BLUE_,@ltype,"cursor")
 
 
+//[EM]===========================================//

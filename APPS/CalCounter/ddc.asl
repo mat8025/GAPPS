@@ -283,9 +283,13 @@ Nbp = 3;
 adjust_day = 0;
 fname = _clarg[1];
 
-<<"%V $fname \n"
+nl = slen(fname);
+<<"<|$fname|> \n"
+ <<"%V <|$fname|> $nl\n"
 
-if (! (fname @= "")) {
+//if ( !(fname @= "")) {
+make_day = 0;
+ if (nl != 0) {
 
   if (scmp(fname,"dd_",3)) {
      adjust_day = 1;
@@ -293,26 +297,30 @@ if (! (fname @= "")) {
    }
 A= ofr(fname)
  if (A == -1) {
- <<"can't find file dd_ day $fname \n";
-   exit();
- }
+   <<"can't find file dd_ day $fname \n";
+    adjust_day = 0;
+    make_day = 1;
+  }
 }
-else {
+
+
 //  make up today and check
 
-if (!adjust_day) {
+if (!adjust_day && !make_day) {
  ds= date(2);
  ds=ssub(ds,"/","-",0);
-
  the_day = "dd_${ds}";
 }
-}
+
+
 fname = the_day;
- ok=fexist(the_day,0);
+
+ok=fexist(the_day,0);
 
 <<"checking this day $the_day summary exists? $ok\n";
  found_day = 0;
- if (ok > 0) {
+
+if (ok > 0) {
  
    A= ofr(fname)
    if (A == -1) {
@@ -334,7 +342,7 @@ int bpick;
 
 Record DF[10];
 
-DF[0] = Split("?,?,?,?,?,?,?,?,?,?",',');
+DF[0] = Split("?,?,?,?,?,?,?,?,?,?",",");
 
    
 Record R[];
@@ -345,8 +353,8 @@ if (found_day) {
 }
 else {
 
-R[0] = Split("Food,Amt,Unit,Cals,Carbs,Fat,Protein,Chol(mg),SatFat,Wt,",',');
-R[1] = Split("Totals,?,?,?,?,?,?,?,?,?",',');
+R[0] = Split("Food,Amt,Unit,Cals,Carbs,Fat,Protein,Chol(mg),SatFat,Wt,",",");
+R[1] = Split("Totals,?,?,?,?,?,?,?,?,?",",");
 
 }
 

@@ -20,7 +20,6 @@ long wday;
 
 proc isData()
 {
-//<<"$S \n"
    dok = 1
 
    fword=""
@@ -84,7 +83,8 @@ proc fillInObsVec()
    EXTV[Nobs] =  ( walk + hike + run + cycle + swim + yardwrk + wex)
 
 //DBPR"$k $EXTV[Nobs] $walk $run \n"
-    if (wday > yday) {
+
+  if (wday > yday) {
       tot_exetime += EXTV[Nobs]
     }
 
@@ -136,7 +136,7 @@ tl = 0;
       
  //<<"<$tl> $RX[tl]\n"
 
-<<"<$tl> $(typeof(col)) $col \n"
+DBPR"<$tl> $(typeof(col)) $col \n"
 
 //DBPR"$col \n"
 
@@ -158,21 +158,18 @@ tl = 0;
 // bug need a print statement here - or the else does not get used
 //<<"%V$day $wday  $kd \n"
 
-//<<"x";
-//<<" "
+
 
    if (kd < 0) {
        <<" $k neg offset ! \n";
        break;
    }
 
-//  <<"z";
-//
+
 //<<" what day $k\n"
    // will need separate day vector for the food carb/protein/fat/calorie totals
    // -( we count/estimate those) 
    // variables are plotted against dates (juldays - birthday)
-//<<"$kk wex measure $Nobs\n";
 
     fillInObsVec();
     if (tl >= (Nrecs-1)) {

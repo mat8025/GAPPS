@@ -33,12 +33,15 @@
       pgdwo = cWo(vp,@BN,@name,"PGDWN",@color,ORANGE_,@bhue,"pink");
 
       pguwo = cWo(vp,@BN,@name,"PGUP",@color,ORANGE_,@bhue,"golden");
+
+      pgnwo = cWo(vp,@BV,@name,"PGN",@color,ORANGE_,@bhue,"cyan",@value,0,@style,"SVR");
       
+      sWo(pgnwo,@bhue,WHITE_,@clipbhue,RED_,@FUNC,"inputValue",@callback,"PGN",@MESSAGE,1)
 
-      int ssmods[] = { readwo,savewo,sortwo,swprwo,swpcwo,delrwo, delcwo, arwo,pguwo,pgdwo }
+      int ssmods[] = { readwo,savewo,sortwo,swprwo,swpcwo,delrwo, delcwo, arwo,pguwo,pgdwo,pgnwo }
 
 
-      wovtile(ssmods,0.05,0.1,0.1,0.9,0.05);
+      wovtile(ssmods,0.05,0.1,0.1,0.9,0.01);
 
 
 

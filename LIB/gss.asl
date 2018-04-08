@@ -6,24 +6,28 @@
 
 Use_csv_fmt = 1;
 Delc = 44;
-curr_row = 3;  // for paging
-page_rows = 20;
 
-
+int curr_row = 3;  // for paging
+int page_rows = 20;
+int curr_page = 1;
+int npgs = 1;
 swaprow_a = 1;
 swaprow_b = 2;
 
 swapcol_a = 1;
 swapcol_b = 2;
 
-Ncols = 10;
+int Ncols = 10;
 
 proc SAVE()
 {
-         <<"saving sheet $fname  %V$Ncols \n"
+
+         <<"IN $_proc saving sheet $fname  %V$Ncols \n";
+	 
             B=ofw(fname)
 	    writeRecord(B,R,@del,Delc,@ncols,Ncols);
 	    cf(B)
+    return 
 }
 //======================
 
@@ -37,6 +41,7 @@ proc READ()
            sz = Caz(R);
           <<"num of records $sz\n"
           sWo(cellwo,@cellval,R);
+	      return 
 }
 //======================
 proc SORT()
@@ -53,7 +58,7 @@ proc SORT()
 
      sWo(cellwo,@cellval,R);
      sWo(cellwo,@redraw);
-
+    return ;
 }
 //======================
 proc SWOPROWS()
@@ -65,6 +70,7 @@ proc SWOPROWS()
 	R->SwapRows(swaprow_a,swaprow_b);	  // code vmf
         sWo(cellwo,@cellval,R);
 	sWo(cellwo,@redraw);
+	return ;
 }
 //======================
 
@@ -75,6 +81,7 @@ proc SWOPCOLS()
 	SwapCols(R,swapcol_a,swapcol_b);
         sWo(cellwo,@cellval,R);
 	sWo(cellwo,@redraw);
+	    return ;
 }
 //======================
 proc DELROWS()
@@ -113,6 +120,7 @@ int n2d = 0;
 	sWo(cellwo,@redraw);
 	}
      }
+     	    return ;
 }
 //======================
 proc DELCOL()
@@ -158,15 +166,16 @@ proc ADDROW()
     sz = Caz(R);
 
   <<"New size %V $rows $cols $sz\n"  
-
+    return 
 }
 //====================================
-
+<<"read in ADDROW\n";
 
 proc PGDWN()
 {
    // need to unselect all
-
+   npgs =   rows/page_rows;
+   
   sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0);
 
 <<"%V$curr_row $page_rows $rows \n"
@@ -183,24 +192,39 @@ proc PGDWN()
    sWo(cellwo,@selectrowscols,0,2,0,cols,1);
    sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,1);
    paintRows();
+   curr_page++;
+   if (curr_page > npgs) {
+     curr_page = npgs;
+   }
+   sWo(pgnwo,@value,curr_page,@update);
+     
    sWo(cellwo,@redraw);
+   	    return ;
 }
 //====================
 
 proc PGUP()
 {
 
+   npgs =   rows/page_rows;
+    
    sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0);
    curr_row -= page_rows/2;
 
    if (curr_row <0) {
        curr_row = 0;
    }
+   
    sWo(cellwo,@selectrowscols,0,2,0,cols,1);
    sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,1);
   paintRows();
   sWo(cellwo,@redraw);
-
+  curr_page--;
+  if (curr_page <1) {
+      curr_page =1;
+  }
+  sWo(pgnwo,@value,curr_page,@update);
+  return ;
 }
 //====================
 
@@ -220,9 +244,64 @@ proc clearTags()
    sWo(cellwo,@cellval,R);
    sWo(cellwo,@redraw);
    }
-   
+   	    return ;
 }
 //============================
+proc PGN()
+{
+
+
+  sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0); // unset current
+
+   // need to unselect all
+
+   // how many pages
+   
+   npgs =   rows/page_rows;
+
+  // ask for page 
+  //wpg = menu(pages);
+
+  int wpg = npgs /2;
+
+  wval = getWoValue(pgnwo);
+
+<<"%V$wval \n"
+  wpg = atoi(getWoValue(pgnwo));
+
+<<"%V $npg $wpg\n"
+
+  if (wpg <0) wpg = 0;
+  if (wpg >npgs) wpg = npgs;
+
+  curr_row =  (wpg - 1) * page_rows ;
+
+  if (curr_row < 0) {
+      curr_row = 0;
+  }
+
+
+<<"%V$curr_row $page_rows $rows \n"
+
+  if ((curr_row + page_rows) >= (rows-1)) {
+        curr_row = (rows - page_rows -1);
+   }
+
+  // curr_row += page_rows/2;
+   // need to select
+
+<<"%V$curr_row $page_rows $rows \n"
+
+   sWo(cellwo,@selectrowscols,0,2,0,cols,1);
+   sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,1);
+   paintRows();
+   curr_page = wpg;
+   sWo(cellwo,@redraw);
+   	    return ;
+}
+//====================
+
+
 
 proc paintRows()
 {
@@ -249,8 +328,20 @@ proc paintRows()
           }
    }
    sWo(cellwo,@cellbhue,endprow,ALL_,YELLOW_);
+   	    return ;
 }
 //=============================
 
+
+proc HOO()
+{
+
+<<"IN $_proc record $rows \n"
+
+
+<<"OUT $_proc \n"
+	    return ;
+}
+//=============================
 <<"%V $swaprow_a $swaprow_b  $swapcol_a $swapcol_b \n";
 <<" done include gss \n"

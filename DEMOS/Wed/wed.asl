@@ -13,9 +13,9 @@ vers = "2.1";
 
 setDebug(0);
 
-#define DBPR  <<
+//#define DBPR  <<
 
-//#define DBPR  ~!
+#define DBPR  ~!
 
 wed_dir = "./"
 
@@ -108,7 +108,7 @@ float Nsel_exeburn = 0.0
 
 float Nsel_lbs = 0.0
 
-<<"%V $Nsel_exemins $Nsel_exeburn  $(typeof(Nsel_exemins))\n"
+DBPR"%V $Nsel_exemins $Nsel_exeburn  $(typeof(Nsel_exemins))\n"
 
 int k = 0;
 
@@ -130,7 +130,7 @@ if (A == -1) {
   exitsi();
 }
 
-<<"%V$A \n"
+
 // check period
 
 
@@ -140,7 +140,7 @@ RX=readrecord(A,@del,-1)
 
 Nrecs = Caz(RX);
 
-<<"%V RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n"
+DBPR"%V RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n"
 
 
 
@@ -151,8 +151,8 @@ Nrecs = Caz(RX);
 
 
 ////////////////// READ CEX DATA ///////////////////
-#include "wed_goals"
-#include "wed_read"
+include "wed_goals"
+include "wed_read"
 
 
 readData();
@@ -194,7 +194,7 @@ ty_gsday = gsday;
 // our goal line  wtloss per day!
 
 for (i= 0; i < ngday; i++) {
-<<"$(ty_gsday+i) $lw \n"
+DBPR"$(ty_gsday+i) $lw \n"
     GVEC[i] = lw;
     WDVEC[i] = gsday+i;
     lw -= lpd;
@@ -207,9 +207,9 @@ for (i= 0; i < ngday; i++) {
 <<" days $sz to lose $(StartWt-gwt) \n"
   sz = Caz(WDVEC);
 
-<<"$sz\n"
-<<"%6.1f%(7,, ,\n)$WDVEC\n"
-<<"%6.1f%(7,, ,\n)$GVEC\n"
+DBPR"$sz\n"
+DBPR"%6.1f%(7,, ,\n)$WDVEC\n"
+DBPR"%6.1f%(7,, ,\n)$GVEC\n"
 ////////////////////////////////////////////////////////////////////////
 
 DBPR"%V$i $sz\n"
@@ -309,7 +309,7 @@ include "wed_foodlog"
     AVE_EXTV = vsmooth(EXTV,7)
 
 //<<" Done calcs !\n"
-<<"$Nxy_obs total exeburn %6.2f $tot_exeburn  cals  $(tot_exeburn/4000.0) lbs in $(tot_exetime/60.0) hrs\n"
+//<<"$Nxy_obs total exeburn %6.2f $tot_exeburn  cals  $(tot_exeburn/4000.0) lbs in $(tot_exetime/60.0) hrs\n"
 
 
 
@@ -383,8 +383,8 @@ include "gevent"
 
         m_num++
 
-        eventWait()
-
+        msg =eventWait()
+<<"$m_num $msg  $_ename $_ewoname\n"
        if (_ename @= "PRESS") {
         if (!(_ewoname @= "")) {
 DBPR"calling function via $woname !\n"

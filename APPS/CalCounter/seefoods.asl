@@ -7,7 +7,7 @@
 include "gevent.asl"
 
 
-setdebug(1,"keep");
+setdebug(1,@keep,@filter,0);
 
 //////   create MENUS here  /////
 A=ofw("Howlong.m")
@@ -31,7 +31,7 @@ A=ofw("Howlong.m")
 cf(A)
 
 
-
+include "gss.asl"
 
 //  fname = "pp.rec"
   fname = _clarg[1];
@@ -56,7 +56,7 @@ A= ofr(fname)
 
 Record DF[10];
 
-DF[0] = Split("fooddesc,1,TBSP,100,10,0,0,0,0,0",',');
+DF[0] = Split("fooddesc,1,TBSP,100,10,0,0,0,0,0",",");
 
    
 
@@ -68,7 +68,7 @@ DF[0] = Split("fooddesc,1,TBSP,100,10,0,0,0,0,0",',');
 
 //////////////////////////////////
 
-include "gss.asl"
+
 
 
 Graphic = CheckGwm()

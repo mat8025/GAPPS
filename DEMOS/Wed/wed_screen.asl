@@ -41,18 +41,11 @@ DBPR"%V$wedwo \n"
 
     cx = 0.08 ;    cX = 0.95 ; cy = 0.2 ; cY = 0.97;
 
+include "tbqrd.asl"
+
+titleButtonsQRD(vp)
+titleButtonsQRD(vp1)
  //////////////////////////////// TITLE BUTTON QUIT ////////////////////////////////////////////////
- tbqwo=cWo(vp,@TB,@name,"tb_q",@color,WHITE_,@value,"QUIT",@func,"window_term",@resize,0.97,0,0.99,1);
- sWo(tbqwo,@drawon,@pixmapon,@fonthue,RED_, @symbol,X_, @symsize,45,   @clip,0,0,1,1,@redraw);
-
- tbrszwo=cWo(vp,@TB,@name,"tb_2",@color,WHITE_,@VALUE,"RESIZE",@func,"window_resize",@resize,0.94,0,0.96,1)
- sWo(tbrszwo,@DRAWON,@PIXMAPON,@FONTHUE,RED_, @symbol,PLUS_,  @symsize, 45, \
- @clip,0,0,1,1,@redraw)
-
-
- tbrdrwo=cWo(vp,@TB,@name,"tb_3",@color,WHITE_,@VALUE,"REDRAW",@func,"window_redraw",@resize,0.92,0,0.938,1)
- sWo(tbrdrwo,@DRAWON,@PIXMAPON,@FONTHUE,RED_, @symbol,DIAMOND_,  @symsize, 45, \
- @clip,0,0,1,1,@redraw)
 
 
 extwo = calwo;
@@ -154,7 +147,7 @@ DBPR"SCALES %V$sc_startday $sc_endday $carb_upper\n"
   sWo(xwos,@style,"SVB",@redraw);
   sWo(gwo,@showpixmap,@save);
   sWo(calwo,@showpixmap);
-  sWo(tbqwo,@redraw);
+  
 
   dtmwo=cWo(vp,@BV,@name,"DAY",@color,RED_,@help," date on day ")
   wtmwo=cWo(vp,@BV,@name,"WTM",@color,RED_,@help," wt on day ")

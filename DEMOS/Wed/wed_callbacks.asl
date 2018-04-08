@@ -6,16 +6,18 @@
 ////////////////////////WONAME CALLBACKS///////////////////////////////////////
 proc QRTD()
 {
+<<" In $_proc\n"
   adjustQrt(-1)
 
  
   showWL()
-
+  return;
 }
 
 proc QRTI()
 {
-  adjustQrt(1)
+<<" In $_proc\n"
+adjustQrt(1)
   drawScreens()
   showWL()
 
@@ -47,7 +49,7 @@ proc QUIT()
 
 proc ZIN()
 {
-
+<<" In $_proc\n"
        sc_startday = lcpx;
        sc_endday = rcpx;
        
@@ -58,7 +60,7 @@ proc ZIN()
        drawScreens()
 
        showWL()
-
+       return;
 }
 //--------------------------------------------------
 
@@ -110,7 +112,7 @@ proc WTLB()
 
        if (_ebutton == 1) {
          lcpx = _erx;
-	 <<"%V $lcpx\n"
+	// <<"%V $lcpx\n"
          sGl(lc_gl,@cursor,lcpx,0,lcpx,300)
          getDay(lcpx);
 

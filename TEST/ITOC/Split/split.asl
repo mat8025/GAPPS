@@ -1,4 +1,4 @@
-setdebug(1);
+setdebug(1,@keep);
 
 A=ofr("color_table.txt")
 
@@ -9,6 +9,7 @@ fail = 0
 svar col
 str f_field
 int nc = 0;
+
   while (1) {
 
    S= readline(A)
@@ -39,6 +40,7 @@ int nc = 0;
 
    
  <<" |$fv1| |$fv2| [${fv4}]\n"
+
   }
 
 cf(A)
@@ -50,6 +52,7 @@ cf(A)
 
   nc = Caz(CT)
 <<"$nc \n"
+
 int mat = 0;
   for (i= 0; i <nc ; i++) {
     wi = spat(CT[i],"Red",0,1,&mat);

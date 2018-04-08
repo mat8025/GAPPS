@@ -32,21 +32,24 @@ proc eventDecode()
     _ekeyw = _ewords[2];
 
      _evalue =   spat(_emsg,_ekeyw,1);
+     
      _evalue = eatWhiteEnds(_evalue);
 
     _ekeyw2 = _ewords[3];
+
     _ekeyw3 = _ewords[4];
     
    // can get all of these in one by using ref parameters
-     _ename = Ev->getEventType(_eid,_etype,_ewoid,_ewoaw,_ebutton,_ekeyc);
+     _ename = Ev->getEventType(_eid,_etype,_ewoid,_ewoaw,_ebutton,_ekeyc,_ewoproc);
 
+//<<"proc $_ewoproc \n"
 
     Cev->id = _eid;
     Cev->button = _ebutton;
 
     
      _ewoname = Ev->getEventWoName();
-     _ewoproc = Ev->getEventWoProc();
+//     _ewoproc = Ev->getEventWoProc();
   
 //  Motion event -- will have 1 or more 'event' readings
 //  read these into array or rxy and erow-col
@@ -92,6 +95,7 @@ proc eventRead()
 //==============================
 
 Cevent Cev;
+
 gevent Ev; // event type - can inspect for all event attributes
 
 
@@ -124,7 +128,7 @@ str _ewoname = "";
 
 str _ewoval = "yyy";
 
-str _ewoproc = "";
+str _ewoproc = "abc";
 
 <<" loaded gevent processor \n"
 

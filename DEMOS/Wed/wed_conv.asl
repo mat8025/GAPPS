@@ -67,17 +67,16 @@ nobs = 0
    wex = atof(col[j++])
    bpress =  atof(col[j++])
 
-//<<"%V$wday %6.0f$wtam $wtpm $carbc $walk $hike $run $cycle $swim $yardwrk $wex $bpress \n"
-<<"WEX   $day %6.1f$wtam $wtpm $walk $hike $run $cycle $swim $yardwrk $wex $bpress \n"
+
+DBPR"WEX   $day %6.1f$wtam $wtpm $walk $hike $run $cycle $swim $yardwrk $wex $bpress \n"
    if (carbc > 0) {
-<<"CFPC  $day %6.1f$carbc 0.0 0.0 0.0\n"
+DBPR"CFPC  $day %6.1f$carbc 0.0 0.0 0.0\n"
    }
    nobs++
 
    }
    else {
-   
-<<"CMT   $S"
+DBPR"CMT   $S"
    }
   }
 

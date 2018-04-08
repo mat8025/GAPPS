@@ -1042,6 +1042,10 @@ if ( do_all || do_func ) {
 
   cart ("funcargs")
 
+  Run2Test("Ifunc")
+
+ cart ("iproc")
+
 }
 
 /////////////////////////////////////////
