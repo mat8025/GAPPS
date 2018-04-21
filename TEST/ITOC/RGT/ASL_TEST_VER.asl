@@ -777,6 +777,10 @@ if (( do_all ==1) || (do_declare == 1) ) {
 
    cart ("resize_vec")
 
+   Run2Test("Redimn")
+
+   cart ("redimn")
+
 
 
 

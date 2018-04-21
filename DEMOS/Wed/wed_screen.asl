@@ -47,6 +47,7 @@ titleButtonsQRD(vp)
 titleButtonsQRD(vp1)
  //////////////////////////////// TITLE BUTTON QUIT ////////////////////////////////////////////////
 
+CalsY1 = 6500;
 
 extwo = calwo;
 
@@ -61,7 +62,7 @@ extwo = calwo;
 
     sWo(extwo,@usescales,1,@axnum,3);
 
-    sWo(calwo,@scales,sc_startday,0,sc_endday+10,4500,@savescales,0)
+    sWo(calwo,@scales,sc_startday,0,sc_endday+10,CalsY1,@savescales,0)
 
 //    sWo(carbwo,@scales,sc_startday,0,sc_endday+10,1200)
 //    sWo(extwo,@axnum,1,sc_startday,sc_endday,7,1)

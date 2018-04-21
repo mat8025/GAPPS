@@ -159,17 +159,11 @@ proc drawScreens()
       Text(calwo,"Calories Burnt", 0.8,0.9,1)
       
 
-
-
-
-
-      //sWo(extwo,@symbol,sc_startday,2000,"diamond",5);
-//<<" draw gw_gl\n"
       dGl(gw_gl);
 
 
 
-      sWo(calwo,@scales,sc_startday,0,sc_endday+10,4500,@savescales,0)
+      sWo(calwo,@scales,sc_startday,0,sc_endday+10,CalsY1,@savescales,0)
 
       //plot(extwo,@symbol,sc_endday -10 ,300,TRI_,symsz,BLACK_);
       dGl(calc_gl)

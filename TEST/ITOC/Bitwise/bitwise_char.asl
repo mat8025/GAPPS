@@ -1,8 +1,11 @@
-//  test the bitwise ops
-setdebug(1,@~step)
+///
+///   test the bitwise ops
 
-int  j = 5
-int  k = 1
+///
+setdebug(1,@keep,@filter,0,@~step)
+
+uchar  j = 5
+uchar  k = 1
 
 m = j & k
 
@@ -112,6 +115,23 @@ CheckNum(m,2)
 <<"\n%d\t$j\n\t$m\n"
 
 //ans= i_read("7")
+
+
+uchar h = 0x40;
+
+uchar p = 0xF0;
+
+
+m = h & p
+
+<<"%V %X $h & $p BAND  $m \n"
+
+CheckNum(m,0x40)
+
+CheckNum(m,0,GT_)
+
+CheckNum(m,0,NEQ_)
+
 
 checkOut();
 
