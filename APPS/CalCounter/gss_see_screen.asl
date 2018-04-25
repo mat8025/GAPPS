@@ -1,0 +1,61 @@
+///
+///   gss screen
+///
+
+    vp = cWi(@title,"S2D:$fname")
+
+    sWi(vp,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
+
+    sWi(vp,@clip,0.1,0.2,0.9,0.9)
+
+    sWi(vp,@redraw)
+
+    titleButtonsQRD(vp);
+
+///    GSS  modfiy functions
+
+      readwo = cWo(vp,@BN,@name,"READ",@color,"lightgreen");
+
+      savewo = cWo(vp,@BN,@name,"SAVE",@color,LILAC_);
+
+      sortwo = cWo(vp,@BN,@name,"SORT",@color,CYAN_);
+
+      swprwo = cWo(vp,@BN,@name,"SWOPROWS",@color,GREEN_);
+
+      swpcwo = cWo(vp,@BN,@name,"SWOPCOLS",@color,RED_);
+
+      delrwo = cWo(vp,@BN,@name,"DELROWS",@color,RED_);
+
+      delcwo = cWo(vp,@BN,@name,"DELCOL",@color,ORANGE_,@bhue,YELLOW_);
+
+      arwo = cWo(vp,@BN,@name,"ADDROW",@color,ORANGE_,@bhue,"lightblue");
+
+      pgdwo = cWo(vp,@BN,@name,"PGDWN",@color,ORANGE_,@bhue,"pink");
+
+      pguwo = cWo(vp,@BN,@name,"PGUP",@color,ORANGE_,@bhue,"golden");
+      
+
+      int ssmods[] = { readwo,savewo,sortwo,swprwo,swpcwo,delrwo, delcwo, arwo,pguwo,pgdwo }
+
+
+      wovtile(ssmods,0.05,0.1,0.1,0.9,0.05);
+
+
+
+
+ cellwo=cWo(vp,"SHEET",@name,"Stuff2Do",@color,GREEN_,@resize,0.12,0.1,0.9,0.95)
+ // does value remain or reset by menu?
+
+ sWo(cellwo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"SSWO",@func,"inputValue")
+
+ sWo(cellwo,@bhue,CYAN_,@clipbhue,SKYBLUE_,@redraw)
+
+
+   sWi(vp,@redraw)
+
+   sWo(ssmods,@redraw)
+
+   sWo(cellwo,@redraw);
+
+
+//=======================

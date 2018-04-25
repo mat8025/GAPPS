@@ -380,7 +380,13 @@ fname = _clarg[1];
 ask = atoi(_clarg[2]);
 A= ofr(fname);
 
-B= ofw("the_trace");
+outname = scut(fname,-3);
+
+outname = scat(outname,"tsv");
+
+<<"$fname $outname\n"
+
+B= ofw(outname);
 
 
 if (A == -1) {

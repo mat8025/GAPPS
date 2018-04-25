@@ -142,7 +142,6 @@ CLASS Turnpt
       //<<"in CMF GetDeg $the_ang\n"
       //<<"input args is $the_ang \n"
 
-
       float la;
 
 
@@ -1410,7 +1409,7 @@ CLASS Taskpt
 }
 
 //============================================
-
+int Ntp = 0;
 proc DrawMap(w)
 {
   int msl;
