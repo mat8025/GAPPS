@@ -1,4 +1,6 @@
-// test symbol
+///
+/// test symbol
+///
 
 Graphic = CheckGwm();
 
@@ -6,7 +8,7 @@ Graphic = CheckGwm();
     Xgm = spawnGwm()
   }
 
-//setdebug(1);
+setdebug(1,@keep,@filter,0);
 
   vp = cWi(@title,"SYMBOL",@resize,0.05,0.2,0.9,0.9,0);
 
@@ -60,11 +62,11 @@ uint n_msg = 0;
       eventWait();
       n_msg++
 
-//<<"%V$ev_woname $ev_keyw $ev_type\n";
+<<"%V$_ewoname $_ekeyw $_etype\n";
 
-      if (scmp(ev_type,"PRESS",5)) {
+      if (scmp(_ename,"PRESS",5)) {
 
-       sWo(msgwo,@clear,@clipborder,BLUE_,@textr,ev_msg,0.0,0.7)
+       sWo(msgwo,@clear,@clipborder,BLUE_,@textr,_emsg,0.0,0.7)
 
          
    
@@ -72,23 +74,23 @@ uint n_msg = 0;
          symbol_num = 0;
      }
 
-     if (ev_button == 3) {
+     if (_ebutton == 3) {
         ang += 10;
         if (ang > 360) {
             ang = 0;
         }
      }
-     else if (ev_button == 2) {
+     else if (_ebutton == 2) {
        symbol_num--
        //symbol_name = "diamond"
      }
-     else if (ev_button == 4) {
+     else if (_ebutton == 4) {
        sym_size-- ;
      }
-     else if (ev_button == 5) {
+     else if (_ebutton == 5) {
        sym_size++ ;
      }
-     else if (ev_button == 1) {
+     else if (_ebutton == 1) {
        symbol_num++;
        if (sym_size > 99) {
            sym_size = 1;

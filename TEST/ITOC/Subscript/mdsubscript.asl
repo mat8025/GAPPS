@@ -1,5 +1,4 @@
-#! /usr/local/GASP/bin/asl
-#/* -*- c -*- */
+
 
 //  
 set_debug(0)
@@ -40,7 +39,7 @@ Redimn(R,4,5)
 
 
 
-STOP!
+  exit();
 
 
 

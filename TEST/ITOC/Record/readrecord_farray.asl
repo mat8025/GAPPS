@@ -12,14 +12,15 @@
 // M and T created as new records
 // or M and T become vectors or arrays - if typed as such
 
-setDebug(1,@trace,@keep,@filter,0)
-
+setDebug(1,@~trace,@keep,@filter,0)
+checkMemory(1);
 
 IV= vgen(INT_,12,0,1)
 
 <<"$IV\n\n"
 
 IV->redimn(4,3)
+
 
 <<"$IV\n\n"
 
@@ -46,6 +47,22 @@ data_file = GetArgStr()
      exit();
   }
   
+float M[8000][10];
+
+
+M[5000][3] = 47;
+
+<<"$M[5000][::] \n"
+
+M[10][7] = 79;
+
+<<"$M[10][::] \n"
+
+//M->delete();
+
+<<"$M[10][::] \n"
+
+<<"$M[5000][::] \n"
 
 R=readRecord(A,@type,FLOAT_);
 
@@ -64,7 +81,7 @@ sz = Caz(R);
 <<"$R[2][2]\n"
 <<"$R[2][3]\n"
 <<"///\n"
-<<"%(5,, ,\n)$R[1:sz-2][1:5:] \n"
+<<"%(5,, ,\n)$R[1:3][1:5:] \n"
 <<"///\n"
 
 <<"$(typeof(R))  $(Caz(R)) $(Cab(R)) \n"
@@ -74,7 +91,7 @@ exit()
 
 <<"//////////////\n"
 
-float M[];
+
 
 
 M= R[1:20][2];
