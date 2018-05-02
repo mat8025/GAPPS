@@ -72,11 +72,12 @@ proc eventWait()
 {
     
     _eloop++;
-     _ewoid = -1;
+    _ekeyc = 0;
+    _ewoid = -1;
     _erow = -1;
     _ecol = -1;    
     _emsg = Ev->waitForMsg();
-    
+
   
     eventDecode();
 

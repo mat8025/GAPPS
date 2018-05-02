@@ -4,6 +4,32 @@
 
 setDebug(1,@keep)
 
+
+
+
+proc showMeasures (index)
+{
+         tim = Tim[index];
+         lat = Lat[index];
+         lon = Lon[index];	 
+         elev = Elev[index];
+         bpm =  Bpm[index];
+	 spd =  Spd[index];
+	 dist =  Dist[index];
+         dist = dist/1000.0 * 0.621;
+
+         text(txtwo,"$index $Elev[index] $Bpm[index] $Spd[index] ",0.5,0.5)
+         sWo(timwo,@value,tim,@update)
+         sWo(distwo,@value,dist,@update)
+         sWo(bpmwo,@value,bpm,@update)
+	 sWo(spdwo,@value,spd,@update)
+	 sWo(elevwo,@value,elev,@update)
+	 sWo(latwo,@value,lat,@update)
+	 sWo(lonwo,@value,lon,@update);
+
+}
+//========================//
+
    data_file = GetArgStr()
 
   if (data_file @= "") {
@@ -141,7 +167,7 @@ Graphic = CheckGwm();
 
   sWi(mapvp,@clip,0.01,0.1,0.95,0.99);
 
-  bikewo= cWo(mapvp,@BN,@name,"B->",@color,WHITE_,@resize_fr,0.55,0.5,0.58,0.55);
+  bikewo= cWo(mapvp,@BN,@name,"b",@color,WHITE_,@resize_fr,0.55,0.5,0.57,0.57);
   sWo(bikewo,@hvmove,1,@redraw,@drawon, @pixmapon);
 
   mapwo= cWo(mapvp,@GRAPH,@resize_fr,0.2,0.1,0.95,0.95,@name,"MAP",@color,WHITE_);
@@ -227,11 +253,11 @@ Graphic = CheckGwm();
 
 
     
-  LatS = min_lat -0.1;
-  LatN = max_lat+0.1;
+  LatS = min_lat -0.01;
+  LatN = max_lat+0.01;
 
-    LongW = min_lng -0.1;
-    LongE = max_lng +0.1;
+    LongW = min_lng -0.01;
+    LongE = max_lng +0.01;
 
   sWo(mapwo, @scales, LongW, LatS, LongE, LatN, @save, @redraw, @drawoff, @pixmapon);
 
@@ -247,9 +273,12 @@ Graphic = CheckGwm();
     
 
    if (Npts > 0) {
-     DrawGline(igc_tgl);  // plot the igc track -- if supplied
 
-     sWo(mapwo,@save,@savepixmap);
+     sWo(mapwo,@clearpixmap);
+
+     dGl(igc_tgl);  // plot the igc track -- if supplied
+
+     sWo(mapwo,@save,@showpixmap,@savepixmap);
      
      sWo(vvwo, @scales, 0, min_ele, Npts, (max_ele+50) )
      
@@ -277,56 +306,50 @@ msgv = "";
 
 float d_ll = 0.05;
 
-
+float lat;
+float lon;
 
 float mrx;
 float mry;
 str wcltpt="XY";
 
 include  "gevent";
-int index = 0;
-int kindex = 0;
+int mindex = 0;
+int Kindex = 0;
 int bpm;
 int tim;
 
-        sWi(mapvp,@scales,LongW, LatS, LongE, LatN)
+     sWi(mapvp,@scales,LongW, LatS, LongE, LatN)
 
-while (1) {
+     sWo(mapwo,@clearpixmap);
 
-    drawit = 1
+     dGl(igc_tgl);  // plot the igc track -- if supplied
+
+     sWo(mapwo,@save,@showpixmap,@savepixmap);
+
+    while (1) {
+
 
        eventWait()
-
-
-<<"$_emsg $_ekeyc %c $_ekyc \n"
+<<"$_emsg %V $_ewoid $_etype $_ekeyc %c $_ekeyc \n"
 	         swo(txtwo,@clear)
 		 text(txtwo,"$_emsg  $_ekeyc ",0.2,0.7)
 
-      if (_ewoid == vvwo) {
 
-//<<"%V $_erx  $_ery \n"
-         index = trunc(_erx) 
-         swo(txtwo,@clear)
-         tim = Tim[index];
-         lat = Lat[index];
-         lon = Lon[index];	 
-         elev = Elev[index];
-         bpm =  Bpm[index];
-	 spd =  Spd[index];
-	 dist =  Dist[index];
-         dist = dist/1000.0 * 0.621;
+<<"%V $mindex $(typeof(mindex)) $Kindex \n"	 	 	 
 
-         text(txtwo,"$index $Elev[index] $Bpm[index] $Spd[index] ",0.5,0.5)
-         sWo(timwo,@value,tim,@update)
-         sWo(distwo,@value,dist,@update)
-         sWo(bpmwo,@value,bpm,@update)
-	 sWo(spdwo,@value,spd,@update)
-	 sWo(elevwo,@value,elev,@update)
-	 sWo(latwo,@value,lat,@update)
-	 sWo(lonwo,@value,lon,@update);
-		  dGl(igc_tgl);
-          sWo(mapwo,@showpixmap); 
-         sWo(bikewo,@move,lon,lat,mapwo,@redraw); // lon is neg ?
+     if (_etype == PRESS_) {
+       if (_ewoid == vvwo) {
+<<"doing vv $_ewoid \n"
+         mindex = trunc(_erx) 
+<<"%V $_erx  $_ery $mindex $(typeof(mindex)) \n"
+        swo(txtwo,@clear)
+         showMeasures (mindex);
+         Kindex = mindex;
+<<"%V $mindex $(typeof(mindex)) $Kindex \n"	 
+         dGl(igc_tgl);
+         
+         sWo(bikewo,@move,lon,lat,mapwo,@redraw); 
 
         }
 
@@ -337,14 +360,11 @@ while (1) {
 		 lat = _ery;
 		 lon = _erx;
 
-        sWo(mapwo, @scales, LongW, LatS, LongE, LatN ) ; // TBD put lon in W > neg form
-        sWo(mapwo,@clearpixmap,@clipborder);
-
-	if (Npts > 0) {
-           sWo(mapwo,@clear,@clearpixmap);
+          sWo(mapwo, @scales, LongW, LatS, LongE, LatN ) ; // TBD put lon in W > neg form
+          sWo(mapwo,@clearpixmap);
 	  dGl(igc_tgl);
           sWo(mapwo,@showpixmap);
-	}
+
          sWo(mapwo,@save,@savepixmap);	
          sWo(latwo,@value,lat,@update);
 	 sWo(lonwo,@value,lon,@update);
@@ -352,43 +372,58 @@ while (1) {
          sWo(bikewo,@move,lon,lat,mapwo,@redraw); // lon is neg ?
         }
 
+      }
 
+
+    if (_etype == KEYPRESS_) {
 	if (_ekeyc == 'R') {
 
-         kindex = kindex + 5;
-         lat = Lat[kindex];
-         lon = Lon[kindex];	 
-<<"$_eloop got R $kindex $lat $lon\n"
-sWo(bikewo,@move,lon,lat,mapwo,@redraw); 
+         Kindex = Kindex + 5;
+         lat = Lat[Kindex];
+         lon = Lon[Kindex];	 
+//<<"$_eloop got R $Kindex $(typeof(Kindex)) $lat $lon\n"
+          sWo(mapwo,@showpixmap);
+         sWo(bikewo,@move,lon,lat,mapwo,@redraw);
+         showMeasures (Kindex);
+	 mindex = Kindex;
+<<"%V $mindex $(typeof(mindex)) $Kindex \n"	 	 
         }
 
-	if (_ekeyc == 'S') {
+	else if (_ekeyc == 'S') {
 
-         kindex -= 5;
-         lat = Lat[kindex];
-         lon = Lon[kindex];	 
-<<"$_eloop got S $kindex $lat $lon\n"
-sWo(bikewo,@move,lon,lat,mapwo,@redraw); 
+         Kindex -= 5;
+         lat = Lat[Kindex];
+         lon = Lon[Kindex];	 
+//<<"$_eloop got S $Kindex $lat $lon\n"
+          sWo(mapwo,@showpixmap);
+          sWo(bikewo,@move,lon,lat,mapwo,@redraw);
+         showMeasures (Kindex);
         }
 
-	if (_ekeyc == 'Q') {
+	else if (_ekeyc == 'Q') {
 
-         kindex += 10;
-         lat = Lat[kindex];
-         lon = Lon[kindex];	 
-<<"$_eloop got Q $kindex $lat $lon\n"
-sWo(bikewo,@move,lon,lat,mapwo,@redraw); 
+         Kindex += 10;
+         lat = Lat[Kindex];
+         lon = Lon[Kindex];	 
+//<<"$_eloop got Q $Kindex $lat $lon\n"
+          sWo(mapwo,@showpixmap);
+          sWo(bikewo,@move,lon,lat,mapwo,@redraw);
+         showMeasures (Kindex);
+	 mindex = Kindex;
+<<"%V $mindex $(typeof(mindex)) $Kindex \n"	 	 	 
         }
 
-	if (_ekeyc == 'T') {
+	else if (_ekeyc == 'T') {
 
-         kindex -= 10;
-         lat = Lat[kindex];
-         lon = Lon[kindex];	 
-<<"$_eloop got T $kindex $lat $lon\n"
-sWo(bikewo,@move,lon,lat,mapwo,@redraw); 
-        }
-
+         Kindex -= 10;
+         lat = Lat[Kindex];
+         lon = Lon[Kindex];	 
+//<<"$_eloop got T $Kindex $lat $lon\n"
+         sWo(mapwo,@showpixmap);
+         sWo(bikewo,@move,lon,lat,mapwo,@redraw); 
+         showMeasures (Kindex);
+    }
+   }
 
 
 }
