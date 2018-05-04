@@ -111,20 +111,41 @@ A=ofw("Quit.m")
 cf(A)
 
 /////////////////////////////
+proc Save ()
+{
+          <<" saving_the_week \n"	       
+         sWo(awo,@sheetmod,1);
+	 sWi(aw,@tmsg,"saving_the_week ");
+          <<" week sheet saved \n"
+ 
+}
+//=======================================//
+
+
+
+
+
+
+
+//=======================================//
 
 activ = "idle"
 
   dstr= !!"date "
 <<"$dstr \n"
   wks = split(dstr);
-  yrn = atoi(wks[5])
+  ys = wks[5];
+  yrn = atoi(ys)
+
   mon = wks[1];
   dayname = wks[0];
   daydate = atoi(wks[2]);
   
   wks= !!"date +\%V"
 <<"$wks $(typeof(wks)) $(Caz(wks))\n";
-  wkn = atoi(wks[0]);
+<<"%V $wks\n"
+ws0=wks[0];
+wkn = atoi(ws0);
 
 
   dstr= !!"date +\%w"
@@ -161,7 +182,15 @@ nd++;
 
 
 
+
 <<" we are in week $wkn $yrn mon $mon $dayname $daydate\n";
+
+  sheet_name = scat("Journal/WeekPlan_","$wkn","_","$yrn");
+  <<"%V $sheet_name\n"
+  //sfname = scat(sheet_name,".sst");
+  sfname = "Journal/WeekPlan_${wkn}_${yrn}.sst");
+<<"%V $sfname\n"
+
 
   Graphic = CheckGwm()
 
@@ -184,8 +213,9 @@ nd++;
   need_new =1;
 
   isok = 0;
-  sheet_name = "Journal/WeekPlan_${wkn}_${yrn}";
-  sfname = "Journal/WeekPlan_${wkn}_${yrn}.sst";
+
+
+
 
 // make a window
 
@@ -390,9 +420,7 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
 
 
         if (_ewoid == savewo) {
-	 sWo(awo,@sheetmod,1);
-	 sWi(aw,@tmsg,"saving_the_week ");
-          <<" saving_the_week \n"
+               Save();
         }
 
         if (_ewoid == qwo) {
@@ -408,7 +436,6 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
 	        loopon = 0;
                break;
             }
-
          }
 
         if (_ewoid == amwo) {
@@ -584,6 +611,8 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
  exit(); // takes down XGS as well
  
 
+
+
 //////////// TBD ////////////////
 /{/*
 
@@ -614,6 +643,5 @@ sWo(awo,@cellhue,(((dow+6)%7)*2+1),0,"red");
   rudimentary score
 
   add last actvity  whereever selected
-
 
 /}*/
