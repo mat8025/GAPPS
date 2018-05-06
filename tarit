@@ -1,0 +1,1 @@
+find -name *.asl -o -name *.txt -o -name *.dev -o -name *.dat -o -name *READ* -o -name *.csv -o -name *tsv | tar -cvzf gapps.tgz -T - 

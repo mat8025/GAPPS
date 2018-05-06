@@ -96,7 +96,7 @@ proc getIFD( )
     static int ifd = 0;
 
    IFDS[ifd][::] = CF;
-<<"IFDS<$ifd> $IFDS[ifd][::] \n"
+//<<"IFDS<$ifd> $IFDS[ifd][::] \n"
     cfv = IFDS[ifd][::];
     cfv->redimn();
  //   <<"$cfv\n"
@@ -112,7 +112,7 @@ proc getIFD( )
 
        kb = fscanv(A,0,"I500",&STRPBC);
 
-        <<"SBC\n %(10,, ,\n)$STRPBC\n"
+        //<<"SBC\n %(10,, ,\n)$STRPBC\n"
    }
 
    if (tag == ImageLength) {
@@ -122,7 +122,7 @@ proc getIFD( )
 
        kb = fscanv(A,0,"I500",&STRPOF);
 
-        <<"SO\n %(10,, ,\n)$STRPOF\n"
+    //    <<"SO\n %(10,, ,\n)$STRPOF\n"
    }
 
    if (tag == ColorMap) {
@@ -221,7 +221,7 @@ kb = fscanv(A,0,"I1",&offset);
 
 // show first 10 strip
 if (nstrips > 500) {
- nstrips = 500;
+ nstrips = 10;
 }
 for (i= 0; i <nstrips ;i++) {
 
@@ -236,6 +236,7 @@ kb = fscanv(A,0,sfmt,&istrip);
 
 //<<"%(25,, ,\n)$istrip[0:nvals-1]\n"
 <<"%(25,, ,\n)$istrip[0:199]\n"
+<<"%(25,, ,\n)$istrip[nvals-100:nvals-1]\n"
 here = ftell(A)
 <<"<$i> now @ $here\n"
 }

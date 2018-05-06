@@ -1,20 +1,37 @@
-
-
-int v[2] = {2,-1}
-<<"$v \n"
-
-I = sgen(INT_,10,v)
-
-<<"$I\n"
-
-
-int v3[3] = {2,-1,3}
-<<"$v3 \n"
-
-I2 = sgen(INT_,15,v3)
-
-<<"$I2\n"
+///
+///
+///
 
 
 
-stop!
+checkIn()
+int vi[2] = {0,0}
+<<"$vi \n"
+
+int vs[2] = {1,-1}
+
+
+
+Table = vvgen(INT_,20,vi,vs)
+
+
+<<"%(2,, ,\n)$Table \n"
+j= 0;
+for (i= 0; i< 4; i++) {
+
+checkNum(Table[j],i)
+checkNum(Table[j+1],-i)
+j +=2
+}
+
+
+STable = vvgen(SHORT_,20,{0,0},{1,-1}) ; // TBF anon vec as argument
+
+<<"%(2,, ,\n)$STable \n"
+
+
+
+checkOut()
+
+
+exit()

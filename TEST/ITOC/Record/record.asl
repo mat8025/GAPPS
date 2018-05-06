@@ -8,7 +8,7 @@
 // test record type
 // each record is an Svar
 
-SetDebug(1,"trace")
+SetDebug(1,@~trace)
 
 CheckIn()
 

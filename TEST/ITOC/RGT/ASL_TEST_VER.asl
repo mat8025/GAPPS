@@ -979,6 +979,20 @@ if ( do_all || do_array ) {
   cart("m3d")
   cart("m3d_assign")
 
+  Run2Test("Sgen")
+
+  cart("sgen")
+
+  Run2Test("VVgen")
+
+  cart("vvgen")
+
+  Run2Test("Vfil")
+
+  cart("vfill")
+
+
+
     }
 
 
