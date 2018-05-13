@@ -7,14 +7,14 @@ GoalWt = 175;  // ideal -- just so slighty tubby
 NextGoalWt = 185;
 StartWt = 199;
 
-targetday = julian("04/30/2018") -bday;
+targetday = julian("05/22/2018") -bday;
 
 
 //  SET  START AND END DATES HERE
 
-long sday = julian("04/09/2018") -bday // start date
-      gsday = julian("04/09/2018") -bday;
-      gday =  julian("04/30/2018") -bday;    // next goal day 
+long sday = julian("05/11/2018") -bday // start date
+      gsday = julian("05/11/2018") -bday;
+      gday =  julian("05/30/2018") -bday;    // next goal day 
 
 
 got_start = 0

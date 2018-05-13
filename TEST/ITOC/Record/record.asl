@@ -8,7 +8,9 @@
 // test record type
 // each record is an Svar
 
-SetDebug(1,@~trace)
+SetDebug(1,@~trace,@keep,@~pline)
+
+
 
 CheckIn()
 
@@ -94,7 +96,7 @@ str sr1;
 /}
 
 
- R[0] = Split("how many cols in this record?")
+ R[0] = Split("how many cols are in this record?")
 
 <<"in record[0] we have:-  $R[0] \n"
 
@@ -108,9 +110,7 @@ checkStr(sr0,"how")
 
 checkStr(sr0,"cols")
  <<"%V$sr0\n"
-
-
-
+ R[1] = Split("can we have blank records?")
 
  R[3] = Split("just concentrate focus and move ahead")
 // fix the number of cols ?? - for an ascii table
@@ -128,6 +128,7 @@ checkStr(sr0,"cols")
 <<"inrecord[2][1] we have :- $R[2][1] \n"
 <<"%V $R[2][2] \n"
 <<"%V $R[2][0] \n"
+ R[2][2] = "learn"
 
  sr0 = R[0][0];
  <<"%V$sr0\n"
@@ -152,7 +153,7 @@ checkStr(R[2],R[3])
 <<"inrecord[2] we have:- $R[2] \n"
 
 
- R[4] = "what is going on here"
+ R[4] = Split("and what is going on here")
 
 <<"in R[4] we have: $R[4]\n"
 
@@ -173,10 +174,55 @@ checkStr(sr0,"and");
    sr1 = R[3][4]
 
 
+fpat = searchRecord( R, "and")
+
+<<" $(typeof(fpat)) $(Cab(fpat)) \n"
+
+<<" $R[::] \n"
+
+row = fpat[0][0];
+col = fpat[0][1];
+
+<<"%V $row $col\n"
+<<" $R[row] \n"
+
+for (k=0; k <5; k++) {
+<<"$k $fpat[k][0] $fpat[k][1]\n"
+}
+
+fpat = searchRecord( R, "sand")
+
+row = fpat[0][0];
+col = fpat[0][1];
+
+<<"%V $row $col\n"
+<<" $R[row] \n"
+
+<<" $(typeof(fpat)) $(Cab(fpat)) \n"
+nf = Cab(fpat)
+
+for (k=0; k <nf[0]; k++) {
+<<"$k $fpat[k][0] $fpat[k][1]\n"
+}
+
+
+fpat->redimn();
+<<"$fpat\n"
+exit()
+
+fpat = searchRecord( R, "blank")
+
+for (k=0; k <5; k++) {
+<<"$k $fpat[k][0] $fpat[k][1]\n"
+}
+
+
+exit()
+
  <<"%V $fr0 $sr0 $sr1\n"
 checkStr(sr1,"move")
 
-checkProgress()
+//checkProgress()
 
 <<"%V$R[3]\n"
 <<"inserting muy bien into R[3][4]\n"
@@ -197,7 +243,7 @@ checkStr(sr3,"and");
 
 checkStr(sr1,"muy bien");
 
-checkProgress();
+//checkProgress();
 
 eh = R[3][-1]
   
@@ -208,8 +254,14 @@ ah = R[-1][1]
 <<"%V$ah \n"
 
 
-exit()
 
+
+
+
+CheckOut()
+
+
+ exit()
 
 
 
@@ -269,8 +321,7 @@ R[7] = R[5];
 <<"now in record[7][0:4] we have $R[7][0:4] \n"
 
 
-CheckOut()
-   exit()
+
 
 
      

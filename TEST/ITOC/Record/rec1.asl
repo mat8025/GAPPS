@@ -3,56 +3,88 @@
 ///  Records
 ///
 
-setdebug(1);
+setdebug(1,@keep,@filter,0,@~trace);
 
- record R[10];
+ record R[2+];
 
 
-
- R[0] = "some words";
+ R[0] = Split("0,1,2,3,4,5,6,7,8,9",",");
 
 <<"%V$R[0]\n"
 
 
- R[1] = Split("some other words");
+<<"%V$R[0][2]\n"
+
+
+ R[1] = Split("10,12,23,34,45,56,67,78,89,90",",");
 
 <<"%V$R[1]\n"
 
+ R[2] = R[1];
 
- record A[6+];
-
-
- A[0] = "extra words";
-
-<<"%V$A[0]\n"
+ R[3] = R[0];
 
 
- A[1] = "one word";
+<<"$R \n"
+int ival;
+sz = Csz(R);
+cols = Csz(R[0])
+str val;
+  val = R[1][4];
 
-<<"%V$A[1]\n"
+<<"val $val $(typeof(val)) $(Cab(val))  $(csz(val))\n"
 
- A[5] = "sixth record";
+ival = atoi(val);
 
-<<"%V$A[5]\n"
+<<"ival $ival $(Cab(ival))  $(csz(ival))\n"
 
- A[12] = "more words";
+ival = atoi(R[3][4]);
 
-<<"%V$A[12]\n"
+<<"ival $ival $(Cab(ival))  $(csz(ival))\n"
+
+exit();
+
+<<"%V $sz $cols \n"
+for (i=0; i < sz ; i++) {
+  for (j=0; j < cols ; j++) {
+     ival = atoi(R[i][j]);
+     <<"<$i><$j> $R[i][j]  : $ival\n"
+   }
+}
+
+ 
 
 
- A[6] = "seventh rec";
+ 
 
 
+   ival = atoi(R[2][5]);
+
+<<"$ival $(Cab(ival))  $(csz(ival))\n"
+
+str sval
+
+   sval = R[3][4];
+
+<<"$sval $(typeof(sval))  $(Cab(val))  $(csz(val))\n"
+
+<<"$sval[0] \n"
+
+   
+   
+
+<<"$sval[1] \n"
+
+ival = atoi( sval[0]);
 
 
-<<"%V$A[6]\n"
+<<"$ival $(typeof(ival))  $(Cab(ival))  $(csz(ival))\n"
 
-<<"%V$A[12]\n"
+ival->redimn();
+
+<<"$ival $(typeof(ival))  $(Cab(ival))  $(csz(ival))\n"
 
 
-A[20] = "twentyfirst rec";
-<<"%V$A[20]\n"
+ aval= ival[0]
 
- A[12] = "more words";
-
-<<"%V$A[12]\n"
+<<"$aval $(typeof(aval))  $(Cab(aval))  $(csz(aval))\n"

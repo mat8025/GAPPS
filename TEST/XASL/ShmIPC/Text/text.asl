@@ -17,16 +17,19 @@ envdebug()
     Xgm = spawnGWM()
   }
 
+include "tbqrd"
 
  txtwin = cWi("title","MK_INFO")
 
  sWi(txtwin,@pixmapon,@drawon,@save,@bhue,"teal",@sticky,1)
- sWo(txtwin,@grid,20,20);
+ sWo(txtwin,@grid,20,20);  // setting a grid on parent window for position
+
+   titleButtonsQRD(txtwin);
 
  // TITLE BUTTON QUIT
- tbqwo=cWo(txtwin,@TB,@name,"tb_q",@color,RED_,@VALUE,"QUIT",@func,"window_term",@resize,0.95,0,0.99,1)
- sWo(tbqwo,@BORDER,@DRAWON,@PIXMAPON,@CLIPBORDER,RED_@FONTHUE,RED_, @symbol,"triangle", \
- @symsize, 10, @redraw)
+// tbqwo=cWo(txtwin,@TB,@name,"tb_q",@color,RED_,@VALUE,"QUIT",@func,"window_term",@resize,0.95,0,0.99,1)
+// sWo(tbqwo,@BORDER,@DRAWON,@PIXMAPON,@CLIPBORDER,RED_@FONTHUE,RED_, @symbol,"triangle", \
+// @symsize, 10, @redraw)
 
 
 
@@ -61,47 +64,52 @@ envdebug()
  sWo(rvwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@pixmapoff,@drawon,@save)
  sWo(rvwo,@SCALES,0,0,1,1)
 
+// resize fractional 0, pixel offset 1, real scales 2, grid pos 3
 
- ipwo=cWo(txtwin,"TEXT",@name,"InputText",@VALUE,"howdy input line ",@color,WHITE_,@resize,9,1,18,4,3)
- sWo(ipwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"inputValue")
+ ipwo=cWo(txtwin,"TEXT",@name,"InputText",@VALUE,"howdy input line ",@color,WHITE_,@resize,9,1,18,9,3)
+ //sWo(ipwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"inputValue")
+  sWo(ipwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"inputText")
 
 
   int txwos[] = {lvwo,rvwo,bigwo,two};
 
+
+
+
+
 include "gevent"
+
+
 
 xp = 0.1
 yp = 0.5
 
 char txtip[256];
 
-gevent E;
 
 <<"xset fp+ /usr/local/GASP/gasp/fonts \n"
 
    while (1) {
 
     eventWait()
-    
-    E->setevent();
 
    sWo(two,@redraw)
 
-   msgw= split(ev_msg)
+   msgw= split(_emsg)
 
 <<"%V$msgw \n"
 
-    sWo(two,@textr,"$ev_msg",0.1,0.8)
+    sWo(two,@textr,"$_emsg",0.1,0.8)
 
-    sWo(stwo,@print,"$ev_msg\n") ;
+    sWo(stwo,@print,"$_emsg\n") ;
     
-    sWo(stwo,@print,"%V$ev_woname $ev_button\n");
+    sWo(stwo,@print,"%V$_ewoname $_ebutton\n");
 
-     if (ev_woid == ipwo) {
+     if (_ewoid == ipwo) {
 
       sWo(txwos,@clear);
 
-     woGetText(ipwo,txtip,120);
+     woGetText(ipwo,txtip,512);
       
   <<" got %s < $txtip >  as input \n";
       // rotated text??

@@ -21,12 +21,14 @@ int Ncols = 10;
 
 proc SAVE()
 {
-
-         <<"IN $_proc saving sheet $fname  %V$Ncols \n";
+         <<"IN $_proc saving sheet %V $fname  $Ncols \n";
 	 
             B=ofw(fname)
-	    writeRecord(B,R,@del,Delc,@ncols,Ncols);
-	    cf(B)
+
+            nrw=writeRecord(B,R,@del,Delc,@ncols,Ncols);
+<<"%V $B $nrw  $Ncols \n"
+            cf(B)
+	    
     return 
 }
 //======================
@@ -130,15 +132,16 @@ proc DELCOL()
 
 }
 //======================
-proc ADDROW()
+
+proc AddTask( wt)
 {
-/// should go to last page
 
     sz= Caz(R);
     
 <<"in $_proc record $rows $sz\n"
 
     er = rows;
+
     sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0);
   
     curr_row = rows- page_rows +1;
@@ -149,12 +152,13 @@ proc ADDROW()
 
    rows++;
     
-    R[er] = DF[0]; // whatever is the supplied default tof this table
+    R[er] = DF[wt];
+    // 0  is the supplied default tof this table
+    // 1...nt  will be favorite/maintenance tasks
 
-   // has to written over to display version
+    // has to written over to display version
     sWo(cellwo,@cellval,R);
     // increase rows/colls
-
 
     sWo(cellwo,@selectrowscols,curr_row,rows,0,cols,1);
     
@@ -162,10 +166,17 @@ proc ADDROW()
     
     sWo(cellwo,@redraw);
 
-
     sz = Caz(R);
 
   <<"New size %V $rows $cols $sz\n"  
+}
+//===============================//
+
+proc ADDROW()
+{
+/// should go to last page
+
+    AddTask(0)
     return 
 }
 //====================================

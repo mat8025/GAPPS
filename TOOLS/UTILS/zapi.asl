@@ -54,12 +54,12 @@ match = 0;
 
       // yn=ttyin(" Kill [n/y]?");
 
-      //yn=iread(" Kill [n/y]?");
+      yn=iread(" Kill [n/y]?");
 
-      //  if (yn @= "y") { // line has \n ?
+        if (yn @= "y") { // line has \n ?
     <<"Killing $pid \n";
     !!"kill -9 $pid ";
-    // }
+       }
    }
  }
 }

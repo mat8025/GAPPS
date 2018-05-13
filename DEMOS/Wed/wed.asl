@@ -429,3 +429,6 @@ exit_si()
 //
 //  get today's date and set up view for this quarter
 //  can we add comments
+
+
+//  FIX misaligned wt and Xercise plots!
