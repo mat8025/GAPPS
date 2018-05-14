@@ -942,6 +942,8 @@ if ( do_all || do_array ) {
 
   cart ("arraysubsrange")
 
+  cart ("dynarray")
+ 
   cart ("lhrange")
 
   cart ("lhe")
@@ -1220,13 +1222,14 @@ if ( do_all || do_record ) {
 
      Run2Test("Record")
 
-    //Run2Test("Record")
 
     cart("record")
 
     cart("readrecord")
 
     cart("prtrecord")
+
+    cart("rec1")
 
 
 }
