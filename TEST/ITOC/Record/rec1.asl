@@ -5,28 +5,97 @@
 
 setdebug(1,@keep,@filter,0,@~trace);
 
- record R[2+];
+checkIn()
+int ival;
+
+ int IV[4+];
+
+  sz = Caz(IV);
+  <<"%V$sz\n"
+
+ checkNum(sz,4);
+
+  IV[1] = ptan("AT");
+<<"$IV\n"
+
+checkNum(IV[1],85);
+
+  IV[5] = ptan("Ac");
+<<"$IV\n"
+
+checkNum(IV[5],89);
+
+float FV[5];
+
+ FV[2] = ptan("Rh");
+
+  sz = Caz(FV);
+  <<"%V$sz\n"
+  
+<<"$FV\n"
 
 
- R[0] = Split("0,1,2,3,4,5,6,7,8,9",",");
+
+
+
+
+ record R[4+];
+
+
+
+  sz = Caz(R);
+  <<"%V$sz\n"
+
+
+
+
+ R[0] = Split("80,1,2,3,4,5,6,7,8,9",",");
 
 <<"%V$R[0]\n"
 
-
 <<"%V$R[0][2]\n"
+
+ R[2] = R[0];
+
+<<"%V$R[2]\n"
+
+<<"%V$R[2][2]\n"
+
+  sz = Caz(R);
+  <<"%V$sz\n"
+
 
 
  R[1] = Split("10,12,23,34,45,56,67,78,89,90",",");
 
 <<"%V$R[1]\n"
+<<"%V$R[1][4]\n"
 
- R[2] = R[1];
+ival = atoi(R[1][4]);
+sz  = csz(ival)
+<<"ival $ival  bounds $(Cab(ival)) sz   $(csz(ival))\n"
+
+checkNum(sz,0)
+checkNum(ival,45)
+
+ival = atoi(R[1][5]);
+checkNum(ival,56)
+
 
  R[3] = R[0];
 
+<<"3 == 0 %V$R[3]\n"
 
-<<"$R \n"
-int ival;
+
+<<"[3][4] $R[3][4] \n"
+
+<<"%V$R\n"
+
+
+checkOut()
+
+exit()
+
 sz = Csz(R);
 cols = Csz(R[0])
 str val;
