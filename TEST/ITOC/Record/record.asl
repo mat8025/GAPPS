@@ -8,8 +8,7 @@
 // test record type
 // each record is an Svar
 
-SetDebug(1,@~trace,@keep,@~pline)
-
+SetDebug(1,@~trace,@keep,@pline)
 
 
 CheckIn()
@@ -73,7 +72,7 @@ str sr1;
 //record R[]; // TBF
 
 
-//exit()
+
 
 
 /{
@@ -100,16 +99,46 @@ str sr1;
 
 <<"in record[0] we have:-  $R[0] \n"
 
+<<"col0 $R[0][0] \n"
+<<"col1 $R[0][1] \n"
+
 
  sr0 = R[0][0];
  <<"%V$sr0\n"
 
 checkStr(sr0,"how")
 
+<<"col2 $R[0][2] \n"
+
    sr0 = R[0][2]
 
 checkStr(sr0,"cols")
  <<"%V$sr0\n"
+
+
+<<"%V $R[0][1] \n"
+
+ checkStr(R[0][1],"many")
+
+  sr1 = R[0][1];
+
+<<"$(typeof(sr1)) %V $sr1 \n"
+ checkStr(sr1,"many")
+ 
+CheckOut()
+exit()
+
+
+
+
+   sr2 = R[0][2];
+
+checkStr(sr2,"cols")
+ <<"$(typeof(sr2)) %V$sr2\n"
+
+
+
+
  R[1] = Split("can we have blank records?")
 
  R[3] = Split("just concentrate focus and move ahead")
@@ -133,7 +162,13 @@ checkStr(sr0,"cols")
  sr0 = R[0][0];
  <<"%V$sr0\n"
 
- checkStr(R[0][0],"how")
+ checkStr(R[0][1],"how")
+
+ sr1 = R[0][0];
+ 
+ <<"%V$sr1\n"
+
+
 
    sr2 = R[2][2]
    
@@ -208,7 +243,7 @@ for (k=0; k <nf[0]; k++) {
 
 fpat->redimn();
 <<"$fpat\n"
-exit()
+
 
 fpat = searchRecord( R, "blank")
 
@@ -217,7 +252,7 @@ for (k=0; k <5; k++) {
 }
 
 
-exit()
+
 
  <<"%V $fr0 $sr0 $sr1\n"
 checkStr(sr1,"move")
@@ -254,13 +289,7 @@ ah = R[-1][1]
 <<"%V$ah \n"
 
 
-
-
-
-
 CheckOut()
-
-
  exit()
 
 
@@ -360,7 +389,7 @@ R[7] = R[5];
 // pick fields
 <<"\n\n%1r$R[13:23][0]\n"
 
-STOP!
+exit()
 
 
 

@@ -3,35 +3,49 @@
 ///
 
 //envDebug()
-DBIT = 2;
 
-setDebug(1);
+SetDebug(1,@~trace,@keep,@pline)
 
 <<"hey buddy move on up\n"
 <<"$_clarg[0] $_clarg[1] \n"
 
-<<" %V $DBIT\n";
+checkIn();
+
+int D[5];
 
 int d;
 
 d = 79;
 
-
 <<" $d scalar $(Sizeof(d))\n"
 
-checkIn();
+asz= Csz(&d)
 
-asz= Csz(d)
-<<"array size (number of elements) is: $asz \n"
+<<"array size of $d $(typeof(d))  is: $asz \n"
 
-checkNum(asz,0)
-nd = Cnd(d)
+nd = Cnd(&d)
 <<"number of dimensions are: $nd \n"
 checkNum(nd,0)
 
-ab = Cab(d)
+ab = Cab(&d)
 <<"bounds are: $ab \n"
 checkNum(ab,0)
+
+
+checkNum(asz,0)
+
+asz= Csz(&D)
+
+<<"array size of $D $(typeof(D))  is: $asz \n"
+checkNum(asz,5)
+nd = Cnd(&D)
+<<"number of dimensions are: $nd \n"
+checkNum(nd,1)
+
+ab = Cab(&D)
+<<"bounds are: $ab \n"
+checkNum(ab,5)
+
 
 ////////////////////////////////
 

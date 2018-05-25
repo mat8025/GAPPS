@@ -1,11 +1,28 @@
-# test ASL function bscan
+///
+///  bscan
+///
+
+
+SetDebug(1,@~trace,@keep,@pline)
 
 CheckIn()
 
 uchar C[] = { 0xCA , 0xFE, 0xBA, 0xBE, 0xFA, 0xCE, 0xBE, 0xAD , 0xDE,0xAD, 0xC0, 0xDE }
 
 <<" $C \n"
+
+ <<"$C[1] \n"
+
+ checkNum(C[1],0xFE)
+  checkNum(C[1],254)
+
+
+ val = C[1];
+ 
+ <<"$val\n"
 <<"%x $C \n"
+
+
 
 D = C
 
@@ -39,14 +56,14 @@ if (wbo == 4321) {
 else {
  swab = 1
 }
-
- na = bscan(&C[1],!swab,&k,&j)
+<<"$C[1] $C[2]\n"
+ na = bscan(&C[1],swab,&k,&j)
 
 <<"%V $na $k $j \n"
 
 <<"%x $k $j \n"
 
-CheckNum(na,2)
+CheckNum(na,8)
 // depends on endian
 
 uint t = 0xfabebafe

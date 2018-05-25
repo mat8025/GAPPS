@@ -27,7 +27,7 @@ proc SAVE()
 
             nrw=writeRecord(B,R,@del,Delc,@ncols,Ncols);
 <<"%V $B $nrw  $Ncols \n"
-            cf(B)
+            cf(B);
 	    
     return 
 }
@@ -43,7 +43,9 @@ proc READ()
            sz = Caz(R);
           <<"num of records $sz\n"
           sWo(cellwo,@cellval,R);
-	      return 
+	  sWo(cellwo,@redraw);
+
+           return 
 }
 //======================
 proc SORT()
@@ -138,7 +140,7 @@ proc AddTask( wt)
 
     sz= Caz(R);
     
-<<"in $_proc record $rows $sz\n"
+<<"in $_proc record %V $wt $rows $sz\n"
 
     er = rows;
 
@@ -151,7 +153,9 @@ proc AddTask( wt)
     sWo(cellwo,@selectrowscols,0,2,0,cols,1);
 
    rows++;
-    
+    <<"$wt $DF[wt]\n"
+    ex = DF[wt];
+    <<"$wt $DF[wt] : $ex\n"
     R[er] = DF[wt];
     // 0  is the supplied default tof this table
     // 1...nt  will be favorite/maintenance tasks
@@ -280,7 +284,7 @@ proc PGN()
 <<"%V$wval \n"
   wpg = atoi(getWoValue(pgnwo));
 
-<<"%V $npg $wpg\n"
+<<"%V $npgs $wpg\n"
 
   if (wpg <0) wpg = 0;
   if (wpg >npgs) wpg = npgs;

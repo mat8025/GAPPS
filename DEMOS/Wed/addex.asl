@@ -263,20 +263,21 @@ sWo(cellwo,@cellbhue,0,swapcol_a,CYAN_);
         }
 
    }
-
+   else {
       if (_ename @= "PRESS") {
-
-       if (!(_ewoname @= "")) {
-           <<"calling script procedure  $_ewoname !\n"
-
-
-           pfname = _ewoname;
-           $pfname();
-
-        }
+             if (!(_ewoname @= "")) {
+	       ind = findProc(_ewoname) ;
+               if (ind  != 0) {
+              <<"calling script procedure $ind $_ewoid $cellwo $_ename $_ewoname !\n"
+               $_ewoname()
+	    }
+	    else {
+<<"script procedure $_ewoname $ind does not exist!\n"
+            }
       }
-
-
+   }
+  }
+  
 }
 <<"out of loop\n"
 

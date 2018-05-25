@@ -31,10 +31,11 @@ proc eventDecode()
 
     _ekeyw = _ewords[2];
 
+<<"%V $_evalue $_emsg  $_ekeyw \n"
      _evalue =   spat(_emsg,_ekeyw,1);
-     
+<<"%V $_evalue \n"   
      _evalue = eatWhiteEnds(_evalue);
-
+<<"%V $_evalue \n"
     _ekeyw2 = _ewords[3];
 
     _ekeyw3 = _ewords[4];
@@ -118,12 +119,12 @@ svar _emsgwd;
 svar _ewords;
 
 str _ename;
-str _ekeyw;
+str _ekeyw = "";
 
 str _ekeyw2;
 str _ekeyw3;
 str _emsg = "xyz";
-str _evalue;
+str _evalue = "abc";
 
 str _ewoname = "";
 
