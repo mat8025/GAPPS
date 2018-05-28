@@ -1,12 +1,16 @@
-#/* -*- c -*- */
+///
+/// anytask
+///
 
-// Object Orientated version of anytask
+setDebug(1,@keep,@filter,0,@~pline)
 
+#define DBG <<
 
+//define DBG ~!
 
 Main_init = 1;
 
-proc namemangle(aname)
+proc nameMangle(aname)
 {
   // FIXIT --- bad return
   str fname;
@@ -22,7 +26,7 @@ proc namemangle(aname)
 
  scpy(fname,nname,7)
 
-  // <<"%V$nname --> $fname \n"
+   // <<"%V$nname --> $fname \n"
 
 
  return fname
@@ -49,7 +53,7 @@ proc ComputeTC(j, k)
       //<<"%V$tc \n"
       return tc
 }
-
+//===========================//
 
 // try Wtp as args
 
@@ -139,11 +143,12 @@ int nerror = 0
 
   A=ofr("turnpts.dat")  // open turnpoint file
 
-  if (A == -1) A=ofr("cfi/turnpts")
-
+    if (A == -1) {
+      A=ofr("cfi/turnpts")
+    }
+    
   if (A == -1) {
-    <<" can't find turnpts file \n"
-    STOP!
+    exit(-1, " can't find turnpts file ")
   }
 
 
@@ -207,7 +212,7 @@ int cltpt = 0
         tasktype = r_file(TF)
 
           if (TF == -1 || si_error()) {
-            stop()
+            exit(-1,"file error")
           }
           else {
             <<"$TF  $tasktype \n"
@@ -272,16 +277,17 @@ int i = -1
 
     ////   do this to check routine    
     //<<"Start  $the_start \n"
-    setdebug(1,"~trace");
+
 // first parse code bug on reading svar fields?
 
 
 /////////////////////////////
     
 i = -1;    
-  while ( i == -1) {
 
-    //<<" iw %V$i %v $via_keyb $via_cl\n"
+while ( i == -1) {
+
+DBG" iw %V$i %v $via_keyb $via_cl\n"
 
       Fseek(A,0,0)
 
@@ -306,7 +312,7 @@ i = -1;
 	//    	prompt(" ? ")
 
       if (the_start @= "done") {
-              STOP!
+	exit(0,"done");
       }
 
       
@@ -321,14 +327,20 @@ i = -1;
       //<<" \n";
 
       i=Fsearch(A,the_start,0,1,0);
-<<"$i\n"
-      //<<"index found was $i \n"
 
+DBG"$i\n"
+      //<<"index found was $i \n"
+    if (i == -1) {
+      the_start = nameMangle(the_start);
+    }
+          i=Fsearch(A,the_start,0,1,0);
+    
              if (i == -1) {
 	      <<"$the_start not found \n"
               ok_to_compute = 0
               if (!via_keyb) {
-              STOP!
+		//testargs(1,0,"start not found");
+		exit(0,"start not found");
               }
 
       }
@@ -360,28 +372,29 @@ i = -1;
 
 	//ki=Fseek(A,w,0)
 	ki = seek_line(A,0)
-	//<<" $ki back to beginning of line ?\n"
-	// need to step back a line
+DBG" $ki back to beginning of line ?\n"
+
+	  // need to step back a line
 
         nwr = Wval->Read(A)
 
       //    <<" %i $Wval \n"
-	  //   <<"$nwr $Wval[0] $Wval[1] $Wval[2] $Wval[3] \n"
+DBG"$nwr $Wval[0] $Wval[1] $Wval[2] $Wval[3] \n"
 
 	  //    msz = Wval->Caz()
 
 	// <<"%V$msz \n"
 	// <<"%V$n_legs \n"
-	  tplace = Wval[0];
-	  tlon = Wval[3]
+	tplace = Wval[0];
+	tlon = Wval[3];
 
-	    //<<"%V$tplace $tlon \n"
-	  
+DBG"%V$tplace $tlon \n"
+DBG"$Wval[::]\n"	  
       Wtp[n_legs]->Set(Wval)
 
 	  //Wtp[n_legs]->Print()
 
-	    }
+	}
 
 //<<"next \n"
 
@@ -403,7 +416,8 @@ i = -1;
           nxttpt = CLTPT[cnttpt]
           cnttpt++
 	  if (cnttpt > cltpt) {
-	  //	    <<" done reading turnpts $cnttpt\n "
+	    
+DBG" done reading turnpts $cnttpt\n "
 
             nxttpt = "done"
 
@@ -423,7 +437,7 @@ i = -1;
           }
           else {
 
-             i=Fsearch(A,nxttpt,0,1,0)
+              i=Fsearch(A,nxttpt,0,1,0)
 
              if (i == -1) {
 
@@ -431,7 +445,7 @@ i = -1;
               ok_to_compute = 0
 
               if (!via_keyb) {
-                   STOP!
+		exit(0,""$nxttpt not found ");
 	      }
 
 	     }
@@ -557,8 +571,9 @@ ild= abs(LoD)
     //}
 
 
-       tpb = namemangle(tpb)
-    //<<"namemangle returns $tpb \n"
+       tpb = nameMangle(tpb);
+
+   // <<"namemangle returns $tpb \n"
 
 
     if (li == 0) {
@@ -583,7 +598,7 @@ ild= abs(LoD)
 
 
 //<<" polish \n"
-STOP("%6.1f$total km to fly \n")
+exit(0,"%6.1f$total km to fly ")
 
 
 

@@ -6,6 +6,7 @@
 
 //envDebug()
 
+#define DBG <<
 
 include "ootlib"
 
@@ -29,8 +30,8 @@ tp_file = GetArgStr()
   
 
   if (A == -1) {
-    <<" can't find turnpts file \n"
-    STOP!
+    exit(-1," can't find turnpts file \n");
+   
   }
 
 

@@ -1,16 +1,39 @@
+///
+///     Juilian 
+///
 
 
+setDebug(1,@keep,@pline)
 
-//
+  today = date(2);
+
+  jdayn = julian(today)
+
+  today2 = julmdy(jdayn);
+  
+<<"%V $today $jdayn $today2\n"
+
+  nextwk = julmdy(jdayn+7);
+
+  nextfn = julmdy(jdayn+14);
+
+<<"%V $today $nextwk $nextfn\n"
+
+exit()
+   
+
+
 
 <<"4/9/2018\n"
 
-  day = julday("4/9/2018")
+  jdayn = julian("4/9/2018")
+<<"%V $jdayn \n"
 
 
-  wday = juldayofweek(day)
+  wday = juldayofweek(jdayn)
+  wday2 = juldayofweek("4/9/2018")
 
-<<" $day  $wday\n"
+<<" $jdayn  $wday $wday2\n"
 
 <<" $wday \n"
 
@@ -26,7 +49,7 @@
 
 <<"$dt $day $wday \n"
 
-
+exit()
   wday = juldayofweek("4:9:2008")
 
 

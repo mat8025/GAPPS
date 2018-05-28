@@ -1,5 +1,5 @@
 
-setdebug(1,"pline","soe");
+setdebug(1,@pline,@soe);
 
 CheckIn()
 

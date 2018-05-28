@@ -2,8 +2,7 @@
 /// "$Id: showtlib.asl,v 1.2 1997/12/07 03:48:51 mark Exp mark $"
 /// 9/17/2017
 
-//if (Main_init) {
-  //  <<"ootlib include\n"
+
 
   DB = 0
   ntpts = 0
@@ -30,6 +29,53 @@
 
 //============================================
 
+
+proc getDeg ( the_ang)
+    {
+      str the_dir;
+      float la;
+      str wd;
+
+      <<"in $_proc  $the_ang\n"
+	
+
+    the_parts = Split(the_ang,",")
+
+      //<<"%V$the_parts \n"
+
+
+//FIX    float the_deg = atof(the_parts[0])
+    wd = the_parts[0];
+    the_deg = atof(wd)
+
+//    float the_min = atof(the_parts[1])
+    wd = the_parts[1];
+    the_min = atof(wd)
+
+      //<<"%V$the_deg $the_min \n"
+
+      //  sz= Caz(the_min);
+
+      //<<" %V$sz $(typeof(the_deg)) $(Cab(the_deg))  $(Cab(the_min)) \n"
+
+    the_dir = the_parts[2];
+
+    y = the_min/60.0;
+
+    la = the_deg + y
+
+      if ((the_dir @= "E") || (the_dir @= "S")) {
+         la *= -1
+      }
+
+    <<"%V $la  $y  \n"
+      
+    return (la);
+   }
+
+//===============================//
+
+
 CLASS Turnpt 
  {
 
@@ -54,13 +100,14 @@ CLASS Turnpt
   CMF Set (wval) 
    {
 
-     //  <<"$_proc $wval \n"
-     //<<"%V$_cproc  %i$_cobj   %i$wval \n"
+DBG"$_proc $(typeof(wval)) $wval[::] \n"
+
+//<<"%V$_cproc  %i$_cobj   %i$wval \n"
      //sz = wval->Caz()
 
       sz = Caz(wval);      
  // <<"%V$sz \n"
- // <<"$sz 0: $wval[0] 1: $wval[1] 2: $wval[2] 3: $wval[3] 4: $wval[4] \n"
+DBG"$sz 0: $wval[0] 1: $wval[1] 2: $wval[2] 3: $wval[3] 4: $wval[4] \n"
     
    
       //   <<"$wval[0]\n"
@@ -68,11 +115,11 @@ CLASS Turnpt
        //ans = iread("-->");
      Place = wval[0];
     
-     //   <<"%V$Place\n"
+DBG"%V$Place\n"
 
 
      Idnt =  wval[1];
- //<<"%V$Idnt\n"
+ DBG"%V$Idnt\n"
  //    <<"%V$wval[2]\n"
      
      Lat = wval[2];
@@ -92,14 +139,17 @@ CLASS Turnpt
 
      tptype = wval[7];
 
-     //  <<"%V$Lat $Lon \n"
+DBG"%V$Lat $Lon \n"
      //  <<" $(typeof(Lat)) \n"
      // <<" $(typeof(Lon)) \n"
      //  <<" $(typeof(Ladeg)) \n"	 
-     Ladeg =  GetDeg(Lat);
+
+    Ladeg =  getDeg(Lat);
 
      //       <<" $(typeof(Longdeg)) \n"	 
-     Longdeg = GetDeg(Lon);
+     Longdeg = getDeg(Lon);
+
+<<"%V $Ladeg $Longdeg \n"
 
       }
 
@@ -138,14 +188,13 @@ CLASS Turnpt
 
   CMF GetDeg ( the_ang)
     {
-
-      //<<"in CMF GetDeg $the_ang\n"
+      str the_dir;
+      <<"in CMF GetDeg $the_ang\n"
       //<<"input args is $the_ang \n"
 
       float la;
-
-
-      // <<"%V$_cproc %i $the_ang  \n"
+      str wd;
+      <<"%V$_cproc %i $the_ang  \n"
 	
 
     the_parts = Split(the_ang,",")
@@ -154,12 +203,13 @@ CLASS Turnpt
 
 
 //FIX    float the_deg = atof(the_parts[0])
+    wd = the_parts[0];
+    //the_deg = atof(the_parts[0])  // fix returns vec instead to supplied scalar string
+    the_deg = atof(wd);
 
-    the_deg = atof(the_parts[0])
-
-//    float the_min = atof(the_parts[1])
-
-    the_min = atof(the_parts[1])
+//    float the_min = atof(the_parts[1]
+    wd = the_parts[1];
+    the_min = atof(wd)
 
       //<<"%V$the_deg $the_min \n"
 
@@ -167,9 +217,9 @@ CLASS Turnpt
 
       //<<" %V$sz $(typeof(the_deg)) $(Cab(the_deg))  $(Cab(the_min)) \n"
 
-    the_dir = the_parts[2]
+    the_dir = the_parts[2];
 
-      y = the_min/60.0;
+    y = the_min/60.0;
 
     la = the_deg + y
 
@@ -177,9 +227,9 @@ CLASS Turnpt
          la *= -1
       }
 
-      //<<" %V $la  $y $(typeof(la)) $(Cab(la)) \n"
+    <<"%V $la  $y  \n"
       
-    return (la)
+    return (la);
    }
 
 }
@@ -1231,7 +1281,6 @@ proc IGC_Read(igc_file)
 //========================
 
 
-
 CLASS Taskpt 
  {
 
@@ -1257,13 +1306,13 @@ CLASS Taskpt
 
      nwr = wval->Read (fh)
 
-//<<"$nwr  $wval[0] $wval[1] $wval[2]  \n"
+<<"$nwr  $wval[0] $wval[1] $wval[2]  \n"
 
 
       if (scmp(wval[0],"#",1)) {
        // comment line in file
 //<<" found comment line \n"
-         return 0
+         return 0;
       }
 
     xx= "$wval[0] \n"
@@ -1707,7 +1756,7 @@ proc get_tpt(wtpt)
 }
 //=============================================
 
-<<" DONE reading ootlib !\n"
+DBG" DONE include of ootlib !\n"
 
 
 #
