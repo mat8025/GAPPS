@@ -184,13 +184,7 @@ sWo(cellwo,@cellbhue,i,j,YELLOW_);
 //<<"DONE indirect call of $pfname !\n"
 
 
-<<"2 %V num of records $sz  $rows $cols  $Ncols\n"
-pfname = "BOO";
-<<"TRY indirect call of $pfname !\n"
 
-    $pfname();
-
-<<"DONE indirect call of $pfname !\n"
 <<"3 %V num of records $sz  $rows $cols  $Ncols\n"
 
 
@@ -261,18 +255,18 @@ sWo(cellwo,@cellbhue,0,swapcol_a,CYAN_);
 		sWo(cellwo,@cellval,_erow,tags_col,"x")
 		sWo(cellwo,@celldraw,_erow,tags_col)
         }
-
    }
    else {
-      if (_ename @= "PRESS") {
+
+      if ((_ewoid > 0) && (_ename @= "PRESS")) {
              if (!(_ewoname @= "")) {
 	       ind = findProc(_ewoname) ;
-               if (ind  != 0) {
-              <<"calling script procedure $ind $_ewoid $cellwo $_ename $_ewoname !\n"
+               if (ind  > 0) {
+              <<"calling script procedure %V $ind $_ewoid $cellwo $_ename $_ewoname !\n"
                $_ewoname()
 	    }
 	    else {
-<<"script procedure $_ewoname $ind does not exist!\n"
+<<"script procedure %V $_ewoname $ind  $_ewoid does not exist!\n"
             }
       }
    }

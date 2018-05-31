@@ -119,10 +119,11 @@ svar _emsgwd;
 svar _ewords;
 
 str _ename;
-str _ekeyw = "";
 
-str _ekeyw2;
-str _ekeyw3;
+str _ekeyw = "nada";
+str _ekeyw2 = "nada2"
+str _ekeyw3 = "nada3"
+
 str _emsg = "xyz";
 str _evalue = "abc";
 

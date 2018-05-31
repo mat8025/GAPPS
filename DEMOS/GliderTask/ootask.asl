@@ -7,6 +7,9 @@
 Main_init = 1
 
   setDebug(1,"~trace")
+
+#define DBG <<
+
   
 proc namemangle(aname)
 {
@@ -558,7 +561,7 @@ float avespd = 70.0;
 dur =  (total*km_to_nm) /avespd  
 
 //<<" polish \n"
-STOP("%6.1f$total km to fly %6.2f$dur hours @ $avespd knots\n")
+  exit(1,"%6.1f$total km to fly %6.2f$dur hours @ $avespd knots\n")
 
 
 

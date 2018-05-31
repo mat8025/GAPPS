@@ -2,14 +2,13 @@
 /// "$Id: showtlib.asl,v 1.2 1997/12/07 03:48:51 mark Exp mark $"
 /// 9/17/2017
 
-
-
   DB = 0
   ntpts = 0
   Min_lat = 90.0
   Max_lat = 0.0
   Min_W = 109.0
   Max_W = 105.0
+
 # conversion routines
   km_to_feet = 3281.0
   km_to_nm = 3281.0/6080.0
@@ -21,13 +20,15 @@
   lat = "A"
   longit = "B"
 
-  LegK =  0.5 * (7915.6 * 0.86838)
+  LegK =  0.5 * (7915.6 * 0.86838);
   //<<" %v $LegK \n"
   //  Main_init = 0
 
 <<" read in unit conversions \n"
 
 //============================================
+
+include "tpclass"
 
 
 proc getDeg ( the_ang)
@@ -36,7 +37,7 @@ proc getDeg ( the_ang)
       float la;
       str wd;
 
-      <<"in $_proc  $the_ang\n"
+//<<"in $_proc  $the_ang\n"
 	
 
     the_parts = Split(the_ang,",")
@@ -68,172 +69,12 @@ proc getDeg ( the_ang)
          la *= -1
       }
 
-    <<"%V $la  $y  \n"
+//<<"%V $la  $y  \n"
       
     return (la);
    }
 
 //===============================//
-
-
-CLASS Turnpt 
- {
-
- public:
-
-  str Lat;
-  str Lon;
-  str Place;
-  str Idnt;
-  str rway;
-  str tptype;
-  
-  str Cltpt;
-  float Radio;
-
-  float Alt;
-  float Ladeg;
-  float Longdeg;
-
-//  method list
-
-  CMF Set (wval) 
-   {
-
-DBG"$_proc $(typeof(wval)) $wval[::] \n"
-
-//<<"%V$_cproc  %i$_cobj   %i$wval \n"
-     //sz = wval->Caz()
-
-      sz = Caz(wval);      
- // <<"%V$sz \n"
-DBG"$sz 0: $wval[0] 1: $wval[1] 2: $wval[2] 3: $wval[3] 4: $wval[4] \n"
-    
-   
-      //   <<"$wval[0]\n"
-       //  <<"$(typeof(wval))\n"
-       //ans = iread("-->");
-     Place = wval[0];
-    
-DBG"%V$Place\n"
-
-
-     Idnt =  wval[1];
- DBG"%V$Idnt\n"
- //    <<"%V$wval[2]\n"
-     
-     Lat = wval[2];
-
-     //   <<"%V$Lat  <| $wval[2] |>\n"
-
-     //   <<"%V$wval[3]\n"	 
-     Lon = wval[3];
-
-     //       <<"%V$Lon  <| $wval[3] |>\n" 
-     
-     Alt = wval[4];
-     
-     rway = wval[5];
-     
-     Radio = atof(wval[6]);
-
-     tptype = wval[7];
-
-DBG"%V$Lat $Lon \n"
-     //  <<" $(typeof(Lat)) \n"
-     // <<" $(typeof(Lon)) \n"
-     //  <<" $(typeof(Ladeg)) \n"	 
-
-    Ladeg =  getDeg(Lat);
-
-     //       <<" $(typeof(Longdeg)) \n"	 
-     Longdeg = getDeg(Lon);
-
-<<"%V $Ladeg $Longdeg \n"
-
-      }
-
-   CMF SetPlace (val)   
-   {
-       Place = val
-   }
-
-
-   CMF GetPlace ()   
-   {
-       return Place; 
-   }
-
-   CMF Print ()    
-   {
-     <<"$Place $Idnt $Lat $Lon $Alt $rway $Radio $Ladeg $Longdeg\n"
-   }
-
-
-  CMF turnpt()
-    {
-      Place="ppp";
-      Ladeg = 0.0;
-      Longdeg = 0.0;
-    }
-
- CMF GetTA()   
-   {
-      int amat =0;
-      val = tptype; 
-      spat (val,"A",-1,-1,amat)
-//<<"%V$amt $(typeof(amat)) \n"
-      return amat;
-   }
-
-  CMF GetDeg ( the_ang)
-    {
-      str the_dir;
-      <<"in CMF GetDeg $the_ang\n"
-      //<<"input args is $the_ang \n"
-
-      float la;
-      str wd;
-      <<"%V$_cproc %i $the_ang  \n"
-	
-
-    the_parts = Split(the_ang,",")
-
-      //<<"%V$the_parts \n"
-
-
-//FIX    float the_deg = atof(the_parts[0])
-    wd = the_parts[0];
-    //the_deg = atof(the_parts[0])  // fix returns vec instead to supplied scalar string
-    the_deg = atof(wd);
-
-//    float the_min = atof(the_parts[1]
-    wd = the_parts[1];
-    the_min = atof(wd)
-
-      //<<"%V$the_deg $the_min \n"
-
-      //  sz= Caz(the_min);
-
-      //<<" %V$sz $(typeof(the_deg)) $(Cab(the_deg))  $(Cab(the_min)) \n"
-
-    the_dir = the_parts[2];
-
-    y = the_min/60.0;
-
-    la = the_deg + y
-
-      if ((the_dir @= "E") || (the_dir @= "S")) {
-         la *= -1
-      }
-
-    <<"%V $la  $y  \n"
-      
-    return (la);
-   }
-
-}
-//=============================================================
 
 
 proc get_word(defword)
@@ -277,21 +118,14 @@ proc get_wcoors(sw,  rx,  ry,  rX,  rY)
   return ww
 }
 //==================================================
-//FIX proc compute_leg(int leg)
 
 
 proc compute_leg(leg)
 {
-
-//<<" $_cproc  $leg \n"
-
-//    double D
-
-    float km
+    float km;
 
     if (leg < 0) 
           return 0
-
 
     kk = leg + 1
 
@@ -305,29 +139,33 @@ proc compute_leg(leg)
     lo1 = LO[leg]
     lo2 = LO[kk]
 
+
 	    //<<" %V $lo1 $lo2 \n"
+    km = computeGCD(L1,L2,lo1,lo2);
+    
+    return km
+}
+//==================================================
+proc computeGCD(la1,la2,lo1,lo2)
+{
+///  input lat and long degrees - GCD in km
 
-    rL1 = d2r(L1)
+    rL1 = d2r(la1)
 
-    rL2 = d2r(L2)
+    rL2 = d2r(la2)
 
     rlo1 = d2r(lo1)
     rlo2 = d2r(lo2)
 
-    D= acos (sin(rL1) * sin(rL2) + cos(rL1) * cos(rL2) * cos(rlo1-rlo2))
+    D= acos (sin(rL1) * sin(rL2) + cos(rL1) * cos(rL2) * cos(rlo1-rlo2));
 
-      //    		       <<"2 %v $D $(typeof(D)) \n"
+    N = LegK * D ;
 
-	    //      <<" %V $D  $LegK   $nm_to_km\n"
+    km = N * nm_to_km;
 
-    N = LegK * D
-
-    km = N * nm_to_km
-
-	    //   <<" %V  $N $km $(typeof(km))\n"
-
-    return km
+    return km;
 }
+
 //==================================================
 proc screen_dump()
 {
@@ -451,41 +289,63 @@ proc set_task()
 }
 //==================================================
 
-proc grid_label(w_num)
+proc grid_label(wid)
 {
   ts = 0.01
 
 # incr should set format
-  ff=setpen(w_num,"black",1)
-  ww= get_wcoors(w_num,&rx,&ry,&rX,&rY)
+  float rx;
+  float ry;
+  float rX;
+  float rY;
 
-  put_mem("LongW",rx)
-  put_mem("LongE",rX)
-  put_mem("LatS",ry)
-  put_mem("LatN",rY)
+  sWo(wid,@penhue,BLACK_)
+  
+  RS= wgetrscales(wid);
 
-  dx = (rX - rx )
-  dy = (rY - ry )
+//<<"%V$RS \n"
 
-  x_inc = get_incr ( dx)
-  y_inc = get_incr ( dy)
+  rx= RS[1];
+  ry= RS[2];
+  rX= RS[3];
+  rY= RS[4];
+ // <<"%V $rx $ry $rX$rY\n"
+
+
+  putMem("LongW","$rx",1)
+
+  putMem("LongE","$rX",1)
+  putMem("LatS","$ry",1)
+  putMem("LatN","$rY",1)
+
+  dx = (rX - rx );
+  dy = (rY - ry );
+//<<"%V $dx $dy\n"
+
+  x_inc = getIncr ( dx);
+  y_inc = getIncr ( dy);
+<<"%V $x_inc $y_inc \n"  
+  x_inc = 0.1;
+  y_inc = 0.1;
+  
+<<"%V $x_inc $y_inc \n"
 
     if (x_inc != 0.0 ) {
-      ticks(w_num,1,rx,rX,x_inc,ts)
+     // ticks(wid,1,rx,rX,x_inc,ts)
         if (x_inc >= 0.01) {
-          axnum(w_num,1,rx,rX,2*x_inc,-3.0,"3.1f")
+          axnum(wid,1,rx,rX,2*x_inc,-1.5,"3.1f")
         }
         else {
-          axnum(w_num,1,rx,rX,2*x_inc,-3.0,"3.1f")
+          axnum(wid,1,rx,rX,2*x_inc,-1.5,"3.1f")
         }
     }
 
     if ( y_inc != 0.0) {
-      ticks(w_num,2,ry,rY,y_inc,ts)
-      axnum(w_num,2,ry,rY,2*y_inc,-2.0,"2.1f")
+      //ticks(wid,2,ry,rY,y_inc,ts)
+      axnum(wid,2,ry,rY,2*y_inc,-2.0,"2.1f")
     }
 
-  w_clip_border(w_num)
+  sWo(wid,@clipborder);
 }
 //==================================================
 
@@ -1024,7 +884,7 @@ proc task_menu(w)
 
 # the_task
 # start - (tp1,...) - finish
-
+//=====================================//
 proc task_dist()
 {
   t_d = 0
@@ -1056,6 +916,7 @@ proc task_dist()
 
 proc compute_leg2(t_1,t_2)
 {
+
   leg = t_1
 
   kk = t_2
@@ -1092,7 +953,7 @@ proc compute_leg2(t_1,t_2)
 
 			  //print(D," ",dD,"\n")
 
-  N = 0.5 * (7915.6 * 0.86838) * D
+  N = 0.5 * (7915.6 * 0.86838) * D;
 
   print("dist = ",N," nm","\n")
 
@@ -1106,7 +967,7 @@ proc compute_leg2(t_1,t_2)
 
   return (km)
 }
-
+//============================//
 proc setup_legs()
 {
     suk = 0
@@ -1226,10 +1087,8 @@ proc nearest (tp)
   // if less than D
   // print
 
-
-
 }
-
+//====================//
 
 
 proc spin()
@@ -1270,7 +1129,9 @@ proc IGC_Read(igc_file)
    }
 
     ntps =ReadIGC(a,IGCTIM,IGCLAT,IGCLONG,IGCELE);
-    
+
+
+  //  IGCLONG = -1 * IGCLONG;
 <<"read $ntps from $igc_file \n"
 
    dt=fineTimeSince(T);
@@ -1280,184 +1141,6 @@ proc IGC_Read(igc_file)
 }
 //========================
 
-
-CLASS Taskpt 
- {
-
- public:
-
-  svar wval;  // holds all field info
-  svar cltpt; //
-  svar val;
-  float Alt;
-  float Ladeg;
-  float Longdeg;
-  float Leg;
-  str Place;
-  str tptype;
-
-#  method list
-
-  CMF Read (fh) 
-  {
-  
-     la_deg = "" 
-     long_deg = ""
-
-     nwr = wval->Read (fh)
-
-<<"$nwr  $wval[0] $wval[1] $wval[2]  \n"
-
-
-      if (scmp(wval[0],"#",1)) {
-       // comment line in file
-//<<" found comment line \n"
-         return 0;
-      }
-
-    xx= "$wval[0] \n"
-    
-    if (nwr > 6) {
-      
-      place = wval[0];
-      
-//<<" $wval[0]  \n"
-
-     Alt = atof(wval[4])
-
-//    Ladeg = GetDeg(la_deg)
-
-    Ladeg = GetDeg(wval[2])
-
-    Longdeg = GetDeg(wval[3])
-
-    tptype = wval[7];
-    }
-
-    return nwr
-   }
-
-   CMF SetPlace (ival)   
-   {
-     Place = ival;
-   }
-
-   CMF GetPlace ()   
-   {
-      return Place;
-   }
-
-   CMF GetTA ()   
-   {
-      int amat =0;
-      val = tptype; 
-      spat (val,"A",-1,-1,amat)
-//<<"taskpt %V$amt $(typeof(amat)) \n"
-      return amat;
-   }
-
-   CMF GetLat ()   
-   {
-      val = wval[2] 
-	return val;
-   }
-
-   CMF GetLong ()   
-   {
-      val = wval[3] 
-	return val;
-   }
-
-   CMF GetRadio ()   
-   {
-      val = wval[6] 
-	return val;
-   }
-
-   CMF GetID ()   
-   {
-     val = wval[1]; 
-	return val;
-   }
-
-   CMF GetMSL ()   
-   {
-     int ival = Alt; 
-     return ival;
-   }
-
-   CMF Print ()    
-   {
-
-     <<"$wval[0] $wval[1]  $wval[2] $wval[3] $Ladeg $Longdeg\n"
-//     xx= "$wval[2:6]"
-//     <<"$xx \n"
-
-   }
-
-
-  CMF turnpt()
-    {
-	//      <<" CONS $_cobj %i $Place\n"
-      Ladeg = 40.0
-      Longdeg = 105.0
-    }
-
-
-  CMF GetDeg (svar the_ang)
-    {
-
-  //<<" $_cproc %v $the_ang \n"
-  //  <<"%V $the_ang $(typeof(the_ang)) \n"
-//ttyin()
-
-      float la;
-      float the_deg;
-      float the_min;
-
-//<<" $_cproc  $the_ang  \n"
-
-      the_parts = Split(the_ang,",")
-
-//FIX    float the_deg = atof(the_parts[0])
-
-    //<<"%v $the_parts \n"
-
-//<<"%v $the_parts[0] \n"
-
-//      dv = the_parts[0]
-//      the_deg = atof(dv)
-    the_deg = atof(the_parts[0])
-
-//<<"%v $the_deg \n"
-
-        the_min = atof(the_parts[1])
-//      dv = the_parts[1]
-//      the_min = atof(dv)
-
-//        <<" %V $the_deg $the_min \n"
-
-	//sz= Caz(the_min);
-
- // <<" %V $sz $(typeof(the_deg)) $(Cab(the_deg))  $(Cab(the_min)) \n"
-
-	the_dir = the_parts[2];
-
-      y = the_min/60.0
-
-      la = the_deg + y
-
-      if ((the_dir @= "E") || (the_dir @= "S")) {
-         la *= -1.0
-      }
-
-   //  <<" %V $la  $y $(typeof(la)) $(Cab(la)) \n"
-    return (la)
-   }
-
-}
-
-//============================================
 int Ntp = 0;
 proc DrawMap(w)
 {
@@ -1504,9 +1187,9 @@ proc DrawMap(w)
         }
     }
 
-    sWo(w,@showpixmap,@clipborder);
+   // sWo(w,@showpixmap,@clipborder);
     
-//  grid_label(w)
+        grid_label(w)
 
 }
 //====================================================
@@ -1542,17 +1225,19 @@ proc DrawTask(w,col)
 
 proc PickTP(atarg,  witp) 
 {
+
 ///
 /// 
-  int kk;
+
+    int kk;
 
     Fseek(A,0,0)
-// <<" looking for  $atarg \n"
+<<" looking for  $atarg \n"
     i=Fsearch(A,atarg,-1,1,0)
     if (i != -1) {
      kk= witp;
-//<<" %V $kk $witp $(typeof(witp)) \n"
-    Tasktp[kk]->cltpt = atarg
+<<" %V $kk $witp $(typeof(witp)) \n"
+    Tasktp[kk]->cltpt = atarg;
     nwr = Tasktp[kk]->Read(A)
 <<" found $atarg $kk $witp $nwr\n"
 
@@ -1655,11 +1340,12 @@ proc ClosestLand(longx,laty)
 
 proc PickaTP(itaskp)
 {
+
 // 
 // use current lat,long to place curs
 //
   int ret = 0;
-<<" get task pt $itaskp \n"
+//<<" get task pt $itaskp \n"
 
   float rx;
   float ry;
@@ -1667,21 +1353,20 @@ proc PickaTP(itaskp)
   rx = MidLong;
   ry = MidLat;
 
-  MouseCursor("left", mapwo, rx, ry);
+           MouseCursor("left", mapwo, rx, ry);  // TBC
 
 
+    Text(vptxt,"Pick a TP for the task ",0,0.05,1)
 
-<<"Pick a TP for the task\n";
+    sWi(vp,@tmsg,"Pick a TP for the task ")
 
-  E->waitForMsg();
-  E->getEventRXY(rx,ry);
-  woid = E->getEventWoid();
+         eventWait();
 
           gsync()
 
           sleep(0.2)
 
-          ntp = ClosestTP(rx,ry);
+          ntp = ClosestTP(_erx,_ery);
 
           MouseCursor("hand");
 
@@ -1691,7 +1376,20 @@ proc PickaTP(itaskp)
 
              nval = Wtp[ntp]->GetPlace()
 
-<<" found %V $ntp $nval \n"
+<<" found %V $ntp $nval  $itaskp\n"
+
+            Tasktp[itaskp]->cltpt = nval;
+            Tasktp[itaskp]->Place = nval;	    
+            //Tasktp[itaskp]->Ladeg = Wtp[ntp]->Ladeg;   // TBF
+            la = Wtp[ntp]->Ladeg;
+            Tasktp[itaskp]->Ladeg = la;	    
+             vala = Wtp[ntp]->Longdeg;
+             //Tasktp[itaskp]->Longdeg = Wtp[ntp]->Longdeg; // TBF
+	     Tasktp[itaskp]->Longdeg = vala;
+	    
+	    Tasktp[itaskp]->Alt = Wtp[ntp]->Alt;	    
+
+
 
             Fseek(A,0,0);
             i=Fsearch(A,nval,-1,1,0)
@@ -1703,11 +1401,9 @@ proc PickaTP(itaskp)
            if (i != -1) {
 
 <<" setting TASK_PT $itaskp  to $nval \n" 
-
-            Tasktp[itaskp]->cltpt = nval;
             // position at tp file entry -- why not search Wtp for entry
 	    
-            nwr = Tasktp[itaskp]->Read(A)
+   //         nwr = Tasktp[itaskp]->Read(A)
 <<"$itaskp  TaskPT \n"
             Tasktp[itaskp]->Print();
 
@@ -1717,7 +1413,7 @@ proc PickaTP(itaskp)
       
       return ret;
 }
-//=============================================
+//=============================================//
 
 proc get_tpt(wtpt)
 {
@@ -1756,6 +1452,77 @@ proc get_tpt(wtpt)
 }
 //=============================================
 
+
+proc ComputeTC(j, k)
+{
+    float km = 0.0
+
+    L1 = Wtp[j]->Ladeg
+
+    L2 = Wtp[k]->Ladeg
+
+    lo1 = Wtp[j]->Longdeg
+
+    lo2 = Wtp[k]->Longdeg
+
+      tc = trueCourse(L1,lo1,L2,lo2)
+      //<<"%V$tc \n"
+      return tc
+}
+//===========================//
+
+
+proc ComputeTPD(j, k)
+{
+    float km = 0.0
+
+// FIX <<" %I $j $k \n"
+
+//<<" $_cproc %V $j $k \n"
+
+    L1 = Wtp[j]->Ladeg
+
+    L2 = Wtp[k]->Ladeg
+
+    //<<" %I $L1 $L2 \n"
+    //<<" %I $k $Wtp[k]->Ladeg \n"
+    //<<" %I $j $Wtp[j]->Ladeg \n"
+
+    lo1 = Wtp[j]->Longdeg
+
+    lo2 = Wtp[k]->Longdeg
+
+      //<<"%V$lo1 $lo2 \n"
+      //<<"%V$L1 $L2 \n"
+      //      tc = trueCourse(L1,lo1,L2,lo2)
+      //<<"%V$tc \n"
+
+
+    rL2 = d2r(L2)
+
+    rL1 = d2r(L1)
+
+
+    //<<" %V$rL1 $rL2 \n"
+    //<<" %I $rL1 $rL2 \n"
+
+    rlo1 = d2r(lo1)
+    rlo2 = d2r(lo2)
+
+    D= acos (sin(rL1) * sin(rL2) + cos(rL1) * cos(rL2) * cos(rlo1-rlo2))
+
+    //          <<" %V $D  $LegK   $nm_to_km\n"
+
+    N = LegK * D
+
+    km = N * nm_to_km
+
+    //       <<" %V  $N $km $(typeof(km))\n"
+    ;
+
+    return km
+ }
+//====================================//
 DBG" DONE include of ootlib !\n"
 
 

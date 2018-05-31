@@ -179,8 +179,8 @@ proc AddTask( wt)
 proc ADDROW()
 {
 /// should go to last page
-
-    AddTask(0)
+<<"IN $_proc \n"
+    AddTask(0);
     return 
 }
 //====================================

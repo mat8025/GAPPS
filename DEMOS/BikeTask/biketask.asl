@@ -7,6 +7,7 @@ setDebug(1,@keep)
 
 
 
+
 proc showMeasures (index)
 {
          tim = Tim[index];
@@ -259,7 +260,7 @@ Graphic = CheckGwm();
     LongW = min_lng -0.01;
     LongE = max_lng +0.01;
 
-  sWo(mapwo, @scales, LongW, LatS, LongE, LatN, @save, @redraw, @drawoff, @pixmapon);
+   sWo(mapwo, @scales, LongW, LatS, LongE, LatN, @save, @redraw, @drawoff, @pixmapon);
 
 //  set up the IGC track for plot
     igc_tgl = cGl(mapwo,@TXY,Lon,Lat,@color,BLUE_);

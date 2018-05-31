@@ -37,82 +37,7 @@ include "ootlib"
 float Cruise_speed = 80 * nm_to_km;
 
 
-proc ComputeTC(j, k)
-{
-    float km = 0.0
-
-    L1 = Wtp[j]->Ladeg
-
-    L2 = Wtp[k]->Ladeg
-
-    lo1 = Wtp[j]->Longdeg
-
-    lo2 = Wtp[k]->Longdeg
-
-      tc = trueCourse(L1,lo1,L2,lo2)
-      //<<"%V$tc \n"
-      return tc
-}
-//===========================//
-
 // try Wtp as args
-
-proc ComputeTPD(j, k)
-{
-    float km = 0.0
-
-// FIX <<" %I $j $k \n"
-
-//<<" $_cproc %V $j $k \n"
-
-    L1 = Wtp[j]->Ladeg
-
-    L2 = Wtp[k]->Ladeg
-
-//    <<" %I $L1 $L2 \n"
-
-    //<<" %I $k $Wtp[k]->Ladeg \n"
-    //<<" %I $j $Wtp[j]->Ladeg \n"
-
-    lo1 = Wtp[j]->Longdeg
-
-    lo2 = Wtp[k]->Longdeg
-
-      //<<"%V$lo1 $lo2 \n"
-
-      //<<"%V$L1 $L2 \n"
-
-
-      //      tc = trueCourse(L1,lo1,L2,lo2)
-      //<<"%V$tc \n"
-
-
-
-    rL2 = d2r(L2)
-
-    rL1 = d2r(L1)
-
-
-      //<<" %V$rL1 $rL2 \n"
-
-    //<<" %I $rL1 $rL2 \n"
-
-    rlo1 = d2r(lo1)
-    rlo2 = d2r(lo2)
-
-    D= acos (sin(rL1) * sin(rL2) + cos(rL1) * cos(rL2) * cos(rlo1-rlo2))
-
-    //          <<" %V $D  $LegK   $nm_to_km\n"
-
-    N = LegK * D
-
-    km = N * nm_to_km
-
-    //       <<" %V  $N $km $(typeof(km))\n"
-    ;
-
-    return km
- }
 
 //<<" done class def \n"
 
@@ -445,7 +370,7 @@ DBG" done reading turnpts $cnttpt\n "
               ok_to_compute = 0
 
               if (!via_keyb) {
-		exit(0,""$nxttpt not found ");
+		exit(0,"$nxttpt not found ");
 	      }
 
 	     }
