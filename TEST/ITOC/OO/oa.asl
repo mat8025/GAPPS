@@ -1,11 +1,13 @@
-# test object arrays
+///
+/// test object arrays
+///
+
 
 CheckIn()
 
-//CheckIn()
-setDebug(1)
+setDebug(1,@trace,@~soe)
 
-int x = 5
+int x = 5;
 
 <<" %v $x \n"
 
@@ -15,165 +17,167 @@ V[5] = 7
 
 <<" $V \n"
 
-CLASS building {
+int Bid =0;
 
- int rooms = 5
- int floors = 2
- int area 
+CLASS Building {
 
- CMF setrooms(val)
+ int rooms = 5;
+ int floors = 2;
+ int area ;
+ int id;
+ CMF setRooms(val)
  {
 //  <<" $_proc %I $_cobj  $rooms $floors $area \n"
   <<" $_proc  $_cobj  $rooms $floors $area \n"
-   rooms = val
-   print()
-
+   rooms = val;
  }
 
- CMF getrooms()
+ CMF getRooms()
  {
    return rooms 
  }
 
- CMF setfloors(val)
+ CMF setFloors(val)
  {
-   floors = val
-// <<" $_cobj %I $_cobj $floors \n"
-   area = floors * 200
+ 
+   floors = val;
+<<" $_cobj $_proc $id $val $floors \n"
+   area = floors * 200;
 //   my->print()
  }
 
- CMF getfloors()
+ CMF getFloors()
  {
-//   <<" $_proc $(cclass()) -> getfloors $floors \n"
-   <<" $_proc  -> getfloors $floors \n"
-   return floors
+//   <<" $_proc $(cclass()) -> getFloors $floors \n"
+   <<"$_proc  $id  $floors \n"
+   return floors;
  }
 
- CMF print()
+ CMF Print()
  {
-  <<" $_proc $_cobj %V \n $rooms \n $floors \n $area \n"
+  <<" $_proc $_cobj %V $id \n $rooms \n $floors \n $area \n"
  }
 
- CMF building()
+ CMF Building()
  {
 
-    floors = 7
-    rooms = 4
+    floors = 7;
+    rooms = 4;
 
  //<<" constructor %I $_cobj setting  $floors  $rooms\n"
-<<" constructor setting  $floors  $rooms\n"
 
-
-   area = floors * 200
-
- }
+   area = floors * 200;
+   id = Bid++;
+<<" constructor setting  $id $floors  $rooms\n"
+}
 
 }
 
 
 ////////////////////////////////////
 
-  building A
 
-
-  A->print()
-
-  nf = A->getfloors()
-
-<<" $nf \n"
-
-  building C[10]
+  Building C[10]
 
 <<" done object array[10] declare ! \n"
 
 
-  C[1]->print()
+  C[1]->Print()
+
+  C[2]->setFloors(15);
+
+  C[2]->Print();
+
+
+/// MF
+  nf = C[2]->getFloors()
+
+<<"%V $nf\n"
+
+ CheckNum(nf,15)
+
+
 
 
 
 <<"  return n floors for [1] \n"
 
-   n = 2
-  C[n]->setfloors(16)
-  C[n]->print()
+   n = 2;
+
+  C[n]->setFloors(16);
+  
+  C[n]->Print()
 
 <<"  return n floors for [${n}] \n"
 
-
-  nf = C[1]->getfloors()
+  nf = C[1]->getFloors()
 
 <<"%V $nf \n"
 
-
-
-
-
-
-
-
   CheckNum(nf,7)
+
+  nf = C[n]->getFloors()
+
+<<"%V $nf \n"
+
+  CheckNum(nf,16)
+
+
+
+
 
   j = 3
 
-  C[j]->setfloors(12)
+  C[j]->setFloors(12)
 
-  C[j]->print()
+  C[j]->Print()
 
-  nf = C[j]->getfloors()
+  nf = C[j]->getFloors()
 
 <<" $nf \n"
 
 
-
-
-
-//////// FIX ////////////
-//  sz= C->Caz()
-// <<" %v $sz \n"
-///////////////////////
-
-
-  nrms = C[0]->getrooms()
+  nrms = C[0]->getRooms()
   <<" C[0] rooms $nrms \n"
 
   CheckNum(nrms,4)
 
 <<" main refer %i $C   [0] \n"
-  C[0]->setrooms(56)
+  C[0]->setRooms(56)
 
-nrms = C[0]->getrooms()
+nrms = C[0]->getRooms()
 
 
 
 
 <<" main refer %i $C   [1] \n"
-  C[1]->setrooms(12)
+  C[1]->setRooms(12)
 
 <<" main refer %i $C   [2] \n"
-  C[2]->setrooms(14)
+  C[2]->setRooms(14)
 
 <<" main refer %i $C   [3] \n"
-  C[3]->setrooms(16)
+  C[3]->setRooms(16)
 
 <<" main refer %i $C   [4] \n"
-  C[4]->setrooms(14)
 
-  C[0]->setfloors(5)
+  C[4]->setRooms(14)
 
-  C[1]->setfloors(10)
+  C[0]->setFloors(5)
 
-  C[2]->setfloors(15)
+  C[1]->setFloors(10)
 
-/// MF
-  nf = C[2]->getfloors()
-  CheckNum(nf,15)
 
-  nr = C[4]->getrooms()
+
+  C[4]->Print();
+
+  nr = C[4]->getRooms()
+  
   CheckNum(nr,14)
 
 
-// FIX  CheckNum( C[4]->getfloors(),14)
+
+// FIX  CheckNum( C[4]->getFloors(),14)
 
 
 
@@ -181,18 +185,20 @@ nrms = C[0]->getrooms()
 
 
 <<" test  object accessor functions\n"
-
-  nf=   C[0]->getfloors()
+  C[2]->setFloors(15);
+ 
+  nf=   C[0]->getFloors()
 <<"  C[0]->floors  $nf \n"
-  nf=   C[1]->getfloors()
+  nf=   C[1]->getFloors()
 <<"  C[1]->floors  $nf \n"
- j = 2
-  nf=   C[j]->getfloors()
+  j = 2;
+
+ nf=   C[j]->getFloors()
 <<"  C[j]->floors  $nf \n"
 
 CheckNum(nf,15)
 
-
+CheckOut()
 
 
 
@@ -218,94 +224,102 @@ CheckNum(a,15)
 
 <<" Single object ! \n"
 
-   building b
+   Building b
 
-   b->print()
+   b->Print()
 
-   nf = b->getfloors()
+   nf = b->getFloors()
 
 <<" $nf \n"
 
 <<" setting floors to 17 !\n"
-   b->setfloors(17)
+   b->setFloors(17)
 
-   bnf = b->getfloors()
+   bnf = b->getFloors()
 
 <<" %v $bnf \n"
-   b->setrooms(16)
-   b->print()
+   b->setRooms(16)
+   b->Print()
 
 
 
 
-  nrms = C[1]->getrooms()
+  nrms = C[1]->getRooms()
   <<" C[1] rooms $nrms \n"
 
-  C[2]->setrooms(99)
+  C[2]->setRooms(99)
 
-  C[4]->setrooms(44)
+  C[4]->setRooms(44)
 
 
-  nrms = C[2]->getrooms()
+  nrms = C[2]->getRooms()
   <<" C[2] rooms $nrms \n"
 
 
-  nrms = C[0]->getrooms()
+  nrms = C[0]->getRooms()
   <<" C[0] rooms $nrms \n"
 
 
   for (i = 0 ; i < 5 ; i++) {
-   nrms = C[i]->getrooms()
+   nrms = C[i]->getRooms()
   <<" %V $i $nrms \n"
   }
 
 
-  nrms = C[2]->getrooms()
+  nrms = C[2]->getRooms()
   <<" C[2] rooms $nrms \n"
 
-  nrms = C[1]->getrooms()
+  nrms = C[1]->getRooms()
   <<" C[1] rooms $nrms \n"
 
   for (i = 0 ; i < 5 ; i++) {
-   C[i]->setrooms(i)
-   nrms = C[i]->getrooms()
+   C[i]->setRooms(i)
+   nrms = C[i]->getRooms()
   <<" %V $i $nrms \n"
   }
 
 
   for (i = 0 ; i < 5 ; i++) {
-   nrms = C[i]->getrooms()
+   nrms = C[i]->getRooms()
   <<" %V $i $nrms \n"
   }
 
   for (i = 0 ; i < 5 ; i++) {
-   nrms = C[i]->getrooms()
+   nrms = C[i]->getRooms()
   <<" %V $i $nrms \n"
   }
 
   for (i = 0 ; i < 5 ; i++) {
-   C[i]->setrooms(i+15)
-   nrms = C[i]->getrooms()
+   C[i]->setRooms(i+15)
+   nrms = C[i]->getRooms()
   <<" %V $i $nrms \n"
   }
 
+  Building A
 
 
-   building bz
+  A->Print()
 
-   bz->print()
-
-   nf = bz->getfloors()
+  nf = A->getFloors()
 
 <<" $nf \n"
 
-   bz->setfloors(17)
 
-   bnf = bz->getfloors()
+   Building bz
+
+   bz->Print()
+
+   nf = bz->getFloors()
+
+<<" $nf \n"
+
+   bz->setFloors(17)
+
+   bnf = bz->getFloors()
 
 <<" %v $bnf \n"
 
-   bz->print()
+   bz->Print()
 
 
 
@@ -313,21 +327,21 @@ CheckNum(a,15)
 
    d = bz
 
-   d->setfloors(11)
+   d->setFloors(11)
 
-   d->print()
+   d->Print()
 
    c = d
 
-   c->print()
+   c->Print()
 
-   c->setfloors(12)
+   c->setFloors(12)
 
-   cnf = c->getfloors()
+   cnf = c->getFloors()
 
 <<" %v $cnf \n"
 
-   dnf = d->getfloors()
+   dnf = d->getFloors()
 
 <<" %v $dnf \n"
 
@@ -337,35 +351,35 @@ CheckNum(a,15)
   <<" object copy success! \n"
 
 
-   dnf = d->getfloors()
+   dnf = d->getFloors()
 
 <<" %v $dnf \n"
 
-   cnf = c->getfloors()
+   cnf = c->getFloors()
 
 <<" %v $cnf \n"
 
-   d->setfloors(12)
+   d->setFloors(12)
 
-   dnf = d->getfloors()
+   dnf = d->getFloors()
 
 <<" %v $dnf \n"
 
-   d->print()
+   d->Print()
 
-   bz->setfloors(60)
+   bz->setFloors(60)
 
-   bz->print()
+   bz->Print()
 
-   d->print()
+   d->Print()
 
-   cnf = c->getfloors()
+   cnf = c->getFloors()
 
 <<" %v $cnf \n"
 
-   bz->setfloors(30)
+   bz->setFloors(30)
 
-   nf = bz->getfloors()
+   nf = bz->getFloors()
 
 <<" $nf \n"
 
@@ -377,60 +391,60 @@ CheckNum(a,15)
 
 // <<" %v $sz \n"
 
-  nf = C[1]->getfloors()
+  nf = C[1]->getFloors()
 
 <<" $nf \n"
 
-  C[0]->setfloors(6)
+  C[0]->setFloors(6)
 
-  C[0]->setrooms(12)
+  C[0]->setRooms(12)
 
-//  C[1]->setfloors(9)
+//  C[1]->setFloors(9)
 
-  nf = C[1]->getfloors()
-
-<<" $nf \n"
-
-
-
-  C[2]->setfloors(96)
-
-  C[3]->setfloors(69)
-
-//  C[3]->setrooms(22)
-
-  C[4]->setfloors(54)
-
-  C[4]->setrooms(100)
-
-  nf = C[2]->getfloors()
+  nf = C[1]->getFloors()
 
 <<" $nf \n"
 
 
-  nf = C[1]->getfloors()
+
+  C[2]->setFloors(96)
+
+  C[3]->setFloors(69)
+
+//  C[3]->setRooms(22)
+
+  C[4]->setFloors(54)
+
+  C[4]->setRooms(100)
+
+  nf = C[2]->getFloors()
 
 <<" $nf \n"
 
-  nf = C[3]->getfloors()
+
+  nf = C[1]->getFloors()
 
 <<" $nf \n"
 
-  nr = C[4]->getrooms()
+  nf = C[3]->getFloors()
+
+<<" $nf \n"
+
+  nr = C[4]->getRooms()
 
 <<" %v $nr \n"
 
   i = 3
 
-  nf = C[i]->getfloors()
+  nf = C[i]->getFloors()
 
 <<" $nf \n"
   j = 2
   for (i = 0 ; i < 5 ; i++) {
 
-  C[i]->setfloors(j)
-  nf = C[i]->getfloors()
-  nr = C[i]->getrooms()
+  C[i]->setFloors(j)
+  nf = C[i]->getFloors()
+  nr = C[i]->getRooms()
 
 <<" %V $i $nf $nr \n"
    j += 2
@@ -441,37 +455,37 @@ CheckNum(a,15)
 
   for (i = 0 ; i < 5 ; i++) {
 
-  C[i]->setfloors(i+1)
+  C[i]->setFloors(i+1)
 
-  C[i]->setrooms(i*4+2)
+  C[i]->setRooms(i*4+2)
 
-<<" setfloors $i  \n"
+<<" setFloors $i  \n"
 
-  nf = C[i]->getfloors()
-  nr = C[i]->getrooms()
+  nf = C[i]->getFloors()
+  nr = C[i]->getRooms()
 
 <<" %V $i $nf $nr \n"
 
   }
 
 
-  nf = C[2]->getfloors()
+  nf = C[2]->getFloors()
 
 <<" $nf \n"
 
 
-  C[2]->setfloors(8)
+  C[2]->setFloors(8)
 
-  nf = C[2]->getfloors()
+  nf = C[2]->getFloors()
 
 <<" $nf \n"
 
 
-  C[1]->setfloors(7)
+  C[1]->setFloors(7)
   j = 1
  while (j < 4) {
-  C[j]->setfloors(66)
-  nf = C[j]->getfloors()
+  C[j]->setFloors(66)
+  nf = C[j]->getFloors()
 <<" $j $nf \n"
   j++
  }
@@ -483,7 +497,7 @@ setdebug(-1)
 // will cause error -- want to ignore and run on
 <<" accessing outside of object array \n"
 
-  nf = C[6]->getfloors()
+  nf = C[6]->getFloors()
 
 <<" $nf \n"
 #}
@@ -491,8 +505,3 @@ setdebug(-1)
 
 
 CheckOut()
-stop!
-
-
-
-;

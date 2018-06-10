@@ -175,10 +175,8 @@ float R[10];
 
 
    //igcfn = "spk.igc"
-
-    //igcfn = "bike_4_23.igc"
-
-//igcfn = "idahoesprings.igc"
+   //igcfn = "bike_4_23.igc"
+   //igcfn = "idahoesprings.igc"
 
      igcfn = GetArgStr();
 
@@ -187,7 +185,10 @@ float R[10];
 Ntaskpts = 0;
 
 //////////////// PARSE COMMAND LINE ARGS ///////////////////////
-  while (AnotherArg()) {
+
+long posn = 0;
+
+ while (AnotherArg()) {
 
     Fseek(A,0,0)
     targ = GetArgStr()

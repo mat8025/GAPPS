@@ -2,15 +2,31 @@
 ///  Atof
 ///
 
+setDebug(1,@~trace,@~pline,@~soe);
+
 
 checkIn()
 
 p = _PI
 
-  f = atof("3.141593")
-  sz = Caz(f);
+  i = 47;
+    <<"%I $i    \n"
+
+
+
+  f= 1.2;
+  sz = Caz(&f);
   <<"%V $f  $sz  \n"
-checkNum(sz,0)
+    <<"%I $f    \n"
+
+  f = atof("3.141593")
+
+  sz = Caz(&f);
+  <<"%V $f  $sz  \n"
+
+ checkNum(sz,0)
+
+
 
 A= Split("$_PI 1634 8208 9473")
 

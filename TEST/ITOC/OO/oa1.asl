@@ -169,5 +169,5 @@ wo = 4
 
 
 <<" completed !! \n"
-STOP!
+exit();
 

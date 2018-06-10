@@ -1,5 +1,7 @@
 
 
+setDebug(1,@trace,@~soe)
+
 CheckIn()
 
 //setdebug(0)
@@ -11,27 +13,65 @@ L = 10
 //int M[L][P][N]
 
 
-int M[N][P][L]
-
-b = Cab(M)
-<<"$b \n"
+int M[N][P][L];
 
  V = vgen(INT_,N,0,1)
 
 <<"$V\n"
+b = Cab(&V)
+<<"Vbounds $b \n"
 
-b = Cab(V)
-<<"$b \n"
+
+b = Cab(&M)
+<<"0bounds $b \n"
+
+
+
+
 
 val = 7
 
+    M[0][1][2] = 47;
+b = Cab(&M)
+<<"1bounds $b \n"
+    val2= M[0][1][2] ;
+<<"%V $val2 $M[0][1][2] \n"
+b = Cab(&M)
+<<"2bounds $b \n"
+
+
+
+
+
+
+     M[0][1][3] = 79;
+   val2= M[0][1][2] ;     
+<<"%V $val2 $M[0][1][2] \n"
+
+    val3= M[0][1][3] ;
+<<"%V $val3 $M[0][1][3] \n"
+    val2= M[0][1][2] ;
+<<"%V $val2 $M[0][1][2] \n"
+   M[0][1][4]  = 80;
+    val2= M[0][1][4] ;
+<<"%V $val2 $M[0][1][4] \n"
+    val2= M[0][1][2] ;
+<<"%V $val2 $M[0][1][2] \n"
   for (i = 0; i < P; i++) {
-    M[0][i][1] = val++
+    M[0][i][1] = val++;
+    val2= M[0][i][1] ;
+    <<" $M[0][i][1] $val2  $val\n"
   }
 
+<<"%V $M[0][0][1]  \n"
+<<"%V $M[0][1][1]  \n"
 
+<<"%V $M[0][1][2]  \n"
+    val2= M[0][1][4] ;
+<<"%V $val2 $M[0][1][4] \n"
 
   CheckNum(M[0][0][1],7)
+
   CheckNum(M[0][1][1],8)
 
  val = 7

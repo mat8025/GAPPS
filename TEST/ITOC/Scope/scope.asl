@@ -1,6 +1,6 @@
 
 
-setdebug(1,"trace")
+setdebug(1,@trace)
 
 proc soo()
 {

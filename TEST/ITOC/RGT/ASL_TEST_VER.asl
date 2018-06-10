@@ -18,8 +18,18 @@ vers = 9;
 
 //envdebug();
 
-setDebug(1,"keep");
+setDebug(1,@keep);
 filterDebug(0,"args");
+
+proc RunTests()
+{
+     np = Caz(Tp);
+      for (i=0 ; i <np; i++) {
+           cart(Tp[i]);
+      }
+}
+//====================//
+
 
 //<<"$Testdir\n"
 TM= FineTime();
@@ -426,44 +436,48 @@ CFLAGS = "-cwl"
 ntest = 0
 
 
-int do_all = 1
-int do_array = 0
-int do_matrix = 0
-int do_bugs = 0
-int do_bops = 0
-int do_vops = 0
-int do_sops = 0
-int do_fops = 0
-int do_class = 0
-int do_declare = 0
-int do_include = 0
-int do_exp = 0
-int do_if = 0
-int do_logic = 0
-int do_for = 0
-int do_do = 0
-int do_paraex = 0
-int do_proc = 0
-int do_switch = 0
-int do_types = 0
-int do_func = 0
-int do_command = 0
-int do_lhsubsc = 0
-int do_dynv = 0
-int do_mops = 0
-
-int do_oo = 0
-int do_sfunc = 0
-int do_svar = 0
-int do_record = 0
-int do_ivar = 0
-int do_lists = 0
-int do_stat = 0
-int do_threads = 0
-int do_while = 0
-int do_pan = 0
+int do_all = 1;
+int do_array = 0;
+int do_matrix = 0;
+int do_bugs = 0;
+int do_bops = 0;
+int do_vops = 0;
+int do_sops = 0;
+int do_fops = 0;
+int do_class = 0;
+int do_declare = 0;
+int do_include = 0;
+int do_exp = 0;
+int do_if = 0;
+int do_logic = 0;
+int do_for = 0;
+int do_do = 0;
+int do_paraex = 0;
+int do_proc = 0;
+int do_switch = 0;
+int do_types = 0;
+int do_func = 0;
+int do_command = 0;
+int do_lhsubsc = 0;
+int do_dynv = 0;
+int do_mops = 0;
+int do_scope = 0;;
+int do_oo = 0;
+int do_sfunc = 0;
+int do_svar = 0;
+int do_record = 0;
+int do_ivar = 0;
+int do_lists = 0;
+int do_stat = 0;
+int do_threads = 0;
+int do_while = 0;
+int do_pan = 0;
 int do_unary = 0;
 int do_ptrs = 0;
+
+
+
+
 
  CrashList = ( "",  )  // empty list
  CrashList->LiDelete(0)
@@ -496,6 +510,9 @@ int do_ptrs = 0;
 
    if (wt @= "mops")
         do_mops = 1
+
+   if (wt @= "scope")
+        do_scope = 1
 
 
    if (wt @= "sops")
@@ -586,6 +603,9 @@ int do_ptrs = 0;
         do_ptrs = 1  
 
    if (wt @= "oo")
+        do_oo = 1
+
+   if (wt @= "OO")
         do_oo = 1  
 
    if (wt @= "threads")
@@ -596,15 +616,15 @@ int do_ptrs = 0;
         do_all = 1  
 
    if (wt @= "pause")
-        do_pause = 1  
+        do_pause = 1;  
 
    if (wt @= "error_pause")
-        do_error_pause = 1  
+        do_error_pause = 1;  
 
-   i++
+   i++;
 
     if (i >= nargs)
-          break     
+          break;     
 
   }
 
@@ -649,18 +669,13 @@ int do_ptrs = 0;
 
   if (do_all  || do_types) {
   
-      Run2Test("Types")
-      cart("float");
-      cart("str");
+      Run2Test("Types");
+
+      Tp = Split("float,str,char,long,short,double,pan_type,ato",",");
+
+      RunTests();
+
       
-      cart("char")
-      cart("long")
-      cart("short")
-      cart("double")
-
-      cart("pan_type")
-      cart("ato")
-
       Run2Test("Cast")
       cart("cast")
       cart("cast_vec")
@@ -694,14 +709,11 @@ int do_ptrs = 0;
   Run2Test("Sops")
 
 //  need more str ops tests than this!
-
-  cart("scat")
-
-  cart("scmp")
-
-  cart("ssub")
-
-  cart("stropcmp")
+      Tp = Split("scat,scmp,ssub,stropcmp",",");
+      np = Caz(Tp);
+      for (i=0 ; i <np; i++) {
+           cart(Tp[i]);
+      }
 
   Run2Test("Date")
   cart("date")
@@ -710,19 +722,14 @@ int do_ptrs = 0;
   Run2Test("Sele")
   cart("sele")
 
-
   Run2Test("Splice")
   cart("strsplice")
-
 
   Run2Test("Sstr")
   cart("sstr")
 
-
   Run2Test("Spat")
   cart("spat")
-  
-
 
   Run2Test("Regex")
   cart("regex")
@@ -753,25 +760,12 @@ if (( do_all ==1) || (do_declare == 1) ) {
   Run2Test("Declare")
 
   Curr_dir = getDir();
-    
-  cart ("declare")
 
-  cart ("promote")
-
-  cart("declare_eq")
-
-  cart("chardeclare")
-
-  cart("scalar_dec")
-
-  cart("floatdeclare")
-
-  cart("arraydeclare")
-
-  cart("proc_arg_func")
-
-
-
+      Tp = Split("declare,promote,declare_eq,chardeclare,scalar_dec,floatdeclare,arraydeclare,proc_arg_func",",");
+      np = Caz(Tp);
+      for (i=0 ; i <np; i++) {
+           cart(Tp[i]);
+      }
 
    Run2Test("Resize")
 
@@ -922,44 +916,19 @@ if ( do_all || do_array ) {
 
   Run2Test("Array")
 
-  cart("ae")
+   //   Tp = Split("ae,arraystore,arrayele,arrayele0,arrayele1,arraysubset,arrayrange,arraysubvec,arraysubsref,arraysubsrange,dynarray,lhrange,lhe,joinarray,vec_cat,vgen,array_sr,mdele,vsp",","); // TBF - this long line somewhere is overwriting array ?? but we are using Svar - which are not fixed len
 
-  cart("arraystore")
+      Tp = Split("ae,arraystore,arrayele,arrayele0,arrayele1,arraysubset,arrayrange,arraysubvec,arraysubsref,arraysubsrange,",",");
 
-  cart("array_ele")
+    RunTests();
+    
+      Tp = Split("dynarray,lhrange,lhe,joinarray,vec_cat,vgen,array_sr,mdele,vsp",",");
 
-  cart("arrayele0")
+//  Tp = Split("ae,arraystore,arrayele,arrayele0,arrayele1,arraysubset,arrayrange,arraysubvec,arraysubsref,arraysubsrange,",",");
+      
+//<<"$Tp \n"
 
-  cart("arrayele1")
-
-  cart("arraysubset")
-  
-  cart("arrayrange")
-
-  cart("arraysubvec")
-
-  cart("arraysubsref")
-
-  cart ("arraysubsrange")
-
-  cart ("dynarray")
- 
-  cart ("lhrange")
-
-  cart ("lhe")
-
-  cart ("joinarray")
-
-  cart ("vec_cat")
-
-  cart("vgen")
-
-  cart("array_sr")
-
-  cart("mdele")
-
-  cart("vsp")
-
+    RunTests();
 
   Run2Test("Scalarvec")
 
@@ -1100,25 +1069,11 @@ if ( do_all || do_proc ) {
 
   Run2Test("Proc")
 
-  cart ("proc")
+  Tp= Split("proc,proc_declare,procret0,procarg,proc_sv0,proc_rep,proc_str_ret,procrefarg",",");
+
+  RunTests()
 
   cart("proc_var_define", 10)
-
-  cart ("proc_declare")
-
-  cart ("procret0")
-
-  cart("procarg")
-
-  cart("proc_sv0")
-
-  cart("proc_rep")
-
-cart("proc_str_ret")
-
-  cart("procrefarg")
-
-
 
   Run2Test("ProcArray")
   
@@ -1134,21 +1089,21 @@ cart("proc_str_ret")
 
   cart ("swap")
 
-
-
   Run2Test("Static")
   
   hdg("Static") ; 
 
   cart("static");
 
-  updir()
-
-  Run2Test("Scope") ; 
-
-  cart("scope");
+  
+  }
 
 
+  if ( do_all || do_scope ) {
+
+   Run2Test("Scope") ; 
+
+   cart("scope");
 
   }
 
@@ -1165,7 +1120,6 @@ if ( do_all || do_mops ) {
     Run2Test("Fact")
 
     cart("fact", 10)
-
 
 
     Run2Test("Cmplx")
@@ -1195,7 +1149,7 @@ if ( do_all || do_svar ) {
 
     cart("svar_declare")
 
-    cart("list_declare"); // should be other list tests elsewhere
+
 
     cart("svelepr")
 
@@ -1288,7 +1242,9 @@ if ( do_all || do_lists ) {
 
     Run2Test("Lists")
 
-    cart ("list")
+    cart ("list");
+
+    cart("list_declare"); 
 
     cart ("listele")
 
@@ -1476,20 +1432,11 @@ if ( do_all || do_bugs ) {
       Run2Test("BUGFIX")
       // lets get a list and work through them
       //cart("bf_40")   // this has intentional error and exits before test checks
+      Tp = Split("bf_46,bf_59,bf_64,bf_75,bf_76,bf_78,bf_79,bf_80,bf_83,bf_84,bf_89,bf_91,bf_96,",",");
+
+      RunTests();
       
-      cart("bf_46")
-      cart("bf_59")
-      cart("bf_64")
-      cart("bf_75")
-      cart("bf_76")
-      cart("bf_78")
-      cart("bf_79")
-      cart("bf_80")
-      cart("bf_83")
-      cart("bf_84")
-      cart("bf_89")
-      cart("bf_91")
-      cart("bf_96")                                                      
+      
     
 }
 

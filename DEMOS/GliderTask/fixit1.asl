@@ -8,12 +8,14 @@
 include "tpclass"
 
 
-setDebug(1,@keep,@filter,0);
+setDebug(1,@keep,@filter,0,@~trace);
+
+Taskpt Tasktp[10];
+
 Turnpt  Wtp[10];
 
 
-
-tp_file = "turnpts.dat"  // open turnpoint file 
+tp_file = "turnpts.dat";  // open turnpoint file 
 
 
   if (tp_file @= "") {
@@ -35,11 +37,12 @@ tp_file = "turnpts.dat"  // open turnpoint file
 
  svar Wval;
 
-
          C=readline(A);
 	 C=readline(A);
-  
-  while (1) {
+
+  Ntpts = 7;
+
+while (1) {
 
             nwr = Wval->Read(A)
 
@@ -50,42 +53,90 @@ tp_file = "turnpts.dat"  // open turnpoint file
             if (nwr > 6) { 
 //<<"$Wval[0]\n";
              Wtp[Ntp]->Set(Wval);
-
-             Wtp[Ntp]->Print()
+             Wtp[Ntp]->Print();
 
              Ntp++;
             }
-      if (Ntp > 9)
+      if (Ntp >= Ntpts)
           break;
   }
 
 
-//////////////
 
-Taskpt Tasktp[10];
+//////////////
+<<"///////////////////////////\n"
+           Wtp[0]->Print();
+	   kp = 1;
+<<"$kp\n"	   
+	   Wtp[kp]->Print();
+	   
+<<"///////////////////////////\n"
+
+
      itaskp = 0;
      ntp = 0;
 
-   for (i = 0; i < 10; i++) {
+setDebug(1,@trace);
 
-           nval = Wtp[ntp]->GetPlace();
+   for (i = 0; i < Ntpts; i++) {
+        pval = Wtp[i]->GetPlace();
+	  Tasktp[i]->Place = pval; // OB array LHS
+	 // Tasktp[i]->Place = Wtp[i]->GetPlace();
+	  Tasktp[i]->Place = Wtp[i]->Place;
 
-           Tasktp[itaskp]->Place = nval;
+          Tasktp[i]->Print();
+   }
+<<"////////\n"
+   for (i = 0; i < Ntpts; i++) {
+	  Tasktp[i]->Ladeg =  Wtp[i]->Ladeg;
+          Tasktp[i]->Print();
+   }
+<<"////////\n"
+   for (i = 0; i < Ntpts; i++) {
+	  Tasktp[i]->Longdeg =  Wtp[i]->Longdeg;
+          Tasktp[i]->Print();
+   }
+<<"////////\n"
 
-             vala = Wtp[ntp]->Longdeg;
-	     Tasktp[itaskp]->Longdeg = vala;
-           vala = Wtp[ntp]->Ladeg;
 
-	   Tasktp[itaskp]->Ladeg = vala;
+   for (i = 0; i < Ntpts; i++) {
+
+           Wtp[ntp]->Print();
+       pval = Wtp[ntp]->GetPlace();
+//           valo = Wtp[ntp]->Longdeg;
+        vala = Wtp[ntp]->Ladeg;
+	    
+//	   <<"<$ntp> %V $pval $vala $valo\n"
+//	   Wtp[ntp]->Longdeg = 105.6;
+          //Tasktp[itaskp]->Longdeg = valo;   
+         Tasktp[itaskp]->Ladeg = vala;
+        Tasktp[itaskp]->Place = pval; // OB array LHS
+
+     //Tasktp[itaskp]->Place = Wtp[ntp]->GetPlace();
+    // Tasktp[itaskp]->Longdeg = Wtp[ntp]->Longdeg;
+   //  Tasktp[itaskp]->Ladeg = Wtp[ntp]->Ladeg;  //OB LHS/RHS
+/{
+
+
+	  
+
+
+             vala = Wtp[ntp]->Longdeg; // Wtp OB array RHS
+
+           Tasktp[itaskp]->Longdeg = vala; // TP OB array LHS
+	     
+           
+
+	   
 	   <<"%V $vala $Tasktp[itaskp]->Ladeg \n"
            Tasktp[itaskp]->Ladeg = 0.0;
 	   
-           Tasktp[itaskp]->Ladeg = Wtp[ntp]->Ladeg;
+
 
 
 	     
-          //Tasktp[itaskp]->Longdeg = Wtp[ntp]->Longdeg;
-
+          //
+/}
            Tasktp[itaskp]->Print();
           
 	  itaskp++;

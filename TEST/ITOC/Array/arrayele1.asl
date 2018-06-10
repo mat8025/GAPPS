@@ -1,188 +1,278 @@
-CheckIn()
 
-k= 4
-n = 6
 
 
-// works for int not other types?
 
-//double K[10][3]
-//char K[10][3]
-//short K[10][3]
-//float K[10][3]
+setdebug(1,@pline,@~step ,@ trace, @soe) 
 
+checkIn();
 
-int K[10][3]
 
-<<" $(Cab(K)) \n"
 
- K[0][0] = 77
+proc array_sub(float rl[])
+{
 
-//<<"%I %3r\n $K \n"
-<<" $K \n"
+float t1;
+float t2;
 
+<<"In $_proc\n";
+<<"$rl \n";
 
 
-CheckNum(K[0][0],77)
+//<<"%6.2f$rl \n"
 
+     t1 = rl[4]; 
 
-k= 4
-j = 1
- K[k][0] = 27
+<<"%6.2f%V$t1\n";
 
-<<" $K \n"
 
+<<"$(Caz(t1))\n";
 
-CheckNum(K[k][0],27)
+//checknum(t1,4)
 
-n = 6
 
- K[n][0] = k
+checkFnum(t1,4.0);
 
-<<"%I $K \n"
 
-CheckNum(K[n][0],k)
+//ans=iread()
+int k = 5
+     t2 = rl[k] 
+<<"%V$t2\n"
+<<"$(Caz(t2))\n"
 
- K[n][0] = k * 2
+checknum(t2,5)
 
-<<"%(6,, ,\n)$K \n"
+j1 = 4
+j2 = 6
 
-CheckNum(K[n][0],(k*2))
+     t3 = rl[j1] - rl[j2];
 
- K[n+1][j] = k * 4
+<<"%V %6.2f $t3  \n"
+<<"$(Caz(t3))\n"
 
-<<"$K \n"
+checkFnum(t3,-2)
 
-CheckNum(K[n+1][j],(k*4))
+//<<"$rl[j1]\n"
 
+   t4= rl[j1+1]
 
-<<" ${K[n+1][j]} \n"
+<<"%V $t4  \n"
 
+<<"$(Caz(t4))\n"
 
+   checkFnum(t4,5)
 
-float F[10][3]
+<<"%V $k $j1 $j2 \n"
+//<<"%6.2f$rl \n"
 
-<<" $(Cab(F)) \n"
+kp = 3;
 
- F[0][0] = 77
+    rl[kp] = rl[j1] - rl[j2];
 
-<<"%(3,, ,\n) $F \n"
 
-CheckNum(F[0][0],77)
+<<"%V$rl\n"
 
+<<"%V $kp  $j1 $j2 \n"
 
-k= 5
-j = 1
 
- F[k][0] = 27
+//<<"%6.2f$rl \n"
+<<"%V $rl[kp] \n"
 
-<<"%(3,, ,\n) $F \n"
+    wrl = rl[kp];
 
+    rl[0] = 47;
 
-CheckNum(F[k][0],27)
 
-n = 6
+<<"%V $wrl \n"
 
- F[n][0] = k
+    checkFnum(rl[kp],-2)
 
-<<"%(3,, ,\n)$F \n"
+<<"just rl[k] :: $rl[kp] \n"
 
-CheckNum(F[n][0],k)
+<<"%6.2f$rl \n"
 
- F[n][0] = k * 2
+     t2 = rl[kp] 
 
-<<"%(3,, ,\n)$F \n"
+<<"%V$t2\n"
+<<"$(Caz(t2))\n"
 
-CheckNum(F[n][0],(k*2))
+checkFNum(t2,-2)
 
- F[n+1][j] = k * 4
+//<<"$rl[0:3]\n"     
 
-<<"%(3,, ,\n)$F \n"
+     rl[j1] = rl[j1] - rl[j2];
 
-CheckNum(F[n+1][j],(k*4))
 
+checkFNum(rl[j1],-2)
 
-<<" ${F[n+1][j]} \n"
+//<<"$rl\n"   // FIX does not parse rl here why?
 
+checkFNum(rl[4],-2)
 
-short S[10][3]
+<<"rl vec $rl[0:-1]\n"
 
-<<" $(Cab(S)) \n"
+checkFnum(rl[5],5)
 
- S[0][0] = 77
+t6 = rl[5]
 
-<<"%I $S \n"
+checkFNum(t6,5)
 
-CheckNum(S[0][0],77)
+<<"%V$t6\n"
+<<"$(Caz(t6))\n"
 
+//<<"$rl\n"
 
+return t3
+}
 
+//////////////////////////////////////////////////////////////////////////////////////
 
- S[k][0] = 27
 
-<<"%I $S \n"
+Real1 = vgen(FLOAT_,10,0,1)
+<<"%V$Real1\n"
 
+float mt1;
 
-CheckNum(S[k][0],27)
+  mt1 = Real1[4];
+checkFnum(mt1,4)
+<<"%V $mt1 \n"
 
-n = 6
 
- S[n][0] = k
+val = array_sub(Real1)
 
-<<"%($n,, ,\n)%I $S \n"
 
-CheckNum(S[n][0],k)
 
- S[n][0] = k * 2
+////////////////////
 
-<<"$S \n"
+double Real[10]
 
-CheckNum(S[n][0],(k*2))
+Real = dgen(10,0,1)
 
- S[n+1][j] = k * 4
+<<"Real $Real \n"
 
-<<"$S \n"
+   val = Real[3]
 
-CheckNum(S[n+1][j],(k*4))
+<<"%V$val \n"
+checkFNum(val,3)
+k = 4
 
+   val = Real[k]
 
-<<" ${S[n+1][j]} \n"
+<<"%V$val \n"
 
+checkFnum(val,4)
 
-I = Igen(30,0,1)
 
- <<" $I[2] \n"
 
+  sz = Csz(Real)
 
- a = 2
- b = 3
+<<" done Caz %V$sz\n"
 
-<<"  c is element of I \n"
 
-int ci = I[(a+b)]
 
-<<"%V $(a+b) $ci \n "
+double t1 = 4
 
-<<"%i \n$ci \n "
 
 
 
-CheckNum(ci, (a+b))
+  sz = Csz(t1)
 
+<<" done Caz %V$sz\n"
 
-int c = I[(a*b)]
 
-<<"$(a*b) $c \n"
+<<"%V$t1  $(typeof(t1))\n"
 
-CheckNum(c, (a*b))
 
- c = I[(a*b+b)]
 
-<<"$(a*b+b) $c \n"
+<<"$(Caz(t1))\n"
 
-CheckNum(c, (a*b+b))
+
+<<" done Caz !\n"
+
+     t1 = Real[4]
+     
+<<"%V$t1  $(typeof(t1))\n"
+
+
+
+<<"$(Caz(t1))\n"
+
+
+<<" done Caz !\n"
+
+checkFnum(t1,4)
+
+double t2
+
+k = 5
+     t2 = Real[k] 
+<<"%V$t2\n"
+<<"$(Caz(t2))\n"
+
+checkFnum(t2,5)
+
+j1 = 4
+j2 = 6
+
+     t3 = Real[j1] - Real[j2];
+
+<<"%V $t3  \n"
+
+<<"$(Caz(t3))\n"
+
+checkFnum(t3,-2)
+
+<<"$Real[j1]\n"
+
+   t4= Real[j1+1]
+
+<<"%V $t4  \n"
+
+<<"$(Caz(t4))\n"
+
+checkFnum(t4,5)
+
+<<"$Real \n"
+
+Real[k] = Real[j1] - Real[j2];
+
+checkFnum(Real[k],-2)
+
+<<"ele[${k}] $Real[k] \n"
+
+<<"$Real \n"
+
+     t2 = Real[k] 
+
+<<"%V$t2\n"
+<<"$(Caz(t2))\n"
+
+checkFnum(t2,-2)
+
+<<"$Real[0:3]\n"
+
+     Real[j1] = Real[j1] - Real[j2];
+
+<<"$Real\n"
+
+<<"just Real[j1] $Real[j1]\n"
+
+checkFnum(Real[j1],-2)
+
+checkFnum(Real[4],-2)
+
+
+
+////// Now inside proc -- with proc stack variables  //////////////////////////////
+
+   Real = fgen(10,0,1)
+<<"%V$Real\n"
+
+
+ val = array_sub(Real)
+
+
+<<"$val \n"
+
 
 CheckOut()
-
-
-stop!
+exit()

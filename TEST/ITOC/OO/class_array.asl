@@ -1,29 +1,37 @@
-//  check array assignment within object
+///
+///  check array assignment within object
+///
+
 CheckIn(0)
 
-setDebug(1,"trace")
+setDebug(1,@trace,@keep,@~soe)
+
+uint OC = 1;  // object counter
 
 class Dil {
 
 public:
 
  int n_actv;
- int I[30];
+ int IV[30];
  int id;
 
  CMF Print(wa) 
  {
-   k = I[wa]
+   k = IV[wa]
    <<"$wa $k \n"
  }
 
 
  CMF Set( wi, val)
  {
-      I[wi] = val;
+ <<"%V $wi $val\n"
+ <<"$IV[::] \n"
+      IV[wi] = val;
+   <<"$IV[::] \n" 
  }
 
- CMF showI()
+ CMF showIV()
   {
 //mas = memaddr(&I[0])
 
@@ -31,30 +39,33 @@ public:
 
 // <<"memcpy to %u $mad from $mas #bytes $nbytes\n"
 //   memcpy(mad, mas, nbytes)
-// <<"%V $I \n" 
+ <<"%V $IV[::] \n" 
   }
 
  CMF Dil() 
  {
  <<"Starting cons \n"
+     id = OC;
 
-     I[0:9] = 0;
+     OC++;
+
+
+     IV[0:9] = 1;
 
 //<<"%V$I \n"
-     id = OC++;
-
      <<"cons for $_cobj  $id \n"
 
-     I[0] = SC++ ;
-     k = I[0];
+     IV[23] = SC++ ;
+
+     k = IV[0];
 
 <<"%V$k \n"
 
-     I[1] = 28;
+     IV[1] = 28;
 
  <<"%V$I \n" 
 
-     k = I[0];
+     k = IV[0];
 
 <<"%V$k \n"
  <<"Done cons \n"
@@ -67,7 +78,7 @@ nbytes = 10 * 4
 
 <<"%V$nbytes \n"
 
-uint OC = 1  // object counter
+
 
 <<"%V$OC\n"
 
@@ -76,84 +87,107 @@ uint SC = 50;
 char C[1024];
 
 C[0] = 1;
+ <<" $C[0:10]\n"
 
+Dil E;
+
+   E->showIV();
 
 Dil D;
+
+<<" after cons\n"
+  D->showIV();
+
+
+  D->Set(5,32)
+  
+<<" after set\n"
+  D->showIV();
 
 <<" done dec of D\n"
 
 //CheckNum(D->I[0],50)
 //<<" $C[0:10]\n"
 
-Dil E
+
 
 //CheckNum(E->I[0],51)
- <<" $C[0:10]\n"
 
-<<" after cons\n"
-  D->Set(5,32)
-<<" after set\n"
 
-  D->Print(5)
-   k = D->I[5]
-<<" trying D->I[5] = 32 $k\n"
- 
-   D->I[5] = 33;
-   k = D->I[5]
 
-<<" after set D->I[5] = 33 $k\n"
 
-  D->I[9] = 78;
+  D->Print(5);
 
-<<"%V $D->I[9]  78? \n"
+  D->showIV()
 
-  E->I[9] = 93;
+  k = D->IV[5];
+   
+<<" trying %V $k $D->IV[5]  \n"
 
-<<"%V $E->I[9]  93? \n"
+  E->showIV();
+  D->showIV()
 
-  E->I[8] = 79
 
-<<"%V $E->I[8]  79? \n"
 
-  vi = E->I[8];
+   D->IV[5] = 33;
+
+   D->IV[6] = 1634;
+   
+   k = D->IV[5]
+
+<<" after set D->IV[5] = 33 $k\n"
+
+  D->IV[9] = 78;
+
+<<"%V $D->IV[9]  78? \n"
+
+  E->IV[9] = 93;
+
+<<"%V $E->IV[9]  93? \n"
+
+  E->IV[8] = 79
+
+<<"%V $E->IV[8]  79? \n"
+
+  vi = E->IV[8];
 
 
 <<"%V $vi = 79? \n"
-<<"%V $E->I[9] \n"
+<<"%V $E->IV[9] \n"
 
 
- CheckNum(E->I[9],93);
+ CheckNum(E->IV[9],93);
 
 
   D->Set(8,47)
 
 <<" show D \n"
 
-  D->showI()
+  D->showIV()
 
-  D->I[2] =79;
 
-  E->showI()
+  D->IV[2] =79;
 
-  D->showI()
+  E->showIV()
 
-  D->I[4] =80;
+  D->showIV()
 
-  D->showI()
+  D->IV[4] =80;
 
-  E->I[2] = 16
+  D->showIV()
 
-  E->showI()
+  E->IV[2] = 16
 
-  CheckNum(D->I[8],47)
+  E->showIV()
+
+
+
+  CheckNum(D->IV[8],47)
 
 
 CheckOut()
 
-stop()
-
-
-;
+exit(0)
 
 
 

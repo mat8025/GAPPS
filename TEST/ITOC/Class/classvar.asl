@@ -1,15 +1,30 @@
-# test oop features
+///
+/// test oo features
+///
 
-CheckIn()
-setDebug(1)
-CheckIn()
+
+setDebug(1,@keep,@soe,@trace)
+
+CheckIn();
+
+
+
+int V = 4 ;  // global 
+
+
+
+<<"%V $V $::V \n"
+
+  ::V = 74;
+
+<<"%V $V $::V \n"
+
+<<"%I  $V \n"
+
+<<"////////\n"
 
 <<"%v $_proc \n"
 <<"%v $_pstack \n"
-
-int V = 4     // global 
-
-<<"%I  $V \n"
 
 # class definition
 
@@ -25,10 +40,11 @@ int V = 4     // global
 #  method list
 
    CMF print () {
-     <<"%V $_proc of $_cobj   %I $x  $V  \n" 
-     <<"%V $_proc of $_cobj    $x  $V  \n" 
+     <<"$_proc of $_cobj\n"
+     <<" %I $x \n  $V  \n" 
 
-//     <<"%V $_proc of $_cobj   %I $x  $V  $_cobj->V\n"
+     <<"%V $x  $V  \n" 
+
 
    }
 
@@ -40,64 +56,94 @@ int V = 4     // global
    }
 
    CMF set_GV (val) {
-
-   <<" setting global to $val \n"
-
-       ::V = val
-   }
+       ::V = val;
+   <<" setting global to $val $::V \n"
+    }
 
 
    CMF get_x() {
 
        <<" $_proc returning  $x \n"
 
-      return x
+      return x;
    }
 
    CMF set_V (val) {
        V = val
-   <<" setting V to %I $val $V\n"
+   <<" setting class V to %V $val $V\n"
+      <<" %I $val $V\n"
    }
 
+   CMF set_VS (val1, val2) {
+          V = val1;
+	  ::V= val2;
+   }
+   
    CMF get_V() {
 
    <<" $_proc \n" 
-
    <<" %v $V \n"
-
-
-
-       return V 
+       return V ;
    }
 
 // constructor
 
   CMF fruit()
     {
-
   <<" doing fruit constructor for %I $_cobj \n"
   <<"%v $_pstack \n"
+        x = 5;
 
-       x = 5
-       V = 33
-    }
+        V = 33; // should set class V not global V
+
+       ::V= 80;
+
+
+     }
 
  }
 
+//===========================//
 <<"%v $_proc \n"
 <<"%v $_pstack \n"
 
 
 # object declaration
 
-<<" %v $V \n"
-
- fruit apple
-
-  apple->print()
+<<"pre_obj_dec %v $V \n"
 
 
+ fruit apple;
 
+//<<"post_obj_dec %V $V $apple->V  $(apple->get_V())\n"
+
+<<"post_obj_dec %V $V \n"
+<<"%I $V\n";
+
+<<"%V $apple->V  \n"
+
+  apple->print();
+
+<<"%V $apple->V \n"
+  apple->set_V(47);
+  
+<<"%V $apple->V \n"
+
+   apple->set_GV(79);
+
+<<"%V $apple->V \n"
+<<"%I $apple->V \n"
+
+<<"global %V $V \n";
+
+<<"%I $V\n"
+
+   apple->set_VS( 88,66);
+   
+<<"%V $apple->V \n"
+<<"global %V $V \n";
+
+  CheckNum(66,V)
 
  fruit cherry
 
@@ -110,7 +156,7 @@ int V = 4     // global
 <<" %v $apple->V \n"
 
   CheckNum(45,apple->V)
-  CheckNum(4,V)
+
 
 
   apple->print()
@@ -184,6 +230,4 @@ int V = 4     // global
 CheckOut()
 
 
-<<" good till here \n"
-stop!
-STOP!
+ exit()

@@ -1,111 +1,70 @@
+#  
+
+setdebug(1,@~trace,@soe)
+
+checkIn()
+
+str le;
+str le12;
+
+Mol = ( "JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC" ) ;
+
+<<"List is $Mol \n"
+
+sz = caz(Mol)
+<<" %V $sz \n";
+
+<<"$(typeof(Mol)) size $(caz(Mol)) $sz \n"
+
+checkNum(sz,12)
 
 
-Setdebug(1)
+<<"first month $Mol[0]\n"
+
+<<"second month $Mol[1]\n"
+
+<<"twelveth month $Mol[11]\n"
+
+le4 = Mol[3];
+
+<<"$(typeof(le4)) %V$le4\n"
+
+<<"le4[0] $le4[0] \n"
 
 
+checkStr(le4,"APR")
 
-// list H = (1,2,3);
+le12 = Mol[11];
 
-H = (1,2,3);
+<<"$(typeof(le12)) %V$le12\n"
 
- ///H = ("1","2","3");
+le = Mol[0]
 
-<<"%V $H\n";
+<<"$(typeof(le)) %V$le\n"
 
- L = ( "say", "what", "do" ,"I", "do", "now", "with", "this", "list" )
+checkStr(le,"JAN")
 
+<<"le checked\n"
 
-<<"L all %v %s $L \n"
+checkStr(Mol[0],"JAN")
 
+<<"Mol[0] checked\n"
 
-<<"L1%v %s $L[1] \n"
-<<"%v %s $L[2] \n"
-<<"%v %s $L[3] \n"
+le = Mol[1]
 
+checkStr(le,"FEB")
 
-# TDB make * work --- DONE
-<<"all: %v %s $L[*] \n"
+<<"$(typeof(le)) %V$le\n"
 
-# TDB make subscript work  --- DONE
-<<"%v %s $L[1:4] \n"
+checkStr("FEB",Mol[1])
 
-k= 5
-<<" %v =$k \n"
+<<"$Mol[1] Mol[1] checked\n"
 
-
-<<"%v %s $L[k] \n"
-
-
-
-<<" did we see L ? \n"
-
-#{
-# TBD make single quote - no expansion work
-<<' what do we see here \n'
-
-#}
-
-STOP!
-A=!!"ls *.asl"
-
-<<" $A \n"
-
-#{
-# TBD make backtick work
-B=`"ls *.asl"`
-<<" $B \n"
-#}
-
-
-
-
-STOP!
-
-
-
-
- G = { "say", "what", "do" ,"I", "do", "now" }
-
-<<"%v $G \n"
-<<"%v $G[1] \n"
-<<"%v $G[*] \n"
-
-
- K[] = { 1,2,3,4 }
-
-<<"%v = $K \n"
-<<"%v =$K[1] \n"
-<<"%v =$K[*] \n"
-
-
- R[] = { 1.0,2,3,4 }
-
-<<"%v = $R \n"
-<<"%v = $R[1] \n"
-<<"%v = $R[*] \n"
+checkStr(Mol[1],"FEB")
 
 
 
+checkProgress()
 
-
-
-
-
-STOP!
-
- k = 0
-#{
-// List L  element e
-   e = L->first()
-   n = L->size()
-  do   
-  {
-   val = L->currval()
-   <<"$k $e->val() \n"
-   k++
-   e= L->next()
-  } until (k > n)
-
-#}
-
-STOP!
+<<" DONE Lists \n"
+//////////////////////////////////

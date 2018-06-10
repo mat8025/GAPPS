@@ -1,4 +1,4 @@
-
+/{
 proc ask()
 {
    ok=checkStage();
@@ -9,15 +9,13 @@ proc ask()
 
 //#define  ASK ask();
 #define  ASK ;
+/}
 
-
-
-
-setdebug(1,"pline","trace");
+setdebug(1,@pline,@~trace,@~soe);
 
 checkIn()
 
-// simple class test
+/// simple class test
 
 class Rec {
 
@@ -29,10 +27,18 @@ class Rec {
 
 Rec FI[10];
 
+ svar loc;
+
+loc = Split("how did we get here")
+
+<<"$loc[1]\n"
+
+<<"$loc[::]\n"
+
+
  FI[0]->srec = Split("how did we get here")
 
- FI[1]->srec = Split("just evolved with many trials")
-
+<<"$FI[0]->srec[::] \n"
 
 
  r00 = FI[0]->srec[0];
@@ -45,12 +51,20 @@ Rec FI[10];
 
 <<"%V $r00 $r01 $r02\n"
 
- checkStr(r00,"how");
- 
- checkStr(r02,"we");
 
- ASK
 
+ FI[1]->srec = Split("just evolved with many trials")
+
+
+ r00 = FI[0]->srec[0];
+
+ r01 = FI[0]->srec[1];
+
+ r02 = FI[0]->srec[2];
+
+<<"$(typeof(r00)) \n"
+
+<<"%V $r00 $r01 $r02\n"
 
  r10 = FI[1]->srec[0];
 
@@ -61,9 +75,33 @@ Rec FI[10];
 
 <<"%V $r10 $r11 $r12\n"
 
+
+
+ checkStr(r00,"how");
+ 
+ checkStr(r02,"we");
+
+
+
+
+ r10 = FI[1]->srec[0];
+
+ r11 = FI[1]->srec[1];
+
+ r12 = FI[1]->srec[2];
+
+
+<<"%V $FI[1]->srec[2]\n"
+
+<<"%V $r10 $r11 $r12\n"
+
+checkStr(r10,"just");
+
+checkStr(r11,"evolved");
+
 checkStr(r12,"with");
 
-ASK
+
 
 ////////////////////////
 
@@ -121,7 +159,7 @@ checkNum(s,9)
 <<"%V $s $(typeof(s)) \n"
 
 
-ASK
+
     r= tc->sum(4.2,5.6);
 
 <<"%V $r $(typeof(r)) \n"
@@ -129,7 +167,7 @@ ASK
 checkNum(r,9.8)
 
 
-ASK
+
 
 Add  mc;
 
@@ -153,7 +191,7 @@ Add  nc[2];
 
 checkNum(s,126)
 
-ASK
+
 
     s= nc[0]->diff(47,79);
 
@@ -162,7 +200,7 @@ checkNum(s,-32);
 <<"%V $s $(typeof(s))\n"
 
 
-ASK
+
 
    s= mc->diff(47,79);
 
@@ -170,7 +208,7 @@ ASK
 
 checkNum(s,-32);
 
-ASK
+
     what = mc->say();
 <<"%V$what $(typeof(what))\n"
 checkStr(what,"hey hey");
@@ -184,7 +222,7 @@ checkStr(what,"hey hey");
 checkStr(what,"Do what I say");
 
 
-ASK
+
 
 checkOut()
 

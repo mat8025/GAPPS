@@ -1,7 +1,9 @@
+///
+/// test proc
+///
 
-// test proc
 
-
+setDebug(1,@keep)
 
 CheckIn()
 
@@ -16,7 +18,7 @@ proc foo(a)
  return tmp
 
 }
-
+//===================
 
 
 x = 20.2
@@ -128,7 +130,7 @@ t = foo(Cos(x))
 
 CheckOut()
 
-stop!
+exit()
 
 
 
@@ -177,7 +179,7 @@ proc noo()
 
 <<" DONE $k $N \n"
 
-STOP!
+exit()
 
 
 

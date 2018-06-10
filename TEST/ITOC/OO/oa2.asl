@@ -3,8 +3,9 @@
 ///
 
 
-setDebug(1,"~trace","pline","~step")
+setDebug(1,@~trace,@~pline,@soe)
 
+//envDebug()
 //#define  ASK ans=iread();
 #define  ASK ;
 
@@ -29,7 +30,7 @@ vid = F[2]->vid()
 
 <<" $vid \n"
 
-int act_ocnt = 0
+int Act_ocnt = 0;
 
 class Act {
 
@@ -44,9 +45,9 @@ class Act {
      obid = _cobj->obid()
 //     <<"Act Set  $_cobj  $obid $(offsetof(&_cobj)) $(IDof(&_cobj))\n" 
      <<"Act Set  $_cobj \n" 
-      type = s
+      type = s;
      <<"type  $s $type\n"
-     return type
+     return type;
  }
 
  CMF Get()
@@ -58,11 +59,12 @@ class Act {
  {
 // FIXME   <<"cons of Act $_cobj $(_cobj->obid())  $(IDof(&_cobj))\n" 
 //   co = _cobj->offset()
-//   <<"cons of Act $_cobj   $(IDof(&_cobj)) $(offsetof(&_cobj)) co $co\n" 
-   //<<"Act cons of $_cobj $act_ocnt\n"
-   act_ocnt++
 
-   type = 1
+   <<"Act cons of $_cobj $Act_ocnt\n"
+
+    Act_ocnt++ ;
+
+   type = 1;
 
    mins = 10;
 
@@ -74,15 +76,15 @@ class Act {
 
 Act a;
 
-    a->type = 2
+    a->type = 2;
 <<"%V$a->type \n"
-    a->type = 3
+    a->type = 3;
 <<"%V$a->type \n"
-    a->Set(5)
+    a->Set(5);
 <<"%V$a->type \n"
 
 
- vid = a->vid()
+ vid = a->vid();
 <<"%V$vid \n"
 
   <<"%V$a->type \n"
@@ -90,11 +92,11 @@ Act a;
 // FIXME <<" a $(IDof(&a)) $(a->obid())\n"
 
 
- obid = a->obid()
+ obid = a->obid();
 
  <<" a $(IDof(&a)) obid $obid \n"
 
-ASK
+
 
  Act b;
  Act c;
@@ -127,13 +129,15 @@ ASK
 
  yrt = X[3]->Set(7)
 
- yt = X[3]->type
+ yt = X[3]->type;
 
 <<"type %V$yrt $yt\n"
 
   X[3]->type = 66
 
- yt = X[3]->type
+ yt = X[3]->type;
+
+ CheckNum(yt,66);
 
 <<"type %V$yrt $yt\n"
 
@@ -160,34 +164,33 @@ ASK
  X[0]->type = 50
  X[1]->type = 79
  X[2]->type = 47
- X[3]->type = 80
+ X[3]->type = 80;
 
-
+ 
  yt = X[2]->type
 
-<<"type for 2 $yt $(typeof(yt)) \n"
+<<"47? type for 2 $yt $(typeof(yt)) \n"
 
-
- CheckNum(yt,47)
+ CheckNum(yt,47);
  
 
- yt = X[3]->type
-<<"type for 3 $yt \n"
+ yt = X[3]->type;
 
- CheckNum(yt,80)
+<<"80? type for X[3] $yt \n"
+
+ CheckNum(yt,80);
   
-
  yt = X[0]->type
 
 <<"type for 0 $yt \n"
 
- CheckNum(yt,50)
+ CheckNum(yt,50);
 
 
  yt = X[1]->type
 <<"type for 1 $yt = 79 ?\n"
 
- CheckNum(yt,79) 
+ CheckNum(yt,79) ;
 
 
 
@@ -206,7 +209,7 @@ ASK
      pass = 0
   }
 
-ASK
+
 
  val = 50
  i = 2
@@ -236,7 +239,7 @@ ASK
 
 <<"PASS? $pass \n"
 
-ASK
+checkOut()
 
 <<"\n//////////////// CMF Set-Get /////////////////\n"
 
@@ -289,9 +292,9 @@ ASK
 
 
 
- X[0]->type = 2
+ X[0]->type = 2;
 
- yt = X[0]->type
+ yt = X[0]->type;
 
  <<"%V$yt  $X[0]->type \n"
 
@@ -335,7 +338,7 @@ ASK
    <<"%V  $yt  $X[1]->type \n"
 
 
-ASK
+
 
 <<"/////////////////// Nested Class /////////////\n"
 
@@ -413,6 +416,19 @@ syt = 80 //
 
 <<"%V $E->B->t \n"
 
+   tys = E->B->t;
+
+<<"%V $syt  $tys \n"
+
+
+ checkNum(syt,tys);
+
+
+
+ 
+
+
+
  gyt = E->B->t;
 
 <<" $gyt $(typeof(gyt)) \n"
@@ -432,18 +448,17 @@ syt = 60; //
 
 <<"nested class getting direct reference %V $gyt \n"
 
-k = 3
+k = 3;
    CheckNum(gyt,60)
 
  E->A[0]->t = 28;
 
-ASK
 
  t1 = E->A[0]->t;
 
 <<"$t1\n"
+<<"%V $E->A[0]->t \n"
 
-ASK
 
 
  E->A[1]->t = 92;
@@ -452,9 +467,11 @@ ASK
 
  t1 = E->A[k]->t;
 
-<<"$t1\n"
+<<"%V $k $t1\n"
+<<"%V $E->A[0]->t \n"
+ checkNum(t1,72);
 
-ASK
+
 
  yt0 = E->A[0]->t
 
@@ -470,7 +487,7 @@ ASK
 
 <<"%V $yt3 \n"
 
-ASK
+
 
  E->A[1]->t = 29;
  E->A[2]->t = 92;
@@ -478,11 +495,14 @@ ASK
 
  yt0 = E->A[0]->t
 
+<<"%V $E->A[0]->t \n"
+
 <<"%V $yt0 \n"
 
-ASK
 
- CheckNum(yt0,28)
+ CheckNum(yt0,28);
+
+
 
  yt1 = E->A[1]->t
 
@@ -490,7 +510,7 @@ ASK
 
  CheckNum(yt1,29)
 
-ASK
+
 
  yt2 = E->A[2]->t
 
@@ -498,7 +518,8 @@ ASK
 
  CheckNum(yt2,92)
 
-ASK
+
+
 
 // FIX crash -- xic generation?
 
@@ -508,7 +529,8 @@ ASK
 
  CheckNum(yt3,75)
 
-ASK
+ //checkProgress()
+// exit()
 
   j = 2
 
@@ -518,6 +540,12 @@ ASK
 
 <<"\n"
 
+
+ CheckNum(yt,92)
+
+
+
+
  for (j = 0; j < 4 ; j++) {
 
     yt = E->A[j]->t
@@ -525,6 +553,15 @@ ASK
  }
 
 <<"\n"
+
+
+yt = E->A[3]->t;
+
+checkNum(yt,75);
+
+
+
+
 
  for (j = 0; j < 4 ; j++) {
 

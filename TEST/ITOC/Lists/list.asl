@@ -1,3 +1,7 @@
+///
+///
+///
+
 
 ws = getScript()
 
@@ -5,13 +9,18 @@ ws = getScript()
 
 //  setdebug(1."trace","keep")  /// TBF 1." crashes
 
-setdebug(1,"trace","keep")
+setdebug(1,@trace,@keep);
+
 filterDebug(1,"Vdeclare")
 
 
 
 CrashList = ( "",  )  // empty list
+
 <<"%V$CrashList \n"
+
+
+
 
 CrashList->LiDelete(0)
 

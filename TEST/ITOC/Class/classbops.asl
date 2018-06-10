@@ -1,18 +1,20 @@
 // bops for class variables
 
-setdebug(1,"pline","prun")
+setdebug(1,@~pline,@keep,@~trace,@~soe)
 
 CheckIn()
 
- a = 1.0
- b = 2.0
- c = 0.2
+ a = 1.0;
+ b = 2.0;
+ c = 0.2;
 
- float my
+ float my;
+ float  v = 2.1;
+<<"%V $v\n"
 
-// FIXME XIC float v= 2.1
+   ok=CheckFNum(v,2.1);
 
- v = 2.1
+
 
  for (i = 0 ; i < 4 ; i++) {
 
@@ -21,8 +23,6 @@ CheckIn()
    <<"[${i}] %V $b $c  $my \n"
 
    b += 0.1
-
-
 
    ok=CheckFNum(my,v,5)
 <<"%V$ok  $my $v \n"
@@ -37,59 +37,101 @@ Class Point
 {
 
  float x;
- float y
+ float y;
 
 
  CMF set(a,b)
   {
-      x = a
-      y = b
+      x = a;
+      y = b;
+      <<"Setting %V $a $b $x $y \n"
   }
 
  CMF getx()
   {
-     return x
-     
+  <<"getting $x $_cobj \n"
+     return x;
   }
 
  CMF gety()
   {
-     return y
+    <<"getting $y  $_cobj  \n"
+     return y;
   }
 
  CMF  mul(a)
   {
-      float tmp
+      float tmp;
       tmp = (a * x)
       return tmp
   }
 
-
-
+  CMF Print()
+  {
+    <<"%V $x,$y %i $x,$y\n"
+  }
+  
 }
 ////////////////////////////////////////////
 
- Point A
- Point B
- Point C
+ Point A;
+ Point B;
+ Point C;
+ Point D;
 
-
- A->set(0.15,0.2)
- B->set(2.0,2)
- C->set(1,0.2)
-
-
+ B->set(2.2,0.123);
+ A->set(0.15, 0.2);
 
 <<"%V $A->x $A->y \n"
+ A->Print()
+ ok=CheckFNum(A->x,0.15,5)
+ ok=CheckFNum(A->y,0.2,5)
+
+
+
+
 <<"%V $B->x $B->y \n"
+
+ B->Print()
+ 
+ok=CheckFNum(B->x,2.2,5)
+ok=CheckFNum(B->y,0.123,5)
+
+C->set(1.1,0.2)
+
 <<"%V $C->x $C->y \n"
 
 
 
- wx = A->getx()
-
+ wx = A->getx();
 
  ok=CheckFNum(wx,0.15,5)
+
+ A->set(47, 79);
+ 
+ A->Print()
+
+ B->set(83, 65);
+ A->Print()
+ B->Print()
+
+ D->x = B->x;
+
+checkNum(D->x,83)
+
+ D->Print()
+
+ D->y = A->y;
+
+checkNum(D->y,79)
+
+
+
+ D->Print()
+  
+
+checkNum(D->y,A->y)
+
 
 
 
@@ -98,18 +140,48 @@ Class Point
 <<"%V$ok x  $wx 0.15\n"
 
   wy = A->gety()
+<<"%V $wy $A->gety()\n"
 
 
-
-   ok=CheckFNum(wy,0.2,5)
-<<"%Vok y $wy 0.2\n"
+   ok=CheckFNum(wy,79,5)
+<<"%Vok y $wy 79\n"
 
 <<" 2/////////////////\n"
 
 
-  z = A->getx() + B->gety()
+A->Print();
+B->Print();
 
-   CheckFNum(z,2.15,5)
+  ax = A->getx();
+  <<"A %V $ax \n"
+ CheckFNum(ax,47,5);
+  ay = A->gety();
+  <<"A %V $ay \n"  
+       CheckFNum(ay,79,5)
+
+A->Print();
+
+
+
+bx = B->getx();
+   CheckFNum(bx,83,5)
+  by = B->gety();
+   CheckFNum(by,65,5)
+   axy = A->getx() + A->gety()
+   CheckFNum(axy,(ax+ay),5)
+   bxy = B->getx() + B->gety()
+   CheckFNum(bxy,(bx+by),5);
+   
+   z2 = A->x + B->y
+
+   z = A->getx() + B->gety()
+  
+<<"%V $ax $ay $axy $bx $by  $bxy $z2 $z\n"
+
+
+   CheckFNum(z2,(ax+by),5)
+
+   CheckFNum(z,(ax+by),5)
 
 <<"%V $z $wx $wy \n"
 
@@ -121,9 +193,9 @@ Class Point
 
 <<"%V $B->y  $my \n"
 
-    my = B->y - C->y
+    my = B->y - C->y;
 
-     ok=CheckFNum(my,1.8,6)
+     ok=CheckFNum(my,(65-0.2),4)
 <<"%V$ok $B->y - $C->y =  $my \n"
 
 
@@ -131,11 +203,12 @@ Class Point
 
 <<"%V $B->y $C->y  $my \n"
 
-     ok=CheckFNum(my,1.1,6)
+     ok=CheckFNum(my,32.6,4)
 <<"%V$ok $my 1.1\n"
 
  //setdebug(1,"step")
 
+ Point P[3];
 
  checkProgress(" 4")
   v  = 1.3
@@ -257,7 +330,7 @@ checkProgress("  v -= C->y ");
 
    CheckOut()
 
-stop!
+exit()
 
    my = A->mul( B->getx() )
 

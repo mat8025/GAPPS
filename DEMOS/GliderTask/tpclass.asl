@@ -39,7 +39,7 @@ DBG"$nwr  $wval[0] $wval[1] $wval[2]  \n"
     
     if (nwr > 6) {
       
-      Place = wval[0];
+      Place =wval[0] // taskpt place
       
 //<<" $wval[0]  \n"
 
@@ -47,9 +47,9 @@ DBG"$nwr  $wval[0] $wval[1] $wval[2]  \n"
 
 //    Ladeg = GetDeg(la_deg)
 
-    Ladeg = GetDeg(wval[2])
+    Ladeg = GetDeg(wval[2]) ; // taskpt Ladeg
 
-    Longdeg = GetDeg(wval[3])
+    Longdeg = GetDeg(wval[3]) ; // taskpt Longdeg
 
     tptype = wval[7];
     }
@@ -215,16 +215,16 @@ DBG"$sz 0: $wval[0] 1: $wval[1] 2: $wval[2] 3: $wval[3] 4: $wval[4] \n"
       //   <<"$wval[0]\n"
        //  <<"$(typeof(wval))\n"
        //ans = iread("-->");
-     Place = wval[0];
+     Place=wval[0]; // wayp 
     
-DBG"%V$Place\n"
+     DBG"%V$Place\n"
 
 
      Idnt =  wval[1];
  DBG"%V$Idnt\n"
  //    <<"%V$wval[2]\n"
      
-     Lat = wval[2];
+     Lat = wval[2]; // wayp 
 
      //   <<"%V$Lat  <| $wval[2] |>\n"
 
@@ -246,10 +246,9 @@ DBG"%V$Lat $Lon \n"
      // <<" $(typeof(Lon)) \n"
      //  <<" $(typeof(Ladeg)) \n"	 
 
-    Ladeg =  GetDeg(Lat);
-
+    Ladeg =  GetDeg(Lat); // wayp 
      //       <<" $(typeof(Longdeg)) \n"	 
-     Longdeg = GetDeg(Lon);
+    Longdeg = GetDeg(Lon); // wayp 
 
 DBG"%V $Ladeg $Longdeg \n"
 
@@ -274,7 +273,7 @@ DBG"%V $Ladeg $Longdeg \n"
 
   CMF Turnpt()
     {
-     //<<"CONS $_proc \n"
+     <<"CONS $_proc \n"
       Place="nowhere";
       Ladeg = 0.0;
       Longdeg = 0.0;
