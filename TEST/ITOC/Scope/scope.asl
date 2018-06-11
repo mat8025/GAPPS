@@ -1,6 +1,8 @@
+///
+///   Scope -- local and Global refs inside of procs
+///
 
-
-setdebug(1,@trace)
+setdebug(1,@keep,@~trace)
 
 proc soo()
 {
@@ -16,9 +18,12 @@ proc goo()
 {
 int x = 1;
 int X = 5; // local declaration hides global X
+
    Y++;
    x++;
+
    X++;  // applies to local X
+   
 <<"$_proc %V $x  $X $Y\n"
 }
 //==========================
@@ -30,7 +35,7 @@ int x = 1;
 int X = 7; // local declaration hides global X
    X++; // applies to local X
    x++;
-   :.X++; // scope :: operator allows access to global X
+
    ::X++; // scope :: operator allows access to global X
 
 <<"$_proc %V $x $X $Y $::X \n"
@@ -39,36 +44,39 @@ int X = 7; // local declaration hides global X
 
 
 float X = 2;
-float Y = 2;
+float Y = 4;
 
 checkIn();
 
 <<"%V $X $Y\n"
 
-checkNum(X,2)
+checkNum(X,2);
+
+checkNum(Y,4);
 
  soo()
 
-checkNum(X,3)
+ checkNum(X,3)
 
 <<"%V $X $Y\n"
+
 
  goo();
 
-checkNum(X,3)
+ checkNum(X,3)
 
-
+ checkNum(Y,5)
 
 <<"%V $X $Y\n"
+
+
 
  moo();
 
 checkNum(X,4)
 
 <<"%V $X $Y\n"
- checkOut()
- 
-exit();
+
 
 
 
@@ -108,5 +116,4 @@ exit();
   k = 0
   }
 
-exit();
-;
+checkOut()

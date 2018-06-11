@@ -21,7 +21,7 @@ vers = 9;
 setDebug(1,@keep);
 filterDebug(0,"args");
 
-proc RunTests()
+proc RunTests( Tp )
 {
      np = Caz(Tp);
       for (i=0 ; i <np; i++) {
@@ -671,9 +671,9 @@ int do_ptrs = 0;
   
       Run2Test("Types");
 
-      Tp = Split("float,str,char,long,short,double,pan_type,ato",",");
+      tp = Split("float,str,char,long,short,double,pan_type,ato",",");
 
-      RunTests();
+      RunTests(tp);
 
       
       Run2Test("Cast")
@@ -709,11 +709,9 @@ int do_ptrs = 0;
   Run2Test("Sops")
 
 //  need more str ops tests than this!
-      Tp = Split("scat,scmp,ssub,stropcmp",",");
-      np = Caz(Tp);
-      for (i=0 ; i <np; i++) {
-           cart(Tp[i]);
-      }
+
+      sp = Split("scat,scmp,ssub,stropcmp",",");
+      RunTests(sp)
 
   Run2Test("Date")
   cart("date")
@@ -761,11 +759,8 @@ if (( do_all ==1) || (do_declare == 1) ) {
 
   Curr_dir = getDir();
 
-      Tp = Split("declare,promote,declare_eq,chardeclare,scalar_dec,floatdeclare,arraydeclare,proc_arg_func",",");
-      np = Caz(Tp);
-      for (i=0 ; i <np; i++) {
-           cart(Tp[i]);
-      }
+      dp = Split("declare,promote,declare_eq,chardeclare,scalar_dec,floatdeclare,arraydeclare,proc_arg_func",",");
+      RunTests(dp)
 
    Run2Test("Resize")
 
@@ -918,17 +913,17 @@ if ( do_all || do_array ) {
 
    //   Tp = Split("ae,arraystore,arrayele,arrayele0,arrayele1,arraysubset,arrayrange,arraysubvec,arraysubsref,arraysubsrange,dynarray,lhrange,lhe,joinarray,vec_cat,vgen,array_sr,mdele,vsp",","); // TBF - this long line somewhere is overwriting array ?? but we are using Svar - which are not fixed len
 
-      Tp = Split("ae,arraystore,arrayele,arrayele0,arrayele1,arraysubset,arrayrange,arraysubvec,arraysubsref,arraysubsrange,",",");
+      ap = Split("ae,arraystore,arrayele,arrayele0,arrayele1,arraysubset,arrayrange,arraysubvec,arraysubsref,arraysubsrange,",",");
 
-    RunTests();
-    
-      Tp = Split("dynarray,lhrange,lhe,joinarray,vec_cat,vgen,array_sr,mdele,vsp",",");
+    RunTests(ap);
+      ap->vfree()
+      ap = Split("dynarray,lhrange,lhe,joinarray,vec_cat,vgen,array_sr,mdele,vsp",",");
 
 //  Tp = Split("ae,arraystore,arrayele,arrayele0,arrayele1,arraysubset,arrayrange,arraysubvec,arraysubsref,arraysubsrange,",",");
       
 //<<"$Tp \n"
 
-    RunTests();
+    RunTests(ap);
 
   Run2Test("Scalarvec")
 
@@ -1069,9 +1064,9 @@ if ( do_all || do_proc ) {
 
   Run2Test("Proc")
 
-  Tp= Split("proc,proc_declare,procret0,procarg,proc_sv0,proc_rep,proc_str_ret,procrefarg",",");
+  pp= Split("proc,proc_declare,procret0,procarg,proc_sv0,proc_rep,proc_str_ret,procrefarg",",");
 
-  RunTests()
+  RunTests(pt)
 
   cart("proc_var_define", 10)
 
@@ -1163,11 +1158,7 @@ if ( do_all || do_svar ) {
 
      Run2Test("Ivar")
 
-    //Run2Test("Ivar")
-
     cart("ivar")
-
-
 
     }
 
@@ -1175,16 +1166,8 @@ if ( do_all || do_svar ) {
 if ( do_all || do_record ) {
 
      Run2Test("Record")
-
-
-    cart("record")
-
-    cart("readrecord")
-
-    cart("prtrecord")
-
-    cart("rec1")
-
+     rp = Split("record,readrecord,prtrecord,rec1",",");
+     RunTests(rp);
 
 }
 
@@ -1432,9 +1415,9 @@ if ( do_all || do_bugs ) {
       Run2Test("BUGFIX")
       // lets get a list and work through them
       //cart("bf_40")   // this has intentional error and exits before test checks
-      Tp = Split("bf_46,bf_59,bf_64,bf_75,bf_76,bf_78,bf_79,bf_80,bf_83,bf_84,bf_89,bf_91,bf_96,",",");
+      bp = Split("bf_46,bf_59,bf_64,bf_75,bf_76,bf_78,bf_79,bf_80,bf_83,bf_84,bf_89,bf_91,bf_96,",",");
 
-      RunTests();
+      RunTests(bp);
       
       
     
