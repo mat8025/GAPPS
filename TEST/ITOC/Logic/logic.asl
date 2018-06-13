@@ -1,16 +1,14 @@
+///
+///  test if and or not
+//
 
-//  test if and or not
+setDebug(1,@keep,@soe)
 
 CheckIn()
 
-CheckIn()
 
-
-
-
-
-int a = 1
-int b = 2
+int a = 1;
+int b = 2;
 
 proc poo()
 {
@@ -32,21 +30,21 @@ CheckTrue(plop)
 
 }
 
-
+//==========================//
 
 proc poo2()
 {
- plop = 0
+ plop = 0;
 
- int a = 2
- int b = 3
-
+ int a = 2;
+ int b = 3;
+<<"%V $a $b \n"
   if ((a > 0) && (b > 2)) {
     <<" ($a > 0 && $b > 2) \n"
-    plop = 1
+    plop = 1;
   }
   else {
-   <<" NOT ($a > 0 && $b > 2) \n"
+   <<" NOT ($a > 0 && $b > 2) \n";
   }
 
 
@@ -54,7 +52,7 @@ proc poo2()
 
   return plop
 }
-
+//==========================//
 
 
 lop = 0
@@ -314,4 +312,3 @@ CheckOut()
 
 
 
-STOP!

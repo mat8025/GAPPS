@@ -70,8 +70,11 @@ DBG"$nwr  $wval[0] $wval[1] $wval[2]  \n"
    CMF GetTA ()   
    {
       int amat =0;
-      val = tptype; 
-      spat (val,"A",-1,-1,amat)
+ //     val = tptype;
+      spat (tptype,"A",-1,-1,amat);
+      <<"Taskpt $tptype $amat\n"
+//      spat (val,"A",-1,-1,amat);
+      
 //<<"taskpt %V$amt $(typeof(amat)) \n"
       return amat;
    }
@@ -133,7 +136,7 @@ DBG"$nwr  $wval[0] $wval[1] $wval[2]  \n"
 //ttyin()
 
       float la;
-      float the_deg;
+      //float the_deg;
       float the_min;
 
 //<<" $_cproc  $the_ang  \n"
@@ -273,7 +276,7 @@ DBG"%V $Ladeg $Longdeg \n"
 
   CMF Turnpt()
     {
-     <<"CONS $_proc \n"
+     //<<"CONS $_proc \n"
       Place="nowhere";
       Ladeg = 0.0;
       Longdeg = 0.0;
@@ -282,8 +285,10 @@ DBG"%V $Ladeg $Longdeg \n"
  CMF GetTA()   
    {
       int amat =0;
-      val = tptype; 
-      spat (val,"A",-1,-1,amat)
+      //val = tptype; 
+      //spat (val,"A",-1,-1,amat);
+      spat (tptype,"A",-1,-1,amat);
+      <<"Turnpt  $tptype $amat\n"
 //<<"%V$amt $(typeof(amat)) \n"
       return amat;
    }
@@ -292,21 +297,25 @@ DBG"%V $Ladeg $Longdeg \n"
     {
       str the_dir;
       //<<"input args is $the_ang \n"
-
+   //   float the_deg;
       float la;
       str wd;
  //<<"%V$_cproc %i $the_ang  \n"
 	
 
-    the_parts = Split(the_ang,",")
+     the_parts = Split(the_ang,",")
 
-      //<<"%V$the_parts \n"
+//<<"%V$the_parts \n"
 
 
 //FIX    float the_deg = atof(the_parts[0])
     wd = the_parts[0];
+    
     //the_deg = atof(the_parts[0])  // fix returns vec instead to supplied scalar string
+
     the_deg = atof(wd);
+
+//<<"%V $wd $the_deg \n"
 
 //    float the_min = atof(the_parts[1]
     wd = the_parts[1];

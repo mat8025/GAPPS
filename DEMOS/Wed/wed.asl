@@ -11,7 +11,7 @@ vers = "2.1";
 
 
 
-setDebug(0);
+setDebug(0,@keep);
 
 //#define DBPR  <<
 

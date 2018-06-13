@@ -42,7 +42,7 @@ float Cruise_speed = 80 * nm_to_km;
 //<<" done class def \n"
 
 
-Turnpt  Wtp[10];
+Turnpt  Wtp[20];
 
 Svar CLTPT;
 
@@ -329,7 +329,7 @@ DBG"$Wval[::]\n"
  ok_to_compute = 1
 
  // FIX
- float the_leg
+ float the_leg;
 
   while (more_legs == 1) {
 
@@ -424,9 +424,16 @@ ild= abs(LoD)
 
   for (nl = 0; nl < n_legs ; nl++) {
 
-       Leg[nl] = ComputeTPD(nl, nl+1)
+        tkm = ComputeTPD(nl, nl+1);
+
+//<<"<$nl> $tkm\n"
+       Leg[nl] = tkm;
+       //Leg[nl] = ComputeTPD(nl, nl+1)
+
        TC[nl] =  ComputeTC(nl, nl+1)
-       Dur[nl] = Leg[nl]/ Cruise_speed
+
+       Dur[nl] = Leg[nl]/ Cruise_speed;
+
        total += Leg[nl]
   }
 
@@ -445,7 +452,10 @@ ild= abs(LoD)
     } 
     else { 
              the_leg = Leg[nl-1]
+             pc_tot = 0.0;
+             if (total > 0) {
              pc_tot = the_leg/total * 100.0
+	     }
     }
 
     nleg = the_leg * km_to_nm

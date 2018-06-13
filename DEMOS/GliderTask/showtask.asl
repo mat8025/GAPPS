@@ -75,18 +75,16 @@ TaskType = "TRI";
 
 int Nlegs = 1;
 
-Turnpt  Wtp[500];
-
+//Turnpt  Wtp[500]; // 
+Turnpt  Wtp[50]; // 
 /// open turnpoint file lat,long 
-
-
 //tp_file = GetArgStr()
 
 tp_file = "turnpts.dat"  // open turnpoint file 
 
 
   if (tp_file @= "") {
-    tp_file = "turnpts.dat"  // open turnpoint file 
+    tp_file = "turnptsSM.dat"  // open turnpoint file 
    }
 
   A=ofr(tp_file)

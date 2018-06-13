@@ -5,17 +5,9 @@
 
 CheckIn()
 
-setDebug(1,@trace,@~soe)
+setDebug(1,@~trace,@pline,@soe)
 
 int x = 5;
-
-<<" %v $x \n"
-
-float V[10]
-
-V[5] = 7
-
-<<" $V \n"
 
 int Bid =0;
 
@@ -25,22 +17,25 @@ CLASS Building {
  int floors = 2;
  int area ;
  int id;
+ 
  CMF setRooms(val)
  {
-//  <<" $_proc %I $_cobj  $rooms $floors $area \n"
-  <<" $_proc  $_cobj  $rooms $floors $area \n"
+  <<" $_proc  $_cobj $id  $rooms $floors $area \n"
    rooms = val;
  }
 
  CMF getRooms()
  {
-   return rooms 
+//<<" $_proc  $_cobj $id  $rooms $floors $area \n"
+   nr = rooms
+
+ //  return nr;
+   return rooms; 
  }
 
  CMF setFloors(val)
  {
- 
-   floors = val;
+    floors = val;
 <<" $_cobj $_proc $id $val $floors \n"
    area = floors * 200;
 //   my->print()
@@ -48,8 +43,10 @@ CLASS Building {
 
  CMF getFloors()
  {
-//   <<" $_proc $(cclass()) -> getFloors $floors \n"
-   <<"$_proc  $id  $floors \n"
+//<<" $_proc  $_cobj $id  $rooms $floors $area \n"
+   nf = floors;
+<<"$nf \n"   
+//   return nf;
    return floors;
  }
 
@@ -60,15 +57,15 @@ CLASS Building {
 
  CMF Building()
  {
-
-    floors = 7;
-    rooms = 4;
-
- //<<" constructor %I $_cobj setting  $floors  $rooms\n"
-
-   area = floors * 200;
-   id = Bid++;
-<<" constructor setting  $id $floors  $rooms\n"
+    id = Bid;
+    
+    Bid++;
+   
+    floors = 7 + id;
+    rooms = 4 +id ;
+    area = floors * 200;
+   
+ <<" cons  $_cobj %V $id  $Bid $floors  $rooms $area\n"
 }
 
 }
@@ -81,28 +78,78 @@ CLASS Building {
 
 <<" done object array[10] declare ! \n"
 
+   C[0]->Print()
+   C[1]->Print()
+   C[2]->Print()
+
 
   C[1]->Print()
 
-  C[2]->setFloors(15);
+   b1rooms = C[1]->getRooms();
 
-  C[2]->Print();
+<<"%V $b1rooms \n"
 
+   CheckNum(b1rooms,5);
+
+
+
+
+   b0rooms = C[0]->getRooms();
+
+<<"%V $b0rooms \n"
+
+   CheckNum(b0rooms,4);
+
+
+   C[5]->Print()
+
+   b5rooms = C[5]->getRooms();
+
+<<"%V $b5rooms \n"
+
+   CheckNum(b5rooms,9);
+
+   C[6]->Print()
+
+   b6rooms = C[6]->getRooms();
+
+<<"%V $b6rooms \n"
+
+   CheckNum(b6rooms,10);
+
+
+ 
+
+   CheckNum(b1rooms,5);
+
+   b2rooms = C[2]->getRooms();
+
+<<"%V $b2rooms \n"
+
+   CheckNum(b2rooms,6);
+
+
+
+
+
+   C[2]->setFloors(15);
+
+   C[2]->Print();
+
+   b2floors = C[2]->getFloors();
+
+<<"%V $b2floors \n"
+  CheckNum(b2floors,15)
+  
 
 /// MF
   nf = C[2]->getFloors()
 
-<<"%V $nf\n"
+<<"[2] floors %V $nf\n"
 
  CheckNum(nf,15)
 
-
-
-
-
-<<"  return n floors for [1] \n"
-
-   n = 2;
+  n = 2;
 
   C[n]->setFloors(16);
   
@@ -110,32 +157,40 @@ CLASS Building {
 
 <<"  return n floors for [${n}] \n"
 
-  nf = C[1]->getFloors()
+
+  nf = C[2]->getFloors()
 
 <<"%V $nf \n"
 
-  CheckNum(nf,7)
+  CheckNum(nf,16)
 
+  checkStage();
+  
   nf = C[n]->getFloors()
 
 <<"%V $nf \n"
 
   CheckNum(nf,16)
 
+  checkStage();
 
 
+/////////
 
+ // j = 3; // TBF ---
+  j = 9;
 
-  j = 3
+  C[j]->setFloors(12); // this has to set C offset first time through
 
-  C[j]->setFloors(12)
+  C[j]->Print();
 
-  C[j]->Print()
+  nf = C[j]->getFloors();
 
-  nf = C[j]->getFloors()
+<<"floors $nf \n"
 
-<<" $nf \n"
+  CheckNum(nf,12);
 
+checkOut()
 
   nrms = C[0]->getRooms()
   <<" C[0] rooms $nrms \n"
@@ -198,7 +253,7 @@ nrms = C[0]->getRooms()
 
 CheckNum(nf,15)
 
-CheckOut()
+
 
 
 
@@ -503,5 +558,5 @@ setdebug(-1)
 #}
 
 
-
+<<"@END_SCRIPT \n"
 CheckOut()

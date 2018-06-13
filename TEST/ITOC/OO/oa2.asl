@@ -3,7 +3,7 @@
 ///
 
 
-setDebug(1,@~trace,@~pline,@soe)
+setDebug(1,@~trace,@pline,@~soe)
 
 //envDebug()
 //#define  ASK ans=iread();
@@ -11,9 +11,41 @@ setDebug(1,@~trace,@~pline,@soe)
 
 CheckIn(0)
 
-int i = 0
+int i = 0;
+
+//<<" $(i->info()) \n"  // TBF recurses 
+
+ iv = info(&i);
+
+<<"$iv \n"
+
+ iv2 = i->info();
+
+<<"$iv2 \n"
 
 <<" i $i $(IDof(&i)) \n"
+
+IV = vgen(INT_,10,0,1);
+
+ iv2 = IV->info();
+
+<<"$iv2 \n"
+
+  IV[5] = 47;
+
+ iv2 = IV->info();
+
+<<"$iv2 \n"
+
+ vec = IV->isvector();
+
+ <<"%v $vec\n"
+
+ //<<" $(IV->isvector()) \n"
+
+// <<" $IV->isvector() \n" // TBF vmf in paramexp print fails!!
+
+
 
 vid = i->vid()
 
@@ -39,10 +71,11 @@ class Act {
  int type;
  int mins; 
  int t;
-
+ int id;
+ 
  CMF Set(s)
  {
-     obid = _cobj->obid()
+     //obid = _cobj->obid()
 //     <<"Act Set  $_cobj  $obid $(offsetof(&_cobj)) $(IDof(&_cobj))\n" 
      <<"Act Set  $_cobj \n" 
       type = s;
@@ -60,10 +93,10 @@ class Act {
 // FIXME   <<"cons of Act $_cobj $(_cobj->obid())  $(IDof(&_cobj))\n" 
 //   co = _cobj->offset()
 
-   <<"Act cons of $_cobj $Act_ocnt\n"
 
-    Act_ocnt++ ;
 
+   id= Act_ocnt++ ;
+  <<"Act cons of $_cobj $id $Act_ocnt\n"
    type = 1;
 
    mins = 10;
@@ -94,8 +127,23 @@ Act a;
 
  obid = a->obid();
 
- <<" a $(IDof(&a)) obid $obid \n"
+ a_info = a->info();
+ <<"$a_info \n"
+ <<" a $(IDof(&a))  \n"
+<<" $a->info() \n"
+<<" %V $obid \n"
 
+ Act X[4];
+
+
+  obid = X[1]->obid(); // TBF fails crashes ?
+
+<<"X[1] $obid \n"
+
+
+  obid = X[0]->obid(); // TBF fails crashes ?
+
+<<"X[0] $obid \n"
 
 
  Act b;
@@ -105,6 +153,9 @@ Act a;
 
  obid = b->obid()
  vid = b->vid()
+
+
+
 
 // <<"%V$obid $(b->vid\(\))\n"
 
@@ -121,7 +172,7 @@ Act a;
 
 <<"%V$obid $vid\n"
 
- Act X[4];
+
 
  xobid = X[2]->obid();
 
@@ -239,7 +290,8 @@ Act a;
 
 <<"PASS? $pass \n"
 
-checkOut()
+ 
+
 
 <<"\n//////////////// CMF Set-Get /////////////////\n"
 
@@ -342,7 +394,7 @@ checkOut()
 
 <<"/////////////////// Nested Class /////////////\n"
 
-int dil_ocnt = 0
+int dil_ocnt = 0;
 
 class Dil {
 
@@ -364,33 +416,46 @@ class Dil {
  }
 
 }
-
-xov = 20
-
-<<" after class def \n"
+//=========================//
 
 
-Dil H[2]
+xov = 20;
+
+<<" after class def Dil \n"
+
+
+Dil H[2];
+
+<<" after class def Dil H \n"
+
+
 
 
 <<"FIRST H[2] $(xov--) \n"
- CheckNum(xov,19)
+
+CheckNum(xov,19)
+
+
 <<"$(xov--) \n"
 <<"$(xov--) \n"
 <<"$(xov--) \n"
+
+
 <<" after H[2] \n"
-
-
 
 
 <<" attempting Dil E \n"
 xov = 20
 
-Dil E
+Dil E ;
 
 <<"FIRST E $(xov--) \n"
 
  CheckNum(xov,19)
+
+ CheckOut()
+
+
 <<"$(xov--) \n"
 <<"$(xov--) \n"
 <<"$(xov--) \n"
@@ -398,6 +463,20 @@ Dil E
 <<"$(xov--) \n"
 
 //  FIXME ---- not going to first following statement in E has nested class!!
+
+
+CheckOut();
+
+
+
+
+
+
+
+
+exit()
+
+
 
  x  = 52 * 2000
  y =   2 * 2
@@ -423,7 +502,7 @@ syt = 80 //
 
  checkNum(syt,tys);
 
-
+checkOut()
 
  
 
@@ -471,7 +550,8 @@ k = 3;
 <<"%V $E->A[0]->t \n"
  checkNum(t1,72);
 
-
+checkOut()
+exit()
 
  yt0 = E->A[0]->t
 
@@ -691,7 +771,7 @@ Dil G[10]
 
 
 
-ndiy = 365
+ndiy = 10;
 
 
 
@@ -704,7 +784,10 @@ Dil Yod[ndiy]
 
  obid = X[0]->obid()
 
- <<"%V 0 $obid \n"
+ <<"%V X[0] $obid \n"
+
+
+ exit()
 
  obid = X[1]->obid()
  <<"%V 1 $obid \n"

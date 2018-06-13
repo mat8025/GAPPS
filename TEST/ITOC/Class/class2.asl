@@ -18,10 +18,8 @@ checkIn()
 /// simple class test
 
 class Rec {
-
  public:
     svar srec;
-
 }
 
 
@@ -104,6 +102,7 @@ checkStr(r12,"with");
 
 
 ////////////////////////
+int Obid = 0;
 
 Class Add
  {
@@ -111,11 +110,15 @@ Class Add
 
    float x ;
    float y;
-
+   int id;
+   
  CMF Add()
   {
+    id = Obid++;
+    <<"CONS $_cobj %V $id\n"
     x = 0;
     y = 0;
+
   }
 
 

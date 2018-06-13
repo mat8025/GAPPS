@@ -1,4 +1,6 @@
-// bops for class variables
+///
+///  bops for class variables
+///
 
 setdebug(1,@~pline,@keep,@~trace,@~soe)
 
@@ -13,8 +15,6 @@ CheckIn()
 <<"%V $v\n"
 
    ok=CheckFNum(v,2.1);
-
-
 
  for (i = 0 ; i < 4 ; i++) {
 
@@ -31,7 +31,6 @@ CheckIn()
 
 <<"%V $b $c  $my \n"
 //////////////////////////////////////////////////////
-
 
 Class Point 
 {
@@ -83,19 +82,29 @@ Class Point
  A->set(0.15, 0.2);
 
 <<"%V $A->x $A->y \n"
+
+<<" A->Print() \n"
  A->Print()
- ok=CheckFNum(A->x,0.15,5)
- ok=CheckFNum(A->y,0.2,5)
+ 
+ ok=CheckFNum(A[0]->x,0.15,5)
+ ok=CheckFNum(A[0]->y,0.2,5)
+
+
+<<" B->Print() \n"
+ B->Print()
 
 
 
 
 <<"%V $B->x $B->y \n"
 
- B->Print()
  
 ok=CheckFNum(B->x,2.2,5)
 ok=CheckFNum(B->y,0.123,5)
+
+
+
+
 
 C->set(1.1,0.2)
 

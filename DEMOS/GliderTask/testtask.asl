@@ -8,9 +8,9 @@
 include "tpclass"
 
 
-setDebug(1,@keep,@filter,0,@~trace);
+setDebug(1,@keep,@filter,0,@trace);
 
-Taskpt Tasktp[10];
+Taskpt TP[10];
 
 Turnpt  Wtp[10];
 
@@ -19,7 +19,7 @@ tp_file = "turnpts.dat";  // open turnpoint file
 
 
   if (tp_file @= "") {
-    tp_file = "turnpts.dat"  // open turnpoint file 
+    tp_file = "turnptsSM.dat"  // open turnpoint file 
    }
 
   A=ofr(tp_file)
@@ -61,6 +61,7 @@ while (1) {
           break;
   }
 
+<<" Read in Turnpts!\n"
 
 
 //////////////
@@ -69,32 +70,35 @@ while (1) {
 	   kp = 1;
 <<"$kp\n"	   
 	   Wtp[kp]->Print();
-	   
+
+	   kp = 3;
+<<"$kp\n"	   
+ Wtp[kp]->Print();
 <<"///////////////////////////\n"
 
 
      itaskp = 0;
      ntp = 0;
 
-setDebug(1,@trace);
+
 
    for (i = 0; i < Ntpts; i++) {
         pval = Wtp[i]->GetPlace();
-	  Tasktp[i]->Place = pval; // OB array LHS
-	 // Tasktp[i]->Place = Wtp[i]->GetPlace();
-	  Tasktp[i]->Place = Wtp[i]->Place;
+	  TP[i]->Place = pval; // OB array LHS
+	 // TP[i]->Place = Wtp[i]->GetPlace();
+	  TP[i]->Place = Wtp[i]->Place;
 
-          Tasktp[i]->Print();
+          TP[i]->Print();
    }
 <<"////////\n"
    for (i = 0; i < Ntpts; i++) {
-	  Tasktp[i]->Ladeg =  Wtp[i]->Ladeg;
-          Tasktp[i]->Print();
+	  TP[i]->Ladeg =  Wtp[i]->Ladeg;
+          TP[i]->Print();
    }
 <<"////////\n"
    for (i = 0; i < Ntpts; i++) {
-	  Tasktp[i]->Longdeg =  Wtp[i]->Longdeg;
-          Tasktp[i]->Print();
+	  TP[i]->Longdeg =  Wtp[i]->Longdeg;
+          TP[i]->Print();
    }
 <<"////////\n"
 
@@ -108,28 +112,24 @@ setDebug(1,@trace);
 	    
 //	   <<"<$ntp> %V $pval $vala $valo\n"
 //	   Wtp[ntp]->Longdeg = 105.6;
-          //Tasktp[itaskp]->Longdeg = valo;   
-         Tasktp[itaskp]->Ladeg = vala;
-        Tasktp[itaskp]->Place = pval; // OB array LHS
+          //TP[itaskp]->Longdeg = valo;   
+         TP[itaskp]->Ladeg = vala;
+        TP[itaskp]->Place = pval; // OB array LHS
 
-     //Tasktp[itaskp]->Place = Wtp[ntp]->GetPlace();
-    // Tasktp[itaskp]->Longdeg = Wtp[ntp]->Longdeg;
-   //  Tasktp[itaskp]->Ladeg = Wtp[ntp]->Ladeg;  //OB LHS/RHS
+     //TP[itaskp]->Place = Wtp[ntp]->GetPlace();
+    // TP[itaskp]->Longdeg = Wtp[ntp]->Longdeg;
+   //  TP[itaskp]->Ladeg = Wtp[ntp]->Ladeg;  //OB LHS/RHS
 /{
-
-
-	  
-
 
              vala = Wtp[ntp]->Longdeg; // Wtp OB array RHS
 
-           Tasktp[itaskp]->Longdeg = vala; // TP OB array LHS
+           TP[itaskp]->Longdeg = vala; // TP OB array LHS
 	     
            
 
 	   
-	   <<"%V $vala $Tasktp[itaskp]->Ladeg \n"
-           Tasktp[itaskp]->Ladeg = 0.0;
+	   <<"%V $vala $TP[itaskp]->Ladeg \n"
+           TP[itaskp]->Ladeg = 0.0;
 	   
 
 
@@ -137,7 +137,7 @@ setDebug(1,@trace);
 	     
           //
 /}
-           Tasktp[itaskp]->Print();
+           TP[itaskp]->Print();
           
 	  itaskp++;
           ntp++;

@@ -1474,26 +1474,27 @@ proc ComputeTC(j, k)
 
 proc ComputeTPD(j, k)
 {
-    float km = 0.0
+
+    float km = 0.0;
 
 // FIX <<" %I $j $k \n"
 
-//<<" $_cproc %V $j $k \n"
+//<<" $_proc %V $j $k \n"
 
-    L1 = Wtp[j]->Ladeg
+    L1 = Wtp[j]->Ladeg;
 
-    L2 = Wtp[k]->Ladeg
+    L2 = Wtp[k]->Ladeg;
 
-    //<<" %I $L1 $L2 \n"
+  //  <<" %V $L1 $L2 \n"
     //<<" %I $k $Wtp[k]->Ladeg \n"
     //<<" %I $j $Wtp[j]->Ladeg \n"
 
-    lo1 = Wtp[j]->Longdeg
+    lo1 = Wtp[j]->Longdeg;
 
-    lo2 = Wtp[k]->Longdeg
+    lo2 = Wtp[k]->Longdeg;
 
-      //<<"%V$lo1 $lo2 \n"
-      //<<"%V$L1 $L2 \n"
+  // <<"%V $lo1 $lo2 \n"
+
       //      tc = trueCourse(L1,lo1,L2,lo2)
       //<<"%V$tc \n"
 
@@ -1503,22 +1504,28 @@ proc ComputeTPD(j, k)
     rL1 = d2r(L1)
 
 
-    //<<" %V$rL1 $rL2 \n"
+   // <<" %V $rL1 $rL2 \n"
     //<<" %I $rL1 $rL2 \n"
 
-    rlo1 = d2r(lo1)
-    rlo2 = d2r(lo2)
+    rlo1 = d2r(lo1);
+    rlo2 = d2r(lo2);
 
-    D= acos (sin(rL1) * sin(rL2) + cos(rL1) * cos(rL2) * cos(rlo1-rlo2))
+    //<<" %V $rlo1 $rlo2 \n"
 
-    //          <<" %V $D  $LegK   $nm_to_km\n"
+    sL1 = sin(rL1);
+    cL2 = cos(rL2);
+
+//<<"%V $sL1 $cL2 \n"
+
+    D= acos (sin(rL1) * sin(rL2) + cos(rL1) * cos(rL2) * cos(rlo1-rlo2));
+    
 
     N = LegK * D
 
     km = N * nm_to_km
 
-    //       <<" %V  $N $km $(typeof(km))\n"
-    ;
+  //  <<" %V $D  $LegK $N  $nm_to_km $km\n" ;
+
 
     return km
  }
