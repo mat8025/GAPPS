@@ -1052,7 +1052,7 @@ proc the_menu (c)
             return 
           }
 }
-
+//=====================
 proc conv_lng( lng)
   {
 
@@ -1070,7 +1070,7 @@ proc conv_lng( lng)
          lngdec *= -1.0
 	   }
   }
-
+//=========================
 
 proc conv_lat (lat)
   {
@@ -1086,7 +1086,7 @@ proc conv_lat (lat)
  latdec = latdeg + latmin
 
   }
-
+//=========================
 
 proc nearest (tp)
 {
@@ -1172,7 +1172,6 @@ proc DrawMap(w)
 
 //<<"$k %V $is_an_airport  $mlab $(typeof(mlab))\n";
 
-<<"$k %V $is_an_airport  $mlab \n";
 	
         msl = Wtp[k]->Alt;
 
@@ -1498,24 +1497,15 @@ proc ComputeTPD(j, k)
 
     lo2 = Wtp[k]->Longdeg;
 
+/{/*
   // <<"%V $lo1 $lo2 \n"
-
-      //      tc = trueCourse(L1,lo1,L2,lo2)
-      //<<"%V$tc \n"
-
-
     rL2 = d2r(L2)
-
     rL1 = d2r(L1)
 
-
    // <<" %V $rL1 $rL2 \n"
-    //<<" %I $rL1 $rL2 \n"
 
     rlo1 = d2r(lo1);
     rlo2 = d2r(lo2);
-
-    //<<" %V $rlo1 $rlo2 \n"
 
     sL1 = sin(rL1);
     cL2 = cos(rL2);
@@ -1523,12 +1513,17 @@ proc ComputeTPD(j, k)
 //<<"%V $sL1 $cL2 \n"
 
     D= acos (sin(rL1) * sin(rL2) + cos(rL1) * cos(rL2) * cos(rlo1-rlo2));
-    
 
     N = LegK * D
 
-    km = N * nm_to_km
+    km1 = N * nm_to_km
+/}*/
 
+    km2 = Gcd(L1,lo1 , L2, lo2 );
+
+//<<"%V $km1 $km2\n"
+
+    km = km2;
   //  <<" %V $D  $LegK $N  $nm_to_km $km\n" ;
 
 
