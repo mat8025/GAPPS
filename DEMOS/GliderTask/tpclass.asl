@@ -18,97 +18,130 @@ CLASS Taskpt
   str Place;
   str tptype;
 
+  int nrw;
+
 #  method list
 
   CMF Read (fh) 
   {
-  
-     la_deg = "" 
-     long_deg = ""
+     //int nrw = 0;
+     la_deg = "" ;
+     long_deg = "";
 
-     nwr = wval->Read (fh)
+     //nwr = wval->Read (fh);
+     nrw = wval->Read (fh);
 
-DBG"$nwr  $wval[0] $wval[1] $wval[2]  \n"
+//DBG"nwr $nwr  $wval[0] $wval[1] $wval[2]  $wval[3] $wval[4]\n"
+
+//DBG"$wval[::]\n"
 
       if (scmp(wval[0],"#",1)) {
        // comment line in file
          return 0;
       }
 
-    xx= "$wval[0] \n"
-    
-    if (nwr > 6) {
-      
-      Place =wval[0] // taskpt place
-      
-//<<" $wval[0]  \n"
+    xx= "$wval[1] \n"
+//<<" $xx\n"
+ ifo = nrw->info();
+ 
+//<<"nrw $nrw $(Caz(nrw))  $ifo\n"
 
-     Alt = atof(wval[4])
+    if (nrw > 6) {
+
+//<<"assigning data file info \n"
+      Place = wval[0]; // taskpt place
+      
+//<<" $wval[0] $Place \n"
+
+      Alt = atof(wval[4]);
+
+//<<" $Place $Alt \n"
+
 
 //    Ladeg = GetDeg(la_deg)
 
-    Ladeg = GetDeg(wval[2]) ; // taskpt Ladeg
+xla= wval[2];
 
-    Longdeg = GetDeg(wval[3]) ; // taskpt Longdeg
+ylo= wval[3];
+
+//<<"%V $xla $ylo\n"
+
+    //Ladeg = GetDeg(wval[2]) ; // taskpt Ladeg
+  //  Ladeg = getDeg(wval[2]) ; // taskpt Ladeg
+
+/{
+// bizare -first not split into 3 parts
+// suceeding calls are TBF
+    Longdeg = getDeg(ylo) ; // taskpt Longdeg
+
+    Ladeg = getDeg(xla) ; // taskpt Ladeg
+
+    Longdeg = getDeg(ylo) ; // taskpt Longdeg
+/}
+
+    Ladeg = coorToDeg(xla); // use c asl function
+    Longdeg = coorToDeg(ylo);
+
 
     tptype = wval[7];
+
     }
 
-    return nwr
+//<<"%V $Place $Alt $Ladeg $Longdeg $tptype \n"
+    
+    return nrw;
    }
-
+//===================================
    CMF SetPlace (ival)   
    {
      Place = ival;
    }
+//===================================   
 
    CMF GetPlace ()   
    {
       return Place;
    }
+//===================================   
 
    CMF GetTA ()   
    {
       int amat =0;
- //     val = tptype;
       spat (tptype,"A",-1,-1,amat);
-      <<"Taskpt $tptype $amat\n"
-//      spat (val,"A",-1,-1,amat);
-      
-//<<"taskpt %V$amt $(typeof(amat)) \n"
+//<<"taskpt %V $amat $(typeof(amat)) \n"
       return amat;
    }
-
+//===================================
    CMF GetLat ()   
    {
       val = wval[2] 
 	return val;
    }
-
+//===================================
    CMF GetLong ()   
    {
       val = wval[3] 
 	return val;
    }
-
+//===================================
    CMF GetRadio ()   
    {
       val = wval[6] 
 	return val;
    }
-
+//===================================
    CMF GetID ()   
    {
      val = wval[1]; 
 	return val;
    }
-
+//===================================
    CMF GetMSL ()   
    {
      int ival = Alt; 
      return ival;
    }
-
+//===================================
    CMF Print ()    
    {
      //<<"$wval[0] $wval[1]  $wval[2] $wval[3] \n"
@@ -126,12 +159,12 @@ DBG"$nwr  $wval[0] $wval[1] $wval[2]  \n"
       cltpt = "";
       Place = "";      
     }
-
+//===================================
 
   CMF GetDeg (svar the_ang)
     {
 
-  //<<" $_cproc %v $the_ang \n"
+  <<" $_cproc  $the_ang \n"
   //  <<"%V $the_ang $(typeof(the_ang)) \n"
 //ttyin()
 
@@ -145,7 +178,7 @@ DBG"$nwr  $wval[0] $wval[1] $wval[2]  \n"
 
 //FIX    float the_deg = atof(the_parts[0])   // TBF
 
-    //<<"%v $the_parts \n"
+    <<"%V $the_parts \n"
 
 //<<"%v $the_parts[0] \n"
 
@@ -165,18 +198,19 @@ DBG"$nwr  $wval[0] $wval[1] $wval[2]  \n"
 
 	the_dir = the_parts[2];
 
-      y = the_min/60.0
+      y = the_min/60.0;
 
-      la = the_deg + y
+      la = the_deg + y;
 
       if ((the_dir @= "E") || (the_dir @= "S")) {
-         la *= -1.0
+         la *= -1.0;
       }
 
    //  <<" %V $la  $y $(typeof(la)) $(Cab(la)) \n"
-    return (la)
+    return (la);
    }
 
+//===================================
 }
 
 //============================================
@@ -199,6 +233,8 @@ CLASS Turnpt
   float Alt;
   float Ladeg;
   float Longdeg;
+
+//  int amat;
 
 //  method list
 
@@ -248,11 +284,13 @@ DBG"%V$Lat $Lon \n"
      //  <<" $(typeof(Lat)) \n"
      // <<" $(typeof(Lon)) \n"
      //  <<" $(typeof(Ladeg)) \n"	 
-
-    Ladeg =  GetDeg(Lat); // wayp 
+   // Ladeg =  GetDeg(Lat); // wayp
+     //Ladeg =  getDeg(Lat); // wayp
+     Ladeg =  coorToDeg(Lat); // wayp 
      //       <<" $(typeof(Longdeg)) \n"	 
-    Longdeg = GetDeg(Lon); // wayp 
-
+   // Longdeg = GetDeg(Lon); // wayp
+    //Longdeg = getDeg(Lon); // wayp
+     Longdeg = coorToDeg(Lon);
 DBG"%V $Ladeg $Longdeg \n"
 
       }
@@ -285,11 +323,9 @@ DBG"%V $Ladeg $Longdeg \n"
  CMF GetTA()   
    {
       int amat =0;
-      //val = tptype; 
-      //spat (val,"A",-1,-1,amat);
       spat (tptype,"A",-1,-1,amat);
-      <<"Turnpt  $tptype $amat\n"
-//<<"%V$amt $(typeof(amat)) \n"
+//<<"Turnpt  $amat\n"
+//<<"%V $amat $(typeof(amat)) \n"
       return amat;
    }
 //=========================//

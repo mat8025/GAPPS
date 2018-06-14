@@ -5,8 +5,8 @@
 # map of turn_points
 
 //envDebug()
-
 //#define DBG <<
+
 #define DBG ~!
 
 include "ootlib"
@@ -75,13 +75,12 @@ TaskType = "TRI";
 
 int Nlegs = 1;
 
-//Turnpt  Wtp[500]; // 
-Turnpt  Wtp[50]; // 
+Turnpt  Wtp[500]; // 
+
 /// open turnpoint file lat,long 
 //tp_file = GetArgStr()
 
-tp_file = "turnpts.dat"  // open turnpoint file 
-
+  tp_file = "turnpts.dat"  // open turnpoint file 
 
   if (tp_file @= "") {
     tp_file = "turnptsSM.dat"  // open turnpoint file 
@@ -96,16 +95,11 @@ tp_file = "turnpts.dat"  // open turnpoint file
 
 
 
- //  Read in a Task via command line
+ 
   Ntaskpts = 0;
   Ntp = 0;
 
  svar Wval;
-
-// nwr = Wval->Read(A)
-// nwr = Wval->Read(A);  // clear the header on this file
-
-//<<"%V $nwr $Wval\n"
 
          C=readline(A);
 	 C=readline(A);
@@ -178,6 +172,7 @@ float R[10];
 
      igcfn = GetArgStr();
 
+//  Read in a Task via command line
 
 
 Ntaskpts = 0;
@@ -190,23 +185,37 @@ long posn = 0;
 
     Fseek(A,0,0)
     targ = GetArgStr()
-<<" looking for  $targ \n"
+//<<" looking for  $targ \n"
     posn=Fsearch(A,targ,-1,1,0)
     if (posn == -1) {
         break;
      }
-<<" found $targ \n"
-    Tasktp[Ntaskpts]->cltpt = targ
-    nwr = Tasktp[Ntaskpts]->Read(A)
-    Tasktp[Ntaskpts]->Print()
+//<<" found $targ \n"
+
+    Tasktp[Ntaskpts]->cltpt = targ;
+    
+    nwr = Tasktp[Ntaskpts]->Read(A);
+
+    Tasktp[Ntaskpts]->Print();
+    
     Ntaskpts++;
-  }
+//<<"%V $Ntaskpts $nwr \n"
+}
+
+
+
+
 
 
 <<"%V $posn  $(typeof(posn)) $(Caz(posn))  %i $posn \n"
 
 <<"%V $Ntaskpts \n"
 
+<<" Now print task\n"
+
+  for (k = 0; k < Ntaskpts ; k++) {
+      Tasktp[k]->Print()
+  }
 
 
 
@@ -290,7 +299,7 @@ include "tbqrd"
       <<"$i   $tpl $Tasktp[i]->cltpt \n"
 
        //sWo(tpwo[i],@value,Tasktp[i]->cltpt);  // TBF
-       sWo(tpwo[i],@value,tpl);  
+        sWo(tpwo[i],@value,tpl);  
       
 
        if (i >= MaxSelTps) {

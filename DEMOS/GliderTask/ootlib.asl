@@ -31,29 +31,36 @@
 include "tpclass"
 
 
-proc getDeg ( the_ang)
+proc getDeg (the_ang)
     {
       str the_dir;
       float la;
+      float y;
       str wd;
 
-//<<"in $_proc  $the_ang\n"
+<<"in $_proc $the_ang \n"
 	
 
     the_parts = Split(the_ang,",")
 
-      //<<"%V$the_parts \n"
+sz = Caz(the_parts);
+<<"sz $sz $(typeof(the_parts))\n"
+
+    <<"%V $the_parts[::] \n"
 
 
 //FIX    float the_deg = atof(the_parts[0])
+
     wd = the_parts[0];
-    the_deg = atof(wd)
+    the_deg = atof(wd);
+        <<"%V $wd $the_deg \n"
 
 //    float the_min = atof(the_parts[1])
     wd = the_parts[1];
-    the_min = atof(wd)
 
-      //<<"%V$the_deg $the_min \n"
+    the_min = atof(wd);
+        <<"%V $wd $the_min \n"
+    <<"%V$the_deg $the_min \n"
 
       //  sz= Caz(the_min);
 
@@ -63,13 +70,13 @@ proc getDeg ( the_ang)
 
     y = the_min/60.0;
 
-    la = the_deg + y
+    la = the_deg + y;
 
       if ((the_dir @= "E") || (the_dir @= "S")) {
-         la *= -1
+         la *= -1;
       }
 
-//<<"%V $la  $y  \n"
+<<"%V $la  $y  \n"
       
     return (la);
    }
@@ -1156,15 +1163,16 @@ proc DrawMap(w)
     for (k = 0 ; k < Ntp ; k++) {
 
         is_an_airport = Wtp[k]->GetTA();
-	
-        if (! is_an_aiport) {
-         mlab = slower(Wtp[k]->Place)
-        }
-        else {
-	  mlab = Wtp[k]->Place;
-        }
+
+        mlab = Wtp[k]->Place;
+
+        if (!is_an_airport) {
+         mlab = slower(mlab)
+       }
 
 //<<"$k %V $is_an_airport  $mlab $(typeof(mlab))\n";
+
+<<"$k %V $is_an_airport  $mlab \n";
 	
         msl = Wtp[k]->Alt;
 
@@ -1225,7 +1233,6 @@ proc DrawTask(w,col)
 
 proc PickTP(atarg,  witp) 
 {
-
 ///
 /// 
 
@@ -1476,8 +1483,6 @@ proc ComputeTPD(j, k)
 {
 
     float km = 0.0;
-
-// FIX <<" %I $j $k \n"
 
 //<<" $_proc %V $j $k \n"
 

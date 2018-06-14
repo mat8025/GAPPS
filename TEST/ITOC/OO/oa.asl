@@ -11,6 +11,32 @@ int x = 5;
 
 int Bid =0;
 
+proc pfloors( r)
+{
+ int prf = 0;
+
+ prf = r +1;
+
+ return prf;
+}
+//================
+
+ nr = pfloors(7);
+
+<<"%V $nr\n"
+
+
+ nr = pfloors(8);
+
+<<"%V $nr\n"
+
+
+
+
+
+
+
+//=====================
 CLASS Building {
 
  int rooms = 5;
@@ -27,12 +53,12 @@ CLASS Building {
  CMF getRooms()
  {
 //<<" $_proc  $_cobj $id  $rooms $floors $area \n"
-   nr = rooms
+   nr = rooms;
 
  //  return nr;
    return rooms; 
  }
-
+//========================
  CMF setFloors(val)
  {
     floors = val;
@@ -43,11 +69,12 @@ CLASS Building {
 
  CMF getFloors()
  {
+   int rnf = 0; // TBF crash
 //<<" $_proc  $_cobj $id  $rooms $floors $area \n"
-   nf = floors;
-<<"$nf \n"   
-//   return nf;
-   return floors;
+   rnf = floors;
+<<"$rnf \n"   
+   return rnf;  // TBF returning local -- deleted does not remain on stack for assignment?
+  // return floors;
  }
 
  CMF Print()
@@ -90,9 +117,6 @@ CLASS Building {
 <<"%V $b1rooms \n"
 
    CheckNum(b1rooms,5);
-
-
-
 
    b0rooms = C[0]->getRooms();
 
@@ -142,6 +166,7 @@ CLASS Building {
   CheckNum(b2floors,15)
   
 
+checkOut();
 /// MF
   nf = C[2]->getFloors()
 
