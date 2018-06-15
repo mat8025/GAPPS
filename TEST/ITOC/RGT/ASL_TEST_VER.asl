@@ -122,6 +122,10 @@ proc scoreTest( tname)
  int scored = 0;
  int ntests;
  int npass;
+
+ int ntests2;
+ int npass2;
+ 
         RT=ofr(tname);
        
 //<<"$_proc $tname fh $RT \n"
@@ -133,11 +137,26 @@ proc scoreTest( tname)
           seekLine(RT,-1)
 
           rtl = readline(RT)
-          rtwords = Split(rtl)
-//	<<"%V $rtwords \n"
-          ntests = atoi(rtwords[4]);
-          npass =  atoi(rtwords[6]);
-//	  <<"%V $ntests $npass\n"
+          rtwords = Split(rtl);
+//<<"%V $rtwords \n"
+
+          ntests2 = atoi(rtwords[4]); // TBF returns vec size 2??
+          npass2 =  atoi(rtwords[6]);
+
+          rtw4 = rtwords[4];
+	  rtw6 = rtwords[6];
+
+//<<"%V $rtw4 $rtw6\n"
+
+          ntests = atoi(rtw4);
+	  npass = atoi(rtw6);
+	  
+ //<<"%V $rtwords[4] $rtwords[6]\n"
+
+
+// <<"%V $ntests $npass\n"
+// <<"%V $ntests2 $npass2\n"
+
           pcc = npass/(ntests*1.0) *100
 
           rt_tests += ntests;
@@ -161,6 +180,7 @@ if (pcc < 100){
 else {
  <<"DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs\n"
 }
+
 <<[Opf]"DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\%\n"
  
           cf(RT)
@@ -179,7 +199,7 @@ else {
     return scored;
 }
 //===============================
-/
+
 
 
 
@@ -269,9 +289,7 @@ proc cart (aprg, a1)
   !!"rm -f $aprg  ${aprg}.tst  last_test*"
 
 //<<"asl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl \n"
-
-  // !!"asl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl "
-
+// !!"asl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl "
 //  !!" asl $CFLAGS ${aprg}.asl  | tee --append $tout "
 
    jpid  =0
@@ -283,7 +301,7 @@ proc cart (aprg, a1)
 // <<" asl $CFLAGS ${aprg}.asl  $a1 \n"
 //  jpid = !!&"asl -o ${aprg}arg.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1"
 
-     !!"asl -o ${aprg}arg.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1  > foopar"
+!!"asl -o ${aprg}arg.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1  > foopar"
 
      wt_prog = "$(time()) ${aprg}:$a1arg "
      wlen = slen(wt_prog)

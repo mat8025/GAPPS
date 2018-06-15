@@ -1,11 +1,78 @@
-setdebug(1,"trace","keep")
+///
+///
+///
+setdebug(1,@trace,@keep)
 
 CheckIn()
 
 // make 1 to stop if error
 Checkpause = 1
+
+proc foo(a,b)
+{
+  int x;
+  int y = 1;
+
+checkNum (y ,1)
+  x = a;
+  y = b;
+
+  c= x+ y;
+
+<<"%V $c $a $b $x $y \n"
+
+  return c;
+}
+
+
+int q;
+
+int m = 3;
+int n = 4;
+
+
+ p = foo(m,n)
+
+
+<<"%V p $m $n\n"
+
+
+
+checkNum(p,7)
+
+
+ p = foo(47,79)
+
+
+<<"%V p $m $n\n"
+
+
+
+checkNum(p,126)
+
+
+
+
+
+checkOut();
+
+
+exit()
+
+
+
+
+
+
 int ok = 0
 int ntest = 0;
+
+
+
+
+
+
+
 jj = 6
 
 <<"%V$jj \n"
