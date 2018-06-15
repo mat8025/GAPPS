@@ -7,7 +7,7 @@
 /// office computer work (24-8-exercise hours) 119.3 per hour
 
 
-vers = "2.1";
+vers = "2.2";
 
 
 
@@ -17,9 +17,9 @@ setDebug(0,@keep);
 
 #define DBPR  ~!
 
-wed_dir = "./"
+wexdir = "./"
 
-chdir(wed_dir)
+chdir(wexdir)
 
 wherearewe=!!"pwd "
 
@@ -31,8 +31,8 @@ wherearewe=!!"pwd "
 #define RUN 3
 #define BIKE 4
 #define SWIM 5
-#define TRDMILL 6
-#define WTLIFT  7
+#define GYM_SS 6
+#define GYM_WTS  7
 
 #define NDAYS 1000
 
@@ -75,7 +75,8 @@ topWt = 210;
 //StartWt = 205;
 
 // rates per min
-include "wed_rates"
+include "wex_rates"
+include "wex_types"
 
 
 N = 1000
@@ -151,8 +152,8 @@ DBPR"%V RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n"
 
 
 ////////////////// READ CEX DATA ///////////////////
-include "wed_goals"
-include "wed_read"
+include "wex_goals"
+include "wex_read"
 
 
 readData();
@@ -219,7 +220,7 @@ DBPR"%V$i $sz\n"
 
   cf(A);
 
-include "wed_foodlog"
+include "wex_foodlog"
 
 
 //////////////////   Predicted Wt   //////////////////////////////////
@@ -327,11 +328,11 @@ msgw =split(msg)
 DBPR"%V$msgw \n"
 
 
-include "wed_draw"
+include "wex_draw"
 
-include "wed_screen"
+include "wex_screen"
 
-include "wed_glines"
+include "wex_glines"
 
 
 
@@ -341,8 +342,8 @@ include "wed_glines"
 //  DrawGline(allgl)
 //  sWo(carbwo,@showpixmap)
 
-include "wed_compute";
-include "wed_callbacks";
+include "wex_compute";
+include "wex_callbacks";
 
 
 int wScreen = 0
