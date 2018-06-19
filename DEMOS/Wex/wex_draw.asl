@@ -1,19 +1,15 @@
 ///
-///  wed_draw.asl
+///  wex_draw
 ///
-
 
 proc drawGoals(ws)
   {
 
    if (ws == 0) {
     Plot(gwo,@line,sc_startday,165,sc_endday,165, GREEN_)
-    Plot(calwo,@line,sc_startday,day_burn,sc_endday,day_burn, GREEN_)
-    Plot(calwo,@line,sc_startday,out_cal,sc_endday,out_cal, BLUE_)
-    Plot(calwo,@line,sc_startday,in_cal,sc_endday,in_cal, RED_)
-
-//    Plot(carbwo,@line,0,30,sc_endday,30, BLUE_)
-//    Plot(carbwo,@line,0,55,sc_endday,55, RED_)
+    Plot(calwo,@line,sc_startday,day_burn,sc_endday+10,day_burn, GREEN_)
+    Plot(calwo,@line,sc_startday,out_cal,sc_endday+10,out_cal, BLUE_)
+    Plot(calwo,@line,sc_startday,in_cal,sc_endday+10,in_cal, RED_)
 
    }
 
@@ -26,7 +22,7 @@ DBPR"$ws $swo $kdays \n"
 
   }
 //---------------------------------------------------------
-proc  drawMonths(ws)
+proc  drawMonths(wwo)
  {
   // as either Months Jan,Feb, ... Dec  
 
@@ -49,13 +45,9 @@ proc  drawMonths(ws)
    int wd
    int wm = 0
 
-   int wwo = gwo
    float lty = 0
    float qfwd = 0.0
  
-   if (ws == 1) {
-       wwo = swo
-   }
 
    RS=wogetrscales(wwo)
 
@@ -171,7 +163,7 @@ proc drawScreens()
 
      // DrawGline(carb_gl)
      // DrawGline(ave_ext_gl)
-
+   sWo(gwo,@scales,sc_startday,minWt,sc_endday+10,topWt,@savescales,0)
       dGl(wt_gl)
    }
 
@@ -182,14 +174,15 @@ proc drawScreens()
 
       sWo(allwo,@clipborder,"black")
 
-      drawMonths(0)
+      drawMonths(gwo)
+      drawMonths(calwo)
 
       Text(extwo,"Exercise mins",-4,0.5,4,-90)
       Text(gwo,  "Weight (lbs)",0.8,0.8,1)
 
-       dGl(wt_gl)
+       //dGl(wt_gl)
    
-       dGl(wt_gl)
+       //dGl(wt_gl)
 
       showTarget();
      }
@@ -200,13 +193,12 @@ DBPR" Drawscreen 1  BP!!\n"
  
       drawGoals(1);
       drawGrids(1);
-      drawMonths(1);
+      drawMonths(swo);
 
       DrawGline(bp_gl)
 
       setgwob(swo,@showpixmap)
        sWo(allwo,@clipborder,"green")
-//      sWo(swo,@clipborder,"green")
       }
 
     sWo(fewos,@redraw)

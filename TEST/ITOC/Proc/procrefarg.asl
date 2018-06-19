@@ -1,7 +1,10 @@
 ///
 /// procrefarg
 
-setdebug(1,"pline","~step","trace")
+setdebug(1,@pline,@~step,@trace)
+filterFuncDebug(ALLOWALL_);
+filterFileDebug(ALLOWALL_,"declare_type","array_subset","storetype","ds_store","ds_vector");
+
 
 
 CheckIn()
@@ -17,25 +20,22 @@ proc sumarg ( v, u)
    v++;
 <<" changing first arg  %V$v\n"
 
-//   v = 3
-//<<" changing first arg  %V$v\n"
-
-   u = u * 2
+   u = u * 2;
 
 <<" changing second arg  %V$u \n"
 
 <<"args out %V$v $u \n"
 
-  return z
+  return z;
 
 }
-
+//=======================//
 
 int n = 2;
 int m = 3;
 
- pre_m = m
- pre_n = n
+ pre_m = m;
+ pre_n = n;
 
 <<"%V$n \n"
 
@@ -59,43 +59,24 @@ int m = 3;
 
   CheckNum(n,3)
 
-  if (n == 3) {
-<<" correct !\n"
-  }
-  else {
-<<" badness !\n"
-  }
-
-
-
   CheckNum(m,6)
-
-  if (m == 6) {
-<<" correct !\n"
-  }
-  else {
-<<" badness !\n"
-  }
 
   CheckNum(k,5)
 
-  if (k == 5) {
-<<" correct !\n"
-  }
-  else {
-<<" badness !\n"
-  }
+//
+
+ n = 7;
+ m = 14;
 
 
+ k = sumarg(&n,&m)
 
- n = 7
- m = 14
-
-
-k = sumarg(&n,&m)
-
-
+  CheckNum(n,8)
+  CheckNum(m,28)
+  CheckNum(k,21);
 <<"%V $n $m $k \n"
+
+exit()
 
 
 
@@ -116,8 +97,8 @@ k = sumarg(n,m)
 
 
 
- n = 20
- m = 28
+ n = 20;
+ m = 28;
 
 k = sumarg(n,m)
 
@@ -125,7 +106,7 @@ k = sumarg(n,m)
 
  CheckOut()
 
-stop!
+
 
 //////////// TBD ////////////
 // BUG XIC version  -- won't find ref argument

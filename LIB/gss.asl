@@ -152,7 +152,7 @@ proc AddTask( wt)
     }
     sWo(cellwo,@selectrowscols,0,2,0,cols,1);
 
-   rows++;
+    rows++;
     <<"$wt $DF[wt]\n"
     ex = DF[wt];
     <<"$wt $DF[wt] : $ex\n"
@@ -179,7 +179,6 @@ proc AddTask( wt)
 proc ADDROW()
 {
 /// should go to last page
-<<"IN $_proc \n"
     AddTask(0);
     return 
 }
@@ -315,8 +314,6 @@ proc PGN()
    	    return ;
 }
 //====================
-
-
 
 proc paintRows()
 {

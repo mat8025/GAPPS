@@ -12,7 +12,7 @@
 
     titleButtonsQRD(vp);
 
-///    GSS  modfiy functions
+///    GSS  modifiy functions
 
       readwo = cWo(vp,@BN,@name,"READ",@color,"lightgreen");
 

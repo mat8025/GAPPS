@@ -2,6 +2,8 @@
 ///  generate armstrong numbers
 ///
 
+
+#define ASK ans=iread("carry on: ");
 proc getArmN (char  cna[])
 {
 
@@ -71,9 +73,7 @@ sz =Caz(val);
 <<"%V $val $sz\n"
             val = 3^np;
 <<"%V $val\n"
-i = 4;
-            val = i^np;
-<<"<$i> %V $val  \n"
+
 
       for (i=0; i < 10 ;i++) {
             val = i^np;
@@ -88,19 +88,20 @@ i = 4;
 //long begin =1;
 
 long begin;
-begin =1;
+ begin =1;
 
  for (i=0; i < (np-1) ;i++) {
     begin *= 10;
  }
 
-<<"%V $begin\n"
-//ans=iread();
+<<"search begins @ $begin\n"
+
+ASK
 
 long maxn = 0;
 long diff;
 int ip = 1;
-int jp =0
+int jp =0;
 
 
 int k = 9;
@@ -113,6 +114,8 @@ maxn = 0;
 
 //setdebug(1,@step)
 
+
+
 while (jp < (np-1)) {
 
   ip = 1;
@@ -121,10 +124,10 @@ while (jp < (np-1)) {
 
     maxn += pw[k];   // long += ?
 
-<<"%V $k $maxn $pw[k] \n"
+<<"%V $jp $k $maxn $pw[k] \n"
 
    if (maxn > totn) {
-     maxn -= pw[k];
+      maxn -= pw[k];
       break;
    }
 
@@ -142,15 +145,16 @@ while (jp < (np-1)) {
 
    }
 
-diff = maxn-totn;
+   diff = maxn-totn;
 
-<<"%V $k $ip $maxn $totn  $diff\n"
+    <<"%V $k $ip $maxn $totn  $diff\n"
 
-    sumsofar =getArmN(nvm)
+   sumsofar =getArmN(nvm)
 
    <<"$k $sumsofar < $totn\n"
    k--;
-   //ans=iread()
+
+//   ASK
 }
 
 
@@ -171,11 +175,11 @@ long endnum;
 
 <<"%V $nvm\n"
 
-endnum = atop("0000456")
+endnum = atol("0000456")
 
 <<"%V $endnum \n"
 <<" %s $nvm \n"
-endnum = atop(nvm)
+endnum = atol(nvm)
 
 <<" so do ArmNumbers from $begin to %s $nvm %d $endnum\n"
 
@@ -196,10 +200,10 @@ last_Mu = memused();
 
   //checkMemory(1);
    
-   for (pk=begin; pk<= endnum; pk++) {
+   for (pk=begin; pk <= endnum; pk++) {
 
 
-     if ((j % 5000) == 0) {  // not if long j TBF
+     if ((j % 1000) == 0) {  // not if long j TBF
 
            Mu= memused();
 	   
@@ -225,7 +229,7 @@ last_Mu = memused();
   //    ans= iread();
    //   last_mu = mu;
       psum = 0;
-      s="$k"
+      s="$pk"
       scpy(nv,s);
       nv -= 48;
       
@@ -233,12 +237,12 @@ last_Mu = memused();
       
          psum += pw[nv[i]]; // get the nth pwr of the  ith place digit
          if (psum > pk) {
-     // <<"$psum > $k\n";
+      //<<"$psum > $pk\n";
            break;
 	 }
       }
       
-      if (k == psum) {
+      if (pk == psum) {
       Anum[na] = pk;
       na++;
       <<"$na $pk   $psum\n"
@@ -299,9 +303,9 @@ there are 0 Armstrong 2 numbers took 0.007702  secs
 Armstrong 3
 there are 4 Armstrong 3 numbers took 0.536666  secs
  1   153
-2  370
-3  371
-4  407
+ 2  370
+ 3  371
+ 4  407
 /}*/
  
 
@@ -310,8 +314,8 @@ there are 4 Armstrong 3 numbers took 0.536666  secs
 Armstrong 4
 there are 3 Armstrong 4 numbers took 5.891107  secs
  1   1634
-2  8208
-3  9474
+ 2  8208
+ 3  9474
 /}*/
 
 

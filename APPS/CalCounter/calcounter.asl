@@ -45,10 +45,12 @@ int i;
 
 //sWo(choicewo,@selectrowscols,0,2,0,cols-1,1); // startrow,endrow,startcol,endcol
 //testargs(1,choicewo,@selectrowscols,0,2,0,cols-1,1); // startrow,endrow,startcol,endcol
- Bestpick = -1;		//clear the best pick choices
+
+  Bestpick = -1;		//clear the best pick choices
   bpick = -1;
-bpick = checkFood();
-  <<"$bpick \n"
+  bpick = checkFood();
+  <<"$_proc $bpick \n"
+
   j= Nbp-1;
 for (i=0; i<Nbp; i++) {
   bpick = Bestpick[j][1];
@@ -60,7 +62,8 @@ for (i=0; i<Nbp; i++) {
    //RC[i][::] = " "; 
   }
   j--;
-}
+ }
+
 
 <<"best choice?: $RC[0] \n"
 <<"%V $cols\n"
@@ -85,14 +88,13 @@ proc FoodSearch()
 int i;
 <<"what is myfood string? $_emsg $_ekeyw \n"
 <<"<$_ewords[3]> <$_ewords[4]> <$_ewords[5]> \n"
- myfood = "$_ewords[3] $_ewords[4] $_ewords[5]"
+  myfood = "$_ewords[3] $_ewords[4] $_ewords[5]"
   foodSearch()
 }
 //=======================================
 
 proc totalRows()
 {
-
 //
 // last row  should contain previous totals
 //
@@ -100,41 +102,57 @@ proc totalRows()
 <<"$_proc \n"
 
   float fc[10];  // cals,carbs,fat,prt,chol,sfat,txt
-
-
+  int kc = 0;
+  int fi = 3;
+  float fval;
+  float nval;
   nr= Caz(R);
   
 <<"%V $Nrows $rows $nr\n"
 
   frows = Nrows-1;
-
+<<"$R[0][::]\n"
+<<"$R[1][::]\n"
 <<"%V $frows  $R[frows][0]\n"
+
   tword = deWhite(R[frows][0]);
   
   if (!strcasecmp(tword, "totals")) {
 
-  for (j = 1; j < frows ; j++) {
-    for (kc = 0; kc <7  ; kc++) {
-          fc[kc] += atof(R[j][3+kc]);
+   for (j = 1; j < frows ; j++) {
+     fi = 3;
+     for (kc = 0; kc <7  ; kc++) {
+
+          //fc[kc] += atof(R[j][kc+3]);
+          //fc[kc] += atof(R[j][fi]);
+	    fval = atof(R[j][fi]);
+       // <<" $(Caz(fval)) \n"
+         fc[kc] += fval;
+//	 nval = fc[kc];
+        <<"%V $j $kc $fi $fval $R[j][fi] $fc[kc]\n"
+	  fi++;
+      }
     }
-  }
 
-
-    j = frows;
+   j = frows;
 
    R[j][0] = "Totals";
    R[j][1] = "$(j-1)";
    R[j][2] = "ITMS";
 
-    for (kc = 0; kc <7  ; kc++) {
-        R[j][3+kc] = dewhite("%6.2f$fc[kc]");
+    for (kc = 0; kc < 7  ; kc++) {
+        nval = fc[kc];
+       // R[j][3+kc] = dewhite("%6.2f$fc[kc]");  // TBF
+          R[j][3+kc]= "%6.2f$nval";
+       <<"%V $kc $nval $fc[kc] \n"
     }
    // kc = 0;
   //  R[j][3] = dewhite("%6.2f$fc[0]");
 
-<<"$R[j][::]\n"
-   sWo(cellwo,@cellval,R,0,0,Nrows,cols);
-   sWo(cellwo,@redraw);
+   <<"$R[j][::]\n"
+
+//     sWo(cellwo,@cellval,R,0,0,Nrows,cols);
+//     sWo(cellwo,@redraw);
    }
 }
 //=====================
@@ -196,8 +214,10 @@ svar wans;
 
    totalRows();
 
+sWo(cellwo,@cellval,R,0,0,Nrows,cols);
+sWo(cellwo,@redraw);
 // sWo(cellwo,@cellval,R,0,0,rows,cols);
-  // sWo(cellwo,@redraw);
+// sWo(cellwo,@redraw);
 
 }
 //=======================
@@ -267,7 +287,6 @@ Nbp = 3;
   Ncols = Caz(RF,1);
 
 <<"num of records $Nrecs  num cols $Ncols\n";
-
 
 
    for (i= 0; i < 3; i++) {
@@ -372,6 +391,16 @@ R[1] = Split("Totals,?,?,?,?,?,?,?,?,?",",");
 //////////////////////////////////
 
 
+   //totalRows();
+
+
+
+
+
+
+
+
+
 Graphic = CheckGwm()
 
      if (!Graphic) {
@@ -425,7 +454,7 @@ sWo(cellwo,@cellbhue,i,j,YELLOW_);
 
 
    totalRows();
-   totalRows();
+   //totalRows();
 
    sWo(cellwo,@cellval,R,0,0,rows,cols);  
    
@@ -580,4 +609,18 @@ record RC[6];
 <<"out of loop\n"
 
  exit()
-   
+
+
+
+////////////// TBD ////////////////
+/{/*
+
+  totals == crash
+  readin crash
+
+
+
+
+
+
+/}*/

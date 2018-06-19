@@ -1,5 +1,5 @@
 //
-// test asl and compiler
+// test asl first and second stage (xic)
 // 
 
 #define PGREEN '\033[1;32m'
@@ -7,7 +7,7 @@
 #define PBLACK '\033[1;39m'
 #define POFF  '\033[0m'
 
-vers = 9;
+vers = 10;
 
 //ws= getenv("GS_SYS")
 
@@ -15,15 +15,26 @@ vers = 9;
 !!"rm -f ../*/*.xtst"
 !!"rm -f ../*/*.out"
 !!"rm -f ../*/*.xout"
+!!"rm -f ../*/*.idb"
+!!"rm -f ../*/*.xdb"
+
 
 //envdebug();
+str S = "all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex,proc,switch,types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc,svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help";
+
+Svar Opts[] = Split(S,",");
+
+
+//<<"$Opts \n"
+
+
 
 setDebug(1,@keep);
 filterDebug(0,"args");
 
 proc RunTests( Tp )
 {
-     np = Caz(Tp);
+      np = Caz(Tp);
       for (i=0 ; i <np; i++) {
            cart(Tp[i]);
       }
@@ -89,6 +100,19 @@ len = slen(atit)
 }
 //===============================
 Curr_dir = "xx";
+
+proc help()
+{
+ <<" run regression tests for asl\n"
+ <<" asl ASL_TEST_VER bops mops\n"
+ <<" would run basic and math regression tests and return scores\n"
+ <<" current tests:\n"
+ <<" %(5,, ,\n) $Opts \n"
+
+}
+//==========================//
+
+
 
 proc changeDir(td)
 {
@@ -492,7 +516,7 @@ int do_while = 0;
 int do_pan = 0;
 int do_unary = 0;
 int do_ptrs = 0;
-
+int do_help = 0;
 
 
 
@@ -520,118 +544,15 @@ int do_ptrs = 0;
 
 
    wt = _argv[i]
-  
-   //<<" $i $wt \n"
 
-   if (wt @= "bops")
-        do_bops = 1  
-
-   if (wt @= "mops")
-        do_mops = 1
-
-   if (wt @= "scope")
-        do_scope = 1
-
-
-   if (wt @= "sops")
-        do_sops = 1
-
-   if (wt @= "fops")
-        do_fops = 1  
-
-   if (wt @= "vops")
-        do_vops = 1  
-
-   if (wt @= "svar")
-        do_svar = 1
-
-   if (wt @= "record")
-        do_record = 1  
-
-   if (wt @= "bugs")
-        do_bugs = 1  
-
-   if (wt @= "proc")
-        do_proc = 1  
-
-   if (wt @= "do") 
-       do_do = 1  
-
-   if (wt @= "stat") 
-       do_stat = 1  
-
-   if (wt @= "switch")
-        do_switch = 1  
-
-   if (wt @= "types")
-        do_types = 1  
-
-   if (wt @= "if")
-        do_if = 1  
-
-   if (wt @= "for")
-        do_for = 1
-
-   if (wt @= "include")
-        do_include = 1  
-
-   if (wt @= "while")
-        do_while = 1
-
-   if (wt @= "declare")
-        do_declare = 1;  
-
-   if (wt @= "exp")
-        do_exp = 1  
-
-   if (wt @= "lh")
-    do_lhsubsc = 1
-
-   if (wt @= "func")
-        do_func = 1
-
-   if (wt @= "unary")
-        do_unary = 1  
-
-   if (wt @= "command")
-        do_command = 1  
-
-   if (wt @= "array")
-        do_array = 1  
-
-  if (wt @= "dynamic")
-       do_dynv = 1
-
-   if (wt @= "matrix")
-       do_matrix = 1  
-
-   if (wt @= "pan")
-        do_pan = 1  
-
-   if (wt @= "lists")
-      do_lists = 1
-
-   if (wt @= "sfunc")
-      do_sfunc = 1
-
-   if (wt @= "class")
-        do_class = 1
-
-   if (wt @= "ptrs")
-        do_ptrs = 1  
-
-   if (wt @= "oo")
-        do_oo = 1
-
-   if (wt @= "OO")
-        do_oo = 1  
-
-   if (wt @= "threads")
-      do_threads = 1
-
-
-   if (wt @= "all")
-        do_all = 1  
+//   if (wt @= "bops")
+//        do_bops = 1  
+//   if (wt @= "mops")
+//        do_mops = 1
+	
+   do_arg = "do_$wt"
+   $do_arg = 1;
+//<<" $i $wt $do_arg \n"
 
    if (wt @= "pause")
         do_pause = 1;  
@@ -646,6 +567,14 @@ int do_ptrs = 0;
 
   }
 
+
+  if (do_help) {
+
+      help();
+      exit();
+  }
+
+<<"%V $do_bops $do_mops \n"
 
   if (do_all  || do_bops) {
 
@@ -731,9 +660,9 @@ int do_ptrs = 0;
       sp = Split("scat,scmp,ssub,stropcmp",",");
       RunTests(sp)
 
+  // make this a pattern OP
   Run2Test("Date")
   cart("date")
-
 
   Run2Test("Sele")
   cart("sele")
@@ -750,7 +679,8 @@ int do_ptrs = 0;
   Run2Test("Regex")
   cart("regex")
 
-
+  Run2Test("Str")
+  cart("str")
 
 
   }
@@ -797,7 +727,7 @@ if (( do_all ==1) || (do_declare == 1) ) {
 
 if (( do_all ==1) || (do_include == 1) ) {
 
-  Run2Test("Include")
+    Run2Test("Include")
 
    cart ("main_ni",2)
   
@@ -1084,7 +1014,7 @@ if ( do_all || do_proc ) {
 
   pp= Split("proc,proc_declare,procret0,procarg,proc_sv0,proc_rep,proc_str_ret,procrefarg",",");
 
-  RunTests(pt)
+  RunTests(pp)
 
   cart("proc_var_define", 10)
 
@@ -1122,7 +1052,7 @@ if ( do_all || do_proc ) {
 
 if ( do_all || do_mops ) {
 
-     Run2Test("Mops")
+    Run2Test("Mops")
 
     cart("xyassign")
 
@@ -1137,8 +1067,6 @@ if ( do_all || do_mops ) {
 
     Run2Test("Cmplx")
     cart("cmplx")
-
-
     
     Run2Test("Rand")
 
@@ -1149,24 +1077,17 @@ if ( do_all || do_mops ) {
 
 
 
-
-
-
 if ( do_all || do_svar ) {
 
     Run2Test("Svar")
 
-    //Run2Test("Svar")
+    
 
     cart("svar1", "string operations are not always easy" )
 
-    cart("svar_declare")
+    sp= Split("svar_declare,svelepr,svargetword,svarsplit",",");
+    RunTests(sp)
 
-
-
-    cart("svelepr")
-
-    cart("svargetword")
 
     }
 

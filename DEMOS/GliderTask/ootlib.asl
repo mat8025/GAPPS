@@ -1171,7 +1171,6 @@ proc DrawMap(w)
        }
 
 //<<"$k %V $is_an_airport  $mlab $(typeof(mlab))\n";
-
 	
         msl = Wtp[k]->Alt;
 

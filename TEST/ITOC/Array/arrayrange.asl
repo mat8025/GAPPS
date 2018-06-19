@@ -23,8 +23,11 @@ D= B
 checkNumber(D[0],0)
 checkNumber(D[4],4)
 
+C= B[1:3];
 
+<<"%V$C\n"
 
+checkNumber(C[0],1)
 
 D= B[::]
 <<"%V$D\n"

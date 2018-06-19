@@ -1,34 +1,46 @@
-setdebug(0)
+///
+///
+///
 
 
+setdebug(0,@keep,@trace,@pline)
 
-str s = "hi there"
-//str s 
 
- s = "hi there"
+checkIn()
 
-<<"%I $s \n"
+str s = "hi there";
+ 
 
-<<"$s \n"
+<<"%V $s \n"
 
+checkStr(s,"hi there")
+
+s= Supper(s,0,1);
+
+<<"%V $s \n"
 
 s->reverse()
 
 <<" $s \n"
 
-s[4] = 'A';
+s[4] = 'A'; // TBF
 
 <<"%V $s \n"
 
-s[2:3]->cut()
+s[2:3]->cut() // TBF
 
 <<" $s \n"
+
+
 
 char c;
 
 c = s[3];
-//d= s->sele(0,1)
-d= sele(s,3,1)
+
+<<"%V %c $c  $c     $s\n"
+
+
+d= sele(s,2,3)
 
 <<"%V %c $c %d $c $d    $s\n"
 
@@ -44,7 +56,10 @@ char R[]
 <<"%V $C \n"
 
    len = slen(name)
+
 <<"%V $len\n"
+
+
 for (i= 0; i < len; i++)
 {
   R[i] = C[i] + i;
@@ -54,7 +69,9 @@ for (i= 0; i < len; i++)
 
 <<"%V %s $R\n"
 
-STOP("DONE")
+
+checkOut()
+
 
 
 

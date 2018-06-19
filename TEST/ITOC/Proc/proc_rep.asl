@@ -1,12 +1,18 @@
 ///
-///
-// test proc
+///  proc_rep
+/// 
 
 //N = atoi(_clarg[1])
 
+
+setDebug(1,@keep,@trace)
+filterFuncDebug(ALLOWALL_);
+filterFileDebug(ALLOWALL_,"declare_type","array_subset","storetype","ds_store","ds_vector");
+
+
 checkIn();
 
-N = 1000;
+N = 200;
 int K = 1;
 
 <<" START $K $N \n"
@@ -110,7 +116,14 @@ last_mem = memused();
 
  ntest++
 
- checkNum(K,N,">=")
+ if ( K == N) {
+<<"OK $K == $N\n"
+ }
+
+checkNum(K,N)
+
+
+ checkNum(K,N,GTE_)
  
 <<" DONE %V $K $N  $init_mem $totmem\n"
 
@@ -120,8 +133,6 @@ last_mem = memused();
 checkOut();
 
 exit()
-
-
 
 
 ////  TODO/FIX /////////////

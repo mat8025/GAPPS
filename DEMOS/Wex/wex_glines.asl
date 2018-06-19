@@ -1,4 +1,6 @@
-
+///
+///
+/// 
 
 ///////////////////// GLINES & SYMBOLS ///////////////////////////////
 
@@ -50,7 +52,9 @@ if ( gw_gl == -1 || bp_gl == -1) {
 
  calb_gl = cGl(calwo,@TXY,DVEC,CALBURN,@color,BLUE_,@ltype,"symbols",DIAMOND_)
 
- calc_gl = cGl(calwo,@TXY,DFVEC,CALCON,@color,RED_,@ltype,"symbols","triangle",@symhue, BLUE_)
+// calc_gl = cGl(calwo,@TXY,DFVEC,CALCON,@color,RED_,@ltype,"symbols","triangle",@symhue, BLUE_)
+
+ calc_gl = cGl(calwo,@TXY,DVEC,CALCON,@color,RED_,@ltype,"symbols","triangle",@symhue, BLUE_)
 
  ave_ext_gl  = cGl(extwo,@TXY,DVEC,AVE_EXTV,@color,RED_,@ltype,"line")
 

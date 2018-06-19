@@ -50,7 +50,28 @@ proc BOO()
 }
 //=============================
 
+
 include "gss.asl"  // import the main subroutines
+
+
+// local functions
+// add more
+// or overload/rework
+
+proc ADDWEX()
+{
+/// should go to last page
+<<"IN $_proc \n"
+
+    AddTask(0);
+    return 
+}
+
+
+//====================================//
+
+
+
 
 //  fname = "pp.rec"
   fname = _clarg[1];
@@ -122,22 +143,11 @@ int cv = 0;
 
 include "tbqrd"
 
-include "gss_screen"
+include "addex_screen"
 
 //===============================
 
-
-
-
-
-
-
 // setdebug(1,"step","pline");
-
-
-
-
-
 
  sWo(cellwo,@setrowscols,rows+5,cols+1);
  
@@ -145,10 +155,10 @@ include "gss_screen"
     for (i = 0; i< rows ; i++) {
      for (j = 0; j< cols ; j++) {
         if ((i%2)) {
-sWo(cellwo,@cellbhue,i,j,LILAC_);         
+         sWo(cellwo,@cellbhue,i,j,LILAC_);         
 	}
 	else {
-sWo(cellwo,@cellbhue,i,j,YELLOW_);
+         sWo(cellwo,@cellbhue,i,j,YELLOW_);
 
 	 }
 	 cv++;
@@ -175,13 +185,6 @@ sWo(cellwo,@cellbhue,i,j,YELLOW_);
 
 
 //setdebug(1,@keep,@trace);
-
-//pfname = "BOO";
-//<<"TRY indirect call of $pfname !\n"
-
-//    $pfname();
-
-//<<"DONE indirect call of $pfname !\n"
 
 
 

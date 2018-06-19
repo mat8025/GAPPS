@@ -1,7 +1,13 @@
 ///
 ///  subrange vector assign
 ///
-setdebug(1,"trace");
+
+filterFuncDebug(ALLOWALL_,"varArraySpec","varArrayIndex");
+filterFileDebug(ALLOW_,"array_parse","array_range","ds_storevar","~ds_storesvar","~ic_wic");
+
+setdebug(1,@keep,@trace);
+
+
 
 checkIn()
 
@@ -11,11 +17,14 @@ checkIn()
 
  I[5:8] = 10;
 
+ <<" $(info(I)) \n"
 <<"$I\n"
 
 checkFnum(I[0],0)
 checkFnum(I[5],10)
 checkFnum(I[8],10)
+
+checkOut()
 
  I[20:28:2] = 79;
 
@@ -44,7 +53,7 @@ checknum(I[8],79)
 <<"/////////\n"
  I = 47;
 <<"$I\n"
-<<"all siver ??\n"
+<<"all silver ??\n"
 checknum(I[9],47)
 <<"/////////\n"
  I[::] = 80;

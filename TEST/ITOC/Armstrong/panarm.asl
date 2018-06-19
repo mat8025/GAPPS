@@ -2,6 +2,8 @@
 ///  generate armstrong numbers
 ///
 
+#define ASK ans=iread("carry on: ");
+
 proc getArmN (char  cna[])
 {
 
@@ -29,7 +31,7 @@ pan Anum[100];
 pan sum = 0;
 pan psum = 0;
 
-int np =  atoi (_clarg[1])
+int np =  atoi (_clarg[1]);
 pan totn=0;
 
 char nv[20];
@@ -60,8 +62,8 @@ na= 0;
 
 last_ut = u1;
 
-//pan pw[10];  //TBF
-long pw[10];  //TBF
+pan pw[10];  //TBF
+//long pw[10];  //TBF
 
       for (i=0; i < 10 ;i++) {
             pw[i] = i^np ;
@@ -81,6 +83,10 @@ begin =1;
 
 <<"%V $begin\n"
 //ans=iread();
+
+<<"search begins @ $begin\n"
+
+//ASK
 
 pan maxn = 0;
 pan diff;
@@ -175,13 +181,13 @@ str s="123";
 last_Mu = memused();
 // reset ks - to last session
 
-//    pan j= 0;
-    long j= 0;
+   pan j= 0;
+//    long j= 0;
 
 
   //checkMemory(1);
    
-   for (pk=begin; pk<= endnum; pk++) {
+   for (pk=begin; pk <= endnum; pk++) {
 
 
      if ((j % 5000) == 0) {  // not if pan j TBF
@@ -210,7 +216,7 @@ last_Mu = memused();
   //    ans= iread();
    //   last_mu = mu;
       psum = 0;
-      s="$k"
+      s="$pk"
       scpy(nv,s);
       nv -= 48;
       
@@ -223,7 +229,7 @@ last_Mu = memused();
 	 }
       }
       
-      if (k == psum) {
+      if (pk == psum) {
       Anum[na] = pk;
       na++;
       <<"$na $pk   $psum\n"
@@ -254,7 +260,7 @@ if (secs <=100) {
 
 
 
-fname = "Armstrong_${np}_nums"
+fname = "ArmstrongP_${np}_nums"
 
 A=ofw(fname)
 

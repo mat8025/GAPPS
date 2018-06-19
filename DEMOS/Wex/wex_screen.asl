@@ -4,7 +4,7 @@
 
     vptitle = "Wed_$vers"
 
-    vp =  cWi(@title, "$vptitle",@resize,0.1,0.1,0.9,0.9,0,@pixmapon,@save,@savepixmap);
+    vp =  cWi(@title,"$vptitle",@resize,0.1,0.1,0.9,0.9,0,@pixmapon,@save,@savepixmap);
 
     vp1 = cWi(@title,"XED",@resize,0.01,0.05,0.90,0.9,1)
 
@@ -21,17 +21,10 @@
 
     gwo=cWo(vp,@graph,@name,"WTLB",@value,0,@clipborder)
 
-    calwo=cWo(vp,@graph,@name,"CAL",@value,0,@clipborder,"black")
+    calwo=cWo(vp,@graph,@name,"CAL",@value,0,@clipborder,BLACK_)
 
-//    extwo=cWo(vp,@graph,@name,"EXT",@value,0,@clipborder,"black")
 
-    //carbwo=createGWOB(vp,@type,"GRAPH",@name,"CARB_COUNT",@color,"white")
-
-    //int wedwo[] = { gwo, extwo, calwo, carbwo }
-
-    //  int wedwo[] = { gwo, calwo, extwo  }
-
-   int wedwo[] = { gwo, calwo  }
+   int wedwo[] = { gwo, calwo,  };
 
 DBPR"%V$wedwo \n"
 
@@ -39,7 +32,7 @@ DBPR"%V$wedwo \n"
 
     wo_vtile(wedwo,0.03,0.08,0.97,0.97,0.01)   // vertically tile the drawing areas into the main window
 
-    cx = 0.08 ;    cX = 0.95 ; cy = 0.2 ; cY = 0.97;
+    cx = 0.08 ; cX = 0.95 ; cy = 0.2 ; cY = 0.97;
 
 include "tbqrd.asl"
 
@@ -53,6 +46,8 @@ extwo = calwo;
 
 
     sWo(wedwo,@clip,cx,cy,cX,cY, @color,"white")
+
+    sWo(calwo,@clip,cx,cy,cX,cY, @color,"white")
 
     sWo(wedwo,@border,@clipborder,"black",@drawon)
 
@@ -147,13 +142,13 @@ DBPR"SCALES %V$sc_startday $sc_endday $carb_upper\n"
 
   sWo(xwos,@style,"SVB",@redraw);
   sWo(gwo,@showpixmap,@save);
-  sWo(calwo,@showpixmap);
+  sWo(calwo,@showpixmap,@save);
   
 
   dtmwo=cWo(vp,@BV,@name,"DAY",@color,RED_,@help," date on day ")
   wtmwo=cWo(vp,@BV,@name,"WTM",@color,RED_,@help," wt on day ")
   cbmwo=cWo(vp,@BV,@name,"CBM",@color,BLUE_,@fonthue,WHITE_,@help," cals burnt on day ")
-  xtmwo=cWo(vp,@BV,@name,"ETM",@color,GREEN_,@help," xtime on day ")
+  xtmwo=cWo(vp,@BV,@name,"EXT",@color,GREEN_,@help," xtime on day ")
 
   int mwos[] = { dtmwo, wtmwo, cbmwo, xtmwo};
 
