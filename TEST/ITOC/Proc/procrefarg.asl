@@ -76,9 +76,6 @@ int m = 3;
   CheckNum(k,21);
 <<"%V $n $m $k \n"
 
-exit()
-
-
 
 float x = 13.3
 float y = 26.7
