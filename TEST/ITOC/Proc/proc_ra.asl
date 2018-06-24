@@ -11,15 +11,33 @@ proc refarg (v)
 <<"IN %V  $v  \n"
 
    //v = 79;
+  prev= v;
+   // prev= v++; // works
+   //v *= 2; works
+   //z= v++ + v++; // works ( v + (v+1) )  and v = v+2
+
    v++;
-<<"OUT %V $v  \n"
+   postv =v;
+
+   z =v;
+// nv++;
+//  v=nv;
+
+<<"OUT %V $z $v $prev $postv \n"
 
 
 }
 //=======================//
-int n = 94;
+int n = 4;
 int m = 84;
 
+   h = n;
+   w= h++ + h++;
+
+<<"%V $w  $h \n"
+
+   checkNum(w, (n*2 +1));
+   
    pre_n = n;
    
    refarg(&n);
@@ -28,7 +46,7 @@ int m = 84;
 
 <<"%V proc modifies? $pre_n !=  $n \n"
 
-  CheckNum(n,95)
+  CheckNum(n,5)
   pre_m = m;
   refarg(m);
 

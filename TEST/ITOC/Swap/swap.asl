@@ -3,14 +3,16 @@
 ///
 
 
-//#define ASK ans=iread();
+#define ASK ans=iread();
 
-#define ASK ;
+//#define ASK ;
 
 
 checkIn()
+setdebug(1,@pline,@~step,@trace,@showresults,1)
+filterFuncDebug(ALLOWALL_,"proc","opera_ic");
+filterFileDebug(ALLOWALL_,"ic_op","ic_pu","ic_x","proc","opera","ds_siv");
 
-setdebug(1,"pline","~step")
 
 
 proc add ( x, y)
@@ -32,16 +34,18 @@ proc swap ( x, y)
 {
 
   t = x;
-
+  t2 = y;
 <<"$_proc IN : %V$x $y $t\n"
 
 <<"%V$t  $(typeof(t))\n"
-  x = y;
+  //x = y;
+  x = t2;
  <<"%V$x \n"
   y = t;
- <<"%V$y \n"
+  
+ <<"%V $y \n"
 
-<<" OUT: %V$x $y $t\n"
+<<" OUT: %V $x $y $t $t2\n"
 
 }
 //====================
@@ -82,12 +86,14 @@ proc swapR (int& x, int& y)
 
 <<"%V$k $m  ref\n"
  swap (&k, &m)
+ 
 <<" %V$k $m \n"
 
 
 
  CheckNum(k,3)
  CheckNum(m,4)
+
 ASK
 <<"%V$k $m  \n"
 

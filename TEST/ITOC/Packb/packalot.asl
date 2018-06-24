@@ -9,12 +9,10 @@ proc ask()
 }
 
 
-#define  ASK ask();
-//#define  ASK ;
+//#define  ASK ask();
+#define  ASK ;
 
-
-
-setdebug(1,"~pline","trace","~stderr")
+setdebug(1,@~pline,@trace,@~stderr)
 
 
 

@@ -1,9 +1,13 @@
-setdebug(1,@pline,@~step,@trace,@showresults,1)
+///
+///
+///
+
+setdebug(1,@pline,@~step,@trace,@showresults,1,@pause)
 filterFuncDebug(ALLOWALL_,"proc","opera_ic");
-filterFileDebug(ALLOW_,"ic_","proc");
+filterFileDebug(ALLOWALL_,"ic_","proc");
 
 
-CheckIn()
+CheckIn(2)
 
 proc refarg (v)
 {
@@ -39,7 +43,7 @@ int m = 3;
 
   CheckNum(k,4)
 
-checkStage()
+  checkStage()
 
   k = refarg(&m);
 
@@ -51,7 +55,7 @@ checkStage()
   CheckNum(k,6)
 
 
-checkStage()
+  checkStage()
 
   n = 5;
   k = refarg(n);
