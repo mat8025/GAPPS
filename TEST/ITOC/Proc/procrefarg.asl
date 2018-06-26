@@ -1,29 +1,32 @@
 ///
 /// procrefarg
 
-setdebug(1,@pline,@~step,@trace)
+setdebug(1,@pline,@~step,@trace,@showresults,1)
 filterFuncDebug(ALLOWALL_,"proc","opera_ic");
-filterFileDebug(ALLOW_,"ic_","array_subset","storetype","ds_store","ds_vector");
+filterFileDebug(ALLOWALL_,"ic_","array_subset");
 
 
-CheckIn()
+CheckIn(0)
 
 proc sumarg (v, u)
 {
 <<"args in %V  $v $u \n"
+v->info(1)
+u->info(1)
 
    z = v + u;
 
 <<"%V$v + $u = $z\n"
 
    v++;
-<<" changing first arg to %V$v\n"
 
+<<" changing first arg to %V $v\n"
+v->info(1)   
    u = u * 2;
 
-<<" changing second arg to %V$u \n"
-
-<<"args out %V$v $u \n"
+<<" changing second arg to %V $u \n"
+u->info(1)
+<<"args out %V $v $u $z\n"
 
   return z;
 
@@ -46,7 +49,7 @@ proc sumarg2 (v, u)
 
 <<" changing second arg to %V$u \n"
 
-<<"args out %V$v $u \n"
+<<"args out %V$v $u $z\n"
 
   return z;
 }
@@ -71,10 +74,25 @@ int m = 3;
 <<"%V$n \n"
 
 
+float x = 13.3;
+float y = 26.7;
+
+ w = sumarg(&x,&y)
+<<"%V $x $y $w \n"
+
+CheckFNum(w,40.0,6)
+
+CheckFNum(x,14.3,3)
+
+CheckFNum(y,53.4,3)
+
+
 <<"Scalar args \n"
 <<"calling %V $n $m \n"
 
-  k = sumarg(&n,&m);
+int k = 0;
+
+ k = sumarg(&n,&m);
 
 <<"post %V $n $m \n"
 
@@ -84,25 +102,30 @@ int m = 3;
 
   CheckNum(m,6)
 
-  CheckNum(k,5)
+<<"%V $k\n"
+
+//  CheckNum(k,5)
+
+   checkNum(5,k);
 
 //
 
  n = 7;
  m = 14;
 
-
  k = sumarg(&n,&m)
+
+<<"%V $n $m $k \n"
+
+  CheckNum(k,21);
 
   CheckNum(n,8)
   CheckNum(m,28)
-  CheckNum(k,21);
-<<"%V $n $m $k \n"
+
+
 
  n = 54;
  m = 49;
-
-
 
  k = sumarg(&n,m)
 
@@ -112,16 +135,8 @@ int m = 3;
 <<"%V $n $m $k \n"
 
 
-float x = 13.3
-float y = 26.7
 
- w = sumarg(&x,&y)
-<<"%V $x $y $w \n"
-
-CheckFNum(w,40.0,6)
-CheckFNum(x,14.3)
-CheckFNum(y,53.4)
-
+checkOut()
 
 
  n = 79;
@@ -135,8 +150,6 @@ k = sumarg2(n,&m)
   CheckNum(k,126);
 <<"%V $n $m $k \n"
 
-
-checkOut()
 
 
  n = 20;

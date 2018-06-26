@@ -3,17 +3,20 @@
 ///
 
 
-setDebug(1,@keep)
+setDebug(1,@keep,@pline)
 
-CheckIn()
+//#define ASK ans=iread("->");
+#define ASK ;
+
+CheckIn(1)
 
 proc foo(a)
 {
  <<" IN $_proc $a \n"
 
- float tmp
+ float tmp;
 
- tmp = a/2.0
+ tmp = a/2.0;
 
  return tmp
 
@@ -25,15 +28,21 @@ x = 20.2
 
  <<"%V $_proc $x \n"
 
- y = Cos(x)
+ cy = Cos(x)
+
+<<" $cy \n"
+
+ y = Sin(cy)
 
 <<" $y \n"
 
- y = Sin(y)
+ y /= 2.0;
 
-<<" $y \n"
+  t = foo(Cos(x))
 
- y /= 2
+<<"$x $t \n"
+
+ASK
 
   t = foo(Sin(Cos(x)))
 
@@ -42,7 +51,7 @@ x = 20.2
   CheckFNum(t,y,6)
 
 
-x = -20.2
+x = -20.2;
 
  <<"%V $_proc $x \n"
 

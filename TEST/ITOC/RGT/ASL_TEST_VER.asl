@@ -2,12 +2,17 @@
 // test asl first and second stage (xic)
 // 
 
+setDebug(1,@keep);
+
+//filterDebug(0,"args");
+
+
 #define PGREEN '\033[1;32m'
 #define PRED '\033[1;31m'
 #define PBLACK '\033[1;39m'
 #define POFF  '\033[0m'
 
-vers = 10;
+vers = 11;
 
 //ws= getenv("GS_SYS")
 
@@ -29,9 +34,6 @@ Svar Opts[] = Split(S,",");
 
 
 
-setDebug(1,@keep);
-filterDebug(0,"args");
-
 proc RunTests( Tp )
 {
       np = Caz(Tp);
@@ -50,7 +52,8 @@ today=getDate(1);
 
 cwd=getdir()
 
-Opf=ofw("Scores/score_$(date(2,'-'))")
+//Opf=ofw("Scores/score_$(date(2,'-'))")
+Opf=ofw("current_score")
 
 
 Tcf=ofw("test_crashes")
@@ -62,7 +65,7 @@ Tff=ofw("test_fails")
 do_pause = 0
 do_error_pause = 0
 
-do_xic = 1
+do_xic = 1;
 
 int n_modules = 0
 int rt_tests = 0
@@ -124,7 +127,7 @@ proc changeDir(td)
 proc Run2Test(td)
 {
 
- changeDir(Testdir)
+  changeDir(Testdir)
 
 //!!"pwd"
 
@@ -139,6 +142,38 @@ proc Run2Test(td)
   //<<"changing to $td dir from $Prev_dir in $Curr_dir\n"
 }
 //===============================
+
+
+proc RunTests2( Td, Tl )
+{
+      Run2Test(Td);
+      
+      Tp = Split(Tl,",");
+
+      np = Caz(Tp);
+      for (i=0 ; i <np; i++) {
+           cart(Tp[i]);
+      }
+}
+//====================//
+
+proc RunSFtests(Td)
+{
+// list of dirs  Fabs,Cut,Cmp ...
+// goto dir then run cart(fabs) or cart(cmp)
+
+      Tp = Split(Td,",");
+
+      np = Caz(Tp);
+      for (i=0 ; i < np; i++) {
+         wsf = Tp[i];
+         Run2Test(wsf);
+	 wsf = slower(wsf);
+         cart(wsf);
+      }
+}
+
+
 /////////////////////////////
 
 proc scoreTest( tname)
@@ -288,6 +323,74 @@ proc doxictest(prog, a1)
 // FIX --- optional args -- have to be default activated -- to work for XIC?
 // variable length args ??
 
+proc cart_xic(aprg,a1, in_pargc)
+{
+
+//<<"%V doing  xic vers $do_xic $aprg \n"
+
+    if (fexist(aprg) != -1) {
+
+       cart_arg = " $a1"
+       a1arg = a1;
+
+//      <<"RUNNING XIC $cart_arg \n"
+
+      tim = time() ;  //   TBC -- needs to reinstated
+     
+   // wt_prog = "$tim "
+
+     xwt_prog = "$tim ./${aprg}: $cart_arg"
+
+     //xwt_prog = "$(time())./${aprg}:$a1arg"
+
+//<<"$xwt_prog \n"
+
+   if (in_pargc > 1) {
+
+   
+
+//<<"%V$_pargc \n"
+      
+//<<"./$aprg   $a1  $xwt_prog\n"
+       doxictest("./$aprg", a1)
+   }
+   else {
+   
+//<<" no arg \n"
+      tim = time() ;  //   TBC -- needs to reinstated
+      xwt_prog = "$tim ./${aprg}: "
+      //xwt_prog = "$(time()) ./${aprg}: "
+
+       doxictest("./$aprg")
+   }
+
+      if (f_exist("${aprg}.xtst") > 0) {
+         wlen = slen(xwt_prog)
+         padit =nsc(40-wlen," ")
+         <<"${xwt_prog}$padit"
+	 <<[Opf]"${xwt_prog}$padit"
+
+         scoreTest("${aprg}.xtst")
+      }
+     else {
+
+       //<<"CRASH FAIL:--failed to run\n"
+
+       CrashList->Insert("${Curr_dir}/xic_${aprg}")
+     }
+
+  }
+
+    if (do_pause) {
+        onward = iread(":)->")
+	if (onward @= "quit") {
+          STOP("quit ASL tests");
+        }
+    }
+} 
+//================================//
+
+
 proc cart (aprg, a1)
 {
   int wlen;
@@ -400,66 +503,13 @@ proc cart (aprg, a1)
   ntest++
 
 //!!"tail -3 $tout "
+ // TBC if (do_xic)  // FAILS
+  if (do_xic >0 ) {
+    cart_xic(aprg,a1,in_pargc)
+  }
 
-   if (do_xic) {
 
-
-    if (fexist(aprg) != -1) {
-
-      //<<"RUNNING XIC $cart_arg \n"
-
-      tim = time() ;  //   TBC -- needs to reinstated
-     
-   // wt_prog = "$tim "
-
-    xwt_prog = "$tim ./${aprg}: $cart_arg"
-
-     //xwt_prog = "$(time())./${aprg}:$a1arg"
-
-//<<"$xwt_prog \n"
-
-     if (in_pargc > 1) {
-   
-//<<"%V$_pargc \n"
-      
-//<<"./$aprg   $a1  $xwt_prog\n"
-       doxictest("./$aprg", a1)
-   }
-   else {
-   
-//<<" no arg \n"
-      tim = time() ;  //   TBC -- needs to reinstated
-      xwt_prog = "$tim ./${aprg}: "
-      //xwt_prog = "$(time()) ./${aprg}: "
-
-       doxictest("./$aprg")
-   }
-
-      if (f_exist("${aprg}.xtst") > 0) {
-         wlen = slen(xwt_prog)
-         padit =nsc(40-wlen," ")
-         <<"${xwt_prog}$padit"
-	 <<[Opf]"${xwt_prog}$padit"
-
-         scoreTest("${aprg}.xtst")
-      }
-     else {
-
-       //<<"CRASH FAIL:--failed to run\n"
-
-       CrashList->Insert("${Curr_dir}/xic_${aprg}")
-     }
-
-   }
-
-    if (do_pause) {
-        onward = iread(":)->")
-	if (onward @= "quit") {
-          STOP("quit ASL tests");
-        }
-    }
- }
-
+  
 }
 //===============================
 
@@ -616,35 +666,20 @@ int do_help = 0;
 
   if (do_all  || do_types) {
   
-      Run2Test("Types");
-
-      tp = Split("float,str,char,long,short,double,pan_type,ato",",");
-
-      RunTests(tp);
-
+      RunTests2("Types","float,str,char,long,short,double,pan_type,ato");
       
-      Run2Test("Cast")
-      cart("cast")
-      cart("cast_vec")
+      RunTests2("Cast","cast,cast_vec")
 
-
-      Run2Test("Efmt");
-      cart("efmt");
+      RunTests2("Efmt","efmt");
 
   }
 
 
   if (do_all  || do_vops) {
 
-  Run2Test("Vops")
+     RunTests2("Vops","vops,vopsele")
 
-  cart("vops")
-  cart("vopsele")
-
-  Run2Test("Vector")
-  cart("vec")
-  cart("veccat")
-  cart("vecopeq")
+     RunTests2("Vector","vec,veccat,vecopeq")
 
 
   }
@@ -652,36 +687,15 @@ int do_help = 0;
 //////////////////////////////////////////////////
 
   if (do_all  || do_sops) {
+      //  need more str ops tests than this!
 
-  Run2Test("Sops")
-
-//  need more str ops tests than this!
-
-      sp = Split("scat,scmp,ssub,stropcmp",",");
-      RunTests(sp)
+      RunTests2("Sops","scat,scmp,ssub,stropcmp");
 
   // make this a pattern OP
-  Run2Test("Date")
-  cart("date")
-
-  Run2Test("Sele")
-  cart("sele")
+  RunSFtests("Date,Sele,Sstr,Spat,Regex,Str");
 
   Run2Test("Splice")
   cart("strsplice")
-
-  Run2Test("Sstr")
-  cart("sstr")
-
-  Run2Test("Spat")
-  cart("spat")
-
-  Run2Test("Regex")
-  cart("regex")
-
-  Run2Test("Str")
-  cart("str")
-
 
   }
 
@@ -703,12 +717,7 @@ if (( do_all ==1) || (do_declare == 1) ) {
 
    cart ("consts_test")
 
-  Run2Test("Declare")
-
-  Curr_dir = getDir();
-
-      dp = Split("declare,promote,declare_eq,chardeclare,scalar_dec,floatdeclare,arraydeclare,proc_arg_func",",");
-      RunTests(dp)
+   RunTests2("Declare","declare,promote,declare_eq,chardeclare,scalar_dec,floatdeclare,arraydeclare,proc_arg_func");
 
    Run2Test("Resize")
 
@@ -717,7 +726,6 @@ if (( do_all ==1) || (do_declare == 1) ) {
    Run2Test("Redimn")
 
    cart ("redimn")
-
 
 
 
@@ -758,20 +766,9 @@ if ( do_all || do_if ) {
 
   cart("if0",10)
 
-  cart("if4")
+  RunTests2("If","if4,md_assign,if5,if6")
 
-  cart("md_assign")
-
-  cart("if5")
-
-  cart("if6")
-
-
-  Run2Test("Logic")
-
-  cart("logic")
-  cart("logic2")
-  cart("logic_def")
+  RunTests2("Logic","logic,logic2,logic_def")
 
   Run2Test("Bitwise")
   cart("bitwise")
@@ -788,7 +785,7 @@ if ( do_all || do_if ) {
 
     }
 
-if ( do_all || do_for ) {
+ if ( do_all || do_for ) {
 
    Run2Test("For")
 
@@ -799,7 +796,7 @@ if ( do_all || do_for ) {
 ////////////////////////////////////////////////////////////////////////
     }
 
-if ( do_all || do_while ) {
+  if ( do_all || do_while ) {
 
   Run2Test("While")
 
@@ -807,24 +804,16 @@ if ( do_all || do_while ) {
   cart("while1")
 
 
-
-
-////////////////////////////////////////////////////////////////////////
     }
+////////////////////////////////////////////////////////////////////////
 
 
 
+ if ( do_all || do_switch ) {
 
-if ( do_all || do_switch ) {
+  RunTests2("Switch","switch,switch2")
 
-  Run2Test("Switch")
-
-  cart("switch")
-
-  cart("switch2")
-
-
-}
+ }
 /////////////////////////////////////////////
 
 
@@ -857,23 +846,14 @@ if ( do_all || do_do ) {
 
 if ( do_all || do_array ) {
 
-  Run2Test("Array")
+
 
    //   Tp = Split("ae,arraystore,arrayele,arrayele0,arrayele1,arraysubset,arrayrange,arraysubvec,arraysubsref,arraysubsrange,dynarray,lhrange,lhe,joinarray,vec_cat,vgen,array_sr,mdele,vsp",","); // TBF - this long line somewhere is overwriting array ?? but we are using Svar - which are not fixed len
 
-      ap = Split("ae,arraystore,arrayele,arrayele0,arrayele1,arraysubset,arrayrange,arraysubvec,arraysubsref,arraysubsrange,",",");
+   RunTests2("Array","ae,arraystore,arrayele,arrayele0,arrayele1,arraysubset,arrayrange,arraysubvec,arraysubsref,arraysubsrange")
+   RunTests2("Array","dynarray,lhrange,lhe,joinarray,vec_cat,vgen,array_sr,mdele,vsp")
 
-    RunTests(ap);
-      ap->vfree()
-      ap = Split("dynarray,lhrange,lhe,joinarray,vec_cat,vgen,array_sr,mdele,vsp",",");
-
-//  Tp = Split("ae,arraystore,arrayele,arrayele0,arrayele1,arraysubset,arrayrange,arraysubvec,arraysubsref,arraysubsrange,",",");
-      
-//<<"$Tp \n"
-
-    RunTests(ap);
-
-  Run2Test("Scalarvec")
+   Run2Test("Scalarvec")
 
   cart("scalarvec")
 
@@ -901,7 +881,7 @@ if ( do_all || do_array ) {
 
   cart("vvgen")
 
-  Run2Test("Vfil")
+  Run2Test("Vfill")
 
   cart("vfill")
 
@@ -912,38 +892,28 @@ if ( do_all || do_array ) {
 
 /////////////////////////////////////////
 
-if ( do_all || do_matrix ) {
-   
-
+ if ( do_all || do_matrix ) {
+ 
    Run2Test("Mdimn")
 
    cart("mdimn0")
 
-
-    Run2Test("Matrix")
-    cart("mat_mul")
-    cart("msquare")
-    cart("diag")
+   RunTests2("Matrix","mat_mul,msquare,diag")
 
    Run2Test("Setv")
    cart("setv")
 
 
-    }
+   }
 
 
 /////////////////////////////////////////
 
  if ( do_all || do_dynv ) {
 
-  hdg("DYNAMIC_V")
+    hdg("DYNAMIC_V")
 
-
-  Run2Test("Dynv")
-
-  cart("dynv0")
-
-  cart("dynv2")
+    RunTests2("Dynv","dynv0,dynv2");
 
 
     }
@@ -962,21 +932,11 @@ if ( do_all || do_lhsubsc ) {
 
 if ( do_all || do_func ) {
 
-  
-
-  Run2Test("Func")
-
-  cart("func")
-
-  cart("func0")
-
-  cart ("func1")
-
-  cart ("funcargs")
+  RunTests2("Func","func,func0,func1,funcargs")
 
   Run2Test("Ifunc")
 
- cart ("iproc")
+   cart ("iproc")
 
 }
 
@@ -994,27 +954,17 @@ if ( do_all || do_unary ) {
 
 /////////////////////////////////////////
 
-if ( do_all || do_command ) {
+   if ( do_all || do_command ) {
 
-  Run2Test("Command")
-
-  cart("command")
-  cart("command_parse")
-
+     RunTests2("Command","command,command_parse")
 
     }
 
 
 /////////////////////////////////////////
 if ( do_all || do_proc ) {
-  hdg("PROC")
 
-
-  Run2Test("Proc")
-
-  pp= Split("proc,proc_declare,procret0,procarg,proc_sv0,proc_rep,proc_str_ret,procrefarg",",");
-
-  RunTests(pp)
+  RunTests2("Proc","proc,proc_declare,procret0,procarg,proc_sv0,proc_rep,proc_str_ret,procrefarg,proc_ra");
 
   cart("proc_var_define", 10)
 
@@ -1025,7 +975,6 @@ if ( do_all || do_proc ) {
   cart("arrayarg1")
   
   cart("arrayarg2")
-
 
 
   Run2Test("Swap")
@@ -1077,17 +1026,12 @@ if ( do_all || do_mops ) {
 
 
 
-if ( do_all || do_svar ) {
+   if ( do_all || do_svar ) {
 
     Run2Test("Svar")
-
-    
-
     cart("svar1", "string operations are not always easy" )
 
-    sp= Split("svar_declare,svelepr,svargetword,svarsplit",",");
-    RunTests(sp)
-
+    RunTests2("Svar","svar_declare,svelepr,svargetword,svarsplit");
 
     }
 
@@ -1102,13 +1046,11 @@ if ( do_all || do_svar ) {
     }
 
 
-if ( do_all || do_record ) {
+  if ( do_all || do_record ) {
 
-     Run2Test("Record")
-     rp = Split("record,readrecord,prtrecord,rec1",",");
-     RunTests(rp);
+     RunTests2("Record","record,readrecord,prtrecord,rec1");
 
-}
+  }
 
  changeDir(Testdir)
 
@@ -1160,62 +1102,29 @@ if ( do_all || do_record ) {
 }
 
 
-if ( do_all || do_lists ) {
+   if ( do_all || do_lists ) {
 
-    Run2Test("Lists")
-
-    cart ("list");
-
-    cart("list_declare"); 
-
-    cart ("listele")
-
-    cart ("list_ins_del")
-
-    
+    RunTests2("Lists","list,list_declare,listele,list_ins_del");
 
     }
 
+   if ( do_all || do_ptrs ) {
 
-if ( do_all || do_ptrs ) {
+    RunTests2("Ptrs","ptrvec,indirect");
 
-    Run2Test("Ptrs")
+   }
 
-    cart ("ptrvec");
-    cart ("indirect");
+   if ( do_all || do_class ) {
 
-
-}
-
-
-if ( do_all || do_class ) {
-
-    Run2Test("Class")
-
-    cart ("classbops");
-
-    cart ("class2");
-
-    cart ("classvar");
+    RunTests2("Class","classbops,class2,classvar");
 
     }
 
 
 
+   if ( do_all || do_oo ) {
 
-if ( do_all || do_oo ) {
-
-  Run2Test("OO")
-
-  cart("class_array")
-
-  cart("rp2")
-
-  cart("oa")
-
-  cart("oa2")
-
-  cart("sh")
+    RunTests2("OO","class_array,rp2,oa,oa2,sh");
 
   Run2Test("Obcopy")
 
@@ -1227,8 +1136,6 @@ if ( do_all || do_oo ) {
 
   cart("mih")
 
-
-
   }
 
 
@@ -1236,111 +1143,18 @@ if ( do_all || do_oo ) {
 
     hdg("S-FUNCTIONS")
 
-    Run2Test("Sscan")
+    RunSFtests("Sscan,Bscan,Cut,Cmp,Sel,Shift,Median,Findval,Lip");
 
-    cart("sscan")
-
-
-
-    Run2Test("Bscan")
-
-    cart("bscan")
-
-    Run2Test("Cut")
-
-    cart("cut")
-
-    Run2Test("Cmp")
-
-    cart("cmp")
-
-
-
-    Run2Test("Sel")
-
-    cart("sel")
-
-
-
-
-    Run2Test("Shift")
-
-    cart("shift")
-
-
-
-
-    Run2Test("Median")
-
-    cart("median")
-
-
-
-
-
-/// findval -- find a value in a vector
-
-    Run2Test("Findval")
-
-    cart("findval")
-
-
-
+//============================
+    RunSFtests("BubbleSort,Typeof,Variables,Trig,Caz,Sizeof,Limit,D2R,Cbrt,Fabs");
+//============================
 
 /// chem    -- find an atomic number for an element
 
     Run2Test("Chem")
-
     cart("chem0")
 
-
-
-    Run2Test("Lip");
-    cart("lip");
-
-
-//============================
-    Run2Test("BubbleSort");
-    cart("bubblesort");
-
-//============================
-
-//============================
-    Run2Test("Typeof");
-    cart("typeof");
-
-//============================
-    Run2Test("Variables");
-    cart("variables");
-
-//============================
-    Run2Test("Trig");
-    cart("trig");
-    
-//============================
-    Run2Test("Caz");
-    cart("caz");
-    
-//============================
-    Run2Test("Sizeof");
-    cart("sizeof");
-    
-//============================
-    Run2Test("Limit");
-    cart("limit");
-    
-//============================
-    Run2Test("D2R");
-    cart("d2r");
-    
-//============================
-    Run2Test("Cbrt");
-    cart("cbrt");
-    
-//============================
-    Run2Test("Packb");
-    cart("packb");
-    cart("packalot");
+    RunTests2("Packb","packb,packalot");
     
 //============================    
 
@@ -1350,17 +1164,12 @@ if ( do_all || do_oo ) {
 
 //////////////////// BUGFIXs/////////////////////////////////////////
 
-if ( do_all || do_bugs ) {
-      Run2Test("BUGFIX")
-      // lets get a list and work through them
+  if ( do_all || do_bugs ) {
       //cart("bf_40")   // this has intentional error and exits before test checks
-      bp = Split("bf_46,bf_59,bf_64,bf_75,bf_76,bf_78,bf_79,bf_80,bf_83,bf_84,bf_89,bf_91,bf_96,",",");
 
-      RunTests(bp);
-      
-      
+      RunTests2("BUGFIX","bf_46,bf_59,bf_64,bf_75,bf_76,bf_78,bf_79,bf_80,bf_83,bf_84,bf_89,bf_91,bf_96");
     
-}
+  }
 
 /{
 if ( do_all || do_threads ) {
@@ -1440,7 +1249,9 @@ changeDir(cwd)
 
 
 
-!!"cp Scores/score_$(date(2,'-')) current_score"
+//!!"cp Scores/score_$(date(2,'-')) current_score"
+!!"cp current_score Scores/score_$(date(2,'-')) "
+
 dtms= FineTimeSince(TM);
 secs = dtms/1000000.0
 

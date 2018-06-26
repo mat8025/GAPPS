@@ -3,13 +3,13 @@
 ///
 
 
-#define ASK ans=iread();
+//#define ASK ans=iread();
 
-//#define ASK ;
+#define ASK ;
 
 
 checkIn()
-setdebug(1,@pline,@~step,@trace,@showresults,1)
+setdebug(1,@~pline,@~step,@trace,@showresults,1)
 filterFuncDebug(ALLOWALL_,"proc","opera_ic");
 filterFileDebug(ALLOWALL_,"ic_op","ic_pu","ic_x","proc","opera","ds_siv");
 

@@ -7,30 +7,38 @@ double x
 double y
 double s
 double z
+double r;
 
-double rans = 47.000
+double rans = 47.000;
 
  s = 0.000001
 
  //x = getArgD()
 
 
-    x = rans * rans * rans
+  x = rans * rans * rans;
+  
 
- dx = fabs(x)
+  dx = fabs(x);
 
 <<" $(typeof(x)) $x $dx \n"
 
 
 
-   r= x/3.0
+   r= x/3.0;
 
 <<"%V $r \n"
 
-  //   s *= x
 
-   z = x
+//iread("->");
+
+//   s *= x
+
+   z = x;
+   
    s *= z
+   
+   
    
 <<" $s  $x $z\n"
 
@@ -38,33 +46,42 @@ double rans = 47.000
 
 int k = 1
 
-float m = 1.0/3.0
+double m = 1.0/3.0
+double nr;
+
 <<"%V$m \n"
 
    while (1) {
  
-     y = fabs(x - r * r * r)
+     //y = fabs(x - r * r * r)
 
-    <<"%V$k $r $y  \n"
+      y = (x - r * r * r);
+      
+   if (y < 0.0) {
+        y *= -1;
+   }
+
+    <<"%V $k $r $y  \n"
 
     if (y < s) 
       break 
 
-    k++
+    k++;
 
-    nr = m * (x/(r*r) + 2*r)
+    nr = m * (x/(r*r) + 2.0*r)
 
   <<" %V $nr $r $x \n"
+  //<<" $(typeof(nr)) $(typeof(x)) \n"
 
-    r = nr
+     r = nr;
 
-    if (k > 50)
+    if (k > 60)
        break
 
 //  iread(";> $r")
    }
 
- <<" $x cube root is $r   $(r*r*r)\n"
+ <<"cube root of  $x  is $r r^3 ==   $(r*r*r)\n"
 
 
  CheckFNum(rans,r,3)

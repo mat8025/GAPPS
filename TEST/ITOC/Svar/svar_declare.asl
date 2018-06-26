@@ -1,6 +1,6 @@
 #  
 
-setdebug(1,"~trace")
+setdebug(1,@keep,@~trace)
 
 checkIn()
 
@@ -16,10 +16,7 @@ sz = caz(Mol)
 
 <<"%V$sz\n";
 
-
-
 checkNum(sz,12)
-
 
 
 <<"first month $Mol[0]\n"
