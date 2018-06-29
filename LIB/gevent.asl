@@ -56,8 +56,11 @@ proc eventDecode()
 //  read these into array or rxy and erow-col
 
     Ev->geteventrxy(&_erx,&_ery);
+    
     Ev->geteventrowcol(&_erow,&_ecol);
 
+   _erow->info(1); // DBG
+   _ecol->info(1); // DBG
   
     Cev->row = _erow;
     Cev->col = _ecol;    
@@ -125,6 +128,7 @@ str _ekeyw2 = "nada2"
 str _ekeyw3 = "nada3"
 
 str _emsg = "xyz";
+
 str _evalue = "abc";
 
 str _ewoname = "";
@@ -133,6 +137,6 @@ str _ewoval = "yyy";
 
 str _ewoproc = "abc";
 
-<<" loaded gevent processor \n"
+<<" loaded gevent processor $_evalue\n"
 
 //====================================

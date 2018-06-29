@@ -381,7 +381,8 @@ include "gevent"
 
 
    while (1) {
-
+   
+        resetDebug();
         m_num++
 
         msg =eventWait()

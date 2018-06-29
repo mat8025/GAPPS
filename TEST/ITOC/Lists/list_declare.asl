@@ -1,8 +1,11 @@
 #  
 
-setdebug(1,@~trace,@soe)
+setdebug(1,@pline,@~step,@trace,@showresults,1)
+filterFuncDebug(ALLOWALL_,"proc","opera_ic");
+filterFileDebug(ALLOWALL_,"ic_","array_subset");
 
-checkIn()
+
+checkIn(1)
 
 str le;
 str le12;

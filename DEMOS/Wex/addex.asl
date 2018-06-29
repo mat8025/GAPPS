@@ -14,7 +14,12 @@
 include "gevent.asl"
 
 
-setdebug(0,@keep,@~trace);
+setdebug(1,@keep,@~trace);
+filterFuncDebug(ALLOWALL_,"proc");
+filterFileDebug(ALLOWALL_,"ic_","array_subset");
+
+
+
 
 //////   create MENUS here  /////
 A=ofw("Howlong.m")
@@ -191,10 +196,9 @@ include "addex_screen"
 <<"3 %V num of records $sz  $rows $cols  $Ncols\n"
 
 
-
-
 while (1) {
 
+         resetDebug();
          eventWait();
 
 //   <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
@@ -226,7 +230,7 @@ while (1) {
         sWo(cellwo,@cellbhue,swaprow_a,0,swaprow_a,cols,whue);         	 	 
 
         swaprow_b = swaprow_a;
-	 swaprow_a = _erow;
+	swaprow_a = _erow;
 	 
 <<"%V $swaprow_a $swaprow_b\n"
 

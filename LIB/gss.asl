@@ -24,10 +24,11 @@ proc SAVE()
          <<"IN $_proc saving sheet %V $fname  $Ncols \n";
 	 
             B=ofw(fname)
-
+            if ( B != -1) {
             nrw=writeRecord(B,R,@del,Delc,@ncols,Ncols);
 <<"%V $B $nrw  $Ncols \n"
             cf(B);
+	    }
 	    
     return 
 }
