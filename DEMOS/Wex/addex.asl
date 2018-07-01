@@ -44,16 +44,7 @@ cf(A);
 
 
 /////////////////////////
-proc BOO()
-{
 
-<<"IN $_proc record $rows \n"
-
-
-<<"OUT $_proc \n"
-    return;
-}
-//=============================
 
 
 include "gss.asl"  // import the main subroutines
@@ -73,6 +64,20 @@ proc ADDWEX()
 }
 
 
+//====================================//
+proc SAVEWEX()
+{
+	 
+            B=ofw(fname)
+            if ( B != -1) {
+   //         <<[B]"#Date   Weight  Walk    Hike    Run     Bike    Swim      Yard    Gym     Bpress\n"
+   // the first row is the field heading - should be ignored in data comptation
+   // can use # for comment - but then will not be read
+             nrw=writeRecord(B,R,@del,Delc,@ncols,Ncols);
+<<"%V $B $nrw  $Ncols \n"
+            cf(B);
+	    }
+}
 //====================================//
 
 
@@ -133,7 +138,8 @@ DF[0] = Split("$today,0,10,0,0,0,0,0,0,0",",");
     Ncols = Caz(R[0]);
 
 <<"1 %V num of records $sz  $rows $cols  $Ncols\n"
-
+    tags_col = cols-1;
+  
 //////////////////////////////////
 
 int cv = 0;
@@ -195,12 +201,16 @@ include "addex_screen"
 
 <<"3 %V num of records $sz  $rows $cols  $Ncols\n"
 
+   lastPGN ();
 
 while (1) {
 
          resetDebug();
          eventWait();
-
+         // TBF --- need these -? PROC_ARG_REF not cleared??
+         //_erow->info(1);
+        // _ecol->info(1);
+	 
 //   <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
 
          if (_erow > 0) {
@@ -208,60 +218,54 @@ while (1) {
          }
 
        if (_ewoid == cellwo) {
-       
-             if (_ekeyw @="CELLVAL") {
-                r= _erow;
-		c= Cev->col;
-		<<"%V$Cev->row $Cev->col\n"
-//R[Cev->row][Cev->col] = _ekeyw2;   // TBF
-                R[r][c] = _evalue;
-		<<"update cell val $r $c $_erow $_ecol $_ekeyw2 $R[r][c] \n"
-		<<"updated row $R[r]\n"
-            }
-
-      
 
         whue = YELLOW_;
-        if (_ecol == 0  && (_erow >= 0) && (_ebutton == RIGHT_)) {
-        if ((_erow%2)) {
-          whue = LILAC_;
-	}
+	
+        if (_ebutton == LEFT_) {
+             //_ecol->info(1);
+	     //_erow->info(1);
+           if (_erow == 0 && (_ecol == tags_col) ) {
+               <<"Clear tags \n"
+                clearTags();   
+           }
+	   else {
+            getCellValue(_erow,_ecol);
+	   }
+        }
 
-        sWo(cellwo,@cellbhue,swaprow_a,0,swaprow_a,cols,whue);         	 	 
+       else  if (_ebutton == RIGHT_) {
 
-        swaprow_b = swaprow_a;
-	swaprow_a = _erow;
+         if (_ecol == 0  && (_erow >= 0) ) {
+           if ((_erow%2)) {
+             whue = LILAC_;
+	   }
+
+         sWo(cellwo,@cellbhue,swaprow_a,0,swaprow_a,cols,whue);         	 	 
+
+          swaprow_b = swaprow_a;
+	  swaprow_a = _erow;
 	 
-<<"%V $swaprow_a $swaprow_b\n"
+           <<"%V $swaprow_a $swaprow_b\n"
 
          sWo(cellwo,@cellbhue,swaprow_a,0,CYAN_);         
          }
+            
+        else if (_erow == 0 && (_ecol >= 0) ) {
 
-               
-             
-      if (_erow == 0 && (_ecol >= 0) && (_ebutton == RIGHT_)) {
+           pickTaskCol (_ecol);
 
-         sWo(cellwo,@cellbhue,0,swapcol_a,0,cols,YELLOW_);         	 	 
-         swapcol_b = swapcol_a;
- 	 swapcol_a = _ecol;
-
-sWo(cellwo,@cellbhue,0,swapcol_a,CYAN_);         	 
-<<"%V $swapcol_a $swapcol_b\n"
          }
 
-        sWo(cellwo,@redraw);
 
-        if (_erow == 0 && (_ecol == tags_col) && (_ebutton == RIGHT_)) {
-               <<"Clear tags \n"
-                clearTags();   
-        }
 
-        if (_erow > 0 && (_ecol == tags_col) && (_ebutton == RIGHT_)) {
+        else if (_erow > 0 && (_ecol == tags_col)) {
                <<"mark tags \n"
                 R[_erow][tags_col] = "x";
 		sWo(cellwo,@cellval,_erow,tags_col,"x")
 		sWo(cellwo,@celldraw,_erow,tags_col)
         }
+      }
+      
    }
    else {
 
@@ -275,10 +279,13 @@ sWo(cellwo,@cellbhue,0,swapcol_a,CYAN_);
 	    else {
 <<"script procedure %V $_ewoname $ind  $_ewoid does not exist!\n"
             }
-      }
-   }
+	  //   sWo(ssmods,@redraw);
+        }
+     }
+
+        //sWo(cellwo,@redraw);
   }
-  
+  sWi(vp,@redraw)
 }
 <<"out of loop\n"
 

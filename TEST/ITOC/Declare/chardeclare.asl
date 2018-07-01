@@ -2,7 +2,7 @@
 
 CheckIn()
 
-setdebug(1,@pline,@trace,@stoponerror)
+setdebug(1,@~pline,@~trace,@~stoponerror)
 
 char c = 65;
 char p = 'q';
@@ -84,7 +84,7 @@ char a = 'G';
  CheckNum(dv[0], 'G' )
 
 
-checkStage()
+//checkStage()
 
 <<"%V $dv  \n"
 
@@ -145,7 +145,9 @@ sz = Caz(ev)
  CheckNum(lv[7],'M')
  CheckNum(lv[11],'$')
 
+
+ <<" chardec DONE\n"
  CheckOut()
 
-STOP!
+
 

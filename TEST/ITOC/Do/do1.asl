@@ -1,5 +1,5 @@
 
-checkIn()
+checkIn(0)
 
 
 int k = 0
@@ -22,7 +22,8 @@ N = GetArgI(1)
 
 <<" out of loop $i $k $N \n"
 
- CheckNum(i,N) ; CheckNum(k,N) ;
+ CheckNum(i,N) ;
+ CheckNum(k,N) ;
 
 
 
@@ -80,7 +81,6 @@ CheckNum(k,N) ; CheckNum(j,(2*N-1)) ;
 
    CheckOut()
 
-STOP!
 
 
 

@@ -45,8 +45,8 @@ proc eventDecode()
 
 //<<"proc $_ewoproc \n"
 
-    Cev->id = _eid;
-    Cev->button = _ebutton;
+    //Cev->id = _eid;
+   // Cev->button = _ebutton;
 
     
      _ewoname = Ev->getEventWoName();
@@ -59,11 +59,11 @@ proc eventDecode()
     
     Ev->geteventrowcol(&_erow,&_ecol);
 
-   _erow->info(1); // DBG
-   _ecol->info(1); // DBG
+  _erow->info(); // DBG
+  _ecol->info(); // DBG
   
-    Cev->row = _erow;
-    Cev->col = _ecol;    
+    //Cev->row = _erow;
+    //Cev->col = _ecol;    
 
    }
    

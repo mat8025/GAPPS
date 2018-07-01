@@ -1,6 +1,6 @@
-
-// test proc recursion
-// FIX - compile as declare then assign
+///
+/// test proc recursion
+/// FIX - compile as declare then assign
 //int N = $2
 //double M
 

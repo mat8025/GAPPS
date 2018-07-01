@@ -2,9 +2,11 @@
 ///  bops for class variables
 ///
 
-setdebug(1,@~pline,@keep,@~trace,@~soe)
+setdebug(1,@pline,@keep,@trace,@~soe)
+filterFuncDebug(ALLOWALL_,"proc","opera_ic");
+filterFileDebug(ALLOWALL_,"ic_op","ic_pu");
 
-CheckIn()
+CheckIn(1)
 
  a = 1.0;
  b = 2.0;
@@ -16,20 +18,28 @@ CheckIn()
 
    ok=CheckFNum(v,2.1);
 
- for (i = 0 ; i < 4 ; i++) {
+ for (i = 0 ; i < 5 ; i++) {
 
-    my = (b - c)/2.0 + (c + a) 
 
-   <<"[${i}] %V $b $c  $my \n"
 
-   b += 0.1
+   mbc = (b - c)/2.0;
+   
+   mca = (c+a);
+   my = (b - c)/2.0 + (c + a) ;
 
-   ok=CheckFNum(my,v,5)
-<<"%V$ok  $my $v \n"
-   v += 0.05
- }
+<<"[${i}] %V $a $b $c  $v\n"
+<<"%V $mbc $mca  $my $v $b \n"
+
+   CheckFNum(my,v,5);
+   
+   b += 0.1;
+   v += 0.05;
+
+}
 
 <<"%V $b $c  $my \n"
+
+
 //////////////////////////////////////////////////////
 
 Class Point 

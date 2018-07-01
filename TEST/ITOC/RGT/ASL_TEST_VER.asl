@@ -2,7 +2,7 @@
 // test asl first and second stage (xic)
 // 
 
-setDebug(1,@keep);
+
 
 //filterDebug(0,"args");
 
@@ -20,8 +20,18 @@ vers = 11;
 !!"rm -f ../*/*.xtst"
 !!"rm -f ../*/*.out"
 !!"rm -f ../*/*.xout"
-!!"rm -f ../*/*.idb"
-!!"rm -f ../*/*.xdb"
+
+// do not remove our own debug
+
+//!!"rm -f ../*/*.idb"
+//!!"rm -f ../*/*.xdb"
+
+
+
+setdebug(1,@keep,@~pline,@~step,@~trace,@showresults,1)
+filterFuncDebug(ALLOWALL_,"proc");
+filterFileDebug(ALLOWALL_,"ic_op");
+
 
 
 //envdebug();
@@ -31,7 +41,6 @@ Svar Opts[] = Split(S,",");
 
 
 //<<"$Opts \n"
-
 
 
 proc RunTests( Tp )
@@ -189,13 +198,23 @@ proc scoreTest( tname)
        
 //<<"$_proc $tname fh $RT \n"
 
+
        if (RT != -1) {
 //<<"$tname\n"
-          fseek(RT,0,2)
+/{/*
+       tstf = readFile(RT);
+       <<"/////\n"
+       <<"$tstf"
+       <<"/////\n"
+/}*/       
+          posn = fseek(RT,0,2)
+//<<"EOF @ $posn\n";
 
-          seekLine(RT,-1)
+          posn =seekLine(RT,-1);
+//<<"LL @ $posn\n";
 
           rtl = readline(RT)
+//<<"%V<$rtl>\n"	  
           rtwords = Split(rtl);
 //<<"%V $rtwords \n"
 
@@ -215,9 +234,12 @@ proc scoreTest( tname)
 
 // <<"%V $ntests $npass\n"
 // <<"%V $ntests2 $npass2\n"
-
+          if (ntests > 0) {
           pcc = npass/(ntests*1.0) *100
-
+          }
+	  else {
+          pcc = 0.0;
+          }
           rt_tests += ntests;
           rt_pass += npass;
 	  took = rtwords[12];
@@ -323,17 +345,17 @@ proc doxictest(prog, a1)
 // FIX --- optional args -- have to be default activated -- to work for XIC?
 // variable length args ??
 
-proc cart_xic(aprg,a1, in_pargc)
+proc cart_xic(aprg, a1, in_pargc)
 {
 
-//<<"%V doing  xic vers $do_xic $aprg \n"
+//<<"%V xic vers  $aprg $a1 $in_pargc\n"
 
     if (fexist(aprg) != -1) {
 
        cart_arg = " $a1"
        a1arg = a1;
 
-//      <<"RUNNING XIC $cart_arg \n"
+  //    <<"RUNNING XIC $cart_arg \n"
 
       tim = time() ;  //   TBC -- needs to reinstated
      
@@ -345,18 +367,18 @@ proc cart_xic(aprg,a1, in_pargc)
 
 //<<"$xwt_prog \n"
 
-   if (in_pargc > 1) {
+  // <<"%V  $in_pargc > 1 ? \n"
 
+   //in_pargc->info(1);
    
-
-//<<"%V$_pargc \n"
+   if ( in_pargc > 1) {
       
 //<<"./$aprg   $a1  $xwt_prog\n"
        doxictest("./$aprg", a1)
    }
    else {
    
-//<<" no arg \n"
+//<<" no arg $in_pargc <= 1 \n"
       tim = time() ;  //   TBC -- needs to reinstated
       xwt_prog = "$tim ./${aprg}: "
       //xwt_prog = "$(time()) ./${aprg}: "
@@ -626,6 +648,11 @@ int do_help = 0;
 
 <<"%V $do_bops $do_mops \n"
 
+// always
+  Run2Test("Bops")
+  cart("bops",7)
+//================
+
   if (do_all  || do_bops) {
 
     Run2Test("Bops")
@@ -718,6 +745,7 @@ if (( do_all ==1) || (do_declare == 1) ) {
    cart ("consts_test")
 
    RunTests2("Declare","declare,promote,declare_eq,chardeclare,scalar_dec,floatdeclare,arraydeclare,proc_arg_func");
+  // RunTests2("Declare","chardeclare,floatdeclare");
 
    Run2Test("Resize")
 

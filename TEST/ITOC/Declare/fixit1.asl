@@ -1,86 +1,64 @@
-
-char a = 'G'
-char b = 'X'
-char c = 'A'
-char d = 'B'
-char e
-
-e = 'L'
+///
+///
+///
 
 
-
-<<" %d $a %x $a %c $a \n"
-
-<<" %d $b %x $b %c $b \n"
-
-<<" %d $e %x $e %c $e \n"
+setdebug(1,@pline,@~step,@trace,@showresults,1)
+filterFuncDebug(ALLOWALL_,"proc");
+filterFileDebug(ALLOWALL_,"ic_op");
 
 
 
+tname = _clarg[1];
 
-proc poo( x, y)
+
+
+proc foo()
 {
-   if (x == y) {
-     <<" that checks $x == $y \n"
-   }
-   else {
 
-    <<" $x != $y \n"
+        RT=ofr(tname);
+       
+<<"$tname fh $RT \n"
 
-   }
+       if (RT != -1) {
+      
+          posn = fseek(RT,0,2)
+<<"EOF @ $posn\n";
 
+          posn =seekLine(RT,-1);
+<<"LL @ $posn\n";
+          rtl = readline(RT)
+<<"%V$posn $rtl \n"	  
+          rtwords = Split(rtl);
+<<"%V$rtwords \n"
+
+          posn = seekLine(RT,-1)
+
+          rtl = readline(RT)
+<<"%V$posn $rtl \n"	  
+          nrtwords = Split(rtl);
+<<"%V$nrtwords \n"
+          k = 0;
+          while (posn != 0) {
+	  
+          posn = seekLine(RT,-1)
+
+          rtl = readline(RT)
+<<"%V$posn $rtl \n"	  
+          nrtwords = Split(rtl);
+<<"%V$nrtwords \n"
+          if (k++ > 3) {
+              break;
+          }
+          }
+
+
+  }
+
+    cf(RT);
 }
 
 
- poo (a,71)
- poo  (e,'L')
-stop!
+   foo();
 
- poo (a, 'G')
-
-
- poo (b, 'X')
-
-
- poo (c, 'A')
-
- poo (d, 'B')
-
-
-stop!
-
-
-
-
-<<"$c $p $a \n"
-
-<<"%X $c $p $a \n"
-
-
-stop!
-
-
-
-char dv[] = { 'G', 65,66,67, 'O', '0', 0 }
-
-
-<<"$dv \n"
-<<"$dv[0] \n"
-<<"$dv[1] \n"
-
-sz = Caz(dv)
-
-<<"%V $sz \n"
-
-<<"%I $dv \n"
-
-
-
- a = 'G'
-
-<<"%I $a \n"
-
-<<"%V $dv[0] $a \n"
-
-
-;
+   foo();

@@ -2,9 +2,11 @@
 checkIn()
 
 
-int k = 0 ; int j = 4;  <<" %I $k $j \n"
+int k = 0 ;
+int j = 4;  <<" %I $k $j \n"
 
-  CheckNum(k,0) ; CheckNum(j,4)
+CheckNum(k,0) ;
+CheckNum(j,4)
 
 N = GetArgI()
 
@@ -57,7 +59,6 @@ N = GetArgI()
    CheckNum(i,1) 
    CheckOut()
 
-STOP!
 
 
 

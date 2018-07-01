@@ -19,6 +19,38 @@ swapcol_b = 2;
 
 int Ncols = 10;
 
+proc getCellValue( r, c)
+{
+ c->info(1);
+
+ 
+     if (r >0 && c >= 0 ) {
+ <<" %V $r $c \n";
+           cvalue = R[r][c];
+ <<" %V $cvalue \n";	   
+           newcvalue = queryw("NewValue","xxx",cvalue);
+           <<"%V$newcvalue \n"
+           sWo(cellwo,@cellval,r,c,newcvalue);
+           R[r][c] = newcvalue;
+     }
+}
+//=====================
+
+proc pickTaskCol ( wcol)
+{	       
+         sWo(cellwo,@cellbhue,0,swapcol_a,0,cols,YELLOW_);         	 	 
+
+         swapcol_b = swapcol_a;
+         swapcol_a = wcol;
+	 wcol->info(1);
+	 swapcol_a->info(1);
+         <<"%V $wcol $swapcol_a $swapcol_b\n";
+         sWo(cellwo,@cellbhue,0,swapcol_a,CYAN_);         	 
+
+}
+//===========================================//
+
+
 proc SAVE()
 {
          <<"IN $_proc saving sheet %V $fname  $Ncols \n";
@@ -154,6 +186,7 @@ proc AddTask( wt)
     sWo(cellwo,@selectrowscols,0,2,0,cols,1);
 
     rows++;
+
     <<"$wt $DF[wt]\n"
     ex = DF[wt];
     <<"$wt $DF[wt] : $ex\n"
@@ -262,32 +295,24 @@ proc clearTags()
    	    return ;
 }
 //============================
-proc PGN()
+proc lastPGN ()
 {
 
+  npgs =   rows/page_rows;
+
+  scrollPGN(npgs+1);
+}
+//============================
+
+proc scrollPGN (pn)
+{
 
   sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0); // unset current
 
-   // need to unselect all
+  npgs =   rows/page_rows;
 
-   // how many pages
-   
-   npgs =   rows/page_rows;
 
-  // ask for page 
-  //wpg = menu(pages);
-
-  int wpg = npgs /2;
-
-  wval = getWoValue(pgnwo);
-
-<<"%V$wval \n"
-  wpg = atoi(getWoValue(pgnwo));
-
-<<"%V $npgs $wpg\n"
-
-  if (wpg <0) wpg = 0;
-  if (wpg >npgs) wpg = npgs;
+  wpg = pn;
 
   curr_row =  (wpg - 1) * page_rows ;
 
@@ -312,7 +337,38 @@ proc PGN()
    paintRows();
    curr_page = wpg;
    sWo(cellwo,@redraw);
-   	    return ;
+   sWo(pgnwo,@value,wpg,@update);
+
+
+}
+//=======================================================
+proc PGN()
+{
+   // need to unselect all
+
+   // how many pages
+   
+  npgs =   rows/page_rows;
+
+  // ask for page 
+  //wpg = menu(pages);
+
+  int wpg = npgs /2;
+
+  if (wpg < 0) wpg = 0;
+  if (wpg > npgs) wpg = npgs;
+  
+
+  wval = getWoValue(pgnwo);
+
+<<"%V$wval \n"
+  wpg = atoi(getWoValue(pgnwo));
+
+<<"%V $npgs $wpg\n"
+
+   scrollPGN (wpg)
+
+   return ;
 }
 //====================
 

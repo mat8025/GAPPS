@@ -1,7 +1,7 @@
 
-setdebug(1,@~pline,@~trace,@keep)
+setdebug(1,@pline,@~trace,@keep)
 
-checkIn()
+checkIn(1)
 
 //prog= GetScript()
 
@@ -231,11 +231,12 @@ CheckFNum(q,-7);
   int sum = 0;
   double mi = 1;
   N = 1000;
+  
   for (k = 0; k < N; k++) {
 
     sum += k;
     mi *= k;
-
+<<"%V $k $sum $mi \n"
   }
 
 <<"%V $sum  $k  $(k*N/2) $mi\n"
