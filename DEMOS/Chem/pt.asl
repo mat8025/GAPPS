@@ -2,12 +2,18 @@
 //////// pt.asl ////////////////////
 ///
 
-envdebug()
+//envdebug()
+
+
+setdebug(1,@keep,@pline,@~step,@trace,@showresults,1)
+filterFuncDebug(ALLOWALL_,"proc");
+filterFileDebug(ALLOWALL_,);
 
 Graphic = CheckGwm()
 
 <<" %v $Graphic \n"
-spawn_it = 1
+spawn_it = 1;
+
  if (Graphic) {
    spawn_it = 0;
  }
@@ -25,6 +31,10 @@ spawn_it = 1
     sWo(vp,@grid,11,20)
     sWi(vp,@clip,0.2,0.2,0.8,0.8)
 
+include "tbqrd.asl"
+
+titleButtonsQRD(vp);
+
 //////// Wob //////////////////
 
  bx = 0.1
@@ -33,32 +43,34 @@ spawn_it = 1
  ypad = 0.05
 
  bY = 0.95
- by = bY - yht
+ by = bY - yht;
 
- proc eleSpec(i) 
+ proc eleSpec( ia) 
  {
-    <<"$i $(Pt(i))\n"
- elespec = Pt(i)
- elef = split(elespec,",")
- ewo[i]=cWo(vp,"BV",@name,"$elef[1]  $elef[2]",@color,ecolor[i],@resize,col,rb,col+1,rt,3)
+    <<"$ia $(Pt(ia)) \n"
+ elespec = Pt(ia)
+ elef = split(elespec,",");
+ 
+ ewo[ia]=cWo(vp,"BV",@name,"$elef[1]  $elef[2]",@color,ecolor[ia],@resize,col,rb,col+1,rt,3)
 
-  sWo(ewo[i],@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@VALUE,"$elef[0]\n $elef[3]",@STYLE,"SVB")
+  sWo(ewo[ia],@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@VALUE,"$elef[0]\n $elef[3]",@STYLE,"SVB")
    //sWo(ewo[i],@DRAWON,@BORDER,@FONTHUE,BLACK_,@VALUE,"$elef[0]\n $elef[3]",@STYLE,"SVB")
  if (show) {
-  //sWo(ewo[i],@redraw)
+  sWo(ewo[ia],@redraw)
  }
  else {
-   sWo(ewo[i],@clear)
+   sWo(ewo[ia],@clear)
  }
  
- sWo(ewo[i],@help,"$elespec")
+ sWo(ewo[ia],@help,"$elespec")
  col++;
  
  }
-
+//======================================//
 
  proc peleSpec(si,fi) 
  {
+ int i = 0;
   for (i = si ; i <=fi; i++) {
    <<"$i $(Pt(i))\n"
    elespec = Pt(i)
@@ -69,7 +81,7 @@ spawn_it = 1
   // sWo(ewo[i],@DRAWON,@FONTHUE,BLACK_,@VALUE,"$elef[0]\n $elef[3]",@STYLE,"SVB")
 
    if (show) {
-   // sWo(ewo[i],@redraw)
+    sWo(ewo[i],@redraw)
    }
    else {
     sWo(ewo[i],@clear)
@@ -106,16 +118,19 @@ spawn_it = 1
 
 
  
- show = atoi(_clarg[1])
+ show = atoi(_clarg[1]);
 
+
+ //int i;  // global needed ?
  
  // Hydrogen
  eleSpec(1) 
 
 
  // Helium
- col = 18
- eleSpec(2) 
+ col = 18;
+ k=2;
+ eleSpec(k) 
 
 
  // lithium
@@ -141,7 +156,7 @@ spawn_it = 1
  // Sodium
 
 
-
+ i = 0;
  for (i = 11; i <= 12; i++) {
       eleSpec(i) 
  }
@@ -220,8 +235,9 @@ spawn_it = 1
 
 
 // sWi(vp,@redraw);
+include "gevent"
 
-Gevent E;
+
 
 xp = 0.1;
 yp = 0.5;
@@ -229,10 +245,10 @@ yp = 0.5;
    while (1) {
 
 
-    E->waitForMsg()
+    eventWait()
      
 
-    if (scmp(E->getEventWoName(),"QUIT",4)) {
+    if (scmp(_ewoname,"QUIT",4)) {
        break
     }
 
