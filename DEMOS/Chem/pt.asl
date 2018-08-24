@@ -5,7 +5,7 @@
 //envdebug()
 
 
-setdebug(1,@keep,@pline,@~step,@trace,@showresults,1)
+setdebug(1,@keep,@pline,@~step,@trace,@showresults,1);
 filterFuncDebug(ALLOWALL_,"proc");
 filterFileDebug(ALLOWALL_,);
 
@@ -37,7 +37,7 @@ titleButtonsQRD(vp);
 
 //////// Wob //////////////////
 
- bx = 0.1
+ bx = 0.1;
  bX = 0.3
  yht = 0.2
  ypad = 0.05
@@ -156,7 +156,7 @@ titleButtonsQRD(vp);
  // Sodium
 
 
- i = 0;
+// i = 0;
  for (i = 11; i <= 12; i++) {
       eleSpec(i) 
  }
@@ -245,7 +245,7 @@ yp = 0.5;
    while (1) {
 
 
-    eventWait()
+    eventWait();
      
 
     if (scmp(_ewoname,"QUIT",4)) {

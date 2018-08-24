@@ -7,7 +7,7 @@
 /// office computer work (24-8-exercise hours) 119.3 per hour
 
 
-vers = "2.2";
+vers = "2.3";
 
 
 
@@ -386,7 +386,7 @@ include "gevent"
         m_num++
 
         msg =eventWait()
-<<"$m_num $msg  $_ename $_ewoname\n"
+//<<"$m_num $msg  $_ename $_ewoname\n"
        if (_ename @= "PRESS") {
         if (!(_ewoname @= "")) {
 DBPR"calling function via $woname !\n"
@@ -434,3 +434,4 @@ exit_si()
 
 
 //  FIX misaligned wt and Xercise plots!
+//  

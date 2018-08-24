@@ -2,11 +2,7 @@
 ///
 ////////////    DDC  /////////////
 
-
-setdebug(1,@~trace,@keep);
-
-filterDebug(0,"win_receive_msg")
-filterFileDebug(2,"args_e.cpp")
+include "debug.asl"
 
 
 include "gss.asl";

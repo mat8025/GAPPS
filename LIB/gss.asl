@@ -19,6 +19,7 @@ swapcol_b = 2;
 
 int Ncols = 10;
 
+
 proc getCellValue( r, c)
 {
  c->info(1);
@@ -27,7 +28,10 @@ proc getCellValue( r, c)
      if (r >0 && c >= 0 ) {
  <<" %V $r $c \n";
            cvalue = R[r][c];
- <<" %V $cvalue \n";	   
+ <<" %V $cvalue \n";
+           if ((c == 0) && (cvalue @= "")) {
+             ADDTASK()
+           }
            newcvalue = queryw("NewValue","xxx",cvalue);
            <<"%V$newcvalue \n"
            sWo(cellwo,@cellval,r,c,newcvalue);
@@ -172,8 +176,8 @@ proc AddTask( wt)
 {
 
     sz= Caz(R);
-    
-<<"in $_proc record %V $wt $rows $sz\n"
+<<"in AddTask $_proc record %V $wt $rows $sz\n"    
+
 
     er = rows;
 
@@ -194,7 +198,7 @@ proc AddTask( wt)
     // 0  is the supplied default tof this table
     // 1...nt  will be favorite/maintenance tasks
 
-    // has to written over to display version
+    // has to be written over to display version
     sWo(cellwo,@cellval,R);
     // increase rows/colls
 
@@ -212,6 +216,7 @@ proc AddTask( wt)
 
 proc ADDROW()
 {
+<<" ADDROW $_proc\n"
 /// should go to last page
     AddTask(0);
     return 
@@ -284,7 +289,7 @@ proc clearTags()
    
    if (ans == 1) { // TBF
 
-  for (i= 1; i< rows; i++) {
+   for (i= 1; i< rows; i++) {
       R[i][tags_col] = " ";
    }
    
@@ -292,7 +297,7 @@ proc clearTags()
    sWo(cellwo,@cellval,R);
    sWo(cellwo,@redraw);
    }
-   	    return ;
+   return ;
 }
 //============================
 proc lastPGN ()

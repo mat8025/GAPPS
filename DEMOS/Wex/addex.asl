@@ -1,6 +1,6 @@
 ///
 ///
-////////////   SPREAD SHEET  FOR adding daily EX /////////////
+////////////    adds daily WT & EX /////////////
 
 
 
@@ -14,37 +14,28 @@
 include "gevent.asl"
 
 
-setdebug(1,@keep,@~trace);
-filterFuncDebug(ALLOWALL_,"proc");
-filterFileDebug(ALLOWALL_,"ic_","array_subset");
+include "debug"
 
 
 
-
-//////   create MENUS here  /////
+//=============== MENUS=================//
 A=ofw("Howlong.m")
 <<[A],"title HowLong\n"
-<<[A],"item 1 M_VALUE 1\n"
+<<[A],"item 10m M_VALUE 10\n"
+<<[A],"item 15m M_VALUE 15\n"
 <<[A],"help half-hour\n"
-<<[A],"item 2 M_VALUE 2\n"
+<<[A],"item 1/2h M_VALUE 30\n"
+<<[A],"help half-hour\n"
+<<[A],"item 1hr M_VALUE 60\n"
 <<[A],"help 1 hour\n"
-<<[A],"item 3 M_VALUE 3\n"
+<<[A],"item 90m M_VALUE 90\n"
 <<[A],"help hour and half\n"
-<<[A],"item 4 M_VALUE 4\n"
+<<[A],"item 2hr M_VALUE 120\n"
 <<[A],"help two hours\n"
-<<[A],"item 5 M_VALUE 5\n"
-<<[A],"help two and half hours\n"
-<<[A],"item 6 M_VALUE 6\n"
-<<[A],"help three hours\n"
-<<[A],"item 7 M_VALUE 7\n"
-<<[A],"help three and half hours\n"
-<<[A],"item 8 M_VALUE 8\n"
-<<[A],"help  four hours\n"
-cf(A);
-
-
-/////////////////////////
-
+<<[A],"item ? C_INTER "?"\n"
+<<[A],"help set mins\n"
+cf(A)
+//=================================//
 
 
 include "gss.asl"  // import the main subroutines
@@ -53,7 +44,7 @@ include "gss.asl"  // import the main subroutines
 // local functions
 // add more
 // or overload/rework
-
+//============= local Procs ===========//
 proc ADDWEX()
 {
 /// should go to last page
@@ -79,6 +70,17 @@ proc SAVEWEX()
 	    }
 }
 //====================================//
+proc HowLong(wr, wc)
+{
+  
+   mans = popamenu("Howlong.m")
+	
+        if (!(mans @= "NULL_CHOICE")) {
+           sWo(cellwo,@cellval,wr,wc,mans);
+           R[wr][wc] = mans;
+        }
+}
+//===============================//
 
 
 
@@ -137,10 +139,14 @@ DF[0] = Split("$today,0,10,0,0,0,0,0,0,0",",");
 
     Ncols = Caz(R[0]);
 
-<<"1 %V num of records $sz  $rows $cols  $Ncols\n"
+
     tags_col = cols-1;
-  
+
+<<"1 %V num of records $sz  $rows $cols  $Ncols $tags_col\n"
+
 //////////////////////////////////
+
+
 
 int cv = 0;
 
@@ -158,7 +164,6 @@ include "addex_screen"
 
 //===============================
 
-// setdebug(1,"step","pline");
 
  sWo(cellwo,@setrowscols,rows+5,cols+1);
  
@@ -178,8 +183,7 @@ include "addex_screen"
 
 
 
-        sWo(cellwo,@cellval,R);
-
+   sWo(cellwo,@cellval,R);
    
    sWo(cellwo,@setrowscols,rows+10,cols+1);
    sWo(cellwo,@selectrowscols,0,page_rows,0,cols);
@@ -187,6 +191,11 @@ include "addex_screen"
    sWi(vp,@redraw)
 
    sWo(ssmods,@redraw)
+
+   for (i= 1; i< rows; i++) {
+      R[i][tags_col] = " ";
+   }
+   sWo(cellwo,@cellval,R);
 
    sWo(cellwo,@redraw);
 
@@ -202,7 +211,7 @@ include "addex_screen"
 <<"3 %V num of records $sz  $rows $cols  $Ncols\n"
 
    lastPGN ();
-
+   
 while (1) {
 
          resetDebug();
@@ -228,6 +237,9 @@ while (1) {
                <<"Clear tags \n"
                 clearTags();   
            }
+	   else if ((_ecol >= 1) && (_ecol <= 8)) {
+              HowLong(_erow,_ecol);
+           }
 	   else {
             getCellValue(_erow,_ecol);
 	   }
@@ -236,7 +248,8 @@ while (1) {
        else  if (_ebutton == RIGHT_) {
 
          if (_ecol == 0  && (_erow >= 0) ) {
-           if ((_erow%2)) {
+
+           if ((_erow % 2)) {
              whue = LILAC_;
 	   }
 
@@ -250,20 +263,25 @@ while (1) {
          sWo(cellwo,@cellbhue,swaprow_a,0,CYAN_);         
          }
             
-        else if (_erow == 0 && (_ecol >= 0) ) {
+        else if ((_erow == 0) && (_ecol >= 0) && (_ecol < tags_col)) {
 
            pickTaskCol (_ecol);
 
          }
-
-
-
-        else if (_erow > 0 && (_ecol == tags_col)) {
-               <<"mark tags \n"
+        else if ((_erow >= 0) && (_ecol == tags_col)) {
+	
+                if (_erow == 0) {
+               <<"Clear tags \n"
+                clearTags();   
+                }
+		else {
+                <<"Mark tags \n"
+	       
                 R[_erow][tags_col] = "x";
 		sWo(cellwo,@cellval,_erow,tags_col,"x")
 		sWo(cellwo,@celldraw,_erow,tags_col)
-        }
+                }
+          }
       }
       
    }
@@ -294,4 +312,21 @@ while (1) {
 <<"1 %V num of records $sz  $rows $cols  $Ncols\n"
 
 exit()
-   
+
+
+///////////////////  TBD&F ////////////////////////
+/{/*
+
+  add menus for mins 
+  add function/menu for +/- today - and date entry
+
+
+
+
+
+
+
+
+
+/}*/
+
