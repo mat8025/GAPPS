@@ -26,3 +26,5 @@ qrd[2]= td;
  sWo(qrd,@drawon,@pixmapon,@fonthue,RED_,@color,WHITE_,@symsize,45, @clip,0,0,1,1,@redraw);
 
 }
+
+<<" %V $_include \n"

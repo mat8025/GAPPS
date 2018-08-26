@@ -31,11 +31,11 @@ proc eventDecode()
 
     _ekeyw = _ewords[2];
 
-<<"%V $_evalue $_emsg  $_ekeyw \n"
+//<<"%V $_evalue $_emsg  $_ekeyw \n"
      _evalue =   spat(_emsg,_ekeyw,1);
-<<"%V $_evalue \n"   
+//<<"%V $_evalue \n"   
      _evalue = eatWhiteEnds(_evalue);
-<<"%V $_evalue \n"
+//<<"%V $_evalue \n"
     _ekeyw2 = _ewords[3];
 
     _ekeyw3 = _ewords[4];
@@ -137,6 +137,6 @@ str _ewoval = "yyy";
 
 str _ewoproc = "abc";
 
-<<" loaded gevent processor $_evalue\n"
+<<" %V $_include $_evalue\n"
 
 //====================================

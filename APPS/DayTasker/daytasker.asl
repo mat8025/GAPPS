@@ -24,6 +24,8 @@
 include "gevent.asl"
 include "debug.asl"
 
+
+
 //=============== MENUS=================//
 A=ofw("Howlong.m")
 <<[A],"title HowLong\n"
@@ -38,6 +40,8 @@ A=ofw("Howlong.m")
 <<[A],"help hour and half\n"
 <<[A],"item 2hr M_VALUE 120\n"
 <<[A],"help two hours\n"
+<<[A],"item ? C_INTER "?"\n"
+<<[A],"help set mins\n"
 cf(A)
 //=================================//
 
@@ -75,6 +79,17 @@ A=ofw("Priority.m")
 <<[A],"item 6 M_VALUE 6\n"
 <<[A],"item 7 M_VALUE 7\n"
 cf(A)
+//==============================//
+A=ofw("Difficulty.m")
+<<[A],"title Difficulty\n"
+<<[A],"item 1 M_VALUE 1\n"
+<<[A],"item 2 M_VALUE 2\n"
+<<[A],"item 3 M_VALUE 3\n"
+<<[A],"item 4 M_VALUE 4\n"
+<<[A],"item 5 M_VALUE 5\n"
+<<[A],"item 6 M_VALUE 6\n"
+<<[A],"item 7 M_VALUE 7\n"
+cf(A)
 
 //============== PROCS =================//
 
@@ -84,8 +99,10 @@ proc readTheDay( fnm)
   
   B= ofile(fnm,"r+")
 
+<<" $_proc $fnm $B\n" 
   if (B != -1) {
-  fseek(B, 0,0);
+
+   fseek(B, 0,0);
  
    
      while (1) {
@@ -128,16 +145,32 @@ Record R[5+];
 Rn = 0;
 
 int ok = 0;
+
+// make this an enum
+PriorityCol= 1;
+TimeEstCol= 2;
+PCDoneCol= 3;
+DurationCol= 4;
+DiffCol= 5;
+
+
 //==============================================//
 
 
 //=============== CL Options ===================//
-
+//DebugON();
   fname = _clarg[1];
 
 //=============== Init =========================//
 
- if (! (fname @= "")) {
+// if (! (fname @= "")) {
+
+ if (fname @= "") {
+<<"fname  $fname null\n"
+ }
+
+ if (!(fname @= "")) {
+   
    <<" using past day or setting up new/future day!\n";
 // TBD skip auto read below 
     ok=fexist(fname,0);
@@ -150,30 +183,31 @@ int ok = 0;
      exit();
      }
   }
+//====================================//
 
 
 
-
-
+debugON()
 ///////// dt_log_file ////////////
 
  if (!ok) {
 
- ds= date(2)
+ ds= date(2);
  
-
+<<" reading today $ds ! \n" 
 
  ds=ssub(ds,"/","-",0)
- ok=fexist("dt_${ds}",0);
+ fname =  "dt_${ds}";
 
-<<" reading today $ds ! \n" 
-   if (ok > 0) {
-   fname =  "dt_${ds}";
+  fsz=fexist(fname,0);
+
+<<"$fname $fsz \n"
+
+   if (fsz > 0) {
    ok = readTheDay(fname);
    }
+   
  }
-
-
 
    if (!ok) {
  <<" creating today $ds ! \n"
@@ -214,8 +248,9 @@ Graphic = CheckGwm()
 pname="ADDTASK";
 
 
+
 // dt_screen
-include "dayt_scrn"
+include "dayt_scrn.asl"
 
 include "gss.asl"
 
@@ -224,6 +259,7 @@ include "dayt_procs.asl"
   Ncols = ncols;  // task, Priority, %Done, Duration, Difficulty,Score
 //  
 
+<<" back in main \n"
 
 gflush()
 
@@ -284,7 +320,7 @@ gflush()
 
          eventWait();
 
-   <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
+//   <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
 
        //colorRows(rows,cols);
 
@@ -298,15 +334,19 @@ gflush()
 	               if (_ebutton == LEFT_) {
                        _ecol->info(1);
 	               _erow->info(1);
-                         if (_ecol == 1) {
+                         if (_ecol == PriorityCol) {
                              setPriority(_erow);
                          }
-                         else if (_ecol == 3) {
+                         else if (_ecol == PCDoneCol) {
                              PCDONE(_erow);
                          }			 
-                         else if (_ecol == 2) {
-                             HowLong(_erow);
+                         else if ((_ecol == TimeEstCol) \
+			      || (_ecol == DurationCol)) {
+                             HowLong(_erow,_ecol);
                          }
+                         else if (_ecol == DiffCol) {
+                             setDifficulty(_erow);
+                         }			 
                         else {
                           getCellValue(_erow,_ecol);
                          }
@@ -370,6 +410,7 @@ gflush()
            }
         }
       }
+         sWi(vp,@redraw);
 }
 
 
@@ -382,9 +423,9 @@ gflush()
 
 /{/*
 
-  add text edit window - for editing of task description
-  menus for input/change of timeest,duration, scoring
-  if mod %done --- a function should update score
+  add text edit window - for editing of task description -done
+  menus for input/change of time_est,duration, scoring -done
+  if mod %done > 0 --- a function should update score
 
 
   copy over tasks needing to be done from previous days
