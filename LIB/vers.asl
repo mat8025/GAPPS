@@ -2,11 +2,13 @@
 ///  Gapps
 ///
 
+
+msg = _clarg[1];
+
 update = 1;
 proc vers2ele( vstr)
 {
- //int maj = atoi(spat(vstr,"."))
- //int min = atoi(spat(vstr,".",1))
+
  pmaj = atoi(spat(vstr,"."))
  pmin = atoi(spat(vstr,".",1))
 
@@ -36,9 +38,10 @@ update =1
 }
 
 entry="1.0"
-int k= 0;
+int k= 1;
 ln =readline(A);
 <<"$ln\n"
+
 while (1) {
 ln =readline(A);
 
@@ -72,6 +75,9 @@ if (update) {
  if (min > 100) {
 
   maj++;
+  if (maj > 100) {
+      maj = 1;
+  }
   min =1;
  }
 
@@ -85,6 +91,6 @@ dt= date()
 
 if (update) {
 
-<<[A]"$vers $ev $dt\n"
+<<[A]"$vers $ev\t$k\t$dt $msg\n"
 }
 
