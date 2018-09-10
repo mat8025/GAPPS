@@ -39,6 +39,16 @@ proc getCellValue( r, c)
      }
 }
 //=====================
+proc setPriority(wr)
+{
+   mans = popamenu("Priority.m")
+	
+        if (!(mans @= "NULL_CHOICE")) {
+           sWo(cellwo,@cellval,wr,PriorityCol,mans);
+           R[wr][PriorityCol] = mans;
+        }
+}
+//===============================//
 
 proc pickTaskCol ( wcol)
 {	       
@@ -125,12 +135,21 @@ proc SWOPCOLS()
 	    return ;
 }
 //======================
+//int drows[20+];
+
+int drows[10];
+
 proc DELROWS()
 {
 <<"in $_proc\n"
 //int drows[]; // TBF
-int drows[page_rows+];
+//int drows[page_rows+];
+
+//int drows[20+];
 int n2d = 0;
+        drows = -1;
+	<<"%V $drows \n"
+	
         sz = Caz(R)
 	ans = yesornomenu("Delete Tagged Rows?")
 
@@ -140,13 +159,16 @@ int n2d = 0;
             if (R[i][tags_col] @="x") {
                 
 		drows[n2d] = i;
-		n2d++;
-		<<"will delete row $i  $drows\n";
+		<<"$n2d will delete row $i  $drows[n2d]\n";
+                n2d++;
+
            }
         }
 	
         if (n2d > 0) {
         //deleteRows(R,swaprow_a,swaprow_b);
+	<<"%V $drows \n"
+
 	deleteRows(R,drows,n2d);
 	nsz = Caz(R)
 <<"deleted $drows  $sz $nsz\n"
@@ -283,7 +305,7 @@ proc PGUP()
 
 proc clearTags()
 {
-
+<<" $_proc\n"
 //    R[::][7] = ""; // TBF
    ans= yesornomenu("ClearTags?")
    

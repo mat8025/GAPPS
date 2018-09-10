@@ -7,7 +7,7 @@
 Class Cevent
 {
 
- public:
+// public:
   int  id;
   int button;
   int row;
@@ -31,7 +31,7 @@ proc eventDecode()
 
     _ekeyw = _ewords[2];
 
-//<<"%V $_evalue $_emsg  $_ekeyw \n"
+<<"%V $_evalue $_emsg  $_ekeyw \n"
      _evalue =   spat(_emsg,_ekeyw,1);
 //<<"%V $_evalue \n"   
      _evalue = eatWhiteEnds(_evalue);
@@ -62,8 +62,6 @@ proc eventDecode()
   _erow->info(); // DBG
   _ecol->info(); // DBG
   
-    //Cev->row = _erow;
-    //Cev->col = _ecol;    
 
    }
    
@@ -99,7 +97,7 @@ proc eventRead()
 }
 //==============================
 
-Cevent Cev;
+//Cevent Cev;
 
 gevent Ev; // event type - can inspect for all event attributes
 

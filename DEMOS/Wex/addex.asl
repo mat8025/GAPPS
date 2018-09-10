@@ -36,6 +36,16 @@ A=ofw("Howlong.m")
 <<[A],"help set mins\n"
 cf(A)
 //=================================//
+A=ofw("WhatWt.m")
+<<[A],"title Weight\n"
+<<[A],"item 200 M_VALUE 200\n"
+<<[A],"item 195 M_VALUE 195\n"
+<<[A],"item 185 M_VALUE 185\n"
+<<[A],"item 175 M_VALUE 175\n"
+<<[A],"item ? C_INTER "?"\n"
+<<[A],"help set weight\n"
+cf(A)
+//=================================//
 
 
 include "gss.asl"  // import the main subroutines
@@ -78,6 +88,18 @@ proc HowLong(wr, wc)
         if (!(mans @= "NULL_CHOICE")) {
            sWo(cellwo,@cellval,wr,wc,mans);
            R[wr][wc] = mans;
+        }
+}
+//===============================//
+
+proc WhatWt(wr)
+{
+  
+   mans = popamenu("WhatWt.m")
+	
+        if (!(mans @= "NULL_CHOICE")) {
+           sWo(cellwo,@cellval,wr,1,mans);
+           R[wr][1] = mans;
         }
 }
 //===============================//
@@ -237,7 +259,10 @@ while (1) {
                <<"Clear tags \n"
                 clearTags();   
            }
-	   else if ((_ecol >= 1) && (_ecol <= 8)) {
+	   else if ((_ecol == 1) ) {
+              WhatWt(_erow);
+           }
+	   else if ((_ecol > 1) && (_ecol <= 8)) {
               HowLong(_erow,_ecol);
            }
 	   else {

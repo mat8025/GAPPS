@@ -22,7 +22,7 @@ proc ask()
 #define  ASK ;
 checkIn()
 
-A=  ofr("foodtable.csv");
+A=  ofr("foods1.csv");
 
  if (A == -1) {
   <<" can't open food table $ftfile \n";
@@ -43,6 +43,67 @@ A=  ofr("foodtable.csv");
        nc = Caz(RF,i);
 <<"<$i> $nc $RF[i] \n";
     }
+
+<<" $RF[6] \n"
+<<" $RF[7] \n"
+<<" $RF[Nrecs-1] \n"
+
+<<" $RF[Nrecs-2] \n"
+
+
+   for (i= 2; i < 10; i++) {
+    rval = RF[i];
+<<"$rval \n  $RF[i] \n";
+    }
+
+
+<<" $RF[::] \n"
+
+    deleteRows(RF,1,-1)
+<<"after delete \n"
+  Nrecs = Caz(RF);
+  Ncols = Caz(RF,1);
+
+<<"num of records $Nrecs  num cols $Ncols\n";
+
+<<" $RF[::] \n"
+
+<<" $(info(RF)) \n"
+
+yes=iread("next?")
+
+
+A=  ofr("foods2.csv");
+
+ if (A == -1) {
+  <<" can't open food table  \n";
+    exit();
+ }
+
+   //delete(RF)  ; // realloc of RF does not work for xic
+
+   RF= readRecord(A,@del,',')
+   cf(A);
+
+  Nrecs = Caz(RF);
+  Ncols = Caz(RF,1);
+
+<<"new num of records $Nrecs  num cols $Ncols\n";
+
+
+
+   for (i= 0; i < 3; i++) {
+       nc = Caz(RF,i);
+<<"<$i> $nc $RF[i] \n";
+    }
+
+
+<<" $RF[::] \n"
+
+
+
+exit()
+
 
 checkTrue((nc >0))
 
@@ -82,7 +143,7 @@ checkTrue((nc >0))
 
 <<"///////////"
 
-for (j = 1; j<=30;j++) {
+for (j = 1; j<=10;j++) {
 
 vname = "RT$j";
 

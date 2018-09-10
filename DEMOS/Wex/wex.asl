@@ -10,12 +10,13 @@
 vers = "2.3";
 
 
+include "debug.asl"
 
 setDebug(0,@keep);
 
-//#define DBPR  <<
+#define DBPR  <<
 
-#define DBPR  ~!
+//#define DBPR  ~!
 
 wexdir = "./"
 
@@ -377,16 +378,19 @@ resize_screen();
 drawScreens();
 showTarget();
 
-include "gevent"
+include "gevent.asl"
 
 
    while (1) {
-   
+
+     if ((m_num % 50) ==0) {
         resetDebug();
+	}
         m_num++
 
-        msg =eventWait()
-//<<"$m_num $msg  $_ename $_ewoname\n"
+        msg =eventWait();
+<<"$m_num $msg  $_ename $_ewoname\n"
+
        if (_ename @= "PRESS") {
         if (!(_ewoname @= "")) {
 DBPR"calling function via $woname !\n"

@@ -1285,7 +1285,8 @@ secs = dtms/1000000.0
 
 
 <<"script vers $(periodicName(vers))($vers) took %6.3f$secs secs %d %V $i_time $x_time\n"
-
+today=getDate(1);
+<<"$today tested $(get_version())\n"
 exit()
 
 

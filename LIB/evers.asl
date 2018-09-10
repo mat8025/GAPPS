@@ -4,6 +4,7 @@
 
 
 msg = _clarg[1];
+<<" <|$msg|>\n"
 
 update = 1;
 

@@ -4,20 +4,20 @@
 
 
 ////////////////////////WONAME CALLBACKS///////////////////////////////////////
+
+
 proc QRTD()
 {
-<<" In $_proc\n"
+//<<" In $_proc\n"
   adjustQrt(-1)
-
- 
   showWL()
   return;
 }
 
 proc QRTI()
 {
-<<" In $_proc\n"
-adjustQrt(1)
+
+  adjustQrt(1)
   drawScreens()
   showWL()
 
@@ -27,7 +27,7 @@ adjustQrt(1)
 
 proc YRD()
 {
-   adjustYear(-1)
+  adjustYear(-1)
   drawScreens()
   showWL()
 }
@@ -60,7 +60,7 @@ proc ZIN()
        drawScreens()
 
        showWL()
-       return;
+  
 }
 //--------------------------------------------------
 
@@ -100,15 +100,14 @@ float RS[10];
        drawScreens()
 
        showWL()
-
-
 }
 
 //---------------------------------------------
 proc WTLB()
 {
+<<" $_proc \n"
 
-       DBPR" setting cursors $button $Rinfo\n"
+       <<" setting cursors $button $Rinfo\n"
 
        if (_ebutton == 1) {
          lcpx = _erx;
@@ -121,6 +120,7 @@ proc WTLB()
        if (_ebutton == 3) {
          rcpx = _erx
          sGl(rc_gl,@cursor,rcpx,0,rcpx,300)
+	 getDay(_erx);
        }
 
 }

@@ -3,6 +3,9 @@
 ///
 
 
+setdebug(0,@keep);
+// if there are errors keep  idb,xdb file in .GASP/WORK/Debug
+// will be overwritten by scripts  unless unique/local options used
 
 
 proc DummyP()
@@ -17,8 +20,8 @@ proc debugON()
 {
 
 setdebug(1,@keep,@~pline,@~step,@~trace)
-filterFuncDebug(ALLOWALL_,"proc");
-filterFileDebug(ALLOWALL_,"ic_op");
+filterFuncDebug(ALLOWALL_,"xxx");
+filterFileDebug(ALLOWALL_,"yyy");
 
 
 }
@@ -29,7 +32,7 @@ proc debugOFF()
 
 setdebug(0,@~pline,@~step,@~trace,@~showresults,1)
 filterFuncDebug(REJECTALL_,"proc");
-filterFileDebug(REJECTALL_,"ic_op");
+filterFileDebug(REJECTALL_,"yyy");
 }
 
 //==========================

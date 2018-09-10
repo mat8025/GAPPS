@@ -52,9 +52,22 @@ if (feof(A)) {
 
 lv = split(entry)
 
-num = atoi(lv[3]);
+<<"[2] $entry \n $lv[0] $lv[1] $lv[2]\n"
 
-//<<"[3] $lv[3] $num\n"
+vers = lv[2];
+
+<<"%V $vers\n"
+vers = scut(vers,-1);
+vers = scut(vers,1);
+<<"%V $vers\n"
+v = split(vers,".")
+<<"%V $v\n"
+
+bmaj = atoi(v[0]);
+bmin = atoi(v[1]);
+num = atoi(v[2]);
+
+<<"[2] $v[2] $num\n"
 
 //<<"%V $lv[::]\n"
 
@@ -62,18 +75,36 @@ num = atoi(lv[3]);
 
 num++;
 
-//<<"%V $num\n"
+<<"%V $num\n"
+ if (num > 100) {
+     num = 1;
+     bmin++;
+ }
+
+ if (bmin > 100) {
+     bmin = 1;
+     bmaj++;
+ }
+ if (bmaj > 100) {
+     bmaj = 1;  // probably never happen
+ }
+
+<<"%V $bmaj $bmin $num\n"
 
 dt= date()
 cf(A)
-<<"int build_n = $num ; char build_dt[32] = \"$dt\"; \n" ;
+
+<<"char asl_version[32]= \"${bmaj}.${bmin}.$num\" ; char build_dt[32] = \"$dt\"; \n" ;
+
+
+
 
 A=ofw(logf);
  fseek(A,0,0)
 
-<<[A]"// build\n"
+<<[A]"// build version\n"
 
-<<[A]"int build_n = $num ; char build_dt[32] = \"$dt\";\n " ;
+<<[A]"char asl_version[32]= \"${bmaj}.${bmin}.$num\" ; char build_dt[32] = \"$dt\"; \n" ;
 
 
 cf(A);
