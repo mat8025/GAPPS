@@ -3,9 +3,9 @@
 ///
 
 
-setdebug(1,"~pline","trace","~stderr");
-FilterDebug(0)
-FilterFileDebug( 2,"args_e.cpp")
+setdebug(1,@pline,@trace,@~stderr);
+FilterDebug(ALLOWALL_)
+FilterFileDebug(ALLOWALL_)
 
 
 proc ask()
@@ -24,13 +24,19 @@ checkIn()
 
 A=  ofr("foods1.csv");
 
+   RF= readRecord(A,@del,',');
+
  if (A == -1) {
   <<" can't open food table $ftfile \n";
     exit();
  }
 
-   RF= readRecord(A,@del,',')
-   cf(A);
+
+
+cf(A);
+
+
+
 
   Nrecs = Caz(RF);
   Ncols = Caz(RF,1);

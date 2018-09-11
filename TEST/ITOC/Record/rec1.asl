@@ -3,7 +3,9 @@
 ///  Records
 ///
 
-setdebug(1,@keep,@filter,0,@trace);
+setdebug(1,@keep,@trace,@pline);
+FilterDebug(ALLOWALL_)
+FilterFileDebug(ALLOWALL_)
 
 checkIn()
 
