@@ -9,23 +9,39 @@ FilterFileDebug(ALLOWALL_)
 
 checkIn()
 
-int ival;
-
-
   Record R[4+];
 
-  sz = Caz(R);
-  <<"%V$sz\n"
+
+  Nrecs = Caz(R);
+  Ncols = Caz(R,1);
+
+<<"num of records $Nrecs  num cols $Ncols\n";
+
+recinfo = info(R);
+<<"$recinfo \n"
+
 
  R[0] = Split("80,1,2,3,40,5,6,7,8,9",",");
-
  R[1] = Split("82,5,4,3,40,5,6,7,8,9",",");
  R[2] = Split("83,7,6,5,40,5,6,7,8,9",",");
  R[3] = Split("84,8,7,6,40,5,6,7,8,9",",");
  R[4] = Split("85,9,8,7,40,5,6,7,8,47",",");
  R[6] = Split("87,9,8,7,40,5,6,7,8,79",",");
 
+
 <<" $R[::] \n"
+
+
+  Nrecs = Caz(R);
+  Ncols = Caz(R,1);
+
+<<"num of records $Nrecs  num cols $Ncols\n";
+
+ recinfo = info(R);
+ <<"$recinfo \n"
+
+
+
 
 <<"%V$R[0]\n"
 
@@ -33,7 +49,7 @@ int ival;
 <<"%V$R[0][4]\n"
 
 
-ival = atoi(R[0][2]);
+int ival = atoi(R[0][2]);
 sz  = csz(ival)
 <<"ival $ival  bounds $(Cab(ival)) sz   $(csz(ival))\n"
 checkNum(sz,0)
@@ -87,7 +103,8 @@ deleteRows(R,1,-1)
 <<" $R[::] \n"
 
 
-
+recinfo = info(R);
+<<"$recinfo \n"
 
  R[1] = Split("82,5,4,3,40,5,6,7,8,29",",");
  R[2] = Split("83,7,6,5,40,5,6,7,8,30",",");
@@ -99,6 +116,9 @@ deleteRows(R,1,-1)
 
 deleteRows(R,1,-1)
 
+recinfo = info(R);
+<<"$recinfo \n"
+
 <<" $R[::] \n"
 
  R[1] = Split("82,5,4,3,40,5,6,7,Sn,50",",");
@@ -108,6 +128,8 @@ deleteRows(R,1,-1)
 
 <<" $R[::] \n"
 
+recinfo = info(R);
+<<"$recinfo \n"
 
 checkOut()
 exit()

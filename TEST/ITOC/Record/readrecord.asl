@@ -3,9 +3,9 @@
 ///
 
 
-setdebug(1,@pline,@trace,@~stderr);
-FilterDebug(ALLOWALL_)
-FilterFileDebug(ALLOWALL_)
+setdebug(1,@~pline,@trace);
+filterFuncDebug(ALLOWALL_,"xxx");
+filterFileDebug(ALLOWALL_,"yyy");
 
 
 proc ask()
@@ -36,12 +36,16 @@ A=  ofr("foods1.csv");
 cf(A);
 
 
+recinfo = info(RF);
+<<"$recinfo \n"
 
 
   Nrecs = Caz(RF);
   Ncols = Caz(RF,1);
 
 <<"num of records $Nrecs  num cols $Ncols\n";
+
+<<" $RF[::] \n"
 
 
 
@@ -65,18 +69,30 @@ cf(A);
 
 <<" $RF[::] \n"
 
-    deleteRows(RF,1,-1)
-<<"after delete \n"
+<<"before delete \n"
+recinfo = info(RF);
+<<"$recinfo \n"
+<<" $(info(RF)) \n"
   Nrecs = Caz(RF);
+<<"num of records $Nrecs \n";  
+  Ncols = Caz(RF,1);
+<<"num of cols $Ncols\n";
+
+  deleteRows(RF,1,-1)
+<<"after delete \n"
+<<" $(info(RF)) \n"
+  Nrecs = Caz(RF);
+<<"new num of records $Nrecs \n";  
   Ncols = Caz(RF,1);
 
-<<"num of records $Nrecs  num cols $Ncols\n";
+<<"new num of cols $Ncols\n";
 
-<<" $RF[::] \n"
 
 <<" $(info(RF)) \n"
 
 yes=iread("next?")
+
+<<" $RF[::] \n"
 
 
 A=  ofr("foods2.csv");
@@ -92,9 +108,11 @@ A=  ofr("foods2.csv");
    cf(A);
 
   Nrecs = Caz(RF);
+<<"new num of records $Nrecs \n";
+
   Ncols = Caz(RF,1);
 
-<<"new num of records $Nrecs  num cols $Ncols\n";
+<<"new num of cols $Ncols\n";
 
 
 
@@ -108,7 +126,7 @@ A=  ofr("foods2.csv");
 
 
 
-exit()
+
 
 
 checkTrue((nc >0))
