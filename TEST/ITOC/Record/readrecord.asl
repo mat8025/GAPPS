@@ -31,8 +31,6 @@ A=  ofr("foods1.csv");
     exit();
  }
 
-
-
 cf(A);
 
 
@@ -44,6 +42,8 @@ recinfo = info(RF);
   Ncols = Caz(RF,1);
 
 <<"num of records $Nrecs  num cols $Ncols\n";
+
+
 
 <<" $RF[::] \n"
 
@@ -90,7 +90,7 @@ recinfo = info(RF);
 
 <<" $(info(RF)) \n"
 
-yes=iread("next?")
+//yes=iread("next?")
 
 <<" $RF[::] \n"
 
@@ -166,12 +166,12 @@ checkTrue((nc >0))
 
 
 <<"///////////"
-
+/{/*
 for (j = 1; j<=10;j++) {
 
-vname = "RT$j";
+  vname = "RT$j";
 
-$vname = RF;
+  $vname = RF;
 
    for (i= 0; i < 3; i++) {
        nc = Caz($vname,i);
@@ -181,6 +181,7 @@ $vname = RF;
 
 }
 
+/}*/
 
 /{
 Record RT[2][10];

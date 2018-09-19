@@ -14,14 +14,14 @@ public:
 
 };
 
-class Mamal: public Animal {
+class Mammal: public Animal {
 
  public:
   virtual void eat () {};
-  void breath () { cout << " Mamals breath air " << "\n"; };
+  void breath () { cout << " Mammals breath air " << "\n"; };
 
-  Mamal() { };
-  ~Mamal () {};
+  Mammal() { };
+  ~Mammal () {};
 
 };
 
@@ -49,11 +49,11 @@ class Reptile: public Animal {
 
 };
 
-class Tiger: public Mamal {
+class Tiger: public Mammal {
 
 public:
   void eat () {
-    std::cout << " tigers eats meat - men too!" << "\n";
+    std::cout << " tigers eat meat - men too!" << "\n";
   }
 
   Tiger () {};
@@ -61,11 +61,11 @@ public:
 };
 
 
-class Lamb: public Mamal {
+class Lamb: public Mammal {
 
 public:
   void eat () {
-    cout << " lambs eats grass" << "\n";
+    cout << " lambs eat grass" << "\n";
   }
 
   Lamb () { printf("cons a lamb \n");};
@@ -76,7 +76,7 @@ class Shark: public Fish {
 
 public:
   void eat () {
-    cout << " sharks eats fish - sometimes men" << "\n";
+    cout << " sharks eat fish - sometimes men" << "\n";
   }
 
   Shark () { cout << "cons a Shark \n" ; };
@@ -96,62 +96,94 @@ public:
 };
 
 
+class Dog: public Mammal {
+
+public:
+  void eat () {
+    cout << " dogs eat meat and bread" << "\n";
+  }
+
+  Dog () { printf("cons a dog \n");};
+  ~Dog () {};
+};
+
+class Cat: public Mammal {
+
+public:
+  void eat () {
+    cout << " cats eat chicken and fish" << "\n";
+  }
+
+  Cat () { printf("cons a cat \n");};
+  ~Cat () {};
+};
+
 int main ()
 {
-  // Animal a;
-  Animal *animals[10];
+  Animal *animals[20];
   Animal **ap;
   Animal *bp;
-  Tiger t;
-  Lamb l;
-  Bird b;
-  Shark s;
+  
+  Tiger tiger;
+  Lamb lamb;
+  Bird bird;
+  Shark shark;
+  Dog dog;
+  Cat cat;  
+
   Tiger *tp;
   Lamb *lp;
-  int na = 4;
-  char c;
-  bool bl;
-  short si;
-  long k;
-  long long j;
-  float f;
-  double d;
-  long double dl;
+  Bird *birdp;
+  Shark *sp;  
+  Dog *dp;
+  Cat *cp;
 
-  cout << " char " << sizeof (c) << " bool " << sizeof (bl) << " short " << sizeof (si) << " int " << "\n" ;
-  cout <<  sizeof (na) << " long " << sizeof(k) << " long long " << sizeof (j) << "\n";
-  cout << " float " << sizeof (f) << " double " << sizeof (d) << " ld " << sizeof (dl) << " \n";
+  
+  int na = 6;
+
+  cout << " cat " << sizeof (cat) << " bird " << sizeof (bird) << " shark " << sizeof (shark) << " dog " << sizeof (dog) <<  "\n" ;
 
 
-  tp = &t;
+  tp = &tiger;
   tp->eat();
-  lp = &l;
+  lp = &lamb;
   lp->eat();
   lp->breath();
 
-  animals[0] = &t;
-  animals[1] = &l;
-  animals[2] = &s;
-  animals[3] = &b;
 
-  ap= &animals[0];
+  cp = &cat;
+  cp->eat();
+  
+  
+  animals[0] = &tiger;
+  animals[1] = &lamb;
+  animals[2] = &shark;
+  animals[3] = &bird; 
+  animals[4] = &dog;
+  animals[5] = &cat; 
+
+ cout  <<  "\n" ;
 
   for (int i = 0; i < na; i++) {
-  bp = animals[i];
-  bp->eat();
-  bp->breath();
+   bp = animals[i];
+   bp->eat();
+   bp->breath();
   }
 
   cout << "base ptr set to element of ptr array " << "\n";
 
+  
+  ap= &animals[0];
+  
   for (int i = 0; i < na; i++) {
-  bp = *ap++;
-  bp->eat();
-  bp->breath();
+   bp = *ap++;
+   bp->eat();
+   bp->breath();
   }
 
   ap= &animals[0];
-
+  cout  <<  "\n" ;
+ 
   cout << "using double ptrs " << "\n";
 
   for (int i = 0; i < na; i++) {
