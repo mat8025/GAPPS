@@ -32,7 +32,7 @@ public:
         int  *subset;
         int  *subdimn;
 
-        uint *lset;
+        uint *lhset;
         char **subi;
 
         Range range;
@@ -40,6 +40,8 @@ public:
         Range *crange;
 
         int  *lhsubset;
+
+  
 	int16_t  rcol;  // used for the record col index 
 	int16_t  lh_rcol;  // used for the record col index 
 	/// Methods
@@ -76,8 +78,8 @@ public:
 
           nd = 0;
           nb = 0;
-	  //rcol = 0;
-	  //lh_rcol = 0;
+	  rcol = 0;
+	  lh_rcol = 0;
           subnd = 0;
           subi_nd = 0;
           subsize = 0;
@@ -86,7 +88,7 @@ public:
 	  bounds = NULL;
           subset = NULL;
           lhsubset = NULL;
-          lset = NULL;
+          lhset = NULL;
           subdimn = NULL;
           subi = NULL;
 

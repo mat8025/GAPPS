@@ -3,6 +3,9 @@
 
 #include <stdint.h>
 
+#define DBPS printf
+
+
 #define DBPF(...)
 #define DBLF(...)
 #define DBPERROR(...)

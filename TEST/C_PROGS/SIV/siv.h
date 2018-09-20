@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <iostream>
 using namespace std;
 
@@ -113,7 +114,8 @@ public:
 	{
              aw = (on) ? (aw | wd) : (aw & ~wd);
         };
-        char name[MAXVARNAME+1];
+  
+  char name[MAXVARNAME+1];
   
   void setType(int wt) { type = wt;};
   int getType() { return type;};  
@@ -121,6 +123,9 @@ public:
   int getDtype() { return dtype;};  
   int getSize () { cout << " size " << size << "\n"; return size; };
 
+  void setName( char *cp) { strncpy(name,cp,16);};
+  char *getName() { return name;};
+  
   int  Sizeof ()
     {
       if (dtype == SHORT) return sizeof(short);

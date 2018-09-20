@@ -19,6 +19,7 @@ class Vector: public Siv {
   void *memp;
   int memsize;
   Aop aop;
+  
   int getBounds(int wb) { return aop.getBounds(0);};
   int getND() { return aop.getND();};
   int reallocMem(int n);
@@ -39,7 +40,10 @@ class Vector: public Siv {
     dtype = wt;
     setType ( DS_VECTOR);  
     aop.setND(1);
+    aop.initBounds(1);
+    aop.setBounds(0,1);
     setCW(SI_ARRAY,ON);
+    reallocMem(1);
   };
 
   

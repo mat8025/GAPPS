@@ -100,8 +100,6 @@ int Vector::reallocMem(int n)
   ///
   ///  for num (int,float) types
   ///
-
-  
   int rtval = SUCCESS;
   int fixup = 0;
   int did_realloc = 0;
@@ -117,33 +115,22 @@ int Vector::reallocMem(int n)
     uint32_t newmemsize = 0;
 
     int k,m;
-
-
-
-    //DBPF("%s needs %d pieces of mem\n",getName(),n);
     //    ASSERT_SIV(this);
-    //DBT(" need %d mbytes memsize %d\n",n ,memsize);
+
     try {
-
-
-    if (type == SCLASS || type == LIST) {
-      // NOOP
-      throw OKTOEXIT;
-    }
       
-      if (n < 0) {
+      if (n <= 0) {
         DBP("WARNING ReallocMem - noop! size %d\n",n);
         throw ERR2EXIT;
       }   
 
-      if ((memsize > 0)   && ((n+1) * Sizeof()) <= (int) memsize) {
+      if ((memsize > 0) && ((n+1) * Sizeof()) <= (int) memsize) {
         
         size = n;
-  DBPF("%s %d already has enuf mem !need %d items type %s has memsize %d \n",
+        DBPF("%s %d already has enuf mem !need %d items type %s has memsize %d \n",
 	     getName(),id, n,Dtype(),memsize);
 	
         if (memp != 0) {
-	  
 	    throw OKTOEXIT;
         }
         else {
@@ -153,79 +140,11 @@ int Vector::reallocMem(int n)
          }
      }
     else {
-      DBPF("%s needs more memory %d pieces of mem type %d memsize %d \n",
-	   getName(),n,type,memsize);
+      // DBPF
+      DBPS ("%s needs more memory %d pieces of mem dtype %d memsize %d \n",
+	   getName(),n,dtype,memsize);
     }
-
-
-      /*
-    if (isStrType()) {
-
-      DBPF("WARNING SCLASS/SVAR ReallocMem - noop! name %s\n",name);
-
-      if (getValue() == NULL) {
-	NewSvar(2);
-      }
-      
-      if (getValue() == NULL) 
-	throw ERR2EXIT;
-
-       throw OKTOEXIT;
-    }
-      */
-      
-
-  // Lets FIX RellocMem to leave scalars,size 1 alone for reuse
-  // only realloc if size changes > 1  - size 1 has enuf memory always allocated to hold all number types
-  // except PAN
-
-    if (type == UNSET) {
-
-      if (n > 1) {
-  DBP("WARNING type unset in ReallocMem - noop! name %s size %d n %d memsize %d\n",
-      name,size,n, memsize);
-      }
-
-      // else we cover at least double size
-      // this variable may be via createv and type not yet assigned
-      //      dbp("WARNING Forcing type to Float \n" );
-      //      type = FLOAT;
-
-      if (memp == 0) {
-	// big enuf for a long anyway
-	//vp = scalloc_id(64, 1,__FUNCTION__);
-
-	        vp = scalloc_id(64, 1,cname);         
-                memp = vp;
-                memsize = 64;
-      }
-
-      throw OKTOEXIT; // live dangerously --- FIXME
-
-    }
-
-
-    // if ((testCW(SI_ARRAY) || (n >= 1)) && getpBounds() == NULL) {
-    // have to discriminate between scalar and array of size 1
     
-      if ( testCW(SI_ARRAY) || (n > 1)) {
-        // for vector why not have this done in constructor
-	// - should always have space
-
-	if (aop.bounds == NULL) {
-	 aop.bounds = (int *) calloc(DEFNBOUNDS, sizeof(int));
-        }
-	
-	if (aop.bounds == NULL) {
-	  DBP("bad bounds \n");
-	   throw ERR2EXIT;
-	}
-
-	aop.setND(1);
-	aop.setBounds(0 , n);
-	size = n;
-	setCW(SI_ARRAY,ON);
-    }
 
     cs = 0;
 
@@ -237,7 +156,7 @@ int Vector::reallocMem(int n)
 
 
        if ((!testCW(DYNAMIC_ARRAY) && n > 1 && size > 0)) {
-	dbwarning("reallocMem not dynamic array type %s \n", name);
+	 dbwarning("reallocMem not dynamic array type %s \n", getName());
        }
 
 
@@ -251,7 +170,7 @@ int Vector::reallocMem(int n)
 
     if (memp == 0 && testCW(DYNAMIC_ARRAY)) {
       m  += 10;
-      DBPF("initting dynamic array memory to at least 10 pieces \n");
+      DBPS("initting dynamic array memory to at least 10 pieces \n");
     }
 
 
@@ -259,82 +178,21 @@ int Vector::reallocMem(int n)
     {
 
 
-      DBPF("%s REQUIRED %d m %d memp %p   size %d type %s memsize %d\n",
-		name, n, m, memp,  size, Dtype(), memsize);
+      DBPS("%s REQUIRED %d m %d    size %d dtype %d memsize %d\n",
+	   getName(), n, m, size, dtype, memsize);
 
-	switch (type) {
-	  case GENERIC:
-	    newmemsize = (m * Doublesz);
-	    break;
+        newmemsize = computeMemSize( m, dtype);
 
-	  case DOUBLE:
-	    newmemsize = (m * Doublesz);
-	    break;
-
-	  case FLOAT:
-	    newmemsize = (m * Floatsz);
-	    break;
-
-	  case CMPLX:
-	    newmemsize = (2 * m * Floatsz);
-	    break;
-
-	  case DCMPLX:
-	    newmemsize = (2 * m * Doublesz);
-	    break;
-
-	  case INT:
-	  case UINT:
-	    newmemsize = (m * Intsz);
-	    break;
-
-	  case SHORT:
-	  case USHORT:
-	    newmemsize = (m * Shortsz);
-	    break;
-
-	  case LONG:
-	  case ULONG:
-	    newmemsize = (m * Longsz);
-	    break;
-
-	  case CHAR:
-	  case UCHAR:
-	    newmemsize = (n * Charsz);
-	    break;
-
-	  case PAN:
-	    DBPF("alloc for pan -- not really neeeded\n");
-	    newmemsize = (1 * Doublesz);
-	    break;
-
-	    
-	  default:
-
-	    newmemsize = (m * Doublesz);
-
-  DBP( "ReallocMem %s IDtype %d NOTKNOWN \n",getName(),getID(), type);
-
-            if (type == INT) {
-	      //   DBP( "ReallocMem type %d is INT %d\n", type,INT);
-
-            }
-
-	    break;
-	}
-
-
-	DBPF("newmemsize %d  current cs %d \n",newmemsize,cs);
+	DBPS("newmemsize %d  current %d \n",newmemsize,cs);
 
 
 	if (newmemsize > memsize || memp == 0) {
 
- 	    newmemsize += Doublesz; // safety so any type - size 1 can fit without reallocing for
+ 	    newmemsize += Doublesz;
+	    // safety so any type - size 1 can fit without reallocing for
                                   // size 1 (scalar)
 	    if (memp == 0) {
-
-	      //vp = scalloc_id(newmemsize, 1,__FUNCTION__);
-	      vp = scalloc_id(newmemsize, 1,cname);
+	        vp = scalloc_id(newmemsize, 1,cname);
 
 		DBPF("did calloc of newmemsize %d  \n",newmemsize);
                 
@@ -342,10 +200,10 @@ int Vector::reallocMem(int n)
 	    }
 	    else {
 
-	      DBPF("reallocMem newmemsize %d  memp %d \n",newmemsize,memp);
+	      DBPS("reallocMem newmemsize %d  memp %p \n",newmemsize,memp);
 	      vp = srealloc_id((void *) memp, newmemsize,"siv_realloc");
 
-              DBPF("did realloc of newmemsize %d  \n",newmemsize);
+              DBPS("did realloc of newmemsize %d newvp %p\n",newmemsize,vp);
               did_realloc = 1;
             }
 
@@ -356,7 +214,7 @@ int Vector::reallocMem(int n)
     }
 
     if (vp == NULL) {
-      dbp("bad vp for %s n %d\n",getName(),n);
+        dbp("bad vp for %s n %d\n",getName(),n);
 	throw ERR2EXIT;
     }
 
@@ -367,11 +225,8 @@ int Vector::reallocMem(int n)
     aop.setBounds(0,n);
 
 
-        DBPF( "ok size now %d %s memp %d size %d offset %d\n", n, name, memp, size, offset);
-	//DBT( "ok size now %d %s memp %d size %d offset %d\n", n, name, memp, size, offset);
-
-     
-
+    DBPS( "ok %s  memp %p size %d \n",  getName(), memp, size);
+	
       // we may have changed type prior to allocating so 
       // clear via difference in byte size newmemsize old memsize
 
@@ -383,7 +238,7 @@ int Vector::reallocMem(int n)
 
 	    k = (newmemsize - cs) ;
 
-            DBPF("realloced more %d so clearing new mem ok newmemsize %d cs %d  k  %d to zero\n",did_realloc,newmemsize,cs, k);
+            DBPS("realloced more %d so clearing new mem ok newmemsize %d cs %d  k  %d to zero\n",did_realloc,newmemsize,cs, k);
 
 	    while (k-- > 0) *cp++ = 0;
 
@@ -397,8 +252,6 @@ int Vector::reallocMem(int n)
 	setCW(SI_FREE,OFF);
     }
 
-    
-
        catch (int e) {
 
         if (e == ERR2EXIT) {
@@ -411,17 +264,16 @@ int Vector::reallocMem(int n)
         }
        }
 
-    if (fixup) {
-   DBP("WARNING %s fixed memp memsize? %d %p\n", getName(),memsize, Memp());
-    }     
+     if (fixup) {
+       DBP("WARNING %s fixed memp memsize? %d %p\n", getName(),memsize, Memp());
+     }     
 
-
-     DBPF("%s \n",info());
-     DBPF("rtval %d  memp %p\n",rtval, Memp());
+     DBPS("rtval %d \n",rtval);
     
-    return (rtval);
+     return (rtval);
 }
 //[EF]===================================================//
+
 void Vector::Print() {
   
     if (dtype == INT) {
@@ -447,3 +299,4 @@ void Vector::Print() {
     }    
           printf("\n");
 }
+//[EF]===================================================//

@@ -210,7 +210,7 @@ char * AdvancePastWhite(char *t);
 char * NextWhite(char *t);
 void whatError( int en, const char *where) ;
 
-
+int computeMemSize( int m, int type);
 
 
 extern int  Floatsz;

@@ -83,15 +83,78 @@ void *scalloc_id(int n, int msize, const char *key)
 
 void *srealloc_id(void *optr, int nbytes, const char *key)
 {
-  
+  DBPS("srealloc_id %p nbytes %d\n",optr,nbytes);
   void *nptr = realloc(optr, nbytes);
   return nptr;
 }
 //[EF]===================================================//
 
 
+int computeMemSize( int m, int wtype)
+{
+  int newmemsize = 1;
+  
+	switch (wtype) {
+	  case GENERIC:
+	    newmemsize = (m * Doublesz);
+	    break;
 
+	  case DOUBLE:
+	    newmemsize = (m * Doublesz);
+	    break;
 
+	  case FLOAT:
+	    newmemsize = (m * Floatsz);
+	    break;
+
+	  case CMPLX:
+	    newmemsize = (2 * m * Floatsz);
+	    break;
+
+	  case DCMPLX:
+	    newmemsize = (2 * m * Doublesz);
+	    break;
+
+	  case INT:
+	  case UINT:
+	    newmemsize = (m * Intsz);
+	    break;
+
+	  case SHORT:
+	  case USHORT:
+	    newmemsize = (m * Shortsz);
+	    break;
+
+	  case LONG:
+	  case ULONG:
+	    newmemsize = (m * Longsz);
+	    break;
+
+	  case CHAR:
+	  case UCHAR:
+	    newmemsize = (m * Charsz);
+	    break;
+
+	  case PAN:
+	    DBPF("alloc for pan -- not really neeeded\n");
+	    newmemsize = (1 * Doublesz);
+	    break;
+
+	    
+	  default:
+
+	    newmemsize = (m * Doublesz);
+
+  DBP( "type %d NOTKNOWN \n", wtype);
+	    break;
+	}
+
+      return newmemsize;
+
+}
+//[EF]===================================================//
+
+/////////////// UTILS  ////////////////////
 
 char * AdvancePastWhite(char *t)
 {

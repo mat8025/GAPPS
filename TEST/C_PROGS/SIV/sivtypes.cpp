@@ -12,6 +12,7 @@ using namespace std;
 #include "scalar.h"
 #include "record.h"
 #include "vector.h"
+#include "matrix.h"
 #include "array.h"
 #include "pan.h"
 #include "list.h"
@@ -34,10 +35,17 @@ main ()
 
   Vector vector;
   Vector *vectorp;
+
+  Matrix matrix;
+  Matrix *matrixp;
+  
   
   Array array;
   Array *arrayp;
 
+
+
+  
   List list;
   List *listp;
 
@@ -110,6 +118,7 @@ main ()
   *sivp++ = &scalarv;
   *sivp++ = &vector;  
   *sivp++ = &array;
+  *sivp++ = &matrix;  
   *sivp++ = &strv;
   *sivp++ = &record;
   *sivp++ = &pan;
@@ -236,28 +245,45 @@ main ()
    }
 
    vectorp = &fvector;
+
    
    vectorp->Store(fvec,10);
 
    printf(" vec contents:\n");
       vectorp->Print();
 
-
+      vectorp->setName((char *)"vecf");
   vectorp->Store(fvec,50);
       
   vectorp->Print();
 
+
+  
    double dvec[50];
 
    for (int i = 0; i < 50; i++) {
      dvec[i] = i * 0.05;
    }
 
+
+    printf("Vector double\n");
    
    Vector dvector(DOUBLE);
+   
    vectorp = &dvector;
+   vectorp->setName((char *) "vecd");
    vectorp->Store(dvec,50);
    vectorp->Print();
+
+   ///////////////////////////////
+   matrixp = &matrix;
+   printf("Matrix %s %d\n",matrixp->getName(),matrixp->getDtype());
+
+
+   matrixp->reallocMem(5,10);
+   matrixp->storeRow(vec,0,10);
+   matrixp->storeRow(vec,1,10);
+   matrixp->Print();
 
    
   

@@ -20,19 +20,30 @@ Aop::~Aop()
 {
   //  DBP("destructing aop!\n");
 
-
      if (bounds != NULL) {
               sfree(bounds);           
      }
 
+     if (subset != NULL) {
+              sfree(subset); 
+     }
+     
+     if (lhsubset != NULL) {
+              sfree(lhsubset); 
+     }
 
+     if (lhset != NULL) {
+              sfree(lhset); 
+     }           
+     
      if (subdimn != NULL) {
               sfree(subdimn);           
      }
 
-      if (subset != NULL) {
-              sfree(subset); 
-      }
+     if (subi != NULL) {
+              sfree(subi);           
+     }
+
 }
 //[EF]===================================================//
 void Aop::makeAop()
@@ -62,7 +73,7 @@ int Aop::InitBounds()
 	     //char ocname[124];
 	     //sprintf(ocname,"bnds %s",name);
                  
-	     bounds = (int *) scalloc_id(DEFNBOUNDS+1, sizeof(int),__FUNCTION__);
+  bounds = (int *) scalloc_id(DEFNBOUNDS+1, sizeof(int),__FUNCTION__);
 
             if (bounds == NULL) {
                 DBPERROR(" can't calloc siv bounds \n");
@@ -88,15 +99,10 @@ int Aop::setBounds(int dimn, int n)
 
   int ret = -1;
   int ok = 1;
-  
-  DBPF("%s\n",info());
     
 
               makeAop();
 	      DBPF("%s\n",info());
-
-
-
 
 	
             if (bounds == NULL) {
@@ -104,15 +110,14 @@ int Aop::setBounds(int dimn, int n)
 		  ok = 0;
 		  //		     setAW(AOP_SET,OFF); 
               }
-
             }
 
-DBPF("ok %d dimn %d nd %d nb %d n %d\n",ok,dimn,nd,nb,n);
+DBPS("ok %d dimn %d nd %d nb %d n %d\n",ok,dimn,nd,nb,n);
 
               if (ok && (dimn < nd)) {
                 //setAW(AOP_SET,ON); // make sure on!
 		bounds[dimn] = n;
-DBPF("%s dimn %d  aop %d \n",getName(),dimn, bounds[dimn]);
+DBPS("dimn %d  aop %d \n",dimn, bounds[dimn]);
               ret = n;
             }
 
@@ -179,9 +184,7 @@ int Aop::decrBounds(int dimn, int n )
 int Aop::initBounds(int nib)
 {
 
-
     makeAop();
-
   
     if (bounds == NULL && nib > 0) {
       // char ocname[124];
@@ -197,7 +200,9 @@ int Aop::initBounds(int nib)
 
 	   setND(nib);
            nb = nib;
-	    return 1;
+	   DBPS("nib %d nb %d \n",nib,nb);
+	   
+	   return 1;
     }
 
  return 0;

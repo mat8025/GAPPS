@@ -1,5 +1,5 @@
-#ifndef _ARRAY_H
-#define _ARRAY_H 1
+#ifndef _MATRIX_H
+#define _MATRIX_H 1
 
 
 #include <stdio.h>
@@ -10,20 +10,22 @@
 #include "svar.h"
 #include "aop.h"
 
-class Array: public Siv {
+class Matrix: public Siv {
 
  public:
 
-  void prstatus () { cout << "Array is an array or matrix " << "\n"; };
+  void prstatus () { cout << "Siv type Matrix [][] " << "\n"; };
   void *memp;
   int memsize;
   Aop aop;
 
   int getBounds(int wb) { return aop.getBounds(wb);};
-
   int getND() { return aop.getND();};
+  int reallocMem(int r, int c);
 
-  Array(int wt = INT) {
+  void storeRow( int *vec, int row, int n);
+  void Print();
+  Matrix(int wt = INT) {
     memp = NULL;
     memsize = 0;
     size = 0;
@@ -31,16 +33,18 @@ class Array: public Siv {
     setType ( DS_MATRIX); 
     aop.setND(2);
     aop.initBounds(2);
-    setCW(SI_ARRAY,ON);
+    aop.setBounds(0,2);
+    aop.setBounds(1,2);    
+    setCW(SI_ARRAY,ON); // set dimn [1][1]
+    reallocMem(2,2);
   };
 
-  ~Array () {
+  ~Matrix () {
     if (memp != NULL) {
       sfree(memp);
     }
     
     };
-
 };
 
 
