@@ -19,16 +19,20 @@ class Strv: public Siv {
   void prstatus () { cout << "Strv is a variable length string " << "\n"; };
   
 
-  Svar *v;
-    int getBounds(int wb) { return 0;};
-    int getND() { return 0;};
+  Svar v;
+  int getBounds(int wb) { return 0;};
+  int getND() { return 0;};
   
-  void Print() { printf("%s\n",v->cptr(0));};
-  void Cpy(const char *msg) { v->cpy(msg);};
-  void Store(const char *msg) { v->cpy(msg);};
+  void Print() { printf("%s\n",v.cptr(0));};
+  void Cpy(const char *msg) { v.cpy(msg);};
+  void Store(const char *msg) { v.cpy(msg);};
 
   
-  Strv() {  printf("cons a Strv \n"); v = new Svar; size = 1; setType (STRV);};
+  Strv() {  printf("cons a Strv \n");
+
+    size = 1;
+    setType (STRV);
+  };
   ~Strv () {};
 
 };

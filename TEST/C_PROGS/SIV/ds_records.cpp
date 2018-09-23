@@ -18,21 +18,7 @@
 #include "record.h"
 #include "debug.h"
 
-Record::~Record()
-{
-  Svar *sp;
-  
-    if (getRecord() != NULL ) {
-          for (int i = 0; i < size ; i++) {
-	    sp = getRecord(i);  
-              if (sp != NULL) {
-                   sp->vfree(); // CHECK
-                   delete sp; 
-              }              
-          }
-     }
-}
-//[EF]===================================================//
+
 
 asl_return_code
 Record::set(int num)
@@ -76,79 +62,7 @@ Record::set(int num)
   return ret;
 }
 //[EF]===================================================//
-asl_return_code
-Record::realloc(int num, int size)
-{
-  
-  ///
-  /// record  realloc - array of Svar pointers and new Svar into
-  ///
-  asl_return_code ret = SUCCESS;
 
-  try {
-
-
-    
-  Svar **newrec = NULL;
-  Svar *sp;
-  if (num <=0) num = 1;
-  
-      if (num == size) {
-        ;
-      }
-      else if ( num > size) {
-
-	DBPF("num %d   csize %d\n",num,size);
-
-      newrec = (Svar **) srealloc_id( recvec, (num * sizeof (Svar *)),__FUNCTION__);
-
-	if (newrec == NULL)
-	  throw REALLOC_ERROR;
-
-      recvec = newrec;
-      
-      char rname[32];
-      for (int i = size; i < num ; i++) {
-           sprintf(rname,"rec%d",i);
-           sp = new Svar(rname,1);
-           recvec[i] = sp;
-      }
-
-      
-      }
-      else {
-          
-          // delete svar then realloc num < size - presumably always works
-          // since reducing
-      for (int i = size-1; i >= num ; i--) {
-	   sp = getRecord(i);
-           delete sp;
-           recvec[i] = NULL;
-      }
-      
-      newrec = (Svar **) srealloc_id( recvec, ( num * sizeof (Svar *)),__FUNCTION__);
-      if (newrec == NULL)
-           throw REALLOC_ERROR;
-       recvec = newrec;
-
-      }
-
-
-  }
-
-    catch (asl_error_codes ball) {
-
-      if (ball != SUCCESS) {
-	whatError(ball,__FUNCTION__);
-	ret = ball;
-      }
-
-  }
-
-  return ret;
-
-}
-//[EF]===================================================//
 void
 Aop::setRcol (int lh, int k)
 {

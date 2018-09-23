@@ -98,12 +98,13 @@ class Siv {
 
 public:
   virtual void prstatus () = 0;
+  virtual int getND () = 0;  // used for most types
   virtual int getBounds (int wb) = 0;
-  virtual int getND () = 0;  
-
+  
   int type;
   int dtype;
   int size;
+  
         uint32_t testCW(uint32_t wd) { return ((cw & wd)); };
         void setCW(uint32_t wd, uint32_t on)
 	{
@@ -118,12 +119,15 @@ public:
   char name[MAXVARNAME+1];
   
   void setType(int wt) { type = wt;};
-  int getType() { return type;};  
+  int  getType() { return type;};  
   void setDtype(int wt) { dtype = wt;};
-  int getDtype() { return dtype;};  
-  int getSize () { cout << " size " << size << "\n"; return size; };
+  int  getDtype() { return dtype;};  
+  int  getSize () { return size; };
 
-  void setName( char *cp) { strncpy(name,cp,16);};
+  void setName( const char *cp) {
+    strncpy(name,cp,31);
+    name[31] = 0;
+  };
   char *getName() { return name;};
   
   int  Sizeof ()
@@ -138,8 +142,12 @@ public:
     }
 
   
-  Siv() { name[0] = 0; };
-  ~Siv () {};
+  Siv() { name[0] = 0;
+          size =0;
+        };
+  ~Siv () {
+    //cout << "destructed Siv " << getName() << "\n";
+   };
 
 };
 

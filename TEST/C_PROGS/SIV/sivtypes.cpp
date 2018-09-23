@@ -7,22 +7,13 @@ using namespace std;
 
 #include "defs.h"
 #include "svar.h"
-#include "siv.h"
 
-#include "scalar.h"
-#include "record.h"
-#include "vector.h"
-#include "matrix.h"
-#include "array.h"
-#include "pan.h"
-#include "list.h"
-#include "strv.h"
+#include "sivtypes.h"
 
-int
 main ()
 {
 
-  Siv *sivs[20];
+  Siv *sivs[30];
   Siv **sivp;
   Siv *bp;
 
@@ -40,8 +31,7 @@ main ()
   Matrix *matrixp;
   
   
-  Array array;
-  Array *arrayp;
+
 
 
 
@@ -85,11 +75,12 @@ main ()
   cout << " float " << sizeof (f) << " double " << sizeof (d) << " ld " <<
     sizeof (dl) << " \n";
 
-
-
+  Array *arrayp = new Array(INT,4, {3,5,4,5} );
+  arrayp->setName("MDarray");
+  
   cout << " Scalar " << sizeof (scalarv) << "\n";
   cout << " Vector " << sizeof (vector) << "\n";  
-  cout << " Array " << sizeof (array) << "\n";
+  cout << " Array " << sizeof (Array) << "\n";
   cout << " Strv " << sizeof (strv) << "\n";
   cout << " Record " << sizeof (record) << "\n";
   cout << " Pan " << sizeof (pan) << "\n";
@@ -117,7 +108,7 @@ main ()
 
   *sivp++ = &scalarv;
   *sivp++ = &vector;  
-  *sivp++ = &array;
+  *sivp++ = arrayp;
   *sivp++ = &matrix;  
   *sivp++ = &strv;
   *sivp++ = &record;
@@ -169,7 +160,7 @@ main ()
   strvp->Cpy ("Hola como estas\n");
   strvp->Print ();
 
-  strvp->Store ("Bien - Mucho gusto\n");
+  strvp->Store ("Bien Mucho gusto");
   
   strvp->Print ();
 
@@ -268,25 +259,64 @@ main ()
 
     printf("Vector double\n");
    
-   Vector dvector(DOUBLE);
+    //Vector dvector(DOUBLE);
    
-   vectorp = &dvector;
+    vectorp = new Vector(DOUBLE);
    vectorp->setName((char *) "vecd");
    vectorp->Store(dvec,50);
    vectorp->Print();
 
-   ///////////////////////////////
-   matrixp = &matrix;
-   printf("Matrix %s %d\n",matrixp->getName(),matrixp->getDtype());
-
-
-   matrixp->reallocMem(5,10);
-   matrixp->storeRow(vec,0,10);
-   matrixp->storeRow(vec,1,10);
-   matrixp->Print();
+      printf("deleting %s\n",vectorp->getName());      
+      delete vectorp;
 
    
-  
+   ///////////////////////////////
+   matrixp = new Matrix();
+   matrixp->setName((char *)"mati");
+   printf("Matrix %s %d\n",matrixp->getName(),matrixp->getDtype());
+
+   int nrows = 10;
+   int ncols = 10;
+   matrixp->reallocMem(nrows,ncols);
+   for (int i =0; i < nrows; i++) {
+    matrixp->storeRow(vec,i,10);
+    for (int j = 0; j < ncols; j++) {
+      vec[j] =j + (i+1)*ncols;
+    }
+   }
+
+   matrixp->Print();
+
+
+      printf("deleting %s\n",matrixp->getName());      
+      delete matrixp;
+      matrixp = NULL;
+
+
+      int sb[4] = {1,1,1,0};
+
+    arrayp->storeRow(vec,sb);
+
+    sb[0] = 2;
+    sb[1] = 2;
+    sb[2] = 2;
+    
+    arrayp->storeRow(vec,sb);
+
+    sb[0] = 2;
+    sb[1] = 4;
+    sb[2] = 3;
+
+    vec[0] = 47;
+    vec[1] = 79;
+    vec[2] = 80;
+    vec[3] = 13;
+    vec[4] = 52;    
+    
+    arrayp->storeRow(vec,sb);
+    
+    arrayp->Print();
+    
   // RECORD OPS
   // make a 10 row record -- split a string into fields
   // input row Split("a,b,c,d,e") into row0
@@ -294,4 +324,17 @@ main ()
   // input another row Split("a,b,c,d,e")
   // print record
 
+    recp->realloc(10);
+
+    recp->storeRow(0,strvp);
+    recp->printRow(0);
+
+    strvp->Store ("Si estoy bien");
+    recp->storeRow(5,strvp);
+    recp->printRow(5);
+
+    recp->printRows();
+
+
+    
 }

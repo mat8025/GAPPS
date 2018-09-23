@@ -186,6 +186,7 @@ enum ds_type {
 	      DS_SCALAR =1,
 	      DS_VECTOR,
 	      DS_MATRIX,
+	      DS_ARRAY,	      
 	      DS_STRV,
 	      DS_SVAR,
 	      DS_PAN,

@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include <vector>
 
 #include "siv.h"
 #include "svar.h"
@@ -14,24 +15,34 @@ class Array: public Siv {
 
  public:
 
-  void prstatus () { cout << "Array is an array or matrix " << "\n"; };
+  void prstatus () { cout << "Siv type MD array[][]..." << "\n"; };
   void *memp;
   int memsize;
-  Aop aop;
+  Aop aop; 
 
   int getBounds(int wb) { return aop.getBounds(wb);};
 
   int getND() { return aop.getND();};
+  int reallocMem();
 
-  Array(int wt = INT) {
+  void storeRow( int *vec, int sb[]);
+  void printDimn(int wb, int index);
+  void printInnerMatrix(int index);
+  void Print();
+  
+  Array(int wt, int nb, const std::vector<int>& bounds) {
     memp = NULL;
     memsize = 0;
     size = 0;
     dtype = wt;
-    setType ( DS_MATRIX); 
-    aop.setND(2);
-    aop.initBounds(2);
+    setType ( DS_ARRAY); 
+    aop.setND(nb);
+    aop.initBounds(nb);
+    for (int i = 0; i < nb; i++)
+      aop.setBounds(i,bounds[i]);
+    
     setCW(SI_ARRAY,ON);
+    reallocMem();
   };
 
   ~Array () {

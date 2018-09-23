@@ -15,7 +15,7 @@ class Vector: public Siv {
 
  public:
   
-  void prstatus () { cout << "Vector is a vector of num types" << "\n"; };
+  void prstatus () { cout << "Siv type vector[] of number types" << "\n"; };
   void *memp;
   int memsize;
   Aop aop;
@@ -48,9 +48,12 @@ class Vector: public Siv {
 
   
   ~Vector () {
+    //cout << "destructing vector " << "\n";
+    // delete aop;
     if (memp != NULL) {
       sfree(memp);
     }
+    //cout << "destructed vector " << "\n";
   };
 
 };

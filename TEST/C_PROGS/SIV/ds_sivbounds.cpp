@@ -18,17 +18,15 @@
 
 Aop::~Aop()
 {
-  //  DBP("destructing aop!\n");
-
-     if (bounds != NULL) {
-              sfree(bounds);           
-     }
+  //DBPS("destructing aop!\n");
 
      if (subset != NULL) {
+                  DBPS("free subset!\n");
               sfree(subset); 
      }
      
      if (lhsubset != NULL) {
+                  DBPS("free lhsubset!\n");
               sfree(lhsubset); 
      }
 
@@ -41,9 +39,20 @@ Aop::~Aop()
      }
 
      if (subi != NULL) {
+                  DBPS("free subi!\n");
               sfree(subi);           
      }
 
+     if (bounds != NULL) {
+       //       DBPS("free bounds!\n");
+            sfree(bounds);           
+     }
+
+     if (ibounds != NULL) {
+            sfree(ibounds);           
+     }
+
+     //  DBPS("destructed aop!\n");
 }
 //[EF]===================================================//
 void Aop::makeAop()
@@ -72,8 +81,7 @@ int Aop::InitBounds()
            if (bounds == NULL) {
 	     //char ocname[124];
 	     //sprintf(ocname,"bnds %s",name);
-                 
-  bounds = (int *) scalloc_id(DEFNBOUNDS+1, sizeof(int),__FUNCTION__);
+   ibounds = (int *) scalloc_id(DEFNBOUNDS+1, sizeof(int),__FUNCTION__);              bounds = (int *) scalloc_id(DEFNBOUNDS+1, sizeof(int),__FUNCTION__);
 
             if (bounds == NULL) {
                 DBPERROR(" can't calloc siv bounds \n");
@@ -101,7 +109,7 @@ int Aop::setBounds(int dimn, int n)
   int ok = 1;
     
 
-              makeAop();
+  //makeAop();
 	      DBPF("%s\n",info());
 
 	
@@ -183,29 +191,31 @@ int Aop::decrBounds(int dimn, int n )
 
 int Aop::initBounds(int nib)
 {
-
-    makeAop();
-  
+  int ret = SUCCESS;
+  //makeAop();
+  try {
     if (bounds == NULL && nib > 0) {
       // char ocname[124];
       // sprintf(ocname,"bnds %s",name);
                  
+      ibounds = (int *) scalloc_id(nib+1, sizeof(int),__FUNCTION__);
       bounds = (int *) scalloc_id(nib+1, sizeof(int),__FUNCTION__);
-
            if (bounds == NULL) {
              DBPERROR(" can't calloc siv bounds \n");
              //setAW(AOP_SET,OFF);
-	     return 0;
+	     throw REALLOC_ERROR;
            }
 
 	   setND(nib);
            nb = nib;
 	   DBPS("nib %d nb %d \n",nib,nb);
-	   
-	   return 1;
     }
+  }
+  catch (int ball) {
+    ret = ball;
+  }
 
- return 0;
+ return ret;
 }
 //[EF]===================================================//
 
@@ -531,22 +541,35 @@ Aop::setArrayNDB (int newnd)
 }
 
 //[EF]===================================================//
-int Aop::getInnerStep( )
+int Aop::getInnerStep(int wb )
 {
   int step = 0;
 
-
-
       if (getND() > 1) {
-	step = 1;
-	for (int i = 1; i < getND(); i++) {
+	step = bounds[nb-1];
+	for (int i = wb+1; i < (nb-1); i++) {
            step *= bounds[i];
 	}
       }
 
-
-
   return step;
+}
+//[EF]===================================================//
+
+
+
+int Aop::getSize( )
+{
+   size = 0;
+
+      if (getND() >= 1) {
+	size = 1;
+	for (int i = 0; i < getND(); i++) {
+           size *= bounds[i];
+	}
+      }
+
+  return size;
 }
 //[EF]===================================================//
 int
@@ -661,4 +684,36 @@ Aop::freeSubi ()
 
 }
 
+//[EF]===================================================//
+int Aop::setInnerRow( int sb[] )
+{
+  ///
+  /// row[] contains values -- # num in row
+  /// sb[]  contains indices to select row must be within bounds
+  ///
+  int ok = 0;
+  int wb = 0;
+  int index = -1;
+  for (int i = 0; i < nb; i++) {
+    DBPS("i %d [%d] [%d]\n",i, getBounds(i), sb[i]);
+  }
+  int step = getInnerStep(wb);
+  DBPS("wb %d step %d index %d\n",wb,step, index);
+  wb++;
+  if (step >= 1) {
+
+    index = 0;
+    int i = 0;
+    while (i < (nb-1)) {
+        index += sb[i] * step;
+	i++;
+	step = getInnerStep(wb);
+	DBPS("wb %d step %d index %d\n",wb,step, index);
+	wb++;
+      }
+    
+  }
+  
+  return index;
+}
 //[EF]===================================================//

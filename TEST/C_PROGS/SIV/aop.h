@@ -22,7 +22,8 @@ public:
         int32_t  subi_nd;
         int32_t  lhsize;
         int32_t  size;  
-        int  *bounds;  
+        int  *bounds;
+        int  *ibounds;    
         int nb;
         int nd;
   //public:
@@ -46,6 +47,7 @@ public:
 	int16_t  lh_rcol;  // used for the record col index 
 	/// Methods
         void makeAop();
+        int getSize();
         void setSize( int sz ) { size =sz; };
         int getLHsize() { return lhsize;};
         void setLHsize(int sz) { lhsize = sz;};
@@ -67,10 +69,11 @@ public:
         int CheckBounds();
         void setRcol (int lh, int k);
         int getRcol (int lh);
-        int getInnerStep( );
+        int getInnerStep(int wb = 0 );
+        int setInnerRow(int sb[]);
         int computeOffSet(int nds[]);
         int checkValidBounds ();
-         int VrangeToSubSet ();
+        int VrangeToSubSet ();
         int SetUpSubi ();
         void freeSubi ();
         int RangeExtend(int wd, int newbd);
@@ -83,9 +86,11 @@ public:
           subnd = 0;
           subi_nd = 0;
           subsize = 0;
+	  size = 0;
           lhsize = 0;
 
 	  bounds = NULL;
+	  ibounds = NULL;
           subset = NULL;
           lhsubset = NULL;
           lhset = NULL;

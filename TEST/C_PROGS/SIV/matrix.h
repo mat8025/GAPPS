@@ -40,6 +40,7 @@ class Matrix: public Siv {
   };
 
   ~Matrix () {
+    //  cout << "destructing Matrix " << "\n";
     if (memp != NULL) {
       sfree(memp);
     }
