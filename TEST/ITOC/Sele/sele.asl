@@ -11,15 +11,24 @@ newstr = sele(astr,3,3)
 newstr contains from 4th character to 6th character of  original string.
 /}
 
+
 checkIn()
 
 astr = "subsection"
 
 <<"$astr  $(slen(astr))\n"
 
+newstr = sele(astr,12);
+
+<<"12, $(slen(newstr)) $newstr\n";
+
+
 newstr = sele(astr,3);
 
-<<"3, $newstr\n";
+<<"3, $(slen(newstr)) $newstr\n";
+
+
+
 
 checkStr(newstr,"section")
 

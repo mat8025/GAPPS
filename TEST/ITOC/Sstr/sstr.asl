@@ -12,33 +12,42 @@ str A = "keep going until world tour"
 str B = "unti"
 
 
-i = sstr(A,B,1)
+iv = sstr(A,B,1)
 
-<<"$i\n"
+<<"$iv\n"
 
-checkNum(i,11)
+checkNum(iv[0],11)
 
-i = sstr(A,"XX",1)
+iv = sstr(A,"XX",1)
 
-<<"$i\n"
+<<"$iv\n"
 
-checkNum(i,-1)
+checkNum(iv[0],-1)
 
-i = sstr(A,"ou",1)
+iv = sstr(A,"ou",1)
 
-<<"$i\n"
+<<"$iv\n"
 
-checkNum(i,24)
+checkNum(iv[0],24)
 
-i = sstr(A,"OU")
+iv = sstr(A,"OU")
 
-<<"$i\n"
+<<"$iv\n"
 
-i = sstr(A,"OU",1)
+iv = sstr(A,"OU",1)
 
-<<"$i\n"
+<<"$iv\n"
 
-checkNum(i,24)
+checkNum(iv[0],24)
+
+iv = sstr(A,"o",1,1)
+
+<<"o @ $iv\n"
+
+checkNum(iv[0],6)
+checkNum(iv[1],18)
+checkNum(iv[2],24)
+
 
 p = regex(A,"ou")
 
@@ -63,12 +72,12 @@ checkNum(p[0],6)
 
 p = regex(C,'vox\|pcm')
 
-<<"$p \n"
+<<"%V$p \n"
 
 
 p = regex(D,'vox\|pcm'  )
 
-<<"$p \n"
+<<"%V$p \n"
 
 
 str E = "abcxxxabcxxxabcyyy"
@@ -76,13 +85,20 @@ str E = "abcxxxabcxxxabcyyy"
 
 pos = regex(E,'abc'  )
 
-<<"$pos \n"
+<<"%V$pos \n"
 
 
 pos2 = regex(E,'xxx'  )
 
-<<"$pos2 \n"
+<<"%V$pos2 \n"
 
+checkNum(pos2[0],3)
+checkNum(pos2[1],6)
+
+checkNum(pos2[2],9)
+checkNum(pos2[3],12)
+
+checkNum(pos2[4],-1)
 
 
 

@@ -5,7 +5,7 @@
 //envdebug()
 
 
-setdebug(1,@keep,@pline,@~step,@trace,@showresults,1);
+//setdebug(1,@keep,@pline,@~step,@trace,@showresults,1);
 filterFuncDebug(ALLOWALL_,"proc");
 filterFileDebug(ALLOWALL_,);
 

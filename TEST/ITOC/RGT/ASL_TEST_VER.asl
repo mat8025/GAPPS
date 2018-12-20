@@ -734,7 +734,9 @@ int do_help = 0;
 
   cart("readfile")
 
+  Run2Test("Fexist")
 
+  cart("fexist","fexist.asl")
   }
 
 

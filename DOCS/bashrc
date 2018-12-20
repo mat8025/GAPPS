@@ -1,0 +1,32 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific aliases and functions
+PATH=$PATH:/usr/local/GASP/gasp/bin:
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/GASP/gasp/lib:~/JV:
+
+GS_SYS="/usr/local/GASP/gasp"
+export GS_SYS
+
+alias 2g='cd /usr/local/GASP/gasp'
+alias 2t='cd /usr/local/GASP/gasp/TEST/ITOC'
+alias 2c='cd /usr/local/GASP/gasp/TEST/XASL/Clouds'
+alias 2r='cd /usr/local/GASP/gasp/TOOLS/R_DW'
+alias 2a='cd /usr/local/GASP/gasp/SI/spe'
+alias 2x='cd /usr/local/GASP/gasp/GW/gwm'
+alias 2d='cd /usr/local/GASP/gasp/DEMOS'
+alias mki='make install;'
+alias mks='make install; pushd ../GM; make install; popd'
+alias mkg='make install; pushd ../XGS; make install; popd'
+alias dbj='emacs ~/.GASP/WORK/journal &'
+
+export LD_LIBRARY_PATH
+
+GS_XSIZE=0.9
+export GS_XSIZE
+
+

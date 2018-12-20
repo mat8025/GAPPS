@@ -1,0 +1,151 @@
+///
+/// @vers supdate.asl 1.1 H/H Tue Dec 18 04:07:52 2018
+///
+
+
+
+//   so find or insert @vers line which will look like
+//   a three line comment header at top of the file
+//   like
+// ---------------------------------
+///
+/// @vers 'name'.asl maj.min majele/minele date time
+///
+// ---------------------------------
+
+//
+//
+
+proc vers2ele( vstr)
+{
+
+ pmaj = atoi(spat(vstr,"."))
+ pmin = atoi(spat(vstr,".",1))
+
+ elestr = pt(pmin);
+ str ele =" ";
+ ele = spat(elestr,",")
+//<<"$ele $(typeof(ele))\n";
+//<<"$ele";
+ return ele;
+ 
+}
+//======================
+A=-1;
+
+
+// if cprog found
+// then  read current vers and  bump number and update date
+// if no @vers line -- then prepend the vers header lines
+
+srcfile = _clarg[1];
+
+if (srcfile @= "") {
+<<[2]"no script file entered\n"
+  exit();
+}
+
+sz= fexist(srcfile,RW_,0);
+
+//<<[2]" RW sz $sz \n"
+
+if (sz == -1) {
+<<[2]"can't find script file $srcfile\n"
+  exit();
+}
+
+set_vers = 0;
+na = argc();
+
+comment ="";
+comment2 ="";
+
+if (na > 1) {
+ set_vers = 1;
+ comment = _clarg[2];
+// should be maj.min e.g 1.1 ,6.1, ... limits 1 to 100  
+}
+
+
+
+
+file= fexist(srcfile,ISFILE_,0);
+
+//<<[2]" FILE $file \n"
+
+dir= fexist(srcfile,ISDIR_,0);
+
+//<<[2]" DIR $dir \n"
+Author = "Mark Terry"
+fname = srcfile
+release = "CARBON"
+maj = 2;
+min = 3;
+
+maj_ele = ptsym(maj);
+min_ele = ptsym(min);
+
+date = date();
+
+/{
+////////////////////////////<**|**>\\\\\\\\\\\\\\\\\\\\ 
+//
+//  engine_e.cpp
+//
+//     CARBON  1.4 H.Be Wed Dec 19 09:47:35 2018    
+//     CopyRight   - RootMeanSquare - 1990,2018 --> 
+//     Author: Mark Terry                                           
+//     parser engine
+//
+// /. .\ 
+// \ ' / 
+//   - 
+////////////////////////////<v_&_v>\\\\\\\\\\\\\\\\\\\\ 
+/}
+
+len = slen(fname);
+
+ind = (80-len)/2;
+//<<[2]"$(date()) $(date(8)) \n"
+//<<[2]" $len $ind\n"
+insp = nsc((76-len)/2," ")
+len= slen(insp)
+//<<[2]"$len <|$insp|> \n"
+sp="\n"
+//<<[2]" $(nsc(5,sp))\n"
+
+//<<[2]" $(nsc(5,\"\\n\"))\n"
+
+A=ofr(srcfile)
+T=readfile(A);
+
+
+<<"///////////////////////////////////<**|**>/////////////////////////////////// \n"
+<<"//$insp $fname \n"
+<<"//    $comment   \n"
+<<"//    $comment2 \n"
+<<"//       $release  ${maj}.$min ${maj_ele}.$min_ele $date    \n"              
+<<"//       CopyRight   - RootMeanSquare - 1990,$(date(8)) --> \n"                 
+<<"//       Author: $Author                                           \n"
+<<"//  \n"
+<<"// \/. .\\ \n"
+<<"// \\ ' / \n"
+<<"//   - \n"
+<<"///////////////////////////////////<v_&_v>/////////////////////////////////// \n"
+<<"\n"
+tsz = Caz(T)
+//<<"nlines ? $tsz\n"
+
+//<<"%(1,,,)$T\n"
+first_inc =0;
+ for (i = 0; i < tsz;i++) {
+ if (scmp(T[i],"#include",8)) {
+   first_inc =i;
+   break;
+ }
+
+}
+
+for (i = first_inc; i < tsz;i++) {
+<<"$T[i] "
+}

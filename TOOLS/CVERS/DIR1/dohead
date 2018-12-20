@@ -1,0 +1,4 @@
+rm *.cpp ;
+echo $1
+cp ~/gasp-CARBON/SI/$1/*.cpp .
+asl addnewhead.asl *.cpp

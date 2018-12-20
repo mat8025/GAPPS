@@ -70,6 +70,11 @@ for (i= 0; i < len; i++)
 <<"%V %s $R\n"
 
 
+
+es = s[3];
+
+<<"%V $s $es\n"
+
 checkOut()
 
 

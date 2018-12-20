@@ -50,10 +50,19 @@ CheckFNum(c,-1.192308,6)
 
 checkStr(w1,"hey buddy")
 
-   w2= scat("hey"," buddy ", "what's", \
-                   " going ", \
-		   " on ");
+   w2=					\
+        scat("hey"," buddy ", "what's", \
+                   " going ", 		\
+		   " on ?");
    <<"$w2\n"
+
+
+   w3=                                                                         \
+        scat("hola"," amigo ", "que",                                        \
+                   " esta ", 		                                       \
+		   " pasando ?");
+
+<<"$w3\n"
 
 
 CheckOut()

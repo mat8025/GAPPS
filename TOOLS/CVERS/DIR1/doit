@@ -1,0 +1,5 @@
+  cart("readfile")
+for y in $*
+do
+echo $y
+done
