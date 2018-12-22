@@ -1,3 +1,15 @@
+//%*********************************************** 
+//*  @script wex.asl 
+//* 
+//*  @comment the never ending battle of the bulge 
+//*  @release CARBON 
+//*  @vers 1.4 H.Be
+//*  @date Fri Dec 21 21:53:49 2018 
+//*  @author Mark Terry 
+//*  @CopyRight  RootMeanSquare  2014,2018 --> 
+//* 
+//***********************************************%
+
 ///
 /// exercise weight display
 /// calories burned (wt at 180)
@@ -6,8 +18,6 @@
 /// sleep 8 hours   71.5 per hour
 /// office computer work (24-8-exercise hours) 119.3 per hour
 
-
-vers = "2.3";
 
 
 include "debug.asl"

@@ -1,6 +1,16 @@
-///
-///
-////////////   SIMPLE SPREAD SHEET  EXAMPLE /////////////
+//%*********************************************** 
+//*  @script stuff2do.asl 
+//* 
+//*  @comment  organize/record progress of tasks
+//*  @release CARBON 
+//*  @vers 1.2 H.He
+//*  @date Sat Dec 22 09:06:52 2018 
+//*  @author Mark Terry 
+//*  @CopyRight  RootMeanSquare  2014,2018 --> 
+//* 
+//***********************************************%
+
+////////////   TASK LIST  EXAMPLE /////////////
 
 
 //  each  cell has an input text function
@@ -13,19 +23,15 @@
 // and the sheet is update xgs sid
 // user can enter text into cells via the gui interface
 
-//
-//  need a rapid and smart update changes only
-//
-
-// could have a number of sheets in different windows
-
-
-
-
+include "debug.asl"
 include "gevent.asl"
 
+vers = "xxx";
 
-setdebug(1,"keep");
+debugON();
+
+
+
 
 //////   create MENUS here  /////
 A=ofw("Howlong.m")
@@ -47,8 +53,47 @@ A=ofw("Howlong.m")
 <<[A],"item 8 M_VALUE 8\n"
 <<[A],"help  four hours\n"
 cf(A)
+//=============================
+A=ofw("PCdone.m")
+<<[A],"title PCdone\n"
+<<[A],"item 5% M_VALUE 5\n"
+<<[A],"item 10% M_VALUE 10\n"
+<<[A],"item 25% M_VALUE 25\n"
+<<[A],"item 50% M_VALUE 50\n"
+<<[A],"item 75% M_VALUE 75\n"
+<<[A],"item 90% M_VALUE 90\n"
+<<[A],"item 100% M_VALUE 100\n"
+<<[A],"item ? C_INTER "?"\n"
+<<[A],"help set pcdone\n"
+cf(A)
+//==============================//
+A=ofw("Priority.m")
+<<[A],"title Priority 1-7\n"
+<<[A],"item 1 M_VALUE 1\n"
+<<[A],"item 2 M_VALUE 2\n"
+<<[A],"item 3 M_VALUE 3\n"
+<<[A],"item 4 M_VALUE 4\n"
+<<[A],"item 5 M_VALUE 5\n"
+<<[A],"item 6 M_VALUE 6\n"
+<<[A],"item 7 M_VALUE 7\n"
+cf(A)
+//==============================//
+A=ofw("Difficulty.m")
+<<[A],"title Difficulty\n"
+<<[A],"item 1 M_VALUE 1\n"
+<<[A],"item 2 M_VALUE 2\n"
+<<[A],"item 3 M_VALUE 3\n"
+<<[A],"item 4 M_VALUE 4\n"
+<<[A],"item 5 M_VALUE 5\n"
+<<[A],"item 6 M_VALUE 6\n"
+<<[A],"item 7 M_VALUE 7\n"
+cf(A)
 
-
+CatCol= 1;
+PriorityCol= 2;
+PCDoneCol= 3;
+DurationCol= 4;
+DiffCol= 5;
 
 
 //  fname = "pp.rec"
@@ -74,8 +119,22 @@ A= ofr(fname)
 
 Record DF[10];
 
-DF[0] = Split("s2d,ASR,6,10,22/1/18,xx,31/1/18,x,",',');
 
+today = date(2);
+
+// today + 7
+
+
+  jdayn = julian(today)
+
+  today2 = julmdy(jdayn);
+  
+<<"%V $today $jdayn $today2\n"
+
+  nextwk = julmdy(jdayn+7);
+
+
+   DF[0] = Split("?,?,6,10,$today,$today,$nextwk,x,",',');
    
 
    R= readRecord(A,@del,',')
@@ -88,149 +147,6 @@ DF[0] = Split("s2d,ASR,6,10,22/1/18,xx,31/1/18,x,",',');
 //////////////////////////////////
 
 
-proc SAVE()
-{
-         <<"saving sheet $fname\n"
-            B=ofw(fname)
-	    writeRecord(B,R);
-	    cf(B)
-}
-//======================
-
-proc READ()
-{
-      <<"reading $fname\n"
-       // isok =sWo(cellwo,@sheetread,fname,2)
-            A= ofr(fname)
-            R= readRecord(A,@del,',')
-           cf(A)
-           sz = Caz(R);
-          <<"num of records $sz\n"
-          sWo(cellwo,@cellval,R);
-}
-//======================
-proc SORT()
-{
-<<"in $_proc\n"
-  sortcol = swapcol_a;
-  startrow = 1;
-  alphasort = 0; // 0 auto alpha or number 1 alpha   2 number
-  sortdir = 1;
-  
-  sortRows(R,sortcol,alphasort,sortdir,startrow)
-
-
-     sWo(cellwo,@cellval,R);
-     sWo(cellwo,@redraw);
-
-}
-//======================
-proc SWOPROWS()
-{
-<<"in $_proc\n"
-<<"swap rows $swaprow_a and $swaprow_b\n"
-         //sWo(cellwo,@swaprows,swaprow_a,swaprow_b);
-//	SwapRows(R,swaprow_a,swaprow_b);
-	R->SwapRows(swaprow_a,swaprow_b);	  // code vmf
-        sWo(cellwo,@cellval,R);
-	sWo(cellwo,@redraw);
-}
-//======================
-
-proc SWOPCOLS()
-{     
-<<"swap cols $swapcol_a and $swapcol_b\n"
-       //  sWo(cellwo,@swapcols,swapcol_a,swapcol_b);
-	SwapCols(R,swapcol_a,swapcol_b);
-        sWo(cellwo,@cellval,R);
-	sWo(cellwo,@redraw);
-}
-//======================
-proc DELROWS()
-{
-<<"in $_proc\n"
-//int drows[]; // TBF
-int drows[20+];
-int n2d = 0;
-        sz = Caz(R)
-	ans = yesornomenu("Delete Tagged Rows?")
-	if (ans == 1) {
-        for (i = 0; i < rows; i++) {
-            if (R[i][tags_col] @="x") {
-                
-		drows[n2d] = i;
-		n2d++;
-		<<"will delete row $i  $drows\n";
-           }
-        }
-	
-        if (n2d > 0) {
-        //deleteRows(R,swaprow_a,swaprow_b);
-	deleteRows(R,drows,n2d);
-	nsz = Caz(R)
-<<"deleted $drows  $sz $nsz\n"
-         for (i = 0; i < nsz;i++) { 
-           <<"[${i}] $R[i]\n"
-         }
-        // clear deleted rows at end
-	// reset rows
-        sWo(cellwo,@cellval,nsz,0,sz,cols,"");
-        sWo(cellwo,@cellval,R);
-	sWo(cellwo,@redraw);
-	}
-     }
-}
-//======================
-proc DELCOL()
-{
-<<"in $_proc\n"
-
-
-}
-//======================
-proc ADDROW()
-{
-
-    sz= Caz(R)
-<<"in $_proc record $rows $sz\n"
-    er = rows;
-
-    R[er] = DF[0];
-    R[er][4] = date(2);
-    R[er][5] = date(2);    
-    rows++;
-    sz = Caz(R);
-    writeRecord(1,R);
-  <<"New size %V $rows $cols $sz\n"  
-   sWo(cellwo,@setrowscols,rows,cols+1);
-   sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
-   sWo(cellwo,@cellval,R);
-   sWo(cellwo,@redraw);
-	
-}
-//======================
-
-
-proc clearTags()
-{
-
-
-//    R[::][7] = ""; // TBF
-   ans= yesornomenu("ClearTags?")
-   
-   if (ans == 1) { // TBF
-
-  for (i= 1;i< rows; i++) {
-      R[i][tags_col] = " ";
-   }
-	    writeRecord(1,R);
-   sWo(cellwo,@cellval,R);
-   sWo(cellwo,@redraw);
-   }
-   
-}
-//============================
-
 Graphic = CheckGwm()
 
 
@@ -239,86 +155,32 @@ Graphic = CheckGwm()
      }
 
 
-include "tbqrd"
+include "tbqrd.asl"
 
-    vp = cWi(@title,"S2D:$fname")
+include "stuff2do_scrn.asl"
 
-    sWi(vp,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
-
-    sWi(vp,@clip,0.1,0.2,0.9,0.9)
-
-  sWi(vp,@redraw)
-
-    titleButtonsQRD(vp);
-
-///    GSS  modfiy functions
-
-      readwo = cWo(vp,@BN,@name,"READ",@color,"lightgreen");
-
-      savewo = cWo(vp,@BN,@name,"SAVE",@color,LILAC_);
-
-      sortwo = cWo(vp,@BN,@name,"SORT",@color,CYAN_);
-
-      swprwo = cWo(vp,@BN,@name,"SWOPROWS",@color,GREEN_);
-
-      swpcwo = cWo(vp,@BN,@name,"SWOPCOLS",@color,RED_);
-
-      delrwo = cWo(vp,@BN,@name,"DELROWS",@color,RED_);
-
-      delcwo = cWo(vp,@BN,@name,"DELCOL",@color,ORANGE_,@bhue,YELLOW_);
-
-      arwo = cWo(vp,@BN,@name,"ADDROW",@color,ORANGE_,@bhue,"lightblue");
-      
-
-      int ssmods[] = { readwo,savewo,sortwo,swprwo,swpcwo,delrwo, delcwo, arwo }
+include "gss.asl"
 
 
-      wovtile(ssmods,0.05,0.1,0.1,0.9,0.05);
+//===============
+//
+include "stuff2do_ssp.asl"
 
 
+gflush()
 
-
- cellwo=cWo(vp,"SHEET",@name,"Stuff2Do",@color,GREEN_,@resize,0.12,0.1,0.9,0.95)
- // does value remain or reset by menu?
-
- sWo(cellwo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"SSWO",@func,"inputValue")
-
- sWo(cellwo,@bhue,CYAN_,@clipbhue,SKYBLUE_,@redraw)
-
- 
-
- 
- //sWo(cellwo,@sheetrow,0,0,"0,1,2,3,4,5,,7")
- //sWo(cellwo,@sheetcol,1,0,"A,B,C,D,E,F,G")
-
-
-
-   sWi(vp,@redraw)
-
-   sWo(ssmods,@redraw)
-
-   sWo(cellwo,@redraw);
-
-
-
-
-
-
-   gflush()
-
-
+setdebug(1,@keep);
 
 int cv = 0;
-
-
-
-// setdebug(1,"step","pline");
 
   sz= Caz(R);
   rows = sz;
   cols = Caz(R[0])
 
   tags_col = cols-1;
+
+<<"%V $tags_col \n"
+
   
  sWo(cellwo,@setrowscols,rows+5,cols+1);
  
@@ -371,40 +233,38 @@ sWo(cellwo,@cellbhue,i,j,YELLOW_);
    swapcol_b = 2;
 <<"%V $cellwo\n"
 
+   PGDWN();
+   PGUP();
+
+
 
   while (1) {
 
+        // resetDebug();
          eventWait();
 
-   <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
+ <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
 
+   _erow->info(1);
+   _ecol->info(1);
+   
          if (_erow > 0) {
             the_row = _erow;
          }
 
-       if (_ewoid == cellwo) {
-       
-             if (_ekeyw @="CELLVAL") {
-                r= _erow;
-		c= Cev->col;
-		<<"%V$Cev->row $Cev->col\n"
-//R[Cev->row][Cev->col] = _ekeyw2;   // TBF
-                R[r][c] = _evalue;
-		<<"update cell val $r $c $_erow $_ecol $_ekeyw2 $R[r][c] \n"
-		<<"updated row $R[r]\n"
-            }
-
-      
+       if (_ewoid == cellwo) {      
 
         whue = YELLOW_;
-        if (_ecol == 0  && (_erow >= 0) && (_ebutton == RIGHT_)) {
-        if ((_erow%2)) {
-          whue = LILAC_;
-	}
 
-        sWo(cellwo,@cellbhue,swaprow_a,0,swaprow_a,cols,whue);         	 	 
+       if (_ecol == 0  && (_erow >= 0) && (_ebutton == RIGHT_)) {
+	
+         if ((_erow %2)) {
+           whue = LILAC_;
+	 }
 
-        swaprow_b = swaprow_a;
+         sWo(cellwo,@cellbhue,swaprow_a,0,swaprow_a,cols,whue);         	 	 
+
+         swaprow_b = swaprow_a;
 	 swaprow_a = _erow;
 	 
 <<"%V $swaprow_a $swaprow_b\n"
@@ -412,45 +272,73 @@ sWo(cellwo,@cellbhue,i,j,YELLOW_);
          sWo(cellwo,@cellbhue,swaprow_a,0,CYAN_);         
          }
 
-               
-             
-      if (_erow == 0 && (_ecol >= 0) && (_ebutton == RIGHT_)) {
+        else if (_erow == 0 && (_ecol == tags_col) && (_ebutton == RIGHT_)) {
 
-         sWo(cellwo,@cellbhue,0,swapcol_a,0,cols,YELLOW_);         	 	 
-         swapcol_b = swapcol_a;
- 	 swapcol_a = _ecol;
-
-sWo(cellwo,@cellbhue,0,swapcol_a,CYAN_);         	 
-<<"%V $swapcol_a $swapcol_b\n"
-         }
-
-        sWo(cellwo,@redraw);
-
-        if (_erow == 0 && (_ecol == tags_col) && (_ebutton == RIGHT_)) {
                <<"Clear tags \n"
                 clearTags();   
         }
 
-        if (_erow > 0 && (_ecol == tags_col) && (_ebutton == RIGHT_)) {
-               <<"mark tags \n"
+        else if (_erow > 0 && (_ecol == tags_col) ) {
+	        if (_ebutton == RIGHT_) {
+               <<"mark tag \n"
                 R[_erow][tags_col] = "x";
-		sWo(cellwo,@cellval,_erow,tags_col,"x")
+		sWo(cellwo,@cellval,_erow,tags_col,"x");
+		}
+		else if (_ebutton == LEFT_) {
+               <<"clear tag \n"
+                R[_erow][tags_col] = "";
+		sWo(cellwo,@cellval,_erow,tags_col,"");
+                }
+
 		sWo(cellwo,@celldraw,_erow,tags_col)
         }
+        else if (_erow > 0 && (_ecol == PCDoneCol)) {
+                 PCDONE(_erow);
+        }
+        else if (_erow > 0 && (_ecol == PriorityCol)) {
+                             setPriority(_erow);
+        }	
+        else if (_erow == 0 && (_ecol >= 0) && (_ebutton == RIGHT_)) {
+               pickTaskCol (_ecol);
 
-   }
+        }
+        else {
+          if (_ebutton == LEFT_) {
+             _ecol->info(1);
+	     _erow->info(1);
+             getCellValue(_erow,_ecol)
+          }
+	
 
-      if (_ename @= "PRESS") {
 
-       if (!(_ewoname @= "")) {
-           <<"calling script procedure  $_ewoname !\n"
+        }
+
+         sWo(cellwo,@redraw);
+
+       }
+      
+       if ((_ewoid > 0) && (_ewoid != cellwo)  && (_ename @= "PRESS") ) {
+        // check there a script procedure with this name ?
+	
+        if (!(_ewoname @= "")) {
+	    ind = findProc(_ewoname) ;
+            if (ind  != 0) {
+           <<"calling script procedure $ind $_ewoid $cellwo $_ename $_ewoname !\n"
             $_ewoname()
+	    }
+	    else {
+<<"script procedure $_ewoname $ind does not exist!\n"
+            }
         }
       }
-
+      sWo(ssmods,@redraw);
 
 }
 <<"out of loop\n"
 
  exit()
-   
+
+//
+//   TBD
+//   Categories  -  different sheets 
+//

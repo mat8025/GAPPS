@@ -1,3 +1,14 @@
+//%*********************************************** 
+//*  @script bops.asl 
+//* 
+//*  @comment test of basic ops 
+//*  @release CARBON 
+//*  @vers 1.1 H.H 
+//*  @date Sat Dec 22 00:14:49 2018 
+//*  @author Mark Terry 
+//*  @CopyRight  RootMeanSquare  2014,2018 --> 
+//* 
+//***********************************************%
 
 setdebug(1,@pline,@~trace,@keep)
 

@@ -1,3 +1,14 @@
+//* 
+//*                       ASL_TEST_VER.asl 
+//* 
+//*  @vers CARBON 1.25 H.Mn Thu Dec 20 20:10:07 2018  
+//*  script for testing functions 
+//*   
+//* 
+//*  CopyRight   - RootMeanSquare - 2014,2018 --> 
+//*  Author: Mark Terry      
+//*
+
 //
 // test asl first and second stage (xic)
 // 
@@ -12,7 +23,7 @@
 #define PBLACK '\033[1;39m'
 #define POFF  '\033[0m'
 
-vers = 11;
+
 
 //ws= getenv("GS_SYS")
 
@@ -1286,7 +1297,7 @@ dtms= FineTimeSince(TM);
 secs = dtms/1000000.0
 
 
-<<"script vers $(periodicName(vers))($vers) took %6.3f$secs secs %d %V $i_time $x_time\n"
+<<"script vers $vers took %6.3f$secs secs %d %V $i_time $x_time\n"
 today=getDate(1);
 <<"$today tested $(get_version())\n"
 exit()
