@@ -1,12 +1,12 @@
 //%*********************************************** 
 //*  @script daytasker.asl 
 //* 
-//*  @comment organize the tasks of the day 
+//*  @comment cosas que hacer hoy 
 //*  @release CARBON 
-//*  @vers 1.3 H.Li
-//*  @date Fri Dec 21 21:50:16 2018 
+//*  @vers 1.7 N Nitrogen                                                 
+//*  @date Tue Dec 25 08:06:37 2018 
 //*  @author Mark Terry 
-//*  @CopyRight  RootMeanSquare  2014,2018 --> 
+//*  @Copyright  RootMeanSquare  2014,2018 --> 
 //* 
 //***********************************************%
 
@@ -43,14 +43,14 @@
  
  // add favorites :  L,G,X,C
  Record DF[10];
- // Task,Priority,TimeEst,%Done,Duration,Difficulty,Attribute,Score,Tags,
+ // Task,Priority,TimeEst,%Done,TimeSpent,Difficulty,Attribute,Score,Tags,
  
    DF[0] = Split("task?,3,30,0,0,1,?,0,",",")
    // use enum
-   DF[1] = Split("Exercise,6,60,0,0,1,X,0,"",")
-   DF[2] = Split("Guitar,6,30,0,0,1,G,0,"" ")
-   DF[3] = Split("Spanish,6,30,0,0,1,L,0,"",")
-   DF[4] = Split("PR/DSP,6,60,0,0,1,D,0,"",")    
+   DF[1] = Split("Exercise,9,60,0,0,3,X,0,"",")
+   DF[2] = Split("Guitar,8,30,0,0,3,G,0,"" ")
+   DF[3] = Split("Spanish,8,30,0,0,3,L,0,"",")
+   DF[4] = Split("PR/DSP,8,60,0,0,7,D,0,"",")    
  
  Record R[5+];
  Rn = 0;
@@ -58,6 +58,12 @@
  int ok = 0;
  
  // make this an enum
+ // actually want to read and assign these from
+ // the read in csv file
+ // so they can be arranged to suit
+ // also additional other task attributes can be added
+ //
+
  PriorityCol= 1;
  TimeEstCol= 2;
  PCDoneCol= 3;
@@ -126,7 +132,7 @@
   <<" creating today $ds ! \n"
     B= ofw("dt_${ds}")
     fname =  "dt_${ds}";
-    R[0] = Split("Task,Priority,TimeEst,\%Done,Duration,Difficulty,Attrb,Score,Tags",",");
+    R[0] = Split("Task,Priority,TimeEst,\%Done,TimeSpent,Difficulty,Attrb,Score,Tags",",");
     <<"$R[0] \n"
     R[1] = DF[1];
     R[2] = DF[2];
@@ -249,9 +255,9 @@
  
  	               if (_ebutton == LEFT_) {
                         _ecol->info(1);
- 	               _erow->info(1);
+ 	                _erow->info(1);
                           if (_ecol == PriorityCol) {
-                              setPriority(_erow);
+                              setPriority(_erow,_ecol);
                           }
                           else if (_ecol == PCDoneCol) {
                               PCDONE(_erow);
@@ -261,7 +267,7 @@
                               HowLong(_erow,_ecol);
                           }
                           else if (_ecol == DiffCol) {
-                              setDifficulty(_erow);
+                              setDifficulty(_erow,_ecol);
                           }
                           else if (_ecol == AttrCol) {
                               setAttribute(_erow);
@@ -269,6 +275,7 @@
                          else {
                            getCellValue(_erow,_ecol);
                           }
+			  SCORE();
                          }
              
           sWo(ssmods,@redraw);
@@ -357,7 +364,7 @@
    copy over tasks needing to be done from previous days
   
    maintenance tasks , Lang, Guitar,Piano Exercise  - PR  
-   how much was done -   need scoring function  for the day
+   need scoring function  for the day -DONE
    
    daily message / ?email alert - midday/teatime / 9pm lastcall
    to prompt

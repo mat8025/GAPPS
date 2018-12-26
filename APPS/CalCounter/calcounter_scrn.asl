@@ -1,3 +1,14 @@
+//%*********************************************** 
+//*  @script calcounter_scrn.asl 
+//* 
+//*  @comment  
+//*  @release CARBON 
+//*  @vers 1.8 O Oxygen                                                   
+//*  @date Wed Dec 26 07:34:23 2018 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2014,2018 --> 
+//* 
+//***********************************************%
 ///
 ///   ddc screen
 ///
@@ -6,7 +17,7 @@
 
     sWi(vp,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
 
-    sWi(vp,@clip,0.1,0.2,0.9,0.9)
+    sWi(vp,@clip,0.1,0.2,0.95,0.9)
 
     sWi(vp,@redraw)
 
@@ -29,21 +40,25 @@
       pgdwo = cWo(vp,@BN,@name,"PGDWN",@color,ORANGE_,@bhue,"pink");
 
       pguwo = cWo(vp,@BN,@name,"PGUP",@color,ORANGE_,@bhue,"golden");
-      
 
-      int ssmods[] = { readwo,savewo,sortwo,swprwo,delrwo, pguwo,pgdwo };
+      pgnwo = cWo(vp,@BV,@name,"PGN",@color,ORANGE_,@bhue,"cyan",@value,0,@style,"SVR");
+      
+      sWo(pgnwo,@bhue,WHITE_,@clipbhue,RED_,@FUNC,"inputValue",@callback,"PGN",@MESSAGE,1)
+
+
+      int ssmods[] = { readwo,savewo,sortwo,swprwo,delrwo, pguwo,pgdwo,pgnwo };
 
 
       wovtile(ssmods,0.05,0.2,0.1,0.9,0.05);
 
 
- cellwo=cWo(vp,"SHEET",@name,"DailyCalCnt",@color,GREEN_,@resize,0.12,0.51,0.9,0.95)
+ cellwo=cWo(vp,"SHEET",@name,"DailyCalCnt",@color,GREEN_,@resize,0.12,0.51,0.95,0.95)
 
  sWo(cellwo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"1",@func,"xxx")
 
  sWo(cellwo,@bhue,CYAN_,@clipbhue,SKYBLUE_,@redraw);
 
- choicewo=cWo(vp,"SHEET",@name,"FoodChoice",@color,GREEN_,@resize,0.12,0.2,0.9,0.40)
+ choicewo=cWo(vp,"SHEET",@name,"FoodChoice",@color,GREEN_,@resize,0.12,0.2,0.95,0.40)
 
  sWo(choicewo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"1",@func,"xxx")
 

@@ -1,17 +1,6 @@
 //%*********************************************** 
 //*  @script dayt_scrn.asl 
 //* 
-//*  @comment  
-//*  @release CARBON 
-//*  @vers 1.1 H.H 
-//*  @date Sat Dec 22 10:48:02 2018 
-//*  @author Mark Terry 
-//*  @CopyRight  RootMeanSquare  2014,2018 --> 
-//* 
-//***********************************************%
-//%*********************************************** 
-//*  @script dayt_scrn.asl 
-//* 
 //*  @comment  screen setup for daytasker
 //*  @release CARBON 
 //*  @vers 1.1 H.H 
@@ -22,7 +11,7 @@
 //***********************************************%
 
 
-include "tbqrd"
+include "tbqrd.asl"
 
     vp = cWi(@title,"S2D:$fname")
 
@@ -55,7 +44,6 @@ include "tbqrd"
       pguwo = cWo(vp,@BN,@name,"PGUP",@color,ORANGE_,@bhue,"golden");
 
       pgnwo = cWo(vp,@BV,@name,"PGN",@color,ORANGE_,@bhue,"cyan",@value,0,@style,"SVR");
-
       
       sWo(pgnwo,@bhue,WHITE_,@clipbhue,RED_,@FUNC,"inputValue",@callback,"PGN",@MESSAGE,1)
 

@@ -1,12 +1,12 @@
 //%*********************************************** 
 //*  @script shead.asl 
 //* 
-//*  @comment add a header to the script 
+//*  @comment  
 //*  @release CARBON 
-//*  @vers 1.2 H.He
-//*  @date Fri Dec 21 21:40:49 2018 
+//*  @vers 1.6 C Carbon                                                   
+//*  @date Sun Dec 23 09:23:42 2018 
 //*  @author Mark Terry 
-//*  @CopyRight  RootMeanSquare  2014,2018 --> 
+//*  @Copyright  RootMeanSquare  2014,2018 --> 
 //* 
 //***********************************************%
 
@@ -79,6 +79,7 @@
    
    maj_ele = ptsym(maj);
    min_ele = ptsym(min);
+   min_name = ptname(min);
    
    date = date();
    
@@ -155,16 +156,18 @@ if (found_vers) {
    newsrc=scat(ns,"-new.asl")
 
    A=ofw(newsrc);
-
+   vers="  @vers ${maj}.$min $min_ele $min_name "
+   vlen = slen(vers);
+   pad = nsc(70-vlen," ")
    <<[A]"//%%*********************************************** \n"
    <<[A]"//*  @script $fname \n"
    <<[A]"//* \n"
    <<[A]"//*  @comment $comment \n"
    <<[A]"//*  @release $release \n"   
-   <<[A]"//*  @vers ${maj}.$min ${maj_ele}.$min_ele \n"
+   <<[A]"//*$vers $pad\n"
    <<[A]"//*  @date $date \n"   
    <<[A]"//*  @author $author \n"
-   <<[A]"//*  @CopyRight  RootMeanSquare  2014,$(date(8)) --> \n"           
+   <<[A]"//*  @Copyright  RootMeanSquare  2014,$(date(8)) --> \n"           
    <<[A]"//* \n"   
    <<[A]"//***********************************************%%\n"
    fflush(A)

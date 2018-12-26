@@ -1,5 +1,17 @@
-///
-///
+//%*********************************************** 
+//*  @script calcounter.asl 
+//* 
+//*  @comment  
+//*  @release CARBON 
+//*  @vers 1.19 K Potassium                                               
+//*  @date Sun Dec 23 09:19:59 2018 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2014,2018 --> 
+//* 
+//***********************************************%
+
+
+
 ////////////    DDC  /////////////
 
 include "debug.asl"
@@ -33,7 +45,7 @@ proc Addrow()
 }
 //============================
 
-
+ int NFV = 25;// last is Zn
 
 proc foodSearch()
 {
@@ -97,7 +109,7 @@ proc totalRows()
 
 <<"$_proc \n"
 
-  float fc[10];  // cals,carbs,fat,prt,chol,sfat,txt
+  float fc[25];  // cals,carbs,fat,prt,chol,sfat,txt
   int kc = 0;
   int fi = 3;
   float fval;
@@ -110,14 +122,14 @@ proc totalRows()
 <<"$R[0][::]\n"
 <<"$R[1][::]\n"
 <<"%V $frows  $R[frows][0]\n"
-
+ 
   tword = deWhite(R[frows][0]);
   
   if (!strcasecmp(tword, "totals")) {
 
    for (j = 1; j < frows ; j++) {
      fi = 3;
-     for (kc = 0; kc <7  ; kc++) {
+     for (kc = 0; kc <NFV  ; kc++) {
 
           //fc[kc] += atof(R[j][kc+3]);
           //fc[kc] += atof(R[j][fi]);
@@ -136,7 +148,7 @@ proc totalRows()
    R[j][1] = "$(j-1)";
    R[j][2] = "ITMS";
 
-    for (kc = 0; kc < 7  ; kc++) {
+    for (kc = 0; kc < NFV  ; kc++) {
         nval = fc[kc];
        // R[j][3+kc] = dewhite("%6.2f$fc[kc]");  // TBF
           R[j][3+kc]= "%6.2f$nval";
@@ -226,9 +238,9 @@ proc adjustAmounts (svar irs, f)
 //<<"$irs[::]\n";
 
   a = atof (irs[1]) * f; //  <<"%V$a\n";
-
+// nfv
   irs[1] = dewhite("%6.2f$a");
-  for (i = 3; i < 10; i++)
+  for (i = 3; i < (NFV+3); i++)
     {
       a = atof (irs[i]) * f;
       irs[i] = deWhite("%6.2f$a");
@@ -309,7 +321,7 @@ nl = slen(fname);
 make_day = 0;
  if (nl != 0) {
 
-  if (scmp(fname,"dd_",3)) {
+  if (scmp(fname,"DD/dd_",6)) {
      adjust_day = 1;
      the_day = fname;
    }
@@ -327,7 +339,7 @@ A= ofr(fname)
 if (!adjust_day && !make_day) {
  ds= date(2);
  ds=ssub(ds,"/","-",0);
- the_day = "dd_${ds}";
+ the_day = "DD/dd_${ds}";
 }
 
 
@@ -360,7 +372,7 @@ int bpick;
 
 Record DF[10];
 
-DF[0] = Split("?,?,?,?,?,?,?,?,?,?",",");
+DF[0] = Split("?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?",",");
 
    
 Record R[];
@@ -371,8 +383,10 @@ if (found_day) {
 }
 else {
 
-R[0] = Split("Food,Amt,Unit,Cals,Carbs,Fat,Protein,Chol(mg),SatFat,Wt,",",");
-R[1] = Split("Totals,?,?,?,?,?,?,?,?,?",",");
+//R[0] = Split("Food,Amt,Unit,Cals,Carbs,Fat,Protein,Chol(mg),SatFat,Wt,",",");
+R[0]= Split("Food,Amt,Unit,Cals,Carbs(g),Fat,Prot,Choles(mg),SatFat(g),Wt(g),Choline(mg),vA(dv),vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn,",",");
+
+R[1] = Split("Totals,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?",",");
 
 }
 

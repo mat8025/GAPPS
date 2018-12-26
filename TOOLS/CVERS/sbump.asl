@@ -1,14 +1,15 @@
 //%*********************************************** 
 //*  @script sbump.asl 
 //* 
-//*  @comment bumps/sets version number 
+//*  @comment  
 //*  @release CARBON 
-//*  @vers 1.2 H.He
-//*  @date Fri Dec 21 21:48:19 2018 
+//*  @vers 1.5 B Boron                                                    
+//*  @date Sun Dec 23 09:22:34 2018 
 //*  @author Mark Terry 
-//*  @CopyRight  RootMeanSquare  2014,2018 --> 
+//*  @Copyright  RootMeanSquare  2014,2018 --> 
 //* 
 //***********************************************%
+
 
  
   
@@ -161,14 +162,18 @@
   date = date();
   maj_ele = ptsym(pmaj);
   min_ele = ptsym(pmin);
+  min_name = ptname(pmin);
 
 
 
-
- <<[2]"///  @vers $release ${pmaj}.$pmin ${maj_ele}.$min_ele $date    \n"
+ <<[2]"///  @vers $release ${pmaj}.$pmin ${maj_ele}.$min_ele $min_name    \n"
 
   fseek(A,found_where,0)
-<<[A]"//*  @vers ${pmaj}.$pmin ${maj_ele}.$min_ele"
+
+   vers="  @vers ${pmaj}.$pmin $min_ele $min_name "
+   vlen = slen(vers);
+   pad = nsc(70-vlen," ")
+<<[A]"//*$vers $pad"
 
 // <<[A]" ??? \n"
 

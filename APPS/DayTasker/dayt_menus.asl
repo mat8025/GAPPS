@@ -1,18 +1,20 @@
 //%*********************************************** 
 //*  @script dayt_menus.asl 
 //* 
-//*  @comment  menus for daytasker
+//*  @comment  
 //*  @release CARBON 
-//*  @vers 1.1 H.H 
-//*  @date Sat Dec 22 08:37:22 2018 
+//*  @vers 1.2 He Helium                                                  
+//*  @date Tue Dec 25 08:04:48 2018 
 //*  @author Mark Terry 
-//*  @CopyRight  RootMeanSquare  2014,2018 --> 
+//*  @Copyright  RootMeanSquare  2014,2018 --> 
 //* 
 //***********************************************%
 
  //=============== MENUS=================//
  A=ofw("Howlong.m")
  <<[A],"title HowLong\n"
+ <<[A],"item 0m M_VALUE 0\n"
+ <<[A],"item 5m M_VALUE 5\n"
  <<[A],"item 10m M_VALUE 10\n"
  <<[A],"item 15m M_VALUE 15\n"
  <<[A],"item 30m M_VALUE 30\n"
@@ -44,6 +46,7 @@
  
  A=ofw("PCdone.m")
  <<[A],"title PCdone\n"
+  <<[A],"item 0% M_VALUE 0\n"
  <<[A],"item 5% M_VALUE 5\n"
  <<[A],"item 10% M_VALUE 10\n"
  <<[A],"item 25% M_VALUE 25\n"
@@ -64,6 +67,9 @@
  <<[A],"item 5 M_VALUE 5\n"
  <<[A],"item 6 M_VALUE 6\n"
  <<[A],"item 7 M_VALUE 7\n"
+ <<[A],"item 8 M_VALUE 8\n"
+ <<[A],"item 9 M_VALUE 9\n"
+ <<[A],"item 10 M_VALUE 10\n"   
  cf(A)
  //==============================//
  A=ofw("Difficulty.m")
@@ -86,8 +92,9 @@
  <<[A],"item L M_VALUE L\n"
  <<[A],"item Y M_VALUE Y\n"
  <<[A],"item H M_VALUE H\n"
+ <<[A],"item B M_VALUE B\n"
  <<[A],"item ? C_INTER "?"\n"
- <<[A],"help set attribute\n"
+ <<[A],"help set task attribute\n"
  cf(A)
  //==============================//
  

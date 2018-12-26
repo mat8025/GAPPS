@@ -1,14 +1,15 @@
 //%*********************************************** 
 //*  @script dayt_procs.asl 
 //* 
-//*  @comment  procs for daytasker
+//*  @comment  
 //*  @release CARBON 
-//*  @vers 1.2 H.He
-//*  @date Sat Dec 22 08:37:29 2018 
+//*  @vers 1.4 Be Beryllium                                               
+//*  @date Tue Dec 25 08:08:48 2018 
 //*  @author Mark Terry 
-//*  @CopyRight  RootMeanSquare  2014,2018 --> 
+//*  @Copyright  RootMeanSquare  2014,2018 --> 
 //* 
 //***********************************************%
+
 
 
 proc readTheDay( fnm)
@@ -70,7 +71,8 @@ proc HowLong(wr, wc)
         }
 }
 //===============================//
-
+/{
+// use gss versions
 proc setPriority(wr)
 {
    mans = popamenu("Priority.m")
@@ -91,6 +93,7 @@ proc setDifficulty(wr)
         }
 }
 //===============================//
+/}
 proc setAttribute(wr)
 {
    mans = popamenu("Attributes.m")
@@ -165,9 +168,12 @@ proc SCORE()
   for (i =1 ; i <Rn; i++) {
   score = atof(R[i][PCDoneCol]);
   score *= atof(R[i][DiffCol]);
-  score *= atof(R[i][DurationCol]);  
+  score *= atof(R[i][DurationCol]);
+  score *= 0.01;
   total += score;
-  val = "%4.1f$score"
+  
+  
+  val = "%4.0f$score"
   R[i][ScoreCol] = val;
   sWo(cellwo,@cellval,i,ScoreCol,val);
   sWo(scorewo,@value,total,@update);

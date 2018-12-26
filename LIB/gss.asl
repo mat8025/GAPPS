@@ -1,3 +1,14 @@
+//%*********************************************** 
+//*  @script gss.asl 
+//* 
+//*  @comment  
+//*  @release CARBON 
+//*  @vers 1.12 Mg Magnesium                                              
+//*  @date Wed Dec 26 08:45:16 2018 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2014,2018 --> 
+//* 
+//***********************************************%
 ///
 ///   gss  procs
 ///
@@ -11,6 +22,7 @@ int curr_row = 3;  // for paging
 int page_rows = 20;
 int curr_page = 1;
 int npgs = 1;
+int Nrows = 0;
 swaprow_a = 1;
 swaprow_b = 2;
 
@@ -26,9 +38,9 @@ proc getCellValue( r, c)
 
  
      if (r >0 && c >= 0 ) {
- <<" %V $r $c \n";
+// <<" %V $r $c \n";
            cvalue = R[r][c];
- <<" %V $cvalue \n";
+// <<" %V $cvalue \n";
            if ((c == 0) && (cvalue @= "")) {
              ADDTASK()
            }
@@ -39,13 +51,47 @@ proc getCellValue( r, c)
      }
 }
 //=====================
-proc setPriority(wr)
+proc setPriority(wr,wc)
 {
    mans = popamenu("Priority.m")
 	
         if (!(mans @= "NULL_CHOICE")) {
-           sWo(cellwo,@cellval,wr,PriorityCol,mans);
-           R[wr][PriorityCol] = mans;
+           sWo(cellwo,@cellval,wr,wc,mans);
+           R[wr][wc] = mans;
+        }
+}
+//===============================//
+proc setUpdate(wr,wc)
+{
+   
+	 mans = date(2);
+           sWo(cellwo,@cellval,wr,wc,mans);
+           R[wr][wc] = mans;
+        
+}
+//===============================//
+
+
+
+
+proc setDifficulty(wr,wc)
+{
+   mans = popamenu("Difficulty.m")
+	
+        if (!(mans @= "NULL_CHOICE")) {
+           sWo(cellwo,@cellval,wr,wc,mans);
+           R[wr][wc] = mans;
+        }
+}
+//===============================//
+proc HowLong(wr, wc)
+{
+  
+   mans = popamenu("Howlong.m")
+	
+        if (!(mans @= "NULL_CHOICE")) {
+           sWo(cellwo,@cellval,wr,wc,mans);
+           R[wr][wc] = mans;
         }
 }
 //===============================//
@@ -114,7 +160,7 @@ proc SORT()
 //======================
 proc SWOPROWS()
 {
-<<"in $_proc\n"
+//<<"in $_proc\n"
 <<"swap rows $swaprow_a and $swaprow_b\n"
          //sWo(cellwo,@swaprows,swaprow_a,swaprow_b);
 //	SwapRows(R,swaprow_a,swaprow_b);
@@ -177,7 +223,8 @@ int n2d = 0;
          }
         // clear deleted rows at end
 	// reset rows
-	Nrows = nsz;
+        rows = nsz;
+        Nrows = nsz;
         sWo(cellwo,@cellval,nsz,0,sz,cols,"");
         sWo(cellwo,@cellval,R);
 	sWo(cellwo,@redraw);
@@ -212,7 +259,7 @@ proc AddTask( wt)
     sWo(cellwo,@selectrowscols,0,2,0,cols,1);
 
     rows++;
-
+    Nrows = rows;
     <<"$wt $DF[wt]\n"
     ex = DF[wt];
     <<"$wt $DF[wt] : $ex\n"
