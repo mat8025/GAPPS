@@ -1,3 +1,14 @@
+//%*********************************************** 
+//*  @script checkFood.asl 
+//* 
+//*  @comment  
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                 
+//*  @date Sat Dec 29 11:16:57 2018 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2014,2018 --> 
+//* 
+//***********************************************%
 ///
 //////////////////////////////////////
 //<<"including checkFood\n"
@@ -11,18 +22,27 @@ proc Compare(phr1,phr2)
    int match;
    int charrem;
    int k;
-   int fit = 0; 
+   int fit = 0;
+   str rs = "";
+//<<"$phr1    $phr2"
 
-  n = Caz(phr1); // how may words/field in svar phr1
+  n = Caz(phr1); // how many words/field in svar phr1
 
   fwds = Split(phr2);
+
   n2 = Caz (fwds);
+
+//<<"$n    $n2"
+
   for (k = 0; k < n; k++) {
+
     wd = supper(phr1[k]);
+//<<"$k $wd $phr2 \n"
     rs=spat(phr2,wd,0,1,&match,&charrem); // TBF if don't capture return
-                                                                     // next if garbaged ???
+//<<"<|$rs|> $match $charrem \n"
     if ( match == 1) {
-       fit += 10;
+<<"$k $wd $rs $fit\n"
+      fit += 10;
        if (k < n2) {
          if (wd @= fwds[k]) {
            fit += (5 + (n-k));
@@ -30,7 +50,7 @@ proc Compare(phr1,phr2)
        }
      }
    }
-    
+
     return fit;
 }
 //==============================
@@ -67,17 +87,20 @@ svar food_d;
 int nfd = 0;
 str the_food;
 
-//<<" $_proc looking for $f_amt $f_unit of $myfood \n"
+
+<<[_DB]" $_proc looking for $f_amt $f_unit of $myfood \n"
 
   the_unit = "1";
 
   nci = scin(myfood,",")
-  if (nci > 0)
-    food_d = split(myfood,',')
-  else
+  if (nci > 0) {
+    food_d = split(myfood,',');
+    }
+  else {
       food_d = split(myfood)
-      
-//<<"%V <$food_d> $(typeof(myfood))\n"
+  }
+
+<<[_DB]"%V <$food_d> $(typeof(myfood))\n"
 
   fsz = Caz(food_d)
 
@@ -93,14 +116,21 @@ str the_food;
      the_amt = 1;
 
     N = Nrecs -1;
-    
+  //  <<"%V $Nrecs \n"
+    jj = 0;
+    food_wrd="";
     for (i = 1 ; i < N ; i++) {
-
-        score = Compare(food_d,RF[i][0]);
+    
+        food_wrd = "$RF[i][0]";
+	
+        //score = Compare(food_d,RF[i][0]);
+<<"$i $food_wrd\n"
+       score = Compare(food_d,food_wrd);
 
       if (score > 0) {
         //  <<"$('PRED_') $Wans $('POFF_')\n"
-	//  <<"%V$score \n"
+//more= iread("continue?");
+  //      <<"$score $food_wrd\n"
          found =1;        
         if (score > Bestpick[pk][0]) {
 	<<"%V $pk $score  $Bestpick[pk][0]\n"
@@ -109,15 +139,25 @@ str the_food;
 	   pk++;
 	 }
 	 
-	 if (pk > (Nbp-1)) {
-             pk = 0;
-         }
+
   
       if (score > best_score) {
           best_score = score;
 	  best_i = i;
       }
-  }
+      
+	 if (pk > (Nbp-1)) {
+             pk = 0;
+         }
+
+      if (best_score >50) {
+         break;
+      }
+	 jj++;
+	 if (jj > 1500) {
+              break;
+         }
+    }
 }
 
  
@@ -126,49 +166,65 @@ str the_food;
 
    if (found) { // some match was found
           <<"$('PGREEN_') "
-  <<"$RF[best_i] \n"
+	  FL = RF[best_i];
+  <<"%V$RF[best_i] \n"
+ // <<"$FL \n"
    <<"$('POFF_') "
-<<"FOOD found %V $best_score $best_i  \n"
+<<"FOOD found %V $best_score <|$best_i|>  \n"
+
       Wfi = best_i;
 
     // testargs(1,Bestpick)
-<<"pre sort %V$Bestpick\n"
+<<[_DB]"pre sort %V$Bestpick\n"
 
      for (i= 0; i < Nbp; i++) {
-<<"$i $Bestpick[i][0] $Bestpick[i][1]\n"
+       i0 = Bestpick[i][0];
+       i1 = Bestpick[i][1];       
+
+//<<[_DB]"$i $Bestpick[i][0] $Bestpick[i][1]\n"
+<<[_DB]"$i $i0 $i1\n"
      }
 
-//<<"$(typeof(Bestpick)) $(Cab(Bestpick))\n"
+//<<[_DB]"$(typeof(Bestpick)) $(Cab(Bestpick))\n"
 
 <<"//////////////////\n"
 
+bsz = Caz(Bestpick);
+<<[_DB]"%V$bsz \n"
 
-     bp = msortCol(Bestpick,0);
-
+     bpr = msortCol(Bestpick,0);
+     bp = mrevrows(bpr);
+     
 //testargs(1,Bestpick)
-
+// but this is in ascending order
+// want to reverse to 0 row is best
      for (i= 0; i < Nbp; i++) {
-<<"$i $bp[i][0] $bp[i][0]\n"
+       i0 = bp[i][0];
+       i1 = bp[i][1];       
+<<[_DB]"bp $i $i0 $i1\n"
+//<<[_DB]"$i bp $bp[i][0] $bp[i][0]\n"
      }
 
 
-<<"//////////////////\n"
+<<[_DB]"//////////////////\n"
      Bestpick = bp;
 
-<<"after sort %V$Bestpick[::]\n"
+<<[_DB]"after sort %V$Bestpick[0][1]\n"
 
      for (i= 0; i < Nbp; i++) {
-<<"$i $Bestpick[i][::]\n"
+<<[_DB]"$i $Bestpick[i][0] $Bestpick[i][1] \n"
      }
 
     best_score = 0;
-    
+
     for (i =0; i < Nbp; i++) {
         if (Bestpick[i][0] > 1) {
 	      wi = Bestpick[i][1] ;
               wscore = Bestpick[i][0] ;
-            <<"<$i> $Bestpick[i][0] $Bestpick[i][1] " 
-            <<"$RF[wi] \n"
+            <<[_DB]"<$i> $Bestpick[i][0] $Bestpick[i][1]\n " 
+            FL = RF[wi];
+            <<[_DB]"%V$RF[wi] \n" // BUG
+	    <<[_DB]"%V$FL \n"
 	    if (wscore > best_score) {
                  best_pick = wi;
 		 best_score = wscore;
@@ -183,4 +239,4 @@ str the_food;
 ////////////////////////////////////////////////
 
 
-//<<"Done inc checkFood\n"
+//<<[_DB]"Done inc checkFood\n"

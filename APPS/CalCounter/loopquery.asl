@@ -1,38 +1,50 @@
-///
-///  loopquery
+//%*********************************************** 
+//*  @script loopquery.asl 
+//* 
+//*  @comment  
+//*  @release CARBON 
+//*  @vers 2.18 Ar Argon                                                  
+//*  @date Mon Dec 31 14:40:59 2018 
+//*  @cdate Mon Dec 31 08:00:00 2015 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2014,2018 --> 
+//* 
+//***********************************************%
+
+
+
+
+
 ///
 /// total up cals,carbs,...
 /// accept,reject or multiply quantity by factor
 /// cup to tablespoon 1/16
 /// tablespoon -> teaspoon  1/3
 /// for each query
-/// write to a day log file dd-04-09-2018
+/// write to a day log file DD/dd-04-09-2018
 /// 
 
 #define MAXFREC 50
 
 
 Record R[];
+Record DDI[3];
 
 Svar Wans;
 
 int Rn = 0;
 
-Cal_tot = 0.0;
-Carb_tot = 0.0;
-Fat_tot = 0.0;
-Prt_tot = 0.0;
-Chol_tot = 0.0;
-SatF_tot = 0.0;
 
+
+float Ntrtotals[24];
 
 proc adjustAmounts (svar irs, f)
 {
   float a;
   int i;
 
-//<<"%V $(typeof(irs)) $irs[::]\n";
-<<"$irs[::]\n";
+<<"%V $(typeof(irs)) $irs[::]\n";
+//<<"$irs[::]\n";
 //  for (i = 0; i < Ncols; i++)
 //    {
 //    <<"<$i>  $irs[i] \n";
@@ -41,7 +53,7 @@ proc adjustAmounts (svar irs, f)
   a = atof (irs[1]) * f;
   <<"%V$a\n";
   irs[1] = "%6.2f$a";
-  for (i = 3; i < 10; i++)
+  for (i = 3; i < Ncols; i++)
     {
       a = atof (irs[i]) * f;
   //  <<"%V$a\n" ;
@@ -54,15 +66,17 @@ proc adjustAmounts (svar irs, f)
 //======================================//
 proc showFitems ()
 {
-
+<<" $_proc\n"
   for (ir = 0; ir < Rn; ir++)
     {
-      <<"[$ir ] $R[ir][0] $R[ir][1] $R[ir][2] $R[ir][3] $R[ir][4]\n";
+      //<<"[$ir ] $R[ir][0] $R[ir][1] $R[ir][2] $R[ir][3] $R[ir][4]\n";
+      <<"[$ir ] $R[ir]\n";
     }
 
   computeTotals ();
-<<"Items\tCals\tCarbs(g)\tFat(g)\tPrt(g)\tChol(mg)\tSatFat(g)\n";
-<<"$(Rn+1) %4.1f\t$Cal_tot\t$Carb_tot\t\t$Fat_tot\t$Prt_tot\t$Chol_tot\t\t$SatF_tot\n";
+<<"Items\tCals\tCarbs(g)\tFat(g)\tPrt(g)\tChol(mg)\tSatFat(g)\tvA(dv)\tvC\tCa\n";
+//<<"$(Rn) %4.1f\t$Cal_tot\t$Carb_tot\t\t$Fat_tot\t$Prt_tot\t$Chol_tot\t\t$SatF_tot\t\t$vA_tot\t$vC_tot\t$Ca_tot\n";
+<<"$(Rn) %4.1f\t$Ntrtotals\n";
 
 }
 //================================================
@@ -76,19 +90,31 @@ proc readDD (ddfn)
     // R=ReadRecord(ddfn,@del,',',@comment,"",@pickstr,"@=",0,"must")
 // found previous list
 // read in lines and add to record
-    R = ReadRecord (ddfn, @del, ',');
+  R = ReadRecord (ddfn, @del, ',');
   //R=ReadRecord(ddfn,@del,44) ;
   // reads as records all lines except those starting with #
   Rn = Caz (R);
 
   <<"$Rn Rsz $(Caz(R))\n";
 
-  R[Rn+5][0] = "#";
-
   <<" first rec $R[0]\n";
   <<"1 desc <|${R[0][0]}|>\n";
   <<"1 cals <|${R[0][1]}|>\n";
   <<"2 carbs $R[0][2] \n";
+
+  for (i=0; i< Rn ;i++) {
+<<"[${i}] $R[i]\n";
+  }
+
+
+//  R[(Rn+5)][0] = "#"; // array index not computed??
+    wri = Rn+5
+    <<"%V$wri\n"
+    R[wri][0] = "#"; 
+
+  for (i=0; i< Rn ;i++) {
+<<"[${i}] $R[i]\n";
+  }
 
 //  <<"Rsz $(Caz(R))\n";
 //
@@ -100,48 +126,61 @@ proc readDD (ddfn)
 //==================================
 proc writeDD ()
 {
-
+// Ncols - food header should be sset via foodtable.csv
   B = ofile (the_day, "w");
 
-  <<[B] "# Food                       Amt Unit Cals Carbs Fat Protein Chol(mg) SatFat Wt\n";
+//<<[B] "# Food                       Amt Unit Cals Carbs Fat Protein Chol(mg) SatFat Wt\n";
+<<[B]"#Food,Amt,Unit,Cals,Carbs(g),Fat,Prot,Choles(mg),SatFat(g),Wt(g),Choline(mg),vA(dv),vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn\n"
+   for (i=0;i<Rn;i++) {
+     <<"[${i}] $R[i]\n"
+   }
 
-<<"$R[1]\n"
-    writeRecord (B, R, "#");
+
+  writeRecord (B, R, "#");
 
 
   computeTotals ();
 
-<<[B]"# totals %4.1f$Cal_tot $Carb_tot $Fat_tot $Prt_tot $Chol_tot $SatF_tot\n";
+//<<[B]"# totals %4.1f$Cal_tot $Carb_tot $Fat_tot $Prt_tot $Chol_tot $SatF_tot $vA_tot $vC_tot $Ca_tot\n";
+<<[B]"# totals %4.1f$Ntrtotals\n";
     cf (B);
 
-<<"%(1,>>, || ,<<\n)$R[::]\n";
+//<<"%(1,>>, || ,<<\n)$R[::]\n";
 
 }
 //==================================
 
 proc computeTotals ()
 {
-  Cal_tot = 0;
-  Carb_tot = 0;
-  Fat_tot = 0.0;
-  Prt_tot = 0.0;
-  Chol_tot = 0.0;
-  SatF_tot = 0.0;
-  for (ir = 0; ir < Rn; ir++)
+
+  Ntrtotals = 0;
+  Svar Wtot;
+   for (ir = 0; ir < Rn; ir++)
     {
       ok = scmp (R[ir][0], "#", 1);
       if (!scmp (R[ir][0], "#", 1))
 	{
 	  //<<"adding rec $ir $R[ir][0] \n"
-	  Cal_tot += atof (R[ir][3]);
-	  Carb_tot += atof (R[ir][4]);
-	  Fat_tot += atof (R[ir][5]);
-	  Prt_tot += atof (R[ir][6]);
-	  Chol_tot += atof (R[ir][7]);
-	  SatF_tot += atof (R[ir][8]);
-	  // <<"adding rec $ir $ok $Cal_tot \n"
+
+          Wtot =  R[ir];
+
+          <<"$ir $(Caz(Wtot)) <|$Wtot|> \n"
+
+
+	 
+	  TS= Wtot[3:26];
+//	  <<"$(Caz(TS)) $(typeof(TS))\n"
+          VF = atof(TS);
+	 // <<"%V $VF\n"
+	  Ntrtotals += VF;
+          //Ntrtotals += atof (R[ir][3:5]);	  	  	  
+         // <<"adding rec $ir $ok $Cal_tot \n"
 	}
     }
+
+  
+    <<"%V $Ntrtotals\n"
+	  
 }
 
 //==================================
@@ -165,13 +204,18 @@ proc queryloop ()
   for (i = 0; i < 10; i++)
     {
       nc = Caz (RF[i]);
-      <<"<$i> $nc $RF[i] \n";
+
+      //<<"<$i> $nc $RF[i] \n";
+       FL=RF[i];
+       <<"<$i>  $FL  \n";      
     }
 
   for (i = Nrecs - 10; i < Nrecs; i++)
     {
       nc = Caz (RF[i]);
-      <<"<$i> $nc $RF[i] \n";
+     // <<"<$i> $nc $RF[i] \n";
+       FL=RF[i];
+       <<"<$i>  $FL  \n";      
     }
 
   while (1)
@@ -183,6 +227,7 @@ proc queryloop ()
       <<" New Query\n"
 	ans = "new query"
 	ans = i_read ("[n]ew,[l]ist,[d]elete,[s]ave,[q]uit ? :: $ans ")
+	
 	if (scmp (ans, "save", 1))
 	{
 
@@ -217,17 +262,15 @@ proc queryloop ()
 	  continue;
 	}
 
-      if (scmp (ans, "qy", 2))
-	{
-	  break;
-	}
 
+      if (scmp (ans, "qy", 2)) {
+          break;
+      }
+      
       if (scmp (ans, "quit", 1))
 	{
 	  ans = "no";
-	  ans =
-	    i_read
-	    ("need to save changes first?! -really quit ? [y]es :: $ans ");
+	  ans = i_read("need to save changes first?! -really quit ? [y]es :: $ans ");
 	  if (scmp (ans, "yes", 1))
 	    {
 	      break;
@@ -346,12 +389,11 @@ proc queryloop ()
 //    <<"should be scalar! %V $mf \n"
 
 	  Wans->vfree();
-    //<<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
-          Wans = RF[bpick];
-   // <<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
 
-	  nc = Caz (RF[bpick]);
-	  <<"%V $bpick $nc $RF[bpick] \n";
+
+	  nc = Caz (RF,bpick);
+	  <<"%V $bpick $nc\n"
+	  <<"$RF[bpick] \n";
 
 	  ans = iread (" [a]ccept,[r]eject , [m]ultiply ?\n");
 
@@ -360,16 +402,18 @@ proc queryloop ()
 
 //<<[B]"$Wans \n"
 	      <<"adding @ $Rn Rsz $(Caz(R))\n";
-
+              DDI[0] = RF[bpick];
+	      <<"%V $DDI[0]\n"
 	      //R[Rn] = Split(Wans,",");
 	      
              //<<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
-             Wans = RF[bpick];  // this does not set correct number of fields
+              Wans = RF[bpick];  // this does not set correct number of fields
+	      <<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
+              
+	      Wans->resize(Ncols);
+	      
 	      //<<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
-              //<<"%V $(typeof(RF))  $(Caz(RF,bpick)) $RF[bpick]\n";
-	      Wans->resize(10);
-	      //<<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
-             R[Rn] = Wans;
+              R[Rn] = Wans;
 
 	      //<<"added @ $Rn Rsz $(Caz(R,Rn))\n";
 	      <<"<$Rn> added $R[Rn] \n";
@@ -391,7 +435,7 @@ proc queryloop ()
 		  Wans = RF[bpick];
                    
 		  //<<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
-		  <<" $Wans\n";
+		  <<"%V $Wans\n";
 		  
 	//	    for (i = 0; i < Ncols; i++)
 	//	    {
@@ -406,16 +450,16 @@ proc queryloop ()
 //		      <<"<$i>  $Wans[i] \n";
 //		    }
 
-		  <<"$Wans\n";
+		  <<"%V $Wans\n";
 
 		  ans = iread (" [a]ccept,[r]eject\n");
 
 		  if (ans @= "a")
 		    {
 		      // <<[B]"$Wans \n"
-		      //<<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
+		      <<"%V $(typeof(Wans))  $(Caz(Wans)) $Wans\n";
 		      <<"adding @ $Rn Rsz $(Caz(R))\n";
-		      Wans->resize(10);
+		      Wans->resize(Ncols);
 		      R[Rn] = Wans;
 		      Rn++;
 		      ret = 1;

@@ -1,3 +1,14 @@
+//%*********************************************** 
+//*  @script wex_compute.asl 
+//* 
+//*  @comment  
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                 
+//*  @date Sat Dec 29 09:06:02 2018 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2014,2018 --> 
+//* 
+//***********************************************%
 
 xhrs = 0;
 

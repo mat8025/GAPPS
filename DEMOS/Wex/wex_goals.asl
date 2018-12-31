@@ -1,26 +1,39 @@
+//%*********************************************** 
+//*  @script wex_goals.asl 
+//* 
+//*  @comment  
+//*  @release CARBON 
+//*  @vers 1.2 He Helium                                                  
+//*  @date Sat Dec 29 08:56:45 2018 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2014,2018 --> 
+//* 
+//***********************************************%
 ///
 ///        long-term and current weight loss goals 
 ///
 
 
-GoalWt = 170;  // ideal -- just so slighty tubby
-NextGoalWt = 185;
-StartWt = 199;
+GoalWt = 175;  // ideal -- flying weight
 
-targetday = julian("11/05/2018") -bday;
+NextGoalWt = 185;
+
+StartWt = 207;
+
+targetday = julian("01/31/2019") -bday;
 
 
 //  SET  START AND END DATES HERE
 
-long sday = julian("10/01/2018") -bday // start date
+long sday = julian("12/28/2018") -bday // start date
       gsday = sday;
       gday =  targetday;    // next goal day 
 
 
 got_start = 0
 
-long yday = julian("01/01/2018")   // this should be found from data file
-long eday = julian("12/31/2018")  // this should be found from data file
+long yday = julian("01/01/2019")   // this should be found from data file
+long eday = julian("03/31/2019")  // this should be found from data file
 today = julian("$(date(2))");
 
 
@@ -37,8 +50,8 @@ if ( k < 0) {
 
 kdays = k
 
-DBPR"%V$kdays \n"
+<<[_DB]"%V$kdays \n"
 
-<<"%V$yday  $eday $today  $(date(2))\n"
+<<[_DB]"%V$yday  $eday $today  $(date(2))\n"
 
 ///////////////////////////////////

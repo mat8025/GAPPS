@@ -1,6 +1,15 @@
-///
-///  wex_draw
-///
+//%*********************************************** 
+//*  @script wex_draw.asl 
+//* 
+//*  @comment  
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                 
+//*  @date Sat Dec 29 09:01:52 2018 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2014,2018 --> 
+//* 
+//***********************************************%
+
 
 proc drawGoals(ws)
   {
@@ -14,7 +23,7 @@ proc drawGoals(ws)
    }
 
   if (ws == 1) {
-DBPR"$ws $swo $kdays \n"
+<<[_DB]"$ws $swo $kdays \n"
 
    Plot(swo,@line,0,150,kdays-10,250, BLUE_)
    }
@@ -60,7 +69,7 @@ proc  drawMonths(wwo)
    jd= mid_date +bday
    the_date = julmdy("$jd")
 
-DBPR"%V$mid_date $jd $the_date \n"
+<<[_DB]"%V$mid_date $jd $the_date \n"
 
    AxText(wwo, 1, the_date, mid_date, -0.25, BLUE_)
 
@@ -76,11 +85,11 @@ DBPR"%V$mid_date $jd $the_date \n"
 
 proc  drawGrids( ws )
 {
-// DBPR" $ws \n"
+// <<[_DB]" $ws \n"
 
  if (ws == 0) {
 
-  //DBPR"drawing Grids for screen 0 \n"
+  //<<[_DB]"drawing Grids for screen 0 \n"
 
   //SetGwob(extwo,@axnum,1,0,kdays,7,1)
 
@@ -138,7 +147,7 @@ proc drawScreens()
      
   if (ALL_LINES) {
   
-  DBPR" draw lines \n"
+  <<[_DB]" draw lines \n"
 
       sWo(extwo,@scales,sc_startday,0,sc_endday+10,600,@savescales,1);
 
@@ -189,7 +198,7 @@ proc drawScreens()
 
       if ( wScreen == 1) {
 
-DBPR" Drawscreen 1  BP!!\n"
+<<[_DB]" Drawscreen 1  BP!!\n"
  
       drawGoals(1);
       drawGrids(1);
@@ -250,7 +259,7 @@ proc adjustYear(updown)
    yrs = sele(the_date,-4,4)
    
    yrd = atoi(yrs)
-//DBPR"%V$jd $the_date $yrs $yrd \n"
+//<<[_DB]"%V$jd $the_date $yrs $yrd \n"
 
 //<<"%V$jd $the_date $yrs $yrd \n"
 

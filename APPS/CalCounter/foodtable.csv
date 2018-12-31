@@ -1,5 +1,4 @@
 Food,Amt,Unit,Cals,Carbs(g),Fat,Prot,Choles(mg),SatFat(g),Wt(g),Choline(mg),vA(dv),vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn,
-
 ALFALFA SEEDS                       ,1,cup,7.6,0.7,0.2,1.3,0.0,0.0,33,4.8,1,5,2,2,1,2,1,3,0,0,13,1,2,0,1,2
 ALMONDS                             ,1,cup,842,28.9,73.4,31.8,0.0,5.6,145,75.5,0,0,19,48,27,5,9,11,0,179,0,31,30,2,28,30 
 APPLE JUICE                         ,1,cup,114,28.0,0.3,0.2,0.0,0.1,248,4.5,0,4,3,2,1,1,2,0,0,0,0,2,2,0,7,0 
@@ -169,7 +168,6 @@ CHICKEN  ROASTED  DRUMSTICK         ,1.6,OZ,75,0,2,12,41,0.7 ,44,,,,,,,,,,,,
 CHICKEN  STEWED                     ,1,CUP,250,0,9,38,116,2.6 ,140,,,,,,,,,,,,
 CHICKEN  WINGS FRIED  BATTER        ,4.9,OZ,365,13,18,35,119,4.9 ,140,,,,,,,,,,,,
 CHICKEN CHOW MEIN  CANNED           ,1,CUP,95,18,0,7,8,0.1 ,250,,,,,,,,,,,,
-CHICKEN CHOW MEIN  HOME RECIPE      ,1,CUP,255,10,10,31,75,4.1 ,250,,,,,,,,,,,,
 CHICKEN FRANKFURTER                 ,1,FRANK,115,3,9,6,45,2.5 ,45,,,,,,,,,,,,
 CHICKEN ROLL  LIGHT                 ,2,SLICES,90,1,4,11,28,1.1 ,57,,,,,,,,,,,,
 CHICKEN_A_LA_KING  HOME RECIPE      ,1,CUP,470,12,34,27,221,12.9 ,245,,,,,,,,,,,,
@@ -275,9 +273,9 @@ EGGS  BOILED                        ,1,ITM,75,1,5,6,213,1.6 ,50,,,,,,,,,,,,
 EGGS  POACHED                       ,1,ITM,75,1,5,6,212,1.5 ,50,,,,,,,,,,,,
 EGGS  SCRAMBLED                     ,1,ITM,100,1,7,7,215,2.2 ,61,,,,,,,,,,,,
 EGGS  WHITE RAW                     ,1,ITM,15,0,0,4,0,0 ,33,,,,,,,,,,,,
-EGGS  FRIED                         ,1,ITM,90,1,7,6,211,1.9 ,46,,,,,,,,,,,,
-EGGS  RAW                           ,1,EGG,75,1,5,6,213,1.6 ,50,,,,,,,,,,,,
-EGGS  RAW  YOLK                     ,1,YOLK,60,0,5,3,213,1.6 ,17,,,,,,,,,,,,
+EGGS  FRIED                         ,1,ITM,71.5,0.4,5.0,6.3,211,1.5,50,126,5,0,2,14,0,7,4,6,11,2,0,3,5,3,2,4 
+EGGS  RAW  YOLK                     ,1,ITM,60,0,5,3,213,1.6 ,17,,,,,,,,,,,,
+EGG WHOLE                           ,1,ITM,71.5,0.4,5.0,6.3,211,1.5,50,126,5,0,2,14,0,7,4,6,11,2,0,3,5,3,2,4 
 ENCHILADA                           ,1,ENCHLD,235,24,16,20,19,7.7 ,230,,,,,,,,,,,,
 ENDIVE  CURLY  RAW                  ,1,CUP,10,2,0,1,0,0 ,50,,,,,,,,,,,,
 ENGLISH  MUFFIN  EGG  CHEESE  BACON ,1,ITM,360,31,18,18,213,8 ,138,,,,,,,,,,,,
@@ -417,7 +415,6 @@ MUFFIN ENGLISH LIGHT                ,1,ITM,100,25,1,5,0,0,57,,,,,,,,,,,,
 MUFFIN ENGLISH  PLAIN               ,1,ITM,140,27,1,5,0,0.3 ,57,,,,,,,,,,,,
 MUFFIN BLUEBERRY                    ,1,ITEM,140,22,5,3,45,1.4 ,45,,,,,,,,,,,,
 MUSHROOM GRAVY                      ,1,CUP,120,13,6,3,0,1 ,238,,,,,,,,,,,,
-MUSHROOMS  COOKED                   ,1,CUP,40,8,1,3,0,0.1 ,156,,,,,,,,,,,,
 MUSHROOMS WHITE                     ,1,CUP,15.4,2.3,0.2,2.2,0.0,0.0,70,12.1,0,2,4,17,13,10,4,3,0,0,0,0,2,0,6,2 
 MUSTARD  PREPARED  YELLOW           ,1,TSP,5,0,0,0,0,0 ,5,,,,,,,,,,,,
 MUSTARD GREENS  COOKED  DRANED      ,1,CUP,20,3,0,3,0,0 ,140,,,,,,,,,,,,
@@ -553,8 +550,8 @@ POTATOES  AU GRATIN  HOME RECP      ,1,CUP,325,28,19,12,56,11.6 ,245,,,,,,,,,,,,
 POTATOES  BAKED FLESH ONLY          ,1,ITM,145,34,0,3,0,0 ,156,,,,,,,,,,,,
 POTATOES  BAKED WITH SKIN           ,1,ITM,220,51,0,5,0,0.1 ,202,,,,,,,,,,,,
 POTATOES  BOILED  PEELED            ,1,ITM,115,27,0,2,0,0 ,135,,,,,,,,,,,,
-POTATOES  HASHED BROWN FR FRZN      ,1,CUP,340,44,18,5,0,7 ,156,,,,,,,,,,,,
-POTATOES  HASH BROWN PATTIE         ,1,ITM,140,15,8,2,0,2 ,64,,,,,,,,,,,,
+POTATOES HASHED                     ,1,ounce,49.8,6.8,2.5,0.7,6.4,0.9,28,,1,2,1,1,2,1,4,1,0,,,1,2,1,3,1 
+POTATOES  RED                       ,1,Potato,258,59.2,0.5,7.0,0.0,0.1,369,60.5,1,53,20,7,21,10,31,17,0,0,13,4,15,1,48,8 
 POTATOES  MASHED  MILK              ,1,CUP,160,37,1,4,4,0.7 ,210,,,,,,,,,,,,
 POTATOES  MASHED MILK BUTTER        ,1,CUP,225,35,9,4,4,2.2 ,210,,,,,,,,,,,,
 POTATOES  SCALLOPED  FROM MIX       ,1,CUP,230,31,11,5,27,6.5 ,245,,,,,,,,,,,,
@@ -643,6 +640,7 @@ SNAP BEAN RAW CKD DRND GREEN        ,1,CUP,45,10,0,2,0,0.1 ,125,,,,,,,,,,,,
 SNAP BEAN RAW CKD DRND YELLOW       ,1,CUP,45,10,0,2,0,0.1 ,125,,,,,,,,,,,,
 SOUP BEAN WITH BACON                ,1,CUP,170,23,6,8,3,1.5 ,253,,,,,,,,,,,,
 SOUP BEEF NOODLE                    ,1,CUP,85,9,3,5,5,1.1 ,244,,,,,,,,,,,,
+SOUP CHICKEN ENCHILADA              ,1,CUP,170,16,7,10,45,3.0,245,0.0,10,6,4,,,,,,,,,15,6,,,,
 SOUP CHICKEN CREAM OF               ,1,CUP,115,9,7,3,10,2.1 ,244,,,,,,,,,,,,
 SOUP CHICKEN NOODLE                 ,1,CUP,75,9,2,4,7,0.7 ,241,,,,,,,,,,,,
 SOUP CHICKEN RICE                   ,1,CUP,60,7,2,4,7,0.5 ,241,,,,,,,,,,,,

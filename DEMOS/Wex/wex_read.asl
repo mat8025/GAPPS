@@ -1,6 +1,14 @@
-///
-///   wed_read
-///
+//%*********************************************** 
+//*  @script wex_read.asl 
+//* 
+//*  @comment  
+//*  @release CARBON 
+//*  @vers 1.2 He Helium                                                  
+//*  @date Sat Dec 29 09:00:45 2018 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2014,2018 --> 
+//* 
+//***********************************************%
 
 
 
@@ -62,7 +70,7 @@ proc fillInObsVec()
 
     WTVEC[Nobs] = mywt;
 
-//DBPR"$k  $DVEC[Nobs]  $WTVEC[Nobs] \n"
+//<<[_DB]"$k  $DVEC[Nobs]  $WTVEC[Nobs] \n"
 
     if (WTVEC[Nobs] > 0.0) {
       last_known_wt = WTVEC[Nobs]
@@ -85,7 +93,7 @@ proc fillInObsVec()
 
    EXTV[Nobs] =  ( walk + hike + run + cycle + swim + yardwrk + wex)
 
-//DBPR"$k $EXTV[Nobs] $walk $run \n"
+//<<[_DB]"$k $EXTV[Nobs] $walk $run \n"
 
   if (wday > yday) {
       tot_exetime += EXTV[Nobs]
@@ -139,9 +147,9 @@ tl = 0;
       
  //<<"<$tl> $RX[tl]\n"
 
-DBPR"<$tl> $(typeof(col)) $col \n"
+<<[_DB]"<$tl> $(typeof(col)) $col \n"
 
-//DBPR"$col \n"
+//<<[_DB]"$col \n"
 
     day = col[0];
 
@@ -157,7 +165,7 @@ DBPR"<$tl> $(typeof(col)) $col \n"
 
     lday = kd;
 
-//DBPR"%V$day $wday  $k \n"
+//<<[_DB]"%V$day $wday  $k \n"
 // bug need a print statement here - or the else does not get used
 //<<"%V$day $wday  $kd \n"
 
@@ -182,5 +190,5 @@ DBPR"<$tl> $(typeof(col)) $col \n"
 
 //=======================================
 
-<<"$Nrecs there were $Nobs measurements \n"
+<<[_DB]"$Nrecs there were $Nobs measurements \n"
 }

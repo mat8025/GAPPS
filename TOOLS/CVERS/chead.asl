@@ -55,6 +55,7 @@ if (sz == -1) {
 }
 
 set_vers = 0;
+svers = "2.4"
 na = argc();
 
 comment ="";
@@ -62,7 +63,13 @@ comment2 ="";
 
 if (na > 1) {
  set_vers = 1;
- comment = _clarg[2];
+ svers = _clarg[2];
+// should be maj.min e.g 1.1 ,6.1, ... limits 1 to 100  
+}
+
+if (na > 2) {
+ 
+ comment = _clarg[3];
 // should be maj.min e.g 1.1 ,6.1, ... limits 1 to 100  
 }
 
@@ -80,11 +87,18 @@ Author = "Mark Terry"
 fname = srcfile
 release = "CARBON"
 maj = 2;
-min = 3;
+min = 4;
+
+if (set_vers) {
+  maj = atoi(spat(svers,".",-1))
+  min = atoi(spat(svers,".",1))  
+
+}
+
 
 maj_ele = ptsym(maj);
 min_ele = ptsym(min);
-
+min_name = ptname(min);
 date = date();
 
 /{
@@ -124,9 +138,11 @@ T=readfile(A);
 <<"//$insp $fname \n"
 <<"//    $comment   \n"
 <<"//    $comment2 \n"
-<<"//       $release  ${maj}.$min ${maj_ele}.$min_ele $date    \n"              
-<<"//       CopyRight   - RootMeanSquare - 1990,$(date(8)) --> \n"                 
-<<"//       Author: $Author                                           \n"
+<<"//    @release   $release  \n"
+<<"//    @vers ${maj}.$min  $min_name ($min_ele) \n"              
+<<"//    @date $date    \n"              
+<<"//    @Copyright   RootMeanSquare - 1990,$(date(8)) --> \n"                 
+<<"//    @author: $Author                                  \n"
 <<"//  \n"
 <<"// \/. .\\ \n"
 <<"// \\ ' / \n"

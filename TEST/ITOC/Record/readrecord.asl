@@ -156,12 +156,18 @@ A=  ofr("foodtable.csv");
 <<"num of records $Nrecs  num cols $Ncols\n";
 
 
+       FL = RF2[2];
 
+<<" $RF2[2] \n";
+<<" $FL \n";
+/{
    for (i= 0; i < 3; i++) {
        nc = Caz(RF2,i);
-<<"<$i> $nc $RF2[i] \n";
+       FL = RF2[i];
+<<"<$i>  $RF2[i] \n";
+<<"<$i>  $FL \n";
     }
-
+/}
 checkTrue((nc >0))
 
 

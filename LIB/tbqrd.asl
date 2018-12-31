@@ -21,10 +21,10 @@ qrd[0]= tq;
 qrd[1]= tr;
 qrd[2]= td;
 
- <<"%V $tr $tq $td\n"
- <<"%V $qrd $(caz(qrd)) $(typeof(qrd))\n"
+<<[_DB]"%V $tr $tq $td\n"
+<<[_DB]"%V $qrd $(caz(qrd)) $(typeof(qrd))\n"
  sWo(qrd,@drawon,@pixmapon,@fonthue,RED_,@color,WHITE_,@symsize,45, @clip,0,0,1,1,@redraw);
 
 }
 
-<<" %V $_include \n"
+<<[_DB]" %V $_include \n"

@@ -3,7 +3,7 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.4 Be Beryllium                                               
+//*  @vers 1.5 B Boron                                                    
 //*  @date Tue Dec 25 08:08:48 2018 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2014,2018 --> 
@@ -18,7 +18,7 @@ proc readTheDay( fnm)
    
    B= ofile(fnm,"r+")
  
- <<" $_proc $fnm $B\n" 
+ <<[_DB]" $_proc $fnm $B\n" 
    if (B != -1) {
  
     fseek(B, 0,0);
@@ -26,12 +26,12 @@ proc readTheDay( fnm)
     
       while (1) {
         res = readline(B)
-     //   <<"$res\n"
+     //   <<[_DB]"$res\n"
          if (f_error(B) == EOF_ERROR_) {
  	   break;
  	}
         if ((slen(res)) > 1 && !scmp(res,"#",1)) {
-  <<"$res\n"
+  <<[_DB]"$res\n"
          R[Rn] = Split(res,",");
          Rn++;
          if (Rn > 100) {
@@ -42,7 +42,7 @@ proc readTheDay( fnm)
        isOK = 1;
        cf(B);
     }
- <<" $_proc returns $isOK \n";
+ <<[_DB]" $_proc returns $isOK \n";
    return isOK;
  }
 //=================================//
@@ -108,8 +108,8 @@ proc setAttribute(wr)
 proc ADDTASK()
 {
 /// should go to last page
-<<"@ $_proc \n"
-<<" called ADDTASK\n"
+<<[_DB]"@ $_proc \n"
+<<[_DB]" called ADDTASK\n"
 
      ADDROW();
      return 
@@ -124,7 +124,7 @@ proc ADDFAV()
   
          mans = popamenu("Favorites.m")
 
-       // <<"%V$mans\n"
+       // <<[_DB]"%V$mans\n"
 
 	
         if (!(mans @= "NULL_CHOICE")) {
@@ -145,7 +145,7 @@ int j;
 
     for (i = 0; i< r ; i++) {
      for (j = 0; j< c ; j++) {
-   //  <<"%V $i $j $r $c\n"
+   //  <<[_DB]"%V $i $j $r $c\n"
         if ((i%2)) {
              sWo(cellwo,@cellbhue,i,j,LILAC_);         
 	}
@@ -154,7 +154,7 @@ int j;
 	 }
        }
      }
-     <<"$_proc done\n"
+     <<[_DB]"$_proc done\n"
 }
 
 //============================//
@@ -163,7 +163,7 @@ int j;
 proc SCORE()
 {
 
- <<"calculating the score for all tasks\n"
+ <<[_DB]"calculating the score for all tasks\n"
   int total = 0;
   for (i =1 ; i <Rn; i++) {
   score = atof(R[i][PCDoneCol]);

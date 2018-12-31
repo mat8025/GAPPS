@@ -13,7 +13,7 @@
 ///   gss  procs
 ///
 
-<<"loading lib gss \n"
+//<<"loading lib gss \n"
 
 Use_csv_fmt = 1;
 Delc = 44;
@@ -45,7 +45,7 @@ proc getCellValue( r, c)
              ADDTASK()
            }
            newcvalue = queryw("NewValue","xxx",cvalue);
-           <<"%V$newcvalue \n"
+<<[_DB]"%V$newcvalue \n"
            sWo(cellwo,@cellval,r,c,newcvalue);
            R[r][c] = newcvalue;
      }
@@ -104,7 +104,7 @@ proc pickTaskCol ( wcol)
          swapcol_a = wcol;
 	 wcol->info(1);
 	 swapcol_a->info(1);
-         <<"%V $wcol $swapcol_a $swapcol_b\n";
+<<[_DB]"%V $wcol $swapcol_a $swapcol_b\n";
          sWo(cellwo,@cellbhue,0,swapcol_a,CYAN_);         	 
 
 }
@@ -113,12 +113,12 @@ proc pickTaskCol ( wcol)
 
 proc SAVE()
 {
-         <<"IN $_proc saving sheet %V $fname  $Ncols \n";
+<<[_DB]"IN $_proc saving sheet %V $fname  $Ncols \n";
 	 
             B=ofw(fname)
             if ( B != -1) {
             nrw=writeRecord(B,R,@del,Delc,@ncols,Ncols);
-<<"%V $B $nrw  $Ncols \n"
+<<[_DB]"%V $B $nrw  $Ncols \n"
             cf(B);
 	    }
 	    
@@ -128,13 +128,13 @@ proc SAVE()
 
 proc READ()
 {
-      <<"reading $fname\n"
+<<[_DB]"reading $fname\n"
        // isok =sWo(cellwo,@sheetread,fname,2)
             A= ofr(fname)
             R= readRecord(A,@del,Delc)
            cf(A)
            sz = Caz(R);
-          <<"num of records $sz\n"
+<<[_DB]"num of records $sz\n"
           sWo(cellwo,@cellval,R);
 	  sWo(cellwo,@redraw);
 
@@ -143,7 +143,7 @@ proc READ()
 //======================
 proc SORT()
 {
-<<"in $_proc\n"
+
   static int sortdir = 1;
   sortcol = swapcol_a;
   startrow = 1;
@@ -160,8 +160,9 @@ proc SORT()
 //======================
 proc SWOPROWS()
 {
-//<<"in $_proc\n"
-<<"swap rows $swaprow_a and $swaprow_b\n"
+
+//<<[_DB]"in $_proc\n"
+<<[_DB]"swap rows $swaprow_a and $swaprow_b\n"
          //sWo(cellwo,@swaprows,swaprow_a,swaprow_b);
 //	SwapRows(R,swaprow_a,swaprow_b);
 	R->SwapRows(swaprow_a,swaprow_b);	  // code vmf
@@ -173,7 +174,7 @@ proc SWOPROWS()
 
 proc SWOPCOLS()
 {     
-<<"swap cols $swapcol_a and $swapcol_b\n"
+<<[_DB]"swap cols $swapcol_a and $swapcol_b\n"
        //  sWo(cellwo,@swapcols,swapcol_a,swapcol_b);
 	SwapCols(R,swapcol_a,swapcol_b);
         sWo(cellwo,@cellval,R);
@@ -187,14 +188,14 @@ int drows[10];
 
 proc DELROWS()
 {
-<<"in $_proc\n"
+<<[_DB]"in $_proc\n"
 //int drows[]; // TBF
 //int drows[page_rows+];
 
 //int drows[20+];
 int n2d = 0;
         drows = -1;
-	<<"%V $drows \n"
+<<[_DB]"%V $drows \n"
 	
         sz = Caz(R)
 	ans = yesornomenu("Delete Tagged Rows?")
@@ -205,7 +206,7 @@ int n2d = 0;
             if (R[i][tags_col] @="x") {
                 
 		drows[n2d] = i;
-		<<"$n2d will delete row $i  $drows[n2d]\n";
+<<[_DB]"$n2d will delete row $i  $drows[n2d]\n";
                 n2d++;
 
            }
@@ -213,13 +214,13 @@ int n2d = 0;
 	
         if (n2d > 0) {
         //deleteRows(R,swaprow_a,swaprow_b);
-	<<"%V $drows \n"
+
 
 	deleteRows(R,drows,n2d);
 	nsz = Caz(R)
-<<"deleted $drows  $sz $nsz\n"
+<<[_DB]"deleted $drows  $sz $nsz\n"
          for (i = 0; i < nsz;i++) { 
-           <<"[${i}] $R[i]\n"
+<<[_DB]"[${i}] $R[i]\n"
          }
         // clear deleted rows at end
 	// reset rows
@@ -235,7 +236,7 @@ int n2d = 0;
 //======================
 proc DELCOL()
 {
-<<"in $_proc\n"
+<<[_DB]"in $_proc\n"
 
 
 }
@@ -245,7 +246,7 @@ proc AddTask( wt)
 {
 
     sz= Caz(R);
-<<"in AddTask $_proc record %V $wt $rows $sz\n"    
+<<[_DB]"in AddTask $_proc record %V $wt $rows $sz\n"    
 
 
     er = rows;
@@ -260,9 +261,9 @@ proc AddTask( wt)
 
     rows++;
     Nrows = rows;
-    <<"$wt $DF[wt]\n"
+<<[_DB]"$wt $DF[wt]\n"
     ex = DF[wt];
-    <<"$wt $DF[wt] : $ex\n"
+<<[_DB]"$wt $DF[wt] : $ex\n"
     R[er] = DF[wt];
     // 0  is the supplied default tof this table
     // 1...nt  will be favorite/maintenance tasks
@@ -279,19 +280,19 @@ proc AddTask( wt)
 
     sz = Caz(R);
 
-  <<"New size %V $rows $cols $sz\n"  
+  <<[_DB]"New size %V $rows $cols $sz\n"  
 }
 //===============================//
 
 proc ADDROW()
 {
-<<" ADDROW $_proc\n"
+<<[_DB]" ADDROW $_proc\n"
 /// should go to last page
     AddTask(0);
     return 
 }
 //====================================
-<<"read in ADDROW\n";
+
 
 proc PGDWN()
 {
@@ -300,7 +301,7 @@ proc PGDWN()
    
   sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0);
 
-<<"%V$curr_row $page_rows $rows \n"
+<<[_DB]"%V$curr_row $page_rows $rows \n"
 
    curr_row += page_rows/2;
    // need to select
@@ -309,7 +310,7 @@ proc PGDWN()
         curr_row = (rows - page_rows -1);
    }
 
-<<"%V$curr_row $page_rows $rows \n"
+<<[_DB]"%V$curr_row $page_rows $rows \n"
 
    sWo(cellwo,@selectrowscols,0,2,0,cols,1);
    sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,1);
@@ -352,7 +353,7 @@ proc PGUP()
 
 proc clearTags()
 {
-<<" $_proc\n"
+<<[_DB]" $_proc\n"
 //    R[::][7] = ""; // TBF
    ans= yesornomenu("ClearTags?")
    
@@ -395,7 +396,7 @@ proc scrollPGN (pn)
   }
 
 
-<<"%V$curr_row $page_rows $rows \n"
+<<[_DB]"%V$curr_row $page_rows $rows \n"
 
   if ((curr_row + page_rows) >= (rows-1)) {
         curr_row = (rows - page_rows -1);
@@ -404,7 +405,7 @@ proc scrollPGN (pn)
   // curr_row += page_rows/2;
    // need to select
 
-<<"%V$curr_row $page_rows $rows \n"
+<<[_DB]"%V$curr_row $page_rows $rows \n"
 
    sWo(cellwo,@selectrowscols,0,2,0,cols,1);
    sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,1);
@@ -435,10 +436,10 @@ proc PGN()
 
   wval = getWoValue(pgnwo);
 
-<<"%V$wval \n"
+<<[_DB]"%V$wval \n"
   wpg = atoi(getWoValue(pgnwo));
 
-<<"%V $npgs $wpg\n"
+<<[_DB]"%V $npgs $wpg\n"
 
    scrollPGN (wpg)
 
@@ -455,14 +456,14 @@ proc paintRows()
     }
     // do a row at a time
     
-  <<"%V $rows $cols $curr_row $endprow \n"
+  <<[_DB]"%V $rows $cols $curr_row $endprow \n"
 //      sWo(cellwo,@cellbhue,curr_row,ALL_,LILAC_);
 //      sWo(cellwo,@cellbhue,curr_row+1,ALL_,LILAC_);
     
 //int i;
 
    for (i = curr_row; i < endprow ; i++) {
-   //<<"<$i> $(typeof(i))\n"
+   //<<[_DB]"<$i> $(typeof(i))\n"
 	  if ((i%2)) {
 	      sWo(cellwo,@cellbhue,i,ALL_,CYAN_);
 	     }
@@ -479,14 +480,14 @@ proc paintRows()
 proc HOO()
 {
 
-<<"IN $_proc record $rows \n"
+<<[_DB]"IN $_proc record $rows \n"
 
 
-<<"OUT $_proc \n"
+<<[_DB]"OUT $_proc \n"
 	    return ;
 }
 //=============================
-<<"%V $swaprow_a $swaprow_b  $swapcol_a $swapcol_b \n";
-<<"%V $_include\n"
+<<[_DB]"%V $swaprow_a $swaprow_b  $swapcol_a $swapcol_b \n";
+<<[_DB]"%V $_include\n"
 
 

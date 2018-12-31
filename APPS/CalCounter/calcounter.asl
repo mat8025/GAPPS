@@ -299,7 +299,8 @@ Nbp = 3;
 
    for (i= 0; i < 3; i++) {
        nc = Caz(RF,i);
-<<"<$i> $nc $RF[i] \n";
+       FL=RF[i]
+<<"<$i> $nc $FL $RF[i] \n";
     }
 
     for (i= Nrecs -5; i < Nrecs; i++) {

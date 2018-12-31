@@ -7,6 +7,7 @@ find . -name "*.xerr" -print -delete
 find . -name "*.tst" -print -delete
 find . -name "*.xtst" -print -delete
 find . -name "*.idb" -print -delete
+find . -name "old-*.asl" -print -delete
 find . -name "*.xdb" -print -delete
 find . -name ".#*cd " -print -delete
 find . -name "gmon.out" -print -delete

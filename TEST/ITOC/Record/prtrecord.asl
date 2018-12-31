@@ -18,7 +18,8 @@ record R[10];
 <<"$R[0][0] \n"
 
 <<"$R[0][3] \n"
-
+wrd="$R[][3]"
+checkStr(wrd,"strong");
 
 <<"all? $R \n"
 

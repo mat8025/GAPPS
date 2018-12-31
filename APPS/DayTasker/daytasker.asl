@@ -3,7 +3,7 @@
 //* 
 //*  @comment cosas que hacer hoy 
 //*  @release CARBON 
-//*  @vers 1.7 N Nitrogen                                                 
+//*  @vers 1.8 O Oxygen                                                   
 //*  @date Tue Dec 25 08:06:37 2018 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2014,2018 --> 
@@ -31,14 +31,17 @@
  // description pc_done category priority time_est %Done time_taken Score   ...
  
  
- 
- include "gevent.asl"
  include "debug.asl"
+ 
+ scriptDBOFF();
 
+ include "gevent.asl"
  include "dayt_menus.asl"
  include "dayt_procs.asl"
  
- 
+
+
+
  //============== Variables =========================//
  
  // add favorites :  L,G,X,C
@@ -82,15 +85,15 @@
  
  //=============== Init =========================//
  
- // if (! (fname @= "")) {
  
-  if (fname @= "") {
- <<"fname  $fname null\n"
-  }
+ 
+//  if (fname @= "") {
+// <<[_DB]"fname  $fname null\n"
+//  }
  
   if (!(fname @= "")) {
     
-    <<" using past day or setting up new/future day!\n";
+<<[_DB]" using past day or setting up new/future day!\n";
  // TBD skip auto read below 
      ok=fexist(fname,0);
      if (ok) {
@@ -108,19 +111,19 @@
  
  debugON()
  ///////// dt_log_file ////////////
- 
+
   if (!ok) {
  
   ds= date(2);
   
- <<" reading today $ds ! \n" 
+<<[_DB]" reading today $ds ! \n" 
  
   ds=ssub(ds,"/","-",0)
-  fname =  "dt_${ds}";
+  fname =  "DT/dt_${ds}";
  
    fsz=fexist(fname,0);
  
- <<"$fname $fsz \n"
+<<[_DB]"$fname $fsz \n"
  
     if (fsz > 0) {
     ok = readTheDay(fname);
@@ -129,11 +132,12 @@
   }
  
     if (!ok) {
-  <<" creating today $ds ! \n"
-    B= ofw("dt_${ds}")
-    fname =  "dt_${ds}";
+//  <<[_DB]" creating today $ds ! \n"
+    
+    fname =  "DT/dt_${ds}";
+    B= ofw(fname)
     R[0] = Split("Task,Priority,TimeEst,\%Done,TimeSpent,Difficulty,Attrb,Score,Tags",",");
-    <<"$R[0] \n"
+//    <<[_DB]"$R[0] \n"
     R[1] = DF[1];
     R[2] = DF[2];
     R[3] = DF[3];
@@ -142,9 +146,9 @@
     Rn = 5;
     writetable(B,R);
     cf(B);
-    B= ofr("dt_${ds}")
+    B= ofr(fname)
     R= readRecord(B,@del,',');
-    <<"$R \n"
+<<[_DB]"$R \n"
     cf(B);
     }
  
@@ -155,7 +159,7 @@
  
    ncols = Caz(R[0]);
  
- <<"num of records $sz  num cols $ncols\n"
+<<[_DB]"num of records $sz  num cols $ncols\n"
  
  //////////////////////////////////
  
@@ -181,7 +185,7 @@
    Ncols = ncols;  // task, Priority, %Done, Duration, Difficulty,Score
  //  
  
- <<" back in main \n"
+
  
  gflush()
  
@@ -194,7 +198,7 @@
    
   sWo(cellwo,@setrowscols,rows+5,cols+1);
   
- <<"%V$rows $sz \n"
+ <<[_DB]"%V$rows $sz \n"
  
  
      for (i = 0; i< rows ; i++) {
@@ -211,7 +215,7 @@
  //    colorRows(rows,cols);
  
    for (i = 0; i < rows;i++) {
-     <<"[${i}] $R[i]\n"
+<<[_DB]"[${i}] $R[i]\n"
    }
  
      sWo(cellwo,@cellval,R);
@@ -235,16 +239,16 @@
  
     swapcol_a = 1;
     swapcol_b = 2;
- <<"%V $cellwo\n"
+// <<[_DB]"%V $cellwo\n"
 
  
    while (1) {
  
           eventWait();
  
- //   <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
+//   <<[_DB]" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
  
-        //colorRows(rows,cols);
+// colorRows(rows,cols);
  
           if (_erow > 0) {
              the_row = _erow;
@@ -293,7 +297,7 @@
           swaprow_b = swaprow_a;
  	  swaprow_a = _erow;
  	 
- <<"%V $swaprow_a $swaprow_b\n"
+// <<[_DB]"%V $swaprow_a $swaprow_b\n"
  
           sWo(cellwo,@cellbhue,swaprow_a,0,CYAN_);         
           }
@@ -305,18 +309,19 @@
           swapcol_b = swapcol_a;
   	 swapcol_a = _ecol;
           sWo(cellwo,@cellbhue,0,swapcol_a,CYAN_);         	 
- <<"%V $swapcol_a $swapcol_b\n"
+
+<<[_DB]"%V $swapcol_a $swapcol_b\n"
           }
  
          sWo(cellwo,@redraw);
  
          if (_erow == 0 && (_ecol == tags_col) && (_ebutton == RIGHT_)) {
-                <<"Clear tags \n"
+               
                  clearTags();   
          }
  
          if (_erow > 0 && (_ecol == tags_col) && (_ebutton == RIGHT_)) {
-                <<"mark tags <|$R[_erow][tags_col]|>\n"
+<<[_DB]"mark tags <|$R[_erow][tags_col]|>\n"
 
                 if (R[_erow][tags_col] @= "x") {
 		R[_erow][tags_col] = " "
@@ -332,13 +337,13 @@
     }
     else {
          if (_ename @= "PRESS") {
-            <<"PRESS $_ename  $_ewoname !\n"
+<<[_DB]"PRESS $_ename  $_ewoname !\n"
  
           if (!(_ewoname @= "")) {
           
              $_ewoname();
  
-             <<" after indirect callback\n"
+<<[_DB]" after indirect callback\n"
  
             }
          }

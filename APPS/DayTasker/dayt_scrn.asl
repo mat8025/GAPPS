@@ -3,9 +3,7 @@
 //* 
 //*  @comment  screen setup for daytasker
 //*  @release CARBON 
-//*  @vers 1.1 H.H 
-//*  @date Sat Dec 22 10:34:57 2018 
-//*  @author Mark Terry 
+//*  @vers 1.2 He Helium                                                   Terry 
 //*  @CopyRight  RootMeanSquare  2014,2018 --> 
 //* 
 //***********************************************%
@@ -72,5 +70,5 @@ include "tbqrd.asl"
 
    sWo(cellwo,@redraw);
 
-<<" %V $_include \n"
+<<[_DB]" %V $_include \n"
 //=======================//

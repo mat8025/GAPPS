@@ -1,3 +1,15 @@
+//%*********************************************** 
+//*  @script calcounter_tty.asl 
+//* 
+//*  @comment  
+//*  @release CARBON 
+//*  @vers 1.7 N Nitrogen                                                 
+//*  @date Sat Dec 29 11:08:22 2018 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2014,2018 --> 
+//* 
+//***********************************************%
+
 /////////////////////////////////////////////////////////////
 ///  calcounter
 ///
@@ -25,7 +37,13 @@
 //
 
 
-setdebug(1,@keep,@~pline,@~steponerror) ;
+
+
+include "debug.asl"
+
+debugON();
+
+scriptDBON();
 
 #define  ASK ans=iread(()
 //#define  ASK ;
@@ -33,17 +51,17 @@ setdebug(1,@keep,@~pline,@~steponerror) ;
 
 version = "1.5";
 
-ele = spat( pt(atoi(spat(version,".",1))) ,",");
 
-<<"$_clarg[0] $version $ele \n"
+
+<<"$_clarg[0] $version \n"
 
 
 svar Fdwords;
 int Nbp = 3;
 adjust_day = 0;
 
-//#define DBPR <<
-#define DBPR ~!
+#define DBPR <<
+//#define DBPR ~!
 
  f_unit = "item";
  
@@ -78,39 +96,42 @@ ans=iread()
     exit();
  }
 
-   RF= readRecord(A,@del,',')
+  RF= readRecord(A,@del,',')
 
   Nrecs = Caz(RF);
   Ncols = Caz(RF,0);
 
 
-<<"num of records $Nrecs  num cols $Ncols\n";
+<<"%V $Nrecs   $Ncols\n";
 
 
-   for (i= 0; i < 3; i++) {
+   for (i= 0; i < 5; i++) {
        nc = Caz(RF,i);
-<<"<$i> $nc $RF[i] \n";
+       <<"<$i>  $RF[i]  \n";
     }
 
     for (i= Nrecs -5; i < Nrecs; i++) {
     nc = Caz(RF,i);
-<<"<$i> $nc $RF[i] \n";
+
+<<"<$i>  $RF[i] \n";
     }
 
    cf(A);
 
   Nfoods  = Nrecs -1;
 
-  DBPR" now for $Nfoods foods\n";
+  <<[_DB]" now for $Nfoods foods\n";
+
 
 
   //parseFoodTable();
 
-  myfood = "pie apple";
+  myfood = "milk whole";
   f_unit = "slice";
   f_amt = 1.0;
 
   //checkFood()
+  
 
 //////  PARSE THE COMMAND LINE //////
  do_loop = 0; // default - single shot query via CL args
@@ -128,12 +149,12 @@ if (! (wa @= "")) {
  }
 /}
 
-  if (scmp(wa,"dd_",3)) {
+  if (scmp(wa,"DD/dd_",6)) {
      adjust_day = 1;
      the_day = wa;
    }
    else {
-  myfood = wa
+      myfood = wa
 <<" checking cals/carbs for $myfood \n";
   }
 
@@ -165,7 +186,7 @@ int bpick;
  while (1) {
 
    // Bestpick = -1;
-   <<"$Bestpick[::]\n";
+   <<"$Bestpick[0]\n";
    bpick= checkFood();
 
    if (bpick == -1) {
@@ -192,7 +213,7 @@ int bpick;
   }
 }
 /////////////////////////////// UI /////////////////////////////////
-#include "loopquery"
+include "loopquery.asl"
 
 ///////// dd_log_file ////////////
 
@@ -200,7 +221,7 @@ if (!adjust_day) {
  ds= date(2);
  ds=ssub(ds,"/","-",0);
 
- the_day = "dd_${ds}";
+ the_day = "DD/dd_${ds}";
 }
 
  ok=fexist(the_day,0);
@@ -223,10 +244,11 @@ found_day = 0;
  }
 
 
+
 do_loop = 1;
 
  if (do_loop ) {
- <<" in doloop \n"
+<<" in doloop \n"
     fnd =queryloop();
 
 <<" qloop exit $fnd\n";
@@ -236,7 +258,7 @@ do_loop = 1;
 
 // write to daily log
 // post the total
-<<" post the total save to today $the_day\n";
+<<" post the total save $the_day to today \n";
 !!"cp $the_day today";
     }
 

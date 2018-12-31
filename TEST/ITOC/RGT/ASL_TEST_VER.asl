@@ -1,19 +1,26 @@
+//%*********************************************** 
+//*  @script ASL_TEST_VER.asl 
 //* 
-//*                       ASL_TEST_VER.asl 
+//*  @comment  
+//*  @release CARBON 
+//*  @vers 1.35 Br Bromine                                                
+//*  @date Sat Dec 29 19:33:56 2018 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2014,2018 --> 
 //* 
-//*  @vers CARBON 1.25 H.Mn Thu Dec 20 20:10:07 2018  
-//*  script for testing functions 
-//*   
-//* 
-//*  CopyRight   - RootMeanSquare - 2014,2018 --> 
-//*  Author: Mark Terry      
-//*
+//***********************************************%
+
 
 //
 // test asl first and second stage (xic)
 // 
 
-
+include "hv.asl"
+key = "@vers" ;
+vers = _HV->lookup(key);
+vw= split(vers)
+ele_vers = vw[2]
+<<"%V$vers $ele_vers\n"
 
 //filterDebug(0,"args");
 
@@ -719,6 +726,8 @@ int do_help = 0;
 
      RunTests2("Vector","vec,veccat,vecopeq")
 
+        RunTests2("Reverse","reverse")
+
 
   }
 
@@ -892,7 +901,7 @@ if ( do_all || do_array ) {
    //   Tp = Split("ae,arraystore,arrayele,arrayele0,arrayele1,arraysubset,arrayrange,arraysubvec,arraysubsref,arraysubsrange,dynarray,lhrange,lhe,joinarray,vec_cat,vgen,array_sr,mdele,vsp",","); // TBF - this long line somewhere is overwriting array ?? but we are using Svar - which are not fixed len
 
    RunTests2("Array","ae,arraystore,arrayele,arrayele0,arrayele1,arraysubset,arrayrange,arraysubvec,arraysubsref,arraysubsrange")
-   RunTests2("Array","dynarray,lhrange,lhe,joinarray,vec_cat,vgen,array_sr,mdele,vsp")
+   RunTests2("Array","dynarray,lhrange,lhe,joinarray,vec_cat,vgen,array_sr,mdele,vsp,arrayindex")
 
    Run2Test("Scalarvec")
 
@@ -940,6 +949,7 @@ if ( do_all || do_array ) {
    cart("mdimn0")
 
    RunTests2("Matrix","mat_mul,msquare,diag")
+   RunTests2("Msort","msort")
 
    Run2Test("Setv")
    cart("setv")
@@ -1089,7 +1099,7 @@ if ( do_all || do_mops ) {
 
   if ( do_all || do_record ) {
 
-     RunTests2("Record","record,readrecord,prtrecord,rec1");
+     RunTests2("Record","record,readrecord,prtrecord,rec1,recprt");
 
   }
 
@@ -1297,7 +1307,7 @@ dtms= FineTimeSince(TM);
 secs = dtms/1000000.0
 
 
-<<"script vers $vers took %6.3f$secs secs %d %V $i_time $x_time\n"
+<<"script vers $ele_vers took %6.3f$secs secs %d %V $i_time $x_time\n"
 today=getDate(1);
 <<"$today tested $(get_version())\n"
 exit()

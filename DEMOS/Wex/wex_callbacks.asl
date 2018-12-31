@@ -1,9 +1,15 @@
-///
-////////////////////////WED CALLBACKS///////////////////////////////////////
-///
+//%*********************************************** 
+//*  @script wex_callbacks.asl 
+//* 
+//*  @comment  
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                 
+//*  @date Sat Dec 29 09:06:51 2018 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2014,2018 --> 
+//* 
+//***********************************************%
 
-
-////////////////////////WONAME CALLBACKS///////////////////////////////////////
 
 
 proc QRTD()
@@ -149,7 +155,7 @@ proc SWITCHSCREEN()
 {
   if (_ename @= "SWITCHSCREEN") { 
      wScreen = atoi(_ewords[1])
-    DBPR"Setting %V$wScreen msgw[1]\n"
+    <<[_DB]"Setting %V$wScreen msgw[1]\n"
       drawScreens()
   }
 }

@@ -1,30 +1,39 @@
-///
-///
-/// 
+//%*********************************************** 
+//*  @script wex_glines.asl 
+//* 
+//*  @comment  
+//*  @release CARBON 
+//*  @vers 1.2 He Helium                                                  
+//*  @date Sat Dec 29 09:04:43 2018 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2014,2018 --> 
+//* 
+//***********************************************%
+
 
 ///////////////////// GLINES & SYMBOLS ///////////////////////////////
 
 
-DBPR"\n%(10,, ,\n)$DVEC \n"
-//DBPR"\n%V$PWTVEC[0:20] \n"
+<<[_DB]"\n%(10,, ,\n)$DVEC \n"
+//<<[_DB]"\n%V$PWTVEC[0:20] \n"
 
    pwt_gl = -1
    pwt_gl  = cGl(@wid,gwo,@TXY,DVEC,PWTVEC,@color,GREEN_,@ltype,"line")
 
-DBPR"%V$pwt_gl \n"
+<<[_DB]"%V$pwt_gl \n"
 
    extwo = calwo;
 
    ext_gl  = cGl(extwo,@TXY,DVEC,EXTV,@color,BLUE_,@ltype,"symbols",TRI_)
 
-//DBPR"%V$ext_gl \n"
+//<<[_DB]"%V$ext_gl \n"
 
   sGl(ext_gl,@symsize,3,@symhue,GREEN_)
 
  //wt_gl   = cGl(@wid,gwo,@TXY,DVEC,WTVEC,@color,RED_,@ltype,"symbols","diamond")
   wt_gl    = cGl(gwo,@TXY,DVEC,WTVEC,@color,RED_,@ltype,"symbols","diamond")
 
-//DBPR"%V$wt_gl \n"
+//<<[_DB]"%V$wt_gl \n"
 
   sGl(wt_gl,@symbol,"triangle",1.2, @fill_symbol,0,@symsize,0.75,@symhue,RED_)
 
@@ -38,12 +47,12 @@ DBPR"%V$pwt_gl \n"
 
  bp_gl   = cGl(swo,@TXY,DVEC,BPVEC,@color,RED_,@ltype,"symbols",@name,"benchpress")
 
-//DBPR"%(10,, ,\n)$BPVEC\n"
+//<<[_DB]"%(10,, ,\n)$BPVEC\n"
 
 // carb_gl = cGl(@wid,carbwo,@type_XY,DFVEC,CARBV,@color,"brown",@ltype,"symbols","diamond",@symhue,"brown")
 
 
-//DBPR"%V$carb_gl \n"
+//<<[_DB]"%V$carb_gl \n"
 
  //if (wtpm_gl == -1 || gw_gl == -1 || bp_gl == -1) {
 if ( gw_gl == -1 || bp_gl == -1) {
@@ -66,7 +75,7 @@ if ( gw_gl == -1 || bp_gl == -1) {
 
   int wedgl[] = {wt_gl,gw_gl, ext_gl, calb_gl, se_gl, calc_gl, pwt_gl}
 
-//DBPR"%V$allgl \n"
+//<<[_DB]"%V$allgl \n"
 
   sGl(allgl,@missing,0,@symbol,"diamond",5)
 
@@ -87,7 +96,7 @@ if ( gw_gl == -1 || bp_gl == -1) {
 
   lc_gl   = cGl(gwo,@type,"XY",@color,"orange",@ltype,"cursor")
 
- rc_gl   = cGl(gwo,@type,"XY",@color,BLUE_,@ltype,"cursor")
+  rc_gl   = cGl(gwo,@type,"XY",@color,BLUE_,@ltype,"cursor")
 
 
 //[EM]===========================================//

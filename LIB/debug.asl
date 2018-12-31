@@ -1,12 +1,23 @@
-///
-/// debug.asl
-///
+//%*********************************************** 
+//*  @script debug.asl 
+//* 
+//*  @comment  
+//*  @release CARBON 
+//*  @vers 1.11 Na Sodium                                                 
+//*  @date Thu Dec 27 07:41:32 2018 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2014,2018 --> 
+//* 
+//***********************************************%
 
+dbid = IDof("_DB");
+<<"%V dbid _DB\n"
 
 setdebug(0,@keep);
 // if there are errors keep  idb,xdb file in .GASP/WORK/Debug
 // will be overwritten by scripts  unless unique/local options used
 
+int _DB = -1; //dbg FH set to nop --set to 2 for error output
 
 proc DummyP()
 {
@@ -33,6 +44,16 @@ proc debugOFF()
 setdebug(0,@~pline,@~step,@~trace,@~showresults,1)
 filterFuncDebug(REJECTALL_,"proc");
 filterFileDebug(REJECTALL_,"yyy");
+}
+
+proc scriptDBON()
+{
+  _DB = 2;
+}
+
+proc scriptDBOFF()
+{
+  _DB = -1;
 }
 
 //==========================

@@ -3,9 +3,7 @@
 //* 
 //*  @comment the never ending battle of the bulge 
 //*  @release CARBON 
-//*  @vers 1.4 H.Be
-//*  @date Fri Dec 21 21:53:49 2018 
-//*  @author Mark Terry 
+//*  @vers 1.5 B Boron                                                     Terry 
 //*  @CopyRight  RootMeanSquare  2014,2018 --> 
 //* 
 //***********************************************%
@@ -23,8 +21,15 @@
 include "debug.asl"
 
 setDebug(0,@keep);
+scriptDBOFF();
 
-#define DBPR  <<
+include "hv.asl"
+key = "@vers" ;
+vers = _HV->lookup(key);
+vw= split(vers)
+ele_vers = vw[2]
+<<"%V$vers $ele_vers\n"
+
 
 //#define DBPR  ~!
 
@@ -78,7 +83,7 @@ today = date(2);
 
 jtoday = julian(today)
 
-DBPR"%V $today $jtoday \n"
+<<[_DB]"%V $today $jtoday \n"
 
 
 minWt = 160;
@@ -120,7 +125,7 @@ float Nsel_exeburn = 0.0
 
 float Nsel_lbs = 0.0
 
-DBPR"%V $Nsel_exemins $Nsel_exeburn  $(typeof(Nsel_exemins))\n"
+<<[_DB]"%V $Nsel_exemins $Nsel_exeburn  $(typeof(Nsel_exemins))\n"
 
 int k = 0;
 
@@ -152,7 +157,7 @@ RX=readrecord(A,@del,-1)
 
 Nrecs = Caz(RX);
 
-DBPR"%V RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n"
+<<[_DB]"%V RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n"
 
 
 
@@ -178,7 +183,7 @@ readData();
 
    sc_endday = (jtoday - bday) + 60;
 
-   DBPR"%V$ngday \n"
+   <<[_DB]"%V$ngday \n"
 
   gwt = NextGoalWt;
 
@@ -206,7 +211,7 @@ ty_gsday = gsday;
 // our goal line  wtloss per day!
 
 for (i= 0; i < ngday; i++) {
-DBPR"$(ty_gsday+i) $lw \n"
+<<[_DB]"$(ty_gsday+i) $lw \n"
     GVEC[i] = lw;
     WDVEC[i] = gsday+i;
     lw -= lpd;
@@ -216,15 +221,15 @@ DBPR"$(ty_gsday+i) $lw \n"
 
 ///  revised goal line
   sz = Caz(GVEC);
-<<" days $sz to lose $(StartWt-gwt) \n"
+<<[_DB]" days $sz to lose $(StartWt-gwt) \n"
   sz = Caz(WDVEC);
 
-DBPR"$sz\n"
-DBPR"%6.1f%(7,, ,\n)$WDVEC\n"
-DBPR"%6.1f%(7,, ,\n)$GVEC\n"
+<<[_DB]"$sz\n"
+<<[_DB]"%6.1f%(7,, ,\n)$WDVEC\n"
+<<[_DB]"%6.1f%(7,, ,\n)$GVEC\n"
 ////////////////////////////////////////////////////////////////////////
 
-DBPR"%V$i $sz\n"
+<<[_DB]"%V$i $sz\n"
 
   sw2 = 205
   gw2 = 170
@@ -258,10 +263,10 @@ include "wex_foodlog"
          j = first_k
 
          while (j > 0) {
-//DBPR"%V $j $WTVEC[j] \n"
+//<<[_DB]"%V $j $WTVEC[j] \n"
           if (WTVEC[j] > 0) {
            last_known_wt = WTVEC[j]
-//DBPR"%V $j $last_known_wt \n"
+//<<[_DB]"%V $j $last_known_wt \n"
            break
           }
          j--
@@ -312,7 +317,7 @@ include "wex_foodlog"
 
           PWTVEC[k] = last_wt
 
-    //   DBPR"day $k $PWTVEC[k] $CALCON[k] $CALBURN[k]\n"
+    //   <<[_DB]"day $k $PWTVEC[k] $CALCON[k] $CALBURN[k]\n"
 
         }
 /////////////////////////////////////////////////////////////////////
@@ -336,7 +341,7 @@ msg ="x y z"     // event vars
 msgw =split(msg)
 
 
-DBPR"%V$msgw \n"
+<<[_DB]"%V$msgw \n"
 
 
 include "wex_draw"
@@ -362,8 +367,8 @@ float Rinfo[30]
 
 
 
-//DBPR"%(7,, ,\n)$CALBURN \n"
-//DBPR"%(7,, ,\n)$CALCON \n"
+//<<[_DB]"%(7,, ,\n)$CALBURN \n"
+//<<[_DB]"%(7,, ,\n)$CALCON \n"
 
 int m_num = 0
 int button = 0
@@ -399,11 +404,11 @@ include "gevent.asl"
         m_num++
 
         msg =eventWait();
-<<"$m_num $msg  $_ename $_ewoname\n"
+<<[_DB]"$m_num $msg  $_ename $_ewoname\n"
 
        if (_ename @= "PRESS") {
         if (!(_ewoname @= "")) {
-DBPR"calling function via $woname !\n"
+<<[_DB]"calling function via $woname !\n"
             $_ewoname()
         }
       }
@@ -414,11 +419,11 @@ DBPR"calling function via $woname !\n"
 
         
        if (!(_ekeyw @= "")) {
-         DBPR"calling |${_ekeyw}| $(typeof(_ekeyw))\n"
+         <<[_DB]"calling |${_ekeyw}| $(typeof(_ekeyw))\n"
          $_ekeyw()        
        }
 
-        DBPR"%V$lcpx $rcpx \n"
+        <<[_DB]"%V$lcpx $rcpx \n"
 
     //   place_curs( gwo,100,5,1,1)
 
@@ -432,7 +437,8 @@ exit_si()
 // date-day
 // interpolate missing
 // carb, cal lookup   carb,protein,fat proportions
-// energy expenditure - run,walk, cycle  --- weight/resistance exercise
+// energy expenditure
+//- run,walk, cycle  --- weight/resistance exercise
 // 
 // OO activity organizer
 // XML for data

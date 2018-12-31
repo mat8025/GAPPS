@@ -1,8 +1,19 @@
-/// wed_screen
+//%*********************************************** 
+//*  @script wex_screen.asl 
+//* 
+//*  @comment  
+//*  @release CARBON 
+//*  @vers 1.3 Li Lithium                                                 
+//*  @date Sat Dec 29 09:02:46 2018 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2014,2018 --> 
+//* 
+//***********************************************%
+
 
 //////////////////  WED SCREEN --- WINDOWS ////////////////
 
-    vptitle = "Wed_$vers"
+    vptitle = "Wed_$ele_vers"
 
     vp =  cWi(@title,"$vptitle",@resize,0.1,0.1,0.9,0.9,0,@pixmapon,@save,@savepixmap);
 
@@ -26,7 +37,7 @@
 
    int wedwo[] = { gwo, calwo,  };
 
-DBPR"%V$wedwo \n"
+<<[_DB]"%V$wedwo \n"
 
     // vtile before set clip!
 
@@ -40,7 +51,7 @@ titleButtonsQRD(vp)
 titleButtonsQRD(vp1)
  //////////////////////////////// TITLE BUTTON QUIT ////////////////////////////////////////////////
 
-CalsY1 = 6500;
+CalsY1 = 5000;
 
 extwo = calwo;
 
@@ -72,13 +83,13 @@ extwo = calwo;
 
     sWo(xwo,@clip,cx,cy,cX,cY,@color,WHITE_, @clipborder,BLACK_)
 
-//DBPR" $DVEC[0:10] \n"
+//<<[_DB]" $DVEC[0:10] \n"
 
-//DBPR" %5\s\nR$WTVEC \n"
+//<<[_DB]" %5\s\nR$WTVEC \n"
 
-//DBPR" %5\s->\s,\s<-\nR$CARBV \n"
+//<<[_DB]" %5\s->\s,\s<-\nR$CARBV \n"
 
-//DBPR" %10\s\nr$WTPMV \n"
+//<<[_DB]" %10\s\nr$WTPMV \n"
 
 ///  measurement
 
@@ -86,7 +97,7 @@ extwo = calwo;
 
 
 //////////////////////////// SCALES //////////////////////////////////////////
-DBPR" Days $k \n"
+<<[_DB]" Days $k \n"
 
     bp_upper = 400.0
     carb_upper = 400
@@ -97,11 +108,11 @@ DBPR" Days $k \n"
 
     sWo(swo,@scales,sc_startday,110,sc_endday,bp_upper)
 
-DBPR"SCALES %V$sc_startday $sc_endday $bp_upper\n"
+<<[_DB]"SCALES %V$sc_startday $sc_endday $bp_upper\n"
 
     //sWo(carbwo,@scales,sc_startday,0,sc_endday,carb_upper)
 
-DBPR"SCALES %V$sc_startday $sc_endday $carb_upper\n"
+<<[_DB]"SCALES %V$sc_startday $sc_endday $carb_upper\n"
 
     //int allwo[] = {gwo,swo,carbwo,calwo,extwo}
 //    int allwo[] = {gwo,swo,calwo,extwo}

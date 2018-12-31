@@ -1,6 +1,16 @@
-///
-//////// pt.asl ////////////////////
-///
+//%*********************************************** 
+//*  @script pt.asl 
+//* 
+//*  @comment  
+//*  @release CARBON 
+//*  @vers 1.14 Si Silicon                                                
+//*  @date Sat Dec 29 10:24:20 2018 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2014,2018 --> 
+//* 
+//***********************************************%
+
+
 
 //envdebug()
 
