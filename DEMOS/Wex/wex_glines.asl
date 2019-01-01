@@ -63,7 +63,9 @@ if ( gw_gl == -1 || bp_gl == -1) {
 
 // calc_gl = cGl(calwo,@TXY,DFVEC,CALCON,@color,RED_,@ltype,"symbols","triangle",@symhue, BLUE_)
 
- calc_gl = cGl(calwo,@TXY,DVEC,CALCON,@color,RED_,@ltype,"symbols","triangle",@symhue, BLUE_)
+ calc_gl = cGl(calwo,@TXY,CCDV,CALSCON,@color,RED_,@ltype,"symbols",STAR_,@symhue, RED_)
+
+ carb_gl = cGl(carbwo,@TXY,CCDV,CARBSCON,@color,RED_,@ltype,"symbols",STAR_,@symhue, RED_)
 
  ave_ext_gl  = cGl(extwo,@TXY,DVEC,AVE_EXTV,@color,RED_,@ltype,"line")
 
@@ -87,7 +89,8 @@ if ( gw_gl == -1 || bp_gl == -1) {
   sGl(se_gl,@symbol,DIAMOND_,symsz)
 
   sGl(calb_gl,@symbol,DIAMOND_,symsz,@symfill,FILL_,@symhue,BLUE_)
-  sGl(calc_gl,@symbol,TRI_,@symsize,symsz,@symhue,BLUE_)
+  sGl(calc_gl,@symbol,DIAMOND_,symsz,@symfill,FILL_,@symhue,RED_)
+  sGl(carb_gl,@symbol,TRI_,symsz,@symfill,FILL_,@symhue,LILAC_)
   sGl(bp_gl,@symbol,ITRI_,symsz,@missing,0)
 
 

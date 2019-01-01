@@ -20,7 +20,7 @@ include "debug.asl"
 include "gss.asl";
 
 
-int Bestpick[3][2];
+int Bestpick[5][2];
 
 
 proc Addrow()
@@ -176,8 +176,14 @@ svar wans;
    if (_ecol == 0) {
             addFoodItem()
    }
-   
+
+    fd= RC[_erow][0];
+<<"$fd \n"
+    sWo(searchwo,@value,fd,@redraw);
    if (_ecol == 1) {
+
+
+
     mans = popamenu("HowMuch.m");
     mf = atof(mans);
     if (mf > 0.0) {
@@ -299,8 +305,8 @@ Nbp = 3;
 
    for (i= 0; i < 3; i++) {
        nc = Caz(RF,i);
-       FL=RF[i]
-<<"<$i> $nc $FL $RF[i] \n";
+
+<<"<$i> $nc $RF[i] \n";
     }
 
     for (i= Nrecs -5; i < Nrecs; i++) {
@@ -442,7 +448,7 @@ int cv = 0;
   cols = Caz(R[0])
 
   tags_col = cols;
-  
+ // rows += 2;
  sWo(cellwo,@setrowscols,rows,cols+1);
  
 <<"%V$rows $sz \n"
@@ -475,7 +481,7 @@ sWo(cellwo,@cellbhue,i,j,YELLOW_);
   sWo(cellwo,@cellval,0,tags_col,"Tags")
   R[0][tags_col] = "Tags";
 
-record RC[6];
+Record RC[20];
 
  for (i=0; i < 3; i++) {
   RC[i] = RF[i+1];   // BUG xic fix
@@ -592,10 +598,25 @@ record RC[6];
                 clearTags();   
         }
 
-        if (_erow > 0 && (_ecol == tags_col) && (_ebutton == RIGHT_)) {
+        if (_erow > 0 && (_ecol == 0) ) {
+                fd= R[_erow][0];
+                sWo(searchwo,@value,fd,@redraw);
+
+        }
+	
+        if (_erow > 0 && (_ecol == tags_col) ) {
                <<"mark tags \n"
-                R[_erow][tags_col] = "x";
-		sWo(cellwo,@cellval,_erow,tags_col,"x")
+	        xms = "";
+	        if (_ebutton == RIGHT_) {
+	          xms = "x"
+		}
+                R[_erow][tags_col] = xms;
+       
+                fd= R[_erow][0];
+
+                sWo(searchwo,@value,fd,@redraw);
+
+		sWo(cellwo,@cellval,_erow,tags_col,xms)
 		sWo(cellwo,@celldraw,_erow,tags_col)
         }
 

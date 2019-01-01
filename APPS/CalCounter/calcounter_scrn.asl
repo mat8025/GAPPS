@@ -52,13 +52,13 @@
       wovtile(ssmods,0.05,0.2,0.1,0.9,0.05);
 
 
- cellwo=cWo(vp,"SHEET",@name,"DailyCalCnt",@color,GREEN_,@resize,0.12,0.51,0.95,0.95)
+ cellwo=cWo(vp,"SHEET",@name,"DailyCalCnt",@color,GREEN_,@resize,0.12,0.42,0.98,0.96)
 
  sWo(cellwo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"1",@func,"xxx")
 
  sWo(cellwo,@bhue,CYAN_,@clipbhue,SKYBLUE_,@redraw);
 
- choicewo=cWo(vp,"SHEET",@name,"FoodChoice",@color,GREEN_,@resize,0.12,0.2,0.95,0.40)
+ choicewo=cWo(vp,"SHEET",@name,"FoodChoice",@color,GREEN_,@resize,0.12,0.2,0.98,0.40)
 
  sWo(choicewo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"1",@func,"xxx")
 

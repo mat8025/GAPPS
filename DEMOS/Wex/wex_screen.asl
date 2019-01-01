@@ -34,8 +34,10 @@
 
     calwo=cWo(vp,@graph,@name,"CAL",@value,0,@clipborder,BLACK_)
 
+    carbwo=cWo(vp,@graph,@name,"CARB",@value,0,@clipborder,BLACK_)
 
-   int wedwo[] = { gwo, calwo,  };
+
+   int wedwo[] = { gwo, calwo, carbwo  };
 
 <<[_DB]"%V$wedwo \n"
 
@@ -55,10 +57,13 @@ CalsY1 = 5000;
 
 extwo = calwo;
 
+    carb_upper = 300;
 
     sWo(wedwo,@clip,cx,cy,cX,cY, @color,"white")
 
     sWo(calwo,@clip,cx,cy,cX,cY, @color,"white")
+
+    sWo(carbwo,@clip,cx,cy,cX,cY, @color,YELLOW_)
 
     sWo(wedwo,@border,@clipborder,"black",@drawon)
 
@@ -69,6 +74,8 @@ extwo = calwo;
     sWo(extwo,@usescales,1,@axnum,3);
 
     sWo(calwo,@scales,sc_startday,0,sc_endday+10,CalsY1,@savescales,0)
+
+    sWo(carbwo,@scales,sc_startday,0,sc_endday+10,carb_upper,@savescales,0)
 
 //    sWo(carbwo,@scales,sc_startday,0,sc_endday+10,1200)
 //    sWo(extwo,@axnum,1,sc_startday,sc_endday,7,1)
@@ -100,7 +107,7 @@ extwo = calwo;
 <<[_DB]" Days $k \n"
 
     bp_upper = 400.0
-    carb_upper = 400
+ 
  
    //  defaults are ?  @save,@redraw,@drawon,@pixmapon
 
@@ -110,13 +117,13 @@ extwo = calwo;
 
 <<[_DB]"SCALES %V$sc_startday $sc_endday $bp_upper\n"
 
-    //sWo(carbwo,@scales,sc_startday,0,sc_endday,carb_upper)
+    sWo(carbwo,@scales,sc_startday,0,sc_endday+10,carb_upper)
 
 <<[_DB]"SCALES %V$sc_startday $sc_endday $carb_upper\n"
 
     //int allwo[] = {gwo,swo,carbwo,calwo,extwo}
 //    int allwo[] = {gwo,swo,calwo,extwo}
-    int allwo[] = {gwo,swo,calwo}
+    int allwo[] = {gwo,swo,calwo, carbwo}
 
 //<<"%V $allwo \n"
 

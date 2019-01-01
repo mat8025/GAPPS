@@ -47,15 +47,9 @@ proc isData()
 }
 //===========================================================
 
-
-
-
 proc fillInObsVec()
 {
 
-
-//<<"%V$kd $Nobs\n";
-// <<" ";
  
  if ((kd >= 0)) {
 
@@ -136,7 +130,7 @@ svar col;
 proc readData()
 {
 
-tl = 0;
+  tl = 0;
 
 
   while (1) {
@@ -192,3 +186,81 @@ tl = 0;
 
 <<[_DB]"$Nrecs there were $Nobs measurements \n"
 }
+//==============================================//
+
+int NCCobs =0;
+
+proc fillInCCObsVec()
+{
+ 
+ if ((kd >= 0)) {
+
+  j = NCCobs;
+
+  CCDV[j] = kd;  // julian day - bday - #daysofar
+  CALCON[j] =  atof(col[1]);
+  CARBCON[j] = atof(col[2]);  
+
+<<"$NCCobs $CCDV[j] $CALCON[j] $CARBCON[j] \n"
+
+   NCCobs++;
+
+   }
+}
+//====================================================//
+
+
+proc readCCData()
+{
+
+  tl = 0;
+
+//svar ccol;
+/{
+  for (j= 0; j < NCCrecs; j++) {
+    CALSCON[j] = 28+j;
+    CARBSCON[j] = 52+j;    
+   <<"$j $CALSCON[j]\n"
+  }
+/}
+
+  while (1) {
+
+
+    //ccol = RCC[tl];
+
+//<<"$RCC[tl]\n"
+//<<"$tl  $NCCobs $NCCrecs\n"
+
+    //day = ccol[0];
+
+    day = RCC[tl][0];
+
+    wday = julian(day) 
+
+    kd = wday - bday;
+
+    lday = kd;
+  j = NCCobs;
+  
+  CCDV[j] = kd;  // julian day - bday - #daysofar
+
+  cals = atof(RCC[tl][1]);
+  CALSCON[j] = cals;
+  carbs = atof(RCC[tl][2]);
+  CARBSCON[j] = carbs;  
+//<<"%V $j $cals $CALSCON[j]\n"
+   NCCobs++;     
+
+    tl++;
+    if (tl >= NCCrecs) {
+        break;
+    }
+
+ }
+
+  for (j= 0; j < NCCrecs; j++) {
+  <<"$j $CCDV[j] $CALSCON[j] $CARBSCON[j]\n"
+  }
+}
+//=======================================//

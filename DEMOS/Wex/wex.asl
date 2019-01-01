@@ -1,10 +1,13 @@
 //%*********************************************** 
 //*  @script wex.asl 
 //* 
-//*  @comment the never ending battle of the bulge 
+//*  @comment  
 //*  @release CARBON 
-//*  @vers 1.5 B Boron                                                     Terry 
-//*  @CopyRight  RootMeanSquare  2014,2018 --> 
+//*  @vers 2.44 Ru Ruthenium                                              
+//*  @date Tue Jan  1 03:00:28 2019 
+//*  @cdate Tue Jan  1 08:00:00 2014 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2014,2019 --> 
 //* 
 //***********************************************%
 
@@ -118,7 +121,12 @@ float EXTV[10+]
 float AVE_EXTV[10+]
 float EXEBURN[10+]
 float CALBURN[10+]
-float CALCON[10+]
+
+// cals,carbs consumed & when
+float CALSCON[100]
+float CARBSCON[100]
+float CCDV[100]
+///
 
 float Nsel_exemins = 0.0
 float Nsel_exeburn = 0.0
@@ -165,14 +173,45 @@ Nrecs = Caz(RX);
 
     n = 0;
     k = 0;
+///////////// Cals & Carb Consumed ////////
+// so far not logged often 
 
 
+ ACC=ofr("cc.tsv")
+
+Record RCC[];
+
+NCCrecs = 0;
+if (ACC == -1) {
+<<" no cc data!\n"
+
+}
+else {
+
+  RCC=readrecord(ACC)
+  cf(ACC)
+  NCCrecs = Caz(RCC);
+
+  <<"%V $NCCrecs \n"
+  for (i=0; i < NCCrecs ;i++) {
+  <<"$RCC[i] \n"
+  }
+  <<"/////////\n"
+}
 ////////////////// READ CEX DATA ///////////////////
+
+
+
 include "wex_goals"
 include "wex_read"
 
+readCCData();
+
+
 
 readData();
+
+
 
 
 ////////////// PLOT GOAL LINE  ///////////////////////////////////////////
@@ -293,13 +332,14 @@ include "wex_foodlog"
 
               cal_out_strike++
           }
-
+/{
           if (CALCON[k] > 0.0) {
               cal_in = CALCON[k]
               last_cal_in = cal_in
               cal_in_strike = 0
           }
-          else {
+/}
+//         else {
 
               if (cal_in_strike < strike_n) {
                 cal_in = last_cal_in
@@ -309,7 +349,7 @@ include "wex_foodlog"
               }
               cal_in_strike++
               //CALCON[k] = cal_in  // make it the estimate
-          }
+//          }
 
           calc_wtg = (cal_in - cal_out) / 4000.0
 

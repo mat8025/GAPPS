@@ -41,7 +41,7 @@ proc Compare(phr1,phr2)
     rs=spat(phr2,wd,0,1,&match,&charrem); // TBF if don't capture return
 //<<"<|$rs|> $match $charrem \n"
     if ( match == 1) {
-<<"$k $wd $rs $fit\n"
+//<<"$k $wd $rs $fit\n"
       fit += 10;
        if (k < n2) {
          if (wd @= fwds[k]) {
@@ -124,7 +124,7 @@ str the_food;
         food_wrd = "$RF[i][0]";
 	
         //score = Compare(food_d,RF[i][0]);
-<<"$i $food_wrd\n"
+//<<"$i $food_wrd\n"
        score = Compare(food_d,food_wrd);
 
       if (score > 0) {
