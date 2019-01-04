@@ -1,3 +1,15 @@
+//%*********************************************** 
+//*  @script gevent.asl 
+//* 
+//*  @comment  
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                 
+//*  @date Tue Jan  1 10:36:56 2019 
+//*  @cdate Tue Jan  1 10:36:56 2019 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 ///
 /// gevent.asl 1.3 
 /// wait and catch mouse/key window events
@@ -31,7 +43,7 @@ proc eventDecode()
 
     _ekeyw = _ewords[2];
 
-<<"%V $_evalue $_emsg  $_ekeyw \n"
+//<<"%V $_evalue $_emsg  $_ekeyw \n"
      _evalue =   spat(_emsg,_ekeyw,1);
 //<<"%V $_evalue \n"   
      _evalue = eatWhiteEnds(_evalue);
@@ -59,8 +71,8 @@ proc eventDecode()
     
     Ev->geteventrowcol(&_erow,&_ecol);
 
-  _erow->info(); // DBG
-  _ecol->info(); // DBG
+ // _erow->info(); // DBG
+ // _ecol->info(); // DBG
   
 
    }
@@ -135,6 +147,6 @@ str _ewoval = "yyy";
 
 str _ewoproc = "abc";
 
-<<" %V $_include $_evalue\n"
+//<<" %V $_include $_evalue\n"
 
 //====================================

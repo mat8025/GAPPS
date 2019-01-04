@@ -3,8 +3,9 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.19 K Potassium                                               
-//*  @date Sun Dec 23 09:19:59 2018 
+//*  @vers 1.22 Ti Titanium                                               
+//*  @date Thu Jan  3 21:39:05 2019 
+//*  @cdate Fri Jan  1 08:00:00 2016 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2014,2018 --> 
 //* 
@@ -124,7 +125,16 @@ proc totalRows()
 <<"%V $frows  $R[frows][0]\n"
  
   tword = deWhite(R[frows][0]);
-  
+
+
+  if (strcasecmp(tword, "totals") != 0) {
+   Nrows++;
+   frows = Nrows-1;
+   R[frows] = Split("Totals,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?",",");
+   tword = deWhite(R[frows][0]);
+
+  }
+
   if (!strcasecmp(tword, "totals")) {
 
    for (j = 1; j < frows ; j++) {
@@ -137,7 +147,7 @@ proc totalRows()
        // <<" $(Caz(fval)) \n"
          fc[kc] += fval;
 //	 nval = fc[kc];
-        <<"%V $j $kc $fi $fval $R[j][fi] $fc[kc]\n"
+//<<"%V $j $kc $fi $fval $R[j][fi] $fc[kc]\n"
 	  fi++;
       }
     }
@@ -152,7 +162,7 @@ proc totalRows()
         nval = fc[kc];
        // R[j][3+kc] = dewhite("%6.2f$fc[kc]");  // TBF
           R[j][3+kc]= "%6.2f$nval";
-       <<"%V $kc $nval $fc[kc] \n"
+       //<<"%V $kc $nval $fc[kc] \n"
     }
    // kc = 0;
   //  R[j][3] = dewhite("%6.2f$fc[0]");
@@ -229,7 +239,7 @@ svar wans;
    totalRows();
 
 sWo(cellwo,@cellval,R,0,0,Nrows,cols);
-sWo(cellwo,@redraw);
+//sWo(cellwo,@redraw);
 // sWo(cellwo,@cellval,R,0,0,rows,cols);
 // sWo(cellwo,@redraw);
 
@@ -450,7 +460,7 @@ int cv = 0;
   tags_col = cols;
  // rows += 2;
  sWo(cellwo,@setrowscols,rows,cols+1);
- 
+
 <<"%V$rows $sz \n"
 
   for (i = 0; i < rows;i++) { 
@@ -493,7 +503,12 @@ Record RC[20];
 
    sWo(choicewo,@setrowscols,4,cols+1);
    sWo(choicewo,@selectrowscols,0,2,0,cols);
+
+   sWo(choicewo,@setcolsize,3,0,1);
+   sWo(cellwo,@setcolsize,3,0,1) ;
+
    sWo(choicewo,@cellval,RC,0,0,3,cols); // RecordVar, startrow, startcol, nrows, ncols,
+
 
   for (i = 0; i< 3 ; i++) {
      for (j = 0; j< cols ; j++) {
@@ -536,6 +551,8 @@ Record RC[20];
          if ( _erow > 0) {
             the_row = _erow;
          }
+
+
 
          if ( (_erow >= 0)  && (_ecol >= 0)) {
 	 <<"get rcword $_erow  $_ecol \n"
@@ -636,6 +653,10 @@ Record RC[20];
         }
       }
 
+     sWo(cellwo,@setcolsize,3,0,1);
+     sWo(choicewo,@setcolsize,3,0,1) ;
+
+     sWo(cellwo,@redraw);
 }
 
 <<"out of loop\n"

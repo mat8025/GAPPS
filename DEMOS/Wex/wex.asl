@@ -5,7 +5,7 @@
 //*  @release CARBON 
 //*  @vers 2.44 Ru Ruthenium                                              
 //*  @date Tue Jan  1 03:00:28 2019 
-//*  @cdate Tue Jan  1 08:00:00 2014 
+//*  @cdate Fri Jan  1 08:00:00 2010 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2014,2019 --> 
 //* 
@@ -31,7 +31,8 @@ key = "@vers" ;
 vers = _HV->lookup(key);
 vw= split(vers)
 ele_vers = vw[2]
-<<"%V$vers $ele_vers\n"
+
+<<[_DB]"%V$vers $ele_vers\n"
 
 
 //#define DBPR  ~!
@@ -42,7 +43,7 @@ chdir(wexdir)
 
 wherearewe=!!"pwd "
 
-//<<"%V$wherearewe \n"
+//<<[_DB]"%V$wherearewe \n"
 
 
 #define WALK 1
@@ -192,11 +193,11 @@ else {
   cf(ACC)
   NCCrecs = Caz(RCC);
 
-  <<"%V $NCCrecs \n"
+  <<[_DB]"%V $NCCrecs \n"
   for (i=0; i < NCCrecs ;i++) {
-  <<"$RCC[i] \n"
+  <<[_DB]"$RCC[i] \n"
   }
-  <<"/////////\n"
+  <<[_DB]"/////////\n"
 }
 ////////////////// READ CEX DATA ///////////////////
 
@@ -365,8 +366,8 @@ include "wex_foodlog"
 
     AVE_EXTV = vsmooth(EXTV,7)
 
-//<<" Done calcs !\n"
-//<<"$Nxy_obs total exeburn %6.2f $tot_exeburn  cals  $(tot_exeburn/4000.0) lbs in $(tot_exetime/60.0) hrs\n"
+//<<[_DB]" Done calcs !\n"
+//<<[_DB]"$Nxy_obs total exeburn %6.2f $tot_exeburn  cals  $(tot_exeburn/4000.0) lbs in $(tot_exetime/60.0) hrs\n"
 
 
 

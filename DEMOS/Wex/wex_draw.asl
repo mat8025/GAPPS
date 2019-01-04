@@ -3,8 +3,9 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                 
-//*  @date Sat Dec 29 09:01:52 2018 
+//*  @vers 1.3 Li Lithium                                                 
+//*  @date Tue Jan  1 09:48:31 2019 
+//*  @cdate Fri Jan  1 08:00:00 2010 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2014,2018 --> 
 //* 
@@ -72,15 +73,24 @@ proc  drawMonths(wwo)
 
 <<[_DB]"%V$mid_date $jd $the_date \n"
 
-   AxText(wwo, 1, the_date, mid_date, -0.25, BLUE_)
+   //AxText(wwo, 1, the_date, mid_date, -0.25, BLUE_)
 
-   jd= q1_date +bday
+   jd= RS[1] +bday
    the_date = julmdy("$jd");
-   AxText(wwo, 1, the_date, q1_date, -0.25, BLUE_);
-   jd= q3_date +bday;
+//  AxText(wwo, 1, the_date, q1_date, -0.25, BLUE_);
+   wdate = RS[1];
+  AxText(wwo, 1, the_date, wdate, -0.25, BLUE_);
+   while (1) {
+   jd += 7;
+   wdate += 7;
    the_date = julmdy("$jd");
-   AxText(wwo, 1, the_date, q3_date, -0.25, BLUE_);
-
+   mday = spat(the_date,"/",-1,-1)
+   AxText(wwo, 1, mday, wdate, -0.25, BLUE_);
+ //  <<"%V $jd $wdate $RS[3] $the_date\n"
+   if (wdate > RS[3]) {
+      break;
+   }
+   }
  }
 //---------------------------------------------------------------
 
@@ -154,10 +164,12 @@ proc drawScreens()
       dGl(ext_gl)
       
       plot(extwo,@keysymbol,0.78 ,0.9,DIAMOND_,symsz,BLUE_,1);
-      plot(extwo,@keysymbol,0.78,0.8,TRI_,symsz,GREEN_,1);
+      plot(extwo,@keysymbol,0.78 ,0.8,DIAMOND_,symsz,RED_,1);      
+      plot(extwo,@keysymbol,0.78,0.7,TRI_,symsz,GREEN_,1);
 
-      Text(extwo,"Exercise Time (mins)", 0.8,0.8,1)
-      Text(calwo,"Calories Burnt", 0.8,0.9,1)
+      Text(extwo,"Exercise Time (mins)", 0.8,0.7,1)
+      Text(calwo,"Calories Ate", 0.8,0.8,1)
+      Text(calwo,"Calories Burnt", 0.8,0.9,1)      
       
 
       dGl(gw_gl);

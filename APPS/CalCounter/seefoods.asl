@@ -1,13 +1,28 @@
+//%*********************************************** 
+//*  @script seefoods.asl 
+//* 
+//*  @comment  
+//*  @release CARBON 
+//*  @vers 1.2 He Helium                                                  
+//*  @date Thu Jan  3 21:36:05 2019 
+//*  @cdate Tue Jan  1 10:16:01 2019 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 ///
 ///
 ////////////    SPREAD SHEET  for FOODS /////////////
 
 
-
+include "debug.asl"
 include "gevent.asl"
 
 
 setdebug(1,@keep,@filter,0);
+
+
+//scriptDBON();
 
 //////   create MENUS here  /////
 A=ofw("Howlong.m")
@@ -38,7 +53,7 @@ include "gss.asl"
 
 
   if (fname @= "")  {
-   fname = "foodtable.csv";
+   fname = "foodtableM.csv";
   }
 
 
@@ -64,7 +79,7 @@ DF[0] = Split("fooddesc,1,TBSP,100,10,0,0,0,0,0",",");
    cf(A);
    sz = Caz(R);
    Ncols = Caz(R,0);
-<<"num of records $sz  num cols $Ncols\n"
+<<[_DB]"num of records $sz  num cols $Ncols\n"
 
 //////////////////////////////////
 
@@ -81,7 +96,7 @@ Graphic = CheckGwm()
 
 include "tbqrd"
 
-include "gss_screen"
+include "seefoods_scrn"
 
 gflush()
 
@@ -103,11 +118,11 @@ int cv = 0;
   tags_col = cols-1;
   
  sWo(cellwo,@setrowscols,rows+5,cols+1);
- 
-<<"%V$rows $sz \n"
+  sWo(cellwo,@setcolsize,3,0,1);
+<<[_DB]"%V$rows $sz \n"
 
 for (i = 0; i < rows;i++) {
-<<"[${i}] $R[i]\n"
+<<[_DB]"[${i}] $R[i]\n"
 }
 
 //
@@ -127,7 +142,7 @@ for (i = 0; i < rows;i++) {
    sWo(cellwo,@selectrowscols,0,2,0,cols);
 //   curr_row = 3;
    sWo(cellwo,@selectrowscols,curr_row,curr_row+20,0,cols);
-
+   sWo(cellwo,@setcolsize,5,0,1);
 
    curr_row = 0
    paintRows();
@@ -147,7 +162,7 @@ for (i = 0; i < rows;i++) {
 
          eventWait();
 
-   <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
+<<[_DB]" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
 
          if (_erow > 0) {
             the_row = _erow;
@@ -155,30 +170,38 @@ for (i = 0; i < rows;i++) {
 
        if (_ewoid == cellwo) {
        
+        if (_erow > 0 && (_ecol == 0) ) {
+                fd= R[_erow][0];
+		//<<"%V$fd\n"
+                sWo(searchwo,@value,fd,@redraw);
+
+        }
+	
              if (_ekeyw @="CELLVAL") {
                 r= _erow;
-		c= Cev->col;
-		<<"%V$Cev->row $Cev->col\n"
+	//	c= Cev->col;
+	        c= _ecol;
+		//<<"%V$Cev->row $Cev->col\n"
 //R[Cev->row][Cev->col] = _ekeyw2;   // TBF
                 R[r][c] = _evalue;
-		<<"update cell val $r $c $_erow $_ecol $_ekeyw2 $R[r][c] \n"
-		<<"updated row $R[r]\n"
+	//	<<"update cell val $r $c $_erow $_ecol $_ekeyw2 $R[r][c] \n"
+	//	<<"updated row $R[r]\n"
             }
 
       
 
         whue = YELLOW_;
         if (_ecol == 0  && (_erow >= 0) && (_ebutton == RIGHT_)) {
-        if ((_erow%2)) {
+        if ((_erow %2)) {
           whue = LILAC_;
 	}
 
         sWo(cellwo,@cellbhue,swaprow_a,0,swaprow_a,cols,whue);         	 	 
 
-        swaprow_b = swaprow_a;
+         swaprow_b = swaprow_a;
 	 swaprow_a = _erow;
 	 
-<<"%V $swaprow_a $swaprow_b\n"
+<<[_DB]"%V $swaprow_a $swaprow_b\n"
 
          sWo(cellwo,@cellbhue,swaprow_a,0,CYAN_);         
          }
@@ -191,8 +214,8 @@ for (i = 0; i < rows;i++) {
          swapcol_b = swapcol_a;
  	 swapcol_a = _ecol;
 
-sWo(cellwo,@cellbhue,0,swapcol_a,CYAN_);         	 
-<<"%V $swapcol_a $swapcol_b\n"
+        sWo(cellwo,@cellbhue,0,swapcol_a,CYAN_);         	 
+<<[_DB]"%V $swapcol_a $swapcol_b\n"
          }
 
         sWo(cellwo,@redraw);
@@ -214,12 +237,14 @@ sWo(cellwo,@cellbhue,0,swapcol_a,CYAN_);
       if (_ename @= "PRESS") {
 
        if (!(_ewoname @= "")) {
-           <<"calling script procedure  $_ewoname !\n"
+           <<[_DB]"calling script procedure  $_ewoname !\n"
             $_ewoname()
         }
       }
 
+   sWo(cellwo,@setcolsize,7,0,1);
+   sWo(cellwo,@redraw);
 }
-<<"out of loop\n"
+
 
  exit()

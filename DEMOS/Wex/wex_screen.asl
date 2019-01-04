@@ -28,7 +28,7 @@
 
 ////////////////  WOBS ///////////////
 
-    sc_startday = sc_endday - 90;   // last three months
+    sc_startday = sc_endday - 70;   // last three months
 
     gwo=cWo(vp,@graph,@name,"WTLB",@value,0,@clipborder)
 
@@ -43,9 +43,9 @@
 
     // vtile before set clip!
 
-    wo_vtile(wedwo,0.03,0.08,0.97,0.97,0.01)   // vertically tile the drawing areas into the main window
+    wo_vtile(wedwo,0.1,0.08,0.97,0.97,0.01)   // vertically tile the drawing areas into the main window
 
-    cx = 0.08 ; cX = 0.95 ; cy = 0.2 ; cY = 0.97;
+    cx = 0.08 ; cX = 0.98 ; cy = 0.2 ; cY = 0.97;
 
 include "tbqrd.asl"
 
@@ -59,9 +59,9 @@ extwo = calwo;
 
     carb_upper = 300;
 
-    sWo(wedwo,@clip,cx,cy,cX,cY, @color,"white")
+    sWo(wedwo,@clip,cx,cy,cX,cY, @color,LILAC_)
 
-    sWo(calwo,@clip,cx,cy,cX,cY, @color,"white")
+    sWo(calwo,@clip,cx,cy,cX,cY, @color,MAGENTA_)
 
     sWo(carbwo,@clip,cx,cy,cX,cY, @color,YELLOW_)
 
@@ -111,7 +111,7 @@ extwo = calwo;
  
    //  defaults are ?  @save,@redraw,@drawon,@pixmapon
 
-    sc_startday = sc_endday - 90;
+
 
     sWo(swo,@scales,sc_startday,110,sc_endday,bp_upper)
 

@@ -66,6 +66,7 @@
 
 
   searchwo =cWo(vp,"BV",@name,"FoodSearch",@color,GREEN_,@resize,0.12,0.05,0.5,0.19)
+  
   sWo(searchwo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"Type in food name",@func,"inputValue");
 
 //sWo(searchwo,@bhue,CYAN_,@clipbhue,LIGHTGREEN_,@style, SVL_, @redraw);

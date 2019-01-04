@@ -3,8 +3,9 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.2 He Helium                                                  
-//*  @date Sat Dec 29 09:00:45 2018 
+//*  @vers 1.5 B Boron                                                    
+//*  @date Tue Jan  1 09:19:14 2019 
+//*  @cdate Fri Jan 01 08:00:45 2010 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2014,2018 --> 
 //* 
@@ -41,7 +42,7 @@ proc isData()
        dok = 0;
    }
 
- //  <<"$fword $dok\n"
+ //  <<[_DB]"$fword $dok\n"
 
    return dok
 }
@@ -107,7 +108,7 @@ proc fillInObsVec()
 
    if (wday > yday) {
      tot_exeburn += exer_burn
-//<<"%V$wday $yday $(typeof(wday)) $day %4.1f$exer_burn  $walk $run $cycle\n"
+//<<[_DB]"%V$wday $yday $(typeof(wday)) $day %4.1f$exer_burn  $walk $run $cycle\n"
      Nxy_obs++;
    }
 
@@ -115,7 +116,7 @@ proc fillInObsVec()
 
    CALBURN[Nobs] =  wrk_sleep + exer_burn
 
- //<<"$kd $(Nobs+1) $day %6.1f $WTVEC[Nobs] $exer_burn $wrk_sleep $CALBURN[Nobs] $CARBV[Nobs]\n"
+ //<<[_DB]"$kd $(Nobs+1) $day %6.1f $WTVEC[Nobs] $exer_burn $wrk_sleep $CALBURN[Nobs] $CARBV[Nobs]\n"
       Nobs++;
       }
    }
@@ -139,7 +140,7 @@ proc readData()
 
       col= RX[tl];
       
- //<<"<$tl> $RX[tl]\n"
+ //<<[_DB]"<$tl> $RX[tl]\n"
 
 <<[_DB]"<$tl> $(typeof(col)) $col \n"
 
@@ -161,17 +162,17 @@ proc readData()
 
 //<<[_DB]"%V$day $wday  $k \n"
 // bug need a print statement here - or the else does not get used
-//<<"%V$day $wday  $kd \n"
+//<<[_DB]"%V$day $wday  $kd \n"
 
 
 
    if (kd < 0) {
-       <<" $k neg offset ! \n";
+       <<[_DB]" $k neg offset ! \n";
        break;
    }
 
 
-//<<" what day $k\n"
+//<<[_DB]" what day $k\n"
    // will need separate day vector for the food carb/protein/fat/calorie totals
    // -( we count/estimate those) 
    // variables are plotted against dates (juldays - birthday)
@@ -201,7 +202,7 @@ proc fillInCCObsVec()
   CALCON[j] =  atof(col[1]);
   CARBCON[j] = atof(col[2]);  
 
-<<"$NCCobs $CCDV[j] $CALCON[j] $CARBCON[j] \n"
+<<[_DB]"$NCCobs $CCDV[j] $CALCON[j] $CARBCON[j] \n"
 
    NCCobs++;
 
@@ -220,7 +221,7 @@ proc readCCData()
   for (j= 0; j < NCCrecs; j++) {
     CALSCON[j] = 28+j;
     CARBSCON[j] = 52+j;    
-   <<"$j $CALSCON[j]\n"
+   <<[_DB]"$j $CALSCON[j]\n"
   }
 /}
 
@@ -229,8 +230,8 @@ proc readCCData()
 
     //ccol = RCC[tl];
 
-//<<"$RCC[tl]\n"
-//<<"$tl  $NCCobs $NCCrecs\n"
+//<<[_DB]"$RCC[tl]\n"
+//<<[_DB]"$tl  $NCCobs $NCCrecs\n"
 
     //day = ccol[0];
 
@@ -249,7 +250,7 @@ proc readCCData()
   CALSCON[j] = cals;
   carbs = atof(RCC[tl][2]);
   CARBSCON[j] = carbs;  
-//<<"%V $j $cals $CALSCON[j]\n"
+//<<[_DB]"%V $j $cals $CALSCON[j]\n"
    NCCobs++;     
 
     tl++;
@@ -260,7 +261,7 @@ proc readCCData()
  }
 
   for (j= 0; j < NCCrecs; j++) {
-  <<"$j $CCDV[j] $CALSCON[j] $CARBSCON[j]\n"
+  <<[_DB]"$j $CCDV[j] $CALSCON[j] $CARBSCON[j]\n"
   }
 }
 //=======================================//

@@ -132,15 +132,18 @@ sp="\n"
 
 A=ofr(srcfile)
 T=readfile(A);
-
+   vers="    @vers ${maj}.$min $min_ele $min_name "
+   vlen = slen(vers);
+   pad = nsc(70-vlen," ")
 
 <<"///////////////////////////////////<**|**>/////////////////////////////////// \n"
 <<"//$insp $fname \n"
 <<"//    $comment   \n"
 <<"//    $comment2 \n"
 <<"//    @release   $release  \n"
-<<"//    @vers ${maj}.$min  $min_name ($min_ele) \n"              
-<<"//    @date $date    \n"              
+<<"//$vers $pad\n"
+<<"//    @date $date    \n"
+<<"//    @cdate $date    \n"              
 <<"//    @Copyright   RootMeanSquare - 1990,$(date(8)) --> \n"                 
 <<"//    @author: $Author                                  \n"
 <<"//  \n"

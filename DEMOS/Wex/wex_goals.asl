@@ -20,7 +20,7 @@ NextGoalWt = 185;
 
 StartWt = 207;
 
-targetday = julian("01/31/2019") -bday;
+targetday = julian("02/10/2019") -bday;
 
 
 //  SET  START AND END DATES HERE
