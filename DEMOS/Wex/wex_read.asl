@@ -235,9 +235,9 @@ proc readCCData()
 
     //day = ccol[0];
 
-    day = RCC[tl][0];
+    wday = RCC[tl][0];
 
-    wday = julian(day) 
+    //wday = julian(day) 
 
     kd = wday - bday;
 

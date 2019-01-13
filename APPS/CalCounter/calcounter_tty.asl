@@ -89,7 +89,7 @@ ans=iread()
 
 
 
- A=  ofr("foodtable.csv");
+ A=  ofr("foodtableC.csv");
 
  if (A == -1) {
   <<" can't open food table $ftfile \n";

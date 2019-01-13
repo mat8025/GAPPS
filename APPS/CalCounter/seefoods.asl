@@ -53,7 +53,7 @@ include "gss.asl"
 
 
   if (fname @= "")  {
-   fname = "foodtableM.csv";
+   fname = "foodtableC.csv";
   }
 
 
@@ -117,7 +117,7 @@ int cv = 0;
 
   tags_col = cols-1;
   
- sWo(cellwo,@setrowscols,rows+5,cols+1);
+  sWo(cellwo,@setrowscols,rows+5,cols+1);
   sWo(cellwo,@setcolsize,3,0,1);
 <<[_DB]"%V$rows $sz \n"
 

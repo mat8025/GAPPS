@@ -1,3 +1,15 @@
+//%*********************************************** 
+//*  @script swap.asl 
+//* 
+//*  @comment check ref arg via swap 
+//*  @release CARBON 
+//*  @vers 2.56 Ba Barium                                                 
+//*  @date Thu Jan 10 18:13:45 2019 
+//*  @cdate 9/6/99 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 ///
 ///  demo ptr/ref args
 ///
@@ -9,9 +21,9 @@
 
 
 checkIn()
-setdebug(1,@~pline,@~step,@trace,@showresults,1)
-filterFuncDebug(ALLOWALL_,"proc","opera_ic");
-filterFileDebug(ALLOWALL_,"ic_op","ic_pu","ic_x","proc","opera","ds_siv");
+setdebug(1,@~pline,@~step,@~trace,@showresults,1)
+filterFuncDebug(ALLOWALL_,"proc");
+filterFileDebug(ALLOWALL_,"ic_op");
 
 
 
@@ -33,11 +45,11 @@ proc add ( x, y)
 proc swap ( x, y)
 {
 
-  t = x;
-  t2 = y;
+  float t = x;
+  float t2 = y;
 <<"$_proc IN : %V$x $y $t\n"
 
-<<"%V$t  $(typeof(t))\n"
+<<"%V $t  $(typeof(t))\n"
   //x = y;
   x = t2;
  <<"%V$x \n"
@@ -49,6 +61,27 @@ proc swap ( x, y)
 
 }
 //====================
+
+proc swapi ( x, y)
+{
+
+   t = x;
+   t2 = y;
+<<"$_proc IN : %V$x $y $t\n"
+
+<<"%V $t  $(typeof(t))\n"
+  //x = y;
+  x = t2;
+ <<"%V$x \n"
+  y = t;
+  
+ <<"%V $y \n"
+
+<<" OUT: %V $x $y $t $t2\n"
+
+}
+//====================
+
 
 
 proc swapR (int& x, int& y)
@@ -142,11 +175,12 @@ int b = 9;
 a = 7
 b = 11
 
+
 for (g = 0; g < 4; g++) {
  <<"preswap %V$g $a $b \n"
-  swap(&a,&b)
+  swapi(&a,&b)
  <<"postswap %V$g $a $b \n"
- ASK
+ 
 }
 
  CheckNum(a,7)

@@ -5,6 +5,21 @@ setdebug(1)
 int ok =0
 int k = 0
 
+  while (1) {
+
+
+   k++;
+   if (k >=10) {
+      break;
+   }
+  }
+
+<<"%V$k == ? 10 \n"
+
+checkNum(k,10);
+
+k= 0;
+
 <<"%I $k \n"
 
 N = GetArgI(1)

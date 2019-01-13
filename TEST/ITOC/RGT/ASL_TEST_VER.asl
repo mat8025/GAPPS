@@ -1,26 +1,24 @@
 //%*********************************************** 
 //*  @script ASL_TEST_VER.asl 
 //* 
-//*  @comment  
+//*  @comment asl test modules 
 //*  @release CARBON 
-//*  @vers 1.35 Br Bromine                                                
-//*  @date Sat Dec 29 19:33:56 2018 
+//*  @vers 1.37 Rb Rubidium                                               
+//*  @date Sun Jan 13 00:49:08 2019 
+//*  @cdate 1/1/2005 
 //*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2014,2018 --> 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
+
 
 
 //
 // test asl first and second stage (xic)
 // 
-
+include "debug.asl"
 include "hv.asl"
-key = "@vers" ;
-vers = _HV->lookup(key);
-vw= split(vers)
-ele_vers = vw[2]
-<<"%V$vers $ele_vers\n"
+
 
 //filterDebug(0,"args");
 
@@ -85,6 +83,7 @@ Opf=ofw("current_score")
 
 Tcf=ofw("test_crashes")
 Tff=ofw("test_fails")
+Dbf=ofw("test_debug")
 
 
 <<[Opf]"$today $(get_version())\n"
@@ -178,8 +177,11 @@ proc RunTests2( Td, Tl )
       Tp = Split(Tl,",");
 
       np = Caz(Tp);
+      <<[Dbf]"$Td $Tl $np\n"
       for (i=0 ; i <np; i++) {
+         if (!(Tp[i] @= "")) {
            cart(Tp[i]);
+	   }
       }
 }
 //====================//
@@ -414,8 +416,8 @@ proc cart_xic(aprg, a1, in_pargc)
       }
      else {
 
-       //<<"CRASH FAIL:--failed to run\n"
-
+       <<[Tcf]"#CRASH FAIL:--failed to run $aprg\n"
+       
        CrashList->Insert("${Curr_dir}/xic_${aprg}")
      }
 
@@ -715,7 +717,7 @@ int do_help = 0;
       
       RunTests2("Cast","cast,cast_vec")
 
-      RunTests2("Efmt","efmt");
+      RunTests2("Efmt","efmt",);
 
   }
 
@@ -726,8 +728,9 @@ int do_help = 0;
 
      RunTests2("Vector","vec,veccat,vecopeq")
 
-        RunTests2("Reverse","reverse")
-
+   //     RunTests2("Reverse","reverse") ; // BUG needs more than one
+   Run2Test("Reverse")
+   cart("reverse")
 
   }
 
@@ -849,7 +852,7 @@ if ( do_all || do_if ) {
   if ( do_all || do_while ) {
 
   Run2Test("While")
-
+  cart("while")
   cart("while0", 10)
   cart("while1")
 
@@ -948,9 +951,13 @@ if ( do_all || do_array ) {
 
    cart("mdimn0")
 
-   RunTests2("Matrix","mat_mul,msquare,diag")
-   RunTests2("Msort","msort")
 
+
+   RunTests2("Matrix","mat_mul,msquare,mdiag");
+   
+
+   Run2Test("Msort")
+   cart("msort")
    Run2Test("Setv")
    cart("setv")
 
@@ -1028,9 +1035,7 @@ if ( do_all || do_proc ) {
   cart("arrayarg2")
 
 
-  Run2Test("Swap")
-
-  cart ("swap")
+  RunTests2("Swap","swap1","swap")
 
   Run2Test("Static")
   
@@ -1307,7 +1312,7 @@ dtms= FineTimeSince(TM);
 secs = dtms/1000000.0
 
 
-<<"script vers $ele_vers took %6.3f$secs secs %d %V $i_time $x_time\n"
+<<"script vers $_ele_vers took %6.3f$secs secs %d %V $i_time $x_time\n"
 today=getDate(1);
 <<"$today tested $(get_version())\n"
 exit()

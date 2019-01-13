@@ -224,7 +224,7 @@ bsz = Caz(Bestpick);
             <<[_DB]"<$i> $Bestpick[i][0] $Bestpick[i][1]\n " 
             FL = RF[wi];
             <<[_DB]"%V$RF[wi] \n" // BUG
-	    <<[_DB]"%V$FL \n"
+	    <<"%V$FL \n"
 	    if (wscore > best_score) {
                  best_pick = wi;
 		 best_score = wscore;

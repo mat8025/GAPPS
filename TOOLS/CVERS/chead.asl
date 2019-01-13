@@ -68,9 +68,18 @@ if (na > 1) {
 }
 
 if (na > 2) {
- 
  comment = _clarg[3];
 // should be maj.min e.g 1.1 ,6.1, ... limits 1 to 100  
+}
+
+ use_epoch =0;
+ 
+if (na > 3) {
+ w4 = _clarg[4];
+// should be maj.min e.g 1.1 ,6.1, ... limits 1 to 100
+ if (w4 @= "epoch") {
+  use_epoch =1;
+ }
 }
 
 
@@ -136,14 +145,20 @@ T=readfile(A);
    vlen = slen(vers);
    pad = nsc(70-vlen," ")
 
-<<"///////////////////////////////////<**|**>/////////////////////////////////// \n"
+<<"///////////////////////////////////<**|**>///////////////////////////////////\n"
 <<"//$insp $fname \n"
 <<"//    $comment   \n"
 <<"//    $comment2 \n"
 <<"//    @release   $release  \n"
 <<"//$vers $pad\n"
 <<"//    @date $date    \n"
+if (use_epoch) {
+<<"//    @cdate Sun Jun  9 08:00:00 1996  \n"              
+}
+else {
 <<"//    @cdate $date    \n"              
+}
+
 <<"//    @Copyright   RootMeanSquare - 1990,$(date(8)) --> \n"                 
 <<"//    @author: $Author                                  \n"
 <<"//  \n"

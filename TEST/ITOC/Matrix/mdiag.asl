@@ -18,12 +18,12 @@ float e[] = {1.1,2.2,3.3,4.4}
 <<"<%5.3f${e}> \n\n"
 <<"%5.3f <${e}> \n\n"
 <<"<${e}>\n"
- nd = can(e)
+ nd = cnd(e)
 <<"e %V $nd\n"
 
- E = diag(e)
+ E = mdiag(e)
 
- nd = can(E)
+ nd = cnd(E)
 <<"E %V $nd\n"
 
 <<"Bounds $(Cab(E)) \n"

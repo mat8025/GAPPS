@@ -14,7 +14,7 @@
 ///
 
 //<<"loading lib gss \n"
-
+str mans = "";
 Use_csv_fmt = 1;
 Delc = 44;
 
@@ -31,14 +31,13 @@ swapcol_b = 2;
 
 int Ncols = 10;
 
+str cvalue ="xx";
 
 proc getCellValue( r, c)
 {
- c->info(1);
-
  
      if (r >0 && c >= 0 ) {
-// <<" %V $r $c \n";
+ <<" %V $r $c \n";
            cvalue = R[r][c];
 // <<" %V $cvalue \n";
            if ((c == 0) && (cvalue @= "")) {
@@ -86,12 +85,13 @@ proc setDifficulty(wr,wc)
 //===============================//
 proc HowLong(wr, wc)
 {
-  
-   mans = popamenu("Howlong.m")
+ <<"gss $_proc\n" 
+   lmans = popamenu("Howlong.m")
 	
-        if (!(mans @= "NULL_CHOICE")) {
-           sWo(cellwo,@cellval,wr,wc,mans);
-           R[wr][wc] = mans;
+        if (!(lmans @= "NULL_CHOICE")) {
+	<<"%V $wr $wc\n"
+           sWo(cellwo,@cellval,wr,wc,lmans);
+           R[wr][wc] = lmans;
         }
 }
 //===============================//
@@ -115,8 +115,14 @@ proc SAVE()
 {
 <<[_DB]"IN $_proc saving sheet %V $fname  $Ncols \n";
 	 
-            B=ofw(fname)
+            B=ofw(fname);
             if ( B != -1) {
+<<"%V $rows $Rn \n"
+            for (i= 0; i < rows ; i++) {
+	    val = R[i][0];
+<<"<$i> $val $R[i]\n"
+            }
+
             nrw=writeRecord(B,R,@del,Delc,@ncols,Ncols);
 <<[_DB]"%V $B $nrw  $Ncols \n"
             cf(B);
@@ -246,11 +252,15 @@ proc AddTask( wt)
 {
 
     sz= Caz(R);
+    
 <<[_DB]"in AddTask $_proc record %V $wt $rows $sz\n"    
 
 
     er = rows;
 
+    if (curr_row < 0) {
+        curr_row = 0;
+    }
     sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0);
   
     curr_row = rows- page_rows +1;
@@ -265,10 +275,11 @@ proc AddTask( wt)
     ex = DF[wt];
 <<[_DB]"$wt $DF[wt] : $ex\n"
     R[er] = DF[wt];
+    
     // 0  is the supplied default tof this table
     // 1...nt  will be favorite/maintenance tasks
-
     // has to be written over to display version
+
     sWo(cellwo,@cellval,R);
     // increase rows/colls
 
@@ -297,11 +308,17 @@ proc ADDROW()
 proc PGDWN()
 {
    // need to unselect all
-   npgs =   rows/page_rows;
-   
+
+
+  npgs =   rows/page_rows;
+
+  if (curr_row < 0) {
+      curr_row = 0;
+  }
+<<"%V$cellwo $curr_row $page_rows $rows $cols\n"
+
   sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0);
 
-<<[_DB]"%V$curr_row $page_rows $rows \n"
 
    curr_row += page_rows/2;
    // need to select
@@ -310,19 +327,23 @@ proc PGDWN()
         curr_row = (rows - page_rows -1);
    }
 
-<<[_DB]"%V$curr_row $page_rows $rows \n"
-
+<<"%V$curr_row $page_rows $rows \n"
+    if (curr_row < 0) {
+        curr_row = 0;
+    }
    sWo(cellwo,@selectrowscols,0,2,0,cols,1);
    sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,1);
+   setRowColSizes();
    paintRows();
    curr_page++;
    if (curr_page > npgs) {
      curr_page = npgs;
    }
+   
    sWo(pgnwo,@value,curr_page,@update);
      
    sWo(cellwo,@redraw);
-   	    return ;
+   
 }
 //====================
 
@@ -330,17 +351,24 @@ proc PGUP()
 {
 
    npgs =   rows/page_rows;
-    
+   <<"%V $cellwo  $npgs $rows $cols $page_rows $curr_row \n"
+
+   //setdebug(1,@trace);
+   if (current_row <0) {
+       current_rwo = 0;
+   }
    sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0);
+
    curr_row -= page_rows/2;
 
-   if (curr_row <0) {
+   if (curr_row < 0) {
        curr_row = 0;
    }
    
    sWo(cellwo,@selectrowscols,0,2,0,cols,1);
    sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,1);
-  paintRows();
+   setRowColSizes();
+   paintRows();
   sWo(cellwo,@redraw);
   curr_page--;
   if (curr_page <1) {
@@ -382,10 +410,13 @@ proc lastPGN ()
 proc scrollPGN (pn)
 {
 
+    if (curr_row < 0) {
+        curr_row = 0;
+    }
+
   sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0); // unset current
 
   npgs =   rows/page_rows;
-
 
   wpg = pn;
 
@@ -413,7 +444,6 @@ proc scrollPGN (pn)
    curr_page = wpg;
    sWo(cellwo,@redraw);
    sWo(pgnwo,@value,wpg,@update);
-
 
 }
 //=======================================================
@@ -461,6 +491,10 @@ proc paintRows()
 //      sWo(cellwo,@cellbhue,curr_row+1,ALL_,LILAC_);
     
 //int i;
+
+    if (curr_row < 0) {
+        curr_row = 0;
+    }
 
    for (i = curr_row; i < endprow ; i++) {
    //<<[_DB]"<$i> $(typeof(i))\n"

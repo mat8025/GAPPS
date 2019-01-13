@@ -1,6 +1,21 @@
+//%*********************************************** 
+//*  @script prtrecord.asl 
+//* 
+//*  @comment test record print 
+//*  @release CARBON 
+//*  @vers 1.76 Os Osmium                                                 
+//*  @date Sat Jan 12 12:17:53 2019 
+//*  @cdate 9/12/2015 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+include "debug.asl"
+
+debugON();
 
 
-setDebug(1,"pline","~step")
+setDebug(1,"~pline","~step")
 
 checkIn()
 
@@ -15,11 +30,42 @@ record R[10];
 
 <<"$R[0]\n"
 
-<<"$R[0][0] \n"
+<<"$R[1]\n"
 
-<<"$R[0][3] \n"
-wrd="$R[][3]"
+<<"$R[2]\n"
+
+
+
+
+svar S
+
+  S= R[1];
+
+  ssz= Caz(S);
+
+  rsz= Caz(R);
+  colsz= Caz(R,0);
+
+<<"%V $rsz $colsz $ssz\n"
+
+<<"$S[0]\n"
+
+<<"$S[2]\n"
+
+<<"$S\n"
+
+
+<<"$R[1][2] \n"
+
+wrd="$R[1][3]"
+<<"$wrd R[1][3] $R[1][3] \n"
+
+
+wrd="$R[2][3]"
+<<"wrd <|$wrd|>\n"
 checkStr(wrd,"strong");
+
+
 
 <<"all? $R \n"
 
@@ -40,11 +86,7 @@ sz = Caz(NR);
 
 
 
-svar S
 
-  S= R[0];
-
- sz= Caz(R[0]);
 
 <<"R0sz $sz\n"
 
@@ -102,12 +144,12 @@ for (ir = 0; ir < Rn; ir++) {
      s= R[ir];
 
     sz= Caz(s);
-    <<"$ir $sz s: $s\n\n"
+    <<"$ir $sz s: |$s[0]|\n\n"
     if (ir == 0) {
-     checkStr(s[0],"each");
+     checkStr(s[0],"each",4);
     }
     if (ir == 1) {
-     checkStr(s[0],"and");
+     checkStr(s[0],"and",3);
     }
     
 <<"%(2,\s->,\,,<-\n)$s\n"
@@ -137,8 +179,8 @@ ir = 3
      s= R[ir];
     
     <<"$ir s: $s\n"
-    S= Split(s)
+    //S= Split(s)
     
-<<"%(2,\s->,\,,<-\n)$S\n"
+//<<"%(2,\s->,\,,<-\n)$S\n"
 
 checkOut();

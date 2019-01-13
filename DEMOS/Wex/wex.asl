@@ -3,8 +3,8 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 2.44 Ru Ruthenium                                              
-//*  @date Tue Jan  1 03:00:28 2019 
+//*  @vers 2.45 Rh Rhodium                                                
+//*  @date Sun Jan  6 20:13:28 2019 
 //*  @cdate Fri Jan  1 08:00:00 2010 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2014,2019 --> 
@@ -91,7 +91,7 @@ jtoday = julian(today)
 
 
 minWt = 160;
-topWt = 210;
+topWt = 220;
 //StartWt = 205;
 
 // rates per min
@@ -124,9 +124,9 @@ float EXEBURN[10+]
 float CALBURN[10+]
 
 // cals,carbs consumed & when
-float CALSCON[100]
-float CARBSCON[100]
-float CCDV[100]
+float CALSCON[10+]
+float CARBSCON[10+]
+float CCDV[10+]
 ///
 
 float Nsel_exemins = 0.0
@@ -178,7 +178,7 @@ Nrecs = Caz(RX);
 // so far not logged often 
 
 
- ACC=ofr("cc.tsv")
+ ACC=ofr("jcc.tsv")
 
 Record RCC[];
 

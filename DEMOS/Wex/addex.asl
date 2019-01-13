@@ -1,3 +1,15 @@
+//%*********************************************** 
+//*  @script addex.asl 
+//* 
+//*  @comment  
+//*  @release CARBON 
+//*  @vers 1.3 Li Lithium                                                 
+//*  @date Mon Jan  7 17:36:59 2019 
+//*  @cdate Sun Jan  6 20:45:40 2019 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 ///
 ///
 ////////////    adds daily WT & EX /////////////
@@ -24,8 +36,10 @@ A=ofw("Howlong.m")
 <<[A],"item 10m M_VALUE 10\n"
 <<[A],"item 15m M_VALUE 15\n"
 <<[A],"help half-hour\n"
-<<[A],"item 1/2h M_VALUE 30\n"
+<<[A],"item 30m M_VALUE 30\n"
 <<[A],"help half-hour\n"
+<<[A],"item 45m M_VALUE 30\n"
+<<[A],"help 3/4 hour\n"
 <<[A],"item 1hr M_VALUE 60\n"
 <<[A],"help 1 hour\n"
 <<[A],"item 90m M_VALUE 90\n"
@@ -71,7 +85,7 @@ proc SAVEWEX()
 	 
             B=ofw(fname)
             if ( B != -1) {
-   //         <<[B]"#Date   Weight  Walk    Hike    Run     Bike    Swim      Yard    Gym     Bpress\n"
+  // <<[B]"#Date   Weight  Walk    Hike    Run     Bike    Swim      Yard    Gym     Bpress Tags\n"
    // the first row is the field heading - should be ignored in data comptation
    // can use # for comment - but then will not be read
              nrw=writeRecord(B,R,@del,Delc,@ncols,Ncols);
@@ -262,7 +276,7 @@ while (1) {
 	   else if ((_ecol == 1) ) {
               WhatWt(_erow);
            }
-	   else if ((_ecol > 1) && (_ecol <= 8)) {
+	   else if ((_erow > 0) && (_ecol > 1) && (_ecol <= 8)) {
               HowLong(_erow,_ecol);
            }
 	   else {

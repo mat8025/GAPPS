@@ -25,7 +25,9 @@
  <<[A],"item 90m M_VALUE 90\n"
  <<[A],"help hour and half\n"
  <<[A],"item 2hr M_VALUE 120\n"
- <<[A],"help two hours\n"
+ <<[A],"help two hours\n" 
+ <<[A],"item 4hr M_VALUE 240\n"
+ <<[A],"help 4 hours\n"
  <<[A],"item ? C_INTER "?"\n"
  <<[A],"help set mins\n"
  cf(A)
@@ -85,6 +87,7 @@
  //==============================//
  A=ofw("Attributes.m")
  <<[A],"title Attributes\n"
+  <<[A],"item A M_VALUE A\n"
  <<[A],"item X M_VALUE X\n"
  <<[A],"item G M_VALUE G\n"
  <<[A],"item F M_VALUE F\n"

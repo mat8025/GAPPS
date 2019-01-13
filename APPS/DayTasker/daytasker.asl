@@ -1,12 +1,13 @@
 //%*********************************************** 
 //*  @script daytasker.asl 
 //* 
-//*  @comment cosas que hacer hoy 
+//*  @comment  cosas que hacer hoy 
 //*  @release CARBON 
-//*  @vers 1.8 O Oxygen                                                   
-//*  @date Tue Dec 25 08:06:37 2018 
+//*  @vers 1.5 B Boron                                                    
+//*  @date Fri Jan 11 12:36:01 2019 
+//*  @cdate Wed Jan  9 10:54:35 2019 
 //*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2014,2018 --> 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
 
@@ -34,19 +35,23 @@
  include "debug.asl"
  
  scriptDBOFF();
+ debugOFF();
 
  include "gevent.asl"
  include "dayt_menus.asl"
- include "dayt_procs.asl"
  
+ include "gss.asl"
+ include "dayt_procs.asl" // has to come after gss to overload 
 
-
-
+ include "hv.asl"
  //============== Variables =========================//
- 
+
+
+
+
  // add favorites :  L,G,X,C
  Record DF[10];
- // Task,Priority,TimeEst,%Done,TimeSpent,Difficulty,Attribute,Score,Tags,
+ // Task,Priority,TimeEst,PCDone,TimeSpent,Difficulty,Attribute,Score,Tags,
  
    DF[0] = Split("task?,3,30,0,0,1,?,0,",",")
    // use enum
@@ -84,16 +89,56 @@
    fname = _clarg[1];
  
  //=============== Init =========================//
+
+
+  today = date(2);
+
+  jdayn = julian(today)
+
+  yesterday = julmdy(jdayn-1);
  
- 
- 
-//  if (fname @= "") {
-// <<[_DB]"fname  $fname null\n"
-//  }
- 
-  if (!(fname @= "")) {
+  tomorrow = julmdy(jdayn+1);
+
+<<"%V  $jdayn $yesterday $today  $tomorrow\n"
+
+  read_the_day = 0;
+
+  if (fname @= "yesterday") {
+ <<[_DB]"look/edit yesterday \n"
+   ds=ssub(yesterday,"/","-",0)
+   fname =  "DT/dt_$ds";
+   fsz=fexist(fname,0);
+ <<[_DB]"$fname $fsz \n"
+   if (fsz > 0) {
+       read_the_day = 1;
+   }
+   else {
+    makeMyDay(fname);
+    ok = 1;
+   }
+  }
+  else if (fname @= "tomorrow") {
+ <<[_DB]"look/edit tomorrow \n"
+   ds=ssub(tomorrow,"/","-",0)
+   fname =  "DT/dt_$ds";
+   fsz=fexist(fname,0);
+ <<[_DB]"$fname $fsz \n"
+   if (fsz > 0) {
+     read_the_day = 1;
+   }
+   else {
+    makeMyDay(fname);
+    ok = 1;
+   }
+  }
+  else {
+       read_the_day = 1;
+  }
+  
+  if (read_the_day) {
+   if (!(fname @= "")) {
     
-<<[_DB]" using past day or setting up new/future day!\n";
+  <<[_DB]" using past day or setting up new/future day!\n";
  // TBD skip auto read below 
      ok=fexist(fname,0);
      if (ok) {
@@ -102,24 +147,23 @@
  
      if (!ok) {
       <<" $fname not found - or bad day!\n"
-      exit();
+          makeMyDay(fname);
+	  ok = 1;
       }
+    }
    }
  //====================================//
+  
  
- 
- 
- debugON()
  ///////// dt_log_file ////////////
 
   if (!ok) {
  
-  ds= date(2);
   
-<<[_DB]" reading today $ds ! \n" 
+<<[_DB]" reading today $today ! \n" 
  
-  ds=ssub(ds,"/","-",0)
-  fname =  "DT/dt_${ds}";
+   ds=ssub(today,"/","-",0)
+   fname =  "DT/dt_${ds}";
  
    fsz=fexist(fname,0);
  
@@ -130,26 +174,13 @@
     }
     
   }
- 
+
+
     if (!ok) {
 //  <<[_DB]" creating today $ds ! \n"
     
     fname =  "DT/dt_${ds}";
-    B= ofw(fname)
-    R[0] = Split("Task,Priority,TimeEst,\%Done,TimeSpent,Difficulty,Attrb,Score,Tags",",");
-//    <<[_DB]"$R[0] \n"
-    R[1] = DF[1];
-    R[2] = DF[2];
-    R[3] = DF[3];
-    R[4] = DF[4];    
-    
-    Rn = 5;
-    writetable(B,R);
-    cf(B);
-    B= ofr(fname)
-    R= readRecord(B,@del,',');
-<<[_DB]"$R \n"
-    cf(B);
+    makeMyDay(fname);
     }
  
  // format of daily activity/task
@@ -160,7 +191,8 @@
    ncols = Caz(R[0]);
  
 <<[_DB]"num of records $sz  num cols $ncols\n"
- 
+
+
  //////////////////////////////////
  
  
@@ -174,12 +206,11 @@
  pname="ADDTASK";
  
  
- 
+include "tbqrd.asl" 
  // dt_screen
- include "dayt_scrn.asl"
+include "dayt_scrn.asl"
  
- include "gss.asl"
- 
+
 
  
    Ncols = ncols;  // task, Priority, %Done, Duration, Difficulty,Score
@@ -229,10 +260,9 @@
     sWi(vp,@redraw)
  
     sWo(ssmods,@redraw)
- 
+    sWo(cellwo,@setcolsize,3,0,1);
     sWo(cellwo,@redraw);
  
-    sWo(cellwo,@redraw);
  
     swaprow_a = 1;
     swaprow_b = 2;
@@ -241,11 +271,21 @@
     swapcol_b = 2;
 // <<[_DB]"%V $cellwo\n"
 
- 
+
+
+   ok=_ele_vers->info(1)
+   <<"%V $ok\n"
+   sWo(txtwo,@textr,"version $_ele_vers",0.1,0.2);
+
+   ok= abc->info(1)
+      <<"%V $ok\n"
+
    while (1) {
- 
+   //<<"%V $_erow\n"
+
+          
           eventWait();
- 
+          //sWi(vp,@redraw);   
 //   <<[_DB]" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
  
 // colorRows(rows,cols);
@@ -257,14 +297,14 @@
         if (_ewoid == cellwo) {
         
  
- 	               if (_ebutton == LEFT_) {
-                        _ecol->info(1);
- 	                _erow->info(1);
+ 	               if (_ebutton == LEFT_ && _erow > 0) {
+                        //_ecol->info(1);
+ 	                //_erow->info(1);
                           if (_ecol == PriorityCol) {
                               setPriority(_erow,_ecol);
                           }
                           else if (_ecol == PCDoneCol) {
-                              PCDONE(_erow);
+                              PCDONE(_erow,PCDoneCol );
                           }			 
                           else if ((_ecol == TimeEstCol) \
  			      || (_ecol == DurationCol)) {
@@ -274,10 +314,10 @@
                               setDifficulty(_erow,_ecol);
                           }
                           else if (_ecol == AttrCol) {
-                              setAttribute(_erow);
+                              setAttribute(_erow,_ecol);
                           }			 			  
                          else {
-                           getCellValue(_erow,_ecol);
+                              getCellValue(_erow,_ecol);
                           }
 			  SCORE();
                          }
@@ -305,9 +345,9 @@
               
        if (_erow == 0 && (_ecol >= 0) && (_ebutton == RIGHT_)) {
  
-          sWo(cellwo,@cellbhue,0,swapcol_a,0,cols,YELLOW_);         	 	 
+          sWo(cellwo,@cellbhue,0,swapcol_a,0,cols,YELLOW_);   
           swapcol_b = swapcol_a;
-  	 swapcol_a = _ecol;
+  	  swapcol_a = _ecol;
           sWo(cellwo,@cellbhue,0,swapcol_a,CYAN_);         	 
 
 <<[_DB]"%V $swapcol_a $swapcol_b\n"

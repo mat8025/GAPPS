@@ -1,15 +1,19 @@
 //%*********************************************** 
 //*  @script dayt_scrn.asl 
 //* 
-//*  @comment  screen setup for daytasker
+//*  @comment screen setup 
 //*  @release CARBON 
-//*  @vers 1.2 He Helium                                                   Terry 
-//*  @CopyRight  RootMeanSquare  2014,2018 --> 
+//*  @vers 2.31 Ga Gallium                                                
+//*  @date Fri Jan 11 08:29:56 2019 
+//*  @cdate  
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
 
 
-include "tbqrd.asl"
+
+//include "tbqrd.asl"
 
     vp = cWi(@title,"S2D:$fname")
 
@@ -50,7 +54,7 @@ include "tbqrd.asl"
       wovtile(ssmods,0.05,0.1,0.1,0.9,0.01);
 
 
- cellwo=cWo(vp,"SHEET",@name,"Stuff2Do",@color,GREEN_,@resize,0.12,0.25,0.9,0.95)
+ cellwo=cWo(vp,@SHEET,@name,"Stuff2Do",@color,GREEN_,@resize,0.12,0.25,0.9,0.95)
  // does value remain or reset by menu?
 
  //sWo(cellwo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"SSWO",@func,"inputValue")
@@ -58,11 +62,13 @@ include "tbqrd.asl"
 
  sWo(cellwo,@bhue,CYAN_,@clipbhue,SKYBLUE_,@redraw)
 
- txtwo=cWo(vp,"TEXT",@name,"edit",@color,GREEN_,@resize,0.12,0.05,0.8,0.24)
+ txtwo=cWo(vp,@TEXT,@name,"edit",@color,GREEN_,@resize,0.12,0.05,0.8,0.24)
 
  scorewo = cWo(vp,@BV,@name,"SCORE",@color,ORANGE_,@bhue,"cyan",@value,0,@style,"SVR");
 
  sWo(scorewo,@resize,0.82,0.05,0.9,0.24);
+
+   titleVers();
 
    sWi(vp,@redraw)
 

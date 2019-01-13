@@ -15,7 +15,7 @@
 ///
 /// procrefarg
 
-setdebug(1,@pline,@~step,@trace,@showresults,1)
+setdebug(1,@pline,@~step,@~trace,@showresults,1)
 filterFuncDebug(ALLOWALL_,"proc",);
 filterFileDebug(ALLOWALL_,"ic_",);
 
@@ -42,7 +42,7 @@ v->info(1)
 <<" changing second arg to %V $u \n"
 u->info(1)
 <<"args out %V $v $u $z\n"
-
+z->info()
 <<" should return $z\n"
 
   return z;
@@ -51,26 +51,6 @@ u->info(1)
 //=======================//
 
 
-proc sumarg2 (v, u)
-{
-<<"args in %V  $v $u \n"
-float z;
-   z = v + u;
-
-<<"%V$v + $u = $z\n"
-
-   v++;
-<<" changing first arg to %V$v\n"
-
-   u = u * 2;
-
-<<" changing second arg to %V$u \n"
-
-<<"args out %V$v $u $z\n"
-
-  return z;
-}
-//=======================//
 
 
 
@@ -121,8 +101,6 @@ int k = 0;
 
 <<"%V $k\n"
 
-//  CheckNum(k,5)
-
    checkNum(5,k);
 
 //
@@ -137,58 +115,4 @@ int k = 0;
   CheckNum(k,21);
 
 
-
-  CheckNum(n,8);
-  CheckNum(m,28);
-
-
-
- n = 54;
- m = 49;
-
- k = sumarg(&n,m)
-
-  CheckNum(n,55)
-  CheckNum(m,49)
-  CheckNum(k,103);
-<<"%V $n $m $k \n"
-
-
-
 checkOut()
-
-
- n = 79;
- m = 47;
-
-
-k = sumarg2(n,&m)
-
-  CheckNum(n,79)
-  CheckNum(m,94)
-  CheckNum(k,126);
-<<"%V $n $m $k \n"
-
-
-
- n = 20;
- m = 28;
-
-k = sumarg(&n,m)
-
-  CheckNum(n,21)
-  CheckNum(m,28)
-  CheckNum(k,48);
-
-<<"%V $n $m $k \n"
-
-
-
-
-
- CheckOut()
-
-
-
-//////////// TBD ////////////
-// BUG XIC version  -- won't find ref argument

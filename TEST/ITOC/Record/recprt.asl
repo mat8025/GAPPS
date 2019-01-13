@@ -12,7 +12,21 @@ checkIn()
  R[2] = Split("you are as strong as your will")
  R[3] = Split("this is the 4th record")
 
-setdebug(1,@trace);
+setdebug(1,@~trace);
+
+wrow= 1;
+wcol=2;
+R->info(1)
+wrd= "$R[wrow][wcol]";
+R->info(1)
+<<"$wrow $wcol  <|$wrd|>\n"
+
+
+checkStr(wrd,"devil")
+
+
+
+
 <<"%V$R[0]\n"
 
 <<"%V$R[0][0] \n"
@@ -29,10 +43,19 @@ for (wcol =0; wcol <4; wcol++) {
 }
 }
 
-wrow= 1;
+wrd= "$R[1][2]";
+
+<<"%V [1][2]  $wrd\n"
+
+
+wrow = 1;
 wcol=2;
+
+R->info(1)
 wrd= "$R[wrow][wcol]";
+R->info(1)
 <<"%V$wrow $wcol  $wrd\n"
+
 checkStr(wrd,"devil")
 
 checkOut()
