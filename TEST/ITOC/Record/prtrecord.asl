@@ -37,7 +37,7 @@ record R[10];
 
 
 
-svar S
+svar S;
 
   S= R[1];
 
@@ -67,16 +67,34 @@ checkStr(wrd,"strong");
 
 
 
-<<"all? $R \n"
+<<"all?R $R \n"
 
-<<"all? $R[::] \n"
 
-<<"1:3 $R[1:3:] \n"
 
-<<"2 $R[2] \n"
+<<"all?R[::] $R[::] \n"
+
+
+<<"R[1:3] $R[1:3:] \n"
+
+<<"R[2] $R[2] \n"
+
+<<"R[1] $R[1]\n"
 
 
   NR = R;
+
+<<"R[1] $R[1]\n"
+
+
+ wrd = R[1][2]
+
+checkStr(wrd,"devil")
+
+
+ wrd = R[3][4]
+
+checkStr(wrd,"record")
+
 
 sz = Caz(NR);
 <<" $(typeof(NR)) $sz elements\n"
@@ -84,7 +102,14 @@ sz = Caz(NR);
 <<"2 $NR[2] \n"
 <<"3 $NR[3] \n"
 
+ wrd = NR[1][2]
 
+checkStr(wrd,"devil")
+
+
+ wrd = NR[3][4]
+
+checkStr(wrd,"record")
 
 
 
@@ -106,26 +131,24 @@ W= Split("each to his own")
 ///
 ///
 
-
-
-<<"$S[1]\n";
+<<"S[1] $S[1]\n";
 
 <<"%(2,\s->,\,,<-\n)$S\n"
 
-<<"$R[1]\n"
+<<"R[1] $R[1]\n"
 
- sz= Caz(R[1]);
+  sz= Caz(R[1]);
 
 <<"R1sz $sz\n"
 
-  S= R[1];
-
-
+  S = R[1];
 
 <<"$S\n";
 
 sz= Caz(S);
 <<"Ssz $sz\n"
+
+//exit()
 
 <<"S1: $S[1]\n";
 
@@ -135,6 +158,9 @@ sz= Caz(S);
 
 
 //<<"%(2,\s->,\,,<-\n)$R[1]\n"
+
+//checkOut();
+//exit();
 
 Rn = 4;
 svar s;
@@ -184,3 +210,4 @@ ir = 3
 //<<"%(2,\s->,\,,<-\n)$S\n"
 
 checkOut();
+exit();

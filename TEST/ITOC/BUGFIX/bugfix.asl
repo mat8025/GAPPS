@@ -172,7 +172,7 @@ include "bugfix_scrn"
    
    sWo(cellwo,@setrowscols,rows+20,cols+1);
    sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
-
+   sWo(cellwo,@setcolsize,3,1,1) 
 
    sWi(vp,@redraw)
 

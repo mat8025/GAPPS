@@ -49,7 +49,7 @@ wrd= "$R[1][2]";
 
 
 wrow = 1;
-wcol=2;
+wcol = 2;
 
 R->info(1)
 wrd= "$R[wrow][wcol]";
@@ -57,6 +57,13 @@ R->info(1)
 <<"%V$wrow $wcol  $wrd\n"
 
 checkStr(wrd,"devil")
+
+wrow = 3;
+wcol = 4;
+
+wrd= "$R[wrow][wcol]";
+
+checkStr(wrd,"record")
 
 checkOut()
 

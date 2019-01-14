@@ -84,6 +84,7 @@ proc SAVEWEX()
 {
 	 
             B=ofw(fname)
+  R[0]= Split("Date         ,Weight,Walk,Hike,Run,Bike,Swim,Yard,Gym,Bpress, Tags",",");
             if ( B != -1) {
   // <<[B]"#Date   Weight  Walk    Hike    Run     Bike    Swim      Yard    Gym     Bpress Tags\n"
    // the first row is the field heading - should be ignored in data comptation

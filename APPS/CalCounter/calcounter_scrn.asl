@@ -54,7 +54,7 @@
 
  cellwo=cWo(vp,@SHEET,@name,"DailyCalCnt",@color,GREEN_,@resize,0.12,0.42,0.98,0.96)
 
- sWo(cellwo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"1",@func,"inputValue");
+ sWo(cellwo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"1");
 
  sWo(cellwo,@bhue,CYAN_,@clipbhue,SKYBLUE_,@redraw);
 
