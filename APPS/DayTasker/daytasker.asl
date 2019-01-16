@@ -3,8 +3,8 @@
 //* 
 //*  @comment  cosas que hacer hoy 
 //*  @release CARBON 
-//*  @vers 1.5 B Boron                                                    
-//*  @date Fri Jan 11 12:36:01 2019 
+//*  @vers 1.6 C Carbon                                                   
+//*  @date Wed Jan 16 13:32:03 2019 
 //*  @cdate Wed Jan  9 10:54:35 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -34,8 +34,8 @@
  
  include "debug.asl"
  
- scriptDBOFF();
- debugOFF();
+ scriptDBON();
+ debugON();
 
  include "gevent.asl"
  include "dayt_menus.asl"
@@ -53,15 +53,15 @@
  Record DF[10];
  // Task,Priority,TimeEst,PCDone,TimeSpent,Difficulty,Attribute,Score,Tags,
  
-   DF[0] = Split("task?,3,30,0,0,1,?,0,",",")
+   DF[0] = Split("task?,3,30,0,0,1,?,0,,",",")
    // use enum
-   DF[1] = Split("Exercise,9,60,0,0,3,X,0,"",")
-   DF[2] = Split("Guitar,8,30,0,0,3,G,0,"" ")
-   DF[3] = Split("Spanish,8,30,0,0,3,L,0,"",")
-   DF[4] = Split("PR/DSP,8,60,0,0,7,D,0,"",")    
+   DF[1] = Split("Exercise,9,66,11,15,7,X,0,,",",")
+   DF[2] = Split("Guitar,8,30,10,14,3,G,0,,",",")
+   DF[3] = Split("Spanish,8,30,0,0,3,L,0,,",",")
+   DF[4] = Split("PR/DSP,8,60,0,0,7,D,0,,",",")    
  
- Record R[5+];
- Rn = 0;
+ Record R[6+];
+ Rn = 5;
  
  int ok = 0;
  
@@ -189,13 +189,32 @@
    sz = Caz(R);
  
    ncols = Caz(R[0]);
- 
-<<[_DB]"num of records $sz  num cols $ncols\n"
+ ncols1 = Caz(R[1]);
+<<[_DB]"num of records $sz  num cols $ncols $ncols1\n"
 
 
  //////////////////////////////////
- 
- 
+
+<<[_DB]"$R \n"
+
+/{
+<<[_DB]"%V$R[1][1] \n"
+<<[_DB]"%V$R[1][2] \n"
+<<[_DB]"%V$R[1][3] \n"
+<<[_DB]"%V$R[1][4] \n"
+<<[_DB]"%V$R[1][5] \n"
+<<" //////////\n"
+<<[_DB]"%V$R[2][1] \n"
+<<[_DB]"%V$R[2][2] \n"
+<<[_DB]"%V$R[2][3] \n"
+<<[_DB]"%V$R[2][4] \n"
+<<[_DB]"%V$R[2][5] \n"
+/}
+
+
+
+
+
  Graphic = CheckGwm()
  
  
@@ -279,7 +298,8 @@ include "dayt_scrn.asl"
 
    ok= abc->info(1)
       <<"%V $ok\n"
-
+int mr =0;
+int mc = 0;
    while (1) {
    //<<"%V $_erow\n"
 
@@ -289,35 +309,37 @@ include "dayt_scrn.asl"
 //   <<[_DB]" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
  
 // colorRows(rows,cols);
- 
-          if (_erow > 0) {
-             the_row = _erow;
+          mr = _erow;
+	  mc = _ecol;
+	  
+          if (mr > 0) {
+             the_row = mr;
           }
  
         if (_ewoid == cellwo) {
         
  
- 	               if (_ebutton == LEFT_ && _erow > 0) {
-                        //_ecol->info(1);
- 	                //_erow->info(1);
-                          if (_ecol == PriorityCol) {
-                              setPriority(_erow,_ecol);
+ 	               if (_ebutton == LEFT_ && mr > 0) {
+                        //mc->info(1);
+ 	                //mr->info(1);
+                          if (mc == PriorityCol) {
+                              setPriority(mr,mc);
                           }
-                          else if (_ecol == PCDoneCol) {
-                              PCDONE(_erow,PCDoneCol );
+                          else if (mc == PCDoneCol) {
+                              PCDONE(mr,PCDoneCol );
                           }			 
-                          else if ((_ecol == TimeEstCol) \
- 			      || (_ecol == DurationCol)) {
-                              HowLong(_erow,_ecol);
+                          else if ((mc == TimeEstCol) \
+ 			      || (mc == DurationCol)) {
+                              HowLong(mr,mc);
                           }
-                          else if (_ecol == DiffCol) {
-                              setDifficulty(_erow,_ecol);
+                          else if (mc == DiffCol) {
+                              setDifficulty(mr,mc);
                           }
-                          else if (_ecol == AttrCol) {
-                              setAttribute(_erow,_ecol);
+                          else if (mc == AttrCol) {
+                              setAttribute(mr,mc);
                           }			 			  
                          else {
-                              getCellValue(_erow,_ecol);
+                              getCellValue(mr,mc);
                           }
 			  SCORE();
                          }
@@ -327,15 +349,15 @@ include "dayt_scrn.asl"
  
          whue = YELLOW_;
  	
-         if (_ecol == 0  && (_erow >= 0) && (_ebutton == RIGHT_)) {
-           if ((_erow % 2)) {
+         if (mc == 0  && (mr >= 0) && (_ebutton == RIGHT_)) {
+           if ((mr % 2)) {
             whue = LILAC_;
  	 }
  
           sWo(cellwo,@cellbhue,swaprow_a,0,swaprow_a,cols,whue);         	 	 
  
           swaprow_b = swaprow_a;
- 	  swaprow_a = _erow;
+ 	  swaprow_a = mr;
  	 
 // <<[_DB]"%V $swaprow_a $swaprow_b\n"
  
@@ -343,11 +365,11 @@ include "dayt_scrn.asl"
           }
                 
               
-       if (_erow == 0 && (_ecol >= 0) && (_ebutton == RIGHT_)) {
+       if (mr == 0 && (mc >= 0) && (_ebutton == RIGHT_)) {
  
           sWo(cellwo,@cellbhue,0,swapcol_a,0,cols,YELLOW_);   
           swapcol_b = swapcol_a;
-  	  swapcol_a = _ecol;
+  	  swapcol_a = mc;
           sWo(cellwo,@cellbhue,0,swapcol_a,CYAN_);         	 
 
 <<[_DB]"%V $swapcol_a $swapcol_b\n"
@@ -355,23 +377,23 @@ include "dayt_scrn.asl"
  
          sWo(cellwo,@redraw);
  
-         if (_erow == 0 && (_ecol == tags_col) && (_ebutton == RIGHT_)) {
+         if (mr == 0 && (mc == tags_col) && (_ebutton == RIGHT_)) {
                
                  clearTags();   
          }
  
-         if (_erow > 0 && (_ecol == tags_col) && (_ebutton == RIGHT_)) {
-<<[_DB]"mark tags <|$R[_erow][tags_col]|>\n"
+         if (mr > 0 && (mc == tags_col) && (_ebutton == RIGHT_)) {
+<<[_DB]"mark tags <|$R[mr][tags_col]|>\n"
 
-                if (R[_erow][tags_col] @= "x") {
-		R[_erow][tags_col] = " "
- 		sWo(cellwo,@cellval,_erow,tags_col," ")
+                if (R[mr][tags_col] @= "x") {
+		R[mr][tags_col] = " "
+ 		sWo(cellwo,@cellval,mr,tags_col," ")
 		}
 		else {
-		R[_erow][tags_col] = "x"
- 		sWo(cellwo,@cellval,_erow,tags_col,"x")
+		R[mr][tags_col] = "x"
+ 		sWo(cellwo,@cellval,mr,tags_col,"x")
                 }
- 		sWo(cellwo,@celldraw,_erow,tags_col)
+ 		sWo(cellwo,@celldraw,mr,tags_col)
          }
  
     }

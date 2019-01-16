@@ -3,8 +3,8 @@
 //* 
 //*  @comment asl test modules 
 //*  @release CARBON 
-//*  @vers 1.37 Rb Rubidium                                               
-//*  @date Sun Jan 13 00:49:08 2019 
+//*  @vers 1.39 Y Yttrium                                                 
+//*  @date Wed Jan 16 13:33:31 2019 
 //*  @cdate 1/1/2005 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -1104,7 +1104,7 @@ if ( do_all || do_mops ) {
 
   if ( do_all || do_record ) {
 
-     RunTests2("Record","record,readrecord,prtrecord,rec1,recprt");
+ RunTests2("Record","record,readrecord,prtrecord,rec1,recprt,recatof");
 
   }
 
