@@ -42,3 +42,10 @@ proc setStatus(wr, wc)
    }
 }
 //===============================//
+proc setUpDate(wr, wc ,td)
+{
+
+           sWo(cellwo,@cellval,wr,wc,td);
+           R[wr][wc] = td;
+}
+//===============================//

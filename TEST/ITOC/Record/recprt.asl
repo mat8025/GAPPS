@@ -11,6 +11,7 @@ checkIn()
  R[1] = Split("and the devil take the hindmost")
  R[2] = Split("you are as strong as your will")
  R[3] = Split("this is the 4th record")
+ R[4] = Split("and the 5th record next")
 
 setdebug(1,@~trace);
 
@@ -65,9 +66,7 @@ wrd= "$R[wrow][wcol]";
 
 checkStr(wrd,"record")
 
-checkOut()
 
-exit();
 
 <<"%V$R\n"
 <<"%V$R[::]\n"
@@ -77,7 +76,7 @@ exit();
 <<"%V$R[3]\n"
 
 <<"/////\n"
-exit()
+
 
 <<"%V$R[1][::]\n"
 <<"%V$R[1][0] \n"
@@ -85,3 +84,20 @@ exit()
 <<"%V$R[2][2] \n"
 <<"%V$R[3][4] \n"
 
+
+<<"%V\n $R[1:4:][::]\n"
+
+
+
+<<"R[1:4:][1:3:]\n"
+
+<<" $R[1:4:][1:3:]\n"
+
+
+
+
+
+
+checkOut()
+
+exit();

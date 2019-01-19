@@ -3,8 +3,8 @@
 //* 
 //*  @comment asl test modules 
 //*  @release CARBON 
-//*  @vers 1.39 Y Yttrium                                                 
-//*  @date Wed Jan 16 13:33:31 2019 
+//*  @vers 1.40 Zr Zirconium                                              
+//*  @date Thu Jan 17 13:42:38 2019 
 //*  @cdate 1/1/2005 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -51,7 +51,9 @@ filterFileDebug(ALLOWALL_,"ic_op");
 
 
 //envdebug();
-str S = "all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex,proc,switch,types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc,svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help";
+str S = "all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,\
+logic,for,do,paraex,proc,switch,types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc,\
+svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help";
 
 Svar Opts[] = Split(S,",");
 
@@ -88,7 +90,7 @@ Dbf=ofw("test_debug")
 
 <<[Opf]"$today $(get_version())\n"
 
-do_pause = 0
+do_pause = 0;
 do_error_pause = 0
 
 do_xic = 1;
@@ -133,8 +135,13 @@ Curr_dir = "xx";
 proc help()
 {
  <<" run regression tests for asl\n"
+ <<" asl ASL_TEST_VER \n"
+ <<" runs all tests \n"
  <<" asl ASL_TEST_VER bops mops\n"
  <<" would run basic and math regression tests and return scores\n"
+ <<" asl ASL_TEST_VER all pause\n"
+ <<" would run every test -pausing at end of each rof keyboard input to continue\n"
+ 
  <<" current tests:\n"
  <<" %(5,, ,\n) $Opts \n"
 
@@ -423,12 +430,7 @@ proc cart_xic(aprg, a1, in_pargc)
 
   }
 
-    if (do_pause) {
-        onward = iread(":)->")
-	if (onward @= "quit") {
-          STOP("quit ASL tests");
-        }
-    }
+  
 } 
 //================================//
 
@@ -534,15 +536,17 @@ proc cart (aprg, a1)
 //    snooze(15000)
 // nanosleep(1,500)
 
-    if (do_pause) {
+    
+  ntest++
 
-      onward = iread("ERRORS :)->")
-	if (onward @= "quit") {
-          STOP("quit ASL tests");
+    if (do_pause) {
+        onward = iread("carryon? {no to quit}:)->");
+	
+	if (scmp(onward,"no")) {
+          exit("quit ASL tests");
         }
     }
 
-  ntest++
 
 //!!"tail -3 $tout "
  // TBC if (do_xic)  // FAILS
@@ -635,24 +639,17 @@ int do_help = 0;
     while (1) {
 
 
-   wt = _argv[i]
+      wt = _argv[i]
 
 //   if (wt @= "bops")
 //        do_bops = 1  
-//   if (wt @= "mops")
-//        do_mops = 1
-	
-   do_arg = "do_$wt"
-   $do_arg = 1;
+
+     do_arg = "do_$wt"
+     $do_arg = 1;
+
 //<<" $i $wt $do_arg \n"
 
-   if (wt @= "pause")
-        do_pause = 1;  
-
-   if (wt @= "error_pause")
-        do_error_pause = 1;  
-
-   i++;
+     i++;
 
     if (i >= nargs)
           break;     
@@ -1104,7 +1101,7 @@ if ( do_all || do_mops ) {
 
   if ( do_all || do_record ) {
 
- RunTests2("Record","record,readrecord,prtrecord,rec1,recprt,recatof");
+ RunTests2("Record","record,readrecord,prtrecord,rec1,recprt,recatof,reclhs");
 
   }
 
@@ -1203,6 +1200,7 @@ if ( do_all || do_mops ) {
 
 //============================
     RunSFtests("BubbleSort,Typeof,Variables,Trig,Caz,Sizeof,Limit,D2R,Cbrt,Fabs");
+    RunSFtests("Round,Trunc");
 //============================
 
 /// chem    -- find an atomic number for an element

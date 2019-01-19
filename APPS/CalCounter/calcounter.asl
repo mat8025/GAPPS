@@ -187,8 +187,27 @@ else {
   
   Ncols = Caz(R[0]);
   rows = sz+1;
-  
+  cols = Ncols;
+
+
 <<"num of records $sz  %V $rows $Ncols\n"
+  totalRows();
+  
+  sz = Caz(R);
+  Nrows = sz;
+  
+  Ncols = Caz(R[0]);
+  rows = sz;
+  cols = Ncols;
+
+<<"num of records $sz  %V $rows $Ncols\n"
+
+<<"/////////// %v $rows\n"
+
+  for (j=0; j<rows; j++) {
+
+<<"$j  $R[j]\n"
+  }
 
 //////////////////////////////////
 
@@ -210,14 +229,12 @@ include "checkFood";
 
 int cv = 0;
 
-  sz= Caz(R);
-  rows = sz;
-  cols = Caz(R[0])
 
   tags_col = cols;
  // rows += 2;
   sWo(cellwo,@setrowscols,rows+10,cols+1);
 
+  sWo(cellwo,@cellval,R,0,0,rows,cols);  
 <<"%V$rows $sz \n"
 
   for (i = 0; i < rows;i++) { 
@@ -237,12 +254,12 @@ int cv = 0;
      }
 
 
-  totalRows();
 
-
-  sWo(cellwo,@cellval,R,0,0,rows,cols);  
+ 
+  sWo(cellwo,@cellval,R,0,0,rows+1,cols);  
    
-  sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
+  //sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
+  sWo(cellwo,@selectrowscols,0,rows,0,cols);
 
   sWo(cellwo,@cellval,0,tags_col,"Tags")
 
@@ -287,7 +304,7 @@ Record RC[20];
 
    sWo(ssmods,@redraw);
 
-  setRowColSizes();
+   setRowColSizes();
 
 
 

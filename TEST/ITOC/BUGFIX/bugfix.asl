@@ -3,8 +3,8 @@
 //* 
 //*  @comment report and schedule bug fix 
 //*  @release CARBON 
-//*  @vers 2.21 Sc Scandium                                               
-//*  @date Sat Jan 12 08:54:42 2019 
+//*  @vers 2.22 Ti Titanium                                               
+//*  @date Thu Jan 17 09:03:30 2019 
 //*  @cdate 1/1/2010 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -59,6 +59,10 @@ include "bugfix_proc.asl";
  <<[A],"title Status \n"
  <<[A],"item PENDING M_VALUE PENDING\n"
  <<[A],"item IN_PROGRESS M_VALUE IN_PROGRESS\n"
+ <<[A],"item FIX_25\% M_VALUE FIX_25\%\n"
+ <<[A],"item FIX_50\% M_VALUE FIX_50\%\n"
+ <<[A],"item FIX_75\% M_VALUE FIX_75\%\n"
+ <<[A],"item FIX_90\% M_VALUE FIX_90\%\n"   
  <<[A],"item FIXED M_VALUE FIXED\n"
  <<[A],"item FEATURE M_VALUE FEATURE\n"
  <<[A],"item WAIT4NEWVERS M_VALUE WAIT4NEWVERS\n"
@@ -180,40 +184,46 @@ include "bugfix_scrn"
 
    sWo(cellwo,@redraw);
 
+
+int mwr = -1;
+int mwc = -1;
+
   while (1) {
 
          eventWait();
+         mwr= _erow;
+	 mwc= _ecol;
+	 
+   <<[_DB]" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
 
-   <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
-
-         if (_erow > 0) {
-            the_row = _erow;
+         if (mwr > 0) {
+            the_row = mwr;
          }
 
        if (_ewoid == cellwo) {
        
              if (_ekeyw @="CELLVAL") {
-                r= _erow;
-		c= _ecol;
+                r= mwr;
+		c= mwc;
 
                 R[r][c] = _evalue;
-		<<"update cell val $r $c $_erow $_ecol $_ekeyw2 $R[r][c] \n"
+		<<"update cell val $r $c $mwr $_ecol $_ekeyw2 $R[r][c] \n"
 		<<"updated row $R[r]\n"
             }
 
       
 
         whue = YELLOW_;
-        if (_ecol == 0  && (_erow >= 0) && (_ebutton == RIGHT_)) {
+        if (mwc == 0  && (mwr >= 0) && (_ebutton == RIGHT_)) {
 
-         if ((_erow%2)) {
+         if ((mwr%2)) {
            whue = LILAC_;
 	 }
 
          sWo(cellwo,@cellbhue,swaprow_a,0,swaprow_a,cols,whue);         	 	 
 
          swaprow_b = swaprow_a;
-	 swaprow_a = _erow;
+	 swaprow_a = mwr;
 	 
 <<"%V $swaprow_a $swaprow_b\n"
 
@@ -222,11 +232,11 @@ include "bugfix_scrn"
 
                
              
-      if (_erow == 0 && (_ecol >= 0) && (_ebutton == RIGHT_)) {
+      if (mwr == 0 && (mwc >= 0) && (_ebutton == RIGHT_)) {
 
          sWo(cellwo,@cellbhue,0,swapcol_a,0,cols,YELLOW_);         	 	 
          swapcol_b = swapcol_a;
- 	 swapcol_a = _ecol;
+ 	 swapcol_a = mwc;
 
          sWo(cellwo,@cellbhue,0,swapcol_a,CYAN_);         	 
 <<"%V $swapcol_a $swapcol_b\n"
@@ -234,29 +244,31 @@ include "bugfix_scrn"
 
         sWo(cellwo,@redraw);
 
-        if (_erow == 0 && (_ecol == tags_col) && (_ebutton == RIGHT_)) {
+        if (mwr == 0 && (mwc == tags_col) && (_ebutton == RIGHT_)) {
                //<<"Clear tags \n"
                 clearTags();   
         }
 
-        if (_erow > 0 && (_ecol == tags_col) && (_ebutton == RIGHT_)) {
+        if (mwr > 0 && (mwc == tags_col) && (_ebutton == RIGHT_)) {
                <<"mark tags \n"
-                R[_erow][tags_col] = "x";
-		sWo(cellwo,@cellval,_erow,tags_col,"x")
-		sWo(cellwo,@celldraw,_erow,tags_col)
+                R[mwr][tags_col] = "x";
+		sWo(cellwo,@cellval,mwr,tags_col,"x")
+		sWo(cellwo,@celldraw,mwr,tags_col)
         }
 
-        if (_ebutton == LEFT_ && _erow > 0) {
-                        //_ecol->info(1);
+        if (_ebutton == LEFT_ && mwr > 0) {
+                        //mwc->info(1);
 
-            if (_ecol == PriorityCol) {
-               setPriority(_erow,_ecol);
+            if (mwc == PriorityCol) {
+               setPriority(mwr,mwc);
+	       
             }
-	    else if (_ecol == StatusCol) {
-               setStatus(_erow,_ecol);
+	    else if (mwc == StatusCol) {
+               setStatus(mwr,mwc);
+	       setUpDate(mwr,UpDateCol,today);
             }
             else {
-              getCellValue(_erow,_ecol);
+              getCellValue(mwr,mwc);
             }
         }
 

@@ -10,6 +10,8 @@
 //* 
 //***********************************************%
 
+int _DB = -1; //dbg FH set to nop --set to 2 for error output
+
 dbid = IDof("_DB");
 <<"%V dbid _DB\n"
 
@@ -17,7 +19,7 @@ setdebug(0,@keep);
 // if there are errors keep  idb,xdb file in .GASP/WORK/Debug
 // will be overwritten by scripts  unless unique/local options used
 
-int _DB = -1; //dbg FH set to nop --set to 2 for error output
+
 
 proc DummyP()
 {

@@ -1,16 +1,25 @@
 //%*********************************************** 
 //*  @script dayt_menus.asl 
 //* 
-//*  @comment  
+//*  @comment menus for daytasker 
 //*  @release CARBON 
-//*  @vers 1.2 He Helium                                                  
-//*  @date Tue Dec 25 08:04:48 2018 
+//*  @vers 1.4 Be Beryllium                                               
+//*  @date Thu Jan 17 08:17:58 2019 
+//*  @cdate 6/1/2018 
 //*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2014,2018 --> 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
 
+
  //=============== MENUS=================//
+
+ // check if exist - else create
+ dayt_menu = "Howlong.m";
+ sz =fexist(dayt_menu) 
+ <<"Checking menus $dayt_menu $sz \n"
+ if (fexist(dayt_menu) == -1) {
+<<"making $dayt_menu \n"
  A=ofw("Howlong.m")
  <<[A],"title HowLong\n"
  <<[A],"item 0m M_VALUE 0\n"
@@ -31,8 +40,12 @@
  <<[A],"item ? C_INTER "?"\n"
  <<[A],"help set mins\n"
  cf(A)
+ }
  //=================================//
+ dayt_menu = "Favorites.m";
  
+ if (fexist(dayt_menu) == -1) {
+ <<"making $dayt_menu \n"
  A=ofw("Favorites.m")
  <<[A],"title Favorites\n"
  <<[A],"item Guitar M_VALUE 1\n"
@@ -44,8 +57,12 @@
  <<[A],"item PR/DSP M_VALUE 4\n"
  <<[A],"help learn/code\n"
  cf(A)
+ }
  //==============================//
+ dayt_menu = "PCdone.m";
  
+ if (fexist(dayt_menu) == -1) {
+ <<"making $dayt_menu \n"
  A=ofw("PCdone.m")
  <<[A],"title PCdone\n"
  <<[A],"item 0% M_VALUE 0\n"
@@ -59,7 +76,12 @@
  <<[A],"item ? C_INTER "?"\n"
  <<[A],"help set pcdone\n"
  cf(A)
+ }
  //==============================//
+ dayt_menu = "Priority.m";
+ 
+ if (fexist(dayt_menu) == -1) {
+ <<"making $dayt_menu \n"
  A=ofw("Priority.m")
  <<[A],"title Priority 1-7\n"
  <<[A],"item 1 M_VALUE 1\n"
@@ -73,7 +95,14 @@
  <<[A],"item 9 M_VALUE 9\n"
  <<[A],"item 10 M_VALUE 10\n"   
  cf(A)
+ }
+ 
  //==============================//
+dayt_menu = "Difficulty.m";
+ 
+ if (fexist(dayt_menu) == -1) {
+ <<"making $dayt_menu \n"
+
  A=ofw("Difficulty.m")
  <<[A],"title Difficulty\n"
  <<[A],"item 1 M_VALUE 1\n"
@@ -84,7 +113,15 @@
  <<[A],"item 6 M_VALUE 6\n"
  <<[A],"item 7 M_VALUE 7\n"
  cf(A)
+ }
+ 
  //==============================//
+dayt_menu = "Attributes.m";
+ sz =fexist(dayt_menu) 
+ <<"Checking menus $dayt_menu $sz \n"
+ if (fexist(dayt_menu) == -1) {
+ <<"making $dayt_menu \n"
+ 
  A=ofw("Attributes.m")
  <<[A],"title Attributes\n"
   <<[A],"item A M_VALUE A\n"
@@ -96,8 +133,11 @@
  <<[A],"item Y M_VALUE Y\n"
  <<[A],"item H M_VALUE H\n"
  <<[A],"item B M_VALUE B\n"
+  <<[A],"item Mn M_VALUE Mn\n"
  <<[A],"item ? C_INTER "?"\n"
  <<[A],"help set task attribute\n"
  cf(A)
+ }
  //==============================//
- 
+
+ <<[_DB]"Done $_include \n"

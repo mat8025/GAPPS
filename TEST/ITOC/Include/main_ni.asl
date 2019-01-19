@@ -1,9 +1,20 @@
-////
-////    test include statement
-////
+//%*********************************************** 
+//*  @script main_ni.asl 
+//* 
+//*  @comment test include refs 
+//*  @release CARBON 
+//*  @vers 1.11 Na Sodium                                                 
+//*  @date Thu Jan 17 09:39:14 2019 
+//*  @cdate 1/1/2008 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+
 
 <<"does nested includes\n"
 
+A= 1;
 
 int n = 0 ;
 
@@ -21,12 +32,18 @@ include "inc1_nest";
 
 
 
-<<"after include \n"
-<<"a global %V$X\n"
-<<"a global %V$Y\n"
-<<"a global %V$Z\n"
+
 
  checkin();
+
+<<"main sees globals %V $A $X $Y $Z\n"
+
+checkFnum(A,1)
+checkFnum(X,1.2345)
+checkFnum(Y,2.2345)
+checkFnum(Z,3.2345)
+
+
 
  s=foo(2,3)
 

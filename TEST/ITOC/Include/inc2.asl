@@ -1,11 +1,11 @@
 
-<<"including inc2 _scope \n"
+<<"including $_include _scope \n"
 
-<<"inc2 a global %V$X\n"
+<<"inc2 sees globals %V $A $X\n"
 
 float Y = 2.2345;
 
-<<"inc2 a global %V$Y\n"
+<<"inc2 adds global %V$Y\n"
 
 proc goo( a,b)
 {
@@ -17,5 +17,5 @@ proc goo( a,b)
 
 include "inc3";
 
-<<"included inc2 _scope \n"
+<<"included $_include _scope \n"
 

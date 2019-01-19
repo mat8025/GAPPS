@@ -1,13 +1,30 @@
+//%*********************************************** 
+//*  @script rec1.asl 
+//* 
+//*  @comment test recA=rec5 use 
+//*  @release CARBON 
+//*  @vers 1.36 Kr Krypton                                                
+//*  @date Sat Jan 19 06:45:00 2019 
+//*  @cdate 1/1/2007 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 
 ///
 ///  Records
 ///
 
-setdebug(1,@keep,@trace,@pline);
-FilterDebug(ALLOWALL_)
-FilterFileDebug(ALLOWALL_)
 
-checkIn()
+
+include "debug.asl"
+
+debugON();
+
+
+setdebug (1, @pline, @~step, @trace, @soe) ;
+
+checkIn(1)
 
   Record R[4+];
 
@@ -21,12 +38,12 @@ recinfo = info(R);
 <<"$recinfo \n"
 
 
- R[0] = Split("80,1,2,3,40,5,6,7,8,9",",");
- R[1] = Split("82,5,4,3,40,5,6,7,8,9",",");
- R[2] = Split("83,7,6,5,40,5,6,7,8,9",",");
- R[3] = Split("84,8,7,6,40,5,6,7,8,9",",");
- R[4] = Split("85,9,8,7,40,5,6,7,8,47",",");
- R[6] = Split("87,9,8,7,40,5,6,7,8,79",",");
+ R[0] = Split("80,1,2,3,40,5,6,7,8,9",',');
+ R[1] = Split("82,5,4,3,40,5,6,7,8,9",',');
+ R[2] = Split("83,7,6,5,40,5,6,7,8,9",',');
+ R[3] = Split("84,8,7,6,40,5,6,7,8,9",',');
+ R[4] = Split("85,9,8,7,40,5,6,7,8,47",',');
+ R[6] = Split("87,9,8,7,40,5,6,7,8,79",',');
 
 
 <<" $R[::] \n"
@@ -57,13 +74,29 @@ checkNum(ival,2)
 
 
 //=============================
- R[5] = R[0];
+ R[5] = R[1];
 
 <<"%V$R[5]\n"
 <<"%V$R[5][2]\n"
-
+fval = atoi(R[1][2]);
 ival = atoi(R[5][2]);
-checkNum(ival,2)
+ival->info(1)
+checkNum(ival,fval)
+
+
+<<"%V$R[3]\n"
+R[3][3]=R[2][3]
+<<"%V$R[3]\n"
+
+<<"%V$R[2][3]\n"
+<<"%V$R[3][3]\n"
+
+fval = atoi(R[2][3]);
+ival = atoi(R[3][3]);
+
+checkNum(ival,fval)
+
+
 
  R[2] = R[0];
 
@@ -131,8 +164,7 @@ recinfo = info(R);
 recinfo = info(R);
 <<"$recinfo \n"
 
-checkOut()
-exit()
+
 
 
 //////////////////////////////////////////
@@ -164,10 +196,11 @@ checkNum(ival,56)
 <<"%V$R\n"
 
 
-
+<<"%V$R[3][4]\n"
 
 ival = atoi(R[3][4]);
-checkNum(ival,4)
+<<"%V $ival\n"
+checkNum(ival,40)
 
 checkOut()
 

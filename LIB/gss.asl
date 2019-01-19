@@ -117,7 +117,7 @@ proc SAVE()
 	 
             B=ofw(fname);
             if ( B != -1) {
-<<"%V $rows $Rn \n"
+<<"%V $rows  \n"
             for (i= 0; i < rows ; i++) {
 	    val = R[i][0];
 <<"<$i> $val $R[i]\n"

@@ -3,8 +3,8 @@
 //* 
 //*  @comment  cosas que hacer hoy 
 //*  @release CARBON 
-//*  @vers 1.6 C Carbon                                                   
-//*  @date Wed Jan 16 13:32:03 2019 
+//*  @vers 1.7 N Nitrogen                                                 
+//*  @date Thu Jan 17 07:52:46 2019 
 //*  @cdate Wed Jan  9 10:54:35 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -55,10 +55,10 @@
  
    DF[0] = Split("task?,3,30,0,0,1,?,0,,",",")
    // use enum
-   DF[1] = Split("Exercise,9,66,11,15,7,X,0,,",",")
-   DF[2] = Split("Guitar,8,30,10,14,3,G,0,,",",")
+   DF[1] = Split("Exercise,9,70,0,1,7,X,0,,",",")
+   DF[2] = Split("Guitar,8,30,0,0,3,G,0,,",",")
    DF[3] = Split("Spanish,8,30,0,0,3,L,0,,",",")
-   DF[4] = Split("PR/DSP,8,60,0,0,7,D,0,,",",")    
+   DF[4] = Split("PR/DSP,8,60,0,0,8,D,0,,",",")    
  
  Record R[6+];
  Rn = 5;

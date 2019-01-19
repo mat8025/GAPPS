@@ -63,7 +63,7 @@ checkNum(rf,84)
 
 checkStr( R[1][PCDoneCol], "42");
 
-R[wrow][wcol] = "68";
+ R[wrow][wcol] = "68";
 
  wrd = R[wrow][wcol];
 
@@ -76,8 +76,45 @@ R[wrow][wcol] = "68";
 
 checkStr( wrd, "68");
 
+ wrd = R[wrow+4][wcol+1];
+
+<<"$wrd   $R[5][5] \n"
+
+ checkStr( R[wrow+4][wcol+1], "35");
+
+ checkStr( R[wrow*2][wcol+1], "5");
+
+<<"$wrd   $R[2][5] \n"
+
+ checkStr( R[wrow*3][wcol-1], "13");
+
+wrd = R[wrow*3][wcol-1];
+ 
+<<"$wrd   $R[wrow*3][wcol-1] \n"
 
 
+wrd = R[Trunc(wrow*3.4)][wcol-1];
+ 
+<<"$wrd   $R[wrow*3][wcol-1] \n"
+checkStr( wrd, "13");
+
+
+wrd = R[Round(wrow*3.7)][Round(wcol-1.6)];
+
+<<"$wrd  $(Round(wcol-1.6))  \n"
+
+//<<"$wrd   $R[Round(wrow*3.7)][Round(wcol-1.6)] \n"
+
+checkStr( wrd, "22");
+
+
+wrd = R[Round(wrow*3.7)][Round(wcol-2.6)];
+
+col = Round(wcol-2.6);
+
+<<"$wrd  $(Round(wcol-2.6)) $col \n"
+
+checkStr( wrd, "21");
 checkOut()
 
 exit()

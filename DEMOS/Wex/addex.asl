@@ -3,8 +3,8 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.3 Li Lithium                                                 
-//*  @date Mon Jan  7 17:36:59 2019 
+//*  @vers 1.4 Be Beryllium                                               
+//*  @date Sat Jan 19 10:03:29 2019 
 //*  @cdate Sun Jan  6 20:45:40 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -38,7 +38,7 @@ A=ofw("Howlong.m")
 <<[A],"help half-hour\n"
 <<[A],"item 30m M_VALUE 30\n"
 <<[A],"help half-hour\n"
-<<[A],"item 45m M_VALUE 30\n"
+<<[A],"item 45m M_VALUE 45\n"
 <<[A],"help 3/4 hour\n"
 <<[A],"item 1hr M_VALUE 60\n"
 <<[A],"help 1 hour\n"
@@ -248,6 +248,8 @@ include "addex_screen"
 <<"3 %V num of records $sz  $rows $cols  $Ncols\n"
 
    lastPGN ();
+   int mwr =0;
+   int mwc =0;
    
 while (1) {
 
@@ -256,11 +258,13 @@ while (1) {
          // TBF --- need these -? PROC_ARG_REF not cleared??
          //_erow->info(1);
         // _ecol->info(1);
+	 mwr = _erow;
+	 mwc = _ecol;
 	 
-//   <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
+//   <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ewoname $_ewoval $mwr $mwc $_ewoid \n"
 
-         if (_erow > 0) {
-            the_row = _erow;
+         if (mwr > 0) {
+            the_row = mwr;
          }
 
        if (_ewoid == cellwo) {
@@ -268,58 +272,58 @@ while (1) {
         whue = YELLOW_;
 	
         if (_ebutton == LEFT_) {
-             //_ecol->info(1);
-	     //_erow->info(1);
-           if (_erow == 0 && (_ecol == tags_col) ) {
+             //mwc->info(1);
+	     //mwr->info(1);
+           if (mwr == 0 && (mwc == tags_col) ) {
                <<"Clear tags \n"
                 clearTags();   
            }
-	   else if ((_ecol == 1) ) {
-              WhatWt(_erow);
+	   else if ((mwc == 1) ) {
+              WhatWt(mwr);
            }
-	   else if ((_erow > 0) && (_ecol > 1) && (_ecol <= 8)) {
-              HowLong(_erow,_ecol);
+	   else if ((mwr > 0) && (mwc > 1) && (mwc <= 8)) {
+              HowLong(mwr,mwc);
            }
 	   else {
-            getCellValue(_erow,_ecol);
+            getCellValue(mwr,mwc);
 	   }
         }
 
        else  if (_ebutton == RIGHT_) {
 
-         if (_ecol == 0  && (_erow >= 0) ) {
+         if (mwc == 0  && (mwr >= 0) ) {
 
-           if ((_erow % 2)) {
+           if ((mwr % 2)) {
              whue = LILAC_;
 	   }
 
          sWo(cellwo,@cellbhue,swaprow_a,0,swaprow_a,cols,whue);         	 	 
 
           swaprow_b = swaprow_a;
-	  swaprow_a = _erow;
+	  swaprow_a = mwr;
 	 
            <<"%V $swaprow_a $swaprow_b\n"
 
          sWo(cellwo,@cellbhue,swaprow_a,0,CYAN_);         
          }
             
-        else if ((_erow == 0) && (_ecol >= 0) && (_ecol < tags_col)) {
+        else if ((mwr == 0) && (mwc >= 0) && (mwc < tags_col)) {
 
-           pickTaskCol (_ecol);
+           pickTaskCol (mwc);
 
          }
-        else if ((_erow >= 0) && (_ecol == tags_col)) {
+        else if ((mwr >= 0) && (mwc == tags_col)) {
 	
-                if (_erow == 0) {
+                if (mwr == 0) {
                <<"Clear tags \n"
                 clearTags();   
                 }
 		else {
                 <<"Mark tags \n"
 	       
-                R[_erow][tags_col] = "x";
-		sWo(cellwo,@cellval,_erow,tags_col,"x")
-		sWo(cellwo,@celldraw,_erow,tags_col)
+                R[mwr][tags_col] = "x";
+		sWo(cellwo,@cellval,mwr,tags_col,"x")
+		sWo(cellwo,@celldraw,mwr,tags_col)
                 }
           }
       }

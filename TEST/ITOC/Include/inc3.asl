@@ -2,13 +2,12 @@
 // inc3
 <<"start including  inc3\n"
 
-<<"inc3 a global %V$X\n"
-<<"inc3 a global %V$Y\n"
+<<"inc3 sees globals %V $A $X $Y\n"
 
 
 float Z = 3.2345;
 
-<<"inc3 a global %V$Z\n"
+<<"inc3 adds global %V$Z\n"
 
 proc hoo( a,b)
 {
@@ -20,4 +19,4 @@ proc hoo( a,b)
 
 
 
-<<"included inc3 _scope \n"
+<<"included $_include  _scope \n"

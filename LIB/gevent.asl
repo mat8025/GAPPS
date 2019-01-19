@@ -16,15 +16,7 @@
 //
 //
 
-Class Cevent
-{
 
-// public:
-  int  id;
-  int button;
-  int row;
-  int col;
-};
 
 
 proc eventDecode()
@@ -115,7 +107,7 @@ proc eventRead()
 }
 //==============================
 
-//Cevent Cev;
+
 
 gevent Ev; // event type - can inspect for all event attributes
 

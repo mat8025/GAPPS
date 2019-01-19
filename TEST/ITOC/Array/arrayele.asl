@@ -1,22 +1,39 @@
+//%*********************************************** 
+//*  @script arrayele.asl 
+//* 
+//*  @comment test array vec and ele use 
+//*  @release CARBON 
+//*  @vers 1.37 Rb Rubidium                                               
+//*  @date Fri Jan 18 19:24:33 2019 
+//*  @cdate 1/1/2007 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+
+
+include "debug.asl"
+
+debugON();
 
 
 
-
-setdebug (1, @pline, @~step, @trace, @soe) ;
+setdebug (1, @pline, @~step, @trace, @~soe) ;
 
 checkIn ();
 
-
-
 proc array_sub (float rl[])
 {
-
   float t1;
   float t2;
 
   <<"In $_proc\n";
-  <<"$rl \n";
+  
+  <<"%V$rl \n";
 
+  t1 = rl[0];
+
+  <<"%6.2f%V$t1\n";
 
 //<<"%6.2f$rl \n"
 
@@ -86,7 +103,16 @@ proc array_sub (float rl[])
   jj = rl[kp];
     checkFnum (jj, -2);
    <<"%V $jj $kp $rl[kp] \n";
+
+  ff= rl[kp];
+  <<"$rl \n"
+  <<"%V $ff $jj $rl[kp] \n"
+  
   checkFnum (rl[kp], -2);
+
+  rl->info(1)
+
+
 
   <<"just rl[k] :: $rl[kp] \n";
 
@@ -105,6 +131,11 @@ proc array_sub (float rl[])
 
 
   checkFNum (rl[j1], -2);
+
+  ff= rl[j1];
+<<" $ff   \n"
+<<" $rl[j1]  -2 \n"
+  rl->info(1)
 
 //<<"$rl\n"   // FIX does not parse rl here why?
 
@@ -140,12 +171,11 @@ checkFnum (mt1, 4);
 
 Real1[0] = 74.47;
 
+<<"%V$Real1\n";
 val = array_sub (Real1);
 
-
-
-
-
+//checkStage()
+//ans=iread()
 
 ////////////////////
 
@@ -168,17 +198,11 @@ val = Real[k];
 checkFnum (val, 4);
 
 
-
 sz = Csz (Real);
 
 <<" done Caz %V$sz\n";
 
-
-
 double t1 = 4;
-
-
-
 
 sz = Csz (&t1);
 
@@ -196,7 +220,7 @@ sz = Csz (&t1);
 
 t1 = Real[4] ;
 
-<< "%V$t1  $(typeof(t1))\n";
+<<"%V $t1  $(typeof(t1))\n";
 
 
 
@@ -212,7 +236,7 @@ double t2;
 k = 5;
 t2 = Real[k];
 
-<< "%V$t2\n";
+<<"%V$t2\n";
 <<"$(Caz(t2))\n";
 
 checkFnum (t2, 5);
@@ -266,7 +290,8 @@ Real[j1] = Real[j1] - Real[j2];
 checkFnum (Real[j1], -2);
 
 checkFnum (Real[4], -2);
-
+//checkStage()
+//ans=iread()
 
 
 ////// Now inside proc -- with proc stack variables  //////////////////////////////
@@ -274,9 +299,7 @@ checkFnum (Real[4], -2);
 Real = fgen (10, 0, 1);
 <<"%V$Real\n";
 
-
 val = array_sub (Real);
-
 
 <<"$val \n";
 

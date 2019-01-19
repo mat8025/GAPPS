@@ -1,16 +1,15 @@
 //%*********************************************** 
 //*  @script dayt_procs.asl 
 //* 
-//*  @comment  
+//*  @comment procs for daytasker 
 //*  @release CARBON 
 //*  @vers 1.5 B Boron                                                    
-//*  @date Tue Dec 25 08:08:48 2018 
+//*  @date Thu Jan 17 08:33:47 2019 
+//*  @cdate 6/1/2018 
 //*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2014,2018 --> 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-
-
 
 
 
@@ -250,9 +249,9 @@ proc SCORE()
 
   for (i =1 ; i < Rn; i++) {
   wrd = R[i][PCDoneCol]
-  <<"$i $wrd $R[i][PCDoneCol] $R[i][DiffCol]\n"
-  score->info(1)
-  R->info(1)
+  <<[_DB]"$i $wrd $R[i][PCDoneCol] $R[i][DiffCol]\n"
+  //score->info(1)
+  //R->info(1)
   
   score = atof(R[i][PCDoneCol]);
 //  score = atof(wrd);
