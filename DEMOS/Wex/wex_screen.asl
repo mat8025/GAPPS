@@ -13,7 +13,19 @@
 
 //////////////////  WED SCREEN --- WINDOWS ////////////////
 
-    vptitle = "Wed_$ele_vers"
+
+
+<<"including wex_screen\n"
+
+include "global.asl"
+
+<<[_DB]"%V $GV\n"
+
+include "tbqrd.asl"  // does not know global created by this include??
+
+<<"%V $tbqrd_tv \n"
+
+    vptitle = "Wex"
 
     vp =  cWi(@title,"$vptitle",@resize,0.1,0.1,0.9,0.9,0,@pixmapon,@save,@savepixmap);
 
@@ -47,10 +59,10 @@
 
     cx = 0.08 ; cX = 0.98 ; cy = 0.2 ; cY = 0.97;
 
-include "tbqrd.asl"
 
+//titleButtonsQRD(vp1)
 titleButtonsQRD(vp)
-titleButtonsQRD(vp1)
+
  //////////////////////////////// TITLE BUTTON QUIT ////////////////////////////////////////////////
 
 CalsY1 = 5000;
@@ -174,4 +186,5 @@ extwo = calwo;
 
   sWo(mwos,@style,"SVB",@redraw);
 
+  titleVers();
 

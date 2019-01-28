@@ -3,8 +3,8 @@
 //* 
 //*  @comment procs for daytasker 
 //*  @release CARBON 
-//*  @vers 1.5 B Boron                                                    
-//*  @date Thu Jan 17 08:33:47 2019 
+//*  @vers 1.6 C Carbon                                                   
+//*  @date Mon Jan 28 08:58:08 2019 
 //*  @cdate 6/1/2018 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -17,7 +17,7 @@ proc makeMyDay (fnm)
 {
 <<[_DB]"making $fnm \n"
     B= ofw(fnm)
-    R[0] = Split("Task,Priority,TimeEst,PCDone,TimeSpent,Difficulty,Attrb,Score,Tags",",");
+    R[0] = Split("Task,Priority,TimeEst,PCDone,TimeSpent,Difficulty,Attrb,Score,Tags",',');
 //    <<[_DB]"$R[0] \n"
     R[1] = DF[1];
     R[2] = DF[2];
@@ -38,8 +38,10 @@ proc makeMyDay (fnm)
 
    sz = Caz(R);
  
- ncols = Caz(R[0]);
- ncols1 = Caz(R[1]);
+
+ncols = Caz(R,0);
+ncols1 = Caz(R,1);
+
 <<[_DB]"num of records $sz  num cols $ncols $ncols1\n"
 <<[_DB]"$R \n"
 
@@ -50,8 +52,6 @@ proc makeMyDay (fnm)
 <<[_DB]"%V$R[i][4] \n"
 <<[_DB]"%V$R[i][5] \n"
 }
-
- 
 
 <<"done $_proc\n"
 
@@ -101,7 +101,6 @@ proc readTheDay( fnm)
  	}
 	
 	nl += 1;
-
 	
       }
 
@@ -111,15 +110,15 @@ proc readTheDay( fnm)
  <<[_DB]" $_proc read $nl lines returns $isOK \n";
 
    sz = Caz(R);
- 
-   ncols = Caz(R[0]);
-   ncols1 = Caz(R[1]);
+   ncols = Caz(R,0);
+   ncols1 = Caz(R,1);
+
  
 <<[_DB]"num of records $sz  num cols $ncols $ncols1\n"
 
 <<"done $_proc\n"
 
-   return isOK;
+   return isOK
  }
 //=================================//
 
@@ -176,7 +175,7 @@ proc ADDTASK()
 <<[_DB]" called ADDTASK\n"
 
      ADDROW();
-     return;
+
 }
 //===============================================================//
 

@@ -1,8 +1,34 @@
-#  
+//%*********************************************** 
+//*  @script svar_declare.asl 
+//* 
+//*  @comment test list declare 
+//*  @release CARBON 
+//*  @vers 1.40 Zr Zirconium                                              
+//*  @date Mon Jan 21 07:00:39 2019 
+//*  @cdate 1/1/2004 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+#
 
-setdebug(1,@keep,@~trace)
+include "debug.asl"
 
-checkIn()
+debugON();
+
+
+setdebug (1, @pline, @~step, @trace, @soe) ;
+
+civ = 0;
+
+cov= getEnvVar("ITEST")
+if (! (cov @="")) {
+civ= atoi(cov)
+<<"%V $cov $civ\n"
+}
+
+checkIn(civ)
+
 
 str le;
 
@@ -42,6 +68,9 @@ checkStr(Mol[0],"JAN")
 <<"Mol[0] checked\n"
 
 le = Mol[1]
+<<"%V$le $Mol[1] checked\n"
+<<"$(typeof(le)) \n"
+
 
 checkStr(le,"FEB")
 

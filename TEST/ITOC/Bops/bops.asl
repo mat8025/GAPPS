@@ -9,9 +9,12 @@
 //*  @CopyRight  RootMeanSquare  2014,2018 --> 
 //* 
 //***********************************************%
+//#include "debug.asl"
 
-setdebug(1,@pline,@~trace,@keep)
-
+//debugON()
+setdebug(1,@pline,@trace,@keep)
+filterFuncDebug(ALLOWALL_,"xxx");
+filterFileDebug(ALLOWALL_,"yyy");
 checkIn(1)
 
 //prog= GetScript()
@@ -21,8 +24,8 @@ float fn=2.71828;
 CheckFNum(fn,2.71828)
 
 int d= 7;
-
-e = -6
+<<"%V$d\n"
+int e = -6
 
 
 CheckNum(d,7)

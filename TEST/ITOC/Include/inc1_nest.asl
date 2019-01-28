@@ -29,5 +29,7 @@ proc boo( a,b)
 
 include "inc2" ; // nested include
 
+<<"inc2 added global %V$Y\n"
+
 <<"included $_include \n"
 

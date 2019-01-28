@@ -480,13 +480,16 @@ proc PGN()
 proc paintRows()
 {
 
-    endprow = curr_row + page_rows;
-    if (endprow >= rows) {
-       endprow = rows-2;  // fix xgs for oob error
+   endprow = curr_row + page_rows 
+
+<<"$endprow = $curr_row + $page_rows $rows \n"
+
+    if (endprow > rows) {
+       endprow = rows-1;  // fix xgs for oob error
     }
     // do a row at a time
     
-  <<[_DB]"%V $rows $cols $curr_row $endprow \n"
+  <<"%V $rows $cols $curr_row $endprow \n"
 //      sWo(cellwo,@cellbhue,curr_row,ALL_,LILAC_);
 //      sWo(cellwo,@cellbhue,curr_row+1,ALL_,LILAC_);
     
@@ -499,14 +502,15 @@ proc paintRows()
    for (i = curr_row; i < endprow ; i++) {
    //<<[_DB]"<$i> $(typeof(i))\n"
 	  if ((i%2)) {
-	      sWo(cellwo,@cellbhue,i,ALL_,CYAN_);
+	       sWo(cellwo,@cellbhue,i,ALL_,CYAN_);
 	     }
 	  else {
                sWo(cellwo,@cellbhue,i,ALL_,LILAC_);
           }
    }
-   sWo(cellwo,@cellbhue,endprow,ALL_,YELLOW_);
-   	    return ;
+
+  sWo(cellwo,@cellbhue,endprow,ALL_,YELLOW_);
+
 }
 //=============================
 

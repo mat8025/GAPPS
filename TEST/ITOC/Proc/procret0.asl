@@ -1,6 +1,22 @@
+//%*********************************************** 
+//*  @script procret0.asl 
+//* 
+//*  @comment test procedure return 
+//*  @release CARBON 
+//*  @vers 1.23 V Vanadium                                                
+//*  @date Sun Jan 27 21:50:27 2019 
+//*  @cdate 1/1/2004 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+
+
+
+#include "debug.asl"
+debugON()
 
 CheckIn()
-setdebug(1)
 
 proc foo(a) 
 {
@@ -15,13 +31,13 @@ proc foo(a)
   else if (a < 0) {
 <<" $a < 0 should be returning -1 !\n"
 
-    ret =  -1
+    ret =  -1;
 
   }
   else {
 <<" $a <= 1 should be returning 0 !\n"
   }
-  return ret ;
+  return ret;
 
 }
 ////////////////////////////////////////
@@ -87,6 +103,55 @@ int ret = 0;
 
     return ret;
 }
+
+proc goo(a)
+{
+<<"$_proc $a\n"
+  a += 1;
+
+// does,nt really return anything
+// return on own crash TBF crash
+   return
+}
+//==================================//
+
+proc hoo(a)
+{
+<<"$_proc $a\n"
+  a += 1;
+
+// does'nt really return anything
+     return;  // TBD crash
+ //   return ; // OK
+}
+//==================================//
+
+proc moo(a)
+{
+<<"$_proc $a\n"
+  a += 1;
+<<"%V $a\n"
+
+ if (a >1) a += 1;
+
+// if (a >10)  return; // TBF needs {}
+ 
+ if (a >10) { return; }// TBF needs { ; }
+
+
+  a += 1;
+<<"%V $a\n"
+
+ if (a >10) {
+   return;
+ }
+ 
+  a += 1;
+<<"%V $a\n"    
+// does'nt really return anything
+     return;  // TBD crash
+}
+//==================================//
 
 in = 2
 
@@ -190,10 +255,30 @@ in = 1
 
   }
 
+   x= 1;
+   goo(&x)
+
+<<"goo $x\n"
+
+   checkNum(x,2);
+
+   hoo(&x)
+
+checkNum(x,3);
+
+   moo(&x)
+
+checkNum(x,7);
+
+   x=14
+
+   moo(&x)
+<<"%V $x\n"
+
+checkNum(x,16);
 
    CheckOut()
 
-STOP!
 
 
 

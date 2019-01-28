@@ -1,32 +1,61 @@
+//%*********************************************** 
+//*  @script obcopy.asl 
+//* 
+//*  @comment use &obj as an arg to deliver ptr 
+//*  @release CARBON 
+//*  @vers 1.37 Rb Rubidium                                               
+//*  @date Mon Jan 21 06:40:50 2019 
+//*  @cdate 1/1/2005 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+
+
+include "debug.asl"
+
+debugON();
+
+setdebug (1, @~pline, @~step, @trace) ;
+
 #
 # test oop features
 #
 
-// want to show that can use &obj as an arg to deliver ptr to that object to a script procedure
+// want to show that can use &obj as an arg
+// to deliver ptr to that object to a script procedure
 
-setdebug(1,"~pline","~step")
+
 
 //#define ASK ans=iread();
 #define ASK ;
 
-Checkin()
-
-int xyz = 1;
-
-<<"%V $xyz \n"
-
-  If (xyz) {
-   <<" if path followed \n"
-  }
+Checkin(1)
 
 
+proc foo(a)
+{
 
-<<"%v $_proc \n"
-<<"%v $_pstack \n"
+ b= a;
 
-int GV = 4    // global
-  agv = GV * 2
-<<"%V$GV $agv\n"
+ a +=1
+
+<<"%V $a $b\n"
+
+}
+//=========================//
+
+x=1
+ foo(x)
+checkNum(x,1)
+<<"%V $x\n"
+ foo(&x)
+checkNum(x,2)
+<<"%V $x\n"
+
+checkStage("Simple var arg : value and Ref")
+
+
 
 # class definition
 
@@ -51,10 +80,10 @@ CLASS fruit  {
 
 
    CMF print () {
-     <<" in CMF print \n"
+     //<<" in CMF print \n"
     // <<"CMF print %V$_proc of $_cobj   %V$color $x\n $y\n $z\n  $j\n"
-      <<"CMF print %V$color $x\n $y\n $z\n  $j\n"
-      j++
+      <<"%V$color $x $y $z  $j\n"
+      j++;
    }
 
 
@@ -122,11 +151,73 @@ CLASS fruit  {
 /}*/
 
  }
-
+//==================================//
 <<" after class definition !\n"
 
 
  /////
+proc eat(fruit oba)
+{
+    <<" $_proc $_cobj \n"
+    <<"fruit thine name is $oba->name \n"
+   
+    //fruit locfruit;
+    oba->info(1)   
+
+    oba->color ="red";
+
+    oba->print()
+
+    locfruit = oba;
+
+    locfruit->print()
+
+    <<" leaving $_proc $_cobj \n"
+}
+//==================================//
+
+
+fruit apple;
+
+<<" after object declaration !\n"
+
+
+setdebug (1, @~pline, @~step, @trace) ;
+
+a=1
+bs="la apuesta inteligente"
+
+<<"$(bs)\n"
+
+<<"$(testargs(a,bs))\n"
+
+
+EA= examine(apple)
+
+<<"$EA\n"
+
+<<"class $apple\n"
+
+<<"$(testargs(apple))\n"
+
+
+<<"$(examine(apple))\n"
+
+  apple->print();
+
+  eat(&apple)
+  apple->print();
+
+  eat(apple);
+
+  apple->print();
+
+CheckOut()
+
+exit()
+
+
+
 
 
 proc foo2 (a)
@@ -154,7 +245,7 @@ ASK
 
 
 
-proc poo()
+proc goo()
 {
 
 <<"HEY in $_proc\n"
@@ -185,46 +276,15 @@ apple->color = "vermillion"
 
 
 
-proc eat(fruit oba)
-{
-    <<" $_proc $_cobj \n"
-    <<"fruit thine name is $oba->name \n"
-    <<" after oba name \n"
-   int k = 47;
-   float d = exp(1);
- <<"$k $d\n"; 
-   ASK
-   
-    oba->print()
-
-    locfruit = oba;
-
-    locfruit->print()
-
-    <<" leaving $_proc $_cobj \n"
-}
 
 
 proc objcopy(fruit oba,  fruit obb)
 {
-   // oba->print()
-   // obb->print()
-
 <<" copying $obb->color to $oba->color \n"
-
-   int k = 47;
-   float d = exp(1);
- <<"$k $d\n";
-// ASK
-
 
     oba->x = obb->x;
     oba->y = obb->y;
-
     oba->color = obb->color;
-
- //   oba->print()
- //   obb->print()
 }
 
 
@@ -244,14 +304,6 @@ ASK
 
 
 # object declaration
-
- fruit apple;
-
-<<" after object declaration !\n"
-
-<<"$(examine(apple))\n"
-
-  apple->print();
 
 
 ASK
@@ -357,7 +409,7 @@ ASK
 
    cherry->print()
 
-   poo()
+   goo()
 
    apple->name = "apple"
 
@@ -383,17 +435,21 @@ ASK
 <<"$(objinfo(&orange))\n"
 ASK
   objcopy( &orange, &apple)
-  
 
+ orange->print()
+
+ASK
 
    eat(&apple);
   //  objcopy( orange, apple)
 
-  apple->print()
+   apple->print()
+
+ASK
 
   orange->print()
-
- eat(apple);
+exit()  
+  eat(apple);
 
   CheckStr(orange->color,"green")
 

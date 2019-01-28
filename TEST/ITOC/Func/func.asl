@@ -1,3 +1,25 @@
+//%*********************************************** 
+//*  @script func.asl 
+//* 
+//*  @comment test CL args 
+//*  @release CARBON 
+//*  @vers 1.37 Rb Rubidium                                               
+//*  @date Mon Jan 21 06:40:50 2019 
+//*  @cdate 1/1/2005 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+
+
+include "debug.asl"
+
+debugON();
+
+setdebug (1, @pline, @~step, @trace) ;
+
+
+
 ///
 ///
 ///
@@ -20,11 +42,14 @@ proc poo(a)
 N = _clarg[1]
 M = _clarg[2]
 
+<<"$N $M\n"
 <<" $_clarg[0:-1] \n"
 
  a=testargs(N,M)
 
 <<" $a $N $M\n"
+
+
 
  int k = 0
 

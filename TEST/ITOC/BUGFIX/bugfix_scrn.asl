@@ -2,6 +2,30 @@
 ///   bugfix screen
 ///
 
+<<"inc bugfix screen $_include\n"
+
+
+proc colorRows()
+{
+int i;
+int j;
+<<"%V $rows $cols \n"
+     j = cols-1;
+     for (i = 0; i< rows ; i++) {
+         if ((i%2)) {
+           sWo(cellwo,@cellbhue,i,0,i,j,LILAC_);         
+ 	}
+ 	else {
+	   sWo(cellwo,@cellbhue,i,0,i,j,LIGHTRED_);         
+ 	 }
+      }
+
+
+}
+//==================================//
+
+
+
     vp = cWi(@title,"S2D:$fname")
 
     sWi(vp,@pixmapoff,@drawoff,@save,@bhue,WHITE_)

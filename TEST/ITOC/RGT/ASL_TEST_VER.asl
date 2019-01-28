@@ -3,8 +3,8 @@
 //* 
 //*  @comment asl test modules 
 //*  @release CARBON 
-//*  @vers 1.40 Zr Zirconium                                              
-//*  @date Thu Jan 17 13:42:38 2019 
+//*  @vers 1.41 Nb Niobium                                                
+//*  @date Tue Jan 22 08:49:24 2019 
 //*  @cdate 1/1/2005 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -19,9 +19,7 @@
 include "debug.asl"
 include "hv.asl"
 
-
-//filterDebug(0,"args");
-
+debugON()
 
 #define PGREEN '\033[1;32m'
 #define PRED '\033[1;31m'
@@ -987,7 +985,11 @@ if ( do_all || do_lhsubsc ) {
 
 if ( do_all || do_func ) {
 
-  RunTests2("Func","func,func0,func1,funcargs")
+  Run2Test("Func")
+  cart("func", 3,4)
+
+  RunTests2("Func","func0,func1,funcargs")
+
 
   Run2Test("Ifunc")
 
@@ -1313,7 +1315,9 @@ secs = dtms/1000000.0
 <<"script vers $_ele_vers took %6.3f$secs secs %d %V $i_time $x_time\n"
 today=getDate(1);
 <<"$today tested $(get_version())\n"
-exit()
+sipause(1)
+<<"goodbyee!\n"
+exit(0)
 
 
 

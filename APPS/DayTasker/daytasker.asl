@@ -3,8 +3,8 @@
 //* 
 //*  @comment  cosas que hacer hoy 
 //*  @release CARBON 
-//*  @vers 1.7 N Nitrogen                                                 
-//*  @date Thu Jan 17 07:52:46 2019 
+//*  @vers 1.8 O Oxygen                                                   
+//*  @date Sat Jan 26 09:12:29 2019 
 //*  @cdate Wed Jan  9 10:54:35 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -46,7 +46,7 @@
  include "hv.asl"
  //============== Variables =========================//
 
-
+setdebug(1,@trace)
 
 
  // add favorites :  L,G,X,C
@@ -187,10 +187,11 @@
    
  
    sz = Caz(R);
- 
-   ncols = Caz(R[0]);
- ncols1 = Caz(R[1]);
-<<[_DB]"num of records $sz  num cols $ncols $ncols1\n"
+
+   ncols = Caz(R,0);
+   ncols1 = Caz(R,1);
+   ncols2 = Caz(R,2);
+<<[_DB]"num of records $sz  num cols $ncols $ncols1 $ncols2\n"
 
 
  //////////////////////////////////
@@ -242,7 +243,7 @@ include "dayt_scrn.asl"
  
    sz= Caz(R);
    rows = sz;
-   cols = Caz(R[0])
+   cols = Caz(R,0)
  
    tags_col = cols-1;
    
@@ -251,16 +252,16 @@ include "dayt_scrn.asl"
  <<[_DB]"%V$rows $sz \n"
  
  
+     j = cols-1;
      for (i = 0; i< rows ; i++) {
-      for (j = 0; j< cols ; j++) {
          if ((i%2)) {
-              sWo(cellwo,@cellbhue,i,j,LILAC_);         
+              sWo(cellwo,@cellbhue,i,1,i,j,LIGHTGREEN_);         
  	}
  	else {
-               sWo(cellwo,@cellbhue,i,j,YELLOW_);
+	     sWo(cellwo,@cellbhue,i,1,i,j,LIGHTBLUE_);         
  	 }
-        }
       }
+
  
  //    colorRows(rows,cols);
  
@@ -296,8 +297,13 @@ include "dayt_scrn.asl"
    <<"%V $ok\n"
    sWo(txtwo,@textr,"version $_ele_vers",0.1,0.2);
 
-   ok= abc->info(1)
-      <<"%V $ok\n"
+//   ok= abc->info(1)
+//      <<"%V $ok\n"
+
+
+   SCORE();
+   sWi(vp,@redraw);
+
 int mr =0;
 int mc = 0;
    while (1) {
@@ -410,6 +416,7 @@ int mc = 0;
             }
          }
        }
+          sWo(cellwo,@setcolsize,3,0,1);
           sWi(vp,@redraw);
  }
  

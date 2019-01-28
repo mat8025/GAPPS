@@ -3,8 +3,8 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.24 Cr Chromium                                               
-//*  @date Mon Jan  7 17:56:04 2019 
+//*  @vers 1.25 Mn Manganese                                              
+//*  @date Mon Jan 28 10:08:34 2019 
 //*  @cdate Fri Jan  1 08:00:00 2016 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2014,2018 --> 
@@ -185,7 +185,7 @@ else {
   sz = Caz(R);
   Nrows = sz;
   
-  Ncols = Caz(R[0]);
+  Ncols = Caz(R,0);
   rows = sz+1;
   cols = Ncols;
 
@@ -196,7 +196,7 @@ else {
   sz = Caz(R);
   Nrows = sz;
   
-  Ncols = Caz(R[0]);
+  Ncols = Caz(R,0);
   rows = sz;
   cols = Ncols;
 

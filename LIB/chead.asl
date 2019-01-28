@@ -139,6 +139,8 @@ sp="\n"
 
 //<<[2]" $(nsc(5,\"\\n\"))\n"
 
+//<<[2]"cdate is $w4\n"
+
 A=ofr(srcfile)
 T=readfile(A);
    vers="    @vers ${maj}.$min $min_ele $min_name "
@@ -172,7 +174,7 @@ else {
 <<"///////////////////////////////////<v_&_v>/////////////////////////////////// \n"
 <<"\n"
 tsz = Caz(T)
-//<<"nlines ? $tsz\n"
+//<<[2]"nlines ? $tsz\n"
 
 //<<"%(1,,,)$T\n"
 first_inc =0;
@@ -181,9 +183,10 @@ first_inc =0;
    first_inc =i;
    break;
  }
-
 }
 
+//<<[2]"%V $first_inc \n"
+
 for (i = first_inc; i < tsz;i++) {
-<<"$T[i] "
+<<"$T[i]"
 }

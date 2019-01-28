@@ -61,28 +61,28 @@ na = argc();
 comment ="";
 comment2 ="";
 
-if (na > 1) {
+if (na > 2) {
  set_vers = 1;
  svers = _clarg[2];
 // should be maj.min e.g 1.1 ,6.1, ... limits 1 to 100  
 }
 
-if (na > 2) {
+if (na > 3) {
  comment = _clarg[3];
-// should be maj.min e.g 1.1 ,6.1, ... limits 1 to 100  
+
 }
 
  use_epoch =0;
  
-if (na > 3) {
- w4 = _clarg[4];
+if (na > 4) {
+  w4 = _clarg[4];
 // should be maj.min e.g 1.1 ,6.1, ... limits 1 to 100
- if (w4 @= "epoch") {
+
   use_epoch =1;
- }
+
 }
 
-
+<<[2]" $na $use_epoch \n" 
 
 
 file= fexist(srcfile,ISFILE_,0);
@@ -139,6 +139,8 @@ sp="\n"
 
 //<<[2]" $(nsc(5,\"\\n\"))\n"
 
+<<[2]"cdate is $w4\n"
+
 A=ofr(srcfile)
 T=readfile(A);
    vers="    @vers ${maj}.$min $min_ele $min_name "
@@ -147,13 +149,17 @@ T=readfile(A);
 
 <<"///////////////////////////////////<**|**>///////////////////////////////////\n"
 <<"//$insp $fname \n"
-<<"//    $comment   \n"
-<<"//    $comment2 \n"
+<<"//    $comment2   \n"
+<<"//    @comment  $comment \n"
 <<"//    @release   $release  \n"
 <<"//$vers $pad\n"
 <<"//    @date $date    \n"
 if (use_epoch) {
-<<"//    @cdate Sun Jun  9 08:00:00 1996  \n"              
+ if (w4 @= "epoch") {
+<<"//    @cdate Sun Jun  9 08:00:00 1996  \n"
+ } else {
+<<"//    @cdate $w4              \n"
+ }
 }
 else {
 <<"//    @cdate $date    \n"              
@@ -168,7 +174,7 @@ else {
 <<"///////////////////////////////////<v_&_v>/////////////////////////////////// \n"
 <<"\n"
 tsz = Caz(T)
-//<<"nlines ? $tsz\n"
+<<[2]"nlines ? $tsz\n"
 
 //<<"%(1,,,)$T\n"
 first_inc =0;
@@ -177,9 +183,10 @@ first_inc =0;
    first_inc =i;
    break;
  }
-
 }
 
+<<[2]"%V $first_inc \n"
+
 for (i = first_inc; i < tsz;i++) {
-<<"$T[i] "
+<<"$T[i]"
 }

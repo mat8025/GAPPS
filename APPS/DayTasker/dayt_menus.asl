@@ -124,7 +124,10 @@ dayt_menu = "Attributes.m";
  
  A=ofw("Attributes.m")
  <<[A],"title Attributes\n"
-  <<[A],"item A M_VALUE A\n"
+ <<[A],"item ASL M_VALUE ASL\n"
+ <<[A],"item ASR M_VALUE ASR\n"
+ <<[A],"item APP M_VALUE APP\n"
+ <<[A],"item XGS M_VALUE XGS\n"
  <<[A],"item X M_VALUE X\n"
  <<[A],"item G M_VALUE G\n"
  <<[A],"item F M_VALUE F\n"
@@ -133,7 +136,7 @@ dayt_menu = "Attributes.m";
  <<[A],"item Y M_VALUE Y\n"
  <<[A],"item H M_VALUE H\n"
  <<[A],"item B M_VALUE B\n"
-  <<[A],"item Mn M_VALUE Mn\n"
+ <<[A],"item MAN M_VALUE MAN\n"
  <<[A],"item ? C_INTER "?"\n"
  <<[A],"help set task attribute\n"
  cf(A)

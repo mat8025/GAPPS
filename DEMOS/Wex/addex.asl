@@ -172,9 +172,9 @@ DF[0] = Split("$today,0,10,0,0,0,0,0,0,0",",");
     sz = Caz(R);
     rows = sz;
 
-    cols = Caz(R[0]);
+    cols = Caz(R,0);
 
-    Ncols = Caz(R[0]);
+    Ncols = Caz(R,0);
 
 
     tags_col = cols-1;

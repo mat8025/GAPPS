@@ -2,11 +2,11 @@
 ///
 ///
 
-setDebug(1,@keep,@~trace)
+setDebug(1,@keep,@~pline,@~trace)
 filterFuncDebug(ALLOWALL_);
-filterFileDebug(ALLOW_,"declare_type");
+filterFileDebug(ALLOWALL_,"xxx");
 
-checkIn()
+checkIn(0)
 
 Svar Opts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,",",");
 

@@ -1,8 +1,37 @@
-setdebug(1,"pline","~step")
+//%*********************************************** 
+//*  @script arrayarg2.asl 
+//* 
+//*  @comment test proc array args 
+//*  @release CARBON 
+//*  @vers 1.37 Rb Rubidium                                               
+//*  @date Mon Jan 21 06:40:50 2019 
+//*  @cdate 1/1/2005 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 
-//setPrintIndent(3)
 
-checkIn()
+include "debug.asl"
+
+debugON();
+
+setdebug (1, @pline, @~step, @trace) ;
+
+
+civ = 0;
+
+cov= getEnvVar("ITEST")
+if (! (cov @="")) {
+civ= atoi(cov)
+<<"%V $cov $civ\n"
+
+}
+
+checkIn(civ)
+
+
+
 
 proc foo(int vec[],k)
 
@@ -32,7 +61,7 @@ proc foo(int vec[],k)
 
 <<"before calling proc $Z\n"
 
-  Y=foo(Z,3)  // TBD FIX -- default array name is ref call
+  Y=foo(Z,3) 
 
 <<"after calling proc $Z\n"
 
@@ -70,24 +99,23 @@ checkStage("ArrayName")
 
  // Z[0] = 36  // FIX TBD last element offset is being used as function para offset!!
 
-
   <<"before calling proc\n"
 
   <<"$Z\n"
-
- //  Y = foo(&Z,3)  // FIXED -------- Y is now created correctly with the return vector
-   Y = foo(Z,3)  // FIXED -------- Y is now created correctly with the return vector 
+  // Y = foo(&Z,3)  // TBF-------- Y 
+   Y = foo(&Z[0],3)  // FIXED -------- Y is now created correctly with the return vector
+ //  Y = foo(Z,3)  // FIXED -------- Y is now created correctly with the return vector 
 
 
 <<"after calling proc $Z\n"
 
- // exityn()
-  
   checkNum(Z[1],47)
   
   checkNum(Z[8],28)
 
   checkStage("&Array")
+
+
 
 
 Z = Vgen(INT_,10,0,1)
@@ -108,7 +136,6 @@ Z[8] = 28
 
 <<"after proc Y2: $Y2\n"
 
-//exityn()
  if ((Z[3] == 47)  && (Z[8] == 28)) {
    <<"Z[3] and Z[8] correct \n"
  }
@@ -125,55 +152,16 @@ Z[8] = 28
   checkNum(Z[8],28);
 
   checkStage("&Array[2]")
-//  showStatements(0)
 
 <<"return Y vec $Y\n"
 
+  checkNum(Y2[1],47)
 
-
- checkNum(Y[1],47)
-//exityn()
-checkNum(Y[6],28)
+  checkNum(Y2[6],28)
 
   checkStage("ArrayReturn")
 
 
 checkOut()
-stop!
 
-
-if (Y[1] == 47) {
-<<"Y correct \n"
-}
-else {
-<<"Y wrong \n"
-
-}
-
-stop!
-
-
-/////////////////////  simple scalar ///////////////////
-
-proc doo(a,b)
-{
-
-  c= a + b
-<<"%V$c\n"
-  return c
-
-}
-
-
-  t=doo(3,4)
-<<"$t\n"
-
-  t=doo(7,8)
-<<"$t\n"
-
-
-  t=doo(27,35)
-<<"$t\n"
-
-
-stop!
+exit()

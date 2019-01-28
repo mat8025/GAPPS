@@ -105,7 +105,7 @@ DF[0] = Split("bug#,'desc',code,4,PENDING,$today,$today,",",");
    cf(A);
    sz = Caz(R);
 
-  ncols = Caz(R[0]);
+  ncols = Caz(R,0);
 <<"num of records $sz  num cols $ncols\n"
 
 // set DF[0] - to highest bug num read in plus 1
@@ -150,7 +150,7 @@ include "bugfix_scrn"
 
   sz= Caz(R);
   rows = sz;
-  cols = Caz(R[0])
+  cols = Caz(R,0)
 
   tags_col = cols-1;
   
@@ -164,17 +164,37 @@ include "bugfix_scrn"
 
 
       curr_row = 0;
-      paintRows();
+
+     
+      
       curr_row = 1;
 
      sWo(cellwo,@cellval,R);
  //  sWo(cellwo,@cellval,R,1,1,5,5,1,1);
 
+use_incl = 0;
 
-  rows = sz;
+ // redoing rows in colors is buggy
+   if (use_incl) {
+    colorRows()
+   }
+   else {
 
+     j = cols-1;
+     for (i = 0; i< rows ; i++) {
+         if ((i%2)) {
+              sWo(cellwo,@cellbhue,i,1,i,j,LIGHTGREEN_);         
+ 	}
+ 	else {
+	     sWo(cellwo,@cellbhue,i,1,i,j,LIGHTBLUE_);         
+ 	 }
+      }
+
+   }
+
+   rows = sz; 
    
-   sWo(cellwo,@setrowscols,rows+20,cols+1);
+   sWo(cellwo,@setrowscols,rows+2,cols+1);
    sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
    sWo(cellwo,@setcolsize,3,1,1) 
 
@@ -184,6 +204,9 @@ include "bugfix_scrn"
 
    sWo(cellwo,@redraw);
 
+   //paintRows();
+
+   
 
 int mwr = -1;
 int mwc = -1;

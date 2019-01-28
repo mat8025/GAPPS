@@ -27,10 +27,7 @@ setDebug(0,@keep);
 scriptDBOFF();
 
 include "hv.asl"
-key = "@vers" ;
-vers = _HV->lookup(key);
-vw= split(vers)
-ele_vers = vw[2]
+
 
 <<[_DB]"%V$vers $ele_vers\n"
 
@@ -385,9 +382,11 @@ msgw =split(msg)
 <<[_DB]"%V$msgw \n"
 
 
+include "wex_screen"
+
 include "wex_draw"
 
-include "wex_screen"
+
 
 include "wex_glines"
 
@@ -435,7 +434,7 @@ drawScreens();
 showTarget();
 
 include "gevent.asl"
-
+  titleVers();
 
    while (1) {
 

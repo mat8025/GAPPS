@@ -14,9 +14,12 @@
 ///
 ///
 
+<<[_DB]"including tbqrd.asl \n"
+// TBF has to be a 'starter' line before any decs in include file?
 int tbqrd_tv = 0;
 
-<<[_DB]"FIRST %V $tbqrd_tv \n"
+<<"FIRST %V $tbqrd_tv \n"
+
 
 proc  titleButtonsQRD(v)
 {
@@ -56,6 +59,9 @@ proc titleVers()
 {
  titleComment("$_ele_vers $_ele");
 }
+
+
+
 
 <<[_DB]"EXIT %V $tbqrd_tv \n"
 <<[_DB]" %V $_include \n"
