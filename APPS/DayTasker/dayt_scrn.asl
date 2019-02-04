@@ -13,7 +13,7 @@
 
 
 
-//include "tbqrd.asl"
+
 
     vp = cWi(@title,"S2D:$fname")
 

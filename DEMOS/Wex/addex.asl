@@ -27,7 +27,7 @@ include "gevent.asl"
 
 
 include "debug"
-
+include "hv.asl"
 
 
 //=============== MENUS=================//
@@ -204,18 +204,14 @@ include "addex_screen"
 
  sWo(cellwo,@setrowscols,rows+5,cols+1);
  
-
+    j = cols -1;
     for (i = 0; i< rows ; i++) {
-     for (j = 0; j< cols ; j++) {
         if ((i%2)) {
-         sWo(cellwo,@cellbhue,i,j,LILAC_);         
+         sWo(cellwo,@cellbhue,i,0,i,j,LILAC_);         
 	}
 	else {
-         sWo(cellwo,@cellbhue,i,j,YELLOW_);
-
+         sWo(cellwo,@cellbhue,i,0,i,j,YELLOW_);
 	 }
-	 cv++;
-       }
      }
 
 
@@ -233,7 +229,7 @@ include "addex_screen"
       R[i][tags_col] = " ";
    }
    sWo(cellwo,@cellval,R);
-
+   titleVers();
    sWo(cellwo,@redraw);
 
 

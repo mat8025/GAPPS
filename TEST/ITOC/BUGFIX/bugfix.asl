@@ -172,11 +172,20 @@ include "bugfix_scrn"
      sWo(cellwo,@cellval,R);
  //  sWo(cellwo,@cellval,R,1,1,5,5,1,1);
 
-use_incl = 0;
+   sWo(cellwo,@setrowscols,rows+2,cols+1);
+   sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
+   sWo(cellwo,@setcolsize,3,1,1) 
 
- // redoing rows in colors is buggy
-   if (use_incl) {
+
+use_incl = 1;
+
+//debugON()
+// redoing rows in colors is buggy
+
+  if (use_incl) {
+   // setdebug(1,@trace)
     colorRows()
+   
    }
    else {
 
@@ -187,16 +196,16 @@ use_incl = 0;
  	}
  	else {
 	     sWo(cellwo,@cellbhue,i,1,i,j,LIGHTBLUE_);         
- 	 }
+ 	}
       }
 
    }
 
    rows = sz; 
    
-   sWo(cellwo,@setrowscols,rows+2,cols+1);
-   sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
-   sWo(cellwo,@setcolsize,3,1,1) 
+   //sWo(cellwo,@setrowscols,rows+2,cols+1);
+   //sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
+   //sWo(cellwo,@setcolsize,3,1,1) 
 
    sWi(vp,@redraw)
 
@@ -205,8 +214,6 @@ use_incl = 0;
    sWo(cellwo,@redraw);
 
    //paintRows();
-
-   
 
 int mwr = -1;
 int mwc = -1;
@@ -252,8 +259,6 @@ int mwc = -1;
 
          sWo(cellwo,@cellbhue,swaprow_a,0,CYAN_);         
          }
-
-               
              
       if (mwr == 0 && (mwc >= 0) && (_ebutton == RIGHT_)) {
 
@@ -284,7 +289,6 @@ int mwc = -1;
 
             if (mwc == PriorityCol) {
                setPriority(mwr,mwc);
-	       
             }
 	    else if (mwc == StatusCol) {
                setStatus(mwr,mwc);

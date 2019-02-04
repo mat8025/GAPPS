@@ -41,12 +41,12 @@
  include "dayt_menus.asl"
  
  include "gss.asl"
- include "dayt_procs.asl" // has to come after gss to overload 
+ include "dayt_procs" // has to come after gss to overload 
 
  include "hv.asl"
  //============== Variables =========================//
 
-setdebug(1,@trace)
+//setdebug(1,@trace)
 
 
  // add favorites :  L,G,X,C
@@ -227,18 +227,18 @@ setdebug(1,@trace)
  
  
 include "tbqrd.asl" 
- // dt_screen
+
 include "dayt_scrn.asl"
  
 
 
  
    Ncols = ncols;  // task, Priority, %Done, Duration, Difficulty,Score
- //  
+ 
  
 
  
- gflush()
+   gflush()
  
  
    sz= Caz(R);
@@ -247,24 +247,40 @@ include "dayt_scrn.asl"
  
    tags_col = cols-1;
    
-  sWo(cellwo,@setrowscols,rows+5,cols+1);
-  
- <<[_DB]"%V$rows $sz \n"
- 
- 
+
+   sWo(cellwo,@setrowscols,rows+5,cols+1); 
+
+use_incl_vers = 1;
+use_main_vers = 0;
+
+
+   if (use_incl_vers) {
+      colorRows(rows,cols);
+   }
+
+/// rebuild arg list after proc ??
+
+   testargs(1,sz,rows,cols,tags_col,use_incl_vers);
+
+ if (use_main_vers) {
      j = cols-1;
-     for (i = 0; i< rows ; i++) {
-         if ((i%2)) {
+     for (i = 0; i < rows ; i++) {
+        if ((i%2)) {
               sWo(cellwo,@cellbhue,i,1,i,j,LIGHTGREEN_);         
  	}
  	else {
 	     sWo(cellwo,@cellbhue,i,1,i,j,LIGHTBLUE_);         
- 	 }
+ 	}
       }
+   }
+   
 
- 
- //    colorRows(rows,cols);
- 
+
+
+  
+ <<[_DB]"%V$rows $sz \n"
+
+
    for (i = 0; i < rows;i++) {
 <<[_DB]"[${i}] $R[i]\n"
    }
@@ -282,8 +298,8 @@ include "dayt_scrn.asl"
     sWo(ssmods,@redraw)
     sWo(cellwo,@setcolsize,3,0,1);
     sWo(cellwo,@redraw);
- 
- 
+
+
     swaprow_a = 1;
     swaprow_b = 2;
  
@@ -303,6 +319,13 @@ include "dayt_scrn.asl"
 
    SCORE();
    sWi(vp,@redraw);
+
+
+//ans=i_read("exit?");
+//if (ans @="y") {
+// exit()
+//}
+
 
 int mr =0;
 int mc = 0;

@@ -122,12 +122,7 @@ proc readTheDay( fnm)
  }
 //=================================//
 
-     // if (f_error(B) == EOF_ERROR_) {
-//	 <<"@ EOF\n"
- //	   break;
- //	}
-   //  if ((slen(res) > 1) && !scmp(res,"#",1)) {
-    // if (( sl > 1) && !scmp(res,"#",1)) {
+
 
 proc PCDONE(wr,wc)
 {
@@ -201,22 +196,33 @@ proc ADDFAV()
 }
 //============================//
 
+
+
+//int c_i;
+//int c_j;
 proc colorRows(r,c)
 {
-int i;
-int j;
+int icr=0;
+int jcr = c -1;
 
-    for (i = 0; i< r ; i++) {
-     for (j = 0; j< c ; j++) {
-   //  <<[_DB]"%V $i $j $r $c\n"
-        if ((i%2)) {
-             sWo(cellwo,@cellbhue,i,j,LILAC_);         
+//    c_j = jcr;
+   for(icr = 0; icr < r ; icr++) {
+	
+        if ((icr%2)) {
+		  <<"$icr $jcr\n"
+          sWo(cellwo,@cellbhue,icr,1,icr,jcr,LILAC_);
+	  // testargs(1,cellwo,@cellbhue,icr,1,icr,jcr,LILAC_);
+	  // testargs(1,cellwo,@cellbhue,icr,jcr,LILAC_);
+
 	}
 	else {
-              sWo(cellwo,@cellbhue,i,j,YELLOW_);
+	  <<"$icr $jcr\n"
+	    sWo(cellwo,@cellbhue,icr,1,icr,jcr,YELLOW_);
+	    //testargs(1,cellwo,@cellbhue,icr,1,icr,jcr,YELLOW_);
+	 //   testargs(1,cellwo,@cellbhue,icr,jcr,LILAC_);
 	 }
-       }
      }
+
      <<[_DB]"$_proc done\n"
 }
 

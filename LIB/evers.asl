@@ -7,7 +7,7 @@ msg = _clarg[1];
 <<" <|$msg|>\n"
 
 update = 1;
-
+create = 0;
 
 A= -1;
 
@@ -20,6 +20,7 @@ A=ofile(logf,"r+")
 
 if (A == -1) {
 <<"create elog file\n"
+create =1;
 A=ofile(logf,"w+")
 <<[A]"$(getdir())\n"
 update =1
@@ -27,9 +28,10 @@ update =1
 
 entry="1"
 int k= 1;
+
+if (!create) {
 ln =readline(A);
 <<"$ln\n"
-
 while (1) {
 ln =readline(A);
 
@@ -44,6 +46,7 @@ if (slen(ln) > 3) {
 }
 
 <<"last $entry\n"
+}
 
 dt= date()
 <<"new $k $dt\n"
