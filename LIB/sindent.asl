@@ -1,6 +1,16 @@
-///
-///  sindent
-///
+//%*********************************************** 
+//*  @script sindent.asl 
+//* 
+//*  @comment format asl code 
+//*  @release CARBON 
+//*  @vers 1.14 Si Silicon                                                
+//*  @date Sun Feb 10 11:21:39 2019 
+//*  @cdate 1/1/2015 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+
 
 setdebug(1,@keep,@~pline,@~step,@~trace,@showresults,1);
 filterFuncDebug(ALLOWALL_,"proc");
@@ -15,7 +25,7 @@ int ln = 0;
 
 is_comment = 0;
 
- nw = 5;
+nw = 2;
 
 str NL1;
 svar NL2;

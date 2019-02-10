@@ -161,7 +161,6 @@ proc SORT()
 
      sWo(cellwo,@cellval,R);
      sWo(cellwo,@redraw);
-    return ;
 }
 //======================
 proc SWOPROWS()
@@ -250,31 +249,47 @@ proc DELCOL()
 
 proc AddTask( wt)
 {
-
+///
+/// wt is the index to DF list of tasks
+/// should write to last active record in record R  size must be Rn+1 or greater
     sz= Caz(R);
     
-<<[_DB]"in AddTask $_proc record %V $wt $rows $sz\n"    
+<<"in $_proc R record %V $wt $rows $Rn $sz $Nrows\n"    
 
+    if (sz <= Rn) {
+<<"expand record R!!\n"
+    R[Rn] = "";
+    }
 
-    er = rows;
+    er = Rn; // check this is correct for first call
 
     if (curr_row < 0) {
         curr_row = 0;
     }
+    
+    <<"%V $curr_row $page_rows $cols $Rn\n"
+
     sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0);
   
     curr_row = rows- page_rows +1;
     if (curr_row < 0) {
         curr_row = 0;
     }
-    sWo(cellwo,@selectrowscols,0,2,0,cols,1);
+    
+  //  sWo(cellwo,@selectrowscols,0,2,0,cols,1);
 
     rows++;
     Nrows = rows;
 <<[_DB]"$wt $DF[wt]\n"
     ex = DF[wt];
 <<[_DB]"$wt $DF[wt] : $ex\n"
+
     R[er] = DF[wt];
+
+<<"%V $er $R[er]\n"
+
+// make sure expand record to at least one more
+    Rn++;
     
     // 0  is the supplied default tof this table
     // 1...nt  will be favorite/maintenance tasks
@@ -291,7 +306,7 @@ proc AddTask( wt)
 
     sz = Caz(R);
 
-  <<[_DB]"New size %V $rows $cols $sz\n"  
+  <<[_DB]"New size %V $rows $cols $sz $Rn\n"  
 }
 //===============================//
 
@@ -299,6 +314,7 @@ proc ADDROW()
 {
 <<[_DB]" ADDROW $_proc\n"
 /// should go to last page
+<<"%V $rows $Nrows $Rn\n"
     AddTask(0);
     return 
 }

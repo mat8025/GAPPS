@@ -3,8 +3,10 @@
 ///
 
 // stats are in the math lib -- for now
-
-checkIn()
+include "debug.asl"
+debugON()
+setDebug(1,@pline)
+checkIn(1)
 
 float z[5]
 
@@ -57,7 +59,7 @@ checkFnum(cof[2],1.8)
    for (k = 0; k  < 5 ; k++) {
 
       z[k] = cof[0] + x[k] * ( cof[1] + x[k] * ( cof[2] + x[k] * (cof[3] + x[k] * cof[4])))
-
+<<"%V $k $x[k] $z[k]\n"
    }
 
 <<"Z %6.4f$z[0:4] \n"
@@ -65,6 +67,9 @@ zr = Fround(z[0],2)
 <<"%V6.4f$zr\n"
 checkFnum(zr,-820.0)
 
+
+checkOut()
+exit()
 checkFnum(Fround(z[0],2),-820.0)
 
    for (k = 0; k  < 5 ; k++) {
@@ -124,4 +129,3 @@ y = (x * x * x) /0.5 + 2 *x*x + 3*x + 4
 
 checkOut()
 
-stop!

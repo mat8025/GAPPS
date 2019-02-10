@@ -3,8 +3,8 @@
 //* 
 //*  @comment asl test modules 
 //*  @release CARBON 
-//*  @vers 1.41 Nb Niobium                                                
-//*  @date Tue Jan 22 08:49:24 2019 
+//*  @vers 1.43 Tc Technetium                                             
+//*  @date Sat Feb  9 13:54:17 2019 
 //*  @cdate 1/1/2005 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -19,7 +19,7 @@
 include "debug.asl"
 include "hv.asl"
 
-debugON()
+debugOFF()
 
 #define PGREEN '\033[1;32m'
 #define PRED '\033[1;31m'
@@ -49,9 +49,10 @@ filterFileDebug(ALLOWALL_,"ic_op");
 
 
 //envdebug();
-str S = "all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,\
-logic,for,do,paraex,proc,switch,types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc,\
-svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help";
+str S = "all,array,matrix,bugs,bops,vops,sops,fops,class,\
+ declare,include,exp,if,logic,for,do,paraex,proc,switch,\
+ types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc,\
+ svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help";
 
 Svar Opts[] = Split(S,",");
 
@@ -323,13 +324,13 @@ proc doxictest(prog, a1)
 
   if (_pargc > 1) {
 
-  //<<"XIC test  $prog $a1\n"
+//<<"XIC test  $prog $a1\n"
 
        // !!"nohup $prog  $a1 >> $ictout "
 
 //      !!" $prog  $a1 > xres.txt "
 
-       !!"asl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst  $prog $a1  > fooxpar"
+       !!"asl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -x $prog $a1  > fooxpar"
 
       //!!" $prog  $a1  | tee --append $ictout "
   }
@@ -340,8 +341,9 @@ proc doxictest(prog, a1)
       //!!" $prog   >> $ictout "
 //!!" $prog   > xres.txt "
 
-  //     !!"nohup $prog  | tee --append $ictout "
-       !!"asl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst  $prog   > fooxpar"
+//     !!"nohup $prog  | tee --append $ictout "
+//      <<"asl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -x $prog "
+       !!"asl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -x $prog   > fooxpar"
 
   }
 
@@ -380,7 +382,7 @@ proc cart_xic(aprg, a1, in_pargc)
        cart_arg = " $a1"
        a1arg = a1;
 
-  //    <<"RUNNING XIC $cart_arg \n"
+//<<"RUNNING XIC $cart_arg \n"
 
       tim = time() ;  //   TBC -- needs to reinstated
      
@@ -548,6 +550,8 @@ proc cart (aprg, a1)
 
 //!!"tail -3 $tout "
  // TBC if (do_xic)  // FAILS
+
+
   if (do_xic >0 ) {
     cart_xic(aprg,a1,in_pargc)
   }
@@ -769,6 +773,7 @@ if (( do_all ==1) || (do_declare == 1) ) {
 
    Run2Test("Resize")
 
+   cart ("resize")
    cart ("resize_vec")
 
    Run2Test("Redimn")
@@ -928,6 +933,10 @@ if ( do_all || do_array ) {
   Run2Test("VVgen")
 
   cart("vvgen")
+
+  Run2Test("VVcopy")
+
+  cart("vvcopy")
 
   Run2Test("Vfill")
 
@@ -1096,14 +1105,15 @@ if ( do_all || do_mops ) {
 
      Run2Test("Ivar")
 
-    cart("ivar")
+     cart("ivar")
 
     }
 
 
   if ( do_all || do_record ) {
 
- RunTests2("Record","record,readrecord,prtrecord,rec1,recprt,recatof,reclhs");
+    RunTests2("Record","rec1,record,readrecord,prtrecord,recprt,recatof,reclhs,rectest");
+
 
   }
 
@@ -1223,7 +1233,7 @@ if ( do_all || do_mops ) {
   if ( do_all || do_bugs ) {
       //cart("bf_40")   // this has intentional error and exits before test checks
 
-      RunTests2("BUGFIX","bf_46,bf_59,bf_64,bf_75,bf_76,bf_78,bf_79,bf_80,bf_83,bf_84,bf_89,bf_91,bf_96");
+      RunTests2("BUGFIX","bf_46,bf_59,bf_64,bf_75,bf_76,bf_78,bf_79,bf_80,bf_83,bf_84,bf_91,bf_96");
     
   }
 
@@ -1316,7 +1326,12 @@ secs = dtms/1000000.0
 today=getDate(1);
 <<"$today tested $(get_version())\n"
 sipause(1)
-<<"goodbyee!\n"
+if (pcc < 100.0) {
+<<"$pcc fixes needed!! \n"
+}
+else {
+<<"$pcc Success Hooray! \n"
+}
 exit(0)
 
 

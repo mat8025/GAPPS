@@ -1,4 +1,16 @@
+///
+///
+///
+
+
 setdebug(1,@keep);
+
+T="abcXXdefXXefgXXhijXklm"
+S=split(T,"XX")
+
+<<"$S\n"
+
+
 
 A=ofr("color_table.txt")
 

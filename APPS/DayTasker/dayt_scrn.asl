@@ -15,11 +15,11 @@
 
 
 
-    vp = cWi(@title,"S2D:$fname")
+    vp = cWi(@title,"S2D:$fname",@resize,0.1,0.1,0.9,0.8)
 
     sWi(vp,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
 
-    sWi(vp,@clip,0.1,0.2,0.9,0.9)
+    sWi(vp,@clip,0.1,0.1,0.9,0.80)
 
     sWi(vp,@redraw)
 

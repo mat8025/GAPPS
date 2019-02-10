@@ -1,8 +1,21 @@
+//%*********************************************** 
+//*  @script bscan.asl 
+//* 
+//*  @comment test scan of vars 
+//*  @release CARBON 
+//*  @vers 1.64 Gd Gadolinium                                             
+//*  @date Thu Feb  7 14:23:32 2019 
+//*  @cdate 1/1/2002 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 ///
 ///  bscan
 ///
 
-
+include "debug.asl"
+debugON()
 SetDebug(1,@~trace,@keep,@pline)
 
 CheckIn()
@@ -13,7 +26,7 @@ uchar C[] = { 0xCA , 0xFE, 0xBA, 0xBE, 0xFA, 0xCE, 0xBE, 0xAD , 0xDE,0xAD, 0xC0,
 
  <<"$C[1] \n"
 
- checkNum(C[1],0xFE)
+  checkNum(C[1],0xFE)
   checkNum(C[1],254)
 
 
@@ -66,12 +79,16 @@ else {
 CheckNum(na,8)
 // depends on endian
 
+uint t1 = 12345;
+
+<<"%V$t1 \n"
+
 uint t = 0xfabebafe
 
-<<"%V$t $k \n"
+<<"%V$t  \n"
 
-<<"%x$t %x$k \n"
-
+<<"%x $t \n"
+<<"%x $k \n"
 CheckNum(k,t)
 
  na = bscan(&C[2],swab,&k,&j)

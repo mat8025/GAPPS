@@ -189,18 +189,15 @@ seekline(A,1)
 
 cf(A);
 
+// lets' log this change 
+logfile= "~gapps/LOGS/cmods.log"
+A=ofile(logfile,"r+")
+fseek(A,0,2)
+
+ans=iread("asl code-what modification?:")
+<<"$ans\n"
+<<[A]"$srcfile\t ${pmaj}.$pmin\t $date $ans\n"
+cf(A)
+
 exit()
- for (i = 0; i < 3;i++) {
-  //<<"$T[i]"
-   ln=T[i]
-  <<"$ln"  
-  }  
 
-
- // so bump minor if over 100 then bump maj and min to 1
- 
- 
-  for (i = 4; i < tsz;i++) {
-   ln=T[i]
-  <<"$ln"
-  }  

@@ -2,9 +2,11 @@
 /// Caz  - Csz - 
 ///
 
-//envDebug()
 
-SetDebug(1,@~trace,@keep,@pline)
+include "debug.asl"
+debugON()
+
+SetDebug(1,@trace,@keep,@pline)
 
 <<"hey buddy move on up\n"
 <<"$_clarg[0] $_clarg[1] \n"
@@ -12,6 +14,10 @@ SetDebug(1,@~trace,@keep,@pline)
 checkIn();
 
 int D[5];
+
+D[1] = 1
+
+D[4] = 4
 
 int d;
 
@@ -33,8 +39,10 @@ checkNum(ab,0)
 
 
 checkNum(asz,0)
-
+D->info(1)
 asz= Csz(&D)
+//<<"%V$asz\n"
+//D->info(1)
 
 <<"array size of $D $(typeof(D))  is: $asz \n"
 checkNum(asz,5)
@@ -46,6 +54,8 @@ ab = Cab(&D)
 <<"bounds are: $ab \n"
 checkNum(ab,5)
 
+checkOut()
+exit()
 
 ////////////////////////////////
 

@@ -1,13 +1,25 @@
-///
-/// FIX - compile as declare then assign
-//int N = $2
-//double M
+//%*********************************************** 
+//*  @script pan.asl 
+//* 
+//*  @comment test_pan numbers 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium                                                  
+//*  @date Thu Feb  7 21:46:23 2019 
+//*  @cdate 1/1/1999 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 
-include "consts"
+include "debug.asl"
+
+debugON()
+
+include "consts.asl"
 
 consts();
 
-setdebug(1,"pline","~steponerror","~trace","~step")
+setdebug(1,@pline,@~steponerror,@trace,@~step)
 
 setap(100);    // set precision to 100? decimal places
 
@@ -66,29 +78,57 @@ checkFNum(Q,(x*4.0),pan_prec);
 <<"%V$r\n"
 checkFNum(r,M,2);
 
-
- M = M + 1;
-<<"$M\n"
+<<"%V$M\n"
+ M = M + 1;  // TBF XIC bug
+<<"%V$M\n"
 
 <<"M++\n"
 
  M++;
+<<"%V$M\n"
+
 
 <<"%V%p$M\n"
 
-k = 1;
-
+ k = 3;
+<<"$k\n" 
+ checkNum(k,3)
+ k= k +1;
+<<"$k\n" 
+ checkNum(k,4)
  k++;
+<<"$k\n" 
+ checkNum(k,5)
 
-<<"$k\n"
 
-checkFNum(M,6.0,pan_prec);
+<<"%V $pan_prec \n"
+<<"%V $M \n"
+
+
+ checkFNum(M,6.0,pan_prec);
 
  M--;
+
+<<"%V $M \n"
+
  checkFNum(M,5.0,pan_prec);
 
 
-checkOut()
+  M = M + 4.9
+
+<<"%V $M \n"
+
+ checkFNum(M,9.9,pan_prec);
+
+Pan P = 2.1
+
+  M = M + P
+
+<<"%V $M \n"
+
+checkFNum(M,12.0,pan_prec);
+
+ checkOut()
 
 exit()
 
@@ -280,4 +320,5 @@ int k
 
  }
 
-STOP!
+
+exit()

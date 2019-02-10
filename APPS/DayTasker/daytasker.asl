@@ -35,7 +35,7 @@
  include "debug.asl"
  
  scriptDBON();
- debugON();
+ debugOFF();
 
  include "gevent.asl"
  include "dayt_menus.asl"
@@ -53,14 +53,14 @@
  Record DF[10];
  // Task,Priority,TimeEst,PCDone,TimeSpent,Difficulty,Attribute,Score,Tags,
  
-   DF[0] = Split("task?,3,30,0,0,1,?,0,,",",")
+   DF[0] = Split("task?,4,30,0,0,3,?,0,,",',') ; // default for add additional task
    // use enum
-   DF[1] = Split("Exercise,9,70,0,1,7,X,0,,",",")
-   DF[2] = Split("Guitar,8,30,0,0,3,G,0,,",",")
-   DF[3] = Split("Spanish,8,30,0,0,3,L,0,,",",")
-   DF[4] = Split("PR/DSP,8,60,0,0,8,D,0,,",",")    
+   DF[1] = Split("Exercise,9,70,0,1,7,X,0,,",',')
+   DF[2] = Split("Guitar,8,30,0,0,3,G,0,,",44)
+   DF[3] = Split("Spanish,8,30,0,0,3,L,0,,",44)
+   DF[4] = Split("PR/DSP,8,60,0,0,8,D,0,,",44)    
  
- Record R[6+];
+ Record R[15+];
  Rn = 5;
  
  int ok = 0;
@@ -234,15 +234,14 @@ include "dayt_scrn.asl"
 
  
    Ncols = ncols;  // task, Priority, %Done, Duration, Difficulty,Score
- 
- 
-
- 
+  
    gflush()
  
  
    sz= Caz(R);
+
    rows = sz;
+
    cols = Caz(R,0)
  
    tags_col = cols-1;
@@ -260,7 +259,7 @@ use_main_vers = 0;
 
 /// rebuild arg list after proc ??
 
-   testargs(1,sz,rows,cols,tags_col,use_incl_vers);
+  // testargs(1,sz,rows,cols,tags_col,use_incl_vers);
 
  if (use_main_vers) {
      j = cols-1;
@@ -285,7 +284,7 @@ use_main_vers = 0;
 <<[_DB]"[${i}] $R[i]\n"
    }
  
-     sWo(cellwo,@cellval,R);
+    sWo(cellwo,@cellval,R);
  
       //rows = sz;
     
@@ -329,6 +328,7 @@ use_main_vers = 0;
 
 int mr =0;
 int mc = 0;
+
    while (1) {
    //<<"%V $_erow\n"
 
@@ -336,6 +336,7 @@ int mc = 0;
           eventWait();
           //sWi(vp,@redraw);   
 //   <<[_DB]" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
+ <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
  
 // colorRows(rows,cols);
           mr = _erow;
@@ -442,7 +443,7 @@ int mc = 0;
           sWo(cellwo,@setcolsize,3,0,1);
           sWi(vp,@redraw);
  }
- 
+ //============================================//
  
  
   exit()

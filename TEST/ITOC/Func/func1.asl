@@ -1,27 +1,39 @@
+//%*********************************************** 
+//*  @script func1.asl 
+//* 
+//*  @comment test func call 
+//*  @release CARBON 
+//*  @vers 1.4 Be Beryllium                                               
+//*  @date Fri Feb  8 20:08:15 2019 
+//*  @cdate 1/1/2001 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 
-CheckIn()
+
+include "debug.asl"
+debugON()
+setDebug(1,@pline)
+checkIn(0)
 
 // foota returns arg values into double array
-
-//dv = testargs(1,2)
+// dv = testargs(1,2)
 
 jal = 0
 
 j = 4
 
-fva= testargs(2*3,4+1,j*2)
+fva= testargs(1,2*3,4+1,j*2)
 
 <<"%(1,,,\n)$fva \n"
 
-jal = 2
+jal = 6
 fvs = fva[jal]
 
 <<"%V $fvs\n"
 
-
 Checkstr(fvs,"6")
-
-
 
 
 jal++
@@ -64,7 +76,5 @@ col = split(fvs)
 
 checkstr(col[1],"5.000000")
 
-   CheckOut()
-
-
-STOP!
+CheckOut()
+exit()

@@ -1,9 +1,15 @@
-///
-/// $(nvd)
-///
-
-
-
+//%*********************************************** 
+//*  @script buttons.asl 
+//* 
+//*  @comment test buttons 
+//*  @release CARBON 
+//*  @vers 1.14 Si Silicon                                                
+//*  @date Wed Feb  6 14:53:24 2019 
+//*  @cdate 1/1/2001 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 
 
 

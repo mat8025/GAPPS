@@ -1,13 +1,24 @@
+//%*********************************************** 
+//*  @script ptrvec.asl 
+//* 
+//*  @comment test array args and dynamic vec declarations 
+//*  @release CARBON 
+//*  @vers 1.6 C Carbon                                                   
+//*  @date Sat Feb  9 17:59:30 2019 
+//*  @cdate 1/1/2002 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 ///
 ///
 ///
 
+include "debug.asl"
+debugON()
+setdebug(1,@keep,@pline)
+FilterFileDebug(REJECT_,"storetype_e","ds_storevar")
 
-setdebug(1,"keep","trace")
-filterDebug(0,"DynamicExpand")
-
-
-//proc fvec (Z[], X[], Y[], n)
 
 proc foov ()
 {
@@ -51,24 +62,33 @@ rsz= Caz(R)
 }
 
 
-checkIn()
+checkIn(0)
 
 sz = 15
 
-int x[] = vgen(INT_,sz,0,1)   //   PASS
+int XV[] = vgen(INT_,sz,0,1)   //   PASS
+
+xsz= Caz(XV)
+
+<<"%V$xsz $XV\n"
+
+checkNum(XV[2],2)
+
+x = vgen(INT_,sz,0,1)   //   PASS
 
 xsz= Caz(x)
+
 <<"%V$xsz $x\n"
   
-//int y[] = vgen(INT_,sz,sz,1)
-//int y[];
+<<"%V$x \n"
+checkNum(x[1],1)
 
 y= vgen(INT_,sz,sz,1)
 
 ysz= Caz(y)
 <<"%V$ysz $y\n"
 
-//int c[20]  // FIX
+
 
 int c[];  //  TBF - WORKS
 
@@ -89,7 +109,6 @@ nd = Cab(c)
 csz= Caz(c)
 <<"%V $csz $nd\n"
 
-checkNum(x[1],1)
 
 foov()
 

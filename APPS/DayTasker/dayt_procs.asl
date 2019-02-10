@@ -12,7 +12,6 @@
 //***********************************************%
 
 
-
 proc makeMyDay (fnm)
 {
 <<[_DB]"making $fnm \n"
@@ -37,10 +36,10 @@ proc makeMyDay (fnm)
 <<"readback of default\n"
 
    sz = Caz(R);
- 
+   Rn = sz;
 
-ncols = Caz(R,0);
-ncols1 = Caz(R,1);
+   ncols = Caz(R,0);
+   ncols1 = Caz(R,1);
 
 <<[_DB]"num of records $sz  num cols $ncols $ncols1\n"
 <<[_DB]"$R \n"
@@ -53,7 +52,7 @@ ncols1 = Caz(R,1);
 <<[_DB]"%V$R[i][5] \n"
 }
 
-<<"done $_proc\n"
+<<"done $_proc $Rn\n"
 
 }
 //===============================================================//
@@ -114,7 +113,7 @@ proc readTheDay( fnm)
    ncols1 = Caz(R,1);
 
  
-<<[_DB]"num of records $sz  num cols $ncols $ncols1\n"
+<<[_DB]"num of records $Rn  num cols $ncols $ncols1\n"
 
 <<"done $_proc\n"
 
@@ -165,10 +164,10 @@ proc setAttribute(wr,wc)
 
 proc ADDTASK()
 {
-/// should go to last page
+/// should go to last page / last row
 <<[_DB]"@ $_proc \n"
 <<[_DB]" called ADDTASK\n"
-
+<<"%V $Rn $rows \n"
      ADDROW();
 
 }
@@ -254,13 +253,13 @@ proc SCORE()
 
   for (i =1 ; i < Rn; i++) {
   wrd = R[i][PCDoneCol]
-  <<[_DB]"$i $wrd $R[i][PCDoneCol] $R[i][DiffCol]\n"
+ // <<[_DB]"$i $wrd $R[i][PCDoneCol] $R[i][DiffCol]\n"
   //score->info(1)
   //R->info(1)
   
   score = atof(R[i][PCDoneCol]);
 //  score = atof(wrd);
-<<"%V $score\n"
+//<<"%V $score\n"
   score *= atof(R[i][DiffCol]);
   wrd = R[i][DiffCol];
   score *= atof(R[i][DurationCol]);
@@ -276,7 +275,7 @@ proc SCORE()
   sWo(cellwo,@cellval,i,ScoreCol,val);
   sWo(scorewo,@value,total,@update);
   }
-
+<<[_DB],"%V $total\n"
 }
 
 //===================================//

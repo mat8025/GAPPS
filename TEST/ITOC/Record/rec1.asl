@@ -24,7 +24,7 @@ debugON();
 
 setdebug (1, @pline, @~step, @trace, @soe) ;
 
-checkIn(1)
+checkIn(0)
 
   Record R[4+];
 
@@ -201,6 +201,11 @@ checkNum(ival,56)
 ival = atoi(R[3][4]);
 <<"%V $ival\n"
 checkNum(ival,40)
+
+
+ival = atoi(R[3][5]);
+<<"%V $ival\n"
+checkNum(ival,5)
 
 checkOut()
 

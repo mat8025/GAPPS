@@ -4,6 +4,12 @@
 ///   --- retyping an existing variable
 /// should throw an error but not crash
 
+include "debug.asl"
+debugON()
+setdebug(1,@keep,@pline)
+FilterFileDebug(REJECT_,"storetype_e","ds_storevar")
+
+
 CheckIn()
 
 int i = 0
@@ -82,8 +88,6 @@ class Act {
 
 }
 
-setdebug(1,"trace")
-
 
 act_ocnt++;
 
@@ -95,7 +99,7 @@ Act A
 Act G[3]
 
 
- checkNum(A->t,0)
+checkNum(A->t,0)
 
 setErrorNum(1)
 we = lastError()
@@ -126,4 +130,4 @@ we = si_error()
 
  CheckOut()
 
-stop!
+

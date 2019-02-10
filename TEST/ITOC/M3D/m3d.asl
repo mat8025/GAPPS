@@ -1,10 +1,27 @@
+//%*********************************************** 
+//*  @script m3d.asl 
+//* 
+//*  @comment test multi dim 3 
+//*  @release CARBON 
+//*  @vers 1.3 Li Lithium                                                 
+//*  @date Fri Feb  8 20:22:01 2019 
+//*  @cdate 1/1/2001 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 
 
-setDebug(1,@trace,@~soe)
 
-CheckIn()
+include "debug.asl"
 
-//setdebug(0)
+debugON()
+
+setDebug(1,@pline)
+setDebug(1,@~trace,@~soe)
+
+checkIn(0)
+
 
 N = 10
 P = 10
@@ -18,33 +35,26 @@ int M[N][P][L];
  V = vgen(INT_,N,0,1)
 
 <<"$V\n"
-b = Cab(&V)
+b = Cab(V)
 <<"Vbounds $b \n"
 
 
 b = Cab(&M)
-<<"0bounds $b \n"
-
-
-
+<<"0 bounds $b \n"
 
 
 val = 7
 
     M[0][1][2] = 47;
-b = Cab(&M)
-<<"1bounds $b \n"
+b = Cab(M)
+<<"1 bounds $b \n"
     val2= M[0][1][2] ;
 <<"%V $val2 $M[0][1][2] \n"
-b = Cab(&M)
-<<"2bounds $b \n"
+b = Cab(M)
+<<"2 bounds $b \n"
 
 
-
-
-
-
-     M[0][1][3] = 79;
+   M[0][1][3] = 79;
    val2= M[0][1][2] ;     
 <<"%V $val2 $M[0][1][2] \n"
 
@@ -75,6 +85,7 @@ b = Cab(&M)
   CheckNum(M[0][1][1],8)
 
  val = 7
+ 
  for (i = 0; i < P; i++) {
 <<"M 0,$i,1 $M[0][i][1] \n"
     CheckNum(M[0][i][1],val)
@@ -85,9 +96,6 @@ b = Cab(&M)
 b = Cab(M)
 <<"$b \n"
 <<"V is $V \n"
-
-
-
 
   val = 0
   kcnt =0
@@ -254,6 +262,5 @@ for (i = 0; i < 3; i++) {
 
 CheckOut()
 
-stop!
 
 

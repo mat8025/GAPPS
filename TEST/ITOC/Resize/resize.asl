@@ -2,6 +2,12 @@
 ///
 ///
 
+include "debug.asl"
+debugON()
+setdebug(1,@keep,@pline)
+FilterFileDebug(REJECT_,"storetype_e","ds_storevar")
+
+
 
 checkIn();
 
@@ -9,67 +15,70 @@ checkIn();
 svar Wans;
 
 //   Wans[0] = "stuff to do";
-   Wans = "stuff to do";
+Wans = "stuff to do";
 
 <<"sz $(Caz(Wans)) $Wans\n"
 
-W=testargs(Wans)
+W=testargs(1,Wans)
 
 <<"%(1,,,\n)$W\n"
 
-ans = iread();
+
 Wans[3] = "more stuff to do";
 
 <<"sz $(Caz(Wans)) $Wans\n"
 
-S=testargs(V,Wans)
+S=testargs(1,Wans)
 
 <<"%(1,,,\n)$S\n"
 
-ans = iread();
 
-   Wans->resize(10)
+
+Wans->resize(12)
+Wans->info(1)
+sz= Caz(Wans)
 
 <<"sz $(Caz(Wans)) $Wans\n"
+checkNum(sz,12)
 
-    Wans[9] = "keeps going"
+Wans[9] = "keeps going"
     
 <<"sz $(Caz(Wans)) $Wans\n"
+Wans->info(1)
 
 
-M=testargs(V,Wans)
+M=testargs(1,Wans)
 
 
 <<"%(1,,,\n)$M\n"
 
-ans = iread();
 
-   Wans->resize(5)
+
+Wans->resize(5)
 
 <<"sz $(Caz(Wans)) $Wans\n"
+sz= Caz(Wans)
+checkNum(sz,5)
 
+Wans->info(1)
 
-R=testargs(Wans)
+R=testargs(1,Wans)
 
 <<"%(1,,,\n)$R\n"
 
 <<"%V $(Typeof(Wans)) $Wans\n"
 
+Wans->info(1)
 delete(Wans);
+//Wans->info(1)
 
 
-L=testargs(Wans)
-
-<<"%(1,,,\n)$L\n"
-
-<<"%V $(Typeof(Wans)) $Wans\n"
-
-
+checkOut();
 
 
 
 exit()
 
 
-checkOut();
+
 

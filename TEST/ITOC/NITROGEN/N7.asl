@@ -5,13 +5,24 @@
 filterFileDebug(REJECT_,"ic_wic","ic_pic","state_e","tokget");
 setDebug(1,@trace,@keep,@pline);
 
-
-
 float a = 28.82;
 
 a->info(1)
 
 <<"%V $a \n"
+
+b = a
+
+b->info(1)
+
+c = a * 2
+
+c->info(1)
+
+exit()
+
+
+
 
 
 
@@ -37,12 +48,6 @@ a->info(1)
 
 <<"%V $a \n"
 
-float b = 0.0;
-
-b->info(1)
-
-b = a 
-
 
 a->info(1)
 
@@ -54,9 +59,7 @@ b->info(1)
 //c->info()
 
 
-c = a
 
-c->info(1)
 
 <<"%V $a $b $c\n"
 

@@ -6781,7 +6781,7 @@ vvcopy
 .)x 
 .FD
 vvcopy(&A[0],&B[0],n,{condition,cond_value},{s1,s2})
-copies n locations of array A to corresponding locations in array B.
+copies n locations of array B to corresponding locations in array A.
 s1 and s2 are step sizes default is 1.
 Also the copy can be conditional
 (condition set to GT_,LT_,GTE_,LTE_,EQ_,NEQ_,ALWAYS_)
@@ -6789,14 +6789,14 @@ or (condition set to ">","<",">=","<=","!=")
 for a comparision of array value and cond_value,
 for the copy operation
 to take place, i.e. the array data can be filtered via a condition.
-returns number of values copied into array B.
+returns number of values copied into array A.
 
 Additionally the offset into the arrays can be set
 e.g.
 vvcopy(&A[5],&B[6],n,GTE_,79,2,1);
-where the access starts at element 6 of A and steps by two.
-the first successful compare goes into element 7 of vector B.
-and the next into element 8, ...
+where the access starts at element 6 of B and steps by two.
+the first successful compare goes into element 5 of vector A.
+and the next into element 7, ...
 
 There is an internal check to prevent accessing or writing beyond
 the arrays, but the success of the operation requires programming
@@ -6823,8 +6823,6 @@ R[2] = -2.0 if all A   lt B
 R[2] = -3.0 if some gt and eq and  lt B
 
 R[3] first index location of smallest difference
-
-
 
 .EF
 =============================================================

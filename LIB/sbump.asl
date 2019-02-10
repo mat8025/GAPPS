@@ -187,6 +187,24 @@
 
 cf(A);
 
+// lets' log this change 
+logfile= "~gapps/LOGS/appmods.log"
+A=ofile(logfile,"r+")
+fseek(A,0,2)
+
+ans=iread("app code -what modification?:")
+<<"$ans\n"
+len = slen(srcfile)
+pad = nsc(24-len," ")
+<<[A]"$srcfile${pad}${pmaj}.$pmin\t$date $ans\n"
+cf(A)
+
+
+
+
+
+
+
 exit()
  for (i = 0; i < 3;i++) {
   //<<"$T[i]"
