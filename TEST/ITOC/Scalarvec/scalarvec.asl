@@ -1,7 +1,25 @@
-setdebug(1)
+//%*********************************************** 
+//*  @script scalarvec.asl 
+//* 
+//*  @comment scalar vec ops 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium                                                  
+//*  @date Fri Feb 15 14:23:55 2019 
+//*  @cdate 1/1/2001 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 
-CheckIn()
-// setdebug(0)
+
+include "debug.asl"; 
+  debugON(); 
+  setdebug(1,@keep,@pline,@trace); 
+  FilterFileDebug(REJECT_,"storetype_e","ds_storevar","ds_sivmem");
+  FilterFuncDebug(REJECT_,"~ArraySpecs",); 
+ 
+
+ CheckIn()
 
  I = vgen(INT_,10,0,1)
 
@@ -28,7 +46,8 @@ CheckIn()
 
   U = vgen(UCHAR_,12,0,1)
 
-<<"%I$U\n"
+U->info(1)
+<<"$U\n"
 
  sz = Caz(U)
 
@@ -36,7 +55,7 @@ CheckIn()
 
  u = U[1]
 
- CheckNum(U[1],1)
+  CheckNum(U[1],1)
 
   CheckNum(u,1)
 
@@ -80,6 +99,7 @@ sz = Caz(U)
 V = 255 -U
 <<"%V$V\n"
 sz = Caz(U)
+
 <<"%v$sz \n"
 
 

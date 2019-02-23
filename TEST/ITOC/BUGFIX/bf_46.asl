@@ -7,7 +7,7 @@
 include "debug.asl"
 debugON()
 setdebug(1,@keep,@pline)
-FilterFileDebug(REJECT_,"storetype_e","ds_storevar")
+FilterFileDebug(REJECT_,"storetype_e",)
 
 
 CheckIn()

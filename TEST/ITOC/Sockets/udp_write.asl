@@ -35,7 +35,8 @@ proc StrCli( cfd)
      Ipa = "127.0.0.1"
  }
 
- port = GetArgI(9871)
+ //port = GetArgI(9871)
+ port = 9871
 
 
 <<"%V  $Ipa $port \n"

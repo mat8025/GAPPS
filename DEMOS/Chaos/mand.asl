@@ -1,7 +1,21 @@
+//%*********************************************** 
+//*  @script mand.asl 
+//* 
+//*  @comment show mandelbrot - zoom options 
+//*  @release CARBON 
+//*  @vers 1.24 Cr Chromium                                               
+//*  @date Sat Feb 23 00:20:52 2019 
+//*  @cdate 1/1/2002 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 
 // MANDELBROT
-
-set_debug(0)
+ include "debug.asl"
+ include "hv.asl"
+ include "gevent.asl"
+include "tbqrd.asl" 
 
 Graphic = CheckGwm()
 
@@ -13,7 +27,8 @@ float R[10]
 float rinfo[12]
 int iv[16]
 int woival = 0
-int button
+
+
 float xr;
 
 //////////////////////////////////////////
@@ -252,6 +267,7 @@ proc pickCoors()
 // find a location -- adjust range symmetrically around location
 // where in current clip scales --- these are fixed between 0 and 1
   <<"pickcoors\n"
+  
   E->geteventrxy(rinfo)
 
 
@@ -261,7 +277,7 @@ proc pickCoors()
 
   button2 = iv[8]
 
-  button = E->getbutton()
+  button = _ebutton
 
 
   rcx = rinfo[1]
@@ -280,26 +296,26 @@ proc pickCoors()
   woname = E->geteventwoname()
   etype = E->geteventtype()
 
-  setgwob(msgwo,@border,@textr,"%V$button $button2 $woname $woival $woival2",0.1,0.3)
-  setgwob(msgwo,@border,@textr,"$iv ",0.1,0.1)
+  sWo(msgwo,@border,@textr,"%V$button $button2 $woname $woival $woival2",0.1,0.3)
+  sWo(msgwo,@border,@textr,"$iv ",0.1,0.1)
 
 
 // adjust in/out
 
-  if (etype @= "PRESS") {
+  if (_etype == PRESS_) {
 
-  if (button == 1) {
+  if (_ebutton == 1) {
     xrange *= 0.85
     yrange *= 0.85
   }
-  else if (button == 3) {
+  else if (_ebutton == 3) {
     xrange *= 1.1
     yrange *= 1.1
   }
 
   if (woival == WCEN) {
 
-     if (button == 1) {
+     if (_ebutton == 1) {
       xrange *= 0.85
       yrange *= 0.85
      }
@@ -318,7 +334,7 @@ proc pickCoors()
 // new positions in Mandel space
 <<"%V$woname $button $woival \n"
 
-  if (etype @= "PRESS") {
+  if (_etype == PRESS_) {
   xr0 = mcx - drx
   xr1 = mcx + drx
   yr0 = mcy - dry
@@ -471,14 +487,16 @@ wY = 300
  bX = 0.75
  bY = 0.80
 
- mandwo=cWo(vp,"GRAPH",@name,"MANDEL_1",@color,"white",@resize,bx,by,bX,bY)
+ mandwo=cWo(vp,@GRAPH,@name,"MANDEL_1",@color,"white",@resize,bx,by,bX,bY)
  sWo(mandwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red", @redraw)
  sWo(mandwo,@SCALES,0,0,1,1)
  sWo(mandwo,@pixmapon,@drawon,@savepixmap)
  sWo(mandwo,@clip,0.05,0.05,0.95,0.95)
 
 
-
+ titleButtonsQRD(vp);
+ titleVers();
+ 
   msgwo=cWo(vp,"TEXT",@name,"COOR",@VALUE,"0.0 0.0",@color,"white",@resize,0.1,0.89,0.9,0.99)
 
   sWo(msgwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @pixmapoff,@drawon,@redraw,@save)
@@ -545,21 +563,21 @@ wY = 300
  sWo(yr1wo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@STYLE,"SVR", @redraw)
 
 
- upwo=cWo(vp,SYMBOL_,@name,"UP",@value,WUP,@color,"green",@symbolshape,"tri")
+ upwo=cWo(vp,SYMBOL_,@name,"UP",@value,WUP,@color,GREEN_,@symbolshape,"tri")
 
- dwnwo=cWo(vp,SYMBOL_,@name,"DOWN",@value,WDOWN,@color,"green",@symbol,"tri",@symang,180)
+ dwnwo=cWo(vp,SYMBOL_,@name,"DOWN",@value,WDOWN,@color,GREEN_,@symbol,"tri",@symang,180)
 
- ltwo=cWo(vp,SYMBOL_,@name,"LEFT",@value,WLEFT,@color,"green",@symbol,"tri",@rotate,90,@symang,90)
+ ltwo=cWo(vp,SYMBOL_,@name,"LEFT",@value,WLEFT,@color,GREEN_,@symbol,"tri",@rotate,90,@symang,90)
 
- rtwo=cWo(vp,SYMBOL_,@name,"RIGHT",@value,WRIGHT,@color,"green",@symbol,"tri",@symang,-90)
+ rtwo=cWo(vp,SYMBOL_,@name,"RIGHT",@value,WRIGHT,@color,GREEN_,@symbol,"tri",@symang,-90)
 
- ruwo=cWo(vp,SYMBOL_,@name,"RU",@value,WRUP,@color,"green",@symbol,"tri",@symang,-45)
+ ruwo=cWo(vp,SYMBOL_,@name,"RU",@value,WRUP,@color,GREEN_,@symbol,"tri",@symang,-45)
 
- rdwo=cWo(vp,SYMBOL_,@name,"RD",@value,WRDWN,@color,"green",@symbol,"tri",@symang,-135)
+ rdwo=cWo(vp,SYMBOL_,@name,"RD",@value,WRDWN,@color,GREEN_,@symbol,"tri",@symang,-135)
 
- luwo=cWo(vp,SYMBOL_,@name,"LU",@value,WLUP,@color,"green",@symbolhape,"tri",@symang,45)
+ luwo=cWo(vp,SYMBOL_,@name,"LU",@value,WLUP,@color,GREEN_,@symbol,"tri",@symang,45)
 
- ldwo=cWo(vp,SYMBOL_,@name,"LD",@value,WLDWN,@color,"green",@symbolshape,"tri",@symang,135)
+ ldwo=cWo(vp,SYMBOL_,@name,"LD",@value,WLDWN,@color,GREEN_,@symbol,"tri",@symang,135)
 
  cenwo=cWo(vp,SYMBOL_,@name,"CEN",@value,WCEN,@color,"orange",@symbol,"dia",@symang,0)
 
@@ -780,7 +798,7 @@ double dinxp = 1.0/(1.0 * nxp)
 
 
 
-  setGwindow(vp,@border,@redraw)
+  sWi(vp,@border,@redraw)
 
   //pickCoors(vp)     
 
@@ -797,8 +815,6 @@ double dinxp = 1.0/(1.0 * nxp)
 
   dinxp = xrange /(1.0 * nxp)
 
-
-gevent E;  // our Gevent variable - holds last message
 
 
 
@@ -838,23 +854,23 @@ gevent E;  // our Gevent variable - holds last message
         jj++;
 
 # recheck window 
-       msg=E->waitForMsg();
-       //msg = messageWait()
+      eventWait();
 
-       sWo(msgwo,@border,@clearclip,@textr,"$msg",0.1,0.5)
 
-       woname = E->getEventWoName()    
+       sWo(msgwo,@border,@clearclip,@textr,"$_emsg",0.1,0.5)
 
-<<"%V$woname   "
+       
 
-       E->getEventState(iv)    
+<<"%V$_ewoname   "
 
-       if (scmp(woname,"QUIT",4)) {
+      
+
+       if (scmp(_ewoname,"QUIT",4)) {
              exit_gs()
              break
        }
 
-       if (scmp(woname,"RESET")) {
+       if (scmp(_ewoname,"RESET")) {
 
        xr0 = reset_xr0 
        xr1 = reset_xr1 
@@ -866,14 +882,14 @@ gevent E;  // our Gevent variable - holds last message
 
        }
 
-       else if (scmp(woname,"INIT")) {
+       else if (scmp(_ewoname,"INIT")) {
 
           yr0 = -2.5 ; yr1 = 2.5 ; xr0 = -2.5 ; xr1 = 2.5 ;
 
           sWo(mandwo,@scales,xr0,yr0,xr1,yr1);
 
        }
-       else if (scmp(woname,"SELECT",6)) {
+       else if (scmp(_ewoname,"SELECT",6)) {
        <<"@SELECT\n";
 <<"%V$xr0 $yr0 $xr1 $yr1 $xrange $yrange\n"
 

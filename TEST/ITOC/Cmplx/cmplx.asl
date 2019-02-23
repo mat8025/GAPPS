@@ -1,4 +1,4 @@
-#/* -*- c -*- */
+
 
 // test complex & dcomplex types
 
@@ -7,7 +7,7 @@ SetDebug(1,"pline","~step")
 checkIn()
 
 
-int A[] = {1,2,3}
+int A[3] = {1,2,3}
   sz = Caz(A)
   <<"%V $sz $A\n"
 

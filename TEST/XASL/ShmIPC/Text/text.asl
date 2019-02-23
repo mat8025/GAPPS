@@ -1,4 +1,15 @@
-//////// text.asl ////////////////////
+//%*********************************************** 
+//*  @script text.asl 
+//* 
+//*  @comment test fonts and text 
+//*  @release CARBON 
+//*  @vers 1.8 O Oxygen                                                   
+//*  @date Sat Feb 16 15:53:22 2019 
+//*  @cdate 1/1/2005 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 
 
 /// make sure rotated fonts are loaded!
@@ -17,6 +28,8 @@ envdebug()
     Xgm = spawnGWM()
   }
 
+include "debug.asl"
+include "hv.asl"
 include "tbqrd"
 
  txtwin = cWi("title","MK_INFO")
@@ -74,7 +87,8 @@ include "tbqrd"
   int txwos[] = {lvwo,rvwo,bigwo,two};
 
 
-
+ titleVers();
+ 
 
 
 include "gevent"
@@ -86,7 +100,7 @@ yp = 0.5
 
 char txtip[256];
 
-
+!!"xset fp+ /usr/local/GASP/gasp/fonts "
 <<"xset fp+ /usr/local/GASP/gasp/fonts \n"
 
    while (1) {
@@ -109,7 +123,7 @@ char txtip[256];
 
       sWo(txwos,@clear);
 
-     woGetText(ipwo,txtip,512);
+      woGetText(ipwo,txtip,512);
       
   <<" got %s < $txtip >  as input \n";
       // rotated text??

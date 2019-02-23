@@ -16,7 +16,7 @@
   debugON(); 
   setdebug(1,@keep,@pline); 
   FilterFileDebug(REJECT_,"storetype_e","ds_storevar","ds_sivmem");
-  FilterFuncDebug(REJECT_,"ArraySpecs",); 
+  FilterFuncDebug(REJECT_,"~ArraySpecs",); 
  
  
   CheckIn(); 
@@ -34,13 +34,11 @@
   sz = Caz(IVF);
   <<"%V $sz\n"; 
 
-
-
-  int IV[4+];
+  int IV[>6];
   sz = Caz(IV);
   <<"%V $sz\n"; 
  
-  CheckNum(sz,4);
+  CheckNum(sz,6);
  
   IV[1] = ptan("AT");
   <<"$IV\n"; 

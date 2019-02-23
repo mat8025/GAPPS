@@ -3,15 +3,14 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                 
-//*  @date Tue Jan  1 10:36:56 2019 
+//*  @vers 1.2 He Helium                                                  
+//*  @date Thu Feb 21 14:11:04 2019 
 //*  @cdate Tue Jan  1 10:36:56 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
 ///
-/// gevent.asl 1.3 
 /// wait and catch mouse/key window events
 //
 //
@@ -26,7 +25,10 @@ proc eventDecode()
     _ewoval = Ev->getEventWoValue();
 //<<"%V $_ewoval \n"       
 
-    if (checkTerm()) {
+
+    _ewid = -1;
+
+     if (checkTerm()) {
        _ekeyw =  "EXIT_ON_WIN_INTRP";
     }
     else {
@@ -36,7 +38,7 @@ proc eventDecode()
 
 ewsz=Caz(_ewords);
 //<<"%V $ewsz $_ewords\n"
-
+  
     if(ewsz > 1) {
     _ekeyw = _ewords[2];
 
@@ -53,9 +55,13 @@ ewsz=Caz(_ewords);
      _ename = Ev->getEventType(_eid,_etype,_ewoid,_ewoaw,_ebutton,_ekeyc,_ewoproc);
 
 //<<"proc $_ewoproc \n"
-
+     if (_ewoid < 32767) {
+         _ewid = _ewoid;
+       }
+       else {
+           _ewid = (_ewoid & 0xFFFF0000) >> 16 ;  
      }
-    
+    }
      _ewoname = Ev->getEventWoName();
 //     _ewoproc = Ev->getEventWoProc();
   
@@ -73,9 +79,6 @@ ewsz=Caz(_ewords);
     }
 
    }
-   
-
-
 }
 //==============================
 
@@ -125,6 +128,7 @@ int _eid;
 int _ekeyc;
 int _ewoid;
 int _ewoaw;
+int _ewid;
 
 svar _emsgwd;
 svar _ewords;
