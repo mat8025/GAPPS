@@ -36,7 +36,7 @@ debugON()
 
     sWo(rwo,@color,"red",@penhue,"black",@symbol,"diamond")
 
-    sWo(rwo,@drawon,@pixmapon,@redraw,@save)
+    sWo(rwo,@drawoff,@pixmapon,@redraw,@save)
 
 
     gwo=cWo(vp,SYMBOL_,@resize,0.5,0.1,0.9,0.6,@NAME,GREEN_,@VALUE,1.0)
@@ -61,7 +61,7 @@ while (1) {
       eventWait();
      
       n_msg++
-<<"%V$n_msg\n"
+<<"%V$n_msg $_emsg  $_etype $_button\n"
 
      if (_etype  == PRESS_) {
 
@@ -101,9 +101,9 @@ while (1) {
 
      }
 
-     sWo(rwo,@drawon,@clearpixmap)
+     sWo(rwo,@drawoff,@clearpixmap)
      sWo(rwo,@color,"red",@penhue,BLUE_,@symbolshape,symbol_num,@symsize,sym_size,@symang,ang,@redraw)
-    // sWo(rwo,@showpixmap)
+     sWo(rwo,@showpixmap)
 
      sWo(gwo,@drawon,@clearpixmap)
      sWo(gwo,@color,"red",@penhue,GREEN_,@symbolshape,symbol_num,@symsize,sym_size,@symang,ang,@redraw)

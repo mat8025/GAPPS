@@ -3,8 +3,8 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                 
-//*  @date Fri Jan 11 08:46:34 2019 
+//*  @vers 1.2 He Helium                                                  
+//*  @date Sat Feb 23 00:54:06 2019 
 //*  @cdate Fri Jan 11 08:46:34 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -47,19 +47,19 @@ qrd[2]= td;
  sWo(tbqrd_tv,@redraw);
  
 }
-
+//============================//
 proc titleComment( msg)
 {
  <<"%V $msg \n"
  sWo(tbqrd_tv,@value,"$msg",@clear,@redraw);
 
 }
-
+//============================//
 proc titleVers()
 {
  titleComment("$_ele_vers $_ele");
 }
-
+//============================//
 
 
 

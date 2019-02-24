@@ -1,11 +1,23 @@
+//%*********************************************** 
+//*  @script arrow.asl 
+//* 
+//*  @comment test sockets 
+//*  @release CARBON 
+//*  @vers 1.6 C Carbon                                                   
+//*  @date Sat Feb 23 12:45:28 2019 
+//*  @cdate 1/1/2003 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 ///
-/// test via sockets
-/// asl -S 127.0.0.1 arrow_socket.asl
+
+/// asl -S 127.0.0.1 -p 4779 arrow.asl
 ///    default port is 4779
-
-
-setdebug(1)
-
+include "debug.asl"
+include "gevent.asl"
+include "hv.asl"
+include "tbqrd";
 
 proc redraw_po()
 {
@@ -65,7 +77,7 @@ proc redraw_po()
 
 //  need to handshake on connection
 
-    vp = cWi(@title,"PLOT_OBJECTS",@resize,0.1,0.1,0.4,0.4)
+    vp = cWi(@title,"ARROWS",@resize,0.1,0.1,0.4,0.4)
 
     sWi(vp,@pixmapon,@drawon,@save,@bhue,WHITE_)
 
@@ -92,8 +104,9 @@ proc redraw_po()
     sy = -3
     sY = 3.0
 
-    //setgwob(gwo,@scales, sx, sy, sX, sY, @save,@redraw,@drawon,@pixmapon)
 
+  titleButtonsQRD(vp);
+   titleVers();
     sWo(gwo,@scales, sx, sy, sX, sY,@save, @savepixmap,@redraw,@pixmapon,@drawoff)
 
     sWo(gwo,@savepixmap,@showpixmap)
@@ -131,9 +144,6 @@ exit()
 
 ///////////////////////////////// EVENT HANDLE ////////////////////////////////////////
 
-include "event"
-
-Event E     // use asl event class to process any messages
 
 
   int k_loops = 0
@@ -142,26 +152,26 @@ Event E     // use asl event class to process any messages
 
 <<"$k_loops \n"
 
-          E->readMsg()
+          readMsg()
 
-          if (! (E->keyw @= "NO_MSG")) {
+          if (! (_ekeyw @= "NO_MSG")) {
 
-           if (E->button == LEFT) {
+           if (_ebutton == LEFT) {
            //  panwo(gwo,"left",5)
            }
-           else if (E->button == RIGHT) {
+           else if (_ebutton == RIGHT) {
             // panwo(gwo,"right",5)
            }
 
-            if (E->button == 2) {
+            if (_ebutton == 2) {
            //  zoomwo(gwo,"out",5)
            }
 
-            if (E->button == 4) {
+            if (_ebutton == 4) {
              zoomwo(gwo,"in",5)
            }
 
-           else if (E->button == 5) {
+           else if (_ebutton == 5) {
              zoomwo(gwo,"out",5)
            }
 
@@ -181,7 +191,7 @@ Event E     // use asl event class to process any messages
       k_loops++
 
       if (k_loops > 3) {
-        break
+     //   break
      }
 
   }
@@ -192,4 +202,3 @@ Event E     // use asl event class to process any messages
 
 <<"$k_loops \n"
 
-  stop!
