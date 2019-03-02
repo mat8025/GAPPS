@@ -1,13 +1,35 @@
-//
-setdebug(1)
+//%*********************************************** 
+//*  @script plot.asl 
+//* 
+//*  @comment test plot objs 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium                                                  
+//*  @date Sun Feb 24 02:55:14 2019 
+//*  @cdate 1/1/2000 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+
+
+
+
+include "debug.asl"
+include "gevent.asl"
+include "hv.asl"
+include "tbqrd";
+
+
+debugON()
+
 Graphic = CheckGwm()
 
      if (!Graphic) {
         X=spawngwm()
      }
 
-    vp = cWi(@title,"PLOT_OBJECTS",@resize,0.05,0.01,0.99,0.95)
-    //SetGwindow(vp,@pixmapon,@drawon,@save,@bhue,"white")
+    vp = cWi(@title,"PLOT_OBJECTS",@resize,0.05,0.01,0.9,0.9)
+    
 
     sWi(vp,@pixmapon,@drawoff,@save,@bhue,"white")
 
@@ -19,10 +41,11 @@ Graphic = CheckGwm()
     // drawing area within window
     // drawing area object - wob -- needs script level class definition
     // so we can set parameters easily
-
+    titleButtonsQRD(vp);
+   titleVers();
     daname = "PLOT_SCREEN"
 
-    gwo= cWo(vp,@GRAPH,@resize,0.15,0.15,0.95,0.95,@name,"GLines",@color,"white")
+    gwo= cWo(vp,@GRAPH,@resize,0.15,0.15,0.95,0.9,@name,"GLines",@color,"white")
 
     setgwob(gwo,@clip,cx,cy,cX,cY)
 
@@ -54,11 +77,11 @@ ang = 0.0
 proc redraw_po()
 {
 
-    sWo(gwo,@drawon)
+    sWo(gwo,@drawoff)
 
     sWo(gwo,@clearpixmap,@pixmapoff)
 
-    sWo(gwo,@clear,@border,BLUE,@clipborder,RED)
+    sWo(gwo,@border,BLUE_,@clipborder,RED_)
 
     axnum(gwo,1)
     axnum(gwo,2)
@@ -68,25 +91,25 @@ proc redraw_po()
  
     axlabel(gwo,1,"TIDE",0.7,3)
 
-    sWo(gwo,@drawon,@pixmapon)
+    sWo(gwo,@drawoff,@pixmapon)
 
     ticks(gwo,1)
     ticks(gwo,2)
 
 
-    plot(gwo,@line,-2,-1,0,-1,ORANGE,@lineto,0,1,RED)
+    plot(gwo,@line,-2,-1,0,-1,ORANGE_,@lineto,0,1,RED_)
 
-    plot(gwo,@lineto,-2,1,"blue",@lineto,-2,-1,"red")
+    plot(gwo,@lineto,-2,1,BLUE_,@lineto,-2,-1,RED_)
 
-    plot(gwo,@lineto,0,0,"blue",@lineto,-1,1,"red")
+    plot(gwo,@lineto,0,0,"blue",@lineto,-1,1,RED_)
 
-    plot(gwo,@box,-0.5,-0.9,1,0.8,LILAC,1.0)
+    plot(gwo,@box,-0.5,-0.9,1,0.8,LILAC_,1.0)
 
-    plot(gwo,@arrow,-2,-1,2,1,5,YELLOW,1.0)
+    plot(gwo,@arrow,-2,-1,2,1,5,YELLOW_,1.0)
 
-    plot(gwo,@arrow,-1,-2,3,3,5,RED,1.0)
+    plot(gwo,@arrow,-1,-2,3,3,5,RED_,1.0)
 
-    plot(gwo,@polarline,0,0,2,ang,"blue")
+    plot(gwo,@polarline,0,0,2,ang,BLUE_)
 
     ang += 5;
 
@@ -94,39 +117,15 @@ proc redraw_po()
 
     plot(gwo,@ellipse,0,0,0.7,0.3)
 
-    plot(gwo,@triangle,0.1,0.1,0.2,0.9,0.4,0.5,"green",1)
-
-/{
-    plot(gwo,@polyreg,-0.5,-0.5,8,5,"blue",0,0)
-
-    plot(gwo,@polyreg,-0.1,-0.2,5,4,"green",0,0)
-
-    plot(gwo,@polyreg,-3.1,-0.2,10,4,CYAN,1,0)
-
-    plot(gwo,@polyreg,-5.1,-1.2,3,20,VIOLET,1,0)
-
-    plot(gwo,@polyreg,-5.1,-1.2,4,10,RED,0,0)
-
-    plot(gwo,@symbol,0,0,"circle",5,"yellow",1)
-
-    plot(gwo,@symbol,-2.5,0,"diamond",5,"green",1)
-
-    plot(gwo,@symbol,-2,2,"triangle",5,"blue",1)
-
-    plot(gwo,@points,Pts,LILAC)
-
-    plot(gwo,@symbols,Dpts,"diamond",2,BLUE,1,10)
-
-    plot(gwo,@symbols,Spts,"circle",5,GREEN,0,10)
-    
-/}
+    plot(gwo,@triangle,0.1,0.1,0.2,0.9,0.4,0.5,GREEN_,1)
 
 
-    plot(gwo,@symbols,Spts,"triangle",2,RED,1,10)
-    plot(gwo,@symbols,Spts,"circle",2,ORANGE,1,10)
+
+    plot(gwo,@symbols,Spts,"triangle",2,RED_,1,10)
+    plot(gwo,@symbols,Spts,"circle",2,ORANGE_,1,10)
 
     sWo(gwo,@showpixmap)
-    sWo(gwo,@border,BLUE,@clipborder,RED)
+    sWo(gwo,@border,BLUE_,@clipborder,RED_)
 
 }
 
@@ -162,34 +161,37 @@ float Dpts[128]
        }
 <<"$Pts \n"
 
-///////////////////////////////// EVENT HANDLE ////////////////////////////////////////
 
-include "event"
+//gevent Ev; // event handle type - can inspect for all event attributes
+// but use gevent code
 
-Event E     // use asl event class to process any messages
+int k_loops = 0;
 
-  while (1) {
 
-      E->waitForMsg()
+while (1) {
 
-       if (! (E->keyw @= "NO_MSG")) {
+          //Ev->waitForMsg()
+       eventWait();
+<<"%V $_emsg $_etype $_ebutton $_ewoname $_ewoid  $(PRESS_)\n"
 
-           if (E->button == LEFT) {
+       if (_etype == PRESS_) {
+<<"got PRESS\n"
+           if (_ebutton == LEFT_) {
              panwo(gwo,"left",5)
            }
-           else if (E->button == RIGHT) {
+           else if (_ebutton == RIGHT_) {
              panwo(gwo,"right",5)
            }
 
-           else if (E->button == 2) {
+           else if (_ebutton == 2) {
              zoomwo(gwo,"out",5)
            }
 
-           else if (E->button == 4) {
+           else if (_ebutton == 4) {
              zoomwo(gwo,"in",5)
            }
 
-           else if (E->button == 5) {
+           else if (_ebutton == 5) {
              zoomwo(gwo,"out",5)
            }
 
@@ -200,7 +202,7 @@ Event E     // use asl event class to process any messages
            sX -= 0.1
 /}
 
-         if (E->keyw @= "RESCALE") {
+         if (_ekeyw @= "RESCALE") {
        <<"doing rescale !\n"
           RS = wgetrscales(gwo)
        <<"doing rescale ! $RS\n"
@@ -210,8 +212,9 @@ Event E     // use asl event class to process any messages
          redraw_po();
 
        }
+       k_loops++;
+       if (k_loops > 3) {
+          //break;
+      }
   }
 
-
-
-  stop!

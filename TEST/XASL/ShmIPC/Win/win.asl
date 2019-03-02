@@ -15,11 +15,9 @@
 
 
 include "debug.asl"
-include "gevent.asl"
 include "hv.asl"
-
-
 include "tbqrd";
+include "gevent.asl"
 debugON();
 
    Graphic = CheckGwm()
@@ -85,7 +83,7 @@ debugON();
    titleVers();
    
        vp2 = cWi(@title,"LeftWindow_2")
-    sWi(vp2,@pixmapon,@drawoff,@save,@store,@bhue,BLUE_,@resize,0.61,0.1,0.9,0.5)
+    sWi(vp2,@pixmapon,@drawoff,@save,@store,@bhue,BROWN_,@resize,0.61,0.1,0.9,0.5)
 
        vp3 = cWi(@title,"TopLeftWindow_3")
     sWi(vp3,@pixmapon,@drawoff,@save,@bhue,GREEN_,@resize,0.61,0.51,0.9,0.9)
@@ -103,7 +101,7 @@ debugON();
     cY = 0.8
 
     int vpo[] = {vp4,vp3,vp2};
-
+   
     sWi(vpo,@clip,cx,cy,cX,cY);
 
 /{
@@ -119,8 +117,8 @@ debugON();
     cy = 0.2
     cY = 0.95
 
-  win_pm = 1;
-
+  win_pm = 0;
+  p2 = 0;
   if (!win_pm) {
     gwo2=cWo(vp2,"GRAPH",@resize,0.15,0.1,0.95,0.95,@name,"PIC",@color,WHITE_)
     sWo(gwo2,@clip,cx,cy,cX,cY)
@@ -134,6 +132,8 @@ debugON();
     gwo4=cWo(vp4,"GRAPH",@resize,0.15,0.1,0.95,0.95,@name,"PIC",@color,WHITE_)
     sWo(gwo4,@clip,cx,cy,cX,cY)
     sWo(gwo4,@scales,0,0,1,1,@save, @savepixmap,@redraw,@drawoff,@pixmapon)
+ int gwo[] = {gwo2,gwo3,gwo4};
+
 }
 
 
@@ -188,8 +188,11 @@ debugON();
 	      sWo(vpo,@clearpixmap)
 //	      sWi(vp4,@clear)
 //	      sWi(vp3,@clear)
-	      Plot(vp2,@line,0.5,1,0.5,0,RED_)
+              sWo(vp2,@clear,WHITE_);
+              Plot(vp2,@line,0.5,1,0.5,0,RED_)
               Plot(vp2,@line,0,0.5,1,0.5,RED_)
+
+              Plot(vp2,@box,0,0,1,1,PINK_,1)
               Plot(vp3,@line,0.5,1,0.5,0,YELLOW_)
               Plot(vp3,@line,0,0.5,1,0.5,YELLOW_)
               Plot(vp4,@line,0.5,0,0.5,1,MAGENTA_)
@@ -201,10 +204,10 @@ debugON();
        <<"push $vp2\n"
       }
       else {
-              sWo(gwo2,@clearpixmap)
-          //    sWo(gwo3,@clearpixmap,@clear)
-	      sWo(gwo3,@clearpixmap)
-	      sWo(gwo4,@clearpixmap)
+              
+              sWo(gwo,@clearpixmap,@clear)
+	      //sWo(gwo3,@clearpixmap)
+	      //sWo(gwo4,@clearpixmap)
 	      
               Plot(gwo2,@line,0.5,1,0.5,0,BLUE_)
               Plot(gwo2,@line,0,0.5,1,0.5,BLUE_)
@@ -214,9 +217,8 @@ debugON();
 
               Plot(gwo4,@line,0.5,0,0.5,1,MAGENTA_)
 	      Plot(gwo4,@line,0,0.5,1,0.5,MAGENTA_)
-              sWo(gwo2,@showpixmap)
-              sWo(gwo3,@showpixmap)
-	      sWo(gwo4,@showpixmap)
+              sWo(gwo,@showpixmap)
+
           }
  //sWi(vp3,@pop)
       }
@@ -224,29 +226,30 @@ debugON();
       //sWi(vp3,@pop)
 
          if (win_pm) {
-           //  sWi(vpo,@clearpixmap)
-	    // sWi(vpo,@showpixmap)
-	       sWo(vpo,@clearpixmap)
-               Plot(vp2,@line,0,0,1,1,MAGENTA_)
-	       Plot(vp2,@line,0,1,1,0,MAGENTA_)
 
+	       sWo(vpo,@clearpixmap)
+	         sWo(vp2,@clear,BLACK_);
+	 if (p2) {	 
+              Plot(vp2,@line,0,0,1,1,MAGENTA_)
+	       Plot(vp2,@line,0,1,1,0,MAGENTA_)
+	       Plot(vp2,@box,0,0,1,1,LILAC_,1)
                Plot(vp3,@line,0,0,1,1,RED_)
                Plot(vp3,@line,0,1,1,0,RED_)
 	       Plot(vp4,@line,0,0,1,1,CYAN_)
 	       Plot(vp4,@line,0,1,1,0,CYAN_)
-         //   sWi(vpo,@showpixmap)
+         }
 	       sWo(vpo,@showpixmap)
 	    
             // sWi(vp3,@showpixmap)
 	   //  sWi(vp4,@showpixmap)
        }
        else {
-             sWo(gwo2,@clearpixmap)
-             sWo(gwo3,@clearpixmap)
-	     sWo(gwo4,@clearpixmap)
-
-              Plot(gwo2,@line,0,0,1,1,BLUE_)
-              Plot(gwo2,@line,0,1,1,0,BLUE_)
+       
+             sWo(gwo,@clearpixmap,@clear)
+              Plot(gwo2,@line,0,0,0.5,0.5,BLUE_)
+              Plot(gwo2,@line,0.5,0.5,1,1,RED_)	      
+              Plot(gwo2,@line,0,1,0.5,0.5,YELLOW_)
+              Plot(gwo2,@line,0.5,0.5,1,0,GREEN_)	      
 	      
               Plot(gwo3,@line,0,0,1,1,RED_)
               Plot(gwo3,@line,0,1,1,0,RED_)
@@ -254,10 +257,8 @@ debugON();
 	     // Plot(vp2,@line,0,1,1,0,MAGENTA_)
 	       Plot(gwo4,@line,0,0,1,1,CYAN_)
 	      Plot(gwo4,@line,0,1,1,0,CYAN_)
-              sWo(gwo2,@showpixmap)
-             sWo(gwo3,@showpixmap)
-	     sWo(gwo4,@showpixmap)
-              <<"pop $vp2\n"
+             sWo(gwo,@showpixmap)
+                           <<"pop $vp2\n"
 	 }     
        //sWi(vp3,@push)       
      }

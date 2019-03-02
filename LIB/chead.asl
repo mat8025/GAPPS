@@ -1,20 +1,16 @@
-///
-/// @vers supdate.asl 1.1 H/H Tue Dec 18 04:07:52 2018
-///
+//%*********************************************** 
+//*  @script chead.asl 
+//* 
+//*  @comment add  header to C or include module 
+//*  @release CARBON 
+//*  @vers 1.4 Be Beryllium                                               
+//*  @date Mon Feb 25 00:26:14 2019 
+//*  @cdate 12/18/2018 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 
-
-
-//   so find or insert @vers line which will look like
-//   a three line comment header at top of the file
-//   like
-// ---------------------------------
-///
-/// @vers 'name'.asl maj.min majele/minele date time
-///
-// ---------------------------------
-
-//
-//
 
 proc vers2ele( vstr)
 {
@@ -183,6 +179,11 @@ first_inc =0;
    first_inc =i;
    break;
  }
+ if (scmp(T[i],"#ifndef",7)) {
+   first_inc =i;
+   break;
+ }
+ 
 }
 
 //<<[2]"%V $first_inc \n"

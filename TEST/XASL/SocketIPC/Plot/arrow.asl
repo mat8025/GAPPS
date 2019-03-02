@@ -12,8 +12,17 @@
 //***********************************************%
 ///
 
-/// asl -S 127.0.0.1 -p 4779 arrow.asl
+/// launch
+/// with xgs already running port set at 4779 (default)
+///   asl -S 127.0.0.1 -p 4779 arrow.asl
 ///    default port is 4779
+///  coms are via sockets
+
+// OR
+// asl -X arrow
+// wil start (spawn) xgs and then establish coms/shared memory
+
+
 include "debug.asl"
 include "gevent.asl"
 include "hv.asl"

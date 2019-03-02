@@ -32,14 +32,14 @@ debugON()
 
     sWo(msgwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,RED_, @pixmapoff,@drawon,@redraw,@save)
 
-    rwo=cWo(vp,SYMBOL_,@resize,0.1,0.1,0.3,0.3,@NAME,RED_,@VALUE,1.0)
+    rwo=cWo(vp,@symbol,@resize,0.1,0.1,0.3,0.3,@NAME,RED_,@VALUE,1.0)
 
     sWo(rwo,@color,"red",@penhue,"black",@symbol,"diamond")
 
     sWo(rwo,@drawoff,@pixmapon,@redraw,@save)
 
 
-    gwo=cWo(vp,SYMBOL_,@resize,0.5,0.1,0.9,0.6,@NAME,GREEN_,@VALUE,1.0)
+    gwo=cWo(vp,@symbol,@resize,0.5,0.1,0.9,0.6,@NAME,GREEN_,@VALUE,1.0)
 
     sWo(gwo,@color,GREEN_,@penhue,"black",@symbol,"diamond")
 
@@ -103,7 +103,7 @@ while (1) {
 
      sWo(rwo,@drawoff,@clearpixmap)
      sWo(rwo,@color,"red",@penhue,BLUE_,@symbolshape,symbol_num,@symsize,sym_size,@symang,ang,@redraw)
-     sWo(rwo,@showpixmap)
+    // sWo(rwo,@showpixmap)
 
      sWo(gwo,@drawon,@clearpixmap)
      sWo(gwo,@color,"red",@penhue,GREEN_,@symbolshape,symbol_num,@symsize,sym_size,@symang,ang,@redraw)

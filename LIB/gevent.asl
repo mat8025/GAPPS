@@ -36,7 +36,7 @@ proc eventDecode()
     if (!(_emsg @= "")) {
     _ewords = Split(_emsg);
 
-ewsz=Caz(_ewords);
+    ewsz=Caz(_ewords);
 //<<"%V $ewsz $_ewords\n"
   
     if(ewsz > 1) {

@@ -127,12 +127,13 @@ char txtip[256];
       
   <<" got %s < $txtip >  as input \n";
       // rotated text??
+      
       sWo(lvwo,@textr,"%s $txtip",0.3,0.1,0,-90,RED_);
       sWo(rvwo,@textr,"%s $txtip",0.5,0.9,0,90,BLUE_);
 
-      sWo(bigwo,@font,"big",@textr,"%s$txtip",0.0,0.6,0,0,BLACK_);
-      sWo(bigwo,@font,"medium",@textr,"%s$txtip",0.0,0.4,0,0,MAGENTA_);
-      sWo(bigwo,@font,"small",@textr,"%s$txtip",0.0,0.5,0,0,BLACK_);            
+      sWo(bigwo,@font,BIG_,@textr,"%s$txtip",0.0,0.6,0,0,BLACK_);
+      sWo(bigwo,@font,MEDIUM_,@textr,"%s$txtip",0.0,0.4,0,0,MAGENTA_);
+      sWo(bigwo,@font,SMALL_,@textr,"%s$txtip",0.0,0.5,0,0,BLACK_);            
       
     }
 
