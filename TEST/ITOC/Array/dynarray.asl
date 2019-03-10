@@ -34,10 +34,14 @@
   sz = Caz(IVF);
   <<"%V $sz\n"; 
 
+  IVF->info(1)
+  
   int IV[>6];
   sz = Caz(IV);
   <<"%V $sz\n"; 
- 
+
+  IV->info(1)
+
   CheckNum(sz,6);
  
   IV[1] = ptan("AT");

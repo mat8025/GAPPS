@@ -1,6 +1,23 @@
-CheckIn()
+//%*********************************************** 
+//*  @script svelepr.asl 
+//* 
+//*  @comment test svar print  
+//*  @release CARBON 
+//*  @vers 1.4 Be Beryllium                                               
+//*  @date Thu Mar  7 23:43:14 2019 
+//*  @cdate 1/1/2003 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 
-setdebug(1)
+ include "debug.asl"; 
+  
+  debugON();
+  setdebug(1,@pline,@~trace,@~showresults,1);
+
+
+CheckIn()
 
 //kd=!!"rm -f goal1"
 //<<"%V$kd \n"

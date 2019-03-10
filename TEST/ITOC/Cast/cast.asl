@@ -1,8 +1,28 @@
-# test ASL function bscan
+//%*********************************************** 
+//*  @script cast.asl 
+//* 
+//*  @comment test cast function 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                 
+//*  @date Sun Mar 10 08:42:29 2019 
+//*  @cdate 1/1/2002 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+
+
+include "debug.asl";
+
+
+debugON();
+  setdebug(1,@keep,@pline,@trace);
+  FilterFileDebug(REJECT_,"~storetype_e");
+  FilterFuncDebug(REJECT_,"~ArraySpecs",);
 
 CheckIn()
 
-setdebug(1,@trace,@keep,@~step,@~pline,@showresults,@filter,0)
+
 
 int IV[] = {47,79,80};
 
@@ -67,14 +87,17 @@ D = C
 <<"%x $D \n"
 // FIX
 //int E[] = D
-int E[]  ; E = D
+int E[]  ;
+E = D
 
 
 <<"E $(typeof(E)) \n"
 <<" $E \n"
 <<"%x $E \n"
+<<" swab E\n"
+swab(E)
 
-
+<<"%x $E \n"
 
 
 
@@ -146,7 +169,9 @@ float F[]
  F = D;
  
 <<" D $(typeof(D))\n"
-<<" F $(typeof(F))\n"  
+<<" F $(typeof(F))\n"
+
+<<"float vec $F[::]\n"
 
 <<"float vec $F[0:-1]\n"
 

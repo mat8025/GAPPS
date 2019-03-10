@@ -27,7 +27,6 @@ proc foov ()
 //====================
 
 proc fvec (int Z[], int X[], int Y[], int n) // OK ?
-
 {
 <<"$Z[0] $Z[1]\n"
 int k= n;
@@ -39,7 +38,7 @@ for (i = 0; i < n ; i++) {
 <<"%V$i $zsz $znd $X[i] $Y[i] $Z[i]\n"
 
 }
-
+//====================
 
 <<"no tanto $k $n\n"
 <<"%V $X\n"
@@ -68,11 +67,17 @@ sz = 15
 
 int XV[] = vgen(INT_,sz,0,1)   //   PASS
 
+
+XV->info(1)
+
 xsz= Caz(XV)
 
-<<"%V$xsz $XV\n"
+<<"%V$xsz \n"
+
+<<"%V$XV\n"
 
 checkNum(XV[2],2)
+
 
 x = vgen(INT_,sz,0,1)   //   PASS
 

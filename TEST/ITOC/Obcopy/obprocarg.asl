@@ -1,16 +1,27 @@
-///
-/// test object proc arg 
-///
+//%*********************************************** 
+//*  @script obprocarg.asl 
+//* 
+//*  @comment test obj proc arg 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                 
+//*  @date Sun Mar  3 12:35:39 2019 
+//*  @cdate 1/1/2003 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+/
 
+// want to show that can use  obj name and &obj as an arg
+// to deliver ptr to that object to a script procedure
 
+include "debug.asl"
 
-// want to show that can use  obj name and &obj as an arg to deliver ptr to that object to a script procedure
+debugON();
 
-setdebug(1,"pline","~step","trace")
 
 //#define ASK ans=iread();
 #define ASK ;
-
 
 Checkin()
 
@@ -109,6 +120,8 @@ proc eat( fruit oba)
 
     oba->print();
 
+oba->isEdible(1);
+/{
  ans = iread (" is $oba->name edible ? y/n:");
 
  if (ans @="y") {
@@ -117,7 +130,7 @@ proc eat( fruit oba)
  else {
  oba->isEdible(0);
 }
-   
+/} 
     oba->print()
 
     locfruit = oba;  // locfruit is a ptr to passed in fruit
@@ -148,7 +161,6 @@ proc objcopy(fruit oba,  fruit obb)
 ///
 
 <<" IN MAIN\n"
-
 ASK
 
 # object declaration

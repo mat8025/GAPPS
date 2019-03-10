@@ -1,3 +1,23 @@
+//%*********************************************** 
+//*  @script class2.asl 
+//* 
+//*  @comment test class member set/access 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium                                                  
+//*  @date Sun Mar  3 12:41:16 2019 
+//*  @cdate 1/1/2003 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+  
+  include "debug.asl"; 
+  
+  debugON();
+  setdebug(1,@pline,@~trace,@~showresults,1);
+
+
+
 /{
 proc ask()
 {
@@ -11,17 +31,17 @@ proc ask()
 #define  ASK ;
 /}
 
-setdebug(1,@pline,@~trace,@~soe);
 
 checkIn()
 
 /// simple class test
 
 class Rec {
- public:
+
+public:
     svar srec;
 }
-
+//===========================//
 
 Rec FI[10];
 
@@ -49,8 +69,6 @@ loc = Split("how did we get here")
 
 <<"%V $r00 $r01 $r02\n"
 
-
-
  FI[1]->srec = Split("just evolved with many trials")
 
 
@@ -72,15 +90,9 @@ loc = Split("how did we get here")
 
 
 <<"%V $r10 $r11 $r12\n"
-
-
-
  checkStr(r00,"how");
  
  checkStr(r02,"we");
-
-
-
 
  r10 = FI[1]->srec[0];
 

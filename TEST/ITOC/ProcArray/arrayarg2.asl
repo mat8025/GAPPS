@@ -18,7 +18,6 @@ debugON();
 
 setdebug (1, @pline, @~step, @trace) ;
 
-
 civ = 0;
 
 cov= getEnvVar("ITEST")
@@ -90,6 +89,7 @@ checkStage("ArrayName")
 ///////////////  &Array ////////////////////////////////////////
 
 //  showStatements(1)
+//iread()
 
 
   Z = Vgen(INT_,10,0,1)
@@ -115,7 +115,7 @@ checkStage("ArrayName")
 
   checkStage("&Array")
 
-
+//iread()
 
 
 Z = Vgen(INT_,10,0,1)
@@ -154,7 +154,7 @@ Z[8] = 28
   checkStage("&Array[2]")
 
 <<"return Y vec $Y\n"
-
+//iread()
   checkNum(Y2[1],47)
 
   checkNum(Y2[6],28)

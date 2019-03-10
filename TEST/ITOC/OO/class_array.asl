@@ -1,6 +1,31 @@
-///
-///  check array assignment within object
-///
+//%*********************************************** 
+//*  @script class_array.asl 
+//* 
+//*  @comment check array assignment within object 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium                                                  
+//*  @date Sun Mar  3 12:41:16 2019 
+//*  @cdate 1/1/2003 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+  
+  include "debug.asl"; 
+  
+  debugON();
+
+//filterFileDebug(REJECT_,"ic_wic","scope_e","scopesindex","parset_e","ic_stack","ic_getsiv");
+
+//filterFileDebug(REJECT_,"ic_store","args_e","args_process_e"); // addto list?
+
+//filterFuncDebug(REJECT_,"SprocSM","checkProcName","getMemberSiv","checkLoop")
+
+
+
+
+  CheckIn(); 
+  
 
 CheckIn(0)
 

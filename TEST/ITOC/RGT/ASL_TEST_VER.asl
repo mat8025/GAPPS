@@ -3,15 +3,13 @@
 //* 
 //*  @comment asl test modules 
 //*  @release CARBON 
-//*  @vers 1.43 Tc Technetium                                             
-//*  @date Sat Feb  9 13:54:17 2019 
+//*  @vers 1.44 Ru Ruthenium                                              
+//*  @date Sun Mar 10 17:16:56 2019 
 //*  @cdate 1/1/2005 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-
-
 
 //
 // test asl first and second stage (xic)
@@ -42,7 +40,7 @@ debugOFF()
 
 
 
-setdebug(1,@keep,@~pline,@~step,@~trace,@showresults,1)
+setdebug(1,@keep,@~pline,@~step,@trace)
 filterFuncDebug(ALLOWALL_,"proc");
 filterFileDebug(ALLOWALL_,"ic_op");
 
@@ -176,7 +174,7 @@ proc Run2Test(td)
 //===============================
 
 
-proc RunTests2( Td, Tl )
+proc RunDirTests( Td, Tl )
 {
       Run2Test(Td);
       
@@ -712,22 +710,24 @@ int do_help = 0;
 
   if (do_all  || do_types) {
   
-      RunTests2("Types","float,str,char,long,short,double,pan_type,ato");
+      RunDirTests("Types","float,str,char,long,short,double,pan_type,ato");
       
-      RunTests2("Cast","cast,cast_vec")
+      RunDirTests("Cast","cast,cast_vec")
 
-      RunTests2("Efmt","efmt",);
+      RunDirTests("Efmt","efmt",);
+
+      RunDirTests("Swab","swab")
 
   }
 
 
   if (do_all  || do_vops) {
 
-     RunTests2("Vops","vops,vopsele")
+     RunDirTests("Vops","vops,vopsele")
 
-     RunTests2("Vector","vec,veccat,vecopeq")
+     RunDirTests("Vector","vec,veccat,vecopeq")
 
-   //     RunTests2("Reverse","reverse") ; // BUG needs more than one
+   //     RunDirTests("Reverse","reverse") ; // BUG needs more than one
    Run2Test("Reverse")
    cart("reverse")
 
@@ -738,7 +738,7 @@ int do_help = 0;
   if (do_all  || do_sops) {
       //  need more str ops tests than this!
 
-      RunTests2("Sops","scat,scmp,ssub,stropcmp");
+      RunDirTests("Sops","scat,scmp,ssub,stropcmp");
 
   // make this a pattern OP
   RunSFtests("Date,Sele,Sstr,Spat,Regex,Str");
@@ -768,8 +768,8 @@ if (( do_all ==1) || (do_declare == 1) ) {
 
    cart ("consts_test")
 
-   RunTests2("Declare","declare,promote,declare_eq,chardeclare,scalar_dec,floatdeclare,arraydeclare,proc_arg_func");
-  // RunTests2("Declare","chardeclare,floatdeclare");
+   RunDirTests("Declare","declare,promote,declare_eq,chardeclare,scalar_dec,floatdeclare,arraydeclare,proc_arg_func");
+  // RunDirTests("Declare","chardeclare,floatdeclare");
 
    Run2Test("Resize")
 
@@ -819,9 +819,9 @@ if ( do_all || do_if ) {
 
   cart("if0",10)
 
-  RunTests2("If","if4,md_assign,if5,if6")
+  RunDirTests("If","if4,md_assign,if5,if6")
 
-  RunTests2("Logic","logic,logic2,logic_def")
+  RunDirTests("Logic","logic,logic2,logic_def")
 
   Run2Test("Bitwise")
   cart("bitwise")
@@ -864,7 +864,7 @@ if ( do_all || do_if ) {
 
  if ( do_all || do_switch ) {
 
-  RunTests2("Switch","switch,switch2")
+  RunDirTests("Switch","switch,switch2")
 
  }
 /////////////////////////////////////////////
@@ -899,32 +899,19 @@ if ( do_all || do_do ) {
 
 if ( do_all || do_array ) {
 
+   RunDirTests("Array","ae,arraystore,arrayele,arrayele0,arrayele1,arraysubset")
+   RunDirTests("Array","arrayrange,arraysubvec,arraysubsref,arraysubsrange,arraysubscbyvec")
+   RunDirTests("Array","dynarray,lhrange,lhe,joinarray,vec_cat,vgen,array_sr,mdele,vsp,arrayindex")
 
+  RunDirTests("Scalarvec","scalarvec")
 
-   //   Tp = Split("ae,arraystore,arrayele,arrayele0,arrayele1,arraysubset,arrayrange,arraysubvec,arraysubsref,arraysubsrange,dynarray,lhrange,lhe,joinarray,vec_cat,vgen,array_sr,mdele,vsp",","); // TBF - this long line somewhere is overwriting array ?? but we are using Svar - which are not fixed len
-
-   RunTests2("Array","ae,arraystore,arrayele,arrayele0,arrayele1,arraysubset,arrayrange,arraysubvec,arraysubsref,arraysubsrange")
-   RunTests2("Array","dynarray,lhrange,lhe,joinarray,vec_cat,vgen,array_sr,mdele,vsp,arrayindex")
-
-   Run2Test("Scalarvec")
-
-  cart("scalarvec")
-
-  Run2Test("Subrange")
-
-  cart("subrange");
-  
-  cart("subrange2");
+  RunDirTests("Subrange","subrange,subrange2");
   
   Run2Test("PrePostOp")
 
   cart("prepost_opr")
 
-
-  Run2Test("M3D")
-
-  cart("m3d")
-  cart("m3d_assign")
+  RunDirTests("M3D","m3d,m3d_assign")
 
   Run2Test("Sgen")
 
@@ -942,8 +929,6 @@ if ( do_all || do_array ) {
 
   cart("vfill")
 
-
-
     }
 
 
@@ -957,7 +942,7 @@ if ( do_all || do_array ) {
 
 
 
-   RunTests2("Matrix","mat_mul,msquare,mdiag");
+   RunDirTests("Matrix","mat_mul,msquare,mdiag");
    
 
    Run2Test("Msort")
@@ -975,7 +960,7 @@ if ( do_all || do_array ) {
 
     hdg("DYNAMIC_V")
 
-    RunTests2("Dynv","dynv0,dynv2");
+    RunDirTests("Dynv","dynv0,dynv2");
 
 
     }
@@ -997,7 +982,7 @@ if ( do_all || do_func ) {
   Run2Test("Func")
   cart("func", 3,4)
 
-  RunTests2("Func","func0,func1,funcargs")
+  RunDirTests("Func","func0,func1,funcargs")
 
 
   Run2Test("Ifunc")
@@ -1022,7 +1007,7 @@ if ( do_all || do_unary ) {
 
    if ( do_all || do_command ) {
 
-     RunTests2("Command","command,command_parse")
+     RunDirTests("Command","command,command_parse")
 
     }
 
@@ -1030,7 +1015,7 @@ if ( do_all || do_unary ) {
 /////////////////////////////////////////
 if ( do_all || do_proc ) {
 
-  RunTests2("Proc","proc,proc_declare,procret0,procarg,proc_sv0,proc_rep,proc_str_ret,procrefarg,proc_ra");
+  RunDirTests("Proc","proc,proc_declare,procret0,procarg,proc_sv0,proc_rep,proc_str_ret,procrefarg,proc_ra");
 
   cart("proc_var_define", 10)
 
@@ -1043,7 +1028,7 @@ if ( do_all || do_proc ) {
   cart("arrayarg2")
 
 
-  RunTests2("Swap","swap1","swap")
+  RunDirTests("Swap","swap1","swap")
 
   Run2Test("Static")
   
@@ -1094,12 +1079,9 @@ if ( do_all || do_mops ) {
 
     Run2Test("Svar")
     cart("svar1", "string operations are not always easy" )
-
-    RunTests2("Svar","svar_declare,svelepr,svargetword,svarsplit");
+    RunDirTests("Svar","svar_declare,svelepr,svargetword,svarsplit");
 
     }
-
-
 
   if ( do_all || do_ivar ) {
 
@@ -1112,7 +1094,7 @@ if ( do_all || do_mops ) {
 
   if ( do_all || do_record ) {
 
-    RunTests2("Record","rec1,record,readrecord,prtrecord,recprt,recatof,reclhs,rectest");
+    RunDirTests("Record","rec1,record,readrecord,prtrecord,recprt,recatof,reclhs,rectest");
 
 
   }
@@ -1126,7 +1108,6 @@ if ( do_all || do_mops ) {
     cart ("inewton")
     cart ("inewton_cbrt")
     cart ("opxeq")
-
 
     Run2Test("Prime")
 
@@ -1169,19 +1150,19 @@ if ( do_all || do_mops ) {
 
    if ( do_all || do_lists ) {
 
-    RunTests2("Lists","list,list_declare,listele,list_ins_del");
+    RunDirTests("Lists","list,list_declare,listele,list_ins_del");
 
     }
 
    if ( do_all || do_ptrs ) {
 
-    RunTests2("Ptrs","ptrvec,indirect");
+    RunDirTests("Ptrs","ptrvec,indirect");
 
    }
 
    if ( do_all || do_class ) {
 
-    RunTests2("Class","classbops,class2,classvar");
+    RunDirTests("Class","classbops,class2,classvar");
 
     }
 
@@ -1189,11 +1170,12 @@ if ( do_all || do_mops ) {
 
    if ( do_all || do_oo ) {
 
-    RunTests2("OO","class_array,rp2,oa,oa2,sh");
+    RunDirTests("OO","rpS,rp2,wintersect,oa,oa2,sh,class_array");
 
-  Run2Test("Obcopy")
+    Run2Test("Obcopy")
 
   cart("obcopy")
+  cart("obprocarg")
 
     //  cart("objivar")
 
@@ -1220,12 +1202,11 @@ if ( do_all || do_mops ) {
     Run2Test("Chem")
     cart("chem0")
 
-    RunTests2("Packb","packb,packalot");
+    RunDirTests("Packb","packb,packalot");
     
 //============================    
 
     }
-
 
 
 //////////////////// BUGFIXs/////////////////////////////////////////
@@ -1233,7 +1214,7 @@ if ( do_all || do_mops ) {
   if ( do_all || do_bugs ) {
       //cart("bf_40")   // this has intentional error and exits before test checks
 
-      RunTests2("BUGFIX","bf_46,bf_59,bf_64,bf_75,bf_76,bf_78,bf_79,bf_80,bf_83,bf_84,bf_91,bf_96");
+      RunDirTests("BUGFIX","bf_46,bf_59,bf_64,bf_75,bf_76,bf_78,bf_79,bf_80,bf_83,bf_84,bf_91,bf_96");
     
   }
 

@@ -1,21 +1,27 @@
 //%*********************************************** 
 //*  @script bops.asl 
 //* 
-//*  @comment test of basic ops 
+//*  @comment test basic ops  
 //*  @release CARBON 
-//*  @vers 1.1 H.H 
-//*  @date Sat Dec 22 00:14:49 2018 
+//*  @vers 1.4 Be Beryllium                                               
+//*  @date Thu Mar  7 23:24:30 2019 
+//*  @cdate 1/1/2002 
 //*  @author Mark Terry 
-//*  @CopyRight  RootMeanSquare  2014,2018 --> 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-//#include "debug.asl"
 
-//debugON()
+
+include "debug.asl"
+
+debugON()
 setdebug(1,@pline,@trace,@keep)
+
 filterFuncDebug(ALLOWALL_,"xxx");
 filterFileDebug(ALLOWALL_,"yyy");
-checkIn(1)
+
+
+checkIn(0)
 
 //prog= GetScript()
 

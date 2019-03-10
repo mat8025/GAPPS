@@ -1,9 +1,27 @@
-///
-///  char.asl
-/// 
+//%*********************************************** 
+//*  @script char.asl 
+//* 
+//*  @comment test  char type 
+//*  @release CARBON 
+//*  @vers 1.15 P Phosphorus                                              
+//*  @date Sun Feb 10 10:43:30 2019 
+//*  @cdate 1/1/2001 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+
+
+  include "debug.asl";
+  debugON();
+  setdebug(1,@keep,@pline,@~trace);
+  FilterFileDebug(REJECT_,"~storetype_e");
+  FilterFuncDebug(REJECT_,"~ArraySpecs",);
+  
+
 checkIn()
 
-setdebug(1,"pline","~step")
+
 
 char CV[20];
 
@@ -77,7 +95,7 @@ B->Redimn()
 
 <<"%V$B \n"
 <<"$(typeof(B)) $(Cab(B)) $(Cnd(B))\n"
-
+exit()
 cv0 = B[0];
 <<"%V$cv0\n";
 
@@ -109,6 +127,11 @@ str s = "hey";
 
 <<"$s \n"
 
+s= CMD[0][::];
+
+<<"$s \n"
+
+exit()
  //scpy(s,"$CMD[0][::]");
 
 nc=scpy(s,CMD[0][::]);
@@ -162,4 +185,4 @@ CheckNum(UVG[2],2)
 
 CheckOut()
 
-;
+

@@ -1,7 +1,25 @@
-
+//%*********************************************** 
+//*  @script lhrange.asl 
+//* 
+//*  @comment test lh range select 
+//*  @release CARBON 
+//*  @vers 1.15 P Phosphorus                                              
+//*  @date Sun Feb 10 10:43:30 2019 
+//*  @cdate 1/1/2001 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+  
+  
+  include "debug.asl";
+  debugON();
+  setdebug(1,@keep,@pline);
+  FilterFileDebug(REJECT_,"~storetype_e");
+  FilterFuncDebug(REJECT_,"~ArraySpecs",);
+  
 CheckIn()
 
-setdebug(1)
 
 N= 20
 
@@ -56,9 +74,11 @@ int LHV[N]
  CheckNum(LHV[1],7)
 
 
-
+<<" $RHV[12:14] \n"
 
     LHV[5:9:2] = RHV[12:14]
+
+<<" $LHV[5:9:2] \n"
 
 <<" $LHV \n"
 
@@ -86,5 +106,5 @@ int LHV[N]
 
 
  CheckOut()
- stop!
-;
+
+//======================================//

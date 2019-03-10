@@ -3,8 +3,8 @@
 //* 
 //*  @comment scalar vec ops 
 //*  @release CARBON 
-//*  @vers 1.2 He Helium                                                  
-//*  @date Fri Feb 15 14:23:55 2019 
+//*  @vers 1.3 Li Lithium                                                 
+//*  @date Thu Mar  7 23:34:50 2019 
 //*  @cdate 1/1/2001 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -96,16 +96,30 @@ if (! CheckNum(U[1],1) ) {
 sz = Caz(U)
 <<"%v$sz \n"
 
-V = 255 -U
-<<"%V$V\n"
-sz = Caz(U)
+T = U -255 
+<<"%V$T\n"
+sz = Caz(T)
 
 <<"%v$sz \n"
 
+  V = 255 -U
+  <<"%V$V\n"
+
+CheckNum(V[0],255)
+CheckNum(V[1],254)
+
+U->info(1)
+sz = Caz(U)
+ <<"%v$sz \n"
+<<"%V $U\n"
 
 
 
+CheckNum(U[1],1)
+CheckNum(U[2],2)
 
+//CheckOut()
+//exit()
 
  CheckNum(V[1],254)
 
