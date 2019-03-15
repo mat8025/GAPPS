@@ -1,4 +1,29 @@
-setdebug(1)
+//%*********************************************** 
+//*  @script substitute.asl 
+//* 
+//*  @comment test substitute func 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                 
+//*  @date Tue Mar 12 07:50:33 2019 
+//*  @cdate Tue Mar 12 07:50:33 2019 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+/{/*
+
+
+/}*/
+
+ include "debug.asl";
+
+  debugON();
+  setdebug(1,@keep,@pline,@trace);
+  FilterFileDebug(REJECT_,"~storetype_e");
+  FilterFuncDebug(REJECT_,"~ArraySpecs",);
+
+
+
 
 CheckIn()
 
@@ -10,7 +35,17 @@ int Nit[nrows][n_feat];
 int Nic[5][100][n_feat];
 
 
-Nit[::][0] = 2
+Nit[1:4:][0] = 47;
+
+checkNum(Nit[1][0],47);
+
+
+
+Nit[::][0] = 2;
+
+checkNum(Nit[1][0],2);
+
+
 Nit[::][7] = 7
 
 fail1 = 0
@@ -39,11 +74,15 @@ i++
 <<"$Nit[2:5][0:7:] \n"
 
 
+
    Nic[kc][kci][::] = Nit[i][::]
 
 <<"%V $Nic[kc][kci][0:7:] \n"
 
 i++;
+
+
+
 
 //<<"%V$i $Nit[i][0:7:] \n"
 
@@ -58,8 +97,11 @@ i++;
 i++
 
  Nic[kc][kci][0:5:] = Nit[i][2:7:]
-//  <<"%V$i $Nit[i][0:7:] \n"
+  <<"%V$i $Nit[i][0:7:] \n"
 <<"%V $Nic[kc][kci][0:5:] \n"
+
+checkNum(Nic[kc][kci][0] ,Nit[i][2])
+
 
 
   for (i = 0 ; i < nrows ; i++) {
@@ -86,9 +128,13 @@ if (fail1) {
 
 }
 
+
+
+
+
 if (fail1) {
 <<"%V$fail1 \n"
-ans =iread()
+//ans =iread()
 }
 
 

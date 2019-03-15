@@ -14,7 +14,7 @@
   
   include "debug.asl";
   debugON();
-  setdebug(1,@keep,@pline);
+  setdebug(1,@keep,@pline,@trace);
   FilterFileDebug(REJECT_,"~storetype_e");
   FilterFuncDebug(REJECT_,"~ArraySpecs",);
   
@@ -25,21 +25,27 @@
   <<"%V$I \n"; 
   
   K = I[2:8]; 
-  
+
+  K->info(1)
+ 
   <<"%V$K\n"; 
   
-  checkNum(K[0],2); 
+   checkNum(K[0],2); 
   
-  K = I[6:1:-1]; 
-  
+   K = I[6:1:-1]; 
+
+   K->info(1)
+
   <<"%V$K\n"; 
   
   checkNum(K[0],6); 
   checkNum(K[1],5); 
   checkNum(K[5],1); 
   
-  K = I[6:1:1]; 
-  
+   K = I[6:1:1]; 
+
+   K->info(1)
+
   <<"%V$K\n"; 
   
   checkNum(K[0],6); 

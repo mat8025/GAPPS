@@ -3,8 +3,8 @@
 //* 
 //*  @comment asl test modules 
 //*  @release CARBON 
-//*  @vers 1.44 Ru Ruthenium                                              
-//*  @date Sun Mar 10 17:16:56 2019 
+//*  @vers 1.47 Ag Silver                                                 
+//*  @date Wed Mar 13 11:09:03 2019 
 //*  @cdate 1/1/2005 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -82,6 +82,10 @@ Opf=ofw("current_score")
 
 Tcf=ofw("test_crashes")
 Tff=ofw("test_fails")
+
+Tlogf=ofile("test.log","ar+")
+
+
 Dbf=ofw("test_debug")
 
 
@@ -612,6 +616,7 @@ int do_while = 0;
 int do_pan = 0;
 int do_unary = 0;
 int do_ptrs = 0;
+int do_vmf = 0;
 int do_help = 0;
 
 
@@ -725,7 +730,7 @@ int do_help = 0;
 
      RunDirTests("Vops","vops,vopsele")
 
-     RunDirTests("Vector","vec,veccat,vecopeq")
+     RunDirTests("Vector","vec,veccat,vecopeq,vecrange")
 
    //     RunDirTests("Reverse","reverse") ; // BUG needs more than one
    Run2Test("Reverse")
@@ -924,6 +929,10 @@ if ( do_all || do_array ) {
   Run2Test("VVcopy")
 
   cart("vvcopy")
+
+  Run2Test("VVcomp")
+
+  cart("vvcomp")
 
   Run2Test("Vfill")
 
@@ -1208,6 +1217,15 @@ if ( do_all || do_mops ) {
 
     }
 
+  if (do_all  || do_vmf) {
+
+    RunDirTests("Vmf","trim,prune,caz,cut")
+    RunDirTests("Vmf","bubblesort,substitute,dewhite")
+
+
+  }
+
+
 
 //////////////////// BUGFIXs/////////////////////////////////////////
 
@@ -1233,13 +1251,17 @@ if ( do_all || do_threads ) {
    pcc = rt_pass/(1.0*rt_tests) * 100
 
    flsz = caz(FailedList)
+   
 
-//<<"failed list size $flsz \n"
+    fseek(Tlogf,0,2)
+
+
 
   if (flsz >= 1) {
 
 <<"\n These $flsz modules  failed! \n"
 <<[Opf]"\n These $flsz modules  failed! \n"
+<<[Tlogf]"\n These $flsz modules  failed! \n"
 
    FailedList->Sort()
 
@@ -1247,37 +1269,47 @@ if ( do_all || do_threads ) {
 
    for (i = 0; i < flsz ; i++) {
        <<"$FailedList[i] \n"
+
        <<[Opf]"$FailedList[i] \n"
-       <<[Tff]"$FailedList[i] \n"
-   }
+
+      <<[Tff]"$FailedList[i] \n"
+       
+       <<[Tlogf]"$i $FailedList[i] \n"       
+    }
 }
 <<"----------------------------------------------------------------------------\n"
 
-
+  
    lsz = caz(CrashList)
+<<"failed list size $flsz crash $lsz \n"
 
-//<<"$lsz \n"
 
 if (lsz > 1) {
 
 <<"\n These $lsz modules   crashed! \n"
 <<[Opf]"\n These $lsz modules   crashed! \n"
+<<[Tlogf]"\n These $lsz modules   crashed! \n"
 
    CrashList->Sort()
-
-//<<" $CrashList \n"
+int clsz = lsz;
+<<" crashlist $lsz  $clsz \n"
    for (i = 0; i < lsz ; i++) {
-   <<"$CrashList[i] \n"
+   <<"$i $CrashList[i] \n"
    <<[Opf]"$CrashList[i] \n"
-   <<[Tcf]"$CrashList[i] \n"   
+   <<[Tcf]"$CrashList[i] \n"
+   <<[Tlogf]"$i $CrashList[i] \n"
+   if (i > clsz)
+      break;
    }
    
 }
+
+
 <<"----------------------------------------------------------------------------\n"
 <<"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$(flsz[0]) Crash $(lsz[0]) vers $(get_version())\n"
 
 <<[Opf]"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$(flsz[0]) Crash $(lsz[0]) $(get_version())\n"
-
+<<[Tlogf]"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$(flsz[0]) Crash $(lsz[0]) $(get_version())\n"    
 
 fflush(Opf)
 cf(Opf)
@@ -1287,7 +1319,8 @@ cf(Tcf)
 
 fflush(Tff)
 cf(Tff);
-
+fflush(Tlogf)
+cf(Tlogf);
 changeDir(cwd)
 
 //!!"pwd"

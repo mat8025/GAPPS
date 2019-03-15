@@ -82,5 +82,3 @@ id = F[3]->obid()
 
 
 CheckOut()
-
-;

@@ -14,7 +14,7 @@
 
   include "debug.asl";
   debugON();
-  setdebug(1,@keep,@pline,@~trace);
+  setdebug(1,@keep,@pline,@trace);
   FilterFileDebug(REJECT_,"~storetype_e");
   FilterFuncDebug(REJECT_,"~ArraySpecs",);
   
@@ -95,7 +95,7 @@ B->Redimn()
 
 <<"%V$B \n"
 <<"$(typeof(B)) $(Cab(B)) $(Cnd(B))\n"
-exit()
+
 cv0 = B[0];
 <<"%V$cv0\n";
 
@@ -113,6 +113,8 @@ D = CMD[2][1:3:];
 <<"%V$D \n"
 <<"$(typeof(D)) $(Cab(D)) \n"
 
+
+
 checkNum(D[0],6);
 
 <<"\\\\\\ \n";
@@ -123,6 +125,7 @@ E = CMD[0:2][1:3:];
 <<"$(typeof(E)) $(Cab(E)) \n"
 
 
+
 str s = "hey";
 
 <<"$s \n"
@@ -131,7 +134,7 @@ s= CMD[0][::];
 
 <<"$s \n"
 
-exit()
+
  //scpy(s,"$CMD[0][::]");
 
 nc=scpy(s,CMD[0][::]);

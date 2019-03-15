@@ -12,15 +12,15 @@
 //***********************************************%
 
 
+include "debug.asl";
+  debugON();
+  setdebug(1,@keep,@pline,@trace);
+  FilterFileDebug(REJECT_,"~storetype_e");
+  FilterFuncDebug(REJECT_,"~ArraySpecs",);
 
-include "debug.asl"
 
-debugON()
 
-setDebug(1,@pline)
-setDebug(1,@~trace,@~soe)
-
-checkIn(0)
+checkIn(1)
 
 
 N = 10
@@ -92,6 +92,10 @@ b = Cab(M)
     val++
  }
 
+checkStage()
+
+
+
 
 b = Cab(M)
 <<"$b \n"
@@ -115,6 +119,8 @@ b = Cab(M)
     }
 
   }
+//======================================//
+
 
 
 M[0:1][1][0:3:] = 8
@@ -122,23 +128,13 @@ M[0:1][1][0:3:] = 8
 <<"0:1,1 :: $M[0:1][1][::] \n"
 
 
-
-
 M[0][0:1:][0:3:] = 8
 
 <<"0,0:1 :: $M[0][0:1][::] \n"
 
-
-
-
-
 M[0][1][0:3:] = 7
 
 <<"0,1 :: $M[0][1][::] \n"
-
-
-
-
 
 
 
@@ -225,6 +221,7 @@ for (j = 0; j < 2; j++) {
 
 }
 
+checkStage()
 
 
 <<"0,0 :: $M[0][0][::] \n"
@@ -233,14 +230,14 @@ for (j = 0; j < 2; j++) {
 
  for (i = 0; i < P; i++) {
 
-<<"$j,$i :: $M[j][i][::] \n"
+   <<"$j,$i :: $M[j][i][::] \n"
 
  }
 
 }
 
-
-
+checkOut()
+exit()
 // gotta fix the indexing and subset for 3 + index
 
 

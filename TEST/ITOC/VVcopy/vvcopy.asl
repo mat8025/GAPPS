@@ -43,6 +43,9 @@ nc=vvcopy(A,B,n);
 <<"A: $A\n"
 <<"B: $B\n"
 
+R=vvcomp(A,B,n);
+<<"vvcomp %V$R\n"
+
 checkNum(A[3],47)
 
 checkOut()

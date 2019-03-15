@@ -11,7 +11,21 @@
 //* 
 //***********************************************%///
 
+/{/*
+Caz,Csz ~ check size, check array size
 
+/////
+Caz(A) of Caz(&A)
+returns current size (number of elements) where A is an  vectoror matrix
+Caz(&i) 
+would return 0  when i is a scalar.
+
+Caz(A[1:9:2]) returns 5 
+the subscripted size 
+assuming A has at least 10 elements.
+
+
+/}*/
 
 include "debug.asl"
 debugON()
