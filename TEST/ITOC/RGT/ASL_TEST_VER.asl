@@ -3,8 +3,8 @@
 //* 
 //*  @comment asl test modules 
 //*  @release CARBON 
-//*  @vers 1.47 Ag Silver                                                 
-//*  @date Wed Mar 13 11:09:03 2019 
+//*  @vers 1.51 Sb Antimony                                                
+//*  @date Sun Mar 24 08:04:10 2019 
 //*  @cdate 1/1/2005 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -58,14 +58,6 @@ Svar Opts[] = Split(S,",");
 //<<"$Opts \n"
 
 
-proc RunTests( Tp )
-{
-      np = Caz(Tp);
-      for (i=0 ; i <np; i++) {
-           cart(Tp[i]);
-      }
-}
-//====================//
 
 
 //<<"$Testdir\n"
@@ -188,7 +180,7 @@ proc RunDirTests( Td, Tl )
       <<[Dbf]"$Td $Tl $np\n"
       for (i=0 ; i <np; i++) {
          if (!(Tp[i] @= "")) {
-           cart(Tp[i]);
+           cart(Tp[i]," ");
 	   }
       }
 }
@@ -646,8 +638,8 @@ int do_help = 0;
 
       wt = _argv[i]
 
-//   if (wt @= "bops")
-//        do_bops = 1  
+   if (wt @= "bops")
+        do_bops = 1  
 
      do_arg = "do_$wt"
      $do_arg = 1;
@@ -671,8 +663,8 @@ int do_help = 0;
 <<"%V $do_bops $do_mops \n"
 
 // always
-  Run2Test("Bops")
-  cart("bops",7)
+//  Run2Test("Bops")
+//  cart("bops",7)
 //================
 
   if (do_all  || do_bops) {
@@ -1259,9 +1251,9 @@ if ( do_all || do_threads ) {
 
   if (flsz >= 1) {
 
-<<"\n These $flsz modules  failed! \n"
-<<[Opf]"\n These $flsz modules  failed! \n"
-<<[Tlogf]"\n These $flsz modules  failed! \n"
+<<"\n$flsz modules  failed! \n"
+<<[Opf]"\n$flsz modules  failed! \n"
+<<[Tlogf]"\n$flsz modules  failed! \n"
 
    FailedList->Sort()
 
@@ -1281,35 +1273,36 @@ if ( do_all || do_threads ) {
 
   
    lsz = caz(CrashList)
-<<"failed list size $flsz crash $lsz \n"
+//<<"failed list size $flsz crash $lsz \n"
+   flsz->info(1)
+   lsz->info(1)
+   
 
+if (lsz >= 1) {
 
-if (lsz > 1) {
-
-<<"\n These $lsz modules   crashed! \n"
-<<[Opf]"\n These $lsz modules   crashed! \n"
-<<[Tlogf]"\n These $lsz modules   crashed! \n"
+<<"\n$lsz modules   crashed! \n"
+<<[Opf]"\n$lsz modules   crashed! \n"
+<<[Tlogf]"\n$lsz modules   crashed! \n"
 
    CrashList->Sort()
-int clsz = lsz;
-<<" crashlist $lsz  $clsz \n"
+
+<<" crashlist $lsz   \n"
    for (i = 0; i < lsz ; i++) {
    <<"$i $CrashList[i] \n"
    <<[Opf]"$CrashList[i] \n"
    <<[Tcf]"$CrashList[i] \n"
    <<[Tlogf]"$i $CrashList[i] \n"
-   if (i > clsz)
-      break;
+//   if (i > clsz)       break;
    }
    
 }
 
 
 <<"----------------------------------------------------------------------------\n"
-<<"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$(flsz[0]) Crash $(lsz[0]) vers $(get_version())\n"
+<<"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$flsz Crash $lsz vers $(get_version())\n"
 
-<<[Opf]"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$(flsz[0]) Crash $(lsz[0]) $(get_version())\n"
-<<[Tlogf]"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$(flsz[0]) Crash $(lsz[0]) $(get_version())\n"    
+<<[Opf]"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$flsz Crash $lsz $(get_version())\n"
+<<[Tlogf]"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$flsz Crash $lsz $(get_version())\n"    
 
 fflush(Opf)
 cf(Opf)

@@ -13,16 +13,20 @@
 
  include "debug.asl"; 
   
-  debugON();
-  setdebug(1,@pline,@~trace,@~showresults,1);
-
+  
+debugON();
+  //setdebug(1,@pline,@~trace,@~showresults,1); 
+   setdebug (1, @~pline, @~step, @~trace,) ;
+   FilterFileDebug(REJECT_,"~storetype_e");
+   FilterFuncDebug(REJECT_,"~ArraySpecs",);
+   
 
 CheckIn()
 
 //kd=!!"rm -f goal1"
 //<<"%V$kd \n"
 
-!!"rm -f goal1"
+kd=!!"rm -f goal1"
 
 Svar W;
 
@@ -85,13 +89,33 @@ if (A == -1) {
 <<"error write file open\n")
  exit()
 }
+
 <<" file handle $A\n"
+
 <<[A]"%(4,,\s,\n) $W"
-fprintf(A,"%(4,,\s,\n) $W")
 <<[A]"\n whats going on\n"
-fprintf(A,"via fprintf\n")
+
+fprintf(A,"%(4,,\s,\n) $W")
+fprintf(A," via fprintf\n")
 fflush(A);
 cf(A)
+
+D=ofw("goalA")
+
+if (D == -1) {
+ <<"error read file open\n")
+ exit()
+}
+
+fprintf(D,"%(4,,\s,\n) $W")
+fprintf(D," via fprintf\n")
+fflush(D);
+<<[D]"%(4,,\s,\n) $W"
+<<[D]"\n whats going on\n"
+fflush(D);
+
+cf(D)
+
 
 
 
@@ -107,12 +131,23 @@ sleep(5);
 rsz=fstat("goal1","size")
 <<"\nfile size $rsz \n"
 
+rsz=fstat("goalA","size")
+<<"\nfile size $rsz \n"
+
+
+
+
+
+
 B=ofr(goal_fn)
+//B=ofr("goalA")
 
 if (B == -1) {
  <<"error read file open\n")
  exit()
 }
+
+<<"%V $B\n"
 
 // FIXME -- should not need explicit svar declare
 //svar V;
@@ -127,9 +162,9 @@ if (B == -1) {
 <<"V is  $(typeof(V)) \n"
 
 
-<<"just first line: $V[0] \n"
-<<"second $V[1] \n"
-<<"third $V[2] \n"
+<<"just first line:$V[0] \n"
+<<"second:$V[1] \n"
+<<"third:$V[2] \n"
 
 
 
@@ -147,7 +182,7 @@ Z->split()
 <<"Z[1] $Z[1] \n"
 <<"Z[2] $Z[2] \n"
 <<"Z[3] $Z[3] \n"
-<<"%V$Z[4] \n"
+<<"Z4 <|$Z[4]|> \n"
 
 
 

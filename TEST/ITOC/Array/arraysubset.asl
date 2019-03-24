@@ -10,7 +10,14 @@
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-  
+
+/{/*
+
+ // bug2fix should clear subi/subset each statement
+ // else old selection overwritten 
+/}*/
+
+
   
   include "debug.asl";
   debugON();
@@ -33,10 +40,12 @@
 
   <<"$B\n"; 
 
+
  // should clear subi/subset each statement
   
   B[2,7,9] = 79;
   
+  <<"$B\n";
   
 
 

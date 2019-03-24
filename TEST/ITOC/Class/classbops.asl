@@ -22,7 +22,7 @@
   FilterFileDebug(REJECT_,"~storetype_e");
   FilterFuncDebug(REJECT_,"~ArraySpecs",);
   
-  CheckIn(0); 
+  CheckIn(1); 
 
   a = 1.0;
   b = 2.0;
@@ -68,18 +68,21 @@
     float x;
     float y;
 
-  
+/{/*  
+
   CMF Point()
    {
      x=0;
      y=0;
+     <<"cons $_proc \n"
+   };
 
-   }
-    
+/}*/
+
     CMF set (m,n) 
     {
        x = m;
-       y = m;
+       y = n;
       <<"Setting %V $m $n $x $y \n";
       
       };
@@ -136,9 +139,11 @@
   <<" A->Print() \n"; 
   A->Print(); 
   
-  ok=CheckFNum(A[0]->x,0.15,5); 
-  ok=CheckFNum(A[0]->y,0.2,5); 
+  ok=CheckFNum(A[0]->x,0.15,5);
   
+  ok=CheckFNum(A[0]->y,0.2,5); 
+
+  ok=CheckFNum(A->x,0.15,5);
   
   <<" B->Print() \n"; 
   B->Print(); 
@@ -147,7 +152,8 @@
   <<"%V $B->x $B->y \n"; 
   
   
-  ok=CheckFNum(B->x,2.2,5); 
+  ok=CheckFNum(B->x,2.2,5);
+  
   ok=CheckFNum(B->y,0.123,5); 
   
   C->set(1.1,0.2); 
@@ -379,7 +385,7 @@
   CheckOut(); 
   exit(); 
   
-  
+/{/*  
 /// TBD ///////////
 /// still have to check this  gives correct answer  for
 ///
@@ -390,5 +396,5 @@
 //  A->add( B->gety(), C->gety())  ...
 //  A->x->z ....
 //  ...
-  
+/}*/  
   

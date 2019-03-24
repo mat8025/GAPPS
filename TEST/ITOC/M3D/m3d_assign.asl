@@ -24,7 +24,6 @@
 
 
 
-
 CheckIn()
 
 nrows = 10
@@ -109,7 +108,7 @@ checkNum(Nic[kc][kci][0] ,Nit[i][2])
   <<"%V$i $kc $kci \n"
   <<"%V$Nit[i][0:7:] \n"
    Nic[kc][kci][::] = Nit[i][::]
-  <<"sh $Nic[kc][kci][0:7:] \n"
+  <<"%V $Nic[kc][kci][0:7:] \n"
 //   x= Nic[kc][kci][0] = 47
 
    for (j = 0; j < n_feat ; j++) {

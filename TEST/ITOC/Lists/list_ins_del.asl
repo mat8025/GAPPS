@@ -1,8 +1,26 @@
+//%*********************************************** 
+//*  @script list_ins_del.asl 
+//* 
+//*  @comment test list insert delete 
+//*  @release CARBON 
+//*  @vers 1.37 Rb Rubidium                                               
+//*  @date Mon Jan 21 06:40:50 2019 
+//*  @cdate 1/1/2005 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+   
+   
+   include "debug.asl"; 
+   
+   debugON();
+   
+  // setdebug (1, @pline, @~step, @~trace,@break,57) ;
+   setdebug (1, @pline, @~step, @~trace,) ;
+   FilterFileDebug(REJECT_,"~storetype_e");
+   FilterFuncDebug(REJECT_,"~ArraySpecs",);
 
-
-setdebug(1,"~pline","trace","~stderr");
-FilterDebug(0)
-FilterFileDebug( 2,"args_e.cpp")
 
 
 proc ask()
@@ -20,93 +38,100 @@ ans = iread()
 
 
 
-checkIn()
+checkIn(1)
 
-FailedList = ("xxx",  )  // empty list --- bug first item null?
-//FailedList = (  )  // empty list --- bug first item null?
+ShoppingList = ("xxx",  )  // empty list --- bug first item null?
 
-<<" $FailedList \n"
+<<" $ShoppingList \n"
 
-   flsz = caz(FailedList)
+   flsz = caz(ShoppingList)
 
-<<"failed list size $flsz \n"
+<<"Shopping list size $flsz \n"
 
-  FailedList->LiDelete(0)
+  ShoppingList->LiDelete(0)
 
-<<" $FailedList \n"
+<<" $ShoppingList \n"
 
-   flsz = caz(FailedList)
+   flsz = caz(ShoppingList)
 
-<<"failed list size $flsz \n"
+<<"Shopping list size $flsz \n"
 ASK
 
   tname = "debe esforzarse más"
 
- <<"inserting <$tname> into failed list \n"
+ <<"inserting <$tname> into Shopping list \n"
  
-  FailedList->Insert(tname)
+  ShoppingList->Insert(tname)
 
-   flsz = caz(FailedList)
+   flsz = caz(ShoppingList)
 
-<<"failed list size $flsz \n"
+<<"Shopping list size $flsz \n"
 
 
-<<" $FailedList \n"
+<<" $ShoppingList \n"
 
 ASK
 tname = "Camino a cinco kilómetros al día"
 
- <<"inserting <$tname> into failed list \n"
-            FailedList->Insert(tname)
+ <<"inserting <$tname> into Shopping list \n"
+            ShoppingList->Insert(tname)
 
-   flsz = caz(FailedList)
+   flsz = caz(ShoppingList)
 
-<<"failed list size $flsz \n"
-<<" $FailedList \n"
+<<"Shopping list size $flsz \n"
+<<" $ShoppingList \n"
 ASK
 
-//  flab = cab(FailedList)
-//<<"failed list bounds $flab \n"
+//  flab = cab(ShoppingList)
+//<<"Shopping list bounds $flab \n"
+ ShoppingList->Insert("Debo organizar mi vida")
+ ShoppingList->Insert("Irse a tiempo","leave on time"); // multiple inserts
 
+   flsz = caz(ShoppingList)
+
+<<"Shopping list size $flsz \n"
 
 if (flsz > 1) {
-<<" These modules failed! \n"
+<<" These modules added! \n"
 
-   FailedList->Sort()
+   ShoppingList->Sort()
 
-<<" $FailedList \n"
+<<" $ShoppingList \n"
 }
 
- FailedList->Sort()
+ ShoppingList->Sort()
 
-<<"%V $FailedList \n"
+<<"%V $ShoppingList \n"
 
-<<"0 $FailedList[0] \n"
+<<"0 $ShoppingList[0] \n"
 
-<<"1 $FailedList[1] \n"
+<<"1 $ShoppingList[1] \n"
 
-<<"2 $FailedList[2] \n"
+<<"2 $ShoppingList[2] \n"
 
-<<"3 $FailedList[3] \n"
+<<"3 $ShoppingList[3] \n"
 
   tname = "head here"
-  FailedList->Insert(tname,0)
-<<"failed list size $flsz \n"
-<<" $FailedList \n"
-  tname = "tail here"
-  FailedList->Insert(tname,-1)
-<<"failed list size $flsz \n"
-<<" $FailedList \n"
-  tname = "gracias"
-  FailedList->Insert(tname,2)
-<<"failed list size $flsz \n"
-<<" $FailedList \n"
-  tname = "que tal"
-  FailedList->Insert(tname,3)
-<<"failed list size $flsz \n"
-<<" $FailedList \n"
+  ShoppingList->Insert(0,tname)
+   flsz = caz(ShoppingList)
 
-testargs(1,FailedList)
+<<"Shopping list size $flsz \n"
+<<" $ShoppingList \n"
+  tname = "tail here"
+  ShoppingList->Insert(-1,tname)
+     flsz = caz(ShoppingList)
+<<"Shopping list size $flsz \n"
+<<" $ShoppingList \n"
+  tname = "gracias"
+  ShoppingList->Insert(2,tname)
+<<"Shopping list size $flsz \n"
+<<" $ShoppingList \n"
+  tname = "que tal"
+  ShoppingList->Insert(3,tname)
+<<"Shopping list size $flsz \n"
+<<" $ShoppingList \n"
+
+testargs(1,ShoppingList)
 
 // delete operations
 
@@ -115,34 +140,121 @@ testargs(1,FailedList)
 
 // delete current, head, tail
 
-  FailedList->LiDelete(-1)
+  ShoppingList->LiDelete(-1)
 
-<<" $FailedList \n"
-   flsz = caz(FailedList)
+<<" $ShoppingList \n"
+   flsz = caz(ShoppingList)
 
-<<"failed list size $flsz \n"
+<<"Shopping list size $flsz \n"
 
-  FailedList->LiDelete(0)
+  ShoppingList->LiDelete(0)
 
-<<" $FailedList \n"
+<<" $ShoppingList \n"
 
-   flsz = caz(FailedList)
+   flsz = caz(ShoppingList)
 
-<<"failed list size $flsz \n"
+<<"Shopping list size $flsz \n"
 
 // delete nth item
 
 
-  FailedList->LiDelete(2)
+  ShoppingList->LiDelete(2)
 
-<<" $FailedList \n"
+<<" $ShoppingList \n"
 
-   flsz = caz(FailedList)
+   flsz = caz(ShoppingList)
 
-<<"failed list size $flsz \n"
+<<"Shopping list size $flsz \n"
 
 
- checkNum(flsz,3)
+ checkNum(flsz,6)
 
- checkOut()
+<<" %(1,<|, ,|>\n)$ShoppingList \n"
+ lhead = ShoppingList[0];
+ ltail = ShoppingList[-1];
+
+
+ 
+
+ lval = ShoppingList->getLitem();
+
+<<"%V $lhead $ltail $lval\n"
+
+ nxtval = ShoppingList->getNextLitem();
+
+<<"%V  $nxtval\n"
+
+ nxtval = ShoppingList->getNextLitem();
+
+<<"%V  $nxtval\n"
+
+ for (i=0;i < (flsz+10); i++) {
+ preval = ShoppingList->getPrevLitem();
+ <<"$i  $preval\n"
+}
+
+ for (i=0; i < (flsz+10); i++) {
+  nxtval = ShoppingList->getNextLitem();
+  <<"$i   $nxtval\n"
+}
+
+  ShoppingList->Insert(0,"top item")
+   flsz = caz(ShoppingList)
+
+
+ hval = ShoppingList->getLitem(0);
+
+<<"%V $lhead $ltail $hval\n"
+
+ checkStr(hval,"top item")
+
+<<" $ShoppingList \n"
+
+
+  ShoppingList->Insert(-1,"bottom item")
+   flsz = caz(ShoppingList)
+
+
+ tval = ShoppingList->getLitem(-1);
+
+<<"%V  <|$tval|>\n"
+
+ checkStr(tval,"bottom item")
+
+<<" $ShoppingList \n"
+
+
+AList = ("0","1","2","3"  )  // empty list --- bug first item null?
+
+<<" $AList \n"
+
+flsz = caz(AList)
+
+<<"size $flsz\n"
+
+ hval = AList->getLitem(0);
+ tval = AList->getLitem(-1);
+
+<<"%V $hval $tval\n"
+ AList->Insert(0,"top item")
+   flsz = caz(AList)
+
+
+<<"size $flsz\n"
+
+ hval = AList->getLitem(0);
+ tval = AList->getLitem(-1);
+
+<<"%V $hval $tval\n"
+<<" $AList \n"
+
+AList->Insert(-1,"bottom item")
+   flsz = caz(AList)
+
+ hval = AList->getLitem(0);
+ tval = AList->getLitem(-1);
+
+<<"%V $hval $tval\n"
+<<" $AList \n"
+checkOut()
   

@@ -15,8 +15,9 @@
 include "debug.asl"
 
 debugON();
-
-setdebug (1, @~pline, @~step, @trace) ;
+ setdebug(1,@keep,@pline,@trace);
+  FilterFileDebug(REJECT_,"~storetype_e");
+  FilterFuncDebug(REJECT_,"~ArraySpecs",);
 
 #
 # test oop features
@@ -30,7 +31,7 @@ setdebug (1, @~pline, @~step, @trace) ;
 //#define ASK ans=iread();
 #define ASK ;
 
-Checkin(1)
+Checkin(0)
 
 
 proc foo(a)
@@ -45,7 +46,7 @@ proc foo(a)
 }
 //=========================//
 
-x=1
+x=1;
  foo(x)
 checkNum(x,1)
 <<"%V $x\n"
