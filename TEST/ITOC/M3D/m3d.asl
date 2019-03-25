@@ -13,6 +13,7 @@
 
 
 include "debug.asl";
+
   debugON();
   setdebug(1,@keep,@pline,@trace);
   FilterFileDebug(REJECT_,"~storetype_e");
@@ -20,7 +21,7 @@ include "debug.asl";
 
 
 
-checkIn(1)
+checkIn(0)
 
 
 N = 10
@@ -40,16 +41,26 @@ b = Cab(V)
 
 
 b = Cab(&M)
+//b = Cab(M)
 <<"0 bounds $b \n"
 
+//M->info(1)
 
 val = 7
 
     M[0][1][2] = 47;
+
+M->info(1)
+
 b = Cab(M)
 <<"1 bounds $b \n"
     val2= M[0][1][2] ;
 <<"%V $val2 $M[0][1][2] \n"
+
+checkNum(47,val2);
+
+
+
 b = Cab(M)
 <<"2 bounds $b \n"
 
@@ -95,8 +106,6 @@ b = Cab(M)
 checkStage()
 
 
-
-
 b = Cab(M)
 <<"$b \n"
 <<"V is $V \n"
@@ -109,10 +118,12 @@ b = Cab(M)
 
     for (k = 0; k < 10; k++) {
 
-            M[i][j][k] = val++
+            M[i][j][k] = val;
        if ((kcnt % 100) == 0) {
           <<"$i,$j,$k == $M[i][j][k] \n"
        }
+          checkNum(M[i][j][k],val);
+	  val++;
           kcnt++
     }
 

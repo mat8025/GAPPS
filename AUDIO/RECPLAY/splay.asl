@@ -1,3 +1,15 @@
+//%*********************************************** 
+//*  @script splay.asl 
+//* 
+//*  @comment vox play 
+//*  @release CARBON 
+//*  @vers 1.5 B Boron                                                     
+//*  @date Mon Mar 25 11:07:35 2019 
+//*  @cdate 1/1/2000 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 // play vox or pcm files
 
 SetDebug(1);
@@ -19,8 +31,6 @@ proc usage()
 }
 // test play of vox and wav files
 
-//OpenDll("audio")
-
 
 nchans = 1;
 
@@ -32,11 +42,11 @@ nchans = 1;
 
 <<"%V $_df_errno \n"
 
-int Freq  = 16000; // default
+
 
 float Sfactor = 1.0;
 
-gain = 1.0;
+Gain = 1.0;
 
 vlen = -1.0;
 fstart = 0.0;
@@ -44,7 +54,7 @@ bstart = 0.0;
 
 
 
-  na = GetArgc()
+  na = argc()
 <<" %V$na \n"
 
 
@@ -58,19 +68,17 @@ bstart = 0.0;
 
     while (1) {
 
-    opt = GetArgStr(ka)
+    opt = getArgStr(ka)
 
     ka++
 
-    //<<"$ka %V$opt \n"
+    <<"$ka %V$opt \n"
     if (!(opt @= "")) {
     
     if (opt @= "-f") {
 
-        Freq = getArgI(ka)
+        Freq = getArgI(ka++)
 
-
-    ka++
     <<"$ka setting %V$Freq  \n"
     }
     elif (opt @= "-h") {
@@ -78,30 +86,30 @@ bstart = 0.0;
       usage()
     }
     elif (opt @= "-g") {
-     gain = getArgF(ka)
-     <<" setting gain $gain  \n"
+     Gain = getArgF(ka++)
+     <<" setting gain $Gain  \n"
      }
     elif (opt @= "-l") {
-     vlen = getArgF(ka)
-     <<" setting max length  \n"
+     vlen = getArgF(ka++)
+     <<" setting max length $vlen \n"
      }
     elif (opt @= "-c") {
-     nchans = getArgI(ka)
+     nchans = getArgI(ka++)
      <<" setting %V$nchans  \n"
      }     
     elif (opt @= "-s") {
-     fstart = getArgF(ka)
+     fstart = getArgF(ka++)
      <<" setting file start time  \n"
      }          
     else {
-
       fname = opt
 <<" setting %V$fname \n"
     }
-    }
+
+  }
     //<<" %V$ka \n"
 
-     if (ka > na )
+     if (ka >= na )
        break
 
 
@@ -109,9 +117,10 @@ bstart = 0.0;
 
 // which files
 
-
+<<"$_clarg \n"
 
 <<" play file is $fname \n"
+
 
       bytesize = fstat(fname,"size")
       <<"%V$bytesize \n"  // maybe just the header
@@ -121,23 +130,27 @@ bstart = 0.0;
 // get Freq channel info etc
 // and use to set/ override defaults
 
-<<"%V $Dspfd $Mixfd \n";
+<<"%V $dspfd $mixfd \n";
 
-   getSoundParams(Dspfd,Mixfd);
+   getSoundParams(dspfd,mixfd);
 
 
-  if (Dspfd != -1) {
-  ok = setSoundParams(Dspfd,Mixfd,Freq,nchans); 
+  if (dspfd != -1) {
+  ok = setSoundParams(dspfd,mixfd,Freq,nchans); 
   }
   else {
 
 <<"WARNING!!!  sound play not setup correctly!!\n";
+<<"Error opening /dev/dsp?\n"
+<<" may need to load sound modules -- sudo modprobe snd-pcm-oss \n"
+<<" check with ls /dev/dsp*  and retry if /dev/dsp* is listed\n"
+   exit()
   }
 
 // set dsp,mixer
 
 
-<<" $gain $nchans \n"
+<<" $Gain $nchans \n"
 
 //iread()
 ////////////// READ FILE INTO BUFFER   ///////////////////////////
@@ -174,7 +187,7 @@ bstart = 0.0;
 <<"%V$npts $mm \n"
 // set up sound params
 
-  ok = setSoundParams(Dspfd,Mixfd,Freq,nchans) 
+  ok = setSoundParams(dspfd,mixfd,Freq,nchans) 
 
 <<"%V$Freq $nchans \n"
 //iread()
@@ -183,7 +196,7 @@ bstart = 0.0;
    }
   <<"playBuffer %V$npts\n"
 
-  playBuffer(Dspfd, sbn, 0, npts, 1);
+  playBuffer(dspfd, sbn, 0, npts, 1);
 
 //ans =iread();
 ///////////////////////////////////////////////////////
@@ -214,17 +227,15 @@ bstart = 0.0;
 
    sleep(1)
 
-   getSoundParams(Dspfd,Mixfd);
+   getSoundParams(dspfd,mixfd);
 
-<<"%V $Dspfd $Mixfd \n"
+<<"%V $dspfd $mixfd \n"
 
    fflush(1)
 
    closeAudio()
 
 <<"%V $_df_errno \n"
-
-  STOP!
 
 
 /////////////// TBD //////

@@ -23,21 +23,6 @@
 
 
 
-proc ask()
-{
-   ok=checkStage();
-   <<"%6.2f$ok\n"
-  if (ok[0] < 100.0) {
-  ans=iread();
-  }
-ans = iread()
-}
-
-//#define  ASK ask();
-#define  ASK ;
-
-
-
 checkIn(1)
 
 ShoppingList = ("xxx",  )  // empty list --- bug first item null?
@@ -55,7 +40,7 @@ ShoppingList = ("xxx",  )  // empty list --- bug first item null?
    flsz = caz(ShoppingList)
 
 <<"Shopping list size $flsz \n"
-ASK
+
 
   tname = "debe esforzarse más"
 
@@ -70,7 +55,7 @@ ASK
 
 <<" $ShoppingList \n"
 
-ASK
+
 tname = "Camino a cinco kilómetros al día"
 
  <<"inserting <$tname> into Shopping list \n"
@@ -80,7 +65,7 @@ tname = "Camino a cinco kilómetros al día"
 
 <<"Shopping list size $flsz \n"
 <<" $ShoppingList \n"
-ASK
+
 
 //  flab = cab(ShoppingList)
 //<<"Shopping list bounds $flab \n"

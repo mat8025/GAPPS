@@ -1,9 +1,23 @@
+//%*********************************************** 
+//*  @script srec.asl 
+//* 
+//*  @comment vox record 
+//*  @release CARBON 
+//*  @vers 1.5 B Boron                                                     
+//*  @date Mon Mar 25 11:08:22 2019 
+//*  @cdate 1/1/2000 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 // test record of vox  files
+include "debug.asl";
+  debugON();
+  setdebug(1,@keep,@~pline,@~trace);
+  FilterFileDebug(REJECT_,"~storetype_e");
+  FilterFuncDebug(REJECT_,"~ArraySpecs",);
 
-//OpenDll("audio")
 include "audio";
-
-setdebug(1);
 
 proc usage()
 {
@@ -15,10 +29,6 @@ proc usage()
 }
 
 
-int Freq  = 16000;
-
-int smic_factor = 0x5a5a;
-
 
 float Sfactor = 1.0;
 
@@ -27,7 +37,7 @@ how_long = 5.0
 vox_file = "rec.vox"
 
   // parse OPTIONS
-  na = GetArgc()
+  na = argc()
 <<"%V$na \n"
 
   if (na <=1 )    usage()
@@ -38,25 +48,28 @@ ka = 0
 
       while (AnotherArg()) {
 
-	opt = GetArgStr()
+	opt = getArgStr()
 
 <<"%V$ka $opt \n"
 
       if (opt @= "-f") {
          Freq = GetArgI()
        <<" setting %V$Freq  \n"
+         ka++
        }
 
       elif (opt @= "-a") {
          smic_factor = GetArgN()
        <<" setting %Vx$smic_factor  \n"
-       }
+          ka++
+      }
 
 
      elif (opt @= "-l") {
  
       how_long = GetArgF()
     <<" setting %V$how_long \n"
+      ka++
      }
      else {
       vox_file = opt
@@ -76,21 +89,29 @@ ka = 0
 
  openAudio();
 
-<<"%V $Dspfd $Mixfd \n"
+<<"%V $dspfd $mixfd \n"
 
-   getSoundParams(Dspfd,Mixfd);
-
+   S=getSoundParams(dspfd,mixfd);
+<<"pre: $S\n"
 <<"RECORD Now!\n"
 
-RecordFile(vox_file,Dspfd,Mixfd,how_long, Freq, 1,smic_factor);
+   RecordFile(vox_file,dspfd,mixfd,how_long, Freq, 1,smic_factor);
 
-   getSoundParams(Dspfd,Mixfd);
-
+   R=getSoundParams(dspfd,mixfd);
+<<"after: $R\n"
 // release devices
 
    closeAudio()
 
 
-STOP("RECORDING COMPLETE to $vox_file \n")
+<<"RECORDING COMPLETE to $vox_file \n"
 
+exit()
+
+/{/*
+
+//   micgain not working ?? - clipping
+
+
+/}*/
 

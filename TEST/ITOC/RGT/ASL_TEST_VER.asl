@@ -1211,7 +1211,7 @@ if ( do_all || do_mops ) {
 
   if (do_all  || do_vmf) {
 
-    RunDirTests("Vmf","trim,prune,caz,cut")
+    RunDirTests("Vmf","trim,prune,caz,cut,rand")
     RunDirTests("Vmf","bubblesort,substitute,dewhite")
 
 
@@ -1274,8 +1274,8 @@ if ( do_all || do_threads ) {
   
    lsz = caz(CrashList)
 //<<"failed list size $flsz crash $lsz \n"
-   flsz->info(1)
-   lsz->info(1)
+//   flsz->info(1)
+//   lsz->info(1)
    
 
 if (lsz >= 1) {
