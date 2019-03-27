@@ -1,11 +1,14 @@
 ///
 /// upe_io
+
+
+
 Tim = FineTime();
 
-//vox_type = 'vox\|upe\|phn' ; // regex for vox or pcm
+
 vox_type = 'vox\|pcm\|phn' ; // regex for vox or pcm
 
-vox_dir= "/home/mark/barn/ASR/FL/spanish/fjm"; // no trailing spaces for chdir to work
+vox_dir= "/asr/barn/ASR/FL/spanish/fjm"; // no trailing spaces for chdir to work
 vox_file =  "";
 
 proc get_the_file ()
