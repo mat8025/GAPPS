@@ -3,8 +3,8 @@
 //* 
 //*  @comment asl test modules 
 //*  @release CARBON 
-//*  @vers 1.51 Sb Antimony                                                
-//*  @date Sun Mar 24 08:04:10 2019 
+//*  @vers 1.52 Te Tellurium                                               
+//*  @date Tue Mar 26 11:14:24 2019 
 //*  @cdate 1/1/2005 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -1211,7 +1211,7 @@ if ( do_all || do_mops ) {
 
   if (do_all  || do_vmf) {
 
-    RunDirTests("Vmf","trim,prune,caz,cut,rand")
+    RunDirTests("Vmf","trim,prune,caz,cut,rand,rotate")
     RunDirTests("Vmf","bubblesort,substitute,dewhite")
 
 

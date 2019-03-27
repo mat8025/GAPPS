@@ -1,8 +1,33 @@
+//%*********************************************** 
+//*  @script colors_enum.asl 
+//* 
+//*  @comment test enum 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                 
+//*  @date Tue Mar 12 07:50:33 2019 
+//*  @cdate Tue Mar 12 07:50:33 2019 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//*
+//***********************************************%
+
+/{/*
+
+/}*/
+
+include "debug.asl";
+  debugON();
+  setdebug(1,@keep,@pline,@~trace);
+  FilterFileDebug(REJECT_,"~storetype_e");
+  FilterFuncDebug(REJECT_,"~ArraySpecs",);
+
+
+
+
 CheckIn()
 
-setdebug(1)
 
-#define AG 47
+
 
 int gold = 79
 
@@ -11,8 +36,14 @@ int gold = 79
 <<"type $(typeof(gold))  sz $(Caz(gold)) \n";
 
 
+
+
+
 // can't use runtime vars to initialize
 // enum is done on the first pass
+
+
+#define AG 47
 
 enum colors  {   // all the colors 
               BLACK_COL, 
@@ -22,7 +53,6 @@ enum colors  {   // all the colors
               YELLOW_COL,
               GREEN_COL,
               BLUE_COL,
-              INDIGO_COL,
               VIOLET_COL,
               GREY_COL,
               GOLD_COL  = 79,
@@ -36,10 +66,22 @@ c_type = typeof(colors)
 
 <<"$c_type \n"
 
-<<"type $(typeof(colors))  sz $(Caz(colors)) \n";
+sz= Caz(colors);
 
+
+
+<<"type $(typeof(colors))  $sz \n";
+
+
+
+<<"$sz  $colors[0] $colors[1] \n"
+
+
+
+
+if (sz < 100) {
 <<"%(2,, ,\n)$colors\n"
-
+}
 <<"type $(typeof(colors))  sz $(Caz(colors)) \n";
 
 
@@ -66,13 +108,26 @@ CheckNum(MERCURY_COL,80)
 
 <<"  $(MERCURY_COL)\n"
 
-CheckNum(violet,8)
+CheckNum(violet,7)
 
-enum drinks { TEA, COFFEE, MILK, BEER };
+enum drinks {
+   TEA,
+   COFFEE,
+   MILK,
+   BEER
+};
+
+sz= Caz(drinks);
+
+<<"%V $sz \n"
+
+sz= Caz(&drinks);
+
+<<"%V $sz \n"
 
 <<" $(TEA), $(COFFEE), $(MILK), $(BEER) \n"
 
-
+<<"%V $drinks[0] \n"
 
 proc foo()
 {
@@ -99,5 +154,3 @@ CheckNum(3,BEER)
 
 CheckOut()
 
-
-stop!
