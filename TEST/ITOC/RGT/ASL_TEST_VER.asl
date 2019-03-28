@@ -3,8 +3,8 @@
 //* 
 //*  @comment asl test modules 
 //*  @release CARBON 
-//*  @vers 1.52 Te Tellurium                                               
-//*  @date Tue Mar 26 11:14:24 2019 
+//*  @vers 1.54 Xe Xeon                                                    
+//*  @date Wed Mar 27 20:33:28 2019 
 //*  @cdate 1/1/2005 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -1080,7 +1080,7 @@ if ( do_all || do_mops ) {
 
     Run2Test("Svar")
     cart("svar1", "string operations are not always easy" )
-    RunDirTests("Svar","svar_declare,svelepr,svargetword,svarsplit");
+    RunDirTests("Svar","svar_declare,svelepr,svargetword,svarsplit,svar_range");
 
     }
 
@@ -1197,6 +1197,9 @@ if ( do_all || do_mops ) {
     RunSFtests("BubbleSort,Typeof,Variables,Trig,Caz,Sizeof,Limit,D2R,Cbrt,Fabs");
     RunSFtests("Round,Trunc");
 //============================
+
+    RunDirTests("Funcs","abs");
+
 
 /// chem    -- find an atomic number for an element
 

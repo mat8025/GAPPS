@@ -2,7 +2,7 @@
 ///   gss screen
 ///
 
-    vp = cWi(@title,"S2D:$fname")
+    vp = cWi(@title,"GSS:$fname")
 
     sWi(vp,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
 
@@ -46,10 +46,10 @@
 
 
 
- cellwo=cWo(vp,"SHEET",@name,"Stuff2Do",@color,GREEN_,@resize,0.12,0.1,0.9,0.95)
+ cellwo=cWo(vp,"SHEET",@name,"GSS",@color,GREEN_,@resize,0.12,0.1,0.9,0.95)
  // does value remain or reset by menu?
 
- sWo(cellwo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"SSWO",@func,"inputValue")
+ sWo(cellwo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"SSWO",@func,"bell")
 
  sWo(cellwo,@bhue,CYAN_,@clipbhue,SKYBLUE_,@redraw)
 
@@ -60,5 +60,6 @@
 
    sWo(cellwo,@redraw);
 
-
+   titleVers();
+<<"DONE gss_screen\n"
 //=======================

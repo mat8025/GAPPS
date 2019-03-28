@@ -19,7 +19,7 @@ Use_csv_fmt = 1;
 Delc = 44;
 
 int curr_row = 3;  // for paging
-int page_rows = 20;
+int page_rows = 15;
 int curr_page = 1;
 int npgs = 1;
 int Nrows = 0;
@@ -32,6 +32,14 @@ swapcol_b = 2;
 int Ncols = 10;
 
 str cvalue ="xx";
+
+
+Record R[+20];
+Rn = 5;
+
+ Record DF[+10];
+
+
 
 proc getCellValue( r, c)
 {
@@ -69,8 +77,6 @@ proc setUpdate(wr,wc)
         
 }
 //===============================//
-
-
 
 
 proc setDifficulty(wr,wc)
@@ -140,9 +146,11 @@ proc READ()
             R= readRecord(A,@del,Delc)
            cf(A)
            sz = Caz(R);
+<<"num of records $sz\n"
 <<[_DB]"num of records $sz\n"
-          sWo(cellwo,@cellval,R);
-	  sWo(cellwo,@redraw);
+//      do display update elsewhere
+//     sWo(cellwo,@cellval,R);
+//	  sWo(cellwo,@redraw);
 
            return 
 }
@@ -349,7 +357,9 @@ proc PGDWN()
     }
    sWo(cellwo,@selectrowscols,0,2,0,cols,1);
    sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,1);
-   setRowColSizes();
+
+  // setRowColSizes();
+   
    paintRows();
    curr_page++;
    if (curr_page > npgs) {
@@ -383,7 +393,7 @@ proc PGUP()
    
    sWo(cellwo,@selectrowscols,0,2,0,cols,1);
    sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,1);
-   setRowColSizes();
+  // setRowColSizes();
    paintRows();
   sWo(cellwo,@redraw);
   curr_page--;

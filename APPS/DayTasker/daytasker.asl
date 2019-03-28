@@ -50,7 +50,7 @@
 
 
  // add favorites :  L,G,X,C
- Record DF[10];
+
  // Task,Priority,TimeEst,PCDone,TimeSpent,Difficulty,Attribute,Score,Tags,
  
    DF[0] = Split("task?,4,30,0,0,3,?,0,,",',') ; // default for add additional task
@@ -60,8 +60,8 @@
    DF[3] = Split("Spanish,8,30,0,0,3,L,0,,",44)
    DF[4] = Split("PR/DSP,8,60,0,0,8,D,0,,",44)    
  
- Record R[15+];
- Rn = 5;
+// Record R[15+];
+// Rn = 5;
  
  int ok = 0;
  
@@ -298,12 +298,12 @@ use_main_vers = 0;
     sWo(cellwo,@setcolsize,3,0,1);
     sWo(cellwo,@redraw);
 
-
+/{/*
     swaprow_a = 1;
     swaprow_b = 2;
- 
     swapcol_a = 1;
     swapcol_b = 2;
+/}*/
 // <<[_DB]"%V $cellwo\n"
 
 
@@ -382,7 +382,7 @@ int mc = 0;
          if (mc == 0  && (mr >= 0) && (_ebutton == RIGHT_)) {
            if ((mr % 2)) {
             whue = LILAC_;
- 	 }
+ 	   }
  
           sWo(cellwo,@cellbhue,swaprow_a,0,swaprow_a,cols,whue);         	 	 
  
@@ -442,6 +442,7 @@ int mc = 0;
        }
           sWo(cellwo,@setcolsize,3,0,1);
           sWi(vp,@redraw);
+	  
  }
  //============================================//
  

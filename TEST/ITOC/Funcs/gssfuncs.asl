@@ -34,10 +34,7 @@ include "gevent.asl"
       fname = _clarg[1];
   }
 
-
-
 <<"reading $fname  csv?\n"
-
 
 Graphic = CheckGwm()
 
@@ -49,7 +46,6 @@ Graphic = CheckGwm()
 include "tbqrd"
 include "gss_screen"
 
-//ans=iread("->:");
 
   READ();
 
@@ -63,14 +59,18 @@ include "gss_screen"
    tags_col = cols-1;
    
 
-   sWo(cellwo,@setrowscols,rows+5,cols+1); 
+   sWo(cellwo,@setrowscols,rows+page_rows,cols+1); 
 
-   sWo(cellwo,@selectrowscols,0,rows-1,0,cols-1);
+   sWo(cellwo,@selectrowscols,0,page_rows-1,0,cols-1);
+
+
+   sWo(cellwo,@cellval,R); // too many cells?
 
 int cv = 0;
 
+page_rows = 20;
 
-    for (i = 1; i< rows ; i++) {
+    for (i = 1; i< page_rows ; i++) {
      for (j = 0; j< cols ; j++) {
          sWo(cellwo,@cellbhue,i,j,YELLOW_);
 	 sWo(cellwo,@sheetcol,i,j,"");
@@ -78,7 +78,7 @@ int cv = 0;
        }
      }
 
-   sWo(cellwo,@cellval,R);
+
   
  //  default
 
@@ -86,10 +86,10 @@ int cv = 0;
  //isok =sWo(cellwo,@sheetread,fname,2);
 // <<"%V$isok\n";
 
-  sWo(cellwo,@selectrowscols,0,rows-1,0,cols-1);
+   sWo(cellwo,@selectrowscols,0,page_rows-1,0,cols-1);
 
 // sWo(cellwo,@cellbhue,1,-2,LILAC_); // row,col wr,-2 all cells in row
-  sWi(vp,@redraw)
+   sWi(vp,@redraw)
 
    sWo(ssmods,@redraw)
 
@@ -188,7 +188,7 @@ int cv = 0;
             }
          }
        }
-          sWo(cellwo,@setcolsize,3,3,1);
+          sWo(cellwo,@setcolsize,5,5,1);
           sWi(vp,@redraw);
 
 

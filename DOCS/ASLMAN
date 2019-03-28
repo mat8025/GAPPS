@@ -66,7 +66,7 @@ Mark Terry
 SI 
 .br
 .ce 
-VERSION 5.2
+VERSION 6.20 Ca
 .sp
 \(*td
 .ft
@@ -1324,6 +1324,9 @@ internal vars
 There are a number of internal vars that can be accessed.
 _clarg -- vector of command line args
 _proc  -- current procedure (or main)
+_script -- script name
+_include -- current include file/block 
+
 .EF
 
 /////////////////////////////   STAT /////////////////////////////////////
@@ -1920,6 +1923,20 @@ Object is rotated around the X, Y and Z axis by ang_X, ang_Y and ang_Z degrees.
 .EF
 
 
+.BF
+rotate
+.(x
+rotate
+.)x 
+.FD
+rotate(vec, dir, nsteps)
+
+Vec->rotate(dir,nsteps)
+
+Vector is rotated in direction (1 forward , -1 backward) for nsteps
+
+
+.EF
 
 
 //////////////////////////////////  DATA-IO ///////////////////////////////////////
@@ -2518,6 +2535,7 @@ would dewhite a range of an array of strings - where S is an array
 
 .EF
 =============================================================
+
 .BF
 eatWhiteEnds
 .(x
@@ -2878,7 +2896,10 @@ fstat(file_name,[attribute])
 
 check for data_file existence and reports information
 depending on atribute (default type)
-attribute can be :- type,atime,mtime,adate,inode,size
+attribute can be :- type,mode,atime,mtime,adate,inode,size, ...
+date = fstat(file_name,"cdate")
+returns date of creation e.g. Tue Dec 18 06:50:20 2018
+ctime, returns secs since epoch.
 
 .EF
 =============================================================
@@ -4839,16 +4860,17 @@ readfile
 .FD
 C=readfile(A)
 
-reads entire the file attached to file handle  A into svar variable C
+reads the entire  file attached to file handle  A into svar variable C
 line 0 is C[0], line 1 is C[1], ...
+the line will contain the final cr/lf character 
 Caz(C) gives number of lines read.
 
 e.g.
 A=ofr("afile.txt")
 C=readfile(A)
 
-<<"$C[0]\n"  // prints the first line
-<<"$C[2]\n"  // prints the second line
+<<"$C[0]"  // prints the first line
+<<"$C[2]"  // prints the second line
 ...
 
 
@@ -6007,6 +6029,45 @@ reverses string
 
 .EF
 =============================================================
+
+.BF
+Trim
+.(x
+Trim
+.)x 
+.FD
+Trim(S)
+Trims a string variable (or array of strings)
+
+S->Trim(nc) - trims characters from head or tail of string
+
+S[a:b]->Trim(- 4)
+would trim four chars from end of  a range of an array of strings - where S is an array
+S->Trim(4)
+would trim four chars from nead of  a range of an array of strings - where S is an array 
+(see prune)
+.EF
+=============================================================
+BF
+Prune
+.(x
+Prune
+.)x 
+.FD
+Prune(S)
+Prunes a string variable (or array of strings) to a specified length
+
+S->Prune(length) - trims characters from head or tail of string until a vspecified length
+ no action if stem already less than of equal to required length
+
+S[a:b]->Prune(-4)
+would prune  from tail of  a range of an array of strings - where S is an array
+S->Prune(4)
+would prune from head of string until required length
+
+.EF
+=============================================================
+
 .BF
 split
 .(x
@@ -6262,6 +6323,21 @@ returns the number of errors so far to a two element array
 err[0] = N_error ---- number of errors occurred in processing functions
 err[1] = N_cerror ---- number of code errors occurred in script  user (and parsing errors)
 
+.EF
+=============================================================
+.BF
+getcodeln
+.(x
+getcodeln
+.)x 
+.FD
+line=getcodeln(lnum, includenum)
+returns the src line for the nth included file
+e.g.
+line = getcodeln(10,0)
+would get the 10th of the first (main) script.
+lines are from 1 to n.
+includes are from 0 (main) 1, first included file ...nth included file
 .EF
 =============================================================
 .BF
@@ -6803,7 +6879,8 @@ the arrays, but the success of the operation requires programming
 inspection with respect to array size.
 
 .EF
-=============================================================
+=============================================================.BF
+
 .BF
 vvcomp
 .(x
@@ -6823,6 +6900,8 @@ R[2] = -2.0 if all A   lt B
 R[2] = -3.0 if some gt and eq and  lt B
 
 R[3] first index location of smallest difference
+
+
 
 .EF
 =============================================================
@@ -7014,6 +7093,21 @@ writes the ascii respresentation of parameters p1,p2 into the file pointed to by
 returns file position in bytes after the  write
 if the parameter contains the string \n a carriage return line feed is
 written to the file
+
+.EF
+=============================================================
+.BF
+writeline
+.(x
+writeline
+.)x 
+.FD
+writeline(A,var_line)
+
+writes the string contained by var_line to the file handle A.
+returns characters written - 0 if error;
+It appends a '\n' ;
+
 
 .EF
 =============================================================
@@ -8687,7 +8781,7 @@ substitute
 .)x 
 .FD
 V->SubStitute(this_str,with_str)
- Substitues a sub string with another  in the  string variable V 
+ Substitutes a sub string with another  in the  string variable V 
 .EF 
 
 .EF
@@ -8988,23 +9082,24 @@ Matrix
 .FD
 Operations :-
 Transpose
-cycleRow
-cycleCol
-reflectRow
-reflectCol
+mcycleRow
+mcycleCol
+mreflect
+mrevrows
+mrevcols
 diagonal
 submat
 
 .EF
 =============================================================
 .BF
-Diagonal
+mdiag
 .(x
-Diagonal
+mdiag
 .)x 
 
 .FD
-M=diagonal(V)
+M=mdiag(V)
 take a vector and make it as leading diagonal of a square matrix other elements are zero
 
 
@@ -9022,38 +9117,6 @@ interchanges the rows and columns of 2D matrix,
 returns new matrix the original is not altered
 e.g.
  A = Transpose(M)
-
-.EF
-=============================================================
-.BF
-ReflectRow
-.(x
-ReflectRow
-.)x 
-
-.FD
-
-ReflectRow(M)
-reflects the rows of 2D matrix,
-returns new matrix the original is not altered
-e.g.
- A = ReflectRow(M)
-
-.EF
-=============================================================
-.BF
-ReflectCol
-.(x
-ReflectCol
-.)x 
-
-.FD
-
-ReflectCol(M)
-reflects the columns of 2D matrix,
-returns new matrix the original is not altered
-
-
 
 .EF
 =============================================================
@@ -9090,7 +9153,7 @@ returns new matrix the original is not altered
 .EF
 =============================================================
 .BF
-exchangeCols
+mxcols,exchangeCols
 .(x
 exchangeCols
 .)x 
@@ -9103,7 +9166,7 @@ returns new matrix the original is not altered
 .EF
 =============================================================
 .BF
-exchangeRows
+mxrows,exchangeRows
 .(x
 exchangeRows
 .)x 
@@ -9188,12 +9251,12 @@ is used -- the return if this case is 1 for success of the transform or 0 if err
 .EF
 =============================================================
 .BF
-rowZoom
+mrowZoom
 .(x
-rowZoom
+mrowZoom
 .)x 
 .FD
-rowZoom(M,new_nc, interp_type)
+mrowZoom(M,new_nc, interp_type)
 
 expands matrix along the row to produce a new number of columns, using linear interpolation (optionally cubic spline)
 returns new Matrix -- same number of rows but different number of columns.
@@ -9203,17 +9266,42 @@ If interp_type is 1 a cubic spline is used
 .EF
 =============================================================
 .BF
-colZoom
+mcolZoom
 .(x
 colZoom
 .)x 
 .FD
-colZoom(M,new_nr, interp_type)
+mcolZoom(M,new_nr, interp_type)
 
-expands matrix along each column to produce a new number of rows, using linear interpolation (optionally cubic spline)
+expands matrix along each column to produce a new number of rows,
+using linear interpolation (optionally cubic spline)
 returns new Matrix -- same number of columns but different number of rows.
 If interp_type is 1 a cubic spline is used
 
+
+.EF
+=============================================================.BF
+.BF
+mrevcols
+.(x
+mrevcols
+.)x 
+.FD
+mrevcols(M)
+
+reverses order of columns - returns new matrix
+
+.EF
+=============================================================
+.BF
+mrevrows
+.(x
+mrevrows
+.)x 
+.FD
+mrevrows(M)
+
+reverses order of rows - returns new matrix
 
 .EF
 =============================================================
@@ -9782,6 +9870,20 @@ returns date.
 .EF
 ==================================================
 .BF
+insert
+.(x
+insert
+.)x 
+.FD
+list->insert([where],strval,[strval2,strval3,...])
+Inserts a list string item into an existing list at 0 (beginning), number (nth item),  -1 (end)
+additional string items inserted after first.
+
+.EF
+==================================================
+
+
+.BF
 torf
 .(x
 torf
@@ -10039,6 +10141,44 @@ The str type can arbitarily long strings.
 str S = "a very long string";
 
 S= scat(S," made even longer")
+
+.EF
+==================================================
+# SpreadSheet Functions
+BF
+sWo(won,@setrowscols)
+.(x
+sWo(won,@setrowscols)
+.)x 
+.FD
+sWo(sswo,@setrowscols,Nrows,Ncols)
+
+for the SpreadSheet sswo set the number of rows and cols.
+.EF
+==================================================
+BF
+sWo(won,@selectrowscols)
+.(x
+sWo(won,@selectrowscols)
+.)x 
+.FD
+sWo(sswo,@selectrowscols,startrow,endrow,startcol,endcol,[ONOFF])
+for the SpreadSheet sswo select which rows and cols to display.
+Can be used to select non-consectutive regions for display.
+
+.EF
+==================================================
+BF
+sWo(won,@setcolsize)
+.(x
+sWo(won,@setcolsize)
+.)x 
+.FD
+sWo(sswo,@setcolsize,startcol,numofconsecutivecols,unitsize)
+
+allows columns or rows to be set to different unit sizes.
+i.e. in multiples of unit size.
+also sWo(won,@setrowsize)
 
 
 
