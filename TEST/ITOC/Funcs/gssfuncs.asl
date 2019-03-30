@@ -59,7 +59,7 @@ include "gss_screen"
    tags_col = cols-1;
    
 
-   sWo(cellwo,@setrowscols,rows+page_rows,cols+1); 
+   sWo(cellwo,@setrowscols,rows+2*page_rows,cols+1); 
 
    sWo(cellwo,@selectrowscols,0,page_rows-1,0,cols-1);
 

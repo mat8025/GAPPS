@@ -339,6 +339,7 @@ proc PGDWN()
   if (curr_row < 0) {
       curr_row = 0;
   }
+  
 <<"%V$cellwo $curr_row $page_rows $rows $cols\n"
 
   sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0);
@@ -355,6 +356,7 @@ proc PGDWN()
     if (curr_row < 0) {
         curr_row = 0;
     }
+    
    sWo(cellwo,@selectrowscols,0,2,0,cols,1);
    sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,1);
 

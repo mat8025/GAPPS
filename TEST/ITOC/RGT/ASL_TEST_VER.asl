@@ -735,7 +735,7 @@ int do_help = 0;
   if (do_all  || do_sops) {
       //  need more str ops tests than this!
 
-      RunDirTests("Sops","scat,scmp,ssub,stropcmp");
+  RunDirTests("Sops","scat,scmp,ssub,ssubrgx,scut,stropcmp");
 
   // make this a pattern OP
   RunSFtests("Date,Sele,Sstr,Spat,Regex,Str");

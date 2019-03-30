@@ -1,3 +1,21 @@
+//%*********************************************** 
+//*  @script msquare.asl 
+//* 
+//*  @comment test matrix funcs 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                 
+//*  @date Tue Mar 12 07:50:33 2019 
+//*  @cdate Tue Mar 12 07:50:33 2019 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%///
+
+/{/*
+
+
+
+/}*/
 ///
 /// magic square
 ///
@@ -32,16 +50,37 @@ int B[] = {16, 3, 2, 13, 5, 10, 11, 8, 9, 6, 7, 12, 4 ,15, 14, 1}
 <<" $(typeof(A)) $(typeof(B)) \n"
 
 
+stageComment("RowSum Test -summing rows of magic square 34");
+
  R= RowSum(A)
-<<" ROW SUM\n"
+
 <<"$R\n"
+
+  for (i=0;i < 4; i++) {
+
+   checkNum(R[i],34);
+  }
+
+ //  checkNum(R[0],33);
+
+ checkStage("RowSum")
+
+stageComment("ColSum Test -summing cols of magic square 34");
 
  C= ColSum(A)
 
-<<" COL SUM\n"
+
 <<"$C\n"
 
-ASK
+  for (i=0;i < 4; i++) {
+
+   checkNum(C[i],34);
+  }
+
+
+ checkStage("ColSum")
+
+
 
  M = Sum(A)
 
@@ -132,14 +171,12 @@ V->redimn()
 <<"\n"
 
 
-ASK
-
 
 float e[] = {1.1,2.2,3.3,4.4}
 
 <<"%v$e\n\n"
 
- E = diag(e)
+ E = mdiag(e)
 
 <<"%v$E \n"
 //<<" $(Cab(E)) $(Caz(E)) \n"

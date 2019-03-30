@@ -5,6 +5,10 @@ str C = "mat.vox"
 
 str D = "terry.pcm"
 
+str E = "terry.vox"
+
+str F = "terry.phn"
+
 
 p = regex(C,"vox")
 
@@ -16,9 +20,22 @@ p = regex(D,"pcm")
 
 checkNum(p[0],6)
 
-p = regex(D,'pcm\|vox')
-
+//p = regex(D,'pcm\|vox')
+p = regex(D,'pcm|vox|phn')
+<<"$p \n"
 checkNum(p[0],6)
+
+p = regex(E,'pcm|vox|phn')
+<<"$p \n"
+checkNum(p[0],6)
+
+p = regex(F,'pcm|vox|phn')
+<<"$p \n"
+checkNum(p[0],6)
+
+
+
+
 
 svar S;
 S[0] = "DBPR   (";
@@ -29,13 +46,13 @@ S[3] = "DBPR[";
 
 
 for ( i =0; i< 3; i++) {
-p = regex(S[i],"DBPR\s*\t*(")
+p = regex(S[i],'DBPR ?+')
 
 <<"$p\n"
 checkNum(p[0],0)
 }
 
-p = regex(S[3],"DBPR\s*\t*(")
+p = regex(S[3],"DBPR *\t*\\(")
 
 <<"$p\n"
 checkNum(p[0],-1)
