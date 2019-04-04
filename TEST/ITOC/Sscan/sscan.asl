@@ -105,5 +105,3 @@ CheckStr(news,"star bright")
 CheckOut()
 
 
-
-STOP!

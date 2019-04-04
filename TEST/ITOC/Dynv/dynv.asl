@@ -1,98 +1,234 @@
+//%*********************************************** 
+//*  @script dynv.asl 
+//* 
+//*  @comment test dynamic array ops 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium                                                   
+//*  @date Wed Apr  3 13:20:00 2019 
+//*  @cdate Wed Apr  3 13:09:11 2019 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+
+/{/*
+Set(),set ~ sets values in a vector or a scalar()
+V->set(value)
+V[3]->set(value)
+V[1:20:2]->set(value_vec)
+V[1:20:2]->set(value_vec,incr)
+sets elements of a variable to supplied value vector.
+if the variable is a scalar then just its value is set.
+Can be used to set a specified element of the variable array,
+or a subrange or the entire array.
+The initial vaue can be incremented at each set step to create a series.
+//===================================//
+
+a vector is tagged as dynamic ( allowed resize on access)
+via the declare statement
+
+int Vec[>10];
+
+which sets the initial size of Vec to ten but allows
+runtime resize when needed 
+e.g.
+Vec[12] = 47;
+
+the size of the Vec is increased to 13 plus;
+
+/}*/
+
+CheckIn()
 
 
-int I[50+]
-I->Set(0)
+int Vec[>10];
+
+Vec[3] = 79;
+
+Vec->info(1)
+
+Vec[12] = 47;
+
+sz=Caz(Vec);
+
+<<"%V $sz \n"
+
+Vec->info(1);
+
+checkTrue (sz>=13)
+
+
+
+int J[] 
+
+<<"$(Cab(J)) \n"
+
+
+//J[30] = 30
+
+
+<<"$J \n"
+
+  J[0:20]->Set(10,1)
+
+<<"$J \n"
+
+  sum = J[1] + J[2] + J[3] 
+
+<<"  %V$sum = $J[1] + $J[2] + $J[3]  \n"
+
+  sum = J[1] + J[2] + J[3] + J[4]
+
+<<"  %V$sum = $J[1] + $J[2] + $J[3] + $J[4] \n"
+
+int I[>20]
+
+  I->Set(0)
+
+CheckNum(I[2],0)
 sz = Caz(I)
+
 <<" $sz \n"
-I[10] = 10
 
-<<"%10r $I \n"
+I[5] = 10
 
-/// FIX I[0:40] = 5
+CheckNum(I[5],10)
+
+CheckNum(I[6],0)
+
+<<"%(5,<,|,>\n)$I \n"
+
+I[6] = 6
+
+CheckNum(I[6],6)
+
+<<"%(5,<,|,>\n)$I \n"
+
+<<"/////////////////////\n"
+
+///FIX XIC not using 0:10
+
+ I[2:10:2] = 5
+
+<<"%(10,<, ,>\n) $I \n"
+
+ I[11:18:2] = 7
+
+<<"%(10,<, ,>\n)$I \n"
+
+
+CheckNum(I[2],5)
+
+
+
+ I[12:19:2] = 8
+
+CheckNum(I[12],8)
+CheckNum(I[14],8)
+CheckNum(I[18],8)
+CheckNum(I[2],5)
+
+<<"%(10,<, ,>\n)$I \n"
+
+ I[12:-1:1] = 4
+
+// I[-1:12:2] = 4
+
+<<"%(10,<, ,>\n)$I \n"
+
+CheckNum(I[19],4)
+
+
+CheckNum(I[12],4)
+CheckNum(I[14],4)
+CheckNum(I[2],5)
+
+<<"%(10,<, ,>\n)$I \n"
+
+
+////////  FIX ME /////////
+// default value if left unset should be array end?
+
+ //I[12::2] = 3
+I[12:-1:2] = 3
+
+CheckNum(I[12],3)
+CheckNum(I[14],3)
+CheckNum(I[2],5)
+
+<<"%(10,<, ,>\n)$I \n"
+
+
+
+CheckNum(I[10],5)
+
+
+
 // leaves lhsubscript range set?
 
-I[0:40]->Set(5)
+<<"%(10,, ,\n)$I \n"
 
-<<"%10r $I \n"
-
-
-
-I[0:30:2]->Set(0,1)
-
-<<"%10r $I \n"
+<<"/////////////////////\n"
 
 
-I[8] = 3
+<<"%(10,, ,\n)$I \n"
 
-<<" $I \n"
+I[6] = 6
 
-I[24] = 66
+CheckNum(I[6],6)
 
-<<"%10r $I \n"
+<<"%(10,, ,\n)$I \n"
 
-I[57] = 4
-
-<<"%10r $I \n"
+CheckNum(I[4],5)
 
 
-m = 5
-I[m:8:1]->Set(7,2)
-<<"%10r $I \n"
-j = 20
-k = 1
-m= 6
-  <<"\n $I[m:j:k] \n"
+ I[4:6:2] = 49
+
+CheckNum(I[4],49)
+
+<<"%(10,, ,\n)$I \n"
+
+a = 6
+b = 2
 
 
-<<"%V $I[0] \n"
-<<"%V $I[1] \n"
-<<"%V $I[2] \n"
-<<"%V $I[3] \n"
-<<"%V $I[4] \n"
-<<"%V $I[10] \n"
+ I[0:a:b] = 59
 
-<<"%V $I[20] \n"
+CheckNum(I[4],59)
+
+<<"%(10,, ,\n)$I \n"
 
 
-<<"%V $I[33] \n"
+
+// I[0:-4:b] = 57
+
+//CheckNum(I[4],57)
+
+CheckNum(I[18],3)
+
+<<"%(10,, ,\n)$I \n"
 
 
-<<"%V $I[50] \n"
-<<"%V $I[57] \n"
-
- for (i = 0; i < 59 ;i++) {
- k = I[i]
-//  FIX <<"%V ${I[i]} \n"
-
-<<"[${i}] $k \n"
-
-}
-
-<<" ///////// \n"
-
-  <<" $I[0:30] \n"
+CheckOut()
 
 
-<<" ///////// \n"
 
-  <<" $I[0:30:2] \n"
+////////////////  TBD /////////////////
+/{
+  Array range
 
-<<" ///////// \n"
-k = 3
+  if range value missing should go to default
 
-  <<" $I[0:30:k] \n"
+  [start:end:step]
 
-<<" ///////// \n"
-j = 40
-k = 2
-I[j] = 11
-
-  <<" $I[0:j:k] \n"
-
-m = 0
-  <<" $I[m:j:k] \n"
+  missing start  value should be 0
+  missing end  value should be end index
+  missing step  value should be 1
 
 
-/// FIX m intial not working
-m = 1
-  <<" $I[m:j:k] \n"
+  a start or end value of negative indicates a postion relative to end of array
+  N.B -1 is the end index ultimate, -2 penultimate ...
+
+  negative step backwards iteration -- array is treated as a ring
+/}
+

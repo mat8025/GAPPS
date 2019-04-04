@@ -130,3 +130,12 @@ T= ssubrgx(W,rpat,"SDX",dir)
 CheckOut()
 
 
+/{
+/*
+  add examples of regex use
+  
+  plus substitute of regex pattern
+
+
+*/
+/}

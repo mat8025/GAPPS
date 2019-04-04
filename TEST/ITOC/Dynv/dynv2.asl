@@ -1,7 +1,8 @@
 ///
 ///
 ///
-setdebug(1,"pline","~step")
+
+
 
 CheckIn()
 
@@ -11,12 +12,13 @@ int J[]
 
 <<"$J \n"
 
-  J[0:19:2]->SetV(10,1)
+  J[0:19:2]->Set(10,1)
 
 <<"$J \n"
 
 CheckNum(J[0],10);
 
+//CheckOut();exit()
 
   J[0:7] = 6
 
@@ -38,7 +40,6 @@ CheckNum(J[1],35)
 
 CheckOut()
 
-stop!
 
 
 

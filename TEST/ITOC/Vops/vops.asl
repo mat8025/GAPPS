@@ -1,4 +1,16 @@
-// vops  ----
+//%*********************************************** 
+//*  @script vops.asl 
+//* 
+//*  @comment test vector ops 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                  
+//*  @date Wed Apr  3 22:25:24 2019 
+//*  @cdate Wed Apr  3 22:25:24 2019 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+
 CheckIn()
 
 setdebug(0)

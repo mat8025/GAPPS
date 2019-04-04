@@ -72,8 +72,6 @@ if (na > 3) {
  
 if (na > 4) {
   w4 = _clarg[4];
-// should be maj.min e.g 1.1 ,6.1, ... limits 1 to 100
-
   use_epoch =1;
 
 }
@@ -97,7 +95,6 @@ min = 4;
 if (set_vers) {
   maj = atoi(spat(svers,".",-1))
   min = atoi(spat(svers,".",1))  
-
 }
 
 

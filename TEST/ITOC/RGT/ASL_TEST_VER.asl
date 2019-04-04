@@ -3,8 +3,8 @@
 //* 
 //*  @comment asl test modules 
 //*  @release CARBON 
-//*  @vers 1.54 Xe Xeon                                                    
-//*  @date Wed Mar 27 20:33:28 2019 
+//*  @vers 1.55 Cs Cesium                                                  
+//*  @date Tue Apr  2 08:16:51 2019 
 //*  @cdate 1/1/2005 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -40,7 +40,7 @@ debugOFF()
 
 
 
-setdebug(1,@keep,@~pline,@~step,@trace)
+setdebug(1,@keep,@~pline,@~step,@~trace)
 filterFuncDebug(ALLOWALL_,"proc");
 filterFileDebug(ALLOWALL_,"ic_op");
 
@@ -198,7 +198,7 @@ proc RunSFtests(Td)
          wsf = Tp[i];
          Run2Test(wsf);
 	 wsf = slower(wsf);
-         cart(wsf);
+         cart(wsf," ");
       }
 }
 
@@ -948,8 +948,6 @@ if ( do_all || do_array ) {
 
    Run2Test("Msort")
    cart("msort")
-   Run2Test("Setv")
-   cart("setv")
 
 
    }
@@ -961,7 +959,7 @@ if ( do_all || do_array ) {
 
     hdg("DYNAMIC_V")
 
-    RunDirTests("Dynv","dynv0,dynv2");
+    RunDirTests("Dynv","dynv,dynv2");
 
 
     }
@@ -1191,11 +1189,11 @@ if ( do_all || do_mops ) {
 
     hdg("S-FUNCTIONS")
 
-    RunSFtests("Sscan,Bscan,Cut,Cmp,Sel,Shift,Median,Findval,Lip");
+    RunSFtests("Sscan,Fscanf,Bscan,Cut,Cmp,Sel,Shift,Median,Findval,Lip");
 
 //============================
     RunSFtests("BubbleSort,Typeof,Variables,Trig,Caz,Sizeof,Limit,D2R,Cbrt,Fabs");
-    RunSFtests("Round,Trunc");
+    RunSFtests("Round,Trunc,Wdata,Fscanv,Cmpsetv");
 //============================
 
     RunDirTests("Funcs","abs");

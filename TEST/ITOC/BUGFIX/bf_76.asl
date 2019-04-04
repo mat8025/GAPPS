@@ -19,8 +19,8 @@ cmplx ri_j;
 cmplx ri_k;
 
 
-  ri_j->SetV(12,47);
-  ri_k->SetV(79,85);
+  ri_j->Set(12,47);
+  ri_k->Set(79,85);
 
 <<"%V$ri_j\n"
 <<"%V$ri_k\n"

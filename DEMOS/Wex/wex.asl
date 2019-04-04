@@ -100,30 +100,30 @@ N = 1000
 
 //float DVEC[200+];
 
-long LDVEC[10+]
-float DVEC[10+];
-float DFVEC[10+];
-float DXVEC[10+];
+long LDVEC[>10]
+float DVEC[>10];
+float DFVEC[>10];
+float DXVEC[>10];
 
-float WTVEC[10+] 
+float WTVEC[>10] 
 
-float PWTVEC[10+] 
+float PWTVEC[>10] 
 
-float WTPMV[10+] 
-float GVEC[10+]; // goal line
-float BPVEC[10+] 
-float SEVEC[10+] 
-float CARBV[10+] 
-float WDVEC[10+]
-float EXTV[10+]
-float AVE_EXTV[10+]
-float EXEBURN[10+]
-float CALBURN[10+]
+float WTPMV[>10] 
+float GVEC[>10]; // goal line
+float BPVEC[>10] 
+float SEVEC[>10] 
+float CARBV[>10] 
+float WDVEC[>10]
+float EXTV[>10]
+float AVE_EXTV[>10]
+float EXEBURN[>10]
+float CALBURN[>10]
 
 // cals,carbs consumed & when
-float CALSCON[10+]
-float CARBSCON[10+]
-float CCDV[10+]
+float CALSCON[>10]
+float CARBSCON[>10]
+float CCDV[>10]
 ///
 
 float Nsel_exemins = 0.0

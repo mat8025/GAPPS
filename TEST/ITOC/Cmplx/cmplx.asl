@@ -1,10 +1,50 @@
 
-
 // test complex & dcomplex types
 
-SetDebug(1,"pline","~step")
+SetDebug(1,@pline,@~step)
 
 checkIn()
+
+cmplx a
+cmplx b;
+
+
+a->set(2.5,0.5)
+
+
+a->info(1)
+
+checkFnum(a->getReal(),2.5);
+x= a->getReal();
+y= a->getImag();
+<<"%V $a  $x  $y\n"
+
+a->setReal(3.5)
+
+<<"%V $a\n"
+
+a->setImag(-4.7)
+
+<<"%V $a\n"
+
+x= a->getReal();
+y= a->getImag();
+<<"%V $a  $x  $y\n"
+
+checkFnum(x,3.5)
+checkFnum(y,-4.7)
+
+a->info(1)
+
+
+//checkOut(); exit()
+
+cmplx g[16] = {1,2,3,4,5,6,7,8,9,10};
+
+sz = Caz(g)
+<<"%V$sz $g\n"
+g->info(1)
+
 
 
 int A[3] = {1,2,3}
@@ -13,14 +53,12 @@ int A[3] = {1,2,3}
 
   sum = Sum(A);
 <<"%V$sum \n"
+ checkNum(sum,6)
 
-
-sum = Sum({1,2,3,4});
+  sum = Sum({1,2,3,4});
 <<"%V$sum \n"
 
-
-
-
+ checkNum(sum,10)
 
 sz = Caz({1,2,3});
 
@@ -40,10 +78,7 @@ float F[10] = {0,1,2,3,4,5,6,7,8,9};
 <<"$I\n"
 
 
-cmplx g[16] = {1,2,3,4,5,6,7,8,9,10};
 
-sz = Caz(g)
-<<"%V$sz $g\n"
 /{
   g->SetReal(77);
 <<"%V$sz $g\n"
@@ -81,10 +116,21 @@ rv[5] = 68;
 g[1:6:1]->SetReal({1,2,3,4,5,6})
 
 <<"$g\n"
+gr = g->getReal()
+
+for (i= 1; i < 6; i++) {
+checkNum(gr[i],i)
+}
 
 g[1:6:1]->SetImag({7,8,9,10,11,12})
 
 <<"$g\n"
+
+gi = g->getImag()
+
+for (i= 1; i <= 6; i++) {
+checkNum(gi[i],6+i)
+}
 
 
 g[1:6:1]->SetImag({-1.0,-2.0,-3.0,-4,-5,-6.2})
@@ -100,8 +146,6 @@ g[1:6:1]->SetImag(rv)
 
 <<"$g\n"
 
-cmplx a
-cmplx b;
 
 
   a->set(2.5,0.5)
@@ -292,18 +336,15 @@ f->set(1,2);
      
   //cmplx h = {1,2};
 
-    checkOut();
-
-
-exit()
-
-cmplx F[10];
 
 <<"%V$F \n"
-F = vgen (CMPLX,10,1,1)
+F = vgen (CMPLX_,10,1,1)
 
 
-G = vgen (CMPLX,10,1,-1)
+G = vgen (CMPLX_,10,1,-1)
+
+
+<<"%V$G \n"
 
 
 
@@ -314,7 +355,7 @@ G = vgen (CMPLX,10,1,-1)
 
   // cmplx G[10]
 
-<<"%V$G \n"
+
 
 
    Z = F * G
@@ -340,125 +381,117 @@ G = vgen (CMPLX,10,1,-1)
 <<"%V$Ph \n"
 
 
-STOP!
-
-
 N = 11
-cmplx A[N]
 
-<<"%v $A[0:10] \n"
+cmplx AV[N]
 
-<<"$(typeof(A)) $(Caz(A)) \n"
+<<"%v $AV[0:10] \n"
+
+<<"$(typeof(AV)) $(Caz(AV)) \n"
 
 // FIX IC redundant ele/push_sivele
 
-   A[2]->real (0.3)  // just real ele
+   AV[2]->Setreal (0.3)  // just real ele
 
-   A[3]->imag (0.4)  // just imag ele
+   AV[3]->SetImag (0.4)  // just imag ele
 
-<<"%v $A \n"
+<<"%v $AV \n"
 
-   R=A->Real() // real part
+   R=AV->getReal() // real part
 
 <<"%v $R \n"
 
-   A[4]->Set(0.55,0.69)
+   AV[4]->Set(0.55,0.69)
 
-<<"%v $A[*] \n"
+<<"%v $AV[*] \n"
 
-   I=A->Imag() // real part
+   I=AV->GetImag() // real part
 
 <<"%v $I \n"
-ttyin()
 
-STOP!
+
+
 
     val = 0.1
 
     for (j = 1; j < 10; j++) {
 
-     A[j]->Real(val)  // just real ele
-     A[12]->Real(val)
+     AV[j]->SetReal(val)  // just real ele
+     AV[12]->SetReal(val)
 
-     R=A->Real() // real part
+     R=AV->SetReal() // real part
 
      <<"%v $R[0:12] \n"
 
     val += 0.1
-ttyin()
+
    }
 
 
-   A->real(Sin(Fgen(N,0,0.1)))
+   AV->Setreal(Sin(Fgen(N,0,0.1)))
 
 
-   R = A->real(Cos(Fgen(N,0,0.1)))
+   R = AV->Setreal(Cos(Fgen(N,0,0.1)))
 
 <<" $(Caz(R)) \n"
 
   <<"\n%v $R[0:10] \n"
-ttyin()
 
-   R = A->Real(Sin(Fgen(N,0,0.1)))
+
+   R = AV->SetReal(Sin(Fgen(N,0,0.1)))
 
 <<" $(Caz(R)) \n"
 
 
   <<"\n%v $R[0:10] \n"
 
-   A->Imag(4.0)      // imag vector set to zero
+   AV->SetImag(4.0)      // imag vector set to zero
 
-   I= A->Imag()     // get imag part
+   I= AV->getImag()     // get imag part
 
 <<" $(Caz(I)) \n"
   <<"%v $I[0:10] \n"
 
-<<"%v $A->Imag() \n"
+<<"%v $AV->getImag() \n"
 
 
-<<"\n %v $A[0:10] \n"
+<<"\n %v $AV[0:10] \n"
 
 
-   B = A
+   B = AV
 
 <<"\n %v $B[0:10] \n"
 
-   C = A + B
+   C = AV + B
 
 <<"\n %v $C[0:10] \n"
 
-   C = A - B
+   C = AV - B
 
 <<"\n %v $C[0:10] \n"
 
-   C = A * B
+   C = AV * B
 
 <<"\n %v $C[0:10] \n"
 
-   C = A / B
+   C = AV / B
 
 <<"\n %v $C[0:10] \n"
 
 
+   AV[3] = {0.3,42.0}  
+
+<<"\n %v $AV[0:10] \n"
 
 
+   AV[3] = {0.3,42.0}  
+
+<<"\n %v $AV[0:10] \n"
 
 
-STOP!
+   AV[9] = {0.3,42.0}  
 
-   A[3] = {0.3,42.0}  
-
-<<"\n %v $A[0:10] \n"
-
-
-   A[3] = {0.3,42.0}  
-
-<<"\n %v $A[0:10] \n"
-
-
-   A[9] = {0.3,42.0}  
-
-<<"\n %v $A[0:10] \n"
+<<"\n %v $AV[0:10] \n"
 
 
 
@@ -489,24 +522,19 @@ STOP!
 
 
 
-STOP!
 
 
 
+   AV[2]->setImag (-0.5)  // just imag ele
+
+   AV[3] = {0.3,0.4}  
 
 
 
-
-   A[2]->imag (-0.5)  // just imag ele
-
-   A[3] = {0.3,0.4}  
+   AV[0:20:2]->SetImag(5.0)      // imag subscripted part of vector set to zero
 
 
 
-   A[0:20:2]->imag(5.0)      // imag subscripted part of vector set to zero
-
-
-STOP("DONE")
 float V[12]
 j = 0
     V[j] = 3
@@ -518,3 +546,30 @@ j = 0
 
 <<" $V[0:10] \n"
     }
+
+dcmplx DCV[>10]
+
+
+DVR=vgen(DOUBLE_,10,0,0.25)
+DVI=vgen(DOUBLE_,10,-10,0.25)
+
+<<"$DVR\n"
+<<"$DVI\n"
+
+DCV->setReal(DVR)
+DCV->setImag(DVI)
+
+
+<<"$DCV\n"
+
+DVGR=DCV->getReal()
+
+<<"$DVGR\n"
+dv= 0.0
+for(i=0;i<10;i++) {
+
+checkFnum(DVGR[i],dv);
+dv += 0.25
+}
+
+checkOut()

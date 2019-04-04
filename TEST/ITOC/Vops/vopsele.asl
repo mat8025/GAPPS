@@ -1,12 +1,30 @@
+//%*********************************************** 
+//*  @script vopsele.asl 
+//* 
+//*  @comment test vector ops 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                  
+//*  @date Wed Apr  3 22:26:49 2019 
+//*  @cdate Wed Apr  3 22:26:49 2019 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+
+include "debug.asl"
+debugON()
 
 CheckIn()
 
-// trailing + make it a dynamic expandable array
-int J[20+] 
 
-  J[0:30]->SetV(10,2)
+// leading > make it a dynamic expandable array
+int J[>20] 
+
+  J[0:30]->Set(10,2)
 
 <<"$J \n"
+
+
 int sum
 <<"%V$sum \n"
 
@@ -65,8 +83,5 @@ CheckNum(sum,71)
 
 CheckNum(sum,71)
 
-//CheckNum(sum,72)
-
 
 CheckOut()
-stop!

@@ -986,14 +986,29 @@ fscanv
 fscanv
 .)x 
 .FD
-fscanv(Fh,swapbytes,'fmt',&c,&s,&i,&f,&CV)
-fscanv(A,swapbytes,'C1,S1,I1,F1,C4',&acharvar,&ashortvar,&anintvar,&afloatvar,&CV)
+fscanv(Fh,swapbytes,'fmt',&cv,&sv,&iv,&fv,&dv,&xv)
+fscanv(A,swapbytes,'C4,S4,I4,F4,D4,X4',&cvec,&svec,&ivec,&fvec,&xvec)
+reads from binary data file as directed by format string into variables.
+C char, S short , I int, F float, D double, X cmplx
+the number following the type designation allows 
+mulitple item read into a supplied vector.
+A single read C1 into a scalar is also allowed.
+returns total number of bytes read.
 
-reads from file as directed by format string into variables.
-C char, S short , I int, F float
-the number following the type designation allows mulitple item read into a supplied
-vector.
-returns bumber of bytes read.
+
+.EF
+=============================================================
+.BF
+fscanf
+.(x
+fscanf
+.)x 
+.FD
+fscanf works similar to C function- except the fmt string should be between single quotes
+e.g. 
+fscanf(A,'%d %f %lf',&i,&f,&d)
+
+where i is int, f float, d double.
 
 
 .EF
@@ -2080,6 +2095,24 @@ will limit vector values to 1
  Another operation may done sequentially e.g
 setv(vec,">",10,10,"<",-10,-10)  
 would limit vector between range -10,10.
+.EF
+=============================================================
+.BF
+Set,set ~ sets values in a vector or a scalar
+.(x
+set
+.)x 
+.FD
+V->set(value)
+V[3]->set(value)
+V[1:20:2]->set(value_vec)
+
+sets elements of a variable to supplied value vector.
+if the variable is a scalar then just its value is set.
+Can be used to set a specified element of the variable array,
+or a subrange or the entire array.
+
+
 .EF
 =============================================================
 .BF
@@ -4862,7 +4895,9 @@ C=readfile(A)
 
 reads the entire  file attached to file handle  A into svar variable C
 line 0 is C[0], line 1 is C[1], ...
-the line will contain the final cr/lf character 
+the line will contain the final cr/lf character.
+The last character cr \n can be removed using option
+C=readfile(A,1) that element in svar C will then be null.
 Caz(C) gives number of lines read.
 
 e.g.
@@ -5964,7 +5999,23 @@ ssub
 .FD
 ssub(w1,w2,w3,{dir})
  
-substitutes string w3 into w1 for  first occurence of w2 returns the result.
+substitutes string w3 into w1 for  first occurrence of w2 returns the result.
+if dir 1 (default) starts at left, -1 from right, dir = 0 global substitute.
+if w3 set to "" (i.e. NULL)  delete operation (deletes occurence of w2).
+if dir > 1 then that many substitutions are performed from the left if possible.
+
+.EF
+=============================================================
+.BF
+ssubrgx
+.(x
+ssubrgx
+.)x 
+.FD
+ssubrgx(w1,w2,w3,{dir})
+ 
+substitutes string w3 into w1 for  first occurrence of regex pattern w2
+and returns the result.
 if dir 1 (default) starts at left, -1 from right, dir = 0 global substitute.
 if w3 set to "" (i.e. NULL)  delete operation (deletes occurence of w2).
 if dir > 1 then that many substitutions are performed from the left if possible.
@@ -6678,7 +6729,9 @@ Abs
 .)x 
 .FD
 Abs(A)
-truncates a floating point number delivers absolute integer result
+truncates a floating point number delivers absolute integer result.
+if A is a vector then operation occurs on all elements of the vector.
+e.g. V=Abs(A)  - V is a new vector of type integer of converted results.
 (see Fabs)
 
 .EF

@@ -24,8 +24,6 @@
 
 
 include "gevent.asl"
-
-
 include "debug"
 include "hv.asl"
 
@@ -141,7 +139,7 @@ A= ofr(fname)
     exit(-1);
  }
 
-record R[10+];
+//record R[10+];
 
 //ncols = 0;
 int rows = 5;
@@ -153,7 +151,7 @@ do_record = 1;
 
 
 
-Record DF[10];
+//Record DF[10];
 today = date(2);
 DF[0] = Split("$today,0,10,0,0,0,0,0,0,0",",");
 
