@@ -11,6 +11,11 @@
 //* 
 //***********************************************%
 
+// use
+// chead  xxx.cpp vers(1.1) comment("does this")  date(1/1/2001) > new.cpp
+// mv new.cpp xxx.cpp
+//
+
 
 proc vers2ele( vstr)
 {

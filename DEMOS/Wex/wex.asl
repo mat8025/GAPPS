@@ -3,8 +3,8 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 2.45 Rh Rhodium                                                
-//*  @date Sun Jan  6 20:13:28 2019 
+//*  @vers 2.47 Ag Silver                                                  
+//*  @date Sun Apr  7 16:02:57 2019 
 //*  @cdate Fri Jan  1 08:00:00 2010 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2014,2019 --> 
@@ -383,20 +383,13 @@ msgw =split(msg)
 
 
 include "wex_screen"
-
 include "wex_draw"
-
-
-
 include "wex_glines"
 
 
 
 ///////////////////////// PLOT  ////////////////////////////////////////////
 //  
-//  DrawGline(ext_gl)
-//  DrawGline(allgl)
-//  sWo(carbwo,@showpixmap)
 
 include "wex_compute";
 include "wex_callbacks";
@@ -491,7 +484,4 @@ exit_si()
 //
 //  get today's date and set up view for this quarter
 //  can we add comments
-
-
-//  FIX misaligned wt and Xercise plots!
 //  

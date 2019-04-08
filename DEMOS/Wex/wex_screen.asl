@@ -42,14 +42,14 @@ include "tbqrd.asl"  // does not know global created by this include??
 
     sc_startday = sc_endday - 70;   // last three months
 
-    gwo=cWo(vp,@graph,@name,"WTLB",@value,0,@clipborder)
+    gwo=cWo(vp,@graph,@name,"WTLB",@value,0,@clipborder); //
 
-    calwo=cWo(vp,@graph,@name,"CAL",@value,0,@clipborder,BLACK_)
+    calwo=cWo(vp,@graph,@name,"CAL",@value,0,@clipborder,BLACK_) ; // cals & carbs
 
-    carbwo=cWo(vp,@graph,@name,"CARB",@value,0,@clipborder,BLACK_)
+    extwo=cWo(vp,@graph,@name,"XT",@value,0,@clipborder,BLACK_); // exercise time
 
 
-   int wedwo[] = { gwo, calwo, carbwo  };
+   int wedwo[] = { gwo, calwo, extwo  };
 
 <<[_DB]"%V$wedwo \n"
 
@@ -60,14 +60,13 @@ include "tbqrd.asl"  // does not know global created by this include??
     cx = 0.08 ; cX = 0.98 ; cy = 0.2 ; cY = 0.97;
 
 
-//titleButtonsQRD(vp1)
-titleButtonsQRD(vp)
+
+    titleButtonsQRD(vp)
 
  //////////////////////////////// TITLE BUTTON QUIT ////////////////////////////////////////////////
 
 CalsY1 = 5000;
 
-extwo = calwo;
 
     carb_upper = 300;
 
@@ -75,23 +74,19 @@ extwo = calwo;
 
     sWo(calwo,@clip,cx,cy,cX,cY, @color,MAGENTA_)
 
-    sWo(carbwo,@clip,cx,cy,cX,cY, @color,YELLOW_)
+    sWo(extwo,@clip,cx,cy,cX,cY, @color,YELLOW_)
 
     sWo(wedwo,@border,@clipborder,"black",@drawon)
 
     sWo(gwo,@scales,sc_startday,160,sc_endday+10,220,@savescales,0) 
 
-    sWo(extwo,@rhtscales,sc_startday,0,sc_endday+10,600,@savescales,1);
+    sWo(extwo,@scales,sc_startday,0,sc_endday+10,250,@savescales,0);
 
-    sWo(extwo,@usescales,1,@axnum,3);
+    //sWo(extwo,@usescales,1,@axnum,3);
 
     sWo(calwo,@scales,sc_startday,0,sc_endday+10,CalsY1,@savescales,0)
 
-    sWo(carbwo,@scales,sc_startday,0,sc_endday+10,carb_upper,@savescales,0)
-
-//    sWo(carbwo,@scales,sc_startday,0,sc_endday+10,1200)
-//    sWo(extwo,@axnum,1,sc_startday,sc_endday,7,1)
-
+    sWo(calwo,@rhtscales,sc_startday,0,sc_endday+10,carb_upper,@savescales,1)
 
 
     swo= cWo(vp1,@type,"GRAPH",@name,"BenchPress",@color,"white");
@@ -102,13 +97,6 @@ extwo = calwo;
 
     sWo(xwo,@clip,cx,cy,cX,cY,@color,WHITE_, @clipborder,BLACK_)
 
-//<<[_DB]" $DVEC[0:10] \n"
-
-//<<[_DB]" %5\s\nR$WTVEC \n"
-
-//<<[_DB]" %5\s->\s,\s<-\nR$CARBV \n"
-
-//<<[_DB]" %10\s\nr$WTPMV \n"
 
 ///  measurement
 
@@ -129,13 +117,12 @@ extwo = calwo;
 
 <<[_DB]"SCALES %V$sc_startday $sc_endday $bp_upper\n"
 
-    sWo(carbwo,@scales,sc_startday,0,sc_endday+10,carb_upper)
+//    sWo(carbwo,@scales,sc_startday,0,sc_endday+10,carb_upper)
 
 <<[_DB]"SCALES %V$sc_startday $sc_endday $carb_upper\n"
 
-    //int allwo[] = {gwo,swo,carbwo,calwo,extwo}
-//    int allwo[] = {gwo,swo,calwo,extwo}
-    int allwo[] = {gwo,swo,calwo, carbwo}
+
+    int allwo[] = {gwo,swo, calwo, extwo}
 
 //<<"%V $allwo \n"
 
@@ -188,3 +175,4 @@ extwo = calwo;
 
   titleVers();
 
+//======================================//

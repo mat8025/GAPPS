@@ -12,23 +12,36 @@
 //***********************************************%///
 
 /{/*
-
-
-
+ColSum()
+V=ColSum(A)
+returns array V - containing the sum of the columns of a 2D array.
+dimensions [1][n_of_cols]
+V->redimn() - would redimension to vector
+//===================================//
+RowSum()
+V=RowSum(A)
+returns array V - containing the sum of the columns of a 2D array.
+dimensions [num_of_rows][1]
+V->redimn() - would redimension to vector
+//===================================//
 /}*/
 ///
 /// magic square
 ///
+include "debug.asl"
+debugON()
+
+
 
 CheckIn()
 
-setdebug(0)
+
 
 //#define ASK ans=iread();
 #define ASK ;
 
 
-int A[10+]
+int A[>10]
 
 int B[] = {16, 3, 2, 13, 5, 10, 11, 8, 9, 6, 7, 12, 4 ,15, 14, 1}
 
@@ -53,33 +66,39 @@ int B[] = {16, 3, 2, 13, 5, 10, 11, 8, 9, 6, 7, 12, 4 ,15, 14, 1}
 stageComment("RowSum Test -summing rows of magic square 34");
 
  R= RowSum(A)
-
+R->redimn()
 <<"$R\n"
 
+
   for (i=0;i < 4; i++) {
-
+   <<"<$i> $R[i] \n"
    checkNum(R[i],34);
-  }
 
+}
+R->info(1)
  //  checkNum(R[0],33);
 
  checkStage("RowSum")
 
+
+
+
 stageComment("ColSum Test -summing cols of magic square 34");
 
  C= ColSum(A)
-
+ C->redimn()
+ CV= C
 
 <<"$C\n"
-
+//C->info(1)
   for (i=0;i < 4; i++) {
-
+  <<"<$i> $C[i] $CV[i] \n"
    checkNum(C[i],34);
   }
 
 
  checkStage("ColSum")
-
+checkOut(); exit();
 
 
  M = Sum(A)

@@ -15,14 +15,11 @@
 
 
 <<[_DB]"\n%(10,, ,\n)$DVEC \n"
-//<<[_DB]"\n%V$PWTVEC[0:20] \n"
 
    pwt_gl = -1
    pwt_gl  = cGl(@wid,gwo,@TXY,DVEC,PWTVEC,@color,GREEN_,@ltype,"line")
 
 <<[_DB]"%V$pwt_gl \n"
-
-   extwo = calwo;
 
    ext_gl  = cGl(extwo,@TXY,DVEC,EXTV,@color,BLUE_,@ltype,"symbols",TRI_)
 
@@ -30,7 +27,6 @@
 
   sGl(ext_gl,@symsize,3,@symhue,GREEN_)
 
- //wt_gl   = cGl(@wid,gwo,@TXY,DVEC,WTVEC,@color,RED_,@ltype,"symbols","diamond")
   wt_gl    = cGl(gwo,@TXY,DVEC,WTVEC,@color,RED_,@ltype,"symbols","diamond")
 
 //<<[_DB]"%V$wt_gl \n"
@@ -41,7 +37,7 @@
     exit()
   }
 
-// wtpm_gl = cGl(gwo,@type_XY,DVEC,WTPMV,@color,BLUE_,@ltype,"symbols","diamond")
+
 
  gw_gl   = cGl(gwo,@TXY,WDVEC,GVEC,@color,BLUE_)
 
@@ -65,13 +61,12 @@ if ( gw_gl == -1 || bp_gl == -1) {
 
  calc_gl = cGl(calwo,@TXY,CCDV,CALSCON,@color,RED_,@ltype,"symbols",STAR_,@symhue, RED_)
 
- carb_gl = cGl(carbwo,@TXY,CCDV,CARBSCON,@color,RED_,@ltype,"symbols",STAR_,@symhue, RED_)
+ carb_gl = cGl(calwo,@TXY,CCDV,CARBSCON,@color,RED_,@ltype,"symbols",STAR_,@symhue, RED_)
 
  ave_ext_gl  = cGl(extwo,@TXY,DVEC,AVE_EXTV,@color,RED_,@ltype,"line")
 
  se_gl   = cGl(extwo,@TXY,DVEC,SEVEC,@color,"green",@ltype,"symbols","diamond")
 
-//  int allgl[] = {wtpm_gl,wt_gl,gw_gl,bp_gl,ext_gl,se_gl,calb_gl, calc_gl, pwt_gl}
 
   int allgl[] = {wt_gl,gw_gl,bp_gl,ext_gl,se_gl,calb_gl, calc_gl, pwt_gl}
 
@@ -86,6 +81,7 @@ if ( gw_gl == -1 || bp_gl == -1) {
   sGl(ext_gl,@symbol,TRI_,symsz, @symfill,FILL_)
 
   sGl(wt_gl,@symbol,TRI_,symsz, @symfill,FILL_,@symhue,RED_)
+
   sGl(se_gl,@symbol,DIAMOND_,symsz)
 
   sGl(calb_gl,@symbol,DIAMOND_,symsz,@symfill,FILL_,@symhue,BLUE_)
@@ -102,4 +98,4 @@ if ( gw_gl == -1 || bp_gl == -1) {
   rc_gl   = cGl(gwo,@type,"XY",@color,BLUE_,@ltype,"cursor")
 
 
-//[EM]===========================================//
+//===========================================//

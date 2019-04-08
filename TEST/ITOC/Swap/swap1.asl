@@ -1,5 +1,12 @@
+
+
+
+include "debug.asl"; 
+debugON();
+
+
 checkIn()
-setdebug(1,@pline,@~step,@~trace,@showresults,1)
+
 filterFuncDebug(ALLOWALL_,"proc");
 filterFileDebug(ALLOWALL_,"ic_op");
 

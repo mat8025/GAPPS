@@ -18,6 +18,14 @@
 
 // use an indent of 2 spaces - for all non-comment lines
 
+  fname = _clarg[1];
+  <<[2]"$fname \n"
+
+  A=ofr(fname);
+  if (A ==-1) {
+  <<"can't find $fname \n"
+   exit()
+  }
   
   char ns[];
   char c;
@@ -39,10 +47,10 @@
     
     is_comment = 0;
     is_empty_line = 0;
-    L = readline(0);
+    L = readline(A);
     
     
-    if (ferror(0) == EOF_ERROR_)
+    if (ferror(A) == EOF_ERROR_)
           break;
     
     

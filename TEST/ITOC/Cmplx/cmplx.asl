@@ -385,6 +385,8 @@ N = 11
 
 cmplx AV[N]
 
+
+AV->info(1)
 <<"%v $AV[0:10] \n"
 
 <<"$(typeof(AV)) $(Caz(AV)) \n"
@@ -397,10 +399,13 @@ cmplx AV[N]
 
 <<"%v $AV \n"
 
-   R=AV->getReal() // real part
+AV->info(1)
 
+   R=AV->getReal() // real part
+R->info(1)
 <<"%v $R \n"
 
+exit()
    AV[4]->Set(0.55,0.69)
 
 <<"%v $AV[*] \n"
@@ -421,7 +426,8 @@ cmplx AV[N]
 
      R=AV->SetReal() // real part
 
-     <<"%v $R[0:12] \n"
+    // <<"%v $R[0:12] \n"
+     <<"%v $R \n"
 
     val += 0.1
 
@@ -432,8 +438,12 @@ cmplx AV[N]
 
 
    R = AV->Setreal(Cos(Fgen(N,0,0.1)))
-
+R->info(1);
 <<" $(Caz(R)) \n"
+
+   T= R[0:10];
+
+<<"$T \n"
 
   <<"\n%v $R[0:10] \n"
 

@@ -13,7 +13,7 @@
 int _DB = -1; //dbg FH set to nop --set to 2 for error output
 
 dbid = IDof("_DB");
-<<"%V dbid _DB\n"
+//<<"%V dbid _DB\n"
 
 setdebug(0,@keep);
 // if there are errors keep  idb,xdb file in .GASP/WORK/Debug
@@ -60,7 +60,7 @@ proc scriptDBOFF()
 
 //==========================
 
-<<" %V $_include \n"
+//<<" %V $_include \n"
 
 ///
 ///  while (1) {

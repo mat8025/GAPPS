@@ -45,18 +45,20 @@ proc adjustAmounts (svar irs, f)
 
 <<"%V $(typeof(irs)) $irs[::]\n";
 //<<"$irs[::]\n";
-//  for (i = 0; i < Ncols; i++)
-//    {
-//    <<"<$i>  $irs[i] \n";
-//    }
+  for (i = 0; i < Ncols; i++)
+    {
+    <<"<$i>  $irs[i] \n";
+    }
 
   a = atof (irs[1]) * f;
   <<"%V$a\n";
   irs[1] = "%6.2f$a";
+
+
   for (i = 3; i < Ncols; i++)
     {
       a = atof (irs[i]) * f;
-  //  <<"%V$a\n" ;
+    <<"$irs[i] $a\n" ;
     irs[i] = "%6.2f$a";
     }
 

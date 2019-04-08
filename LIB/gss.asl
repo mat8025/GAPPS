@@ -33,11 +33,13 @@ int Ncols = 10;
 
 str cvalue ="xx";
 
+//////////////////////   these records needed and used for any GSS /////////////////////
 
-Record R[+20];
+Record R[>3];
+
 Rn = 5;
 
- Record DF[+10];
+Record DF[>3];
 
 
 

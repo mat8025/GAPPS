@@ -11,6 +11,20 @@
 //* 
 //***********************************************%
 
+/{/*
+set() ~ sets values in a vector or a scalar()
+V->set(value)
+V[3]->set(value)
+V[1:20:2]->set(value_vec)
+V[1:20:2]->set(value_vec,incr)
+sets elements of a variable to supplied value vector.
+if the variable is a scalar then just its value is set.
+Can be used to set a specified element of the variable array,
+or a subrange or the entire array.
+The initial vaue can be incremented at each set step to create a series.
+//===================================//
+/}*/
+
 include "debug.asl"
 debugON()
 

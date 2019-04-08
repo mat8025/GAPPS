@@ -1,15 +1,19 @@
 //%*********************************************** 
-//*  @script calcounter.asl 
+//*  @script editfoods.asl 
 //* 
-//*  @comment  
+//*  @comment add/edit a food entry 
 //*  @release CARBON 
-//*  @vers 1.25 Mn Manganese                                              
-//*  @date Mon Jan 28 10:08:34 2019 
-//*  @cdate Fri Jan  1 08:00:00 2016 
+//*  @vers 1.2 He Helium                                                  
+//*  @date Wed Jan 16 18:08:31 2019 
+//*  @cdate Wed Jan 16 18:08:31 2019 
 //*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2014,2018 --> 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
+
+
+
+
 
 
 
@@ -21,7 +25,6 @@ include "gss.asl";
 include "hv.asl"
 include "calcounter_ssp.asl";
 
-debugON()
 
 
 //////   create MENUS here  /////
@@ -49,6 +52,8 @@ cf(A)
 
 //==========================
 Nbp = 4; // number of search results
+
+
 
   A=  ofr("foodtableC.csv");
 
@@ -83,22 +88,15 @@ nargs = argc();
 
 adjust_day = 0;
 
-edit_foods = 0;
+edit_foods = 1;
 
 fname = _clarg[1];
 
 nl = slen(fname);
 
-if (nargs > 1) {
- if (scmp(_clarg[2],"edit")) {
- edit_foods =1;
- }
-}
-
-
-
 <<"<|$fname|> \n"
- <<"%V <|$fname|> $nl\n"
+
+<<"%V <|$fname|> $nl\n"
 
  if (edit_foods) {
 
@@ -108,51 +106,6 @@ if (nargs > 1) {
     exit();
     }
  }
- else {
-
-  make_day = 0;
-
- if (nl != 0) {
-
-  if (scmp(fname,"DD/dd_",6)) {
-     adjust_day = 1;
-     the_day = fname;
-   }
-
-  A= ofr(fname)
-  if (A == -1) {
-   <<"can't find file dd_ day $fname \n";
-    adjust_day = 0;
-    make_day = 1;
-   }
- }
-
-//  make up today and check
-
- if (!adjust_day && !make_day) {
-  ds= date(2);
-  ds=ssub(ds,"/","-",0);
-  the_day = "DD/dd_${ds}";
- }
-
-
- fname = the_day;
-
- ok=fexist(the_day,0);
-
- <<"checking this day $the_day summary exists? $ok\n";
-
- found_day = 0;
-
- if (ok > 0) {
- 
-   A= ofr(fname)
-   if (A == -1) {
-   exit(-1);
-   }
-   found_day =1;
-  }
-}
 
 
   myfood = "pie apple";
@@ -162,11 +115,11 @@ if (nargs > 1) {
  int fnd = 0;
  int bpick;
 
-// Record DF[10];
+ Record DF[10];
 
  DF[0] = Split("?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?",",");
    
-// Record R[];
+ Record R[];
 
 if (found_day || edit_foods) {
    R= readRecord(A,@del,',')
@@ -174,62 +127,21 @@ if (found_day || edit_foods) {
 }
 else {
 
+//R[0] = Split("Food,Amt,Unit,Cals,Carbs,Fat,Protein,Chol(mg),SatFat,Wt,",",");
  R[0]= Split("Food,Amt,Unit,Cals,Carbs(g),Fat,Prot,Choles(mg),SatFat(g),Wt(g),Choline(mg),vA(dv),vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn,",",");
- //R[1] = Split("Totals,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0",",");
+
+ R[1] = Split("Totals,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?",",");
+
 }
 
   sz = Caz(R);
   Nrows = sz;
   
-  Ncols = Caz(R,0);
+  Ncols = Caz(R[0]);
   rows = sz+1;
-  cols = Ncols;
-
-
-<<"num of records $sz  %V $rows $Ncols\n"
-  totalRows();
   
-  sz = Caz(R);
-  Nrows = sz;
-  
-  Ncols = Caz(R,0);
-  rows = sz;
-  cols = Ncols;
-
 <<"num of records $sz  %V $rows $Ncols\n"
 
-<<"/////////// %v $rows\n"
-
-  for (j=0; j<rows; j++) {
-
-<<"$j  $R[j]\n"
-  }
-
-
-Record RC[20];
-
-
-j=70
-for (i= 0; i < 10; i++) {
-<<"<$j> $RF[j]\n"
-//  RC[i] = RF[j];
- j++;
-//<<"<$i> $RC[i]\n"
-}
-
-  RC[1] = RF[70];
-
-  mf = 2.0;
-   _erow = 1;  
-     wans = RC[_erow];
-     wans->info(1)
-<<"%V $wans\n"
-     adjustAmounts (wans, mf);
-<<"%V $wans\n"
-    RC[_erow] = wans;
-
-
-//exit()
 //////////////////////////////////
 
 
@@ -250,12 +162,14 @@ include "checkFood";
 
 int cv = 0;
 
+  sz= Caz(R);
+  rows = sz;
+  cols = Caz(R[0])
 
   tags_col = cols;
  // rows += 2;
   sWo(cellwo,@setrowscols,rows+10,cols+1);
 
-  sWo(cellwo,@cellval,R,0,0,rows,cols);  
 <<"%V$rows $sz \n"
 
   for (i = 0; i < rows;i++) { 
@@ -275,19 +189,19 @@ int cv = 0;
      }
 
 
+  totalRows();
 
- 
-  sWo(cellwo,@cellval,R,0,0,rows+1,cols);  
+
+  sWo(cellwo,@cellval,R,0,0,rows,cols);  
    
-  //sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
-  sWo(cellwo,@selectrowscols,0,rows,0,cols);
+  sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
 
   sWo(cellwo,@cellval,0,tags_col,"Tags")
 
 
  R[0][tags_col] = "Tags";
 
-
+Record RC[20];
 
  for (i=0; i < Nbp; i++) {
    RC[i] = RF[i+1];   // BUG xic fix
@@ -327,8 +241,6 @@ int cv = 0;
 
    setRowColSizes();
 
-
-
    sWo(choicewo,@cellval,RC,0,0,Nbp,cols); // RecordVar, startrow, startcol, nrows, ncols,
  
    sWo(cellwo,@redraw);
@@ -355,13 +267,13 @@ int cv = 0;
 //  <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ekeyw3 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
 int mwr =0;
 int mwc = 0;
-while (1) {
+
+  while (1) {
 
          eventWait();
 
    //<<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ekeyw3 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
         _erow->info(1);
-
 
          mwr = _erow;
 	 mwc = _ecol;

@@ -722,7 +722,7 @@ int do_help = 0;
 
      RunDirTests("Vops","vops,vopsele")
 
-     RunDirTests("Vector","vec,veccat,vecopeq,vecrange")
+     RunDirTests("Vector","vec,veccat,vecopeq,vecrange,veclhrange")
 
    //     RunDirTests("Reverse","reverse") ; // BUG needs more than one
    Run2Test("Reverse")

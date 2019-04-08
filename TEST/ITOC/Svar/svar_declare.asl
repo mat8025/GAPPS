@@ -84,10 +84,11 @@ checkStr(Mol[1],"FEB")
 
 
 
-checkProgress()
+//checkProgress()
 
 <<" DONE Lists \n"
 //////////////////////////////////
+
 
 
 
@@ -125,7 +126,124 @@ int A[] = {0,1,2,3,4,5,6,7,8}
 checkNum(A[1],1)
 checkNum(A[8],8)
 
+
+
+
+IV= vgen(INT_,20,0,1)
+
+<<"$IV \n"
+
+
+svar S
+
+S->info(1)
+
+T= itoa(IV); // does not deliver svar array
+
+T->info(1)
+<<"$T\n"
+
+M=Split("$IV")
+M->info(1)
+<<"$M \n"
+
+<<"$M[3] $M[7]\n"
+
+IV2= atoi(M)
+
+<<"$IV2\n"
+
+IV2->Info(1);
+
+
+
+R= M[3::]
+
+<<"$R \n"
+R->info(1)
+
+IV3= atoi(R)
+
+<<"$IV3\n"
+checkNum(IV3[0],3)
+
+IV3 *= 2;
+
+checkNum(IV3[0],6)
+
+<<"$IV3\n"
+
+//M[3::] = atoi(IV3)
+M[0] = 47
+<<"$M\n"
+checkStr(M[0],"47")
+R[0] = 79
+R[1] = 80
+R[2] = 82
+checkStr(R[0],"79")
+
+M[3:6:] = R[0:3:]
+
+checkStr(M[3],"79")
+checkStr(M[4],R[1])
+checkStr(M[4],"80")
+checkStr(M[5],"82")
+
+
+<<"$R\n"
+<<"$M\n"
+
+
+//checkOut();
+////////////////////
+
+IV4=vgen(INT_,10,45,1)
+<<"$IV4\n"
+
+checkNum(IV4[0],45)
+checkNum(IV4[1],46)
+
+<<"$IV3\n"
+
+
+
+IV3[3:12:1] = IV4[0:9:];
+checkNum(IV3[0],6)
+
+checkNum(IV3[3],45)
+checkNum(IV3[4],46)
+
+
+
+<<"$IV3\n"
+
+IV4 = IV3	
+IV4[3:12:1] = 52;
+
+<<"$IV4\n"
+
+IV3[3:12:1] *= 2;
+
+<<"$IV3\n"
+
+
+
+
+
+IV3= atoi(M)
+
+<<"$IV3\n"
+
+IV3->Info(1);
+
+IV3= atoi(M[3::])
+
+<<"$IV3\n"
+
+IV3->Info(1);
+
+checkNum(IV3[0], 79)
+
+
 checkOut()
-
-
-stop!
+exit()
