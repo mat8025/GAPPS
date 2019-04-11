@@ -1,15 +1,3 @@
-//%*********************************************** 
-//*  @script ifnest.asl 
-//* 
-//*  @comment test ifnest and sindent 
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                  
-//*  @date Mon Apr  8 09:07:32 2019 
-//*  @cdate Mon Apr  8 09:07:32 2019 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
    
    
 //N = atoi( _clarg[1])
@@ -19,9 +7,9 @@
    N =5; 
    <<" $N  testing for <,=, or > than 1\n"; 
    nwr = 4; 
-   jlt =0;
-   jeq = 0;
-   jgt = 0;
+   jlt =0; 
+   jeq = 0; 
+   jgt = 0; 
    j = 1; 
    M = N + 3; 
    if (N > j) {
@@ -31,20 +19,20 @@
          if (N > j )
          {
            <<"$N > $j \n"; 
-           jlt++;
+           jlt++; 
            j++; 
            <<"%v $j $jlt do we see this if true line ?\n"; 
            }
          else if (N ==j)  {
            <<"$N == $j \n"; 
            j++; 
-           jeq++;
+           jeq++; 
            <<"%v $j == $N do we see this else if line ?\n"; 
            }
          else {
            <<"$N < $j \n"; 
            j++; 
-           jgt++;
+           jgt++; 
            <<"%v $j $jgt do we see this else line ?\n"; 
            }
          }

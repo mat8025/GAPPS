@@ -20,6 +20,8 @@ checkIn(0)
 // foota returns arg values into double array
 // dv = testargs(1,2)
 
+<<"func test depends on testargs - which may change!\n"
+
 jal = 0
 
 j = 4
@@ -73,8 +75,8 @@ col = split(fvs)
 jal = 3
 fvs = fva2[jal]
 col = split(fvs)
-
-checkstr(col[1],"5.000000")
+<<"%V $col \n"
+checkstr(col[1],"1.000000")
 
 CheckOut()
 exit()

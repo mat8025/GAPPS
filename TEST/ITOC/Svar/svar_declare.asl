@@ -3,8 +3,8 @@
 //* 
 //*  @comment test list declare 
 //*  @release CARBON 
-//*  @vers 1.40 Zr Zirconium                                              
-//*  @date Mon Jan 21 07:00:39 2019 
+//*  @vers 1.41 Nb Niobium                                                 
+//*  @date Mon Apr  8 09:51:04 2019 
 //*  @cdate 1/1/2004 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -12,7 +12,7 @@
 //***********************************************%
 #
 
-include "debug.asl"
+#include "debug.asl"
 
 debugON();
 
@@ -22,7 +22,8 @@ setdebug (1, @pline, @~step, @trace, @soe) ;
 civ = 0;
 
 cov= getEnvVar("ITEST")
-if (! (cov @="")) {
+if (! (cov @=""))
+{
 civ= atoi(cov)
 <<"%V $cov $civ\n"
 }
@@ -138,7 +139,7 @@ svar S
 
 S->info(1)
 
-T= itoa(IV); // does not deliver svar array
+T= itoa(IV) // does not deliver svar array
 
 T->info(1)
 <<"$T\n"
@@ -226,13 +227,18 @@ IV3[3:12:1] *= 2;
 
 <<"$IV3\n"
 
-
+<<"M $M \n"
 
 
 
 IV3= atoi(M)
 
 <<"$IV3\n"
+
+checkNum(IV3[0], 47)
+checkNum(IV3[1], 1)
+checkNum(IV3[2], 2)
+
 
 IV3->Info(1);
 
@@ -244,6 +250,11 @@ IV3->Info(1);
 
 checkNum(IV3[0], 79)
 
+ if (IV3[0] == 79) {
+<<"OK $IV[0:-1:2] \n"
+ }
+
+
+
 
 checkOut()
-exit()

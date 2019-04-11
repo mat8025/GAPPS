@@ -74,7 +74,8 @@ checkFnum(Z,3.2345)
    
  checknum(h,47.0/79)
 
-
+dd= foo(4,5)
+<<"$dd\n"
 
  checkout()
 

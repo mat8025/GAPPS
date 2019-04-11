@@ -13,7 +13,7 @@
 
 
 
-
+<<"in dayt_scrn\n"
 
     vp = cWi(@title,"S2D:$fname",@resize,0.1,0.1,0.9,0.8)
 

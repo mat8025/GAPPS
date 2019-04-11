@@ -145,7 +145,7 @@ int dday;
 // this is a new format -- allowing us to put comment labels on graphs
 
 
- A=ofr("wex.tsv")
+ A=ofr("wex2019.tsv")
 
  
 if (A == -1) {
@@ -369,10 +369,7 @@ include "wex_foodlog"
 
 
 //////////////////// DISPLAY /////////////////////////////
-Graphic = CheckGwm()
- if (!Graphic) {
-     X=spawngwm()
-  }
+include "graphic"
 
 
 msg ="x y z"     // event vars

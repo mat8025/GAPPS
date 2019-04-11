@@ -21,7 +21,7 @@ include "global.asl"
 
 <<[_DB]"%V $GV\n"
 
-include "tbqrd.asl"  // does not know global created by this include??
+
 
 <<"%V $tbqrd_tv \n"
 

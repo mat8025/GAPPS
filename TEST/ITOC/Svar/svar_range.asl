@@ -109,7 +109,7 @@ checkStr(S[3],"81")
 
 checkStage ("lh range assign and rh range -both stride 2")
 
-checkOut() ; exit();
+checkOut() ; 
 
 
 

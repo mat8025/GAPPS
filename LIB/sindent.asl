@@ -3,8 +3,8 @@
 //* 
 //*  @comment format asl code 
 //*  @release CARBON 
-//*  @vers 1.16 S Sulfur                                                  
-//*  @date Sat Mar  2 13:01:28 2019 
+//*  @vers 1.17 Cl Chlorine                                                
+//*  @date Mon Apr  8 09:49:04 2019 
 //*  @cdate 1/1/2015 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -34,6 +34,7 @@
   int ln = 0;
   
   is_comment = 0;
+  is_trailing_comment = 0;
   
   nw = 2;
   
@@ -47,6 +48,7 @@
     
     is_comment = 0;
     is_empty_line = 0;
+    is_trailing_comment = 0;
     L = readline(A);
     
     
@@ -71,6 +73,10 @@
         is_comment = 1;
         <<[2]"comment $L\n"; 
         }
+      else if (ns[0] == 35) {
+        is_comment = 1;
+        <<[2]"comment $L\n"; 
+        }	
       else {
         ws = dewhite(L); 
         if (slen(ws) == 0) {
@@ -129,7 +135,10 @@
     <<[2]"<|$L|> <|$NL|> %V $nw $is_cbs $is_cbe \n"; 
     
     is_proc = scmp(NL,"proc",4,0);
-    
+
+    is_if = scmp(NL,"if",2,0);
+
+
     tws = nsc(nw," ");
     if (is_cbs) {
       nw += 2;
@@ -209,9 +218,22 @@
     if (is_empty_line && (empty_line_cnt > 2)) {
       <<[2]"%V $empty_line_cnt\n"; 
       }
-    else  if ( !is_comment && !is_proc &&(sl > 0) && (  sstr(";/{}\\",c,1) == -1) ) { 
+    else  if ( !is_comment && !is_proc && !is_if  \
+                 && (sl > 0) \
+		 && (  sstr(";/{}\\",c,1) == -1) ) { 
+//
+//    check for trailing comment - if so eol is just before
+       mat =0;
+       cr =0;
+       spat(L,"//",-1,-1,&mat,&cr);
+       if (mat) {
+         NL = ssub(L,"//","; //")
+	 is_trailing_comment = 1;
+       }
       <<[2]" needs ; ? <|$c|>\n";
       <<[2]" needs ; $L\n";
+
+
       if (conline) {
         <<"$tws$NL1		\\\n"; 
         <<"$tws  \t\t$NL2; \n"; 
@@ -219,6 +241,9 @@
       else if (is_empty_line) {
         <<"$L\n"; 
         }
+      else if (is_trailing_comment) {
+        <<"$tws$NL \n"; 
+        }	
       else {
         <<"$tws$NL; \n"; 
         }

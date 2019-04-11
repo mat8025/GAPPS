@@ -1,24 +1,32 @@
 //%*********************************************** 
 //*  @script selfnd2ftable.asl 
 //* 
-//*  @comment  
+//*  @comment extract cal/vit/min data  
 //*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                 
-//*  @date Tue Dec 25 16:08:52 2018 
+//*  @vers 1.3 Li Lithium                                                  
+//*  @date Wed Apr 10 11:32:55 2019 
+//*  @cdate 12/25/2018 
 //*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2014,2018 --> 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
 
+
 setdebug(1,@keep);
 
+// usage asl selfnd2ftable.asl mussels 2>junk > foodname.csv
+// spits out entry for foodtable - with vits,minerals from USDA data base 
+// input is cut&paste data in file
 // obtain data from
 // https://nutritiondata.self.com/facts/
 // default display or full details
 // ? script to drive and extract
-// or cut and paste
+// input is from webpage   https://nutritiondata.self.com/
+// cut & paste using search for desired food on that page
+// can this be done automagically - with web data mining command ?
 
 
+_DB=2;
 /{/*
 Kale
 Amounts per 1 cup, chopped (67g)
@@ -192,6 +200,7 @@ Footnotes for Kale, raw
 
 
 the_food = _clarg[1]
+
  sz= fexist(the_food,RW_,0);
  
  A= ofr(the_food)
@@ -201,11 +210,11 @@ the_food = _clarg[1]
   exit()
  }
 
- S=readfile(A)
+  S=readfile(A)
 
   sz = Caz(S)
 
-<<"$sz $S[0] $S[1] \n"
+<<[_DB]"$sz $S[0] $S[1] \n"
   ok = 0;
 
 
@@ -241,12 +250,13 @@ Zn="0";
 Amt="ITM"
 Unit = ""
 wrd="";
+
 for (i = 0 ; i < sz; i++) {
 
-<<"$i $S[i]"
-L = Split(S[i]);
+<<[_DB]"$i $S[i]"
+ L = Split(S[i]);
  lsz = Caz(L)
- <<"$lsz $L[0] <|$L[1]|>\n";
+ <<[_DB]"$lsz $L[0] <|$L[1]|>\n";
  if ((L[0] @= "Amounts") && (L[1]@="per")) {
   Amt = L[2];
   Unit = L[3];  
@@ -254,17 +264,19 @@ L = Split(S[i]);
   if (scmp(wrd,"(",1)) {
     Wt = sob(wrd,"(");
     Wt = spat(Wt,"g",-1);
-    
   }
- }
+  Unit = ssub(Unit,",","")
+  
+
+}
  
  if (scmp(L[0],"Calories",8)) {
       wrd= spat(L[0],"Calories",1)
-      //<<"%V$wrd\n"
+      //<<[_DB]"%V$wrd\n"
       Cals = spat(wrd,"(",-1)
  }
  else if (scmp(L[0],"Protein",7)) {
- //<<"Prot\n"
+ //<<[_DB]"Prot\n"
       if (lsz <= 2) {
       wrd= spat(L[0],"Protein",1)
       Prot = spat(wrd,"g",-1)
@@ -286,7 +298,7 @@ L = Split(S[i]);
       wrd= spat(L[0],"Calcium",1)
       wrd =spat(wrd,"mg",1)
       Ca = spat(wrd,"\%",-1)      
- <<"%V $Ca\n"
+ <<[_DB]"%V $Ca\n"
  }
  else if (scmp(L[0],"Choline",7)) {
       wrd= spat(L[0],"Choline",1)
@@ -296,7 +308,7 @@ L = Split(S[i]);
       wrd= spat(L[0],"Iron",1)
       wrd = spat(wrd,"mg",1)
       Fe = spat(wrd,"\%",-1)
-  <<"%V $Fe\n"
+  <<[_DB]"%V $Fe\n"
  }
  else if (scmp(L[0],"Zinc",4)) {
       wrd= spat(L[0],"Zinc",1)
@@ -342,7 +354,7 @@ L = Split(S[i]);
         vB9Fo = spat(wrd,"\%",-1)
  }  
  else if (scmp(L[0],"Vitamin",7)) {
- <<"Vitamin\n"
+ <<[_DB]"Vitamin\n"
       if (scmp(L[1],"A",1)) {
          wrd= spat(L[1],"A",1)
          wrd= spat(wrd,"IU",1)	
@@ -371,11 +383,11 @@ L = Split(S[i]);
       }
       else if (scmp(L[1],"E",1)) {
          wrd= spat(L[3],")",1)
-<<"%V  $wrd\n"	 
+<<[_DB]"%V  $wrd\n"	 
          wrd= spat(wrd,"g",1)
 	 
 	 vE= spat(wrd,"\%",-1)
-<<"%V $vE $wrd\n"
+<<[_DB]"%V $vE $wrd\n"
      }      
       
  } 
@@ -383,12 +395,12 @@ L = Split(S[i]);
 
    if (scmp(L[1],"Carbohyd",8)) {
       wrd= spat(L[1],"Carbohydrate",1)
-      //<<"%V$wrd\n"
+      //<<[_DB]"%V$wrd\n"
       Carbs = spat(wrd,"g",-1)
    }
    else if (scmp(L[1],"Fat",3)) {
       wrd= spat(L[1],"Fat",1)
-      //<<"%V$wrd\n"
+      //<<[_DB]"%V$wrd\n"
       Fat = spat(wrd,"g",-1)
    }
  }
@@ -402,11 +414,9 @@ L = Split(S[i]);
 }
 
 
-<<"\n"
-<<"%V$wrd\n"
+<<[_DB]"\n"
+<<[_DB]"%V$wrd\n"
 
-<<"Food,Amt,Unit,Cals,Carbs(g),Fat,Prot,Choles(mg),SatFat(g),Wt(g),Choline(mg),vA(dv),vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,\
-vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn(dv),\n"
+<<"Food,Amt,Unit,Cals,Carbs(g),Fat,Prot,Choles(mg),SatFat(g),Wt(g),Choline(mg),vA(dv),vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn(dv),\n"
 
-<<"$Food\t,$Amt,$Unit,$Cals,$Carbs,$Fat,$Prot,$Chol,$SatFat,$Wt,$Cho,$vA,$vC,$vB1Th,$vB2Rb,\
-$vB3Ni,$vB5Pa,$vB6,$vB9Fo,$vB12,$vE,$vK,$Ca,$Fe,$Na,$K,$Zn \n"
+<<"$Food\t,$Amt,$Unit,$Cals,$Carbs,$Fat,$Prot,$Chol,$SatFat,$Wt,$Cho,$vA,$vC,$vB1Th,$vB2Rb,$vB3Ni,$vB5Pa,$vB6,$vB9Fo,$vB12,$vE,$vK,$Ca,$Fe,$Na,$K,$Zn \n"

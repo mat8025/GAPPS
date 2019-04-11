@@ -14,6 +14,7 @@
 
 proc makeMyDay (fnm)
 {
+<<"$_proc \n"
 <<[_DB]"making $fnm \n"
     B= ofw(fnm)
     R[0] = Split("Task,Priority,TimeEst,PCDone,TimeSpent,Difficulty,Attrb,Score,Tags",',');
@@ -228,8 +229,9 @@ int jcr = c -1;
 //===================================//
 proc SAVE()
 {
-<<[_DB]"IN $_proc saving sheet %V $fname  $Ncols \n";
- R[0] = Split("Task,Priority,TimeEst,PCDone,TimeSpent,Difficulty,Attrb,Score,Tags",",");	 
+//<<[_DB]"IN $_proc saving sheet %V $fname  $Ncols \n";
+<<"calling $_proc\n"
+            R[0] = Split("Task,Priority,TimeEst,PCDone,TimeSpent,Difficulty,Attrb,Score,Tags",",");	 
             B=ofw(fname);
             if ( B != -1) {
             nrw=writeRecord(B,R,@del,Delc,@ncols,Ncols);

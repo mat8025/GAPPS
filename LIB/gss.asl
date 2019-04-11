@@ -271,6 +271,10 @@ proc AddTask( wt)
     R[Rn] = "";
     }
 
+    if (sz > Rn) {
+          Rn = sz;
+    }
+
     er = Rn; // check this is correct for first call
 
     if (curr_row < 0) {
@@ -290,7 +294,9 @@ proc AddTask( wt)
 
     rows++;
     Nrows = rows;
+
 <<[_DB]"$wt $DF[wt]\n"
+
     ex = DF[wt];
 <<[_DB]"$wt $DF[wt] : $ex\n"
 
@@ -301,7 +307,7 @@ proc AddTask( wt)
 // make sure expand record to at least one more
     Rn++;
     
-    // 0  is the supplied default tof this table
+    // 0  is the supplied default of this table
     // 1...nt  will be favorite/maintenance tasks
     // has to be written over to display version
 

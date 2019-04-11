@@ -10,7 +10,7 @@
 //* 
 //***********************************************%
 
-int _DB = -1; //dbg FH set to nop --set to 2 for error output
+int _DB = -1; // dbg FH set to nop --set to 2 for error output
 
 dbid = IDof("_DB");
 //<<"%V dbid _DB\n"
@@ -72,3 +72,4 @@ proc scriptDBOFF()
 // include or insert this for debugging scripts
 // use resetDebug() at start of loops - to prevent very large
 // idb or xdb files
+// comments not in exe!!

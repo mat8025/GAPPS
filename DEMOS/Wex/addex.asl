@@ -71,7 +71,6 @@ proc ADDWEX()
 {
 /// should go to last page
 <<"IN $_proc \n"
-
     AddTask(0);
     return 
 }
@@ -125,7 +124,7 @@ proc WhatWt(wr)
 
 
   if (fname @= "")  {
-   fname = "wex.tsv";
+   fname = "wex2019.tsv";
   }
 
 
@@ -143,8 +142,7 @@ A= ofr(fname)
 
 //ncols = 0;
 int rows = 5;
-//int cols = 5;
-//int nrows = 5;
+
 int sz = 0;
 
 do_record = 1;
@@ -153,9 +151,10 @@ do_record = 1;
 
 //Record DF[10];
 today = date(2);
+
 DF[0] = Split("$today,0,10,0,0,0,0,0,0,0",",");
 
-//<<"$DF[0]\n"
+<<"$DF[0]\n"
 
 
   // R= readRecord(A,@del,',')
@@ -169,6 +168,7 @@ DF[0] = Split("$today,0,10,0,0,0,0,0,0,0",",");
 
     sz = Caz(R);
     rows = sz;
+    Rn = rows;  //global count of rows
 
     cols = Caz(R,0);
 
@@ -185,38 +185,14 @@ DF[0] = Split("$today,0,10,0,0,0,0,0,0,0",",");
 
 int cv = 0;
 
-     Graphic = CheckGwm()
-
-     if (!Graphic) {
-        X=spawngwm()
-     }
-
-
-
-include "tbqrd"
+include "graphic" ; // Connect with Graphic server
 
 include "addex_screen"
 
 //===============================
 
 
- sWo(cellwo,@setrowscols,rows+5,cols+1);
- 
-    j = cols -1;
-    for (i = 0; i< rows ; i++) {
-        if ((i%2)) {
-         sWo(cellwo,@cellbhue,i,0,i,j,LILAC_);         
-	}
-	else {
-         sWo(cellwo,@cellbhue,i,0,i,j,YELLOW_);
-	 }
-     }
-
-
-
-   sWo(cellwo,@cellval,R);
-   
-   sWo(cellwo,@setrowscols,rows+10,cols+1);
+   sWo(cellwo,@setrowscols,Rn+1,cols+1);
    sWo(cellwo,@selectrowscols,0,page_rows,0,cols);
 
    sWi(vp,@redraw)

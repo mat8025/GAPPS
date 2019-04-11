@@ -230,19 +230,9 @@ for (i= 0; i < 10; i++) {
 
 
 //exit()
-//////////////////////////////////
 
+include "graphic.asl"
 
-Graphic = CheckGwm()
-
-     if (!Graphic) {
-        X=spawngwm()
-     }
-     
-
-
-
-include "tbqrd";
 include "calcounter_scrn";
 include "checkFood";
 

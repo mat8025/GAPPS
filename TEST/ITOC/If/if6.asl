@@ -1,3 +1,15 @@
+//%*********************************************** 
+//*  @script if6.asl 
+//* 
+//*  @comment if syntax tests 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                  
+//*  @date Mon Apr  8 09:56:09 2019 
+//*  @cdate Mon Apr  8 09:56:09 2019 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 
 CheckIn()
 
@@ -20,7 +32,7 @@ CheckIn()
 
   do_all = 6
 
-  if ((do_all == 6)) {
+  if (do_all == 6) {
 
      <<"is %v $do_all == 6 TRUE? is TRUE\n"
        CheckNum(6,do_all)
@@ -134,7 +146,7 @@ CheckIn()
 CheckOut()
 
 
-STOP!
+
 
 
 

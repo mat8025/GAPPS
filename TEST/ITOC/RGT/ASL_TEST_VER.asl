@@ -47,10 +47,11 @@ filterFileDebug(ALLOWALL_,"ic_op");
 
 
 //envdebug();
-str S = "all,array,matrix,bugs,bops,vops,sops,fops,class,\
- declare,include,exp,if,logic,for,do,paraex,proc,switch,\
- types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc,\
- svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help";
+//str S = "all,array,matrix,bugs,bops,vops,sops,fops,class, declare,include,exp,if,logic,for,do,paraex,proc,switch, types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc, svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help";
+
+str S = "all,array,matrix,bugs,bops,vops,sops,fops,class, declare,include,exp,if,logic,for,do,paraex,proc,switch,"
+S->cat("types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc, svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help");
+
 
 Svar Opts[] = Split(S,",");
 
@@ -816,7 +817,7 @@ if ( do_all || do_if ) {
 
   cart("if0",10)
 
-  RunDirTests("If","if4,md_assign,if5,if6")
+  RunDirTests("If","if4,md_assign,if5,if6,ifnest,if_fold")
 
   RunDirTests("Logic","logic,logic2,logic_def")
 

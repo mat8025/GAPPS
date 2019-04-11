@@ -35,13 +35,13 @@
  include "debug.asl"
  
  scriptDBON();
- debugOFF();
-
+ debugON();
+  setdebug(1,@keep,@pline)
  include "gevent.asl"
  include "dayt_menus.asl"
  
  include "gss.asl"
- include "dayt_procs" // has to come after gss to overload 
+ include "dayt_procs.asl" // has to come after gss to overload 
 
  include "hv.asl"
  //============== Variables =========================//
@@ -54,14 +54,12 @@
  // Task,Priority,TimeEst,PCDone,TimeSpent,Difficulty,Attribute,Score,Tags,
  
    DF[0] = Split("task?,4,30,0,0,3,?,0,,",',') ; // default for add additional task
-   // use enum
    DF[1] = Split("Exercise,9,70,0,1,7,X,0,,",',')
    DF[2] = Split("Guitar,8,30,0,0,3,G,0,,",44)
    DF[3] = Split("Spanish,8,30,0,0,3,L,0,,",44)
    DF[4] = Split("PR/DSP,8,60,0,0,8,D,0,,",44)    
  
-// Record R[15+];
-// Rn = 5;
+
  
  int ok = 0;
  
@@ -87,7 +85,7 @@
  //=============== CL Options ===================//
  //DebugON();
    fname = _clarg[1];
- 
+
  //=============== Init =========================//
 
 
@@ -102,6 +100,10 @@
 <<"%V  $jdayn $yesterday $today  $tomorrow\n"
 
   read_the_day = 0;
+
+   if (fname @= "") {
+        fname = "today"
+   }
 
   if (fname @= "yesterday") {
  <<[_DB]"look/edit yesterday \n"
@@ -213,15 +215,24 @@
 /}
 
 
+<<"before Graphic \n"
 
+Graphic = CheckGwm()
 
+     if (!Graphic) {
+        X=spawngwm()
+     }
 
- Graphic = CheckGwm()
- 
- 
-      if (!Graphic) {
-         X=spawngwm()
-      }
+Graphic = CheckGwm()
+
+if (! Graphic) {
+
+<<"can't go graphic!! exiting\n"
+   exit()
+}
+
+OpenDll("plot") ; //  should be automatic -- but for XIC launch best to use!
+
  
  pname="ADDTASK";
  
@@ -230,8 +241,6 @@ include "tbqrd.asl"
 
 include "dayt_scrn.asl"
  
-
-
  
    Ncols = ncols;  // task, Priority, %Done, Duration, Difficulty,Score
   
@@ -245,7 +254,9 @@ include "dayt_scrn.asl"
    cols = Caz(R,0)
  
    tags_col = cols-1;
-   
+<<"%V $cellwo\n"   
+
+//ans=iread(":>")
 
    sWo(cellwo,@setrowscols,rows+5,cols+1); 
 
@@ -473,6 +484,8 @@ int mc = 0;
    FIX -- if first operation is edit - subsequent row operations fail
  
  
+  In order to use as XIC -- need to exit without any operations first
+  then can use XIC version??
  
  
  /}*/
