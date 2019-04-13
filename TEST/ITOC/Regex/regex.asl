@@ -81,8 +81,11 @@ checkNum(p[0],-1)
 
 <<"//////////////////////\n"
 <<"DQ  single line\n"
-
+/{/*
 T= "Highlighting regular expression matches in EditPad Pro. As a quick test, copy and paste the text of this page into EditPad Pro. Then select Search|Multiline Search Panel in the menu. In the search panel that appears near the bottom, type in regex in the box labeled \"Search Text\". Mark the \"Regular expression\" checkbox, and click the Find First button. This is the leftmost button on the search panel. See how EditPad Pro's regex engine finds the first match. Click the Find Next button, which sits next to the Find First button, to find further matches. When there are no further matches, the Find Next button's icon flashes briefly.";
+/}*/
+
+T= "Highlighting regular expression matches in EditPad Pro. As a quick test, copy and paste the text of this page into EditPad Pro. ";
 <<"$T\n"
 
 
@@ -96,19 +99,40 @@ R= 'Highlighting regular expression matches in EditPad Pro. As a quick test, cop
 
 //////
 <<"b4 txtbox \n"
-<|W
-  Highlighting regular expression matches in EditPad Pro. As a quick test, copy and paste the text of this page into EditPad Pro.
-  Then select Search|Multiline Search Panel in the menu. 
-  In the search panel that appears near the bottom, type in regex in the box labeled "Search Text".
-   Mark the "Regular expression" checkbox, and click the Find First button. This is the leftmost button on the search panel. 
-  See how EditPad Pro's regex engine finds the first match. 
-  Click the Find Next button, which sits next to the Find First button, to find further matches.
-  When there are no further matches, the Find Next button's icon flashes briefly.zzz
+<|W=
+Highlighting regular expression matches in EditPad Pro.
+As a quick test, copy and paste the text of this page into EditPad Pro.
+Then select Search|Multiline Search Panel in the menu. 
+In the search panel that appears near the bottom, type in regex in the box labeled "Search Text".
+Mark the "Regular expression" checkbox, and click the Find First button. This is the leftmost button on the search panel. 
+See how EditPad Pro's regex engine finds the first match. 
+Click the Find Next button, which sits next to the Find First button, to find further matches.
+When there are no further matches, the Find Next button's icon flashes briefly.zzz
 |>
-<<"after txtbox \n"
+
+<<"after txtbox \n $W[0]\n"
+
+<<"%(1,->>,,\n)$W\n"
 
 
 
+<|?! W=
+So this is the next txtbox
+which is much smaller
+tiny in fact
+?!not sure about the escape mechanism tho
+?!|> can be in TXT_BOX
+?!?! too
+|>
+
+<<"after txtbox%(1, ,, ) \n $W\n"
+
+//sz= W->getSize();
+sz= Csz(W);
+
+for (i=0;i<sz; i++) {
+<<"W<$i> $W[i]\n"
+}
 //does this go into exe?
 //also this??
 

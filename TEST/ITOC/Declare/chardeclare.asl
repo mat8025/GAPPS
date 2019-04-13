@@ -1,8 +1,24 @@
-#
+//%*********************************************** 
+//*  @script chardeclare.asl 
+//* 
+//*  @comment test declare of char vector 
+//*  @release CARBON 
+//*  @vers 1.4 Be Beryllium                                                
+//*  @date Fri Apr 12 16:13:07 2019 
+//*  @cdate 1/1/2000 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+
+#include "debug.asl"
+
+debugON();
+
 
 CheckIn()
 
-setdebug(1,@~pline,@~trace,@~stoponerror)
+setdebug(1,@pline,@~trace,@~stoponerror)
 
 char c = 65;
 char p = 'q';
@@ -131,7 +147,7 @@ char ev[] = { "ABCDEF MARK$S TERRY NEEDS TO FOCUS " }
 sz = Caz(ev)
 <<"%v $sz \n"
 
-
+<<"%V %c $ev \n"
 <<"%V $ev \n"
 
 //iread("->");
