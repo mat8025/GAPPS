@@ -261,9 +261,11 @@ CheckFNum(q,-7);
 
 <<"%V $sum  $k  $(k*N/2) $mi\n"
 
-
+<<"B4 CheckOut()\n"
 CheckOut()
 
+ans = iread(">>>:")
+<<"after CheckOut()\n"
 //float ok = 47.2
 //<<"$ok \n"
 

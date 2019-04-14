@@ -18,7 +18,28 @@ debugON();
 
 CheckIn()
 
-setdebug(1,@pline,@~trace,@~stoponerror)
+setdebug(1,@pline,@trace,@soe)
+
+Z="hey"
+
+<<"%V $Z\n"
+
+checkStr(Z,"hey");
+
+S="hey";
+
+<<"%V $S\n"
+
+checkStr(S,"hey");
+
+V="hey"  // gets hey"
+
+<<"%V $V\n"
+
+checkStr(V,"hey");
+
+
+
 
 char c = 65;
 char p = 'q';
@@ -38,8 +59,9 @@ str tease = "a b c "
 
 //FIXIT missing varname
 
-<<"<%i$tease> %v<%s$tease> \n"
-<<"<%i$tease> <%s$tease> \n"
+
+tease->info(1)
+<<"<|$tease|> \n"
 
 uchar cv[] = { 65,47,79,0xBA };
 
@@ -86,6 +108,13 @@ char dv[] = { 'G', 25, 28, 78, 'O', '0', 69, 75,76,77 }
 
 <<"$(vinfo(dv))\n"
 <<"$dv \n"
+<<"%c $dv \n"
+
+ CheckNum(dv[4], 'O' )
+ CheckNum(dv[5], '0' )
+  CheckNum(dv[0], 'G' ) 
+
+
 
 char a = 'G';
 
@@ -100,7 +129,7 @@ char a = 'G';
  CheckNum(dv[0], 'G' )
 
 
-//checkStage()
+ checkStage()
 
 <<"%V $dv  \n"
 
@@ -118,7 +147,8 @@ char a = 'G';
  CheckNum(dv[4], 'O' )
 
 
-<<" whaat is happenning here $dv[5] \n"
+
+<<" whaat is happening here $dv[5] \n"
 
  tc = scnt("0");
  <<"%V $tc\n";
@@ -128,7 +158,7 @@ char a = 'G';
 
  CheckNum(dv[5], '0' )
 
-S="hey";
+
 
 char lv[] = { 'ABCDEF MARK$S TERRY NEEDS TO FOCUS ' }
 
@@ -163,6 +193,13 @@ sz = Caz(ev)
 
 
  <<" chardec DONE\n"
+sdb(1,@~pline)
+for (k=0;k<sz;k++) {
+
+<<"$k $ev[k] %c $ev[k] \n"
+}
+
+
  CheckOut()
 
 

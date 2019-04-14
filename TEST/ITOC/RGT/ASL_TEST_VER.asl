@@ -111,6 +111,29 @@ Ks = 0
 }
 //===============================
 
+proc runModule ( wmod)
+{
+
+   int ret =0;
+   
+   if (do_all && (wmod != -1)) {
+      ret = 1;
+  //    <<"RUN %V $do_all $wmod\n"
+   }
+   
+   if (wmod ==1) {
+    //  <<"RUN %V $wmod\n"
+      ret =1;
+   }
+  if ( wmod == -1) {
+     // <<"DONT RUN %V $wmod\n"
+      ret =0;
+  }
+//<<"$_proc  $wmod  $ret \n"
+  return ret;
+}
+
+
 padtit =nsc(15,"/")
 
 proc hdg(atit)
@@ -629,7 +652,7 @@ int do_help = 0;
 
   if (nargs > 1) {
     do_all = 0
-//<<" selecting tests \n"
+   <<" selecting tests \n"
   }
 
   i = 1
@@ -639,12 +662,22 @@ int do_help = 0;
 
       wt = _argv[i]
 
-   if (wt @= "bops")
+     if (wt @= "bops") {
         do_bops = 1  
-
+     }
+   
      do_arg = "do_$wt"
-     $do_arg = 1;
+     
 
+    if (scmp(wt,"~",1) ){
+        wt=scut (wt,1);
+	<<"don't run $wt\n"
+	do_arg = "do_$wt"
+	$do_arg = -1
+     }
+      else {
+      $do_arg = 1;
+     }
 //<<" $i $wt $do_arg \n"
 
      i++;
@@ -661,14 +694,19 @@ int do_help = 0;
       exit();
   }
 
-<<"%V $do_bops $do_mops \n"
+<<"%V $do_all $do_bops $do_mops \n"
 
 // always
 //  Run2Test("Bops")
 //  cart("bops",7)
 //================
 
-  if (do_all  || do_bops) {
+<<"%V $do_all \n"
+
+
+
+
+  if (runModule( do_bops)) {
 
     Run2Test("Bops")
 
@@ -677,7 +715,7 @@ int do_help = 0;
 
   cart("bops",7)
   
-  cart("bops")
+  cart("bops","")
 
   cart("fvmeq")
 
@@ -701,12 +739,12 @@ int do_help = 0;
   updir()
 
 
-      }
+   }
 
 
 
 
-  if (do_all  || do_types) {
+    if (  runModule( do_types)) {
   
       RunDirTests("Types","float,str,char,long,short,double,pan_type,ato");
       
@@ -719,7 +757,7 @@ int do_help = 0;
   }
 
 
-  if (do_all  || do_vops) {
+  if (runModule( do_vops)) {
 
      RunDirTests("Vops","vops,vopsele")
 
@@ -731,9 +769,10 @@ int do_help = 0;
 
   }
 
+
 //////////////////////////////////////////////////
 
-  if (do_all  || do_sops) {
+  if (runModule( do_sops)) {
       //  need more str ops tests than this!
 
   RunDirTests("Sops","scat,scmp,ssub,ssubrgx,scut,stropcmp");
@@ -748,19 +787,22 @@ int do_help = 0;
 
 /////////////////////////////////////////////////
 
-  if (do_all  || do_fops) {
-
-  Run2Test("Fops")
-
-  cart("readfile")
+  if (runModule( do_fops)) {
 
   Run2Test("Fexist")
 
   cart("fexist","fexist.asl")
+
+
+  Run2Test("Fops")
+
+  cart("readfile"," ")
+
+
   }
 
 
-if (( do_all ==1) || (do_declare == 1) ) {
+if ((do_all ==1) || (do_declare == 1) ) {
 
    Run2Test("Consts")
 
@@ -784,7 +826,17 @@ if (( do_all ==1) || (do_declare == 1) ) {
 
     }
 
-if (( do_all ==1) || (do_include == 1) ) {
+<<" checkSwitch\n"
+ if ( runModule (do_switch)) {
+    <<"switch $do_all $do_switch \n"
+    RunDirTests("Switch","switch,switch2")
+ }
+
+/////////////////////////////////////////////
+
+
+<<" check Include\n"
+if ( runModule (do_include) ) {
 
     Run2Test("Include")
 
@@ -796,9 +848,12 @@ if (( do_all ==1) || (do_include == 1) ) {
 
     }
 
+
+
+
 changeDir(Testdir)
 
-if ( do_all || do_exp ) {
+ if (runModule( do_exp )) {
 
 
    Run2Test("Sexp")
@@ -811,15 +866,15 @@ if ( do_all || do_exp ) {
 
 ////////////// IF ///////////////////////
 
-if ( do_all || do_if ) {
+if (runModule( do_if )) {
 
   Run2Test("If")
 
   cart("if0",10)
 
-  RunDirTests("If","if4,md_assign,if5,if6,ifnest,if_fold")
+  RunDirTests("If","if,if4,md_assign,if5,if6,ifnest,if_fold")
 
-  RunDirTests("Logic","logic,logic2,logic_def")
+
 
   Run2Test("Bitwise")
   cart("bitwise")
@@ -836,7 +891,13 @@ if ( do_all || do_if ) {
 
     }
 
- if ( do_all || do_for ) {
+  if (runModule( do_logic )) {
+
+   RunDirTests("Logic","logic,logic2,logic_def")
+
+  }
+
+ if (runModule( do_for )) {
 
    Run2Test("For")
 
@@ -847,7 +908,7 @@ if ( do_all || do_if ) {
 ////////////////////////////////////////////////////////////////////////
     }
 
-  if ( do_all || do_while ) {
+  if (runModule( do_while )) {
 
   Run2Test("While")
   cart("while")
@@ -860,15 +921,10 @@ if ( do_all || do_if ) {
 
 
 
- if ( do_all || do_switch ) {
-
-  RunDirTests("Switch","switch,switch2")
-
- }
-/////////////////////////////////////////////
 
 
-if ( do_all || do_do ) {
+
+if (runModule( do_do )) {
 
    Run2Test("Do")
 
@@ -882,7 +938,7 @@ if ( do_all || do_do ) {
     }
 
 
- if (do_all || do_paraex ) {
+ if (runModule( do_paraex )) {
 
   Run2Test("ParaEx")
 
@@ -895,7 +951,7 @@ if ( do_all || do_do ) {
 
 /////////////// ARRAY //////////////////////
 
-if ( do_all || do_array ) {
+if (runModule( do_array )) {
 
    RunDirTests("Array","ae,arraystore,arrayele,arrayele0,arrayele1,arraysubset")
    RunDirTests("Array","arrayrange,arraysubvec,arraysubsref,arraysubsrange,arraysubscbyvec")
@@ -936,7 +992,7 @@ if ( do_all || do_array ) {
 
 /////////////////////////////////////////
 
- if ( do_all || do_matrix ) {
+ if (runModule( do_matrix )) {
  
    Run2Test("Mdimn")
 
@@ -956,7 +1012,7 @@ if ( do_all || do_array ) {
 
 /////////////////////////////////////////
 
- if ( do_all || do_dynv ) {
+ if (runModule( do_dynv )) {
 
     hdg("DYNAMIC_V")
 
@@ -967,7 +1023,7 @@ if ( do_all || do_array ) {
 
 /////////////////////////////////////////
 
-if ( do_all || do_lhsubsc ) {
+if (runModule( do_lhsubsc )) {
 
   Run2Test("Subscript")
 
@@ -977,7 +1033,7 @@ if ( do_all || do_lhsubsc ) {
 
 /////////////////////////////////////////
 
-if ( do_all || do_func ) {
+if (runModule( do_func )) {
 
   Run2Test("Func")
   cart("func", 3,4)
@@ -993,7 +1049,7 @@ if ( do_all || do_func ) {
 
 /////////////////////////////////////////
 
-if ( do_all || do_unary ) {
+if (runModule( do_unary )) {
 
 
   Run2Test("Unary")
@@ -1005,7 +1061,7 @@ if ( do_all || do_unary ) {
 
 /////////////////////////////////////////
 
-   if ( do_all || do_command ) {
+   if (runModule( do_command )) {
 
      RunDirTests("Command","command,command_parse")
 
@@ -1013,7 +1069,7 @@ if ( do_all || do_unary ) {
 
 
 /////////////////////////////////////////
-if ( do_all || do_proc ) {
+if (runModule( do_proc )) {
 
   RunDirTests("Proc","proc,proc_declare,procret0,procarg,proc_sv0,proc_rep,proc_str_ret,procrefarg,proc_ra");
 
@@ -1040,7 +1096,7 @@ if ( do_all || do_proc ) {
   }
 
 
-  if ( do_all || do_scope ) {
+  if (runModule( do_scope )) {
 
    Run2Test("Scope") ; 
 
@@ -1048,7 +1104,7 @@ if ( do_all || do_proc ) {
 
   }
 
-if ( do_all || do_mops ) {
+if (runModule( do_mops )) {
 
     Run2Test("Mops")
 
@@ -1075,7 +1131,7 @@ if ( do_all || do_mops ) {
 
 
 
-   if ( do_all || do_svar ) {
+   if (runModule( do_svar )) {
 
     Run2Test("Svar")
     cart("svar1", "string operations are not always easy" )
@@ -1083,7 +1139,7 @@ if ( do_all || do_mops ) {
 
     }
 
-  if ( do_all || do_ivar ) {
+  if (runModule( do_ivar )) {
 
      Run2Test("Ivar")
 
@@ -1092,7 +1148,7 @@ if ( do_all || do_mops ) {
     }
 
 
-  if ( do_all || do_record ) {
+  if (runModule( do_record )) {
 
     RunDirTests("Record","rec1,record,readrecord,prtrecord,recprt,recatof,reclhs,rectest");
 
@@ -1101,7 +1157,7 @@ if ( do_all || do_mops ) {
 
  changeDir(Testdir)
 
- if ( do_all || do_mops ) {
+ if (runModule( do_mops )) {
  
     Run2Test("Math")
 
@@ -1124,7 +1180,7 @@ if ( do_all || do_mops ) {
 
  changeDir(Testdir)
 
- if ( do_all || do_stat ) {
+ if (runModule( do_stat )) {
 
     hdg("STAT")
 
@@ -1136,7 +1192,7 @@ if ( do_all || do_mops ) {
 
 }
 
- if ( do_all || do_pan ) {
+ if (runModule( do_pan )) {
 
     hdg("PAN")
 
@@ -1148,19 +1204,19 @@ if ( do_all || do_mops ) {
 }
 
 
-   if ( do_all || do_lists ) {
+   if (runModule( do_lists )) {
 
     RunDirTests("Lists","list,list_declare,listele,list_ins_del");
 
     }
 
-   if ( do_all || do_ptrs ) {
+   if (runModule( do_ptrs )) {
 
     RunDirTests("Ptrs","ptrvec,indirect");
 
    }
 
-   if ( do_all || do_class ) {
+   if (runModule( do_class )) {
 
     RunDirTests("Class","classbops,class2,classvar");
 
@@ -1168,7 +1224,7 @@ if ( do_all || do_mops ) {
 
 
 
-   if ( do_all || do_oo ) {
+   if (runModule( do_oo )) {
 
     RunDirTests("OO","rpS,rp2,wintersect,oa,oa2,sh,class_array");
 
@@ -1186,7 +1242,7 @@ if ( do_all || do_mops ) {
   }
 
 
- if ( do_all || do_sfunc ) {
+ if (runModule( do_sfunc )) {
 
     hdg("S-FUNCTIONS")
 
@@ -1211,7 +1267,8 @@ if ( do_all || do_mops ) {
 
     }
 
-  if (do_all  || do_vmf) {
+
+if (runModule( do_vmf)) {
 
     RunDirTests("Vmf","trim,prune,caz,cut,rand,rotate")
     RunDirTests("Vmf","bubblesort,substitute,dewhite")
@@ -1223,7 +1280,7 @@ if ( do_all || do_mops ) {
 
 //////////////////// BUGFIXs/////////////////////////////////////////
 
-  if ( do_all || do_bugs ) {
+  if (runModule( do_bugs )) {
       //cart("bf_40")   // this has intentional error and exits before test checks
 
       RunDirTests("BUGFIX","bf_46,bf_59,bf_64,bf_75,bf_76,bf_78,bf_79,bf_80,bf_83,bf_84,bf_91,bf_96");
@@ -1231,7 +1288,7 @@ if ( do_all || do_mops ) {
   }
 
 /{
-if ( do_all || do_threads ) {
+if (runModule( do_threads )) {
         Run2Test("Threads")
         cart("threads")
     
@@ -1344,5 +1401,11 @@ else {
 exit(0)
 
 
+//// TBD///
+/{/*
+
+how to not do test item
+
+/}*/
 
 

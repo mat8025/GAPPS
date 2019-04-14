@@ -1,7 +1,25 @@
+//%*********************************************** 
+//*  @script switch2.asl 
+//* 
+//*  @comment test switch syntax
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                  
+//*  @date Mon Apr  8 09:07:32 2019 
+//*  @cdate Mon Apr  8 09:07:32 2019 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 ///
 ///
 ///
-setdebug(1,"~pline","~trace","~stderr");
+
+
+#include "debug.asl"
+
+debugON();
+
+setdebug(1,"~pline","trace","~stderr");
 FilterDebug(0)
 proc ask()
 {
@@ -13,8 +31,8 @@ proc ask()
 
 }
 
-#define  ASK ask();
-//#define  ASK ;
+//#define  ASK ask();
+#define  ASK ;
 
 
 CheckIn()

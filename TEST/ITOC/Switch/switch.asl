@@ -1,4 +1,20 @@
+//%*********************************************** 
+//*  @script switch.asl 
+//* 
+//*  @comment test switch 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                  
+//*  @date Mon Apr  8 09:07:32 2019 
+//*  @cdate Mon Apr  8 09:07:32 2019 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+  
 
+#include "debug.asl"
+
+debugON();
 
 CheckIn()
 
