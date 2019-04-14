@@ -1,0 +1,12 @@
+//////// a medida que avanzamos hacia adelante  /////
+ds_sivarray - store_cmplx() Mon Apr  1 08:15:57 MDT 2019
+fop/fileop.cpp - fscanv cmplx Mon Apr  1 08:24:46 MDT 2019
+spil/table_l.cpp -VMF_Table_init () Mon Apr  1 10:48:43 MDT 2019
+spil/vmf_l.cpp - set_(d)cmplx () Mon Apr  1 10:48:43 MDT 2019
+spil/vmf_l.cpp - isdynamic Mon Apr  1 20:26:39 MDT 2019
+math/mat_m.cpp setv->cmpsetv Tue Apr  2 07:24:35 MDT 2019
+spe/vmf_e.cpp   add error msg for vmf not found Thu Apr  4 06:30:21 MDT 2019
+parset_e.cpp color red print for parse error Thu Apr  4 06:30:21 MDT 2019
+icode/ic_cat - resolve svptr - before print Thu Apr  4 06:30:21 MDT 2019
+icode/ic_pushrec -- split out from ic_push Fri Apr  5 06:30:21 MDT 2019
+svar/svar_init  --- removed svar subset - use parent siv aop Sun Apr  7 08:16:34 MDT 2019

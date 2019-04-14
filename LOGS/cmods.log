@@ -1,0 +1,8 @@
+# logs of mods to C/C++ code utils
+cw_l.cpp	 1.71	 Fri Feb 15 05:06:31 2019 wrap () around non assignment expression if needed for syntax
+
+asl.cpp	 1.90	 Sun Feb 24 02:33:19 2019 
+asl.cpp	 1.88	 Sun Feb 24 02:35:20 2019 
+asl.cpp	 1.87	 Sun Feb 24 02:37:03 2019 
+asl.cpp	 1.87	 Sun Feb 24 02:38:05 2019 
+version.cpp	 1.87	 Sun Feb 24 02:38:06 2019 

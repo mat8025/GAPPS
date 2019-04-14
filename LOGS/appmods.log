@@ -1,0 +1,47 @@
+# logs of mods to apps
+ASL_TEST_VER.asl 1.42 Thu Feb  7 09:45:52 2019 xic test error added -x flag FIXED
+ASL_TEST_VER.asl        1.43	Sat Feb  9 13:54:17 2019 added vvcopy tests
+win.asl                 1.9	Sat Feb 16 20:23:11 2019 added pus/pop cycle
+hv.asl                  1.4	Fri Feb 22 15:46:41 2019 check for exist of header
+tbqrd.asl               1.2	Sat Feb 23 00:54:06 2019 tidy
+gline.asl               1.2	Sat Mar  2 11:29:59 2019 add standard includes
+gline.asl               1.3	Sat Mar  2 12:55:33 2019 sindented
+sindent.asl             1.15	Sat Mar  2 12:58:45 2019 added empty line filter <=2
+sindent.asl             1.16	Sat Mar  2 13:01:28 2019 sindented
+rp2.asl                 1.2	Sun Mar  3 12:41:16 2019 update debug
+bops.asl                1.2	Thu Mar  7 23:23:13 2019 debug tidy
+scalarvec.asl           1.3	Thu Mar  7 23:34:50 2019 more vec/scalar ops
+array_sr.asl            1.16	Sat Mar  9 16:54:34 2019 debug/tidy
+joinarray.asl           1.16	Sun Mar 10 16:39:32 2019 removed subsc by vec op 
+ASL_TEST_VER.asl        1.44	Sun Mar 10 17:16:56 2019 added arraysubscbyvec
+ASL_TEST_VER.asl        1.45	Mon Mar 11 17:45:46 2019 added test.log file
+ASL_TEST_VER.asl        1.47	Wed Mar 13 11:09:03 2019 added Vmf tests
+classbops.asl           1.2	Thu Mar 14 22:56:08 2019 tidy
+ASL_TEST_VER.asl        1.48	Fri Mar 15 11:09:27 2019 creash list fix
+dewhite.asl             1.2	Fri Mar 15 11:52:53 2019 str test fix
+date.asl                 1.4	Mon Mar 18 10:09:15 2019 format/debug
+date.asl                 1.5	Mon Mar 18 10:15:14 2019 show all date forms
+sele.asl                 1.6	Mon Mar 18 10:23:59 2019 tidy/debug format
+ASL_TEST_VER.asl         1.49	Sun Mar 24 07:43:45 2019 bops not added to cl test list
+ASL_TEST_VER.asl         0.0	Sun Mar 24 07:45:04 2019 tdiy
+ASL_TEST_VER.asl         1.50	Sun Mar 24 07:54:34 2019 rundirtests need dummy a1 parameter
+dow.asl                  1.2	Sun Mar 24 08:02:13 2019 test sbump
+dow.asl                  1.3	Sun Mar 24 08:02:49 2019 test sbump
+ASL_TEST_VER.asl         1.51	Sun Mar 24 08:04:10 2019 removed unused function
+rand.asl                 1.2	Mon Mar 25 08:42:34 2019 keep hits stats
+ASL_TEST_VER.asl         1.52	Tue Mar 26 11:14:24 2019 added vmf rotate test
+ASL_TEST_VER.asl         1.53	Wed Mar 27 17:58:21 2019 added abs test
+ASL_TEST_VER.asl         1.54	Wed Mar 27 20:33:28 2019 added svar_range test
+scat.asl                 1.2	Fri Mar 29 09:08:52 2019 multiple cat tested
+ssub.asl                 1.3	Fri Mar 29 14:23:41 2019 test dir and regex pat match
+cmpsetv.asl              1.2	Tue Apr  2 07:47:16 2019 tidy
+ASL_TEST_VER.asl         1.55	Tue Apr  2 08:16:51 2019 runsftests -- needs to supply null arg to cart function
+dynv.asl                 1.2	Wed Apr  3 13:20:00 2019 added vec increase test
+getcc.asl                1.3	Sun Apr  7 15:12:32 2019 dynamic array [>300]
+wex.asl                  2.46	Sun Apr  7 16:00:26 2019 exercise time lower graph
+veclhrange.asl           1.2	Mon Apr  8 08:27:28 2019 more vec range tests
+sindent.asl              1.17	Mon Apr  8 09:49:04 2019 trailing comment, if () no brace
+svar_declare.asl         1.41	Mon Apr  8 09:51:04 2019 added more range tests
+if_fold.asl              1.2	Mon Apr  8 13:59:31 2019 many fold tests WS after contuation char
+graphic.asl              1.2	Wed Apr 10 07:49:47 2019 include file to connect to graphic server
+selfnd2ftable.asl        1.3	Wed Apr 10 11:32:55 2019 strip ay comma from Unit

@@ -1,0 +1,135 @@
+# logs of mods to asl code
+screen_p.cpp            1.77	Wed Feb  6 14:45:39 2019 mousecursor: curs_id as number
+wcom.h                  2.8	Thu Feb  7 07:30:21 2019 mod to mousecursor functions
+x_sw.cpp                1.97	Thu Feb  7 07:32:59 2019 mousecursor curs_id number
+ds_siv.cpp              2.65	Thu Feb  7 08:52:36 2019 remove dbp
+ds_svar_getvarasstr.cpp 2.58	Thu Feb  7 08:53:46 2019 remove dbp
+ds_recordstore.cpp      1.80	Thu Feb  7 11:27:04 2019 fix storeCopyRecord lhoffset
+svarg_e.cpp             2.23	Thu Feb  7 13:48:06 2019 removed GetArgSiv -->getArgSiv
+signal_e.cpp            2.55	Thu Feb  7 13:51:04 2019 GetArgSiv -->getArgSiv
+gscom.cpp               1.85	Thu Feb  7 13:53:16 2019 curs_id -->wcurs_id
+ds_sivarray.cpp         2.67	Thu Feb  7 14:09:10 2019 clearsubi removed path to clearsubi on SVPTR/SVREF
+ds_convert_store.cpp    1.94	Thu Feb  7 21:11:15 2019 synced up header ds_conver_store.h
+ds_utils.cpp            1.55	Thu Feb  7 21:23:20 2019 hex detect fix
+toknum.cpp              1.76	Thu Feb  7 23:34:52 2019 hack to prevent pan constant use in XIC- needs better fix
+token.h                 2.3	Fri Feb  8 07:36:34 2019 added IsCtypeInt, IsCtypeReal
+toknum.cpp              1.76	Fri	Feb  8 07:43:57 2019 check for int/float constants in pan expressions
+svar_find.cpp           1.63	Fri Feb  8 10:04:23 2019 rename ds_svar_find --> svar_find
+svar_hash.cpp           1.64	Fri Feb  8 10:05:20 2019 rename ds_svar_hash -->svar_hash
+svar_read.cpp           1.60	Fri Feb  8 10:06:20 2019 rename ds_svar_read --> svar_read
+stat_m.cpp              1.95	Fri Feb  8 19:16:35 2019 zero cof vect in polycof
+ic_push.cpp             1.60	Sat Feb  9 12:03:36 2019 clear PROC_ARG_REF on first ref to var
+ds_sivmem.cpp           1.89	Sat Feb  9 20:57:58 2019 resetvar - if SVPTR - don't try to free array bounds -TBV
+ds_storesvar.cpp        1.79	Sun Feb 10 21:10:03 2019 hack to make sure siv is a svar - TBF
+cw_l.cpp	               1.71	 Fri Feb 15 05:06:31 2019 wrap () around non assignment expression if needed for syntax
+wcom_sw.cpp             1.93	Tue Feb 19 03:01:37 2019 removed GS_window - use GS_Port
+wcom_msg.cpp            1.90	Tue Feb 19 03:03:21 2019 GS_port 
+x_sw.cpp                1.98	Tue Feb 19 03:07:22 2019 GS_port
+gscom.cpp               1.86	Tue Feb 19 03:16:18 2019 removed GS_window cons/dest -- GS_port to be used
+gsocket_l.cpp           1.20	Tue Feb 19 04:19:59 2019 use GS_port
+sop_l.cpp               1.83	Thu Feb 21 14:36:29 2019 remove Dbp statements
+wcom_msg.cpp            1.91	Fri Feb 22 00:07:46 2019 sock msg - SRS Msg hdr controls read of Msg content - not asl function suggestion
+asl.cpp                 1.87	Sat Feb 23 13:43:19 2019 fix for overwrite GS_port fname using -X option
+asl.cpp                 1.89	Sun Feb 24 02:26:45 2019 sockets
+reply_w.cpp             1.33	Mon Feb 25 18:15:10 2019 add gwm_get_win_coors
+reply_w.cpp             1.33	Mon Feb 25 18:16:06 2019 get_win_coors
+table_w.cpp             1.43	Mon Feb 25 18:16:39 2019 get_win_coors
+win_p.cpp               1.80	Mon Feb 25 19:07:34 2019 added wgetcoors
+win.h                   2.4	Mon Feb 25 23:26:14 2019 remove BURIED attrb add ISOL
+win.h                   2.5	Wed Feb 27 13:45:23 2019 added ws (which screen) to window struct - w_num int to short
+move_w.cpp              1.24	Wed Feb 27 23:30:32 2019 track which screen window is on
+prep_e.cpp              2.49	Thu Feb 28 23:58:16 2019 added SMALL_,MEDIUM_,BIG_
+sargs.h                 2.3	Fri Mar  1 00:14:38 2019 added getArgFont
+svarg_e.cpp             2.24	Fri Mar  1 00:15:36 2019 added getArgFont-revise getArgHue
+gscom.cpp               1.87	Fri Mar  1 02:29:23 2019 strcasecmp for SYMBOL wo type
+wo.h                    1.28	Fri Mar  1 09:33:09 2019 removed wsw - not used
+swin.h                  1.30	Fri Mar  1 10:20:26 2019 added waw 
+spawn.cpp               1.59	Fri Mar  1 18:02:44 2019 usinf wo.tfield(WTF_FNAME) to replace fname in win
+swob.h                  1.14	Sat Mar  2 00:45:20 2019 swin ---> swob -- info transfer of wob
+class_mbr_e.cpp         2.35	Sun Mar  3 12:14:39 2019 fix csivp ptr_arg psiv check
+stateparse_e.cpp        2.56	Sun Mar  3 12:16:20 2019 fix use findFsiv to get final class ref
+ic_getsiv.cpp           1.52	Sun Mar  3 12:18:49 2019 current obj - use testPCW for LHS/RHS
+test_l.cpp              1.44	Wed Mar  6 10:44:20 2019 added checkFalse
+ic_getsiv.cpp           1.53	Wed Mar  6 20:45:50 2019 remove lhs/rhs obj - current object found from stack
+ic_push.cpp             1.61	Wed Mar  6 20:49:19 2019 remove lhs/rhs obj - current object found from stack
+ic_call.cpp             1.51	Thu Mar  7 15:20:05 2019 use ic->testCW - for objarray id in callcmf
+ic_push.cpp             1.61	Thu Mar  7 15:21:45 2019 remove LHS/RHS objptr mechanism
+opera_main.cpp          1.49	Thu Mar  7 23:33:14 2019 for vec/scalar op use vec type for operation not scalar
+opera_opeq.cpp          1.51	Thu Mar  7 23:37:59 2019 hold needs a copy when is a vec in vec/scalar op
+declare_type_e.cpp      2.38	Fri Mar  8 12:55:42 2019 use vc->testCW(VC_DYNSIZE) to dectect dynamic min sze setting
+varcon_e.cpp            2.59	Fri Mar  8 12:56:46 2019 use vc->testCW(VC_DYNSIZE) and VC_DYNAMIC to replace vc->dynaimc and vc->init_dynamic
+aop.h                   1.15	Sat Mar  9 10:34:25 2019 added cw 
+varcon.h                1.15	Sat Mar  9 10:37:24 2019 added DYNSIZE and DYNAMIC
+varcon.h                1.15	Sat Mar  9 10:39:12 2019 tidy DYNSIZE,DYNAMIC
+ds_sivrange.cpp         1.93	Sat Mar  9 13:22:33 2019 aop lh and rh
+ds_sivrange.cpp         1.93	Sat Mar  9 13:30:40 2019 aop lh/rh
+sp_swab.cpp             1.54	Sun Mar 10 10:58:53 2019 added swab_long - swap->swab
+sp_swab.cpp             1.54	Sun Mar 10 10:59:40 2019 swab_long, swab_int
+sop_l.cpp               1.84	Sun Mar 10 11:20:56 2019 added swab long function
+varcon_e.cpp            2.59	Sun Mar 10 23:33:49 2019 tidy
+sp_vv.cpp               1.55	Tue Mar 12 08:47:21 2019 added sp_vv_icomp -- need template plus precision check TBD
+sp_vv.cpp               1.55	Tue Mar 12 08:50:32 2019 tidy
+ASL_TEST_VER.asl        1.46	Tue Mar 12 09:25:08 2019 added vvcomp test
+ds_mdarray_sss.cpp      1.95	Tue Mar 12 13:59:07 2019 split md from vector sss code
+vmf_l.cpp               1.46	Tue Mar 12 16:51:23 2019 added svar trim function
+svar_init.cpp           1.62	Tue Mar 12 17:00:14 2019 added trim function
+svar_init.cpp           1.63	Wed Mar 13 09:50:01 2019 added prune option to trim cuts stem to a specified length
+vmf_l.cpp               1.47	Wed Mar 13 09:53:05 2019 added prune option to trim
+args_parse_e.cpp        2.18	Wed Mar 13 16:29:56 2019 added error flag to svarg class - check in vmf/sfunc
+ic_pic.cpp              1.57	Thu Mar 14 08:12:13 2019 remove duplicate info in pic op
+array_range.cpp         2.77	Thu Mar 14 10:12:34 2019 RNGALL exit from range-eval loop
+ds_siv.cpp              2.66	Thu Mar 14 21:23:00 2019 make subset - error turned of SUBI flag
+proc_e.cpp              2.63	Fri Mar 15 10:44:03 2019 DoneSproc obptr null check xic
+ds_sivarray.cpp         2.68	Fri Mar 15 13:04:09 2019 clearSubi fix
+sop_l.cpp                1.85	Fri Mar 15 18:17:51 2019 nsc -parameter n set to be at least 1
+ic_line.cpp              1.53	Sat Mar 16 12:37:09 2019 add getLine to Linec class
+vmf_l.cpp                1.48	Sun Mar 17 13:09:51 2019 added option exta items to list insert
+ds_lists.cpp             1.66	Sun Mar 17 14:52:46 2019 added getListItemStr hot,start,end
+gs_lists.cpp             1.67	Sun Mar 17 17:06:07 2019 added getNextListItemStr,getPrevItemStr
+ds_sivrange.cpp          1.94	Sun Mar 17 21:45:22 2019 fix for wd > subi_nd - check loop
+ic_store.cpp             1.65	Sat Mar 23 17:42:16 2019 calculating lh offset for target array
+ds_getvarasstr.cpp       2.59	Sun Mar 24 06:00:31 2019 remove info debug calls - routine is used within info
+ic_print.cpp             1.59	Sun Mar 24 08:05:45 2019 fix for Fhout streaming
+opera_store.cpp          1.53	Sun Mar 24 11:55:24 2019 intstore - fix to store to receiving result type
+ds_storearray.cpp        1.97	Sun Mar 24 14:21:49 2019 guard for null psiv and PROC_ARG_REF
+ic_parse.cpp             1.56	Sun Mar 24 16:01:12 2019 vfill needed to set aop
+top_m.cpp                1.96	Mon Mar 25 08:16:40 2019 randseed returns seed used
+ds_pf.cpp                1.61	Mon Mar 25 08:18:21 2019 get_time_seed fix
+audio_funcs.cpp          1.33	Mon Mar 25 12:18:18 2019 get sound params returned as Svar instead of stdout
+enum_e.cpp               2.39	Mon Mar 25 23:26:08 2019 fix type SVAR_TABLE not set 
+vop_m.cpp                1.97	Tue Mar 26 10:58:14 2019 added vrotate func - calls vmf rotate
+vmf_l.cpp                1.49	Tue Mar 26 11:11:46 2019 added rotate call to vmf::rotate
+engine_e.cpp             2.16	Tue Mar 26 15:03:44 2019 tidy up EXIT_SI break/exit conditions
+test_l.cpp               1.45	Thu Mar 28 10:33:51 2019 added stageComment func
+wo_sheetdraw_w.cpp       1.55	Thu Mar 28 19:30:03 2019 buffer overrun of cell val to text - now use a Svar for buffer
+ds_pf.cpp                1.62	Fri Mar 29 08:14:19 2019 added REG_EXTENDED to regcomp call
+sop_l.cpp                1.86	Fri Mar 29 09:36:28 2019 added section cut to scut
+fileop.cpp               1.72	Fri Mar 29 14:07:02 2019 added remove last char for lines in readFile
+vmf_svar_l.cpp           0.1	Fri Mar 29 16:07:40 2019 added vmf version of scut
+svar_regex.cpp           0.1	Fri Mar 29 16:08:33 2019 added scut 
+svar_regex.cpp           0.1	Fri Mar 29 16:09:47 2019 regex ssub
+sop_l.cpp                1.87	Fri Mar 29 17:18:01 2019 added spatrgx
+sop_l.cpp                1.88	Fri Mar 29 23:04:50 2019 added ssub regex vers
+sscan_l.cpp              1.83	Sun Mar 31 16:06:28 2019 fix for fscanf double ptr
+vmf_l.cpp                1.50	Mon Apr  1 14:50:29 2019 set cmplx
+table_l.cpp              1.23	Mon Apr  1 14:51:04 2019 set/setv
+mat_m.cpp                1.92	Tue Apr  2 07:26:49 2019 setv -> cmpsetv
+mat_m.cpp                1.93	Tue Apr  2 07:28:35 2019 tidy 
+vmf_e.cpp                3.47	Thu Apr  4 06:30:55 2019 add error msg for vmf not found
+parset_e.cpp             2.82	Thu Apr  4 06:33:01 2019 color red print for parse error
+ic_cat.cpp               1.2	Sat Apr  6 08:48:10 2019 resolve svptr before print expand
+rdp_token.cpp            1.69	Sun Apr  7 08:12:35 2019 DBPF too many %s - crash
+ds_sivflags.cpp          1.82	Sun Apr  7 09:06:18 2019 added subszs info for arrays
+ds_storesvar.cpp         1.80	Sun Apr  7 21:56:46 2019 svar range store
+scope_findvar_e.cpp      2.52	Mon Apr  8 15:04:48 2019 clear subsc flags,offsets before use on lefthand side (xic)
+findbtw_e.cpp            2.42	Mon Apr  8 15:06:04 2019 fix for WS after continuation char \ at EOL
+sop_l.cpp                1.89	Wed Apr 10 08:24:14 2019 removed printf del
+declare_e.cpp            2.22	Fri Apr 12 07:33:07 2019 add txtbox
+statex_e.cpp             1.28	Fri Apr 12 07:33:56 2019 add txtbox code
+ic_rw.cpp                1.62	Fri Apr 12 07:34:52 2019 checkReadBuf for long text statements
+svar_cat.cpp             1.66	Fri Apr 12 07:36:10 2019 added cat (to_index,fr_index) - moved code from svar_init
+ds_sivflags.cpp          1.83	Fri Apr 12 07:37:40 2019 used Svar for sinfo - will not overrun on very long value info
+declare_e.cpp            2.23	Fri Apr 12 16:06:46 2019 added TXT_BOX escape sequence
+ds_storesiv.cpp          1.84	Sun Apr 14 08:28:44 2019 using a tmplate scalar/ele into array store
+tokquote.cpp             1.77	Sun Apr 14 08:31:14 2019 DQ len check
+ds_convert_store.cpp     1.95	Sun Apr 14 08:32:48 2019 storeValInEle tidy
