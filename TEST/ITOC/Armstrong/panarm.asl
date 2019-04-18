@@ -190,7 +190,7 @@ last_Mu = memused();
    for (pk=begin; pk <= endnum; pk++) {
 
 
-     if ((j % 5000) == 0) {  // not if pan j TBF
+     if ((j % 500) == 0) {  // not if pan j TBF
 
            Mu= memused();
 	   

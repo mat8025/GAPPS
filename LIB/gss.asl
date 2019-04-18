@@ -121,7 +121,7 @@ proc pickTaskCol ( wcol)
 
 proc SAVE()
 {
-<<[_DB]"IN $_proc saving sheet %V $fname  $Ncols \n";
+<<"IN $_proc saving sheet %V $fname  $Ncols \n";
 	 
             B=ofw(fname);
             if ( B != -1) {

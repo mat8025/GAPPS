@@ -2,7 +2,7 @@
 
 //An Armstrong number is a number such that the sum !
 // of its digits raised to the third power is equal to the number ! itself.
-//For example, 371 is an Armstrong number, since !
+//For example, 371 is an Armstrong number, since  27 + 343 +1 = 371
 
 
 int z;
@@ -25,7 +25,7 @@ int z;
 
 <<" there are $n anums for 2 digit nums \n"
 
-exit()
+
 
 
 <<"3 digit \n"
@@ -64,7 +64,7 @@ exit()
  }
 
 <<" there are $n anums for 4 digit nums \n"
-exit()
+
 <<" 5 digit \n"
   n= 0
   for (f=1; f<=9; f++) {

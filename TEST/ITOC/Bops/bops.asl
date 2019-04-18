@@ -15,7 +15,7 @@
 include "debug.asl"
 
 debugON()
-setdebug(1,@pline,@trace,@keep)
+setdebug(1,@~pline,@~trace,@keep)
 
 filterFuncDebug(ALLOWALL_,"xxx");
 filterFileDebug(ALLOWALL_,"yyy");
@@ -250,7 +250,7 @@ CheckFNum(q,-7);
 
   int sum = 0;
   double mi = 1;
-  N = 1000;
+  N = 100;
   
   for (k = 0; k < N; k++) {
 

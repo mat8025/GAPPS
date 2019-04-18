@@ -490,7 +490,8 @@ proc cart (aprg, a1)
 // <<" asl $CFLAGS ${aprg}.asl  $a1 \n"
 //  jpid = !!&"asl -o ${aprg}arg.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1"
 
-!!"asl -o ${aprg}arg.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1  > foopar"
+//!!"asl -o ${aprg}arg.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1  > foopar"
+!!"asl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1  > foopar"
 
      wt_prog = "$(time()) ${aprg}:$a1arg "
      wlen = slen(wt_prog)

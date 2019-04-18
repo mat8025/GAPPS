@@ -83,11 +83,35 @@ nargs = argc();
 
 adjust_day = 0;
 
+
+
+
+
+
 edit_foods = 0;
 
 fname = _clarg[1];
 
-nl = slen(fname);
+  nl = slen(fname);
+
+//  make up today and check
+
+  today = date(2);
+
+  jdayn = julian(today)
+
+  yesterday = julmdy(jdayn-1);
+
+  dby = julmdy(jdayn-2);
+
+<<"%V  $jdayn $yesterday $today  $dby\n"
+
+
+
+
+
+
+
 
 if (nargs > 1) {
  if (scmp(_clarg[2],"edit")) {
@@ -118,16 +142,28 @@ if (nargs > 1) {
      adjust_day = 1;
      the_day = fname;
    }
-
+  else {
+    if (scmp(fname,"dd-",3)) {
+     adjust_day = 1;
+     // find the number
+     num = atoi(scut(fname,3));
+     db4 = julmdy(jdayn-num);
+     // compute the day
+     ds=ssub(db4,"/","-",0); 
+     the_day = "DD/dd_${ds}";
+     fname = the_day;
+    }
+  }
+  
   A= ofr(fname)
   if (A == -1) {
    <<"can't find file dd_ day $fname \n";
     adjust_day = 0;
     make_day = 1;
    }
+   cf(A)
  }
 
-//  make up today and check
 
  if (!adjust_day && !make_day) {
   ds= date(2);
@@ -154,6 +190,7 @@ if (nargs > 1) {
   }
 }
 
+<<"%V$fname \n"
 
   myfood = "pie apple";
   f_unit = "slice";
@@ -477,6 +514,8 @@ while (1) {
 /{/*
 
   totals == crash
-  readin crash
+  added yesterday dd-1, dd-2, dd-N
+  improve search by checking food catergory { bread,meat,fish ...}
+
 
 /}*/

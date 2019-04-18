@@ -36,7 +36,7 @@
  
  scriptDBON();
  debugON();
-  setdebug(1,@keep,@pline)
+  setdebug(1,@~keep,@~pline)
  include "gevent.asl"
  include "dayt_menus.asl"
  
@@ -84,8 +84,12 @@
  
  //=============== CL Options ===================//
  //DebugON();
-   fname = _clarg[1];
 
+  fname = "today"
+
+   if (argc() >=1) {
+    fname = _clarg[1];
+  }
  //=============== Init =========================//
 
 

@@ -7,7 +7,7 @@ int Anum[100];
 int sum = 0;
 int psum = 0;
 
-int np = 8;
+int np = 3;
 int totn=0;
 
 char nv[20];

@@ -1,17 +1,29 @@
+//%*********************************************** 
+//*  @script longarm.asl 
+//* 
+//*  @comment compute Armstroing numbers 
+//*  @release CARBON 
+//*  @vers 1.4 Be Beryllium                                                
+//*  @date Tue Apr 16 10:15:38 2019 
+//*  @cdate 1/1/2017 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 ///
 ///  generate armstrong numbers
 ///
-
+sdb(1,@~pline)
 
 #define ASK ans=iread("carry on: ");
 proc getArmN (char  cna[])
 {
 
 psum = 0;
-<<"%V $cna[::] \n"
+//<<"%V $cna[::] \n"  // BUG
      cn = cna - 48;
      
-<<"%V $cn[::]\n"
+//<<"%V $cn[::]\n"
 
 psum = 0;
       
@@ -24,6 +36,28 @@ psum = 0;
       return psum;
 }
 //=======================
+
+proc sofar()
+{
+fname = "ArmstrongL_${np}_sofar"
+
+A=ofw(fname)
+
+u2 =utime();
+secs = u2-u1;
+
+<<[A]"/{/*\n"
+<<[A]"Armstrong Sofar $pk $np \n"
+<<[A]"there are $na Armstrong $np place numbers took $secs  secs\n "
+ for (i=0; i< na; i++) {
+  <<[A]"$(i+1)  $Anum[i]\n"
+ }
+<<[A]"/}*/\n "
+cf(A)
+}
+//=======================
+
+
 //setdebug(1,@pline)
 
 long Anum[100];
@@ -32,15 +66,22 @@ long sum = 0;
 long psum = 0;
 
 int np =  atoi (_clarg[1])
+//int np = 4;
 long totn=0;
 
 char nv[20];
 char nvm[np];
+
  nvm = 48;
 
 
 //long ks = (1 * 10^(np-1));
+
 long ks;
+long endnum;
+
+float secs = 0.0;
+
 
 ks = (1 * 10^(np-1));
 
@@ -96,12 +137,12 @@ long begin;
 
 <<"search begins @ $begin\n"
 
-ASK
+//ASK
 
 long maxn = 0;
 long diff;
 int ip = 1;
-int jp =0;
+long jp =0;
 
 
 int k = 9;
@@ -117,7 +158,7 @@ maxn = 0;
 
 
 while (jp < (np-1)) {
-
+<<"%V $jp\n"
   ip = 1;
 
   while (1) {
@@ -171,24 +212,35 @@ sumover =getArmN(nvm)
 
 
 
-long endnum;
-
 <<"%V $nvm\n"
 
-endnum = atol("0000456")
+//endnum = atol("0000456")
 
 <<"%V $endnum \n"
 <<" %s $nvm \n"
+
 endnum = atol(nvm)
 
-<<" so do ArmNumbers from $begin to %s $nvm %d $endnum\n"
-
-
+//<<" so do ArmNumbers from $begin to %s $nvm %d $endnum\n"
 
 if (endnum > totn) {
   endnum = totn;
 }
 
+
+if (argc() >2) { 
+ begin = atol (_clarg[2])
+}
+
+if (argc() >3) {
+endnum = atol(_clarg[3])
+}
+
+if (endnum > totn) {
+  endnum = totn;
+}
+
+<<" so do ArmNumbers from $begin to  $endnum\n"
 
 str s="123";
 last_Mu = memused();
@@ -199,31 +251,42 @@ last_Mu = memused();
 
 
   //checkMemory(1);
-   
-   for (pk=begin; pk <= endnum; pk++) {
+   sdb(-1,@~pline)
 
+ for (pk=begin; pk <= endnum; pk++) {
 
-     if ((j % 1000) == 0) {  // not if long j TBF
+//<<"%V $pk \n"
+     if ((j % 5000) == 0) {  // not if long j TBF
 
            Mu= memused();
 	   
            u3 = utime();
 	   
 	  // dumpmemtable();
-	   <<"<$j> $k  $Mu took $(u3-last_ut) secs \n"
-            if ((Mu[0]) > 50000) {
+	  
+	   <<"<$j> $pk  $Mu took $(u3-last_ut) secs "
+            if (na > 0) {
+             <<"found $na @ $Anum[0:na-1]\r"
+            }
+	    else {
+             <<"\r"
+            }
+	    fflush(1)
+
+
+
+           if ((Mu[0]) > 50000) {
 <<"too much mem used $Mu\n"
             break;
            }
 	   
-            for (i=0; i< na; i++) {
-             <<"found $(i+1)  $Anum[i]\n"
-            }
+
+	    
             last_ut = u3;
 	   
       }
 
-     j++;;
+     j++;
     //<<"$k\t      \r"
    // <<"%V $mu\n"
   //    ans= iread();
@@ -237,15 +300,22 @@ last_Mu = memused();
       
          psum += pw[nv[i]]; // get the nth pwr of the  ith place digit
          if (psum > pk) {
-      //<<"$psum > $pk\n";
+   //   <<"$psum > $pk\n";
            break;
 	 }
       }
       
       if (pk == psum) {
+
       Anum[na] = pk;
       na++;
       <<"$na $pk   $psum\n"
+
+       sofar()
+/{/*
+sofar code
+/}*/
+
       }
       
     }
@@ -254,16 +324,16 @@ last_Mu = memused();
 
 dt=FineTimeSince(T);
 
-<<"between $ks  and $k "
+<<"between $begin  and $endnum "
 
 u2 =utime();
+secs = u2-u1;
 
-float secs = u2-u1;
 if (secs <=100) {
  secs = dt/1000000.0;
 }
 
-<<"there are $na armstrong $np numbers took %V $secs\n "
+<<"there are $na armstrong $np place numbers took %V $secs\n "
  for (i=0; i< na ; i++) {
   <<"$(i+1)  $Anum[i]\n"
  }
@@ -273,7 +343,7 @@ if (secs <=100) {
 
 
 
-fname = "Armstrong_${np}_nums"
+fname = "ArmstrongL_${np}_nums"
 
 A=ofw(fname)
 
@@ -342,3 +412,4 @@ there are 3 Armstrong 4 numbers took 5.891107  secs
 // 88593477
 
 
+// make this threaded -- can split problem into multiple cpus

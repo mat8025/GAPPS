@@ -133,3 +133,7 @@ declare_e.cpp            2.23	Fri Apr 12 16:06:46 2019 added TXT_BOX escape sequ
 ds_storesiv.cpp          1.84	Sun Apr 14 08:28:44 2019 using a tmplate scalar/ele into array store
 tokquote.cpp             1.77	Sun Apr 14 08:31:14 2019 DQ len check
 ds_convert_store.cpp     1.95	Sun Apr 14 08:32:48 2019 storeValInEle tidy
+include_e.cpp            2.20	Mon Apr 15 11:33:05 2019 SincludeSM () LPPROCESS Pst last st check - XIC
+ic_rw.cpp                1.63	Tue Apr 16 09:28:41 2019 clean up dbp
+ic_wic.cpp               1.66	Tue Apr 16 09:32:09 2019 clean up dbt comments
+asl_sig.cpp              1.63	Tue Apr 16 12:01:42 2019 fix/alert for missing shift args -  asl -s   and no input value
