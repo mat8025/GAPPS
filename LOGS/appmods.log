@@ -45,3 +45,4 @@ svar_declare.asl         1.41	Mon Apr  8 09:51:04 2019 added more range tests
 if_fold.asl              1.2	Mon Apr  8 13:59:31 2019 many fold tests WS after contuation char
 graphic.asl              1.2	Wed Apr 10 07:49:47 2019 include file to connect to graphic server
 selfnd2ftable.asl        1.3	Wed Apr 10 11:32:55 2019 strip ay comma from Unit
+daytasker.asl            1.9	Sat Apr 20 10:02:23 2019 added yesterday,manana

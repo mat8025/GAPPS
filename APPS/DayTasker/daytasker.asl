@@ -3,9 +3,9 @@
 //* 
 //*  @comment  cosas que hacer hoy 
 //*  @release CARBON 
-//*  @vers 1.8 O Oxygen                                                   
-//*  @date Sat Jan 26 09:12:29 2019 
-//*  @cdate Wed Jan  9 10:54:35 2019 
+//*  @vers 1.9 F Fluorine                                                  
+//*  @date Sat Apr 20 10:02:23 2019 
+/*  @cdate Wed Jan  9 10:54:35 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
@@ -85,7 +85,7 @@
  //=============== CL Options ===================//
  //DebugON();
 
-  fname = "today"
+  fname = ""
 
    if (argc() >=1) {
     fname = _clarg[1];
@@ -109,7 +109,21 @@
         fname = "today"
    }
 
-  if (fname @= "yesterday") {
+  if (fname @= "today") {
+ <<[_DB]"look/edit today \n"
+   ds=ssub(today,"/","-",0)
+   fname =  "DT/dt_$ds";
+   fsz=fexist(fname,0);
+ <<[_DB]"$fname $fsz \n"
+   if (fsz > 0) {
+       read_the_day = 1;
+   }
+   else {
+    makeMyDay(fname);
+    ok = 1;
+   }
+  }
+  else if (fname @= "yesterday") {
  <<[_DB]"look/edit yesterday \n"
    ds=ssub(yesterday,"/","-",0)
    fname =  "DT/dt_$ds";

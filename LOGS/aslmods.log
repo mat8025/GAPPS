@@ -137,3 +137,11 @@ include_e.cpp            2.20	Mon Apr 15 11:33:05 2019 SincludeSM () LPPROCESS P
 ic_rw.cpp                1.63	Tue Apr 16 09:28:41 2019 clean up dbp
 ic_wic.cpp               1.66	Tue Apr 16 09:32:09 2019 clean up dbt comments
 asl_sig.cpp              1.63	Tue Apr 16 12:01:42 2019 fix/alert for missing shift args -  asl -s   and no input value
+svarg_e.cpp              2.25	Thu Apr 18 16:06:26 2019 added getArgP -- copies pan value to sfunc
+ap_mem.cpp               1.23	Fri Apr 19 09:09:10 2019 setExpZero
+mop_m.cpp                1.94	Fri Apr 19 13:20:16 2019 added isarmstong
+pan.h                    2.3	Fri Apr 19 13:23:19 2019 added getAsStr, setExpZero
+ap_math.cpp              1.22	Fri Apr 19 13:25:21 2019 getAsStr
+ap_radix.cpp             1.24	Sat Apr 20 08:36:02 2019 radix code - extracted from ap_mem
+ap_cmp.cpp               1.21	Sat Apr 20 08:38:41 2019 cmp code extracted from ap_funcs
+ap_funcs.cpp             1.21	Sat Apr 20 09:05:01 2019 reorg code --> ap_cmp ap_radix

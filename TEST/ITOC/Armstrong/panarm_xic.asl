@@ -1,5 +1,5 @@
 //%*********************************************** 
-//*  @script panarm.asl 
+//*  @script panarm_xic.asl 
 //* 
 //*  @comment find Armstrong numbers pan version 
 //*  @release CARBON 
@@ -92,8 +92,8 @@ char nv[20];
 char nvm[np];
  nvm = 48;
 
-	  C= ofw("P_np_${np}_${mypid}.log")
 
+	  C= ofw("panarm_${np}_${mypid}_log")
 //pan ks = (1 * 10^(np-1));
 pan ks;
 
@@ -134,10 +134,8 @@ begin =1;
 
  for (i=0; i < (np-1) ;i++) {
     begin *= 10;
-    begin += 1;
-}
+ }
 
-    begin += 1;
 
 <<[C]"%V $begin\n"
 //ans=iread();
@@ -226,9 +224,10 @@ endnum = atop("0000456")
 <<[C]" %s $nvm \n"
 endnum = atop(nvm)
 
+<<[C]" so do ArmNumbers from $begin to %s $nvm %d $endnum\n"
 
+<<" so do ArmNumbers from $begin to %s $nvm %d $endnum\n"
 
-//<<" so do ArmNumbers from $begin to %s $nvm %d $endnum\n"
 
 
 if (endnum > totn) {
@@ -252,112 +251,69 @@ if (begin > endnum) {
   exit()
 }
 
-
+via_xic =1;
 
 str s="123";
 last_Mu = memused();
 // reset ks - to last session
 
-pan j= 1;
+   pan j= 0;
+//    long j= 0;
 
 
-//pan last_j= 1;
-
-pan last_j ;
-
-
+  //checkMemory(1);
 double etc;
 
-nums = 1000;
-
 pk = begin;
-N_report = 5000;
-if (np < 7) {
-  nums = 100;
-  N_report = 2000;
-}
-else {
-   nums = 1000;
-}
 
-if (np >=10) {
-  N_report = 100000;
-}
+nums = 2000;
+
+<<" so do ArmNumbers from $begin to %s $nvm %d $endnum  $pk\n"
 
 
-
-<<" finding ArmNumbers from $begin to $endnum  $pk  $(date())\n"
-<<[C]" finding ArmNumbers from $begin to  $endnum  $(date())\n"
-
-long nums_chkd;
-pan pnums;
-
-pnums = nums;
-double pc_done;
-pan num2dO = endnum -pk;
-int kloop = 0;
-pan last_pk;
-
-last_pk = pk;
-
-last_j = j;
-
-
-//j->info(1);
-//last_j->info(1);
-long jj = 0;
-last_jj = jj;
 while  ( pk <= endnum) {
 
 
-     if (kloop >= N_report) {
-             kloop = 0;
+       if ((j % 100) == 0) {  // not if pan j TBF
 
-//<<"%V $secs   \n"	     
-           u3 =utime();
+           Mu= memused();
 	   
-	   if ((u3- last_ut) >= 20) {
+           u3 = utime();
 	   
-	     dt=FineTimeSince(T,1);
-	     secs = dt/1000000.0;
-             etc = (endnum-pk)/ (1.0*N_report) * secs/360.0;
-              days = etc/24.0;
-              pc_done = Fround(((j/num2dO) *100.0),4);
+	  // dumpmemtable();
 
-              nums_chkd = jj - last_jj;
-              last_jj = jj;
-	      
-//       last_pk = pk;
-//               last_j->info(1)
-	       
-        //       last_j = j;
+	  //<<"%V$mypid $pk\n"
+	  A= ofw("panarm_pid_$mypid")
+	  secs = u3-last_ut;
+ etc = (endnum-pk)/ 1000.0 * secs/360.0;
+ days = etc/24.0;
+<<[A]"<$j> $pk  $Mu took $secs secs %6.2f $etc hrs $days days "
+<<"<$j> $pk found $na $Mu took $secs secs %6.2f $etc hrs $days days "
 
-//               j->info(1)
-//<<"<$j> $pk $nums_chkd found $na  took $secs secs $pc_done pc  $etc hrs \r"
-//              fflush(1)
-//<<"<$j> $pk  found $na  took $secs secs $pc_done pc  $etc hrs \r"	     
-
-<<[C]"<$j> $pk $nums_chkd found $na  took $secs secs $pc_done pc  $etc hrs "
-
-//<<"<$j> $pk found $na  took $secs secs %6.2f $etc hrs $days days "
 // <<"$pk $Anum[0] ETC %6.2f$how_long \n"
-
             if (na > 0) {
-             <<[C]"found $na  @ "
+             <<[A]"found $na  @ "
 	     for (i=0;i<na;i++) {
-	     <<[C]" $Anum[i] "
+	     <<[A]" $Anum[i] "
 	     }
-	     <<[C]"\n"
+	     <<[A]"\n"
             }
 	    else {
-             <<[C]"\n"
+             <<[A]"\n"
             }
-	    fflush(C);
-	    last_ut = u3;
-	    }
+	    cf(A)
+<<"\r"
 
-        }
-//<<"\r"
+if ((Mu[0]) > 50000) {
+<<"too much mem used $Mu\n"
+            break;
+           }
+	   
+
+            last_ut = u3;
+	   //via_xic = !via_xic;
+      }
+
 
     //<<"$k\t      \r"
    // <<"%V $mu\n"
@@ -365,39 +321,35 @@ while  ( pk <= endnum) {
    //   last_mu = mu;
 
 
-      psum= isarmstrong("$pk",nums)
-     
-      if ( psum > 0) {
- //<<"$pk isarm? $psum \n"
-// ans=iread(">");
-      j += (psum-pk);
-      kloop += (psum-pk);
-      pk = psum;
+     psum = 0;
+      s="$pk"
+      scpy(nv,s);
+      nv -= 48;
+      
+      for (i=0; i < np ;i++) {
+      
+         psum += pw[nv[i]]; // get the nth pwr of the  ith place digit
+         if (psum > pk) {
+     // <<"$psum > $k\n";
+           break;
+	 }
+      }
+
+      if (pk == psum) {
       Anum[na] = pk;
       na++;
       <<[C]"$na $pk   $psum\n"
-  //    <<"$na $pk   $psum\n"
       sofar()
+      }
       pk++;
-    //  <<"$na $pk   $psum\n"
-      }
-      else {
-      pk = pk +nums;
-      jj += nums;
-      //j += nums;
-      j =  j + pnums;
- //     j->info(1)
-      kloop += nums;
-      }
-  
 
-//<<"%V $j $pk $na  %6.2f $pc_done\r"      
-
+     j++;      
+      
 }
 
 
 
-
+dt=FineTimeSince(T);
 
 <<[C]"between $ks  and $k "
 
@@ -488,11 +440,4 @@ there are 3 Armstrong 4 numbers took 5.891107  secs
 // 24678051
 // 88593477
 
-// Armstong 9
-// 146511208
-// 472335975
-// 534494836
-// 912985153 
 
-// Armstong 10
-// 1465511208

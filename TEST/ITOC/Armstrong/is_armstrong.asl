@@ -61,7 +61,7 @@ int pw[10];
 sum =getArmN(cnum);
 
 
-<<" is $sum == to $N ?\n"
+<<" is $sum == to $N $(sum -N)?\n"
 
 if (sum == N) {
 <<" Yes $N is Armstrong (Narcissitic) number\n"
