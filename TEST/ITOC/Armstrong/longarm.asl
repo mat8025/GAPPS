@@ -13,6 +13,7 @@
 ///
 ///  generate armstrong numbers
 ///
+
 sdb(1,@~pline)
 
 #define ASK ans=iread("carry on: ");
@@ -406,7 +407,7 @@ there are 3 Armstrong 4 numbers took 5.891107  secs
 // 9800817
 // 9926315
 
-// Armstong 8
+// Armstrong 8
 // 24678050
 // 24678051
 // 88593477
