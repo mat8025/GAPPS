@@ -900,14 +900,12 @@ if (runModule( do_if )) {
 
  if (runModule( do_for )) {
 
-   Run2Test("For")
-
-   cart("for")
-
+   RunDirTests("For","for,for0,forexp")
+}
 
 
 ////////////////////////////////////////////////////////////////////////
-    }
+ 
 
   if (runModule( do_while )) {
 

@@ -405,9 +405,7 @@ u2 =utime();
 
 
 secs = u2-u1;
-if (secs <=100) {
- secs = dt/1000000.0;
-}
+
 
 <<[C]"there are $na armstrong $np numbers took %V $secs\n "
  for (i=0; i< na ; i++) {
@@ -417,6 +415,10 @@ if (secs <=100) {
 cf(C)
 //============================//
 
+<<"there are $na armstrong $np numbers took %V $secs\n "
+ for (i=0; i< na ; i++) {
+  <<"$(i+1)  $Anum[i]\n"
+ }
 
 
 
@@ -483,16 +485,20 @@ there are 3 Armstrong 4 numbers took 5.891107  secs
 // 9800817
 // 9926315
 
-// Armstong 8
+// Armstrong 8
 // 24678050
 // 24678051
 // 88593477
 
-// Armstong 9
+// Armstrong 9
 // 146511208
 // 472335975
 // 534494836
 // 912985153 
 
-// Armstong 10
+// Armstrong 10
 // 1465511208
+// 4679307774
+
+// Armstrong 11
+

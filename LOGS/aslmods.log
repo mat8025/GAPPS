@@ -145,3 +145,13 @@ ap_math.cpp              1.22	Fri Apr 19 13:25:21 2019 getAsStr
 ap_radix.cpp             1.24	Sat Apr 20 08:36:02 2019 radix code - extracted from ap_mem
 ap_cmp.cpp               1.21	Sat Apr 20 08:38:41 2019 cmp code extracted from ap_funcs
 ap_funcs.cpp             1.21	Sat Apr 20 09:05:01 2019 reorg code --> ap_cmp ap_radix
+user.cpp                 1.14	Wed Apr 24 17:19:51 2019 adding in armstrong find
+ap_math.cpp              1.23	Thu Apr 25 09:02:06 2019 storeAsPan ((Pan &p, int ele)
+ds_storenumber.cpp       1.70	Thu Apr 25 09:06:13 2019 storeNumber(Pan &p, int woffset)
+ds_storenumber.cpp       1.71	Thu Apr 25 09:26:08 2019 storeNumber can store into array offset
+array_store.cpp          2.76	Thu Apr 25 12:40:26 2019 PAN transfer
+ds_arraycopy.cpp         2.67	Thu Apr 25 12:49:43 2019 pan copy
+ap_copy.cpp              1.21	Thu Apr 25 13:14:15 2019 copy routines moved here
+ap_store.cpp             1.21	Thu Apr 25 13:14:39 2019 store routines moved here
+ap_set.cpp               1.21	Thu Apr 25 13:15:01 2019 set routines moved her
+ap_mem.cpp               1.24	Thu Apr 25 13:16:47 2019 reorg - all mem routines here

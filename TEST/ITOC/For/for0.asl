@@ -12,7 +12,7 @@ N = 24
 k = 1
 
   if (k <= N) {
-<<" $k  <= $N
+<<" $k  <= $N"
   }
   else {
 
@@ -83,7 +83,7 @@ int cnt = 0
 
    CheckOut()
 
-STOP!
+
 
 
 
