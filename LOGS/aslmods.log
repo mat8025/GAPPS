@@ -155,3 +155,7 @@ ap_copy.cpp              1.21	Thu Apr 25 13:14:15 2019 copy routines moved here
 ap_store.cpp             1.21	Thu Apr 25 13:14:39 2019 store routines moved here
 ap_set.cpp               1.21	Thu Apr 25 13:15:01 2019 set routines moved her
 ap_mem.cpp               1.24	Thu Apr 25 13:16:47 2019 reorg - all mem routines here
+firstpass_e.cpp          2.29	Fri Apr 26 07:07:50 2019 stdout error for missing src/include file
+ds_debug.cpp             1.65	Fri Apr 26 07:56:26 2019 asl_error_msg sets serror
+asl.cpp                  2.6	Fri Apr 26 12:05:17 2019 mod to work as aslx
+ap_mem.cpp               1.25	Fri Apr 26 14:01:43 2019 attachPan for Array
