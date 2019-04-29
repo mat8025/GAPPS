@@ -223,15 +223,14 @@ svar wans;
 <<"$_proc  $_ecol $_erow \n"
 
    if (_ecol == 0) {
-            addFoodItem()
+         addFoodItem() ; // and save
+	 SAVE();
    }
 
     fd= RC[_erow][0];
 //<<"$fd \n"
     sWo(searchwo,@value,fd,@redraw);
    if (_ecol == 1) {
-
-
 
     mans = popamenu("HowMuch.m");
     mf = atof(mans);
@@ -282,9 +281,6 @@ svar wans;
    sWo(cellwo,@cellval,R,0,0,Nrows,cols);
    setRowColSizes()
 
-//sWo(cellwo,@redraw);
-// sWo(cellwo,@cellval,R,0,0,rows,cols);
-// sWo(cellwo,@redraw);
 
 }
 //=======================

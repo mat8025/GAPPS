@@ -83,11 +83,6 @@ nargs = argc();
 
 adjust_day = 0;
 
-
-
-
-
-
 edit_foods = 0;
 
 fname = _clarg[1];
@@ -382,6 +377,7 @@ int cv = 0;
 //  <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ekeyw3 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
 int mwr =0;
 int mwc = 0;
+
 while (1) {
 
          eventWait();
@@ -517,5 +513,6 @@ while (1) {
   added yesterday dd-1, dd-2, dd-N
   improve search by checking food catergory { bread,meat,fish ...}
 
+  save on each add
 
 /}*/
