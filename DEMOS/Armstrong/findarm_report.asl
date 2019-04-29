@@ -1,7 +1,21 @@
+//%*********************************************** 
+//*  @script findarm_report.asl
+//* 
+//*  @comment find Armstrong numbers pan version 
+//*  @release CARBON 
+//*  @vers 1.5 B Boron                                                     
+//*  @date Thu Apr 18 07:06:11 2019 
+//*  @cdate 1/5/2017 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 
 include "debug.asl"
- debugOFF()
- opendll("uac");
+  debugOFF()
+  sdb(-1)
+  
+  opendll("uac");
 
 
   mypid = getAslPid();
@@ -9,7 +23,7 @@ include "debug.asl"
   int np ;
   np = atoi(_clarg[1])
 
-  sdb(-1)
+
 
   pan begin;
   pan endnum;
@@ -31,7 +45,7 @@ include "debug.asl"
 
 C= ofw("P_np_${np}_${mypid}.log")
 
-D= ofw("P_np_${np}_${mypid}_nums")
+//D= ofw("P_np_${np}_${mypid}_nums")
 
 <<[C]"%V $np $begin $endnum\n"
 
@@ -79,9 +93,10 @@ Armv->info(1)
   diff = stagenum - begin
   rate = Trunc(diff/secs);
   pcd = stagenum/endnum * 100.0 ;
-//  pcd->info(1)
-  pcdone = Fround(pcd,2);
 
+//  pcd->info(1)
+  pcdone = pcd
+ // <<"pcd $pcd %6.4f $pcdone\n"
 //  pcdone->info(1)
   
   //sz= Armv[0]
@@ -90,17 +105,17 @@ Armv->info(1)
 //  <<[C]" $Armv[i] \n"
 //  }
 
-<<[C]"[${loop}] $naf Arms for $np  between $begin $stagenum $diff  nchecked $Armv[4]  secs  $secs  nps $rate $Fi\n"
+<<[C]"[${loop}] $naf Arms$np  between $begin $stagenum $diff   $Armv[4]  secs  $secs  nps $rate %6.4f $pcdone%% %d $Fi "
   fflush(C);
   
  // sz= Armv[0]
   if (naf >0) {
   for (i=0; i < naf; i++) {
    j= i+5;
-  <<[C]" $Armv[j] \n"
-  <<[D]" $Armv[j] \n"
-  fflush(D)
-  E= ofw("P_np_${np}_$Armv[j]")
+  //<<[C]" $Armv[j] \n"
+  //<<[D]" $Armv[j] \n"
+  //fflush(D)
+  E= ofw("np_${np}_$Armv[j]")
   <<[E]" $Armv[j] \n"
   cf(E)
   Farms[Fi] = Armv[j];
@@ -109,18 +124,19 @@ Armv->info(1)
   }
   
    begin = stagenum;
-   //stagenum += 50000;
-
    stagenum = begin + step;   
 
-<<"[${loop}] $naf Arms$np  btw $begin $stagenum $diff  $Armv[4]    $secs secs   $rate nps Found $Fi %6.2f $pcdone%% "
+//<<"[${loop}] $naf Arms$np  btw $begin $stagenum $diff  $Armv[4]    $secs secs   $rate nps Found $Fi %6.2f $pcdone%% "
   // <<"%V $np $begin $stagenum $naf $Fi\n"
    if (Fi >0) {
     for ( i=0; i< Fi; i++) {
-    <<"<$Farms[i]> "
+    //<<"<$Farms[i]> "
+    <<[C]" <$Farms[i]> "
     }
+
    }
-<<"\r"
+    <<[C]"\n"
+//<<"\r"
 fflush(1)
    if (begin >= endnum) {
         break
@@ -130,13 +146,11 @@ fflush(1)
 }
 
 cf(C);
-cf(D);
+//cf(D);
 
 
 <<"There were $Fi arm_nums found \n"
 
-
 for ( i=0; i< Fi; i++) {
 <<"$i $Farms[i] \n"
-
 }

@@ -200,7 +200,8 @@ proc fillInCCObsVec()
 
   CCDV[j] = kd;  // julian day - bday - #daysofar
   CALCON[j] =  atof(col[1]);
-  CARBCON[j] = atof(col[2]);  
+  CARBCON[j] = atof(col[2]);
+    CARBCON[j+1] = 0.0;  
 
 <<[_DB]"$NCCobs $CCDV[j] $CALCON[j] $CARBCON[j] \n"
 
@@ -217,13 +218,7 @@ proc readCCData()
   tl = 0;
 
 //svar ccol;
-/{
-  for (j= 0; j < NCCrecs; j++) {
-    CALSCON[j] = 28+j;
-    CARBSCON[j] = 52+j;    
-   <<[_DB]"$j $CALSCON[j]\n"
-  }
-/}
+
 
   while (1) {
 
@@ -249,7 +244,8 @@ proc readCCData()
   cals = atof(RCC[tl][1]);
   CALSCON[j] = cals;
   carbs = atof(RCC[tl][2]);
-  CARBSCON[j] = carbs;  
+  CARBSCON[j] = carbs;
+  CARBSCON[j+1] = 0;    
 //<<[_DB]"%V $j $cals $CALSCON[j]\n"
    NCCobs++;     
 
@@ -260,8 +256,8 @@ proc readCCData()
 
  }
 
-  for (j= 0; j < NCCrecs; j++) {
-  <<[_DB]"$j $CCDV[j] $CALSCON[j] $CARBSCON[j]\n"
+  for (j= 0; j <= NCCrecs; j++) {
+  <<[2]"$j $CCDV[j] $CALSCON[j] $CARBSCON[j]\n"
   }
 }
 //=======================================//

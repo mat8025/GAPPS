@@ -3,8 +3,8 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 2.47 Ag Silver                                                  
-//*  @date Sun Apr  7 16:02:57 2019 
+//*  @vers 2.48 Cd Cadmium                                                 
+//*  @date Sun Apr 28 15:09:27 2019 
 //*  @cdate Fri Jan  1 08:00:00 2010 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2014,2019 --> 
@@ -230,7 +230,7 @@ readData();
 
 
 
-ty_gsday = gsday;
+  ty_gsday = gsday;
 
 
   GVEC[0] = StartWt;  // start  Wt
@@ -241,7 +241,7 @@ ty_gsday = gsday;
 
 //  lpd = 1.75/7.0      // 1.75 lb a  week
 
-  lpd = 4.0/7.0;      // 5 lb a  week
+  lpd = 8.0/7.0;      // 8 lb a  week
   sw = StartWt;
   lw = sw;
 
@@ -425,7 +425,7 @@ showTarget();
 
 include "gevent.asl"
   titleVers();
-
+_DB=1;
    while (1) {
 
      if ((m_num % 50) ==0) {
@@ -434,16 +434,22 @@ include "gevent.asl"
         m_num++
 
         msg =eventWait();
-<<[_DB]"$m_num $msg  $_ename $_ewoname\n"
+<<[2]"$m_num $msg  $_ename $_ewoname\n"
 
        if (_ename @= "PRESS") {
+      // ans=iread(">>");
         if (!(_ewoname @= "")) {
 <<[_DB]"calling function via $woname !\n"
             $_ewoname()
         }
       }
 
-       if (_ename @= "RESIZE") {
+       if (_ewoname @= "RESIZE") {
+       <<" RESIZE\n"
+         drawScreens();
+      }
+
+       if (_ewoname @= "REDRAW") {
          drawScreens();
       }
 
@@ -475,8 +481,8 @@ exit_si()
 // trend prediction toward goal (wt,strength) done?
 // scrollable windows
 // text - events ( notable days, events)
-//   organize in Quarters  JFM,  AMJ,  JAS, OND
-//   (last month, current month, next)
+//  organize in Quarters  JFM,  AMJ,  JAS, OND
+//  (last month, current month, next)
 //  bench press value, arm curl, lat pull ?? values
 //
 //  get today's date and set up view for this quarter

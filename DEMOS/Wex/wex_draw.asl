@@ -111,7 +111,7 @@ proc  drawGrids( ws )
   //sWo(calwo,@axnum,2,500,5500,500,100)
   
   sWo(calwo,@axnum,2);
-  sWo(calwo,@axnum,4);
+  sWo(carbwo,@axnum,2);
   
   sWo(extwo,@yscales,0,250,@savescales,1);
   sWo(extwo,@axnum,2);
@@ -177,7 +177,7 @@ proc drawScreens()
 
 
       
-      sWo(calwo,@rhtscales,sc_startday,0,sc_endday+10,carb_upper,@savescales,0)      
+      sWo(carbwo,@scales,sc_startday,0,sc_endday+10,carb_upper,@savescales,0)      
       dGl(carb_gl) ; //which scale is this going to use      
 
 

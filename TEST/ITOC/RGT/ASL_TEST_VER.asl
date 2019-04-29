@@ -3,8 +3,8 @@
 //* 
 //*  @comment asl test modules 
 //*  @release CARBON 
-//*  @vers 1.55 Cs Cesium                                                  
-//*  @date Tue Apr  2 08:16:51 2019 
+//*  @vers 1.56 Ba Barium                                                  
+//*  @date Sun Apr 28 08:02:06 2019 
 //*  @cdate 1/1/2005 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -25,6 +25,9 @@ debugOFF()
 #define POFF  '\033[0m'
 
 
+wasl = "asl"
+wasl = "aslx"
+<<"using $wasl for testing \n"
 
 //ws= getenv("GS_SYS")
 
@@ -348,7 +351,7 @@ proc doxictest(prog, a1)
 
 //      !!" $prog  $a1 > xres.txt "
 
-       !!"asl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -x $prog $a1  > fooxpar"
+       !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -x $prog $a1  > fooxpar"
 
       //!!" $prog  $a1  | tee --append $ictout "
   }
@@ -360,8 +363,8 @@ proc doxictest(prog, a1)
 //!!" $prog   > xres.txt "
 
 //     !!"nohup $prog  | tee --append $ictout "
-//      <<"asl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -x $prog "
-       !!"asl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -x $prog   > fooxpar"
+
+       !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -x $prog   > fooxpar"
 
   }
 
@@ -490,8 +493,8 @@ proc cart (aprg, a1)
 // <<" asl $CFLAGS ${aprg}.asl  $a1 \n"
 //  jpid = !!&"asl -o ${aprg}arg.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1"
 
-//!!"asl -o ${aprg}arg.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1  > foopar"
-!!"asl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1  > foopar"
+
+!!"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1  > foopar"
 
      wt_prog = "$(time()) ${aprg}:$a1arg "
      wlen = slen(wt_prog)
@@ -518,7 +521,7 @@ proc cart (aprg, a1)
 //<<" asl $CFLAGS ${aprg}.asl  >> $tout & \n"
 //    jpid = !!&"asl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl"
 
-      !!"asl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl > foo   2>&1"
+      !!"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl > foo   2>&1"
 
       if (f_exist("${aprg}.tst") > 0) {
 
@@ -635,6 +638,7 @@ int do_unary = 0;
 int do_ptrs = 0;
 int do_vmf = 0;
 int do_help = 0;
+int do_release = 0;
 
 
 
@@ -704,6 +708,12 @@ int do_help = 0;
 
 <<"%V $do_all \n"
 
+if (do_release) {
+
+  wasl = "asl"
+  <<"testing release vers \n"
+  !!"$wasl -v"
+}
 
 
 
@@ -1389,6 +1399,8 @@ secs = dtms/1000000.0
 
 <<"script vers $_ele_vers took %6.3f$secs secs %d %V $i_time $x_time\n"
 today=getDate(1);
+<<"used $wasl for tests \n"
+!!"$wasl -v"
 <<"$today tested $(get_version())\n"
 sipause(1)
 if (pcc < 100.0) {

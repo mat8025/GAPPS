@@ -89,7 +89,7 @@
   len = slen(fname);
   
   ind = (80-len)/2;
-  //<<[2]"$(date()) $(date(8)) \n"
+  <<[2]"$(date()) $(date(8)) \n"
   //<<[2]" $len $ind\n"
   insp = nsc((60-len)/2," ")
   len= slen(insp)
@@ -104,7 +104,7 @@
 
   A=ofile(srcfile,"r+")
   //T=readfile(A);
- //<<[2]"opened for read/write? $A\n"
+ <<[2]"opened for read/write? $A\n"
   if (A == -1) {
 <<"bad file ?\n"
    exit()
@@ -121,9 +121,11 @@
 //tsz = Caz(T)
    for (i = 0; i < 8;i++) {
    T = readline(A);
+<<"$i line is $T \n"
    where = ftell(A)
    L = Split(T);
-   if (scmp(L[1],"@vers")) {
+<<"$i $L \n"
+    if (scmp(L[1],"@vers")) {
      found_vers =1;
      cvers = L[2];
      //<<[2]"$where $T\n"

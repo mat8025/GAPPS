@@ -25,25 +25,6 @@ setdebug(1,@keep,@filter,0);
 //scriptDBON();
 
 //////   create MENUS here  /////
-A=ofw("Howlong.m")
-<<[A],"title HowLong\n"
-<<[A],"item 1 M_VALUE 1\n"
-<<[A],"help half-hour\n"
-<<[A],"item 2 M_VALUE 2\n"
-<<[A],"help 1 hour\n"
-<<[A],"item 3 M_VALUE 3\n"
-<<[A],"help hour and half\n"
-<<[A],"item 4 M_VALUE 4\n"
-<<[A],"help two hours\n"
-<<[A],"item 5 M_VALUE 5\n"
-<<[A],"help two and half hours\n"
-<<[A],"item 6 M_VALUE 6\n"
-<<[A],"help three hours\n"
-<<[A],"item 7 M_VALUE 7\n"
-<<[A],"help three and half hours\n"
-<<[A],"item 8 M_VALUE 8\n"
-<<[A],"help  four hours\n"
-cf(A)
 
 
 include "gss.asl"
@@ -67,13 +48,6 @@ A= ofr(fname)
     exit(-1);
  }
 
-//record R[20+];
-
-Record DF[10];
-
-DF[0] = Split("fooddesc,1,TBSP,100,10,0,0,0,0,0",",");
-
-   
 
    R= readRecord(A,@del,',')
    cf(A);
@@ -178,14 +152,15 @@ for (i = 0; i < rows;i++) {
         }
 	
              if (_ekeyw @="CELLVAL") {
-                r= _erow;
+                mr= _erow;
 	//	c= Cev->col;
-	        c= _ecol;
+	        mc= _ecol;
 		//<<"%V$Cev->row $Cev->col\n"
 //R[Cev->row][Cev->col] = _ekeyw2;   // TBF
                 R[r][c] = _evalue;
 	//	<<"update cell val $r $c $_erow $_ecol $_ekeyw2 $R[r][c] \n"
 	//	<<"updated row $R[r]\n"
+	                              getCellValue(mr,mc);
             }
 
       

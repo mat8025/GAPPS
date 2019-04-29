@@ -68,8 +68,8 @@ int cnt = 0
 <<" DONE %V $k  $N  \n"
 
 
- // for ( j = 1; j <= (N-1); j++)
-  for ( j = 1; j <= N-1 ; j++)  // bug does not get RHS exp correct
+  for ( j = 1; j <= (N-1); j++)
+//  for ( j = 1; j <= N-1 ; j++)  // bug does not get RHS exp correct
    {
 
     <<"loop val $k < $N $cnt\n"

@@ -1,9 +1,9 @@
-cd /usr/local/GASP/gasp/include
+cd ~/gasp-CARBON/include
 for y in $*
 do
 i="${y%.*}"
 echo $i $y
-cp $i.h /usr/local/GASP/gasp/BAK
+cp $i.h ~/TMP
 cat $i.h | sed s/DBOFF/DBON/ > $i.new
 cp $i.new $i.h
 rm $i.new

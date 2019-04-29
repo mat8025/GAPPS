@@ -48,7 +48,7 @@
       
       sWo(pgnwo,@bhue,WHITE_,@clipbhue,RED_,@FUNC,"inputValue",@callback,"PGN",@MESSAGE,1)
 
-      int ssmods[] = { readwo,savewo,sortwo,swprwo,swpcwo,delrwo, delcwo, arwo,pguwo,pgdwo,pgnwo }
+      int ssmods[] = { readwo,savewo,sortwo,swprwo,swpcwo,delrwo, delcwo, arwo, pguwo,pgdwo,pgnwo }
 
 
       wovtile(ssmods,0.05,0.1,0.1,0.9,0.01);
@@ -67,7 +67,7 @@
   sWo(searchwo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"Type in food name",@func,"inputValue");
 
    sWi(vp,@redraw)
- sWo(searchwo,@bhue,CYAN_,@clipbhue,LIGHTGREEN_,@style, SVR_, @redraw);
+   sWo(searchwo,@bhue,CYAN_,@clipbhue,LIGHTGREEN_,@style, SVR_, @redraw);
    sWo(ssmods,@redraw)
 
    sWo(cellwo,@redraw);

@@ -1,4 +1,6 @@
+include "debug"
 
+debugON()
 
 pan a = 1.2
 pan c = 2.4;

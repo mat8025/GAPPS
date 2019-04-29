@@ -44,12 +44,14 @@ include "global.asl"
 
     gwo=cWo(vp,@graph,@name,"WTLB",@value,0,@clipborder); //
 
-    calwo=cWo(vp,@graph,@name,"CAL",@value,0,@clipborder,BLACK_) ; // cals & carbs
+    calwo=cWo(vp,@graph,@name,"CAL",@value,0,@clipborder,BLACK_) ; // cals 
+
+    carbwo=cWo(vp,@graph,@name,"CARB",@value,0,@clipborder,BLACK_) ; // carbs
 
     extwo=cWo(vp,@graph,@name,"XT",@value,0,@clipborder,BLACK_); // exercise time
 
 
-   int wedwo[] = { gwo, calwo, extwo  };
+   int wedwo[] = { gwo, calwo, carbwo, extwo  };
 
 <<[_DB]"%V$wedwo \n"
 
@@ -58,8 +60,6 @@ include "global.asl"
     wo_vtile(wedwo,0.1,0.08,0.97,0.97,0.01)   // vertically tile the drawing areas into the main window
 
     cx = 0.08 ; cX = 0.98 ; cy = 0.2 ; cY = 0.97;
-
-
 
     titleButtonsQRD(vp)
 
@@ -70,23 +70,24 @@ CalsY1 = 5000;
 
     carb_upper = 300;
 
-    sWo(wedwo,@clip,cx,cy,cX,cY, @color,LILAC_)
+    sWo(wedwo,@clip,cx,cy,cX,cY, @color,LILAC_,@clipbhue,WHITE_,@bhue,GREEN_)
 
-    sWo(calwo,@clip,cx,cy,cX,cY, @color,MAGENTA_)
+    sWo(calwo,@clip,cx,cy,cX,cY, @color,MAGENTA_,@clipbhue,PINK_,@bhue,CYAN_)
 
-    sWo(extwo,@clip,cx,cy,cX,cY, @color,YELLOW_)
+    sWo(carbwo,@clip,cx,cy,cX,cY, @color,BROWN_,@bhue,RED_,@clipbhue,BLUE_,@bhue,GREEN_)
+
+    sWo(extwo,@clip,cx,cy,cX,cY, @color,YELLOW_,@clipbhue,LILAC_)
 
     sWo(wedwo,@border,@clipborder,"black",@drawon)
 
-    sWo(gwo,@scales,sc_startday,160,sc_endday+10,220,@savescales,0) 
+    sWo(gwo,@scales,sc_startday,160,sc_endday+10,220,@savescales,0)
 
     sWo(extwo,@scales,sc_startday,0,sc_endday+10,250,@savescales,0);
 
-    //sWo(extwo,@usescales,1,@axnum,3);
 
     sWo(calwo,@scales,sc_startday,0,sc_endday+10,CalsY1,@savescales,0)
 
-    sWo(calwo,@rhtscales,sc_startday,0,sc_endday+10,carb_upper,@savescales,1)
+    sWo(carbwo,@scales,sc_startday,0,sc_endday+10,carb_upper,@savescales,1)
 
 
     swo= cWo(vp1,@type,"GRAPH",@name,"BenchPress",@color,"white");
@@ -117,12 +118,12 @@ CalsY1 = 5000;
 
 <<[_DB]"SCALES %V$sc_startday $sc_endday $bp_upper\n"
 
-//    sWo(carbwo,@scales,sc_startday,0,sc_endday+10,carb_upper)
+    sWo(carbwo,@scales,sc_startday,0,sc_endday+10,carb_upper)
 
 <<[_DB]"SCALES %V$sc_startday $sc_endday $carb_upper\n"
 
 
-    int allwo[] = {gwo,swo, calwo, extwo}
+    int allwo[] = {gwo,swo, calwo, carbwo, extwo}
 
 //<<"%V $allwo \n"
 
