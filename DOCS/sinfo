@@ -1,1 +1,1 @@
-asl /usr/local/GASP/gasp/DOCS/aslinfo.asl $1
+asl ~/gapps/DOCS/aslinfo.asl $1

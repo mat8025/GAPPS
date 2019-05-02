@@ -1,5 +1,19 @@
+//%*********************************************** 
+//*  @script forexp.asl
+//* 
+//*  @comment  for test exp 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                 
+//*  @date Tue Mar 12 07:50:33 2019 
+//*  @cdate Tue Mar 12 07:50:33 2019 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%//
 
-//CheckIn()
+include "debug.asl"
+debugON()
+
 checkIn()
 
 prog = GetScript()
@@ -63,13 +77,13 @@ int cnt = 0
     cnt = k
   }
 
-  CheckNum(k,N+1)
+   CheckNum(k,N+1)
    CheckNum(cnt,N)
 <<" DONE %V $k  $N  \n"
 
 
-  for ( j = 1; j <= (N-1); j++)
-//  for ( j = 1; j <= N-1 ; j++)  // bug does not get RHS exp correct
+//  for ( j = 1; j <= (N-1); j++)
+  for ( j = 1; j <= N-1 ; j++)  // bug does not get RHS exp correct
    {
 
     <<"loop val $k < $N $cnt\n"

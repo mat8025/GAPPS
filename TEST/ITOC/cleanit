@@ -1,2 +1,0 @@
-rm  */foo  */fooxpar
-file */* | grep binary | asl cleanexe.asl 

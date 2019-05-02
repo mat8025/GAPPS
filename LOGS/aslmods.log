@@ -161,3 +161,5 @@ asl.cpp                  2.6	Fri Apr 26 12:05:17 2019 mod to work as aslx
 ap_mem.cpp               1.25	Fri Apr 26 14:01:43 2019 attachPan for Array
 wo_w.cpp                 1.61	Sun Apr 28 15:10:38 2019 release button checks button type
 rdrec.cpp                1.78	Mon Apr 29 12:13:09 2019 clear input words before new line read
+wcom_msg.cpp             1.92	Wed May  1 16:31:25 2019 add mouse position ex,ey to asl_event
+ds_sivevent.cpp          1.96	Thu May  2 09:34:50 2019 added ex,ey mouse position

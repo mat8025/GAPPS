@@ -53,7 +53,7 @@ proc getCellValue( r, c)
            if ((c == 0) && (cvalue @= "")) {
              ADDTASK()
            }
-           newcvalue = queryw("NewValue","xxx",cvalue);
+           newcvalue = queryw("NewValue","xxx",cvalue,_ex,_ey);
 <<[_DB]"%V$newcvalue \n"
            sWo(cellwo,@cellval,r,c,newcvalue);
            R[r][c] = newcvalue;

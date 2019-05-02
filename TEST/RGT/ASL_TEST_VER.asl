@@ -200,7 +200,7 @@ proc Run2Test(td)
 proc RunDirTests( Td, Tl )
 {
       Run2Test(Td);
-      
+      Tl->DeWhite()
       Tp = Split(Tl,",");
 
       np = Caz(Tp);
@@ -599,6 +599,7 @@ ntest = 0
 
 
 int do_all = 1;
+int do_tests = 0;
 int do_array = 0;
 int do_matrix = 0;
 int do_bugs = 0;
@@ -649,6 +650,7 @@ int do_release = 0;
  FailedList->LiDelete(0)
  
   updir()
+  chdir("ITOC")
   Testdir = getdir()
 <<"Test Dir is $Testdir\n"
 
@@ -1293,6 +1295,25 @@ if (runModule( do_vmf)) {
       //cart("bf_40")   // this has intentional error and exits before test checks
 
       RunDirTests("BUGFIX","bf_46,bf_59,bf_64,bf_75,bf_76,bf_78,bf_79,bf_80,bf_83,bf_84,bf_91,bf_96");
+    
+  }
+
+
+  if (runModule( do_tests )) {
+
+//  get a list of asl files in this dir and run them
+     chdir("Tests")
+<<"Doing Tests"
+!!"pwd"
+
+TS=!!"ls *.asl "
+<<"$(typeof(TS)) $TS\n"
+tslist="$TS"
+<<"$(typeof(tslist)) $tslist\n"
+   test_list = ssub(tslist,".asl",",",3)
+   
+<<"$test_list\n"
+     RunDirTests("Tests",test_list);
     
   }
 

@@ -113,10 +113,10 @@ DBG" $(sizeof(f_i)) \n"
 
 //  <<"looking up $pat in manual \n"
 A= -1
-  A=ofr("$gssys/DOCS/ASLMAN")
+  A=ofr("~/gapps/DOCS/ASLMAN")
 
     if (A <= 0 ) {
-       A= ofr("/usr/local/GASP/gasp/DOCS/ASLMAN")
+       A= ofr("/usr/local/GASP/DOCS/ASLMAN")
     }
 
     if (A <= 0 ) {

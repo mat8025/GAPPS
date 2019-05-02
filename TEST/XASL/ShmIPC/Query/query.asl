@@ -1,6 +1,21 @@
+//%*********************************************** 
+//*  @script query.asl 
+//* 
+//*  @comment test query window options and placement 
+//*  @release CARBON 
+//*  @vers 1.8 O Oxygen                                                    
+//*  @date Wed May  1 17:26:52 2019 
+//*  @cdate 1/1/2002 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 ///
 ///  Test Query Window
 ///
+ include "debug.asl"; 
+ include "gevent.asl"; 
+ debugON()
 
  if (!checkGWM()) {
     Xgm = spawnGWM()
@@ -27,8 +42,21 @@ A=ofw("Meats.m")
 <<[A],"help duck\n"
 
 cf(A)
+  include "tbqrd";
+
+   vp = cWi(@title,"QUERY")
+
+    sWi(vp,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
+
+    sWi(vp,@clip,0.1,0.2,0.95,0.9)
+
+    sWi(vp,@redraw)
+
+    titleButtonsQRD(vp);
 
 
+
+/{
 <<" using menu function \n"
 ans=popamenu("Food.m");
 
@@ -46,8 +74,8 @@ ans = exeGwmFunc("decisionw","CHECK","did decisionw appear ?", "YES", "NO" )
 
 <<"%V$ans\n"
 
+/}
 
-exit()
 
 <<" using query function \n"
 ans="what";
@@ -60,40 +88,52 @@ ans = queryw("QUERY?","Something?","$ans");
 
 
 <<"next a query loop !\n"
-<<" using query function \n"
 
- ans = exeGwmFunc("queryw","Question?","AnotherThing1?","$ans");
+// ans = exeGwmFunc("queryw","Question?","AnotherThing1?","$ans");
 
 
-<<"you typed $ans \n"
+//<<"you typed $ans \n"
 
   sipause(1);
 
+  kloop = 1;
 
-exitgs();
+ qwx = 200;
+ qwy = 300;
 
+ while (1) {
 
-
-kloop = 1;
-
-while (1) {
-
-<<" using query function \n"
+  <<" using query function - wait on click \n"
 // this does not work in xic
- ans = exeGwmFunc("queryw","Question?","AnotherThing $kloop ?","$ans");
+//   ME=getMouseEvent()
+//<<"1 %V $ME\n"
+ //   ok = getMouseClick()
+ //  ME=getMouseEvent()
+//<<"2 %V $ME\n"   
+  // get a position click
+    eventWait();
+
+  <<"got event %V $_etype $_erx  $_ery $_ex $_ey\n"
+  // then center? query window at that position
+
+//   ans = exeGwmFunc("queryw","Question?","AnotherThing $kloop ?","$ans", qwx, qwy);
+
+   ans = queryw("Question?","AnotherThing $kloop ?","$ans", _ex, _ey);
 
 
-<<"$kloop you typed $ans \n"
-
+  <<"$kloop you typed $ans \n"
+  qwy -= 10;
+  qwx += 200;
   sipause(1);
 
-  if (scmp(ans,"quit")) {
+  if (scmp(ans,"salida")) {
       break;
   }
   
   kloop++;
-}
+ }
 
-<<" and we have quit the loop\n"
+ <<" and we have quit the loop\n"
+
 
 gsexit();

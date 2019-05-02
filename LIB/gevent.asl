@@ -3,8 +3,8 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.2 He Helium                                                  
-//*  @date Thu Feb 21 14:11:04 2019 
+//*  @vers 1.3 Li Lithium                                                  
+//*  @date Wed May  1 12:05:43 2019 
 //*  @cdate Tue Jan  1 10:36:56 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -20,6 +20,10 @@
 
 proc eventDecode()
 {
+
+   // can get all of these in one by using ref parameters
+     _ename = Ev->getEventType(_eid,_etype,_ewoid,_ewoaw,_ebutton,_ekeyc,_ewoproc,_ex,_ey);
+<<"%V $_ex $_ey\n"
 
 // get all below button,rx,ry via parameters to wait_for_msg
     _ewoval = Ev->getEventWoValue();
@@ -51,8 +55,7 @@ proc eventDecode()
 
     _ekeyw3 = _ewords[4];
     
-   // can get all of these in one by using ref parameters
-     _ename = Ev->getEventType(_eid,_etype,_ewoid,_ewoaw,_ebutton,_ekeyc,_ewoproc);
+
 
 //<<"proc $_ewoproc \n"
      if (_ewoid < 32767) {
@@ -68,13 +71,15 @@ proc eventDecode()
 //  Motion event -- will have 1 or more 'event' readings
 //  read these into array or rxy and erow-col
 
-    Ev->geteventrxy(&_erx,&_ery);
+  //  Ev->geteventxy(&_ex,&_ey);
+    Ev->geteventrxy(&_erx,&_ery);    
 
 //_erow->info(1); // DBG
 //_ecol->info(1); // DBG
     Ev->geteventrowcol(&_erow,&_ecol);
 //_erow->info(1); // DBG
 //_ecol->info(1); // DBG
+//  Mouse window pos, screen pos?
 
     }
 
@@ -120,6 +125,10 @@ int _last_evid = -1;
 
 float _erx = 0;
 float _ery = 0;
+
+int _ex = -15;
+int _ey = 0;
+
 int _etype = 0;
 int _erow = -1;
 int _ecol = -1;
