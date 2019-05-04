@@ -3,8 +3,8 @@
 //* 
 //*  @comment thread vers of find armstrong 
 //*  @release CARBON 
-//*  @vers 1.4 Be Beryllium                                                
-//*  @date Sat May  4 06:54:29 2019 
+//*  @vers 1.5 B Boron                                                     
+//*  @date Sat May  4 10:24:26 2019 
 //*  @cdate Sat May  4 06:54:29 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -26,6 +26,29 @@
 ///  when panarm done threads finds new start -- or exits
 ///
 
+
+   proc arm_launch( afn, adn, tstart, tname)
+   {
+
+     pan pstart =0;
+     pan pend =0;
+     tstart =  Start;
+     pstart = Start;
+     pend =   Start + Step;
+     
+     Start = pend;
+     
+     pid=!!&"asl findarm_report $np $pstart $pend "; 
+     
+     afn = "P_np_${np}_${pid}.log"; 
+     adn = "P_np_${np}_${pid}_nums"; 
+     
+     <<"$tname : $pid asl findarm_report $np $pstart $pend \n"; 
+     
+     return pid
+    }
+
+//=====================================//
    
    proc arm_t1()
    {
@@ -37,51 +60,57 @@
      <<"  I am in $_proc $tid1\n"; 
    // which thread am I
      
-     ulong pstart;
-     ulong pend;
-     
-     pstart = Start;
-     pend =   Start + Step;
-     
-     Start = pend;
-     
-     pid=!!&"asl findarm_report $np $pstart $pend "; 
-     
-     armfname = "P_np_${np}_${pid}.log"; 
-     armdone_fn = "P_np_${np}_${pid}_nums"; 
-     
-     <<"$_proc : $pid asl findarm_report $np $pstart $pend \n"; 
+        
      
      int j =0; 
      
      int kk = 0; 
      cnt_down = 0;
+
+
+     str armfname = "xxx"; 
+     str armdone_fn = "yyy";
+     
+     myname = "$_proc";
+     
+     //pan mystart = 0;
+     pan mystart ;
+
+    mystart = 0;
+
+     pid =arm_launch(&armfname, &armdone_fn, &mystart, myname)
+
+     <<" $armfname  $armdone_fn $mystart $pid\n"
+
      
      while (kk < 3) {
        j++;
        
        fsz=fexist(armfname);
        donesz=fexist(armdone_fn);
+       how_far = "0"
+       if (fsz >0) {
+        A=ofr(armfname);
+          if (A != -1) {
+           S=readfile(A)
+	   sz=Caz(S)
+	   //<<"$S[0] $S[sz-1]\n"
+	   C=Split(S[sz-1])
+	  // <<"$C[5]\n"
+	   how_far = C[5]
+           cf(A)
+          }
+       }
        
-       <<"$_proc : $j $Start $pid $fsz $donesz \n"; 
+       <<"$myname : $j $pid $mystart $how_far $fsz $donesz \n"; 
        
        if (donesz > 10) {
-         pstart = Start;
          donesz = 0;
          armdone_fn ="xxx"; 
-         if (pstart < Endnum) {
-           pend =   Start + Step;
-           
-           Start = pend;
-           
-           pid=!!&"asl findarm_report $np $pstart $pend "; 
-           
-           <<"$_proc $pid asl findarm_report $np $pstart $pend \n"; 
-           
-           armfname = "P_np_${np}_${pid}.log"; 
-           armdone_fn = "P_np_${np}_${pid}_nums"; 
-           
-           }
+         if (Start < Endnum) {
+             pid =arm_launch(&armfname, &armdone_fn, &mystart, myname);
+             <<" $armfname  $armdone_fn $pid\n";
+         }
          else {
            cnt_down = 1;
            }
@@ -114,47 +143,48 @@
      nanosleep(1,10); 
  // which thread am I
      <<" in $_proc $tid2\n"; 
-     int jf2 =0; 
+     int j =0; 
      int nt;
+
+     str armfname = "xxx"; 
+     str armdone_fn = "yyy"; 
+     myname = "$_proc";
      
-     ulong pstart;
-     ulong pend;
+     pan mystart = 0;
      
-     pstart = Start;
-     pend =   Start + Step;
-     
-     Start = pend;
-     
-     pid=!!&"asl findarm_report $np $pstart $pend "; 
-     
-     armfname = "P_np_${np}_${pid}.log"; 
-     armdone_fn = "P_np_${np}_${pid}_nums"; 
-     
-     <<"$_proc : $pid asl findarm_report $np $pstart $pend \n"; 
-     
+     pid =arm_launch(&armfname, &armdone_fn, &mystart, myname)
+
+     <<" $armfname  $armdone_fn $pid\n"
      while (1) {
        
        fsz=fexist(armfname);
        donesz=fexist(armdone_fn);
-       <<"$_proc : $jf2 $Start $pid $fsz $donesz\n"; 
+
+       how_far = "0"
+       if (fsz >0) {
+        A=ofr(armfname);
+          if (A != -1) {
+           S=readfile(A)
+	   sz=Caz(S)
+	   //<<"$S[0] $S[sz-1]\n"
+	   C=Split(S[sz-1])
+	  // <<"$C[5]\n"
+	   how_far = C[5]
+           cf(A)
+          }
+       }
        
-       jf2++; 
+       <<"$myname : $j $pid $mystart $how_far $fsz $donesz \n"; 
+       
+       
+       j++; 
        
        if (donesz > 10) {
-         pstart = Start;
          donesz = 0;
          armdone_fn ="xxx"; 
-         if (pstart < Endnum) {
-           pend =   Start + Step;
-           Start = pend;
-           
-           pid=!!&"asl findarm_report $np $pstart $pend "; 
-           
-           <<"$_proc : $pid asl findarm_report $np $pstart $pend \n"; 
-           
-           armfname = "P_np_${np}_${pid}.log"; 
-           armdone_fn = "P_np_${np}_${pid}_nums"; 
-           
+         if (Start < Endnum) {
+           pid =arm_launch(&armfname, &armdone_fn, &mystart, myname);
+	    <<" $armfname  $armdone_fn $pid \n"
            }
          else {
            break;
@@ -175,51 +205,58 @@
    proc arm_t3()
    {
      
-     
      tid = GthreadGetId(); 
      nanosleep(1,10); 
  // which thread am I
      <<" in $_proc $tid\n"; 
-     int jf2 =0; 
+     int j =0; 
      int nt;
      
-     ulong pstart;
-     ulong pend;
+     str armfname = "xxx"; 
+     str armdone_fn = "yyy"; 
+
+     myname = "$_proc";
      
-     pstart = Start;
-     pend =   Start + Step;
+      pan mystart;
+      mystart = 0;
+	  
      
-     Start = pend;
-     
-     pid=!!&"asl findarm_report $np $pstart $pend "; 
-     
-     armfname = "P_np_${np}_${pid}.log"; 
-     armdone_fn = "P_np_${np}_${pid}_nums"; 
-     
-     <<"$_proc : $pid asl findarm_report $np $pstart $pend \n"; 
+     pid =arm_launch(&armfname, &armdone_fn, &mystart, myname)
+
+     <<" $armfname  $armdone_fn $pid\n"
      
      while (1) {
        
        fsz=fexist(armfname);
        donesz=fexist(armdone_fn);
-       <<"$_proc : $jf2 $Start $pid $fsz $donesz\n"; 
+       // how far
        
-       jf2++; 
+       how_far = "0"
+       if (fsz >0) {
+        A=ofr(armfname);
+          if (A != -1) {
+           S=readfile(A)
+	   sz=Caz(S)
+	   //<<"$S[0] $S[sz-1]\n"
+	   C=Split(S[sz-1])
+	  // <<"$C[5]\n"
+	   how_far = C[5]
+           cf(A)
+          }
+       }
+
+      <<"$myname : $j $pid $mystart $how_far $fsz $donesz \n";
+       
+       j++; 
        
        if (donesz > 10) {
-         pstart = Start;
          donesz = 0;
          armdone_fn ="xxx"; 
-         if (pstart < Endnum) {
-           pend =   Start + Step;
-           Start = pend;
-           
-           pid=!!&"asl findarm_report $np $pstart $pend "; 
-           
-           <<"$_proc : $pid asl findarm_report $np $pstart $pend \n"; 
-           
-           armfname = "P_np_${np}_${pid}.log"; 
-           armdone_fn = "P_np_${np}_${pid}_nums"; 
+         if (Start < Endnum) {
+
+          pid =arm_launch(&armfname, &armdone_fn, &mystart, myname)
+
+     <<" $armfname  $armdone_fn $pid\n"
            
            }
          else {
@@ -239,8 +276,8 @@
    
    ok = 0; 
    
-   int np = 9;
-   ulong begin;
+   int np = 7;
+   pan begin;
    begin =1;
    step = 1;
    
@@ -250,16 +287,16 @@
      step *= 10; 
      }
    
-   ulong Step = step;
+   pan Step = step;
    
    
-//ulong Start = begin;
+//pan Start = begin;
    
-   ulong Start = 0;
+   pan Start = 0;
    
    Start = step;
    
-//ulong Endnum = (np * Step + Step)
+//pan Endnum = (np * Step + Step)
    
    Endnum = (10 * Step) ;
    

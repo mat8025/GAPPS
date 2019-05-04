@@ -1208,8 +1208,8 @@ if (runModule( do_mops )) {
 
     hdg("PAN")
 
-    Run2Test("Pan")
-    cart("pan")
+    RunDirTests("Pan","pan,pan-loop-test,pancmp,panarray")
+
     cart("derange",100)
 
 

@@ -1,0 +1,133 @@
+//%*********************************************** 
+//*  @script pan-loop-test.asl 
+//* 
+//*  @comment test pan assign store  
+//*  @release CARBON 
+//*  @vers 1.2 He Helium                                                   
+//*  @date Sat May  4 13:50:53 2019 
+//*  @cdate Sat May  4 13:50:53 2019 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+///
+///
+///
+
+
+///   pan += +  xic ?
+include "debug"
+debugON()
+
+
+proc foo()
+{
+
+  for (i= 0; i < 3 ; i++) {
+
+    pend = pend + Step;
+
+<<"$i $pend \n"
+
+  }
+
+
+  for (i= 0; i < 3 ; i++) {
+
+    pend +=  Step;
+
+<<"$i $pend \n"
+
+  }
+
+
+}
+
+proc goo()
+{
+
+ pan loc_pend =0;
+<<"%V $pend  $loc_pend\n"
+  loc_pend = pend;
+
+  loc_pend->info(1)
+
+<<"%V $pend  $loc_pend\n"
+
+ pend->info(1)
+ 
+  for (i= 0; i < 3 ; i++) {
+
+    loc_pend = loc_pend + Step;
+
+<<"$i $loc_pend \n"
+
+  }
+
+
+  for (i= 0; i < 3 ; i++) {
+
+    loc_pend +=  Step;
+
+<<"$i $loc_pend \n"
+
+  }
+
+
+}
+
+  checkIn()
+
+pan Start = 100;
+pan Step = 10;
+
+  checkNum(Step,10);
+
+pan pend;
+
+
+  pend = Start + Step;
+
+
+<<"%V $Start $Step $pend \n"
+
+
+
+ pan pendB =0;
+<<"%V $pend  $pendB\n"
+  pendB = pend;
+
+  pend->info(1)
+  pendB->info(1)
+
+<<"%V $pend  $pendB\n"
+
+  checkNum(pend,pendB)
+
+  for (i= 0; i < 3 ; i++) {
+
+    pend = pend + Step;
+
+<<"$i $pend \n"
+
+  }
+
+  checkNum(pend,140)
+
+  for (i= 0; i < 3 ; i++) {
+
+    pend +=  Step;
+
+<<"$i $pend \n"
+
+  }
+
+  checkNum(pend,170)
+
+  foo()
+
+  goo()
+
+
+  checkOut()
+exit()

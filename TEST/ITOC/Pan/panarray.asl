@@ -1,14 +1,32 @@
+//%*********************************************** 
+//*  @script panarray.asl 
+//* 
+//*  @comment test pan array create and index 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium                                                   
+//*  @date Sat May  4 13:50:02 2019 
+//*  @cdate Sat May  4 13:50:02 2019 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 ///
 ///
 ///
+
+include "debug"
+debugON()
+
 
 setdebug(1,@trace,@pline)
-N= 10;
 
+N= 10;
+   checkin()
 
 pan A[10];
 long L[10];
-pan Bnum[];
+
+pan Bnum[>10];
 
 pan j= 0;
 
@@ -48,7 +66,7 @@ pan j= 0;
 <<"%V$A[1]\n"
 <<"%V$A\n"
 
-exit()
+
 
 
 //////////////////////////////////////////////////////
@@ -68,3 +86,11 @@ exit()
 <<"$(typeof(Bnum)) $(Caz(Bnum)) $(Cab(Bnum))\n"
 
 <<"$Bnum \n"
+
+   checkNum(Bnum[9],19)
+      checkNum(A[9],1)
+   
+
+   checkOut()
+
+exit()
