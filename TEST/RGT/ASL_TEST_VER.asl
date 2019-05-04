@@ -1082,7 +1082,8 @@ if (runModule( do_unary )) {
 /////////////////////////////////////////
 if (runModule( do_proc )) {
 
-  RunDirTests("Proc","proc,proc_declare,procret0,procarg,proc_sv0,proc_rep,proc_str_ret,procrefarg,proc_ra");
+  RunDirTests("Proc","proc,proc_declare,procret0,procarg,proc_sv0,proc_rep")
+  RunDirTests("Proc","proc_str_ret,procrefarg,proc_ra,procrefstrarg");
 
   cart("proc_var_define", 10)
 
@@ -1294,7 +1295,19 @@ if (runModule( do_vmf)) {
   if (runModule( do_bugs )) {
       //cart("bf_40")   // this has intentional error and exits before test checks
 
-      RunDirTests("BUGFIX","bf_46,bf_59,bf_64,bf_75,bf_76,bf_78,bf_79,bf_80,bf_83,bf_84,bf_91,bf_96");
+     chdir("BUGFIX")
+<<"Doing Tests"
+!!"pwd"
+
+TS=!!"ls bf*.asl "
+<<"$(typeof(TS)) $TS\n"
+tslist="$TS"
+//<<"$(typeof(tslist)) $tslist\n"
+   test_list = ssub(tslist,".asl",",",0)
+   
+<<"$test_list\n"
+
+      RunDirTests("BUGFIX",test_list)
     
   }
 
@@ -1309,7 +1322,7 @@ if (runModule( do_vmf)) {
 TS=!!"ls *.asl "
 <<"$(typeof(TS)) $TS\n"
 tslist="$TS"
-<<"$(typeof(tslist)) $tslist\n"
+//<<"$(typeof(tslist)) $tslist\n"
    test_list = ssub(tslist,".asl",",",3)
    
 <<"$test_list\n"
