@@ -71,12 +71,12 @@ include "tbqrd"
  lvwo=cWo(txtwin,"VTEXT",@name,"PrintText",@VALUE,"rvtext",@color,"orange",@resize,2,1,3,9,3)
  sWo(lvwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@pixmapoff,@drawon,@save)
  sWo(lvwo,@SCALES,0,0,1,1)
-
+ sWo(lvwo,@font,"rotated")
 
  rvwo=cWo(txtwin,"VTEXT",@name,"PrintText",@VALUE,"rvtext",@color,"orange",@resize,4,1,5,9,3)
  sWo(rvwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@pixmapoff,@drawon,@save)
  sWo(rvwo,@SCALES,0,0,1,1)
-
+ sWo(rvwo,@font,"rotated90")
 // resize fractional 0, pixel offset 1, real scales 2, grid pos 3
 
  ipwo=cWo(txtwin,"TEXT",@name,"InputText",@VALUE,"howdy input line ",@color,WHITE_,@resize,9,1,18,9,3)
@@ -100,8 +100,8 @@ yp = 0.5
 
 char txtip[256];
 
-!!"xset fp+ /usr/local/GASP/gasp/fonts "
-<<"xset fp+ /usr/local/GASP/gasp/fonts \n"
+!!"xset fp+ /home/mark/gasp-CARBON/fonts "
+<<"xset fp+ /home/mark/gasp-CARBON/fonts "
 
    while (1) {
 

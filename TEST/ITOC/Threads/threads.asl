@@ -172,7 +172,7 @@ proc foo3( t_arg1, t_arg2, t_arg3)
 
 
 
-int N_boxes = 40
+int N_boxes = 4000
 
 int AB[N_boxes]
 int BB[N_boxes]

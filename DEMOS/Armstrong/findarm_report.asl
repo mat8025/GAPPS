@@ -12,11 +12,22 @@
 //***********************************************%
 
 include "debug.asl"
+
+// option to output to a file
+
   debugOFF()
   sdb(-1)
   
   opendll("uac");
 
+  na = argc()
+//  <<"%V $na\n"
+/{
+  for (i=0;i<na;i++) {
+
+<<"$i  $_clarg[i]\n"
+  }
+/}
 
   mypid = getAslPid();
 	  
@@ -45,7 +56,7 @@ include "debug.asl"
 
 C= ofw("P_np_${np}_${mypid}.log")
 
-//D= ofw("P_np_${np}_${mypid}_nums")
+
 
 <<[C]"%V $np $begin $endnum\n"
 
@@ -146,11 +157,14 @@ fflush(1)
 }
 
 cf(C);
-//cf(D);
 
 
-<<"There were $Fi arm_nums found \n"
+
+D= ofw("P_np_${np}_${mypid}_nums")
+<<[D]"There were $Fi arm_nums found \n"
 
 for ( i=0; i< Fi; i++) {
-<<"$i $Farms[i] \n"
+<<[D]"$i $Farms[i] \n"
 }
+
+cf(D);

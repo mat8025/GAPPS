@@ -163,3 +163,6 @@ wo_w.cpp                 1.61	Sun Apr 28 15:10:38 2019 release button checks but
 rdrec.cpp                1.78	Mon Apr 29 12:13:09 2019 clear input words before new line read
 wcom_msg.cpp             1.92	Wed May  1 16:31:25 2019 add mouse position ex,ey to asl_event
 ds_sivevent.cpp          1.96	Thu May  2 09:34:50 2019 added ex,ey mouse position
+decision_w.cpp           1.8	Fri May  3 12:35:27 2019 fonts/spacing
+fonts_w.cpp              1.43	Fri May  3 12:36:02 2019 added font routines here
+com_spmi.cpp             1.84	Fri May  3 16:11:47 2019 revise bg command
