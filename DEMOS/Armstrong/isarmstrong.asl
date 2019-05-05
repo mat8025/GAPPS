@@ -127,8 +127,7 @@ there are 4 Armstrong 9 numbers
    534494836
    912985153 
 
-there are 2   Armstrong 10 numbers
-   1465511208
+there are 1   Armstrong 10 numbers
    4679307774
 
 

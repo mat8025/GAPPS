@@ -1083,7 +1083,7 @@ if (runModule( do_unary )) {
 if (runModule( do_proc )) {
 
   RunDirTests("Proc","proc,proc_declare,procret0,procarg,proc_sv0,proc_rep")
-  RunDirTests("Proc","proc_str_ret,procrefarg,proc_ra,procrefstrarg");
+  RunDirTests("Proc","proc_str_ret,procrefarg,proc_ra,procrefstrarg,proc-loc-main-var");
 
   cart("proc_var_define", 10)
 
@@ -1303,7 +1303,7 @@ TS=!!"ls bf*.asl "
 <<"$(typeof(TS)) $TS\n"
 tslist="$TS"
 //<<"$(typeof(tslist)) $tslist\n"
-   test_list = ssub(tslist,".asl",",",0)
+   test_list = ssub(tslist,".asl"," ,",0)
    
 <<"$test_list\n"
 
