@@ -50,7 +50,7 @@ cf(A)
 //==========================
 Nbp = 4; // number of search results
 
-  A=  ofr("foodtableC.csv");
+  A=  ofr("foodtable2019.csv");
 
  if (A == -1) {
   <<" can't open food table $ftfile \n";

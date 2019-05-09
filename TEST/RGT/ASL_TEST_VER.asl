@@ -1148,7 +1148,9 @@ if (runModule( do_mops )) {
     Run2Test("Svar")
     cart("svar1", "string operations are not always easy" )
     RunDirTests("Svar","svar_declare,svelepr,svargetword,svarsplit,svar_range");
-
+    Run2Test("Hash")
+    cart("svar_table")
+    cart("svar_hash")    
     }
 
   if (runModule( do_ivar )) {

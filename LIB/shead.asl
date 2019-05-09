@@ -186,7 +186,7 @@ if (found_vers) {
    <<[A]"//*  @date $date \n"
    <<[A]"//*  @cdate $cdate \n"      
    <<[A]"//*  @author $author \n"
-   <<[A]"//*  @Copyright  RootMeanSquare  2010,$(date(8)) --> \n"           
+   <<[A]"//*  @Copyright © RootMeanSquare  2010,$(date(8)) → \n"           
    <<[A]"//* \n"   
    <<[A]"//***********************************************%%\n"
    fflush(A)

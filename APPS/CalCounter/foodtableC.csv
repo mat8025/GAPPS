@@ -416,6 +416,7 @@ CRACKER CREAM JACOB                ,1,ITM,34,5,1,0.8,0,0.0 ,8,,,,,,,,,,,,
 CRACKER GRAHAM PLAIN               ,2,ITM,60,11,1,1,0,0.4 ,14,,,,,,,,,,,,
 CRACKER WHEAT THIN                 ,4,ITM,35,5,1,1,0,0.5 ,8,,,,,,,,,,,,
 CRACKER WHOLE-WHEAT                ,2,ITM,35,5,2,1,0,0.5 ,8,,,,,,,,,,,,
+CRACKERS WATER                         ,8,ITMS,130,24,,3,0,,,,,,,,,,,,,,,,2,4,
 #
 CREAM HEAVY                        ,1,CUP,820,7,88,5,326,54.8 ,238,,,,,,,,,,,,
 CREAM HALF AND HALF                ,1,CUP,315,10,28,7,89,17.3 ,242,,,,,,,,,,,,

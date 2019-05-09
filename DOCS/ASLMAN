@@ -1088,6 +1088,67 @@ ma=memaddr(&I[3])
 ma is at the 4th element of the array memory storage for the script array variable I
 .EF
 =============================================================
+
+
+.BF
+lookup
+.(x
+lookup
+.)x 
+.FD
+Sv->lookup(key)
+
+looks up the key in the table held in svar variable Sv.
+If found returns the value(s) else returns null string.
+
+lookup table
+The svar variable can be used for a lookup table
+as follows
+
+Svar sv
+
+  sv->table("LUT",30,2) // makes Svar a lookup table -- table can extend
+
+  sv->addKeyVal("apple","green")
+  sv->addKeyVal("banana","yellow")
+  sv->addKeyVal("strawberry","red")
+
+<<"$vv \n"
+
+  fruit_color = sv->lookup("apple")
+
+(see hash table)
+.EF
+=============================================================
+.BF
+hash
+.(x
+hash
+.)x 
+.FD
+hash table
+
+A hash table can be setup using svar variable  as follows
+Svar S
+
+S->table("HASH",200,2) // if not in use makes Svar a hash type -- could extend table
+
+
+index=S->addkeyval(key,val) // returns index
+
+where both key and val is a string  -val can be str or number
+
+index = S->getHashIndex(key)
+
+answer = "an address"
+key = "a name"
+index = S->setKeyVal(key,answer)
+
+value = S->getKeyVal(key)
+
+
+.EF
+
 .BF
 memfill
 .(x

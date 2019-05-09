@@ -1,49 +1,69 @@
+//%*********************************************** 
+//*  @script svar_table.asl 
+//* 
+//*  @comment svar as lookup table 
+//*  @release CARBON 
+//*  @vers 1.3 Li Lithium                                                  
+//*  @date Tue May  7 17:49:28 2019 
+//*  @cdate 1/1/2010 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2019 → 
+//* 
+//***********************************************%
 
-setdebug(1)
+sdb(1)
+checkin()
 Svar S
 
 S->table("LUT",30,2) // if not in use makes Svar a hash type -- could extend table
 
-key = "mark"
-val = "strong"
+key = "mat"
+val = "303 712 1066"
 
 index=S->addkeyval(key,val) // returns index
 
 <<"%V$key $val $index\n"
 
 
-key = "chest"
-val = "hurts"
+key = "ron"
+val = "303 642 1234"
 
 index=S->addkeyval(key,val) // returns index
 
 <<"%V$key $val $index\n"
 
-key = "terry"
-ival = 8015
+key = "sally"
+val =  "719 229 2001"
 
-index=S->addkeyval(key,ival) // returns index
+index=S->addkeyval(key,val) // returns index
 
-<<"%V$key $ival $index\n"
+<<"%V$key $val $index\n"
 
-i=2
-<<"%(2,$i, ,\n)$S\n"
-key = "chest"
-fval = S->lookup(key)
-<<"$fval \n"
 
-k = 3
+key = "jan"
+val =  "615 123 4567"
 
-<<"$i $k $(k+i) \n"
-i++
-<<"3 $i $k $(k+i) \n"
+index=S->addkeyval(key,val) // returns index
 
-<<"4 $(i++) $k $(k+i) \n"
 
-<<"4 $i $k $(k++ + i++) \n"
+key = "mat"
+val = S->lookup(key)
+<<"$key $val \n"
 
-<<"5 $i 4 $k $(k+i) \n"
-k= 7
-for (j = 0; j < 3; j++) {
-<<"$j $(i++) $(k++) \n"
-}
+
+key = "ron"
+val = S->lookup(key)
+<<"$key $val \n"
+
+key = "sally"
+val = S->lookup(key)
+<<"$key $val \n"
+
+
+key = "jan"
+val = S->lookup(key)
+<<"$key $val \n"
+
+checkstr(val,"615 123 4567")
+
+checkOut()

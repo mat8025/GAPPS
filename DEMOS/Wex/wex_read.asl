@@ -101,8 +101,17 @@ proc fillInObsVec()
 
    tex = EXTV[Nobs]
 
-   exer_burn =  ( walk * w_rate + hike * h_rate + run * run_rate + cycle * c_rate )
-   exer_burn +=	 (swim * swim_rate + yardwrk * yard_rate + wex * wex_rate)
+   exer_burn =   walk * w_rate; 
+   exer_burn += hike * h_rate
+   exer_burn += run * run_rate
+   exer_burn +=  cycle * c_rate
+   exer_burn += swim * swim_rate
+   exer_burn += yardwrk * yard_rate
+   exer_burn += wex * wex_rate
+
+
+
+ //  exer_burn +=	 (swim * swim_rate + yardwrk * yard_rate + wex * wex_rate)
 
    EXEBURN[Nobs] =  exer_burn
 
