@@ -113,15 +113,18 @@
  <<[_DB]"look/edit today \n"
    ds=ssub(today,"/","-",0)
    fname =  "DT/dt_$ds";
-   fsz=fexist(fname,0);
- <<[_DB]"$fname $fsz \n"
-   if (fsz > 0) {
-       read_the_day = 1;
-   }
-   else {
-    makeMyDay(fname);
-    ok = 1;
-   }
+  }
+  else  if (scmp(fname,"dt-",3)) {
+  <<"looking for a past day $fname\n"
+     adjust_day = 1;
+     // find the number
+     num = atoi(scut(fname,3));
+     db4 = julmdy(jdayn-num);
+     // compute the day
+     ds=ssub(db4,"/","-",0); 
+     the_day = "DT/dt_${ds}";
+     fname = the_day;
+<<"looking for  $fname\n"
   }
   else if (fname @= "yesterday") {
  <<[_DB]"look/edit yesterday \n"
@@ -129,32 +132,27 @@
    fname =  "DT/dt_$ds";
    fsz=fexist(fname,0);
  <<[_DB]"$fname $fsz \n"
-   if (fsz > 0) {
-       read_the_day = 1;
-   }
-   else {
-    makeMyDay(fname);
-    ok = 1;
-   }
   }
   else if (fname @= "tomorrow") {
  <<[_DB]"look/edit tomorrow \n"
    ds=ssub(tomorrow,"/","-",0)
    fname =  "DT/dt_$ds";
+  }
+
    fsz=fexist(fname,0);
  <<[_DB]"$fname $fsz \n"
    if (fsz > 0) {
-     read_the_day = 1;
+       read_the_day = 1;
    }
    else {
     makeMyDay(fname);
     ok = 1;
    }
-  }
-  else {
-       read_the_day = 1;
-  }
-  
+
+
+
+////////////////////////////////////////////////////////
+
   if (read_the_day) {
    if (!(fname @= "")) {
     
@@ -231,6 +229,7 @@
 <<[_DB]"%V$R[2][4] \n"
 <<[_DB]"%V$R[2][5] \n"
 /}
+
 
 
 <<"before Graphic \n"

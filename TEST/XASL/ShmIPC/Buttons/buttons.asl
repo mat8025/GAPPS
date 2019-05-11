@@ -90,7 +90,7 @@ Graphic = checkGWM()
  sWo(two,@help," Mouse & Key Info ")
 
  gwo=cWo(vp,@BV,@name,"ColorTeal",@color,"green",@resize,bx,by,bX,bY)
- sWo(gwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@VALUE,"color is teal",@STYLE,"SVB")
+ sWo(gwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@VALUE,"color is teal",@STYLE,SVB_)
  sWo(gwo,@bhue,TEAL_,@clipbhue,"skyblue",@redraw )
 
  bY = by - ypad
@@ -100,13 +100,13 @@ Graphic = checkGWM()
 
  hwo=cWo(vp,@ONOFF,@name,"ENGINE",@VALUE,"ON",@color,GREEN_,@resize,bx,by,bX,bY)
 
- sWo(hwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_, @STYLE,"SVR")
+ sWo(hwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_, @STYLE,SVR_)
  sWo(hwo,@bhue,"white",@clipbhue,"magenta");
 
 
  // GetValue after entering text
  gvwo=cWo(vp,@BV,@name,"GMYVAL",@VALUE,0,@color,GREEN_,@resize,0.5,by,0.9,bY)
- sWo(gvwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_, @STYLE,"SVR")
+ sWo(gvwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_, @STYLE,SVR_)
  sWo(gvwo,@bhue,"white",@clipbhue,"red",@FUNC,"inputValue",@MESSAGE,1)
 
 
@@ -126,12 +126,12 @@ Graphic = checkGWM()
  rwo=cWo(vp2,"BS",@name,"FRUIT",@color,"yellow",@resize,bx,by,bX,bY)
  sWo(rwo,@CSV,"mango,cherry,apple,banana,orange,Peach,pear")
 
- sWo(rwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@STYLE,"SVR", @redraw )
+ sWo(rwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@STYLE,SVR_, @redraw )
  sWo(rwo,@fhue,"orange",@clipbhue,"steelblue")
 
  boatwo=cWo(vp3,"BS",@name,"BOATS",@color,"yellow",@resize_fr,bx,by,bX,bY)
  sWo(boatwo,@CSV,"sloop,yacht,catamaran,cruiser,trawler,ketch")
- sWo(boatwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@STYLE,"SVR", "redraw")
+ sWo(boatwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@STYLE,SVR_, "redraw")
  sWo(boatwo,@help," click to choose a boat ")
  bY = by - ypad
  by = bY - yht

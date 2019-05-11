@@ -17,7 +17,7 @@
 
 <<"including wex_screen\n"
 
-include "global.asl"
+//include "global.asl"
 
 <<[_DB]"%V $GV\n"
 
@@ -70,17 +70,17 @@ CalsY1 = 5000;
 
     carb_upper = 300;
 
-    sWo(wedwo,@clip,cx,cy,cX,cY, @color,LILAC_,@clipbhue,WHITE_,@bhue,GREEN_)
+    sWo(wedwo,@clip,cx,cy,cX,cY, @color,LILAC_,@clipbhue,WHITE_,@bhue,GREEN_,@font,"small")
 
-    sWo(calwo,@clip,cx,cy,cX,cY, @color,MAGENTA_,@clipbhue,PINK_,@bhue,CYAN_)
+    sWo(calwo,@clip,cx,cy,cX,cY, @color,MAGENTA_,@clipbhue,PINK_,@bhue,CYAN_,@font,"small")
 
-    sWo(carbwo,@clip,cx,cy,cX,cY, @color,BROWN_,@bhue,RED_,@clipbhue,BLUE_,@bhue,GREEN_)
+    sWo(carbwo,@clip,cx,cy,cX,cY, @color,BROWN_,@clipbhue,BROWN_,@bhue,GREEN_,@font,"small",@fonthue,WHITE_)
 
-    sWo(extwo,@clip,cx,cy,cX,cY, @color,YELLOW_,@clipbhue,LILAC_)
+    sWo(extwo,@clip,cx,cy,cX,cY, @color,YELLOW_,@clipbhue,LILAC_,@font,"small")
 
     sWo(wedwo,@border,@clipborder,"black",@drawon)
 
-    sWo(gwo,@scales,sc_startday,160,sc_endday+10,220,@savescales,0)
+    sWo(gwo,@scales,sc_startday,160,sc_endday+10,220,@savescales,0,@font,"small")
 
     sWo(extwo,@scales,sc_startday,0,sc_endday+10,250,@savescales,0);
 

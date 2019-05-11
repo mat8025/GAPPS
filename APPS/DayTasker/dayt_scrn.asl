@@ -13,7 +13,7 @@
 
 
 
-<<"in dayt_scrn\n"
+<<"in dayt_scrn  title $fname \n"
 
     vp = cWi(@title,"S2D:$fname",@resize,0.1,0.1,0.9,0.8)
 
@@ -67,6 +67,8 @@
  scorewo = cWo(vp,@BV,@name,"SCORE",@color,ORANGE_,@bhue,"cyan",@value,0,@style,"SVR");
 
  sWo(scorewo,@resize,0.82,0.05,0.9,0.24);
+
+  sWi(vp,@title,"S2D:$fname")
 
    titleVers();
 

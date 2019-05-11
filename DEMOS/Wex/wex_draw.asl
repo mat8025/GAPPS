@@ -79,7 +79,8 @@ proc  drawMonths(wwo)
    the_date = julmdy("$jd");
 //  AxText(wwo, 1, the_date, q1_date, -0.25, BLUE_);
    wdate = RS[1];
-  AxText(wwo, 1, the_date, wdate, -0.25, BLUE_);
+   sWo(wwo,@font,"small")
+   AxText(wwo, 1, the_date, wdate, -0.25, BLUE_);
    while (1) {
    jd += 7;
    wdate += 7;
@@ -101,15 +102,16 @@ proc  drawGrids( ws )
  if (ws == 0) {
 
   //<<[_DB]"drawing Grids for screen 0 \n"
-
-
+  sWo({carbwo,extwo,calwo,gwo},@font,"small");
+  
   axnum(gwo,2);
 
   //sWo(gwo,@axnum,4)
   //sWo(gwo,@axnum,1)
 
   //sWo(calwo,@axnum,2,500,5500,500,100)
-  
+
+
   sWo(calwo,@axnum,2);
   sWo(carbwo,@axnum,2);
   
@@ -117,8 +119,7 @@ proc  drawGrids( ws )
   sWo(extwo,@axnum,2);
 
   //sWo(extwo,@axnum,2,0,sc_endday,20,10)
-
-  Text(gwo,  "Weight (lbs)",-4,0.7,4,-90)
+  Text(gwo, "Weight (lbs)",-4,0.7,4,-90)
 
   Text(calwo,"Cals In/Out",-4,0.7,4,-90)
 
@@ -146,7 +147,7 @@ proc drawScreens()
 
   if ( wScreen == 0) {
 
-       sWo(wedwo,@clearclip,@save,@clearpixmap,@clipborder,"black")
+       sWo(wedwo,@clearclip,@save,@clearpixmap,@clipborder,BLACK_)
 
        //sWo(extwo,@clipborder,@save)
   
@@ -160,13 +161,20 @@ proc drawScreens()
 
 
       dGl(ext_gl)
+      sWo(calwo,@font,"small")
       /// these need to be a separate wo to contain key  symbol and text
       plot(calwo,@keysymbol,0.78 ,0.9,DIAMOND_,symsz,BLUE_,1);
+      sWo(calwo,@font,"small")
       Text(calwo,"Calories Burnt", 0.8,0.9,1)      
 
       plot(calwo,@keysymbol,0.78 ,0.8,DIAMOND_,symsz,RED_,1);      
       Text(calwo,"Calories Ate", 0.8,0.8,1)
-      
+
+      plot(carbwo,@keysymbol,0.78 ,0.8,TRI_,symsz,RED_,1,@fonthue,WHITE_);      
+      Text(carbwo,"Carbs Ate", 0.8,0.8,1)
+
+
+      sWo(extwo,@font,"small")
       plot(extwo,@keysymbol,0.78,0.7,TRI_,symsz,GREEN_,1);
       Text(extwo,"Exercise Time (mins)", 0.8,0.7,1)
       
@@ -200,6 +208,7 @@ proc drawScreens()
 
       drawMonths(gwo)
       drawMonths(calwo)
+      drawMonths(carbwo)
       drawMonths(extwo)      
 
       Text(extwo,"Exercise mins",-4,0.5,4,-90)

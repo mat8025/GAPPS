@@ -3,8 +3,8 @@
 //* 
 //*  @comment test fonts and text 
 //*  @release CARBON 
-//*  @vers 1.8 O Oxygen                                                   
-//*  @date Sat Feb 16 15:53:22 2019 
+//*  @vers 1.9 F Fluorine                                                  
+//*  @date Fri May 10 11:49:12 2019 
 //*  @cdate 1/1/2005 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -55,34 +55,34 @@ include "tbqrd"
  sWo(two,@help," Mouse & Key Info ")
 
 
- stwo=cWo(txtwin,"TEXT",@name,"PrintText",@VALUE,"howdy this is the first line",@color,"orange",@resize,2,10,8,15,3)
+ stwo=cWo(txtwin,@TEXT,@name,"PrintText",@VALUE,"howdy this is the first line",@color,"orange",@resize,2,10,8,15,3)
  sWo(stwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@pixmapoff,@drawon,@save)
  sWo(stwo,@SCALES,0,0,1,1)
- sWo(stwo,@font,3)
+ sWo(stwo,@font,"small")
  sWo(stwo,@help," Mouse & Key Info ");
 
 
- bigwo=cWo(txtwin,"TEXT",@name,"BigText",@VALUE,"Big Font?",@color,"orange",@resize,9,10,18,15,3)
+ bigwo=cWo(txtwin,@TEXT,@name,"BigText",@VALUE,"Big Font?",@color,"orange",@resize,9,10,18,15,3)
  sWo(bigwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@pixmapoff,@drawon,@save)
  sWo(bigwo,@bhue,WHITE_,@SCALES,0,0,1,1)
  sWo(bigwo,@font,"big")
 
 
- lvwo=cWo(txtwin,"VTEXT",@name,"PrintText",@VALUE,"rvtext",@color,"orange",@resize,2,1,3,9,3)
+ lvwo=cWo(txtwin,@TEXT,@name,"PrintText",@VALUE,"lvtext",@color,"orange",@resize,2,1,3,9,3)
  sWo(lvwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@pixmapoff,@drawon,@save)
  sWo(lvwo,@SCALES,0,0,1,1)
  sWo(lvwo,@font,"rotated")
 
- rvwo=cWo(txtwin,"VTEXT",@name,"PrintText",@VALUE,"rvtext",@color,"orange",@resize,4,1,5,9,3)
+ rvwo=cWo(txtwin,@TEXT,@name,"PrintText",@VALUE,"rvtext",@color,"orange",@resize,4,1,5,9,3)
  sWo(rvwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@pixmapoff,@drawon,@save)
  sWo(rvwo,@SCALES,0,0,1,1)
  sWo(rvwo,@font,"rotated90")
 // resize fractional 0, pixel offset 1, real scales 2, grid pos 3
 
- ipwo=cWo(txtwin,"TEXT",@name,"InputText",@VALUE,"howdy input line ",@color,WHITE_,@resize,9,1,18,9,3)
- //sWo(ipwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"inputValue")
-  sWo(ipwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"inputText")
-
+ ipwo=cWo(txtwin,@BV,@name,"InputText",@VALUE,"esta bien ",@color,WHITE_,@resize,9,1,18,5,3)
+  //sWo(ipwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"inputText")
+  sWo(ipwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"inputValue",@style,SVR_)
+ sWo(ipwo,@font,"italic")
 
   int txwos[] = {lvwo,rvwo,bigwo,two};
 
@@ -102,7 +102,7 @@ char txtip[256];
 
 !!"xset fp+ /home/mark/gasp-CARBON/fonts "
 <<"xset fp+ /home/mark/gasp-CARBON/fonts "
-
+mnum = 0
    while (1) {
 
     eventWait()
@@ -123,18 +123,19 @@ char txtip[256];
 
       sWo(txwos,@clear);
 
-      woGetText(ipwo,txtip,512);
-      
+   //   woGetText(ipwo,txtip,512);
+       
   <<" got %s < $txtip >  as input \n";
       // rotated text??
-      
-      sWo(lvwo,@textr,"%s $txtip",0.3,0.1,0,-90,RED_);
-      sWo(rvwo,@textr,"%s $txtip",0.5,0.9,0,90,BLUE_);
+      txt = woGetValue(ipwo)      
+      sWo(lvwo,@font,6,@textr,"$txt",0.3,0.1,0,-90,RED_);
+      sWo(rvwo,@font,"rotated90",@textr,"$txt",0.5,0.9,0,90,BLUE_);
 
-      sWo(bigwo,@font,BIG_,@textr,"%s$txtip",0.0,0.6,0,0,BLACK_);
-      sWo(bigwo,@font,MEDIUM_,@textr,"%s$txtip",0.0,0.4,0,0,MAGENTA_);
-      sWo(bigwo,@font,SMALL_,@textr,"%s$txtip",0.0,0.5,0,0,BLACK_);            
-      
+      sWo(bigwo,@font,BIG_,@textr,"$txt",0.0,0.6,0,0,BLACK_);
+      sWo(bigwo,@font,MEDIUM_,@textr,"$txt",0.0,0.4,0,0,MAGENTA_);
+      sWo(bigwo,@font,SMALL_,@textr,"$txt",0.0,0.5,0,0,BLACK_);            
+      mnum++;
+      sWo(ipwo,@value,"");
     }
 
   }
