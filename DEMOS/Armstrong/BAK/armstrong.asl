@@ -1,8 +1,8 @@
 // armstrong number -ASL version
 
-// An Armstrong number is a number such that the sum !
-// of its digits raised to the nth power is equal to the number ! itself.
-// For example, 371 is an Armstrong number, since  27 + 343 +1 = 371
+//An Armstrong number is a number such that the sum !
+// of its digits raised to the third power is equal to the number ! itself.
+//For example, 371 is an Armstrong number, since  27 + 343 +1 = 371
 
 
 int z;

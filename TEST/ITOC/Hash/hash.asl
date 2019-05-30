@@ -1,5 +1,8 @@
 //
 setdebug(1)
+
+
+
 key = "mark"
 a = getHashIndex(key)
 

@@ -1147,7 +1147,7 @@ if (runModule( do_mops )) {
 
     Run2Test("Svar")
     cart("svar1", "string operations are not always easy" )
-    RunDirTests("Svar","svar_declare,svelepr,svargetword,svarsplit,svar_range");
+    RunDirTests("Svar","svar","svar_declare,svelepr,svargetword,svarsplit,svar_range");
     Run2Test("Hash")
     cart("svar_table")
     cart("svar_hash")    
@@ -1298,24 +1298,24 @@ if (runModule( do_vmf)) {
       //cart("bf_40")   // this has intentional error and exits before test checks
 
      chdir("BUGFIX")
-<<"Doing Tests"
+<<"Doing bug tests"
 !!"pwd"
 
-TS=!!"ls bf*.asl "
-<<"$(typeof(TS)) $TS\n"
-tslist="$TS"
-//<<"$(typeof(tslist)) $tslist\n"
-   test_list = ssub(tslist,".asl"," ,",0)
-   
-<<"$test_list\n"
+BFS=!!"ls bf*.asl "
+<<"$(typeof(BFS)) $BFS\n"
+bflist="$BFS"
 
-      RunDirTests("BUGFIX",test_list)
+   bug_list = ssub(bflist,".asl"," ,",0)
+   
+<<"$bug_list\n"
+
+      RunDirTests("BUGFIX",bug_list)
     
   }
 
 
   if (runModule( do_tests )) {
-
+    changeDir(Testdir)
 //  get a list of asl files in this dir and run them
      chdir("Tests")
 <<"Doing Tests"
@@ -1325,9 +1325,9 @@ TS=!!"ls *.asl "
 <<"$(typeof(TS)) $TS\n"
 tslist="$TS"
 //<<"$(typeof(tslist)) $tslist\n"
-   test_list = ssub(tslist,".asl",",",3)
+   test_list = ssub(tslist,".asl",",",0)
    
-<<"$test_list\n"
+<<"%V $test_list\n"
      RunDirTests("Tests",test_list);
     
   }

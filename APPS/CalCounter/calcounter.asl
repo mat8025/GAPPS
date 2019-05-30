@@ -45,6 +45,8 @@ A=ofw("HowMuch.m")
 <<[A],"help quarter\n"
 <<[A],"item 1/10 M_VALUE 0.1\n"
 <<[A],"help  tenth\n"
+<<[A],"factor ? C_INTER "?"\n"
+<<[A],"help set mins\n"  
 cf(A)
 
 //==========================

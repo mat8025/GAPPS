@@ -1,8 +1,24 @@
+//%*********************************************** 
+//*  @script svar.asl 
+//* 
+//*  @comment test svar dec/assign reassign 
+//*  @release CARBON 
+//*  @vers 1.3 Li Lithium                                                  
+//*  @date Tue May 14 09:06:45 2019 
+//*  @cdate 1/1/2010 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2019 → 
+//* 
+//***********************************************%
 ///
 ///
 ///
+include "debug"
+debugON()
 
-setdebug(1,@pline,@keep,@trace)
+
+checkin()
+setdebug(1,@pline,@keep,@~trace)
 
 svar  S = "una larga noche"
 
@@ -20,8 +36,11 @@ S[2] = "espera ratones"
  svar E[] = { "the first ten elements are:", "H", "He", "Li", "Be" ,"B" ,"C", "N", "O", "F", "Ne"  }; 
 
 
+
 <<"$E\n"
 <<"$E[1] \n"
+
+checkStr(E[1],"H")
 
 <<"$E[2] \n"
 
@@ -30,9 +49,33 @@ S[2] = "espera ratones"
 
  W= E[3:7];
 
+<<"$(typeof(W)) \n"
 <<"$W\n"
+
+<<"$W[1]\n"
+checkStr(W[1],"Be");
 
  W[3:4] = E[7:8];
 
 
 <<"%V$W \n"
+
+ T= E[1:9]
+
+<<"$T\n"
+sz=T->Caz()
+<<"$sz\n"
+
+checkNum(sz,9)
+
+ T= E[4:9]
+
+<<"$T\n"
+
+sz=T->Caz()
+<<"$sz\n"
+
+checkNum(sz,6)
+
+
+checkOut()

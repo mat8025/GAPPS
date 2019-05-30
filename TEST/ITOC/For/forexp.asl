@@ -13,6 +13,7 @@
 
 include "debug.asl"
 debugON()
+sdb(1,@pline)
 
 checkIn()
 
@@ -79,30 +80,34 @@ int cnt = 0
 
    CheckNum(k,N+1)
    CheckNum(cnt,N)
-<<" DONE %V $k  $N  \n"
-
+<<" DONE %V $k  $N $cnt \n"
+<<"//////////////////\n"
 
 //  for ( j = 1; j <= (N-1); j++)
-  for ( j = 1; j <= N-1 ; j++)  // bug does not get RHS exp correct
-   {
 
-    <<"loop val $k < $N $cnt\n"
+//for ( j = 1; j <= (N-1) ; j++)  // bug does not get RHS exp correct
+
+
+ 
+
+for ( j = 1; j <= N-1 ; j++) { // bug does not get RHS exp correct
+   
+
+    cnt = j
+    <<"loop val $j <= $(N-1) $cnt\n"
 
     a= j * tt
 
     <<"%V$j * $tt = $a \n"
 
-    cnt = j
+
   }
 
-<<" DONE %V $j  $(N-1)  \n"
+<<" DONE %V $j  $(N-1)  $cnt \n"
 
   CheckNum(j,N)
 
-
-
-
-<<" $cnt == $N ?? \n"
+<<" $cnt == $(N-1) ?? \n"
    CheckNum(cnt,N-1)
 
 

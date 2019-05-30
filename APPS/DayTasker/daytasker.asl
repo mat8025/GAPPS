@@ -39,7 +39,6 @@
   setdebug(1,@~keep,@~pline)
  include "gevent.asl"
  include "dayt_menus.asl"
- 
  include "gss.asl"
  include "dayt_procs.asl" // has to come after gss to overload 
 

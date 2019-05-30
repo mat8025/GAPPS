@@ -1,4 +1,8 @@
 
+include "debug.asl"
+debugON()
+
+sdb(1,@pline)
 
 CheckIn()
 
@@ -22,7 +26,13 @@ CheckNum(m,0)
 
 int ir
 
+ ir = floor(k/ d);
+
+<<"$ir  $(k/d) $(floor(k/d)) \n"
+
  yr = k -  d * floor(k/ d);
+
+<<"%V $yr $k $d $(k/d) \n"
 
  ir = yr
 
@@ -49,8 +59,9 @@ for (mr = 1 ; mr < 16 ; mr++) {
   ncnt = 0
 
 for (i = 1; i <= 32 ; i++) {
-  n = i / mr
-  j = i % mr
+
+  n = i / mr;
+  j = i % mr;
 
 <<"$i \% $mr =  $j  $n \n"
 

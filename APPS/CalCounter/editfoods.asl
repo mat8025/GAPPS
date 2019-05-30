@@ -3,8 +3,8 @@
 //* 
 //*  @comment add/edit a food entry 
 //*  @release CARBON 
-//*  @vers 1.3 Li Lithium                                                  
-//*  @date Mon Apr 29 06:31:12 2019 
+//*  @vers 1.4 Be Beryllium                                                
+//*  @date Tue May 14 07:17:59 2019 
 //*  @cdate Wed Jan 16 18:08:31 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -41,10 +41,64 @@
    <<[A],"item 1/4 M_VALUE 0.25\n"; 
    <<[A],"help quarter\n"; 
    <<[A],"item 1/10 M_VALUE 0.1\n"; 
-   <<[A],"help  tenth\n"; 
+   <<[A],"help  tenth\n";
+   <<[A],"factor ? C_INTER "?"\n"
+   <<[A],"help set mins\n"  
    cf(A); 
    
 //==========================
+
+ A=ofw("Units.m"); 
+   <<[A],"title Units\n"; 
+   <<[A],"item ITM M_VALUE ITM\n"; 
+   <<[A],"help ITM \n"; 
+   <<[A],"item  FLOZ M_VALUE FLOZ\n"; 
+   <<[A],"help FLOZ\n";
+   <<[A],"item  Slice M_VALUE Slice\n"; 
+   <<[A],"help Slice\n";
+   <<[A],"item  Cup M_VALUE Cup\n"; 
+   <<[A],"help Cup\n";       
+  <<[A],"item ? C_INTER ?\n"
+  <<[A],"help set unit\n"  
+   cf(A); 
+
+//============================
+
+ A=ofw("HowMany.m"); 
+   <<[A],"title Number\n"; 
+   <<[A],"item 1 M_VALUE 1\n"; 
+   <<[A],"help 1 \n";
+   <<[A],"item 2 M_VALUE 2\n"; 
+   <<[A],"help 2 \n";
+   <<[A],"item ? C_INTER ?\n"
+   <<[A],"help set number\n"
+   cf(A); 
+
+//============================
+proc setUnits(wr,wc)
+{
+   mans = popamenu("Units.m")
+	
+        if (!(mans @= "NULL_CHOICE")) {
+           sWo(cellwo,@cellval,wr,wc,mans);
+           R[wr][wc] = mans;
+        }
+}
+//===============================//
+proc setNum(wr,wc)
+{
+   mans = popamenu("HowMany.m")
+	
+        if (!(mans @= "NULL_CHOICE")) {
+           sWo(cellwo,@cellval,wr,wc,mans);
+           R[wr][wc] = mans;
+        }
+}
+//===============================//
+NumCol = 1;
+UnitsCol = 2;
+
+
    Nbp = 4; ; // number of search results 
    
    
@@ -280,8 +334,16 @@
        }
      
      if (_ewoid == cellwo) {
-       
-       if (_ekeyw @="CELLVAL") {
+
+
+      if (mwc == UnitsCol) {
+           setUnits(mwr,mwc);
+      }
+      else if (mwc == NumCol) {
+           setNum(mwr,mwc);
+      }      
+    // else  if (_ekeyw @="CELLVAL") {
+     else  if ((mwr > 0)  && (mwc != tags_col)) {
          r= mwr;
          c= mwc;
          
@@ -354,10 +416,6 @@
          
          sWo(cellwo,@cellval,mwr,tags_col,xms); 
          sWo(cellwo,@celldraw,mwr,tags_col); 
-         }
-       
-       if (_ebutton == LEFT_ && mwr > 0) {
-         getCellValue(mwr,mwc);
          }
        
        }
