@@ -57,7 +57,7 @@
      tid1 = GthreadGetId(); 
      nanosleep(1,10); 
      
-     <<"  I am in $_proc $tid1\n"; 
+ //    <<"  I am in $_proc $tid1\n"; 
    // which thread am I
      
         
@@ -105,7 +105,7 @@
           }
        }
        
-       <<"$myname : $j $pid $mystart $how_far $fsz $donesz \n"; 
+ //      <<"$myname : $j $pid $mystart $how_far $fsz $donesz \n"; 
        
        if (donesz > 10) {
          donesz = 0;
@@ -157,7 +157,7 @@
      
      pid =arm_launch(&armfname, &armdone_fn, &mystart, myname)
 
-     <<" $armfname  $armdone_fn $pid\n"
+//     <<" $armfname  $armdone_fn $pid\n"
      while (1) {
        
        fsz=fexist(armfname);
@@ -177,7 +177,7 @@
           }
        }
        
-       <<"$myname : $j $pid $mystart $how_far $fsz $donesz \n"; 
+//       <<"$myname : $j $pid $mystart $how_far $fsz $donesz \n"; 
        
        
        j++; 
@@ -248,7 +248,7 @@
           }
        }
 
-      <<"$myname : $j $pid $mystart $how_far $fsz $donesz \n";
+//      <<"$myname : $j $pid $mystart $how_far $fsz $donesz \n";
        
        j++; 
        
@@ -297,7 +297,9 @@
      begin += 1;
      step *= 10; 
      }
-   
+
+
+
    pan Step = step;
    
    
@@ -339,7 +341,7 @@
    
    wtid = GthreadGetId(); 
    
-   
+/{   
    tname = "arm_t3"; 
    
    id3 = gthreadCreate(tname); 
@@ -348,7 +350,8 @@
    nt = gthreadHowMany(); 
    
    <<" should be main thread after creating thread $tname  $id3 \n"; 
-   
+/}
+
    for (m = 0 ; m < 20; m++) {
      nt = gthreadHowMany(); 
      nanosleep(1,30); 

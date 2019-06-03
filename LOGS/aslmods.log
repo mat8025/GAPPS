@@ -215,3 +215,7 @@ rdp_l3.cpp               1.64	Fri May 24 11:16:23 2019 EQV precedence > OR
 ap_addsub.cpp            1.21	Sat May 25 10:02:56 2019 rv error check
 ap_store.cpp             1.23	Sat May 25 10:04:39 2019 debug revise
 rdp_l3.cpp               1.65	Tue May 28 18:47:20 2019 check precedence LT,GT  and following expr operator
+fileop.cpp               1.73	Sun Jun  2 07:59:14 2019 vers update
+cw_l.cpp                 1.72	Sun Jun  2 11:14:27 2019 recovery for libreadline.so.X missing -- fix via ENV var
+vmf_svar_l.cpp           0.2	Sun Jun  2 11:42:37 2019 tidy
+vmf_svar_l.cpp           1.18	Sun Jun  2 11:44:09 2019 tidy header

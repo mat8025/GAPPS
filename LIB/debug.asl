@@ -43,7 +43,7 @@ filterFileDebug(ALLOWALL_,"yyy");
 proc debugOFF()
 {
 
-setdebug(0,@~pline,@~step,@~trace,@~showresults,1)
+setdebug(-1,@~pline,@~step,@~trace,@~showresults,1)
 filterFuncDebug(REJECTALL_,"proc");
 filterFileDebug(REJECTALL_,"yyy");
 }

@@ -16,7 +16,7 @@ include "debug.asl"
 // option to output to a file
 
   debugOFF()
-  sdb(-1)
+
   
   opendll("uac");
 
@@ -52,10 +52,9 @@ include "debug.asl"
 
   stagenum = begin + step;   
 
-<<"%V $np $begin $endnum\n"
+
 
 C= ofw("P_np_${np}_${mypid}.log")
-
 
 
 <<[C]"%V $np $begin $endnum\n"
@@ -83,7 +82,7 @@ Armv->info(1)
 
   double pcdone = 0.0;
   pan pcd;
-  
+  float eta_hrs = 0.0
   while (1) {
   loop++;
 //<<"[${loop}] %V $np $begin $stagenum\n"
@@ -105,6 +104,11 @@ Armv->info(1)
   rate = Trunc(diff/secs);
   pcd = stagenum/endnum * 100.0 ;
 
+   eta = (endnum - stagenum)/ diff * secs;
+   eta /= 60.0;
+   eta_hrs = eta/60.0;
+   
+   nanosleep(5,10); // cool off cpu
 //  pcd->info(1)
   pcdone = pcd
  // <<"pcd $pcd %6.4f $pcdone\n"
@@ -116,7 +120,7 @@ Armv->info(1)
 //  <<[C]" $Armv[i] \n"
 //  }
 
-<<[C]"[${loop}] $naf Arms$np  between $begin $stagenum $diff   $Armv[4]  secs  $secs  nps $rate %6.4f $pcdone%% %d $Fi "
+<<[C]"[${loop}] $naf Arms$np  between $begin $stagenum $diff   $Armv[4]  secs  $secs  nps $rate %6.4f $pcdone%% %d %6.2f $eta_hrs "
   fflush(C);
   
  // sz= Armv[0]
@@ -127,7 +131,7 @@ Armv->info(1)
   //<<[D]" $Armv[j] \n"
   //fflush(D)
   E= ofw("np_${np}_$Armv[j]")
-  <<[E]" $Armv[j] \n"
+//  <<[E]" $Armv[j] \n"
   cf(E)
   Farms[Fi] = Armv[j];
   Fi++;
@@ -136,6 +140,8 @@ Armv->info(1)
   
    begin = stagenum;
    stagenum = begin + step;   
+
+   
 
 //<<"[${loop}] $naf Arms$np  btw $begin $stagenum $diff  $Armv[4]    $secs secs   $rate nps Found $Fi %6.2f $pcdone%% "
   // <<"%V $np $begin $stagenum $naf $Fi\n"
