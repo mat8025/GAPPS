@@ -390,7 +390,7 @@ proc showTarget()
   plot(gwo,@symbol,last_known_day+hlng,last_known_wt,"cross",symsz,GREEN_);
   }
 
-  hlng = (last_known_wt - GoalWt) / 0.43; 
+  hlng = (last_known_wt - NextGoalWt) / 0.43; 
   if (hlng  > 0) {
  // <<"$_proc %v $hlng\n"
   plot(gwo,@symbol,last_known_day+hlng,GoalWt,"star",symsz, RED_);

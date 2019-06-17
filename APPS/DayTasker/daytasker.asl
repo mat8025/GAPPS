@@ -51,12 +51,16 @@
  // add favorites :  L,G,X,C
 
  // Task,Priority,TimeEst,PCDone,TimeSpent,Difficulty,Attribute,Score,Tags,
- 
-   DF[0] = Split("task?,4,30,0,0,3,?,0,,",',') ; // default for add additional task
-   DF[1] = Split("Exercise,9,70,0,1,7,X,0,,",',')
-   DF[2] = Split("Guitar,8,30,0,0,3,G,0,,",44)
-   DF[3] = Split("Spanish,8,30,0,0,3,L,0,,",44)
-   DF[4] = Split("PR/DSP,8,60,0,0,8,D,0,,",44)    
+   i =0;
+   DF[i++] = Split("task?,4,30,0,0,3,?,0,,",',') ; // default for add additional task
+   DF[i++] = Split("Exercise,9,70,0,1,7,X,0,,",',')
+   DF[i++] = Split("Guitar,8,30,0,0,3,G,0,,",44)
+   DF[i++] = Split("Piano,8,30,0,0,3,G,0,,",44)   
+   DF[i++] = Split("Spanish,8,30,0,0,3,L,0,,",44)
+   DF[i++] = Split("French,8,30,0,0,3,L,0,,",44)
+   DF[i++] = Split("German,8,30,0,0,3,L,0,,",44)   
+   DF[i++] = Split("PR/DSP,8,60,0,0,8,D,0,,",44)    
+
  
 
  

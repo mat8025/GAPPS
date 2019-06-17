@@ -40,7 +40,7 @@
 
 ////////////////  WOBS ///////////////
 
-    sc_startday = sc_endday - 70;   // last three months
+
 
     gwo=cWo(vp,@graph,@name,"WTLB",@value,0,@clipborder); //
 

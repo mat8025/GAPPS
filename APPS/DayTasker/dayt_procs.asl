@@ -23,12 +23,15 @@ proc makeMyDay (fnm)
     R[2] = DF[2];
     R[3] = DF[3];
     R[4] = DF[4];
+    R[5] = DF[5];
+    R[6] = DF[6];    '
+    R[7] = DF[7];        
 
 //<<[_DB]"$R[1] \n"    
 
 <<[_DB]"$R \n"    
 
-    Rn = 5;
+    Rn = 8;
     writetable(B,R);
     cf(B);
     B= ofr(fnm)

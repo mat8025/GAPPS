@@ -218,9 +218,11 @@ readData();
 //    sc_endday = 75 * 365
 
 // 
-   init_period = 30;
+   init_period = 56;
    
    sc_endday = (jtoday - bday) + init_period;
+
+   sc_startday = (jtoday - bday) - 15;
 
    <<[_DB]"%V$ngday \n"
 
@@ -243,7 +245,7 @@ readData();
 
 //  lpd = 1.75/7.0      // 1.75 lb a  week
 
-  lpd = 8.0/7.0;      // 8 lb a  week
+  lpd = 4.0/7.0;      // 4 lb a  week
   sw = StartWt;
   lw = sw;
 
