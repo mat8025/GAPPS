@@ -15,6 +15,8 @@
 int NFV = 24;// last is Zn
 int Bestpick[5][2];
 
+
+
 proc setRowColSizes()
 {
    sWo(cellwo,@setrowsize,2,0,1) ;
@@ -48,11 +50,9 @@ proc Addrow()
 //======================================//
 
 
-
-
 proc foodSearch()
 {
-int i;
+   int i;
 
 //sWo(choicewo,@selectrowscols,0,2,0,cols-1,1); // startrow,endrow,startcol,endcol
 //testargs(1,choicewo,@selectrowscols,0,2,0,cols-1,1); // startrow,endrow,startcol,endcol
@@ -89,9 +89,9 @@ int i;
   sWo(choicewo,@selectrowscols,0,Nbp-1,0,cols-1,1); // startrow,endrow,startcol,endcol
   setRowColSizes();
    
-sWo(choicewo, @cellval, RC,0,0,Nbp,cols);  // startrow,startcol,nrows, ncols
+  sWo(choicewo, @cellval, RC,0,0,Nbp,cols);  // startrow,startcol,nrows, ncols
 
-sWo(choicewo,@redraw);
+  sWo(choicewo,@redraw);
 
  //debugON()
 }
@@ -156,7 +156,7 @@ fc->info(1)
  //           wrs = R[j][fi];
 	    fval = atof(R[j][fi]);
 //wrs->info(1)
-fval->info(1)
+//fval->info(1)
 //<<" $wrs $fval \n"
 //ans=iread(":")
          fc[kc] += fval;

@@ -41,8 +41,6 @@ Rn = 5;
 
 Record DF[>3];
 
-
-
 proc getCellValue( r, c)
 {
  

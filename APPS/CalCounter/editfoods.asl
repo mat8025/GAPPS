@@ -3,8 +3,8 @@
 //* 
 //*  @comment add/edit a food entry 
 //*  @release CARBON 
-//*  @vers 1.4 Be Beryllium                                                
-//*  @date Tue May 14 07:17:59 2019 
+//*  @vers 1.5 B Boron                                                     
+//*  @date Tue Jun 18 09:25:37 2019 
 //*  @cdate Wed Jan 16 18:08:31 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -75,6 +75,36 @@
    cf(A); 
 
 //============================
+
+  A=ofw("DailyValue.m"); 
+   <<[A],"title DailyValue\n"; 
+   <<[A],"item 5% M_VALUE 5\n"; 
+   <<[A],"help 5% \n";
+   <<[A],"item 10%% M_VALUE 10\n"; 
+   <<[A],"help 10%% \n";    
+   <<[A],"percent ? C_INTER "?"\n"
+   <<[A],"help set mins\n"  
+   cf(A); 
+   
+//============================
+
+  A=ofw("Quantity.m"); 
+   <<[A],"title Quantity\n"; 
+   <<[A],"item 5 M_VALUE 5\n"; 
+   <<[A],"help 5 \n";
+   <<[A],"item 10 M_VALUE 10\n"; 
+   <<[A],"help 10 \n";
+   <<[A],"item 20 M_VALUE 20\n"; 
+   <<[A],"help 20 \n";
+   <<[A],"item 30 M_VALUE 30\n"; 
+   <<[A],"help 30 \n";          
+   <<[A],"item ? C_INTER ?\n"
+   <<[A],"help set quantity\n"  
+   cf(A); 
+   
+//============================
+
+
 proc setUnits(wr,wc)
 {
    mans = popamenu("Units.m")
@@ -103,6 +133,7 @@ UnitsCol = 2;
    
    
    A=  ofr("foodtableC.csv");
+  // A=  ofr("foodtable2019.csv");
    
    if (A == -1) {
      <<" can't open food table $ftfile \n";
@@ -344,6 +375,7 @@ UnitsCol = 2;
       }      
     // else  if (_ekeyw @="CELLVAL") {
      else  if ((mwr > 0)  && (mwc != tags_col)) {
+         // how much ?
          r= mwr;
          c= mwc;
          

@@ -13,7 +13,7 @@
 ///   ddc screen
 ///
 
-    vp = cWi(@title,"S2D:$fname")
+    vp = cWi(@title,"S2D:$day_name")
 
     sWi(vp,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
 

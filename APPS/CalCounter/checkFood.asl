@@ -11,7 +11,7 @@
 //***********************************************%
 ///
 //////////////////////////////////////
-//<<"including checkFood\n"
+
 
 proc Compare(phr1,phr2)
 {
@@ -67,6 +67,29 @@ the_descr = ""
 
 int Wfi = 0;
 
+proc searchFood(the_food_name)
+{
+int bpk = -1;
+
+  Bestpick = -1;		//clear the best pick choices
+  bpick = -1;
+  
+   myfood = the_food_name;
+
+<<"search for $the_food_name  $myfood \n";
+
+   bpk = checkFood();
+
+
+<<"found entry $bpk\n";
+
+
+   return bpk;
+}
+
+
+//==================================//
+
 proc checkFood()
 {
 
@@ -87,12 +110,13 @@ svar food_d;
 int nfd = 0;
 str the_food;
 
-
+<<" $_proc looking for $f_amt $f_unit of $myfood \n"
 <<[_DB]" $_proc looking for $f_amt $f_unit of $myfood \n"
 
   the_unit = "1";
 
   nci = scin(myfood,",")
+
   if (nci > 0) {
     food_d = split(myfood,',');
     }
@@ -133,7 +157,7 @@ str the_food;
   //      <<"$score $food_wrd\n"
          found =1;        
         if (score > Bestpick[pk][0]) {
-	<<"%V $pk $score  $Bestpick[pk][0]\n"
+//	<<"%V $pk $score  $Bestpick[pk][0]\n"
            Bestpick[pk][0] = score;
 	   Bestpick[pk][1] = i;
 	   pk++;
@@ -167,10 +191,10 @@ str the_food;
    if (found) { // some match was found
           <<"$('PGREEN_') "
 	  FL = RF[best_i];
-  <<"%V$RF[best_i] \n"
+ // <<"%V$RF[best_i] \n"
  // <<"$FL \n"
    <<"$('POFF_') "
-<<"FOOD found %V $best_score <|$best_i|>  \n"
+//<<"FOOD found %V $best_score <|$best_i|>  \n"
 
       Wfi = best_i;
 
@@ -187,7 +211,7 @@ str the_food;
 
 //<<[_DB]"$(typeof(Bestpick)) $(Cab(Bestpick))\n"
 
-<<"//////////////////\n"
+//<<"//////////////////\n"
 
 bsz = Caz(Bestpick);
 <<[_DB]"%V$bsz \n"
@@ -224,7 +248,7 @@ bsz = Caz(Bestpick);
             <<[_DB]"<$i> $Bestpick[i][0] $Bestpick[i][1]\n " 
             FL = RF[wi];
             <<[_DB]"%V$RF[wi] \n" // BUG
-	    <<"%V$FL \n"
+	    //<<"%V$FL \n"
 	    if (wscore > best_score) {
                  best_pick = wi;
 		 best_score = wscore;

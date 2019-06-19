@@ -1,10 +1,10 @@
 //%*********************************************** 
-//*  @script calcounter_ssp.asl 
+//*  @script editfoods_ssp.asl 
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.2 He Helium                                                  
-//*  @date Mon Jan  7 17:55:58 2019 
+//*  @vers 1.3 Li Lithium                                                  
+//*  @date Tue Jun 18 08:50:55 2019 
 //*  @cdate Fri Jan  4 09:27:43 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -318,4 +318,34 @@ irs->info(1)
 //  }
 }
 //==================================
+proc HowMuch(wr, wc)
+{
+ <<"%V $wr $wc\n"
+   mans = popamenu("Howlong.m")
+        if (!(mans @= "NULL_CHOICE")) {
+//	<<"%V $mans\n"
+           sWo(cellwo,@cellval,wr,wc,mans);
+           R[wr][wc] = mans;
+        }
+}
+//===============================//
 
+
+
+proc getCellValue( r, c)
+{
+     if (r >0 && c >= 0 ) {
+ <<" %V $r $c \n";
+           cvalue = R[r][c];
+// <<" %V $cvalue \n";
+ //          newcvalue = queryw("NewValue","xxx",cvalue,_ex,_ey);
+//<<[_DB]"%V$newcvalue \n"
+       mans = popamenu("Quantity.m")
+        if (!(mans @= "NULL_CHOICE")) {
+           sWo(cellwo,@cellval,r,c,mans);
+           R[r][c] = mans;
+        }
+
+     }
+}
+//=====================

@@ -107,7 +107,7 @@ proc HowLong(wr, wc)
  <<"%V $wr $wc\n"
    mans = popamenu("Howlong.m")
         if (!(mans @= "NULL_CHOICE")) {
-//	<<"%V $mans\n"
+	<<"%V $mans\n"
            sWo(cellwo,@cellval,wr,wc,mans);
            R[wr][wc] = mans;
         }
@@ -122,10 +122,19 @@ proc READ()
             R= readRecord(A,@del,Delc)
            cf(A)
            sz = Caz(R);
+           rows = sz;
+
+  for (i = 0; i < rows;i++) {
+<<"[${i}] $R[i]\n"
+   }
+
+
 <<"num of records $sz\n"
 <<[_DB]"num of records $sz\n"
 //      do display update elsewhere
        sWo(cellwo,@cellval,R);
+       sWo(cellwo,@setrowscols,rows+3,cols+1);
+       sWo(cellwo,@selectrowscols,0,rows-1,0,cols); // must select section to view       
        sWo(cellwo,@redraw);
 
            return 
@@ -177,6 +186,14 @@ proc OPEN()
 //=============================
 
 
+wkn =1;
+yrn = 2019;
+daydate =1;
+dayname ="Monday"
+mon = "jun"
+
+proc getWeekYr()
+{
   dstr= !!"date "
 <<"$dstr \n"
   wks = split(dstr);
@@ -206,5 +223,6 @@ dn= atoi(dow2);
 <<"%V$dow2 $dn\n"
 dn--;
 
-
 <<" we are in week $wkn $yrn mon $mon $dayname $daydate\n";
+}
+

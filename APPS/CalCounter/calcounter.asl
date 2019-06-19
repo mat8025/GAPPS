@@ -3,8 +3,8 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.25 Mn Manganese                                              
-//*  @date Mon Jan 28 10:08:34 2019 
+//*  @vers 1.27 Co Cobalt                                                  
+//*  @date Wed Jun 19 10:13:37 2019 
 //*  @cdate Fri Jan  1 08:00:00 2016 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2014,2018 --> 
@@ -19,9 +19,10 @@ include "debug.asl"
 include "gevent.asl"
 include "gss.asl";
 include "hv.asl"
+include "calcounter_day.asl";
 include "calcounter_ssp.asl";
 
-debugON()
+debugOFF()
 
 
 //////   create MENUS here  /////
@@ -79,115 +80,33 @@ Nbp = 4; // number of search results
 
 //===========================================
 
-//  fname = "pp.rec"
 
-nargs = argc();
+  nargs = argc();
 
-adjust_day = 0;
+  what_day = _clarg[1];
 
-edit_foods = 0;
-
-fname = _clarg[1];
-
-  nl = slen(fname);
-
-//  make up today and check
-
-  today = date(2);
-
-  jdayn = julian(today)
-
-  yesterday = julmdy(jdayn-1);
-
-  dby = julmdy(jdayn-2);
-
-<<"%V  $jdayn $yesterday $today  $dby\n"
+  day_name = getCCday( what_day);
 
 
+  ok=fexist(day_name,0);
 
-
-
-
-
-
-if (nargs > 1) {
- if (scmp(_clarg[2],"edit")) {
- edit_foods =1;
- }
-}
-
-
-
-<<"<|$fname|> \n"
- <<"%V <|$fname|> $nl\n"
-
- if (edit_foods) {
-
-    A= ofr(fname)
-    if (A == -1) {
-<<"can't find food file to edit \n";
-    exit();
-    }
- }
- else {
-
-  make_day = 0;
-
- if (nl != 0) {
-
-  if (scmp(fname,"DD/dd_",6)) {
-     adjust_day = 1;
-     the_day = fname;
-   }
-  else {
-    if (scmp(fname,"dd-",3)) {
-     adjust_day = 1;
-     // find the number
-     num = atoi(scut(fname,3));
-     db4 = julmdy(jdayn-num);
-     // compute the day
-     ds=ssub(db4,"/","-",0); 
-     the_day = "DD/dd_${ds}";
-     fname = the_day;
-    }
-  }
-  
-  A= ofr(fname)
-  if (A == -1) {
-   <<"can't find file dd_ day $fname \n";
-    adjust_day = 0;
-    make_day = 1;
-   }
-   cf(A)
- }
-
-
- if (!adjust_day && !make_day) {
-  ds= date(2);
-  ds=ssub(ds,"/","-",0);
-  the_day = "DD/dd_${ds}";
- }
-
-
- fname = the_day;
-
- ok=fexist(the_day,0);
-
- <<"checking this day $the_day summary exists? $ok\n";
+ <<"checking this day $day_name summary exists? $ok\n";
 
  found_day = 0;
 
  if (ok > 0) {
  
-   A= ofr(fname)
+   A= ofr(day_name)
    if (A == -1) {
    exit(-1);
    }
    found_day =1;
   }
-}
 
-<<"%V$fname \n"
+
+<<"%V$day_name $found_day\n"
+
+
 
   myfood = "pie apple";
   f_unit = "slice";
@@ -202,7 +121,7 @@ if (nargs > 1) {
    
 // Record R[];
 
-if (found_day || edit_foods) {
+if (found_day ) {
    R= readRecord(A,@del,',')
    cf(A);
 }
@@ -235,42 +154,95 @@ else {
 <<"/////////// %v $rows\n"
 
   for (j=0; j<rows; j++) {
-
 <<"$j  $R[j]\n"
   }
 
 
+//=========================================================//
+include "checkFood";
+
 Record RC[20];
 
-
 j=70
-for (i= 0; i < 10; i++) {
-<<"<$j> $RF[j]\n"
-//  RC[i] = RF[j];
+for (i= 0; i < 5; i++) {
+  RC[i] = RF[j];
  j++;
-//<<"<$i> $RC[i]\n"
+ <<"<$i> $RC[i]\n"
 }
 
-  RC[1] = RF[70];
 
-  mf = 2.0;
+// select porridge, eggs scrambled, whole milk , coffee
+
+    RC[1] = RF[603];
+
+     mf = 2.0;
    _erow = 1;  
      wans = RC[_erow];
      wans->info(1)
 <<"%V $wans\n"
      adjustAmounts (wans, mf);
 <<"%V $wans\n"
-    RC[_erow] = wans;
+     RC[_erow] = wans;
 
 
-//exit()
+
+//============== set up favorites  ====================//
+//  set up probable foods
+
+ favi = 0;
+ 
+ j  = searchFood("porridge")
+
+ if (j >0) {
+   <<"found $favi $j $RF[j] \n"
+         RC[favi] = RF[j];
+	 favi++;
+ }
+
+ j  = searchFood("eggs fried")
+ 
+ if (j >0) {
+  <<"found $favi $j $RF[j] \n"
+         RC[favi] = RF[j];
+	 favi++;
+ }
+
+
+
+ j  = searchFood("milk whole")
+
+ if (j >0) {
+    <<"found $favi $j $RF[j] \n"
+         RC[favi++] = RF[j];  
+ }
+
+ j  = searchFood("sausage chicken")
+
+ if (j >0) {
+    <<"found $favi $j $RF[j] \n"
+         RC[favi++] = RF[j];  
+ }
+
+ j  = searchFood("coffee black")
+
+ if (j >0) {
+    <<"found $favi $j $RF[j] \n"
+         RC[favi++] = RF[j];  
+ }
+
+
+
+//  how many breakfast items do we gey
+
+<<"$(Caz(RC,0)) \n";
+
+//======================================================//
 
 include "graphic.asl"
-
 include "calcounter_scrn";
-include "checkFood";
 
-//<<"%V swaprow_a $swaprow_b  $swapcol_a $swapcol_b \n";
+
+
 
 int cv = 0;
 
@@ -313,14 +285,6 @@ int cv = 0;
 
 
 
- for (i=0; i < Nbp; i++) {
-   RC[i] = RF[i+1];   // BUG xic fix
-  <<"loop <$i> $RC[i][0] $RC[i][1] $RC[i][2]  $RC[i][3]\n"
- }
-
-<<"$(Caz(RC,0)) \n";
-
-
 
    sWo(choicewo,@setrowscols,10,cols+1);
    sWo(choicewo,@selectrowscols,0,Nbp,0,cols);
@@ -351,8 +315,6 @@ int cv = 0;
 
    setRowColSizes();
 
-
-
    sWo(choicewo,@cellval,RC,0,0,Nbp,cols); // RecordVar, startrow, startcol, nrows, ncols,
  
    sWo(cellwo,@redraw);
@@ -369,14 +331,6 @@ int cv = 0;
 
  str rcword ="xxx"
 
-//ans=iread()
-// prelim
-
-
-   
-
-// eventWait();
-//  <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ekeyw3 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
 int mwr =0;
 int mwc = 0;
 
@@ -504,7 +458,7 @@ while (1) {
 }
 
 
- exit()
+exit()
 
 
 

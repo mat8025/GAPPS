@@ -219,3 +219,6 @@ fileop.cpp               1.73	Sun Jun  2 07:59:14 2019 vers update
 cw_l.cpp                 1.72	Sun Jun  2 11:14:27 2019 recovery for libreadline.so.X missing -- fix via ENV var
 vmf_svar_l.cpp           0.2	Sun Jun  2 11:42:37 2019 tidy
 vmf_svar_l.cpp           1.18	Sun Jun  2 11:44:09 2019 tidy header
+gscom.cpp                1.88	Tue Jun 18 17:26:30 2019 decode_wo_type - no underlines
+po_p.cpp                 1.76	Tue Jun 18 17:28:16 2019 pop_a_menu
+wo_set_p.cpp             1.85	Tue Jun 18 17:28:52 2019 pw_hash

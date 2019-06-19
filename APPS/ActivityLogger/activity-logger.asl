@@ -44,15 +44,21 @@ A=ofw("Howlong.m")
  <<[A],"help two hours\n" 
  <<[A],"item 4hr M_VALUE 240\n"
  <<[A],"help 4 hours\n"
- <<[A],"item ? C_INTER "?"\n"
+ <<[A],"item ? C_INTER ?\n"
  <<[A],"help set mins\n"
  cf(A)
 
  fname = _clarg[1];
 
+wkn =1;
+yrn = 2019;
+
+  getWeekYr();
+  
+<<"%V $wkn $mon $yrn \n"
 
   if (fname @= "")  {
-      fname = "Language/language.csv"
+      fname = "Language/language_${wkn}_${mon}_${yrn}.csv";
   }
 
 
@@ -106,7 +112,7 @@ if (!ok) {
 
 use_incl_vers = 1;
 
-   sWo(cellwo,@setrowscols,rows+2,cols+1);
+   sWo(cellwo,@setrowscols,rows+5,cols+1);
 
 
    if (use_incl_vers) {
@@ -198,6 +204,18 @@ exit()
 
   can load activity file by menu and tty input
   will sum totals into last col
+
+
+/}*/
+
+
+
+
+
+/{/*
+
+  bug - crash on open/read set new activity
+  bug - get howlong menu on button save -- check col/row
 
 
 /}*/
