@@ -22,12 +22,13 @@ proc eventDecode()
 {
 
    // can get all of these in one by using ref parameters
-     _ename = Ev->getEventType(_eid,_etype,_ewoid,_ewoaw,_ebutton,_ekeyc,_ewoproc,_ex,_ey);
+   _ename = Ev->getEventType(_eid,_etype,_ewoid,_ewoaw,_ebutton,_ekeyc,_ewoproc,_ex,_ey,_ewoval);
+     
 <<"%V $_ex $_ey\n"
 
 // get all below button,rx,ry via parameters to wait_for_msg
-    _ewoval = Ev->getEventWoValue();
-//<<"%V $_ewoval \n"       
+//    _ewoval = Ev->getEventWoValue();
+  <<"%V $_ewoval \n"       
 
 
     _ewid = -1;
@@ -65,6 +66,7 @@ proc eventDecode()
            _ewid = (_ewoid & 0xFFFF0000) >> 16 ;  
      }
     }
+    
      _ewoname = Ev->getEventWoName();
 //     _ewoproc = Ev->getEventWoProc();
   
@@ -74,9 +76,9 @@ proc eventDecode()
   //  Ev->geteventxy(&_ex,&_ey);
     Ev->geteventrxy(&_erx,&_ery);    
 
-//_erow->info(1); // DBG
-//_ecol->info(1); // DBG
+
     Ev->geteventrowcol(&_erow,&_ecol);
+
 //_erow->info(1); // DBG
 //_ecol->info(1); // DBG
 //  Mouse window pos, screen pos?
@@ -96,6 +98,7 @@ proc eventWait()
     _erow = -1;
     _ecol = -1;    
     _ewoname = "";
+    _ewovalue = "";    
     _emsg = Ev->waitForMsg();
 
   

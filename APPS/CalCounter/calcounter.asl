@@ -52,6 +52,8 @@ cf(A)
 
 //==========================
 Nbp = 4; // number of search results
+Nchoice = 4;   // display choice row size
+Nfav = 8;   // display choice row size
 
   A=  ofr("foodtable2019.csv");
 
@@ -160,88 +162,16 @@ else {
 
 //=========================================================//
 include "checkFood";
+include "calcounter_fav";
 
-Record RC[20];
-
-j=70
-for (i= 0; i < 5; i++) {
-  RC[i] = RF[j];
- j++;
- <<"<$i> $RC[i]\n"
-}
+Record RC[>10];
 
 
-// select porridge, eggs scrambled, whole milk , coffee
-
-    RC[1] = RF[603];
-
-     mf = 2.0;
-   _erow = 1;  
-     wans = RC[_erow];
-     wans->info(1)
-<<"%V $wans\n"
-     adjustAmounts (wans, mf);
-<<"%V $wans\n"
-     RC[_erow] = wans;
-
-
-
-//============== set up favorites  ====================//
-//  set up probable foods
-
- favi = 0;
- 
- j  = searchFood("porridge")
-
- if (j >0) {
-   <<"found $favi $j $RF[j] \n"
-         RC[favi] = RF[j];
-	 favi++;
- }
-
- j  = searchFood("eggs fried")
- 
- if (j >0) {
-  <<"found $favi $j $RF[j] \n"
-         RC[favi] = RF[j];
-	 favi++;
- }
-
-
-
- j  = searchFood("milk whole")
-
- if (j >0) {
-    <<"found $favi $j $RF[j] \n"
-         RC[favi++] = RF[j];  
- }
-
- j  = searchFood("sausage chicken")
-
- if (j >0) {
-    <<"found $favi $j $RF[j] \n"
-         RC[favi++] = RF[j];  
- }
-
- j  = searchFood("coffee black")
-
- if (j >0) {
-    <<"found $favi $j $RF[j] \n"
-         RC[favi++] = RF[j];  
- }
-
-
-
-//  how many breakfast items do we gey
-
-<<"$(Caz(RC,0)) \n";
 
 //======================================================//
 
 include "graphic.asl"
 include "calcounter_scrn";
-
-
 
 
 int cv = 0;
@@ -250,7 +180,6 @@ int cv = 0;
   tags_col = cols;
  // rows += 2;
   sWo(cellwo,@setrowscols,rows+10,cols+1);
-
   sWo(cellwo,@cellval,R,0,0,rows,cols);  
 <<"%V$rows $sz \n"
 
@@ -274,28 +203,26 @@ int cv = 0;
 
  
   sWo(cellwo,@cellval,R,0,0,rows+1,cols);  
-   
-  //sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
   sWo(cellwo,@selectrowscols,0,rows,0,cols);
 
   sWo(cellwo,@cellval,0,tags_col,"Tags")
 
 
- R[0][tags_col] = "Tags";
+    R[0][tags_col] = "Tags";
 
+<<"%V $Nchoice \n"
 
-
-
-   sWo(choicewo,@setrowscols,10,cols+1);
-   sWo(choicewo,@selectrowscols,0,Nbp,0,cols);
-
+   sWo(choicewo,@setrowscols,Nchoice+1,cols+1); // setup sheet rows&cols
+   // before  setting cellvals!
+   sWo(choicewo,@cellval,RC,0,0,Nchoice,cols);  
+   sWo(choicewo,@selectrowscols,0,Nchoice,0,cols);
    sWo(choicewo,@setcolsize,3,0,1);
-   sWo(cellwo,@setcolsize,3,0,1) ;
+
    <<"%V $choicewo \n"
   
 
 
-  for (i = 0; i< Nbp ; i++) {
+  for (i = 0; i< Nchoice ; i++) {
      for (j = 0; j< cols ; j++) {
         if ((i%2)) {
            sWo(choicewo,@cellbhue,i,j,CYAN_);         
@@ -305,6 +232,10 @@ int cv = 0;
 	 }
        }
      }
+
+     favDisplay();
+     
+
 //============================
 
 
@@ -315,7 +246,9 @@ int cv = 0;
 
    setRowColSizes();
 
-   sWo(choicewo,@cellval,RC,0,0,Nbp,cols); // RecordVar, startrow, startcol, nrows, ncols,
+
+   sWo(choicewo,@cellval,RC,0,0,Nchoice,cols);
+   // RecordVar, startrow, startcol, nrows, ncols,
  
    sWo(cellwo,@redraw);
    
@@ -388,18 +321,18 @@ while (1) {
          }
 
                
-             
+            
       if (mwr == 0 && (mwc >= 0) && (_ebutton == RIGHT_)) {
 
          sWo(cellwo,@cellbhue,0,swapcol_a,0,cols,YELLOW_);         	 	 
          swapcol_b = swapcol_a;
  	 swapcol_a = mwc;
-
          sWo(cellwo,@cellbhue,0,swapcol_a,CYAN_);         	 
 <<"%V $swapcol_a $swapcol_b\n"
          }
 
-        sWo(cellwo,@redraw);
+
+//        sWo(cellwo,@redraw);
 
         if (mwr == 0 && (mwc == tags_col) && (_ebutton == RIGHT_)) {
                <<"Clear tags \n"
@@ -409,7 +342,6 @@ while (1) {
         if (mwr > 0 && (mwc == 0) ) {
                 fd= R[mwr][0];
                 sWo(searchwo,@value,fd,@redraw);
-
         }
 	
         if (mwr > 0 && (mwc == tags_col) ) {
@@ -423,15 +355,16 @@ while (1) {
                 fd= R[mwr][0];
 
                 sWo(searchwo,@value,fd,@redraw);
-
 		sWo(cellwo,@cellval,mwr,tags_col,xms)
 		sWo(cellwo,@celldraw,mwr,tags_col)
         }
 
-                         if (_ebutton == LEFT_ && mwr > 0) {
-                           getCellValue(mwr,mwc);
+                         //if (_ebutton == LEFT_ && mwr > 0  && mwc != 1) {
+                         //     getCellValue(mwr,mwc);
+                         // }
+                          if (_ebutton == LEFT_ && mwr > 0  && mwc == 1) {
+                            changeAmount(mwr)
                           }
-
      }
 
     if (_eloop > 1) {
@@ -449,11 +382,10 @@ while (1) {
      }
      
 
-//    sWo(cellwo,@setrowsize,2,0,1) ;
-//    sWo(cellwo,@setcolsize,3,0,1) ;   
-//    sWo(choicewo,@setcolsize,3,0,1) ;     
+
     sWo(cellwo,@redraw);
     sWo(choicewo,@redraw);
+    sWo(favorwo,@redraw);    
     sWo(ssmods,@redraw);
 }
 

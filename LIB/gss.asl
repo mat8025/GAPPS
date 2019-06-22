@@ -221,7 +221,6 @@ int n2d = 0;
 		drows[n2d] = i;
 <<[_DB]"$n2d will delete row $i  $drows[n2d]\n";
                 n2d++;
-
            }
         }
 	
@@ -239,6 +238,12 @@ int n2d = 0;
 	// reset rows
         rows = nsz;
         Nrows = nsz;
+        // clear tags
+        for (i= 1; i< rows; i++) {  
+         R[i][tags_col] = " ";
+        }
+   
+
         sWo(cellwo,@cellval,nsz,0,sz,cols,"");
         sWo(cellwo,@cellval,R);
 	sWo(cellwo,@redraw);
@@ -514,7 +519,7 @@ proc PGN()
 proc paintRows()
 {
 
-   endprow = curr_row + page_rows 
+    endprow = curr_row + page_rows 
 
 <<"$endprow = $curr_row + $page_rows $rows \n"
 

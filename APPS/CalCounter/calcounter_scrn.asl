@@ -51,32 +51,42 @@
 
       wovtile(ssmods,0.05,0.2,0.1,0.9,0.05);
 
-
- cellwo=cWo(vp,@SHEET,@name,"DailyCalCnt",@color,GREEN_,@resize,0.12,0.42,0.98,0.96)
+ Fx =0.20
+ 
+ cellwo=cWo(vp,@SHEET,@name,"DailyCalCnt",@color,GREEN_,@resize,Fx,0.52,0.98,0.96)
 
  sWo(cellwo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"1");
 
  sWo(cellwo,@bhue,CYAN_,@clipbhue,SKYBLUE_,@redraw);
 
- choicewo=cWo(vp,"SHEET",@name,"FoodChoice",@color,GREEN_,@resize,0.12,0.2,0.98,0.40)
+ favorwo=cWo(vp,"SHEET",@name,"FoodFavor",@color,GREEN_,@resize,Fx,0.24,0.98,0.51)
+
+ sWo(favorwo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"1",@func,"xxx")
+
+ sWo(favorwo,@bhue,CYAN_,@clipbhue,SKYBLUE_,@redraw);
+
+
+
+ choicewo=cWo(vp,"SHEET",@name,"FoodChoice",@color,GREEN_,@resize,Fx,0.01,0.98,0.23)
 
  sWo(choicewo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"1",@func,"xxx")
 
  sWo(choicewo,@bhue,CYAN_,@clipbhue,SKYBLUE_,@redraw);
 
 
-  searchwo =cWo(vp,"BV",@name,"FoodSearch",@color,GREEN_,@resize,0.12,0.05,0.5,0.19)
+  searchwo =cWo(vp,"BV",@name,"FoodSearch",@color,GREEN_,@resize,0.02,0.01,Fx-0.01,0.14)
   
   sWo(searchwo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"Type in food name",@func,"inputValue");
 
 //sWo(searchwo,@bhue,CYAN_,@clipbhue,LIGHTGREEN_,@style, SVL_, @redraw);
-  sWo(searchwo,@bhue,CYAN_,@clipbhue,LIGHTGREEN_,@style, SVR_, @redraw);
+  sWo(searchwo,@bhue,CYAN_,@clipbhue,LIGHTGREEN_,@style, SVB_, @redraw);
 
   sWo(ssmods,@redraw);
 
  // sWo(cellwo,@redraw);
 
   sWo(choicewo,@redraw);
+  sWo(favorwo,@redraw);
 
   titleVers();
   sWi(vp,@redraw);

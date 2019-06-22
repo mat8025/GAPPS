@@ -255,18 +255,23 @@ sWo(gwo2,@func,"wo_menu",@menu,"FoodTypes.m")
          
 	  if (_ewoname @= "When") {
              when = _ewoval;
+	     when = _ekeyw;
              sWo(gwo3,@sheetrow,the_row,0,"$when,$food,$portion,20,90,1,7,6")
              sWo(gwo3,@redraw)
           }
           else if (_ewoname @= "Portion") {
              portion = _ewoval;
+	     portion = _ekeyw;
+	     
 	     <<"%V$portion\n"	     
               sWo(gwo3,@sheetrow,the_row,0,"$when,$food,$portion,20,90,1,7,6")
              sWo(gwo3,@clear,@redraw)
           }
           else if (_ewoname @= "FoodTypes") {
              food = _ewoval;
+	    // food = _ekeyw;
 	     <<"%V$food\n"
+	     food = "$_ekeyw $_ewoval"
              sWo(gwo3,@sheetrow,the_row,0,"$when,$food,$portion,20,90,1,7,6")
              sWo(gwo3,@redraw)
           }

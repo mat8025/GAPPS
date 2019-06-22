@@ -15,6 +15,27 @@
 int NFV = 24;// last is Zn
 int Bestpick[5][2];
 
+page_rows = 6;
+
+
+proc SORT()
+{
+
+  static int sortdir = 1;
+  sortcol = swapcol_a;
+  startrow = 1;
+  alphasort = 0; // 0 auto alpha or number 1 alpha   2 number
+
+  <<"%V  $sortcol $alphasort $sortdir $startrow $(rows-2)\n"
+   sortRows(R,sortcol,alphasort,sortdir,startrow, rows-2)
+  sortdir *= -1;
+
+     sWo(cellwo,@cellval,R);
+     sWo(cellwo,@redraw);
+}
+//======================================================//
+
+
 
 
 proc setRowColSizes()
@@ -64,11 +85,11 @@ proc foodSearch()
 
   j= Nbp-1;
   for (i=0; i<Nbp; i++) {
-  bpick = Bestpick[j][1];
-  if (bpick >0) {
-    RC[i] = RF[bpick];
-  <<"<$i> <$j> $bpick $RC[i][0]  $RC[i][1]  $RC[i][2]  $RC[i][3] \n"
-  }
+    bpick = Bestpick[j][1];
+    if (bpick >0) {
+     RC[i] = RF[bpick];
+    <<"<$i> <$j> $bpick $RC[i][0]  $RC[i][1]  $RC[i][2]  $RC[i][3] \n"
+    }
   else {
    //RC[i][::] = " "; 
   }
@@ -86,10 +107,10 @@ proc foodSearch()
 
 //testargs(1,choicewo,@selectrowscols,0,2,0,cols-1,1); // startrow,endrow,startcol,endcol
 
-  sWo(choicewo,@selectrowscols,0,Nbp-1,0,cols-1,1); // startrow,endrow,startcol,endcol
+  sWo(choicewo,@selectrowscols,0,Nchoice,0,cols-1,1); // startrow,endrow,startcol,endcol
   setRowColSizes();
    
-  sWo(choicewo, @cellval, RC,0,0,Nbp,cols);  // startrow,startcol,nrows, ncols
+  sWo(choicewo, @cellval, RC,0,0,Nchoice,cols);  // startrow,startcol,nrows, ncols
 
   sWo(choicewo,@redraw);
 
@@ -124,8 +145,8 @@ proc totalRows()
   
   nr= Caz(R);
   
-<<"%V $Nrows $rows $nr\n"
-<<"R[0] $R[0] \n"
+//<<"%V $Nrows $rows $nr\n"
+//<<"R[0] $R[0] \n"
   frows = Nrows-1;
 //<<"$R[0][::]\n"
 //<<"$R[1][::]\n"
@@ -143,7 +164,7 @@ proc totalRows()
   }
 
 
-fc->info(1)
+  //fc->info(1)
 
    for (j = 1; j < frows ; j++) {
      fi = 3;
@@ -210,55 +231,54 @@ fc->info(1)
    R[j][1] = "$(j-1)";
    R[j][2] = "ITMS";
 
-  <<"done totals \n"
+<<"done totals \n"
 
 }
 //=====================
-proc FoodChoice()
+proc FoodFavor()
 {
-
-
-float mf = 2;
+///  
+///  call back via woname
+///
 svar wans;
-<<"$_proc  $_ecol $_erow \n"
-
    if (_ecol == 0) {
-         addFoodItem() ; // and save
-	 SAVE();
-   }
 
-    fd= RC[_erow][0];
-//<<"$fd \n"
-    sWo(searchwo,@value,fd,@redraw);
-   if (_ecol == 1) {
-
-    mans = popamenu("HowMuch.m");
-    mf = atof(mans);
-    if (mf > 0.0) {
-     wans = RC[_erow];
-wans->info(1)
-<<"%V $wans\n"
-     adjustAmounts (wans, mf);
-<<"%V $wans\n"
-    RC[_erow] = wans;
-     
-<<"RC[_erow]  $RC[_erow] \n"
-   sWo(choicewo,@cellval,RC,0,0,Nbp,Ncols); // RecordVar, startrow, startcol, nrows, ncols,
-   sWo(choicewo,@redraw);
-     }
+      // add to daily log ? 
+         yn=yesornomenu("Add to Daily Log?")
+	 if (yn@="1") {
+	 wans = FF[_erow]
+         addFoodItem(wans) ; // and save
+         }
    }
 }
 //=========================
-proc addFoodItem()
+proc FoodChoice()
 {
+///  
+///  call back via woname
+///
 svar wans;
-     wans = RC[_erow];
-     
+
+   if (_ecol == 0) {
+
+      // add to daily log ? 
+         yn=yesornomenu("Add to Daily Log?")
+	 if (yn@="1") {
+	 wans = RC[_erow]
+         addFoodItem(wans) ; // and save
+         }
+   }
+}
+//=========================
+
+proc addFoodItem(svar wfd)
+{
+
     sz= Caz(R)
 <<"in $_proc record $rows $sz\n"
     er = Nrows;
 
-    R[er] = wans;
+    R[er] = wfd;
 
     rows++;
     Nrows++;
@@ -280,10 +300,11 @@ svar wans;
 
    sWo(cellwo,@cellval,R,0,0,Nrows,cols);
    setRowColSizes()
-
+   sWo(cellwo,@redraw);	 
 
 }
 //=======================
+
 
 
 proc adjustAmounts (svar irs, f)
@@ -300,7 +321,7 @@ irs->info(1)
 // nfv
   irs[1] = dewhite("%6.2f$a");
 
- for (i = 3; i < (NFV+3); i++)     {
+   for (i = 3; i < (NFV+3); i++)     {
      a = atof (irs[i]) * f;
      val = "%6.2f$a"
      irs[i] = val;
@@ -315,4 +336,216 @@ irs->info(1)
 //  }
 }
 //==================================
+proc changeAmount(the_row)
+{
+    mans = popamenu("HowMuch.m");
+    mf = atof(mans);
+    if (mf > 0.0) {
+     //wans = RC[the_row];
+       wans = R[the_row];     
+//wans->info(1)
+//<<"%V $wans\n"
+     adjustAmounts (wans, mf);
+<<"%V $wans\n"
+     R[the_row] = wans;
+     totalRows();	
+     sWo(cellwo,@cellval,R,0,0,Nrows,cols);
+     sWo(cellwo,@redraw);
+     }
+}
 
+//=====================================//
+
+proc SAVE()
+{
+<<"IN $_proc saving sheet %V $day_name  $Ncols \n";
+	 
+            B=ofw(day_name);
+            if ( B != -1) {
+<<"%V $rows  \n"
+            for (i= 0; i < rows ; i++) {
+	    val = R[i][0];
+<<"<$i> $val $R[i]\n"
+            }
+
+            nrw=writeRecord(B,R,@del,Delc,@ncols,Ncols);
+<<[_DB]"%V $B $nrw  $Ncols \n"
+            cf(B);
+	    }
+	    
+    return 
+}
+//======================
+proc DELROWS()
+{
+<<[_DB]"in $_proc\n"
+//int drows[]; // TBF
+//int drows[page_rows+];
+
+//int drows[20+];
+int n2d = 0;
+        drows = -1;
+<<[_DB]"%V $drows \n"
+	
+        sz = Caz(R)
+	ans = yesornomenu("Delete Tagged Rows?")
+
+        if (ans == 1) {
+	
+        for (i = 0; i < sz; i++) {
+            if (R[i][tags_col] @="x") {
+                
+		drows[n2d] = i;
+<<[_DB]"$n2d will delete row $i  $drows[n2d]\n";
+                n2d++;
+           }
+        }
+	
+        if (n2d > 0) {
+        //deleteRows(R,swaprow_a,swaprow_b);
+
+
+	deleteRows(R,drows,n2d);
+	nsz = Caz(R)
+<<[_DB]"deleted $drows  $sz $nsz\n"
+         for (i = 1; i < nsz;i++) { 
+<<[_DB]"[${i}] $R[i]\n"
+         R[i][tags_col] = " ";
+         }
+        // clear deleted rows at end
+	// reset rows
+        rows = nsz;
+        Nrows = nsz;
+        totalRows();	
+        sWo(cellwo,@cellval,nsz,0,sz,cols,"");
+        sWo(cellwo,@cellval,R);
+
+	sWo(cellwo,@redraw);
+	}
+     }
+     	    return ;
+}
+
+//=====================================//
+
+proc PGDWN()
+{
+   // need to unselect all
+
+  cs_rows = Nfav;
+
+
+  npgs =   cs_rows/page_rows;
+
+  if (curr_row < 0) {
+      curr_row = 0;
+  }
+  
+<<"%V$favorwo $curr_row $page_rows $cs_rows $cols\n"
+
+  sWo(favorwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0);
+
+
+   curr_row += page_rows/2;
+   // need to select
+
+  if ((curr_row + page_rows) >= (cs_rows-1)) {
+        curr_row = (cs_rows - page_rows -1);
+   }
+
+<<"%V$curr_row $page_rows $cs_rows \n"
+    if (curr_row < 0) {
+        curr_row = 0;
+    }
+    
+   sWo(favorwo,@selectrowscols,0,0,0,cols,1);
+   sWo(favorwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,1);
+   sWo(favorwo,@setcolsize,3,0,1) ;
+
+   
+   paintRows();
+   curr_page++;
+   if (curr_page > npgs) {
+     curr_page = npgs;
+   }
+   
+   sWo(pgnwo,@value,curr_page,@update);
+     
+   sWo(favorwo,@redraw);
+   
+}
+//=====================================//
+
+proc PGUP()
+{
+
+   cs_rows = Nfav;
+   npgs =   cs_rows/page_rows;
+   <<"%V $favorwo  $npgs $cs_rows $cols $page_rows $curr_row \n"
+
+   //setdebug(1,@trace);
+   if (current_row <0) {
+       current_rwo = 0;
+   }
+   
+   sWo(favorwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0);
+
+   curr_row -= page_rows/2;
+
+   if (curr_row < 0) {
+       curr_row = 0;
+   }
+   
+   sWo(favorwo,@selectrowscols,0,0,0,cols,1);
+   sWo(favorwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,1);
+    sWo(favorwo,@setcolsize,3,0,1) ;
+  // setRowColSizes();
+   paintRows();
+  sWo(favorwo,@redraw);
+  curr_page--;
+  if (curr_page <1) {
+      curr_page =1;
+  }
+  sWo(pgnwo,@value,curr_page,@update);
+  return ;
+}
+
+//=====================================//
+
+proc paintRows()
+{
+    cs_rows = Nfav;
+  
+     endprow = curr_row + page_rows 
+
+<<"$endprow = $curr_row + $page_rows $cs_rows \n"
+
+    if (endprow > cs_rows) {
+       endprow = cs_rows-1;  // fix xgs for oob error
+    }
+    // do a row at a time
+    
+  <<"%V $cs_rows $cols $curr_row $endprow \n"
+
+
+    if (curr_row < 0) {
+        curr_row = 0;
+    }
+
+   for (i = curr_row; i < endprow ; i++) {
+
+	  if ((i%2)) {
+	       sWo(favorwo,@cellbhue,i,ALL_,CYAN_);
+	     }
+	  else {
+               sWo(favorwo,@cellbhue,i,ALL_,LILAC_);
+          }
+   }
+
+  sWo(favorwo,@cellbhue,endprow,ALL_,YELLOW_);
+
+}
+
+
+
+//======================================================//

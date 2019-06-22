@@ -222,3 +222,5 @@ vmf_svar_l.cpp           1.18	Sun Jun  2 11:44:09 2019 tidy header
 gscom.cpp                1.88	Tue Jun 18 17:26:30 2019 decode_wo_type - no underlines
 po_p.cpp                 1.76	Tue Jun 18 17:28:16 2019 pop_a_menu
 wo_set_p.cpp             1.85	Tue Jun 18 17:28:52 2019 pw_hash
+event_l.cpp              1.21	Wed Jun 19 11:59:25 2019 ep->wovalue add to geteventtype
+msg.h                    1.30	Wed Jun 19 12:02:01 2019 zero fv array
