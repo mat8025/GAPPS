@@ -267,11 +267,14 @@ int cv = 0;
 int mwr =0;
 int mwc = 0;
 
+  //  yn=yesornomenu("Edit Daily Log?")
+//debugON()
+
 while (1) {
 
          eventWait();
 
-   //<<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ekeyw3 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
+   <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ekeyw3 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
         _erow->info(1);
 
 
@@ -367,7 +370,7 @@ while (1) {
                           }
      }
 
-    if (_eloop > 1) {
+    if (_eloop > 0) {
       if (_ename @= "PRESS") {
 
        if (!(_ewoname @= "")) {

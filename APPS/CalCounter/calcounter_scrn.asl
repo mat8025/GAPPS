@@ -17,7 +17,7 @@
 
     sWi(vp,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
 
-    sWi(vp,@clip,0.1,0.2,0.95,0.9)
+    sWi(vp,@clip,0.1,0.2,0.98,0.98)
 
     sWi(vp,@redraw)
 
@@ -31,11 +31,15 @@
 
       sortwo = cWo(vp,@BN,@name,"SORT",@color,CYAN_);
 
-      swprwo = cWo(vp,@BN,@name,"SWOPROWS",@color,GREEN_);
+     // swprwo = cWo(vp,@BN,@name,"SWOPROWS",@color,GREEN_);
     
       delrwo = cWo(vp,@BN,@name,"DELROWS",@color,RED_);
 
       //arwo = cWo(vp,@BN,@name,"Addrow",@color,ORANGE_,@bhue,"lightblue");
+
+      int ssmods[] = { readwo,savewo,sortwo,delrwo };
+
+      sortffwo = cWo(vp,@BN,@name,"SORT_FF",@color,CYAN_);
 
       pgdwo = cWo(vp,@BN,@name,"PGDWN",@color,ORANGE_,@bhue,"pink");
 
@@ -46,10 +50,11 @@
       sWo(pgnwo,@bhue,WHITE_,@clipbhue,RED_,@FUNC,"inputValue",@callback,"PGN",@MESSAGE,1)
 
 
-      int ssmods[] = { readwo,savewo,sortwo,swprwo,delrwo, pguwo,pgdwo,pgnwo };
+      int ffmods[] = {sortffwo, pguwo,pgdwo,pgnwo };
 
+      wovtile(ssmods,0.05,0.55,0.1,0.9,0.05);
 
-      wovtile(ssmods,0.05,0.2,0.1,0.9,0.05);
+      wovtile(ffmods,0.05,0.2,0.1,0.5,0.05);
 
  Fx =0.20
  
@@ -59,7 +64,7 @@
 
  sWo(cellwo,@bhue,CYAN_,@clipbhue,SKYBLUE_,@redraw);
 
- favorwo=cWo(vp,"SHEET",@name,"FoodFavor",@color,GREEN_,@resize,Fx,0.24,0.98,0.51)
+ favorwo=cWo(vp,"SHEET",@name,"FoodFavor",@color,GREEN_,@resize,Fx,0.21,0.98,0.51)
 
  sWo(favorwo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"1",@func,"xxx")
 
@@ -67,7 +72,7 @@
 
 
 
- choicewo=cWo(vp,"SHEET",@name,"FoodChoice",@color,GREEN_,@resize,Fx,0.01,0.98,0.23)
+ choicewo=cWo(vp,"SHEET",@name,"FoodChoice",@color,GREEN_,@resize,Fx,0.01,0.98,0.20)
 
  sWo(choicewo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"1",@func,"xxx")
 
@@ -82,6 +87,7 @@
   sWo(searchwo,@bhue,CYAN_,@clipbhue,LIGHTGREEN_,@style, SVB_, @redraw);
 
   sWo(ssmods,@redraw);
+  sWo(ffmods,@redraw);  
 
  // sWo(cellwo,@redraw);
 

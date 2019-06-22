@@ -10,7 +10,7 @@
 //* 
 //***********************************************%
 ///
-//////////////////////////////////////
+
 
 
 proc Compare(phr1,phr2)
@@ -19,22 +19,41 @@ proc Compare(phr1,phr2)
 // how many words in phr1 (svar)
 // are in (partially) phrase 2
 // all in  order -- 100 - none 0
+
    int match;
    int charrem;
    int k;
    int fit = 0;
    str rs = "";
-//<<"$phr1    $phr2"
 
-  n = Caz(phr1); // how many words/field in svar phr1
+
+
+  n1 = Caz(phr1); // how many words/field in svar phr1
 
   fwds = Split(phr2);
 
   n2 = Caz (fwds);
 
-//<<"$n    $n2"
+//<<"$n1 $phr1 : $n2   $phr2\n"
 
-  for (k = 0; k < n; k++) {
+///  check food catergory
+
+  fcat = fwds[n2-1]
+
+  if (scmp(fcat,"<",1)) {
+//<<" cat is <|$fcat|>\n"
+     fcat= sele(fcat,-2)
+//<<" cat is <|$fcat|>\n"     
+     fcat = sele(fcat,1)
+
+     if (scmp(phr1[0],fcat,0,0)) {
+        fit += 10;
+//<<" fcat  match <|$fcat|>\n"     
+    }
+  }
+
+
+  for (k = 0; k < n1; k++) {
 
     wd = supper(phr1[k]);
 //<<"$k $wd $phr2 \n"
@@ -45,7 +64,8 @@ proc Compare(phr1,phr2)
       fit += 10;
        if (k < n2) {
          if (wd @= fwds[k]) {
-           fit += (5 + (n-k));
+           fit += (5 + (n1-k));
+	   
          }
        }
      }
@@ -110,7 +130,7 @@ svar food_d;
 int nfd = 0;
 str the_food;
 
-<<" $_proc looking for $f_amt $f_unit of $myfood \n"
+//<<" $_proc looking for $f_amt $f_unit of $myfood \n"
 <<[_DB]" $_proc looking for $f_amt $f_unit of $myfood \n"
 
   the_unit = "1";
@@ -143,7 +163,8 @@ str the_food;
   //  <<"%V $Nrecs \n"
     jj = 0;
     food_wrd="";
-    for (i = 1 ; i < N ; i++) {
+
+   for (i = 1 ; i < N ; i++) {
     
         food_wrd = "$RF[i][0]";
 	
@@ -157,7 +178,7 @@ str the_food;
   //      <<"$score $food_wrd\n"
          found =1;        
         if (score > Bestpick[pk][0]) {
-//	<<"%V $pk $score  $Bestpick[pk][0]\n"
+	<<[_DB]"%V $pk $score  $Bestpick[pk][0]\n"
            Bestpick[pk][0] = score;
 	   Bestpick[pk][1] = i;
 	   pk++;
@@ -247,7 +268,8 @@ bsz = Caz(Bestpick);
               wscore = Bestpick[i][0] ;
             <<[_DB]"<$i> $Bestpick[i][0] $Bestpick[i][1]\n " 
             FL = RF[wi];
-            <<[_DB]"%V$RF[wi] \n" // BUG
+            //<<[_DB]"%V$RF[wi] \n" // BUG
+<<"$RF[wi] \n" // BUG	    
 	    //<<"%V$FL \n"
 	    if (wscore > best_score) {
                  best_pick = wi;

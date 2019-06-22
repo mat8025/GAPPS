@@ -27,11 +27,28 @@ proc SORT()
   alphasort = 0; // 0 auto alpha or number 1 alpha   2 number
 
   <<"%V  $sortcol $alphasort $sortdir $startrow $(rows-2)\n"
-   sortRows(R,sortcol,alphasort,sortdir,startrow, rows-2)
+  sortRows(R,sortcol,alphasort,sortdir,startrow, rows-2)
   sortdir *= -1;
 
      sWo(cellwo,@cellval,R);
      sWo(cellwo,@redraw);
+}
+//======================================================//
+
+proc SORT_FF()
+{
+
+  static int sortdir = 1;
+  sortcol = swapcol_a;
+  startrow = 1;
+  alphasort = 0; // 0 auto alpha or number 1 alpha   2 number
+
+  <<"%V  $sortcol $alphasort $sortdir $startrow $(rows-2)\n"
+  sortRows(FF,sortcol,alphasort,sortdir,startrow)
+  sortdir *= -1;
+
+     sWo(favorwo,@cellval,FF);
+     sWo(favorwo,@redraw);
 }
 //======================================================//
 

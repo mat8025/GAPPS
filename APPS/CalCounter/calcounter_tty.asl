@@ -41,9 +41,9 @@
 
 include "debug.asl"
 
-debugON();
+debugOFF();
 
-scriptDBON();
+scriptDBOFF();
 
 #define  ASK ans=iread(()
 //#define  ASK ;
@@ -89,7 +89,8 @@ ans=iread()
 
 
 
- A=  ofr("foodtableC.csv");
+ //A=  ofr("foodtable2019.csv");
+ A=  ofr("foodtable-test.csv");
 
  if (A == -1) {
   <<" can't open food table $ftfile \n";
@@ -104,7 +105,7 @@ ans=iread()
 
 <<"%V $Nrecs   $Ncols\n";
 
-
+/{
    for (i= 0; i < 5; i++) {
        nc = Caz(RF,i);
        <<"<$i>  $RF[i]  \n";
@@ -115,7 +116,7 @@ ans=iread()
 
 <<"<$i>  $RF[i] \n";
     }
-
+/}
    cf(A);
 
   Nfoods  = Nrecs -1;
@@ -264,11 +265,6 @@ do_loop = 1;
 
  }
 
-/{
-Graphic = CheckGwm()
-if (Graphic) {
- include "gui_query.asl"
-}
-/}
+
 
 exit();
