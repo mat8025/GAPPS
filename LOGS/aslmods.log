@@ -225,3 +225,16 @@ wo_set_p.cpp             1.85	Tue Jun 18 17:28:52 2019 pw_hash
 event_l.cpp              1.21	Wed Jun 19 11:59:25 2019 ep->wovalue add to geteventtype
 msg.h                    1.30	Wed Jun 19 12:02:01 2019 zero fv array
 ds_records.cpp           1.88	Sat Jun 22 15:48:09 2019 sortrows add end end row option
+siv.h                    2.3	Mon Jun 24 09:53:11 2019 added ValidFromOffSet
+ds_convert_store.cpp     1.96	Mon Jun 24 09:54:50 2019 StoreVal now uses FromOffSet
+ds_convert_store.cpp     1.96	Mon Jun 24 09:55:53 2019 StoreVal now uses FromOffSset
+vmf_l.cpp                1.51	Mon Jun 24 10:48:15 2019 info print out remove < >
+siv.h                    2.4	Tue Jun 25 11:12:29 2019 getPtrType
+parse.h                  2.3	Tue Jun 25 17:00:41 2019 added storer_ptr
+ic_store.cpp             1.67	Tue Jun 25 17:02:15 2019 added storer_ptr
+ic_xic.cpp               1.67	Tue Jun 25 17:03:20 2019 storer_ptr
+ic_wic.cpp               1.67	Tue Jun 25 17:04:12 2019 storer_ptr
+ic_pic.cpp               1.58	Tue Jun 25 17:04:49 2019 storer_ptr
+rdp_main.cpp             1.68	Tue Jun 25 17:07:05 2019 storer_ptr XIC
+ic_ops.cpp               1.55	Tue Jun 25 17:08:09 2019 storer_ptr
+rdp_l1.cpp               1.62	Tue Jun 25 17:09:48 2019 store_svar - use copy not transfer

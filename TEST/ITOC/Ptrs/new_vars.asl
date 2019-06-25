@@ -9,6 +9,9 @@ for (i = 0; i < 15; i++) {
 <<"%V$vn $y\n"
 }
 
+//a_0->info(1)
+a_1->info(1)
+
 
 
 c = a_4
@@ -17,12 +20,14 @@ c = a_4
 b = Cab(a_4)
 <<"%V$b \n"
 
-
+a_4->info(1)
+a_3->info(1)
 vn = "a_5"
 
+a_3[1] = 77;
 
+<<"a_3 $a_3\n"
 e = $vn
-
 
 <<"%V$e\n"
 
@@ -30,13 +35,23 @@ k = 3
 
 vn = "a_$k"
 
-f = $vn
+f = $vn  // BUG should not remove a_3
 
 <<"%V$f \n"
 
-//f = $("a_$k")
+f->info(1)
 
-//<<"%V$f \n"
+//<<"a_3 $a_3\n"
+
+a_4->info(1)
+//a_3->info(1)
 
 
-stop!
+k = 4
+
+vn = "a_$k"
+
+
+g = $vn[2]
+
+<<"%V$g \n"
