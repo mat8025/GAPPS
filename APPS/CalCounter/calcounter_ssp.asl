@@ -199,7 +199,7 @@ proc totalRows()
 //ans=iread(":")
          fc[kc] += fval;
 
-<<"<$j> fc[${kc}] $fi $fval $R[j][fi] $fc[kc]\n"
+//<<"<$j> fc[${kc}] $fi $fval $R[j][fi] $fc[kc]\n"
 
 	  fi++;
       }
@@ -281,9 +281,12 @@ svar wans;
       // add to daily log ? 
          yn=yesornomenu("Add to Daily Log?")
 	 if (yn@="1") {
+	 
 	 wans = RC[_erow]
+         if (!(wans[1] @= "")) {
          addFoodItem(wans) ; // and save
          }
+        }
    }
 }
 //=========================
@@ -329,41 +332,47 @@ proc adjustAmounts (svar irs, f)
   float a;
   int i;
 <<"$_proc  $f $irs \n"
-irs->info(1)
+//  irs->info(1)
 
 <<"$irs[::]\n";
 
   a = atof (irs[1]) * f;
+  a= fround(a,4)
 <<"%V$a\n";
 // nfv
-  irs[1] = dewhite("%6.2f$a");
-
+ // irs[1] = dewhite("%6.2f$a");
+  irs[1] = "%6.4f$a "
    for (i = 3; i < (NFV+3); i++)     {
      a = atof (irs[i]) * f;
-     val = "%6.2f$a"
+     a= fround(a,4)
+     val = "%6.4f$a"
      irs[i] = val;
 //<<"<$i> $irs[i] $a $val\n"
 //<<"wans $wans\n"
-//<<"$irs[::] \n"
+
 //irs->info(1)
     }
 
-// for (i = 0; i < (NFV+3); i++)     {
-//   <<"$irs[i] \n"
-//  }
+<<"$irs[::] \n"
+
 }
 //==================================
 proc changeAmount(the_row)
 {
     mans = popamenu("HowMuch.m");
     mf = atof(mans);
+    
     if (mf > 0.0) {
      //wans = RC[the_row];
        wans = R[the_row];     
 //wans->info(1)
 //<<"%V $wans\n"
+<<"before adjust by $mf %V $wans\n"
+
      adjustAmounts (wans, mf);
-<<"%V $wans\n"
+
+<<"after adjust by $mf %V $wans\n"
+
      R[the_row] = wans;
      totalRows();	
      sWo(cellwo,@cellval,R,0,0,Nrows,cols);

@@ -1,3 +1,15 @@
+//%*********************************************** 
+//*  @script arrayrange.asl 
+//* 
+//*  @comment test vecotr range spec - forward,backward 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                  
+//*  @date Tue Jun 25 18:48:42 2019 
+//*  @cdate Tue Jun 25 18:48:42 2019 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2019 → 
+//* 
+//***********************************************%
 
 setdebug(1,"~pline")
 
@@ -10,7 +22,7 @@ setdebug(1,"~pline")
 
 checkIN()
 
-B=igen(5,0,1)
+B=vgen(INT_,10,0,1)
 <<"%V$B\n"
 
 checkNumber(B[0],0)
@@ -42,7 +54,7 @@ D= B[0:-1]
 <<"%V$B[0:-1]\n"
 
 checkNumber(D[0],0)
-checkNumber(D[4],4)
+checkNumber(D[5],5)
 
 
 D= B[1:-2]
@@ -63,8 +75,8 @@ D= B[-1:0:-1]
 <<"%V$D\n"
 <<"%V$B[-1:0:-1]\n"
 
-checkNumber(D[0],4)
-checkNumber(D[4],0)
+checkNumber(D[0],9)
+checkNumber(D[4],5)
 ASK
 
 D= B[-2:1:-1]
@@ -73,20 +85,21 @@ D= B[-2:1:-1]
 <<"%V$D\n"
 <<"%V$B[-1:0:-1]\n"
 
-checkNumber(D[0],3)
-checkNumber(D[2],1)
+checkNumber(D[0],8)
+checkNumber(D[2],6)
 
 
 
 
 <<" lets do circular buffer\n"
 
-D= B[-1:2:1]
+D= B[-1:8:1]
 
 <<"%V$D\n"
 <<"B[-1:2:1] $B[-1:2:1]   \n"
 
-checkNumber(D[0],4)
+checkNumber(D[0],9)
+checkNumber(D[1],0)
 checkNumber(D[2],1)
 checkNumber(D[3],2)
 
@@ -97,7 +110,7 @@ D= B[-2:2:1]
 <<"%V$D\n"
 <<"%V$B[-2:2:1] \n"
 
-checkNumber(D[0],3)
+checkNumber(D[0],8)
 checkNumber(D[4],2)
 
 ASK
@@ -130,6 +143,16 @@ D= B[3:3:0]
 D = B[-3:4:-1]
 
 <<"$D\n"
+
+e = B[9]
+<<"%V $e $B[9]\n"
+f=  B[-1]
+<<"%V $f $B[-1]\n"
+checkNumber(f,9)
+
+f=  B[-2]
+<<"%V $f $B[-2]\n"
+checkNumber(f,8)
 
 
 checkOut() ;

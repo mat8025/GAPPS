@@ -238,3 +238,7 @@ ic_pic.cpp               1.58	Tue Jun 25 17:04:49 2019 storer_ptr
 rdp_main.cpp             1.68	Tue Jun 25 17:07:05 2019 storer_ptr XIC
 ic_ops.cpp               1.55	Tue Jun 25 17:08:09 2019 storer_ptr
 rdp_l1.cpp               1.62	Tue Jun 25 17:09:48 2019 store_svar - use copy not transfer
+ds_sivmem.cpp            1.91	Wed Jun 26 15:12:38 2019 reset_var STRV
+ds_siv.cpp               2.68	Wed Jun 26 23:58:32 2019 ptr offset check - 
+rdp_main.cpp             1.69	Thu Jun 27 10:16:47 2019 ptr var dereference for store op
+ds_storearray.cpp        1.98	Fri Jun 28 13:37:20 2019 ptr offset vs poffset

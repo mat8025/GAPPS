@@ -33,7 +33,7 @@ sleep_rate = 71.5 * rpm  * metaf
 sleep_burn = 8 * 60 * sleep_rate
 office_burn = 16 * 60 * office_rate
 day_burn = sleep_burn + office_burn
-
+<<"%V $day_burn \n"
 
 out_cal = day_burn * 5/4
 in_cal =  day_burn * 3/4

@@ -20,7 +20,7 @@ debugON();
 
 
 
-setdebug (1, @pline, @~step, @trace, @soe) ;
+setdebug (1, @pline, @~step, @~trace, @soe) ;
 
 
 //checkIn(1) // stop - interact on fail
@@ -31,7 +31,7 @@ int Data[10];
 
 H= vgen(INT_,10,0,1)
 M= vgen(INT_,10,0,1)
-
+Data = vgen(INT_,10,-5,1)
 <<"%V $H \n"
 
 Data[3] = 36
@@ -51,8 +51,19 @@ checkNum(Data[i],80)
 
 H[8] = 76;
 H[9] = 77;
+<<"%V$H\n"
 
 Data[H[1]] = 47
+
+Data->info(1)
+
+<<"$H[1] $Data[1]\n"
+<<"%V$H\n"
+<<"%V$Data \n"
+
+
+
+
 Data[H[2]] = 65
 Data[H[3]] = H[9]
 Data[H[4]] = H[M[8]]
@@ -60,7 +71,18 @@ Data[H[4]] = H[M[8]]
 <<"$Data \n"
 
 Data->info(1)
+
 checkNum(Data[1],47)
+<<"$Data[1] $Data[2] \n"
+d= 47
+e= Data[1]
+Arglist=testargs(Data[1],e,d)
+<<"%(1,,,\n)$Arglist\n"
+
+<<"%(1, ,,\n)$(testargs(Data[1],e,d))\n"
+
+
+
 checkNum(Data[2],65)
 checkNum(Data[3],77)
 checkNum(Data[4],76)

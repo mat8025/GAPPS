@@ -15,11 +15,14 @@
   setdebug(1,@keep,@~pline,@~step,@~trace,@showresults,1);
   filterFuncDebug(ALLOWALL_,"proc");
   filterFileDebug(ALLOWALL_,);
-
+  sdb(-1)
 // use an indent of 2 spaces - for all non-comment lines
 
+//<<"? $_clarg[1]\n"
+
   fname = _clarg[1];
-  <<[2]"$fname \n"
+
+<<[2]"$fname \n"
 
   A=ofr(fname);
   if (A ==-1) {

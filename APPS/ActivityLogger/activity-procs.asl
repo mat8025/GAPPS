@@ -113,6 +113,28 @@ proc HowLong(wr, wc)
         }
 }
 //===============================//
+proc HowFar(wr, wc)
+{
+
+   mans = popamenu("HowFar.m")
+        if (!(mans @= "NULL_CHOICE")) {
+	<<"%V $mans\n"
+           sWo(cellwo,@cellval,wr,wc,mans);
+           R[wr][wc] = mans;
+        }
+}
+//===============================//
+proc HowFast(wr, wc)
+{
+
+   mans = popamenu("HowFast.m")
+        if (!(mans @= "NULL_CHOICE")) {
+	<<"%V $mans\n"
+           sWo(cellwo,@cellval,wr,wc,mans);
+           R[wr][wc] = mans;
+        }
+}
+//===============================//
 
 proc READ()
 {

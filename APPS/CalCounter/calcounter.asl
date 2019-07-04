@@ -38,7 +38,7 @@ A=ofw("HowMuch.m")
 <<[A],"help 4x\n"
 <<[A],"item 10x M_VALUE 10\n"
 <<[A],"help 10x\n"
-<<[A],"item 1/2 M_VALUE 0.5n"
+<<[A],"item 1/2 M_VALUE 0.5\n"
 <<[A],"help half\n"
 <<[A],"item 1/3 M_VALUE 0.333\n"
 <<[A],"help third\n"
@@ -274,8 +274,8 @@ while (1) {
 
          eventWait();
 
-   <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ekeyw3 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
-        _erow->info(1);
+ //  <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ekeyw3 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
+ //       _erow->info(1);
 
 
          mwr = _erow;

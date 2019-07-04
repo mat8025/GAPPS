@@ -1220,19 +1220,19 @@ if (runModule( do_mops )) {
 
    if (runModule( do_lists )) {
 
-    RunDirTests("Lists","list,list_declare,listele,list_ins_del");
+     RunDirTests("Lists","list,list_declare,listele,list_ins_del");
 
     }
 
    if (runModule( do_ptrs )) {
 
-    RunDirTests("Ptrs","ptrvec,indirect");
+     RunDirTests("Ptrs","ptrvec,ptrvec2,ptr_varvec,indirect");
 
    }
 
    if (runModule( do_class )) {
 
-    RunDirTests("Class","classbops,class2,classvar");
+       RunDirTests("Class","classbops,class2,classvar");
 
     }
 
