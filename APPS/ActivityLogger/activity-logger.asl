@@ -3,8 +3,8 @@
 //* 
 //*  @comment log/track activities thru the week 
 //*  @release CARBON 
-//*  @vers 1.3 Li Lithium                                                  
-//*  @date Thu Jul  4 09:08:30 2019 
+//*  @vers 1.4 Be Beryllium                                                
+//*  @date Sat Jul  6 08:54:17 2019 
 //*  @cdate Mon Jun 17 12:32:27 2019 
 //*  @author Mark Terry 
 //*  @Copyright © RootMeanSquare  2010,2019 → 
@@ -78,6 +78,21 @@ A=ofw("HowFast.m")
  <<[A],"help set average speed\n"
  cf(A)
 
+A=ofw("HowMuch.m")
+ <<[A],"title HowMuch\n"
+ <<[A],"item 0 M_VALUE 0\n"
+ <<[A],"item 20 M_VALUE 20\n"
+ <<[A],"item 30 M_VALUE 30\n"
+ <<[A],"item 40 M_VALUE 40\n"
+ <<[A],"item 50 M_VALUE 50\n"
+  <<[A],"item 150 M_VALUE 150\n"
+    <<[A],"item 200 M_VALUE 200\n"
+    <<[A],"item 250 M_VALUE 250\n"
+    <<[A],"item 300 M_VALUE 300\n"           
+ <<[A],"item ? C_INTER ?\n"
+ <<[A],"help weight \n"
+ cf(A)
+
  Act = "Music"
  act = "music"
 fname = _clarg[1];
@@ -92,7 +107,13 @@ yrn = 2019;
   if (fname @= "")  {
       <<" no activity specified :   try Language,Bike,Code,Music -- exit!\n"
       exit();
+  }
 
+  newstr = sele(fname,-1,1)
+  if (newstr @= "/") {
+    //fname = sele(fname,-2);
+        fname = scut(fname,-1);
+    <<"$fname minus trailing /\n"
   }
 
 
@@ -131,6 +152,15 @@ yrn = 2019;
       fsz=fexist(fname,0);      
       if (fsz <= 0) {
        !!"cp Bike/bike.csv $fname"
+      }      
+  }
+
+  if (fname @= "Gym")  {
+      fname = "$Act/${act}_${wkn}_${mon}_${yrn}.csv";
+
+      fsz=fexist(fname,0);      
+      if (fsz <= 0) {
+       !!"cp $Act/${act}.csv $fname"
       }      
   }
 
@@ -272,6 +302,10 @@ use_incl_vers = 1;
 	     HowFast(mr,mc);
 	   }
          }
+	 else if (Act @= "Gym") {
+
+             HowMuch(mr,mc);
+         }
          else {
 
            HowLong(mr,mc);
@@ -331,7 +365,7 @@ exit()
 /{/*
 
   bug - crash on open/read set new activity
-  bug - get howlong menu on button save -- check col/row
+
 
 
 /}*/

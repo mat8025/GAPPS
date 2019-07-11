@@ -3,8 +3,8 @@
 //* 
 //*  @comment add/edit a food entry 
 //*  @release CARBON 
-//*  @vers 1.5 B Boron                                                     
-//*  @date Tue Jun 18 09:25:37 2019 
+//*  @vers 1.6 C Carbon                                                    
+//*  @date Mon Jul  8 06:38:36 2019 
 //*  @cdate Wed Jan 16 18:08:31 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -125,6 +125,8 @@ proc setNum(wr,wc)
         }
 }
 //===============================//
+
+NameCol = 0;
 NumCol = 1;
 UnitsCol = 2;
 
@@ -199,11 +201,6 @@ UnitsCol = 2;
    int fnd = 0;
    int bpick;
    
-// Record DF[10];
-   
- //DF[0] = Split("?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?",",");
-   
- //Record R[];
    
    if (found_day || edit_foods) {
      R= readRecord(A,@del,','); 
@@ -211,10 +208,9 @@ UnitsCol = 2;
      }
    else {
      
-//R[0] = Split("Food,Amt,Unit,Cals,Carbs,Fat,Protein,Chol(mg),SatFat,Wt,",",");
+
      R[0]= Split("Food,Amt,Unit,Cals,Carbs(g),Fat,Prot,Choles(mg),SatFat(g),Wt(g),Choline(mg),vA(dv),vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn,",",");
      
-// R[1] = Split("Totals,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?",",");
      
      }
    
@@ -240,7 +236,6 @@ UnitsCol = 2;
    include "editfoods_scrn";
    include "checkFood";
    
-//<<"%V swaprow_a $swaprow_b  $swapcol_a $swapcol_b \n";
    
    int cv = 0;
    
@@ -314,7 +309,7 @@ UnitsCol = 2;
 //============================
    
    
-// sWo(cellwo,@cellbhue,1,-2,LILAC_); // row,col wr,-2 all cells in row
+
    sWi(vp,@redraw);
    
    sWo(ssmods,@redraw);
@@ -337,12 +332,7 @@ UnitsCol = 2;
    
    str rcword ="xxx"; 
    
-//ans=iread()
-// prelim
-   
-   
-// eventWait();
-//  <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ekeyw3 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
+
    int mwr =0;
    int mwc = 0;
    
@@ -366,14 +356,15 @@ UnitsCol = 2;
      
      if (_ewoid == cellwo) {
 
-
-      if (mwc == UnitsCol) {
+      if (mwc == NameCol) {
+           setFoodName(mwr,mwc);
+      }
+      else if (mwc == UnitsCol) {
            setUnits(mwr,mwc);
       }
       else if (mwc == NumCol) {
            setNum(mwr,mwc);
       }      
-    // else  if (_ekeyw @="CELLVAL") {
      else  if ((mwr > 0)  && (mwc != tags_col)) {
          // how much ?
          r= mwr;
@@ -452,7 +443,7 @@ UnitsCol = 2;
        
        }
      
-     if (_eloop > 1) {
+
        if (_ename @= "PRESS") {
          
          if (!(_ewoname @= "")) {
@@ -464,11 +455,10 @@ UnitsCol = 2;
              }
            }
          }
-       }
      
      
 //    sWo(cellwo,@setrowsize,2,0,1) ;
-//    sWo(cellwo,@setcolsize,3,0,1) ;   
+    sWo(cellwo,@setcolsize,3,0,1) ;   
 //    sWo(choicewo,@setcolsize,3,0,1) ;     
      sWo(cellwo,@redraw);
      sWo(choicewo,@redraw);

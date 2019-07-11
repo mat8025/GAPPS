@@ -343,6 +343,7 @@ proc doxictest(prog, a1)
 //<<"$prog exists!\n"
   !!"rm -f last_xic_test"
 
+  prg = scut(prog,2);
   if (_pargc > 1) {
 
 //<<"XIC test  $prog $a1\n"
@@ -351,7 +352,7 @@ proc doxictest(prog, a1)
 
 //      !!" $prog  $a1 > xres.txt "
 
-       !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -x $prog $a1  > fooxpar"
+       !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx $prog $a1  > foox-$prg"
 
       //!!" $prog  $a1  | tee --append $ictout "
   }
@@ -364,7 +365,7 @@ proc doxictest(prog, a1)
 
 //     !!"nohup $prog  | tee --append $ictout "
 
-       !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -x $prog   > fooxpar"
+       !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx $prog   > foo-$prg"
 
   }
 
@@ -1226,7 +1227,7 @@ if (runModule( do_mops )) {
 
    if (runModule( do_ptrs )) {
 
-     RunDirTests("Ptrs","ptrvec,ptrvec2,ptr_varvec,indirect");
+     RunDirTests("Ptrs","ptrvec,ptr-numvec,ptr-svarvec,ptr_varvec,indirect");
 
    }
 

@@ -335,17 +335,25 @@ proc HowMuch(wr, wc)
 proc getCellValue( r, c)
 {
      if (r >0 && c >= 0 ) {
- <<" %V $r $c \n";
            cvalue = R[r][c];
-// <<" %V $cvalue \n";
- //          newcvalue = queryw("NewValue","xxx",cvalue,_ex,_ey);
-//<<[_DB]"%V$newcvalue \n"
        mans = popamenu("Quantity.m")
         if (!(mans @= "NULL_CHOICE")) {
            sWo(cellwo,@cellval,r,c,mans);
            R[r][c] = mans;
         }
 
+     }
+}
+//=====================
+proc setFoodName( r, c)
+{
+ 
+     if (r >0 && c == 0 ) {
+           cvalue = R[r][c];
+           newcvalue = queryw("NewFood","xxx",cvalue,_ex,_ey);
+	   newcvalue = supper(newcvalue);
+           sWo(cellwo,@cellval,r,c,newcvalue);
+           R[r][c] = newcvalue;
      }
 }
 //=====================

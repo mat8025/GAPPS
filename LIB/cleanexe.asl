@@ -1,6 +1,9 @@
 /// 
 //// asl filter code
 
+// to remove asl exe files
+//  file */* | asl cleanexe
+
 Svar Ip;
 Svar F;
 fs= ' ';
@@ -22,7 +25,7 @@ fs= ' ';
     nm= Scut(F[0],-1);
     if (sstr(Ip,"binary")!=-1) {
     <<"$nm\n";
-    !!"rm -f $nm";
+   !!"rm -f $nm";
     };
 
 

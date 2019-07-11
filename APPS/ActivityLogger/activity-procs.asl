@@ -135,6 +135,17 @@ proc HowFast(wr, wc)
         }
 }
 //===============================//
+proc HowMuch(wr, wc)
+{
+
+   mans = popamenu("HowMuch.m")
+        if (!(mans @= "NULL_CHOICE")) {
+	<<"%V $mans\n"
+           sWo(cellwo,@cellval,wr,wc,mans);
+           R[wr][wc] = mans;
+        }
+}
+//===============================//
 
 proc READ()
 {
