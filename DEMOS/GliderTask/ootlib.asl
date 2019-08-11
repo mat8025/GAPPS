@@ -1,8 +1,21 @@
+//%*********************************************** 
+//*  @script ootlib.asl 
+//* 
+//*  @comment task-planner library
+//*  @release CARBON 
+//*  @vers 4.1 H Hydrogen                                                  
+//*  @date Tue Aug  6 06:33:35 2019 
+//*  @cdate 9/17/1997 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2019 → 
+//* 
+//***********************************************%
 ///
 /// "$Id: showtlib.asl,v 1.2 1997/12/07 03:48:51 mark Exp mark $"
 /// 9/17/2017
 
-  DB = 0
+<<" %V $_DB\n"
+
   ntpts = 0
   Min_lat = 90.0
   Max_lat = 0.0
@@ -44,7 +57,7 @@ proc getDeg (the_ang)
     the_parts = Split(the_ang,",")
 
 sz = Caz(the_parts);
-<<"sz $sz $(typeof(the_parts))\n"
+//<<"sz $sz $(typeof(the_parts))\n"
 
     <<"%V $the_parts[::] \n"
 
@@ -53,14 +66,14 @@ sz = Caz(the_parts);
 
     wd = the_parts[0];
     the_deg = atof(wd);
-        <<"%V $wd $the_deg \n"
+        //<<"%V $wd $the_deg \n"
 
 //    float the_min = atof(the_parts[1])
     wd = the_parts[1];
 
     the_min = atof(wd);
-        <<"%V $wd $the_min \n"
-    <<"%V$the_deg $the_min \n"
+        //<<"%V $wd $the_min \n"
+    //<<"%V$the_deg $the_min \n"
 
       //  sz= Caz(the_min);
 
@@ -76,7 +89,7 @@ sz = Caz(the_parts);
          la *= -1;
       }
 
-<<"%V $la  $y  \n"
+//<<"%V $la  $y  \n"
       
     return (la);
    }
@@ -407,7 +420,7 @@ proc new_coors(w_num)
   set_menu_value(par_menu,"y1",rY)
   set_menu_value(par_menu,"y0",ry)
 
-  db_print(DB," new_coors")
+
 
   value = table_menu(par_menu)
 
@@ -994,7 +1007,7 @@ proc setup_legs()
   }
 
 }
-
+//=====================================//
 
 proc the_menu (c)
 {
@@ -1155,8 +1168,9 @@ proc DrawMap(w)
   float lat;
   float longi;
   str mlab;
-  int is_an_aiport = 0;
+  int is_an_airport = 0;
 
+<<"%V $w\n"
 
 //<<"$mlab $(typeof(mlab))\n";
 
@@ -1178,22 +1192,25 @@ proc DrawMap(w)
 
         longi = Wtp[k]->Longdeg;
 
-//<<[-1]"%V $k $lab $msl $lat $longi $Wtp[k]->Ladeg\n"
+//<<"%V $k $mlab $msl $lat $longi $Wtp[k]->Ladeg\n"
 
         if ( msl > 7000) {
-             Text(w,mlab,longi,lat,0,0,1,"red")
+             Text(w,mlab,longi,lat,0,0,1,RED_)
+	     //<<"above 7K $mlab\n"
         }
         else {
             if ( msl > 5000){
-             Text(w,mlab,longi,lat,0,0,1,"blue")
+             Text(w,mlab,longi,lat,0,0,1,BLUE_)
+	     	    // <<"above 5K $mlab\n"
             }
             else {
-              Text(w,mlab,longi,lat,0,0,1,"green")
+	    	   //  <<"below 5K $mlab\n"
+              Text(w,mlab,longi,lat,0,0,1,GREEN_)
             }
         }
     }
 
-   // sWo(w,@showpixmap,@clipborder);
+      sWo(w,@showpixmap,@clipborder);
     
         grid_label(w)
 
@@ -1215,7 +1232,7 @@ proc DrawTask(w,col)
 
     for (i = 0 ; i < Nlegs ; i++ ) { 
 
-     // <<"$i %V $w, $Tasktp[i]->Longdeg $Tasktp[i]->Ladeg,$Tasktp[i+1]->Longdeg,$Tasktp[i+1]->Ladeg, $col \n "
+      <<"$i %V $w, $Tasktp[i]->Longdeg $Tasktp[i]->Ladeg,$Tasktp[i+1]->Longdeg,$Tasktp[i+1]->Ladeg, $col \n "
 
       plotgw(w,"line",Tasktp[i]->Longdeg,Tasktp[i]->Ladeg,Tasktp[i+1]->Longdeg,Tasktp[i+1]->Ladeg,col)
 
@@ -1529,7 +1546,7 @@ proc ComputeTPD(j, k)
     return km
  }
 //====================================//
-DBG" DONE include of ootlib !\n"
+
 
 
 #

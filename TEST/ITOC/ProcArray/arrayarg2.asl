@@ -17,7 +17,9 @@
    debugON();
    
   // setdebug (1, @pline, @~step, @~trace,@break,57) ;
-   setdebug (1, @pline, @~step, @~trace,) ;
+
+   //sdb (1, @pline, @~step, @~trace,@~break,57) ;
+//      sdb (1, @~pline, @~step, @~trace,@~break,57) ;
    FilterFileDebug(REJECT_,"~storetype_e");
    FilterFuncDebug(REJECT_,"~ArraySpecs",);
    
@@ -30,15 +32,16 @@
      
      }
    
-   checkIn(civ); 
+   checkIn(civ);
+   
 aaa: <<"aaa label !\n"
 
 <<"b4 break point !\n"
 
 //~b <<"at my break point !\n"
-//~b   <<" this is the  brk_pt \n" ; // needs to stop before executing this statement
+<<" this is the  brk_pt \n" ; // needs to stop before executing this statement
 
-~c <<" this is the  brk_pt \n" ; // needs to stop before executing this statement
+//~c <<" this is the  brk_pt \n" ; // needs to stop before executing this statement
 
 <<"after break point !\n"
 
@@ -98,7 +101,7 @@ aaa: <<"aaa label !\n"
    
    checkStage("ArrayName"); 
 
-
+exit()
 ///////////////  &Array ////////////////////////////////////////
    
 //  showStatements(1)
@@ -148,7 +151,7 @@ aaa: <<"aaa label !\n"
    
    <<"postZ $Z\n";
    
-~c <<" this is the  brk_pt \n" ; // needs to stop before executing this statement   
+//~c <<" this is the  brk_pt \n" ; // needs to stop before executing this statement   
 
    checkNum(Z[4],47);
    checkNum(Z[5],79);

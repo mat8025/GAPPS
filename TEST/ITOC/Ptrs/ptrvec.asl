@@ -28,8 +28,12 @@ proc foov ()
 
 proc fvec (int Z[], int X[], int Y[], int n) // OK ?
 {
+<<"%V $n\n"
 <<"$Z[0] $Z[1]\n"
-int k= n;
+
+int k = n;
+<<"%V $n \n"
+//n = 3
 for (i = 0; i < n ; i++) {
 
   Z[i] = X[i] + Y[i];
@@ -119,8 +123,12 @@ foov()
 
 <<"$c\n"
 
+<<"%V $sz \n"
+
+
 fvec(c,x,y,sz);
 
+exit()
 <<"done proc \n"
 
 <<"%V $c[0] $c[sz-1]\n"

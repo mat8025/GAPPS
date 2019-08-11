@@ -1,12 +1,34 @@
+//%*********************************************** 
+//*  @script anytask.asl 
+//* 
+//*  @comment task-planner 
+//*  @release CARBON 
+//*  @vers 4.1 H Hydrogen                                                  
+//*  @date Tue Aug  6 06:28:50 2019 
+//*  @cdate 9/17/1997 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2019 → 
+//* 
+//***********************************************%
+
 ///
 /// anytask
 ///
 
-setDebug(1,@keep,@filter,0,@~pline)
+include "debug"
 
-#define DBG <<
+setDebug(1,@keep,@~pline)
 
-//define DBG ~!
+scriptDBON()
+
+<<[_DB]"debug anytask\n"
+
+<<" %V $_DB\n"
+
+filterFuncDebug(ALLOWALL_,"xxx");
+filterFileDebug(ALLOWALL_,"yyy");
+
+
 
 Main_init = 1;
 
@@ -212,7 +234,7 @@ i = -1;
 
 while ( i == -1) {
 
-DBG" iw %V$i %v $via_keyb $via_cl\n"
+<<[_DB]" iw %V$i %v $via_keyb $via_cl\n"
 
       Fseek(A,0,0)
 
@@ -253,7 +275,7 @@ DBG" iw %V$i %v $via_keyb $via_cl\n"
 
       i=Fsearch(A,the_start,0,1,0);
 
-DBG"$i\n"
+<<[_DB]"$i\n"
       //<<"index found was $i \n"
     if (i == -1) {
       the_start = nameMangle(the_start);
@@ -297,14 +319,14 @@ DBG"$i\n"
 
 	//ki=Fseek(A,w,0)
 	ki = seek_line(A,0)
-DBG" $ki back to beginning of line ?\n"
+<<[_DB]" $ki back to beginning of line ?\n"
 
 	  // need to step back a line
 
         nwr = Wval->Read(A)
 
       //    <<" %i $Wval \n"
-DBG"$nwr $Wval[0] $Wval[1] $Wval[2] $Wval[3] \n"
+<<[_DB]"$nwr $Wval[0] $Wval[1] $Wval[2] $Wval[3] \n"
 
 	  //    msz = Wval->Caz()
 
@@ -313,8 +335,8 @@ DBG"$nwr $Wval[0] $Wval[1] $Wval[2] $Wval[3] \n"
 	tplace = Wval[0];
 	tlon = Wval[3];
 
-DBG"%V$tplace $tlon \n"
-DBG"$Wval[::]\n"	  
+<<[_DB]"%V$tplace $tlon \n"
+<<[_DB]"$Wval[::]\n"	  
       Wtp[n_legs]->Set(Wval)
 
 	  //Wtp[n_legs]->Print()
@@ -342,7 +364,7 @@ DBG"$Wval[::]\n"
           cnttpt++
 	  if (cnttpt > cltpt) {
 	    
-DBG" done reading turnpts $cnttpt\n "
+<<[_DB]" done reading turnpts $cnttpt\n "
 
             nxttpt = "done"
 

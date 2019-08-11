@@ -2,6 +2,11 @@
 ///   task and turnpt
 ///
 
+<<"read in tpclass\n"
+
+<<"TPCLASS %V $_DB\n"
+
+DB_TP = _DB;
 
 CLASS Taskpt 
  {
@@ -31,9 +36,9 @@ CLASS Taskpt
      //nwr = wval->Read (fh);
      nrw = wval->Read (fh);
 
-//DBG"nwr $nwr  $wval[0] $wval[1] $wval[2]  $wval[3] $wval[4]\n"
+//<<"nwr $nwr  $wval[0] $wval[1] $wval[2]  $wval[3] $wval[4]\n"
 
-//DBG"$wval[::]\n"
+
 
       if (scmp(wval[0],"#",1)) {
        // comment line in file
@@ -70,7 +75,7 @@ ylo= wval[3];
   //  Ladeg = getDeg(wval[2]) ; // taskpt Ladeg
 
 /{
-// bizare -first not split into 3 parts
+// bizzare -first not split into 3 parts
 // suceeding calls are TBF
     Longdeg = getDeg(ylo) ; // taskpt Longdeg
 
@@ -80,6 +85,7 @@ ylo= wval[3];
 /}
 
     Ladeg = coorToDeg(xla); // use c asl function
+
     Longdeg = coorToDeg(ylo);
 
 
@@ -164,7 +170,7 @@ ylo= wval[3];
   CMF GetDeg (svar the_ang)
     {
 
-  <<" $_cproc  $the_ang \n"
+  //<<" $_cproc  $the_ang \n"
   //  <<"%V $the_ang $(typeof(the_ang)) \n"
 //ttyin()
 
@@ -178,7 +184,7 @@ ylo= wval[3];
 
 //FIX    float the_deg = atof(the_parts[0])   // TBF
 
-    <<"%V $the_parts \n"
+   // <<"%V $the_parts \n"
 
 //<<"%v $the_parts[0] \n"
 
@@ -229,7 +235,6 @@ CLASS Turnpt
   
   str Cltpt;
   float Radio;
-
   float Alt;
   float Ladeg;
   float Longdeg;
@@ -238,17 +243,17 @@ CLASS Turnpt
 
 //  method list
 
-  CMF Set (wval) 
+  CMF Set (svar wval) 
    {
-
-DBG"$_proc $(typeof(wval)) $wval[::] \n"
+//<<"TPCLASS Set %V $_DB $DB_TP\n"
+//<<[_DB]"$_proc $(typeof(wval)) $wval[::] \n"
 
 //<<"%V$_cproc  %i$_cobj   %i$wval \n"
      //sz = wval->Caz()
 
       sz = Caz(wval);      
  // <<"%V$sz \n"
-DBG"$sz 0: $wval[0] 1: $wval[1] 2: $wval[2] 3: $wval[3] 4: $wval[4] \n"
+//<<[_DB]"$sz 0: $wval[0] 1: $wval[1] 2: $wval[2] 3: $wval[3] 4: $wval[4] \n"
     
    
       //   <<"$wval[0]\n"
@@ -256,21 +261,26 @@ DBG"$sz 0: $wval[0] 1: $wval[1] 2: $wval[2] 3: $wval[3] 4: $wval[4] \n"
        //ans = iread("-->");
      Place=wval[0]; // wayp 
     
-     DBG"%V$Place\n"
+     //<<"%V$Place\n"
 
 
      Idnt =  wval[1];
- DBG"%V$Idnt\n"
+
+//<<[2]"%V$Idnt\n"
+//<<[DB_TP]"%V$Idnt\n"
+//<<[_DB]"%V$Idnt\n"
+
+ //<<"%V$Idnt\n"
  //    <<"%V$wval[2]\n"
      
      Lat = wval[2]; // wayp 
 
-     //   <<"%V$Lat  <| $wval[2] |>\n"
+     //<<"%V$Lat  <| $wval[2] |>\n"
 
      //   <<"%V$wval[3]\n"	 
      Lon = wval[3];
 
-     //       <<"%V$Lon  <| $wval[3] |>\n" 
+    // <<"%V$Lon  <| $wval[3] |>\n" 
      
      Alt = wval[4];
      
@@ -280,7 +290,7 @@ DBG"$sz 0: $wval[0] 1: $wval[1] 2: $wval[2] 3: $wval[3] 4: $wval[4] \n"
 
      tptype = wval[7];
 
-DBG"%V$Lat $Lon \n"
+//<<"%V$Lat $Lon \n"
      //  <<" $(typeof(Lat)) \n"
      // <<" $(typeof(Lon)) \n"
      //  <<" $(typeof(Ladeg)) \n"	 
@@ -291,7 +301,7 @@ DBG"%V$Lat $Lon \n"
    // Longdeg = GetDeg(Lon); // wayp
     //Longdeg = getDeg(Lon); // wayp
      Longdeg = coorToDeg(Lon);
-DBG"%V $Ladeg $Longdeg \n"
+//<<"%V $Ladeg $Longdeg \n"
 
       }
 

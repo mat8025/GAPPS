@@ -3,8 +3,8 @@
 //* 
 //*  @comment asl test modules 
 //*  @release CARBON 
-//*  @vers 1.56 Ba Barium                                                  
-//*  @date Sun Apr 28 08:02:06 2019 
+//*  @vers 1.57 La Lanthanum                                               
+//*  @date Fri Jul 19 08:53:42 2019 
 //*  @cdate 1/1/2005 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -1297,6 +1297,7 @@ if (runModule( do_vmf)) {
 
   if (runModule( do_bugs )) {
       //cart("bf_40")   // this has intentional error and exits before test checks
+    changeDir(Testdir)
 
      chdir("BUGFIX")
 <<"Doing bug tests"

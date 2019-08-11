@@ -1,13 +1,33 @@
+//%*********************************************** 
+//*  @script showtask.asl 
+//* 
+//*  @comment show/create glider task 
+//*  @release CARBON 
+//*  @vers 3.2 He Helium                                                   
+//*  @date Wed Aug  7 17:16:57 2019 
+//*  @cdate 7/21/1997 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2019 → 
+//* 
+//***********************************************%
 ///
 /// "$Id: showtask.asl,v 1.5 1997/07/21 15:01:08 mark Exp mark $"
 ///
 
 # map of turn_points
 
+include "debug"
+include "hv.asl"
+setDebug(1,@keep,@~pline)
+
+scriptDBOFF()
+filterFuncDebug(ALLOWALL_,"xxx");
+filterFileDebug(ALLOWALL_,"yyy");
+
 //envDebug()
 //#define DBG <<
 
-#define DBG ~!
+//#define DBG ~!
 
 include "ootlib"
 
@@ -29,6 +49,7 @@ proc drawTask()
             sWo(mapwo,@showpixmap,@clipborder);
             sWo(vvwo,@showpixmap,@clipborder);
 	 }
+	             sWo(mapwo,@showpixmap,@clipborder);
 }
 
 //======================================//
@@ -80,7 +101,9 @@ Turnpt  Wtp[500]; //
 /// open turnpoint file lat,long 
 //tp_file = GetArgStr()
 
-  tp_file = "turnpts.dat"  // open turnpoint file 
+  tp_file = "turnpts.dat"  // open turnpoint file
+
+ //tp_file = "tp.dat"  // open turnpoint file 
 
   if (tp_file @= "") {
     tp_file = "turnptsSM.dat"  // open turnpoint file 
@@ -112,11 +135,15 @@ Turnpt  Wtp[500]; //
 	      break
             }
 	    
-            if (nwr > 6) { 
+            if (nwr > 6) {
+	    
 //<<"$Wval[0]\n";
-             Wtp[Ntp]->Set(Wval);
 
-             //Wtp[Ntp]->Print()
+             Wtp[Ntp]->Set(Wval);
+//<<"$Ntp $Wval[0] \n"	     
+
+             Wtp[Ntp]->Print()
+
 
              Ntp++;
             }
@@ -166,14 +193,16 @@ num_tpts = 700
 float R[10];
 
 
-   //igcfn = "spk.igc"
+   igcfn = "spk.igc"
    //igcfn = "bike_4_23.igc"
    //igcfn = "idahoesprings.igc"
 
-     igcfn = GetArgStr();
+    // igcfn = GetArgStr();
 
 //  Read in a Task via command line
-
+float min_lat;
+float max_lat;
+float longW =0.0;
 
 Ntaskpts = 0;
 
@@ -219,6 +248,121 @@ long posn = 0;
 
 
 
+     Ntpts=IGC_Read(igcfn);
+
+<<"sz $Ntpts $(Caz(IGCLONG))   $(Caz(IGCLAT))\n"
+
+      k = Ntpts - 30;
+
+<<"%(10,, ,\n) $IGCLONG[0:30] \n"
+<<"%(10,, ,\n) $IGCLONG[k:Ntpts-1] \n"
+
+//<<"%(10,, ,\n) $IGCLAT[0:30] \n"
+//<<"%(10,, ,\n) $IGCELE[0:30] \n"
+//<<"%(10,, ,\n) $IGCTIM[0:30] \n"
+
+     sslng= Stats(IGCLONG)
+<<"%V $sslng \n"
+
+     sslt= Stats(IGCLAT)
+<<"%V $sslt \n"
+
+     ssele= Stats(IGCELE,">",0)
+<<"%V $ssele \n"
+      min_ele = ssele[5];
+      max_ele = ssele[6];
+<<" min ele $ssele[5] max $ssele[6] \n"
+
+      min_lng = sslng[5];
+      max_lng = sslng[6];
+
+<<"%V $min_lng $max_lng \n"
+
+
+      min_lat = sslt[5];
+      max_lat = sslt[6];
+
+
+<<"$(typeof(min_lat)) %V $min_lat $max_lat \n"
+
+
+     float  margin = 0.05;
+  
+     LatS = min_lat -margin;
+     LatN = max_lat+margin;
+
+     MidLat = (LatN - LatS)/2.0 + LatS;
+
+  <<"%V $MidLat \n"
+
+    dlat = max_lat - min_lat;
+
+  <<"%V $dlat \n"
+
+  <<"%V $LongW \n"
+  <<"%V $LongE \n"
+
+
+
+    LongW = max_lng + margin;
+
+    LongE = min_lng - margin;
+
+
+    MidLong = (LongW - LongE)/2.0 + LongE;
+
+  <<"%V $MidLong \n"
+
+
+    dlng = max_lng - min_lng;
+
+    da = dlat;
+  <<"%V $da $dlng $dlat \n"
+// TBF if corrupts following expression assignment
+    if ( dlng > dlat )
+    {
+        da = dlng
+	<<"da = dlng\n"
+    }
+    else {
+  	<<"da = dlat\n"
+    }
+
+  <<"%V $da $dlng $dlat \n"
+////////////////////// center //////////
+
+//  longW = MidLong + da;
+
+//  <<"%V $longW $MidLong $da \n"
+  
+  latWB = MidLat + da/2.0;
+  LongW = MidLong + da/2.0;
+  <<"%V $latWB $MidLat $da \n"
+
+  LongW = MidLong + da/2.0;
+
+  <<"%V $longW $MidLong $da \n"
+
+
+  LongE = MidLong - da/2.0;
+
+
+  <<"%V $LongW \n"
+  <<"%V $LongE \n"
+
+  
+  //LongE = max_lng - (da +margin);
+  //  LatS = max_lat - (da +margin);
+  //    LatS = MidLat - da/2.0 -margin;
+ //     LatN = MidLat + da/2.0 + margin;
+
+   for (k= 0; k < 5; k++) {
+             Wtp[k]->Print()
+    }
+<<"//////////\n"
+       //      Wtp[3]->Print()
+
+
 ///////////////////// SETUP GRAPHICS ///////////////////////////
 
 Graphic = CheckGwm();
@@ -227,11 +371,12 @@ Graphic = CheckGwm();
     Xgm = spawnGwm("ShowTask")
   }
 
-// create window and scale
+// create window and scales
+
 include "tbqrd"
 
 
-  vp = cWi("title","vp","resize",0.1,0.01,0.9,0.95,0)
+  vp = cWi(@title,"vp",@resize,0.1,0.01,0.9,0.95,0)
 
   sWi(vp,"scales",-200,-200,200,200,0, @drawoff,@pixmapon,@save,@bhue,WHITE_); // but we dont draw to a window!
 
@@ -243,7 +388,7 @@ include "tbqrd"
 
   tdwo= cWo(vp,@BV,@resize_fr,0.01,0.01,0.14,0.1,@name,"TaskDistance",@color,WHITE_,@style,"SVB");
 
-  sawo= cWo(vp,@BV,@resize_fr,0.15,0.01,0.54,0.1,"name","SafetyAlt",@color,WHITE_,@style,"SVB");
+  sawo= cWo(vp,@BV,@resize_fr,0.15,0.01,0.54,0.1,@name,"SafetyAlt",@color,WHITE_,@style,"SVB");
 
   vvwo= cWo(vp,@GRAPH,@resize_fr,0.2,0.11,0.95,0.25,@name,"MAP",@color,WHITE_);
 
@@ -253,35 +398,36 @@ include "tbqrd"
 
 <<"%V $mapwo \n"
 
-  sWo(mapwo, @scales, LongW, LatS, LongE, LatN, @save, @redraw, @drawoff, @pixmapon,@savepixmap);
+  sWo(mapwo, @scales, LongW, LatS, LongE, LatN, @save, @redraw, @drawon, @pixmapon,@savepixmap);
 
 
   int tpwo[20];
   
-  tpwo[0]=cWo(vp,@BV,"name","_Start_",@style,"SVB",@drawon)
 
-  tpwo[1] =cWo(vp,@BV,"name","_TP1_",@style,"SVB",@drawon)
+  tpwo[0]=cWo(vp,@BV,@name,"_Start_",@style,"SVB",@drawon)
 
-  tpwo[2] =cWo(vp,@BV,"name","_TP2_",@style,"SVB", @drawon)
+  tpwo[1] =cWo(vp,@BV,@name,"_TP1_",@style,"SVB",@drawon)
 
-  tpwo[3] =cWo(vp,@BV,"name","_TP3_",@style,"SVB", @drawon)
+  tpwo[2] =cWo(vp,@BV,@name,"_TP2_",@style,"SVB", @drawon)
 
-  tpwo[4] =cWo(vp,@BV,"name","_TP4_",@style,"SVB", @drawon)
+  tpwo[3] =cWo(vp,@BV,@name,"_TP3_",@style,"SVB", @drawon)
 
-  tpwo[5] =cWo(vp,@BV,"name","_TP5_",@style,"SVB", @drawon)
+  tpwo[4] =cWo(vp,@BV,@name,"_TP4_",@style,"SVB", @drawon)
 
-  tpwo[6] =cWo(vp,@BV,"name","_TP6_",@style,"SVB", @drawon)
+  tpwo[5] =cWo(vp,@BV,@name,"_TP5_",@style,"SVB", @drawon)
 
-  tpwo[7] =cWo(vp,@BV,"name","_TP7_",@style,"SVB", @drawon)
+  tpwo[6] =cWo(vp,@BV,@name,"_TP6_",@style,"SVB", @drawon)
 
-  tpwo[8] =cWo(vp,@BV,"name","_TP8_",@style,"SVB", @drawon)
+  tpwo[7] =cWo(vp,@BV,@name,"_TP7_",@style,"SVB", @drawon)
+
+  tpwo[8] =cWo(vp,@BV,@name,"_TP8_",@style,"SVB", @drawon)
 
   tpwos = tpwo[0:8];
 
   MaxSelTps = 9;
   <<"%V $tpwos\n"
   wovtile(tpwos, 0.02, 0.4, 0.15, 0.95)
-
+  titleVers();
   sWo(tpwos,@redraw);
 
   TASK_wo=cWo(vp,@TB_MENU,@resize,0.1,0.9,0.2,0.99);
@@ -367,82 +513,10 @@ set_task()
 
    c= "EXIT"
 
-   sWi(vp,@redraw); // need a redraw proc for app
+     sWi(vp,@redraw); // need a redraw proc for app
 
 
-     Ntpts=IGC_Read(igcfn);
-
-<<"sz $Ntpts $(Caz(IGCLONG))   $(Caz(IGCLAT))\n"
-
-      k = Ntpts - 30;
-
-<<"%(10,, ,\n) $IGCLONG[0:30] \n"
-<<"%(10,, ,\n) $IGCLONG[k:Ntpts-1] \n"
-
-//<<"%(10,, ,\n) $IGCLAT[0:30] \n"
-//<<"%(10,, ,\n) $IGCELE[0:30] \n"
-//<<"%(10,, ,\n) $IGCTIM[0:30] \n"
-
-     sslng= Stats(IGCLONG)
-<<"%V $sslng \n"
-
-     sslt= Stats(IGCLAT)
-<<"%V $sslt \n"
-
-     ssele= Stats(IGCELE,">",0)
-<<"%V $ssele \n"
-      min_ele = ssele[5];
-      max_ele = ssele[6];
-<<" min ele $ssele[5] max $ssele[6] \n"
-
-      min_lng = sslng[5];
-      max_lng = sslng[6];
-<<"%V $min_lng $max_lng \n"
-
-
-      min_lat = sslt[5];
-      max_lat = sslt[6];
-<<"%V $min_lat $max_lat \n"
-
-
-     margin = 0.05;
-  
-     LatS = min_lat -margin;
-     LatN = max_lat+margin;
-
-     MidLat = (LatN - LatS)/2.0 + LatS;
-
-    dlat = max_lat - min_lat;
-
-    LongW = max_lng + margin;
-
-    LongE = min_lng - margin;
-
-    MidLong = (LongW - LongE)/2.0 + LongE;
-
-    dlng = max_lng - min_lng;
-
-        da = dlat;
-
-    if (dlng > dlat) {
-        da = dlng
-    }
-
-  ////////////////////// center //////////
-  LongW = MidLong + da/2.0;
-  LongE = MidLong - da/2.0;
-  
-  //LongE = max_lng - (da +margin);
-
-
-//  LatS = max_lat - (da +margin);
-      LatS = MidLat - da/2.0 -margin;
-      LatN = MidLat + da/2.0 + margin;
-
-
-
-
-   sWo(mapwo, @scales, LongW, LatS, LongE, LatN ,@redraw);
+    sWo(mapwo, @scales, LongW, LatS, LongE, LatN ,@redraw);
 
 //  set up the IGC track for plot
     igc_tgl = cGl(mapwo,@TXY,IGCLONG,IGCLAT,@color,BLUE_);
@@ -474,6 +548,9 @@ str wcltpt="XY";
   <<"%V $vvwo $Ntpts\n"
   sWo(vvwo,@clear,@clearpixmap,@savepixmap,@clipborder);
   sWo(vvwo, @scales, 0, 0, Ntpts, max_ele +500);
+
+  <<"%V $LongW \n"
+  <<"%V $LongE \n"
 
 
   drawTask();
@@ -554,7 +631,7 @@ str wcltpt="XY";
 
              wcltpt = Tasktp[witp]->cltpt
 
-DBG" %V $_ekeyw $np $witp $_ewoid $wcltpt\n"
+<<" %V $_ekeyw $np $witp $_ewoid $wcltpt\n"
 
              sWo(wtpwo, @cxor);
 	     gflush();
@@ -563,7 +640,7 @@ DBG" %V $_ekeyw $np $witp $_ewoid $wcltpt\n"
 
               wcltpt = Tasktp[witp]->cltpt;
 
-DBG"%V $_ewoid $wcltpt\n"
+<<"%V $_ewoid $wcltpt\n"
 
               sWo(wtpwo,@value,wcltpt,@redraw);
     

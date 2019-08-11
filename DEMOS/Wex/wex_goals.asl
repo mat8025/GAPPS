@@ -18,14 +18,14 @@ GoalWt = 175;  // ideal -- flying weight
 
 NextGoalWt = 185;
 
-StartWt = 211;
+StartWt = 203;
 
-targetday = julian("08/1/2019") -bday;
+targetday = julian("08/15/2019") -bday;
 
 
 //  SET  START AND END DATES HERE
 
-long sday = julian("06/15/2019") -bday // start date
+long sday = julian("07/25/2019") -bday // start date
       gsday = sday;
       gday =  targetday;    // next goal day 
 
@@ -33,7 +33,7 @@ long sday = julian("06/15/2019") -bday // start date
 got_start = 0
 
 long yday = julian("01/01/2019")   // this should be found from data file
-long eday = julian("08/01/2019")  // this should be found from data file
+long eday = julian("08/15/2019")  // this should be found from data file
 today = julian("$(date(2))");
 
 
