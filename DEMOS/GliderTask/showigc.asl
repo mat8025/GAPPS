@@ -1,11 +1,25 @@
+//%*********************************************** 
+//*  @script showigc.asl 
+//* 
+//*  @comment show igc trace 
+//*  @release CARBON 
+//*  @vers 2.1 H Hydrogen                                                  
+//*  @date Tue Aug 20 01:48:25 2019 
+//*  @cdate 7/21/1997 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2019 → 
+//* 
+//***********************************************%
 ///
-/// "$Id: showtask.asl,v 1.5 1997/07/21 15:01:08 mark Exp mark $"
+/// "$Id: showigc.asl,v 1.5 1997/07/21 15:01:08 mark Exp mark $"
 ///
 
 # map of turn_points
 
-//envDebug()
 
+include "debug"
+include "hv.asl"
+setDebug(1,@keep,@~pline)
 
 include "ootlib"
 
@@ -47,49 +61,6 @@ float R[10];
 
 
 //////////////// PARSE COMMAND LINE ARGS ///////////////////////
-
-
-///////////////////// SETUP GRAPHICS ///////////////////////////
-
-Graphic = CheckGwm();
-
-  if (!Graphic) {
-    Xgm = spawnGwm("ShowTask")
-  }
-
-// create window and scale
-
-  vp = cWi("title","vp","resize",0.1,0.01,0.9,0.95,0)
-
-  sWi(vp,"scales",-200,-200,200,200,0, @drawoff,@pixmapon,@save,@bhue,WHITE_); // but we dont draw to a window!
-
-  sWi(vp,"clip",0.01,0.1,0.95,0.99);
-
-  vptxt= cWo(vp,@TEXT,@resize_fr,0.55,0.01,0.95,0.1,@name,"TXT",@color,WHITE_,@save,@drawon,@pixmapoff);
-
-  tdwo= cWo(vp,@BV,@resize_fr,0.01,0.01,0.14,0.1,@name,"TaskDistance",@color,WHITE_,@style,"SVB");
-
-  sawo= cWo(vp,@BV,@resize_fr,0.15,0.01,0.54,0.1,"name","SafetyAlt",@color,WHITE_,@style,"SVB");
-
-  vvwo= cWo(vp,@GRAPH,@resize_fr,0.2,0.11,0.95,0.25,@name,"MAP",@color,WHITE_);
-
-  sWo(vvwo, @scales, 0, 0, 86400, 8000, @save, @redraw, @drawon, @pixmapon);
-
-  mapwo= cWo(vp,@GRAPH,@resize_fr,0.2,0.26,0.95,0.95,@name,"MAP",@color,WHITE_);
-
-<<"%V $mapwo \n"
-
-  sWo(mapwo, @scales, LongW, LatS, LongE, LatN, @save, @redraw, @drawon, @pixmapon);
-
-
-
-
-
-   c= "EXIT"
-
-   sWi(vp,@redraw); // need a redraw proc for app
-
-   //igcfn = "spk.igc"
 
 
 igcfn = GetArgStr()
@@ -137,8 +108,52 @@ igcfn = GetArgStr()
   LatS = min_lat -0.1;
   LatN = max_lat+0.1;
 
-  LongW = max_lng +0.1;
+   LongW = max_lng +0.1;
     LongE = min_lng -0.1;
+
+exit()
+
+///////////////////// SETUP GRAPHICS ///////////////////////////
+
+Graphic = CheckGwm();
+
+  if (!Graphic) {
+    Xgm = spawnGwm("ShowTask")
+  }
+
+// create window and scale
+
+  vp = cWi("title","vp","resize",0.1,0.01,0.9,0.95,0)
+
+  sWi(vp,"scales",-200,-200,200,200,0, @drawoff,@pixmapon,@save,@bhue,WHITE_); // but we dont draw to a window!
+
+  sWi(vp,"clip",0.01,0.1,0.95,0.99);
+
+  vptxt= cWo(vp,@TEXT,@resize_fr,0.55,0.01,0.95,0.1,@name,"TXT",@color,WHITE_,@save,@drawon,@pixmapoff);
+
+  tdwo= cWo(vp,@BV,@resize_fr,0.01,0.01,0.14,0.1,@name,"TaskDistance",@color,WHITE_,@style,"SVB");
+
+  sawo= cWo(vp,@BV,@resize_fr,0.15,0.01,0.54,0.1,"name","SafetyAlt",@color,WHITE_,@style,"SVB");
+
+  vvwo= cWo(vp,@GRAPH,@resize_fr,0.2,0.11,0.95,0.25,@name,"MAP",@color,WHITE_);
+
+  sWo(vvwo, @scales, 0, 0, 86400, 8000, @save, @redraw, @drawon, @pixmapon);
+
+  mapwo= cWo(vp,@GRAPH,@resize_fr,0.2,0.26,0.95,0.95,@name,"MAP",@color,WHITE_);
+
+<<"%V $mapwo \n"
+
+  sWo(mapwo, @scales, LongW, LatS, LongE, LatN, @save, @redraw, @drawon, @pixmapon);
+
+
+
+
+
+   c= "EXIT"
+
+   sWi(vp,@redraw); // need a redraw proc for app
+
+   //igcfn = "spk.igc"
 
 
 
@@ -296,7 +311,7 @@ gevent E;
   can we plot on top sectional image - where to get those?
 
 
-  projection  --  square degress - square map window --- conical??
+  projection  --  square degrees - square map window --- conical??
 
   plot plane position as scroll in vvwo
 

@@ -1138,7 +1138,9 @@ float IGCTIM[];
 
 proc IGC_Read(igc_file)
 {
+
 <<"%V $igc_file \n"
+
    T=fineTime();
 
    a=ofr(igc_file);
@@ -1155,7 +1157,7 @@ proc IGC_Read(igc_file)
 <<"read $ntps from $igc_file \n"
 
    dt=fineTimeSince(T);
-<<"$_proc took $(dt/1000000.0) secs \n"
+<<[_DB]"$_proc took $(dt/1000000.0) secs \n"
     cf(a);
    return ntps;
 }
@@ -1216,31 +1218,31 @@ proc DrawMap(w)
 
 }
 //====================================================
-str TaskType "OAR";
+str TaskType = "MT";
 
 proc DrawTask(w,col)
 {
 
     TaskDist()
-
+    <<"DrawTask $_proc  $TaskType $Nlegs \n"
     if ( (TaskType @= "OAR")   || (TaskType @= "SO")) {
 
-      plotgw(w,"line",Tasktp[0]->Longdeg,Tasktp[0]->Ladeg,Tasktp[1]->Longdeg,Tasktp[1]->Ladeg,col)
+      plot(w,@line,Tasktp[0]->Longdeg,Tasktp[0]->Ladeg,Tasktp[1]->Longdeg,Tasktp[1]->Ladeg,col)
 
     }
     else {
 
     for (i = 0 ; i < Nlegs ; i++ ) { 
 
-      <<"$i %V $w, $Tasktp[i]->Longdeg $Tasktp[i]->Ladeg,$Tasktp[i+1]->Longdeg,$Tasktp[i+1]->Ladeg, $col \n "
+   //   <<"$i %V $w, $Tasktp[i]->Longdeg $Tasktp[i]->Ladeg,$Tasktp[i+1]->Longdeg,$Tasktp[i+1]->Ladeg, $col \n "
 
-      plotgw(w,"line",Tasktp[i]->Longdeg,Tasktp[i]->Ladeg,Tasktp[i+1]->Longdeg,Tasktp[i+1]->Ladeg,col)
-
-    }
+      plot(w,@line,Tasktp[i]->Longdeg,Tasktp[i]->Ladeg,Tasktp[i+1]->Longdeg,Tasktp[i+1]->Ladeg,col)
 
     }
 
-    ShowTPS();
+    }
+
+    //ShowTPS();
 
 }
 //=============================================

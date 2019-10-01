@@ -1,6 +1,5 @@
-#/* -*- c -*- */
-# 
-# interactively kill named programs
+
+// interactively kill named programs
 
 setDebug(1,@keep,@filter,0)
 

@@ -128,7 +128,7 @@ foov()
 
 fvec(c,x,y,sz);
 
-exit()
+
 <<"done proc \n"
 
 <<"%V $c[0] $c[sz-1]\n"

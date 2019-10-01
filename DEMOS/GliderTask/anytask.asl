@@ -538,7 +538,7 @@ ild= abs(LoD)
        rtotal = 0
        }
 
- <<"$li $tpb\t%4s$ident ${Wtp[li]->Lat}\t${Wtp[li]->Lon} %9.0f$agl ${Wtp[li]->Alt} %4.1f$pc_tot\t "
+ <<"$li %10s$tpb\t%4s$ident ${Wtp[li]->Lat}\t${Wtp[li]->Lon} %9.0f$agl ${Wtp[li]->Alt} %4.1f$pc_tot\t "
 <<"%5.1f$wleg $rtotal\t%6.2f${Wtp[li]->Radio} %6.0f$TC[li] %6.2f$Dur[li]\n"
 
   }

@@ -32,7 +32,7 @@ filterFileDebug(ALLOWALL_,"yyy");
 include "ootlib"
 
 //======================================//
-proc drawTask()
+proc drawTrace()
 {
          sWo(mapwo, @scales, LongW, LatS, LongE, LatN )
          sWo(mapwo,@clearpixmap);
@@ -45,11 +45,11 @@ proc drawTask()
             sWo(vvwo, @scales, 0, min_ele, Ntpts, max_ele + 500 )
               dGl(igc_tgl);
 	    sWo(vvwo,@clearpixmap);
-	     dGl(igc_vgl);
+	      dGl(igc_vgl);
             sWo(mapwo,@showpixmap,@clipborder);
             sWo(vvwo,@showpixmap,@clipborder);
 	 }
-	             sWo(mapwo,@showpixmap,@clipborder);
+	sWo(mapwo,@showpixmap,@clipborder);
 }
 
 //======================================//
@@ -76,7 +76,7 @@ proc computeTaskDistance()
      if (la1 != 1000.0) {
         kmd = computeGCD(la1,la2,lon1,lon2);
      }
-<<" tpt $i  <|$Tasktp[i]->Place\> <|$Tasktp[i]->cltpt|> $Tasktp[i]->Ladeg  $Tasktp[i]->Longdeg $kmd\n"
+//<<" tpt $i  <|$Tasktp[i]->Place\> <|$Tasktp[i]->cltpt|> $Tasktp[i]->Ladeg  $Tasktp[i]->Longdeg $kmd\n"
      la1 = la2;
      lon1 = lon2;
     }
@@ -92,9 +92,9 @@ proc computeTaskDistance()
 
 
 
-TaskType = "TRI"; 
+TaskType = "MT"; 
 
-int Nlegs = 1;
+int Nlegs = 2;
 
 Turnpt  Wtp[500]; // 
 
@@ -156,6 +156,7 @@ Turnpt  Wtp[500]; //
  }
 ////////////////////////////////////
 
+ Nlegs = Ntp -1;
 
 /////////////////// TASK DEF ////////////
 Taskpt Tasktp[50];
@@ -165,7 +166,7 @@ Units = "KM"
 
 /////////////  Arrays : Globals //////////////
 
-LatS= 39.5;
+LatS= 37.5;
 
 LatN = 41.0;
 
@@ -193,11 +194,12 @@ num_tpts = 700
 float R[10];
 
 
-   igcfn = "spk.igc"
+ //  igcfn = "spk.igc"
+  // igcfn = "laramie.igc"
    //igcfn = "bike_4_23.igc"
    //igcfn = "idahoesprings.igc"
 
-    // igcfn = GetArgStr();
+    igcfn = GetArgStr();
 
 //  Read in a Task via command line
 float min_lat;
@@ -246,29 +248,46 @@ long posn = 0;
       Tasktp[k]->Print()
   }
 
-
-
-     Ntpts=IGC_Read(igcfn);
+      Ntpts=IGC_Read(igcfn);
 
 <<"sz $Ntpts $(Caz(IGCLONG))   $(Caz(IGCLAT))\n"
 
       k = Ntpts - 30;
 
-<<"%(10,, ,\n) $IGCLONG[0:30] \n"
-<<"%(10,, ,\n) $IGCLONG[k:Ntpts-1] \n"
+//<<"%(10,, ,\n) $IGCLONG[0:30] \n"
+//<<"%(10,, ,\n) $IGCLONG[k:Ntpts-1] \n"
 
 //<<"%(10,, ,\n) $IGCLAT[0:30] \n"
 //<<"%(10,, ,\n) $IGCELE[0:30] \n"
 //<<"%(10,, ,\n) $IGCTIM[0:30] \n"
 
      sslng= Stats(IGCLONG)
-<<"%V $sslng \n"
+
+     for (i=0; i < Ntpts; i += 100) {
+     
+      <<"$i $IGCTIM[i] $IGCELE[i] $IGCLAT[i]  $IGCLONG[i] \n";
+
+     }
+
+     <<"%V $sslng \n"
 
      sslt= Stats(IGCLAT)
+
 <<"%V $sslt \n"
 
+
+ for (i=1000; i < 1500; i++) {
+     
+      <<"$i $IGCTIM[i] $IGCELE[i] $IGCLAT[i]  $IGCLONG[i] \n";
+
+     }
+
+
+
      ssele= Stats(IGCELE,">",0)
+
 <<"%V $ssele \n"
+
       min_ele = ssele[5];
       max_ele = ssele[6];
 <<" min ele $ssele[5] max $ssele[6] \n"
@@ -283,7 +302,7 @@ long posn = 0;
       max_lat = sslt[6];
 
 
-<<"$(typeof(min_lat)) %V $min_lat $max_lat \n"
+<<"%V $min_lat $max_lat \n"
 
 
      float  margin = 0.05;
@@ -390,7 +409,7 @@ include "tbqrd"
 
   sawo= cWo(vp,@BV,@resize_fr,0.15,0.01,0.54,0.1,@name,"SafetyAlt",@color,WHITE_,@style,"SVB");
 
-  vvwo= cWo(vp,@GRAPH,@resize_fr,0.2,0.11,0.95,0.25,@name,"MAP",@color,WHITE_);
+  vvwo= cWo(vp,@GRAPH,@resize_fr,0.2,0.11,0.95,0.25,@name,"ALT",@color,WHITE_);
 
   sWo(vvwo, @scales, 0, 0, 100, 6000, @savepixmap, @redraw, @drawoff, @pixmapon);
 
@@ -430,11 +449,12 @@ include "tbqrd"
   titleVers();
   sWo(tpwos,@redraw);
 
-  TASK_wo=cWo(vp,@TB_MENU,@resize,0.1,0.9,0.2,0.99);
+  //TASK_wo=cWo(vp,@TB_MENU,@resize,0.1,0.9,0.2,0.99);
+  TASK_wo=cWo(vp,@BV,@resize,0.05,0.2,0.15,0.34);
   
 <<"%V$TASK_wo\n"
 
-  sWo(TASK_wo, @help, "Set Task Type", @name, "TaskType", @func,  "wo_menu",  @menu, "SO,TRI,OAR,W,MT",  @value, "W")
+  sWo(TASK_wo, @help, "Set Task Type", @name, "TaskType", @func,  "wo_menu",  @menu, "SO,TRI,OAR,W,MT",  @value, "MT")
 
 
  if (Ntaskpts > 1) {
@@ -536,7 +556,7 @@ set_task()
 
 include  "gevent";
 
-
+int dindex;
 int witp = 0;
 int drawit = 0;
 msgv = "";
@@ -553,7 +573,8 @@ str wcltpt="XY";
   <<"%V $LongE \n"
 
 
-  drawTask();
+  drawTrace();
+  DrawTask(mapwo,RED_)
 
   while (1) {
 
@@ -651,7 +672,30 @@ str wcltpt="XY";
        }
 
 
-       if (_ekeyw @= "MAP") {
+       if (_ewoname @= "ALT") {
+
+    drawit = 0;
+         dindex = rint(_erx)
+
+<<" index $_erx, alt $_ery  $dindex $IGCELE[dindex] $IGCLAT[dindex] $IGCLONG[dindex] \n"
+         symx = IGCLONG[dindex]
+	 symy = IGCLAT[dindex]
+	 
+	 <<"$symx $symy $mapwo \n"
+	 
+       
+	 
+	 swo(mapwo,@clear,@clearclip,BLUE_,@clearpixmap)
+	 
+	 plot(mapwo,@symbol,symx,symy, 11,2,RED_)
+
+         plot(mapwo,@circle,symx,symy, 0.01,GREEN_,1)
+	 
+	 swo(mapwo,@showpixmap)
+	 
+       }
+       
+       else if (_ewoname @= "MAP") {
 
                drawit = 0;
 
@@ -683,8 +727,8 @@ str wcltpt="XY";
 
 
         if (drawit) {
-  	    drawTask();
-
+  	    drawTrace();
+              DrawTask(mapwo,RED_)
         }
 
       computeTaskDistance();
@@ -716,7 +760,7 @@ str wcltpt="XY";
   can we plot on top sectional image - where to get those?
 
 
-  projection  --  square degress - square map window --- conical??
+  projection  --  square degrees - square map window --- conical??
 
   plot plane position as scroll in vvwo
 
