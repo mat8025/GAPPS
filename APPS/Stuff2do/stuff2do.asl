@@ -3,8 +3,8 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.53 I Iodine                                                  
-//*  @date Tue Jan  1 11:48:16 2019 
+//*  @vers 1.56 Ba Barium                                                  
+//*  @date Sat Oct 12 09:52:36 2019 
 //*  @cdate Mon Jan  1 08:00:00 2018 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -26,78 +26,20 @@
 // user can enter text into cells via the gui interface
 
 include "debug.asl"
+
+scriptDBON();
+debugON();
+
 include "gevent.asl"
+include "hv.asl"
+include "stuff2do_gss.asl"
 
-vers = "xxx";
-
-debugOFF();
-
-
+//vers = "xxx";
 
 
-//////   create MENUS here  /////
-A=ofw("Howlong.m")
-<<[A],"title HowLong\n"
-<<[A],"item 0.5 M_VALUE 0.5\n"
-<<[A],"help half-hour\n"
-<<[A],"item 1 M_VALUE 1\n"
-<<[A],"help 1 hour\n"
-<<[A],"item 2 M_VALUE 2\n"
-<<[A],"help hour \n"
-<<[A],"item 4 M_VALUE 4\n"
-<<[A],"help 4 hours\n"
-<<[A],"item 8 M_VALUE 8\n"
-<<[A],"help 8 hours\n"
-<<[A],"item 16 M_VALUE 16\n"
-<<[A],"help 16 hours\n"
-<<[A],"item 40 M_VALUE 40\n"
-<<[A],"help 40 hours\n"
-<<[A],"item ? C_INTER "?"\n"
-<<[A],"help set pcdone\n"
-cf(A)
-//=============================
-A=ofw("PCdone.m")
-<<[A],"title PCdone\n"
-<<[A],"item 5% M_VALUE 5\n"
-<<[A],"item 10% M_VALUE 10\n"
-<<[A],"item 25% M_VALUE 25\n"
-<<[A],"item 50% M_VALUE 50\n"
-<<[A],"item 75% M_VALUE 75\n"
-<<[A],"item 90% M_VALUE 90\n"
-<<[A],"item 100% M_VALUE 100\n"
-<<[A],"item ? C_INTER "?"\n"
-<<[A],"help set pcdone\n"
-cf(A)
-//==============================//
-A=ofw("Priority.m")
-<<[A],"title Priority 1-10\n"
-<<[A],"item 1 M_VALUE 1\n"
-<<[A],"item 2 M_VALUE 2\n"
-<<[A],"item 3 M_VALUE 3\n"
-<<[A],"item 4 M_VALUE 4\n"
-<<[A],"item 5 M_VALUE 5\n"
-<<[A],"item 6 M_VALUE 6\n"
-<<[A],"item 7 M_VALUE 7\n"
-<<[A],"item 8 M_VALUE 8\n"
-<<[A],"item 9 M_VALUE 9\n"
-<<[A],"item 10 M_VALUE 10\n"
-cf(A)
-//==============================//
-A=ofw("Difficulty.m")
-<<[A],"title Difficulty\n"
-<<[A],"item 1 M_VALUE 1\n"
-<<[A],"item 2 M_VALUE 2\n"
-<<[A],"item 3 M_VALUE 3\n"
-<<[A],"item 4 M_VALUE 4\n"
-<<[A],"item 5 M_VALUE 5\n"
-<<[A],"item 6 M_VALUE 6\n"
-<<[A],"item 7 M_VALUE 7\n"
-<<[A],"item 8 M_VALUE 8\n"
-<<[A],"item 9 M_VALUE 9\n"
-<<[A],"item 10 M_VALUE 10\n"
-cf(A)
 
-//==============================//
+
+setdebug(1,@keep,@pline)
 
 CatCol= 1;
 PriorityCol= 2;
@@ -114,7 +56,7 @@ PCDoneCol= 8;
 
 
   if (fname @= "")  {
-   fname = "stuff2do.csv";
+   fname = "STUFF/stuff2do.csv";
   }
 
 
@@ -128,9 +70,6 @@ A= ofr(fname)
     exit(-1);
  }
 
-//record R[20+];
-
-Record DF[10];
 
 
 today = date(2);
@@ -158,31 +97,25 @@ today = date(2);
 <<"num of records $sz  num cols $ncols\n"
 
 //////////////////////////////////
+<<"before Graphic \n"
 
+include "stuff2do_ssp.asl"
 
-Graphic = CheckGwm()
-
-
-     if (!Graphic) {
-        X=spawngwm()
-     }
-
-
-include "tbqrd.asl"
+include "graphic.asl"
+ 
 
 include "stuff2do_scrn.asl"
 
-include "gss.asl"
 
 
 //===============
 //
-include "stuff2do_ssp.asl"
 
 
-gflush()
 
-setdebug(0,@keep);
+
+//ans=iread(":>")
+
 
 int cv = 0;
 
@@ -206,18 +139,7 @@ for (i = 0; i < rows;i++) {
 
 
 
-    for (i = 0; i< rows ; i++) {
-     for (j = 0; j< cols ; j++) {
-        if ((i%2)) {
-sWo(cellwo,@cellbhue,i,j,LILAC_);         
-	}
-	else {
-sWo(cellwo,@cellbhue,i,j,YELLOW_);
-
-	 }
-	 cv++;
-       }
-     }
+     colorRows(rows,cols);
 
 
 
@@ -232,7 +154,7 @@ sWo(cellwo,@cellbhue,i,j,YELLOW_);
    
    sWo(cellwo,@setrowscols,rows+10,cols+1);
    sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
- sWo(cellwo,@setcolsize,3,0,1);
+   sWo(cellwo,@setcolsize,3,0,1);
 // sWo(cellwo,@cellbhue,1,-2,LILAC_); // row,col wr,-2 all cells in row
    sWi(vp,@redraw)
 
@@ -240,18 +162,24 @@ sWo(cellwo,@cellbhue,i,j,YELLOW_);
 
    sWo(cellwo,@redraw);
 
+/{
    swaprow_a = 1;
    swaprow_b = 2;
 
    swapcol_a = 1;
    swapcol_b = 2;
 <<"%V $cellwo\n"
+/}
 
-   PGDWN();
-   PGUP();
+  // PGDWN();
+  // PGUP();
+   //SCORE();
+   sWi(vp,@redraw);
+      //   eventWait();
 
-
-
+int mwr = 0;
+int mwc = 0;
+symbol_num = 1
   while (1) {
 
         // resetDebug();
@@ -261,8 +189,10 @@ sWo(cellwo,@cellbhue,i,j,YELLOW_);
 
    //_erow->info(1);  // detailed spec of _erow variable
    //_ecol->info(1);
-   
-         if (_erow > 0) {
+           mwr = _erow; // BUG _erow still has PROC_ARG_REF set
+	   mwc = _ecol;
+			      
+        if (_erow > 0) {
             the_row = _erow;
          }
 
@@ -270,72 +200,74 @@ sWo(cellwo,@cellbhue,i,j,YELLOW_);
 
         whue = YELLOW_;
 
-       if (_ecol == 0  && (_erow >= 0) && (_ebutton == RIGHT_)) {
+       if (mwc == 0  && (mwr >= 0) && (_ebutton == RIGHT_)) {
 	
-         if ((_erow %2)) {
+         if ((mwr %2)) {
            whue = LILAC_;
 	 }
 
          sWo(cellwo,@cellbhue,swaprow_a,0,swaprow_a,cols,whue);         	 	 
 
          swaprow_b = swaprow_a;
-	 swaprow_a = _erow;
+	 swaprow_a = mwr;
 	 
 //<<"%V $swaprow_a $swaprow_b\n"
 
          sWo(cellwo,@cellbhue,swaprow_a,0,CYAN_);         
          }
 
-        else if (_erow == 0 && (_ecol == tags_col) && (_ebutton == RIGHT_)) {
+        else if (mwr == 0 && (mwc == tags_col) && (_ebutton == RIGHT_)) {
 
                <<"Clear tags \n"
                 clearTags();   
         }
 
-        else if (_erow > 0 && (_ecol == tags_col) ) {
+        else if (mwr > 0 && (mwc == tags_col) ) {
 	        if (_ebutton == RIGHT_) {
                <<"mark tag \n"
-                R[_erow][tags_col] = "x";
-		sWo(cellwo,@cellval,_erow,tags_col,"x");
+                R[mwr][tags_col] = "x";
+		sWo(cellwo,@cellval,mwr,tags_col,"x");
 		}
 		else if (_ebutton == LEFT_) {
                <<"clear tag \n"
-                R[_erow][tags_col] = "";
-		sWo(cellwo,@cellval,_erow,tags_col,"");
+                R[mwr][tags_col] = "";
+		sWo(cellwo,@cellval,mwr,tags_col,"");
                 }
 
-		sWo(cellwo,@celldraw,_erow,tags_col)
+		sWo(cellwo,@celldraw,mwr,tags_col)
         }
-        else if (_erow > 0 && (_ecol == PCDoneCol)) {
-                 PCDONE(_erow, PCDoneCol);
+        else if (mwr > 0 && (mwc == PCDoneCol)) {
+                 PCDONE(mwr, PCDoneCol);
 		 // update
-		 setUpdate(_erow, UpdateDateCol);
+		 setUpdate(mwr, UpdateDateCol);
         }
-	else if (_erow > 0 && (_ecol == DiffCol)) {
-                 setDifficulty(_erow, _ecol);
+	else if (mwr > 0 && (mwc == DiffCol)) {
+                 setDifficulty(mwr, DiffCol);
         }
-        else if (_erow > 0 && (_ecol == PriorityCol)) {
-                             setPriority(_erow);
+        else if (mwr > 0 && (mwc == PriorityCol)) {
+                 setPriority(mwr,PriorityCol);
         }
-        else if (_erow > 0 && (_ecol == UpdateDateCol )) {
-                 
-		 // update
-		 setUpdate(_erow, UpdateDateCol);
+        else if (mwr > 0 && (mwc == UpdateDateCol )) {
+    		 setUpdate(mwr, UpdateDateCol);
         }
-        else if (_erow > 0 && ((_ecol == TimeEstCol) \
- 			      || (_ecol == TimeSpentCol))) {
+        else if (mwr > 0 && ((mwc == TimeEstCol) \
+ 			      || (mwc == TimeSpentCol))) {
 			      
-                              HowLong(_erow,_ecol);
+
+
+                              //HowLong(_erow,_ecol);
+			      <<"%V $mwr $mwc $_erow $_ecol\n"
+			      HowLong(mwr,mwc);
         }	
-        else if (_erow == 0 && (_ecol >= 0) && (_ebutton == RIGHT_)) {
-               pickTaskCol (_ecol);
+        else if (mwr == 0 && (mwc >= 0) && (_ebutton == RIGHT_)) {
+               pickTaskCol (mwc);
 
         }
         else {
           if (_ebutton == LEFT_) {
              _ecol->info(1);
 	     _erow->info(1);
-             getCellValue(_erow,_ecol)
+             getCellValue(mwr,mwc)
           }
 	
 
@@ -352,8 +284,27 @@ sWo(cellwo,@cellbhue,i,j,YELLOW_);
         if (!(_ewoname @= "")) {
 	    ind = findProc(_ewoname) ;
             if (ind  != 0) {
+
 <<[_DB]"calling script procedure $ind $_ewoid $cellwo $_ename $_ewoname !\n"
-            $_ewoname()
+       // sWo(txtwo,@clear)
+//Text(txtwo,"calling script procedure  $_ename $_ewoname !\n",0.2,0.2,1)
+
+//plot(txtwo,@wosymbol,1,5,RED_)
+//sWo(txtwo,@penhue,@symbolshape,symbol_num,@symsize,5,@redraw)
+/{
+   if (_ewoid == pguwo) {
+    Plot(txtwo,@line,0,0,1,1,RED_)
+  }
+   else {
+    Plot(txtwo,@line,0,0,1,1,BLUE_)
+  }
+/}
+// sWo(txtwo,@savepixmap)
+// sWo(txtwo,@scrollclip,UP_,16)
+
+ sWo(txtwo,@print," calling script procedure  $_ename $_ewoname !\n")
+ 
+    $_ewoname()
 	    }
 	    else {
 <<[_DB]"script procedure $_ewoname $ind does not exist!\n"
@@ -372,4 +323,4 @@ sWo(cellwo,@cellbhue,i,j,YELLOW_);
 //
 //   TBD
 //   Categories  -  different sheets 
-//
+//   option to move 100% to stuff-done.csv

@@ -14,8 +14,6 @@
 ///
 
 
-
-
 //=================== Button Procs ===========
 proc ADDTASK()
 {
@@ -71,7 +69,7 @@ proc OPEN()
 proc PCDONE(wr,wc)
 {
   
-   mans = popamenu("PCdone.m")
+   mans = popamenu("MENUS/PCdone.m")
 	
         if (!(mans @= "NULL_CHOICE")) {
            sWo(cellwo,@cellval,wr,wc,mans);
@@ -97,3 +95,38 @@ proc SCORE()
   sWo(scorewo,@value,total,@update);
   }
 }
+//========================================================//
+proc SAVE()
+{
+//<<"IN $_script $_proc saving sheet %V $fname  $Ncols \n";
+	 
+            B=ofw(fname);
+	    R[0]= Split("Task,Code,Priority,Difficulty,TimeEst,TimeSpent,Startdate,Update,PCDone,Tags,",",");
+            if ( B != -1) {
+            nrw=writeRecord(B,R,@del,Delc,@ncols,Ncols);
+<<[_DB]"%V $B $nrw  $Ncols \n"
+            cf(B);
+	    }
+	    
+
+}
+//========================================================//
+proc colorRows(r,c)
+{
+int icr=0;
+int jcr = c -1;
+
+   for(icr = 0; icr < r ; icr++) {
+	
+        if ((icr%2)) {
+          sWo(cellwo,@cellbhue,icr,1,icr,jcr,LILAC_);
+
+	}
+	else {
+	    sWo(cellwo,@cellbhue,icr,1,icr,jcr,YELLOW_);
+	 }
+     }
+
+<<[_DB]"$_proc done\n"
+}
+//============================================//

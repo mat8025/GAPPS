@@ -62,7 +62,7 @@ Nfav = 8;   // display choice row size
     exit();
  }
 
-  RF= readRecord(A,@del,',')
+  RF= readRecord(A,@del,',') ;   // RF record created
   cf(A);
 
   Nrecs = Caz(RF);
@@ -137,6 +137,7 @@ else {
   Nrows = sz;
   
   Ncols = Caz(R,0);
+  
   rows = sz+1;
   cols = Ncols;
 
@@ -179,6 +180,7 @@ int cv = 0;
 
   tags_col = cols;
  // rows += 2;
+ 
   sWo(cellwo,@setrowscols,rows+10,cols+1);
   sWo(cellwo,@cellval,R,0,0,rows,cols);  
 <<"%V$rows $sz \n"

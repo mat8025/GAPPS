@@ -1,8 +1,38 @@
 ///
-///   gss screen
+///   stuff2Do screen
 ///
 
-    vp = cWi(@title,"S2D:$fname")
+/{
+proc colorRows(r,c)
+{
+int icr=0;
+int jcr = c -1;
+
+   for(icr = 0; icr < r ; icr++) {
+	
+        if ((icr%2)) {
+          sWo(cellwo,@cellbhue,icr,1,icr,jcr,LILAC_);
+
+	}
+	else {
+	    sWo(cellwo,@cellbhue,icr,1,icr,jcr,YELLOW_);
+	 }
+     }
+
+<<[_DB]"$_proc done\n"
+}
+//============================================//
+/}
+
+
+
+
+
+
+//==============================================//
+<<"in stuff2do_scrn\n"
+
+    vp = cWi(@title,"S2D:$fname",@resize,0.1,0.1,0.9,0.8)
 
     sWi(vp,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
 
@@ -52,13 +82,19 @@
 
    sWo(cellwo,@bhue,CYAN_,@clipbhue,SKYBLUE_,@redraw)
 
- txtwo=cWo(vp,"TEXT",@name,"edit",@color,GREEN_,@resize,0.12,0.05,0.8,0.24)
+// txtwo=cWo(vp,"TEXT",@name,"edit",@color,GREEN_,@resize,0.12,0.05,0.8,0.24)
+ txtwo=cWo(vp,@GRAPH,@name,"edit",@color,YELLOW_,@resize,0.12,0.05,0.8,0.24)
+
+
+//            sWo(txtwo,@clip,@save,@savepixmap,@drawon,@pixmapon,@pixmapdrawon)
+ sWo(txtwo,@clipsize,0.1,0.05,0.9,0.95,@save,@savepixmap,@drawon,@pixmapon,@pixmapdrawon)
+ sWo(txtwo,@font,"medium")
 
  scorewo = cWo(vp,@BV,@name,"SCORE",@color,ORANGE_,@bhue,"cyan",@value,0,@style,"SVR");
 
  sWo(scorewo,@resize,0.82,0.05,0.9,0.24);
 
-
+ titleVers();
    sWi(vp,@redraw)
 
    sWo(ssmods,@redraw)

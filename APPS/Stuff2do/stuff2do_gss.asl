@@ -1,5 +1,5 @@
 //%*********************************************** 
-//*  @script gss.asl 
+//*  @script stuff2do_gss.asl 
 //* 
 //*  @comment  
 //*  @release CARBON 
@@ -15,6 +15,79 @@
 
 
 //<<"loading lib gss \n"
+
+
+//////   create MENUS here  /////
+A=ofw("MENUS/Howlong.m")
+<<[A],"title HowLong\n"
+<<[A],"item 0.25 M_VALUE 0.25\n"
+<<[A],"help 1/4-hour\n"
+<<[A],"item 0.5 M_VALUE 0.5\n"
+<<[A],"help half-hour\n"
+<<[A],"item 0.75 M_VALUE 0.75\n"
+<<[A],"help 3/4-hour\n"
+<<[A],"item 1 M_VALUE 1\n"
+<<[A],"help 1 hour\n"
+<<[A],"item 2 M_VALUE 2\n"
+<<[A],"help hour \n"
+<<[A],"item 4 M_VALUE 4\n"
+<<[A],"help 4 hours\n"
+<<[A],"item 8 M_VALUE 8\n"
+<<[A],"help 8 hours\n"
+<<[A],"item 16 M_VALUE 16\n"
+<<[A],"help 16 hours\n"
+<<[A],"item 24 M_VALUE 24\n"
+<<[A],"help 24 hours\n"
+<<[A],"item 40 M_VALUE 40\n"
+<<[A],"help 40 hours\n"
+<<[A],"item ? C_INTER ?\n"
+<<[A],"help set pcdone\n"
+cf(A)
+//=============================
+A=ofw("MENUS/PCdone.m")
+<<[A],"title PCdone\n"
+<<[A],"item 5% M_VALUE 5\n"
+<<[A],"item 10% M_VALUE 10\n"
+<<[A],"item 25% M_VALUE 25\n"
+<<[A],"item 50% M_VALUE 50\n"
+<<[A],"item 75% M_VALUE 75\n"
+<<[A],"item 90% M_VALUE 90\n"
+<<[A],"item 100% M_VALUE 100\n"
+<<[A],"item ? C_INTER ?\n"
+<<[A],"help set pcdone\n"
+cf(A)
+//==============================//
+A=ofw("MENUS/Priority.m")
+<<[A],"title Priority 1-10\n"
+<<[A],"item 1 M_VALUE 1\n"
+<<[A],"item 2 M_VALUE 2\n"
+<<[A],"item 3 M_VALUE 3\n"
+<<[A],"item 4 M_VALUE 4\n"
+<<[A],"item 5 M_VALUE 5\n"
+<<[A],"item 6 M_VALUE 6\n"
+<<[A],"item 7 M_VALUE 7\n"
+<<[A],"item 8 M_VALUE 8\n"
+<<[A],"item 9 M_VALUE 9\n"
+<<[A],"item 10 M_VALUE 10\n"
+cf(A)
+//==============================//
+A=ofw("MENUS/Difficulty.m")
+<<[A],"title Difficulty\n"
+<<[A],"item 1 M_VALUE 1\n"
+<<[A],"item 2 M_VALUE 2\n"
+<<[A],"item 3 M_VALUE 3\n"
+<<[A],"item 4 M_VALUE 4\n"
+<<[A],"item 5 M_VALUE 5\n"
+<<[A],"item 6 M_VALUE 6\n"
+<<[A],"item 7 M_VALUE 7\n"
+<<[A],"item 8 M_VALUE 8\n"
+<<[A],"item 9 M_VALUE 9\n"
+<<[A],"item 10 M_VALUE 10\n"
+cf(A)
+
+//==============================//
+
+
 str mans = "";
 Use_csv_fmt = 1;
 Delc = 44;
@@ -61,7 +134,7 @@ proc getCellValue( r, c)
 //=====================
 proc setPriority(wr,wc)
 {
-   mans = popamenu("Priority.m")
+   mans = popamenu("MENUS/Priority.m")
 	
         if (!(mans @= "NULL_CHOICE")) {
            sWo(cellwo,@cellval,wr,wc,mans);
@@ -82,7 +155,7 @@ proc setUpdate(wr,wc)
 
 proc setDifficulty(wr,wc)
 {
-   mans = popamenu("Difficulty.m")
+   mans = popamenu("MENUS/Difficulty.m")
 	
         if (!(mans @= "NULL_CHOICE")) {
            sWo(cellwo,@cellval,wr,wc,mans);
@@ -93,7 +166,7 @@ proc setDifficulty(wr,wc)
 proc HowLong(wr, wc)
 {
  <<"gss $_proc\n" 
-   lmans = popamenu("Howlong.m")
+   lmans = popamenu("MENUS/Howlong.m")
 	
         if (!(lmans @= "NULL_CHOICE")) {
 	<<"%V $wr $wc\n"
@@ -118,30 +191,13 @@ proc pickTaskCol ( wcol)
 //===========================================//
 
 
-proc SAVE()
-{
-<<"IN $_proc saving sheet %V $fname  $Ncols \n";
-	 
-            B=ofw(fname);
-            if ( B != -1) {
-<<"%V $rows  \n"
-            for (i= 0; i < rows ; i++) {
-	    val = R[i][0];
-<<"<$i> $val $R[i]\n"
-            }
-
-            nrw=writeRecord(B,R,@del,Delc,@ncols,Ncols);
-<<[_DB]"%V $B $nrw  $Ncols \n"
-            cf(B);
-	    }
-	    
-    return 
-}
-//======================
 
 proc READ()
 {
 <<[_DB]"reading $fname\n"
+
+<<"READING $fname\n"
+
        // isok =sWo(cellwo,@sheetread,fname,2)
             A= ofr(fname)
             R= readRecord(A,@del,Delc)
@@ -150,8 +206,8 @@ proc READ()
 <<"num of records $sz\n"
 <<[_DB]"num of records $sz\n"
 //      do display update elsewhere
-//     sWo(cellwo,@cellval,R);
-//	  sWo(cellwo,@redraw);
+    sWo(cellwo,@cellval,R);
+	  sWo(cellwo,@redraw);
 
            return 
 }

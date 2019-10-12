@@ -6590,12 +6590,12 @@ if p is set to TEXT_AXIS_BOTTOM (3) the text is placed relative to the bottom ax
 area - x is a fraction 0 left corner 1 right corner and y is fraction of font size
 positive above the axis, negative below the axis
 
-if p is set to 5 the text is placed relative to the upper axis of the clip 
+if p is set to TEXT_AXIS_TOP (5) the text is placed relative to the upper axis of the clip 
 area - x is a fraction 0 left corner 1 right corner and y is fraction of font size
-positive outside the graph, negative insude the graph
+positive outside the graph, negative inside the graph
 
-if p is set TEXT_AXIS_LEFT the text is placed relative to the left axis/border of the clip region. 
-if p is set TEXT_AXIS_RIGHT the text is placed relative to the right axis/border of the clip region. 
+if p is set TEXT_AXIS_LEFT (4) the text is placed relative to the left axis/border of the clip region. 
+if p is set TEXT_AXIS_RIGHT (6) the text is placed relative to the right axis/border of the clip region. 
 
 .EF
 =============================================================
@@ -8069,6 +8069,28 @@ In the example above the value "c" would be the value obtained on the flrst clic
 .EF
 =============================================================
 .BF
+sWo()
+.(x 
+sWo(woid,@clear) --- clears draw area of window object
+.)x 
+.FD
+clears draw area of wobj
+
+.EF
+=============================================================
+
+.BF.BF
+sWo()
+.(x 
+sWo(woid,@clipsize,[0.1,0.1,0.9,0.9]) --- sets the draw area of window object
+.)x 
+.FD
+sets the draw area of window object  as fractional  size of whole wobj area.
+(default - 0.1,0.1,0.9,0.9)
+
+.EF
+=============================================================
+
 htmlcolors()
 .(x 
 htmlcolors
