@@ -87,7 +87,7 @@ proc favDisplay()
 {
    sWo(favorwo,@setrowscols,Nfav+1,cols+1); // setup sheet rows&cols
    sWo(favorwo,@cellval,FF,0,0,Nfav,cols);  
-   sWo(favorwo,@selectrowscols,0,10,0,cols); // display size of fav
+   sWo(favorwo,@selectrowscols,0,12,0,cols); // display size of fav
 
    sWo(favorwo,@setcolsize,3,0,1);
    sWo(cellwo,@setcolsize,3,0,1) ;

@@ -3,8 +3,8 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.12 Mg Magnesium                                              
-//*  @date Wed Dec 26 08:45:16 2018 
+//*  @vers 1.13 Al Aluminium                                               
+//*  @date Mon Nov 18 07:21:30 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2014,2018 --> 
 //* 
@@ -53,12 +53,28 @@ proc getCellValue( r, c)
              ADDTASK()
            }
            newcvalue = queryw("NewValue","xxx",cvalue,_ex,_ey);
-<<[_DB]"%V$newcvalue \n"
            sWo(cellwo,@cellval,r,c,newcvalue);
            R[r][c] = newcvalue;
      }
 }
 //=====================
+
+GMTvalue = "0:00";
+proc getLastGMTValue( r, c)
+{
+ 
+     if (r >0 && c >= 0 ) {
+ <<" %V $r $c \n";
+           cvalue = GMTvalue;
+// <<" %V $cvalue \n";
+           newcvalue = queryw("NewValue","GMT? ",cvalue,_ex,_ey);
+           sWo(cellwo,@cellval,r,c,newcvalue);
+           R[r][c] = newcvalue;
+	   GMTvalue = newcvalue;
+     }
+}
+//=====================
+
 proc setPriority(wr,wc)
 {
    mans = popamenu("Priority.m")

@@ -869,7 +869,7 @@ proc checkEvents()
    Ekeyw = E->getEventKeyW()
    E->getEventRxy(Erx,Ery);
    
-<<"%V $Etype $Woid  %c$Ekeyc\n"
+//<<"%V $Etype $Woid  %c$Ekeyc\n"
 
 if (Woid == qwo) {
        //deleteWin(vp)

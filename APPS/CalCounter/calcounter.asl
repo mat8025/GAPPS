@@ -3,8 +3,8 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.27 Co Cobalt                                                  
-//*  @date Wed Jun 19 10:13:37 2019 
+//*  @vers 1.28 Ni Nickel                                                  
+//*  @date Sun Nov 17 12:36:39 2019 
 //*  @cdate Fri Jan  1 08:00:00 2016 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2014,2018 --> 
@@ -129,7 +129,7 @@ if (found_day ) {
 }
 else {
 
- R[0]= Split("Food,Amt,Unit,Cals,Carbs(g),Fat,Prot,Choles(mg),SatFat(g),Wt(g),Choline(mg),vA(dv),vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn,",",");
+ R[0]= Split("Food,Amt,Unit,Cals,Carbs(g),Fat,Prot,Choles(mg),SatFat(g),Wt(g),Choline(mg),vA(dv),vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn,GMT,",",");
  //R[1] = Split("Totals,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0",",");
 }
 
@@ -364,9 +364,12 @@ while (1) {
 		sWo(cellwo,@celldraw,mwr,tags_col)
         }
 
-                         //if (_ebutton == LEFT_ && mwr > 0  && mwc != 1) {
-                         //     getCellValue(mwr,mwc);
-                         // }
+                         if (_ebutton == LEFT_ && mwr > 0  && mwc == 27) {
+                             // get GMT
+                            getLastGMTValue(mwr,mwc);
+                          }
+
+
                           if (_ebutton == LEFT_ && mwr > 0  && mwc == 1) {
                             changeAmount(mwr)
                           }
@@ -407,5 +410,7 @@ exit()
   improve search by checking food catergory { bread,meat,fish ...}
 
   save on each add
+  add GMT to row end --- allow edit and use last time
+  filter out of multiply entry
 
 /}*/

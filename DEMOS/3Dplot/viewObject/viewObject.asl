@@ -216,7 +216,7 @@ Svar msg
 
     ml++;
 
-<<"at xgs interact ! $ml\n"
+//<<"at xgs interact ! $ml\n"
     //<<"$kev %v $go_on \n"
 
  //  Emsg= E->waitForMsg()
@@ -232,7 +232,7 @@ Svar msg
 
 //<<"%V$svwo $pvwo $vpwo \n"
 
-<<"%V$Ekeyw %c$Ekeyc %d$Ekeyc  $Ewoname\n"
+//<<"%V$Ekeyw %c$Ekeyc %d$Ekeyc  $Ewoname\n"
 
     if (!(Ekeyc @="")) {
    <<[CFH]"$Ekeyw  %V%c$Ekeyc \n"
@@ -263,6 +263,7 @@ Svar msg
       else if (Etype @= "KEYPRESS") {
 
          sWo(vptxt,@scrollclip,UP_,8,@clipborder,"blue",@textr," [%c${Ekeyc}] ",0,0) 
+      <<" $Ekeyc %c$Ekeyc\n"q
 
        keyControls(Ekeyc)
 
@@ -275,7 +276,7 @@ Svar msg
 
      //PlanView();
 
-<<"%V$ml $go_on $kev\n"
+//<<"%V$ml $go_on $kev\n"
 <<[CFH]"%V$ml $go_on \n"
 
    did_cont = checkGoDir(go_on);
@@ -307,7 +308,7 @@ Svar msg
      sWo(distwo,@VALUE, "%5.1f $distance" , @update)
      sWo(elevwo,@VALUE, "%5.1f$elev" , @update)
      
-<<"%V %5.1f$obpx , $obpy , $obpz , $azim  $elev  $distance \n"
+//<<"%V %5.1f$obpx , $obpy , $obpz , $azim  $elev  $distance \n"
 
      sWo(vpwo,@clearpixmap) 
 

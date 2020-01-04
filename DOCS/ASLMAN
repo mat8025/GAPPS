@@ -4853,27 +4853,47 @@ test using err=ferror(A)
 .EF
 =============================================================
 .BF
-rwords()
+readwords()
 .(x
-rwords,ReadWords
+readWords
 .)x 
 .FD
-r_words(A,Wd,{skip_lines})
+readWords(A,Wd,{skip_lines},{delchar})
 reads words from a line from current position in file
-into SIVAR W. The optional parameter repositions
+into SVAR W. The optional parameter repositions
 to the start of a line (0 current line, or skips line forward,
 or backward, before the read)
 returns number of words read
 at end of file returns -1
 e.g.
 A=ofr("a.vox")
-nwr=r_words(A,Wd)
+nwr=readwords(A,Wd)
 An alternate form is
-Wd->Read(A,{skip_lines} 
+Wd->readWords(A,{skip_lines}) 
 which returns number of words read and also allows for positioning
 in file in terms of lines from current line.
 
 
+
+.EF
+=============================================================
+.BF
+readwstokens()
+.(x
+readwstokens
+.)x 
+.FD
+Wd->readWsTokens(A,{skip_lines}) 
+reads words from a line from current position in file
+into SVAR Wd.
+Wd[0] containts the line read.
+Wd[1],Wd[2], ...  contains tokens delimited by white space.
+
+The optional parameter repositions
+to the start of a line (0 current line, or skips line forward,
+or backward, before the read)
+returns number of words read
+end of file returns -1
 
 .EF
 =============================================================

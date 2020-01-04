@@ -71,7 +71,35 @@ proc ADDWEX()
 {
 /// should go to last page
 <<"IN $_proc \n"
-    AddTask(0);
+    sz= Caz(R);
+    
+<<"in $_proc R record %V  $rows $Rn $sz $Nrows\n"    
+    Rn++;
+    if (sz <= Rn) {
+<<"expand record R!!\n"
+    R[Rn] = DF[0];
+    }
+
+     sWo(cellwo,@cellval,R);
+    // increase rows/colls
+    rows++;
+    Nrows = Rn;
+    nday= julmdy(jday)
+    <<"$jday  $nday \n"
+    jday++;
+    R[Rn][0] = nday;
+    sWo(cellwo,@selectrowscols,curr_row,rows,0,cols,1);
+    
+    paintRows();
+    
+    sWo(cellwo,@redraw);
+
+    sz = Caz(R);
+
+  <<"New size %V $curr_row $rows $cols $sz $Rn\n"  
+    
+
+
     return 
 }
 
@@ -151,8 +179,8 @@ do_record = 1;
 
 //Record DF[10];
 today = date(2);
-
-DF[0] = Split("$today,0,10,0,0,0,0,0,0,0",",");
+jday = julian(today)
+DF[0] = Split("$today,200,10,0,0,0,0,0,0,0, ",",");
 
 <<"$DF[0]\n"
 

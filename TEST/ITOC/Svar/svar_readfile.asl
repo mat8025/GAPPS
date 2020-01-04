@@ -1,7 +1,5 @@
-//WRD1  WRD2  WRD3
-
 //%*********************************************** 
-//*  @script svar_read.asl 
+//*  @script svar_readfile.asl 
 //* 
 //*  @comment reads file into svar 
 //*  @release CARBON 
@@ -13,39 +11,28 @@
 //* 
 //***********************************************%
 
-/// svar read words
+
 set_debug(1)
 
 Svar Wd
 
+A= ofr("svar_readfile.asl")
 
-A= ofr("svar_read.asl")
+P=readfile(A)
 
-wline =0;
+nlines=caz(P)
 
+<<"$nlines \n"
 
-ln =0
- while (1) {
-
-  //nwords = Wd->readWords(A,wline)
-
-nwords = readWords(A,Wd,wline)
+<<" $P\n";
 
 
- if (nwords == -1)  {
-  <<" EOF ? \n"
-  break;
- }
 
-<<"$ln <$nwords>:- \n"
- for (i= 0; i< nwords; i++) {
-  <<"<|$Wd[i]|> \n"
-}
+<<"first line $P[0]\n"
 
-ln++;
+<<"last line $P[nlines-1]\n"
 
- }
-
-
+cf(A)
 
 exit()
+//////////////////////// last-line //////////////////////

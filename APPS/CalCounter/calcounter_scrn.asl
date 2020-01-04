@@ -17,7 +17,7 @@
 
     sWi(vp,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
 
-    sWi(vp,@clip,0.1,0.2,0.98,0.98)
+    sWi(vp,@resize,0.05,0.05,0.9,0.98,@clip,0.1,0.2,0.98,0.98)
 
     sWi(vp,@redraw)
 

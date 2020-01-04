@@ -247,3 +247,29 @@ dbug.cpp                 1.45	Fri Jul 19 10:00:18 2019 ~break
 proc_args_e.cpp          3.44	Wed Aug  7 07:21:31 2019 call_by_ref procv array type
 dsp_main.cpp             1.48	Sun Aug 11 07:23:08 2019 lconvolve op vec size
 wo_set_p.cpp             1.87	Sat Oct 12 13:32:48 2019 clipsize - default 0.1,0.1,0.9,0.9 - if no tag args
+weekplanner.asl          1.2	Sat Nov  2 12:37:08 2019 break up scr/menu/procs
+query_w.cpp              1.29	Mon Nov 18 07:38:06 2019 textwo redraw
+edit_w.cpp               1.12	Tue Nov 19 09:46:41 2019 edit page uses ESC to exit not CR
+edit_w.cpp               1.13	Sat Nov 23 11:53:11 2019 chbuf now int/key
+mc_xw.cpp                1.49	Tue Nov 26 11:29:41 2019 added MC_WinClipFillBox -- clash theGC/WinGC ?
+wo_text_w.cpp            1.59	Tue Nov 26 12:33:27 2019 added CURS_TERM for intial cursor display in getValue
+edit_w.cpp               1.14	Sat Dec  7 15:40:21 2019 mod to exit edit page when click outside active wo page
+wo_text_w.cpp            1.60	Sun Dec  8 05:59:49 2019 make plot char advance cahr position in the line
+text_w.cpp               1.44	Sun Dec  8 06:00:26 2019 plot char advance char position on line
+edit_w.cpp               1.15	Sun Dec  8 16:54:51 2019 use linklist for line content
+winwo_w.cpp              1.46	Sun Dec  8 17:25:56 2019 delete pf page resources if used
+edit_w.cpp               1.16	Mon Dec  9 17:46:46 2019 cursor position and blink
+edit_w.cpp               1.17	Tue Dec 10 15:08:15 2019 uses linelist for edit/update
+edit_w.cpp               1.18	Wed Dec 11 08:53:35 2019 recount_page_line buffer clear
+edit_w.cpp               1.19	Sat Dec 14 08:21:00 2019 remove lines[] - use linelist lp->nc
+edit_w.cpp               1.20	Mon Dec 16 20:37:35 2019 yank buffer insert
+edit_w.cpp               1.21	Thu Dec 19 19:37:46 2019 use Svar for char buffers in edit
+wo_w.cpp                 1.62	Wed Dec 25 09:15:55 2019 image functions --> image_w.cpp
+mc_xw.cpp                1.50	Sat Dec 28 14:13:36 2019 added GS_WIN_X env var to set x offset placement of Xscreen
+edit_w.cpp               1.22	Sun Dec 29 12:16:41 2019 added update_page - activate when click outside edit Wo
+edit_w.cpp               1.23	Tue Dec 31 11:38:14 2019 add set_beg_page
+edit_w.cpp               1.24	Tue Dec 31 21:31:31 2019 repaint_line - takes a start column
+edit.asl                 1.10	Wed Jan  1 11:32:24 2020 new line procedure
+edit_w.cpp               1.25	Wed Jan  1 22:24:13 2020 update_line_buffer
+fileop.cpp               1.74	Fri Jan  3 11:17:03 2020 rework readFile
+wo.h                     1.29	Sat Jan  4 07:10:20 2020 add Page ptr

@@ -1,4 +1,4 @@
-/*/////////////////////////////////<**|**>/////////////////////////////////////
+//*/////////////////////////////////<**|**>/////////////////////////////////////
 //*  @script chead.asl 
 //* 
 //*  @comment add  header to C or include module 
@@ -14,8 +14,9 @@
 //   - 
 ///////////////////////////////////<v_&_v>/////////////////////////////////*/ 
 
-// use
-// chead  xxx.cpp vers(1.1) comment("does this")  date(1/1/2001) > new.cpp
+// usage
+// chead  xxx.cpp comment  vers date(M/D/YYYY) > new.cpp
+// e.g. chead  xxx.cpp "does this" 1.1  date(1/1/2001) > new.cpp
 // mv new.cpp xxx.cpp
 //
 
@@ -66,14 +67,13 @@ comment ="";
 comment2 ="";
 
 if (na > 2) {
- set_vers = 1;
- svers = _clarg[2];
+  comment = _clarg[2];
 // should be maj.min e.g 1.1 ,6.1, ... limits 1 to 100  
 }
 
 if (na > 3) {
- comment = _clarg[3];
-
+ set_vers = 1;
+ svers = _clarg[3];
 }
 
  use_epoch =0;
@@ -84,7 +84,7 @@ if (na > 4) {
 
 }
 
-<<[2]" $na $use_epoch \n" 
+//<<[2]" $na $use_epoch \n" 
 
 
 file= fexist(srcfile,ISFILE_,0);
@@ -111,21 +111,7 @@ min_ele = ptsym(min);
 min_name = ptname(min);
 date = date();
 
-/{
-////////////////////////////<**|**>\\\\\\\\\\\\\\\\\\\\ 
-//
-//  engine_e.cpp
-//
-//     CARBON  1.4 H.Be Wed Dec 19 09:47:35 2018    
-//     CopyRight   - RootMeanSquare - 1990,2018 --> 
-//     Author: Mark Terry                                           
-//     parser engine
-//
-// /. .\ 
-// \ ' / 
-//   - 
-////////////////////////////<v_&_v>\\\\\\\\\\\\\\\\\\\\ 
-/}
+
 
 len = slen(fname);
 

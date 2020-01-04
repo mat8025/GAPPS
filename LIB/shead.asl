@@ -63,17 +63,18 @@
    if (na > 2) {
 
     comment = _clarg[2];
-   // should be maj.min e.g 1.1 ,6.1, ... limits 1 to 100  
+   
    }
 
    if (na > 3) {
     set_vers = 1;   
     new_vers = _clarg[3];
+// should be maj.min e.g 1.1 ,6.1, ... limits 1 to 100  
    }
 
    if (na > 4) {
     set_cdate = 1;   
-    cdate = _clarg[4];
+    cdate = _clarg[4]; // use M/D/YYYY
    }
    
    file= fexist(srcfile,ISFILE_,0);

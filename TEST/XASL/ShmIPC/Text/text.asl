@@ -13,7 +13,7 @@
 
 
 /// make sure rotated fonts are loaded!
-/// xset fp+ /usr/local/GASP/gasp/fonts
+
 /// check
 /// xlsfonts | grep rot
 
@@ -50,46 +50,62 @@ include "tbqrd"
  // using grid positions for Wo boxes
  
  two=cWo(txtwin,"TEXT",@name,"TextR",@VALUE,"howdy",@color,"orange",@resize,1,16,8,19,3)
- sWo(two,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black","pixmapoff")
+ sWo(two,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff )
  sWo(two,@SCALES,0,0,1,1)
  sWo(two,@help," Mouse & Key Info ")
 
 
- stwo=cWo(txtwin,@TEXT,@name,"PrintText",@VALUE,"howdy this is the first line",@color,"orange",@resize,2,10,8,15,3)
- sWo(stwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@pixmapoff,@drawon,@save)
+ stwo=cWo(txtwin,@TEXT,@name,"PrintText",@VALUE,"howdy this is the first line",@color,"orange",@resize,2,10,6,15,3)
+ sWo(stwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_ ,@pixmapoff,@drawon,@save)
  sWo(stwo,@SCALES,0,0,1,1)
  sWo(stwo,@font,"small")
  sWo(stwo,@help," Mouse & Key Info ");
 
 
- bigwo=cWo(txtwin,@TEXT,@name,"BigText",@VALUE,"Big Font?",@color,"orange",@resize,9,10,18,15,3)
- sWo(bigwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@pixmapoff,@drawon,@save)
+ bigwo=cWo(txtwin,@TEXT,@name,"BigText",@VALUE,"Big Font?",@color,"orange",@resize,9,13,18,19,3)
+ sWo(bigwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_ ,@pixmapoff,@drawon,@save)
  sWo(bigwo,@bhue,WHITE_,@SCALES,0,0,1,1)
  sWo(bigwo,@font,"big")
 
 
  lvwo=cWo(txtwin,@TEXT,@name,"PrintText",@VALUE,"lvtext",@color,"orange",@resize,2,1,3,9,3)
- sWo(lvwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@pixmapoff,@drawon,@save)
+ sWo(lvwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_ ,@pixmapoff,@drawon,@save)
  sWo(lvwo,@SCALES,0,0,1,1)
  sWo(lvwo,@font,"rotated")
 
- rvwo=cWo(txtwin,@TEXT,@name,"PrintText",@VALUE,"rvtext",@color,"orange",@resize,4,1,5,9,3)
- sWo(rvwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@pixmapoff,@drawon,@save)
+ rvwo=cWo(txtwin,@TEXT,@name,"PrintText",@VALUE,"rvtext",@color,ORANGE_,@resize,4,1,5,9,3)
+ sWo(rvwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@save)
  sWo(rvwo,@SCALES,0,0,1,1)
  sWo(rvwo,@font,"rotated90")
 // resize fractional 0, pixel offset 1, real scales 2, grid pos 3
 
- ipwo=cWo(txtwin,@BV,@name,"InputText",@VALUE,"esta bien ",@color,WHITE_,@resize,9,1,18,5,3)
+ ipwo=cWo(txtwin,@TEXT,@name,"InputText",@VALUE,"",@color,RED_,@resize,6.1,1,12,12,3)
   //sWo(ipwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"inputText")
-  sWo(ipwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"inputValue",@style,SVR_)
+  //sWo(ipwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"inputValue",@style,SVO_)
+
+ sWo(ipwo,@clipsize,0.1,0.1,0.9,0.9,@clipbhue,LILAC_)
+ sWo(ipwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"editValue")
  sWo(ipwo,@font,"italic")
+
+
+ ipwo2=cWo(txtwin,@TEXT,@name,"InputText2",@VALUE,"abc",@color,RED_,@resize,12.1,1,19,12,3)
+  //sWo(ipwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"inputText")
+  //sWo(ipwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"inputValue",@style,SVO_)
+
+ sWo(ipwo2,@clipsize,0.1,0.1,0.9,0.9,@clipbhue,MAGENTA_)
+ sWo(ipwo2,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"editValue")
+ sWo(ipwo2,@font,"italic")
+
+
+
+
 
   int txwos[] = {lvwo,rvwo,bigwo,two};
 
 
  titleVers();
  
-
+//////////////////////////////////////////////////
 
 include "gevent"
 
@@ -98,12 +114,16 @@ include "gevent"
 xp = 0.1
 yp = 0.5
 
-char txtip[256];
+char txtip[512];
 
 !!"xset fp+ /home/mark/gasp-CARBON/fonts "
 <<"xset fp+ /home/mark/gasp-CARBON/fonts "
+
+
+
 mnum = 0
-   while (1) {
+
+while (1) {
 
     eventWait()
 
@@ -121,21 +141,24 @@ mnum = 0
 
      if (_ewoid == ipwo) {
 
-      sWo(txwos,@clear);
+//      sWo(txwos,@clear);
 
-   //   woGetText(ipwo,txtip,512);
+      woGetText(ipwo,txtip,512);
        
-  <<" got %s < $txtip >  as input \n";
+  <<" got %s < $txtip >  \n as input \n";
       // rotated text??
-      txt = woGetValue(ipwo)      
-      sWo(lvwo,@font,6,@textr,"$txt",0.3,0.1,0,-90,RED_);
-      sWo(rvwo,@font,"rotated90",@textr,"$txt",0.5,0.9,0,90,BLUE_);
+
+      txt = woGetValue(ipwo)
+      <<" $txt \n"
+      //sWo(lvwo,@font,6,@textr,"$txt",0.3,0.1,0,-90,RED_);
+      //sWo(rvwo,@font,"rotated90",@textr,"$txt",0.5,0.9,0,90,BLUE_);
 
       sWo(bigwo,@font,BIG_,@textr,"$txt",0.0,0.6,0,0,BLACK_);
       sWo(bigwo,@font,MEDIUM_,@textr,"$txt",0.0,0.4,0,0,MAGENTA_);
       sWo(bigwo,@font,SMALL_,@textr,"$txt",0.0,0.5,0,0,BLACK_);            
+
       mnum++;
-      sWo(ipwo,@value,"");
+      //sWo(ipwo,@value,"");
     }
 
   }
@@ -146,8 +169,10 @@ mnum = 0
 ///
 /// italic, bold
 ///
-///
-///
-///
-///
-///
+/// text input/edit
+/// needs to process mouse cursor position 
+/// repaint line cntrl L  adds a return 
+///  rentry to page - paints lines wrong position
+///  font change per line?
+///  default insert -- action to change to over write?
+///  click outside page wo - will exit input/edit --- done
