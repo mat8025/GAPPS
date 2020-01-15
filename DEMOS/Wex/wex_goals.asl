@@ -24,8 +24,8 @@ StartWt = 208;
 
 
 //  SET  START AND END DATES HERE
-long targetday = julian("01/07/2020") -bday;
-long sday = julian("12/25/2019") -bday // start date
+long targetday = julian("01/20/2020") -bday;
+long sday = julian("01/01/2020") -bday // start date
 
       gsday = sday;
       gday =  targetday;    // next goal day 
@@ -33,7 +33,7 @@ long sday = julian("12/25/2019") -bday // start date
 
 got_start = 0
 
-long yday = julian("01/01/2019")   // this should be found from data file
+long yday = julian("01/01/2020")   // this should be found from data file
 long eday = julian("12/31/2020")  // this should be found from data file
 today = julian("$(date(2))");
 

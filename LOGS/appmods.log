@@ -1,4 +1,4 @@
-# logs of mods to apps
+# logs of mods to asl apps
 ASL_TEST_VER.asl 1.42 Thu Feb  7 09:45:52 2019 xic test error added -x flag FIXED
 ASL_TEST_VER.asl        1.43	Sat Feb  9 13:54:17 2019 added vvcopy tests
 win.asl                 1.9	Sat Feb 16 20:23:11 2019 added pus/pop cycle
@@ -73,3 +73,5 @@ addmac.asl               1.3	Wed Oct  2 08:52:24 2019 total,save,sort
 stuff2do.asl             1.56	Sat Oct 12 09:52:36 2019 local gss
 calcounter.asl           1.28	Sun Nov 17 12:36:39 2019 add GMT col
 gss.asl                  1.13	Mon Nov 18 07:21:30 2019 add get GMT
+timer.asl                1.3	Fri Jan 10 01:56:14 2020 header str
+timer.asl                1.4	Fri Jan 10 01:56:37 2020 header str

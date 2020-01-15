@@ -45,3 +45,16 @@ gs_port.h               1.2	Wed Feb 20 17:41:59 2019 readAslMsg
 thread_w.cpp            1.45	Wed Feb 20 17:43:25 2019 readAslMsg
 socket_w.cpp            1.41	Thu Feb 21 17:36:41 2019 use GS_port --- Xgs_port number can be set -p option
 wo_sheetdraw_w.cpp       1.55	Thu Mar 28 19:30:03 2019 buffer overrun of cell val to text - now use a Svar for buffer
+edit_w.cpp               1.26	Sat Jan 11 13:07:05 2020 edit file r/w
+edit_w.cpp               1.27	Sat Jan 11 14:01:49 2020 tidy
+edit_w.cpp               1.28	Sat Jan 11 16:24:55 2020 tidy
+wo_text_w.cpp            1.61	Sat Jan 11 16:29:34 2020 tidy
+page_w.cpp               1.8	Sun Jan 12 01:48:17 2020 page functions - from edit_w
+shm_w.cpp                1.40	Mon Jan 13 03:54:40 2020 debug tidy
+sig_w.cpp                1.41	Mon Jan 13 03:55:47 2020 debug tidy
+interact_w.cpp           1.21	Mon Jan 13 04:02:13 2020 debug tidy
+title_w.cpp              1.48	Mon Jan 13 04:31:18 2020 debug tidy
+mc_font.cpp              1.47	Mon Jan 13 19:37:04 2020 loadFont MC_Font(num)
+mc_font.cpp              1.48	Mon Jan 13 21:33:48 2020 uload font - wrap 10 loadable - use more?
+gsfont.h                 1.6	Tue Jan 14 05:51:49 2020 add ptr to xfont struct
+panel_w.cpp              1.28	Wed Jan 15 22:25:59 2020 use whole window for text

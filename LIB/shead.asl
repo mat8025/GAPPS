@@ -175,7 +175,7 @@ if (found_vers) {
    newsrc=scat(ns,"-new.asl")
 
    A=ofw(newsrc);
-   vers="  @vers ${pmaj}.$pmin $min_ele $min_name "
+   vers="@vers ${pmaj}.$pmin $min_ele $min_name "
    vlen = slen(vers);
    pad = nsc(70-vlen," ")
    <<[A]"//%%*********************************************** \n"
@@ -183,7 +183,7 @@ if (found_vers) {
    <<[A]"//* \n"
    <<[A]"//*  @comment $comment \n"
    <<[A]"//*  @release $release \n"   
-   <<[A]"//*$vers $pad\n"
+   <<[A]"//*  $vers $pad\n"
    <<[A]"//*  @date $date \n"
    <<[A]"//*  @cdate $cdate \n"      
    <<[A]"//*  @author $author \n"

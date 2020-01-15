@@ -24,9 +24,10 @@
    elestr = pt(pmin);
    str ele =" ";
    ele = spat(elestr,",")
+   tele = eatWhiteEnds(ele)
   //<<"$ele $(typeof(ele))\n";
   //<<"$ele";
-   return ele;
+   return tele;
    
   }
   //======================
@@ -34,7 +35,8 @@
   
   
   // if script found
-  // then  read current vers and  bump number and update date
+
+// then  read current vers and  bump number and update date
   // if no @vers line -- then prepend the vers header lines
   
   srcfile = _clarg[1];
@@ -153,7 +155,7 @@
        pmin =1;
        pmaj++;
    }
-   <<[2]"bumped to $pmaj $pmin\n"
+   <<[2]"bumped to $pmaj $pmin $(ptsym(pmin))\n"
    <<"$pmaj $pmin\n"   
    if (pmaj > 103) {
  <<" need a new major release current \n"
@@ -170,12 +172,12 @@
 
    fseek(A,found_where,0)
 
-   vers="    @vers ${pmaj}.$pmin $min_ele $min_name "
+   vers="@vers ${pmaj}.$pmin $min_ele $min_name "
    vlen = slen(vers);
    pad = nsc(69-vlen," ")
-<<[A]"//$vers $pad"
+<<[A]"//*  $vers $pad"
 seekline(A,1)
-<<[A]"//    @date $date"   
+<<[A]"//*  @date $date"   
 
 
 // <<[A]" ??? \n"
@@ -190,7 +192,7 @@ seekline(A,1)
 cf(A);
 
 // lets' log this change 
-logfile= "~gapps/LOGS/aslmods.log"
+logfile= "~gapps/LOGS/appmods.log"
 A=ofile(logfile,"r+")
 fseek(A,0,2)
 

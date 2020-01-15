@@ -18,7 +18,7 @@
 // TBF has to be a 'starter' line before any decs in include file?
 int tbqrd_tv = 0;
 
-<<"FIRST %V $tbqrd_tv \n"
+<<[_DB]"FIRST %V $tbqrd_tv \n"
 
 
 proc  titleButtonsQRD(v)
@@ -32,7 +32,7 @@ proc  titleButtonsQRD(v)
  td=cWo(v,@TBS,@name,"tbd",@value,"REDRAW",@func,"window_redraw",@resize,0.91,0,0.93,1,@symbol,DIAMOND_);
 
  tbqrd_tv = cWo(v,"TBV",@name,"tbv",@value,"VERS",@style,SVO_,@resize,0.20,0,0.30,1);
-<<"SET %V $tbqrd_tv \n"
+<<[_DB]"SET %V $tbqrd_tv \n"
 //int qrd[] = {tr,tq,td};
 
 int qrd[3]

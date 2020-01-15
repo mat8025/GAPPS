@@ -11,8 +11,6 @@
 //* 
 //***********************************************%
 
-
- 
   
   
   proc vers2ele( vstr)
@@ -153,8 +151,8 @@
        pmin =1;
        pmaj++;
    }
-   <<[2]"bumped to $pmaj $pmin\n"
-   <<"$pmaj $pmin\n"   
+   <<[2]"bumped to $pmaj $pmin $(ptsym(pmin)) $(ptname(pmin));\n"
+   <<"$pmaj $pmin $(ptsym(pmin))  $(ptname(pmin));\n"
    if (pmaj > 103) {
  <<" need a new major release current \n"
    exit();

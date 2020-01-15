@@ -145,7 +145,7 @@ proc readData()
 
   while (1) {
 
-      tl++;
+   //   tl++;
 
       col= RX[tl];
       
@@ -190,6 +190,7 @@ proc readData()
     if (tl >= (Nrecs-1)) {
        break;
     }
+    tl++;
 }
 
 //=======================================
@@ -265,8 +266,8 @@ proc readCCData()
 
  }
 
-  for (j= 0; j <= NCCrecs; j++) {
-  <<[2]"$j $CCDV[j] $CALSCON[j] $CARBSCON[j]\n"
-  }
+  //for (j= 0; j <= NCCrecs; j++) {
+  //<<[2]"$j $CCDV[j] $CALSCON[j] $CARBSCON[j]\n"
+  //}
 }
 //=======================================//

@@ -1,11 +1,46 @@
 
 
 
-/// make sure rotated fonts are loaded!
-///  location
+ make sure rotated fonts are loaded!
+  location
+
 
 /// xset fp+ /usr/local/GASP/gasp/fonts
 /// check
 /// xlsfonts | grep rot
 
 /// TBD ?? use XSetFontPath --- in ms/mc_font setup??
+
+lucidasans-bolditalic-10
+
+lucidasanstypewriter-bold-10
+
+
+
+
+ select via  family-wt-style-size
+
+where wt  bold,normal
+style italic, straight?
+size tiny,small,medium,big,huge --- 8,10,12,24
+
+e.g.
+lucidasans-bold-italic-10
+
+then code will parse out attirbutes
+and match for family (default current) style,size ...
+
+
+
+will pick closest avaliable from current
+if specific library font -- try to load it - return an id
+
+
+
+
+
+-adobe-courier-bold-o-normal--25-180-100-100-m-150-iso8859-1
+
+
+
+asl setfont -- to send fontid - or description

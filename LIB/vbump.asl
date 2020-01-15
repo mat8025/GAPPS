@@ -1,15 +1,18 @@
 //%*********************************************** 
-//*  @script sbump.asl 
+//*  @script cbump.asl 
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.7 N Nitrogen                                                 
+//*  @vers 1.7 N Nitrogen                                               
 //*  @date Tue Jan  1 09:18:09 2019 
 //*  @cdate Sun Dec 23 09:22:34 2018 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2014,2018 --> 
 //* 
 //***********************************************%
+
+
+ 
   
   
   proc vers2ele( vstr)
@@ -86,7 +89,7 @@
   len = slen(fname);
   
   ind = (80-len)/2;
-  <<[2]"$(date()) $(date(8)) \n"
+  //<<[2]"$(date()) $(date(8)) \n"
   //<<[2]" $len $ind\n"
   insp = nsc((60-len)/2," ")
   len= slen(insp)
@@ -101,7 +104,7 @@
 
   A=ofile(srcfile,"r+")
   //T=readfile(A);
- <<[2]"opened for read/write? $A\n"
+ //<<[2]"opened for read/write? $A\n"
   if (A == -1) {
 <<"bad file ?\n"
    exit()
@@ -118,11 +121,9 @@
 //tsz = Caz(T)
    for (i = 0; i < 8;i++) {
    T = readline(A);
-<<"$i line is $T \n"
    where = ftell(A)
    L = Split(T);
-<<"$i $L \n"
-    if (scmp(L[1],"@vers")) {
+   if (scmp(L[1],"@vers")) {
      found_vers =1;
      cvers = L[2];
      //<<[2]"$where $T\n"
@@ -153,6 +154,7 @@
        pmaj++;
    }
    <<[2]"bumped to $pmaj $pmin\n"
+   <<"$pmaj $pmin\n"   
    if (pmaj > 103) {
  <<" need a new major release current \n"
    exit();
@@ -166,15 +168,16 @@
 
 
 
- <<[2]"///  @vers $release ${pmaj}.$pmin ${maj_ele}.$min_ele $min_name    \n"
+   fseek(A,found_where,0)
 
-  fseek(A,found_where,0)
-
-   vers="  @vers ${pmaj}.$pmin $min_ele $min_name "
+   vers="    @vers ${pmaj}.$pmin $min_ele $min_name "
    vlen = slen(vers);
-   pad = nsc(70-vlen," ")
-<<[A]"//*$vers $pad\n"
-<<[A]"//*  @date $date \n"   
+   pad = nsc(69-vlen," ")
+<<[A]"//$vers $pad"
+seekline(A,1)
+<<[A]"//    @date $date"   
+
+
 // <<[A]" ??? \n"
 
 //  fseek(A,0,0)
@@ -185,37 +188,18 @@
   
 
 cf(A);
+// used for asl bump version -- no interaction!
 
 // lets' log this change 
-logfile= "~gapps/LOGS/appmods.log"
+logfile= "~gapps/LOGS/cmods.log"
 A=ofile(logfile,"r+")
 fseek(A,0,2)
 
-ans=iread("app code -what modification?:")
-<<"$ans\n"
-len = slen(srcfile)
-pad = nsc(24-len," ")
-<<[A]"$srcfile${pad}${pmaj}.$pmin\t$date $ans\n"
+//ans=iread("asl code-what modification?:")
+//<<"$ans\n"
+<<[A]"$srcfile\t ${pmaj}.$pmin\t $date \n"
 cf(A)
 
 
-
-
-
-
-
 exit()
- for (i = 0; i < 3;i++) {
-  //<<"$T[i]"
-   ln=T[i]
-  <<"$ln"  
-  }  
 
-
- // so bump minor if over 100 then bump maj and min to 1
- 
- 
-  for (i = 4; i < tsz;i++) {
-   ln=T[i]
-  <<"$ln"
-  }  

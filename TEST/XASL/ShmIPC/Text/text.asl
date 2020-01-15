@@ -35,7 +35,7 @@ include "tbqrd"
  txtwin = cWi("title","MK_INFO")
 
  sWi(txtwin,@pixmapon,@drawon,@save,@bhue,"teal",@sticky,1)
- sWo(txtwin,@grid,20,20);  // setting a grid on parent window for position
+ sWi(txtwin,@grid,20,20);  // setting a grid on parent window for position
 
    titleButtonsQRD(txtwin);
 

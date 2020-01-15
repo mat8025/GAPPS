@@ -273,3 +273,5 @@ edit.asl                 1.10	Wed Jan  1 11:32:24 2020 new line procedure
 edit_w.cpp               1.25	Wed Jan  1 22:24:13 2020 update_line_buffer
 fileop.cpp               1.74	Fri Jan  3 11:17:03 2020 rework readFile
 wo.h                     1.29	Sat Jan  4 07:10:20 2020 add Page ptr
+page_w.cpp	 1.7	 Sun Jan 12 01:40:17 2020 split functions from edit_w
+ds_getvarasstr.cpp	 2.60	 Sun Jan 12 18:35:37 2020 svar array ele

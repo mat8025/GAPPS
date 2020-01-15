@@ -189,9 +189,9 @@ seekline(A,1)
 
 cf(A);
 // used for asl bump version -- no interaction!
-/{
+
 // lets' log this change 
-logfile= "~gapps/LOGS/cmods.log"
+logfile= "~gapps/LOGS/aslcodemods.log"
 A=ofile(logfile,"r+")
 fseek(A,0,2)
 
@@ -199,7 +199,7 @@ ans=iread("asl code-what modification?:")
 <<"$ans\n"
 <<[A]"$srcfile\t ${pmaj}.$pmin\t $date $ans\n"
 cf(A)
-/}
+
 
 exit()
 
