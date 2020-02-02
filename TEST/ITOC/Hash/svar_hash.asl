@@ -76,25 +76,26 @@ index=S->addkeyval(key,ival) // returns index
 
 val = S->lookup(key)
 
-<<"$key $ival $val\n"
+<<"$key  $val\n"
 
 key= "Hastings"
 val = S->lookup(key)
 
-<<"$key $ival $val\n"
+<<"$key  $val\n"
 
 key= "Gettysburg"
 val = S->lookup(key)
 
-<<"$key $ival $val\n"
+<<"$key  $val\n"
 
 sz= S->caz()
 <<"$sz $S[0] \n"
 sdb(1,@~pline)
  for (i=0; i <sz; i += 2) {
-  if (scmp(S[i],"") == 0) {
-<<"$i $S[i] $S[i+1]\n"
-}
+    // if (scmp(S[i],"") == 0) {
+     if (!scmp(S[i],"") ) {
+       <<"$i $S[i] $S[i+1]\n"
+    }
   }
 
 checkStr(val,"1863")

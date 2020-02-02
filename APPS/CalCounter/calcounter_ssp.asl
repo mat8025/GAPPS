@@ -15,8 +15,9 @@
 int NFV = 24;// last is Zn
 int Bestpick[5][2];
 
-page_rows = 6;
+page_rows = 6;  // was 6
 
+FOODCOLSZ = 6;
 
 proc SORT()
 {
@@ -47,8 +48,8 @@ proc SORT_FF()
   sortRows(FF,sortcol,alphasort,sortdir,startrow)
   sortdir *= -1;
 
-     sWo(favorwo,@cellval,FF);
-     sWo(favorwo,@redraw);
+     sWo(foodswo,@cellval,FF);
+     sWo(foodswo,@redraw);
 }
 //======================================================//
 
@@ -58,8 +59,8 @@ proc SORT_FF()
 proc setRowColSizes()
 {
    sWo(cellwo,@setrowsize,2,0,1) ;
-   sWo(cellwo,@setcolsize,3,0,1) ;   
-   sWo(choicewo,@setcolsize,3,0,1) ;
+   sWo(cellwo,@setcolsize,FOODCOLSZ,0,1) ;   
+   sWo(choicewo,@setcolsize,FOODCOLSZ,0,1) ;
 }
 //=====================================//
 
@@ -102,10 +103,10 @@ proc foodSearch()
 
   j= Nbp-1;
   for (i=0; i<Nbp; i++) {
-    bpick = Bestpick[j][1];
-    if (bpick >0) {
-     RC[i] = RF[bpick];
-    <<"<$i> <$j> $bpick $RC[i][0]  $RC[i][1]  $RC[i][2]  $RC[i][3] \n"
+    fpick = Bestpick[j][1];
+    if (fpick >0) {
+     RC[i] = RF[fpick];
+    <<"<$i> <$j> $fpick $RC[i][0]  $RC[i][1]  $RC[i][2]  $RC[i][3] \n"
     }
   else {
    //RC[i][::] = " "; 
@@ -114,7 +115,7 @@ proc foodSearch()
  }
 
 
-<<"best choice?: $RC[0] \n"
+<<"best choice?: $RC[Nbp-1] \n"
 <<"%V $cols\n"
 //sWo(choicewo,@cellval,RC,0,0,2,cols);
 
@@ -129,7 +130,7 @@ proc foodSearch()
    
   sWo(choicewo, @cellval, RC,0,0,Nchoice,cols);  // startrow,startcol,nrows, ncols
 
-  sWo(choicewo,@redraw);
+  sWo(choicewo,@font,F_TINY_,@redraw);
 
  //debugON()
 }
@@ -151,7 +152,6 @@ proc totalRows()
 //
 // last row  should contain previous totals
 //
-
 <<"running $_proc \n"
 
   float fc[25];  // cals,carbs,fat,prt,chol,sfat,txt
@@ -159,7 +159,7 @@ proc totalRows()
   int fi = 3;
   float fval;
   float nval;
-  
+  int nfvals = 0;
   nr= Caz(R);
   
 //<<"%V $Nrows $rows $nr\n"
@@ -190,6 +190,7 @@ proc totalRows()
   
    nc = Caz(R,j);
    if (nc >5) {
+   nfvals++;
    for (kc = 0; kc < NFV  ; kc++) {
  //           wrs = R[j][fi];
 	    fval = atof(R[j][fi]);
@@ -215,7 +216,7 @@ proc totalRows()
    j = frows;
 <<"total row $j $frows \n"
    R[j][0] = "Totals";
-   R[j][1] = "$(j-1)";
+   R[j][1] = "$nfvals";
    R[j][2] = "ITMS";
 
   
@@ -245,14 +246,14 @@ proc totalRows()
 // R->info(1)
  
    R[j][0] = "Totals";
-   R[j][1] = "$(j-1)";
+   R[j][1] = "$nfvals";
    R[j][2] = "ITMS";
 
 <<"done totals \n"
 
 }
 //=====================
-proc FoodFavor()
+proc FoodFavorites()
 {
 ///  
 ///  call back via woname
@@ -338,7 +339,7 @@ proc adjustAmounts (svar irs, f)
 
   a = atof (irs[1]) * f;
   a= fround(a,4)
-<<"%V$a\n";
+//<<"%V$a\n";
 // nfv
  // irs[1] = dewhite("%6.2f$a");
   irs[1] = "%6.4f$a "
@@ -467,9 +468,9 @@ proc PGDWN()
       curr_row = 0;
   }
   
-<<"%V$favorwo $curr_row $page_rows $cs_rows $cols\n"
+<<"%V$foodswo $curr_row $page_rows $cs_rows $cols\n"
 
-  sWo(favorwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0);
+  sWo(foodswo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0);
 
 
    curr_row += page_rows/2;
@@ -484,9 +485,9 @@ proc PGDWN()
         curr_row = 0;
     }
     
-   sWo(favorwo,@selectrowscols,0,0,0,cols,1);
-   sWo(favorwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,1);
-   sWo(favorwo,@setcolsize,3,0,1) ;
+   sWo(foodswo,@selectrowscols,0,0,0,cols,1);
+   sWo(foodswo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,1);
+   sWo(foodswo,@setcolsize,FOODCOLSZ,0,1) ;
 
    
    paintRows();
@@ -497,7 +498,7 @@ proc PGDWN()
    
    sWo(pgnwo,@value,curr_page,@update);
      
-   sWo(favorwo,@redraw);
+   sWo(foodswo,@redraw);
    
 }
 //=====================================//
@@ -507,14 +508,14 @@ proc PGUP()
 
    cs_rows = Nfav;
    npgs =   cs_rows/page_rows;
-   <<"%V $favorwo  $npgs $cs_rows $cols $page_rows $curr_row \n"
+   <<"%V $foodswo  $npgs $cs_rows $cols $page_rows $curr_row \n"
 
    //setdebug(1,@trace);
    if (current_row <0) {
        current_rwo = 0;
    }
    
-   sWo(favorwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0);
+   sWo(foodswo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0);
 
    curr_row -= page_rows/2;
 
@@ -522,12 +523,12 @@ proc PGUP()
        curr_row = 0;
    }
    
-   sWo(favorwo,@selectrowscols,0,0,0,cols,1);
-   sWo(favorwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,1);
-    sWo(favorwo,@setcolsize,3,0,1) ;
+   sWo(foodswo,@selectrowscols,0,0,0,cols,1);
+   sWo(foodswo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,1);
+    sWo(foodswo,@setcolsize,FOODCOLSZ,0,1) ;
   // setRowColSizes();
    paintRows();
-  sWo(favorwo,@redraw);
+  sWo(foodswo,@redraw);
   curr_page--;
   if (curr_page <1) {
       curr_page =1;
@@ -561,17 +562,37 @@ proc paintRows()
    for (i = curr_row; i < endprow ; i++) {
 
 	  if ((i%2)) {
-	       sWo(favorwo,@cellbhue,i,ALL_,CYAN_);
+	       sWo(foodswo,@cellbhue,i,ALL_,CYAN_);
 	     }
 	  else {
-               sWo(favorwo,@cellbhue,i,ALL_,LILAC_);
+               sWo(foodswo,@cellbhue,i,ALL_,LILAC_);
           }
    }
 
-  sWo(favorwo,@cellbhue,endprow,ALL_,YELLOW_);
+  sWo(foodswo,@cellbhue,endprow,ALL_,YELLOW_);
 
 }
 
 
 
 //======================================================//
+
+
+/{
+proc SORT()
+{
+
+  static int sortdir = 1;
+  sortcol = swapcol_a;
+  startrow = 1;
+  alphasort = 0; // 0 auto alpha or number 1 alpha   2 number
+
+  <<"%V  $sortcol $alphasort $sortdir $startrow $(rows-2)\n"
+   sortRows(R,sortcol,alphasort,sortdir,startrow, rows-2)
+  sortdir *= -1;
+
+     sWo(cellwo,@cellval,R);
+     sWo(cellwo,@redraw);
+}
+//======================================================//
+/}

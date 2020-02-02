@@ -15,7 +15,7 @@ sdb(1)
 checkin()
 Svar S
 
-S->table("LUT",30,2) // if not in use makes Svar a hash type -- could extend table
+S->table("LUT",30,2) //   table
 
 key = "mat"
 val = "303 712 1066"

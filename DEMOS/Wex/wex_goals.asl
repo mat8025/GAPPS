@@ -16,16 +16,16 @@
 
 GoalWt = 175;  // ideal -- flying weight
 
-NextGoalWt = 195;
+NextGoalWt = 190;
 
-StartWt = 208;
+StartWt = 212;
 
 
 
 
 //  SET  START AND END DATES HERE
-long targetday = julian("01/20/2020") -bday;
-long sday = julian("01/01/2020") -bday // start date
+long targetday = julian("02/29/2020") -bday;
+long sday = julian("01/24/2020") -bday // start date
 
       gsday = sday;
       gday =  targetday;    // next goal day 

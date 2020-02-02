@@ -31,22 +31,26 @@ proc Compare(phr1,phr2)
   n1 = Caz(phr1); // how many words/field in svar phr1
 
   fwds = Split(phr2);
+  swds = Split(phr1);
 
   n2 = Caz (fwds);
 
 //<<"$n1 $phr1 : $n2   $phr2\n"
 
-///  check food catergory
+///  check food category
+# <BREAD>  FRENCH,1,SLICE,100,18,1,3,0,0.3 ,35,,,,,,,,,,,
 
-  fcat = fwds[n2-1]
 
+//  fcat = fwds[n2-1]
+  fcat = fwds[0]
+  
   if (scmp(fcat,"<",1)) {
 //<<" cat is <|$fcat|>\n"
      fcat= sele(fcat,-2)
 //<<" cat is <|$fcat|>\n"     
      fcat = sele(fcat,1)
 
-     if (scmp(phr1[0],fcat,0,0)) {
+     if (scmp(swds[0],fcat,0,0)) {
         fit += 10;
 //<<" fcat  match <|$fcat|>\n"     
     }
@@ -65,12 +69,12 @@ proc Compare(phr1,phr2)
        if (k < n2) {
          if (wd @= fwds[k]) {
            fit += (5 + (n1-k));
-	   
          }
        }
      }
    }
 
+//<<"%v $fit\n"
     return fit;
 }
 //==============================
@@ -183,8 +187,6 @@ str the_food;
 	   Bestpick[pk][1] = i;
 	   pk++;
 	 }
-	 
-
   
       if (score > best_score) {
           best_score = score;
@@ -195,7 +197,7 @@ str the_food;
              pk = 0;
          }
 
-      if (best_score >50) {
+      if (best_score >30) {
          break;
       }
 	 jj++;

@@ -1,5 +1,20 @@
+//%*********************************************** 
+//*  @script compute_pi.asl 
+//* 
+//*  @comment  
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                    
+//*  @date Sat Jan 25 21:20:17 2020 
+//*  @cdate Sat Jan 25 21:20:17 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+///
+///
+///
 
-<<" start ap\n"
+//<<" start ap\n"
 
 <<" set a & b \n"
 
@@ -19,12 +34,33 @@ c = a * b;
 setap(100)
 
 // 
+
+
+pan pi_c = 6.789
+
+<<"$(typeof(pi_c))\n"
+<<"$pi_c \n"
+
+pi_c = atop("4.8793333333334444444444444444455555555555555555")
+
+<<"$(typeof(pi_c))\n"
+<<"$pi_c \n"
+<<"%p $pi_c \n"
+
+
+//exit()
+
 pi_str = compute_pi(1000)
 
-<<"$pi_str \n"
+<<"$(typeof(pi_str)) $pi_str \n"
 <<" convert the string to a PAN then print out (reconverting to string!)\n"
-pi_c = pi_str
+
+pi_c = atop(pi_str)
+
+<<"$(typeof(pi_c))\n"
+<<"%p $pi_c \n"
 <<"$pi_c \n"
+
 
 A=ofr("pi.txt")
 

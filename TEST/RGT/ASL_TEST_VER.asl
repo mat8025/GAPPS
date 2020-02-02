@@ -737,6 +737,8 @@ if (do_release) {
 
   cart("fsc1")
 
+  cart("mainvar")
+
   updir()
 
   changeDir("Contin")
@@ -1265,7 +1267,7 @@ if (runModule( do_mops )) {
 
 //============================
     RunSFtests("BubbleSort,Typeof,Variables,Trig,Caz,Sizeof,Limit,D2R,Cbrt,Fabs");
-    RunSFtests("Round,Trunc,Wdata,Fscanv,Cmpsetv");
+    RunSFtests("Round,Trunc,Wdata,Fscanv,Cmpsetv,Vrange");
 //============================
 
     RunDirTests("Funcs","abs");

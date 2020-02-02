@@ -17,7 +17,7 @@
 
     sWi(vp,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
 
-    sWi(vp,@resize,0.05,0.05,0.9,0.98,@clip,0.1,0.2,0.98,0.98)
+    sWi(vp,@resize,0.02,0.01,0.95,0.99,@clip,0.1,0.1,0.98,0.98)
 
     sWi(vp,@redraw)
 
@@ -38,6 +38,7 @@
       //arwo = cWo(vp,@BN,@name,"Addrow",@color,ORANGE_,@bhue,"lightblue");
 
       int ssmods[] = { readwo,savewo,sortwo,delrwo };
+      sWo(ssmods,@font,F_TINY_)
 
       sortffwo = cWo(vp,@BN,@name,"SORT_FF",@color,CYAN_);
 
@@ -56,43 +57,52 @@
 
       wovtile(ffmods,0.05,0.2,0.1,0.5,0.05);
 
+      sWo(ffmods,@font,F_TINY_)
+
+
+///////////////////////////// MENU - FoodTypes //////////////////////////////
+
+ mwo=cWo(vp,@MENU,@name,"FoodType",@color,GREEN_,@resize,0.12,0.4,0.19,0.5)
+ sWo(mwo,@border,@drawon,@clipborder,@fonthue,WHITE_,@value,"WhatFoods",@STYLE,"SVB")
+ sWo(mwo,@bhue,BLUE_,@clipbhue,"skyblue",@value,"Sodas",@message,1)
+ sWo(mwo,@menu,"Meats,Breads,Veg,Cheese,Fruits,Fish,Cereals,Cakes,Pies,Juices,Sodas");
+ sWo(mwo,@redraw)
+
+
  Fx =0.20
  
  cellwo=cWo(vp,@SHEET,@name,"DailyCalCnt",@color,GREEN_,@resize,Fx,0.52,0.98,0.96)
 
  sWo(cellwo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"1");
 
- sWo(cellwo,@bhue,CYAN_,@clipbhue,SKYBLUE_,@redraw);
+ sWo(cellwo,@bhue,CYAN_,@font,F_TINY_@clipbhue,SKYBLUE_,@redraw);
 
- favorwo=cWo(vp,"SHEET",@name,"FoodFavor",@color,GREEN_,@resize,Fx,0.21,0.98,0.51)
+ foodswo=cWo(vp,@sheet,@name,"FoodFavorites",@color,GREEN_,@resize,Fx,0.21,0.98,0.51)
 
- sWo(favorwo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"1",@func,"xxx")
+ sWo(foodswo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"1",@func,"xxx")
 
- sWo(favorwo,@bhue,CYAN_,@clipbhue,SKYBLUE_,@redraw);
+ sWo(foodswo,@bhue,CYAN_,@font,F_TINY_@clipbhue,SKYBLUE_,@redraw);
 
 
 
- choicewo=cWo(vp,"SHEET",@name,"FoodChoice",@color,GREEN_,@resize,Fx,0.01,0.98,0.20)
+ choicewo=cWo(vp,@sheet,@name,"FoodChoice",@color,GREEN_,@resize,Fx,0.01,0.98,0.20)
 
  sWo(choicewo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"1",@func,"xxx")
 
- sWo(choicewo,@bhue,CYAN_,@clipbhue,SKYBLUE_,@redraw);
+ sWo(choicewo,@bhue,CYAN_,@font,F_TINY_@clipbhue,SKYBLUE_,@redraw);
 
 
   searchwo =cWo(vp,"BV",@name,"FoodSearch",@color,GREEN_,@resize,0.02,0.01,Fx-0.01,0.14)
   
   sWo(searchwo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"Type in food name",@func,"inputValue");
-
-//sWo(searchwo,@bhue,CYAN_,@clipbhue,LIGHTGREEN_,@style, SVL_, @redraw);
   sWo(searchwo,@bhue,CYAN_,@clipbhue,LIGHTGREEN_,@style, SVB_, @redraw);
 
   sWo(ssmods,@redraw);
   sWo(ffmods,@redraw);  
 
- // sWo(cellwo,@redraw);
 
   sWo(choicewo,@redraw);
-  sWo(favorwo,@redraw);
+  sWo(foodswo,@redraw);
 
   titleVers();
   sWi(vp,@redraw);

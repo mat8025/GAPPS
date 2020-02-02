@@ -58,3 +58,9 @@ mc_font.cpp              1.47	Mon Jan 13 19:37:04 2020 loadFont MC_Font(num)
 mc_font.cpp              1.48	Mon Jan 13 21:33:48 2020 uload font - wrap 10 loadable - use more?
 gsfont.h                 1.6	Tue Jan 14 05:51:49 2020 add ptr to xfont struct
 panel_w.cpp              1.28	Wed Jan 15 22:25:59 2020 use whole window for text
+edit_w.cpp               1.28	Wed Jan 22 08:25:52 2020 cr_exit fix for Wob:getAnswer
+page_w.cpp               1.9	Wed Jan 22 14:20:01 2020 added nlop - lines on page
+edit.h                   1.6	Wed Jan 22 17:54:44 2020 page_up,down,end,home
+page_w.cpp               1.10	Wed Jan 22 18:49:09 2020 added page_up,down,home,end - nlop
+gsfont.h                 1.7	Sat Jan 25 11:25:19 2020 remove name - use FontTable
+fonts_w.cpp              1.45	Sat Jan 25 11:26:11 2020 using FontTable to store get names

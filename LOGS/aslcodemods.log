@@ -275,3 +275,14 @@ fileop.cpp               1.74	Fri Jan  3 11:17:03 2020 rework readFile
 wo.h                     1.29	Sat Jan  4 07:10:20 2020 add Page ptr
 page_w.cpp	 1.7	 Sun Jan 12 01:40:17 2020 split functions from edit_w
 ds_getvarasstr.cpp	 2.60	 Sun Jan 12 18:35:37 2020 svar array ele
+num_l.cpp	 2.84	 Sat Jan 25 21:18:24 2020 atop - single svar return
+ds_sivarray.cpp	 2.70	 Wed Jan 29 07:38:53 2020 free --> sivdel
+wo_p.cpp	 1.82	 Wed Jan 29 11:04:01 2020 deletegwob
+sargs.h	 2.4	 Thu Jan 30 07:19:19 2020 SetUpResult2DArray
+svarg_e.cpp	 2.27	 Thu Jan 30 07:21:12 2020 SetUpResult2DArray
+svarg_e.cpp	 2.27	 Thu Jan 30 07:23:31 2020 SetUpResult2DArray
+aop_l.cpp	 1.21	 Thu Jan 30 08:04:33 2020 added colstats,colave
+statex_e.cpp	 1.29	 Sat Feb  1 11:41:01 2020 line num for DBPLINE
+ds_sivrange.cpp	 1.96	 Sat Feb  1 20:29:30 2020 needs XIC mods for evalrange to work 
+ic_range.cpp	 1.61	 Sat Feb  1 20:31:38 2020 mods for range to call siv evalrange
+array_range.cpp	 2.79	 Sat Feb  1 20:32:39 2020 fix for EVALRANGE XIC

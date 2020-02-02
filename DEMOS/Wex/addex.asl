@@ -152,7 +152,7 @@ proc WhatWt(wr)
 
 
   if (fname @= "")  {
-   fname = "wex2019.tsv";
+   fname = "wex2020.tsv";
   }
 
 

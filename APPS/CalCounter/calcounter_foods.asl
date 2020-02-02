@@ -1,5 +1,5 @@
 //%*********************************************** 
-//*  @script calcounter_fav.asl 
+//*  @script calcounter_foods.asl 
 //* 
 //*  @comment favorite/common food enteries 
 //*  @release CARBON 
@@ -12,7 +12,6 @@
 //***********************************************%
 
 
-
 Record FF[>10];
 
 //============== set up favorites  ====================//
@@ -23,7 +22,10 @@ Record FF[>10];
 
  favi = 0;
  
- A=  ofr("favfoods.csv");
+// A=  ofr("favfoods.csv");
+// A=  ofr("foods-pies.csv");
+// A=  ofr("foods-sodas.csv");
+ A=  ofr("foods-meats.csv");
 
  if (A == -1) {
   <<" can't open food table favfoods \n";
@@ -72,34 +74,52 @@ Record FF[>10];
  else {
  <<"reading favorite foods \n"
   FF= readRecord(A,@del,',')
-  cf(A);
+   cf(A);  
 
   Nfav =  Caz(FF);
   for (i=0;i<Nfav;i++) {
 <<"$i $FF[i]\n"
-  }
+ }
+
+
 
 }
 
 //======================================================//
 
-proc favDisplay()
+proc foodsDisplay()
 {
-   sWo(favorwo,@setrowscols,Nfav+1,cols+1); // setup sheet rows&cols
-   sWo(favorwo,@cellval,FF,0,0,Nfav,cols);  
-   sWo(favorwo,@selectrowscols,0,12,0,cols); // display size of fav
-
-   sWo(favorwo,@setcolsize,3,0,1);
-   sWo(cellwo,@setcolsize,3,0,1) ;
+   dWo(foodswo);
 
 
-  for (i = 0; i< 10 ; i++) {
+ ::foodswo=cWo(vp,@sheet,@name,"FoodFavorites",@color,GREEN_,@resize,Fx,0.21,0.98,0.51)
+
+ sWo(foodswo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"1",@func,"xxx")
+
+ sWo(foodswo,@bhue,CYAN_,@font,F_TINY_@clipbhue,SKYBLUE_,@redraw);
+
+
+
+   sWo(foodswo,@setrowscols,Nfav+1,cols+1); // setup sheet rows&cols
+   sWo(foodswo,@cellval,FF,0,0,Nfav,cols);
+   if (Nfav < page_rows) {
+      sWo(foodswo,@selectrowscols,0,Nfav,0,cols); // display size of fav
+   }
+   else {
+   sWo(foodswo,@selectrowscols,0,page_rows,0,cols); // display size of fav
+   }
+   sWo(foodswo,@setcolsize,FOODCOLSZ,0,1);
+//   sWo(cellwo,@setcolsize,FOODCOLSZ,0,1) ;
+
+
+  for (i = 0; i< page_rows ; i++) {
+  if (i > Nfav) break;
      for (j = 0; j< cols ; j++) {
         if ((i%2)) {
-           sWo(favorwo,@cellbhue,i,j,CYAN_);         
+           sWo(foodswo,@cellbhue,i,j,CYAN_);         
 	}
 	else {
-           sWo(favorwo,@cellbhue,i,j,PINK_);
+           sWo(foodswo,@cellbhue,i,j,PINK_);
 	 }
        }
      }
@@ -107,21 +127,34 @@ proc favDisplay()
 }
 
 //======================================================//
-/{
-proc SORT()
+
+
+
+proc FoodType()
 {
 
-  static int sortdir = 1;
-  sortcol = swapcol_a;
-  startrow = 1;
-  alphasort = 0; // 0 auto alpha or number 1 alpha   2 number
+     wtype =woGetValue(mwo)
+ <<"reading  foods type     $wtype;\n"
+     wtype = slower(wtype)
+  A=  ofr("foods-${wtype}.csv");
+  delete (FF);
+  if (A != -1) {
 
-  <<"%V  $sortcol $alphasort $sortdir $startrow $(rows-2)\n"
-   sortRows(R,sortcol,alphasort,sortdir,startrow, rows-2)
-  sortdir *= -1;
+   ::FF= readRecord(A,@del,',')
+   cf(A);  
 
-     sWo(cellwo,@cellval,R);
-     sWo(cellwo,@redraw);
+  Nfav =  Caz(FF);
+  <<" $Nfav $FF[0]\n"
+    <<" $FF[Nfav-1]\n"
+
+/{/*
+  for (i=0;i<Nfav;i++) {
+   <<"$i $FF[i]\n"
+  }
+/}*/
+
+   foodsDisplay()
+ }
+
 }
-//======================================================//
-/}
+//=======================================

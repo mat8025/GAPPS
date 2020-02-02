@@ -53,9 +53,9 @@ cf(A)
 //==========================
 Nbp = 4; // number of search results
 Nchoice = 4;   // display choice row size
-Nfav = 8;   // display choice row size
+Nfav = 4;   // display choice row size  was 8
 
-  A=  ofr("foodtable2019.csv");
+  A=  ofr("foodtable2020.csv");
 
  if (A == -1) {
   <<" can't open food table $ftfile \n";
@@ -163,7 +163,7 @@ else {
 
 //=========================================================//
 include "checkFood";
-include "calcounter_fav";
+include "calcounter_foods";
 
 Record RC[>10];
 
@@ -235,7 +235,7 @@ int cv = 0;
        }
      }
 
-     favDisplay();
+     foodsDisplay();
      
 
 //============================
@@ -337,10 +337,7 @@ while (1) {
          }
 
 
-//        sWo(cellwo,@redraw);
-
         if (mwr == 0 && (mwc == tags_col) && (_ebutton == RIGHT_)) {
-               <<"Clear tags \n"
                 clearTags();   
         }
 
@@ -350,7 +347,6 @@ while (1) {
         }
 	
         if (mwr > 0 && (mwc == tags_col) ) {
-               <<"mark tags \n"
 	        xms = "";
 	        if (_ebutton == RIGHT_) {
 	          xms = "x"
@@ -393,7 +389,7 @@ while (1) {
 
     sWo(cellwo,@redraw);
     sWo(choicewo,@redraw);
-    sWo(favorwo,@redraw);    
+    sWo(foodswo,@redraw);    
     sWo(ssmods,@redraw);
 }
 
