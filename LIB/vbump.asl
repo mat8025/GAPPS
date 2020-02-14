@@ -191,7 +191,7 @@ cf(A);
 // used for asl bump version -- no interaction!
 
 // lets' log this change 
-logfile= "~gapps/LOGS/cmods.log"
+logfile= "~gapps/LOGS/codemods.log"
 A=ofile(logfile,"r+")
 fseek(A,0,2)
 

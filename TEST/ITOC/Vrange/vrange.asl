@@ -213,11 +213,64 @@ sz=Caz(SI)
 <<"%V $sz\n"
 <<"%V$SI\n"
 
-// warp around till last -10 position
+// wrap around till last -10 position
 SI= I[-1:-10:1] ;  
 sz=Caz(SI)
 <<"%V $sz\n"
 <<"%V$SI\n"
 <<"%V$I[-1] $I[-10]\n"
+
+
+SI= I[:10:] ;  
+sz=Caz(SI)
+<<"%V $sz\n"
+checkNum(sz,11)
+<<"%V$SI\n"
+<<"%V$I[0] $I[10]\n"
+
+int G[20]
+
+
+<<"$G\n"
+
+
+G[5:10]  = I[5:10]
+
+<<"$G\n"
+
+int H[2][20]
+
+
+H[0][5:10]  = I[5:10]
+
+<<"$H\n"
+
+H[::][5:10]  = I[7:12]
+
+<<"$H\n"
+
+
+checkOut();
+exit()
+
+
+
+
+int MD[2][20];
+
+
+MD[0][::] = 79
+
+MD[1][::] = 80
+
+
+<<"$MD\n"
+
+MD[0][5:10] = 54
+
+MD[1][6:11] = 28
+
+
+<<"$MD\n"
 
 checkOut();

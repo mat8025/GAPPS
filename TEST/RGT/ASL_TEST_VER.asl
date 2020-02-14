@@ -25,8 +25,8 @@ debugOFF()
 #define POFF  '\033[0m'
 
 
+wasl = "aslx"   // alsx should be stable
 wasl = "asl"
-wasl = "aslx"
 <<"using $wasl for testing \n"
 
 //ws= getenv("GS_SYS")
@@ -712,8 +712,7 @@ int do_release = 0;
 <<"%V $do_all \n"
 
 if (do_release) {
-
-  wasl = "asl"
+  wasl = "aslx"
   <<"testing release vers \n"
   !!"$wasl -v"
 }
@@ -1267,7 +1266,7 @@ if (runModule( do_mops )) {
 
 //============================
     RunSFtests("BubbleSort,Typeof,Variables,Trig,Caz,Sizeof,Limit,D2R,Cbrt,Fabs");
-    RunSFtests("Round,Trunc,Wdata,Fscanv,Cmpsetv,Vrange");
+    RunSFtests("Round,Trunc,Wdata,Fscanv,Cmpsetv,Vrange,MDRange");
 //============================
 
     RunDirTests("Funcs","abs");
