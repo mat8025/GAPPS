@@ -1,3 +1,16 @@
+//%*********************************************** 
+//*  @script rr.asl 
+//* 
+//*  @comment test readrecord  
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                    
+//*  @date Mon Feb 17 08:14:36 2020 
+//*  @cdate Mon Feb 17 08:14:36 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+
 include "debug"
 debugON()
 setdebug(1,@pline,@~trace,@keep)

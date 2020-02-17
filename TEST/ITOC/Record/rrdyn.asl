@@ -19,8 +19,8 @@
    
    setdebug(1,@pline,@~trace,@keep); 
    
-   
-   Record R[>3] ;
+   checkin(); 
+   Record R[>2] ;
    
    
    proc recspecs()
@@ -38,8 +38,36 @@
    recspecs(); 
    
    <<"$R\n"; 
+
+    checkStr(R[0][3],"Tag")
+    
+    R[1] = Split("Je marche tous les jours")
+
+    recspecs(); 
+
+   <<"$R\n"
+
+    checkStr(R[1][2],"tous")
+
+   R[2] = Split("Camino todos los dias")
+
+    recspecs(); 
+
+   <<"$R\n"
    
-   checkin(); 
+    checkStr(R[2][1],"todos")
+
+
+   R[3] = Split("Gym five days a week")
+
+    recspecs(); 
+
+   <<"$R\n"
+
+   checkStr(R[3][0],"Gym")
+   
+
+   
    
    checkStage(); 
    checkProgress("How Good"); 

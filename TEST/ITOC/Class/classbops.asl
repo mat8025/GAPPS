@@ -22,7 +22,7 @@
   FilterFileDebug(REJECT_,"~storetype_e");
   FilterFuncDebug(REJECT_,"~ArraySpecs",);
   
-  CheckIn(1); 
+  CheckIn(); 
 
   a = 1.0;
   b = 2.0;
@@ -273,19 +273,19 @@
   
 //  <<"$(nsc(20,'\'))\n"
   
-  
+    v= B->y/2.0;
   for (i = 0; i < 4 ; i++) {
     
-    <<"%V $i $v \n"; 
-    my = ((B->y + C->y)/2.0) + C->y; 
+  
+    my = B->y/2.0 ; 
+  <<"%V $i $B->y    $my $v \n"; 
     
-    
-    ok=CheckFNum(my,v,6); 
+    ok=CheckFNum(my,v,5); 
     checkProgress(" for $i"); 
     <<"%V$ok $i $my $v\n"; 
     B->y += 0.2; 
-    
-    v += 0.1; 
+    v  =  B->y/2.0;
+
     }
   
 //<<"$(nsc(20,'/'))\n"
@@ -294,7 +294,9 @@
   CheckNum(i,4); 
   
   checkProgress("$i  i == 4 ");
-  
+
+
+
   v = B->gety(); 
   <<" $v\n"; 
   v1 = C->y;
@@ -344,13 +346,22 @@
   my = A->mul(B->x); 
   
   <<" %V $my $A->x $B->x \n"; 
+
+  val = A->x * B->x;
+  <<"%V $val\n"
+
+  CheckFNum(my,3901,6); 
   
-  CheckFNum(my,0.3,6); 
+  my = A->mul(B->y) + B->mul(A->x); 
+
+  mya = A->mul(B->y);
+  myb = B->mul(A->x);
+<<"$B->x $B->y $A->x $A->y\n"
+  my2 = A->x * B->y   + B->x * A->x;
   
-  my = A->mul(B->x) + B->mul(A->x); 
+<<"%V $my $mya $myb  $my2 $(mya * myb)\n"
   
-  
-  ok=CheckFNum(my,0.6,6); 
+  ok=CheckFNum(my,my2,3); 
   <<"%V$ok  $my == 0.6 $A->x $B->x \n"; 
   my = Sin(0.5); 
   
@@ -377,10 +388,13 @@
   
   
   my = A->mul( B->getx() ); 
+
+  my2 = A->x    * B->getx()
+
+
+  <<" %V $my $my2 $A->x $B->x \n"; 
   
-  <<" %V $my $A->x $B->x \n"; 
-  
-  CheckNum(my,0.3); 
+  CheckFNum(my,my2,3); 
   
   CheckOut(); 
   exit(); 

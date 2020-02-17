@@ -10,3 +10,5 @@ parset_e.cpp color red print for parse error Thu Apr  4 06:30:21 MDT 2019
 icode/ic_cat - resolve svptr - before print Thu Apr  4 06:30:21 MDT 2019
 icode/ic_pushrec -- split out from ic_push Fri Apr  5 06:30:21 MDT 2019
 svar/svar_init  --- removed svar subset - use parent siv aop Sun Apr  7 08:16:34 MDT 2019
+asl.cpp	 2.27	 Mon Feb 17 10:39:39 2020 
+version.cpp	 2.27	 Mon Feb 17 10:39:40 2020 

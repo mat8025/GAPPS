@@ -24,8 +24,8 @@ Record FF[>10];
  
 // A=  ofr("favfoods.csv");
 // A=  ofr("foods-pies.csv");
-// A=  ofr("foods-sodas.csv");
- A=  ofr("foods-meats.csv");
+ A=  ofr("foods-sodas.csv");
+// A=  ofr("foods-meats.csv");
 
  if (A == -1) {
   <<" can't open food table favfoods \n";
@@ -96,7 +96,7 @@ proc foodsDisplay()
 
  sWo(foodswo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"1",@func,"xxx")
 
- sWo(foodswo,@bhue,CYAN_,@font,F_TINY_@clipbhue,SKYBLUE_,@redraw);
+ sWo(foodswo,@bhue,CYAN_,@font,F_TINY_,@clipbhue,SKYBLUE_,@redraw);
 
 
 

@@ -304,3 +304,9 @@ ic_pushrec.cpp	 1.4	 Thu Feb 13 21:53:36 2020 mods foe RECORD 2D
 ds_sivnew.cpp	 1.92	 Thu Feb 13 21:55:58 2020 mods RECORD 2D
 ds_sivflags.cpp	 1.85	 Fri Feb 14 09:02:25 2020 SUBSC_LOCK
 scope_e.cpp	 2.73	 Fri Feb 14 10:33:00 2020 SetArraySpecsOff
+ds_arraycopy.cpp	 2.68	 Sat Feb 15 18:47:37 2020 RECORD copy from number vec or 2D array
+array_store.cpp	 2.78	 Sun Feb 16 09:29:00 2020 ArrayCopyToRecord
+opera_debug.cpp	 1.47	 Mon Feb 17 09:30:09 2020 added opera_debug.h
+hash_e.cpp	 2.25	 Mon Feb 17 09:32:43 2020 added hash_e.h
+ds_sivevent.cpp	 1.97	 Mon Feb 17 09:45:42 2020 ds_sivevent.h
+init_e.cpp	 2.45	 Mon Feb 17 10:06:30 2020 added init_e.h

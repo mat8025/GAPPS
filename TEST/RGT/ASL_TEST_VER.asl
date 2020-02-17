@@ -1166,7 +1166,7 @@ if (runModule( do_mops )) {
 
   if (runModule( do_record )) {
 
-    RunDirTests("Record","rec1,record,readrecord,prtrecord,recprt,recatof,reclhs,rectest");
+    RunDirTests("Record","rec1,record,readrecord,prtrecord,recprt,recatof,reclhs,rectest,mdrecord,rrdyn");
 
 
   }

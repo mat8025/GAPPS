@@ -83,7 +83,8 @@ proc Addrow()
    sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
 
    setRowColSizes();
-   sWo(cellwo,@cellval,R,0,0,rows,cols);
+ //  sWo(cellwo,@cellval,R,0,0,rows,cols);
+   sWo(cellwo,@cellval,R);
    sWo(cellwo,@redraw);
 }
 //======================================//
@@ -192,11 +193,13 @@ proc totalRows()
    if (nc >5) {
    nfvals++;
    for (kc = 0; kc < NFV  ; kc++) {
- //           wrs = R[j][fi];
+            wrs = R[j][fi];
 	    fval = atof(R[j][fi]);
-//wrs->info(1)
-//fval->info(1)
-//<<" $wrs $fval \n"
+wrs->info(1)
+
+
+fval->info(1)
+<<"%V $wrs $fval \n"
 //ans=iread(":")
          fc[kc] += fval;
 
@@ -263,8 +266,11 @@ svar wans;
 
       // add to daily log ? 
          yn=yesornomenu("Add to Daily Log?")
-	 if (yn@="1") {
+
+         if (yn@="1") {
 	 wans = FF[_erow]
+<<"%V$_erow  $wans \n"
+//ans=iread("->?")
          addFoodItem(wans) ; // and save
          }
    }
@@ -284,6 +290,8 @@ svar wans;
 	 if (yn@="1") {
 	 
 	 wans = RC[_erow]
+	 <<"%V $_erow $wans \n"
+	 //ans=iread(":->")
          if (!(wans[1] @= "")) {
          addFoodItem(wans) ; // and save
          }
@@ -296,8 +304,9 @@ proc addFoodItem(svar wfd)
 {
 
     sz= Caz(R)
-<<"in $_proc record $rows $sz\n"
-    er = Nrows;
+
+    er = Nrows-1;
+<<"in $_proc record $rows $sz $er\n"
 
     R[er] = wfd;
 
@@ -316,13 +325,17 @@ proc addFoodItem(svar wfd)
    swaprow_b = er-1;
    
    SWOPROWS();
-
+   R->info(1)
    totalRows();
-
-   sWo(cellwo,@cellval,R,0,0,Nrows,cols);
+<<"$R\n"
+//   sWo(cellwo,@cellval,R,0,0,Nrows,cols);
    setRowColSizes()
-   sWo(cellwo,@redraw);	 
 
+   sWo(cellwo,@cellval,R);
+
+  sWo(cellwo,@redraw);	 
+
+// ans= iread("::")
 }
 //=======================
 

@@ -22,8 +22,11 @@ include "hv.asl"
 include "calcounter_day.asl";
 include "calcounter_ssp.asl";
 
-debugOFF()
+debugON()
+filterFuncDebug(ALLOWALL_,"xxx");
+filterFileDebug(ALLOWALL_,"yyy");
 
+setDebug(1,@~pline,@~trace)
 
 //////   create MENUS here  /////
 A=ofw("HowMuch.m")
@@ -72,8 +75,9 @@ Nfav = 4;   // display choice row size  was 8
 
    for (i= 0; i < 3; i++) {
        nc = Caz(RF,i);
-<<"<$i> $nc $RF[i] \n";
-    }
+      <<"<$i> $nc $RF[i] \n";
+      RF->info(1)
+   }
 
     for (i= Nrecs -5; i < Nrecs; i++) {
      nc = Caz(RF,i);
@@ -128,22 +132,24 @@ if (found_day ) {
    cf(A);
 }
 else {
-
+ R->info(1)
  R[0]= Split("Food,Amt,Unit,Cals,Carbs(g),Fat,Prot,Choles(mg),SatFat(g),Wt(g),Choline(mg),vA(dv),vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn,GMT,",",");
  //R[1] = Split("Totals,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0",",");
+
+
 }
 
   sz = Caz(R);
   Nrows = sz;
-  
   Ncols = Caz(R,0);
   
   rows = sz+1;
   cols = Ncols;
-
+  R->info(1)
 
 <<"num of records $sz  %V $rows $Ncols\n"
-  totalRows();
+<<"$R\n"
+
   
   sz = Caz(R);
   Nrows = sz;
@@ -154,12 +160,17 @@ else {
 
 <<"num of records $sz  %V $rows $Ncols\n"
 
-<<"/////////// %v $rows\n"
 
+<<"/////////// %v $rows\n"
+/{
   for (j=0; j<rows; j++) {
 <<"$j  $R[j]\n"
   }
 
+/}
+R->info(1)
+
+totalRows();
 
 //=========================================================//
 include "checkFood";
@@ -181,8 +192,8 @@ int cv = 0;
   tags_col = cols;
  // rows += 2;
  
-  sWo(cellwo,@setrowscols,rows+10,cols+1);
-  sWo(cellwo,@cellval,R,0,0,rows,cols);  
+  sWo(cellwo,@setrowscols,rows+1,cols+1);
+  sWo(cellwo,@cellval,R,0,0,Nrows,Ncols);  
 <<"%V$rows $sz \n"
 
   for (i = 0; i < rows;i++) { 
@@ -204,13 +215,19 @@ int cv = 0;
 
 
  
-  sWo(cellwo,@cellval,R,0,0,rows+1,cols);  
+  sWo(cellwo,@cellval,R,0,0,rows,cols);
+  R->info(1)
   sWo(cellwo,@selectrowscols,0,rows,0,cols);
 
   sWo(cellwo,@cellval,0,tags_col,"Tags")
+ // sWo(cellwo,@cellval,0,0,"Food")
+ // sWo(cellwo,@cellval,0,1,"Amt")
+ // sWo(cellwo,@cellval,0,2,"Unit")
+ // sWo(cellwo,@cellval,0,3,"Cals")
 
 
-    R[0][tags_col] = "Tags";
+   R[0][tags_col] = "Tags";
+<<"$R\n"
 
 <<"%V $Nchoice \n"
 
@@ -262,7 +279,7 @@ int cv = 0;
 //  Addrow();
 
   myfood = "pie apple"
-  FoodSearch();    // intial search bug
+  FoodSearch();    // initial search bug
 
  str rcword ="xxx"
 
@@ -272,6 +289,9 @@ int mwc = 0;
   //  yn=yesornomenu("Edit Daily Log?")
 //debugON()
 
+sWo(cellwo,@cellval,R,0,0,rows,cols);
+R->info(1)
+  
 while (1) {
 
          eventWait();
@@ -282,7 +302,7 @@ while (1) {
 
          mwr = _erow;
 	 mwc = _ecol;
-
+<<"%V $mwr $mwc \n"
       if ( (mwr >= 0)  && (mwc >= 0)) {
 	 <<"get rcword $mwr  $mwc \n"
            if (mwr < Nrows) {
