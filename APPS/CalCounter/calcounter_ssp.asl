@@ -61,6 +61,8 @@ proc setRowColSizes()
    sWo(cellwo,@setrowsize,2,0,1) ;
    sWo(cellwo,@setcolsize,FOODCOLSZ,0,1) ;   
    sWo(choicewo,@setcolsize,FOODCOLSZ,0,1) ;
+      sWo(totalswo,@setcolsize,FOODCOLSZ,0,1) ;
+       <<"%V$totalswo \n"
 }
 //=====================================//
 
@@ -126,10 +128,10 @@ proc foodSearch()
 
 //testargs(1,choicewo,@selectrowscols,0,2,0,cols-1,1); // startrow,endrow,startcol,endcol
 
-  sWo(choicewo,@selectrowscols,0,Nchoice,0,cols-1,1); // startrow,endrow,startcol,endcol
+  sWo(choicewo,@selectrowscols,0,Nchoice,0,Fcols-1,1); // startrow,endrow,startcol,endcol
   setRowColSizes();
    
-  sWo(choicewo, @cellval, RC,0,0,Nchoice,cols);  // startrow,startcol,nrows, ncols
+  sWo(choicewo, @cellval, RC,0,0,Nchoice,Fcols);  // startrow,startcol,nrows, ncols
 
   sWo(choicewo,@font,F_TINY_,@redraw);
 
@@ -166,6 +168,7 @@ proc totalRows()
 //<<"%V $Nrows $rows $nr\n"
 //<<"R[0] $R[0] \n"
   frows = Nrows-1;
+
 //<<"$R[0][::]\n"
 //<<"$R[1][::]\n"
 //<<"%V $frows  $R[frows][0]\n"
@@ -177,14 +180,16 @@ proc totalRows()
   <<"creating totals \n"
    Nrows++;
    frows = Nrows-1;
-   R[frows] = Split("Totals,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0",",");
+   Tot[0] = Split("Totals,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0",",");
    tword = deWhite(R[frows][0]);
   }
 
 
   //fc->info(1)
 
+   nrows_counted =0;
    for (j = 1; j < frows ; j++) {
+
      fi = 3;
 
   <<"R<$j> $R[j]\n"
@@ -192,13 +197,16 @@ proc totalRows()
    nc = Caz(R,j);
    if (nc >5) {
    nfvals++;
+
    for (kc = 0; kc < NFV  ; kc++) {
             wrs = R[j][fi];
+	    if (wrs @= "")
+	           break;
 	    fval = atof(R[j][fi]);
-wrs->info(1)
+//wrs->info(1)
 
 
-fval->info(1)
+//fval->info(1)
 <<"%V $wrs $fval \n"
 //ans=iread(":")
          fc[kc] += fval;
@@ -207,52 +215,39 @@ fval->info(1)
 
 	  fi++;
       }
+      nrows_counted++;
     }
 
 
     }
-
-
-
-  <<"R[0] $R[0] \n"
 
    j = frows;
-<<"total row $j $frows \n"
-   R[j][0] = "Totals";
-   R[j][1] = "$nfvals";
-   R[j][2] = "ITMS";
+   
+<<"total rows $nrows_counted $frows \n"
 
-  
-  <<"$R[j][::] \n"
-  <<"R[0] $R[0] \n"
+   Tot[0][0] = "Totals";
+   Tot[0][1] = "$nfvals";
+   Tot[0][2] = "ITMS";
 
    R->info(1)
 
-  <<"R[0] $R[0] \n"
-  <<"R[j] $R[j] \n"
 
    for (kc = 0; kc < NFV  ; kc++) {
 
           nval = fc[kc];
        // R[j][3+kc] = dewhite("%6.2f$fc[kc]");  // TBF
 
-          R[j][3+kc] = "%6.2f$nval";
+          Tot[0][3+kc] = "%6.1f$nval";
+
+//<<"$kc  $Tot[0][3+kc] \n"	  
+
 //	  rval = R[j][3+kc];
-//       <<"%V $j $kc $nval $rval $R[j][3+kc] \n"
+//       
     }
 
 
-   // kc = 0;
-  //  R[j][3] = dewhite("%6.2f$fc[0]");
-// R->info(1)
-// <<"R[0] $R[0] \n"
-// R->info(1)
- 
-   R[j][0] = "Totals";
-   R[j][1] = "$nfvals";
-   R[j][2] = "ITMS";
-
-<<"done totals \n"
+<<"done totals\n $Tot\n"
+<<"$R\n"
 
 }
 //=====================
@@ -304,14 +299,27 @@ proc addFoodItem(svar wfd)
 {
 
     sz= Caz(R)
+// find first empty? row
 
+    er = -1;
+    for (i=1; i < Nrows; i++) {
+     wval = R[i][0];
+     <<"empty? $i <$wval>\n"
+     if (wval @= "") {
+        er = i;
+	break;
+     }
+    }
+
+   if (er == -1) {
     er = Nrows-1;
-<<"in $_proc record $rows $sz $er\n"
-
-    R[er] = wfd;
-
     rows++;
     Nrows++;
+   }
+   
+<<"in $_proc record $rows  $er\n"
+
+    R[er] = wfd;
     sz = Caz(R);
     
   <<"%V $sz $rows $Nrows\n"
@@ -321,21 +329,27 @@ proc addFoodItem(svar wfd)
    sWo(cellwo,@setrowscols,rows+1,cols+1);
    sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
     // swap prev last and this row
-   swaprow_a = er;
-   swaprow_b = er-1;
+ //  swaprow_a = er;
+  // swaprow_b = er-1;
    
-   SWOPROWS();
+  // SWOPROWS();
    R->info(1)
    totalRows();
 <<"$R\n"
 //   sWo(cellwo,@cellval,R,0,0,Nrows,cols);
    setRowColSizes()
 
-   sWo(cellwo,@cellval,R);
+  sWo(cellwo,@cellval,R);
+  sWo(cellwo,@redraw);
+ <<"%V$totalswo \n"
+ <<"%V $cols\n"
 
-  sWo(cellwo,@redraw);	 
+  sWo(totalswo,@selectrowscols,0,0,0,29);
+  sWo(totalswo,@cellval,Tot);
 
-// ans= iread("::")
+<<"redrawing $totalswo %V$Tot\n"
+  sWo(totalswo,@border,@clipborder,@redraw);  
+
 }
 //=======================
 
@@ -355,11 +369,11 @@ proc adjustAmounts (svar irs, f)
 //<<"%V$a\n";
 // nfv
  // irs[1] = dewhite("%6.2f$a");
-  irs[1] = "%6.4f$a "
+    irs[1] = "%6.1f$a "
    for (i = 3; i < (NFV+3); i++)     {
      a = atof (irs[i]) * f;
      a= fround(a,4)
-     val = "%6.4f$a"
+     val = "%6.1f$a"
      irs[i] = val;
 //<<"<$i> $irs[i] $a $val\n"
 //<<"wans $wans\n"
@@ -368,7 +382,9 @@ proc adjustAmounts (svar irs, f)
     }
 
 <<"$irs[::] \n"
-
+    totalrows()
+     sWo(cellwo,@cellval,R,0,0,Nrows,cols);
+     sWo(cellwo,@redraw);    
 }
 //==================================
 proc changeAmount(the_row)
@@ -483,7 +499,7 @@ proc PGDWN()
   
 <<"%V$foodswo $curr_row $page_rows $cs_rows $cols\n"
 
-  sWo(foodswo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0);
+  sWo(foodswo,@selectrowscols,curr_row,curr_row+page_rows,0,Fcols,0);
 
 
    curr_row += page_rows/2;
@@ -498,8 +514,8 @@ proc PGDWN()
         curr_row = 0;
     }
     
-   sWo(foodswo,@selectrowscols,0,0,0,cols,1);
-   sWo(foodswo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,1);
+   sWo(foodswo,@selectrowscols,0,0,0,Fcols,1);
+   sWo(foodswo,@selectrowscols,curr_row,curr_row+page_rows,0,Fcols,1);
    sWo(foodswo,@setcolsize,FOODCOLSZ,0,1) ;
 
    
@@ -528,7 +544,7 @@ proc PGUP()
        current_rwo = 0;
    }
    
-   sWo(foodswo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0);
+   sWo(foodswo,@selectrowscols,curr_row,curr_row+page_rows,0,Fcols,0);
 
    curr_row -= page_rows/2;
 
@@ -536,8 +552,8 @@ proc PGUP()
        curr_row = 0;
    }
    
-   sWo(foodswo,@selectrowscols,0,0,0,cols,1);
-   sWo(foodswo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,1);
+   sWo(foodswo,@selectrowscols,0,0,0,Fcols,1);
+   sWo(foodswo,@selectrowscols,curr_row,curr_row+page_rows,0,Fcols,1);
     sWo(foodswo,@setcolsize,FOODCOLSZ,0,1) ;
   // setRowColSizes();
    paintRows();

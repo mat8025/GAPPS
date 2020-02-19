@@ -17,7 +17,7 @@
    filterFuncDebug(ALLOWALL_,"xxx");
    filterFileDebug(ALLOWALL_,"yyy");
    
-   setdebug(1,@pline,@~trace,@keep); 
+   setdebug(1,@pline,@trace,@keep); 
    
    checkin(); 
    Record R[>2] ;
@@ -67,7 +67,12 @@
    checkStr(R[3][0],"Gym")
    
 
-   
+
+   R[15] = Split("Necesito correr más")
+
+    recspecs();
+
+   <<"$R\n"
    
    checkStage(); 
    checkProgress("How Good"); 

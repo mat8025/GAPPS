@@ -36,7 +36,7 @@ str cvalue ="xx";
 
 //////////////////////   these records needed and used for any GSS /////////////////////
 
-Record R[>5];
+Record R[>15];
 
 Rn = 5;
 

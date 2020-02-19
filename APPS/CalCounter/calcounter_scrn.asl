@@ -12,12 +12,13 @@
 ///
 ///   ddc screen
 ///
+//int Fcols = 10;
 
     vp = cWi(@title,"S2D:$day_name")
 
     sWi(vp,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
 
-    sWi(vp,@resize,0.02,0.01,0.95,0.99,@clip,0.1,0.1,0.98,0.98)
+    sWi(vp,@resize,0.01,0.01,0.95,0.99,@clip,0.1,0.1,0.98,0.99)
 
     sWi(vp,@redraw)
 
@@ -53,31 +54,56 @@
 
       int ffmods[] = {sortffwo, pguwo,pgdwo,pgnwo };
 
-      wovtile(ssmods,0.05,0.55,0.1,0.9,0.05);
+      wovtile(ssmods,0.66,0.55,0.69,0.9,0.05);
 
-      wovtile(ffmods,0.05,0.2,0.1,0.5,0.05);
+      wovtile(ffmods,0.66,0.2,0.69,0.5,0.05);
 
       sWo(ffmods,@font,F_TINY_)
 
 
 ///////////////////////////// MENU - FoodTypes //////////////////////////////
 
- mwo=cWo(vp,@MENU,@name,"FoodType",@color,GREEN_,@resize,0.12,0.4,0.19,0.5)
+ mwo=cWo(vp,@MENU,@name,"FoodType",@color,GREEN_,@resize,0.72,0.81,0.8,0.88)
  sWo(mwo,@border,@drawon,@clipborder,@fonthue,WHITE_,@value,"WhatFoods",@STYLE,"SVB")
  sWo(mwo,@bhue,BLUE_,@clipbhue,"skyblue",@value,"Sodas",@message,1)
  sWo(mwo,@menu,"Meats,Breads,Veg,Cheese,Fruits,Fish,Cereals,Cakes,Pies,Juices,Sodas,Drinks");
  sWo(mwo,@redraw)
 
 
- Fx =0.20
- 
- cellwo=cWo(vp,@SHEET,@name,"DailyCalCnt",@color,GREEN_,@resize,Fx,0.52,0.98,0.96)
+ Fx =0.01
+ FX=0.65
+ cellwo=cWo(vp,@SHEET,@name,"DailyCalCnt",@color,GREEN_,@resize,Fx,0.21,FX,0.96)
 
- sWo(cellwo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"1");
+ sWo(cellwo,@border,@drawon,@clipborder,@fonthue,BLACK_,@value,"1");
 
  sWo(cellwo,@bhue,CYAN_,@font,F_TINY_,@clipbhue,SKYBLUE_,@redraw);
 
- foodswo=cWo(vp,@sheet,@name,"FoodFavorites",@color,GREEN_,@resize,Fx,0.21,0.98,0.51)
+
+ totalswo = cWo(vp,@sheet,@name,"Totals",@color,BLUE_,@resize,Fx,0.1,FX,0.2)
+ <<"%V$totalswo \n"
+// sWo(totalswo,@border,@drawon,@clipborder,@fonthue,ORANGE_,@value,"1",@func,"xxx")
+ sWo(totalswo,@border,@drawon,@clipborder,@fonthue,ORANGE_,@value,"1")
+
+ sWo(totalswo,@bhue,RED_,@font,F_TINY_,@clipbhue,SKYBLUE_,@redraw);
+
+
+ CFx= 0.71
+ CFX= 0.99
+
+  searchwo =cWo(vp,"BV",@name,"FoodSearch",@color,GREEN_,@resize,0.72,0.90,75,0.98)
+  
+  sWo(searchwo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"Apple Pie",@func,"inputValue");
+  sWo(searchwo,@bhue,CYAN_,@clipbhue,LIGHTGREEN_,@style, SVB_, @redraw);
+
+ choicewo=cWo(vp,@sheet,@name,"FoodChoice",@color,GREEN_,@resize, CFx,0.51,CFX,0.80)
+
+ sWo(choicewo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"1",@func,"xxx")
+
+ sWo(choicewo,@bhue,CYAN_,@font,F_TINY_,@clipbhue,SKYBLUE_,@redraw);
+
+
+ foodswo=cWo(vp,@sheet,@name,"FoodFavorites",@color,GREEN_,@resize,CFx,0.01,CFX,0.50)
+
 
  sWo(foodswo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"1",@func,"xxx")
 
@@ -85,27 +111,20 @@
 
 
 
- choicewo=cWo(vp,@sheet,@name,"FoodChoice",@color,GREEN_,@resize,Fx,0.01,0.98,0.20)
-
- sWo(choicewo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"1",@func,"xxx")
-
- sWo(choicewo,@bhue,CYAN_,@font,F_TINY_,@clipbhue,SKYBLUE_,@redraw);
 
 
-  searchwo =cWo(vp,"BV",@name,"FoodSearch",@color,GREEN_,@resize,0.02,0.01,Fx-0.01,0.14)
-  
-  sWo(searchwo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"Type in food name",@func,"inputValue");
-  sWo(searchwo,@bhue,CYAN_,@clipbhue,LIGHTGREEN_,@style, SVB_, @redraw);
+
 
   sWo(ssmods,@redraw);
   sWo(ffmods,@redraw);  
 
 
   sWo(choicewo,@redraw);
+  sWo(totalswo,@redraw);  
   sWo(foodswo,@redraw);
 
   titleVers();
   sWi(vp,@redraw);
-
+ <<"%V$totalswo \n"
 
 //=====================================

@@ -87,12 +87,13 @@ Record FF[>10];
 
 //======================================================//
 
+
 proc foodsDisplay()
 {
    dWo(foodswo);
 
 
- ::foodswo=cWo(vp,@sheet,@name,"FoodFavorites",@color,GREEN_,@resize,Fx,0.21,0.98,0.51)
+ ::foodswo=cWo(vp,@sheet,@name,"FoodFavorites",@color,GREEN_,@resize,CFx,0.01,CFX,0.50)
 
  sWo(foodswo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"1",@func,"xxx")
 
@@ -100,13 +101,13 @@ proc foodsDisplay()
 
 
 
-   sWo(foodswo,@setrowscols,Nfav+1,cols+1); // setup sheet rows&cols
-   sWo(foodswo,@cellval,FF,0,0,Nfav,cols);
+   sWo(foodswo,@setrowscols,Nfav+1,Fcols+1); // setup sheet rows&cols
+   sWo(foodswo,@cellval,FF,0,0,Nfav,Fcols);  // start & finish row/cols - so Ncols,Nrows must be one more!
    if (Nfav < page_rows) {
-      sWo(foodswo,@selectrowscols,0,Nfav,0,cols); // display size of fav
+      sWo(foodswo,@selectrowscols,0,Nfav,0,Fcols); // display size of fav
    }
    else {
-   sWo(foodswo,@selectrowscols,0,page_rows,0,cols); // display size of fav
+   sWo(foodswo,@selectrowscols,0,page_rows,0,Fcols); // display size of fav
    }
    sWo(foodswo,@setcolsize,FOODCOLSZ,0,1);
 //   sWo(cellwo,@setcolsize,FOODCOLSZ,0,1) ;
@@ -114,7 +115,7 @@ proc foodsDisplay()
 
   for (i = 0; i< page_rows ; i++) {
   if (i > Nfav) break;
-     for (j = 0; j< cols ; j++) {
+     for (j = 0; j< Fcols ; j++) {
         if ((i%2)) {
            sWo(foodswo,@cellbhue,i,j,CYAN_);         
 	}

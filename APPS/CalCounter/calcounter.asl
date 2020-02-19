@@ -22,6 +22,8 @@ include "hv.asl"
 include "calcounter_day.asl";
 include "calcounter_ssp.asl";
 
+
+
 debugON()
 filterFuncDebug(ALLOWALL_,"xxx");
 filterFileDebug(ALLOWALL_,"yyy");
@@ -53,7 +55,13 @@ A=ofw("HowMuch.m")
 <<[A],"help set mins\n"  
 cf(A)
 
+Record Tot[1];
+
+
 //==========================
+int Fcols = 10;
+
+
 Nbp = 4; // number of search results
 Nchoice = 4;   // display choice row size
 Nfav = 4;   // display choice row size  was 8
@@ -121,11 +129,13 @@ Nfav = 4;   // display choice row size  was 8
  int fnd = 0;
  int bpick;
 
-// Record DF[10];
+
 
  DF[0] = Split("?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?",",");
-   
-// Record R[];
+ //Tot[0]= Split("FoodT,Amt,Unit,Cals,Carbs(g),Fat,Prot,Choles(mg),SatFat(g),Wt(g),Choline(mg),vA(dv),vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn,GMT,",",");
+ Tot[0] = Split("Totals,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0",",");
+ // Tot[2] = Split("Totals,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0",",");
+  
 
 if (found_day ) {
    R= readRecord(A,@del,',')
@@ -170,7 +180,11 @@ else {
 /}
 R->info(1)
 
-totalRows();
+
+include "graphic.asl"
+include "calcounter_scrn";
+
+//totalRows();
 
 //=========================================================//
 include "checkFood";
@@ -182,8 +196,7 @@ Record RC[>10];
 
 //======================================================//
 
-include "graphic.asl"
-include "calcounter_scrn";
+
 
 
 int cv = 0;
@@ -193,7 +206,12 @@ int cv = 0;
  // rows += 2;
  
   sWo(cellwo,@setrowscols,rows+1,cols+1);
-  sWo(cellwo,@cellval,R,0,0,Nrows,Ncols);  
+  sWo(cellwo,@cellval,R,0,0,Nrows,Ncols);
+<<"%V$Ncols \n"
+  sWo(totalswo,@setrowscols,1,40);
+  sWo(totalswo,@cellval,Tot,0,0,0,Ncols);  
+  sWo(totalswo,@setcolsize,3,0,1);
+
 <<"%V$rows $sz \n"
 
   for (i = 0; i < rows;i++) { 
@@ -212,6 +230,17 @@ int cv = 0;
        }
      }
 
+// sWo(foodswo,@cellbhue,i,ALL_,CYAN_);
+
+    for (i = 0; i< 2 ; i++) {
+        if ((i%2)) {
+          sWo(totalswo,@cellbhue,i,ALL_,LILAC_);         
+	}
+	else {
+          sWo(totalswo,@cellbhue,i,ALL_,YELLOW_);
+	 }
+     }
+
 
 
  
@@ -220,6 +249,9 @@ int cv = 0;
   sWo(cellwo,@selectrowscols,0,rows,0,cols);
 
   sWo(cellwo,@cellval,0,tags_col,"Tags")
+
+  sWo(totalswo,@cellval,Tot);
+
  // sWo(cellwo,@cellval,0,0,"Food")
  // sWo(cellwo,@cellval,0,1,"Amt")
  // sWo(cellwo,@cellval,0,2,"Unit")
@@ -231,10 +263,10 @@ int cv = 0;
 
 <<"%V $Nchoice \n"
 
-   sWo(choicewo,@setrowscols,Nchoice+1,cols+1); // setup sheet rows&cols
+   sWo(choicewo,@setrowscols,Nchoice+1,Fcols+1); // setup sheet rows&cols
    // before  setting cellvals!
-   sWo(choicewo,@cellval,RC,0,0,Nchoice,cols);  
-   sWo(choicewo,@selectrowscols,0,Nchoice,0,cols);
+   sWo(choicewo,@cellval,RC,0,0,Nchoice,Fcols);  
+   sWo(choicewo,@selectrowscols,0,Nchoice,0,Fcols);
    sWo(choicewo,@setcolsize,3,0,1);
 
    <<"%V $choicewo \n"
@@ -252,10 +284,12 @@ int cv = 0;
        }
      }
 
-     foodsDisplay();
+    foodsDisplay();
      
 
 //============================
+
+
 
 
 // sWo(cellwo,@cellbhue,1,-2,LILAC_); // row,col wr,-2 all cells in row
@@ -266,12 +300,14 @@ int cv = 0;
    setRowColSizes();
 
 
-   sWo(choicewo,@cellval,RC,0,0,Nchoice,cols);
+   //sWo(totalswo,@cellbhue,1,ALL_,CYAN_);
+   sWo(choicewo,@cellval,RC,0,0,Nchoice,Fcols);
    // RecordVar, startrow, startcol, nrows, ncols,
  
    sWo(cellwo,@redraw);
    
    sWo(choicewo,@redraw);
+   sWo(totalswo,@redraw);   
 
 <<"%V $choicewo $cellwo \n"
 //testargs(1,choicewo,@selectrowscols,0,2,0,cols-1,1); // startrow,endrow,startcol,endcol
@@ -279,7 +315,9 @@ int cv = 0;
 //  Addrow();
 
   myfood = "pie apple"
-  FoodSearch();    // initial search bug
+  //FoodSearch();    // initial search bug
+
+  foodSearch()
 
  str rcword ="xxx"
 
@@ -405,11 +443,12 @@ while (1) {
       }
      }
      
-
-
-    sWo(cellwo,@redraw);
-    sWo(choicewo,@redraw);
-    sWo(foodswo,@redraw);    
+  
+    sWo(totalswo,@cellval,Tot);
+    sWo(totalswo,@border,@clipborder,@redraw);  
+    sWo(cellwo,@border,@clipborder,@redraw);  
+    sWo(choicewo,@border,@clipborder,@redraw);  
+    sWo(foodswo,@border,@clipborder,@redraw);  
     sWo(ssmods,@redraw);
 }
 
@@ -428,5 +467,8 @@ exit()
   save on each add
   add GMT to row end --- allow edit and use last time
   filter out of multiply entry
+
+  make totals-rows -- one row GSS
+
 
 /}*/
