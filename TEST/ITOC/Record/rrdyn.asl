@@ -17,7 +17,7 @@
    filterFuncDebug(ALLOWALL_,"xxx");
    filterFileDebug(ALLOWALL_,"yyy");
    
-   setdebug(1,@pline,@trace,@keep); 
+   setdebug(1,@pline,@~trace,@keep); 
    
    checkin(); 
    Record R[>2] ;
@@ -72,8 +72,18 @@
 
     recspecs();
 
+<<"$R\n"
+
+Ncols = 10;
+Delc = 44;
+
+     B=ofw("junk.rec")
+
    <<"$R\n"
-   
+     nrw=writeRecord(B,R,@del,Delc,@ncols,Ncols);
+
+
+   cf(B)
    checkStage(); 
    checkProgress("How Good"); 
    checkOut(); 

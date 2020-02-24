@@ -2092,21 +2092,21 @@ if A is a scalar function returns 0
 .EF
 =============================================================
 .BF
-Cmp()
+Cmp(),CmpArray()
 .(x
 Cmp
 .)x 
 .FD
-Cmp(A,B,condition,{1})
-compares 2 arrays  using "<,>,==,,!=,>=,<=" operations
+Cmp(A,B,condition,[1])
+compares 2 arrays  of same order using "<,>,==,,!=,>=,<=" operations
     delivers an integer array which contains indices - where the
     operation was TRUE - else first element is -1 for no valid comparison
-optionally delivers integer array where elements are 0 or 1 depending on TRUE/FALSE of element comparison
+optionally delivers integer array where elements are 0 or 1 
+depending on TRUE/FALSE of element comparison
 e.g.
 I=Cmp(A,B,"<=")
 I=Cmp(A[::2],B[0::2],">")
 I=Cmp(A,B,"!=",1)
-
 .EF
 =============================================================
 .BF
@@ -2839,6 +2839,20 @@ if step is set, then value is incremented by step for each element.
 For complex vectors each real imag pair is set to value and then the step is incremented.
 .EF
 =============================================================
+BF
+matgen()
+.(x
+matgen
+.)x 
+.FD
+M=matgen(TYPE,rows,cols,{init_val},{step})
+generates a matrix {rows][cols] values,of type (FLOAT,INT,SHORT,CHAR, CMPLX ...) 
+initialised to  init_val (default 0),
+if step is set, then value is incremented by step for each element.
+For complex vectors each real imag pair is set to value and then the step is incremented.
+.EF
+=============================================================
+
 .BF
 fgen()
 .(x
@@ -5315,14 +5329,27 @@ Sel(A,condition,val,{1},{justfirst})
 compares array values  using "<,>,==,,!=,>=,<=" operations with value
     delivers an integer array which contains indices - where the
     operation was TRUE - else first element is -1 for no valid comparison
-optionally delivers integer array where elements are 0 or 1 depending on TRUE/FALSE of element value comparison
-If you need just the first element/index where the condition was true set the final optional arg (justfirst) to one,
+optionally delivers integer array where elements are 0 or 1
+depending on TRUE/FALSE of element value comparison
+If you need just the first element/index where the condition was true
+set the final optional arg (justfirst) to one,
 the default is to work through the vector.
 (see Cmp)
-
-
 .EF
 =============================================================
+.BF
+SelVi()
+.(x
+SelVi
+.)x 
+.FD
+SelVi(Array,Vec)
+uses indices in Vec to build a subset vector from Array
+.EF
+=============================================================
+
+
+
 .BF
 Stats()
 .(x

@@ -66,3 +66,4 @@ gsfont.h                 1.7	Sat Jan 25 11:25:19 2020 remove name - use FontTabl
 fonts_w.cpp              1.45	Sat Jan 25 11:26:11 2020 using FontTable to store get names
 sendmsg_w.cpp            1.38	Sun Feb 16 22:20:40 2020 use input parameter wo_id to get Wob*
 ops_w.cpp                1.27	Sun Feb 16 22:21:45 2020 added getWob  Wob* from wo_id
+wo_sheetdraw_w.cpp       1.56	Wed Feb 19 07:15:21 2020 guard for sheet cols overrun

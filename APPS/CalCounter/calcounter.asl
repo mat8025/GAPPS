@@ -209,8 +209,9 @@ int cv = 0;
   sWo(cellwo,@cellval,R,0,0,Nrows,Ncols);
 <<"%V$Ncols \n"
   sWo(totalswo,@setrowscols,1,40);
-  sWo(totalswo,@cellval,Tot,0,0,0,Ncols);  
-  sWo(totalswo,@setcolsize,3,0,1);
+  sWo(totalswo,@cellval,Tot,0,0,0,Ncols);
+  sWo(totalswo,@setcolsize,FOODCOLSZ,0,1) ;
+ // sWo(totalswo,@setcolsize,3,0,1);
 
 <<"%V$rows $sz \n"
 

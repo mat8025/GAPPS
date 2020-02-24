@@ -61,7 +61,7 @@ proc setRowColSizes()
    sWo(cellwo,@setrowsize,2,0,1) ;
    sWo(cellwo,@setcolsize,FOODCOLSZ,0,1) ;   
    sWo(choicewo,@setcolsize,FOODCOLSZ,0,1) ;
-      sWo(totalswo,@setcolsize,FOODCOLSZ,0,1) ;
+   sWo(totalswo,@setcolsize,FOODCOLSZ,0,1) ;
        <<"%V$totalswo \n"
 }
 //=====================================//
@@ -237,7 +237,7 @@ proc totalRows()
           nval = fc[kc];
        // R[j][3+kc] = dewhite("%6.2f$fc[kc]");  // TBF
 
-          Tot[0][3+kc] = "%6.1f$nval";
+          Tot[0][3+kc] = "%6.2f$nval";
 
 //<<"$kc  $Tot[0][3+kc] \n"	  
 
@@ -345,6 +345,7 @@ proc addFoodItem(svar wfd)
  <<"%V $cols\n"
 
   sWo(totalswo,@selectrowscols,0,0,0,29);
+  sWo(totalswo,@setcolsize,FOODCOLSZ,0,1) ;
   sWo(totalswo,@cellval,Tot);
 
 <<"redrawing $totalswo %V$Tot\n"
@@ -426,7 +427,9 @@ proc SAVE()
 
             nrw=writeRecord(B,R,@del,Delc,@ncols,Ncols);
 <<[_DB]"%V $B $nrw  $Ncols \n"
-            cf(B);
+           // nrw=writeRecord(B,Tot,@del,Delc,@ncols,Ncols);
+<<[B]"#$Tot[0] \n"
+          cf(B);
 	    }
 	    
     return 

@@ -430,7 +430,7 @@ for (i = 0 ; i < sz; i++) {
 
   mf = 1.0 / noz;
 
-<<"%V $g_in_oz $Wt $noz $mf \n"
+//<<"%V $g_in_oz $Wt $noz $mf \n"
 
 <<"%4.2f$Food\t,1,Oz,$(atof(Cals)*mf),$(atof(Carbs)*mf),$(atof(Fat)*mf),$(atof(Prot)*mf),$(atof(Chol)*mf),$(atof(SatFat)*mf),$(atof(Wt)*mf),$(atof(Cho)*mf),$(atof(vA)*mf),$(atof(vC)*mf),$(atof(vB1Th)*mf),$(atof(vB2Rb)*mf),$(atof(vB3Ni)*mf),$(atof(vB5Pa)*mf),$(atof(vB6)*mf),$(atof(vB9Fo)*mf),$(atof(vB12)*mf),$(atof(vE)*mf),$(atof(vK)*mf),$(atof(Ca)*mf),$(atof(Fe)*mf),$(atof(Na)*mf),$(atof(K)*mf),$(atof(Zn)*mf) \n"
 
