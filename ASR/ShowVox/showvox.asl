@@ -3,8 +3,8 @@
 //* 
 //*  @comment speech edit and label 
 //*  @release CARBON 
-//*  @vers 1.2 He Helium                                                   
-//*  @date Wed Mar 27 00:02:28 2019 
+//*  @vers 1.4 Be Beryllium                                                
+//*  @date Mon Feb 24 09:43:50 2020 
 //*  @cdate 1/1/2000 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -22,17 +22,15 @@ include "debug.asl";
 
 
 set_debug(-1)
+include "hv.asl"
 
-version = "1.5"
 
-<<"$_clarg[0] $version\n";
+// version should be read from script header
 
- Graphic = CheckGwm()
-   
-  if (!Graphic) {
-     X=spawngwm() // has to use xgs
-  }
-  
+<<"$_clarg[0]   $vers\n";
+include "graphic"
+
+
 //OpenDll("plot","audio","image","tran");
 OpenDll("audio","image","tran");
 
@@ -249,7 +247,6 @@ int keyc = 0;
 float btn_rx = 0;
 float btn_ry = 0;
 int kloop = 0;
-int last_evid = -1;
 
 
 
@@ -331,8 +328,6 @@ float t2 = t1 + 3.0;
 	    }
         }
        
-          last_evid = evid;
-      
   }
 
 

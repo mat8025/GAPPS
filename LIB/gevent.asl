@@ -124,7 +124,7 @@ gevent Ev; // event type - can inspect for all event attributes
 
 
 int _eloop = 0;
-int _last_evid = -1;
+int _last_eid = -1;
 
 float _erx = 0;
 float _ery = 0;

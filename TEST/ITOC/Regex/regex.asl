@@ -30,10 +30,45 @@ str E = "terry.vox"
 
 str F = "terry.phn"
 
+str H = "mark.vox"
+
+G = scat(D,"|",E,":",C,",",F,";",H)
+
+<<"$G\n"
+
 
 p = regex(C,"vox")
 
 <<"$p \n"
+
+
+p = regex(G,"vox")
+
+<<"$p \n"
+
+p = regex(G,'vox|phn')
+
+<<"$p \n"
+
+
+p = regex(G,"vox|phn")
+
+<<"$p \n"
+
+
+
+p = regex(G,"vox\|phn")
+
+<<"$p \n"
+
+p = regex(G,"vox|phn")
+
+<<"$p \n"
+
+
+
+exit()
+
 
 checkNum(p[0],4)
 

@@ -1,3 +1,15 @@
+//%*********************************************** 
+//*  @script vox_ws.asl 
+//* 
+//*  @comment procs for vox screen setup  
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                    
+//*  @date Mon Feb 24 09:56:39 2020 
+//*  @cdate Mon Feb 24 09:56:39 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 ///
 /// upe_ws
 ///
@@ -26,6 +38,8 @@ wX = 0.98
   sWo(fewo,@help," pitch, zx, rms ");
  upewins[nupewins++] = pw;
 
+
+titleButtonsQRD(pw)
 
 # spectrogram window
 
@@ -110,6 +124,9 @@ exitwo =cWo(tw,"BN",@name,"EXIT",@value,ON_,@color,RED_,@help, "exit")
   sWi(tw,@title,"Timesignal");
 
   sWo(buttonwos,@border,BLACK_,@redraw);
+
+ // titleVers();
+  titleComment("ShowVox $vers")
 
 ////////////////////////////////// GLINES for FEATURE TRACKS ///////////////////////////////////////
 float ZxTrk[];

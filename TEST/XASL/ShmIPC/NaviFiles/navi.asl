@@ -1,3 +1,4 @@
+
 //
 //  test file browser
 // 
@@ -9,9 +10,9 @@
   }
 
 //vox_type = 'vox\|pcm\|wav' ; // regex for vox or pcm
-vox_type = 'pcm\|vox\|wav' ; // regex for vox or pcm
+vox_type = 'pcm|vox|wav' ; // regex for vox or pcm
 
-vox_dir= "/home/mark/Spanish_in_30"; // no trailing spaces for chdir to work
+vox_dir= "/home/mark/gapps/ASR/Vox"; // no trailing spaces for chdir to work
 vox_file =  "";
 
 proc get_the_file ()
@@ -30,10 +31,16 @@ proc get_the_file ()
 }
 //=======================================================
 
+chdir (vox_dir);
+
+!!"ls -l"
+
 
  while(1) {
+ 
   fn=get_the_file()
   <<"$fn\n"
+// if (fn <= 0)     break;
 }
 
 

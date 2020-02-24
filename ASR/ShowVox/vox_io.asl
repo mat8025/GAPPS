@@ -1,12 +1,27 @@
-///
-/// upe_io
+//%*********************************************** 
+//*  @script vox_io.asl 
+//* 
+//*  @comment procs for vox io  
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                    
+//*  @date Mon Feb 24 09:55:31 2020 
+//*  @cdate Mon Feb 24 09:55:31 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 
+
+///
+/// vox/upe_io  - should try to get pulseaudio version going!
+///
 
 
 Tim = FineTime();
 
 
-vox_type = 'vox\|pcm\|phn' ; // regex for vox or pcm
+//vox_type = 'vox|pcm|phn' ; // regex for vox or pcm
+vox_type = 'vox|pcm' ; // regex for vox or pcm
 
 vox_dir= "/asr/barn/ASR/FL/spanish/fjm"; // no trailing spaces for chdir to work
 vox_file =  "";
