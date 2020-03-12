@@ -38,6 +38,7 @@
 
 
  gw_gl   = cGl(gwo,@TXY,WDVEC,GVEC,@color,BLUE_)
+// gw_gl   = cGl(gwo,@TXY,WDVEC,GVEC,@color,RED_)
 
  bp_gl   = cGl(swo,@TXY,DVEC,BPVEC,@color,RED_,@ltype,"symbols",@name,"benchpress")
 

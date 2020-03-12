@@ -57,20 +57,19 @@ p = regex(G,"vox|phn")
 
 
 
-p = regex(G,"vox\|phn")
-
-<<"$p \n"
-
 p = regex(G,"vox|phn")
 
 <<"$p \n"
 
+p = regex(G,"vox|phn")
+<<"$G\n"
+<<"$p \n"
 
 
-exit()
 
 
-checkNum(p[0],4)
+
+checkNum(p[0],16)
 
 p = regex(D,"pcm")
 

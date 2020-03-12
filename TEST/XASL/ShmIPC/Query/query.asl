@@ -17,9 +17,8 @@
  include "gevent.asl"; 
  debugON()
 
- if (!checkGWM()) {
-    Xgm = spawnGWM()
-  }
+include "graphic"
+
 
 setdebug(1)
 
@@ -42,7 +41,8 @@ A=ofw("Meats.m")
 <<[A],"help duck\n"
 
 cf(A)
-  include "tbqrd";
+
+
 
    vp = cWi(@title,"QUERY")
 
@@ -104,22 +104,17 @@ ans = queryw("QUERY?","Something?","$ans");
  while (1) {
 
   <<" using query function - wait on click \n"
-// this does not work in xic
-//   ME=getMouseEvent()
-//<<"1 %V $ME\n"
- //   ok = getMouseClick()
- //  ME=getMouseEvent()
-//<<"2 %V $ME\n"   
-  // get a position click
+
     eventWait();
 
-  <<"got event %V $_etype $_erx  $_ery $_ex $_ey\n"
+  <<"got event %V $_etype $_erx  $_ery $_ex $_ey $_ebutton\n"
   // then center? query window at that position
-
+    eventWait();
 //   ans = exeGwmFunc("queryw","Question?","AnotherThing $kloop ?","$ans", qwx, qwy);
 
    ans = queryw("Question?","AnotherThing $kloop ?","$ans", _ex, _ey);
-
+   titleMessage(ans);
+   
 
   <<"$kloop you typed $ans \n"
   qwy -= 10;
@@ -127,6 +122,10 @@ ans = queryw("QUERY?","Something?","$ans");
   sipause(1);
 
   if (scmp(ans,"salida")) {
+      break;
+  }
+
+  if (scmp(ans,"quit")) {
       break;
   }
   

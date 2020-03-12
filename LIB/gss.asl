@@ -282,6 +282,9 @@ proc AddTask( wt)
 ///
 /// wt is the index to DF list of tasks
 /// should write to last active record in record R  size must be Rn+1 or greater
+
+
+
     sz= Caz(R);
     
 <<"in $_proc R record %V $wt $rows $Rn $sz $Nrows\n"    
@@ -295,7 +298,24 @@ proc AddTask( wt)
           Rn = sz;
     }
 
-    er = Rn; // check this is correct for first call
+    er = -1;
+    for (i=1; i < Nrows; i++) {
+     wval = R[i][0];
+     <<"empty? $i <$wval>\n"
+     if (wval @= "") {
+        er = i;
+	break;
+     }
+    }
+
+   if (er == -1) {
+    er = Nrows-1;
+    rows++;
+    Nrows++;
+   }
+   
+   <<"first empty row $er\n"
+   
 
     if (curr_row < 0) {
         curr_row = 0;

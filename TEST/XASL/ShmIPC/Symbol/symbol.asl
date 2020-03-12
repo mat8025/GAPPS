@@ -26,7 +26,7 @@ Graphic = CheckGwm();
 
    vp = cWi(@title,"SYMBOL",@resize,0.05,0.2,0.9,0.9,0);
 
-   sWi(vp,@pixmapon,@drawon,@bhue,WHITE_);
+   sWi(vp,@pixmapon,@drawon,@bhue,WHITE_,@save,@savepixmap);
 
    titleButtonsQRD(vp);
    titleVers();
@@ -39,7 +39,7 @@ Graphic = CheckGwm();
 
     sWo(rwo,@color,"red",@penhue,"black",@symbol,"diamond")
 
-    sWo(rwo,@drawoff,@pixmapon,@redraw,@save)
+    sWo(rwo,@drawoff,@pixmapon,@redraw,@save,@savepixmap)
 
 
     gwo=cWo(vp,@symbol, @resize,0.5,0.1,0.9,0.6,@name,"green",@value,1.0)
@@ -67,7 +67,7 @@ uint n_msg = 0;
       eventWait();
       n_msg++
 
-<<"%V$_ewoname  $_ekeyw $_etype\n";
+//<<"%V$_ewoname  $_ekeyw $_etype\n";
 
 
    if (_etype  == PRESS_) {

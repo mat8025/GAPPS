@@ -3,8 +3,8 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 2.48 Cd Cadmium                                                 
-//*  @date Sun Apr 28 15:09:27 2019 
+//*  @vers 2.50 Sn Tin                                                     
+//*  @date Wed Mar 11 18:58:29 2020 
 //*  @cdate Fri Jan  1 08:00:00 2010 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2014,2019 --> 
@@ -228,54 +228,18 @@ readData();
 
   gwt = NextGoalWt;
 
-  GVEC[0] = 0.0;
+  computeGoalLine()
+  
 
-  GVEC[1] = NextGoalWt;
-
-
-
-  ty_gsday = gsday;
-
-
-  GVEC[0] = StartWt;  // start  Wt
-
-  GVEC[ngday-1] = gwt;  // goal wt
-  WDVEC[ngday-1] = gsday+ngday;
-  k =0
-
-//  lpd = 1.75/7.0      // 1.75 lb a  week
-
-  lpd = 4.0/7.0;      // 4 lb a  week
-  sw = StartWt;
-  lw = sw;
-
-// our goal line  wtloss per day!
-
-for (i= 0; i < ngday; i++) {
-<<[_DB]"$(ty_gsday+i) $lw \n"
-    GVEC[i] = lw;
-    WDVEC[i] = gsday+i;
-    lw -= lpd;
-    if (lw < 165.0)
-        lw = 165;
-  }
-
-///  revised goal line
-  sz = Caz(GVEC);
-<<[_DB]" days $sz to lose $(StartWt-gwt) \n"
-  sz = Caz(WDVEC);
-
-<<[_DB]"$sz\n"
-<<[_DB]"%6.1f%(7,, ,\n)$WDVEC\n"
-<<[_DB]"%6.1f%(7,, ,\n)$GVEC\n"
 ////////////////////////////////////////////////////////////////////////
 
-<<[_DB]"%V$i $sz\n"
 
   sw2 = 205
   gw2 = 170
 
   cf(A);
+
+
 
 include "wex_foodlog"
 
@@ -430,6 +394,9 @@ showTarget();
 include "gevent.asl"
   titleVers();
 _DB=1;
+
+    sWo(tw_wo,@move,targetday,NextGoalWt,gwo,@redraw));
+
    while (1) {
 
      if ((m_num % 50) ==0) {
@@ -457,7 +424,22 @@ _DB=1;
          drawScreens();
       }
 
-        
+
+       if (_ewoname @= "StartDay") {
+           setGoals()
+      }
+
+      if (_ewoname @= "GoalDay") {
+           setGoals()
+      }
+
+      if (_ewoname @= "WtGoal") {
+           setGoals()
+      }
+
+       WXY=WoGetPosition(twtwo)
+<<"$WXY \n"
+
        if (!(_ekeyw @= "")) {
          <<[_DB]"calling |${_ekeyw}| $(typeof(_ekeyw))\n"
          $_ekeyw()        

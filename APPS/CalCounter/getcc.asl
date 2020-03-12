@@ -22,6 +22,9 @@ S=readfile(A)
 cf(A)
 nlines = Caz(S);
 
+<<"$S\n"
+
+
 float CCN[>300][3]
 // have to sort via date before file write
 int n= 0;
@@ -32,7 +35,7 @@ for (i = 0; i< nlines;i++) {
   dt= spat(dt,"dd_",1)
   dt= ssub(dt,"-","/",0)
   jd= julian(dt)
-// <<[A]"$jd  $L[3]  $L[4]\n"
+ <<"$jd  $L[3]  $L[4]\n"
   CCN[n][0] = jd;
   CCN[n][1] = atof(L[3])
   CCN[n][2] = atof(L[4])

@@ -3,8 +3,9 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.3 Li Lithium                                                 
-//*  @date Sat Dec 29 09:02:46 2018 
+//*  @vers 1.4 Be Beryllium                                                
+//*  @date Tue Mar  3 08:00:19 2020 
+//*  @cdate Sun Dec 23 09:22:34 2018 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2014,2018 --> 
 //* 
@@ -13,21 +14,9 @@
 
 //////////////////  WED SCREEN --- WINDOWS ////////////////
 
-
-
-<<"including wex_screen\n"
-
-//include "global.asl"
-
-<<[_DB]"%V $GV\n"
-
-
-
-<<"%V $tbqrd_tv \n"
-
     vptitle = "Wex"
 
-    vp =  cWi(@title,"$vptitle",@resize,0.1,0.1,0.9,0.9,0,@pixmapon,@save,@savepixmap);
+    vp =  cWi(@title,"$vptitle",@resize,0.05,0.1,0.98,0.9,0,@pixmapon,@save,@savepixmap);
 
     vp1 = cWi(@title,"XED",@resize,0.01,0.05,0.90,0.9,1)
 
@@ -59,7 +48,7 @@
 
     wo_vtile(wedwo,0.1,0.08,0.97,0.97,0.01)   // vertically tile the drawing areas into the main window
 
-    cx = 0.08 ; cX = 0.98 ; cy = 0.2 ; cY = 0.97;
+    cx = 0.05 ; cX = 0.98 ; cy = 0.2 ; cY = 0.97;
 
     titleButtonsQRD(vp)
 
@@ -70,17 +59,17 @@ CalsY1 = 5000;
 
     carb_upper = 300;
 
-    sWo(wedwo,@clip,cx,cy,cX,cY, @color,LILAC_,@clipbhue,WHITE_,@bhue,GREEN_,@font,"small")
+    sWo(wedwo,@clip,cx,cy,cX,cY, @color,LILAC_,@clipbhue,WHITE_,@bhue,GREEN_,@font,F_SMALL_)
 
-    sWo(calwo,@clip,cx,cy,cX,cY, @color,MAGENTA_,@clipbhue,PINK_,@bhue,CYAN_,@font,"small")
+    sWo(calwo,@clip,cx,cy,cX,cY, @color,MAGENTA_,@clipbhue,PINK_,@bhue,CYAN_,@font,F_SMALL_)
 
-    sWo(carbwo,@clip,cx,cy,cX,cY, @color,BROWN_,@clipbhue,BROWN_,@bhue,GREEN_,@font,"small",@fonthue,WHITE_)
+    sWo(carbwo,@clip,cx,cy,cX,cY, @color,BROWN_,@clipbhue,BROWN_,@bhue,GREEN_,@font,F_SMALL_,@fonthue,WHITE_)
 
-    sWo(extwo,@clip,cx,cy,cX,cY, @color,YELLOW_,@clipbhue,LILAC_,@font,"small")
+    sWo(extwo,@clip,cx,cy,cX,cY, @color,YELLOW_,@clipbhue,LILAC_,@font,F_SMALL_)
 
     sWo(wedwo,@border,@clipborder,"black",@drawon)
 
-    sWo(gwo,@scales,sc_startday,160,sc_endday+10,220,@savescales,0,@font,"small")
+    sWo(gwo,@scales,sc_startday,160,sc_endday+10,220,@savescales,0,@font,F_SMALL_)
 
     sWo(extwo,@scales,sc_startday,0,sc_endday+10,250,@savescales,0);
 
@@ -100,6 +89,10 @@ CalsY1 = 5000;
 
 
 ///  measurement
+    tw_wo= cWo(gwo,@symbol,@resize,0.1,0.1,0.15,0.3,0,@name,"TW",@value,185)
+     sWo(tw_wo,@vhmove,ON_,@symbol,STARDAVID_,@redraw)
+
+
 
 
 
@@ -162,7 +155,7 @@ CalsY1 = 5000;
   sWo(gwo,@showpixmap,@save);
   sWo(calwo,@showpixmap,@save);
   
-
+  // Measure WOBS
   dtmwo=cWo(vp,@BV,@name,"DAY",@color,RED_,@help," date on day ")
   wtmwo=cWo(vp,@BV,@name,"WTM",@color,RED_,@help," wt on day ")
   cbmwo=cWo(vp,@BV,@name,"CBM",@color,BLUE_,@fonthue,WHITE_,@help," cals burnt on day ")
@@ -173,6 +166,27 @@ CalsY1 = 5000;
   wo_vtile( mwos, 0.02,0.5,0.08,0.9,0.05);
 
   sWo(mwos,@style,"SVB",@redraw);
+
+//  Goal WOBS
+
+  sdwo=cWo(vp,@BIV,@name,"StartDay",@color,RED_,@value,"$Goals[0]",@help,"   startday ")
+  gdwo=cWo(vp,@BIV,@name,"GoalDay",@color,RED_,@value,"$Goals[1]",@help," goalday ")
+  gwtwo=cWo(vp,@BIV,@name,"WtGoal",@value,"$Goals[2]",@color,BLUE_,@fonthue,WHITE_,@help," next goal wt ")
+
+
+//  twtwo =cWo(vp,@BV,@name,"TWt",@value,"195",@color,BLUE_,@fonthue,WHITE_,@help," next goal wt ")
+  twtwo =cWo(gwo,@BV,@name,"TWt",@value,"195",@color,BLUE_,@fonthue,WHITE_,@help," next goal wt ")
+
+  <<"WOINWO %V $twtwo \n"
+
+  int  goalwos[] = { sdwo, gdwo, gwtwo};
+
+  wo_vtile( goalwos, 0.02,0.1,0.08,0.45,0.05);
+
+  sWo(twtwo,@resize,0.97,0.8,0.99,0.85,@color,BLUE_,@symbol,RTRI_,@redraw,@hvmove,1)
+
+  sWo(goalwos,@style,"SVB",@redraw);
+
 
   titleVers();
 

@@ -56,7 +56,9 @@ A=ofw("HowMuch.m")
 cf(A)
 
 Record Tot[1];
-
+tot_rows = Caz(Tot)
+tot_cols = Caz(Tot,0)
+<<"%V $tot_rows $tot_cols \n"
 
 //==========================
 int Fcols = 10;
@@ -133,8 +135,8 @@ Nfav = 4;   // display choice row size  was 8
 
  DF[0] = Split("?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?",",");
  //Tot[0]= Split("FoodT,Amt,Unit,Cals,Carbs(g),Fat,Prot,Choles(mg),SatFat(g),Wt(g),Choline(mg),vA(dv),vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn,GMT,",",");
- Tot[0] = Split("Totals,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0",",");
- // Tot[2] = Split("Totals,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0",",");
+ //Tot[0] = Split("Totals,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,",",");
+ Tot[0] = Split("Totals,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,",",");
   
 
 if (found_day ) {
@@ -144,7 +146,7 @@ if (found_day ) {
 else {
  R->info(1)
  R[0]= Split("Food,Amt,Unit,Cals,Carbs(g),Fat,Prot,Choles(mg),SatFat(g),Wt(g),Choline(mg),vA(dv),vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn,GMT,",",");
- //R[1] = Split("Totals,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0",",");
+
 
 
 }
@@ -204,13 +206,14 @@ int cv = 0;
 
   tags_col = cols;
  // rows += 2;
- 
+ Tot[0][27] = "xx"
   sWo(cellwo,@setrowscols,rows+1,cols+1);
   sWo(cellwo,@cellval,R,0,0,Nrows,Ncols);
 <<"%V$Ncols \n"
-  sWo(totalswo,@setrowscols,1,40);
+  sWo(totalswo,@setrowscols,1,30);
   sWo(totalswo,@cellval,Tot,0,0,0,Ncols);
   sWo(totalswo,@setcolsize,FOODCOLSZ,0,1) ;
+  sWo(totalswo,@setcolsize,2,3,1) ;  
  // sWo(totalswo,@setcolsize,3,0,1);
 
 <<"%V$rows $sz \n"
@@ -444,7 +447,7 @@ while (1) {
       }
      }
      
-  
+                    totalRows();  
     sWo(totalswo,@cellval,Tot);
     sWo(totalswo,@border,@clipborder,@redraw);  
     sWo(cellwo,@border,@clipborder,@redraw);  

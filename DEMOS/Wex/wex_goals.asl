@@ -3,8 +3,8 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.2 He Helium                                                  
-//*  @date Sat Dec 29 08:56:45 2018 
+//*  @vers 1.3 Li Lithium                                                  
+//*  @date Tue Mar  3 07:57:45 2020 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2014,2018 --> 
 //* 
@@ -13,22 +13,24 @@
 ///        long-term and current weight loss goals 
 ///
 
+//  SET     START DATE      END DATE  TARGET WEIGHT
+Goals = Split("03/11/2020 04/09/2020 185")
+////////////////////==============/////////////////
+
+
 
 GoalWt = 175;  // ideal -- flying weight
-
-NextGoalWt = 190;
-
-StartWt = 212;
+StartWt = 208;
+MinWt = 160;
 
 
 
+long sday = julian(Goals[0]) -bday // start date
+long targetday = julian(Goals[1]) -bday;
+NextGoalWt = atoi(Goals[2]);
 
-//  SET  START AND END DATES HERE
-long targetday = julian("02/29/2020") -bday;
-long sday = julian("01/24/2020") -bday // start date
-
-      gsday = sday;
-      gday =  targetday;    // next goal day 
+gsday = sday;
+gday =  targetday;    // next goal day 
 
 
 got_start = 0
@@ -38,8 +40,8 @@ long eday = julian("12/31/2020")  // this should be found from data file
 today = julian("$(date(2))");
 
 
+int ngday = 7;
 
-      ngday = gday - gsday;
 
 k = eday - sday;
 
@@ -54,5 +56,62 @@ kdays = k
 <<[_DB]"%V$kdays \n"
 
 <<[_DB]"%V$yday  $eday $today  $(date(2))\n"
+
+_DB =1
+
+proc computeGoalLine()
+{
+
+  <<"%V$StartWt $NextGoalWt\n"
+
+  ngday = gday - gsday;
+
+  GVEC[0] = StartWt;  // start  Wt
+  GVEC[1] = NextGoalWt;
+
+  ty_gsday = gsday;
+
+  gwt =  NextGoalWt;
+  GVEC[ngday-1] = gwt;  // goal wt
+  WDVEC[ngday-1] = gsday+ngday;
+  k =0
+
+//  lpd = 1.75/7.0      // 1.75 lb a  week
+
+  lpd = 4.0/7.0;      // 4 lb a  week
+
+  try_lpd = (StartWt - NextGoalWt) / (1.0 * ngday)
+
+  sw = StartWt;
+  lw = sw;
+
+
+// our goal line  wtloss per day!
+<<[_DB]"%V $try_lpd $lpd \n"
+for (i= 0; i < ngday; i++) {
+//<<[_DB]"$(ty_gsday+i) $lw \n"
+    GVEC[i] = lw;
+    WDVEC[i] = gsday+i;
+    lw -= try_lpd;
+    if (lw < MinWt)
+        lw = MinWt;
+  }
+
+
+
+///  revised goal line
+  sz = Caz(GVEC);
+<<[_DB]" days $sz to lose $(StartWt-gwt) \n"
+  sz = Caz(WDVEC);
+
+<<[_DB]"$sz\n"
+<<[_DB]"%6.1f%(7,, ,\n)$WDVEC\n"
+<<[_DB]"%6.1f%(7,, ,\n)$GVEC\n"
+
+}
+
+//==================================//
+
+
 
 ///////////////////////////////////

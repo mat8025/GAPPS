@@ -321,3 +321,11 @@ sargs.h	 2.5	 Thu Feb 20 08:25:40 2020 setArgI
 vop_m.cpp	 1.98	 Sat Feb 22 08:07:21 2020 mod to Cmp CmpArray for matrix compare
 vop_m.cpp	 1.99	 Sun Feb 23 09:04:56 2020 added eleToArraySpec sfunc
 svar_regex.cpp	 1.3	 Mon Feb 24 09:02:19 2020 debug/tidy
+svar_str.cpp	 1.64	 Mon Mar  2 08:52:05 2020 strCaseMatch, strCaseCmp
+svar.h	 2.3	 Mon Mar  2 08:54:10 2020 strCaseCmp
+wo_w.cpp	 1.63	 Mon Mar  2 10:29:05 2020 WO_IP_VALUE
+wo_button_w.cpp	 1.47	 Mon Mar  2 10:31:08 2020 WO_IP_VALUE
+wo_set_p.cpp	 1.88	 Mon Mar  2 14:08:42 2020 wo moveto
+wo.h	 1.30	 Wed Mar  4 06:02:47 2020 WoInWo
+
+prep_e.cpp	 2.50	 Thu Mar 12 08:15:02 2020 more defines

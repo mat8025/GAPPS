@@ -181,9 +181,6 @@ proc drawScreens()
 
       dGl(gw_gl);
 
-
-
-
       
       sWo(carbwo,@scales,sc_startday,0,sc_endday+10,carb_upper,@savescales,0)      
       dGl(carb_gl) ; //which scale is this going to use      
@@ -200,7 +197,6 @@ proc drawScreens()
    }
 
       drawGoals(0);
-
       drawGrids(0);
 
 
@@ -236,14 +232,14 @@ proc drawScreens()
       }
 
     sWo(fewos,@redraw)
-
+    sWo(twtwo,@redraw)
+    sWo(tw_wo,@move,targetday,NextGoalWt,gwo,@redraw);
 }
 //=================================================
 
 
 proc showWL()
 {
-
        RS=wogetrscales(gwo)
 
        rx = RS[1];
@@ -398,12 +394,12 @@ proc showTarget()
   }
 
   plot(gwo,@symbol,targetday,GoalWt,"star",symsz, LILAC_);
-  
+//  dGl(gw_gl);
 }
 //===========================
 proc resize_screen()
 {
 
-  sWi(vp,@resize,0.1,0.1,0.9,0.9,@redraw)
+  sWi(vp,@resize,0.05,0.1,0.95,0.9,@redraw)
 
 }

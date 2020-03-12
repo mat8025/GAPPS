@@ -66,7 +66,7 @@
  mwo=cWo(vp,@MENU,@name,"FoodType",@color,GREEN_,@resize,0.72,0.81,0.8,0.88)
  sWo(mwo,@border,@drawon,@clipborder,@fonthue,WHITE_,@value,"WhatFoods",@STYLE,"SVB")
  sWo(mwo,@bhue,BLUE_,@clipbhue,"skyblue",@value,"Breakfast",@message,1)
- sWo(mwo,@menu,"Breakfast,Meats,Breads,Veg,Cheese,Fruits,Fish,Cereals,Cakes,Pies,Juices,Sodas,Drinks");
+ sWo(mwo,@menu,"Breakfast,Meals,Meats,Breads,Veg,Cheese,Fruits,Fish,Cereals,Cakes,Pies,Juices,Sodas,Drinks");
  sWo(mwo,@redraw)
 
 

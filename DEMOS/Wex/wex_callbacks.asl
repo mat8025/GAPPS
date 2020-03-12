@@ -131,6 +131,28 @@ proc WTLB()
 
 }
 //=========================================
+///    WONAME PROCS ///
+
+proc setGoals()
+{
+
+   wtv = getWoValue(gwtwo)
+   NextGoalWt = atof(wtv);
+   <<"%V$wtv $NextGoalWt\n"
+   ssday = getWoValue(sdwo)
+   sgday = getWoValue(gdwo)
+
+   long lsday =julian(ssday) -bday // start date
+   targetday = julian(sgday) -bday;
+
+
+   <<"%V$wtv $NextGoalWt $ssday $sgday $lsday $targetday\n"
+   computeGoalLine()
+ //  sGl(gw_gl,@TXY,WDVEC,GVEC,@color,RED_)
+
+   drawScreens();
+   sWo(tw_wo,@move,targetday,NextGoalWt,gwo,@redraw);
+}
 
 
 
@@ -159,4 +181,11 @@ proc SWITCHSCREEN()
       drawScreens()
   }
 }
+
+
+
+
+
+
+
 ///////////////////////////////////////////////////////////////////////////////////////

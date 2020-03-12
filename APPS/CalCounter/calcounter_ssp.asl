@@ -62,6 +62,8 @@ proc setRowColSizes()
    sWo(cellwo,@setcolsize,FOODCOLSZ,0,1) ;   
    sWo(choicewo,@setcolsize,FOODCOLSZ,0,1) ;
    sWo(totalswo,@setcolsize,FOODCOLSZ,0,1) ;
+   sWo(totalswo,@setcolsize,2,3,1) ;
+   sWo(cellwo,@setcolsize,2,3,1) ;     
        <<"%V$totalswo \n"
 }
 //=====================================//
@@ -157,7 +159,7 @@ proc totalRows()
 //
 <<"running $_proc \n"
 
-  float fc[25];  // cals,carbs,fat,prt,chol,sfat,txt
+  float fc[26];  // cals,carbs,fat,prt,chol,sfat,txt
   int kc = 0;
   int fi = 3;
   float fval;
@@ -180,7 +182,7 @@ proc totalRows()
   <<"creating totals \n"
    Nrows++;
    frows = Nrows-1;
-   Tot[0] = Split("Totals,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0",",");
+   Tot[0] = Split("Totals,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,",",");
    tword = deWhite(R[frows][0]);
   }
 
@@ -207,7 +209,7 @@ proc totalRows()
 
 
 //fval->info(1)
-<<"%V $wrs $fval \n"
+//<<"%V $wrs $fval \n"
 //ans=iread(":")
          fc[kc] += fval;
 
@@ -228,18 +230,20 @@ proc totalRows()
    Tot[0][0] = "Totals";
    Tot[0][1] = "$nfvals";
    Tot[0][2] = "ITMS";
+   Tot[0][27] = "0.0";
 
    R->info(1)
-
-
+tot_rows = Caz(Tot)
+tot_cols = Caz(Tot,0)
+<<"%V $tot_rows $tot_cols \n"
    for (kc = 0; kc < NFV  ; kc++) {
 
           nval = fc[kc];
        // R[j][3+kc] = dewhite("%6.2f$fc[kc]");  // TBF
 
-          Tot[0][3+kc] = "%6.2f$nval";
+          Tot[0][3+kc] = "%6.3f$nval";
 
-//<<"$kc  $Tot[0][3+kc] \n"	  
+<<"$kc  $Tot[0][3+kc] $nval \n"	  
 
 //	  rval = R[j][3+kc];
 //       
@@ -247,6 +251,9 @@ proc totalRows()
 
 
 <<"done totals\n $Tot\n"
+tot_rows = Caz(Tot)
+tot_cols = Caz(Tot,0)
+<<"%V $tot_rows $tot_cols \n"
 <<"$R\n"
 
 }
@@ -346,6 +353,7 @@ proc addFoodItem(svar wfd)
 
   sWo(totalswo,@selectrowscols,0,0,0,29);
   sWo(totalswo,@setcolsize,FOODCOLSZ,0,1) ;
+  sWo(totalswo,@setcolsize,2,3,1) ;  
   sWo(totalswo,@cellval,Tot);
 
 <<"redrawing $totalswo %V$Tot\n"
@@ -428,7 +436,8 @@ proc SAVE()
             nrw=writeRecord(B,R,@del,Delc,@ncols,Ncols);
 <<[_DB]"%V $B $nrw  $Ncols \n"
            // nrw=writeRecord(B,Tot,@del,Delc,@ncols,Ncols);
-<<[B]"#$Tot[0] \n"
+<<[B]"#"
+writeRecord(B,Tot,@del,Delc,@ncols,Ncols);
           cf(B);
 	    }
 	    

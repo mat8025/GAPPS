@@ -3,8 +3,8 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.2 He Helium                                                  
-//*  @date Sat Feb 23 00:54:06 2019 
+//*  @vers 1.3 Li Lithium                                                  
+//*  @date Tue Feb 25 10:26:59 2020 
 //*  @cdate Fri Jan 11 08:46:34 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -17,6 +17,7 @@
 <<[_DB]"including tbqrd.asl \n"
 // TBF has to be a 'starter' line before any decs in include file?
 int tbqrd_tv = 0;
+int tbqrd_msg = 0;
 
 <<[_DB]"FIRST %V $tbqrd_tv \n"
 
@@ -31,10 +32,10 @@ proc  titleButtonsQRD(v)
  
  td=cWo(v,@TBS,@name,"tbd",@value,"REDRAW",@func,"window_redraw",@resize,0.91,0,0.93,1,@symbol,DIAMOND_);
 
- tbqrd_tv = cWo(v,"TBV",@name,"tbv",@value,"VERS",@style,SVO_,@resize,0.20,0,0.30,1);
+ tbqrd_tv = cWo(v,@TBV,@name,"tbv",@value,"VERS",@style,SVO_,@resize,0.2,0,0.50,1);
 <<[_DB]"SET %V $tbqrd_tv \n"
 //int qrd[] = {tr,tq,td};
-
+ tbqrd_msg = cWo(v,@TBV,@name,"tbm",@value,"MSG",@style,SVO_,@resize,0.52,0,0.90,1);
 int qrd[3]
 
 qrd[0]= tq;
@@ -45,6 +46,7 @@ qrd[2]= td;
 <<[_DB]"%V $qrd $(caz(qrd)) $(typeof(qrd))\n"
  sWo(qrd,@drawon,@pixmapon,@fonthue,RED_,@color,WHITE_,@symsize,45, @clip,0,0,1,1,@redraw);
  sWo(tbqrd_tv,@redraw);
+ sWo(tbqrd_msg,@redraw);
  
 }
 //============================//
@@ -60,6 +62,12 @@ proc titleVers()
  titleComment("$_ele_vers $_ele");
 }
 //============================//
+proc titleMessage( msg)
+{
+ <<"%V $msg \n"
+ sWo(tbqrd_msg,@value,"$msg",@clear,@redraw);
+}
+
 
 
 
