@@ -80,7 +80,7 @@ if ( gw_gl == -1 || bp_gl == -1) {
   sGl(calb_gl,@symbol,DIAMOND_,symsz,@symfill,FILL_,@symhue,BLUE_)
   sGl(calc_gl,@symbol,DIAMOND_,symsz,@symfill,FILL_,@symhue,RED_)
   sGl(carb_gl,@symbol,TRI_,symsz,@symfill,FILL_,@symhue,LILAC_)
-  sGl(bp_gl,@symbol,ITRI_,symsz,@missing,0)
+  sGl(bp_gl,@symbol,INVTRI_,symsz,@missing,0)
 
 
 

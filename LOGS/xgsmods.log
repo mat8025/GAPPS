@@ -83,3 +83,11 @@ region_w.cpp             1.31	Tue Mar 10 11:09:03 2020 while loop limit
 image_w.cpp              1.19	Thu Mar 12 07:56:07 2020 restoreBkg for Wob
 move_w.cpp               1.26	Thu Mar 12 08:00:15 2020 WoInWo decode
 wo.h                     1.31	Thu Mar 12 08:01:09 2020 restoreBkg
+xdebug.cpp               1.62	Fri Mar 13 09:19:21 2020 local allow file checked first
+move_w.cpp               1.27	Sat Mar 14 07:05:23 2020 move WoInWo via ASL func
+gmsg_w.cpp               1.16	Sat Mar 14 07:06:29 2020 move WoInWo via ASL func
+wo_text_w.cpp            1.62	Sat Mar 14 13:42:25 2020 use page->cptr(0)
+query_w.cpp              1.30	Sat Mar 14 13:42:57 2020 wob - use createWob
+delete_w.cpp             1.11	Sat Mar 14 13:43:38 2020 revise deleteWobs
+winwo_w.cpp              1.48	Sat Mar 14 13:44:28 2020 DeleteWobs createWob
+screennav_w.cpp          1.36	Sat Mar 14 13:45:16 2020 hwo -- pwo,nwo

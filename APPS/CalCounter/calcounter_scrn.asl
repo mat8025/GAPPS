@@ -54,9 +54,10 @@
 
       int ffmods[] = {sortffwo, pguwo,pgdwo,pgnwo };
 
-      wovtile(ssmods,0.66,0.55,0.69,0.9,0.05);
+      Modsx= 0.74
+      wovtile(ssmods,0.71,0.5,Modsx,0.8,0.05);
 
-      wovtile(ffmods,0.66,0.2,0.69,0.5,0.05);
+      wovtile(ffmods,0.71,0.1,Modsx,0.4,0.05);
 
       sWo(ffmods,@font,F_TINY_)
 
@@ -71,23 +72,23 @@
 
 
  Fx =0.01
- FX=0.65
- cellwo=cWo(vp,@SHEET,@name,"DailyCalCnt",@color,GREEN_,@resize,Fx,0.21,FX,0.96)
+ FX=0.70
+ cellwo=cWo(vp,@SHEET,@name,"DailyCalCnt",@color,GREEN_,@resize,Fx,0.12,FX,0.96)
 
  sWo(cellwo,@border,@drawon,@clipborder,@fonthue,BLACK_,@value,"1");
 
  sWo(cellwo,@bhue,CYAN_,@font,F_TINY_,@clipbhue,SKYBLUE_,@redraw);
 
 
- totalswo = cWo(vp,@sheet,@name,"Totals",@color,BLUE_,@resize,Fx,0.1,FX,0.2)
+ totalswo = cWo(vp,@sheet,@name,"Totals",@color,BLUE_,@resize,Fx,0.02,FX,0.11)
  <<"%V$totalswo \n"
 // sWo(totalswo,@border,@drawon,@clipborder,@fonthue,ORANGE_,@value,"1",@func,"xxx")
- sWo(totalswo,@border,@drawon,@clipborder,@fonthue,ORANGE_,@value,"1")
+ sWo(totalswo,@border,@drawon,@clipborder,@fonthue,BLACK_,@value,"1")
 
- sWo(totalswo,@bhue,RED_,@font,F_TINY_,@clipbhue,SKYBLUE_,@redraw);
+ sWo(totalswo,@bhue,RED_,@font,F_SMALL_,@clipbhue,SKYBLUE_,@redraw);
 
 
- CFx= 0.71
+ CFx= Modsx + 0.01
  CFX= 0.99
 
   searchwo =cWo(vp,"BV",@name,"FoodSearch",@color,GREEN_,@resize,0.72,0.90,75,0.98)

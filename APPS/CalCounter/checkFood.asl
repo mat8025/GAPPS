@@ -11,7 +11,7 @@
 //***********************************************%
 ///
 
-
+_DB = -1
 
 proc Compare(phr1,phr2)
 {
@@ -93,7 +93,7 @@ int Wfi = 0;
 
 proc searchFood(the_food_name)
 {
-int bpk = -1;
+  int bpk = -1;
 
   Bestpick = -1;		//clear the best pick choices
   bpick = -1;

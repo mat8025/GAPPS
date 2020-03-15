@@ -55,6 +55,10 @@ pi_str = compute_pi(1000)
 <<"$(typeof(pi_str)) $pi_str \n"
 <<" convert the string to a PAN then print out (reconverting to string!)\n"
 
+B=ofw("new_pi")
+<<[B]"$pi_str\n"
+cf(B)
+
 pi_c = atop(pi_str)
 
 <<"$(typeof(pi_c))\n"
@@ -74,11 +78,13 @@ ret =scmp(piw,pi_str,10)
 str s1
 str s2
 index = 0
-
+int k= -1;
 while (1) {
 
-s1 = sele(piw,index,10)
-s2 = sele(pi_str,index,10)
+s1 = sele(piw,index,20)
+s2 = sele(pi_str,index,20)
+k= atoi(sele(s2,0,1))
+<<"$s2 $k\n"
 
 
 ret =scmp(s1,s2)
@@ -88,10 +94,24 @@ if (ret != 1) {
   break
 }
 
-index += 10
+index += 20
 if (index > 1000)
  break;
  
+}
+
+
+str W1 = "many a time"
+
+
+len = slen(W1)
+
+for (j = 0; j < len; j++) {
+
+k= atoi(sele(s2,j,1))
+ac= sele(W,j,1))
+<<"$j $k  $ac  %d $ac\n"
+
 }
 
 

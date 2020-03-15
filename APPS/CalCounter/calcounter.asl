@@ -26,7 +26,7 @@ include "calcounter_ssp.asl";
 
 debugON()
 filterFuncDebug(ALLOWALL_,"xxx");
-filterFileDebug(ALLOWALL_,"yyy");
+filterFileDebug(ALLOW_,"wo_sheet_p");
 
 setDebug(1,@~pline,@~trace)
 
@@ -55,7 +55,8 @@ A=ofw("HowMuch.m")
 <<[A],"help set mins\n"  
 cf(A)
 
-Record Tot[1];
+Record Tot[2];
+Tot[0]= Split("FoodT,NF,Unit,Cals,Carbs,Fat,Prot,Choles(mg),SatFat(g),Wt(g),Choline(mg),vA(dv),vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn,GMT,",",");
 tot_rows = Caz(Tot)
 tot_cols = Caz(Tot,0)
 <<"%V $tot_rows $tot_cols \n"
@@ -134,9 +135,9 @@ Nfav = 4;   // display choice row size  was 8
 
 
  DF[0] = Split("?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?",",");
- //Tot[0]= Split("FoodT,Amt,Unit,Cals,Carbs(g),Fat,Prot,Choles(mg),SatFat(g),Wt(g),Choline(mg),vA(dv),vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn,GMT,",",");
- //Tot[0] = Split("Totals,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,",",");
- Tot[0] = Split("Totals,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,",",");
+ 
+
+ Tot[1] = Split("Totals,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,",",");
   
 
 if (found_day ) {
@@ -145,16 +146,17 @@ if (found_day ) {
 }
 else {
  R->info(1)
- R[0]= Split("Food,Amt,Unit,Cals,Carbs(g),Fat,Prot,Choles(mg),SatFat(g),Wt(g),Choline(mg),vA(dv),vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn,GMT,",",");
-
-
-
+ R[0]= Split("Food,Amt,Unit,Cals,Carbs(g),Fat,Prot,Choles(mg),SatFat(g),Wt(g),Choline(mg),vA(dv),vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn,GMT,Tags,",",");
 }
 
   sz = Caz(R);
   Nrows = sz;
   Ncols = Caz(R,0);
-  
+
+
+
+  R->info()
+
   rows = sz+1;
   cols = Ncols;
   R->info(1)
@@ -204,14 +206,16 @@ Record RC[>10];
 int cv = 0;
 
 
-  tags_col = cols;
- // rows += 2;
- Tot[0][27] = "xx"
+  tags_col = cols-1;
+<<"%V$tags_col\n"
+// rows += 2;
+ Tot[0][tags_col] = "xx"
   sWo(cellwo,@setrowscols,rows+1,cols+1);
-  sWo(cellwo,@cellval,R,0,0,Nrows,Ncols);
+  sWo(cellwo,@cellval,R,0,0,Nrows,cols+1);
 <<"%V$Ncols \n"
-  sWo(totalswo,@setrowscols,1,30);
-  sWo(totalswo,@cellval,Tot,0,0,0,Ncols);
+  sWo(totalswo,@setrowscols,2,30);
+  sWo(totalswo,@selectrowscols,0,1,0,29);
+  sWo(totalswo,@cellval,Tot,0,1,0,Ncols);
   sWo(totalswo,@setcolsize,FOODCOLSZ,0,1) ;
   sWo(totalswo,@setcolsize,2,3,1) ;  
  // sWo(totalswo,@setcolsize,3,0,1);
@@ -236,21 +240,15 @@ int cv = 0;
 
 // sWo(foodswo,@cellbhue,i,ALL_,CYAN_);
 
-    for (i = 0; i< 2 ; i++) {
-        if ((i%2)) {
-          sWo(totalswo,@cellbhue,i,ALL_,LILAC_);         
-	}
-	else {
-          sWo(totalswo,@cellbhue,i,ALL_,YELLOW_);
-	 }
-     }
+    sWo(totalswo,@cellbhue,0,ALL_,LILAC_);
+    sWo(totalswo,@cellbhue,1,ALL_,YELLOW_);             
 
 
 
  
   sWo(cellwo,@cellval,R,0,0,rows,cols);
   R->info(1)
-  sWo(cellwo,@selectrowscols,0,rows,0,cols);
+  sWo(cellwo,@selectrowscols,0,rows-1,0,cols-1);
 
   sWo(cellwo,@cellval,0,tags_col,"Tags")
 
@@ -270,7 +268,7 @@ int cv = 0;
    sWo(choicewo,@setrowscols,Nchoice+1,Fcols+1); // setup sheet rows&cols
    // before  setting cellvals!
    sWo(choicewo,@cellval,RC,0,0,Nchoice,Fcols);  
-   sWo(choicewo,@selectrowscols,0,Nchoice,0,Fcols);
+   sWo(choicewo,@selectrowscols,0,Nchoice-1,0,Fcols-1);
    sWo(choicewo,@setcolsize,3,0,1);
 
    <<"%V $choicewo \n"
@@ -278,7 +276,7 @@ int cv = 0;
 
 
   for (i = 0; i< Nchoice ; i++) {
-     for (j = 0; j< cols ; j++) {
+     for (j = 0; j<= tags_col ; j++) {
         if ((i%2)) {
            sWo(choicewo,@cellbhue,i,j,CYAN_);         
 	}
@@ -331,7 +329,7 @@ int mwc = 0;
   //  yn=yesornomenu("Edit Daily Log?")
 //debugON()
 
-sWo(cellwo,@cellval,R,0,0,rows,cols);
+sWo(cellwo,@cellval,R,0,0,rows,tags_col+1);
 R->info(1)
   
 while (1) {
@@ -344,7 +342,7 @@ while (1) {
 
          mwr = _erow;
 	 mwc = _ecol;
-<<"%V $mwr $mwc \n"
+<<"%V $mwr $mwc $tags_col\n"
       if ( (mwr >= 0)  && (mwc >= 0)) {
 	 <<"get rcword $mwr  $mwc \n"
            if (mwr < Nrows) {
@@ -409,6 +407,7 @@ while (1) {
         }
 	
         if (mwr > 0 && (mwc == tags_col) ) {
+	<<"tags action\n"
 	        xms = "";
 	        if (_ebutton == RIGHT_) {
 	          xms = "x"

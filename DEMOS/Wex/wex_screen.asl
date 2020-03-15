@@ -24,7 +24,7 @@
 
     int allwin[] = {vp,vp1}
 
-    sWi(allwin,@drawon,@pixmapoff,@save,@bhue,"white")
+    sWi(allwin,@drawon,@pixmapoff,@save,@bhue,WHITE_)
 
 
 ////////////////  WOBS ///////////////
@@ -49,6 +49,8 @@
     wo_vtile(wedwo,0.1,0.08,0.97,0.97,0.01)   // vertically tile the drawing areas into the main window
 
     cx = 0.05 ; cX = 0.98 ; cy = 0.2 ; cY = 0.97;
+    float CXY[4] = { 0.05 ,0.2,0.98 ,0.97};
+<<"%V$CXY\n"
 
     titleButtonsQRD(vp)
 
@@ -59,15 +61,15 @@ CalsY1 = 5000;
 
     carb_upper = 300;
 
-    sWo(wedwo,@clip,cx,cy,cX,cY, @color,LILAC_,@clipbhue,WHITE_,@bhue,GREEN_,@font,F_SMALL_)
+    sWo(wedwo,@clip,CXY, @color,LILAC_,@clipbhue,WHITE_,@bhue,GREEN_,@font,F_SMALL_)
 
-    sWo(calwo,@clip,cx,cy,cX,cY, @color,MAGENTA_,@clipbhue,PINK_,@bhue,CYAN_,@font,F_SMALL_)
+    sWo(calwo,@clip,CXY, @color,MAGENTA_,@clipbhue,PINK_,@bhue,CYAN_,@font,F_SMALL_)
 
-    sWo(carbwo,@clip,cx,cy,cX,cY, @color,BROWN_,@clipbhue,BROWN_,@bhue,GREEN_,@font,F_SMALL_,@fonthue,WHITE_)
+    sWo(carbwo,@clip,CXY, @color,BROWN_,@clipbhue,BROWN_,@bhue,GREEN_,@font,F_SMALL_,@fonthue,WHITE_)
 
-    sWo(extwo,@clip,cx,cy,cX,cY, @color,YELLOW_,@clipbhue,LILAC_,@font,F_SMALL_)
+    sWo(extwo,@clip,CXY, @color,YELLOW_,@clipbhue,LILAC_,@font,F_SMALL_)
 
-    sWo(wedwo,@border,@clipborder,"black",@drawon)
+    sWo(wedwo,@border,@clipborder,BLACK_,@drawon)
 
     sWo(gwo,@scales,sc_startday,160,sc_endday+10,220,@savescales,0,@font,F_SMALL_)
 
@@ -85,11 +87,11 @@ CalsY1 = 5000;
 
     wo_vtile(xwo,0.01,0.05,0.97,0.97)   // vertically tile the drawing areas into the main window
 
-    sWo(xwo,@clip,cx,cy,cX,cY,@color,WHITE_, @clipborder,BLACK_)
+    sWo(xwo,@clip,CXY,@color,WHITE_, @clipborder,BLACK_)
 
 
 ///  measurement
-    tw_wo= cWo(gwo,@symbol,@resize,0.1,0.1,0.15,0.3,0,@name,"TW",@value,185)
+     tw_wo= cWo(gwo,@symbol,@resize,0.1,0.1,0.15,0.3,0,@name,"TW",@value,185)
      sWo(tw_wo,@vhmove,ON_,@symbol,STARDAVID_,@redraw)
 
 
@@ -183,7 +185,7 @@ CalsY1 = 5000;
 
   wo_vtile( goalwos, 0.02,0.1,0.08,0.45,0.05);
 
-  sWo(twtwo,@resize,0.97,0.8,0.99,0.85,@color,BLUE_,@symbol,RTRI_,@redraw,@hvmove,1)
+  sWo(twtwo,@resize,0.97,0.8,0.99,0.85,@color,BLUE_,@symbol,RIGHTTRI_,@redraw,@hvmove,1)
 
   sWo(goalwos,@style,"SVB",@redraw);
 

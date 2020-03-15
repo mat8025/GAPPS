@@ -60,7 +60,7 @@ pi = 4.0*atan(1.0)
 
     sWi(vp,@pixmapon,@drawon,@bhue,PINK_,@redraw,@savepixmap);
 
-    sWo(gwo,@scales,-1.2,-1.2,1.2,1.2,@savescales,0,@font,F_SMALL,@redraw,@savepixmap_)
+    sWo(gwo,@scales,-1.2,-1.2,1.2,1.2,@savescales,0,@font,F_SMALL_,@redraw,@savepixmap_)
 
 
 sym_size = 50;

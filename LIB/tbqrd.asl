@@ -16,6 +16,8 @@
 
 <<[_DB]"including tbqrd.asl \n"
 // TBF has to be a 'starter' line before any decs in include file?
+// assume just main window use
+
 int tbqrd_tv = 0;
 int tbqrd_msg = 0;
 
@@ -52,7 +54,7 @@ qrd[2]= td;
 //============================//
 proc titleComment( msg)
 {
- <<"%V $msg \n"
+ //<<"%V $msg \n"
  sWo(tbqrd_tv,@value,"$msg",@clear,@redraw);
 
 }
@@ -64,7 +66,7 @@ proc titleVers()
 //============================//
 proc titleMessage( msg)
 {
- <<"%V $msg \n"
+ //<<"%V $msg \n"
  sWo(tbqrd_msg,@value,"$msg",@clear,@redraw);
 }
 

@@ -84,3 +84,4 @@ wex_goals.asl            1.3	Tue Mar  3 07:57:45 2020 goal format
 wex_screen.asl           1.4	Tue Mar  3 08:00:19 2020 goal manipulators
 stuff2do.asl             1.58	Wed Mar  4 05:27:28 2020 score
 wex.asl                  2.49	Wed Mar 11 09:38:27 2020 target wt symbol
+calcounter_ssp.asl       1.3	Fri Mar 13 09:39:02 2020 left justify val print -6.2f

@@ -151,7 +151,7 @@ proc setGoals()
  //  sGl(gw_gl,@TXY,WDVEC,GVEC,@color,RED_)
 
    drawScreens();
-   sWo(tw_wo,@move,targetday,NextGoalWt,gwo,@redraw);
+   sWo(tw_wo,@moveto,targetday,NextGoalWt,gwo,@redraw);
 }
 
 
