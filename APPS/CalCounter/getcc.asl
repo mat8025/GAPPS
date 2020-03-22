@@ -50,6 +50,6 @@ cf(A)
 
 // cals on julian date   jcc
 
-!!"cp jcc.tsv ~/gapps/DEMOS/Wex"
+!!"cp jcc.tsv ~/gapps/DEMOS/Wex/DAT"
 
 //======================================//

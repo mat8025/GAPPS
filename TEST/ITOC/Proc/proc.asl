@@ -10,7 +10,7 @@ setDebug(1,@keep,@pline)
 
 CheckIn(1)
 
-proc foo(a)
+Proc foo(a)
 {
  <<" IN $_proc $a \n"
 

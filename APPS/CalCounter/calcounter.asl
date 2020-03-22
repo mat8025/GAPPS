@@ -3,8 +3,8 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.28 Ni Nickel                                                  
-//*  @date Sun Nov 17 12:36:39 2019 
+//*  @vers 1.29 Cu Copper                                                  
+//*  @date Sun Mar 15 11:21:20 2020 
 //*  @cdate Fri Jan  1 08:00:00 2016 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2014,2018 --> 
@@ -19,8 +19,13 @@ include "debug.asl"
 include "gevent.asl"
 include "gss.asl";
 include "hv.asl"
-include "calcounter_day.asl";
+include "calcounter_day.asl"; // check in local LIB first
+include "checkFood";
+include "calcounter_foods";
 include "calcounter_ssp.asl";
+include "calcounter_addrow.asl";
+include "calcounter_adjust.asl";
+include "calcounter_totals.asl";
 
 
 
@@ -28,7 +33,7 @@ debugON()
 filterFuncDebug(ALLOWALL_,"xxx");
 filterFileDebug(ALLOW_,"wo_sheet_p");
 
-setDebug(1,@~pline,@~trace)
+setDebug(0,@~pline,@~trace)
 
 //////   create MENUS here  /////
 A=ofw("HowMuch.m")
@@ -56,7 +61,7 @@ A=ofw("HowMuch.m")
 cf(A)
 
 Record Tot[2];
-Tot[0]= Split("FoodT,NF,Unit,Cals,Carbs,Fat,Prot,Choles(mg),SatFat(g),Wt(g),Choline(mg),vA(dv),vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn,GMT,",",");
+Tot[0]= Split("#FoodT,NF,ITM,Cals,Carbs,Fat,Prot,Choles,SatFat,Wt,Choline,vA,vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn,",",");
 tot_rows = Caz(Tot)
 tot_cols = Caz(Tot,0)
 <<"%V $tot_rows $tot_cols \n"
@@ -69,7 +74,7 @@ Nbp = 4; // number of search results
 Nchoice = 4;   // display choice row size
 Nfav = 4;   // display choice row size  was 8
 
-  A=  ofr("foodtable2020.csv");
+  A=  ofr("Foods/foodtable2020.csv");
 
  if (A == -1) {
   <<" can't open food table $ftfile \n";
@@ -83,7 +88,7 @@ Nfav = 4;   // display choice row size  was 8
   Ncols = Caz(RF,1);
 
 <<"num of records $Nrecs  num cols $Ncols\n";
-
+/{/*
    for (i= 0; i < 3; i++) {
        nc = Caz(RF,i);
       <<"<$i> $nc $RF[i] \n";
@@ -94,7 +99,7 @@ Nfav = 4;   // display choice row size  was 8
      nc = Caz(RF,i);
   <<"<$i> $nc $RF[i] \n";
     }
-
+/}*/
 //===========================================
 
 
@@ -137,7 +142,7 @@ Nfav = 4;   // display choice row size  was 8
  DF[0] = Split("?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?",",");
  
 
- Tot[1] = Split("Totals,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,",",");
+ Tot[1] = Split("#Totals,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,",",");
   
 
 if (found_day ) {
@@ -191,8 +196,7 @@ include "calcounter_scrn";
 //totalRows();
 
 //=========================================================//
-include "checkFood";
-include "calcounter_foods";
+
 
 Record RC[>10];
 
@@ -227,16 +231,8 @@ int cv = 0;
    }
 
 // color rows
-    for (i = 0; i< rows ; i++) {
-     for (j = 0; j< cols ; j++) {
-        if ((i%2)) {
-          sWo(cellwo,@cellbhue,i,j,LILAC_);         
-	}
-	else {
-          sWo(cellwo,@cellbhue,i,j,YELLOW_);
-	 }
-       }
-     }
+
+   color_foodlog();
 
 // sWo(foodswo,@cellbhue,i,ALL_,CYAN_);
 
@@ -309,6 +305,7 @@ int cv = 0;
    sWo(cellwo,@redraw);
    
    sWo(choicewo,@redraw);
+   
    sWo(totalswo,@redraw);   
 
 <<"%V $choicewo $cellwo \n"
@@ -331,7 +328,12 @@ int mwc = 0;
 
 sWo(cellwo,@cellval,R,0,0,rows,tags_col+1);
 R->info(1)
-  
+
+
+    totalRows();  
+    sWo(totalswo,@cellval,Tot);
+    sWo(totalswo,@border,@clipborder,@redraw);  
+
 while (1) {
 
          eventWait();
@@ -446,13 +448,15 @@ while (1) {
       }
      }
      
-                    totalRows();  
-    sWo(totalswo,@cellval,Tot);
-    sWo(totalswo,@border,@clipborder,@redraw);  
+ //   totalRows();  
+ //   sWo(totalswo,@cellval,Tot);
+ //   sWo(totalswo,@border,@clipborder,@redraw);
+    
     sWo(cellwo,@border,@clipborder,@redraw);  
     sWo(choicewo,@border,@clipborder,@redraw);  
     sWo(foodswo,@border,@clipborder,@redraw);  
     sWo(ssmods,@redraw);
+
 }
 
 
@@ -471,7 +475,13 @@ exit()
   add GMT to row end --- allow edit and use last time
   filter out of multiply entry
 
-  make totals-rows -- one row GSS
+  make totals-rows -- two rows  header plus the sum of selections GSS
+
+
+  BUGS:
+     totals - get number of selections wrong -- if empty rows -- sums look correct
+     crash -- after many menu loads
+
 
 
 /}*/

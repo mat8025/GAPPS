@@ -12,14 +12,15 @@
 //***********************************************%
 
 
-include "debug.asl"
+#include "debug.asl"
 
+/{
 debugON()
 setdebug(1,@~pline,@~trace,@keep)
 
 filterFuncDebug(ALLOWALL_,"xxx");
 filterFileDebug(ALLOWALL_,"yyy");
-
+/}
 
 checkIn(0)
 
@@ -59,9 +60,11 @@ CheckNum(b,-41);
 na = argc()
 
 if (na >= 1) {
- for (i = 0; i < argc() ; i++) {
+
+ for (i = 0 ; i < argc() ; i++) {
 <<"arg [${i}] $_clarg[i] \n"
  }
+
 }
 <<"args listed\n"
 

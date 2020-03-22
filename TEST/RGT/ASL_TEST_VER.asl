@@ -596,6 +596,8 @@ ictout ="ictestoutput"
 
 CFLAGS = "-cwl"
 
+CFLAGS = "-cwlm"     // m to mask src lines in exe file
+
 ntest = 0
 
 

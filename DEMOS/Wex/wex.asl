@@ -10,7 +10,7 @@
 //*  @Copyright  RootMeanSquare  2014,2019 --> 
 //* 
 //***********************************************%
-
+ls
 ///
 /// exercise weight display
 /// calories burned (wt at 180)
@@ -109,6 +109,7 @@ float WTVEC[>10]
 
 float PWTVEC[>10] 
 
+
 float WTPMV[>10] 
 float GVEC[>10]; // goal line
 float BPVEC[>10] 
@@ -119,6 +120,10 @@ float EXTV[>10]
 float AVE_EXTV[>10]
 float EXEBURN[>10]
 float CALBURN[>10]
+float CARDIO[>10]
+float STRENGTH[>10]
+
+
 
 // cals,carbs consumed & when
 float CALSCON[>10]
@@ -145,7 +150,7 @@ int dday;
 // this is a new format -- allowing us to put comment labels on graphs
 
 
- A=ofr("wex2020.tsv")
+ A=ofr("DAT/wex2020.tsv")
 
  
 if (A == -1) {
@@ -175,7 +180,7 @@ Nrecs = Caz(RX);
 // so far not logged often 
 
 
- ACC=ofr("jcc.tsv")
+ ACC=ofr("DAT/jcc.tsv")
 
 Record RCC[];
 
@@ -437,7 +442,7 @@ _DB=1;
            setGoals()
       }
 
-       WXY=WoGetPosition(twtwo)
+       WXY=WoGetPosition(tw_wo)
 <<"$WXY \n"
 
        if (!(_ekeyw @= "")) {

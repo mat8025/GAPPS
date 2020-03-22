@@ -12,7 +12,7 @@
 //***********************************************%
 
 include "debug.asl"
-setdebug(1,@keep,@~pline,@~trace);
+setdebug(1,@keep,@pline,@~trace);
 FilterFileDebug(REJECT_,"~storetype_e");
 FilterFuncDebug(REJECT_,"~ArraySpecs",);
 debugON();
@@ -50,7 +50,7 @@ include "tbqrd"
 include "gss_screen"
 
 //ans=iread("->:");
-
+setdebug(1,@keep,@pline,@~trace);
   READ();
 
 

@@ -32,7 +32,7 @@ include "debug.asl"
 include "hv.asl"
 include "tbqrd"
 
- txtwin = cWi("title","MK_INFO")
+  txtwin = cWi("title","MK_INFO")
 
  sWi(txtwin,@pixmapon,@drawon,@save,@bhue,"teal",@sticky,1)
  sWi(txtwin,@grid,20,20);  // setting a grid on parent window for position
@@ -58,14 +58,14 @@ include "tbqrd"
  stwo=cWo(txtwin,@TEXT,@name,"PrintText",@VALUE,"howdy this is the first line",@color,"orange",@resize,2,10,6,15,3)
  sWo(stwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_ ,@pixmapoff,@drawon,@save)
  sWo(stwo,@SCALES,0,0,1,1)
- sWo(stwo,@font,"small")
+ sWo(stwo,@font,F_SMALL_)
  sWo(stwo,@help," Mouse & Key Info ");
 
 
  bigwo=cWo(txtwin,@TEXT,@name,"BigText",@VALUE,"Big Font?",@color,"orange",@resize,9,13,18,19,3)
  sWo(bigwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_ ,@pixmapoff,@drawon,@save)
  sWo(bigwo,@bhue,WHITE_,@SCALES,0,0,1,1)
- sWo(bigwo,@font,"big")
+ sWo(bigwo,@font,F_BIG_)
 
 
  lvwo=cWo(txtwin,@TEXT,@name,"PrintText",@VALUE,"lvtext",@color,"orange",@resize,2,1,3,9,3)

@@ -1,6 +1,22 @@
+//%*********************************************** 
+//*  @script colors2.asl 
+//* 
+//*  @comment show color map 
+//*  @release CARBON 
+//*  @vers 1.4 Be Beryllium                                                
+//*  @date Sun Mar 22 11:08:30 2020 
+//*  @cdate Sun Mar 22 11:05:34 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 
+include "gevent.asl"
+include "debug"
+include "hv.asl"
 
 setdebug(0)
+
 Pi = 4.0 * atan(1.0)
 
  redv = 0.5
@@ -13,17 +29,22 @@ Graphic = checkGWM()
     Xgm = spawnGWM()
   }
 
+
 include "tbqrd"
 
+
+
+    rainbow()
+    
     vp = cWi(@title,"Button",@resize,0.01,0.01,0.45,0.49,0)
 
    titleButtonsQRD(vp);
 
 
-    sWi(vp,@pixmapon,@drawon,@save,@bhue,"white")
+    sWi(vp,@pixmapon,@drawon,@save,@bhue,WHITE_)
     sWi(vp,"scales",0,-0.2,1.5,1.5)
     sWi(vp,"clip",0.2,0.2,0.9,0.9)
-    sWi(vp,@clipborder,"black",@redraw,@save)
+    sWi(vp,@clipborder,BLACK_,@redraw,@save)
 
     vp2 = cWi(@title,"Colors","resize",0.51,0.1,0.99,0.99,0)
     sWi(vp2,@pixmapon,@drawon,@save,@bhue,"white")
@@ -50,15 +71,15 @@ include "tbqrd"
 
   rwo=cWo(vp,"BV",@name,"Red",@value,"$redv",@style,"SVB")
 
-  sWo(rwo,@color,"red",@penhue,"black",@vmove,1)
+  sWo(rwo,@color,RED_,@penhue,"black",@vmove,1)
 
-  gwo=cWo(vp,"BV",@resize,gx,cby,gX,cbY,@NAME,"Green",@VALUE,"$greenv")
+  gwo=cWo(vp,"BV",@name,"Green"@resize,gx,cby,gX,cbY,@NAME,"Green",@VALUE,"$greenv")
 
-  sWo(gwo,@color,"green",@penhue,"black",@style,"SVB",@symbol,"tri")
+  sWo(gwo,@color,GREEN_,@penhue,"black",@style,"SVB",@symbol,"tri")
 
-  bwo=cWo(vp,"BV",@resize,bx,cby,bX,cbY,@NAME,"Blue",@VALUE,bluev)
+  bwo=cWo(vp,"BV",@name,"Blue",@resize,bx,cby,bX,cbY,@NAME,"Blue",@VALUE,bluev)
 
-  sWo(bwo,@color,"blue",@penhue,"black",@style,"SVB")
+  sWo(bwo,@color,BLUE_,@penhue,"black",@style,"SVB")
 
 
   int rgbwo[] = { rwo, gwo, bwo }
@@ -82,14 +103,14 @@ include "tbqrd"
 int awo[100]
 k = 0
 
-     index = 32
-
+     matrix_index = 64
+     index = matrix_index;
      for (k = 0; k < 100; k++) { 
    
-      awo[k]=cWo(vp2,"GRAPH",@name,"${k}_col")
+      awo[k]=cWo(vp2,GRAPH_,@name,"${k}_col")
    
       sWo(awo[k],@drawon,@color,index,@value,k)
-      index++
+       index++
      }
 
 //<<"%v $awo \n"
@@ -108,8 +129,6 @@ k = 0
 int rgb_index = 32
 float WXY[]
 
-include "gevent"
-
 
    while (1) {
 
@@ -122,7 +141,7 @@ include "gevent"
 
    WXY= WoGetPosition(gwo)
 
-  <<" $WXY \n"
+  <<"$_ename $_ewoid  $WXY \n"
 
   greenv = limitval(WXY[2],0,1)
   WXY= wogetposition(rwo)
@@ -142,7 +161,7 @@ include "gevent"
    cname = getColorName(color_index)
 
 
-   c_index = 32
+   c_index = matrix_index
 
    setRGB(c_index++,redv,0,0)
    setRGB(c_index++,0,greenv,0)
@@ -181,24 +200,26 @@ include "gevent"
    setRGB(c_index++,rc,bs,gc)
 
    jdv = 1.0/9.0
-   ki = c_index
+   ki =   c_index;
    bv = 0.0
    bdv = 1.0/7.0
 
+ 
    for (rj = 0; rj < 8 ; rj++) {
    jv = 0.0
    for (j = 0; j < 10 ; j++) {
 
-     if (_ename @= "Red") {
+       //setRGB(ki,redv,bv,jv)
+     if (_ewoid @= rwo) {
        setRGB(ki,redv,bv,jv)
      }
-
-      elif (_ename @= "Blue") {
-        setRGB(ki,bv,jv,bluev)
-      }
-      elif (_ename @= "Green") {
+      elif (_ewoid @= gwo) {
        setRGB(ki,bv,greenv,jv)
       }
+      elif (_ewoid @= bwo) {
+        setRGB(ki,bv,jv,bluev)
+      }
+
       //<<"$ki $redv $bv $jv \n"
    ki++
    jv += jdv

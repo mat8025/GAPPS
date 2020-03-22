@@ -332,3 +332,7 @@ prep_e.cpp	 2.50	 Thu Mar 12 08:15:02 2020 more defines
 ic_pushrec.cpp	 1.5	 Fri Mar 13 18:15:16 2020 dynamic rec expand zero bound update
 wo_set_p.cpp	 1.89	 Sat Mar 14 06:16:21 2020 clipsize option float vec
 ic_rw.cpp	 1.64	 Sun Mar 15 06:35:33 2020 mask_src in exe
+wcom_gs_sw.cpp	 1.89	 Thu Mar 19 08:38:21 2020 dbug tidy
+ic_rw.cpp	 1.65	 Thu Mar 19 20:28:13 2020 mask src option started
+svar_date.cpp	 1.53	 Sat Mar 21 11:55:35 2020 fix wday,monthname
+colors_p.cpp	 1.2	 Sun Mar 22 10:26:10 2020 first reorg of color script calls
