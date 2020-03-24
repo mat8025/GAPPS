@@ -6282,13 +6282,13 @@ else iv contains position indexes of needle_str.
 .EF
 =============================================================
 .BF
-get_rgb()
+getrgb()
 .(x
-GetRGB
+getRGB
 .)x 
 .FD
-rgb_v=GetRGB(index)
-rgb_v=GetRGB(color_name)
+rgb_v=getRGB(index)
+rgb_v=getRGB(color_name)
 returns r,g,b values (0.0 - 1.0) into float vector length 3 -- for an index (or a color name)
 
 .EF
@@ -6319,13 +6319,23 @@ returns r,g,b values as hex string
 .EF
 =============================================================
 .BF
-set_rgb()
+setrgb()
 .(x
 SetRGB
 .)x 
 .FD
 SetRGB(index,r,g,b)
 sets color index to r,g,b values (0.0 - 1.0)
+
+.EF
+=============================================================
+.BF
+rainbow()
+.(x
+rainbow
+.)x 
+.FD
+rainbow -- default color map used  
 
 .EF
 =============================================================
@@ -6360,7 +6370,6 @@ getColorIndexFromName
 .FD
 getColorIndexFromName(name_str)
 if there is a match of name return color index else -1.
-
 .EF
 =============================================================
 .BF
@@ -10458,8 +10467,8 @@ APPENDIX 3	DEFINES
 .sp
 
 colors - used in functions to set colors in draw, window operations
-WHITE_,
 BLACK_,
+WHITE_,
 RED_,
 ORANGE_,
 YELLOW_,
@@ -10481,3 +10490,158 @@ NOP_
 
 
 
+.HE
+APPENDIX 4	COLORS 
+.sp
+
+int
+fillHTML_ColorTable ()
+{
+  //
+  // 
+  //
+
+  addHTMLColor ("AliceBlue", 240, 248, 255, 0xf0f8ff);
+  addHTMLColor ("AntiqueWhite", 250, 235, 215, 0xfaebd7);
+  addHTMLColor ("Aqua", 0, 255, 255, 0x00ffff);
+  addHTMLColor ("Aquamarine", 127, 255, 212, 0x7fffd4);
+  addHTMLColor ("Azure", 240, 255, 255, 0xf0ffff);
+  addHTMLColor ("Beige", 245, 245, 220, 0xf5f5dc);
+  addHTMLColor ("Bisque", 255, 228, 196, 0xffe4c4);
+  addHTMLColor ("Black", 0, 0, 0, 0x000000);
+  addHTMLColor ("BlanchedAlmond", 255, 235, 205, 0xffebcd);
+  addHTMLColor ("Blue", 0, 0, 255, 0x0000ff);
+  addHTMLColor ("BlueViolet", 138, 43, 226, 0x8a2be2);
+  addHTMLColor ("Brown", 165, 42, 42, 0xa52a2a);
+  addHTMLColor ("Burlywood", 222, 184, 135, 0xdeb887);
+  addHTMLColor ("CadetBlue", 95, 158, 160, 0x5f9ea0);
+  addHTMLColor ("Chartreuse", 127, 255, 0, 0x7fff00);
+  addHTMLColor ("Chocolate", 210, 105, 30, 0xd2691e);
+  addHTMLColor ("Coral", 255, 127, 80, 0xff7f50);
+  addHTMLColor ("CornflowerBlue", 100, 149, 237, 0x6495ed);
+  addHTMLColor ("Cornsilk", 255, 248, 220, 0xfff8dc);
+  addHTMLColor ("Cyan", 0, 255, 255, 0x00ffff);
+  addHTMLColor ("DarkBlue", 0, 0, 139, 0x00008b);
+  addHTMLColor ("DarkCyan", 0, 139, 139, 0x008b8b);
+  addHTMLColor ("DarkGoldenrod", 184, 134, 11, 0xb8860b);
+  addHTMLColor ("DarkGray", 169, 169, 169, 0xa9a9a9);
+  addHTMLColor ("DarkGreen", 0, 100, 0, 0x006400);
+  addHTMLColor ("DarkKhaki", 189, 183, 107, 0xbdb76b);
+  addHTMLColor ("DarkMagenta", 139, 0, 139, 0x8b008b);
+  addHTMLColor ("DarkOliveGreen", 85, 107, 47, 0x556b2f);
+  addHTMLColor ("DarkOrange", 255, 140, 0, 0xff8c00);
+  addHTMLColor ("DarkOrchid", 153, 50, 204, 0x9932cc);
+  addHTMLColor ("DarkRed", 139, 0, 0, 0x8b0000);
+  addHTMLColor ("DarkSalmon", 233, 150, 122, 0xe9967a);
+  addHTMLColor ("DarkSeaGreen", 143, 188, 143, 0x8fbc8f);
+  addHTMLColor ("DarkSlateBlue", 72, 61, 139, 0x483d8b);
+  addHTMLColor ("DarkSlateGray", 47, 79, 79, 0x2f4f4f);
+  addHTMLColor ("DarkTurquoise", 0, 206, 209, 0x00ced1);
+  addHTMLColor ("DarkViolet", 148, 0, 211, 0x9400d3);
+  addHTMLColor ("DeepPink", 255, 20, 147, 0xff1493);
+  addHTMLColor ("DeepSkyBlue", 0, 191, 255, 0x00bfff);
+  addHTMLColor ("DimGray", 105, 105, 105, 0x696969);
+  addHTMLColor ("DodgerBlue", 30, 144, 255, 0x1e90ff);
+  addHTMLColor ("Firebrick", 178, 34, 34, 0xb22222);
+  addHTMLColor ("FloralWhite", 255, 250, 240, 0xfffaf0);
+  addHTMLColor ("ForestGreen", 34, 139, 34, 0x228b22);
+  addHTMLColor ("Fuschia", 255, 0, 255, 0xff00ff);
+  addHTMLColor ("Gainsboro", 220, 220, 220, 0xdcdcdc);
+  addHTMLColor ("GhostWhite", 248, 248, 255, 0xf8f8ff);
+  addHTMLColor ("Golden", 255, 215, 0, 0xffd700);
+  addHTMLColor ("Goldenrod", 218, 165, 32, 0xdaa520);
+  addHTMLColor ("GoldenrodYellow", 250, 250, 210, 0xfafad2);
+  addHTMLColor ("Gray", 128, 128, 128, 0x808080);
+  addHTMLColor ("Green", 0, 128, 0, 0x008000);
+  addHTMLColor ("GreenYellow", 173, 255, 47, 0xadff2f);
+  addHTMLColor ("Honeydew", 240, 255, 240, 0xf0fff0);
+  addHTMLColor ("HotPink", 255, 105, 180, 0xff69b4);
+  addHTMLColor ("Indigo", 75, 0, 130, 0x4b0082);
+  addHTMLColor ("IndianRed", 205, 92, 92, 0xcd5c5c);
+  addHTMLColor ("Ivory", 255, 255, 240, 0xfffff0);
+  addHTMLColor ("Khaki", 240, 230, 140, 0xf0e68c);
+  addHTMLColor ("Lavender", 230, 230, 250, 0xe6e6fa);
+  addHTMLColor ("LavenderBlush", 255, 240, 245, 0xfff0f5);
+  addHTMLColor ("LawnGreen", 124, 252, 0, 0x7cfc00);
+  addHTMLColor ("LemonChiffon", 255, 250, 205, 0xfffacd);
+  addHTMLColor ("LightBlue", 173, 216, 230, 0xadd8e6);
+  addHTMLColor ("LightCoral", 240, 128, 128, 0xf08080);
+  addHTMLColor ("LightCyan", 224, 255, 255, 0xe0ffff);
+  addHTMLColor ("LightGoldenrod", 238, 221, 130, 0xeedd82);
+  addHTMLColor ("Lilac", 200, 162, 200, 0xc8a2c8);
+  addHTMLColor ("LightGray", 211, 211, 211, 0xd3d3d3);
+  addHTMLColor ("LightGreen", 144, 238, 144, 0x90ee90);
+  addHTMLColor ("LightPink", 255, 182, 193, 0xffb6c1);
+  addHTMLColor ("LightSalmon", 255, 160, 122, 0xffa07a);
+  addHTMLColor ("LightSeaGreen", 32, 178, 170, 0x20b2aa);
+  addHTMLColor ("LightSkyBlue", 135, 206, 250, 0x87cefa);
+  addHTMLColor ("LightSlateBlue", 132, 112, 255, 0x8470ff);
+  addHTMLColor ("LightSlateGray", 119, 136, 153, 0x778899);
+  addHTMLColor ("LightSteelBlue", 176, 196, 222, 0xb0c4de);
+  addHTMLColor ("LightYellow", 255, 255, 224, 0xffffe0);
+  addHTMLColor ("Lime", 0, 255, 0, 0x00ff00);
+  addHTMLColor ("LimeGreen", 50, 205, 50, 0x32cd32);
+  addHTMLColor ("Linen", 250, 240, 230, 0xfaf0e6);
+  addHTMLColor ("Magenta", 255, 0, 255, 0xff00ff);
+  addHTMLColor ("Maroon", 128, 0, 0, 0x800000);
+  addHTMLColor ("MedAquamarine", 102, 205, 170, 0x66cdaa);
+  addHTMLColor ("MediumBlue", 0, 0, 205, 0x0000cd);
+  addHTMLColor ("MediumOrchid", 186, 85, 211, 0xba55d3);
+  addHTMLColor ("MediumPurple", 147, 112, 219, 0x9370db);
+  addHTMLColor ("MediumSeaGreen", 60, 179, 113, 0x3cb371);
+  addHTMLColor ("MedSlateBlue", 123, 104, 238, 0x7b68ee);
+  addHTMLColor ("MedSpringGreen", 0, 250, 154, 0x00fa9a);
+  addHTMLColor ("MedTurquoise", 72, 209, 204, 0x48d1cc);
+  addHTMLColor ("MedViolet-Red", 199, 21, 133, 0xc71585);
+  addHTMLColor ("MidnightBlue", 25, 25, 112, 0x191970);
+  addHTMLColor ("MintCream", 245, 255, 250, 0xf5fffa);
+  addHTMLColor ("MistyRose", 255, 228, 225, 0xffe4e1);
+  addHTMLColor ("Moccasin", 255, 228, 181, 0xffe4b5);
+  addHTMLColor ("NavajoWhite", 255, 222, 173, 0xffdead);
+  addHTMLColor ("Navy", 0, 0, 128, 0x000080);
+  addHTMLColor ("OldLace", 253, 245, 230, 0xfdf5e6);
+  addHTMLColor ("Olive", 128, 128, 0, 0x808000);
+  addHTMLColor ("OliveDrab", 107, 142, 35, 0x6b8e23);
+  addHTMLColor ("Orange", 255, 165, 0, 0xffa500);
+  addHTMLColor ("OrangeRed", 255, 69, 0, 0xff4500);
+  addHTMLColor ("Orchid", 218, 112, 214, 0xda70d6);
+  addHTMLColor ("PaleGoldenrod", 238, 232, 170, 0xeee8aa);
+  addHTMLColor ("PaleGreen", 152, 251, 152, 0x98fb98);
+  addHTMLColor ("PaleTurquoise", 175, 238, 238, 0xafeeee);
+  addHTMLColor ("PaleVioletRed", 219, 112, 147, 0xdb7093);
+  addHTMLColor ("PapayaWhip", 255, 239, 213, 0xffefd5);
+  addHTMLColor ("PeachPuff", 255, 218, 185, 0xffdab9);
+  addHTMLColor ("Peru", 205, 133, 63, 0xcd853f);
+  addHTMLColor ("Pink", 255, 192, 203, 0xffc0cb);
+  addHTMLColor ("Plum", 221, 160, 221, 0xdda0dd);
+  addHTMLColor ("PowderBlue", 176, 224, 230, 0xb0e0e6);
+  addHTMLColor ("Purple", 128, 0, 128, 0x800080);
+  addHTMLColor ("Red", 255, 0, 0, 0xff0000);
+  addHTMLColor ("RosyBrown", 188, 143, 143, 0xbc8f8f);
+  addHTMLColor ("RoyalBlue", 65, 105, 225, 0x4169e1);
+  addHTMLColor ("SaddleBrown", 139, 69, 19, 0x8b4513);
+  addHTMLColor ("Salmon", 250, 128, 114, 0xfa8072);
+  addHTMLColor ("SandyBrown", 244, 164, 96, 0xf4a460);
+  addHTMLColor ("SeaGreen", 46, 139, 87, 0x2e8b57);
+  addHTMLColor ("Seashell", 255, 245, 238, 0xfff5ee);
+  addHTMLColor ("Sienna", 160, 82, 45, 0xa0522d);
+  addHTMLColor ("Silvery", 192, 192, 192, 0xc0c0c0);
+  addHTMLColor ("SkyBlue", 135, 206, 235, 0x87ceeb);
+  addHTMLColor ("SlateBlue", 106, 90, 205, 0x6a5acd);
+  addHTMLColor ("SlateGray", 112, 128, 144, 0x708090);
+  addHTMLColor ("Snow", 255, 250, 250, 0xfffafa);
+  addHTMLColor ("SpringGreen", 0, 255, 127, 0x00ff7f);
+  addHTMLColor ("SteelBlue", 70, 130, 180, 0x4682b4);
+  addHTMLColor ("Tan", 210, 180, 140, 0xd2b48c);
+  addHTMLColor ("Teal", 0, 128, 128, 0x008080);
+  addHTMLColor ("Thistle", 216, 191, 216, 0xd8bfd8);
+  addHTMLColor ("Tomato", 255, 99, 71, 0xff6347);
+  addHTMLColor ("Turquoise", 64, 224, 208, 0x40e0d0);
+  addHTMLColor ("Violet", 238, 130, 238, 0xee82ee);
+  addHTMLColor ("VioletRed", 208, 32, 144, 0xd02090);
+  addHTMLColor ("Wheat", 245, 222, 179, 0xf5deb3);
+  addHTMLColor ("White", 255, 255, 255, 0xffffff);
+  addHTMLColor ("WhiteSmoke", 245, 245, 245, 0xf5f5f5);
+  addHTMLColor ("Yellow", 255, 255, 0, 0xffff00);
+  addHTMLColor ("Grey", 128, 128, 128, 0x808080);
+  int nc = addHTMLColor ("YellowGreen", 154, 205, 50, 0x9acd32);

@@ -13,18 +13,15 @@
 
 include "debug.asl"
 include "hv.asl"
-include "tbqrd";
-include "gevent.asl"
-debugON()
+include "graphic"
+include "gevent"
 
-Graphic = CheckGwm();
-
-  if (!Graphic) {
-    Xgm = spawnGwm()
-  }
+//debugON()
 
 
-   vp = cWi(@title,"SYMBOL",@resize,0.05,0.2,0.9,0.9,0);
+
+
+   vp = cWi(@title,"SYMBOL",@resize,0.0,0.0,0.9,0.9,0);
 
    sWi(vp,@pixmapon,@drawon,@bhue,WHITE_,@save,@savepixmap);
 
@@ -33,9 +30,9 @@ Graphic = CheckGwm();
    
     msgwo=cWo(vp,@text,@name,"COOR",@VALUE,"0.0 0.0",@color,WHITE_,@resize,0.35,0.81,0.9,0.99)
 
-    sWo(msgwo,@border,@drawon,@clipborder,@fonthue,RED_, @pixmapoff,@drawon,@redraw,@save)
+    sWo(msgwo,@border,@drawon,@clipborder,@fonthue,RED_, @pixmapoff,@redraw,@save)
 
-    rwo=cWo(vp,@symbol,@resize,0.1,0.1,0.4,0.4,@name,"RED",@value,1.0,@clip,0.01,0.01,0.99,0.99)
+    rwo=cWo(vp,@symbol,@resize,0.0,0.0,0.3,0.3,@name,"RED",@value,1.0,@clip,0.01,0.01,0.99,0.99)
 
     sWo(rwo,@color,"red",@penhue,"black",@symbol,"diamond")
 
@@ -47,7 +44,7 @@ Graphic = CheckGwm();
  //sWo(gwo,@color,GREEN_,@penhue,"black",@symbol,"diamond")
     sWo(gwo,@color,GREEN_,@penhue,BLACK_,@symbol,"diamond")
 
-    sWo(gwo,@drawon,@pixmapon,@redraw,@save)
+    sWo(gwo,@drawon,@pixmapoff,@redraw,@save,@savepixmap)
 
 
 
@@ -107,7 +104,7 @@ uint n_msg = 0;
        }
 
        symbol_name = getSymbolName(symbol_num);
-<<"%V$symbol_name\n";
+       titleMsg("$symbol_name");
      if (symbol_num > 20) {
          symbol_num = 1;
      }
@@ -121,9 +118,10 @@ uint n_msg = 0;
      sWo(rwo,@color,"yellow",@penhue,"black",@symbolshape,symbol_num,@symsize,sym_size,@symang,ang,@redraw)
      sWo(rwo,@showpixmap)
 
+     sWo(gwo,@drawoff,@clearpixmap,@pixmapoff)
      sWo(gwo,@drawon,@clear)
-     sWo(gwo,@color,"magenta",@penhue,"brown",@symbolshape,symbol_num,@symsize,sym_size,@symang,ang,@redraw)
-     //sWo(gwo,@showpixmap)
+     sWo(gwo,@color,"magenta",@penhue,"brown",@symbolshape,symbol_num+1,@symsize,sym_size,@symang,ang,@redraw)
+    // sWo(gwo,@showpixmap)
 
      sWo(msgwo,@textr,"%V$symbol_num $symbol_name $ang  $sym_size",0.0,0.1)
 

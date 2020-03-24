@@ -41,7 +41,7 @@
   
   vp = cWi(@title,"WAVES",@resize,0.05,0.01,0.99,0.9,0);
   
-  sWi(vp,@pixmapon,@drawooff,@save,@bhue,WHITE_);
+  sWi(vp,@pixmapon,@drawon,@save,@bhue,WHITE_);
   
   titleButtonsQRD(vp);
   titleVers();
@@ -162,7 +162,7 @@
     
     Rnvec  = Grand(N)  * 0.1;
     
-//<<"$Rnvec[0:10]\n"
+<<"$Rnvec[0:10]\n"
     
     WVEC = XVEC * f;
     OVEC = WVEC + pi2;

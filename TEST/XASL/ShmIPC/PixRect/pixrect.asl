@@ -2,13 +2,18 @@
 //  in this case input csv file Rows x Cols of float values 
 
 //  input 120 x 256 cells between 0- 100 in value
+include "debug"
+include "hv.asl"
+include "graphic"
+include "gevent"
+
+openDll("image")
+    rainbow();
 
 
 
 setdebug(1)
-opendll("math")
-opendll("image")
-opendll("plot")
+
 
 proc redraw()
 {
@@ -31,6 +36,7 @@ fn = _clarg[1]
 
 
 
+
  // A= ofr(fn)
 
 
@@ -41,7 +47,7 @@ uchar U[]
 uchar UL[]
 
 // read data into 2d array
-R= readRecord(A,@del,',')
+R= readRecord(A,@type,FLOAT_,@del,',')
 
 // fix if row finishes with , and no follwing data -- we get extra col with a zero value -- 
 // so if no data following a comma then adjust
@@ -51,7 +57,7 @@ b = Cab(R)
 
 <<"$b\n"
 
-//<<"$R[10][::]\n"
+<<"$R[10][::]\n"
 //<<"$R[0:10][185] \n"
 
 //  create color map - manipulate
@@ -61,7 +67,7 @@ b = Cab(R)
 
 // LRI
 
-  R= readRecord(B,@del,',')
+  R= readRecord(B,@type,FLOAT_,@del,',')
 
   RZ=rowZoom(R,300,1)
 
@@ -84,11 +90,15 @@ b = Cab(R)
 b = Cab(NRZ)
 
 <<"$b\n"
+    T= Transpose(NRZ)
+    NT=rowZoom(T,220,1)
+    TNT=Transpose(NT)
 
+    UL = TNT;
 
 <<"$NRZ[0:5][0:10]\n")
 
-  UL =  Transpose(rowZoom(Transpose(NRZ),220,1))
+ // UL =  Transpose(rowZoom(Transpose(NRZ),220,1))
 
 
 
@@ -172,7 +182,7 @@ mapki = mapi
  for (i = 15; i < 20; i++) {
 
 //  setrgb(mapki,0.0,0.0,0.9)
-  setrgbfromIndex(mapki,BLUE)
+  setrgbfromIndex(mapki,BLUE_)
   mapki++
 
  }
@@ -196,7 +206,7 @@ mapki = mapi
 
   //setrgb(mapki,0.9,0.9,0)
 
-  setrgbfromIndex(mapki,YELLOW)
+  setrgbfromIndex(mapki,YELLOW_)
 
   mapki++
 
@@ -214,7 +224,7 @@ mapki = mapi
  for (i = 40; i < 50; i++) {
 
   // setrgb(mapki,0.9,0.0,0)
-    setrgbfromIndex(mapki,RED)
+    setrgbfromIndex(mapki,RED_)
     mapki++
  }
 
@@ -236,7 +246,7 @@ mapki = mapi
 <<"%V$pi white\n"
 
  for (i = 65; i < 200; i++) {
-   setrgbfromIndex(mapki,WHITE)
+   setrgbfromIndex(mapki,WHITE_)
     mapki++
  }
 
@@ -246,25 +256,25 @@ mapki = mapi
 
 // Window
 
-    aw= CreateGwindow(@title,"CLOUD_SWEEP")
+    aw= cWi(@title,"CLOUD_SWEEP")
 
 //<<" CGW $aw \n"
 
-    SetGwindow(aw,@resize,0.1,0.1,0.9,0.9,0)
-    SetGwindow(aw,@drawon)
-    SetGwindow(aw,@clip,0.1,0.1,0.8,0.9)
+    sWi(aw,@resize,0.1,0.1,0.9,0.9,0)
+    sWi(aw,@drawon)
+    sWi(aw,@clip,0.1,0.1,0.8,0.9)
 
   // GraphWo
 
-   lri_wo=createGWOB(aw,@GRAPH,@resize,0.15,0.02,0.95,0.49,@name,"PY",@color,"white")
+   lri_wo=cWo(aw,@GRAPH,@resize,0.15,0.02,0.95,0.49,@name,"PY",@color,"white")
 
-   setgwob(lri_wo,@drawon,@pixmapon,@clip,0.05,0.1,0.98,0.9,@scales,0,0,185,120,@savescales,0)
+   sWo(lri_wo,@drawon,@pixmapon,@clip,0.05,0.1,0.98,0.9,@scales,0,0,185,120,@savescales,0,@redraw)
 
   // SRI_Wo
 
-   sri_wo=createGWOB(aw,@GRAPH,@resize,0.15,0.5,0.95,0.95,@name,"PY",@color,"white")
+   sri_wo=cWo(aw,@GRAPH,@resize,0.15,0.5,0.95,0.95,@name,"PY",@color,"white")
 
-   setgwob(sri_wo,@drawon,@pixmapon,@clip,0.1,0.1,0.9,0.9,@scales,0,0,185,120,@savescales,0)
+   sWo(sri_wo,@drawon,@pixmapon,@clip,0.1,0.1,0.9,0.9,@scales,0,0,185,120,@savescales,0,@redraw)
 
  
 
@@ -276,12 +286,6 @@ mapki = mapi
   plotPixRect(lri_wo,N_UL,mapi)
   plotPixRect(sri_wo,U,mapi)
 
-
-
-
-
-
-
 //  axis warping ?
 
 
@@ -292,13 +296,13 @@ mapki = mapi
 
 //  read csv image - cloud dbZ
 
-int Minfo[]
-float Rinfo[]
 
    while (1) {
 
 
-   msg = MessageWait(Minfo,Rinfo)
+   eventWait();
+
+
 
    redraw()
 

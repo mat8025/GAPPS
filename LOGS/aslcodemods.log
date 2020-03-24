@@ -336,3 +336,6 @@ wcom_gs_sw.cpp	 1.89	 Thu Mar 19 08:38:21 2020 dbug tidy
 ic_rw.cpp	 1.65	 Thu Mar 19 20:28:13 2020 mask src option started
 svar_date.cpp	 1.53	 Sat Mar 21 11:55:35 2020 fix wday,monthname
 colors_p.cpp	 1.2	 Sun Mar 22 10:26:10 2020 first reorg of color script calls
+sop_l.cpp	 1.90	 Sun Mar 22 13:08:08 2020 getRGBfromHTMLname
+po_p.cpp	 1.77	 Sun Mar 22 22:39:53 2020 plot poly
+x_sw.cpp	 1.100	 Sun Mar 22 22:41:08 2020 fix setWOP (..., nf) pairs

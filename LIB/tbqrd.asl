@@ -70,6 +70,12 @@ proc titleMessage( msg)
  sWo(tbqrd_msg,@value,"$msg",@clear,@redraw);
 }
 
+proc titleMsg( msg)
+{
+ //<<"%V $msg \n"
+ sWo(tbqrd_msg,@value,"$msg",@clear,@redraw);
+}
+
 
 
 

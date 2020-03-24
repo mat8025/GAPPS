@@ -118,7 +118,7 @@ k = 0
      sWo(awo,@BORDER,@DRAWON,@CLIPBORDER)
 
      worctile(awo,0.1,0.1,0.9,0.9,10,10)
-
+     titleVers()
      sWi(vp,@redraw)
      sWi(vp2,@redraw)
 
@@ -208,15 +208,15 @@ float WXY[]
    for (rj = 0; rj < 8 ; rj++) {
    jv = 0.0
    for (j = 0; j < 10 ; j++) {
-
+// _ewoname @= "Red"
        //setRGB(ki,redv,bv,jv)
-     if (_ewoid @= rwo) {
+     if (_ewoid == rwo) {
        setRGB(ki,redv,bv,jv)
      }
-      elif (_ewoid @= gwo) {
+      elif (_ewoid == gwo) {
        setRGB(ki,bv,greenv,jv)
       }
-      elif (_ewoid @= bwo) {
+      elif (_ewoid == bwo) {
         setRGB(ki,bv,jv,bluev)
       }
 
