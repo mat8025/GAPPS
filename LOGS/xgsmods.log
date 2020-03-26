@@ -95,3 +95,4 @@ ops_w.cpp                1.29	Fri Mar 20 09:32:01 2020 window_term return
 version.cpp              1.19	Fri Mar 20 15:07:59 2020 window_term, kill asl thread
 wo_sheetdraw_w.cpp       1.57	Sat Mar 21 07:53:23 2020 check for cell alloc per row
 clock_w.cpp              1.3	Sat Mar 21 10:22:54 2020 clk_str in woCR- base color tied to Wscreen
+sym_g.cpp                1.25	Tue Mar 24 09:10:04 2020 fix stardavid

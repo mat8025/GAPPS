@@ -3,8 +3,8 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.13 Al Aluminium                                               
-//*  @date Mon Nov 18 07:21:30 2019 
+//*  @vers 1.14 Si Silicon                                                 
+//*  @date Thu Mar 26 08:41:13 2020 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2014,2018 --> 
 //* 
@@ -19,11 +19,13 @@ str mans = "";
 Use_csv_fmt = 1;
 Delc = 44;
 
-int curr_row = 3;  // for paging
-int page_rows = 15;
-int curr_page = 1;
-int npgs = 1;
+int Curr_row = 3;  // for paging
+int Page_rows = 15;
+int Curr_page = 1;
+int Npgs = 1;
 int Nrows = 0;
+
+
 swaprow_a = 1;
 swaprow_b = 2;
 
@@ -220,7 +222,7 @@ proc DELROWS()
 {
 <<[_DB]"in $_proc\n"
 //int drows[]; // TBF
-//int drows[page_rows+];
+//int drows[Page_rows+];
 
 //int drows[20+];
 int n2d = 0;
@@ -317,17 +319,17 @@ proc AddTask( wt)
    <<"first empty row $er\n"
    
 
-    if (curr_row < 0) {
-        curr_row = 0;
+    if (Curr_row < 0) {
+        Curr_row = 0;
     }
     
-    <<"%V selectrowscols $curr_row $page_rows $cols $Rn\n"
+    <<"%V selectrowscols $Curr_row $Page_rows $cols $Rn\n"
 
-    sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0);
+    sWo(cellwo,@selectrowscols,Curr_row,Curr_row+Page_rows,0,cols,0);
   
-    curr_row = rows- page_rows +1;
-    if (curr_row < 0) {
-        curr_row = 0;
+    Curr_row = rows- Page_rows +1;
+    if (Curr_row < 0) {
+        Curr_row = 0;
     }
     
   //  sWo(cellwo,@selectrowscols,0,2,0,cols,1);
@@ -354,9 +356,9 @@ proc AddTask( wt)
     sWo(cellwo,@cellval,R);
     // increase rows/colls
 
-    //sWo(cellwo,@selectrowscols,curr_row,rows,0,cols,1);
+    //sWo(cellwo,@selectrowscols,Curr_row,rows,0,cols,1);
 
-sWo(cellwo,@selectrowscols,curr_row,rows-1,0,cols,1);
+sWo(cellwo,@selectrowscols,Curr_row,rows-1,0,cols,1);
     
     paintRows();
     
@@ -384,51 +386,51 @@ proc PGDWN()
    /// need to unselect all
 
 
-  npgs =   rows/page_rows;
+  Npgs =   rows/Page_rows;
 
-  if ((npgs * page_rows) < rows) {
-       npgs++;
+  if ((Npgs * Page_rows) < rows) {
+       Npgs++;
   }
 
-  if (curr_row < 0) {
-      curr_row = 0;
+  if (Curr_row < 0) {
+      Curr_row = 0;
   }
   
-<<"%V$cellwo $curr_row $page_rows $rows $cols $npgs\n"
+<<"%V$cellwo $Curr_row $Page_rows $rows $cols $Npgs\n"
 
-  if ((curr_row + page_rows) >= (rows-1)) {
-        curr_row = (rows - page_rows -1);
+  if ((Curr_row + Page_rows) >= (rows-1)) {
+        Curr_row = (rows - Page_rows -1);
    }
 
 
-  sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0);
+  sWo(cellwo,@selectrowscols,Curr_row,Curr_row+Page_rows,0,cols,0);
 
 
-   curr_row += page_rows/2;
+   Curr_row += Page_rows/2;
    // need to select
 
-  if ((curr_row + page_rows) >= (rows-1)) {
-        curr_row = (rows - page_rows -1);
+  if ((Curr_row + Page_rows) >= (rows-1)) {
+        Curr_row = (rows - Page_rows -1);
    }
 
-<<"%V$curr_row $page_rows $rows \n"
-    if (curr_row < 0) {
-        curr_row = 0;
+<<"%V$Curr_row $Page_rows $rows \n"
+    if (Curr_row < 0) {
+        Curr_row = 0;
     }
     
    sWo(cellwo,@selectrowscols,0,0,0,cols,1);
-   sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,1);
+   sWo(cellwo,@selectrowscols,Curr_row,Curr_row+Page_rows,0,cols,1);
 
   // setRowColSizes();
    
    paintRows();
-   curr_page++;
+   Curr_page++;
    
-   if (curr_page > npgs) {
-     curr_page = npgs;
+   if (Curr_page > Npgs) {
+     Curr_page = Npgs;
    }
    
-   sWo(pgnwo,@value,curr_page,@update);
+   sWo(pgnwo,@value,Curr_page,@update);
      
    sWo(cellwo,@redraw);
    
@@ -439,31 +441,31 @@ proc PGUP()
 {
 /// rework for fixed pages -- of size?
 
-   npgs =   rows/page_rows;
-   <<"%V $cellwo  $npgs $rows $cols $page_rows $curr_row \n"
+   Npgs =   rows/Page_rows;
+   <<"%V $cellwo  $Npgs $rows $cols $Page_rows $Curr_row \n"
 
    //setdebug(1,@trace);
    if (current_row <0) {
        current_rwo = 0;
    }
-   sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0);
+   sWo(cellwo,@selectrowscols,Curr_row,Curr_row+Page_rows,0,cols,0);
 
-   curr_row -= page_rows/2;
+   Curr_row -= Page_rows/2;
 
-   if (curr_row < 0) {
-       curr_row = 0;
+   if (Curr_row < 0) {
+       Curr_row = 0;
    }
    
    sWo(cellwo,@selectrowscols,0,0,0,cols,1);
-   sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,1);
+   sWo(cellwo,@selectrowscols,Curr_row,Curr_row+Page_rows,0,cols,1);
   // setRowColSizes();
    paintRows();
   sWo(cellwo,@redraw);
-  curr_page--;
-  if (curr_page <1) {
-      curr_page =1;
+  Curr_page--;
+  if (Curr_page <1) {
+      Curr_page =1;
   }
-  sWo(pgnwo,@value,curr_page,@update);
+  sWo(pgnwo,@value,Curr_page,@update);
   return ;
 }
 //====================
@@ -473,7 +475,7 @@ proc clearTags()
 <<[_DB]" $_proc\n"
 //    R[::][7] = ""; // TBF
    ans= yesornomenu("ClearTags?")
-   
+   int i = 0;
    if (ans == 1) { // TBF
 
    for (i= 1; i< rows; i++) {
@@ -490,47 +492,47 @@ proc clearTags()
 proc lastPGN ()
 {
 
-  npgs =   rows/page_rows;
+  Npgs =   rows/Page_rows;
 
-  scrollPGN(npgs+1);
+  scrollPGN(Npgs+1);
 }
 //============================
 
 proc scrollPGN (pn)
 {
 
-    if (curr_row < 0) {
-        curr_row = 0;
+    if (Curr_row < 0) {
+        Curr_row = 0;
     }
 
-  sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,0); // unset current
+  sWo(cellwo,@selectrowscols,Curr_row,Curr_row+Page_rows,0,cols,0); // unset current
 
-  npgs =   rows/page_rows;
+  Npgs =   rows/Page_rows;
 
   wpg = pn;
 
-  curr_row =  (wpg - 1) * page_rows ;
+  Curr_row =  (wpg - 1) * Page_rows ;
 
-  if (curr_row < 0) {
-      curr_row = 0;
+  if (Curr_row < 0) {
+      Curr_row = 0;
   }
 
 
-<<[_DB]"%V$curr_row $page_rows $rows \n"
+<<[_DB]"%V$Curr_row $Page_rows $rows \n"
 
-  if ((curr_row + page_rows) >= (rows-1)) {
-        curr_row = (rows - page_rows -1);
+  if ((Curr_row + Page_rows) >= (rows-1)) {
+        Curr_row = (rows - Page_rows -1);
    }
 
-  // curr_row += page_rows/2;
+  // Curr_row += Page_rows/2;
    // need to select
 
-<<[_DB]"%V$curr_row $page_rows $rows \n"
+<<[_DB]"%V$Curr_row $Page_rows $rows \n"
 
    sWo(cellwo,@selectrowscols,0,2,0,cols,1);
-   sWo(cellwo,@selectrowscols,curr_row,curr_row+page_rows,0,cols,1);
+   sWo(cellwo,@selectrowscols,Curr_row,Curr_row+Page_rows,0,cols,1);
    paintRows();
-   curr_page = wpg;
+   Curr_page = wpg;
    sWo(cellwo,@redraw);
    sWo(pgnwo,@value,wpg,@update);
 
@@ -542,15 +544,15 @@ proc PGN()
 
    // how many pages
    
-  npgs =   rows/page_rows;
+  Npgs =   rows/Page_rows;
 
   // ask for page 
   //wpg = menu(pages);
 
-  int wpg = npgs /2;
+  int wpg = Npgs /2;
 
   if (wpg < 0) wpg = 0;
-  if (wpg > npgs) wpg = npgs;
+  if (wpg > Npgs) wpg = Npgs;
   
 
   wval = getWoValue(pgnwo);
@@ -558,7 +560,7 @@ proc PGN()
 <<[_DB]"%V$wval \n"
   wpg = atoi(getWoValue(pgnwo));
 
-<<[_DB]"%V $npgs $wpg\n"
+<<[_DB]"%V $Npgs $wpg\n"
 
    scrollPGN (wpg)
 
@@ -569,26 +571,26 @@ proc PGN()
 proc paintRows()
 {
 
-    endprow = curr_row + page_rows 
+    endprow = Curr_row + Page_rows 
 
-<<"$endprow = $curr_row + $page_rows $rows \n"
+<<"$endprow = $Curr_row + $Page_rows $rows \n"
 
     if (endprow > rows) {
        endprow = rows-1;  // fix xgs for oob error
     }
     // do a row at a time
     
-  <<"%V $rows $cols $curr_row $endprow \n"
-//      sWo(cellwo,@cellbhue,curr_row,ALL_,LILAC_);
-//      sWo(cellwo,@cellbhue,curr_row+1,ALL_,LILAC_);
+  <<"%V $rows $cols $Curr_row $endprow \n"
+//      sWo(cellwo,@cellbhue,Curr_row,ALL_,LILAC_);
+//      sWo(cellwo,@cellbhue,Curr_row+1,ALL_,LILAC_);
     
 //int i;
 
-    if (curr_row < 0) {
-        curr_row = 0;
+    if (Curr_row < 0) {
+        Curr_row = 0;
     }
 
-   for (i = curr_row; i < endprow ; i++) {
+   for (i = Curr_row; i < endprow ; i++) {
    //<<[_DB]"<$i> $(typeof(i))\n"
 	  if ((i%2)) {
 	       sWo(cellwo,@cellbhue,i,ALL_,CYAN_);
@@ -602,7 +604,36 @@ proc paintRows()
 
 }
 //=============================
+proc gotoLastPage()
+{
 
+ int jj = 0;
+ for (jj=0;jj<5;jj++) {
+     PGDWN()
+     gflush()
+ }
+        
+ for (jj=0;jj<10;jj++) {
+     //sleep(0.1)
+     PGUP()
+   <<"PGUP $jj $Curr_page\n"
+         gflush()
+    if (Curr_page == 0)
+       break
+ }
+ int last_page =Curr_page;
+ for (jj=0; jj<15; jj++) {
+     PGDWN()
+     gflush()
+     <<"PGDWN $jj $Curr_page\n"
+     if (Curr_page == last_page)
+        break
+     last_page = Curr_page;
+ }
+
+}
+
+//================================
 
 proc HOO()
 {

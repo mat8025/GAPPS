@@ -146,13 +146,15 @@ proc WhatWt(wr)
 
 
 
+//===============================
+
 
 //  fname = "pp.rec"
   fname = _clarg[1];
 
 
   if (fname @= "")  {
-   fname = "wex2020.tsv";
+   fname = "DAT/wex2020.tsv";
   }
 
 
@@ -242,10 +244,21 @@ include "addex_screen"
 //setdebug(1,@keep,@trace);
 
 
-
+        gflush()
 <<"3 %V num of records $sz  $rows $cols  $Ncols\n"
 
+
+  gotoLastPage();
+
+
    lastPGN ();
+
+
+
+
+
+
+
    int mwr =0;
    int mwc =0;
    

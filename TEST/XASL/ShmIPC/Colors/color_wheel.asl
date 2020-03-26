@@ -25,20 +25,20 @@ Pi = 4.0 * atan(1.0)
 
    Np = 10;
 
-   NF = 10 * 4;
+   NF = Np * 4;
 
-  float PV[6][NF];
+  float PV[12][NF];
 
     /// outer ring
 
     float outer_rad  = 2.5;
     float inner_rad  = 2.0;
 
-   float ang = 90.0;
+   float ang = 0.0;
 
 
 
-   float da = 60.0/ Np;
+   float da = 30.0/ Np;
    
      dar= d2r(ang)
 
@@ -50,7 +50,7 @@ Pi = 4.0 * atan(1.0)
 
      ang2 = ang;
 
-  for (j= 0; j < 6; j++) {
+  for (j= 0; j < 12; j++) {
 <<"///////////// Outer //////\n"
      k= 0;
       ang = ang2;
@@ -105,8 +105,7 @@ Pi = 4.0 * atan(1.0)
 
 ////////////////////////////////////////////////////////
 
-include "graphic.asl"
-include "gevent.asl"
+
 
  rainbow();
  redv = 0.5
@@ -114,26 +113,100 @@ include "gevent.asl"
  bluev = 0.5
 
 
-    rainbow()
+
 
 sleep(1)
 <<"\n"
 
 HT=getRGBfromHTMLname("yellowgreen")
 
-<<"$HT   %x $HT[4]\n"
+<<"yellowgreen $HT   %x $HT[4]\n"
 
 
-HT=getRGBfromHTMLname("midnightblue")
+HT=getRGBfromHTMLname("cyan")
 
-<<"$HT   %x $HT[4]\n"
+<<"cyan $HT   %x $HT[4]\n"
 
 
 HT=getRGBfromHTMLname("rosybrown")
 
-<<"$HT   %x $HT[4]\n"
+<<"rose $HT   %x $HT[4]\n"
+
+HT=getRGBfromHTMLname("azure")
+
+<<"azure $HT   %x $HT[4]\n"
 
 
+// Complementary Colors
+
+<<"Complementary Colors \n"
+
+int CC[12]
+kc= 0;
+ci = getcolorindexfromname("yellow")
+<<"yellow $ci \n"
+CC[kc++] = ci
+
+
+cname = "yelloworange";
+ci = getcolorindexfromname(cname)
+<<"$cname $ci \n"
+CC[kc++] = ci
+cname = "orange";
+ci = getcolorindexfromname(cname)
+<<"$cname $ci \n"
+CC[kc++] = ci
+cname = "orangered";
+ci = getcolorindexfromname(cname)
+<<"$cname $ci \n"
+CC[kc++] = ci
+cname = "red";
+ci = getcolorindexfromname(cname)
+<<"$cname $ci \n"
+CC[kc++] = ci
+
+cname = "redviolet";
+ci = getcolorindexfromname(cname)
+<<"$cname $ci \n"
+CC[kc++] = ci
+
+cname = "violet";
+ci = getcolorindexfromname(cname)
+<<"$cname $ci \n"
+CC[kc++] = ci
+cname = "blueviolet";
+ci = getcolorindexfromname(cname)
+<<"$cname $ci \n"
+CC[kc++] = ci
+cname = "blue";
+ci = getcolorindexfromname(cname)
+<<"$cname $ci \n"
+CC[kc++] = ci
+
+cname = "bluegreen";
+ci = getcolorindexfromname(cname)
+<<"$cname $ci \n"
+CC[kc++] = ci
+
+cname = "green";
+ci = getcolorindexfromname(cname)
+<<"$cname $ci \n"
+CC[kc++] = ci
+
+cname = "yellowgreen";
+ci = getcolorindexfromname(cname)
+<<"$cname $ci \n"
+CC[kc++] = ci
+
+
+
+<<"$CC\n"
+
+
+ rainbow();
+
+include "graphic.asl"
+include "gevent.asl"
 
 
 // how to draw wheel  with twelve sections ?
@@ -172,6 +245,7 @@ HT=getRGBfromHTMLname("rosybrown")
 
   int kp = 0;
   int col = 1000;
+  int co = 0;
   while (1) {
 
 
@@ -181,25 +255,23 @@ HT=getRGBfromHTMLname("rosybrown")
 
           sWo(gwo,@clear,@border,BLUE_,@clipborder,RED_)
 
-          plot(gwo,@circle,0,0,2,YELLOW_,1)
+          plot(gwo,@circle,0,0,2,YELLOW_,0)
 
-          plot(gwo,@circle,0,0,2.5, RED_,1)
+          plot(gwo,@circle,0,0,2.5, RED_,0)
 
           plot(gwo,@box,-0.5,-0.5,0.5,0.5,LILAC_,1.0)
 
-	  for (kp = 0; kp < 6; kp++) {
+	  for (kp = 0; kp < 12; kp++) {
 
           PX = PV[kp][::]
-	  
+	  co = ((kp + _eloop) % 12)
+          col = CC[co]	  
           plot(gwo,@poly,PX,col,1);
 
-          col++;
          }
          <<"%V $col\n"
 
-         if (col > 1300) {
-             col = 1000;
-         }
+
 
        //  sWi(vp,@redraw);
          sWo(gwo, @showpixmap)

@@ -1,7 +1,4 @@
 #! /bin/bash
 echo $1 $GS_SRC/GW
-#ls ${GS_TMP}/include
-#ls ~/gasp-CARBON/include
-#ls ~/gasp-CARBON/include/*.h
 grep $1 $GS_SRC/GW/*/*.cpp
 

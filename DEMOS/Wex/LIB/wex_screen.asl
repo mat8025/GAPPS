@@ -63,7 +63,7 @@ CalsY1 = 5000;
 
     sWo(wedwo,@clip,CXY, @color,LILAC_,@clipbhue,WHITE_,@bhue,GREEN_,@font,F_SMALL_)
 
-    sWo(calwo,@clip,CXY, @color,MAGENTA_,@clipbhue,PINK_,@bhue,CYAN_,@font,F_SMALL_)
+    sWo(calwo,@clip,CXY, @color,MAGENTA_,@clipbhue,PINK_,@bhue,RED_,@font,F_SMALL_)
 
  //   sWo(carbwo,@clip,CXY, @color,BROWN_,@clipbhue,BROWN_,@bhue,GREEN_,@font,F_SMALL_,@fonthue,WHITE_)
 
@@ -91,8 +91,8 @@ CalsY1 = 5000;
 
 
 ///  measurement
-     tw_wo= cWo(gwo,@symbol,@resize,0.1,0.1,0.15,0.3,0,@name,"TW",@value,185)
-     sWo(tw_wo,@vhmove,ON_,@symbol,STARDAVID_,@redraw)
+     tw_wo= cWo(gwo,@symbol,@resize,0.1,0.1,0.15,0.25,0,@name,"TW",@value,185)
+     sWo(tw_wo,@vhmove,ON_,@symbol,STARDAVID_,@pixmapon,@redraw)
 
 
 

@@ -5437,7 +5437,7 @@ result is a vector of the rms for each column
 .EF
 =============================================================
 .BF
-Mean,Ave()
+Ave(),Mean(),
 .(x
 Mean
 .)x 

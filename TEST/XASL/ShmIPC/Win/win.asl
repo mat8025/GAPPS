@@ -3,8 +3,8 @@
 //* 
 //*  @comment test win create and placement 
 //*  @release CARBON 
-//*  @vers 1.9 F Fluorine                                                 
-//*  @date Sat Feb 16 20:23:11 2019 
+//*  @vers 1.10 Ne Neon                                                    
+//*  @date Wed Mar 25 12:00:09 2020 
 //*  @cdate 1/1/2005 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -16,21 +16,10 @@
 
 include "debug.asl"
 include "hv.asl"
-include "tbqrd";
-include "gevent.asl"
+include "graphic"
+include "gevent"
+
 debugON();
-
-   Graphic = CheckGwm()
-
-     if (!Graphic) {
-        X=spawngwm()
-       if (X <= 0) {
-         <<"spawn failed !\n"
-	 exit();
-       }
-       <<"asl pid $X ?\n"
-     }
-
 
 
     vp = cWi(@title,"BasicWindow")
@@ -48,22 +37,15 @@ debugON();
 
 
 
- qwo=cWo(vp,"BN",@name,"QUIT?",@value,"QUIT",@color,"orange",@resize_fr,0.01,0.01,0.14,0.1)
- sWo(qwo,@help," click to quit")
- sWo(qwo,@border,@drawon,@clipborder,@fonthue,BLACK_, @redraw)
-
- selwo=cWo(vp,"BN",@name,"SELECT",@value,"SELECT",@color,"blue",@resize_fr,0.01,0.8,0.14,0.9)
- sWo(selwo,@help," click to select box")
- sWo(selwo,@BORDER,@DRAWON,@clipborder,@fonthue,BLACK_, @redraw)
 
 
- two=cWo(vp,"TEXT",@name,"Text",@value,"howdy",@color,"orange",@resize,0.2,0.01,0.9,0.2)
- sWo(two,@border,@drawon,@clipborder,@fonthue,"black",@pixmapoff)
- sWo(two,@scales,0,0,1,1)
- sWo(two,@help," Mouse & Key Info ")
+ txtwo=cWo(vp,"TEXT",@name,"Text",@value,"howdy",@color,ORANGE_,@resize,0.2,0.01,0.9,0.2)
+ sWo(txtwo,@border,@drawon,@clipborder,@fonthue,"black",@pixmapoff)
+ sWo(txtwo,@scales,0,0,1,1)
+ sWo(txtwo,@help," Mouse & Key Info ")
 
 
- bsketchwo=cWo(vp,"GRAPH",@name,"sketch",@color,"yellow",@resize,0.01,0.15,0.14,0.2)
+ bsketchwo=cWo(vp,"GRAPH",@name,"sketch",@color,YELLOW_,@resize,0.01,0.15,0.14,0.2)
  sWo(bsketchwo,@border,@drawon,@clipborder,@fonthue,"red", @redraw)
  sWo(bsketchwo,@clip,0.1,0.15,0.95,0.85,@bhue,"lime")
  sWo(bsketchwo,@scales,-1,-1,1,1)
@@ -144,28 +126,26 @@ debugON();
     while (1) { 
        
        eventWait();
-<<"$_emsg $_eloop $_ewoid  $_ewid $_ebutton $_etype $(PRESS_)\n"
+titleMsg("$_emsg $_eloop $_ewoid  $_ewid $_ebutton $_etype $(PRESS_)\n");
 
    if ( (_ebutton > 0) && (_etype == 2)) {
    <<"PRESS button\n"
-
-       sWo(two,@textr,"$_emsg",0.1,0.8)
+       sWo(txtwo,@clear)
+       sWo(txtwo,@textr,"$_emsg",0.1,0.8)
        sWi(vp,@tmsg,"Hey buddy $_eloop");
-       sWo(two,@textr,"%V$_ebutton",0.1,0.7)
-       sWo(two,@textr,"%V$_erx $_ery",0.1,0.5)
-//       sWo(two,@textr,"%V6.2f$Rinfo[0:5]",0.1,0.3)
+       sWo(txtwo,@textr,"%V$_ebutton",0.1,0.7)
+       sWo(txtwo,@textr,"%V$_erx $_ery",0.1,0.5)
+//       sWo(txtwo,@textr,"%V6.2f$Rinfo[0:5]",0.1,0.3)
 
-       sWo(two,@redraw)
+       sWo(txtwo,@redraw)
      //  sWi(vpo,@redraw)
        
-       if (scmp(_emsgwd[1],"QUIT",4)) {
-         break
-       }
+
 
        if (scmp(_emsgwd[1],"SELECT",6)) {
          RS=selectreal(vp)
         <<"%V$RS\n"
-         sWo(two,@textr,"%V6.2f$RS",0.1,0.2)
+         sWo(txtwo,@textr,"%V6.2f$RS",0.1,0.2)
        }
 
        if (_ewoid == qwo) {

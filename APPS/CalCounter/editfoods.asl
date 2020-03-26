@@ -14,14 +14,15 @@
    
 ////////////    DDC  /////////////
    
-   include "debug.asl"; 
-   include "gevent.asl"; 
+   include "debug"; 
+   include "gevent"; 
    include "gss.asl";
    include "hv.asl"; 
-   include "editfoods_ssp.asl";
+   include "editfoods_ssp";
    
    
 //////   create MENUS here  /////
+/{
    A=ofw("HowMuch.m"); 
    <<[A],"title HowMuchMore\n"; 
    <<[A],"item 1.5x M_VALUE 1.5\n"; 
@@ -103,7 +104,7 @@
    cf(A); 
    
 //============================
-
+/}
 
 proc setUnits(wr,wc)
 {
@@ -176,7 +177,7 @@ UnitsCol = 2;
      }
    else {
      
-     fname = "newfoods.csv"; 
+     fname = "Foods/newfoods.csv"; 
      
      }
    
@@ -224,15 +225,7 @@ UnitsCol = 2;
    
 //////////////////////////////////
    
-   
-   Graphic = CheckGwm(); 
-   
-   if (!Graphic) {
-     X=spawngwm(); 
-     }
-   
-   
-   include "tbqrd";
+   include "graphic";
    include "editfoods_scrn";
    include "checkFood";
    
@@ -245,7 +238,7 @@ UnitsCol = 2;
    
    tags_col = cols;
  // rows += 2;
-   sWo(cellwo,@setrowscols,rows+10,cols+1);
+   sWo(cellwo,@setrowscols,rows+2,cols+1);
    
    <<"%V$rows $sz \n"; 
    
@@ -264,9 +257,6 @@ UnitsCol = 2;
          }
        }
      }
-   
-   
-//  totalRows();
    
    
    sWo(cellwo,@cellval,R,0,0,rows,cols);
@@ -288,7 +278,7 @@ UnitsCol = 2;
    <<"$(Caz(RC,0)) \n";
    
    
-   sWo(choicewo,@setrowscols,10,cols+1);
+   sWo(choicewo,@setrowscols,Nbp+1,cols+1);
    sWo(choicewo,@selectrowscols,0,Nbp,0,cols);
    
    sWo(choicewo,@setcolsize,3,0,1);
@@ -316,7 +306,7 @@ UnitsCol = 2;
    
    setRowColSizes();
    
-      sWo(choicewo,@cellval,RC,0,0,Nbp,cols); ; // RecordVar, startrow, startcol, nrows, ncols, 
+   sWo(choicewo,@cellval,RC,0,0,Nbp,cols); ; // RecordVar, startrow, startcol, nrows, ncols, 
    
    sWo(cellwo,@redraw);
    
@@ -328,7 +318,10 @@ UnitsCol = 2;
 //  Addrow();
    
    myfood = "pie apple"; 
-     FoodSearch();    ; // intial search bug 
+   FoodSearch();    ; // intial search bug 
+
+
+   gotoLastPage();
    
    str rcword ="xxx"; 
    

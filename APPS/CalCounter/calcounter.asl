@@ -15,17 +15,17 @@
 
 ////////////    DDC  /////////////
 
-include "debug.asl"
-include "gevent.asl"
+include "debug"
+include "gevent"
 include "gss.asl";
 include "hv.asl"
-include "calcounter_day.asl"; // check in local LIB first
+include "calcounter_day"; // check in local LIB first
 include "checkFood";
 include "calcounter_foods";
-include "calcounter_ssp.asl";
-include "calcounter_addrow.asl";
-include "calcounter_adjust.asl";
-include "calcounter_totals.asl";
+include "calcounter_ssp";
+include "calcounter_addrow";
+include "calcounter_adjust";
+include "calcounter_totals";
 
 
 
@@ -36,6 +36,7 @@ filterFileDebug(ALLOW_,"wo_sheet_p");
 setDebug(0,@~pline,@~trace)
 
 //////   create MENUS here  /////
+/{
 A=ofw("HowMuch.m")
 <<[A],"title HowMuchMore\n"
 <<[A],"item 1.5x M_VALUE 1.5\n"
@@ -59,6 +60,8 @@ A=ofw("HowMuch.m")
 <<[A],"factor ? C_INTER "?"\n"
 <<[A],"help set mins\n"  
 cf(A)
+/}
+
 
 Record Tot[2];
 Tot[0]= Split("#FoodT,NF,ITM,Cals,Carbs,Fat,Prot,Choles,SatFat,Wt,Choline,vA,vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn,",",");
@@ -190,7 +193,7 @@ else {
 R->info(1)
 
 
-include "graphic.asl"
+include "graphic"
 include "calcounter_scrn";
 
 //totalRows();

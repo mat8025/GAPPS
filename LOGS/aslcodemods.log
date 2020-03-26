@@ -339,3 +339,8 @@ colors_p.cpp	 1.2	 Sun Mar 22 10:26:10 2020 first reorg of color script calls
 sop_l.cpp	 1.90	 Sun Mar 22 13:08:08 2020 getRGBfromHTMLname
 po_p.cpp	 1.77	 Sun Mar 22 22:39:53 2020 plot poly
 x_sw.cpp	 1.100	 Sun Mar 22 22:41:08 2020 fix setWOP (..., nf) pairs
+colors.cpp	 1.81	 Mon Mar 23 22:54:19 2020 added redViolet,yelloworange
+colors.cpp	 1.82	 Tue Mar 24 10:26:56 2020 added CC complementary colors
+svarg_e.cpp	 2.28	 Wed Mar 25 09:34:16 2020 added getArgLtype
+gline_p.cpp	 1.73	 Wed Mar 25 09:50:36 2020 use getArgLtype
+com_menu.cpp	 1.82	 Thu Mar 26 09:41:56 2020 search local MENUS dir before SYS MENUS

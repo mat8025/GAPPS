@@ -141,7 +141,7 @@ scrnBox(750,50,800,300,RED_,0)
 
 
        vp4 = cWi(@title,"TopRightWindow_4")
-    sWi(vp4,@pixmapon,@drawoff,@save,@bhue,YELLOW_,@resize,0.61,0.51,0.9,0.9,1)
+    sWi(vp4,@pixmapon,@drawoff,@save,@bhue,YELLOW_,@resize,0.41,0.51,0.6,0.9,@redraw)
 
 int IV[30];
 int IV2[30];
