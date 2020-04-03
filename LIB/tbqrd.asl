@@ -14,14 +14,19 @@
 ///
 ///
 
-<<[_DB]"including tbqrd.asl \n"
 // TBF has to be a 'starter' line before any decs in include file?
+// keep following
+
+#define TBQRD 2
+
+<<"including tbqrd.asl TBQRD $(TBQRD)\n"
+
 // assume just main window use
 
 int tbqrd_tv = 0;
 int tbqrd_msg = 0;
 
-<<[_DB]"FIRST %V $tbqrd_tv \n"
+//<<[_DB]"FIRST %V $tbqrd_tv \n"
 
 
 proc  titleButtonsQRD(v)
@@ -46,9 +51,9 @@ qrd[2]= td;
 
 <<[_DB]"%V $tr $tq $td\n"
 <<[_DB]"%V $qrd $(caz(qrd)) $(typeof(qrd))\n"
- sWo(qrd,@drawon,@pixmapon,@fonthue,RED_,@color,WHITE_,@symsize,45, @clip,0,0,1,1,@redraw);
- sWo(tbqrd_tv,@redraw);
- sWo(tbqrd_msg,@redraw);
+ sWo(qrd,@drawon,@pixmapon,@fonthue,RED_,@color,WHITE_,@symsize,45, @clip,0,0,1,1);
+// sWo(tbqrd_tv,@redraw);
+// sWo(tbqrd_msg,@redraw);
  
 }
 //============================//
@@ -79,6 +84,6 @@ proc titleMsg( msg)
 
 
 
-<<[_DB]"EXIT %V $tbqrd_tv \n"
-<<[_DB]" %V $_include \n"
+//<<[_DB]"EXIT %V $tbqrd_tv \n"
+//<<[_DB]" %V $_include \n"
 

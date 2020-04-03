@@ -79,7 +79,7 @@
 
 /}*/
 
-    CMF set (m,n) 
+    CMF set (float m, float n) 
     {
        x = m;
        y = n;
@@ -98,7 +98,7 @@
       return y;
       }
     
-    CMF  mul(a) {
+    CMF  mul(float a) {
       float tmp;
       tmp = (a * x); 
       return tmp; 

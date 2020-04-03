@@ -16,8 +16,8 @@
 
 include "debug.asl"
 include "hv.asl"
-include "graphic"
-include "gevent"
+include "graphic.asl"
+include "gevent.asl"
 
 debugON();
 
@@ -53,8 +53,8 @@ debugON();
 // show border
 // draw lines within clip area
 
-  // plotline(vp,0,0,1,1,"blue")
- //  plotline(vp,0,1,1,0,"red")
+  plotline(vp,0,0,1,1,"blue")
+ plotline(vp,0,1,1,0,"red")
 
    axnum(vp,1)
    axnum(vp,2)
@@ -99,17 +99,17 @@ debugON();
     cy = 0.2
     cY = 0.95
 
-  win_pm = 0;
+  win_pm = 1;
   p2 = 0;
   if (!win_pm) {
     gwo2=cWo(vp2,"GRAPH",@resize,0.15,0.1,0.95,0.95,@name,"PIC",@color,WHITE_)
     sWo(gwo2,@clip,cx,cy,cX,cY)
-    sWo(gwo2,@scales,0,0,1,1, @save,@savepixmap,@redraw,@drawoff,@pixmapon)
+    sWo(gwo2,@scales,0,0,1,1, @save,@savepixmap,@redraw,@drawon,@pixmapon)
     // why both save and savepixmap needed ?
 
     gwo3=cWo(vp3,"GRAPH",@resize,0.15,0.1,0.95,0.95,@name,"PIC",@color,WHITE_)
     sWo(gwo3,@clip,cx,cy,cX,cY)
-    sWo(gwo3,@scales,0,0,1,1, @save,@savepixmap,@redraw,@drawoff,@pixmapon)
+    sWo(gwo3,@scales,0,0,1,1, @save,@savepixmap,@redraw,@drawon,@pixmapon)
 
     gwo4=cWo(vp4,"GRAPH",@resize,0.15,0.1,0.95,0.95,@name,"PIC",@color,WHITE_)
     sWo(gwo4,@clip,cx,cy,cX,cY)
@@ -171,7 +171,6 @@ titleMsg("$_emsg $_eloop $_ewoid  $_ewid $_ebutton $_etype $(PRESS_)\n");
               sWo(vp2,@clear,WHITE_);
               Plot(vp2,@line,0.5,1,0.5,0,RED_)
               Plot(vp2,@line,0,0.5,1,0.5,RED_)
-
               Plot(vp2,@box,0,0,1,1,PINK_,1)
               Plot(vp3,@line,0.5,1,0.5,0,YELLOW_)
               Plot(vp3,@line,0,0.5,1,0.5,YELLOW_)

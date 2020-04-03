@@ -1762,7 +1762,7 @@ mode 1 uses a maxof substitution, mode = 2 the values is added to the existing.
 .EF
 =============================================================
 .BF
-@Box()
+Box()
 .(x
 Box
 .)x 
@@ -1778,6 +1778,34 @@ are position, [size], color, angle and fill.
 
 .EF
 =============================================================
+.BF
+Wbox()
+.(x
+Wbox
+.)x 
+.FD
+Plot(wid,@wbox,ix,iy,iX,iY,{hue,fill,origin})
+
+plots box specified as pixel offset  from specified origin  (1 window x,y : 2 basewo x,t 3 :basewo CR x,y)
+box color set to hue. Will fill box area if fill set to 1.
+e.g. plot(vp,@wbox,10,10, 90, 90, RED_, 1)
+plots a red filled box at offset 10,10  80 pixel square rectangle from  a windows Left bottom corner.
+the origin can also be  the basewo position or the clip region position of the base wo.
+
+.EF
+=============================================================
+.BF
+ScrnBox()
+.(x
+ScrnBox
+.)x 
+.FD
+Scrnbox(x,y,X,Y,{hue,fill})
+
+plots box on screen with wcreen coors (int)  x,y X,Y in specified hue and either outline or filled. 
+.EF
+=============================================================
+
 .BF
 symbol()
 .(x

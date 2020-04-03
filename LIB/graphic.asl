@@ -27,6 +27,6 @@
    
       OpenDll("plot") ;  //  should be automatic -- but for XIC launch best to use! 
    
-include "tbqrd" ; //  main window title buttons - resize,quit 
+include "tbqrd.asl"  // bug nested?
    
 ////////////////////////////////////////////////////////////////////////////////////////////////

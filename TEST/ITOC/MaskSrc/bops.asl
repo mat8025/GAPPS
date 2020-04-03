@@ -12,44 +12,25 @@
 //***********************************************%
 
 
-#include "debug.asl"
+#include "local_debug.asl"
 
 
+<<"%V $ABC\n"
+
+/{
 debugON()
-setdebug(1,@pline,@trace,@keep)
+setdebug(1,@~pline,@~trace,@keep)
 
 filterFuncDebug(ALLOWALL_,"xxx");
 filterFileDebug(ALLOWALL_,"yyy");
+/}
 
+setdebug(1,@pline,@keep);
+filterFileDebug(ALLOWALL_,"yyy");
 
 checkIn(0)
 
 //prog= GetScript()
-
-int n1 = 1;
-
-<<"%V $n1 \n"
-
-        CheckNum(n1,1)
-
-
-   n1++
-
-<<"%V $n1 \n"
-
-      CheckNum(n1,2)
-
-
-
-   ++n1
-
-<<"%V $n1 \n"
-
-  CheckNum(n1,3)
-
-
-
-
 
 float fn=2.71828;
 <<"%V$fn\n"
@@ -168,23 +149,19 @@ sal = 40 * 75 * 4
  CheckNum(sal,12000)
 
 
-int n = 1;
+int n = 1
 
 <<"%V $n \n"
 
-      //  CheckNum(n,1)
+        CheckNum(n,1)
 
 
-   n++
+n++
 
-<<"%V $n \n"
-
-    //   CheckNum(n,2)
+       CheckNum(n,2)
 
 
-   ++n
-
-<<"%V $n \n"
+++n
 
       CheckNum(n,3)
 
@@ -282,7 +259,7 @@ CheckFNum(q,-7);
 
   int sum = 0;
   double mi = 1;
-  N = 100;
+  N = 10;
   
   for (k = 0; k < N; k++) {
 
@@ -294,11 +271,15 @@ CheckFNum(q,-7);
 <<"%V $sum  $k  $(k*N/2) $mi\n"
 
 <<"B4 CheckOut()\n"
-CheckOut()
 
-ans = iread(">>>:")
-<<"after CheckOut()\n"
 //float ok = 47.2
 //<<"$ok \n"
 
 
+DummyP()
+
+
+CheckOut()
+
+
+<<"after CheckOut()\n"

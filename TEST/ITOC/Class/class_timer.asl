@@ -1,3 +1,15 @@
+//%*********************************************** 
+//*  @script class_timer.asl 
+//* 
+//*  @comment timekeeper class example 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                    
+//*  @date Tue Mar 31 20:09:00 2020 
+//*  @cdate Tue Mar 31 20:09:00 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 // test class
 
 CheckIn()
@@ -153,4 +165,3 @@ Class Timekeeper
    CheckOut()
 
 
-STOP!

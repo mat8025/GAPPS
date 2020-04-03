@@ -95,12 +95,12 @@
 
 <<"$sz $(utime()) total cpu $f mem $mem   $ave\n"; 
 
-     if (f >70) {
+     if (f >80) {
        <<" $high lot of swapping -- killing culprit - chrome?\n"; 
 
 <<"$f   ---> asl zap.asl chrome ";
         high++;
-        if (high > 15) {
+        if (high > 10) {
        !!"asl zap.asl chrome ";
         }
      }
@@ -108,7 +108,7 @@
          high = 0
       }
      
-     sleep(5); 
+     sleep(10); 
      fflush(1); 
 }
 

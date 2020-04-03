@@ -223,11 +223,11 @@ readData();
 //    sc_endday = 75 * 365
 
 // 
-   init_period = 56;
+   init_period = 32;
    
    sc_endday = (jtoday - bday) + init_period;
 
-   sc_startday = (jtoday - bday) - 15;
+   sc_startday = (jtoday - bday) - 7;
 
    <<[_DB]"%V$ngday \n"
 

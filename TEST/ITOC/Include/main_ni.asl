@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
 
-
+include "debug"
 <<"does nested includes\n"
 
 A= 1;
@@ -22,9 +22,9 @@ int n = 0 ;
 
 //goon = iread("->\n");
 
-//setdebug(1,"pline","trace")
+setdebug(1,@pline)
 
-setdebug(0)
+
 
 <<" before include\n"
 

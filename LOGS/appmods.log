@@ -89,3 +89,5 @@ calcounter.asl           1.29	Sun Mar 15 11:21:20 2020 totals 2 rows header + su
 colors2.asl              1.4	Sun Mar 22 11:08:30 2020 added LIB routines
 win.asl                  1.10	Wed Mar 25 12:00:09 2020 revise
 gss.asl                  1.14	Thu Mar 26 08:41:13 2020 gotoLastPage
+stuff2do.asl             1.2	Thu Mar 26 11:28:31 2020 use GSS 
+basewo.asl               1.10	Sun Mar 29 09:58:32 2020 fix basewo(win) plot

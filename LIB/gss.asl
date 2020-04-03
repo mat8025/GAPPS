@@ -15,7 +15,7 @@
 
 
 //<<"loading lib gss \n"
-str mans = "";
+str Mans = "";
 Use_csv_fmt = 1;
 Delc = 44;
 
@@ -79,20 +79,20 @@ proc getLastGMTValue( r, c)
 
 proc setPriority(wr,wc)
 {
-   mans = popamenu("Priority.m")
+   Mans = popamenu("Priority.m")
 	
-        if (!(mans @= "NULL_CHOICE")) {
-           sWo(cellwo,@cellval,wr,wc,mans);
-           R[wr][wc] = mans;
+        if (!(Mans @= "NULL_CHOICE")) {
+           sWo(cellwo,@cellval,wr,wc,Mans);
+           R[wr][wc] = Mans;
         }
 }
 //===============================//
 proc setUpdate(wr,wc)
 {
    
-	 mans = date(2);
-           sWo(cellwo,@cellval,wr,wc,mans);
-           R[wr][wc] = mans;
+	 Mans = date(2);
+           sWo(cellwo,@cellval,wr,wc,Mans);
+           R[wr][wc] = Mans;
         
 }
 //===============================//
@@ -100,23 +100,23 @@ proc setUpdate(wr,wc)
 
 proc setDifficulty(wr,wc)
 {
-   mans = popamenu("Difficulty.m")
+   Mans = popamenu("Difficulty.m")
 	
-        if (!(mans @= "NULL_CHOICE")) {
-           sWo(cellwo,@cellval,wr,wc,mans);
-           R[wr][wc] = mans;
+        if (!(Mans @= "NULL_CHOICE")) {
+           sWo(cellwo,@cellval,wr,wc,Mans);
+           R[wr][wc] = Mans;
         }
 }
 //===============================//
 proc HowLong(wr, wc)
 {
  <<"gss $_proc\n" 
-   lmans = popamenu("Howlong.m")
+   lMans = popamenu("Howlong.m")
 	
-        if (!(lmans @= "NULL_CHOICE")) {
+        if (!(lMans @= "NULL_CHOICE")) {
 	<<"%V $wr $wc\n"
-           sWo(cellwo,@cellval,wr,wc,lmans);
-           R[wr][wc] = lmans;
+           sWo(cellwo,@cellval,wr,wc,lMans);
+           R[wr][wc] = lMans;
         }
 }
 //===============================//
@@ -616,7 +616,7 @@ proc gotoLastPage()
  for (jj=0;jj<10;jj++) {
      //sleep(0.1)
      PGUP()
-   <<"PGUP $jj $Curr_page\n"
+ //  <<"PGUP $jj $Curr_page\n"
          gflush()
     if (Curr_page == 0)
        break
@@ -625,8 +625,8 @@ proc gotoLastPage()
  for (jj=0; jj<15; jj++) {
      PGDWN()
      gflush()
-     <<"PGDWN $jj $Curr_page\n"
-     if (Curr_page == last_page)
+//     <<"PGDWN $jj $Curr_page\n"
+    if (Curr_page == last_page)
         break
      last_page = Curr_page;
  }

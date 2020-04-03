@@ -109,12 +109,14 @@ proc SAVEWEX()
 {
 	 
             B=ofw(fname)
-  R[0]= Split("Date         ,Weight,Walk,Hike,Run,Bike,Swim,Yard,Gym,Bpress, Tags",",");
+  R[0]= Split("Date         ,Wt,W,H,R,B,S,Y,G,P, Tags",",");
             if ( B != -1) {
   // <<[B]"#Date   Weight  Walk    Hike    Run     Bike    Swim      Yard    Gym     Bpress Tags\n"
    // the first row is the field heading - should be ignored in data comptation
    // can use # for comment - but then will not be read
-             nrw=writeRecord(B,R,@del,Delc,@ncols,Ncols);
+           //  nrw=writeRecord(B,R,@del,Delc,@ncols,Ncols);
+	     nrw=writeRecord(B,R,@del,Delc);
+<<[B]"#Date   Weight  Walk    Hike    Run     Bike    Swim      Yard    Gym     Bpress Tags\n"	     
 <<"%V $B $nrw  $Ncols \n"
             cf(B);
 	    }
@@ -123,11 +125,11 @@ proc SAVEWEX()
 proc HowLong(wr, wc)
 {
   
-   mans = popamenu("Howlong.m")
+    Mans= popamenu("Howlong.m")
 	
-        if (!(mans @= "NULL_CHOICE")) {
-           sWo(cellwo,@cellval,wr,wc,mans);
-           R[wr][wc] = mans;
+        if (!( @= "NULL_CHOICE")) {
+           sWo(cellwo,@cellval,wr,wc,Mans);
+           R[wr][wc] = Mans ;
         }
 }
 //===============================//
@@ -135,11 +137,11 @@ proc HowLong(wr, wc)
 proc WhatWt(wr)
 {
   
-   mans = popamenu("WhatWt.m")
+    Mans= popamenu("WhatWt.m")
 	
-        if (!(mans @= "NULL_CHOICE")) {
-           sWo(cellwo,@cellval,wr,1,mans);
-           R[wr][1] = mans;
+        if (!( @= "NULL_CHOICE")) {
+           sWo(cellwo,@cellval,wr,1, Mans);
+           R[wr][1] = Mans ;
         }
 }
 //===============================//
@@ -182,7 +184,7 @@ do_record = 1;
 //Record DF[10];
 today = date(2);
 jday = julian(today)
-DF[0] = Split("$today,200,10,0,0,0,0,0,0,0, ",",");
+DF[0] = Split("$today,200,10,0,0,0,0,0,0,0,0, ",",");
 
 <<"$DF[0]\n"
 

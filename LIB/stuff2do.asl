@@ -20,33 +20,10 @@
 // could have a number of sheets in different windows
 
 
-
-
 include "gevent.asl"
 
 
 setdebug(1,"keep");
-
-//////   create MENUS here  /////
-A=ofw("Howlong.m")
-<<[A],"title HowLong\n"
-<<[A],"item 1 M_VALUE 1\n"
-<<[A],"help half-hour\n"
-<<[A],"item 2 M_VALUE 2\n"
-<<[A],"help 1 hour\n"
-<<[A],"item 3 M_VALUE 3\n"
-<<[A],"help hour and half\n"
-<<[A],"item 4 M_VALUE 4\n"
-<<[A],"help two hours\n"
-<<[A],"item 5 M_VALUE 5\n"
-<<[A],"help two and half hours\n"
-<<[A],"item 6 M_VALUE 6\n"
-<<[A],"help three hours\n"
-<<[A],"item 7 M_VALUE 7\n"
-<<[A],"help three and half hours\n"
-<<[A],"item 8 M_VALUE 8\n"
-<<[A],"help  four hours\n"
-cf(A)
 
 
 

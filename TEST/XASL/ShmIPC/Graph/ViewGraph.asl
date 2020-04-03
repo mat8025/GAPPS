@@ -1339,7 +1339,7 @@ STOP("DONE !\n")
 // TO DO
 // clip out object if it is behind observer -DONE
 // only process subset of objects in front
-// reduced detail on objects too far in front to resolve
+// reduced detail on objects too far in to front resolve
 // set grid -- surface - read elevation from map
 // threaded operation  --- control input and drawing 
 // linear interpolation of objects -long lines generate pt per resolution
