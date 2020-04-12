@@ -3,20 +3,35 @@
 //* 
 //*  @comment test readfile 
 //*  @release CARBON 
-//*  @vers 1.5 B Boron                                                     
-//*  @date Sun Apr 28 07:40:38 2019 
+//*  @vers 1.6 C Carbon                                                    
+//*  @date Fri Apr  3 19:25:54 2020 
 //*  @cdate 1/1/2001 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-///   readfile
+
 include "debug"
 debugON()
 checkIn()
 
- A = ofr("readfile.asl")
+// if no supplied  file use this file as default
 
+
+
+ fname = _clarg[1]
+
+
+
+//if (fname @= NULL_) {
+if (fname @= "") {
+
+   fname = "readfile.asl"
+}
+
+
+ A = ofr(fname)
+<<"%V $A $fname \n"
 
   S=readfile(A)
 
@@ -25,8 +40,16 @@ nlines = Caz(S);
 <<"%V $nlines\n"
  cf(A)
 
+  for (i=0; i < nlines; i++) {
+<<"<|$i|>  $S[i]"
+  }
 
- A = ofr("readfile.asl")
+
+
+exit()
+
+
+ A = ofr(fname)
  k = 0;
  
  while (1) {

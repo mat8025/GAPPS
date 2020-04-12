@@ -952,7 +952,7 @@ options:
 .EF 
 /////////////////////////////// MEMORY ////////////////////////////////////////
 =============================================================
-BF
+.BF
 dynamic
 .(x
 dynamic
@@ -969,9 +969,33 @@ float C[>100]
 The dynamic version allows run time increase when needed.
 The array can be also be resized by the resize function with the orignal contents
 of the initial section preserved (e.g. a realloc).
+(see isdynamic, setdynamic)
+.EF
+=============================================================
+.BF
+isdynamic
+.(x
+isdynamic
+.)x 
+.FD
+V->isdynamic()
+tests if vector is dynamic
 
 .EF
 =============================================================
+.BF
+setdynamic
+.(x
+setdynamic
+.)x 
+.FD
+V->setdynamic([onoff])
+if V is a vector sets dynamic (size) on or off - default no argument V is set to dynamic.
+(see also  isdynamic, resize)
+.EF
+=============================================================
+
+
 
 
 .BF
@@ -10673,3 +10697,5 @@ fillHTML_ColorTable ()
   addHTMLColor ("Yellow", 255, 255, 0, 0xffff00);
   addHTMLColor ("Grey", 128, 128, 128, 0x808080);
   int nc = addHTMLColor ("YellowGreen", 154, 205, 50, 0x9acd32);
+
+//=============== END ASLMAN.txt =================//

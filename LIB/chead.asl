@@ -60,7 +60,7 @@ if (sz == -1) {
 }
 
 set_vers = 0;
-svers = "2.4"
+svers = "1.1"
 na = argc();
 
 comment ="";

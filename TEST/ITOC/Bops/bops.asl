@@ -15,14 +15,14 @@
 #include "debug.asl"
 
 
-debugON()
+//debugON()
 setdebug(1,@pline,@trace,@keep)
 
 filterFuncDebug(ALLOWALL_,"xxx");
 filterFileDebug(ALLOWALL_,"yyy");
 
 
-checkIn(0)
+checkIn()
 
 //prog= GetScript()
 
@@ -30,14 +30,14 @@ int n1 = 1;
 
 <<"%V $n1 \n"
 
-        CheckNum(n1,1)
+        checkNum(n1,1)
 
 
    n1++
 
 <<"%V $n1 \n"
 
-      CheckNum(n1,2)
+      checkNum(n1,2)
 
 
 
@@ -45,7 +45,7 @@ int n1 = 1;
 
 <<"%V $n1 \n"
 
-  CheckNum(n1,3)
+  checkNum(n1,3)
 
 
 
@@ -60,18 +60,18 @@ int d= 7;
 int e = -6
 
 
-CheckNum(d,7)
-CheckNum(e,-6)
+checkNum(d,7)
+checkNum(e,-6)
 
 int b = 79;
 
-CheckNum(b,79)
+checkNum(b,79)
 
 b = d * e;
 
 <<"%V$b\n"
 
-CheckNum(b,-42);
+checkNum(b,-42);
 
 
 b++;
@@ -79,7 +79,7 @@ b++;
 
 <<"%V$b\n"
 
-CheckNum(b,-41);
+checkNum(b,-41);
 
 
 na = argc()
@@ -107,18 +107,18 @@ if (na >= 1) {
 int a = 2 + 2
 <<"%V$a\n"
 
-CheckNum(a,4)
+checkNum(a,4)
 
 b = 7 * 6
 
 <<"%V$b\n"
 
-CheckNum(b,42)
+checkNum(b,42)
 
 
 c= a * b
 
-CheckNum(c,(4*42))
+checkNum(c,(4*42))
 
 <<"$c $a $b \n"
 
@@ -141,13 +141,13 @@ int k=4;
 
 <<"%V $k \n"
 
-CheckNum(k,4)
+checkNum(k,4)
 
 int k1 = 47
 
 <<"%V $k1 \n"
 
-CheckNum(k1,47)
+checkNum(k1,47)
 
 
 float y = 3.2
@@ -159,50 +159,50 @@ float y = 3.2
 a = 2 + 2
 
 <<"%v $a \n"
-//     CheckNum(a,4)
+//     checkNum(a,4)
 
 sal = 40 * 75 * 4
 
 <<"%v $sal \n"
 
- CheckNum(sal,12000)
+ checkNum(sal,12000)
 
 
 int n = 1;
 
 <<"%V $n \n"
 
-      //  CheckNum(n,1)
+      //  checkNum(n,1)
 
 
    n++
 
 <<"%V $n \n"
 
-    //   CheckNum(n,2)
+    //   checkNum(n,2)
 
 
    ++n
 
 <<"%V $n \n"
 
-      CheckNum(n,3)
+      checkNum(n,3)
 
 <<"%V $n \n"
 
    z = n++ + 1
 <<"%V $z \n"
 
-      CheckNum(n,4)
+      checkNum(n,4)
 
-      CheckNum(z,4)
+      checkNum(z,4)
 
 <<"%v $n \n"
 
    z = ++n + 1
 <<"%V $z \n"
 
-      CheckNum(z,6)
+      checkNum(z,6)
 
 <<"%V $n \n"
 
@@ -210,7 +210,7 @@ int n = 1;
 
 <<"%V $n \n"
 
-    CheckNum(n,7)
+    checkNum(n,7)
 
 
 
@@ -228,7 +228,7 @@ ok =0
 <<" <= op not working! %V$k\n"
   }
 
-CheckNum(1,ok)
+checkNum(1,ok)
 
 ok = 0
 k = 25
@@ -243,7 +243,7 @@ k = 25
   }
 
 
-CheckNum(1,ok)
+checkNum(1,ok)
 
   ok = 0
 
@@ -256,17 +256,17 @@ CheckNum(1,ok)
 <<" != op not working! %V$k\n"
   }
 
-CheckNum(1,ok)
+checkNum(1,ok)
 
 
 float fa = 1;
 float fb = 2.3;
 float fc = 4.8;
 
-CheckFnum(fb,2.3)
+checkFnum(fb,2.3)
 <<"%V$fa $fb $fc\n"
   fb++ 
-CheckFnum(fb,3.3)
+checkFnum(fb,3.3)
 
 <<"%V$fa $fb $fc\n"  
 
@@ -274,11 +274,11 @@ int h = -4;
 
 <<"%V$h\n"
 
-CheckNum(h,-4);
+checkNum(h,-4);
 
 float q=-7;<<"$q\n"
 
-CheckFNum(q,-7);
+checkFNum(q,-7);
 
   int sum = 0;
   double mi = 1;
@@ -294,7 +294,7 @@ CheckFNum(q,-7);
 <<"%V $sum  $k  $(k*N/2) $mi\n"
 
 <<"B4 CheckOut()\n"
-CheckOut()
+checkOut()
 
 ans = iread(">>>:")
 <<"after CheckOut()\n"

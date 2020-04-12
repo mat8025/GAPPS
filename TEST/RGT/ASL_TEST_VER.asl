@@ -114,7 +114,7 @@ Ks = 0
 }
 //===============================
 
-proc runModule ( wmod)
+proc runModule (int wmod)
 {
 
    int ret =0;
@@ -170,14 +170,14 @@ proc help()
 
 
 
-proc changeDir(td)
+proc changeDir(str td)
 {
   chdir(td)
   Curr_dir = getDir();
 }
 //===============================
 
-proc Run2Test(td)
+proc Run2Test(str td)
 {
 
   changeDir(Testdir)
@@ -197,7 +197,7 @@ proc Run2Test(td)
 //===============================
 
 
-proc RunDirTests( Td, Tl )
+proc RunDirTests(str Td, str Tl )
 {
       Run2Test(Td);
       Tl->DeWhite()
@@ -646,16 +646,20 @@ int do_release = 0;
 
 
 
+  pdir=updir()
+  
+  chdir("ITOC")
+  Testdir = getdir()
+<<"Test Dir is $Testdir\n"
+
+
 
  CrashList = ( "",  )  // empty list
  CrashList->LiDelete(0)
  FailedList = ( "",  )  // empty list --- bug first item null? 
  FailedList->LiDelete(0)
  
-  updir()
-  chdir("ITOC")
-  Testdir = getdir()
-<<"Test Dir is $Testdir\n"
+
 
 
   nargs = ArgC()
@@ -792,10 +796,10 @@ if (do_release) {
   if (runModule( do_sops)) {
       //  need more str ops tests than this!
 
-  RunDirTests("Sops","scat,scmp,ssub,ssubrgx,scut,stropcmp");
+  RunDirTests("Sops","sops");
 
   // make this a pattern OP
-  RunSFtests("Date,Sele,Sstr,Spat,Regex,Str");
+  RunSFtests("Date,Sele,Sstr,Spat,Regex,Str,Split");
 
   Run2Test("Splice")
   cart("strsplice")
@@ -1122,11 +1126,9 @@ if (runModule( do_proc )) {
 
 if (runModule( do_mops )) {
 
-    Run2Test("Mops")
+    RunDirTests("Mops","mops")
 
-    cart("xyassign")
 
-    cart("atof")
 
     hdg("RECURSION")
 
@@ -1134,8 +1136,8 @@ if (runModule( do_mops )) {
 
     cart("fact", 10)
 
-
     Run2Test("Cmplx")
+
     cart("cmplx")
     
     Run2Test("Rand")
@@ -1236,7 +1238,7 @@ if (runModule( do_mops )) {
 
    if (runModule( do_class )) {
 
-       RunDirTests("Class","classbops,class2,classvar");
+       RunDirTests("Class","class_mfcall,classbops,class2,classvar");
 
     }
 
@@ -1288,7 +1290,7 @@ if (runModule( do_mops )) {
 
 if (runModule( do_vmf)) {
 
-    RunDirTests("Vmf","trim,prune,caz,cut,rand,rotate")
+    RunDirTests("Vmf","vmf,trim,prune,caz,cut,rand,rotate")
     RunDirTests("Vmf","bubblesort,substitute,dewhite")
 
 

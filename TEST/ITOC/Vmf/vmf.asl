@@ -1,3 +1,24 @@
+//%*********************************************** 
+//*  @script vmf.asl 
+//* 
+//*  @comment test vmf - var member function 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                    
+//*  @date Sat Apr 11 23:11:04 2020 
+//*  @cdate Sat Apr 11 23:11:04 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+
+include "debug"
+
+filterfuncdebug(ALLOWALL_,"xxx");
+
+filterfiledebug(ALLOWALL_,"proc_","args_","scope_","class_");
+
+setdebug(1,@pline,@trace)
+
 
 // test cut array
 
@@ -18,11 +39,6 @@ I[5:13:2]->Set(50,1)
 <<"$I \n"
 
 
-stop!
-
-
-
-
 
 
 C = Igen(4,12,1)
@@ -40,9 +56,10 @@ CheckNum(I[12],16)
 
 
 
-//float F[]
+float F[]
 
 F= Fgen(20,0,1)
+
 sz = Caz(F)
 <<"$sz $F \n"
 //<<"%,j%{5<,\,>\n}%6.1f$F\n"
@@ -60,10 +77,12 @@ F->cut(C)
 CheckFNum(I[12],16,6)
 
 
+<<" $I[::] \n"
+
 I[3:8]->cut()
 
 <<" $I[::] \n"
-CheckNum(I[3],9)
+CheckNum(I[3],52)
 
 F[3:8]->cut()
 

@@ -15,7 +15,7 @@
  
   
   
-  proc vers2ele( vstr)
+  proc Vers2ele(str vstr)
   {
   
    pmaj = atoi(spat(vstr,"."))
@@ -135,7 +135,7 @@
  
  if (found_vers) {
  
- nele = vers2ele(cvers)
+ nele = Vers2ele(cvers)
  <<[2]"found_vers $cvers $nele\n"
  }
  else {
@@ -145,7 +145,7 @@
  
  if (set_vers) {
  // set to _clarg[2] - if correct format
-  vers2ele(new_vers)
+  Vers2ele(new_vers)
  }
  else {
    pmin++;

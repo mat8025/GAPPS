@@ -353,3 +353,10 @@ statex_e.cpp	 1.30	 Mon Mar 30 08:45:18 2020 debug
 stateparse_e.cpp	 2.57	 Mon Mar 30 08:46:00 2020 debug
 proc_def_e.cpp	 2.61	 Mon Mar 30 11:12:13 2020 name mangle
 proc_checkfname_e.cpp	 2.33	 Thu Apr  2 00:14:48 2020 class member overloding via parameters
+svar_pf.cpp	 1.63	 Thu Apr  2 23:06:54 2020 tidy
+ds_storesvar.cpp	 1.82	 Fri Apr  3 20:21:18 2020 default svar size one field
+svar_find.cpp	 1.64	 Sat Apr  4 10:08:27 2020 debug++
+sproc.h	 1.17	 Thu Apr  9 22:26:33 2020 name is now private
+hop_e.cpp	 2.45	 Thu Apr  9 22:56:21 2020 fix sum of hash1 + hash2 --> hash1 + 10hash2
+if_e.cpp	 2.27	 Fri Apr 10 23:22:19 2020 advance st before check for code block
+vmf_l.cpp	 1.53	 Sat Apr 11 23:34:31 2020 added setdynamic

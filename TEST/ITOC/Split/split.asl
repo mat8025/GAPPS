@@ -1,78 +1,123 @@
-///
-///
-///
+//%*********************************************** 
+//*  @script split.asl 
+//* 
+//*  @comment test split SF 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                    
+//*  @date Fri Apr  3 19:37:19 2020 
+//*  @cdate Fri Apr  3 19:37:19 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 
-
+#define NULL ""
 setdebug(1,@keep);
 
-T="abcXXdefXXefgXXhijXklm"
-S=split(T,"XX")
+checkIn(0)
 
-<<"$S\n"
-
+A= split("once upon a time")
 
 
-A=ofr("color_table.txt")
+checkStr(A[0],"once")
+checkStr(A[1],"upon")
+checkStr(A[2],"a")
+checkStr(A[3],"time")
 
-n = 0
-pass  = 0
-fail = 0
+// use
 
-svar col
-str f_field
-int nc = 0;
+A= split("ONCE,UPON,A,TIME",",")
 
-  while (1) {
+checkStr(A[0],"ONCE")
+checkStr(A[1],"UPON")
+checkStr(A[2],"A")
+checkStr(A[3],"TIME")
 
-   S= readline(A)
+sz=Caz(A)
+<<"$sz\n"
+<<" %(1,,,\n)$A\n"
 
-   if (check_eof(A) ) {
-      <<"EOF found\n";
-     break;
-   }
-   
-<<" $S \n";
+B= split("4.0,7.3",",")
 
-    col = split(S,",");
-    
-//<<" $S \n"
+sz=Caz(B)
+<<"$sz\n"
 
-    f_field = col[0];
+<<"%(1,,,\n)$B\n"
 
-//<<" $f_field $(typeof(f_field)) \n"
-<<" <$col[0]> <$col[1]> <$col[2]> <$col[3]> <$col[4]>\n"
+C= split("4.0 8.0",",")
 
-   nc++;
-   
-   fv4 =S[0]->gfv(4,",");
+sz=Caz(C)
+<<"$sz\n"
+<<"%(1,,,\n)$C\n"
+if (C[0] @= "") {
+<<"no tokens!\n"
+}
 
-   fv2 =S->gfv(2,",");
-   
-   fv1 =S->gfv(1,",");
-
-   
- <<" |$fv1| |$fv2| [${fv4}]\n"
-
-  }
-
-cf(A)
+if (C[0] @= NULL_) {
+<<"no tokens!\n"
+}
 
 
-  CT=getHTMLcolors();
 
-<<"$CT[0] \n $CT[47] \n"
 
-  nc = Caz(CT)
-<<"$nc \n"
 
-int mat = 0;
-  for (i= 0; i <nc ; i++) {
-    wi = spat(CT[i],"Red",0,1,&mat);
-    //<<"$i $wi \n"
-    if (mat) {
-<<"$CT[i] \n";
-    }
-    else {
-//<<"NOT BLUE $CT[i]\n"
-    }
-  }
+D= split("",",")
+
+sz=Caz(D)
+<<"$sz\n"
+<<"[0] $D[0]\n"
+if (D[0] @= "") {
+<<"no tokens!\n"
+}
+
+
+
+<<"%(1,,,\n)$D\n"
+
+if (D[0] @= NULL_) {
+<<"no D tokens!\n"
+}
+
+if (D[0] @= NULL) {
+<<"no D tokens!\n"
+}
+
+E= split('int a, int b',",")
+
+sz=Caz(E)
+<<"$sz\n"
+<<"[0] $E[0]\n"
+
+if (E[0] @= "") {
+<<"no tokens!\n"
+}
+
+if (E[1] @= "") {
+<<"one token!\n"
+}
+<<"%(1,,,\n)$E\n"
+
+
+args = "int A, int B"
+
+E= split(args,",")
+
+sz=Caz(E)
+<<"$sz\n"
+<<"[0] $E[0]\n"
+
+if (E[0] @= "") {
+<<"no tokens!\n"
+}
+
+if (E[1] @= "") {
+<<"one token!\n"
+}
+<<"%(1,,,\n)$E\n"
+
+
+
+checkOut()
+
+
+

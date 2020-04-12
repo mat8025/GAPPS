@@ -1,6 +1,4 @@
-#! /usr/local/GASP/bin/asl
 
-ok=OpenDll("math")
 // test iteration
 
 double x
@@ -11,8 +9,9 @@ double z
 
  s = 0.000000000001
 
- x = $2
+// x = _clarg[1]
 
+ x = 729;
  dx = fabs(x)
 
 <<" $(typeof(x)) $x $dx \n"
@@ -47,14 +46,13 @@ int k = 1
 
     r = nr
 
-    if (k > 100)
+    if (k > 20)
        break
 
    }
 
  <<" $x cube root is $r \n"
 
-STOP!
 
 
 

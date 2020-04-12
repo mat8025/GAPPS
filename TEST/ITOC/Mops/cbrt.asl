@@ -1,15 +1,20 @@
-#! /usr/local/GASP/bin/asl
 
- OpenDll("math")
+checkIn()
 
+N = 27
 
-N = $2
-
-  a = cbrt(N)
+a = cbrt(N)
 
 <<"cube root of $N  is $a\n"
+checkFNum(a,3.0)
+N = 729
+
+a = cbrt(N)
+
+<<"cube root of $N  is $a\n"
+checkFNum(a,9.0)
 
 
-STOP!
+checkOut()
 
 

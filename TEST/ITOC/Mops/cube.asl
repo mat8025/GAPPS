@@ -1,7 +1,8 @@
-#! /usr/local/GASP/bin/asl
 
 
-N = $2
+
+N = 100
+
 
 <<" N cube table \n"
 
@@ -17,8 +18,8 @@ N = $2
 
 
   a= k * k * k
-
- <<" cube of %6.0f $k  =  $a \n"
+  b = k^3
+ <<" cube of  $k  =  $a $b \n"
 
    k++
 
@@ -26,6 +27,5 @@ N = $2
 
 <<"\n DONE %V $k  $N \n"
 
-STOP!
 
 ///////////////////////////////

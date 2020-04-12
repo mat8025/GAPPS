@@ -23,7 +23,7 @@
   FilterFuncDebug(REJECT_,"~ArraySpecs",);
   
   CheckIn(); 
-
+/{/*
   a = 1.0;
   b = 2.0;
   c = 0.2;
@@ -53,7 +53,7 @@
     }
   
   <<"%V $b $c  $my \n"; 
-
+/}*/
   
 //////////////////////////////////////////////////////
 
@@ -68,39 +68,71 @@
     float x;
     float y;
 
-/{/*  
+//============================//
 
-  CMF Point()
-   {
-     x=0;
-     y=0;
-     <<"cons $_proc \n"
-   };
 
-/}*/
+ CMF setx(real m) 
+     {
+      x = m;
+      <<"$_proc $m $x  \n"; 
+      return x;
+      };
 
-    CMF set (float m, float n) 
+
+    CMF set (real m,real n) 
+    {
+  <<"$_proc Set via floats %V $m $n  \n";
+       x = m;
+       y = n;
+   <<"%V $m $n \n" 
+      };
+
+
+    CMF set (int m, int n) 
     {
        x = m;
        y = n;
-      <<"Setting %V $m $n $x $y \n";
-      
+      <<"Set via ints %V $m $n $x $y \n";
       };
  
     CMF getx() 
-    {
+     {
       <<"getting $x $_cobj \n"; 
       return x;
       };
     
-    CMF gety() {
+    CMF gety()
+     {
       <<"getting $y  $_cobj  \n"; 
       return y;
       }
-    
-    CMF  mul(float a) {
+/{
+    CMF  mul( a) {
       float tmp;
       tmp = (a * x); 
+      return tmp; 
+      }
+
+
+    CMF  mul(float a) {
+      float tmp;
+      
+      tmp = (a * x);
+    <<"$_proc %V $a $tmp $x\n";   
+      return tmp; 
+      }
+/}
+
+    CMF  mul(real a) {
+      double tmp;
+      tmp = (a * x);
+    <<"$_proc %V $a $tmp $x\n";         
+      return tmp; 
+      }
+
+    CMF  mul(int mi) {
+      float tmp;
+      tmp = (mi * x); 
       return tmp; 
       }
     
@@ -108,29 +140,95 @@
       <<"%V $x,$y %i $x,$y\n"; 
       }
 
-    }
+   CMF Point()
+   {
+    // same name as class is the constructor
+     x=1;
+     y=1;
+     <<"constructor $_proc  %V $x $y \n"
+   };
+
+}
 
 
 
 ////////////////////////////////////////////
   
   Point A;
+
   Point B;
+
   Point C;
+
   Point D;
 
   rx= D->getx();
 
 <<"%V $rx\n"
 
+real r1 = 2.3;
+real r2 = 4.5;
+
+
+  A->setx(r1);
+  rx=   A->getx();
+  <<"%V $rx\n"
+
+ my = A->mul(r2 ); 
+  
+  <<"%V$my $A->x  \n";
+
+
+
+  my = A->mul( Sin(-0.9) ); 
+  
+  <<"%V$my $A->x  \n";
+
+  r2 = Sin(0.7)
+
+
+ my = A->mul(r2 ); 
+  
+  <<"%V$my $A->x  \n";
+
+exit()
+
+
+  r2 = Sin(-0.9)
+
+
+ my = A->mul(r2 ); 
+  
+  <<"%V$my $A->x  \n";
+
+  my = A->mul( Sin(-0.8) ); 
+  
+  <<"%V$my $A->x  \n";
+
+
+exit()
+
+
+
+
   A->set(2.2,0.123);
   rx=   A->getx();
+  <<"%V $rx\n"
 
-<<"%V $rx\n"
-  
+  B->set(4,2);
+  rx=   B->getx();
+  <<"%V $rx\n"
+
+
+
   B->set(2.2,0.123);
 
   B->Print();
+
+<<"%V $B->x $B->y \n"; 
+
+
+
 
   A->set(0.15, 0.2);
   
@@ -140,7 +238,10 @@
   A->Print(); 
   
   ok=CheckFNum(A[0]->x,0.15,5);
-  
+
+
+
+
   ok=CheckFNum(A[0]->y,0.2,5); 
 
   ok=CheckFNum(A->x,0.15,5);
@@ -347,6 +448,7 @@
   
   <<" %V $my $A->x $B->x \n"; 
 
+
   val = A->x * B->x;
   <<"%V $val\n"
 
@@ -381,18 +483,31 @@
 //<<" %V $my $A->x  \n"
   
   
-  my = A->mul( Sin(0.5) ); 
+  my = A->mul( Sin(0.7) ); 
   
   
   <<"%V$my $A->x  \n"; 
-  
-  
-  my = A->mul( B->getx() ); 
+
+exit()
+
+
+  r1 = B->getx()
+
+<<"%V$r1\n"; 
+
+  my = A->mul( r1); 
+
+  my3 = A->mul( B->getx() ); 
+
+<<" %V $my $my3 $A->x $B->x \n"; 
+
+exit()
 
   my2 = A->x    * B->getx()
 
+<<" %V $my $my2 $A->x $B->x \n"; 
 
-  <<" %V $my $my2 $A->x $B->x \n"; 
+  
   
   CheckFNum(my,my2,3); 
   

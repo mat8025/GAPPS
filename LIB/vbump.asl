@@ -15,7 +15,7 @@
  
   
   
-  proc vers2ele( vstr)
+  proc vers2ele(str vstr)
   {
   
    pmaj = atoi(spat(vstr,"."))

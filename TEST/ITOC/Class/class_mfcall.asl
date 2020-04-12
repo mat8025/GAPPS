@@ -35,6 +35,24 @@ Class Scalc
   float b;
 
 
+ CMF seta (real x)
+ {
+
+   a= x;
+
+  <<"$_proc %V $x $a\n";
+}
+
+//==========================
+
+ CMF geta ()
+ {
+ <<"$_proc getting $a\n"
+     return a;
+ }
+ //==========================
+ 
+
  CMF mul (int x,int y)
   {
    <<"in $_proc $x $y\n";
@@ -80,7 +98,12 @@ Class Scalc
 
 //===============================//
 
-
+CMF Scalc()
+ {
+  <<"constructing Scalc \n"
+  a =1
+  b = 1;
+  }
 
 };
 
@@ -93,12 +116,64 @@ Scalc acalc;
 int c =2;
 int d =4;
 
+double w = 3.3
+
+     acalc->seta(sin(0.8))
+    wr = acalc->geta();
+   
+<<" $acalc->a\n"
+<<" $wr\n"
+  checkRnum(wr, sin(0.8))
+
+
+     acalc->seta(w)
+    wr = acalc->geta();
+
+<<" $acalc->a\n"
+<<" $wr\n"
+
+checkRnum(wr, w)
+
+
+  
+
+checkOut()
+
+exit()
+
+     w= Sin(0.7)
+
+     acalc->seta(w)
+
+<<" $acalc->a\n"
+
+
+
+wr = acalc->geta();
+
+<<" $wr\n"
+
+<<" $acalc->geta() \n"
+
+exit()
+
+//<<" $acalc->x\n"  // should give error
+
+
+
+
+
+<<"%V $acalc->x  $w\n"
+
+
+
+
     ans = acalc->mul(c,d);
 
  checkNum(ans,8)
 <<"$ans \n"
 
-double w = 2.2
+ w = 2.2
 double r = 3.3
 
     fans = acalc->mul(w,r);
