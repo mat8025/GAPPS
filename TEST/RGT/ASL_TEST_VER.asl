@@ -1142,7 +1142,7 @@ if (runModule( do_mops )) {
     
     Run2Test("Rand")
 
-    cart("urand")
+    cart("rand")
 
 
     }
@@ -1291,7 +1291,7 @@ if (runModule( do_mops )) {
 if (runModule( do_vmf)) {
 
     RunDirTests("Vmf","vmf,trim,prune,caz,cut,rand,rotate")
-    RunDirTests("Vmf","bubblesort,substitute,dewhite")
+    RunDirTests("Vmf","bubblesort,substitute")
 
 
   }

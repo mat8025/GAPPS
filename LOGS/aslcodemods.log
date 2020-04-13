@@ -360,3 +360,5 @@ sproc.h	 1.17	 Thu Apr  9 22:26:33 2020 name is now private
 hop_e.cpp	 2.45	 Thu Apr  9 22:56:21 2020 fix sum of hash1 + hash2 --> hash1 + 10hash2
 if_e.cpp	 2.27	 Fri Apr 10 23:22:19 2020 advance st before check for code block
 vmf_l.cpp	 1.53	 Sat Apr 11 23:34:31 2020 added setdynamic
+proc_checkfname_e.cpp	 2.34	 Sun Apr 12 18:09:04 2020 adding long (mangle)
+ds_convert.cpp	 1.81	 Sun Apr 12 20:46:55 2020 isScalar - LIST test - not scalar

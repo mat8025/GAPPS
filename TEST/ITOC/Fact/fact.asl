@@ -16,25 +16,30 @@
 //int N = $2
 //double M
 
+
 setdebug(1,@keep);
+
+
 filterFuncDebug(ALLOWALL_,"xxx");
 filterFileDebug(ALLOWALL_,"yyy");
 
 
 #define DBP <<
 
-CheckIn()
+checkIn()
 
-proc fact( pf)
+// want to use ulong
+
+proc Fact(long pf)
 {
-
-//generic mpf
 
 DBP" arg in $_proc %V $pf $(typeof(pf))\n"
 
 // FIX pan mpf
- ulong mpf;
- ulong  t;
+// ulong mpf;
+long mpf;
+//ulong  t;
+long  t;
     mpf = 0;
     t = 1;
 
@@ -50,7 +55,7 @@ DBP" $_proc end condition $pf $t\n"
 
     mpf = pf -1
 
-    t = fact(mpf) * pf
+    t = Fact(mpf) * pf
 
 <<"exit $_proc %V $(typeof(t)) $mpf $pf ! =  $t \n"
     }
@@ -61,57 +66,60 @@ return t;
 }
 //=====================================
 
-ulong fr;
+long fr;
 
 fr1 =0;fr2 =0;fr3 =0;
 fr4=0;
 
  //
-fr1=fact(1)
-fr2= fact(2)
-//fr3= fact(3)
+long L = 1
+fr1=Fact(L)
 
-fr4 =fact(4)
+L=2
+fr2= Fact(L)
+//fr3= Fact(3)
+L=4
+fr4 =Fact(L)
   
-int N
+long N
 
  N = GetArgI()
 
 <<" $(typeof(N)) $N  \n"
 
- fr=fact(N)
+ fr=Fact(N)
 
 <<" $N ! == $fr  \n"
 
 <<"1! 1 == $fr\n"
 
- fr=fact(2)
+ fr=Fact(2)
 
 <<"2! 2 == $fr\n"
 
 
 
- fr=fact(3)
+ fr=Fact(3)
 
 <<"3! 6 == $fr\n"
 
 
 
 
- fr=fact(4)
+ fr=Fact(4)
 
 <<"4! 24 == $fr\n"
 
 
- fr=fact(5)
+ fr=Fact(5)
 
 <<"5! 120== $fr\n"
 
- fr=fact(4)
+ fr=Fact(4)
 
 <<"4! 24 == $fr\n"
 
- fr=fact(N)
+ fr=Fact(N)
 
 <<"$N! $fr\n"
 
@@ -144,42 +152,42 @@ int k = 3
 fr = 0;
 
 n=1
-  fr= fact(n);
+  fr= Fact(n);
 
 <<" 1! = $fr \n"
-  CheckFNum(fr,1,6)
+  checkFNum(fr,1,6)
 
 n++
-  fr= fact(n);
+  fr= Fact(n);
 
 <<"2! = $fr \n"
-  CheckFNum(fr,2)
+  checkFNum(fr,2)
 
 
 n++
-  fr= fact(n);
+  fr= Fact(n);
 
 <<"3! = $fr \n"
 
-  CheckFNum(fr,6,6)
+  checkFNum(fr,6,6)
 
 n++
 
-  fr4= fact(n);
+  fr4= Fact(n);
 <<"4! = $fr4 \n"
-//CheckStr(fr4,"24")
-  CheckFNum(fr4,24.0,6)
+//checkStr(fr4,"24")
+  checkFNum(fr4,24.0,6)
 
-  fr= fact(5);
+  fr= Fact(5);
 <<"5! = $fr \n"
 
-  CheckFNum(fr,120.0,6)
+  checkFNum(fr,120.0,6)
 
 <<" N! == ? \n";
 
 <<" N! == ? \n";
 
-   fr =  fact(N);
+   fr =  Fact(N);
 
  <<" Fact $N ! returns $fr \n"
 
@@ -191,11 +199,9 @@ n++
 <<"3! $fr3\n"
 <<"4! $fr4\n"
 
-    CheckOut()
+checkOut()
 
 
-
-exit();
 
 
 

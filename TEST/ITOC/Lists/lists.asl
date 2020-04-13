@@ -1,19 +1,33 @@
+//%*********************************************** 
+//*  @script lists.asl 
+//* 
+//*  @comment test list functionality 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                    
+//*  @date Sun Apr 12 19:06:46 2020 
+//*  @cdate Sun Apr 12 19:06:46 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 ///
 ///
 ///
+include "debug"
+
+filterfuncdebug(ALLOWALL_,"xxx");
+
+filterfiledebug(ALLOWALL_,"proc_","args_","scope_","class_","hop_");
 
 
 ws = getScript()
 
 <<"%V $ws\n"
 
-//  setdebug(1."trace","keep")  /// TBF 1." crashes
-
-setdebug(1,@trace,@keep);
-
-filterDebug(1,"Vdeclare")
+setdebug(1,@trace,@keep,@pline);
 
 
+checkIn()
 
 CrashList = ( "",  )  // empty list
 
@@ -35,7 +49,7 @@ CrashList->LiDelete(0)
 <<"%V$FailedList \n"
 
 
-CheckIn()
+
 
 int J[] = { 1,2,3,4 }
 
@@ -48,8 +62,7 @@ m = Caz(J)
 
 <<" $(CheckNum(m,4))\n"
 
-checkOut()
-exit()
+
 
 //PassFail(CheckNum(m,4))
 
@@ -60,13 +73,38 @@ exit()
 
 <<"$L1 \n"
 
-exit()
+l0 = L1[0]
+<<"$l0\n"
 
- str fw = L1[0]
+l0->info(1)
+
+ str ww
+
+ ww= L1[1]
+
+<<"$ww\n"
+
+
+// str fw
+
+ str fw = L1[9];  // fails
+
+fw->info(1)
+
+<<"$fw\n"
+checkStr(fw,"yellow")
+fw= L1[0]
+
+<<"$fw\n"
+
+
+
 
 <<"%V$fw $(typeof(fw))\n"
 
 checkStr(fw,"a")
+
+
 
 l1sz = Caz(L1)
 <<"%V$l1sz\n"
@@ -77,8 +115,16 @@ fw = L1[l1sz-1]
 
 checkStr(fw,"violet")
 
+ for (i= 0; i < l1sz; i++) {
 
- L2 = ( "The", "colors", "of" ,"the", "rainbow", "are", "red", "orange", "yellow", "green", "blue" ,"indigo", "violet" )
+ww= L1[i]
+<<"$i $ww\n"
+}
+
+checkStage("list - element access")
+
+
+L2 = ( "The", "colors", "of" ,"the", "rainbow", "are", "red", "orange", "yellow", "green", "blue" ,"indigo", "violet" )
 
 <<"L2 = $L2 \n"
 
@@ -99,11 +145,21 @@ checkStr(fw,"The")
 
 <<"L2->L1 = $L1 \n"
 
-//ans=iread()
+
+
+<<"%(,= , ,)Vs${L1} \n"
 
  L1->reverse()
 
-<<"%(,= , ,)vs${L1} \n"
+<<"%(,= , ,)Vs${L1} \n"
+
+ //n=L1->Shuffle(100)
+ L1->Shuffle(100)
+<<"shuffle %V$L1  \n"
+
+ L1->Shuffle(20)
+<<"shuffle %V$L1  \n"
+
 
      fw = L1[0]
 
@@ -200,9 +256,6 @@ checkStr(fw,"lovely")
 
  checkStr(fw,"first")
 
- CheckOut()
-
-stop!
 
 
  L3 = L[1:-2]
@@ -263,11 +316,6 @@ stop!
 
 
 
-
- CheckOut()
-
-
-stop!
 
 <<"%vs$L[1] \n"
 <<"%vs$L[2] \n"
@@ -373,9 +421,9 @@ k= 5
 
 <<"insert %V$L    $n\n"
 
- CheckOut()
+ checkOut()
 
-stop!
+
 
 
 //////////////////// TBD //////////////////////
