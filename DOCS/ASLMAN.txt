@@ -5009,8 +5009,10 @@ readfile
 .)x 
 .FD
 C=readfile(A)
-
 reads the entire  file attached to file handle  A into svar variable C
+or
+C=readfile("filename")
+where the file is opened then read and then closed.
 line 0 is C[0], line 1 is C[1], ...
 the line will contain the final cr/lf character.
 The last character cr \n can be removed using option
@@ -5024,7 +5026,6 @@ C=readfile(A)
 <<"$C[0]"  // prints the first line
 <<"$C[2]"  // prints the second line
 ...
-
 
 
 
@@ -5269,9 +5270,9 @@ depending whether end is set to 0,1,2) in file before reading line.
 returns EOF if end of file detected.
 skip_n_lines can be used to read nth line relative to file position.
 After this read the next read is at the beginning of the next line.
-Also the routine si_error will return 6 (EOF_ERROR) if an EOF error occurred.
+Also the routine errornum will return 6 (EOF_ERROR) if an EOF error occurred.
 The routine returns EOL if reading past the end of line,
-also the routine si_error will return 9 (EOL_ERROR) if an EOl error occurred.
+also the routine errornum will return 9 (EOL_ERROR) if an EOl error occurred.
 .e.g
 wd = rwl_file(A,1,0,0,0) - gives first word first line
 wd = rwl_file(A,1,0,2,-1) - gives first word penultimate line
@@ -5830,26 +5831,14 @@ nvec = rescape(vec,0x81,eval,reval)
 .EF
 =============================================================
 .BF
-si_error()
+errornum()
 .(x
-sierror
+errornum
 .)x 
 .FD
-si_error()
+errornum()
 will return number of latest syntax or file io error.
 returns 0 if no error has occured.
-.nf
-Syntax error           1
-Unbalanced parentheses 2
-no expression          3
-unbalanced brackets (if) 4
-unbalanced brackets (while) 5
-EOF error              6
-String not terminated  7
-Malloc error           8
-File open error       10
-Undefined variable    11
-.fi
 
 .EF
 =============================================================
@@ -5865,7 +5854,7 @@ sets the last error to be n.
 .EF
 =============================================================
 .BF
-lasterror()
+lasterror(), errorNum()
 .(x
 lasterror
 .)x 
@@ -5881,8 +5870,10 @@ errorName()
 errorname
 .)x 
 .FD
-errorName(n)
-return  error(n) as a name.
+errorName()
+will return last error as a name
+and errorName(n)
+return  error n  as a name.
 
 .EF
 =============================================================

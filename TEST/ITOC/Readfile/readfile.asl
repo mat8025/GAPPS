@@ -30,21 +30,57 @@ if (fname @= "") {
 }
 
 
- A = ofr(fname)
-<<"%V $A $fname \n"
+// A = ofr(fname)
+//<<"%V $A $fname \n"
 
-  S=readfile(A)
+  S=readfile(fname)
+
+  en= errno()
+
+
+<<" error? $en  $(errname()) $(errornum())  $(errorname())\n"
+
+ if (errornum()){
+     exit(en, errorName()))
+  }
+
+
+
+
+BC=split(S[0])
+
+<<"$BC \n"
+
+<<"BN $BC[3]\n"
+
+exit()
 
 <<"$S\n"
 nlines = Caz(S);
 <<"%V $nlines\n"
- cf(A)
+
 
   for (i=0; i < nlines; i++) {
 <<"<|$i|>  $S[i]"
   }
 
 
+
+
+
+
+comment= _clarg[1]
+
+if (comment @= "") {
+
+ans =iread("add comment?:")
+<<"$ans  ($BC[3])\n"
+comment = ans;
+ans = iread("continue?:y/n")
+if (ans @= "n") {
+ exit()
+}
+}
 
 exit()
 

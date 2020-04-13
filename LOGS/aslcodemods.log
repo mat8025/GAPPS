@@ -362,3 +362,5 @@ if_e.cpp	 2.27	 Fri Apr 10 23:22:19 2020 advance st before check for code block
 vmf_l.cpp	 1.53	 Sat Apr 11 23:34:31 2020 added setdynamic
 proc_checkfname_e.cpp	 2.34	 Sun Apr 12 18:09:04 2020 adding long (mangle)
 ds_convert.cpp	 1.81	 Sun Apr 12 20:46:55 2020 isScalar - LIST test - not scalar
+vmf_e.cpp	 3.49	 Mon Apr 13 08:51:34 2020 errno debug
+dbug.cpp	 1.46	 Mon Apr 13 09:22:23 2020 added errno, errname - for system errno info
