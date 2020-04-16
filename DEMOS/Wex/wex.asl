@@ -10,7 +10,7 @@
 //*  @Copyright  RootMeanSquare  2014,2019 --> 
 //* 
 //***********************************************%
-ls
+
 ///
 /// exercise weight display
 /// calories burned (wt at 180)
@@ -23,11 +23,18 @@ ls
 
 include "debug.asl"
 
-setDebug(0,@keep);
-scriptDBOFF();
+setDebug(1,@keep,@pline);
+
+//scriptDBON();
+
+filterfuncdebug(ALLOWALL_,"xxx");
+
+filterfiledebug(ALLOWALL_,"proc_","args_","scope_","class_","hop_");
+
 
 include "hv.asl"
-
+include "graphic"
+include "gevent.asl"
 
 <<[_DB]"%V$vers $ele_vers\n"
 
@@ -186,7 +193,7 @@ Record RCC[];
 
 NCCrecs = 0;
 if (ACC == -1) {
-<<" no cc data!\n"
+ <<" no cc data!\n"
 
 }
 else {
@@ -342,7 +349,7 @@ include "wex_foodlog"
 
 
 //////////////////// DISPLAY /////////////////////////////
-include "graphic"
+
 
 
 msg ="x y z"     // event vars
@@ -388,7 +395,7 @@ int button = 0
 
 
 
-   ZIN();
+  ZIN(); // goes in does'nt leave -- proc stack error
 
 woname = ""
 
@@ -396,8 +403,9 @@ resize_screen();
 drawScreens();
 showTarget();
 
-include "gevent.asl"
   titleVers();
+
+
 _DB=1;
 
     sWo(tw_wo,@move,targetday,NextGoalWt,gwo,@redraw));

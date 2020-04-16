@@ -44,7 +44,7 @@ Rn = 5;
 
 Record DF[>3];
 
-proc getCellValue( r, c)
+proc getCellValue(int r, int c)
 {
  
      if (r >0 && c >= 0 ) {
@@ -62,7 +62,7 @@ proc getCellValue( r, c)
 //=====================
 
 GMTvalue = "0:00";
-proc getLastGMTValue( r, c)
+proc getLastGMTValue(int r, int c)
 {
  
      if (r >0 && c >= 0 ) {
@@ -77,7 +77,7 @@ proc getLastGMTValue( r, c)
 }
 //=====================
 
-proc setPriority(wr,wc)
+proc setPriority(int wr,int wc)
 {
    Mans = popamenu("Priority.m")
 	
@@ -87,7 +87,7 @@ proc setPriority(wr,wc)
         }
 }
 //===============================//
-proc setUpdate(wr,wc)
+proc setUpdate(int wr,int wc)
 {
    
 	 Mans = date(2);
@@ -98,7 +98,7 @@ proc setUpdate(wr,wc)
 //===============================//
 
 
-proc setDifficulty(wr,wc)
+proc setDifficulty(int wr,int wc)
 {
    Mans = popamenu("Difficulty.m")
 	
@@ -108,7 +108,7 @@ proc setDifficulty(wr,wc)
         }
 }
 //===============================//
-proc HowLong(wr, wc)
+proc HowLong(int wr,int wc)
 {
  <<"gss $_proc\n" 
    lMans = popamenu("Howlong.m")
@@ -121,7 +121,7 @@ proc HowLong(wr, wc)
 }
 //===============================//
 
-proc pickTaskCol ( wcol)
+proc pickTaskCol (int wcol)
 {	       
          sWo(cellwo,@cellbhue,0,swapcol_a,0,cols,YELLOW_);         	 	 
 
@@ -271,11 +271,12 @@ int n2d = 0;
      	    return ;
 }
 //======================
-proc DELCOL()
+
+proc DELCOL(int wc)
 {
-<<[_DB]"in $_proc\n"
+<<" $_proc $wc\n"
 
-
+<<"NOP\n"
 }
 //======================
 
@@ -498,7 +499,7 @@ proc lastPGN ()
 }
 //============================
 
-proc scrollPGN (pn)
+proc scrollPGN (int pn)
 {
 
     if (Curr_row < 0) {

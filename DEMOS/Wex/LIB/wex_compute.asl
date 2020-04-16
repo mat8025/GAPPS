@@ -12,7 +12,7 @@
 
 xhrs = 0;
 
-proc computeWL( wlsday, wleday)
+proc computeWL(int wlsday, int wleday)
 {
 /// use input of juldays
 /// find the number of exe hours
@@ -56,7 +56,7 @@ int i;
 }
 //=========================
 
-proc getDay( dayv)
+proc getDay(int dayv)
 {
 
  int m_day;

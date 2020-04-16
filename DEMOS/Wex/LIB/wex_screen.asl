@@ -56,7 +56,8 @@
 
  //////////////////////////////// TITLE BUTTON QUIT ////////////////////////////////////////////////
 
-CalsY1 = 5000;
+<<"after proc - next statement missed \n" // MUST FIX
+     CalsY1 = 5000.0;
 
 
     carb_upper = 300;

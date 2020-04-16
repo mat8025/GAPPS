@@ -1,5 +1,19 @@
+//%*********************************************** 
+//*  @script svar_md.asl 
+//* 
+//*  @comment 2d svar rows of svars 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                    
+//*  @date Thu Apr 16 08:59:09 2020 
+//*  @cdate Thu Apr 16 08:59:09 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 
-setdebug(1,"trace")
+///
+///   don't think this works -- as XIC
+///
 
 int A[5][3];
 
@@ -29,6 +43,23 @@ T[1][0] = "really"
 T[2][0] = "heavily"
 T[3][0] = "very"
 T[4][0] = "mildly"
+
+
+T[0][1] = "bloody"
+T[1][1] = "awful"
+T[2][1] = "is this working"
+
+
+
+<<"[0][0] $T[0][0] \n"
+<<"[1][0] $T[1][0] \n"
+
+<<"[0][1] $T[0][1] \n"
+<<"[1][1] $T[1][1] \n"
+<<"[2][1] $T[2][1] \n"
+
+<<"$T[2][::] \n"
+exit()
 
 ke =1
 

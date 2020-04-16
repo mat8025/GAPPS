@@ -146,9 +146,8 @@ proc readData()
   tl = 0;
 
 
-  while (1) {
+  while (tl < Nrecs) {
 
-   //   tl++;
 
       col= RX[tl];
       
@@ -162,14 +161,14 @@ proc readData()
 
     wday = julian(day) 
 
+<<"%V $wday $day \n"
+
     if (!got_start) {
         sday = wday
         got_start = 1;
     }
 
-
     kd = wday - bday;
-
     lday = kd;
 
 //<<[_DB]"%V$day $wday  $k \n"
@@ -193,10 +192,11 @@ proc readData()
     if (tl >= (Nrecs-1)) {
        break;
     }
-    tl++;
-}
 
-//=======================================
+    tl++;
+  }
+
+
 
 <<[_DB]"$Nrecs there were $Nobs measurements \n"
 }
@@ -233,7 +233,7 @@ proc readCCData()
 //svar ccol;
 
 
-  while (1) {
+  while (tl < NCCrecs) {
 
 
     //ccol = RCC[tl];

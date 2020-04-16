@@ -12,7 +12,7 @@
 //***********************************************%
 
 
-proc drawGoals(ws)
+proc drawGoals(int ws)
   {
 
    if (ws == 0) {
@@ -33,7 +33,7 @@ proc drawGoals(ws)
 
   }
 //---------------------------------------------------------
-proc  drawMonths(wwo)
+proc  drawMonths(int wwo)
  {
   // as either Months Jan,Feb, ... Dec  
 
@@ -81,7 +81,8 @@ proc  drawMonths(wwo)
    wdate = RS[1];
    sWo(wwo,@font,"small")
  //  AxText(wwo, 1, the_date, wdate, 0.25, BLUE_);
-   while (1) {
+  int draw_months =1;
+  while (draw_months <= 12) {
    jd += 7;
    wdate += 7;
    if (wdate >= RS[3]) {
@@ -91,12 +92,13 @@ proc  drawMonths(wwo)
    mday = spat(the_date,"/",-1,-1)
    AxText(wwo, 1, mday, wdate, 0.25, BLUE_);
  //  <<"%V $jd $wdate $RS[3] $the_date\n"
-
+    draw_months++;
    }
- }
+
+}
 //---------------------------------------------------------------
 
-proc  drawGrids( ws )
+proc  drawGrids(int  ws )
 {
 // <<[_DB]" $ws \n"
 
@@ -151,7 +153,8 @@ proc  drawGrids( ws )
 
 proc drawScreens()
 {
-//<<" $_proc \n"
+
+<<" $_proc \n"
 
   if ( wScreen == 0) {
 
@@ -206,7 +209,7 @@ proc drawScreens()
       sWo(gwo,@scales,sc_startday,minWt,sc_endday+10,topWt,@savescales,0)
 
       dGl(wt_gl)
-   }
+       }
 
       drawGoals(0);
       drawGrids(0);
@@ -246,6 +249,7 @@ proc drawScreens()
     sWo(fewos,@redraw)
 
     sWo(tw_wo,@move,targetday,NextGoalWt,gwo,@redraw);
+    <<"leaving $_proc\n"
 }
 //=================================================
 
@@ -273,7 +277,7 @@ proc showWL()
 
 //////////////////////// UTIL PROCS /////////////////////////////
 
-proc adjustYear(updown)
+proc adjustYear(int updown)
 {
 
 // find current mid-year
@@ -332,7 +336,7 @@ proc adjustYear(updown)
 
 //////////////////////////////////////////////////////////////////////
 
-proc adjustQrt(updown)
+proc adjustQrt(int updown)
 {
 // find mid-date 
 // adjust to a 90 day resolution

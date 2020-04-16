@@ -29,7 +29,7 @@ int tbqrd_msg = 0;
 //<<[_DB]"FIRST %V $tbqrd_tv \n"
 
 
-proc  titleButtonsQRD(v)
+proc  titleButtonsQRD(int v)
 {
 
 //////////////////////////////// TITLE BUTTON QUIT RESIZE REDRAW ////////////////////////////////////////////////
@@ -57,7 +57,7 @@ qrd[2]= td;
  
 }
 //============================//
-proc titleComment( msg)
+proc titleComment(str msg)
 {
  //<<"%V $msg \n"
  sWo(tbqrd_tv,@value,"$msg",@clear,@redraw);
@@ -68,14 +68,15 @@ proc titleVers()
 {
  titleComment("$_ele_vers $_ele");
 }
+
 //============================//
-proc titleMessage( msg)
+proc titleMessage(str msg)
 {
  //<<"%V $msg \n"
  sWo(tbqrd_msg,@value,"$msg",@clear,@redraw);
 }
 
-proc titleMsg( msg)
+proc titleMsg(str msg)
 {
  //<<"%V $msg \n"
  sWo(tbqrd_msg,@value,"$msg",@clear,@redraw);

@@ -24,14 +24,18 @@ tl = 0
 
 nobs = 0
 
-  while (1) {
+  while (nobs < 5000) {
 
    S= readline(A)
 
    tl++
 
-   if (check_eof(A) )
+   if (checkEof(A) )
      break
+
+   if (errno()) {
+       break
+   }
    
    ll = slen(S)
 
@@ -78,6 +82,7 @@ DBPR"CFPC  $day %6.1f$carbc 0.0 0.0 0.0\n"
    else {
 DBPR"CMT   $S"
    }
+   
   }
 
 //<<"there were $nobs measurements \n"

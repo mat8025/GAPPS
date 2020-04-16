@@ -64,11 +64,6 @@ m = Caz(J)
 
 
 
-//PassFail(CheckNum(m,4))
-
-
-// FIXED !!  ---FIXME --- declare of list is tramping on ptrs
-
   L1 = ( "a", "small" , "list" , "1", "2", "3", "4", "5" ,"6" ,"yellow", "green", "blue" ,"indigo", "violet")
 
 <<"$L1 \n"
@@ -139,7 +134,6 @@ L2 = ( "The", "colors", "of" ,"the", "rainbow", "are", "red", "orange", "yellow"
 checkStr(fw,"The")
 
 
-//  PassFail(checkStr(fw,"The"))
 
 // FIXED!! -- FIXME not overwriting
 
@@ -163,12 +157,8 @@ checkStr(fw,"The")
 
      fw = L1[0]
 
-checkStr(fw,"violet")
 
-  //PassFail(checkStr(fw,"violet"))
-
-
- L3 = L1
+     L3 = L1
 
 <<"L3 = $L3 \n"
 
@@ -183,8 +173,6 @@ checkStr(fw,"violet")
 
 <<"%V$fw $(typeof(fw))\n"
 
-//  PassFail(checkStr(fw,"say"))
-
 checkStr(fw,"say")
 
 
@@ -192,21 +180,17 @@ checkStr(fw,"say")
 
 fw = L[0]
 
-   //PassFail(checkStr(fw,"list"))
+
 
 checkStr(fw,"list")
 
 <<"L = $L \n"
 
 
+<<"%v$L[1:4] \n"
 
-//iread(";>")
-
-
-//<<"%v$L[1:4] \n"
 //<<"%v$L[1:-2] \n"
 <<"%v\s$L[1:-3] \n"
-//iread(";>")
 <<"%V$L \n"
 
  L3 = L[1:7]
@@ -214,11 +198,11 @@ checkStr(fw,"list")
 <<" $(typeof(L3)) \n"
 <<"%V$L3 \n"
 
-     fw = L3[0]
+
+
+fw = L3[0]
 <<"fw $fw\n"
 checkStr(fw,"lovely")
-
-
 
 
  litem = "focus"
@@ -243,20 +227,19 @@ checkStr(fw,"lovely")
 
  litem = "first"
 
- n= L->Insert(litem,0)
+ n= L->Insert(0,litem)
 
 <<"insert %V$L    $n\n"
-
 
  sz= caz(L)
 
 <<"%v $sz \n"
 
  fw = L[0]
-
+<<"%V $fw \n"
  checkStr(fw,"first")
 
-
+checkOut()
 
  L3 = L[1:-2]
 
@@ -290,7 +273,7 @@ checkStr(fw,"lovely")
 
 <<" %v$m \n"
 
- PassFail(CheckNum(m,11))
+CheckNum(m,11)
 
  n=L->Sort()
 

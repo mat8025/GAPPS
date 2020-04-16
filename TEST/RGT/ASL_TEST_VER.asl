@@ -17,7 +17,7 @@
 include "debug.asl"
 include "hv.asl"
 
-debugOFF()
+debugON()
 
 #define PGREEN '\033[1;32m'
 #define PRED '\033[1;31m'
@@ -105,7 +105,7 @@ Todo=ofw("to_test")
 
 //////////////////////////////
 Ks = 0
-proc snooze(ksn)
+proc snooze(int ksn)
 {
 Ks = 0
   for (ks = 0; ks < ksn; ks++) {
@@ -139,7 +139,7 @@ proc runModule (int wmod)
 
 padtit =nsc(15,"/")
 
-proc hdg(atit)
+proc hdg(str atit)
 {
 
 len = slen(atit)
@@ -232,7 +232,7 @@ proc RunSFtests(Td)
 
 /////////////////////////////
 
-proc scoreTest( tname)
+proc scoreTest(str tname)
 {
  int scored = 0;
  int ntests;
@@ -334,7 +334,7 @@ else {
 
 int cbh = 0
 
-proc doxictest(prog, a1)
+proc doxictest(str prog, str a1)
 {
 //<<"IN $prog\n"
 
@@ -394,7 +394,7 @@ proc doxictest(prog, a1)
 // FIX --- optional args -- have to be default activated -- to work for XIC?
 // variable length args ??
 
-proc cart_xic(aprg, a1, in_pargc)
+proc cart_xic(str aprg, str a1,int  in_pargc)
 {
 
 //<<"%V xic vers  $aprg $a1 $in_pargc\n"
@@ -419,11 +419,13 @@ proc cart_xic(aprg, a1, in_pargc)
   // <<"%V  $in_pargc > 1 ? \n"
 
    //in_pargc->info(1);
-   
+
+       a1="xx"
    if ( in_pargc > 1) {
       
-//<<"./$aprg   $a1  $xwt_prog\n"
-       doxictest("./$aprg", a1)
+<<"%V ./$aprg   $a1  $xwt_prog\n"
+
+      doxictest("./$aprg", a1)
    }
    else {
    
@@ -432,7 +434,7 @@ proc cart_xic(aprg, a1, in_pargc)
       xwt_prog = "$tim ./${aprg}: "
       //xwt_prog = "$(time()) ./${aprg}: "
 
-       doxictest("./$aprg")
+       doxictest("./$aprg"," ")
    }
 
       if (f_exist("${aprg}.xtst") > 0) {
@@ -457,7 +459,7 @@ proc cart_xic(aprg, a1, in_pargc)
 //================================//
 
 
-proc cart (aprg, a1)
+proc cart (str aprg, str a1)
 {
   int wlen;
   str tim;
@@ -1153,7 +1155,7 @@ if (runModule( do_mops )) {
 
     Run2Test("Svar")
     cart("svar1", "string operations are not always easy" )
-    RunDirTests("Svar","svar","svar_declare,svelepr,svargetword,svarsplit,svar_range");
+    RunDirTests("Svar","svar");
     Run2Test("Hash")
     cart("svar_table")
     cart("svar_hash")    
@@ -1290,7 +1292,7 @@ if (runModule( do_mops )) {
 
 if (runModule( do_vmf)) {
 
-    RunDirTests("Vmf","vmf,prune,caz,rand,bubblesort")
+    RunDirTests("Vmf","vmf")
 
   }
 
