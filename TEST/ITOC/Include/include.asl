@@ -1,5 +1,5 @@
 //%*********************************************** 
-//*  @script main_ni.asl 
+//*  @script include.asl 
 //* 
 //*  @comment test include refs 
 //*  @release CARBON 
@@ -12,7 +12,20 @@
 //***********************************************%
 
 include "debug"
+
+filterfuncdebug(ALLOWALL_,"xxx");
+
+filterfiledebug(ALLOWALL_,"proc_","args_","scope_","class_","hop_");
+
+setdebug(1,@trace,@keep,@pline);
+
 <<"does nested includes\n"
+
+
+
+ws = getScript()
+
+<<"%V $ws\n"
 
 A= 1;
 
@@ -20,23 +33,20 @@ int n = 0 ;
 
 <<"%V$n\n";
 
-//goon = iread("->\n");
-
-setdebug(1,@pline)
-
 
 
 <<" before include\n"
 
 include "inc1_nest";
 
+<<" after include\n"
 
 
-
-
- checkin();
+checkin();
 
 <<"main sees globals %V $A $X $Y $Z\n"
+
+
 
 checkFnum(A,1)
 checkFnum(X,1.2345)

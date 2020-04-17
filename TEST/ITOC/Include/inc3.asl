@@ -9,7 +9,7 @@ float Z = 3.2345;
 
 <<"inc3 adds global %V$Z\n"
 
-proc hoo( a,b)
+proc hoo(real a, real b)
 {
 
  c= a/b;
@@ -21,6 +21,6 @@ proc hoo( a,b)
 
 <<"included $_include  _scope \n"
 
-include "inc3";
+//include "inc3";
 
 <<"ignored repeated include\n"

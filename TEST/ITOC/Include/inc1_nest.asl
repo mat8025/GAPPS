@@ -1,6 +1,6 @@
 //////////////
 
-<<"start including  nest $_include\n"
+<<"start including  nest \n"
 
 #define C_YELLOW 6
 

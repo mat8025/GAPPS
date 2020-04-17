@@ -7,7 +7,7 @@ float Y = 2.2345;
 
 <<"inc2 adds global %V$Y\n"
 
-proc goo( a,b)
+proc goo(int a, int b)
 {
 
  c= a*b;

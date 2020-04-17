@@ -8,7 +8,7 @@ CheckIn()
 // make 1 to stop if error
 Checkpause = 1
 
-proc foo(a,b)
+proc foo(int a, int b)
 {
   int x;
   int y = 1;
@@ -31,47 +31,29 @@ int m = 3;
 int n = 4;
 
 
- p = foo(m,n)
+ pi = foo(m,n)
 
 
 <<"%V p $m $n\n"
 
 
 
-checkNum(p,7)
+checkNum(pi,7)
 
 
- p = foo(47,79)
+ pi = foo(47,79)
 
 
-<<"%V p $m $n\n"
-
-
-
-checkNum(p,126)
+<<"%V  $m $n\n"
 
 
 
-
-
-checkOut();
-
-
-exit()
-
-
-
+checkNum(pi,126)
 
 
 
 int ok = 0
 int ntest = 0;
-
-
-
-
-
-
 
 jj = 6
 
@@ -139,10 +121,6 @@ double xr9 = (-1.6 * 2)
 
    CheckFNum(xr9,-3.2000);
 
-   CheckOut()
-
-exit()
-
 int M[10]
 
   M = 8
@@ -168,8 +146,6 @@ int M[10]
    msz = Caz(M)
 
    CheckNum(msz,10)
-
-//   CheckNum(Caz(M),10)
 
 
 
@@ -276,11 +252,7 @@ P = 76
    CheckNum(dp,dq)
 
 //<<" using which checkout ??\n"
-   CheckOut()
 
-;  
-
-STOP!
 
 
 prec=setap(20)
@@ -293,7 +265,7 @@ prec=setap(20)
 
   z= p / c
 
-  q = z * c
+  q = z * c 
 
 <<" $(typeof(p))  $(typeof(z)) $(typeof(q))\n"
 
@@ -308,11 +280,9 @@ prec=setap(20)
    pan pr
    pan qr
 
-//   pan pr = fround(p,1)
-//   pan qr = fround(q,1)
-
+<<"%V $p $q\n"
    pr = fround(p,2)
-   qr = fround(q,2)
+   qr = fround(q*1.0,2)
 
 <<" %v $pr \n"
 
@@ -321,8 +291,225 @@ prec=setap(20)
 
    CheckNum(pr,qr)
 
-   CheckOut()
 
-<<" done declare1 \n"
+proc foo(int a)
+{
+int k = 2
+<<" entered $_proc $a $k\n"
+ checkNum(k,2)
+ checkNum(a,A)
+}
+
+
+A =5
+foo(A)
+A++
+foo(A)
+
+
+
+
+//%*********************************************** 
+//*  @script chardeclare.asl 
+//* 
+//*  @comment test declare of char vector 
+//*  @release CARBON 
+//*  @vers 1.4 Be Beryllium                                                
+//*  @date Fri Apr 12 16:13:07 2019 
+//*  @cdate 1/1/2000 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+
+
+
+Z="hey"
+
+<<"%V $Z\n"
+
+checkStr(Z,"hey");
+
+S="hey";
+
+<<"%V $S\n"
+
+checkStr(S,"hey");
+
+V="hey"  // gets hey"
+
+<<"%V $V\n"
+
+checkStr(V,"hey");
+
+
+
+
+char c2 = 65;
+char p2 = 'q';
+
+<<"%I $c $p2 \n"
+<<"%I %c$c2 %c$p2 \n"
+
+<<"%V $c2\n"
+<<"%V $p2\n"
+
+
+str s = "abc"
+
+<<"%I $s %s$s \n"
+
+str tease = "a b c "
+
+//FIXIT missing varname
+
+
+tease->info(1)
+<<"<|$tease|> \n"
+
+uchar cv[] = { 65,47,79,0xBA };
+
+
+ sz= Caz(cv)
+ 
+<<"%V$sz $cv \n"
+
+ cve = cv[0]
+
+<<"%V$cve\n"
+<<"%V$cv[0]\n"
+
+ CheckNum(cve,65)
+
+
+
+ cv[0] = 'M';
+ 
+ cve = cv[0]
+
+<<"%V$cve\n"
+<<"%V$cv[0]\n"
+
+ CheckNum(cv[0],77)
+
+
+
+ str ls = 'abc'
+
+ CheckNum(cv[3],0xBA)
+
+
+
+<<"%I %hx $cv \n"
+<<"%I %s $cv \n"
+
+wc = scnt("G")
+
+<<"%V $wc $(typeof(wc))\n"
+
+char dv[] = { 'G', 25, 28, 78, 'O', '0', 69, 75,76,77 }
+
+
+<<"$(vinfo(dv))\n"
+<<"$dv \n"
+<<"%c $dv \n"
+
+ CheckNum(dv[4], 'O' )
+ CheckNum(dv[5], '0' )
+  CheckNum(dv[0], 'G' ) 
+
+
+
+char a = 'G';
+
+<<" $(vinfo(a)) \n"
+
+<<"%V $dv[0] $a \n"
+
+ CheckNum(dv[0],a)
+
+ CheckNum(dv[0], wc )
+
+ CheckNum(dv[0], 'G' )
+
+
+ checkStage()
+
+<<"%V $dv  \n"
+
+<<"%V $dv[1]  \n"
+
+ CheckNum(dv[1],25)
+
+  char b = dv[4];
+
+<<"%V $b %d $b\n"
+<<"%V $dv[4]\n";
+
+//iread()
+
+ CheckNum(dv[4], 'O' )
+
+
+
+<<" whaat is happening here $dv[5] \n"
+
+ tc = scnt("0");
+ <<"%V $tc\n";
+ CheckNum(dv[5], scnt("0") )
+<<" Imm not really cleaaaaaaar \n" 
+
+
+ CheckNum(dv[5], '0' )
+
+
+
+char lv[] = { 'ABCDEF MARK$S PERRY NEEDS TO FOCUS ' }
+
+sz = Caz(lv)
+<<"%v $sz \n"
+<<"%V $lv \n"
+
+<<" $lv[0] \n"
+<<" $lv[1] \n"
+//iread("->");
+
+char ev[] = { "ABCDEF MARK$S BERRY NEEDS TO FOCUS " }
+
+
+<<"%V$ev \n"
+sz = Caz(ev)
+<<"%v $sz \n"
+
+<<"%V %c $ev \n"
+<<"%V $ev \n"
+
+//iread("->");
+
+ CheckNum(ev[0],'A')
+ CheckNum(ev[7],'M')
+
+<<"%I %s $lv \n"
+
+ CheckNum(lv[0],'A')
+ CheckNum(lv[7],'M')
+ CheckNum(lv[11],'$')
+
+
+ <<" chardec DONE\n"
+
+for (k=0;k<sz;k++) {
+
+<<"$k $ev[k] %c $ev[k] \n"
+}
+
+
+ checkStage("char")
+ 
+
+
+ CheckOut()
+
+
 
 
