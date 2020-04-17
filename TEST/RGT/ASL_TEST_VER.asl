@@ -48,10 +48,6 @@ filterFuncDebug(ALLOWALL_,"proc");
 filterFileDebug(ALLOWALL_,"ic_op");
 
 
-
-//envdebug();
-//str S = "all,array,matrix,bugs,bops,vops,sops,fops,class, declare,include,exp,if,logic,for,do,paraex,proc,switch, types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc, svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help";
-
 str S = "all,array,matrix,bugs,bops,vops,sops,fops,class, declare,include,exp,if,logic,for,do,paraex,proc,switch,"
 S->cat("types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc, svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help");
 
@@ -90,7 +86,7 @@ Dbf=ofw("test_debug")
 do_pause = 0;
 do_error_pause = 0
 
-do_xic = 1;
+do_xic = 0;
 
 int n_modules = 0
 int rt_tests = 0
@@ -172,6 +168,7 @@ proc help()
 
 proc changeDir(str td)
 {
+  <<" $_proc $td\n"
   chdir(td)
   Curr_dir = getDir();
 }
@@ -243,7 +240,7 @@ proc scoreTest(str tname)
  
         RT=ofr(tname);
        
-//<<"$_proc $tname fh $RT \n"
+<<"$_proc $tname fh $RT \n"
 
 
        if (RT != -1) {
@@ -459,41 +456,104 @@ proc cart_xic(str aprg, str a1,int  in_pargc)
 //================================//
 
 
-proc cart (str aprg, str a1)
+proc cart (str aprg)
 {
   int wlen;
   str tim;
+  
   in_pargc = _pargc;
   
   xwt_prog = "xxx";
-  cart_arg = ""
-  a1arg = "";
 
    tim = time();
 
-  if (_pargc >1) {
-     cart_arg = " $a1"
-     a1arg = a1;
+
+<<"%V $_proc $aprg   $tim \n"
+
+
+ 
+  !!"rm -f $aprg  ${aprg}.tst  last_test*"
+
+
+   jpid  =0
+   
+// icompile(0)
+
+
+      !!"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl > foo   2>&1"
+
+      if (f_exist("${aprg}.tst") > 0) {
+
+         wt_prog = "$(time()) ${aprg}: "
+         wlen = slen(wt_prog)
+         padit =nsc(40-wlen," ")
+         <<"${wt_prog}$padit"
+         <<[Opf]"${wt_prog}$padit"	 
+
+         scoreTest("${aprg}.tst")
+      }
+     else {
+
+       //<<"CRASH FAIL:--failed to run \n"
+       // insert works??
+       CrashList->Insert("${Curr_dir}/${aprg}")
+
+     }
+   
+
+   w_file(Todo,"$(getdir())/${aprg}.asl $jpid $(time())\n")
+
+//  <<"$(getdir())/${aprg}.asl $jpid $(time())\n"
+ 
+    fflush(Todo)
+    
+     ntest++
+
+
+  if (do_xic >0 ) {
+    cart_xic(aprg,a1,in_pargc)
   }
 
-//<<"%V $_proc $aprg  $cart_arg <$a1arg> $tim \n"
+//<<"DONE $_proc cart\n"
+
+   return;
+  
+}
+//===============================
+
+
+proc cart (str aprg,  gen a1)
+{
+  int wlen;
+  str tim;
+  
+  in_pargc = _pargc;
+  
+  xwt_prog = "xxx";
+
+
+   tim = time();
+
+
+     cart_arg = "$a1"
+     a1arg = a1;
+
+
+<<"%V $_proc $aprg  $cart_arg <$a1arg> $tim \n"
 
   //ans=iread("?")
 
  
   !!"rm -f $aprg  ${aprg}.tst  last_test*"
 
-//<<"asl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl \n"
-// !!"asl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl "
-//  !!" asl $CFLAGS ${aprg}.asl  | tee --append $tout "
 
    jpid  =0
    
 // icompile(0)
 
-  if (in_pargc > 1) {
 
-// <<" asl $CFLAGS ${aprg}.asl  $a1 \n"
+
+ <<" asl $CFLAGS ${aprg}.asl  $a1 \n"
 //  jpid = !!&"asl -o ${aprg}arg.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1"
 
 
@@ -518,37 +578,6 @@ proc cart (str aprg, str a1)
 //	<<[Tcf]"${Curr_dir}/${aprg}\n"
      }
 
-   }
-   else {
-
-//<<" asl $CFLAGS ${aprg}.asl  >> $tout & \n"
-//    jpid = !!&"asl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl"
-
-      !!"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl > foo   2>&1"
-
-      if (f_exist("${aprg}.tst") > 0) {
-
-         wt_prog = "$(time()) ${aprg}: "
-         wlen = slen(wt_prog)
-         padit =nsc(40-wlen," ")
-         <<"${wt_prog}$padit"
-         <<[Opf]"${wt_prog}$padit"	 
-
-         scoreTest("${aprg}.tst")
-      }
-     else {
-
-       //<<"CRASH FAIL:--failed to run \n"
-       // insert works??
-       CrashList->Insert("${Curr_dir}/${aprg}")
-
-     }
-
-
-
-//  !!" asl $CFLAGS ${aprg}.asl  > res_${aprg}.txt "
-//    <<"%V$jpid \n"
-   }
 
    w_file(Todo,"$(getdir())/${aprg}.asl $jpid $(time())\n")
 
@@ -556,32 +585,16 @@ proc cart (str aprg, str a1)
  
     fflush(Todo)
 
-// icompile(1)
-//<<"$jpid \n"
-//    snooze(15000)
-// nanosleep(1,500)
-
     
   ntest++
 
-    if (do_pause) {
-        onward = iread("carryon? {no to quit}:)->");
-	
-	if (scmp(onward,"no")) {
-          exit("quit ASL tests");
-        }
-    }
-
-
-//!!"tail -3 $tout "
- // TBC if (do_xic)  // FAILS
-
-
   if (do_xic >0 ) {
-    cart_xic(aprg,a1,in_pargc)
+    cart_xic(aprg,a1,2)
   }
 
+//<<"DONE $_proc cart 2 args\n"
 
+   return;
   
 }
 //===============================
@@ -713,8 +726,21 @@ int do_release = 0;
 <<"%V $do_all $do_bops $do_mops \n"
 
 // always
-//  Run2Test("Bops")
-//  cart("bops",7)
+/{
+    Run2Test("Bops")
+
+    cart("bops")
+
+    cart("bops",7)
+
+    cart("fvmeq")
+
+    cart("fvmeq",3)
+  
+    cart("fsc1")
+
+    cart("mainvar")
+/}
 //================
 
 <<"%V $do_all \n"
@@ -736,7 +762,7 @@ if (do_release) {
 
   cart("bops",7)
   
-  cart("bops","")
+  cart("bops")
 
   cart("fvmeq")
 
@@ -782,13 +808,12 @@ if (do_release) {
 
   if (runModule( do_vops)) {
 
-     RunDirTests("Vops","vops,vopsele")
+     RunDirTests("Vops","vops")
 
-     RunDirTests("Vector","vec,veccat,vecopeq,vecrange,veclhrange")
+     RunDirTests("Vector","vector")
 
-   //     RunDirTests("Reverse","reverse") ; // BUG needs more than one
-   Run2Test("Reverse")
-   cart("reverse")
+     RunDirTests("Reverse","reverse") ; // BUG needs more than one
+
 
   }
 
@@ -850,6 +875,8 @@ if ((do_all ==1) || (do_declare == 1) ) {
     }
 
 <<" checkSwitch\n"
+
+
  if ( runModule (do_switch)) {
     <<"switch $do_all $do_switch \n"
     RunDirTests("Switch","switch,switch2")
@@ -1148,7 +1175,6 @@ if (runModule( do_mops )) {
 
 
     }
-
 
 
    if (runModule( do_svar )) {
