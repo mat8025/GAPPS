@@ -14,9 +14,7 @@
 
 
 
-include "debug.asl"
 
-debugON();
 
 proc wintersect(Rect vpA,Rect vpB)
 {

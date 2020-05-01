@@ -14,14 +14,13 @@
 ///  demo ptr/ref args
 ///
 
-
 //#define ASK ans=iread();
 
 #define ASK ;
 
 
 checkIn()
-setdebug(1,@~pline,@~step,@~trace,@showresults,1)
+setdebug(1,@pline,@~step,@~trace,@showresults,1)
 filterFuncDebug(ALLOWALL_,"proc");
 filterFileDebug(ALLOWALL_,"ic_op");
 
@@ -42,7 +41,7 @@ proc add ( x, y)
 //====================
 
 
-proc swap ( x, y)
+proc swap (ptr x, ptr y)
 {
 
   float t = x;
@@ -127,6 +126,8 @@ proc swapR (int& x, int& y)
  CheckNum(k,3)
  CheckNum(m,4)
 
+
+ checkout()
 ASK
 <<"%V$k $m  \n"
 

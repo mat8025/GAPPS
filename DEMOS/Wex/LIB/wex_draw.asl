@@ -105,7 +105,8 @@ proc  drawGrids(int  ws )
  if (ws == 0) {
 
   //<<[_DB]"drawing Grids for screen 0 \n"
-  sWo({extwo,calwo,gwo},@font,"small");
+  //sWo({extwo,calwo,gwo},@font,"small");
+  sWo(extwo,@font,"small");
   
   axnum(gwo,AXIS_LEFT_);
 

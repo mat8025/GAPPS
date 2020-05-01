@@ -1,17 +1,27 @@
-///
-/// test object arrays
-///
+//%*********************************************** 
+//*  @script oa.asl 
+//* 
+//*  @comment test object array 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                    
+//*  @date Tue Apr 28 19:55:38 2020 
+//*  @cdate Tue Apr 28 19:55:38 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 
 
-CheckIn()
 
-setDebug(1,@~trace,@pline,@soe)
+checkIn(_dblevel)
+
+
 
 int x = 5;
 
 int Bid =0;
 
-proc pfloors( r)
+Proc pfloors(int r)
 {
  int prf = 0;
 
@@ -44,7 +54,7 @@ CLASS Building {
  int area ;
  int id;
  
- CMF setRooms(val)
+ CMF setRooms(int val)
  {
   <<" $_proc  $_cobj $id  $rooms $floors $area \n"
    rooms = val;
@@ -59,7 +69,7 @@ CLASS Building {
    return rooms; 
  }
 //========================
- CMF setFloors(val)
+ CMF setFloors(int val)
  {
     floors = val;
 <<" $_cobj $_proc $id $val $floors \n"
@@ -101,28 +111,38 @@ CLASS Building {
 ////////////////////////////////////
 
 
-  Building C[10]
+  Building C[4]
 
-<<" done object array[10] declare ! \n"
+<<" done object array  declare ! \n"
 
-   C[0]->Print()
+ 
    C[1]->Print()
    C[2]->Print()
+   C[3]->Print()
 
-
-  C[1]->Print()
-
-   b1rooms = C[1]->getRooms();
-
-<<"%V $b1rooms \n"
-
-   CheckNum(b1rooms,5);
+  C[0]->Print()
 
    b0rooms = C[0]->getRooms();
 
 <<"%V $b0rooms \n"
 
-   CheckNum(b0rooms,4);
+   checkNum(b0rooms,4);
+   
+   b1rooms = C[1]->getRooms();
+
+<<"%V $b1rooms \n"
+
+   checkNum(b1rooms,5);
+
+   b2rooms = C[2]->getRooms();
+
+<<"%V $b2rooms \n"
+
+  checkNum(b2rooms,6);
+
+  checkOut()
+
+
 
 
    C[5]->Print()
@@ -131,7 +151,7 @@ CLASS Building {
 
 <<"%V $b5rooms \n"
 
-   CheckNum(b5rooms,9);
+   checkNum(b5rooms,9);
 
    C[6]->Print()
 
@@ -139,18 +159,16 @@ CLASS Building {
 
 <<"%V $b6rooms \n"
 
-   CheckNum(b6rooms,10);
+   checkNum(b6rooms,10);
 
 
  
 
-   CheckNum(b1rooms,5);
+   checkNum(b1rooms,5);
 
-   b2rooms = C[2]->getRooms();
 
-<<"%V $b2rooms \n"
 
-   CheckNum(b2rooms,6);
+   checkNum(b2rooms,6);
 
 
 
@@ -163,16 +181,16 @@ CLASS Building {
    b2floors = C[2]->getFloors();
 
 <<"%V $b2floors \n"
-  CheckNum(b2floors,15)
+  checkNum(b2floors,15)
   
 
-checkOut();
+
 /// MF
   nf = C[2]->getFloors()
 
 <<"[2] floors %V $nf\n"
 
- CheckNum(nf,15)
+ checkNum(nf,15)
 
   n = 2;
 
@@ -187,7 +205,7 @@ checkOut();
 
 <<"%V $nf \n"
 
-  CheckNum(nf,16)
+  checkNum(nf,16)
 
   checkStage();
   
@@ -195,7 +213,7 @@ checkOut();
 
 <<"%V $nf \n"
 
-  CheckNum(nf,16)
+  checkNum(nf,16)
 
   checkStage();
 
@@ -213,14 +231,14 @@ checkOut();
 
 <<"floors $nf \n"
 
-  CheckNum(nf,12);
+  checkNum(nf,12);
 
 checkOut()
 
   nrms = C[0]->getRooms()
   <<" C[0] rooms $nrms \n"
 
-  CheckNum(nrms,4)
+  checkNum(nrms,4)
 
 <<" main refer %i $C   [0] \n"
   C[0]->setRooms(56)
@@ -253,11 +271,11 @@ nrms = C[0]->getRooms()
 
   nr = C[4]->getRooms()
   
-  CheckNum(nr,14)
+  checkNum(nr,14)
 
 
 
-// FIX  CheckNum( C[4]->getFloors(),14)
+// FIX  checkNum( C[4]->getFloors(),14)
 
 
 
@@ -276,7 +294,7 @@ nrms = C[0]->getRooms()
  nf=   C[j]->getFloors()
 <<"  C[j]->floors  $nf \n"
 
-CheckNum(nf,15)
+checkNum(nf,15)
 
 
 
@@ -286,7 +304,7 @@ CheckNum(nf,15)
 
   a=   C[0]->floors
 <<"  %I $C[0]->floors  $a \n"
-CheckNum(a,5)
+checkNum(a,5)
 
   a=   C[1]->floors
 
@@ -296,7 +314,7 @@ CheckNum(a,5)
 
   a=   C[j]->floors
 <<" %I $C[j]->floors  $a \n"
-CheckNum(a,15)
+checkNum(a,15)
 
 
 
@@ -584,4 +602,4 @@ setdebug(-1)
 
 
 <<"@END_SCRIPT \n"
-CheckOut()
+checkOut()

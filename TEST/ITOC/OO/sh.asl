@@ -1,6 +1,6 @@
 # test  inheritance
 
-CheckIn()
+checkIn()
 
 class building {
 
@@ -8,7 +8,7 @@ class building {
  int floors
  int area
 
- CMF setrooms(val)
+ CMF setrooms(int val)
  {
    rooms = val
  }
@@ -18,7 +18,7 @@ class building {
    return rooms 
  }
 
- CMF setfloors(val)
+ CMF setfloors(int val)
  {
    floors = val
  }

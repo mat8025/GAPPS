@@ -12,17 +12,18 @@
 //***********************************************%
 
 
-include "debug.asl"
-
-debugON();
 
 
+checkIn (_dblevel);
 
-setdebug (1, @pline, @~step, @trace, @~soe) ;
+float f= 3.142;
 
-checkIn ();
+<<"$f \n"
 
-proc array_sub (float rl[])
+
+
+//proc array_sub (float rl[])
+proc array_sub (float rl)
 {
   float t1;
   float t2;
@@ -43,7 +44,7 @@ proc array_sub (float rl[])
 
 
   <<"$(Caz(t1))\n";
-
+  rl->info(1)
   checkFnum (t1, 4.0);
 
 
@@ -127,15 +128,38 @@ proc array_sub (float rl[])
   
 //<<"$rl[0:3]\n"     ;
 
+  rf1= rl[j1];
+   rl->info(1)
+  rf2= rl[j2];  
+  
+<<"%V $j1 $j2 $rf1 $rf2\n" 
+  rl->info(1)
+  TA=testargs(rl[j1],rl[j2],rf1,rf2)
+
+<<"%(1,,,\n)$TA\n";
+
   rl[j1] = rl[j1] - rl[j2];
 
+  rf1= rl[j1];
+  rf2= rl[j2];  
+  
+<<"%V $j1 $j2 $rf1 $rf2\n" 
 
+
+
+<<"%V $rl[j1] = $rl[j1] - $rl[j2] \n";
+
+  rl->info(1)
+  TA=testargs(rl[j1],rl[j2],rf1,rf2)
+
+<<"%(1,,,\n)$TA\n";
+  
   checkFNum (rl[j1], -2);
 
   ff= rl[j1];
 <<" $ff   \n"
 <<" $rl[j1]  -2 \n"
-  rl->info(1)
+
 
 //<<"$rl\n"   // FIX does not parse rl here why?
 
@@ -159,7 +183,6 @@ proc array_sub (float rl[])
 
 //////////////////////////////////////////////////////////////////////////////////////
 
-
 Real1 = vgen (FLOAT_, 10, 0, 1);
 <<"%V$Real1\n";
 
@@ -172,10 +195,12 @@ checkFnum (mt1, 4);
 Real1[0] = 74.47;
 
 <<"%V$Real1\n";
-val = array_sub (Real1);
 
-//checkStage()
-//ans=iread()
+   val = array_sub (Real1);
+
+checkStage()
+
+
 
 ////////////////////
 
@@ -290,20 +315,19 @@ Real[j1] = Real[j1] - Real[j2];
 checkFnum (Real[j1], -2);
 
 checkFnum (Real[4], -2);
-//checkStage()
-//ans=iread()
+/
 
 
 ////// Now inside proc -- with proc stack variables  //////////////////////////////
 
-Real = fgen (10, 0, 1);
+Real2 = fgen (10, 0, 1);
 <<"%V$Real\n";
 
-val = array_sub (Real);
+val = array_sub (Real2);
 
 <<"$val \n";
 
 
-CheckOut ();
+checkOut ();
 
-exit ();
+

@@ -11,17 +11,7 @@
 //* 
 //***********************************************%
   
-
-
- include "debug.asl";
-  debugON();
-  setdebug(1,@keep,@pline,@trace);
-  FilterFileDebug(REJECT_,"~storetype_e");
-  FilterFuncDebug(REJECT_,"~ArraySpecs",);
-  
-  
-
-
+//sdb(1,@pline,@break,89)
 
 CheckIn()
 
@@ -72,9 +62,8 @@ val = 81;
   }
 
 
- HT[9][7] = 47
- HT[9][8] = 79
-;
+ HT[9][7] = 47;
+ HT[9][8] = 79 ;
 <<"$HT \n"
 
 jt = 0;
@@ -84,7 +73,7 @@ DT = HT
 DT->info(1)
 <<"$DT \n"
 
-CT = HT[1:8:][1:7:]
+CT = HT[1:8:][1:7:]    ;  // TBF not selecting 2D vec correctly
 
 <<"HT $(Caz(HT)) $(Cab(HT)) \n"
 <<"CT $(Caz(CT)) $(Cab(CT)) \n"
@@ -98,6 +87,8 @@ sz=Caz(CT)
 <<"%v $sz\n"
 
 checkNum(sz,56)
+
+
 bnds= Cab(CT)
 
 <<"%v $bnds\n"
@@ -106,6 +97,7 @@ val = CT[0][0]
 
 checkNum(val,10)
 j = 21;
+
 for (k=1; k<=7;k++) {
  val = CT[k][0]
 
@@ -130,14 +122,6 @@ T= R[2:8]
 
 checkNum(R[1],1)
 checkNum(T[0],2)
-
-CheckOut()
-
-exit()
-
-
-
-
 
 
 

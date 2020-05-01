@@ -1,7 +1,14 @@
 ///
 ///
 ///
-setdebug(1,@trace,@keep)
+//include "debug"
+
+//filterfuncdebug(ALLOWALL_,"xxx");
+
+//filterfiledebug(ALLOWALL_,"proc_","args_","scope_","class_","hop_");
+
+
+//sdb(1,@trace,@keep)
 
 CheckIn()
 
@@ -40,7 +47,7 @@ int n = 4;
 
 checkNum(pi,7)
 
-
+checkOut();
  pi = foo(47,79)
 
 
@@ -344,7 +351,7 @@ checkStr(V,"hey");
 
 
 
-
+//sdb(1,@pline)
 char c2 = 65;
 char p2 = 'q';
 
@@ -379,7 +386,7 @@ uchar cv[] = { 65,47,79,0xBA };
 <<"%V$cve\n"
 <<"%V$cv[0]\n"
 
- CheckNum(cve,65)
+ checkNum(cve,65)
 
 
 
@@ -390,13 +397,13 @@ uchar cv[] = { 65,47,79,0xBA };
 <<"%V$cve\n"
 <<"%V$cv[0]\n"
 
- CheckNum(cv[0],77)
+ checkNum(cv[0],77)
 
 
 
  str ls = 'abc'
 
- CheckNum(cv[3],0xBA)
+ checkNum(cv[3],0xBA)
 
 
 
@@ -407,16 +414,24 @@ wc = scnt("G")
 
 <<"%V $wc $(typeof(wc))\n"
 
-char dv[] = { 'G', 25, 28, 78, 'O', '0', 69, 75,76,77 }
+int iv[] = { 0,1,2,3,4,5,6,7,8,9, }
+
+iv->info(1)
+<<" $iv \n"
+
+//sdb(1,@step)
+char dv[] = { 'G', 84, 85, 78, 'O', '0', 69, 75,76,77 }
 
 
 <<"$(vinfo(dv))\n"
 <<"$dv \n"
 <<"%c $dv \n"
 
- CheckNum(dv[4], 'O' )
- CheckNum(dv[5], '0' )
-  CheckNum(dv[0], 'G' ) 
+ checkNum(dv[4], 'O' )
+ checkNum(dv[5], '0' )
+ checkNum(dv[6], 69 )
+ checkNum(dv[9], 77 )
+ checkNum(dv[0], 'G' ) 
 
 
 
@@ -426,11 +441,11 @@ char a = 'G';
 
 <<"%V $dv[0] $a \n"
 
- CheckNum(dv[0],a)
+ checkNum(dv[0],a)
 
- CheckNum(dv[0], wc )
+ checkNum(dv[0], wc )
 
- CheckNum(dv[0], 'G' )
+ checkNum(dv[0], 'G' )
 
 
  checkStage()
@@ -439,28 +454,33 @@ char a = 'G';
 
 <<"%V $dv[1]  \n"
 
- CheckNum(dv[1],25)
+ checkNum(dv[1],84)
+
+
 
   char b = dv[4];
 
 <<"%V $b %d $b\n"
 <<"%V $dv[4]\n";
 
-//iread()
+<<"dv %d $dv\n"
+<<"dv %c $dv\n"
 
- CheckNum(dv[4], 'O' )
+ printargs(dv[4],'O')
+ checkNum(dv[4], 'O' )
+  checkNum(dv[4], 79 )
 
-
+ checkOut()
 
 <<" whaat is happening here $dv[5] \n"
 
  tc = scnt("0");
  <<"%V $tc\n";
- CheckNum(dv[5], scnt("0") )
+ checkNum(dv[5], scnt("0") )
 <<" Imm not really cleaaaaaaar \n" 
 
 
- CheckNum(dv[5], '0' )
+ checkNum(dv[5], '0' )
 
 
 
@@ -486,14 +506,14 @@ sz = Caz(ev)
 
 //iread("->");
 
- CheckNum(ev[0],'A')
- CheckNum(ev[7],'M')
+ checkNum(ev[0],'A')
+ checkNum(ev[7],'M')
 
 <<"%I %s $lv \n"
 
- CheckNum(lv[0],'A')
- CheckNum(lv[7],'M')
- CheckNum(lv[11],'$')
+ checkNum(lv[0],'A')
+ checkNum(lv[7],'M')
+ checkNum(lv[11],'$')
 
 
  <<" chardec DONE\n"
@@ -508,7 +528,7 @@ for (k=0;k<sz;k++) {
  
 
 
- CheckOut()
+ checkOut()
 
 
 

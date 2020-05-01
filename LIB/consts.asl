@@ -1,13 +1,21 @@
+//%*********************************************** 
+//*  @script consts.asl 
+//* 
+//*  @comment set some useful constants 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                    
+//*  @date Fri Apr 17 21:09:27 2020 
+//*  @cdate Fri Apr 17 21:09:27 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 
 
 // define some Constants
 //<<" calc ap E \n"
 
 const double _E = exp(1.0);
-
-// _PI already known
-
-//<<" $PI_ \n"
 
 const double _G = 6.672e-11
 
@@ -17,8 +25,8 @@ const double _c = 299792458;  // m per sec
 
 const double _sos = 331.0 // m per sec 
 
-//const double _k = 1.38070e-23
-const double _k = 1.38070 * 10^^-23;
+const double _k = 1.38070e-23
+//const double _k = 1.38070 * 10^-23;
 
 //<<"%Ve$_k\n"
 
@@ -117,7 +125,7 @@ proc units()
 <<"%V$_lightyr \n"
 }
 
-
+// %e  formats in sci format   1.38e-23
 proc consts()
 {
 //<<"typically MKS  - note consts are preceeded by underscore e.g.speed of light  _c \n"

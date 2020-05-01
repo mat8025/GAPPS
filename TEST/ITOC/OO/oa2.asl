@@ -1,15 +1,19 @@
-///
-/// oa2
-///
+//%*********************************************** 
+//*  @script oa2.asl 
+//* 
+//*  @comment test object array 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                    
+//*  @date Tue Apr 28 19:55:01 2020 
+//*  @cdate Tue Apr 28 19:55:01 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 
 
-setDebug(1,@~trace,@pline,@~soe)
 
-//envDebug()
-//#define  ASK ans=iread();
-#define  ASK ;
-
-CheckIn(0)
+checkIn(_dblevel)
 
 int i = 0;
 
@@ -73,7 +77,7 @@ class Act {
  int t;
  int id;
  
- CMF Set(s)
+ CMF Set(int s)
  {
      //obid = _cobj->obid()
 //     <<"Act Set  $_cobj  $obid $(offsetof(&_cobj)) $(IDof(&_cobj))\n" 
@@ -116,8 +120,14 @@ Act a;
     a->Set(5);
 <<"%V$a->type \n"
 
+vid = a->vid();
 
- vid = a->vid();
+<<"%V $vid \n"
+
+a->info(1)
+
+
+
 <<"%V$vid \n"
 
   <<"%V$a->type \n"
@@ -126,12 +136,17 @@ Act a;
 
 
  obid = a->obid();
-
+<<"%V $obid  $vid \n"
  a_info = a->info();
- <<"$a_info \n"
+
+
+<<"$a_info \n"
  <<" a $(IDof(&a))  \n"
 <<" $a->info() \n"
 <<" %V $obid \n"
+
+
+
 
  Act X[4];
 
@@ -151,8 +166,10 @@ Act a;
 
  <<" b $(IDof(&b)) \n"
 
- obid = b->obid()
- vid = b->vid()
+  obid = b->obid()
+ 
+
+  vid = b->vid()
 
 
 
@@ -188,7 +205,7 @@ Act a;
 
  yt = X[3]->type;
 
- CheckNum(yt,66);
+ checkNum(yt,66);
 
 <<"type %V$yrt $yt\n"
 
@@ -222,33 +239,33 @@ Act a;
 
 <<"47? type for 2 $yt $(typeof(yt)) \n"
 
- CheckNum(yt,47);
+ checkNum(yt,47);
  
 
  yt = X[3]->type;
 
 <<"80? type for X[3] $yt \n"
 
- CheckNum(yt,80);
+ checkNum(yt,80);
   
  yt = X[0]->type
 
 <<"type for 0 $yt \n"
 
- CheckNum(yt,50);
+ checkNum(yt,50);
 
 
  yt = X[1]->type
 <<"type for 1 $yt = 79 ?\n"
 
- CheckNum(yt,79) ;
+ checkNum(yt,79) ;
 
 
 
  yt = X[2]->type
 <<"type for 2 $yt = 47 ?\n"
 
- CheckNum(yt,47) 
+ checkNum(yt,47) 
 
  i = 3
  X[i]->type = 90
@@ -309,7 +326,7 @@ Act a;
 <<"2 type %V $yst $yt $ygt\n"
 
 
-  CheckNum(yst,5)
+  checkNum(yst,5)
 
 
  for (i = 0; i < 4; i++) {
@@ -335,7 +352,7 @@ Act a;
 
 <<"3 type %V$yst $yt $ygt\n"
 
- CheckNum(yst,7)
+ checkNum(yst,7)
 
 
 <<"$yst $(typeof(yst)) \n"
@@ -350,7 +367,7 @@ Act a;
 
  <<"%V$yt  $X[0]->type \n"
 
-  CheckNum(yt,2)
+  checkNum(yt,2)
 
  X[2]->type = 28
 
@@ -358,7 +375,7 @@ Act a;
 
  <<"%V$yt2  $X[2]->type \n"
 
-  CheckNum(yt2,28)
+  checkNum(yt2,28)
 
     X[1]->type = 79
 
@@ -366,20 +383,20 @@ Act a;
 
  <<"%V$yt1  $X[1]->type \n"
 
-  CheckNum(yt1,79)
+  checkNum(yt1,79)
 
   yt = X[0]->type
  
   <<"%V$yt  $X[0]->type \n"
 
-   CheckNum(yt,2)
+   checkNum(yt,2)
 
    yt = X[1]->type
    <<"%V  $yt  $X[1]->type \n"
    yt = X[2]->type
    <<"%V  $yt  $X[2]->type \n"
 
-   CheckNum(yt,28)
+   checkNum(yt,28)
 
  for ( i = 0; i < 4; i++) { 
    yt = X[i]->type
@@ -433,7 +450,7 @@ Dil H[2];
 
 <<"FIRST H[2] $(xov--) \n"
 
-CheckNum(xov,19)
+checkNum(xov,19)
 
 
 <<"$(xov--) \n"
@@ -451,9 +468,9 @@ Dil E ;
 
 <<"FIRST E $(xov--) \n"
 
- CheckNum(xov,19)
+ checkNum(xov,19)
 
- CheckOut()
+ checkOut()
 
 
 <<"$(xov--) \n"
@@ -465,7 +482,7 @@ Dil E ;
 //  FIXME ---- not going to first following statement in E has nested class!!
 
 
-CheckOut();
+checkOut();
 
 
 
@@ -513,7 +530,7 @@ checkOut()
 <<" $gyt $(typeof(gyt)) \n"
 
 
-  CheckNum(gyt,80)
+  checkNum(gyt,80)
 
 <<"nested class getting direct reference %V $gyt \n"
 
@@ -528,7 +545,7 @@ syt = 60; //
 <<"nested class getting direct reference %V $gyt \n"
 
 k = 3;
-   CheckNum(gyt,60)
+   checkNum(gyt,60)
 
  E->A[0]->t = 28;
 
@@ -580,7 +597,7 @@ exit()
 <<"%V $yt0 \n"
 
 
- CheckNum(yt0,28);
+ checkNum(yt0,28);
 
 
 
@@ -588,7 +605,7 @@ exit()
 
 <<"%V $yt1 \n"
 
- CheckNum(yt1,29)
+ checkNum(yt1,29)
 
 
 
@@ -596,7 +613,7 @@ exit()
 
 <<"%V $yt2 \n"
 
- CheckNum(yt2,92)
+ checkNum(yt2,92)
 
 
 
@@ -607,7 +624,7 @@ exit()
 
 <<"%V $yt3 \n"
 
- CheckNum(yt3,75)
+ checkNum(yt3,75)
 
  //checkProgress()
 // exit()
@@ -621,7 +638,7 @@ exit()
 <<"\n"
 
 
- CheckNum(yt,92)
+ checkNum(yt,92)
 
 
 
@@ -699,7 +716,7 @@ Dil G[10]
 
 <<"FIRST $(xov--) \n"
 
- CheckNum(xov,19)
+ checkNum(xov,19)
 
 
  G[0]->A[0]->t = 60
@@ -710,19 +727,19 @@ Dil G[10]
 
 <<"%V $yt0 \n"
 
-  CheckNum(yt0,60)
+  checkNum(yt0,60)
 
    yt1 = G[1]->A[1]->t
 
 <<"%V$yt1 \n"
 
-   CheckNum(yt1,18)
+   checkNum(yt1,18)
 
    yt2 = G[2]->A[2]->t
 
 <<"%V$yt2 \n"
 
-   CheckNum(yt2,33)
+   checkNum(yt2,33)
 
 
  i = 0 ; j = 1;
@@ -734,7 +751,7 @@ Dil G[10]
 <<"%V$yt \n"
 
 
-  CheckNum(yt,53)
+  checkNum(yt,53)
 
   k = 7
 
@@ -763,7 +780,7 @@ Dil G[10]
 
       yt = G[i]->A[j]->t 
       <<" $i $j $yt \n"
-       CheckNum(yt,k)
+       checkNum(yt,k)
        k++
    }
 
@@ -817,7 +834,7 @@ Dil D[3]
 
 <<" done dec of D \n"
 
-CheckOut();
+checkOut();
 
 exit()
 

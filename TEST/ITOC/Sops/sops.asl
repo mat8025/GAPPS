@@ -11,12 +11,9 @@
 //* 
 //***********************************************%
 
-include "debug.asl"
-debugON()
 
 
-
-CheckIn()
+checkIn(_dblevel)
 
 
  S = "hey how are you?"
@@ -68,6 +65,13 @@ concatenates w2 to w1 (or more args) returns the result
 
 
 
+EC= vgen(CHAR_,10,60,1)
+
+<<"$EC\n"
+
+ac= EC[1]
+
+<<"$EC[0] $EC[1] $EC[2] $ac\n"
 
 
 
@@ -78,7 +82,12 @@ checkStr(ws,"Happy Hols")
 
 checkStage("single cat")
 
-char E[]
+char E[>3]
+
+E->info(1);
+
+//query()
+
 
 E = scat("Happy"," Hols")
 
@@ -86,7 +95,15 @@ E = scat("Happy"," Hols")
 <<"$(Caz(E)) \n"
 <<"%Vs$E\n"
 
-<<"%d$E[0] \n"
+<<"%d$E \n"
+
+E->info(1)
+
+ac= E[1]
+
+<<"$E[0] $E[1] $E[2] $ac\n"
+
+
 
 checkNum(E[0],72);
 checkNum(E[1],97);
@@ -187,26 +204,26 @@ if dir > 1 then that many substitutions are performed from the left if possible.
 
 S="The very next day - he started to improve"
 
-CheckStr(S,"The very next day - he started to improve")
+checkStr(S,"The very next day - he started to improve")
 
 <<"$S\n"
 
 T=ssub(S,"improve","improvise")
 
-CheckStr(T,"The very next day - he started to improvise")
+checkStr(T,"The very next day - he started to improvise")
 
 
 <<"$T\n"
 
 R= ssub(ssub(S,"improve","improvase"),"vase","vuse")
 
-CheckStr(R,"The very next day - he started to improvuse")
+checkStr(R,"The very next day - he started to improvuse")
 
 <<"$R\n"
 
 U= ssub(ssub(S,"improve","improvase"),"vase",ssub("vase","a","i"))
 
-CheckStr(U,"The very next day - he started to improvise")
+checkStr(U,"The very next day - he started to improvise")
 
 <<"$U\n"
 
@@ -389,7 +406,7 @@ ok = 0
 
 
 
-CheckNum(1,ok)
+checkNum(1,ok)
 // Scmp 
 
 // first the simple str version
@@ -478,4 +495,4 @@ riv=s2->scmp("all")
 checkStage("scmp @=")
 
 
-CheckOut()
+checkOut()

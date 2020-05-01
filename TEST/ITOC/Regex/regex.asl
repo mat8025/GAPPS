@@ -12,14 +12,8 @@
 //***********************************************%
 #
 
-#include "debug.asl"
 
-debugON();
-
-
-setdebug (1, @pline, @~step, @~trace, @soe) ;
-
-checkIn()
+checkIn(_dblevel)
 
 
 str C = "mat.vox"

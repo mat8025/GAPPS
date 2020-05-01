@@ -11,7 +11,8 @@
 //***********************************************%
 
 
-//<<"Including  debug \n"
+<<"Including  debug \n"
+
 int _DB = -1; // dbg FH set to nop --set to 2 for error output
 
 dbid = IDof("_DB");

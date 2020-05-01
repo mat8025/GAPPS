@@ -1,4 +1,18 @@
+//%*********************************************** 
+//*  @script README 
+//* 
+//*  @comment brief description of layout of gapps 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium                                                   
+//*  @date Fri Apr 17 23:19:01 2020 
+//*  @cdate Fri Apr 17 23:09:33 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+
 //
+//      ASL
 //
 //      some DEMOS and apps - written in asl
 //
@@ -8,4 +22,39 @@
 //      apps that use the xgs GUI
 //      are run  with asl -X xxx.asl
 //      but optionally the app itself can launch the xgs GUI
-//     
+//
+//      a manual  ASLMAN.txt is located in DOCS directory
+//      nroff ASLMAN.txt   will produce a formated document.
+//
+//      the sinfo command will give info on library functions
+//      e.g sinfo scut
+//      gives :-
+//
+//     scut()
+//     ws=scut(w1,nc)
+//     cuts n chars from head or tail ( if n is negative) of the string w1,
+//     and returns result to string ws.
+//
+//     a sorted list of known functions can be obtained via
+//
+//     asl -s 'S=functions(); S->sort(); <<" %(1,\t,,,\n)$S\n"'
+//
+//     each function  has  a brief one line description.
+//     extended information can be obtained via sinfo
+//     and via the manual.
+//
+//
+//     example scripts for many of the functions can be found
+//     in the TESTS/ITOCS/ directory usually in a directory of the
+//     the same name. (TEST/ITOC/Scut,  TEST/ITOC/Scat, ...).
+//     Usually the example script shows most options and tests of
+//     the function.
+//
+//     Examples of asl syntax are also in the TEST/ITOC directory
+//     (e.g. While, If). 
+//
+//      In the gapps directory - where this package was installed
+//      DEMOS has some examples of applications that can be
+//      built, and the  TEST/XASL/ShmIPC directory 
+//      has a number   of example scripts of using asl with the Xwindow app xgs.
+//

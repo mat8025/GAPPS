@@ -10,7 +10,7 @@ checkIn()
 filterFuncDebug(ALLOWALL_,"proc");
 filterFileDebug(ALLOWALL_,"ic_op");
 
-proc swap ( x, y)
+proc swap (ptr x, ptr y)
 {
 
   t = x;

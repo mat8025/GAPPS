@@ -11,25 +11,10 @@
 //* 
 //***********************************************%
   
-  include "debug.asl"; 
-  
-  debugON();
-
-//filterFileDebug(REJECT_,"ic_wic","scope_e","scopesindex","parset_e","ic_stack","ic_getsiv");
-
-//filterFileDebug(REJECT_,"ic_store","args_e","args_process_e"); // addto list?
-
-//filterFuncDebug(REJECT_,"SprocSM","checkProcName","getMemberSiv","checkLoop")
 
 
+checkIn(_dblevel); 
 
-
-CheckIn(); 
-  
-
-CheckIn(0)
-
-setDebug(1,@trace,@keep,@~soe)
 
 uint OC = 1;  // object counter
 
@@ -41,14 +26,14 @@ public:
  int IV[30];
  int id;
 
- CMF Print(wa) 
+ CMF Print(int wa) 
  {
    k = IV[wa]
    <<"$wa $k \n"
  }
 
 
- CMF Set( wi, val)
+ CMF Set(int wi, int val)
  {
  <<"%V $wi $val\n"
  <<"$IV[::] \n"

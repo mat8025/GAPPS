@@ -96,3 +96,13 @@ sops.asl                 1.3	Sun Apr 12 12:51:34 2020 incorporate most str funct
 vmf.asl                  1.2	Mon Apr 13 11:30:48 2020 added rand,substitute,prune,rotate,trim,bubblesort
 vmf.asl                  1.3	Mon Apr 13 11:35:45 2020 added caz
 ASL_TEST_VER.asl         1.58	Fri Apr 17 07:25:54 2020 use proc-mangle names
+scut.asl                 1.2	Fri Apr 17 22:20:06 2020 added slen example
+README                   1.2	Fri Apr 17 23:19:01 2020 usage
+if.asl                   1.2	Sat Apr 18 18:12:29 2020 consolidated all if scripts into one
+while.asl                1.2	Sat Apr 18 23:33:54 2020 consolidate tests here
+ptr-svarvec.asl          1.2	Sun Apr 19 11:54:16 2020 debug++
+func.asl                 1.38	Tue Apr 21 16:16:17 2020 arg check of CL args
+ASL_TEST_VER.asl         1.59	Tue Apr 21 16:28:52 2020 proc arg specification
+subrange.asl             1.2	Sun Apr 26 10:24:40 2020 added extra tests
+switch.asl               1.2	Sun Apr 26 21:22:22 2020 test promotion in proc selection
+subrange.asl             1.2	Sun Apr 26 22:12:02 2020 remove ASK check(_dblevel)

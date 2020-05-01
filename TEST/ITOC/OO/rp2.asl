@@ -11,12 +11,7 @@
 //* 
 //***********************************************%
   
-  include "debug.asl"; 
-  
-  debugON();
-  setdebug(1,@showresults);
-  
-  CheckIn(); 
+  checkIn(_dblevel); 
   
   Nhouses = 0;
   
@@ -27,14 +22,14 @@
     int area; 
     int number;
     
-    CMF setrooms(val); 
+    CMF setrooms(int val); 
     {
       rooms = val;
      // <<" $_proc  $_cobj set rooms  $rooms  for house $number  \n"; 
       return rooms; 
      }
     
-    CMF setfloors(val); 
+    CMF setfloors(int val); 
     {
       if (floors > 0) {
         floors = val; 
@@ -69,19 +64,13 @@
     }
   
   <<" after our class definition \n"; 
-  setdebug(1,@pline,@~step,@trace); 
   
   int IV[7]; 
   
   IV[3] = 3; 
   <<"$IV\n"; 
 
-
-
-
-
-  house C[6];
-
+    house C[6];
     house AS;
     house BS;
     house CS;
@@ -136,7 +125,7 @@
     
   y = C[a+1]->getrooms(); 
 
- CheckNum(y,19); 
+ checkNum(y,19); 
 
   <<"house ${a}+1 has $y rooms \n"; 
   
@@ -146,7 +135,7 @@
   
   <<"house $a has $y rooms \n"; 
 
-  CheckNum(y,15); 
+  checkNum(y,15); 
 
   y = C[a-1]->getrooms(); 
   
@@ -157,7 +146,7 @@
   
   <<"house ${a}+1 has $x rooms \n"; 
 
- CheckNum(x,15); 
+ checkNum(x,15); 
 
   x=C[a+1]->setrooms(C[a-1]->getrooms()); 
   
@@ -171,7 +160,7 @@
 
   y=C[a]->setrooms(C[a-2]->getrooms()) ;
 
-  CheckNum(y,22); 
+  checkNum(y,22); 
 
   am1r =C[a-1]->getrooms();
   ar =C[a]->getrooms();
@@ -179,12 +168,12 @@
   
   y=C[a+1]->setrooms(C[a-1]->getrooms() + C[a]->getrooms()) ;
 
- CheckNum(y,(am1r+ar));
+ checkNum(y,(am1r+ar));
  
   y=C[a]->setrooms(C[a-2]->getrooms())
 
 <<"house  $a has $y rooms \n"; 
- CheckNum(y,22);
+ checkNum(y,22);
 
   a1r= C[1]->getrooms())) ;
   <<"%V $a1r \n"
@@ -202,17 +191,17 @@
   a4r=C[4]->getrooms() ;
 
 <<"%V $a4r\n"
- CheckNum(a4r,a2r); 
+ checkNum(a4r,a2r); 
 
   res=C[4]->setrooms( C[2]->getrooms() + C[1]->getrooms() ) ;
 
 <<"%V $a4r\n"
- CheckNum(res,33); 
+ checkNum(res,33); 
 
   a4r=C[4]->getrooms() ;
 
 <<"%V $a4r\n"
- CheckNum(a4r,res) ; 
+ checkNum(a4r,res) ; 
  checkOut()
  exit()
 
@@ -224,11 +213,11 @@
   a2r= C[2]->getrooms())) ;
   <<"%V $a2r \n"
 
-  CheckNum(x,26); 
+  checkNum(x,26); 
 
   x=C[4]->setrooms(C[2]->getrooms() + C[3]->setrooms(C[1]->getrooms())) ;
 
-  CheckNum(x,26); 
+  checkNum(x,26); 
 
    Ar= AS->setrooms(a1r))) ;
   <<"%V $Ar \n"
@@ -238,7 +227,7 @@
 
     x=DS->setrooms(BS->getrooms() + CS->setrooms(AS->getrooms())) ;
 
-  CheckNum(x,26); 
+  checkNum(x,26); 
 
   
 
@@ -256,12 +245,12 @@
   x= C[a]->setrooms(C[a-2]->getrooms()) ;
 
   x=C[a+1]->setrooms(C[a-1]->getrooms() + C[a]->setrooms(C[a-2]->getrooms())) ;
- CheckNum(x,26);
+ checkNum(x,26);
  
 
   x=C[a1]->setrooms(C[am1]->getrooms() + C[a]->setrooms(C[am2]->getrooms())) ;
   <<"%V $x\n"
-  CheckNum(x,26); 
+  checkNum(x,26); 
 
 <<"%V $a $a1 $am1 $am2 \n"
 
@@ -277,7 +266,7 @@
     
     }
   
-  CheckOut(); 
+  checkOut(); 
   exit(); 
   
   

@@ -16,7 +16,12 @@ include "debug.asl"
 
 debugON();
 
-setdebug (1, @pline, @~step, @trace) ;
+filterfuncdebug(ALLOWALL_,"xxx");
+
+filterfiledebug(ALLOWALL_,"proc_");
+
+
+sdb (1, @pline, @~step, @trace) ;
 
 
 civ = 0;
@@ -40,7 +45,7 @@ proc doo(a,b)
 <<"%V$c\n"
   return c
 }
-
+//======================//
 
   t=doo(3,4)
 <<"$t\n"
@@ -57,13 +62,11 @@ checkNum(t,62);
 
 
 
-
-proc foo(int vec[],k)
-//proc foo(vec,k)
+proc voo(int vec[])
 {
 <<"$_proc IN $vec \n"
 
-<<"pa_arg2 %V$k\n"
+//<<"pa_arg2 %V$k\n"
 
   vecp = vec;
 
@@ -84,6 +87,36 @@ proc foo(int vec[],k)
 }
 //============================
 
+
+proc zoo(ptr vec)
+{
+<<"$_proc IN $vec \n"
+
+//<<"pa_arg2 %V$k\n"
+
+  vecp = vec;
+
+  vecp[1] = 47;
+<<"add 47 $vec \n"  
+  vecp[2] = 79;
+<<"add 79 $vec \n"
+
+  vecp[3] = 80
+  vecp[4] = 78
+  vecp[5] = 50
+
+<<"OUT $vecp \n"
+
+<<"OUT orig entry $vec \n"
+
+  return vecp
+}
+//============================
+
+
+
+
+
 Z = Vgen(INT_,10,0,1)
 
 wt= Z->typeof();
@@ -98,64 +131,71 @@ Z[6] = 28
 <<"before calling proc\n"
 
 <<"$Z\n"
- W = Z
+
 
 //Z[0] = 37
 
 //Y = foo(&Z,3)  // FIXED -------- Y is now created correctly with the return vector 
-setdebug (1, @pline, @~step, @trace) ;
-Y = foo(Z,3)  // FIXED -------- Y is now created correctly with the return vector 
+
+Y = voo(Z)  // FIXED -------- Y is now created correctly with the return vector 
+
+
 <<"Y:: $Y\n"
-//Y=foo(Z,3)  // TBD FIX -- default array name is ref call
-
-//Y= foo(&Z[2],4)  // TBD FIX it does not compute the offset - so proc operates on the third element in
-
-<<"after proc $Z\n"
 
 checkNum(Z[0],36);
 
 checkNum(Z[6],28);
 
 
-if ((Y[1] == 47) ) {
- <<"Z correct \n"
-}
-else {
- <<"Y wrong \n"
-}
+//Y= foo(&Z[2],4)  // TBD FIX it does not compute the offset - so proc operates on the third element in
 
-<<"return vec $Y\n"
+<<"after proc $Z\n"
+
 
 
 checkNum(Y[1],47)
 checkNum(Y[6],28)
 
-if ((Y[1] == 47)  && (Y[6] == 28)) {
 
-<<"return of Y[1] and Y[6] is correct \n"
+W = vgen(INT_,10,0,-1)
 
-}
-else {
-
-<<" return vector incorrect !\n"
-
-}
+<<"W $W\n"
 
 
+U= voo(W)
 
-
-
-
-U= foo(&W[2],4)  // TBD FIX it does not compute the offset
-                 // - so proc operates on the third element in
-
-<<"U:: $U\n"
 <<"%V$U\n"
+
+//ptr pv = &W
+ptr pv ;
+
+pv->info(1)
+
+pv = &W[2];
+
+pv->info(1)
+
+<<"pv $pv\n"
+
+//U= voo(&W[2],4)
+
+T= zoo(pv)
+
+
+// TBD FIX it does not compute the offset
+// - so proc operates on the third element in
+
+
+<<"%V$T\n"
+
+
+
+
 checkOut()
 
 
 
-stop!
+
 
 
 if (Y[1] == 47) {
@@ -166,4 +206,4 @@ else {
 
 }
 
-stop!
+

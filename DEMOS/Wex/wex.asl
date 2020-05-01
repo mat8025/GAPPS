@@ -23,7 +23,7 @@
 
 include "debug.asl"
 
-setDebug(1,@keep,@pline);
+setDebug(1,@keep,@~pline);
 
 //scriptDBON();
 

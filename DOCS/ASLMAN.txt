@@ -1,3 +1,10 @@
+\"/////////////////////////////////<**|**>/////////////////////////////////////
+\" @doc   ASLMAN
+\" @cdate  1/1/90
+\" @version 2.1
+\" @Copyright  RootMeanSquare  1990,2020 --> 
+\"///////////////////////////////////<v_&_v>/////////////////////////////////
+
 .de NP
 .ft R
 .sp 1
@@ -106,8 +113,10 @@ and calling parameters in Appendix 1.
 
 
 .HE 
-Syntax
- The syntax is similar to the 'C' language. The priority of the operators is described
+SYNTAX
+
+ The syntax is similar to the 'C' language.
+ The priority of the operators is described
 below. Use of parentheses can be used to force a particular parsing.
 You may have multistatements on a line if they are separated by ';', otherwise a newline terminates
 the statement (i.e. the ';' is not necessary for one statement per line).
@@ -229,10 +238,10 @@ An expression is made up of
 	      ()
 
 e.g
-	A= 5 * 3 
-	B = sin(sin(a+b) + cos(a-b))
+	A= 5 * 3 ;
+	B = sin(sin(a+b) + cos(a-b));
 	( A == 3)
-	C = 3.0 * 2.5	
+	C = 3.0 * 2.5	;
 are legal expressions. 
 ( sin and cos are the sine and cosine functions)
 .b
@@ -259,6 +268,7 @@ interpreter
    return
    proc
    enum
+   real
    float
    int
    short
@@ -302,7 +312,8 @@ FUNCTIONS
 .fi
  Typically most of the math functions default to double precision. 
 The names are case insensitive, so
- sin and Sin refer to the same function. Also underlines are filtered out so a function like cyclerow
+ sin and Sin refer to the same function.
+ Also underlines are filtered out so a function like cyclerow
 can be referred to as cycleRow CycleRow or cycle_row. 
 (note internal vars such as _clarg need the preceeding underline and 
 internal defines need the following underline e.g. BLACK_, RED_ , ALWAYS_, GTE_ , ...)
@@ -949,7 +960,58 @@ options:
                 would print today's date 
                 asl -s 'a= 2 + 2; <<"$a\n";'
                 would compute and print 2+2
-.EF 
+.EF
+///////////////////////////////////////////
+.BF
+syntax()
+.(x
+syntax
+.)x 
+.FD
+The syntax is very similar to C.
+
+	operators 
+
+	      *  multiplication
+	      /  division
+	      +  addition
+	      -  subtraction
+	      %  modulus operator gives the remainder of integer division
+	      ^  exponentiation  e.g. 2^3 is 8
+              =  equality
+              += ( a += b equivalent to a = a + b)
+              -=
+              *=
+              /=
+              @+  string cat, or vector concatenation
+              @/  string 'divide' (removes second argument string from first)
+              ++ increment
+              -- decrement
+
+	relational operators
+	      ==  equivalent to
+	      <=  less than or equal to
+	      >=  greater than or equal to
+	      &&  and
+	      ||  or
+	      @=  string compare
+              !=  not equal
+
+	unary operators
+		-  unary minus
+	        !  negation
+
+        bit operators
+                &  bit and
+                |  bit or
+                >> bit shift right
+                << bit shift left
+                 ~ one's complement
+                '  bit xor
+	parentheses
+	      ()
+
+.EF
 /////////////////////////////// MEMORY ////////////////////////////////////////
 =============================================================
 .BF
@@ -6053,8 +6115,8 @@ scut
 .)x 
 .FD
 ws=scut(w1,nc)
-cuts n chars from head or tail if n is negative.
-
+cuts n chars from head or tail ( if n is negative) of the string w1,
+and returns result to string ws.
 
 
 .EF

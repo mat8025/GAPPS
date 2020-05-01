@@ -1,15 +1,23 @@
+//%*********************************************** 
+//*  @script subrange.asl 
+//* 
+//*  @comment test lhs vector range assignment 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium                                                   
+//*  @date Sun Apr 26 22:12:02 2020 
+ 
+//*  @cdate Sun Apr 26 10:20:19 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 ///
 ///  subrange vector assign
 ///
 
-filterFuncDebug(ALLOWALL_,"varArraySpec","varArrayIndex");
-filterFileDebug(ALLOW_,"array_parse","array_range","ds_storevar","~ds_storesvar","~ic_wic");
-
-setdebug(1,@keep,@trace);
 
 
-
-checkIn()
+checkIn(_dblevel)
 
  I = Vgen(INT_,40,0)
 
@@ -24,7 +32,7 @@ checkFnum(I[0],0)
 checkFnum(I[5],10)
 checkFnum(I[8],10)
 
-checkOut()
+
 
  I[20:28:2] = 79;
 
@@ -79,6 +87,82 @@ checknum(I[0],47)
 checknum(I[30],30)
 checknum(I[31],80)
 <<"$I\n"
+
+checkStage("subrange")
+
+
+
+
+
+int L[24];
+
+checkNum(L[0],0)
+checkNum(L[23],0)
+<<"$L\n"
+
+L = 79;
+checkNum(L[0],79)
+checkNum(L[23],79)
+
+<<"$L\n"
+
+
+L = 0;
+
+checkNum(L[0],0)
+checkNum(L[23],0)
+
+<<"$L\n"
+
+L[5:8] = 1;
+
+checkNum(L[0],0)
+checkNum(L[23],0)
+checkNum(L[5],1)
+checkNum(L[8],1)
+
+proc Hey(int V[])
+//proc Hey(V)
+{
+<<"\nIN V: $V\n"
+
+ L= 17;
+
+<<"L: $L\n"
+
+ V = 18;
+
+<<"V: $V\n"
+
+}
+//==========================
+
+Hey(L);
+
+<<"$L\n"
+
+checkNum(L[0],18)
+checkNum(L[23],18)
+
+
+L= 80;
+
+Hey(L);
+
+<<"$L\n"
+
+checkNum(L[0],18)
+checkNum(L[23],18)
+//checkNum(L[5],18)
+
+L[5:8] = 74;
+<<"$L\n"
+
+
+checkNum(L[5],74)
+
+checkStage("subrange2")
+
 
 
 checkOut();

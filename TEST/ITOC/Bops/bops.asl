@@ -12,17 +12,9 @@
 //***********************************************%
 
 
-#include "debug.asl"
 
 
-//debugON()
-setdebug(1,@pline,@trace,@keep)
-
-filterFuncDebug(ALLOWALL_,"xxx");
-filterFileDebug(ALLOWALL_,"yyy");
-
-
-checkIn()
+checkIn(_dblevel)
 
 //prog= GetScript()
 
@@ -293,12 +285,19 @@ checkFNum(q,-7);
 
 <<"%V $sum  $k  $(k*N/2) $mi\n"
 
-<<"B4 CheckOut()\n"
-checkOut()
+fv = vgen(FLOAT_,10,0,1)
+fv->info()
 
-ans = iread(">>>:")
-<<"after CheckOut()\n"
-//float ok = 47.2
-//<<"$ok \n"
+<<"$fv \n"
+
+ fv[0] = -32;
+ fv[2] = 77;
+ fv[3] = 80;
+
+<<"$fv \n"
+
+checkNum(fv[3],80)
+
+checkOut()
 
 

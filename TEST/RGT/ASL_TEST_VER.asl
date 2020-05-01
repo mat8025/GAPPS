@@ -3,8 +3,8 @@
 //* 
 //*  @comment asl test modules 
 //*  @release CARBON 
-//*  @vers 1.58 Ce Cerium                                                  
-//*  @date Fri Apr 17 07:25:54 2020 
+//*  @vers 1.59 Pr Praseodymium                                            
+//*  @date Tue Apr 21 16:28:52 2020 
 //*  @cdate 1/1/2005 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -17,7 +17,7 @@
 include "debug.asl"
 include "hv.asl"
 
-debugON()
+
 
 #define PGREEN '\033[1;32m'
 #define PRED '\033[1;31m'
@@ -43,7 +43,7 @@ wasl = "asl"
 
 
 
-setdebug(1,@keep,@~pline,@~step,@~trace)
+
 filterFuncDebug(ALLOWALL_,"proc");
 filterFileDebug(ALLOWALL_,"ic_op");
 
@@ -178,10 +178,9 @@ proc changeDir(str td)
 proc Run2Test(str td)
 {
 
-  <<" $_proc $td\n"
+//  <<" $_proc $td\n"
   changeDir(Testdir)
 
-//!!"pwd"
 
   hdg(td)
 
@@ -191,7 +190,7 @@ proc Run2Test(str td)
   
   Curr_dir = getDir();
   
-  <<"changing to $td dir from $Prev_dir in $Curr_dir\n"
+//  <<"changing to $td dir from $Prev_dir in $Curr_dir\n"
 }
 //===============================
 
@@ -206,13 +205,18 @@ proc RunDirTests(str Td, str Tl )
       <<[Dbf]"$Td $Tl $np\n"
       for (i=0 ; i <np; i++) {
          if (!(Tp[i] @= "")) {
-           cart(Tp[i]);
+           if (do_query) {
+              query(Tp[i])
+           }
+            cart(Tp[i]);
 	   }
+	   
+
       }
 }
 //====================//
 
-proc RunSFtests(Td)
+proc RunSFtests(str Td)
 {
 // list of dirs  Fabs,Cut,Cmp ...
 // goto dir then run cart(fabs) or cart(cmp)
@@ -222,6 +226,9 @@ proc RunSFtests(Td)
       np = Caz(Tp);
       for (i=0 ; i < np; i++) {
          wsf = Tp[i];
+
+        if (do_query)  query(Tp[i]);    
+
          Run2Test(wsf);
 	 wsf = slower(wsf);
          cart(wsf);
@@ -342,7 +349,7 @@ proc doxictest(str prog)
 
 //     !!"nohup $prog  | tee --append $ictout "
 
-       !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx $prog   > foo-$prg"
+       !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx $prog   > /dev/null "
 
 // what happens if prog crashes !!
 
@@ -357,7 +364,7 @@ proc doxictest(str prog)
 //===============================
 
 
-proc doxictest(str prog, str a1)
+proc doxictest(str prog, gen a1)
 {
 //<<"IN $prog  $_proc  $prog $a1 \n"
 
@@ -373,7 +380,7 @@ proc doxictest(str prog, str a1)
 
        // !!"nohup $prog  $a1 >> $ictout "
 
-       !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx $prog $a1  > foox-$prg"
+       !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx $prog $a1  > /dev/null"
 
 // what happens if prog crashes !!
 
@@ -392,7 +399,7 @@ proc doxictest(str prog, str a1)
 // variable length args ??
 
 
-proc cart_xic(str aprg)
+proc cart1_xic(str aprg)
 {
 
 //<<"%V $_proc  $aprg  \n"
@@ -428,7 +435,7 @@ proc cart_xic(str aprg)
 } 
 //================================//
 
-proc cart_xic(str aprg, str a1)
+proc cart_xic(str aprg, gen a1)
 {
 
 //<<"%V $_proc  $aprg $a1 \n"
@@ -441,11 +448,8 @@ proc cart_xic(str aprg, str a1)
    // wt_prog = "$tim "
 
      xwt_prog = "$tim ./${aprg}:$a1"
-
-
-       a1="xx"
-
-      doxictest("./$aprg", a1)
+str aa = a1
+      doxictest("./$aprg", aa)
 
       if (f_exist("${aprg}.xtst") > 0) {
          wlen = slen(xwt_prog)
@@ -479,14 +483,14 @@ proc cart (str aprg)
 
    tim = time();
 
-<<"%V $_proc $aprg   $tim \n"
+//<<"%V $_proc $aprg   $tim \n"
  
   !!"rm -f $aprg  ${aprg}.tst  last_test*"
 
    jpid  =0
    
 
-      !!"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl > foo   2>&1"
+      !!"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl > /dev/null   2>&1"
 
       if (f_exist("${aprg}.tst") > 0) {
 
@@ -517,7 +521,7 @@ proc cart (str aprg)
 
 
   if (do_xic >0 ) {
-    cart_xic(aprg)
+    cart1_xic(aprg)
   }
 
 //<<"DONE $_proc cart\n"
@@ -528,6 +532,7 @@ proc cart (str aprg)
 //===============================
 
 
+//proc cart (str aprg,  gen a1)
 proc cart (str aprg,  gen a1)
 {
   int wlen;
@@ -550,7 +555,7 @@ proc cart (str aprg,  gen a1)
 //  jpid = !!&"asl -o ${aprg}arg.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1"
 
 
-!!"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1  > foopar"
+!!"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1  > /dev/null"
 
      wt_prog = "$(time()) ${aprg}:$a1 "
      wlen = slen(wt_prog)
@@ -580,9 +585,9 @@ proc cart (str aprg,  gen a1)
 
     
   ntest++
-
+gen aa = a1
     if (do_xic >0 ) {
-      cart_xic(aprg,a1)
+      cart_xic(aprg,aa)
     }
 
 //<<"DONE $_proc cart 2 args\n"
@@ -610,6 +615,7 @@ ntest = 0
 
 
 int do_all = 1;
+int do_query = 0;
 int do_tests = 0;
 int do_array = 0;
 int do_matrix = 0;
@@ -750,23 +756,17 @@ if (do_include || do_all ) {
 
   if (do_bops || do_all) {
 
-
+    RunDirTests("Bops","bops,fvmeq,fsc1,mainvar");
+    
     Run2Test("Bops")
 
 
 // !!!! if basics fail warn/ask before going on to rest of testsuite
 
   cart("bops",7)
-  
-  cart("bops")
-
-  cart("fvmeq")
 
   cart("fvmeq",3)
 
-  cart("fsc1")
-
-  cart("mainvar")
 
   updir()
 
@@ -786,14 +786,15 @@ if (do_include || do_all ) {
 
    }
 
+//======================================//
+    if (do_switch || do_all) {
 
- if (do_switch || do_all) {
+      <<"switch $do_all $do_switch \n"
 
-   <<"switch $do_all $do_switch \n"
+       RunDirTests("Switch","switch")
+   }
 
-    RunDirTests("Switch","switch,switch2")
- }
-
+//======================================//
 
     if ( do_types || do_all) {
   
@@ -805,8 +806,9 @@ if (do_include || do_all ) {
 
       RunDirTests("Swab","swab")
 
+      //rdb()
   }
-
+//======================================//
 
   if (do_vops || do_all) {
 
@@ -849,24 +851,21 @@ if (do_include || do_all ) {
 
 
   }
-
+//======================================//
 
 if (do_all ==1 || do_declare == 1 ) {
 
 
-   RunDirTests("Declare","declare,promote,declare_eq,chardeclare,scalar_dec,floatdeclare,arraydeclare,proc_arg_func");
+   RunDirTests("Declare","declare");
 
  //  Run2Test("Consts")
 
  //  cart ("consts_test")
 
 
-
-
    Run2Test("Resize")
 
    cart ("resize")
-   cart ("resize_vec")
 
    Run2Test("Redimn")
 
@@ -902,15 +901,13 @@ changeDir(Testdir)
 
     }
 
+//rdb()
 ////////////// IF ///////////////////////
 
 if (do_if || do_all) {
 
-  Run2Test("If")
-
-  cart("if0",10)
-
-  RunDirTests("If","if,if4,md_assign,if5,if6,ifnest,if_fold")
+  
+  RunDirTests("If","if")
 
 
 
@@ -931,7 +928,7 @@ if (do_if || do_all) {
 
 
 
-
+//rdb()
 
   if (do_logic || do_all) {
 
@@ -950,11 +947,7 @@ if (do_if || do_all) {
 
   if ((do_all || do_while )) {
 
-  Run2Test("While")
-  cart("while")
-  cart("while0", 10)
-  cart("while1")
-
+    RunDirTests("While","while")
 
     }
 ////////////////////////////////////////////////////////////////////////
@@ -966,17 +959,10 @@ if (do_if || do_all) {
 
 if ((do_all || do_do )) {
 
-   Run2Test("Do")
+      RunDirTests("Do","do")
 
-   cart("do0", 5)
-
-   cart("do1", 6)
-
-
-
-////////////////////////////////////////////////////////////////////////
     }
-
+////////////////////////////////////////////////////////////////////////
 
  if ((do_all || do_paraex )) {
 
@@ -999,7 +985,7 @@ if ((do_all || do_array )) {
 
   RunDirTests("Scalarvec","scalarvec")
 
-  RunDirTests("Subrange","subrange,subrange2");
+  RunDirTests("Subrange","subrange");
   
   Run2Test("PrePostOp")
 
@@ -1076,9 +1062,9 @@ if ((do_all || do_lhsubsc )) {
 if ((do_all || do_func )) {
 
   Run2Test("Func")
-  cart("func", 3,4)
+  cart("func", 3)
 
-  RunDirTests("Func","func0,func1,funcargs")
+  RunDirTests("Func","func")
 
 
   Run2Test("Ifunc")
@@ -1100,7 +1086,7 @@ if ((do_all || do_unary )) {
 }
 
 /////////////////////////////////////////
-
+//rdb()
    if ((do_all || do_command )) {
 
      RunDirTests("Command","command,command_parse")
@@ -1125,7 +1111,7 @@ if ((do_all || do_proc )) {
   cart("arrayarg2")
 
 
-  RunDirTests("Swap","swap1","swap")
+  RunDirTests("Swap","swap1,swap")
 
   Run2Test("Static")
   
@@ -1136,7 +1122,7 @@ if ((do_all || do_proc )) {
   
   }
 
-
+//rdb()
   if ((do_all || do_scope )) {
 
    Run2Test("Scope") ; 
@@ -1245,17 +1231,18 @@ if ((do_all || do_mops )) {
 
    if ((do_all || do_ptrs )) {
 
-     RunDirTests("Ptrs","ptrvec,ptr-numvec,ptr-svarvec,ptr_varvec,indirect");
+     RunDirTests("Ptrs","ptrvec,ptr-numvec,ptr-svarvec,ptr-varvec,indirect");
+     
 
    }
-
+//rdb()
    if ((do_all || do_class )) {
 
        RunDirTests("Class","class_mfcall,classbops,class2,classvar");
 
     }
 
-
+//rdb()
 
    if ((do_all || do_oo )) {
 

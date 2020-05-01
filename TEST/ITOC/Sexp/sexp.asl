@@ -1,5 +1,5 @@
 
-CheckIn()
+checkIn(_dblevel)
 
 // this has to done - don't use automatic linking
 // since does not have IC equivalent - yet
@@ -13,7 +13,6 @@ zz = 75 * 40 * 4
  }
  else {
 <<" a simple SUCCESS!\n"
-
  }
 
    CheckNum(zz,12000)
@@ -44,7 +43,7 @@ prog = GetScript()
  if (N == 0.0) {
 
 <<" enter parameter value != 0.0  on command line -> e.g. \n ./sexp 10 \n"
- STOP()
+    exit()
   }
 
 
@@ -131,7 +130,7 @@ x = 3.0
 
 
 
-<<"%V $ry $y $N $ok \n"
+<<"%V $ry $y $N  \n"
 
    y = 3.0
 
@@ -176,7 +175,7 @@ x = 3.0
 
    CheckOut()
 
-STOP("DONE!")
+
 
 
 ///////////////////////////////

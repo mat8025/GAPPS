@@ -7,7 +7,7 @@
 //*  @date Tue Jan  1 09:16:41 2019 
 //*  @cdate Sun Dec 23 09:23:42 2018 
 //*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2014,2018 --> 
+//*  @Copyright  RootMeanSquare  2014,2020 --> 
 //* 
 //***********************************************%
 
@@ -138,7 +138,7 @@
 
    fseek(A,0,0);
 
-found_vers =0;
+   found_vers =0;
 
    for (i = 0; i < 5;i++) {
    R = readline(A);
@@ -171,8 +171,8 @@ if (found_vers) {
  
  !!"cp $srcfile old-$srcfile"  
    
-   ns = spat(srcfile,".asl",-1)
-   newsrc=scat(ns,"-new.asl")
+   //ns = spat(srcfile,".asl",-1)
+   newsrc=scat(srcfile,"-new")
 
    A=ofw(newsrc);
    vers="@vers ${pmaj}.$pmin $min_ele $min_name "

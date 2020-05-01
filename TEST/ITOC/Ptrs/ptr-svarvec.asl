@@ -3,8 +3,8 @@
 //* 
 //*  @comment test ptr access to vec 
 //*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                  
-//*  @date Wed Jun 26 08:46:49 2019 
+//*  @vers 1.2 He Helium                                                   
+//*  @date Sun Apr 19 11:54:16 2020 
 //*  @cdate Wed Jun 26 08:46:49 2019 
 //*  @author Mark Terry 
 //*  @Copyright © RootMeanSquare  2010,2019 → 
@@ -12,10 +12,18 @@
 //***********************************************%
    
    
-   include "debug"; 
-   debugON(); 
-   
-   sdb(1,@~trace,@pline); 
+include "debug"; 
+debugON(); 
+
+
+
+filterfuncdebug(ALLOWALL_,"xxx");
+
+filterfiledebug(ALLOWALL_,"proc_","args_");
+
+
+
+   sdb(1,@trace,@pline); 
    
    checkIn();
    
@@ -125,6 +133,6 @@ S->info(1)
 
    checkOut(); 
    
-   exit(); 
+  
    
    

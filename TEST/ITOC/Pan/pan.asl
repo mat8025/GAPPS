@@ -120,7 +120,7 @@ checkFNum(r,M,2);
 
  checkFNum(M,9.9,pan_prec);
 
-Pan P = 2.1
+pan P = 2.1
 
   M = M + P
 

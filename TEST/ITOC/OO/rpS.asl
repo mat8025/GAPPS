@@ -11,20 +11,16 @@
 //* 
 //***********************************************%
   
-  include "debug.asl"; 
-  
-  debugON();
-  setdebug(1,@pline,@~trace,@~showresults,1);
-
-filterFileDebug(REJECT_,"ic_wic","scope_e","scopesindex","parset_e","ic_stack","ic_getsiv");
-
-filterFileDebug(REJECT_,"ic_store","args_e","args_process_e"); // addto list?
-
-
-filterFuncDebug(REJECT_,"SprocSM","checkProcName","getMemberSiv","checkLoop")
-  CheckIn(); 
+  checkIn(_dblevel); 
   
   Nhouses = 0;
+
+
+<<"init %V $Nhouses\n"
+
+
+
+
 class house {
     
     int rooms; 
@@ -32,15 +28,15 @@ class house {
     int area; 
     int number;
     
-    CMF setrooms(val) {
-
+    CMF setrooms(int val) {
+      <<" $_proc  $_cobj $val \n"; 
       rooms = val;
     
       <<" $_proc  $_cobj set rooms  $rooms  for house $number  \n"; 
       return rooms; 
      }
     
-    CMF setfloors(val){
+    CMF setfloors(int val){
       if (floors > 0) {
         floors = val; 
         area = floors * 200; 
@@ -52,6 +48,17 @@ class house {
          <<"getrooms $_cobj $rooms for house  $number \n"
          return rooms;
     }
+
+    CMF getarea() {
+         area = floors * 200;
+         <<"getarea $_cobj $area for house  $number \n"
+         return area;
+    }
+
+    CMF getfloors() {
+         <<"getfloors $_cobj $floors for house  $number \n"
+         return floors;
+    }
     
     CMF print() {
       <<" $_cobj has %V $floors and  $rooms $area\n"; 
@@ -61,7 +68,7 @@ class house {
     CMF house()  {
       floors = 2; 
       rooms = 4; 
-      area = floors * 200;
+      area = -1;
       number= Nhouses;
       Nhouses++;
 
@@ -70,74 +77,91 @@ class house {
     
     }
   //===============================//
-  proc  checkRooms( rmchk)
-  {
 
+// crash unless type of rmchk specified -- want to work anyway -- default gen type
+Proc  checkRooms( int rmchk)
+  {
      crooms = rmchk +1;
-     
 
      return crooms;
  }
 
  //===============================//
 
-    house AA;
+   house AA;
 
- AAr= AA->getrooms() ;
+   AAr= AA->getrooms() ;
   <<"%V $AAr \n"
- CheckNum(AAr,4);
+   checkNum(AAr,4);
 
 
+   AAr=AA->setrooms(7) ;
+ <<"%V $AAr \n"
+   checkNum(AAr,7);
 
+   AAr= AA->getrooms() ;
+  <<"%V $AAr \n"
+   checkNum(AAr,7);
 
     house AS;
+
+
+   ASr= AS->getrooms() ;
+
+  <<"%V $ASr \n"
+
+  ASf= AS->getfloors() ;
+
+  <<"%V $ASf \n"
+
+  checkNum(ASf,2);
+
     house BS;
+
+   BSr= BS->getrooms() ;
+  <<"%V $BSr \n"
+
+checkNum(BSr,4);
+
+
     house CS;
     house DS;    
 
-  ASr= AS->getrooms() ;
-  <<"%V $ASr \n"
-
-   ASr= AS->setrooms(7) ;
-  <<"%V $ASr \n"
-
-  ASr= AS->getrooms() ;
-  <<"%V $ASr \n"
-
- CheckNum(ASr,7);
-
-
   DSr= DS->getrooms() ;
   <<"%V $DSr \n"
- CheckNum(DSr,4); 
+ checkNum(DSr,4); 
 
+  ASr= AS->getrooms() ;
+  <<"%V $ASr \n"
+
+ checkNum(ASr,4);
 
 
    BSr= BS->setrooms(8) ;
   <<"%V $BSr \n"
 
- CheckNum(BSr,8); 
+ checkNum(BSr,8); 
 
    CSr= CS->setrooms(9) ;
   <<"%V $CSr \n"
 
- CheckNum(CSr,9); 
+ checkNum(CSr,9); 
 
 CSr= CS->getrooms() ;
   
 <<"%V $CSr \n"
 
- CheckNum(CSr,9); 
+ checkNum(CSr,9); 
 
    DSr= DS->setrooms(10) ;
   <<"%V $DSr \n"
 
- CheckNum(DSr,10); 
+ checkNum(DSr,10); 
 
   DSr= DS->getrooms() ;
   <<"%V $DSr \n"
 
- CheckNum(DSr,10); 
+ checkNum(DSr,10); 
   
 
 //////////////////////////////////////////////////////////////
@@ -155,19 +179,19 @@ CSr= CS->getrooms() ;
 <<"%V $x  should be $res ?\n"
 
 
-  CheckNum(x,res); 
+  checkNum(x,res); 
 
 
    DSr= DS->getrooms() ;
   <<"%V $DSr \n"
 
-   CheckNum(DSr,res); 
+   checkNum(DSr,res); 
 
 
    y=DS->setrooms(BS->getrooms() + CS->setrooms(checkRooms(AS->getrooms()))) ;
 
 <<"%V $y  should be $res +1 ?\n"
-   CheckNum(y,res+1); 
+   checkNum(y,res+1); 
 
 
    ASr= AS->getrooms() ;
@@ -176,14 +200,14 @@ CSr= CS->getrooms() ;
    res2= BS->getrooms() ;
   <<"%V $BSr $res2 \n"
 
-   CheckNum(BSr,res2); 
+   checkNum(BSr,res2); 
 
    CSr= CS->getrooms() ;
   <<"%V $CSr \n"
-  CheckNum(CSr,ASr+1);
+  checkNum(CSr,ASr+1);
 
 
 
 
-  CheckOut(); 
-  exit(); 
+  checkOut(); 
+

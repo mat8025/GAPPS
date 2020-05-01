@@ -3,34 +3,30 @@
 //* 
 //*  @comment test switch 
 //*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                  
-//*  @date Mon Apr  8 09:07:32 2019 
+//*  @vers 1.2 He Helium                                                   
+//*  @date Sun Apr 26 21:22:22 2020 
 //*  @cdate Mon Apr  8 09:07:32 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
   
+CheckIn(_dblevel)
 
-#include "debug.asl"
-
-debugON();
-
-CheckIn()
 
 
 #define C3 3
 
 
 Foo = 1
-proc foo()
+proc goo()
 {
-<<" in $_proc foo \n"
+<<" in $_proc goo \n"
     Foo++
 }
 
 
-proc testSW( wc )
+proc testSW(int wc )
 {
 ret = 0
 
@@ -42,7 +38,7 @@ ret = 0
     case -1:  // -1
 
 <<"in  case -1 \n"
-     foo()
+     goo()
      ret = -1;
 
      break;
@@ -51,7 +47,7 @@ ret = 0
 //    case 0 34 // bad
      case 0:
 <<"in  case 0 \n"
-     foo()
+     goo()
      ret = 0;
 
      break;
@@ -60,7 +56,7 @@ ret = 0
 //BUG does not alert fo following code    case 1:  x+5
      case 1: // 1
 <<"in  case 1 \n"
-     foo()
+     goo()
      ret = 1;
 
      break;
@@ -219,7 +215,6 @@ D = 0
     rc =testSW(1)
 
     CheckNum(rc,1)
-    CheckNum(Foo,2)
 
     rc =testSW(79)
 
@@ -270,6 +265,297 @@ D = 0
 
     CheckNum(rc,0)
 
-    CheckOut()
+//======================================//
 
-;
+
+//%*********************************************** 
+//*  @script switch2.asl 
+//* 
+//*  @comment test switch syntax
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                  
+//*  @date Mon Apr  8 09:07:32 2019 
+//*  @cdate Mon Apr  8 09:07:32 2019 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+///
+///
+///
+
+
+
+
+
+
+
+proc foo (double wc)
+{
+<<"in $_proc %V$wc  int version!\n"
+ret = -3
+    return ret;
+}
+//======================================//
+//proc foo (char wc)
+proc foo (int wc)
+{
+
+int ret = -2;
+
+//<<"in $_proc %V$wc %c$wc $(typeof(wc))\n"
+
+<<"in $_proc %V$wc %c$wc \n"
+
+
+   switch (wc) {
+
+    case 'a':
+  <<"in  case a \n"
+     ret = 'a';
+     break;
+
+    case 'b':
+  <<"in  case b \n"
+     ret = 'b';
+     break;
+
+    case 'd':
+  <<"in  case d \n"
+     ret = 'd';
+     break;
+
+    case 'e':
+  <<"in  case e \n"
+     ret = 'e';
+     break;
+
+
+    case '\t':
+ <<"in  case tab \n"
+     ret = '\t';
+     break;
+
+    case '\s':
+
+ <<"in  case space \n";
+      ret =32;
+     break;
+
+    case 19:
+
+      // dup switch if use 9 --- which is correct
+
+ <<"in  case tab 9 \n"
+      ret = 9;
+     break;
+
+    case '3':
+
+ <<"in  case 3 \n"
+
+       ret = '3';
+     break;
+
+    case '\'':
+
+ <<"in  case ' \n"
+                   ret = '\'';
+     break;
+
+    case ':':
+ <<"in  case <:> \n"
+       ret = ':';
+<<"case returns $ret %c $ret\n"       
+     break;
+
+    default:
+ <<"default case $wc \n"
+     ret = -1;
+     break;
+  }
+  
+<<"IN $wc %c$wc \n"
+<<"switch returns $ret  %c $ret\n"
+
+  return ret
+}
+
+<<" after switch \n"
+
+//setDebug(1,"step")
+
+char ca = ':';
+
+   rn = foo(ca)
+
+<<"%V$rn\n"
+
+  pf=checkNum(rn,':');
+
+
+
+   rn = foo(':')
+
+<<"%V$rn\n"
+
+  pf=checkNum(rn,':');
+
+<<"%V$rn $pf\n"
+
+
+   rn = foo(':')
+
+<<"%V$rn\n"
+
+  pf=checkNum(rn,':');
+
+<<"%V$rn $pf\n"
+
+
+
+
+  c = '\s'
+
+<<"%V$c  %d$c %c$c\n"
+
+  foo(c)
+
+
+
+ci = 'a';
+
+<<" %V$ci %c$ci $(typeof(ci))\n"
+
+
+   rn = foo(ci)
+
+<<"%V$rn\n"
+
+  checkNum(rn,'a');
+
+
+
+   rn = foo(97)
+
+<<"%V$rn\n"
+
+  checkNum(rn,'a');
+
+
+
+
+
+
+
+  pf=checkNum('a',rn);
+
+<<"%V$rn $pf\n"
+
+
+
+
+
+  if (!CheckNum('a',rn)) {
+<<"Fail 1\n"
+  }
+
+
+
+
+   rn = foo('X')
+
+<<"%V$rn \n"
+
+   c= '\''
+<<"%V$c %d$c %c$c %x$c %o$c\n"
+
+    rn = foo(c)
+
+<<"%V$rn \n"
+
+    rn = foo(':')
+
+<<"%V$rn \n"
+
+
+//   FIXME
+//   rn = foo('\'')
+
+
+
+
+   rn = foo('b')
+
+
+
+ if (!CheckNum('b',rn)) {
+<<"FAIL  $(checkTests()) \n"
+ }
+
+
+  c = 'd'
+
+
+   foo(c)
+
+
+
+   rn = foo('e')
+
+
+  c = '\s'
+
+<<"%V$c  %d$c %c$c\n"
+
+  foo(c)
+
+
+  c = '\t'
+
+<<"%V$c  %d$c %c$c\n"
+
+  rn = foo(c)
+
+
+// FIXME
+// CheckNum('\t',rn)
+
+
+/{
+   oc = CheckNum(9,rn)
+<<"%V$oc \n"
+
+   if ( !oc ) {
+<<"FAIL 3 \n"
+   }
+/}
+
+
+   if (!CheckNum(9,rn)) {
+<<"%V$rn \n"
+<<"FAIL  %2.0f$(checkTests()) \n"
+
+   }
+
+//  CheckNum(9,8)
+
+  c= ';'
+
+  foo(c)
+ 
+<<"%V$c  %d$c %c$c\n"
+
+
+  c= '\''
+
+  foo(c)
+ 
+<<"%V$c  %d$c %c$c\n"
+
+
+
+
+CheckOut()
+
+
