@@ -13,48 +13,49 @@
 ///
 /// test proc
 ///
-include "debug"
 
-filterfuncdebug(ALLOWALL_,"xxx");
 
-filterfiledebug(ALLOWALL_,"proc_","args_","scope_","class_","hop_");
+checkIn(_dblevel)
 
-setdebug(1,@pline,@~trace)
-
-//#define ASK ans=iread("->");
-#define ASK ;
-
-CheckIn(1)
-
-Proc foo(a)
+Proc foo(double a)
 {
  <<" IN $_proc $a \n"
 
- float tmp;
+// float tmp;
 
  tmp = a/2.0;
- tmp2 = a * 2.0
+ tmp2 = a * 2.0;
+
 <<"%V $a $tmp $tmp2\n"
- return tmp
+
+ return tmp;
 
 }
 //===================
-Proc goo(double a)
+//Proc goo(double a)
+
+
 Proc goo(real a)
-//Proc goo(gen a)
 {
  <<" IN $_proc $a \n"
-
+//  real d;
  a->info(1);
 // d= atof(a)
- d =a;
- d->info(1);
- real tmp;
- real tmp2;
- 
- tmp = d/2.0;
- tmp2 = d *2.0;
+
+  tmp = a/2.0;
+  tmp->info(1)
+ tmp2 = a * 2.0;
+   tmp2->info(1)
 <<"%V $tmp $tmp2 \n"
+
+ d =a * 2.0;
+
+d->info(1);
+
+// real tmp;
+// real tmp2;
+ 
+ 
  tmp2->info(1)
  return tmp2;
 
@@ -64,7 +65,23 @@ Proc goo(real a)
 
 x = 20.2
 
- <<"%V  $x \n"
+gr=goo(x)
+<<"$x $gr \n"
+
+checkFnum(gr, (x*2))
+
+
+
+x = 14.89
+
+gr=goo(x)
+
+ <<"%V  $gr $x \n"
+
+checkFnum(gr, (x*2))
+
+
+exit()
 
  cy = Cos(x)
 
@@ -88,9 +105,6 @@ x = 20.2
 
   t = foo(Sin(Cos(x)))
 
-<<"$x $t \n"
-  t = goo(x)
-
 <<"$t \n"
 
   t = goo(x)
@@ -99,15 +113,15 @@ x = 20.2
 
   y = x/2.0;
 
-<<"%V $x $y \n"
-
   t = foo(x)
-
-exit()
+t->info(1)
+<<"%V $x $y $t\n"
 
   CheckFNum(t,y,6)
 
 
+
+exit()
 x = -20.2;
 
  <<"%V $_proc $x \n"
@@ -146,6 +160,9 @@ x = -20.2;
 
   CheckFNum(t,y,6)
 
+exit()
+
+
  x = -15.2
 
  y = Sin(x)
@@ -183,9 +200,7 @@ x = -20.2;
 
 
 
-N = _clargs[1]
 
-<<" $_clargs[::] \n"
 
 
 //FIXME   t = foo(Cos(x))
@@ -198,7 +213,9 @@ CheckOut()
 
 exit()
 
+N = _clargs[1]
 
+<<" $_clargs[::] \n"
 
 int k = 1
 

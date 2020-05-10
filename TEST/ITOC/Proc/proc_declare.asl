@@ -1,13 +1,22 @@
+//%*********************************************** 
+//*  @script proc_declare.asl 
+//* 
+//*  @comment test procedure declare format 
+//*  @release CARBON 
+//*  @vers 1.4 Be Beryllium                                                  
+//*  @date Sat May  9 09:34:21 2020 
+//*  @cdate Sat May  9 09:34:21 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+myScript = getScript();
 
 
 
-//
+checkIn(_dblevel)
 
-setdebug(1)
-
-checkIn()
-
-proc foo(a)
+proc foo(int a)
 {
 
  int s1 = a * 5
@@ -17,7 +26,7 @@ proc foo(a)
  return s1
 }
 
-proc goo(a)
+proc goo(int a)
 {
 
  int s1;
@@ -29,7 +38,7 @@ proc goo(a)
  return s1
 }
 
-proc moo(a)
+proc moo(int a)
 {
 
  int s2 =  5;

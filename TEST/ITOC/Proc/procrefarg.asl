@@ -15,14 +15,10 @@
 ///
 /// procrefarg
 
-setdebug(1,@pline,@~step,@trace,@showresults,1)
-filterFuncDebug(ALLOWALL_,"proc",);
-filterFileDebug(ALLOWALL_,"ic_",);
 
+checkIn(_dblevel)
 
-CheckIn(0)
-
-proc sumarg (v, u)
+proc sumarg (int v, int u)
 {
 <<"args in %V  $v $u \n"
 float z;
@@ -51,7 +47,7 @@ u->info(1)
 //=======================//
 
 
-proc sumarg2 (v, u)
+proc sumarg2 (int v, int u)
 {
 <<"args in %V  $v $u \n"
 float z;

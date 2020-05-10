@@ -385,3 +385,9 @@ args_process_e.cpp	 2.31	 Fri Apr 24 19:23:29 2020 argtypes classify
 class_e.cpp	 2.19	 Mon Apr 27 12:38:00 2020 removed WS after constructor name
 scope_internal_e.cpp	 2.53	 Wed Apr 29 12:35:51 2020 added _dblevel
 array_parse.cpp	 2.74	 Thu Apr 30 15:48:28 2020 (char *) __FUNCTION__ - to stop compiler warning
+proc_checkfname_e.cpp	 2.36	 Thu Apr 30 20:37:28 2020 reorder func/vmf/proc/cmf eval
+scope_e.cpp	 2.74	 Mon May  4 09:50:41 2020 added null sivp final test
+ds_types.cpp	 1.83	 Fri May  8 10:30:32 2020 added real
+rdp_token.cpp	 1.70	 Fri May  8 16:20:57 2020 SIV_FIND
+ds_sivarray.cpp	 2.72	 Sat May  9 20:54:30 2020 make freeAop OFF after 
+rdp_token.cpp	 1.71	 Sun May 10 12:35:30 2020 ptr++/-- not if proc_ARG_REF

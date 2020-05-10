@@ -2947,10 +2947,11 @@ vgen()
 vgen
 .)x 
 .FD
-V=vgen(TYPE,n,{init_val},{step})
-generates a vector n values,of type (FLOAT,INT,SHORT,CHAR, CMPLX ...) initialised to  init_val (default 0),
+V=vgen(TYPE_,n,{init_val},{step})
+generates a vector n values,of type (FLOAT_,INT_,SHORT_,CHAR_, CMPLX_ ...) initialised to  init_val (default 0),
 if step is set, then value is incremented by step for each element.
 For complex vectors each real imag pair is set to value and then the step is incremented.
+(INT_  name followed by _  are internal definitions CHAR_ is 1, SHORT_ is 2, INT_,FLOAT_ ,..)
 .EF
 =============================================================
 BF
@@ -3774,10 +3775,17 @@ today= getdate(form)
 returns date string string depends on form parameter
 form (1-17)
 if form = 1 string is as in UNIX date command
-form = 2 month:day:year
+form = 2 month/day/year
 form = 5 (ISO8601) year-month-day hour:minute:second
 form = 17 week day
-(see also getday(),gethour(),...)
+
+jd = julian(date(2))
+gives the juilan day;
+
+ds= julmdy(jd)
+would return the date for the julian day
+
+(see also getday(),gethour(),julian(),...)
 
 
 .EF
@@ -4952,7 +4960,7 @@ retype(vec,INT)
 ( the last item will be padded with bytes as necessary)
 
 A vector can be copied and converted by implicit cast via
-char C[] = vgen(CHAR,10,0,1)
+char C[] = vgen(CHAR_,10,0,1)
 int D[]
 D= C
 float F[]
@@ -9771,8 +9779,20 @@ Variables
 .)x 
 .FD
 S=Variables([values,type])
- prints out a list of variables to Svar variable S, default list types and sizes
+ returns a list of variables to Svar variable S, default list types and sizes
  or if optional parameter set to 1 - lists values (just first value for vectors)
+.EF
+=============================================================
+.BF
+Functions()
+.(x
+Functions
+.)x 
+.FD
+S=functions()
+ returns a list of functions to Svar variable S, with a short description of the function
+S= functions() ; S->sort(); <<"%(1,,,\n)$S\n"
+would give an alphbetically sorted list.
 .EF
 =============================================================
 .BF

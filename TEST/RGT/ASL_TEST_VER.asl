@@ -3,20 +3,21 @@
 //* 
 //*  @comment asl test modules 
 //*  @release CARBON 
-//*  @vers 1.59 Pr Praseodymium                                            
-//*  @date Tue Apr 21 16:28:52 2020 
+//*  @vers 1.60 Nd Neodymium                                               
+//*  @date Sat May  9 10:03:38 2020 
 //*  @cdate 1/1/2005 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-
+myScript = getScript()
+<<"$myScript\n"
 //
 // test asl first and second stage (xic)
-// 
+//
+<<"TESTING\n"
 include "debug.asl"
 include "hv.asl"
-
 
 
 #define PGREEN '\033[1;32m'
@@ -44,8 +45,8 @@ wasl = "asl"
 
 
 
-filterFuncDebug(ALLOWALL_,"proc");
-filterFileDebug(ALLOWALL_,"ic_op");
+//filterFuncDebug(ALLOWALL_,"proc");
+//filterFileDebug(ALLOWALL_,"ic_op");
 
 
 str S = "all,array,matrix,bugs,bops,vops,sops,fops,class, declare,include,exp,if,logic,for,do,paraex,proc,switch,"
@@ -150,7 +151,7 @@ len = slen(atit)
 //===============================
 Curr_dir = "xx";
 
-proc help()
+proc Help()
 {
  <<" run regression tests for asl\n"
  <<" asl ASL_TEST_VER \n"
@@ -205,9 +206,9 @@ proc RunDirTests(str Td, str Tl )
       <<[Dbf]"$Td $Tl $np\n"
       for (i=0 ; i <np; i++) {
          if (!(Tp[i] @= "")) {
-           if (do_query) {
-              query(Tp[i])
-           }
+//           if (do_query) {
+//              query(Tp[i])
+//           }
             cart(Tp[i]);
 	   }
 	   
@@ -227,7 +228,7 @@ proc RunSFtests(str Td)
       for (i=0 ; i < np; i++) {
          wsf = Tp[i];
 
-        if (do_query)  query(Tp[i]);    
+        //if (do_query)  query(Tp[i]);    
 
          Run2Test(wsf);
 	 wsf = slower(wsf);
@@ -349,6 +350,11 @@ proc doxictest(str prog)
 
 //     !!"nohup $prog  | tee --append $ictout "
 
+        if (do_query) {
+<<"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx $prog  \n  "
+         query("$prog run it?")
+         }
+
        !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx $prog   > /dev/null "
 
 // what happens if prog crashes !!
@@ -364,9 +370,10 @@ proc doxictest(str prog)
 //===============================
 
 
-proc doxictest(str prog, gen a1)
+proc doxictest(str prog, str a1)
 {
-//<<"IN $prog  $_proc  $prog $a1 \n"
+
+//<<"IN $_proc  $prog  $a1 \n"
 
  if (f_exist("${prog}") != -1) {
 
@@ -380,6 +387,13 @@ proc doxictest(str prog, gen a1)
 
        // !!"nohup $prog  $a1 >> $ictout "
 
+
+
+     if (do_query) {
+<<"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx $prog $a1 "
+       query("$prog run it?")
+         }
+	 
        !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx $prog $a1  > /dev/null"
 
 // what happens if prog crashes !!
@@ -399,7 +413,7 @@ proc doxictest(str prog, gen a1)
 // variable length args ??
 
 
-proc cart1_xic(str aprg)
+proc cart_xic(str aprg)
 {
 
 //<<"%V $_proc  $aprg  \n"
@@ -435,7 +449,7 @@ proc cart1_xic(str aprg)
 } 
 //================================//
 
-proc cart_xic(str aprg, gen a1)
+proc cart_xic(str aprg, str a1)
 {
 
 //<<"%V $_proc  $aprg $a1 \n"
@@ -448,8 +462,8 @@ proc cart_xic(str aprg, gen a1)
    // wt_prog = "$tim "
 
      xwt_prog = "$tim ./${aprg}:$a1"
-str aa = a1
-      doxictest("./$aprg", aa)
+//str aa = a1
+      doxictest("./$aprg", "$a1")
 
       if (f_exist("${aprg}.xtst") > 0) {
          wlen = slen(xwt_prog)
@@ -476,20 +490,24 @@ proc cart (str aprg)
 {
   int wlen;
   str tim;
-  
+//<<"%V $_proc $aprg    \n"  
 //  in_pargc = _pargc;
   
   xwt_prog = "xxx";
 
    tim = time();
 
-//<<"%V $_proc $aprg   $tim \n"
+
  
   !!"rm -f $aprg  ${aprg}.tst  last_test*"
 
    jpid  =0
-   
 
+
+           if (do_query) {
+<<"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl \n"
+           query("$aprg run it?")
+           }
       !!"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl > /dev/null   2>&1"
 
       if (f_exist("${aprg}.tst") > 0) {
@@ -521,7 +539,8 @@ proc cart (str aprg)
 
 
   if (do_xic >0 ) {
-    cart1_xic(aprg)
+  //  str prg = aprg;
+    cart_xic("$aprg")
   }
 
 //<<"DONE $_proc cart\n"
@@ -533,8 +552,10 @@ proc cart (str aprg)
 
 
 //proc cart (str aprg,  gen a1)
-proc cart (str aprg,  gen a1)
+proc cart (str aprg,  str a1)
 {
+
+//<<"$_proc  $aprg $a1\n"
   int wlen;
   str tim;
   
@@ -555,6 +576,10 @@ proc cart (str aprg,  gen a1)
 //  jpid = !!&"asl -o ${aprg}arg.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1"
 
 
+           if (do_query) {
+<<"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1 \n "
+           query("$aprg run it?")
+         }
 !!"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1  > /dev/null"
 
      wt_prog = "$(time()) ${aprg}:$a1 "
@@ -585,9 +610,11 @@ proc cart (str aprg,  gen a1)
 
     
   ntest++
-gen aa = a1
+str aa = a1
+str prg2 = aprg;
+
     if (do_xic >0 ) {
-      cart_xic(aprg,aa)
+      cart_xic("$aprg","$a1")
     }
 
 //<<"DONE $_proc cart 2 args\n"
@@ -719,7 +746,7 @@ int do_release = 0;
 
   if (do_help) {
 
-      help();
+      Help();
       exit();
   }
 
@@ -763,9 +790,9 @@ if (do_include || do_all ) {
 
 // !!!! if basics fail warn/ask before going on to rest of testsuite
 
-  cart("bops",7)
+  cart("bops","7")
 
-  cart("fvmeq",3)
+  cart("fvmeq","3")
 
 
   updir()
@@ -785,6 +812,70 @@ if (do_include || do_all ) {
 
 
    }
+
+
+////////////// IF ///////////////////////
+
+if (do_if || do_all) {
+
+  
+  RunDirTests("If","if")
+
+
+
+  Run2Test("Bitwise")
+  cart("bitwise")
+
+  Run2Test("Define")
+  cart("define")
+
+  Run2Test("Enum")
+
+  cart("colors_enum")
+
+
+////////////////////////////////////////////////////////////////////////
+
+    }
+
+
+
+//rdb()
+
+  if (do_logic || do_all) {
+
+   RunDirTests("Logic","logic,logic2,logic_def")
+
+  }
+
+ if (do_for || do_all) {
+
+   RunDirTests("For","for,for0,forexp")
+}
+
+
+////////////////////////////////////////////////////////////////////////
+ 
+
+  if ((do_all || do_while )) {
+
+    RunDirTests("While","while")
+
+    }
+////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+if ((do_all || do_do )) {
+
+      RunDirTests("Do","do")
+
+    }
+////////////////////////////////////////////////////////////////////////
+
 
 //======================================//
     if (do_switch || do_all) {
@@ -828,12 +919,15 @@ if (do_include || do_all ) {
       //  need more str ops tests than this!
 
   RunDirTests("Sops","sops");
-
+  RunDirTests("Splice","splice,strsplice");
+ 
   // make this a pattern OP
-  RunSFtests("Date,Sele,Sstr,Spat,Regex,Str,Split");
+ // RunSFtests("Date,Sele,Sstr,Spat,Regex,Str,Split"); // TBC
+  RunSFtests("Date,Sele,Sstr,Spat,Str,Split,Regex");
 
-  Run2Test("Splice")
-  cart("strsplice")
+
+//  Run2Test("Splice")
+//  cart("strsplice")
 
   }
 
@@ -902,67 +996,6 @@ changeDir(Testdir)
     }
 
 //rdb()
-////////////// IF ///////////////////////
-
-if (do_if || do_all) {
-
-  
-  RunDirTests("If","if")
-
-
-
-  Run2Test("Bitwise")
-  cart("bitwise")
-
-  Run2Test("Define")
-  cart("define")
-
-  Run2Test("Enum")
-
-  cart("colors_enum")
-
-
-////////////////////////////////////////////////////////////////////////
-
-    }
-
-
-
-//rdb()
-
-  if (do_logic || do_all) {
-
-   RunDirTests("Logic","logic,logic2,logic_def")
-
-  }
-
- if (do_for || do_all) {
-
-   RunDirTests("For","for,for0,forexp")
-}
-
-
-////////////////////////////////////////////////////////////////////////
- 
-
-  if ((do_all || do_while )) {
-
-    RunDirTests("While","while")
-
-    }
-////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-if ((do_all || do_do )) {
-
-      RunDirTests("Do","do")
-
-    }
-////////////////////////////////////////////////////////////////////////
 
  if ((do_all || do_paraex )) {
 
@@ -1067,10 +1100,9 @@ if ((do_all || do_func )) {
   RunDirTests("Func","func")
 
 
-  Run2Test("Ifunc")
-
-   cart ("iproc")
-
+ // Run2Test("Ifunc")
+//   cart ("iproc")   //TBC
+   <<" skip iproc \n"
 }
 
 /////////////////////////////////////////
@@ -1097,10 +1129,10 @@ if ((do_all || do_unary )) {
 /////////////////////////////////////////
 if ((do_all || do_proc )) {
 
-  RunDirTests("Proc","proc,proc_declare,procret0,procarg,proc_sv0,proc_rep")
+  RunDirTests("Proc","proc,proc_declare,proc_ret,procret0,procarg,proc_sv0")
   RunDirTests("Proc","proc_str_ret,procrefarg,proc_ra,procrefstrarg,proc-loc-main-var");
 
-  cart("proc_var_define", 10)
+  cart("proc-var-define", 10)
 
   Run2Test("ProcArray")
   
@@ -1235,7 +1267,7 @@ if ((do_all || do_mops )) {
      
 
    }
-//rdb()
+
    if ((do_all || do_class )) {
 
        RunDirTests("Class","class_mfcall,classbops,class2,classvar");

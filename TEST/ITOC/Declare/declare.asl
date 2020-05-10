@@ -1,26 +1,31 @@
+//%*********************************************** 
+//*  @script declare.asl 
+//* 
+//*  @comment test basic declare statments 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                    
+//*  @date Sat May  9 08:59:31 2020 
+//*  @cdate Sat May  9 08:59:31 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+myScript = getScript();///
 ///
 ///
-///
-//include "debug"
 
-//filterfuncdebug(ALLOWALL_,"xxx");
-
-//filterfiledebug(ALLOWALL_,"proc_","args_","scope_","class_","hop_");
-
-
-//sdb(1,@trace,@keep)
-
-CheckIn()
+checkIn(_dblevel)
 
 // make 1 to stop if error
-Checkpause = 1
 
-proc foo(int a, int b)
+
+proc Foo(int a, int b)
 {
+<<" $_proc $a $b\n"
   int x;
   int y = 1;
 
-checkNum (y ,1)
+  checkNum (y ,1)
   x = a;
   y = b;
 
@@ -30,7 +35,7 @@ checkNum (y ,1)
 
   return c;
 }
-
+//======================================//
 
 int q;
 
@@ -38,24 +43,26 @@ int m = 3;
 int n = 4;
 
 
- pi = foo(m,n)
+ pri = Foo(m,n)
 
 
-<<"%V p $m $n\n"
+<<"%V $pri $m $n\n"
+
+ x= Sin(0.5)
+
+<<"%V $x\n"
+
+checkNum(pri,7)
 
 
-
-checkNum(pi,7)
-
-checkOut();
- pi = foo(47,79)
+ pri = Foo(47,79)
 
 
 <<"%V  $m $n\n"
 
 
 
-checkNum(pi,126)
+checkNum(pri,126)
 
 
 

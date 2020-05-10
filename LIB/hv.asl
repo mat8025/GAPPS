@@ -23,18 +23,28 @@
 Svar _HV
 
 _HV->table("HASH",50,2) //  
-
+svar L;
 int found =0;
-
+str fl;
+int sz;
 for (wln = 1; wln <= 40;wln++) {
  fl = getcodeln(wln,0);
  if (! (fl @= "")) {
  L=split(fl)
 //<<"$wln $fl "
+//<<"$L \n"
+sz=Caz(L)
+//<<"sz $sz L[] $L \n"
+if (sz > 1) {
  if (scmp(L[0],"//",2)) {
-  if (scmp(L[1],"@",1)) {
-    val = spat(fl,L[1],1)
+//<<"fl <|$fl|> L1 <|$L[1]|> \n"
+if (!(L[1] @= "")) {
 
+   if (scmp(L[1],"@",1)) {
+
+
+   val = spat(fl,L[1],1)
+//<<"$val\n"
     if (!found) {
       if (!(L[1] @="@script")) {
 <<"no header found!\n"
@@ -45,6 +55,8 @@ for (wln = 1; wln <= 40;wln++) {
 
     index=_HV->addkeyval(L[1],val); // returns index
 // <<"$index $L[1] $val \n"
+  }
+  }
   }
   }
  }

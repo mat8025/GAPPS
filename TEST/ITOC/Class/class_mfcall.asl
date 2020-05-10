@@ -13,20 +13,19 @@
 ///
 ///
 ///
-#include "debug"
+
+checkIn(_dblevel)
 
 
 
+Proc goo( real x)
+{
+  a= 2* x;
+<<"$_proc %V $x $a\n";
+  return a;
+}
 
-filterFuncDebug(ALLOWALL_,"xxx");
-filterFileDebug(ALLOW_,"proc_","args_","scope_","class_");
-
-debugON()
-setdebug(1,@pline,@~trace)
-
-checkIn(0)
-
-
+//======================================//
 Class Scalc
 {
 
@@ -83,7 +82,7 @@ Class Scalc
 
 
 
- CMF set (x,y)
+ CMF set (float x, float y)
  {
    a= x;
    b =y;
@@ -109,6 +108,17 @@ CMF Scalc()
 
 
 
+ gr=goo(3.14)
+
+<<"%V$gr\n"
+
+  gr=goo(sin(0.8))
+
+<<"%V$gr\n"
+
+
+
+
 
 
 Scalc acalc;
@@ -118,7 +128,7 @@ int d =4;
 
 double w = 3.3
 
-     acalc->seta(sin(0.8))
+    acalc->seta(sin(0.8))
     wr = acalc->geta();
    
 <<" $acalc->a\n"
@@ -137,9 +147,9 @@ checkRnum(wr, w)
 
   
 
-checkOut()
 
-exit()
+
+
 
      w= Sin(0.7)
 
@@ -155,7 +165,7 @@ wr = acalc->geta();
 
 <<" $acalc->geta() \n"
 
-exit()
+checkOut()
 
 //<<" $acalc->x\n"  // should give error
 

@@ -1,15 +1,27 @@
 
-<<"first line \n"
+
+checkIn (_dblevel);
+
+call_sf = 1;
+call_vmf = 1;
+<<"%V $call_sf $call_vmf \n"
 
 Proc goo(double val)
 {
 <<"$_proc nothing much to see $val\n"
-  val->info(1)
+//  val->info(1)
+ if (call_sf) {
+   x=sin(val)
+   <<"$x is sin of $val\n"
+   }
+ if (call_vmf) {  
+   x->info(1)
+   }
 }
 
 //======================================//
 
-Proc pscalar ( double sd)
+Proc pscalar (double sd)
 {
  <<"$_proc  scale arg  $sd\n";
 
@@ -27,19 +39,25 @@ Proc pscalar ( double sd)
 
 //======================================//
 
-Proc p_vec (double rl[] )
+Proc p_vec (float rl[])
 
 {
 
   <<"$_proc  array arg $rl\n";
-
+  rl->info(1)
+  
   float t1;
   float t2;
 
 
   int j = 4
-  t1= rl[0];
-  t2= rl[1];
+
+  //<<"%V$rl \n";
+
+  t1 = rl[0];
+  rl->info(1) // TBC
+
+  t2 = rl[1];
   t3 = rl[2];
   t4 = rl[j];
 
@@ -49,7 +67,27 @@ Proc p_vec (double rl[] )
 
 <<"$rl \n"
 
-    //rl->info(1) // TBC
+  rl->info(1) // TBC
+  int j1 = 4;
+  int j2 = 6;
+  
+  t7 = rl[j1] - rl[j2];
+
+<<"%V $t7\n"
+ checkFnum (t7, -2);
+
+
+<<"%V $rl[j1]\n"
+
+query()
+
+  kp = 3;
+
+<<"%V $rl[j1]    $rl[j2] \n"
+
+  rl[kp] = rl[j1] - rl[j2];
+
+<<"%V $kp $rl[kp] \n"
 
    return t3;
 }
@@ -63,6 +101,12 @@ fv = vgen(FLOAT_,10,0,1)
 
  double d= 1.234
 
+  xm = sin(d)
+
+<<"$xm is sin of $d\n"
+
+
+
  pscalar(d)
 
 
@@ -75,6 +119,9 @@ fv = vgen(FLOAT_,10,0,1)
 
 
  fv->info()
+
+ <<"%V $fv[1] \n"
+query()
 
  p_vec(fv)
 
@@ -91,4 +138,4 @@ fv[0] = -32;
 
  <<"$f\n"
 
-  
+  checkOut ();

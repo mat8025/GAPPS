@@ -12,7 +12,7 @@
 //***********************************************%
 
    
-   proc vers2ele( vstr)
+   proc vers2ele(str vstr)
    {
    
     pmaj = atoi(spat(vstr,"."))
@@ -175,7 +175,7 @@ if (found_vers) {
    newsrc=scat(srcfile,"-new")
 
    A=ofw(newsrc);
-   vers="@vers ${pmaj}.$pmin $min_ele $min_name "
+   vers="@vers ${pmaj}.$pmin $min_ele $min_name [asl $(getversion())]"
    vlen = slen(vers);
    pad = nsc(70-vlen," ")
    <<[A]"//%%*********************************************** \n"
@@ -190,7 +190,8 @@ if (found_vers) {
    <<[A]"//*  @Copyright © RootMeanSquare  2010,$(date(8)) → \n"           
    <<[A]"//* \n"   
    <<[A]"//***********************************************%%\n"
-   fflush(A)
+   <<[A]"myScript = getScript();"
+fflush(A)
 
    for (i = 0; i < tsz; i++) {
     ln = T[i];

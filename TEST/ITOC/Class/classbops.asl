@@ -15,14 +15,7 @@
   
   /}*/
   
-  include "debug.asl";
-  
-  debugON();
-  setdebug(1,@keep,@pline,@~trace);
-  FilterFileDebug(REJECT_,"~storetype_e");
-  FilterFuncDebug(REJECT_,"~ArraySpecs",);
-  
-  CheckIn(); 
+  checkIn(_dblevel); 
 /{/*
   a = 1.0;
   b = 2.0;
@@ -56,7 +49,17 @@
 /}*/
   
 //////////////////////////////////////////////////////
+Proc goo( real x)
+{
+  a= x;
+<<"$_proc %V $x $a\n";
 
+}
+
+
+goo(1.2)
+
+goo(sin(0.7))
 
 /// must have a CONS -- else crash in xic??
 
@@ -191,7 +194,7 @@ real r2 = 4.5;
   
   <<"%V$my $A->x  \n";
 
-exit()
+
 
 
   r2 = Sin(-0.9)
@@ -206,7 +209,7 @@ exit()
   <<"%V$my $A->x  \n";
 
 
-exit()
+
 
 
 
@@ -488,7 +491,7 @@ exit()
   
   <<"%V$my $A->x  \n"; 
 
-exit()
+  checkOut(); 
 
 
   r1 = B->getx()
@@ -501,7 +504,7 @@ exit()
 
 <<" %V $my $my3 $A->x $B->x \n"; 
 
-exit()
+
 
   my2 = A->x    * B->getx()
 
@@ -511,8 +514,8 @@ exit()
   
   CheckFNum(my,my2,3); 
   
-  CheckOut(); 
-  exit(); 
+  checkOut(); 
+
   
 /{/*  
 /// TBD ///////////

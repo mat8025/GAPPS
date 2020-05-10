@@ -17,7 +17,7 @@ debugON()
 
 sdb(1,@pline)
 
-proc foo()
+proc Foo()
  {
 
    <<"%V $A \n"
@@ -37,9 +37,7 @@ A->info(1)
 //==========================//
 
 
-//proc goo( A)
-
-proc goo( goo_a)
+proc goo(int goo_a)
  {
  
 <<"in $_proc  arg is $goo_a\n"
@@ -65,7 +63,7 @@ proc goo( goo_a)
 
 //==========================//
 
-proc hoo( H)
+proc hoo(int H)
  {
  
 <<"in $_proc  arg is %V $H\n"
@@ -155,7 +153,7 @@ goo(&d)
 
 goo(&d)
 
-foo()
+Foo()
 
 
 hoo(&d)

@@ -24,18 +24,11 @@ form = 17 week day
 
 /}*/
    
-   include "debug.asl"; 
-   
-   debugON();
-   setdebug(1,@keep,@pline,@trace);
-   FilterFileDebug(REJECT_,"~storetype_e");
-   FilterFuncDebug(REJECT_,"~ArraySpecs",);
-   
    
 ///
 ///
    
-   checkin(); 
+   checkin(_dblevel); 
    
    td = date(1,'-'); 
    <<"1 $td\n"; 
@@ -52,18 +45,15 @@ form = 17 week day
    str ud;
    
    td = date(1); 
-   
-   
+     
    <<"$(typeof(td)) %V$td\n"; 
    
    ud = !!"date"; 
-   
-   
+     
    <<"$(typeof(ud)) %V$ud\n"; 
-   
-   
+     
    udt = split(ud); 
-   
+   udt->info(1)
    
    <<"%V$udt \n"; 
    
@@ -71,12 +61,18 @@ form = 17 week day
    <<"$udt[3]\n"; 
    
    sdt = split(td); 
-   
+    sdt->info(1)
    <<"%V$sdt \n"; 
-   <<"$sdt[3]\n"; 
-   
+
+  <<"$sdt[3]\n"; 
+
+   sdt3 = sdt[3]
+
+<<"$sdt3\n"
+sdt3->info(1)
+
    checkStr(sdt[3],udt[3]); 
-    setdebug(1,@~pline)
+
 
 
     for (i=1; i<=17;i++) {

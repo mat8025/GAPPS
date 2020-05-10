@@ -18,7 +18,7 @@ int _DB = -1; // dbg FH set to nop --set to 2 for error output
 dbid = IDof("_DB");
 //<<"%V dbid _DB\n"
 
-setdebug(0,@keep);
+setdebug(1,@keep);
 // if there are errors keep  idb,xdb file in .GASP/WORK/Debug
 // will be overwritten by scripts  unless unique/local options used
 
@@ -58,12 +58,13 @@ proc scriptDBON()
 
 proc scriptDBOFF()
 {
+<<"setting _DB to $_DB\n"
   _DB = -1;
 }
 
 //==========================
 
-//<<" %V $_include \n"
+<<" %V $_include  DONE debug.asl\n"
 
 ///
 ///  while (1) {

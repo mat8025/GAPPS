@@ -12,34 +12,13 @@
 //***********************************************%
 
 
-include "debug.asl"
-
-debugON();
-
-filterfuncdebug(ALLOWALL_,"xxx");
-
-filterfiledebug(ALLOWALL_,"proc_");
-
-
-sdb (1, @pline, @~step, @trace) ;
-
-
-civ = 0;
-
-cov= getEnvVar("ITEST")
-if (! (cov @="")) {
-civ= atoi(cov)
-<<"%V $cov $civ\n"
-
-}
-
-checkIn(civ)
+checkIn(_dblevel)
 
 
 
 /////////////////////  simple scalar ///////////////////
 
-proc doo(a,b)
+proc doo(int a,int b)
 {
   c= a + b
 <<"%V$c\n"

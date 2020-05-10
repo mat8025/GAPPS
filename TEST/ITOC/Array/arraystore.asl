@@ -1,7 +1,20 @@
+//%*********************************************** 
+//*  @script arraystore.asl 
+//* 
+//*  @comment  test array store 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                    
+//*  @date Fri May  1 07:35:20 2020 
+//*  @cdate Fri May  1 07:35:20 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 
-setdebug(1)
 
-checkIn()
+
+
+checkIn(_dblevel)
 A= vgen(FLOAT_,10,0,1)
 
 
@@ -40,4 +53,3 @@ checkNum(I[9],1)
 
 checkOut();
 
-exit();

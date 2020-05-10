@@ -1,28 +1,25 @@
 //%*********************************************** 
-//*  @script procrefarg.asl 
+//*  @script proc_refstrarg.asl 
 //* 
-//*  @comment test proc ref & arg 
+//*  @comment ref arg as str/svar 
 //*  @release CARBON 
-//*  @vers 2.37 Rb Rubidium                                               
-//*  @date Wed Jan  9 21:40:10 2019 
-//*  @cdate 1/1/2010 
+//*  @vers 1.3 Li Lithium [asl 6.2.45 C-He-Rh]                               
+//*  @date Sat May  9 16:19:04 2020 
+//*  @cdate Sat May  9 16:19:04 2020 
 //*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
+myScript = getScript();
 
 
 ///
 /// procrefarg
 
-setdebug(1,@pline,@~step,@trace,@showresults,1)
-filterFuncDebug(ALLOWALL_,"proc",);
-filterFileDebug(ALLOWALL_,"ic_",);
 
+checkIn(_dblevel)
 
-CheckIn(0)
-
-proc pstrarg (v, u)
+proc pstrarg (str v, str u)
 {
 <<"args in %V  $v $u \n"
 
@@ -33,12 +30,10 @@ proc pstrarg (v, u)
  v = "hola"
  u = "que tal?"
 
-  return m
+  return m;
 
 }
 //=======================//
-
-  checkin();
 
 
   str s = "hi"
@@ -81,11 +76,8 @@ proc pstrarg (v, u)
 <<"%V $s $t $w\n"
 
  checkStr(s,"buenas")
-  
 
-
-
- CheckOut()
+ checkOut()
 
 
 

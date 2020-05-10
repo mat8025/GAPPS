@@ -1,29 +1,25 @@
-setdebug(1,@pline,@~step,@trace,@showresults,1)
-filterFuncDebug(ALLOWALL_,"proc","opera_ic");
-filterFileDebug(ALLOW_,"ic_op","ic_pu","ic_x","proc","opera","ds_siv");
 
+checkIn(_dblevel)
 
-CheckIn()
-
-proc refarg (v)
+proc refarg (int v)
 {
 
 <<"IN %V  $v  \n"
+   v->info(1)
 
-   //v = 79;
-  prev= v;
-   // prev= v++; // works
-   //v *= 2; works
-   //z= v++ + v++; // works ( v + (v+1) )  and v = v+2
+   pre_v = v;
+   
+  pre_v->info(1)
 
    v++;
-   postv =v;
+   
+   post_v =v;
 
    z =v;
 // nv++;
 //  v=nv;
 
-<<"OUT %V $z $v $prev $postv \n"
+<<"OUT %V $z $v $pre_v $post_v \n"
 
 
 }
@@ -39,20 +35,30 @@ int m = 84;
    checkNum(w, (n*2 +1));
    
    pre_n = n;
-   
+
+
+//      refarg(w);
+
+w->info(1)
+
+<<"%V pre $n  \n"
+
    refarg(&n);
 
-<<"%V  $n  \n"
+<<"%V  post $n  \n"
 
 <<"%V proc modifies? $pre_n !=  $n \n"
 
   CheckNum(n,5)
+
+//checkOut()
   pre_m = m;
+
   refarg(m);
 
 <<"%V $m  \n"
-  pre_m = m;
-  CheckNum(m,pre_m)
+  post_m = m;
+  CheckNum(post_m,pre_m)
 
 <<"%V proc does not modifies arg? $pre_m == $m \n"
 

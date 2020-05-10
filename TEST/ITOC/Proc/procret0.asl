@@ -13,12 +13,10 @@
 
 
 
-#include "debug.asl"
-debugON()
 
-CheckIn()
+checkIn(_dblevel)
 
-proc foo(a) 
+proc foo(real a) 
 {
  ret = 0;
 <<" $_proc foo $a \n"
@@ -42,7 +40,7 @@ proc foo(a)
 }
 ////////////////////////////////////////
 
-proc foo2(a) 
+proc foo2(real a) 
 {
 int ret = 0;
 <<" $_proc foo2 $a \n"
@@ -81,7 +79,7 @@ int ret = 0;
 }
 //////////////////////////////////
 
-proc foo3(a) 
+proc foo3(real a) 
 {
 int ret = 0;
 <<" $_proc foo2 $a \n"
@@ -104,7 +102,7 @@ int ret = 0;
     return ret;
 }
 
-proc goo(a)
+proc goo(int a)
 {
 <<"$_proc $a\n"
   a += 1;
@@ -115,7 +113,7 @@ proc goo(a)
 }
 //==================================//
 
-proc hoo(a)
+proc hoo(real a)
 {
 <<"$_proc $a\n"
   a += 1;
@@ -126,30 +124,24 @@ proc hoo(a)
 }
 //==================================//
 
-proc moo(a)
+proc moo(double a)
 {
 <<"$_proc $a\n"
   a += 1;
 <<"%V $a\n"
 
+
+a->info(1)
+ 
  if (a >1) a += 1;
 
 // if (a >10)  return; // TBF needs {}
- 
- if (a >10) { return; }// TBF needs { ; }
 
-
-  a += 1;
+  int mb = a;
+  a += 2;
 <<"%V $a\n"
 
- if (a >10) {
-   return;
- }
- 
-  a += 1;
-<<"%V $a\n"    
-// does'nt really return anything
-     return;  // TBD crash
+  return mb;  // TBD crash
 }
 //==================================//
 
@@ -159,14 +151,14 @@ in = 2
 
 <<" $in $c \n"
 
-   CheckNum(c,1)
+   checkNum(c,1)
 
 
    c = foo(in) * 2
 
    <<" $in $c \n"
 
-   CheckNum(c,2)
+   checkNum(c,2)
 
 
 in = 1
@@ -175,7 +167,7 @@ in = 1
 
 <<" $in $c \n"
 
-   CheckNum(c,0)
+   checkNum(c,0)
 
  in = 3
 
@@ -183,13 +175,13 @@ in = 1
 
 <<" $in out $c \n"
 
-   CheckNum(c,1)
+   checkNum(c,1)
 
  c = foo(in) * 6
 
 <<" $in $c \n"
 
-   CheckNum(c,6)
+   checkNum(c,6)
 
   in = -4
 
@@ -197,7 +189,7 @@ in = 1
 
 <<" $in $c \n"
 
-   CheckNum(c,-6)
+   checkNum(c,-6)
 
    in = 110
 
@@ -222,7 +214,7 @@ in = 1
 
   <<" $in $c \n"
 
-   CheckNum(c,120)
+   checkNum(c,120)
 
 
   in = 310
@@ -240,7 +232,7 @@ in = 1
 
 <<"%V $in $c \n"
     
-  CheckNum(c,210)
+  checkNum(c,210)
 
 
   for (j = 0 ; j < 3; j++) {
@@ -251,11 +243,11 @@ in = 1
 
       <<" $in  returned * 3  $c \n"
 
-      CheckNum(c,(j+1))
+      checkNum(c,(j+1))
 
   }
 
-   x= 1;
+   x =1;
    goo(&x)
 
 <<"goo $x\n"
@@ -266,18 +258,16 @@ in = 1
 
 checkNum(x,3);
 
-   moo(&x)
 
-checkNum(x,7);
+   double xm=14.0
 
-   x=14
+   mr= moo(&xm)
+   
+<<"%V $xm $mr\n"
 
-   moo(&x)
-<<"%V $x\n"
+checkNum(xm,18);
 
-checkNum(x,16);
-
-   CheckOut()
+   checkOut()
 
 
 

@@ -11,13 +11,66 @@
 //* 
 //***********************************************%
  
- 
+ myScript = getScript()
+<<"$myScript\n"
+
+//include "debug.asl"
+//include "hv.asl"
+
+
+proc changeDir(str td)
+{
+  //<<" $_proc $td\n"
+  chdir(td)
+  Curr_dir = getDir();
+}
+//===============================
 
  
- 
-  CheckIn(); 
- 
-  int ival;
+  checkIn(_dblevel); 
+
+Curr_dir = "XYZ"
+
+<<"%V$Curr_dir\n"
+
+  dir = getDir()
+
+<<"%V$dir\n"
+
+
+   changeDir(dir)
+
+<<"$Curr_dir\n"
+
+
+
+
+int ival;
+  
+  ival->info(1)
+
+  ival = 3;
+
+ <<"%V $ival \n"
+
+ ival->info(1)
+
+
+
+
+
+  checkNum(ival,3)
+
+ i =0
+ na = argc()
+
+while (i < na) {
+ wt = _argv[i]
+<<"[${i}] $wt\n"
+i++
+}
+
+
 
   int IVD[];
 
@@ -32,7 +85,12 @@
 
   IVF->info(1)
 
- CheckNum(sz,5);
+ checkNum(sz,5);
+
+  IVF[2] = 74;
+
+<<"$IVF\n"
+ IVF->info(1)
 
   int IV[>6];
   sz = Caz(IV);
@@ -40,17 +98,17 @@
 
   IV->info(1)
 
-  CheckNum(sz,6);
+  checkNum(sz,6);
 
 
   IV[1] = ptan("AT");
   <<"$IV\n"; 
  
-  CheckNum(IV[1],85);
+  checkNum(IV[1],85);
   IV[5] = ptan("Ac");
   <<"$IV\n"; 
  
-  CheckNum(IV[5],89);
+  checkNum(IV[5],89);
  
   float FV[5];
  
@@ -61,8 +119,8 @@
   
   <<"$FV\n"; 
  
-  CheckFnum(FV[2],45);
+  checkFnum(FV[2],45);
  
-  CheckOut(); 
+  checkOut(); 
  
   exit(); 

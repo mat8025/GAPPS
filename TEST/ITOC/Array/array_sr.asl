@@ -12,13 +12,9 @@
 //***********************************************%
   
   
-  include "debug.asl";
-  debugON();
-  setdebug(1,@keep,@pline,@trace);
-  FilterFileDebug(REJECT_,"~storetype_e");
-  FilterFuncDebug(REJECT_,"~ArraySpecs",);
+
   
-  CheckIn(); 
+  checkIn(_dblevel); 
   
   I = vgen(INT_,10,0,1); 
   
@@ -36,8 +32,11 @@
 
    K->info(1)
 
-  <<"%V$K\n"; 
-  
+  <<"%V$K\n";
+  <<"K0 $K[0]\n"
+  <<"K5 $K[5]\n"
+  k = K[5];
+  <<"%V $k $K[5]\n"
   checkNum(K[0],6); 
   checkNum(K[1],5); 
   checkNum(K[5],1); 

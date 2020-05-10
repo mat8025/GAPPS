@@ -170,7 +170,7 @@
 
   fseek(A,found_where,0)
 
-   vers="  @vers ${pmaj}.$pmin $min_ele $min_name "
+   vers="  @vers ${pmaj}.$pmin $min_ele $min_name [asl $(getversion())]"
    vlen = slen(vers);
    pad = nsc(70-vlen," ")
 <<[A]"//*$vers $pad\n"

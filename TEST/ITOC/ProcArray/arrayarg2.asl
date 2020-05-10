@@ -12,27 +12,7 @@
 //***********************************************%
    
    
-   include "debug.asl"; 
-   
-   debugON();
-   
-  // setdebug (1, @pline, @~step, @~trace,@break,57) ;
-
-   //sdb (1, @pline, @~step, @~trace,@~break,57) ;
-//      sdb (1, @~pline, @~step, @~trace,@~break,57) ;
-   FilterFileDebug(REJECT_,"~storetype_e");
-   FilterFuncDebug(REJECT_,"~ArraySpecs",);
-   
-   civ = 0;
-   
-   cov= getEnvVar("ITEST"); 
-   if (! (cov @="")) {
-     civ= atoi(cov); 
-     <<"%V $cov $civ\n"; 
-     
-     }
-   
-   checkIn(civ);
+checkIn(_dblevel);
    
 aaa: <<"aaa label !\n"
 
@@ -45,7 +25,7 @@ aaa: <<"aaa label !\n"
 
 <<"after break point !\n"
 
-   proc foo(int vec[],k)
+   proc Foo(int vec[],int k)
    {
      vec->info(1); 
      k->info(1);
@@ -85,7 +65,7 @@ aaa: <<"aaa label !\n"
    
   <<"before calling proc $Z\n"; 
    
-   Y=foo(Z,3); 
+   Y=Foo(Z,3); 
    
    <<"after calling proc $Z\n"; 
 
@@ -101,7 +81,6 @@ aaa: <<"aaa label !\n"
    
    checkStage("ArrayName"); 
 
-exit()
 ///////////////  &Array ////////////////////////////////////////
    
 //  showStatements(1)
@@ -123,7 +102,7 @@ exit()
 
 // Y = foo(&Z,3)  // TBF-------- Y 
 
-    Y = foo(&Z[0],3)  // FIXED -------- Y is now created correctly with the return vector; 
+    Y = Foo(&Z[0],3)  // FIXED -------- Y is now created correctly with the return vector; 
    
    <<"postZ $Z\n"; 
 
@@ -147,7 +126,7 @@ exit()
    
    <<"preZ $Z\n"; 
    
-   Y2= foo(&Z[3],4); 
+   Y2= Foo(&Z[3],4); 
    
    <<"postZ $Z\n";
    
@@ -173,4 +152,5 @@ exit()
    checkStage("ArrayReturn"); 
    
    
-   checkOut();    exit(); 
+   checkOut();
+   

@@ -1,8 +1,22 @@
-setdebug(1)
+//%*********************************************** 
+//*  @script procarg.asl 
+//* 
+//*  @comment test some usage of proc args 
+//*  @release CARBON 
+//*  @vers 1.5 B Boron                                                       
+//*  @date Sat May  9 14:53:10 2020 
+//*  @cdate Sat May  9 14:53:10 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+myScript = getScript();
+
+checkIn(_dblevel)
 
 
 
-proc sumarg(a, b)
+proc sumarg(real a, real b)
 {
    c = a+ b
 
@@ -11,7 +25,7 @@ proc sumarg(a, b)
   return c
 }
 
-proc ReadPulseFile( pfname)
+proc ReadPulseFile(str pfname)
 {
 <<" %i $pfname \n"
  len =0
@@ -24,7 +38,7 @@ proc ReadPulseFile( pfname)
  return len
 }
 
-proc poo (vstr)
+proc poo (str vstr)
 {
 
 <<"$_proc $vstr \n"
@@ -40,7 +54,7 @@ proc poo (vstr)
 }
 //------------------------------
 
-proc foo(vstr)
+proc Foo(str vstr)
 {
 <<" $_proc $vstr \n"
   mstr = split(vstr)
@@ -50,11 +64,13 @@ proc foo(vstr)
 }
 //------------------------------
 
-CheckIn()
+checkIn()
 
 
  I = Igen(10,0,1)
 
+
+I->info(1)
 
 <<"$I \n"
 
@@ -79,6 +95,8 @@ fname= "procarg.asl"
 k=ReadPulseFile(fname)
 
 <<" %v$k \n"
+
+
 
 //ttyin()
 
@@ -128,12 +146,12 @@ ssa = sen[0]
    k = 0;
 
  while (k < 100) {
-   nwr = sen->Read(A)
+   nwr = sen->ReadWords(A)
    if (nwr > 0) {
 <<"$nwr $k $sen[0] $sen[1] $sen[2] $sen[3]\n"
   //  sen->split()
   poo(sen)
-//  foo(sen)
+//  Foo(sen)
    }
    
   k++
@@ -142,6 +160,6 @@ ssa = sen[0]
 
 <<" done loop %i $k \n"
 
-    CheckOut()
+    checkOut()
 
 

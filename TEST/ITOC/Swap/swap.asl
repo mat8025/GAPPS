@@ -3,8 +3,8 @@
 //* 
 //*  @comment check ref arg via swap 
 //*  @release CARBON 
-//*  @vers 2.56 Ba Barium                                                 
-//*  @date Thu Jan 10 18:13:45 2019 
+//*  @vers 2.57 La Lanthanum [asl 6.2.46 C-He-Pd]                          
+//*  @date Sun May 10 12:59:32 2020 
 //*  @cdate 9/6/99 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -14,19 +14,13 @@
 ///  demo ptr/ref args
 ///
 
-//#define ASK ans=iread();
-
-#define ASK ;
 
 
-checkIn()
-setdebug(1,@pline,@~step,@~trace,@showresults,1)
-filterFuncDebug(ALLOWALL_,"proc");
-filterFileDebug(ALLOWALL_,"ic_op");
+checkIn(_dblevel)
 
 
 
-proc add ( x, y)
+proc add (int x, int y)
 {
 
 <<"$_proc IN : %V$x $y \n"
@@ -61,7 +55,7 @@ proc swap (ptr x, ptr y)
 }
 //====================
 
-proc swapi ( x, y)
+proc swapi (int x, int y)
 {
 
    t = x;
@@ -114,7 +108,7 @@ proc swapR (int& x, int& y)
 
 <<" $ans \n"
 
- CheckNum(ans,7)
+ checkNum(ans,7)
 
 <<"%V$k $m  ref\n"
  swap (&k, &m)
@@ -123,25 +117,25 @@ proc swapR (int& x, int& y)
 
 
 
- CheckNum(k,3)
- CheckNum(m,4)
+ checkNum(k,3)
+ checkNum(m,4)
 
 
  checkout()
-ASK
+
 <<"%V$k $m  \n"
 
  swap (&k, &m)
 
 <<" %V$k $m \n"
 
-  CheckNum(k,4)
-  CheckNum(m,3)
+  checkNum(k,4)
+  checkNum(m,3)
 
 <<"%V$k $m  value\n"
 
 checkStage()
-ASK
+
 
 <<" via main \n"
 
@@ -156,7 +150,7 @@ ASK
 
 <<"%V $k $m $w\n"
 
-CheckNum(m,3)
+checkNum(m,3)
 
 int a = 6;
 int b = 9;
@@ -166,12 +160,12 @@ int b = 9;
 
  swap(&a,&b)
 
- CheckNum(a,9)
+ checkNum(a,9)
 
 <<"%V$a $b \n"
 
  checkStage()
- ASK
+ 
 
 a = 7
 b = 11
@@ -184,7 +178,7 @@ for (g = 0; g < 4; g++) {
  
 }
 
- CheckNum(a,7)
+ checkNum(a,7)
 
 <<" diff vars %V$k $m\n"
 
@@ -193,7 +187,7 @@ for (g = 0; g < 3; g++) {
   swap(&k,&m)
 
 <<"%V$g $k $m \n"
-ASK
+
 }
 
 
@@ -208,28 +202,28 @@ for (g = 0; g < 3; g++) {
 }
 
 
- CheckNum(a,11)
+ checkNum(a,11)
 
 checkStage()
 
-ASK
+
 float r = 3.0;
 float q = 4.0;
 
- CheckNum(r,3.0)
+ checkNum(r,3.0)
 
 <<"%V $r $q\n"
 
    swap(&r,&q)
 
- CheckNum(r,4.0)
+ checkNum(r,4.0)
 
 
 <<"%V $r $q\n"
 
    swap(&r,&q)
 
- CheckNum(r,3.0)
+ checkNum(r,3.0)
 
 
 <<"pre- swap? %V $r $q\n"
@@ -238,7 +232,7 @@ float q = 4.0;
 
 <<"no swap ? %V $r $q\n"
 
- CheckNum(r,3.0)
+ checkNum(r,3.0)
 
 
    r = _PI ;
@@ -258,6 +252,6 @@ float q = 4.0;
 
 //<<"swap ? %V $r $q\n"
 
- CheckOut()
+ checkOut()
 
 

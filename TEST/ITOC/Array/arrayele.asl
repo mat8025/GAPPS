@@ -13,42 +13,43 @@
 
 
 
-
 checkIn (_dblevel);
+
+<<"%V $_dblevel\n"
+//query()
 
 float f= 3.142;
 
 <<"$f \n"
 
-
-
-//proc array_sub (float rl[])
-proc array_sub (float rl)
+proc array_sub (float rl[])
 {
+
+<<"In $_proc   $rl\n";
+  rl->info(1)
+ 
   float t1;
   float t2;
-
-  <<"In $_proc\n";
-  
-  <<"%V$rl \n";
+   
+//  <<"%V$rl \n";
 
   t1 = rl[0];
-
-  <<"%6.2f%V$t1\n";
+  rl->info(1)
+//  <<"%6.2f%V$t1\n";
 
 //<<"%6.2f$rl \n"
 
   t1 = rl[4];
 
-  <<"%6.2f%V$t1\n";
+//  <<"%6.2f%V$t1\n";
 
 
   <<"$(Caz(t1))\n";
   rl->info(1)
   checkFnum (t1, 4.0);
 
+//query()
 
-//ans=iread()
   int k = 5;
   t2 = rl[k];
   <<"%V$t2\n";
@@ -82,17 +83,17 @@ proc array_sub (float rl)
   kp = 3;
 
 <<"%V $rl[j1]    $rl[j2] \n"
-
+//query()
   rl[kp] = rl[j1] - rl[j2];
 
 
-  <<"%V$rl[kp]\n";
+  //<<"%V$rl[kp]\n";
 
   <<"%V $kp  $j1 $j2 \n";
-
+//query()
 
 //<<"%6.2f$rl \n";
-  <<"%V $rl[kp] \n";
+//  <<"%V $rl[kp] \n";
 
   wrl = rl[kp];
 
@@ -101,12 +102,14 @@ proc array_sub (float rl)
   <<"%V $Real1 \n";
   <<"%V $wrl \n";
   <<"%V $kp $rl[kp] \n";
-  jj = rl[kp];
-    checkFnum (jj, -2);
+
+   jj = rl[kp];
+
+  checkFnum (jj, -2);
    <<"%V $jj $kp $rl[kp] \n";
 
   ff= rl[kp];
-  <<"$rl \n"
+  //<<"$rl \n"
   <<"%V $ff $jj $rl[kp] \n"
   
   checkFnum (rl[kp], -2);
@@ -117,7 +120,7 @@ proc array_sub (float rl)
 
   <<"just rl[k] :: $rl[kp] \n";
 
-  <<"%6.2f$rl \n";
+ // <<"%6.2f$rl \n";
 
   t2 = rl[kp];
 
@@ -147,7 +150,7 @@ proc array_sub (float rl)
 
 
 
-<<"%V $rl[j1] = $rl[j1] - $rl[j2] \n";
+//<<"%V $rl[j1] = $rl[j1] - $rl[j2] \n";
 
   rl->info(1)
   TA=testargs(rl[j1],rl[j2],rf1,rf2)

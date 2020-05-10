@@ -56,16 +56,14 @@ CLASS Building {
  
  CMF setRooms(int val)
  {
-  <<" $_proc  $_cobj $id  $rooms $floors $area \n"
+  <<" $_proc  $_cobj [${id}]  $rooms $floors $area \n"
    rooms = val;
  }
 
  CMF getRooms()
  {
-//<<" $_proc  $_cobj $id  $rooms $floors $area \n"
+<<" $_proc  $_cobj [${id}]  $rooms $floors $area \n"
    nr = rooms;
-
- //  return nr;
    return rooms; 
  }
 //========================
@@ -80,7 +78,7 @@ CLASS Building {
  CMF getFloors()
  {
    int rnf = 0; // TBF crash
-//<<" $_proc  $_cobj $id  $rooms $floors $area \n"
+<<" $_proc  $_cobj [${id}]$rooms $floors $area \n"
    rnf = floors;
 <<"$rnf \n"   
    return rnf;  // TBF returning local -- deleted does not remain on stack for assignment?
@@ -89,11 +87,12 @@ CLASS Building {
 
  CMF Print()
  {
-  <<" $_proc $_cobj %V $id \n $rooms \n $floors \n $area \n"
+  <<" $_proc $_cobj  [${id}] \n %V $rooms \n $floors \n $area \n"
  }
 
  CMF Building()
  {
+ 
     id = Bid;
     
     Bid++;
@@ -103,7 +102,7 @@ CLASS Building {
     area = floors * 200;
    
  <<" cons  $_cobj %V $id  $Bid $floors  $rooms $area\n"
-}
+  }
 
 }
 
@@ -117,22 +116,30 @@ CLASS Building {
 
  
    C[1]->Print()
-   C[2]->Print()
-   C[3]->Print()
 
-  C[0]->Print()
 
-   b0rooms = C[0]->getRooms();
-
-<<"%V $b0rooms \n"
-
-   checkNum(b0rooms,4);
-   
    b1rooms = C[1]->getRooms();
 
 <<"%V $b1rooms \n"
 
    checkNum(b1rooms,5);
+//query()
+
+
+   C[2]->Print()
+   C[3]->Print()
+
+  C[0]->Print()
+
+
+   b0rooms = C[0]->getRooms();
+
+<<"%V $b0rooms \n"
+
+
+   checkNum(b0rooms,4);
+   
+
 
    b2rooms = C[2]->getRooms();
 
@@ -140,7 +147,7 @@ CLASS Building {
 
   checkNum(b2rooms,6);
 
-  checkOut()
+  
 
 
 
@@ -233,7 +240,7 @@ CLASS Building {
 
   checkNum(nf,12);
 
-checkOut()
+//checkOut()
 
   nrms = C[0]->getRooms()
   <<" C[0] rooms $nrms \n"

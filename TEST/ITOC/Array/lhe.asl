@@ -14,24 +14,34 @@
 ///
 ///
 
-include "debug.asl"
-
-debugON();
 
 
 
-setdebug (1, @pline, @~step, @~trace, @soe) ;
 
 
-//checkIn(1) // stop - interact on fail
+checkIn(_dblevel) // _dblevel == 1 stop - interact on fail else run until exit -- report status on checkout
 
-checkIn() // run until exit -- report status on checkout
 
-int Data[10];
+
+Data = vgen(INT_,10,-5,1)
+
+
+<<"$Data \n"
+
+<<"$Data[1:3] \n"
+<<"$Data[1]\n"
+<<"$Data[2]\n"
+<<"$Data[3]\n"
+
+
+Data->info(1)
+
+checkNum(Data[1],-4)
+
 
 H= vgen(INT_,10,0,1)
 M= vgen(INT_,10,0,1)
-Data = vgen(INT_,10,-5,1)
+
 <<"%V $H \n"
 
 Data[3] = 36
@@ -39,6 +49,7 @@ Data[3] = 36
 checkNum(Data[3],36)
 
 Data->info(1)
+
  i = 2
  j = 4
 
@@ -128,10 +139,20 @@ Data[j] = 26;
 
 <<"$Data \n"
 
+<<" %(1,,,,)$Data \n"
+
+
+
 checkNum(Data[4],26)
      Data[1] = k
      Data[2] = Data[1]
+Data->info(1)
+
 <<"$Data \n"
+
+<<"$Data[::] \n"
+
+
 <<"%V$i $j\n"
      Data[j] = Data[i]
 <<"$Data \n"

@@ -19,22 +19,16 @@
 /// sleep 8 hours   71.5 per hour
 /// office computer work (24-8-exercise hours) 119.3 per hour
 
-
+myscript = getScript();
 
 include "debug.asl"
 
-setDebug(1,@keep,@~pline);
+//setDebug(1,@keep,@~pline);
 
-//scriptDBON();
-
-filterfuncdebug(ALLOWALL_,"xxx");
-
-filterfiledebug(ALLOWALL_,"proc_","args_","scope_","class_","hop_");
+  scriptDBOFF();
 
 
-include "hv.asl"
-include "graphic"
-include "gevent.asl"
+
 
 <<[_DB]"%V$vers $ele_vers\n"
 
@@ -45,23 +39,12 @@ wexdir = "./"
 
 chdir(wexdir)
 
-wherearewe=!!"pwd "
+//wherearewe=!!"pwd "
 
 //<<[_DB]"%V$wherearewe \n"
 
 
-#define WALK 1
-#define HIKE 2
-#define RUN 3
-#define BIKE 4
-#define SWIM 5
-#define GYM_SS 6
-#define GYM_WTS  7
-
-#define NDAYS 1000
-
-svar Mo[] = { "JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC"}
-
+/{/*
 
 class Activity {
 
@@ -84,6 +67,29 @@ class Measure {
 }
 //
 
+/}*/
+
+#define WALK 1
+#define HIKE 2
+#define RUN 3
+#define BIKE 4
+#define SWIM 5
+#define GYM_SS 6
+#define GYM_WTS  7
+
+
+#define NDAYS 1000
+
+svar Mo[] = { "JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC"}
+
+<<"$Mo \n"
+
+
+
+
+
+
+
 char sep = '/'
 today = getDate(2,sep)
 
@@ -101,6 +107,10 @@ topWt = 220;
 // rates per min
 include "wex_rates"
 include "wex_types"
+
+
+
+
 
 
 N = 1000
@@ -221,7 +231,9 @@ readCCData();
 
 readData();
 
-
+include "hv.asl"
+include "graphic"
+include "gevent.asl"
 
 
 ////////////// PLOT GOAL LINE  ///////////////////////////////////////////
@@ -412,10 +424,11 @@ _DB=1;
 
    while (1) {
 
-     if ((m_num % 50) ==0) {
-        resetDebug();
-	}
-        m_num++
+     //if ((m_num % 50) ==0) {
+      //  resetDebug();
+//	}
+
+     m_num++
 
         msg =eventWait();
 <<[2]"$m_num $msg  $_ename $_ewoname\n"

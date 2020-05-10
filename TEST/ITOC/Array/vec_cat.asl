@@ -1,6 +1,21 @@
+//%*********************************************** 
+//*  @script vec_cat.asl 
+//* 
+//*  @comment test concat of vecs 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                    
+//*  @date Wed May  6 20:00:27 2020 
+//*  @cdate Wed May  6 20:00:27 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+myScript = getScript();
+//
+///
 //  test vec cat expand ops
-setdebug(1)
-CheckIn()
+
+checkIn(_dblevel)
 
 int M[]
 int N[]
@@ -17,11 +32,13 @@ int P[]
 
   P[10] = 80
 
-  P[30] = 47
 
-   CheckNum(P[30],47)
+ P[30] = 47
+  //P[31] = 93
+P->info(1)
+   checkNum(P[30],47)
   P[25] = 79
-   CheckNum(P[25],79)
+   checkNum(P[25],79)
 
 <<"$P \n"
 
@@ -32,13 +49,14 @@ int P[]
   V = M @+ P
 
 <<"$V \n"
+V->info(1)
 
- CheckNum(V[1],-1)
- CheckNum(V[11],1)
- CheckNum(V[39],0)
- CheckNum(V[40],47)
- CheckNum(V[35],79)
+ checkNum(V[1],-1)
+ checkNum(V[11],1)
+ checkNum(V[39],0)
+ checkNum(V[40],47)
+ checkNum(V[35],79)
 
- CheckOut()
+ checkOut()
 
 ///////////////////////////////
