@@ -57,10 +57,10 @@ proc swap (ptr x, ptr y)
 
 proc swapi (int x, int y)
 {
-
+<<"$_proc $x $y\n"
    t = x;
    t2 = y;
-<<"$_proc IN : %V$x $y $t\n"
+<<"$_proc IN : %V$x $y $t $t2\n"
 
 <<"%V $t  $(typeof(t))\n"
   //x = y;
@@ -111,7 +111,7 @@ proc swapR (int& x, int& y)
  checkNum(ans,7)
 
 <<"%V$k $m  ref\n"
- swap (&k, &m)
+ swapi (&k, &m)
  
 <<" %V$k $m \n"
 
@@ -121,11 +121,10 @@ proc swapR (int& x, int& y)
  checkNum(m,4)
 
 
- checkout()
 
 <<"%V$k $m  \n"
 
- swap (&k, &m)
+ swapi (&k, &m)
 
 <<" %V$k $m \n"
 

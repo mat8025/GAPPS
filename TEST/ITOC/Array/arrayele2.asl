@@ -1,10 +1,11 @@
 
-setdebug(1)
+
+checkIn(_dblevel)
 
 N=10
 
 
-proc foo(rl)
+proc Foo(float rl[])
 {
  int j1;
    j1 =2;
@@ -25,7 +26,7 @@ proc foo(rl)
 }
 //----------------------------
 
-proc fooey(rl)
+proc fooey(float rl[])
 {
 
 <<"%I$rl   $(Caz(rl))\n"
@@ -70,15 +71,7 @@ vsz = Caz(rl)
 <<" %V$j $rxm  %i$rxm\n"
 
 
-
-/{   for (i = 0; i < N/2 ; i++) {
-    rxm = Re[j];
-<<" %V$j $rxm  \n"
-    j++;
-/}   }
-
-
-//   foo(Re)
+   Foo(Re)
 
     fooey(Re)
 
@@ -86,7 +79,7 @@ sz = Caz(Re)
 
 <<"%V$sz\n"
 
-STOP!
+checkOut()
 
 
 

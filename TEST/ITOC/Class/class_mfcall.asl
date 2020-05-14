@@ -18,7 +18,7 @@ checkIn(_dblevel)
 
 
 
-Proc goo( real x)
+proc goo( real x)
 {
   a= 2* x;
 <<"$_proc %V $x $a\n";
@@ -26,15 +26,16 @@ Proc goo( real x)
 }
 
 //======================================//
-Class Scalc
+class Scalc
 {
 
  public:
+ 
   float a;
   float b;
 
 
- CMF seta (real x)
+ cmf seta (real x)
  {
 
    a= x;
@@ -44,7 +45,7 @@ Class Scalc
 
 //==========================
 
- CMF geta ()
+ cmf geta ()
  {
  <<"$_proc getting $a\n"
      return a;
@@ -52,7 +53,7 @@ Class Scalc
  //==========================
  
 
- CMF mul (int x,int y)
+ cmf mul (int x,int y)
   {
    <<"in $_proc $x $y\n";
     int z;
@@ -61,7 +62,7 @@ Class Scalc
   }
 //==========================
 /{/*
- CMF mul (double x,double y)
+ cmf mul (double x,double y)
   {
    <<"in DOUBLE $_proc $x $y\n";
    float z;
@@ -71,7 +72,7 @@ Class Scalc
   /}*/
 //==========================
 
- CMF mul (real x,real y)
+ cmf mul (real x,real y)
   {
    <<"in REAL $_proc $x $y\n";
    real z;
@@ -82,13 +83,13 @@ Class Scalc
 
 
 
- CMF set (float x, float y)
+ cmf set (float x, float y)
  {
    a= x;
    b =y;
  }
  
- CMF print ()
+ cmf print ()
  {
   <<"%V $a $b\n"
  }
@@ -97,7 +98,7 @@ Class Scalc
 
 //===============================//
 
-CMF Scalc()
+cmf Scalc()
  {
   <<"constructing Scalc \n"
   a =1
@@ -258,7 +259,7 @@ svar S;
 
 // so as yet  no overloading via prototyping --- just replaces
 
- CMF mul (int x,int y)
+ cmf mul (int x,int y)
   {
    <<"in $_proc $x $y\n";
     int z;
@@ -267,7 +268,7 @@ svar S;
   }
 //==========================
 
- CMF mul (float x,float y)
+ cmf mul (float x,float y)
   {
    <<"in $_proc $x $y\n";
    float z;

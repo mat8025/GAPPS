@@ -3,18 +3,11 @@
 ///
 
 
-include "debug"
-debugON()
-
-
-
-sdb(1,@keep,@trace)
+checkIn(_dblevel)
 
 checkMemory(1); // 1 - track memory use
 pan psum = 0;
 pan pk = 400;
-
-checkin()
                Mu= memused();
 	       svm = Mu[0];
   for (i = 1; i <= 500 ; i++) {
@@ -29,8 +22,7 @@ checkin()
       svm = Mu[0];
   }
 
-checkNum(psum,406)
+checkFnum(psum,406.0)
 
 checkOut()
 
-exit()

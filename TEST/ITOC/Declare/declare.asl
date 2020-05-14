@@ -279,6 +279,8 @@ prec=setap(20)
 
   z= p / c
 
+
+
   q = z * c 
 
 <<" $(typeof(p))  $(typeof(z)) $(typeof(q))\n"
@@ -295,18 +297,17 @@ prec=setap(20)
    pan qr
 
 <<"%V $p $q\n"
-   pr = fround(p,2)
+   pr = fround(p,0)
    qr = fround(q*1.0,2)
 
 <<" %v $pr \n"
-
 <<" %v $qr \n"
 
 
-   CheckNum(pr,qr)
+   CheckFNum(pr-1,qr,5)
 
 
-proc foo(int a)
+proc Foo(int a)
 {
 int k = 2
 <<" entered $_proc $a $k\n"
@@ -316,9 +317,9 @@ int k = 2
 
 
 A =5
-foo(A)
+Foo(A)
 A++
-foo(A)
+Foo(A)
 
 
 

@@ -3,11 +3,7 @@
 ///  --> 1/e
 
 
-setDebug(1,@~trace,@~step,@~stderr,@pline)
-
-
-//filterDebug(3,"vfree","writecb","pan_copy","set");
-filterDebug(0);
+ checkIn(_dblevel)
 
 float g;
 
@@ -42,7 +38,7 @@ pan e;
 
 <<"%V $N\n"
 
-setDebug(1,@filter,1,"vfree",@filterfile,2,"ds_svar.cpp")
+//setDebug(1,@filter,1,"vfree",@filterfile,2,"ds_svar.cpp")
 
 
 e = exp(1.0);
@@ -116,7 +112,7 @@ F = 1;
 int  j = 1;
 
 int tmp = 6;
-checkIn()
+
 double ReD = 1.0;
 double FD = 1.0;
 double ddenom;
@@ -178,6 +174,6 @@ pt = 1.0/exp(1.0);
 
 
 
-checkFnum(Re,pt,2)
+checkFnum(Re,pt,5)
 
 checkOut()

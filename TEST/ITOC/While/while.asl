@@ -3,8 +3,8 @@
 //* 
 //*  @comment test While syntax 
 //*  @release CARBON 
-//*  @vers 1.2 He Helium                                                   
-//*  @date Sat Apr 18 23:33:54 2020 
+//*  @vers 1.3 Li Lithium [asl 6.2.46 C-He-Pd]                             
+//*  @date Tue May 12 10:20:19 2020 
 //*  @cdate Sat Apr 18 21:48:17 2020 
 //*  @author Mark Terry 
 //*  @Copyright © RootMeanSquare  2010,2020 → 
@@ -15,11 +15,8 @@
 
 
 
-checkIn()
+checkIn(_dblevel)
 
-setdebug(1,@keep)
-filterFuncDebug(ALLOWALL_,"xxx");
-filterFileDebug(ALLOWALL_,"yyy");
 
 
 int k = 0
@@ -27,7 +24,7 @@ int ok =0
 <<"always trying forever \n"
 
 
-  While (1) {
+  while (1) {
 
   if (k++ > 20) {
 <<"break $k\n"
@@ -40,7 +37,7 @@ int ok =0
 
  k = 0
 
-  While (1) {  if (k >=9) {  break;  }
+  while (1) {  if (k >=9) {  break;  }
   else {
   <<"this while loop $k\n";
   k++; }
@@ -66,7 +63,7 @@ checkNum(k,10);
 k= 0;
 n = 1;
 
-  WHILE (1) {
+  while (1) {
 
    if (k >=10) {
       break;

@@ -115,3 +115,8 @@ proc_refarg.asl          1.7	Sat May  9 16:12:45 2020 tack on asl
 proc_refarg.asl          1.8	Sat May  9 16:14:19 2020 asl
 proc_refarg.asl          1.9	Sat May  9 16:15:25 2020 x
 swap.asl                 2.57	Sun May 10 12:59:32 2020 added arg types
+do.asl                   1.2	Tue May 12 09:48:00 2020 function words do,while,until have to be lower case
+while.asl                1.3	Tue May 12 10:20:19 2020 lower case while
+panarray.asl             1.3	Wed May 13 10:09:23 2020 debug,use checkFnum for pan
+caz.asl                  1.2	Thu May 14 08:32:59 2020 tidy debug
+caz.asl                  1.2	Thu May 14 08:33:38 2020 tidy

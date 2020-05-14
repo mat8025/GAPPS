@@ -3,8 +3,8 @@
 //* 
 //*  @comment test pan array create and index 
 //*  @release CARBON 
-//*  @vers 1.2 He Helium                                                   
-//*  @date Sat May  4 13:50:02 2019 
+//*  @vers 1.3 Li Lithium [asl 6.2.46 C-He-Pd]                             
+//*  @date Wed May 13 10:09:23 2020 
 //*  @cdate Sat May  4 13:50:02 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -14,17 +14,24 @@
 ///
 ///
 
-include "debug"
-debugON()
-
-
-setdebug(1,@trace,@pline)
 
 N= 10;
-   checkin()
+
+checkIn(_dblevel)
 
 pan A[10];
+
 long L[10];
+
+L->info(1)
+
+<<"$L \n"
+
+
+<<"$A\n"
+A->info(1)
+
+
 
 pan Bnum[>10];
 
@@ -87,10 +94,9 @@ pan j= 0;
 
 <<"$Bnum \n"
 
-   checkNum(Bnum[9],19)
-      checkNum(A[9],1)
+   checkFNum(Bnum[9],19.0)
+   checkFNum(A[9],1.0)
    
 
-   checkOut()
+checkOut()
 
-exit()

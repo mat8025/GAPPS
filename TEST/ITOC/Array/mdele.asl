@@ -13,7 +13,7 @@
   
 //sdb(1,@pline,@break,89)
 
-CheckIn()
+checkIn()
 
  int HT[10][10]
 
@@ -147,4 +147,6 @@ jt = 0
 
 
 
-//<<" %6.3f$HT[jt][1:8:] "	
+//<<" %6.3f$HT[jt][1:8:] "
+
+checkOut()

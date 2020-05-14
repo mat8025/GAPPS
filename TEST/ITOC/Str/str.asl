@@ -1,12 +1,21 @@
+//%*********************************************** 
+//*  @script str.asl 
+//* 
+//*  @comment test ops on str variable 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium [asl 6.2.47 C-He-Ag]                                
+//*  @date Thu May 14 09:46:53 2020 
+//*  @cdate Thu May 14 09:46:53 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+myScript = getScript();///
 ///
 ///
-///
 
 
-setdebug(0,@keep,@trace,@pline)
-
-
-checkIn()
+checkIn(_dblevel)
 
 str s = "hi there";
  
@@ -23,19 +32,13 @@ s->reverse()
 
 <<" $s \n"
 
-s[4] = 'A'; // TBF
-
 <<"%V $s \n"
-
-s[2:3]->cut() // TBF
-
-<<" $s \n"
 
 
 
 char c;
 
-c = s[3];
+c = pickc(s,3)
 
 <<"%V %c $c  $c     $s\n"
 
@@ -43,17 +46,21 @@ c = s[3];
 d= sele(s,2,3)
 
 <<"%V %c $c %d $c $d    $s\n"
-
 str name = "johndoe"
 
 
 char C[];
 
-     scpy(C,name);
+scpy(C,name);
 
 <<"%V $name \n"
+
+<<"%V %s $C \n"
+
+
 char R[]
-<<"%V $C \n"
+
+
 
    len = slen(name)
 
@@ -69,11 +76,6 @@ for (i= 0; i < len; i++)
 
 <<"%V %s $R\n"
 
-
-
-es = s[3];
-
-<<"%V $s $es\n"
 
 checkOut()
 

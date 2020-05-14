@@ -1,7 +1,7 @@
 ///
 ///
 
-checkIn()
+checkIn(_dblevel)
 
 
 M= vgen(INT_,20,0,1)
@@ -33,10 +33,35 @@ M->redimn(5,4)
 
 <<"$M[1][3]\n"
 
+checkNum(M[1][3],7)
 a= 0
-checkNum(M[a+1][n],7)
+
+b = M[1][3]
+
+<<"%V$b \n"
+
+checkNum(b,7)
+
+b=M[a][n]
+
+checkNum(b,3)
+
+<<"%V$b  $a $n $M[a][n]\n"
+a=1
+b=M[a+1][n]
+
+<<"%V$b  $(a+1) $n $M[a+1][n]\n"
+
+checkNum(M[a+1][n],11)
+
 <<"$M[a+1][n]\n"
+
+
+
 a =2
 <<"$M[a+1][n]\n"
+
 checkNum(M[a+1][n],15)
+
+
 checkOut()

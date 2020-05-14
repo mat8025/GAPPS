@@ -16,10 +16,9 @@
 
 
 
+checkIn(_dblevel)
 
-
-
-checkIn(_dblevel) // _dblevel == 1 stop - interact on fail else run until exit -- report status on checkout
+// _dblevel == 1 stop - interact on fail else run until exit -- report status on checkout
 
 
 
@@ -73,13 +72,16 @@ Data->info(1)
 <<"%V$Data \n"
 
 
-
+<<"H $H\n"
 
 Data[H[2]] = 65
 Data[H[3]] = H[9]
 Data[H[4]] = H[M[8]]
 
 <<"$Data \n"
+
+
+
 
 Data->info(1)
 
@@ -95,7 +97,9 @@ Arglist=testargs(Data[1],e,d)
 
 
 checkNum(Data[2],65)
+
 checkNum(Data[3],77)
+
 checkNum(Data[4],76)
 
 
@@ -206,6 +210,3 @@ b = 67
 
 
 checkOut()
-
-
-stop!

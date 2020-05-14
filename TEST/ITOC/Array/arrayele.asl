@@ -16,7 +16,7 @@
 checkIn (_dblevel);
 
 <<"%V $_dblevel\n"
-//query()
+//cd query()
 
 float f= 3.142;
 
@@ -105,14 +105,15 @@ proc array_sub (float rl[])
 
    jj = rl[kp];
 
-  checkFnum (jj, -2);
    <<"%V $jj $kp $rl[kp] \n";
+  checkFnum (jj, -2);
+
 
   ff= rl[kp];
   //<<"$rl \n"
   <<"%V $ff $jj $rl[kp] \n"
   
-  checkFnum (rl[kp], -2);
+  checkFnum (rl[kp], -2.0);
 
   rl->info(1)
 
@@ -207,11 +208,13 @@ checkStage()
 
 ////////////////////
 
-double Real[10];
+//double Real[10];
 
-Real = dgen (10, 0, 1);
+Real = vgen (DOUBLE_,10, 0, 1);
 
-<<"Real $Real \n";
+<<"Real %6.2f $Real \n";
+
+
 
 val = Real[3];
 
@@ -318,7 +321,7 @@ Real[j1] = Real[j1] - Real[j2];
 checkFnum (Real[j1], -2);
 
 checkFnum (Real[4], -2);
-/
+
 
 
 ////// Now inside proc -- with proc stack variables  //////////////////////////////
@@ -330,6 +333,80 @@ val = array_sub (Real2);
 
 <<"$val \n";
 
+N=10
+
+
+proc Foo(float rl[])
+{
+ int j1;
+   j1 =2;
+   float rxp;
+<<"%V$rxp  $(typeof(rxp)) %i$rxp \n"
+
+     rxp = rl[j1];
+  <<" %V$j1 $rxp  $(cab(rxp))\n"
+     rxp2 = rl[j1+1];
+  <<" %V$j1 $rxp2  $(cab(rxp2))\n"
+     j1 = 1;
+   for (i = j1; i < N ; i++) {
+     rxp = rl[j1];
+  <<" %V$j1 $rxp  $(cab(rxp))\n"
+     j1++;
+   }
+
+}
+//----------------------------
+
+proc fooey(float rl[])
+{
+
+<<"%I$rl   $(Caz(rl))\n"
+
+     rxp = rl[1]
+<<"$rxp\n"
+checkFnum(rxp,11)
+<<"%I$rl   $(Caz(rl))\n"
+    j1 = 1
+     rxp = rl[j1]
+<<"$rxp\n"
+<<"$rl\n"
+<<"%I$rl   $(Caz(rl))\n"
+
+    j2 = 2
+     rl[j2] = rl[j1]
+<<"%I$rl   $(Caz(rl))\n"
+<<"$rl\n"
+    j3 = 3
+     rl[j1] = rl[j1] + rl[j2]
+//<<"%I$rl \n"
+vsz = Caz(rl)
+<<"%V$vsz\n"
+<<"$rl\n"
+
+<<"%I$rl   $(Caz(rl))\n"
+<<"$rl\n"
+
+}
+
+  Re = fgen(10,10,1)
+<<"%i $Re\n"
+<<"$Re\n"
+   j =2;
+   rxm = Re[j];
+<<" %V$j $rxm  %i$rxm\n"
+
+   rxm = Re[j+1];
+<<" %V$j $rxm  %i$rxm\n"
+
+
+    Foo(Re)
+
+    fooey(Re)
+
+sz = Caz(Re)
+
+<<"%V$sz\n"
+checkNum(sz,10)
 
 checkOut ();
 

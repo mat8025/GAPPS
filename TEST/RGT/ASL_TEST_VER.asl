@@ -53,7 +53,7 @@ str S = "all,array,matrix,bugs,bops,vops,sops,fops,class, declare,include,exp,if
 S->cat("types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc, svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help");
 
 
-Svar Opts[] = Split(S,",");
+svar Opts[] = Split(S,",");
 
 
 //<<"$Opts \n"
@@ -1012,7 +1012,8 @@ changeDir(Testdir)
 
 if ((do_all || do_array )) {
 
-   RunDirTests("Array","ae,arraystore,arrayele,arrayele0,arrayele1,arraysubset")
+   RunDirTests("Array","ae,arraystore,arrayele,arraysubset")
+
    RunDirTests("Array","arrayrange,arraysubvec,arraysubsref,arraysubsrange,arraysubscbyvec")
    RunDirTests("Array","dynarray,lhrange,lhe,joinarray,vec_cat,vgen,array_sr,mdele,vsp,arrayindex")
 
@@ -1045,6 +1046,7 @@ if ((do_all || do_array )) {
   Run2Test("Vfill")
 
   cart("vfill")
+
 
     }
 
@@ -1269,8 +1271,8 @@ if ((do_all || do_mops )) {
    }
 
    if ((do_all || do_class )) {
-
-       RunDirTests("Class","class_mfcall,classbops,class2,classvar");
+      <<"Skipping class fpr now !\n"
+     //  RunDirTests("Class","class_mfcall,classbops,class2,classvar");
 
     }
 

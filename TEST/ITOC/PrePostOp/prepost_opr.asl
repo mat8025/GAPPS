@@ -1,8 +1,34 @@
+//%*********************************************** 
+//*  @script prepost_opr.asl 
+//* 
+//*  @comment  test a++ ++a ops 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium [asl 6.2.47 C-He-Ag]                                
+//*  @date Wed May 13 11:09:50 2020 
+//*  @cdate Wed May 13 11:09:50 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+myScript = getScript();
 
-//setdebug(1,"trace")
 
 
-checkIn()
+checkIn(_dblevel)
+
+proc Foo(int a,int b)
+{
+<<"%V$a $b\n"
+ c= a + b
+ 
+<<"sum %V$c \n"
+ return c;
+}
+
+
+//======================================//
+
+
 A= vgen(INT_,10,0,1)
 
 <<"$A\n"
@@ -114,14 +140,7 @@ checkNum(w,3)
 int Gc;
 
 
-proc foo(a,b)
-{
-<<"%V$a $b\n"
- c= a + b
- 
-<<"sum %V$c \n"
- return c;
-}
+
 
 
  k = 0
@@ -172,7 +191,7 @@ checkNum(n,4)
 
 <<"b4foo %V $k $m \n"
 
- r=foo(k++,m++)
+ r=Foo(k++,m++)
 <<"%V $k $m \n"
 
 checkNum(k,2)
@@ -184,7 +203,7 @@ checkNum(r,4)
 
 <<"b4foo %V $k $m \n"
 
- r = foo(++k,++m)
+ r = Foo(++k,++m)
 
 <<"%V $k $m $r\n"
 

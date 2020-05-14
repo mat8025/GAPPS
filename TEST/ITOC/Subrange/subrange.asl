@@ -91,9 +91,6 @@ checknum(I[31],80)
 checkStage("subrange")
 
 
-
-
-
 int L[24];
 
 checkNum(L[0],0)
@@ -122,7 +119,6 @@ checkNum(L[5],1)
 checkNum(L[8],1)
 
 proc Hey(int V[])
-//proc Hey(V)
 {
 <<"\nIN V: $V\n"
 

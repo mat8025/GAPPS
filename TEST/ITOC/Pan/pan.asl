@@ -11,25 +11,26 @@
 //* 
 //***********************************************%
 
-include "debug.asl"
+//include "debug.asl"
 
-debugON()
+//debugON()
 
-include "consts.asl"
+//include "consts.asl"
 
-consts();
+//consts();
 
-setdebug(1,@pline,@~steponerror,@trace,@~step)
 
 setap(100);    // set precision to 100? decimal places
 
 // FIX pan N  = GetArgN()
 
 
-checkIn();
+checkIn(_dblevel);
+
+
 x = 2.1234567
 pan N = x;
-pan M = 4.0;
+pan M = 4.00;
 
 pan c= 300000000.0;
 pan a = 1.0/c;
@@ -69,11 +70,13 @@ checkFNum(Q,(x*4.0),pan_prec);
  R = Q/N;
 
 <<"%V%p$Q\n"
+<<"%V$Q\n"
+<<"%V$N\n"
 <<"%V$R\n"
 <<"%V$M\n"
 
 //checkFNum(R,M,pan_prec);
- r= fround(R);
+ r= fround(R,2);
 
 <<"%V$r\n"
 checkFNum(r,M,2);
@@ -92,13 +95,13 @@ checkFNum(r,M,2);
 
  k = 3;
 <<"$k\n" 
- checkNum(k,3)
+ checkFNum(k,3)
  k= k +1;
 <<"$k\n" 
- checkNum(k,4)
+ checkFNum(k,4)
  k++;
 <<"$k\n" 
- checkNum(k,5)
+ checkFNum(k,5)
 
 
 <<"%V $pan_prec \n"

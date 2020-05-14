@@ -16,11 +16,12 @@
 
 
 ///   pan += +  xic ?
-include "debug"
-debugON()
+//include "debug"
+//debugON()
 
+  checkIn(_dblevel)
 
-proc foo()
+proc Foo()
 {
 
   for (i= 0; i < 3 ; i++) {
@@ -76,12 +77,13 @@ proc goo()
 
 }
 
-  checkIn()
+
 
 pan Start = 100;
 pan Step = 10;
 
-  checkNum(Step,10);
+  checkFNum(Step,10.0);
+
 
 pan pend;
 
@@ -102,7 +104,7 @@ pan pend;
 
 <<"%V $pend  $pendB\n"
 
-  checkNum(pend,pendB)
+  checkFNum(pend,pendB)
 
   for (i= 0; i < 3 ; i++) {
 
@@ -112,7 +114,7 @@ pan pend;
 
   }
 
-  checkNum(pend,140)
+  checkFNum(pend,140.0)
 
   for (i= 0; i < 3 ; i++) {
 
@@ -122,12 +124,11 @@ pan pend;
 
   }
 
-  checkNum(pend,170)
+  checkFNum(pend,170.0)
 
-  foo()
+  Foo()
 
   goo()
 
 
   checkOut()
-exit()

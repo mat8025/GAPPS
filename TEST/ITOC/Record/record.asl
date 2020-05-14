@@ -1,5 +1,5 @@
 ///
-///  Records
+///  Record
 ///
 ///
 
@@ -7,11 +7,7 @@
 
 // test record type
 // each record is an Svar
-
-SetDebug(1,@~trace,@keep,@pline)
-
-
-CheckIn()
+checkIn(_dblevel)
 
 
 Record DF[10];

@@ -3,8 +3,8 @@
 //* 
 //*  @comment test Caz func 
 //*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                 
-//*  @date Tue Mar 12 07:50:33 2019 
+//*  @vers 1.2 He Helium [asl 6.2.47 C-He-Ag]                              
+//*  @date Thu May 14 08:33:38 2020 
 //*  @cdate Tue Mar 12 07:50:33 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -13,15 +13,11 @@
 
 
 
-include "debug.asl"
-debugON()
-
-SetDebug(1,@trace,@keep,@pline)
 
 <<"hey buddy move on up\n"
 <<"$_clarg[0] $_clarg[1] \n"
 
-checkIn();
+checkIn(_dblevel);
 
 int D[5];
 
@@ -33,11 +29,23 @@ int d;
 
 d = 79;
 
+d->info(1)
+
+<<"$d $(typeof(d))\n"
+
+
+
 <<" $d scalar $(Sizeof(d))\n"
+
+<<"array size of $d $(typeof(d))   \n"
 
 asz= Csz(&d)
 
+//d->Info(1)
+
 <<"array size of $d $(typeof(d))  is: $asz \n"
+
+
 
 nd = Cnd(&d)
 <<"number of dimensions are: $nd \n"
@@ -64,8 +72,6 @@ ab = Cab(&D)
 <<"bounds are: $ab \n"
 checkNum(ab,5)
 
-checkOut()
-exit()
 
 ////////////////////////////////
 
@@ -158,9 +164,9 @@ ab = Cab(B)
 
 checkOut()
 
-exit()
 
-/{
+/{/*
+
 
  int C[3][3][3] = { { {0,1,2}, {3,4,5}, {6,7,8} },
                     { {9,10,11}, {12,13,14}, {15,16,17} },
@@ -200,4 +206,4 @@ ab = Cab(B)
  d= Cab(B)
 
 <<"%V $d \n"
-/}
+/}*/

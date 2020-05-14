@@ -391,3 +391,8 @@ ds_types.cpp	 1.83	 Fri May  8 10:30:32 2020 added real
 rdp_token.cpp	 1.70	 Fri May  8 16:20:57 2020 SIV_FIND
 ds_sivarray.cpp	 2.72	 Sat May  9 20:54:30 2020 make freeAop OFF after 
 rdp_token.cpp	 1.71	 Sun May 10 12:35:30 2020 ptr++/-- not if proc_ARG_REF
+dbug.cpp	 1.48	 Sun May 10 23:07:32 2020 set max_IC_errors
+engine_e.cpp	 2.17	 Sun May 10 23:08:43 2020 test max_IC_errors
+hop_e.cpp	 2.46	 Tue May 12 09:42:28 2020 no more mixed case function words (for,float,svar)
+ic_push.cpp	 1.62	 Tue May 12 19:22:19 2020 neg ele --> size + ele
+storetype_e.cpp	 2.57	 Thu May 14 08:28:08 2020 PROC_ARG_REF guard

@@ -22,15 +22,17 @@
 myscript = getScript();
 
 include "debug.asl"
-
+include "hv.asl"
 //setDebug(1,@keep,@~pline);
 
   scriptDBOFF();
 
+setmaxcodeerrors(-1); // just keep going
+setmaxicerrors(-1);
 
+_DB =1;
 
-
-<<[_DB]"%V$vers $ele_vers\n"
+//<<[_DB]"%V$vers $ele_vers\n"
 
 
 //#define DBPR  ~!
@@ -185,7 +187,7 @@ RX=readrecord(A,@del,-1)
 
 Nrecs = Caz(RX);
 
-<<[_DB]"%V RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n"
+<<"%V $Nrecs RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n"
 
 
 
@@ -231,9 +233,7 @@ readCCData();
 
 readData();
 
-include "hv.asl"
-include "graphic"
-include "gevent.asl"
+
 
 
 ////////////// PLOT GOAL LINE  ///////////////////////////////////////////
@@ -276,9 +276,13 @@ include "wex_foodlog"
 
 //         first_k = ty_gsday
 
-         first_k = 220
+      //   first_k = 220
 
-         end_k = first_k + 90;
+/{/*
+first_k = 0
+
+//         end_k = first_k + 90;
+         end_k = first_k + 30;
 
          last_wt = last_known_wt
 
@@ -307,7 +311,6 @@ include "wex_foodlog"
 
           if (CALBURN[k] > 0.0) {
               cal_out = CALBURN[k]
-//              cal_in = day_burn - 200
               last_cal_out = cal_out
               cal_out_strike = 0
           }
@@ -322,14 +325,6 @@ include "wex_foodlog"
 
               cal_out_strike++
           }
-/{
-          if (CALCON[k] > 0.0) {
-              cal_in = CALCON[k]
-              last_cal_in = cal_in
-              cal_in_strike = 0
-          }
-/}
-//         else {
 
               if (cal_in_strike < strike_n) {
                 cal_in = last_cal_in
@@ -338,8 +333,6 @@ include "wex_foodlog"
                cal_in = day_burn 
               }
               cal_in_strike++
-              //CALCON[k] = cal_in  // make it the estimate
-//          }
 
           calc_wtg = (cal_in - cal_out) / 4000.0
 
@@ -347,9 +340,12 @@ include "wex_foodlog"
 
           PWTVEC[k] = last_wt
 
-    //   <<[_DB]"day $k $PWTVEC[k] $CALCON[k] $CALBURN[k]\n"
-
+     <<"day $k %V $PWTVEC[k] $CALSCON[k] $CALBURN[k]\n"
+    // PWTVEC->info(1)
+    CALSCON->info(1)
         }
+
+/}*/
 /////////////////////////////////////////////////////////////////////
 
 
@@ -363,6 +359,11 @@ include "wex_foodlog"
 //////////////////// DISPLAY /////////////////////////////
 
 
+include "gevent"
+
+<<"%V $_eloop\n"
+
+include "graphic"
 
 msg ="x y z"     // event vars
 msgw =split(msg)
@@ -422,7 +423,9 @@ _DB=1;
 
     sWo(tw_wo,@move,targetday,NextGoalWt,gwo,@redraw));
 
-   while (1) {
+<<"%V $_eloop\n"
+
+while (1) {
 
      //if ((m_num % 50) ==0) {
       //  resetDebug();

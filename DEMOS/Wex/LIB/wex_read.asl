@@ -11,9 +11,7 @@
 //* 
 //***********************************************%
 
-
-
-
+_DB = 1;
 
 last_known_wt = 205;
 last_known_day = 0;
@@ -94,8 +92,11 @@ proc fillInObsVec()
 //<<[_DB]"$k $EXTV[Nobs] $walk $run \n"
 
   if (wday > yday) {
-      tot_exetime += EXTV[Nobs]
-    }
+      //tot_exetime += EXTV[Nobs]
+      
+      tot_exetime = tot_exetime + EXTV[Nobs]
+<<"%V $tot_exetime  $Nobs $ $EXTV[Nobs] \n"
+   }
 
    SEVEC[Nobs] =  wex
    BPVEC[Nobs] =  atof(col[j++])
@@ -128,7 +129,7 @@ proc fillInObsVec()
 
    CALBURN[Nobs] =  wrk_sleep + exer_burn
 
- //<<[_DB]"$kd $(Nobs+1) $day %6.1f $WTVEC[Nobs] $exer_burn $wrk_sleep $CALBURN[Nobs] $CARBV[Nobs]\n"
+ <<[_DB]"$kd $(Nobs+1) $day %6.1f $WTVEC[Nobs] $exer_burn $wrk_sleep $CALBURN[Nobs] $CARBV[Nobs]\n"
       Nobs++;
       }
    }

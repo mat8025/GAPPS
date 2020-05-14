@@ -1,8 +1,10 @@
 
+
 # test ASL function sscan
 
-CheckIn()
-//setdebug(0,"step")
+checkIn(_dblevel)
+
+
 str s = "hey baby you got the love I need" 
 w = "life full of dreams"
 
@@ -18,9 +20,10 @@ str g
 
 str s1
 
-na=sscan("3.1 4 hey ","\%f \%d \%s",&f,&k,&g)
+na=sscan("3.1 47 hey ","\%f \%d \%s",&f,&k,&g)
+
 <<"$na %V$f $k $g\n"
-<<"%I $f $k $g\n"
+<<"%V $f $k $g\n"
 
 
 
@@ -37,33 +40,30 @@ na = sscan("4.5 2 hey baby",'%f %d %s %s',&f,&k,&g,&s1)
 
 
 
-CheckNum(na,4)
+checkNum(na,4)
 
-CheckFNum(f,4.5,6)
+checkFNum(f,4.5,6)
 
-CheckNum(k,2)
+checkNum(k,2)
 
-<<"%I$s1   $g \n"
+<<"%V  $s1   $g \n"
 
-CheckStr(s1,"baby")
+checkStr(s1,"baby")
 
-CheckStr(g,"hey")
+checkStr(g,"hey")
 
-<<"%I $s1   $g \n"
+<<"%V $s1   $g \n"
 
-CheckStr(s1,"baby")
+checkStr(s1,"baby")
 
-<<"%I $s1   $g \n"
-
-
-//CheckOut()
+<<"%V $s1   $g \n"
 
 
 
 s= "3 1 4:hey baby you got the love I need"
 
 sscan("3 1",'%f %d',&f,&k)
-<<"%I $f $k \n"
+<<"%V $f $k \n"
 
 str lv
 str lw
@@ -71,18 +71,18 @@ str lx
 //sscan(s,"\%f \%d",f,k)
 
 
-<<"%I $f $k \n"
+<<"%V $f $k \n"
 sscan(s,"\%f \%d \%s",&f,&k,&g)
 
-<<"%I $f $k $g\n"
+<<"%V $f $k $g\n"
 
 sscan(s,'%f %d %d :%s %s',&f,&k,&j,&g)
 //sscan(s,"\%f \%d \%d :\%s \%s",&f,&k,&j,&g,&s1)
 
-<<"%I $f $k $j $g\n"
+<<"%V $f $k $j $g\n"
 
 
-<<"%I $s \n"
+<<"%V $s \n"
 
 na = sscan(s,'%f %d %d %s %s %s %* %s',&f,&j,&k,s1,lv,lw,lx)
 
@@ -99,9 +99,9 @@ s1= " bright"
 news = scat(g,s1)
 <<"%V$news $g $s1\n"
 
-CheckStr(news,"star bright")
+checkStr(news,"star bright")
 
 
-CheckOut()
+checkOut()
 
 

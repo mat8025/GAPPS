@@ -41,6 +41,29 @@ int n1 = 1;
 
 
 
+   n1 += 2
+
+checkNum(n1,5)
+
+
+   n1 -= 2
+
+checkNum(n1,3)
+
+
+  n1 *= 2
+
+checkNum(n1,6)
+
+
+  n1 /= 2
+
+checkNum(n1,3)
+
+
+
+
+
 
 
 float fn=2.71828;
