@@ -1,6 +1,19 @@
+//%*********************************************** 
+//*  @script mih.asl 
+//* 
+//*  @comment test ineritance 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium [asl 6.2.48 C-He-Cd]                                
+//*  @date Tue May 19 07:30:42 2020 
+//*  @cdate 1/1/2003 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+myScript = getScript();
 # test  multiple inheritance
 
-CheckIn()
+checkIn()
 
 class building {
 
@@ -8,33 +21,33 @@ class building {
  int floors
  int area
 
- CMF setrooms(val)
+ cmf setrooms(int val)
  {
    rooms = val
  }
 
- CMF getrooms()
+ cmf getrooms()
  {
    return rooms 
  }
 
- CMF setfloors(val)
+ cmf setfloors(int val)
  {
    floors = val
  }
 
- CMF getfloors(val)
+ cmf getfloors()
  {
    return floors
  }
 
- CMF print()
+ cmf print()
  {
    <<"$_cobj has %V $rooms $floors\n"
  }
 
 
- CMF building()
+ cmf building()
  {
   <<"$_cobj constructor \n"
   floors = 2
@@ -56,31 +69,31 @@ class A {
 
  int x;
 
- CMF setval(val)
+ cmf setval(int val)
  {
    x = val
  }
 
- CMF getval()
+ cmf getval()
  {
    return x 
  }
 
 
- CMF print()
+ cmf print()
  {
    <<"$_cobj has %V $x\n"
  }
 
 
- CMF A()
+ cmf A()
  {
   <<"$_cobj constructor \n"
    x = 4
  }
 
 }
-
+//======================================//
 <<" finished class A  \n"
 
 
@@ -88,31 +101,31 @@ class B {
 
  int y
 
- CMF setval(val)
+ cmf setval(int val)
  {
    y = val
  }
 
- CMF getval()
+ cmf getval()
  {
    return y 
  }
 
 
- CMF print()
+ cmf print()
  {
    <<"$_cobj has %V $y\n"
  }
 
 
- CMF B()
+ cmf B()
  {
   <<"$_cobj constructor \n"
    y = 4
  }
 
 }
-
+//======================================//
 
 <<" finished class B  \n"
 
@@ -121,21 +134,21 @@ class C : A : B {
 
   int z;
 
- CMF print()
+ cmf print()
  {
   <<"$_cobj has %V $x $y $z\n"
 
  }
 
 
- CMF C()
+ cmf C()
  {
    <<"$_proc  constructor \n"
    z = 3
  }
 
 }
-
+//======================================//
 <<" finished class C  \n"
 
   A a ;
@@ -159,11 +172,12 @@ class C : A : B {
 
   v = c->getval()
 
-  CheckNum(c->y,56)
-  CheckNum(v,77)
+  checkNum(c->y,56)
 
-   CheckOut()
+  checkNum(v,77)
 
-//STOP("DONE!\n")
+  checkOut()
+
+
 
 

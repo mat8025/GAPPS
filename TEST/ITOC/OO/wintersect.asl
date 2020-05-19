@@ -11,12 +11,12 @@
 //* 
 //***********************************************%
 
+    checkIn(_dblevel);
 
 
 
 
-
-proc wintersect(Rect vpA,Rect vpB)
+proc wintersect(Rect vpA, Rect vpB)
 {
 
   overlap = 1;
@@ -45,7 +45,7 @@ vpA->print()
 // TBF  bug global X overshadows the local class X
 // TBF  xic proc class arg fails
 
-Class Rect
+class Rect
 {
 
  public:
@@ -55,11 +55,12 @@ Class Rect
   int Y;
   int rwid;
 
-  CMF setWid(id)
+  cmf setWid(int id)
   {
        rwid = id;
   }
-  CMF set(xi,yi,Xi,Yi)
+  
+  cmf set(int xi,int yi,int Xi,int Yi)
   {
     x=xi;
     y=yi;
@@ -67,7 +68,7 @@ Class Rect
     Y=Yi;    
   }
 
-  CMF print()
+  cmf print()
   {
 
    <<"Rect:$rwid %V $x $y $X $Y \n"
@@ -75,7 +76,7 @@ Class Rect
   }
 
   // same name as class - is the construtor
-  CMF Rect()
+  cmf Rect()
   {
    x= -1;
    X= -1;
@@ -105,10 +106,12 @@ vpR3->print()
 vp2c=1
 vp3c=0;
 
+//======================================//
 
 proc chkWin()
 {
-coveredbyB = 1;
+
+         coveredbyB = 1;
 
           if (vpR2->x > vpR3->X) {
   <<"NWI x>X $vpR2->x > $vpR3->X \n"
@@ -173,7 +176,7 @@ vpR3->print()
 }
 
 //=================================//
-    checkIn();
+
     is_ovl = chkWin();
 
     ok=checkTrue(is_ovl)

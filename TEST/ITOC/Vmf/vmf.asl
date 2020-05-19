@@ -11,19 +11,10 @@
 //* 
 //***********************************************%
 
-include "debug"
+checkIn(_dblevel)
 
-filterfuncdebug(ALLOWALL_,"xxx");
-
-filterfiledebug(ALLOWALL_,"proc_","args_","scope_","class_");
-
-setdebug(1,@pline,@trace)
-
-//  all or some ?
-
-
-CheckIn()
-
+setmaxICerrors(-1);
+setmaxcodeerrors(-1);
 
 int do_all = 1;
 int do_cut = 0;
@@ -134,27 +125,46 @@ S->Dewhite() - dewhites a string
 S[a:b]->Dewhite()
 would dewhite a range of an array of strings - where S is an array 
 /}*/
+svar SV;
+
+SV[0] = "hey now"
+SV[1] = "dog barking"
+
+<<"$SV\n"
+
+SV->info(1)
 
 
 
 svar  T = "123 456   789  "
+
+
+
+
+
 T[1] = T[0]
 T[2] = T[1]
+
+T->info(1)
+//query()
 
 for (i=3;i<=10;i++) {
 T[i] = T[0]
 }
 
-
+T->info(1)
 <<"%(1,,,\n)$T \n"
 
 
 T[2]->dewhite()
-
+T->info(1)
 ns="123 456   789  ";
 
+<<"$T[2]\n"
 checkstr(T[2],"123456789")
 checkstr(T[0],ns)
+
+
 
 checkstr(T[0],"123 456   789  ")
 
@@ -272,7 +282,9 @@ V->SubStitute(this_str,with_str)
 
 
 
-svar  TS = "123456789"
+//svar  TS = "123456789"
+svar  TS;
+TS= "123456789"
 
 for (i=1;i<=10;i++) {
 TS[i] = TS[0]
@@ -418,7 +430,11 @@ would prune from head of string until required length
 /}*/
 
 
-svar  TP = "123456789"
+//svar  TP = "123456789"
+svar  TP;
+TP= "123456789"
+
+
 TP[1] = TP[0]
 TP[2] = TP[1]
 for (i=3;i<=10;i++) {
@@ -437,11 +453,11 @@ TP[2]->Prune(3)
 checkstr(TP[2],"789")
 
 <<"%(1,,,\n)$TP \n"
-
+TP->info(1)
 TP[4:6]->Prune(-5)
 
 <<"%(1,,,\n)$TP \n"
-
+//exit()
 checkstr(TP[4],"12345")
 checkstr(TP[5],"12345")
 checkstr(TP[6],"12345")
@@ -846,7 +862,4 @@ checkStage("caz")
 
 checkOut()
 
-
-
-checkStage("xxx")
 

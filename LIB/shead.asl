@@ -190,7 +190,7 @@ if (found_vers) {
    <<[A]"//*  @Copyright © RootMeanSquare  2010,$(date(8)) → \n"           
    <<[A]"//* \n"   
    <<[A]"//***********************************************%%\n"
-   <<[A]"myScript = getScript();"
+   <<[A]"myScript = getScript();\n"
 fflush(A)
 
    for (i = 0; i < tsz; i++) {

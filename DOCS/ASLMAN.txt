@@ -2265,8 +2265,8 @@ Caz
 .)x 
 .FD
 
-Caz(A) of Caz(&A)
-returns current size (number of elements) where A is an  vectoror matrix
+Caz(A) 
+returns current size (number of elements) where A is an  vector matrix
 
 Caz(&i) 
 would return 0  when i is a scalar.
@@ -6597,6 +6597,30 @@ err=geterrors()
 returns the number of errors so far to a two element array
 err[0] = N_error ---- number of errors occurred in processing functions
 err[1] = N_cerror ---- number of code errors occurred in script  user (and parsing errors)
+
+.EF
+=============================================================
+.BF
+setmaxcodeerrors()
+.(x
+setmaxcodeerrors()
+.)x 
+.FD
+setmaxcodeerrors(N)
+set the number of detected code errors allowed before exit
+set to -1 - nolimit.
+
+.EF
+=============================================================
+.BF
+setmaxicerrors()
+.(x
+setmaxICerrors()
+.)x 
+.FD
+setmaxICerrors(N)
+set the number of detected internediate code errors allowed before exit
+set to -1 - nolimit.
 
 .EF
 =============================================================

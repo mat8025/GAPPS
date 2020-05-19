@@ -1,6 +1,18 @@
-# test  inheritance
+//%*********************************************** 
+//*  @script sh.asl 
+//* 
+//*  @comment test inheritance 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium [asl 6.2.48 C-He-Cd]                                
+//*  @date Tue May 19 07:46:56 2020 
+//*  @cdate 1/1/2003 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+myScript = getScript();
 
-checkIn()
+checkIn(_dblevel)
 
 class building {
 
@@ -8,35 +20,35 @@ class building {
  int floors
  int area
 
- CMF setrooms(int val)
+ cmf setrooms(int val)
  {
    rooms = val
  }
 
- CMF getrooms()
+ cmf getrooms()
  {
    return rooms 
  }
 
- CMF setfloors(int val)
+ cmf setfloors(int val)
  {
    floors = val
  }
 
- CMF getfloors(val)
+ cmf getfloors(val)
  {
  <<" in getfloors \n"
    return floors
 
  }
 
- CMF print()
+ cmf print()
  {
    <<"$_cobj has %V $rooms $floors\n"
  }
 
 
- CMF building()
+ cmf building()
  {
   <<"$_proc constructor \n"
   floors = 2
@@ -54,18 +66,18 @@ class house : building {
   int bedrooms;
   int baths
 
- CMF setbaths(val)
+ cmf setbaths(val)
  {
    baths = val
  }
 
- CMF getbaths()
+ cmf getbaths()
  {
    return baths
  }
 
 
- CMF print()
+ cmf print()
  {
   
   rr = getrooms()
@@ -76,7 +88,7 @@ class house : building {
  }
 
 
- CMF house()
+ cmf house()
  {
    <<"$_proc  constructor \n"
    bedrooms = 1
@@ -93,24 +105,24 @@ class room : house {
 
   int chairs;
 
- CMF setchairs(val)
+ cmf setchairs(val)
  {
    chairs = val
  }
 
- CMF getchairs()
+ cmf getchairs()
  {
    return chairs
  }
 
- CMF room()
+ cmf room()
  {
   <<" $_proc CONS \n"
   chairs = 2
  }
 
 }
-
+//======================================//
 <<" finished class def room \n"
 
    building b

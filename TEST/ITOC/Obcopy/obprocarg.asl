@@ -3,31 +3,25 @@
 //* 
 //*  @comment test obj proc arg 
 //*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                 
-//*  @date Sun Mar  3 12:35:39 2019 
+//*  @vers 1.2 He Helium [asl 6.2.48 C-He-Cd]                              
+//*  @date Tue May 19 08:08:04 2020 
 //*  @cdate 1/1/2003 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-/
 
 // want to show that can use  obj name and &obj as an arg
 // to deliver ptr to that object to a script procedure
 
-include "debug.asl"
-
-debugON();
 
 
-//#define ASK ans=iread();
-#define ASK ;
 
-Checkin()
+checkIn(_dblevel)
 
 int Nfruits = 0;
 
-Class fruit  {
+class fruit  {
 
 #  variable list
 
@@ -50,39 +44,39 @@ Class fruit  {
 #  method list
 
 
-   CMF print () {
+   cmf print () {
  <<" %V $id $color $x\n $y\n $z\n edible $(Yorn(edible))  \n"
    }
 
 
-   CMF set_y (val) {
+   cmf set_y (int val) {
    <<" setting y to $val \n"
        y = val;
    }
 
-   CMF get_x() {
+   cmf get_x() {
        <<" $_proc returning  $x \n"
       return y;
    }
 
-   CMF get_y() {
+   cmf get_y() {
        <<" $_proc returning  $y \n"
       return y;
    }
 
 
-   CMF set_color (val) {
+   cmf set_color (int val) {
        color = val
    }
 
-   CMF isEdible (e) {
+   cmf isEdible (int e) {
        edible = e;
    }
 
 
 // constructor
 
-  CMF fruit()
+  cmf fruit()
     {
 
 <<" doing constructor for %v $_cobj \n"
@@ -104,9 +98,6 @@ Class fruit  {
 <<" after class definition !\n"
 
  /////
-
-
-ASK
 
 
 proc eat( fruit oba)
@@ -149,7 +140,7 @@ proc objcopy(fruit oba,  fruit obb)
    int k = 47;
    float d = exp(1);
  <<"$k $d\n";
- ASK
+
 
     oba->x = obb->x;
 
@@ -161,7 +152,7 @@ proc objcopy(fruit oba,  fruit obb)
 ///
 
 <<" IN MAIN\n"
-ASK
+
 
 # object declaration
 
@@ -172,7 +163,7 @@ ASK
 <<"$(examine(apple))\n"
 
 
-ASK
+
 
 # set some object memebers
 
@@ -196,7 +187,7 @@ ASK
   eat(apple);
 
 
-ASK
+
 
  fruit cherry
 
@@ -266,10 +257,10 @@ ASK
 <<"$(examine(&apple))\n"
 <<"$(examine(orange))\n"
 <<"$(examine(&orange))\n"
-ASK
 
 
-  objcopy( &orange, &apple)
+
+   objcopy( &orange, &apple)
   
    eat(&apple);
 
@@ -328,12 +319,12 @@ ASK
    cherry->print()
    orange->print()
    
-   Checkout()
+   checkOut()
 
 /{/*
   TBD:
 
-     CMF key word -- should be redundant inside of class
+     cmf key word -- should be redundant inside of class
      need to be able to do
      int getX();
      for both proc and cmf

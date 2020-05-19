@@ -44,11 +44,6 @@ wasl = "asl"
 
 
 
-
-//filterFuncDebug(ALLOWALL_,"proc");
-//filterFileDebug(ALLOWALL_,"ic_op");
-
-
 str S = "all,array,matrix,bugs,bops,vops,sops,fops,class, declare,include,exp,if,logic,for,do,paraex,proc,switch,"
 S->cat("types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc, svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help");
 
@@ -1055,10 +1050,7 @@ if ((do_all || do_array )) {
 
  if ((do_all || do_matrix )) {
  
-   Run2Test("Mdimn")
-
-   cart("mdimn0")
-
+   RunDirTests("Mdimn","mdimn")
 
 
    RunDirTests("Matrix","mat_mul,msquare,mdiag");
@@ -1209,7 +1201,7 @@ if ((do_all || do_mops )) {
 
   if ((do_all || do_record )) {
 
-    RunDirTests("Record","rec1,record,readrecord,prtrecord,recprt,recatof,reclhs,rectest,mdrecord,rrdyn");
+    RunDirTests("Record","record,readrecord,prtrecord,recprt,recatof,reclhs,rectest,mdrecord,rrdyn");
 
 
   }
@@ -1219,7 +1211,6 @@ if ((do_all || do_mops )) {
  if ((do_all || do_mops )) {
  
     Run2Test("Math")
-
     cart ("inewton")
     cart ("inewton_cbrt")
     cart ("opxeq")
@@ -1271,27 +1262,20 @@ if ((do_all || do_mops )) {
    }
 
    if ((do_all || do_class )) {
-      <<"Skipping class fpr now !\n"
-     //  RunDirTests("Class","class_mfcall,classbops,class2,classvar");
+
+        RunDirTests("Class","class_mfcall,classbops,class2,classvar");
 
     }
 
-//rdb()
+
 
    if ((do_all || do_oo )) {
 
     RunDirTests("OO","rpS,rp2,wintersect,oa,oa2,sh,class_array");
 
-    Run2Test("Obcopy")
+    RunDirTests("Obcopy","obcopy,obprocarg");
 
-  cart("obcopy")
-  cart("obprocarg")
-
-    //  cart("objivar")
-
-  Run2Test("Mih")
-
-  cart("mih")
+    RunDirTests("Mih","mih")
 
   }
 
@@ -1312,8 +1296,7 @@ if ((do_all || do_mops )) {
 
 /// chem    -- find an atomic number for an element
 
-    Run2Test("Chem")
-    cart("chem0")
+    RunDirTests("Chem","chem0")
 
     RunDirTests("Packb","packb,packalot");
     

@@ -120,3 +120,7 @@ while.asl                1.3	Tue May 12 10:20:19 2020 lower case while
 panarray.asl             1.3	Wed May 13 10:09:23 2020 debug,use checkFnum for pan
 caz.asl                  1.2	Thu May 14 08:32:59 2020 tidy debug
 caz.asl                  1.2	Thu May 14 08:33:38 2020 tidy
+pan.asl                  1.3	Fri May 15 23:25:45 2020 fround/Roundup check
+oa.asl                   1.2	Tue May 19 07:06:21 2020 more tests
+rpS.asl                  1.3	Tue May 19 07:41:22 2020 CMF-->cmf
+obprocarg.asl            1.2	Tue May 19 08:08:04 2020 CMF->cmf

@@ -1,3 +1,15 @@
+//%*********************************************** 
+//*  @script record.asl 
+//* 
+//*  @comment test recA=rec5 use 
+//*  @release CARBON 
+//*  @vers 1.36 Kr Krypton                                                
+//*  @date Sat Jan 19 06:45:00 2019 
+//*  @cdate 1/1/2007 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 ///
 ///  Record
 ///
@@ -10,6 +22,188 @@
 checkIn(_dblevel)
 
 
+  Record R[>4];
+
+
+  Nrecs = Caz(R);
+  Ncols = Caz(R,1);
+
+<<"num of records $Nrecs  num cols $Ncols\n";
+
+recinfo = info(R);
+<<"$recinfo \n"
+
+
+ R[0] = Split("80,1,2,3,40,5,6,7,8,9",',');
+ R[1] = Split("82,5,4,3,40,5,6,7,8,9",',');
+ R[2] = Split("83,7,6,5,40,5,6,7,8,9",',');
+ R[3] = Split("84,8,7,6,40,5,6,7,8,9",',');
+ R[4] = Split("85,9,8,7,40,5,6,7,8,47",',');
+ R[6] = Split("87,9,8,7,40,5,6,7,8,79",',');
+
+
+<<" $R[::] \n"
+
+
+  Nrecs = Caz(R);
+  Ncols = Caz(R,1);
+
+<<"num of records $Nrecs  num cols $Ncols\n";
+
+ recinfo = info(R);
+ <<"$recinfo \n"
+
+
+
+
+<<"%V$R[0]\n"
+
+<<"%V$R[0][2]\n"
+<<"%V$R[0][4]\n"
+
+
+int ival = atoi(R[0][2]);
+sz  = csz(ival)
+<<"ival $ival  bounds $(Cab(ival)) sz   $(csz(ival))\n"
+checkNum(sz,0)
+checkNum(ival,2)
+
+
+//=============================
+ R[5] = R[1];
+
+<<"%V$R[5]\n"
+<<"%V$R[5][2]\n"
+fval = atoi(R[1][2]);
+ival = atoi(R[5][2]);
+ival->info(1)
+checkNum(ival,fval)
+
+
+<<"%V$R[3]\n"
+R[3][3]=R[2][3]
+<<"%V$R[3]\n"
+
+<<"%V$R[2][3]\n"
+<<"%V$R[3][3]\n"
+
+fval = atoi(R[2][3]);
+ival = atoi(R[3][3]);
+
+checkNum(ival,fval)
+
+
+
+ R[2] = R[0];
+
+<<"%V$R[2]\n"
+
+<<"%V$R[2][2]\n"
+
+  sz = Caz(R);
+  <<"%V$sz\n"
+
+ival = atoi(R[2][2]);
+sz  = csz(ival)
+<<"ival $ival  bounds $(Cab(ival)) sz   $(csz(ival))\n"
+
+checkNum(sz,0)
+checkNum(ival,2)
+
+<<"%V$R[2][4]\n"
+
+ival = atoi(R[2][4]);
+
+
+pval = ptan("Zr");
+
+<<"%V $pval \n"
+checkNum(ival,pval)
+checkNum(ival,ptan("Zr"))
+
+<<" $R[::] \n"
+
+deleteRows(R,2,4)
+
+<<" $R[::] \n"
+
+deleteRows(R,1,-1)
+
+<<" $R[::] \n"
+
+
+recinfo = info(R);
+<<"$recinfo \n"
+
+ R[1] = Split("82,5,4,3,40,5,6,7,8,29",",");
+ R[2] = Split("83,7,6,5,40,5,6,7,8,30",",");
+ R[3] = Split("84,8,7,6,40,5,6,7,8,31",",");
+ R[4] = Split("85,9,8,7,40,5,6,7,8,32",",");
+ R[6] = Split("87,9,8,7,40,5,6,7,8,33",",");
+
+<<" $R[::] \n"
+
+deleteRows(R,1,-1)
+
+recinfo = info(R);
+<<"$recinfo \n"
+
+<<" $R[::] \n"
+
+ R[1] = Split("82,5,4,3,40,5,6,7,Sn,50",",");
+ R[2] = Split("83,7,6,5,40,5,6,7,Sb,51",",");
+ R[3] = Split("84,8,7,6,40,5,6,7,Te,52",",");
+  R[7] = Split("84,8,7,6,40,5,6,7,I,53",",");
+
+<<" $R[::] \n"
+
+recinfo = info(R);
+<<"$recinfo \n"
+
+
+
+
+//////////////////////////////////////////
+
+
+ R[1] = Split("10,12,23,34,45,56,67,78,89,90",",");
+
+<<"%V$R[1]\n"
+<<"%V$R[1][4]\n"
+
+ival = atoi(R[1][4]);
+sz  = csz(ival)
+<<"ival $ival  bounds $(Cab(ival)) sz   $(csz(ival))\n"
+
+checkNum(sz,0)
+checkNum(ival,45)
+
+ival = atoi(R[1][5]);
+checkNum(ival,56)
+
+
+ R[3] = R[0];
+
+<<"3 == 0 %V$R[3]\n"
+
+
+<<"[3][4] $R[3][4] \n"
+
+<<"%V$R\n"
+
+
+<<"%V$R[3][4]\n"
+
+ival = atoi(R[3][4]);
+<<"%V $ival\n"
+checkNum(ival,40)
+
+
+ival = atoi(R[3][5]);
+<<"%V $ival\n"
+checkNum(ival,5)
+
+////////////////////////////////////////////////////
 Record DF[10];
 today = date(2);
 
@@ -53,7 +247,7 @@ sz= Caz(SV);
 
 SV[2]  = "cheers";
 
-record R[10];
+//record R[10];
 
 sz = Caz(R)
 
@@ -121,9 +315,6 @@ checkStr(sr0,"cols")
 <<"$(typeof(sr1)) %V $sr1 \n"
  checkStr(sr1,"many")
  
-CheckOut()
-exit()
-
 
 
 
@@ -217,7 +408,8 @@ col = fpat[0][1];
 <<"%V $row $col\n"
 <<" $R[row] \n"
 
-for (k=0; k <5; k++) {
+
+for (k=0; k <3; k++) {
 <<"$k $fpat[k][0] $fpat[k][1]\n"
 }
 
@@ -243,7 +435,8 @@ fpat->redimn();
 
 fpat = searchRecord( R, "blank")
 
-for (k=0; k <5; k++) {
+//for (k=0; k <5; k++) { // TBF crashes if out of bounds
+for (k=0; k <1; k++) {
 <<"$k $fpat[k][0] $fpat[k][1]\n"
 }
 
@@ -275,8 +468,29 @@ checkStr(sr3,"and");
 checkStr(sr1,"muy bien");
 
 //checkProgress();
+<<"0 $R[0]\n"
+<<"1 $R[1]\n"
+<<"3 $R[3]\n"
 
-eh = R[3][-1]
+
+// R->getNcols(3) - 1;
+//eh = R[3][-1]  // won't work now
+
+ncols = Caz(R)
+<<"%V$ncols\n"
+<<"$R[0]\n"
+ncols = Caz(R[0])
+<<"R[0] %V$ncols\n"
+
+<<"$R[3]\n"
+ncols = Caz(R[3])
+<<"R[3]%V$ncols\n"
+
+nb = Cab(R)
+<<"%V$nb\n"
+
+
+eh = R[3][1]
   
 <<"%V$eh \n"
 
@@ -285,8 +499,8 @@ ah = R[-1][1]
 <<"%V$ah \n"
 
 
-CheckOut()
- exit()
+
+
 
 
 
@@ -366,26 +580,36 @@ R[7] = R[5];
 
    
  R[12] = Split("re-educate -- implement demo \n")
-
+<<"$R[12]\n"
  R[13] = Split("audio pickup to phone \n")
+<<"$R[12:13]\n"
+
+
  R[19] = Split("Build a ASL interface that provides \n")
  R[20] = Split("a natural language interface to SQL ? \n")
 
-<<"\n\n%1r$R[13:23]\n"
+
+<<"$R[12:19]\n"
+
+<<"\n%(1,,,,\n)$R[13:19]\n"
 // use a comma separator
-<<"\n\n%1r%,a$R[13:23]\n"
+
+
+
+
+//<<"\n\n%1r%,a$R[13:23]\n"
 // use a underlineseparator
-<<"\n\n%1r%_a$R[13:23]\n"
+//<<"\n\n%1r%_a$R[13:23]\n"
 // use a underlineseparator
 <<"\n\n%1r%ta$R[13:23]\n"
 
 // use a underlineseparator
-<<"\n\n%1r%\ta$R[13:23]\n"
+//<<"\n\n%1r%\ta$R[13:23]\n"
 
 // pick fields
-<<"\n\n%1r$R[13:23][0]\n"
+//<<"\n\n%1r$R[13:23][0]\n"
 
-exit()
+checkOut()
 
 
 

@@ -22,14 +22,14 @@
     int area; 
     int number;
     
-    CMF setrooms(int val); 
+    cmf setrooms(int val); 
     {
       rooms = val;
      // <<" $_proc  $_cobj set rooms  $rooms  for house $number  \n"; 
       return rooms; 
      }
     
-    CMF setfloors(int val); 
+    cmf setfloors(int val); 
     {
       if (floors > 0) {
         floors = val; 
@@ -38,19 +38,19 @@
       return area; 
       }
     
-    CMF getrooms(); 
+    cmf getrooms(); 
     {
       //   <<"getrooms $rooms for house  $number \n"
          return rooms;
     }
     
-    CMF print(); 
+    cmf print(); 
     {
       <<" $_cobj has %V $floors and  $rooms $area\n"; 
       }
     
     
-    CMF house(); 
+    cmf house(); 
     {
       floors = 2; 
       rooms = 4; 

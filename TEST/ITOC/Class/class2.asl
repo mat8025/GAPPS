@@ -11,28 +11,9 @@
 //* 
 //***********************************************%
   
-  include "debug.asl"; 
-  
-  debugON();
-  setdebug(1,@pline,@~trace,@~showresults,1);
 
 
-
-/{
-proc ask()
-{
-   ok=checkStage();
-//   <<"%6.2f$ok\n"
-   ans=iread(); 
-}
-
-
-//#define  ASK ask();
-#define  ASK ;
-/}
-
-
-checkIn()
+checkIn(_dblevel)
 
 /// simple class test
 
@@ -116,7 +97,7 @@ checkStr(r12,"with");
 ////////////////////////
 int Obid = 0;
 
-Class Add
+class Add
  {
   public:
 
@@ -124,7 +105,7 @@ Class Add
    float y;
    int id;
    
- CMF Add()
+ cmf Add()
   {
     id = Obid++;
     <<"CONS $_cobj %V $id\n"
@@ -134,20 +115,26 @@ Class Add
   }
 
 
-  CMF sum (a,b)
+  cmf sum (real a,real b)
   {
    t = a +b;
    return t;
   }
 
-  CMF diff (a,b)
+  cmf sum (int a,int b)
+  {
+   t = a +b;
+   return t;
+  }
+
+  cmf diff (int a,int b)
   {
 //  int t;
    t = a -b;
    return t;
   }
 
-  CMF say()
+  cmf say()
   {
    <<"$_proc hey there I exist\n"
    isay="hey hey"
@@ -155,7 +142,7 @@ Class Add
    //return isay;
   }
 
-  CMF isay()
+  cmf isay()
   {
    <<"$_proc hey there I exist\n"
    isay="Do what I say"

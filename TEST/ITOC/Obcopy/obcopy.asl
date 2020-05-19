@@ -12,13 +12,7 @@
 //***********************************************%
 
 
-include "debug.asl"
-
-debugON();
- setdebug(1,@keep,@pline,@trace);
-  FilterFileDebug(REJECT_,"~storetype_e");
-  FilterFuncDebug(REJECT_,"~ArraySpecs",);
-
+ checkIn(_dblevel)
 #
 # test oop features
 #
@@ -27,14 +21,7 @@ debugON();
 // to deliver ptr to that object to a script procedure
 
 
-
-//#define ASK ans=iread();
-#define ASK ;
-
-Checkin(0)
-
-
-proc foo(a)
+proc goo(int a)
 {
 
  b= a;
@@ -47,10 +34,10 @@ proc foo(a)
 //=========================//
 
 x=1;
- foo(x)
+ goo(x)
 checkNum(x,1)
 <<"%V $x\n"
- foo(&x)
+ goo(&x)
 checkNum(x,2)
 <<"%V $x\n"
 
@@ -60,7 +47,7 @@ checkStage("Simple var arg : value and Ref")
 
 # class definition
 
-CLASS fruit  {
+class fruit  {
 
 #  variable list
 
@@ -80,40 +67,40 @@ CLASS fruit  {
 #  method list
 
 
-   CMF print () {
-     //<<" in CMF print \n"
-    // <<"CMF print %V$_proc of $_cobj   %V$color $x\n $y\n $z\n  $j\n"
+   cmf print () {
+     //<<" in cmf print \n"
+    // <<"cmf print %V$_proc of $_cobj   %V$color $x\n $y\n $z\n  $j\n"
       <<"%V$color $x $y $z  $j\n"
       j++;
    }
 
 
-   CMF set_x (val) {
+   cmf set_x (val) {
 
     //   <<" $_proc setting x to $val \n"
    <<" setting x to $val \n"
        x = val;
    }
 
-   CMF get_x() {
+   cmf get_x() {
        <<" $_proc returning  $x \n"
       return x
    }
 
-   CMF set_color (val) {
+   cmf set_color (val) {
        color = val
    }
 
-   CMF set_y (val) {
+   cmf set_y (val) {
 <<" $_proc %V$val \n"
        y = val
    }
 
-   CMF set_z (val) {
+   cmf set_z (val) {
        z = val
    }
 
-   CMF get_z() {
+   cmf get_z() {
  
 //   <<" $cproc %v $z \n"
 
@@ -126,7 +113,7 @@ CLASS fruit  {
 
 // constructor
 
-  CMF fruit()
+  cmf fruit()
     {
 // FIXME  <<" doing constructor for %I $_cobj \n"
 
@@ -144,7 +131,7 @@ CLASS fruit  {
     }
 
 /{/*
-  CMF ~fruit()
+  cmf ~fruit()
     {
 <<" doing destructor   for %v $_cobj \n"
      ASK
@@ -213,7 +200,7 @@ EA= examine(apple)
 
   apple->print();
 
-CheckOut()
+checkOut()
 
 exit()
 
@@ -230,7 +217,7 @@ proc foo2 (a)
    str s = "hi";
 <<"in $_proc $k $d\n";
 <<" in foo2\n"
-ASK
+
 
   fruit loc2fruit;
   loc2fruit->print()
@@ -242,7 +229,7 @@ ASK
 
 
 
-ASK
+
 
 
 
@@ -250,7 +237,7 @@ proc goo()
 {
 
 <<"HEY in $_proc\n"
-ASK
+
 
 <<"%v $_pstack \n"
 
@@ -291,7 +278,7 @@ proc objcopy(fruit oba,  fruit obb)
 
 <<" IN MAIN\n"
 
-ASK
+
 
 //<<"%V$_proc \n"
 //<<"%V$_pstack \n"
@@ -301,13 +288,13 @@ ASK
 
 
 
-ASK
+
 
 
 # object declaration
 
 
-ASK
+
 
    foo2(2);
 
@@ -404,7 +391,7 @@ ASK
 
 <<"%V$cherry->color \n"
 
-   CheckStr(cherry->color,"blue")
+   checkStr(cherry->color,"blue")
 
 
 
@@ -434,29 +421,29 @@ ASK
 //<<"$(examine(&apple))\n"
 //<<"$(examine(orange))\n"
 <<"$(objinfo(&orange))\n"
-ASK
+
   objcopy( &orange, &apple)
 
  orange->print()
 
-ASK
+
 
    eat(&apple);
   //  objcopy( orange, apple)
 
    apple->print()
 
-ASK
+
 
   orange->print()
 exit()  
   eat(apple);
 
-  CheckStr(orange->color,"green")
+  checkStr(orange->color,"green")
 
-  CheckStr(apple->color,"green")
+  checkStr(apple->color,"green")
 
-  CheckStr(apple->color,orange->color)
+  checkStr(apple->color,orange->color)
 
   orange->color = "orange"
 
@@ -464,12 +451,12 @@ exit()
 
   apple->color = orange->color
 
-  CheckStr(apple->color,"orange")
+  checkStr(apple->color,"orange")
 
 
   apple->color = "blue"
 
-  CheckStr(apple->color,"blue")
+  checkStr(apple->color,"blue")
 
   apple->print()
   apple->color = "red"
@@ -500,6 +487,6 @@ exit()
 
    cherry->print()
 
-   Checkout()
+   checkOut()
 
 

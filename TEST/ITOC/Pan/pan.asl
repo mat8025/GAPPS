@@ -3,24 +3,17 @@
 //* 
 //*  @comment test_pan numbers 
 //*  @release CARBON 
-//*  @vers 1.2 He Helium                                                  
-//*  @date Thu Feb  7 21:46:23 2019 
+//*  @vers 1.3 Li Lithium [asl 6.2.47 C-He-Ag]                             
+//*  @date Fri May 15 23:25:45 2020 
 //*  @cdate 1/1/1999 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
 
-//include "debug.asl"
-
-//debugON()
-
-//include "consts.asl"
-
-//consts();
 
 
-setap(100);    // set precision to 100? decimal places
+setap(50);    // set precision to 100? decimal places
 
 // FIX pan N  = GetArgN()
 
@@ -67,20 +60,58 @@ checkFNum(Q,(x*4.0),pan_prec);
 
 <<"$Q  $(x*4.0) \n"
 
- R = Q/N;
+double q = Q
+double n = N
+
+r = q/n
+
+<<"%v$r \n"
+pan qp = 8.4938268
+pan np = 2.123456700
+R= qp/np
+<<"%V$R\n"
+<<"$(typeof(R))\n"
+qp = Q
+np = N
+
+<<"%V$qp\n"
+<<"%V$np\n"
+
+R= qp/np
+<<"%V$R\n"
+ q = Q
+ n = N
+
+r = q/n
+<<"%V$r\n"
+
+ q = qp
+ n = np
+ n += .01
+r = q/n
+<<"%V$r\n"
+
+r = qp/np
+<<"%V$r\n"
+
+
+
+ R = Q/N
 
 <<"%V%p$Q\n"
 <<"%V$Q\n"
 <<"%V$N\n"
 <<"%V$R\n"
+<<"%V$R\n"
 <<"%V$M\n"
 
 //checkFNum(R,M,pan_prec);
- r= fround(R,2);
+ r= fround(R,1);
 
 <<"%V$r\n"
 checkFNum(r,M,2);
 
+//query()
 <<"%V$M\n"
  M = M + 1;  // TBF XIC bug
 <<"%V$M\n"

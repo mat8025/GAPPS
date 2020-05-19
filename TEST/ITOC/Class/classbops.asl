@@ -10,46 +10,13 @@
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-  /{/* 
   
+checkIn(_dblevel);
   
-  /}*/
-  
-  checkIn(_dblevel); 
-/{/*
-  a = 1.0;
-  b = 2.0;
-  c = 0.2;
-  
-  float my;
-  float  v = 2.1;
-  <<"%V $v\n"; 
-  
-  ok=CheckFNum(v,2.1);
-  
-  for (i = 0 ; i < 5 ; i++) {
-    
-    
-    mbc = (b - c)/2.0;
-    
-    mca = (c+a);
-    my = (b - c)/2.0 + (c + a) ;
-    
-    <<"[${i}] %V $a $b $c  $v\n"; 
-    <<"%V $mbc $mca  $my $v $b \n"; 
-    
-    CheckFNum(my,v,5);
-    
-    b += 0.1;
-    v += 0.05;
-    
-    }
-  
-  <<"%V $b $c  $my \n"; 
-/}*/
+
   
 //////////////////////////////////////////////////////
-Proc goo( real x)
+proc goo( real x)
 {
   a= x;
 <<"$_proc %V $x $a\n";
@@ -63,7 +30,7 @@ goo(sin(0.7))
 
 /// must have a CONS -- else crash in xic??
 
-  Class Point
+class Point
   {
 
   public:
@@ -74,7 +41,7 @@ goo(sin(0.7))
 //============================//
 
 
- CMF setx(real m) 
+ cmf setx(real m) 
      {
       x = m;
       <<"$_proc $m $x  \n"; 
@@ -82,7 +49,7 @@ goo(sin(0.7))
       };
 
 
-    CMF set (real m,real n) 
+    cmf set (real m,real n) 
     {
   <<"$_proc Set via floats %V $m $n  \n";
        x = m;
@@ -91,33 +58,33 @@ goo(sin(0.7))
       };
 
 
-    CMF set (int m, int n) 
+    cmf set (int m, int n) 
     {
        x = m;
        y = n;
       <<"Set via ints %V $m $n $x $y \n";
       };
  
-    CMF getx() 
+    cmf getx() 
      {
       <<"getting $x $_cobj \n"; 
       return x;
       };
     
-    CMF gety()
+    cmf gety()
      {
       <<"getting $y  $_cobj  \n"; 
       return y;
       }
 /{
-    CMF  mul( a) {
+    cmf  mul( a) {
       float tmp;
       tmp = (a * x); 
       return tmp; 
       }
 
 
-    CMF  mul(float a) {
+    cmf  mul(float a) {
       float tmp;
       
       tmp = (a * x);
@@ -126,24 +93,24 @@ goo(sin(0.7))
       }
 /}
 
-    CMF  mul(real a) {
+    cmf  mul(real a) {
       double tmp;
       tmp = (a * x);
     <<"$_proc %V $a $tmp $x\n";         
       return tmp; 
       }
 
-    CMF  mul(int mi) {
+    cmf  mul(int mi) {
       float tmp;
       tmp = (mi * x); 
       return tmp; 
       }
     
-    CMF Print() {
+    cmf Print() {
       <<"%V $x,$y %i $x,$y\n"; 
       }
 
-   CMF Point()
+   cmf Point()
    {
     // same name as class is the constructor
      x=1;

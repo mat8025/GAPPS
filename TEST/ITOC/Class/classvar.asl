@@ -1,11 +1,20 @@
-///
-/// test oo features
-///
+//%*********************************************** 
+//*  @script classvar.asl 
+//* 
+//*  @comment test OO get/set 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium [asl 6.2.48 C-He-Cd]                                
+//*  @date Tue May 19 08:25:16 2020 
+//*  @cdate 1/1/2003 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+myScript = getScript();
 
 
-setDebug(1,@keep,@soe,@trace)
 
-CheckIn();
+checkIn(_dblevel);
 
 
 
@@ -29,7 +38,7 @@ int V = 4 ;  // global
 # class definition
 
 
- CLASS fruit  {
+ class fruit  {
 
 #  variable list
 
@@ -39,7 +48,7 @@ int V = 4 ;  // global
 
 #  method list
 
-   CMF print () {
+   cmf print () {
      <<"$_proc of $_cobj\n"
      <<" %I $x \n  $V  \n" 
 
@@ -48,38 +57,38 @@ int V = 4 ;  // global
 
    }
 
-   CMF set_x (val) {
+   cmf set_x (int val) {
 
    <<" setting x to $val \n"
 
        x = val
    }
 
-   CMF set_GV (val) {
+   cmf set_GV (int val) {
        ::V = val;
    <<" setting global to $val $::V \n"
     }
 
 
-   CMF get_x() {
+   cmf get_x() {
 
        <<" $_proc returning  $x \n"
 
       return x;
    }
 
-   CMF set_V (val) {
+   cmf set_V (int val) {
        V = val
    <<" setting class V to %V $val $V\n"
       <<" %I $val $V\n"
    }
 
-   CMF set_VS (val1, val2) {
+   cmf set_VS (int val1, int val2) {
           V = val1;
 	  ::V= val2;
    }
    
-   CMF get_V() {
+   cmf get_V() {
 
    <<" $_proc \n" 
    <<" %v $V \n"
@@ -88,7 +97,7 @@ int V = 4 ;  // global
 
 // constructor
 
-  CMF fruit()
+  cmf fruit()
     {
   <<" doing fruit constructor for %I $_cobj \n"
   <<"%v $_pstack \n"
@@ -143,7 +152,7 @@ int V = 4 ;  // global
 <<"%V $apple->V \n"
 <<"global %V $V \n";
 
-  CheckNum(66,V)
+  checkNum(66,V)
 
  fruit cherry
 
@@ -155,7 +164,7 @@ int V = 4 ;  // global
   apple->V = 45
 <<" %v $apple->V \n"
 
-  CheckNum(45,apple->V)
+  checkNum(45,apple->V)
 
 
 
@@ -182,7 +191,7 @@ int V = 4 ;  // global
   apple->print() 
 
 <<" %v $apple->V \n"
-//    CheckOut()
+//    checkOut()
 
   av = apple->get_V()
 
@@ -202,7 +211,7 @@ int V = 4 ;  // global
 
   cherry->set_V(48)
 
-  CheckNum(48,cherry->V)
+  checkNum(48,cherry->V)
 
   apple->print() 
 
@@ -223,11 +232,10 @@ int V = 4 ;  // global
   cherry->set_GV(9)
 
 
-  CheckNum(V,9)
+  checkNum(V,9)
 
 <<" %V $V $apple->V  $cherry->V \n"
 
-CheckOut()
+checkOut()
 
 
- exit()

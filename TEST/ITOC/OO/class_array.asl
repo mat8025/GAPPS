@@ -26,22 +26,22 @@ public:
  int IV[30];
  int id;
 
- CMF Print(int wa) 
+ cmf Print(int wa) 
  {
    k = IV[wa]
    <<"$wa $k \n"
  }
 
 
- CMF Set(int wi, int val)
+ cmf Set(int wi, int val)
  {
- <<"%V $wi $val\n"
- <<"$IV[::] \n"
+    <<"%V $wi $val\n"
+   <<"$IV[::] \n"
       IV[wi] = val;
    <<"$IV[::] \n" 
  }
 
- CMF showIV()
+ cmf showIV()
   {
 //mas = memaddr(&I[0])
 
@@ -52,7 +52,7 @@ public:
  <<"%V $IV[::] \n" 
   }
 
- CMF Dil() 
+ cmf Dil() 
  {
  <<"Starting cons \n"
      id = OC;
@@ -190,14 +190,16 @@ Dil D;
 
   E->showIV()
 
+  D->Set(8,47)
 
+  D->showIV()
 
   CheckNum(D->IV[8],47)
 
 
-CheckOut()
+checkOut()
 
-exit(0)
+
 
 
 

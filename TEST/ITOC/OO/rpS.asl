@@ -3,9 +3,9 @@
 //* 
 //*  @comment test class member set/access 
 //*  @release CARBON 
-//*  @vers 1.2 He Helium                                                  
-//*  @date Sun Mar  3 12:41:16 2019 
-//*  @cdate 1/1/2003 
+//*  @vers 1.3 Li Lithium [asl 6.2.48 C-He-Cd]                             
+//*  @date Tue May 19 07:41:22 2020 
+/*  @cdate 1/1/2003 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
@@ -28,7 +28,7 @@ class house {
     int area; 
     int number;
     
-    CMF setrooms(int val) {
+    cmf setrooms(int val) {
       <<" $_proc  $_cobj $val \n"; 
       rooms = val;
     
@@ -36,7 +36,7 @@ class house {
       return rooms; 
      }
     
-    CMF setfloors(int val){
+    cmf setfloors(int val){
       if (floors > 0) {
         floors = val; 
         area = floors * 200; 
@@ -44,28 +44,28 @@ class house {
       return area; 
       }
 
-    CMF getrooms() {
+    cmf getrooms() {
          <<"getrooms $_cobj $rooms for house  $number \n"
          return rooms;
     }
 
-    CMF getarea() {
+    cmf getarea() {
          area = floors * 200;
          <<"getarea $_cobj $area for house  $number \n"
          return area;
     }
 
-    CMF getfloors() {
+    cmf getfloors() {
          <<"getfloors $_cobj $floors for house  $number \n"
          return floors;
     }
     
-    CMF print() {
+    cmf print() {
       <<" $_cobj has %V $floors and  $rooms $area\n"; 
       }
     
     
-    CMF house()  {
+    cmf house()  {
       floors = 2; 
       rooms = 4; 
       area = -1;
@@ -79,7 +79,7 @@ class house {
   //===============================//
 
 // crash unless type of rmchk specified -- want to work anyway -- default gen type
-Proc  checkRooms( int rmchk)
+proc  checkRooms( int rmchk)
   {
      crooms = rmchk +1;
 

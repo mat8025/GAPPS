@@ -12,21 +12,16 @@
 //***********************************************%
 
 
-include "debug.asl"
-
-debugON();
-
-setdebug (1, @pline, @keep,@~step, @trace) ;
 
 ///
 ///
 ///
 
 
-checkIn()
+checkIn(_dblevel)
 
 
-proc goo(a)
+proc goo(float a)
 {
  float tmp
 
@@ -284,7 +279,7 @@ checkstr(col[1],"1.000000")
 //***********************************************%
 
 
-proc foo(x,y,z)
+proc Foo(int x,int y,int z)
 {
 <<"%V $x $y $z\n"
 int m =x;
@@ -340,7 +335,7 @@ SV=testargs(1,c,a,b)
 
 <<"%V $a $b $c \n"
 
-foo(a,b,c);
+Foo(a,b,c);
 
 
 

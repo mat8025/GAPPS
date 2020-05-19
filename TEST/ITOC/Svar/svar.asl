@@ -11,12 +11,7 @@
 //* 
 //***********************************************%
 
-   include "debug"; 
-   debugON(); 
-   
-   
-   checkIn(); 
-   setdebug(1,@~pline,@keep,@~trace); 
+   checkIn(_dblevel);
    
    svar  S = "una larga noche"; 
    
@@ -32,6 +27,7 @@
    
    
    svar E[] = { "the first ten elements are:", "H", "He", "Li", "Be" ,"B" ,"C", "N", "O", "F", "Ne"  };
+   svar E3[] = { "third row elements are:", "Na", "Mg", "Al", "Si" ,"P" ,"S", "Cl", "Ar" };
    
    
    <<"$E\n"; 
@@ -324,7 +320,7 @@ le = Mol[0]
 checkStr(le,"JAN")
 
 <<"le checked\n"
-
+<<"%V $Mol[0] \n"
 checkStr(Mol[0],"JAN")
 
 <<"Mol[0] checked\n"
@@ -404,8 +400,10 @@ T->info(1)
 <<"$T\n"
 
 M=Split("$IV")
+
 M->info(1)
 <<"$M \n"
+
 
 <<"$M[3] $M[7]\n"
 
@@ -422,6 +420,8 @@ R= M[3::]
 <<"$R \n"
 R->info(1)
 
+
+
 IV3= atoi(R)
 
 <<"$IV3\n"
@@ -434,12 +434,20 @@ checkNum(IV3[0],6)
 <<"$IV3\n"
 
 //M[3::] = atoi(IV3)
-M[0] = 47
+
+//M[0] = 47  // error int --> string
+
+M[0] = "47"  
+
 <<"$M\n"
+
+
 checkStr(M[0],"47")
-R[0] = 79
-R[1] = 80
-R[2] = 82
+
+R[0] = "79"
+R[1] = "80"
+R[2] = "82"
+
 checkStr(R[0],"79")
 
 M[3:6:] = R[0:3:]
@@ -522,7 +530,9 @@ checkStage("declare")
 
 proc pS (svar SV)
 {
+
 static int k = 1;
+
 <<"$(typeof(SV)) $SV[::]\n"
 sz = Caz(SV)
 
@@ -549,6 +559,9 @@ else if (k==3) {
 
 }
 //===========
+
+
+checkOut()
 
 S = Split("how did we get here")
 
