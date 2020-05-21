@@ -77,7 +77,7 @@ class Act {
  int t;
  int id;
  
- CMF Set(int s)
+ cmf Set(int s)
  {
      //obid = _cobj->obid()
 //     <<"Act Set  $_cobj  $obid $(offsetof(&_cobj)) $(IDof(&_cobj))\n" 
@@ -87,12 +87,12 @@ class Act {
      return type;
  }
 
- CMF Get()
+ cmf Get()
  {
    return type;
  }
 
- CMF Act() 
+ cmf Act() 
  {
 // FIXME   <<"cons of Act $_cobj $(_cobj->obid())  $(IDof(&_cobj))\n" 
 //   co = _cobj->offset()
@@ -310,7 +310,7 @@ a->info(1)
  
 
 
-<<"\n//////////////// CMF Set-Get /////////////////\n"
+<<"\n//////////////// cmf Set-Get /////////////////\n"
 
 
  pass = 1
@@ -319,6 +319,7 @@ a->info(1)
  yst =  X[3]->Set(5)
 
  i = 2
+
  yt  =  X[i]->type
 
  ygt =  X[i]->Get()
@@ -425,7 +426,7 @@ class Dil {
  Act B;
  Act A[10];
 
- CMF Dil() 
+ cmf Dil() 
  {
    w_day = 1
   // <<"cons of Dil $_cobj $w_day $dil_ocnt\n"
@@ -845,10 +846,10 @@ exit()
 
 						       RDP	XIC
 1. Direct Set & Get   - Simple Class                 - OK      OK
-2. CMF Set & Get      - Simple Class                 - OK      OK
+2. cmf Set & Get      - Simple Class                 - OK      OK
 3. VMF
 4. Direct Set & Get   - Object arrays                - OK      OK  
-5. CMF Set & Get      - Object arrays                - OK      OK
+5. cmf Set & Get      - Object arrays                - OK      OK
 6. Direct Set & Get   - Nested Class                   OK      OK
 7. Direct Set & Get   - Nested Object Arrays	       OK      OK 
 8. Set & Get          - MH

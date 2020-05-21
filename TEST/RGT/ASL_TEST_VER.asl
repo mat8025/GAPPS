@@ -3,8 +3,8 @@
 //* 
 //*  @comment asl test modules 
 //*  @release CARBON 
-//*  @vers 1.60 Nd Neodymium                                               
-//*  @date Sat May  9 10:03:38 2020 
+//*  @vers 1.62 Sm Samarium [asl 6.2.49 C-He-In]                           
+//*  @date Wed May 20 23:32:34 2020 
 //*  @cdate 1/1/2005 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -201,9 +201,9 @@ proc RunDirTests(str Td, str Tl )
       <<[Dbf]"$Td $Tl $np\n"
       for (i=0 ; i <np; i++) {
          if (!(Tp[i] @= "")) {
-//           if (do_query) {
-//              query(Tp[i])
-//           }
+          if (do_query) {
+              query(Tp[i])
+           }
             cart(Tp[i]);
 	   }
 	   
@@ -347,7 +347,7 @@ proc doxictest(str prog)
 
         if (do_query) {
 <<"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx $prog  \n  "
-         query("$prog run it?")
+         ans = query("$prog run it?")
          }
 
        !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx $prog   > /dev/null "
@@ -411,7 +411,7 @@ proc doxictest(str prog, str a1)
 proc cart_xic(str aprg)
 {
 
-//<<"%V $_proc  $aprg  \n"
+<<"%V $_proc  $aprg  \n"
 
     if (fexist(aprg) != -1) {
 
@@ -501,7 +501,8 @@ proc cart (str aprg)
 
            if (do_query) {
 <<"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl \n"
-           query("$aprg run it?")
+           //ans=query("$aprg run it?")
+	   ans= i_read("$aprg run it?")
            }
       !!"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl > /dev/null   2>&1"
 
@@ -573,7 +574,8 @@ proc cart (str aprg,  str a1)
 
            if (do_query) {
 <<"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1 \n "
-           query("$aprg run it?")
+           //ans=query("$aprg run it?")
+	   ans= iread("$aprg run it?")
          }
 !!"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1  > /dev/null"
 
@@ -631,12 +633,13 @@ ictout ="ictestoutput"
 
 CFLAGS = "-cwl"
 
-CFLAGS = "-cwlm"     // m to mask src lines in exe file
+//CFLAGS = "-cwlm"     // m to mask src lines in exe file --- broke
 
 ntest = 0
 
 
 int do_all = 1;
+int do_level2 = 0;
 int do_query = 0;
 int do_tests = 0;
 int do_array = 0;
@@ -647,17 +650,30 @@ int do_vops = 0;
 int do_sops = 0;
 int do_fops = 0;
 int do_class = 0;
-int do_declare = 0;
-int do_include = 0;
 
-int do_exp = 0;
+
+int do_declare = 0;
+
+
+int do_syntax = 0;
+int do_include = 0;
 int do_if = 0;
 int do_logic = 0;
 int do_for = 0;
 int do_do = 0;
-int do_paraex = 0;
 int do_proc = 0;
 int do_switch = 0;
+int do_scope = 0;;
+int do_while = 0;
+//======================================//
+
+
+
+int do_exp = 0;
+
+
+int do_paraex = 0;
+
 int do_types = 0;
 
 int do_func = 0;
@@ -665,7 +681,7 @@ int do_command = 0;
 int do_lhsubsc = 0;
 int do_dynv = 0;
 int do_mops = 0;
-int do_scope = 0;;
+
 int do_oo = 0;
 int do_sfunc = 0;
 int do_svar = 0;
@@ -674,7 +690,7 @@ int do_ivar = 0;
 int do_lists = 0;
 int do_stat = 0;
 int do_threads = 0;
-int do_while = 0;
+
 int do_pan = 0;
 int do_unary = 0;
 int do_ptrs = 0;
@@ -712,24 +728,26 @@ int do_release = 0;
 
 
       wt = _argv[i]
-
+    if (wt @= "") {
+      break
+    }
      if (wt @= "bops") {
         do_bops = 1  
      }
    
-     do_arg = "do_$wt"
+      do_arg = "do_$wt"
      
 
     if (scmp(wt,"~",1) ){
         wt=scut (wt,1);
 	<<"don't run $wt\n"
 	do_arg = "do_$wt"
-	$do_arg = -1
+	$do_arg = -1;
      }
       else {
       $do_arg = 1;
      }
-//<<" $i $wt $do_arg \n"
+<<" $i $wt $do_arg \n"
 
      i++;
 
@@ -759,6 +777,38 @@ if (do_release) {
 }
 
 
+if (do_level2) {
+    do_bops =1
+    do_syntax =1;
+    do_types =1;    
+}
+
+
+if (do_syntax ==1) {
+
+ do_if = 1;
+ do_logic = 1;
+ do_for = 1;
+ do_do = 1;
+ do_switch = 1;
+ do_while = 1;
+ do_scope = 1;  
+ do_include = 1;  
+}
+
+if (do_syntax == -1) {
+
+ do_if = -1;
+ do_logic = -1;
+ do_for = -1;
+ do_do = -1;
+ do_switch = -1;
+ do_while = -1;
+ do_scope = -1;
+ do_include = -1;  
+
+}
+
 
 
 
@@ -767,7 +817,7 @@ if (do_release) {
 
 
 
-if (do_include || do_all ) {
+if ((do_include || do_all ) && (do_include != -1)) {
 
   Run2Test("Include")
   cart("include")
@@ -776,7 +826,7 @@ if (do_include || do_all ) {
 
 //================================//
 
-  if (do_bops || do_all) {
+  if ((do_bops || do_all) && (do_bops != -1)) {
 
     RunDirTests("Bops","bops,fvmeq,fsc1,mainvar");
     
@@ -811,7 +861,7 @@ if (do_include || do_all ) {
 
 ////////////// IF ///////////////////////
 
-if (do_if || do_all) {
+if ((do_if || do_all) && (do_if != -1)) {
 
   
   RunDirTests("If","if")
@@ -837,13 +887,13 @@ if (do_if || do_all) {
 
 //rdb()
 
-  if (do_logic || do_all) {
+  if ((do_logic || do_all) && (do_logic != -1)) {
 
    RunDirTests("Logic","logic,logic2,logic_def")
 
   }
 
- if (do_for || do_all) {
+ if ((do_for || do_all) && (do_for != -1)) {
 
    RunDirTests("For","for,for0,forexp")
 }
@@ -852,7 +902,7 @@ if (do_if || do_all) {
 ////////////////////////////////////////////////////////////////////////
  
 
-  if ((do_all || do_while )) {
+  if ((do_all || do_while ) && (do_while != -1)) {
 
     RunDirTests("While","while")
 
@@ -864,7 +914,7 @@ if (do_if || do_all) {
 
 
 
-if ((do_all || do_do )) {
+if ((do_all || do_do ) && (do_do != -1)) {
 
       RunDirTests("Do","do")
 
@@ -873,7 +923,7 @@ if ((do_all || do_do )) {
 
 
 //======================================//
-    if (do_switch || do_all) {
+    if ((do_switch || do_all) && (do_switch != -1)) {
 
       <<"switch $do_all $do_switch \n"
 
@@ -882,7 +932,7 @@ if ((do_all || do_do )) {
 
 //======================================//
 
-    if ( do_types || do_all) {
+    if ( (do_types || do_all) && (do_types != -1)) {
   
       RunDirTests("Types","types");
       
@@ -896,7 +946,7 @@ if ((do_all || do_do )) {
   }
 //======================================//
 
-  if (do_vops || do_all) {
+  if ((do_vops || do_all ) && (do_vops != -1)) {
 
      RunDirTests("Vops","vops")
 
@@ -910,7 +960,7 @@ if ((do_all || do_do )) {
 
 //////////////////////////////////////////////////
 
-  if ( do_sops || do_all) {
+  if ( (do_sops || do_all) && (do_sops != -1)) {
       //  need more str ops tests than this!
 
   RunDirTests("Sops","sops");
@@ -928,7 +978,7 @@ if ((do_all || do_do )) {
 
 /////////////////////////////////////////////////
 
-  if (do_fops || do_all) {
+  if ((do_fops || do_all) && (do_fops != -1)) {
 
   Run2Test("Fexist")
 
@@ -942,7 +992,7 @@ if ((do_all || do_do )) {
   }
 //======================================//
 
-if (do_all ==1 || do_declare == 1 ) {
+if ((do_all  || do_declare ) && (do_declare != -1))  {
 
 
    RunDirTests("Declare","declare");
@@ -979,7 +1029,7 @@ if (do_all ==1 || do_declare == 1 ) {
 
 changeDir(Testdir)
 
- if (do_exp || do_all) {
+ if ((do_exp || do_all) && (do_exp != -1)) {
 
 
    Run2Test("Sexp")
@@ -992,7 +1042,7 @@ changeDir(Testdir)
 
 //rdb()
 
- if ((do_all || do_paraex )) {
+ if ((do_all || do_paraex ) && (do_paraex != -1)) {
 
   Run2Test("ParaEx")
 
@@ -1005,7 +1055,7 @@ changeDir(Testdir)
 
 /////////////// ARRAY //////////////////////
 
-if ((do_all || do_array )) {
+if ((do_all || do_array ) && (do_array != -1)) {
 
    RunDirTests("Array","ae,arraystore,arrayele,arraysubset")
 
@@ -1048,7 +1098,7 @@ if ((do_all || do_array )) {
 
 /////////////////////////////////////////
 
- if ((do_all || do_matrix )) {
+ if ((do_all || do_matrix ) && (do_matrix != -1)) {
  
    RunDirTests("Mdimn","mdimn")
 
@@ -1065,7 +1115,7 @@ if ((do_all || do_array )) {
 
 /////////////////////////////////////////
 
- if ((do_all || do_dynv )) {
+ if ((do_all || do_dynv ) && (do_dynv != -1)) {
 
     hdg("DYNAMIC_V")
 
@@ -1076,7 +1126,7 @@ if ((do_all || do_array )) {
 
 /////////////////////////////////////////
 
-if ((do_all || do_lhsubsc )) {
+if ((do_all || do_lhsubsc )   && (do_lhsubsc != -1)) {
 
   Run2Test("Subscript")
 
@@ -1086,7 +1136,7 @@ if ((do_all || do_lhsubsc )) {
 
 /////////////////////////////////////////
 
-if ((do_all || do_func )) {
+if ((do_all || do_func ) && (do_func != -1)) {
 
   Run2Test("Func")
   cart("func", 3)
@@ -1101,7 +1151,15 @@ if ((do_all || do_func )) {
 
 /////////////////////////////////////////
 
-if ((do_all || do_unary )) {
+   if ((do_all || do_vmf) && (do_vmf != -1)) {
+  <<"trying vmf \n"
+    RunDirTests("Vmf","vmf")
+  }
+
+/////////////////////////////////////////
+
+
+if ((do_all || do_unary ) && (do_unary != -1)) {
 
 
   Run2Test("Unary")
@@ -1113,7 +1171,7 @@ if ((do_all || do_unary )) {
 
 /////////////////////////////////////////
 //rdb()
-   if ((do_all || do_command )) {
+   if ((do_all || do_command ) && (do_command != -1)) {
 
      RunDirTests("Command","command,command_parse")
 
@@ -1121,7 +1179,7 @@ if ((do_all || do_unary )) {
 
 
 /////////////////////////////////////////
-if ((do_all || do_proc )) {
+if ((do_all || do_proc ) && (do_proc != -1)) {
 
   RunDirTests("Proc","proc,proc_declare,proc_ret,procret0,procarg,proc_sv0")
   RunDirTests("Proc","proc_str_ret,procrefarg,proc_ra,procrefstrarg,proc-loc-main-var");
@@ -1149,7 +1207,7 @@ if ((do_all || do_proc )) {
   }
 
 //rdb()
-  if ((do_all || do_scope )) {
+  if ((do_all || do_scope ) && (do_scope != -1)) {
 
    Run2Test("Scope") ; 
 
@@ -1157,7 +1215,7 @@ if ((do_all || do_proc )) {
 
   }
 
-if ((do_all || do_mops )) {
+if ((do_all || do_mops ) && (do_mops != -1)) {
 
     RunDirTests("Mops","mops")
 
@@ -1181,7 +1239,7 @@ if ((do_all || do_mops )) {
     }
 
 
-   if ((do_all || do_svar )) {
+   if ((do_all || do_svar ) && (do_svar != -1)) {
 
 
     RunDirTests("Svar","svar");
@@ -1190,7 +1248,7 @@ if ((do_all || do_mops )) {
     cart("svar_hash")    
     }
 
-  if ((do_all || do_ivar )) {
+  if ((do_all || do_ivar ) && (do_ivar != -1)) {
 
      Run2Test("Ivar")
 
@@ -1199,7 +1257,7 @@ if ((do_all || do_mops )) {
     }
 
 
-  if ((do_all || do_record )) {
+  if ((do_all || do_record ) && (do_record != -1)) {
 
     RunDirTests("Record","record,readrecord,prtrecord,recprt,recatof,reclhs,rectest,mdrecord,rrdyn");
 
@@ -1208,7 +1266,7 @@ if ((do_all || do_mops )) {
 
  changeDir(Testdir)
 
- if ((do_all || do_mops )) {
+ if ((do_all || do_mops ) && (do_mops != -1)) {
  
     Run2Test("Math")
     cart ("inewton")
@@ -1229,16 +1287,14 @@ if ((do_all || do_mops )) {
 
  changeDir(Testdir)
 
- if ((do_all || do_stat )) {
+ if ((do_all || do_stat ) && (do_stat != -1)) {
 
-    hdg("STAT")
+//    hdg("STAT")
 
-    Run2Test("Polynom")
-    cart("checkvm")
-    cart("polyn")
+    RunDirTests("Polynom","checkvm,polyn")
 }
 
- if ((do_all || do_pan )) {
+ if ((do_all || do_pan )  && (do_pan != -1)) {
 
     hdg("PAN")
 
@@ -1248,20 +1304,20 @@ if ((do_all || do_mops )) {
  }
 
 
-   if ((do_all || do_lists )) {
+   if ((do_all || do_lists ) && (do_lists != -1)) {
 
      RunDirTests("Lists","list,list_declare,listele,list_ins_del");
 
     }
 
-   if ((do_all || do_ptrs )) {
+   if ((do_all || do_ptrs ) && (do_ptrs != -1)) {
 
      RunDirTests("Ptrs","ptrvec,ptr-numvec,ptr-svarvec,ptr-varvec,indirect");
      
 
    }
 
-   if ((do_all || do_class )) {
+   if ((do_all || do_class )  && (do_class != -1)) {
 
         RunDirTests("Class","class_mfcall,classbops,class2,classvar");
 
@@ -1269,7 +1325,7 @@ if ((do_all || do_mops )) {
 
 
 
-   if ((do_all || do_oo )) {
+   if ((do_all || do_oo ) && (do_oo != -1)) {
 
     RunDirTests("OO","rpS,rp2,wintersect,oa,oa2,sh,class_array");
 
@@ -1280,7 +1336,7 @@ if ((do_all || do_mops )) {
   }
 
 
- if ((do_all || do_sfunc )) {
+ if ((do_all || do_sfunc ) && (do_sfunc != -1)) {
 
     hdg("S-FUNCTIONS")
 
@@ -1305,17 +1361,13 @@ if ((do_all || do_mops )) {
     }
 
 
-if ((do_all || do_vmf)) {
 
-    RunDirTests("Vmf","vmf")
-
-  }
 
 
 
 //////////////////// BUGFIXs/////////////////////////////////////////
 
-  if ((do_all || do_bugs )) {
+  if ((do_all || do_bugs )  && (!do_bugs == -1)) {
       //cart("bf_40")   // this has intentional error and exits before test checks
     changeDir(Testdir)
 
@@ -1336,7 +1388,7 @@ bflist="$BFS"
   }
 
 
-  if ((do_all || do_tests )) {
+  if ((do_all || do_tests ) && (do_tests != -1)) {
     changeDir(Testdir)
 //  get a list of asl files in this dir and run them
      chdir("Tests")

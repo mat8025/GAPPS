@@ -25,7 +25,7 @@
     cmf setrooms(int val); 
     {
       rooms = val;
-     // <<" $_proc  $_cobj set rooms  $rooms  for house $number  \n"; 
+     <<" $_proc  $_cobj set rooms  $rooms  for house $number  \n"; 
       return rooms; 
      }
     
@@ -40,7 +40,7 @@
     
     cmf getrooms(); 
     {
-      //   <<"getrooms $rooms for house  $number \n"
+      <<"$_proc %V  $_cobj $rooms for house  $number \n"
          return rooms;
     }
     
@@ -56,26 +56,38 @@
       rooms = 4; 
       area = floors * 200;
       number= Nhouses;
-      Nhouses++;
-
       <<"cons $Nhouses for $_cobj setting  $floors  $rooms $area $number\n"; 
+      Nhouses++;
       }
     
     }
   
   <<" after our class definition \n"; 
-  
-  int IV[7]; 
-  
-  IV[3] = 3; 
-  <<"$IV\n"; 
-
-    house C[6];
     house AS;
     house BS;
     house CS;
     house DS;    
 
+
+   asr=  AS->getrooms();
+
+  checkNum(asr,4)
+
+  bsr=  BS->getrooms();
+  csr = CS->getrooms();
+
+  res =AS->setrooms(BS->getrooms() + CS->getrooms())
+
+ <<"%V $res $asr $bsr $csr \n"
+
+  checkNum(res,(bsr+csr))
+
+
+
+
+    house C[10];
+
+    house D[6];
 
 
 //<<" myhouse is $(typeof(&house)) \n" // TBF crash
@@ -96,13 +108,16 @@
     /}
   <<"sz $(Caz(C)) \n"; 
   
-  
+
+
+
   C[1]->print(); 
   
-  y = C[2]->getrooms(); 
+  c2r = C[2]->getrooms(); 
   
-  <<"house 2 has $y rooms \n"; 
-  checkNum(y,4)
+  <<"house 2 has $c2r rooms \n"; 
+  checkNum(c2r,4)
+
 
 
 
@@ -128,7 +143,8 @@
  checkNum(y,19); 
 
   <<"house ${a}+1 has $y rooms \n"; 
-  
+
+
   a= 3; 
   
   y = C[a]->getrooms(); 
@@ -162,6 +178,7 @@
 
   checkNum(y,22); 
 
+
   am1r =C[a-1]->getrooms();
   ar =C[a]->getrooms();
   <<"%V $am1r $ar\n"
@@ -175,49 +192,89 @@
 <<"house  $a has $y rooms \n"; 
  checkNum(y,22);
 
-  a1r= C[1]->getrooms())) ;
+  a1r= C[1]->getrooms() ;
   <<"%V $a1r \n"
 
-   a2r= C[2]->getrooms())) ;
+
+
+   a2r= C[2]->setrooms(11) ;
   <<"%V $a2r \n"
 
-   a2r= C[2]->setrooms(11))) ;
+   a2r= C[2]->getrooms() ;
   <<"%V $a2r \n"
+
 
   a4r=C[4]->setrooms( C[2]->getrooms()  ) ; //XIC wrong
-
+  
+//a4r=C[4]->setrooms( a2r ) ; 
 <<"%V $a4r\n"
 
   a4r=C[4]->getrooms() ;
 
 <<"%V $a4r\n"
- checkNum(a4r,a2r); 
+ checkNum(a4r,a2r);
 
-  res=C[4]->setrooms( C[2]->getrooms() + C[1]->getrooms() ) ;
+  d2r = D[2]->getrooms()  ) ; 
 
-<<"%V $a4r\n"
- checkNum(res,33); 
+  a5r=C[5]->setrooms( D[2]->getrooms() + C[2]->getrooms() ) ; 
 
-  a4r=C[4]->getrooms() ;
-
-<<"%V $a4r\n"
- checkNum(a4r,res) ; 
- checkOut()
- exit()
+ checkNum(a5r,d2r+a2r);
 
 
-  x=C[4]->setrooms( C[3]->setrooms(C[2]->getrooms()) + C[1]->getrooms()) ;
+  c1r = C[1]->getrooms()
+  c2r = C[2]->getrooms()
+  cr = C[2]->getrooms() + C[1]->getrooms() ;
 
-   a3r= C[3]->getrooms())) ;
-  <<"%V $a3r \n"
-  a2r= C[2]->getrooms())) ;
-  <<"%V $a2r \n"
 
-  checkNum(x,26); 
 
-  x=C[4]->setrooms(C[2]->getrooms() + C[3]->setrooms(C[1]->getrooms())) ;
+  res=C[5]->setrooms( C[2]->getrooms() + C[1]->getrooms() ) ;
 
-  checkNum(x,26); 
+// fails since it sets C[1] instead pf C[4]   - xic works
+
+//res=C[4]->setrooms( c1r + c2r ) ;
+
+  c5r = C[5]->getrooms()
+
+<<"%V $res $c2r $c1r $c5r $cr \n"
+ checkNum(res,33);
+ checkNum(c5r,33); 
+
+
+  a1r= C[1]->getrooms() ;
+  a2r= C[2]->getrooms() ;
+  a3r= C[3]->getrooms() ;
+  a6r= C[6]->getrooms() ;
+  
+  <<"%V $a1r $a2r $a3r $a6r\n"
+
+  res=C[6]->setrooms( C[3]->setrooms(C[2]->getrooms()) + C[1]->getrooms()) ;
+
+  a1r= C[1]->getrooms() ;
+  a2r= C[2]->getrooms() ;
+  a3r= C[3]->getrooms() ;
+  a6r= C[6]->getrooms() ;
+  <<"%V $a1r $a2r $a3r $a6r $res\n"
+
+  checkNum(res,33);
+  checkNum(a3r,11); 
+  checkNum(a6r,33); 
+
+
+
+  res= C[7]->setrooms(C[2]->getrooms() + C[3]->setrooms(C[1]->getrooms())) ;
+
+  a1r= C[1]->getrooms() ;
+  a2r= C[2]->getrooms() ;
+  a3r= C[3]->getrooms() ;
+  a7r= C[7]->getrooms() ;
+  
+<<"%V $a1r $a2r $a3r $a7r $res\n"
+  checkNum(res,33);
+  checkNum(a3r,22); 
+  checkNum(a6r,33); 
+
+
+
 
    Ar= AS->setrooms(a1r))) ;
   <<"%V $Ar \n"
@@ -225,11 +282,20 @@
    Br= BS->setrooms(a2r))) ;
   <<"%V $Br \n"
 
-    x=DS->setrooms(BS->getrooms() + CS->setrooms(AS->getrooms())) ;
+  csr =   CS->setrooms(AS->getrooms())  ;
 
-  checkNum(x,26); 
+  res= DS->setrooms(BS->getrooms() + CS->setrooms(AS->getrooms()))  ;
 
-  
+  dsr = DS->getrooms()
+
+
+<<"%V $Ar $Br $csr $dsr $res\n"
+  checkNum(res,33);
+  checkNum(res,dsr); 
+
+
+
+  checkOut()
 
 
  a1 = a+1;
@@ -238,8 +304,7 @@
 
 <<"%V $a $a1 $am1 $am2 \n"
 
-
-
+  
 
 
   x= C[a]->setrooms(C[a-2]->getrooms()) ;

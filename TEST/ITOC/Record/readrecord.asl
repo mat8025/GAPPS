@@ -1,33 +1,32 @@
+//%*********************************************** 
+//*  @script readrecord.asl 
+//* 
+//*  @comment test read file into record 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium [asl 6.2.49 C-He-In]                                
+//*  @date Tue May 19 16:36:25 2020 
+//*  @cdate 1/1/2018 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+myScript = getScript();
 ///
 ///
 ///
 
 
-setdebug(1,@~pline,@trace);
-filterFuncDebug(ALLOWALL_,"xxx");
-filterFileDebug(ALLOWALL_,"yyy");
 
+checkIn(_dblevel)
 
-proc ask()
-{
-   ok=checkStage();
-   <<"%6.2f$ok\n"
-  if (ok[0] < 100.0) {
-  ans=iread();
-  }
+ftfile = "favfoods.csv"
 
-}
-
-//#define  ASK ask();
-#define  ASK ;
-checkIn()
-
-A=  ofr("foods1.csv");
+A=  ofr("favfoods.csv");
 
    RF= readRecord(A,@del,',');
 
  if (A == -1) {
-  <<" can't open food table $ftfile \n";
+  <<" can't open file   \n";
     exit();
  }
 
@@ -95,15 +94,9 @@ recinfo = info(RF);
 <<" $RF[::] \n"
 
 
-A=  ofr("foods2.csv");
-
- if (A == -1) {
-  <<" can't open food table  \n";
-    exit();
- }
 
    //delete(RF)  ; // realloc of RF does not work for xic
-
+A=  ofr("favfoods.csv");
    RF= readRecord(A,@del,',')
    cf(A);
 
@@ -140,7 +133,7 @@ int Testpick[5][2];
 //ans=iread()
 
 
-A=  ofr("foodtable.csv");
+A=  ofr(ftfile);
 
  if (A == -1) {
   <<" can't open food table $ftfile \n";
@@ -200,6 +193,5 @@ RT[1][0] = RF[1];
 /}
 
 
-ASK
+
 checkOut()
-exit()

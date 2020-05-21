@@ -298,7 +298,21 @@ str sr1;
 
 checkStr(sr0,"how")
 
+ checkStr(R[0][0],"how")
+
 <<"col2 $R[0][2] \n"
+
+
+ checkStr(R[0][1],"many")
+
+sr1 = R[0][1];
+
+<<"$(typeof(sr1)) %V $sr1 \n"
+ checkStr(sr1,"many")
+
+<<"$R[0] \n"
+
+
 
    sr0 = R[0][2]
 
@@ -306,14 +320,11 @@ checkStr(sr0,"cols")
  <<"%V$sr0\n"
 
 
+
+
 <<"%V $R[0][1] \n"
 
- checkStr(R[0][1],"many")
 
-  sr1 = R[0][1];
-
-<<"$(typeof(sr1)) %V $sr1 \n"
- checkStr(sr1,"many")
  
 
 
@@ -337,7 +348,7 @@ checkStr(sr2,"cols")
    
    checkStr(sr1,"focus")
 
- R[2] = R[3];   // TBF
+   R[2] = R[3];   // TBF
 
 <<"inrecord[2] we have the same:- $R[2] \n"
 
@@ -348,10 +359,10 @@ checkStr(sr2,"cols")
 
  sr0 = R[0][0];
  <<"%V$sr0\n"
+<<"$R[0]\n"
+ checkStr(R[0][1],"many")
 
- checkStr(R[0][1],"how")
-
- sr1 = R[0][0];
+ sr1 = R[0][1];
  
  <<"%V$sr1\n"
 
@@ -359,11 +370,14 @@ checkStr(sr2,"cols")
 
    sr2 = R[2][2]
    
-checkStr(sr2,"focus")
+checkStr(sr2,"learn")
 
+   sr2 = R[3][2]
    sr3 = R[3][2]
    
 checkStr(sr3,"focus")
+
+
 
 checkStr(sr3,sr2)
 
@@ -413,7 +427,7 @@ for (k=0; k <3; k++) {
 <<"$k $fpat[k][0] $fpat[k][1]\n"
 }
 
-fpat = searchRecord( R, "sand")
+fpat = searchRecord( R, "and")
 
 row = fpat[0][0];
 col = fpat[0][1];
@@ -446,7 +460,7 @@ for (k=0; k <1; k++) {
  <<"%V $fr0 $sr0 $sr1\n"
 checkStr(sr1,"move")
 
-//checkProgress()
+checkProgress()
 
 <<"%V$R[3]\n"
 <<"inserting muy bien into R[3][4]\n"
@@ -467,7 +481,8 @@ checkStr(sr3,"and");
 
 checkStr(sr1,"muy bien");
 
-//checkProgress();
+
+checkProgress();
 <<"0 $R[0]\n"
 <<"1 $R[1]\n"
 <<"3 $R[3]\n"

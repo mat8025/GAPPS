@@ -41,7 +41,7 @@ class Point
 //============================//
 
 
- cmf setx(real m) 
+   cmf setx(real m) 
      {
       x = m;
       <<"$_proc $m $x  \n"; 
@@ -51,7 +51,23 @@ class Point
 
     cmf set (real m,real n) 
     {
-  <<"$_proc Set via floats %V $m $n  \n";
+  <<"$_proc set via real %V $m $n  \n";
+       x = m;
+       y = n;
+   <<"%V $m $n \n" 
+      };
+
+    cmf set (float m,float n) 
+    {
+  <<"$_proc set via float %V $m $n  \n";
+       x = m;
+       y = n;
+   <<"%V $m $n \n" 
+      };
+
+    cmf set (double m, double n) 
+    {
+  <<"$_proc set via double %V $m $n  \n";
        x = m;
        y = n;
    <<"%V $m $n \n" 
@@ -62,7 +78,7 @@ class Point
     {
        x = m;
        y = n;
-      <<"Set via ints %V $m $n $x $y \n";
+      <<"set via ints %V $m $n $x $y \n";
       };
  
     cmf getx() 
@@ -144,6 +160,8 @@ real r2 = 4.5;
   rx=   A->getx();
   <<"%V $rx\n"
 
+  checkFnum(r1,rx)
+
  my = A->mul(r2 ); 
   
   <<"%V$my $A->x  \n";
@@ -200,14 +218,26 @@ real r2 = 4.5;
 
 
 
-  A->set(0.15, 0.2);
+  
   
   <<"%V $A->x $A->y \n"; 
   
   <<" A->Print() \n"; 
+
   A->Print(); 
-  
-  ok=CheckFNum(A[0]->x,0.15,5);
+
+  A->set(0.15, 0.2);
+
+  ax= A[0]->x
+
+<<"%V $ax $A[0]->x \n"
+
+  ax= A->x
+
+<<"%V $ax $A->x \n"
+
+  ok=checkFNum(A->x,0.15,5);
+
 
 
 
