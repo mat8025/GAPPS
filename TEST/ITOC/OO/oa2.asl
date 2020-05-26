@@ -3,13 +3,14 @@
 //* 
 //*  @comment test object array 
 //*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                    
-//*  @date Tue Apr 28 19:55:01 2020 
+//*  @vers 1.2 He Helium [asl 6.2.49 C-He-In]                              
+//*  @date Thu May 21 08:59:16 2020 
 //*  @cdate Tue Apr 28 19:55:01 2020 
 //*  @author Mark Terry 
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
+
 
 
 
@@ -51,18 +52,18 @@ IV = vgen(INT_,10,0,1);
 
 
 
-vid = i->vid()
+vid = i->varid()
 
 //FIXME <<" $vid $(i->vid())\n"
 <<" $vid \n"
 
 float F[10]
 
-vid = F->vid()
+vid = F->varid()
 
 <<" $vid \n"
 
-vid = F[2]->vid()
+vid = F[2]->varid()
 
 <<" $vid \n"
 
@@ -97,8 +98,6 @@ class Act {
 // FIXME   <<"cons of Act $_cobj $(_cobj->obid())  $(IDof(&_cobj))\n" 
 //   co = _cobj->offset()
 
-
-
    id= Act_ocnt++ ;
   <<"Act cons of $_cobj $id $Act_ocnt\n"
    type = 1;
@@ -120,22 +119,16 @@ Act a;
     a->Set(5);
 <<"%V$a->type \n"
 
-vid = a->vid();
-
-<<"%V $vid \n"
 
 a->info(1)
 
-
-
-<<"%V$vid \n"
 
   <<"%V$a->type \n"
 
 // FIXME <<" a $(IDof(&a)) $(a->obid())\n"
 
 
- obid = a->obid();
+ obid = a->objid();
 <<"%V $obid  $vid \n"
  a_info = a->info();
 
@@ -151,12 +144,12 @@ a->info(1)
  Act X[4];
 
 
-  obid = X[1]->obid(); // TBF fails crashes ?
+  obid = X[1]->objid(); // TBF fails crashes ?
 
 <<"X[1] $obid \n"
 
 
-  obid = X[0]->obid(); // TBF fails crashes ?
+  obid = X[0]->objid(); // TBF fails crashes ?
 
 <<"X[0] $obid \n"
 
@@ -166,10 +159,10 @@ a->info(1)
 
  <<" b $(IDof(&b)) \n"
 
-  obid = b->obid()
+  obid = b->objid()
  
 
-  vid = b->vid()
+  vid = b->varid()
 
 
 
@@ -183,15 +176,15 @@ a->info(1)
 
 <<"%V$b->type \n"
 
- obid = c->obid()
+ obid = c->objid()
 
- vid = c->vid()
+ vid = c->varid()
 
 <<"%V$obid $vid\n"
 
 
 
- xobid = X[2]->obid();
+ xobid = X[2]->objid();
 
  <<"%V$xobid \n"
 
@@ -465,13 +458,13 @@ checkNum(xov,19)
 <<" attempting Dil E \n"
 xov = 20
 
-Dil E ;
+ Dil E 
 
 <<"FIRST E $(xov--) \n"
 
  checkNum(xov,19)
 
- checkOut()
+
 
 
 <<"$(xov--) \n"
@@ -520,7 +513,7 @@ syt = 80 //
 
  checkNum(syt,tys);
 
-checkOut()
+//checkOut()
 
  
 

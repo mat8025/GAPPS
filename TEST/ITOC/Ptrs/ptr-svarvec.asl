@@ -12,20 +12,9 @@
 //***********************************************%
    
    
-include "debug"; 
-debugON(); 
 
-
-
-filterfuncdebug(ALLOWALL_,"xxx");
-
-filterfiledebug(ALLOWALL_,"proc_","args_");
-
-
-
-   sdb(1,@trace,@pline); 
    
-   checkIn();
+   checkIn(_dblevel);
    
    svar S;
    
@@ -85,7 +74,7 @@ filterfiledebug(ALLOWALL_,"proc_","args_");
      checkStr(S[3],"dancez")
 
 <<"%V $S[3]\n"
-
+checkOut()
 
      sval= ps[3];
      nval = S[3];

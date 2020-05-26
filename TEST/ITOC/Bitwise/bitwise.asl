@@ -1,12 +1,26 @@
+//%*********************************************** 
+//*  @script bitwise.asl 
+//* 
+//*  @comment test bit ops & | ~  
+//*  @release CARBON 
+//*  @vers 1.3 Li Lithium [asl 6.2.50 C-He-Sn]                               
+//*  @date Sat May 23 15:44:41 2020 
+//*  @cdate 1/1/2001 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+myScript = getScript();
+
+
 //  test the bitwise ops
-setdebug(1,@~step)
 
 int  j = 5
 int  k = 1
 
 m = j & k
 
-CheckNum(m,1)
+checkNum(m,1)
 
 <<"%V $j & $k BAND  $m \n"
 
@@ -15,26 +29,26 @@ m = j & k
 
 <<"%V $j & $k BAND  $m \n"
 
-CheckNum(m,0);
+checkNum(m,0);
 
 k = 4
 m = j & k
 
 <<"%V $j & $k BAND  $m \n"
 
-CheckNum(m,4)
+checkNum(m,4)
 
 m = ( j | k )
 
 <<"$j | $k BOR  $m \n"
 
-CheckNum(m,5)
+checkNum(m,5)
 k = 2
 m = ( j | k )
 
 <<"%V $j | $k BOR  $m \n"
 
-CheckNum(m,7)
+checkNum(m,7)
 
 k = 4
 
@@ -43,13 +57,13 @@ m = ( j ^^ k )
 <<"$j ^^ $k BXOR_  $m\n"
 
 
-CheckNum(m,1);
+checkNum(m,1);
 
 m = ( j BXOR_ k )
 
 <<"$j BXOR_ $k  $m\n"
 
-CheckNum(m,1);
+checkNum(m,1);
 
 
 k = 1
@@ -58,7 +72,7 @@ m = ( j ^^ k )
 
 <<"$j ^^ $k XOR  $m\n"
 
-CheckNum(m,4)
+checkNum(m,4)
 
 
 
@@ -88,7 +102,7 @@ m = ~k
 
 m =  j << 1
 
-CheckNum(m,2)
+checkNum(m,2)
 
 <<"\n  j << 1  \n"
 
@@ -105,7 +119,7 @@ j = 32
 
 m =  j >> 4
 
-CheckNum(m,2)
+checkNum(m,2)
 
 <<"\n  $j >> 4  = m \n"
 
@@ -114,4 +128,6 @@ CheckNum(m,2)
 //ans= i_read("7")
 
 checkOut();
+
+
 

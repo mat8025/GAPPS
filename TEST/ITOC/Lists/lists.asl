@@ -3,8 +3,8 @@
 //* 
 //*  @comment test list functionality 
 //*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                    
-//*  @date Sun Apr 12 19:06:46 2020 
+//*  @vers 1.2 He Helium [asl 6.2.50 C-He-Sn]                              
+//*  @date Sat May 23 15:01:34 2020 
 //*  @cdate Sun Apr 12 19:06:46 2020 
 //*  @author Mark Terry 
 //*  @Copyright © RootMeanSquare  2010,2020 → 
@@ -13,28 +13,20 @@
 ///
 ///
 ///
-include "debug"
 
-filterfuncdebug(ALLOWALL_,"xxx");
-
-filterfiledebug(ALLOWALL_,"proc_","args_","scope_","class_","hop_");
-
+checkIn(_dblevel)
 
 ws = getScript()
 
 <<"%V $ws\n"
 
-setdebug(1,@trace,@keep,@pline);
+//setdebug(1,@trace,@keep,@pline);
 
 
-checkIn()
 
 CrashList = ( "",  )  // empty list
 
 <<"%V$CrashList \n"
-
-
-
 
 CrashList->LiDelete(0)
 
@@ -50,9 +42,9 @@ CrashList->LiDelete(0)
 
 
 
-
 int J[] = { 1,2,3,4 }
 
+J->info(1)
 m = Caz(J)
 
 <<"%V$m \n"
@@ -82,7 +74,7 @@ l0->info(1)
 
 // str fw
 
- str fw = L1[9];  // fails
+str fw = L1[9];  // fails
 
 fw->info(1)
 
@@ -92,14 +84,9 @@ fw= L1[0]
 
 <<"$fw\n"
 
-
-
-
 <<"%V$fw $(typeof(fw))\n"
 
 checkStr(fw,"a")
-
-
 
 l1sz = Caz(L1)
 <<"%V$l1sz\n"

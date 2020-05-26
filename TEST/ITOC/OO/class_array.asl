@@ -3,8 +3,8 @@
 //* 
 //*  @comment check array assignment within object 
 //*  @release CARBON 
-//*  @vers 1.2 He Helium                                                  
-//*  @date Sun Mar  3 12:41:16 2019 
+//*  @vers 1.3 Li Lithium [asl 6.2.50 C-He-Sn]                             
+//*  @date Fri May 22 16:46:03 2020 
 //*  @cdate 1/1/2003 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -195,6 +195,10 @@ Dil D;
   D->showIV()
 
   CheckNum(D->IV[8],47)
+
+  val = D->IV[8]
+
+<<"%V $val\n"
 
 
 checkOut()

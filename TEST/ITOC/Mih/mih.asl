@@ -13,7 +13,7 @@
 myScript = getScript();
 # test  multiple inheritance
 
-checkIn()
+checkIn(_dblevel)
 
 class building {
 

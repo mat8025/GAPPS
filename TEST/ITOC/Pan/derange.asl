@@ -1,9 +1,26 @@
+//%*********************************************** 
+//*  @script derange.asl 
+//* 
+//*  @comment test pan precision 
+//*  @release CARBON 
+//*  @vers 1.3 Li Lithium [asl 6.2.50 C-He-Sn]                               
+//*  @date Sat May 23 16:55:29 2020 
+//*  @cdate 1/1/2003 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+myScript = getScript();
+
+
+
+
 ///
 ///
 ///  --> 1/e
 
 
- checkIn(_dblevel)
+checkIn(_dblevel)
 
 float g;
 
@@ -24,7 +41,7 @@ setap(100);
 
 pan denom = 1;
 
-pan Re =  1;
+pan Re =  1.0;
 
 pan e;
 <<"%V$Re\n"
@@ -32,11 +49,15 @@ pan e;
 <<"$(typeof(Re)) $Re\n"
   tadd = 0;
 
+int N;
 
+    N = atoi(_clarg[1]);
+if (N == 0) {
+  N = 20;
+}
+<<"%V $N   $(typeof(N))\n"
+N->info(1)
 
-  N = atoi(_clarg[1]);
-
-<<"%V $N\n"
 
 //setDebug(1,@filter,1,"vfree",@filterfile,2,"ds_svar.cpp")
 
@@ -104,7 +125,8 @@ pan R;
 <<"%V$i $R $F \n"
 
      i += 1;
-   }
+//ans = iread("$i ")
+}
 
 
 <<"===========================\n"
@@ -117,11 +139,14 @@ double ReD = 1.0;
 double FD = 1.0;
 double ddenom;
 
+// sdb(1,@step)
+ 
  for (j =0 ; j < N ; j++) {
  
 //<<"%V $F *  $j +1 \n"
 
      F = F * (j+1);
+
      FD = FD * (j+1);
 
 <<"%V$j $FD $F  \n"
@@ -133,8 +158,9 @@ double ddenom;
 //<<"%V $ddenom $denom\n"   // TBF - have to reference denom here -- otherwise not known!?!
 
      if ( tadd) {
-	  <<"add $denom to $Re\n"
+	  
            Re = Re + denom;
+<<"add $denom to $Re\n"
            ReD = ReD + ddenom;
            tadd = 0;
      }
@@ -151,17 +177,22 @@ double ddenom;
 
 <<"%V$j $(typeof(j)) $F $denom  $Re \n"
 <<"%V$j  $FD %12.9f $ddenom   $ReD \n"
-//ans=iread()
+
+//ans=iread("$j")
 
 }
+
+
+
+
 
 pan pt = 1.0003450000;
 
 <<"$(typeof(pt)) $pt\n"
 
-checkFnum(pt,1.0003450000000000000,5)
+checkFnum(pt,1.0003450,5)
 
-testArgs(pt,1.00034500000000000000000000)
+testArgs(pt,1.000345000)
 
 pt = 1.0/exp(1.0);
 //pt = 0.3678794642857142857142857142857142857142857;
@@ -174,6 +205,6 @@ pt = 1.0/exp(1.0);
 
 
 
-checkFnum(Re,pt,5)
+checkFnum(Re,pt,3)
 
 checkOut()

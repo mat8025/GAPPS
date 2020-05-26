@@ -13,6 +13,9 @@
 myScript = getScript();
 
 checkIn(_dblevel)
+//checkIn(1)
+//sdb(1,@trace)
+
 
 class building {
 
@@ -66,7 +69,7 @@ class house : building {
   int bedrooms;
   int baths
 
- cmf setbaths(val)
+ cmf setbaths(int val)
  {
    baths = val
  }
@@ -153,6 +156,8 @@ class room : house {
 
 
 <<"after house $h \n"
+h->info(1)
+
 
    h->print()
 
@@ -195,9 +200,6 @@ class room : house {
 <<"%v $hr \n"
 
 
-
-
-
    nr = h->getrooms()
 
 <<" %v $nr \n"
@@ -238,7 +240,7 @@ class room : house {
 
    nf = r->getfloors()
 
-  CheckNum(2,nf)
+  checkNum(2,nf)
 
 <<" grandparent constructor called %v $nf  from room object\n"
 
@@ -257,7 +259,7 @@ class room : house {
 
 <<" %I $nf \n"
 
-  CheckNum(nf,10)
+  checkNum(nf,10)
 
    r->print()
 
@@ -269,6 +271,6 @@ class room : house {
 
 <<" baths $nb \n"
 
-  CheckNum(nb,3)
+  checkNum(nb,3)
 
-  CheckOut()
+  checkOut()

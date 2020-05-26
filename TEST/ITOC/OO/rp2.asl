@@ -203,6 +203,9 @@
    a2r= C[2]->getrooms() ;
   <<"%V $a2r \n"
 
+  a4r=C[4]->getrooms() ;
+
+<<"%V $a4r\n"
 
   a4r=C[4]->setrooms( C[2]->getrooms()  ) ; //XIC wrong
   
@@ -211,9 +214,10 @@
 
   a4r=C[4]->getrooms() ;
 
-<<"%V $a4r\n"
+<<"%V $a2r $a4r\n"
  checkNum(a4r,a2r);
 
+checkOut()
   d2r = D[2]->getrooms()  ) ; 
 
   a5r=C[5]->setrooms( D[2]->getrooms() + C[2]->getrooms() ) ; 

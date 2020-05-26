@@ -3,8 +3,9 @@
 //* 
 //*  @comment test proc syntax/operation 
 //*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                    
-//*  @date Fri Apr 17 23:49:26 2020 
+//*  @vers 1.2 He Helium [asl 6.2.50 C-He-Sn]                              
+//*  @date Sat May 23 23:27:05 2020 
+ 
 //*  @cdate Fri Apr 17 23:49:26 2020 
 //*  @author Mark Terry 
 //*  @Copyright © RootMeanSquare  2010,2020 → 
@@ -17,7 +18,7 @@
 
 checkIn(_dblevel)
 
-Proc foo(double a)
+proc Foo(double a)
 {
  <<" IN $_proc $a \n"
 
@@ -32,10 +33,9 @@ Proc foo(double a)
 
 }
 //===================
-//Proc goo(double a)
 
 
-Proc goo(real a)
+proc Goo(real a)
 {
  <<" IN $_proc $a \n"
 //  real d;
@@ -65,7 +65,7 @@ d->info(1);
 
 x = 20.2
 
-gr=goo(x)
+gr=Goo(x)
 <<"$x $gr \n"
 
 checkFnum(gr, (x*2))
@@ -74,14 +74,14 @@ checkFnum(gr, (x*2))
 
 x = 14.89
 
-gr=goo(x)
+gr=Goo(x)
 
  <<"%V  $gr $x \n"
 
 checkFnum(gr, (x*2))
 
 
-exit()
+
 
  cy = Cos(x)
 
@@ -93,35 +93,32 @@ exit()
 
  y /= 2.0;
 
-  t = foo(x)
+  t = Foo(x)
 
 <<"$x $t \n"
 
 
-  t = foo(Cos(x))
+  t = Foo(Cos(x))
 
 <<"$x $t \n"
 
 
-  t = foo(Sin(Cos(x)))
+  t = Foo(Sin(Cos(x)))
 
 <<"$t \n"
 
-  t = goo(x)
+  t = Goo(x)
 
 <<"$t \n"
 
   y = x/2.0;
 
-  t = foo(x)
+  t = Foo(x)
 t->info(1)
 <<"%V $x $y $t\n"
 
-  CheckFNum(t,y,6)
+  checkFnum(t,y,6)
 
-
-
-exit()
 x = -20.2;
 
  <<"%V $_proc $x \n"
@@ -137,11 +134,11 @@ x = -20.2;
  y /= 2
 
 
-  t = foo(Sin(Cos(x)))
+  t = Foo(Sin(Cos(x)))
 
 <<"$x $t \n"
 
-  CheckFNum(t,y,6)
+  checkFnum(t,y,6)
 
 
  x = -15.2
@@ -154,14 +151,11 @@ x = -20.2;
 
  y /= 2
 
-  t = foo(Cos(Sin(x)))
+  t = Foo(Cos(Sin(x)))
 
 <<"$x $t \n"
 
-  CheckFNum(t,y,6)
-
-exit()
-
+  checkFnum(t,y,6)
 
  x = -15.2
 
@@ -173,11 +167,11 @@ exit()
 
  y /= 2
 
-  t = foo(Sin(Cos(Sin(x))))
+  t = Foo(Sin(Cos(Sin(x))))
 
 <<"$x $t \n"
 
-  CheckFNum(t,y,6)
+  checkFnum(t,y,6)
 
 
  x = -15.2
@@ -192,11 +186,11 @@ exit()
 
  y /= 2
 
-  t = foo(Sqrt(Sin(Cos(Sin(x)))))
+  t = Foo(Sqrt(Sin(Cos(Sin(x)))))
 
 <<"$x $t \n"
 
-  CheckFNum(t,y,6)
+  checkFnum(t,y,6)
 
 
 
@@ -205,13 +199,12 @@ exit()
 
 //FIXME   t = foo(Cos(x))
 
-t = foo(Cos(x))
+t = Foo(Cos(x))
 
  <<"$x $t \n"
 
-CheckOut()
+checkOut()
 
-exit()
 
 N = _clargs[1]
 

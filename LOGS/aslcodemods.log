@@ -400,3 +400,10 @@ mop_m.cpp	 1.95	 Fri May 15 23:06:39 2020 break out rand and round ops
 ap_math.cpp	 1.24	 Fri May 15 23:07:25 2020 roundup bug fixed?
 ds_storevar.cpp	 1.78	 Sat May 16 08:06:09 2020 added number to string convert warning
 declare_e.cpp	 2.24	 Sat May 16 09:51:32 2020 split out cdeclare static txtbox modules
+vmf_l.cpp	 1.54	 Thu May 21 08:51:50 2020 objid,varid,varoffsets
+table_l.cpp	 1.24	 Thu May 21 08:52:16 2020 objid,varid,varoffsets
+vmf.h	 1.8	 Thu May 21 08:54:04 2020 varid,varoffsets
+paramexpand.cpp	 2.72	 Fri May 22 15:59:22 2020 trace++
+class_e.cpp	 2.20	 Fri May 22 16:29:32 2020 use parset pvc
+rdp_token.cpp	 1.72	 Sun May 24 09:30:42 2020 IDDR - find-or-make
+declare_type_e.cpp	 2.40	 Mon May 25 20:12:26 2020 dynamic min size is 1

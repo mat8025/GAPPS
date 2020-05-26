@@ -3,8 +3,8 @@
 //* 
 //*  @comment asl test modules 
 //*  @release CARBON 
-//*  @vers 1.62 Sm Samarium [asl 6.2.49 C-He-In]                           
-//*  @date Wed May 20 23:32:34 2020 
+//*  @vers 1.63 Eu Europium [asl 6.2.51 C-He-Sb]                           
+//*  @date Sun May 24 09:28:05 2020 
 //*  @cdate 1/1/2005 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -411,7 +411,7 @@ proc doxictest(str prog, str a1)
 proc cart_xic(str aprg)
 {
 
-<<"%V $_proc  $aprg  \n"
+//<<"%V $_proc  $aprg  \n"
 
     if (fexist(aprg) != -1) {
 
@@ -658,6 +658,7 @@ int do_declare = 0;
 int do_syntax = 0;
 int do_include = 0;
 int do_if = 0;
+int do_bit = 0;
 int do_logic = 0;
 int do_for = 0;
 int do_do = 0;
@@ -852,8 +853,12 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
   cart("mod")
 
-
   updir()
+
+
+  changeDir("Info")
+
+  cart("info")
 
 
    }
@@ -866,11 +871,6 @@ if ((do_if || do_all) && (do_if != -1)) {
   
   RunDirTests("If","if")
 
-
-
-  Run2Test("Bitwise")
-  cart("bitwise")
-
   Run2Test("Define")
   cart("define")
 
@@ -878,18 +878,21 @@ if ((do_if || do_all) && (do_if != -1)) {
 
   cart("colors_enum")
 
-
+  }
 ////////////////////////////////////////////////////////////////////////
 
-    }
+if ((do_bit || do_all) && (do_bit != -1)) {
+
+  Run2Test("Bitwise")
+  cart("bitwise")
+
+}
 
 
-
-//rdb()
 
   if ((do_logic || do_all) && (do_logic != -1)) {
 
-   RunDirTests("Logic","logic,logic2,logic_def")
+   RunDirTests("Logic","logic,logic_ops,logic_def")
 
   }
 
@@ -1119,7 +1122,7 @@ if ((do_all || do_array ) && (do_array != -1)) {
 
     hdg("DYNAMIC_V")
 
-    RunDirTests("Dynv","dynv,dynv2");
+    RunDirTests("Dynv","dynv");
 
 
     }
@@ -1153,7 +1156,7 @@ if ((do_all || do_func ) && (do_func != -1)) {
 
    if ((do_all || do_vmf) && (do_vmf != -1)) {
   <<"trying vmf \n"
-    RunDirTests("Vmf","vmf")
+    RunDirTests("Vmf","vmf,vmf-range")
   }
 
 /////////////////////////////////////////
@@ -1306,7 +1309,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
    if ((do_all || do_lists ) && (do_lists != -1)) {
 
-     RunDirTests("Lists","list,list_declare,listele,list_ins_del");
+     RunDirTests("Lists","lists,list_declare,listele,list_ins_del");
 
     }
 
@@ -1327,11 +1330,11 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
    if ((do_all || do_oo ) && (do_oo != -1)) {
 
-    RunDirTests("OO","rpS,rp2,wintersect,oa,oa2,sh,class_array");
+    RunDirTests("OO","oa2,rpS,rp2,wintersect,oa,class_array");
 
     RunDirTests("Obcopy","obcopy,obprocarg");
 
-    RunDirTests("Mih","mih")
+    RunDirTests("Mih","sh,mih")
 
   }
 

@@ -222,18 +222,25 @@ An expression is made up of
 	      ||  or
 	      @=  string compare
               !=  not equal
+	      
+              AND_    and   &&
+	      NAND_  nand |&
+	      XOR_    xor   &|
+	      OR_      or     ||
+	      NOT_    not    !
+
 
 	unary operators
 		-  unary minus
 	        !  negation
 
         bit operators
-                &  bit and
-                |  bit or
-                >> bit shift right
-                << bit shift left
+                &  bit and   BAND_
+                |  bit or       BOR_
+                >> bit shift right  RSHIFT_
+                << bit shift left    LSHIFT_
                  ~ one's complement
-                '  bit xor
+                ^^  bit xor  BXOR_
 	parentheses
 	      ()
 

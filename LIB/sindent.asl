@@ -12,9 +12,7 @@
 //***********************************************%
   
   
-  setdebug(1,@keep,@~pline,@~step,@~trace,@showresults,1);
-  filterFuncDebug(ALLOWALL_,"proc");
-  filterFileDebug(ALLOWALL_,);
+
   sdb(-1)
 // use an indent of 2 spaces - for all non-comment lines
 
@@ -270,6 +268,7 @@
   
   
 //==================================//
-//  TBD -
-//  bug split of long lines
-//  bug - puts ; end of if without a brace
+///--------------  TBDFC ------------------------------
+/// TBF  bug split of long lines
+/// TBF  bug - puts ; end of if without a brace
+/// TBD #define should start @ col 0
