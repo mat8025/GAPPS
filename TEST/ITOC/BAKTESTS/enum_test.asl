@@ -1,0 +1,262 @@
+
+
+#define BMP_END_DB  2000   // list in index into our debug buffer
+
+enum DBG_Flags_BMP
+  {
+    PT_START_SECS = 1,
+    PT_START_USECS,
+    PT_DUR_USECS,
+    PT_PER_USECS,
+    POLL_WC,    
+    POLL_RD,
+    POLL_WD,
+    POLL_IVC,
+    IVCMD,
+    IVPAGE, //10
+    IVPAGEN, 
+    IVPART,
+    IVPARTID,
+    WRM,
+    BMP_SR_IDLE ,
+    BMP_SW_IDLE ,
+    BMP_NVM_FULL ,
+    BMP_SP_ERROR ,
+    BMP_SDLOSS ,
+    BMP_SWDLOSS , //20
+    BMP_SKPBUFFS , 
+    BMP_SKPCBI ,
+    BMP_SWD_OK ,
+    NVM_WRT_FAIL ,
+    NVM_SVRWRT_CNT ,
+    BMP_RVDATA ,
+    BMP_RWIP ,
+    BMP_RWIPDLOSS ,
+    BMP_RADDR ,
+    BMP_MRERR ,  // 30
+    BMP_CSCDB_OK , 
+    NVM_ADDR,
+    NVM_SD_ADDR,
+    NVM_BH_ADDR,
+    NVM_PSTATUS,
+    BMP_NSC,
+    BMP_FSQ,
+    NVM_RDYTOERASE,
+    NVM_VDATA,
+    FSQ_STATE,  // 40
+    NVM_BHWRT_REQ,
+    NVM_BHWRT_CNT ,
+    NVM_BHW_LEN ,
+    NVM_SVRW_LEN ,
+    NVM_CINDEX ,
+    NVM_AREA_FULL ,
+    NVM_BHWRT_OA,
+    NVM_SVRWRT_OA,
+    NVMWAO,
+    POLL_HMANY, // 50
+    NVM_BHW_ADDR , 
+    NVM_BHW_BLKST,
+    NVM_BHW_BLKEND,
+    NVM_SVR_ADDR , 
+    NVM_SVR_BLKST,
+    NVM_SVR_BLKEND,
+    BMP_SYNC,
+    BMP_MAINT, 
+    BMP_RDCMD, 
+    BMP_BCAST,  //60
+    BMP_CSTATE, 
+    BMP_TOROLL, 
+    BMP_ETON, 
+    FSQ_PROC, 
+    NVM_PROCFSQCNT, 
+    FSQ_NEWFLT, 
+    FSQ_DOITRM, 
+    FSQ_CFI, 
+    FSQ_ITMFLT,
+    FSQ_OS, // 70
+    FSQ_PART,
+    NVM_VHEAD,
+    BMP_FLEG,
+    FSQ_FDR_ID,
+    FSQ_FDR_CODE,   
+    FSQ_FDR_TID, 
+    FSQ_PART_INDEX,
+    BMP_BHTCNT,
+    BMP_CABINVAL,
+    BMP_BIT, // 80
+    BMP_GETFLTS, 
+    BMP_OVERRUN, 
+    BMP_FRQ,
+    BMP_BCAST_VALID,
+    BMP_FLTPHASE, 
+    BMP_FP_INVALID,
+    WSS_DUR,  
+    MIN_REFRESH_RT,
+    MAX_REFRESH_RT,
+    NVM_MIN_REFRESH_RT, // 90
+    NVM_MAX_REFRESH_RT,
+    BMP_RTC_SYNC,
+    BMP_RTC_UNSYNC,
+    BCAST_VALIDATED,
+    BCAST_RD_INVALID,
+    BB_RD_INVALID,
+    NVM_WT_REQ,
+    BC_STAT_VALID,
+    BH_FP_TOROLL,
+    ROLL_FLEG,  // 100
+    FSQ_OS_REQ,
+    FSQ_PART_REQ,
+    BMP_CSCDB_MERR,
+    CSCDB_FSQ_PID,
+    BMP_CABPOS,
+    BMP_RD_NVM,
+    BMP_GET_FAULTS,
+    BMP_FSQX_PTR,
+    BMP_FSQ_OUTPTR,
+    NVM_BH_ADDR_C,  // 110
+    NVM_SD_ADDR_C,
+    BMP_FSQX_PTR_C,
+    BMP_FSQ_OUTPTR_C,
+    BMP_CSCDB_STATUS,
+    BMP_CSCDB_FILE,
+    CSCDB_FSQ,
+    BMP_FLUSH,
+    BMP_AHM_MSG,
+    BMP_GETCLEG,
+    BMP_TST_COMPLETE, // 120
+    BMP_SYNC_IV,
+    BMP_REQ_CMD,
+    BMP_BADREQC,
+    SP_CREATE_ERR,
+    CSCDB_DATA_PTR,
+    BMP_WRT_NVM,
+    BMP_NVM_WADDR,
+    BMP_REQ_PAGE,
+    BMP_NVM_PWA,
+    BMP_LSR_S1,  // 130
+    BMP_LSR_S2,
+    BMP_BAD_SST,
+    BMP_INIT,
+    BMP_X_SADDR,
+    BMP_RPM_VALID,
+    BMP_NVM_HDR_VALID,
+    BMP_XLANE_STATUS,
+    BMP_NO_NVMHDR,
+    BMP_TMP_NVMHDR,
+    BMP_NO_INFOREC, // 140
+    BMP_FA_WA,
+    BMP_FA_WA2,
+    BMP_FA_SECT, 
+    BMP_RD_NVMADDR,
+    BMP_FND_FAREC,
+    BMP_INIT_FLEGA,
+    BMP_CHK_XY,
+    BMP_CUR_SEC,
+    BMP_YLANE_STATUS,
+    BMP_FND_FLIREC, // 150
+    BMP_RTC,
+    BMP_WRT_SZ,
+    BMP_RD_SZ,
+    BMP_BAD_WRT,
+    BMP_BAD_RD,
+    BMP_WRT_SDNVM,
+    BMP_WRT_SDSZ,
+    BMP_SR_SZ,
+    POLL_WD_SZ,
+    RMSG_SZ,  // 160
+    RMSG_SST_I,
+    BMP_SST_RDI,
+    CMN_FLEG_ADDR,
+    CMN_FLEG_NUM,
+    CMN_ACTFA_ADDR,
+    CMN_FA_RDCNT,
+    CMN_FA_INDEX,
+    BMP_TIME_SYNC,
+    FSQ_OSX_PTR,
+    BMP_FSQ_OPTRFR, // 170
+    BMP_TMPHDR_OFF,
+    RPM_BH_ADDR,
+    BMP_SYNC_SZ,
+    BMP_WT_SYNC,
+    BMP_WTSYNC_SZ,
+    BMP_TSBUFFS,
+    BMP_SKPQ_WRT,
+    NVM_FLI_WADDR,
+    CMN_FA_FID,
+    BMP_SVR_WRTI, // 180
+    BMP_SVR_SKP,
+    CTS_BMP_SKP,
+    CMN_MAXCL_SOFF,
+    CMN_BH_FULL,
+    CMN_BH_WADDR,
+    CMN_CHK_BH,
+    CMN_CHK_FA,
+    BMP_WRT_SDMID,
+    BMP_SP_NAMES,
+    BMP_SVR_NAMES, // 190
+    NVM_SVRWRT_REQ,
+    NVM_SVR_BOUND,
+    BMP_SVR_WRT,
+    BMP_PROCESS,
+    BMP_CNTRL_ST,
+    BMP_IHP,
+    BMP_MS_INVALID,
+    BMP_CBM_ML, 
+    BMP_IHP_SPCPY,
+    FSQ_PART_OUTPTR, // 200
+    FSQ_PART_INPTR,
+    FSQ_FR_PTR,
+    CTS_BMP_WSI,
+    CTS_NVM_SVRWRT_FAIL,
+    CTS_NVM_BH_SZ,
+    CTS_NVM_PSTATUS,
+    CTS_RD_REQ_PAGE,
+    CTS_RD_REQ_PTID,
+    CTS_NVM_OVERWRT,
+    FSQ_CYCLE,  // 210
+    BMP_UNWRT_HDR,
+    CTS_BAD_FADDR,
+    BMP_BH_SECT1,
+    BMP_BH_SECT2,
+    CTS_NVM_FR_WADDR,
+    BMP_END_FLAGS, // 216 check overwrite - POLL_SVC?
+    SS_READP,
+    SS_WRITEP,
+    CTS_WT_REQ_PAGE,
+    CTS_WT_REQ_PTID,
+
+    CTS_FLAG_CHK,
+
+
+
+    POLL_SVC = 220,
+    RMSGID= 300,
+   
+  }; // can use upto 375 flags --- 1500 bytes  -- UDP size pkt header of 20
+<<"do we see this \n"
+
+int IV[]
+
+
+    IV[POLL_RD] = 79
+
+<<" POLL_RD = $(POLL_RD) \n"
+
+    au = IV[POLL_RD]
+
+<<"%V   POLL_RD  ${IV[POLL_RD]}  POLL_RD  $au \n"
+
+
+<<"    BMP_MRERR $(BMP_MRERR) ,  // 30 \n"
+
+<<"    BMP_SWDLOSS     $(BMP_SWDLOSS) \n"
+
+<<"    BMP_SVR_NAMES     $(BMP_SVR_NAMES) // 190 \n" 
+
+<<"  $(BMP_END_FLAGS) \n"
+
+<<"  PT_START_SECS  $(PT_START_SECS)     PT_START_USECS   $(PT_START_USECS) \n"
+
+stop!
+
+;

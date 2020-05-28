@@ -30,13 +30,26 @@
    svar sval;
    
    ptr  ps; 
-   
+
+   ps->info(1)
+ 
    ps = &S;
-   
+
+   ps->info(1)
+
+   S->info(1)
+
    val = ps[2];
-   
-   <<"$val\n";
-  
+
+   ps->info(1)
+
+
+   <<"%V $val\n";
+
+
+
+
+
    val->info(1); 
 
    ps->info(1);
@@ -48,6 +61,8 @@
 
 
    sz=Caz(S);
+
+   S->info(1)
 
     i= 1;
    
@@ -61,16 +76,17 @@
      sval= ps[i];
      
      <<"<$i> $sval \n"; 
-          checkStr(sval,S[i])
+      checkStr(sval,S[i])
      }
    
    <<"\n";
       ps->info(1);
 
-
-
      ps[3] = "dancez"
 
+<<"$S\n"
+   S->info(1)
+   
      checkStr(S[3],"dancez")
 
 <<"%V $S[3]\n"

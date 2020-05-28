@@ -1,0 +1,78 @@
+
+setdebug(1,"trace")
+
+checkIn()
+
+proc array_sub(float rl[])
+{
+
+
+<<"In $_proc\n"
+<<"$rl \n"
+
+j1 = 4
+j2 = 6
+
+
+rls = rl[j1] - rl[j2];
+
+<<"%V$rls\n"
+
+checkFNum(rls,-2)
+
+rl[j1] = 47.0;
+
+<<"%V $rl \n"
+
+rl[j1] = rl[j1] - rl[j2];
+
+<<"%V $rl \n"
+
+checkFNum(rl[j1],-2)
+
+return rls
+}
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+   Real = fgen(10,0,1)
+<<"%V$Real\n"
+   j1 = 4;
+   j2 = 6;
+   
+   rlm = Real;
+
+<<"%V $rlm \n"
+<<"%V $j1 $j2 \n"
+
+ kp = 3;
+
+
+rls = rlm[j1] - rlm[j2];
+
+<<"%V$rls\n"
+
+checkFNum(rls,-2)
+
+rlm[j1] = rlm[j1] - rlm[j2];
+
+<<"%V $rlm \n"
+<<"%V $rlm[j1] \n"
+
+checkFNum(rlm[j1],-2)
+
+<<"%V $rlm[kp] \n"
+
+val = array_sub(Real)
+
+CheckOut();
+exit();
+
+ 
+
+
+
+
+
+CheckOut();

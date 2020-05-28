@@ -1,0 +1,3 @@
+ a =0; for (j= 0; j <5 ; j++) { a++ ; <<"$a\n" ; if ( a > 3 ) {<<"%V$j\n"; break; ;};  };
+ <<"and a very good night\n"; 
+ <<" can we keep adding code args?\n" 

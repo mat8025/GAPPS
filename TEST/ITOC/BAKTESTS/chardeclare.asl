@@ -1,0 +1,206 @@
+//%*********************************************** 
+//*  @script chardeclare.asl 
+//* 
+//*  @comment test declare of char vector 
+//*  @release CARBON 
+//*  @vers 1.4 Be Beryllium                                                
+//*  @date Fri Apr 12 16:13:07 2019 
+//*  @cdate 1/1/2000 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+
+#include "debug.asl"
+
+debugON();
+
+
+CheckIn()
+
+setdebug(1,@pline,@trace,@soe)
+
+Z="hey"
+
+<<"%V $Z\n"
+
+checkStr(Z,"hey");
+
+S="hey";
+
+<<"%V $S\n"
+
+checkStr(S,"hey");
+
+V="hey"  // gets hey"
+
+<<"%V $V\n"
+
+checkStr(V,"hey");
+
+
+
+
+char c = 65;
+char p = 'q';
+
+<<"%I $c $p \n"
+<<"%I %c$c %c$p \n"
+
+<<"%V $c\n"
+<<"%V $p\n"
+
+
+str s = "abc"
+
+<<"%I $s %s$s \n"
+
+str tease = "a b c "
+
+//FIXIT missing varname
+
+
+tease->info(1)
+<<"<|$tease|> \n"
+
+uchar cv[] = { 65,47,79,0xBA };
+
+
+ sz= Caz(cv)
+ 
+<<"%V$sz $cv \n"
+
+ cve = cv[0]
+
+<<"%V$cve\n"
+<<"%V$cv[0]\n"
+
+ CheckNum(cve,65)
+
+
+
+ cv[0] = 'M';
+ 
+ cve = cv[0]
+
+<<"%V$cve\n"
+<<"%V$cv[0]\n"
+
+ CheckNum(cv[0],77)
+
+
+
+ str ls = 'abc'
+
+ CheckNum(cv[3],0xBA)
+
+
+
+<<"%I %hx $cv \n"
+<<"%I %s $cv \n"
+
+wc = scnt("G")
+
+<<"%V $wc $(typeof(wc))\n"
+
+char dv[] = { 'G', 25, 28, 78, 'O', '0', 69, 75,76,77 }
+
+
+<<"$(vinfo(dv))\n"
+<<"$dv \n"
+<<"%c $dv \n"
+
+ CheckNum(dv[4], 'O' )
+ CheckNum(dv[5], '0' )
+  CheckNum(dv[0], 'G' ) 
+
+
+
+char a = 'G';
+
+<<" $(vinfo(a)) \n"
+
+<<"%V $dv[0] $a \n"
+
+ CheckNum(dv[0],a)
+
+ CheckNum(dv[0], wc )
+
+ CheckNum(dv[0], 'G' )
+
+
+ checkStage()
+
+<<"%V $dv  \n"
+
+<<"%V $dv[1]  \n"
+
+ CheckNum(dv[1],25)
+
+  char b = dv[4];
+
+<<"%V $b %d $b\n"
+<<"%V $dv[4]\n";
+
+//iread()
+
+ CheckNum(dv[4], 'O' )
+
+
+
+<<" whaat is happening here $dv[5] \n"
+
+ tc = scnt("0");
+ <<"%V $tc\n";
+ CheckNum(dv[5], scnt("0") )
+<<" Imm not really cleaaaaaaar \n" 
+
+
+ CheckNum(dv[5], '0' )
+
+
+
+char lv[] = { 'ABCDEF MARK$S TERRY NEEDS TO FOCUS ' }
+
+sz = Caz(lv)
+<<"%v $sz \n"
+<<"%V $lv \n"
+
+<<" $lv[0] \n"
+<<" $lv[1] \n"
+//iread("->");
+
+char ev[] = { "ABCDEF MARK$S TERRY NEEDS TO FOCUS " }
+
+
+<<"%V$ev \n"
+sz = Caz(ev)
+<<"%v $sz \n"
+
+<<"%V %c $ev \n"
+<<"%V $ev \n"
+
+//iread("->");
+
+ CheckNum(ev[0],'A')
+ CheckNum(ev[7],'M')
+
+<<"%I %s $lv \n"
+
+ CheckNum(lv[0],'A')
+ CheckNum(lv[7],'M')
+ CheckNum(lv[11],'$')
+
+
+ <<" chardec DONE\n"
+sdb(1,@~pline)
+for (k=0;k<sz;k++) {
+
+<<"$k $ev[k] %c $ev[k] \n"
+}
+
+
+ CheckOut()
+
+
+

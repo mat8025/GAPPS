@@ -407,3 +407,4 @@ paramexpand.cpp	 2.72	 Fri May 22 15:59:22 2020 trace++
 class_e.cpp	 2.20	 Fri May 22 16:29:32 2020 use parset pvc
 rdp_token.cpp	 1.72	 Sun May 24 09:30:42 2020 IDDR - find-or-make
 declare_type_e.cpp	 2.40	 Mon May 25 20:12:26 2020 dynamic min size is 1
+createv_e.cpp	 1.2	 Thu May 28 09:32:20 2020 PTR make
