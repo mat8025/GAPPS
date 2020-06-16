@@ -15,7 +15,106 @@
 
 
 
-checkIn(_dblevel)
+ci (_dblevel)
+
+proc Foo()
+{
+int fi =0;
+<<"%V  $Nrecs\n"
+while (fi < Nrecs) {
+//<<"%V$fi\n"
+
+  fi->info(1)
+  
+  fi++;
+   if (fi < Nrecs) {
+<<"$fi $(Nrecs-fi) to go \n"
+ }
+  
+
+}
+ cn (fi,Nrecs)
+ return fi;
+ 
+}
+//======================================//
+proc readData2()
+{
+
+  int tl = 0;
+
+
+  while (tl < Nrecs) {
+
+//  tl->info(1)
+
+    tl++;
+   if (tl < Nrecs) {
+<<"$tl $(Nrecs-tl) to go \n"
+ }
+    
+//<<"EOWHILE $tl $Nrecs\n"
+   
+  }
+
+
+
+<<"$Nrecs there were $tl  measurements \n"
+cn (tl,Nrecs)
+   return tl
+
+}
+//==============================================//
+
+proc readData()
+{
+
+  int tl = 0;
+
+
+  while (tl < Nrecs) {
+
+//  tl->info(1)
+
+    tl++;
+   if (tl < Nrecs) {
+<<"$tl $(Nrecs-tl) to go \n"
+ }
+    
+<<"EOWHILE $tl $Nrecs\n"
+   
+  }
+
+
+cn (tl,Nrecs)
+<<"$Nrecs there were $tl  data reads \n"
+
+   return tl
+
+}
+//==============================================//
+
+
+
+Nrecs = 10
+
+nt =readData()
+
+<<"looped $nt times\n"
+
+cn (nt,Nrecs)
+
+nt =Foo()
+
+<<"looped $nt times\n"
+
+cn (nt,Nrecs)
+
+co ()
+
+//===========================//
+
+
 
 
 
@@ -37,12 +136,20 @@ int ok =0
 
  k = 0
 
-  while (1) {  if (k >=9) {  break;  }
-  else {
-  <<"this while loop $k\n";
-  k++; }
+  while (1) {
+   if (k >=9) {
+   break;
+   }
+   else {
+    <<"this while loop $k\n";
+    k++;
+    }
   };
-  <<"%V$k == ? 9 \n"; checkNum(k,9);
+
+<<"%V$k == ? 9 \n";
+
+
+cn (k,9);
 
 k= 0;
 n = 1;
@@ -58,7 +165,7 @@ n = 1;
 
 <<"%V$k == ? 10 \n"
 
-checkNum(k,10);
+cn (k,10);
 
 k= 0;
 n = 1;
@@ -74,7 +181,7 @@ n = 1;
 
 <<"%V$k == ? 10 \n"
 
-checkNum(k,10);
+cn (k,10);
 
 ///
 ///
@@ -88,7 +195,7 @@ N = 10
 
 <<" DONE $k $N \n"
 
-checkNum(k,N);
+cn (k,N);
 
  k =0;
  int m = 0;
@@ -99,7 +206,7 @@ checkNum(k,N);
  }
 
 <<" DONE $k $N \n"
-checkNum(k,N+1);
+cn (k,N+1);
  m = 0;
  k = 0;
  while ( ++k < N) {
@@ -107,7 +214,7 @@ checkNum(k,N+1);
    <<" $k $m \n"
  }
 
-checkNum(k,N);
+cn (k,N);
 <<" DONE $k $N \n"
 
 checkStage("2")
@@ -153,13 +260,28 @@ b = 3 ; c = a * b
 
  }
 
-checkNum(kc,N)
+cn (kc,N)
 
 <<" DONE %V $k $kc  $N $M $a\n"
 
 checkStage("continue")
 
 ///////////////////////////////
+int tl = 0;
 
+while (tl < Nrecs) {
+<<"$tl\n"
+
+tl++;
+ if (tl < Nrecs) {
+<<"$tl $(Nrecs-tl) to go \n"
+ }
+}
+
+cn (tl,Nrecs)
+
+Foo()
+
+readData()
 
 checkOut()

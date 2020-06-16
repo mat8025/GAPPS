@@ -11,10 +11,9 @@
 //* 
 //***********************************************%
 ///
-/// "$Id: showtlib.asl,v 1.2 1997/12/07 03:48:51 mark Exp mark $"
 /// 9/17/2017
 
-<<" %V $_DB\n"
+DBG"%V $_DB\n"
 
   ntpts = 0
   Min_lat = 90.0
@@ -29,55 +28,58 @@
   nm_to_sm = 6080.0/5280.0
   nm_to_km = 6080.0/3281.0
 
+
+//DBG"%V $nm_to_km $km_to_sm  \n"
+
   Units = "KM"
   lat = "A"
   longit = "B"
 
   LegK =  0.5 * (7915.6 * 0.86838);
-  //<<" %v $LegK \n"
+  //DBG" %v $LegK \n"
   //  Main_init = 0
 
-<<" read in unit conversions \n"
+DBG" read in unit conversions \n"
 
 //============================================
 
 include "tpclass"
 
 
-proc getDeg (the_ang)
+proc getDeg (str the_ang)
     {
       str the_dir;
       float la;
       float y;
       str wd;
 
-<<"in $_proc $the_ang \n"
+//DBG"in $_proc $the_ang \n"
 	
 
     the_parts = Split(the_ang,",")
 
 sz = Caz(the_parts);
-//<<"sz $sz $(typeof(the_parts))\n"
+//DBG"sz $sz $(typeof(the_parts))\n"
 
-    <<"%V $the_parts[::] \n"
+    //DBG"%V $the_parts[::] \n"
 
 
 //FIX    float the_deg = atof(the_parts[0])
 
     wd = the_parts[0];
     the_deg = atof(wd);
-        //<<"%V $wd $the_deg \n"
+        //DBG"%V $wd $the_deg \n"
 
 //    float the_min = atof(the_parts[1])
     wd = the_parts[1];
 
     the_min = atof(wd);
-        //<<"%V $wd $the_min \n"
-    //<<"%V$the_deg $the_min \n"
+        //DBG"%V $wd $the_min \n"
+    //DBG"%V$the_deg $the_min \n"
 
       //  sz= Caz(the_min);
 
-      //<<" %V$sz $(typeof(the_deg)) $(Cab(the_deg))  $(Cab(the_min)) \n"
+      //DBG" %V$sz $(typeof(the_deg)) $(Cab(the_deg))  $(Cab(the_min)) \n"
 
     the_dir = the_parts[2];
 
@@ -89,7 +91,7 @@ sz = Caz(the_parts);
          la *= -1;
       }
 
-//<<"%V $la  $y  \n"
+//DBG"%V $la  $y  \n"
       
     return (la);
    }
@@ -97,15 +99,15 @@ sz = Caz(the_parts);
 //===============================//
 
 
-proc get_word(defword)
+proc get_word(str defword)
   {
   svar h
 
-    //    <<" %V $defword $via_keyb $via_cl \n"
+    //    DBG" %V $defword $via_keyb $via_cl \n"
 
       if (via_keyb) {
-	// <<"via keybd \n"
-	// <<"$defword "
+	// DBG"via keybd \n"
+	// DBG"$defword "
         h = irs(Stat)
 	  if ( h > 1) {
              sscan(Stat,&h);  
@@ -122,12 +124,12 @@ proc get_word(defword)
           }
       }
 
-      //          <<" $_cproc exit with $h \n"
+      //          DBG" $_cproc exit with $h \n"
 
     return h
  }
 //==================================================
-proc get_wcoors(sw,  rx,  ry,  rX,  rY)
+proc get_wcoors(int sw,  float rx,  float ry,float  rX,float  rY)
 {
   float rs[20];
   ww= get_w_rscales(sw,&rs[0]);
@@ -140,7 +142,7 @@ proc get_wcoors(sw,  rx,  ry,  rX,  rY)
 //==================================================
 
 
-proc compute_leg(leg)
+proc compute_leg(int leg)
 {
     float km;
 
@@ -149,24 +151,24 @@ proc compute_leg(leg)
 
     kk = leg + 1
 
-	    // <<" compute %V $leg $kk \n"
+	    // DBG" compute %V $leg $kk \n"
 
     L1 = LA[leg]
     L2 = LA[kk]
 
-	    // <<" %V $L1 $L2 \n"
+	    // DBG" %V $L1 $L2 \n"
 
     lo1 = LO[leg]
     lo2 = LO[kk]
 
 
-	    //<<" %V $lo1 $lo2 \n"
+	    //DBG" %V $lo1 $lo2 \n"
     km = computeGCD(L1,L2,lo1,lo2);
     
     return km
 }
 //==================================================
-proc computeGCD(la1,la2,lo1,lo2)
+proc computeGCD(float la1,float la2,float lo1,float lo2)
 {
 ///  input lat and long degrees - GCD in km
 
@@ -202,7 +204,7 @@ proc screen_dump()
 }
 //==================================================
 
-proc read_task(task_file, query)
+proc read_task(str task_file, int query)
 {
     if (query) 
       task_file = navi_w("TASK_File","task file?",task_file,".tsk","TASKS")
@@ -233,7 +235,7 @@ proc read_task(task_file, query)
 
             if ( (f_error(TF) > 0 ) || (atpt @= "EOF"))  break
 
-//<<"TP $atpt $ti \n"
+//DBG"TP $atpt $ti \n"
           key[ti] = atpt
           wi = find_key(key[ti])
           if (wi == -1) break
@@ -309,7 +311,7 @@ proc set_task()
 }
 //==================================================
 
-proc grid_label(wid)
+proc grid_label(int wid)
 {
   ts = 0.01
 
@@ -323,13 +325,13 @@ proc grid_label(wid)
   
   RS= wgetrscales(wid);
 
-//<<"%V$RS \n"
+//DBG"%V$RS \n"
 
   rx= RS[1];
   ry= RS[2];
   rX= RS[3];
   rY= RS[4];
- // <<"%V $rx $ry $rX$rY\n"
+ // DBG"%V $rx $ry $rX$rY\n"
 
 
   putMem("LongW","$rx",1)
@@ -340,15 +342,15 @@ proc grid_label(wid)
 
   dx = (rX - rx );
   dy = (rY - ry );
-//<<"%V $dx $dy\n"
+//DBG"%V $dx $dy\n"
 
   x_inc = getIncr ( dx);
   y_inc = getIncr ( dy);
-<<"%V $x_inc $y_inc \n"  
+//DBG"%V $x_inc $y_inc \n"  
   x_inc = 0.1;
   y_inc = 0.1;
   
-<<"%V $x_inc $y_inc \n"
+//DBG"%V $x_inc $y_inc \n"
 
     if (x_inc != 0.0 ) {
      // ticks(wid,1,rx,rX,x_inc,ts)
@@ -369,7 +371,7 @@ proc grid_label(wid)
 }
 //==================================================
 
-proc magnify(w_num)
+proc magnify(int w_num)
 {
   ww= get_wcoors(w_num,&rx,&ry,&rX,&rY)
 
@@ -408,7 +410,7 @@ proc new_units()
 }
 //==================================================
 
-proc new_coors(w_num)
+proc new_coors(int w_num)
 {
 #  par_menu = "cfi/tcoors.m"
   par_menu = "tcoors.m"
@@ -441,19 +443,24 @@ proc new_coors(w_num)
 }
 //==================================================
 
-proc zoom_to_task(w_num, draw)
+proc zoom_to_task(int w_num, int draw)
 {
+ // this needs to find rectangle - just bigger than task
+  // found via computetaskdistance
 
-  ff=set_w_rs(w_num,Max_W,Min_lat,Min_W,Max_lat)
+
+
+  ff=sWo(w_num,@scales,Max_W,Min_lat,Min_W,Max_lat)
   if (draw) {
-  ff=w_clip_clear(w_num)
+  sWo(w_num,@clearclip,@clearpixmap)
   DrawMap(w_num)
-  draw_task(w_num,"red")
+  draw_task(w_num,"black")
+  sWo(w_num,@showpixmap)
   }
 }
 //==================================================
 
-proc zoom_up(w_num)
+proc zoom_up(int w_num)
 {
   ww= get_wcoors(w_num,&rx,&ry,&rX,&rY)
 
@@ -468,7 +475,7 @@ proc zoom_up(w_num)
 }
 //==================================================
 
-proc zoom_in(w_num)
+proc zoom_in(int w_num)
 {
   ww= get_wcoors(w_num,&rx,&ry,&rX,&rY)
 
@@ -489,13 +496,12 @@ proc zoom_in(w_num)
 
 proc  draw_the_task ()
 {
-  ff=w_clip_clear(tw)
   DrawMap(tw)
   draw_task(tw,"red")
 }
 //==================================================
 
-proc zoom_out(w_num,draw)
+proc zoom_out(int w_num,int draw)
 {
   ww= get_wcoors(w_num,&rx,&ry,&rX,&rY)
 
@@ -514,7 +520,7 @@ proc zoom_out(w_num,draw)
 }
 //==================================================
 
-proc zoom_rt(w_num)
+proc zoom_rt(int w_num)
 {
   ww= get_wcoors(w_num,&rx,&ry,&rX,&rY)
 
@@ -531,7 +537,7 @@ proc zoom_rt(w_num)
 
 
 
-proc zoom_lt(w_num)
+proc zoom_lt(int w_num)
 {
   ww= get_wcoors(w_num,&rx,&ry,&rX,&rY)
 
@@ -554,7 +560,7 @@ proc reset_map()
 }
 
 
-proc insert_tp(w)
+proc insert_tp(int w)
 {
 
   ff=w_show_curs(tw,1,"right_arrow")
@@ -579,7 +585,7 @@ proc insert_tp(w)
     }
 }
 
-proc delete_tp(w)
+proc delete_tp(int w)
 {
 # get_tp
 
@@ -609,7 +615,7 @@ proc delete_tp(w)
     }
 
 }
-
+//======================================//
 proc delete_alltps()
 {
 # get_tp
@@ -620,16 +626,16 @@ proc delete_alltps()
       w_set_wo_value (tw,finish_wo," ")
               ntpts = 1
 }
+//======================================//
 
-
-proc get_tpt(wtpt)
+proc get_tpt(int wtpt)
 {
 
  int wn;
  str lab;
 
-<<"bad get_tpt \n"
-  return 0;
+//DBG"bad get_tpt \n"
+//  return 0;
  // get_mouse_event(&mse[0])
 
  // wn = mse[3]
@@ -662,29 +668,31 @@ proc get_tpt(wtpt)
 
     return 1;
 }
+//======================================//
 
 
-
-proc find_key(akey)
+proc find_key(int akey)
 {
 
     for (ak = 0 ; ak < ntp ; ak++) 
         if (Keys[ak] @= akey) return (ak)
   return (-1)
 }
+//======================================//
 
-
-proc draw_task(w,col)
+proc draw_task(int w,str col)
 {
-    for (i = 0 ; i < ntpts ; i++ ) 
-    ff=plot_line(w,LO[tpt[i]],LA[tpt[i]],LO[tpt[i+1]],LA[tpt[i+1]],col)
+    for (i = 0 ; i < ntpts ; i++ ) {
+    <<"%V$LO[tpt[i]] $LA[tpt[i]] \n"
+       ff=plot_line(w,LO[tpt[i]],LA[tpt[i]],LO[tpt[i+1]],LA[tpt[i+1]],col)
+    }
 }
-
+//======================================//
 igc_file = "dd.igc"
 
-proc plot_igc(w)
+proc plot_igc(int w)
 {
-<<" RECODE \n";
+//DBG" RECODE \n";
 
 ///  replace with
 ///  A=ofr(igc_file)
@@ -697,14 +705,14 @@ proc plot_igc(w)
 /{/*
    a=ofr(igc_file)
    if (a == -1) {
-     <<" can't open IGC file \n"
+     DBG" can't open IGC file \n"
      return
    }
 
       while (1) {
 
                          tword=r_file(a)
-//<<"$tword \n"
+//DBG"$tword \n"
                          if (f_error(a) == 6) break
 
 			 if (sele(tword,0) @= "B") {
@@ -712,7 +720,7 @@ proc plot_igc(w)
                           igclong = sele(tword,15,9)
                           latnum = igc_dmsd(igclat)
                           lngnum = igc_longd(igclong)
-#              <<"$igclat $latnum $igclong $lngnum\n"
+#              DBG"$igclat $latnum $igclong $lngnum\n"
                           plot_line(w,lngnum,latnum ,"blue")
 			 }
  
@@ -726,7 +734,7 @@ proc plot_igc(w)
 //==================================
 
 
-proc set_wo_task(w)
+proc set_wo_task(int w)
 {
   for (k = 1 ; k <= Ntp ; k++)
     tpt[k] = -1;
@@ -818,18 +826,21 @@ proc chk_start_finish()
 }
 //============================
 
-proc task_menu(w)
+proc task_menu(int w)
 {
+<<"$_proc   $w\n"
 
-  ur_c=choice_menu("task_opts.m")
-
+  ur_c=choicemenu("MENUS/task_opts.m")
+<<"chose $ur_c \n"
           if (ur_c @= "zoom_to_task") {
-            zoom_to_task(tw,1)
+            zoom_to_task(mapwo,1)
             return
           }
 
-    if (ur_c @= "save")       save_image(w,"task_pic")
-
+    if (ur_c @= "save") {
+       save_image(w,"task_pic")
+    }
+    
     if (ur_c @= "magnify") {
       magnify(w)
       DrawMap(w)
@@ -847,7 +858,7 @@ proc task_menu(w)
     if (ur_c @= "delete_all") {
       delete_alltps()
       DrawMap(w)
-      w_set_wo_value (tw,td_wo,"0",1)
+     // w_set_wo_value (tw,td_wo,"0",1)
     }
 
     if (ur_c @= "insert_tp") {
@@ -855,8 +866,10 @@ proc task_menu(w)
       set_task()
     }
 
-    if (ur_c @= "coors") new_coors(w)
-
+    if (ur_c @= "coors") {
+      new_coors(w)
+    }
+    
     if (ur_c @= "units") {
       new_units()
       set_task()
@@ -866,7 +879,7 @@ proc task_menu(w)
       DrawMap(w)
       draw_task(w,"red")
       total = task_dist()
-      w_set_wo_value (tw,td_wo,total,1)
+      //w_set_wo_value (tw,td_wo,total,1)
     }
 
     if (ur_c @= "reset") reset_map()
@@ -879,9 +892,14 @@ proc task_menu(w)
       zoom_out(tw,1)
     }
 
-    if (ur_c @= "screen_print") screen_dump()
-    if (ur_c @= "write_task") write_task()
-
+    if (ur_c @= "screen_print") {
+      screen_dump()
+      }
+      
+    if (ur_c @= "write_task") {
+      write_task()
+    }
+    
     if (ur_c @= "get_start") {
       ff=w_show_curs(tw,1,"left_arrow")
       get_tpt(0)
@@ -890,7 +908,7 @@ proc task_menu(w)
 
     if ( scmp(ur_c,"get_tpt_",8)) {
       wtpt = spat(c,"get_tpt_",1)
-      ff=w_show_curs(tw,1,"left_arrow")
+   //   ff=w_show_curs(tw,1,"left_arrow")
       get_tpt(wtpt)
       set_task()
     }
@@ -934,7 +952,7 @@ proc task_dist()
 }
 //============================================
 
-proc compute_leg2(t_1,t_2)
+proc compute_leg2(int t_1,int t_2)
 {
 
   leg = t_1
@@ -949,7 +967,7 @@ proc compute_leg2(t_1,t_2)
   if (L2 > Max_lat)      Max_lat = L2
   if (L2 < Min_lat)      Min_lat = L2
 
-    //  <<"lats are $L1 $L2 \n"
+    //  DBG"lats are $L1 $L2 \n"
 
   lo1 = LO[t_1]
   lo2 = LO[t_2]
@@ -957,7 +975,7 @@ proc compute_leg2(t_1,t_2)
   if (lo1 < Min_W)      Min_W = lo1
   if (lo1 > Max_W)      Max_W = lo1
 
-    //  <<"longs are $lo1 $lo2 \n"
+    //  DBG"longs are $lo1 $lo2 \n"
 
   rL1 = d2r(L1)
   rL2 = d2r(L2)
@@ -966,7 +984,7 @@ proc compute_leg2(t_1,t_2)
   rlo2 = d2r(lo2)
 
   D= Sin(rL1) * Sin(rL2) + Cos(rL1) * Cos(rL2) * Cos(rlo1-rlo2)
-			  //  <<" $D $(typeof(D)) \n"
+			  //  DBG" $D $(typeof(D)) \n"
   D= Acos(D)
 
   dD= r2d(D)
@@ -983,7 +1001,7 @@ proc compute_leg2(t_1,t_2)
 
   km = N * nm_to_km
 
-    //<<"dist = km $km \n"
+    //DBG"dist = km $km \n"
 
   return (km)
 }
@@ -1009,7 +1027,7 @@ proc setup_legs()
 }
 //=====================================//
 
-proc the_menu (c)
+proc the_menu (str c)
 {
 
           if (c @= "zoom_out") {
@@ -1034,7 +1052,7 @@ proc the_menu (c)
             val=""
             l=sscan(&MS[5],&val)
             chk_start_finish()
-            set_wo_task(tw)
+            set_wo_task(mapwo)
             total = task_dist()
             DrawMap(tw)
             draw_task(tw,"blue")
@@ -1066,7 +1084,7 @@ proc the_menu (c)
           }
 }
 //=====================
-proc conv_lng( lng)
+proc conv_lng(str lng)
   {
 
   lngdeg = spat(lng,",",-1,1)
@@ -1085,7 +1103,7 @@ proc conv_lng( lng)
   }
 //=========================
 
-proc conv_lat (lat)
+proc conv_lat (str lat)
   {
 
  latdeg = spat(lat,",",-1,1)
@@ -1101,7 +1119,7 @@ proc conv_lat (lat)
   }
 //=========================
 
-proc nearest (tp)
+proc nearest (int tp)
 {
   // compute distance from tp to others
   // if less than D
@@ -1117,13 +1135,13 @@ proc spin()
 
  i = k % 4
   if (i == 0)
-      <<" \\ \r "
+      DBG" \\ \r "
   else if (i == 1)
-      <<" | \r "
+      DBG" | \r "
   else if (i == 2)
-      <<" -- \r "
+      DBG" -- \r "
   else
-      <<" / \r "
+      DBG" / \r "
  k++
 }
 //===============================================
@@ -1136,17 +1154,17 @@ float IGCELE[];
 float IGCTIM[];
 
 
-proc IGC_Read(igc_file)
+proc IGC_Read(str igc_file)
 {
 
-<<"%V $igc_file \n"
+DBG"%V $igc_file \n"
 
    T=fineTime();
 
    a=ofr(igc_file);
 
    if (a == -1) {
-     <<" can't open IGC file $igc_file\n"
+     DBG" can't open IGC file $igc_file\n"
      return 0;
    }
 
@@ -1154,7 +1172,7 @@ proc IGC_Read(igc_file)
 
 
   //  IGCLONG = -1 * IGCLONG;
-<<"read $ntps from $igc_file \n"
+DBG"read $ntps from $igc_file \n"
 
    dt=fineTimeSince(T);
 <<[_DB]"$_proc took $(dt/1000000.0) secs \n"
@@ -1164,29 +1182,32 @@ proc IGC_Read(igc_file)
 //========================
 
 int Ntp = 0;
-proc DrawMap(w)
+
+proc DrawMap(int wo)
 {
+//DBG"$_proc %V $wo\n"
+
   int msl;
   float lat;
   float longi;
   str mlab;
   int is_an_airport = 0;
 
-<<"%V $w\n"
+      sWo(wo,@clearpixmap,@clipborder);
 
-//<<"$mlab $(typeof(mlab))\n";
-
+//DBG"$mlab $(typeof(mlab))\n";
+//DBG"%V $Ntp\n"
     for (k = 0 ; k < Ntp ; k++) {
 
         is_an_airport = Wtp[k]->GetTA();
 
         mlab = Wtp[k]->Place;
-
+//DBG"%V $k $mlab\n"
         if (!is_an_airport) {
          mlab = slower(mlab)
        }
 
-//<<"$k %V $is_an_airport  $mlab $(typeof(mlab))\n";
+//DBG"$k %V $is_an_airport  $mlab $(typeof(mlab))\n";
 	
         msl = Wtp[k]->Alt;
 
@@ -1194,37 +1215,38 @@ proc DrawMap(w)
 
         longi = Wtp[k]->Longdeg;
 
-//<<"%V $k $mlab $msl $lat $longi $Wtp[k]->Ladeg\n"
+//DBG"%V $k $mlab $msl $lat $longi $Wtp[k]->Ladeg\n"
 
         if ( msl > 7000) {
-             Text(w,mlab,longi,lat,0,0,1,RED_)
-	     //<<"above 7K $mlab\n"
+             Text(wo,mlab,longi,lat,0,0,1,RED_)
+	     //DBG"above 7K $mlab\n"
         }
         else {
-            if ( msl > 5000){
-             Text(w,mlab,longi,lat,0,0,1,BLUE_)
-	     	    // <<"above 5K $mlab\n"
+            if ( msl > 5000) {
+             Text(wo,mlab,longi,lat,0,0,1,BLUE_)
+	     	    // DBG"above 5K $mlab\n"
             }
             else {
-	    	   //  <<"below 5K $mlab\n"
-              Text(w,mlab,longi,lat,0,0,1,GREEN_)
+	    	   //  DBG"below 5K $mlab\n"
+              Text(wo,mlab,longi,lat,0,0,1,GREEN_)
             }
         }
     }
 
-      sWo(w,@showpixmap,@clipborder);
+      sWo(wo,@showpixmap,@clipborder);
     
-        grid_label(w)
+        grid_label(wo)
 
 }
 //====================================================
 str TaskType = "MT";
 
-proc DrawTask(w,col)
+proc DrawTask(int w,str col)
 {
-
-    TaskDist()
-    <<"DrawTask $_proc  $TaskType $Nlegs \n"
+   if ( Task_update) {
+    TaskDistance();
+    <<"$_proc  $TaskType $col $Nlegs \n"
+    }
     if ( (TaskType @= "OAR")   || (TaskType @= "SO")) {
 
       plot(w,@line,Tasktp[0]->Longdeg,Tasktp[0]->Ladeg,Tasktp[1]->Longdeg,Tasktp[1]->Ladeg,col)
@@ -1232,9 +1254,9 @@ proc DrawTask(w,col)
     }
     else {
 
-    for (i = 0 ; i < Nlegs ; i++ ) { 
+    for (i = 0 ; i < (Nlegs-1) ; i++ ) { 
 
-   //   <<"$i %V $w, $Tasktp[i]->Longdeg $Tasktp[i]->Ladeg,$Tasktp[i+1]->Longdeg,$Tasktp[i+1]->Ladeg, $col \n "
+   <<"$i %V $w, $Tasktp[i]->Longdeg $Tasktp[i]->Ladeg,$Tasktp[i+1]->Longdeg,$Tasktp[i+1]->Ladeg, $col \n "
 
       plot(w,@line,Tasktp[i]->Longdeg,Tasktp[i]->Ladeg,Tasktp[i+1]->Longdeg,Tasktp[i+1]->Ladeg,col)
 
@@ -1242,13 +1264,14 @@ proc DrawTask(w,col)
 
     }
 
-    //ShowTPS();
+ sWo(w,@showpixmap,@clipborder);
+    
 
 }
 //=============================================
 
 
-proc PickTP(atarg,  witp) 
+proc PickTP(str atarg,  int witp) 
 {
 ///
 /// 
@@ -1256,21 +1279,21 @@ proc PickTP(atarg,  witp)
     int kk;
 
     Fseek(A,0,0)
-<<" looking for  $atarg \n"
+DBG" looking for  $atarg \n"
     i=Fsearch(A,atarg,-1,1,0)
     if (i != -1) {
      kk= witp;
-<<" %V $kk $witp $(typeof(witp)) \n"
+DBG" %V $kk $witp $(typeof(witp)) \n"
     Tasktp[kk]->cltpt = atarg;
     nwr = Tasktp[kk]->Read(A)
-<<" found $atarg $kk $witp $nwr\n"
+DBG" found $atarg $kk $witp $nwr\n"
 
    }
 }
 //=============================================
 
 
-proc ClosestTP (longx, laty)
+proc ClosestTP (float longx, float laty)
 {
 ///
  T=fineTime();
@@ -1279,10 +1302,10 @@ proc ClosestTP (longx, laty)
  float ctp_lat;
 
 int k = 3;
-//<<"%V $Wtp[0]->Ladeg \n"
-//<<"%V $Wtp[k]->Ladeg \n"
+//DBG"%V $Wtp[0]->Ladeg \n"
+//DBG"%V $Wtp[k]->Ladeg \n"
     ctp_lat = Wtp[k]->Ladeg;
-//<<"%V $ctp_lat \n"
+//DBG"%V $ctp_lat \n"
     for (k = 0 ; k < Ntp ; k++) {
 
         ctp_lat =   Wtp[k]->Ladeg;
@@ -1296,23 +1319,23 @@ int k = 3;
         if (dxy < mintp) {
           mkey = k;
           mintp = dxy;
-//<<"%V $Wtp[k]->Ladeg $ctp_lat $longi $laty $longx  $dx $dy $Wtp[k]->Place \n"
+//DBG"%V $Wtp[k]->Ladeg $ctp_lat $longi $laty $longx  $dx $dy $Wtp[k]->Place \n"
       }
 
     }
 
    if (mkey != -1) {
-<<" found $mkey \n"
+DBG" found $mkey \n"
      Wtp[mkey]->Print()
    }
 
     dt=fineTimeSince(T);
-<<"$_proc took $(dt/1000000.0) secs \n"
+DBG"$_proc took $(dt/1000000.0) secs \n"
      return  mkey;
 }
 //=============================================
 
-proc ClosestLand(longx,laty)
+proc ClosestLand(float longx,float laty)
 {
  float mintp = 18000;
  int mkey = -1;
@@ -1331,7 +1354,7 @@ proc ClosestLand(longx,laty)
     for (k = 0 ; k < Ntp ; k++) {
 
          isairport = Wtp[k]->GetTA();
-//<<"$_proc %V $isairport \n"
+//DBG"$_proc %V $isairport \n"
          if (isairport) { 
                 msl = Wtp[k]->Alt;
                 mkm = HowFar(lata,longa, Wtp[k]->Ladeg,Wtp[k]->Longdeg)
@@ -1342,7 +1365,7 @@ proc ClosestLand(longx,laty)
 
                 sa = msl + ght + 2000
 
-//<<" $k $mkm $ght $sa \n"
+//DBG" $k $mkm $ght $sa \n"
 
           if (sa < mintp) {
           mkey = k
@@ -1354,7 +1377,7 @@ proc ClosestLand(longx,laty)
 
 
    if (mkey != -1) {
-<<" found $mkey \n"
+DBG" found $mkey \n"
       Wtp[mkey]->Print()
    }
    return  mkey
@@ -1362,14 +1385,14 @@ proc ClosestLand(longx,laty)
 //=============================================
 
 
-proc PickaTP(itaskp)
+proc PickaTP(int itaskp)
 {
 
 // 
 // use current lat,long to place curs
 //
   int ret = 0;
-//<<" get task pt $itaskp \n"
+//DBG" get task pt $itaskp \n"
 
   float rx;
   float ry;
@@ -1400,7 +1423,7 @@ proc PickaTP(itaskp)
 
              nval = Wtp[ntp]->GetPlace()
 
-<<" found %V $ntp $nval  $itaskp\n"
+DBG" found %V $ntp $nval  $itaskp\n"
 
             Tasktp[itaskp]->cltpt = nval;
             Tasktp[itaskp]->Place = nval;	    
@@ -1418,17 +1441,17 @@ proc PickaTP(itaskp)
             Fseek(A,0,0);
             i=Fsearch(A,nval,-1,1,0)
 
-<<" %v $i \n"
+DBG" %v $i \n"
 
 //int kk = itaskp;
 
            if (i != -1) {
 
-<<" setting TASK_PT $itaskp  to $nval \n" 
+DBG" setting TASK_PT $itaskp  to $nval \n" 
             // position at tp file entry -- why not search Wtp for entry
 	    
    //         nwr = Tasktp[itaskp]->Read(A)
-<<"$itaskp  TaskPT \n"
+DBG"$itaskp  TaskPT \n"
             Tasktp[itaskp]->Print();
 
             ret = 1;
@@ -1439,7 +1462,7 @@ proc PickaTP(itaskp)
 }
 //=============================================//
 
-proc get_tpt(wtpt)
+proc get_tpt(int wtpt)
 {
  int wn;
  float rx;
@@ -1477,7 +1500,7 @@ proc get_tpt(wtpt)
 //=============================================
 
 
-proc ComputeTC(j, k)
+proc ComputeTC(int j, int k)
 {
     float km = 0.0
 
@@ -1490,37 +1513,37 @@ proc ComputeTC(j, k)
     lo2 = Wtp[k]->Longdeg
 
       tc = trueCourse(L1,lo1,L2,lo2)
-      //<<"%V$tc \n"
+      //DBG"%V$tc \n"
       return tc
 }
 //===========================//
 
 
-proc ComputeTPD(j, k)
+proc ComputeTPD(int j, int k)
 {
 
     float km = 0.0;
 
-//<<" $_proc %V $j $k \n"
+//DBG" $_proc %V $j $k \n"
 
     L1 = Wtp[j]->Ladeg;
 
     L2 = Wtp[k]->Ladeg;
 
-  //  <<" %V $L1 $L2 \n"
-    //<<" %I $k $Wtp[k]->Ladeg \n"
-    //<<" %I $j $Wtp[j]->Ladeg \n"
+  //  DBG" %V $L1 $L2 \n"
+    //DBG" %I $k $Wtp[k]->Ladeg \n"
+    //DBG" %I $j $Wtp[j]->Ladeg \n"
 
     lo1 = Wtp[j]->Longdeg;
 
     lo2 = Wtp[k]->Longdeg;
 
 /{/*
-  // <<"%V $lo1 $lo2 \n"
+  // DBG"%V $lo1 $lo2 \n"
     rL2 = d2r(L2)
     rL1 = d2r(L1)
 
-   // <<" %V $rL1 $rL2 \n"
+   // DBG" %V $rL1 $rL2 \n"
 
     rlo1 = d2r(lo1);
     rlo2 = d2r(lo2);
@@ -1528,7 +1551,7 @@ proc ComputeTPD(j, k)
     sL1 = sin(rL1);
     cL2 = cos(rL2);
 
-//<<"%V $sL1 $cL2 \n"
+//DBG"%V $sL1 $cL2 \n"
 
     D= acos (sin(rL1) * sin(rL2) + cos(rL1) * cos(rL2) * cos(rlo1-rlo2));
 
@@ -1539,10 +1562,10 @@ proc ComputeTPD(j, k)
 
     km2 = Gcd(L1,lo1 , L2, lo2 );
 
-//<<"%V $km1 $km2\n"
+//DBG"%V $km1 $km2\n"
 
     km = km2;
-  //  <<" %V $D  $LegK $N  $nm_to_km $km\n" ;
+  //  DBG" %V $D  $LegK $N  $nm_to_km $km\n" ;
 
 
     return km

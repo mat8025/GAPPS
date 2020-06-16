@@ -132,13 +132,14 @@
   zinwo=cWo(vp,@BN,@name,"ZIN",@color,"hotpink",@help," zoom in on selected days ")
   zoomwo=cWo(vp,@BN,@name,"ZOUT",@color,"cadetblue")
 
-  yrdecwo= cWo(vp,@BN,@name,"YRD",@color,"violetred",@help," show previous Year  ")
-  yrincwo= cWo(vp,@BN,@name,"YRI",@color,"purple",@help," show next Year  ")
+ // yrdecwo= cWo(vp,@BN,@name,"YRD",@color,"violetred",@help," show previous Year  ")
+//  yrincwo= cWo(vp,@BN,@name,"YRI",@color,"purple",@help," show next Year  ")
   qrtdwo=  cWo(vp,@BN,@name,"QRTD",@color,"violetred",@help," show previous Qtr period ")
   qrtiwo=  cWo(vp,@BN,@name,"QRTI",@color,"purple",@help," show next Qtr period ")
 
 
-  int fewos[] = {zinwo,zoomwo, yrdecwo, yrincwo, qrtdwo, qrtiwo }
+ // int fewos[] = {zinwo,zoomwo, yrdecwo, yrincwo, qrtdwo, qrtiwo }
+  int fewos[] = {zinwo,zoomwo, qrtdwo, qrtiwo }
 
   wo_htile( fewos, 0.03,0.01,0.43,0.08,0.05)
 

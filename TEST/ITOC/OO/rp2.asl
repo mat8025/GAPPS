@@ -83,11 +83,19 @@
   checkNum(res,(bsr+csr))
 
 
-
-
     house C[10];
 
-    house D[6];
+
+    C[1]->print();
+
+   C[2]->print();
+//exit()
+
+
+
+
+
+   house D[6];
 
 
 //<<" myhouse is $(typeof(&house)) \n" // TBF crash
@@ -111,7 +119,7 @@
 
 
 
-  C[1]->print(); 
+  
   
   c2r = C[2]->getrooms(); 
   

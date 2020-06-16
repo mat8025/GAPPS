@@ -44,7 +44,7 @@ proc adjustAmounts (svar irs, float f)
 
 }
 //==================================
-proc changeAmount(the_row)
+proc changeAmount(int the_row)
 {
     mans = popamenu("HowMuch.m");
     mf = atof(mans);

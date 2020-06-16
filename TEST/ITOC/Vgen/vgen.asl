@@ -16,13 +16,9 @@
 
 
 
-include "debug"
 
-debugON()
+ checkIn(_dblevel)
 
- checkIn()
-
-<<"Hello \n"
 
  veca = vgen(INT_,10,0,1)
 

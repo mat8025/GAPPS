@@ -12,13 +12,8 @@
 //***********************************************%
    
    
-   include "debug"; 
-   debugON(); 
-   
-   sdb(1,@~trace,@pline); 
-   
-   checkIn();
-   
+   checkIn(_dblevel);
+
    i = 1;
    
    int  c[] = { 0,1,2,3,4,5,6,7,8,9,77 };
@@ -37,12 +32,12 @@
    
    ptr z;
    
-   z= &c;
+   z = &c;
    
    <<"%V $(typeof(z)) $z \n"; 
    
    z->info(1); 
-sdb(1,@trace)
+
    f= z[6];
    <<"%V $f \n"
    z->info(1); 
@@ -61,11 +56,17 @@ sdb(1,@trace)
    
    checkNum(f,7); 
    <<"%V $f \n"
+   <<"$c \n"
 
-
-   
+   c->info(1)
+  <<"%V$c\n"
    c[12]= 45;
-   
+
+   <<"%V$c\n"
+   c->info(1)
+   checkNum(c[12],45)
+
+
    <<"$(Caz(c)) : $c\n"; 
    
    f= z[1];
@@ -83,7 +84,9 @@ sdb(1,@trace)
    f= z[i];
    <<"%V$f\n"; 
    checkNum(f,4); 
-   
+
+   <<"%V$z\n"
+   <<"%V$c\n"
    
    f= z[12];
    <<"%V $f \n"; 
@@ -91,7 +94,7 @@ sdb(1,@trace)
    z->info(1); 
    
    checkNum(f,45); 
-   
+
    i = 12;
    
    
@@ -114,25 +117,41 @@ sdb(1,@trace)
    
    
    float d[] = vgen(FLOAT_,10,0,1); 
-   
+
+<<"%V $d\n"
    sz=Caz(d);
    
    z = &d;
-   
+
+   z->info(1)
+
+   z = &c;
+
+   z->info(1)
+
+   z = &d;
+
+   z->info(1)
+
    float fval;
+
+<<"%V $sz \n"
+
+
    for (i=0;i<sz;i++) {
      
      fval= z[i];
+     z->info(1)
      
-     <<"<$i> $fval \n"; 
-     checkNum(fval,d[i]); 
+     <<"<$i> $fval $d[i]\n"; 
+
+      checkNum(fval,d[i]); 
      }
 
 checkStage("num vecs - get value")
-
+checkOut()
 
 //================================//
-sdb(1,@trace)
 
 
      z[5] = 85;

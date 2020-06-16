@@ -13,7 +13,7 @@
 
 _DB = 1;
 
-last_known_wt = 205;
+last_known_wt = 208.8;
 last_known_day = 0;
 
 float tot_exeburn =0
@@ -95,10 +95,11 @@ proc fillInObsVec()
       //tot_exetime += EXTV[Nobs]
       
       tot_exetime = tot_exetime + EXTV[Nobs]
-<<"%V $tot_exetime  $Nobs $ $EXTV[Nobs] \n"
+<<"%V $tot_exetime  $Nobs  $EXTV[Nobs] \n"
    }
 
    SEVEC[Nobs] =  wex
+   
    BPVEC[Nobs] =  atof(col[j++])
 
 // any extra activities ?
@@ -121,7 +122,7 @@ proc fillInObsVec()
 
    if (wday > yday) {
      tot_exeburn += exer_burn
-//<<[_DB]"%V$wday $yday $(typeof(wday)) $day %4.1f$exer_burn  $walk $run $cycle\n"
+//<<[_DB]"%V$wday $yday $(typeof(wday)) $wday %4.1f$exer_burn  $walk $run $cycle\n"
      Nxy_obs++;
    }
 
@@ -129,7 +130,7 @@ proc fillInObsVec()
 
    CALBURN[Nobs] =  wrk_sleep + exer_burn
 
- <<[_DB]"$kd $(Nobs+1) $day %6.1f $WTVEC[Nobs] $exer_burn $wrk_sleep $CALBURN[Nobs] $CARBV[Nobs]\n"
+ <<[_DB]"$kd $(Nobs+1) $wday %6.1f $WTVEC[Nobs] $exer_burn $wrk_sleep $CALBURN[Nobs] $CARBV[Nobs]\n"
       Nobs++;
       }
    }
@@ -144,25 +145,42 @@ svar col;
 proc readData()
 {
 
-  tl = 0;
+  int tl = 0;
 
+  col= RX[tl];
+
+<<"$col\n"
+
+  day = col[0];
+
+<<"%V $day $Nrecs\n"
+
+// data has already been read into Record array RX
+     RX->info(1)
+      
+   
 
   while (tl < Nrecs) {
 
+  //tl->info(1)     // ? bad
+  
 
       col= RX[tl];
-      
- //<<[_DB]"<$tl> $RX[tl]\n"
 
-<<[_DB]"<$tl> $(typeof(col)) $col \n"
+ //<<"<$tl> $RX[tl]\n"
 
-//<<[_DB]"$col \n"
 
+
+//<<"<$tl> $(typeof(col)) $col \n"
+
+//<<"$col \n"
+//col->info(1)
     day = col[0];
 
     wday = julian(day) 
 
-<<"%V $wday $day \n"
+//<<"%V $wday $day \n"
+
 
     if (!got_start) {
         sday = wday
@@ -179,7 +197,7 @@ proc readData()
 
 
    if (kd < 0) {
-       <<[_DB]" $k neg offset ! \n";
+       <<" $k neg offset ! \n";
        break;
    }
 
@@ -190,17 +208,22 @@ proc readData()
    // variables are plotted against dates (juldays - birthday)
 
     fillInObsVec();
-    if (tl >= (Nrecs-1)) {
+
+    tl++;
+//<<"%V $tl\n"
+    if (tl >= Nrecs) {
        break;
     }
 
-    tl++;
-  }
-
-
-
-<<[_DB]"$Nrecs there were $Nobs measurements \n"
 }
+
+
+
+<<[_DB]"$Nrecs there were $tl $Nobs measurements \n"
+     return tl;
+}
+
+
 //==============================================//
 
 int NCCobs =0;

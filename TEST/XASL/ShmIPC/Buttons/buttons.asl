@@ -12,8 +12,8 @@
 //***********************************************%
 
 
+_DB = 0;
 
-setdebug(1,@keep)
 
 Graphic = checkGWM()
 
@@ -90,7 +90,8 @@ Graphic = checkGWM()
  sWo(two,@help," Mouse & Key Info ")
 
  gwo=cWo(vp,@BV,@name,"ColorTeal",@color,"green",@resize,bx,by,bX,bY)
- sWo(gwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@VALUE,"color is teal",@STYLE,SVB_)
+ 
+ sWo(gwo,@border,@drawon,@clipborder,@fonthue,"red",@VALUE,"color is teal",@STYLE,SVB_)
  sWo(gwo,@bhue,TEAL_,@clipbhue,"skyblue",@redraw )
 
  bY = by - ypad
@@ -114,7 +115,7 @@ Graphic = checkGWM()
  by = bY - yht
 
  lwo=cWo(vp,@ONOFF,@name,"PLAY",@VALUE,"ON",@color,"red",@resize,bx,by,bX,bY)
- sWo(lwo,@border,@drawon,@clipborder,@fonthue,"blue", @style,"SVL", "redraw")
+ sWo(lwo,@border,@drawon,@clipborder,@fonthue,"blue", @style,"SVL", @redraw)
  sWo(lwo,@fhue,"teal",@clipbhue,"violet")
 
 
@@ -131,7 +132,7 @@ Graphic = checkGWM()
 
  boatwo=cWo(vp3,"BS",@name,"BOATS",@color,"yellow",@resize_fr,bx,by,bX,bY)
  sWo(boatwo,@CSV,"sloop,yacht,catamaran,cruiser,trawler,ketch")
- sWo(boatwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@STYLE,SVR_, "redraw")
+ sWo(boatwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@STYLE,SVR_, @redraw)
  sWo(boatwo,@help," click to choose a boat ")
  bY = by - ypad
  by = bY - yht
@@ -293,7 +294,8 @@ proc do_sketch()
 
 proc QUIT()
 {
-
+ exitgs();
+ <<"kill xgs now exit!\n";
   exit()
 
 }
@@ -307,6 +309,8 @@ proc tb_q()
 
 include "gevent" ;   // our Gevent variable - holds last message
                             // could use another or an array to compare events
+
+sWi( allwins ,@redraw)
 
    while (1) {
 
@@ -322,7 +326,7 @@ include "gevent" ;   // our Gevent variable - holds last message
       if (_ename @= "PRESS") {
 	    <<"%V $_ewoname";
 //        if (!(_ewoname @= "")) {
-            DBPR"calling function via woname $ev_woname !\n"
+            <<"calling function via woname $_ewoname !\n"
             $_ewoname()
             continue;
   //      }

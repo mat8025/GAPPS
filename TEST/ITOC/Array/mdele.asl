@@ -11,9 +11,9 @@
 //* 
 //***********************************************%
   
-//sdb(1,@pline,@break,89)
 
-checkIn()
+
+ci (_dblevel)
 
  int HT[10][10]
 
@@ -86,7 +86,7 @@ sz=Caz(CT)
 
 <<"%v $sz\n"
 
-checkNum(sz,56)
+cn (sz,56)
 
 
 bnds= Cab(CT)
@@ -95,7 +95,7 @@ bnds= Cab(CT)
 
 val = CT[0][0]
 
-checkNum(val,10)
+cn (val,10)
 j = 21;
 
 for (k=1; k<=7;k++) {
@@ -120,8 +120,8 @@ T= R[2:8]
 <<"$T\n"
 <<"T $(Caz(T)) $(Cab(T)) \n"
 
-checkNum(R[1],1)
-checkNum(T[0],2)
+cn (R[1],1)
+cn (T[0],2)
 
 
 
@@ -149,4 +149,4 @@ jt = 0
 
 //<<" %6.3f$HT[jt][1:8:] "
 
-checkOut()
+co ()

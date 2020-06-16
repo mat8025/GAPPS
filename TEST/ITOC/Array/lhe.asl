@@ -32,7 +32,7 @@ Data = vgen(INT_,10,-5,1)
 <<"$Data[2]\n"
 <<"$Data[3]\n"
 
-
+//query()
 Data->info(1)
 
 checkNum(Data[1],-4)
@@ -76,6 +76,7 @@ Data->info(1)
 
 Data[H[2]] = 65
 Data[H[3]] = H[9]
+
 Data[H[4]] = H[M[8]]
 
 <<"$Data \n"
@@ -94,7 +95,8 @@ Arglist=testargs(Data[1],e,d)
 
 <<"%(1, ,,\n)$(testargs(Data[1],e,d))\n"
 
-
+Data->info(1)
+<<"%d $Data \n"
 
 checkNum(Data[2],65)
 
@@ -102,9 +104,14 @@ checkNum(Data[3],77)
 
 checkNum(Data[4],76)
 
+Data[H[4]] = H[8]
+<<"%V $M[8]\n"
 
+<<"$Data \n"
 
+checkNum(Data[4],76)
 
+checkOut()
 int k = 0
 
 

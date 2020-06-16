@@ -13,7 +13,7 @@
 
 
 //sdb(1,@trace)
-checkIn(_dblevel)
+ci (_dblevel)
 
 
 //include "debug"
@@ -120,7 +120,7 @@ class Building {
 
 <<"%V $Arooms \n"
 
-   checkNum(Arooms,4);
+   cn (Arooms,4);
    Afloors = A->getFloors();
 
 <<"%V $Afloors \n"
@@ -128,11 +128,11 @@ class Building {
    Brooms = B->getRooms();
 
 <<"%V $Brooms \n"
- checkNum(Brooms,5);
+ cn (Brooms,5);
    Bfloors = B->getFloors();
 
 <<"%V $Bfloors \n"
- checkNum(Bfloors,8);
+ cn (Bfloors,8);
 
    Drooms = D->getRooms();
 
@@ -143,7 +143,7 @@ class Building {
 
 <<"%V $Dfloors \n"
 
-    checkNum(Dfloors,7)
+    cn (Dfloors,7)
 
 
   Building C[10]
@@ -158,7 +158,7 @@ class Building {
 
 <<"%V $b1rooms \n"
 
- checkNum(b1rooms,8);
+ cn (b1rooms,8);
 
    C[2]->Print()
 
@@ -181,7 +181,7 @@ class Building {
 <<"%V $b0rooms \n"
 
 
-   checkNum(b0rooms,7);
+   cn (b0rooms,7);
    
 
 
@@ -189,7 +189,7 @@ class Building {
 
 <<"%V $b2rooms \n"
 
-  checkNum(b2rooms,9);
+  cn (b2rooms,9);
 
   
 
@@ -202,7 +202,7 @@ class Building {
 
 <<"%V $b5rooms \n"
 
-   checkNum(b5rooms,12);
+   cn (b5rooms,12);
 
    C[6]->Print()
 
@@ -210,7 +210,7 @@ class Building {
 
 <<"%V $b6rooms \n"
 
-   checkNum(b6rooms,13);
+   cn (b6rooms,13);
 
 
    C[2]->setFloors(15);
@@ -220,7 +220,7 @@ class Building {
    b2floors = C[2]->getFloors();
 
 <<"%V $b2floors \n"
-  checkNum(b2floors,15)
+  cn (b2floors,15)
 
   n = 2;
 
@@ -235,14 +235,14 @@ class Building {
 
 <<"%V $nf \n"
 
-  checkNum(nf,16)
+  cn (nf,16)
 
 
   nf = C[n]->getFloors()
 
 <<"%V $nf \n"
 
-  checkNum(nf,16)
+  cn (nf,16)
 
   checkStage();
 
@@ -260,14 +260,14 @@ class Building {
 
 <<"floors $nf \n"
 
-  checkNum(nf,12);
+  cn (nf,12);
 
 //checkOut()
 
   nrms = C[0]->getRooms()
   <<" C[0] rooms $nrms \n"
 
-  checkNum(nrms,7)
+  cn (nrms,7)
 
 <<" main refer %i $C   [0] \n"
   C[0]->setRooms(56)
@@ -283,11 +283,11 @@ nrms = C[0]->getRooms()
 
   nr = C[4]->getRooms()
   
-  checkNum(nr,14)
+  cn (nr,14)
 
 
 
-// FIX  checkNum( C[4]->getFloors(),14)
+// FIX  cn ( C[4]->getFloors(),14)
 
 
 
@@ -302,14 +302,14 @@ nrms = C[0]->getRooms()
 
   a=   C[2]->floors
 <<"  %I $C[0]->floors  $a \n"
-checkNum(a,15)
+cn (a,15)
 
 
   j = 2
 
   a=   C[j]->floors
 <<" %I $C[j]->floors  $a \n"
-checkNum(a,15)
+cn (a,15)
 
 
 <<" Single object ! \n"
@@ -541,5 +541,6 @@ checkNum(a,15)
 
 
 
+Building BD[30]
 
 checkOut()

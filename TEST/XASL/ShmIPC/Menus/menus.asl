@@ -15,13 +15,9 @@
 
 include "debug"
  
- scriptDBON();
- debugON();
- sdb(1,@~keep,@~pline)
 
-
- include "gevent"
- include "hv.asl"
+include "gevent"
+include "hv.asl"
 
 
 A=ofw("FoodTypes.m")
@@ -74,9 +70,11 @@ cf(A)
 
 A=ofw("Eggs.m")
 <<[A],"title Eggs\n"
+<<[A],"type CHOICE\n"
 <<[A],"item Fried M_VALUE Fried_Egg\n"
 <<[A],"item Scrambled M_VALUE Scrambled_Egg\n"
 <<[A],"item Hard Boiled M_VALUE Hard_Boiled_Egg\n"
+<<[A],"item Poached M_VALUE Poached_Egg\n"
 <<[A],"help \n"
 cf(A)
 
@@ -100,7 +98,7 @@ A=ofw("Fruits.m")
 cf(A)
 
 A=ofw("Vegs.m")
-<<[A],"title Vegetable_per_Oz\n"
+<<[A]"title Vegetable_per_Oz\n"
 <<[A],"item Mushroom M_VALUE Mushroom\n"
 <<[A],"help \n"
 <<[A],"item Potato M_VALUE Potato\n"
@@ -111,13 +109,13 @@ cf(A)
 
 
 A=ofw("Bread.m")
-<<[A],"title Breads\n"
-<<[A],"item White M_VALUE White\n"
-<<[A],"help \n"
-<<[A],"item Wheat M_VALUE Wheat\n"
-<<[A],"help \n"
-<<[A],"item Rye M_VALUE Rye\n"
-<<[A],"help \n"
+<<[A]"title Breads\n"
+<<[A]"item White M_VALUE White\n"
+<<[A]"help \n"
+<<[A]"item Wheat M_VALUE Wheat\n"
+<<[A]"help \n"
+<<[A]"item Rye M_VALUE Rye\n"
+<<[A]"help \n"
 cf(A)
 
 
@@ -285,3 +283,8 @@ sWo(gwo2,@func,"wo_menu",@menu,"FoodTypes.m")
 
 
 
+//////////////////////////////////////////////////////////
+//
+//   <<[A]"xxx" or <<[A],"xxx" either?
+//
+//  parameter menu

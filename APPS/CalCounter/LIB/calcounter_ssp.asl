@@ -12,12 +12,58 @@
 //***********************************************%
 
 
+str Mans = "";
+Use_csv_fmt = 1;
+Delc = 44;
+
+int Curr_row = 3;  // for paging
+int Page_rows = 15;
+int Curr_page = 1;
+int Npgs = 1;
+int Nrows = 0;
+
+int Ncols = 10;
+
+str cvalue ="xx";
+
+
+
+
 int NFV = 24;// last is Zn
 int Bestpick[5][2];
 
+int drows[10];
 Page_rows = 10;  // was 6
 
 FOODCOLSZ = 6;
+
+//////////////////////   these records needed and used for any GSS /////////////////////
+
+Record R[>15];
+
+Rn = 5;
+
+Record DF[>3];
+
+proc getCellValue(int r, int c)
+{
+ 
+     if (r >0 && c >= 0 ) {
+ <<" %V $r $c \n";
+           cvalue = R[r][c];
+// <<" %V $cvalue \n";
+           if ((c == 0) && (cvalue @= "")) {
+             ADDTASK()
+           }
+           newcvalue = queryw("NewValue","xxx",cvalue,_ex,_ey);
+           sWo(cellwo,@cellval,r,c,newcvalue);
+           R[r][c] = newcvalue;
+     }
+}
+//=====================
+
+
+
 
 proc SORT()
 {
@@ -132,12 +178,15 @@ proc FoodFavorites()
 ///  
 ///  call back via woname
 ///
+
+<<"$_proc $_ecol\n"
+
 svar wans;
-   if (_ecol == 0) {
+   if (_ecol >= 0) {
 
       // add to daily log ? 
          yn=yesornomenu("Add to Daily Log?")
-
+ yn->info(1)
          if (yn @="1") {
 	 wans = FF[_erow]
 <<"ADDDING %V$_erow  $wans \n"
@@ -194,6 +243,7 @@ writeRecord(B,Tot,@del,Delc,@ncols,Ncols);
     return 
 }
 //======================
+
 proc DELROWS()
 {
 <<[_DB]"in $_proc\n"
@@ -203,6 +253,7 @@ proc DELROWS()
 //int drows[20+];
 int n2d = 0;
         drows = -1;
+	
 <<[_DB]"%V $drows \n"
 	
         sz = Caz(R)
@@ -333,7 +384,9 @@ proc PGUP()
 
 proc paintRows()
 {
-    cs_rows = Nfav;
+
+<<"$_proc \n"
+     cs_rows = Nfav;
   
      endprow = Curr_row + Page_rows 
 
@@ -345,7 +398,6 @@ proc paintRows()
     // do a row at a time
     
   <<"%V $cs_rows $cols $Curr_row $endprow \n"
-
 
     if (Curr_row < 0) {
         Curr_row = 0;
@@ -364,9 +416,6 @@ proc paintRows()
   sWo(foodswo,@cellbhue,endprow,ALL_,YELLOW_);
 
 }
-
-
-
 //======================================================//
 
 proc color_foodlog()
@@ -384,5 +433,22 @@ proc color_foodlog()
 }
 //======================================================//
 
+proc clearTags()
+{
+<<[_DB]" $_proc\n"
+//    R[::][7] = ""; // TBF
+   ans= yesornomenu("ClearTags?")
+   int i = 0;
+   if (ans == 1) { // TBF
 
-
+   for (i= 1; i< rows; i++) {
+      R[i][tags_col] = " ";
+   }
+   
+   //writeRecord(1,R,@del,Delc);
+   sWo(cellwo,@cellval,R);
+   sWo(cellwo,@redraw);
+   }
+   return ;
+}
+//============================

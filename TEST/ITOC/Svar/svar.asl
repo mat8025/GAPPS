@@ -3,8 +3,8 @@
 //* 
 //*  @comment test svar dec/assign reassign 
 //*  @release CARBON 
-//*  @vers 1.3 Li Lithium                                                  
-//*  @date Tue May 14 09:06:45 2019 
+//*  @vers 1.4 Be Beryllium [asl 6.2.56 C-He-Ba]                           
+//*  @date Mon Jun  8 21:01:14 2020 
 //*  @cdate 1/1/2010 
 //*  @author Mark Terry 
 //*  @Copyright © RootMeanSquare  2010,2019 → 
@@ -36,7 +36,9 @@
    checkStr(E[1],"H"); 
    
    <<"$E[2] \n"; 
-   
+
+
+
    <<"$E[3:6] \n"; 
    
    
@@ -419,19 +421,26 @@ R= M[3::]
 
 <<"$R \n"
 R->info(1)
+<<"%V$R\n"
+checkStr(R[0],"3")
+checkStr(R[-1],"19")
 
 
 
 IV3= atoi(R)
+IV3->info(1)
 
-<<"$IV3\n"
+<<"%V $IV3\n"
+<<"last ele IV[-1] $IV[-1] \n"
 checkNum(IV3[0],3)
+checkNum(IV3[1],4)
+checkNum(IV3[-1],19)
 
 IV3 *= 2;
 
 checkNum(IV3[0],6)
 
-<<"$IV3\n"
+<<"%V $IV3\n"
 
 //M[3::] = atoi(IV3)
 
@@ -469,12 +478,19 @@ IV4=vgen(INT_,10,45,1)
 checkNum(IV4[0],45)
 checkNum(IV4[1],46)
 
-<<"$IV3\n"
 
+<<"%V $IV4\n"
 
+<<"%V $IV3\n"
 
 IV3[3:12:1] = IV4[0:9:];
+
+<<"%V $IV3\n"
+
 checkNum(IV3[0],6)
+
+
+
 
 checkNum(IV3[3],45)
 checkNum(IV3[4],46)
@@ -561,7 +577,7 @@ else if (k==3) {
 //===========
 
 
-checkOut()
+//checkOut()
 
 S = Split("how did we get here")
 
@@ -625,7 +641,7 @@ proc getDeg (str the_ang)
 //===============================//
 
 //======================
-CLASS Turnpt 
+class Turnpt 
  {
 
  public:
@@ -646,17 +662,17 @@ CLASS Turnpt
 
 //  method list
 
-  CMF Set (wval) 
+  cmf Set (svar wval) 
    {
 
-DBG"$_proc $(typeof(wval)) $wval[::] \n"
+<<"$_proc $(typeof(wval)) $wval[::] \n"
 
 //<<"%V$_cproc  %i$_cobj   %i$wval \n"
      //sz = wval->Caz()
 
       sz = Caz(wval);      
  // <<"%V$sz \n"
-DBG"$sz 0: $wval[0] 1: $wval[1] 2: $wval[2] 3: $wval[3] 4: $wval[4] \n"
+<<"$sz 0: $wval[0] 1: $wval[1] 2: $wval[2] 3: $wval[3] 4: $wval[4] \n"
     
    
       //   <<"$wval[0]\n"
@@ -664,13 +680,13 @@ DBG"$sz 0: $wval[0] 1: $wval[1] 2: $wval[2] 3: $wval[3] 4: $wval[4] \n"
        //ans = iread("-->");
      Place = wval[0];
     
-DBG"%V$Place\n"
+<<"%V$Place\n"
 
 
      Idnt =  wval[1];
- DBG"%V$Idnt\n"
+ <<"%V$Idnt\n"
  //    <<"%V$wval[2]\n"
-checkStr(Idnt,"jmt")     
+
      Lat = wval[2];
 
      //   <<"%V$Lat  <| $wval[2] |>\n"
@@ -688,7 +704,7 @@ checkStr(Idnt,"jmt")
 
      tptype = wval[7];
 
-DBG"%V$Lat $Lon \n"
+<<"%V$Lat $Lon \n"
      //  <<" $(typeof(Lat)) \n"
      // <<" $(typeof(Lon)) \n"
      //  <<" $(typeof(Ladeg)) \n"	 
@@ -707,8 +723,8 @@ DBG"%V$Lat $Lon \n"
 //=================================
 
  P=split("Jamestwn    	jmt	40,07.00,N	105,24.00,W	8470	0/0	_	T ");
-
-pS(P)
+ P->info(1)
+ pS(P)
 
 Turnpt  Tp;
  
@@ -735,7 +751,7 @@ checkStage("Proc")
 //***********************************************%
 
 
-Svar ST
+svar ST
 
 tsz = 30;
 nplace = 2
@@ -809,7 +825,7 @@ val = ST->lookup(key)
 
 sz= ST->caz()
 <<"$sz $S[0] \n"
-sdb(1,@~pline)
+//sdb(1,@~pline)
  for (i=0; i <sz; i += 2) {
     // if (scmp(S[i],"") == 0) {
      if (!scmp(S[i],"") ) {
@@ -825,7 +841,7 @@ checkStr(val,"1942")
 checkStage("Hash")
 
 
-Svar Opts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,",",");
+svar Opts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,",",");
 
 <<"$Opts \n"
 
@@ -842,7 +858,7 @@ len = slen(Sr);
 
 <<"%V $Sr\n"
 
-Svar Mopts[] = Split(Sr,",");
+svar Mopts[] = Split(Sr,",");
 
 <<"%V %(5,, ,\n)$Mopts[::] \n"
 
@@ -851,7 +867,7 @@ checkStr("all",Mopts[0]);
 checkStr("matrix",Mopts[2]);
 
 
-Svar Sopts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex,",",");
+svar Sopts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex,",",");
 
 
 <<"%V $Sopts \n"
@@ -862,7 +878,7 @@ checkStr("bops",Sopts[4]);
 checkStr("class",Sopts[8]);
 
 
-Svar Popts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex,proc,switch,types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc,svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help",",");
+svar Popts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex,proc,switch,types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc,svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help",",");
 
 
 <<"%V $Popts \n"

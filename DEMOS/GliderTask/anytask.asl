@@ -15,24 +15,18 @@
 /// anytask
 ///
 
-include "debug"
+//#define DBG <<
 
-setDebug(1,@keep,@~pline)
+#define DBG ~!
 
-scriptDBON()
 
-<<[_DB]"debug anytask\n"
-
-<<" %V $_DB\n"
-
-filterFuncDebug(ALLOWALL_,"xxx");
-filterFileDebug(ALLOWALL_,"yyy");
-
+_DB = 1;
+checkIn(_dblevel)
 
 
 Main_init = 1;
 
-proc nameMangle(aname)
+proc nameMangle(str aname)
 {
   // FIXIT --- bad return
   str fname;
@@ -80,7 +74,7 @@ svar Wval;
 
 
   //<<" done defines \n"
-#  set_debug(0,"steponerror")
+
 
 # dynamic variables no need to declare and set to default
 # unless default value used
@@ -88,7 +82,7 @@ svar Wval;
 #  the_min = "0"
 int nerror = 0
 
-  A=ofr("turnpts.dat")  // open turnpoint file
+  A=ofr("DAT/turnpts.dat")  // open turnpoint file
 
     if (A == -1) {
       A=ofr("cfi/turnpts")
@@ -323,7 +317,7 @@ while ( i == -1) {
 
 	  // need to step back a line
 
-        nwr = Wval->Read(A)
+        nwr = Wval->readWords(A)
 
       //    <<" %i $Wval \n"
 <<[_DB]"$nwr $Wval[0] $Wval[1] $Wval[2] $Wval[3] \n"
@@ -337,7 +331,7 @@ while ( i == -1) {
 
 <<[_DB]"%V$tplace $tlon \n"
 <<[_DB]"$Wval[::]\n"	  
-      Wtp[n_legs]->Set(Wval)
+      Wtp[n_legs]->TPset(Wval)
 
 	  //Wtp[n_legs]->Print()
 
@@ -414,9 +408,11 @@ while ( i == -1) {
 
 	// Fseek(A,w,0)
             ki = seek_line(A,0)
-            nwr = Wval->Read(A)
-            msz = Wval->Caz()
-            Wtp[n_legs]->Set(Wval)
+            nwr = Wval->readWords(A)
+
+           msz = Wval->Caz()
+	    
+            Wtp[n_legs]->TPset(Wval)
 
       }
 

@@ -3,8 +3,9 @@
 //* 
 //*  @comment test vector ops 
 //*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                    
-//*  @date Thu Apr 16 23:13:22 2020 
+//*  @vers 1.2 He Helium [asl 6.2.57 C-He-La]                              
+//*  @date Tue Jun  9 20:28:45 2020 
+ 
 //*  @cdate Thu Apr 16 23:13:22 2020 
 //*  @author Mark Terry 
 //*  @Copyright © RootMeanSquare  2010,2020 → 
@@ -12,17 +13,9 @@
 //***********************************************%
 
 
-include "debug"
-
-filterfuncdebug(ALLOWALL_,"xxx");
-
-filterfiledebug(ALLOWALL_,"proc_","args_","scope_","class_","hop_");
-
-// vector vector opeq  
-setdebug(1,@pline,@~trace,@filter,0,@~stderr)
 
 
-checkIn()
+checkIn(_dblevel)
 
 V= vgen(FLOAT_,10,0,1)
 
@@ -33,19 +26,19 @@ T = V + 1.0
 
 <<"(V+1) %6.1f$T \n"
 
-checkNum(T[1],2)
+cn (T[1],2)
 
 T = 2+ V 
 
 <<"(V+2) %6.2f$T \n"
 
-checkNum(T[1],3)
+cn (T[1],3)
 
 T = (2+ V)/4.0 
 
 <<"(2+V/4.0) %6.2f$T \n"
 
-checkNum(T[1],0.75)
+cn (T[1],0.75)
 
 
 // FIX XIC fail
@@ -54,7 +47,7 @@ H = (4.0 * (V+1))
 
 T = (2+ V)/(4.0 * (V+1)) 
 
-checkNum(T[1],0.375)
+cn (T[1],0.375)
 
 <<"%6.4f$T \n"
 
@@ -75,8 +68,7 @@ proc ask()
 
 
 
-//#define  ASK ask();
-#define  ASK ;
+
 
 proc foo()
 {
@@ -104,22 +96,22 @@ Y->info(1)
 
 
 
-checkNum(Y[2],6)
+cn (Y[2],6)
 
 
-ASK
+
   T = vgen(FLOAT_,10,0,1);
 
 <<"$T\n"
 
-//checkNum(T[2],2)
-//ASK
+//cn (T[2],2)
+//
 
   Y *= T
 
 <<"Y: $Y\n"
 
-checkNum(Y[2],12)
+cn (Y[2],12)
 
 
  Y = vgen(FLOAT_,10,0,1);
@@ -131,7 +123,7 @@ checkNum(Y[2],12)
 
 <<"$Y\n"
 
-checkNum(Y[2],4)
+cn (Y[2],4)
 
 
   Y =  Y * T
@@ -141,7 +133,7 @@ checkNum(Y[2],4)
 <<"Y: $Y\n"
 
 
-checkNum(Y[2],8)
+cn (Y[2],8)
 
 
 
@@ -149,27 +141,27 @@ checkNum(Y[2],8)
 
  foo()
 
-checkNum(Y[2],16)
+cn (Y[2],16)
 
 <<"$Y\n"
 
  foo()
 
-checkNum(Y[2],32)
+cn (Y[2],32)
 <<"$Y\n"
 
  Y *= T
 
 
-checkNum(Y[2],64)
+cn (Y[2],64)
 
 <<"$Y\n"
 
-ASK
+
 
 foo()
 
-checkNum(Y[2],128)
+cn (Y[2],128)
 
 
  Y = vgen(FLOAT_,10,0,1);
@@ -181,17 +173,17 @@ checkNum(Y[2],128)
 
 <<"Y: $Y\n"
 
-checkNum(Y[2],4)
+cn (Y[2],4)
 
-checkNum(Y[9],18)
+cn (Y[9],18)
 
   Y -= T;
 
 <<"Y: $Y\n"
 
-checkNum(Y[2],2)
+cn (Y[2],2)
 
-checkNum(Y[9],9)
+cn (Y[9],9)
 
 checkStage("opeq")
 
@@ -217,8 +209,8 @@ checkStage("opeq")
  <<"$V\n"
 
 
-  checkNum(V[2],2)
-  checkNum(V[9],9)
+  cn (V[2],2)
+  cn (V[9],9)
 
   T = V[1:3]
   <<"$T\n"
@@ -226,14 +218,14 @@ checkStage("opeq")
   j=1;
   
   for (i=0;i<3;i++) {
-    checkNum(T[i],j++)
+    cn (T[i],j++)
   }
  
   T = V[1:3] + V[2:4]
   <<"$T\n"
    j = 3
    for (i=0;i<3;i++) {
-    checkNum(T[i],j); j +=2;
+    cn (T[i],j); j +=2;
   }
 
 
@@ -242,7 +234,7 @@ checkStage("opeq")
 
    j = 6;
    for (i=0;i<3;i++) {
-    checkNum(T[i],j); j +=3;
+    cn (T[i],j); j +=3;
   }
 
 
@@ -251,7 +243,7 @@ checkStage("opeq")
   
    j = 10;
    for (i=0;i<3;i++) {
-    checkNum(T[i],j); j +=4;
+    cn (T[i],j); j +=4;
   }
 
    S= V[7:9] + V[2:4]
@@ -260,9 +252,9 @@ checkStage("opeq")
 
 <<"$V\n"
 
-  checkNum(V[0],S[0])
-  checkNum(V[1],S[1])
-  checkNum(V[2],S[2])  
+  cn (V[0],S[0])
+  cn (V[1],S[1])
+  cn (V[2],S[2])  
 
    R=vvcomp(S,V,3)
    <<"$R\n"
@@ -282,10 +274,9 @@ checkStage("opeq")
 //* 
 //***********************************************%
 
-
 int vec1[]  = { 1,2,3};
 
-<<"$vec1 \n"
+<<"%V $vec1 \n"
 
 vec1->info(1)
 
@@ -295,31 +286,34 @@ int vec2[] = {7,8,9}
 
 vec2->info(1)
 
-int vec3 []  = vec1 @+  vec2;
+//int vec3 []  = vec1 @+  vec2;   // TBF -- WS should be OK
+int vec3[]  = vec1 @+  vec2;
 
-<<"%V $vec3 \n"
 <<"$vec3[1] $vec3[2] $vec3[4] \n"
+<<"%V $vec3 \n"
+//exit()
 
 vec4 = vec1 @+  vec2;
 
 <<"%V $vec4 \n"
 
 
-checkNum(vec4[5],9)
-checkNum(vec4[1],2)
+cn (vec4[5],9)
+
+cn (vec4[1],2)
 
 vec4 = vec4 @+  vec2;
 
 <<"%V $vec4 \n"
 
-checkNum(vec4[8],9)
-checkNum(vec4[1],2)
+cn (vec4[8],9)
+cn (vec4[1],2)
 
 vec5 = vec1 @+  vec2 @+ vec3 ;
 
 <<"%V $vec5 \n"
 
-checkNum(vec5[1],2)
+cn (vec5[1],2)
 
 checkStage("veccat")
 
@@ -348,10 +342,10 @@ IV *=2 ;
 
 <<"$IV \n"
 
-checkNum(IV[1],2)
-checkNum(IV[2],4)
-checkNum(IV[3],6)
-checkNum(IV[4],8)
+cn (IV[1],2)
+cn (IV[2],4)
+cn (IV[3],6)
+cn (IV[4],8)
 
 IV2= vgen(INT_,15,0,1)
 
@@ -361,10 +355,10 @@ IV2= vgen(INT_,15,0,1)
 
 IV2[1:3] *=2 ;
 
-checkNum(IV2[1],2)
-checkNum(IV2[2],4)
-checkNum(IV2[3],6)
-checkNum(IV2[4],4)
+cn (IV2[1],2)
+cn (IV2[2],4)
+cn (IV2[3],6)
+cn (IV2[4],4)
 
 checkStage("self op * on lhrange  ")
 
@@ -377,17 +371,17 @@ IV2[1:8:2] +=7 ;
 checkStage("self op + on lhrange  ")
 
 <<"$IV2 \n"
-checkNum(IV2[0],0)
-checkNum(IV2[1],9)
-checkNum(IV2[2],4)
-checkNum(IV2[3],13)
+cn (IV2[0],0)
+cn (IV2[1],9)
+cn (IV2[2],4)
+cn (IV2[3],13)
 
 
 IV3 = IV2[1:-3]
 
-checkNum(IV3[0],9)
-checkNum(IV3[1],4)
-checkNum(IV3[2],13)
+cn (IV3[0],9)
+cn (IV3[1],4)
+cn (IV3[2],13)
 
 checkStage("RH range inserted correctly to new vec")
 <<"$IV3 \n"
@@ -397,9 +391,9 @@ IV3[7:9] =IV2[1:3]
 
 <<"$IV3 \n"
 IV3->info(1)
-checkNum(IV3[7],9)
-checkNum(IV3[8],4)
-checkNum(IV3[9],13)
+cn (IV3[7],9)
+cn (IV3[8],4)
+cn (IV3[9],13)
 
 <<"$IV3\n"
 IV3->Info(1);
@@ -429,12 +423,15 @@ IV5 =    IV3[0:-1:2] + IV3[1:-1:2]
 
 <<"$IV5 \n"
 i=0;
-checkNum(IV5[i++],13)
-checkNum(IV5[i++],17)
-checkNum(IV5[i++],18)
-checkNum(IV5[i++],23)
-checkNum(IV5[i++],17)
-checkNum(IV5[i++],23)
+cn (IV5[i++],13)
+cn (IV5[i++],17)
+cn (IV5[i++],18)
+cn (IV5[i++],23)
+cn (IV5[i++],17)
+//cn (IV5[i++],23)
+cn (IV5[i++],23)
+
+//cn IV5[i++] 23
 
 //13 17 18 23 17 23
 
@@ -458,5 +455,5 @@ checkStage("lhrange")
 
 
 
-checkOut()
+co ()
   

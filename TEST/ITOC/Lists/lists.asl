@@ -3,8 +3,8 @@
 //* 
 //*  @comment test list functionality 
 //*  @release CARBON 
-//*  @vers 1.2 He Helium [asl 6.2.50 C-He-Sn]                              
-//*  @date Sat May 23 15:01:34 2020 
+//*  @vers 1.3 Li Lithium [asl 6.2.55 C-He-Cs]                             
+//*  @date Wed Jun  3 20:27:57 2020 
 //*  @cdate Sun Apr 12 19:06:46 2020 
 //*  @author Mark Terry 
 //*  @Copyright © RootMeanSquare  2010,2020 → 
@@ -19,9 +19,6 @@ checkIn(_dblevel)
 ws = getScript()
 
 <<"%V $ws\n"
-
-//setdebug(1,@trace,@keep,@pline);
-
 
 
 CrashList = ( "",  )  // empty list
@@ -51,9 +48,7 @@ m = Caz(J)
 
 <<"$J\n"
 
-
-<<" $(CheckNum(m,4))\n"
-
+checkNum(m,4,GTE_)
 
 
   L1 = ( "a", "small" , "list" , "1", "2", "3", "4", "5" ,"6" ,"yellow", "green", "blue" ,"indigo", "violet")

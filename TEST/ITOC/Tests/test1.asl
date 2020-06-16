@@ -17,7 +17,7 @@ checkin()
 
  a= 2 +2;
 
-checkNum(a,4);
+cn (a,4);
 
 
-checkOut()
+co ()

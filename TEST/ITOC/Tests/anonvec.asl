@@ -14,10 +14,8 @@
 ///
 ///
 
-include "debug"
-debugON()
-sdb(1,@pline)
-checkIn()
+
+checkIn(_dblevel)
 
 
 int veo[2] = {4,5}

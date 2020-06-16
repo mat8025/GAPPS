@@ -312,7 +312,7 @@ n++;
 
  a = 1;
 
- checkFnum(a,1)
+ cr (a,1)
 
 
  int b = 79;
@@ -373,13 +373,13 @@ checkStage("funcargs")
 
   testArgs(pnum,  123456789.98765432100)
 
-  checkFnum(pnum,  123456789.98765432100, 5)
+  cr (pnum,  123456789.98765432100, 5)
 
 
 checkStage("pan")
 
 
-checkOut()
+co ()
 
 
 

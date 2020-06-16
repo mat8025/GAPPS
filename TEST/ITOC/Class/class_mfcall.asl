@@ -14,7 +14,7 @@
 ///
 ///
 
-checkIn(_dblevel)
+ci (_dblevel)
 
 
 
@@ -134,7 +134,7 @@ double w = 3.3
    
 <<" $acalc->a\n"
 <<" $wr\n"
-  checkRnum(wr, sin(0.8))
+  cr (wr, sin(0.8))
 
 
      acalc->seta(w)
@@ -143,7 +143,7 @@ double w = 3.3
 <<" $acalc->a\n"
 <<" $wr\n"
 
-checkRnum(wr, w)
+cr (wr, w)
 
 
   
@@ -166,7 +166,7 @@ wr = acalc->geta();
 
 <<" $acalc->geta() \n"
 
-checkOut()
+co ()
 
 //<<" $acalc->x\n"  // should give error
 

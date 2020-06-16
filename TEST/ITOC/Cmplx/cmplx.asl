@@ -1,9 +1,19 @@
+//%*********************************************** 
+//*  @script cmplx.asl 
+//* 
+//*  @comment test cmplx types 
+//*  @release CARBON 
+//*  @vers 1.3 Li Lithium [asl 6.2.54 C-He-Xe]                               
+//*  @date Sun May 31 06:49:43 2020 
+//*  @cdate 1/1/2003 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+myScript = getScript();
 
-// test complex & dcomplex types
 
-SetDebug(1,@pline,@~step)
-
-checkIn()
+checkIn(_dblevel)
 
 cmplx a
 cmplx b;
@@ -14,7 +24,7 @@ a->set(2.5,0.5)
 
 a->info(1)
 
-checkFnum(a->getReal(),2.5);
+cr (a->getReal(),2.5);
 x= a->getReal();
 y= a->getImag();
 <<"%V $a  $x  $y\n"
@@ -31,8 +41,8 @@ x= a->getReal();
 y= a->getImag();
 <<"%V $a  $x  $y\n"
 
-checkFnum(x,3.5)
-checkFnum(y,-4.7)
+cr (x,3.5)
+cr (y,-4.7)
 
 a->info(1)
 
@@ -73,9 +83,9 @@ float F[10] = {0,1,2,3,4,5,6,7,8,9};
 
 <<"$F\n"
 
- I[] = {11,1,2,3,4,5,6,7,8,12};
+ I2[] = {11,1,2,3,4,5,6,7,8,12};
 
-<<"$I\n"
+<<"$I2\n"
 
 
 
@@ -410,7 +420,7 @@ R->info(1)
 
 <<"%v $AV[*] \n"
 
-   I=AV->GetImag() // real part
+   I=AV->GetImag() // imag part
 
 <<"%v $I \n"
 
@@ -422,11 +432,12 @@ R->info(1)
     for (j = 1; j < 10; j++) {
 
      AV[j]->SetReal(val)  // just real ele
+
      AV[12]->SetReal(val)
 
-     R=AV->SetReal() // real part
+     R=AV->getReal() // real part
 
-    // <<"%v $R[0:12] \n"
+   
      <<"%v $R \n"
 
     val += 0.1
@@ -437,7 +448,7 @@ R->info(1)
    AV->Setreal(Sin(Fgen(N,0,0.1)))
 
 
-   R = AV->Setreal(Cos(Fgen(N,0,0.1)))
+   R = AV->SetR(Cos(Fgen(N,0,0.1)))
 R->info(1);
 <<" $(Caz(R)) \n"
 
@@ -448,14 +459,14 @@ R->info(1);
   <<"\n%v $R[0:10] \n"
 
 
-   R = AV->SetReal(Sin(Fgen(N,0,0.1)))
+   R = AV->setR(Sin(Fgen(N,0,0.1)))
 
 <<" $(Caz(R)) \n"
 
 
   <<"\n%v $R[0:10] \n"
 
-   AV->SetImag(4.0)      // imag vector set to zero
+   AV->SetI(4.0)      // imag vector set to zero
 
    I= AV->getImag()     // get imag part
 
@@ -489,17 +500,17 @@ R->info(1);
 <<"\n %v $C[0:10] \n"
 
 
-   AV[3] = {0.3,42.0}  
+   AV[3]->set(0.3,42.0)  
 
 <<"\n %v $AV[0:10] \n"
 
 
-   AV[3] = {0.3,42.0}  
+   AV[3]->set(0.3,42.0)  
 
 <<"\n %v $AV[0:10] \n"
 
 
-   AV[9] = {0.3,42.0}  
+   AV[9]->set(0.3,42.0)  
 
 <<"\n %v $AV[0:10] \n"
 
@@ -531,21 +542,20 @@ R->info(1);
 
 
 
+   AV[2]->setI (-0.5)  // just imag ele
 
-
-
-
-   AV[2]->setImag (-0.5)  // just imag ele
-
-   AV[3] = {0.3,0.4}  
-
+   AV[3]->Set(0.3,0.4) 
 
 
    AV[0:20:2]->SetImag(5.0)      // imag subscripted part of vector set to zero
 
 
 
-float V[12]
+float V[12];
+
+<<"$V\n"
+co ()
+
 j = 0
     V[j] = 3
 
@@ -576,9 +586,10 @@ DVGR=DCV->getReal()
 
 <<"$DVGR\n"
 dv= 0.0
+
 for(i=0;i<10;i++) {
 
-checkFnum(DVGR[i],dv);
+cr (DVGR[i],dv);
 dv += 0.25
 }
 

@@ -22,6 +22,20 @@
 checkIn(_dblevel)
 
 
+int ra = 2;
+
+sz= csz(ra);
+
+<<"$sz  $(csz(ra)) \n"
+ra->info(1)
+
+sz= csz(&ra);
+
+<<"$sz  $(csz(&ra)) \n"
+
+
+
+
   Record R[>4];
 
 
@@ -30,8 +44,7 @@ checkIn(_dblevel)
 
 <<"num of records $Nrecs  num cols $Ncols\n";
 
-recinfo = info(R);
-<<"$recinfo \n"
+ R->info(1)
 
 
  R[0] = Split("80,1,2,3,40,5,6,7,8,9",',');
@@ -50,8 +63,7 @@ recinfo = info(R);
 
 <<"num of records $Nrecs  num cols $Ncols\n";
 
- recinfo = info(R);
- <<"$recinfo \n"
+R->info(1)
 
 
 
@@ -71,6 +83,8 @@ checkNum(ival,2)
 
 //=============================
  R[5] = R[1];
+
+R->info(1)
 
 <<"%V$R[5]\n"
 <<"%V$R[5][2]\n"
@@ -160,7 +174,7 @@ recinfo = info(R);
 recinfo = info(R);
 <<"$recinfo \n"
 
-
+R->info(1)
 
 
 //////////////////////////////////////////
@@ -173,10 +187,17 @@ recinfo = info(R);
 
 ival = atoi(R[1][4]);
 sz  = csz(ival)
-<<"ival $ival  bounds $(Cab(ival)) sz   $(csz(ival))\n"
+<<"ival $ival  bounds $(Cab(ival))    $(csz(ival))  $sz\n"
+
+ival->info(1)
 
 checkNum(sz,0)
+
 checkNum(ival,45)
+
+
+
+
 
 ival = atoi(R[1][5]);
 checkNum(ival,56)
@@ -343,6 +364,8 @@ checkStr(sr2,"cols")
 // fix the number of cols ?? - for an ascii table
 
 <<"inrecord[3] we have:- $R[3] \n"
+
+R->info(1)
 
    sr1 = R[3][2]
    
@@ -606,7 +629,7 @@ R[7] = R[5];
 
 <<"$R[12:19]\n"
 
-<<"\n%(1,,,,\n)$R[13:19]\n"
+<<"\n%(1,,\,,\n)$R[13:19]\n"
 // use a comma separator
 
 
@@ -616,8 +639,10 @@ R[7] = R[5];
 // use a underlineseparator
 //<<"\n\n%1r%_a$R[13:23]\n"
 // use a underlineseparator
-<<"\n\n%1r%ta$R[13:23]\n"
 
+//<<"\n\n%1r%ta$R[13:23]\n"
+//  TBC
+//<<"%(1, ,,,\n)$R[13:23]\n"
 // use a underlineseparator
 //<<"\n\n%1r%\ta$R[13:23]\n"
 

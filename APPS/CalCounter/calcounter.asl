@@ -17,7 +17,7 @@
 
 include "debug"
 include "gevent"
-include "gss.asl";
+//include "gss.asl";
 include "hv.asl"
 include "calcounter_day"; // check in local LIB first
 include "checkFood";
@@ -30,10 +30,7 @@ include "calcounter_totals";
 
 
 debugON()
-filterFuncDebug(ALLOWALL_,"xxx");
-filterFileDebug(ALLOW_,"wo_sheet_p");
-
-setDebug(0,@~pline,@~trace)
+_DB = 1;
 
 //////   create MENUS here  /////
 /{
@@ -442,7 +439,7 @@ while (1) {
 
        if (!(_ewoname @= "")) {
               nc=slen(_ewoname);
-    <<"calling script procedure $nc  <|${_ewoname}|> !\n"
+   // <<"calling script procedure $nc  <|${_ewoname}|> !\n"
             if (nc > 3) {
 	      <<"calling script procedure  <$_ewoname> !\n"
               $_ewoname();

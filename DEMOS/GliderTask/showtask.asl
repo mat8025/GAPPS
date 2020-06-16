@@ -18,22 +18,29 @@
 
 include "debug"
 include "hv.asl"
-setDebug(1,@keep,@~pline)
-
-scriptDBOFF()
-filterFuncDebug(ALLOWALL_,"xxx");
-filterFileDebug(ALLOWALL_,"yyy");
 
 //envDebug()
 //#define DBG <<
 
-//#define DBG ~!
+#define DBG ~!
+
+float Max_ele = 18000.0
+float Min_ele  = 0.0;
+float  Margin = 0.05;
+
+int Ntpts = 1000;
 
 include "ootlib"
+
+
+
+
+
 
 //======================================//
 proc drawTrace()
 {
+     if (Have_igc) {
          sWo(mapwo, @scales, LongW, LatS, LongE, LatN )
          sWo(mapwo,@clearpixmap);
          sWo(vvwo,@clearpixmap);
@@ -42,7 +49,7 @@ proc drawTrace()
           DrawMap(mapwo);
 	  
   	 if (Ntpts > 0) {
-            sWo(vvwo, @scales, 0, min_ele, Ntpts, max_ele + 500 )
+            sWo(vvwo, @scales, 0, Min_ele, Ntpts, Max_ele + 500 )
               dGl(igc_tgl);
 	    sWo(vvwo,@clearpixmap);
 	      dGl(igc_vgl);
@@ -50,42 +57,83 @@ proc drawTrace()
             sWo(vvwo,@showpixmap,@clipborder);
 	 }
 	sWo(mapwo,@showpixmap,@clipborder);
+
+      }
 }
 
 //======================================//
 
-proc computeTaskDistance()
+float totalK = 0;
+
+proc TaskDistance()
 {
    // is there a start?
-   
+DBG"$_proc  $Ntaskpts \n"
    totalK = 0;
    float la1 = 1000.0;
    float lon1 = 1000.0;
    float la2 = 1000.0;
-   float lon2 = 1000.0;   
-   // num of taskpts
-   for (i = 0; i <=7 ; i++) {
-      kmd = 0.0;
-      tpl = Tasktp[i]->cltpt;
- //    if (!(Tasktp[i]->cltpt @= "")) {  // TBF
-     if (!(tpl @= "")) {
+   float lon2 = 1000.0;
 
-   // totalK += computeLeg(i);
+  Min_lat = 90.0
+  Max_lat = 0.0
+  Min_W = 109.0
+  Max_W = 105.0
+
+   int adjust = 0;
+
+   // num of taskpts
+   for (i = 0; i < Ntaskpts ; i++) {
+
+     kmd = 0.0;
+     tpl = Tasktp[i]->cltpt;
+     
      la2 = Tasktp[i]->Ladeg;
+
+
+     if (la2 > Max_lat) {
+         Max_lat = la2;
+     }
+
+     if (la2 < Min_lat) {
+         Min_lat = la2;
+     }
+
+
+
+
      lon2 = Tasktp[i]->Longdeg;
+
+     if (lon2 > Max_W) {
+         Max_W = lon2;
+     }
+
+     if (lon2 < Min_W) {
+         Min_W = lon2;
+     }
+
+
      if (la1 != 1000.0) {
         kmd = computeGCD(la1,la2,lon1,lon2);
      }
-//<<" tpt $i  <|$Tasktp[i]->Place\> <|$Tasktp[i]->cltpt|> $Tasktp[i]->Ladeg  $Tasktp[i]->Longdeg $kmd\n"
+<<" tpt $tpl $i  <|$Tasktp[i]->Place|> <|$Tasktp[i]->cltpt|> $Tasktp[i]->Ladeg  $Tasktp[i]->Longdeg $kmd\n"
      la1 = la2;
      lon1 = lon2;
-    }
-        totalK += kmd;
+     adjust++;
+     totalK += kmd;
    }
 
-<<"%V $totalK\n"
-   sWo(tdwo,@value,"$totalK km",@update);
 
+<<"%V $Min_lat $Min_W $Max_lat $Max_W \n"
+<<"%V $LongW $LatS $LongE $LatN   \n"
+if (adjust >=2) {
+ LongW= Max_W +1.0;
+ LatS = Min_lat -1;
+ LongE = Min_W -1;
+ LatN = Max_lat +1;
+}
+<<"%V $totalK\n"
+<<"%V $LongW $LatS $LongE $LatN   \n"
 
 }
 //==============================//
@@ -94,19 +142,18 @@ proc computeTaskDistance()
 
 TaskType = "MT"; 
 
-int Nlegs = 2;
+int Nlegs = 3;
 
 Turnpt  Wtp[500]; // 
 
 /// open turnpoint file lat,long 
 //tp_file = GetArgStr()
 
-  tp_file = "turnpts.dat"  // open turnpoint file
+  tp_file = "DAT/turnpts.dat"  // open turnpoint file
 
- //tp_file = "tp.dat"  // open turnpoint file 
 
   if (tp_file @= "") {
-    tp_file = "turnptsSM.dat"  // open turnpoint file 
+    tp_file = "DAT/turnptsSM.dat"  // open turnpoint file 
    }
 
   A=ofr(tp_file)
@@ -129,7 +176,7 @@ Turnpt  Wtp[500]; //
 
   while (1) {
 
-            nwr = Wval->Read(A)
+            nwr = Wval->ReadWords(A)
 
             if (nwr == -1) {
 	      break
@@ -137,16 +184,20 @@ Turnpt  Wtp[500]; //
 	    
             if (nwr > 6) {
 	    
-//<<"$Wval[0]\n";
+//<<"$Wval\n";
 
-             Wtp[Ntp]->Set(Wval);
+             Wtp[Ntp]->TPset(Wval);
 //<<"$Ntp $Wval[0] \n"	     
 
-             Wtp[Ntp]->Print()
+ //            Wtp[Ntp]->Print()
 
 
              Ntp++;
             }
+
+     //   if (Ntp > 3) {
+     //         break
+     //   }
       }
 
 <<" Read $Ntp turnpts \n"
@@ -156,11 +207,11 @@ Turnpt  Wtp[500]; //
  }
 ////////////////////////////////////
 
- Nlegs = Ntp -1;
+// Nlegs = Ntp -1;
 
 /////////////////// TASK DEF ////////////
 Taskpt Tasktp[50];
-
+Task_update =1
 Units = "KM"
 
 
@@ -168,18 +219,18 @@ Units = "KM"
 
 LatS= 37.5;
 
-LatN = 41.0;
+LatN = 42.0;
 
-LongW= 105.5;
+LongW= 108.5;
 
 LongE= 104.8;
 
 
 
 
-int tp_wo[20];
-int gtp_wo[20];
-int ltp_wo[20];
+int tp_wo[>20];
+int gtp_wo[>20];
+int ltp_wo[>20];
 
 
 
@@ -194,14 +245,22 @@ num_tpts = 700
 float R[10];
 
 
- //  igcfn = "spk.igc"
-  // igcfn = "laramie.igc"
-   //igcfn = "bike_4_23.igc"
-   //igcfn = "idahoesprings.igc"
 
-    igcfn = GetArgStr();
+    igcfn = getArgStr();
+    Have_igc = 1;
+    if (spat(igcfn,"igc") @= "") {
+      Have_igc = 0;
+      setArgIndex(1); // not igc step back 
+    }
+    else {
+
+<<"IGC file $igcfn \n"
+
+    }
+
 
 //  Read in a Task via command line
+
 float min_lat;
 float max_lat;
 float longW =0.0;
@@ -211,34 +270,48 @@ Ntaskpts = 0;
 //////////////// PARSE COMMAND LINE ARGS ///////////////////////
 
 long posn = 0;
+svar Tskval;
+
 
  while (AnotherArg()) {
 
     Fseek(A,0,0)
     targ = GetArgStr()
-//<<" looking for  $targ \n"
+
     posn=Fsearch(A,targ,-1,1,0)
+
+<<" looking for  $targ $posn \n"
+
     if (posn == -1) {
         break;
      }
-//<<" found $targ \n"
+     
+<<" found $targ \n"
 
-    Tasktp[Ntaskpts]->cltpt = targ;
+  //  Tasktp[Ntaskpts]->cltpt = targ;
+
+    nwr = Tskval->ReadWords(A)
+    <<"%v$nwr : $Tskval \n"
+     Tskval->info(1)
+     
+    Tasktp[Ntaskpts]->TPset(Tskval)
     
-    nwr = Tasktp[Ntaskpts]->Read(A);
+    //nwr = Tasktp[Ntaskpts]->Read(A);
 
     Tasktp[Ntaskpts]->Print();
-    
+
     Ntaskpts++;
+
 //<<"%V $Ntaskpts $nwr \n"
+
 }
 
 
 
+Nlegs = Ntaskpts;
 
 
 
-<<"%V $posn  $(typeof(posn)) $(Caz(posn))  %i $posn \n"
 
 <<"%V $Ntaskpts \n"
 
@@ -247,6 +320,13 @@ long posn = 0;
   for (k = 0; k < Ntaskpts ; k++) {
       Tasktp[k]->Print()
   }
+
+
+
+
+      TaskDistance();
+
+  if (Have_igc) {
 
       Ntpts=IGC_Read(igcfn);
 
@@ -257,9 +337,6 @@ long posn = 0;
 //<<"%(10,, ,\n) $IGCLONG[0:30] \n"
 //<<"%(10,, ,\n) $IGCLONG[k:Ntpts-1] \n"
 
-//<<"%(10,, ,\n) $IGCLAT[0:30] \n"
-//<<"%(10,, ,\n) $IGCELE[0:30] \n"
-//<<"%(10,, ,\n) $IGCTIM[0:30] \n"
 
      sslng= Stats(IGCLONG)
 
@@ -276,7 +353,7 @@ long posn = 0;
 <<"%V $sslt \n"
 
 
- for (i=1000; i < 1500; i++) {
+     for (i=1000; i < 1500; i++) {
      
       <<"$i $IGCTIM[i] $IGCELE[i] $IGCLAT[i]  $IGCLONG[i] \n";
 
@@ -286,193 +363,122 @@ long posn = 0;
 
      ssele= Stats(IGCELE,">",0)
 
-<<"%V $ssele \n"
+DBG"%V $ssele \n"
 
-      min_ele = ssele[5];
-      max_ele = ssele[6];
-<<" min ele $ssele[5] max $ssele[6] \n"
+      Min_ele = ssele[5];
+      Max_ele = ssele[6];
+DBG" min ele $ssele[5] max $ssele[6] \n"
 
       min_lng = sslng[5];
       max_lng = sslng[6];
 
-<<"%V $min_lng $max_lng \n"
+DBG"%V $min_lng $max_lng \n"
 
 
       min_lat = sslt[5];
       max_lat = sslt[6];
 
 
-<<"%V $min_lat $max_lat \n"
+DBG"%V $min_lat $max_lat \n"
 
 
-     float  margin = 0.05;
+
   
-     LatS = min_lat -margin;
-     LatN = max_lat+margin;
+     LatS = min_lat -Margin;
+     LatN = max_lat+Margin;
 
      MidLat = (LatN - LatS)/2.0 + LatS;
 
-  <<"%V $MidLat \n"
+  DBG"%V $MidLat \n"
 
     dlat = max_lat - min_lat;
 
-  <<"%V $dlat \n"
+  DBG"%V $dlat \n"
 
-  <<"%V $LongW \n"
-  <<"%V $LongE \n"
+  DBG"%V $LongW \n"
+  DBG"%V $LongE \n"
 
 
 
-    LongW = max_lng + margin;
+    LongW = max_lng + Margin;
 
-    LongE = min_lng - margin;
+    LongE = min_lng - Margin;
 
 
     MidLong = (LongW - LongE)/2.0 + LongE;
 
-  <<"%V $MidLong \n"
+  DBG"%V $MidLong \n"
 
 
     dlng = max_lng - min_lng;
 
     da = dlat;
-  <<"%V $da $dlng $dlat \n"
+  DBG"%V $da $dlng $dlat \n"
 // TBF if corrupts following expression assignment
     if ( dlng > dlat )
     {
         da = dlng
-	<<"da = dlng\n"
+	DBG"da = dlng\n"
     }
     else {
-  	<<"da = dlat\n"
+  	DBG"da = dlat\n"
     }
 
-  <<"%V $da $dlng $dlat \n"
+  DBG"%V $da $dlng $dlat \n"
 ////////////////////// center //////////
 
 //  longW = MidLong + da;
 
-//  <<"%V $longW $MidLong $da \n"
+//  DBG"%V $longW $MidLong $da \n"
   
   latWB = MidLat + da/2.0;
   LongW = MidLong + da/2.0;
-  <<"%V $latWB $MidLat $da \n"
+  DBG"%V $latWB $MidLat $da \n"
 
   LongW = MidLong + da/2.0;
 
-  <<"%V $longW $MidLong $da \n"
+  DBG"%V $longW $MidLong $da \n"
 
 
   LongE = MidLong - da/2.0;
 
 
-  <<"%V $LongW \n"
-  <<"%V $LongE \n"
+  DBG"%V $LongW \n"
+  DBG"%V $LongE \n"
 
+  }
   
-  //LongE = max_lng - (da +margin);
-  //  LatS = max_lat - (da +margin);
-  //    LatS = MidLat - da/2.0 -margin;
- //     LatN = MidLat + da/2.0 + margin;
 
    for (k= 0; k < 5; k++) {
              Wtp[k]->Print()
     }
-<<"//////////\n"
+DBG"//////////\n"
        //      Wtp[3]->Print()
 
 
 ///////////////////// SETUP GRAPHICS ///////////////////////////
-
-Graphic = CheckGwm();
-
-  if (!Graphic) {
-    Xgm = spawnGwm("ShowTask")
-  }
-
-// create window and scales
-
-include "tbqrd"
+include "showtask_scrn"
 
 
-  vp = cWi(@title,"vp",@resize,0.1,0.01,0.9,0.95,0)
-
-  sWi(vp,"scales",-200,-200,200,200,0, @drawoff,@pixmapon,@save,@bhue,WHITE_); // but we dont draw to a window!
-
-  sWi(vp,"clip",0.01,0.1,0.95,0.99);
-
-    titleButtonsQRD(vp);
-
-  vptxt= cWo(vp,@TEXT,@resize_fr,0.55,0.01,0.95,0.1,@name,"TXT",@color,WHITE_,@save,@drawon,@pixmapoff);
-
-  tdwo= cWo(vp,@BV,@resize_fr,0.01,0.01,0.14,0.1,@name,"TaskDistance",@color,WHITE_,@style,"SVB");
-
-  sawo= cWo(vp,@BV,@resize_fr,0.15,0.01,0.54,0.1,@name,"SafetyAlt",@color,WHITE_,@style,"SVB");
-
-  vvwo= cWo(vp,@GRAPH,@resize_fr,0.2,0.11,0.95,0.25,@name,"ALT",@color,WHITE_);
-
-  sWo(vvwo, @scales, 0, 0, 100, 6000, @savepixmap, @redraw, @drawoff, @pixmapon);
-
-  mapwo= cWo(vp,@GRAPH,@resize_fr,0.2,0.26,0.95,0.95,@name,"MAP",@color,WHITE_);
-
-<<"%V $mapwo \n"
-
-  sWo(mapwo, @scales, LongW, LatS, LongE, LatN, @save, @redraw, @drawon, @pixmapon,@savepixmap);
 
 
-  int tpwo[20];
-  
-
-  tpwo[0]=cWo(vp,@BV,@name,"_Start_",@style,"SVB",@drawon)
-
-  tpwo[1] =cWo(vp,@BV,@name,"_TP1_",@style,"SVB",@drawon)
-
-  tpwo[2] =cWo(vp,@BV,@name,"_TP2_",@style,"SVB", @drawon)
-
-  tpwo[3] =cWo(vp,@BV,@name,"_TP3_",@style,"SVB", @drawon)
-
-  tpwo[4] =cWo(vp,@BV,@name,"_TP4_",@style,"SVB", @drawon)
-
-  tpwo[5] =cWo(vp,@BV,@name,"_TP5_",@style,"SVB", @drawon)
-
-  tpwo[6] =cWo(vp,@BV,@name,"_TP6_",@style,"SVB", @drawon)
-
-  tpwo[7] =cWo(vp,@BV,@name,"_TP7_",@style,"SVB", @drawon)
-
-  tpwo[8] =cWo(vp,@BV,@name,"_TP8_",@style,"SVB", @drawon)
-
-  tpwos = tpwo[0:8];
-
-  MaxSelTps = 9;
-  <<"%V $tpwos\n"
-  wovtile(tpwos, 0.02, 0.4, 0.15, 0.95)
-  titleVers();
-  sWo(tpwos,@redraw);
-
-  //TASK_wo=cWo(vp,@TB_MENU,@resize,0.1,0.9,0.2,0.99);
-  TASK_wo=cWo(vp,@BV,@resize,0.05,0.2,0.15,0.34);
-  
-<<"%V$TASK_wo\n"
-
-  sWo(TASK_wo, @help, "Set Task Type", @name, "TaskType", @func,  "wo_menu",  @menu, "SO,TRI,OAR,W,MT",  @value, "MT")
-
-
+//===========================================//
  if (Ntaskpts > 1) {
 
   for (i = 0; i < Ntaskpts ; i++) {
-      tpl = Tasktp[i]->cltpt;
+  
+        tpl = Tasktp[i]->cltpt;
       
-      <<"$i   $tpl $Tasktp[i]->cltpt \n"
+      <<"$i   $tpl $Tasktp[i]->cltpt $tpwo[i]\n"
 
        //sWo(tpwo[i],@value,Tasktp[i]->cltpt);  // TBF
-        sWo(tpwo[i],@value,tpl);  
-      
+        sWo(tpwo[i],@value,"$tpl",@update,@redraw);  
 
        if (i >= MaxSelTps) {
          <<"$i > $MaxSelTps \n"
           break;
         }
-  }
+   }
 
 <<"%V $i $Ntaskpts \n"
 
@@ -480,56 +486,11 @@ include "tbqrd"
 
 
 
-  for (k = 0; k < Ntaskpts ; k++) {
-      Tasktp[k]->Print()
-  }
 
+    sWo(tpwos,@redraw);
+    sWo(tpwo[1],@redraw);
+    sWo(tpwo[2],@redraw);
 
-
-/{/*
-
-start_key = "sal"
-key[1] = "saf"
-finish_key = "sal"
-
-tpt[0] = find_key(start_key)
-tpt[1] = find_key(key[1])
-tpt[2] = find_key(finish_key)
-
-ntpts = 2
-
-total = task_dist()
-
-w_set_wo_value (tw,td_wo,total,1)
-w_set_wo_value (tw,start_wo,start_key,1)
-
-tp_wo[0] = start_wo
-
-w_set_wo_value (tw,tp_wo[1],key[1],1)
-ff=w_set_wo_value (tw,finish_wo,finish_key,1)
-
-
-TT="tri"
-
-  if ( !(TT @= ""))  {
-    w_set_wo_value(tw,tclass_wo,TT)
-  }
-
-tfile= "cfi/TASKS/K300.tsk"
-
-read_task(tfile,0)
-
-set_task()
-
-#grid_label(tw)
-
-
-      zoom_to_task(tw,0)
-      zoom_out(tw,0)
-      zoom_out(tw,1)
-
-
-/}*/
 
    c= "EXIT"
 
@@ -543,11 +504,11 @@ set_task()
 
     igc_vgl = cGl(vvwo,@TY,IGCELE,@color,RED_);
 
-    DrawMap(mapwo);   // show the turnpts
+ DBG"%V $mapwo \n"
 
    if (Ntpts > 0) {
     dGl(igc_tgl);  // plot the igc track -- if supplied
-    sWo(vvwo, @scales, 0, 0, Ntpts, max_ele +500)
+    sWo(vvwo, @scales, 0, 0, Ntpts, Max_ele +500)
     dGl(igc_vgl);  // plot the igc climb -- if supplied
    }
 
@@ -561,25 +522,37 @@ int witp = 0;
 int drawit = 0;
 msgv = "";
 
-float d_ll = margin;
+float d_ll = Margin;
 
 str wcltpt="XY";
 
-  <<"%V $vvwo $Ntpts\n"
+  DBG"%V $vvwo $Ntpts\n"
   sWo(vvwo,@clear,@clearpixmap,@savepixmap,@clipborder);
-  sWo(vvwo, @scales, 0, 0, Ntpts, max_ele +500);
+  sWo(vvwo, @scales, 0, 0, Ntpts, Max_ele +500);
 
-  <<"%V $LongW \n"
-  <<"%V $LongE \n"
+  DBG"%V $LongW \n"
+  DBG"%V $LongE \n"
 
-
+  TaskDistance();
+  sWo(tdwo,@value,"$totalK km",@update);
+ 
   drawTrace();
-  DrawTask(mapwo,RED_)
+
+  zoom_to_task(mapwo,1)
+
+  sWo(mapwo, @scales, LongW, LatS, LongE, LatN );
+  //DrawMap(mapwo)
+  DrawTask(mapwo,"green");
+
+
+  //DrawTask(mapwo,"yellow")
 
   while (1) {
+ //   zoom_to_task(mapwo,1)
 
-    drawit = 0;
-
+    drawit = 1;
+    Task_update =0
+  
     eventWait();
 
 <<"%V $_ekeyw $_ekeyc $_ewoname\n"; 
@@ -632,7 +605,7 @@ str wcltpt="XY";
       }
 
        if (_ekeyw @= "_Start_") {
-       
+             Task_update =1
              sWo(_ewoid, @cxor)
              if (PickaTP(0)) {
 	       wcltpt = Tasktp[0]->cltpt;
@@ -643,7 +616,7 @@ str wcltpt="XY";
 
 
        if (scmp(_ekeyw,"_TP",3)) {
-
+            Task_update =1
              np = spat(_ekeyw,"_TP",1)
              np = spat(np,"_",-1)
 
@@ -674,7 +647,7 @@ str wcltpt="XY";
 
        if (_ewoname @= "ALT") {
 
-    drawit = 0;
+         drawit = 0;
          dindex = rint(_erx)
 
 <<" index $_erx, alt $_ery  $dindex $IGCELE[dindex] $IGCLAT[dindex] $IGCLONG[dindex] \n"
@@ -718,7 +691,11 @@ str wcltpt="XY";
 
         }
 
-
+       else if (_ewoname @= "TaskMenu") {
+              task_menu(mapwo)
+	      drawit = 0;
+       }
+       
        if ( _ekeyw @= "Menu") {
            <<" task type is $_ekeyw \n"
            TaskType = _ekeyw;
@@ -727,12 +704,15 @@ str wcltpt="XY";
 
 
         if (drawit) {
-  	    drawTrace();
-              DrawTask(mapwo,RED_)
+	      DrawMap(mapwo)
+  	      drawTrace();
+              DrawTask(mapwo,"green");
         }
 
-      computeTaskDistance();
-
+     if ( Task_update ) {
+      TaskDistance();
+      sWo(tdwo,@value,"$totalK km",@update);
+      }
   }
 ///
 

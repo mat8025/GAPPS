@@ -1,13 +1,24 @@
+//%*********************************************** 
+//*  @script reclhs.asl 
+//* 
+//*  @comment test lh assignment 
+//*  @release CARBON 
+//*  @vers 1.3 Li Lithium [asl 6.2.53 C-He-I]                                
+//*  @date Sat May 30 20:15:15 2020 
+//*  @cdate 1/1/2012 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+myScript = getScript();
 
-include "debug.asl"
 
-debugON();
 
-checkIN()
+checkIn(_dblevel)
 
 record R[10];
 
- R[0] = Split("0 1 2 3 4 5")
+ R[0] = Split("0 1 2 3 4 5 6 7 8 9")
  R[1] = Split("0 1 2 3 4 5")
  R[2] = Split("0 1 2 3 4 5")
  R[3] = Split("10 11 12 13 14 15")
@@ -48,21 +59,28 @@ nval = 1.23;
 
 
  R->info(1)
-setdebug(1,@trace,@pline)
+kc = 1;
 for (j= 0; j < 6; j++) {
-R[j][2+kc] = "$nval";
-R->info(1)
-<<"$j $kc $R[j][2+kc]  \n"
-R->info(1)
- wrd = R[j][2+kc]
-<<"%V $wrd  \n"
-R->info(1)
-checkStr(wrd,"1.23",4)
+
+ R[j][2+kc] = "$nval";
+ R[j][kc] = "$nval";
+ R->info(1)
+ <<"$j $kc $R[j][2+kc]  \n"
+ <<"$R[j]\n"
+ R->info(1)
+ wrd = R[j][kc]
+ <<"%V $wrd  \n"
+ R->info(1)
+
+ checkStr(wrd,"$nval",4)
+ //query()
+ nval += 0.01;
+ kc++;
 }
 
 
 j=5;
- wrd = R[j+1][kc-1]
+wrd = R[j+1][kc-1]
 
 <<"$(j+1) $(kc-1)  \n"
 
@@ -74,11 +92,19 @@ R->info(1)
 R->info(1)
 
 
+<<"$R\n"
+
+
 
 wrd = R[5][4];
 <<"<|$wrd|>\n"
-checkStr(wrd,"1.23",4)
+checkStr(wrd,"4.30",4)
 
-checkStr(R[5][4],"1.23",4)
+R->info(1)
+
+<<"$R[5][4]\n"
+
+
+checkStr(R[5][4],"4.30",4)
 
 checkOut()

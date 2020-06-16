@@ -1,18 +1,37 @@
+//%*********************************************** 
+//*  @script rectest.asl 
+//* 
+//*  @comment  Record element assign equate 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium [asl 6.2.53 C-He-I]                                 
+//*  @date Sat May 30 14:14:28 2020 
+//*  @cdate Sat May 30 14:14:28 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+myScript = getScript();
 ///
 ///
 
-include "debug.asl"
-setdebug(1,@keep,@pline)
-debugON()
-checkIn()
+checkIn(_dblevel)
+
 Record R[10]
-//Record R[3+]
+
+
+R->info(1)
+
 
 Rn = 5;
 
 Record DF[10]
 
+DF->info(1)
+
+
+
    DF[0] = Split("task?,4,30,0,0,3,?,0,,",',') ; // default for add additional task
+   <<"$DF[0]\n"
    // use enum
    DF[1] = Split("Exercise,9,70,0,1,7,X,0,,",',')
    DF[2] = Split("Guitar,8,30,0,0,3,G,0,,",',')
@@ -25,6 +44,10 @@ rstr = DF[0][0];
 <<"%V$rstr \n"
 <<"%V$DF[0][0] \n"
 checkStr(rstr,"task?")
+
+
+
+
 rstr = DF[1][1];
 <<"%V$rstr \n"
 <<"%V$DF[0][0] \n"
@@ -131,4 +154,3 @@ wt++;
 
 
 checkOut()
-exit()

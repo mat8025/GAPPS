@@ -33,6 +33,7 @@ int n1 = 1;
 
 
 
+
    ++n1
 
 <<"%V $n1 \n"
@@ -97,19 +98,35 @@ b++;
 checkNum(b,-41);
 
 
+
 na = argc()
+<<"%V $na\n"
+i = 0
+<<"arg [${i}] $_clarg[i] \n"
+i++;
+<<"arg [${i}] $_clarg[i] \n"
+i++;
+<<"arg [${i}] $_clarg[i] \n"
+
+
 
 if (na >= 1) {
 
- for (i = 0 ; i < argc() ; i++) {
+ for (i = 0 ; i < na ; i++) {
 <<"arg [${i}] $_clarg[i] \n"
+
+  if (i == 10) {
+<<"i == 5 %V $i\n"
+   break;
+  }
+ // <<"%V $i\n"
  }
 
 }
 <<"args listed\n"
 
 
-
+//checkOut()
 
 
 

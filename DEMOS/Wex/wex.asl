@@ -164,9 +164,18 @@ int lday;  // last day recorded in file
 int dday;
 
  bday = julian("04/09/1949")
+
+
+ str bdate = "04/09/1949"
+ //bday = julian(bdate)
+
+<<"%V $bdate  $bday \n"
+
  maxday = julian("04/09/2049") -bday
 
 // this is a new format -- allowing us to put comment labels on graphs
+
+<<"%V $maxday \n"
 
 
  A=ofr("DAT/wex2020.tsv")
@@ -211,14 +220,19 @@ if (ACC == -1) {
 else {
 
   RCC=readrecord(ACC)
+  
   cf(ACC)
+  RCC->info(1);
+ // sdb(1,@trace)
   NCCrecs = Caz(RCC);
+  NCCrecs->info(1)
+  <<"%V $NCCrecs \n"
 
-  <<[_DB]"%V $NCCrecs \n"
-  for (i=0; i < NCCrecs ;i++) {
-  <<[_DB]"$RCC[i] \n"
+ for (i=0; i < NCCrecs ;i++) {
+  <<"$RCC[i] \n"
   }
-  <<[_DB]"/////////\n"
+
+<<[_DB]"/////////\n"
 }
 ////////////////// READ CEX DATA ///////////////////
 
@@ -231,7 +245,8 @@ readCCData();
 
 
 
-readData();
+nrd=readData();
+<<"%V$nrd\n"
 
 
 

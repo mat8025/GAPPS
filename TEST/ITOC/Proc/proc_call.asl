@@ -16,32 +16,25 @@
 
 #include "debug"
 
-debugON()
-setdebug(1,@pline,@~trace)
-
-filterFuncDebug(ALLOWALL_,"xxx");
-filterFileDebug(ALLOW_,"proc_","args_","scope_");
-
-
-checkIn(0)
+checkIn(_dblevel)
 
 
 int n1 = 3;
 
 <<"%V$n1\n"
 
-      CheckNum(n1,3)
+      cn (n1,3)
 
 n1++
 
 <<"%V$n1\n"
 
-      CheckNum(n1,4)
+      cn (n1,4)
 
 ++n1
 
 <<"%V$n1\n"
-      CheckNum(n1,5)
+      cn (n1,5)
 
 
 
@@ -112,7 +105,7 @@ int j = 52;
 <<"call moo int\n"
   k= moo(j)
 
-checkNum(k,52);
+cn (k,52);
 
 float y = 2.1
 
@@ -121,7 +114,7 @@ float y = 2.1
    z= moo(y)
 
 
-checkNum(z,2.1);
+cn (z,2.1);
 
 short s1 = 67;
 char c1 = 33;
@@ -130,7 +123,7 @@ char c1 = 33;
 <<"call moo short,char\n"
     s2 = moo(s1,c1)
 
-checkNum(s2,100);
+cn (s2,100);
 
 pan p  = 3.4
 
@@ -147,16 +140,20 @@ ans = "mark"
 
 gen g = 3.4
 gen h = 8
+
+
     d3 = moo(h,g)
 
-checkNum(d3,11.4);
+cn (d3,11.4);
 
  g = 77
  h = 23.0
 
     d3 = moo(h,g)
-<<"%V$d3\n"
-checkNum(d3,100);
+
+//<<"%V$d3\n"
+d3->info(1)
+cn (d3,100);
 
 
  a  = sin(0.5)

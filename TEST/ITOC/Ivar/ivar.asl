@@ -20,7 +20,32 @@
    
    
    checkIn(_dblevel); 
+
+   int v1 = 1;
+
+<<"%V$v1\n"
+
+v1->info(1)
+   varname = "v1"; 
+
+   $varname = 2;
+
+<<"%V$v1\n"
+
+   varname = "a1"; 
    
+   $varname = 2;
+
+   a1->info(1)
+   
+   <<"%V $a1 \n"; 
+
+   varname->info(1)
+   
+
+
+
+
    Record R[5];
    
    R[0] = Split("the best things in life are free");
@@ -29,6 +54,7 @@
    
    R[2] = Split("just give me money that's what I want");
    
+   R->info(1)
    
    rt0 = R[0];
    rt1 = R[1];
@@ -44,19 +70,10 @@
    
    <<"R: $R[::]\n"; 
    
-   varname = "a1"; 
-   
-   $varname = 2;
-   
-   <<"%V $a1 $(typeof(a1))\n"; 
-   
-   
-//<<"$R[1]\n"
    
    <<"%V$R[0][1]\n"; 
    
    varname = "a2"; 
-   
    
    $varname = R;
    
@@ -65,8 +82,11 @@
    
    <<"$a2[1]\n"; 
    
-   <<"$(Caz(R)) $(Caz(R,0))  $(Caz(R,1))   \n"; 
+   <<"$(Caz(R)) $(Caz(R,0))  $(Caz(R,1))   \n";
+
+  a2->info(1)
    
+
    int do_bops = 0; 
    
    do_bops = 3; 
@@ -166,4 +186,8 @@
    
    checkNum (e, 4); 
    checkOut ();
-   
+
+
+
+/////////////////////////// TBD //////////////////////////////////
+// 

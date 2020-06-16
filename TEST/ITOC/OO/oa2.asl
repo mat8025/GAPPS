@@ -66,7 +66,23 @@ vid = F->varid()
 vid = F[2]->varid()
 
 <<" $vid \n"
+////////////////////////////////////////////////////////////
 
+proc Pset( svar s)
+{
+<<"proc $_proc   $s \n"  
+      s->info(1)
+   <<"$s[1] : $s[2]\n"
+      val = s[1]
+      <<"%V $val\n"
+      val1 = SV[1]
+      <<"%V $val1\n"
+      return val;
+}
+
+
+
+///////////////////////////////////////////////////////////
 int Act_ocnt = 0;
 
 class Act {
@@ -77,15 +93,40 @@ class Act {
  int mins; 
  int t;
  int id;
+ svar svtype;
+  str stype;
  
  cmf Set(int s)
  {
-     //obid = _cobj->obid()
-//     <<"Act Set  $_cobj  $obid $(offsetof(&_cobj)) $(IDof(&_cobj))\n" 
-     <<"Act Set  $_cobj \n" 
+     <<"Act Set int  $_cobj \n" 
       type = s;
      <<"type  $s $type\n"
      return type;
+ }
+ 
+ cmf Set(svar s)
+ {
+     <<"Act Set svar  $_cobj \n"
+     s->info(1)
+      svtype = s;
+   <<"$s[1] : $s[2]\n"
+      val = s[1]
+      <<"%V $val\n"
+      val1 = SV[1]
+      <<"%V $val1\n"
+    //  val1 = SV[2]
+    //  <<"%V $val1\n"      
+     <<"stype  $s $svtype\n"
+     return svtype;
+ }
+
+ cmf Set(str s)
+ {
+     <<"Act Set  str $_cobj \n" 
+      stype = s;
+           s->info(1)
+     <<"stype  $s $stype\n"
+     return stype;
  }
 
  cmf Get()
@@ -143,6 +184,61 @@ a->info(1)
 
  Act X[4];
 
+m2 = 2
+
+str S = "hey how are you"
+
+ strv =  X[m2]->Set(S)
+
+<<"%V $strv \n"
+
+
+//svar SV;
+
+SV = split("estoy bien y tu")
+
+<<"$SV[0] $SV[1] $SV[2] $SV[3] \n"
+
+val = SV[0]
+<<"$val\n"
+
+val = SV[1]
+<<"$val\n"
+
+val = SV[3]
+<<"$val\n"
+
+svar SV2
+SV2="estoy bien y tu"
+
+SV2->split()
+
+<<"$SV2[0]  $SV2[3] \n"
+
+val2 = SV2[0]
+<<"$val2\n"
+
+val2 = SV2[1]
+<<"$val2\n"
+
+val2 = SV2[3]
+<<"$val2\n"
+
+ sv = Pset(SV)
+
+<<"%V $sv \n"
+
+ sv =  a->Set(SV)
+
+<<"%V $sv \n"
+
+
+
+ sv =  X[m2]->Set(SV)
+
+<<"%V $sv \n"
+
+
 
   obid = X[1]->objid(); // TBF fails crashes ?
 
@@ -170,7 +266,27 @@ a->info(1)
 // <<"%V$obid $(b->vid\(\))\n"
 
 <<"%V$obid $vid\n"
- b->Set(5)
+int bs = 5;
+
+b->Set(bs)
+
+br= b->Get()
+
+<<"$br \n"
+
+checkNum(br,bs)
+
+
+
+
+b->Set(71)
+
+br= b->Get()
+
+<<"$br \n"
+
+checkNum(br,71)
+
 
  b->type = 7
 
@@ -308,8 +424,21 @@ a->info(1)
 
  pass = 1
 
- yst =  X[2]->Set(4)
- yst =  X[3]->Set(5)
+ m = 4
+ m2 =3
+
+ yst =  X[2]->Set(m)
+
+ <<"%V $yst\n"
+ yst =  X[3]->Set(m2)
+
+ <<"%V $yst\n"
+
+ yst =  X[m2]->Set(m2)
+
+<<"%V $yst\n"
+
+
 
  i = 2
 

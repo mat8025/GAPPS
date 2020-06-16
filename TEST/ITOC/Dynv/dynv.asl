@@ -38,7 +38,7 @@ the size of the Vec is increased to 13 plus;
 
 /}*/
 
-CheckIn()
+checkIn(_dblevel)
 
 
 int Vec[>10];
@@ -61,10 +61,8 @@ checkTrue (sz>=13)
 
 int J[] 
 
+ J->info(1)
 <<"$(Cab(J)) \n"
-
-
-//J[30] = 30
 
 
 <<"$J \n"
@@ -85,22 +83,22 @@ int I[>20]
 
   I->Set(0)
 
-CheckNum(I[2],0)
+checkNum(I[2],0)
 sz = Caz(I)
 
 <<" $sz \n"
 
 I[5] = 10
 
-CheckNum(I[5],10)
+checkNum(I[5],10)
 
-CheckNum(I[6],0)
+checkNum(I[6],0)
 
 <<"%(5,<,|,>\n)$I \n"
 
 I[6] = 6
 
-CheckNum(I[6],6)
+checkNum(I[6],6)
 
 <<"%(5,<,|,>\n)$I \n"
 
@@ -117,16 +115,16 @@ CheckNum(I[6],6)
 <<"%(10,<, ,>\n)$I \n"
 
 
-CheckNum(I[2],5)
+checkNum(I[2],5)
 
 
 
  I[12:19:2] = 8
 
-CheckNum(I[12],8)
-CheckNum(I[14],8)
-CheckNum(I[18],8)
-CheckNum(I[2],5)
+checkNum(I[12],8)
+checkNum(I[14],8)
+checkNum(I[18],8)
+checkNum(I[2],5)
 
 <<"%(10,<, ,>\n)$I \n"
 
@@ -136,12 +134,12 @@ CheckNum(I[2],5)
 
 <<"%(10,<, ,>\n)$I \n"
 
-CheckNum(I[19],4)
+checkNum(I[19],4)
 
 
-CheckNum(I[12],4)
-CheckNum(I[14],4)
-CheckNum(I[2],5)
+checkNum(I[12],4)
+checkNum(I[14],4)
+checkNum(I[2],5)
 
 <<"%(10,<, ,>\n)$I \n"
 
@@ -152,15 +150,15 @@ CheckNum(I[2],5)
  //I[12::2] = 3
 I[12:-1:2] = 3
 
-CheckNum(I[12],3)
-CheckNum(I[14],3)
-CheckNum(I[2],5)
+checkNum(I[12],3)
+checkNum(I[14],3)
+checkNum(I[2],5)
 
 <<"%(10,<, ,>\n)$I \n"
 
 
 
-CheckNum(I[10],5)
+checkNum(I[10],5)
 
 
 
@@ -175,16 +173,16 @@ CheckNum(I[10],5)
 
 I[6] = 6
 
-CheckNum(I[6],6)
+checkNum(I[6],6)
 
 <<"%(10,, ,\n)$I \n"
 
-CheckNum(I[4],5)
+checkNum(I[4],5)
 
 
  I[4:6:2] = 49
 
-CheckNum(I[4],49)
+checkNum(I[4],49)
 
 <<"%(10,, ,\n)$I \n"
 
@@ -194,7 +192,7 @@ b = 2
 
  I[0:a:b] = 59
 
-CheckNum(I[4],59)
+checkNum(I[4],59)
 
 <<"%(10,, ,\n)$I \n"
 
@@ -202,14 +200,14 @@ CheckNum(I[4],59)
 
 // I[0:-4:b] = 57
 
-//CheckNum(I[4],57)
+//checkNum(I[4],57)
 
-CheckNum(I[18],3)
+checkNum(I[18],3)
 
 <<"%(10,, ,\n)$I \n"
 
 
-CheckOut()
+checkOut()
 
 
 

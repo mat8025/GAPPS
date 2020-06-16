@@ -1,7 +1,8 @@
 \"/////////////////////////////////<**|**>/////////////////////////////////////
 \" @doc   ASLMAN
 \" @cdate  1/1/90
-\" @version 2.1
+\" @date  5/31/2020
+\" @version 2.2
 \" @Copyright  RootMeanSquare  1990,2020 --> 
 \"///////////////////////////////////<v_&_v>/////////////////////////////////
 
@@ -1038,6 +1039,10 @@ float C[>100]
 The dynamic version allows run time increase when needed.
 The array can be also be resized by the resize function with the orignal contents
 of the initial section preserved (e.g. a realloc).
+
+V->setdynamic([onoff]) --- would set dynamic property ON/OFF
+for resize, redimn operations dynamic property allows/forbids operation.
+It is always possible to setdynamic porperty on for arrays.
 (see isdynamic, setdynamic)
 .EF
 =============================================================
@@ -2949,6 +2954,31 @@ f_exist(job, 0, 7)
 .EF
 =============================================================
 .BF
+cmplx()
+.(x
+cmplx
+.)x 
+.FD
+cmplx a  ; a is a complex number  float precision
+a->set(2.5,0.5)
+a->info(1)
+
+a->setReal(3.5)   would update the real part
+a->setImag(-0.7)   would update the image part
+
+r=a->getReal()   gets the real
+i= a->getImag()
+
+R=A[1:10]->getReal() -- obtains a subrange of a Cmplx vector
+A[1:10]->setReal(R) -- sets a subrange of a Cmplx vector using a float vector.
+
+dcmplx b
+b is a double precision cmplex number.
+the above functions work for a dcmplx number/vector.
+
+.EF
+=============================================================
+.BF
 vgen()
 .(x
 vgen
@@ -2961,7 +2991,7 @@ For complex vectors each real imag pair is set to value and then the step is inc
 (INT_  name followed by _  are internal definitions CHAR_ is 1, SHORT_ is 2, INT_,FLOAT_ ,..)
 .EF
 =============================================================
-BF
+.BF
 matgen()
 .(x
 matgen
@@ -2974,6 +3004,7 @@ if step is set, then value is incremented by step for each element.
 For complex vectors each real imag pair is set to value and then the step is incremented.
 .EF
 =============================================================
+
 
 .BF
 fgen()

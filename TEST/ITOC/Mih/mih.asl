@@ -15,6 +15,13 @@ myScript = getScript();
 
 checkIn(_dblevel)
 
+
+int barns = 2;
+
+barns = 10;
+
+<<"%V $barns \n"
+
 class building {
 
  int rooms

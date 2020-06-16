@@ -201,9 +201,10 @@ proc RunDirTests(str Td, str Tl )
       <<[Dbf]"$Td $Tl $np\n"
       for (i=0 ; i <np; i++) {
          if (!(Tp[i] @= "")) {
-          if (do_query) {
-              query(Tp[i])
-           }
+          //if (do_query) {
+          //    query(Tp[i])
+          // }
+	   
             cart(Tp[i]);
 	   }
 	   
@@ -815,7 +816,7 @@ if (do_syntax == -1) {
 
 <<" check Include $do_include $do_types\n"
 
-
+<<"%V $do_query\n"
 
 
 if ((do_include || do_all ) && (do_include != -1)) {

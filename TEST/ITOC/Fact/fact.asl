@@ -3,8 +3,8 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                 
-//*  @date Wed Jan  9 07:14:37 2019 
+//*  @vers 1.2 He Helium [asl 6.2.55 C-He-Cs]                              
+//*  @date Wed Jun  3 08:17:35 2020 
 //*  @cdate Wed Jan  9 07:14:37 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -17,54 +17,140 @@
 //double M
 
 
-setdebug(1,@keep);
-
-
-filterFuncDebug(ALLOWALL_,"xxx");
-filterFileDebug(ALLOWALL_,"yyy");
 
 
 #define DBP <<
 
-checkIn()
+checkIn(_dblevel)
 
 // want to use ulong
 
-proc Fact(long pf)
+
+proc Foo(long pf)
 {
 
-DBP" arg in $_proc %V $pf $(typeof(pf))\n"
-
-// FIX pan mpf
-// ulong mpf;
 long mpf;
-//ulong  t;
 long  t;
-    mpf = 0;
+
     t = 1;
 
+<<"  $_proc %V$pf\n" 
 
-DBP"  $_proc %V$mpf\n"
-//ttyin("about to recurse !! \n")
-     if (pf <= 1) {
+    if (pf <= 1) {
 
-DBP" $_proc end condition $pf $t\n"
+     DBP" $_proc end condition $pf $t\n"
+
       return t;
      }
     else {
 
     mpf = pf -1
 
-    t = Fact(mpf) * pf
+    t = Foo(mpf) * pf
 
 <<"exit $_proc %V $(typeof(t)) $mpf $pf ! =  $t \n"
     }
 
-//<<" ret $t\n"
-t->info(1)
+
 return t;
+
 }
+
+
+
+//======================================//
+proc Foo(pan pf)
+{
+  static int PF = 1;
+ <<"$_proc $pf  $PF\n"
+  PF++;
+  pan t=1;
+  a= pf
+  pf--
+  if (pf < 1) {
+ <<"$_proc $pf < 1  \n"
+   return t
+  }
+  else {
+  t=  Foo(pf) *a ;
+<<"%V $a $pf $t\n"
+  }
+  return t
+}
+
+//======================================//
+
+
+proc Fact(int pf)
+{
+
+ pan t = 1;
+ for (i= 1 ; i <= pf ; i++) {
+
+    t *= i;
+
+<<"$i  $t\n"
+
+ }
+
+   return t;
+}
+
+
+
 //=====================================
+
+
+
+long n = 1;
+long N = 10;
+k= atoi(_clarg[1])
+if (k != 0) {
+   N= k
+}
+
+// recursion -- statement XIC is rentered
+// compute initial conditions 1,2 - first for xic to work
+// then statement is closed -so no more WIC/XIC
+m= Foo(n)
+<<"%V $m $n\n"
+n++;
+
+m= Foo(n)
+<<"%V $m $n\n"
+
+
+
+
+m= Foo(N)
+
+<<"%V $m $n\n"
+
+pr = Fact(N)
+
+<<"%V $pr $m\n"
+//
+m->info(1)
+pr->info(1)
+
+if (pr == m) {
+<<"N! $pr == $m Pass\n"
+}
+
+long L = pr
+
+if (L == m) {
+<<"N! $L == $m Pass\n"
+}
+
+checkNum(m,L)
+
+checkOut()
+exit()
+
+
+
+
 
 long fr;
 
@@ -73,14 +159,24 @@ fr4=0;
 
  //
 long L = 1
+
 fr1=Fact(L)
+
+<<"%V $L $fr1 \n"
+
+
 
 L=2
 fr2= Fact(L)
 //fr3= Fact(3)
+
+exit()
+
 L=4
 fr4 =Fact(L)
-  
+
+
+exit()
 long N
 
  N = GetArgI()

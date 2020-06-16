@@ -408,3 +408,18 @@ class_e.cpp	 2.20	 Fri May 22 16:29:32 2020 use parset pvc
 rdp_token.cpp	 1.72	 Sun May 24 09:30:42 2020 IDDR - find-or-make
 declare_type_e.cpp	 2.40	 Mon May 25 20:12:26 2020 dynamic min size is 1
 createv_e.cpp	 1.2	 Thu May 28 09:32:20 2020 PTR make
+ic_call.cpp	 1.52	 Fri May 29 09:30:08 2020 added parse trace
+ic_parse.cpp	 1.57	 Fri May 29 09:45:12 2020 parse trace
+include_e.cpp	 2.21	 Fri May 29 21:02:17 2020 trace++
+firstpass_e.cpp	 2.30	 Sat May 30 06:46:47 2020 reloadSrcModules
+ic_opera.cpp	 1.55	 Sat May 30 11:53:19 2020 trace++
+ic_pushrec.cpp	 1.6	 Sat May 30 21:37:48 2020 treat RECORD as 1D plus vec of fields
+getvar_e.cpp	 2.44	 Sun May 31 20:28:45 2020 add VC
+ic_getsiv.cpp	 1.53	 Mon Jun  1 17:35:36 2020 trace++
+ic_xic.cpp	 1.68	 Mon Jun  1 18:32:00 2020 show current src fname
+stateparse_e.cpp	 2.58	 Mon Jun  1 18:47:15 2020 added srcf to state info
+declare_e.cpp	 2.25	 Wed Jun  3 20:13:55 2020 array-check before createv
+navi_l.cpp	 1.15	 Thu Jun  4 21:49:23 2020 coortodeg format guard
+scope_findvar_e.cpp	 2.53	 Sun Jun 14 12:37:45 2020 keep ptr for wic
+ic_xic.cpp	 1.69	 Sun Jun 14 12:39:10 2020 reset stack before xic
+sint_l.cpp	 1.15	 Mon Jun 15 22:25:35 2020 added setargindex

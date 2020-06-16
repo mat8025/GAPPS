@@ -11,13 +11,7 @@
 //* 
 //***********************************************%
    
-   include "debug"; 
-   debugON(); 
-   
-   sdb(1,@~trace,@pline); 
-
-
-   checkIn(); 
+   checkIn(_dblevel); 
    
    i = 1;
    
@@ -25,12 +19,12 @@
    
    j = $vn;
    
-   checkNum(j,i); 
+   cn (j,i); 
    
    <<"%V $j\n"; 
    
    <<"%V $i\n"; 
-   
+
    vn = "k"; 
    
    $vn = j+1;
@@ -56,7 +50,7 @@
    <<"%V $vn    $a_1\n"; 
    
    <<"%V $avec  \n"; 
-   
+   co ()   
    i= 2;
    
    vn = "a_$i"; 
@@ -142,7 +136,7 @@
   for (i= 0; i < sz ; i++) {
   k = v[i];
   <<"$i  $k\n"; 
-  checkNum(k,nuvec[i]); 
+  cn (k,nuvec[i]); 
   }
   
   

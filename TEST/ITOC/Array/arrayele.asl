@@ -3,17 +3,15 @@
 //* 
 //*  @comment test array vec and ele use 
 //*  @release CARBON 
-//*  @vers 1.37 Rb Rubidium                                               
-//*  @date Fri Jan 18 19:24:33 2019 
+//*  @vers 1.38 Sr Strontium [asl 6.2.58 C-He-Ce]                          
+//*  @date Sun Jun 14 12:41:42 2020 
 //*  @cdate 1/1/2007 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
 
-
-
-checkIn (_dblevel);
+ci (_dblevel);
 
 <<"%V $_dblevel\n"
 //cd query()
@@ -21,6 +19,31 @@ checkIn (_dblevel);
 float f= 3.142;
 
 <<"$f \n"
+
+proc array_asg (float rl[])
+{
+
+<<"In $_proc   $rl\n";
+  rl->info(1)
+  int kp = 3;
+  int kp2 = 5;
+  rl[1] = 77;
+
+    rl[kp] = 67
+    rl[kp2] = 14
+
+<<"%V $rl\n"
+
+   cr (rl[3],67)
+
+   t3 = rl[8]
+
+   return t3;
+   
+
+}
+//======================================//
+
 
 proc array_sub (float rl[])
 {
@@ -46,7 +69,7 @@ proc array_sub (float rl[])
 
   <<"$(Caz(t1))\n";
   rl->info(1)
-  checkFnum (t1, 4.0);
+//  cr (t1, 4.0);
 
 //query()
 
@@ -55,7 +78,7 @@ proc array_sub (float rl[])
   <<"%V$t2\n";
   <<"$(Caz(t2))\n";
 
-  checknum (t2, 5);
+  
 
   j1 = 4;
   j2 = 6;
@@ -65,7 +88,7 @@ proc array_sub (float rl[])
   <<"%V %6.2f $t3  \n";
   <<"$(Caz(t3))\n";
 
-  checkFnum (t3, -2);
+  cr (t3, -2);
 
 //<<"$rl[j1]\n";
 
@@ -75,7 +98,7 @@ proc array_sub (float rl[])
 
   <<"$(Caz(t4))\n";
 
-  checkFnum (t4, 5);
+ // cr (t4, 5);
 
   <<"%V $k $j1 $j2 \n";
 //<<"%6.2f$rl \n";
@@ -84,36 +107,56 @@ proc array_sub (float rl[])
 
 <<"%V $rl[j1]    $rl[j2] \n"
 //query()
-  rl[kp] = rl[j1] - rl[j2];
+
+<<"rl $rl \n"
+
+    rj1 = rl[j1];
+<<"%V$rj1\n"    
 
 
-  //<<"%V$rl[kp]\n";
+    rj2 = rl[j2];
+<<"%V$rj2\n"    
 
-  <<"%V $kp  $j1 $j2 \n";
-//query()
+  wrl = rj1 -rj2
+<<"%V $wrl\n"
+  cr (wrl, -2);
+
+    rl[kp] = rl[j1] - rl[j2];
+
+<<"%V $kp  $j1 $j2 \n";
+<<"%V $rl[kp] $rl[j1]  $rl[j2] \n"
+  
+<<"rl $rl \n"
 
 //<<"%6.2f$rl \n";
 //  <<"%V $rl[kp] \n";
 
   wrl = rl[kp];
+<<"%V $wrl\n"
+  cr (wrl, -2);
 
   rl[0] = 47;
 
-  <<"%V $Real1 \n";
+  <<"%V $rl \n";
+
   <<"%V $wrl \n";
   <<"%V $kp $rl[kp] \n";
 
    jj = rl[kp];
 
    <<"%V $jj $kp $rl[kp] \n";
-  checkFnum (jj, -2);
 
+  <<"%V $rl \n";
 
+  cr (jj, -2);
+
+//  query()
+/{/*  
   ff= rl[kp];
   //<<"$rl \n"
   <<"%V $ff $jj $rl[kp] \n"
   
-  checkFnum (rl[kp], -2.0);
+  cr (rl[kp], -2.0);
 
   rl->info(1)
 
@@ -171,7 +214,7 @@ proc array_sub (float rl[])
 
   <<"rl vec $rl[0:-1]\n";
 
-  checkFnum (rl[5], 5);
+  cr (rl[5], 5);
 
   t6 = rl[5];
 
@@ -181,28 +224,60 @@ proc array_sub (float rl[])
   <<"$(Caz(t6))\n";
 
 //<<"$rl\n";
-
+/}*/
   return t3;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////
 
 Real1 = vgen (FLOAT_, 10, 0, 1);
+
 <<"%V$Real1\n";
+
+
+cr (Real1[2],2)
+
+
+
+Real2 = vgen (FLOAT_, 10, 1, 1);
+
+<<"%V$Real2\n";
+
+val = array_asg (Real1);
+<<"%V $val\n"
+
+<<"%V$Real1\n"
+
+
+
+val = array_asg (Real2);
+<<"%V $val\n"
+
+<<"%V$Real2\n"
+
+
+
+
+val = array_sub (Real2);
 
 float mt1;
 
 mt1 = Real1[4];
-checkFnum (mt1, 4);
+cr (mt1, 4);
 <<"%V $mt1 \n";
 
 Real1[0] = 74.47;
 
 <<"%V$Real1\n";
 
-   val = array_sub (Real1);
+val = array_sub (Real1);
 
 checkStage()
+
+
+
+
+val = array_sub (Real2);
 
 
 
@@ -214,19 +289,22 @@ Real = vgen (DOUBLE_,10, 0, 1);
 
 <<"Real %6.2f $Real \n";
 
+val = array_sub (Real);
+
+
 
 
 val = Real[3];
 
 <<"%V$val \n";
-checkFNum (val, 3);
+cr (val, -2);
 k = 4;
 
 val = Real[k];
 
 <<"%V$val \n";
 
-checkFnum (val, 4);
+cr (val, 4);
 
 
 sz = Csz (Real);
@@ -260,7 +338,7 @@ t1 = Real[4] ;
 
 <<" done Caz !\n";
 
-checkFnum (t1, 4);
+cr (t1, 4);
 
 double t2;
 
@@ -270,7 +348,7 @@ t2 = Real[k];
 <<"%V$t2\n";
 <<"$(Caz(t2))\n";
 
-checkFnum (t2, 5);
+cr (t2, 5);
 
 j1 = 4;
 j2 = 6;
@@ -281,7 +359,7 @@ t3 = Real[j1] - Real[j2];
 
 <<"$(Caz(t3))\n";
 
-checkFnum (t3, -2);
+cr (t3, -2);
 
 <<"$Real[j1]\n";
 
@@ -291,13 +369,13 @@ t4 = Real[j1 + 1];
 
 <<"$(Caz(t4))\n";
 
-checkFnum (t4, 5);
+cr (t4, 5);
 
 <<"$Real \n";
 
 Real[k] = Real[j1] - Real[j2];
 
-checkFnum (Real[k], -2);
+cr (Real[k], -2);
 
 <<"ele[${k}] $Real[k] \n";
 
@@ -308,7 +386,7 @@ t2 = Real[k];
 <<"%V$t2\n";
 <<"$(Caz(t2))\n";
 
-checkFnum (t2, -2);
+cr (t2, -2);
 
 <<"$Real[0:3]\n";
 
@@ -318,9 +396,9 @@ Real[j1] = Real[j1] - Real[j2];
 
 <<"just Real[j1] $Real[j1]\n";
 
-checkFnum (Real[j1], -2);
+cr (Real[j1], -2);
 
-checkFnum (Real[4], -2);
+cr (Real[4], -2);
 
 
 
@@ -364,7 +442,7 @@ proc fooey(float rl[])
 
      rxp = rl[1]
 <<"$rxp\n"
-checkFnum(rxp,11)
+ cr (rxp,11)
 <<"%I$rl   $(Caz(rl))\n"
     j1 = 1
      rxp = rl[j1]
@@ -406,8 +484,8 @@ vsz = Caz(rl)
 sz = Caz(Re)
 
 <<"%V$sz\n"
-checkNum(sz,10)
+cn (sz,10)
 
-checkOut ();
+co ();
 
 
