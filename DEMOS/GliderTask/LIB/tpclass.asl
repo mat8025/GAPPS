@@ -17,6 +17,7 @@ class Taskpt
   str cltpt; //
   svar val;
   float Alt;
+  float Radio;
   float Ladeg;
   float Longdeg;
   float Leg;
@@ -57,7 +58,7 @@ class Taskpt
      Alt = tpval[4];
      
      rway = tpval[5];
-     
+//     <<"$tpval[6] \n"
      Radio = atof(tpval[6]);
 
      tptype = tpval[7];
@@ -288,7 +289,7 @@ class Turnpt
   float Alt;
   float Ladeg;
   float Longdeg;
-
+  int is_airport;
 //  int amat;
 
 //  method list
@@ -308,7 +309,7 @@ class Turnpt
    //   sz = Caz(wval);      
  // DBG"%V$sz \n"
 
-DBG": $wval[0] 1: $wval[1] 2: $wval[2] 3: $wval[3] 4: $wval[4] \n"
+//<<": $wval[0] 1: $wval[1] 2: $wval[2] 3: $wval[3] 4: $wval[4] \n"
     
    
       //   DBG"$wval[0]\n"
@@ -316,33 +317,35 @@ DBG": $wval[0] 1: $wval[1] 2: $wval[2] 3: $wval[3] 4: $wval[4] \n"
        //ans = iread("-->");
      Place=wval[0]; // wayp 
     
-     DBG"%V$Place\n"
+     //<<"%V$Place\n"
 
 
      Idnt =  wval[1];
-
      
      Lat = wval[2]; // wayp 
 
-     DBG"%V$Lat  \n"
+    // <<"%V$Lat  \n"
 
      //   DBG"%V$wval[3]\n"	 
      Lon = wval[3];
 
-    DBG"%V$Lon  \n" 
+    //<<"%V$Lon  \n" 
      
      Alt = wval[4];
      
      rway = wval[5];
+
+//<<"radio $wval[6] \n"
      
      Radio = atof(wval[6]);
 
      tptype = wval[7];
-
+     spat (tptype,"A",-1,-1,&is_airport);
+//     <<" $Place $is_airport\n"
      //Lat->info(1)
      DBG"Lat $Lat\n"
 
-Ladeg =  coorToDeg(Lat); // wayp
+     Ladeg =  coorToDeg(Lat); // wayp
 
 
 

@@ -32,7 +32,7 @@ int Ntpts = 1000;
 
 include "ootlib"
 
-
+int Maxtaskpts = 10;
 
 
 
@@ -70,9 +70,9 @@ proc TaskDistance()
    // is there a start?
 DBG"$_proc  $Ntaskpts \n"
    totalK = 0;
-   float la1 = 1000.0;
+   float la1   = 1000.0;
    float lon1 = 1000.0;
-   float la2 = 1000.0;
+   float la2   = 1000.0;
    float lon2 = 1000.0;
 
   Min_lat = 90.0
@@ -140,7 +140,7 @@ if (adjust >=2) {
 
 
 
-TaskType = "MT"; 
+TaskType = "TRI"; 
 
 int Nlegs = 3;
 
@@ -149,12 +149,64 @@ Turnpt  Wtp[500]; //
 /// open turnpoint file lat,long 
 //tp_file = GetArgStr()
 
-  tp_file = "DAT/turnpts.dat"  // open turnpoint file
+  tp_file = "DAT/turnptsA.dat"  // open turnpoint file TA airports
 
 
   if (tp_file @= "") {
     tp_file = "DAT/turnptsSM.dat"  // open turnpoint file 
    }
+
+
+
+A=  ofr(tp_file);
+
+ if (A == -1) {
+  <<" can't open file   \n";
+    exit();
+ }
+
+RF= readRecord(A);
+
+cf(A);
+
+
+recinfo = info(RF);
+<<"$recinfo \n"
+
+
+  Nrecs = Caz(RF);
+  Ncols = Caz(RF,1);
+
+<<"num of records $Nrecs  num cols $Ncols\n";
+
+for (i= 0; i< Nrecs; i++) {
+  <<"<|$i|> $RF[i]\n"
+}
+lat = RF[2][2];
+longv = RF[2][3];
+
+<<"%V $lat $longv \n"
+
+WH=searchRecord(RF,"Laramie")
+
+<<"$WH \n"
+
+WH=searchRecord(RF,"Salida")
+
+<<"$WH \n"
+index = WH[0][0]
+<<"%V $index\n"
+
+place = RF[index][0]
+lat = RF[index][2]
+longv = RF[WH[0][0]][3]
+
+<<"$RF[index][0] \n"
+<<"$RF[index][2] \n"
+<<"%V $place $lat $longv\n"
+
+
+//================================//
 
   A=ofr(tp_file)
   
@@ -162,7 +214,6 @@ Turnpt  Wtp[500]; //
   if (A == -1) {
     exit(-1," can't find turnpts file \n");
   }
-
 
 
  
@@ -195,9 +246,9 @@ Turnpt  Wtp[500]; //
              Ntp++;
             }
 
-     //   if (Ntp > 3) {
-     //         break
-     //   }
+      //  if (Ntp > 10) {
+      //       break; // DEBUG
+      //  }
       }
 
 <<" Read $Ntp turnpts \n"
@@ -208,6 +259,23 @@ Turnpt  Wtp[500]; //
 ////////////////////////////////////
 
 // Nlegs = Ntp -1;
+
+int is_an_airport
+//sdb(1,@trace)
+    for (k = 0 ; k < 5  ; k++) {
+
+        is_an_airport = Wtp[k]->is_airport;
+
+        mlab = Wtp[k]->Place;
+
+//<<"<|$k|> $mlab  $is_an_airport\n"
+       if (mlab @= "Jamestown") {
+ //         <<"SF\n"
+       }
+   }
+
+
+
 
 /////////////////// TASK DEF ////////////
 Taskpt Tasktp[50];
@@ -225,7 +293,8 @@ LongW= 108.5;
 
 LongE= 104.8;
 
-
+ MidLong = (LongW - LongE)/2.0 + LongE;
+ MidLat = (LatN - LatS)/2.0 + LatS;
 
 
 int tp_wo[>20];
@@ -307,12 +376,31 @@ svar Tskval;
 }
 
 
+// home field
+// set a default task
+if (Ntaskpts == 0) {
+svar targ_list = {"jamestown","laramie","salida","jamestown"}
+    sz= Caz(targ_list);
+<<"$sz : $targ_list \n"
+
+<<" $targ_list[1] \n"
+        targ = targ_list[2]
+<<" $targ \n"
+sz->info(1)
+    for (i= 0; i < sz; i++) {
+    targ = targ_list[i]
+    <<"$i  <|$targ|> \n"
+    Fseek(A,0,0)    
+    posn=Fsearch(A,targ,-1,1,0,0)
+    if (posn != -1) {
+    nwr = Tskval->ReadWords(A)
+    Tasktp[Ntaskpts]->TPset(Tskval)
+    Ntaskpts++;
+    }
+    }
+}
 
 Nlegs = Ntaskpts;
-
-
-
-
 <<"%V $Ntaskpts \n"
 
 <<" Now print task\n"
@@ -326,6 +414,8 @@ Nlegs = Ntaskpts;
 
       TaskDistance();
 
+
+<<"%V $Have_igc\n"
   if (Have_igc) {
 
       Ntpts=IGC_Read(igcfn);
@@ -497,7 +587,7 @@ include "showtask_scrn"
      sWi(vp,@redraw); // need a redraw proc for app
 
 
-    sWo(mapwo, @scales, LongW, LatS, LongE, LatN ,@redraw);
+    sWo(mapwo, @scales, LongW, LatS, LongE, LatN );
 
 //  set up the IGC track for plot
     igc_tgl = cGl(mapwo,@TXY,IGCLONG,IGCLAT,@color,BLUE_);
@@ -527,8 +617,8 @@ float d_ll = Margin;
 str wcltpt="XY";
 
   DBG"%V $vvwo $Ntpts\n"
-  sWo(vvwo,@clear,@clearpixmap,@savepixmap,@clipborder);
-  sWo(vvwo, @scales, 0, 0, Ntpts, Max_ele +500);
+ // sWo(vvwo,@clear,@clearpixmap,@savepixmap,@clipborder);
+ // sWo(vvwo, @scales, 0, 0, Ntpts, Max_ele +500);
 
   DBG"%V $LongW \n"
   DBG"%V $LongE \n"
@@ -541,7 +631,11 @@ str wcltpt="XY";
   zoom_to_task(mapwo,1)
 
   sWo(mapwo, @scales, LongW, LatS, LongE, LatN );
-  //DrawMap(mapwo)
+
+
+  DrawMap(mapwo)
+
+
   DrawTask(mapwo,"green");
 
 
@@ -555,7 +649,7 @@ str wcltpt="XY";
   
     eventWait();
 
-<<"%V $_ekeyw $_ekeyc $_ewoname\n"; 
+<<"%V $_ekeyw $_ekeyc $_ewoname  %c $_ekeyc \n"; 
 
     //Text(vptxt," $_ekeyw   ",0,0.05,1)
 
@@ -586,15 +680,16 @@ str wcltpt="XY";
        }
 
 
-       if (_ekeyc == 'x') {
+       if (_ekeyc == 'X') {
+       <<"expand \n"
            LatN += d_ll
            LatS -= d_ll
            LongW += d_ll
            LongE -= d_ll
-
        }
 
-       if (_ekeyc == 'z') {
+       if (_ekeyc == 'x') {
+       <<"Zoom IN\n"
            LatN -= (d_ll * 0.9)
            LatS += (d_ll * 0.9)
            LongW -= (d_ll * 0.9)
@@ -602,9 +697,11 @@ str wcltpt="XY";
        }
               drawit = 1;
 <<"%V $LongW $LatS $LongE $LatN\n"
+ sWo(mapwo, @scales, LongW, LatS, LongE, LatN);
+
       }
 
-       if (_ekeyw @= "_Start_") {
+       if (_ewoname @= "_Start_") {
              Task_update =1
              sWo(_ewoid, @cxor)
              if (PickaTP(0)) {
@@ -615,9 +712,10 @@ str wcltpt="XY";
        }
 
 
-       if (scmp(_ekeyw,"_TP",3)) {
+       if (scmp(_ewoname,"_TP",3)) {
+       
             Task_update =1
-             np = spat(_ekeyw,"_TP",1)
+             np = spat(_ewoname,"_TP",1)
              np = spat(np,"_",-1)
 
               witp = atoi(np);
@@ -628,6 +726,7 @@ str wcltpt="XY";
 <<" %V $_ekeyw $np $witp $_ewoid $wcltpt\n"
 
              sWo(wtpwo, @cxor);
+	     
 	     gflush();
 
              if (PickaTP(witp)) {
@@ -703,7 +802,7 @@ str wcltpt="XY";
        }
 
 
-        if (drawit) {
+        if (drawit || Task_update) {
 	      DrawMap(mapwo)
   	      drawTrace();
               DrawTask(mapwo,"green");

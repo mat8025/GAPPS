@@ -19,19 +19,19 @@ include "hv.asl"
 include "graphic.asl"
 include "gevent.asl"
 
-debugON();
+//debugON();
 
-
+    draw_win = 1;
     vp = cWi(@title,"BasicWindow")
 
-    sWi(vp,@pixmapon,@drawon,@save,@bhue,WHITE_,@resize,0.1,0.1,0.5,0.5)
+    sWi(vp,@pixmapon,@drawon,@save,@bhue,PINK_,@resize,0.1,0.1,0.5,0.5)
     sWi(vp,@clip,0.25,0.25,0.9,0.9)
 
     sWi(vp,@scales,-1,-1,1,1)
 
 // setup a clip area (wo 0) inside of window
 
-    sWi(vp,@clearclip,"red",@clipborder,"blue");
+    sWi(vp,@clearclip,RED_,@clipborder,BLUE_);
     
     titleButtonsQRD(vp);
 
@@ -64,17 +64,18 @@ debugON();
 
    titleVers();
    
-       vp2 = cWi(@title,"LeftWindow_2")
-    sWi(vp2,@pixmapon,@drawoff,@save,@store,@bhue,BROWN_,@resize,0.61,0.1,0.9,0.5)
+       vp2 = cWi(@title,"Window_2")
+    sWi(vp2,@pixmapoff,@drawon,@save,@store,@bhue,BROWN_,@resize,0.61,0.1,0.9,0.5)
 
-       vp3 = cWi(@title,"TopLeftWindow_3")
-    sWi(vp3,@pixmapon,@drawoff,@save,@bhue,GREEN_,@resize,0.61,0.51,0.9,0.9)
+       vp3 = cWi(@title,"TopRightWindow_3")
+    sWi(vp3,@pixmapoff,@drawon,@save,@bhue,GREEN_,@resize,0.61,0.51,0.9,0.9)
 
-       vp4 = cWi(@title,"TopRightWindow_4")
-    sWi(vp4,@pixmapon,@drawoff,@save,@store,@bhue,RED_,@resize,0.21,0.51,0.41,0.9)
+       vp4 = cWi(@title,"TopLeftWindow_4")
+    sWi(vp4,@pixmapoff,@drawon,@save,@store,@bhue,RED_,@resize,0.21,0.51,0.41,0.9)
 
-
-
+    sWi(vp2,@scales,-1,-1,1,1)
+    sWi(vp3,@scales,-1,-1,1,1)
+    sWi({vp2,vp3,vp4},@clip,0.1,0.1,0.9,0.9)
     sWi(vp,@clip,0.35,0.25,0.9,0.9)
 
     cx = 0.2
@@ -99,37 +100,51 @@ debugON();
     cy = 0.2
     cY = 0.95
 
-  win_pm = 1;
+  win_pm = 0;
   p2 = 0;
-  if (!win_pm) {
+
     gwo2=cWo(vp2,"GRAPH",@resize,0.15,0.1,0.95,0.95,@name,"PIC",@color,WHITE_)
     sWo(gwo2,@clip,cx,cy,cX,cY)
-    sWo(gwo2,@scales,0,0,1,1, @save,@savepixmap,@redraw,@drawon,@pixmapon)
+    sWo(gwo2,@scales,0,0,1,1, @save,@savepixmap,@redraw,@drawon,@pixmapoff)
     // why both save and savepixmap needed ?
 
     gwo3=cWo(vp3,"GRAPH",@resize,0.15,0.1,0.95,0.95,@name,"PIC",@color,WHITE_)
     sWo(gwo3,@clip,cx,cy,cX,cY)
-    sWo(gwo3,@scales,0,0,1,1, @save,@savepixmap,@redraw,@drawon,@pixmapon)
+    sWo(gwo3,@scales,0,0,1,1, @save,@savepixmap,@redraw,@drawon,@pixmapoff)
 
     gwo4=cWo(vp4,"GRAPH",@resize,0.15,0.1,0.95,0.95,@name,"PIC",@color,WHITE_)
     sWo(gwo4,@clip,cx,cy,cX,cY)
-    sWo(gwo4,@scales,0,0,1,1,@save, @savepixmap,@redraw,@drawoff,@pixmapon)
+    sWo(gwo4,@scales,0,0,1,1,@save, @savepixmap,@redraw,@drawoff,@pixmapoff)
  int gwo[] = {gwo2,gwo3,gwo4};
 
-}
 
+              Plot(vp2,@line,0.5,1,0.5,0,RED_)
+              Plot(vp2,@line,0,0.5,1,0.5,RED_)
+              Plot(vp2,@box,0,0,1,1,PINK_,1)
+              Plot(vp3,@line,0.5,1,0.5,0,BLUE_)
+              Plot(vp3,@line,0,0.5,1,0.5,YELLOW_)
+              Plot(vp4,@line,0.5,0,0.5,1,MAGENTA_)
+	      Plot(vp4,@line,0,0.5,1,0.5,MAGENTA_)
+              Plot(vp4,@box,0,0,1,1,BROWN_,1)
 
-
+              Plot(vp4,@line,0.5,1,0.5,0,BLUE_)
+              Plot(vp4,@line,0,0.5,1,0.5,YELLOW_)
 
    kpress = 0;
    
     while (1) { 
        
        eventWait();
-titleMsg("$_emsg $_eloop $_ewoid  $_ewid $_ebutton $_etype $(PRESS_)\n");
 
-   if ( (_ebutton > 0) && (_etype == 2)) {
-   <<"PRESS button\n"
+
+   titleMsg("$_emsg $_eloop $_ewoid  $_ewid $_ebutton $_etype $(PRESS_)\n");
+
+  <<"$_emsg $_eloop $_ewoid  $_ewid $_ebutton $_etype $(PRESS_)\n"
+
+
+ // if ( (_ebutton > 0) && (_etype == 2)) {
+  if ( _ebutton > 0) {
+   <<"PRESS button $_ebutton $_ewoid $_etype\n"
        sWo(txtwo,@clear)
        sWo(txtwo,@textr,"$_emsg",0.1,0.8)
        sWi(vp,@tmsg,"Hey buddy $_eloop");
@@ -148,9 +163,9 @@ titleMsg("$_emsg $_eloop $_ewoid  $_ewid $_ebutton $_etype $(PRESS_)\n");
          sWo(txtwo,@textr,"%V6.2f$RS",0.1,0.2)
        }
 
-       if (_ewoid == qwo) {
-           break;
-       }
+     //  if (_ewoid == qwo) {
+     //      break;
+     //  }
 
 
       if (_ewid == vp) {
@@ -158,17 +173,20 @@ titleMsg("$_emsg $_eloop $_ewoid  $_ewid $_ebutton $_etype $(PRESS_)\n");
       if ( (kpress %2) ==0) { 
       // sWi(vp3,@push)
 
-     if (win_pm) {
+     if (draw_win) {
 
             // sWi(vpo,@clip,cx,cy,cX,cY);
 //sWi(vp3,@title,"TopLeftWindow_3")
     
       //        sWi(vpo,@clearpixmap)
 	     // sWi(vpo,@showpixmap)	      
-	      sWo(vpo,@clearpixmap)
-//	      sWi(vp4,@clear)
+        if (win_pm)
+             sWo(vpo,@clearpixmap)
+	      
+	      sWi(vp4,@clear)
 //	      sWi(vp3,@clear)
-              sWo(vp2,@clear,WHITE_);
+
+            //  sWo(vp2,@clear,WHITE_);
               Plot(vp2,@line,0.5,1,0.5,0,RED_)
               Plot(vp2,@line,0,0.5,1,0.5,RED_)
               Plot(vp2,@box,0,0,1,1,PINK_,1)
@@ -176,6 +194,8 @@ titleMsg("$_emsg $_eloop $_ewoid  $_ewid $_ebutton $_etype $(PRESS_)\n");
               Plot(vp3,@line,0,0.5,1,0.5,YELLOW_)
               Plot(vp4,@line,0.5,0,0.5,1,MAGENTA_)
 	      Plot(vp4,@line,0,0.5,1,0.5,MAGENTA_)
+
+        if (win_pm)
               sWo(vpo,@showpixmap)
             //  sWi(vpo,@showpixmap)	      
 	      //sWi(vp3,@showpixmap)
@@ -196,7 +216,7 @@ titleMsg("$_emsg $_eloop $_ewoid  $_ewid $_ebutton $_etype $(PRESS_)\n");
 
               Plot(gwo4,@line,0.5,0,0.5,1,MAGENTA_)
 	      Plot(gwo4,@line,0,0.5,1,0.5,MAGENTA_)
-              sWo(gwo,@showpixmap)
+             // sWo(gwo,@showpixmap)
 
           }
  //sWi(vp3,@pop)
@@ -204,10 +224,10 @@ titleMsg("$_emsg $_eloop $_ewoid  $_ewid $_ebutton $_etype $(PRESS_)\n");
       else {
       //sWi(vp3,@pop)
 
-         if (win_pm) {
-
+         if (draw_win) {
+            if (win_pm)
 	       sWo(vpo,@clearpixmap)
-	         sWo(vp2,@clear,BLACK_);
+	       sWo(vp2,@clear,BLACK_);
 	 if (p2) {	 
               Plot(vp2,@line,0,0,1,1,MAGENTA_)
 	       Plot(vp2,@line,0,1,1,0,MAGENTA_)
@@ -217,6 +237,7 @@ titleMsg("$_emsg $_eloop $_ewoid  $_ewid $_ebutton $_etype $(PRESS_)\n");
 	       Plot(vp4,@line,0,0,1,1,CYAN_)
 	       Plot(vp4,@line,0,1,1,0,CYAN_)
          }
+	         if (win_pm)
 	       sWo(vpo,@showpixmap)
 	    
             // sWi(vp3,@showpixmap)
@@ -224,7 +245,7 @@ titleMsg("$_emsg $_eloop $_ewoid  $_ewid $_ebutton $_etype $(PRESS_)\n");
        }
        else {
        
-             sWo(gwo,@clearpixmap,@clear)
+             sWo(gwo,@clear)
               Plot(gwo2,@line,0,0,0.5,0.5,BLUE_)
               Plot(gwo2,@line,0.5,0.5,1,1,RED_)	      
               Plot(gwo2,@line,0,1,0.5,0.5,YELLOW_)
@@ -236,7 +257,7 @@ titleMsg("$_emsg $_eloop $_ewoid  $_ewid $_ebutton $_etype $(PRESS_)\n");
 	     // Plot(vp2,@line,0,1,1,0,MAGENTA_)
 	       Plot(gwo4,@line,0,0,1,1,CYAN_)
 	      Plot(gwo4,@line,0,1,1,0,CYAN_)
-             sWo(gwo,@showpixmap)
+           //  sWo(gwo,@showpixmap)
                            <<"pop $vp2\n"
 	 }     
        //sWi(vp3,@push)       

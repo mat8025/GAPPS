@@ -13,7 +13,7 @@
   
 
 
-checkIn(_dblevel); 
+ci (_dblevel); 
 
 
 uint OC = 1;  // object counter
@@ -116,15 +116,6 @@ Dil D;
 
 <<" done dec of D\n"
 
-//CheckNum(D->I[0],50)
-//<<" $C[0:10]\n"
-
-
-
-//CheckNum(E->I[0],51)
-
-
-
 
   D->Print(5);
 
@@ -150,7 +141,8 @@ Dil D;
   D->IV[9] = 78;
 
 <<"%V $D->IV[9]  78? \n"
-
+  D->showIV()
+  
   E->IV[9] = 93;
 
 <<"%V $E->IV[9]  93? \n"
@@ -166,17 +158,24 @@ Dil D;
 <<"%V $E->IV[9] \n"
 
 
- CheckNum(E->IV[9],93);
+ cn (E->IV[9],93);
 
 
   D->Set(8,47)
 
 <<" show D \n"
 
-  D->showIV()
+
 
 
   D->IV[2] =79;
+
+
+  D->showIV()
+
+cn (D->IV[2],79);
+
+co ()
 
   E->showIV()
 
@@ -194,14 +193,14 @@ Dil D;
 
   D->showIV()
 
-  CheckNum(D->IV[8],47)
+  cn (D->IV[8],47)
 
   val = D->IV[8]
 
 <<"%V $val\n"
 
 
-checkOut()
+co ()
 
 
 

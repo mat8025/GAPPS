@@ -193,13 +193,13 @@ proc screen_dump()
 {
 # make it monochrome
   ff=open_laser("st.ps")
-  scr_laser(tw)
+  scr_laser(vp)
   nc = get_colors()
   set_colors(2);
-  DrawMap(tw)
-  draw_task(tw,"red")
-  laser_scr(tw)  
-  ff=close_laser()
+  DrawMap(mapwo)
+  drawTask(mapwo,"red")
+  laser_scr(vp)  
+  close_laser()
   set_colors(nc)
 }
 //==================================================
@@ -220,14 +220,16 @@ proc read_task(str task_file, int query)
       set_si_error(0)
 
         for (k = 1 ; k <= Ntp ; k += 1) {
-          ff=w_set_wo_value (tw,tp_wo[k],"",1)
-          w_set_wo_value (tw,ltp_wo[k],"0",1)
+	
+          sWo(tpwo[k],@value,"")
+          sWo (ltpwo[k],@value,"0")
+
           tpt[k] = -1
         }
 
       TT = r_file(TF)
 
-        if ( !(TT @= ""))  w_set_wo_value(tw,tclass_wo,TT)
+        if ( !(TT @= ""))  sWo(TASK_wo,@value,TT)
 
         while (1) {
 
@@ -240,7 +242,7 @@ proc read_task(str task_file, int query)
           wi = find_key(key[ti])
           if (wi == -1) break
           tpt[ti] = wi
-          w_set_wo_value (tw,tp_wo[ti],key[ti],1)
+          setWoValue (tpwo[ti],key[ti])
           ti += 1
         }
       c_file(TF)
@@ -250,45 +252,45 @@ proc read_task(str task_file, int query)
 
 proc write_task()
 {
-  tsk_file = "cfi/K_1.tsk"
+  tsk_file = "TASKS/K_1.tsk"
 
   tsk_file=query_w("DATA_FILE","write to file:",tsk_file)
 
     if (tsk_file @= "")       return
     
-  val = get_wo_value(tw,tclass_wo)
+  val = getWoValue(TASK_wo)
 
     WF=ofw(tsk_file)
     w_file(WF,val,"\n")
     if ((val @= "TRI")) {
-      val = get_wo_value(tw,start_wo)
+      val = getWoValue(start_wo)
 
       w_file(WF,val,"\n")
 
         for (kk = 1 ; kk <= 3 ; kk +=1) {
-          val = get_wo_value(tw,tp_wo[kk])
+          val = getWoValue(tpwo[kk])
           w_file(WF,val,"\n")
         }
       c_file(WF)
     }
 
     if ((val @= "W")) {
-      val = get_wo_value(tw,start_wo)
+      val = getWoValue(start_wo)
 
       w_file(WF,val,"\n")
 
         for (kk = 1 ; kk <= 4 ; kk +=1) {
-          val = get_wo_value(tw,tp_wo[kk])
+          val = getWoValue(tpwo[kk])
           w_file(WF,val,"\n")
         }
       c_file(WF)
     }
 
     if ((val @= "MT")) {
-      val = get_wo_value(tw,start_wo)
+      val = getWoValue(start_wo)
       w_file(WF,val,"\n")
         for (kk = 1 ; kk <= 8 ; kk +=1) {
-          val = get_wo_value(tw,tp_wo[kk])
+          val = getWoValue(tpwo[kk])
             if ( ! (val @= "")) {
               w_file(WF,val,"\n")
             }
@@ -302,12 +304,13 @@ proc write_task()
 proc set_task()
 {
   chk_start_finish()
-  set_wo_task(tw)
-  total = task_dist()
-#  DrawMap(tw)
-  draw_task(tw,"red")
-  tot_units = scat(total,Units)
-  ff=w_set_wo_value (tw,td_wo,tot_units,1)
+  //set_wo_task(tw)
+  
+  total = taskDistance()
+
+  drawTask(mapwo,"red")
+ // tot_units = scat(total,Units)
+
 }
 //==================================================
 
@@ -334,11 +337,10 @@ proc grid_label(int wid)
  // DBG"%V $rx $ry $rX$rY\n"
 
 
-  putMem("LongW","$rx",1)
-
-  putMem("LongE","$rX",1)
-  putMem("LatS","$ry",1)
-  putMem("LatN","$rY",1)
+ putMem("LongW","$rx",1)
+ putMem("LongE","$rX",1)
+ putMem("LatS","$ry",1)
+ putMem("LatN","$rY",1)
 
   dx = (rX - rx );
   dy = (rY - ry );
@@ -452,10 +454,11 @@ proc zoom_to_task(int w_num, int draw)
 
   ff=sWo(w_num,@scales,Max_W,Min_lat,Min_W,Max_lat)
   if (draw) {
-  sWo(w_num,@clearclip,@clearpixmap)
+  gflush()
+
   DrawMap(w_num)
-  draw_task(w_num,"black")
-  sWo(w_num,@showpixmap)
+  drawTask(w_num,"black")
+//  sWo(w_num,@showpixmap)
   }
 }
 //==================================================
@@ -471,7 +474,7 @@ proc zoom_up(int w_num)
   ff=w_clip_clear(w_num)
 #  ff=w_redraw_wo(w_num)
   DrawMap(w_num)
-  draw_task(w_num,"red")
+  drawTask(w_num,"red")
 }
 //==================================================
 
@@ -490,14 +493,14 @@ proc zoom_in(int w_num)
   ff=w_clip_clear(w_num)
   ff=w_redraw_wo(w_num)
   DrawMap(w_num)
-  draw_task(w_num,"red")
+  drawTask(w_num,"red")
 }
 //==================================================
 
 proc  draw_the_task ()
 {
   DrawMap(tw)
-  draw_task(tw,"red")
+  drawTask(tw,"red")
 }
 //==================================================
 
@@ -532,9 +535,9 @@ proc zoom_rt(int w_num)
   w_clip_clear(w_num)
   ff=w_redraw_wo(w_num)
   DrawMap(w_num)
-  draw_task(w_num,"red")
+  drawTask(w_num,"red")
 }
-
+//======================================//
 
 
 proc zoom_lt(int w_num)
@@ -549,23 +552,22 @@ proc zoom_lt(int w_num)
   ff=w_clip_clear(w_num)
   ff=w_redraw_wo(w_num)
   DrawMap(w_num)
-  draw_task(w_num,"red")
+  drawTask(w_num,"red")
 }
 
-
+//======================================//
 proc reset_map()
 {
-  set_w_rs(tw,LongW,LatS,LongE,LatN)
-  DrawMap(tw)
+  sWo(mapwo,@scales,LongW,LatS,LongE,LatN)
+  DrawMap(mapwo)
 }
+//======================================//
 
-
-proc insert_tp(int w)
+proc insert_tp()
 {
 
-  ff=w_show_curs(tw,1,"right_arrow")
-  ff=w_wo_activate(tw)
-  wnu=message_wait(&MS[0],&type,&len)
+/{/*
+  eventWait()
 
     if (wnu == tw) {
       l = sscan(&MS[0],&c)
@@ -574,8 +576,8 @@ proc insert_tp(int w)
           print("insert ",wtpt)
           c= "xx"
             for (i = ntpts-1 ; i >= wtpt ; i -=1) {
-              tval = get_wo_value(tw,tp_wo[i])
-              ff=w_set_wo_value (tw,tp_wo[i+1],tval)
+              tval = getWoValue(tw,tpwo[i])
+              ff=setWoValue (tpwo[i+1],tval)
             }
           ntpts++
           ff=w_show_curs(tw,1,"left_arrow")
@@ -583,47 +585,43 @@ proc insert_tp(int w)
           set_task()
         }
     }
+/}*/
 }
-
-proc delete_tp(int w)
+//======================================//
+proc delete_tp()
 {
-# get_tp
+    
+             MouseCursor("pirate", tpwo[0], 0.5, 0.5);  // TBC
+     
+             eventWait();
 
-    while (1) {
-      ff=w_show_curs(tw,1,"pirate")
-      ff=w_wo_activate(tw)
-      wnu=message_wait(&MS[0],&type,&len)
+            if (scmp(_ewoname,"_TP",3)) {
 
-        if (wnu == tw) {
-          l=str_scan(&MS[0],&c)
-            if (strcmp(c ,"PKTPT",5)) {
-              wtpt = spat(c,"PKTPT_",1)
-              print("delete ",wtpt)
-              c= "xx"
-                for (i = wtpt ; i < (ntpts-1) ; i +=1) {
-                  tval = get_wo_value(tw,tp_wo[i+1])
-                  ff=w_set_wo_value (tw,tp_wo[i],tval)
+             np = spat(_ewoname,"_TP",1)
+             wtpt= atoi(spat(np,"_",-1))
+
+              <<"delete $_ewoname $wtpt \n")
+
+               for (i = wtpt ; i < 10 ; i++) {
+                  tval = getWoValue(tpwo[i+1])
+         <<"$i <|$tval|>  \n"
+                  setWoValue (tpwo[i],tval)
                 }
-              ff=w_set_wo_value (tw,tp_wo[ntpts-1],"")
-              ff=w_set_wo_value (tw,tp_wo[ntpts],"")
-              ntpts--
-              ff=w_set_wo_value (tw,ntp_wo,ntpts-1)
-              ff=w_show_curs(tw,1,"cross")
-              return
+              
+              MouseCursor("cross", tpwo[9], 0.5, 0.5);  // TBC
+              sWo(tpwos,@redraw);
             }
-        }
-    }
-
+   
 }
 //======================================//
 proc delete_alltps()
 {
 # get_tp
                 for (i = 0 ; i <ntpts ; i++) {
-                  ff=w_set_wo_value (tw,tp_wo[i],"")
-                  w_set_wo_value (tw,ltp_wo[i],"0",1)
+                  ff=setWoValue (tpwo[i],"")
+                  setWoValue (ltpwo[i],"0",1)
                 }
-      w_set_wo_value (tw,finish_wo," ")
+
               ntpts = 1
 }
 //======================================//
@@ -662,9 +660,9 @@ proc get_tpt(int wtpt)
   lab = Keys[mkey]
   print("get_tpt $lab $longit $lat \n")
 
-    if (wtpt == 0)       w_set_wo_value (tw,start_wo,lab)
-    if (wtpt >=1)       w_set_wo_value (tw,tp_wo[wtpt],lab)
-    if (wtpt == -1)       w_set_wo_value (tw,finish_wo,lab)
+    if (wtpt == 0)       setWoValue (start_wo,lab)
+    if (wtpt >=1)       setWoValue (tpwo[wtpt],lab)
+   if (wtpt == -1)       setWoValue (finish_wo,lab)
 
     return 1;
 }
@@ -680,14 +678,7 @@ proc find_key(int akey)
 }
 //======================================//
 
-proc draw_task(int w,str col)
-{
-    for (i = 0 ; i < ntpts ; i++ ) {
-    <<"%V$LO[tpt[i]] $LA[tpt[i]] \n"
-       ff=plot_line(w,LO[tpt[i]],LA[tpt[i]],LO[tpt[i+1]],LA[tpt[i+1]],col)
-    }
-}
-//======================================//
+
 igc_file = "dd.igc"
 
 proc plot_igc(int w)
@@ -734,94 +725,109 @@ proc plot_igc(int w)
 //==================================
 
 
-proc set_wo_task(int w)
+proc setWoTask()
 {
-  for (k = 1 ; k <= Ntp ; k++)
-    tpt[k] = -1;
+<<"$_proc\n"
+  // taskpts are in tpwo[i] values  10 max
+     Ntaskpts = 0;
+     for (k = 0 ; k < Maxtaskpts ; k++) {
 
-  nd_tpts = 0
+          tval = getWoValue(tpwo[k])
+	  <<"<|$k|> <|$tval|> \n" 
+          if (!(tval @= "")) {
+          WH=searchRecord(RF,tval)
+	  <<"%V $k $WH\n"
+	  
+          index = WH[0][0]
+          if (index >=0) {
+          ttp = RF[index];
+	  <<"<|$Ntaskpts|> $ttp \n" 
+          Tasktp[Ntaskpts]->TPset(RF[index])
 
-  start_key = get_wo_value(w,start_wo)
-
-  tpt[nd_tpts] = find_key(start_key)
-
-
-    for (k = 1 ; k <= ntpts ; k++) {
-
-      key[k] = get_wo_value(w,tp_wo[k])
-
-        if ( ! (key[k] @= "" )) {
-          nd_tpts += 1
-          tpt[nd_tpts] = find_key(key[k])
-          ff=w_set_wo_value (tw,tp_wo[k],key[k],1)
-        }
-      w_set_wo_value (tw,ltp_wo[k],"0",1)
+          Ntaskpts++;
+	  }
+          }
     }
+   <<"%V $Ntaskpts\n"
+    for (k = 0; k < Ntaskpts ; k++) {
+        Tasktp[k]->Print()
+     }
 
-  finish_key = get_wo_value(w,finish_wo)
+      TaskDistance();
+
+
+ // finish_key = getWoValue(finish_wo)
+
+
+
 }
 //============================
 
 proc chk_start_finish()
 {
+
+
+  lval = ""
   val= "OB"
-  val = get_wo_value(tw,tclass_wo)
-  put_mem("TT",val)
+  val = getWoValue(TASK_wo)
+
+<<"$_proc <|$val|> \n"
+
+    put_mem("TT",val)
 
     if ((val @= "TRI")) {
-      val = get_wo_value(tw,start_wo)
-      w_set_wo_value (tw,tp_wo[3],val)
-      w_set_wo_value (tw,tp_wo[4],"")
-      w_set_wo_value (tw,finish_wo,val)
+      val = getWoValue(start_wo)
+      setWoValue (tpwo[3],val)
+      setWoValue (tpwo[4],"")
+      setWoValue (finish_wo,val)
       ntpts = 3
     }
 
     if (val @= "OB") {
-      val = get_wo_value(tw,start_wo)
-      w_set_wo_value (tw,tp_wo[2],val)
-      w_set_wo_value (tw,tp_wo[3],"")
-      w_set_wo_value (tw,finish_wo,val)
+      val = getWoValue(start_wo)
+      setWoValue (tpwo[2],val)
+      setWoValue (tpwo[3],"")
+      setWoValue (finish_wo,val)
       ntpts = 2
     }
 
     if ((val @= "SO") ) {
-      val = get_wo_value(tw,tp_wo[1])
-      w_set_wo_value (tw,finish_wo,val)
+      val = getWoValue(tpwo[1])
+      setWoValue (finish_wo,val)
       ntpts = 1
     }
 
     if ((val @= "DL") ) {
-      val = get_wo_value(tw,tp_wo[2])
-      w_set_wo_value (tw,finish_wo,val)
+      val = getWoValue(tpwo[2])
+      setWoValue (finish_wo,val)
       ntpts = 2
     }
 
     if ((val @= "W") ) {
-      val = get_wo_value(tw,tp_wo[4])
-      w_set_wo_value (tw,finish_wo,val)
+      val = getWoValue(tpwo[4])
+      setWoValue (finish_wo,val)
       ntpts = 4
     }
 
-    if ((val @= "MT") ) {
+    if (val @= "MT")  {
       ntpts = 0
       mti = 1
-      lval = ""
+
         while (1) {
-          val = get_wo_value(tw,tp_wo[mti])
-          print(val," ",mti,"\n")
-            if ( (val @= "") || (val @= "NULL")) {
+          val = getWoValue(tpwo[mti])
+             <<"$val $mti \n"
+            if ( (val @= "") ) {
               break
             }
           mti++
           lval = val
           ntpts++
+	  if (mti > 9)
+	     break;
         }
-      print("MT lval ",lval," ",ntpts,"\n")
-      w_set_wo_value (tw,finish_wo,lval)
+      <<"MT lval $lval $ntpts $finish_wo \n")
+      setWoValue (finish_wo,lval)
     }
-
-  
-  ff=w_set_wo_value (tw,ntp_wo,ntpts-1)
 
 }
 //============================
@@ -831,60 +837,64 @@ proc task_menu(int w)
 <<"$_proc   $w\n"
 
   ur_c=choicemenu("MENUS/task_opts.m")
+  if (ur_c @= "NULL_CHOICE") {
+         return
+  }
 <<"chose $ur_c \n"
-          if (ur_c @= "zoom_to_task") {
-            zoom_to_task(mapwo,1)
-            return
-          }
 
-    if (ur_c @= "save") {
+  if (ur_c @= "zoom_to_task") {
+            zoom_to_task(mapwo,1)
+  }
+
+   else  if (ur_c @= "save") {
        save_image(w,"task_pic")
     }
     
-    if (ur_c @= "magnify") {
+    else if (ur_c @= "magnify") {
       magnify(w)
       DrawMap(w)
     }
 
-    if (ur_c @= "plot_igc") {
+    else if (ur_c @= "plot_igc") {
        plot_igc(w)
     }
 
-    if (ur_c @= "delete_tp") {
-      delete_tp(w)
-      set_task()
+    else if (ur_c @= "delete_tp") {
+      delete_tp()
+      setWoTask()
+      taskDistance()
     }
 
-    if (ur_c @= "delete_all") {
+    else if (ur_c @= "delete_all") {
       delete_alltps()
       DrawMap(w)
-     // w_set_wo_value (tw,td_wo,"0",1)
+
     }
 
-    if (ur_c @= "insert_tp") {
-      insert_tp(w)
-      set_task()
+    else if (ur_c @= "insert_tp") {
+   //   insert_tp()
+   //   set_task()
     }
 
-    if (ur_c @= "coors") {
+    else if (ur_c @= "coors") {
       new_coors(w)
     }
     
-    if (ur_c @= "units") {
+    else if (ur_c @= "units") {
       new_units()
       set_task()
     }
 
-    if (ur_c @= "set") {
-      DrawMap(w)
-      draw_task(w,"red")
-      total = task_dist()
-      //w_set_wo_value (tw,td_wo,total,1)
+    else if (ur_c @= "set") {
+      DrawMap(mapwo)
+      drawTask(mapwo,"red")
+
     }
 
-    if (ur_c @= "reset") reset_map()
-
-    if (ur_c @= "read_task") {
+    else if (ur_c @= "reset") {
+      reset_map()
+    }
+    else if (ur_c @= "read_task") {
       read_task(tfile,1)
       set_task()
       zoom_to_task(tw,0)
@@ -892,65 +902,37 @@ proc task_menu(int w)
       zoom_out(tw,1)
     }
 
-    if (ur_c @= "screen_print") {
+    else if (ur_c @= "screen_print") {
       screen_dump()
       }
       
-    if (ur_c @= "write_task") {
+    else if (ur_c @= "write_task") {
       write_task()
     }
     
-    if (ur_c @= "get_start") {
+    else if (ur_c @= "get_start") {
       ff=w_show_curs(tw,1,"left_arrow")
       get_tpt(0)
       set_task()
     }
 
-    if ( scmp(ur_c,"get_tpt_",8)) {
-      wtpt = spat(c,"get_tpt_",1)
+    else if ( scmp(ur_c,"get_tpt_",8)) {
+      wtpt = spat(ur_c,"get_tpt_",1)
    //   ff=w_show_curs(tw,1,"left_arrow")
       get_tpt(wtpt)
       set_task()
     }
 
-    if (ur_c @= "get_finish") {
-      ff=w_show_curs(tw,1,"left_arrow")
+    else if (ur_c @= "get_finish") {
+    //  ff=w_show_curs(tw,1,"left_arrow")
       get_tpt(-1)
       set_task()
     }
 }
 
-# the_task
-# start - (tp1,...) - finish
+
 //=====================================//
-proc task_dist()
-{
-  t_d = 0
 
-    for (i = 0 ; i < ntpts ; i++) {
-#      print(i," ",tpt[i]," ",tpt[i+1],"\n")
-   if (i == 0) {
-       as = tpt[i]
-      Max_W = LO[as] 
-      Min_W = LO[as] 
-      Max_lat = LA[as]
-      Min_lat = LA[as]
-    }
-      the_leg = compute_leg2(tpt[i],tpt[i+1])
-        if (Units @= "NM")           the_leg *= km_to_nm
-        if (the_leg > 0) {
-          ff=w_set_wo_value (tw,ltp_wo[i+1],Fround(the_leg,2),1)
-          t_d += the_leg
-        }
-      print(i," t_d ",t_d,"\n")
-    }
-
- print(Min_lat," ",Max_lat," ",Max_W," ",Min_W,"\n")
-
-  t_d = Fround(t_d,2)
-  return (t_d)
-}
-//============================================
 
 proc compute_leg2(int t_1,int t_2)
 {
@@ -1008,28 +990,30 @@ proc compute_leg2(int t_1,int t_2)
 //============================//
 proc setup_legs()
 {
+<<"$_proc \n"
+/{/*
     suk = 0
     print("setup_legs ",wox," ",woy," ",woX," ",woY)
     tp_name = scat("PKTPT_",suk)
-    gtp_wo[suk]=w_set_wo(tw,WBS,tp_name,1,wogx,woy,wogX,woY)
+    gtpwo[suk]=w_set_wo(tw,WBS,tp_name,1,wogx,woy,wogX,woY)
 
   for (suk = 1 ; suk <= Ntp ; suk++) {
     woY = woy - ysp
     woy = woY - ht
     tp_name = scat("TP:",suk)
-    tp_wo[suk] = w_set_wo(tw,WBV,tp_name,1,wox,woy,woX,woY)
+    tpwo[suk] = w_set_wo(tw,WBV,tp_name,1,wox,woy,woX,woY)
     tp_name = scat("LEG_",suk)
-    ltp_wo[suk]=w_set_wo(tw,WSV,tp_name,1,wolx,woy,wolX,woY)
+    ltpwo[suk]=w_set_wo(tw,WSV,tp_name,1,wolx,woy,wolX,woY)
     tp_name = scat("PKTPT_",suk)
-    gtp_wo[suk]=w_set_wo(tw,WBS,tp_name,1,wogx,woy,wogX,woY)
+    gtpwo[suk]=w_set_wo(tw,WBS,tp_name,1,wogx,woy,wogX,woY)
   }
-
+/}*/
 }
 //=====================================//
 
 proc the_menu (str c)
 {
-
+<<"$_proc \n"
           if (c @= "zoom_out") {
             zoom_out(tw,1)
             return
@@ -1050,38 +1034,27 @@ proc the_menu (str c)
 
           if ( c @= "TYPE" ) {
             val=""
-            l=sscan(&MS[5],&val)
+           // l=sscan(&MS[5],&val)
             chk_start_finish()
-            set_wo_task(mapwo)
-            total = task_dist()
-            DrawMap(tw)
-            draw_task(tw,"blue")
-            w_set_wo_value (tw,td_wo,total,1)
+         //   set_wo_task(mapwo)
+            total = taskDistance()
+            DrawMap(mapwo)
+            drawTask(mapwo,"blue")
+            
             return
           }
 
    if ( (c @= "Start:") || (strcmp(c,"TP",2) ==1) || (c @= "Finish:") ) {
-            w_clip_clear(tw)
-            w_clip_border(tw)
-            set_wo_task(tw)
+           // set_wo_task(tw)
             chk_start_finish()
-            total = task_dist()
-            DrawMap(tw)
-            draw_task(tw,"red")
-            w_set_wo_value (tw,td_wo,total,1)
+            total = taskDistance()
+            DrawMap(mapwo)
+            drawTask(mapwo,"red")
+
             return
           }
 
-          if ( scmp(c,"PKTPT",5) ) {
-            ff=w_show_curs(tw,1,"left_arrow")
-            wtpt = spat(c,"PKTPT_",1)
-            print("get ",wtpt)
-            ret = get_tpt(wtpt)
-            if (ret == -1) return
-            DrawMap(tw)
-            set_task()
-            return 
-          }
+
 }
 //=====================
 proc conv_lng(str lng)
@@ -1199,10 +1172,12 @@ proc DrawMap(int wo)
 //DBG"%V $Ntp\n"
     for (k = 0 ; k < Ntp ; k++) {
 
-        is_an_airport = Wtp[k]->GetTA();
+       // is_an_airport = Wtp[k]->is_airport;
 
         mlab = Wtp[k]->Place;
+
 //DBG"%V $k $mlab\n"
+
         if (!is_an_airport) {
          mlab = slower(mlab)
        }
@@ -1243,9 +1218,11 @@ str TaskType = "MT";
 
 proc DrawTask(int w,str col)
 {
+
+<<"$_proc   DrawTask $w $col\n"
    if ( Task_update) {
     TaskDistance();
-    <<"$_proc  $TaskType $col $Nlegs \n"
+  //  <<"$_proc  $TaskType $col $Nlegs \n"
     }
     if ( (TaskType @= "OAR")   || (TaskType @= "SO")) {
 
@@ -1256,7 +1233,7 @@ proc DrawTask(int w,str col)
 
     for (i = 0 ; i < (Nlegs-1) ; i++ ) { 
 
-   <<"$i %V $w, $Tasktp[i]->Longdeg $Tasktp[i]->Ladeg,$Tasktp[i+1]->Longdeg,$Tasktp[i+1]->Ladeg, $col \n "
+//   <<"$i %V $w, $Tasktp[i]->Longdeg $Tasktp[i]->Ladeg,$Tasktp[i+1]->Longdeg,$Tasktp[i+1]->Ladeg, $col \n "
 
       plot(w,@line,Tasktp[i]->Longdeg,Tasktp[i]->Ladeg,Tasktp[i+1]->Longdeg,Tasktp[i+1]->Ladeg,col)
 
@@ -1399,15 +1376,15 @@ proc PickaTP(int itaskp)
 
   rx = MidLong;
   ry = MidLat;
+<<"$_proc $itaskp\n"
 
-           MouseCursor("left", mapwo, rx, ry);  // TBC
-
+    MouseCursor("left", mapwo, rx, ry);  // TBC
 
     Text(vptxt,"Pick a TP for the task ",0,0.05,1)
 
     sWi(vp,@tmsg,"Pick a TP for the task ")
 
-         eventWait();
+          eventWait();
 
           gsync()
 
@@ -1415,7 +1392,7 @@ proc PickaTP(int itaskp)
 
           ntp = ClosestTP(_erx,_ery);
 
-          MouseCursor("hand");
+   MouseCursor("hand");
 
         if (ntp >= 0) {
 
@@ -1423,15 +1400,14 @@ proc PickaTP(int itaskp)
 
              nval = Wtp[ntp]->GetPlace()
 
-DBG" found %V $ntp $nval  $itaskp\n"
+<<" found %V $ntp $nval  $itaskp\n"
 
             Tasktp[itaskp]->cltpt = nval;
             Tasktp[itaskp]->Place = nval;	    
-            //Tasktp[itaskp]->Ladeg = Wtp[ntp]->Ladeg;   // TBF
+
             la = Wtp[ntp]->Ladeg;
             Tasktp[itaskp]->Ladeg = la;	    
              vala = Wtp[ntp]->Longdeg;
-             //Tasktp[itaskp]->Longdeg = Wtp[ntp]->Longdeg; // TBF
 	     Tasktp[itaskp]->Longdeg = vala;
 	    
 	    Tasktp[itaskp]->Alt = Wtp[ntp]->Alt;	    
@@ -1441,23 +1417,24 @@ DBG" found %V $ntp $nval  $itaskp\n"
             Fseek(A,0,0);
             i=Fsearch(A,nval,-1,1,0)
 
-DBG" %v $i \n"
+<<" %v $i \n"
 
 //int kk = itaskp;
 
            if (i != -1) {
 
-DBG" setting TASK_PT $itaskp  to $nval \n" 
+<<" setting TASK_PT $itaskp  to $nval \n" 
             // position at tp file entry -- why not search Wtp for entry
 	    
    //         nwr = Tasktp[itaskp]->Read(A)
-DBG"$itaskp  TaskPT \n"
+<<"$itaskp  TaskPT \n"
             Tasktp[itaskp]->Print();
 
             ret = 1;
             }
-      }
-      
+
+   }
+      Task_update = 1;
       return ret;
 }
 //=============================================//

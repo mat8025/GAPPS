@@ -16,7 +16,7 @@ include "gevent.asl"
 include "hv.asl"
 include "graphic.asl"
 
-debugON();
+//debugON();
 
 //=============================//
 
@@ -204,7 +204,7 @@ proc C4I0 ()
 }
 
 //============================================//
-Class Rect
+class Rect
 {
 
  public:
@@ -214,12 +214,12 @@ Class Rect
   int Y;
   int rwid;
 
-  CMF setWid(id)
+  cmf setWid(id)
   {
        rwid = id;
   }
   
-  CMF set(xi,yi,Xi,Yi)
+  cmf set(xi,yi,Xi,Yi)
   {
   // order xi,Xi
   // ordr yi Yy
@@ -247,20 +247,20 @@ Class Rect
 
   }
 
-  CMF print()
+  cmf print()
   {
 
    <<"Rect:$rwid %V $x $y $XR $Y \n"
 
   }
 
-  CMF Plot( hue)
+  cmf Plot( hue)
   {
   <<"plot %V  $rwid $x $y $XR $Y \n"
     scrnBox(x, y, XR, Y, hue,1)
   }
   
-  CMF plotwbox( wvp, ox, oy, hue)
+  cmf plotwbox( wvp, ox, oy, hue)
   {
 
     xp = x - ox;
@@ -268,14 +268,14 @@ Class Rect
     Xp = XR -ox;
     Yp = Y - oy;
 <<"plot %V  $rwid $wvp $ox $oy $xp $yp $Xp $Yp $hue \n"
-     // clash with CMF?? --- needs to check args -calls CMF plot -- 
+     // clash with cmf?? --- needs to check args -calls cmf plot -- 
       plot(wvp,@wbox, xp, yp, Xp, Yp, hue,1,1)
    // sWo(wvp,@wbox, xp, yp, Xp, Yp, hue,1,1)
 
 }
   
   // same name as class - is the constructor
-  CMF Rect()
+  cmf Rect()
   {
    x=0;
    XR= 0;
@@ -439,7 +439,7 @@ proc checkCoverage()
 }
 //======================================//
 
-proc sBox( ivb)
+proc sBox(int ivb[])
 {
      scrnBox(ivb[1]-5,ivb[4]-5,ivb[1]+10,ivb[4]+5,RED_,0)
      scrnBox(ivb[3]-5,ivb[4]-5,ivb[3]+10,ivb[4]+5,BLUE_,0)

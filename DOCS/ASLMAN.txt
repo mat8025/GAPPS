@@ -4744,12 +4744,14 @@ error return  -1
 .EF
 =============================================================
 .BF
-search_file,fsearch()
+search_file
+fsearch
 .(x
-searchfile
+searchfile,fsearch
 .)x 
 .FD
-searchFile(fpt,string,{end,dir,case_dep})
+searchFile(fpt,string,{end,dir,case_dep,origin})
+fsearch(fpt,string,{end,dir,case_dep,origin})
 
 searches the file pointed to by fpt for the target string,
 returns the file position (long bytes) after the search or -1 if target not found. 
@@ -4758,7 +4760,7 @@ the start of the target is returned.
 If dir set to -1 search direction is reversed.
 If case_dep set to 0 the search is independent of upper or lower case.
 Default is case sensitive.
-
+if orgin set to zero - seeks to begining of the file before searching.
 
 .EF
 =============================================================
@@ -5222,7 +5224,8 @@ processed
 .BF
 ReadTable()
 .(x
-ReadTable,readrecord
+ReadTable
+readrecord
 .)x 
 .FD
 R=ReadTable(A,[ OPTIONS ])
