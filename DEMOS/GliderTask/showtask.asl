@@ -3,8 +3,8 @@
 //* 
 //*  @comment show/create glider task 
 //*  @release CARBON 
-//*  @vers 3.2 He Helium                                                   
-//*  @date Wed Aug  7 17:16:57 2019 
+//*  @vers 3.3 Li Lithium [asl 6.2.60 C-He-Nd]                             
+//*  @date Tue Jun 23 07:05:33 2020 
 //*  @cdate 7/21/1997 
 //*  @author Mark Terry 
 //*  @Copyright © RootMeanSquare  2010,2019 → 
@@ -26,13 +26,14 @@ include "hv.asl"
 
 float Max_ele = 18000.0
 float Min_ele  = 0.0;
-float  Margin = 0.05;
+float Margin = 0.05;
 
 int Ntpts = 1000;
 
 include "ootlib"
 
 int Maxtaskpts = 10;
+
 
 
 
@@ -63,80 +64,7 @@ proc drawTrace()
 
 //======================================//
 
-float totalK = 0;
 
-proc TaskDistance()
-{
-   // is there a start?
-DBG"$_proc  $Ntaskpts \n"
-   totalK = 0;
-   float la1   = 1000.0;
-   float lon1 = 1000.0;
-   float la2   = 1000.0;
-   float lon2 = 1000.0;
-
-  Min_lat = 90.0
-  Max_lat = 0.0
-  Min_W = 109.0
-  Max_W = 105.0
-
-   int adjust = 0;
-
-   // num of taskpts
-   for (i = 0; i < Ntaskpts ; i++) {
-
-     kmd = 0.0;
-     tpl = Tasktp[i]->cltpt;
-     
-     la2 = Tasktp[i]->Ladeg;
-
-
-     if (la2 > Max_lat) {
-         Max_lat = la2;
-     }
-
-     if (la2 < Min_lat) {
-         Min_lat = la2;
-     }
-
-
-
-
-     lon2 = Tasktp[i]->Longdeg;
-
-     if (lon2 > Max_W) {
-         Max_W = lon2;
-     }
-
-     if (lon2 < Min_W) {
-         Min_W = lon2;
-     }
-
-
-     if (la1 != 1000.0) {
-        kmd = computeGCD(la1,la2,lon1,lon2);
-     }
-<<" tpt $tpl $i  <|$Tasktp[i]->Place|> <|$Tasktp[i]->cltpt|> $Tasktp[i]->Ladeg  $Tasktp[i]->Longdeg $kmd\n"
-     la1 = la2;
-     lon1 = lon2;
-     adjust++;
-     totalK += kmd;
-   }
-
-
-<<"%V $Min_lat $Min_W $Max_lat $Max_W \n"
-<<"%V $LongW $LatS $LongE $LatN   \n"
-if (adjust >=2) {
- LongW= Max_W +1.0;
- LatS = Min_lat -1;
- LongE = Min_W -1;
- LatN = Max_lat +1;
-}
-<<"%V $totalK\n"
-<<"%V $LongW $LatS $LongE $LatN   \n"
-
-}
-//==============================//
 
 
 
@@ -187,11 +115,11 @@ longv = RF[2][3];
 
 <<"%V $lat $longv \n"
 
-WH=searchRecord(RF,"Laramie")
+WH=searchRecord(RF,"Laramie",0)
 
 <<"$WH \n"
 
-WH=searchRecord(RF,"Salida")
+WH=searchRecord(RF,"Salida",0)
 
 <<"$WH \n"
 index = WH[0][0]
@@ -278,7 +206,9 @@ int is_an_airport
 
 
 /////////////////// TASK DEF ////////////
-Taskpt Tasktp[50];
+
+int Taskpts[>10]; 
+
 Task_update =1
 Units = "KM"
 
@@ -344,41 +274,29 @@ svar Tskval;
 
  while (AnotherArg()) {
 
-    Fseek(A,0,0)
+
     targ = GetArgStr()
 
-    posn=Fsearch(A,targ,-1,1,0)
-
-<<" looking for  $targ $posn \n"
-
-    if (posn == -1) {
-        break;
-     }
-     
+          WH=searchRecord(RF,targ,0,0)
+	  <<"%V $k $WH\n"
+	  
+          index = WH[0][0]
+          if (index >=0) {
+          ttp = RF[index];
 <<" found $targ \n"
+<<"$ttp \n"
+         Taskpts[Ntaskpts] = index;
+          Ntaskpts++;
 
-  //  Tasktp[Ntaskpts]->cltpt = targ;
-
-    nwr = Tskval->ReadWords(A)
-    <<"%v$nwr : $Tskval \n"
-     Tskval->info(1)
-     
-    Tasktp[Ntaskpts]->TPset(Tskval)
-    
-    //nwr = Tasktp[Ntaskpts]->Read(A);
-
-    Tasktp[Ntaskpts]->Print();
-
-    Ntaskpts++;
-
-//<<"%V $Ntaskpts $nwr \n"
+          }
 
 }
-
+//======================================//
 
 // home field
 // set a default task
 if (Ntaskpts == 0) {
+
 svar targ_list = {"jamestown","laramie","salida","jamestown"}
     sz= Caz(targ_list);
 <<"$sz : $targ_list \n"
@@ -390,26 +308,23 @@ sz->info(1)
     for (i= 0; i < sz; i++) {
     targ = targ_list[i]
     <<"$i  <|$targ|> \n"
-    Fseek(A,0,0)    
-    posn=Fsearch(A,targ,-1,1,0,0)
-    if (posn != -1) {
-    nwr = Tskval->ReadWords(A)
-    Tasktp[Ntaskpts]->TPset(Tskval)
-    Ntaskpts++;
-    }
+          WH=searchRecord(RF,targ,0,0)
+	  <<"$WH\n"
+	  
+          index = WH[0][0]
+          if (index >=0) {
+          ttp = RF[index];
+<<"$ttp \n"
+          Taskpts[Ntaskpts] = index;
+          Ntaskpts++;
+          }
     }
 }
-
+//======================================//
 Nlegs = Ntaskpts;
 <<"%V $Ntaskpts \n"
 
 <<" Now print task\n"
-
-  for (k = 0; k < Ntaskpts ; k++) {
-      Tasktp[k]->Print()
-  }
-
-
 
 
       TaskDistance();
@@ -556,12 +471,15 @@ include "showtask_scrn"
  if (Ntaskpts > 1) {
 
   for (i = 0; i < Ntaskpts ; i++) {
-  
-        tpl = Tasktp[i]->cltpt;
-      
-      <<"$i   $tpl $Tasktp[i]->cltpt $tpwo[i]\n"
 
-       //sWo(tpwo[i],@value,Tasktp[i]->cltpt);  // TBF
+        k= Taskpts[i];
+	
+        tpl =   Wtp[k]->Place;
+        
+      
+      <<"$i   $tpl  $tpwo[i]\n"
+
+       
         sWo(tpwo[i],@value,"$tpl",@update,@redraw);  
 
        if (i >= MaxSelTps) {
@@ -573,7 +491,7 @@ include "showtask_scrn"
 <<"%V $i $Ntaskpts \n"
 
  }
-
+//======================================//
 
 
 
@@ -582,7 +500,7 @@ include "showtask_scrn"
     sWo(tpwo[2],@redraw);
 
 
-   c= "EXIT"
+     c= "EXIT"
 
      sWi(vp,@redraw); // need a redraw proc for app
 
@@ -704,8 +622,10 @@ str wcltpt="XY";
        if (_ewoname @= "_Start_") {
              Task_update =1
              sWo(_ewoid, @cxor)
-             if (PickaTP(0)) {
-	       wcltpt = Tasktp[0]->cltpt;
+
+             wtp = PickaTP(0)
+             if (wtp >= 0) {
+                wcltpt = Wtp[wtp]->Place;
                sWo(tpwo[0],@value,wcltpt,@redraw)
              }
 	     sWo(tpwo[0], @cxor)
@@ -714,29 +634,21 @@ str wcltpt="XY";
 
        if (scmp(_ewoname,"_TP",3)) {
        
-            Task_update =1
+             Task_update =1
              np = spat(_ewoname,"_TP",1)
              np = spat(np,"_",-1)
 
               witp = atoi(np);
               wtpwo = tpwo[witp]
 
-             wcltpt = Tasktp[witp]->cltpt
-
-<<" %V $_ekeyw $np $witp $_ewoid $wcltpt\n"
-
              sWo(wtpwo, @cxor);
 	     
 	     gflush();
 
-             if (PickaTP(witp)) {
-
-              wcltpt = Tasktp[witp]->cltpt;
-
-<<"%V $_ewoid $wcltpt\n"
-
+             wtp = PickaTP(witp)
+             if (wtp >= 0) {
+              wcltpt = Wtp[wtp]->Place;
               sWo(wtpwo,@value,wcltpt,@redraw);
-    
              }
 
            sWo(wtpwo,@cxor);
@@ -811,6 +723,7 @@ str wcltpt="XY";
      if ( Task_update ) {
       TaskDistance();
       sWo(tdwo,@value,"$totalK km",@update);
+      Task_update = 0;
       }
   }
 ///

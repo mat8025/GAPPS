@@ -425,3 +425,4 @@ ic_xic.cpp	 1.69	 Sun Jun 14 12:39:10 2020 reset stack before xic
 sint_l.cpp	 1.15	 Mon Jun 15 22:25:35 2020 added setargindex
 wo_set_p.cpp	 1.90	 Thu Jun 18 08:23:51 2020 wosetvalue added
 wo_draw_w.cpp	 1.48	 Sat Jun 20 21:22:52 2020 testOrWOAW press|ON
+rdrec.cpp	 1.80	 Mon Jun 22 19:12:21 2020 options to searchreacord

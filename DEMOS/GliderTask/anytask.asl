@@ -58,7 +58,7 @@ float Cruise_speed = 80 * nm_to_km;
 //<<" done class def \n"
 
 
-Turnpt  Wtp[20];
+Turnpt  Wtp[50];
 
 Svar CLTPT;
 

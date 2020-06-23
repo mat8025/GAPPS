@@ -45,6 +45,78 @@ DBG" read in unit conversions \n"
 
 include "tpclass"
 
+float totalK = 0;
+
+proc TaskDistance()
+{
+   // is there a start?
+DBG"$_proc  $Ntaskpts \n"
+   totalK = 0;
+   float la1   = 1000.0;
+   float lon1 = 1000.0;
+   float la2   = 1000.0;
+   float lon2 = 1000.0;
+
+  Min_lat = 90.0
+  Max_lat = 0.0
+  Min_W = 109.0
+  Max_W = 105.0
+
+   int adjust = 0;
+
+   // num of taskpts
+   for (i = 0; i < Ntaskpts ; i++) {
+
+     index = Taskpts[i]
+     kmd = 0.0;
+     tpl = Wtp[index]->Place;
+     
+     la2 = Wtp[index]->Ladeg;
+
+
+     if (la2 > Max_lat) {
+         Max_lat = la2;
+     }
+
+     if (la2 < Min_lat) {
+         Min_lat = la2;
+     }
+
+     lon2 = Wtp[index]->Longdeg;
+
+     if (lon2 > Max_W) {
+         Max_W = lon2;
+     }
+
+     if (lon2 < Min_W) {
+         Min_W = lon2;
+     }
+
+
+     if (la1 != 1000.0) {
+        kmd = computeGCD(la1,la2,lon1,lon2);
+     }
+<<" tpt $tpl $i  <|$Wtp[index]->Place|>  $Wtp[index]->Ladeg  $Wtp[index]->Longdeg %6.0f $kmd\n"
+     la1 = la2;
+     lon1 = lon2;
+     adjust++;
+     totalK += kmd;
+   }
+
+
+<<"%V $Min_lat $Min_W $Max_lat $Max_W \n"
+<<"%V $LongW $LatS $LongE $LatN   \n"
+if (adjust >=2) {
+ LongW= Max_W +1.0;
+ LatS = Min_lat -1;
+ LongE = Min_W -1;
+ LatN = Max_lat +1;
+}
+<<"%V $totalK\n"
+<<"%V $LongW $LatS $LongE $LatN   \n"
+ Task_update = 1;
+}
+//==============================//
 
 proc getDeg (str the_ang)
     {
@@ -601,14 +673,19 @@ proc delete_tp()
              wtpt= atoi(spat(np,"_",-1))
 
               <<"delete $_ewoname $wtpt \n")
-
+               if (wtpt == 9) {
+                    setWoValue (tpwo[9],"")
+               }
+	       else {
                for (i = wtpt ; i < 10 ; i++) {
                   tval = getWoValue(tpwo[i+1])
          <<"$i <|$tval|>  \n"
                   setWoValue (tpwo[i],tval)
+		  if (tval @= "")
+		    break;
                 }
-              
-              MouseCursor("cross", tpwo[9], 0.5, 0.5);  // TBC
+              }
+              MouseCursor("cross", tpwo[9], 0.5, 0.5);  
               sWo(tpwos,@redraw);
             }
    
@@ -735,22 +812,23 @@ proc setWoTask()
           tval = getWoValue(tpwo[k])
 	  <<"<|$k|> <|$tval|> \n" 
           if (!(tval @= "")) {
-          WH=searchRecord(RF,tval)
+          WH=searchRecord(RF,tval,0,0)
 	  <<"%V $k $WH\n"
 	  
           index = WH[0][0]
           if (index >=0) {
           ttp = RF[index];
 	  <<"<|$Ntaskpts|> $ttp \n" 
-          Tasktp[Ntaskpts]->TPset(RF[index])
-
+//          Tasktp[Ntaskpts]->TPset(RF[index])
+          Taskpts[k] = index;
           Ntaskpts++;
 	  }
           }
     }
    <<"%V $Ntaskpts\n"
     for (k = 0; k < Ntaskpts ; k++) {
-        Tasktp[k]->Print()
+       index= Taskpts[k]
+       Wtp[index]->Print()
      }
 
       TaskDistance();
@@ -1226,7 +1304,9 @@ proc DrawTask(int w,str col)
     }
     if ( (TaskType @= "OAR")   || (TaskType @= "SO")) {
 
-      plot(w,@line,Tasktp[0]->Longdeg,Tasktp[0]->Ladeg,Tasktp[1]->Longdeg,Tasktp[1]->Ladeg,col)
+      index = Taskpts[0]
+      index1 = Taskpts[1]
+      plot(w,@line,Wtp[index]->Longdeg,Wtp[index]->Ladeg,Wtp[index1]->Longdeg,Wtp[index1]->Ladeg,col)
 
     }
     else {
@@ -1234,8 +1314,9 @@ proc DrawTask(int w,str col)
     for (i = 0 ; i < (Nlegs-1) ; i++ ) { 
 
 //   <<"$i %V $w, $Tasktp[i]->Longdeg $Tasktp[i]->Ladeg,$Tasktp[i+1]->Longdeg,$Tasktp[i+1]->Ladeg, $col \n "
-
-      plot(w,@line,Tasktp[i]->Longdeg,Tasktp[i]->Ladeg,Tasktp[i+1]->Longdeg,Tasktp[i+1]->Ladeg,col)
+      index = Taskpts[i]
+      index1 = Taskpts[i+1]
+      plot(w,@line,Wtp[index]->Longdeg,Wtp[index]->Ladeg,Wtp[index1]->Longdeg,Wtp[index1]->Ladeg,col)
 
     }
 
@@ -1368,15 +1449,15 @@ proc PickaTP(int itaskp)
 // 
 // use current lat,long to place curs
 //
-  int ret = 0;
-//DBG" get task pt $itaskp \n"
+<<"$_proc $itaskp\n"
+  int ret = -1;
 
   float rx;
   float ry;
 
   rx = MidLong;
   ry = MidLat;
-<<"$_proc $itaskp\n"
+
 
     MouseCursor("left", mapwo, rx, ry);  // TBC
 
@@ -1392,7 +1473,7 @@ proc PickaTP(int itaskp)
 
           ntp = ClosestTP(_erx,_ery);
 
-   MouseCursor("hand");
+        MouseCursor("hand");
 
         if (ntp >= 0) {
 
@@ -1402,39 +1483,14 @@ proc PickaTP(int itaskp)
 
 <<" found %V $ntp $nval  $itaskp\n"
 
-            Tasktp[itaskp]->cltpt = nval;
-            Tasktp[itaskp]->Place = nval;	    
+            Taskpts[itaskp] = ntp;
 
-            la = Wtp[ntp]->Ladeg;
-            Tasktp[itaskp]->Ladeg = la;	    
-             vala = Wtp[ntp]->Longdeg;
-	     Tasktp[itaskp]->Longdeg = vala;
-	    
-	    Tasktp[itaskp]->Alt = Wtp[ntp]->Alt;	    
+            ret = ntp;
+            Task_update = 1;
+         }
 
-
-
-            Fseek(A,0,0);
-            i=Fsearch(A,nval,-1,1,0)
-
-<<" %v $i \n"
-
-//int kk = itaskp;
-
-           if (i != -1) {
-
-<<" setting TASK_PT $itaskp  to $nval \n" 
-            // position at tp file entry -- why not search Wtp for entry
-	    
-   //         nwr = Tasktp[itaskp]->Read(A)
-<<"$itaskp  TaskPT \n"
-            Tasktp[itaskp]->Print();
-
-            ret = 1;
-            }
-
-   }
-      Task_update = 1;
+   
+ 
       return ret;
 }
 //=============================================//
