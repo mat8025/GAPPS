@@ -426,3 +426,8 @@ sint_l.cpp	 1.15	 Mon Jun 15 22:25:35 2020 added setargindex
 wo_set_p.cpp	 1.90	 Thu Jun 18 08:23:51 2020 wosetvalue added
 wo_draw_w.cpp	 1.48	 Sat Jun 20 21:22:52 2020 testOrWOAW press|ON
 rdrec.cpp	 1.80	 Mon Jun 22 19:12:21 2020 options to searchreacord
+proc_checkfname_e.cpp	 2.37	 Sat Jun 27 06:47:04 2020 IPROC
+vmf_svar_l.cpp	 1.19	 Sun Jun 28 21:08:55 2020 added svar_table addentry getentry
+svarg_e.cpp	 2.29	 Sun Jun 28 21:09:54 2020 added SetUpResultSvar
+sop_l.cpp	 1.91	 Sun Jun 28 21:21:00 2020 use SetUpResultSvar
+paramexprecord.cpp	 2.72	 Tue Jun 30 10:33:40 2020 use froffset for element set

@@ -197,7 +197,9 @@ RX=readrecord(A,@del,-1)
 Nrecs = Caz(RX);
 
 <<"%V $Nrecs RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n"
-
+lastRX = RX[Nrecs-1]
+<<"$RX[Nrecs-1]\n"
+<<"$lastRX\n"
 
 
     //WDVEC= vgen(_INT_,2*kdays,0,1);
@@ -244,7 +246,6 @@ include "wex_read"
 readCCData();
 
 
-
 nrd=readData();
 <<"%V$nrd\n"
 
@@ -261,7 +262,7 @@ nrd=readData();
    
    sc_endday = (jtoday - bday) + init_period;
 
-   sc_startday = (jtoday - bday) - 7;
+   sc_startday = (jtoday - bday) - 30;
 
    <<[_DB]"%V$ngday \n"
 

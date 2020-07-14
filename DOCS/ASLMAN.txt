@@ -111,6 +111,17 @@ Display and control of signal processing is done by calling functions,
 and signal processing modules.
 These functions are listed together with a description of their effect 
 and calling parameters in Appendix 1.
+The utility 'sinfo' can be used to obtain the usage of script library functions.
+e.g.
+sinfo vgen
+gives a description of a script library function that generates a vector.
+----------------------------------------------------
+vgen()
+V=vgen(TYPE_,n,{init_val},{step})
+generates a vector n values,of type (FLOAT_,INT_,SHORT_,CHAR_, CMPLX_ ...) initialised to  init_val (default 0),
+if step is set, then value is incremented by step for each element.
+For complex vectors each real imag pair is set to value and then the step is incremented.
+-----------------------------------------------------
 
 
 .HE 
@@ -9193,17 +9204,66 @@ VMF
   would cut out elements 3 through 7 of the vector I. 
 Typically VMF's operate or modify the operand and return success in terms of true or false.
 
-The Svar type is a vector of strings so operations like string compare can be carried out on all
+The svar type is a vector of strings so operations like string compare can be carried out on all
 members of the vector and the result returned as a vector
 e.g.
 rv=S->scmp("and")
 would return into a integer vector rv the results of a scmp operation on all elements (strings) of the
 svar vector. 
 
-
+The svar type can be used to set up a lookup table or a hash table with a  variable number of fields.
+e.g.
+svar ST
+ST->table("HASH",num_fields,num_rows);
+makes svar ST into hash table with num_fields and initial num_rows.
+index=ST->addkeyval(key,ival) 
+addkeyval can be used to add a key (string) plus a value (int,float,string).
+val= ST->lookup(key)
+would be used to return a key's value.
 
 .EF
 =============================================================
+.BF
+table()
+.(x
+table
+.)x 
+.FD
+svar ST
+ST->table("LUT",num_fields,num_rows);
+makes svar ST into a lookup  table with num_fields and initial num_rows.
+ST->table("HASH",num_fields,num_rows);
+makes svar ST into a hash  table with num_fields and initial num_rows.
+See lookup,addentry,getentry. 
+
+.EF
+=============================================================
+.BF
+lookup()
+.(x
+lookup
+.)x 
+.FD
+val= ST->lookup(key)
+would be used to return a key's value in the table 'held' by svar variable ST.
+.EF
+=============================================================
+.BF
+getentry()
+.(x
+getentry
+.)x 
+.FD
+vals= ST->getentry(keystring)
+would be used to return a key's row values in the table 'held' by svar variable ST.
+vals= ST->getentry(rowindex)
+would be used to return a row's values in the table 'held' by svar variable ST.
+
+.EF
+=============================================================
+
+
+
 .BF
 shiftL()
 .(x

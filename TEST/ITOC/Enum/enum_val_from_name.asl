@@ -15,11 +15,7 @@
 
 /}*/
 
-include "debug.asl";
-  debugON();
-  setdebug(1,@keep,@pline,@~trace);
-  FilterFileDebug(REJECT_,"~storetype_e");
-  FilterFuncDebug(REJECT_,"~ArraySpecs",);
+
 
 svar S
 i= 0
@@ -61,3 +57,5 @@ for (i= 0; i <=13; i++) {
  th = days->enumValueFromName("THU")
  wd = days->enumNameFromValue(2)
 <<"$wv  $(TUE) $wd $th\n"
+
+

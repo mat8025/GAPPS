@@ -2,7 +2,7 @@
 ///
 ///
 
-setdebug(1,@keep);
+
 
 proc goo()
 {
@@ -29,7 +29,7 @@ if (nt > 10) {
 }
 }
 //=======================//
-proc zoo(m)
+proc zoo(int m)
 {
 static int znt = 0;
 znt++;

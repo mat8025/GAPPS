@@ -2,36 +2,38 @@
 ///
 ///
 
-setdebug(1,@keep,@trace,@filter,0);
+ ci (_dblevel)
+ 
 just_once = 0;
 LD_libs = 0;
 //=======================//
-proc goo(m)
+proc goo(int m)
 {
 static int znt = 0;
 znt++;
-<<"IN $_proc $znt $m\n"
+<<"IN goo $_proc $znt $m\n"
 
 
 if (znt > 3) {
   <<" repeat call $znt \n"
-  exit();
+  //exit();
 }
   k = m+ znt;
 <<"OUT $_proc $k $znt $m\n"  
   //return k;
   //return;
+  return "$_proc"
 }
 //=======================//
 just_once++ ;
 <<"after  define goo() $just_once but not after Call\n"
 
 //=======================//
-proc zoo(m)
+proc zoo(int m)
 {
 static int znt = 0;
 znt++;
-<<"IN $_proc $znt $m\n"
+<<"IN zoo $_proc $znt $m\n"
 
 
 if (znt > 10) {
@@ -39,14 +41,72 @@ if (znt > 10) {
   exit();
 }
   k = m+ znt;
-  return k;
+  return "zoo"
 }
 //=======================//
-checkIN()
 
-include "iproc_libs.asl"
+proc hoo(int m)
+{
+static int znt = 0;
+znt++;
+<<"IN hoo $_proc $znt $m\n"
 
-<<"%V $LD_libs\n"
+
+if (znt > 10) {
+  <<" repeat call $znt \n"
+  exit();
+}
+  k = m+ znt;
+  return "hoo"
+}
+//=======================//
+
+proc boo()
+{
+static int znt = 0;
+znt++;
+<<"IN  $_proc $znt\n"
+
+  return "boo"
+}
+//=======================//
+
+proc coo()
+{
+static int znt = 0;
+znt++;
+<<"IN  $_proc $znt\n"
+
+  return "$_proc"
+}
+//=======================//
+
+proc moo()
+{
+static int znt = 0;
+znt++;
+<<"IN moo $_proc $znt\n"
+
+  return "$_proc"
+}
+//=======================//
+
+
+proc roo()
+{
+static int znt = 0;
+znt++;
+<<"IN $_proc $znt\n"
+
+  return "$_proc"
+}
+//=======================//
+
+
+
+//include "iproc_libs.asl"
+
+
 
    goo(80);
 
@@ -72,12 +132,12 @@ cbname = "zoo"
   <<"%V $(typeof(frs))  $frs\n"
 <<"@exit %V $just_once should be 1\n"
 
-checkNum(just_once,1)
-checkStr(frs,"5")
+cn (just_once,1)
+cs (frs,"5")
 
-checkOut()
 
-exit()
+
+
 
    fri = zoo(80);
 
@@ -96,17 +156,49 @@ exit()
 N = 6;
 kp= 0;
 
+svar pnames = {"boo","coo","moo","roo" }
+
+for (i=0; i< 4; i++) {
+       cbname = pnames[i]
+<<"trying indirect call of $cbname\n"
+       wp= $cbname();
+<<"$kp done indirect call of $wp \n"
+
+}
+
+
+
+
+
+
+
+
+svar pnames2 = {"goo","hoo","zoo","goo" }
+
+for (i=0; i< 4; i++) {
+       cbname = pnames2[i]
+<<"trying indirect call of $cbname\n"
+       wp= $cbname(kp);
+<<"$kp done indirect call of $wp \n"
+      kp++;
+
+}
+
+
+exit()
+
   while (1) {
 
        cbname = iread("what to call?:")
-<<"indirect call of $cbname\n"
-       $cbname(kp);
-<<"done indirect call of $cbname\n"
-kp++;
+<<"trying indirect call of $cbname\n"
+       wp= $cbname(kp);
+<<"$kp done indirect call of $wp \n"
+  kp++;
   if (kp > N) {
    <<" exito? loop $kp > $N - segamos adelante!\n"
     break;
   }
+  
   }
 
 

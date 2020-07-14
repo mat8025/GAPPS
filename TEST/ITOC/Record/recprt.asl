@@ -1,11 +1,23 @@
+//%*********************************************** 
+//*  @script recprt.asl 
+//* 
+//*  @comment test record print 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium [asl 6.2.61 C-He-Pm]                                
+//*  @date Tue Jun 30 10:19:19 2020 
+//*  @cdate 1/1/2017 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+myScript = getScript();
 
-include "debug.asl"
 
-debugON();
+checkIn(_dblevel)
 
 record R[5];
 
-checkIn()
+
 
  R[0] = Split("each to his own")
  R[1] = Split("and the devil take the hindmost")
@@ -13,14 +25,17 @@ checkIn()
  R[3] = Split("this is the 4th record")
  R[4] = Split("and the 5th record next")
 
-setdebug(1,@~trace);
 
 wrow= 1;
 wcol=2;
 R->info(1)
+
+val = R[wrow][wcol];
 wrd= "$R[wrow][wcol]";
+
 R->info(1)
-<<"$wrow $wcol  <|$wrd|>\n"
+
+<<"$wrow $wcol  $val <|$wrd|>\n"
 
 
 checkStr(wrd,"devil")
@@ -38,10 +53,10 @@ checkStr(wrd,"devil")
 <<"%V$R[1][3] \n"
 <<"/////\n"
 for (wrow =0; wrow <4; wrow++) {
-for (wcol =0; wcol <4; wcol++) {
+  for (wcol =0; wcol <4; wcol++) {
  wrd= "$R[wrow][wcol]";
 <<"%V$wrow $wcol $R[wrow][wcol] $wrd\n"
-}
+  }
 }
 
 wrd= "$R[1][2]";
@@ -99,5 +114,3 @@ checkStr(wrd,"record")
 
 
 checkOut()
-
-exit();

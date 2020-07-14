@@ -3,17 +3,14 @@
 //* 
 //*  @comment task-planner 
 //*  @release CARBON 
-//*  @vers 4.1 H Hydrogen                                                  
-//*  @date Tue Aug  6 06:28:50 2019 
+//*  @vers 4.2 He Helium [asl 6.2.60 C-He-Nd]                              
+//*  @date Wed Jun 24 07:29:33 2020 
 //*  @cdate 9/17/1997 
 //*  @author Mark Terry 
 //*  @Copyright © RootMeanSquare  2010,2019 → 
 //* 
 //***********************************************%
 
-///
-/// anytask
-///
 
 //#define DBG <<
 
@@ -26,31 +23,9 @@ checkIn(_dblevel)
 
 Main_init = 1;
 
-proc nameMangle(str aname)
-{
-  // FIXIT --- bad return
-  str fname;
-
- nname=aname
- //<<" %V $nname $aname \n"
-
-  kc =slen(nname)
-
- if (kc >7) {
- nname=svowrm(nname)
- }
-
- scpy(fname,nname,7)
-
-   // <<"%V$nname --> $fname \n"
-
-
- return fname
-}
-
 include "ootlib"
 
-float Cruise_speed = 80 * nm_to_km;
+float Cruise_speed = (80 * nm_to_km);
 
 
 // try Wtp as args
@@ -61,11 +36,6 @@ float Cruise_speed = 80 * nm_to_km;
 Turnpt  Wtp[50];
 
 Svar CLTPT;
-
-float Leg[10+];
-float TC[10+];
-float Dur[10+];
-
 
 svar Wval;
 
@@ -109,7 +79,7 @@ via_cl = 1
 
 # 
 
-    float LoD = 35;
+float LoD = 35;
 
 int istpt = 1
 
@@ -206,7 +176,7 @@ N = 0.0
 int ki
 
 int cnttpt = 0
-int n_legs = 0
+
 
 # enter start
 
@@ -353,7 +323,7 @@ while ( i == -1) {
 
       if (via_cl) {
 
-        //nxttpt = CLTPT[cnttpt++]
+
           nxttpt = CLTPT[cnttpt]
           cnttpt++
 	  if (cnttpt > cltpt) {
@@ -425,39 +395,27 @@ while ( i == -1) {
 
  //<<"compute \n"
 
-
-total = 0.0
 ild= abs(LoD)
 
 
      if (show_title) {
 <<" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n"
-        <<"Leg\tTP\tID\tLAT\tLONGI\t\tFGA\t  MSL\tPC\t $Units\tRTOT\t Radio\t TC \n"
+        <<"Leg\tTP\tID\tLAT\tLONGI\t\tFGA\t  MSL\tPC\t $Units\tRTOT\tRTIM\t Radio\t TC \n"
 	    }
 
 # get total
 
  if (ok_to_compute) {
 
+       <<"%V  $Cruise_speed\n"
+       computeHTD()
 
-  for (nl = 0; nl < n_legs ; nl++) {
 
-        tkm = ComputeTPD(nl, nl+1);
-
-//<<"<$nl> $tkm\n"
-       Leg[nl] = tkm;
-       //Leg[nl] = ComputeTPD(nl, nl+1)
-
-       TC[nl] =  ComputeTC(nl, nl+1)
-
-       Dur[nl] = Leg[nl]/ Cruise_speed;
-
-       total += Leg[nl]
-  }
 
   //  <<" $total \n"
 
-   rtotal = 0
+   rtotal = 0.0
+   rtime = 0.0
    rmsl = 0.0
    msl = 0.0
    pc_tot = 0.0
@@ -471,8 +429,8 @@ ild= abs(LoD)
     else { 
              the_leg = Leg[nl-1]
              pc_tot = 0.0;
-             if (total > 0) {
-             pc_tot = the_leg/total * 100.0
+             if (totalD > 0) {
+             pc_tot = the_leg/totalD * 100.0
 	     }
     }
 
@@ -513,34 +471,26 @@ ild= abs(LoD)
        wleg = nleg ;
     }
 
-    kiss = "^$tpb"
-    ki=Fsearch(A,kiss,0,1,0,0,1)
+ //   kiss = "^$tpb"
+ //   ki=Fsearch(A,kiss,0,1,0,0,1)
+ //   tpb = nameMangle(tpb);
+ // <<"namemangle returns $tpb \n"
 
-
-
-    //  kc =slen(tpb)
-    //if (kc >7) {
-    //  tpb=svowrm(tpb)
-    //}
-
-
-       tpb = nameMangle(tpb);
-
-   // <<"namemangle returns $tpb \n"
-
-
+    rtime += Dur[li];
     if (li == 0) {
        wleg = 0.0	 
        rtotal = 0
        }
 
  <<"$li %10s$tpb\t%4s$ident ${Wtp[li]->Lat}\t${Wtp[li]->Lon} %9.0f$agl ${Wtp[li]->Alt} %4.1f$pc_tot\t "
-<<"%5.1f$wleg $rtotal\t%6.2f${Wtp[li]->Radio} %6.0f$TC[li] %6.2f$Dur[li]\n"
+<<"%5.1f$wleg $rtotal\t$rtime\t%6.2f${Wtp[li]->Radio} "
+<<"%6.0f$TC[li] "
+<<"%6.2f$Dur[li]\n"
 
   }
 
    if (show_dist) {
-<<"Total distance\t %8.2f$total km\t%8.2f$(total*km_to_sm) sm\t%6.2f$(total*km_to_nm) nm    LOD %6.1f$LoD \n"
+<<"Total distance\t %8.2f$totalD km\t%8.2f$(totalD*km_to_sm) sm\t%6.2f$(totalD*km_to_nm) nm    LOD %6.1f$LoD \n"
 <<" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n"
     }
    else {
@@ -549,9 +499,7 @@ ild= abs(LoD)
 
   }
 
-
-//<<" polish \n"
-exit(0,"%6.1f$total km to fly ")
+exit(0,"%6.1f$totalD km to fly ")
 
 
 

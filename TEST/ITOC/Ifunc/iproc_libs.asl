@@ -3,7 +3,7 @@
 ///
 LD_libs++;
 
-proc moo(m)
+proc moo(int m)
 {
 static int znt = 0;
 znt++;
@@ -18,7 +18,7 @@ if (znt > 10) {
   return k;
 }
 //=======================//
-proc hoo(m)
+proc hoo(int m)
 {
 static int znt = 0;
 znt++;
@@ -33,7 +33,7 @@ if (znt > 10) {
   return k;
 }
 //=======================//
-proc woo(m)
+proc woo(int m)
 {
 static int znt = 0;
 znt++;
@@ -48,7 +48,7 @@ if (znt > 10) {
   return k;
 }
 //=======================//
-proc boo(m)
+proc boo(int m)
 {
 static int znt = 0;
 znt++;

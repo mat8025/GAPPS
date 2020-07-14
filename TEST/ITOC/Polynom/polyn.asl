@@ -3,10 +3,9 @@
 ///
 
 // stats are in the math lib -- for now
-include "debug.asl"
-debugON()
-setDebug(1,@pline)
-checkIn(1)
+
+
+checkIn(_dblevel)
 
 float z[5]
 
@@ -69,7 +68,7 @@ checkFnum(zr,-820.0)
 
 
 checkOut()
-exit()
+
 checkFnum(Fround(z[0],2),-820.0)
 
    for (k = 0; k  < 5 ; k++) {

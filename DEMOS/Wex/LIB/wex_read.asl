@@ -50,7 +50,7 @@ proc fillInObsVec()
 {
 
  
- if ((kd >= 0)) {
+ if (kd >= 0) {
 
    j = 1;
 
@@ -89,13 +89,13 @@ proc fillInObsVec()
    CARDIO[Nobs] = ( walk + hike + run + cycle + swim )
    STRENGTH[Nobs] = (yardwrk + wex)
 
-//<<[_DB]"$k $EXTV[Nobs] $walk $run \n"
+//<<"$k $EXTV[Nobs]  \n"
 
   if (wday > yday) {
       //tot_exetime += EXTV[Nobs]
       
       tot_exetime = tot_exetime + EXTV[Nobs]
-<<"%V $tot_exetime  $Nobs  $EXTV[Nobs] \n"
+//<<"%V $tot_exetime  $Nobs  $EXTV[Nobs] \n"
    }
 
    SEVEC[Nobs] =  wex
@@ -130,7 +130,7 @@ proc fillInObsVec()
 
    CALBURN[Nobs] =  wrk_sleep + exer_burn
 
- <<[_DB]"$kd $(Nobs+1) $wday %6.1f $WTVEC[Nobs] $exer_burn $wrk_sleep $CALBURN[Nobs] $CARBV[Nobs]\n"
+ //<<[_DB]"$kd $(Nobs+1) $wday %6.1f $WTVEC[Nobs] $exer_burn $wrk_sleep $CALBURN[Nobs] $CARBV[Nobs]\n"
       Nobs++;
       }
    }
@@ -138,7 +138,7 @@ proc fillInObsVec()
 //====================================================//
 
 
-int kd;
+long kd;
 svar col;
 
 
@@ -149,11 +149,11 @@ proc readData()
 
   col= RX[tl];
 
-<<"$col\n"
+//<<"$col\n"
 
   day = col[0];
 
-<<"%V $day $Nrecs\n"
+//<<"%V $day $Nrecs\n"
 
 // data has already been read into Record array RX
      RX->info(1)
@@ -176,18 +176,20 @@ proc readData()
 //<<"$col \n"
 //col->info(1)
     day = col[0];
+ //   day->info(1);
 
-    wday = julian(day) 
+   wday = julian(day) 
 
-//<<"%V $wday $day \n"
-
-
+//   wday->info(1)
+    
     if (!got_start) {
         sday = wday
         got_start = 1;
     }
 
     kd = wday - bday;
+//<<"%V $wday $day $kd\n"
+
     lday = kd;
 
 //<<[_DB]"%V$day $wday  $k \n"
@@ -197,8 +199,8 @@ proc readData()
 
 
    if (kd < 0) {
-       <<" $k neg offset ! \n";
-       break;
+       <<" $kd neg offset ! \n";
+   
    }
 
 
@@ -211,7 +213,8 @@ proc readData()
 
     tl++;
 //<<"%V $tl\n"
-    if (tl >= Nrecs) {
+   if (tl >= Nrecs) {
+    //if (tl >= 4) {
        break;
     }
 
@@ -219,7 +222,7 @@ proc readData()
 
 
 
-<<[_DB]"$Nrecs there were $tl $Nobs measurements \n"
+<<"$Nrecs there were $tl $Nobs measurements \n"
      return tl;
 }
 

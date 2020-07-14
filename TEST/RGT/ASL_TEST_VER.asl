@@ -174,9 +174,9 @@ proc changeDir(str td)
 proc Run2Test(str td)
 {
 
-//  <<" $_proc $td\n"
-  changeDir(Testdir)
+//<<" $_proc $td $Testdir\n"
 
+  changeDir(Testdir)
 
   hdg(td)
 
@@ -1190,15 +1190,8 @@ if ((do_all || do_proc ) && (do_proc != -1)) {
 
   cart("proc-var-define", 10)
 
-  Run2Test("ProcArray")
+  RunDirTests("ProcArray","poffset,arrayarg1,arrayarg2")
   
-  hdg("ProcArray");  
-
-  cart("arrayarg1")
-  
-  cart("arrayarg2")
-
-
   RunDirTests("Swap","swap1,swap")
 
   Run2Test("Static")
@@ -1245,11 +1238,8 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
    if ((do_all || do_svar ) && (do_svar != -1)) {
 
-
     RunDirTests("Svar","svar");
-    Run2Test("Hash")
-    cart("svar_table")
-    cart("svar_hash")    
+    RunDirTests("Hash","svar_table,svar_hash")    
     }
 
   if ((do_all || do_ivar ) && (do_ivar != -1)) {

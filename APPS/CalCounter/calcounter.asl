@@ -336,12 +336,17 @@ R->info(1)
 
 while (1) {
 
+        _ewoname ="xxx"
+		      
          eventWait();
 
- //  <<" $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ekeyw3 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
+  <<" $_ename $_emsg %V $_eid $_ekeyw  $_ekeyw2 $_ekeyw3 $_ewoname $_ewoval $_erow $_ecol $_ewoid \n"
  //       _erow->info(1);
 
-
+       if (_ename @= "RELEASE") {
+        ;
+       }
+       else {
          mwr = _erow;
 	 mwc = _ecol;
 <<"%V $mwr $mwc $tags_col\n"
@@ -414,6 +419,7 @@ while (1) {
 	        if (_ebutton == RIGHT_) {
 	          xms = "x"
 		}
+		
                 R[mwr][tags_col] = xms;
        
                 fd= R[mwr][0];
@@ -433,16 +439,18 @@ while (1) {
                             changeAmount(mwr)
                           }
      }
-
+    }
+    
     if (_eloop > 0) {
+    
       if (_ename @= "PRESS") {
 
        if (!(_ewoname @= "")) {
               nc=slen(_ewoname);
-   // <<"calling script procedure $nc  <|${_ewoname}|> !\n"
+    <<"calling script procedure $nc  <|${_ewoname}|> !\n"
             if (nc > 3) {
 	      <<"calling script procedure  <$_ewoname> !\n"
-              $_ewoname();
+                           $_ewoname(); 
 	      }
         }
       }

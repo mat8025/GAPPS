@@ -11,8 +11,8 @@
 //* 
 //***********************************************%
 
-sdb(1)
-checkin()
+
+ci (_dblevel)
 Svar S
 
 S->table("LUT",30,2) //   table
@@ -20,15 +20,17 @@ S->table("LUT",30,2) //   table
 key = "mat"
 val = "303 712 1066"
 
-index=S->addkeyval(key,val) // returns index
+windex = 0;
 
+index=S->addkeyval(key,val, windex) // returns index
+windex++;
 <<"%V$key $val $index\n"
 
 
 key = "ron"
 val = "303 642 1234"
 
-index=S->addkeyval(key,val) // returns index
+index=S->addkeyval(key,val,windex) // returns index
 
 <<"%V$key $val $index\n"
 
@@ -64,6 +66,6 @@ key = "jan"
 val = S->lookup(key)
 <<"$key $val \n"
 
-checkstr(val,"615 123 4567")
+cs (val,"615 123 4567")
 
-checkOut()
+co ()

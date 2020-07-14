@@ -44,7 +44,7 @@ checkNum(t,62);
 proc voo(int vec[])
 {
 <<"$_proc IN $vec \n"
-
+Z->info(1)
 //<<"pa_arg2 %V$k\n"
 
   vecp = vec;
@@ -109,9 +109,8 @@ Z[6] = 28
 
 <<"before calling proc\n"
 
-<<"$Z\n"
-
-
+<<"%V $Z\n"
+Z->info(1)
 //Z[0] = 37
 
 //Y = foo(&Z,3)  // FIXED -------- Y is now created correctly with the return vector 
@@ -133,6 +132,7 @@ checkNum(Z[6],28);
 
 
 checkNum(Y[1],47)
+
 checkNum(Y[6],28)
 
 

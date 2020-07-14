@@ -41,9 +41,41 @@ DBG"%V $_DB\n"
 
 DBG" read in unit conversions \n"
 
+int n_legs = 0
+float Leg[>20];
+float TC[>20];
+float Dur[>20];
+
+
+
 //============================================
 
 include "tpclass"
+
+
+proc nameMangle(str aname)
+{
+  // FIXIT --- bad return
+  str fname;
+
+ nname=aname
+ //<<" %V $nname $aname \n"
+
+  kc =slen(nname)
+
+ if (kc >7) {
+ nname=svowrm(nname)
+ }
+
+ scpy(fname,nname,7)
+
+   // <<"%V$nname --> $fname \n"
+
+
+ return fname
+}
+//======================================//
+
 
 float totalK = 0;
 
@@ -117,6 +149,28 @@ if (adjust >=2) {
  Task_update = 1;
 }
 //==============================//
+
+float totalD = 0;
+proc  computeHTD()
+{
+  totalD = 0;
+  for (nl = 0; nl < n_legs ; nl++) {
+
+        tkm = ComputeTPD(nl, nl+1);
+
+       Leg[nl] = tkm;
+       //Leg[nl] = ComputeTPD(nl, nl+1)
+             tcd =  ComputeTC(nl, nl+1)
+       TC[nl] = tcd;
+       Dur[nl] = Leg[nl]/ Cruise_speed;
+<<"<$nl>  $tcd $Dur[nl] $TC[nl] "
+<<"$Leg[nl]  \n"
+
+       totalD += Leg[nl]
+  }
+}
+//==============================//
+
 
 proc getDeg (str the_ang)
     {
@@ -637,27 +691,50 @@ proc reset_map()
 
 proc insert_tp()
 {
+/// click on tpwo
+      MouseCursor("gumby", tpwo[0], 0.5, 0.5);  // TBC
+     
+             eventWait();
 
-/{/*
-  eventWait()
+            if (scmp(_ewoname,"_TP",3)) {
 
-    if (wnu == tw) {
-      l = sscan(&MS[0],&c)
-        if (strcmp(c ,"PKTPT",5)) {
-          wtpt = spat(c,"PKTPT_",1)
-          print("insert ",wtpt)
-          c= "xx"
-            for (i = ntpts-1 ; i >= wtpt ; i -=1) {
-              tval = getWoValue(tw,tpwo[i])
-              ff=setWoValue (tpwo[i+1],tval)
-            }
-          ntpts++
-          ff=w_show_curs(tw,1,"left_arrow")
-          get_tpt(wtpt)
-          set_task()
-        }
-    }
-/}*/
+             np = spat(_ewoname,"_TP",1)
+             wtpt= atoi(spat(np,"_",-1))
+             if (wptp < 9 ) {
+             for (i = 9 ; i > wtpt ; i--) {
+                  tval = getWoValue(tpwo[i-1])
+         <<"$i <|$tval|>  \n"
+                  setWoValue (tpwo[i],tval)
+                }
+              }
+             setWoValue (tpwo[wtpt],"XXX")
+
+
+                       eventWait();
+          ntp = ClosestTP(_erx,_ery);
+
+           if (ntp >= 0) {
+
+             Wtp[ntp]->Print()
+
+             nval = Wtp[ntp]->GetPlace()
+
+<<" found %V $ntp $nval  $itaskp\n"
+             setWoValue (tpwo[wtpt],ntp,1)
+	     setWoValue (tpwo[wtpt],nval,0)
+                
+           // Taskpts[itaskp] = ntp;
+
+          //  ret = ntp;
+            Task_update = 1;
+              MouseCursor("cross", tpwo[9], 0.5, 0.5);  
+              sWo(tpwos,@redraw);
+              }
+             
+          }
+/// pick a tp
+/// insert before
+
 }
 //======================================//
 proc delete_tp()
@@ -950,8 +1027,10 @@ proc task_menu(int w)
     }
 
     else if (ur_c @= "insert_tp") {
-   //   insert_tp()
-   //   set_task()
+       insert_tp()
+      setWoTask()
+      taskDistance()
+
     }
 
     else if (ur_c @= "coors") {
@@ -1536,7 +1615,7 @@ proc get_tpt(int wtpt)
 proc ComputeTC(int j, int k)
 {
     float km = 0.0
-
+    float tc = 0.0;
     L1 = Wtp[j]->Ladeg
 
     L2 = Wtp[k]->Ladeg
@@ -1554,18 +1633,12 @@ proc ComputeTC(int j, int k)
 
 proc ComputeTPD(int j, int k)
 {
-
-    float km = 0.0;
-
 //DBG" $_proc %V $j $k \n"
+    float km = 0.0;
 
     L1 = Wtp[j]->Ladeg;
 
     L2 = Wtp[k]->Ladeg;
-
-  //  DBG" %V $L1 $L2 \n"
-    //DBG" %I $k $Wtp[k]->Ladeg \n"
-    //DBG" %I $j $Wtp[j]->Ladeg \n"
 
     lo1 = Wtp[j]->Longdeg;
 
@@ -1595,10 +1668,9 @@ proc ComputeTPD(int j, int k)
 
     km2 = Gcd(L1,lo1 , L2, lo2 );
 
-//DBG"%V $km1 $km2\n"
-
     km = km2;
-  //  DBG" %V $D  $LegK $N  $nm_to_km $km\n" ;
+
+//  DBG" %V $D  $LegK $N  $nm_to_km $km\n" ;
 
 
     return km
@@ -1606,5 +1678,47 @@ proc ComputeTPD(int j, int k)
 //====================================//
 
 
+/{/*
+proc ComputeTPD( j, k)
+{
 
+    float km = 0.0
+
+
+//<<" $_proc %V $j $k \n"
+
+    L1 = Wtp[j]->Ladeg
+
+    L2 = Wtp[k]->Ladeg
+
+
+    lo1 = Wtp[j]->Longdeg
+
+    lo2 = Wtp[k]->Longdeg
+
+
+    rL2 = d2r(L2)
+
+    rL1 = d2r(L1)
+
+
+
+    rlo1 = d2r(lo1)
+    rlo2 = d2r(lo2)
+
+    D= acos (sin(rL1) * sin(rL2) + cos(rL1) * cos(rL2) * cos(rlo1-rlo2))
+
+    //          <<" %V $D  $LegK   $nm_to_km\n"
+
+    N = LegK * D
+
+    km = N * nm_to_km ;
+
+    //       <<" %V  $N $km $(typeof(km))\n"
+    ;
+
+    return km
+ }
+
+/}*/
 #

@@ -142,7 +142,9 @@ jt = 0
 
 <<" %6.3f$HT[jt][5] \n"	
 
-<<"CT %6.3f$CT[jt][5] \n"	
+<<"CT %6.3f $CT[jt][5] \n"
+
+// [0][7] is out of range should just warn
 <<"CT %6.3f$CT[jt][7] \n"	
 
 

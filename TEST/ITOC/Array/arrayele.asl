@@ -121,7 +121,7 @@ proc array_sub (float rl[])
 <<"%V $wrl\n"
   cr (wrl, -2);
 
-    rl[kp] = rl[j1] - rl[j2];
+  rl[kp] = rl[j1] - rl[j2];
 
 <<"%V $kp  $j1 $j2 \n";
 <<"%V $rl[kp] $rl[j1]  $rl[j2] \n"
@@ -150,6 +150,8 @@ proc array_sub (float rl[])
 
   cr (jj, -2);
 
+
+  
 //  query()
 /{/*  
   ff= rl[kp];

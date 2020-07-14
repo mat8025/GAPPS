@@ -62,13 +62,13 @@
 
     carb_upper = 300;
 
-    sWo(wedwo,@clip,CXY, @color,LILAC_,@clipbhue,WHITE_,@bhue,GREEN_,@font,F_SMALL_)
+    sWo(wedwo,@clip,CXY, @color,LILAC_,@clipbhue,PINK_,@bhue,WHITE_,@font,F_SMALL_)
 
-    sWo(calwo,@clip,CXY, @color,MAGENTA_,@clipbhue,PINK_,@bhue,RED_,@font,F_SMALL_)
+    sWo(calwo,@clip,CXY, @color,MAGENTA_,@clipbhue,PINK_,@bhue,WHITE_,@font,F_SMALL_)
 
  //   sWo(carbwo,@clip,CXY, @color,BROWN_,@clipbhue,BROWN_,@bhue,GREEN_,@font,F_SMALL_,@fonthue,WHITE_)
 
-    sWo(extwo,@clip,CXY, @color,YELLOW_,@clipbhue,LILAC_,@font,F_SMALL_)
+    sWo(extwo,@clip,CXY, @color,YELLOW_,@clipbhue,LILAC_,@bhue,WHITE_@font,F_SMALL_)
 
     sWo(wedwo,@border,@clipborder,BLACK_,@drawon)
 

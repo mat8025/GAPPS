@@ -4,42 +4,36 @@ proc Wrong()
 {
 
 // print out last 10 lines
- setdebug(1,"steponerror")
+<<"ERROR \n"
+ //sdb(1,"steponerror")
 
 }
 ////////////////////////
 
- checkIn()
+ checkIn(_dblevel)
 
- x = vgen(DOUBLE,5,0,1)
+ x = vgen(DOUBLE_,5,0,1)
 
 <<"%V$x\n"
 
-//double y[5]
-<<"%V$x\n"
  y = x
 
-<<"%V$y $x\n"
+<<"%V$x\n"
 
- if (checkNum(y[1], 1)) {
-   <<" correct!\n"  
- }
- else {
-    Wrong()
- }
+<<"%V$y \n"
+
+ checkNum(y[1], 1)
+
 
 <<"%V$x\n"
+
  y = x + x*x
 
 <<"%V$y\n"
 
- if (checkNum(y[1], 2)) {
-   <<" correct!\n"  
- }
- else {
-   <<" wrong!\n"  
- }
+ checkNum(y[1], 2)
 
+co ()
  a = 2
 
 <<"%V$x\n"
@@ -57,9 +51,7 @@ proc Wrong()
  if (checkNum(y[2], 14)) {
    <<" correct!\n"  
  }
- else {
-   <<" wrong!\n"  
- }
+
 
 <<"%V$x\n"
  y = x + x*x + x*x*x +x*x*x*x
@@ -69,9 +61,7 @@ proc Wrong()
  if (checkNum(y[1], 4)) {
    <<" correct!\n"  
  }
- else {
-   <<" wrong!\n"  
- }
+
 
  b = 2.0
 
@@ -81,12 +71,9 @@ proc Wrong()
 
 <<"%V$y\n"
 
- if (checkNum(y[2], 34)) {
-     <<" correct!\n"  
- }
- else {
-     Wrong()
- }
+ checkNum(y[2], 34)
+ 
+
 
 <<"%V$x\n"
 
@@ -97,12 +84,7 @@ proc Wrong()
 <<"%V$x\n"
 
 
- if (checkNum(y[2], 34)) {
-   <<" correct!\n"  
- }
- else {
-   <<" wrong!\n"  
- }
+ checkNum(y[2], 34)
 
  c= 3.0
 
@@ -147,30 +129,27 @@ proc Wrong()
 
 <<"%V$y[2]\n"
 
+ d = 5
+<<"%V $d\n"
+
 <<"%V$a $b $c $d \n"
 
- if (checkFNum(y[2], 50,3)) {
-  <<" correct!\n"  
- }
- else {
-   Wrong() 
- }
+ checkFNum(y[2], 50,3)
 
 
 
- d = 5
 
-y = x + x*x*b + x*x*x*c + x*x*x*x*d
+
+
+
+
+ y = x + x*x*b + x*x*x*c + x*x*x*x*d
 
 
 <<"%V$y\n"
 
- if (checkNum(y[2], 114)) {
-  <<" correct!\n"  
- }
- else {
-  <<" wrong!\n"  
- }
+ checkNum(y[2], 114)
+
 
 <<"%V$x\n"
 
@@ -180,13 +159,7 @@ y = x + x*x*b + x*x*x*c + x*x*x*x*d
 <<"%V$y\n"
 
 
- if (checkNum(y[2], 116)) {
-   <<" correct!\n"  
- }
- else {
-   Wrong()  
- }
-
+ checkNum(y[2], 116)
 
  C = 7
 
@@ -195,19 +168,12 @@ y = x*a + x*x*b + x*x*x*c +x*x*x*x*d +C
 <<"%V$y\n"
 
 
- if (checkNum(y[2], 123)) {
-  <<" correct!\n"  
- }
- else {
-   Wrong() 
- }
+ checkNum(y[2], 123)
+
+
 
 <<"$x \n"
 
 
 
- CheckOut()
-
-
-
-stop!
+ co ()

@@ -15,16 +15,7 @@
 
 /}*/
 
-include "debug.asl";
-  debugON();
-  setdebug(1,@keep,@pline,@~trace);
-  FilterFileDebug(REJECT_,"~storetype_e");
-  FilterFuncDebug(REJECT_,"~ArraySpecs",);
-
-
-
-
-CheckIn()
+ ci (_dblevel)
 
 
 
@@ -45,6 +36,13 @@ int gold = 79
 
 #define AG 47
 
+svar names = {"billy", "bob" ,"joe"}
+
+
+<<"type $(typeof(names))  $(Caz(names)) \n";
+
+
+
 enum colors  {   // all the colors 
               BLACK_COL, 
               WHITE_COL,
@@ -62,21 +60,28 @@ enum colors  {   // all the colors
 };
 
 
+red = RED_COL
+violet = VIOLET_COL
+
+
+<<"$(typeof(RED_COL)) $(typeof(red))\n"
+
+<<"RED $red   %V$violet  $(GOLD_COL)  $(SILVER_COL)\n"
+<<" $colors \n"
+
+
+
 c_type = typeof(colors)
 
 <<"$c_type \n"
 
 sz= Caz(colors);
 
-
-
 <<"type $(typeof(colors))  $sz \n";
-
-
 
 <<"$sz  $colors[0] $colors[1] \n"
 
-
+exit()
 
 
 if (sz < 100) {

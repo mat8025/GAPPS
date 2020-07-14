@@ -22,6 +22,8 @@ include "hv.asl"
 //envDebug()
 //#define DBG <<
 
+setMaxICerrors(-1) // ignore - overruns etc
+
 #define DBG ~!
 
 float Max_ele = 18000.0
@@ -77,7 +79,7 @@ Turnpt  Wtp[500]; //
 /// open turnpoint file lat,long 
 //tp_file = GetArgStr()
 
-  tp_file = "DAT/turnptsA.dat"  // open turnpoint file TA airports
+  tp_file = "DAT/turnpts.dat"  // open turnpoint file TA airports
 
 
   if (tp_file @= "") {
@@ -295,7 +297,7 @@ svar Tskval;
 
 // home field
 // set a default task
-if (Ntaskpts == 0) {
+if (Ntaskpts == -1) {
 
 svar targ_list = {"jamestown","laramie","salida","jamestown"}
     sz= Caz(targ_list);
@@ -346,6 +348,7 @@ Nlegs = Ntaskpts;
      sslng= Stats(IGCLONG)
 
      for (i=0; i < Ntpts; i += 100) {
+    // for (i=0; i < Ntpts; i++) {
      
       <<"$i $IGCTIM[i] $IGCELE[i] $IGCLAT[i]  $IGCLONG[i] \n";
 
@@ -357,12 +360,19 @@ Nlegs = Ntaskpts;
 
 <<"%V $sslt \n"
 
+    ///
+    sstart = Ntpts /10;
 
-     for (i=1000; i < 1500; i++) {
+    sfin = Ntpts /5;
+    
+    //sstart = 1000;
+   // sfin = 1500;
+
+//     for (i=sstart; i < sfin; i++) {
      
-      <<"$i $IGCTIM[i] $IGCELE[i] $IGCLAT[i]  $IGCLONG[i] \n";
+//      <<"$i $IGCTIM[i] $IGCELE[i] $IGCLAT[i]  $IGCLONG[i] \n";
 
-     }
+//     }
 
 
 
@@ -469,19 +479,21 @@ include "showtask_scrn"
 
 //===========================================//
  if (Ntaskpts > 1) {
-
+  int alt;
   for (i = 0; i < Ntaskpts ; i++) {
 
         k= Taskpts[i];
 	
         tpl =   Wtp[k]->Place;
-        
+	
+        alt = Wtp[k]->Alt;  
       
       <<"$i   $tpl  $tpwo[i]\n"
 
        
         sWo(tpwo[i],@value,"$tpl",@update,@redraw);  
-
+       // woSetValue(tpwo[i],k,1)
+	woSetValue(tpwo[i],alt,1)
        if (i >= MaxSelTps) {
          <<"$i > $MaxSelTps \n"
           break;

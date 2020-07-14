@@ -30,6 +30,19 @@ b = BLUE
 
 enum  days { MON = 1, TUE, WED, THU, FRI, SAT, SUN, FUN = 80 }
 
+<<"%V $days \n"
+
+<<"$(typeof(days))\n"
+<<"$days[2]\n"
+<<"$days[3]\n"
+<<"$days[4] \n"
+<<"$days[5]\n"
+
+<<"%V $MON \n"
+
+<<"$typeof(MON))\n"
+
+exit()
 myday = WED
 
 <<"%V WED $myday \n"

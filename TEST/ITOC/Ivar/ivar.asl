@@ -1,7 +1,7 @@
 //%*********************************************** 
 //*  @script ivar.asl 
 //* 
-//*  @comment test indirect var 15651var 
+//*  @comment test indirect var 
 //*  @release CARBON 
 //*  @vers 1.2 He Helium [asl 6.2.50 C-He-Sn]                                
 //*  @date Sat May 23 23:30:34 2020 
@@ -26,6 +26,7 @@
 <<"%V$v1\n"
 
 v1->info(1)
+
    varname = "v1"; 
 
    $varname = 2;

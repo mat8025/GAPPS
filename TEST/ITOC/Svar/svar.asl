@@ -117,14 +117,20 @@ checkStr(S[3],"3")
 
 checkStage ("assign via Split")
 
-
-T= Split("%6.2f$(vgen(FLOAT_,10,0,0.5))")
+VF = vgen(FLOAT_,10,1,0.5)
+<<"%V $VF\n"
+//TSV="%6.2f$(VF*2)"
+TSV="$(VF*2)"
+<<"%V$TSV\n"
+TS= "%6.2f$(vgen(FLOAT_,10,1,0.5))"
+<<"%V$TS\n"
+T= Split("%6.2f$(vgen(FLOAT_,10,1,0.5))")
 
 <<"$T\n"
 
-checkStr(T[1],"0.50")
-checkStr(T[2],"1.00")
-checkStr(T[3],"1.50")
+checkStr(T[1],"1.50")
+checkStr(T[2],"2.00")
+checkStr(T[3],"2.50")
 
 checkStage ("assign via Split print")
 
@@ -736,111 +742,7 @@ Turnpt  Tp;
  
 
 checkStage("Proc")
-
-//%*********************************************** 
-//*  @script svar_hash.asl 
-//* 
-//*  @comment svar as hash table 
-//*  @release CARBON 
-//*  @vers 1.3 Li Lithium                                                  
-//*  @date Tue May  7 19:17:52 2019 
-//*  @cdate 1/1/2010 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2019 → 
-//* 
-//***********************************************%
-
-
-svar ST
-
-tsz = 30;
-nplace = 2
-
-ST->table("HASH",tsz,nplace) // makes Svar a hash type -- could extend table
-
-key = "Hastings"
-ival = 1066
-index=ST->addkeyval(key,ival) // returns index
-<<"%V$key $ival $index\n"
-
-
-
-key = "Agincourt"
-ival =  1415
-index=ST->addkeyval(key,ival) // returns index
-<<"%V$key $ival $index\n"
-
-key = "Waterloo"
-ival =  1815
-index=ST->addkeyval(key,ival) // returns index
-<<"%V$key $ival $index\n"
-
-key = "Gettysburg"
-ival =  1863
-index=ST->addkeyval(key,ival) // returns index
-<<"%V$key $ival $index\n"
-
-
-key= "Trafalgar"
-ival = 1805
-index=ST->addkeyval(key,ival) // returns index
-<<"%V$key $ival $index\n"
-
-key= "Somme"
-ival = 1916
-index=ST->addkeyval(key,ival) // returns index
-<<"%V$key $ival $index\n"
-
-key= "Verdun"
-ival = 1916
-index=ST->addkeyval(key,ival) // returns index
-<<"%V$key $ival $index\n"
-
-key= "Midway"
-ival = 1942
-index=ST->addkeyval(key,ival) // returns index
-<<"%V$key $ival $index\n"
-
-
-key= "Stalingrad"
-ival = 1942
-index=ST->addkeyval(key,ival) // returns index
-<<"%V$key $ival $index\n"
-
-
-
-val = ST->lookup(key)
-
-<<"$key  $val\n"
-
-key= "Hastings"
-val = ST->lookup(key)
-
-<<"$key  $val\n"
-
-key= "Gettysburg"
-val = ST->lookup(key)
-
-<<"$key  $val\n"
-
-sz= ST->caz()
-<<"$sz $S[0] \n"
-//sdb(1,@~pline)
- for (i=0; i <sz; i += 2) {
-    // if (scmp(S[i],"") == 0) {
-     if (!scmp(S[i],"") ) {
-       <<"$i $S[i] $S[i+1]\n"
-    }
-  }
-
-checkStr(val,"1863")
-key= "Stalingrad"
-val = ST->lookup(key)
-checkStr(val,"1942")
-
-checkStage("Hash")
-
-
+//==============================//
 svar Opts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,",",");
 
 <<"$Opts \n"

@@ -179,10 +179,10 @@ proc FoodFavorites()
 ///  call back via woname
 ///
 
-<<"$_proc $_ecol\n"
+<<"$_proc $_ecol $_ewoid\n"
 
 svar wans;
-   if (_ecol >= 0) {
+   if (_ecol >= 0  && (_ewoid == foodswo)) {
 
       // add to daily log ? 
          yn=yesornomenu("Add to Daily Log?")

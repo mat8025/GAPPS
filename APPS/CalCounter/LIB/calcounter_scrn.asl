@@ -104,6 +104,7 @@
 
 
  foodswo=cWo(vp,@sheet,@name,"FoodFavorites",@color,GREEN_,@resize,CFx,0.01,CFX,0.50)
+ //foodswo=cWo(vp,@sheet,@name,"Favorites",@color,GREEN_,@resize,CFx,0.01,CFX,0.50)
 
 
  sWo(foodswo,@border,@drawon,@clipborder,@fonthue,RED_,@value,"1",@func,"xxx")

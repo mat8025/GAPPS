@@ -428,19 +428,31 @@ iv->info(1)
 <<" $iv \n"
 
 //sdb(1,@step)
-char dv[] = { 'G', 84, 85, 78, 'O', '0', 69, 75,76,77 }
+
+char dv[] = { 'G', 84, 85, 78, 'O', 69,  75,76,77,'0' }
 
 
 <<"$(vinfo(dv))\n"
 <<"$dv \n"
 <<"%c $dv \n"
-
+sz= Caz(dv)
+<<"%V $sz\n"
+ checkNum(dv[0], 'G' )
+ checkNum(dv[1], 84 )
+  checkNum(dv[2], 85 )
+   checkNum(dv[3], 78 )
  checkNum(dv[4], 'O' )
- checkNum(dv[5], '0' )
- checkNum(dv[6], 69 )
- checkNum(dv[9], 77 )
- checkNum(dv[0], 'G' ) 
+ checkNum(dv[5], 69 )
+ checkNum(dv[6], 75 )
+  checkNum(dv[7], 76 )
+ checkNum(dv[8], 77 )
+ checkNum(dv[9], '0' )
 
+char ev[] = { 71, 84, 85, 78, 79, 48, 69, 75,76,77 }
+
+<<"$ev \n"
+
+co ()
 
 
 char a = 'G';
