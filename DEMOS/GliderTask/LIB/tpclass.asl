@@ -13,7 +13,7 @@
 myScript = getScript();
 
 
-<<"read in tpclass\n"
+//<<"read in tpclass\n"
 
 //============================================
 int Ntp_id = 0;
@@ -64,7 +64,7 @@ class Turnpt
 
     //<<"%V$Lon  \n" 
      
-     Alt = wval[4];
+     Alt = atof(wval[4]);
      
      rway = wval[5];
 
@@ -73,19 +73,64 @@ class Turnpt
      Radio = atof(wval[6]);
 
      tptype = wval[7];
+     
      spat (tptype,"A",-1,-1,&is_airport);
-//     <<" $Place $is_airport\n"
-     //Lat->info(1)
 
      Ladeg =  coorToDeg(Lat); // wayp
      Longdeg = coorToDeg(Lon);
      
-DBG"%V $Ladeg $Longdeg \n"
+     DBG"%V $Ladeg $Longdeg \n"
 
 
       }
 //=========================//
-   cmf SetPlace (str val)   
+
+  cmf TPCUPset (svar wval) 
+   {
+
+     val = scut(wval[0],1)
+     
+     Place=dewhite(scut(val,-1)); // wayp 
+    
+     //<<"%V$Place\n"
+
+
+     Idnt =  wval[1];
+     
+     Lat = wval[3]; // wayp 
+
+
+     Lon = wval[4];
+
+    //<<"%V$Lon  \n" 
+     val = scut(wval[5],-2); 
+     Alt = wval[5];
+
+     is_airport =0
+
+     rway = wval[7];
+
+     if (!rway @="") {
+         is_airport =1
+     }
+     
+     Radio = atof(wval[9]);
+
+     tptype = wval[10];
+     
+    // spat (tptype,"A",-1,-1,&is_airport);
+
+     Ladeg =  coorToDeg(Lat,2); 
+
+     Longdeg = coorToDeg(Lon,2);
+     
+     DBG"%V $Ladeg $Longdeg \n"
+
+
+      }
+//=========================//
+
+cmf SetPlace (str val)   
    {
        Place = val;
    }

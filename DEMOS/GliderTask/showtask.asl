@@ -74,18 +74,27 @@ TaskType = "TRI";
 
 int Nlegs = 3;
 
-Turnpt  Wtp[500]; // 
+Turnpt  Wtp[800]; // 
 
 /// open turnpoint file lat,long 
-//tp_file = GetArgStr()
 
-  tp_file = "DAT/turnpts.dat"  // open turnpoint file TA airports
+int use_cup = 1;
 
+
+
+if (use_cup) {
+
+    tp_file = "CUP/bbrief.cup"  
+
+}
+else {
+
+  tp_file = "DAT/turnptsA.dat"  // open turnpoint file TA airports
 
   if (tp_file @= "") {
     tp_file = "DAT/turnptsSM.dat"  // open turnpoint file 
    }
-
+}
 
 
 A=  ofr(tp_file);
@@ -95,8 +104,12 @@ A=  ofr(tp_file);
     exit();
  }
 
-RF= readRecord(A);
-
+if (use_cup) {
+  RF= readRecord(A,@del,',');
+}
+else {
+ RF= readRecord(A);
+}
 cf(A);
 
 
@@ -112,16 +125,35 @@ recinfo = info(RF);
 for (i= 0; i< Nrecs; i++) {
   <<"<|$i|> $RF[i]\n"
 }
-lat = RF[2][2];
-longv = RF[2][3];
 
-<<"%V $lat $longv \n"
 
-WH=searchRecord(RF,"Laramie",0)
+lat = RF[2][3];
+longv = RF[2][4];
+
+<<"%V $RF[2][0] $lat $longv \n"
+
+WH=searchRecord(RF,"Laramie",0,0)
 
 <<"$WH \n"
+index = WH[0][0]
 
-WH=searchRecord(RF,"Salida",0)
+place = RF[index][0]
+lat = RF[index][2]
+longv = RF[WH[0][0]][3]
+
+<<"$RF[index][0] \n"
+<<"$RF[index][2] \n"
+<<"%V $place $lat $longv\n"
+
+WH=searchRecord(RF,"Salida",0,0)
+index = WH[0][0]
+place = RF[index][0]
+lat = RF[index][2]
+longv = RF[WH[0][0]][3]
+
+<<"$RF[index][0] \n"
+<<"$RF[index][2] \n"
+<<"%V $place $lat $longv\n"
 
 <<"$WH \n"
 index = WH[0][0]
@@ -134,6 +166,23 @@ longv = RF[WH[0][0]][3]
 <<"$RF[index][0] \n"
 <<"$RF[index][2] \n"
 <<"%V $place $lat $longv\n"
+
+
+WH=searchRecord(RF,"jamest",0,0)
+
+<<"$WH \n"
+index = WH[0][0]
+<<"%V $index\n"
+
+place = RF[index][0]
+lat = RF[index][2]
+longv = RF[WH[0][0]][3]
+
+<<"$RF[index][0] \n"
+<<"$RF[index][2] \n"
+<<"%V $place $lat $longv\n"
+
+
 
 
 //================================//
@@ -151,26 +200,33 @@ longv = RF[WH[0][0]][3]
   Ntp = 0;
 
  svar Wval;
-
+  if (!use_cup) {
          C=readline(A);
 	 C=readline(A);
-
+   }
+   
   while (1) {
 
+    if (use_cup) {
+               nwr = Wval->ReadWords(A,0,',')
+    }
+    else {
             nwr = Wval->ReadWords(A)
-
+    }
             if (nwr == -1) {
 	      break
             }
 	    
             if (nwr > 6) {
 	    
-//<<"$Wval\n";
 
-             Wtp[Ntp]->TPset(Wval);
-//<<"$Ntp $Wval[0] \n"	     
 
- //            Wtp[Ntp]->Print()
+    if (use_cup) {
+             Wtp[Ntp]->TPCUPset(Wval);
+    }
+    else {
+            Wtp[Ntp]->TPset(Wval);
+    }
 
 
              Ntp++;
@@ -277,17 +333,17 @@ svar Tskval;
  while (AnotherArg()) {
 
 
-    targ = GetArgStr()
+         targ = GetArgStr()
 
           WH=searchRecord(RF,targ,0,0)
-	  <<"%V $k $WH\n"
+	  <<"%V $WH\n"
 	  
           index = WH[0][0]
           if (index >=0) {
           ttp = RF[index];
-<<" found $targ \n"
+<<" found $targ  $index\n"
 <<"$ttp \n"
-         Taskpts[Ntaskpts] = index;
+          Taskpts[Ntaskpts] = index;
           Ntaskpts++;
 
           }

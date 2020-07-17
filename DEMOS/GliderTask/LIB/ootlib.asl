@@ -101,6 +101,7 @@ DBG"$_proc  $Ntaskpts \n"
 
      index = Taskpts[i]
      kmd = 0.0;
+     
      tpl = Wtp[index]->Place;
      
      la2 = Wtp[index]->Ladeg;
@@ -128,7 +129,7 @@ DBG"$_proc  $Ntaskpts \n"
      if (la1 != 1000.0) {
         kmd = computeGCD(la1,la2,lon1,lon2);
      }
-<<" tpt $tpl $i  <|$Wtp[index]->Place|>  $Wtp[index]->Ladeg  $Wtp[index]->Longdeg %6.0f $kmd\n"
+<<" tpt $tpl $i  $index <|$Wtp[index]->Place|>  $Wtp[index]->Ladeg  $Wtp[index]->Longdeg %6.0f $kmd\n"
      la1 = la2;
      lon1 = lon2;
      adjust++;
@@ -163,8 +164,8 @@ proc  computeHTD()
              tcd =  ComputeTC(nl, nl+1)
        TC[nl] = tcd;
        Dur[nl] = Leg[nl]/ Cruise_speed;
-<<"<$nl>  $tcd $Dur[nl] $TC[nl] "
-<<"$Leg[nl]  \n"
+//<<"<$nl>  $tcd $Dur[nl] $TC[nl] "
+//<<"$Leg[nl]  \n"
 
        totalD += Leg[nl]
   }

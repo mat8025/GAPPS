@@ -17,7 +17,7 @@
 #define DBG ~!
 
 
-_DB = 1;
+_DB = -1;
 checkIn(_dblevel)
 
 
@@ -52,11 +52,16 @@ svar Wval;
 #  the_min = "0"
 int nerror = 0
 
-  A=ofr("DAT/turnpts.dat")  // open turnpoint file
+int use_cup = 1;
 
-    if (A == -1) {
-      A=ofr("cfi/turnpts")
-    }
+  
+  if (use_cup) {
+   A=ofr("CUP/bbrief.cup")  // open turnpoint file
+  }
+  else {
+   A=ofr("DAT/turnpts.dat")  // open turnpoint file
+  }
+
     
   if (A == -1) {
     exit(-1, " can't find turnpts file ")
@@ -204,7 +209,6 @@ while ( i == -1) {
 
       if (via_cl) {
 
-	//	 the_start = CLTPT[cnttpt++]
 	the_start = CLTPT[cnttpt];
 	
 	//<<"$the_start $cnttpt \n"
@@ -278,17 +282,16 @@ while ( i == -1) {
 	  //<<"pcl \n"
 	    //w=pcl_file(A,0,1,0)
 	}
-
-      //  <<"$w \n"
-
-	//ki=Fseek(A,w,0)
 	ki = seek_line(A,0)
 <<[_DB]" $ki back to beginning of line ?\n"
 
 	  // need to step back a line
-
-        nwr = Wval->readWords(A)
-
+        if (use_cup) {
+         nwr = Wval->readWords(A,0,',');
+	 }
+        else { 
+         nwr = Wval->readWords(A)
+        }
       //    <<" %i $Wval \n"
 <<[_DB]"$nwr $Wval[0] $Wval[1] $Wval[2] $Wval[3] \n"
 
@@ -297,15 +300,26 @@ while ( i == -1) {
 	// <<"%V$msz \n"
 	// <<"%V$n_legs \n"
 	tplace = Wval[0];
-	tlon = Wval[3];
 
-<<[_DB]"%V$tplace $tlon \n"
-<<[_DB]"$Wval[::]\n"	  
-      Wtp[n_legs]->TPset(Wval)
-
-	  //Wtp[n_legs]->Print()
-
+     if (use_cup) {
+       	tlon = Wval[4];
 	}
+     else {
+	tlon = Wval[3];
+     }
+
+
+//<<"%V$tplace $tlon \n"
+//<<"$Wval[::]\n"	  
+
+       if (use_cup) {
+         Wtp[n_legs]->TPCUPset(Wval)
+	 }
+       else { 
+         Wtp[n_legs]->TPset(Wval)
+       }
+
+ }
 
 //<<"next \n"
 
@@ -378,12 +392,16 @@ while ( i == -1) {
 
 	// Fseek(A,w,0)
             ki = seek_line(A,0)
-            nwr = Wval->readWords(A)
+           if (use_cup) {
+             nwr = Wval->readWords(A,0,',')
+             Wtp[n_legs]->TPCUPset(Wval)
+	   }
+	   else {
+             nwr = Wval->readWords(A)
+             Wtp[n_legs]->TPset(Wval)
 
-           msz = Wval->Caz()
-	    
-            Wtp[n_legs]->TPset(Wval)
-
+           }
+            msz = Wval->Caz()
       }
 
 
@@ -407,7 +425,7 @@ ild= abs(LoD)
 
  if (ok_to_compute) {
 
-       <<"%V  $Cruise_speed\n"
+    //   <<"%V  $Cruise_speed\n"
        computeHTD()
 
 
