@@ -19,6 +19,7 @@ myScript = getScript()
 include "debug.asl"
 include "hv.asl"
 
+sdb(2,@~pline,@trace)
 
 #define PGREEN '\033[1;32m'
 #define PRED '\033[1;31m'
@@ -175,7 +176,7 @@ proc Run2Test(str td)
 {
 
 //<<" $_proc $td $Testdir\n"
-
+  //td->info(1)
   changeDir(Testdir)
 
   hdg(td)
@@ -193,6 +194,12 @@ proc Run2Test(str td)
 
 proc RunDirTests(str Td, str Tl )
 {
+//<<"$Td  $Tl\n"
+
+
+   //Tl->info(1)
+//ri=Tl->info()
+
       Run2Test(Td);
       Tl->DeWhite()
       Tp = Split(Tl,",");
@@ -492,7 +499,7 @@ proc cart (str aprg)
   xwt_prog = "xxx";
 
    tim = time();
-
+//aprg->info(1)
 
  
   !!"rm -f $aprg  ${aprg}.tst  last_test*"
@@ -1192,7 +1199,8 @@ if ((do_all || do_proc ) && (do_proc != -1)) {
 
   RunDirTests("ProcArray","poffset,arrayarg1,arrayarg2")
   
-  RunDirTests("Swap","swap1,swap")
+
+
 
   Run2Test("Static")
   
@@ -1253,7 +1261,10 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
   if ((do_all || do_record ) && (do_record != -1)) {
 
-    RunDirTests("Record","record,readrecord,prtrecord,recprt,recatof,reclhs,rectest,mdrecord,rrdyn");
+   
+
+   RunDirTests("Record","record,readrecord,prtrecord,recprt,recatof,reclhs,rectest,mdrecord,rrdyn");
+ //   RunDirTests("Record","record,readrecord");
 
 
   }
@@ -1307,7 +1318,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
    if ((do_all || do_ptrs ) && (do_ptrs != -1)) {
 
      RunDirTests("Ptrs","ptrvec,ptr-numvec,ptr-svarvec,ptr-varvec,indirect");
-     
+     RunDirTests("Swap","swap,swap1");
 
    }
 

@@ -38,7 +38,7 @@ proc Addrow()
 // <<"New size %V $rows $cols $sz\n";   // increase ??
   
    sWo(cellwo,@setrowscols,rows+1,cols+1);
-   sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
+   sWo(cellwo,@selectrows,0,rows-1);
 
    setRowColSizes();
    sWo(cellwo,@cellval,R,0,0,rows,cols);
@@ -53,8 +53,7 @@ proc foodSearch()
 {
 int i;
 
-//sWo(choicewo,@selectrowscols,0,2,0,cols-1,1); // startrow,endrow,startcol,endcol
-//testargs(1,choicewo,@selectrowscols,0,2,0,cols-1,1); // startrow,endrow,startcol,endcol
+
 
   Bestpick = -1;		//clear the best pick choices
   bpick = -1;
@@ -85,7 +84,7 @@ int i;
 
 //testargs(1,choicewo,@selectrowscols,0,2,0,cols-1,1); // startrow,endrow,startcol,endcol
 
-  sWo(choicewo,@selectrowscols,0,Nbp-1,0,cols-1,1); // startrow,endrow,startcol,endcol
+  sWo(choicewo,@selectrows,0,Nbp-1,1); // startrow,endrow,startcol,endcol
   setRowColSizes();
    
 sWo(choicewo, @cellval, RC,0,0,Nbp,cols);  // startrow,startcol,nrows, ncols
@@ -165,7 +164,7 @@ svar wans;
 //   <<"New size %V $rows $cols $sz\n";   // increase ??
   
    sWo(cellwo,@setrowscols,rows+1,cols+1);
-   sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
+   sWo(cellwo,@selectrows,0,rows-1);
     // swap prev last and this row
    swaprow_a = er;
    swaprow_b = er-1;

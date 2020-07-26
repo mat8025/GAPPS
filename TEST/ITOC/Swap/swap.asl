@@ -14,6 +14,8 @@
 ///  demo ptr/ref args
 ///
 
+include "debug.asl"; 
+//debugON();
 
 
 checkIn(_dblevel)
@@ -292,9 +294,6 @@ co ()
    swapP(&r,&a)
 
 <<"post- swap? %V $r $a\n"
-
-
-
 
 // ref parameters?
 // not working

@@ -8,7 +8,7 @@
 ///
 setdebug(1)
 
-Record R[20];
+record R[20];
 
 int Rn = 0;
 

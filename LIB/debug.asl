@@ -62,6 +62,10 @@ proc scriptDBOFF()
   _DB = -1;
 }
 
+proc setNICerrors( int n)
+{
+ setmaxICerrors(n)
+}
 //==========================
 
 <<" %V $_include  DONE debug.asl\n"

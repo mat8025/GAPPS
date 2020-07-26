@@ -1301,6 +1301,7 @@ DBG"%V $igc_file \n"
 
     ntps =ReadIGC(a,IGCTIM,IGCLAT,IGCLONG,IGCELE);
 
+    IGCELE *= 3.280839 ;
 
   //  IGCLONG = -1 * IGCLONG;
 DBG"read $ntps from $igc_file \n"

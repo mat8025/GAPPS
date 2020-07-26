@@ -12,7 +12,7 @@
 //***********************************************%
 
 
-Record FF[>10];
+record FF[>10];
 
 //============== set up favorites  ====================//
 // select porridge, eggs scrambled, whole milk , coffee
@@ -100,11 +100,12 @@ proc foodsDisplay()
   Nfav->info(1)
   <<"%V $foodswo $Nfav  $Fcols $Page_rows \n"
 
-   sWo(foodswo,@setrowscols,Nfav+1,Fcols+1); // setup sheet rows&cols
+   sWo(foodswo,@setrowscols,Nfav+1,Fcols); // setup sheet rows&cols
    // set sheet to required rows and cols --- before reading in record -
    // otherwise -- too much realloc/resetting of shhet rows -- done per row
-   sWo(foodswo,@cellval,FF,0,0,Nfav,Fcols);  
-      curr_row = 0;
+   sWo(foodswo,@selectcols,1,3,0); // display size of fav
+   sWo(foodswo,@cellval,FF,0,0,Nfav,Fcols-1);  
+   curr_row = 0;
 
     npgs =   Nfav/Page_rows;
 
@@ -112,16 +113,14 @@ proc foodsDisplay()
 
     sWo(foodswo,@redraw);
 
-/{
+/{/*
 
 
    if (Nfav < Page_rows) {
-   
-     sWo(foodswo,@selectrowscols,0,Nfav-1,0,Fcols-1); // display size of fav
+     sWo(foodswo,@selectrows,0,Nfav-1); // display size of fav
    }
    else {
-   //  sWo(foodswo,@setrowscols,Page_rows+1,Fcols+1); // setup sheet rows&cols
-     sWo(foodswo,@selectrowscols,0,Page_rows-1,0,Fcols-1); // display size of fav
+     sWo(foodswo,@selectrows,0,Page_rows-1); // display size of fav
    }
 
 
@@ -136,7 +135,7 @@ proc foodsDisplay()
 //   sWo(cellwo,@setcolsize,FOODCOLSZ,0,1) ;
 
     sWo(foodswo,@redraw);
-/}
+/}*/
 
 /{
   for (i = 0; i< Page_rows ; i++) {

@@ -24,64 +24,70 @@ proc addFoodItem(svar wfd)
      wval = Dewhite(R[i][0]);
 <<"$i <$wval>\n"
      if (wval @= "") {
-     <<"found empty row! \n"
-        er = i;
+     <<"found empty row! $i\n"
+         er = i;
 	break;
      }
     }
+ //   R->info(1)
+
 
    if (er == -1) {
-
     rows++;
     Nrows++;
     er = Nrows-1;
 <<"ADDING a row %V $rows $Nrows\n"
-}
-   
-<<"in $_proc record $rows  $er\n"
+    }
 
+
+<<"in $_proc record $rows row $er\n"
+    // TBF wvd shoud not be PTR type! - but ARGPTR
     R[er] = wfd;
-    sz = Caz(R);
-    
-  <<"%V $sz $rows $Nrows\n"
+<<"%V $wfd\n"
 
-//   <<"New size %V $rows $cols $sz\n";   // increase ??
-  
-//   sWo(cellwo,@setrowscols,rows+1,cols+1);
-//   sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
+<<"%V $R[er]\n"
+
+    sz = Caz(R);
+
+<<"%V $sz $rows $Nrows\n"
+
+  for (k=0; k < Nrows ;k++) {
+<<"$k $R[k]\n"
+  }
+
+<<"$R\n"
+<<"after add row \n"
+<<"b4 setrowcols\n"
 
 
    sWo(cellwo,@setrowscols,Nrows,cols+1);
-   sWo(cellwo,@selectrowscols,0,Nrows-1,0,cols-1);
+   sWo(cellwo,@selectrows,0,Nrows-1);
 
 
+<<"b4 totalRows\n"
 
-// swap prev last and this row
-//  swaprow_a = er;
-// swaprow_b = er-1;
-   
-  // SWOPROWS();
-   R->info(1)
+
    totalRows();
-   
-<<"AFTER adding \n"
 
-<<"$R\n"
+<<"%V $R\n"
 
-//  
    setRowColSizes()
 
 <<"after adding %V $er $rows $Nrows $cols\n"
-<<"$R[er]\n"
+
   //sWo(cellwo,@cellval,R,0,0,rows+1,cols);
+//   R->info(1)
+<<"b4 cellval\n"
 
   sWo(cellwo,@cellval,R);
   sWo(cellwo,@redraw);
   
  <<"%V$totalswo \n"
  <<"%V $cols\n"
+//   R->info(1)
+<<"b4 displayTotals\n"
+   displayTotals()
 
- displayTotals()
- color_foodlog();
+   color_foodlog();
 }
 //=======================

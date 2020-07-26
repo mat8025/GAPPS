@@ -12,6 +12,123 @@
 //***********************************************%
 
 
+proc totalRows()
+{
+//
+// last row  should contain previous totals
+//
+<<"running $_proc \n"
+
+  float fc[NFV];  // cals,carbs,fat,prt,chol,sfat,txt
+  int kc = 0;
+  int fi = 3;
+  float fval;
+  float nval;
+  int nfvals = 0;
+  str wrs ="xx";
+  nr= Caz(R);
+  
+<<"%V $Nrows $rows $nr\n"
+//<<"R[0] $R[0] \n"
+
+  frows = Nrows-1;   // Nrows title row + food item rows
+  
+
+//<<"$R[0][::]\n"
+//<<"$R[1][::]\n"
+//<<"%V $frows  $R[frows][0]\n"
+//fc->info(1)
+
+   nrows_counted =0;
+ // frows = 4;
+  for (j = 1; j <= frows ; j++) {
+
+     fi = 3;
+
+    nc = Caz(R,j);
+
+ // <<"R<$j> <$nc> $R[j]\n"
+  
+   
+   
+   if (nc >5) {
+
+    nfvals++;
+
+   for (kc = 0; kc < (nc-3)  ; kc++) {
+           fval = 0.0;
+           wrs = dewhite(R[j][fi]);
+
+	    if (wrs @= "") { 
+<<"$kc empty field\n"
+//
+                 break;
+            }
+
+//wrs->info(1)
+
+	    fval = atof(wrs);
+	    
+//<<"$kc $j $fi  $R[j][fi] <|$wrs|> fval $fval\n"	   
+
+//wrs->info(1)
+//fval->info(1)
+//<<"%V $wrs $fval \n"
+//ans=iread(":")
+
+           fc[kc] += fval;
+           //cval = fc[kc]
+          // fc[kc] =  cval + fval;
+
+//<<"<$j> fc[${kc}] $fi $fval $R[j][fi] $fc[kc]\n"
+
+	  fi++;
+      }
+      nrows_counted++;
+    }
+    }
+    
+
+   j = frows;
+   
+<<"total rows %V $nrows_counted $frows \n"
+
+   Tot[1][0] = "#Totals";
+   Tot[1][1] = "$nfvals";
+   Tot[1][2] = "ITMS";
+   Tot[1][27] = "0.0";
+
+//   R->info(1)
+tot_rows = Caz(Tot)
+tot_cols = Caz(Tot,0)
+//<<"%V $tot_rows $tot_cols \n"
+   for (kc = 0; kc < NFV  ; kc++) {
+
+          nval = fc[kc];
+       // R[j][3+kc] = dewhite("%6.2f$fc[kc]");  // TBF
+
+          Tot[1][3+kc] = "%-6.3f$nval";
+
+//<<"$kc  $Tot[0][3+kc] $nval \n"	  
+
+//	  rval = R[j][3+kc];
+//       
+    }
+
+
+<<"done totals\n $Tot\n"
+tot_rows = Caz(Tot)
+tot_cols = Caz(Tot,1)
+
+
+//    R->info(1)
+<<"done total %V $tot_rows $tot_cols \n"    
+//<<"$R\n"
+
+}
+//===================================
+
+/{/*
 
 proc totalRows()
 {
@@ -32,7 +149,7 @@ proc totalRows()
 //<<"%V $Nrows $rows $nr\n"
 //<<"R[0] $R[0] \n"
 
-frows = Nrows-1;   // Nrows title row + food itme rows
+  frows = Nrows-1;   // Nrows title row + food item rows
   
 
 //<<"$R[0][::]\n"
@@ -46,7 +163,7 @@ frows = Nrows-1;   // Nrows title row + food itme rows
 
      fi = 3;
 
-//  <<"R<$j> $R[j]\n"
+  <<"R<$j> $R[j]\n"
   
    nc = Caz(R,j);
    if (nc >5) {
@@ -57,7 +174,7 @@ frows = Nrows-1;   // Nrows title row + food itme rows
            wrs = dewhite(R[j][fi]);
 	   
 	    if (wrs @= "") { 
-//<<"$kc empty field\n"
+<<"$kc empty field\n"
 //wrs->info(1)
                  break;
             }
@@ -108,17 +225,20 @@ tot_cols = Caz(Tot,0)
 <<"done totals\n $Tot\n"
 tot_rows = Caz(Tot)
 tot_cols = Caz(Tot,1)
-<<"%V $tot_rows $tot_cols \n"
-//<<"$R\n"
+
+
+    R->info(1)
+<<"done total %V $tot_rows $tot_cols \n"    
+<<"$R\n"
 
 }
 //===================================
-
+/}*/
 
 proc displayTotals()
 {
 
-  sWo(totalswo,@selectrowscols,0,1,0,29);
+  sWo(totalswo,@selectrows,0,1);
   sWo(totalswo,@setcolsize,FOODCOLSZ,0,1) ;
   sWo(totalswo,@setcolsize,2,3,1) ;  
   sWo(totalswo,@cellval,Tot);

@@ -17,7 +17,7 @@
 #define DBG ~!
 
 
-_DB = -1;
+_DB = 1;
 checkIn(_dblevel)
 
 
@@ -35,7 +35,7 @@ float Cruise_speed = (80 * nm_to_km);
 
 Turnpt  Wtp[50];
 
-Svar CLTPT;
+svar CLTPT;
 
 svar Wval;
 
@@ -59,7 +59,7 @@ int use_cup = 1;
    A=ofr("CUP/bbrief.cup")  // open turnpoint file
   }
   else {
-   A=ofr("DAT/turnpts.dat")  // open turnpoint file
+   A=ofr("DAT/turnptsA.dat")  // open turnpoint file
   }
 
     
@@ -104,11 +104,11 @@ int cltpt = 0
     sz = targ->Caz()
     ac++
 
-      //  <<"%V $ac  $targ $sz $istpt \n"
+
 
     if (targ @= "LD") {
 
-      LoD= atof(_argv[ac])
+       LoD= atof(_argv[ac])
 
         ac++
 
@@ -154,7 +154,7 @@ int cltpt = 0
       }
 
     //<<" %V $targ $istpt $(typeof(istpt)) \n"
-
+    <<"%V $ac  $targ $sz $istpt \n"
 
       if (istpt) {
 
@@ -162,10 +162,9 @@ int cltpt = 0
 
         via_cl = 1
 
-	//        CLTPT[cltpt++] = targ
         CLTPT[cltpt] = targ
 
-	//<<"%V$targ $sz $cltpt $CLTPT[cltpt] \n"
+	<<"%V$targ $sz $cltpt $CLTPT[cltpt] \n"
         cltpt++
       }
     //    <<"%V $ac  $targ $sz \n"
@@ -182,20 +181,24 @@ int ki
 
 int cnttpt = 0
 
-
 # enter start
 
 int input_lat_long = 0
 
 int i = -1
 
-    //<<"DONE ARGS  $cltpt\n"
+    <<"DONE ARGS  $cltpt\n"
 
     ////   do this to check routine    
     //<<"Start  $the_start \n"
 
 // first parse code bug on reading svar fields?
 
+ for (k= 0; k < cltpt; k++) {
+
+<<"$k  $CLTPT[k] \n"
+
+ }
 
 /////////////////////////////
     
@@ -203,7 +206,7 @@ i = -1;
 
 while ( i == -1) {
 
-<<[_DB]" iw %V$i %v $via_keyb $via_cl\n"
+<<[_DB]" iw %V $cnttpt $i %v $via_keyb $via_cl\n"
 
       Fseek(A,0,0)
 
@@ -211,7 +214,7 @@ while ( i == -1) {
 
 	the_start = CLTPT[cnttpt];
 	
-	//<<"$the_start $cnttpt \n"
+	<<"$the_start $cnttpt \n"
 
          cnttpt++;
 
@@ -232,12 +235,12 @@ while ( i == -1) {
 
       
       if (the_start @= "input") {
-        input_lat_long = 1
+          input_lat_long = 1
           i = 0;
 	  break;
           }
 
-      //<<"searching file for $the_start  \n";
+      <<"searching file for $the_start\n";
       // <<"         \n";
       //<<" \n";
 
@@ -259,10 +262,13 @@ while ( i == -1) {
               }
 
       }
-  }
 
 
-//<<"inputs\n"
+
+
+
+
+<<"inputs  $the_start\n"
 // -------------------------------
 //<<"%V$input_lat_long  $i \n"
 
@@ -276,13 +282,15 @@ while ( i == -1) {
         Fseek(A,i,0)
 
 	if (via_keyb) {
-        w=pcl_file(A)
+             w=pcl_file(A)
 	  }
 	else {
 	  //<<"pcl \n"
 	    //w=pcl_file(A,0,1,0)
 	}
+	
 	ki = seek_line(A,0)
+
 <<[_DB]" $ki back to beginning of line ?\n"
 
 	  // need to step back a line
@@ -293,6 +301,7 @@ while ( i == -1) {
          nwr = Wval->readWords(A)
         }
       //    <<" %i $Wval \n"
+
 <<[_DB]"$nwr $Wval[0] $Wval[1] $Wval[2] $Wval[3] \n"
 
 	  //    msz = Wval->Caz()
@@ -320,6 +329,8 @@ while ( i == -1) {
        }
 
  }
+
+}
 
 //<<"next \n"
 
@@ -403,7 +414,6 @@ while ( i == -1) {
            }
             msz = Wval->Caz()
       }
-
 
   }
 
@@ -500,10 +510,10 @@ ild= abs(LoD)
        rtotal = 0
        }
 
- <<"$li %10s$tpb\t%4s$ident ${Wtp[li]->Lat}\t${Wtp[li]->Lon} %9.0f$agl ${Wtp[li]->Alt} %4.1f$pc_tot\t "
-<<"%5.1f$wleg $rtotal\t$rtime\t%6.2f${Wtp[li]->Radio} "
-<<"%6.0f$TC[li] "
-<<"%6.2f$Dur[li]\n"
+ <<"$li %10s$tpb\t%4s$ident ${Wtp[li]->Lat}\t${Wtp[li]->Lon} %9.0f$agl ${Wtp[li]->Alt} %4.1f$pc_tot\t"
+<<"%5.1f$wleg\t$rtotal\t$rtime\t%6.2f${Wtp[li]->Radio}"
+<<"\t%6.0f$TC[li] "
+<<"\t%6.2f$Dur[li]\n"
 
   }
 

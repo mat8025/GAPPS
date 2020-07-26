@@ -261,7 +261,7 @@ UnitsCol = 2;
    
    sWo(cellwo,@cellval,R,0,0,rows,cols);
    
-   sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
+   sWo(cellwo,@selectrows,0,rows-1);
    
    sWo(cellwo,@cellval,0,tags_col,"Tags"); 
    
@@ -279,7 +279,7 @@ UnitsCol = 2;
    
    
    sWo(choicewo,@setrowscols,Nbp+1,cols+1);
-   sWo(choicewo,@selectrowscols,0,Nbp,0,cols);
+   sWo(choicewo,@selectrows,0,Nbp);
    
    sWo(choicewo,@setcolsize,3,0,1);
    sWo(cellwo,@setcolsize,3,0,1) ;
@@ -313,7 +313,7 @@ UnitsCol = 2;
    sWo(choicewo,@redraw);
    
    <<"%V $choicewo $cellwo \n"; 
-//testargs(1,choicewo,@selectrowscols,0,2,0,cols-1,1); // startrow,endrow,startcol,endcol
+
    
 //  Addrow();
    

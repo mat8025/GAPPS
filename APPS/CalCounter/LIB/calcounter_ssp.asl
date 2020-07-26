@@ -39,11 +39,11 @@ FOODCOLSZ = 6;
 
 //////////////////////   these records needed and used for any GSS /////////////////////
 
-Record R[>15];
+record R[>15];
 
 Rn = 5;
 
-Record DF[>3];
+record DF[>3];
 
 proc getCellValue(int r, int c)
 {
@@ -106,7 +106,8 @@ proc setRowColSizes()
 {
    sWo(cellwo,@setrowsize,2,0,1) ;
    sWo(cellwo,@setcolsize,FOODCOLSZ,0,1) ;   
-   sWo(choicewo,@setcolsize,FOODCOLSZ,0,1) ;
+   sWo(choicewo,@setcolsize,FOODCOLSZ+3,0,1) ;
+   sWo(foodswo,@setcolsize,FOODCOLSZ+3,0,1) ;   
    sWo(totalswo,@setcolsize,FOODCOLSZ,0,1) ;
    sWo(totalswo,@setcolsize,2,3,1) ;
    sWo(cellwo,@setcolsize,2,3,1) ;     
@@ -119,8 +120,7 @@ proc foodSearch()
 {
    int i;
 
-//sWo(choicewo,@selectrowscols,0,2,0,cols-1,1); // startrow,endrow,startcol,endcol
-//testargs(1,choicewo,@selectrowscols,0,2,0,cols-1,1); // startrow,endrow,startcol,endcol
+
 
   Bestpick = -1;		//clear the best pick choices
   bpick = -1;
@@ -149,9 +149,10 @@ proc foodSearch()
 
 <<"%V $cols \n"
 
-//testargs(1,choicewo,@selectrowscols,0,2,0,cols-1,1); // startrow,endrow,startcol,endcol
+//testargs(1,choicewo,@selectrows,0,2); // startrow,endrow,startcol,endcol
 
-  sWo(choicewo,@selectrowscols,0,Nchoice-1,0,Fcols-1,1); // startrow,endrow,startcol,endcol
+  sWo(choicewo,@selectrows,0,Nchoice-1,1); // startrow,endrow,ON
+  sWo(choicewo,@selectcols,0,Fcols-1,1); // startcol,endcol,ON
   setRowColSizes();
    
   sWo(choicewo, @cellval, RC,0,0,Nchoice,Fcols);  // startrow,startcol,nrows, ncols
@@ -313,7 +314,7 @@ proc PGDWN()
   
 <<"%V$foodswo $Curr_row $Page_rows $cs_rows $cols\n"
 
-  sWo(foodswo,@selectrowscols,Curr_row,Curr_row+Page_rows-1,0,Fcols,0);
+  sWo(foodswo,@selectrows,Curr_row,Curr_row+Page_rows-1,0);
 
 
    Curr_row += Page_rows/2;
@@ -328,8 +329,8 @@ proc PGDWN()
         Curr_row = 0;
     }
     
-   sWo(foodswo,@selectrowscols,0,0,0,Fcols,1);
-   sWo(foodswo,@selectrowscols,Curr_row,Curr_row+Page_rows-1,0,Fcols,1);
+   sWo(foodswo,@selectcols,0,Fcols,1);
+   sWo(foodswo,@selectrows,Curr_row,Curr_row+Page_rows-1,1);
    sWo(foodswo,@setcolsize,FOODCOLSZ,0,1) ;
 
    
@@ -358,7 +359,7 @@ proc PGUP()
        current_rwo = 0;
    }
    
-   sWo(foodswo,@selectrowscols,Curr_row,Curr_row+Page_rows-1,0,Fcols,0);
+   sWo(foodswo,@selectrows,Curr_row,Curr_row+Page_rows-1,0);
 
    Curr_row -= Page_rows/2;
 
@@ -366,8 +367,8 @@ proc PGUP()
        Curr_row = 0;
    }
    
-   sWo(foodswo,@selectrowscols,0,0,0,Fcols,1);
-   sWo(foodswo,@selectrowscols,Curr_row,Curr_row+Page_rows-1,0,Fcols,1);
+   sWo(foodswo,@selectcols,0,Fcols,1);
+   sWo(foodswo,@selectrows,Curr_row,Curr_row+Page_rows-1,1);
    sWo(foodswo,@setcolsize,FOODCOLSZ,0,1) ;
   // setRowColSizes();
    paintRows();

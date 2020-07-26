@@ -112,10 +112,8 @@ for (i = 0; i < rows;i++) {
    
    sWo(cellwo,@setrowscols,rows+3,cols+2);
 
-   //sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
-   sWo(cellwo,@selectrowscols,0,2,0,cols);
 //   curr_row = 3;
-   sWo(cellwo,@selectrowscols,curr_row,curr_row+20,0,cols);
+   sWo(cellwo,@selectrows,curr_row,curr_row+20);
    sWo(cellwo,@setcolsize,5,0,1);
 
    curr_row = 0

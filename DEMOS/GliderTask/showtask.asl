@@ -84,7 +84,8 @@ int use_cup = 1;
 
 if (use_cup) {
 
-    tp_file = "CUP/bbrief.cup"  
+    tp_file = "CUP/bbrief.cup"
+    //tp_file = "CUP/ABC_CO.cup"  
 
 }
 else {
@@ -121,7 +122,7 @@ recinfo = info(RF);
   Ncols = Caz(RF,1);
 
 <<"num of records $Nrecs  num cols $Ncols\n";
-
+/{/*
 for (i= 0; i< Nrecs; i++) {
   <<"<|$i|> $RF[i]\n"
 }
@@ -166,7 +167,7 @@ longv = RF[WH[0][0]][3]
 <<"$RF[index][0] \n"
 <<"$RF[index][2] \n"
 <<"%V $place $lat $longv\n"
-
+/}*/
 
 WH=searchRecord(RF,"jamest",0,0)
 

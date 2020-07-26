@@ -27,8 +27,8 @@
 #define MAXFREC 50
 
 
-Record R[];
-Record DDI[3];
+record R[];
+record DDI[3];
 
 Svar Wans;
 

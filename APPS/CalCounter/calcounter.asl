@@ -32,6 +32,9 @@ include "calcounter_totals";
 debugON()
 _DB = 1;
 
+setNICerrors(-1)
+setmaxcodeerrors(20)
+
 //////   create MENUS here  /////
 /{
 A=ofw("HowMuch.m")
@@ -60,7 +63,8 @@ cf(A)
 /}
 
 
-Record Tot[2];
+record Tot[2];
+
 Tot[0]= Split("#FoodT,NF,ITM,Cals,Carbs,Fat,Prot,Choles,SatFat,Wt,Choline,vA,vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn,",",");
 tot_rows = Caz(Tot)
 tot_cols = Caz(Tot,0)
@@ -104,16 +108,16 @@ Nfav = 4;   // display choice row size  was 8
 
 
   nargs = argc();
-
+  ok = 0;
+  day_name = "";
   what_day = _clarg[1];
-
+  if (! what_day @="") {
   day_name = getCCday( what_day);
-
-
   ok=fexist(day_name,0);
 
  <<"checking this day $day_name summary exists? $ok\n";
-
+  }
+  
  found_day = 0;
 
  if (ok > 0) {
@@ -127,8 +131,6 @@ Nfav = 4;   // display choice row size  was 8
 
 
 <<"%V$day_name $found_day\n"
-
-
 
   myfood = "pie apple";
   f_unit = "slice";
@@ -198,7 +200,7 @@ include "calcounter_scrn";
 //=========================================================//
 
 
-Record RC[>10];
+record RC[>10];
 
 
 
@@ -218,7 +220,7 @@ int cv = 0;
   sWo(cellwo,@cellval,R,0,0,Nrows,cols+1);
 <<"%V$Ncols \n"
   sWo(totalswo,@setrowscols,2,30);
-  sWo(totalswo,@selectrowscols,0,1,0,29);
+  sWo(totalswo,@selectrows,0,1);
   sWo(totalswo,@cellval,Tot,0,1,0,Ncols);
   sWo(totalswo,@setcolsize,FOODCOLSZ,0,1) ;
   sWo(totalswo,@setcolsize,2,3,1) ;  
@@ -244,7 +246,7 @@ int cv = 0;
  
   sWo(cellwo,@cellval,R,0,0,rows,cols);
   R->info(1)
-  sWo(cellwo,@selectrowscols,0,rows-1,0,cols-1);
+  sWo(cellwo,@selectrows,0,rows-1);
 
   sWo(cellwo,@cellval,0,tags_col,"Tags")
 
@@ -264,7 +266,7 @@ int cv = 0;
    sWo(choicewo,@setrowscols,Nchoice+1,Fcols+1); // setup sheet rows&cols
    // before  setting cellvals!
    sWo(choicewo,@cellval,RC,0,0,Nchoice,Fcols);  
-   sWo(choicewo,@selectrowscols,0,Nchoice-1,0,Fcols-1);
+   sWo(choicewo,@selectrows,0,Nchoice-1);
    sWo(choicewo,@setcolsize,3,0,1);
 
    <<"%V $choicewo \n"
@@ -309,7 +311,7 @@ int cv = 0;
    sWo(totalswo,@redraw);   
 
 <<"%V $choicewo $cellwo \n"
-//testargs(1,choicewo,@selectrowscols,0,2,0,cols-1,1); // startrow,endrow,startcol,endcol
+
 
 //  Addrow();
 
@@ -354,7 +356,9 @@ while (1) {
 	 <<"get rcword $mwr  $mwc \n"
            if (mwr < Nrows) {
            //<<"$R[mwr][mwc] \n"
-            rcword= DeWhite(R[mwr][mwc]);
+            dval = R[mwr][mwc]
+            rcword= DeWhite(dval);
+            R->info(1)
            }
          }
 
