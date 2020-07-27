@@ -110,14 +110,14 @@ Nfav = 4;   // display choice row size  was 8
   nargs = argc();
   ok = 0;
   day_name = "";
+  
   what_day = _clarg[1];
-  if (! what_day @="") {
+  
   day_name = getCCday( what_day);
   ok=fexist(day_name,0);
-
  <<"checking this day $day_name summary exists? $ok\n";
-  }
   
+
  found_day = 0;
 
  if (ok > 0) {

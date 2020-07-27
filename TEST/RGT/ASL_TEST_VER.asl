@@ -18,8 +18,8 @@ myScript = getScript()
 <<"TESTING\n"
 include "debug.asl"
 include "hv.asl"
-
-sdb(2,@~pline,@trace)
+debugON()
+sdb(2,@~pline,@~trace)
 
 #define PGREEN '\033[1;32m'
 #define PRED '\033[1;31m'
@@ -1316,9 +1316,10 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
     }
 
    if ((do_all || do_ptrs ) && (do_ptrs != -1)) {
+     <<"running ptrs !\n"
+      RunDirTests("Swap","swap,swap1");
+      RunDirTests("Ptrs","ptrvec,ptr-numvec,ptr-svarvec,ptr-varvec,indirect");
 
-     RunDirTests("Ptrs","ptrvec,ptr-numvec,ptr-svarvec,ptr-varvec,indirect");
-     RunDirTests("Swap","swap,swap1");
 
    }
 

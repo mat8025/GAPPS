@@ -85,12 +85,12 @@
      ps[3] = "dancez"
 
 <<"$S\n"
-   S->info(1)
+     S->info(1)
    
      checkStr(S[3],"dancez")
 
 <<"%V $S[3]\n"
-checkOut()
+exit()
 
      sval= ps[3];
      nval = S[3];

@@ -15,7 +15,7 @@
 ///
 
 include "debug.asl"; 
-//debugON();
+debugON();
 
 
 checkIn(_dblevel)
@@ -43,10 +43,18 @@ proc swapP (ptr x, ptr y)
   float t = $x;
   float t2 = $y;
 <<"$_proc PTR args  : %V$x $y $t\n"
-  t->info(1)
-  t2->info(1)
-<<"%V $t  $(typeof(t))\n"
-x->info(1)
+
+   t->info(1)
+
+   t2->info(1)
+
+<<"%V $t  \n"
+<<"%V $t2  \n"
+
+//<<"%V $t  $(typeof(t))\n"
+
+  x->info(1)
+
   $x = t2;
  <<"%V$x \n"
  x->info(1)
@@ -99,9 +107,7 @@ proc swapi (int x, int y)
 
 }
 //====================
-
-
-
+/// TBF - REF parameter
 proc swapR (int& x, int& y)
 {
 
@@ -149,7 +155,7 @@ proc swapR (int& x, int& y)
 
 <<"%V$k $m  \n"
 
- swapi (&k, &m)
+ swapP (&k, &m)
 
 <<" %V$k $m \n"
 
@@ -285,7 +291,7 @@ float q = 4.0;
 
  checkNum(r,3.0)
 
-co ()
+
 
    r = _PI ;
    
@@ -297,7 +303,8 @@ co ()
 
 // ref parameters?
 // not working
-//   swapR(r,q)
+
+//  swapR(r,q)
 
 //<<"swap ? %V $r $q\n"
 

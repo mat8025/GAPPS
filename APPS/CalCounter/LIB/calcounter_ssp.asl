@@ -65,29 +65,14 @@ proc getCellValue(int r, int c)
 
 
 
-proc SORT()
-{
 
-  static int sortdir = 1;
-  sortcol = swapcol_a;
-  startrow = 1;
-  alphasort = 0; // 0 auto alpha or number 1 alpha   2 number
-
-  <<"%V  $sortcol $alphasort $sortdir $startrow $(rows-2)\n"
-  sortRows(R,sortcol,alphasort,sortdir,startrow, rows-2)
-  sortdir *= -1;
-
-     sWo(cellwo,@cellval,R);
-     sWo(cellwo,@redraw);
-}
-//======================================================//
 
 proc SORT_FF()
 {
 
   static int sortdir = 1;
-  sortcol = swapcol_a;
-  startrow = 1;
+  sortcol = 0;
+  startrow = 0;
   alphasort = 0; // 0 auto alpha or number 1 alpha   2 number
 
   <<"%V  $sortcol $alphasort $sortdir $startrow $(rows-2)\n"
@@ -223,7 +208,7 @@ svar wans;
 
 proc SAVE()
 {
-<<"IN $_proc saving sheet %V $day_name  $Ncols \n";
+<<" $_proc saving sheet %V $day_name  $Ncols \n";
 	 
             B=ofw(day_name);
             if ( B != -1) {
