@@ -14,26 +14,43 @@
 
 ///
 /// procrefarg
+include "debug"
+
+<<"%V $_dblevel\n"
+
+if (_dblevel >0) {
+   debugON()
+}
 
 
 checkIn(_dblevel)
 
-proc sumarg (int v, int u)
+proc sumarg (ptr v, ptr u)
 {
 <<"args in %V  $v $u \n"
 float z;
+
  v->info(1)
  u->info(1)
 
-   z = v + u;
+   z = $v + $u;
 
-<<"%V$v + $u = $z\n"
+<<"%V $v + $u = $z\n"
 
-   v++;
+   $v = $v +1;
 
 <<" changing first arg to %V $v\n"
-v->info(1)   
-   u = u * 2;
+
+
+   v->info(1)
+
+   lu = $u
+<<"%V $lu \n"   
+   $u = (lu * 2)
+
+   //$u = $u * 2;
+  // $u *= 2;
+
 
 <<" changing second arg to %V $u \n"
 u->info(1)
@@ -86,6 +103,30 @@ int m = 3;
 
 <<"%V$n \n"
 
+p = 0;
+
+<<"IN %V $n $m $p \n"
+
+ p = sumarg(&n,&m)
+ 
+<<"OUT %V $n $m $p \n"
+
+checknum(n,3)
+checknum(m,6)
+
+
+co()
+exit()
+
+
+
+CheckFNum(w,40.0,6)
+
+CheckFNum(x,14.3,3)
+
+CheckFNum(y,53.4,3)
+
+
 
 float x = 13.3;
 float y = 26.7;
@@ -93,11 +134,16 @@ float y = 26.7;
  w = sumarg(&x,&y)
 <<"%V $x $y $w \n"
 
+
+
 CheckFNum(w,40.0,6)
 
 CheckFNum(x,14.3,3)
 
 CheckFNum(y,53.4,3)
+
+co ()
+exit()
 
 
 <<"Scalar args \n"
@@ -138,7 +184,8 @@ int k = 0;
   CheckNum(m,28);
 
 
-
+ co()
+ exit()
  n = 54;
  m = 49;
 

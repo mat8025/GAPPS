@@ -11,6 +11,13 @@
 //* 
 //***********************************************%
 
+include "debug"
+
+<<"%V $_dblevel\n"
+
+if (_dblevel >0) {
+   debugON()
+}
 
 
 
@@ -83,7 +90,7 @@ proc foo3(real a)
 {
 int ret = 0;
 <<" $_proc foo2 $a \n"
-
+  a->info(1)
     if (a > 300) {
 <<" $a > 300 foo3 should be returning 30 !\n"
     ret = 30;
@@ -102,20 +109,23 @@ int ret = 0;
     return ret;
 }
 
-proc goo(int a)
+proc goo(ptr a)
+//proc goo(int a)
 {
 <<"$_proc $a\n"
-  a += 1;
-
+  a->info(1)
+  $a += 1;
+  a->info(1)
 // does,nt really return anything
 // return on own crash TBF crash
-   return
+   return;
 }
 //==================================//
 
 proc hoo(real a)
 {
 <<"$_proc $a\n"
+  a->info(1)
   a += 1;
 
 // does'nt really return anything
@@ -131,16 +141,44 @@ proc moo(double a)
 <<"%V $a\n"
 
 
-a->info(1)
+ a->info(1)
  
  if (a >1) a += 1;
 
 // if (a >10)  return; // TBF needs {}
 
   int mb = a;
-  a += 2;
+  mb += 2;
+  
 <<"%V $a\n"
 
+  mb->info(1);
+  
+  return mb;  // TBD crash
+}
+//==================================//
+proc roo(ptr a)
+{
+<<"$_proc $($a)\n"
+  $a += 1;
+<<"%V $a\n"
+
+
+ a->info(1)
+ 
+ if ($a >1) $a += 1;
+
+// if (a >10)  return; // TBF needs {}
+
+  int mb = $a;
+
+<<"%V $mb \n"
+  mb += 2;
+  
+<<"%V $a\n"
+
+  mb->info(1);
+  
   return mb;  // TBD crash
 }
 //==================================//
@@ -254,18 +292,26 @@ in = 1
 
    checkNum(x,2);
 
-   hoo(&x)
+   hoo(x)
 
-checkNum(x,3);
+   checkNum(x,2);
 
 
    double xm=14.0
 
-   mr= moo(&xm)
+   mr= moo(xm)
    
 <<"%V $xm $mr\n"
 
-checkNum(xm,18);
+   checkNum(mr,18);
+
+   int ixm = 14;
+   
+   mr= roo(&ixm)
+
+<<"%V $ixm $mr\n"
+
+
 
    checkOut()
 

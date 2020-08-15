@@ -9261,6 +9261,19 @@ would be used to return a row's values in the table 'held' by svar variable ST.
 
 .EF
 =============================================================
+.BF
+addentry()
+.(x
+addentry
+.)x 
+.FD
+vals= ST->addentry(index,val0,val1,...)
+Adds a row of vals into the table. If index is -1 adds values to the end.
+the number of values added shoud be the same as number of fields in the table.
+Cab be used to overwrite existing row ( not to add past existing size - except for adding to end)
+
+.EF
+=============================================================
 
 
 

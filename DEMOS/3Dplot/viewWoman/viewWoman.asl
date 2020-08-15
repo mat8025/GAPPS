@@ -7,7 +7,7 @@ Main_init = 1
 
 set_ap(0)
 
-SetDebug(0,"~trace")
+sdb(1,"~trace")
 
   Graphic = CheckGwm()
 
@@ -292,7 +292,7 @@ include "gevent.asl";
 
 ;
 
-STOP("DONE !\n")
+exit("DONE !\n")
 
 /{
 

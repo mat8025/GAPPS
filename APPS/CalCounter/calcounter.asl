@@ -17,7 +17,7 @@
 
 include "debug"
 include "gevent"
-//include "gss.asl";
+
 include "hv.asl"
 include "calcounter_day"; // check in local LIB first
 include "checkFood";
@@ -295,7 +295,7 @@ int cv = 0;
 // sWo(cellwo,@cellbhue,1,-2,LILAC_); // row,col wr,-2 all cells in row
    sWi(vp,@redraw);
 
-   sWo(ssmods,@redraw);
+//   sWo(ssmods,@redraw);
 
    setRowColSizes();
 
@@ -452,7 +452,7 @@ while (1) {
        if (!(_ewoname @= "")) {
               nc=slen(_ewoname);
     <<"calling script procedure $nc  <|${_ewoname}|> !\n"
-            if (nc > 3) {
+            if (nc >= 3) {
 	      <<"calling script procedure  <$_ewoname> !\n"
                            $_ewoname(); 
 	      }
@@ -467,7 +467,7 @@ while (1) {
     sWo(cellwo,@border,@clipborder,@redraw);  
     sWo(choicewo,@border,@clipborder,@redraw);  
     sWo(foodswo,@border,@clipborder,@redraw);  
-    sWo(ssmods,@redraw);
+//    sWo(ssmods,@redraw);
 
 }
 

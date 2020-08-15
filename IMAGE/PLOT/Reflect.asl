@@ -1,13 +1,12 @@
-#! /usr/local/GASP/bin/sip
-#/* -*- c -*- */
-# vector and matrix math
+///
+/// vector and matrix math
 
-set_debug(0,"step")
+
 
     //OpenDll("math")
 failures = 0
 
-proc stop(){<<" %v $failures \n";set_si_error(1);exit_si();}
+
 
 
 
@@ -49,4 +48,4 @@ K= Reflect(J)
 
 
 
-stop()
+

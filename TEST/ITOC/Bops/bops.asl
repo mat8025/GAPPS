@@ -12,7 +12,9 @@
 //***********************************************%
 
 
+include "debug"
 
+debugON()
 
 checkIn(_dblevel)
 
@@ -72,8 +74,17 @@ float fn=2.71828;
 CheckFNum(fn,2.71828)
 
 int d= 7;
-<<"%V$d\n"
-int e = -6
+
+int e = -6;
+
+int u = 47
+int w = -79;
+
+<<"%V$d $e\n"
+
+<<"%V$u $w\n"
+
+
 
 
 checkNum(d,7)
@@ -81,8 +92,10 @@ checkNum(e,-6)
 
 int b = 79;
 
-checkNum(b,79)
+<<"%V $b\n"
 
+checkNum(b,79)
+<<"%V$d $e\n"
 b = d * e;
 
 <<"%V$b\n"
@@ -97,7 +110,8 @@ b++;
 
 checkNum(b,-41);
 
-
+co()
+exit()
 
 na = argc()
 <<"%V $na\n"

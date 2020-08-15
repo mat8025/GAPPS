@@ -11,6 +11,13 @@
 //* 
 //***********************************************%
 
+include "debug"
+
+<<"%V $_dblevel\n"
+
+if (_dblevel >0) {
+   debugON()
+}
 
 checkIn(_dblevel)
 

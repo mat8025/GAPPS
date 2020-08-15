@@ -10,7 +10,15 @@
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-   
+
+include "debug"
+
+<<"%V $_dblevel\n"
+
+if (_dblevel >0) {
+   debugON()
+}
+  
    
 checkIn(_dblevel);
    

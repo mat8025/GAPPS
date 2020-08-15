@@ -1,5 +1,87 @@
+//%*********************************************** 
+//*  @script ptr.asl 
+//* 
+//*  @comment test ptr ops 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen [asl 6.2.64 C-He-Gd]                               
+//*  @date Mon Aug 10 10:50:42 2020 
+//*  @cdate Mon Aug 10 10:50:42 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+myScript = getScript();
 
-CheckIn()
+
+include "debug"
+
+if (_dblevel >0) {
+   debugON()
+}
+
+checkIn(_dblevel);
+sdb(_dblevel,@trace)
+int m = 0;
+int k = 4;
+ n= 0
+
+ kp = &k;
+
+kp->info(1)
+
+ n = k;
+ 
+ m= $kp
+
+k->info(1)
+kp->info(1)
+
+
+  m->info(1)
+
+<<" %V $$kp \n"
+  
+<<" %V $k $m $n\n"
+
+
+checkNum(m,k)
+
+
+co ()
+exit()
+
+ n = 2 * $kp 
+
+<<" %V $k $m $n\n"
+
+
+kp->info(1)
+
+<<" %V $kp \n"
+
+
+
+<<" %V $$kp \n"
+
+KI = vgen(INT_,10,0,1)
+
+vecp = &KI
+vecp->info(1)
+
+<<" %V $vecp \n"
+
+
+
+
+
+
+
+
+
+co()
+exit()
+
+
 
 proc add( a,b )
 {

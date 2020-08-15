@@ -26,9 +26,6 @@ int Ncols = 10;
 
 str cvalue ="xx";
 
-
-
-
 int NFV = 24;// last is Zn
 int Bestpick[5][2];
 
@@ -230,13 +227,10 @@ writeRecord(B,Tot,@del,Delc,@ncols,Ncols);
 }
 //======================
 
-proc DELROWS()
+proc DELR()
 {
 <<[_DB]"in $_proc\n"
-//int drows[]; // TBF
-//int drows[Page_rows+];
 
-//int drows[20+];
 int n2d = 0;
         drows = -1;
 	
@@ -284,7 +278,7 @@ int n2d = 0;
 
 //=====================================//
 // this overwrites gss version
-proc PGDWN()
+proc PGD()
 {
    // need to unselect all
 
@@ -332,7 +326,7 @@ proc PGDWN()
 }
 //=====================================//
 
-proc PGUP()
+proc PGU()
 {
 
    cs_rows = Nfav;

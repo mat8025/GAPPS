@@ -11,21 +11,23 @@
 //* 
 //***********************************************%
    
-   
-
+   include "debug"
+   debugON()
+   sdb(1,@trace);
    
    checkIn(_dblevel);
    
    svar S;
    
-   S[0] = "C'est";
+   S[0] = "Ca";
    S[1] = "va";
    S[2] = "tres";
    S[3] = "bien";
    S[4] = "avec";
+   S[5] = "elle";
    
    
-   <<"$S[2] \n"; 
+   <<"$S[5] \n"; 
 
    svar sval;
    
@@ -34,6 +36,8 @@
    ps->info(1)
  
    ps = &S;
+
+<<"$S\n"
 
    ps->info(1)
 
@@ -47,30 +51,32 @@
    <<"%V $val\n";
 
 
-
-
-
    val->info(1); 
+
+   val = ps[3];
 
    ps->info(1);
 
-   val = ps[3];
-   
    <<"$val\n";
-
-
 
    sz=Caz(S);
 
    S->info(1)
 
-    i= 1;
+    i= 4;
    
    sval= ps[i];
+   ps->info(1)
+<<"%V <|$sval|> \n"
+checkStr(sval,"avec")
+   sval= ps[1];
+   ps->info(1)
+   <<"%V <|$sval|> \n"
 
 
-     checkStr(sval,"va")
-     
+checkStr(sval,"va")
+
+
    for (i=0;i<sz;i++) {
      
      sval= ps[i];
@@ -81,13 +87,13 @@
    
    <<"\n";
       ps->info(1);
-
-     ps[3] = "dancez"
+<<"$S\n"
+     ps[3] = "mal"
 
 <<"$S\n"
      S->info(1)
    
-     checkStr(S[3],"dancez")
+     checkStr(S[3],"mal")
 
 <<"%V $S[3]\n"
 exit()

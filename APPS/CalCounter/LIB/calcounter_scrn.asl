@@ -29,7 +29,7 @@
 
 ///    GSS  modfiy functions
 
-    //  readwo = cWo(vp,@BN,@name,"READ",@color,"lightgreen");
+      delwo = cWo(vp,@BN,@name,"DELR",@color,"lightgreen");
 
       savewo = cWo(vp,@BN,@name,"SAVE",@color,LILAC_);
 
@@ -39,16 +39,16 @@
 
       sortffwo = cWo(vp,@BN,@name,"SORT_FF",@color,CYAN_);
 
-      pgdwo = cWo(vp,@BN,@name,"PGDWN",@color,ORANGE_,@bhue,"pink");
+      pgdwo = cWo(vp,@BN,@name,"PGD",@color,ORANGE_,@bhue,"pink");
 
-      pguwo = cWo(vp,@BN,@name,"PGUP",@color,ORANGE_,@bhue,"golden");
+      pguwo = cWo(vp,@BN,@name,"PGU",@color,ORANGE_,@bhue,"golden");
 
       pgnwo = cWo(vp,@BV,@name,"PGN",@color,ORANGE_,@bhue,"cyan",@value,0,@style,"SVB");
       
       sWo(pgnwo,@bhue,WHITE_,@clipbhue,RED_,@FUNC,"inputValue",@callback,"PGN",@MESSAGE,1)
 
 
-      int ffmods[] = {sortffwo, pguwo,pgdwo,pgnwo,savewo };
+      int ffmods[] = {sortffwo, pguwo,pgdwo,pgnwo,delwo,savewo };
 
 
       wohtile(ffmods,CFx,0.9,0.99,0.99,0.05);
@@ -104,7 +104,7 @@
 
 
 
-  sWo(ssmods,@redraw);
+ // sWo(ssmods,@redraw);
   sWo(ffmods,@redraw);  
 
 

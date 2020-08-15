@@ -13,8 +13,17 @@
 myScript = getScript();///
 ///
 ///
+include "debug"
+
+<<"%V $_dblevel\n"
+
+if (_dblevel >0) {
+   debugON()
+}
 
 checkIn(_dblevel)
+
+
 
 // make 1 to stop if error
 
@@ -122,18 +131,30 @@ double yr0 = -1.5
 double yr1 = 1.5
 double xr0 = -1.5
 double xr1 = 1.5
-//double xr9 = (2 * -1.6)
+double xr4 = 2.6 + 2
+double xr5 = -2.6 + 2
+double xr6 = 2.6 - 2
+double xr7 = 1.6 * 2
+double xr8 = (1.6 * 2)
 double xr9 = (-1.6 * 2)
 
-<<"%V $xr0 $yr0 $xr1 $yr1 $xr9 \n"
+<<"%V $yr0 $yr1 $xr0 $xr1 $xr4 $xr5 $xr6 $xr7 $xr8 $xr9 \n"
+
+
 
    CheckNum(yr0,-1.5)
    CheckNum(xr0,-1.5)
    CheckNum(xr1,1.5)
 
+   CheckNum(xr4,4.6)
+   CheckNum(xr5,-0.6)
+   CheckNum(xr6,0.6)
+   CheckNum(xr7,3.2)      
+   CheckFNum(xr8,3.2000);
 <<"%V$xr9 $(typeof(xr9))\n"
 
    CheckFNum(xr9,-3.2000);
+
 
 int M[10]
 

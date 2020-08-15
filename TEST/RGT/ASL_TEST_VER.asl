@@ -19,7 +19,7 @@ myScript = getScript()
 include "debug.asl"
 include "hv.asl"
 debugON()
-sdb(2,@~pline,@~trace)
+sdb(1,@~pline,@~trace)
 
 #define PGREEN '\033[1;32m'
 #define PRED '\033[1;31m'
@@ -358,7 +358,7 @@ proc doxictest(str prog)
          ans = query("$prog run it?")
          }
 
-       !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx $prog   > /dev/null "
+       !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -x $prog   > /dev/null "
 
 // what happens if prog crashes !!
 
@@ -397,7 +397,7 @@ proc doxictest(str prog, str a1)
        query("$prog run it?")
          }
 	 
-       !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx $prog $a1  > /dev/null"
+       !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -x $prog $a1  > /dev/null"
 
 // what happens if prog crashes !!
 
@@ -614,8 +614,10 @@ proc cart (str aprg,  str a1)
     fflush(Todo)
 
     
-  ntest++
-str aa = a1
+  ntest++;
+
+//str aa = a1
+
 str prg2 = aprg;
 
     if (do_xic >0 ) {

@@ -90,7 +90,9 @@
 //============================
 
   A=ofw("Quantity.m"); 
-   <<[A],"title Quantity\n"; 
+   <<[A],"title Quantity\n";
+   <<[A],"item 0 M_VALUE 0\n"; 
+   <<[A],"help 0 \n";   
    <<[A],"item 5 M_VALUE 5\n"; 
    <<[A],"help 5 \n";
    <<[A],"item 10 M_VALUE 10\n"; 
@@ -106,7 +108,7 @@
 //============================
 /}
 
-proc setUnits(wr,wc)
+proc setUnits(int wr,int wc)
 {
    mans = popamenu("Units.m")
 	
@@ -116,7 +118,7 @@ proc setUnits(wr,wc)
         }
 }
 //===============================//
-proc setNum(wr,wc)
+proc setNum(int wr,int wc)
 {
    mans = popamenu("HowMany.m")
 	
@@ -177,7 +179,7 @@ UnitsCol = 2;
      }
    else {
      
-     fname = "Foods/newfoods.csv"; 
+     fname = "Foods/junkfoods.csv"; 
      
      }
    
@@ -203,7 +205,7 @@ UnitsCol = 2;
    int bpick;
    
    
-   if (found_day || edit_foods) {
+   if (edit_foods) {
      R= readRecord(A,@del,','); 
      cf(A);
      }

@@ -1,4 +1,5 @@
-cd ~/gasp-CARBON/include
+# in a src dir
+cd ../../include
 for y in $*
 do
 i="${y%.*}"

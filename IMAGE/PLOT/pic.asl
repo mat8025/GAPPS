@@ -1,45 +1,46 @@
-#/* -*- c -*- */
+///
+///
+///
+
 # "$Id: pic.g,v 1.1 2001/09/27 03:35:53 mark Exp mark $"
 
-set_debug(0)
-
-    //OpenDll("imagelab")
-
- if (! CheckGwm() ) {
-     X=spawngwm()
-  }
-
-aslw = asl_w ("PXC_") 
+include "debug"
+debugON()
 
 
-proc showface(pn)
+sdb(1,@keep)
+
+
+
+
+proc showface(int pn)
 {
 
-  PlotPixRect(n,CH)
-  w_showpixmap(n)
-  gsync()
+ PlotPixRect(picwo,CH,cmi)
+  
+ sWo(picwo,@showpixmap)
 
    if (pn > 1) {
 
   NCH = ReflectCol(NCH)
-  PlotPixRect(n,NCH)
-  w_showpixmap(n)
+  PlotPixRect(picwo,NCH,cmi)
+ sWo(picwo,@showpixmap)
     }
 
   if( pn > 2 ) {
   NCH = ReflectCol(CH)
-  PlotPixRect(n,NCH)
-  w_showpixmap(n)
+  PlotPixRect(picwo,NCH,cmi)
+   sWo(picwo,@showpixmap)
     }
   if (pn > 3) {
   NCH = ReflectCol(CH)
-  PlotPixRect(n,NCH)
-  w_showpixmap(n)
+  PlotPixRect(picwo,NCH,cmi)
+   sWo(picwo,@showpixmap)
     }
   if (pn >=4) {
   NCH = Transpose(CH)
-  PlotPixRect(n,NCH)
-  w_showpixmap(n)
+  PlotPixRect(picwo,NCH,cmi)
+   sWo(picwo,@showpixmap)
   gsync()
     }
 }
@@ -48,8 +49,8 @@ proc showface(pn)
 proc colorface()
 {
   SetRGB(10,RGB)
-  PlotPixRect(n,NCH)
-  w_showpixmap(n)
+  PlotPixRect(picwo,NCH)
+   sWo(picwo,@showpixmap)
   }
 
 
@@ -65,7 +66,7 @@ proc showpic(uchar PIC[])
   si += 512
 
   gsync()
- w_showpixmap(n)
+  sWo(picwo,@showpixmap)
  y -= 1
 #  <<" $k $x $y $hue\n"
  }
@@ -75,7 +76,7 @@ proc showpic(uchar PIC[])
 fp =  ofr("../SIGNALS/woman.pic")
 
 npx = 512*512
-uchar PX[npx+]
+uchar PX[npx]
 
 // read in file
 
@@ -98,10 +99,9 @@ for (i = 0 ; i < 2 ; i++) {
 
 //<<" $(typeof(PS))\n $PS \n"
 
-uchar CH[10+]
+uchar CH[>10]
 // <<"$(typeof(CH)) CH $CH\n"
 
-#name_debug("EXP",0)
 
 CH = PS
 
@@ -111,53 +111,21 @@ CH = PS
 // then a Wob -- with a clip area that has 512,512 pixels
 // set pixmap on
 
-   n= W_Create(0,0)
-   W_title(n,"Pic") 
-   W_Map(n)
-   ws=GetScreen()
 
 
-<<" CurrentScreen is $ws \n"
 
-   w_resize(n,10,10,522,522, ws,1)
-
-   w_setrs(n,0,0,511,511)
-   w_setclip(n,1,1,1,1,1,1)
-
-   w_redraw(n)
-   w_move(n,1,1,1)
-   w_clearclip(n)
-   w_clear(n)
-
- 
- w_drawOFF(n)
- w_pixmapdrawON(n)
- w_store(n)
- w_redraw(n)
-
-  w_clear(n)
-
-     gsync()
-
-      <<" Done Window Create!! "
-
-     sleep(2)
-
-
- //   RS=w_GetRS(n)
- //<<" $RS \n"
-
+  
  y = 512
  x = 100
 
 int hue = 0
 
-  plotpoint(n,x,y,hue)
+
 
 int j = 0
 
 
-int PH[10+]
+int PH[>10]
 si = 0
 # color map index - 16 start of default 64 grey scale
 
@@ -166,11 +134,11 @@ cmi = 64
 
 set_gsmap(ngl,cmi)
 
-si_pause(3)
+
 
 gs = (ngl*1.0)/256
 
-char SCH[10+]
+char SCH[>10]
 #SCH = (((PX  * gs) -64) * -1) + 16
 
 CH = (((PX  * gs) - ngl) * -1) + cmi
@@ -180,8 +148,9 @@ CH = (((PX  * gs) - ngl) * -1) + cmi
 #CH = SCH
 
      NCH =CH[0:32]
-//<<" $NCH \n"
+<<" $NCH \n"
 
+  query("NCH")
 
 float RGB[256][3]
 
@@ -190,12 +159,31 @@ float RGB[256][3]
 
   Gr=Igen(256,0,1)
 
-  Gr = Gr @+ Reflect(Mdimn(Gr,1,256))
+  <<"$Gr\n"
 
-  for (i = 0 ; i < 512 ; i++)
-  CGR[i][*] = Gr
+ans=  query("Gr")
 
-#  showpic(CH)
+//  Grr= Reflect(Mdimn(Gr,1,256))
+
+    Grr= Mdimn(Gr,1,256)
+<<"$Grr\n"
+  Grr= reflectdiagonal(Grr)
+  Gr = Gr @+ Grr
+
+  <<"$Gr\n"
+
+  ans=  query("Gr")
+  
+  for (i = 0 ; i < 512 ; i++) {
+			       // CGR[i][*] = Gr
+
+			       //   CGR[i][::] = Gr
+			          CGR[i] = Gr
+  <<"$i $CGR[i][2]\n"
+  }
+
+
+
 
   dc = 1.0/256
   A= Fgen(256,0,dc)
@@ -205,9 +193,39 @@ float RGB[256][3]
 
 
   Redimn(CH,512,512)
-  PlotPixRect(n,CH)
-  w_showpixmap(n)
-  gsync()
+
+
+    OpenDll("image")
+
+ if (! CheckGwm() ) {
+     X=spawngwm()
+  }
+
+aslw = asl_w ("PXC_") 
+  
+     ws=GetScreen()
+      wid =  cWi("title","PIC_WINDOW",@resize,0.01,0.01,0.99,0.99,0)
+
+picwo=cWo(wid,"GRAPH",@name,"Pic",@color,YELLOW_,@resize,0.01,0.01,0.99,0.99)
+
+
+ sWo(picwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE, RED_, @redraw)
+
+ sWo(picwo,@SCALES,0,0,1,1)
+
+
+ sWo(picwo,@pixmapon,@drawon,@redraw)
+
+ sWo(picwo,@clip,4,4,512,512,2)
+
+
+  plotpoint(picwo,x,y,hue)
+  
+  PlotPixRect(picwo,CH,cmi)
+    sWo(picwo,@showpixmap)
+
+
+  // query("go on?") 
 
   si_pause(0.2)
 
@@ -250,6 +268,8 @@ float RGB[256][3]
 
  pic = 2.0
 
+
+/{/*  
  for ( i = 0 ; i < 2 ; i++ ) {
 
   j = (i % 3)
@@ -261,10 +281,11 @@ float RGB[256][3]
 
   SetRGB(10,RGB) 
 
-  PlotPixRect(n,CGR)
-  w_showpixmap(n)
+  //  PlotPixRect(picwo,CGR)
+   sWo(picwo,@showpixmap)
     //  gsync()
-#{
+  
+
   j = (i % 3)
   RGB[*][j] =  Fabs(Cos(B))
   j = (i + 1) % 3
@@ -274,18 +295,18 @@ float RGB[256][3]
 
   SetRGB(10,RGB) 
 
-  PlotPixRect(n,CGR)
-  w_showpixmap(n)
+  PlotPixRect(picwo,CGR)
+   sWo(picwo,@showpixmap)
   gsync()
     //  ttyin("return to proceed:")
-#}
+
 
     pic += 0.005
     //    CGR[0;20][*] += 10
     //    CGR[0;511;2][*] = CGR[0;511;2][*] + (Grand(512*256) * i)
 
-    }
-
+  }
+ /}*/
 
   RGB[*][0] = 0
   RGB[*][1] = 0
@@ -298,8 +319,8 @@ float RGB[256][3]
   SetRGB(10,RGB) 
   showface(0)
 
-  PlotPixRect(n,CGR)
-  w_showpixmap(n)
+  PlotPixRect(picwo,CGR)
+  
   gsync()
 
      //  ttyin("return to proceed:")
@@ -315,8 +336,8 @@ float RGB[256][3]
   SetRGB(10,RGB) 
   showface()
 
-  PlotPixRect(n,CGR)
-  w_showpixmap(n)
+  //PlotPixRect(picwo,CGR)
+  sWo(picwo,@showpixmap)
   si_pause(1)
  
      //  ttyin("return to exit:")
@@ -334,20 +355,20 @@ float RGB[256][3]
 
 
   NCH = Imop(CH,"sobel")
-  PlotPixRect(n,NCH)
-  w_showpixmap(n)
+  PlotPixRect(picwo,NCH)
+   sWo(picwo,@showpixmap)
 
   NCH = Imop(CH,"laplace")
-  PlotPixRect(n,NCH)
-  w_showpixmap(n)
+  PlotPixRect(picwo,NCH)
+   sWo(picwo,@showpixmap)
 
   NCH = Imop(CH,"point")
-  PlotPixRect(n,NCH)
-  w_showpixmap(n)
+  PlotPixRect(picwo,NCH)
+   sWo(picwo,@showpixmap)
 
   NCH = Imop(CH,"bilaplace")
-  PlotPixRect(n,NCH)
-  w_showpixmap(n)
+  PlotPixRect(picwo,NCH)
+  sWo(picwo,@showpixmap)
 
 int T[10]
            	T[0] = 1;
@@ -366,13 +387,13 @@ int T2[10]
 
 
   NCH = Imop(CH,T)
-  PlotPixRect(n,NCH)
+  PlotPixRect(picwo,NCH)
   gsync()
-  w_showpixmap(n)
+  
 
   
   NCH = Imop(CH,"sobel")
-  PlotPixRect(n,NCH)
+  PlotPixRect(picwo,NCH)
 
            	T[0] = 1;
 		T[1] = 0;
@@ -385,7 +406,7 @@ int T2[10]
 		T[8] = -1;
     T2= T
   NCH = Imop(CH,T)
-  PlotPixRect(n,NCH)
+  PlotPixRect(picwo,NCH)
 
            	T[0] = 2;
 		T[1] = 0;
@@ -397,8 +418,8 @@ int T2[10]
 		T[7] = 0;
 		T[8] = 2;
   NCH = Imop(CH,T)
-  PlotPixRect(n,NCH)
-  w_showpixmap(n)
+  PlotPixRect(picwo,NCH)
+    sWo(picwo,@showpixmap)
 
 
  a=Rand(5,6)
@@ -428,9 +449,9 @@ if (k > 10) break
  k = 0
  while (1) {
   NCH = Imop(CH,T2) 
-  w_clearpixmap(n)
-  PlotPixRect(n,NCH)
-  w_showpixmap(n)
+    sWo(picwo,@clearpixmap)
+  PlotPixRect(picwo,NCH)
+   sWo(picwo,@showpixmap)
 //  gsync()
   Shuffle(T2,9,10)
   <<" $k T2: $T2\n"
@@ -438,20 +459,20 @@ if (k > 10) break
   <<" $k T3: $T3\n"
   NCH = Imop(CH,T3) 
 // fatal error to use nonexistent array?
-  w_clearpixmap(n)
-  PlotPixRect(n,NCH)
-  w_showpixmap(n)
+     sWo(picwo,@clearpixmap)
+  PlotPixRect(picwo,NCH)
+   sWo(picwo,@showpixmap)
   si_pause(0.2)
   T6 = Rand(9,5) - 3
   <<" $k T6: $T6\n"
   NCH = Imop(CH,T6) 
-  w_clearpixmap(n)
-  PlotPixRect(n,NCH)
-  w_showpixmap(n)
+   sWo(picwo,@clearpixmap)
+  PlotPixRect(picwo,NCH)
+   sWo(picwo,@showpixmap)
   k++
 }
 
 
 // plot points
 
- STOP!
+

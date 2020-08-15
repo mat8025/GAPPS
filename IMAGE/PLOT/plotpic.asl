@@ -1,4 +1,9 @@
-// plot a 512X512 image
+///
+///
+///
+
+
+/// plot a 512X512 image
 
  opendll("image");
 
@@ -9,36 +14,36 @@
 
 // want this to contain a 512X512 image -- so that plus borders and title
   
-  wid =  CreateGwindow("title","PIC_WINDOW",@resize,0.01,0.01,0.99,0.99,0)
+  wid =  cWi("title","PIC_WINDOW",@resize,0.01,0.01,0.99,0.99,0)
 
 // again must be greater the 512x512 plus the borders
  
- picwo=createGWOB(wid,"GRAPH",@name,"Pic",@color,"yellow",@resize,0.01,0.01,0.99,0.99)
+ picwo=cWo(wid,"GRAPH",@name,"Pic",@color,"yellow",@resize,0.01,0.01,0.99,0.99)
 
 // set the clip to be 512x512 --- clipborder has to be on pixel outside of this!
 
 // setGwob(picwo,@clip,100,4,512,256,2)
 
- setgwob(picwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red", @redraw)
+ sWo(picwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red", @redraw)
 
- setgwob(picwo,@SCALES,0,0,1,1)
+ sWo(picwo,@SCALES,0,0,1,1)
 
 
- setGwob(picwo,@pixmapon,@drawon,@redraw)
+ sWo(picwo,@pixmapon,@drawon,@redraw)
 
- setGwob(picwo,@clip,4,4,512,512,2)
+ sWo(picwo,@clip,4,4,512,512,2)
 
 
 
  plotline(picwo,0,0,1,1)
 
- setGwob(picwo,@plotline,0,1,1,0,"blue")
+ plot(picwo,@line,0,1,1,0,BLUE_)
 
 // space for image
 fp =  ofr("../SIGNALS/woman.pic")
 
 npx = 512*512
-uchar PX[npx+]
+uchar PX[npx]
 
 // read in image file
 
@@ -63,7 +68,8 @@ set_gsmap(ngl,cmi)
 
 uchar CX[]
 
- CX = 255 - PX
+// CX = 255 - PX
+ CX = PX
 
 <<"%(10,, ,\n)$CX[0:99]\n"
 
@@ -80,6 +86,7 @@ uchar CX[]
 
 
   RCX = reflectCol(CX)
+//  RCX = CX
 
 <<"$RCX[0][0:20]\n"
 
@@ -97,7 +104,7 @@ uchar CX[]
 
   PlotPixRect(picwo,NCH,cmi)
 
-  sleep(2)
+ // sleep(2)
 
 
   NCH = Imop(CX,"laplace")
@@ -128,14 +135,14 @@ uchar CX[]
 /}
 
 
-  setGwob(picwo,@showpixmap)
+  sWo(picwo,@showpixmap)
 //FIX  PX = 255 - PX
 
    
 
 
 //  PlotPixRect(picwo,PX)
-//setGwob(picwo,@showpixmap)
+//sWo(picwo,@showpixmap)
 
 
 

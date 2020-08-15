@@ -3,7 +3,7 @@
 
 <<"start load lib\n"
 
-proc pol2cdir( ang)
+proc pol2cdir( float ang)
 {
   float cd
   cd =  450.0 - ang  
@@ -16,7 +16,7 @@ proc pol2cdir( ang)
 }
 //====================================
 
-proc cd2pol( ang)
+proc cd2pol(float ang)
 {
 float cd
   cd =  450.0 - ang  
@@ -28,7 +28,7 @@ float cd
     return cd
 }
 //====================================
-proc cdir2pol( ang)
+proc cdir2pol(float ang)
 {
 float cd
   cd =  450.0 - ang  
@@ -41,13 +41,13 @@ float cd
 }
 //====================================
 
-proc rotate_vec( cdir)
+proc rotate_vec(float cdir)
 {
          azim +=  cdir
 }
 //====================================
 
-proc look_to(rx)
+proc look_to(float rx)
 {
           rpx = 15
 
@@ -61,13 +61,13 @@ proc look_to(rx)
 }
 //====================================
 
-proc lookup( ve)
+proc lookup(float ve)
 {
    elev += ve
 }
 //====================================
 
-proc xy_move_to(button,rx,ry)
+proc xy_move_to(int button, float rx, float ry)
 {
    if (button == 1) {
           obpx =  rx
@@ -128,7 +128,7 @@ proc look_at()
 }
 //---------------------------------
 
-proc xz_move_to(button,rx,ry)
+proc xz_move_to(int button,float rx, float ry)
 {
    if (button == 1) {
           obpx =  rx
@@ -143,7 +143,7 @@ proc xz_move_to(button,rx,ry)
    }
 }
 
-proc circle_obs( cdir)
+proc circle_obs(float  cdir)
 {
 //  center is 0,0
 
@@ -166,7 +166,7 @@ proc circle_obs( cdir)
 
 }
 
-proc loop_obs( cdir)
+proc loop_obs(float cdir)
 {
 
 //  center is 0,0
@@ -198,7 +198,7 @@ proc loop_obs( cdir)
 }
 
 
-proc roll ( cdir)
+proc roll (float  cdir)
 {
 //<<" rolling $cdir \n"
           rpd = 10
@@ -216,7 +216,7 @@ proc roll ( cdir)
 }
 //======================================
 
-proc pitch ( cdir)
+proc pitch (float  cdir)
 {
 // azim will flip 180 if we go past 90/270
    old_e = elev
@@ -290,7 +290,7 @@ float ma
 }
 //--------------------------------------------------------------------------
 
-proc resetobs(ww)
+proc resetobs(int ww)
 {
 
 zalpha = 0
@@ -392,7 +392,7 @@ proc center_map()
      ry = obpz - mapscale
      rY = obpz + mapscale
 
-     sWo(pvwo,"scales",rx,ry,rX,rY)
+     sWo(pvwo,@scales,rx,ry,rX,rY)
 
 }
 //==========================================
@@ -406,7 +406,7 @@ proc map_home()
 
 //<<" %V$rx $rX \n"
 
-     sWo(pvwo,"scales",rx,ry,rX,rY)
+     sWo(pvwo,@scales,rx,ry,rX,rY)
 }
 //==========================================
 
@@ -428,7 +428,7 @@ proc PlanView(plt_it)
 }
 //==========================================
 
-proc TerrPlanView(plt_it)
+proc TerrPlanView(int plt_it)
 {
      sWo(pvwo,@clearpixmap)
      sWo(llwo,@clearpixmap)
@@ -446,7 +446,7 @@ proc TerrPlanView(plt_it)
 }
 //==========================================
 
-proc SideView(plt_it)
+proc SideView(int plt_it)
 {
 
 /{
@@ -852,7 +852,7 @@ int moved =0 ;
 
   sWo(vpwo,@scales,-20,-20,20,20, @save,@redraw,@drawoff,@pixmapon,@savepixmap)
 
-  pvwo = cWo(vp,"GRAPH",@resize,0.01,0.21,0.19,0.5,"name","PLANVIEW",@color,WHITE_)
+  pvwo = cWo(vp,"GRAPH",@name,"PLANVIEW",@resize,0.01,0.21,0.19,0.5,@color,WHITE_)
 
   sWo(pvwo,@scales,-DimL,-DimL,DimL,DimL, @save,@redraw,@pixmapon,@drawon,@savepixmap)
 
@@ -863,7 +863,7 @@ int moved =0 ;
   sWo(vpwo,@redraw);
 
 
-  llwo = cWo(vp,"GRAPH",@resize,0.01,0.01,0.19,0.2,"name","LLVIEW",@color,WHITE_)
+  llwo = cWo(vp,"GRAPH",@resize,0.01,0.01,0.19,0.2,@name,"LLVIEW",@color,WHITE_)
 
   sWo(llwo,@scales,-107,36,-104,42, @save,@redraw,@pixmapon,@drawon,@savepixmap)
 

@@ -1,4 +1,5 @@
-# Breakfast
+#Breakfast
+FoodT,NF,ITM,Cals,Carbs,Fat,Prot,Choles,SatFat,Wt,Choline,vA,vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn,
 COFFEE BLACK,6,FLOZ,0,0,0,0,0,0 ,180,,,,,,,,,,,,
 EGGS ,1,ITM,71.5,0.4,5.0,6.3,211,1.5,50,126,5,0,2,14,0,7,4,6,11,2,0,3,5,3,2,4
 TOAST WHITE,1,SLICE,65,12,1,2,0,0.3 ,25,,,,,,,,,,,
@@ -7,4 +8,4 @@ ORANGE JUICE,1,CUP,110,26,0,2,0,0.1 ,248,,,,,,,,,,,
 MUSHROOMS WHITE,1,CUP,15.4,2.3,0.2,2.2,0.0,0.0,70,12.1,0,2,4,17,13,10,4,3,0,0,0,0,2,0,6,2 
 TOMATOES RED,1,CUP,26.8,5.8,0.3,1.3,0.0,0.0,149,10.0,25,32,4,2,4,1,6,6,0,4,15,1,2,0,10,2,
 CHICKEN BURRITO ,1,ITM,290,35,11,14,30,3,142,,10,20,,,,,,,,,,10,15,26,
-
+HASHBROWN PATTIE,1,ITM,130,11,9,1,0,0,63,,,,,,,,,,,,,0,,0,4,,

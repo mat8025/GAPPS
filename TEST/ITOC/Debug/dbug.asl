@@ -17,6 +17,14 @@ errv=getNumOfErrors ();
 <<"%V $errv\n"
 
 
+
+<<" here we are!\n"
+~e  // easy out
+~b
+
+
+
+
  a= foo();
 
  b =  c +d;

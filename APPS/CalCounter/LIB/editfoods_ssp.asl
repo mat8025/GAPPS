@@ -82,9 +82,9 @@ int i;
 
 <<"%V $cols \n"
 
-//testargs(1,choicewo,@selectrowscols,0,2,0,cols-1,1); // startrow,endrow,startcol,endcol
+//testargs(1,choicewo,@selectrows0,2,1); // startrow,endrow
 
-  sWo(choicewo,@selectrows,0,Nbp-1,1); // startrow,endrow,startcol,endcol
+  sWo(choicewo,@selectrows,0,Nbp-1,1); // startrow,endrow
   setRowColSizes();
    
 sWo(choicewo, @cellval, RC,0,0,Nbp,cols);  // startrow,startcol,nrows, ncols

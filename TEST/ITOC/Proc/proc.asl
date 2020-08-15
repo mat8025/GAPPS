@@ -15,8 +15,12 @@
 /// test proc
 ///
 
+include "debug"
+
+debugON()
 
 checkIn(_dblevel)
+
 
 proc Foo(double a)
 {
@@ -63,7 +67,30 @@ d->info(1);
 //===================
 
 
-x = 20.2
+ x = 20.2
+
+<<"%V $x\n"
+ x->info(1)
+
+ cy = Cos(x)
+ 
+ cy->info(1)
+
+ y = Sin(cy)
+
+ y->info(1)
+
+<<"%V $y \n"
+
+
+
+y /= 2.0;
+
+
+  y->info(1)
+
+
+
 
 gr=Goo(x)
 <<"$x $gr \n"
@@ -83,7 +110,7 @@ checkFnum(gr, (x*2))
 
 
 
- cy = Cos(x)
+
 
 <<" $cy \n"
 
@@ -91,8 +118,10 @@ checkFnum(gr, (x*2))
 
 <<" $y \n"
 
- y /= 2.0;
-
+  y->info(1)
+  y /= 2.0;
+  y->info(1)
+  
   t = Foo(x)
 
 <<"$x $t \n"
@@ -109,15 +138,22 @@ checkFnum(gr, (x*2))
 
   t = Goo(x)
 
-<<"$t \n"
+<<"%V $t \n"
+
+  y->info(1)
+
 
   y = x/2.0;
 
+  y->info(1)
   t = Foo(x)
-t->info(1)
+  
+ t->info(1)
 <<"%V $x $y $t\n"
 
   checkFnum(t,y,6)
+
+
 
 x = -20.2;
 

@@ -10,14 +10,18 @@
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-  
+
+include "debug.asl"
+
+debugON()
+
 checkIn()
 
 
+i = 0
+j = 2;
 
-i = 2
-j = 0;
-
+checkNum(j,2)
 
  if (i == 2) {
    <<" $i == 2 \n"
@@ -25,14 +29,22 @@ j = 0;
  }
  else if (i > 2) {
   <<" $i > 2 \n"
+    j = -4
  }
  else {
+   j = -2
   <<" $i < 2 \n"
  }
 
 
+<<"%V $j\n"
+checkNum(j,-2)
+  j = -1
+ checkNum(j,-1) 
 
-checkNum(j,1)
+//checkOut()
+//exit()
+
 
 i = 3
 j = 0;
@@ -59,19 +71,22 @@ j = 0;
 
 
  if (i == 2) {
-   <<" $i == 2 \n"
+   <<"the if $i == 2 \n"
    j = 1;
  }
  else if (i > 2) {
-  <<" $i > 2 \n"
+  <<"the-else-if $i > 2 \n"
   j = 2
  }
  else {
-  <<" $i < 2 \n"
+  <<"the else $i < 2 \n"
+  
   j = -1
  }
 
+<<"%V $j\n"
 checkNum(j,-1)
+
 
 
 N = getArgI()
@@ -629,7 +644,7 @@ CheckStage("if -6")
    
 //N = atoi( _clarg[1])
    
-   checkIn(); 
+
    
    N =5; 
    <<" $N  testing for <,=, or > than 1\n"; 
@@ -690,10 +705,8 @@ CheckStage("if -6")
 //* 
 //***********************************************%
 
-include "debug.asl"
 
-debugON();
-CheckIn()
+
 
 
 
@@ -936,7 +949,7 @@ checkStage("logic chain")
 
 <<"$(typeof(tf)) %V $tf \n"
 
-
+ int ntf = 0;
  ntf= !(fname @= "");
 
 <<"$(typeof(ntf)) %V $ntf \n"

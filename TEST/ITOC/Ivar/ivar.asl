@@ -3,8 +3,8 @@
 //* 
 //*  @comment test indirect var 
 //*  @release CARBON 
-//*  @vers 1.2 He Helium [asl 6.2.50 C-He-Sn]                                
-//*  @date Sat May 23 23:30:34 2020 
+//*  @vers 1.3 Li Lithium [asl 6.2.64 C-He-Gd]                             
+//*  @date Sat Aug 15 10:18:03 2020 
 //*  @cdate 1/1/2001 
 //*  @author Mark Terry 
 //*  @Copyright © RootMeanSquare  2010,2020 → 
@@ -12,13 +12,17 @@
 //***********************************************%
    myScript = getScript();
 //
-// ivar
-//
    
-   ws= getScript(); 
-   <<"$ws\n"; 
-   
-   
+   <<"$myScript\n"
+
+include "debug"
+
+if (_dblevel >0) {
+   debugON()
+}
+
+
+
    checkIn(_dblevel); 
 
    int v1 = 1;
@@ -43,9 +47,6 @@ v1->info(1)
 
    varname->info(1)
    
-
-
-
 
    Record R[5];
    

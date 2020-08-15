@@ -18,7 +18,7 @@ int _DB = -1; // dbg FH set to nop --set to 2 for error output
 dbid = IDof("_DB");
 //<<"%V dbid _DB\n"
 
-setdebug(1,@keep);
+//sdb(1,@keep);
 // if there are errors keep  idb,xdb file in .GASP/WORK/Debug
 // will be overwritten by scripts  unless unique/local options used
 
@@ -35,10 +35,10 @@ proc DummyP()
 proc debugON()
 {
 
-setdebug(1,@keep,@~pline,@~step,@~trace)
+sdb(1,@keep,@~pline,@~step,@~trace)
 filterFuncDebug(ALLOWALL_,"xxx");
 filterFileDebug(ALLOWALL_,"yyy");
-
+_dblevel = 1;
 
 }
 //==========================
@@ -49,6 +49,7 @@ proc debugOFF()
 setdebug(-1,@~pline,@~step,@~trace,@~showresults,1)
 filterFuncDebug(REJECTALL_,"proc");
 filterFileDebug(REJECTALL_,"yyy");
+_dblevel = 0;
 }
 
 proc scriptDBON()

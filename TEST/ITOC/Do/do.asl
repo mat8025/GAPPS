@@ -11,6 +11,10 @@
 //* 
 //***********************************************%
 
+include "debug"
+
+debugON()
+
 checkIn(_dblevel)
 
 
@@ -19,18 +23,27 @@ int j = 4;  <<" %I $k $j \n"
 
 checkNum(k,0) ;
 checkNum(j,4)
-if (argc() > 1) {
-  N = getArgI(1) ; //  gets first ater script name
- <<" arg was $N \n"
-}
-else {
-  N = 5;
+
+  N = 6;
    <<" default $N \n"
-}
+
+
+ ac = argc()
+ <<"%V $ac\n"
+
+  if (argc() > 1) {
+     N = getArgI(1) ; //  gets first after script name
+     <<" arg was $N \n"
+  }
+  else {
+
+  N = 5;
+   <<" else  $N \n"
+  }
 
 
  <<" k++  < $N  b4 loop\n"
-
+exit()
   i= 0
 
   do {
@@ -44,7 +57,8 @@ else {
 
 <<"out of loop %V $i $k $N \n"
 
- checkNum(i,N) ; checkNum(k,N) ;
+ checkNum(i,N) ;
+ checkNum(k,N) ;
 
  i = N
  k = 0

@@ -1,4 +1,5 @@
 # BREADS
+FoodT,NF,ITM,Cals,Carbs,Fat,Prot,Choles,SatFat,Wt,Choline,vA,vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn,
 WHITE BREAD,1,SLICE,65,12,1,2,0,0.3 ,25,,,,,,,,,,,
 WHEAT,1,SLICE,65,12,1,2,0,0.2 ,25,,,,,,,,,,,
 WHOLE-WHEAT,1,SLICE,70,13,1,3,0,0.4 ,28,,,,,,,,,,,

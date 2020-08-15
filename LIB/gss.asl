@@ -280,7 +280,7 @@ proc DELCOL(int wc)
 }
 //======================
 
-proc AddTask( wt)
+proc AddTask(int  wt)
 {
 ///
 /// wt is the index to DF list of tasks
@@ -324,16 +324,15 @@ proc AddTask( wt)
         Curr_row = 0;
     }
     
-    <<"%V selectrowscols $Curr_row $Page_rows $cols $Rn\n"
+    <<"%V selectrows $Curr_row $Page_rows $cols $Rn\n"
 
-    sWo(cellwo,@selectrowscols,Curr_row,Curr_row+Page_rows,0,cols,0);
+    sWo(cellwo,@selectrows,Curr_row,Curr_row+Page_rows,0);
   
     Curr_row = rows- Page_rows +1;
     if (Curr_row < 0) {
         Curr_row = 0;
     }
     
-  //  sWo(cellwo,@selectrowscols,0,2,0,cols,1);
 
     rows++;
     Nrows = rows;
@@ -357,9 +356,7 @@ proc AddTask( wt)
     sWo(cellwo,@cellval,R);
     // increase rows/colls
 
-    //sWo(cellwo,@selectrowscols,Curr_row,rows,0,cols,1);
-
-sWo(cellwo,@selectrowscols,Curr_row,rows-1,0,cols,1);
+    sWo(cellwo,@selectrows,Curr_row,rows-1,1);
     
     paintRows();
     
@@ -404,7 +401,7 @@ proc PGDWN()
    }
 
 
-  sWo(cellwo,@selectrowscols,Curr_row,Curr_row+Page_rows,0,cols,0);
+  sWo(cellwo,@selectrows,Curr_row,Curr_row+Page_rows,0);
 
 
    Curr_row += Page_rows/2;
@@ -419,8 +416,8 @@ proc PGDWN()
         Curr_row = 0;
     }
     
-   sWo(cellwo,@selectrowscols,0,0,0,cols,1);
-   sWo(cellwo,@selectrowscols,Curr_row,Curr_row+Page_rows,0,cols,1);
+   sWo(cellwo,@selectrows,0,0,1);
+   sWo(cellwo,@selectrows,Curr_row,Curr_row+Page_rows,1);
 
   // setRowColSizes();
    
@@ -449,7 +446,7 @@ proc PGUP()
    if (current_row <0) {
        current_rwo = 0;
    }
-   sWo(cellwo,@selectrowscols,Curr_row,Curr_row+Page_rows,0,cols,0);
+   sWo(cellwo,@selectrows,Curr_row,Curr_row+Page_rows,0);
 
    Curr_row -= Page_rows/2;
 
@@ -457,8 +454,8 @@ proc PGUP()
        Curr_row = 0;
    }
    
-   sWo(cellwo,@selectrowscols,0,0,0,cols,1);
-   sWo(cellwo,@selectrowscols,Curr_row,Curr_row+Page_rows,0,cols,1);
+   sWo(cellwo,@selectrows,0,0,,1);
+   sWo(cellwo,@selectrows,Curr_row,Curr_row+Page_rows,1);
   // setRowColSizes();
    paintRows();
   sWo(cellwo,@redraw);
@@ -506,7 +503,7 @@ proc scrollPGN (int pn)
         Curr_row = 0;
     }
 
-  sWo(cellwo,@selectrowscols,Curr_row,Curr_row+Page_rows,0,cols,0); // unset current
+  sWo(cellwo,@selectrows,Curr_row,Curr_row+Page_rows,0); // unset current
 
   Npgs =   rows/Page_rows;
 
@@ -530,8 +527,8 @@ proc scrollPGN (int pn)
 
 <<[_DB]"%V$Curr_row $Page_rows $rows \n"
 
-   sWo(cellwo,@selectrowscols,0,2,0,cols,1);
-   sWo(cellwo,@selectrowscols,Curr_row,Curr_row+Page_rows,0,cols,1);
+   sWo(cellwo,@selectrows,0,2,0,1);
+   sWo(cellwo,@selectrows,Curr_row,Curr_row+Page_rows,1);
    paintRows();
    Curr_page = wpg;
    sWo(cellwo,@redraw);

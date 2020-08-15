@@ -22,7 +22,7 @@ include "gevent.asl"
 setdebug(1,@keep,@filter,0);
 
 
-//scriptDBON();
+scriptDBON();
 
 //////   create MENUS here  /////
 
@@ -81,10 +81,6 @@ gflush()
 
 int cv = 0;
 
-
-
-// setdebug(1,"step","pline");
-
   sz= Caz(R);
   rows = sz;
   cols = Caz(R,0);
@@ -112,11 +108,12 @@ for (i = 0; i < rows;i++) {
    
    sWo(cellwo,@setrowscols,rows+3,cols+2);
 
-//   curr_row = 3;
+
+   curr_row = 0
    sWo(cellwo,@selectrows,curr_row,curr_row+20);
    sWo(cellwo,@setcolsize,5,0,1);
 
-   curr_row = 0
+
    paintRows();
    curr_row = 1;
 
