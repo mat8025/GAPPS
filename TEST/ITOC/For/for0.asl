@@ -1,6 +1,6 @@
 
-//CheckIn()
-checkIn()
+//chkIn()
+chkIn()
 
 prog = GetScript()
 
@@ -68,20 +68,20 @@ int cnt = 0
 
 <<" $cnt == $N ?? \n"
 
-   CheckNum(cnt,N)
+   chkN(cnt,N)
 
  b = cnt * tt
 
 <<"%i $a ? ==  %i $b \n"
 
 
-   CheckNum(a, b)
+   chkN(a, b)
 
 
-   CheckNum(a, (cnt * tt))
+   chkN(a, (cnt * tt))
 
 
-   CheckOut()
+   chkOut()
 
 
 

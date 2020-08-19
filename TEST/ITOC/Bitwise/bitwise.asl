@@ -20,7 +20,7 @@ int  k = 1
 
 m = j & k
 
-checkNum(m,1)
+chkN(m,1)
 
 <<"%V $j & $k BAND  $m \n"
 
@@ -29,26 +29,26 @@ m = j & k
 
 <<"%V $j & $k BAND  $m \n"
 
-checkNum(m,0);
+chkN(m,0);
 
 k = 4
 m = j & k
 
 <<"%V $j & $k BAND  $m \n"
 
-checkNum(m,4)
+chkN(m,4)
 
 m = ( j | k )
 
 <<"$j | $k BOR  $m \n"
 
-checkNum(m,5)
+chkN(m,5)
 k = 2
 m = ( j | k )
 
 <<"%V $j | $k BOR  $m \n"
 
-checkNum(m,7)
+chkN(m,7)
 
 k = 4
 
@@ -57,13 +57,13 @@ m = ( j ^^ k )
 <<"$j ^^ $k BXOR_  $m\n"
 
 
-checkNum(m,1);
+chkN(m,1);
 
 m = ( j BXOR_ k )
 
 <<"$j BXOR_ $k  $m\n"
 
-checkNum(m,1);
+chkN(m,1);
 
 
 k = 1
@@ -72,7 +72,7 @@ m = ( j ^^ k )
 
 <<"$j ^^ $k XOR  $m\n"
 
-checkNum(m,4)
+chkN(m,4)
 
 
 
@@ -102,7 +102,7 @@ m = ~k
 
 m =  j << 1
 
-checkNum(m,2)
+chkN(m,2)
 
 <<"\n  j << 1  \n"
 
@@ -119,7 +119,7 @@ j = 32
 
 m =  j >> 4
 
-checkNum(m,2)
+chkN(m,2)
 
 <<"\n  $j >> 4  = m \n"
 
@@ -127,7 +127,7 @@ checkNum(m,2)
 
 //ans= i_read("7")
 
-checkOut();
+chkOut();
 
 
 

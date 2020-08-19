@@ -20,10 +20,10 @@ debugON()
 setDebug(1,@trace,@keep,@pline);
 
 
-checkIn()
+chkIn()
 float a = 28.82;
 
-checkFnum(a,28.82)
+chkR(a,28.82)
 
 a->info(1)
 
@@ -35,18 +35,18 @@ b = a
 
 b->info(1)
 
-checkFnum(b,28.82)
+chkR(b,28.82)
 
 
 c = a * 2
 
-checkFnum(c,57.64)
+chkR(c,57.64)
 
 c->info(1)
 
 d = c -a
 
-checkFnum(d,28.82)
+chkR(d,28.82)
 
 a = 2
 b = 3
@@ -55,21 +55,21 @@ d = 5
 
 e = a + b * c
 
-checkFnum(e,14)
+chkR(e,14)
 
 e = (a + b) * c
 
-checkFnum(e,20)
+chkR(e,20)
 
 f = (a + b) * (c + d) 
 
-checkFnum(f,45)
+chkR(f,45)
 
 g = (d + b) * a / c
 
-checkFnum(g,4)
+chkR(g,4)
 
-checkOut()
+chkOut()
 exit()
 
 

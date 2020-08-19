@@ -15,7 +15,7 @@ include "debug.asl"
 
 debugON()
 
-checkIn()
+chkIn()
 
 
 i = 0
@@ -716,7 +716,7 @@ c=1
 
   if ( a && b && c) {
 <<"%V $a $b $c all +ve\n" 
-    checkTrue(1)
+    chkT(1)
   }
 
 
@@ -724,7 +724,7 @@ c=1
   if ( a \
   && c){
 <<"fold 0 %V $a $b $c all +ve\n"
-    checkTrue(1)
+    chkT(1)
   }
 
 
@@ -733,7 +733,7 @@ c=1
   && b \
   && c){
 <<"fold 1 %V $a $b $c all +ve\n"
-    checkTrue(1)
+    chkT(1)
   }
  else {
 <<"%V $a $b $c not all +ve\n" 
@@ -746,7 +746,7 @@ c=1
   if ( a \  
   && b \     
   && c) {
-      checkTrue(1)
+      chkT(1)
 <<"fold 2 %V $a $b $c all +ve\n" 
   }
  else {
@@ -762,11 +762,11 @@ b = 0;
   && c)
   
   {
-      checkTrue(0)
+      chkT(0)
 <<"fold 3 %V $a $b $c all +ve\n" 
   }
   else {
-      checkTrue(1)
+      chkT(1)
 <<"fold 3%V $a $b $c not all +ve\n" 
   }
 
@@ -778,11 +778,11 @@ c = 0;
   if ( a \
   && b \   
   && c)  {
-      checkTrue(0)
+      chkT(0)
 <<"fold 4 %V $a $b $c all +ve\n" 
   }
   else {
-      checkTrue(1)
+      chkT(1)
 <<"fold 4 %V $a $b $c not all +ve\n" 
   }
 
@@ -799,7 +799,7 @@ c = 0;
  sl = slen(cs)
  
  if ( !is_comment && !is_proc && !is_if  && (sl > 0) && (  sstr(";/{}\\",cs,1) == -1) ) { 
-    checkTrue(1)
+    chkT(1)
   <<"all tests true %V is_comment && $is_proc && $is_if $sl\n" 
 
  }
@@ -810,7 +810,7 @@ c = 0;
  if ( !is_comment && !is_proc && !is_if  && (sl > 0) \
       && (  sstr(";/{}\\",cs,1) == -1) )
       { 
-    checkTrue(1)
+    chkT(1)
   <<"fold 5 all tests true %V is_comment && $is_proc && $is_if $sl\n" 
 
  }
@@ -822,7 +822,7 @@ c = 0;
 
  if ( !is_comment && !is_proc && !is_if  && (sl > 0) &&\  
      (  sstr(";/{}\\",cs,1) == -1) )  {
-         checkTrue(1)
+         chkT(1)
 
   <<"fold 6 all tests true %V is_comment && $is_proc && $is_if $sl\n" 
 
@@ -837,7 +837,7 @@ c = 0;
  if ( !is_comment && !is_proc && \
       !is_if  && (sl > 0) && \      
      (  sstr(";/{}\\",cs,1) == -1) )      { 
-    checkTrue(1)
+    chkT(1)
   <<"fold 7 all tests true %V is_comment && $is_proc && $is_if $sl\n" 
 
  }
@@ -852,12 +852,12 @@ c = 0;
       && (sl > 0) \
       && (  sstr(";/{}\\",cs,1) == -1) )
  { 
-    checkTrue(1)
+    chkT(1)
   <<"fold 8 all tests true %V is_comment && $is_proc && $is_if $sl\n" 
 
  }
  else {
-     checkTrue(0)
+     chkT(0)
 <<"fold 8 not correct!  WS after fold control?\n";
  }
 
@@ -1046,4 +1046,4 @@ checkStage("chk null")
 
 
 
-CheckOut()
+chkOut()

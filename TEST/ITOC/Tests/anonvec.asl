@@ -15,7 +15,7 @@
 ///
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 
 int veo[2] = {4,5}
@@ -25,8 +25,8 @@ int ves[2] = {1,-1}
 
 <<"$ves \n"
 
-checkNum(ves[0],1)
-checkNum(ves[1],-1)
+chkN(ves[0],1)
+chkN(ves[1],-1)
 
 
 
@@ -60,7 +60,7 @@ T=testArgs({"hey","hago","haces","hace"})
 <<"%(1,,,\n)$T\n"
 C=split(T[5])
 <<"$C[1]\n"
-checkStr(C[1],"<hace>")
+chkStr(C[1],"<hace>")
 
 
 printArgs({"hey","hago","haces","hace"})
@@ -72,7 +72,7 @@ T=testArgs({"hacer","preterite","hice","hiciste","hizo","hicimos","hicisteis","h
 <<"%(1,,,\n)$T\n"
 C=split(T[5])
 <<"$C[1]\n"
-checkStr(C[1],"<hiciste>")
+chkStr(C[1],"<hiciste>")
 
 //T->Delete()
 
@@ -84,8 +84,8 @@ T=testArgs({"hacer","imperfect","hacía","hacías","hacía","hacíamos","hacíai
 <<"%(1,,,\n)$T\n"
 C=split(T[5])
 <<"$C[1]\n"
-checkStr(C[1],"<hacías>")
+chkStr(C[1],"<hacías>")
 
 
 
-checkOut()
+chkOut()

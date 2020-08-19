@@ -12,7 +12,7 @@ setdebug(1,@trace,@~stderr,@pline,@showresults,@filter,0)
 FilterFileDebug(REJECT_,"~storetype_e");
 FilterFuncDebug(REJECT_,"~ArraySpecs",);
    
-checkIn()
+chkIn()
 
 np = 7;
 char nvm[10];
@@ -45,8 +45,8 @@ nvm[jp] += 3;  // FIX THIS!
 <<"$(typeof(nvm)) $(Cab(nvm))\n"
 <<"%d $nvm\n"
 
-checkNum(nvm[2],57)
-checkNum(nvm[3],58)
+chkN(nvm[2],57)
+chkN(nvm[3],58)
 
 
 ///////////// SHORT/////////////////////////////////
@@ -137,8 +137,8 @@ fvm[jp] += 3  // FIX THIS!
 
 <<"$(typeof(fvm)) $(Cab(fvm))\n"
 <<"%6.1f$fvm \n"
-checkFnum(fvm[2],57)
-checkFnum(fvm[3],58)
+chkR(fvm[2],57)
+chkR(fvm[3],58)
 
 
 
@@ -170,14 +170,14 @@ dvm[jp] += 1;  // FIX THIS!
 <<"$(typeof(dvm)) $(Cab(dvm))\n"
 <<"%6.1f $dvm \n"
 
-checkFnum(dvm[2],57)
-checkFnum(dvm[3],56)
+chkR(dvm[2],57)
+chkR(dvm[3],56)
 
 dvm[jp] -= 1;  // FIX THIS!
 
-checkFnum(dvm[3],55)
+chkR(dvm[3],55)
 <<"%6.1f $dvm \n"
 
-checkOut() ; exit()
+chkOut() ; exit()
 
 

@@ -16,7 +16,7 @@ proc howlong (r,c, val)
 }
 
 
-CheckIn()
+chkIn()
 
 
   Record R[10];
@@ -51,17 +51,17 @@ cols = Caz(R,0)
 
 
 
-checkStr(R[wr][wc],"79")
-checkStr(R[1][3],"47")
+chkStr(R[wr][wc],"79")
+chkStr(R[1][3],"47")
 
 str lmans = "80"
 
  wr=4
  R[wr][wc] = lmans;
  
-checkStr(R[wr][wc],lmans)
+chkStr(R[wr][wc],lmans)
 
-checkStr(R[wr][wc],"80")
+chkStr(R[wr][wc],"80")
 
 sr00 = R[0][0];
 
@@ -87,4 +87,4 @@ wr++; wc++;
 
 
 
-CheckOut();
+chkOut();

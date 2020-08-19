@@ -30,9 +30,9 @@ nd = Cab(R)
 sz = Caz(R)
 <<"%V $sz\n"
 
-checkStr(rf,"cols")
+chkStr(rf,"cols")
 
-checkOut()
+chkOut()
 exit()
 
 

@@ -1,5 +1,5 @@
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 // this has to done - don't use automatic linking
 // since does not have IC equivalent - yet
@@ -15,7 +15,7 @@ zz = 75 * 40 * 4
 <<" a simple SUCCESS!\n"
  }
 
-   CheckNum(zz,12000)
+   chkN(zz,12000)
 
 zz = 75 + 40 * 4
 
@@ -98,7 +98,7 @@ x = 3.0
 
 <<"%V $ry \n"
 
-   CheckFNum(ry,N,6)
+   chkR(ry,N,6)
 
    if (ry < N) {
 <<" $ry < $N \n"
@@ -120,7 +120,7 @@ x = 3.0
 
    if (ry >= N) {
 <<" $ry >= $N \n"
-     checkNum(1,1)
+     chkN(1,1)
    }
 
 
@@ -166,14 +166,14 @@ x = 3.0
 
     k++
 
-   checkNum(nr,mr)
+   chkN(nr,mr)
 
 
 
 
   }
 
-   CheckOut()
+   chkOut()
 
 
 

@@ -20,7 +20,7 @@ debugON();
   FilterFileDebug(REJECT_,"~storetype_e");
   FilterFuncDebug(REJECT_,"~ArraySpecs",);
 
-CheckIn()
+chkIn()
 
 
 
@@ -28,7 +28,7 @@ int IV[] = {47,79,80};
 
 <<"%V $IV\n"
 
-checkNum(IV[1],79);
+chkN(IV[1],79);
 
 FV = vgen(FLOAT_,3,0,1)
 
@@ -59,7 +59,7 @@ D = C
 
    C->Convert(INT_);
    
-   checkNum(202,C[0]);
+   chkN(202,C[0]);
    
 
 //////////////////////////
@@ -134,7 +134,7 @@ d0 = 0xca
 
 
 
-   checkNum(d0,CI[0])
+   chkN(d0,CI[0])
 
 
 <<"retype CHAR $(CHAR_) --> FLOAT $(FLOAT_) \n"
@@ -187,6 +187,6 @@ float F[]
 
 <<"long LV[] $LV\n"
 
-checkOut()
+chkOut()
 
 exit()

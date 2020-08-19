@@ -10,8 +10,13 @@
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
+include "debug"
 
-ci (_dblevel);
+if (_dblevel >0) {
+   debugON()
+}
+
+chkIn (_dblevel);
 
 <<"%V $_dblevel\n"
 //cd query()
@@ -34,7 +39,7 @@ proc array_asg (float rl[])
 
 <<"%V $rl\n"
 
-   cr (rl[3],67)
+   chkR (rl[3],67)
 
    t3 = rl[8]
 
@@ -69,7 +74,7 @@ proc array_sub (float rl[])
 
   <<"$(Caz(t1))\n";
   rl->info(1)
-//  cr (t1, 4.0);
+//  chkR (t1, 4.0);
 
 //query()
 
@@ -88,7 +93,7 @@ proc array_sub (float rl[])
   <<"%V %6.2f $t3  \n";
   <<"$(Caz(t3))\n";
 
-  cr (t3, -2);
+  chkR (t3, -2);
 
 //<<"$rl[j1]\n";
 
@@ -98,7 +103,7 @@ proc array_sub (float rl[])
 
   <<"$(Caz(t4))\n";
 
- // cr (t4, 5);
+ // chkR (t4, 5);
 
   <<"%V $k $j1 $j2 \n";
 //<<"%6.2f$rl \n";
@@ -119,7 +124,7 @@ proc array_sub (float rl[])
 
   wrl = rj1 -rj2
 <<"%V $wrl\n"
-  cr (wrl, -2);
+  chkR (wrl, -2);
 
   rl[kp] = rl[j1] - rl[j2];
 
@@ -133,7 +138,7 @@ proc array_sub (float rl[])
 
   wrl = rl[kp];
 <<"%V $wrl\n"
-  cr (wrl, -2);
+  chkR (wrl, -2);
 
   rl[0] = 47;
 
@@ -148,7 +153,7 @@ proc array_sub (float rl[])
 
   <<"%V $rl \n";
 
-  cr (jj, -2);
+  chkR (jj, -2);
 
 
   
@@ -158,7 +163,7 @@ proc array_sub (float rl[])
   //<<"$rl \n"
   <<"%V $ff $jj $rl[kp] \n"
   
-  cr (rl[kp], -2.0);
+  chkR (rl[kp], -2.0);
 
   rl->info(1)
 
@@ -173,7 +178,7 @@ proc array_sub (float rl[])
   <<"%V$t2\n";
   <<"$(Caz(t2))\n";
 
-  checkFNum (t2, -2);
+  chkR (t2, -2);
   
 //<<"$rl[0:3]\n"     ;
 
@@ -203,7 +208,7 @@ proc array_sub (float rl[])
 
 <<"%(1,,,\n)$TA\n";
   
-  checkFNum (rl[j1], -2);
+  chkR (rl[j1], -2);
 
   ff= rl[j1];
 <<" $ff   \n"
@@ -212,15 +217,15 @@ proc array_sub (float rl[])
 
 //<<"$rl\n"   // FIX does not parse rl here why?
 
-  checkFNum (rl[4], -2);
+  chkR (rl[4], -2);
 
   <<"rl vec $rl[0:-1]\n";
 
-  cr (rl[5], 5);
+  chkR (rl[5], 5);
 
   t6 = rl[5];
 
-  checkFNum (t6, 5);
+  chkR (t6, 5);
 
   <<"%V$t6\n";
   <<"$(Caz(t6))\n";
@@ -237,7 +242,7 @@ Real1 = vgen (FLOAT_, 10, 0, 1);
 <<"%V$Real1\n";
 
 
-cr (Real1[2],2)
+chkR (Real1[2],2)
 
 
 
@@ -265,7 +270,7 @@ val = array_sub (Real2);
 float mt1;
 
 mt1 = Real1[4];
-cr (mt1, 4);
+chkR (mt1, 4);
 <<"%V $mt1 \n";
 
 Real1[0] = 74.47;
@@ -299,14 +304,14 @@ val = array_sub (Real);
 val = Real[3];
 
 <<"%V$val \n";
-cr (val, -2);
+chkR (val, -2);
 k = 4;
 
 val = Real[k];
 
 <<"%V$val \n";
 
-cr (val, 4);
+chkR (val, 4);
 
 
 sz = Csz (Real);
@@ -340,7 +345,7 @@ t1 = Real[4] ;
 
 <<" done Caz !\n";
 
-cr (t1, 4);
+chkR (t1, 4);
 
 double t2;
 
@@ -350,7 +355,7 @@ t2 = Real[k];
 <<"%V$t2\n";
 <<"$(Caz(t2))\n";
 
-cr (t2, 5);
+chkR (t2, 5);
 
 j1 = 4;
 j2 = 6;
@@ -361,7 +366,7 @@ t3 = Real[j1] - Real[j2];
 
 <<"$(Caz(t3))\n";
 
-cr (t3, -2);
+chkR (t3, -2);
 
 <<"$Real[j1]\n";
 
@@ -371,13 +376,13 @@ t4 = Real[j1 + 1];
 
 <<"$(Caz(t4))\n";
 
-cr (t4, 5);
+chkR (t4, 5);
 
 <<"$Real \n";
 
 Real[k] = Real[j1] - Real[j2];
 
-cr (Real[k], -2);
+chkR (Real[k], -2);
 
 <<"ele[${k}] $Real[k] \n";
 
@@ -388,7 +393,7 @@ t2 = Real[k];
 <<"%V$t2\n";
 <<"$(Caz(t2))\n";
 
-cr (t2, -2);
+chkR (t2, -2);
 
 <<"$Real[0:3]\n";
 
@@ -398,9 +403,9 @@ Real[j1] = Real[j1] - Real[j2];
 
 <<"just Real[j1] $Real[j1]\n";
 
-cr (Real[j1], -2);
+chkR (Real[j1], -2);
 
-cr (Real[4], -2);
+chkR (Real[4], -2);
 
 
 
@@ -444,7 +449,7 @@ proc fooey(float rl[])
 
      rxp = rl[1]
 <<"$rxp\n"
- cr (rxp,11)
+ chkR (rxp,11)
 <<"%I$rl   $(Caz(rl))\n"
     j1 = 1
      rxp = rl[j1]
@@ -486,8 +491,8 @@ vsz = Caz(rl)
 sz = Caz(Re)
 
 <<"%V$sz\n"
-cn (sz,10)
+chkN (sz,10)
 
-co ();
+chkOut ();
 
 

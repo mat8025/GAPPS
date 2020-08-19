@@ -14,7 +14,7 @@ myScript = getScript();
 
 
 
-checkIn(_dblevel);
+chkIn(_dblevel);
 
 
 
@@ -152,7 +152,7 @@ int V = 4 ;  // global
 <<"%V $apple->V \n"
 <<"global %V $V \n";
 
-  checkNum(66,V)
+  chkN(66,V)
 
  fruit cherry
 
@@ -164,7 +164,7 @@ int V = 4 ;  // global
   apple->V = 45
 <<" %v $apple->V \n"
 
-  checkNum(45,apple->V)
+  chkN(45,apple->V)
 
 
 
@@ -191,7 +191,7 @@ int V = 4 ;  // global
   apple->print() 
 
 <<" %v $apple->V \n"
-//    checkOut()
+//    chkOut()
 
   av = apple->get_V()
 
@@ -211,7 +211,7 @@ int V = 4 ;  // global
 
   cherry->set_V(48)
 
-  checkNum(48,cherry->V)
+  chkN(48,cherry->V)
 
   apple->print() 
 
@@ -232,10 +232,10 @@ int V = 4 ;  // global
   cherry->set_GV(9)
 
 
-  checkNum(V,9)
+  chkN(V,9)
 
 <<" %V $V $apple->V  $cherry->V \n"
 
-checkOut()
+chkOut()
 
 

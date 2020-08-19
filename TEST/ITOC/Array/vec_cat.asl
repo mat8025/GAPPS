@@ -15,7 +15,7 @@ myScript = getScript();
 ///
 //  test vec cat expand ops
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 int M[]
 int N[]
@@ -36,9 +36,9 @@ int P[]
  P[30] = 47
   //P[31] = 93
 P->info(1)
-   checkNum(P[30],47)
+   chkN(P[30],47)
   P[25] = 79
-   checkNum(P[25],79)
+   chkN(P[25],79)
 
 <<"$P \n"
 
@@ -51,12 +51,12 @@ P->info(1)
 <<"$V \n"
 V->info(1)
 
- checkNum(V[1],-1)
- checkNum(V[11],1)
- checkNum(V[39],0)
- checkNum(V[40],47)
- checkNum(V[35],79)
+ chkN(V[1],-1)
+ chkN(V[11],1)
+ chkN(V[39],0)
+ chkN(V[40],47)
+ chkN(V[35],79)
 
- checkOut()
+ chkOut()
 
 ///////////////////////////////

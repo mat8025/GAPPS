@@ -1,7 +1,11 @@
 
+include "debug"
 
-setDebug(1,"trace","pline")
-CheckIn()
+if (_dblevel >0) {
+   debugON()
+}
+
+chkIn(_dblevel)
 
 //FIXME --- have to have a declare statement afore LIST DECLARE ??
 
@@ -23,7 +27,7 @@ L = ( "say", "what", "can" ,"I", "do", "now", "with", "this", "amazingly", "love
 
 <<"list size is $m \n"
 
- //CheckNum(m,11)
+ //chkN(m,11)
 
 <<" should be unreversed !\n"
 
@@ -69,7 +73,7 @@ lib = L[2:6];
 
  aw="what"
 
- tt=CheckStr(aw,"what")
+ tt=chkStr(aw,"what")
 
 <<"%V$tt\n"
 
@@ -77,7 +81,7 @@ lib = L[2:6];
 
 <<" $(typeof(aw)) $aw \n"
 
- tt=CheckStr(le,"what")
+ tt=chkStr(le,"what")
 
 <<"%V$tt\n"
  
@@ -101,7 +105,5 @@ lib = L[2:6];
 <<"%V$le \n"
 
 
-CheckOut()
-
-stop!
+chkOut()
 

@@ -1,4 +1,4 @@
-CheckIn()
+chkIn()
 
 setdebug(0)
 
@@ -11,7 +11,7 @@ int J[10]
 
 <<"%I$J \n"
 
- CheckNum(J[4],8)
+ chkN(J[4],8)
 
 short S[10]
 
@@ -21,7 +21,7 @@ short S[10]
 
  S[4] = k * 2
 
- CheckNum(S[4],8)
+ chkN(S[4],8)
 
 <<"%d$S \n"
 
@@ -35,7 +35,7 @@ char C[10]
 
 <<"%d$C \n"
 
- CheckNum(C[4],8)
+ chkN(C[4],8)
 
 float F[10]
 
@@ -47,7 +47,7 @@ float F[10]
 
 <<"%6.2f$F \n"
 
- CheckFNum(F[4],8,6)
+ chkR(F[4],8,6)
 
 double D[10]
 
@@ -59,7 +59,7 @@ double D[10]
 
 <<"%6.2f$D \n"
 
- CheckFNum(D[4],8,6)
+ chkR(D[4],8,6)
 
 
 //int J[10]
@@ -85,9 +85,9 @@ double D[10]
 
 <<"%I$J \n"
 
- CheckNum(J[n],8)
+ chkN(J[n],8)
 
- CheckOut()
+ chkOut()
 
 STOP!
 

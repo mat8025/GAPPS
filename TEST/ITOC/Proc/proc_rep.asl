@@ -10,7 +10,7 @@ filterFuncDebug(ALLOWALL_);
 filterFileDebug(ALLOWALL_,"declare_type","array_subset","storetype","ds_store","ds_vector");
 
 
-checkIn();
+chkIn();
 
 N = 200;
 int K = 1;
@@ -120,17 +120,17 @@ last_mem = memused();
 <<"OK $K == $N\n"
  }
 
-checkNum(K,N)
+chkN(K,N)
 
 
- checkNum(K,N,GTE_)
+ chkN(K,N,GTE_)
  
 <<" DONE %V $K $N  $init_mem $totmem\n"
 
  pcc= (100.0 * ok)/ntest
 <<"%-24s :: :success $ok failures $bad  %6.1f $pcc\% \n"
 
-checkOut();
+chkOut();
 
 exit()
 

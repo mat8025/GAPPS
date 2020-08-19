@@ -179,7 +179,7 @@ vpR3->print()
 
     is_ovl = chkWin();
 
-    ok=checkTrue(is_ovl)
+    ok=chkT(is_ovl)
 <<"%V $is_ovl $ok \n"
 
 vpR2->x = 20
@@ -198,4 +198,4 @@ vpR2->X= vpR2->x +10
 <<"%V $is_ovl \n"
  checkFalse(is_ovl)
 
-   CheckOut();
+   chkOut();

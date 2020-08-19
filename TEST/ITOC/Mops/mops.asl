@@ -15,7 +15,7 @@
 
 
 
-CheckIn()
+chkIn()
 
 short xyv[12]
 //int xyv[12]
@@ -35,23 +35,23 @@ testargs(" TRY HARDER $xyv[2] ")
 <<"%v  $as \n"
 
 
-   CheckNum(xyv[2],99)
+   chkN(xyv[2],99)
 
-   CheckNum(xyv[2],as)
+   chkN(xyv[2],as)
 
 
-//FIX CheckNum(Caz(xyv),8)
+//FIX chkN(Caz(xyv),8)
 
  sz = Caz(xyv)
 
-  CheckNum(sz,12)
+  chkN(sz,12)
 
 
-  CheckNum(Caz(xyv),12)
+  chkN(Caz(xyv),12)
 // FIX runs twice ?
 
 
-//   CheckOut()
+//   chkOut()
 //STOP!
 
 short zx[4]
@@ -96,10 +96,10 @@ short zx[4]
 
 <<"%v $xyv[::] \n"
 
-   CheckNum(xyv[2],77)
+   chkN(xyv[2],77)
 
 
-   CheckNum(xyv[6],77)
+   chkN(xyv[6],77)
 
 <<"%v $xyv[::] \n"
 
@@ -108,12 +108,12 @@ short zx[4]
 <<"%v $xyv[::] \n"
 
 
-   CheckNum(xyv[2],70)
+   chkN(xyv[2],70)
 
 
 //<<"%v $xyv[6] \n"
 
-   CheckNum(xyv[6],72)
+   chkN(xyv[6],72)
 
 <<" $xyv \n"
    zx[0] =23
@@ -158,13 +158,13 @@ N = 27
 a = cbrt(N)
 
 <<"cube root of $N  is $a\n"
-checkFNum(a,3.0)
+chkR(a,3.0)
 N = 729
 
 a = cbrt(N)
 
 <<"cube root of $N  is $a\n"
-checkFNum(a,9.0)
+chkR(a,9.0)
 
 checkStage("cbrt")
 
@@ -187,7 +187,7 @@ p = _PI
   sz = Caz(&f);
   <<"%V $f  $sz  \n"
 
- checkNum(sz,0)
+ chkN(sz,0)
 
 
 
@@ -199,33 +199,33 @@ F=Atof(A)
  sz = Caz(F);
  bd = Cab(F);
  <<"%V $F  $sz $bd\n"
-checkNum(sz,4)
+chkN(sz,4)
 
 G = Atof(A[1])
  sz = Caz(&G);
  bd = Cab(&G);
 <<"%V $G $sz $bd \n"
-checkNum(sz,0)
+chkN(sz,0)
 
 I = Atoi(A[2])
  sz = Caz(&I);
  bd = Cab(&I);
 <<"%V $I $sz $bd \n"
 
-checkNum(sz,0)
+chkN(sz,0)
 
 checkStage("atof")
 
 hs = dec2hex(47806)
 <<"$hs\n"
-checkStr(hs,"BABE")
+chkStr(hs,"BABE")
 
 i= hex2dec("babe")
 
 
-checkNum(i,47806)
+chkN(i,47806)
 
 
 checkStage("dec2hex")
 
-CheckOut()
+chkOut()

@@ -17,7 +17,7 @@
 
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
  I = Vgen(INT_,40,0)
 
@@ -28,9 +28,9 @@ checkIn(_dblevel)
  <<" $(info(I)) \n"
 <<"$I\n"
 
-checkFnum(I[0],0)
-checkFnum(I[5],10)
-checkFnum(I[8],10)
+chkR(I[0],0)
+chkR(I[5],10)
+chkR(I[8],10)
 
 
 
@@ -93,30 +93,30 @@ checkStage("subrange")
 
 int L[24];
 
-checkNum(L[0],0)
-checkNum(L[23],0)
+chkN(L[0],0)
+chkN(L[23],0)
 <<"$L\n"
 
 L = 79;
-checkNum(L[0],79)
-checkNum(L[23],79)
+chkN(L[0],79)
+chkN(L[23],79)
 
 <<"$L\n"
 
 
 L = 0;
 
-checkNum(L[0],0)
-checkNum(L[23],0)
+chkN(L[0],0)
+chkN(L[23],0)
 
 <<"$L\n"
 
 L[5:8] = 1;
 
-checkNum(L[0],0)
-checkNum(L[23],0)
-checkNum(L[5],1)
-checkNum(L[8],1)
+chkN(L[0],0)
+chkN(L[23],0)
+chkN(L[5],1)
+chkN(L[8],1)
 
 proc Hey(int V[])
 {
@@ -137,8 +137,8 @@ Hey(L);
 
 <<"$L\n"
 
-checkNum(L[0],18)
-checkNum(L[23],18)
+chkN(L[0],18)
+chkN(L[23],18)
 
 
 L= 80;
@@ -147,18 +147,18 @@ Hey(L);
 
 <<"$L\n"
 
-checkNum(L[0],18)
-checkNum(L[23],18)
-//checkNum(L[5],18)
+chkN(L[0],18)
+chkN(L[23],18)
+//chkN(L[5],18)
 
 L[5:8] = 74;
 <<"$L\n"
 
 
-checkNum(L[5],74)
+chkN(L[5],74)
 
 checkStage("subrange2")
 
 
 
-checkOut();
+chkOut();

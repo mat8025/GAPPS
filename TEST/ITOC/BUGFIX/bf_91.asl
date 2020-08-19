@@ -2,7 +2,7 @@
 
 
 ///
-checkIn();
+chkIn();
 
 print ("hey\n");
 
@@ -13,16 +13,16 @@ print (" $a == $b\n");
 
 print (" a = b\n");
 
-checkNum(a,b)
+chkN(a,b)
 
 
 print (' a = b \n');
 
-checkNum(a,b)
+chkN(a,b)
 
 print (" \" a = b \n");
 
-checkNum(a,b)
+chkN(a,b)
 
 
-checkOut();
+chkOut();

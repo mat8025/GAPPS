@@ -18,7 +18,7 @@
 ///
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 
 proc goo(float a)
@@ -92,7 +92,7 @@ M = _clarg[2]
 
   <<" $x * $y = $w \n"
 
-  //     CheckNum(w,z)
+  //     chkN(w,z)
 
   z = Cos(Sin(deg2rad(d))) * Sin(Cos(deg2rad(d)))
 
@@ -102,7 +102,7 @@ M = _clarg[2]
 
 <<" $w \n"
 
-  CheckFNum(w,z,4)
+  chkR(w,z,4)
 
 // FIXME
 
@@ -116,7 +116,7 @@ M = _clarg[2]
 
 <<" $w \n"
 
-  CheckFNum(w,z,3)
+  chkR(w,z,3)
 
 
   t = goo(x)
@@ -157,7 +157,7 @@ prog= GetScript()
 
  <<"cos $y \n"
 
-  checkNum(y,1.0)
+  chkN(y,1.0)
 
 
 
@@ -169,7 +169,7 @@ y = Sin(pi/2.0)
 
 <<" sin pi/2 $y \n"
 
-  checkNum(Fround(y,2),1.0)
+  chkN(Fround(y,2),1.0)
 
 
 
@@ -183,7 +183,7 @@ y = Sin(pi/2.0)
 
   }
 
-   checkNum(Fround(pir,5),3.14159)
+   chkN(Fround(pir,5),3.14159)
 
 
 /////////////////////////////////////////
@@ -312,7 +312,7 @@ n++;
 
  a = 1;
 
- cr (a,1)
+ chkR (a,1)
 
 
  int b = 79;
@@ -373,13 +373,13 @@ checkStage("funcargs")
 
   testArgs(pnum,  123456789.98765432100)
 
-  cr (pnum,  123456789.98765432100, 5)
+  chkR (pnum,  123456789.98765432100, 5)
 
 
 checkStage("pan")
 
 
-co ()
+chkOut ()
 
 
 

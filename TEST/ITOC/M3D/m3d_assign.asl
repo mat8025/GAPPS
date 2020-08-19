@@ -24,7 +24,7 @@
 
 
 
-CheckIn()
+chkIn()
 
 nrows = 10
 n_feat = 8
@@ -36,13 +36,13 @@ int Nic[5][100][n_feat];
 
 Nit[1:4:][0] = 47;
 
-checkNum(Nit[1][0],47);
+chkN(Nit[1][0],47);
 
 
 
 Nit[::][0] = 2;
 
-checkNum(Nit[1][0],2);
+chkN(Nit[1][0],2);
 
 
 Nit[::][7] = 7
@@ -99,7 +99,7 @@ i++
   <<"%V$i $Nit[i][0:7:] \n"
 <<"%V $Nic[kc][kci][0:5:] \n"
 
-checkNum(Nic[kc][kci][0] ,Nit[i][2])
+chkN(Nic[kc][kci][0] ,Nit[i][2])
 
 
 
@@ -163,10 +163,10 @@ if (fail2) {
 <<"%V$fail1 $fail2\n"
 
 
-CheckNum(fail1,0)
-CheckNum(fail2,0)
+chkN(fail1,0)
+chkN(fail2,0)
 
 
-CheckOut();
+chkOut();
 
 exit();

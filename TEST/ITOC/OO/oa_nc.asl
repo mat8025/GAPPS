@@ -4,7 +4,7 @@ setDebug(1,"trace","~pline","~step")
 
 #define  ASK ans=iread();
 
-CheckIn(0);
+chkIn(0);
 
 int act_ocnt=0;
 
@@ -115,7 +115,7 @@ t1 = E->A[0]->t;
 
 <<"%V $yt0 \n"
 
- CheckNum(yt0,28)
+ chkN(yt0,28)
 
  yt1 = E->A[0]->t
 
@@ -129,6 +129,6 @@ k = 0;
 <<"%V $yt1 \n"
 
 
-checkOut()
+chkOut()
 
 exit()

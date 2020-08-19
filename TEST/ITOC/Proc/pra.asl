@@ -20,7 +20,7 @@ filterFuncDebug(ALLOWALL_,"proc",);
 filterFileDebug(ALLOWALL_,"ic_",);
 
 
-CheckIn(0)
+chkIn(0)
 
 proc sumarg (v, u)
 {
@@ -77,11 +77,11 @@ float y = 26.7;
  w = sumarg(&x,&y)
 <<"%V $x $y $w \n"
 
-CheckFNum(w,40.0,6)
+chkR(w,40.0,6)
 
-CheckFNum(x,14.3,3)
+chkR(x,14.3,3)
 
-CheckFNum(y,53.4,3)
+chkR(y,53.4,3)
 
 
 <<"Scalar args \n"
@@ -95,13 +95,13 @@ int k = 0;
 
 <<"%V proc returns $k \n"
 
-  CheckNum(n,3)
+  chkN(n,3)
 
-  CheckNum(m,6)
+  chkN(m,6)
 
 <<"%V $k\n"
 
-   checkNum(5,k);
+   chkN(5,k);
 
 //
 
@@ -112,7 +112,7 @@ int k = 0;
 
 <<"%V $n $m $k \n"
 
-  CheckNum(k,21);
+  chkN(k,21);
 
 
-checkOut()
+chkOut()

@@ -2,7 +2,7 @@
 /// d2r
 ///
 
-checkIn();
+chkIn();
 
 d = 180.0;
 r= d2r(d)
@@ -13,9 +13,9 @@ p= r2d(r)
 <<"$p $d\n"
 
 
-checkFnum(r,_PI)
+chkR(r,_PI)
 
-checkFnum(p,d)
+chkR(p,d)
 
 for (d = 0.0; d<= 360; d+= 45.0)
 {
@@ -23,4 +23,4 @@ for (d = 0.0; d<= 360; d+= 45.0)
   p= r2d(r)
 <<"$d $r $p\n"
 }
-checkOut()
+chkOut()

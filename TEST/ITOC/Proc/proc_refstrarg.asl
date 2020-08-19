@@ -17,7 +17,7 @@ myScript = getScript();
 /// procrefarg
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 proc pstrarg (str v, str u)
 {
@@ -46,7 +46,7 @@ proc pstrarg (str v, str u)
 
 <<"%V $s $t $w\n"
 
- checkStr(s,"hola")
+ chkStr(s,"hola")
 
 
   s = "buenos"
@@ -60,7 +60,7 @@ proc pstrarg (str v, str u)
 
 <<"%V $s $t $w\n"
 
- checkStr(s,"hola")
+ chkStr(s,"hola")
 
 
 
@@ -75,9 +75,9 @@ proc pstrarg (str v, str u)
 
 <<"%V $s $t $w\n"
 
- checkStr(s,"buenas")
+ chkStr(s,"buenas")
 
- checkOut()
+ chkOut()
 
 
 

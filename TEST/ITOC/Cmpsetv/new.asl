@@ -31,7 +31,7 @@
      }
    
    
-   checkin(); 
+   chkIn(); 
    
    I = vgen(INT_,20,0,1); 
    
@@ -46,7 +46,7 @@
 //ans=iread()
      }
    
-   checkNum(I[0],10); 
+   chkN(I[0],10); 
 /////
    
    
@@ -62,6 +62,6 @@
      
      }
    
-   checkNum(I[0],10); 
+   chkN(I[0],10); 
    
-   checkOut(); 
+   chkOut(); 

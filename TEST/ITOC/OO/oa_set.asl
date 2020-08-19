@@ -45,7 +45,7 @@ class Act {
 };
 //================================
 
-checkIn();
+chkIn();
 
 Act a;
 
@@ -64,7 +64,7 @@ Act a;
 
  yt = X[3]->type;
 <<" 66? %V $yt\n"
- CheckNum(yt,66);
+ chkN(yt,66);
 
 
 
@@ -73,11 +73,11 @@ Act a;
  
  yt = X[3]->type;
 <<" 66? %V $yt\n"
- CheckNum(yt,66);
+ chkN(yt,66);
 
  yt = X[0]->type;
 <<" 47? %V $yt\n"
- CheckNum(yt,47);
+ chkN(yt,47);
 
 
  X[0]->type = 50;
@@ -89,13 +89,13 @@ yt = X[2]->type
 
 <<"47? type for X[2] $yt $(typeof(yt)) \n"
 
- CheckNum(yt,47);
+ chkN(yt,47);
 
 yt = X[3]->type;
 
 <<"80? type for X[3] $yt \n"
 
- CheckNum(yt,80);
+ chkN(yt,80);
 
-checkOut()
+chkOut()
 

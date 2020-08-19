@@ -1,5 +1,5 @@
 
-CheckIn()
+chkIn()
 setdebug(1)
 
 proc foo(a) 
@@ -94,14 +94,14 @@ in = 2
 
 <<" $in $c \n"
 
-   CheckNum(c,1)
+   chkN(c,1)
 
 
    c = foo(in) * 2
 
    <<" $in $c \n"
 
-   CheckNum(c,2)
+   chkN(c,2)
 
 
 in = 1
@@ -110,7 +110,7 @@ in = 1
 
 <<" $in $c \n"
 
-   CheckNum(c,0)
+   chkN(c,0)
 
  in = 3
 
@@ -118,13 +118,13 @@ in = 1
 
 <<" $in out $c \n"
 
-   CheckNum(c,1)
+   chkN(c,1)
 
  c = foo(in) * 6
 
 <<" $in $c \n"
 
-   CheckNum(c,6)
+   chkN(c,6)
 
   in = -4
 
@@ -132,7 +132,7 @@ in = 1
 
 <<" $in $c \n"
 
-   CheckNum(c,-6)
+   chkN(c,-6)
 
    in = 110
 
@@ -157,7 +157,7 @@ in = 1
 
   <<" $in $c \n"
 
-   CheckNum(c,120)
+   chkN(c,120)
 
 
   in = 310
@@ -175,7 +175,7 @@ in = 1
 
 <<"%V $in $c \n"
     
-  CheckNum(c,210)
+  chkN(c,210)
 
 
   for (j = 0 ; j < 3; j++) {
@@ -186,12 +186,12 @@ in = 1
 
       <<" $in  returned * 3  $c \n"
 
-      CheckNum(c,(j+1))
+      chkN(c,(j+1))
 
   }
 
 
-   CheckOut()
+   chkOut()
 
 STOP!
 

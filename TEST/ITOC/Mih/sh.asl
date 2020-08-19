@@ -12,8 +12,8 @@
 //***********************************************%
 myScript = getScript();
 
-checkIn(_dblevel)
-//checkIn(1)
+chkIn(_dblevel)
+//chkIn(1)
 //sdb(1,@trace)
 
 
@@ -240,7 +240,7 @@ h->info(1)
 
    nf = r->getfloors()
 
-  checkNum(2,nf)
+  chkN(2,nf)
 
 <<" grandparent constructor called %v $nf  from room object\n"
 
@@ -259,7 +259,7 @@ h->info(1)
 
 <<" %I $nf \n"
 
-  checkNum(nf,10)
+  chkN(nf,10)
 
    r->print()
 
@@ -271,6 +271,6 @@ h->info(1)
 
 <<" baths $nb \n"
 
-  checkNum(nb,3)
+  chkN(nb,3)
 
-  checkOut()
+  chkOut()

@@ -2,7 +2,7 @@
 ///
 ///
 
-checkIn()
+chkIn()
 
 setDebug(1,"trace")
 
@@ -47,10 +47,10 @@ for (i = 0; i <10; i++) {
 
 ans = A[11];
 
-checkStr(ans,"47")
+chkStr(ans,"47")
 
 <<"$help\n"
 
 
 
-checkOut();
+chkOut();

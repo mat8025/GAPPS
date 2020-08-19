@@ -9,7 +9,7 @@ setdebug(1,"pline","trace")
 //#define ASK ans=iread("->");
 
 initmem=memused()
-CheckIn()
+chkIn()
 
 float Vsp[];
 float Tsp[];
@@ -48,7 +48,7 @@ setupVsp()
 
 <<"$Vsp\n"
 
-checkFnum(Vsp[1],0.1)
+chkR(Vsp[1],0.1)
 
 
 
@@ -114,7 +114,7 @@ int bad = 0
 
   }
 
-CheckNum(bad,0)
+chkN(bad,0)
 
 <<"%V$Dif\n"
 
@@ -128,7 +128,7 @@ CheckNum(bad,0)
 
 <<"$Rcmp \n"
 
-CheckNum(Rcmp[1],1)
+chkN(Rcmp[1],1)
 
 Checkout();
 

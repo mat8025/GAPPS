@@ -1,7 +1,7 @@
 
 
 
-CheckIn()
+chkIn()
 
 //#define RED  1
 //#define ORANGE  2
@@ -14,9 +14,9 @@ CheckIn()
 
 
 
-CheckNum(2,RED_)
-CheckNum(ORANGE_,3)
-CheckNum(5,GREEN_)
+chkN(2,RED_)
+chkN(ORANGE_,3)
+chkN(5,GREEN_)
 
 
   color = RED_ ;
@@ -67,7 +67,7 @@ y = 1
 
 
 
-   CheckOut()
+   chkOut()
 
 
 

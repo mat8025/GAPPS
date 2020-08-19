@@ -1,7 +1,7 @@
 
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 
 
@@ -17,8 +17,8 @@ Data = vgen(INT_,10,0,1)
 <<"$a  \n"
 <<"$Data \n"
 
-checkNum(Data[1],a)
-checkNum(Data[2],a)
+chkN(Data[1],a)
+chkN(Data[2],a)
 
 K= vgen(INT_,10,0,1)
  K->info(1)
@@ -33,8 +33,8 @@ K= vgen(INT_,10,0,1)
  printargs(K[3],K[5],K[1],K[0],k)
 
 
-  checkNum(K[5],5);
-    checkNum(K[2],2); 
+  chkN(K[5],5);
+    chkN(K[2],2); 
 
 
 
@@ -42,4 +42,4 @@ K= vgen(INT_,10,0,1)
 
 
 
-checkOut()
+chkOut()

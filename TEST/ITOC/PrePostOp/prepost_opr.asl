@@ -14,7 +14,7 @@ myScript = getScript();
 
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 proc Foo(int a,int b)
 {
@@ -46,14 +46,14 @@ b = A[k]
 
 <<"0th ele is $b\n"
 
-checkNum(b,47)
+chkN(b,47)
 
 
 b= A[k++]
 
 <<"0th ele is still $b\n"
 
-checkNum(b,47)
+chkN(b,47)
 
 
 <<"%V$k\n"
@@ -62,14 +62,14 @@ b = A[k]
 
 <<"1st ele is $b \n"
 
-checkNum(b,79)
+chkN(b,79)
 
 
 b= A[k++]
 
 <<"1st ele is $b \n"
 
-checkNum(b,79)
+chkN(b,79)
 
 
 <<"%V$k\n"
@@ -78,7 +78,7 @@ b= A[k++]
 
 <<"2nd ele $b \n"
 
-checkNum(b,80)
+chkN(b,80)
 
 <<"%V$k\n"
 
@@ -88,7 +88,7 @@ b= A[k++]
 
 <<"4th ele $b \n"
 
-checkNum(b,4)
+chkN(b,4)
 
 <<"%V$k\n"
 
@@ -97,7 +97,7 @@ b= A[k--]
 
 <<"%V$b \n"
 
-checkNum(b,5)
+chkN(b,5)
 
 <<"%V$k\n"
 
@@ -107,11 +107,11 @@ b= A[--k]
 <<"%V$b \n"
 
 
-checkNum(b,14)
+chkN(b,14)
 
 <<"%V$k\n"
 
-checkNum(k,3)
+chkN(k,3)
 
 b= A[++k--]
 
@@ -119,8 +119,8 @@ b= A[++k--]
 
 <<"%V$k\n"
 
-checkNum(k,3)
-checkNum(b,4)
+chkN(k,3)
+chkN(b,4)
 
 
 int e = ++k ;
@@ -132,8 +132,8 @@ int w = --k ;
 
 <<"%V$w $k \n"
 
-checkNum(e,4)
-checkNum(w,3)
+chkN(e,4)
+chkN(w,3)
 
 
 
@@ -148,26 +148,26 @@ int Gc;
 <<"%v $k \n"
 k++
 <<"%v $k \n"
-checkNum(k,1)
+chkN(k,1)
 k--
 <<"%v $k \n"
-checkNum(k,0)
+chkN(k,0)
 ++k++
 <<"%v $k \n"
-checkNum(k,2)
+chkN(k,2)
 --k--
 <<"%v $k \n"
-checkNum(k,0)
+chkN(k,0)
 
 double x0 = -10.0
 
 <<"%v $x0 \n"
 
-checkFNum(x0,-10)
+chkR(x0,-10)
 
 x0++
 
-checkFNum(x0,-9)
+chkR(x0,-9)
 
 k = 2
 m = 2
@@ -176,14 +176,14 @@ n = k++ + m--
 
 <<"%V $n $k $m \n"
 
-checkNum(n,4)
+chkN(n,4)
 
 k = 2
 m = 2
 
 n = --k + ++m
 
-checkNum(n,4)
+chkN(n,4)
 
 
 <<"%V $n $k $m \n"
@@ -194,10 +194,10 @@ checkNum(n,4)
  r=Foo(k++,m++)
 <<"%V $k $m \n"
 
-checkNum(k,2)
-checkNum(m,4)
+chkN(k,2)
+chkN(m,4)
 
-checkNum(r,4)
+chkN(r,4)
 
 
 
@@ -207,23 +207,23 @@ checkNum(r,4)
 
 <<"%V $k $m $r\n"
 
-checkNum(k,3)
-checkNum(m,5)
+chkN(k,3)
+chkN(m,5)
 
-checkNum(r,8)
+chkN(r,8)
 
 
 AV = igen(10,0,1)
 
 <<"%V$AV\n"
 
-checkNum(AV[1],1)
+chkN(AV[1],1)
 
  AV++;
  
 <<"%V$AV\n"
 
-checkNum(AV[1],2);
+chkN(AV[1],2);
 
 //setdebug(1,"trace")
 
@@ -233,15 +233,15 @@ BV = ++AV ; // this should increment all elements in the vector
 
 <<"%V $BV\n"
 
-checkNum(BV[1],3)
+chkN(BV[1],3)
 
 BV = AV++ ; // this should increment all elements in the vector
 
 <<"after  $AV ++\n"
 
-checkNum(AV[1],4)
+chkN(AV[1],4)
 
-checkNum(BV[1],3)
+chkN(BV[1],3)
 
 <<"%V $BV\n"
 
@@ -249,5 +249,5 @@ checkNum(BV[1],3)
 
 
 
-checkout()
+chkOut()
 exit()

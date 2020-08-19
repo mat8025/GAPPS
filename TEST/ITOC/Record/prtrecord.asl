@@ -17,7 +17,7 @@ debugON();
 
 setDebug(1,@pline,@trace,"~step")
 
-checkIn()
+chkIn()
 
 record R[10];
 
@@ -81,7 +81,7 @@ wrd="$R[1][3]"
 
 wrd="$R[2][3]"
 <<"wrd <|$wrd|>\n"
-checkStr(wrd,"strong");
+chkStr(wrd,"strong");
 
 
 
@@ -106,12 +106,12 @@ checkStr(wrd,"strong");
 
  wrd = R[1][2]
 
-checkStr(wrd,"devil")
+chkStr(wrd,"devil")
 
 
  wrd = R[3][4]
 
-checkStr(wrd,"record")
+chkStr(wrd,"record")
 
 
 sz = Caz(NR);
@@ -122,12 +122,12 @@ sz = Caz(NR);
 
  wrd = NR[1][2]
 
-checkStr(wrd,"devil")
+chkStr(wrd,"devil")
 
 
  wrd = NR[3][4]
 
-checkStr(wrd,"record")
+chkStr(wrd,"record")
 
 
 
@@ -177,7 +177,7 @@ sz= Caz(S);
 
 //<<"%(2,\s->,\,,<-\n)$R[1]\n"
 
-//checkOut();
+//chkOut();
 //exit();
 
 Rn = 4;
@@ -190,10 +190,10 @@ for (ir = 0; ir < Rn; ir++) {
     sz= Caz(s);
     <<"$ir $sz s: |$s[0]|\n\n"
     if (ir == 0) {
-     checkStr(s[0],"each",4);
+     chkStr(s[0],"each",4);
     }
     if (ir == 1) {
-     checkStr(s[0],"and",3);
+     chkStr(s[0],"and",3);
     }
     
 <<"%(2,\s->,\,,<-\n)$s\n"
@@ -227,5 +227,5 @@ ir = 3
     
 //<<"%(2,\s->,\,,<-\n)$S\n"
 
-checkOut();
+chkOut();
 exit();

@@ -14,7 +14,7 @@ myScript = getScript();
 
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 proc foo(int a)
 {
@@ -55,11 +55,11 @@ proc moo(int a)
 
 <<"%V$m\n"
 
-  checkNum(m,15)
+  chkN(m,15)
   m2 = foo(4 )
 
 <<"%V$m2\n"
-  checkNum(m2,20)
+  chkN(m2,20)
 
  b = 16
 
@@ -68,7 +68,7 @@ proc moo(int a)
 
 <<"%V$m3\n"
 
-  checkNum(m3,80)
+  chkN(m3,80)
 
 
 
@@ -76,11 +76,11 @@ proc moo(int a)
 
 <<"%V$m\n"
 
-  checkNum(m,15)
+  chkN(m,15)
   m2 = goo(4 )
 
 <<"%V$m2\n"
-  checkNum(m2,20)
+  chkN(m2,20)
 
  b = 16
 
@@ -89,18 +89,18 @@ proc moo(int a)
 
 <<"%V$m3\n"
 
-    checkNum(m3,80)
+    chkN(m3,80)
 
 
   m = moo(3)
 
 <<"%V$m\n"
 
-  checkNum(m,15)
+  chkN(m,15)
   m2 = moo(4 )
 
 <<"%V$m2\n"
-  checkNum(m2,20)
+  chkN(m2,20)
 
  b = 16
 
@@ -109,9 +109,9 @@ proc moo(int a)
 
 <<"%V$m3\n"
 
-    checkNum(m3,80)
+    chkN(m3,80)
 
 //int b = 67;
 
 
-checkOut()
+chkOut()

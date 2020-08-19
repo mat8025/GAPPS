@@ -1,6 +1,6 @@
 setdebug(1)
 
-checkIn()
+chkIn()
 
 int Data[10]
 
@@ -23,7 +23,7 @@ int Data[10]
 
 <<"$Data \n"
 
-checkNum(Data[2],k)
+chkN(Data[2],k)
 
      if (k > 5)
      break
@@ -31,7 +31,7 @@ checkNum(Data[2],k)
   }
 
 
-checkOut()
+chkOut()
 
 
 stop!

@@ -9,36 +9,36 @@ Sizeof(V)
 
 /}*/
 
-checkIn();
+chkIn();
 int i;
 sz = sizeof(i);
 <<"$(typeof(i)) $(sizeof(i)) \n"
-checkNum(sz,4)
+chkN(sz,4)
 wtype = typeof(i);
 
 <<"%V $wtype \n"
 
-checkStr(wtype,"INT");
+chkStr(wtype,"INT");
 
 float f;
 
 <<"$(typeof(f)) $(sizeof(f))  \n"
 sz = sizeof(f);
 
-checkNum(sz,4)
+chkN(sz,4)
 
 char c;
 
 <<"$(typeof(c)) $(sizeof(c))  \n"
 sz = sizeof(c);
 
-checkNum(sz,1);
+chkN(sz,1);
 
 wtype = typeof(f);
 
 <<"%V $wtype \n"
 
-checkStr(wtype,"FLOAT");
+chkStr(wtype,"FLOAT");
 
 pan p = 3.14159;
 
@@ -50,7 +50,7 @@ wtype = typeof(p);
 
 <<" $wtype $(sizeof(p)) $(panlen(p))  $(sizeof(\"pan\"))\n"
 
-checkStr(wtype,"PAN");
+chkStr(wtype,"PAN");
 
 p = 123456789.987654321;
 
@@ -61,4 +61,4 @@ sz=sivSize()
 <<" size of a Siv $sz\n"
 
 
-checkOut();
+chkOut();

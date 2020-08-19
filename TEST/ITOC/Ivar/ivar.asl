@@ -23,7 +23,7 @@ if (_dblevel >0) {
 
 
 
-   checkIn(_dblevel); 
+   chkIn(_dblevel); 
 
    int v1 = 1;
 
@@ -105,7 +105,7 @@ v1->info(1)
    
    <<"%V$wt $do_bops \n"; 
    
-   checkNum (do_bops, 2); 
+   chkN (do_bops, 2); 
    
    silver = 47; 
    gold = 79; 
@@ -114,7 +114,7 @@ v1->info(1)
    
    <<"%V$wt $do_bops \n"; 
    
-   checkNum (do_bops, 47); 
+   chkN (do_bops, 47); 
    
    metal = "gold"; 
    
@@ -122,7 +122,7 @@ v1->info(1)
    
    <<"%V$wt $do_bops \n"; 
    
-   checkNum (do_bops, gold); 
+   chkN (do_bops, gold); 
    
    
    n = 1;
@@ -141,7 +141,7 @@ v1->info(1)
    
    <<"%i$n \n"; 
    
-   checkNum (n, 3); 
+   chkN (n, 3); 
    
    
    a = np;
@@ -169,14 +169,14 @@ v1->info(1)
    
    <<"%v $c\n"; 
    
-   checkNum (c, 3); 
+   chkN (c, 3); 
    
 //iread()
    d = $ai;
    
    <<"%v $d\n"; 
    
-   checkStr (d, "n"); 
+   chkStr (d, "n"); 
    
    <<"%v $c $d\n";
    
@@ -186,8 +186,8 @@ v1->info(1)
    
    <<"%V$e \n"; 
    
-   checkNum (e, 4); 
-   checkOut ();
+   chkN (e, 4); 
+   chkOut ();
 
 
 

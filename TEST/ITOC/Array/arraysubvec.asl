@@ -1,6 +1,6 @@
 setdebug(1)
 
-CheckIn()
+chkIn()
 
 // test array indexing
 
@@ -28,11 +28,11 @@ int P[10]
 
 <<"%V$S\n"
 
- CheckNum(S[1],YV[1])
+ chkN(S[1],YV[1])
 
- CheckNum(S[2],YV[3])
+ chkN(S[2],YV[3])
 
- CheckNum(S[3],YV[8])
+ chkN(S[3],YV[8])
 
 // even better
 
@@ -43,7 +43,7 @@ int P[10]
 
 <<"$W\n"
 
- CheckOut()
+ chkOut()
 
 
 STOP!

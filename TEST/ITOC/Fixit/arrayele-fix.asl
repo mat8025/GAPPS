@@ -1,6 +1,6 @@
 
 
-checkIn (_dblevel);
+chkIn (_dblevel);
 
 call_sf = 1;
 call_vmf = 1;
@@ -74,7 +74,7 @@ Proc p_vec (float rl[])
   t7 = rl[j1] - rl[j2];
 
 <<"%V $t7\n"
- checkFnum (t7, -2);
+ chkR (t7, -2);
 
 
 <<"%V $rl[j1]\n"
@@ -138,4 +138,4 @@ fv[0] = -32;
 
  <<"$f\n"
 
-  checkOut ();
+  chkOut ();

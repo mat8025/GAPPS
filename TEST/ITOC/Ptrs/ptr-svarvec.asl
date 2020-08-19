@@ -11,11 +11,14 @@
 //* 
 //***********************************************%
    
-   include "debug"
-   debugON()
-   sdb(1,@trace);
+  include "debug"
+
+  if (_dblevel >0) {
+    debugON()
+   }
    
-   checkIn(_dblevel);
+
+   chkIn(_dblevel);
    
    svar S;
    
@@ -68,13 +71,13 @@
    sval= ps[i];
    ps->info(1)
 <<"%V <|$sval|> \n"
-checkStr(sval,"avec")
+chkStr(sval,"avec")
    sval= ps[1];
    ps->info(1)
    <<"%V <|$sval|> \n"
 
 
-checkStr(sval,"va")
+chkStr(sval,"va")
 
 
    for (i=0;i<sz;i++) {
@@ -82,7 +85,7 @@ checkStr(sval,"va")
      sval= ps[i];
      
      <<"<$i> $sval \n"; 
-      checkStr(sval,S[i])
+      chkStr(sval,S[i])
      }
    
    <<"\n";
@@ -93,7 +96,7 @@ checkStr(sval,"va")
 <<"$S\n"
      S->info(1)
    
-     checkStr(S[3],"mal")
+     chkStr(S[3],"mal")
 
 <<"%V $S[3]\n"
 exit()
@@ -116,8 +119,8 @@ exit()
 
 <<"CHECKING   ps[3] $ps[3]\n"
 
-     checkStr(ps[3],"dancez")
-     checkStr(ps[5],"merci")          
+     chkStr(ps[3],"dancez")
+     chkStr(ps[5],"merci")          
 
 <<"CHECKING   ps[3] $ps[3]\n"
 
@@ -130,19 +133,19 @@ S->info(1)
      
      <<"<$i> $sval  $S[i]  $ps[i]\n";
 
-      checkStr(sval,S[i])
+      chkStr(sval,S[i])
   //   sval->info(1); 
      }
 
-     checkStr(ps[1],"va")
-     checkStr(ps[3],"dancez")     
-     checkStr(S[4],"trop")
-     checkStr(S[5],"merci")     
+     chkStr(ps[1],"va")
+     chkStr(ps[3],"dancez")     
+     chkStr(S[4],"trop")
+     chkStr(S[5],"merci")     
 
 
    checkStage("str vecs - get value")
 
-   checkOut(); 
+   chkOut(); 
    
   
    

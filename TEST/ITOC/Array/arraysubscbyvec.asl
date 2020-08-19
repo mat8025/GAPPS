@@ -18,7 +18,7 @@
   
 
 
-CheckIn()
+chkIn()
 
 // test array indexing
 
@@ -67,16 +67,16 @@ sz = Caz(NV)
 
 <<" %v $P \n"
 <<" %v $S \n"
- checkNum(S[0],74)
+ chkN(S[0],74)
 
- checkNum(S[2],24)
+ chkN(S[2],24)
  sz=Caz(S)
 
 <<"%v $sz\n"
 
- checkNum(sz,6)
+ chkN(sz,6)
  
- CheckOut()
+ chkOut()
 exit()
 
 

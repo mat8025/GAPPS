@@ -1,0 +1,529 @@
+//%*********************************************** 
+//*  @script classbops.asl 
+//* 
+//*  @comment test class basic ops 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                 
+//*  @date Tue Mar 12 07:50:33 2019 
+//*  @cdate Tue Mar 12 07:50:33 2019 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
+  
+checkIn(_dblevel);
+  
+
+  
+//////////////////////////////////////////////////////
+proc goo( real x)
+{
+  a= x;
+<<"$_proc %V $x $a\n";
+
+}
+
+
+goo(1.2)
+
+goo(sin(0.7))
+
+/// must have a CONS -- else crash in xic??
+
+class Point
+  {
+
+  public:
+  
+    float x;
+    float y;
+
+//============================//
+
+
+   cmf setx(real m) 
+     {
+      x = m;
+      <<"$_proc $m $x  \n"; 
+      return x;
+      };
+
+
+    cmf set (real m,real n) 
+    {
+  <<"$_proc set via real %V $m $n  \n";
+       x = m;
+       y = n;
+   <<"%V $m $n \n" 
+      };
+
+    cmf set (float m,float n) 
+    {
+  <<"$_proc set via float %V $m $n  \n";
+       x = m;
+       y = n;
+   <<"%V $m $n \n" 
+      };
+
+    cmf set (double m, double n) 
+    {
+  <<"$_proc set via double %V $m $n  \n";
+       x = m;
+       y = n;
+   <<"%V $m $n \n" 
+      };
+
+
+    cmf set (int m, int n) 
+    {
+       x = m;
+       y = n;
+      <<"set via ints %V $m $n $x $y \n";
+      };
+ 
+    cmf getx() 
+     {
+      <<"getting $x $_cobj \n"; 
+      return x;
+      };
+    
+    cmf gety()
+     {
+      <<"getting $y  $_cobj  \n"; 
+      return y;
+      }
+/{
+    cmf  mul( a) {
+      float tmp;
+      tmp = (a * x); 
+      return tmp; 
+      }
+
+
+    cmf  mul(float a) {
+      float tmp;
+      
+      tmp = (a * x);
+    <<"$_proc %V $a $tmp $x\n";   
+      return tmp; 
+      }
+/}
+
+    cmf  mul(real a) {
+      double tmp;
+      tmp = (a * x);
+    <<"$_proc %V $a $tmp $x\n";         
+      return tmp; 
+      }
+
+    cmf  mul(int mi) {
+      float tmp;
+      tmp = (mi * x); 
+      return tmp; 
+      }
+    
+    cmf Print() {
+      <<"%V $x,$y %i $x,$y\n"; 
+      }
+
+   cmf Point()
+   {
+    // same name as class is the constructor
+     x=1;
+     y=1;
+     <<"constructor $_proc  %V $x $y \n"
+   };
+
+}
+
+
+
+////////////////////////////////////////////
+  
+  Point A;
+
+  Point B;
+
+  Point C;
+
+  Point D;
+
+  rx= D->getx();
+
+<<"%V $rx\n"
+
+real r1 = 2.3;
+real r2 = 4.5;
+
+
+  A->setx(r1);
+  rx=   A->getx();
+  <<"%V $rx\n"
+
+  checkFnum(r1,rx)
+
+ my = A->mul(r2 ); 
+  
+  <<"%V$my $A->x  \n";
+
+
+
+  my = A->mul( Sin(-0.9) ); 
+  
+  <<"%V$my $A->x  \n";
+
+  r2 = Sin(0.7)
+
+
+ my = A->mul(r2 ); 
+  
+  <<"%V$my $A->x  \n";
+
+
+
+
+  r2 = Sin(-0.9)
+
+
+ my = A->mul(r2 ); 
+  
+  <<"%V$my $A->x  \n";
+
+  my = A->mul( Sin(-0.8) ); 
+  
+  <<"%V$my $A->x  \n";
+
+
+
+
+
+
+
+  A->set(2.2,0.123);
+  rx=   A->getx();
+  <<"%V $rx\n"
+
+  B->set(4,2);
+  rx=   B->getx();
+  <<"%V $rx\n"
+
+
+
+  B->set(2.2,0.123);
+
+  B->Print();
+
+<<"%V $B->x $B->y \n"; 
+
+
+
+
+  
+  
+  <<"%V $A->x $A->y \n"; 
+  
+  <<" A->Print() \n"; 
+
+  A->Print(); 
+
+  A->set(0.15, 0.2);
+
+  ax= A[0]->x
+
+<<"%V $ax $A[0]->x \n"
+
+  ax= A->x
+
+<<"%V $ax $A->x \n"
+
+  ok=checkFNum(A->x,0.15,5);
+
+
+
+
+
+  ok=CheckFNum(A[0]->y,0.2,5); 
+
+  ok=CheckFNum(A->x,0.15,5);
+  
+  <<" B->Print() \n"; 
+  B->Print(); 
+  
+  
+  <<"%V $B->x $B->y \n"; 
+  
+  
+  ok=CheckFNum(B->x,2.2,5);
+  
+  ok=CheckFNum(B->y,0.123,5); 
+  
+  C->set(1.1,0.2); 
+  
+  <<"%V $C->x $C->y \n"; 
+  
+  
+  wx = A->getx();
+  
+  ok=CheckFNum(wx,0.15,5); 
+  
+  A->set(47, 79);
+  
+  A->Print(); 
+  
+  B->set(83, 65);
+  A->Print(); 
+  B->Print(); 
+  
+  D->x = B->x;
+  
+  checkNum(D->x,83); 
+  
+  D->Print(); 
+  
+  D->y = A->y;
+  
+  checkNum(D->y,79); 
+  
+  
+  D->Print(); 
+  
+  
+  checkNum(D->y,A->y); 
+  
+  
+  <<" 1/////////////////\n"; 
+  
+  <<"%V$ok x  $wx 0.15\n"; 
+  
+  wy = A->gety(); 
+  <<"%V $wy $A->gety()\n"; 
+  
+  
+  ok=CheckFNum(wy,79,5); 
+  <<"%Vok y $wy 79\n"; 
+  
+  <<" 2/////////////////\n"; 
+  
+  
+  A->Print();
+  B->Print();
+  
+  ax = A->getx();
+  <<"A %V $ax \n"; 
+  CheckFNum(ax,47,5);
+  ay = A->gety();
+  <<"A %V $ay \n"; 
+  CheckFNum(ay,79,5); 
+  
+  A->Print();
+  
+  
+  bx = B->getx();
+  CheckFNum(bx,83,5); 
+  by = B->gety();
+  CheckFNum(by,65,5); 
+  axy = A->getx() + A->gety(); 
+  CheckFNum(axy,(ax+ay),5); 
+  bxy = B->getx() + B->gety(); 
+  CheckFNum(bxy,(bx+by),5);
+  
+  z2 = A->x + B->y; 
+  
+  z = A->getx() + B->gety(); 
+  
+  <<"%V $ax $ay $axy $bx $by  $bxy $z2 $z\n"; 
+  
+  
+  CheckFNum(z2,(ax+by),5); 
+  
+  CheckFNum(z,(ax+by),5); 
+  
+  <<"%V $z $wx $wy \n"; 
+  
+  z = A->getx() * A->gety(); 
+  
+  <<"%V $z $wx $wy \n"; 
+  
+  my = B->y; 
+  
+  <<"%V $B->y  $my \n"; 
+  
+  my = B->y - C->y;
+  
+  ok=CheckFNum(my,(65-0.2),4); 
+  <<"%V$ok $B->y - $C->y =  $my \n"; 
+  
+  
+  my = ((B->y - C->y)/2.0) + C->y; 
+  
+  <<"%V $B->y $C->y  $my \n"; 
+  
+  ok=CheckFNum(my,32.6,4); 
+  <<"%V$ok $my 1.1\n"; 
+  
+ //setdebug(1,"step")
+  
+  Point P[3];
+  
+  checkProgress(" 4"); 
+  v  = 1.3; 
+  
+  
+//  ws = nsc(20,'\')   // escaped ' ??
+//<<"$ws\n"
+  
+//  <<"$(nsc(20,'\'))\n"
+  
+    v= B->y/2.0;
+  for (i = 0; i < 4 ; i++) {
+    
+  
+    my = B->y/2.0 ; 
+  <<"%V $i $B->y    $my $v \n"; 
+    
+    ok=CheckFNum(my,v,5); 
+    checkProgress(" for $i"); 
+    <<"%V$ok $i $my $v\n"; 
+    B->y += 0.2; 
+    v  =  B->y/2.0;
+
+    }
+  
+//<<"$(nsc(20,'/'))\n"
+  
+  
+  CheckNum(i,4); 
+  
+  checkProgress("$i  i == 4 ");
+
+
+
+  v = B->gety(); 
+  <<" $v\n"; 
+  v1 = C->y;
+  <<" $v1\n"; 
+  v -= C->y; 
+  
+  <<" $v\n"; 
+  
+  checkProgress();
+  
+  checkProgress("  v xx C->y ");
+  
+  checkProgress("  v -= C->y ");
+  
+  
+  my = B->gety() - C->y; 
+  <<"%V$ok $my $v\n"; 
+  ok=CheckFNum(my,v,5); 
+  
+  v = A->getx(); 
+  v *= 2; 
+  my = A->mul(2); 
+  
+  <<" %V $A->x $my $v \n"; 
+  
+  CheckNum(my,v); 
+  
+  u = B->getx(); 
+  u *= 3; 
+  my = B->mul(3); 
+  
+  <<" %V $B->x $my $u \n"; 
+  
+  CheckFNum(my,u,6); 
+  
+  float w = v + u; 
+  
+  my = A->mul(2) + B->mul(3); 
+  
+  <<" %V $w $my $v $u \n"; 
+  
+  CheckFNum(my,w,6); 
+  
+  
+  <<" %V $A->x $B->x \n"; 
+  
+  my = A->mul(B->x); 
+  
+  <<" %V $my $A->x $B->x \n"; 
+
+
+  val = A->x * B->x;
+  <<"%V $val\n"
+
+  CheckFNum(my,3901,6); 
+  
+  my = A->mul(B->y) + B->mul(A->x); 
+
+  mya = A->mul(B->y);
+  myb = B->mul(A->x);
+<<"$B->x $B->y $A->x $A->y\n"
+  my2 = A->x * B->y   + B->x * A->x;
+  
+<<"%V $my $mya $myb  $my2 $(mya * myb)\n"
+  
+  ok=CheckFNum(my,my2,3); 
+  <<"%V$ok  $my == 0.6 $A->x $B->x \n"; 
+  my = Sin(0.5); 
+  
+  <<"Sin  %V $my \n"; 
+  
+  v = my * A->x; 
+  
+  my = A->mul( Sin(0.5) ); 
+  
+  
+  <<"%V$my $A->x  $v \n"; 
+  
+  CheckFNum(my,v,5); 
+  
+  
+//FIXME   my = A->mul( Sin(0.5) )
+//<<" %V $my $A->x  \n"
+  
+  
+  my = A->mul( Sin(0.7) ); 
+  
+  
+  <<"%V$my $A->x  \n"; 
+
+  checkOut(); 
+
+
+  r1 = B->getx()
+
+<<"%V$r1\n"; 
+
+  my = A->mul( r1); 
+
+  my3 = A->mul( B->getx() ); 
+
+<<" %V $my $my3 $A->x $B->x \n"; 
+
+
+
+  my2 = A->x    * B->getx()
+
+<<" %V $my $my2 $A->x $B->x \n"; 
+
+  
+  
+  CheckFNum(my,my2,3); 
+  
+  checkOut(); 
+
+  
+/{/*  
+/// TBD ///////////
+/// still have to check this  gives correct answer  for
+///
+//  A->x     - done
+//  A->getx() - done
+//  A->mul(z) - done
+//  A->getx() + B->getx() + ...
+//  A->add( B->gety(), C->gety())  ...
+//  A->x->z ....
+//  ...
+/}*/  
+  

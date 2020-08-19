@@ -19,7 +19,7 @@
 //include "debug"
 //debugON()
 
-  checkIn(_dblevel)
+  chkIn(_dblevel)
 
 proc Foo()
 {
@@ -82,7 +82,7 @@ proc goo()
 pan Start = 100;
 pan Step = 10;
 
-  checkFNum(Step,10.0);
+  chkR(Step,10.0);
 
 
 pan pend;
@@ -104,7 +104,7 @@ pan pend;
 
 <<"%V $pend  $pendB\n"
 
-  checkFNum(pend,pendB)
+  chkR(pend,pendB)
 
   for (i= 0; i < 3 ; i++) {
 
@@ -114,7 +114,7 @@ pan pend;
 
   }
 
-  checkFNum(pend,140.0)
+  chkR(pend,140.0)
 
   for (i= 0; i < 3 ; i++) {
 
@@ -124,11 +124,11 @@ pan pend;
 
   }
 
-  checkFNum(pend,170.0)
+  chkR(pend,170.0)
 
   Foo()
 
   goo()
 
 
-  checkOut()
+  chkOut()

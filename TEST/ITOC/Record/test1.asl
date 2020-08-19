@@ -5,7 +5,7 @@ debugON();
 
 record R[5];
 
-checkIn()
+chkIn()
 
  R[0] = Split("each to his own")
  R[1] = Split("and the devil take the hindmost")
@@ -33,9 +33,9 @@ wrow= 1;
 wcol=2;
 wrd= "$R[wrow][wcol]";
 <<"%V$wrow $wcol  $wrd\n"
-checkStr(wrd,"devil")
+chkStr(wrd,"devil")
 
-checkOut()
+chkOut()
 
 exit();
 

@@ -5,7 +5,7 @@ setdebug(1,"pline","trace")
 #define ASK ans=iread();
 
 
-checkIn();
+chkIn();
 
 proc goo(int k)
 {
@@ -34,16 +34,16 @@ Y= goo(&m)
 
 <<"Y: $Y\n"
 
-checkNum(Y,(m*13))
+chkN(Y,(m*13))
 
 
 Y= goo(m)
 
 <<"Y: $Y\n"
 
-checkNum(Y,(m*13))
+chkN(Y,(m*13))
 
 
 
-checkOut();
+chkOut();
 exit()

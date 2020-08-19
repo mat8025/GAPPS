@@ -2,7 +2,7 @@ setdebug(1,@pline,@keep,@trace,@~soe)
 filterFuncDebug(ALLOWALL_,"proc","opera_ic");
 filterFileDebug(ALLOWALL_,"ic_op","ic_pu");
 
-CheckIn(1)
+chkIn(1)
 
  a = 1.0;
  b = 2.0;
@@ -14,7 +14,7 @@ CheckIn(1)
  float  v = 2.1;
 <<"%V $v\n"
 // float x;
-   ok=CheckFNum(v,2.1);
+   ok=chkR(v,2.1);
 float x;
  for (i = 0 ; i < 5 ; i++) {
    

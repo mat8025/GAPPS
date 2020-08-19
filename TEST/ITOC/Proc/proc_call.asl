@@ -16,25 +16,25 @@
 
 #include "debug"
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 
 int n1 = 3;
 
 <<"%V$n1\n"
 
-      cn (n1,3)
+      chkN (n1,3)
 
 n1++
 
 <<"%V$n1\n"
 
-      cn (n1,4)
+      chkN (n1,4)
 
 ++n1
 
 <<"%V$n1\n"
-      cn (n1,5)
+      chkN (n1,5)
 
 
 
@@ -105,7 +105,7 @@ int j = 52;
 <<"call moo int\n"
   k= moo(j)
 
-cn (k,52);
+chkN (k,52);
 
 float y = 2.1
 
@@ -114,7 +114,7 @@ float y = 2.1
    z= moo(y)
 
 
-cn (z,2.1);
+chkN (z,2.1);
 
 short s1 = 67;
 char c1 = 33;
@@ -123,7 +123,7 @@ char c1 = 33;
 <<"call moo short,char\n"
     s2 = moo(s1,c1)
 
-cn (s2,100);
+chkN (s2,100);
 
 pan p  = 3.4
 
@@ -144,7 +144,7 @@ gen h = 8
 
     d3 = moo(h,g)
 
-cn (d3,11.4);
+chkN (d3,11.4);
 
  g = 77
  h = 23.0
@@ -153,14 +153,14 @@ cn (d3,11.4);
 
 //<<"%V$d3\n"
 d3->info(1)
-cn (d3,100);
+chkN (d3,100);
 
 
  a  = sin(0.5)
 
 <<"%v$a \n"
 
-checkOut()
+chkOut()
   while (1) {
 <<"Que pasa $ans ?\n"
 

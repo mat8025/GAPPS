@@ -14,24 +14,24 @@
 #define NULL ""
 setdebug(1,@keep);
 
-checkIn(0)
+chkIn(0)
 
 A= split("once upon a time")
 
 
-checkStr(A[0],"once")
-checkStr(A[1],"upon")
-checkStr(A[2],"a")
-checkStr(A[3],"time")
+chkStr(A[0],"once")
+chkStr(A[1],"upon")
+chkStr(A[2],"a")
+chkStr(A[3],"time")
 
 // use
 
 A= split("ONCE,UPON,A,TIME",",")
 
-checkStr(A[0],"ONCE")
-checkStr(A[1],"UPON")
-checkStr(A[2],"A")
-checkStr(A[3],"TIME")
+chkStr(A[0],"ONCE")
+chkStr(A[1],"UPON")
+chkStr(A[2],"A")
+chkStr(A[3],"TIME")
 
 sz=Caz(A)
 <<"$sz\n"
@@ -117,7 +117,7 @@ if (E[1] @= "") {
 
 
 
-checkOut()
+chkOut()
 
 
 

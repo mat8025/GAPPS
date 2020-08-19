@@ -13,11 +13,11 @@
 
 
 
-checkin()
+chkIn()
 
  a= 2 +2;
 
-cn (a,4);
+chkN (a,4);
 
 
-co ()
+chkOut ()

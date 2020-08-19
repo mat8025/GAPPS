@@ -1506,6 +1506,13 @@ changeDir(cwd)
 
 //<<"cp Scores/score_$(date(2,'-')) current_score \n"
 
+ut=utime()
+
+A=ofw("Tresults/score_$ut")
+<<[A]"$ut $(date(1)) Modules $n_modules Tests $rt_tests  Pass $rt_pass  Score %6.2f$pcc Fail %d$flsz Crash $lsz it $i_time xt $x_time vers $(get_version())\n"
+cf(A)
+
+
 
 
 //!!"cp Scores/score_$(date(2,'-')) current_score"

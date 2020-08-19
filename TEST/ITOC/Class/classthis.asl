@@ -1,7 +1,7 @@
 # test oop features
 
-//CheckIn()
-//CheckIn()
+//chkIn()
+//chkIn()
 
 <<"%v $_proc \n"
 <<"%v $_pstack \n"
@@ -125,6 +125,6 @@ int V = 4     // global
   apple->print()
 
 
-//CheckOut()
+//chkOut()
 
 STOP!

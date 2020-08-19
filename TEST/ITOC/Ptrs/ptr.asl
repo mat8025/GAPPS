@@ -19,8 +19,8 @@ if (_dblevel >0) {
    debugON()
 }
 
-checkIn(_dblevel);
-sdb(_dblevel,@trace)
+chkIn(_dblevel);
+//sdb(_dblevel,@trace)
 int m = 0;
 int k = 4;
  n= 0
@@ -39,15 +39,60 @@ kp->info(1)
 
   m->info(1)
 
-<<" %V $$kp \n"
+ <<" %V $$kp \n"
   
-<<" %V $k $m $n\n"
+ <<" %V $k $m $n\n"
 
 
-checkNum(m,k)
+tok=cin(m,k)
+
+<<"%V $tok\n"
+ $kp = 58
+
+<<"%V $kp \n"
 
 
-co ()
+k->info(1)
+
+<<"%V $k \n"
+
+tok=cin(k, 58)
+
+<<"%V $tok\n"
+
+ au = 79
+
+ au->info(1)
+
+k->info(1)
+
+ $kp = au
+
+k->info(1)
+<<"%V $k\n"
+
+au->info(1)
+
+
+tok= cin (k, 79)
+<<"%V $tok\n"
+tok= cin(k, au)
+<<"%V $tok\n"
+silv = 47
+
+<<"%V$silv\n"
+
+sp = &silv;
+
+sp->info(1)
+ $kp = $sp
+
+k->info(1)
+
+tok=cin(k, 47)
+<<"%V $tok\n"
+
+chkOut ()
 exit()
 
  n = 2 * $kp 

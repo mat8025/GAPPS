@@ -12,9 +12,15 @@
 //***********************************************%
   
   
+include "debug"
+
+if (_dblevel >0) {
+   debugON()
+}
+
 
   
-  checkIn(_dblevel); 
+  chkIn(_dblevel); 
   
   I = vgen(INT_,10,0,1); 
   
@@ -26,7 +32,7 @@
  
   <<"%V$K\n"; 
   
-   checkNum(K[0],2); 
+   chkN(K[0],2); 
   
    K = I[6:1:-1]; 
 
@@ -37,9 +43,9 @@
   <<"K5 $K[5]\n"
   k = K[5];
   <<"%V $k $K[5]\n"
-  checkNum(K[0],6); 
-  checkNum(K[1],5); 
-  checkNum(K[5],1); 
+  chkN(K[0],6); 
+  chkN(K[1],5); 
+  chkN(K[5],1); 
   
    K = I[6:1:1]; 
 
@@ -47,10 +53,10 @@
 
   <<"%V$K\n"; 
   
-  checkNum(K[0],6); 
-  checkNum(K[1],7); 
-  checkNum(K[5],1); 
+  chkN(K[0],6); 
+  chkN(K[1],7); 
+  chkN(K[5],1); 
   
-  CheckOut(); 
+  chkOut(); 
   
 //======================================//

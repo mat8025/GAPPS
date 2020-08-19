@@ -1,7 +1,7 @@
 
 setdebug(1,"trace","~step","pline")
 #define ASK ans=iread();
-checkIn();
+chkIn();
 
 L = vgen(INT_,10,0,1);
 
@@ -22,12 +22,12 @@ Hey(L);
 
 <<"$L\n"
 
-checkNum(L[0],18)
-checkNum(L[9],18)
+chkN(L[0],18)
+chkN(L[9],18)
 
 ASK
 
-checkOut()
+chkOut()
 
 exit();
 

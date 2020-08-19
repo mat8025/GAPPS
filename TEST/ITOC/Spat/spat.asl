@@ -39,7 +39,7 @@ c = spat(a,b,0,-1) : c is ,0.7
 
 /}*/
 
-checkIn()
+chkIn()
 
 fname = "mt_20100422_112017.txt"
 
@@ -57,9 +57,9 @@ stem_len = slen(fstem)
 
 <<"%V$fname $cc $stem_len $ss $fstem $mat $index \n"
 
-checkNum(mat,1);
+chkN(mat,1);
 
-checkStr(fstem,"mt_20100422_112017");
+chkStr(fstem,"mt_20100422_112017");
 
 posn = 0 ; dir = 1
 
@@ -67,7 +67,7 @@ fstem = spat(fname,ss,posn,dir,&mat,&index)
 
 <<"%V $posn $dir  $fstem \n"
 
-checkStr(fstem,".txt")
+chkStr(fstem,".txt")
 
 posn = 1 ; dir = 1;
 
@@ -75,7 +75,7 @@ fstem = spat(fname,ss,posn,dir,&mat,&index)
 
 <<"%V $posn $dir  $fstem \n"
 
-checkStr(fstem,"txt")
+chkStr(fstem,"txt")
 
 
 fname = "mad_about you baby - just mad!"
@@ -118,15 +118,15 @@ stem_len = slen(fstem)
 
 <<"%V$fname $cc $stem_len $ss $fstem $mat $index \n"
 
-checkNum(mat,1);
+chkN(mat,1);
 
-checkStr(fstem,"mt_20100422_112017");
+chkStr(fstem,"mt_20100422_112017");
 
 ///////////////
 
 
 
-checkOut();
+chkOut();
 
 
 /{/*

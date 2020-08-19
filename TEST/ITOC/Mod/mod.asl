@@ -4,16 +4,16 @@ debugON()
 
 sdb(1,@pline)
 
-CheckIn()
+chkIn()
 
  m = 7 % 3
 
-CheckNum(m,1)
+chkN(m,1)
 
 
  m = 9 % 3
 
-CheckNum(m,0)
+chkN(m,0)
 
 
  k = -2
@@ -38,16 +38,16 @@ int ir
 
 <<"%V $k $d $x $yf $yr $ir\n"
 
-CheckNum(ir,4)
+chkN(ir,4)
 
 
   f= fmod(5.0,3)
 
 <<"%V $f \n"
 
-  CheckFNum(f,2,6)
+  chkR(f,2,6)
 
-CheckOut()
+chkOut()
 
 stop!
 
@@ -81,4 +81,4 @@ for (i = 1; i <= 32 ; i++) {
 ;
 
 
-CheckOut()
+chkOut()

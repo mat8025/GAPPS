@@ -26,7 +26,7 @@ the default is to work through the vector.
 /}*/
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 
 
@@ -38,8 +38,8 @@ I=vgen(INT_,10,0,1);
 S=Sel(I,GT_,5)
 
 <<"$S\n"
-checkNum(S[0],6)
-checkNum(S[3],9)
+chkN(S[0],6)
+chkN(S[3],9)
 
 S=Sel(I,">",5,1)
 
@@ -61,12 +61,12 @@ F=vgen(INT_,10,0,1);
 S=Sel(F,GT_,5)
 
 <<"$S\n"
-checkNum(S[0],6)
-checkNum(S[3],9)
+chkN(S[0],6)
+chkN(S[3],9)
 
 
 
-checkOut()
+chkOut()
 
 
 

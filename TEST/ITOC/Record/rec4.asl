@@ -4,7 +4,7 @@
 
 SetDebug(1,"trace")
 
-CheckIn()
+chkIn()
 
 //record R[10][10];
 record R[10];
@@ -39,11 +39,11 @@ R[5] = R[0];
 
 <<"in %V$R[5]\n"
 
-checkStr(R[5][0],"many")
-checkStr(R[5][1],"how")
+chkStr(R[5][0],"many")
+chkStr(R[5][1],"how")
 
 sz= Caz(R[5])
 
 <<"$sz\n"
 
-checkOut()
+chkOut()

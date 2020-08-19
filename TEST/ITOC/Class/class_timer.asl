@@ -12,7 +12,7 @@
 //***********************************************%
 // test class
 
-CheckIn()
+chkIn()
 
 float Freq  = 16000
 
@@ -133,15 +133,15 @@ Class Timekeeper
 
 
 
-   ok=CheckFNum(Tim->rsecs, 1.0,3)
+   ok=chkR(Tim->rsecs, 1.0,3)
 
-<<"%V$ok $Tim->rsecs == 1.0 ? $(CheckFNum(Tim->rsecs, 1.0,3))\n"	
+<<"%V$ok $Tim->rsecs == 1.0 ? $(chkR(Tim->rsecs, 1.0,3))\n"	
 
      Tim->rsecs = 1.04
 
 <<" $Tim->rsecs \n"
 
-   ok=CheckFNum(Tim->rsecs, 1.04,3)
+   ok=chkR(Tim->rsecs, 1.04,3)
 
 <<"%V$ok $Tim->rsecs == 1.04 ? \n"
 
@@ -159,9 +159,9 @@ Class Timekeeper
   }
 
 
-   ok=CheckFNum(Tim->rsecs, 1.240, 4)
-<<"%V$ok $Tim->rsecs == 1.24 ? <|$(CheckFNum(Tim->rsecs, 1.240, 4))|>\n"
+   ok=chkR(Tim->rsecs, 1.240, 4)
+<<"%V$ok $Tim->rsecs == 1.24 ? <|$(chkR(Tim->rsecs, 1.240, 4))|>\n"
 
-   CheckOut()
+   chkOut()
 
 

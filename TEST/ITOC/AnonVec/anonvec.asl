@@ -3,7 +3,7 @@
 ///
 
 
-checkIn()
+chkIn()
 
 
 int vi[2] = {0,0}
@@ -11,8 +11,8 @@ int vi[2] = {0,0}
 
 int vs[2] = {1,-1}
 
-checkNum(vs[0],1)
-checkNum(vs[1],-1)
+chkN(vs[0],1)
+chkN(vs[1],-1)
 
 int vec[] = {1,2,3,4,5,6,7,8,9}
 
@@ -38,4 +38,4 @@ T=testArgs(1,{"hey","hago","haces","hace"})
 
 
 
-checkOut()
+chkOut()

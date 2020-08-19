@@ -1,8 +1,8 @@
 
 # test oop features
 
-CheckIn()
-CheckIn()
+chkIn()
+chkIn()
 
 
 <<"%v $_proc \n"
@@ -203,7 +203,7 @@ int Z = 0
 
    $wf->x = 11
 
-CheckNum(apple->x,11)
+chkN(apple->x,11)
 
 
    apple->print()
@@ -215,9 +215,9 @@ CheckNum(apple->x,11)
    cherry->print()
 
 
-CheckNum(cherry->x,16)
+chkN(cherry->x,16)
 
-CheckOut()
+chkOut()
 
 stop!
 

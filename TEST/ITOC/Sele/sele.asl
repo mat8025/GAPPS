@@ -36,7 +36,7 @@
    /}*/
    
    
-   checkIn(); 
+   chkIn(); 
    
    astr = "subsection"; 
    
@@ -52,71 +52,71 @@
    <<"3, $(slen(newstr)) $newstr\n";
    
    
-   checkStr(newstr,"section"); 
+   chkStr(newstr,"section"); 
    
    newstr = sele(astr,3,3); 
    
    <<"3,3 $newstr\n";
-   checkStr(newstr,"sec"); 
+   chkStr(newstr,"sec"); 
    
    
    newstr = sele(astr,-1,3); 
    
    <<"-1,3 $newstr\n";
    
-   checkStr(newstr,"n"); 
+   chkStr(newstr,"n"); 
    
    
    newstr = sele(astr,-3,3); 
    
    <<"-3,3 $newstr\n";
    
-   checkStr(newstr,"ion"); 
+   chkStr(newstr,"ion"); 
    
    
    newstr = sele(astr,-3,-3); 
    
    <<"-3,-3 $newstr\n";
-   checkStr(newstr,"cti"); 
+   chkStr(newstr,"cti"); 
    
    
    newstr = sele(astr,-4); 
    
    <<"-4, $newstr\n";
    
-   checkStr(newstr,"subsect"); 
+   chkStr(newstr,"subsect"); 
    
    
    newstr = sele(astr,-3,-14); 
    
    <<"-3,-14 $newstr\n";
    
-   checkStr(newstr,""); 
+   chkStr(newstr,""); 
    
    newstr = sele(astr,-3,14); 
    
    <<"-3,14 $newstr\n";
    
-   checkStr(newstr,"ion"); 
+   chkStr(newstr,"ion"); 
    
    
    newstr = sele("foo.dat",-5); 
    
    <<"$newstr\n"; 
    
-   checkStr(newstr,"foo"); 
+   chkStr(newstr,"foo"); 
    
    
    newstr = sele("foo.dat",-4,4); 
    <<"$newstr\n"; 
    
-   checkStr(newstr,".dat"); 
+   chkStr(newstr,".dat"); 
    
    astr= "penultimate"; b=sele(astr,-1,-4); 
    <<"$b\n";
    
-   checkStr(b,"mate");
+   chkStr(b,"mate");
    
    
-   checkOut();
+   chkOut();
    

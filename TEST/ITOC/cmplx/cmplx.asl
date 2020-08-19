@@ -3,7 +3,7 @@
 // test complex & dcomplex types
 SetDebug(1)
 
-CheckIn()
+chkIn()
 
 OpenDll("math")
 

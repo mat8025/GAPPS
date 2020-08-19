@@ -14,7 +14,7 @@ for (i= 0; i< n ; i++) {
 }
 //=============
 
-checkIn()
+chkIn()
 
 
 int c[];  //dynamic expansion
@@ -29,7 +29,7 @@ int c[];  //dynamic expansion
  c[3] = 56;
 
 
-checkNum(c[0],47)
+chkN(c[0],47)
 /}
 
  sz = Caz(c);
@@ -60,4 +60,4 @@ for (i= 0; i< n ; i++) {
  <<"$i %V $sz   $c\n"
 }
 
-CheckOut()
+chkOut()

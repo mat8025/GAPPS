@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
   
-  checkIn(_dblevel); 
+  chkIn(_dblevel); 
   
   Nhouses = 0;
   
@@ -71,7 +71,7 @@
 
    asr=  AS->getrooms();
 
-  checkNum(asr,4)
+  chkN(asr,4)
 
   bsr=  BS->getrooms();
   csr = CS->getrooms();
@@ -80,7 +80,7 @@
 
  <<"%V $res $asr $bsr $csr \n"
 
-  checkNum(res,(bsr+csr))
+  chkN(res,(bsr+csr))
 
 
     house C[10];
@@ -124,7 +124,7 @@
   c2r = C[2]->getrooms(); 
   
   <<"house 2 has $c2r rooms \n"; 
-  checkNum(c2r,4)
+  chkN(c2r,4)
 
 
 
@@ -148,7 +148,7 @@
     
   y = C[a+1]->getrooms(); 
 
- checkNum(y,19); 
+ chkN(y,19); 
 
   <<"house ${a}+1 has $y rooms \n"; 
 
@@ -159,7 +159,7 @@
   
   <<"house $a has $y rooms \n"; 
 
-  checkNum(y,15); 
+  chkN(y,15); 
 
   y = C[a-1]->getrooms(); 
   
@@ -170,7 +170,7 @@
   
   <<"house ${a}+1 has $x rooms \n"; 
 
- checkNum(x,15); 
+ chkN(x,15); 
 
   x=C[a+1]->setrooms(C[a-1]->getrooms()); 
   
@@ -184,7 +184,7 @@
 
   y=C[a]->setrooms(C[a-2]->getrooms()) ;
 
-  checkNum(y,22); 
+  chkN(y,22); 
 
 
   am1r =C[a-1]->getrooms();
@@ -193,12 +193,12 @@
   
   y=C[a+1]->setrooms(C[a-1]->getrooms() + C[a]->getrooms()) ;
 
- checkNum(y,(am1r+ar));
+ chkN(y,(am1r+ar));
  
   y=C[a]->setrooms(C[a-2]->getrooms())
 
 <<"house  $a has $y rooms \n"; 
- checkNum(y,22);
+ chkN(y,22);
 
   a1r= C[1]->getrooms() ;
   <<"%V $a1r \n"
@@ -223,14 +223,14 @@
   a4r=C[4]->getrooms() ;
 
 <<"%V $a2r $a4r\n"
- checkNum(a4r,a2r);
+ chkN(a4r,a2r);
 
-checkOut()
+chkOut()
   d2r = D[2]->getrooms()  ) ; 
 
   a5r=C[5]->setrooms( D[2]->getrooms() + C[2]->getrooms() ) ; 
 
- checkNum(a5r,d2r+a2r);
+ chkN(a5r,d2r+a2r);
 
 
   c1r = C[1]->getrooms()
@@ -248,8 +248,8 @@ checkOut()
   c5r = C[5]->getrooms()
 
 <<"%V $res $c2r $c1r $c5r $cr \n"
- checkNum(res,33);
- checkNum(c5r,33); 
+ chkN(res,33);
+ chkN(c5r,33); 
 
 
   a1r= C[1]->getrooms() ;
@@ -267,9 +267,9 @@ checkOut()
   a6r= C[6]->getrooms() ;
   <<"%V $a1r $a2r $a3r $a6r $res\n"
 
-  checkNum(res,33);
-  checkNum(a3r,11); 
-  checkNum(a6r,33); 
+  chkN(res,33);
+  chkN(a3r,11); 
+  chkN(a6r,33); 
 
 
 
@@ -281,9 +281,9 @@ checkOut()
   a7r= C[7]->getrooms() ;
   
 <<"%V $a1r $a2r $a3r $a7r $res\n"
-  checkNum(res,33);
-  checkNum(a3r,22); 
-  checkNum(a6r,33); 
+  chkN(res,33);
+  chkN(a3r,22); 
+  chkN(a6r,33); 
 
 
 
@@ -302,12 +302,12 @@ checkOut()
 
 
 <<"%V $Ar $Br $csr $dsr $res\n"
-  checkNum(res,33);
-  checkNum(res,dsr); 
+  chkN(res,33);
+  chkN(res,dsr); 
 
 
 
-  checkOut()
+  chkOut()
 
 
  a1 = a+1;
@@ -322,12 +322,12 @@ checkOut()
   x= C[a]->setrooms(C[a-2]->getrooms()) ;
 
   x=C[a+1]->setrooms(C[a-1]->getrooms() + C[a]->setrooms(C[a-2]->getrooms())) ;
- checkNum(x,26);
+ chkN(x,26);
  
 
   x=C[a1]->setrooms(C[am1]->getrooms() + C[a]->setrooms(C[am2]->getrooms())) ;
   <<"%V $x\n"
-  checkNum(x,26); 
+  chkN(x,26); 
 
 <<"%V $a $a1 $am1 $am2 \n"
 
@@ -343,7 +343,7 @@ checkOut()
     
     }
   
-  checkOut(); 
+  chkOut(); 
   exit(); 
   
   

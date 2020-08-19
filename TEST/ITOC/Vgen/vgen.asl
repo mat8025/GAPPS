@@ -17,20 +17,20 @@
 
 
 
- checkIn(_dblevel)
+ chkIn(_dblevel)
 
 
  veca = vgen(INT_,10,0,1)
 
 <<"$veca \n"
 
-  checkNum(veca[1],1)
-  checkNum(veca[9],9)
+  chkN(veca[1],1)
+  chkN(veca[9],9)
 
   for (i= 0; i <3 ; i++) {
 
         veci= vgen(INT_,10+i,i,1)
-  checkNum(veci[1],1+i)
+  chkN(veci[1],1+i)
 veci->info(1)
   }
   
@@ -46,7 +46,7 @@ pan starti;
 
         starti =i+1;
         vecp= vgen(PAN_,10+i,starti,incr)
- // checkFnum(vecp[1],1+i)
+ // chkR(vecp[1],1+i)
 <<"$i vecp $vecp[0] $vecp[1] \n"
 vecp->info(1)
   }
@@ -57,7 +57,7 @@ vecp->info(1)
 
 
 
-checkOut()
+chkOut()
 
 
 exit()
@@ -66,7 +66,7 @@ exit()
   for (i= 0; i <3 ; i++) {
 
         vecf= vgen(FLOAT_,10+i,i,1)
-  checkFnum(vecf[1],1+i)
+  chkR(vecf[1],1+i)
 
   }
 <<" $(typeof(vecf))  $(Caz(vecf)) \n"
@@ -75,7 +75,7 @@ exit()
   for (i= 0; i <3 ; i++) {
 
         vecd= vgen(DOUBLE_,10+i,i,1)
-  checkFnum(vecd[1],1+i)
+  chkR(vecd[1],1+i)
 vecd->info(1)
   }
 <<" $(typeof(vecd))  $(Caz(vecd)) \n"
@@ -93,7 +93,7 @@ vecd->info(1)
   for (i= 0; i <3 ; i++) {
 
         vecc= vgen(CHAR_,10+i,i,1)
-  checkNum(vecc[1],1+i)
+  chkN(vecc[1],1+i)
 
   }
 <<" $(typeof(vecc))  $(Caz(vecc)) \n"

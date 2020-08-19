@@ -35,7 +35,7 @@ proc limit_vec()
 }
 
 
-checkin()
+chkIn()
 
 I = vgen(INT_,20,0,1)
 
@@ -50,7 +50,7 @@ I = vgen(INT_,20,0,1)
 //ans=iread()
 }
 
-checkNum(I[0],10)
+chkN(I[0],10)
 /////
 
 
@@ -66,6 +66,6 @@ for (i = 0; i < 5; i++) {
 
 }
 
-checkNum(I[0],10)
+chkN(I[0],10)
 
-checkOut()
+chkOut()

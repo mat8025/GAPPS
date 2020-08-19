@@ -1,5 +1,5 @@
 # test ASL function bscan
-CheckIn()
+chkIn()
 
 uchar C[] = { 0xCA , 0xFE, 0xBA, 0xBE, 0xFA, 0xCE, 0xBE, 0xAD , 0xDE,0xAD, 0xC0, 0xDE }
 
@@ -46,11 +46,11 @@ else {
 
 <<"%x $k $j \n"
 
-CheckNum(na,2)
+chkN(na,2)
 // depends on endian
 
 uint t = 0xfabebafe
-CheckNum(k,t)
+chkN(k,t)
 
  na = bscan(&C[2],swab,&k,&j)
 
@@ -58,7 +58,7 @@ CheckNum(k,t)
 
 <<"%x $k $j \n"
 t = 0xbabeface
-CheckNum(k,t)
+chkN(k,t)
 
 index = 3
 
@@ -67,7 +67,7 @@ index = 3
 <<"%V $na $k $j \n"
 <<"%x $k $j \n"
 t = 0xbefacebe
-CheckNum(k,t)
+chkN(k,t)
 
 
  na = bscan(&C[index+1],swab,&k,&j)
@@ -78,7 +78,7 @@ t = 0xfacebead
 
 
 
-CheckNum(k,t)
+chkN(k,t)
 
  na = bscan(&C[index*2],swab,&k,&j)
 
@@ -88,12 +88,12 @@ t = 0xbeaddead
 
 
 
-CheckNum(k,t)
+chkN(k,t)
 
 
 
 
-CheckOut()
+chkOut()
 
 
 STOP!
@@ -130,18 +130,18 @@ STOP!
 
 
 <<"%I $s1   $g \n"
-CheckStr(s1,"baby")
+chkStr(s1,"baby")
 
-CheckStr(g,"hey")
-
-<<"%I $s1   $g \n"
-
-CheckStr(s1,"baby")
+chkStr(g,"hey")
 
 <<"%I $s1   $g \n"
 
+chkStr(s1,"baby")
 
-CheckOut()
+<<"%I $s1   $g \n"
+
+
+chkOut()
 
 STOP!
 

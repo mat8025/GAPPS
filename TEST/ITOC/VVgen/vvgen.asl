@@ -4,7 +4,7 @@
 
 
 
-checkIn()
+chkIn()
 int vi[2] = {0,0}
 <<"$vi \n"
 
@@ -19,8 +19,8 @@ Table = vvgen(INT_,20,vi,vs)
 j= 0;
 for (i= 0; i< 4; i++) {
 
-checkNum(Table[j],i)
-checkNum(Table[j+1],-i)
+chkN(Table[j],i)
+chkN(Table[j+1],-i)
 j +=2
 }
 
@@ -31,7 +31,7 @@ STable = vvgen(SHORT_,20,{0,0},{1,-1}) ; // TBF anon vec as argument
 
 
 
-checkOut()
+chkOut()
 
 
 exit()

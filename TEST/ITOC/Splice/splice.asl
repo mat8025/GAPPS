@@ -13,7 +13,7 @@
 
  //Splices one vector into another at the specified index.
  
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 I = vgen(INT_,10,1,1)
 
@@ -28,13 +28,13 @@ I[1] = 47
 
 R = vReverse(I)
 <<"%V$R \n"
-checkNum(R[0],10)
+chkN(R[0],10)
 
 
 
 R = vReverse(R)
 <<"%V$R \n"
-checkNum(R[1],47)
+chkN(R[1],47)
 
 
 R = vReverse(R)
@@ -68,4 +68,4 @@ R = vReverse(K)
 <<"%V$R \n"
 <<"%V$K \n"
 
-checkOut()
+chkOut()

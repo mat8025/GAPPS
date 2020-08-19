@@ -20,7 +20,7 @@ myScript = getScript();
 ///  --> 1/e
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 float g;
 
@@ -190,7 +190,7 @@ pan pt = 1.0003450000;
 
 <<"$(typeof(pt)) $pt\n"
 
-checkFnum(pt,1.0003450,5)
+chkR(pt,1.0003450,5)
 
 testArgs(pt,1.000345000)
 
@@ -205,6 +205,6 @@ pt = 1.0/exp(1.0);
 
 
 
-checkFnum(Re,pt,3)
+chkR(Re,pt,3)
 
-checkOut()
+chkOut()

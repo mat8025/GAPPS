@@ -16,19 +16,19 @@ d = 79;
 
 <<" $d scalar $(Sizeof(d))\n"
 exit()
-checkIn();
+chkIn();
 
 asz= Csz(d)
 <<"array size (number of elements) is: $asz \n"
 
-checkNum(asz,0)
+chkN(asz,0)
 nd = Cnd(d)
 <<"number of dimensions are: $nd \n"
-checkNum(nd,0)
+chkN(nd,0)
 
 ab = Cab(d)
 <<"bounds are: $ab \n"
-checkNum(ab,0)
+chkN(ab,0)
 
 ////////////////////////////////
 
@@ -57,11 +57,11 @@ a= A[0]
 
 asz= Csz(A)
 <<"array size (number of elements) is: $asz \n"
-checkNum(asz,6);
+chkN(asz,6);
 
 nd = Cnd(A)
 <<"number of dimensions are: $nd \n"
-checkNum(nd,1)
+chkN(nd,1)
 ab = Cab(A)
 
 
@@ -94,10 +94,10 @@ int  B[6] = { 0,3,2,-1,1,-2} ;
 
 asz= Csz(B)
 <<"array size (number of elements) is: $asz \n"
-checkNum(asz,6);
+chkN(asz,6);
 nd2 = Cnd(B)
 <<"number of dimensions are: $nd2 \n"
-checkNum(nd2,1)
+chkN(nd2,1)
 ab = Cab(B)
 
 <<"bounds are: $ab \n"
@@ -112,10 +112,10 @@ ab = Cab(B)
 
 asz= Csz(B)
 <<"array size (number of elements) is: $asz \n"
-checkNum(asz,6);
+chkN(asz,6);
 nd2 = Cnd(B)
 <<"number of dimensions are: $nd2 \n"
-checkNum(nd2,2)
+chkN(nd2,2)
 ab = Cab(B)
 
 <<"bounds are: $ab \n"
@@ -123,7 +123,7 @@ ab = Cab(B)
  d= Cab(B);
 
 
-checkOut()
+chkOut()
 
 exit()
 

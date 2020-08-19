@@ -15,7 +15,7 @@
 
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 V= vgen(FLOAT_,10,0,1)
 
@@ -26,19 +26,19 @@ T = V + 1.0
 
 <<"(V+1) %6.1f$T \n"
 
-cn (T[1],2)
+chkN (T[1],2)
 
 T = 2+ V 
 
 <<"(V+2) %6.2f$T \n"
 
-cn (T[1],3)
+chkN (T[1],3)
 
 T = (2+ V)/4.0 
 
 <<"(2+V/4.0) %6.2f$T \n"
 
-cn (T[1],0.75)
+chkN (T[1],0.75)
 
 
 // FIX XIC fail
@@ -47,7 +47,7 @@ H = (4.0 * (V+1))
 
 T = (2+ V)/(4.0 * (V+1)) 
 
-cn (T[1],0.375)
+chkN (T[1],0.375)
 
 <<"%6.4f$T \n"
 
@@ -96,7 +96,7 @@ Y->info(1)
 
 
 
-cn (Y[2],6)
+chkN (Y[2],6)
 
 
 
@@ -104,14 +104,14 @@ cn (Y[2],6)
 
 <<"$T\n"
 
-//cn (T[2],2)
+//chkN (T[2],2)
 //
 
   Y *= T
 
 <<"Y: $Y\n"
 
-cn (Y[2],12)
+chkN (Y[2],12)
 
 
  Y = vgen(FLOAT_,10,0,1);
@@ -123,7 +123,7 @@ cn (Y[2],12)
 
 <<"$Y\n"
 
-cn (Y[2],4)
+chkN (Y[2],4)
 
 
   Y =  Y * T
@@ -133,7 +133,7 @@ cn (Y[2],4)
 <<"Y: $Y\n"
 
 
-cn (Y[2],8)
+chkN (Y[2],8)
 
 
 
@@ -141,19 +141,19 @@ cn (Y[2],8)
 
  foo()
 
-cn (Y[2],16)
+chkN (Y[2],16)
 
 <<"$Y\n"
 
  foo()
 
-cn (Y[2],32)
+chkN (Y[2],32)
 <<"$Y\n"
 
  Y *= T
 
 
-cn (Y[2],64)
+chkN (Y[2],64)
 
 <<"$Y\n"
 
@@ -161,7 +161,7 @@ cn (Y[2],64)
 
 foo()
 
-cn (Y[2],128)
+chkN (Y[2],128)
 
 
  Y = vgen(FLOAT_,10,0,1);
@@ -173,17 +173,17 @@ cn (Y[2],128)
 
 <<"Y: $Y\n"
 
-cn (Y[2],4)
+chkN (Y[2],4)
 
-cn (Y[9],18)
+chkN (Y[9],18)
 
   Y -= T;
 
 <<"Y: $Y\n"
 
-cn (Y[2],2)
+chkN (Y[2],2)
 
-cn (Y[9],9)
+chkN (Y[9],9)
 
 checkStage("opeq")
 
@@ -209,8 +209,8 @@ checkStage("opeq")
  <<"$V\n"
 
 
-  cn (V[2],2)
-  cn (V[9],9)
+  chkN (V[2],2)
+  chkN (V[9],9)
 
   T = V[1:3]
   <<"$T\n"
@@ -218,14 +218,14 @@ checkStage("opeq")
   j=1;
   
   for (i=0;i<3;i++) {
-    cn (T[i],j++)
+    chkN (T[i],j++)
   }
  
   T = V[1:3] + V[2:4]
   <<"$T\n"
    j = 3
    for (i=0;i<3;i++) {
-    cn (T[i],j); j +=2;
+    chkN (T[i],j); j +=2;
   }
 
 
@@ -234,7 +234,7 @@ checkStage("opeq")
 
    j = 6;
    for (i=0;i<3;i++) {
-    cn (T[i],j); j +=3;
+    chkN (T[i],j); j +=3;
   }
 
 
@@ -243,7 +243,7 @@ checkStage("opeq")
   
    j = 10;
    for (i=0;i<3;i++) {
-    cn (T[i],j); j +=4;
+    chkN (T[i],j); j +=4;
   }
 
    S= V[7:9] + V[2:4]
@@ -252,9 +252,9 @@ checkStage("opeq")
 
 <<"$V\n"
 
-  cn (V[0],S[0])
-  cn (V[1],S[1])
-  cn (V[2],S[2])  
+  chkN (V[0],S[0])
+  chkN (V[1],S[1])
+  chkN (V[2],S[2])  
 
    R=vvcomp(S,V,3)
    <<"$R\n"
@@ -298,22 +298,22 @@ vec4 = vec1 @+  vec2;
 <<"%V $vec4 \n"
 
 
-cn (vec4[5],9)
+chkN (vec4[5],9)
 
-cn (vec4[1],2)
+chkN (vec4[1],2)
 
 vec4 = vec4 @+  vec2;
 
 <<"%V $vec4 \n"
 
-cn (vec4[8],9)
-cn (vec4[1],2)
+chkN (vec4[8],9)
+chkN (vec4[1],2)
 
 vec5 = vec1 @+  vec2 @+ vec3 ;
 
 <<"%V $vec5 \n"
 
-cn (vec5[1],2)
+chkN (vec5[1],2)
 
 checkStage("veccat")
 
@@ -342,10 +342,10 @@ IV *=2 ;
 
 <<"$IV \n"
 
-cn (IV[1],2)
-cn (IV[2],4)
-cn (IV[3],6)
-cn (IV[4],8)
+chkN (IV[1],2)
+chkN (IV[2],4)
+chkN (IV[3],6)
+chkN (IV[4],8)
 
 IV2= vgen(INT_,15,0,1)
 
@@ -355,10 +355,10 @@ IV2= vgen(INT_,15,0,1)
 
 IV2[1:3] *=2 ;
 
-cn (IV2[1],2)
-cn (IV2[2],4)
-cn (IV2[3],6)
-cn (IV2[4],4)
+chkN (IV2[1],2)
+chkN (IV2[2],4)
+chkN (IV2[3],6)
+chkN (IV2[4],4)
 
 checkStage("self op * on lhrange  ")
 
@@ -371,17 +371,17 @@ IV2[1:8:2] +=7 ;
 checkStage("self op + on lhrange  ")
 
 <<"$IV2 \n"
-cn (IV2[0],0)
-cn (IV2[1],9)
-cn (IV2[2],4)
-cn (IV2[3],13)
+chkN (IV2[0],0)
+chkN (IV2[1],9)
+chkN (IV2[2],4)
+chkN (IV2[3],13)
 
 
 IV3 = IV2[1:-3]
 
-cn (IV3[0],9)
-cn (IV3[1],4)
-cn (IV3[2],13)
+chkN (IV3[0],9)
+chkN (IV3[1],4)
+chkN (IV3[2],13)
 
 checkStage("RH range inserted correctly to new vec")
 <<"$IV3 \n"
@@ -391,9 +391,9 @@ IV3[7:9] =IV2[1:3]
 
 <<"$IV3 \n"
 IV3->info(1)
-cn (IV3[7],9)
-cn (IV3[8],4)
-cn (IV3[9],13)
+chkN (IV3[7],9)
+chkN (IV3[8],4)
+chkN (IV3[9],13)
 
 <<"$IV3\n"
 IV3->Info(1);
@@ -423,13 +423,13 @@ IV5 =    IV3[0:-1:2] + IV3[1:-1:2]
 
 <<"$IV5 \n"
 i=0;
-cn (IV5[i++],13)
-cn (IV5[i++],17)
-cn (IV5[i++],18)
-cn (IV5[i++],23)
-cn (IV5[i++],17)
-//cn (IV5[i++],23)
-cn (IV5[i++],23)
+chkN (IV5[i++],13)
+chkN (IV5[i++],17)
+chkN (IV5[i++],18)
+chkN (IV5[i++],23)
+chkN (IV5[i++],17)
+//chkN (IV5[i++],23)
+chkN (IV5[i++],23)
 
 //cn IV5[i++] 23
 
@@ -455,5 +455,5 @@ checkStage("lhrange")
 
 
 
-co ()
+chkOut ()
   

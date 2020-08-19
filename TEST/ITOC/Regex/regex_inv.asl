@@ -19,7 +19,7 @@ debugON();
 
 setdebug (1, @pline, @~step, @~trace, @soe) ;
 
-checkIn()
+chkIn()
 
 
 str C = "abc(SUBSC)"
@@ -41,7 +41,7 @@ pat = sele(C,p[0],p[1]-p[0])
 <<"$pat \n"
 }
 
-checkStr(pat,"(SUBSC")
+chkStr(pat,"(SUBSC")
 
 checkStage(" REGEX [^_]")
 
@@ -123,14 +123,14 @@ if (j >= sz)
 
 
 
-checkStr(svpat[0], "(SUBSC_A")
-checkStr(svpat[1], "(")
-checkStr(svpat[2], "A")
+chkStr(svpat[0], "(SUBSC_A")
+chkStr(svpat[1], "(")
+chkStr(svpat[2], "A")
 
-checkStr(svpat[3], "(SUBSC_L")
-checkStr(svpat[4], "(")
-checkStr(svpat[5], "L")
+chkStr(svpat[3], "(SUBSC_L")
+chkStr(svpat[4], "(")
+chkStr(svpat[5], "L")
 
 checkStage("SUB EXPRESSIONS")
 
-checkOut();
+chkOut();

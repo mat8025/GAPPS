@@ -13,7 +13,7 @@
 myScript = getScript();
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 cmplx a
 cmplx b;
@@ -24,7 +24,7 @@ a->set(2.5,0.5)
 
 a->info(1)
 
-cr (a->getReal(),2.5);
+chkR (a->getReal(),2.5);
 x= a->getReal();
 y= a->getImag();
 <<"%V $a  $x  $y\n"
@@ -41,13 +41,13 @@ x= a->getReal();
 y= a->getImag();
 <<"%V $a  $x  $y\n"
 
-cr (x,3.5)
-cr (y,-4.7)
+chkR (x,3.5)
+chkR (y,-4.7)
 
 a->info(1)
 
 
-//checkOut(); exit()
+//chkOut(); exit()
 
 cmplx g[16] = {1,2,3,4,5,6,7,8,9,10};
 
@@ -63,12 +63,12 @@ int A[3] = {1,2,3}
 
   sum = Sum(A);
 <<"%V$sum \n"
- checkNum(sum,6)
+ chkN(sum,6)
 
   sum = Sum({1,2,3,4});
 <<"%V$sum \n"
 
- checkNum(sum,10)
+ chkN(sum,10)
 
 sz = Caz({1,2,3});
 
@@ -129,7 +129,7 @@ g[1:6:1]->SetReal({1,2,3,4,5,6})
 gr = g->getReal()
 
 for (i= 1; i < 6; i++) {
-checkNum(gr[i],i)
+chkN(gr[i],i)
 }
 
 g[1:6:1]->SetImag({7,8,9,10,11,12})
@@ -139,7 +139,7 @@ g[1:6:1]->SetImag({7,8,9,10,11,12})
 gi = g->getImag()
 
 for (i= 1; i <= 6; i++) {
-checkNum(gi[i],6+i)
+chkN(gi[i],6+i)
 }
 
 
@@ -275,7 +275,7 @@ g[1:6:1]->SetImag(rv)
 
 <<"%V$t /  $r  = $rt \n"  
   
-    checkNum(1,1)
+    chkN(1,1)
 
     float fv[4] = {1,2,3,4};
 
@@ -554,7 +554,7 @@ R->info(1);
 float V[12];
 
 <<"$V\n"
-co ()
+chkOut ()
 
 j = 0
     V[j] = 3
@@ -589,8 +589,8 @@ dv= 0.0
 
 for(i=0;i<10;i++) {
 
-cr (DVGR[i],dv);
+chkR (DVGR[i],dv);
 dv += 0.25
 }
 
-checkOut()
+chkOut()

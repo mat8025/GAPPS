@@ -1,7 +1,7 @@
 
 // test iteration
 
-CheckIn()
+chkIn()
 
 double x
 double y
@@ -84,9 +84,9 @@ double nr;
  <<"cube root of  $x  is $r r^3 ==   $(r*r*r)\n"
 
 
- CheckFNum(rans,r,3)
+ chkR(rans,r,3)
 
- CheckOut()
+ chkOut()
 
 STOP!
 

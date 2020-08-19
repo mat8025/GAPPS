@@ -15,7 +15,7 @@ setAP(0)
 
 include "consts_local"
 
-CheckIn()
+chkIn()
 
 nlb = 10
 nkg = 10 * _lb2kg
@@ -28,7 +28,7 @@ a= _PI
 
 <<"%V$a $_PI \n"
 
-CheckFNum(a,_PI,6)
+chkR(a,_PI,6)
 
 // can't do this
 <<"tring to modify internal _PI --- won't work which is correct! \n"
@@ -37,7 +37,7 @@ _PI = 2.0
 
 <<"%V$a $_PI \n"
 
- CheckFNum(a,_PI,6)
+ chkR(a,_PI,6)
 
 
 
@@ -46,14 +46,14 @@ const double ALV = 59.0
 <<"trying to modify a declared const variable  --- won't work which is correct! \n"
 
 <<"%V $ALV  $(typeof(ALV)) \n"
- CheckFNum(ALV,59.0,6)
+ chkR(ALV,59.0,6)
 
 ALV = 23
 
 <<"%V$ALV  $(typeof(ALV)) \n"
 
 <<" this should pass ALV == 59 !! $ALV \n"
- CheckFNum(ALV,59.0,6)
+ chkR(ALV,59.0,6)
 
 <<" this should fail ALV == 23  $ALV \n"
   if (ALV == 23) {
@@ -68,12 +68,12 @@ ALV = 23
 
 const int Gyear = 2009
 
- CheckNum(Gyear,2009)
+ chkN(Gyear,2009)
 
 <<"trying to modify a declared const variable  --- won't work which is correct! \n"
 Gyear = 2027
 
- CheckNum(Gyear,2009)
+ chkN(Gyear,2009)
 
 
 <<"\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ \n"
@@ -88,4 +88,4 @@ Gyear = 2027
 <<"\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ \n"
 
 
-  CheckOut()
+  chkOut()

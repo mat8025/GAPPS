@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
    
-   checkIn(_dblevel); 
+   chkIn(_dblevel); 
    
    i = 1;
    
@@ -19,7 +19,7 @@
    
    j = $vn;
    
-   cn (j,i); 
+   chkN (j,i); 
    
    <<"%V $j\n"; 
    
@@ -50,7 +50,7 @@
    <<"%V $vn    $a_1\n"; 
    
    <<"%V $avec  \n"; 
-   co ()   
+   chkOut ()   
    i= 2;
    
    vn = "a_$i"; 
@@ -136,11 +136,11 @@
   for (i= 0; i < sz ; i++) {
   k = v[i];
   <<"$i  $k\n"; 
-  cn (k,nuvec[i]); 
+  chkN (k,nuvec[i]); 
   }
   
   
-  checkOut(); 
+  chkOut(); 
   
   
   S = Variables(); 

@@ -38,20 +38,20 @@ filterFileDebug(ALLOWALL_,"yyy");
 
 setDebug(1,@pline)
 
-checkIn()
+chkIn()
  I = Vgen(INT_,30,-10,1)
 
 <<"$I \n"
 
-checkFnum(I[0],-10)
-checkFnum(I[29],19)
+chkR(I[0],-10)
+chkR(I[29],19)
 
  R = vrange(I,0,10,100,500);
 
 <<"$R \n"
 
-checkFnum(R[0],100)
-checkFnum(R[29],500)
+chkR(R[0],100)
+chkR(R[29],500)
 
 
 
@@ -59,28 +59,28 @@ SI = I[0:10:1]
 
 <<"I[0:10:1]   $SI\n"
 
-checkNum(SI[0],-10)
-checkNum(SI[10],0)
+chkN(SI[0],-10)
+chkN(SI[10],0)
 
 
 SI = I[0:10:2]
 
 <<"I[0:10:2]   $SI\n"
 
-checkNum(SI[0],-10)
-checkNum(SI[5],0)
+chkN(SI[0],-10)
+chkN(SI[5],0)
 
-//checkOut();
+//chkOut();
 //exit()
 
 SI = I[0:-1:2]
 
 <<"I[0:-1:2]   $SI\n"
 sz=Caz(SI)
-checkNum(sz,15)
+chkN(sz,15)
 
-checkNum(SI[0],-10)
-checkNum(SI[14],18)
+chkN(SI[0],-10)
+chkN(SI[14],18)
 
 
 
@@ -89,10 +89,10 @@ SI = I[10:20:1]
 <<"I[10:20:1]   $SI\n"
 sz=Caz(SI)
 <<"%V $sz\n"
-checkNum(sz,11)
+chkN(sz,11)
 
-checkNum(SI[0],0)
-checkNum(SI[10],10)
+chkN(SI[0],0)
+chkN(SI[10],10)
 
 SI = I[20:10:-1]
 
@@ -104,7 +104,7 @@ SI = I[20:10:-1]
 
 sz=Caz(SI)
 <<"%V $sz\n"
-checkNum(sz,11)
+chkN(sz,11)
 
 
 
@@ -123,9 +123,9 @@ SI= I[20:10:1] ;
 
 sz=Caz(SI)
 <<"%V $sz\n"
-checkNum(sz,21)
-checkNum(SI[0],20)
-checkNum(SI[20],10)
+chkN(sz,21)
+chkN(SI[0],20)
+chkN(SI[20],10)
 
 
 
@@ -139,9 +139,9 @@ sz=Caz(SI)
 <<"%V$SI\n"
 <<"%V$I[::]\n"
 
-checkNum(sz,30)
-checkNum(SI[0],0)
-checkNum(SI[29],29)
+chkN(sz,30)
+chkN(SI[0],0)
+chkN(SI[29],29)
 
 //  start from 2
 
@@ -151,9 +151,9 @@ sz=Caz(SI)
 <<"%V$SI\n"
 <<"%V$I[2::]\n"
 
-checkNum(sz,28)
-checkNum(SI[0],2)
-checkNum(SI[27],29)
+chkN(sz,28)
+chkN(SI[0],2)
+chkN(SI[27],29)
 
 
 //  start from 2
@@ -164,9 +164,9 @@ sz=Caz(SI)
 <<"%V$SI\n"
 <<"%V$I[2:10:]\n"
 
-checkNum(sz,9)
-checkNum(SI[0],2)
-checkNum(SI[-1],10)
+chkN(sz,9)
+chkN(SI[0],2)
+chkN(SI[-1],10)
 
 
 SI= I[::2] ;   // all skip every other
@@ -175,11 +175,11 @@ sz=Caz(SI)
 <<"%V$SI\n"
 <<"%V$I[::2]\n"
 
-checkNum(sz,15)
-checkNum(SI[0],0)
-checkNum(SI[-1],28)
+chkN(sz,15)
+chkN(SI[0],0)
+chkN(SI[-1],28)
 
-//checkOut()
+//chkOut()
 //exit()
 
 SI= I[1::2] ;   // start 1 skip very other
@@ -188,9 +188,9 @@ sz=Caz(SI)
 <<"%V$SI\n"
 <<"%V$I[1::2]\n"
 
-checkNum(sz,15)
-checkNum(SI[0],1)
-checkNum(SI[-1],29)
+chkN(sz,15)
+chkN(SI[0],1)
+chkN(SI[-1],29)
 
 
 SI= I[:10:] ;   // defs  specify end
@@ -201,10 +201,10 @@ sz=Caz(SI)
 
 
 // -1 means end
-checkNum(sz,11)
-checkNum(SI[0],0)
-checkNum(SI[-1],10)
-checkNum(SI[10],10)
+chkN(sz,11)
+chkN(SI[0],0)
+chkN(SI[-1],10)
+chkN(SI[10],10)
 <<"%V$SI[-1]\n"
 <<"%V$SI[-2]\n"
 
@@ -224,7 +224,7 @@ sz=Caz(SI)
 SI= I[:10:] ;  
 sz=Caz(SI)
 <<"%V $sz\n"
-checkNum(sz,11)
+chkN(sz,11)
 <<"%V$SI\n"
 <<"%V$I[0] $I[10]\n"
 
@@ -250,7 +250,7 @@ H[::][5:10]  = I[7:12]
 <<"$H\n"
 
 
-checkOut();
+chkOut();
 exit()
 
 
@@ -273,4 +273,4 @@ MD[1][6:11] = 28
 
 <<"$MD\n"
 
-checkOut();
+chkOut();

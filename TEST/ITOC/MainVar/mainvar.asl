@@ -28,10 +28,10 @@ FF[1] = 51;
 
  <<"$FF[1] \n"
 
-checkIn(0)
+chkIn(0)
 
 
-checkNum(FF[1],51)
+chkN(FF[1],51)
 
 proc localv()
 {
@@ -69,8 +69,8 @@ localv()
 
  <<"$FF \n"
 
-checkNum(FF[1],51)
-checkNum(FF[5],-5)
+chkN(FF[1],51)
+chkN(FF[5],-5)
 
 <<"$FF\n "
 
@@ -88,7 +88,7 @@ localmv()
 
  <<"$GF[1] \n"
 
-checkNum(GF[1],75)
+chkN(GF[1],75)
 
 GF->delete()
 
@@ -103,4 +103,4 @@ localmv()
  <<"$GF \n"
 
 
-CheckOut()
+chkOut()

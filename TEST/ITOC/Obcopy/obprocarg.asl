@@ -17,7 +17,7 @@
 
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 int Nfruits = 0;
 
@@ -235,7 +235,7 @@ proc objcopy(fruit oba,  fruit obb)
 
 <<"%V$cherry->color \n"
 
-   CheckStr(cherry->color,"blue")
+   chkStr(cherry->color,"blue")
 
 
     <<"fruit thine name is $apple->name \n"
@@ -273,11 +273,11 @@ proc objcopy(fruit oba,  fruit obb)
 
   eat(orange);
 
-  CheckStr(orange->color,"green")
+  chkStr(orange->color,"green")
 
-  CheckStr(apple->color,"green")
+  chkStr(apple->color,"green")
 
-  CheckStr(apple->color,orange->color)
+  chkStr(apple->color,orange->color)
 
   orange->color = "orange"
 
@@ -285,12 +285,12 @@ proc objcopy(fruit oba,  fruit obb)
 
   apple->color = orange->color
 
-  CheckStr(apple->color,"orange")
+  chkStr(apple->color,"orange")
 
 
   apple->color = "blue"
 
-  CheckStr(apple->color,"blue")
+  chkStr(apple->color,"blue")
 
   apple->print()
   apple->color = "red"
@@ -319,7 +319,7 @@ proc objcopy(fruit oba,  fruit obb)
    cherry->print()
    orange->print()
    
-   checkOut()
+   chkOut()
 
 /{/*
   TBD:

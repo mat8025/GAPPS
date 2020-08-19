@@ -8,7 +8,7 @@ filterFileDebug(ALLOWALL_,"ic_","array_subset");
 
 
 
-checkIn()
+chkIn()
 
 // bug in arg passing??
 
@@ -24,7 +24,7 @@ checkIn()
 
 <<"%V $x  $y\n"
 
-  checkFnum(x,y,6)
+  chkR(x,y,6)
 
 
   y = 123456.123456
@@ -35,7 +35,7 @@ checkIn()
 
 <<"%V $x  $y\n"
 
-  checkFnum(x,y,6)
+  chkR(x,y,6)
 
 
   y = 123456789.123456
@@ -46,6 +46,6 @@ checkIn()
 
 <<"%V $x  $y\n"
 
-  checkFnum(x,y,6)
+  chkR(x,y,6)
 
-checkOut()
+chkOut()

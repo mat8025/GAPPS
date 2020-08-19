@@ -1,6 +1,6 @@
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 
 int a;
@@ -15,7 +15,7 @@ long L = 4;
 
 L->info(1)
 
-checkNum(L,4)
+chkN(L,4)
 
 
-checkOut()
+chkOut()

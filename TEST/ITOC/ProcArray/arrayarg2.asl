@@ -20,7 +20,7 @@ if (_dblevel >0) {
 }
   
    
-checkIn(_dblevel);
+chkIn(_dblevel);
    
 aaa: <<"aaa label !\n"
 
@@ -79,11 +79,11 @@ aaa: <<"aaa label !\n"
 
     Z->info(1)
    
-   checkNum(Z[1],47);
-   checkNum(Z[2],79);
-   checkNum(Z[3],80);       
+   chkN(Z[1],47);
+   chkN(Z[2],79);
+   chkN(Z[3],80);       
    
-   checkNum(Z[9],28); 
+   chkN(Z[9],28); 
    
    <<"Array Name return vec $Y\n"; 
    
@@ -116,12 +116,12 @@ aaa: <<"aaa label !\n"
 
    Z->info(1); 
    
-   checkNum(Z[1],47);
-   checkNum(Z[2],79);
-   checkNum(Z[3],80);      
-   checkNum(Z[9],28); 
+   chkN(Z[1],47);
+   chkN(Z[2],79);
+   chkN(Z[3],80);      
+   chkN(Z[9],28); 
    
-   checkStage("&Array");
+   chkStage("&Array");
 
 
 
@@ -140,11 +140,11 @@ aaa: <<"aaa label !\n"
    
 //~c <<" this is the  brk_pt \n" ; // needs to stop before executing this statement   
 
-   checkNum(Z[4],47);
-   checkNum(Z[5],79);
-   checkNum(Z[6],80);      
+   chkN(Z[4],47);
+   chkN(Z[5],79);
+   chkN(Z[6],80);      
 
-   checkNum(Z[9],28);
+   chkN(Z[9],28);
    
    checkStage("&Array[3]"); 
 
@@ -152,13 +152,13 @@ aaa: <<"aaa label !\n"
 
    <<"return Y2 vec $Y2\n";
    
-   checkNum(Y2[1],47);
-   checkNum(Y2[2],79);    
-   checkNum(Y2[6],28);
+   chkN(Y2[1],47);
+   chkN(Y2[2],79);    
+   chkN(Y2[6],28);
 
 
-   checkStage("ArrayReturn"); 
+   chkStage("ArrayReturn"); 
    
    
-   checkOut();
+   chkOut();
    

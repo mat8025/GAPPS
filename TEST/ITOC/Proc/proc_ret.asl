@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
 myScript = getScript();
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 
 proc Foo(real x,real  y)
@@ -26,11 +26,11 @@ proc Foo(real x,real  y)
 
 
   a = Foo(2,3)
- checkFnum(a,6)
+ chkR(a,6)
 a->info(1)
 
   b = Foo(4.0,3.0)
- checkFnum(b,12)
+ chkR(b,12)
 b->info(1)
 
 <<"%v $b \n"
@@ -40,7 +40,7 @@ int a1 = 2;
 int a2 = 4;
 
   c = Foo(a1,a2)
- checkFnum(c,8)
+ chkR(c,8)
 c->info(1)
 
 <<"%v $b \n"
@@ -59,7 +59,7 @@ c->info(1)
    }
 
 
-checkOut()
+chkOut()
 
 
 

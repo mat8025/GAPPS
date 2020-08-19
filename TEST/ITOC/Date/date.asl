@@ -28,7 +28,7 @@ form = 17 week day
 ///
 ///
    
-   checkin(_dblevel); 
+   chkIn(_dblevel); 
    
    td = date(1,'-'); 
    <<"1 $td\n"; 
@@ -71,7 +71,7 @@ form = 17 week day
 <<"$sdt3\n"
 sdt3->info(1)
 
-   checkStr(sdt[3],udt[3]); 
+   chkStr(sdt[3],udt[3]); 
 
 
 
@@ -83,6 +83,6 @@ sdt3->info(1)
     }
 
 
-   checkOut(); 
+   chkOut(); 
    
 //======================================//

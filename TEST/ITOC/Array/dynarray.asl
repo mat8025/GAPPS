@@ -27,7 +27,7 @@ proc changeDir(str td)
 //===============================
 
  
-  checkIn(_dblevel); 
+  chkIn(_dblevel); 
 
 Curr_dir = "XYZ"
 
@@ -59,7 +59,7 @@ int ival;
 
 
 
-  checkNum(ival,3)
+  chkN(ival,3)
 
  i =0
  na = argc()
@@ -85,7 +85,7 @@ i++
 
   IVF->info(1)
 
- checkNum(sz,5);
+ chkN(sz,5);
 
   IVF[2] = 74;
 
@@ -98,17 +98,17 @@ i++
 
   IV->info(1)
 
-  checkNum(sz,6);
+  chkN(sz,6);
 
 
   IV[1] = ptan("AT");
   <<"$IV\n"; 
  
-  checkNum(IV[1],85);
+  chkN(IV[1],85);
   IV[5] = ptan("Ac");
   <<"$IV\n"; 
  
-  checkNum(IV[5],89);
+  chkN(IV[5],89);
  
   float FV[5];
  
@@ -119,8 +119,8 @@ i++
   
   <<"$FV\n"; 
  
-  checkFnum(FV[2],45);
+  chkR(FV[2],45);
  
-  checkOut(); 
+  chkOut(); 
  
   exit(); 

@@ -15,7 +15,7 @@ myScript = getScript();
 ///
 ///
    
-   checkIn();
+   chkIn();
 
    int n;
 
@@ -38,11 +38,11 @@ myScript = getScript();
 
    
    <<"$J \n"; 
-   checkNum(M[0],0)
-   checkNum(M[9],0)   
-   checkNum(P[0],0)
-   checkNum(P[9],0)   
-   checkNum(J[0],0)
+   chkN(M[0],0)
+   chkN(M[9],0)   
+   chkN(P[0],0)
+   chkN(P[9],0)   
+   chkN(J[0],0)
   
 
    J[0:19:2]->set(10,1); 
@@ -51,14 +51,14 @@ myScript = getScript();
 
    <<"$J \n"; 
    
-   checkNum(J[0],10);
+   chkN(J[0],10);
    
-//checkOut();exit()
+//chkOut();exit()
    
    J[0:7] = 6; 
    
-   checkNum(J[0],6); 
-   checkNum(J[7],6); 
+   chkN(J[0],6); 
+   chkN(J[7],6); 
    
    <<"$J \n"; 
    
@@ -67,11 +67,11 @@ myScript = getScript();
    
    <<"$J \n"; 
    
-   checkNum(J[19],35); 
-   checkNum(J[1],35); 
+   chkN(J[19],35); 
+   chkN(J[1],35); 
    
    
-   checkOut(); 
+   chkOut(); 
    
    
 //////////////////////////////////

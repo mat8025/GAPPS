@@ -5,7 +5,7 @@ debugON();
 
 record R[5];
 Rn = 6;
-checkIn()
+chkIn()
 
 proc Score()
 {
@@ -52,7 +52,7 @@ wcol = 4;
 
 
 rf=Score()
-checkNum(rf,84)
+chkN(rf,84)
 
   <<"%V$R[1][PCDoneCol] \n"
   R[1][PCDoneCol] = "42";
@@ -61,7 +61,7 @@ checkNum(rf,84)
 
 
 
-checkStr( R[1][PCDoneCol], "42");
+chkStr( R[1][PCDoneCol], "42");
 
  R[wrow][wcol] = "68";
 
@@ -70,23 +70,23 @@ checkStr( R[1][PCDoneCol], "42");
 
 
 
- checkStr( R[wrow][wcol], "68");
+ chkStr( R[wrow][wcol], "68");
 
 <<"$wrow $wcol  <|$wrd|>\n"
 
-checkStr( wrd, "68");
+chkStr( wrd, "68");
 
  wrd = R[wrow+4][wcol+1];
 
 <<"$wrd   $R[5][5] \n"
 
- checkStr( R[wrow+4][wcol+1], "35");
+ chkStr( R[wrow+4][wcol+1], "35");
 
- checkStr( R[wrow*2][wcol+1], "5");
+ chkStr( R[wrow*2][wcol+1], "5");
 
 <<"$wrd   $R[2][5] \n"
 
- checkStr( R[wrow*3][wcol-1], "13");
+ chkStr( R[wrow*3][wcol-1], "13");
 
 wrd = R[wrow*3][wcol-1];
  
@@ -96,7 +96,7 @@ wrd = R[wrow*3][wcol-1];
 wrd = R[Trunc(wrow*3.4)][wcol-1];
  
 <<"$wrd   $R[wrow*3][wcol-1] \n"
-checkStr( wrd, "13");
+chkStr( wrd, "13");
 
 
 wrd = R[Round(wrow*3.7)][Round(wcol-1.6)];
@@ -105,7 +105,7 @@ wrd = R[Round(wrow*3.7)][Round(wcol-1.6)];
 
 //<<"$wrd   $R[Round(wrow*3.7)][Round(wcol-1.6)] \n"
 
-checkStr( wrd, "22");
+chkStr( wrd, "22");
 
 
 wrd = R[Round(wrow*3.7)][Round(wcol-2.6)];
@@ -114,7 +114,7 @@ col = Round(wcol-2.6);
 
 <<"$wrd  $(Round(wcol-2.6)) $col \n"
 
-checkStr( wrd, "21");
-checkOut()
+chkStr( wrd, "21");
+chkOut()
 
 exit()

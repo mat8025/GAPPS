@@ -15,7 +15,7 @@
 
 
 
-ci (_dblevel)
+chkIn(_dblevel)
 
 proc Foo()
 {
@@ -33,7 +33,7 @@ while (fi < Nrecs) {
   
 
 }
- cn (fi,Nrecs)
+ chkN (fi,Nrecs)
  return fi;
  
 }
@@ -60,7 +60,7 @@ proc readData2()
 
 
 <<"$Nrecs there were $tl  measurements \n"
-cn (tl,Nrecs)
+chkN (tl,Nrecs)
    return tl
 
 }
@@ -86,7 +86,7 @@ proc readData()
   }
 
 
-cn (tl,Nrecs)
+chkN (tl,Nrecs)
 <<"$Nrecs there were $tl  data reads \n"
 
    return tl
@@ -102,15 +102,15 @@ nt =readData()
 
 <<"looped $nt times\n"
 
-cn (nt,Nrecs)
+chkN (nt,Nrecs)
 
 nt =Foo()
 
 <<"looped $nt times\n"
 
-cn (nt,Nrecs)
+chkN (nt,Nrecs)
 
-co ()
+//chkOut ()
 
 //===========================//
 
@@ -149,7 +149,7 @@ int ok =0
 <<"%V$k == ? 9 \n";
 
 
-cn (k,9);
+chkN (k,9);
 
 k= 0;
 n = 1;
@@ -165,7 +165,7 @@ n = 1;
 
 <<"%V$k == ? 10 \n"
 
-cn (k,10);
+chkN (k,10);
 
 k= 0;
 n = 1;
@@ -181,7 +181,7 @@ n = 1;
 
 <<"%V$k == ? 10 \n"
 
-cn (k,10);
+chkN (k,10);
 
 ///
 ///
@@ -195,7 +195,7 @@ N = 10
 
 <<" DONE $k $N \n"
 
-cn (k,N);
+chkN (k,N);
 
  k =0;
  int m = 0;
@@ -206,7 +206,7 @@ cn (k,N);
  }
 
 <<" DONE $k $N \n"
-cn (k,N+1);
+chkN (k,N+1);
  m = 0;
  k = 0;
  while ( ++k < N) {
@@ -214,10 +214,10 @@ cn (k,N+1);
    <<" $k $m \n"
  }
 
-cn (k,N);
+chkN (k,N);
 <<" DONE $k $N \n"
 
-checkStage("2")
+chkStage("2")
 
 
 
@@ -260,11 +260,11 @@ b = 3 ; c = a * b
 
  }
 
-cn (kc,N)
+chkN (kc,N)
 
 <<" DONE %V $k $kc  $N $M $a\n"
 
-checkStage("continue")
+chkStage("continue")
 
 ///////////////////////////////
 int tl = 0;
@@ -278,10 +278,10 @@ tl++;
  }
 }
 
-cn (tl,Nrecs)
+chkN (tl,Nrecs)
 
 Foo()
 
 readData()
 
-checkOut()
+chkOut()

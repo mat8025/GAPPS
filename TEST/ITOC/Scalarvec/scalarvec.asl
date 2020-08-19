@@ -19,19 +19,19 @@ include "debug.asl";
   FilterFuncDebug(REJECT_,"~ArraySpecs",); 
  
 
- CheckIn()
+ chkIn()
 
  I = vgen(INT_,10,0,1)
 
 <<"$I\n"
 
- CheckNum(I[1],1)
+ chkN(I[1],1)
 
 
  K = I - 255
 
 
- CheckNum(K[1],-254)
+ chkN(K[1],-254)
 
 <<"$K\n"
 
@@ -41,7 +41,7 @@ include "debug.asl";
 
 <<"$M\n"
 
- CheckNum(M[1],511)
+ chkN(M[1],511)
 
 
   U = vgen(UCHAR_,12,0,1)
@@ -55,9 +55,9 @@ U->info(1)
 
  u = U[1]
 
-  CheckNum(U[1],1)
+  chkN(U[1],1)
 
-  CheckNum(u,1)
+  chkN(u,1)
 
 
 
@@ -65,9 +65,9 @@ U->info(1)
 
 <<"%V$W \n"
 
- CheckNum(W[1],3)
+ chkN(W[1],3)
 
-// CheckNum(U[1],1)
+// chkN(U[1],1)
 
 
 <<"%V$U\n"
@@ -78,7 +78,7 @@ U->info(1)
 <<"$(typeof(W)) \n"
 
 
- if (! CheckNum(W[1],225)) {  // U is unsigned
+ if (! chkN(W[1],225)) {  // U is unsigned
 
 <<"FAIL $W[1] 255\n")
 
@@ -87,7 +87,7 @@ U->info(1)
 
 
 
-if (! CheckNum(U[1],1) ) {
+if (! chkN(U[1],1) ) {
 
 <<"FAIL $U[1] 1\n")
 
@@ -105,8 +105,8 @@ sz = Caz(T)
   V = 255 -U
   <<"%V$V\n"
 
-CheckNum(V[0],255)
-CheckNum(V[1],254)
+chkN(V[0],255)
+chkN(V[1],254)
 
 U->info(1)
 sz = Caz(U)
@@ -115,19 +115,19 @@ sz = Caz(U)
 
 
 
-CheckNum(U[1],1)
-CheckNum(U[2],2)
+chkN(U[1],1)
+chkN(U[2],2)
 
-//CheckOut()
+//chkOut()
 //exit()
 
- CheckNum(V[1],254)
+ chkN(V[1],254)
 
 
 
 <<"%V$U\n"
 
-CheckNum(U[1],1)
+chkN(U[1],1)
 
 <<"%V$U\n"
 
@@ -140,11 +140,11 @@ CheckNum(U[1],1)
  T = 255 - U[1:8:2]
 
 <<"%V$T\n"
- CheckNum(T[1],252)
+ chkN(T[1],252)
 
 <<"%V$U\n"
 
 
- CheckNum(U[1],1)
+ chkN(U[1],1)
 
- CheckOut()
+ chkOut()

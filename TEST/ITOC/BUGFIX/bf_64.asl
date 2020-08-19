@@ -2,7 +2,7 @@
 ///  vector scalar  order bug 
 ///
 
-checkIn(0)
+chkIn(0)
 
  x = vgen(INT_,5,0,1)
 
@@ -71,4 +71,4 @@ checkVector(y1,y2)
 checkVector(y1,y2)
 
 
-CheckOut()
+chkOut()

@@ -2,7 +2,7 @@
 
 # test ASL function sscan
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 
 str s = "hey baby you got the love I need" 
@@ -12,7 +12,7 @@ int k =0
 
 //<<"%I $s $k $w\n"
 
- //CheckStr(w,"life full of dreams")
+ //chkStr(w,"life full of dreams")
 
 float f = 3.142.0
 int j = 8
@@ -40,21 +40,21 @@ na = sscan("4.5 2 hey baby",'%f %d %s %s',&f,&k,&g,&s1)
 
 
 
-checkNum(na,4)
+chkN(na,4)
 
-checkFNum(f,4.5,6)
+chkR(f,4.5,6)
 
-checkNum(k,2)
+chkN(k,2)
 
 <<"%V  $s1   $g \n"
 
-checkStr(s1,"baby")
+chkStr(s1,"baby")
 
-checkStr(g,"hey")
+chkStr(g,"hey")
 
 <<"%V $s1   $g \n"
 
-checkStr(s1,"baby")
+chkStr(s1,"baby")
 
 <<"%V $s1   $g \n"
 
@@ -99,9 +99,9 @@ s1= " bright"
 news = scat(g,s1)
 <<"%V$news $g $s1\n"
 
-checkStr(news,"star bright")
+chkStr(news,"star bright")
 
 
-checkOut()
+chkOut()
 
 

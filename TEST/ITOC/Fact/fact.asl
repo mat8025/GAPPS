@@ -21,7 +21,7 @@
 
 #define DBP <<
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 // want to use ulong
 
@@ -143,9 +143,9 @@ if (L == m) {
 <<"N! $L == $m Pass\n"
 }
 
-checkNum(m,L)
+chkN(m,L)
 
-checkOut()
+chkOut()
 exit()
 
 
@@ -251,13 +251,13 @@ n=1
   fr= Fact(n);
 
 <<" 1! = $fr \n"
-  checkFNum(fr,1,6)
+  chkR(fr,1,6)
 
 n++
   fr= Fact(n);
 
 <<"2! = $fr \n"
-  checkFNum(fr,2)
+  chkR(fr,2)
 
 
 n++
@@ -265,19 +265,19 @@ n++
 
 <<"3! = $fr \n"
 
-  checkFNum(fr,6,6)
+  chkR(fr,6,6)
 
 n++
 
   fr4= Fact(n);
 <<"4! = $fr4 \n"
-//checkStr(fr4,"24")
-  checkFNum(fr4,24.0,6)
+//chkStr(fr4,"24")
+  chkR(fr4,24.0,6)
 
   fr= Fact(5);
 <<"5! = $fr \n"
 
-  checkFNum(fr,120.0,6)
+  chkR(fr,120.0,6)
 
 <<" N! == ? \n";
 
@@ -295,7 +295,7 @@ n++
 <<"3! $fr3\n"
 <<"4! $fr4\n"
 
-checkOut()
+chkOut()
 
 
 

@@ -13,7 +13,7 @@
   
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 /// simple class test
 
@@ -71,9 +71,9 @@ loc = Split("how did we get here")
 
 
 <<"%V $r10 $r11 $r12\n"
- checkStr(r00,"how");
+ chkStr(r00,"how");
  
- checkStr(r02,"we");
+ chkStr(r02,"we");
 
  r10 = FI[1]->srec[0];
 
@@ -86,11 +86,11 @@ loc = Split("how did we get here")
 
 <<"%V $r10 $r11 $r12\n"
 
-checkStr(r10,"just");
+chkStr(r10,"just");
 
-checkStr(r11,"evolved");
+chkStr(r11,"evolved");
 
-checkStr(r12,"with");
+chkStr(r12,"with");
 
 
 
@@ -157,7 +157,7 @@ Add  tc;   //FIX
 
     s= tc->sum(4,5);
 
-checkNum(s,9)
+chkN(s,9)
 <<"%V $s $(typeof(s)) \n"
 
 
@@ -166,7 +166,7 @@ checkNum(s,9)
 
 <<"%V $r $(typeof(r)) \n"
 
-checkNum(r,9.8)
+chkN(r,9.8)
 
 
 
@@ -191,13 +191,13 @@ Add  nc[2];
 
 <<"%V $s \n"
 
-checkNum(s,126)
+chkN(s,126)
 
 
 
     s= nc[0]->diff(47,79);
 
-checkNum(s,-32);
+chkN(s,-32);
 
 <<"%V $s $(typeof(s))\n"
 
@@ -208,23 +208,23 @@ checkNum(s,-32);
 
 <<"%V $s $(typeof(s))\n"
 
-checkNum(s,-32);
+chkN(s,-32);
 
 
     what = mc->say();
 <<"%V$what $(typeof(what))\n"
-checkStr(what,"hey hey");
+chkStr(what,"hey hey");
 
     what=nc[0]->say()
 <<"%V$what $(typeof(what))\n"
-checkStr(what,"hey hey");
+chkStr(what,"hey hey");
 
     what = mc->isay();
 <<"%V$what $(typeof(what))\n"
-checkStr(what,"Do what I say");
+chkStr(what,"Do what I say");
 
 
 
 
-checkOut()
+chkOut()
 

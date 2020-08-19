@@ -14,7 +14,7 @@ myScript = getScript();
 
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 record R[10];
 
@@ -72,7 +72,7 @@ for (j= 0; j < 6; j++) {
  <<"%V $wrd  \n"
  R->info(1)
 
- checkStr(wrd,"$nval",4)
+ chkStr(wrd,"$nval",4)
  //query()
  nval += 0.01;
  kc++;
@@ -98,13 +98,13 @@ R->info(1)
 
 wrd = R[5][4];
 <<"<|$wrd|>\n"
-checkStr(wrd,"4.30",4)
+chkStr(wrd,"4.30",4)
 
 R->info(1)
 
 <<"$R[5][4]\n"
 
 
-checkStr(R[5][4],"4.30",4)
+chkStr(R[5][4],"4.30",4)
 
-checkOut()
+chkOut()

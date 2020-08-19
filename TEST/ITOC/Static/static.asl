@@ -16,8 +16,8 @@ myScript = getScript();
 // test static statement
    
    
-   checkIn(_dblevel);
-//   checkIn(1); 
+   chkIn(_dblevel);
+//   chkIn(1); 
    
    proc  Foo ( x)
    {
@@ -30,7 +30,7 @@ myScript = getScript();
      A++;
      
      <<"exiting $_proc %V$a $A\n"; 
-     checkNum(a,A); 
+     chkN(a,A); 
    }
    
    int A =0;
@@ -38,22 +38,22 @@ myScript = getScript();
    
    Foo(); 
    
-   checkNum(A,1); 
+   chkN(A,1); 
    
    
    Foo(); 
    
-   checkNum(A,2); 
+   chkN(A,2); 
    
    
    Foo(); 
    
-   checkNum(A,3); 
+   chkN(A,3); 
    
    
    Foo(); 
    
-   checkNum(A,4); 
+   chkN(A,4); 
    
    
-   checkOut(); 
+   chkOut(); 

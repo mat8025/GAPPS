@@ -1,6 +1,6 @@
 setdebug(1,"pline","step","trace")
 
-checkIn();
+chkIn();
 
 
 proc array_sub(float rl[])
@@ -16,7 +16,7 @@ float t1;
 <<"$(Caz(t1))\n"
 
 
-checkFnum(t1,4.0);
+chkR(t1,4.0);
    return t1;
 }
 
@@ -26,7 +26,7 @@ Real1 = vgen(FLOAT_,10,0,1)
 float mt1;
 
   mt1 = Real1[4];
-checkFnum(mt1,4)
+chkR(mt1,4)
 <<"%V $mt1 \n"
 
 
@@ -42,4 +42,4 @@ val = array_sub(Real1)
 
 
 
-checkOut()
+chkOut()

@@ -21,7 +21,7 @@ include "debug";
 
 
 setdebug(1,@pline,@~trace,@keep); 
-CheckIn()
+chkIn()
 
 int M[5][4]
 
@@ -40,12 +40,12 @@ M2= matgen(FLOAT_,5,4,0,1)
 
 M2->info(1)
 
-checkNum(M2[0][0],0)
-checkNum(M2[4][3],19)
+chkN(M2[0][0],0)
+chkN(M2[4][3],19)
 
 M3=cyclerow(M2,7)
 
-checkNum(M3[0][0],12)
+chkN(M3[0][0],12)
 <<"$M3\n"
 
 <<"$M2\n"
@@ -104,4 +104,4 @@ I= Cmp(M2,M4,"==",1)
 
 <<"$I \n"
 
-checkOut()
+chkOut()

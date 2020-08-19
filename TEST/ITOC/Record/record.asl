@@ -19,7 +19,7 @@
 
 // test record type
 // each record is an Svar
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 
 int ra = 2;
@@ -77,8 +77,8 @@ R->info(1)
 int ival = atoi(R[0][2]);
 sz  = csz(ival)
 <<"ival $ival  bounds $(Cab(ival)) sz   $(csz(ival))\n"
-checkNum(sz,0)
-checkNum(ival,2)
+chkN(sz,0)
+chkN(ival,2)
 
 
 //=============================
@@ -91,7 +91,7 @@ R->info(1)
 fval = atoi(R[1][2]);
 ival = atoi(R[5][2]);
 ival->info(1)
-checkNum(ival,fval)
+chkN(ival,fval)
 
 
 <<"%V$R[3]\n"
@@ -104,7 +104,7 @@ R[3][3]=R[2][3]
 fval = atoi(R[2][3]);
 ival = atoi(R[3][3]);
 
-checkNum(ival,fval)
+chkN(ival,fval)
 
 
 
@@ -121,8 +121,8 @@ ival = atoi(R[2][2]);
 sz  = csz(ival)
 <<"ival $ival  bounds $(Cab(ival)) sz   $(csz(ival))\n"
 
-checkNum(sz,0)
-checkNum(ival,2)
+chkN(sz,0)
+chkN(ival,2)
 
 <<"%V$R[2][4]\n"
 
@@ -132,8 +132,8 @@ ival = atoi(R[2][4]);
 pval = ptan("Zr");
 
 <<"%V $pval \n"
-checkNum(ival,pval)
-checkNum(ival,ptan("Zr"))
+chkN(ival,pval)
+chkN(ival,ptan("Zr"))
 
 <<" $R[::] \n"
 
@@ -191,16 +191,16 @@ sz  = csz(ival)
 
 ival->info(1)
 
-checkNum(sz,0)
+chkN(sz,0)
 
-checkNum(ival,45)
+chkN(ival,45)
 
 
 
 
 
 ival = atoi(R[1][5]);
-checkNum(ival,56)
+chkN(ival,56)
 
 
  R[3] = R[0];
@@ -217,12 +217,12 @@ checkNum(ival,56)
 
 ival = atoi(R[3][4]);
 <<"%V $ival\n"
-checkNum(ival,40)
+chkN(ival,40)
 
 
 ival = atoi(R[3][5]);
 <<"%V $ival\n"
-checkNum(ival,5)
+chkN(ival,5)
 
 ////////////////////////////////////////////////////
 Record DF[10];
@@ -317,19 +317,19 @@ str sr1;
  sr0 = R[0][0];
  <<"%V$sr0\n"
 
-checkStr(sr0,"how")
+chkStr(sr0,"how")
 
- checkStr(R[0][0],"how")
+ chkStr(R[0][0],"how")
 
 <<"col2 $R[0][2] \n"
 
 
- checkStr(R[0][1],"many")
+ chkStr(R[0][1],"many")
 
 sr1 = R[0][1];
 
 <<"$(typeof(sr1)) %V $sr1 \n"
- checkStr(sr1,"many")
+ chkStr(sr1,"many")
 
 <<"$R[0] \n"
 
@@ -337,7 +337,7 @@ sr1 = R[0][1];
 
    sr0 = R[0][2]
 
-checkStr(sr0,"cols")
+chkStr(sr0,"cols")
  <<"%V$sr0\n"
 
 
@@ -352,7 +352,7 @@ checkStr(sr0,"cols")
 
    sr2 = R[0][2];
 
-checkStr(sr2,"cols")
+chkStr(sr2,"cols")
  <<"$(typeof(sr2)) %V$sr2\n"
 
 
@@ -369,7 +369,7 @@ R->info(1)
 
    sr1 = R[3][2]
    
-   checkStr(sr1,"focus")
+   chkStr(sr1,"focus")
 
    R[2] = R[3];   // TBF
 
@@ -383,7 +383,7 @@ R->info(1)
  sr0 = R[0][0];
  <<"%V$sr0\n"
 <<"$R[0]\n"
- checkStr(R[0][1],"many")
+ chkStr(R[0][1],"many")
 
  sr1 = R[0][1];
  
@@ -393,21 +393,21 @@ R->info(1)
 
    sr2 = R[2][2]
    
-checkStr(sr2,"learn")
+chkStr(sr2,"learn")
 
    sr2 = R[3][2]
    sr3 = R[3][2]
    
-checkStr(sr3,"focus")
+chkStr(sr3,"focus")
 
 
 
-checkStr(sr3,sr2)
+chkStr(sr3,sr2)
 
 
 <<"inrecord[3] we have:- $R[3] \n"
 
-checkStr(R[2],R[3])
+chkStr(R[2],R[3])
 
 <<"inrecord[2] we have:- $R[2] \n"
 
@@ -428,7 +428,7 @@ checkStr(R[2],R[3])
 
    sr0 = R[3][3]
 
-checkStr(sr0,"and");
+chkStr(sr0,"and");
 
    sr1 = R[3][4]
 
@@ -481,7 +481,7 @@ for (k=0; k <1; k++) {
 
 
  <<"%V $fr0 $sr0 $sr1\n"
-checkStr(sr1,"move")
+chkStr(sr1,"move")
 
 checkProgress()
 
@@ -500,9 +500,9 @@ checkProgress()
 
    sr3 = R[3][3]
 
-checkStr(sr3,"and");
+chkStr(sr3,"and");
 
-checkStr(sr1,"muy bien");
+chkStr(sr1,"muy bien");
 
 
 checkProgress();
@@ -649,7 +649,7 @@ R[7] = R[5];
 // pick fields
 //<<"\n\n%1r$R[13:23][0]\n"
 
-checkOut()
+chkOut()
 
 
 

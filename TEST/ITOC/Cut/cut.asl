@@ -1,6 +1,6 @@
 // test cut array
 
-CheckIn()
+chkIn()
 
 int I[] ;
 
@@ -16,7 +16,7 @@ I->cut(C)
 
 <<" $I \n"
 
-CheckNum(I[12],16)
+chkN(I[12],16)
 
 
 //float F[]
@@ -38,7 +38,7 @@ F->cut(C)
 
 
 <<"%6.1f$F \n"
-CheckFNum(F[12],16,6)
+chkR(F[12],16,6)
 
 
 I[3:8]->cut()
@@ -46,7 +46,7 @@ I[3:8]->cut()
 //<<" $I[::] \n"
 <<" $I \n"
 
-CheckNum(I[3],9)
+chkN(I[3],9)
 
 <<"$I[0:-1:2]\n"
 
@@ -64,12 +64,12 @@ Y = I[0:8:1]
 F[3:8]->cut()
 
 <<" %6.1f$F[::] \n"
-CheckFNum(F[3],9,6)
+chkR(F[3],9,6)
 
 F[3]->cut()
 
 <<" %6.1f $F[::] \n"
 
-CheckOut()
+chkOut()
 
 ;

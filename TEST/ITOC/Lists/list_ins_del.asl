@@ -23,7 +23,7 @@
 
 
 
-checkIn(1)
+chkIn(1)
 
 ShoppingList = ("xxx",  )  // empty list --- bug first item null?
 
@@ -152,7 +152,7 @@ testargs(1,ShoppingList)
 <<"Shopping list size $flsz \n"
 
 
- checkNum(flsz,6)
+ chkN(flsz,6)
 
 <<" %(1,<|, ,|>\n)$ShoppingList \n"
  lhead = ShoppingList[0];
@@ -191,7 +191,7 @@ testargs(1,ShoppingList)
 
 <<"%V $lhead $ltail $hval\n"
 
- checkStr(hval,"top item")
+ chkStr(hval,"top item")
 
 <<" $ShoppingList \n"
 
@@ -204,7 +204,7 @@ testargs(1,ShoppingList)
 
 <<"%V  <|$tval|>\n"
 
- checkStr(tval,"bottom item")
+ chkStr(tval,"bottom item")
 
 <<" $ShoppingList \n"
 
@@ -241,5 +241,5 @@ AList->Insert(-1,"bottom item")
 
 <<"%V $hval $tval\n"
 <<" $AList \n"
-checkOut()
+chkOut()
   

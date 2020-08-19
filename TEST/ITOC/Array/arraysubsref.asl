@@ -1,5 +1,5 @@
 
-CheckIn()
+chkIn()
 
 // test array indexing
 
@@ -13,9 +13,9 @@ CheckIn()
 
 <<"$IV \n"
 
- CheckNum(IV[0],YV[0])
+ chkN(IV[0],YV[0])
 
- CheckNum(IV[5],YV[5])
+ chkN(IV[5],YV[5])
 
 
  IV = YV[1:7:2]
@@ -33,11 +33,11 @@ sz = Caz(IV)
 
 
 
- CheckNum(IV[0],YV[1])
+ chkN(IV[0],YV[1])
 
- CheckNum(IV[1],YV[3])
+ chkN(IV[1],YV[3])
 
- CheckNum(IV[3],YV[7])
+ chkN(IV[3],YV[7])
 
 
 
@@ -53,21 +53,21 @@ sz = Caz(IV)
 
 
 
- CheckNum(IV[0],YV[1])
+ chkN(IV[0],YV[1])
 
- CheckNum(IV[1],YV[3])
+ chkN(IV[1],YV[3])
 
- CheckNum(IV[3],YV[7])
+ chkN(IV[3],YV[7])
 
  IV = YV[a+1:b+1:c]
 
 <<"$IV \n"
 
- CheckNum(IV[0],YV[2])
+ chkN(IV[0],YV[2])
 
- CheckNum(IV[1],YV[4])
+ chkN(IV[1],YV[4])
 
- CheckNum(IV[3],YV[8])
+ chkN(IV[3],YV[8])
 
  IV = YV[a+1:12:c+1]
 
@@ -76,11 +76,11 @@ sz = Caz(IV)
 <<"$IV \n"
 
 
- CheckNum(IV[0],YV[2])
+ chkN(IV[0],YV[2])
 
- CheckNum(IV[1],YV[5])
+ chkN(IV[1],YV[5])
 
- CheckNum(IV[3],YV[11])
+ chkN(IV[3],YV[11])
 
 
 
@@ -96,12 +96,12 @@ sz = Caz(IV)
   <<"$IV \n"
 
 
- CheckNum(IV[0],YV[2])
- CheckNum(IV[1],YV[5])
- CheckNum(IV[4],YV[14])
+ chkN(IV[0],YV[2])
+ chkN(IV[1],YV[5])
+ chkN(IV[4],YV[14])
 
 
- CheckOut()
+ chkOut()
 
 
 STOP!

@@ -12,7 +12,7 @@
 //***********************************************%
 
 
- checkIn(_dblevel)
+ chkIn(_dblevel)
 #
 # test oop features
 #
@@ -35,10 +35,10 @@ proc goo(int a)
 
 x=1;
  goo(x)
-checkNum(x,1)
+chkN(x,1)
 <<"%V $x\n"
  goo(&x)
-checkNum(x,2)
+chkN(x,2)
 <<"%V $x\n"
 
 checkStage("Simple var arg : value and Ref")
@@ -200,7 +200,7 @@ EA= examine(apple)
 
   apple->print();
 
-checkOut()
+chkOut()
 
 exit()
 
@@ -391,7 +391,7 @@ proc objcopy(fruit oba,  fruit obb)
 
 <<"%V$cherry->color \n"
 
-   checkStr(cherry->color,"blue")
+   chkStr(cherry->color,"blue")
 
 
 
@@ -439,11 +439,11 @@ proc objcopy(fruit oba,  fruit obb)
 exit()  
   eat(apple);
 
-  checkStr(orange->color,"green")
+  chkStr(orange->color,"green")
 
-  checkStr(apple->color,"green")
+  chkStr(apple->color,"green")
 
-  checkStr(apple->color,orange->color)
+  chkStr(apple->color,orange->color)
 
   orange->color = "orange"
 
@@ -451,12 +451,12 @@ exit()
 
   apple->color = orange->color
 
-  checkStr(apple->color,"orange")
+  chkStr(apple->color,"orange")
 
 
   apple->color = "blue"
 
-  checkStr(apple->color,"blue")
+  chkStr(apple->color,"blue")
 
   apple->print()
   apple->color = "red"
@@ -487,6 +487,6 @@ exit()
 
    cherry->print()
 
-   checkOut()
+   chkOut()
 
 

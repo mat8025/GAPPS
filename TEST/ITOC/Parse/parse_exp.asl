@@ -14,7 +14,7 @@
 include "debug.asl"
 debugON()
 
-checkIn()
+chkIn(_dblevel)
 ///
 /// 
 ///
@@ -30,14 +30,14 @@ sdb(1,@~trace)
 
   e= a || b ==2
 
-  checkTrue(b ==2)
+  chkT(b ==2)
 
 <<"$e = 1?\n"
-  checkTrue(e)
+  chkT(e)
   e= a || (b ==2)
 
 <<"$e = 1?\n"
-  checkTrue(e)
+  chkT(e)
 
 
 
@@ -48,53 +48,53 @@ sdb(1,@~trace)
 
   if (a >=1 || b == 2) {
 <<"$a >= 1 || $b == 2\n"
-   checkTrue(1)
+   chkT(1)
   }
   else {
 <<"XXX - should not see!\n"
-   checkTrue(0)
+   chkT(0)
   }
 
 
   if (a >=3 || b == 2) {
 <<"$a >= 1 || $b == 2\n"
-   checkTrue(1)
+   chkT(1)
   }
   else {
 <<"XXX - should not see!\n"
-   checkTrue(0)
+   chkT(0)
   }
 
 
   if (a >=3 || b != 3) {
 <<"$a >= 1 || $b != 3\n"
-   checkTrue(1)
+   chkT(1)
   }
   else {
 <<"XXX - should not see!\n"
-   checkTrue(0)
+   chkT(0)
   }
 
   if ((a >=3) || (b == 2)) {
 <<"($a >= 1) || ($b == 2)\n"
-   checkTrue(1)
+   chkT(1)
   }
 
 
 
   if ((a >=1) && (b == 2)) {
 <<"($a >= 1) && ($b == 2)\n"
-   checkTrue(1)
+   chkT(1)
   }
 
 
   if (a >=1 && b == 2) {
 <<"$a >= 1 && $b == 2\n"
-   checkTrue(1)
+   chkT(1)
   }
   else {
 <<"XXX $a >= 1 && $b == 2\n"
-  checkTrue(0)
+  chkT(0)
   }
 
 
@@ -148,6 +148,6 @@ d=2
 
 
 
-checkOut()
+chkOut()
 
 exit()

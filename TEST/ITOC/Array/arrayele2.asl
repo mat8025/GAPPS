@@ -1,6 +1,6 @@
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 N=10
 
@@ -79,7 +79,7 @@ sz = Caz(Re)
 
 <<"%V$sz\n"
 
-checkOut()
+chkOut()
 
 
 

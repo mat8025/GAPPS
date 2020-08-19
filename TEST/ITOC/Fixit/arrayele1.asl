@@ -4,7 +4,7 @@
 
 setdebug(1,@pline,@~step ,@ trace, @soe) 
 
-checkIn();
+chkIn();
 
 
 
@@ -30,7 +30,7 @@ float t2;
 //checknum(t1,4)
 
 
-checkFnum(t1,4.0);
+chkR(t1,4.0);
 
 
 //ans=iread()
@@ -49,7 +49,7 @@ j2 = 6
 <<"%V %6.2f $t3  \n"
 <<"$(Caz(t3))\n"
 
-checkFnum(t3,-2)
+chkR(t3,-2)
 
 //<<"$rl[j1]\n"
 
@@ -59,7 +59,7 @@ checkFnum(t3,-2)
 
 <<"$(Caz(t4))\n"
 
-   checkFnum(t4,5)
+   chkR(t4,5)
 
 <<"%V $k $j1 $j2 \n"
 //<<"%6.2f$rl \n"
@@ -84,7 +84,7 @@ kp = 3;
 
 <<"%V $wrl \n"
 
-    checkFnum(rl[kp],-2)
+    chkR(rl[kp],-2)
 
 <<"just rl[k] :: $rl[kp] \n"
 
@@ -95,26 +95,26 @@ kp = 3;
 <<"%V$t2\n"
 <<"$(Caz(t2))\n"
 
-checkFNum(t2,-2)
+chkR(t2,-2)
 
 //<<"$rl[0:3]\n"     
 
      rl[j1] = rl[j1] - rl[j2];
 
 
-checkFNum(rl[j1],-2)
+chkR(rl[j1],-2)
 
 //<<"$rl\n"   // FIX does not parse rl here why?
 
-checkFNum(rl[4],-2)
+chkR(rl[4],-2)
 
 <<"rl vec $rl[0:-1]\n"
 
-checkFnum(rl[5],5)
+chkR(rl[5],5)
 
 t6 = rl[5]
 
-checkFNum(t6,5)
+chkR(t6,5)
 
 <<"%V$t6\n"
 <<"$(Caz(t6))\n"
@@ -133,7 +133,7 @@ Real1 = vgen(FLOAT_,10,0,1)
 float mt1;
 
   mt1 = Real1[4];
-checkFnum(mt1,4)
+chkR(mt1,4)
 <<"%V $mt1 \n"
 
 
@@ -152,14 +152,14 @@ Real = dgen(10,0,1)
    val = Real[3]
 
 <<"%V$val \n"
-checkFNum(val,3)
+chkR(val,3)
 k = 4
 
    val = Real[k]
 
 <<"%V$val \n"
 
-checkFnum(val,4)
+chkR(val,4)
 
 
 
@@ -199,7 +199,7 @@ double t1 = 4
 
 <<" done Caz !\n"
 
-checkFnum(t1,4)
+chkR(t1,4)
 
 double t2
 
@@ -208,7 +208,7 @@ k = 5
 <<"%V$t2\n"
 <<"$(Caz(t2))\n"
 
-checkFnum(t2,5)
+chkR(t2,5)
 
 j1 = 4
 j2 = 6
@@ -219,7 +219,7 @@ j2 = 6
 
 <<"$(Caz(t3))\n"
 
-checkFnum(t3,-2)
+chkR(t3,-2)
 
 <<"$Real[j1]\n"
 
@@ -229,13 +229,13 @@ checkFnum(t3,-2)
 
 <<"$(Caz(t4))\n"
 
-checkFnum(t4,5)
+chkR(t4,5)
 
 <<"$Real \n"
 
 Real[k] = Real[j1] - Real[j2];
 
-checkFnum(Real[k],-2)
+chkR(Real[k],-2)
 
 <<"ele[${k}] $Real[k] \n"
 
@@ -246,7 +246,7 @@ checkFnum(Real[k],-2)
 <<"%V$t2\n"
 <<"$(Caz(t2))\n"
 
-checkFnum(t2,-2)
+chkR(t2,-2)
 
 <<"$Real[0:3]\n"
 
@@ -256,9 +256,9 @@ checkFnum(t2,-2)
 
 <<"just Real[j1] $Real[j1]\n"
 
-checkFnum(Real[j1],-2)
+chkR(Real[j1],-2)
 
-checkFnum(Real[4],-2)
+chkR(Real[4],-2)
 
 
 
@@ -274,5 +274,5 @@ checkFnum(Real[4],-2)
 <<"$val \n"
 
 
-CheckOut()
+chkOut()
 exit()

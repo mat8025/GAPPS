@@ -1,5 +1,5 @@
 
-CheckIn()
+chkIn()
 
 proc poo()
 {
@@ -26,7 +26,7 @@ proc poo()
   p= i
 
  <<"%I $i $p\n"
-   CheckNum(p,7)
+   chkN(p,7)
 }
 
 int i = 3
@@ -34,17 +34,17 @@ int j = 4;
 
 <<"%I $i \n"
 
-   CheckNum(i,3)
-   CheckNum(j,4)
+   chkN(i,3)
+   chkN(j,4)
 
  poo()
 
 <<"%I $i \n"
 
-   CheckNum(i,3)
+   chkN(i,3)
 j++
-   CheckNum(j,5)
-   CheckOut()
+   chkN(j,5)
+   chkOut()
 
 ;
 

@@ -5,7 +5,7 @@
 // stats are in the math lib -- for now
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 float z[5]
 
@@ -25,7 +25,7 @@ float z[5]
 
 <<"$cof[2] \n"
 
- checkFnum(cof[2],1.0)
+ chkR(cof[2],1.0)
 
 
  y = x * x * x
@@ -37,7 +37,7 @@ float z[5]
 
 <<"Cube %6.3f$cof \n"
 
-checkFnum(cof[3],1.0)
+chkR(cof[3],1.0)
 
 
 
@@ -50,9 +50,9 @@ checkFnum(cof[3],1.0)
 
 <<"%6.3f$cof \n"
 
-checkFnum(cof[3],1.0)
+chkR(cof[3],1.0)
 
-checkFnum(cof[2],1.8)
+chkR(cof[2],1.8)
 
 
    for (k = 0; k  < 5 ; k++) {
@@ -64,12 +64,12 @@ checkFnum(cof[2],1.8)
 <<"Z %6.4f$z[0:4] \n"
 zr = Fround(z[0],2)
 <<"%V6.4f$zr\n"
-checkFnum(zr,-820.0)
+chkR(zr,-820.0)
 
 
-checkOut()
+chkOut()
 
-checkFnum(Fround(z[0],2),-820.0)
+chkR(Fround(z[0],2),-820.0)
 
    for (k = 0; k  < 5 ; k++) {
 
@@ -126,5 +126,5 @@ y = (x * x * x) /0.5 + 2 *x*x + 3*x + 4
 
 <<"%V6.2f$v \n"
 
-checkOut()
+chkOut()
 

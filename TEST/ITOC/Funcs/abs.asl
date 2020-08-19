@@ -23,7 +23,7 @@ include "debug.asl"
 debugON()
 
 
-checkIn()
+chkIn()
 
 sfunc = "abs";
 
@@ -38,7 +38,7 @@ S=whatis(sfunc);
 
 <<"%V $y abs(y) $a  $(abs(y)) \n"
 
-checkNum(a,1234)
+chkN(a,1234)
 
   y= -1234.123456
 
@@ -46,7 +46,7 @@ checkNum(a,1234)
 
 <<"%V $y abs(y) $a  $(abs(y)) \n"
 
-checkNum(a,1234)
+chkN(a,1234)
 
 
 Y = vgen(FLOAT_,20,-1.75,0.25)
@@ -62,8 +62,8 @@ A= Abs(Y)
 //Y->abs()
 //<<"%6.2f$Y \n"
 
-checkNum(A[0],1)
-checkNum(A[19],3)
+chkN(A[0],1)
+chkN(A[19],3)
 
 
-checkOut()
+chkOut()

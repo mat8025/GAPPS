@@ -5,7 +5,7 @@ include "debug.asl";
 debugON();
 
 
-checkIn()
+chkIn()
 
 filterFuncDebug(ALLOWALL_,"proc");
 filterFileDebug(ALLOWALL_,"ic_op");
@@ -39,7 +39,7 @@ int m = 2;
 
 <<"post %V $k $m \n"
 
- checkNum(k,2)
- checkNum(m,1);
+ chkN(k,2)
+ chkN(m,1);
 
-checkOut()
+chkOut()

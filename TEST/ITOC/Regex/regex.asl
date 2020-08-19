@@ -13,7 +13,7 @@
 #
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 
 str C = "mat.vox"
@@ -63,24 +63,24 @@ p = regex(G,"vox|phn")
 
 
 
-checkNum(p[0],16)
+chkN(p[0],16)
 
 p = regex(D,"pcm")
 
-checkNum(p[0],6)
+chkN(p[0],6)
 
 //p = regex(D,'pcm\|vox')
 p = regex(D,'pcm|vox|phn')
 <<"$p \n"
-checkNum(p[0],6)
+chkN(p[0],6)
 
 p = regex(E,'pcm|vox|phn')
 <<"$p \n"
-checkNum(p[0],6)
+chkN(p[0],6)
 
 p = regex(F,'pcm|vox|phn')
 <<"$p \n"
-checkNum(p[0],6)
+chkN(p[0],6)
 
 
 
@@ -98,13 +98,13 @@ for ( i =0; i< 3; i++) {
 p = regex(S[i],'DBPR ?+')
 
 <<"$p\n"
-checkNum(p[0],0)
+chkN(p[0],0)
 }
 
 p = regex(S[3],"DBPR *\t*\\(")
 
 <<"$p\n"
-checkNum(p[0],-1)
+chkN(p[0],-1)
 
 
 <<"//////////////////////\n"
@@ -164,6 +164,6 @@ for (i=0;i<sz; i++) {
 //does this go into exe?
 //also this??
 
-checkOut(); 
+chkOut(); 
 
 

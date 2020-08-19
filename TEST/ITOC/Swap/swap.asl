@@ -14,11 +14,15 @@
 ///  demo ptr/ref args
 ///
 
-include "debug.asl"; 
-debugON();
+include "debug.asl";
 
 
-checkIn(_dblevel)
+if (_dblevel >0) {
+   debugON()
+}
+
+
+chkIn(_dblevel)
 
 
 
@@ -57,7 +61,9 @@ proc swapP (ptr x, ptr y)
 
   $x = t2;
  <<"%V$x \n"
- x->info(1)
+
+  x->info(1)
+ 
   $y = t;
   
  <<"%V $y \n"
@@ -139,7 +145,7 @@ proc swapR (int& x, int& y)
 
 <<" $ans \n"
 
- checkNum(ans,7)
+ chkN(ans,7)
 
 <<"%V$k $m  ref\n"
  swapi (&k, &m)
@@ -148,8 +154,8 @@ proc swapR (int& x, int& y)
 
 
 
- checkNum(k,3)
- checkNum(m,4)
+ chkN(k,3)
+ chkN(m,4)
 
 
 
@@ -159,8 +165,9 @@ proc swapR (int& x, int& y)
 
 <<" %V$k $m \n"
 
-  checkNum(k,4)
-  checkNum(m,3)
+  chkN(k,4)
+  
+  chkN(m,3)
 
 <<"%V$k $m  value\n"
 
@@ -180,7 +187,7 @@ checkStage()
 
 <<"%V $k $m $w\n"
 
-checkNum(m,3)
+chkN(m,3)
 
 int a = 6;
 int b = 9;
@@ -190,7 +197,7 @@ int b = 9;
 
  //swap(&a,&b)
 
- //checkNum(a,9)
+ //chkN(a,9)
 
 <<"%V$a $b \n"
 
@@ -199,8 +206,8 @@ int b = 9;
 
  swapP(&a,&b)
 
- checkNum(a,9)
- checkNum(b,6)
+ chkN(a,9)
+ chkN(b,6)
 
 <<"%V$a $b \n"
 
@@ -227,7 +234,7 @@ for (g = 0; g < 4; g++) {
 
 a->info(1)
 
- checkNum(a,7)
+ chkN(a,7)
 
 
 k = 47;
@@ -268,7 +275,7 @@ a->info(1)
 
 
 
- checkNum(a,11)
+ chkN(a,11)
 
 checkStage()
 
@@ -276,20 +283,20 @@ checkStage()
 float r = 3.0;
 float q = 4.0;
 
- checkNum(r,3.0)
+ chkN(r,3.0)
 
 <<"%V $r $q\n"
 
    swapP(&r,&q)
 
- checkNum(r,4.0)
+ chkN(r,4.0)
 
 
 <<"%V $r $q\n"
 
    swapP(&r,&q)
 
- checkNum(r,3.0)
+ chkN(r,3.0)
 
 
 
@@ -308,6 +315,6 @@ float q = 4.0;
 
 //<<"swap ? %V $r $q\n"
 
- checkOut()
+ chkOut()
 
 

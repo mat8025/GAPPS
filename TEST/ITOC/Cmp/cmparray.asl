@@ -10,7 +10,7 @@ include "debug";
 
 
 setdebug(1,@pline,@~trace,@keep); 
-CheckIn()
+chkIn()
 
 
 V=vgen(INT_,60,0,1)
@@ -21,9 +21,9 @@ A3D->redimn(3,5,4)
 
 <<"$A3D \n"
 
-checkNum(A3D[0][0][0],0)
+chkN(A3D[0][0][0],0)
 
-checkNum(A3D[2][4][3],59)
+chkN(A3D[2][4][3],59)
 
 B3D = A3D
 
@@ -46,4 +46,4 @@ VID=cmpArray(A3D,B3D,"!=")
 
 <<"$VID\n"
 
-checkOut()
+chkOut()

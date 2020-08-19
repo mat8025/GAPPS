@@ -20,41 +20,41 @@ filterFileDebug(ALLOWALL_,"yyy");
 
 setDebug(1,@pline)
 
-checkIn()
+chkIn()
 
 int MD[5][20];
 
-checkNum("init Array zero ",MD[0][1],0)
+chkN("init Array zero ",MD[0][1],0)
 
 
-checkNum("init Array zero ",MD[0][-1],0)
+chkN("init Array zero ",MD[0][-1],0)
 
 MD[0][1] = 79
 
-checkNum("Set element",MD[0][1],79)
+chkN("Set element",MD[0][1],79)
 
 MD[0][0:19:1] = 79
 
-checkNum("set subset of elements",MD[0][2],79)
+chkN("set subset of elements",MD[0][2],79)
 
 MD[1][::] = 80
 
-checkNum("set default range",MD[1][1],80)
+chkN("set default range",MD[1][1],80)
 
 <<"$MD\n"
 
 MD[0][5:10:1] = 54
 
 
-checkNum("set subset of eles",MD[0][5],54)
+chkN("set subset of eles",MD[0][5],54)
 
 MD[1][6:11:1] = 28
 
-checkNum("set subset of eles",MD[1][6],28)
+chkN("set subset of eles",MD[1][6],28)
 
 MD[1][6:11:] = 28
 
-checkNum("set subset of eles-default step",MD[1][6],28)
+chkN("set subset of eles-default step",MD[1][6],28)
 
 
 <<"$MD\n"
@@ -64,12 +64,12 @@ MD[2:4:1][6:11:1] = 77
 
 <<"$MD\n"
 
-checkNum("set subset of eles",MD[3][6],77)
+chkN("set subset of eles",MD[3][6],77)
 
 
 MD[2:4:1][6:11:] = 78
 
-checkNum("set subset of eles-default stride",MD[3][6],78)
+chkN("set subset of eles-default stride",MD[3][6],78)
 
 
 /////////////////////////////////////////   3D /////////////////////////////////////////
@@ -83,15 +83,15 @@ M3D[2][2][2] = 18
 
 <<"$M3D \n"
 
-checkNum("3D ele set",M3D[1][1][1],16)
-checkNum("3D ele set",M3D[2][2][2],18)
+chkN("3D ele set",M3D[1][1][1],16)
+chkN("3D ele set",M3D[2][2][2],18)
 
 
 M3D[1][1][2:10:1] = 6
 
 <<"$M3D \n"
 
-checkNum("3D inner range set",M3D[1][1][2],6)
+chkN("3D inner range set",M3D[1][1][2],6)
 
 
 
@@ -100,11 +100,11 @@ M3D[1][1:3][2:10:1] = 15
 <<"$M3D \n"
 
 
-checkNum("3D middle & inner range set",M3D[1][1][2],15)
-checkNum("3D middle & inner range set",M3D[1][1][10],15)
-checkNum("3D middle & inner range set",M3D[1][2][2],15)
-checkNum("3D middle & inner range set",M3D[1][2][10],15)
-checkNum("3D middle & inner range set",M3D[1][3][10],15)
+chkN("3D middle & inner range set",M3D[1][1][2],15)
+chkN("3D middle & inner range set",M3D[1][1][10],15)
+chkN("3D middle & inner range set",M3D[1][2][2],15)
+chkN("3D middle & inner range set",M3D[1][2][10],15)
+chkN("3D middle & inner range set",M3D[1][3][10],15)
 
 
 
@@ -112,11 +112,11 @@ checkNum("3D middle & inner range set",M3D[1][3][10],15)
 M3D[2][1:3][2:10:1] = 17
 
 
-checkNum("3D middle & inner range set",M3D[2][1][2],17)
-checkNum("3D middle & inner range set",M3D[2][1][10],17)
-checkNum("3D middle & inner range set",M3D[2][2][2],17)
-checkNum("3D middle & inner range set",M3D[2][2][10],17)
-checkNum("3D middle & inner range set",M3D[2][3][10],17)
+chkN("3D middle & inner range set",M3D[2][1][2],17)
+chkN("3D middle & inner range set",M3D[2][1][10],17)
+chkN("3D middle & inner range set",M3D[2][2][2],17)
+chkN("3D middle & inner range set",M3D[2][2][10],17)
+chkN("3D middle & inner range set",M3D[2][3][10],17)
 
 
 
@@ -129,11 +129,11 @@ M3D[1:2][1:3][2:10:1] = 18
 
 <<"$M3D \n"
 
-checkNum("3D outer, middle & inner range set",M3D[2][1][2],18)
-checkNum("3D outer,middle & inner range set",M3D[2][1][10],18)
-checkNum("3D outer,middle & inner range set",M3D[2][2][2],18)
-checkNum("3D outer,middle & inner range set",M3D[2][2][10],18)
-checkNum("3D outer,middle & inner range set",M3D[2][3][10],18)
+chkN("3D outer, middle & inner range set",M3D[2][1][2],18)
+chkN("3D outer,middle & inner range set",M3D[2][1][10],18)
+chkN("3D outer,middle & inner range set",M3D[2][2][2],18)
+chkN("3D outer,middle & inner range set",M3D[2][2][10],18)
+chkN("3D outer,middle & inner range set",M3D[2][3][10],18)
 
 
 
@@ -142,12 +142,12 @@ M3D[::][1:3][2:10:1] = 19
 
 <<"$M3D \n"
 
-checkNum("3D outer all, middle & inner range set",M3D[0][1][2],19)
-checkNum("3D outer all,middle & inner range set",M3D[1][1][10],19)
-checkNum("3D outer all,middle & inner range set",M3D[2][2][2],19)
-checkNum("3D outer all,middle & inner range set",M3D[0][2][10],19)
-checkNum("3D outer all,middle & inner range set",M3D[1][3][10],19)
-checkNum("3D outer all,middle & inner range set",M3D[2][3][10],19)
+chkN("3D outer all, middle & inner range set",M3D[0][1][2],19)
+chkN("3D outer all,middle & inner range set",M3D[1][1][10],19)
+chkN("3D outer all,middle & inner range set",M3D[2][2][2],19)
+chkN("3D outer all,middle & inner range set",M3D[0][2][10],19)
+chkN("3D outer all,middle & inner range set",M3D[1][3][10],19)
+chkN("3D outer all,middle & inner range set",M3D[2][3][10],19)
 
 
 I = vgen(INT_,20,0,1)
@@ -196,37 +196,37 @@ M4D[1][2][2][2] = 18
 
 
 
-checkNum("4D ele set",M4D[0][1][1][1],16)
-checkNum("4D ele set",M4D[1][2][2][2],18)
+chkN("4D ele set",M4D[0][1][1][1],16)
+chkN("4D ele set",M4D[1][2][2][2],18)
 
 
 
 
 M4D[0][1:2][1:3][2:12:1] = 47
 
-checkNum("4D outer ele middle & inner range set",M4D[0][1][2][10],47)
+chkN("4D outer ele middle & inner range set",M4D[0][1][2][10],47)
 
 <<"$M4D \n"
 
 
 M4D[1][1:2][1:3][2:12:1] = 47
 
-checkNum("4D outer ele middle & inner range set",M4D[1][1][2][10],47)
+chkN("4D outer ele middle & inner range set",M4D[1][1][2][10],47)
 
 <<"$M4D \n"
 
-//checkOut(); exit();
+//chkOut(); exit();
 
 
 M4D[::][1:2][1:3][2:18:1] = 48
 
-checkNum("4D outer ele middle & inner range set",M4D[1][1][2][10],48)
+chkN("4D outer ele middle & inner range set",M4D[1][1][2][10],48)
 
 <<"$M4D \n"
 
 M4D[::][1:2][1:4][2:18:1] = 50
 
-checkNum("4D outer ele middle & inner range set",M4D[1][1][2][10],50)
+chkN("4D outer ele middle & inner range set",M4D[1][1][2][10],50)
 
 <<"$M4D \n"
 
@@ -246,11 +246,11 @@ nb = Cab(M4D)
 
 
 
-checkNum("4D outer ele middle & inner range set",M4D[1][1][2][10],51)
+chkN("4D outer ele middle & inner range set",M4D[1][1][2][10],51)
 
 M4D[::][0:2][1:4][2:18:1] = 52
 
-checkNum("4D outer ele middle & inner range set",M4D[1][1][2][10],52)
+chkN("4D outer ele middle & inner range set",M4D[1][1][2][10],52)
 
 <<"$M4D \n"
 
@@ -258,10 +258,10 @@ checkNum("4D outer ele middle & inner range set",M4D[1][1][2][10],52)
 M4D[::][0:2][0:4][2:18:1] = 53
 M4D[1][2][4][19] = 90
 
-checkNum("4D outer ele middle & inner range set",M4D[1][1][2][10],53)
-checkNum("4D outer ele middle & inner range set",M4D[1][2][4][10],53)
-checkNum("4D outer ele middle & inner range set",M4D[1][2][4][18],53)
-checkNum("4D outer ele middle & inner range set",M4D[1][2][4][19],90)
+chkN("4D outer ele middle & inner range set",M4D[1][1][2][10],53)
+chkN("4D outer ele middle & inner range set",M4D[1][2][4][10],53)
+chkN("4D outer ele middle & inner range set",M4D[1][2][4][18],53)
+chkN("4D outer ele middle & inner range set",M4D[1][2][4][19],90)
 
 <<"$M4D \n"
 
@@ -304,18 +304,18 @@ I += 1
 
 
 
-checkNum("4D outer ele middle & inner range set",M4D[0][2][4][2],4)
-checkNum("4D outer ele middle & inner range set",M4D[1][2][4][2],7)
+chkN("4D outer ele middle & inner range set",M4D[0][2][4][2],4)
+chkN("4D outer ele middle & inner range set",M4D[1][2][4][2],7)
 
 
-checkNum("4D outer ele middle & inner range set",M4D[0][2][4][18],20)
-checkNum("4D outer ele middle & inner range set",M4D[1][2][4][18],23)
+chkN("4D outer ele middle & inner range set",M4D[0][2][4][18],20)
+chkN("4D outer ele middle & inner range set",M4D[1][2][4][18],23)
 
 
 M4D->info(1)
 
 
-checkOut(); exit();
+chkOut(); exit();
 
 
 M4D[1][1][1][5:15] = 86
@@ -324,7 +324,7 @@ M4D[1][1][1][5:15] = 86
 <<"$M4D \n"
 
 
-checkOut();
+chkOut();
 
 
 

@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
 
-   checkIn(_dblevel);
+   chkIn(_dblevel);
    
    svar  S = "una larga noche"; 
    
@@ -33,7 +33,7 @@
    <<"$E\n"; 
    <<"$E[1] \n"; 
    
-   checkStr(E[1],"H"); 
+   chkStr(E[1],"H"); 
    
    <<"$E[2] \n"; 
 
@@ -48,7 +48,7 @@
    <<"$W\n"; 
    
    <<"$W[1]\n"; 
-   checkStr(W[1],"Be");
+   chkStr(W[1],"Be");
    
    W[3:4] = E[7:8];
    
@@ -61,7 +61,7 @@
    sz=T->Caz(); 
    <<"$sz\n"; 
    
-   checkNum(sz,9); 
+   chkN(sz,9); 
    
    T= E[4:9]; 
    
@@ -82,7 +82,7 @@
 
    <<"$sz\n"; 
    
-   checkNum(sz,6); 
+   chkN(sz,6); 
    
 
    checkStage("svar array ele");
@@ -111,9 +111,9 @@ S->info(1)
 
 <<"$S\n"
 
-checkStr(S[1],"1")
-checkStr(S[2],"2")
-checkStr(S[3],"3")
+chkStr(S[1],"1")
+chkStr(S[2],"2")
+chkStr(S[3],"3")
 
 checkStage ("assign via Split")
 
@@ -128,9 +128,9 @@ T= Split("%6.2f$(vgen(FLOAT_,10,1,0.5))")
 
 <<"$T\n"
 
-checkStr(T[1],"1.50")
-checkStr(T[2],"2.00")
-checkStr(T[3],"2.50")
+chkStr(T[1],"1.50")
+chkStr(T[2],"2.00")
+chkStr(T[3],"2.50")
 
 checkStage ("assign via Split print")
 
@@ -159,8 +159,8 @@ S[1:4:] = R
 
 <<"$S\n"
 
-checkStr(S[1],"47")
-checkStr(S[2],"79")
+chkStr(S[1],"47")
+chkStr(S[2],"79")
 
 
 checkStage ("lh range assign")
@@ -177,9 +177,9 @@ S[1:8:2] = R
 
 <<"$S\n"
 
-checkStr(S[1],"47")
-checkStr(S[3],"79")
-checkStr(S[5],"80")
+chkStr(S[1],"47")
+chkStr(S[3],"79")
+chkStr(S[5],"80")
 
 checkStage ("lh range stride 2 assign")
 
@@ -190,8 +190,8 @@ S[1:4:] = R[1:4]
 
 <<"$S\n"
 
-checkStr(S[1],"79")
-checkStr(S[2],"80")
+chkStr(S[1],"79")
+chkStr(S[2],"80")
 checkStage ("lh range assign and rh range")
 
 
@@ -200,8 +200,8 @@ S= Split("$IV")
 S[1:8:2] = R[1:8:2]
 
 
-checkStr(S[1],"79")
-checkStr(S[3],"81")
+chkStr(S[1],"79")
+chkStr(S[3],"81")
 
 <<"$S\n"
 
@@ -264,8 +264,8 @@ T= W[2::]
 
 <<"T[1] $T[1]\n"
 
-checkStr(T[0],"puedes")
-checkStr(T[0],W[2])
+chkStr(T[0],"puedes")
+chkStr(T[0],W[2])
 
 /////////////////////////
 //%*********************************************** 
@@ -308,7 +308,7 @@ sz = caz(Mol)
 
 <<"%V$sz\n";
 
-checkNum(sz,12)
+chkN(sz,12)
 
 
 <<"first month $Mol[0]\n"
@@ -325,11 +325,11 @@ le = Mol[0]
 
 <<"$(typeof(le)) %V$le\n"
 
-checkStr(le,"JAN")
+chkStr(le,"JAN")
 
 <<"le checked\n"
 <<"%V $Mol[0] \n"
-checkStr(Mol[0],"JAN")
+chkStr(Mol[0],"JAN")
 
 <<"Mol[0] checked\n"
 
@@ -338,15 +338,15 @@ le = Mol[1]
 <<"$(typeof(le)) \n"
 
 
-checkStr(le,"FEB")
+chkStr(le,"FEB")
 
 <<"$(typeof(le)) %V$le\n"
 
-checkStr("FEB",Mol[1])
+chkStr("FEB",Mol[1])
 
 <<"$Mol[1] Mol[1] checked\n"
 
-checkStr(Mol[1],"FEB")
+chkStr(Mol[1],"FEB")
 
 
 
@@ -378,9 +378,9 @@ for (i = 0; i < 12 ; i++) {
 
 }
 
-checkStr(Mo[0],"JAN")
+chkStr(Mo[0],"JAN")
 
-checkStr(Mo[11],"DEC")
+chkStr(Mo[11],"DEC")
 
 
 int A[] = {0,1,2,3,4,5,6,7,8}
@@ -389,8 +389,8 @@ int A[] = {0,1,2,3,4,5,6,7,8}
 
 <<"sz $(Caz(A)) cab $(Cab(A))\n"
 
-checkNum(A[1],1)
-checkNum(A[8],8)
+chkN(A[1],1)
+chkN(A[8],8)
 
 
 
@@ -428,8 +428,8 @@ R= M[3::]
 <<"$R \n"
 R->info(1)
 <<"%V$R\n"
-checkStr(R[0],"3")
-checkStr(R[-1],"19")
+chkStr(R[0],"3")
+chkStr(R[-1],"19")
 
 
 
@@ -438,13 +438,13 @@ IV3->info(1)
 
 <<"%V $IV3\n"
 <<"last ele IV[-1] $IV[-1] \n"
-checkNum(IV3[0],3)
-checkNum(IV3[1],4)
-checkNum(IV3[-1],19)
+chkN(IV3[0],3)
+chkN(IV3[1],4)
+chkN(IV3[-1],19)
 
 IV3 *= 2;
 
-checkNum(IV3[0],6)
+chkN(IV3[0],6)
 
 <<"%V $IV3\n"
 
@@ -457,20 +457,20 @@ M[0] = "47"
 <<"$M\n"
 
 
-checkStr(M[0],"47")
+chkStr(M[0],"47")
 
 R[0] = "79"
 R[1] = "80"
 R[2] = "82"
 
-checkStr(R[0],"79")
+chkStr(R[0],"79")
 
 M[3:6:] = R[0:3:]
 
-checkStr(M[3],"79")
-checkStr(M[4],R[1])
-checkStr(M[4],"80")
-checkStr(M[5],"82")
+chkStr(M[3],"79")
+chkStr(M[4],R[1])
+chkStr(M[4],"80")
+chkStr(M[5],"82")
 
 
 <<"$R\n"
@@ -481,8 +481,8 @@ checkStr(M[5],"82")
 IV4=vgen(INT_,10,45,1)
 <<"$IV4\n"
 
-checkNum(IV4[0],45)
-checkNum(IV4[1],46)
+chkN(IV4[0],45)
+chkN(IV4[1],46)
 
 
 <<"%V $IV4\n"
@@ -493,13 +493,13 @@ IV3[3:12:1] = IV4[0:9:];
 
 <<"%V $IV3\n"
 
-checkNum(IV3[0],6)
+chkN(IV3[0],6)
 
 
 
 
-checkNum(IV3[3],45)
-checkNum(IV3[4],46)
+chkN(IV3[3],45)
+chkN(IV3[4],46)
 
 
 
@@ -522,9 +522,9 @@ IV3= atoi(M)
 
 <<"$IV3\n"
 
-checkNum(IV3[0], 47)
-checkNum(IV3[1], 1)
-checkNum(IV3[2], 2)
+chkN(IV3[0], 47)
+chkN(IV3[1], 1)
+chkN(IV3[2], 2)
 
 
 IV3->Info(1);
@@ -535,7 +535,7 @@ IV3= atoi(M[3::])
 
 IV3->Info(1);
 
-checkNum(IV3[0], 79)
+chkN(IV3[0], 79)
 
  if (IV3[0] == 79) {
 <<"OK $IV[0:-1:2] \n"
@@ -564,13 +564,13 @@ w2 = SV[2];
 <<"$k %V $w2\n"
 
 if (k==1) {
-checkStr(w2,"we")
+chkStr(w2,"we")
 }
 else if (k==2) {
-checkStr(w2,"is")
+chkStr(w2,"is")
 }
 else if (k==3) {
- checkStr(w2,"40,07.00,N")
+ chkStr(w2,"40,07.00,N")
  ang =getDeg(SV[2]);
  <<"%V $ang\n"
  ang = getDeg(SV[3]);
@@ -583,7 +583,7 @@ else if (k==3) {
 //===========
 
 
-//checkOut()
+//chkOut()
 
 S = Split("how did we get here")
 
@@ -748,9 +748,9 @@ svar Opts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,inc
 <<"$Opts \n"
 
 
-checkStr("all",Opts[0]);
+chkStr("all",Opts[0]);
 
-checkStr("matrix",Opts[2]);
+chkStr("matrix",Opts[2]);
 
 str Sr ="all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex,proc,switch,types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc,svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help";
 
@@ -764,9 +764,9 @@ svar Mopts[] = Split(Sr,",");
 
 <<"%V %(5,, ,\n)$Mopts[::] \n"
 
-checkStr("all",Mopts[0]);
+chkStr("all",Mopts[0]);
 
-checkStr("matrix",Mopts[2]);
+chkStr("matrix",Mopts[2]);
 
 
 svar Sopts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex,",",");
@@ -775,9 +775,9 @@ svar Sopts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,in
 <<"%V $Sopts \n"
 
 
-checkStr("bops",Sopts[4]);
+chkStr("bops",Sopts[4]);
 
-checkStr("class",Sopts[8]);
+chkStr("class",Sopts[8]);
 
 
 svar Popts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex,proc,switch,types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc,svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help",",");
@@ -785,9 +785,9 @@ svar Popts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,in
 
 <<"%V $Popts \n"
 
-checkStr("array",Popts[1]);
+chkStr("array",Popts[1]);
 
 checkStage("Split")
-checkOut();
+chkOut();
 
 

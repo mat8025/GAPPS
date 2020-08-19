@@ -1,6 +1,6 @@
 setdebug(1)
 
-checkIn()
+chkIn()
 
 proc foo(int vec[],k)
 {
@@ -33,19 +33,19 @@ if ((Z[3] == 47)  && (Z[4] == 78)) {
    <<"Z[3] and Z[4] correct \n"
 }
 
- checkNum(Z[3],47)
- checkNum(Z[5],79)
+ chkN(Z[3],47)
+ chkN(Z[5],79)
 
 
 
 <<"return vec $Y\n"
 
 
-checkOut()
+chkOut()
 stop!
 
- checkNum(Y[0],47)
- checkNum(Y[2],79)
+ chkN(Y[0],47)
+ chkN(Y[2],79)
 
 
 

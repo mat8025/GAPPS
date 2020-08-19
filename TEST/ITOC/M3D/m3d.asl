@@ -21,7 +21,7 @@ include "debug.asl";
 
 
 
-checkIn(0)
+chkIn(0)
 
 
 N = 10
@@ -57,7 +57,7 @@ b = Cab(M)
     val2= M[0][1][2] ;
 <<"%V $val2 $M[0][1][2] \n"
 
-checkNum(47,val2);
+chkN(47,val2);
 
 
 
@@ -91,15 +91,15 @@ b = Cab(M)
     val2= M[0][1][4] ;
 <<"%V $val2 $M[0][1][4] \n"
 
-  CheckNum(M[0][0][1],7)
+  chkN(M[0][0][1],7)
 
-  CheckNum(M[0][1][1],8)
+  chkN(M[0][1][1],8)
 
  val = 7
  
  for (i = 0; i < P; i++) {
 <<"M 0,$i,1 $M[0][i][1] \n"
-    CheckNum(M[0][i][1],val)
+    chkN(M[0][i][1],val)
     val++
  }
 
@@ -122,7 +122,7 @@ b = Cab(M)
        if ((kcnt % 100) == 0) {
           <<"$i,$j,$k == $M[i][j][k] \n"
        }
-          checkNum(M[i][j][k],val);
+          chkN(M[i][j][k],val);
 	  val++;
           kcnt++
     }
@@ -247,7 +247,7 @@ for (j = 0; j < 2; j++) {
 
 }
 
-checkOut()
+chkOut()
 exit()
 // gotta fix the indexing and subset for 3 + index
 
@@ -268,7 +268,7 @@ for (i = 0; i < 3; i++) {
  }
 
 
-CheckOut()
+chkOut()
 
 
 

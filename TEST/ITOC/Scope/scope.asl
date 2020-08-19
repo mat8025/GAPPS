@@ -46,26 +46,26 @@ int X = 7; // local declaration hides global X
 float X = 2;
 float Y = 4;
 
-checkIn();
+chkIn();
 
 <<"%V $X $Y\n"
 
-checkNum(X,2);
+chkN(X,2);
 
-checkNum(Y,4);
+chkN(Y,4);
 
  soo()
 
- checkNum(X,3)
+ chkN(X,3)
 
 <<"%V $X $Y\n"
 
 
  goo();
 
- checkNum(X,3)
+ chkN(X,3)
 
- checkNum(Y,5)
+ chkN(Y,5)
 
 <<"%V $X $Y\n"
 
@@ -73,7 +73,7 @@ checkNum(Y,4);
 
  moo();
 
-checkNum(X,4)
+chkN(X,4)
 
 <<"%V $X $Y\n"
 
@@ -116,4 +116,4 @@ checkNum(X,4)
   k = 0
   }
 
-checkOut()
+chkOut()

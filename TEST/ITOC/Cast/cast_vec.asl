@@ -1,6 +1,6 @@
 
 //setdebug(1)
-checkIn()
+chkIn()
 
 int a = 1.0
 
@@ -13,7 +13,7 @@ float f = 3.1
 <<"%V $a $(typeof(a)) \n"
 
 
-CheckNum(a,4)
+chkN(a,4)
 
 VI = dgen(10,0,1)
 
@@ -35,7 +35,7 @@ VI = dgen(10,0,1)
 
   }
 
-CheckNum(a,13)
+chkN(a,13)
 
 
 float b = 1.0
@@ -49,7 +49,7 @@ int m = 3
 <<"%V $b $(typeof(b)) \n"
 
 
-CheckNum(b,4.0)
+chkN(b,4.0)
 
 IV = igen(10,0,1)
 
@@ -75,6 +75,6 @@ VI = igen(10,0,1)
 
   }
 
-CheckNum(b,13.0)
+chkN(b,13.0)
 
-checkOut()
+chkOut()

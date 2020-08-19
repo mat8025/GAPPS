@@ -6,7 +6,7 @@
      
      <<"%V$vers\n"; 
      
-     checkIn(); 
+     chkIn(); 
      
      str A = "keep going until world tour"; 
      str B = "unti"; 
@@ -16,19 +16,19 @@
      
      <<"$iv\n"; 
      
-     checkNum(iv[0],11); 
+     chkN(iv[0],11); 
      
      iv = sstr(A,"XX",1); 
      
      <<"$iv\n"; 
      
-     checkNum(iv[0],-1); 
+     chkN(iv[0],-1); 
      
      iv = sstr(A,"ou",1); 
      
      <<"$iv\n"; 
      
-     checkNum(iv[0],24); 
+     chkN(iv[0],24); 
      
      iv = sstr(A,"OU"); 
      
@@ -38,15 +38,15 @@
      
      <<"$iv\n"; 
      
-     checkNum(iv[0],24); 
+     chkN(iv[0],24); 
      
      iv = sstr(A,"o",1,1); 
      
      <<"o @ $iv\n"; 
      
-     checkNum(iv[0],6); 
-     checkNum(iv[1],18); 
-     checkNum(iv[2],24); 
+     chkN(iv[0],6); 
+     chkN(iv[1],18); 
+     chkN(iv[2],24); 
      
      
      p = regex(A,"ou"); 
@@ -61,14 +61,14 @@
      
      <<"%V$p \n"; 
      
-     checkNum(p[0],4); 
+     chkN(p[0],4); 
      
      p = regex(D,"pcm"); 
      
      
      <<"$p \n"; 
      
-     checkNum(p[0],6); 
+     chkN(p[0],6); 
      
      p = regex(C,'vox\|pcm'); 
      
@@ -92,15 +92,15 @@
      
      <<"%V$pos2 \n"; 
      
-     checkNum(pos2[0],3); 
-     checkNum(pos2[1],6); 
+     chkN(pos2[0],3); 
+     chkN(pos2[1],6); 
      
-     checkNum(pos2[2],9); 
-     checkNum(pos2[3],12); 
+     chkN(pos2[2],9); 
+     chkN(pos2[3],12); 
      
-     checkNum(pos2[4],-1); 
-     
-     
+     chkN(pos2[4],-1); 
      
      
-     checkOut(); 
+     
+     
+     chkOut(); 

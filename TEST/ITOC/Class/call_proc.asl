@@ -6,7 +6,7 @@
 
 
 //sdb(1,@pline,@trace)
-//checkin()
+//chkIn()
 
 do_another = 1
 do_mul_i = 1;
@@ -437,4 +437,4 @@ checkrnum(a,tan(rad))
 
 
 
-checkOut()
+chkOut()

@@ -1,6 +1,6 @@
 //setdebug(1,"trace")
 
-checkIn()
+chkIn()
 
 int a = 4;
 
@@ -24,11 +24,11 @@ float e = -7;
 
 float q = -7;<<"%V$q\n";int m = -4;<<"%V$m\n";double dl=-47.79;<<"$dl\n";
 
-checkFnum(q,-7)
-checkNum(b,-4)
-checkNum(a,4)
-checkFnum(e,-7)
-checkFnum(dl,-47.79)
+chkR(q,-7)
+chkN(b,-4)
+chkN(a,4)
+chkR(e,-7)
+chkR(dl,-47.79)
 
 
-checkOut()
+chkOut()

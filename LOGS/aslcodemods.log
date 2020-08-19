@@ -445,3 +445,5 @@ prep_e.cpp	 2.52	 Mon Aug  3 15:54:38 2020 HEX_,OCTAL_
 vmf_l.cpp	 1.55	 Tue Aug  4 07:29:06 2020 findval findex
 vop_m.cpp	 1.100	 Tue Aug  4 08:51:35 2020 vunique
 vop_m.cpp	 2.1	 Tue Aug  4 09:01:40 2020 template for unique
+vmf_svar_l.cpp	 1.20	 Sun Aug 16 10:56:18 2020 setNumRecords
+svar_hash.cpp	 1.66	 Sun Aug 16 10:57:20 2020 setNumRecords/nfields

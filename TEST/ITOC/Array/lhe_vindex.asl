@@ -1,6 +1,6 @@
 setdebug(1)
 
-//checkIn()
+//chkIn()
 
 float Data[10]
 
@@ -28,7 +28,7 @@ j = 2
 
 <<"$Data \n"
 
-//checkNum(Data[2],k)
+//chkN(Data[2],k)
 
      if (k > 5)
      break
@@ -36,7 +36,7 @@ j = 2
   }
 
 
-checkOut()
+chkOut()
 
 
 stop!

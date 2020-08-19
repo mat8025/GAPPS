@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 setmaxICerrors(-1);
 setmaxcodeerrors(-1);
@@ -53,7 +53,7 @@ I->cut(C)
 
 <<" $I \n"
 
-CheckNum(I[12],16)
+chkN(I[12],16)
 
 
 
@@ -78,7 +78,7 @@ F->cut(C)
 
 
 <<"%6.1f  $F \n"
-CheckFNum(I[12],16,6)
+chkR(I[12],16,6)
 
 
 <<" $I[::] \n"
@@ -86,12 +86,12 @@ CheckFNum(I[12],16,6)
 I[3:8]->cut()
 
 <<" $I[::] \n"
-CheckNum(I[3],52)
+chkN(I[3],52)
 
 F[3:8]->cut()
 
 <<" %6.1f $F[::] \n"
-CheckFNum(F[3],9,6)
+chkR(F[3],9,6)
 
 F[3]->cut()
 
@@ -227,27 +227,27 @@ IV = vgen(INT_,20,0,1)
 
 <<"$IV\n"
 
-checkNum(IV[0],0)
+chkN(IV[0],0)
 
 IV->rotate(1,3)
 
 
 <<"$IV\n"
 
-checkNum(IV[0],17)
+chkN(IV[0],17)
 
 IV->rotate(-1,4)
 
 
 <<"$IV\n"
 
-checkNum(IV[0],1)
+chkN(IV[0],1)
 
 rotate(IV,1,5)
 
 <<"$IV\n"
 
-checkNum(IV[0],16)
+chkN(IV[0],16)
 checkStage("rotate")
 }
 
@@ -326,7 +326,7 @@ TS[5]->Substitute("XYZ","CCC")
 TS->Sort()
 
 <<"%(1,,,\n)$TS \n"
-checkStr(TS[0],"AAA",3)
+chkStr(TS[0],"AAA",3)
 
 
 checkStage("substitute")
@@ -496,22 +496,22 @@ I = vgen(INT_,30,0,1)
 
 <<"$I \n"
 
-checkNum(I[1],1)
-checkNum(I[29],29)
+chkN(I[1],1)
+chkN(I[29],29)
 
 I->reverse()
 
 <<"$I \n"
-checkNum(I[1],28)
-checkNum(I[29],0)
+chkN(I[1],28)
+chkN(I[29],0)
 
 
 I->bubbleSort()
 
 <<"$I \n"
 
-checkNum(I[1],1)
-checkNum(I[29],29)
+chkN(I[1],1)
+chkN(I[29],29)
 
 rs= scat("Now ", " Shuffle ");
 <<"$rs\n"
@@ -525,8 +525,8 @@ I->bubbleSort()
 
 <<"$I \n"
 
-checkNum(I[1],1)
-checkNum(I[29],29)
+chkN(I[1],1)
+chkN(I[29],29)
 
 checkStage("bubblesort")
 }
@@ -593,7 +593,7 @@ if (do_all || do_rand) {
      
      mm=minmax(TR)
      <<"%V$mm\n"
-     checkNum(mm[0],42.0,LTE_)
+     chkN(mm[0],42.0,LTE_)
      
      I=Cmp(P,TR); 
 
@@ -703,28 +703,28 @@ asz= Csz(&d)
 
 nd = Cnd(&d)
 <<"number of dimensions are: $nd \n"
-checkNum(nd,0)
+chkN(nd,0)
 
 ab = Cab(&d)
 <<"bounds are: $ab \n"
-checkNum(ab,0)
+chkN(ab,0)
 
 
-checkNum(asz,0)
+chkN(asz,0)
 DC->info(1)
 asz= Csz(&DC)
 //<<"%V$asz\n"
 //DC->info(1)
 
 <<"array size of $DC $(typeof(DC))  is: $asz \n"
-checkNum(asz,5)
+chkN(asz,5)
 nd = Cnd(&DC)
 <<"number of dimensions are: $nd \n"
-checkNum(nd,1)
+chkN(nd,1)
 
 ab = Cab(&DC)
 <<"bounds are: $ab \n"
-checkNum(ab,5)
+chkN(ab,5)
 
 
 ////////////////////////////////
@@ -754,11 +754,11 @@ a= A[0]
 
 asz= Csz(A)
 <<"array size (number of elements) is: $asz \n"
-checkNum(asz,6);
+chkN(asz,6);
 
 nd = Cnd(A)
 <<"number of dimensions are: $nd \n"
-checkNum(nd,1)
+chkN(nd,1)
 ab = Cab(A)
 
 
@@ -787,10 +787,10 @@ int  B[6] = { 0,3,2,-1,1,-2} ;
 
 asz= Csz(B)
 <<"array size (number of elements) is: $asz \n"
-checkNum(asz,6);
+chkN(asz,6);
 nd2 = Cnd(B)
 <<"number of dimensions are: $nd2 \n"
-checkNum(nd2,1)
+chkN(nd2,1)
 ab = Cab(B)
 
 <<"bounds are: $ab \n"
@@ -805,10 +805,10 @@ ab = Cab(B)
 
 asz= Csz(B)
 <<"array size (number of elements) is: $asz \n"
-checkNum(asz,6);
+chkN(asz,6);
 nd2 = Cnd(B)
 <<"number of dimensions are: $nd2 \n"
-checkNum(nd2,2)
+chkN(nd2,2)
 ab = Cab(B)
 
 <<"bounds are: $ab \n"
@@ -860,6 +860,6 @@ ab = Cab(B)
 checkStage("caz")
 }
 
-checkOut()
+chkOut()
 
 

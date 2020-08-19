@@ -10,7 +10,7 @@ filterFuncDebug(ALLOWALL_,"xxx");
 filterFileDebug(ALLOW_,"proc_","args_","scope_");
 
 
-checkIn(0)
+chkIn(0)
 
 proc mooi(int a)
 {
@@ -48,7 +48,7 @@ proc moog (m, gen n)
 
 
 int j = 3;
-      CheckNum(j,3)
+      chkN(j,3)
 <<"%V$j\n"
 j++
 
@@ -56,7 +56,7 @@ j++
 ++j
 
 <<"%V$j\n"
-      CheckNum(j,5)
+      chkN(j,5)
 
 
 
@@ -83,7 +83,7 @@ char c1;
 ans = "mark"
 
 
-checkOut()
+chkOut()
   while (1) {
 
 <<"Que pasa $ans ?\n"

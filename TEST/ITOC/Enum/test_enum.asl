@@ -1,4 +1,4 @@
-CheckIn()
+chkIn()
 
 setdebug(1)
 

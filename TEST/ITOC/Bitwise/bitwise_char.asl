@@ -9,7 +9,7 @@ uchar  k = 1
 
 m = j & k
 
-CheckNum(m,1)
+chkN(m,1)
 
 <<"%V $j & $k BAND  $m \n"
 
@@ -18,26 +18,26 @@ m = j & k
 
 <<"%V $j & $k BAND  $m \n"
 
-CheckNum(m,0);
+chkN(m,0);
 
 k = 4
 m = j & k
 
 <<"%V $j & $k BAND  $m \n"
 
-CheckNum(m,4)
+chkN(m,4)
 
 m = ( j | k )
 
 <<"$j | $k BOR  $m \n"
 
-CheckNum(m,5)
+chkN(m,5)
 k = 2
 m = ( j | k )
 
 <<"%V $j | $k BOR  $m \n"
 
-CheckNum(m,7)
+chkN(m,7)
 
 k = 4
 
@@ -46,13 +46,13 @@ m = ( j ^^ k )
 <<"$j ^^ $k BXOR_  $m\n"
 
 
-CheckNum(m,1);
+chkN(m,1);
 
 m = ( j BXOR_ k )
 
 <<"$j BXOR_ $k  $m\n"
 
-CheckNum(m,1);
+chkN(m,1);
 
 
 k = 1
@@ -61,7 +61,7 @@ m = ( j ^^ k )
 
 <<"$j ^^ $k XOR  $m\n"
 
-CheckNum(m,4)
+chkN(m,4)
 
 
 
@@ -91,7 +91,7 @@ m = ~k
 
 m =  j << 1
 
-CheckNum(m,2)
+chkN(m,2)
 
 <<"\n  j << 1  \n"
 
@@ -108,7 +108,7 @@ j = 32
 
 m =  j >> 4
 
-CheckNum(m,2)
+chkN(m,2)
 
 <<"\n  $j >> 4  = m \n"
 
@@ -126,12 +126,12 @@ m = h & p
 
 <<"%V %X $h & $p BAND  $m \n"
 
-CheckNum(m,0x40)
+chkN(m,0x40)
 
-CheckNum(m,0,GT_)
+chkN(m,0,GT_)
 
-CheckNum(m,0,NEQ_)
+chkN(m,0,NEQ_)
 
 
-checkOut();
+chkOut();
 

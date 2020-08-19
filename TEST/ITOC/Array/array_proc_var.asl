@@ -1,7 +1,7 @@
 
 setdebug(1,"trace")
 
-checkIn()
+chkIn()
 
 proc array_sub(float rl[])
 {
@@ -17,7 +17,7 @@ rl[j1] = 47.0;
 <<"%V $rl \n"
 
 
-checkFNum(rl[4],47)
+chkR(rl[4],47)
 
 rls = rl[j1];
 
@@ -45,16 +45,16 @@ rlm[j1] = 47.0;
 <<"%V $rlm \n"
 <<"%V $rlm[j1] \n"
 
-checkFNum(rlm[4],47)
+chkR(rlm[4],47)
 
-checkFNum(rlm[j1],47)
+chkR(rlm[j1],47)
 
 
 
 val = array_sub(Real)
 <<"%V$val \n";
 
-CheckOut();
+chkOut();
 exit();
 
  
@@ -63,4 +63,4 @@ exit();
 
 
 
-CheckOut();
+chkOut();

@@ -49,7 +49,7 @@ M2D->info(1)
 
 //============================
 
-checkin()
+chkIn()
 
 fname = "bpp.tsv"
 
@@ -121,8 +121,8 @@ WV->info(1)
 
 <<"%V$cb \n"
 
-checkNum(cb[0],5)
-checkNum(cb[1],1)
+chkN(cb[0],5)
+chkN(cb[1],1)
 
 
 
@@ -136,16 +136,16 @@ checkNum(cb[1],1)
 
 cb = Cab(WV)
 <<"%V$cb \n"
-checkNum(cb[0],5)
-checkNum(cb[1],2)
+chkN(cb[0],5)
+chkN(cb[1],2)
 
 
 
       SE=  R[1][2];   // single element
 
 <<"%V$SE $R[1][2]\n"
-      checkStr(SE, R[1][2])
-      checkStr(SE, "90")      
+      chkStr(SE, R[1][2])
+      chkStr(SE, "90")      
 
 
 
@@ -162,10 +162,10 @@ WV->info(1)
 val = WV[0][0];
 <<"%V$val \n"
 val->info(1)
-checkStr(WV[0][0], R[1][1])
+chkStr(WV[0][0], R[1][1])
 
 
-//checkOut()
+//chkOut()
 
 
 WV=  R[1:5:][1]  // rows 1 thru 5 - one col
@@ -175,7 +175,7 @@ WV->info(1)
 WV->info(1)
 val = WV[0][0];
 <<"%V$val \n"
-checkStr(WV[0][0], "74")
+chkStr(WV[0][0], "74")
 
 WV=  R[1:5:][1:2]  // rows 1 thru 5 - cols 1 thru 2
 
@@ -183,7 +183,7 @@ WV=  R[1:5:][1:2]  // rows 1 thru 5 - cols 1 thru 2
 WV->info(1)
 <<"%V$WV \n"
 <<"%V$WV[1][0] \n"
-checkStr(WV[1][0], "79")
+chkStr(WV[1][0], "79")
 WV->info(1)
 
 
@@ -202,7 +202,7 @@ WV->info(1)
 
 val->info(1)
 
-checkStr(val, "79")
+chkStr(val, "79")
 
 val = WV[0][1];
 <<"0 %V$val \n"
@@ -230,7 +230,7 @@ val = WV[0][0];
 val = WV[0][2];
 <<"0 2 %V$val \n"
 
-checkOut()
+chkOut()
 
 
 val = "hay"
@@ -263,7 +263,7 @@ SRSC->info(1)
 
   checkStage()
   checkProgress("How Good")
-  checkOut()
+  chkOut()
 
 
 

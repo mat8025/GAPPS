@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
   
-checkIn(_dblevel);
+chkIn(_dblevel);
   
 
   
@@ -160,7 +160,7 @@ real r2 = 4.5;
   rx=   A->getx();
   <<"%V $rx\n"
 
-  checkFnum(r1,rx)
+  chkR(r1,rx)
 
  my = A->mul(r2 ); 
   
@@ -236,15 +236,15 @@ real r2 = 4.5;
 
 <<"%V $ax $A->x \n"
 
-  ok=checkFNum(A->x,0.15,5);
+  ok=chkR(A->x,0.15,5);
 
 
 
 
 
-  ok=CheckFNum(A[0]->y,0.2,5); 
+  ok=chkR(A[0]->y,0.2,5); 
 
-  ok=CheckFNum(A->x,0.15,5);
+  ok=chkR(A->x,0.15,5);
   
   <<" B->Print() \n"; 
   B->Print(); 
@@ -253,9 +253,9 @@ real r2 = 4.5;
   <<"%V $B->x $B->y \n"; 
   
   
-  ok=CheckFNum(B->x,2.2,5);
+  ok=chkR(B->x,2.2,5);
   
-  ok=CheckFNum(B->y,0.123,5); 
+  ok=chkR(B->y,0.123,5); 
   
   C->set(1.1,0.2); 
   
@@ -264,7 +264,7 @@ real r2 = 4.5;
   
   wx = A->getx();
   
-  ok=CheckFNum(wx,0.15,5); 
+  ok=chkR(wx,0.15,5); 
   
   A->set(47, 79);
   
@@ -276,19 +276,19 @@ real r2 = 4.5;
   
   D->x = B->x;
   
-  checkNum(D->x,83); 
+  chkN(D->x,83); 
   
   D->Print(); 
   
   D->y = A->y;
   
-  checkNum(D->y,79); 
+  chkN(D->y,79); 
   
   
   D->Print(); 
   
   
-  checkNum(D->y,A->y); 
+  chkN(D->y,A->y); 
   
   
   <<" 1/////////////////\n"; 
@@ -299,7 +299,7 @@ real r2 = 4.5;
   <<"%V $wy $A->gety()\n"; 
   
   
-  ok=CheckFNum(wy,79,5); 
+  ok=chkR(wy,79,5); 
   <<"%Vok y $wy 79\n"; 
   
   <<" 2/////////////////\n"; 
@@ -310,22 +310,22 @@ real r2 = 4.5;
   
   ax = A->getx();
   <<"A %V $ax \n"; 
-  CheckFNum(ax,47,5);
+  chkR(ax,47,5);
   ay = A->gety();
   <<"A %V $ay \n"; 
-  CheckFNum(ay,79,5); 
+  chkR(ay,79,5); 
   
   A->Print();
   
   
   bx = B->getx();
-  CheckFNum(bx,83,5); 
+  chkR(bx,83,5); 
   by = B->gety();
-  CheckFNum(by,65,5); 
+  chkR(by,65,5); 
   axy = A->getx() + A->gety(); 
-  CheckFNum(axy,(ax+ay),5); 
+  chkR(axy,(ax+ay),5); 
   bxy = B->getx() + B->gety(); 
-  CheckFNum(bxy,(bx+by),5);
+  chkR(bxy,(bx+by),5);
   
   z2 = A->x + B->y; 
   
@@ -334,9 +334,9 @@ real r2 = 4.5;
   <<"%V $ax $ay $axy $bx $by  $bxy $z2 $z\n"; 
   
   
-  CheckFNum(z2,(ax+by),5); 
+  chkR(z2,(ax+by),5); 
   
-  CheckFNum(z,(ax+by),5); 
+  chkR(z,(ax+by),5); 
   
   <<"%V $z $wx $wy \n"; 
   
@@ -350,7 +350,7 @@ real r2 = 4.5;
   
   my = B->y - C->y;
   
-  ok=CheckFNum(my,(65-0.2),4); 
+  ok=chkR(my,(65-0.2),4); 
   <<"%V$ok $B->y - $C->y =  $my \n"; 
   
   
@@ -358,7 +358,7 @@ real r2 = 4.5;
   
   <<"%V $B->y $C->y  $my \n"; 
   
-  ok=CheckFNum(my,32.6,4); 
+  ok=chkR(my,32.6,4); 
   <<"%V$ok $my 1.1\n"; 
   
  //setdebug(1,"step")
@@ -381,7 +381,7 @@ real r2 = 4.5;
     my = B->y/2.0 ; 
   <<"%V $i $B->y    $my $v \n"; 
     
-    ok=CheckFNum(my,v,5); 
+    ok=chkR(my,v,5); 
     checkProgress(" for $i"); 
     <<"%V$ok $i $my $v\n"; 
     B->y += 0.2; 
@@ -392,7 +392,7 @@ real r2 = 4.5;
 //<<"$(nsc(20,'/'))\n"
   
   
-  CheckNum(i,4); 
+  chkN(i,4); 
   
   checkProgress("$i  i == 4 ");
 
@@ -415,7 +415,7 @@ real r2 = 4.5;
   
   my = B->gety() - C->y; 
   <<"%V$ok $my $v\n"; 
-  ok=CheckFNum(my,v,5); 
+  ok=chkR(my,v,5); 
   
   v = A->getx(); 
   v *= 2; 
@@ -423,7 +423,7 @@ real r2 = 4.5;
   
   <<" %V $A->x $my $v \n"; 
   
-  CheckNum(my,v); 
+  chkN(my,v); 
   
   u = B->getx(); 
   u *= 3; 
@@ -431,7 +431,7 @@ real r2 = 4.5;
   
   <<" %V $B->x $my $u \n"; 
   
-  CheckFNum(my,u,6); 
+  chkR(my,u,6); 
   
   float w = v + u; 
   
@@ -439,7 +439,7 @@ real r2 = 4.5;
   
   <<" %V $w $my $v $u \n"; 
   
-  CheckFNum(my,w,6); 
+  chkR(my,w,6); 
   
   
   <<" %V $A->x $B->x \n"; 
@@ -452,7 +452,7 @@ real r2 = 4.5;
   val = A->x * B->x;
   <<"%V $val\n"
 
-  CheckFNum(my,3901,6); 
+  chkR(my,3901,6); 
   
   my = A->mul(B->y) + B->mul(A->x); 
 
@@ -463,7 +463,7 @@ real r2 = 4.5;
   
 <<"%V $my $mya $myb  $my2 $(mya * myb)\n"
   
-  ok=CheckFNum(my,my2,3); 
+  ok=chkR(my,my2,3); 
   <<"%V$ok  $my == 0.6 $A->x $B->x \n"; 
   my = Sin(0.5); 
   
@@ -476,7 +476,7 @@ real r2 = 4.5;
   
   <<"%V$my $A->x  $v \n"; 
   
-  CheckFNum(my,v,5); 
+  chkR(my,v,5); 
   
   
 //FIXME   my = A->mul( Sin(0.5) )
@@ -488,7 +488,7 @@ real r2 = 4.5;
   
   <<"%V$my $A->x  \n"; 
 
-  checkOut(); 
+  chkOut(); 
 
 
   r1 = B->getx()
@@ -509,9 +509,9 @@ real r2 = 4.5;
 
   
   
-  CheckFNum(my,my2,3); 
+  chkR(my,my2,3); 
   
-  checkOut(); 
+  chkOut(); 
 
   
 /{/*  

@@ -10,13 +10,13 @@
 
 /}*/
 
-checkIn()
+chkIn()
   str s = "407"
   i = atoi("407");
 
 <<"%V $s $i \n"
 
-checkNum(i,407);
+chkN(i,407);
 
 
 <<"  INT VEC SET/GET \n"
@@ -30,10 +30,10 @@ checkNum(i,407);
 
 <<"%V$IV\n"
 
- checkNum(IV[3],3);
+ chkN(IV[3],3);
 
 
-  checkOut()
+  chkOut()
 
   IG = vgen(INT_,10,0,1);
 

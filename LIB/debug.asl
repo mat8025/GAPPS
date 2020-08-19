@@ -34,11 +34,14 @@ proc DummyP()
 
 proc debugON()
 {
+ if (_dblevel < 1) {
+     _dblevel = 1;
+ }
 
-sdb(1,@keep,@~pline,@~step,@~trace)
+//sdb(2,@keep,@~pline,@~step,@~trace)
 filterFuncDebug(ALLOWALL_,"xxx");
 filterFileDebug(ALLOWALL_,"yyy");
-_dblevel = 1;
+
 
 }
 //==========================
@@ -69,7 +72,7 @@ proc setNICerrors( int n)
 }
 //==========================
 
-<<" %V $_include  DONE debug.asl\n"
+<<" %V $_include  $_dblevel DONE debug.asl\n"
 
 ///
 ///  while (1) {

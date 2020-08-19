@@ -1,7 +1,7 @@
 
 
 ////
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 
 svar S = "get this right"
@@ -35,11 +35,11 @@ MD->info(1)
 ev =  MD[2][3];
 
 
-checkNum(ev,77)
+chkN(ev,77)
 
 
 
-checkOut()
+chkOut()
 
 
 
@@ -76,7 +76,7 @@ t1 = rl[4];
 
 <<"%6.2f%V$t1\n";
 t1->info(1)
-checkFnum(t1,4.0);
+chkR(t1,4.0);
 
 }
 
@@ -88,7 +88,7 @@ Real1 = vgen(FLOAT_,10,0,1)
 float mt1;
 
   mt1 = Real1[3];
-checkFnum(mt1,3)
+chkR(mt1,3)
 <<"%V $mt1 \n"
 
 
@@ -98,7 +98,7 @@ val = array_sub(Real1)
 
 
 
-checkOut()
+chkOut()
 exit()
 
  A=ofr("wex2020.tsv")
@@ -246,6 +246,6 @@ Col = vgen(INT_,10,0,1)
 
 
 
-checkOut()
+chkOut()
 
 /}*/

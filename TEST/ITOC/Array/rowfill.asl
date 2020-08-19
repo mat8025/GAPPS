@@ -1,4 +1,4 @@
-CheckIn()
+chkIn()
 
 // test array indexing
 
@@ -27,8 +27,8 @@ int M[ROWS][COLS]
 
     M[3][0:19:] = YV
 
-CheckNum(M[3][1],YV[1])
-CheckNum(M[3][19],YV[19])
+chkN(M[3][1],YV[1])
+chkN(M[3][19],YV[19])
 
     M[4][0:10:] = YV
 
@@ -40,7 +40,7 @@ CheckNum(M[3][19],YV[19])
 
     M[j][5:12:] = YV
 
-CheckNum(M[7][6],YV[1])
+chkN(M[7][6],YV[1])
 
 <<"$M\n"
 
@@ -48,10 +48,10 @@ CheckNum(M[7][6],YV[1])
     for (j = 0; j < 5; j++) {
 
        M[j][::] = YV
-       CheckNum(M[j][1],YV[1])
+       chkN(M[j][1],YV[1])
        <<"$M\n"
     }
 
 
-CheckOut()
+chkOut()
 

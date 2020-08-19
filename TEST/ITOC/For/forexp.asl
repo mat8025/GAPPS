@@ -15,7 +15,7 @@ include "debug.asl"
 debugON()
 sdb(1,@pline)
 
-checkIn()
+chkIn()
 
 prog = GetScript()
 
@@ -78,8 +78,8 @@ int cnt = 0
     cnt = k
   }
 
-   CheckNum(k,N+1)
-   CheckNum(cnt,N)
+   chkN(k,N+1)
+   chkN(cnt,N)
 <<" DONE %V $k  $N $cnt \n"
 <<"//////////////////\n"
 
@@ -105,10 +105,10 @@ for ( j = 1; j <= N-1 ; j++) { // bug does not get RHS exp correct
 
 <<" DONE %V $j  $(N-1)  $cnt \n"
 
-  CheckNum(j,N)
+  chkN(j,N)
 
 <<" $cnt == $(N-1) ?? \n"
-   CheckNum(cnt,N-1)
+   chkN(cnt,N-1)
 
 
  b = cnt * tt
@@ -116,13 +116,13 @@ for ( j = 1; j <= N-1 ; j++) { // bug does not get RHS exp correct
 <<"%i $a ? ==  %i $b \n"
 
 
-   CheckNum(a, b)
+   chkN(a, b)
 
 
-   CheckNum(a, (cnt * tt))
+   chkN(a, (cnt * tt))
 
 
-   CheckOut()
+   chkOut()
 
 
 

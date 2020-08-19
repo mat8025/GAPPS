@@ -33,7 +33,7 @@ debugON()
 
 
 
-CheckIn()
+chkIn()
 
 
 
@@ -72,11 +72,11 @@ R->redimn()
 
   for (i=0;i < 4; i++) {
    <<"<$i> $R[i] \n"
-   checkNum(R[i],34);
+   chkN(R[i],34);
 
 }
 R->info(1)
- //  checkNum(R[0],33);
+ //  chkN(R[0],33);
 
  checkStage("RowSum")
 
@@ -93,12 +93,12 @@ stageComment("ColSum Test -summing cols of magic square 34");
 //C->info(1)
   for (i=0;i < 4; i++) {
   <<"<$i> $C[i] $CV[i] \n"
-   checkNum(C[i],34);
+   chkN(C[i],34);
   }
 
 
  checkStage("ColSum")
-checkOut(); exit();
+chkOut(); exit();
 
 
  M = Sum(A)
@@ -157,13 +157,13 @@ V->redimn()
 
 
 
-   CheckFNum(V[0],34,6)
+   chkR(V[0],34,6)
 
-   CheckFNum(V[1],34,6)
+   chkR(V[1],34,6)
 
-   CheckFNum(V[2],34,6)
+   chkR(V[2],34,6)
 
-   CheckFNum(V[3],34,6)
+   chkR(V[3],34,6)
 
 
 
@@ -249,6 +249,6 @@ float G[]= { 16, 3, 2, 13, 5, 10, 11, 8, 9, 6, 7, 12, 4 ,15, 14, 1}
 <<"%4.0f$G \n"
 
 
-  CheckOut()
+  chkOut()
 
 stop!

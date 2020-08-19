@@ -1,7 +1,7 @@
 
 
 ////
- checkIn(_dblevel)
+ chkIn(_dblevel)
 
 /{/*
 include "gevent"
@@ -78,4 +78,4 @@ for (i=0; i< 12; i++) {
 
 
 
-checkOut()
+chkOut()

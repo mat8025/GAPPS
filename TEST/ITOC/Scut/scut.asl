@@ -20,7 +20,7 @@ and returns result to string ws.
 /}*/
 
 
-checkIn()
+chkIn()
 
 str w1 = "Je le sais bien"
 
@@ -28,23 +28,23 @@ ws1= scut(w1,3)
 
 <<"$ws1\n"
 
-checkStr(ws1,"le sais bien")
+chkStr(ws1,"le sais bien")
 
 ws2= scut(w1,-4)
 
 <<"$ws2\n"
 
-checkStr(ws2,"Je le sais ")
+chkStr(ws2,"Je le sais ")
 
 str w2 = "";
 
-checkStr(w2,"")
+chkStr(w2,"")
 
 ws3=scut(w1,30)
 
 <<"$ws3\n"
 
-checkStr(ws3,"")
+chkStr(ws3,"")
 
 len = slen(w1)
 
@@ -54,7 +54,7 @@ len = slen(ws3)
 
 <<"len of <|$ws3|> is $len \n"
 
-checkNum(len,0)
+chkN(len,0)
 
-checkOut()
+chkOut()
 

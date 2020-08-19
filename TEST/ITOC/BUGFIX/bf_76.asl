@@ -4,7 +4,7 @@
 
 //setdebug(1,"pline")
 
-checkIn()
+chkIn()
 
 N = 8
 
@@ -29,7 +29,7 @@ cmplx ri_k;
 
 <<"$Re\n"
 <<"$Re[inpt]   == -67 \n"
-checkFnum(Re[inpt],-67.0)
+chkR(Re[inpt],-67.0)
 inpt++
 
   ri_kr = ri_k->getReal()  
@@ -43,20 +43,20 @@ inpt++
   
 <<"$Re\n"
 <<"$Re[inpt]   == 13?? \n"
-checkFnum(Re[inpt],13.0)
+chkR(Re[inpt],13.0)
   inpt++;
   
   Re[inpt] = ri_j->getReal() ; // bug????
 
 <<"$Re\n"
 <<"$Re[inpt]   == 12?? \n"
-checkFnum(Re[inpt],12.0)
+chkR(Re[inpt],12.0)
   Re[inpt] = ri_j->getReal()  + ri_k->getReal(); // bug????
 
 <<"$Re\n"
 
 <<"$Re[inpt]   == 91?? \n"
-checkFnum(Re[inpt],91.0)
+chkR(Re[inpt],91.0)
    inpt--;
 
   Re[inpt] = ri_j->getReal()  + ri_k->getReal(); // bug????
@@ -65,10 +65,10 @@ checkFnum(Re[inpt],91.0)
 
 <<"$Re[inpt]   == 91?? \n"
 
-checkFnum(Re[inpt],91.0)
+chkR(Re[inpt],91.0)
 
 
-checkOut()
+chkOut()
 
 exit()
 /{

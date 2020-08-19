@@ -21,7 +21,7 @@ if (_dblevel >0) {
 
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 proc foo(real a) 
 {
@@ -189,14 +189,14 @@ in = 2
 
 <<" $in $c \n"
 
-   checkNum(c,1)
+   chkN(c,1)
 
 
    c = foo(in) * 2
 
    <<" $in $c \n"
 
-   checkNum(c,2)
+   chkN(c,2)
 
 
 in = 1
@@ -205,7 +205,7 @@ in = 1
 
 <<" $in $c \n"
 
-   checkNum(c,0)
+   chkN(c,0)
 
  in = 3
 
@@ -213,13 +213,13 @@ in = 1
 
 <<" $in out $c \n"
 
-   checkNum(c,1)
+   chkN(c,1)
 
  c = foo(in) * 6
 
 <<" $in $c \n"
 
-   checkNum(c,6)
+   chkN(c,6)
 
   in = -4
 
@@ -227,7 +227,7 @@ in = 1
 
 <<" $in $c \n"
 
-   checkNum(c,-6)
+   chkN(c,-6)
 
    in = 110
 
@@ -252,7 +252,7 @@ in = 1
 
   <<" $in $c \n"
 
-   checkNum(c,120)
+   chkN(c,120)
 
 
   in = 310
@@ -270,7 +270,7 @@ in = 1
 
 <<"%V $in $c \n"
     
-  checkNum(c,210)
+  chkN(c,210)
 
 
   for (j = 0 ; j < 3; j++) {
@@ -281,7 +281,7 @@ in = 1
 
       <<" $in  returned * 3  $c \n"
 
-      checkNum(c,(j+1))
+      chkN(c,(j+1))
 
   }
 
@@ -290,11 +290,11 @@ in = 1
 
 <<"goo $x\n"
 
-   checkNum(x,2);
+   chkN(x,2);
 
    hoo(x)
 
-   checkNum(x,2);
+   chkN(x,2);
 
 
    double xm=14.0
@@ -303,7 +303,7 @@ in = 1
    
 <<"%V $xm $mr\n"
 
-   checkNum(mr,18);
+   chkN(mr,18);
 
    int ixm = 14;
    
@@ -313,7 +313,7 @@ in = 1
 
 
 
-   checkOut()
+   chkOut()
 
 
 

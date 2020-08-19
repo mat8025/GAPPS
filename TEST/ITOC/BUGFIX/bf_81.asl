@@ -4,7 +4,7 @@
 
 setdebug(1,"pline")
 
-checkIn()
+chkIn()
 
 
 A = vgen(INT_,10,0,1);
@@ -17,9 +17,9 @@ A[i++] = 47;
 
 <<"$A \n"
 
-checkNum(A[0], 47);
+chkN(A[0], 47);
 
 
-checkOut()
+chkOut()
 
 

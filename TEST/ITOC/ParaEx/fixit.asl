@@ -40,15 +40,15 @@ if (CV[1] == '\t') {
 }
 
 
- tc = checkNum(CV[1],'\t')
+ tc = chkN(CV[1],'\t')
 
 <<"$tc \n"
 
- tc = checkNum(CV[1],9)
+ tc = chkN(CV[1],9)
 
 <<"$tc \n"
 
- tc = checkNum(CV[0],'m')
+ tc = chkN(CV[0],'m')
 
 <<"$tc \n"
 

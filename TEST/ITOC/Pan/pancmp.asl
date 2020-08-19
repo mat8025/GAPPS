@@ -3,7 +3,7 @@
 ///
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 checkMemory(1); // 1 - track memory use
 pan psum = 0;
@@ -22,7 +22,7 @@ pan pk = 400;
       svm = Mu[0];
   }
 
-checkFnum(psum,406.0)
+chkR(psum,406.0)
 
-checkOut()
+chkOut()
 

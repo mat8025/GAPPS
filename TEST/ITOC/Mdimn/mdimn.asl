@@ -12,7 +12,7 @@
 //***********************************************%
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 
 int MI[4][5];
@@ -24,21 +24,21 @@ MI[1][3] = 35
 val = MI[1][3]
 
 <<"$val\n"
-checkNum(val,35)
+chkN(val,35)
 
 
  i =2;
 MI[i][3] = 36
 val = MI[i][3]
 <<"$val\n"
-checkNum(val,36)
+chkN(val,36)
 
 
  k =1;
 MI[i][k] = 77
 val = MI[i][k]
 <<"$val\n"
-checkNum(val,77)
+chkN(val,77)
 
 
 k =2;
@@ -47,7 +47,7 @@ val2 = 88;
 MI[i][k] = val2
 val = MI[i][k]
 <<"$val\n"
-checkNum(val,88)
+chkN(val,88)
 
 
 
@@ -68,7 +68,7 @@ MI[2][1] = 47
 
 
 
-checkNum(MI[2][3],36)
+chkN(MI[2][3],36)
 
 for ( i= 0; i<4; i++) {
 val = MI[i][3]
@@ -78,7 +78,7 @@ val = MI[i][3]
 }
  
 
-checkOut()
+chkOut()
 
 
 int V[4] = {1,2,3,4}
@@ -111,9 +111,9 @@ MI[0][2] = 66
 MI[1][2] = 47
 MI[7][2] = 79
 
-CheckNum(MI[1][2],47)
+chkN(MI[1][2],47)
 
-CheckNum(MI[0][2],66)
+chkN(MI[0][2],66)
 
 MI->info(1)
 <<"$MI\n"
@@ -121,14 +121,14 @@ MI->info(1)
 MI[1][2] = 77
 
 
-CheckNum(MI[1][2],77)
+chkN(MI[1][2],77)
 
 MI[3][3] = 47
 MI[4][3] = 79
 
 MI[2:4][1:3] = 68
 
-CheckNum(MI[2][1],68)
+chkN(MI[2][1],68)
 MI->info(1)
 <<"$MI\n"
 <<"%(4,, ,\n)$MI \n"
@@ -161,9 +161,9 @@ MI[7:9][0:2] = W[1:-1]
 
 <<"%(4,[, ,]\n)$MI \n"
 
-//CheckNum(MI[7][1],2)
-//CheckNum(MI[8][1],2)
-//CheckNum(MI[9][1],2)
+//chkN(MI[7][1],2)
+//chkN(MI[8][1],2)
+//chkN(MI[9][1],2)
 
 
 //MI[5][*] = W
@@ -254,7 +254,7 @@ ReStg[::][::] *= -5
 <<"%6.1f$ReStg \n"
 
 
-checkOut()
+chkOut()
 
 
 

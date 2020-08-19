@@ -12,7 +12,7 @@
 //***********************************************%
 ////
 
-checkIn()
+chkIn()
 
   S= " a  word";
   <<"$S\n"
@@ -35,8 +35,8 @@ Wd = split(S)
 <<"$Wd\n"
 
 <<"$Wd[4]\n"
-checkStr(Wd[2],"missing")
-checkStr(Wd[4],"End")
-checkStr(Wd[0],"Begin")
+chkStr(Wd[2],"missing")
+chkStr(Wd[4],"End")
+chkStr(Wd[0],"Begin")
 
-checkOut()
+chkOut()

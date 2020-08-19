@@ -1,9 +1,9 @@
 
-CheckIn()
+chkIn()
 
 ws = getScript()
 <<" $ws \n"
-//CheckIn()
+//chkIn()
 
 
 
@@ -14,7 +14,7 @@ m = Caz(J)
 
 <<" %v $m \n"
 
-// CheckNum(m,4)
+// chkN(m,4)
 
  L = ( "say", "what", "can" ,"I", "do", "now", "with", "this", "amazingly", "lovely" ,"list" )
 
@@ -27,7 +27,7 @@ m = Caz(J)
 
 <<" %v $m \n"
 
-// CheckNum(m,11)
+// chkN(m,11)
 
 
  n=L->Sort()
@@ -44,7 +44,7 @@ stop!
 
 <<"%v $L2 \n"
 
-//CheckOut()
+//chkOut()
 
 
 stop!
@@ -140,7 +140,7 @@ k= 5
 <<"sorted %vs $L   swaps $n\n"
 
 
- CheckOut()
+ chkOut()
 
 stop!
 

@@ -21,7 +21,7 @@ if (_dblevel >0) {
    debugON()
 }
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 
 
@@ -34,7 +34,7 @@ proc Foo(int a, int b)
   int x;
   int y = 1;
 
-  checkNum (y ,1)
+  chkN (y ,1)
   x = a;
   y = b;
 
@@ -61,7 +61,7 @@ int n = 4;
 
 <<"%V $x\n"
 
-checkNum(pri,7)
+chkN(pri,7)
 
 
  pri = Foo(47,79)
@@ -71,7 +71,7 @@ checkNum(pri,7)
 
 
 
-checkNum(pri,126)
+chkN(pri,126)
 
 
 
@@ -82,20 +82,20 @@ jj = 6
 
 <<"%V$jj \n"
 
-   CheckNum(jj,6)
+   chkN(jj,6)
 
 
 int k =34
 
 <<" %v $k \n"
 
-   CheckNum(k,34)
+   chkN(k,34)
 
 float ytest = 1.234
 
 <<"%V$ytest \n"
 
-   CheckFNum(ytest,1.234,6)
+   chkR(ytest,1.234,6)
 
 // dynamic array declare with intial size
 
@@ -142,18 +142,18 @@ double xr9 = (-1.6 * 2)
 
 
 
-   CheckNum(yr0,-1.5)
-   CheckNum(xr0,-1.5)
-   CheckNum(xr1,1.5)
+   chkN(yr0,-1.5)
+   chkN(xr0,-1.5)
+   chkN(xr1,1.5)
 
-   CheckNum(xr4,4.6)
-   CheckNum(xr5,-0.6)
-   CheckNum(xr6,0.6)
-   CheckNum(xr7,3.2)      
-   CheckFNum(xr8,3.2000);
+   chkN(xr4,4.6)
+   chkN(xr5,-0.6)
+   chkN(xr6,0.6)
+   chkN(xr7,3.2)      
+   chkR(xr8,3.2000);
 <<"%V$xr9 $(typeof(xr9))\n"
 
-   CheckFNum(xr9,-3.2000);
+   chkR(xr9,-3.2000);
 
 
 int M[10]
@@ -180,7 +180,7 @@ int M[10]
 
    msz = Caz(M)
 
-   CheckNum(msz,10)
+   chkN(msz,10)
 
 
 
@@ -190,7 +190,7 @@ int JJ[10][3]
 <<" %V $(Caz(JJ)) $(Cab(JJ))\n"
   JJ[1][2] = 3
 
-   CheckNum(JJ[1][2],3)
+   chkN(JJ[1][2],3)
 
 <<" $JJ[1][2] \n"
 
@@ -217,8 +217,8 @@ int J[30]
 
 <<"%v $J[*] \n"
  
-   CheckNum(J[7],7)
-   CheckNum(J[1],1)
+   chkN(J[7],7)
+   chkN(J[1],1)
 
 
 
@@ -231,7 +231,7 @@ MS = 37
 <<"%V $(Caz(MS))  \n"
 <<" $MS \n"
 
-   CheckNum(MS[4],37)
+   chkN(MS[4],37)
 
 
 
@@ -260,7 +260,7 @@ P = 76
 
       ntest++
 
-   CheckNum(P[7][0],76)
+   chkN(P[7][0],76)
 
 
 
@@ -271,9 +271,9 @@ P = 76
 
 <<"%e$dp $dc  \n"
 
-   CheckNum(dp,10.0e25)
+   chkN(dp,10.0e25)
 
-   CheckNum(dc,2.9979e8)
+   chkN(dc,2.9979e8)
 
 
   dz= dp / dc
@@ -284,9 +284,9 @@ P = 76
 
 <<"%e$dp $dc $dz $dq\n"
 
-   CheckNum(dp,dq)
+   chkN(dp,dq)
 
-//<<" using which checkout ??\n"
+//<<" using which chkOut ??\n"
 
 
 
@@ -325,15 +325,15 @@ prec=setap(20)
 <<" %v $qr \n"
 
 
-   CheckFNum(pr-1,qr,5)
+   chkR(pr-1,qr,5)
 
 
 proc Foo(int a)
 {
 int k = 2
 <<" entered $_proc $a $k\n"
- checkNum(k,2)
- checkNum(a,A)
+ chkN(k,2)
+ chkN(a,A)
 }
 
 
@@ -364,19 +364,19 @@ Z="hey"
 
 <<"%V $Z\n"
 
-checkStr(Z,"hey");
+chkStr(Z,"hey");
 
 S="hey";
 
 <<"%V $S\n"
 
-checkStr(S,"hey");
+chkStr(S,"hey");
 
 V="hey"  // gets hey"
 
 <<"%V $V\n"
 
-checkStr(V,"hey");
+chkStr(V,"hey");
 
 
 
@@ -415,7 +415,7 @@ uchar cv[] = { 65,47,79,0xBA };
 <<"%V$cve\n"
 <<"%V$cv[0]\n"
 
- checkNum(cve,65)
+ chkN(cve,65)
 
 
 
@@ -426,13 +426,13 @@ uchar cv[] = { 65,47,79,0xBA };
 <<"%V$cve\n"
 <<"%V$cv[0]\n"
 
- checkNum(cv[0],77)
+ chkN(cv[0],77)
 
 
 
  str ls = 'abc'
 
- checkNum(cv[3],0xBA)
+ chkN(cv[3],0xBA)
 
 
 
@@ -458,22 +458,22 @@ char dv[] = { 'G', 84, 85, 78, 'O', 69,  75,76,77,'0' }
 <<"%c $dv \n"
 sz= Caz(dv)
 <<"%V $sz\n"
- checkNum(dv[0], 'G' )
- checkNum(dv[1], 84 )
-  checkNum(dv[2], 85 )
-   checkNum(dv[3], 78 )
- checkNum(dv[4], 'O' )
- checkNum(dv[5], 69 )
- checkNum(dv[6], 75 )
-  checkNum(dv[7], 76 )
- checkNum(dv[8], 77 )
- checkNum(dv[9], '0' )
+ chkN(dv[0], 'G' )
+ chkN(dv[1], 84 )
+  chkN(dv[2], 85 )
+   chkN(dv[3], 78 )
+ chkN(dv[4], 'O' )
+ chkN(dv[5], 69 )
+ chkN(dv[6], 75 )
+  chkN(dv[7], 76 )
+ chkN(dv[8], 77 )
+ chkN(dv[9], '0' )
 
 char ev[] = { 71, 84, 85, 78, 79, 48, 69, 75,76,77 }
 
 <<"$ev \n"
 
-co ()
+chkOut ()
 
 
 char a = 'G';
@@ -482,11 +482,11 @@ char a = 'G';
 
 <<"%V $dv[0] $a \n"
 
- checkNum(dv[0],a)
+ chkN(dv[0],a)
 
- checkNum(dv[0], wc )
+ chkN(dv[0], wc )
 
- checkNum(dv[0], 'G' )
+ chkN(dv[0], 'G' )
 
 
  checkStage()
@@ -495,7 +495,7 @@ char a = 'G';
 
 <<"%V $dv[1]  \n"
 
- checkNum(dv[1],84)
+ chkN(dv[1],84)
 
 
 
@@ -508,20 +508,20 @@ char a = 'G';
 <<"dv %c $dv\n"
 
  printargs(dv[4],'O')
- checkNum(dv[4], 'O' )
-  checkNum(dv[4], 79 )
+ chkN(dv[4], 'O' )
+  chkN(dv[4], 79 )
 
- checkOut()
+ chkOut()
 
 <<" whaat is happening here $dv[5] \n"
 
  tc = scnt("0");
  <<"%V $tc\n";
- checkNum(dv[5], scnt("0") )
+ chkN(dv[5], scnt("0") )
 <<" Imm not really cleaaaaaaar \n" 
 
 
- checkNum(dv[5], '0' )
+ chkN(dv[5], '0' )
 
 
 
@@ -547,14 +547,14 @@ sz = Caz(ev)
 
 //iread("->");
 
- checkNum(ev[0],'A')
- checkNum(ev[7],'M')
+ chkN(ev[0],'A')
+ chkN(ev[7],'M')
 
 <<"%I %s $lv \n"
 
- checkNum(lv[0],'A')
- checkNum(lv[7],'M')
- checkNum(lv[11],'$')
+ chkN(lv[0],'A')
+ chkN(lv[7],'M')
+ chkN(lv[11],'$')
 
 
  <<" chardec DONE\n"
@@ -569,7 +569,7 @@ for (k=0;k<sz;k++) {
  
 
 
- checkOut()
+ chkOut()
 
 
 

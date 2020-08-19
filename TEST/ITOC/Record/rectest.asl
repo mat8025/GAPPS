@@ -14,7 +14,7 @@ myScript = getScript();
 ///
 ///
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 Record R[10]
 
@@ -43,7 +43,7 @@ DF->info(1)
 rstr = DF[0][0];
 <<"%V$rstr \n"
 <<"%V$DF[0][0] \n"
-checkStr(rstr,"task?")
+chkStr(rstr,"task?")
 
 
 
@@ -51,7 +51,7 @@ checkStr(rstr,"task?")
 rstr = DF[1][1];
 <<"%V$rstr \n"
 <<"%V$DF[0][0] \n"
-checkStr(rstr,"9")
+chkStr(rstr,"9")
 
 er = 0;
 wt = 0
@@ -62,7 +62,7 @@ rstr = R[er][0];
 <<"%V$R[0] \n"
 <<"%V$R[0][0] \n"
 <<"%V$R[er][0] \n"
-checkStr(rstr,"task?")
+chkStr(rstr,"task?")
 
 
 er = 1;
@@ -82,7 +82,7 @@ R[er] = DF[wt];
 rstr = R[er][0];
 <<"%V$rstr \n"
 <<"%V$R[1][0] \n"
-checkStr(rstr,"Exercise")
+chkStr(rstr,"Exercise")
 
 er = 2;
 wt = 2
@@ -95,7 +95,7 @@ R[er] = DF[wt];
 
 rstr = R[er][0];
 <<"%V$rstr \n"
-checkStr(rstr,"Guitar")
+chkStr(rstr,"Guitar")
 
 
 
@@ -116,17 +116,17 @@ er = 1;
 <<"%V$R[0][0] \n"
 rstr = R[0][0];
 <<"%V$rstr \n"
-checkStr(rstr,"task?")
-checkStr(R[0][0],"task?")
+chkStr(rstr,"task?")
+chkStr(R[0][0],"task?")
 <<"%V$R[1] \n"
 <<"%V$R[1][0] \n"
-checkStr(R[1][0],"Exercise")
+chkStr(R[1][0],"Exercise")
 <<"%V$R[2] \n"
 <<"%V$R[2][0] \n"
-checkStr(R[2][0],"Guitar")
+chkStr(R[2][0],"Guitar")
 <<"%V$R[3] \n"
 <<"%V$R[3][0] \n"
-checkStr(R[3][0],"Spanish")
+chkStr(R[3][0],"Spanish")
 
 er++
 <<"%V $er $R[er] \n"
@@ -153,4 +153,4 @@ wt++;
 
 
 
-checkOut()
+chkOut()

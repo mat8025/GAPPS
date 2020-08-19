@@ -1,5 +1,5 @@
 //  testing pan trunc
-checkIn()
+chkIn()
 setAP(10)
 setdebug(1)
 pan p
@@ -11,7 +11,7 @@ p = f
 
 <<"%V$p $f \n"
 
-checkFNum(p,10.23)
+chkR(p,10.23)
 
 m = trunc(p)
 
@@ -20,6 +20,6 @@ m = trunc(p)
 
 
 
-checkNum(m,10)
+chkN(m,10)
 
-checkOut()
+chkOut()

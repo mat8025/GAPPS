@@ -1,6 +1,6 @@
 setdebug(1)
 
-//checkIn()
+//chkIn()
 
 float Data[10]
 float Vec[10]
@@ -52,7 +52,7 @@ flight_phase = 0.0
 <<"$Vec \n"
 <<"$LP \n"
 
-//checkNum(Data[2],k)
+//chkN(Data[2],k)
 
      if (k > 5)
      break
@@ -60,7 +60,7 @@ flight_phase = 0.0
   }
 
 
-//checkOut()
+//chkOut()
 
 
 stop!

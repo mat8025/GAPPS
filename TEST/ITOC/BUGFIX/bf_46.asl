@@ -10,7 +10,7 @@ setdebug(1,@keep,@pline)
 FilterFileDebug(REJECT_,"storetype_e",)
 
 
-CheckIn()
+chkIn()
 
 int i = 0
 
@@ -99,7 +99,7 @@ Act A
 Act G[3]
 
 
-checkNum(A->t,0)
+chkN(A->t,0)
 
 setErrorNum(1)
 we = lastError()
@@ -112,7 +112,7 @@ we = lastError()
 en =  ErrorName()
 <<" %v $we $en\n"
 
-//CheckNum(we,we)
+//chkN(we,we)
 
 /{
 Act A[3];
@@ -123,11 +123,11 @@ we = si_error()
  if (si_error()) {
 
 <<"we $(get_si_error_name())\n"
-  CheckNum(we,28)
+  chkN(we,28)
 
  }
 /}
 
- CheckOut()
+ chkOut()
 
 

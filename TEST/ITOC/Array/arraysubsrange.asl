@@ -1,5 +1,5 @@
 
-CheckIn()
+chkIn()
 
 setdebug(1)
 
@@ -9,7 +9,7 @@ setdebug(1)
 
  YV = Igen(N,20,1)
 
- ok=CheckNum(YV[0],20)
+ ok=chkN(YV[0],20)
 
  if (!ok) {
    <<"FAIL \n"
@@ -32,7 +32,7 @@ setdebug(1)
 <<"$e $S[-2]\n"
 
  e= YV[-3]
- ok =CheckNum(e,YV[17])
+ ok =chkN(e,YV[17])
 
  if (!ok) {
    <<"FAIL 1\n"
@@ -50,7 +50,7 @@ setdebug(1)
 
 <<"%V$e $YV[19]\n"
 
- ok=CheckNum(e,YV[19])
+ ok=chkN(e,YV[19])
  if (!ok) {
    <<"FAIL 2\n"
  }
@@ -59,7 +59,7 @@ setdebug(1)
 
 <<"$e $YV[18] $YV[-2]\n"
 
- ok=CheckNum(e,YV[18])
+ ok=chkN(e,YV[18])
 
  if (!ok) {
    <<"FAIL 3 \n"
@@ -69,7 +69,7 @@ setdebug(1)
 
 <<"$e $YV[17] $YV[-3]\n"
 
- ok=CheckNum(e,YV[17])
+ ok=chkN(e,YV[17])
 
  if (!ok) {
    <<"FAIL 4\n"
@@ -79,7 +79,7 @@ setdebug(1)
 
 <<" %V$e  is $YV[0] $YV[-20]\n"
 
- ok=CheckNum(e,YV[0])
+ ok=chkN(e,YV[0])
  if (!ok) {
    <<"FAIL 5\n"
 
@@ -95,22 +95,22 @@ setdebug(1)
 
  <<"%V$S \n"
 
- ok=CheckNum(S[0],20)
+ ok=chkN(S[0],20)
  if (!ok) {
    <<"FAIL 6\n"
  }
 
- ok=CheckNum(S[10],30)
+ ok=chkN(S[10],30)
  if (!ok) {
    <<"FAIL 7\n"
 
  }
- ok=CheckNum(S[17],37)
+ ok=chkN(S[17],37)
  if (!ok) {
    <<"FAIL 8\n"
 
  }
- ok=CheckNum(S[-1],37)
+ ok=chkN(S[-1],37)
  if (!ok) {
    <<"FAIL 9\n"
 
@@ -137,6 +137,6 @@ setdebug(1)
 // testargs(YV[-16:-10:2],YV[1:-1:3])
 
 //iread()
- CheckOut()
+ chkOut()
 
 STOP!

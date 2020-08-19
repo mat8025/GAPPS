@@ -20,7 +20,7 @@ debugON();
 
 setDebug(1,@pline,@trace,"~step")
 
-checkIn()
+chkIn()
 
 
 rl =vgen (FLOAT_, 10, 0, 1);
@@ -32,12 +32,12 @@ t1 = rl[j1]
 
 <<"%V $t1  $(typeof(t1))\n";
 
-checkFNum (rl[j1], 2);
+chkR (rl[j1], 2);
 
  ff= rl[j1];
 <<" $ff   \n"
 <<" $rl[j1]  2 \n"
 
 
-checkOut()
+chkOut()
 

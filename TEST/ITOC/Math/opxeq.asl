@@ -1,5 +1,5 @@
 
-CheckIn()
+chkIn()
 int n = 3
 
     m = 4
@@ -7,26 +7,26 @@ int n = 3
     n += m
 
 <<"%V $n $m \n"
- CheckNum(m,4)
- CheckNum(n,7)
+ chkN(m,4)
+ chkN(n,7)
     n -= m
 
 <<"%V $n $m \n"
 
- CheckNum(m,4)
- CheckNum(n,3)
+ chkN(m,4)
+ chkN(n,3)
     n -= m
 
 <<"%V $n $m \n"
 
-// CheckFNum(n,-1,6)
+// chkR(n,-1,6)
 
     n += m
- CheckNum(n,3)
+ chkN(n,3)
 <<"%V $n $m \n"
 
     n += m
- CheckNum(n,7)
+ chkN(n,7)
 <<"%V $n $m \n"
 
 
@@ -79,7 +79,7 @@ int n = 3
    k /= n
 
 <<" $k $n\n"
- CheckNum(k,9)
- CheckNum(n,5)
-CheckOut()
+ chkN(k,9)
+ chkN(n,5)
+chkOut()
 stop!

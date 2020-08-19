@@ -15,7 +15,7 @@ include "debug.asl"
 
 debugON();
 
-checkIn()
+chkIn()
 
 double f= atan(1.0) * 4.0
 
@@ -25,7 +25,7 @@ i = Trunc(f);
 
 <<"%V $f $i  $(typeof(i)) \n"
 
-checkNum(i,3)
+chkN(i,3)
 
 f +=0.5
 
@@ -34,6 +34,6 @@ i = Trunc(f);
 
 <<"%V $f $i  $(typeof(i)) \n"
 
-checkNum(i,3)
+chkN(i,3)
 
-checkout()
+chkOut()

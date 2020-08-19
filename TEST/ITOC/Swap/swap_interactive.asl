@@ -1,7 +1,7 @@
 //  demo ptr/ref args
 //
 
-checkIn()
+chkIn()
 
 setdebug(1)
 
@@ -77,13 +77,13 @@ ans += atoi(i_read('pass? :\ '))
 
 <<"%V$ans\n"
 
-// CheckNum(k,4)
+// chkN(k,4)
 
 <<"%V$k $m  ref\n"
  swap (&k, &m)
 <<" %V$k $m \n"
 
-// CheckNum(k,3)
+// chkN(k,3)
 
 ans += atoi(i_read('pass? :\ '))
 <<"%V$ans\n"
@@ -108,7 +108,7 @@ ans += atoi(i_read('pass? :\ '))
 <<"%V$ans\n"
 
 
-// CheckNum(k,4)
+// chkN(k,4)
 /}
 
 exitsi()
@@ -134,7 +134,7 @@ ans =i_read(":\")
 
 <<"%V $k $m $w\n"
 
- CheckNum(k,3)
+ chkN(k,3)
 
 int a = 6
 int b = 9
@@ -144,7 +144,7 @@ int b = 9
 
  swap(&a,&b)
 
- CheckNum(a,9)
+ chkN(a,9)
 
 <<"%V$a $b \n"
 
@@ -157,7 +157,7 @@ for (g = 0; g < 4; g++) {
  <<"%V$g $a $b \n"
 }
 
- CheckNum(a,7)
+ chkN(a,7)
 
 <<" diff vars %V$k $m\n"
 
@@ -169,8 +169,8 @@ for (g = 0; g < 3; g++) {
 
 }
 
- CheckNum(k,4)
-checkOut()
+ chkN(k,4)
+chkOut()
 stop()
 
 <<" orig vars %V$a $b\n"
@@ -185,25 +185,25 @@ for (g = 0; g < 3; g++) {
 
 //<<"%V $x $y $t \n"
 
- CheckNum(a,9)
+ chkN(a,9)
 
 float r = 3.0
 float q = 4.0
 
- CheckNum(r,3.0)
+ chkN(r,3.0)
 
 <<"%V $r $q\n"
 
    swap(&r,&q)
 
- CheckNum(r,4.0)
+ chkN(r,4.0)
 
 
 <<"%V $r $q\n"
 
    swap(&r,&q)
 
- CheckNum(r,3.0)
+ chkN(r,3.0)
 
 <<"%V $r $q\n"
 
@@ -211,8 +211,8 @@ float q = 4.0
 
 <<"%V $k $m $w\n"
 
- CheckNum(k,3)
+ chkN(k,3)
 
- CheckOut()
+ chkOut()
 /}
 stop!

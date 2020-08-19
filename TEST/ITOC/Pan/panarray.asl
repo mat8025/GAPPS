@@ -17,7 +17,7 @@
 
 N= 10;
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 pan A[10];
 
@@ -94,9 +94,9 @@ pan j= 0;
 
 <<"$Bnum \n"
 
-   checkFNum(Bnum[9],19.0)
-   checkFNum(A[9],1.0)
+   chkR(Bnum[9],19.0)
+   chkR(A[9],1.0)
    
 
-checkOut()
+chkOut()
 

@@ -1,5 +1,5 @@
 # test ASL function findval
-CheckIn()
+chkIn()
 
 setdebug(0)
 
@@ -19,11 +19,11 @@ I= Igen(20,0,1)
 
 <<" is 6 in vec ? $fi \n"
 
-CheckNum(fi,6)
+chkN(fi,6)
 
    fi= I->findval(7,0,1)
 
-CheckNum(fi,7)
+chkN(fi,7)
 
 <<"is 7 in vec ? $fi \n"
 
@@ -70,6 +70,6 @@ F= Fgen(20,0,1)
 
 <<" $fi \n"
 
-CheckOut()
+chkOut()
 
 ;

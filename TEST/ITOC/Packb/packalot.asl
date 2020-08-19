@@ -16,7 +16,7 @@ setdebug(1,@~pline,@trace,@~stderr)
 
 
 
-checkIn()
+chkIn()
 
 int i = 5;
 float f = 3.1;
@@ -47,7 +47,7 @@ UCV[0] = 7;
 int IV[10];
 int FV[10];
 
-checkIn()
+chkIn()
 int nc;
 i = 0;
 f = 0.0;
@@ -60,14 +60,14 @@ nc = packb (UCV,"I",i)
 
 nc = unpackb (UCV,"I1",IV)
 
-checkNum(i,IV[0]);
+chkN(i,IV[0]);
 
 nc = packb (UCV,"F",f)
 
 <<"$nc  :: $UCV\n"
 nc = unpackb (UCV,"F1",FV)
 
-checkNum(f,FV[0]);
+chkN(f,FV[0]);
 
 packb (UCV,"I,F,U,C,L",i,f,uc,c,l)
 
@@ -75,11 +75,11 @@ packb (UCV,"I,F,U,C,L",i,f,uc,c,l)
 unpackb (UCV,"I,F,C,C,L",&i2,&f2,&uc2,&c2,&l2)
 
 
-checkNum(i,i2)
-checkNum(f,f2)
-checkNum(c,c2)
-checkNum(uc,uc2)
-checkNum(l,l2)
+chkN(i,i2)
+chkN(f,f2)
+chkN(c,c2)
+chkN(uc,uc2)
+chkN(l,l2)
 
 
 ASK
@@ -97,6 +97,6 @@ if (i >= 5) {
 
 }
 
-checkOut()
+chkOut()
 
 exit();

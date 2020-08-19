@@ -14,7 +14,7 @@
 
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 int i = 0;
 
@@ -274,7 +274,7 @@ br= b->Get()
 
 <<"$br \n"
 
-checkNum(br,bs)
+chkN(br,bs)
 
 
 
@@ -285,7 +285,7 @@ br= b->Get()
 
 <<"$br \n"
 
-checkNum(br,71)
+chkN(br,71)
 
 
  b->type = 7
@@ -314,7 +314,7 @@ checkNum(br,71)
 
  yt = X[3]->type;
 
- checkNum(yt,66);
+ chkN(yt,66);
 
 <<"type %V$yrt $yt\n"
 
@@ -348,33 +348,33 @@ checkNum(br,71)
 
 <<"47? type for 2 $yt $(typeof(yt)) \n"
 
- checkNum(yt,47);
+ chkN(yt,47);
  
 
  yt = X[3]->type;
 
 <<"80? type for X[3] $yt \n"
 
- checkNum(yt,80);
+ chkN(yt,80);
   
  yt = X[0]->type
 
 <<"type for 0 $yt \n"
 
- checkNum(yt,50);
+ chkN(yt,50);
 
 
  yt = X[1]->type
 <<"type for 1 $yt = 79 ?\n"
 
- checkNum(yt,79) ;
+ chkN(yt,79) ;
 
 
 
  yt = X[2]->type
 <<"type for 2 $yt = 47 ?\n"
 
- checkNum(yt,47) 
+ chkN(yt,47) 
 
  i = 3
  X[i]->type = 90
@@ -449,7 +449,7 @@ checkNum(br,71)
 <<"2 type %V $yst $yt $ygt\n"
 
 
-  checkNum(yst,5)
+  chkN(yst,5)
 
 
  for (i = 0; i < 4; i++) {
@@ -475,7 +475,7 @@ checkNum(br,71)
 
 <<"3 type %V$yst $yt $ygt\n"
 
- checkNum(yst,7)
+ chkN(yst,7)
 
 
 <<"$yst $(typeof(yst)) \n"
@@ -490,7 +490,7 @@ checkNum(br,71)
 
  <<"%V$yt  $X[0]->type \n"
 
-  checkNum(yt,2)
+  chkN(yt,2)
 
  X[2]->type = 28
 
@@ -498,7 +498,7 @@ checkNum(br,71)
 
  <<"%V$yt2  $X[2]->type \n"
 
-  checkNum(yt2,28)
+  chkN(yt2,28)
 
     X[1]->type = 79
 
@@ -506,20 +506,20 @@ checkNum(br,71)
 
  <<"%V$yt1  $X[1]->type \n"
 
-  checkNum(yt1,79)
+  chkN(yt1,79)
 
   yt = X[0]->type
  
   <<"%V$yt  $X[0]->type \n"
 
-   checkNum(yt,2)
+   chkN(yt,2)
 
    yt = X[1]->type
    <<"%V  $yt  $X[1]->type \n"
    yt = X[2]->type
    <<"%V  $yt  $X[2]->type \n"
 
-   checkNum(yt,28)
+   chkN(yt,28)
 
  for ( i = 0; i < 4; i++) { 
    yt = X[i]->type
@@ -573,7 +573,7 @@ Dil H[2];
 
 <<"FIRST H[2] $(xov--) \n"
 
-checkNum(xov,19)
+chkN(xov,19)
 
 
 <<"$(xov--) \n"
@@ -591,7 +591,7 @@ xov = 20
 
 <<"FIRST E $(xov--) \n"
 
- checkNum(xov,19)
+ chkN(xov,19)
 
 
 
@@ -605,7 +605,7 @@ xov = 20
 //  FIXME ---- not going to first following statement in E has nested class!!
 
 
-checkOut();
+chkOut();
 
 
 
@@ -640,9 +640,9 @@ syt = 80 //
 <<"%V $syt  $tys \n"
 
 
- checkNum(syt,tys);
+ chkN(syt,tys);
 
-//checkOut()
+//chkOut()
 
  
 
@@ -653,7 +653,7 @@ syt = 80 //
 <<" $gyt $(typeof(gyt)) \n"
 
 
-  checkNum(gyt,80)
+  chkN(gyt,80)
 
 <<"nested class getting direct reference %V $gyt \n"
 
@@ -668,7 +668,7 @@ syt = 60; //
 <<"nested class getting direct reference %V $gyt \n"
 
 k = 3;
-   checkNum(gyt,60)
+   chkN(gyt,60)
 
  E->A[0]->t = 28;
 
@@ -688,9 +688,9 @@ k = 3;
 
 <<"%V $k $t1\n"
 <<"%V $E->A[0]->t \n"
- checkNum(t1,72);
+ chkN(t1,72);
 
-checkOut()
+chkOut()
 exit()
 
  yt0 = E->A[0]->t
@@ -720,7 +720,7 @@ exit()
 <<"%V $yt0 \n"
 
 
- checkNum(yt0,28);
+ chkN(yt0,28);
 
 
 
@@ -728,7 +728,7 @@ exit()
 
 <<"%V $yt1 \n"
 
- checkNum(yt1,29)
+ chkN(yt1,29)
 
 
 
@@ -736,7 +736,7 @@ exit()
 
 <<"%V $yt2 \n"
 
- checkNum(yt2,92)
+ chkN(yt2,92)
 
 
 
@@ -747,7 +747,7 @@ exit()
 
 <<"%V $yt3 \n"
 
- checkNum(yt3,75)
+ chkN(yt3,75)
 
  //checkProgress()
 // exit()
@@ -761,7 +761,7 @@ exit()
 <<"\n"
 
 
- checkNum(yt,92)
+ chkN(yt,92)
 
 
 
@@ -777,7 +777,7 @@ exit()
 
 yt = E->A[3]->t;
 
-checkNum(yt,75);
+chkN(yt,75);
 
 
 
@@ -839,7 +839,7 @@ Dil G[10]
 
 <<"FIRST $(xov--) \n"
 
- checkNum(xov,19)
+ chkN(xov,19)
 
 
  G[0]->A[0]->t = 60
@@ -850,19 +850,19 @@ Dil G[10]
 
 <<"%V $yt0 \n"
 
-  checkNum(yt0,60)
+  chkN(yt0,60)
 
    yt1 = G[1]->A[1]->t
 
 <<"%V$yt1 \n"
 
-   checkNum(yt1,18)
+   chkN(yt1,18)
 
    yt2 = G[2]->A[2]->t
 
 <<"%V$yt2 \n"
 
-   checkNum(yt2,33)
+   chkN(yt2,33)
 
 
  i = 0 ; j = 1;
@@ -874,7 +874,7 @@ Dil G[10]
 <<"%V$yt \n"
 
 
-  checkNum(yt,53)
+  chkN(yt,53)
 
   k = 7
 
@@ -903,7 +903,7 @@ Dil G[10]
 
       yt = G[i]->A[j]->t 
       <<" $i $j $yt \n"
-       checkNum(yt,k)
+       chkN(yt,k)
        k++
    }
 
@@ -957,7 +957,7 @@ Dil D[3]
 
 <<" done dec of D \n"
 
-checkOut();
+chkOut();
 
 exit()
 

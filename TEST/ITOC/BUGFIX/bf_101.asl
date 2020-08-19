@@ -12,7 +12,7 @@ tbd:
 //==========================
 /}*/
 
-checkIn();
+chkIn();
 
 proc fooey()
 {
@@ -22,7 +22,7 @@ int p = 47;
 
   pb = p + 10;
 
-checkNum(pa,pb);
+chkN(pa,pb);
 
 }
 
@@ -32,8 +32,8 @@ int t = 47;
 
   tpb = t + 10;
 
-checkNum(tpa,tpb);
+chkN(tpa,tpb);
 
 fooey()
 
-checkOut();
+chkOut();

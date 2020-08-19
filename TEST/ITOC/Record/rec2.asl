@@ -32,7 +32,7 @@ R[0] = Split("some other words to add");
 
  sr1 = R[1][2]
    
-checkStr(sr1,"words")
+chkStr(sr1,"words")
 
 <<"%V$R[1]\n"
 

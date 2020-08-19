@@ -6,16 +6,16 @@ setdebug(1,"~step")
 
 
 
-checkIn();
+chkIn();
 
 int V[20];
 
 
  V[10] = 47;
 
-checkNum(V[0],0)
-checkNum(V[10],47)
-checkNum(V[19],0)
+chkN(V[0],0)
+chkN(V[10],47)
+chkN(V[19],0)
 
 <<" vector \n"
 <<"$V\n"
@@ -50,9 +50,9 @@ M = V;
 
 
 
-checkNum(M[10],47)
+chkN(M[10],47)
 
 
 
-checkOut();
+chkOut();
 

@@ -19,7 +19,7 @@ debugON()
 setdebug(1,@keep,@pline)
 FilterFileDebug(REJECT_,"storetype_e","ds_storevar")
 
-checkIn();
+chkIn();
 
 svar Wans;
 
@@ -48,7 +48,7 @@ Wans->info(1)
 sz= Caz(Wans)
 
 <<"sz $(Caz(Wans)) $Wans\n"
-checkNum(sz,12)
+chkN(sz,12)
 
 Wans[9] = "keeps going"
     
@@ -67,7 +67,7 @@ Wans->resize(5)
 
 <<"sz $(Caz(Wans)) $Wans\n"
 sz= Caz(Wans)
-checkNum(sz,5)
+chkN(sz,5)
 
 Wans->info(1)
 
@@ -166,9 +166,9 @@ int V[20];
 
  V[10] = 47;
 
-checkNum(V[0],0)
-checkNum(V[10],47)
-checkNum(V[19],0)
+chkN(V[0],0)
+chkN(V[10],47)
+chkN(V[19],0)
 <<"$V\n"
 
 
@@ -180,8 +180,8 @@ resize(V,30);
 
 
  V[20] = 80;
-checkNum(V[20],80)
-checkNum(V[29],0)
+chkN(V[20],80)
+chkN(V[29],0)
 <<"$V\n"
 
 
@@ -189,7 +189,7 @@ checkNum(V[29],0)
 
 V[30] = 79;
 
-checkNum(V[30],79)
+chkN(V[30],79)
 
 
 
@@ -201,14 +201,14 @@ TR=testargs(1,V)
 
 V[35] = 80;
 
-checkNum(V[35],80)
+chkN(V[35],80)
 
 <<"%(1,,,\n)$TR\n"
 
  resize(V,6,6);
 
  V[0][3] = 79;
-checkNum(V[0][3],79)
+chkN(V[0][3],79)
 
 
 <<"$V\n";
@@ -232,7 +232,7 @@ TR2=testargs(1,V)
 
 <<"%(1,,,\n)$TR2\n"
 
-checkOut();
+chkOut();
 
 
 

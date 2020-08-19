@@ -14,14 +14,14 @@
 ///
 ///
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 <<" $(GREEN_) \n"
 
  FF = vgen(INT_,10,50,1);
 <<"$FF\n"
 
-checkNum(FF[1],51)
+chkN(FF[1],51)
 
 
 S=functions()
@@ -76,8 +76,8 @@ localv()
 
  <<"$FF \n"
 
-checkNum(FF[1],51)
-checkNum(FF[5],-5)
-checkNum(FF[2],584)
+chkN(FF[1],51)
+chkN(FF[5],-5)
+chkN(FF[2],584)
 
-CheckOut()
+chkOut()

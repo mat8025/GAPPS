@@ -1,6 +1,6 @@
 
 setdebug(1)
-checkIn()
+chkIn()
 
 
 
@@ -36,7 +36,7 @@ y = MAXN;
 
 //<<"%V $y $mn\n"
 
-//CheckNum(mn,y)
+//chkN(mn,y)
 
 int I[MAXN]
 
@@ -47,10 +47,10 @@ I[9] = 77
 
 sz = Caz(I)
 
-CheckNum(sz,10)
-CheckNum(sz,MAXN)
+chkN(sz,10)
+chkN(sz,MAXN)
 
-   CheckOut()
+   chkOut()
 
 stop!
 ;

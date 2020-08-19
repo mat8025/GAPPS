@@ -1,5 +1,5 @@
 
-CheckIn()
+chkIn()
 
 //int A[][] = { 3,1,2, 2,1,3 }
 
@@ -24,9 +24,9 @@ B->redimn(3,2)
 <<"%(2,, ,\n)$C\n"
 
 
-   ok=checkNum(C[0][0],10)
+   ok=chkN(C[0][0],10)
 <<"%V$ok\n"
-   ok=checkNum(C[1][1],14)
+   ok=chkN(C[1][1],14)
 
 <<"%V$ok\n"
 
@@ -40,22 +40,22 @@ B->redimn(3,2)
   <<"%V$D[0][1] \n"
 
 
-   ok=checkNum(D[0][1],3)
+   ok=chkN(D[0][1],3)
 <<"%V$ok\n"
   <<"%V$D[0][0] \n"
-   ok=checkNum(D[0][0],7)
+   ok=chkN(D[0][0],7)
 <<"%V$ok\n"
   <<"%V$D[1][1] \n"
 i = D[1][1]
 <<"$i $D[1][1]\n"
-   ok=checkNum(D[1][1],4)
+   ok=chkN(D[1][1],4)
 <<"%V$ok\n"
   <<"%V$D[2][2] \n"
 i = D[2][2]
 <<"$i $D[2][2]\n"
-   ok=checkNum(D[2][2],13)
+   ok=chkN(D[2][2],13)
 
 <<"%V$ok\n"
 
 
-  CheckOut()
+  chkOut()

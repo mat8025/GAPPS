@@ -14,7 +14,7 @@ proc ask()
 #define  ASK ;
 
 
-CheckIn()
+chkIn()
 
 setDebug(1,"pline")
 
@@ -28,11 +28,11 @@ float real[]  // dynamic array
 <<"%V6.2f$real \n"
 
 
-checkNum(wlen,10);
+chkN(wlen,10);
 
-CheckFNum(real[0],0,1)   
+chkR(real[0],0,1)   
 
-CheckFNum(real[2],77,1)   
+chkR(real[2],77,1)   
 
 
 ASK
@@ -45,8 +45,8 @@ YS = vgen(FLOAT_,32,0,1)
 
 <<"$wlen \n"
 
-CheckFNum(YS[1],1,1)
-CheckFNum(YS[31],31,1)   
+chkR(YS[1],1,1)
+chkR(YS[31],31,1)   
 
 
 ASK
@@ -57,9 +57,9 @@ float swin[wlen];
 
 <<"%V$swin \n"
 
-CheckFNum(swin[0],1,1)
+chkR(swin[0],1,1)
 
-CheckFNum(swin[wlen-1],1,1)   
+chkR(swin[wlen-1],1,1)   
 
 
 rwlm = wlen -1;
@@ -73,8 +73,8 @@ ji = ki + wlen -1
 
 <<"%V %6.2f$real \n"
 
-   CheckFNum(real[2],4.0,1)   
-   CheckFNum(real[9],11.0,1)   
+   chkR(real[2],4.0,1)   
+   chkR(real[9],11.0,1)   
 
 
 ASK
@@ -96,7 +96,7 @@ ji = ki + wlen -1
 
   real[0:wlen-1] = YS[ki:ji] 
 <<"$ki %6.2f$real \n"
-   CheckFNum(real[0],j,1)   
+   chkR(real[0],j,1)   
 
 ASK
 }
@@ -138,7 +138,7 @@ tv= sum(sr)
 
     <<"%V6.2f $tv is sum of vec\n"  
 
-    CheckNum(tv,142)  
+    chkN(tv,142)  
 
 <<"$j %6.2f$real \n"
 
@@ -158,7 +158,7 @@ ASK
    tv = sum(real)
 
    <<" $tv[0] \n"
-    CheckNum(tv,142)  
+    chkN(tv,142)  
 
 <<"%V$j %$real \n"
 ASK
@@ -170,7 +170,7 @@ ASK
 
 ASK
 
-   CheckOut()
+   chkOut()
 
 
 

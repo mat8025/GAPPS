@@ -1,6 +1,6 @@
 opendll("math")
 setdebug(0)
-CheckIn()
+chkIn()
 
   y = Sin(_PI/4.0) 
   z = Cos(_PI/4.0) 

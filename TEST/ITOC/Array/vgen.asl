@@ -1,7 +1,7 @@
 
 setdebug(1)
 
-CheckIn()
+chkIn()
 
 C = vgen(CHAR_,40,0,1)
 
@@ -11,9 +11,9 @@ C = vgen(CHAR_,40,0,1)
 
 <<" $wt $(CHAR) $(typeof(C)) $C \n"
 
-    CheckNum(wt,1)
+    chkN(wt,1)
 <<"$wt $(typeof(wt)) \n"
-checkOut()
+chkOut()
 stop()
 
 // FIXME
@@ -30,10 +30,10 @@ stop()
 
 <<" $wt $(INT) $(typeof(I)) $(Caz(I)) $I \n"
 
-    CheckNum(wt,3)
-    CheckNum(wt,INT)
+    chkN(wt,3)
+    chkN(wt,INT)
 
- CheckOut()
+ chkOut()
 
 
 ;

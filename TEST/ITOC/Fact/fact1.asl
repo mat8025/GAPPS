@@ -4,7 +4,7 @@
 //int N = $2
 //double M
 
-CheckIn()
+chkIn()
 
 proc fact( pf)
 {
@@ -72,23 +72,23 @@ fr = 0.0
   fr= fact(1)
 
 <<" 1! = $fr \n"
-  CheckFNum(fr,1,6)
+  chkR(fr,1,6)
 
   fr= fact(2)
 
 <<"2! = $fr \n"
-  CheckFNum(fr,2,)
+  chkR(fr,2,)
 
   fr= fact(3)
 
 <<"3! = $fr \n"
 
-  CheckFNum(fr,6,6)
+  chkR(fr,6,6)
   fr= fact(4)
 
 <<"4! = $fr \n"
 
-  CheckFNum(fr,24.0,6)
+  chkR(fr,24.0,6)
 
 
  fr =  fact(N)
@@ -97,7 +97,7 @@ fr = 0.0
 
 <<" $N ! $fr %e $fr\n"
 
-    CheckOut()
+    chkOut()
 
 STOP!
 

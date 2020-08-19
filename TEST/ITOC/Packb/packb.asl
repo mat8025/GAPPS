@@ -29,7 +29,7 @@ setdebug(1,"pline","trace","~stderr")
 
 
 
-checkIn()
+chkIn()
 
 int i = 5
 float f = 3.1
@@ -90,17 +90,17 @@ packb (UCV,"I,F,U,C,L",i,f,uc,c,l)
 unpackb (UCV,"I,F,C,C,L",&i2,&f2,&uc2,&c2,&l2)
 
 
-checkNum(i,i2)
+chkN(i,i2)
 
-checkNum(f,f2)
+chkN(f,f2)
 <<" $c $c2 \n"
-checkNum(c,c2)
+chkN(c,c2)
 <<" $uc $uc2 \n"
 
-checkNum(uc,uc2)
+chkN(uc,uc2)
 
 
-checkNum(l,l2)
+chkN(l,l2)
 
 
 ASK
@@ -163,4 +163,4 @@ double D[];
 
 ASK
 
-checkOut()
+chkOut()

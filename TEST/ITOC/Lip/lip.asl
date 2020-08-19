@@ -1,6 +1,6 @@
 
 
-checkIn()
+chkIn()
 
 X = vgen(FLOAT_,10,0,1)
 Y = vgen(FLOAT_,10,-3,2)
@@ -20,9 +20,9 @@ lip(X,Y,10,X1,Y1,40)
 
 <<"%6.2f $Y1 \n"
 
-checkFnum(Y1[0],-3)
-checkFnum(Y1[1],-2.5)
-checkFnum(Y1[36],15)
-checkFnum(Y1[39],16.5)
+chkR(Y1[0],-3)
+chkR(Y1[1],-2.5)
+chkR(Y1[36],15)
+chkR(Y1[39],16.5)
 
-checkOut()
+chkOut()

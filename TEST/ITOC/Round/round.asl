@@ -15,7 +15,7 @@ include "debug.asl"
 
 debugON();
 
-checkIn()
+chkIn()
 
 double f= atan(1.0) * 4.0
 
@@ -25,7 +25,7 @@ i = Round(f);
 
 <<"%V $f $i  $(typeof(i)) \n"
 
-checkNum(i,3)
+chkN(i,3)
 f +=0.5
 
 i = Round(f);
@@ -33,7 +33,7 @@ i = Round(f);
 
 <<"%V $f $i  $(typeof(i)) \n"
 
-checkNum(i,4)
+chkN(i,4)
 
 
 
@@ -92,11 +92,11 @@ R= round(F)
 
 <<"%4.2f $R\n"
 
-checkFnum(R[1],0)
-checkFnum(R[2],1)
-checkFnum(R[3],1)
-checkFnum(R[6],2)
+chkR(R[1],0)
+chkR(R[2],1)
+chkR(R[3],1)
+chkR(R[6],2)
 
-checkOut();
+chkOut();
 
 exit()

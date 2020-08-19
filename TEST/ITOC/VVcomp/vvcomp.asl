@@ -34,7 +34,7 @@ debugON();
   FilterFileDebug(REJECT_,"~storetype_e");
   FilterFuncDebug(REJECT_,"~ArraySpecs",);
   
-  CheckIn();
+  chkIn();
 
   V= vgen(INT_,10,0,1)
   T= V;
@@ -47,7 +47,7 @@ R= vvcomp(V,T)
 
 <<"$R\n"
 
-checkFnum(R[2],0)
+chkR(R[2],0)
 
   V +=1
 
@@ -57,13 +57,13 @@ R= vvcomp(V,T)
 
 <<"$R\n"
 
-checkFnum(R[2],2)
+chkR(R[2],2)
 
 R= vvcomp(T,V)
 
 <<"$R\n"
 
-checkFnum(R[2],-2)
+chkR(R[2],-2)
 
 
 
@@ -78,7 +78,7 @@ R= vvcomp(DV,DT)
 
 <<"$R\n"
 
-checkFnum(R[2],0)
+chkR(R[2],0)
 
   DV +=1
 
@@ -88,14 +88,14 @@ R= vvcomp(DV,DT)
 
 <<"$R\n"
 
-checkFnum(R[2],2)
+chkR(R[2],2)
 
 R= vvcomp(DT,DV)
 
 <<"$R\n"
 
-checkFnum(R[2],-2)
+chkR(R[2],-2)
 
 
-checkOut()
+chkOut()
 

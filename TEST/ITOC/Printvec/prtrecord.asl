@@ -1,6 +1,6 @@
 setDebug(1)
 
-checkIn()
+chkIn()
 
 record R[10];
 
@@ -81,10 +81,10 @@ for (ir = 0; ir < Rn; ir++) {
     sz= Caz(s);
     <<"$ir $sz s: $s\n\n"
     if (ir == 0) {
-     checkStr(s[0],"each");
+     chkStr(s[0],"each");
     }
     if (ir == 1) {
-     checkStr(s[0],"and");
+     chkStr(s[0],"and");
     }
     
 <<"%(2,\s->,\,,<-\n)$s\n"
@@ -119,4 +119,4 @@ ir = 3
     
 <<"%(2,\s->,\,,<-\n)$S\n"
 
-checkOut();
+chkOut();

@@ -27,7 +27,7 @@ if (ans @= "q") {
  // should allow redefine  --- TBF
 ////
 
-checkIn()
+chkIn()
 
  str sA;
 
@@ -179,47 +179,47 @@ res = 46
  res->info(1);
 <<"cart(sA) returned $res $(pt(res))\n"
 
-if (!checkNum(res,16)) 
+if (!chkN(res,16)) 
 ASK
 
 res=cart(sB);
  res->info(1);
 <<"cart(sA) returned $res $(pt(res))\n"
-if (!checkNum(res,16))
+if (!chkN(res,16))
 ASK
 
 
  res=cart(sC);
  res->info(1);
 <<"cart(sA) returned $res $(pt(res))\n"
-if (!checkNum(res,16))
+if (!chkN(res,16))
 ASK
 
 
  res=cart(sD);
  res->info(1);
 <<"cart(sA) returned $res $(pt(res))\n"
-if (!checkNum(res,16))
+if (!chkN(res,16))
 
 ASK
 
  res=cart(sD,sE);
  res->info(1);
 <<"cart(s,s) returned $res $(pt(res))\n"
-if (!checkNum(res,80))
+if (!chkN(res,80))
 
 ASK
 
  res=cart(sE);
  res->info(1);
 <<"cart(sA) returned $res $(pt(res))\n"
-if (!checkNum(res,16))
+if (!chkN(res,16))
  ASK
 
 res=cart(sA,sE);
  res->info(1);
 <<"cart(s,s) returned $res $(pt(res))\n"
-if (!checkNum(res,80))
+if (!chkN(res,80))
    ASK
 
 
@@ -227,13 +227,13 @@ if (!checkNum(res,80))
  res=cart("aidemoi");
  res->info(1);
 <<"cart(\"aidemoi\") returned $res $(pt(res))\n"
-if (!checkNum(res,16))
+if (!chkN(res,16))
 ASK
 exit()
  res=cart("74");
  res->info(1);
 <<"cart(sA) returned $res $(pt(res))\n"
-if (!checkNum(res,16))
+if (!chkN(res,16))
 ASK
 
 
@@ -242,7 +242,7 @@ ASK
 res=horse(sA,sB);
 res->info(1);
 <<"1 horse(sA,sB) returned $res $(pt(res))\n"
-if (!checkNum(res,40))
+if (!chkN(res,40))
 
 ASK
 
@@ -251,7 +251,7 @@ res=horse(sA,sB);
 res->info(1);
 <<"2 horse(s,s) returned $res $(pt(res))\n"
 
-if (!checkNum(res,40))
+if (!chkN(res,40))
 
 ASK
 
@@ -260,14 +260,14 @@ ASK
 res=horse(sC,sE);
 res->info(1);
 <<"2 horse(s,s) returned $res $(pt(res))\n"
-if (!checkNum(res,40))
+if (!chkN(res,40))
 ASK
 
 
 res=horse(sC,1);
 res->info(1);
 <<"2 horse(sB,i) returned $res $(pt(res))\n"
-if (!checkNum(res,40))
+if (!chkN(res,40))
 ASK
 
 
@@ -275,7 +275,7 @@ ASK
 
 res= cart(sA,sB);
 <<"cart(sA,sB) returned $res $(pt(res))\n"
-if (!checkNum(res,80))
+if (!chkN(res,80))
 ASK
 
 
@@ -289,12 +289,12 @@ ASK
 
 res =cart(sA,7);
 <<"cart(sA,7) returned $res $(pt(res))\n"
-if (!checkNum(res,80))
+if (!chkN(res,80))
 ASK
 
 res  =horse (sA, 74)
 <<"3 horse(sA,sB) returned $res $(pt(res))\n"
-if (!checkNum(res,40))
+if (!chkN(res,40))
 <<"%V $gA $gB \n"
 ASK
 
@@ -307,18 +307,18 @@ gA->info(1)
 ASK
   res = cart(gA,gB)
 <<"cart(gA,gB) $gA $gB returned $res $(pt(res))\n"
-if (!checkNum(res,78))
+if (!chkN(res,78))
 ASK
 
 
  //res = cart(k,m)
 //<<"cart(k,m) returned $res $(pt(res))\n"
-//if (!checkNum(res,78)
+//if (!chkN(res,78)
 <<"%V $gA $gB \n"
 
   res = cart(gA,m)
 <<"cart(gA,m) $gA returned $res $(pt(res))\n"
-if (!checkNum(res,78))
+if (!chkN(res,78))
 
 
 
@@ -330,7 +330,7 @@ res = 46
 <<"%V $gA $gB \n"
   res = horse(gA,gB)
 <<"horse(gA,gB) $gA $gB returned $res $(pt(res))\n"
-if (!checkNum(res,77))
+if (!chkN(res,77))
 ASK
 <<"%V $gA $gB \n"
 
@@ -338,6 +338,6 @@ ASK
 gA->info(1)
 gB->info(1)
 
-checkOut()
+chkOut()
 
 exit()

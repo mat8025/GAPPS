@@ -3,7 +3,7 @@
 
 prog= GetScript()
 
-CheckIn()
+chkIn()
 
 #{
 
@@ -224,10 +224,10 @@ checkstr(vnh[8],"ooh8")
 checkstr(vnh[9],"ooh9")
 
    for (i = 3 ; i < 10; i++) {
-     checkStr(vnh[i], "ooh$i");
+     chkStr(vnh[i], "ooh$i");
    }
 
 
-checkOut()
+chkOut()
 
 STOP!

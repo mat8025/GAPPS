@@ -6,7 +6,7 @@
 
 setdebug(0)
 
-checkIn()
+chkIn()
 
 //proc sumarg(int V[], int U[])
 proc sumarg(V,  U)
@@ -70,7 +70,7 @@ X[0] = 79;
 
  <<"\n%V $S \n"
 
-checkNum(S[9],97)
+chkN(S[9],97)
 
 
  T = X[0:5] + Y[1:6]
@@ -82,9 +82,9 @@ X[9] = 69;
 
   S=sumarg(X,Y)
 
-checkNum(S[9],100)
+chkN(S[9],100)
 
-checkOut()
+chkOut()
 
 stop!
 

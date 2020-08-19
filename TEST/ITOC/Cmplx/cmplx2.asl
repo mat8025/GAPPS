@@ -1,5 +1,5 @@
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 dv = vgen(DOUBLE_,10,0,1);  
 <<"$dv\n"

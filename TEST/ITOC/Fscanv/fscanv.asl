@@ -34,7 +34,7 @@ fscanv
 
 include "debug.asl"
 debugON()
-checkIn()
+chkIn()
 
 cmplx x;
 
@@ -47,7 +47,7 @@ x->set(1.2,-3.4)
 <<"$x\n"
 
 
-checkFnum(x->getReal(),1.2)
+chkR(x->getReal(),1.2)
 
 
 IV=vgen(INT_,10,0,1)
@@ -111,19 +111,19 @@ RFV=XV->getReal()
 
 
 for(i=0;i<10;i++) {
-checkNum(RIV[i],i)
+chkN(RIV[i],i)
 }
 
 fv=20.0;
 for(i=0;i<10;i++) {
-checkNum(RFV[i],fv)
+chkN(RFV[i],fv)
 fv +=0.5
 }
 
 
 
 
-checkOut()
+chkOut()
 
 
 

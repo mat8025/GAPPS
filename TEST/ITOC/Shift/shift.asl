@@ -1,23 +1,23 @@
 //setdebug(1)
 
-checkIn()
+chkIn()
 
 I = vgen(INT_,10,0,1)
 
 <<"$I \n"
 
-checkNum(I[0],0)
+chkN(I[0],0)
 
 I->shiftL(I[0])
 
-checkNum(I[0],1)
+chkN(I[0],1)
 
 <<"$I \n"
 
 I->shiftL(I[0])
 
-checkNum(I[0],2)
-checkNum(I[9],1)
+chkN(I[0],2)
+chkN(I[9],1)
 
 <<"$I \n"
 
@@ -41,7 +41,7 @@ D = vgen(DOUBLE,10,0,1)
 
 D->shiftL(10)
 
-checkNum(D[0],1)
+chkN(D[0],1)
 
 
 
@@ -53,21 +53,21 @@ I->shiftR(-1)
 
 <<"$I \n"
 
-checkNum(I[0],-1)
+chkN(I[0],-1)
 
-checkNum(I[9],0)
+chkN(I[9],0)
 
 
 D->shiftR(-47)
 
-checkNum(D[0],-47)
+chkN(D[0],-47)
 
 <<"%6.2f$D \n"
 
 D->shiftR(79)
 
-checkNum(D[0],79)
-checkNum(D[1],-47)
+chkN(D[0],79)
+chkN(D[1],-47)
 
 <<"%6.2f$D \n"
 
@@ -82,8 +82,8 @@ I->shiftR(-79,5)
 
 I->shiftR()
 
-checkNum(I[0],0)
+chkN(I[0],0)
 
 <<"$I \n"
 
-checkOut()
+chkOut()

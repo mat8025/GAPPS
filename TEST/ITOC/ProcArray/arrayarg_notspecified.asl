@@ -27,7 +27,7 @@ civ= atoi(cov)
 <<"%V $cov $civ\n"
 }
 
-checkIn(civ)
+chkIn(civ)
 
 
 
@@ -86,9 +86,9 @@ Y = foo(Z,3)  // FIXED -------- Y is now created correctly with the return vecto
 
 <<"after proc $Z\n"
 
-checkNum(Z[1],47);
+chkN(Z[1],47);
 
-checkNum(Z[6],28);
+chkN(Z[6],28);
 
 if ((Z[1] == 47)  && (Z[6] == 28)) {
 
@@ -106,8 +106,8 @@ else {
 <<"return vec $Y\n"
 
 
-checkNum(Y[1],47)
-checkNum(Y[6],28)
+chkN(Y[1],47)
+chkN(Y[6],28)
 
 if ((Y[1] == 47)  && (Y[6] == 28)) {
 
@@ -128,7 +128,7 @@ else {
 Y= foo(&W[2],4)  // TBD FIX it does not compute the offset - so proc operates on the third element in
 
 
-checkOut()
+chkOut()
 
 
 

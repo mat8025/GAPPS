@@ -1,5 +1,5 @@
 
-CheckIn()
+chkIn()
 
 I = vgen(INT_,30,0,1)
 
@@ -18,7 +18,7 @@ cele = I[(a + b)]
 
 <<"%V $cele \n"
 
-CheckNum(cele,5)
+chkN(cele,5)
 
 int ci = I[(a+b)]
 
@@ -44,8 +44,8 @@ s = S[(a+b)]
 <<"  s is element of S \n"
 
 <<"%V $(a+b) $s \n "
-CheckNum(s,9)
+chkN(s,9)
 
- CheckOut()
+ chkOut()
 
 stop!

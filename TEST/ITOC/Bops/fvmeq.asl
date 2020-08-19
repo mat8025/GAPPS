@@ -1,7 +1,7 @@
 
 setdebug(1);
 
-checkin()
+chkIn()
 
 
 na = argc()
@@ -18,8 +18,8 @@ F =vgen(FLOAT_,10,0,1)
 <<"%V $F \n"
 
 
-CheckFNum(F[1],1.0,6)
-CheckFNum(F[9],9.0,6)
+chkR(F[1],1.0,6)
+chkR(F[9],9.0,6)
 
 <<" vec -= 1.5 \n"
 
@@ -27,31 +27,31 @@ CheckFNum(F[9],9.0,6)
 
 <<"%V $F \n"
 
-CheckFNum(F[1],-0.5,6)
-CheckFNum(F[9],7.5,6)
+chkR(F[1],-0.5,6)
+chkR(F[9],7.5,6)
 
  F += 1.5
 
 <<"%V $F \n"
 
-CheckFNum(F[1],1.0,6)
-CheckFNum(F[9],9.0,6)
+chkR(F[1],1.0,6)
+chkR(F[9],9.0,6)
 
 
  F *= 2.0
 
 <<"%V $F \n"
 
-CheckFNum(F[1],2.0,6)
-CheckFNum(F[9],18.0,6)
+chkR(F[1],2.0,6)
+chkR(F[9],18.0,6)
 
  F /= 2.0
 
 <<"%V $F \n"
 
-CheckFNum(F[1],1.0,6)
-CheckFNum(F[9],9.0,6)
+chkR(F[1],1.0,6)
+chkR(F[9],9.0,6)
 
 
-CheckOut()
+chkOut()
 

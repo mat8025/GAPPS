@@ -2,7 +2,7 @@
 setdebug(1)
 
 //  issue shell command
-CheckIn()
+chkIn()
 
 //E=!!"./pan_type"
 //<<"$E\n"
@@ -16,7 +16,7 @@ vs = "a str"
 
 
 vs = "command"
-checkStr(vs,"command")
+chkStr(vs,"command")
 
 
 
@@ -70,14 +70,14 @@ vs = "AAA_COMMAND"
  }
 
 
-checkStr(ws,"AAA_COMMAND")
+chkStr(ws,"AAA_COMMAND")
 
-CheckStr(wd[0],"AAA_COMMAND")
+chkStr(wd[0],"AAA_COMMAND")
 
 
-checkStr(ws,vs)
+chkStr(ws,vs)
 
-CheckStr(ws,vs)
+chkStr(ws,vs)
 
 
 chdir("Base")
@@ -109,6 +109,6 @@ CE=!!"date"
 
 updir()
 
-CheckOut()
+chkOut()
 
 ;

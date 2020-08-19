@@ -5,7 +5,7 @@ setdebug(1,"pline","trace")
 #define ASK ans=iread();
 
 
-checkIn();
+chkIn();
 
 proc foo(k)
 {
@@ -26,7 +26,7 @@ Y= foo(m)
 
 <<"Y: $Y\n"
 
-checkNum(Y,(m*13))
+chkN(Y,(m*13))
 
-checkOut();
+chkOut();
 exit()

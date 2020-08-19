@@ -19,7 +19,7 @@ if (_dblevel >0) {
    debugON()
 }
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 
 
@@ -35,15 +35,15 @@ proc doo(int a,int b)
 
   t=doo(3,4)
 <<"$t\n"
-  checkNum(t,7);
+  chkN(t,7);
   
   t=doo(7,8)
 <<"$t\n"
-checkNum(t,15);
+chkN(t,15);
 
   t=doo(27,35)
 <<"$t\n"
-checkNum(t,62);
+chkN(t,62);
 
 
 
@@ -127,9 +127,9 @@ Y = voo(Z)  // FIXED -------- Y is now created correctly with the return vector
 
 <<"Y:: $Y\n"
 
-checkNum(Z[0],36);
+chkN(Z[0],36);
 
-checkNum(Z[6],28);
+chkN(Z[6],28);
 
 
 //Y= foo(&Z[2],4)  // TBD FIX it does not compute the offset - so proc operates on the third element in
@@ -138,9 +138,9 @@ checkNum(Z[6],28);
 
 
 
-checkNum(Y[1],47)
+chkN(Y[1],47)
 
-checkNum(Y[6],28)
+chkN(Y[6],28)
 
 
 W = vgen(INT_,10,0,-1)
@@ -177,7 +177,7 @@ T= zoo(pv)
 
 
 
-checkOut()
+chkOut()
 
 
 

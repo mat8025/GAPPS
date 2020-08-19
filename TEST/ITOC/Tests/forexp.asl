@@ -14,7 +14,7 @@
 include "debug.asl"
 debugON()
 
-checkIn()
+chkIn()
 
 prog = GetScript()
 
@@ -77,8 +77,8 @@ int cnt = 0
     cnt = k
   }
 
-   CheckNum(k,N+1)
-   CheckNum(cnt,N)
+   chkN(k,N+1)
+   chkN(cnt,N)
 <<" DONE %V $k  $N  \n"
 
 
@@ -97,7 +97,7 @@ int cnt = 0
 
 <<" DONE %V $j  $(N-1)  \n"
 
-  CheckNum(j,N)
+  chkN(j,N)
 
 //  for ( j = 1; j <= (N-1); j++)
   for ( j = 1; j <= N-1; j++)
@@ -114,13 +114,13 @@ int cnt = 0
 
 <<" DONE %V $j  $(N-1)  \n"
 
-  CheckNum(j,N)
+  chkN(j,N)
 
 
 
 
 <<" $cnt == $N ?? \n"
-   CheckNum(cnt,N-1)
+   chkN(cnt,N-1)
 
 
  b = cnt * tt
@@ -128,13 +128,13 @@ int cnt = 0
 <<"%i $a ? ==  %i $b \n"
 
 
-   CheckNum(a, b)
+   chkN(a, b)
 
 
-   CheckNum(a, (cnt * tt))
+   chkN(a, (cnt * tt))
 
 
-   CheckOut()
+   chkOut()
 
 
 

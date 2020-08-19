@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
 
-CheckIn()
+chkIn()
 
 setdebug(0)
 
@@ -19,8 +19,8 @@ setdebug(0)
 
 <<"$PFIV \n"
 
-CheckNum(PFIV[0],0)
-CheckNum(PFIV[9],9)
+chkN(PFIV[0],0)
+chkN(PFIV[9],9)
 
 
 
@@ -30,7 +30,7 @@ CheckNum(PFIV[9],9)
 
 
 
-CheckNum(PFIV[0],2)
+chkN(PFIV[0],2)
 
 
 
@@ -38,7 +38,7 @@ CheckNum(PFIV[0],2)
 
 <<" $PFIV[::] \n"
 
-CheckNum(PFIV[0],5)
+chkN(PFIV[0],5)
 
 
 PFIV[3] = 4
@@ -56,7 +56,7 @@ PFIV[3] = -3
  PFIV *= 2
 
 <<" $PFIV[::] \n"
-CheckNum(PFIV[0],10)
+chkN(PFIV[0],10)
 
 
 
@@ -64,12 +64,12 @@ CheckNum(PFIV[0],10)
  PFIV = PFIV * 2
 
 <<" $PFIV \n"
-CheckNum(PFIV[0],20)
+chkN(PFIV[0],20)
 
  PFIV /= 4
 
 <<" $PFIV \n"
-CheckNum(PFIV[0],5)
+chkN(PFIV[0],5)
 
 
 
@@ -119,37 +119,37 @@ int sum
 <<"  %V$sum = $J[1] + $J[2]   \n"
 
 
-CheckNum(sum,26)
+chkN(sum,26)
 
   sum = J[2] + J[1] 
 
 <<"  %V$sum = $J[2] + $J[1]   \n"
 
-CheckNum(sum,26)
+chkN(sum,26)
 
   sum = J[1] + J[2] + J[3] 
 
 <<"  %V$sum = $J[1] + $J[2] + $J[3]  \n"
 
-CheckNum(sum,42)
+chkN(sum,42)
 
   sum = J[3] + J[2] + J[1] 
 
 <<"  %V$sum = $J[3] + $J[2] + $J[1]  \n"
 
-CheckNum(sum,42)
+chkN(sum,42)
 
   sum = J[1] + J[2] + J[3] + J[4]
 
 <<"  %V$sum = $J[1] + $J[2] + $J[3] + $J[4] \n"
 
-CheckNum(sum,60)
+chkN(sum,60)
 
   sum = J[2] + J[1] + J[4] + J[3]
 
 <<"  %V$sum = $J[2] + $J[1] + $J[4] + $J[3] \n"
 
-CheckNum(sum,60)
+chkN(sum,60)
 
 int k = 11
 
@@ -158,18 +158,18 @@ int k = 11
 
 <<"  %V$sum = $J[2] + $J[1] + $k + $J[4] + $J[3] \n"
 
-CheckNum(sum,71)
+chkN(sum,71)
 
   sum = k + J[2] + J[1]  + J[4] + J[3]
 
-CheckNum(sum,71)
+chkN(sum,71)
 
   sum = J[2] + J[1]  + J[4] + J[3] + k
 
 
-CheckNum(sum,71)
+chkN(sum,71)
 
 
-CheckOut()
+chkOut()
 
 

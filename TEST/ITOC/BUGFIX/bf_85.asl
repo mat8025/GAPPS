@@ -10,7 +10,7 @@ filterfiledebug(ALLOWALL_,"proc_","args_","scope_","class_","hop_");
 
 setdebug(1,@~pline,@trace,@keep)
 /// break bug??
-checkIn()
+chkIn()
 proc foo()
 {
   k= 0;
@@ -29,7 +29,7 @@ while (1) {
    if (m > 10) break;
   }
     <<"%V$j $k break proc-while-if-if\n"
-    checkNum(k,7)
+    chkN(k,7)
 }
 //=======================
 
@@ -42,7 +42,7 @@ while (1) {
     }
 <<"%V $k\n"
   }
- checkNum(k,6)
+ chkN(k,6)
 <<"%V$k break while-if\n"
 //iread(" break OK?")
 
@@ -75,9 +75,9 @@ while (1) {
  }
 
 <<"%V$j $k  $m break while-if-if \n"
- checkNum(k,6)
+ chkN(k,6)
 <<"%V$k \n"
 
 //foo();
 
-checkOut()
+chkOut()

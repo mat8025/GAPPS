@@ -5,7 +5,7 @@
 
 setDebug(1,"pline","~step")
 
-checkIn()
+chkIn()
 
 I= vgen(INT_,10,0,1)
 
@@ -15,7 +15,7 @@ I= vgen(INT_,10,0,1)
 med = median(I)
 
 <<"%V$med\n"
-checkNum(med,4.5)
+chkN(med,4.5)
 
 s= Sum(I)
 
@@ -40,7 +40,7 @@ med = median(J)
 
 <<"%V$med\n"
 
-checkNum(med,5)
+chkN(med,5)
 
 int K[] = {3, 5, 7, 12, 13, 14, 21, 23, 23, 23, 23, 29, 40, 56} 
 
@@ -50,7 +50,7 @@ med = median(K)
 
 <<"%V$med\n"
 
-checkNum(med,22)
+chkN(med,22)
 
 
 s = Sum(K);
@@ -63,7 +63,7 @@ sz = Caz(s)
 
 //ans = iread();
 
-checkNum(s[0],292)
+chkN(s[0],292)
 
 //ird!
 
@@ -113,4 +113,4 @@ V=median(T)
 <<"$(Cab(V))\n"
 
 
-checkOut()
+chkOut()

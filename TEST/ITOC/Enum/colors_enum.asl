@@ -11,11 +11,16 @@
 //*
 //***********************************************%
 
-/{/*
 
-/}*/
 
- ci (_dblevel)
+include "debug"
+
+if (_dblevel >0) {
+   debugON()
+}
+
+
+ chkIn(_dblevel)
 
 
 
@@ -23,6 +28,7 @@
 int gold = 79
 
 <<"%V $gold \n"
+
 
 <<"type $(typeof(gold))  sz $(Caz(gold)) \n";
 
@@ -59,7 +65,6 @@ enum colors  {   // all the colors
               MERCURY_COL = (2*35+10)            
 };
 
-
 red = RED_COL
 violet = VIOLET_COL
 
@@ -81,7 +86,7 @@ sz= Caz(colors);
 
 <<"$sz  $colors[0] $colors[1] \n"
 
-exit()
+
 
 
 if (sz < 100) {
@@ -103,17 +108,17 @@ violet = VIOLET_COL
 
 
 
-CheckNum(2,RED_COL)
-CheckNum(79,GOLD_COL)
-CheckNum(GOLD_COL,79)
-CheckNum(PLATINUM_COL,78)
+chkN(2,RED_COL)
+chkN(79,GOLD_COL)
+chkN(GOLD_COL,79)
+chkN(PLATINUM_COL,78)
 
-CheckNum(SILVER_COL,47)
-CheckNum(MERCURY_COL,80)
+chkN(SILVER_COL,47)
+chkN(MERCURY_COL,80)
 
 <<"  $(MERCURY_COL)\n"
 
-CheckNum(violet,7)
+chkN(violet,7)
 
 enum drinks {
    TEA,
@@ -139,7 +144,7 @@ proc foo()
 yt = BEER
 <<"%V $yt should be $(BEER)\n"
 <<" $(TEA), $(COFFEE), $(MILK), $(BEER) \n"
-CheckNum(yt,3)
+chkN(yt,3)
 }
 
 proc goo()
@@ -147,7 +152,7 @@ proc goo()
 yt = COFFEE
 <<"%V $yt \n"
 <<" $(TEA), $(COFFEE), $(MILK), $(BEER) \n"
-CheckNum(yt,1)
+chkN(yt,1)
 }
 
 foo()
@@ -155,7 +160,7 @@ foo()
 goo()
 
 
-CheckNum(3,BEER)
+chkN(3,BEER)
 
-CheckOut()
+chkOut()
 

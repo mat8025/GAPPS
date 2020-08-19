@@ -4,7 +4,7 @@
 
 //setdebug(1,"trace");
 
-checkIn()
+chkIn()
 f= Sqrt(81.0)
 
 <<"$f $(typeof(f))\n"
@@ -17,6 +17,6 @@ f= Cbrt(81.0)
 f= Cbrt(125.0)
 
 <<"$f $(typeof(f))\n"
-checkFnum(f,5.0)
+chkR(f,5.0)
 
-checkOut()
+chkOut()

@@ -23,7 +23,7 @@ if n less than zero the tails are compared for n elements.
 /}
 
 
-checkIn()
+chkIn()
 
 //xic(0)
 
@@ -42,19 +42,19 @@ int J[5] = { 1,2,-3,8,9}
 
 <<"$K\n"
 
-checkNum(K[0],3)
-checkNum(K[1],4)
+chkN(K[0],3)
+chkN(K[1],4)
 
        K = Cmp(I,J,"<",1)
 
-checkNum(K[0],0)
-checkNum(K[3],1)
+chkN(K[0],0)
+chkN(K[3],1)
 
 <<"$K\n"
 
        K = Cmp(I,J,"==",1)
 
 <<"$K\n"
-checkNum(K[0],1)
+chkN(K[0],1)
 
-checkOut()
+chkOut()

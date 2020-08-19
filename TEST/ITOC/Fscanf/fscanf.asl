@@ -18,7 +18,7 @@ include "debug.asl"
 
 debugON();
 
-checkIn();
+chkIn();
 A=ofw("txt.dat")
 
 <<[A]"1 2 3 3.142 -6.123 -123456789 123456789\n"
@@ -56,19 +56,19 @@ l->info(1)
 ul->info(1)
 
 
-checkNum(c,1)
+chkN(c,1)
 
-checkNum(i,2)
+chkN(i,2)
 
-checkNum(s,3)
+chkN(s,3)
 
 
-checkFnum(f,3.142)
+chkR(f,3.142)
 
-checkFnum(d,-6.123)
+chkR(d,-6.123)
 
-checkNum(l,-123456789)
+chkN(l,-123456789)
 
-checkNum(ul,123456789)
+chkN(ul,123456789)
 
-checkOut()
+chkOut()

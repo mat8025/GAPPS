@@ -1,6 +1,6 @@
-CheckIn()
+chkIn()
 
- CheckIn()
+ chkIn()
 
 uint p = 65119 
 
@@ -68,8 +68,8 @@ uint i
 
 <<"\nHey Baby $p is prime !!\n"
 
-  CheckNum(is_prime,1)
-  CheckOut()
+  chkN(is_prime,1)
+  chkOut()
 
 stop!
 

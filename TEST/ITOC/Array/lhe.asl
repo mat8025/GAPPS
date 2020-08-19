@@ -16,9 +16,9 @@
 
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
-// _dblevel == 1 stop - interact on fail else run until exit -- report status on checkout
+// _dblevel == 1 stop - interact on fail else run until exit -- report status on chkOut
 
 
 
@@ -35,7 +35,7 @@ Data = vgen(INT_,10,-5,1)
 //query()
 Data->info(1)
 
-checkNum(Data[1],-4)
+chkN(Data[1],-4)
 
 
 H= vgen(INT_,10,0,1)
@@ -45,7 +45,7 @@ M= vgen(INT_,10,0,1)
 
 Data[3] = 36
 <<"$Data \n"
-checkNum(Data[3],36)
+chkN(Data[3],36)
 
 Data->info(1)
 
@@ -57,7 +57,7 @@ Data[i] = 80
 
 
 Data->info(1)
-checkNum(Data[i],80)
+chkN(Data[i],80)
 
 H[8] = 76;
 H[9] = 77;
@@ -86,7 +86,7 @@ Data[H[4]] = H[M[8]]
 
 Data->info(1)
 
-checkNum(Data[1],47)
+chkN(Data[1],47)
 <<"$Data[1] $Data[2] \n"
 d= 47
 e= Data[1]
@@ -98,20 +98,20 @@ Arglist=testargs(Data[1],e,d)
 Data->info(1)
 <<"%d $Data \n"
 
-checkNum(Data[2],65)
+chkN(Data[2],65)
 
-checkNum(Data[3],77)
+chkN(Data[3],77)
 
-checkNum(Data[4],76)
+chkN(Data[4],76)
 
 Data[H[4]] = H[8]
 <<"%V $M[8]\n"
 
 <<"$Data \n"
 
-checkNum(Data[4],76)
+chkN(Data[4],76)
 
-checkOut()
+chkOut()
 int k = 0
 
 
@@ -125,15 +125,15 @@ Data[1] = 47
 
 <<"$Data[1] \n"
 
-checkNum(Data[1],47)
+chkN(Data[1],47)
 
 k = 2
 Data[k] = 79
 
 <<"$Data[2] $Data[k]\n"
 
-checkNum(Data[2],79)
-checkNum(Data[k],79)
+chkN(Data[2],79)
+chkN(Data[k],79)
 
 
 
@@ -154,7 +154,7 @@ Data[j] = 26;
 
 
 
-checkNum(Data[4],26)
+chkN(Data[4],26)
      Data[1] = k
      Data[2] = Data[1]
 Data->info(1)
@@ -169,7 +169,7 @@ Data->info(1)
 <<"$Data \n"
 <<"%V$Data[2]  $k $i\n"
 
-checkNum(Data[2],k)
+chkN(Data[2],k)
 
 
  m = 7
@@ -185,8 +185,8 @@ b = 67
      Data[2] = Data[1];
 
 <<"%V $Data[1] $Data[2] $k $i\n"
-     checkNum(Data[1],k)
-     checkNum(Data[2],k)
+     chkN(Data[1],k)
+     chkN(Data[2],k)
 
 
   while (1) {
@@ -200,8 +200,8 @@ b = 67
 
 <<"%V $Data[1] $Data[2] $k $i\n"
 //ans =iread()
-     checkNum(Data[1],k)
-     checkNum(Data[2],k)
+     chkN(Data[1],k)
+     chkN(Data[2],k)
 
 
 <<"$Data \n"
@@ -216,4 +216,4 @@ b = 67
   }
 
 
-checkOut()
+chkOut()

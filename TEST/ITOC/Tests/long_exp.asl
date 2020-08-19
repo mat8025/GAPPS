@@ -24,7 +24,7 @@ yardwrk = 0
 wex = 0;
 
 
-checkIn()
+chkIn()
 
   exer_burn =   (walk * w_rate + hike * h_rate + run * run_rate + cycle * c_rate)
 <<"%V $exer_burn \n"
@@ -66,7 +66,7 @@ hike = 20;
 
   exer_burn +=	 (swim * swim_rate + yardwrk * yard_rate + wex * wex_rate)
 
-checkFnum(exer_burn,ans)
+chkR(exer_burn,ans)
 <<"%V $exer_burn \n"
 
 
@@ -75,13 +75,13 @@ checkFnum(exer_burn,ans)
 
 
 <<"%V $exer_burn \n"
-checkFnum(exer_burn,ans)
+chkR(exer_burn,ans)
 
  exer_burn =   walk * w_rate + hike * h_rate + run * run_rate + cycle * c_rate + swim * swim_rate + yardwrk * yard_rate + wex * wex_rate;
 
 
 <<"%V $exer_burn \n"
-checkFnum(exer_burn,ans)
+chkR(exer_burn,ans)
 
  exer_burn =   (walk * w_rate + hike * h_rate + run * run_rate + cycle * c_rate \
                         + swim * swim_rate + yardwrk * yard_rate + wex * wex_rate)
@@ -89,7 +89,7 @@ checkFnum(exer_burn,ans)
 
 <<"%V $exer_burn \n"
 
-checkFnum(exer_burn,ans)
+chkR(exer_burn,ans)
 
  exer_burn =   walk * w_rate; 
    exer_burn += hike * h_rate
@@ -101,8 +101,8 @@ checkFnum(exer_burn,ans)
 
 <<"%V $exer_burn \n"
 
-checkFnum(exer_burn,ans)
+chkR(exer_burn,ans)
 
 
 
-checkOut()
+chkOut()

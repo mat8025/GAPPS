@@ -2,7 +2,7 @@
 //  BUG:  foo(); not parsed??
 //
 
-checkIn()
+chkIn()
 cmplx twf;
 
 // twf= {23,56};
@@ -22,8 +22,8 @@ tr = twf->getReal()
 ti = twf->getImag()
 
 
-checkFnum(80,tr)
-checkFnum(45,ti)
+chkR(80,tr)
+chkR(45,ti)
 
-checkOut()
+chkOut()
 ////

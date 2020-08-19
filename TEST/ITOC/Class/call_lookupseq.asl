@@ -31,7 +31,7 @@ filterfiledebug(ALLOWALL_,"proc_","args_","scope_","class_");
 
 setdebug(1,@pline,@trace)
 
-checkin(0)
+chkIn(0)
 
 
 
@@ -216,4 +216,4 @@ checkRnum(r5,r6,2)
 
 }
 
-checkOut()
+chkOut()

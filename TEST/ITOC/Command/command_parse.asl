@@ -2,7 +2,7 @@
 
 //setdebug(1,"trace")
 
-checkin()
+chkIn()
 
 str pt_file;
 pt_file="tran.pt"
@@ -23,10 +23,10 @@ words = Split(foo)
 
 <<"%(1,,,\n)$words\n"
 
-checkStr(words[0],"ceppt")
-checkStr(words[25],"tran.ph")
-checkStr(words[27],"tran.spp")
+chkStr(words[0],"ceppt")
+chkStr(words[25],"tran.ph")
+chkStr(words[27],"tran.spp")
 <<"$words[25]\n"
-checkOut()
+chkOut()
 
 exit()

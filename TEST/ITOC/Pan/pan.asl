@@ -18,7 +18,7 @@ setap(50);    // set precision to 100? decimal places
 // FIX pan N  = GetArgN()
 
 
-checkIn(_dblevel);
+chkIn(_dblevel);
 
 
 x = 2.1234567
@@ -35,28 +35,28 @@ pan a = 1.0/c;
 
 pan_prec = 1;
 
-checkFNum(N,x,pan_prec);
+chkR(N,x,pan_prec);
 
 <<" $N $x\n"
 
 
-checkFNum(M,4.0,3);
+chkR(M,4.0,3);
 
 
  Q= N +M ;
 
 <<"%V%p$Q\n"
 
- //checkNum(Q,6.0);
+ //chkN(Q,6.0);
 
  Q= N * M ;
 
 <<"%V%p$Q\n"
 
 <<"$Q  $N $M \n"
-//checkFNum(Q,8.0);
+//chkR(Q,8.0);
 
-checkFNum(Q,(x*4.0),pan_prec);
+chkR(Q,(x*4.0),pan_prec);
 
 <<"$Q  $(x*4.0) \n"
 
@@ -105,11 +105,11 @@ r = qp/np
 <<"%V$R\n"
 <<"%V$M\n"
 
-//checkFNum(R,M,pan_prec);
+//chkR(R,M,pan_prec);
  r= fround(R,1);
 
 <<"%V$r\n"
-checkFNum(r,M,2);
+chkR(r,M,2);
 
 //query()
 <<"%V$M\n"
@@ -126,33 +126,33 @@ checkFNum(r,M,2);
 
  k = 3;
 <<"$k\n" 
- checkFNum(k,3)
+ chkR(k,3)
  k= k +1;
 <<"$k\n" 
- checkFNum(k,4)
+ chkR(k,4)
  k++;
 <<"$k\n" 
- checkFNum(k,5)
+ chkR(k,5)
 
 
 <<"%V $pan_prec \n"
 <<"%V $M \n"
 
 
- checkFNum(M,6.0,pan_prec);
+ chkR(M,6.0,pan_prec);
 
  M--;
 
 <<"%V $M \n"
 
- checkFNum(M,5.0,pan_prec);
+ chkR(M,5.0,pan_prec);
 
 
   M = M + 4.9
 
 <<"%V $M \n"
 
- checkFNum(M,9.9,pan_prec);
+ chkR(M,9.9,pan_prec);
 
 pan P = 2.1
 
@@ -160,9 +160,9 @@ pan P = 2.1
 
 <<"%V $M \n"
 
-checkFNum(M,12.0,pan_prec);
+chkR(M,12.0,pan_prec);
 
- checkOut()
+ chkOut()
 
 exit()
 

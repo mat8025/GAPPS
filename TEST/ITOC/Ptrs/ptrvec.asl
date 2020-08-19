@@ -65,7 +65,7 @@ rsz= Caz(R)
 }
 
 
-checkIn(0)
+chkIn(0)
 
 sz = 15
 
@@ -80,7 +80,7 @@ xsz= Caz(XV)
 
 <<"%V$XV\n"
 
-checkNum(XV[2],2)
+chkN(XV[2],2)
 
 
 x = vgen(INT_,sz,0,1)   //   PASS
@@ -90,7 +90,7 @@ xsz= Caz(x)
 <<"%V$xsz $x\n"
   
 <<"%V$x \n"
-checkNum(x[1],1)
+chkN(x[1],1)
 
 y= vgen(INT_,sz,sz,1)
 
@@ -136,12 +136,12 @@ fvec(c,x,y,sz);
 <<"%V $c\n"
 
 
-checkNum(c[0],sz)
+chkN(c[0],sz)
 val = sz-1 + 2*sz-1;
 <<"%V $val\n"
-checkNum(c[sz-1],val)
+chkN(c[sz-1],val)
 
-checkOut()
+chkOut()
 
 /{
 // TBF

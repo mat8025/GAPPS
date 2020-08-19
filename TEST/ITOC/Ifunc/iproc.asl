@@ -2,7 +2,7 @@
 ///
 ///
 
- ci (_dblevel)
+ chkIn (_dblevel)
  
 just_once = 0;
 LD_libs = 0;
@@ -132,7 +132,7 @@ cbname = "zoo"
   <<"%V $(typeof(frs))  $frs\n"
 <<"@exit %V $just_once should be 1\n"
 
-cn (just_once,1)
+chkN (just_once,1)
 cs (frs,"5")
 
 

@@ -1,4 +1,4 @@
-checkIn()
+chkIn()
 
 
 N = 24
@@ -14,7 +14,7 @@ ok =0
 <<" <= op not working! %V$k\n"
   }
 
-CheckNum(1,ok)
+chkN(1,ok)
 
 ok = 0
 k = 25
@@ -29,7 +29,7 @@ k = 25
   }
 
 
-CheckNum(1,ok)
+chkN(1,ok)
 
 
-checkOut()
+chkOut()

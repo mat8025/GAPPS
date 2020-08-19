@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
   
-CheckIn(_dblevel)
+chkIn(_dblevel)
 
 
 
@@ -103,7 +103,7 @@ ret = 0
 <<" in case 7 $kc\n"
 
         }
-       CheckNum((kc-1),wc) // no ;
+       chkN((kc-1),wc) // no ;
 
       ret = 7;
       }
@@ -214,56 +214,56 @@ D = 0
 
     rc =testSW(1)
 
-    CheckNum(rc,1)
+    chkN(rc,1)
 
     rc =testSW(79)
 
-    CheckNum(rc,1234567)
+    chkN(rc,1234567)
 
 
 
     rc =testSW(3)
 
-    CheckNum(rc,3)
+    chkN(rc,3)
 
     rc =testSW(4)
 
-    CheckNum(rc,4)
+    chkN(rc,4)
 
     rc =testSW(5)
 
-    CheckNum(rc,6)
+    chkN(rc,6)
 
     rc =testSW(6)
 
-    CheckNum(rc,6)
+    chkN(rc,6)
 
     rc =testSW(79)
 
     rc =testSW(80)
 <<"%V$rc\n"
 
-    CheckNum(rc,1234567)
+    chkN(rc,1234567)
 
     rc =testSW(3)
 
-    CheckNum(rc,3)
+    chkN(rc,3)
 
     rc =testSW(7)
 
-    CheckNum(rc,7)
+    chkN(rc,7)
 
     rc =testSW(8)
 
-    CheckNum(rc,8)
+    chkN(rc,8)
 
     rc =testSW(-1)
 
-    CheckNum(rc,-1)
+    chkN(rc,-1)
 
     rc =testSW(0)
 
-    CheckNum(rc,0)
+    chkN(rc,0)
 
 //======================================//
 
@@ -391,7 +391,7 @@ char ca = ':';
 
 <<"%V$rn\n"
 
-  pf=checkNum(rn,':');
+  pf=chkN(rn,':');
 
 
 
@@ -399,7 +399,7 @@ char ca = ':';
 
 <<"%V$rn\n"
 
-  pf=checkNum(rn,':');
+  pf=chkN(rn,':');
 
 <<"%V$rn $pf\n"
 
@@ -408,7 +408,7 @@ char ca = ':';
 
 <<"%V$rn\n"
 
-  pf=checkNum(rn,':');
+  pf=chkN(rn,':');
 
 <<"%V$rn $pf\n"
 
@@ -432,7 +432,7 @@ ci = 'a';
 
 <<"%V$rn\n"
 
-  checkNum(rn,'a');
+  chkN(rn,'a');
 
 
 
@@ -440,7 +440,7 @@ ci = 'a';
 
 <<"%V$rn\n"
 
-  checkNum(rn,'a');
+  chkN(rn,'a');
 
 
 
@@ -448,7 +448,7 @@ ci = 'a';
 
 
 
-  pf=checkNum('a',rn);
+  pf=chkN('a',rn);
 
 <<"%V$rn $pf\n"
 
@@ -456,7 +456,7 @@ ci = 'a';
 
 
 
-  if (!CheckNum('a',rn)) {
+  if (!chkN('a',rn)) {
 <<"Fail 1\n"
   }
 
@@ -489,7 +489,7 @@ ci = 'a';
 
 
 
- if (!CheckNum('b',rn)) {
+ if (!chkN('b',rn)) {
 <<"FAIL  $(checkTests()) \n"
  }
 
@@ -519,11 +519,11 @@ ci = 'a';
 
 
 // FIXME
-// CheckNum('\t',rn)
+// chkN('\t',rn)
 
 
 /{
-   oc = CheckNum(9,rn)
+   oc = chkN(9,rn)
 <<"%V$oc \n"
 
    if ( !oc ) {
@@ -532,13 +532,13 @@ ci = 'a';
 /}
 
 
-   if (!CheckNum(9,rn)) {
+   if (!chkN(9,rn)) {
 <<"%V$rn \n"
 <<"FAIL  %2.0f$(checkTests()) \n"
 
    }
 
-//  CheckNum(9,8)
+//  chkN(9,8)
 
   c= ';'
 
@@ -556,6 +556,6 @@ ci = 'a';
 
 
 
-CheckOut()
+chkOut()
 
 

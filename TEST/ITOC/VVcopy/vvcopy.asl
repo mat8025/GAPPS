@@ -14,7 +14,7 @@ returns number of values copied into array B.
 
 /}*/
 
-checkIn()
+chkIn()
 
 N= 10;
 
@@ -25,14 +25,14 @@ A = B;
 <<"B: $B\n"
 
 A = 0;
-checkNum(A[3],0)
+chkN(A[3],0)
 <<"A: should be 0 $A\n"
 A = B
-checkNum(A[3],3)
+chkN(A[3],3)
 A[0:-1:] = 0;
 
 <<"A: should be 0 $A\n"
-checkNum(A[3],0)
+chkN(A[3],0)
 A[3]=79
 B[3]=47
 <<"A: $A\n"
@@ -46,9 +46,9 @@ nc=vvcopy(A,B,n);
 R=vvcomp(A,B,n);
 <<"vvcomp %V$R\n"
 
-checkNum(A[3],47)
+chkN(A[3],47)
 
-checkOut()
+chkOut()
 
 
 

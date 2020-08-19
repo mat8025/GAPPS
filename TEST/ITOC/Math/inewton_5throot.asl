@@ -1,7 +1,7 @@
 OpenDll("math")
 // test iteration
 
-CheckIn()
+chkIn()
 
 double x
 double y
@@ -67,9 +67,9 @@ float m = 1.0/5.0
  <<" $x 5th root is $r   $(r*r*r*r*r)\n"
 
 
- CheckFNum(rans,r,3)
+ chkR(rans,r,3)
 
- CheckOut()
+ chkOut()
 
 STOP!
 

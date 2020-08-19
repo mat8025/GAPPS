@@ -18,7 +18,7 @@ include "debug.asl";
    setdebug (1, @pline, @~step, @~trace,) ;
    
    
-   checkIn(); 
+   chkIn(); 
    
    
    IV= vgen(INT_,10,0,1); 

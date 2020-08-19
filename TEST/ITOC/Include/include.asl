@@ -16,7 +16,7 @@
    
    <<"does nested includes\n"; 
    
-   checkIn(_dblevel); 
+   chkIn(_dblevel); 
    
    ws = getScript(); 
    
@@ -36,15 +36,15 @@
    <<" after include\n"; 
    
    
-   checkin();
+   chkIn();
    
    <<"main sees globals %V $A $X $Y $Z\n"; 
    
    
-   checkFnum(A,1); 
-   checkFnum(X,1.2345); 
-   checkFnum(Y,2.2345); 
-   checkFnum(Z,3.2345); 
+   chkR(A,1); 
+   chkR(X,1.2345); 
+   chkR(Y,2.2345); 
+   chkR(Z,3.2345); 
    
    s=Foo(38,33);
 
@@ -82,7 +82,7 @@
    dd= Doo(4,5); 
    <<"$dd\n"; 
    
-   checkout(); 
+   chkOut(); 
    
 
    

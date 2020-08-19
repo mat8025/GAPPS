@@ -6,7 +6,7 @@ setdebug(1,"pline","~step")
 
 //float X[] = vgen(FLOAT_,10,0,1);  // fails
 
-checkIn()
+chkIn()
 
  Y = vgen(FLOAT_,10,0,1);
 
@@ -16,7 +16,7 @@ checkIn()
 
 <<"$Y\n"
 
-checkNum(Y[2],4)
+chkN(Y[2],4)
 
 <<"$Y[2] == 4\n"
 
@@ -27,7 +27,7 @@ Y[2:8:2] *= 3;
 
 <<"$Y[2] == 12\n"
 
-checkNum(Y[2],12)
+chkN(Y[2],12)
 
 
 // BUG XIC -  array shifted left to index 1
@@ -39,7 +39,7 @@ Z= Y;
 
      <<"$Y\n"
 
-checkNum(Y[2],36)
+chkN(Y[2],36)
 
 
 
@@ -53,9 +53,9 @@ checkNum(Y[2],36)
 
 <<"Z %6.1f$Z\n"
 
-checkNum(Z[2],36)
+chkN(Z[2],36)
 
 
-checkOut()
+chkOut()
 
 exit()

@@ -12,18 +12,18 @@
 ///
 setdebug(1,@keep)
 
-checkIn()
+chkIn()
 
  I = vgen(INT_,20,0,1);
 
 <<"$I \n"
 
- checkNum(I[19],19)
+ chkN(I[19],19)
  J = vreverse(I)
 
 <<"$J \n"
- checkNum(J[0],19)
-  checkNum(J[19],0)
+ chkN(J[0],19)
+  chkN(J[19],0)
 
  M = redimn(J,4,5);
 <<"\n"
@@ -39,4 +39,4 @@ checkIn()
 <<"flipcols\n"
 <<"$T \n"
 
-checkOut()
+chkOut()

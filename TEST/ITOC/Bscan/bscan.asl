@@ -18,7 +18,7 @@ include "debug.asl"
 debugON()
 SetDebug(1,@~trace,@keep,@pline)
 
-CheckIn()
+chkIn()
 
 uchar C[] = { 0xCA , 0xFE, 0xBA, 0xBE, 0xFA, 0xCE, 0xBE, 0xAD , 0xDE,0xAD, 0xC0, 0xDE }
 
@@ -26,8 +26,8 @@ uchar C[] = { 0xCA , 0xFE, 0xBA, 0xBE, 0xFA, 0xCE, 0xBE, 0xAD , 0xDE,0xAD, 0xC0,
 
  <<"$C[1] \n"
 
-  checkNum(C[1],0xFE)
-  checkNum(C[1],254)
+  chkN(C[1],0xFE)
+  chkN(C[1],254)
 
 
  val = C[1];
@@ -76,7 +76,7 @@ else {
 
 <<"%x $k $j \n"
 
-CheckNum(na,8)
+chkN(na,8)
 // depends on endian
 
 uint t1 = 12345;
@@ -89,7 +89,7 @@ uint t = 0xfabebafe
 
 <<"%x $t \n"
 <<"%x $k \n"
-CheckNum(k,t)
+chkN(k,t)
 
  na = bscan(&C[2],swab,&k,&j)
 
@@ -97,7 +97,7 @@ CheckNum(k,t)
 
 <<"%x $k $j \n"
 t = 0xbabeface
-CheckNum(k,t)
+chkN(k,t)
 
 index = 3
 
@@ -106,7 +106,7 @@ index = 3
 <<"%V $na $k $j \n"
 <<"%x $k $j \n"
 t = 0xbefacebe
-CheckNum(k,t)
+chkN(k,t)
 
 
  na = bscan(&C[index+1],swab,&k,&j)
@@ -117,7 +117,7 @@ t = 0xfacebead
 
 
 
-CheckNum(k,t)
+chkN(k,t)
 
  na = bscan(&C[index*2],swab,&k,&j)
 
@@ -125,7 +125,7 @@ CheckNum(k,t)
 <<"%x $k $j \n"
 t = 0xbeaddead
 
-CheckNum(k,t)
+chkN(k,t)
 
 uint k1
 uint j1
@@ -137,7 +137,7 @@ uint j1
 
 
 
-CheckOut()
+chkOut()
 
 exit()
 
@@ -174,18 +174,18 @@ n = 2
 
 
 <<"%I $s1   $g \n"
-CheckStr(s1,"baby")
+chkStr(s1,"baby")
 
-CheckStr(g,"hey")
-
-<<"%I $s1   $g \n"
-
-CheckStr(s1,"baby")
+chkStr(g,"hey")
 
 <<"%I $s1   $g \n"
 
+chkStr(s1,"baby")
 
-CheckOut()
+<<"%I $s1   $g \n"
+
+
+chkOut()
 
 
 

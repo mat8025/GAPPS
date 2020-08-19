@@ -13,7 +13,7 @@
   
 
 
-ci (_dblevel)
+chkIn (_dblevel)
 
  int HT[10][10]
 
@@ -86,7 +86,7 @@ sz=Caz(CT)
 
 <<"%v $sz\n"
 
-cn (sz,56)
+chkN (sz,56)
 
 
 bnds= Cab(CT)
@@ -95,19 +95,19 @@ bnds= Cab(CT)
 
 val = CT[0][0]
 
-cn (val,10)
+chkN (val,10)
 j = 21;
 
 for (k=1; k<=7;k++) {
  val = CT[k][0]
 
- checkFNum(val,j)
+ chkR(val,j)
  j += 10;
  <<"%V $k $val\n"
 }
  val = CT[2][0]
 
-checkFNum(val,31)
+chkR(val,31)
 
 
 
@@ -120,8 +120,8 @@ T= R[2:8]
 <<"$T\n"
 <<"T $(Caz(T)) $(Cab(T)) \n"
 
-cn (R[1],1)
-cn (T[0],2)
+chkN (R[1],1)
+chkN (T[0],2)
 
 
 
@@ -151,4 +151,4 @@ jt = 0
 
 //<<" %6.3f$HT[jt][1:8:] "
 
-co ()
+chkOut ()

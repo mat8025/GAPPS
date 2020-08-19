@@ -13,16 +13,23 @@
 
 include "debug"
 
-debugON()
+if (_dblevel >0) {
+   debugON()
+}
 
-checkIn(_dblevel)
+
+chkIn(_dblevel)
 
 
 int k = 0 ;
-int j = 4;  <<" %I $k $j \n"
+int j = 4;
 
-checkNum(k,0) ;
-checkNum(j,4)
+<<" %I $k $j \n"
+
+chkN(k,0) ;
+
+
+chkN(j,4)
 
   N = 6;
    <<" default $N \n"
@@ -43,7 +50,7 @@ checkNum(j,4)
 
 
  <<" k++  < $N  b4 loop\n"
-exit()
+
   i= 0
 
   do {
@@ -57,8 +64,8 @@ exit()
 
 <<"out of loop %V $i $k $N \n"
 
- checkNum(i,N) ;
- checkNum(k,N) ;
+ chkN(i,N) ;
+ chkN(k,N) ;
 
  i = N
  k = 0
@@ -73,8 +80,8 @@ exit()
 
 <<"out of loop %V$i $k $N \n"
 
-   checkNum(k,N) ;
-   checkNum(i,0) 
+   chkN(k,N) ;
+   chkN(i,0) 
 
   i = 0
 <<"  do - do loop at least once \n"
@@ -88,8 +95,8 @@ exit()
 
 <<"out of loop %V$i $k $N \n"
 
-   checkNum(k,N+1); 
-   checkNum(i,1) 
+   chkN(k,N+1); 
+   chkN(i,1) 
 
 
 k = 0
@@ -109,8 +116,8 @@ k = 0
 
 <<" out of loop $i $k $N \n"
 
- checkNum(i,N) ;
- checkNum(k,N) ;
+ chkN(i,N) ;
+ chkN(k,N) ;
 
 
 
@@ -147,8 +154,8 @@ k = 0
 
 
 
-checkNum(k,N) ;
-checkNum(j,(2*N-1)) ;
+chkN(k,N) ;
+chkN(j,(2*N-1)) ;
       
 
  i = 0
@@ -166,19 +173,8 @@ checkNum(j,(2*N-1)) ;
 
 <<"out of loop %V$i $k $N \n"
 
-   checkNum(k,N)
+   chkN(k,N)
 
-   checkOut()
-
-
+   chkOut()
 
 
-///////////////////////////////
-
-
-  checkOut()
-
-
-
-
-///////////////////////////////

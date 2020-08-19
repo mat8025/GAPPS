@@ -1,11 +1,18 @@
 
+nclude "debug"
 
-checkIn()
+if (_dblevel >0) {
+   debugON()
+}
+
+chkIn(_dblevel);
+
+
 
 //setdebug(1)
  v = 2^(1.0/12)
 
- CheckFnum(v,1.059463)
+ chkR(v,1.059463)
 
 <<"$v\n"
 
@@ -18,7 +25,7 @@ checkIn()
 
 <<"$v\n"
 
- CheckFnum(v,2)
+ chkR(v,2)
 
  v = 2^^(12.000001/12);
 
@@ -43,4 +50,4 @@ checkIn()
 
 <<"$v\n"
 
-checkOut()
+chkOut()

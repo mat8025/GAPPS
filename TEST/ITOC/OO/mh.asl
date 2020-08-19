@@ -1,6 +1,6 @@
 # test  multiple inheritance
 
-CheckIn()
+chkIn()
 
 class building {
 
@@ -159,10 +159,10 @@ class C : A : B {
 
   v = c->getval()
 
-  CheckNum(c->y,56)
-  CheckNum(v,77)
+  chkN(c->y,56)
+  chkN(v,77)
 
-   CheckOut()
+   chkOut()
 
 //STOP("DONE!\n")
 

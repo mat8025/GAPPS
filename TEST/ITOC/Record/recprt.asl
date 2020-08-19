@@ -13,7 +13,7 @@
 myScript = getScript();
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 record R[5];
 
@@ -38,7 +38,7 @@ R->info(1)
 <<"$wrow $wcol  $val <|$wrd|>\n"
 
 
-checkStr(wrd,"devil")
+chkStr(wrd,"devil")
 
 
 
@@ -72,14 +72,14 @@ wrd= "$R[wrow][wcol]";
 R->info(1)
 <<"%V$wrow $wcol  $wrd\n"
 
-checkStr(wrd,"devil")
+chkStr(wrd,"devil")
 
 wrow = 3;
 wcol = 4;
 
 wrd= "$R[wrow][wcol]";
 
-checkStr(wrd,"record")
+chkStr(wrd,"record")
 
 
 
@@ -113,4 +113,4 @@ checkStr(wrd,"record")
 
 
 
-checkOut()
+chkOut()

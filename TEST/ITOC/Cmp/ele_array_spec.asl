@@ -4,7 +4,7 @@
 
 
 
-checkIn()
+chkIn()
 int bounds[5];
 int nb = 3;
 
@@ -97,11 +97,11 @@ M2=eletoarrayspec(V2,3,3,5,4)
 
 <<"\n$M2\n"
 
-checkNum(M2[5][0],2)
-checkNum(M2[5][1],4)
-checkNum(M2[5][2],3)
-checkNum(M2[6][0],-1)
-checkNum(M2[7][0],-1)
+chkN(M2[5][0],2)
+chkN(M2[5][1],4)
+chkN(M2[5][2],3)
+chkN(M2[6][0],-1)
+chkN(M2[7][0],-1)
 
 
-checkOut()
+chkOut()

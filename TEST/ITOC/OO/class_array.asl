@@ -13,7 +13,7 @@
   
 
 
-ci (_dblevel); 
+chkIn (_dblevel); 
 
 
 uint OC = 1;  // object counter
@@ -158,7 +158,7 @@ Dil D;
 <<"%V $E->IV[9] \n"
 
 
- cn (E->IV[9],93);
+ chkN (E->IV[9],93);
 
 
   D->Set(8,47)
@@ -173,9 +173,9 @@ Dil D;
 
   D->showIV()
 
-cn (D->IV[2],79);
+chkN (D->IV[2],79);
 
-co ()
+chkOut ()
 
   E->showIV()
 
@@ -193,14 +193,14 @@ co ()
 
   D->showIV()
 
-  cn (D->IV[8],47)
+  chkN (D->IV[8],47)
 
   val = D->IV[8]
 
 <<"%V $val\n"
 
 
-co ()
+chkOut ()
 
 
 

@@ -19,7 +19,7 @@ debugON();
 
 setdebug (1, @pline, @~step, @~trace, @soe) ;
 
-checkIn()
+chkIn()
 
 
 str C = "mat.vox"
@@ -35,24 +35,24 @@ p = regex(C,"vox")
 
 <<"$p \n"
 
-checkNum(p[0],4)
+chkN(p[0],4)
 
 p = regex(D,"pcm")
 
-checkNum(p[0],6)
+chkN(p[0],6)
 
 //p = regex(D,'pcm\|vox')
 p = regex(D,'pcm|vox|phn')
 <<"$p \n"
-checkNum(p[0],6)
+chkN(p[0],6)
 
 p = regex(E,'pcm|vox|phn')
 <<"$p \n"
-checkNum(p[0],6)
+chkN(p[0],6)
 
 p = regex(F,'pcm|vox|phn')
 <<"$p \n"
-checkNum(p[0],6)
+chkN(p[0],6)
 
 
 
@@ -70,13 +70,13 @@ for ( i =0; i< 3; i++) {
 p = regex(S[i],'DBPR ?+')
 
 <<"$p\n"
-checkNum(p[0],0)
+chkN(p[0],0)
 }
 
 p = regex(S[3],"DBPR *\t*\\(")
 
 <<"$p\n"
-checkNum(p[0],-1)
+chkN(p[0],-1)
 
 
 <<"//////////////////////\n"
@@ -99,7 +99,7 @@ R= 'Highlighting regular expression matches in EditPad Pro. As a quick test, cop
 <<"b4 txtbox \n"
 <<"after txtbox \n"
 
-checkOut(); 
+chkOut(); 
 
 
 

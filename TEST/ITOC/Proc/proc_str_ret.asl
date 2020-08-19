@@ -12,12 +12,12 @@ proc say()
 
 //setDebug(1,"trace","keep","~stderr")
 
-checkIn()
+chkIn()
 ws = say()
 
 
 <<"$ws $(typeof(ws))\n"
 
-checkStr(ws,"hey hey");
+chkStr(ws,"hey hey");
 
-checkOut();
+chkOut();

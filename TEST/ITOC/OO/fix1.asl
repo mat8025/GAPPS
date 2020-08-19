@@ -3,7 +3,7 @@
 ///
 
 
-checkIn(_dblevel); 
+chkIn(_dblevel); 
   
   Nhouses = 0;
 
@@ -23,5 +23,5 @@ float F = 127.0;
 
 <<"%V $vid\n"
 
-checkNum(Nhouses,0)
-checkOut()
+chkN(Nhouses,0)
+chkOut()

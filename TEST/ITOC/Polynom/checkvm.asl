@@ -10,7 +10,7 @@ proc Wrong()
 }
 ////////////////////////
 
- checkIn(_dblevel)
+ chkIn(_dblevel)
 
  x = vgen(DOUBLE_,5,0,1)
 
@@ -22,7 +22,7 @@ proc Wrong()
 
 <<"%V$y \n"
 
- checkNum(y[1], 1)
+ chkN(y[1], 1)
 
 
 <<"%V$x\n"
@@ -31,9 +31,9 @@ proc Wrong()
 
 <<"%V$y\n"
 
- checkNum(y[1], 2)
+ chkN(y[1], 2)
 
-co ()
+chkOut ()
  a = 2
 
 <<"%V$x\n"
@@ -41,14 +41,14 @@ co ()
 
 <<"%V$y\n"
 
- if (checkNum(y[1], 3)) {
+ if (chkN(y[1], 3)) {
    <<" correct!\n"  
  }
  else {
    <<" wrong!\n"  
  }
 
- if (checkNum(y[2], 14)) {
+ if (chkN(y[2], 14)) {
    <<" correct!\n"  
  }
 
@@ -58,7 +58,7 @@ co ()
 
 <<"%V$y\n"
 
- if (checkNum(y[1], 4)) {
+ if (chkN(y[1], 4)) {
    <<" correct!\n"  
  }
 
@@ -71,7 +71,7 @@ co ()
 
 <<"%V$y\n"
 
- checkNum(y[2], 34)
+ chkN(y[2], 34)
  
 
 
@@ -84,7 +84,7 @@ co ()
 <<"%V$x\n"
 
 
- checkNum(y[2], 34)
+ chkN(y[2], 34)
 
  c= 3.0
 
@@ -134,7 +134,7 @@ co ()
 
 <<"%V$a $b $c $d \n"
 
- checkFNum(y[2], 50,3)
+ chkR(y[2], 50,3)
 
 
 
@@ -148,7 +148,7 @@ co ()
 
 <<"%V$y\n"
 
- checkNum(y[2], 114)
+ chkN(y[2], 114)
 
 
 <<"%V$x\n"
@@ -159,7 +159,7 @@ co ()
 <<"%V$y\n"
 
 
- checkNum(y[2], 116)
+ chkN(y[2], 116)
 
  C = 7
 
@@ -168,7 +168,7 @@ y = x*a + x*x*b + x*x*x*c +x*x*x*x*d +C
 <<"%V$y\n"
 
 
- checkNum(y[2], 123)
+ chkN(y[2], 123)
 
 
 
@@ -176,4 +176,4 @@ y = x*a + x*x*b + x*x*x*c +x*x*x*x*d +C
 
 
 
- co ()
+ chkOut ()

@@ -16,8 +16,8 @@ I = sgen(INT_,10,v)
 <<"$I\n"
 
 
-checkNum(I[0],2)
-checkNum(I[1],1)
+chkN(I[0],2)
+chkN(I[1],1)
 
 
 int vi[2] = {0,1}
@@ -29,10 +29,10 @@ J = vvgen(INT_,10,vi,vs)
 
 <<"$J\n"
 
-checkNum(J[2],1)
-checkNum(J[3],3)
+chkN(J[2],1)
+chkN(J[3],3)
 
 
-checkOut()
+chkOut()
 
 exit()

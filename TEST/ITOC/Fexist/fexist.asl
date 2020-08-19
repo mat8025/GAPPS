@@ -2,7 +2,7 @@
 /// @vers
 ///
 
-checkIn()
+chkIn()
 
 srcfile = _clarg[1];
 
@@ -20,7 +20,7 @@ if (sz == -1) {
   exit();
 }
 
-checkNum(sz,0,GT_);
+chkN(sz,0,GT_);
 
 for (i = 1; i<=10; i++) {
  ok= fexist(srcfile,i,0);
@@ -40,7 +40,7 @@ ret=fstat(fn,"mode")
 
 ret=fstat(fn,"isreg")
 <<"$fn regular $ret\n"
-checkNum(ret,1);
+chkN(ret,1);
 dret=fstat(fn,"cdate")
 <<"$fn cdate $dret\n"
 
@@ -54,8 +54,8 @@ ret=fstat(fn,"mode")
 
 ret=fstat(fn,"isreg")
 <<"$fn regular $ret\n"
-checkNum(ret,0);
+chkN(ret,0);
 dret=fstat(fn,"cdate")
 <<"$fn cdate $dret\n"
 
-checkOut()
+chkOut()

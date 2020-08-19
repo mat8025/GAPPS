@@ -10,54 +10,54 @@
 //* 
 //***********************************************%
 
-checkin()
+chkIn()
 
 M = vgen(INT_,20,0,1)
 
 <<"$M\n\n"
-checkNum(M[3],3)
+chkN(M[3],3)
 
 M->redimn(5,4)
 
 <<"$M\n"
 sz=Caz(M)
-checkNum(sz,20)
+chkN(sz,20)
 
 <<"%V$sz \n"
 
 bnds=Cab(M)
 
 <<"%V$bnds \n\n"
-checkNum(bnds[0],5)
-checkNum(bnds[1],4)
+chkN(bnds[0],5)
+chkN(bnds[1],4)
 
-checkNum(M[0][0],0)
+chkN(M[0][0],0)
 
 T= mrevrows(M)
 
 <<"$T\n"
 
-checkNum(T[0][0],16)
+chkN(T[0][0],16)
 
 
 S= msortcol(T,2)
 
 <<"$S\n"
 
-checkNum(S[0][0],0)
-checkNum(S[4][0],16)
+chkN(S[0][0],0)
+chkN(S[4][0],16)
 
 R= mrevcols(M)
 
 <<"$R\n"
 
-checkNum(R[0][0],3)
-checkNum(R[0][3],0)
+chkN(R[0][0],3)
+chkN(R[0][3],0)
 
 R= mxrows(M,1,2)
 
-checkNum(R[1][0],8)
-checkNum(R[2][0],4)
+chkN(R[1][0],8)
+chkN(R[2][0],4)
 
 <<"$R\n"
 
@@ -65,8 +65,8 @@ S= msortcol(S,2)
 
 <<"$S\n"
 
-checkNum(S[1][0],4)
-checkNum(S[2][0],8)
+chkN(S[1][0],4)
+chkN(S[2][0],8)
 
 
-checkOut()
+chkOut()

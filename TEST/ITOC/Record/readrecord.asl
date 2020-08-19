@@ -17,7 +17,7 @@ myScript = getScript();
 
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 ftfile = "favfoods.csv"
 
@@ -122,7 +122,7 @@ A=  ofr("favfoods.csv");
 
 
 
-checkTrue((nc >0))
+chkT((nc >0))
 
 int Testpick[5][2];
 
@@ -161,7 +161,7 @@ A=  ofr(ftfile);
 <<"<$i>  $FL \n";
     }
 /}
-checkTrue((nc >0))
+chkT((nc >0))
 
 
 <<"///////////"
@@ -194,4 +194,4 @@ RT[1][0] = RF[1];
 
 
 
-checkOut()
+chkOut()

@@ -1,4 +1,4 @@
-CheckIn()
+chkIn()
 
  YV = Igen(20,21,1)
 

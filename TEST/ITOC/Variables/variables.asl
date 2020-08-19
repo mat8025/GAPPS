@@ -12,7 +12,7 @@
 #define OAL (2,-->,,\n)
 
 setdebug(1,@~step,@~pline)
-checkIn()
+chkIn()
 
 pan p = 1.23456789;
 
@@ -55,10 +55,10 @@ D[3]= atan(1) * 4;
 
 <<"%(1,,,\n)$S\n"
 
-checkStr(S[0],"C, CHAR, 10")
+chkStr(S[0],"C, CHAR, 10")
 
 
-//checkStr(S[6],"p, PAN, 0")
+//chkStr(S[6],"p, PAN, 0")
 
 <<"%(1,,,\n)$S\n"
 
@@ -71,4 +71,4 @@ checkStr(S[0],"C, CHAR, 10")
 
 <<"%(1,,,\n)$T\n"
 
-checkOut()
+chkOut()

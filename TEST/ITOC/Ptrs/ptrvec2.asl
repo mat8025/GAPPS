@@ -16,7 +16,7 @@
    
    sdb(1,@~trace,@pline); 
    
-   checkIn();
+   chkIn();
    
    i = 1;
    
@@ -48,7 +48,7 @@ sdb(1,@trace)
    
    f->info(1);
    
-   checkNum(f,6); 
+   chkN(f,6); 
 
 
    
@@ -58,7 +58,7 @@ sdb(1,@trace)
    
    f->info(1);
    
-   checkNum(f,7); 
+   chkN(f,7); 
    <<"%V $f \n"
 
 
@@ -69,19 +69,19 @@ sdb(1,@trace)
    
    f= z[1];
    <<"%V$f\n"; 
-   checkNum(f,1); 
+   chkN(f,1); 
    
    f= z[2];
    <<"%V$f\n"; 
-   checkNum(f,2); 
+   chkN(f,2); 
    
    f= z[3];
    <<"%V$f\n"; 
-   checkNum(f,55);
+   chkN(f,55);
    i =4
    f= z[i];
    <<"%V$f\n"; 
-   checkNum(f,4); 
+   chkN(f,4); 
    
    
    f= z[12];
@@ -89,7 +89,7 @@ sdb(1,@trace)
    c->info(1); 
    z->info(1); 
    
-   checkNum(f,45); 
+   chkN(f,45); 
    
    i = 12;
    
@@ -98,7 +98,7 @@ sdb(1,@trace)
    z->info(1)
    <<"%V$i $f \n"; 
    
-   checkNum(f,45); 
+   chkN(f,45); 
    
    
    sz=Caz(c);
@@ -124,7 +124,7 @@ sdb(1,@trace)
      fval= z[i];
      
      <<"<$i> $fval \n"; 
-     checkNum(fval,d[i]); 
+     chkN(fval,d[i]); 
      }
 
 checkStage("num vecs - get value")
@@ -140,7 +140,7 @@ sdb(1,@trace)
 z->info(1)
 d->info(1)
 
-   checkNum(d[5],85)
+   chkN(d[5],85)
 
 
     z[12] = 86;
@@ -148,7 +148,7 @@ d->info(1)
 z->info(1)
 d->info(1)
 
-   checkNum(d[12],86)
+   chkN(d[12],86)
 
 DI=d->info()
 <<"$DI \n"
@@ -201,14 +201,14 @@ checkStage("num vecs - set value")
    sval= ps[i];
 
 
-     checkStr(sval,"va")
+     chkStr(sval,"va")
      
    for (i=0;i<sz;i++) {
      
      sval= ps[i];
      
      <<"<$i> $sval \n"; 
-          checkStr(sval,S[i])
+          chkStr(sval,S[i])
      }
    
    <<"\n";
@@ -218,7 +218,7 @@ checkStage("num vecs - set value")
 
      ps[3] = "dancez"
 
-     checkStr(S[3],"dancez")
+     chkStr(S[3],"dancez")
 
 <<"%V $S[3]\n"
 
@@ -240,8 +240,8 @@ checkStage("num vecs - set value")
      ps[5] = "merci"
 
 
-     checkStr(ps[3],"dancez")
-     checkStr(ps[5],"merci")          
+     chkStr(ps[3],"dancez")
+     chkStr(ps[5],"merci")          
 
       sz=Caz(S);
       
@@ -251,19 +251,19 @@ checkStage("num vecs - set value")
      
      <<"<$i> $sval  $S[i]\n";
 
-      checkStr(sval,S[i])
+      chkStr(sval,S[i])
   //   sval->info(1); 
      }
 
-     checkStr(ps[1],"va")
-     checkStr(ps[3],"dancez")     
-     checkStr(S[4],"trop")
-     checkStr(S[5],"merci")     
+     chkStr(ps[1],"va")
+     chkStr(ps[3],"dancez")     
+     chkStr(S[4],"trop")
+     chkStr(S[5],"merci")     
 
 
    checkStage("str vecs - get value")
 
-   checkOut(); 
+   chkOut(); 
    
    exit(); 
    

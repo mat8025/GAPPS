@@ -23,7 +23,7 @@ if (_dblevel >0) {
 }
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 proc sumarg (ptr v, ptr u)
 {
@@ -120,11 +120,11 @@ exit()
 
 
 
-CheckFNum(w,40.0,6)
+chkR(w,40.0,6)
 
-CheckFNum(x,14.3,3)
+chkR(x,14.3,3)
 
-CheckFNum(y,53.4,3)
+chkR(y,53.4,3)
 
 
 
@@ -136,13 +136,13 @@ float y = 26.7;
 
 
 
-CheckFNum(w,40.0,6)
+chkR(w,40.0,6)
 
-CheckFNum(x,14.3,3)
+chkR(x,14.3,3)
 
-CheckFNum(y,53.4,3)
+chkR(y,53.4,3)
 
-co ()
+chkOut ()
 exit()
 
 
@@ -157,15 +157,15 @@ int k = 0;
 
 <<"%V proc returns $k \n"
 
-  CheckNum(n,3)
+  chkN(n,3)
 
-  CheckNum(m,6)
+  chkN(m,6)
 
 <<"%V $k\n"
 
-//  CheckNum(k,5)
+//  chkN(k,5)
 
-   checkNum(5,k);
+   chkN(5,k);
 
 //
 
@@ -176,12 +176,12 @@ int k = 0;
 
 <<"%V $n $m $k \n"
 
-  CheckNum(k,21);
+  chkN(k,21);
 
 
 
-  CheckNum(n,8);
-  CheckNum(m,28);
+  chkN(n,8);
+  chkN(m,28);
 
 
  co()
@@ -191,14 +191,14 @@ int k = 0;
 
  k = sumarg(&n,m)
 
-  CheckNum(n,55)
-  CheckNum(m,49)
-  CheckNum(k,103);
+  chkN(n,55)
+  chkN(m,49)
+  chkN(k,103);
 <<"%V $n $m $k \n"
 
 
 
-checkOut()
+chkOut()
 
 
  n = 79;
@@ -207,9 +207,9 @@ checkOut()
 
 k = sumarg2(n,&m)
 
-  CheckNum(n,79)
-  CheckNum(m,94)
-  CheckNum(k,126);
+  chkN(n,79)
+  chkN(m,94)
+  chkN(k,126);
 <<"%V $n $m $k \n"
 
 
@@ -219,9 +219,9 @@ k = sumarg2(n,&m)
 
 k = sumarg(&n,m)
 
-  CheckNum(n,21)
-  CheckNum(m,28)
-  CheckNum(k,48);
+  chkN(n,21)
+  chkN(m,28)
+  chkN(k,48);
 
 <<"%V $n $m $k \n"
 
@@ -229,7 +229,7 @@ k = sumarg(&n,m)
 
 
 
- CheckOut()
+ chkOut()
 
 
 

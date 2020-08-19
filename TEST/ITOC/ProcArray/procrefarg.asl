@@ -1,5 +1,5 @@
 
-CheckIn()
+chkIn()
 
 proc sumarg ( v, u)
 {
@@ -34,7 +34,7 @@ int m = 3
 
 <<"%V proc returns $k \n"
 
-  CheckNum(n,3)
+  chkN(n,3)
 
   if (n == 3) {
 <<" correct !\n"
@@ -43,7 +43,7 @@ int m = 3
 <<" badness !\n"
   }
 
-  CheckNum(m,6)
+  chkN(m,6)
 
   if (m == 6) {
 <<" correct !\n"
@@ -52,7 +52,7 @@ int m = 3
 <<" badness !\n"
   }
 
-  CheckNum(k,5)
+  chkN(k,5)
 
   if (k == 5) {
 <<" correct !\n"
@@ -80,7 +80,7 @@ float y = 26.7
  w = sumarg(&x,y)
 <<"%V $x $y $w \n"
 
- CheckFNum(w,40.0,6)
+ chkR(w,40.0,6)
 
  n = 79
  m = 47
@@ -98,7 +98,7 @@ k = sumarg(&n,m)
 
 <<"%V $n $m $k \n"
 
- CheckOut()
+ chkOut()
 
 stop!
 

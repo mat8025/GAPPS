@@ -1,7 +1,7 @@
 
 //     com -- sender ---> receiver
 
-checkIn()
+chkIn()
 
 enum com { 
   READY,
@@ -207,13 +207,13 @@ int k = 0
 
   <<" should be main thread how many threads? $nt \n"
 
- checkNum(sender_cnt,NCNT)
- checkNum(receiver_cnt,NCNT)
+ chkN(sender_cnt,NCNT)
+ chkN(receiver_cnt,NCNT)
 
- checkNum(sender_val, (NCNT * 1000))
- checkNum(receiver_val, (NCNT * 1000))
+ chkN(sender_val, (NCNT * 1000))
+ chkN(receiver_val, (NCNT * 1000))
 
-checkOut()
+chkOut()
 
 
 stop!

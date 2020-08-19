@@ -1,7 +1,7 @@
 
 setdebug(1)
 
-checkIn(1)
+chkIn(1)
 
  x = vgen(INT_,5,0,1)
 
@@ -72,4 +72,4 @@ checkVector(y1,y2)
 
 
 
-CheckOut()
+chkOut()

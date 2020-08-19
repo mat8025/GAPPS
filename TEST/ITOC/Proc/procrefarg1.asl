@@ -7,7 +7,7 @@ filterFuncDebug(ALLOWALL_,"proc","opera_ic");
 filterFileDebug(ALLOWALL_,"ic_","proc");
 
 
-CheckIn(2)
+chkIn(2)
 
 proc refarg (v)
 {
@@ -44,9 +44,9 @@ int pre_m = 3;
 
 <<"%V proc returns $k \n"
 
-  CheckNum(n,3)
+  chkN(n,3)
 
-  CheckNum(k,4)
+  chkN(k,4)
 
   checkStage()
 
@@ -58,9 +58,9 @@ int pre_m = 3;
   
 <<"%V $k $m  \n"
 
-  CheckNum(m,4)
+  chkN(m,4)
 
-  CheckNum(k,(pre_m*2))
+  chkN(k,(pre_m*2))
 
 
   checkStage()
@@ -77,9 +77,9 @@ int pre_m = 3;
 
 <<"%V proc returns $k \n"
 
-  CheckNum(o,5)
+  chkN(o,5)
 
-  CheckNum(k,o*2);
+  chkN(k,o*2);
 
 
   checkStage()
@@ -96,9 +96,9 @@ int pre_m = 3;
 
 <<"%V proc returns $k \n"
 
-  CheckNum(n,5)
+  chkN(n,5)
 
-  CheckNum(k,n*2);
+  chkN(k,n*2);
 
   m = 45;
 
@@ -112,9 +112,9 @@ int pre_m = 3;
 <<"%V $k $m  \n"
 <<"%V proc returns $k \n"
 
-  CheckNum(m,45)
+  chkN(m,45)
 
-  CheckNum(k,m*2);
+  chkN(k,m*2);
 
-  checkOut()
+  chkOut()
 

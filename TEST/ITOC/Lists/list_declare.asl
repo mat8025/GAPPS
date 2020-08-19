@@ -5,7 +5,7 @@ filterFuncDebug(ALLOWALL_,"proc","opera_ic");
 filterFileDebug(ALLOWALL_,"ic_","array_subset");
 
 
-checkIn(1)
+chkIn(1)
 
 str le;
 str le12;
@@ -19,7 +19,7 @@ sz = caz(Mol)
 
 <<"$(typeof(Mol)) size $(caz(Mol)) $sz \n"
 
-checkNum(sz,12)
+chkN(sz,12)
 
 
 <<"first month $Mol[0]\n"
@@ -35,7 +35,7 @@ le4 = Mol[3];
 <<"le4[0] $le4[0] \n"
 
 
-checkStr(le4,"APR")
+chkStr(le4,"APR")
 
 le12 = Mol[11];
 
@@ -45,25 +45,25 @@ le = Mol[0]
 
 <<"$(typeof(le)) %V$le\n"
 
-checkStr(le,"JAN")
+chkStr(le,"JAN")
 
 <<"le checked\n"
 
-checkStr(Mol[0],"JAN")
+chkStr(Mol[0],"JAN")
 
 <<"Mol[0] checked\n"
 
 le = Mol[1]
 
-checkStr(le,"FEB")
+chkStr(le,"FEB")
 
 <<"$(typeof(le)) %V$le\n"
 
-checkStr("FEB",Mol[1])
+chkStr("FEB",Mol[1])
 
 <<"$Mol[1] Mol[1] checked\n"
 
-checkStr(Mol[1],"FEB")
+chkStr(Mol[1],"FEB")
 
 
 

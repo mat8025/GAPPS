@@ -106,7 +106,7 @@ exit()
  }
 
 
-checkTrue((err>0));
+chkT((err>0));
 
 checkNum(err,6)
 

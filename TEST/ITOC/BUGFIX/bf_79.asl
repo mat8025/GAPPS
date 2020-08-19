@@ -31,7 +31,7 @@ proc foo()
 }
 //========================
 
-checkIn()
+chkIn()
 
 
  Y = vgen(FLOAT_,10,0,1);
@@ -43,7 +43,7 @@ checkIn()
 
 <<"$Y\n"
 
-checkNum(Y[2],4)
+chkN(Y[2],4)
 
 
 ASK
@@ -51,32 +51,32 @@ ASK
 
 
 <<"$T\n"
-checkNum(T[2],2)
+chkN(T[2],2)
 ASK
 
 //Y *= T
 
 Y =  Y * T
 
-checkNum(Y[2],8)
+chkN(Y[2],8)
 
 
-checkOut()
+chkOut()
 <<"$Y\n"
 
  foo()
 
-checkNum(Y[2],16)
+chkN(Y[2],16)
 
 <<"$Y\n"
 
  foo()
 
-checkNum(Y[2],32)
+chkN(Y[2],32)
 <<"$Y\n"
 
  Y *= T
-checkNum(Y[2],64)
+chkN(Y[2],64)
 
 <<"$Y\n"
 
@@ -84,9 +84,9 @@ ASK
 
 foo()
 
-checkNum(Y[2],128)
+chkN(Y[2],128)
 
 
 
-checkOut();
+chkOut();
 

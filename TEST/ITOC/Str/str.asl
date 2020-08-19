@@ -15,14 +15,14 @@ myScript = getScript();///
 ///
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 str s = "hi there";
  
 
 <<"%V $s \n"
 
-checkStr(s,"hi there")
+chkStr(s,"hi there")
 
 s= Supper(s,0,1);
 
@@ -77,7 +77,7 @@ for (i= 0; i < len; i++)
 <<"%V %s $R\n"
 
 
-checkOut()
+chkOut()
 
 
 

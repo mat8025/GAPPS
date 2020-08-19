@@ -1,5 +1,5 @@
 
-CheckIn()
+chkIn()
 
 
 w="a"
@@ -19,7 +19,7 @@ B= "A\"B\"C\n"
 
 
 
-checkStr(se,"Happy New Year")
+chkStr(se,"Happy New Year")
 
 <<" a\ssimple\tstring\n %% \n"
 
@@ -48,7 +48,7 @@ scpy(C,"Mark")
 
 <<"m %d$C[0]\n"
 
-checkNum(C[0],'M')
+chkN(C[0],'M')
 
 <<"%d$C\n"
 
@@ -62,16 +62,16 @@ scpy(C,"\tmark\bK\%\b\"EFX\"")
 <<"DQ? %d$C[9] %c$C[9]\n"
 <<"tab %d$C[0]\n"
 
-checkNum(C[0],'\t')  // FIXIT 
+chkN(C[0],'\t')  // FIXIT 
 
-checkNum(C[0],9)
-
-
+chkN(C[0],9)
 
 
-//checkNum(C[9],'\"')
 
-checkNum(C[9],34)
+
+//chkN(C[9],'\"')
+
+chkN(C[9],34)
 
 <<"%d$C\n"
 <<"%c$C\n"
@@ -95,7 +95,7 @@ C=scat("\tmark\bK\%\b\"EFX\"","\tterry\bL\%\b\"AMP\"")
 E=scat("Happy"," Hols")
 <<"%Vs$E\n"
 
-CheckOut()
+chkOut()
 
 
 

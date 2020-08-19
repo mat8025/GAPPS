@@ -3,7 +3,7 @@
 
 // SetDebug(0)
 
-checkIn()
+chkIn()
 
 <<" prior to goo def \n"
 
@@ -19,7 +19,7 @@ for (j = 0; j < N_boxes ; j++) {
         ok =1
      }
 <<"%V$ok \n"
-  checkNum(ok,1)
+  chkN(ok,1)
 }
 //====================================
 <<" prior to foo1 def \n"
@@ -290,7 +290,7 @@ float sum_CB = -1
   <<" now call goo() \n"
   goo()
 
-  checkOut()
+  chkOut()
 
  stop!
 

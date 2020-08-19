@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
   
-  checkIn(_dblevel); 
+  chkIn(_dblevel); 
   
   Nhouses = 0;
 
@@ -92,16 +92,16 @@ proc  checkRooms( int rmchk)
 
    AAr= AA->getrooms() ;
   <<"%V $AAr \n"
-   checkNum(AAr,4);
+   chkN(AAr,4);
 
 
    AAr=AA->setrooms(7) ;
  <<"%V $AAr \n"
-   checkNum(AAr,7);
+   chkN(AAr,7);
 
    AAr= AA->getrooms() ;
   <<"%V $AAr \n"
-   checkNum(AAr,7);
+   chkN(AAr,7);
 
     house AS;
 
@@ -114,14 +114,14 @@ proc  checkRooms( int rmchk)
 
   <<"%V $ASf \n"
 
-  checkNum(ASf,2);
+  chkN(ASf,2);
 
     house BS;
 
    BSr= BS->getrooms() ;
   <<"%V $BSr \n"
 
-checkNum(BSr,4);
+chkN(BSr,4);
 
 
     house CS;
@@ -129,39 +129,39 @@ checkNum(BSr,4);
 
   DSr= DS->getrooms() ;
   <<"%V $DSr \n"
- checkNum(DSr,4); 
+ chkN(DSr,4); 
 
   ASr= AS->getrooms() ;
   <<"%V $ASr \n"
 
- checkNum(ASr,4);
+ chkN(ASr,4);
 
 
    BSr= BS->setrooms(8) ;
   <<"%V $BSr \n"
 
- checkNum(BSr,8); 
+ chkN(BSr,8); 
 
    CSr= CS->setrooms(9) ;
   <<"%V $CSr \n"
 
- checkNum(CSr,9); 
+ chkN(CSr,9); 
 
 CSr= CS->getrooms() ;
   
 <<"%V $CSr \n"
 
- checkNum(CSr,9); 
+ chkN(CSr,9); 
 
    DSr= DS->setrooms(10) ;
   <<"%V $DSr \n"
 
- checkNum(DSr,10); 
+ chkN(DSr,10); 
 
   DSr= DS->getrooms() ;
   <<"%V $DSr \n"
 
- checkNum(DSr,10); 
+ chkN(DSr,10); 
   
 
 //////////////////////////////////////////////////////////////
@@ -179,19 +179,19 @@ CSr= CS->getrooms() ;
 <<"%V $x  should be $res ?\n"
 
 
-  checkNum(x,res); 
+  chkN(x,res); 
 
 
    DSr= DS->getrooms() ;
   <<"%V $DSr \n"
 
-   checkNum(DSr,res); 
+   chkN(DSr,res); 
 
 
    y=DS->setrooms(BS->getrooms() + CS->setrooms(checkRooms(AS->getrooms()))) ;
 
 <<"%V $y  should be $res +1 ?\n"
-   checkNum(y,res+1); 
+   chkN(y,res+1); 
 
 
    ASr= AS->getrooms() ;
@@ -200,14 +200,14 @@ CSr= CS->getrooms() ;
    res2= BS->getrooms() ;
   <<"%V $BSr $res2 \n"
 
-   checkNum(BSr,res2); 
+   chkN(BSr,res2); 
 
    CSr= CS->getrooms() ;
   <<"%V $CSr \n"
-  checkNum(CSr,ASr+1);
+  chkN(CSr,ASr+1);
 
 
 
 
-  checkOut(); 
+  chkOut(); 
 

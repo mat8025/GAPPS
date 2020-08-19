@@ -37,7 +37,7 @@
 include "debug.asl"
 debugON()
 
-checkIn()
+chkIn()
 
 IV=vgen(INT_,20,0,1)
 
@@ -56,7 +56,7 @@ RV=rdata(A,INT_)
 
 <<"$RV\n"
 for (i=0;i<20;i++) {
-checkNum(RV[i],i)
+chkN(RV[i],i)
 }
 cf(A)
 
@@ -69,7 +69,7 @@ FV=rdata(A,INT_)
 
 
 
-checkOut()
+chkOut()
 
 
 

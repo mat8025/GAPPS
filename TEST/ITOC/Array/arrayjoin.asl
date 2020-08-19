@@ -1,4 +1,4 @@
-CheckIn()
+chkIn()
 
 // test array indexing
 
@@ -62,14 +62,14 @@ YV = YV @+ P
 <<" %v $P \n"
 <<" %v $S \n"
 
- CheckNum(NV[1],YV[1])
+ chkN(NV[1],YV[1])
 
- CheckNum(NV[2],YV[2])
+ chkN(NV[2],YV[2])
 
- CheckNum(NV[21],P[1])
+ chkN(NV[21],P[1])
 
 
- CheckOut()
+ chkOut()
 
 
 STOP!

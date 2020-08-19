@@ -20,39 +20,39 @@ filterFileDebug(ALLOWALL_,"yyy");
 
 setDebug(1,@pline)
 
-checkIn()
+chkIn()
 
 int MD[5][10];
 
-checkNum("init Array zero ",MD[0][1],0)
-checkNum("init Array zero ",MD[0][-1],0)
+chkN("init Array zero ",MD[0][1],0)
+chkN("init Array zero ",MD[0][-1],0)
 
 MD[0][1] = 79
 
-checkNum("Set element",MD[0][1],79)
+chkN("Set element",MD[0][1],79)
 
 MD[0][0:8:1] = 79
 
-checkNum("set subset of elements",MD[0][8],79)
+chkN("set subset of elements",MD[0][8],79)
 
 MD[1][::] = 80
 
-checkNum("set default range",MD[1][1],80)
+chkN("set default range",MD[1][1],80)
 
 <<"$MD\n"
 
 MD[0][5:10:1] = 54
 
 
-checkNum("set subset of eles",MD[0][5],54)
+chkN("set subset of eles",MD[0][5],54)
 
 MD[1][3:8:1] = 28
 
-checkNum("set subset of eles",MD[1][6],28)
+chkN("set subset of eles",MD[1][6],28)
 
 MD[1][3:8:] = 27
 
-checkNum("set subset of eles-default step",MD[1][6],27)
+chkN("set subset of eles-default step",MD[1][6],27)
 
 
 <<"$MD\n"
@@ -62,12 +62,12 @@ MD[2:4:1][4:10:1] = 77
 
 <<"$MD\n"
 
-checkNum("set subset of eles",MD[3][6],77)
+chkN("set subset of eles",MD[3][6],77)
 
 
 MD[2:4:1][4:9:] = 78
 
-checkNum("set subset of eles-default stride",MD[3][9],78)
+chkN("set subset of eles-default stride",MD[3][9],78)
 
 
 Record RSV[>3]
@@ -82,7 +82,7 @@ RSV->info()
 <<"$RSV\n"
 
 
-checkOut()
+chkOut()
 
 
 /{/*

@@ -41,7 +41,7 @@ would prune from head of string until required length
 
 
 
-checkin()
+chkIn()
 svar  S = "una larga noche"
 
 <<"%V $S\n"
@@ -99,4 +99,4 @@ checkstr(T[2],"789")
 <<"%(1,,,\n)$T \n"
 
 
-checkout()
+chkOut()

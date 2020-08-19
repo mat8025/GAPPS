@@ -1,6 +1,6 @@
 # test ASL function 
 
-CheckIn()
+chkIn()
 
 setdebug(0)
 
@@ -20,7 +20,7 @@ setdebug(0)
 
   an = periodicNumber("Iron")
 
-CheckNum(an,26)
+chkN(an,26)
 
 <<" Iron is $an \n"
 
@@ -28,27 +28,27 @@ CheckNum(an,26)
   an = periodicNumber(we)
 <<" $we is $an \n"
 
-CheckNum(an,25)
+chkN(an,25)
 
   we = "silver"
   an = periodicNumber(we)
 <<" $we is $an \n"
 
-CheckNum(an,47)
+chkN(an,47)
 
 
   we = "mercury"
   an = periodicNumber(we)
 <<" $we is $an \n"
 
-CheckNum(an,80)
+chkN(an,80)
 
   we = "gold"
   an = periodicNumber(we)
 <<" $we is $an \n"
 
-CheckNum(an,79)
+chkN(an,79)
 
 
-CheckOut()
+chkOut()
 ;

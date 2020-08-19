@@ -1,7 +1,7 @@
 
 // test iteration
 
-CheckIn()
+chkIn()
 
 double x
 double y
@@ -64,9 +64,9 @@ int k = 1
  <<" $x square root is $r   $(r*r)\n"
 
 
- CheckFNum(rans,r,3)
+ chkR(rans,r,3)
 
- CheckOut()
+ chkOut()
 
 STOP!
 

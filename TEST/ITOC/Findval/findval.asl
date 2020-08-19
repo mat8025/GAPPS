@@ -4,7 +4,7 @@
 
 # test ASL function findval
 
-CheckIn()
+chkIn()
 //#define ASK ans=iread();
 #define ASK ;
 
@@ -26,7 +26,7 @@ Csum[4] = 1;
    }
 <<"%V $ivec $le\n"
 
-CheckNum(le,4)
+chkN(le,4)
 
 ASK
 
@@ -38,7 +38,7 @@ ASK
    }
 <<"%V $ivec $le\n"
 
-CheckNum(le,4)
+chkN(le,4)
 
 ASK
 
@@ -68,7 +68,7 @@ fi = found[0]
 <<"%V $fi \n"
 
 
-CheckNum(fi,6)
+chkN(fi,6)
 
 ASK
 found= findval(I,8,si,-1,1,0)
@@ -86,7 +86,7 @@ fi = found[0]
 <<"%V $fi \n"
 
 
-CheckNum(fi,8)
+chkN(fi,8)
 
 
 
@@ -106,7 +106,7 @@ fi = found[0];
 <<"%V $fi \n"
 
 
-CheckNum(fi,6)
+chkN(fi,6)
 
 ASK
 
@@ -115,7 +115,7 @@ ASK
 
 fi = found[0];
 
-CheckNum(fi,7)
+chkN(fi,7)
 
 <<"%V $fi \n"
 
@@ -129,7 +129,7 @@ si = 19;
 
 <<"%V $fi \n"
 
-CheckNum(fi,-1)
+chkN(fi,-1)
 ASK
 si = -1;
    found= I->findval(17,si,0,0)
@@ -137,7 +137,7 @@ si = -1;
    fi = found[0];
 
 <<"%V $fi \n"
-CheckNum(fi,17)
+chkN(fi,17)
 ASK
 
 si = 19;
@@ -146,7 +146,7 @@ si = 19;
 
 
 <<"%V $fi \n"
-CheckNum(fi,17)
+chkN(fi,17)
 ASK
 
 
@@ -163,7 +163,7 @@ sz = Caz(found);
 <<"%V $found  \n"
 
 <<"%V $fi \n"
-CheckNum(fi,17)
+chkN(fi,17)
 ASK
 
 
@@ -186,7 +186,7 @@ fi = found[0];
 
 <<"$found $fi \n"
 
-CheckNum(fi,8)
+chkN(fi,8)
 
    found= F->findval(7,si,-1,1,0)
 
@@ -194,7 +194,7 @@ fi = found[0];
 
 <<"$found $fi \n"
 
-CheckNum(fi,7)
+chkN(fi,7)
 
-CheckOut();
+chkOut();
 exit();

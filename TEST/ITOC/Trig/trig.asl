@@ -13,18 +13,18 @@
 /}*/
 
 
-  checkIn()
+  chkIn()
  x = 0.5;
  y = cosh(x);
  z = (exp(x) + exp(-x))/ 2.0;
 
-  checkFNum(z,y)
+  chkR(z,y)
 <<" cosh($x) = $y   $z\n"
 
  y = sinh(x);
  z = (exp(x) - exp(-x))/ 2.0;
 
-  checkFNum(z,y)
+  chkR(z,y)
 
 <<" sinh($x) = $y   $z\n"
 
@@ -34,7 +34,7 @@
 
 <<" tanh($x) = $y   $z\n"
 
-  checkFNum(z,y);
+  chkR(z,y);
 
   y = sin(x)
 
@@ -42,7 +42,7 @@
 
 <<"%V $x $y $z\n"
 
-  checkFNum(z,x);
+  chkR(z,x);
 
   x = 2.0 * atan(1.0);
 
@@ -52,7 +52,7 @@
 
 <<"sin/asin %V $x $y $z\n"
 
-  checkFNum(z,x);
+  chkR(z,x);
 
   x = 2.0 * atan(1.0);
 
@@ -62,7 +62,7 @@
 
 <<"cos/acos %V $x $y $z\n"
 
-  checkFNum(z,x);
+  chkR(z,x);
 
   x = 2.0 * atan(1.0);
 
@@ -72,17 +72,17 @@
 
 <<"tan/atan %V $x $y $z\n"
 
-  checkFNum(z,x);
+  chkR(z,x);
 
   y = tanh(x)
   z = atanh(y);
 
 <<"tanh/atanh %V $x $y $z\n"
 
-checkFNum(z,x);
+chkR(z,x);
 
 
-  checkOut();
+  chkOut();
   
 
 

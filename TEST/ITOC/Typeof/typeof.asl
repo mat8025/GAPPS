@@ -9,29 +9,29 @@ typeof - returns the type of the variable V as a string FLOAT,INT,...
 
 /}*/
 
-checkIn();
+chkIn();
 int i;
 sz = sizeof(i);
 <<"$(typeof(i)) $(sizeof(i)) \n"
-checkNum(sz,4)
+chkN(sz,4)
 wtype = typeof(i);
 
 <<"%V $wtype \n"
 
-checkStr(wtype,"INT");
+chkStr(wtype,"INT");
 
 float f;
 
 <<"$(typeof(f)) $(sizeof(f))  \n"
 sz = sizeof(f);
 
-checkNum(sz,4)
+chkN(sz,4)
 
 wtype = typeof(f);
 
 <<"%V $wtype \n"
 
-checkStr(wtype,"FLOAT");
+chkStr(wtype,"FLOAT");
 
 pan p = 3.14159;
 
@@ -43,6 +43,6 @@ wtype = typeof(p);
 
 <<"%V $wtype $(sizeof(p))\n"
 
-checkStr(wtype,"PAN");
+chkStr(wtype,"PAN");
 
-checkOut();
+chkOut();

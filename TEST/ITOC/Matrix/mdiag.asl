@@ -22,7 +22,7 @@ include "debug.asl"
 debugON()
 //  diag
 
-CheckIn()
+chkIn()
 
 // print out 2D mat easily ?
 
@@ -63,20 +63,20 @@ nd = cnd(e)
 
    vv = 1.1
 
-   CheckFNum(E[0][0],vv,6)
-   CheckFNum(E[1][1],2.2,6)
-   CheckFNum(E[2][2],3.3,6)
-   CheckFNum(E[3][3],4.4,6)
+   chkR(E[0][0],vv,6)
+   chkR(E[1][1],2.2,6)
+   chkR(E[2][2],3.3,6)
+   chkR(E[3][3],4.4,6)
 
    for(i= 0; i < 4; i++) {
       for (j=0;j<4;j++) {
         if (j != i) {
-        CheckFNum(E[i][j],0.0,6)
+        chkR(E[i][j],0.0,6)
 	}
      }
     }
 
-   CheckOut()
+   chkOut()
 
 exit()
 

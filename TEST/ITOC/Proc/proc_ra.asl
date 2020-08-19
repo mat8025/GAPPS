@@ -1,5 +1,5 @@
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 proc refarg (int v)
 {
@@ -32,7 +32,7 @@ int m = 84;
 
 <<"%V $w  $h \n"
 
-   checkNum(w, (n*2 +1));
+   chkN(w, (n*2 +1));
    
    pre_n = n;
 
@@ -49,18 +49,18 @@ w->info(1)
 
 <<"%V proc modifies? $pre_n !=  $n \n"
 
-  CheckNum(n,5)
+  chkN(n,5)
 
-//checkOut()
+//chkOut()
   pre_m = m;
 
   refarg(m);
 
 <<"%V $m  \n"
   post_m = m;
-  CheckNum(post_m,pre_m)
+  chkN(post_m,pre_m)
 
 <<"%V proc does not modifies arg? $pre_m == $m \n"
 
-checkOut()
+chkOut()
 

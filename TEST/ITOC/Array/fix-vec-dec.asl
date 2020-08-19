@@ -19,7 +19,7 @@
 
 
 
-checkIn(_dblevel) // _dblevel == 1 stop - interact on fail else run until exit -- report status on checkout
+chkIn(_dblevel) // _dblevel == 1 stop - interact on fail else run until exit -- report status on chkOut
 
 
 
@@ -36,13 +36,13 @@ Data = vgen(INT_,10,-5,1)
 
 Data->info(1)
 
-checkNum(Data[1],-4)
+chkN(Data[1],-4)
 
 sz= Caz(Data)
 
 <<"%V$sz \n"
 
-checkNum(sz,10)
+chkN(sz,10)
 
 ////
 int Vec[5];
@@ -62,12 +62,12 @@ sz= Caz(Vec2)
 
 <<"%V$sz \n"
 
-checkNum(sz,10)
+chkN(sz,10)
 
 
 
 
 
-checkOut()
+chkOut()
 
 

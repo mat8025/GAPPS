@@ -18,7 +18,7 @@
   FilterFileDebug(REJECT_,"~storetype_e");
   FilterFuncDebug(REJECT_,"~ArraySpecs",);
   
-CheckIn()
+chkIn()
 
 
 N= 20
@@ -42,7 +42,7 @@ int LHV[N]
      x= RHV[1]
 
 <<"%v$x\n"
-   checkNum(x,1)
+   chkN(x,1)
 
 
 
@@ -54,7 +54,7 @@ int LHV[N]
 <<" %V$LHV[1] \n"
 <<" %V$LHV[2] \n"
 
- CheckNum(LHV[1],1)
+ chkN(LHV[1],1)
 
 
 
@@ -71,7 +71,7 @@ int LHV[N]
 
 
 
- CheckNum(LHV[1],7)
+ chkN(LHV[1],7)
 
 
 <<" $RHV[12:14] \n"
@@ -82,14 +82,14 @@ int LHV[N]
 
 <<" $LHV \n"
 
- CheckNum(LHV[7],13)
+ chkN(LHV[7],13)
 
 
    TSN = RHV[1:5] + RHV[7:11]
 
 <<"%v $TSN \n"
 
- CheckNum(TSN[1],10)
+ chkN(TSN[1],10)
 
 
    TSN = RHV[0:-1:2] + RHV[1:-1:2]
@@ -97,7 +97,7 @@ int LHV[N]
 <<"%v $RHV \n"
 <<"%v $TSN \n"
 
- CheckNum(TSN[1],5)
+ chkN(TSN[1],5)
 
    TSN = RHV[0:-1:] + RHV[1:-1:1]
 
@@ -105,6 +105,6 @@ int LHV[N]
 <<"%v $TSN \n"
 
 
- CheckOut()
+ chkOut()
 
 //======================================//

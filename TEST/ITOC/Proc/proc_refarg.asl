@@ -16,7 +16,7 @@ myScript = getScript();
 /// procrefarg
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 Proc Hoo( int a, int b)
 {
@@ -40,7 +40,7 @@ int m = 3;
 <<"%V $r $n $m\n"
 
 
- checkFnum (r,7)
+ chkR (r,7)
 
   r= Hoo(m,n)
 
@@ -51,8 +51,8 @@ int m = 3;
 
 <<"%V $r $n $m\n"
 
- checkFnum (r,7)
- checkFnum (n,3)
+ chkR (r,7)
+ chkR (n,3)
 
 
 
@@ -60,9 +60,9 @@ int m = 3;
 
 <<"%V $r $n $m\n"
 
- checkFnum (r,8)
- checkFnum (n,3)
- checkFnum (m,4)
+ chkR (r,8)
+ chkR (n,3)
+ chkR (m,4)
 
 
 
@@ -70,12 +70,12 @@ int m = 3;
 
 <<"%V $r $n $m\n"
 
- checkFnum (r,9)
- checkFnum (n,4)
- checkFnum (m,5)
+ chkR (r,9)
+ chkR (n,4)
+ chkR (m,5)
 
 
-checkOut()
+chkOut()
 
 
 ///////////////// TBD //////////////////

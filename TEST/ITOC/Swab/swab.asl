@@ -20,7 +20,7 @@ debugON();
   FilterFileDebug(REJECT_,"~storetype_e");
   FilterFuncDebug(REJECT_,"~ArraySpecs",);
 
-CheckIn()
+chkIn()
 
 uchar C[] = { 0xCA , 0xFE, 0xBA, 0xBE, 0xFA, 0xCE, 0xBE, 0xAD , 0xDE,0xAD, 0xC0, 0xDE };
 
@@ -36,8 +36,8 @@ C->Info(1)
 
 
 
-checkNum(C[0],0xCA)
-checkNum(C[11],0xDE)
+chkN(C[0],0xCA)
+chkN(C[11],0xDE)
 
 
 
@@ -83,9 +83,9 @@ bscan(U,0,&c0,&c1)
 c0->info(1)
 c1->info(1)
 
-checkNum(c0,0xBE)
-checkNum(c1,0xBA)
+chkN(c0,0xBE)
+chkN(c1,0xBA)
 
-checkOut()
+chkOut()
 
 exit()

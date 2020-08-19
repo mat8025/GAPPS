@@ -13,7 +13,7 @@
 myScript = getScript();
 # test  multiple inheritance
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 
 int barns = 2;
@@ -179,11 +179,11 @@ class C : A : B {
 
   v = c->getval()
 
-  checkNum(c->y,56)
+  chkN(c->y,56)
 
-  checkNum(v,77)
+  chkN(v,77)
 
-  checkOut()
+  chkOut()
 
 
 

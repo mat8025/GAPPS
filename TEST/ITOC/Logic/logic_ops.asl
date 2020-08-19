@@ -25,9 +25,14 @@ myScript = getScript();
 y = 1
 <<"%V $y \n"
 
+include "debug"
+
+if (_dblevel >0) {
+   debugON()
+}
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 
  a = 1
@@ -42,7 +47,7 @@ checkIn(_dblevel)
  }
  else {
 
-  checkTrue(1)
+  chkT(1)
   <<"  && is NOT true $a $b \n"
 
  }
@@ -54,14 +59,14 @@ checkIn(_dblevel)
 
  }
  else {
-  checkTrue(1)
+  chkT(1)
   <<"  AND is NOT true $a $b \n"
 
  }
 
 
  if ( a OR_ b) {
-  checkTrue(1)
+  chkT(1)
   <<"  OR is true $a $b \n"
 
  }
@@ -72,7 +77,7 @@ checkIn(_dblevel)
  }
 
  if ( a XOR_ b) {
-  checkTrue(1)
+  chkT(1)
   <<"  XOR is true $a $b \n"
  }
  else {
@@ -82,7 +87,7 @@ checkIn(_dblevel)
  }
 
   if ( a &| b) {
-  checkTrue(1)
+  chkT(1)
   <<"  XOR is true $a $b \n"
  }
  else {
@@ -92,7 +97,7 @@ checkIn(_dblevel)
  }
 
  if ( a NAND_ b) {
-  checkTrue(1)
+  chkT(1)
   <<"  NAND is true $a $b \n"
 
  }
@@ -101,7 +106,7 @@ checkIn(_dblevel)
  }
 
  if ( a |& b) {
-  checkTrue(1)
+  chkT(1)
   <<"  |& NAND is true $a $b \n"
 
  }
@@ -118,7 +123,7 @@ checkIn(_dblevel)
 <<"%V $a $b $c \n"
 
 
-checkOut()
+chkOut()
 
 
 ///  TBD

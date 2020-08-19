@@ -10,9 +10,13 @@
 //*  @Copyright © RootMeanSquare  2010,2019 → 
 //* 
 //***********************************************%
+   include "debug"
+
+  if (_dblevel >0) {
+    debugON()
+   }
    
-   
-   checkIn(_dblevel);
+   chkIn(_dblevel);
 
    i = 1;
    
@@ -44,7 +48,7 @@
    
    f->info(1);
    
-   checkNum(f,6); 
+   chkN(f,6); 
 
 
    
@@ -54,7 +58,7 @@
    
    f->info(1);
    
-   checkNum(f,7); 
+   chkN(f,7); 
    <<"%V $f \n"
    <<"$c \n"
 
@@ -64,26 +68,26 @@
 
    <<"%V$c\n"
    c->info(1)
-   checkNum(c[12],45)
+   chkN(c[12],45)
 
 
    <<"$(Caz(c)) : $c\n"; 
    
    f= z[1];
    <<"%V$f\n"; 
-   checkNum(f,1); 
+   chkN(f,1); 
    
    f= z[2];
    <<"%V$f\n"; 
-   checkNum(f,2); 
+   chkN(f,2); 
    
    f= z[3];
    <<"%V$f\n"; 
-   checkNum(f,55);
+   chkN(f,55);
    i =4
    f= z[i];
    <<"%V$f\n"; 
-   checkNum(f,4); 
+   chkN(f,4); 
 
    <<"%V$z\n"
    <<"%V$c\n"
@@ -93,7 +97,7 @@
    c->info(1); 
    z->info(1); 
    
-   checkNum(f,45); 
+   chkN(f,45); 
 
    i = 12;
    
@@ -102,7 +106,7 @@
    z->info(1)
    <<"%V$i $f \n"; 
    
-   checkNum(f,45); 
+   chkN(f,45); 
    
    
    sz=Caz(c);
@@ -145,11 +149,11 @@
      
      <<"<$i> $fval $d[i]\n"; 
 
-      checkNum(fval,d[i]); 
+      chkN(fval,d[i]); 
      }
 
 checkStage("num vecs - get value")
-checkOut()
+chkOut()
 
 //================================//
 
@@ -160,7 +164,7 @@ checkOut()
 z->info(1)
 d->info(1)
 
-   checkNum(d[5],85)
+   chkN(d[5],85)
 
 
     z[12] = 86;
@@ -168,7 +172,7 @@ d->info(1)
 z->info(1)
 d->info(1)
 
-   checkNum(d[12],86)
+   chkN(d[12],86)
 
 DI=d->info()
 <<"$DI \n"
@@ -180,6 +184,6 @@ DIS= Split(DI)
 
 checkStage("num vecs - set value")
 
-checkOut(); 
+chkOut(); 
 exit()
 ///////////////////////////////////////////////////////////////

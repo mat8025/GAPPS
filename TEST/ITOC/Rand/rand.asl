@@ -92,7 +92,7 @@ returns a vector of n numbers in the range 0 to 1.0  --
 if seed is zero the time function is used as a seed
 /}*/
 
-CheckIn();
+chkIn();
 
 R=Urand(10,7);
 
@@ -134,12 +134,12 @@ float VF[20];
 
 <<"$V\n"
 
-checkNum(VF[0],0,EQU_);
+chkN(VF[0],0,EQU_);
 //ans=iread()
 
 <<"%6.2f$VF[15] %d $(GTE_)\n"
 
-checkNum(VF[15],0.0,GTE_);
+chkN(VF[15],0.0,GTE_);
 
 checkStage("urand")
 
@@ -163,7 +163,7 @@ S = F
 <<"%(10,, ,\n)$S \n"
 
 
-CheckOut()
+chkOut()
 
 exit()
 

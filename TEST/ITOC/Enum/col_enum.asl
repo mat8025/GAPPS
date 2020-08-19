@@ -26,7 +26,7 @@ include "debug.asl";
 
 #define AG 47
 
-CheckIn()
+chkIn()
 
 int gold = 79
 
@@ -44,7 +44,7 @@ int silver = AG ;
 // enum is done on the first pass
 
 
-checkNum(gold,79)
+chkN(gold,79)
 
 
 enum colors  {   // all the colors 
@@ -64,6 +64,6 @@ enum drinks {
     BEER
 };
 
-CheckOut()
+chkOut()
 
 exit()

@@ -29,7 +29,7 @@
      
      }
    
-   checkIn(civ);
+   chkIn(civ);
    
    proc foo(int vec[],k)
    
@@ -84,9 +84,9 @@
      }
    
    
-   checkNum(Z[1],47);
+   chkN(Z[1],47);
    
-   checkNum(Z[6],28);
+   chkN(Z[6],28);
    
    <<"Array Name return vec $Y\n";
    
@@ -119,9 +119,9 @@
    Z->info(1);
    
    
-   checkNum(Z[1],47);
+   chkN(Z[1],47);
    
-   checkNum(Z[8],28);
+   chkN(Z[8],28);
    
    checkStage("&Array");
    !b; 
@@ -156,20 +156,20 @@
      }
    
    
-   checkNum(Z[3],47);
-   checkNum(Z[8],28);
+   chkN(Z[3],47);
+   chkN(Z[8],28);
    
    checkStage("&Array[2]");
    
    <<"return Y vec $Y\n";
 //iread()
-   checkNum(Y2[1],47);
+   chkN(Y2[1],47);
    
-   checkNum(Y2[6],28);
+   chkN(Y2[6],28);
    
    checkStage("ArrayReturn");
    
    
-   checkOut();
+   chkOut();
    
    exit();

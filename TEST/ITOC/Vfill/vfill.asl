@@ -12,14 +12,14 @@ or generate a ramp of values.
 
 /}*/
 
-checkIn()
+chkIn()
 
 N= 100;
 IV = vgen(INT_,N,0,1)
 
 
-checkNum(IV[1],1);
-checkNum(IV[19],19);
+chkN(IV[1],1);
+chkN(IV[19],19);
 
 <<"$IV[0:19]\n"
 
@@ -34,8 +34,8 @@ vfill(FV,6,4,79,-1,1)
 
 <<"%6.1f$FV[0:19]\n"
 
-checkFNum(FV[4],79);
-checkFNum(FV[5],78);
+chkR(FV[4],79);
+chkR(FV[5],78);
 
 
-checkOut()
+chkOut()

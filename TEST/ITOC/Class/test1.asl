@@ -8,7 +8,7 @@ filterfiledebug(ALLOWALL_,"proc_","args_","scope_","class_","hop_");
 
 setdebug(1,@pline,@trace)
 
-checkin()
+chkIn()
 
 
 proc Sin (real a)
@@ -31,5 +31,5 @@ real y;
 checkRnum(my,sin(0.5))
 
 
-checkOut()
+chkOut()
 

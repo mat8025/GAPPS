@@ -21,7 +21,7 @@
   
 
 
-CheckIn()
+chkIn()
 
 // test array indexing
 
@@ -77,14 +77,14 @@ YV = YV @+ P
 <<"%v $sz \n"
 <<" $YV \n"
 
-checkNum(YV[29],79)
+chkN(YV[29],79)
 
- checkNum(NV[1],YV[1])
+ chkN(NV[1],YV[1])
 
- checkNum(NV[2],YV[2])
+ chkN(NV[2],YV[2])
 
 
- CheckOut()
+ chkOut()
 exit()
 
 

@@ -1,6 +1,6 @@
-CheckIn()
+chkIn()
 
-CheckIn()
+chkIn()
 
 
 
@@ -15,7 +15,7 @@ if (stage == 0)
 // foota returns arg values into double array
 dv = foota(1,2)
 <<" $dv \n"
-   CheckNum(dv[0],1)
+   chkN(dv[0],1)
 
 j = 4
 
@@ -34,7 +34,7 @@ int b = 43
 
 <<"%V $z = $a * $b \n"
 
-   CheckNum(z,86)
+   chkN(z,86)
 
 
 if (stage == 2)
@@ -43,7 +43,7 @@ if (stage == 2)
 
  }
 
-   CheckOut()
+   chkOut()
 
 
 STOP!

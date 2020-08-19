@@ -17,9 +17,12 @@
 
 include "debug"
 
-debugON()
+if (_dblevel >0) {
+   debugON()
+}
 
-checkIn(_dblevel)
+
+chkIn(_dblevel)
 
 
 proc Foo(double a)
@@ -95,7 +98,7 @@ y /= 2.0;
 gr=Goo(x)
 <<"$x $gr \n"
 
-checkFnum(gr, (x*2))
+crn(gr, (x*2))
 
 
 
@@ -105,7 +108,7 @@ gr=Goo(x)
 
  <<"%V  $gr $x \n"
 
-checkFnum(gr, (x*2))
+crn(gr, (x*2))
 
 
 
@@ -151,7 +154,7 @@ checkFnum(gr, (x*2))
  t->info(1)
 <<"%V $x $y $t\n"
 
-  checkFnum(t,y,6)
+  crn (t,y,6)
 
 
 
@@ -174,7 +177,7 @@ x = -20.2;
 
 <<"$x $t \n"
 
-  checkFnum(t,y,6)
+  chkR(t,y,6)
 
 
  x = -15.2
@@ -191,7 +194,7 @@ x = -20.2;
 
 <<"$x $t \n"
 
-  checkFnum(t,y,6)
+  crn (t,y,6)
 
  x = -15.2
 
@@ -207,7 +210,7 @@ x = -20.2;
 
 <<"$x $t \n"
 
-  checkFnum(t,y,6)
+  chkR(t,y,6)
 
 
  x = -15.2
@@ -226,7 +229,7 @@ x = -20.2;
 
 <<"$x $t \n"
 
-  checkFnum(t,y,6)
+  crn (t,y,6)
 
 
 
@@ -239,7 +242,7 @@ t = Foo(Cos(x))
 
  <<"$x $t \n"
 
-checkOut()
+chkOut()
 
 
 N = _clargs[1]

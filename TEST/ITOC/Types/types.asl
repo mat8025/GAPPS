@@ -11,24 +11,17 @@
 //* 
 //***********************************************%
 
+myScript = getScript();
 
 
+include "debug"
 
-//%*********************************************** 
-//*  @script double.asl 
-//* 
-//*  @comment test double type 
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                    
-//*  @date Thu Apr  2 16:45:21 2020 
-//*  @cdate Thu Apr  2 16:45:21 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+if (_dblevel >0) {
+   debugON()
+}
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 double DV[10]
 
@@ -36,19 +29,19 @@ DV[2] = 47
 
 <<" $DV \n"
 
-CheckFNum(DV[2],47,6)
+chkR(DV[2],47,6)
 
 double d =3
 
 <<"$(typeof(d)) $d \n"
 
-CheckFNum(d,3)
+chkR(d,3)
 
 DVG = vgen(DOUBLE_,10,0,1)
 
 <<" $DVG \n"
 
-                                                                                                                                CheckFNum(DVG[2],2,6)
+chkR(DVG[2],2,6)
 
 
 checkStage("double")
@@ -73,19 +66,19 @@ FV[2] = 47
 
 <<" $FV \n"
 
-CheckFNum(FV[2],47,6)
+chkR(FV[2],47,6)
 
 float f =3
 
 <<"$(typeof(f)) $f \n"
 
-CheckFNum(f,3)
+chkR(f,3)
 
 FVG = vgen(FLOAT_,10,0,1)
 
 <<" $FVG \n"
 
-CheckFNum(FVG[2],2,6)
+chkR(FVG[2],2,6)
 
 
 checkStage("float")
@@ -124,9 +117,9 @@ CV[5] = 'A';
 <<" $CV[1] \n"
 <<" $CV[2] \n"
 
-checkNum(CV[0],14)
-checkNum(CV[1],15)
-checkNum(CV[2],47)
+chkN(CV[0],14)
+chkN(CV[1],15)
+chkN(CV[2],47)
 
 cv0 = CV[0];
 cv1 = CV[1];
@@ -134,8 +127,8 @@ cv1 = CV[1];
 <<"%V $cv0 $cv1 \n"
 
 
-checkNum(cv0,14)
-checkNum(cv1,15);
+chkN(cv0,14)
+chkN(cv1,15);
 
 char CMD[3][5];
 
@@ -158,9 +151,9 @@ bd = Cab(CMD);
 <<"%V$sz $bd\n";
 cv0 = CMD[0][0];
 
-checkNum(cv0,81);
+chkN(cv0,81);
 
-checkNum(CMD[0][1],82);
+chkN(CMD[0][1],82);
 
 
 <<"CMD[] :\n";
@@ -191,7 +184,7 @@ cv2 = B[2];
 <<"%V$cv2\n";
 
 
-checkNum(B[1],12);
+chkN(B[1],12);
 
 D = CMD[2][1:3:];
 
@@ -200,7 +193,7 @@ D = CMD[2][1:3:];
 
 
 
-checkNum(D[0],6);
+chkN(D[0],6);
 
 <<"\\\\\\ \n";
 
@@ -251,9 +244,9 @@ UV[5] = 'A'
 <<" $UV[2] \n"
 
 
-CheckNum(UV[2],47)
+chkN(UV[2],47)
 
-CheckNum(UV[5],'A')
+chkN(UV[5],'A')
 
 
 
@@ -263,13 +256,13 @@ uchar us =3
 
 <<"$(typeof(us)) $us \n"
 <<"$us = 3 \n"
-CheckNum(us,3)
+chkN(us,3)
 
 UVG = vgen(CHAR_,10,0,1)
 
 <<"UVG  $UVG \n"
 
-CheckNum(UVG[2],2)
+chkN(UVG[2],2)
 
 
 
@@ -287,14 +280,14 @@ ulong ul =3
 
 <<"$(typeof(ul)) $ul \n"
 
-CheckNum(ul,3)
+chkN(ul,3)
 
 
 ulong UL[10]
 
 UL[2] = 79
 
-CheckNum(UL[2],79)
+chkN(UL[2],79)
 
 <<" $UL \n"
 
@@ -304,7 +297,7 @@ UV = vgen(LONG_,10,0,1)
 
 <<" $UV \n"
 
-CheckNum(UV[2],2)
+chkN(UV[2],2)
 
 CheckStage("long")
 
@@ -322,14 +315,14 @@ pan c = 1.234567801012340001234567;
 
 <<"$c $(typeof(c)) \n"
 
-CheckFNum(a,c,6)
-CheckFNum(b,-0.987654000001,4)
+chkR(a,c,6)
+chkR(b,-0.987654000001,4)
 
-CheckFNum(a,1.234567801012340001234567,6)
+chkR(a,1.234567801012340001234567,6)
 
-CheckFNum(a,1.234567801012340001234567,2)
+chkR(a,1.234567801012340001234567,2)
 
-CheckFNum(b,-0.987654000001,2)
+chkR(b,-0.987654000001,2)
 
 
 
@@ -341,9 +334,9 @@ P[30] = 429.0
 
 
 p20 = P[20]
-CheckFNum(p20,787.0,5)
-CheckFNum(P[20],787.0,5)
-CheckFNum(P[30],429.0,5)
+chkR(p20,787.0,5)
+chkR(P[20],787.0,5)
+chkR(P[30],429.0,5)
 
 CheckStage("Pan")
 
@@ -355,19 +348,19 @@ US[2] = 47
 
 <<" $US \n"
 
-CheckNum(US[2],47)
+chkN(US[2],47)
 
 ushort usi =3
 
 <<"$(typeof(usi)) $usi \n"
 
-CheckNum(usi,3)
+chkN(usi,3)
 
 UVG = vgen(SHORT_,10,0,1)
 
 <<" $UVG \n"
 
-CheckNum(UVG[2],2)
+chkN(UVG[2],2)
 
 CheckStage("short")
 
@@ -407,10 +400,10 @@ double rd = r;
 
 <<"$(typeof(rd)) $rd \n"
 
-checkFnum(rd,3.14259)
+chkR(rd,3.14259)
 
 
-checkFnum(r,3.14259)
+chkR(r,3.14259)
 
 
 
@@ -420,17 +413,17 @@ RV[2] = 47
 
 <<" $RV \n"
 
-CheckFNum(RV[2],47,6)
+chkR(RV[2],47,6)
 
 
 
-CheckFNum(d,3)
+chkR(d,3)
 
 RVG = vgen(REAL_,10,0,1)
 
 <<" $RVG \n"
 
-CheckFNum(RVG[2],2,6)
+chkR(RVG[2],2,6)
 
 CheckStage("real")
 
@@ -439,21 +432,35 @@ CheckStage("real")
 str sa= "-1"
 
 i=  atoi(sa);
-checkNum(i,-1)
+chkN(i,-1)
 <<"$sa int $i $(typeof(i))\n"
 
 f=  atof(sa);
-checkNum(f,-1)
+chkN(f,-1)
 <<"$sa float $f $(typeof(f))\n"
 long L = 47
 <<"long $L $(typeof(L))\n"
 l=  atol("12");
-checkNum(l,12)
+chkN(l,12)
 <<"long $l $(typeof(l))\n"
 
+<<"%V $sa $(typeof(sa))\n"
+
 l=  atol(sa);
-checkNum(l,-1)
-<<"$sa long $l $(typeof(l))\n"
+
+
+<<"%V long $l $(typeof(l))\n"
+
+chkN(l,-1)
+
+l=  atol("-2");
+
+
+
+<<"%V long $l $(typeof(l))\n"
+
+chkN(l,-2)
+
 
 
 
@@ -468,7 +475,7 @@ ul = l -1;
 
 <<"$s ulong $ul $u $(typeof(u))\n"
 
-checkNum(u,ul)
+chkN(u,ul)
 checkStage("atou,l,f")
 
 sa ="-1.0"
@@ -476,12 +483,12 @@ sa ="-1.0"
 p=  atop(sa);
 
 <<"$sa $p $(typeof(p))\n"
-checkFNum(p,-1.0,5)
+chkR(p,-1.0,5)
 
 p=  atop(2.345);
 
 <<"$sa $p $(typeof(p))\n"
-checkFnum(p,2.345,5)
+chkR(p,2.345,5)
 
 
 checkStage("atoi")
@@ -490,5 +497,5 @@ checkStage("atoi")
 
 
 
-CheckOut()
+chkOut()
 

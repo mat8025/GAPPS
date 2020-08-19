@@ -13,7 +13,7 @@ the default is to work through the vector.
 
 setDebug(1,"pline","~step")
 
-checkIn()
+chkIn()
 
 
 
@@ -25,8 +25,8 @@ I=vgen(INT_,10,0,1);
 S=Seli(I,GT_,5)
 
 <<"$S\n"
-checkNum(S[0],6)
-checkNum(S[3],9)
+chkN(S[0],6)
+chkN(S[3],9)
 
 <<"$I\n"
 
@@ -52,12 +52,12 @@ F=vgen(INT_,10,0,1);
 S=Seli(F,GT_,5)
 
 <<"$S\n"
-checkNum(S[0],6)
-checkNum(S[3],9)
+chkN(S[0],6)
+chkN(S[3],9)
 
 
 
-checkOut()
+chkOut()
 
 
 

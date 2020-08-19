@@ -1,7 +1,7 @@
 
 # test ASL function sscan
 
-CheckIn()
+chkIn()
 
 setdebug(1,@keep,@filter,0)
 
@@ -49,7 +49,7 @@ int k =0
 
 //<<"%I $s $k $w\n"
 
- //CheckStr(w,"life full of dreams")
+ //chkStr(w,"life full of dreams")
 
 float f = 3.142.0
 int j = 8
@@ -74,26 +74,26 @@ na = sscan("4.5 2 hey baby",'%f %d %s %s',&f,&k,&g,&s1)
 
 
 
-CheckNum(na,4)
+chkN(na,4)
 
-CheckFNum(f,4.5,6)
+chkR(f,4.5,6)
 
-CheckNum(k,2)
+chkN(k,2)
 
 <<"%I$s1   $g \n"
 
-CheckStr(s1,"baby")
+chkStr(s1,"baby")
 
-CheckStr(g,"hey")
-
-<<"%I $s1   $g \n"
-
-CheckStr(s1,"baby")
+chkStr(g,"hey")
 
 <<"%I $s1   $g \n"
 
+chkStr(s1,"baby")
 
-//CheckOut()
+<<"%I $s1   $g \n"
+
+
+//chkOut()
 
 
 
@@ -136,10 +136,10 @@ s1= " bright"
 news = scat(g,s1)
 <<"%V$news $g $s1\n"
 
-CheckStr(news,"star bright")
+chkStr(news,"star bright")
 
 
-CheckOut()
+chkOut()
 
 
 

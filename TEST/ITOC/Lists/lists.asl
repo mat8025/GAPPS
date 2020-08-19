@@ -14,7 +14,7 @@
 ///
 ///
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 ws = getScript()
 
@@ -48,7 +48,7 @@ m = Caz(J)
 
 <<"$J\n"
 
-checkNum(m,4,GTE_)
+chkN(m,4,GTE_)
 
 
   L1 = ( "a", "small" , "list" , "1", "2", "3", "4", "5" ,"6" ,"yellow", "green", "blue" ,"indigo", "violet")
@@ -74,14 +74,14 @@ str fw = L1[9];  // fails
 fw->info(1)
 
 <<"$fw\n"
-checkStr(fw,"yellow")
+chkStr(fw,"yellow")
 fw= L1[0]
 
 <<"$fw\n"
 
 <<"%V$fw $(typeof(fw))\n"
 
-checkStr(fw,"a")
+chkStr(fw,"a")
 
 l1sz = Caz(L1)
 <<"%V$l1sz\n"
@@ -90,7 +90,7 @@ fw = L1[l1sz-1]
 
 <<"%V$fw $(typeof(fw))\n"
 
-checkStr(fw,"violet")
+chkStr(fw,"violet")
 
  for (i= 0; i < l1sz; i++) {
 
@@ -113,7 +113,7 @@ L2 = ( "The", "colors", "of" ,"the", "rainbow", "are", "red", "orange", "yellow"
 
 <<"%V$fw $(typeof(fw))\n"
 
-checkStr(fw,"The")
+chkStr(fw,"The")
 
 
 
@@ -155,7 +155,7 @@ checkStr(fw,"The")
 
 <<"%V$fw $(typeof(fw))\n"
 
-checkStr(fw,"say")
+chkStr(fw,"say")
 
 
  L->reverse()
@@ -164,7 +164,7 @@ fw = L[0]
 
 
 
-checkStr(fw,"list")
+chkStr(fw,"list")
 
 <<"L = $L \n"
 
@@ -184,7 +184,7 @@ checkStr(fw,"list")
 
 fw = L3[0]
 <<"fw $fw\n"
-checkStr(fw,"lovely")
+chkStr(fw,"lovely")
 
 
  litem = "focus"
@@ -219,9 +219,9 @@ checkStr(fw,"lovely")
 
  fw = L[0]
 <<"%V $fw \n"
- checkStr(fw,"first")
+ chkStr(fw,"first")
 
-checkOut()
+chkOut()
 
  L3 = L[1:-2]
 
@@ -255,7 +255,7 @@ checkOut()
 
 <<" %v$m \n"
 
-CheckNum(m,11)
+chkN(m,11)
 
  n=L->Sort()
 
@@ -386,7 +386,7 @@ k= 5
 
 <<"insert %V$L    $n\n"
 
- checkOut()
+ chkOut()
 
 
 

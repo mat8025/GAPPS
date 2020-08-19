@@ -21,9 +21,9 @@ int f = 7;
 
 <<"%V $f \n"
 
-checkin(_dblevel);
+chkIn(_dblevel);
 
-CheckFNum(f,7);
+chkR(f,7);
 
 int N =   79;
 
@@ -36,18 +36,18 @@ d = atoi(_argv[1]);
 
 <<" $_argv[1] $c $d\n"
 
-checkNum(c,d);
+chkN(c,d);
 
 
 int M = (47*1);
 
 
-checkNum(M,47);
+chkN(M,47);
 
 
 
 
-checkNum(N,79);
+chkN(N,79);
 
 
 
@@ -65,11 +65,11 @@ e = -6;
 
 
 
-CheckNum(e,-6)
+chkN(e,-6)
 
 int b = 79;
 
-CheckNum(b,79)
+chkN(b,79)
 
 <<"%V $f $e\n"
 
@@ -77,7 +77,7 @@ b = f * e;
 
 <<"%V$b\n"
 
-CheckNum(b,-42);
+chkN(b,-42);
 
 
 
@@ -101,7 +101,7 @@ proc Foo(int a)
 
     d=Foo(2);
 
-  checkNum(d,2*13);
+  chkN(d,2*13);
 
 <<"%V $d\n"
 
@@ -109,7 +109,7 @@ proc Foo(int a)
 
 <<"%V $d\n"
 
-  checkNum(d,3*13);
+  chkN(d,3*13);
 
 
     mc= 7.0;
@@ -117,10 +117,10 @@ proc Foo(int a)
 
     d=Foo(mc );
 
-  checkNum(d,mc*13);
+  chkN(d,mc*13);
 <<"%V $d\n"
 
 
 
-checkOut();
+chkOut();
 

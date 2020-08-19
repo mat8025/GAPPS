@@ -13,12 +13,12 @@
 
 
 
-CheckIn()
+chkIn()
 
 ws=scat("Happy"," Hols")
 <<"%V$ws\n"
 
-checkStr(ws,"Happy Hols")
+chkStr(ws,"Happy Hols")
 
 char E[]
 
@@ -30,9 +30,9 @@ E=scat("Happy"," Hols")
 
 <<"%d$E[0] \n"
 
-checkNum(E[0],72);
-checkNum(E[1],97);
-checkNum(E[1],'a');
+chkN(E[0],72);
+chkN(E[1],97);
+chkN(E[1],'a');
 
 <<"%c$E[0] \n"
 <<"%d$E[1] \n"
@@ -43,4 +43,4 @@ checkNum(E[1],'a');
 ws = scat("c'est"," exactement"," ", "ce ","que ","je ","veux.")
 <<"$ws \n"
 
-CheckOut()
+chkOut()

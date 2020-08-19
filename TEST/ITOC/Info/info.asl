@@ -1,7 +1,7 @@
 
 
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 proc goo()
 {
@@ -14,7 +14,7 @@ ci = c->info()
 
 
 <<"%V $c  $ci\n"
-checkNum(c,3)
+chkN(c,3)
 }
 
 
@@ -26,7 +26,7 @@ ai = a->info()
 
 
 <<"%V $a  $ai\n"
-checkNum(1,a)
+chkN(1,a)
 
 float b = 2;
 
@@ -36,7 +36,7 @@ bi = b->info()
 
 
 <<"%V $b  $bi\n"
-checkNum(b,2)
+chkN(b,2)
 
 goo()
 
@@ -47,7 +47,7 @@ IV->info(1)
 
 k = IV[3]
 
-checkNum(k,3)
+chkN(k,3)
 IVi = IV->info()
 
 <<"$IVi \n"
@@ -55,10 +55,10 @@ vid = IV->varid()
 <<"%V $vid \n"
 obid = IV->objid()
 <<"%V $obid \n"
-checkNum(obid,-1)
+chkN(obid,-1)
 
 offs = IV->varoffsets()
 
 <<"%V $offs \n"
-checkNum(offs[1],3)
-checkOut()
+chkN(offs[1],3)
+chkOut()

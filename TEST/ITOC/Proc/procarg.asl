@@ -12,7 +12,7 @@
 //***********************************************%
 myScript = getScript();
 
-checkIn(_dblevel)
+chkIn(_dblevel)
 
 
 
@@ -64,7 +64,7 @@ proc Foo(str vstr)
 }
 //------------------------------
 
-checkIn()
+chkIn()
 
 
  I = Igen(10,0,1)
@@ -78,7 +78,7 @@ I->info(1)
 
 <<"%V$tot \n"
 
-  CheckNum(tot,3)
+  chkN(tot,3)
 
 
 
@@ -116,19 +116,19 @@ ssa = sen[0]
 
 <<"ssa $(typeof(ssa)) $ssa \n"
 
-  ok = CheckStr(ssa,psa)
+  ok = chkStr(ssa,psa)
 
 <<"test 1 $ok\n"
 
-   ok =CheckStr(sen[0],psa)
+   ok =chkStr(sen[0],psa)
 
 <<"test 2 $ok\n"
 
-   ok = CheckStr(sen[0],"the")
+   ok = chkStr(sen[0],"the")
 
 <<"test 3 $ok\n"
 
-   ok = CheckStr(sen[3],"gobbledegook")
+   ok = chkStr(sen[3],"gobbledegook")
 
 <<"test 4 $ok\n"
 <<"craash  $sen\n"
@@ -160,6 +160,6 @@ ssa = sen[0]
 
 <<" done loop %i $k \n"
 
-    checkOut()
+    chkOut()
 
 

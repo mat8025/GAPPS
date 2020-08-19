@@ -5,7 +5,7 @@ setdebug(1,"pline","trace")
 #define ASK ans=iread();
 
 
-checkIn();
+chkIn();
 //proc foo(int vect[],k)
 proc foo(vect[],k)
 {
@@ -21,15 +21,15 @@ proc foo(vect[],k)
 <<"vect OUT $vect \n"
 <<"vect[0] $vect[0] \n"
 
-  checkNum(vect[0],28)
+  chkN(vect[0],28)
   
   rvect = vect;
 
 
 <<"rvect OUT $rvect \n"
-  checkNum(rvect[0],28);
+  chkN(rvect[0],28);
   
-  checkNum(Z[0],0);
+  chkN(Z[0],0);
 
 <<"Z OUT $Z \n"
 
@@ -51,7 +51,7 @@ Y= foo(&Z[2], 31)
 
 <<"Y: $Y\n"
 
-checkNum(Y[0],28)
+chkN(Y[0],28)
 
 checkStage()
 
@@ -65,7 +65,7 @@ exit()
 
 <<"Y: $Y\n"
 
-checkNum(Y[0],28)
+chkN(Y[0],28)
 
 <<"$Y \n"
 <<"Y $Y[0] == 28 ?\n"
@@ -73,7 +73,7 @@ checkNum(Y[0],28)
 <<"$Z\n"
 <<"Z $Z[0] == 0 ?\n"
 
-checkNum(Z[0],0);
+chkN(Z[0],0);
 
 
 checkStage()
@@ -95,8 +95,8 @@ Z = Vgen(INT_,15,0,1);
 
 W= foo(&Z[3], 79)
 
-checkNum(W[0],28)
-checkNum(W[5],79)
+chkN(W[0],28)
+chkN(W[5],79)
 
 <<"$W \n"
 
@@ -105,12 +105,12 @@ checkNum(W[5],79)
 <<"$Z\n"
 <<"Z $Z[0] == 0 ?\n"
 
-checkNum(Z[0],0)
+chkN(Z[0],0)
 
 ASK;
 
 
-checkOut();
+chkOut();
 exit()
 
 

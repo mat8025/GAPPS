@@ -90,7 +90,7 @@ proc hoo(int H)
 
 //==========================//
 
- checkIn()
+ chkIn()
 
  A = 1;
 <<"$A\n"
@@ -116,16 +116,16 @@ A->info(1);
  hoo(d)
 
 <<"%V $H $d\n"
- checkNum(H,b4call+1)
+ chkN(H,b4call+1)
 
 
  
 
  <<"%V $H $d\n"
 
-checkNum(H,CU_)
+chkN(H,CU_)
 
-checkOut()
+chkOut()
 
 exit()
 

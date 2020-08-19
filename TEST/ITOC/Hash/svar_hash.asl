@@ -12,10 +12,15 @@
 //***********************************************%
 
 include "debug"
-debugON()
-sdb(1,@pline)
 
-checkin()
+if (_dblevel >0) {
+   debugON()
+}
+
+
+chkIn(_dblevel)
+
+
 Svar S
 
 tsz = 30;
@@ -90,7 +95,7 @@ val = S->lookup(key)
 
 sz= S->caz()
 <<"$sz $S[0] \n"
-sdb(1,@~pline)
+
  for (i=0; i <sz; i += 2) {
     // if (scmp(S[i],"") == 0) {
      if (!scmp(S[i],"") ) {
@@ -98,12 +103,19 @@ sdb(1,@~pline)
     }
   }
 
-checkStr(val,"1863")
+chkStr(val,"1863")
+
+
 key= "Stalingrad"
 val = S->lookup(key)
-checkStr(val,"1942")
+chkStr(val,"1942")
 
-checkOut()
+
+key= "Trafalgar"
+val = S->lookup(key)
+chkStr(val,"1805")
+
+chkOut()
 
 
 uchar SV[]

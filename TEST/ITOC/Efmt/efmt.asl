@@ -5,7 +5,7 @@
 setDebug(1,"~trace","pline","~step");
 
 
-checkIn();
+chkIn();
 
 e = 1234.567
 
@@ -26,20 +26,20 @@ h1 = f *g;
 
 
 
-checkFNum(e,1234.567);
+chkR(e,1234.567);
 
 const double Ev = 1.602e-2;
 
 double ev1 = 3.1234567;
 
 
-checkNum(ev1,3.1234567);
+chkN(ev1,3.1234567);
 
 
 <<"%Ve $Ev\n"
 
 
-checkFNum(Ev,1.602e-2);
+chkR(Ev,1.602e-2);
 
 Ev6 = 1.0e2;
 
@@ -57,9 +57,9 @@ Ev7 = 1.0e2 * 1.0e-2;
 
 <<"$Ev7\n"
 
-checkFNum(Ev6,Ev7);
+chkR(Ev6,Ev7);
 
-checkFNum(Ev6,(1.0e-2 * 1.0e2));
+chkR(Ev6,(1.0e-2 * 1.0e2));
 
 
 const double Ev1 = 1.602e-10;
@@ -68,14 +68,14 @@ const double Ev1 = 1.602e-10;
 <<"%Ve $Ev1\n"
 
 
-checkNum(Ev1,1.602e-10);
+chkN(Ev1,1.602e-10);
 
 const double Ev2 = 1.602 * 10^-7;
 
 
 <<"%Ve $Ev2\n"
 
-checkNum(Ev2, 1.602 * 10^-7);
+chkN(Ev2, 1.602 * 10^-7);
 
 const double Ev3 = 1.602e29;
 
@@ -89,10 +89,10 @@ const double Ev4 = 1.602e5*1.5e3;
 
 <<"%Ve $Ev4\n"
 
-checkNum(Ev4,2.403000e+08);
+chkN(Ev4,2.403000e+08);
 
 const double Ev5 = 1.602e5 *1.5e3;
 
 <<"%Ve $Ev5\n"
 
-checkOut();
+chkOut();

@@ -3,7 +3,7 @@
 
 setDebug(1)
 
-CheckIn()
+chkIn()
 
 
 int i = 0
@@ -404,19 +404,19 @@ Dil G[3]
 
 <<"%V $yt0 $(typeof(yt0))\n"
 
-  CheckNum(yt0,60)
+  chkN(yt0,60)
 
    yt1 = G[1]->A[1]->t
 
 <<"%V $yt1 \n"
 
-  CheckNum(yt1,18)
+  chkN(yt1,18)
 
    yt2 = G[2]->A[2]->t
 
 <<"%V $yt2 \n"
 
-  CheckNum(yt2,33)
+  chkN(yt2,33)
 
  i = 0 ; j = 1;
 
@@ -426,7 +426,7 @@ Dil G[3]
 
 <<"%V $yt \n"
 
-  CheckNum(yt,53)
+  chkN(yt,53)
 
   k = 7
 
@@ -454,7 +454,7 @@ Dil G[3]
   }
 
 
-CheckOut()
+chkOut()
 <<" DONE \n" ; stop!
 
 
