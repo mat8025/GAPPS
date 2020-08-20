@@ -447,3 +447,6 @@ vop_m.cpp	 1.100	 Tue Aug  4 08:51:35 2020 vunique
 vop_m.cpp	 2.1	 Tue Aug  4 09:01:40 2020 template for unique
 vmf_svar_l.cpp	 1.20	 Sun Aug 16 10:56:18 2020 setNumRecords
 svar_hash.cpp	 1.66	 Sun Aug 16 10:57:20 2020 setNumRecords/nfields
+class_mbr_e.cpp	 2.36	 Wed Aug 19 23:31:43 2020 mangle class name
+rdp_l1.cpp	 1.63	 Wed Aug 19 23:33:49 2020 tokresult
+primitive.cpp	 1.62	 Wed Aug 19 23:34:55 2020 do primitive decode

@@ -11,7 +11,15 @@
 //* 
 //***********************************************%
 
+include "debug"
 
+<<"%V $_dblevel\n"
+
+if (_dblevel >0) {
+   debugON()
+}
+  
+   
 
 
 chkIn(_dblevel)
@@ -96,7 +104,7 @@ class Act {
  svar svtype;
   str stype;
  
- cmf Set(int s)
+ cmf SetI(int s)
  {
      <<"Act Set int  $_cobj \n" 
       type = s;
@@ -131,6 +139,7 @@ class Act {
 
  cmf Get()
  {
+ <<"getting type $type\n"
    return type;
  }
 
@@ -268,15 +277,15 @@ val2 = SV2[3]
 <<"%V$obid $vid\n"
 int bs = 5;
 
-b->Set(bs)
+  b->SetI(bs)
 
-br= b->Get()
+  br= b->Get()
 
-<<"$br \n"
+<<"$br $bs\n"
 
 chkN(br,bs)
 
-
+exit()
 
 
 b->Set(71)
@@ -927,7 +936,7 @@ Dil Yod[ndiy]
  <<"%V X[0] $obid \n"
 
 
- exit()
+
 
  obid = X[1]->obid()
  <<"%V 1 $obid \n"
