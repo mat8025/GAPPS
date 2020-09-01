@@ -14,13 +14,13 @@
 
 include "debug.asl";
 
+if (_dblevel >0) {
+   debugON()
+}
 
-debugON();
-  setdebug(1,@keep,@pline,@trace);
-  FilterFileDebug(REJECT_,"~storetype_e");
-  FilterFuncDebug(REJECT_,"~ArraySpecs",);
 
-chkIn()
+
+chkIn(_dblevel)
 
 
 

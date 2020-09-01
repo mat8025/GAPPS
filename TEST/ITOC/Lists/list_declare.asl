@@ -1,11 +1,28 @@
+//%*********************************************** 
+//*  @script list_declare.asl 
+//* 
+//*  @comment test list declare 
+//*  @release CARBON 
+//*  @vers 1.3 Li Lithium [asl 6.2.68 C-He-Er]                               
+//*  @date Sun Aug 30 14:37:21 2020 
+//*  @cdate 1/1/2007 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+myScript = getScript();
 #  
 
-setdebug(1,@pline,@~step,@trace,@showresults,1)
-filterFuncDebug(ALLOWALL_,"proc","opera_ic");
-filterFileDebug(ALLOWALL_,"ic_","array_subset");
+
+include "debug"
+
+if (_dblevel >0) {
+   debugON()
+}
 
 
-chkIn(1)
+chkIn(_dblevel)
+
 
 str le;
 str le12;
@@ -70,4 +87,6 @@ chkStr(Mol[1],"FEB")
 checkProgress()
 
 <<" DONE Lists \n"
+
+chkOut()
 //////////////////////////////////

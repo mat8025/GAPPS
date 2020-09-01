@@ -1,23 +1,60 @@
 
+include "debug.asl";
+
+sdb(_dblevel,@~trace)
+
+if (_dblevel >0) {
+   debugON()
+}
+
+filterFuncDebug(ALLOW_,"Setup","opera_f","Cmath","storeScalar","storeSiv","Pluseq","l_3",\
+"l_1","l_2","l_4","l1_store","l1_opera","resolveResult","Variable","setLho","setRho","findSiv",\
+"checkProcVars","FindVar","Get","Number","primitive","primitive_store_var","getExp");
+
+filterFuncDebug(ALLOWALL_,"Setup")
+
+
 chkIn(_dblevel)
 
-proc refarg (int v)
+
+
+
+
+
+proc refarg (ptr v)
 {
 
 <<"IN %V  $v  \n"
    v->info(1)
 
-   pre_v = v;
+   pre_v = $v;
    
-  pre_v->info(1)
+   pre_v->info(1)
 
-   v++;
+//   $v++;
+sdb(1,@trace)
+
+<<"%V $n\n"
+n->info(1)
+
+   post_v = $v;
+
+<<"equate to $v %V $post_v \n"
+
+  post_v = 2 + $v;
+  chkN(post_v,6)
+<<"sum %V $post_v \n"
+  n->info(1)
+  post_v = $v + 5;
+
+<<"sum2 %V $post_v \n"
+  chkN(post_v,9)
+  
+   $v = $v +1;
    
-   post_v =v;
-
-   z =v;
-// nv++;
-//  v=nv;
+   post_v = $v;
+  chkN(post_v,5)
+   z = $v;
 
 <<"OUT %V $z $v $pre_v $post_v \n"
 
@@ -27,6 +64,13 @@ proc refarg (int v)
 int n = 4;
 int m = 84;
 
+   vm = n;
+
+   pvm = vm + 7;
+
+<<"%V $vm $pvm \n"
+
+   chkN(pvm,11);
    h = n;
    w= h++ + h++;
 
@@ -53,12 +97,12 @@ w->info(1)
 
 //chkOut()
   pre_m = m;
-
-  refarg(m);
+  m = 4;
+  refarg(&m);
 
 <<"%V $m  \n"
   post_m = m;
-  chkN(post_m,pre_m)
+ // chkN(post_m,pre_m+1)
 
 <<"%V proc does not modifies arg? $pre_m == $m \n"
 

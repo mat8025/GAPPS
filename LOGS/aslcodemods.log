@@ -450,3 +450,13 @@ svar_hash.cpp	 1.66	 Sun Aug 16 10:57:20 2020 setNumRecords/nfields
 class_mbr_e.cpp	 2.36	 Wed Aug 19 23:31:43 2020 mangle class name
 rdp_l1.cpp	 1.63	 Wed Aug 19 23:33:49 2020 tokresult
 primitive.cpp	 1.62	 Wed Aug 19 23:34:55 2020 do primitive decode
+opera_main.cpp	 1.50	 Mon Aug 24 08:08:01 2020 PTR Setup
+ic_ops.cpp	 1.56	 Tue Aug 25 09:41:30 2020 try-catch for no create
+scopesindex_e.cpp	 2.81	 Tue Aug 25 09:44:20 2020 procvar not found- then create setInit(FIND_OR_MAKE)
+ic_store.cpp	 1.68	 Tue Aug 25 20:45:33 2020 store_r_to_array - check 
+proc_sivs_e.cpp	 3.49	 Tue Aug 25 20:47:20 2020 addsivtotable - find and or make
+class_mbr_e.cpp	 2.37	 Fri Aug 28 11:01:28 2020 ptr to sclass 
+proc_def_e.cpp	 2.63	 Fri Aug 28 11:02:30 2020 object arg
+args_process_e.cpp	 2.32	 Fri Aug 28 11:03:58 2020 obj arg
+proc_def_e.cpp	 2.64	 Sat Aug 29 08:24:01 2020 rework redef of proc
+sint_l.cpp	 1.16	 Sun Aug 30 18:23:10 2020 added setmaxsvarsz

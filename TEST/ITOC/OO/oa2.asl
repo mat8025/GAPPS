@@ -104,7 +104,7 @@ class Act {
  svar svtype;
   str stype;
  
- cmf SetI(int s)
+ cmf Set(int s)
  {
      <<"Act Set int  $_cobj \n" 
       type = s;
@@ -277,15 +277,13 @@ val2 = SV2[3]
 <<"%V$obid $vid\n"
 int bs = 5;
 
-  b->SetI(bs)
+  b->Set(bs)
 
   br= b->Get()
 
 <<"$br $bs\n"
 
 chkN(br,bs)
-
-exit()
 
 
 b->Set(71)
@@ -458,7 +456,7 @@ chkN(br,71)
 <<"2 type %V $yst $yt $ygt\n"
 
 
-  chkN(yst,5)
+  chkN(yst,3)
 
 
  for (i = 0; i < 4; i++) {

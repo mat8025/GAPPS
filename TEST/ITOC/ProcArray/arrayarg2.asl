@@ -15,12 +15,20 @@ include "debug"
 
 <<"%V $_dblevel\n"
 
+sdb(_dblevel,@~trace)
+
 if (_dblevel >0) {
    debugON()
 }
   
-   
+filterFuncDebug(REJECTALL_,"xxx");
+filterFuncDebug(ALLOW_,"process_args","process_args_ptr",\
+   "store_r_to_array","store_r_to_siv","storeCopyVar","storeSiv");
+//filterFuncDebug(REJECT_,"checkProcFunc");
+
 chkIn(_dblevel);
+
+sdb(_dblevel,@~trace)
    
 aaa: <<"aaa label !\n"
 
@@ -39,7 +47,7 @@ aaa: <<"aaa label !\n"
      k->info(1);
      Z->info(1) ;
      
-<<"IN $vec \n"; 
+<<"IN %V $vec \n"; 
 <<"IN  %V $Z\n"
 
       vec[1] = 47; 
@@ -53,12 +61,14 @@ aaa: <<"aaa label !\n"
      vec[3] = 80
      vec[4] = 78
      vec[5] = 50
-/}*/     
+/}*/
+
+
      <<"OUT %V $vec \n";
      <<"OUT %V $Z\n"
 
      rvec = vec;
-     //<<"OUT %V $rvec \n"; 
+     <<"OUT %V $rvec \n"; 
      return rvec; 
      }
    
@@ -147,8 +157,6 @@ aaa: <<"aaa label !\n"
    chkN(Z[9],28);
    
    checkStage("&Array[3]"); 
-
-
 
    <<"return Y2 vec $Y2\n";
    

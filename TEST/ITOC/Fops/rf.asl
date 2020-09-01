@@ -1,16 +1,3 @@
-//%*********************************************** 
-//*  @script readfile.asl 
-//* 
-//*  @comment test readfile function 
-//*  @release CARBON 
-//*  @vers 1.4 Be Beryllium [asl 6.2.68 C-He-Er]                             
-//*  @date Sun Aug 30 14:52:48 2020 
-//*  @cdate 1/1/2005 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
-myScript = getScript();
 ///   readfile
 
 include "debug"
@@ -30,7 +17,7 @@ chkIn(_dblevel)
 
 <<"$S\n"
 
-  cf(A)
+ cf(A)
 
  sz = Caz(S);
 

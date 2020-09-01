@@ -11,14 +11,22 @@
 //* 
 //***********************************************%
   include "debug.asl";
-  debugON();
-  setdebug(1,@keep,@pline,@~trace);
-  FilterFileDebug(REJECT_,"~storetype_e");
-  FilterFuncDebug(REJECT_,"~ArraySpecs",);
+
+if (_dblevel >0) {
+   debugON()
+}
+ 
+
+
+
+ filterFileDebug(ALLOWALL_,"yyy");
+ 
+ //FilterFileDebug(REJECT_,"storetype_e");
+// FilterFuncDebug(REJECT_,"~ArraySpecs",);
   
 
 
-chkIn()
+chkIn(_dblevel)
 
 // test array indexing
 

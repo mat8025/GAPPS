@@ -14,6 +14,13 @@
 ///
 ///
 
+include "debug"
+
+if (_dblevel >0) {
+   debugON()
+}
+
+
 chkIn(_dblevel)
 
 <<" $(GREEN_) \n"
@@ -56,19 +63,22 @@ proc localv()
  int FF[10];
  FF[1] = 71;
  <<"$FF[1] \n"
+ 
  ::FF[2] = 584;
- for (i= 5; i<10; i++) {
-  FF[i] = i;
+ 
+  for (i= 5; i<10; i++) {
+    FF[i] = i;
   }
 
  for (i= 5; i<10; i++) {
-  ::FF[i] = -i;
+    ::FF[i] = -i;
   }
 
 
 
  FF[2] = 28
- <<"$FF \n"
+ chkN(FF[2],28)
+ <<"%V $FF \n"
 }
 
 localv()

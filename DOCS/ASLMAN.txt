@@ -1203,6 +1203,8 @@ memused
 .)x 
 .FD
 memused()
+After memory check has been turned (checkMemory(1)) memused cab be used to monitor
+memory usage.
 returns array  with following counts:
  [TotalSivMem,CountMemAlloc,TotalAlloced,TotalFreeded,CountMemBlocks,CountMemOps].
 
@@ -3273,11 +3275,23 @@ CheckMem
 .)x 
 .FD
 CheckMem(tag)
-checks for tag in memory and returns 1 if found
+checks for tag in LTM memory and returns 1 if found
 else 0
 (see GetMem)
 
 .EF
+=============================================================
+.BF
+checkMemory()
+.(x
+checkMemory
+.)x 
+.FD
+checkMemory(ON,{RESET})
+
+Turn on/off and optionally reset memory statistics.
+
+
 =============================================================
 .BF
 getalias()

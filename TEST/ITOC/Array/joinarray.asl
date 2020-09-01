@@ -13,15 +13,24 @@
 
 
 
-  include "debug.asl";
-  debugON();
-  setdebug(1,@keep,@pline,@~trace);
-  FilterFileDebug(REJECT_,"~storetype_e");
-  FilterFuncDebug(REJECT_,"~ArraySpecs",);
+include "debug.asl";
+
+
+
+
+sdb(_dblevel,@~trace)
+
+if (_dblevel >0) {
+   debugON()
+}
   
+filterFuncDebug(REJECTALL_,"xxx");
+filterFuncDebug(ALLOW_,"process_args","process_args_ptr",\
+   "store_r_to_array","store_r_to_siv","storeCopyVar","storeSiv");
+//filterFuncDebug(REJECT_,"checkProcFunc");
 
+chkIn(_dblevel);
 
-chkIn()
 
 // test array indexing
 
@@ -77,7 +86,7 @@ YV = YV @+ P
 <<"%v $sz \n"
 <<" $YV \n"
 
-chkN(YV[29],79)
+ chkN(YV[29],79)
 
  chkN(NV[1],YV[1])
 
@@ -85,6 +94,9 @@ chkN(YV[29],79)
 
 
  chkOut()
+
+
+
 exit()
 
 

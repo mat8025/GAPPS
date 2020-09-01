@@ -1,23 +1,44 @@
+//%*********************************************** 
+//*  @script vsp.asl 
+//* 
+//*  @comment test vector use 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium [asl 6.2.68 C-He-Er]                                
+//*  @date Sun Aug 30 08:50:56 2020 
+//*  @cdate 1/1/2004 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+myScript = getScript();
 //
 //
 // test vsp
 
 
-setdebug(1,"pline","trace")
+include "debug"
 
-#define ASK ;
-//#define ASK ans=iread("->");
+if (_dblevel >0) {
+   debugON()
+}
+
+
+chkIn(_dblevel)
+
+checkMemory(1,1)
 
 initmem=memused()
-chkIn()
 
-float Vsp[];
-float Tsp[];
+<<"memused $(memused()) \n";
+
+float Vsp[>1024];
+float Tsp[>1024];
 
 
-fftsz = 2^^6;
+fftsz = 2^10;
+<<"%V $fftsz\n"
 fftsz2 = fftsz/2;
-
+//ans=query()
 float Sf = 20480.0
 
   // float Sf = 20000.0
@@ -88,11 +109,13 @@ proc setupTsp()
 
 
 <<"$(Caz(Tsp)) $(Cab(Tsp))\n"
-  <<"$Tsp\n";
 
-   ASK
 
-  Tsp[0:2] = 0.10000000
+   
+
+  Tsp[0:2:] = 0.100
+  <<"%V$Tsp\n";
+
 }
 
 
@@ -130,7 +153,11 @@ chkN(bad,0)
 
 chkN(Rcmp[1],1)
 
-Checkout();
+
 
 finalmem=memused()
-<<"memused $(memused()) \n";  
+<<"memused $(memused()) \n";
+
+
+
+chkOut();

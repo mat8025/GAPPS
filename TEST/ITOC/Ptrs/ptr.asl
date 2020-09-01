@@ -44,7 +44,7 @@ kp->info(1)
  <<" %V $k $m $n\n"
 
 
-tok=cin(m,k)
+tok=chkI(m,k)
 
 <<"%V $tok\n"
  $kp = 58
@@ -56,7 +56,7 @@ k->info(1)
 
 <<"%V $k \n"
 
-tok=cin(k, 58)
+tok=chkI(k, 58)
 
 <<"%V $tok\n"
 
@@ -74,9 +74,9 @@ k->info(1)
 au->info(1)
 
 
-tok= cin (k, 79)
+tok= chkI (k, 79)
 <<"%V $tok\n"
-tok= cin(k, au)
+tok= chkI(k, au)
 <<"%V $tok\n"
 silv = 47
 
@@ -89,7 +89,7 @@ sp->info(1)
 
 k->info(1)
 
-tok=cin(k, 47)
+tok=chkI(k, 47)
 <<"%V $tok\n"
 
 chkOut ()
@@ -341,7 +341,7 @@ int b[]
 
 <<"%v $d \n"
 
-stop!
+
 
 
 
@@ -353,7 +353,7 @@ stop!
 
 <<"%v $d \n"
 
-;
+
 
 
 

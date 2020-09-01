@@ -10,15 +10,26 @@
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-  
-  
-  include "debug.asl";
-  debugON();
-  setdebug(1,@keep,@pline);
-  FilterFileDebug(REJECT_,"~storetype_e");
-  FilterFuncDebug(REJECT_,"~ArraySpecs",);
-  
-chkIn()
+
+
+
+
+include "debug.asl";
+
+sdb(_dblevel,@~trace)
+
+if (_dblevel >0) {
+   debugON()
+}
+
+//filterFileDebug(ALLOWALL_,"yyy");
+//filterFuncDebug(REJECT_,"~ArraySpecs");
+
+
+
+chkIn(_dblevel)
+
+
 
 
 N= 20

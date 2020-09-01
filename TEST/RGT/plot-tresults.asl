@@ -1,3 +1,16 @@
+//%*********************************************** 
+//*  @script plot-tresults.asl 
+//* 
+//*  @comment show ASL test results 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen [asl 6.2.66 C-He-Dy]                               
+//*  @date Sat Aug 22 08:13:55 2020 
+//*  @cdate Sat Aug 22 08:13:55 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+myScript = getScript();
 ///
 ///
 ///
@@ -45,12 +58,12 @@ nrows = dmn[0]
 ncols = dmn[1]
 
 
-<<" $R[0][15] $R[0][17] \n"
-
+//<<" $R[0][15] $R[0][17] \n"
+/{
 for (i = 0; i <nrows ;i++) {
 <<" $R[i][7] $R[i][15] $R[i][17] \n"
 }
-
+/}
 
 ///    Data results  in record  float type
 
@@ -61,7 +74,7 @@ for (i = 0; i <nrows ;i++) {
   sz = Caz(FV)
 
 
-<<"$FV\n"
+//<<"$FV\n"
 
   CV = R[::][17]
 
@@ -72,7 +85,7 @@ for (i = 0; i <nrows ;i++) {
 
 
 
-<<"$CV\n"
+//<<"$CV\n"
 
  NM = R[::][7]
 
@@ -93,7 +106,7 @@ for (i = 0; i <nrows ;i++) {
 
   XV= vgen(FLOAT_,nrows,0,1)
 
-<<"$XV\n"
+//<<"$XV\n"
 
 include "graphic"
 include "gevent"
@@ -130,7 +143,7 @@ include "gevent"
  
   fgl=cGl(grwo,@TXY,XV, FV, @color, BLUE_,@ltype,SYMBOLS_,TRI_);
 
-<<"%V $fgl \n"
+//<<"%V $fgl \n"
   Symsz= 1.0;
 
   sGl(fgl,@symbol,TRI_,Symsz, @symfill,@symhue,BLUE_)
@@ -159,11 +172,12 @@ include "gevent"
   sGl(nmgl,@symbol,SQUARE_,Symsz, @symfill,@symhue,BLACK_)
 
   dGl(nmgl)
-
+ titleVers();
 
   sWo(grwo,@showpixmap)
 //ans=query("?")
 <<"%V $cgl \n"
+    sWi(aw,@redraw)
 while (1) {
 
      sleep(1)

@@ -10,9 +10,19 @@
 //*  @Copyright © RootMeanSquare  2010,2019 → 
 //* 
 //***********************************************%
+include "debug"
+
+if (_dblevel >0) {
+   debugON()
+}
+
+
 
    chkIn(_dblevel);
-   
+filterFuncDebug(REJECT_ALL,"xxx");
+filterFuncDebug(ALLOW_,"checkProcFunc");
+
+ //  checkMemory(1,1)
    svar  S = "una larga noche"; 
    
    <<"%V $S\n"; 
@@ -529,9 +539,14 @@ chkN(IV3[2], 2)
 
 IV3->Info(1);
 
+
 IV3= atoi(M[3::])
 
+
 <<"$IV3\n"
+
+
+
 
 IV3->Info(1);
 

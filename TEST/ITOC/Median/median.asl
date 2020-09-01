@@ -1,11 +1,17 @@
+
 ///
 /// median
 /// 
+include "debug.asl";
+
+sdb(_dblevel,@~trace)
+
+if (_dblevel >0) {
+   debugON()
+}
 
 
-setDebug(1,"pline","~step")
-
-chkIn()
+chkIn(_dblevel)
 
 I= vgen(INT_,10,0,1)
 
@@ -18,7 +24,7 @@ med = median(I)
 chkN(med,4.5)
 
 s= Sum(I)
-
+s->info(1)
 <<"Sum is $s\n"
 
 I += 1  // add one to each element in vector
@@ -62,7 +68,7 @@ sz = Caz(s)
 <<"$bd $sz $(infoof(s)) \n"
 
 //ans = iread();
-
+<<"%V$s\n"
 chkN(s[0],292)
 
 //ird!

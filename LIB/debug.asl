@@ -13,10 +13,18 @@
 
 <<"Including  debug \n"
 
+//sdb(-1,@~pline,@~step,@~trace)
+
+sdb(_dblevel,@~pline,@~step,@~trace)
+filterFileDebug(ALLOWALL_,"yyy");
+filterFuncDebug(REJECTALL_,"xxx");
+
 int _DB = -1; // dbg FH set to nop --set to 2 for error output
 
 dbid = IDof("_DB");
 //<<"%V dbid _DB\n"
+
+
 
 //sdb(1,@keep);
 // if there are errors keep  idb,xdb file in .GASP/WORK/Debug
