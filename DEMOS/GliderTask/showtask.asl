@@ -404,8 +404,7 @@ Nlegs = Ntaskpts;
 
      sslng= Stats(IGCLONG)
 
-     for (i=0; i < Ntpts; i += 100) {
-    // for (i=0; i < Ntpts; i++) {
+     for (i=0; i < Ntpts; i += 5) {
      
       <<"$i $IGCTIM[i] $IGCELE[i] $IGCLAT[i]  $IGCLONG[i] \n";
 
@@ -435,23 +434,23 @@ Nlegs = Ntaskpts;
 
      ssele= Stats(IGCELE,">",0)
 
-DBG"%V $ssele \n"
+<<"%V $ssele \n"
 
       Min_ele = ssele[5];
       Max_ele = ssele[6];
-DBG" min ele $ssele[5] max $ssele[6] \n"
+<<" min ele $ssele[5] max $ssele[6] \n"
 
       min_lng = sslng[5];
       max_lng = sslng[6];
 
-DBG"%V $min_lng $max_lng \n"
+<<"%V $min_lng $max_lng \n"
 
 
       min_lat = sslt[5];
       max_lat = sslt[6];
 
 
-DBG"%V $min_lat $max_lat \n"
+<<"%V $min_lat $max_lat \n"
 
 
 
@@ -461,14 +460,14 @@ DBG"%V $min_lat $max_lat \n"
 
      MidLat = (LatN - LatS)/2.0 + LatS;
 
-  DBG"%V $MidLat \n"
+  <<"%V $MidLat \n"
 
     dlat = max_lat - min_lat;
 
-  DBG"%V $dlat \n"
+  <<"%V $dlat \n"
 
-  DBG"%V $LongW \n"
-  DBG"%V $LongE \n"
+  <<"%V $LongW \n"
+  <<"%V $LongE \n"
 
 
 
@@ -505,18 +504,18 @@ DBG"%V $min_lat $max_lat \n"
   
   latWB = MidLat + da/2.0;
   LongW = MidLong + da/2.0;
-  DBG"%V $latWB $MidLat $da \n"
+  <<"%V $latWB $MidLat $da \n"
 
   LongW = MidLong + da/2.0;
 
-  DBG"%V $longW $MidLong $da \n"
+  <<"%V $longW $MidLong $da \n"
 
 
   LongE = MidLong - da/2.0;
 
 
-  DBG"%V $LongW \n"
-  DBG"%V $LongE \n"
+  <<"%V $LongW \n"
+  <<"%V $LongE \n"
 
   }
   
@@ -524,8 +523,10 @@ DBG"%V $min_lat $max_lat \n"
    for (k= 0; k < 5; k++) {
              Wtp[k]->Print()
     }
-DBG"//////////\n"
+<<"//////////\n"
        //      Wtp[3]->Print()
+
+
 
 
 ///////////////////// SETUP GRAPHICS ///////////////////////////

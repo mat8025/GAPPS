@@ -99,7 +99,7 @@ chkStr(sval,"va")
      chkStr(S[3],"mal")
 
 <<"%V $S[3]\n"
-exit()
+
 
      sval= ps[3];
      nval = S[3];

@@ -10,9 +10,17 @@
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
+
+include "debug.asl";
+
+
+sdb(_dblevel,@~trace)
+
+if (_dblevel >0) {
+   debugON()
+}
   
 chkIn(_dblevel);
-  
 
   
 //////////////////////////////////////////////////////
@@ -228,9 +236,10 @@ real r2 = 4.5;
 
   A->set(0.15, 0.2);
 
-  ax= A[0]->x
+  //ax= A[0]->x ; // treat  as array ? error if not - do not crash warn
+  
 
-<<"%V $ax $A[0]->x \n"
+//<<"%V $ax $A[0]->x \n"
 
   ax= A->x
 
@@ -242,7 +251,7 @@ real r2 = 4.5;
 
 
 
-  ok=chkR(A[0]->y,0.2,5); 
+ // ok=chkR(A[0]->y,0.2,5); 
 
   ok=chkR(A->x,0.15,5);
   

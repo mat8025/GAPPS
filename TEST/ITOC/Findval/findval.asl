@@ -1,16 +1,44 @@
+//%*********************************************** 
+//*  @script findval.asl 
+//* 
+//*  @comment test findval SF 
+//*  @release CARBON 
+//*  @vers 1.3 Li Lithium [asl 6.2.70 C-He-Yb]                               
+//*  @date Wed Sep  2 09:33:15 2020 
+//*  @cdate 1/1/2002 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+myScript = getScript();
 ///
 ///
 ///
 
 # test ASL function findval
+include "debug.asl";
 
-chkIn()
+sdb(_dblevel,@~trace)
+
+if (_dblevel >0) {
+   debugON()
+//filterFileDebug(ALLOWALL_,"yyy");  // all files
+//filterFuncDebug(ALLOWALL_,"xxx") ; // all funcs should see all DBC debug
+
+}
+
+chkIn(_dblevel)
+
+
+
+////  debug ON
+
+
 //#define ASK ans=iread();
 #define ASK ;
 
 <<"hey mark onward ever upward - higher and higher!!\n"
 
-setdebug(1,"~pline","steponerror")
 
 Csum=vgen(FLOAT_,10,0)
 
@@ -28,7 +56,7 @@ Csum[4] = 1;
 
 chkN(le,4)
 
-ASK
+
 
    ivec = findVal(Csum,0,0,-1,1,0,"<")
 
@@ -40,7 +68,7 @@ ASK
 
 chkN(le,4)
 
-ASK
+
 
 
 I= Igen(20,0,1)
@@ -53,6 +81,10 @@ I= Igen(20,0,1)
 int fi;
 
 int si = 0;
+
+//int found[];
+
+//found->info(1)
 
 found= findval(I,6,si,-1,1,0)
 
@@ -70,7 +102,8 @@ fi = found[0]
 
 chkN(fi,6)
 
-ASK
+//chkOut(); exit();
+
 found= findval(I,8,si,-1,1,0)
 
 
@@ -90,7 +123,7 @@ chkN(fi,8)
 
 
 
-ASK
+
 
 
    found= findval(I,6,si,-1,1,LTE_)
@@ -108,7 +141,7 @@ fi = found[0];
 
 chkN(fi,6)
 
-ASK
+
 
 
    found= I->findval(7,si,-1,-1,1)
@@ -119,7 +152,7 @@ chkN(fi,7)
 
 <<"%V $fi \n"
 
-ASK
+
 
 si = 19;
 
@@ -130,7 +163,7 @@ si = 19;
 <<"%V $fi \n"
 
 chkN(fi,-1)
-ASK
+
 si = -1;
    found= I->findval(17,si,0,0)
 
@@ -138,7 +171,7 @@ si = -1;
 
 <<"%V $fi \n"
 chkN(fi,17)
-ASK
+
 
 si = 19;
 
@@ -147,7 +180,7 @@ si = 19;
 
 <<"%V $fi \n"
 chkN(fi,17)
-ASK
+
 
 
 si = 19;
@@ -164,10 +197,6 @@ sz = Caz(found);
 
 <<"%V $fi \n"
 chkN(fi,17)
-ASK
-
-
-
 
 
 F= Fgen(20,0,1);
