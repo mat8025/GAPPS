@@ -2214,8 +2214,11 @@ Cab
 .FD
 Cab(M)
 Check array bounds returns a vector of the dimensions of M
-so if M is a vector then returns size of vector
-if M is a scalar returns -1
+
+int M[4][5]
+bd=Cab(M)
+bd[0] is 4, bd[1] is 5.
+
 .EF
 
 =============================================================
@@ -3961,14 +3964,14 @@ returns version number
 .EF
 =============================================================
 .BF
-getwoclip()
+wogetclip()
 .(x
-getwoclip,wogetclip
+wogetclip
 .)x 
 .FD
-I=getwoclip(wid)
+I=wogetclip(woid)
 gets the clip values for a window object and returns them to an integer array
-I[0] is wid or -1 if wid invalid.
+I[0] is woid or -1 if woid invalid.
 then the clip region in screen coors is in
 Clip x,y,X,Y are I[1],I[2],I[3],I[4]
 deltaclipX I[5], deltaclipY I[6]
@@ -7224,7 +7227,7 @@ vvcopy()
 vvcopy
 .)x 
 .FD
-vvcopy(&A[0],&B[0],n,{condition,cond_value},{s1,s2})
+vvcopy(A,B,n,{condition,cond_value},{stepA,stepB},{offsetA,offsetB})
 copies n locations of array B to corresponding locations in array A.
 s1 and s2 are step sizes default is 1.
 Also the copy can be conditional
@@ -7235,12 +7238,12 @@ for the copy operation
 to take place, i.e. the array data can be filtered via a condition.
 returns number of values copied into array A.
 
-Additionally the offset into the arrays can be set
+Additionally the steps and offsets into the arrays can be set
 e.g.
-vvcopy(&A[5],&B[6],n,GTE_,79,2,1);
+vvcopy(A,B,n,GTE_,0,1,2,5,6);
 where the access starts at element 6 of B and steps by two.
-the first successful compare goes into element 5 of vector A.
-and the next into element 7, ...
+the first successful compare (number GTE to 0)  goes into element 5 of vector A.
+and the next into element 6, ...
 
 There is an internal check to prevent accessing or writing beyond
 the arrays, but the success of the operation requires programming
@@ -7407,6 +7410,31 @@ e.g.
 nir=vread(A,Y,129,"short")
 reads 129 shorts into float array Y.
 returns number of items read. This will be a short count or zero when the end of file is reached.
+
+
+.EF
+=============================================================
+.BF
+mread()
+.(x
+mread
+.)x 
+.FD
+nir=mread(A,M,nrows,ncols,frows,fcols,{start_frow=0},{start_fcol=0},(skip_frow=0})
+reads matrix of nrows,ncols  from file A organized as frows,fcols.
+Optionally index in by start_frow,  and each index into each row by start_fcol.
+After reading row optionaly skip  by skip_frow.
+The assumed file data type is the type of receiving matrix.
+
+
+e.g.
+uint M[]
+nir=mread(A,M,512,512,4096,1024, 100, 50)
+Treat the data file as 4096 rows and 1024 cols of uints.
+Index to 100th row in file -- index to col 50 in each row.
+Read 512 rows of 512 cols.
+returns number of items read.
+This will be a short count or zero when the end of file is reached.
 
 
 .EF

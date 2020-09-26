@@ -140,3 +140,6 @@ showtask.asl             3.3	Tue Jun 23 07:05:33 2020 use Record for turnpt acce
 anytask.asl              4.2	Wed Jun 24 07:29:33 2020 procs-->ootlib
 	Sat Aug 15 10:18:03 2020 debug
 	Sun Aug 30 08:12:32 2020 testz++
+	Fri Sep 18 08:08:52 2020 mrevcols & mrevrows replace fliprowcols
+	Wed Sep 23 06:48:47 2020 dbg
+	Wed Sep 23 20:15:50 2020 dbg

@@ -43,7 +43,15 @@
 fp =  ofr("../SIGNALS/woman.pic")
 
 npx = 512*512
-uchar PX[npx]
+uchar PX[npx];
+
+int PIX[npx]
+
+
+
+
+
+
 
 // read in image file
 
@@ -52,6 +60,13 @@ uchar PX[npx]
 <<"%(10,, ,\n)$PX[0:99]\n"
 
 <<"%V $nc \n"
+
+
+    PIX = PX
+<<"PX:$PX[0:32]\n"
+<<"PIX:$PIX[0:32]\n"
+
+
 
 // set the gray-scale ?? is it 256 levels since uchar
 
@@ -68,21 +83,34 @@ set_gsmap(ngl,cmi)
 
 uchar CX[]
 
-// CX = 255 - PX
- CX = PX
+ CX = 255 - PX
 
 <<"%(10,, ,\n)$CX[0:99]\n"
 
 // display
+
+    PIX = 255 - PX
+
+
+   Redimn(PIX,512,512)
+
+   PlotPixRect(picwo,PIX,cmi)
+
+   sleep(1)
 
 
   Redimn(CX,512,512)
 
 <<"%V$(cab(PX)) \n"
 
-//  PlotPixRect(picwo,CX,cmi)
+  PlotPixRect(picwo,CX,cmi)
 
 <<"$CX[0][0:20]\n"
+
+   sleep(1)
+
+
+
 
 
   RCX = reflectCol(CX)
@@ -138,9 +166,40 @@ uchar CX[]
   sWo(picwo,@showpixmap)
 //FIX  PX = 255 - PX
 
+// set up a RGB map   
+
+   c_index = cmi
+
+   redv = 0.0 ; greenv = 0.0 ; bluev = 0.0 ; 
+   dr = 1.0/256
+   
+   cv = 0.0
+   //for (i=0;i <=255; i++) {
+   while (c_index < 255) {
+   setRGB(c_index++,cv,0,1.0-cv)
+   cv += dr;
+   setRGB(c_index++,0,cv,0)
+   cv += dr;
+   setRGB(c_index++,1.0-cv,0,cv)
+   cv += dr;   
+   }
+
+   PlotPixRect(picwo,PIX,cmi)
    
 
 
+
+   sleep(1);
+   
+
+   setRGB(c_index++,0,greenv,0)
+   setRGB(c_index++,0,0,bluev)
+
+
+
+
+
+   sleep(5)
 //  PlotPixRect(picwo,PX)
 //sWo(picwo,@showpixmap)
 

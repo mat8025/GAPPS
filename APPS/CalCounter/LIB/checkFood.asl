@@ -79,6 +79,9 @@ proc Compare(str phr1,str phr2)
 }
 //==============================
 
+
+
+
 int txtwo = 0
 the_carbs = 0
 the_cals = 0
@@ -91,10 +94,13 @@ the_descr = ""
 
 int Wfi = 0;
 
+
+<<"B4 proc searchFood(str the_food_name\n"
+
 proc searchFood(str the_food_name)
 {
   int bpk = -1;
-
+<<"$_proc  $the_food_name \n"
   Bestpick = -1;		//clear the best pick choices
   bpick = -1;
   
@@ -285,6 +291,4 @@ bsz = Caz(Bestpick);
 }
 
 ////////////////////////////////////////////////
-
-
-//<<[_DB]"Done inc checkFood\n"
+<<"Done $_include \n"

@@ -15,10 +15,18 @@ myScript = getScript();
 ///
 ///
 
+include "debug"
+include "hv"
+
+ if (_dblevel >0) {
+    debugON()
+   }
+   
 
 
-include "debug.asl"
-include "hv.asl"
+filterFileDebug(ALLOWALL_,"xxx")
+filterFuncDebug(ALLOW_,"CheckProcFunc")
+filterFuncDebug(ALLOWALL_,"xxx")
 
 
 
@@ -41,9 +49,11 @@ pars = i
 
 ycol = 1
 
+ //A= ofr("junk")
 
-  // R = ReadRecord(A,@type,FLOAT,@NCOLS,ncols)
- R = ReadRecord(A,@type,FLOAT_,@pickcond,">",7,100)
+<<"%V $A\n"
+
+ R = ReadRecord(A,@type,FLOAT_,@del,-1,@pickcond,">",7,100)
 
      sz = Caz(R)
 
@@ -57,13 +67,23 @@ nrows = dmn[0]
 
 ncols = dmn[1]
 
+<<"%V$ncols \n"
 
-//<<" $R[0][15] $R[0][17] \n"
-/{
-for (i = 0; i <nrows ;i++) {
-<<" $R[i][7] $R[i][15] $R[i][17] \n"
-}
-/}
+
+<<" $R[0][15] $R[0][17] \n"
+
+
+//<<" $R[50][::] \n"
+
+//for (i = 0; i <ncols ;i++) {
+//<<"$i $R[1][i]  \n"
+//}
+
+
+//for (i = 0; i <5 ;i++) {
+//<<" $R[i][7] $R[i][14] $R[i][15] $R[i][16] $R[i][17] $R[i][18] $R[i][20] \n"
+//}
+
 
 ///    Data results  in record  float type
 
@@ -96,6 +116,14 @@ for (i = 0; i <nrows ;i++) {
   NM *= 0.1
 
 
+ NT = R[::][9]
+
+  Redimn(NT)
+
+  sz = Caz(NT)
+
+
+
 
   PCV = R[::][13]
 
@@ -125,11 +153,12 @@ include "gevent"
 
 
   // GraphWo
-   maxFC = 100
+   maxFC = 110
 
    grwo=cWo(aw,@GRAPH,@resize,0.1,0.1,0.95,0.95,@name,"PXY",@color,WHITE_)
   <<"%V $aw $grwo \n"
-   sWo(grwo,@drawon,@pixmapon,@clip,0.1,0.1,0.9,0.9,@scales,0,0,nrows,maxFC,@savescales,0)
+   sWo(grwo,@drawoff,@pixmapon,@clip,0.1,0.1,0.9,0.9,@scales,0,0,nrows,maxFC,@savescales,0)
+   sWo(grwo,@rhtscales,0,0,nrows,5000,@savescales,1)
 
    sWo(grwo,@clearclip)
 
@@ -144,7 +173,7 @@ include "gevent"
   fgl=cGl(grwo,@TXY,XV, FV, @color, BLUE_,@ltype,SYMBOLS_,TRI_);
 
 //<<"%V $fgl \n"
-  Symsz= 1.0;
+  Symsz= 1.5
 
   sGl(fgl,@symbol,TRI_,Symsz, @symfill,@symhue,BLUE_)
 
@@ -167,11 +196,18 @@ include "gevent"
 
   dGl(pcgl)
 
- nmgl=cGl(grwo,@TXY,XV, NM, @color, BLACK_,@ltype,SYMBOLS_,DIAMOND_);
+  nmgl=cGl(grwo,@TXY,XV, NM, @color, BLACK_,@ltype,SYMBOLS_,DIAMOND_);
 
-  sGl(nmgl,@symbol,SQUARE_,Symsz, @symfill,@symhue,BLACK_)
+  sGl(nmgl,@symbol,DIAMOND_,Symsz, @symfill,@symhue,BLACK_)
 
   dGl(nmgl)
+
+
+  ntgl=cGl(grwo,@TXY,XV, NT, @color, BROWN_,@ltype,SYMBOLS_,);
+
+  sGl(ntgl,@symbol,CIRCLE_,Symsz, @symfill,@symhue,PINK_,@usescales,1)
+
+
  titleVers();
 
   sWo(grwo,@showpixmap)
@@ -182,10 +218,13 @@ while (1) {
 
      sleep(1)
      sWo(grwo,@clearpixmap)     
+     //sWo(grwo,@usescales,1)     
      dGl(pcgl)
      dGl(cgl)
-     dGl(fgl)
-     dGl(nmgl)     
+    dGl(fgl)
+     dGl(nmgl)
+
+     dGl(ntgl)
      sWo(grwo,@showpixmap)
        
 }

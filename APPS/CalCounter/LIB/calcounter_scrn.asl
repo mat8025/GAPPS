@@ -17,16 +17,37 @@
  CFx= 0.74 + 0.01
  CFX= 0.99
 
+   // mr=getmouse_click()
+
+
     vp = cWi(@title,"S2D:$day_name")
 
-    sWi(vp,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
+    mr=sWi(vp,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
 
-    sWi(vp,@resize,0.01,0.01,0.95,0.99,@clip,0.1,0.1,0.98,0.99)
+
+// mr=getmouse_click()
+
 
     sWi(vp,@redraw)
+// mr=getmouse_click()
+
+
+//    sWi(vp,@resize,0.01,0.01,0.99,0.99,@clip,0.01,0.01,0.99,0.99)
+
+   ME=getmouse_event()
+
+<<"%V $mr $ME\n"
 
     titleButtonsQRD(vp);
 
+
+         sWi(vp,@resize,0.01,0.01,0.95,0.95)
+
+         sWi(vp,@clip,0.01,0.01,0.99,0.99)
+
+         sWi(vp,@redraw)
+
+//query()
 ///    GSS  modfiy functions
 
       delwo = cWo(vp,@BN,@name,"DELR",@color,"lightgreen");

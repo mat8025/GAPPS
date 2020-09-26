@@ -58,7 +58,6 @@ V[15] = 3
 
 
 
-
  TV= vunique(V)
 
 
@@ -83,14 +82,21 @@ V[15] = 3
  
 <<"$TV[0:10]\n"
 
- pc = tsz/(sz*1.0)
+ pc = tsz/(sz*1.0) *100
 
 <<"%V $sz $tsz $pc\n"
 
+
 B=ofw("cmap")
 
-for (i=0;i<tsz;i++) {
-printf('%d %.8x\n',i,TV[i]);
-<<[B]"$i %.8x $TV[i]\n"
+nmap = tsz/2
+
+RV=msortCol(TV,1)
+for (i=0;i<nmap;i++) {
+printf('%d  %.8x %d\n',i,RV[i][0],RV[i][1]);
+<<[B]"$i %.8x $RV[i][0] %d $RV[i][1]\n"
 }
 
+V=colsum(RV)
+
+<<"$V \n"

@@ -462,3 +462,9 @@ proc_def_e.cpp	 2.64	 Sat Aug 29 08:24:01 2020 rework redef of proc
 sint_l.cpp	 1.16	 Sun Aug 30 18:23:10 2020 added setmaxsvarsz
 ds_arraycopy.cpp	 2.69	 Wed Sep  2 11:12:17 2020 set SI_ARRAY after CopyArray
 ic_getsiv.cpp	 1.54	 Wed Sep  2 12:21:00 2020 test and skip if null objsvp
+svarg_e.cpp	 2.30	 Sat Sep 19 14:20:15 2020 getArgI -
+fileop.cpp	 1.75	 Sun Sep 20 09:02:06 2020 mread
+include_e.cpp	 2.22	 Mon Sep 21 09:51:15 2020 check include file - hv{.asl}
+dfxy.cpp	 1.43	 Mon Sep 21 09:52:27 2020 dbp
+dll_e.cpp	 2.38	 Mon Sep 21 17:49:57 2020 announce func found by autoopendll
+proc_checkfname_e.cpp	 2.38	 Mon Sep 21 17:51:01 2020 look for func in dll libs before proc check

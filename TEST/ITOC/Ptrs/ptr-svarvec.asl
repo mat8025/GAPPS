@@ -3,8 +3,8 @@
 //* 
 //*  @comment test ptr access to vec 
 //*  @release CARBON 
-//*  @vers 1.2 He Helium                                                   
-//*  @date Sun Apr 19 11:54:16 2020 
+//*  @vers 1.3 Li Lithium [asl 6.2.73 C-He-Ta]                             
+//*  @date Wed Sep 23 20:15:50 2020 
 //*  @cdate Wed Jun 26 08:46:49 2019 
 //*  @author Mark Terry 
 //*  @Copyright © RootMeanSquare  2010,2019 → 
@@ -17,6 +17,12 @@
     debugON()
    }
    
+sdb(1,@pline,@trace)
+
+filterFileDebug(ALLOWALL_,"xxx")
+filterFuncDebug(ALLOW_,"CheckProcFunc")
+filterFuncDebug(ALLOWALL_,"xxx")
+
 
    chkIn(_dblevel);
    
@@ -48,7 +54,8 @@
 
    val = ps[2];
 
-   ps->info(1)
+chkStr(val,"tres")
+ps->info(1)
 
 
    <<"%V $val\n";
@@ -56,11 +63,21 @@
 
    val->info(1); 
 
+
+
    val = ps[3];
 
    ps->info(1);
 
    <<"$val\n";
+
+chkStr(val,"bien")
+
+    i= 4;
+   
+   sval= ps[i];
+ ps->info(1);
+chkStr(sval,"avec")
 
    sz=Caz(S);
 
@@ -69,9 +86,16 @@
     i= 4;
    
    sval= ps[i];
+   
    ps->info(1)
+   
 <<"%V <|$sval|> \n"
-chkStr(sval,"avec")
+  chkStr(sval,"avec")
+
+
+
+
+
    sval= ps[1];
    ps->info(1)
    <<"%V <|$sval|> \n"
@@ -119,7 +143,7 @@ chkStr(sval,"va")
 
 <<"CHECKING   ps[3] $ps[3]\n"
 
-     chkStr(ps[3],"dancez")
+     chkStr(ps[3],"mal")
      chkStr(ps[5],"merci")          
 
 <<"CHECKING   ps[3] $ps[3]\n"
@@ -138,7 +162,7 @@ S->info(1)
      }
 
      chkStr(ps[1],"va")
-     chkStr(ps[3],"dancez")     
+     chkStr(ps[3],"mal")     
      chkStr(S[4],"trop")
      chkStr(S[5],"merci")     
 

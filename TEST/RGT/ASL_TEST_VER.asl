@@ -18,7 +18,7 @@ myScript = getScript()
 <<"TESTING\n"
 include "debug.asl"
 include "hv.asl"
-debugON()
+debugOFF()
 sdb(1,@~pline,@~trace)
 
 #define PGREEN '\033[1;32m'
@@ -532,10 +532,10 @@ proc cart (str aprg)
 
      }
    
-
+   setErrorNum(0)
    w_file(Todo,"$(getdir())/${aprg}.asl $jpid $(time())\n")
 
-//  <<"$(getdir())/${aprg}.asl $jpid $(time())\n"
+  //<<"$(getdir())/${aprg}.asl $jpid $(time())\n"
  
     fflush(Todo)
     
@@ -1155,11 +1155,12 @@ if ((do_all || do_func ) && (do_func != -1)) {
   cart("func", 3)
 
   RunDirTests("Func","func")
+  RunDirTests("Args","args")  
 
 
  // Run2Test("Ifunc")
 //   cart ("iproc")   //TBC
-   <<" skip iproc \n"
+   <<" skip iproc TBF \n"
 }
 
 /////////////////////////////////////////
@@ -1195,14 +1196,11 @@ if ((do_all || do_unary ) && (do_unary != -1)) {
 if ((do_all || do_proc ) && (do_proc != -1)) {
 
   RunDirTests("Proc","proc,proc_declare,proc_ret,procret0,procarg,proc_sv0")
-  RunDirTests("Proc","proc_str_ret,procrefarg,proc_ra,procrefstrarg,proc-loc-main-var");
+  RunDirTests("Proc","proc_str_ret,procrefarg,proc_ra,proc_refstrarg,proc-loc-main-var");
 
   cart("proc-var-define", 10)
 
   RunDirTests("ProcArray","poffset,arrayarg1,arrayarg2")
-  
-
-
 
   Run2Test("Static")
   

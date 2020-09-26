@@ -16,10 +16,13 @@
 
     vptitle = "Wex"
 
-    vp =  cWi(@title,"$vptitle",@resize,0.05,0.1,0.98,0.9,0,@pixmapon,@save,@savepixmap);
+    vp =  cWi(@title,"$vptitle");
 
     vp1 = cWi(@title,"XED",@resize,0.01,0.05,0.90,0.9,1)
 
+    sWi(vp,@clip,0.1,0.1,0.9,0.9,@redraw)
+
+    sWi(vp,@resize,0.05,0.1,0.98,0.9,0);
     sWi(vp,@clip,0.1,0.1,0.9,0.9,@redraw)
 
     int allwin[] = {vp,vp1}

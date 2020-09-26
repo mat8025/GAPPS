@@ -115,32 +115,30 @@ checknum(n,3)
 checknum(m,6)
 
 
-co()
-exit()
 
 
-
-chkR(w,40.0,6)
-
-chkR(x,14.3,3)
-
-chkR(y,53.4,3)
 
 
 
 float x = 13.3;
 float y = 26.7;
 
+chkR(x,13.3,3)
+
+chkR(y,26.7,3)
+
  w = sumarg(&x,&y)
+ 
 <<"%V $x $y $w \n"
-
-
-
-chkR(w,40.0,6)
 
 chkR(x,14.3,3)
 
 chkR(y,53.4,3)
+
+chkR(w,40.0,6)
+
+
+
 
 chkOut ()
 exit()
@@ -184,8 +182,7 @@ int k = 0;
   chkN(m,28);
 
 
- co()
- exit()
+
  n = 54;
  m = 49;
 

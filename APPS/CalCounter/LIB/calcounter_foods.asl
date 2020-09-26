@@ -21,13 +21,17 @@ record FF[>10];
 //  set up probable foods
 
  favi = 0;
- 
+
+proc food_init()
+{
 
  A=  ofr("Foods/foods-breakfast.csv");
-// A=  ofr("Foods/foods-fruits.csv");
 
- if (A == -1) {
-  <<" can't open food table favfoods \n";
+
+
+
+ if (A != -1) {
+
  j  = searchFood("porridge")
 
  if (j >0) {
@@ -71,19 +75,21 @@ record FF[>10];
 
  }
  else {
- <<"reading favorite foods \n"
-  FF= readRecord(A,@del,',')
+  <<" can't open food file \n";
+<<"reading favorite foods \n"
+ A=  ofr("Foods/foods-favorites.csv");
+if (A != -1) {
+FF= readRecord(A,@del,',')
    cf(A);  
 
   Nfav =  Caz(FF);
   for (i=0;i<Nfav;i++) {
 <<"$i $FF[i]\n"
  }
-
-
-
 }
 
+ }
+}
 //======================================================//
 
 
@@ -159,7 +165,7 @@ proc foodsDisplay()
 proc FoodType()
 {
 
-     wtype =woGetValue(mwo)
+     wtype =GetWoValue(mwo)
  <<"reading  foods type   $wtype;\n"
      wtype = slower(wtype)
   A=  ofr("Foods/foods-${wtype}.csv");
@@ -188,3 +194,4 @@ proc FoodType()
 
 }
 //=======================================
+<<[_DB]"Done $_include \n"

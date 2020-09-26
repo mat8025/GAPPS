@@ -3,8 +3,8 @@
 //* 
 //*  @comment test scan of vars 
 //*  @release CARBON 
-//*  @vers 1.64 Gd Gadolinium                                             
-//*  @date Thu Feb  7 14:23:32 2019 
+//*  @vers 1.65 Tb Terbium [asl 6.2.73 C-He-Ta]                            
+//*  @date Wed Sep 23 06:48:47 2020 
 //*  @cdate 1/1/2002 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -14,11 +14,20 @@
 ///  bscan
 ///
 
-include "debug.asl"
-debugON()
-SetDebug(1,@~trace,@keep,@pline)
 
-chkIn()
+include "debug"
+
+if (_dblevel >0) {
+   debugON()
+}
+
+//filterFileDebug(ALLOWALL_,"xxx")
+//filterFuncDebug(ALLOW_,"CheckProcFunc")
+//filterFuncDebug(ALLOWALL_,"xxx")
+
+//SetDebug(1,@~trace,@keep,@pline)
+
+chkIn(_dblevel)
 
 uchar C[] = { 0xCA , 0xFE, 0xBA, 0xBE, 0xFA, 0xCE, 0xBE, 0xAD , 0xDE,0xAD, 0xC0, 0xDE }
 
@@ -61,7 +70,7 @@ uint wbo
 
 wbo = getByteOrder()
 
-<<"%V %X $wbo %d $wbo \n"
+
 
 if (wbo == 4321) {
  swab = 0
@@ -69,12 +78,20 @@ if (wbo == 4321) {
 else {
  swab = 1
 }
+
+<<"%V %X $wbo %d $wbo $swab\n"
+
 <<"$C[1] $C[2]\n"
- na = bscan(&C[1],swab,&k,&j)
+
+na = bscan(&C[1],swab,&k,&j)
 
 <<"%V $na $k $j \n"
 
 <<"%x $k $j \n"
+
+
+
+
 
 chkN(na,8)
 // depends on endian
@@ -83,7 +100,7 @@ uint t1 = 12345;
 
 <<"%V$t1 \n"
 
-uint t = 0xfabebafe
+uint t = 0xfebabefa
 
 <<"%V$t  \n"
 

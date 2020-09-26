@@ -3,14 +3,14 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                 
-//*  @date Sat Dec 29 14:26:32 2018 
+//*  @vers 1.2 He Helium [asl 6.2.71 C-He-Lu]                              
+//*  @date Fri Sep 18 08:08:52 2020 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2014,2018 --> 
 //* 
 //***********************************************%
 ///
-setdebug(1,@keep)
+//setdebug(1,@keep)
 
 chkIn()
 
@@ -29,14 +29,14 @@ chkIn()
 <<"\n"
 <<"$J \n"
 
- T= fliprows(J);
-<<" fliprows\n"
+ T= mrevrows(J);
+<<" revrows\n"
 <<"$T \n"
 
 
 
- T= flipcols(J);
-<<"flipcols\n"
+ T= mrevcols(J);
+<<"revcols\n"
 <<"$T \n"
 
 chkOut()

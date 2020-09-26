@@ -18,19 +18,29 @@
 include "debug"
 include "gevent"
 
-include "hv.asl"
+include "hv"
+
+<<" Before includes \n"
+include "graphic"
 include "calcounter_day"; // check in local LIB first
 include "checkFood";
+
 include "calcounter_foods";
+
 include "calcounter_ssp";
 include "calcounter_addrow";
 include "calcounter_adjust";
 include "calcounter_totals";
 
+<<"after includes \n"
 
+if (_dblevel >0) {
+   debugON()
+}
 
-debugON()
-_DB = 1;
+//debugOFF()
+
+_DB = -1;
 
 setNICerrors(-1)
 setmaxcodeerrors(20)
@@ -67,31 +77,45 @@ record Tot[2];
 
 Tot[0]= Split("#FoodT,NF,ITM,Cals,Carbs,Fat,Prot,Choles,SatFat,Wt,Choline,vA,vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn,",",");
 tot_rows = Caz(Tot)
-tot_cols = Caz(Tot,0)
+tot_cols = Caz(Tot,0);
+
 <<"%V $tot_rows $tot_cols \n"
 
 //==========================
 int Fcols = 10;
 
+<<[_DB]" In Main ? $_script  <|$_scope|>\n"
+  myfood = "pie apple";
+  f_unit = "slice";
+  f_amt = 1.0;
 
 Nbp = 4; // number of search results
 Nchoice = 4;   // display choice row size
 Nfav = 4;   // display choice row size  was 8
 
-  A=  ofr("Foods/foodtable2020.csv");
+  ftfile = "Foods/foodtable2020.csv";
+  A=  ofr(ftfile);
 
  if (A == -1) {
   <<" can't open food table $ftfile \n";
     exit();
  }
 
-  RF= readRecord(A,@del,',') ;   // RF record created
+<<[_DB]"reading recs form $ftfile \n"
+
+ // RF= readRecord(A,@del,',') ;   // RF record created
+  RF= readRecord(A,@del,44) ;   // RF record created
+  
   cf(A);
 
   Nrecs = Caz(RF);
   Ncols = Caz(RF,1);
 
 <<"num of records $Nrecs  num cols $Ncols\n";
+
+
+
+
 /{/*
    for (i= 0; i < 3; i++) {
        nc = Caz(RF,i);
@@ -132,9 +156,7 @@ Nfav = 4;   // display choice row size  was 8
 
 <<"%V$day_name $found_day\n"
 
-  myfood = "pie apple";
-  f_unit = "slice";
-  f_amt = 1.0;
+
 
  int fnd = 0;
  int bpick;
@@ -169,7 +191,7 @@ else {
   R->info(1)
 
 <<"num of records $sz  %V $rows $Ncols\n"
-<<"$R\n"
+//<<"$R\n"
 
   
   sz = Caz(R);
@@ -192,7 +214,7 @@ else {
 R->info(1)
 
 
-include "graphic"
+
 include "calcounter_scrn";
 
 //totalRows();
@@ -213,12 +235,12 @@ int cv = 0;
 
 
   tags_col = cols-1;
-<<"%V$tags_col\n"
+//<<"%V$tags_col\n"
 // rows += 2;
  Tot[0][tags_col] = "xx"
   sWo(cellwo,@setrowscols,rows+1,cols+1);
   sWo(cellwo,@cellval,R,0,0,Nrows,cols+1);
-<<"%V$Ncols \n"
+//<<"%V$Ncols \n"
   sWo(totalswo,@setrowscols,2,30);
   sWo(totalswo,@selectrows,0,1);
   sWo(totalswo,@cellval,Tot,0,1,0,Ncols);
@@ -227,11 +249,11 @@ int cv = 0;
  // sWo(totalswo,@setcolsize,3,0,1);
 
 <<"%V$rows $sz \n"
-
+/{
   for (i = 0; i < rows;i++) { 
     <<"[${i}] $R[i]\n";
    }
-
+/}
 // color rows
 
    color_foodlog();
@@ -259,7 +281,7 @@ int cv = 0;
 
 
    R[0][tags_col] = "Tags";
-<<"$R\n"
+//<<"$R\n"
 
 <<"%V $Nchoice \n"
 
@@ -269,7 +291,7 @@ int cv = 0;
    sWo(choicewo,@selectrows,0,Nchoice-1);
    sWo(choicewo,@setcolsize,3,0,1);
 
-   <<"%V $choicewo \n"
+//   <<"%V $choicewo \n"
   
 
 
@@ -310,12 +332,12 @@ int cv = 0;
    
    sWo(totalswo,@redraw);   
 
-<<"%V $choicewo $cellwo \n"
+//<<"%V $choicewo $cellwo \n"
 
 
 //  Addrow();
 
-  myfood = "pie apple"
+
   //FoodSearch();    // initial search bug
 
   foodSearch()
@@ -391,7 +413,7 @@ while (1) {
            swaprow_b = swaprow_a;
   	   swaprow_a = mwr;
 	 
-<<"%V $swaprow_a $swaprow_b\n"
+//<<"%V $swaprow_a $swaprow_b\n"
 
            sWo(cellwo,@cellbhue,swaprow_a,0,CYAN_);         
          }
@@ -404,7 +426,7 @@ while (1) {
          swapcol_b = swapcol_a;
  	 swapcol_a = mwc;
          sWo(cellwo,@cellbhue,0,swapcol_a,CYAN_);         	 
-<<"%V $swapcol_a $swapcol_b\n"
+//<<"%V $swapcol_a $swapcol_b\n"
          }
 
 

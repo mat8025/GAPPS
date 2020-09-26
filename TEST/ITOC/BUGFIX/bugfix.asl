@@ -30,12 +30,17 @@
 //
 
 // could have a number of sheets in different windows
-include "debug.asl";
-include "gss.asl";
-include "gevent.asl"
+include "debug"
 
-include "hv.asl"
-include "bugfix_proc.asl";
+include "gevent"
+
+
+
+include "hv"
+
+include "gss"
+
+include "bugfix_proc";
 
 
 
@@ -91,7 +96,7 @@ A= ofr(fname)
 
 //record R[20+];
 
-Record DF[10];
+//Record DF[10];
 today = date(2);
 DF[0] = Split("bug#,'desc',code,4,PENDING,$today,$today,",",");
 <<"$DF[0] \n"
@@ -173,7 +178,8 @@ include "bugfix_scrn"
  //  sWo(cellwo,@cellval,R,1,1,5,5,1,1);
 
    sWo(cellwo,@setrowscols,rows+2,cols+1);
-   sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
+ //  sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
+   sWo(cellwo,@selectrows,0,rows-1);
    sWo(cellwo,@setcolsize,3,1,1) 
 
 
@@ -204,7 +210,6 @@ use_incl = 1;
    rows = sz; 
    
    //sWo(cellwo,@setrowscols,rows+2,cols+1);
-   //sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
    //sWo(cellwo,@setcolsize,3,1,1) 
 
    sWi(vp,@redraw)

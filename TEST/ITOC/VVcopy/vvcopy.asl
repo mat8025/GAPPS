@@ -48,6 +48,38 @@ R=vvcomp(A,B,n);
 
 chkN(A[3],47)
 
+B= vgen(INT_,100,0,1)
+
+
+nc=vvcopy(A,B,20,ALWAYS_,0,1,1,0,10);
+
+<<"$nc \n"
+
+<<"$A\n"
+chkN(A[0],10)
+C= B[10:19:1]
+
+
+<<"$C\n"
+chkN(C[0],10)
+
+C= B[20:29:1]
+
+
+<<"$C\n"
+chkN(C[0],20)
+
+nc=vvcopy(A,B,20,ALWAYS_,0,1,1,0,20);
+
+<<"$nc \n"
+
+<<"$A\n"
+chkN(A[0],20)
+
+
+
+
+
 chkOut()
 
 
