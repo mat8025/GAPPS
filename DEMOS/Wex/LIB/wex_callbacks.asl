@@ -63,10 +63,10 @@ proc ZIN()
 
        sWo(swo,@xscales,lcpx,rcpx);
 
-       drawScreens()
+       drawScreens();
 
-       showWL()
-<<" leaving ZIN\n";
+       showWL();
+
 }
 //--------------------------------------------------
 
@@ -189,3 +189,4 @@ proc SWITCHSCREEN()
 
 
 ///////////////////////////////////////////////////////////////////////////////////////
+<<[_DB]"$_include \n"

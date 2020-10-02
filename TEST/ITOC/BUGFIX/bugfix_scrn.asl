@@ -5,6 +5,13 @@
 <<"inc bugfix screen $_include\n"
 
 
+///
+///    more than one xgs running - can cause second to fail
+///    SHM  resource is starved?? --- need a error report
+///
+
+
+
 proc colorRows()
 {
 int i;
@@ -28,15 +35,29 @@ int j;
 
 
 
-    vp = cWi(@title,"S2D:$fname")
+    vp = cWi(@title,"S2D:$fname",@resize,0.01,0.02,0.5,0.9,0)
 
-    sWi(vp,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
+<<"%V $vp\n"
+
+
+    ret=sWi(vp,@resize,0.01,0.02,0.9,0.9,0)
 
     sWi(vp,@clip,0.1,0.2,0.9,0.9)
 
     sWi(vp,@redraw)
 
+    sWi(vp,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
+
+    gflush()
+
+
+
+//    vp2 = cWi(@title,"S2D:$fname",@resize,0.51,0.02,0.9,0.9,0)
+//<<"%V $vp2\n"
     titleButtonsQRD(vp);
+
+
+    sWi(vp2,@redraw)
 
 ///    GSS  modfiy functions
 

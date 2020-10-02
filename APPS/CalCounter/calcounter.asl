@@ -20,7 +20,7 @@ include "gevent"
 
 include "hv"
 
-<<" Before includes \n"
+
 include "graphic"
 include "calcounter_day"; // check in local LIB first
 include "checkFood";
@@ -32,7 +32,7 @@ include "calcounter_addrow";
 include "calcounter_adjust";
 include "calcounter_totals";
 
-<<"after includes \n"
+
 
 if (_dblevel >0) {
    debugON()

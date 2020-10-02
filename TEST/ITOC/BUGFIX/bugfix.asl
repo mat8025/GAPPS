@@ -76,14 +76,15 @@ include "bugfix_proc";
 
 
 //  fname = "pp.rec"
+/{
   fname = _clarg[1];
 
 
   if (fname @= "")  {
    fname = "buglist.csv";
   }
-
-
+/}
+ fname = "buglist.csv";
 <<"%V $fname \n"
 //isok =sWo(cellwo,@sheetread,fname,2);
  //<<"%V$isok\n";
@@ -123,15 +124,9 @@ DF[0] = Split("bug#,'desc',code,4,PENDING,$today,$today,",",");
 
 //////////////////////////////////
 
-Graphic = CheckGwm()
+include "graphic"
 
-
-     if (!Graphic) {
-        X=spawngwm()
-     }
-
-
-include "tbqrd"
+//include "tbqrd"
 include "bugfix_scrn"
 
 
@@ -164,7 +159,7 @@ include "bugfix_scrn"
 <<"%V$rows $sz \n"
 
   for (i = 0; i < rows;i++) {
-    <<"[${i}] $R[i]\n"
+    <<"${i} $R[i]\n" ;  // bug first row only
   }
 
 

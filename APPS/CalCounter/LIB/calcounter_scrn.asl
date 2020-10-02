@@ -41,7 +41,7 @@
     titleButtonsQRD(vp);
 
 
-         sWi(vp,@resize,0.01,0.01,0.95,0.95)
+         sWi(vp,@resize,0.01,0.01,0.85,0.95)
 
          sWi(vp,@clip,0.01,0.01,0.99,0.99)
 
@@ -69,7 +69,7 @@
       sWo(pgnwo,@bhue,WHITE_,@clipbhue,RED_,@FUNC,"inputValue",@callback,"PGN",@MESSAGE,1)
 
 
-      int ffmods[] = {sortffwo, pguwo,pgdwo,pgnwo,delwo,savewo };
+      int ffmods[] = {savewo, sortffwo, pguwo,pgdwo,pgnwo,delwo };
 
 
       wohtile(ffmods,CFx,0.9,0.99,0.99,0.05);

@@ -14,7 +14,7 @@
 ///
 
 //  SET     START DATE      END DATE  TARGET WEIGHT
-Goals = Split("09/21/2020 10/31/2020 180")
+Goals = Split("10/01/2020 10/31/2020 180")
 ////////////////////==============/////////////////
 
 
@@ -72,6 +72,7 @@ proc computeGoalLine()
 
   gwt =  NextGoalWt;
   GVEC[ngday-1] = gwt;  // goal wt
+
   WDVEC[ngday-1] = gsday+ngday;
   k =0
 
@@ -111,6 +112,6 @@ for (i= 0; i < ngday; i++) {
 
 //==================================//
 
-
+<<[_DB]"$_include \n"
 
 ///////////////////////////////////

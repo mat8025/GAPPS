@@ -66,7 +66,7 @@ if ( gw_gl == -1 || bp_gl == -1) {
 
   int allgl[] = {wt_gl, gw_gl,bp_gl,ext_gl, se_gl, calb_gl, calc_gl, carb_gl, pwt_gl, cardio_gl, strength_gl}
 
-  int wedgl[] = {wt_gl, gw_gl, ext_gl, calb_gl, se_gl, calc_gl, carb_gl, pwt_g , cardio_gl, strength_gl}
+  int wedgl[] = {wt_gl, gw_gl, ext_gl, calb_gl, se_gl, calc_gl, carb_gl, pwt_gl , cardio_gl, strength_gl}
 
   int exgls[] = {ext_gl, cardio_gl,strength_gl}
 

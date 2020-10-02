@@ -1,24 +1,43 @@
+//%*********************************************** 
+//*  @script plotpic.asl 
+//* 
+//*  @comment test pixmap plot setrgb  imave 
+//*  @release CARBON 
+//*  @vers 1.3 Li Lithium [asl 6.2.74 C-He-W]                                
+//*  @date Fri Oct  2 14:50:37 2020 
+//*  @cdate 1/1/2019 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+myScript = getScript();
 ///
 ///
 ///
+
+
+
+include "debug"
+include "hv"
+
+include "graphic"
+include "gevent"
+
 
 
 /// plot a 512X512 image
 
- opendll("image");
-
- if (! CheckGwm() ) {
-     X=spawngwm()
-  }
 
 
 // want this to contain a 512X512 image -- so that plus borders and title
   
-  wid =  cWi("title","PIC_WINDOW",@resize,0.01,0.01,0.99,0.99,0)
+  wid =  cWi("title","PIC_WINDOW",@resize,0.01,0.01,0.9,0.90,0)
 
 // again must be greater the 512x512 plus the borders
  
- picwo=cWo(wid,"GRAPH",@name,"Pic",@color,"yellow",@resize,0.01,0.01,0.99,0.99)
+ picwo=cWo(wid,"GRAPH",@name,"Pic",@color,"yellow",@resize,0.01,0.01,0.45,0.99)
+
+ pic2wo=cWo(wid,"GRAPH",@name,"Pic2",@color,GREEN_,@resize,0.46,0.01,0.96,0.99)
 
 // set the clip to be 512x512 --- clipborder has to be on pixel outside of this!
 
@@ -28,11 +47,21 @@
 
  sWo(picwo,@SCALES,0,0,1,1)
 
-
  sWo(picwo,@pixmapon,@drawon,@redraw)
 
  sWo(picwo,@clip,4,4,512,512,2)
 
+ sWo(picwo,@savepixmap,@save)
+
+ sWo(pic2wo,@BORDER,@drawon,@CLIPBORDER,@FONTHUE,"red", @redraw)
+
+ sWo(pic2wo,@SCALES,0,0,1,1)
+
+ sWo(pic2wo,@pixmapon,@drawoff,@redraw)
+
+ sWo(pic2wo,@clip,4,4,512,512,2)
+
+ sWo(pic2wo,@savepixmap,@save)
 
 
  plotline(picwo,0,0,1,1)
@@ -89,15 +118,63 @@ uchar CX[]
 
 // display
 
+
     PIX = 255 - PX
 
 
    Redimn(PIX,512,512)
-
+  sWo(picwo,@drawoff)
+  sWo(picwo,@clearpixmap);
    PlotPixRect(picwo,PIX,cmi)
-
+  sWo(picwo,@showpixmap);
    sleep(1)
 
+<<" int pix\n"
+  sWo(pic2wo,@clearpixmap);
+  PlotPixRect(pic2wo,PIX,cmi)
+  sWo(pic2wo,@showpixmap);
+
+getMouseClick()
+
+
+
+
+
+
+ TPIX= imave(PIX,3)
+
+<<"$(Cab(TPIX))\n"
+<<"$TPIX\n"
+
+  sWo(pic2wo,@clearpixmap);
+  PlotPixRect(pic2wo,TPIX,cmi)
+  sWo(pic2wo,@showpixmap);
+
+getMouseClick()
+
+
+  
+
+  SPIX= imave(TPIX,3)
+
+<<"$(Cab(SPIX))\n"
+<<"$SPIX\n"
+
+  sWo(pic2wo,@clearpixmap);
+  PlotPixRect(pic2wo,SPIX,cmi)
+  sWo(pic2wo,@showpixmap);
+
+
+   
+
+  while (1) {
+
+    ME=getMouseEvent()
+    msg =eventWait();
+
+  }
+
+ exit()
 
   Redimn(CX,512,512)
 
@@ -133,6 +210,11 @@ uchar CX[]
   PlotPixRect(picwo,NCH,cmi)
 
  // sleep(2)
+
+
+
+   PlotPixRect(picwo,PIX,cmi)
+
 
 
   NCH = Imop(CX,"laplace")

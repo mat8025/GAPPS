@@ -6,7 +6,7 @@
 
 proc ADDBR()
 {
-
+  <<"CALL ADD BUG ROW \n"
    AddTask(0);
    // check this was filled in correctly and then  bump BugN
    BugN++;

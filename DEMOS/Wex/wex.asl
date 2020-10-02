@@ -21,8 +21,8 @@
 
 myscript = getScript();
 
-include "debug.asl"
-include "hv.asl"
+include "debug"
+include "hv"
 //setDebug(1,@keep,@~pline);
 
   scriptDBOFF();

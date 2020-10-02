@@ -20,9 +20,9 @@
 
     vp1 = cWi(@title,"XED",@resize,0.01,0.05,0.90,0.9,1)
 
-    sWi(vp,@clip,0.1,0.1,0.9,0.9,@redraw)
+    sWi(vp,@clip,0.1,0.1,0.85,0.9,@redraw)
 
-    sWi(vp,@resize,0.05,0.1,0.98,0.9,0);
+    sWi(vp,@resize,0.05,0.1,0.8,0.9,0);
     sWi(vp,@clip,0.1,0.1,0.9,0.9,@redraw)
 
     int allwin[] = {vp,vp1}
@@ -56,10 +56,12 @@
 //<<"%V$CXY\n"
 
     titleButtonsQRD(vp)
-
+//<<"aftertitleButtons\n"
  //////////////////////////////// TITLE BUTTON QUIT ////////////////////////////////////////////////
 
-<<"after proc - next statement missed \n" // MUST FIX
+//<<"after proc - next statement missed? \n" // MUST FIX
+
+
      CalsY1 = 5000.0;
 
 
@@ -71,7 +73,7 @@
 
  //   sWo(carbwo,@clip,CXY, @color,BROWN_,@clipbhue,BROWN_,@bhue,GREEN_,@font,F_SMALL_,@fonthue,WHITE_)
 
-    sWo(extwo,@clip,CXY, @color,YELLOW_,@clipbhue,LILAC_,@bhue,WHITE_@font,F_SMALL_)
+    sWo(extwo,@clip,CXY, @color,YELLOW_,@clipbhue,LILAC_,@bhue,WHITE_,@font,F_SMALL_)
 
     sWo(wedwo,@border,@clipborder,BLACK_,@drawon)
 
@@ -197,3 +199,4 @@
   titleVers();
 
 //======================================//
+<<[_DB]"$_include \n"
