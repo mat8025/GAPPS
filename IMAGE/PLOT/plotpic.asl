@@ -37,7 +37,9 @@ include "gevent"
  
  picwo=cWo(wid,"GRAPH",@name,"Pic",@color,"yellow",@resize,0.01,0.01,0.45,0.99)
 
- pic2wo=cWo(wid,"GRAPH",@name,"Pic2",@color,GREEN_,@resize,0.46,0.01,0.96,0.99)
+ pic2wo=cWo(wid,"GRAPH",@name,"Pic2",@color,GREEN_,@resize,0.46,0.01,0.76,0.99)
+
+ pic3wo=cWo(wid,"GRAPH",@name,"Pic3",@color,BLUE_,@resize,0.77,0.01,0.97,0.99)
 
 // set the clip to be 512x512 --- clipborder has to be on pixel outside of this!
 
@@ -62,6 +64,16 @@ include "gevent"
  sWo(pic2wo,@clip,4,4,512,512,2)
 
  sWo(pic2wo,@savepixmap,@save)
+
+ sWo(pic3wo,@border,@drawoff,@clipborder,@fonthue,"red", @redraw)
+
+ sWo(pic3wo,@SCALES,0,0,1,1)
+
+ sWo(pic3wo,@pixmapon,@drawoff,@redraw)
+
+ sWo(pic3wo,@clip,4,4,128,128,2)
+
+ sWo(pic3wo,@savepixmap,@save)
 
 
  plotline(picwo,0,0,1,1)
@@ -141,7 +153,7 @@ getMouseClick()
 
 
 
- TPIX= imave(PIX,3)
+ TPIX= imave(PIX,5)
 
 <<"$(Cab(TPIX))\n"
 <<"$TPIX\n"
@@ -160,9 +172,9 @@ getMouseClick()
 <<"$(Cab(SPIX))\n"
 <<"$SPIX\n"
 
-  sWo(pic2wo,@clearpixmap);
-  PlotPixRect(pic2wo,SPIX,cmi)
-  sWo(pic2wo,@showpixmap);
+  sWo(pic3wo,@clearpixmap);
+  PlotPixRect(pic3wo,SPIX,cmi)
+  sWo(pic3wo,@showpixmap);
 
 
    

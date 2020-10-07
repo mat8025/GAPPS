@@ -469,3 +469,4 @@ dfxy.cpp	 1.43	 Mon Sep 21 09:52:27 2020 dbp
 dll_e.cpp	 2.38	 Mon Sep 21 17:49:57 2020 announce func found by autoopendll
 proc_checkfname_e.cpp	 2.38	 Mon Sep 21 17:51:01 2020 look for func in dll libs before proc check
 screen_p.cpp	 1.79	 Mon Sep 28 12:40:38 2020 getmouseevent
+i_funcs.cpp	 1.58	 Sun Oct  4 06:53:12 2020 imave

@@ -34,7 +34,7 @@
 
 //    sWi(vp,@resize,0.01,0.01,0.99,0.99,@clip,0.01,0.01,0.99,0.99)
 
-   ME=getmouse_event()
+ //  ME=getmouse_event()
 
 <<"%V $mr $ME\n"
 

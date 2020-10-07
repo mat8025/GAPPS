@@ -25,7 +25,7 @@ nlines = Caz(S);
 <<"$S\n"
 
 
-float CCN[>300][3]
+float CCN[100][3]
 // have to sort via date before file write
 int n= 0;
 for (i = 0; i< nlines;i++) {
@@ -36,13 +36,32 @@ for (i = 0; i< nlines;i++) {
   dt= ssub(dt,"-","/",0)
   jd= julian(dt)
  <<"$jd  $L[3]  $L[4]\n"
+ //ans = query()
   CCN[n][0] = jd;
   CCN[n][1] = atof(L[3])
   CCN[n][2] = atof(L[4])
+  <<"%6.f$CCN[n][::]\n"
   n++;
 }
 //cf(A)
- CCF=msortCol(CCN[0:n-1][::],0)
+
+//CCF=msortCol(CCN[0:n-1][::],0)
+
+CCA= CCN[0:n-1][::] ;
+
+<<"$(Cab(CCN)) \n"
+//CCN->Redimn(n,3)
+CCF=msortCol(CCA,0)
+
+//  ans = query()
+
+<<"$(Cab(CCF)) \n"
+
+for (i = 0; i< n;i++) {
+
+  <<"%6.f$CCF[i][::]\n"
+//  ans = query()
+}
 
 A=ofw("jcc.tsv")
 <<[A]"%5.2f%(3,, ,\n)$CCF[0:n-1][::] \n"
@@ -52,4 +71,9 @@ cf(A)
 
 !!"cp jcc.tsv ~/gapps/DEMOS/Wex/DAT"
 
+
+
+<<"$(Cab(CCA)) \n"
+
+<<"%(3, , ,\n)$CCA\n"
 //======================================//
