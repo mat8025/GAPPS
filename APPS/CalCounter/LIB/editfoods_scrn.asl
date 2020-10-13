@@ -14,11 +14,18 @@
 
     vp = cWi(@title,"S2D:$fname")
 
-    sWi(vp,@resize,0.1,0.01,0.95,0.99,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
+//    sWi(vp,@resize,0.1,0.01,0.95,0.95,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
+
+    sWi(vp,@resize,0.1,0.01,0.95,0.95,0)
+
+  
 
     sWi(vp,@clip,0.1,0.1,0.95,0.95)
 
     sWi(vp,@redraw)
+
+
+  //clk=getMouseClick()
 
     titleButtonsQRD(vp);
 

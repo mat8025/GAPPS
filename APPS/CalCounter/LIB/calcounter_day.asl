@@ -50,6 +50,9 @@
          the_day = fname;
          }
        else {
+         if (scmp(fname,"yesterday")) {
+            fname="dd-1";
+         }
          if (scmp(fname,"dd-",3)) {
            adjust_day = 1;
      // find the number

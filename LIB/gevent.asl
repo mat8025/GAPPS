@@ -44,18 +44,19 @@ proc eventDecode()
     ewsz=Caz(_ewords);
 //<<"%V $ewsz $_ewords\n"
   
-    if(ewsz > 1) {
-    _ekeyw = _ewords[2];
+    if (ewsz >= 1) {
+    _ekeyw = _ewords[0];   // TBC
 
 //<<"%V $_evalue $_emsg  $_ekeyw \n"
      _evalue =   spat(_emsg,_ekeyw,1);
 //<<"%V $_evalue \n"   
      _evalue = eatWhiteEnds(_evalue);
 //<<"%V $_evalue \n"
-    _ekeyw2 = _ewords[3];
-
-    _ekeyw3 = _ewords[4];
-    
+    if (ewsz >= 2) {
+    _ekeyw2 = _ewords[1];
+   if (ewsz >= 3) 
+    _ekeyw3 = _ewords[2];
+    }
 
 
 //<<"proc $_ewoproc \n"

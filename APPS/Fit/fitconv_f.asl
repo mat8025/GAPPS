@@ -143,11 +143,15 @@ proc rd_hdb()
 
 //<<[_DB]"$_proc\n"
 //   where = ftell(A)
-   k= fscanv(A,0,"C1",&ht)
+ //  k= fscanv(A,0,"C1",&ht)
+    fscanv(A,0,"C1",&ht)
+    // fread(&ht,1,1,A)
 //<<[_DB]"%V $where $k %X $ht\n"
 //bc=dec2bin(ht)
 //<<[_DB]"$bc \n"
-   bc = scut(dec2bin(ht),24);
+
+  //bc = scut(dec2bin(ht),24);    // not used
+
 //<<[_DB]"$bc \n"
    normal = 1;
    defin = 0;
@@ -159,7 +163,8 @@ proc rd_hdb()
  //  ct= ht & 0x80
    //<<[_DB]"%V $ht %X $ct $ht\n"
 
-    if ((ht & 0x80) == 0x80) {
+  //  if ((ht & 0x80) == 0x80) {
+    if (ht & 0x80) {
         normal = 0;
 	cmpts = 1;
 //<<[_DB]"$ht %X $ht  0x80 cmpts  "	
@@ -170,28 +175,27 @@ proc rd_hdb()
 
 
    
-   if ((ht & 0x40) == 0x40) {
+ //  if ((ht & 0x40) == 0x40) {
+   if (ht & 0x40) {
    //<<[_DB]"$ht %x $ht &  0x40\n"
         defin = 1;
 	data = 0;
-//<<[_DB]"defin  "		
+//<<[_DB]"defin  "
+     devdata = 0;
+    
+     if (ht & 0x20) {
+        //<<[_DB]"$ht %x $ht &= 0x20 ?\n"
+	devdata = 1;
+//<<[_DB]"devdata "		
+     }
    }
+
 //   else {
 //<<[_DB]"data  "	
 //   }
 
 //ct= ht & 0x20
    //<<[_DB]"%V $ht 0x20 %X $ct $ht\n"
-   
-
-   if (defin) {
-     devdata = 0;
-     if ((ht & 0x20) == 0x20) {
-        //<<[_DB]"$ht %x $ht &= 0x20 ?\n"
-	devdata = 1;
-//<<[_DB]"devdata "		
-     }
-   }
    
    lmt = (ht & 0x0F);
 
@@ -201,9 +205,9 @@ proc rd_hdb()
 //"%V $where $k %X $ht  $bc %d $lmt \n"
 
 
-  if (defin) {
+//  if (defin) {
 //     storeLMT( lmt);
-  }
+//  }
 
 //ans=query("%V $where $k $normal  $data $cmpts $devdata %X $ht")
 
@@ -228,29 +232,8 @@ proc rd_dfds()
   dfd = 0;
 
 
-/{/*/ SDBG
 
-  fmt="C3"
-  
-  where = ftell(A)
-  k= fscanv(A,0,fmt,&vec_uc)
-<<"@ $where : $vec_uc\n"
-
-where = ftell(A)
-  k= fscanv(A,0,fmt,&vec_uc)
-<<"@ $where : $vec_uc\n"
-
-where = ftell(A)
-  k= fscanv(A,0,fmt,&vec_uc)
-<<"@ $where : $vec_uc\n"
-
-
-ok=query()
-
-
-/}*///  EDBG
-
-  k= fscanv(A,0,fmt,&dfd)
+  fscanv(A,0,fmt,&dfd)
 
   //<<[_DB]"dfd %V $(Cab(dfd)) \n"
 /{
@@ -284,7 +267,7 @@ ok=query()
 
   DEFS[lmt][::] = vd;
 //  DEFS[lmt] = vd;
-  
+    
   //<<[_DB]"DEFS %V $lmt $n\n "
 
 //<<[_DB]"DEFS $(Cab(DEFS)) $(typeof(DEFS)) \n"
@@ -299,13 +282,33 @@ proc rd_devfds()
 {
 //<<[_DB]"$_proc\n"
 
-k= fscanv(A,0,"C1",&nfdd)
+//  k= fscanv(A,0,"C1",&nfdd)
+    fscanv(A,0,"C1",&nfdd)
 
 //<<[_DB]"DEVDATA !! @ $kl %V $nfdd\n"
 
   //ans = iread("devdata $nfdd fields\n"
 
-  if (nfdd == 0) {
+ 
+
+  if (nfdd > 0) {
+  
+  n= 3 *nfdd;
+
+  fmt = "C$n"
+
+  fscanv(A,0,fmt,&devfd)
+  //k= fscanv(A,0,fmt,&devfd)
+
+
+    for (i = 0; i < nfdd ; i++) {
+
+       dfdt = devfd[i][2];
+//<<[_DB]"%v $i  $devfd[i][2] $dfdt\n"
+//ans = iread("devdata $i"
+    }
+  }
+  else  {
 
 <<"WARNING no dev fields to read $nfdd\n"
 
@@ -317,23 +320,6 @@ k= fscanv(A,0,"C1",&nfdd)
 
   }
 
-
-  if (nfdd > 0) {
-  
-  n= 3 *nfdd;
-
-  fmt = "C$n"
-
-  k= fscanv(A,0,fmt,&devfd)
-
-
-    for (i = 0; i < nfdd ; i++) {
-
-       dfdt = devfd[i][2];
-//<<[_DB]"%v $i  $devfd[i][2] $dfdt\n"
-//ans = iread("devdata $i"
-    }
-  }
 
 }
 //==============================//
@@ -412,8 +398,7 @@ proc rd_data()
         if (cat == 253) {
            tim = wt;
         }
-
-        if (cat == 5) {
+        else if (cat == 5) {
              dist = wt * 0.01;
         }
        //   k= sscan(CD,'%d',&wt)
@@ -432,7 +417,7 @@ proc rd_data()
         if (cat == 0) {
              lat = deg
         }
-        if (cat == 1) {
+        else if (cat == 1) {
              lon = deg
         } 	
 	//<<[_DB]"$i <133> <$tvn> pos  $pos  $deg\n"
@@ -461,8 +446,7 @@ proc rd_data()
         if (cat == 2) {
            alt = ws * 0.2 -500;
         }
-	
-        if (cat == 6) {
+        else if (cat == 6) {
            spd = ws * 0.001;
         } 		
 
@@ -616,22 +600,6 @@ while (1) {
    
 
    if (defin) {
-/{/*
-    if (ask) {
-
-      goon= query(" read define?");
-<<"%V$goon\n"
-     if (goon @= "n") {
-         break;
-    }
-
-    if (goon @= "c") {
-         ask = 0;
-     }
- 
-
-    }
-/}*/    
 
      rd_def();
 
@@ -645,26 +613,6 @@ while (1) {
 
 
     if (data) {
-/{/*
-    if (ask) {
-
-     goon= iread(" read data?");
-<<"%V$goon\n"
-      if (goon @= "n") {
-        break;
-    }
-
-    if (goon @= "c") {
-         ask = 0;
-    }
-
-    if (goon @= "q") {
-         exit()
-    }
-
-     ask = 0;
-    }
-/}*/
        rd_data()
 
       if (devdata) {
