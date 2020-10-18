@@ -1,105 +1,104 @@
-//
-//
-//
+//%*********************************************** 
+//*  @script server.asl 
+//* 
+//*  @comment test commands to setup server 
+//*  @release CARBON 
+//*  @vers 1.3 Li Lithium [asl 6.2.76 C-He-Os]                               
+//*  @date Thu Oct 15 09:48:31 2020 
+//*  @cdate 1/1/2008 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+myScript = getScript();
+
+
+
+///
+/// test socket code
+///
 
 proc StrEcho( )
 {
+ int k = 0
+ 
+ while (1) {
 
- // 
+      CR=GsockRead(A,"connect",1024)
 
-  while (1) {
+      sz = Csz(CR)
 
-       CR=GsockRead(A,"connect",1024)
+<<" msg sz $sz \n"
 
-       if (scmp(CR,"quit")) {
-        <<" shutting down \n"
-        break;
-       }
+    //  if (sz[0] == -1) {
+      if (sz == 0) {
+          exit()
+      }
+       err= Cerror(CR)
 
-       CR->reverse()
+      if (err == -1)
+         exit()
 
-       GsockWrite(A,"connect",CR)
 
+  if (sz > 0) {
+
+ <<"$k read $sz chars >>> %s $CR \n"
+
+       RC = srev(CR)
+
+       nw=GsockWrite(A,"connect",RC)
+
+// <<"%V $nw \n"
+
+     k++
+   }
   }
-
 }
+//------------------------------------
 
-// test socket code
 
 // server
 
 // create socket
 
+   pid = getAslPid()
+
+  int  port_id = atoi(_clarg[1])
+
 // on server side the address can be any
 // it is of type SOCK_STREAM AF_INET by default
-  
-  //port_id = 9895
-
-int  port_id = atoi(_clarg[1])
-
- if (port_id @= "") {
-    port_id = 9869
- }
 
   A = GsockCreate("any",port_id)
 
-// and GsockCreate does the bind
-// now listen on that socket - port
+<<" mypid $pid  Create Socket $port_id index $A \n"
+
+    GsockBind(A) //  now the bind
+
 // backlog default is 1024
 
-  GsockListen(A)
-<<"Socket created server listening on our socket handle $A \n"
- 
-    
-//
-// i_read("->")
-// setdebug(0,"step")
-//
+  GsockListen(A) // now listen on that socket - port
 
-
-    while (1) {
-
+   cpid = 0
 
  // block till get connection
-<<" AT accept \n"
-         Cfd = GsockAccept(A)
 
-<<" got connected $Cfd \n"
+   Cfd = GsockAccept(A)
 
-          if (Cfd == -1) {
-<<"badness $Cfd not accepted \n"
-           stop()
-          }
+<<"got accepted $Cfd \n"
 
-          cpid = Clone()
+//  GsockClose(A,"connect")
 
-<<" did clone $cpid \n"
+   StrEcho( )
 
-          <<"%V$cpid \n"
+/////////////////////////   DEV ////////////////////////////////////
+/{/*
 
-          if (cpid == 0) {
 
-            GsockClose(A,"listen")
-            // do serving
-            StrEcho()
-
-            STOP!
-
-         }
-
-          GsockClose("connect")
-
-        // now open another for next client
-
-         port_id++
-         
-         A = GsockCreate("any",port_id)
-        <<" new socket $A $port_id \n"
-            GsockListen(A)
-
-//          STOP!
-
-    }
+    nc -u 127.0.0.1 9892  
+    does not connect  ?
 
 
 
+
+
+/}*/

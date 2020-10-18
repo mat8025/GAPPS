@@ -1,130 +1,28 @@
-#! /usr/local/GASP/bin/asl
+//
+//
+//
 
-// want to listen/ write on multiple sockets to multiple clients
-// as one process
-
-proc StrEcho( sock_handle )
+proc StrEcho( )
 {
 
  // 
-  int k = 0
- 
- while (1) {
 
-       CR=GsockRead(sock_handle,"connect",1024)
+  while (1) {
 
-       sz = Caz(CR)
-      if (sz == -1)
-       STOP!
+       CR=GsockRead(A,"connect",1024)
 
-       err= Cerror(CR)
+       if (scmp(CR,"quit")) {
+        <<" shutting down \n"
+        break;
+       }
 
-   if (err == -1)
-         STOP!
+       CR->reverse()
 
-
-//<<" msg sz $sz \n"
-
-  if (sz > 0) {
-
- <<" $k read $sz chars >>> %s $CR \n"
-
-      RC = srev(CR)
-
-       nw=GsockWrite(sock_handle,"connect",RC)
-
-// <<" %v $nw \n"
-
-     k++
-   }
-
-        //     sleep (1)
+       GsockWrite(A,"connect",CR)
 
   }
 
 }
-
-
-
-proc server_t( sock_handle)
-{
- // block till get connection
- int tid
- tid = GthreadGetId()
-
- <<" %V $tid waiting for $sock_handle \n"
-
-    int  Cfd 
-
-    Cfd = GsockAccept(sock_handle)
-
-    <<" got connected $Cfd \n"
-
-   
-
-            GsockClose(sock_handle,"listen")
-            // do serving
-            StrEcho()
-   
-
-          GsockClose(sock_handle,"connect")
-
-}
-
-
-proc server_t2( sock_handle)
-{
- // block till get connection
- int tid
- tid = GthreadGetId()
-
- <<" %V $tid waiting for $sock_handle $B \n"
-
-    int  Cfd 
-
-    Cfd = GsockAccept(B)
-
-    <<" got connected $Cfd \n"
-
-   
-
-            GsockClose(B,"listen")
-            // do serving
-
-       while (1) {
-
-       CR=GsockRead(B,"connect",1024)
-
-       sz = Caz(CR)
-        if (sz == -1) {
-          STOP!
-        }
-
-       err= Cerror(CR)
-
-       if (err == -1) {
-         STOP!
-       }
-
-         if (sz > 0) {
-
-       <<" $k read $sz chars >>> %s $CR \n"
-
-          RC = srev(CR)
-
-          nw=GsockWrite(B,"connect",RC)
-
-          k++
-        }
-
-       }
-
-       GsockClose(B,"connect")
-}
-
-
-port1 = 9869
-port2 = 9867
 
 // test socket code
 
@@ -132,52 +30,76 @@ port2 = 9867
 
 // create socket
 
-  pid = GetPid()
-
-<<" mypid $pid \n"
-
 // on server side the address can be any
-// it is of type SOCK_STREAM AF_INET byt default
+// it is of type SOCK_STREAM AF_INET by default
+  
+  //port_id = 9895
 
-  A = GsockCreate("any",port1)
+int  port_id = atoi(_clarg[1])
 
-<<" Create Socket index $A \n"
+ if (port_id @= "") {
+    port_id = 9869
+ }
+
+  A = GsockCreate("any",port_id)
 
 // and GsockCreate does the bind
-
 // now listen on that socket - port
-
 // backlog default is 1024
 
   GsockListen(A)
-
-  B = GsockCreate("any",port2)
-
-  GsockListen(B)
-
-<<" Create Socket index $B \n"
-
-  cpid = 0
-
-
-// thread to process A
-    servid1 = gthreadcreate("server_t", A)
-<<" just created A thread server $servid1 on port $port1\n"
-// thread to process B
-    servid2 = gthreadcreate("server_t2", B)
-<<" just created B thread server $servid2 on port $port2\n"
+<<"Socket created server listening on our socket handle $A \n"
+ 
+    
+//
+// i_read("->")
+// setdebug(0,"step")
+//
 
 
-
-    ks = 0
     while (1) {
 
-      nt = gthreadHowMany()
-   <<" main thread sleeping $(ks++)  WAITING for $(nt-1) other threads to finish \n"
-      sleep(7)
+
+ // block till get connection
+<<" AT accept \n"
+         Cfd = GsockAccept(A)
+
+<<" got connected $Cfd \n"
+
+          if (Cfd == -1) {
+<<"badness $Cfd not accepted \n"
+           stop()
+          }
+
+          cpid = Clone()
+
+<<" did clone $cpid \n"
+
+          <<"%V$cpid \n"
+
+          if (cpid == 0) {
+
+            GsockClose(A,"listen")
+            // do serving
+            StrEcho()
+
+            STOP!
+
+         }
+
+          GsockClose("connect")
+
+        // now open another for next client
+
+         port_id++
+         
+         A = GsockCreate("any",port_id)
+        <<" new socket $A $port_id \n"
+            GsockListen(A)
+
+//          STOP!
 
     }
 
 
 
-STOP!

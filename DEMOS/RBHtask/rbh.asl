@@ -3,8 +3,8 @@
 //* 
 //*  @comment run, bike, hike - track,speed, hbeat 
 //*  @release CARBON 
-//*  @vers 1.3 Li Lithium [asl 6.2.75 C-He-Re]                               
-//*  @date Mon Oct 12 12:34:20 2020 
+//*  @vers 1.4 Be Beryllium [asl 6.2.76 C-He-Os]                           
+//*  @date Thu Oct 15 17:54:02 2020 
 //*  @cdate 1/1/2020 
 //*  @author Mark Terry 
 //*  @Copyright © RootMeanSquare  2010,2020 → 
@@ -12,19 +12,26 @@
 //***********************************************%
 myScript = getScript();
 //
-//    show run, bike , hike tracks
+//    show run, bike and hike tracks,speed, bpm
 //
 
 include "debug"
+include "hv"
 
-filterFileDebug(ALLOWALL_,"ic_","gline");
-filterFuncDebug(ALLOWALL_,"proc","");
+//filterFileDebug(ALLOWALL_,"ic_","gline");
+//filterFuncDebug(ALLOWALL_,"proc","");
 
+
+/// time correction for garmin timestamp  to convert to unix epoch ?
+// UTC 00:00 Dec 31 1989.
+
+tc = 631062000
 
 
 proc showMeasures (index)
 {
-         tim = Tim[index] -Tim[0]
+        // tim = Tim[index] -Tim[0]
+	 tim = Tim[index] -ztim
          lat = Lat[index];
          lon = Lon[index];	 
          elev = Elev[index];
@@ -34,7 +41,12 @@ proc showMeasures (index)
          dist = dist/1000.0 * 0.621;
 
          text(txtwo,"$index $Elev[index] $Bpm[index] $Spd[index] ",0.5,0.5)
-         sWo(timwo,@value,tim,@update)
+	 int mins = tim/60;
+	 int secs = tim - (mins*60);
+	 
+	 <<"%V $Tim[index] $Tim[0] $ztim $tim $mins  $secs \n"
+	 tim_str = "${mins}:$secs"
+         sWo(timwo,@value,tim_str,@update)
          sWo(distwo,@value,dist,@update)
          sWo(bpmwo,@value,bpm,@update)
 	 sWo(spdwo,@value,spd,@update)
@@ -84,12 +96,18 @@ sz = Caz(R);
 <<"$(Caz(R)) $(Cab(R))\n"
 
 <<"$R[1:9][1] \n"
+ long Tim[]
 
  Tim = R[::][0] 
 
  Tim->redimn()
 
 <<"Tim $Tim[0:9]\n"
+ztim = Tim[0]
+<<"zero Tim $Tim[0]\n"
+// what is date
+
+ sdate= time2date(ztim+tc)
 
  Lat = R[::][1] 
 
@@ -203,7 +221,7 @@ Graphic = CheckGwm();
     wovtile(mapwos,0.05,0.3,0.15,0.9,0.01);
 
 
-///  MEASURE
+///  MEASURES
 
 
   vp = cWi(@title,"Measures",@resize,0.1,0.01,0.9,0.44,0)
@@ -212,21 +230,21 @@ Graphic = CheckGwm();
 
   vvwo= cWo(vp,@GRAPH,@resize_fr,0.2,0.11,0.95,0.79,@name,"MAP",@color,WHITE_);
 
-  sWo(vvwo, @scales, 0, 0, 86400, 6000, @save,@savepixmap, @redraw, @drawon, @pixmapon);
+  sWo(vvwo, @scales, 0, 0, 86400, 6000, @save,@savepixmap, @redraw, @drawon, @pixmapoff);
 
     titleButtonsQRD(vp);
 
 
-     timwo= cWo(vp,@BV,@name,"TIME",@color,WHITE_,@style,"SVB");
+     timwo= cWo(vp,@BV,@name,"TIME",@color,WHITE_,@style,SVB_);
 
 
-     bpmwo= cWo(vp,@BV,@name,"BPM",@color,WHITE_,@style,"SVB");
+     bpmwo= cWo(vp,@BV,@name,"BPM",@color,GREEN_,@fonthue,RED_,@style,SVB_);
 
-     elevwo= cWo(vp,@BV,@name,"ELEV",@color,WHITE_,@style,"SVB");
+     elevwo= cWo(vp,@BV,@name,"ELEV",@color,RED_,@style,SVB_);
 
-     spdwo= cWo(vp,@BV,@name,"SPD",@color,WHITE_,@style,"SVB");
+     spdwo= cWo(vp,@BV,@name,"SPD",@color,BLUE_,@fonthue,WHITE_,@style,SVB_);
 
-     distwo= cWo(vp,@BV,@name,"DIST",@color,WHITE_,@style,"SVB");
+     distwo= cWo(vp,@BV,@name,"DIST",@color,WHITE_,@style,SVB_);
 
 
 
@@ -237,14 +255,14 @@ Graphic = CheckGwm();
 
 
 
-
+   titleMessage(sdate)
 
 
    c= "EXIT"
 
    sWi(vp,@redraw); // need a redraw proc for app
 
-
+   
 # main
 
 
@@ -488,11 +506,11 @@ int tim;
      dGl(bpm_gl);
 
 
-     sWo(vvwo, @scales, 0, 0, Npts, 20 )
+     sWo(vvwo, @scales, 0, 0, Npts, top_speed )
 
      dGl(spd_gl);  
 
- sGl(pos_gl,@cursor,index,0,index,20,1); // this inits the cursor	 
+     sGl(pos_gl,@cursor,Kindex,0,Kindex,20,1); // this inits the cursor	 
 
      }
 
@@ -513,9 +531,9 @@ int tim;
 
 2.  speed scale adjust  bike,walk - or use stats from whole track
 
-3. plot against map (open street ?  sectional - google image?
+3. plot against map (open street ?  sectional - google image?)
 
-
+4. Show date at start of track -DONE
 
 /}*/
 

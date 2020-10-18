@@ -472,3 +472,7 @@ screen_p.cpp	 1.79	 Mon Sep 28 12:40:38 2020 getmouseevent
 i_funcs.cpp	 1.58	 Sun Oct  4 06:53:12 2020 imave
 ds_sivarray.cpp	 2.73	 Mon Oct 12 08:17:01 2020 freeAOP - AOPSET check
 ic_store.cpp	 1.69	 Mon Oct 12 16:52:28 2020 array lh_sub  check
+i_funcs.cpp	 1.59	 Fri Oct 16 10:27:12 2020 imrgbave
+sop_l.cpp	 1.92	 Fri Oct 16 11:07:30 2020 moved color funcs to image i_color
+mat_m.cpp	 1.94	 Fri Oct 16 14:41:28 2020 submat option RxC size
+colors.cpp	 1.83	 Sat Oct 17 09:27:08 2020 rgbtomapi

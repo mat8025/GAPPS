@@ -153,7 +153,7 @@ getMouseClick()
 
 
 
- TPIX= imave(PIX,5)
+ TPIX= imrgbave(PIX,5)
 
 <<"$(Cab(TPIX))\n"
 <<"$TPIX\n"
@@ -167,7 +167,7 @@ getMouseClick()
 
   
 
-  SPIX= imave(TPIX,3)
+  SPIX= imrgbave(TPIX,3)
 
 <<"$(Cab(SPIX))\n"
 <<"$SPIX\n"

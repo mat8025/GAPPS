@@ -1,7 +1,7 @@
 //
 //
 
-  server1 should be launched first with port_id as an argument
+   server1 should be launched first with port_id as an argument
 
    asl server1.asl 9892
 
@@ -30,6 +30,7 @@
  got connected 5 
  0 read  8 8
 
+ read from client
 
  chars >>>   whatever
 
@@ -38,5 +39,6 @@ client then receives the processed (reversed) message
  revetahw
 
   
+type message:-we move forward
 
 
