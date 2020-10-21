@@ -476,3 +476,6 @@ i_funcs.cpp	 1.59	 Fri Oct 16 10:27:12 2020 imrgbave
 sop_l.cpp	 1.92	 Fri Oct 16 11:07:30 2020 moved color funcs to image i_color
 mat_m.cpp	 1.94	 Fri Oct 16 14:41:28 2020 submat option RxC size
 colors.cpp	 1.83	 Sat Oct 17 09:27:08 2020 rgbtomapi
+colors.cpp	 1.84	 Sun Oct 18 08:49:12 2020 CirBuf for RGBToCmapi
+raster_xw.cpp	 1.51	 Sun Oct 18 12:09:39 2020 image restore neg offsets
+scroll_w.cpp	 1.36	 Sun Oct 18 12:10:29 2020 mods to wo scroll - larger are than clip

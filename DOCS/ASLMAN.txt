@@ -5842,6 +5842,18 @@ scrolls window image left -1,right 1,up 2,down -2, nofpixs
 .EF
 =============================================================
 .BF
+scrollClip()
+.(x
+wscroll
+.)x 
+.FD
+sWo(won,@scrollclip,dir,nofpixs)
+scrolls wo clip  image left -1,right 1,up 2,down -2, by nofpixs
+sWo(picwo,@scrollclip,DOWN_,10)
+
+.EF
+=============================================================
+.BF
 w_set_coor()
 .(x
 wsetcoor
