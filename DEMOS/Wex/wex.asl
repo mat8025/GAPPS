@@ -387,7 +387,7 @@ msgw =split(msg)
 
 <<[_DB]"%V$msgw \n"
 
-
+openDll("plot")
 include "wex_screen"
 include "wex_draw"
 include "wex_glines"
@@ -435,11 +435,15 @@ showTarget();
   titleVers();
 
 
-_DB=1;
+_DB=-1;
+
+
+mc=getMouseClick()
 
     sWo(tw_wo,@move,targetday,NextGoalWt,gwo,@redraw));
 
 <<"%V $_eloop\n"
+sleep(1)
 
 while (1) {
 
