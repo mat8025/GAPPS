@@ -14,9 +14,18 @@ myScript = getScript();
 ///
 ///  convert fit file --- extract lon,lat, time,speed, pulse
 ///
+include "debug"
+
+debugON()
+
+//filterFileDebug(ALLOWALL_,"xxx");
+//filterFuncDebug(ALLOWALL_,"xxx")
+
+//sdb(1,@pline)
+
 
 //////////////   GLOBALS ///////////////
-_DB = -1
+_DB = 1
 
 normal = 1;
 cmpts = 0;
@@ -123,12 +132,16 @@ fit_hdr = 0;
 proc rd_hdr()
 {
 
-//<<[_DB]"$_proc\n"
+<<[_DB]"$_proc\n"
 
    k= fscanv(A,0,"C1,C1,S1,I1,C4,S1",&hsz,&protover,&profver,&datasz,&C,&CRC)
 
-  //<<[_DB]"%V $k $hsz  $protover $profver $datasz\n"
+  <<[_DB]"%V $k $hsz  $protover $profver $datasz\n"
 
+if (feof(A)) {
+<<" EOF exit!\n"
+  exit()
+}
 <<" %s $C\n"
  if (scmp(C,".FIT")) {
      fit_hdr = 1;
@@ -141,12 +154,12 @@ proc rd_hdr()
 proc rd_hdb()
 {
 
-//<<[_DB]"$_proc\n"
-//   where = ftell(A)
+<<[_DB]"$_proc\n"
+   where = ftell(A)
  //  k= fscanv(A,0,"C1",&ht)
     fscanv(A,0,"C1",&ht)
     // fread(&ht,1,1,A)
-//<<[_DB]"%V $where $k %X $ht\n"
+//<<[_DB]"%V $where  %X $ht\n"
 //bc=dec2bin(ht)
 //<<[_DB]"$bc \n"
 
@@ -167,7 +180,7 @@ proc rd_hdb()
     if (ht & 0x80) {
         normal = 0;
 	cmpts = 1;
-//<<[_DB]"$ht %X $ht  0x80 cmpts  "	
+<<[_DB]"$ht %X $ht  0x80 cmpts  "	
    }
 //   else {
 //<<[_DB]"$ht %X $ht normal  "	
@@ -177,14 +190,14 @@ proc rd_hdb()
    
  //  if ((ht & 0x40) == 0x40) {
    if (ht & 0x40) {
-   //<<[_DB]"$ht %x $ht &  0x40\n"
+   <<[_DB]"$ht %x $ht &  0x40\n"
         defin = 1;
 	data = 0;
 //<<[_DB]"defin  "
      devdata = 0;
     
      if (ht & 0x20) {
-        //<<[_DB]"$ht %x $ht &= 0x20 ?\n"
+        <<[_DB]"$ht %x $ht &= 0x20 ?\n"
 	devdata = 1;
 //<<[_DB]"devdata "		
      }
@@ -202,7 +215,7 @@ proc rd_hdb()
 //   where = ftell(A);
 
 
-//"%V $where $k %X $ht  $bc %d $lmt \n"
+<<[_DB]"%V $where $k %X $ht  $bc %d $lmt \n"
 
 
 //  if (defin) {
@@ -218,7 +231,7 @@ proc rd_dfds()
 
   n= 3 * nf;
 
-//<<[_DB]"$_proc %V $nf\n"
+<<[_DB]"$_proc %V $nf\n"
 
   if (nf == 0) {
 <<"WARNING no fields $nf \n"
@@ -268,9 +281,9 @@ proc rd_dfds()
   DEFS[lmt][::] = vd;
 //  DEFS[lmt] = vd;
     
-  //<<[_DB]"DEFS %V $lmt $n\n "
+  <<[_DB]"DEFS %V $lmt $n\n "
 
-//<<[_DB]"DEFS $(Cab(DEFS)) $(typeof(DEFS)) \n"
+<<[_DB]"DEFS $(Cab(DEFS)) $(typeof(DEFS)) \n"
 //  <<[_DB]"%(3,, ,\n)$DEFS[lmt][0:n-1:]\n"
   //<<[_DB]"$DEFS[lmt][0:n-1:]\n"
   //<<[_DB]"/////////////////////// \n"
@@ -280,7 +293,7 @@ proc rd_dfds()
 
 proc rd_devfds()
 {
-//<<[_DB]"$_proc\n"
+<<[_DB]"$_proc\n"
 
 //  k= fscanv(A,0,"C1",&nfdd)
     fscanv(A,0,"C1",&nfdd)
@@ -304,7 +317,7 @@ proc rd_devfds()
     for (i = 0; i < nfdd ; i++) {
 
        dfdt = devfd[i][2];
-//<<[_DB]"%v $i  $devfd[i][2] $dfdt\n"
+<<[_DB]"%v $i  $devfd[i][2] $dfdt\n"
 //ans = iread("devdata $i"
     }
   }
@@ -329,7 +342,7 @@ proc rd_def()
 
  k= fscanv(A,0,"C1,C1,S1,C1",&rserv,&arch,&gmn,&nf)
 
-//<<[_DB]"RD_DEV %V $rserv $arch $gmn $nf \n"
+<<[_DB]"RD_DEV %V $rserv $arch $gmn $nf \n"
 }
 //==============================//
 
@@ -345,8 +358,8 @@ proc rd_data()
 
 // then what data fields ??
   nf = DEFS_NF[lmt];
-
-//ans=query("reading data %V$lmt $nf")
+   where = ftell(A)
+<<[_DB]"$_proc @ posn $where reading data %V$lmt $nf\n"
 
   if (nf <=0) {
 <<"ERROR no fields!!\n"
@@ -505,7 +518,7 @@ proc rd_devdata()
 
 // then what data fields ??
 
-//<<[_DB]"RD_DEVDATA @ read $kl   $nfdd \n"
+<<[_DB]"RD_DEVDATA @ read $kl   $nfdd \n"
 
 
 <<"ERROR not coded!!\n"
@@ -516,6 +529,7 @@ proc rd_devdata()
 
 proc storeLMT( almt)
 {
+<<[_DB]"$_proc \n"
 static int nlmts = 0;
 int k;
 

@@ -388,6 +388,8 @@ msgw =split(msg)
 <<[_DB]"%V$msgw \n"
 
 openDll("plot")
+openDll("image")
+
 include "wex_screen"
 include "wex_draw"
 include "wex_glines"

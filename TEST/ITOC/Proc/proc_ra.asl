@@ -7,9 +7,9 @@ if (_dblevel >0) {
    debugON()
 }
 
-filterFuncDebug(ALLOW_,"Setup","opera_f","Cmath","storeScalar","storeSiv","Pluseq","l_3",\
-"l_1","l_2","l_4","l1_store","l1_opera","resolveResult","Variable","setLho","setRho","findSiv",\
-"checkProcVars","FindVar","Get","Number","primitive","primitive_store_var","getExp");
+//filterFuncDebug(ALLOW_,"Setup","opera_f","Cmath","storeScalar","storeSiv","Pluseq","l_3",\
+//"l_1","l_2","l_4","l1_store","l1_opera","resolveResult","Variable","setLho","setRho","findSiv",\
+//"checkProcVars","FindVar","Get","Number","primitive","primitive_store_var","getExp");
 
 filterFuncDebug(ALLOWALL_,"Setup")
 

@@ -6618,8 +6618,13 @@ filter - filter internal code via name , 0 no filter, 1 allow named, 2 reject na
 to set named functions or named code files to debug use
 filterDebug and/or filterFileDebug
 e.g
-filterDebug("checkGlobalVar")
-this would allow the filter option to accept or reject debug from this function.
+filterFuncDebug(ALLOW,"checkGlobalVar")
+this would allow the filter option to accept debug from this function.
+filterFuncDebug(REJECT,"checkGlobalVar")
+this would allow the filter option to reject debug from this function.
+
+
+
 This options are for primarily source code debugging, not for ASL debugging. 
 
 
@@ -6646,6 +6651,37 @@ directory.
 
 .EF
 =============================================================
+.BF
+filterFuncDebug
+.(x
+filterFuncDebug
+.)x 
+.FD
+filterFuncDebug(ALLOW,"foo","checkprocfunc", ...)
+Would pass debug statements from internal code module foo to debug stream.
+the filter can be set to
+ALLOWALL
+REJECT
+and REJECTALL
+
+.EF
+=============================================================
+.BF
+filterFileDebug
+.(x
+filterFileDebug
+.)x 
+.FD
+filterFilterDebug(ALLOW,"args_parse", ...)
+Would pass debug statements from internal code file(s) args_parse*cpp  to debug stream.
+the filter can be set to
+ALLOWALL
+REJECT
+and REJECTALL
+
+.EF
+=============================================================
+
 .BF
 namedebug()
 .(x

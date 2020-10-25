@@ -46,10 +46,14 @@ proc debugON()
      _dblevel = 1;
  }
 
+<<"%V $_DB ALLOWALL debug from files and funcs\n"
+<<"use filterFuncDebug() filterFileDebug() to control\n"
 //sdb(2,@keep,@~pline,@~step,@~trace)
 filterFuncDebug(ALLOWALL_,"xxx");
 filterFileDebug(ALLOWALL_,"yyy");
-
+setmaxcodeerrors(-1); // just keep going
+setmaxicerrors(-1);
+_DB =1;
 
 }
 //==========================
@@ -61,18 +65,10 @@ setdebug(-1,@~pline,@~step,@~trace,@~showresults,1)
 filterFuncDebug(REJECTALL_,"proc");
 filterFileDebug(REJECTALL_,"yyy");
 _dblevel = 0;
+_DB=-1
 }
 
-proc scriptDBON()
-{
-  _DB = 2;
-}
 
-proc scriptDBOFF()
-{
-<<"setting _DB to $_DB\n"
-  _DB = -1;
-}
 
 proc setNICerrors( int n)
 {

@@ -23,7 +23,7 @@
     sWi(vp,@clip,0.1,0.1,0.85,0.9,@redraw)
 
     sWi(vp,@resize,0.05,0.1,0.8,0.9,0);
-    sWi(vp,@clip,0.1,0.1,0.9,0.9,@redraw)
+    sWi(vp,@clip,0.1,0.1,0.9,0.9)
 
     int allwin[] = {vp,vp1}
 
@@ -99,10 +99,6 @@
 ///  measurement
      tw_wo= cWo(gwo,@symbol,@resize,0.1,0.1,0.15,0.25,0,@name,"TW",@value,185)
      sWo(tw_wo,@vhmove,ON_,@symbol,STARDAVID_,@pixmapon,@redraw)
-
-
-
-
 
 
 //////////////////////////// SCALES //////////////////////////////////////////
@@ -197,6 +193,9 @@
 
 
   titleVers();
+
+mc=getMouseClick()
+
 
 //======================================//
 <<[_DB]"$_include \n"
