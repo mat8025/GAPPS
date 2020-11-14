@@ -14,9 +14,18 @@ myScript = getScript();
 ///
 ///  convert fit file --- extract lon,lat, time,speed, pulse
 ///
+include "debug"
+
+debugOFF()
+
+//filterFileDebug(ALLOWALL_,"xxx");
+//filterFuncDebug(ALLOWALL_,"xxx")
+
+//sdb(1,@pline)
+
 
 //////////////   GLOBALS ///////////////
-_DB = -1
+
 
 normal = 1;
 cmpts = 0;
@@ -117,7 +126,7 @@ fit_hdr = 0;
 //
 //
 
-
+#define DBANS ~!
 
 ///////////////////   PROCS /////////////////
 proc rd_hdr()
@@ -127,85 +136,96 @@ proc rd_hdr()
 
    k= fscanv(A,0,"C1,C1,S1,I1,C4,S1",&hsz,&protover,&profver,&datasz,&C,&CRC)
 
-  //<<[_DB]"%V $k $hsz  $protover $profver $datasz\n"
+  <<[_DB]"%V $k $hsz  $protover $profver $datasz %s $C  \n"
 
+if (feof(A)) {
+<<" EOF exit!\n"
+
+}
 <<" %s $C\n"
  if (scmp(C,".FIT")) {
      fit_hdr = 1;
  }
 
 //<<[_DB]"CRC %x $CRC\n"
+DBANS=query("$_proc exit")
 }
 //=========================//
 
 proc rd_hdb()
 {
 
-//<<[_DB]"$_proc\n"
-//   where = ftell(A)
-   k= fscanv(A,0,"C1",&ht)
-//<<[_DB]"%V $where $k %X $ht\n"
+//[_DB]"$_proc\n"
+   where = ftell(A)
+
+    //k=fscanv(A,0,"C1",&ht)
+    fread(&ht,1,1,A);
+    
+    if (feof(A)) {
+    <<" EOF $k exit!\n"
+
+    }
+    // fread(&ht,1,1,A)
+//<<[_DB]"%V $where  %X $ht\n"
 //bc=dec2bin(ht)
-//<<[_DB]"$bc \n"
-   bc = scut(dec2bin(ht),24);
-//<<[_DB]"$bc \n"
-   normal = 1;
+
+   normal = 0;
+   data = 0;
    defin = 0;
-   data = 1;
+
    cmpts = 0;
 //<<[_DB]"<$kl> HDRB "   
    nfdd = 0;
 
- //  ct= ht & 0x80
-   //<<[_DB]"%V $ht %X $ct $ht\n"
+   ct= ht & 0x80
+   <<[_DB]"%V $ht %X  $ht $ct\n"
 
-    if ((ht & 0x80) == 0x80) {
+
+    if (ht & 0x80) {
         normal = 0;
-	cmpts = 1;
-//<<[_DB]"$ht %X $ht  0x80 cmpts  "	
+	cmpts = 1; // compressed time stamp
+	<<"Compressed Time Stamp!! \n"
+<<[_DB]"$ht %X $ht  0x80 cmpts  \n"	
    }
-//   else {
-//<<[_DB]"$ht %X $ht normal  "	
-//  }
-
-
-   
-   if ((ht & 0x40) == 0x40) {
-   //<<[_DB]"$ht %x $ht &  0x40\n"
+   else {
+   <<[_DB]"normal $ht %X $ht \n"	
+   normal = 1;
+   if (ht & 0x40) {
+   <<[_DB]"$ht %x $ht &  0x40\n"
         defin = 1;
 	data = 0;
-//<<[_DB]"defin  "		
-   }
-//   else {
-//<<[_DB]"data  "	
-//   }
-
-//ct= ht & 0x20
-   //<<[_DB]"%V $ht 0x20 %X $ct $ht\n"
-   
-
-   if (defin) {
-     devdata = 0;
-     if ((ht & 0x20) == 0x20) {
-        //<<[_DB]"$ht %x $ht &= 0x20 ?\n"
+        devdata = 0;
+    }
+    else {
+          data = 1;
+    }
+    
+     if (ht & 0x20) {
+        <<[_DB]"$ht %x $ht &= 0x20 ?\n"
 	devdata = 1;
 //<<[_DB]"devdata "		
      }
+
+
    }
    
-   lmt = (ht & 0x0F);
 
-//   where = ftell(A);
+//ct= ht & 0x20
+   //<<[_DB]"%V $ht 0x20 %X $ct $ht\n"
 
+   lmt = (ht & 0x0F);  // local message type mt  
 
-//"%V $where $k %X $ht  $bc %d $lmt \n"
+   where = ftell(A);
+
+ //<<"%V $where $normal   $data    $defin    $cmpts $devdata $lmt \n"
+
 
 
   if (defin) {
-//     storeLMT( lmt);
+     storeLMT( lmt);
   }
 
-//ans=query("%V $where $k $normal  $data $cmpts $devdata %X $ht")
+DBANS=query("%V $where $k $normal  $data $cmpts $devdata %X $ht")
 
 }
 //=========================//
@@ -214,7 +234,7 @@ proc rd_dfds()
 
   n= 3 * nf;
 
-//<<[_DB]"$_proc %V $nf\n"
+<<[_DB]"$_proc %V $nf\n"
 
   if (nf == 0) {
 <<"WARNING no fields $nf \n"
@@ -223,36 +243,20 @@ proc rd_dfds()
 
 
   if (nf > 0) {
-  fmt = "C$n"
+//  fmt = "C$n"
   //<<[_DB]"%V $fmt \n"
   dfd = 0;
 
 
-/{/*/ SDBG
 
-  fmt="C3"
-  
-  where = ftell(A)
-  k= fscanv(A,0,fmt,&vec_uc)
-<<"@ $where : $vec_uc\n"
-
-where = ftell(A)
-  k= fscanv(A,0,fmt,&vec_uc)
-<<"@ $where : $vec_uc\n"
-
-where = ftell(A)
-  k= fscanv(A,0,fmt,&vec_uc)
-<<"@ $where : $vec_uc\n"
-
-
-ok=query()
-
-
-/}*///  EDBG
-
-  k= fscanv(A,0,fmt,&dfd)
-
-  //<<[_DB]"dfd %V $(Cab(dfd)) \n"
+ // kfs=fscanv(A,0,fmt,&dfd)
+    kfs=fread(dfd,1,n,A)
+    if (feof(A)) {
+    <<"$_proc $kfs EOF exit!\n"
+       break;
+    }
+    
+  <<[_DB]"dfd %V $(Cab(dfd)) \n"
 /{
   for (j=0; j< nf; j++) {
  <<[_DB]"<|$j|> $dfd[j][::]\n"
@@ -284,28 +288,61 @@ ok=query()
 
   DEFS[lmt][::] = vd;
 //  DEFS[lmt] = vd;
-  
-  //<<[_DB]"DEFS %V $lmt $n\n "
+    
+  <<[_DB]"DEFS %V $lmt $n\n "
 
-//<<[_DB]"DEFS $(Cab(DEFS)) $(typeof(DEFS)) \n"
+<<[_DB]"DEFS $(Cab(DEFS)) $(typeof(DEFS)) \n"
 //  <<[_DB]"%(3,, ,\n)$DEFS[lmt][0:n-1:]\n"
   //<<[_DB]"$DEFS[lmt][0:n-1:]\n"
   //<<[_DB]"/////////////////////// \n"
   }
+  DBANS=query("$_proc exit")
 }
 //==============================//
 
 proc rd_devfds()
 {
-//<<[_DB]"$_proc\n"
+<<[_DB]"$_proc\n"
 
-k= fscanv(A,0,"C1",&nfdd)
+ kfs = fscanv(A,0,"C1",&nfdd)
+
+
+    if (feof(A)) {
+    <<"$_proc $kfs EOF exit!\n"
+      
+    }
+
 
 //<<[_DB]"DEVDATA !! @ $kl %V $nfdd\n"
 
   //ans = iread("devdata $nfdd fields\n"
 
-  if (nfdd == 0) {
+ 
+
+  if (nfdd > 0) {
+  
+  n= 3 *nfdd;
+
+  fmt = "C$n"
+
+  
+  ksf= fscanv(A,0,fmt,&devfd)
+
+    if (feof(A)) {
+    <<"$_proc $kfs EOF exit!\n"
+       exit()
+    }
+
+   
+
+    for (i = 0; i < nfdd ; i++) {
+       dfdt = devfd[i][2];
+<<[_DB]"%v $i  $devfd[i][2] $dfdt\n"
+
+     }
+    
+  }
+  else  {
 
 <<"WARNING no dev fields to read $nfdd\n"
 
@@ -317,50 +354,44 @@ k= fscanv(A,0,"C1",&nfdd)
 
   }
 
-
-  if (nfdd > 0) {
-  
-  n= 3 *nfdd;
-
-  fmt = "C$n"
-
-  k= fscanv(A,0,fmt,&devfd)
-
-
-    for (i = 0; i < nfdd ; i++) {
-
-       dfdt = devfd[i][2];
-//<<[_DB]"%v $i  $devfd[i][2] $dfdt\n"
-//ans = iread("devdata $i"
-    }
-  }
-
+DBANS=query("$_proc exit")
 }
 //==============================//
 
 proc rd_def()
 {
 
- k= fscanv(A,0,"C1,C1,S1,C1",&rserv,&arch,&gmn,&nf)
-
-//<<[_DB]"RD_DEV %V $rserv $arch $gmn $nf \n"
+ kfs= fscanv(A,0,"C1,C1,S1,C1",&rserv,&arch,&gmn,&nf)
+    if (feof(A)) {
+    <<"$_proc $kfs EOF exit!\n"
+       break;
+    }
+<<"RD_DEV %V $rserv $arch $gmn $nf \n"
 }
 //==============================//
 
 int vecd[255];
 int cat;
 
-
 proc rd_data()
 {
 // what local message ?
+decode = 1;
+   T=FineTime()
 
-
-
+   tim = 0
+   lat =0;
+   fndpos = 0;
+   
 // then what data fields ??
-  nf = DEFS_NF[lmt];
 
-//ans=query("reading data %V$lmt $nf")
+
+  if (nf != DEFS_NF[lmt]) {
+//<<"DIFFER? %V$nf $lmt $DEFS_NF[lmt] \n"
+    nf = DEFS_NF[lmt];
+  }
+   where = ftell(A)
+<<[_DB]"$_proc @ posn $where reading data %V$lmt $nf\n"
 
   if (nf <=0) {
 <<"ERROR no fields!!\n"
@@ -374,6 +405,8 @@ proc rd_data()
 //<<[_DB]"DEFS $(Cab(DEFS)) $(typeof(DEFS)) \n"
 
   dfd = DEFS[lmt][::];
+
+ // <<"%V $dfd[0:len-1] \n"
 //<<[_DB]"dfd $(Cab(dfd)) $(typeof(dfd)) \n"
 
 //<<[_DB]"dfd[ $lmt ] \n"
@@ -389,32 +422,41 @@ proc rd_data()
    cat = dfd[i][0];
    dfdt = dfd[i][2];
    nbs =  dfd[i][1];
-//<<[_DB]"%v $i $dfd[i][0] $nbs $dfdt\n"
+<<[_DB]"%v $i $cat $nbs $dfdt\n"
 
      if (nbs > 0) {
 
     //   nb = dfd[i][1];
-        fmt = "C$nbs"
-        k= fscanv(A,0,fmt,CD);
+    //    fmt = "C$nbs"
 
+    //kfs= fscanv(A,0,fmt,CD);
+    fread(CD,1,nbs,A)
+
+    if (feof(A)) {
+    <<"$_proc $kfs EOF exit!\n"
+     //  exit();
+    }
 
 	//<<[_DB]"READ $nbs data bytes\n";
 //	if (nbs > 120) {
          // ans = iread("$nb dbytes too big?");
 //	 <<[_DB]"$nbs dbytes too big?\n"
 //        }
-
-       if (dfdt == 134) {  // time created
-//<<[_DB]"TIME  $CD[0:3] \n";
+   if (decode) {
+   
+       if (dfdt == 134) {  // time created 
+<<[_DB]"TIME  $CD[0:3] \n";
       //  wt = 0;
-        bscan(CD,0,&wt); // works - sscan does not why?
+      
+        //bscan(CD,0,&wt); // works - sscan does not why?
 
-        if (cat == 253) {
+        wt=CD->mscan(INT_,0);
+
+        if (cat == 253) { // timestamp
            tim = wt;
         }
-
-        if (cat == 5) {
-             dist = wt * 0.01;
+        else if (cat == 5) {
+           dist = wt * 0.01;
         }
        //   k= sscan(CD,'%d',&wt)
 	 // TV[tvn] = wt;
@@ -424,28 +466,32 @@ proc rd_data()
        else if (dfdt == 133) {  // time created
 //<<[_DB]"TIME  $CD[0:3] \n";
         //pos = 0;
-        bscan(CD,0,&pos); // works - sscan does not why?
-	 
+	
+       // bscan(CD,0,&pos); // works - sscan does not why?
+	pos=CD->mscan(INT_,0);
        //   k= sscan(CD,'%d',&wt)
 	 // TV[tvn] = wt;
         deg = pos * scdeg;
         if (cat == 0) {
              lat = deg
         }
-        if (cat == 1) {
+        else if (cat == 1) {
              lon = deg
-        } 	
-	//<<[_DB]"$i <133> <$tvn> pos  $pos  $deg\n"
+        }
+	fndpos++;
+	<<[_DB]"$i <133> <$tvn> pos_deg   $deg\n"
 	  tvn++;
        }
         else if (dfdt == 140) {  // serial
-    //     <<[_DB]"read serial %d $CD[0:nb]\n"
+        <<[_DB]"read serial %d $CD[0:nbs-1]\n"
 
      //   wi = 0;
-        bscan(CD,0,&wi); // works - sscan does not why?
+//        bscan(CD,0,&wi); // works - sscan does not why?
        //  k= sscan(&CD[0],'%d',&wi)
           // IV[ivn] = wi;
-        //<<[_DB]"$i <140> $ivn serial  %u $wi\n"
+               wt=CD->mscan(INT_,0);
+
+        <<[_DB]"$i <140> $ivn serial  %u $wi\n"
 	  wvn++;       
        }
        else if (dfdt == 7) { 
@@ -453,16 +499,20 @@ proc rd_data()
         }
 
       else if (dfdt == 132) { // manuf/product
-//<<[_DB]"manuf/product %d $CD[0:nbs-1]\n";
+<<[_DB]"manuf/product %d $CD[0:nbs-1]\n";
        // ws = 0;
-        bscan(CD,0,&ws); // works - sscan does not why?
+        //bscan(CD,0,&ws); // works - sscan does not why?
 	  //      bscan(CD,1,&ws2); // works - sscan does not why?
 
+        ws= CD->mscan(SHORT_,0);
         if (cat == 2) {
-           alt = ws * 0.2 -500;
+
+             //alt = ws * 0.2 -500;
+	     alt = ws * 0.2 ;
+
+
         }
-	
-        if (cat == 6) {
+        else if (cat == 6) {
            spd = ws * 0.001;
         } 		
 
@@ -480,7 +530,7 @@ proc rd_data()
            bpm = CD[0];
         }
 
-	  //<<[_DB]"$i <0> $evn enum %u $wc\n"
+	  <<[_DB]"$i <0> $evn enum %u $wc\n"
 	 evn++;
   }
    else if (dfdt == 0) {  // enum
@@ -492,27 +542,46 @@ proc rd_data()
 	 evn++;
   }
   else {
-    	  //<<[_DB]"$i  <$dfdt> $CD[0:nbs-1] \n";
+    	  <<[_DB]"$i  <$dfdt> $CD[0:nbs-1] \n";
 
   }
-
+ }
  }
 
 
-}
+ }
 
+<<[_DB]"%V $lmt\n"
 
 //ans=query("lmt $lmt")
 
-  if (lmt == 9) {
-    cnt9++;
-    //<<[_DB]"$kl $tim $lat $lon $dist $spd $alt $bpm\n";
 
-    <<[B]"$tim $lat $lon $dist $spd $alt $bpm\n";
+   // <<"$where $kl $tim $lat $lon $dist $spd $alt $bpm\n";
+ if ((kl % 100) == 0) {
+   dt= fineTimeSince(TL,1)
+  secs = dt/1000000.0
+  pc_done = where/(file_size*1.0) * 100.0
+  <<"%6.2f $pc_done $secs %d $kl $where $lat $lon $dist $spd $alt $bpm\r";
+  fflush(1)
+ }
+if (fndpos) {
+<<[B]"$tim $lat $lon $dist $spd $alt $bpm\n";
+ }
+
+  if (lmt == 9) {  // what ?
+    cnt9++;
+    <<[_DB]" $cnt9  \n";
+
+   // <<[B]"$tim $lat $lon $dist $spd $alt $bpm\n";
 
   }
   
-}
+ }
+ 
+  dt= fineTimeSince(T)
+  secs = dt/1000000.0
+ //<<"took  $secs\n"
+DBANS=query("$_proc exit")
 }
 //===============================//
 proc rd_devdata()
@@ -521,29 +590,30 @@ proc rd_devdata()
 
 // then what data fields ??
 
-//<<[_DB]"RD_DEVDATA @ read $kl   $nfdd \n"
+<<[_DB]"RD_DEVDATA @ read $kl   $nfdd \n"
 
 
 <<"ERROR not coded!!\n"
-
 
 }
 //==============================//
 
 proc storeLMT( almt)
 {
+<<[_DB]"$_proc \n"
 static int nlmts = 0;
 int k;
 
    nl = nlmts;
 
-for (k = 0; k <= nl; k++) {
+   for (k = 0; k <= nl; k++) {
 
     if (LMTS[k][0] == -1) {
          LMTS[k][0] = almt;
 	          LMTS[k][1] = 1;
 	 nlmts++;
 	 //<<[_DB]"added lmt $almt\n"
+	 <<"added lmt $almt\n"
 	 break;
      }
      else if (LMTS[k][0] == almt) {
@@ -551,7 +621,7 @@ for (k = 0; k <= nl; k++) {
             break;  // already logged
      }
    }
-
+DBANS=query("$_proc exit")
 }
 //===========================//
 
@@ -561,8 +631,12 @@ ask = 0;
 fname = _clarg[1];
 //ask = atoi(_clarg[2]);
 
+//file_size= fstat(fname,"size")
+file_size= fexist(fname)
 
+<<"%V$file_size \n";
 
+   TL=FineTime()
 A= ofr(fname);
 
 outname = scut(fname,-3);
@@ -583,7 +657,7 @@ rd_hdr();   // read the FIT header
 
 //<<[_DB]"%V $fit_hdr \n"
 
-//ok=query("hdr ok");
+//ok=query("hdr ok?");
 
  if (!fit_hdr) {
   <<" NOT A FIT FILE\n"
@@ -606,37 +680,21 @@ while (1) {
 
    rd_hdb();
 
+//ans=query("hdb")
 
-
-  if (feof(A)) {
+    if (feof(A)) {
        break;
-  }
+    }
 
 
    
 
    if (defin) {
-/{/*
-    if (ask) {
-
-      goon= query(" read define?");
-<<"%V$goon\n"
-     if (goon @= "n") {
-         break;
-    }
-
-    if (goon @= "c") {
-         ask = 0;
-     }
- 
-
-    }
-/}*/    
 
      rd_def();
-
+//ans=query("rd_def");
      rd_dfds();
-
+//ans=query("rd_dfds");
       if (devdata) {
          rd_devfds();
      }
@@ -645,38 +703,16 @@ while (1) {
 
 
     if (data) {
-/{/*
-    if (ask) {
-
-     goon= iread(" read data?");
-<<"%V$goon\n"
-      if (goon @= "n") {
-        break;
-    }
-
-    if (goon @= "c") {
-         ask = 0;
-    }
-
-    if (goon @= "q") {
-         exit()
-    }
-
-     ask = 0;
-    }
-/}*/
        rd_data()
-
+//ans=query("rd_data");
       if (devdata) {
           rd_devdata();
-     }
+       }
 
     }
 
    kl++;
-//   if (kl > 10000) {
-//       break;
-//   }
+  
 }
 //========================//
 

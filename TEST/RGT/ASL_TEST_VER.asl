@@ -676,6 +676,7 @@ int do_proc = 0;
 int do_switch = 0;
 int do_scope = 0;;
 int do_while = 0;
+int do_try = 0;
 //======================================//
 
 
@@ -804,7 +805,8 @@ if (do_syntax ==1) {
  do_switch = 1;
  do_while = 1;
  do_scope = 1;  
- do_include = 1;  
+ do_include = 1;
+  do_try = 1;  
 }
 
 if (do_syntax == -1) {
@@ -930,6 +932,12 @@ if ((do_bit || do_all) && (do_bit != -1)) {
 if ((do_all || do_do ) && (do_do != -1)) {
 
       RunDirTests("Do","do")
+
+    }
+
+if ((do_all || do_try ) && (do_try != -1)) {
+
+      RunDirTests("TryThrowCatch","trythrowcatch")
 
     }
 ////////////////////////////////////////////////////////////////////////

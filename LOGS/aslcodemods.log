@@ -479,3 +479,11 @@ colors.cpp	 1.83	 Sat Oct 17 09:27:08 2020 rgbtomapi
 colors.cpp	 1.84	 Sun Oct 18 08:49:12 2020 CirBuf for RGBToCmapi
 raster_xw.cpp	 1.51	 Sun Oct 18 12:09:39 2020 image restore neg offsets
 scroll_w.cpp	 1.36	 Sun Oct 18 12:10:29 2020 mods to wo scroll - larger are than clip
+state_e.cpp	 1.29	 Sun Nov  1 07:47:16 2020 debug clean
+statex_e.cpp	 1.31	 Sun Nov  1 07:48:05 2020 debug clean
+try_e.cpp	 1.2	 Mon Nov  2 08:14:24 2020 add catch processing
+try_e.cpp	 1.3	 Fri Nov  6 08:01:20 2020 catch arg via lstack
+scope_e.cpp	 2.75	 Fri Nov  6 08:02:28 2020 catch arg via lstack
+ic_getsiv.cpp	 1.55	 Tue Nov 10 08:40:24 2020 lsiv catch var
+state_e.cpp	 1.30	 Wed Nov 11 12:01:08 2020 proc declare -- int foo(int a)
+ds_types.cpp	 1.85	 Wed Nov 11 12:42:40 2020 added void 

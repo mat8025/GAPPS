@@ -3,7 +3,7 @@
 ///
 
 #define DBG ~!  
-
+//define  DBG <<
 //vdb = "$DBG";
 //<<" $vdb \n"
 

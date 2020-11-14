@@ -27,7 +27,14 @@
   <<"can't find $fname \n"
    exit()
   }
-  
+
+  B=ofw("${fname}.pp");
+  if (B ==-1) {
+  <<"can't write $fname .pp \n"
+   exit()
+  }
+
+
   char ns[];
   char c;
   char lc;
@@ -39,6 +46,7 @@
   
   nw = 2;
   
+  str NL;
   str NL1;
   svar NL2;
   
@@ -48,69 +56,68 @@
   while (1) {
     
     is_comment = 0;
-    is_empty_line = 0;
+    is_empty_line = 1;
     is_trailing_comment = 0;
+    needs_semi_colon = 0;
     L = readline(A);
     
     
-    if (ferror(A) == EOF_ERROR_)
+    if (ferror(A) == EOF_ERROR_) {
           break;
-    
-    
+        }
+	
     ln++;
     
-    
-    <<[2]"$L\n" ;
-    
-    nc = Caz(L); 
-    sl = Slen(L);
+    NL = L;
+    <<"in:$NL\n" ;
+
+//ans=query("2pp")
+  
+    nc = Caz(NL); 
+    sl = Slen(NL);
     
     if (sl >= 1) {
-      
-      scpy(ns,eatWhiteEnds(L));
+         is_empty_line = 0;   
+      scpy(ns,eatWhiteEnds(NL));
       <<[2]"check comment $ns[0] $ns[1] \n"; 
       
       if ((ns[0] == 47) && (ns[1] == '/')) {
         is_comment = 1;
-        <<[2]"comment $L\n"; 
+        <<[2]"comment $NL\n"; 
         }
       else if (ns[0] == 35) {
         is_comment = 1;
-        <<[2]"comment $L\n"; 
+        <<[2]"comment $NL\n"; 
         }	
       else {
-        ws = dewhite(L); 
+        ws = dewhite(NL); 
         if (slen(ws) == 0) {
           <<[2]"empty? $sl  $L\n"; 
           is_empty_line = 1;
           
           }
         }
-      
- //NL=eatWhiteEnds(L);
- // L = NL;
+
+
       if (!is_empty_line) {
         empty_line_cnt = 0;
         }
       }
-    else {
-      
-      is_empty_line = 1;
-      }
+   
     
     if (is_empty_line) {
       empty_line_cnt++;
       <<[2]"%V $empty_line_cnt\n"; 
-      
       }
     
-    sl = Slen(L);
+    sl = Slen(NL);
     ind = sl -1;
     if (ind >=0) {
-      ns = sele(L,ind,1); 
+      ns = sele(NL,ind,1); 
       c= ns[0];
       <<[2]"last char? $ln  $c $sl $ind %s $c \n";
       }
+
     s1 = ";{}/\\" ;
     
 //k = sstr(s1,c,1)
@@ -118,9 +125,9 @@
     k = sstr(";{}/\\",c,1); 
     
 // <<[2]"$L $sl %c$c %d$k\n"
-    NL="";
-    if (slen(L) >0) {
-      NL=eatWhiteEnds(L);
+
+    if (slen(NL) >0) {
+      NL=eatWhiteEnds(NL);
       }
     
     is_cbe = 0;
@@ -156,6 +163,8 @@
     
     len = slen(NL);
     conline = 0;
+
+
     if (len > 60) {
       <<[2]"SPLIT $NL \n"; 
       //index =sstr(NL,",",1);
@@ -171,15 +180,15 @@
         sz=Caz(iv);
         wi = sz/2;
         index = iv[wi];
-        if (index != -1); 
-        index++;
-        else; 
-        index = -1;
+        if (index != -1) 
+            index++;
+        else
+            index = -1;
         }
       
 // else use space
       if (index == -1) {
-      // but space not quoted !"
+      // but space not quoted !
         iv = sstr(NL," ",1,1);
         <<[2]"found? $iv\n"; 
         index = iv[0];
@@ -190,10 +199,10 @@
           sz=Caz(iv);
           wi = sz/2;
           index = iv[wi];
-          if (index != -1); 
-          index++;
-          else; 
-          index = -1;
+          if (index != -1) 
+             index++;
+          else 
+             index = -1;
           }
         }
       
@@ -205,7 +214,6 @@
         <<[2]"%V $NL2 \n"; 
         conline =1;
         }
-      
       }
     
     sl = Slen(NL);
@@ -226,46 +234,73 @@
 //    check for trailing comment - if so eol is just before
        mat =0;
        cr =0;
-       spat(L,"//",-1,-1,&mat,&cr);
+       spat(NL,"//",-1,-1,&mat,&cr);
+       
        if (mat) {
-         NL = ssub(L,"//","; //")
+         NL = ssub(NL,"//","; //")
 	 is_trailing_comment = 1;
        }
-      <<[2]" needs ; ? <|$c|>\n";
-      <<[2]" needs ; $L\n";
 
+
+	<<"%c $c %d $c \n"
+	if (c != 59) {
+	   needs_semi_colon = 1;
+	   }
+	   
+      <<[2]" needs ; ? $needs_semi_colon <|$c|>\n";
+      <<[2]" needs ; $NL\n";
+      
+    }
+
+
+
+<<"%V $conline $is_empty_line $is_comment \n";
 
       if (conline) {
-        <<"$tws$NL1		\\\n"; 
-        <<"$tws  \t\t$NL2; \n"; 
+        <<[B]"${tws}$NL1		\\\n"; 
+        <<[B]"$tws  \t\t$NL2; \n"; 
         }
-      else if (is_empty_line) {
-        <<"$L\n"; 
+      else if ((is_empty_line) && (empty_line_cnt < 1)) {
+         <<"empty line!\n"
+        <<[B]"\n"; 
         }
       else if (is_trailing_comment) {
-        <<"$tws$NL \n"; 
+         <<"trailing comment\n"
+         <<[B]"${tws}$NL \n"; 
         }	
+      else if (is_comment) {
+               <<"comment\n"
+      <<[B]"$L\n"; 
+      }
+      else if (needs_semi_colon) {
+                     <<"add ; \n"
+          <<[B]"${tws}$NL;\n"; 
+      }
       else {
-        <<"$tws$NL; \n"; 
-        }
+               <<"asis\n"
+        <<[B]"${tws}$NL\n"; 
       }
-    else if (is_comment) {
-      <<"$L\n"; 
-      }
-    else {
-      if (conline) {
-        <<"$tws$NL1		\\  \n"; 
-        <<"$tws       $NL2; \n"; 
-        }
-      else {
-        <<"$tws$NL\n"; 
-        }
-      }
-    }
-  
+
+
+
+
+    if (needs_semi_colon) {
+   <<"out:${tws}${NL};\n";
+   }
+   else {
+   <<"out:${tws}$NL\n";
+   }
+
+//      <<[B]"${tws}$NL\n"; 
   tws = nsc(nw,"x");
-  <<[2]"%V$nw $tws\n"; 
+ // <<[2]"%V$nw $tws\n";
+   fflush();
+//  ans=query("pp correct?")
+//  if (ans @="n")
+//       break;
+  }
   
+  cf(B);
   
 //==================================//
 ///--------------  TBDFC ------------------------------

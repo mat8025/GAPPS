@@ -14,7 +14,7 @@
 
 include "debug"
 
-debugON()
+debugOFF()
 
 chkIn(_dblevel)
 
@@ -202,6 +202,7 @@ sal = 40 * 75 * 4
 <<"%v $sal \n"
 
  chkN(sal,12000)
+
 
 
 int n = 1;

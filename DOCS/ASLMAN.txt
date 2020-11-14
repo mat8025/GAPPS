@@ -1544,6 +1544,18 @@ new first row after the interpolation has taken place.
 
 =============================================================
 .BF
+Vsmooth()
+.(x
+Vsmooth
+.)x 
+.FD
+Vsmooth(V,w_len)
+The values in the vector are smoothed (average) by window of length w_len. 
+.EF
+=============================================================
+
+
+.BF
 Msmooth()
 .(x
 Msmooth
@@ -3145,7 +3157,7 @@ attribute can be :- type,mode,atime,mtime,adate,inode,size, ...
 date = fstat(file_name,"cdate")
 returns date of creation e.g. Tue Dec 18 06:50:20 2018
 ctime, returns secs since epoch.
-
+(see also fexist)
 .EF
 =============================================================
 .BF

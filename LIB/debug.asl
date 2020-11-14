@@ -46,8 +46,8 @@ proc debugON()
      _dblevel = 1;
  }
 
-<<"%V $_DB ALLOWALL debug from files and funcs\n"
-<<"use filterFuncDebug() filterFileDebug() to control\n"
+//<<"%V $_DB ALLOWALL debug from files and funcs\n"
+//<<"use filterFuncDebug() filterFileDebug() to control\n"
 //sdb(2,@keep,@~pline,@~step,@~trace)
 filterFuncDebug(ALLOWALL_,"xxx");
 filterFileDebug(ALLOWALL_,"yyy");
@@ -76,7 +76,7 @@ proc setNICerrors( int n)
 }
 //==========================
 
-<<" %V $_include  $_dblevel DONE debug.asl\n"
+//<<" %V $_include  $_dblevel DONE debug.asl\n"
 
 ///
 ///  while (1) {

@@ -13,11 +13,34 @@
 myScript = getScript();
 
 
+#include "debug"
 
-chkIn(_dblevel)
+debugON()
+
+//chkIn(_dblevel)
 
 proc foo(int a)
 {
+<<"in $_proc\n"
+ int s1 = a * 5
+
+<<"in %V$a local a * 5 $s1\n"
+
+ return s1
+}
+
+
+//===========================//
+k= foo(3)
+
+<<"foo returns $k\n"
+
+
+
+
+int woo(int a)
+{
+<<"in $_proc\n"
 
  int s1 = a * 5
 
@@ -25,6 +48,40 @@ proc foo(int a)
 
  return s1
 }
+
+exit()
+//===========================//
+
+
+
+
+k= woo(5)
+
+
+<<"woo returns $k\n"
+
+
+
+exit()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 proc goo(int a)
 {

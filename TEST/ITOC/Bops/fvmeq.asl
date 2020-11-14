@@ -1,7 +1,23 @@
+//%*********************************************** 
+//*  @script fvmeq.asl 
+//* 
+//*  @comment test basic ops  
+//*  @release CARBON 
+//*  @vers 1.4 Be Beryllium                                               
+//*  @date Thu Mar  7 23:24:30 2019 
+//*  @cdate 1/1/2002 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//* 
+//***********************************************%
 
-setdebug(1);
+include "debug"
 
-chkIn()
+
+debugOFF()
+
+chkIn(_dblevel)
+
 
 
 na = argc()
@@ -12,7 +28,7 @@ if (na >= 1) {
  }
 }
 
-//setdebug(1)
+
 F =vgen(FLOAT_,10,0,1)
 
 <<"%V $F \n"
@@ -20,6 +36,7 @@ F =vgen(FLOAT_,10,0,1)
 
 chkR(F[1],1.0,6)
 chkR(F[9],9.0,6)
+
 
 <<" vec -= 1.5 \n"
 

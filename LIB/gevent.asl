@@ -24,7 +24,7 @@ proc eventDecode()
    // can get all of these in one by using ref parameters
    _ename = Ev->getEventType(_eid,_etype,_ewoid,_ewoaw,_ebutton,_ekeyc,_ewoproc,_ex,_ey,_ewoval);
      
-//<<"%V $_ex $_ey\n"
+//<<"%V $_ex $_ey  $_ewoid\n"
 
 // get all below button,rx,ry via parameters to wait_for_msg
 //    _ewoval = Ev->getEventWoValue();

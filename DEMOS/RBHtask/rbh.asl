@@ -17,7 +17,7 @@ myScript = getScript();
 
 include "debug"
 include "hv"
-
+include "consts"
 //filterFileDebug(ALLOWALL_,"ic_","gline");
 //filterFuncDebug(ALLOWALL_,"proc","");
 
@@ -76,7 +76,7 @@ proc showMeasures (index)
   }
 
 ///  Read data to 2D float array
-R=readRecord(A,@type,FLOAT_)
+R=readRecord(A,@type,FLOAT_,@pickcond,">",1,0,pickcond,">",2,0)
 
 
 sz = Caz(R);
@@ -132,15 +132,18 @@ ztim = Tim[0]
  Spd->redimn()
 
 <<"Spd $Spd[0:9]\n"
-
-
+// smooth spd 
+ SSpd = vsmooth(Spd,7)
+ Spd = SSpd;
+ 
  Elev = R[::][5] 
 
  Elev->redimn()
 
 <<"Elev $Elev[0:9]\n"
-
-
+// convert to feet
+ Elev *= _m2ft;
+ 
  Bpm = R[::][6] 
 
  Bpm->redimn()
@@ -154,7 +157,7 @@ ztim = Tim[0]
 
 Units = "M"
 
-top_speed = 10.0 ; // run walk bike ?
+
 
 
 /////////////  Arrays : Globals //////////////
@@ -288,6 +291,15 @@ Graphic = CheckGwm();
 <<"%V $min_lat $max_lat \n"
 
 
+     spd_stats = Stats(Spd,">",0)
+     
+     max_spd = spd_stats[6];
+     ave_spd = spd_stats[1];
+
+     top_speed = ave_spd * 2 ; // run walk bike ?
+
+<<"%V $max_spd  $ave_spd $top_speed\n"
+
     
   LatS = min_lat -0.01;
   LatN = max_lat+0.01;
@@ -326,7 +338,6 @@ Graphic = CheckGwm();
 
      dGl(bpm_gl);
 
-
      sWo(vvwo, @scales, 0, 0, Npts, top_speed )
 
      dGl(spd_gl);  
@@ -353,6 +364,7 @@ float mry;
 str wcltpt="XY";
 
 include  "gevent";
+
 int mindex = 0;
 int Kindex = 0;
 int bpm;
@@ -379,7 +391,7 @@ int tim;
 
      if (_etype == PRESS_) {
        if (_ewoid == vvwo) {
-//<<"doing vv $_ewoid \n"
+<<"doing vv $_ewoid \n"
          mindex = trunc(_erx) 
 //<<"%V $_erx  $_ery $mindex $(typeof(mindex)) \n"
          swo(txtwo,@clear)
