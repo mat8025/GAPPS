@@ -3,8 +3,8 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.7 N Nitrogen                                                 
-//*  @date Tue Jan  1 09:18:09 2019 
+//*  @vers 1.10 Ne Neon [asl 6.2.91 C-He-Pa]                               
+//*  @date Mon Nov 30 09:30:26 2020 
 //*  @cdate Sun Dec 23 09:22:34 2018 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2014,2018 --> 
@@ -12,7 +12,7 @@
 //***********************************************%
   
   
-  proc vers2ele(str vstr)
+  void vers2ele(str vstr)
   {
   
    pmaj = atoi(spat(vstr,"."))
@@ -111,7 +111,8 @@
   //<<"%(1,,,)$T\n"
   found_vers =0;
 
-
+Str T;
+Svar L;
 
   fseek(A,0,0);
 
@@ -170,11 +171,11 @@
 
   fseek(A,found_where,0)
 
-   vers="  @vers ${pmaj}.$pmin $min_ele $min_name [asl $(getversion())]"
+   vers=" @vers ${pmaj}.$pmin $min_ele $min_name [asl $(getversion())]"
    vlen = slen(vers);
-   pad = nsc(70-vlen," ")
-<<[A]"//*$vers $pad\n"
-<<[A]"//*  @date $date \n"   
+   pad = nsc(69-vlen," ")
+<<[A]"//* $vers $pad\n"
+<<[A]"//*  @date $date"   
 // <<[A]" ??? \n"
 
 //  fseek(A,0,0)
@@ -195,12 +196,8 @@ ans=iread("app code -what modification?:")
 <<"$ans\n"
 len = slen(srcfile)
 pad = nsc(24-len," ")
-<<[A]"$srcfile${pad}${pmaj}.$pmin\t$date $ans\n"
+<<[A]"${srcfile}${pad}${pmaj}.${pmin}\t$date $ans\n"
 cf(A)
-
-
-
-
 
 
 
@@ -218,4 +215,20 @@ exit()
   for (i = 4; i < tsz;i++) {
    ln=T[i]
   <<"$ln"
-  }  
+  }
+
+
+
+
+/{/*////////////////////////////////  TBD ///////////////////////////
+
+    MFN fix for missing //* --- done ?
+
+
+
+
+
+
+
+
+/}*/

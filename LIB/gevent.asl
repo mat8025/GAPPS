@@ -24,12 +24,15 @@ proc eventDecode()
    // can get all of these in one by using ref parameters
    _ename = Ev->getEventType(_eid,_etype,_ewoid,_ewoaw,_ebutton,_ekeyc,_ewoproc,_ex,_ey,_ewoval);
      
-//<<"%V $_ex $_ey  $_ewoid\n"
+<<"$_proc %V $_ex $_ey  $_ewoid\n"
 
 // get all below button,rx,ry via parameters to wait_for_msg
 //    _ewoval = Ev->getEventWoValue();
 //  <<"%V $_ewoval \n"       
 
+  //  Ev->geteventrxy(_erx,_ery);    
+
+<<"$_proc  %V _erx  _ery \n"
 
     _ewid = -1;
 
@@ -37,7 +40,7 @@ proc eventDecode()
        _ekeyw =  "EXIT_ON_WIN_INTRP";
     }
     else {
-//    <<"%V $_emsg \n"
+  <<"$_proc %V $_emsg \n"
     if (!(_emsg @= "")) {
     _ewords = Split(_emsg);
 
@@ -75,7 +78,6 @@ proc eventDecode()
 //  read these into array or rxy and erow-col
 
   //  Ev->geteventxy(&_ex,&_ey);
-    Ev->geteventrxy(&_erx,&_ery);    
 
 
     Ev->geteventrowcol(&_erow,&_ecol);
@@ -87,6 +89,9 @@ proc eventDecode()
     }
 
    }
+   // Ev->geteventrxy(_erx,_ery);    
+
+<<"$_proc  %V _erx  _ery \n"
 }
 //==============================
 
@@ -99,11 +104,16 @@ proc eventWait()
     _erow = -1;
     _ecol = -1;    
     _ewoname = "";
-    _ewovalue = "";    
-    _emsg = Ev->waitForMsg();
+    _ewovalue = "";
 
-  
-    eventDecode();
+
+    _emsg = Ev->waitForMsg();
+<<"$_proc  %V $_emsg\n"
+     Ev->geteventrxy(_erx,_ery);    
+     Ev->geteventwoid(_ewoid);
+<<"$_proc  %V $_ewoid $_erx $_ery\n"     
+
+     eventDecode();
 
 }
 //==============================

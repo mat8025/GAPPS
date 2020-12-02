@@ -1,7 +1,7 @@
 //%*********************************************** 
 //*  @script str.asl 
 //* 
-//*  @comment test ops on str variable 
+//*  @comment test ops on Str variable 
 //*  @release CARBON 
 //*  @vers 1.2 He Helium [asl 6.2.47 C-He-Ag]                                
 //*  @date Thu May 14 09:46:53 2020 
@@ -13,14 +13,27 @@
 myScript = getScript();///
 ///
 ///
+#include "debug"
+debugON()
 
 
 chkIn(_dblevel)
 
-str s = "hi there";
- 
+Str s = "hi there";
+
+s->info(1)
 
 <<"%V $s \n"
+
+
+exit()
+Str s3;
+
+s3->info(1)
+
+ s3="goodbye"
+
+<<"%V $s3 \n"
 
 chkStr(s,"hi there")
 
@@ -35,7 +48,7 @@ s->reverse()
 <<"%V $s \n"
 
 
-
+s->info(1);
 char c;
 
 c = pickc(s,3)

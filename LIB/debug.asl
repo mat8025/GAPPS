@@ -3,8 +3,8 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.11 Na Sodium                                                 
-//*  @date Thu Dec 27 07:41:32 2018 
+//*  @vers 1.12 Mg Magnesium [asl 6.2.91 C-He-Pa]                          
+//*  @date Mon Nov 30 08:52:56 2020 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2014,2018 --> 
 //* 
@@ -13,9 +13,9 @@
 
 //<<"Including  debug \n"
 
-//sdb(-1,@~pline,@~step,@~trace)
+sdb(-1,@~pline,@~step,@~trace)
 
-sdb(_dblevel,@~pline,@~step,@~trace)
+//sdb(_dblevel,@~pline,@~step,@~trace)
 filterFileDebug(ALLOWALL_,"yyy");
 filterFuncDebug(REJECTALL_,"xxx");
 
@@ -32,7 +32,7 @@ dbid = IDof("_DB");
 
 
 
-proc DummyP()
+void DummyP()
 {
 // $_proc  called if $pname() does not resolve to known Proc
 <<" $_proc called if invalid proc name\n" 
@@ -40,9 +40,10 @@ proc DummyP()
 //==========================
 
 
-proc debugON()
+void debugON()
 {
- if (_dblevel < 1) {
+
+if (_dblevel < 1) {
      _dblevel = 1;
  }
 
@@ -58,7 +59,7 @@ _DB =1;
 }
 //==========================
 
-proc debugOFF()
+void debugOFF()
 {
 
 setdebug(-1,@~pline,@~step,@~trace,@~showresults,1)
@@ -68,13 +69,27 @@ _dblevel = 0;
 _DB=-1
 }
 
+void turnDEBUG(int on)
+{
 
+   if (on) {
+     debugON()
+   }
+   else {
 
-proc setNICerrors( int n)
+     debugOFF()
+   }
+   
+
+}
+
+void setNICerrors( int n)
 {
  setmaxICerrors(n)
 }
 //==========================
+
+
 
 //<<" %V $_include  $_dblevel DONE debug.asl\n"
 

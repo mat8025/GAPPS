@@ -3,8 +3,8 @@
 //* 
 //*  @comment parse @vers from script header 
 //*  @release CARBON 
-//*  @vers 1.5 B Boron [asl 6.2.77 C-He-Ir]                                
-//*  @date Sat Oct 17 17:21:11 2020 
+//*  @vers 1.12 Mg Magnesium [asl 6.2.91 C-He-Pa]                          
+//*  @date Mon Nov 30 09:29:21 2020
 //*  @cdate 12/15/2018 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -26,31 +26,32 @@ _HV->table("HASH",50,2) //
 
 int hv_found =0;
 
-proc hv_func()
+void hv_func()
 {
-svar L;
+  Svar L;
 
-str fl;
-int sz;
+  Str fl;
+  int sz;
 
-for (wln = 1; wln <= 40;wln++) {
- fl = getcodeln(wln,0);
+for (wln = 1; wln <= 40; wln++) {
+  fl = getcodeln(wln,0);
+
+
  if (! (fl @= "")) {
  L=split(fl)
-//<<"$wln $fl "
-//<<"$L \n"
+
 sz=Caz(L)
-//<<"sz $sz L[] $L \n"
+
 if (sz > 1) {
  if (scmp(L[0],"//",2)) {
-//<<"fl <|$fl|> L1 <|$L[1]|> \n"
+
 if (!(L[1] @= "")) {
 
    if (scmp(L[1],"@",1)) {
 
 
     _val = spat(fl,L[1],1)
-//<<"$_val\n"
+
     if (!hv_found) {
       if (!(L[1] @="@script")) {
 <<"no header found!\n"
@@ -60,7 +61,7 @@ if (!(L[1] @= "")) {
     }
 
     index=_HV->addkeyval(L[1],_val); // returns index
-// <<"$index $L[1] $_val \n"
+////<<"$index $L[1] $_val \n"
   }
   }
   }

@@ -5,14 +5,12 @@ int i = 3
 
 <<"%I $i \n"
 
-#{
-str s = "hi"
 
-<<"%I $s \n"
+Str s = "hi"
 
-STOP!
+<<"%V $s \n"
 
-#}
+
 
 //str s 
 
@@ -46,14 +44,12 @@ c=  a @+ b
 <<"%I $c \n"
 
 
-
-
 // S is svar
 
-S = { "hello", "world", "this", "is", "a", "crazy", "time" }
+Svar S = { "hello", "world", "this", "is", "a", "crazy", "time" }
 
 
-<<"%i $S \n"
+<<" $S \n"
 
 <<" $S[0] \n"
 
@@ -82,36 +78,18 @@ S[2:5]->cut()
 
 S[2] = b
 
+Siv I;
 
-STOP!
+I->info(1);
 
+Svar T
 
+ T="Help Me"
 
+<<"$T\n"
 
-proc poo( av )
-{
-  <<"$_cproc %i $av \n"
-  av = "over"
-  <<"%i $av \n"
-}
-
+exit()
 
 
-poo (a)
-
-<<"%i $a \n"
-
-
-
-poo (S)
-
-
-<<"%i $S \n"
-
-STOP("DONE")
-
-<<" $a[0] \n"
-
-<<" $a[1] \n"
 
 

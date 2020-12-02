@@ -86,6 +86,17 @@ sizeof_type (int type)
 }
 //[EF]===========================================//
 
+long long range(int beg, int end, int setp)
+{
+  /// partition long long into 4 shorts
+  ///  [neg sign mult incr][beg][end][step]
+  ///  array operator =
+  ///  will recover beg,end,step values - use mult,incr to cover
+  ///  larger then ushort value
+  long long rindex = beg;
+
+  return beg;
+}
 
 
 class Array
@@ -106,14 +117,24 @@ class Array
         // assignment operator function
 
   int &operator [] ( int i);
-  int operator [] ( uint i);
+  // int operator [] ( uint i);
+    int &operator [] ( long long l);
+  // int &operator [] ( uint st) int &operator[] (uint k);
+  //int &operator [][] ( uint i, uint k);
 
+
+  
         //Array& operator = ( int pos, int val ) ;
         // scalar ops on all elements in Array
         Array& operator = ( int val );
+  
         // conversion function
         operator const void * ( ) ;
 
+  // overload function
+
+       Array operator() (int beg,int end ,int step);
+  
         // concatenation methods
         friend Array operator + ( Array&, Array& ) ;
         void operator += ( const Array& ) ;
@@ -148,6 +169,8 @@ int main()
   //    cout << endl << "s1 = " << s1 ;  // invokes << friend operator function
   //  cout << endl << "Size of s1 = " << s1.sizeofArray() ;
 
+  cout << endl <<  sizeof ( long long) << "  " <<  sizeof(int)  << "  " << sizeof (long double) << endl;
+  
     Array a2 (INT,10 ) ;  //  int array size 10
 
 
@@ -170,7 +193,8 @@ int main()
     
     a2[3] = 77;
     a2[7] = 67;
-
+    a2[(2+2)] = 42;
+    a2[range(8,9,1)] = 76;
     cout << endl << a2[3] << " " << a2[7] << endl;    
     //    cout << endl << "s1 = " << s1 ;
 
@@ -195,6 +219,13 @@ int main()
 
     //cout << endl << "Length of a7 = " << a7.length() ;
     // cout << endl << "Size of a8 = " << a7.sizeofArray() ;
+    //    a7[2][3] = 52; // class array would have to int vec[][] 
+    cout << endl << a7 << endl ;
+
+    Array a8 = a2(0,5,1);
+    
+   cout << endl << a8 << endl ;
+    
 #if 0
     if ( a7 == a4 )
         cout << endl << "a7 is equal to a4" ;
@@ -277,7 +308,7 @@ Array::operator const void * ( )
     return ptr;
 }
 
-// overloaded string addition operator
+// overloaded addition operator
 Array operator + ( Array& x, Array& y )
 {
     Array temp ( x.type, x.size ) ;
@@ -374,7 +405,7 @@ uint Array::sizeofArray() const
 {
     return size ;
 }
-
+#if 0
 // N.B. had to use uint else could not overload lhs[] assign and rhs [] access
 int Array::operator [] ( uint pos )
 {
@@ -387,7 +418,7 @@ int Array::operator [] ( uint pos )
       return val ;
     }
 }
-
+#endif
 
 int &Array::operator [] (int i)
   {
@@ -395,7 +426,53 @@ int &Array::operator [] (int i)
         int *ip = (int *) ptr;
         return ip[i] ;
   }
-
+//==============================
+int &Array::operator [] (long long  l)
+  {
+    //error check
+    int i = (int) l;
+        int *ip = (int *) ptr;
+        return ip[i] ;
+  }
+//==============================
+Array Array::operator () ( int b, int e, int s )
+   {
+     int ne = (e-b);
+     Array temp ( type, ne ) ;
+     int *top = (int *) temp.ptr;
+     int *from = (int *) ptr;     
+     for (int i=0;i< ne; i++) {
+       top[i] = from[b+i];
+     }
+     
+     return temp;
+   }
+//======
+/*
+// want something like this vec = vec2[(int a,int b,int c)]
+//  asl uses vec= vec[beg:end:step]
+Array Array::operator = (const Array& x, int b, int e, int s )
+   {
+     int ne = (e-b);
+     Array temp ( x.type, ne ) ;
+     int *top = (int *) temp.ptr;
+     int *from = (int *) x.ptr;     
+     for (int i=0;i< ne; i++) {
+        top[i] = from[b+i]
+     }
+     
+     return temp;
+   }
+//==============================
+*/
+/*
+int &Array::operator [][] (uint i, uint k)
+  {
+    //error check
+        int *ip = (int *) ptr;
+        return ip[i+k] ;
+  }
+*/
 
 // friend function to output objects of Array class
 ostream& operator << ( ostream &strm, Array &x )
@@ -428,3 +505,16 @@ int& Array::operator [] ( int pos )
 
  6    range ops    H[1:5] = 6
  */
+/*
+template <typename T, unsigned int L>
+class VerySimpleArray{
+T a[L];
+public:
+VerySimpleArray(){
+for(int i=0; i < L; ++i) a[i] = T();
+}
+T& Get(unsigned int i){return a[i];}
+void Set(unsigned int i, T& v){a[i] = v;}
+};
+VerySimpleArray<float, 42> vsa;
+*/

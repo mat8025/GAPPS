@@ -28,7 +28,7 @@ include "consts"
 tc = 631062000
 
 
-proc showMeasures (index)
+proc showMeasures (int index)
 {
         // tim = Tim[index] -Tim[0]
 	 tim = Tim[index] -ztim
@@ -209,7 +209,7 @@ Graphic = CheckGwm();
   bikewo= cWo(mapvp,@BN,@name,"b",@color,WHITE_,@resize_fr,0.55,0.5,0.57,0.57);
   sWo(bikewo,@hvmove,1,@redraw,@drawon, @pixmapon);
 
-  mapwo= cWo(mapvp,@GRAPH,@resize_fr,0.2,0.1,0.95,0.95,@name,"MAP",@color,WHITE_);
+  mapwo= cWo(mapvp,@GRAPH,@resize_fr,0.2,0.1,0.95,0.95,@name,"MAP",@bhue,MAGENTA_);
   sWo(mapwo, @scales, LongW, LatS, LongE, LatN, @save, @redraw, @drawoff, @pixmapon);
 
 
@@ -227,11 +227,11 @@ Graphic = CheckGwm();
 ///  MEASURES
 
 
-  vp = cWi(@title,"Measures",@resize,0.1,0.01,0.9,0.44,0)
+  vp = cWi(@title,"Measures",@resize,0.1,0.01,0.9,0.44,0,@color,LILAC_,@bhue,TEAL_)
 
   txtwo= cWo(vp,@TEXT,@resize_fr,0.55,0.80,0.95,99,@name,"TXT",@color,WHITE_,@save,@drawon,@pixmapoff);
 
-  vvwo= cWo(vp,@GRAPH,@resize_fr,0.2,0.11,0.95,0.79,@name,"MAP",@color,WHITE_);
+  vvwo= cWo(vp,@GRAPH,@resize_fr,0.2,0.11,0.95,0.79,@name,"MEASURES",@color,ORANGE_);
 
   sWo(vvwo, @scales, 0, 0, 86400, 6000, @save,@savepixmap, @redraw, @drawon, @pixmapoff);
 
@@ -381,10 +381,16 @@ int tim;
     while (1) {
 
 
-       eventWait()
-<<"$_emsg %V $_ekeyw $_ewoid $_etype $_ekeyc %c $_ekeyc \n"
-	         swo(txtwo,@clear)
-		 text(txtwo,"$_emsg  $_ekeyc ",0.2,0.7)
+       eventWait();
+
+<<"main $_emsg %V $_ekeyw $_ewoid $_etype $_ekeyc %c $_ekeyc \n"
+<<"%V $_ex $_ey $_erx $_ery \n"
+<<"%V $_ewoid $vvwo \n"
+
+
+	         sWo(txtwo,@clear); //
+
+		 text(txtwo,"$_emsg  $_ekeyc ",0.2,0.7);
 
 
 //<<"%V $mindex $(typeof(mindex)) $Kindex \n"	 	 	 
@@ -393,7 +399,7 @@ int tim;
        if (_ewoid == vvwo) {
 <<"doing vv $_ewoid \n"
          mindex = trunc(_erx) 
-//<<"%V $_erx  $_ery $mindex $(typeof(mindex)) \n"
+<<"%V $_erx  $_ery $mindex $(typeof(mindex)) \n"
          swo(txtwo,@clear)
          showMeasures (mindex);
          Kindex = mindex;
@@ -416,7 +422,7 @@ int tim;
          dGl(spd_gl);  
 
         // sWo(vvwo,@showpixmap);
-	 
+	 <<"draw cursor @ $_erx \n"
          sGl(pos_gl,@cursor,_erx,0,_erx,20); // this does a draw
 
       

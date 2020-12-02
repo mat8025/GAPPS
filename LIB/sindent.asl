@@ -12,8 +12,13 @@
 //***********************************************%
   
   
+include "debug"
+debugON()
 
-  sdb(-1)
+sdb(1,@pline,@trace,@~step)
+
+
+   do_query = 1;
 // use an indent of 2 spaces - for all non-comment lines
 
 //<<"? $_clarg[1]\n"
@@ -35,7 +40,7 @@
   }
 
 
-  char ns[];
+  char nsv[];
   char c;
   char lc;
   
@@ -46,9 +51,12 @@
   
   nw = 2;
   
-  str NL;
-  str NL1;
-  svar NL2;
+  Str L;
+  Str NL;
+  Str NL1;
+
+  str tws;
+  Svar NL2;
   
   int empty_line_cnt = 0;
   is_empty_line = 0;
@@ -69,7 +77,7 @@
     ln++;
     
     NL = L;
-    <<"in:$NL\n" ;
+    <<[2]"in:$NL\n" ;
 
 //ans=query("2pp")
   
@@ -78,14 +86,14 @@
     
     if (sl >= 1) {
          is_empty_line = 0;   
-      scpy(ns,eatWhiteEnds(NL));
-      <<[2]"check comment $ns[0] $ns[1] \n"; 
+      scpy(nsv,eatWhiteEnds(NL));
+      <<[2]"check comment $nsv[0] $nsv[1] \n"; 
       
-      if ((ns[0] == 47) && (ns[1] == '/')) {
+      if ((nsv[0] == 47) && (nsv[1] == '/')) {
         is_comment = 1;
         <<[2]"comment $NL\n"; 
         }
-      else if (ns[0] == 35) {
+      else if (nsv[0] == 35) {
         is_comment = 1;
         <<[2]"comment $NL\n"; 
         }	
@@ -113,8 +121,8 @@
     sl = Slen(NL);
     ind = sl -1;
     if (ind >=0) {
-      ns = sele(NL,ind,1); 
-      c= ns[0];
+      nsv = sele(NL,ind,1); 
+      c= nsv[0];
       <<[2]"last char? $ln  $c $sl $ind %s $c \n";
       }
 
@@ -124,7 +132,7 @@
     
     k = sstr(";{}/\\",c,1); 
     
-// <<[2]"$L $sl %c$c %d$k\n"
+ <<[2]"$L $sl %c$c %d$k\n"
 
     if (slen(NL) >0) {
       NL=eatWhiteEnds(NL);
@@ -219,8 +227,8 @@
     sl = Slen(NL);
     ind = sl -1;
     if (ind >= 0) {
-      ns = sele(NL,ind,1); 
-      c= ns[0];
+      nsv = sele(NL,ind,1); 
+      c= nsv[0];
       <<[2]"last char? $ln  $c $sl $ind %s $c \n";
       }
     
@@ -295,9 +303,16 @@
   tws = nsc(nw,"x");
  // <<[2]"%V$nw $tws\n";
    fflush();
-//  ans=query("pp correct?")
-//  if (ans @="n")
-//       break;
+
+if (do_query) {
+ ans=query("pp correct?")
+  if (ans @="n")
+       break;
+   if (ans @="c") {
+   do_query = 0;
+  }
+}
+
   }
   
   cf(B);

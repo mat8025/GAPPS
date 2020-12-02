@@ -1,5 +1,5 @@
 //%*********************************************** 
-//*  @script cbump.asl 
+//*  @script vbump.asl 
 //* 
 //*  @comment  
 //*  @release CARBON 
@@ -10,28 +10,27 @@
 //*  @Copyright  RootMeanSquare  2014,2018 --> 
 //* 
 //***********************************************%
-
-
- 
-  
+  include "debug"
+  debugON()
   
   proc vers2ele(str vstr)
   {
-  
+  <<[2]"%V $vstr\n"
    pmaj = atoi(spat(vstr,"."))
    pmin = atoi(spat(vstr,".",1))
   <<[2]"%V $pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
    elestr = pt(pmin);
-   str ele =" ";
+   Str ele =" ";
    ele = spat(elestr,",")
-  //<<"$ele $(typeof(ele))\n";
-  //<<"$ele";
+  <<"$ele $(typeof(ele))\n";
+  <<"$ele";
+ // ans=query(":")
    return ele;
    
   }
   //======================
   A=-1;
-  
+  str T=" ";
   
   // if script found
   // then  read current vers and  bump number and update date
@@ -101,6 +100,8 @@
 
 
   release = "";
+!!"cp $srcfile ${srcfile}.bak"
+
 
   A=ofile(srcfile,"r+")
   //T=readfile(A);
@@ -122,28 +123,41 @@
    for (i = 0; i < 8;i++) {
    T = readline(A);
    where = ftell(A)
+<<[2]"$i $where $(typeof(T)) $T \n"
+
    L = Split(T);
-   if (scmp(L[1],"@vers")) {
+   <<[2]"after Split <|$L[0]|>  <|$L[1]|> \n"
+  nw = Caz(L);
+  <<[2]"%V $(typeof(L)) $nw $(sizeof(L)) $L[2]\n"
+
+   if (nw >= 2 && scmp(L[1],"@vers")) {
      found_vers =1;
      cvers = L[2];
-     //<<[2]"$where $T\n"
+     <<[2]"%V$where $L[2]\n"
      break;
    }
-   found_where = where;
+
+found_where = where;
   }
  
- 
+   T = readline(A);
+   where = ftell(A)
+<<[2]"$i $where $(typeof(T)) $T \n"
+
+
  if (found_vers) {
- 
+ <<[2]"%V $cvers\n"
  nele = vers2ele(cvers)
  <<[2]"found_vers $cvers $nele\n"
+// ans=query()
  }
  else {
- <<" does not have vers number in header\n")
+ <<[2]" does not have vers number in header\n")
  exit();
  }
  
  if (set_vers) {
+ <<[2]"%V $new_vers\n"
  // set to _clarg[2] - if correct format
   vers2ele(new_vers)
  }
@@ -155,7 +169,7 @@
    }
    <<[2]"bumped to $pmaj $pmin\n"
    <<"$pmaj $pmin\n"   
-   if (pmaj > 103) {
+   if (pmaj > 99) {
  <<" need a new major release current \n"
    exit();
    }
@@ -173,8 +187,16 @@
    vers="    @vers ${pmaj}.$pmin $min_ele $min_name "
    vlen = slen(vers);
    pad = nsc(69-vlen," ")
+
+<<"//$vers $pad |\n"
+<<"//    @date $date\n"   
+
+
+
 <<[A]"//$vers $pad"
+
 seekline(A,1)
+
 <<[A]"//    @date $date"   
 
 

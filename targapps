@@ -1,3 +1,3 @@
 rclup
-find -name  \*.asl -o -name \*.txt -o -name \*.dev -o -name \*.dat -o -name \*READ* -o -name \*.csv -o -name \*tsv -o -name \*.m | tar -cvzf gapps.tgz -T -
+find -name  \*.asl -o -name \*.txt -o -name \*.dev -o -name \*.dat -o -name \*READ* -o -name \*.csv -o -name \*tsv -o -name \*.m -o -name \*.cpp -o -name \*.c | tar -cvzf gapps.tgz -T -
 
