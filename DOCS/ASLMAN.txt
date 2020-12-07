@@ -1,10 +1,16 @@
-\"/////////////////////////////////<**|**>/////////////////////////////////////
-\" @doc   ASLMAN
-\" @cdate  1/1/90
-\" @date  5/31/2020
-\" @version 2.2
-\" @Copyright  RootMeanSquare  1990,2020 --> 
-\"///////////////////////////////////<v_&_v>/////////////////////////////////
+//%*********************************************** 
+//*  @document ASLMAN.txt 
+//* 
+//*  @comment docs for ASL commands and usage 
+//*  @release CARBON 
+//*  @vers 2.3 Li Lithium [asl 6.2.92 C-He-Ur]                               
+//*  @date Wed Dec  2 13:20:18 2020 
+//*  @cdate 1/1/2001 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+
 
 .de NP
 .ft R
@@ -30,7 +36,7 @@
 
 .de FD
 .in 5
-.i
+.in
 .sp
 .ne 3
 ..
@@ -4904,17 +4910,38 @@ getArgI()
 getArgI
 .)x 
 .FD
-//  getargI 
-// getArgI(1)
-// returns nth Command Line arg as an int.
-// internal array _clarg   holds command line args
-
-
-
-
-
+getargI 
+getArgI(1)
+returns nth Command Line arg as an int.
+internal array _clarg   holds command line args
 .EF
 =============================================================
+.BF
+getArgF()
+.(x
+getArgF
+.)x 
+.FD
+getargF
+getArgF(n)
+returns nth Command Line arg as a float.
+ internal array _clarg   holds command line args
+.EF
+=============================================================
+.BF
+getArgStr()
+.(x
+getArgStr
+.)x 
+.FD
+getargStr 
+getArgStr(n)
+returns nth Command Line arg as a str.
+internal array _clarg   holds command line args
+.EF
+=============================================================
+
+
 .BF
 getlabel_dur()
 .(x
@@ -11012,3 +11039,10 @@ fillHTML_ColorTable ()
   int nc = addHTMLColor ("YellowGreen", 154, 205, 50, 0x9acd32);
 
 //=============== END ASLMAN.txt =================//
+\"/////////////////////////////////<**|**>/////////////////////////////////////
+\" @doc   ASLMAN
+\" @cdate  1/1/90
+\" @date  5/31/2020
+\" @version 2.2
+\" @Copyright  RootMeanSquare  1990,2020 --> 
+\"///////////////////////////////////<v_&_v>/////////////////////////////////

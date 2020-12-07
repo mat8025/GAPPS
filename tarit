@@ -1,7 +1,0 @@
-rclup
-DV=`date +%D | sed 's/\//_/g'`
-echo $DV
-tname=gapps-$DV.tgz
-echo $tname
-find -name  \*.asl -o -name \*.txt -o -name \*.dev -o -name \*.dat -o -name \*READ* -o -name \*.csv -o -name \*tsv -o -name \*.m | tar -cvzf $tname -T -
-

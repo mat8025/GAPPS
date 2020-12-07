@@ -159,3 +159,4 @@ anytask.asl              4.2	Wed Jun 24 07:29:33 2020 procs-->ootlib
 	Mon Nov 30 09:23:35 2020 remove DBG
 hv.asl                    1.12	Mon Nov 30 09:29:21 2020 XXX
 sbump.asl                1.10	Mon Nov 30 09:30:26 2020 fix srcfile
+ASL2CPP.txt              1.2	Thu Dec  3 09:36:28 2020 OOP considerations

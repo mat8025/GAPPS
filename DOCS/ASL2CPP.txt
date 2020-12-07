@@ -1,0 +1,69 @@
+//%*********************************************** 
+//*  @document ASL2CPP.txt 
+//* 
+//*  @comment process and requirements to transform ASL to CPP code 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium [asl 6.2.92 C-He-Ur]                              
+//*  @date Thu Dec  3 09:36:28 2020 
+//*  @cdate Thu Dec  3 09:33:04 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+
+
+
+
+
+  ASL is a script (C like syntax) interpreter with some rudimentary OOP extensions and some syntax for manipulating
+  vector , matrix and multidimensional arrays. The interpreter produces code for a second stage stack/register engine
+  as each source statement is executed. The original intent was to have a simple interface to call C/C++ DSP library
+  modules. However for programs that involve multiple looping operatons the resultant speed is orders of magnitude greater
+  than similar logic compiled as C++ code. With some restrictions ASL script statements can be transformed into C++
+  statements and compiled. The resulting C++ executable can be linked into a DLL that can be called as a function from ASL.
+  Most of the transformation can be done be by processing the original ASL code by an ASL script - casl.asl.
+   The operations performed  are detailed below.
+
+
+
+
+   Vector and Matrix Range Specifications
+   
+
+     A range specification in ASL   is  [begin:end:stride] so
+
+     Vec1[2:7:1]  = Vec2 ;
+
+     would result in Vec1 elements 2 thru 7  being filled by Vec2 ( bound checking is done internally with error reporting).
+
+     Mat1[3][::] =  Vec1;
+
+     would result in the collumns Mat1 row 3 (4th rows are 0-n-1)  being filled by Vec1.
+
+     To achieve the same functionality   ASL M[b:e:s][b2:e2:s2]    is replaced by the translator script
+     with    M(Crange(b,e,s), Crange(b2,e2,s2)). The CPP Vec and Matrix perform the necessary evaluation of ranges
+     and then manipulate the vector/matrices appropriately.
+
+
+
+
+
+     To be resolved
+
+      ASL does not have comma operator so
+
+      int n,m,k;
+      is currently not allowed.
+
+      To be checked
+
+       a = b = c = 7;
+
+      OOP  class inheritance, ...
+
+       call of ASL SF functions  - via a wrapper -- side-by-side rework of functions ?
+       
+
+
+
+

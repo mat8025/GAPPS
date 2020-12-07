@@ -130,16 +130,26 @@
    //<<[2]" $(nsc(5,sp))\n"
    
    //<<[2]" $(nsc(5,\"\\n\"))\n"
-   
+Svar T;
+
    A=ofr(srcfile);
    T=readfile(A);
    tsz= Caz(T);
-<<"$tsz $T[0] \n"
+//<<"$tsz $T[0] \n"
+//for (i = 0 ; i < 10; i++)
+//{
+//<<"$i $T[i] \n"
+//}
+
+
+
+
 
    fseek(A,0,0);
 
    found_vers =0;
-
+Str R;
+Svar L;
    for (i = 0; i < 5;i++) {
    R = readline(A);
    where = ftell(A)
@@ -196,7 +206,7 @@ fflush(A)
    for (i = 0; i < tsz; i++) {
     ln = T[i];
 //    <<"$i $ln\n"
-   <<[A]"$ln"
+   <<[A]"$T[i]"
    }
 
    fflush(A)
