@@ -13,7 +13,7 @@
 
 //<<"Including  debug \n"
 
-sdb(-1,@~pline,@~step,@~trace)
+//sdb(-1,@~pline,@~step,@~trace)
 
 //sdb(_dblevel,@~pline,@~step,@~trace)
 filterFileDebug(ALLOWALL_,"yyy");
@@ -49,7 +49,7 @@ if (_dblevel < 1) {
 
 //<<"%V $_DB ALLOWALL debug from files and funcs\n"
 //<<"use filterFuncDebug() filterFileDebug() to control\n"
-//sdb(2,@keep,@~pline,@~step,@~trace)
+//sdb(1,@keep,@pline,@~step,@trace)
 filterFuncDebug(ALLOWALL_,"xxx");
 filterFileDebug(ALLOWALL_,"yyy");
 setmaxcodeerrors(-1); // just keep going
