@@ -3,36 +3,76 @@
 //* 
 //*  @comment test array vec and ele use 
 //*  @release CARBON 
-//*  @vers 1.38 Sr Strontium [asl 6.2.58 C-He-Ce]                          
-//*  @date Sun Jun 14 12:41:42 2020 
+//*  @vers 1.40 Zr Zirconium [asl 6.2.95 C-He-Am] 
+//*  @date Sat Dec 19 10:28:02 2020
 //*  @cdate 1/1/2007 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-include "debug"
+/*
+#include "debug"
 
 if (_dblevel >0) {
    debugON()
 }
 
+*/
 chkIn (_dblevel);
 
+
 <<"%V $_dblevel\n"
-//cd query()
+
+//*/
+
 
 float f= 3.142;
 
+f->info(1)
+
+
 <<"$f \n"
 
-proc array_asg (float rl[])
+int p = 1234567;
+
+p->info(1)
+
+
+
+Str sv ="buen dia"
+
+asv = sv;
+
+
+
+sv->info(1);
+asv->info(1);
+
+Real1 = vgen (FLOAT_, 10, 0, 1);
+
+Real1->info(1);
+
+<<"%V$Real1\n";
+
+
+
+//exit()
+
+
+float array_asg (float rl[])
 {
 
 <<"In $_proc   $rl\n";
   rl->info(1)
   int kp = 3;
   int kp2 = 5;
-  rl[1] = 77;
+
+kp->info(1)
+
+
+//ans=query()
+
+    rl[1] = 77;
 
     rl[kp] = 67
     rl[kp2] = 14
@@ -49,19 +89,26 @@ proc array_asg (float rl[])
 }
 //======================================//
 
+int SA =0;
 
-proc array_sub (float rl[])
+float array_sub (float rl[])
 {
 
 <<"In $_proc   $rl\n";
   rl->info(1)
- 
+
+ //SA = SA + 1;
+ SA++;
+  
   float t1;
   float t2;
    
 //  <<"%V$rl \n";
 
-  t1 = rl[0];
+  t1 = rl[2];
+  t1->info(1)
+
+//ans=query();
   rl->info(1)
 //  <<"%6.2f%V$t1\n";
 
@@ -116,14 +163,27 @@ proc array_sub (float rl[])
 <<"rl $rl \n"
 
     rj1 = rl[j1];
-<<"%V$rj1\n"    
+    
+    rj1->info(1);
+
+<<"%V $SA\n"
+
+//ans=query();
+
+<<"%V $rj1\n"    
 
 
     rj2 = rl[j2];
-<<"%V$rj2\n"    
+
+   rj2->info(1);
+   
+<<"%V $rj2\n"    
 
   wrl = rj1 -rj2
-<<"%V $wrl\n"
+
+ <<"%V $wrl\n"
+
+wrl->info(1);
   chkR (wrl, -2);
 
   rl[kp] = rl[j1] - rl[j2];
@@ -237,9 +297,7 @@ proc array_sub (float rl[])
 
 //////////////////////////////////////////////////////////////////////////////////////
 
-Real1 = vgen (FLOAT_, 10, 0, 1);
 
-<<"%V$Real1\n";
 
 
 chkR (Real1[2],2)
@@ -252,12 +310,14 @@ Real2 = vgen (FLOAT_, 10, 1, 1);
 
 val = array_asg (Real1);
 <<"%V $val\n"
-
+//ans= query()
 <<"%V$Real1\n"
 
 
 
 val = array_asg (Real2);
+//ans= query()
+
 <<"%V $val\n"
 
 <<"%V$Real2\n"
@@ -266,6 +326,12 @@ val = array_asg (Real2);
 
 
 val = array_sub (Real2);
+//ans= query()
+
+
+
+
+
 
 float mt1;
 
@@ -279,7 +345,7 @@ Real1[0] = 74.47;
 
 val = array_sub (Real1);
 
-checkStage()
+chkStage()
 
 
 
@@ -295,6 +361,10 @@ val = array_sub (Real2);
 Real = vgen (DOUBLE_,10, 0, 1);
 
 <<"Real %6.2f $Real \n";
+
+Real->info(1);
+
+
 
 val = array_sub (Real);
 

@@ -3,8 +3,8 @@
 //* 
 //*  @comment test ops on Str variable 
 //*  @release CARBON 
-//*  @vers 1.2 He Helium [asl 6.2.47 C-He-Ag]                                
-//*  @date Thu May 14 09:46:53 2020 
+//*  @vers 1.3 Li Lithium [asl 6.2.96 C-He-Cm]                             
+//*  @date Sun Dec 20 12:05:33 2020   
 //*  @cdate Thu May 14 09:46:53 2020 
 //*  @author Mark Terry 
 //*  @Copyright © RootMeanSquare  2010,2020 → 
@@ -26,7 +26,7 @@ s->info(1)
 <<"%V $s \n"
 
 
-exit()
+
 Str s3;
 
 s3->info(1)

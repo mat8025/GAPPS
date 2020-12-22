@@ -14,10 +14,12 @@
   
   void vers2ele(str vstr)
   {
-  
-   pmaj = atoi(spat(vstr,"."))
+  //<<"%V $vstr\n"
+   pmaj = atoi(spat(vstr,".",-1))
+   <<[2]"$pmaj $(typeof(pmaj)) $(ptsym(pmaj)) \n"  
    pmin = atoi(spat(vstr,".",1))
-  <<[2]"%V $pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
+
+//<<[2]"$pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
    elestr = pt(pmin);
    str ele =" ";
    ele = spat(elestr,",")
@@ -27,7 +29,7 @@
    
   }
   //======================
-  A=-1;
+  int A = -1;
   
   
   // if script found
@@ -46,7 +48,7 @@
   //<<[2]" RW sz $sz \n"
   
   if (sz == -1) {
-  <<[2]"can't find script file $srcfile\n"
+  <<[2]"can't find script file $srcfile\n";
     exit();
   }
   
@@ -60,7 +62,7 @@
   // should be maj.min e.g 1.1 ,6.1, ... limits 1 to 100  
   }
   
-  
+Str cvers;  
   
   
   file= fexist(srcfile,ISFILE_,0);
@@ -73,8 +75,10 @@
   Author = "Mark Terry"
   fname = srcfile
   release = "CARBON"
-  pmaj = 1;
-  pmin = 1;
+  
+  int pmaj = 1;
+  
+  int pmin = 1;
   
   maj_ele = ptsym(pmaj);
   min_ele = ptsym(pmin);
@@ -87,7 +91,7 @@
   
   ind = (80-len)/2;
   <<[2]"$(date()) $(date(8)) \n"
-  //<<[2]" $len $ind\n"
+  <<[2]" $len $ind\n"
   insp = nsc((60-len)/2," ")
   len= slen(insp)
   //<<[2]"$len <|$insp|> \n"
@@ -111,35 +115,62 @@
   //<<"%(1,,,)$T\n"
   found_vers =0;
 
+long where;
+
+where->info(1)
+
 Str T;
+
+T->info(1)
+
+Str Pad;
+
+Pad->info(1)
+
 Svar L;
+
+L->info(1)
+
+
+
 
   fseek(A,0,0);
 
-//tsz = Caz(T)
+//   tsz = Caz(T)
+
    for (i = 0; i < 8;i++) {
+   
    T = readline(A);
-<<"$i line is $T \n"
+   
+//<<[2]"$i line is $T \n"
+
+
+
    where = ftell(A)
    L = Split(T);
-<<"$i $L \n"
+   sz = Caz(L);
+// <<"sz $(caz(L)) \n"
+//<<[2]"$where $i $L \n"
+   if (sz >2) {
+//<<[2]"L1 $L[1]\n"
     if (scmp(L[1],"@vers")) {
      found_vers =1;
      cvers = L[2];
-     //<<[2]"$where $T\n"
+     <<[2]"$where $cvers $L[2]\n"
      break;
+   }
    }
    found_where = where;
   }
  
- 
+
  if (found_vers) {
  
  nele = vers2ele(cvers)
  <<[2]"found_vers $cvers $nele\n"
  }
  else {
- <<" does not have vers number in header\n")
+ <<[2]" does not have vers number in header\n")
  exit();
  }
  
@@ -148,17 +179,21 @@ Svar L;
   vers2ele(new_vers)
  }
  else {
-   pmin++;
+
+    pmin++;
+   
    if (pmin > 100) {
        pmin =1;
        pmaj++;
    }
    <<[2]"bumped to $pmaj $pmin\n"
-   if (pmaj > 103) {
+   if (pmaj > 100) {
  <<" need a new major release current \n"
    exit();
    }
  }
+
+ 
  
   date = date();
   maj_ele = ptsym(pmaj);
@@ -173,35 +208,32 @@ Svar L;
 
    vers=" @vers ${pmaj}.$pmin $min_ele $min_name [asl $(getversion())]"
    vlen = slen(vers);
-   pad = nsc(69-vlen," ")
-<<[A]"//* $vers $pad\n"
-<<[A]"//*  @date $date"   
-// <<[A]" ??? \n"
 
-//  fseek(A,0,0)
-
-//<<[A],"new line \n"
-
+   Pad = nsc(67-vlen," ")
+<<[2]"vlen $vlen <|$Pad|>\n"      
+<<[A]"//* $vers ${Pad}\n"
+<<[A]"//*  @date $date "
   fflush(A);
   
 
 cf(A);
 
 // lets' log this change 
-logfile= "~gapps/LOGS/appmods.log"
+logfile= "~/gapps/LOGS/appmods.log"
 A=ofile(logfile,"r+")
 fseek(A,0,2)
 
 ans=iread("app code -what modification?:")
 <<"$ans\n"
 len = slen(srcfile)
-pad = nsc(24-len," ")
-<<[A]"${srcfile}${pad}${pmaj}.${pmin}\t$date $ans\n"
+Pad = nsc(24-len," ")
+<<[A]"${srcfile}${Pad}${pmaj}.${pmin}\t$date $ans\n"
 cf(A)
 
 
 
-exit()
+
+
  for (i = 0; i < 3;i++) {
   //<<"$T[i]"
    ln=T[i]

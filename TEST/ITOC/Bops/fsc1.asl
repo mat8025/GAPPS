@@ -1,7 +1,7 @@
 
 
 Checkin()
-setdebug(0)
+sdb(1,@pline)
 
  xp = 0.9
  yp = -0.3

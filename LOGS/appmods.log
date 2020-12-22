@@ -138,25 +138,25 @@ vector.asl               1.2	Tue Jun  9 20:28:45 2020 cn,co
 arrayele.asl             1.38	Sun Jun 14 12:41:42 2020 xic store ptr
 showtask.asl             3.3	Tue Jun 23 07:05:33 2020 use Record for turnpt access
 anytask.asl              4.2	Wed Jun 24 07:29:33 2020 procs-->ootlib
-	Sat Aug 15 10:18:03 2020 debug
-	Sun Aug 30 08:12:32 2020 testz++
-	Fri Sep 18 08:08:52 2020 mrevcols & mrevrows replace fliprowcols
-	Wed Sep 23 06:48:47 2020 dbg
-	Wed Sep 23 20:15:50 2020 dbg
-	Mon Sep 28 08:52:18 2020 selectrows
-	Thu Oct 15 17:54:02 2020 color cide wos
-	Sat Oct 17 17:21:11 2020 _val - make proc and call
-	Mon Nov 23 09:14:40 2020 print mat
-	Mon Nov 30 08:50:20 2020 use void
-	Mon Nov 30 08:52:56 2020 void
-	Mon Nov 30 08:54:14 2020 Str/Svar explicit
-	Mon Nov 30 09:02:34 2020 void replace proc
-	Mon Nov 30 09:05:59 2020 pad
-	Mon Nov 30 09:07:14 2020 pad
-	Mon Nov 30 09:10:35 2020 
-	Mon Nov 30 09:11:14 2020 
-	Mon Nov 30 09:12:16 2020 date overwrite fix
-	Mon Nov 30 09:23:35 2020 remove DBG
 hv.asl                    1.12	Mon Nov 30 09:29:21 2020 XXX
 sbump.asl                1.10	Mon Nov 30 09:30:26 2020 fix srcfile
 ASL2CPP.txt              1.2	Thu Dec  3 09:36:28 2020 OOP considerations
+arrayele.asl             1.39	Sat Dec 19 10:26:51 2020 fastx
+arrayele.asl             1.40	Sat Dec 19 10:28:02 2020 stackv
+str.asl                  1.3	Sun Dec 20 08:30:53 2020 fastx
+while.asl                1.4	Sun Dec 20 21:27:45 2020 fx
+do.asl                   1.3	Mon Dec 21 14:28:28 2020 fx
+pcol.asl                 1.2	Mon Dec 21 20:27:15 2020 check col
+if.asl                   1.3	Mon Dec 21 20:29:02 2020 fx
+if.asl                   1.4	Mon Dec 21 20:30:16 2020 chkN
+if.asl                   1.5	Mon Dec 21 20:32:32 2020 fx
+if.asl                   1.6	Mon Dec 21 20:34:14 2020 fx
+if.asl                   1.7	Mon Dec 21 20:36:47 2020 len
+if.asl                   1.8	Mon Dec 21 20:46:11 2020 chkStage
+while.asl                1.5	Mon Dec 21 21:10:31 2020 forever test
+forexp.asl               1.2	Mon Dec 21 22:22:59 2020 #include
+argc.asl                 1.2	Tue Dec 22 09:15:02 2020 needs range spec fix
+assign.asl               1.2	Tue Dec 22 09:34:43 2020 added Str type
+arch.asl                 1.2	Tue Dec 22 09:54:09 2020 tidy
+bitwise.asl              1.4	Tue Dec 22 10:06:16 2020 debug
+bitwise.asl              1.5	Tue Dec 22 10:13:30 2020 added uchar ops

@@ -12,13 +12,13 @@
 //***********************************************%
   
   
-include "debug"
-debugON()
+#include "debug"
+debugOFF()
 
-sdb(1,@pline,@trace,@~step)
+sdb(0,@~pline,@~trace,@~step)
 
 
-   do_query = 1;
+   do_query = 0;
 // use an indent of 2 spaces - for all non-comment lines
 
 //<<"? $_clarg[1]\n"
@@ -304,14 +304,14 @@ sdb(1,@pline,@trace,@~step)
  // <<[2]"%V$nw $tws\n";
    fflush();
 
-if (do_query) {
- ans=query("pp correct?")
-  if (ans @="n")
-       break;
-   if (ans @="c") {
-   do_query = 0;
+  if (do_query) {
+   ans=query("pp correct?")
+    if (ans @="n")
+         break;
+    if (ans @="c") {
+      do_query = 0;
+    }
   }
-}
 
   }
   

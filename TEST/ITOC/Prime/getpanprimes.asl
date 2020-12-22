@@ -70,7 +70,9 @@ if (is_p) {
 
 
    KP = 50000; // get first 1000 primes
-   int jj =1
+
+KP = 1000; // get first 1000 primes
+    int jj =1
    int ip
    pan j = 1
    pan k = 1

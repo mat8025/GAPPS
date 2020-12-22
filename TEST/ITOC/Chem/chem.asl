@@ -1,8 +1,8 @@
 # test ASL function 
 
-chkIn()
+chkIn(_dblevel)
 
-setdebug(0)
+
 
 
  ename = periodicName(1)
@@ -51,4 +51,4 @@ chkN(an,79)
 
 
 chkOut()
-;
+

@@ -20,25 +20,77 @@
 
 //sdb(1,@pline,@trace)
 
+
     int a;
+a->info(1)
+      a = 61;
+
+a->info(1)
+
+     a++;
+<<"%V$a\n"
+
+     a--;
+<<"%V$a\n"
+
+     a += 7;
+
+<<"%V$a\n"
+
+    
+int i = 0;
+
+i->info(1);
+
+    for (i= 0; i < 5; i++) {
+<<"%V$i $a\n"
+    a--;
+   }
+
+    a= 0;
+
+   while (a <5 ) {
+   a++;
+<<"while %V$a\n"
+  }
+
+N=5
+   a =0;
+   while (a <N ) {
+   a++;
+<<"while %V$a\n"
+  }
+
+    long c;
+    c->info(1)
+    c = 16;
+    c->info(1)
+<<"%V $c howmuch?\n"
+
+
+
+
+
     short b;
+b->info(1)    
     long d;
+d->info(1)    
 
-      a= 61;
+      a = 61;
+
+a->info(1)
       b = 75;
+
+b->info(1)
+d->info(1)
       d = 26;
-      
-    c = a +b - d ;
+d->info(1)
+c->info(1);
+
+    c = b + a - d ;
 
 <<"%V $c = $a +$b - $d \n"
 
-     for (i = 0; i < 3; i++) {
-
-    c = a +b - d + 7;
-
-<<"%V $c = $a +$b - $d \n"
-      a++;
-     }
 
 
 
@@ -57,17 +109,57 @@
 
 
       short m = 14567;
-      ulong l = 123456789;
+      long l = 123456789;
 
-<<"$(typeof(m))  $(typeof(l))\n"
+//<<"$(typeof(m))  $(typeof(l))\n"
 
       n = m + l;
 
-<<"$(typeof(n))  $(typeof(m))  $(typeof(l))\n"
+ nt=typeof(n)
+ mt= typeof(m)
+  lt= typeof(m)
+
+<<"%V $nt  $mt $lt \n"
 
 <<"%V $n = $m +$l\n"
 
-<<"Nes $(getNes())\n"
-<<"Ndbs $(getNdbs())\n"
-<<"Nfastx $(getNfastx())\n"
+// wil use XIC code - 
+    for (i = 0; i < 3; i++) {
+
+      c = a + b - d + 7;
+
+<<"%V $i  $c = $a +$b - $d \n"
+      a++;
+
+
+     }
+a->info(1);
+
+
+ int  vec[10];
+
+    for (i= 0; i< 10; i++) {
+
+       vec[i] = a*i;
+
+
+    }
+
+
+<<"%V $vec\n"
+
+<<"%V $(typeof(n))  $(typeof(m))  $(typeof(l))\n"
+
+
+<<"%V Nes $(getNes())\n"
+<<"%V Ndbs $(getNdbs())\n"
+
+
+
+<<"   Nfastx $(getNfastx())    \n";
+
+exit()
+
+//<<"   Nfastx $(getNfastx())    \n"  /// error xic/pic
+
 

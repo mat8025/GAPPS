@@ -1,14 +1,26 @@
+//%*********************************************** 
+//*  @script atoi.asl 
+//* 
+//*  @comment Test atoi SF 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen [asl 6.2.98 C-He-Cf]                               
+//*  @date Mon Dec 21 21:00:15 2020 
+//*  @cdate Mon Dec 21 21:00:15 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 ///
 ///  atoi function
 ///
 
-/{/*
+/*
 
   should work for a single str value
   or for a vector
 
 
-/}*/
+*/
 
 chkIn()
   str s = "407"
@@ -30,7 +42,8 @@ chkN(i,407);
 
 <<"%V$IV\n"
 
- chkN(IV[3],3);
+  chkN(IV[3],3);
+  chkN(IV[8],8);
 
 
   chkOut()

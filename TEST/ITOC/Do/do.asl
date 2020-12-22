@@ -3,15 +3,15 @@
 //* 
 //*  @comment test Do .. while Do .. until syntax 
 //*  @release CARBON 
-//*  @vers 1.2 He Helium [asl 6.2.46 C-He-Pd]                              
-//*  @date Tue May 12 09:48:00 2020 
+//*  @vers 1.3 Li Lithium [asl 6.2.97 C-He-Bk]                             
+//*  @date Mon Dec 21 14:28:28 2020
 //*  @cdate Sun Apr 19 11:56:14 2020 
 //*  @author Mark Terry 
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
 
-include "debug"
+#include "debug"
 
 if (_dblevel >0) {
    debugON()

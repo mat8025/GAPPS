@@ -16,8 +16,8 @@ myScript = getScript()
 // test asl first and second stage (xic)
 //
 <<"TESTING\n"
-include "debug.asl"
-include "hv.asl"
+#include "debug.asl"
+#include "hv.asl"
 debugOFF()
 sdb(1,@~pline,@~trace)
 
@@ -52,7 +52,7 @@ S->cat("types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc, svar,record,ivar,li
 svar Opts[] = Split(S,",");
 
 
-//<<"$Opts \n"
+<<[2]"$Opts \n"
 
 
 
@@ -98,7 +98,7 @@ Todo=ofw("to_test")
 
 //////////////////////////////
 Ks = 0
-proc snooze(int ksn)
+void snooze(int ksn)
 {
 Ks = 0
   for (ks = 0; ks < ksn; ks++) {
@@ -107,7 +107,7 @@ Ks = 0
 }
 //===============================
 
-proc runModule (int wmod)
+void runModule (int wmod)
 {
 
    mret =0;
@@ -134,7 +134,7 @@ proc runModule (int wmod)
 
 padtit =nsc(15,"/")
 
-proc hdg(str atit)
+void hdg(str atit)
 {
 
 len = slen(atit)
@@ -147,7 +147,7 @@ len = slen(atit)
 //===============================
 Curr_dir = "xx";
 
-proc Help()
+void Help()
 {
  <<" run regression tests for asl\n"
  <<" asl ASL_TEST_VER \n"
@@ -164,7 +164,7 @@ proc Help()
 //==========================//
 
 
-proc changeDir(str td)
+void changeDir(str td)
 {
   //<<" $_proc $td\n"
   chdir(td)
@@ -172,7 +172,7 @@ proc changeDir(str td)
 }
 //===============================
 
-proc Run2Test(str td)
+void Run2Test(str td)
 {
 
 //<<" $_proc $td $Testdir\n"
@@ -192,7 +192,7 @@ proc Run2Test(str td)
 //===============================
 
 
-proc RunDirTests(str Td, str Tl )
+void RunDirTests(str Td, str Tl )
 {
 //<<"$Td  $Tl\n"
 
@@ -220,7 +220,7 @@ proc RunDirTests(str Td, str Tl )
 }
 //====================//
 
-proc RunSFtests(str Td)
+void RunSFtests(str Td)
 {
 // list of dirs  Fabs,Cut,Cmp ...
 // goto dir then run cart(fabs) or cart(cmp)
@@ -242,7 +242,7 @@ proc RunSFtests(str Td)
 
 /////////////////////////////
 
-proc scoreTest(str tname)
+void scoreTest(str tname)
 {
  int scored = 0;
  int ntests;
@@ -341,7 +341,7 @@ else {
 
 int cbh = 0
 
-proc doxictest(str prog)
+void doxictest(str prog)
 {
 //<<"IN $prog\n"
 
@@ -373,7 +373,7 @@ proc doxictest(str prog)
 //===============================
 
 
-proc doxictest(str prog, str a1)
+void doxictest(str prog, str a1)
 {
 
 //<<"IN $_proc  $prog  $a1 \n"
@@ -416,7 +416,7 @@ proc doxictest(str prog, str a1)
 // variable length args ??
 
 
-proc cart_xic(str aprg)
+void cart_xic(str aprg)
 {
 
 //<<"%V $_proc  $aprg  \n"
@@ -445,14 +445,12 @@ proc cart_xic(str aprg)
        
        CrashList->Insert("${Curr_dir}/xic_${aprg}")
      }
-
   }
-
   
 } 
 //================================//
 
-proc cart_xic(str aprg, str a1)
+void cart_xic(str aprg, str a1)
 {
 
 //<<"%V $_proc  $aprg $a1 \n"
@@ -484,12 +482,11 @@ proc cart_xic(str aprg, str a1)
      }
 
   }
-  
 } 
 //================================//
 
 
-proc cart (str aprg)
+void cart (str aprg)
 {
   int wlen;
   str tim;
@@ -556,7 +553,7 @@ proc cart (str aprg)
 
 
 //proc cart (str aprg,  gen a1)
-proc cart (str aprg,  str a1)
+void cart (str aprg,  str a1)
 {
 
 //<<"$_proc  $aprg $a1\n"
@@ -715,7 +712,7 @@ int do_release = 0;
   pdir=updir()
   chdir("ITOC")
   Testdir = getdir()
-<<"Test Dir is $Testdir\n"
+<<[2]"Test Dir is $Testdir\n"
 
 
 
@@ -729,17 +726,20 @@ int do_release = 0;
 
   nargs = ArgC()
 
+<<[2]"%V$nargs\n"
+
   if (nargs > 1) {
     do_all = 0
-   <<" selecting tests \n"
+   <<[2]" selecting tests \n"
   }
 
-  i = 1
+  i = 1;
 
     while (1) {
 
 
       wt = _argv[i]
+    <<"$i $wt \n"  
     if (wt @= "") {
       break
     }
@@ -759,7 +759,8 @@ int do_release = 0;
       else {
       $do_arg = 1;
      }
-<<" $i $wt $do_arg \n"
+     
+<<[2]" $i $wt $do_arg \n"
 
      i++;
 
@@ -775,7 +776,7 @@ int do_release = 0;
       exit();
   }
 
-<<"%V $do_all $do_bops $do_mops \n"
+<<[2]"%V $do_all $do_bops $do_mops \n"
 
 
 //================
@@ -790,7 +791,7 @@ if (do_release) {
 
 
 if (do_level2) {
-    do_bops =1
+    do_bops =1;
     do_syntax =1;
     do_types =1;    
 }
@@ -872,6 +873,7 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
   cart("info")
 
+   RunDirTests("Assign","assign");
 
    }
 
@@ -895,8 +897,8 @@ if ((do_if || do_all) && (do_if != -1)) {
 
 if ((do_bit || do_all) && (do_bit != -1)) {
 
-  Run2Test("Bitwise")
-  cart("bitwise")
+  Run2Test("Bitwise");
+  cart("bitwise");
 
 }
 
@@ -910,7 +912,7 @@ if ((do_bit || do_all) && (do_bit != -1)) {
 
  if ((do_for || do_all) && (do_for != -1)) {
 
-   RunDirTests("For","for,for0,forexp")
+   RunDirTests("For","for,forexp")
 }
 
 
@@ -919,7 +921,7 @@ if ((do_bit || do_all) && (do_bit != -1)) {
 
   if ((do_all || do_while ) && (do_while != -1)) {
 
-    RunDirTests("While","while")
+    RunDirTests("While","while,while-forever")
 
     }
 ////////////////////////////////////////////////////////////////////////

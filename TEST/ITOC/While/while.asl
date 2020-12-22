@@ -3,8 +3,8 @@
 //* 
 //*  @comment test While syntax 
 //*  @release CARBON 
-//*  @vers 1.3 Li Lithium [asl 6.2.46 C-He-Pd]                             
-//*  @date Tue May 12 10:20:19 2020 
+//*  @vers 1.5 B Boron [asl 6.2.98 C-He-Cf]                              
+//*  @date Mon Dec 21 21:10:31 2020 0
 //*  @cdate Sat Apr 18 21:48:17 2020 
 //*  @author Mark Terry 
 //*  @Copyright © RootMeanSquare  2010,2020 → 
@@ -283,5 +283,30 @@ chkN (tl,Nrecs)
 Foo()
 
 readData()
+
+
+ k = 0;
+N = 4;
+
+
+       while (1) {
+
+        k++;
+	<<"$k \n"
+
+
+        if (k >= N) {
+<<"breaking out of while $k\n"
+           break;
+        }
+
+       }
+
+
+<<"Out of while $k $N\n"
+
+chkN(k,N)
+
+
 
 chkOut()

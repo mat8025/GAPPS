@@ -1,3 +1,9 @@
+
+
+///
+///
+///
+
 setdebug(0)
 
 
@@ -12,14 +18,10 @@ Str s = "hi"
 
 
 
-//str s 
-
-
-
 s= "hi "
 
 
-<<"%I $s \n"
+<<"%V $s \n"
 
 s->cat(" there"," baby!")
 

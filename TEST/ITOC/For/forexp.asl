@@ -3,19 +3,20 @@
 //* 
 //*  @comment  for test exp 
 //*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                 
-//*  @date Tue Mar 12 07:50:33 2019 
+//*  @vers 1.2 He Helium [asl 6.2.98 C-He-Cf]                            
+//*  @date Mon Dec 21 22:22:59 2020  
 //*  @cdate Tue Mar 12 07:50:33 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%//
 
-include "debug.asl"
-debugON()
-sdb(1,@pline)
+#include "debug"
 
-chkIn()
+debugOFF()
+
+
+chkIn(_dblevel)
 
 prog = GetScript()
 
@@ -123,10 +124,6 @@ for ( j = 1; j <= N-1 ; j++) { // bug does not get RHS exp correct
 
 
    chkOut()
-
-
-
-
 
 
 ///////////////////////////////

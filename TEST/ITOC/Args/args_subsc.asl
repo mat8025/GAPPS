@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
 
-include "debug.asl";
+#include "debug.asl";
 
    debugON();
    
@@ -40,7 +40,7 @@ include "debug.asl";
    
    testargs(2,S); 
    
-   setdebug (1, @trace) ;
+   //setdebug (1, @trace) ;
    testargs(2,S[1:5]); 
    
 

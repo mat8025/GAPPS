@@ -17,30 +17,14 @@ myScript = getScript();
 
 
 
-include "debug";
+#include "debug";
 
 sdb(_dblevel,@trace)
 
 if (_dblevel >0) {
    debugON()
 }
-
-//filterFuncDebug(ALLOW_,"Setup","opera_f","Cmath","storeScalar","storeSiv","Pluseq","l_3",\
-//"l_1","l_2","l_4","l1_store","l1_opera","resolveResult","Variable","setLho","setRho","findSiv",\
-//"checkProcVars","FindVar","Get","Number","primitive","primitive_store_var","getExp");
-
-//filterFuncDebug(ALLOWALL_,"Setup")
-
-filterFileDebug(ALLOWALL_,"xxx")
-
-
-filterFuncDebug(ALLOW_,"CheckProcFunc")
-filterFuncDebug(ALLOWALL_,"xxx")
-
-//openDll("plot")
-//include "graphic"
-
-
+openDll("plot")
 char c = '?';
 
 float f = atan(1.0) *4;
@@ -66,6 +50,10 @@ P = &R;
  k = 0
  
  A = testargs(k++,help,47,f,"hey",1.2,1,',',"*",c,F,D,R,P,@hue,"red",&F[2])
+
+// A = testargs(k++,help,47,f,"hey",1.2,1,',',"*",c,F,D,@hue,"red",&F[2])
+
+
 
 
 

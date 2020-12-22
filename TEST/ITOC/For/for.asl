@@ -1,6 +1,21 @@
+//%*********************************************** 
+//*  @script for.asl 
+//* 
+//*  @comment Test For syntax 
+//*  @release CARBON 
+//*  @vers 1.5 B Boron [asl 6.2.98 C-He-Cf]                                  
+//*  @date Mon Dec 21 22:14:37 2020 
+//*  @cdate 1/1/2005 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 
 //chkIn()
-chkIn()
+
+chkIn(_dblevel)
+
+
 prog = GetScript()
 
 //N = GetArgI()
@@ -67,9 +82,6 @@ k = 2
 
 
    chkOut()
-
-STOP!
-
 
 
 

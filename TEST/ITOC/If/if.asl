@@ -3,25 +3,25 @@
 //* 
 //*  @comment test ifnest 
 //*  @release CARBON 
-//*  @vers 1.2 He Helium                                                   
-//*  @date Sat Apr 18 18:12:29 2020 
-//*  @cdate Mon Apr  8 09:07:32 2019 
+//*  @vers 1.8 O Oxygen [asl 6.2.98 C-He-Cf]                             
+//*  @date Mon Dec 21 20:46:11 2020                           
+//*  @cdate Sat Apr 18 21:48:17 2020 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
 
-include "debug.asl"
+#include "debug"
 
 debugON()
 
-chkIn()
+chkIn(_dblevel)
 
 
-i = 0
+i = 0;
 j = 2;
 
-checkNum(j,2)
+chkN(j,2);
 
  if (i == 2) {
    <<" $i == 2 \n"
@@ -38,9 +38,9 @@ checkNum(j,2)
 
 
 <<"%V $j\n"
-checkNum(j,-2)
+chkN(j,-2)
   j = -1
- checkNum(j,-1) 
+ chkN(j,-1) 
 
 //checkOut()
 //exit()
@@ -63,7 +63,7 @@ j = 0;
   j = -1
  }
 
-checkNum(j,2)
+chkN(j,2)
 
 
 i = 0
@@ -85,7 +85,7 @@ j = 0;
  }
 
 <<"%V $j\n"
-checkNum(j,-1)
+chkN(j,-1)
 
 
 
@@ -118,8 +118,8 @@ a = 2
    gt =1
  }
 
- CheckNum(a,2)
- CheckNum(gt,1)
+ chkN(a,2)
+ chkN(gt,1)
 
 <<"%V $a > 0 ? \t: $lt $eq $gt \n"
  gt = 0
@@ -136,8 +136,8 @@ a = 2
    eq = 1
   }
 
- CheckNum(a,0)
- CheckNum(eq,1)
+ chkN(a,0)
+ chkN(eq,1)
 
  <<"%V $a == 0 ? \t: $lt $eq $gt \n"
 
@@ -152,7 +152,7 @@ a = 2
  }
 
 
- CheckNum(lt,1)
+ chkN(lt,1)
 
 <<"%V $a < 0 ? \t: $lt $eq $gt \n"
 
@@ -178,7 +178,7 @@ a = 2
    gt =1
 
 
- CheckNum(gt,1)
+ chkN(gt,1)
 
 
 <<"%v $a ? 0 \t: $lt $eq $gt \n"
@@ -189,7 +189,7 @@ a = 2
  if (a == 0) 
    eq = 1
 
- CheckNum(eq,1)
+ chkN(eq,1)
 
 <<"%v $a ? 0 \t: $lt $eq $gt \n"
  a--
@@ -197,7 +197,7 @@ a = 2
  if (a < 0)    
    lt = 1; 
 
- CheckNum(lt,1)
+ chkN(lt,1)
 
 <<"%v $a ? 0 \t: $lt $eq $gt \n"
  a--
@@ -279,12 +279,12 @@ bad = 0
       bad++    
 
 
-  if (N > 1 )  CheckNum(N,0)
+  if (N > 1 )  chkN(N,0)
 
-  if (N < 1 )  CheckNum(N,0)
+  if (N < 1 )  chkN(N,0)
 
 
-  if (N == 1 )  CheckNum(N,1)
+  if (N == 1 )  chkN(N,1)
 
 
  checkStage("if-0")
@@ -367,7 +367,7 @@ ICAO_SA[k][i] = k
 <<"%I $ICAO_SA[k][i]  should be $k !\n"
 
 
-CheckNum(ICAO_SA[k][i],k)
+chkN(ICAO_SA[k][i],k)
 
 
 
@@ -379,7 +379,7 @@ i = 5
 
 <<"%I $ICAO_SA[i][k] \n"
 
-CheckNum(ICAO_SA[i][k], (i *2))
+chkN(ICAO_SA[i][k], (i *2))
 
 
 <<" ///////////// \n"
@@ -442,19 +442,19 @@ uint j5 = d
 uint ts_secs = j5-4
 
 
-CheckNum(ts_secs,(j5-4))
+chkN(ts_secs,(j5-4))
 
 uint last_ts_secs = j5
 
    <<"%V $ts_secs  $last_ts_secs \n"
 
-CheckNum(last_ts_secs,j5)
+chkN(last_ts_secs,j5)
 
 int n = 0
 
 <<"%v $n \n"
 
-CheckNum(0,n)
+chkN(0,n)
 
 
  for (i= 0; i < 5; i++) {
@@ -475,7 +475,7 @@ CheckNum(0,n)
  }
 
 
-CheckNum(1,n)
+chkN(1,n)
 
 checkStage (" if - 5")
 
@@ -508,7 +508,7 @@ checkStage (" if - 5")
   else {
 
     <<" ELSE %v $do_all != 6 TRUE? is TRUE\n"
-       CheckNum(1,do_all)
+       chkN(1,do_all)
   }
 
   do_all = 6
@@ -516,7 +516,7 @@ checkStage (" if - 5")
   if (do_all == 6) {
 
      <<"is %v $do_all == 6 TRUE? is TRUE\n"
-       CheckNum(6,do_all)
+       chkN(6,do_all)
   }
   else {
 
@@ -533,7 +533,7 @@ checkStage (" if - 5")
   if (do_all) {
 
      <<"is %v $do_all value TRUE is correct?\n"
-       CheckNum(6,do_all)
+       chkN(6,do_all)
   }
   else {
 
@@ -544,7 +544,7 @@ checkStage (" if - 5")
   if (do_bops) {
 
      <<"is %v $do_bops value TRUE is correct?\n"
-       CheckNum(1,do_bops)
+       chkN(1,do_bops)
   }
   else {
 
@@ -564,7 +564,7 @@ checkStage (" if - 5")
   else {
 
    <<" ELSE %v $do_all != 4 TRUE? is TRUE\n"
-       CheckNum(6,do_all)
+       chkN(6,do_all)
   }
 
 
@@ -601,7 +601,7 @@ checkStage (" if - 5")
   if ( do_bops || do_all) {
 
      <<"%V $do_bops ||  $do_all TRUE? is TRUE\n"
-       CheckNum(0,do_bops)
+       chkN(0,do_bops)
   }
   else {
 
@@ -615,7 +615,7 @@ checkStage (" if - 5")
   if (do_bops && do_all) {
 
      <<"%V $do_bops &&  $do_all \n"
-       CheckNum(2,do_bops)
+       chkN(2,do_bops)
   }
   else {
 
@@ -685,9 +685,9 @@ CheckStage("if -6")
      }
    
    
-   checkNum(jlt,4); 
-   checkNum(jeq,1); 
-   checkNum(jgt,3); 
+   chkN(jlt,4); 
+   chkN(jeq,1); 
+   chkN(jgt,3); 
    
    <<"%V $jlt $jeq $jgt\n"; 
    checkStage("if - nest"); 
@@ -909,20 +909,20 @@ k = woo("E")
 
 
 <<"$k\n"
-checkNum(k,90)
+chkN(k,90)
 
 k = woo("S")
 
-checkNum(k,180)
+chkN(k,180)
 
 <<"$k\n"
 
 
 k = woo("W")
-checkNum(k,270)
+chkN(k,270)
 
 k = woo("N")
-checkNum(k,360)
+chkN(k,360)
 
 <<"$k\n"
 
@@ -972,7 +972,7 @@ if (ans) {
 else {
 
 <<" correct $ans == 0\n"
-checkNum(ans,0)
+chkN(ans,0)
 }
 
 
@@ -980,7 +980,7 @@ checkNum(ans,0)
 if (!ans) {
 
 <<"correct ans == 0 !ans %V $ans\n"
-checkNum(ans,0)
+chkN(ans,0)
 }
 else {
 
@@ -1003,7 +1003,7 @@ else {
 if (!(ans == 1)) {
 
 <<"correct !(ans == 1) %V $ans\n"
-checkNum(ans,0)
+chkN(ans,0)
 }
 else {
 
@@ -1042,7 +1042,7 @@ else {
 }
 
 
-checkStage("chk null")
+chkStage("chk null")
 
 
 

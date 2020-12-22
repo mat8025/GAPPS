@@ -1,7 +1,7 @@
-#! /usr/local/GASP/bin/spi
 
 
-N = $2
+
+N = getArgI()
 
 int k = 0
 int j = 0
@@ -23,8 +23,4 @@ int j = 0
 
 <<" DONE %V $k $j $N \n"
 
-STOP!
 
-
-///////////////////////////////
-// FIX reinit of inner variable not occurring

@@ -1,3 +1,15 @@
+//%*********************************************** 
+//*  @script bubblesort.asl 
+//* 
+//*  @comment test bubblesort 
+//*  @release CARBON 
+//*  @vers 1.3 Li Lithium [asl 6.2.98 C-He-Cf]                               
+//*  @date Mon Dec 21 22:01:53 2020 
+//*  @cdate 1/1/2005 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 ///
 /// BubbleSort
 ///
