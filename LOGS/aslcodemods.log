@@ -687,3 +687,4 @@ hop_e.cpp	 50.50	 Sun Dec 20 12:07:06 2020 faster hash letter position dependent
 ic_xic.cpp	 71.71	 Sun Dec 20 21:08:48 2020 stackv endpop
 storetype_e.cpp	 60.60	 Sun Dec 20 21:10:53 2020 Stre stackV
 sint_l.cpp	 1.18	 Mon Dec 21 21:48:45 2020 print str arg var
+num_l.cpp	 2.89	 Sat Dec 26 08:39:14 2020 getStr

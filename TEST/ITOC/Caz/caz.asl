@@ -3,18 +3,14 @@
 //* 
 //*  @comment test Caz func 
 //*  @release CARBON 
-//*  @vers 1.2 He Helium [asl 6.2.47 C-He-Ag]                              
-//*  @date Thu May 14 08:33:38 2020 
+//*  @vers 1.3 Li Lithium [asl 6.2.98 C-He-Cf]                           
+//*  @date Tue Dec 22 18:00:22 2020 0 
 //*  @cdate Tue Mar 12 07:50:33 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%///
-
-
-
-
-<<"hey buddy move on up\n"
+<<"Running $_script\n"
 <<"$_clarg[0] $_clarg[1] \n"
 
 chkIn(_dblevel);

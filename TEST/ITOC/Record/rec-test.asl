@@ -10,9 +10,19 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-myScript = getScript();
+
 ///
 ///
+
+#include "debug.asl";
+
+
+
+if (_dblevel >0) {
+   debugON()
+}
+
+
 
 chkIn(_dblevel)
 

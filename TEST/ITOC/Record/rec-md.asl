@@ -10,17 +10,14 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
+#include "debug.asl";
 
-include "debug"
-debugON()
-setdebug(1,@pline,@trace,@keep)
 
-filterFuncDebug(ALLOWALL_,"xxx");
-filterFileDebug(ALLOWALL_,"yyy");
+if (_dblevel >0) {
+   debugON()
+}
 
-setDebug(1,@pline)
-
-chkIn()
+chkIn(_dblevel)
 
 int MD[5][10];
 

@@ -10,17 +10,19 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-   include "debug"; 
-   debugON(); 
-   
-   
-   filterFuncDebug(ALLOWALL_,"xxx");
-   filterFileDebug(ALLOWALL_,"yyy");
-   
-   setdebug(1,@pline,@~trace,@keep); 
-   
-   chkIn(); 
-   Record R[>2] ;
+
+
+#include "debug.asl";
+
+
+if (_dblevel >0) {
+   debugON()
+}
+
+
+chkIn(_dblevel); 
+
+Record R[>2] ;
    
    
    proc recspecs()

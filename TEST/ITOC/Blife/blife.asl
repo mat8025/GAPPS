@@ -1,5 +1,4 @@
-#! /usr/local/GASP/bin/asl
-#/* -*- c -*- */
+
 
 do_laser =0
 //  
@@ -118,7 +117,7 @@ xmax = 600
 !!"ps2pdf pic1.ps pic1.pdf"
  }
 
-STOP!
+
 
 
 

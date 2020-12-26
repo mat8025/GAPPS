@@ -10,14 +10,16 @@
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-include "debug.asl"
+
+
+#include "debug.asl"
 
 debugON();
 
 
-setDebug(1,@pline,@trace,"~step")
+//setDebug(1,@pline,@trace,"~step")
 
-chkIn()
+chkIn(_dblevel)
 
 record R[10];
 

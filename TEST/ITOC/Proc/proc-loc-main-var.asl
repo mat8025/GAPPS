@@ -12,12 +12,12 @@
 //***********************************************%
 
 
-include "debug"
+#include "debug"
 debugON()
 
 sdb(1,@pline)
 
-proc Foo()
+void Foo()
  {
 
    <<"%V $A \n"
@@ -37,7 +37,7 @@ A->info(1)
 //==========================//
 
 
-proc goo(int goo_a)
+void goo(int goo_a)
  {
  
 <<"in $_proc  arg is $goo_a\n"

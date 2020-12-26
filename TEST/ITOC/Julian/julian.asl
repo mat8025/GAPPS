@@ -1,17 +1,46 @@
-///
-///     Juilian 
-///
+//%*********************************************** 
+//*  @script julian.asl 
+//* 
+//*  @comment test SF julian calendar 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium [asl 6.2.98 C-He-Cf]                                
+//*  @date Wed Dec 23 11:22:40 2020 
+//*  @cdate 1/1/2007 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 
 
-setDebug(1,@keep,@pline)
+/*
+julian()
+
+/////
+jday=julian(month,day-of-month,year)
+given month(1-12),day(1-31), year xxxx
+returns the julian day using Julian calander,
+remember first year AD is year 1 (not zero)
+-1 first year (BC)
+and
+date_mdy= julmdy(jday)
+would return the date m/d/yr   for a julian day.
+
+
+juldayofweek(julianday)
+*/
 
   today = date(2);
 
+<<"$today %i $today\n"
+
   jdayn = julian(today)
+
+<<"%i $jdayn\n"
+
 
   today2 = julmdy(jdayn);
   
-<<"%V $today $jdayn $today2\n"
+<<"%I $today2\n"
 
   nextwk = julmdy(jdayn+7);
 
@@ -19,7 +48,7 @@ setDebug(1,@keep,@pline)
 
 <<"%V $today $nextwk $nextfn\n"
 
-exit()
+
    
 
 
@@ -49,7 +78,7 @@ exit()
 
 <<"$dt $day $wday \n"
 
-exit()
+
   wday = juldayofweek("4:9:2008")
 
 
@@ -103,3 +132,4 @@ exit()
 <<"Lauren $dt $day $wday $rdt \n"
 
 
+exit()

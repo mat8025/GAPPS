@@ -12,7 +12,7 @@
 //***********************************************%
 
 
-include "debug.asl";
+#include "debug.asl";
 
 if (_dblevel >0) {
    debugON()

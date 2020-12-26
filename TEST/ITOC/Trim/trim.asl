@@ -10,7 +10,7 @@
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-/{/*
+/*
 Trim(S)
 Trims a string variable (or array of strings)
 S->Trim(nc) - trims chaaracters from head or tail of string
@@ -28,15 +28,16 @@ would prune  from tail of  a range of an array of strings - where S is an array
 S->Prune(4)
 would prune from head of string until required length
 
-/}*/
+*/
 
 
-
- include "debug.asl";
+#include "debug.asl";
   debugON();
-  setdebug(1,@keep,@pline,@~trace);
-  FilterFileDebug(REJECT_,"~storetype_e");
-  FilterFuncDebug(REJECT_,"~ArraySpecs",);
+
+
+//  setdebug(1,@keep,@pline,@~trace);
+//  FilterFileDebug(REJECT_,"~storetype_e");
+//  FilterFuncDebug(REJECT_,"~ArraySpecs",);
   
 
 
@@ -61,22 +62,15 @@ S->trim(-3)
 
 <<"%(1,,,\n)$S \n"
 
-checkstr(S[3],"123456")
+chkStr(S[3],"123456")
 
 S[3]->trim(3)
 
-checkstr(S[3],"456")
-
-
+chkStr(S[3],"456")
 
 S->trim(3)
 
-
-
-checkstr(S[3],"")
-
-
-
+chkStr(S[3],"")
 
 <<"%(1,,,\n)$S \n"
 
@@ -88,13 +82,13 @@ T[2] = T[1]
 
 T[1]->Prune(-3)
 
-checkstr(T[1],"123")
+chkStr(T[1],"123")
 
 <<"%(1,,,\n)$T \n"
 
 T[2]->Prune(3)
 
-checkstr(T[2],"789")
+chkStr(T[2],"789")
 
 <<"%(1,,,\n)$T \n"
 

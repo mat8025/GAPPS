@@ -14,7 +14,7 @@
 
 ///
 /// procrefarg
-include "debug"
+#include "debug"
 
 <<"%V $_dblevel\n"
 

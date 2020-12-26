@@ -2,7 +2,7 @@
 // continue line test
 //
 
-Checkin()
+chkIn(_dblevel)
 
 a = 5.0
 b = 57
@@ -52,12 +52,12 @@ chkStr(w1,"hey buddy")
 
    w2=					\
         scat("hey"," buddy ", "what's", \
-                   " going ", 		\
+//                   " going ", 		\
 		   " on ?");
    <<"$w2\n"
 
 
-   w3=                                                                         \
+   w3=                                                       \
         scat("hola"," amigo ", "que",                                        \
                    " esta ", 		                                       \
 		   " pasando ?");
@@ -66,6 +66,11 @@ chkStr(w1,"hey buddy")
 
 
 chkOut()
-stop!
 
-;
+
+/*
+
+ TBF -- can not comment out sucessive continuation lines
+
+
+*/

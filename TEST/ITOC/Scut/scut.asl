@@ -13,11 +13,11 @@
 //***********************************************%
 
 
-/{/*
+/*
 ws=scut(w1,nc)
 cuts n chars from head or tail ( if n is negative) of the string w1,
 and returns result to string ws.
-/}*/
+*/
 
 
 chkIn()

@@ -15,23 +15,18 @@
 ///
 
 
-include "debug"
+#include "debug"
 
 if (_dblevel >0) {
    debugON()
 }
 
-//filterFileDebug(ALLOWALL_,"xxx")
-//filterFuncDebug(ALLOW_,"CheckProcFunc")
-//filterFuncDebug(ALLOWALL_,"xxx")
-
-//SetDebug(1,@~trace,@keep,@pline)
 
 chkIn(_dblevel)
 
 uchar C[] = { 0xCA , 0xFE, 0xBA, 0xBE, 0xFA, 0xCE, 0xBE, 0xAD , 0xDE,0xAD, 0xC0, 0xDE }
 
-<<" $C \n"
+ <<" $C \n"
 
  <<"$C[1] \n"
 
@@ -125,7 +120,7 @@ index = 3
 t = 0xbefacebe
 chkN(k,t)
 
-
+exit()
  na = bscan(&C[index+1],swab,&k,&j)
 
 <<"%V $na $k $j \n"

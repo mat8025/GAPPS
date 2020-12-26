@@ -15,11 +15,17 @@
 ///
 ///
 
+#include "debug.asl";
 
+
+
+if (_dblevel >0) {
+   debugON()
+}
 
 // test record type
 // each record is an Svar
-chkIn(_dblevel)
+chkIn(1)
 
 
 int ra = 2;
@@ -52,6 +58,7 @@ sz= csz(&ra);
  R[2] = Split("83,7,6,5,40,5,6,7,8,9",',');
  R[3] = Split("84,8,7,6,40,5,6,7,8,9",',');
  R[4] = Split("85,9,8,7,40,5,6,7,8,47",',');
+ R[5] = Split("49,9,8,77,47,5,6,7,80,95",',');
  R[6] = Split("87,9,8,7,40,5,6,7,8,79",',');
 
 
@@ -75,31 +82,58 @@ R->info(1)
 
 
 int ival = atoi(R[0][2]);
+ival->info(1)
+
 sz  = csz(ival)
-<<"ival $ival  bounds $(Cab(ival)) sz   $(csz(ival))\n"
+
+sz->info(1)
+
+<<"ival <|$ival|>  bounds $(Cab(ival)) sz   $(csz(ival))\n"
+
 chkN(sz,0)
+
 chkN(ival,2)
 
 
+
 //=============================
- R[5] = R[1];
+  R[7] = R[1];
+
+<<"R7 $R[7]\n"
 
 R->info(1)
 
-<<"%V$R[5]\n"
-<<"%V$R[5][2]\n"
-fval = atoi(R[1][2]);
-ival = atoi(R[5][2]);
+<<"%V$R[1]\n"
+
+<<"%V$R[7]\n"
+
+<<"%V$R[7][3] \n"
+
+sval = R[5][2];
+<<"%V$sval \n"
+fval = atoi(R[7][3]);
+<<"%V$fval \n"
+ival = atoi(R[1][3]);
+
+
+<<"%V$ival \n"
+
 ival->info(1)
+
 chkN(ival,fval)
 
 
 <<"%V$R[3]\n"
 R[3][3]=R[2][3]
+
+<<"%V$R[3][3]\n"
+
+
+
 <<"%V$R[3]\n"
 
 <<"%V$R[2][3]\n"
-<<"%V$R[3][3]\n"
+
 
 fval = atoi(R[2][3]);
 ival = atoi(R[3][3]);

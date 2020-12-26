@@ -1,5 +1,5 @@
 //%*********************************************** 
-//*  @script recprt.asl 
+//*  @script rec-prt.asl 
 //* 
 //*  @comment test record print 
 //*  @release CARBON 

@@ -1,8 +1,27 @@
+//%*********************************************** 
+//*  @script median.asl 
+//* 
+//*  @comment test Median of an array 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium [asl 6.2.99 C-He-Es]                                
+//*  @date Wed Dec 23 22:37:40 2020 
+//*  @cdate 1/1/2005 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 
 ///
 /// median
-/// 
-include "debug.asl";
+///
+
+/*
+Median(A)
+returns median value of array-- the array size is obtained from the array variable
+If A is a matrix - a column vector of the medians for each row is returned.
+
+*/
+#include "debug.asl";
 
 sdb(_dblevel,@~trace)
 

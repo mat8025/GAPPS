@@ -3,14 +3,17 @@
 //* 
 //*  @comment test switch 
 //*  @release CARBON 
-//*  @vers 1.2 He Helium                                                   
-//*  @date Sun Apr 26 21:22:22 2020 
+//*  @vers 1.3 Li Lithium [asl 6.2.99 C-He-Es]                           
+//*  @date Wed Dec 23 22:44:19 2020 0 
 //*  @cdate Mon Apr  8 09:07:32 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-  
+<<"Running $_script\n"
+
+#include "debug"
+
 chkIn(_dblevel)
 
 
@@ -19,14 +22,14 @@ chkIn(_dblevel)
 
 
 Foo = 1
-proc goo()
+void goo()
 {
 <<" in $_proc goo \n"
     Foo++
 }
 
 
-proc testSW(int wc )
+void testSW(int wc )
 {
 ret = 0
 

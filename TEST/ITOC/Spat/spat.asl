@@ -3,15 +3,15 @@
 //* 
 //*  @comment test Spat func 
 //*  @release CARBON 
-//*  @vers 1.2 He Helium                                                   
-//*  @date Fri Mar 29 09:08:52 2019 
+//*  @vers 1.3 Li Lithium [asl 6.2.98 C-He-Cf]                           
+//*  @date Wed Dec 23 11:17:59 2020 9 
 //*  @cdate Tue Mar 12 07:50:33 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%///
 
-/{/*
+/*
 
 spat
 spat(w1,w2,posn,dir,&match,&charrem)
@@ -37,7 +37,7 @@ c = spat(a,b,0,-1) : c is ,0.7
 
 (for regex patterns use regex " pma=regex(w1,w2) "
 
-/}*/
+*/
 
 chkIn()
 
@@ -129,11 +129,11 @@ chkStr(fstem,"mt_20100422_112017");
 chkOut();
 
 
-/{/*
+/*
  TBD - test each option
  position , direction, global 
  simple, spat
  regex, spatrgx
 
 
-/}*/
+*/

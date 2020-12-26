@@ -10,15 +10,15 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-myScript = getScript();
+<<"Running $_script\n"
 ///
 ///
 ///
 
 # test ASL function findval
-include "debug.asl";
+#include "debug.asl";
 
-sdb(_dblevel,@~trace)
+
 
 if (_dblevel >0) {
    debugON()

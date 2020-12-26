@@ -3,8 +3,8 @@
 //* 
 //*  @comment  test scat
 //*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                    
-//*  @date Fri Apr 17 22:26:53 2020 
+//*  @vers 1.2 He Helium [asl 6.2.98 C-He-Cf]                            
+//*  @date Wed Dec 23 11:14:41 2020 020 
 //*  @cdate Fri Apr 17 22:26:53 2020 
 //*  @author Mark Terry 
 //*  @Copyright © RootMeanSquare  2010,2020 → 
@@ -20,9 +20,19 @@ ws=scat("Happy"," Hols")
 
 chkStr(ws,"Happy Hols")
 
+int IV[]
+
+IV->info(1)
+
 char E[]
 
-E=scat("Happy"," Hols")
+E->info(1)
+
+
+
+E = scat("Happy"," Hols")
+
+E->info(1)
 
 <<"$(typeof(E))\n"
 <<"$(Caz(E)) \n"

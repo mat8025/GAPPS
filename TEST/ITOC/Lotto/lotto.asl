@@ -5,22 +5,23 @@
 //*  @release CARBON 
 //*  @vers 1.2 He Helium                                                   
 //*  @date Mon Mar 25 08:42:34 2019 
-/*  @cdate Tue Mar 12 07:50:33 2019 
+//*  @cdate Tue Mar 12 07:50:33 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //*
 //***********************************************%
-   
-/{/* 
+   <<"Running $_script \n"
+/* 
 
 
 
    
-/}*/
+*/
    
    P = Rand(6,42,0,0); 
    
-   <<"$P\n"; 
+   <<"$P\n";
+
    P->sort(); 
    <<"$P\n"; 
    
@@ -38,7 +39,7 @@
    
    R->sort(); 
    <<"$R\n"; 
-   
+
    last_ma = 1000;
    ma = 1000;
    max_hits =0;
@@ -74,10 +75,13 @@
 
       HITS[hits] += 1;
 
-         if (hits == 6) {
+         if (hits >=  4) {
            <<"Winner! <$i> \n"; 
            Winners[nwins] = i;
            nwins++;
+       <<"$I\n"; 
+       <<"$P\n";
+       <<"$T\n";        
            break;
          }
 

@@ -10,17 +10,15 @@
 //*  @Copyright © RootMeanSquare  2010,2019 → 
 //* 
 //***********************************************%
-include "debug"
+<<"Running $_script\n"
+
+#include "debug"
 
 if (_dblevel >0) {
    debugON()
 }
 
-
-
    chkIn(_dblevel);
-filterFuncDebug(REJECT_ALL,"xxx");
-filterFuncDebug(ALLOW_,"checkProcFunc");
 
  //  checkMemory(1,1)
    svar  S = "una larga noche"; 
@@ -42,7 +40,9 @@ filterFuncDebug(ALLOW_,"checkProcFunc");
    
    <<"$E\n"; 
    <<"$E[1] \n"; 
-   
+
+
+
    chkStr(E[1],"H"); 
    
    <<"$E[2] \n"; 

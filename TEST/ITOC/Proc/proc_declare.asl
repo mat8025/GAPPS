@@ -17,9 +17,9 @@ myScript = getScript();
 
 debugON()
 
-//chkIn(_dblevel)
+chkIn(_dblevel)
 
-proc foo(int a)
+int foo(int a)
 {
 <<"in $_proc\n"
  int s1 = a * 5
@@ -35,7 +35,7 @@ k= foo(3)
 
 <<"foo returns $k\n"
 
-
+chkN(k,15)
 
 
 int woo(int a)
@@ -49,18 +49,15 @@ int woo(int a)
  return s1
 }
 
-exit()
+
 //===========================//
-
-
-
 
 k= woo(5)
 
 
 <<"woo returns $k\n"
-
-
+chkN(k,25)
+chkOut()
 
 exit()
 

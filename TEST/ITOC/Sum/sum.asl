@@ -1,21 +1,41 @@
+//%*********************************************** 
+//*  @script sum.asl 
+//* 
+//*  @comment test SF Sum 
+//*  @release CARBON 
+//*  @vers 1.3 Li Lithium [asl 6.2.98 C-He-Cf]                               
+//*  @date Tue Dec 22 22:23:05 2020 
+//*  @cdate 1/1/2003 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+
+
+
 // flipdim --- reverses along a dimension
 
-setdebug(1)
+
 
 // vector ?
 
-
+chkIn(_dblevel)
 
 // 2D
 
-R = vgen(INT_,12,0,1)
+R = vgen(INT_,12,1,1)
 
 <<"$R\n"
 
  S = sum(R)
 
+
+
 <<" Sum(R) \n"
 <<"$S\n"
+
+chkN(S,78)
+
 
  Redimn(R,3,4)
 T= R
@@ -31,10 +51,10 @@ T= flipDim(R,1)
 <<"$T\n"
 /}
 
- S = sum(R)
+ S2D = sum(R)
 
 <<" Sum(R) \n"
-<<"$S\n"
+<<"$S2D\n"
 
  S = sum(R,0)
 
@@ -72,7 +92,7 @@ T= R
 <<"ondim1 $S\n"
 
 
-stop!
+
 // 3D
 
 R = vgen(INT_,12,0,1)
@@ -122,3 +142,4 @@ R= T
 
 <<"$R\n"
 
+chkOut()

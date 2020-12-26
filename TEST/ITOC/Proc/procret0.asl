@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
 
-include "debug"
+#include "debug"
 
 <<"%V $_dblevel\n"
 
@@ -23,7 +23,7 @@ if (_dblevel >0) {
 
 chkIn(_dblevel)
 
-proc foo(real a) 
+int foo(real a) 
 {
  ret = 0;
 <<" $_proc foo $a \n"
@@ -47,7 +47,7 @@ proc foo(real a)
 }
 ////////////////////////////////////////
 
-proc foo2(real a) 
+int foo2(real a) 
 {
 int ret = 0;
 <<" $_proc foo2 $a \n"
@@ -86,7 +86,7 @@ int ret = 0;
 }
 //////////////////////////////////
 
-proc foo3(real a) 
+int foo3(real a) 
 {
 int ret = 0;
 <<" $_proc foo2 $a \n"
@@ -109,7 +109,7 @@ int ret = 0;
     return ret;
 }
 
-proc goo(ptr a)
+void goo(ptr a)
 //proc goo(int a)
 {
 <<"$_proc $a\n"
@@ -122,7 +122,7 @@ proc goo(ptr a)
 }
 //==================================//
 
-proc hoo(real a)
+void hoo(real a)
 {
 <<"$_proc $a\n"
   a->info(1)
@@ -134,7 +134,7 @@ proc hoo(real a)
 }
 //==================================//
 
-proc moo(double a)
+int moo(double a)
 {
 <<"$_proc $a\n"
   a += 1;
@@ -157,7 +157,7 @@ proc moo(double a)
   return mb;  // TBD crash
 }
 //==================================//
-proc roo(ptr a)
+int roo(ptr a)
 {
 <<"$_proc $($a)\n"
   $a += 1;

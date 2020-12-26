@@ -1,5 +1,16 @@
+//%*********************************************** 
+//*  @script hash.asl 
+//* 
+//*  @comment test svar hash key value set get 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium [asl 6.2.98 C-He-Cf]                            
+//*  @date Tue Dec 22 10:38:10 2020 020 
+//*  @cdate 1/1/2014 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 //
-setdebug(1)
 
 
 
@@ -20,7 +31,7 @@ b = setKeyVal(key,"weak")
 
 c = getKeyVal(key)
 
-
+chkStr(c,"weak")
 <<"$key $b $c\n"
 
 key = "rkam"
@@ -32,7 +43,7 @@ c = getKeyVal(key)
 
 
 <<"$key $b $c\n"
-
+chkStr(c,"moderate")
 
 key = "Mercury"
 
@@ -44,9 +55,10 @@ b = setKeyVal(key,"Hg 80 liquid")
 c = getKeyVal(key)
 
 
-
+chkStr(c,"Hg 80 liquid")
 <<"$key $b $c\n"
 
+//ans=query()
 
 key = "park"
 a = getHashIndex(key)
@@ -70,4 +82,5 @@ val = getKeyVal(key)
 SF=functions()
 SF->sort()
 
-<<"%(1, , ,\n)$SF\n"
+chkOut()
+//<<"%(1, , ,\n)$SF\n"

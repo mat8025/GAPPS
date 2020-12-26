@@ -11,10 +11,12 @@
 //* 
 //***********************************************%
 myScript = getScript();
+
+
 chkIn(_dblevel)
 
 
-proc Foo(real x,real  y)
+real Foo(real x,real  y)
 {
 
    z = x * y

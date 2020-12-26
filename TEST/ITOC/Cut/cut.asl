@@ -1,3 +1,16 @@
+//%*********************************************** 
+//*  @script cut.asl 
+//* 
+//*  @comment test SF cut (array) 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium [asl 6.2.98 C-He-Cf]                                
+//*  @date Tue Dec 22 22:09:34 2020 
+//*  @cdate 1/1/2005 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+
 // test cut array
 
 chkIn()
@@ -72,4 +85,3 @@ F[3]->cut()
 
 chkOut()
 
-;

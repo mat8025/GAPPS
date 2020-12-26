@@ -13,9 +13,9 @@
    myScript = getScript();
 //
    
-   <<"$myScript\n"
+   <<"Running $_script\n"
 
-include "debug"
+#include "debug"
 
 if (_dblevel >0) {
    debugON()
@@ -57,7 +57,8 @@ v1->info(1)
    R[2] = Split("just give me money that's what I want");
    
    R->info(1)
-   
+
+
    rt0 = R[0];
    rt1 = R[1];
    rt2 = R[2];

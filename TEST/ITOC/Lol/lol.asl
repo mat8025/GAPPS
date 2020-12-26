@@ -1,5 +1,7 @@
 
-SetDebug(1)
+
+
+chkIn(_dblevel)
 
 int G[2][2];
 
@@ -9,12 +11,14 @@ svar T[2][2];
 
  G[0][0] = 3;
 
+chkN(G[0][0],3)
+
+
  T[0][0] = "mark"
 
 
 <<" $G[0][0] \n"
 
-STOP!
 
 F[2][3];
 
@@ -27,8 +31,11 @@ nd = Cab(F)
 
 <<" $F[2] \n"
 
-STOP!
- S = { "say", "aht", "now "}
+//Svar SV;
+
+Svar SV = { "say", "what", "now "}
 
 
-<<" $S \n"
+<<" $SV \n"
+
+chkOut()

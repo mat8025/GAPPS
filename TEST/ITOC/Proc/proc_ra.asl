@@ -1,7 +1,19 @@
+//%*********************************************** 
+//*  @script proc_ra.asl 
+//* 
+//*  @comment test ref arg 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen [asl 6.2.98 C-He-Cf]                               
+//*  @date Tue Dec 22 21:54:07 2020 
+//*  @cdate 4/1/2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 
-include "debug.asl";
+#include "debug";
 
-sdb(_dblevel,@~trace)
+
 
 if (_dblevel >0) {
    debugON()
@@ -11,17 +23,13 @@ if (_dblevel >0) {
 //"l_1","l_2","l_4","l1_store","l1_opera","resolveResult","Variable","setLho","setRho","findSiv",\
 //"checkProcVars","FindVar","Get","Number","primitive","primitive_store_var","getExp");
 
-filterFuncDebug(ALLOWALL_,"Setup")
+//filterFuncDebug(ALLOWALL_,"Setup")
 
 
 chkIn(_dblevel)
 
 
-
-
-
-
-proc refarg (ptr v)
+void refarg (ptr v)
 {
 
 <<"IN %V  $v  \n"

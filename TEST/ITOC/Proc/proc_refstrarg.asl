@@ -19,7 +19,7 @@ myScript = getScript();
 
 chkIn(_dblevel)
 
-proc pstrarg (str v, str u)
+Str pstrarg (str v, str u)
 {
 <<"args in %V  $v $u \n"
 

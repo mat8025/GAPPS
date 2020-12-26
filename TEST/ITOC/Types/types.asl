@@ -14,7 +14,7 @@
 myScript = getScript();
 
 
-include "debug"
+#include "debug"
 
 if (_dblevel >0) {
    debugON()
@@ -44,7 +44,7 @@ DVG = vgen(DOUBLE_,10,0,1)
 chkR(DVG[2],2,6)
 
 
-checkStage("double")
+chkStage("double")
 
 //%*********************************************** 
 //*  @script float.asl 

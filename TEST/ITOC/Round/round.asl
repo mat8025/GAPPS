@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
 
-include "debug.asl"
+#include "debug.asl"
 
 debugON();
 

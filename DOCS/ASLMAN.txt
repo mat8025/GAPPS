@@ -10029,14 +10029,15 @@ zulutime
 .)x 
 .FD
 zulutime
- returnd GMT - hh:mm:ss
+ returns GMT - hh:mm:ss
 .EF
 =============================================================
 .BF
 time()
 .(x
 time
-.)x  - hh:mm:ss
+.)x
+returns  hh:mm:ss
 .EF
 =============================================================
 .BF
@@ -10517,22 +10518,22 @@ prints value  -default to stdout  else to stream pointted to with file handle (s
 .EF
 ==================================================
 BF
-x??
+setkeyval
 .(x
-x??
+setkeyval
 .)x 
 .FD
-x??(n)
- null function
+setKeyVal(str,str)
+setKeyVal(keystr,valstr)  store key value pair (into inbuilt hash table) returns -1 on fail;
 .EF
 ==================================================
 BF
-x??
+getkeyval
 .(x
-x??
+getkeyval
 .)x 
 .FD
-x??(n)
+getKeyVal(keystr) returns value from key,value pair from inbuilt hash table.
  null function
 .EF
 ==================================================

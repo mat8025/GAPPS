@@ -25,7 +25,7 @@ myScript = getScript();
 y = 1
 <<"%V $y \n"
 
-include "debug"
+#include "debug"
 
 if (_dblevel >0) {
    debugON()

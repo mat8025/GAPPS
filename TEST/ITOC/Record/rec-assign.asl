@@ -1,12 +1,24 @@
+//%*********************************************** 
+//*  @script rec-assign.asl 
+//* 
+//*  @comment test rec ele field assign 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium [asl 6.2.99 C-He-Es]                                
+//*  @date Fri Dec 25 14:39:09 2020 
+//*  @cdate 1/1/2012 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 ///
-///  Records
+/// 
 ///
 
 //record R[];  // TBF
 
 // test assignment of ele and field
 
-setDebug(1);
+chkIn(1)
 
 record R[10];
 

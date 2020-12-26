@@ -12,6 +12,9 @@
 //***********************************************%
 myScript = getScript();
 
+#include "debug.asl"
+
+debugON();
 
 
 chkIn(_dblevel)
@@ -26,7 +29,7 @@ record R[10];
  R[5] = Split("30 31 32 33 34 35")
  R[6] = Split("40 41 42 43 44 45") 
 
-
+Str wrd2;
 
    R->info(1)
    kc = 1;
@@ -37,12 +40,22 @@ record R[10];
 
   R[j][3+kc] = "$nval";
 
-<<"%V $wrd \n"
+wrd2= R[j][3+kc]
+<<"%I $wrd2\n"
+
+<<"%V $wrd $wrd2 $R[j][3+kc]\n"
+
+
+ chkStr(wrd2,"$nval",4)
+
+
 
 <<"R[0] $R[0] \n"
 
 
-<<"$j R[j] $R[j] \n"
+<<"R[${j}] $R[j] \n"
+
+
 
  R[j][3] = "%6.2f$nval";
 
@@ -60,20 +73,25 @@ nval = 1.23;
 
  R->info(1)
 kc = 1;
-for (j= 0; j < 6; j++) {
+
+
+for (j= 0; j < 5; j++) {
 
  R[j][2+kc] = "$nval";
- R[j][kc] = "$nval";
- R->info(1)
- <<"$j $kc $R[j][2+kc]  \n"
- <<"$R[j]\n"
- R->info(1)
- wrd = R[j][kc]
- <<"%V $wrd  \n"
- R->info(1)
 
+ R[j][kc] = "$nval";
+
+R->info(1)
+ <<"$j $kc $R[j][2+kc] $nval \n"
+ <<"$R[j]\n"
+
+R->info(1)
+ wrd = R[j][kc]
+
+ R->info(1)
+ <<"%V $wrd    $nval\n" 
  chkStr(wrd,"$nval",4)
- //query()
+ //ans=query()
  nval += 0.01;
  kc++;
 }

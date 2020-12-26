@@ -1,11 +1,12 @@
 
-include "debug.asl"
+#include "debug.asl"
 
 debugON();
 
 record R[5];
 Rn = 6;
-chkIn()
+
+chkIn(_dblevel)
 
 proc Score()
 {
@@ -41,6 +42,8 @@ R->info(1)
 <<"$R[1][2]\n"
 
 float f;
+
+<<"$R[1][2] \n"
 
   f = Atof(R[1][2])
 

@@ -1205,7 +1205,8 @@ if ((do_all || do_unary ) && (do_unary != -1)) {
 /////////////////////////////////////////
 if ((do_all || do_proc ) && (do_proc != -1)) {
 
-  RunDirTests("Proc","proc,proc_declare,proc_ret,procret0,procarg,proc_sv0")
+  RunDirTests("Proc","proc,proc_declare,proc_ret,procret0,procarg,proc_sv0");
+  
   RunDirTests("Proc","proc_str_ret,procrefarg,proc_ra,proc_refstrarg,proc-loc-main-var");
 
   cart("proc-var-define", 10)
@@ -1257,7 +1258,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
    if ((do_all || do_svar ) && (do_svar != -1)) {
 
     RunDirTests("Svar","svar");
-    RunDirTests("Hash","svar_table,svar_hash")    
+    RunDirTests("Hash","hash,svar_table,svar_hash")    
     }
 
   if ((do_all || do_ivar ) && (do_ivar != -1)) {
@@ -1273,8 +1274,8 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
    
 
-   RunDirTests("Record","record,readrecord,prtrecord,recprt,recatof,reclhs,rectest,mdrecord,rrdyn");
- //   RunDirTests("Record","record,readrecord");
+   RunDirTests("Record","record,rec-read,rec-prt,rec-atof,rec-lhs,rec-test,rec-md,rec-dyn");
+
 
 
   }
@@ -1356,7 +1357,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
     hdg("S-FUNCTIONS")
 
-    RunSFtests("Sscan,Fscanf,Bscan,Cut,Cmp,Sel,Shift,Median,Findval,Lip");
+    RunSFtests("Fio,Sscan,Fscanf,Bscan,Cut,Cmp,Sel,Shift,Median,Findval,Lip");
 
 //============================
     RunSFtests("BubbleSort,Typeof,Variables,Trig,Caz,Sizeof,Limit,D2R,Cbrt,Fabs");

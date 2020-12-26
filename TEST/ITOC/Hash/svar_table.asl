@@ -11,9 +11,9 @@
 //* 
 //***********************************************%
 myScript = getScript();
+<<"Running $_script\n"
 
-
-include "debug"
+#include "debug"
 
 if (_dblevel >0) {
    debugON()
