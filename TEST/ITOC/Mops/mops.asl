@@ -15,10 +15,10 @@
 
 
 
-chkIn()
+chkIn(_dblevel)
 
-short xyv[12]
-//int xyv[12]
+short xyv[12];
+
 
 <<"%v $(Caz(xyv)) \n"
 
@@ -52,7 +52,7 @@ testargs(" TRY HARDER $xyv[2] ")
 
 
 //   chkOut()
-//STOP!
+
 
 short zx[4]
 
@@ -166,7 +166,7 @@ a = cbrt(N)
 <<"cube root of $N  is $a\n"
 chkR(a,9.0)
 
-checkStage("cbrt")
+chkStage("cbrt")
 
 
 //============= Atof ===========//

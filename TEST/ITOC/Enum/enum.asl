@@ -1,3 +1,15 @@
+//%*********************************************** 
+//*  @script enum.asl 
+//* 
+//*  @comment Test enum syntax and ops 
+//*  @release CARBON 
+//*  @vers 1.3 Li Lithium [asl 6.3.2 C-Li-He]                                
+//*  @date Mon Dec 28 14:34:07 2020 
+//*  @cdate 1/1/2008 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 
 
 #define RED 1
@@ -28,7 +40,7 @@ b = BLUE
 
 
 
-enum  days { MON = 1, TUE, WED, THU, FRI, SAT, SUN, FUN = 80 }
+enum  days { MON = 1, TUE, WED, THU, FRI, SAT, SUN, FUN = 80 };
 
 <<"%V $days \n"
 
@@ -43,6 +55,9 @@ enum  days { MON = 1, TUE, WED, THU, FRI, SAT, SUN, FUN = 80 }
 <<"$typeof(MON))\n"
 
 exit()
+
+
+
 myday = WED
 
 <<"%V WED $myday \n"
@@ -121,4 +136,3 @@ int IV[500]
   }
 
 
-;

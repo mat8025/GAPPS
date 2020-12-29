@@ -2,15 +2,19 @@
 ///  file ops
 ///
 
+chkIn(1)
 
 sz=fexist("ftest.asl")
 
 <<"$sz  \n"
 
 
-typ=ftype("ftest.asl")
+ftyp=ftype("ftest.asl")
 
-<<" $typ\n"
+<<"$ftyp\n"
+
+chkStr(ftyp,"regular")
+
 
 att= fstat( "ftest.asl","uid")
 
@@ -23,3 +27,5 @@ att= fstat( "ftest.asl","ctime")
 dt=time2date(att)
 
 <<"$dt\n"
+
+chkOut()

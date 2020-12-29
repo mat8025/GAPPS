@@ -13,6 +13,16 @@
 #
 
 
+#include "debug.asl";
+
+
+
+if (_dblevel >0) {
+   debugON()
+}
+
+
+
 chkIn(_dblevel)
 
 
@@ -87,6 +97,7 @@ chkN(p[0],6)
 
 
 svar S;
+
 S[0] = "DBPR   (";
 S[1] = "DBPR  				(";
 S[2] = "DBPR(";
@@ -97,12 +108,12 @@ S[3] = "DBPR[";
 for ( i =0; i< 3; i++) {
 p = regex(S[i],'DBPR ?+')
 
-<<"$p\n"
+<<"$i $p\n"
 chkN(p[0],0)
 }
 
 p = regex(S[3],"DBPR *\t*\\(")
-
+exit()
 <<"$p\n"
 chkN(p[0],-1)
 

@@ -1,3 +1,15 @@
+//%*********************************************** 
+//*  @script unaryexp.asl 
+//* 
+//*  @comment test unary syntax 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium [asl 6.2.100 C-He-Fm]                               
+//*  @date Sat Dec 26 23:26:26 2020 
+//*  @cdate 1/1/2005 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 
 chkIn()
 
@@ -52,4 +64,4 @@ chkR(rspo2,84.15)
 
 
 chkOut()
-STOP!
+

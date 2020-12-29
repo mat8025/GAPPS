@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
 
-/{/*
+/*
 R=vv_comp(A,B,{n})
 compares two arrays, upto n points
 and returns vector R where
@@ -24,15 +24,17 @@ R[2] = -1.0 if all A  eq or lt B
 R[2] = -2.0 if all A   lt B
 R[2] = -3.0 if some gt and eq and  lt B
 R[3] first index location of smallest difference
-/}*/
+*/
 
 
-include "debug.asl";
+#include "debug.asl";
 
 debugON();
+/*
   setdebug(1,@keep,@pline,@trace);
   FilterFileDebug(REJECT_,"~storetype_e");
   FilterFuncDebug(REJECT_,"~ArraySpecs",);
+ */
   
   chkIn();
 

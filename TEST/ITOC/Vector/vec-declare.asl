@@ -1,35 +1,38 @@
 //%*********************************************** 
-//*  @script cbrt.asl 
+//*  @script vec-declare.asl 
 //* 
-//*  @comment test cbrt cube root SF 
+//*  @comment  test syntax for vec declare via {} list 
 //*  @release CARBON 
 //*  @vers 1.2 He Helium [asl 6.2.99 C-He-Es]                                
-//*  @date Sat Dec 26 08:52:05 2020 
-//*  @cdate 1/1/2005 
+//*  @date Sat Dec 26 09:14:39 2020 
+//*  @cdate Sat Dec 26 09:14:39 2020 
 //*  @author Mark Terry 
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-///
-///  Cbrt
-///
+#include "debug.asl";
 
+
+
+if (_dblevel >0) {
+   debugON()
+}
 
 
 chkIn(_dblevel)
 
-f= Sqrt(81.0)
 
-<<"$f $(typeof(f))\n"
-
-f= Cbrt(81.0)
-
-<<"$f $(typeof(f))\n"
+int V[] = {1,2,3,4,5,6,7}
 
 
-f= Cbrt(125.0)
+<<"$V\n"
 
-<<"$f $(typeof(f))\n"
-chkR(f,5.0)
+V->info(1);
 
-chkOut()
+
+chkN(V[0],1)
+chkN(V[6],7)
+
+
+chkOut();
+

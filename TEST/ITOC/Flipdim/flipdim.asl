@@ -1,8 +1,31 @@
-// flipdim --- reverses along a dimension
+//%*********************************************** 
+//*  @script flipdim.asl 
+//* 
+//*  @comment test flipdimn reverse along a dimn 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium [asl 6.2.99 C-He-Es]                                
+//*  @date Sat Dec 26 11:06:13 2020 
+//*  @cdate 1/1/2007 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 
-setdebug(1)
+/*
+flipDim(A,dim)
+flips (reverses) multidimension along a dimension
+*/
 
-// vector ?
+#include "debug.asl";
+
+
+
+if (_dblevel >0) {
+   debugON()
+}
+
+
+chkIn(_dblevel)
 
 
 
@@ -19,13 +42,18 @@ T= R
 <<"$R"
 <<"flipDim(R,0)\n"
 T= flipDim(R,0)
+
 <<"$T"
+chkN(T[0][0],R[2][0])
+chkN(T[0][1],R[2][1])
 <<"flipDim(R,1)\n"
 T= flipDim(R,1)
 
 <<"$T\n"
+chkN(T[0][3],R[0][0])
+chkN(T[0][2],R[0][1])
 
-exit()
+
 
  S = sum(R)
 <<" Sum(R) \n"
@@ -36,7 +64,7 @@ exit()
 <<"$R"
 <<"%V$t\n"
 
-stop!
+
 // 3D
 
 R = vgen(INT_,12,0,1)
@@ -86,3 +114,4 @@ R= T
 
 <<"$R\n"
 
+chkOut()

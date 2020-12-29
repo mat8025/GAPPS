@@ -65,7 +65,12 @@ int A[3] = {1,2,3}
 <<"%V$sum \n"
  chkN(sum,6)
 
-  sum = Sum({1,2,3,4});
+//A={1,2,3,4}
+  sum = Sum(A);
+<<"%V$sum \n"
+
+  //sum = Sum({1,2,3,4});
+//  sum = Sum((A={1,2,3,4}));
 <<"%V$sum \n"
 
  chkN(sum,10)
@@ -138,8 +143,13 @@ g[1:6:1]->SetImag({7,8,9,10,11,12})
 
 gi = g->getImag()
 
+gi->info(1)
+
+<<"%V $gi \n"
+
+exit()
 for (i= 1; i <= 6; i++) {
-chkN(gi[i],6+i)
+  chkN(gi[i],6+i)
 }
 
 

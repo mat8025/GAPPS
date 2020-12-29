@@ -1,5 +1,17 @@
+//%*********************************************** 
+//*  @script prime.asl 
+//* 
+//*  @comment test for prime number 
+//*  @release CARBON 
+//*  @vers 1.3 Li Lithium [asl 6.3.2 C-Li-He]                                
+//*  @date Mon Dec 28 17:11:27 2020 
+//*  @cdate 1/1/2001 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 
-// FIXME uint p = iread(":> ")
+
 
 uint p 
 
@@ -25,7 +37,7 @@ uint p
 
 # is it prime  - crude version
 
-
+is_prime = 1;
 # is it even ?
 
  uint a = p/2
@@ -38,7 +50,7 @@ uint p
   <<"%V $a $(typeof(a)) \n"
   <<"%V $N $(typeof(N)) \n"
 
-
+ try {
 
  uint m = a * 2
 
@@ -47,7 +59,8 @@ uint p
 if (m == p) {
 
 <<" $p div by 2 -- its even \n"
-     stop!
+     is_prime = 0;
+     throw 0;
 }
 
 uint i
@@ -67,9 +80,9 @@ uint i
 
      if (m == p) {
 
-      <<" $p div by $i factor is $a -- not prime \n"
-
-     stop!
+      //<<" $p div by $i factor is $a -- not prime \n"
+         throw 0;
+ 
      }
      r = N -i  
      if ((i % 25) == 0) {
@@ -81,7 +94,7 @@ uint i
    i += 2
 
    if (i >= N) {
-     break
+       throw 1;
    }
 
 
@@ -91,10 +104,14 @@ uint i
 <<"$i or $N  \n"
 
   }
+  
+ }
 
-
-<<"\nHey Baby $p is prime !! - looked to $i\n"
-
-stop!
-
-;
+   catch (int ball) {
+    if (ball == 1) {
+    <<"\nHey Baby $p is prime !! - looked to $i\n"
+    }
+    else {
+       <<" $p div by $i factor is $a -- not prime \n";
+    }
+   }

@@ -14,7 +14,7 @@
 ////
 ////
 
-/{/*
+/*
 vrange()
 
 /////
@@ -28,21 +28,24 @@ and the third parameter is taken  as newrange_upper.
 The function returns a new vector (float, double) with the transformed values.
 
 /////
-/}*/
-include "debug"
-debugON()
-setdebug(1,@pline,@trace,@keep)
+*/
 
-filterFuncDebug(ALLOWALL_,"xxx");
-filterFileDebug(ALLOWALL_,"yyy");
+//#include "debug"
 
-setDebug(1,@pline)
 
-chkIn()
+//debugON()
+
+
+//setdebug(1,@pline,@trace,@keep)
+//filterFuncDebug(ALLOWALL_,"xxx");
+//filterFileDebug(ALLOWALL_,"yyy");
+//setDebug(1,@pline)
+
+chkIn(_dblevel)
  I = Vgen(INT_,30,-10,1)
 
 <<"$I \n"
-
+//sdb(1,@step)
 chkR(I[0],-10)
 chkR(I[29],19)
 
@@ -53,25 +56,29 @@ chkR(I[29],19)
 chkR(R[0],100)
 chkR(R[29],500)
 
+<<"I[0:10:1]   $I[0:10:1]   \n"
 
+I->info(1)
 
 SI = I[0:10:1]
 
-<<"I[0:10:1]   $SI\n"
+SI->info(1)
+
+<<"%V $SI\n"
 
 chkN(SI[0],-10)
 chkN(SI[10],0)
 
 
-SI = I[0:10:2]
 
-<<"I[0:10:2]   $SI\n"
+SI = I[0:10:2]
+<<"$I \n"
+<<"   $SI\n"
 
 chkN(SI[0],-10)
 chkN(SI[5],0)
 
-//chkOut();
-//exit()
+
 
 SI = I[0:-1:2]
 
@@ -81,7 +88,6 @@ chkN(sz,15)
 
 chkN(SI[0],-10)
 chkN(SI[14],18)
-
 
 
 SI = I[10:20:1]

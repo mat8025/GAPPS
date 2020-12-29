@@ -1,2 +1,2 @@
-<<" keepme for testing ASL commands\n"
-;
+
+<<" keepme for testing ASL commands\n";

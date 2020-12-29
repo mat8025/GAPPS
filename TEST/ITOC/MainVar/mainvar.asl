@@ -13,14 +13,11 @@
 ///
 ///
 ///
-include "debug.asl"
+#include "debug.asl"
 
+if (_dblevel >0) {
 debugON()
-setdebug(1,@pline,@trace,@keep)
-
-filterFuncDebug(ALLOWALL_,"xxx");
-filterFileDebug(ALLOWALL_,"yyy");
-
+}
 
 int FF[10]
 
@@ -28,7 +25,7 @@ FF[1] = 51;
 
  <<"$FF[1] \n"
 
-chkIn(0)
+chkIn(_dblevel)
 
 
 chkN(FF[1],51)

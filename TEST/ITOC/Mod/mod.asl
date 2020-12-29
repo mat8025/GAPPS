@@ -1,8 +1,20 @@
+//%*********************************************** 
+//*  @script mod.asl 
+//* 
+//*  @comment Test Mod j % k op 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium [asl 6.3.1 C-Li-H]                                  
+//*  @date Mon Dec 28 07:48:22 2020 
+//*  @cdate 1/1/2005 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 
-include "debug.asl"
+#include "debug.asl"
 debugON()
 
-sdb(1,@pline)
+//sdb(1,@pline)
 
 chkIn()
 

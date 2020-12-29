@@ -327,7 +327,10 @@ chkN(sz,12)
 
 <<"twelveth month $Mol[11]\n"
 
-le12 = Mol[11];
+Mol->info(1)
+
+
+ le12 = Mol[11];
 
 <<"$(typeof(le12)) %V$le12\n"
 

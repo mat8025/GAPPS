@@ -21,6 +21,9 @@ myScript = getScript()
 debugOFF()
 sdb(1,@~pline,@~trace)
 
+setmaxcodeerrors(-1); // just keep going
+setmaxicerrors(-1);
+
 #define PGREEN '\033[1;32m'
 #define PRED '\033[1;31m'
 #define PBLACK '\033[1;39m'
@@ -991,7 +994,7 @@ if ((do_all || do_try ) && (do_try != -1)) {
  
   // make this a pattern OP
  // RunSFtests("Date,Sele,Sstr,Spat,Regex,Str,Split"); // TBC
-  RunSFtests("Date,Sele,Sstr,Spat,Str,Split,Regex");
+  RunSFtests("Date,Sele,Sstr,Spat,Str,Split,Regex,Fread");
 
 
 //  Run2Test("Splice")
@@ -1009,7 +1012,7 @@ if ((do_all || do_try ) && (do_try != -1)) {
 
   Run2Test("Fops")
 
-  cart("readfile")
+  cart("fops")
 
 
   }
@@ -1277,9 +1280,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
    RunDirTests("Record","record,rec-read,rec-prt,rec-atof,rec-lhs,rec-test,rec-md,rec-dyn");
 
 
-
   }
-
  changeDir(Testdir)
 
  if ((do_all || do_mops ) && (do_mops != -1)) {
@@ -1361,7 +1362,8 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
 //============================
     RunSFtests("BubbleSort,Typeof,Variables,Trig,Caz,Sizeof,Limit,D2R,Cbrt,Fabs");
-    RunSFtests("Round,Trunc,Wdata,Fscanv,Cmpsetv,Vrange,MDRange");
+    RunSFtests("Round,Trunc,Wdata,Fscanv,Cmpsetv,Vrange,MDRange,Flipdim");
+    RunSFtests("Ftest,Convert,Return");
 //============================
 
     RunDirTests("Funcs","abs");

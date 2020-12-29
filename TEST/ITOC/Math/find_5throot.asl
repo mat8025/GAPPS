@@ -14,9 +14,10 @@ pan rans = 9.000
 
 <<"%p$s \n"
 
- x = getArgN()
+// x = getArgN()
+ x = atop(_clarg[1])
 
-<<"%I$x\n"
+<<"$x\n"
 
 
  //   x = rans * rans * rans * rans * rans
@@ -31,7 +32,9 @@ pan rans = 9.000
    r= x/25.0
    int k = 1
 
-
+r->info(1)
+<<"%V $r\n"
+exit()
 // too big
    while (1) {
 
@@ -121,7 +124,7 @@ float m = 1.0/5.0
 
 // chkOut()
 
-STOP!
+
 
 
 

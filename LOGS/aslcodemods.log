@@ -688,3 +688,13 @@ ic_xic.cpp	 71.71	 Sun Dec 20 21:08:48 2020 stackv endpop
 storetype_e.cpp	 60.60	 Sun Dec 20 21:10:53 2020 Stre stackV
 sint_l.cpp	 1.18	 Mon Dec 21 21:48:45 2020 print str arg var
 num_l.cpp	 2.89	 Sat Dec 26 08:39:14 2020 getStr
+ic_cat.cpp	 1.3	 Sun Dec 27 09:42:45 2020 pstk->
+ic_ops.cpp	 1.57	 Sun Dec 27 09:44:45 2020 pstck
+ic_parse.cpp	 1.59	 Sun Dec 27 09:46:16 2020 pstk
+ic_wic.cpp	 1.69	 Sun Dec 27 09:54:01 2020 CDB_FUNC
+ic_vfill.cpp	 1.58	 Sun Dec 27 09:56:27 2020 Ici
+ic_vfill.cpp	 1.58	 Sun Dec 27 09:57:19 2020 Ici
+ic_xic.cpp	 1.72	 Sun Dec 27 10:00:08 2020 pstk
+ic_xic.cpp	 1.72	 Sun Dec 27 10:01:33 2020 pstk
+ic_stack.cpp	 1.68	 Sun Dec 27 10:45:48 2020 CopyPush
+parrayexpand.cpp	 2.72	 Sun Dec 27 14:27:54 2020 DEBUG_FUNC

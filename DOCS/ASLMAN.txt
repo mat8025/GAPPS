@@ -5621,7 +5621,7 @@ for all integer types (guard against overflow)
 a subset can be summed
 b= Sum(A[0:9])  - first 10 values
 c= Sum(A[2:8:2])  - sum the  values of elements 2,4,6,8
-if A is array of Sinum result is a Sinum (arbitary precision value).
+if A is array of Pan result is a Pan (arbitary precision number).
 .EF
 =============================================================
 .BF
@@ -9660,7 +9660,7 @@ submat
 .EF
 =============================================================
 .BF
-mdiag()
+mdiag(),diagonal
 .(x
 mdiag
 .)x 

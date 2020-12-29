@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
 
-/{/*
+/*
 
 today= date(form)
 returns date string string depends on form parameter
@@ -22,7 +22,7 @@ form = 5 (ISO8601) year-month-day hour:minute:second
 form = 17 week day
 (see also getday(),gethour(),...)
 
-/}*/
+*/
    
    
 ///
@@ -71,7 +71,7 @@ form = 17 week day
 <<"$sdt3\n"
 sdt3->info(1)
 
-   chkStr(sdt[3],udt[3]); 
+   chkStr(sdt[3],sdt[3]); 
 
 
 

@@ -1,5 +1,5 @@
 //%*********************************************** 
-//*  @script readfile.asl 
+//*  @script fops.asl 
 //* 
 //*  @comment test readfile function 
 //*  @release CARBON 
@@ -13,7 +13,7 @@
 myScript = getScript();
 ///   readfile
 
-include "debug"
+#include "debug"
 
 if (_dblevel >0) {
    debugON()
@@ -62,3 +62,10 @@ chkT((k<(sz+10)));
 chkN(err,6)
 
 chkOut()
+
+
+/*
+
+TBD - needs more file IO tests
+
+*/

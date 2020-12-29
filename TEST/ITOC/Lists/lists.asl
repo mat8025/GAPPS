@@ -13,12 +13,19 @@
 ///
 ///
 ///
+#include "debug.asl";
+
+
+
+if (_dblevel >0) {
+   debugON()
+}
 
 chkIn(_dblevel)
 
 ws = getScript()
 
-<<"%V $ws\n"
+<<"%V $ws  $_script\n"
 
 
 CrashList = ( "",  )  // empty list
@@ -36,7 +43,6 @@ CrashList->LiDelete(0)
 
 
 <<"%V$FailedList \n"
-
 
 
 int J[] = { 1,2,3,4 }

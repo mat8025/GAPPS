@@ -1,4 +1,32 @@
-//setdebug(1)
+//%*********************************************** 
+//*  @script shift.asl 
+//* 
+//*  @comment Test shiftL shiftR SF  
+//*  @release CARBON 
+//*  @vers 1.2 He Helium [asl 6.3.1 C-Li-H]                                  
+//*  @date Sun Dec 27 22:00:20 2020 
+//*  @cdate 1/1/2005 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+
+
+
+/*
+shiftL()
+
+/////
+I->shiftL(newval,[nplaces],[vecsize])
+An  VMF operation to shift elements of an vector one place to the left 
+and replace the last element with
+a  new val. 
+Can be repeated nplaces. 
+If vector size is specified as less than actual size the element can 
+be inserted at the specified 'end'. (same for shiftR) 
+*/
+
+
 
 chkIn()
 
@@ -34,7 +62,7 @@ I->shiftL(10)
 <<"$I \n"
 
 
-D = vgen(DOUBLE,10,0,1)
+D = vgen(DOUBLE_,10,0,1)
 
 <<"%6.2f$D \n"
 

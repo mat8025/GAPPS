@@ -1,7 +1,7 @@
 
 // test iteration
 
-
+chkIn()
 
 double x
 double y
@@ -14,7 +14,7 @@ double rans = 9.000
 
  x = getArgN()
 
-<<"%I$x\n"
+<<"$x\n"
 
 
  //   x = rans * rans * rans * rans * rans
@@ -78,12 +78,14 @@ float m = 1.0/5.0
 
  <<" $x 5th root is $r   $(r*r*r*r*r)\n"
 
+ y = r*r*r*r*r;
 
-// chkR(rans,r,3)
+<<"%V$x $y\n"
+ chkR(x,y,3)
 
-// chkOut()
+ chkOut()
 
-STOP!
+
 
 
 

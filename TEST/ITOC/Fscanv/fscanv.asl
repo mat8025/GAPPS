@@ -32,7 +32,7 @@ fscanv
 
 
 
-include "debug.asl"
+#include "debug.asl"
 debugON()
 chkIn()
 

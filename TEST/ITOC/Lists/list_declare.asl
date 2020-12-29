@@ -14,7 +14,7 @@ myScript = getScript();
 #  
 
 
-include "debug"
+#include "debug"
 
 if (_dblevel >0) {
    debugON()
@@ -47,9 +47,9 @@ chkN(sz,12)
 
 le4 = Mol[3];
 
-<<"$(typeof(le4)) %V$le4\n"
+//<<"$(typeof(le4)) %V$le4\n"
 
-<<"le4[0] $le4[0] \n"
+<<"le4 $le4 \n"
 
 
 chkStr(le4,"APR")

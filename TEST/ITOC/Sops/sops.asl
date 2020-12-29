@@ -3,15 +3,15 @@
 //* 
 //*  @comment test str ops 
 //*  @release CARBON 
-//*  @vers 1.3 Li Lithium                                                  
-//*  @date Sun Apr 12 12:51:34 2020 
+//*  @vers 1.4 Be Beryllium [asl 6.3.1 C-Li-H]                           
+//*  @date Mon Dec 28 10:26:19 2020 0 
 //*  @cdate Sun Apr 12 12:28:34 2020 
 //*  @author Mark Terry 
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
 
-include "debug"
+#include "debug"
 
 if (_dblevel >0) {
    debugON()
@@ -19,7 +19,6 @@ if (_dblevel >0) {
 
 
 chkIn(_dblevel)
-
 
  S = "hey how are you?"
 <<"$S\n"
@@ -350,9 +349,12 @@ T= ssubrgx(W,rpat,"qqq",dir)
 chkStr(T,"aaabbbqqqdd dxxxqqqeeeqqqfffhhh")
 
 
-
 rpat = 'abc*'
+rpat->info(1)
+
 <<"%V $rpat\n"
+
+
 dir = 1
 T= ssubrgx(W,rpat,"qqq",dir)
 <<"SSUBRGX(dir $dir) (%v $rpat ): $T\n"
