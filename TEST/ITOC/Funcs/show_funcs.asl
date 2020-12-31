@@ -4,8 +4,16 @@
 
 // check is a known func
 
-A=ofr("funcs_list.csv")
+S=functions();
 
+ S->sort();
+
+A=ofw("funcs_list.csv")
+<<[A]"%(1,,,\n)$S\n"
+cf(A);
+//exit()
+A=ofr("funcs_list.csv")
+if (A != -1) {
 S=readfile(A);
 sz= Caz(S)
 
@@ -20,3 +28,4 @@ sz= Caz(S)
 
 }
 
+}

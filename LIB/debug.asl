@@ -3,8 +3,8 @@
 //* 
 //*  @comment  
 //*  @release CARBON 
-//*  @vers 1.12 Mg Magnesium [asl 6.2.91 C-He-Pa]                          
-//*  @date Mon Nov 30 08:52:56 2020 
+//*  @vers 1.13 Al Aluminium [asl 6.3.2 C-Li-He]                         
+//*  @date Tue Dec 29 09:20:36 2020 0 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2014,2018 --> 
 //* 
@@ -55,7 +55,6 @@ filterFileDebug(ALLOWALL_,"yyy");
 setmaxcodeerrors(-1); // just keep going
 setmaxicerrors(-1);
 _DB =1;
-
 }
 //==========================
 
@@ -68,7 +67,14 @@ filterFileDebug(REJECTALL_,"yyy");
 _dblevel = 0;
 _DB=-1
 }
+//==========================
 
+void debugAllowErrors()
+{
+setmaxcodeerrors(-1); // just keep going
+setmaxicerrors(-1);
+}
+//==========================
 void turnDEBUG(int on)
 {
 
@@ -82,7 +88,7 @@ void turnDEBUG(int on)
    
 
 }
-
+//==========================
 void setNICerrors( int n)
 {
  setmaxICerrors(n)

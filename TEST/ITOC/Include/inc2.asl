@@ -15,7 +15,7 @@
      return c;
      }
    
-   include "inc3";
+   #include "inc3";
    
    <<"included $_include _scope \n"; 
    

@@ -1,6 +1,21 @@
+//%*********************************************** 
+//*  @script define.asl 
+//* 
+//*  @comment test define  
+//*  @release CARBON 
+//*  @vers 1.2 He Helium [asl 6.3.2 C-Li-He]                                 
+//*  @date Mon Dec 28 21:44:00 2020 
+//*  @cdate 1/1/2005 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 
-setdebug(1)
-chkIn()
+
+
+
+
+chkIn(_dblevel)
 
 
 
@@ -9,10 +24,9 @@ chkIn()
 #define GREEN_LIGHT  3 
 
 
-
 #define MAXN 10
 
-hue = GREEN
+hue = GREEN_
 
 <<"$hue GREEN \n"
 
@@ -20,6 +34,7 @@ hue = GREEN
 <<" MAXN defined as $(MAXN) \n"
 
 //FIX MAXN is being substituted via preprocessor not protected
+
 <<"pt $(periodicNumber(\"lead\"))\n"
 
 
@@ -27,7 +42,7 @@ hue = GREEN
 
 //mn = Atoi(" $(MAXN) ")
 //<<"%V $mn \n"
-//stop!
+
 
 //smn = "$(MAXN)"
 //<<" $smn \n"
@@ -47,10 +62,8 @@ I[9] = 77
 
 sz = Caz(I)
 
-chkN(sz,10)
-chkN(sz,MAXN)
+ chkN(sz,10)
+ chkN(sz,MAXN)
 
-   chkOut()
+ chkOut()
 
-stop!
-;

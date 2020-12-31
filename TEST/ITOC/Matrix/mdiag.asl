@@ -11,14 +11,14 @@
 //* 
 //***********************************************%///
 
-/{/*
+/*
 mdiag
 M=mdiag(V)
 take a vector and make it as leading diagonal of a square matrix 
 other elements are zero
-/}*/
+*/
 
-include "debug.asl"
+#include "debug.asl"
 debugON()
 //  diag
 

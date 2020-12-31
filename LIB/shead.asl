@@ -29,7 +29,6 @@
    //======================
    A=-1;
    
-   
    // if script found
    // then  read current vers and  bump number and update date
    // if no @vers line -- then prepend the vers header lines
@@ -188,18 +187,19 @@ if (found_vers) {
    vers="@vers ${pmaj}.$pmin $min_ele $min_name [asl $(getversion())]"
    vlen = slen(vers);
    pad = nsc(70-vlen," ")
-   <<[A]"//%%*********************************************** \n"
-   <<[A]"//*  @script $fname \n"
-   <<[A]"//* \n"
-   <<[A]"//*  @comment $comment \n"
-   <<[A]"//*  @release $release \n"   
-   <<[A]"//*  $vers $pad\n"
-   <<[A]"//*  @date $date \n"
-   <<[A]"//*  @cdate $cdate \n"      
-   <<[A]"//*  @author $author \n"
-   <<[A]"//*  @Copyright © RootMeanSquare  2010,$(date(8)) → \n"           
-   <<[A]"//* \n"   
-   <<[A]"//***********************************************%%\n"
+   <<[A]"/* \n"
+   <<[A]" *  @script $fname \n"
+   <<[A]" * \n"
+   <<[A]" *  @comment $comment \n"
+   <<[A]" *  @release $release \n"   
+   <<[A]" *  $vers $pad\n"
+   <<[A]" *  @date $date \n"
+   <<[A]" *  @cdate $cdate \n"      
+   <<[A]" *  @author $author \n"
+   <<[A]" *  @Copyright © RootMeanSquare  2010,$(date(8)) → \n"           
+   <<[A]" * \n"
+   <<[A]" *  \\\\-----------------<v_&_v>--------------------------//  \n"                                  
+   <<[A]" */ \n"
    //<<[A]"myScript = getScript();\n"
 fflush(A)
 

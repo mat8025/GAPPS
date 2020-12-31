@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
 
-include "debug.asl";
+#include "debug";
 
 
 
@@ -27,7 +27,7 @@ if (_dblevel >0) {
 chkIn(_dblevel)
 
 
-proc goo(float a)
+double goo(double a)
 {
  float tmp
 
@@ -50,9 +50,9 @@ M = _clarg[2]
 <<"$N $M\n"
 <<" $_clarg[0:-1] \n"
 
- a=testargs(N,M)
+ sa=testargs(N,M)
 
-<<" $a $N $M\n"
+<<" $sa $N $M\n"
 
 
 
@@ -138,11 +138,11 @@ M = _clarg[2]
 
   k = 0
 
- while (k <= 360) {
+ while (k <= 10) {
 
   x= Sin(deg2rad(k))
 
-//    <<"$k  $x\n"
+ <<"$k  $x\n"
 
   k++
 
@@ -190,7 +190,6 @@ y = Sin(pi/2.0)
   }
 
    chkN(Fround(pir,5),3.14159)
-
 
 /////////////////////////////////////////
 
@@ -241,7 +240,7 @@ jal += 9
 
 dv= testargs(A,1,2,3)
 
-<<"%(1,,\s,\n)$dv \n"
+//<<"%(1,,\s,\n)$dv \n" // TBF
 
  F = vgen(FLOAT_,6,0,1)
 
@@ -249,7 +248,8 @@ dv= testargs(A,1,2,3)
 
 fva2= testargs(F)
 
-<<"%(1,,,\n)$fva2 \n"
+fva2->info(1)
+//<<"%(1,,,\n)$fva2 \n"   // TBF
 
 jal = 2
 fvs = fva2[jal]
@@ -266,7 +266,7 @@ jal = 3
 fvs = fva2[jal]
 col = split(fvs)
 <<"%V $col \n"
-checkstr(col[1],"1.000000")
+chkStr(col[1],"1.000000")
 
 
 
@@ -285,23 +285,33 @@ checkstr(col[1],"1.000000")
 //***********************************************%
 
 
-proc Foo(int x,int y,int z)
+void Noo(int x,int y,int z)
 {
 <<"%V $x $y $z\n"
 int m =x;
 int n =y;
 int p =z;
+int i;
+ i->info(1)
+ ans ="c"
+ for (i=0; i< 4; i++) {
 
-for (i=0; i< 3; i++) {
-SV2=testargs(-1,m,n,p,1,2,3)
-<<"%V$SV2 \n"
+ SV2=testargs(-1,m,n,p,1,2,3)
+// <<"%V$SV2 \n"
 
-<<"%V $m $n $p\n"
-m++;
-n++;
+   <<"%V $m $n $p\n"
+    m++;
+    n++;
 
-<<"%V $m $n $p\n"
-}
+  <<"%V $i $m $n $p\n";
+
+//ans=query("proc");
+ // if (ans @="q")    break;
+//  p++;
+    //if (m >20)
+   // m = 20;
+  
+  }
 
 }
 
@@ -318,7 +328,12 @@ n++;
 
  a = 1;
 
+a->info(1)
+//ans=query("a?")
+
  chkR (a,1)
+
+
 
 
  int b = 79;
@@ -334,18 +349,32 @@ SV=testargs(1,&a,&b,&c)
 <<"%V$SV\n"
 
 
-SV=testargs(1,c,a,b)
-<<"%V$SV\n"
+//SV=testargs(1,c,a,b)
+//<<"%V$SV\n"
 
 
 
 <<"%V $a $b $c \n"
 
-Foo(a,b,c);
+a->info(1)
+//ans=query("a?")
 
 
 
-/{
+
+
+//Noo(1,2,3);
+
+a->info(1)
+b->info(1)
+c->info(1)
+
+Noo(a,b,c);
+
+
+
+
+/*
 
 
 
@@ -362,7 +391,7 @@ Foo(a,b,c);
 
 <<"%V$SV[3] $SV[8] $SV[18]\n"
 
-/}
+*/
 
 SV=testargs(1,c,a,b)
 <<"%V$SV\n"
@@ -382,7 +411,7 @@ checkStage("funcargs")
   chkR (pnum,  123456789.98765432100, 5)
 
 
-checkStage("pan")
+chkStage("pan")
 
 
 chkOut ()

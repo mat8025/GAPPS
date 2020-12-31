@@ -26,7 +26,7 @@ chkIn(_dblevel)
 // want to use ulong
 
 
-proc Foo(long pf)
+long Foo(long pf)
 {
 
 long mpf;
@@ -59,7 +59,7 @@ return t;
 
 
 //======================================//
-proc Foo(pan pf)
+pan Foo(pan pf)
 {
   static int PF = 1;
  <<"$_proc $pf  $PF\n"
@@ -81,7 +81,7 @@ proc Foo(pan pf)
 //======================================//
 
 
-proc Fact(int pf)
+pan Fact(int pf)
 {
 
  pan t = 1;

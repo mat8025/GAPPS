@@ -13,7 +13,7 @@
 
 
 
-/{/*
+/*
 cmpsetv
 cmpsetv(vec, op,cmp_value, set_value)
 sets elements of a vector to set_value if compare operator (">,>=,<,<=,==") 
@@ -23,9 +23,9 @@ will limit vector values to 1
  Another operation may done sequentially e.g
 cmpsetv(vec,">",10,10,"<",-10,-10)  
 would limit vector between range -10,10.
-/}*/
+*/
 
-include "debug.asl"
+#include "debug.asl"
 debugON()
 
 

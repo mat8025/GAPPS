@@ -3,15 +3,15 @@
 //* 
 //*  @comment test dynamic array ops 
 //*  @release CARBON 
-//*  @vers 1.2 He Helium                                                   
-//*  @date Wed Apr  3 13:20:00 2019 
+//*  @vers 1.3 Li Lithium [asl 6.3.2 C-Li-He]                            
+//*  @date Mon Dec 28 21:55:45 2020 9 
 //*  @cdate Wed Apr  3 13:09:11 2019 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
 
-/{/*
+/*
 Set(),set ~ sets values in a vector or a scalar()
 V->set(value)
 V[3]->set(value)
@@ -36,10 +36,10 @@ Vec[12] = 47;
 
 the size of the Vec is increased to 13 plus;
 
-/}*/
+*/
 
 
-include "debug"
+#include "debug"
 
 if (_dblevel >0) {
    debugON()

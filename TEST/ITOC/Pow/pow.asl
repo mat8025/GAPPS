@@ -1,5 +1,5 @@
 
-nclude "debug"
+#include "debug"
 
 if (_dblevel >0) {
    debugON()
@@ -27,7 +27,7 @@ chkIn(_dblevel);
 
  chkR(v,2)
 
- v = 2^^(12.000001/12);
+ v = 2^(12.000001/12);
 
 <<"$v\n"
 
@@ -49,5 +49,11 @@ chkIn(_dblevel);
  v = 2^(-24.0/12);
 
 <<"$v\n"
+
+v = 2^4
+
+<<"$v\n"
+chkR(v,16.0)
+
 
 chkOut()

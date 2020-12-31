@@ -31,7 +31,7 @@
    
    <<" before include\n"; 
    
-   include "inc1_nest";
+   #include "inc1_nest";
    
    <<" after include\n"; 
    

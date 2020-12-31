@@ -1,6 +1,30 @@
+//%*********************************************** 
+//*  @script limit.asl 
+//* 
+//*  @comment test Limit SF 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium [asl 6.3.2 C-Li-He]                                 
+//*  @date Wed Dec 30 13:51:15 2020 
+//*  @cdate 1/1/2005 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
 //   
 //  Limit
 //
+/*
+
+A->limit(newrange_lower_limit,newrange_upper_limit)
+A vector (or scalars) can be limited to values
+at and between the specified limits. 
+This is an inplace operation.
+(see limitval)
+
+
+
+
+*/
 
 chkIn()
 
@@ -46,4 +70,4 @@ chkN(b,0);
 
 chkOut()
 
-exit()/
+exit()

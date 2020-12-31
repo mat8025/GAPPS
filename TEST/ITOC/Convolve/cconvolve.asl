@@ -4,11 +4,11 @@
 // X 1,2,3,2,1
 //
 //
-setdebug(1)
 
-opendll("math")
 
-int h[3+] = {3,2,1}
+//opendll("math")
+
+int h[>3] = {3,2,1}
 
 int X[5] = {1,2,3,2,1}
 
@@ -74,8 +74,5 @@ for (j = 0; j < n; j++) {
 
 <<"%V$cvec\n"
 
-
-
-stop!
 
 

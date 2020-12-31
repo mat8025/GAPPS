@@ -10021,6 +10021,19 @@ Should work on all types.
 can be used as Vec->BubbleSort() returns 1 if sorted.
 .EF
 =============================================================
+.BF
+Zipper()
+
+
+.(x
+zipper
+.)x 
+.FD
+V=zipper(Vec1,Vec2)
+zipper, interleaves one vector with another  V3=zipper(V1,V2)
+.EF
+=============================================================
+
 
 .BF
 zulutime()

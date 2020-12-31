@@ -56,7 +56,7 @@ sz = Caz(g)
 g->info(1)
 
 
-
+exit()
 int A[3] = {1,2,3}
   sz = Caz(A)
   <<"%V $sz $A\n"

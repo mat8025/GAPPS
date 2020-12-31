@@ -11,7 +11,7 @@
 //* 
 //***********************************************%///
 
-/{/*
+/*
 ColSum()
 V=ColSum(A)
 returns array V - containing the sum of the columns of a 2D array.
@@ -24,11 +24,13 @@ returns array V - containing the sum of the columns of a 2D array.
 dimensions [num_of_rows][1]
 V->redimn() - would redimension to vector
 //===================================//
-/}*/
+*/
+
 ///
 /// magic square
 ///
-include "debug.asl"
+#include "debug.asl"
+
 debugON()
 
 
@@ -98,7 +100,9 @@ stageComment("ColSum Test -summing cols of magic square 34");
 
 
  checkStage("ColSum")
-chkOut(); exit();
+
+//chkOut();
+//exit();
 
 
  M = Sum(A)
@@ -177,15 +181,16 @@ V->redimn()
 
 
 
- D[]= {16, 3, 2, 13, 5,10,11, 8, 9, 6, 7, 12, 4 ,15, 14, 1}
+ //D2[]= {16, 3, 2, 13, 5,10,11, 8, 9, 6, 7, 12, 4 ,15, 14, 1}
+int  D2[]= {16, 3, 2, 13, 5,10,11, 8, 9, 6, 7, 12, 4 ,15, 14, 1}
 
-<<" $(typeof(D)) \n"
-<<" $(Cab(D)) \n"
-<<"%v $D \n"
+<<" $(typeof(D2)) \n"
+<<" $(Cab(D2)) \n"
+<<"%v $D2 \n"
 
-  D->Redimn(4,4)
-<<" $D[0][0] \n"
-<<"%V%(4, , ,\n)$D \n"
+  D2->Redimn(4,4)
+<<" $D2[0][0] \n"
+<<"%V%(4, , ,\n)$D2 \n"
 
 <<"\n"
 
@@ -232,13 +237,13 @@ lw = E[0:1][::]
 <<" $(typeof(A)) \n"
 
 
- A[] = {16, 3, 2, 13, 5,10,11, 8, 9, 6, 7, 12, 4 ,15, 14, 1}
+ A2[] = {16, 3, 2, 13, 5,10,11, 8, 9, 6, 7, 12, 4 ,15, 14, 1}
 
-<<" $(typeof(A)) \n"
-<<" $(Cab(A)) \n"
-<<" $A \n"
+<<" $(typeof(A2)) \n"
+<<" $(Cab(A2)) \n"
+<<" $A2 \n"
 
-<<" %(4,, ,\n)%2d$A \n"
+<<" %(4,, ,\n)%2d$A2 \n"
 
 
 
@@ -250,5 +255,3 @@ float G[]= { 16, 3, 2, 13, 5, 10, 11, 8, 9, 6, 7, 12, 4 ,15, 14, 1}
 
 
   chkOut()
-
-stop!

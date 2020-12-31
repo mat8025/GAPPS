@@ -698,3 +698,7 @@ ic_xic.cpp	 1.72	 Sun Dec 27 10:00:08 2020 pstk
 ic_xic.cpp	 1.72	 Sun Dec 27 10:01:33 2020 pstk
 ic_stack.cpp	 1.68	 Sun Dec 27 10:45:48 2020 CopyPush
 parrayexpand.cpp	 2.72	 Sun Dec 27 14:27:54 2020 DEBUG_FUNC
+array_utils.cpp	 2.79	 Tue Dec 29 22:42:11 2020 arrayToUnset
+ic_vfill.cpp	 1.59	 Tue Dec 29 22:43:17 2020 vfill,vfillr update
+array_store.cpp	 2.79	 Tue Dec 29 22:44:47 2020 array-spec checks
+declare_fillarray_e.cpp	 2.38	 Tue Dec 29 22:46:05 2020 check AW_PARSEV  declare and assign forms

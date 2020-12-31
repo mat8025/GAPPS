@@ -11,16 +11,18 @@
 //* 
 //***********************************************%
 
-include "debug.asl"
-setdebug(1,@keep,@~pline,@~trace);
-FilterFileDebug(REJECT_,"~storetype_e");
-FilterFuncDebug(REJECT_,"~ArraySpecs",);
-debugON();
-  scriptDBON()
+#include "debug.asl"
 
-include "hv.asl"
-include "gss.asl"
-include "gevent.asl"
+//setdebug(1,@keep,@~pline,@~trace);
+//FilterFileDebug(REJECT_,"~storetype_e");
+//FilterFuncDebug(REJECT_,"~ArraySpecs",);
+
+debugON();
+scriptDBON()
+
+#include "hv.asl"
+#include "gss.asl"
+#include "gevent.asl"
 
 
 
@@ -43,8 +45,8 @@ Graphic = CheckGwm()
         X=spawngwm()
      }
 
-include "tbqrd"
-include "gss_screen"
+#include "tbqrd"
+#include "gss_screen"
 
 
   READ();

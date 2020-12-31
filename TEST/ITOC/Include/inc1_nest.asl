@@ -47,7 +47,7 @@ proc Boo(int a,int b)
 }
 
 
-include "inc2" ; // nested include
+#include "inc2" ; // nested include
 
 <<"inc2 added global %V$Y\n"
 

@@ -1,6 +1,0 @@
-for i in $*
-do
-echo $i 
-cat $i | sed s/vgen\(SHORT,/vgen\(SHORT_,/ > $i.bak
-cp $i.bak $i
-done

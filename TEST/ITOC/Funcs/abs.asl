@@ -11,15 +11,15 @@
 //* 
 //***********************************************%///
 
-/{/*
+/*
 Abs(A)
 truncates a floating point number delivers absolute integer result.
 if A is a vector then operation occurs on all elements of the vector.
 e.g. V=Abs(A)  - V is a new vector of type integer of converted results.
 (see Fabs)
-/}*/
+*/
 
-include "debug.asl"
+#include "debug.asl"
 debugON()
 
 

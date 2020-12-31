@@ -202,7 +202,7 @@ void RunDirTests(str Td, str Tl )
 
    //Tl->info(1)
 //ri=Tl->info()
-
+Str pgname;
       Run2Test(Td);
       Tl->DeWhite()
       Tp = Split(Tl,",");
@@ -214,8 +214,10 @@ void RunDirTests(str Td, str Tl )
           //if (do_query) {
           //    query(Tp[i])
           // }
-	   
-            cart(Tp[i]);
+	    pgname = Tp[i];
+//	    pgname->info(1)
+	    //<<"$pgname \n"
+            cart(pgname);
 	   }
 	   
 
@@ -229,7 +231,7 @@ void RunSFtests(str Td)
 // goto dir then run cart(fabs) or cart(cmp)
 
       Tp = Split(Td,",");
-
+      Str wsf;
       np = Caz(Tp);
       for (i=0 ; i < np; i++) {
          wsf = Tp[i];
@@ -419,7 +421,7 @@ void doxictest(str prog, str a1)
 // variable length args ??
 
 
-void cart_xic(str aprg)
+void cart_xic(Str aprg)
 {
 
 //<<"%V $_proc  $aprg  \n"
@@ -453,10 +455,10 @@ void cart_xic(str aprg)
 } 
 //================================//
 
-void cart_xic(str aprg, str a1)
+void cart_xic(Str aprg, Str a1)
 {
 
-//<<"%V $_proc  $aprg $a1 \n"
+<<"%V $_proc  $aprg $a1 \n"
 
     if (fexist(aprg) != -1) {
 
@@ -489,7 +491,7 @@ void cart_xic(str aprg, str a1)
 //================================//
 
 
-void cart (str aprg)
+void cart (Str aprg)
 {
   int wlen;
   str tim;
@@ -543,8 +545,10 @@ void cart (str aprg)
 
 
   if (do_xic >0 ) {
-  //  str prg = aprg;
-    cart_xic("$aprg")
+    Str prg = aprg;
+    //prg->info(1)
+    //<<"%v $prg\n"
+    cart_xic(prg)
   }
 
 //<<"DONE $_proc cart\n"
@@ -556,7 +560,7 @@ void cart (str aprg)
 
 
 //proc cart (str aprg,  gen a1)
-void cart (str aprg,  str a1)
+void cart (Str aprg,  Str a1)
 {
 
 //<<"$_proc  $aprg $a1\n"
@@ -618,10 +622,10 @@ void cart (str aprg,  str a1)
 
 //str aa = a1
 
-str prg2 = aprg;
+    str prg2 = aprg;
 
     if (do_xic >0 ) {
-      cart_xic("$aprg","$a1")
+      cart_xic(prg2,"$a1")
     }
 
 //<<"DONE $_proc cart 2 args\n"
@@ -974,11 +978,14 @@ if ((do_all || do_try ) && (do_try != -1)) {
 
   if ((do_vops || do_all ) && (do_vops != -1)) {
 
+     RunDirTests("Reverse","reverse") ; // BUG needs more than one
+
+
      RunDirTests("Vops","vops")
 
      RunDirTests("Vector","vector")
 
-     RunDirTests("Reverse","reverse") ; // BUG needs more than one
+
 
 
   }
@@ -1358,12 +1365,14 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
     hdg("S-FUNCTIONS")
 
+    RunSFtests("Pow,Minof,Maxof,Ftest,Convert,Return,Dec2,Pow");
+
     RunSFtests("Fio,Sscan,Fscanf,Bscan,Cut,Cmp,Sel,Shift,Median,Findval,Lip");
 
 //============================
     RunSFtests("BubbleSort,Typeof,Variables,Trig,Caz,Sizeof,Limit,D2R,Cbrt,Fabs");
     RunSFtests("Round,Trunc,Wdata,Fscanv,Cmpsetv,Vrange,MDRange,Flipdim");
-    RunSFtests("Ftest,Convert,Return");
+
 //============================
 
     RunDirTests("Funcs","abs");

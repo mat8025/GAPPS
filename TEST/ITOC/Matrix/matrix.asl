@@ -12,16 +12,16 @@
 //***********************************************%
 
 
-include "debug"; 
+#include "debug"; 
    debugON(); 
    
    
-   filterFuncDebug(ALLOWALL_,"xxx");
-   filterFileDebug(ALLOWALL_,"yyy");
+//   filterFuncDebug(ALLOWALL_,"xxx");
+//   filterFileDebug(ALLOWALL_,"yyy");
 
 
-setdebug(1,@pline,@~trace,@keep); 
-chkIn()
+//setdebug(1,@pline,@~trace,@keep); 
+chkIn(_dblevel)
 
 int M[5][4]
 
