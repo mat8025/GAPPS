@@ -14,7 +14,7 @@
 ///  test rand functions
 ///
 
-/{/*
+/*
 
 Rand
 A= Rand(n,max)
@@ -31,7 +31,7 @@ returns a vector of n numbers in the range 0 to 1.0  --
 if seed is zero the time function is used as a seed
  
 
-/}*/
+*/
 
 
 R=Urand(10,0);
@@ -141,7 +141,7 @@ chkN(VF[0],0,EQU_);
 
 chkN(VF[15],0.0,GTE_);
 
-checkStage("urand")
+chkStage("urand")
 
 F = grand(100,1)
 <<"%(10,, ,\n)+6.5f$F \n"

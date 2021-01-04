@@ -43,7 +43,7 @@ pat = sele(C,p[0],p[1]-p[0])
 
 chkStr(pat,"(SUBSC")
 
-checkStage(" REGEX [^_]")
+chkStage(" REGEX [^_]")
 
 p = regex(D,"[^_]SUBSC")
 
@@ -131,6 +131,6 @@ chkStr(svpat[3], "(SUBSC_L")
 chkStr(svpat[4], "(")
 chkStr(svpat[5], "L")
 
-checkStage("SUB EXPRESSIONS")
+chkStage("SUB EXPRESSIONS")
 
 chkOut();

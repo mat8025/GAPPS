@@ -42,21 +42,21 @@ chkN(5,GREEN_)
 
 
 <<"%V $color  \n"
-<<"AND %V$AND_ \n"
+<<"AND %V $(AND_) \n"
 
   if ( (ocolor == ORANGE_ ) AND_ (color == GREEN_ )) {
 
-        <<"$ocolor   AND $color  is TRUE $TRUE_\n"
+        <<"$ocolor   AND $color  is TRUE $(TRUE_)\n"
      
 
-     CheckTrue(TRUE_)
+     chkT(TRUE_)
    }
 
 
   if ( (ocolor == ORANGE_ ) OR_ (color == RED_ )) {
 
         <<"$ocolor is  $(ORANGE_)  OR_ $color  is RED is  TRUE\n"
-        CheckTrue(TRUE_)
+        chkT(TRUE_)
    }
 
 

@@ -54,7 +54,7 @@ enum  days { MON = 1, TUE, WED, THU, FRI, SAT, SUN, FUN = 80 };
 
 <<"$typeof(MON))\n"
 
-exit()
+
 
 
 

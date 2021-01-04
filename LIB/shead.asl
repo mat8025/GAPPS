@@ -198,7 +198,7 @@ if (found_vers) {
    <<[A]" *  @author $author \n"
    <<[A]" *  @Copyright © RootMeanSquare  2010,$(date(8)) → \n"           
    <<[A]" * \n"
-   <<[A]" *  \\\\-----------------<v_&_v>--------------------------//  \n"                                  
+   <<[A]" *  \\\\-----------------<v_&_v>--------------------------//  \n"                          
    <<[A]" */ \n"
    //<<[A]"myScript = getScript();\n"
 fflush(A)

@@ -1,18 +1,18 @@
-#! /usr/local/GASP/bin/asl
 
-N = $2
-tt = $3
+
+N = atoi(_clarg[2])
+tt = atoi(_clarg[3])
 M = 2 *N
 
 <<"%V $tt $N \n"
 
-#{
+/*
 
 just some
  comments
 
 
-#}
+*/
 
 
 <<" $tt times table \n"
@@ -51,11 +51,6 @@ k++
 
 
 <<" DONE %V $k  $N $M \n"
-
-
-STOP!
-
-
 
 
 ///////////////////////////////

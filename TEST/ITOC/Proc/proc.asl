@@ -24,7 +24,7 @@ if (_dblevel >0) {
 chkIn(_dblevel)
 
 
-proc Foo(double a)
+double Foo(double a)
 {
  <<" IN $_proc $a \n"
 
@@ -41,7 +41,7 @@ proc Foo(double a)
 //===================
 
 
-proc Goo(real a)
+double Goo(real a)
 {
  <<" IN $_proc $a \n"
 //  real d;
@@ -97,7 +97,7 @@ y /= 2.0;
 gr=Goo(x)
 <<"$x $gr \n"
 
-crn(gr, (x*2))
+chkR(gr, (x*2))
 
 
 
@@ -107,7 +107,7 @@ gr=Goo(x)
 
  <<"%V  $gr $x \n"
 
-crn(gr, (x*2))
+chkR(gr, (x*2))
 
 
 
@@ -153,7 +153,7 @@ crn(gr, (x*2))
  t->info(1)
 <<"%V $x $y $t\n"
 
-  crn (t,y,6)
+  chkR (t,y,6)
 
 
 
@@ -193,7 +193,7 @@ x = -20.2;
 
 <<"$x $t \n"
 
-  crn (t,y,6)
+  chkR (t,y,6)
 
  x = -15.2
 
@@ -228,7 +228,7 @@ x = -20.2;
 
 <<"$x $t \n"
 
-  crn (t,y,6)
+  chkR (t,y,6)
 
 
 

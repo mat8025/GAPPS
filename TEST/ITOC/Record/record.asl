@@ -12,7 +12,8 @@
 //***********************************************%
 ///
 ///  Record
-///
+/// test record type
+/// each record is an Svar
 ///
 
 #include "debug.asl";
@@ -23,9 +24,8 @@ if (_dblevel >0) {
    debugON()
 }
 
-// test record type
-// each record is an Svar
-chkIn(1)
+
+chkIn(_dblevel)
 
 
 int ra = 2;

@@ -80,7 +80,7 @@ R->redimn()
 R->info(1)
  //  chkN(R[0],33);
 
- checkStage("RowSum")
+ chkStage("RowSum")
 
 
 
@@ -99,7 +99,7 @@ stageComment("ColSum Test -summing cols of magic square 34");
   }
 
 
- checkStage("ColSum")
+ chkStage("ColSum")
 
 //chkOut();
 //exit();

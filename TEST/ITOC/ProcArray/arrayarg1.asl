@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
 
-include "debug"
+#include "debug"
 
 <<"%V $_dblevel\n"
 
@@ -48,18 +48,40 @@ chkN(t,62);
 
 
 
-proc voo(int vec[])
+
+int voo(int vect[])
 {
-<<"$_proc IN $vec \n"
+<<"$_proc IN $vect \n"
+//Z->info(1)
+//<<"pa_arg2 %V$k\n"
+
+  
+  vect[1] = 47;
+<<"add 47 $vect \n"  
+  vect[2] = 79;
+<<"add Au $vect \n"
+
+  vect[3] = 80
+  vect[4] = 78
+  vect[5] = 50
+  z= vect[5]
+<<"OUT $vect \n"
+
+  return z;
+}
+//============================
+
+int roo(int vect[])
+{
+<<"$_proc IN $vect \n"
 Z->info(1)
 //<<"pa_arg2 %V$k\n"
 
-  vecp = vec;
-
+  vecp = vect;  // creates local copy of vect
   vecp[1] = 47;
-<<"add 47 $vec \n"  
+<<"add 47 $vect \n"  
   vecp[2] = 79;
-<<"add Au $vec \n"
+<<"add Au $vect \n"
 
   vecp[3] = 80
   vecp[4] = 78
@@ -67,25 +89,27 @@ Z->info(1)
 
 <<"OUT $vecp \n"
 
-<<"OUT orig entry $vec \n"
+<<"OUT orig entry $vect \n"
 
   return vecp
 }
 //============================
 
+/*
+proc zoo(int* vect)
+proc zoo(ptr int vect)
 
-proc zoo(ptr vec)
 {
 <<"$_proc IN $vec \n"
 
 //<<"pa_arg2 %V$k\n"
 
-  vecp = vec;
+  vecp = vect;
 
   vecp[1] = 47;
-<<"add 47 $vec \n"  
+<<"add 47 $vect \n"  
   vecp[2] = 79;
-<<"add 79 $vec \n"
+<<"add 79 $vect \n"
 
   vecp[3] = 80
   vecp[4] = 78
@@ -93,12 +117,12 @@ proc zoo(ptr vec)
 
 <<"OUT $vecp \n"
 
-<<"OUT orig entry $vec \n"
+<<"OUT orig entry $vect \n"
 
   return vecp
 }
 //============================
-
+*/
 
 
 
@@ -120,27 +144,47 @@ Z[6] = 28
 Z->info(1)
 //Z[0] = 37
 
-//Y = foo(&Z,3)  // FIXED -------- Y is now created correctly with the return vector 
+y = voo(Z) 
 
-Y = voo(Z)  // FIXED -------- Y is now created correctly with the return vector 
+<<"%V $y \n"
 
-
-<<"Y:: $Y\n"
-
-chkN(Z[0],36);
-
+chkN(Z[1],47);
+chkN(Z[5],50);
 chkN(Z[6],28);
 
 
-//Y= foo(&Z[2],4)  // TBD FIX it does not compute the offset - so proc operates on the third element in
-
-<<"after proc $Z\n"
 
 
+// reset
 
-chkN(Y[1],47)
+U = Vgen(INT_,10,0,1)
 
-chkN(Y[6],28)
+<<"pre proc call $U\n"
+
+
+ // TBD FIX it does not compute the offset - so proc operates on the third element in
+
+
+y = voo(&U[3]) 
+
+<<"after proc call $U\n"
+
+chkN(U[4],47);
+chkN(U[7],78);
+chkN(U[8],50);
+
+
+
+
+chkOut(); exit();
+
+
+
+//Y = foo(&Z,3)  // FIXED -------- Y is now created correctly with the return vector 
+
+ // FIXED ?-------- Y is now created correctly with the return vector 
+
+
 
 
 W = vgen(INT_,10,0,-1)
@@ -165,7 +209,7 @@ pv->info(1)
 
 //U= voo(&W[2],4)
 
-T= zoo(pv)
+//T= zoo(pv)
 
 
 // TBD FIX it does not compute the offset

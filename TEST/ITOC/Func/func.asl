@@ -396,7 +396,7 @@ Noo(a,b,c);
 SV=testargs(1,c,a,b)
 <<"%V$SV\n"
 ////////////////////////////
-checkStage("funcargs")
+chkStage("funcargs")
 
  pan pnum = 123456789.98765432100;
 

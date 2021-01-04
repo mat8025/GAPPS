@@ -1,4 +1,4 @@
-setdebug(1)
+
 
 
 //proc log_me( vec)
@@ -27,7 +27,7 @@ V = vgen(FLOAT_,N,0.1,1)
 
 <<"proc returned output is :-\n"
 <<"%6.2f$Z\n"
-stop!
+
  Z = V
 
   log_me(&Z[2])
@@ -35,3 +35,4 @@ stop!
 
 <<"proc returned output is :-\n"
 <<"%6.2f$Z\n"
+

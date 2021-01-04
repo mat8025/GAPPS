@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @script bitwise.asl 
-//* 
-//*  @comment test bit ops & | ~  
-//*  @release CARBON 
-//*  @vers 1.5 B Boron [asl 6.2.98 C-He-Cf]                              
-//*  @date Tue Dec 22 10:13:30 2020 020 
-//*  @cdate 1/1/2001 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script bitwise.asl 
+ * 
+ *  @comment test bit ops & | ~ 
+ *  @release CARBON 
+ *  @vers 1.6 C Carbon [asl 6.3.5 C-Li-B] 
+ *  @date Mon Jan  4 12:46:19 2021 
+ *  @cdate 1/1/2001 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                             
 myScript = getScript();
 
 <<"Running $myScript $_script\n"
@@ -56,9 +58,9 @@ chkN(m,7)
 
 k = 4
 
-m = ( j ^^ k )
+m = ( j ^ k )
 
-<<"$j ^^ $k BXOR_  $m\n"
+<<"$j ^ $k BXOR_  $m\n"
 
 
 chkN(m,1);
@@ -72,9 +74,9 @@ chkN(m,1);
 
 k = 1
 
-m = ( j ^^ k );
+m = ( j ^ k );
 
-<<"$j ^^ $k XOR  $m\n"
+<<"$j ^ $k XOR  $m\n"
 
 chkN(m,4)
 
@@ -170,9 +172,9 @@ chkN(m,7)
 
 kc = 4
 
-m = ( jc ^^ kc )
+m = ( jc ^ kc )
 
-<<"$jc ^^ $kc BXOR_  $m\n"
+<<"$jc ^ $kc BXOR_  $m\n"
 
 
 chkN(m,1);
@@ -186,9 +188,9 @@ chkN(m,1);
 
 kc = 1
 
-m = ( jc ^^ kc )
+m = ( jc ^ kc )
 
-<<"$jc ^^ $kc XOR  $m\n"
+<<"$jc ^ $kc XOR  $m\n"
 
 chkN(m,4)
 

@@ -19,7 +19,43 @@ debugON()
 
 chkIn(_dblevel)
 
-Str s = "hi there";
+void pstr( str val)
+{
+
+<<"val <|$val|>\n"
+
+!!"echo $val"
+
+}
+
+
+Str s = "h";
+
+<<"X<|$s|>\n"
+
+s->info(1)
+
+n=slen(s)
+
+<<"%V$n $s\n"
+<<"echo <|$s|>\n"
+!!"echo $s"
+
+pstr(s);
+
+pstr("A");
+
+str s2="OK?"
+
+pstr(s2);
+
+!!"echo $s2"
+
+pstr("B");
+
+exit()
+
+s = "hi there";
 
 s->info(1)
 

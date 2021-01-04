@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @script if.asl 
-//* 
-//*  @comment test ifnest 
-//*  @release CARBON 
-//*  @vers 1.8 O Oxygen [asl 6.2.98 C-He-Cf]                             
-//*  @date Mon Dec 21 20:46:11 2020                           
-//*  @cdate Sat Apr 18 21:48:17 2020 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script if.asl 
+ * 
+ *  @comment test ifnest 
+ *  @release CARBON 
+ *  @vers 1.9 F Fluorine [asl 6.3.6 C-Li-C] 
+ *  @date Mon Jan  4 13:02:16 2021 
+ *  @cdate Sat Apr 18 21:48:17 2020 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                                              
 
 #include "debug"
 
@@ -287,7 +289,7 @@ bad = 0
   if (N == 1 )  chkN(N,1)
 
 
- checkStage("if-0")
+ chkStage("if-0")
 
 
 
@@ -307,8 +309,8 @@ ICAO_SA[2][3] = 18
 <<"%I $ICAO_SA[2][3] \n"
 
 
- CheckFNum(ICAO_SA[2][3],18,6)
- CheckFNum(ICAO_SA[0][3],7,6)
+ chkR(ICAO_SA[2][3],18,6)
+ chkRICAO_SA[0][3],7,6)
 
 
  i = 1
@@ -324,8 +326,8 @@ ICAO_SA[k][i] = 73
 <<"%I $ICAO_SA[k][i] \n"
 
 
-CheckFNum(ICAO_SA[i][k],69,6)
-CheckFNum(ICAO_SA[k][i],73,6)
+chkR(ICAO_SA[i][k],69,6)
+chkR(ICAO_SA[k][i],73,6)
 
 y = k * 2 
 
@@ -337,7 +339,7 @@ ICAO_SA[k][i] = (k * 2)
 
 <<"$ICAO_SA\n"
 
-CheckFNum(ICAO_SA[k][i],4,6)
+chkR(ICAO_SA[k][i],4,6)
 
 ICAO_SA[k][i] = 5
 
@@ -359,7 +361,7 @@ ICAO_SA[k][i+1] = j
 
 <<"$ICAO_SA\n"
 
-CheckFNum(ICAO_SA[k][i+1],787,3)
+chkR(ICAO_SA[k][i+1],787,3)
 
 
 ICAO_SA[k][i] = k
@@ -415,7 +417,7 @@ i = 6
 //FIXME <<"%4r $ICAO_SA \n"
 
 <<" %(\t->\s,,\s<-\n)$ICAO_SA \n"
-checkStage("if 1")
+chkStage("if 1")
 
 
 
@@ -477,7 +479,7 @@ chkN(0,n)
 
 chkN(1,n)
 
-checkStage (" if - 5")
+chkStage (" if - 5")
 
 //%*********************************************** 
 //*  @script if6.asl 
@@ -624,7 +626,7 @@ checkStage (" if - 5")
   }
 
 
-CheckStage("if -6")
+chkStage("if -6")
 
 
 
@@ -690,7 +692,7 @@ CheckStage("if -6")
    chkN(jgt,3); 
    
    <<"%V $jlt $jeq $jgt\n"; 
-   checkStage("if - nest"); 
+   chkStage("if - nest"); 
    
 //%*********************************************** 
 //*  @script if_fold.asl 
@@ -862,7 +864,7 @@ c = 0;
  }
 
 
-checkStage("if - fold")
+chkStage("if - fold")
 
 ///
 ///
@@ -926,7 +928,7 @@ chkN(k,360)
 
 <<"$k\n"
 
-checkStage("logic chain")
+chkStage("logic chain")
 
 
 

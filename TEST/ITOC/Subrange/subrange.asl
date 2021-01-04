@@ -88,7 +88,7 @@ checknum(I[30],30)
 checknum(I[31],80)
 <<"$I\n"
 
-checkStage("subrange")
+chkStage("subrange")
 
 
 int L[24];
@@ -157,7 +157,7 @@ L[5:8] = 74;
 
 chkN(L[5],74)
 
-checkStage("subrange2")
+chkStage("subrange2")
 
 
 

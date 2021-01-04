@@ -171,3 +171,31 @@ sops.asl                 1.4	Mon Dec 28 10:26:19 2020 SQ XIC check
 dynv.asl                 1.3	Mon Dec 28 21:55:45 2020 #include
 debug.asl                1.13	Tue Dec 29 09:20:36 2020 debugAllowErrors
 nsc.asl                  1.3	Wed Dec 30 16:56:00 2020 allowerrors
+proc-ret.asl             1.5	Thu Dec 31 11:20:00 2020 xxx
+proc-ret.asl             1.4	Thu Dec 31 11:23:42 2020 xx
+proc-ret.asl             1.4	Thu Dec 31 11:24:54 2020 xxx
+proc-ret.asl             1.4	Thu Dec 31 11:35:21 2020 xxx
+proc-ret.asl             1.4	Thu Dec 31 11:40:05 2020 xxx
+proc-ret.asl             1.4	Thu Dec 31 11:42:55 2020 xyz
+proc-ret.asl             1.4	Thu Dec 31 11:51:39 2020 xxx
+proc-ret.asl             1.4	Thu Dec 31 11:54:53 2020 
+proc-ret.asl             1.4	Thu Dec 31 11:56:32 2020 
+proc-ret.asl             1.4	Thu Dec 31 11:58:30 2020 
+proc-ret.asl             1.4	Thu Dec 31 12:01:51 2020 vvv
+proc-ret.asl             1.3	Thu Dec 31 12:52:36 2020 xxx
+proc-ret.asl             1.4	Thu Dec 31 12:56:03 2020 
+proc-ret.asl             1.4	Thu Dec 31 13:23:07 2020 xxx
+proc-ret.asl             1.4	Thu Dec 31 13:24:20 2020 xyz
+proc-ret.asl             1.4	Thu Dec 31 13:25:35 2020 xxx
+proc-ret.asl             1.4	Thu Dec 31 13:26:50 2020 str return
+proc-ret.asl             1.5	Thu Dec 31 13:29:59 2020 str ret
+proc-ret.asl             1.6	Thu Dec 31 13:34:29 2020 Str return
+proc-arg.asl             1.6	Thu Dec 31 13:53:24 2020 debug
+splice.asl               1.2	Mon Jan  4 10:19:20 2021 chkN
+strsplice.asl            1.2	Mon Jan  4 11:50:10 2021 svar/str
+sstr.asl                 1.2	Mon Jan  4 11:58:11 2021 x
+sops.asl                 1.5	Mon Jan  4 12:06:24 2021 chkN not chki
+bxor.asl                 1.2	Mon Jan  4 12:40:53 2021 ^^ for pow
+bitwise.asl              1.6	Mon Jan  4 12:46:19 2021 use ^ for XOR , ^^ for pow
+if.asl                   1.9	Mon Jan  4 13:02:16 2021 use chkR
+mops.asl                 1.2	Mon Jan  4 14:15:49 2021 ues chkStage

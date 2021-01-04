@@ -20,8 +20,22 @@ if (_dblevel >0) {
 
 chkIn(_dblevel)
 
+svar S;
 
-Svar S
+  S->info(1);
+
+
+Svar _HV
+
+_HV->info(1)
+
+_HV->table("HASH",50,2) //
+
+
+_HV->info(1)
+
+
+
 
 tsz = 30;
 nplace = 2

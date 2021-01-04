@@ -152,7 +152,7 @@
       chkN(fval,d[i]); 
      }
 
-checkStage("num vecs - get value")
+chkStage("num vecs - get value")
 chkOut()
 
 //================================//
@@ -182,7 +182,7 @@ DIS= Split(DI)
 
 <<"$DIS[0]\n"
 
-checkStage("num vecs - set value")
+chkStage("num vecs - set value")
 
 chkOut(); 
 exit()

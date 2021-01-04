@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @script sops.asl 
-//* 
-//*  @comment test str ops 
-//*  @release CARBON 
-//*  @vers 1.4 Be Beryllium [asl 6.3.1 C-Li-H]                           
-//*  @date Mon Dec 28 10:26:19 2020 0 
-//*  @cdate Sun Apr 12 12:28:34 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script sops.asl 
+ * 
+ *  @comment test str ops 
+ *  @release CARBON 
+ *  @vers 1.5 B Boron [asl 6.3.5 C-Li-B] 
+ *  @date Mon Jan  4 12:06:24 2021 
+ *  @cdate Sun Apr 12 12:28:34 2020 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                           
 
 #include "debug"
 
@@ -21,8 +23,10 @@ if (_dblevel >0) {
 chkIn(_dblevel)
 
  S = "hey how are you?"
+
 <<"$S\n"
-      col= split(S)
+
+ col= split(S)
 
 <<"$col \n"
 
@@ -109,9 +113,9 @@ ac= E[1]
 
 
 
-chki(E[0],72);
-chki(E[1],97);
-chki(E[1],'a');
+chkN(E[0],72);
+chkN(E[1],97);
+chkN(E[1],'a');
 
 <<"%c$E[0] \n"
 <<"%d$E[1] \n"
@@ -147,27 +151,27 @@ chkStage("Scat: multiple cats")
 
 <<"$wt\n"
 
- chkstr(wt,"a_winters-tail")
+ chkStr(wt,"a_winters-tail")
 
  wh= scut(w1,2)
 
 <<"$wh\n"
 
- chkstr(wh,"winters-tail.cpp")
+ chkStr(wh,"winters-tail.cpp")
 
 
  wm= scut(w1,2,9)
 
 <<"$wm\n"
 
- chkstr(wm,"a_tail.cpp")
+ chkStr(wm,"a_tail.cpp")
 
 
  wm= scut(w1,-9,-5)
 
 <<"<|$wm|>\n"
 
- chkstr(wm,"a_winters.cpp")
+ chkStr(wm,"a_winters.cpp")
 
  S = "una larga noche"
 
@@ -412,7 +416,7 @@ ok = 0
    }
 
 
-chki(1,ok)
+chkN(1,ok)
 
      ok = 0
    if (A @= "wow") {
@@ -424,7 +428,7 @@ chki(1,ok)
      ok  =1
    }
 
- tok=chki(ok,1)
+ tok=chkN(ok,1)
 
 // Scmp 
 
@@ -439,14 +443,14 @@ ok= scmp(w1,w2)
 
 <<"%V$ok\n"
 
-chki(ok,1)
+chkN(ok,1)
 
 
 diff= strcmp(w1,w2)
 
 <<"%V$diff\n"
 
-chki(diff,0)
+chkN(diff,0)
 
 
 w3="maybenot"
@@ -455,7 +459,7 @@ ok= scmp(w1,w3)
 
 <<"%V$ok\n"
 
-chki(ok,0)
+chkN(ok,0)
 
 diff= strcmp(w1,w3)
 
@@ -464,7 +468,7 @@ if (diff != 0) {
   ok = 1
 }
 
-chki(ok,1)
+chkN(ok,1)
 
 
 
@@ -473,7 +477,7 @@ ok= scmp(w1,w3,5)
 
 <<"%V$ok\n"
 
-chki(ok,1)
+chkN(ok,1)
 
 w4="Maybe"
 
@@ -481,14 +485,14 @@ ok= scmp(w1,w4)
 
 <<"%V$ok\n"
 
-chki(ok,0)
+chkN(ok,0)
 
 
 ok= scmp(w1,w4,0,0)
 
 <<"%V$ok\n"
 
-chki(ok,1)
+chkN(ok,1)
 
 
 s1="Now is the time for all Good men all the time"

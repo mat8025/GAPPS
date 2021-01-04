@@ -3,7 +3,7 @@
 setdebug(1,"pline")
 proc ask()
 {
-   ok=checkStage();
+   ok=chkStage();
    <<"%6.2f$ok\n"
   if (ok[0] < 100.0) {
   ans=iread();

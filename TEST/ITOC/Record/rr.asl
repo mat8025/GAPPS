@@ -261,7 +261,7 @@ SRSC = R[3][1]
 <<"%V $SRSC \n"
 SRSC->info(1)
 
-  checkStage()
+  chkStage()
   checkProgress("How Good")
   chkOut()
 

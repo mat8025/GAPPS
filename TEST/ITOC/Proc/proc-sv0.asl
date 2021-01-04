@@ -1,7 +1,7 @@
 
 chkIn()
 
-proc poo()
+void poo()
 {
 
 // int i = 4; // works
@@ -46,5 +46,5 @@ j++
    chkN(j,5)
    chkOut()
 
-;
+
 

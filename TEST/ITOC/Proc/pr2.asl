@@ -53,7 +53,7 @@ Y= foo(&Z[2], 31)
 
 chkN(Y[0],28)
 
-checkStage()
+chkStage()
 
 
 exit()
@@ -76,7 +76,7 @@ chkN(Y[0],28)
 chkN(Z[0],0);
 
 
-checkStage()
+chkStage()
 
 
 exit()

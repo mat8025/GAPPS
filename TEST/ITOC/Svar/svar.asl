@@ -95,7 +95,7 @@ if (_dblevel >0) {
    chkN(sz,6); 
    
 
-   checkStage("svar array ele");
+   chkStage("svar array ele");
 
 
 //%*********************************************** 
@@ -125,7 +125,7 @@ chkStr(S[1],"1")
 chkStr(S[2],"2")
 chkStr(S[3],"3")
 
-checkStage ("assign via Split")
+chkStage ("assign via Split")
 
 VF = vgen(FLOAT_,10,1,0.5)
 <<"%V $VF\n"
@@ -142,7 +142,7 @@ chkStr(T[1],"1.50")
 chkStr(T[2],"2.00")
 chkStr(T[3],"2.50")
 
-checkStage ("assign via Split print")
+chkStage ("assign via Split print")
 
 
 
@@ -173,7 +173,7 @@ chkStr(S[1],"47")
 chkStr(S[2],"79")
 
 
-checkStage ("lh range assign")
+chkStage ("lh range assign")
 
 
 
@@ -191,7 +191,7 @@ chkStr(S[1],"47")
 chkStr(S[3],"79")
 chkStr(S[5],"80")
 
-checkStage ("lh range stride 2 assign")
+chkStage ("lh range stride 2 assign")
 
 
 
@@ -202,7 +202,7 @@ S[1:4:] = R[1:4]
 
 chkStr(S[1],"79")
 chkStr(S[2],"80")
-checkStage ("lh range assign and rh range")
+chkStage ("lh range assign and rh range")
 
 
 S= Split("$IV")
@@ -215,7 +215,7 @@ chkStr(S[3],"81")
 
 <<"$S\n"
 
-checkStage ("lh range assign and rh range -both stride 2")
+chkStage ("lh range assign and rh range -both stride 2")
 
 
 
@@ -560,7 +560,7 @@ chkN(IV3[0], 79)
  }
 
 
-checkStage("declare")
+chkStage("declare")
 /////////////////////////  svar proc ///////////////////////////
 
 ///
@@ -759,7 +759,7 @@ Turnpt  Tp;
  Tp->Set(P);
  
 
-checkStage("Proc")
+chkStage("Proc")
 //==============================//
 svar Opts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,",",");
 
@@ -805,7 +805,7 @@ svar Popts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,in
 
 chkStr("array",Popts[1]);
 
-checkStage("Split")
+chkStage("Split")
 chkOut();
 
 

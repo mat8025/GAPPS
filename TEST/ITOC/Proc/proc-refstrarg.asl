@@ -26,7 +26,7 @@ Str pstrarg (str v, str u)
  m = v;
  v->info(1)
  u->info(1)
-
+ ans= query("args are correct?");
  v = "hola"
  u = "que tal?"
 
@@ -41,17 +41,24 @@ Str pstrarg (str v, str u)
 
 <<"%V $s $t \n"
 
- w = pstrarg(&s,&t)
+  s->info(1)
+  t->info(1)
+
+ w = pstrarg(s,t)
 
 
 <<"%V $s $t $w\n"
 
- chkStr(s,"hola")
+ chkStr(s,"hi")
+
+
 
 
   s = "buenos"
   t = "dias"
 
+  s->info(1)
+  t->info(1)
 
 <<"%V $s $t \n"
 
@@ -63,10 +70,12 @@ Str pstrarg (str v, str u)
  chkStr(s,"hola")
 
 
-
   s = "buenas"
   t = "tardes"
 
+  s->info(1)
+  t->info(1)
+  
 
 <<"%V $s $t \n"
 

@@ -1,3 +1,23 @@
+/* 
+ *  @script opxeq.asl 
+ * 
+ *  @comment test sel op  += *= ++ 
+ *  @release CARBON 
+ *  @vers 1.1 H Hydrogen [asl 6.3.6 C-Li-C]                                 
+ *  @date Mon Jan  4 14:31:06 2021 
+ *  @cdate 1/1/2005 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+
+
+
+///
+///
+///
+
 
 chkIn()
 int n = 3
@@ -57,7 +77,9 @@ int n = 3
 
 <<"%V $n $m \n"
 
-   k = 45
+int k = 45
+
+k->info(1)
 
 <<" $k \n"
 
@@ -73,13 +95,18 @@ int n = 3
 
 <<" $k \n"
 
-
+k->info(1)
 
    n = 5
-   k /= n
+   k /= n;  // k should stay int type!
+
+k->info(1)
 
 <<" $k $n\n"
  chkN(k,9)
- chkN(n,5)
+
+n->info(1)
+chkR(n,5.0)
+
+
 chkOut()
-stop!

@@ -1,17 +1,30 @@
+/* 
+ *  @script packb.asl 
+ * 
+ *  @comment test packb SF 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.3 C-Li-Li]                                 
+ *  @date Thu Dec 31 08:43:37 2020 
+ *  @cdate 1/1/2010 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2020 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
 
-/{
+/*
 packb
 packb (UCV,[swapbytes],"I,F,C,C,L",i,f,uc,c,l)
 will take a uchar vec and format string "I,F,U,C,L"
 and following args/constants convert according to the format specifier
 and then pack them into the uchar vector according to sizeof of the format specifier
 if optional second argument is 1, then pairs of bytes are swapped
-/}
+*/
 
 
 proc ask()
 {
-   ok=checkStage();
+   ok=chkStage();
    <<"%6.2f$ok\n"
   if (ok[0] < 100.0) {
   ans=iread();
@@ -25,7 +38,7 @@ proc ask()
 
 
 
-setdebug(1,"pline","trace","~stderr")
+//setdebug(1,"pline","trace","~stderr")
 
 
 

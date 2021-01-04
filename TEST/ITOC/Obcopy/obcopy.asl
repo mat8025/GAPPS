@@ -93,7 +93,7 @@ x->info(1)
 chkN(x,3)
 
 
-checkStage("Simple var arg : value and Ref")
+chkStage("Simple var arg : value and Ref")
 
 
 

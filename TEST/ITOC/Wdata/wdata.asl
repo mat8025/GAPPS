@@ -14,7 +14,7 @@
 ///
 ///
 
-/{/*
+/*
  writes data vectors and scalars e.g. wdata(Vec1,Vec2[0:10:2],a,b) 
 
  search for wdata 
@@ -29,12 +29,12 @@
  The list of variables can include scalars.
  A string constant e.g. w_data(A,"ABCD") is written as a sequence of chars.
  (see rdata,wcdata)
-/}*/
+*/
 
 
 
 
-include "debug.asl"
+#include "debug.asl"
 debugON()
 
 chkIn()

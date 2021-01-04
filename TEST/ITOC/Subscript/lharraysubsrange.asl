@@ -4,7 +4,7 @@
 
 proc ask()
 {
-   ok=checkStage();
+   ok=chkStage();
    <<"%6.2f$ok\n"
    ans=iread(); 
 }

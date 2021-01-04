@@ -16,8 +16,12 @@ myScript = getScript()
 // test asl first and second stage (xic)
 //
 <<"TESTING\n"
-#include "debug.asl"
+#include "debug"
+
+
 #include "hv.asl"
+
+
 debugOFF()
 sdb(1,@~pline,@~trace)
 
@@ -114,7 +118,7 @@ void runModule (int wmod)
 {
 
    mret =0;
-<<"$_proc  $wmod  $mret \n"
+//<<"$_proc  $wmod  $mret \n"
 
    
    if (do_all && (wmod != -1)) {
@@ -208,17 +212,22 @@ Str pgname;
       Tp = Split(Tl,",");
 
       np = Caz(Tp);
-      <<[Dbf]"$Td $Tl $np\n"
-      for (i=0 ; i <np; i++) {
+      
+     // <<[2]"%V $Td $Tl $np\n"
+      
+      for (i=0 ; i < np; i++) {
+      //<<"$i  $np <|$Tp[i]|>\n"
          if (!(Tp[i] @= "")) {
           //if (do_query) {
           //    query(Tp[i])
           // }
 	    pgname = Tp[i];
-//	    pgname->info(1)
+	    //pgname->info(1)
 	    //<<"$pgname \n"
-            cart(pgname);
-	   }
+         if (slen(pgname) > 0) {
+          cart(pgname);
+         }
+      }
 	   
 
       }
@@ -348,7 +357,7 @@ int cbh = 0
 
 void doxictest(str prog)
 {
-//<<"IN $prog\n"
+//<<"IN $_proc $prog \n"
 
  if (f_exist("${prog}") != -1) {
 
@@ -361,6 +370,9 @@ void doxictest(str prog)
         if (do_query) {
 <<"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx $prog  \n  "
          ans = query("$prog run it?")
+	 if (ans @="q") {
+          exit()
+         }
          }
 
        !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -x $prog   > /dev/null "
@@ -400,6 +412,9 @@ void doxictest(str prog, str a1)
      if (do_query) {
 <<"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx $prog $a1 "
        query("$prog run it?")
+       	 if (ans @="q") {
+          exit()
+         }
          }
 	 
        !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -x $prog $a1  > /dev/null"
@@ -424,7 +439,7 @@ void doxictest(str prog, str a1)
 void cart_xic(Str aprg)
 {
 
-//<<"%V $_proc  $aprg  \n"
+<<"%V $_proc  <|$aprg|>  \n"
 
     if (fexist(aprg) != -1) {
 
@@ -458,7 +473,7 @@ void cart_xic(Str aprg)
 void cart_xic(Str aprg, Str a1)
 {
 
-<<"%V $_proc  $aprg $a1 \n"
+//<<"%V $_proc  $aprg $a1 \n"
 
     if (fexist(aprg) != -1) {
 
@@ -495,6 +510,7 @@ void cart (Str aprg)
 {
   int wlen;
   str tim;
+  str prg ="xx";
 //<<"%V $_proc $aprg    \n"  
 //  in_pargc = _pargc;
   
@@ -513,7 +529,12 @@ void cart (Str aprg)
 <<"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl \n"
            //ans=query("$aprg run it?")
 	   ans= i_read("$aprg run it?")
+	 if (ans @="q") {
+          exit()
+         }
            }
+
+    //<<"going to run $aprg\n"
       !!"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl > /dev/null   2>&1"
 
       if (f_exist("${aprg}.tst") > 0) {
@@ -545,9 +566,11 @@ void cart (Str aprg)
 
 
   if (do_xic >0 ) {
-    Str prg = aprg;
-    //prg->info(1)
-    //<<"%v $prg\n"
+    <<"<|$aprg|>\n"
+     prg = aprg;
+    aprg->info(1)    
+    prg->info(1)
+    <<"<|$prg|>\n"
     cart_xic(prg)
   }
 
@@ -563,7 +586,7 @@ void cart (Str aprg)
 void cart (Str aprg,  Str a1)
 {
 
-//<<"$_proc  $aprg $a1\n"
+<<"$_proc  $aprg $a1\n"
   int wlen;
   str tim;
   
@@ -913,7 +936,7 @@ if ((do_bit || do_all) && (do_bit != -1)) {
 
   if ((do_logic || do_all) && (do_logic != -1)) {
 
-   RunDirTests("Logic","logic,logic_ops,logic_def")
+   RunDirTests("Logic","logic,logic-ops,logic-def")
 
   }
 
@@ -986,9 +1009,8 @@ if ((do_all || do_try ) && (do_try != -1)) {
      RunDirTests("Vector","vector")
 
 
-
-
   }
+
 
 
 //////////////////////////////////////////////////
@@ -997,6 +1019,7 @@ if ((do_all || do_try ) && (do_try != -1)) {
       //  need more str ops tests than this!
 
   RunDirTests("Sops","sops");
+  
   RunDirTests("Splice","splice,strsplice");
  
   // make this a pattern OP
@@ -1215,9 +1238,9 @@ if ((do_all || do_unary ) && (do_unary != -1)) {
 /////////////////////////////////////////
 if ((do_all || do_proc ) && (do_proc != -1)) {
 
-  RunDirTests("Proc","proc,proc_declare,proc_ret,procret0,procarg,proc_sv0");
+  RunDirTests("Proc","proc,proc-declare,proc-ret,proc-arg,proc-sv0");
   
-  RunDirTests("Proc","proc_str_ret,procrefarg,proc_ra,proc_refstrarg,proc-loc-main-var");
+  RunDirTests("Proc","proc-str-ret,proc-refarg,proc-ra,proc-refstrarg,proc-loc-main-var");
 
   cart("proc-var-define", 10)
 
@@ -1365,7 +1388,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
     hdg("S-FUNCTIONS")
 
-    RunSFtests("Pow,Minof,Maxof,Ftest,Convert,Return,Dec2,Pow");
+    RunSFtests("Pow,Minof,Maxof,Ftest,Convert,Return,Dec2,Pincdec");
 
     RunSFtests("Fio,Sscan,Fscanf,Bscan,Cut,Cmp,Sel,Shift,Median,Findval,Lip");
 

@@ -167,7 +167,7 @@ S->info(1)
      chkStr(S[5],"merci")     
 
 
-   checkStage("str vecs - get value")
+   chkStage("str vecs - get value")
 
    chkOut(); 
    

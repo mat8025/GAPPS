@@ -1,7 +1,7 @@
 
 chkIn()
 
-proc sumarg ( v, u)
+int sumarg (int v, int  u)
 {
 <<"args in %V  $v $u \n"
 
@@ -28,39 +28,27 @@ int m = 3
 <<"Scalar args \n"
 <<"calling %V $n $m \n"
 
-  k = sumarg(&n,&m)
+  k = sumarg(n,m)
 
 <<"post %V $n $m \n"
 
 <<"%V proc returns $k \n"
 
-  chkN(n,3)
-
-  if (n == 3) {
-<<" correct !\n"
-  }
-  else {
-<<" badness !\n"
-  }
-
-  chkN(m,6)
-
-  if (m == 6) {
-<<" correct !\n"
-  }
-  else {
-<<" badness !\n"
-  }
+  chkN(n,2)
+  chkN(m,3)
 
   chkN(k,5)
 
-  if (k == 5) {
-<<" correct !\n"
-  }
-  else {
-<<" badness !\n"
-  }
+  k = sumarg(&n,&m)
 
+  chkN(n,3)
+  chkN(m,6)
+
+  chkN(k,5)
+
+chkout()
+
+exit()
 
 
  n = 7
@@ -100,7 +88,6 @@ k = sumarg(&n,m)
 
  chkOut()
 
-stop!
 
 //////////// TBD ////////////
 // BUG XIC version  -- won't find ref argument

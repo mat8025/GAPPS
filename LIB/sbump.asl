@@ -23,14 +23,18 @@
    elestr = pt(pmin);
    str ele =" ";
    ele = spat(elestr,",")
-  //<<"$ele $(typeof(ele))\n";
-  //<<"$ele";
-   return ele;
-   
+  <<"$ele $(typeof(ele))\n";
+  <<"$ele\n";
+   //return ele;
   }
   //======================
   int A = -1;
-  
+
+comment ="";
+release ="";
+cdate ="";
+
+
   
   // if script found
   // then  read current vers and  bump number and update date
@@ -62,7 +66,7 @@
   // should be maj.min e.g 1.1 ,6.1, ... limits 1 to 100  
   }
   
-Str cvers;  
+Str cvers ="0.0";  
   
   
   file= fexist(srcfile,ISFILE_,0);
@@ -72,7 +76,7 @@ Str cvers;
   dir= fexist(srcfile,ISDIR_,0);
   
   //<<[2]" DIR $dir \n"
-  Author = "Mark Terry"
+  author = "Mark Terry"
   fname = srcfile
   release = "CARBON"
   
@@ -131,20 +135,24 @@ Svar L;
 
 L->info(1)
 
+   for (j=0; j<15; j++) {
+     T = readline(A);
+     where = ftell(A)
+<<"$j $where line is $T \n"
 
+   }
 
+     found_vers =0;
 
   fseek(A,0,0);
 
 //   tsz = Caz(T)
 
-   for (i = 0; i < 8;i++) {
+   for (i = 0; i < 12;i++) {
    
    T = readline(A);
    
 //<<[2]"$i line is $T \n"
-
-
 
    where = ftell(A)
    L = Split(T);
@@ -157,23 +165,37 @@ L->info(1)
      found_vers =1;
      cvers = L[2];
      <<[2]"$where $cvers $L[2]\n"
-     break;
    }
+    else if (scmp(L[1],"@cdate")) {
+     cdate = "$L[2::]";
    }
-   found_where = where;
+    else if (scmp(L[1],"@comment")) {
+     comment = "$L[2::]";
+   }
+    else if (scmp(L[1],"@release")) {
+      release = "$L[2::]";
+   }
+    else if (scmp(L[1],"@author")) {
+      author = "$L[2::]";
+   }         
+   }
+   //found_where = where;
   }
  
 
  if (found_vers) {
  
- nele = vers2ele(cvers)
- <<[2]"found_vers $cvers $nele\n"
+  vers2ele(cvers)
+// nele = 7;
+
+<<[2]"found_vers $cvers \n"
  }
  else {
- <<[2]" does not have vers number in header\n")
+ <<[2]" does not have vers number in header\n";
  exit();
  }
  
+
  if (set_vers) {
  // set to _clarg[2] - if correct format
   vers2ele(new_vers)
@@ -192,29 +214,74 @@ L->info(1)
    exit();
    }
  }
-
- 
  
   date = date();
   maj_ele = ptsym(pmaj);
   min_ele = ptsym(pmin);
-  min_name = ptname(pmin);
+   min_name = ptname(pmin);
 
 
 
  <<[2]"///  @vers $release ${pmaj}.$pmin ${maj_ele}.$min_ele $min_name    \n"
 
-  fseek(A,found_where,0)
 
    vers=" @vers ${pmaj}.$pmin $min_ele $min_name [asl $(getversion())]"
    vlen = slen(vers);
 
-   Pad = nsc(67-vlen," ")
-<<[2]"vlen $vlen <|$Pad|>\n"      
-<<[A]"//* $vers ${Pad}\n"
-<<[A]"//*  @date $date "
+//   Pad = nsc(67-vlen," ")
+//<<[2]"vlen $vlen <|$Pad|>\n"
+
+
+where = ftell(A);
+
+j= 0;
+
+
+
+
+
+
+  fseek(A,0,0)
+   <<[A]"/* \n"
+   <<[A]" *  @script $fname \n"
+   <<[A]" * \n"
+   <<[A]" *  @comment $comment \n"
+   <<[A]" *  @release $release \n"   
+   <<[A]" * $vers \n"
+   <<[A]" *  @date $date \n"
+   <<[A]" *  @cdate $cdate \n"      
+   <<[A]" *  @author $author \n"
+   <<[A]" *  @Copyright © RootMeanSquare  2010,$(date(8)) → \n"           
+   <<[A]" * \n"
+   <<[A]" *  \\\\-----------------<v_&_v>--------------------------//  \n" ;
+   <<[A]" */ \n"
+   
   fflush(A);
   
+   here = ftell(A);
+   for (j=0; j<3; j++) {
+   T = readline(A);
+   
+
+   white_out =0;
+   where = ftell(A)
+//<<[2]"$j $where line is $T \n"
+//L = Split(T);
+  if (scmp(T,"//****",5)) {
+      white_out = 1;
+      <<"need to clean this line $T\n";
+      break;
+      }
+   }
+
+  if (white_out) {
+    fseek(A,here,0)
+    nsp = where - here;
+    for (i=0;i<nsp-1;i++) {
+    <<[A]" ";
+    }
+
+   }
 
 cf(A);
 
@@ -244,15 +311,15 @@ cf(A)
  // so bump minor if over 100 then bump maj and min to 1
  
  
-  for (i = 4; i < tsz;i++) {
-   ln=T[i]
-  <<"$ln"
-  }
+//  for (i = 4; i < tsz;i++) {
+//   ln=T[i]
+//  <<"$ln"
+//  }
 
 
 
 
-/{/*////////////////////////////////  TBD ///////////////////////////
+/*////////////////////////////////  TBD ///////////////////////////
 
     MFN fix for missing //* --- done ?
 
@@ -263,4 +330,4 @@ cf(A)
 
 
 
-/}*/
+*/

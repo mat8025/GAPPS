@@ -127,7 +127,7 @@ sdb(1,@trace)
      chkN(fval,d[i]); 
      }
 
-checkStage("num vecs - get value")
+chkStage("num vecs - get value")
 
 
 //================================//
@@ -158,7 +158,7 @@ DIS= Split(DI)
 
 <<"$DIS[0]\n"
 
-checkStage("num vecs - set value")
+chkStage("num vecs - set value")
 
 
 ///////////////////////////////////////////////////////////////
@@ -261,7 +261,7 @@ checkStage("num vecs - set value")
      chkStr(S[5],"merci")     
 
 
-   checkStage("str vecs - get value")
+   chkStage("str vecs - get value")
 
    chkOut(); 
    

@@ -80,6 +80,19 @@ k = 2
 
    chkN(a, (cnt * tt))
 
+A=ofr("for.asl")
+
+jc = 0;
+for (j=0; j<3; j++) {
+   T = readline(A);
+
+   where = ftell(A)
+<<"$j $where line is $T \n"
+    jc++;
+   }
+
+
+chkN(jc,3)
 
    chkOut()
 

@@ -81,7 +81,7 @@ FVG = vgen(FLOAT_,10,0,1)
 chkR(FVG[2],2,6)
 
 
-checkStage("float")
+chkStage("float")
 
 
 
@@ -267,7 +267,7 @@ chkN(UVG[2],2)
 
 
 
-CheckStage("char")
+chkStage("char")
 
 
 uint UI[10]
@@ -299,7 +299,7 @@ UV = vgen(LONG_,10,0,1)
 
 chkN(UV[2],2)
 
-CheckStage("long")
+chkStage("long")
 
 /////////////////////////////////////////
 
@@ -338,7 +338,7 @@ chkR(p20,787.0,5)
 chkR(P[20],787.0,5)
 chkR(P[30],429.0,5)
 
-CheckStage("Pan")
+chkStage("Pan")
 
 /////////////////////////////////
 
@@ -362,7 +362,7 @@ UVG = vgen(SHORT_,10,0,1)
 
 chkN(UVG[2],2)
 
-CheckStage("short")
+chkStage("short")
 
 //%*********************************************** 
 //*  @script real.asl 
@@ -425,7 +425,7 @@ RVG = vgen(REAL_,10,0,1)
 
 chkR(RVG[2],2,6)
 
-CheckStage("real")
+chkStage("real")
 
 
 
@@ -476,7 +476,7 @@ ul = l -1;
 <<"$s ulong $ul $u $(typeof(u))\n"
 
 chkN(u,ul)
-checkStage("atou,l,f")
+chkStage("atou,l,f")
 
 sa ="-1.0"
 
@@ -491,7 +491,7 @@ p=  atop(2.345);
 chkR(p,2.345,5)
 
 
-checkStage("atoi")
+chkStage("atoi")
 
 
 

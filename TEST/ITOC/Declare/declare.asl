@@ -489,7 +489,7 @@ char a = 'G';
  chkN(dv[0], 'G' )
 
 
- checkStage()
+ chkStage()
 
 <<"%V $dv  \n"
 
@@ -565,7 +565,7 @@ for (k=0;k<sz;k++) {
 }
 
 
- checkStage("char")
+ chkStage("char")
  
 
 

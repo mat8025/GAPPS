@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @script mops.asl 
-//* 
-//*  @comment test some math SF  
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                    
-//*  @date Sun Apr 12 13:35:08 2020 
-//*  @cdate Sun Apr 12 13:35:08 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script mops.asl 
+ * 
+ *  @comment test some math SF 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.6 C-Li-C] 
+ *  @date Mon Jan  4 14:15:49 2021 
+ *  @cdate Sun Apr 12 13:35:08 2020 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                            
 
 ///    Mops -- test some SF mops
 
@@ -152,7 +154,7 @@ short zx[4]
 
 <<"%v $(Caz(xyv)) \n"
 
-checkStage("xyassign")
+chkStage("xyassign")
 N = 27
 
 a = cbrt(N)
@@ -214,7 +216,7 @@ I = Atoi(A[2])
 
 chkN(sz,0)
 
-checkStage("atof")
+chkStage("atof")
 
 hs = dec2hex(47806)
 <<"$hs\n"
@@ -226,6 +228,6 @@ i= hex2dec("babe")
 chkN(i,47806)
 
 
-checkStage("dec2hex")
+chkStage("dec2hex")
 
 chkOut()

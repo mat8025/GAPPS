@@ -171,7 +171,7 @@ proc swapR (int& x, int& y)
 
 <<"%V$k $m  value\n"
 
-checkStage()
+chkStage()
 
 
 <<" via main \n"
@@ -201,7 +201,7 @@ int b = 9;
 
 <<"%V$a $b \n"
 
- //checkStage()
+ //chkStage()
 
 
  swapP(&a,&b)
@@ -211,7 +211,7 @@ int b = 9;
 
 <<"%V$a $b \n"
 
- checkStage("ptrs")
+ chkStage("ptrs")
  
 
 a = 7
@@ -277,7 +277,7 @@ a->info(1)
 
  chkN(a,11)
 
-checkStage()
+chkStage()
 
 
 float r = 3.0;

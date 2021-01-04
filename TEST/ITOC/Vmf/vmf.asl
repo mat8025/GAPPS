@@ -96,7 +96,7 @@ chkR(F[3],9,6)
 F[3]->cut()
 
 <<" %6.1f $F[::] \n"
-checkStage("cut")
+chkStage("cut")
 
 }
 
@@ -114,7 +114,7 @@ FS[3]->obid()
 id = FS[3]->obid()
 
 <<" $id \n"
-checkStage("obid")
+chkStage("obid")
 
 //=============================/
 if (do_white || do_all) {
@@ -190,7 +190,7 @@ checkstr(T[8],ns)
 k=scmp(T[8],ns)
 <<"%V$len $len2 $k\n"
 
-checkStage("dewhite")
+chkStage("dewhite")
 }
 //===========================//
 
@@ -248,7 +248,7 @@ rotate(IV,1,5)
 <<"$IV\n"
 
 chkN(IV[0],16)
-checkStage("rotate")
+chkStage("rotate")
 }
 
 //=================//
@@ -329,7 +329,7 @@ TS->Sort()
 chkStr(TS[0],"AAA",3)
 
 
-checkStage("substitute")
+chkStage("substitute")
 }
 
 if (do_trim || do_all) {
@@ -399,7 +399,7 @@ checkstr(S[3],"")
 
 
 
-checkStage("Trim")
+chkStage("Trim")
 }
 
 if (do_all || do_prune) {
@@ -463,7 +463,7 @@ checkstr(TP[5],"12345")
 checkstr(TP[6],"12345")
 checkstr(TP[7],"123456789")
 
-checkStage("Prune")
+chkStage("Prune")
 }
 
 if (do_all || do_bubblesort) {
@@ -528,7 +528,7 @@ I->bubbleSort()
 chkN(I[1],1)
 chkN(I[29],29)
 
-checkStage("bubblesort")
+chkStage("bubblesort")
 }
 //======================//
 if (do_all || do_rand) {
@@ -647,7 +647,7 @@ if (do_all || do_rand) {
    <<"%V $HITS\n"
    <<"$Winners\n"; 
 
-checkStage("rand")
+chkStage("rand")
 
 }
 
@@ -857,7 +857,7 @@ ab = Cab(B)
 <<"%V $d \n"
 /}*/
 
-checkStage("caz")
+chkStage("caz")
 }
 
 chkOut()

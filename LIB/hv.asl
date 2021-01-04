@@ -22,7 +22,12 @@
 
 Svar _HV
 
+_HV->info(1)
+
 _HV->table("HASH",50,2) //
+
+_HV->info(1)
+
 
 int hv_found =0;
 
@@ -34,16 +39,18 @@ void hv_func()
   int sz;
 
 for (wln = 1; wln <= 40; wln++) {
+
   fl = getcodeln(wln,0);
 
 
  if (! (fl @= "")) {
  L=split(fl)
 
-sz=Caz(L)
+ sz=Caz(L)
 
 if (sz > 1) {
- if (scmp(L[0],"//",2)) {
+
+if (scmp(L[0],"//",2)) {
 
 if (!(L[1] @= "")) {
 
@@ -61,7 +68,7 @@ if (!(L[1] @= "")) {
     }
 
     index=_HV->addkeyval(L[1],_val); // returns index
-////<<"$index $L[1] $_val \n"
+ <<"$index $L[1] $_val \n"
   }
   }
   }

@@ -244,7 +244,7 @@ class Building {
 
   chkN (nf,16)
 
-  checkStage();
+  chkStage();
 
 
 /////////

@@ -90,7 +90,7 @@
    
    <<"Array Name return vec $Y\n";
    
-   checkStage("ArrayName");
+   chkStage("ArrayName");
    
 ///////////////  &Array ////////////////////////////////////////
    
@@ -123,7 +123,7 @@
    
    chkN(Z[8],28);
    
-   checkStage("&Array");
+   chkStage("&Array");
    !b; 
    
 //iread()
@@ -159,7 +159,7 @@
    chkN(Z[3],47);
    chkN(Z[8],28);
    
-   checkStage("&Array[2]");
+   chkStage("&Array[2]");
    
    <<"return Y vec $Y\n";
 //iread()
@@ -167,7 +167,7 @@
    
    chkN(Y2[6],28);
    
-   checkStage("ArrayReturn");
+   chkStage("ArrayReturn");
    
    
    chkOut();

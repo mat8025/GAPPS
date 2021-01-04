@@ -1,3 +1,16 @@
+/* 
+ *  @script sstr.asl 
+ * 
+ *  @comment test sstr search in str SF 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.5 C-Li-B] 
+ *  @date Mon Jan  4 11:58:11 2021 
+ *  @cdate 1/1/2017 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
 ///
 ///  sstr
 ///
@@ -6,7 +19,7 @@ vers = "1.3"
 
 <<"%V$vers\n"
 
-chkIn()
+chkIn(_dblevel)
 
 str A = "keep going until world tour"
 str B = "unti"

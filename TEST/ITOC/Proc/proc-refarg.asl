@@ -24,7 +24,7 @@ if (_dblevel >0) {
 
 
 chkIn(_dblevel)
-
+/*
 proc sumarg (ptr v, ptr u)
 {
 <<"args in %V  $v $u \n"
@@ -62,9 +62,30 @@ u->info(1)
 
 }
 //=======================//
+*/
 
+proc sumarg (int v, int u)
+{
+<<"args in %V  $v $u \n"
+float z;
+   z = v + u;
 
-proc sumarg2 (int v, int u)
+<<"%V$v + $u = $z\n"
+
+   v++;
+<<" changing first arg to %V$v\n"
+
+   u = u * 2;
+
+<<" changing second arg to %V$u \n"
+
+<<"args out %V$v $u $z\n"
+
+  return z;
+}
+//=======================//
+
+proc sumarg (float v, float u)
 {
 <<"args in %V  $v $u \n"
 float z;
@@ -111,13 +132,8 @@ p = 0;
  
 <<"OUT %V $n $m $p \n"
 
-checknum(n,3)
-checknum(m,6)
-
-
-
-
-
+chkN(n,3)
+chkN(m,6)
 
 
 float x = 13.3;
@@ -140,11 +156,12 @@ chkR(w,40.0,6)
 
 
 
-chkOut ()
-exit()
+
 
 
 <<"Scalar args \n"
+ n = 2;
+ m = 3;
 <<"calling %V $n $m \n"
 
 int k = 0;
@@ -155,7 +172,7 @@ int k = 0;
 
 <<"%V proc returns $k \n"
 
-  chkN(n,3)
+   chkN(n,3)
 
   chkN(m,6)
 
@@ -223,9 +240,86 @@ k = sumarg(&n,m)
 <<"%V $n $m $k \n"
 
 
+//%*********************************************** 
+//*  @script proc_refarg.asl 
+//* 
+//*  @comment test ref/val arg proc call 
+//*  @release CARBON 
+//*  @vers 1.9 F Fluorine [asl 6.2.45 C-He-Rh]                             
+//*  @date Sat May  9 16:15:25 2020 
+//*  @cdate Sat May  9 16:07:07 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+
+Proc Hoo( int a, int b)
+{
+<<"$_proc  $a $b\n"
+a->info(1)
+   a = a +1;
+b->info(1)
+   b = b +1;
+   c = a + b;
+c->info(1)
+  return c;
+
+}
+
+int n = 2;
+int m = 3;
+
+
+  r= Hoo(n,m)
+
+<<"%V $r $n $m\n"
+
+
+ chkR (r,7)
+
+  r= Hoo(m,n)
+
+<<"%V $r $n $m\n"
+
+
+  r= Hoo(&n,m)
+
+<<"%V $r $n $m\n"
+
+ chkR (r,7)
+ chkR (n,3)
 
 
 
+  r= Hoo(n,&m)
+
+<<"%V $r $n $m\n"
+
+ chkR (r,8)
+ chkR (n,3)
+ chkR (m,4)
+
+
+
+  r= Hoo(&n,&m)
+
+<<"%V $r $n $m\n"
+
+ chkR (r,9)
+ chkR (n,4)
+ chkR (m,5)
+
+
+chkOut()
+
+
+///////////////// TBD //////////////////
+// should work? if call as Hoo(x,y) or Hoo(&x,&y)
+// difference is &x makes it a ref argument so it can be modified inside of proc
+// else modification does not carry to calling scope
+//
+// xic version fails - fix
+//
  chkOut()
 
 

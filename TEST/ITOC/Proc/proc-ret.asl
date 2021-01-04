@@ -1,3 +1,121 @@
+/* 
+ *  @script proc-ret.asl 
+ * 
+ *  @comment test return type vs proc args 
+ *  @release CARBON 
+ *  @vers 1.6 C Carbon [asl 6.3.3 C-Li-Li] 
+ *  @date Thu Dec 31 13:34:29 2020 
+ *  @cdate Sat May 9 10:35:36 2020 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2020 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+ 
+                                                                        
+myScript = getScript();
+
+
+chkIn(_dblevel)
+
+Str say()
+  {
+   <<"$_proc hey there I exist\n"
+   isay="hey hey"
+   <<"$isay $(typeof(isay))\n"
+   return isay;
+  }
+
+ws = say()
+
+
+<<"$ws $(typeof(ws))\n"
+
+chkStr(ws,"hey hey");
+
+
+real Foo(real x,real  y)
+{
+
+   z = x * y
+
+   return z
+}
+
+
+int Foo(int x,int  y)
+{
+
+   z = x * y
+
+   return z
+}
+
+Str vers2ele(str vstr)
+  {
+  //<<"%V $vstr\n"
+   pmaj = atoi(spat(vstr,".",-1))
+   <<[2]"$pmaj $(typeof(pmaj)) $(ptsym(pmaj)) \n"  
+   pmin = atoi(spat(vstr,".",1))
+
+//<<[2]"$pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
+   elestr = pt(pmin);
+   str ele =" ";
+   ele = spat(elestr,",")
+  <<"$ele $(typeof(ele))\n";
+  <<"$ele\n";
+   return ele;
+  }
+  
+
+
+  a = Foo(2,3)
+ chkR(a,6)
+a->info(1)
+
+  b = Foo(4.0,3.0)
+ chkR(b,12)
+b->info(1)
+
+<<"%v $b \n"
+
+
+int a1 = 2;
+int a2 = 4;
+
+  c = Foo(a1,a2)
+ chkR(c,8)
+c->info(1)
+
+<<"%v $b \n"
+
+
+
+   j = 1
+   n = 12
+   while (j < 4) {
+
+      a = Foo(j,n)
+
+
+<<" $j * $n  = $a\n"
+    j++
+   }
+
+int pmaj;
+int pmin;
+
+cvers ="1.54"
+
+nele = vers2ele(cvers);
+
+
+<<"%I $nele\n"
+
+nele->info(1)
+chkStr(nele,"Xeon")
+
+
 //%*********************************************** 
 //*  @script procret0.asl 
 //* 
@@ -11,19 +129,9 @@
 //* 
 //***********************************************%
 
-#include "debug"
-
-<<"%V $_dblevel\n"
-
-if (_dblevel >0) {
-   debugON()
-}
 
 
-
-chkIn(_dblevel)
-
-int foo(real a) 
+int foo1(real a) 
 {
  ret = 0;
 <<" $_proc foo $a \n"
@@ -45,7 +153,33 @@ int foo(real a)
   return ret;
 
 }
+
 ////////////////////////////////////////
+int foo1(int a) 
+{
+ ret = 0;
+<<" $_proc foo $a \n"
+
+  if (a > 1) {
+<<" $a > 1 should be returning 1 !\n"
+    ret =  1;    // FIX?? needs a ; statement terminator
+  }
+
+  else if (a < 0) {
+<<" $a < 0 should be returning -1 !\n"
+
+    ret =  -1;
+
+  }
+  else {
+<<" $a <= 1 should be returning 0 !\n"
+  }
+  return ret;
+
+}
+
+
+
 
 int foo2(real a) 
 {
@@ -108,7 +242,7 @@ int ret = 0;
 
     return ret;
 }
-
+//========================
 void goo(ptr a)
 //proc goo(int a)
 {
@@ -183,16 +317,16 @@ int roo(ptr a)
 }
 //==================================//
 
-in = 2
+   in = 2
 
-   c = foo(in)
+   c = foo1(in)
 
 <<" $in $c \n"
 
    chkN(c,1)
 
 
-   c = foo(in) * 2
+   c = foo1(in) * 2
 
    <<" $in $c \n"
 
@@ -201,7 +335,7 @@ in = 2
 
 in = 1
 
-   c = foo(in)
+   c = foo1(in)
 
 <<" $in $c \n"
 
@@ -209,13 +343,13 @@ in = 1
 
  in = 3
 
- c = foo(in)
+ c = foo1(in)
 
 <<" $in out $c \n"
 
    chkN(c,1)
 
- c = foo(in) * 6
+ c = foo1(in) * 6
 
 <<" $in $c \n"
 
@@ -223,7 +357,7 @@ in = 1
 
   in = -4
 
- c = foo(in) * 6
+ c = foo1(in) * 6
 
 <<" $in $c \n"
 
@@ -277,7 +411,7 @@ in = 1
 
       in = 3
 
-      c = foo(in) * (j + 1)
+      c = foo1(in) * (j + 1)
 
       <<" $in  returned * 3  $c \n"
 
@@ -313,7 +447,8 @@ in = 1
 
 
 
-   chkOut()
+
+chkOut();
 
 
 

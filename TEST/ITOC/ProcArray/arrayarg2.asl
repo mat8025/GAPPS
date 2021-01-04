@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
 
-include "debug"
+#include "debug"
 
 <<"%V $_dblevel\n"
 
@@ -21,10 +21,6 @@ if (_dblevel >0) {
    debugON()
 }
   
-filterFuncDebug(REJECTALL_,"xxx");
-filterFuncDebug(ALLOW_,"process_args","process_args_ptr",\
-   "store_r_to_array","store_r_to_siv","storeCopyVar","storeSiv");
-//filterFuncDebug(REJECT_,"checkProcFunc");
 
 chkIn(_dblevel);
 
@@ -41,33 +37,25 @@ aaa: <<"aaa label !\n"
 
 <<"after break point !\n"
 
-   proc Foo(int vec[],int k)
+   proc Foo(int vect[],int k)
    {
-     vec->info(1); 
+   
+     vect->info(1); 
      k->info(1);
      Z->info(1) ;
      
-<<"IN %V $vec \n"; 
+<<"IN %V $vect \n"; 
 <<"IN  %V $Z\n"
 
-      vec[1] = 47; 
-      vec[2] = 79;
-      vec[3] = 80;      
-      vec->info(1); 
+      vect[1] = 47; 
+      vect[2] = 79;
+      vect[3] = 80;      
+      vect->info(1); 
 
-
-/{/*     
-
-     vec[3] = 80
-     vec[4] = 78
-     vec[5] = 50
-/}*/
-
-
-     <<"OUT %V $vec \n";
+     <<"OUT %V $vect \n";
      <<"OUT %V $Z\n"
 
-     rvec = vec;
+     rvec = vect;
      <<"OUT %V $rvec \n"; 
      return rvec; 
      }
@@ -97,7 +85,7 @@ aaa: <<"aaa label !\n"
    
    <<"Array Name return vec $Y\n"; 
    
-   checkStage("ArrayName"); 
+   chkStage("ArrayName"); 
 
 ///////////////  &Array ////////////////////////////////////////
    
@@ -156,7 +144,7 @@ aaa: <<"aaa label !\n"
 
    chkN(Z[9],28);
    
-   checkStage("&Array[3]"); 
+   chkStage("&Array[3]"); 
 
    <<"return Y2 vec $Y2\n";
    

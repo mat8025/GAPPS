@@ -5,7 +5,7 @@ chkIn(_dblevel)
 
 int G[2][2];
 
-svar T[2][2];
+//svar T[2][2];
 
 
 
@@ -20,7 +20,7 @@ chkN(G[0][0],3)
 <<" $G[0][0] \n"
 
 
-F[2][3];
+int F[2][3];
 
 // F = { {7,1,2,3 }, { 8,9,10,12} } 
 
@@ -29,8 +29,9 @@ sz = Caz(F)
 nd = Cab(F)
 <<" $sz , $nd "
 
-<<" $F[2] \n"
-
+<<" $F[1][0] \n"
+<<" $F[1][::] \n"
+//<<" $F[0] \n" // crash --- make it warn
 //Svar SV;
 
 Svar SV = { "say", "what", "now "}

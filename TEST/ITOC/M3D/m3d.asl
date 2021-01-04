@@ -103,7 +103,7 @@ b = Cab(M)
     val++
  }
 
-checkStage()
+chkStage()
 
 
 b = Cab(M)
@@ -232,7 +232,7 @@ for (j = 0; j < 2; j++) {
 
 }
 
-checkStage()
+chkStage()
 
 
 <<"0,0 :: $M[0][0][::] \n"

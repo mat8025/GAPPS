@@ -54,11 +54,11 @@ chkN (T[1],0.375)
 <<"$(Caz(T)) $(Cab(T))\n"
 
 
-checkStage("vop")
+chkStage("vop")
 
 proc ask()
 {
-   ok=checkStage();
+   ok=chkStage();
    <<"%6.2f$ok\n"
   if (ok[0] < 100.0) {
   ans=iread();
@@ -185,7 +185,7 @@ chkN (Y[2],2)
 
 chkN (Y[9],9)
 
-checkStage("opeq")
+chkStage("opeq")
 
 
 
@@ -259,7 +259,7 @@ checkStage("opeq")
    R=vvcomp(S,V,3)
    <<"$R\n"
 
-  checkStage("vecrange")
+  chkStage("vecrange")
 
 //%*********************************************** 
 //*  @script veccat.asl 
@@ -315,7 +315,7 @@ vec5 = vec1 @+  vec2 @+ vec3 ;
 
 chkN (vec5[1],2)
 
-checkStage("veccat")
+chkStage("veccat")
 
 //%*********************************************** 
 //*  @script veclhrange.asl 
@@ -360,7 +360,7 @@ chkN (IV2[2],4)
 chkN (IV2[3],6)
 chkN (IV2[4],4)
 
-checkStage("self op * on lhrange  ")
+chkStage("self op * on lhrange  ")
 
 
 <<"$IV2 \n"
@@ -368,7 +368,7 @@ checkStage("self op * on lhrange  ")
 
 IV2[1:8:2] +=7 ;
 
-checkStage("self op + on lhrange  ")
+chkStage("self op + on lhrange  ")
 
 <<"$IV2 \n"
 chkN (IV2[0],0)
@@ -383,7 +383,7 @@ chkN (IV3[0],9)
 chkN (IV3[1],4)
 chkN (IV3[2],13)
 
-checkStage("RH range inserted correctly to new vec")
+chkStage("RH range inserted correctly to new vec")
 <<"$IV3 \n"
 
 //  what of range overruns current array sizes
@@ -397,7 +397,7 @@ chkN (IV3[9],13)
 
 <<"$IV3\n"
 IV3->Info(1);
-checkStage("RH range inserted correctly to LH range")
+chkStage("RH range inserted correctly to LH range")
 
 
 //int IV4[>5] = IV3
@@ -436,7 +436,7 @@ chkN (IV5[i++],23)
 //13 17 18 23 17 23
 
 
-checkStage("lhrange")
+chkStage("lhrange")
 
 
 /{/*

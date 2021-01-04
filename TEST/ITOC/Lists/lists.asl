@@ -104,7 +104,7 @@ ww= L1[i]
 <<"$i $ww\n"
 }
 
-checkStage("list - element access")
+chkStage("list - element access")
 
 
 L2 = ( "The", "colors", "of" ,"the", "rainbow", "are", "red", "orange", "yellow", "green", "blue" ,"indigo", "violet" )

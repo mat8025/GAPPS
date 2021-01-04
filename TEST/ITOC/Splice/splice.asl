@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @script splice.asl 
-//* 
-//*  @comment test splice(insert) vectors 
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                    
-//*  @date Fri May  1 08:49:45 2020 
-//*  @cdate Fri May  1 08:49:45 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script splice.asl 
+ * 
+ *  @comment test splice(insert) vectors 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.5 C-Li-B] 
+ *  @date Mon Jan  4 10:19:20 2021 
+ *  @cdate Fri May 1 08:49:45 2020 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                            
 
  //Splices one vector into another at the specified index.
  
@@ -55,7 +57,7 @@ J = vSplice(I,K,4)
 <<"%V$K \n"
 <<"%V$J \n"
 
-checkNUm(J[4],10)
+chkN(J[4],10)
 
 
 J = vSplice(I,vReverse(K),4)

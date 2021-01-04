@@ -11,24 +11,85 @@
 //* 
 //***********************************************%
 
-#include "debug";
+//#include "debug";
 
-
-
-if (_dblevel >0) {
-   debugON()
-}
-
-//filterFuncDebug(ALLOW_,"Setup","opera_f","Cmath","storeScalar","storeSiv","Pluseq","l_3",\
-//"l_1","l_2","l_4","l1_store","l1_opera","resolveResult","Variable","setLho","setRho","findSiv",\
-//"checkProcVars","FindVar","Get","Number","primitive","primitive_store_var","getExp");
-
-//filterFuncDebug(ALLOWALL_,"Setup")
+//if (_dblevel >0) {
+//   debugON()
+//}
 
 
 chkIn(_dblevel)
 
+//void Refarg (int& v)
 
+
+void Refarg (int v)
+{
+<<"IN %V  $v $n \n"
+   v->info(1)
+  // v++; // fail
+      v = v + 1; // ok
+    //v = v + 5; // ok
+  <<"  %V $v  $n\n"   
+   //  v *= 2; // fail
+     v =  v * 2; // fail
+<<"  %V $v $n\n"        
+     v++;
+  <<"OUT  %V $v  $n\n"   
+}
+//=====================
+
+int n = 3;
+
+<<"%V pre $n  \n"
+
+ Refarg(n);
+
+
+chkN(n,3)
+
+<<"%V post value call $n  \n"
+
+
+
+
+
+
+
+
+// reset
+   n = 3;
+
+<<"%V pre $n  \n"
+
+  Refarg(&n);
+
+
+<<"%V post reference $n  \n"
+
+
+
+  p = &n
+
+p->info(1)
+
+  q = $p;
+
+q->info(1)
+
+
+
+<<"%V  post $n  \n"
+chkN(n,9)
+chkOut()
+
+exit();
+
+
+
+///////////////////////////////////////////////////////////
+/*
+TBD  - check ptr arg
 void refarg (ptr v)
 {
 
@@ -40,7 +101,7 @@ void refarg (ptr v)
    pre_v->info(1)
 
 //   $v++;
-sdb(1,@trace)
+//sdb(1,@trace)
 
 <<"%V $n\n"
 n->info(1)
@@ -116,3 +177,4 @@ w->info(1)
 
 chkOut()
 
+*/

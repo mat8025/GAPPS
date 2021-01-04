@@ -1,22 +1,24 @@
-//%*********************************************** 
-//*  @script procarg.asl 
-//* 
-//*  @comment test some usage of proc args 
-//*  @release CARBON 
-//*  @vers 1.5 B Boron                                                       
-//*  @date Sat May  9 14:53:10 2020 
-//*  @cdate Sat May  9 14:53:10 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script proc-arg.asl 
+ * 
+ *  @comment test some usage of proc args 
+ *  @release CARBON 
+ *  @vers 1.6 C Carbon [asl 6.3.3 C-Li-Li] 
+ *  @date Thu Dec 31 13:53:24 2020 
+ *  @cdate Sat May 9 14:53:10 2020 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2020 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                           
 myScript = getScript();
 
 chkIn(_dblevel)
 
 
 
-proc sumarg(real a, real b)
+real sumarg(real a, real b)
 {
    c = a+ b
 
@@ -64,7 +66,7 @@ proc Foo(str vstr)
 }
 //------------------------------
 
-chkIn()
+
 
 
  I = Igen(10,0,1)
@@ -137,10 +139,10 @@ ssa = sen[0]
 
 
 
-   A=ofr("../Proc/procarg.asl")
+   A=ofr("../Proc/proc-arg.asl")
 
    if (A == -1) {
-     A=ofr("procarg.asl")
+     A=ofr("proc-arg.asl")
    }
 
    k = 0;

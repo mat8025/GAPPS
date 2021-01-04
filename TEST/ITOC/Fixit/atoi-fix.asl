@@ -39,7 +39,7 @@ p=  atop(2.345);
 
 <<"$sa $p $(typeof(p))\n"
 chkR(p,2.345,5)
-checkStage("atoi")
+chkStage("atoi")
 
 
 
