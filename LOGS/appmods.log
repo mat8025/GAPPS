@@ -199,3 +199,4 @@ bxor.asl                 1.2	Mon Jan  4 12:40:53 2021 ^^ for pow
 bitwise.asl              1.6	Mon Jan  4 12:46:19 2021 use ^ for XOR , ^^ for pow
 if.asl                   1.9	Mon Jan  4 13:02:16 2021 use chkR
 mops.asl                 1.2	Mon Jan  4 14:15:49 2021 ues chkStage
+wdata.asl                1.3	Mon Jan  4 16:53:38 2021 >10

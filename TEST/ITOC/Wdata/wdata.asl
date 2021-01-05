@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @script wdata.asl 
-//* 
-//*  @comment writes data as binary 
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                  
-//*  @date Sun Mar 31 17:33:55 2019 
-//*  @cdate Sun Mar 31 17:33:55 2019 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script wdata.asl 
+ * 
+ *  @comment writes data as binary 
+ *  @release CARBON 
+ *  @vers 1.3 Li Lithium [asl 6.3.6 C-Li-C] 
+ *  @date Mon Jan  4 16:53:38 2021 
+ *  @cdate Sun Mar 31 17:33:55 2019 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                      
 ///
 ///
 ///
@@ -62,7 +64,7 @@ cf(A)
 
 A=ofr("vec.dat")
 
-float FV[+10];
+float FV[>10];
 FV=rdata(A,INT_)
 
 <<"$FV\n"

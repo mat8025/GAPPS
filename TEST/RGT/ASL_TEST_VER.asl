@@ -198,7 +198,7 @@ void Run2Test(str td)
 }
 //===============================
 
-
+Str pgname;
 void RunDirTests(str Td, str Tl )
 {
 //<<"$Td  $Tl\n"
@@ -206,7 +206,7 @@ void RunDirTests(str Td, str Tl )
 
    //Tl->info(1)
 //ri=Tl->info()
-Str pgname;
+
       Run2Test(Td);
       Tl->DeWhite()
       Tp = Split(Tl,",");
@@ -223,16 +223,16 @@ Str pgname;
           // }
 	    pgname = Tp[i];
 	    //pgname->info(1)
-	    //<<"$pgname \n"
+	    <<"$pgname \n"
          if (slen(pgname) > 0) {
           cart(pgname);
          }
       }
-	   
-
       }
 }
 //====================//
+
+Str wsf;
 
 void RunSFtests(str Td)
 {
@@ -240,13 +240,14 @@ void RunSFtests(str Td)
 // goto dir then run cart(fabs) or cart(cmp)
 
       Tp = Split(Td,",");
-      Str wsf;
-      np = Caz(Tp);
+   //   Str wsf;
+     //  wsf="xx";
+       np = Caz(Tp);
       for (i=0 ; i < np; i++) {
          wsf = Tp[i];
 
         //if (do_query)  query(Tp[i]);    
-
+  <<"%V $wsf\n"
          Run2Test(wsf);
 	 wsf = slower(wsf);
          cart(wsf);
@@ -439,7 +440,7 @@ void doxictest(str prog, str a1)
 void cart_xic(Str aprg)
 {
 
-<<"%V $_proc  <|$aprg|>  \n"
+//<<"%V $_proc  <|$aprg|>  \n"
 
     if (fexist(aprg) != -1) {
 
@@ -566,12 +567,15 @@ void cart (Str aprg)
 
 
   if (do_xic >0 ) {
-    <<"<|$aprg|>\n"
-     prg = aprg;
-    aprg->info(1)    
-    prg->info(1)
-    <<"<|$prg|>\n"
-    cart_xic(prg)
+    //<<"<|$aprg|>\n"
+//  TBF  
+    prg = aprg;
+     
+    //aprg->info(1)    
+    //prg->info(1)
+//   <<"<|$prg|>\n"
+  //  cart_xic(prg)
+    cart_xic(aprg)
   }
 
 //<<"DONE $_proc cart\n"
@@ -645,10 +649,10 @@ void cart (Str aprg,  Str a1)
 
 //str aa = a1
 
-    str prg2 = aprg;
+    //str prg2 = aprg;
 
     if (do_xic >0 ) {
-      cart_xic(prg2,"$a1")
+      cart_xic(aprg,"$a1")
     }
 
 //<<"DONE $_proc cart 2 args\n"
@@ -1024,7 +1028,7 @@ if ((do_all || do_try ) && (do_try != -1)) {
  
   // make this a pattern OP
  // RunSFtests("Date,Sele,Sstr,Spat,Regex,Str,Split"); // TBC
-  RunSFtests("Date,Sele,Sstr,Spat,Str,Split,Regex,Fread");
+  RunSFtests("Date,Sele,Sstr,Spat,Str,Split,Regex,Fread,Trunc,Tranf");
 
 
 //  Run2Test("Splice")
@@ -1345,9 +1349,10 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
     hdg("PAN")
 
-    RunDirTests("Pan","pan,pan-loop-test,pancmp,panarray")
+    //RunDirTests("Pan","pan,pan-loop-test,pancmp,panarray")
+    RunDirTests("Pan","pan,pancmp,panarray")
 
-    cart("derange",100)
+   // cart("derange","100") ; /// TBF
  }
 
 
@@ -1388,9 +1393,11 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
     hdg("S-FUNCTIONS")
 
+    RunSFtests("Fio,Sscan,Fscanf,Bscan,Cut,Cmp,Sel,Shift,Median,Findval,Lip,Pow,Minof,Maxof,Ftest,Convert,Return,Dec2,Pincdec");
+
     RunSFtests("Pow,Minof,Maxof,Ftest,Convert,Return,Dec2,Pincdec");
 
-    RunSFtests("Fio,Sscan,Fscanf,Bscan,Cut,Cmp,Sel,Shift,Median,Findval,Lip");
+
 
 //============================
     RunSFtests("BubbleSort,Typeof,Variables,Trig,Caz,Sizeof,Limit,D2R,Cbrt,Fabs");
@@ -1513,6 +1520,8 @@ if (lsz >= 1) {
 <<[Opf]"\n$lsz modules   crashed! \n"
 <<[Tlogf]"\n$lsz modules   crashed! \n"
 
+
+   CrashList->info(1);
    CrashList->Sort()
 
 <<" crashlist $lsz   \n"

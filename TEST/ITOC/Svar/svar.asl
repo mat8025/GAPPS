@@ -568,7 +568,7 @@ chkStage("declare")
 /// 
 
 
-proc pS (svar SV)
+void pSv (svar SV)
 {
 
 static int k = 1;
@@ -607,11 +607,15 @@ S = Split("how did we get here")
 
 <<"$(typeof(S)) $S[::]\n"
 
-pS(S)
+pSv(S)
 
-T = Split("again how is this happening")
+TS2 = Split("again how is this happening")
 
-pS(T)
+TS2->info(1)
+
+
+pSv(TS2)
+
 
 //===========
 
@@ -665,6 +669,7 @@ proc getDeg (str the_ang)
 //===============================//
 
 //======================
+/*
 class Turnpt 
  {
 
@@ -748,7 +753,7 @@ class Turnpt
 
  P=split("Jamestwn    	jmt	40,07.00,N	105,24.00,W	8470	0/0	_	T ");
  P->info(1)
- pS(P)
+ pSv(P)
 
 Turnpt  Tp;
  
@@ -757,7 +762,7 @@ Turnpt  Tp;
  P= Split("AngelFire    	AXX	36,24.75,N	105,18.00,W	8383	17/35	122.8	TA")
  
  Tp->Set(P);
- 
+ */
 
 chkStage("Proc")
 //==============================//

@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
 
-//include "debug.asl"
+
 #include "debug.asl"
 
 debugON();
@@ -20,7 +20,7 @@ chkIn()
 
 double f= atan(1.0) * 4.0
 
-#include "fooi"
+
 
 i = Trunc(f);
 
