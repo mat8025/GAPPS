@@ -11,9 +11,10 @@
 //* 
 //***********************************************%
 
-include "debug"
-debugON()
-checkIn()
+#include "debug"
+
+
+chkIn(_dblevel)
 
 // if no supplied  file use this file as default
 
@@ -53,7 +54,7 @@ BC=split(S[0])
 
 <<"BN $BC[3]\n"
 
-exit()
+
 
 <<"$S\n"
 nlines = Caz(S);
@@ -65,24 +66,6 @@ nlines = Caz(S);
   }
 
 
-
-
-
-
-comment= _clarg[1]
-
-if (comment @= "") {
-
-ans =iread("add comment?:")
-<<"$ans  ($BC[3])\n"
-comment = ans;
-ans = iread("continue?:y/n")
-if (ans @= "n") {
- exit()
-}
-}
-
-exit()
 
 
  A = ofr(fname)
@@ -108,6 +91,6 @@ exit()
 
 chkT((err>0));
 
-checkNum(err,6)
+chkN(err,6)
 
-checkOut()
+chkOut()

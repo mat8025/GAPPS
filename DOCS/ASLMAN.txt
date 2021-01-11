@@ -5060,10 +5060,10 @@ retype
 .)x 
 .FD
 retypes a variable or a vector to a different type.
-  ---the memory held by a variable is just relabelled as a different type
+  ---the memory held by a variable is converted to the required type
 where possible and the size ( number of items is adjusted) e.g a CHAR vector can be 
 retyped as an INT r.g.
-retype(vec,INT) 
+retype(INT_,vec) 
 ( the last item will be padded with bytes as necessary)
 
 A vector can be copied and converted by implicit cast via
@@ -6427,10 +6427,10 @@ Trims a string variable (or array of strings)
 
 S->Trim(nc) - trims characters from head or tail of string
 
-S[a:b]->Trim(- 4)
+S[a:b]->Trim(-4)
 would trim four chars from end of  a range of an array of strings - where S is an array
 S->Trim(4)
-would trim four chars from nead of  a range of an array of strings - where S is an array 
+would trim four chars from the head of  a range of an array of strings - where S is an array 
 (see prune)
 .EF
 =============================================================
@@ -6443,7 +6443,7 @@ Prune
 Prune(S)
 Prunes a string variable (or array of strings) to a specified length
 
-S->Prune(length) - trims characters from head or tail of string until a vspecified length
+S->Prune(length) - trims characters from head or tail of string until a specified length
  no action if stem already less than of equal to required length
 
 S[a:b]->Prune(-4)

@@ -1,14 +1,23 @@
+/* 
+ *  @script fabs.asl 
+ * 
+ *  @comment test fabs function 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.6 C-Li-C]                                  
+ *  @date Wed Jan  6 09:10:09 2021 
+ *  @cdate 1/1/2001 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
 ///
 ///
 ///
 
-setdebug(1,@pline,@~step,@trace,@showresults,1)
-filterFuncDebug(ALLOWALL_,"proc","opera_ic");
-filterFileDebug(ALLOWALL_,"ic_","array_subset");
 
 
-
-chkIn()
+chkIn(_dblevel)
 
 // bug in arg passing??
 

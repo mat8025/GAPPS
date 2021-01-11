@@ -1,9 +1,32 @@
+/* 
+ *  @script quicksort.asl 
+ * 
+ *  @comment test Qsort vs Bubble  
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.7 C-Li-N]                                  
+ *  @date Fri Jan  8 11:14:35 2021 
+ *  @cdate 1/1/2002 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+
+
+#include "debug"
+
+
+chkIn(_dblevel)
+
 // test quicksort
 
-opendll("math")
-
+//opendll("math")
+ N = 100;
+ fa=_clarg[1]
+ <<"$fa \n"
+ if (!( fa @="")) {
  N= atoi(_clarg[1])
-
+}
 <<"%V$N\n"
 
  I = vgen(INT_,100,0,1)
@@ -59,6 +82,12 @@ else {
 <<"bubble won! $N elements $(N*N) $((qdt-bdt)/1000.0)\n"
 }
 
+chkN(F[0],0)
+chkN(F[1],1)
+chkN(F[N-1],N-1)
+
+<<"$F[0]  $F[N-1]\n"
+chkOut()
 
 //<<"$F \n"
 

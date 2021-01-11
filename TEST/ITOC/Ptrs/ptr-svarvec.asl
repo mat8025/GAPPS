@@ -11,18 +11,19 @@
 //* 
 //***********************************************%
    
-  include "debug"
+#include "debug"
 
   if (_dblevel >0) {
     debugON()
    }
-   
+
+/*
 sdb(1,@pline,@trace)
 
 filterFileDebug(ALLOWALL_,"xxx")
 filterFuncDebug(ALLOW_,"CheckProcFunc")
 filterFuncDebug(ALLOWALL_,"xxx")
-
+*/
 
    chkIn(_dblevel);
    
@@ -73,11 +74,16 @@ ps->info(1)
 
 chkStr(val,"bien")
 
-    i= 4;
+  i= 4;
    
    sval= ps[i];
- ps->info(1);
+
+  ps->info(1);
+
+<<"%V$sval\n"
 chkStr(sval,"avec")
+
+exit()
 
    sz=Caz(S);
 

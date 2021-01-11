@@ -14,7 +14,7 @@
 ///
 ///
 
-sdb(1);
+
 
 //  get the nth prime
 int hi = 0;
@@ -34,9 +34,9 @@ int N
 // or skip every 5th
 //<<"%V$n  $N\n"
 
-  i = 3
+  int i = 3
   
-  while (i< N) {
+  while (1) {
 
 
       a = n/i
@@ -45,9 +45,9 @@ int N
 //<<"%V$n $a $m $i\n"
      if (m == n) {
 
-  //  <<" $n div by $i factor is $a -- not prime \n"
-        is_p = 0
-       
+    <<" $n div by $i factor is $a -- not prime \n"
+        is_p = 0;
+       break;
      }
 
       //i += 2
@@ -57,34 +57,46 @@ int N
    if (i >= N) {
      break
    }
-
-   N = n/i
+  
+  N = n/i
 
   }
 
    hi = i
-//<<"%V$n $i $is_p\n"
+   if (is_p) {
+<<"Prime $n $i $is_p\n"
+   }
+
+
   return is_p
 }
 
 //=======================================//
 
-   KP = 1000; // get first 1000 primes
+   KP = 2000; // get first n primes
+
+A=ofw ("Primes${KP}.txt")
+
+
    int j = 1
    int k = 1
    int d = 0
    int lp = 1
    <<"$j $k $d\n"
+    <<[A]"[${j}] $k $d $hi\n"     
    j++;
 
    k = 2
    d = k-lp
    <<"$j $k $d\n"
+    <<[A]"[${j}] $k $d $hi\n"           
    lp = k
    j++;
    k = 3
    d = k-lp
    <<"$j $k $d\n"
+
+    <<[A]"[${j}] $k $d $hi\n"     
    lp = k
    j++;
    
@@ -92,6 +104,8 @@ int N
    d = k-lp
    j++
    <<"$j $k $d\n"
+
+    <<[A]"[${j}] $k $d $hi\n"     
    lp = k
 
    int f5 = 1
@@ -111,13 +125,14 @@ int N
     if (p) {
      d = k-lp
      j++
-     <<"$j $k $d $hi\n"
+     <<"PRIME [${j}] $k $d $hi\n"
+    <<[A]"[${j}] $k $d $hi\n"     
      lp = k
     }
 
      if (j == KP) {
 
-<<"%V $j == $KP \n"
+<<" $j == $KP \n"
 
        break;
      }
@@ -129,4 +144,5 @@ int N
 
 
 //
+cf(A)
 <<" Exit @ $j  $KP \n";

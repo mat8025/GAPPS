@@ -14,7 +14,7 @@
 ///  demo ptr/ref args
 ///
 
-include "debug.asl";
+#include "debug.asl";
 
 
 if (_dblevel >0) {
@@ -26,7 +26,7 @@ chkIn(_dblevel)
 
 
 
-proc add (int x, int y)
+int add (int x, int y)
 {
 
 <<"$_proc IN : %V$x $y \n"
@@ -74,7 +74,7 @@ proc swapP (ptr x, ptr y)
 //====================
 
 
-proc swap (int x, int y)
+void swap (int x, int y)
 {
 
   t = x;
@@ -94,27 +94,9 @@ proc swap (int x, int y)
 }
 //====================
 
-proc swapi (int x, int y)
-{
-<<"$_proc $x $y\n"
-   t = x;
-   t2 = y;
-<<"%V$x $y $t $t2\n"
-
-<<"%V $t  $(typeof(t))\n"
-  //x = y;
-  x = t2;
- <<"%V$x \n"
-  y = t;
-  
- <<"%V $y \n"
-
-<<" OUT: %V $x $y $t $t2\n"
-
-}
-//====================
+/*
 /// TBF - REF parameter
-proc swapR (int& x, int& y)
+void swapR (int& x, int& y)
 {
 
   t = x;
@@ -131,7 +113,7 @@ proc swapR (int& x, int& y)
 
 }
 //====================
-
+*/
 
 
 
@@ -148,7 +130,7 @@ proc swapR (int& x, int& y)
  chkN(ans,7)
 
 <<"%V$k $m  ref\n"
- swapi (&k, &m)
+ swap (&k, &m)
  
 <<" %V$k $m \n"
 
@@ -160,6 +142,10 @@ proc swapR (int& x, int& y)
 
 
 <<"%V$k $m  \n"
+
+
+chkOut()
+exit();
 
  swapP (&k, &m)
 

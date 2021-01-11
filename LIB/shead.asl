@@ -65,6 +65,8 @@
    
    }
 
+   Str new_vers = "1.1";
+
    if (na > 3) {
     set_vers = 1;   
     new_vers = _clarg[3];

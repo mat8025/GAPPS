@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
 
-
+#include "debug"
 
 setap(50);    // set precision to 100? decimal places
 
@@ -105,15 +105,20 @@ r = qp/np
 <<"%V$R\n"
 <<"%V$M\n"
 
+
+M->info(1)
+
 //chkR(R,M,pan_prec);
  r= fround(R,1);
 
 <<"%V$r\n"
+
 chkR(r,M,2);
 
 //query()
 <<"%V$M\n"
- M = M + 1;  // TBF XIC bug
+ M = M + 1.5;  // TBF XIC bug
+
 <<"%V$M\n"
 
 <<"M++\n"
@@ -123,6 +128,10 @@ chkR(r,M,2);
 
 
 <<"%V%p$M\n"
+
+ chkR(M,6.5,pan_prec);
+
+
 
  k = 3;
 <<"$k\n" 
@@ -139,20 +148,20 @@ chkR(r,M,2);
 <<"%V $M \n"
 
 
- chkR(M,6.0,pan_prec);
+
 
  M--;
 
 <<"%V $M \n"
 
- chkR(M,5.0,pan_prec);
+ chkR(M,5.5,pan_prec);
 
 
   M = M + 4.9
 
 <<"%V $M \n"
 
- chkR(M,9.9,pan_prec);
+ chkR(M,10.4,pan_prec);
 
 pan P = 2.1
 
@@ -160,7 +169,7 @@ pan P = 2.1
 
 <<"%V $M \n"
 
-chkR(M,12.0,pan_prec);
+chkR(M,12.5,pan_prec);
 
  chkOut()
 

@@ -18,6 +18,30 @@ uint p
 //uint a
 //uint m
 
+void spinner()
+{
+  static int j =0;
+  //<<"$_proc $j\n"
+  j++;
+  if (j ==1) {
+  <<"\r[/] ";
+  }
+  else if (j ==2) {
+  <<"\r[|] "
+  }
+  else if (j ==3) {
+  <<"\r[\\] "
+  }
+  else if (j==4) {
+  <<"\r[-]"
+  j=0;
+  }
+//  <<"\|-//"
+  fflush(1);
+  //sleep(0.01)
+}
+
+
  n = argc()
 
 <<"$n  $_argv \n"
@@ -40,17 +64,17 @@ uint p
 is_prime = 1;
 # is it even ?
 
- uint a = p/2
-
+ uint a = p/2;
+ uint i;
  // a = p/2
 
   N = a
-
+  int M = N;
 
   <<"%V $a $(typeof(a)) \n"
   <<"%V $N $(typeof(N)) \n"
 
- try {
+// try { // TBF 
 
  uint m = a * 2
 
@@ -60,10 +84,10 @@ if (m == p) {
 
 <<" $p div by 2 -- its even \n"
      is_prime = 0;
-     throw 0;
+     //throw 0;
 }
+else {
 
-uint i
 
   // only need to go 1/3 way  - init
 
@@ -75,38 +99,45 @@ uint i
 
 
       a = p/i
+      //a->info(1)
 
       m = a * i
+//<<"%V $m $a $i $p\n"
 
      if (m == p) {
-
-      //<<" $p div by $i factor is $a -- not prime \n"
-         throw 0;
+<<" $m == $p ??\n"
+      <<" $p div by $i factor is $a -- not prime \n"
+       is_prime = 0;
+       break;
  
      }
      r = N -i  
-     if ((i % 25) == 0) {
+     if ((i % 75) == 0) {
 
-     <<"checked $i  $r divisors still to check\n"
-     <<". "
-
+     //<<"checked $i  $r divisors still to check\n"
+       spinner()
      }
-   i += 2
+     
+   i += 2;
 
    if (i >= N) {
-       throw 1;
+   //    throw 1;
+   <<"$i > $N\n"
+      break;
    }
 
 
 
-   N = p/i
+   M = p/i
 
-<<"$i or $N  \n"
+ // <<"$i or $M \n"
 
   }
-  
+ //     throw 1;
  }
+ 
 
+/*
    catch (int ball) {
     if (ball == 1) {
     <<"\nHey Baby $p is prime !! - looked to $i\n"
@@ -115,3 +146,15 @@ uint i
        <<" $p div by $i factor is $a -- not prime \n";
     }
    }
+
+*/
+
+<<"%V $is_prime \n"
+
+  if (is_prime == 1) {
+    <<"\nHey Baby $p is prime !! - looked to $i\n"
+    }
+    else {
+       <<" $p div by $i factor is $a -- not prime \n";
+    }
+

@@ -11,16 +11,10 @@
 //* 
 //***********************************************%
 
-include "debug"
+#include "debug"
 debugON()
-setdebug(1,@pline,@trace,@keep)
 
-filterFuncDebug(ALLOWALL_,"xxx");
-filterFileDebug(ALLOWALL_,"yyy");
-
-setDebug(1,@pline)
-
-chkIn()
+chkIn(_dblevel)
 
 int MD[5][20];
 

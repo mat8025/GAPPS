@@ -702,3 +702,23 @@ array_utils.cpp	 2.79	 Tue Dec 29 22:42:11 2020 arrayToUnset
 ic_vfill.cpp	 1.59	 Tue Dec 29 22:43:17 2020 vfill,vfillr update
 array_store.cpp	 2.79	 Tue Dec 29 22:44:47 2020 array-spec checks
 declare_fillarray_e.cpp	 2.38	 Tue Dec 29 22:46:05 2020 check AW_PARSEV  declare and assign forms
+cast_e.cpp	 2.32	 Tue Jan  5 14:55:03 2021 retype converts memory
+ds_sivflags.cpp	 1.89	 Fri Jan  8 07:48:34 2021 line len control
+opera_ap.cpp	 1.41	 Fri Jan  8 07:55:36 2021 DEBUG
+opera_opeq.cpp	 1.52	 Fri Jan  8 08:00:21 2021 DBG
+opera_store.cpp	 1.54	 Fri Jan  8 08:03:03 2021 DBG
+opera_promote.cpp	 1.52	 Fri Jan  8 08:05:03 2021 DBG
+opera_str.cpp	 1.54	 Fri Jan  8 08:06:42 2021 DBG
+opera_vs.cpp	 1.56	 Fri Jan  8 08:09:54 2021 DBG
+opera_vv.cpp	 1.57	 Fri Jan  8 08:12:54 2021 DBG
+opera_logic.cpp	 1.48	 Fri Jan  8 08:17:06 2021 DBG
+opera_copy.cpp	 1.46	 Fri Jan  8 08:22:59 2021 DBG
+opera_mat.cpp	 1.50	 Fri Jan  8 08:30:39 2021 DBG
+opera_bit.cpp	 1.42	 Fri Jan  8 08:32:20 2021 DBG
+opera_cathold.cpp	 1.43	 Fri Jan  8 08:35:46 2021 DBG
+opera_compare.cpp	 1.45	 Fri Jan  8 08:37:31 2021 DBG
+opera_unary.cpp	 1.55	 Fri Jan  8 08:39:37 2021 DBG
+opera_cmplx.cpp	 1.44	 Fri Jan  8 08:42:22 2021 DBG
+ap_mem.cpp	 1.27	 Fri Jan  8 09:56:26 2021 DBG
+ds_convert.cpp	 1.83	 Fri Jan  8 10:20:15 2021 pan convert fix
+ds_getvarasstr.cpp	 2.64	 Sat Jan  9 11:56:59 2021 fix STRV

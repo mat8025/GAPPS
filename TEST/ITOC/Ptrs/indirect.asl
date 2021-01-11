@@ -1,11 +1,11 @@
 
-//Setdebug(1)
+
 
 prog= GetScript()
 
 chkIn()
 
-#{
+/*
 
 x=_clarg[0] 
 
@@ -23,43 +23,9 @@ y= _clarg[1]
 
 <<" ${_clarg[argc()-1]} \n"
 
-#}
-
-/{
-c = 7
-
-a= "c"
-
-<<"%V$a \n"
-
-b = $a
-
-<<"%V$b \n"
-
-  b++ 
-
-<<"%V$c \n"
-
-  b--
-
-<<"%V$c \n"
-
- b = c * 3
-
-<<"%v $a \n"
-
- a= b
-
-<<"%v $a \n"
+*/
 
 
-
-b = c
-d = $b
-
-
-<<"%v $d \n"
-/}
 
 
 
@@ -73,7 +39,7 @@ msg3 = "lauren"
 
 msg4 = "lname"
 
-checkstr(msg0,"dena")
+chkStr(msg0,"dena")
 
 
 lname = "terry"
@@ -101,7 +67,7 @@ e = "msg$k"
 <<"%v $($e) \n"
  de = $e;
 
-checkstr(de,"pepe")
+chkStr(de,"pepe")
 
 for (k = 1 ; k <= 4 ; k++) {
 
@@ -119,11 +85,11 @@ for (k = 1 ; k <= 4 ; k++) {
 
   mt = $e
 
-checkstr(mt,"lname")
+chkStr(mt,"lname")
 
   sn = $$e;
   
-checkstr(sn,"terry")
+chkStr(sn,"terry")
 
 <<"%V $mt \n"
 
@@ -131,7 +97,7 @@ checkstr(sn,"terry")
 
 <<"%V $nat \n"
 
-checkstr(nat,"english")
+chkStr(nat,"english")
 
 
 //<<"e %V $($$e) \n"
@@ -213,15 +179,15 @@ sz = Caz(vnh)
 
 <<"$vnh[::] \n"  // TBD FIX XIC prints one less
 
-checkstr(vnh[0],"help")
+chkStr(vnh[0],"help")
 
-checkstr(vnh[1],"me")
+chkStr(vnh[1],"me")
 
 
-checkstr(vnh[3],"ooh3")
+chkStr(vnh[3],"ooh3")
 
-checkstr(vnh[8],"ooh8")
-checkstr(vnh[9],"ooh9")
+chkStr(vnh[8],"ooh8")
+chkStr(vnh[9],"ooh9")
 
    for (i = 3 ; i < 10; i++) {
      chkStr(vnh[i], "ooh$i");
@@ -230,4 +196,4 @@ checkstr(vnh[9],"ooh9")
 
 chkOut()
 
-STOP!
+

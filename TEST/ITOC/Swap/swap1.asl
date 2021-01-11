@@ -1,14 +1,14 @@
 
 
 
-include "debug.asl"; 
-debugON();
+#include "debug.asl"; 
 
 
-chkIn()
 
-filterFuncDebug(ALLOWALL_,"proc");
-filterFileDebug(ALLOWALL_,"ic_op");
+chkIn(_dblevel)
+
+//filterFuncDebug(ALLOWALL_,"proc");
+//filterFileDebug(ALLOWALL_,"ic_op");
 
 proc swap (ptr x, ptr y)
 {
@@ -34,6 +34,7 @@ int k = 1;
 int m = 2;
 
 <<"pre %V $k $m \n"
+// won't  call
 
  swap(&k,&m);
 
@@ -43,3 +44,13 @@ int m = 2;
  chkN(m,1);
 
 chkOut()
+
+/*
+ TBF  - ptr as proc arg definition acts as template
+ to call via int k
+ proc(&k)
+ have to allow int ref arg to match to ptr arg
+ that would also allow a float ref arg  to match
+
+
+*/

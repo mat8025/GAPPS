@@ -15,7 +15,7 @@ myScript = getScript()
 //
 // test asl first and second stage (xic)
 //
-<<"TESTING\n"
+//<<"TESTING\n"
 #include "debug"
 
 
@@ -194,15 +194,15 @@ void Run2Test(str td)
   
   Curr_dir = getDir();
   
-//  <<"changing to $td dir from $Prev_dir in $Curr_dir\n"
+// <<"changing to $td dir from $Prev_dir in $Curr_dir\n"
 }
 //===============================
 
-Str pgname;
+//Str pgname;
 void RunDirTests(str Td, str Tl )
 {
 //<<"$Td  $Tl\n"
-
+Str pgname;
 
    //Tl->info(1)
 //ri=Tl->info()
@@ -213,17 +213,17 @@ void RunDirTests(str Td, str Tl )
 
       np = Caz(Tp);
       
-     // <<[2]"%V $Td $Tl $np\n"
+     <<[2]"%V $Td $Tl $np\n"
       
       for (i=0 ; i < np; i++) {
-      //<<"$i  $np <|$Tp[i]|>\n"
+      <<"$i  $np <|$Tp[i]|>\n"
          if (!(Tp[i] @= "")) {
           //if (do_query) {
           //    query(Tp[i])
           // }
 	    pgname = Tp[i];
 	    //pgname->info(1)
-	    <<"$pgname \n"
+	   // <<"$pgname \n"
          if (slen(pgname) > 0) {
           cart(pgname);
          }
@@ -232,7 +232,7 @@ void RunDirTests(str Td, str Tl )
 }
 //====================//
 
-Str wsf;
+//Str wsf;
 
 void RunSFtests(str Td)
 {
@@ -240,14 +240,14 @@ void RunSFtests(str Td)
 // goto dir then run cart(fabs) or cart(cmp)
 
       Tp = Split(Td,",");
-   //   Str wsf;
+      Str wsf;
      //  wsf="xx";
        np = Caz(Tp);
       for (i=0 ; i < np; i++) {
          wsf = Tp[i];
 
         //if (do_query)  query(Tp[i]);    
-  <<"%V $wsf\n"
+  //<<"%V $wsf\n"
          Run2Test(wsf);
 	 wsf = slower(wsf);
          cart(wsf);
@@ -376,8 +376,12 @@ void doxictest(str prog)
          }
          }
 
-       !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -x $prog   > /dev/null "
+//<<" run xic $wasl\n";
 
+      !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -x $prog   > /dev/null "
+
+//      !!"ls -l *";
+      
 // what happens if prog crashes !!
 
   ntest++
@@ -509,10 +513,13 @@ void cart_xic(Str aprg, Str a1)
 
 void cart (Str aprg)
 {
+
+//<<"%V $_proc $aprg    \n"  
+
   int wlen;
   str tim;
   str prg ="xx";
-//<<"%V $_proc $aprg    \n"  
+
 //  in_pargc = _pargc;
   
   xwt_prog = "xxx";
@@ -524,19 +531,26 @@ void cart (Str aprg)
   !!"rm -f $aprg  ${aprg}.tst  last_test*"
 
    jpid  =0
+      
+      //aprg->info(1)
 
 
            if (do_query) {
-<<"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl \n"
-           //ans=query("$aprg run it?")
-	   ans= i_read("$aprg run it?")
-	 if (ans @="q") {
-          exit()
-         }
+	   
+               <<"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl \n"
+           
+	       ans= i_read("run it?")
+	       if (ans @="q") {
+               exit()
+               }
            }
 
-    //<<"going to run $aprg\n"
-      !!"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl > /dev/null   2>&1"
+     // <<"here $wasl \n";
+
+      !!"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl > /dev/null   2>&1";
+
+     // !!"ls -l *";
+
 
       if (f_exist("${aprg}.tst") > 0) {
 
@@ -590,7 +604,7 @@ void cart (Str aprg)
 void cart (Str aprg,  Str a1)
 {
 
-<<"$_proc  $aprg $a1\n"
+//<<"$_proc  $aprg $a1\n"
   int wlen;
   str tim;
   
@@ -1117,6 +1131,19 @@ changeDir(Testdir)
 
 if ((do_all || do_array ) && (do_array != -1)) {
 
+  Run2Test("VVcopy")
+
+  cart("vvcopy")
+
+  Run2Test("VVcomp")
+
+  cart("vvcomp")
+
+  Run2Test("Vfill")
+
+  cart("vfill")
+
+/*
    RunDirTests("Array","ae,arraystore,arrayele,arraysubset")
 
    RunDirTests("Array","arrayrange,arraysubvec,arraysubsref,arraysubsrange,arraysubscbyvec")
@@ -1139,18 +1166,8 @@ if ((do_all || do_array ) && (do_array != -1)) {
   Run2Test("VVgen")
 
   cart("vvgen")
+*/
 
-  Run2Test("VVcopy")
-
-  cart("vvcopy")
-
-  Run2Test("VVcomp")
-
-  cart("vvcomp")
-
-  Run2Test("Vfill")
-
-  cart("vfill")
 
 
     }
@@ -1342,7 +1359,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
 //    hdg("STAT")
 
-    RunDirTests("Polynom","checkvm,polyn")
+    RunDirTests("Polynom","checkvm,polynom")
 }
 
  if ((do_all || do_pan )  && (do_pan != -1)) {
@@ -1365,7 +1382,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
    if ((do_all || do_ptrs ) && (do_ptrs != -1)) {
      <<"running ptrs !\n"
       RunDirTests("Swap","swap,swap1");
-      RunDirTests("Ptrs","ptrvec,ptr-numvec,ptr-svarvec,ptr-varvec,indirect");
+      RunDirTests("Ptrs","ptr,ptrvec,ptr-numvec,ptr-svarvec,ptr-varvec,indirect");
 
 
    }
@@ -1395,7 +1412,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
     RunSFtests("Fio,Sscan,Fscanf,Bscan,Cut,Cmp,Sel,Shift,Median,Findval,Lip,Pow,Minof,Maxof,Ftest,Convert,Return,Dec2,Pincdec");
 
-    RunSFtests("Pow,Minof,Maxof,Ftest,Convert,Return,Dec2,Pincdec");
+    RunSFtests("Pow,Minof,Maxof,Ftest,Convert,Return,Dec2,Pincdec,Quicksort,Readfile,Skeyval");
 
 
 

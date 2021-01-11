@@ -10,7 +10,7 @@
 //*  @Copyright  RootMeanSquare  2014,2018 --> 
 //* 
 //***********************************************%
-  include "debug"
+  #include "debug"
   debugON()
   
   proc vers2ele(str vstr)
@@ -30,8 +30,8 @@
   }
   //======================
   A=-1;
-  str T=" ";
-  
+  Str T=" ";
+  Str new_vers = "1.1";
   // if script found
   // then  read current vers and  bump number and update date
   // if no @vers line -- then prepend the vers header lines
@@ -54,7 +54,7 @@
   
   set_vers = 0;
   na = argc();
-   
+  
   if (na > 2) {
    set_vers = 1;
    new_vers = _clarg[2];

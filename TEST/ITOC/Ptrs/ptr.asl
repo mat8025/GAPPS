@@ -13,7 +13,7 @@
 myScript = getScript();
 
 
-include "debug"
+#include "debug"
 
 if (_dblevel >0) {
    debugON()
@@ -44,7 +44,7 @@ kp->info(1)
  <<" %V $k $m $n\n"
 
 
-tok=chkI(m,k)
+tok=chkN(m,k)
 
 <<"%V $tok\n"
  $kp = 58
@@ -56,7 +56,7 @@ k->info(1)
 
 <<"%V $k \n"
 
-tok=chkI(k, 58)
+tok=chkN(k, 58)
 
 <<"%V $tok\n"
 
@@ -74,9 +74,9 @@ k->info(1)
 au->info(1)
 
 
-tok= chkI (k, 79)
+tok= chkN (k, 79)
 <<"%V $tok\n"
-tok= chkI(k, au)
+tok= chkN(k, au)
 <<"%V $tok\n"
 silv = 47
 
@@ -89,11 +89,10 @@ sp->info(1)
 
 k->info(1)
 
-tok=chkI(k, 47)
+tok=chkN(k, 47)
 <<"%V $tok\n"
 
-chkOut ()
-exit()
+
 
  n = 2 * $kp 
 
@@ -116,6 +115,7 @@ vecp->info(1)
 <<" %V $vecp \n"
 
 
+<<" %V $vecp[1] \n"
 
 
 
@@ -123,8 +123,9 @@ vecp->info(1)
 
 
 
-co()
+chkOut ()
 exit()
+
 
 
 

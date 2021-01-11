@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
 
-include "debug"
+#include "debug"
 
 <<"%V $_dblevel\n"
 
@@ -50,9 +50,9 @@ IV = vgen(INT_,10,0,1);
 
 <<"$iv2 \n"
 
- vec = IV->isvector();
+ ivec = IV->isvector();
 
- <<"%v $vec\n"
+ <<"%v $ivec\n"
 
  //<<" $(IV->isvector()) \n"
 

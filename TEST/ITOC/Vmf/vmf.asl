@@ -109,13 +109,14 @@ FS= Fgen(20,0,1)
 
 sz = Caz(FS)
 
-FS[3]->obid()
+/*
+FS[3]->obid() ; // ?? do we have this function?
 
 id = FS[3]->obid()
 
 <<" $id \n"
 chkStage("obid")
-
+*/
 //=============================/
 if (do_white || do_all) {
 /{/*
@@ -136,20 +137,32 @@ SV->info(1)
 
 
 
-svar  T = "123 456   789  "
+//svar  T = "123 456   789  "
+svar  T;
+T[0] = "123 456   789  "
+
+<<"T =$T\n"
+
+<<"T[0] =$T[0]\n"
+
+
 
 
 
 
 
 T[1] = T[0]
+<<"T[1] =$T[1]\n"
+
 T[2] = T[1]
 
 T->info(1)
 //query()
 
+
 for (i=3;i<=10;i++) {
 T[i] = T[0]
+<<"$T[i]  $T[0]\n"
 }
 
 T->info(1)
@@ -160,28 +173,32 @@ T[2]->dewhite()
 T->info(1)
 ns="123 456   789  ";
 
-<<"$T[2]\n"
-checkstr(T[2],"123456789")
-checkstr(T[0],ns)
+<<"<|$T[2]|>\n"
+wsin = T[2]
+<<"$wsin\n"
+
+chkStr(T[2],"123456789")
+chkStr(T[0],ns)
 
 
 
-checkstr(T[0],"123 456   789  ")
+chkStr(T[0],"123 456   789  ")
+
+T->info(1)
 
 <<"%(1,,,|>\n)$T \n"
-
 
 T[4:6]->dewhite()
 
 <<"%(1,<|,,|>\n)$T \n"
 
-checkstr(T[4],"123456789")
-checkstr(T[6],"123456789")
+chkStr(T[4],"123456789")
+chkStr(T[6],"123456789")
 
 len=slen(T[8])
 len2=slen(ns)
 <<"%V$len $len2\n"
-checkstr(T[8],ns)
+chkStr(T[8],ns)
 
 <<"<|$T[8]|>\n"
 <<"<|$ns|>\n"
@@ -284,32 +301,56 @@ V->SubStitute(this_str,with_str)
 
 //svar  TS = "123456789"
 svar  TS;
-TS= "123456789"
+TS->info(1)
+
+//TS= "123456789" ; // bug converts to STRV - instead of writing to svar field 0
+
+TS[0] = "123456789";
+
+TS->info(1)
 
 for (i=1;i<=10;i++) {
 TS[i] = TS[0]
+<<"$i $TS[i]\n"
 }
 
 
 <<"%(1,,,\n)$TS \n"
 
-
+TS->info(1)
 TS[2]->Substitute("456","ABC")
+TS->info(1)
 
-checkstr(TS[1],"123456789")
-checkstr(TS[2],"123ABC789")
+
+
+<<"1 $TS[1]\n"
+<<"2 $TS[2]\n"
+
+for (i=0;i<=10;i++) {
+<<"$i $TS[i]\n"
+}
+
+
+RS=TS[1]
+<<"%V$RS\n"
+
+chkStr(TS[1],"123456789")
+chkStr(TS[2],"123ABC789")
 
 <<"%(1,,,\n)$TS \n"
 
+
+
+
 TS[4:6]->Substitute("789","DEF")
 
-checkstr(TS[4],"123456DEF")
-checkstr(TS[6],"123456DEF")
+chkStr(TS[4],"123456DEF")
+chkStr(TS[6],"123456DEF")
 
 TS[::]->Substitute("123","XYZ")
 
 for (i=0;i<=10;i++) {
-checkstr(TS[i],"XYZ",3)
+chkStr(TS[i],"XYZ",3)
 }
 <<"%(1,,,\n)$TS \n"
 
@@ -378,11 +419,13 @@ S->trim(-3)
 
 <<"%(1,,,\n)$S \n"
 
-checkstr(S[3],"123456")
+chkStr(S[3],"123456")
 
 S[3]->trim(3)
 
-checkstr(S[3],"456")
+<<"%V$S[3]\n"
+
+chkStr(S[3],"456")
 
 
 
@@ -390,14 +433,10 @@ S->trim(3)
 
 
 
-checkstr(S[3],"")
-
-
+chkStr(S[3],"")
 
 
 <<"%(1,,,\n)$S \n"
-
-
 
 chkStage("Trim")
 }
@@ -432,9 +471,10 @@ would prune from head of string until required length
 
 //svar  TP = "123456789"
 svar  TP;
-TP= "123456789"
-
-
+//TP[0]= "123456789"  ; // bug converts to STRV -instead of filling TP[0]
+TP =  "123456789"
+TP->info(1)
+<<"$TP[0] \n"
 TP[1] = TP[0]
 TP[2] = TP[1]
 for (i=3;i<=10;i++) {
@@ -444,24 +484,24 @@ TP[i] = TP[0]
 
 TP[1]->Prune(-3)
 
-checkstr(TP[1],"123")
+chkStr(TP[1],"123")
 
 <<"%(1,,,\n)$TP \n"
 
 TP[2]->Prune(3)
 
-checkstr(TP[2],"789")
+chkStr(TP[2],"789")
 
 <<"%(1,,,\n)$TP \n"
 TP->info(1)
 TP[4:6]->Prune(-5)
 
 <<"%(1,,,\n)$TP \n"
-//exit()
-checkstr(TP[4],"12345")
-checkstr(TP[5],"12345")
-checkstr(TP[6],"12345")
-checkstr(TP[7],"123456789")
+
+chkStr(TP[4],"12345")
+chkStr(TP[5],"12345")
+chkStr(TP[6],"12345")
+chkStr(TP[7],"123456789")
 
 chkStage("Prune")
 }

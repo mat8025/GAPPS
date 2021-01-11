@@ -26,7 +26,7 @@ chkIn(_dblevel)
 // want to use ulong
 
 
-long Foo(long pf)
+long Fact(long pf)
 {
 
 long mpf;
@@ -46,7 +46,7 @@ long  t;
 
     mpf = pf -1
 
-    t = Foo(mpf) * pf
+    t = Fact(mpf) * pf
 
 <<"exit $_proc %V $(typeof(t)) $mpf $pf ! =  $t \n"
     }
@@ -59,7 +59,7 @@ return t;
 
 
 //======================================//
-pan Foo(pan pf)
+pan Fact(pan pf)
 {
   static int PF = 1;
  <<"$_proc $pf  $PF\n"
@@ -72,7 +72,7 @@ pan Foo(pan pf)
    return t
   }
   else {
-  t=  Foo(pf) *a ;
+  t=  Fact(pf) *a ;
 <<"%V $a $pf $t\n"
   }
   return t
@@ -81,15 +81,35 @@ pan Foo(pan pf)
 //======================================//
 
 
-pan Fact(int pf)
+long FactbyMI(int pf)
+{
+
+
+<<"$_proc  $pf \n"
+ long n = 1;
+ long i = 1;
+ for (i= 1 ; i <= pf ; i++) {
+
+<<"$i    $n\n"
+   n *= i;
+ }
+
+   return n;
+}
+
+//======================================//
+
+pan FactbyMP(int pf)
 {
 
  pan t = 1;
+
+<<"$_proc  $pf $t\n"
+
  for (i= 1 ; i <= pf ; i++) {
 
     t *= i;
-
-<<"$i  $t\n"
+<<"$i  $t  \n"
 
  }
 
@@ -104,39 +124,47 @@ pan Fact(int pf)
 
 long n = 1;
 long N = 10;
-k= atoi(_clarg[1])
+int k= atoi(_clarg[1])
 if (k != 0) {
    N= k
+}
+else {
+  k = N;
 }
 
 // recursion -- statement XIC is rentered
 // compute initial conditions 1,2 - first for xic to work
 // then statement is closed -so no more WIC/XIC
-m= Foo(n)
+m= Fact(n)
 <<"%V $m $n\n"
 n++;
 
-m= Foo(n)
+m= Fact(n)
 <<"%V $m $n\n"
 
 
 
 
-m= Foo(N)
+m= Fact(N)
 
 <<"%V $m $n\n"
 
-pr = Fact(N)
+//pr = FactbyMP(k)
+//pr->info(1)
 
-<<"%V $pr $m\n"
-//
-m->info(1)
-pr->info(1)
 
-if (pr == m) {
-<<"N! $pr == $m Pass\n"
+mi = FactbyMI(k)
+mi->info(1)
+
+
+
+if (mi == m) {
+<<"N! $mi == $m Pass\n"
 }
 
+chkN(m,mi)
+
+/*
 long L = pr
 
 if (L == m) {
@@ -144,8 +172,11 @@ if (L == m) {
 }
 
 chkN(m,L)
+*/
 
 chkOut()
+
+
 exit()
 
 
