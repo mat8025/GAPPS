@@ -11,22 +11,23 @@
 //* 
 //***********************************************%
 
-/{/*
+/*
 
  // bug2fix should clear subi/subset each statement
  // else old selection overwritten 
-/}*/
+*/
 
 
   
-  include "debug.asl";
+#include "debug.asl";
+/*
   debugON();
   setdebug(1,@keep,@pline,@~trace);
   FilterFileDebug(REJECT_,"~storetype_e");
   FilterFuncDebug(REJECT_,"~ArraySpecs",);
+*/  
   
-  
-  chkIn(); 
+  chkIn(_dblevel); 
   
   B = vgen(INT_,10,0,1); 
   

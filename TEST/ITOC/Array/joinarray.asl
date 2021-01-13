@@ -13,21 +13,19 @@
 
 
 
-include "debug.asl";
+#include "debug.asl";
 
-
-
-
-sdb(_dblevel,@~trace)
 
 if (_dblevel >0) {
    debugON()
 }
-  
+
+/*
 filterFuncDebug(REJECTALL_,"xxx");
 filterFuncDebug(ALLOW_,"process_args","process_args_ptr",\
    "store_r_to_array","store_r_to_siv","storeCopyVar","storeSiv");
 //filterFuncDebug(REJECT_,"checkProcFunc");
+*/
 
 chkIn(_dblevel);
 

@@ -200,3 +200,6 @@ bitwise.asl              1.6	Mon Jan  4 12:46:19 2021 use ^ for XOR , ^^ for pow
 if.asl                   1.9	Mon Jan  4 13:02:16 2021 use chkR
 mops.asl                 1.2	Mon Jan  4 14:15:49 2021 ues chkStage
 wdata.asl                1.3	Mon Jan  4 16:53:38 2021 >10
+sele.asl                 1.7	Sun Jan 10 21:17:49 2021 tidy
+scalarvec.asl            1.4	Mon Jan 11 15:13:30 2021 dbg
+matrix.asl               1.2	Tue Jan 12 19:13:09 2021 DBG

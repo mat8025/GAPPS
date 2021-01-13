@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @script matrix.asl 
-//* 
-//*  @comment test matrix ops 
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                    
-//*  @date Thu Feb 20 08:27:55 2020 
-//*  @cdate Thu Feb 20 08:27:55 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script matrix.asl 
+ * 
+ *  @comment test matrix ops 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.8 C-Li-O] 
+ *  @date Tue Jan 12 19:13:09 2021 
+ *  @cdate Thu Feb 20 08:27:55 2020 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                           
 
 
 #include "debug"; 
@@ -84,9 +86,9 @@ M3->cycleCol(2)
 <<"$M4\n"
 
 
-checkVector(M3,M4)
+chkVec(M3,M4)
 
-checkVector(M2,M4)
+chkVec(M2,M4)
 
 <<"$M2\n"
 
@@ -95,10 +97,13 @@ I= Cmp(M2,M4,"==",1)
 <<"$I \n"
 
 M2->cycleCol(1)
+M4->cycleCol(1)
 
-checkVector(M2,M4)
+chkVec(M2,M4)
 
 <<"$M2\n"
+
+<<"$M4\n"
 
 I= Cmp(M2,M4,"==",1)
 

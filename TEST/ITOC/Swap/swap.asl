@@ -41,38 +41,6 @@ int add (int x, int y)
 //====================
 
 
-proc swapP (ptr x, ptr y)
-{
-
-  float t = $x;
-  float t2 = $y;
-<<"$_proc PTR args  : %V$x $y $t\n"
-
-   t->info(1)
-
-   t2->info(1)
-
-<<"%V $t  \n"
-<<"%V $t2  \n"
-
-//<<"%V $t  $(typeof(t))\n"
-
-  x->info(1)
-
-  $x = t2;
- <<"%V$x \n"
-
-  x->info(1)
- 
-  $y = t;
-  
- <<"%V $y \n"
-
-<<" OUT: %V $x $y $t $t2\n"
-
-}
-//====================
-
 
 void swap (int x, int y)
 {

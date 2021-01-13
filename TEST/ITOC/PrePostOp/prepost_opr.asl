@@ -246,8 +246,5 @@ chkN(BV[1],3)
 <<"%V $BV\n"
 
 
-
-
-
 chkOut()
 exit()

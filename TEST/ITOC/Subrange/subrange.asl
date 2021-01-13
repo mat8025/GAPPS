@@ -50,42 +50,42 @@ chkR(I[8],10)
  I = 0;
 <<"$I\n"
 <<"all zero ??\n"
-checknum(I[0],0)
-checknum(I[1],0)
+chkN(I[0],0)
+chkN(I[1],0)
 
  I[::] = 79;
 
 <<"$I\n"
 <<"all gold ??\n"
-checknum(I[8],79)
+chkN(I[8],79)
 <<"/////////\n"
  I = 47;
 <<"$I\n"
 <<"all silver ??\n"
-checknum(I[9],47)
+chkN(I[9],47)
 <<"/////////\n"
  I[::] = 80;
 
 <<"$I\n"
 <<"all fast ??\n"
-checknum(I[10],80)
+chkN(I[10],80)
 
 <<"/////////\n"
 
  I[0:5:] = 47;
   I[6:10:] = 79;
-checknum(I[9],79)
+chkN(I[9],79)
 
 
   I[11:15:] = 28;
 
-checknum(I[15],28)
+chkN(I[15],28)
 <<"$I\n"
   I[30:30] = 30;
-checknum(I[0],47)
+chkN(I[0],47)
 
-checknum(I[30],30)
-checknum(I[31],80)
+chkN(I[30],30)
+chkN(I[31],80)
 <<"$I\n"
 
 chkStage("subrange")

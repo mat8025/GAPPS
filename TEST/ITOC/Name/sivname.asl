@@ -24,6 +24,6 @@ int andthisisanthelongistlongnamethatisallowed34567 = 80;
 <<"%V$andthisisanthelongistlongnamethatisallowed34567 \n"
 
 
-int andthisisanthelongistlongnamethatisallowed3456789 = 82;
+//int andthisisanthelongistlongnamethatisallowed3456789 = 82;
 
-<<"%V$andthisisanthelongistlongnamethatisallowed3456789 \n"
+//<<"%V$andthisisanthelongistlongnamethatisallowed3456789 \n"

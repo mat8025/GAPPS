@@ -1,15 +1,26 @@
 # Wed Aug 14 22:45:29 2013
-xw = spawngwm()
+
+///
+///
+///
+
+
+//xw = spawngwm()
+
 vp = cwi(@title,"PLOT")
+
+sWi(vp,@resize, 0.1,0.1,0.9,0.9, @redraw)
 wo1=cwo(vp,@title,"PLOT",@resize,0.1,0.1,0.9,0.9)
 swo(wo1,@redraw)
+
+
 // 1
 swo(wo1,@scales,0,-2,10*_PI,2)
 // 1
 dx = _PI/10.0
 XV=vgen(FLOAT_,100,0,dx)
 YV= sin(XV)
-al=cgl(wo1,@type_XY,XV,YV,@color,GREEN,@ltype,"line")
+al=cgl(wo1,@TXY,XV,YV,@color,GREEN_,@ltype,"line")
 swo(wo1,@pixmapon,@drawon,@savepixmap)
 // 1
 dgl(al)

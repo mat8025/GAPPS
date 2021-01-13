@@ -1,3 +1,16 @@
+/* 
+ *  @script icall.asl 
+ * 
+ *  @comment test indirect proc call   
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.8 C-Li-O]                                  
+ *  @date Mon Jan 11 09:33:34 2021 
+ *  @cdate 1/1/2003 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
 ///
 /// icall --- use variable string value to call proc
 ///
@@ -8,15 +21,20 @@
 
 // what about call func -- indirect ??
 
-include "debug.asl"
+#include "debug.asl"
+
 
 
 debugON();
 
+ask= _clarg[1];
+
+chkIn(_dblevel)
+
 N = 0;
 
 
-proc Foo()
+proc Noo()
 {
 
 <<"in $_proc \n"
@@ -46,7 +64,7 @@ proc Zoo()
 
 
 
-   Foo();
+   Noo();
 
 <<"%V $N\n"
 
@@ -56,7 +74,7 @@ proc Zoo()
 <<"%V $N\n"
 
 
- pname = "Foo";
+ pname = "Noo";
 
 <<"calling $pname\n"
  $pname();
@@ -78,35 +96,24 @@ proc Zoo()
  $pname();
 
 <<"%V $N\n"
-
+chkN(N,3)
+chkOut()
+if (!(ask @=""))
+{
  while (1) {
 
- pname = i_read("which proc?:")
+ pname = i_read("which proc? or quit:")
  <<"calling $pname\n"
  if (pname @= "quit") {
      break;
  }
  else {
   $pname();
-  <<"$pname sets %V $N\n"
+  //<<"$pname sets %V $N\n"
  }
  
  }
-
-
- while (1) {
-
- pname = i_read("which proc?:")
- <<"calling $pname\n"
- if (pname @= "quit") {
-     break;
- }
- else {
-  $pname();
-  <<"$pname sets %V $N\n"
- }
- 
- }
+}
 
 
 

@@ -471,7 +471,7 @@ would prune from head of string until required length
 
 //svar  TP = "123456789"
 svar  TP;
-//TP[0]= "123456789"  ; // bug converts to STRV -instead of filling TP[0]
+//TP[0]= "123456789"  ; // bug FIXED converts to STRV -instead of filling TP[0]
 TP =  "123456789"
 TP->info(1)
 <<"$TP[0] \n"

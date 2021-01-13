@@ -46,8 +46,14 @@ IV = vgen(INT_,10,0,1)
 IV->info(1)
 
 k = IV[3]
-
 chkN(k,3)
+IV->info(1)
+offs = varoffsets(IV)
+
+<<"%V $offs \n"
+chkN(offs[1],3)
+
+
 IVi = IV->info()
 
 <<"$IVi \n"
@@ -57,8 +63,5 @@ obid = IV->objid()
 <<"%V $obid \n"
 chkN(obid,-1)
 
-offs = IV->varoffsets()
 
-<<"%V $offs \n"
-chkN(offs[1],3)
 chkOut()

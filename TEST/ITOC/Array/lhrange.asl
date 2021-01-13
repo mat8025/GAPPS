@@ -14,9 +14,9 @@
 
 
 
-include "debug.asl";
+#include "debug.asl";
 
-sdb(_dblevel,@~trace)
+//sdb(_dblevel,@~trace)
 
 if (_dblevel >0) {
    debugON()

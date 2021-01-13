@@ -13,14 +13,14 @@
 
 
 
-include "debug.asl"
+#include "debug.asl"
 
-debugON();
+//debugON();
 
 
-setDebug(1,@pline,@trace,"~step")
+//setDebug(1,@pline,@trace,"~step")
 
-chkIn()
+chkIn(_dblevel)
 
 
 rl =vgen (FLOAT_, 10, 0, 1);

@@ -1143,19 +1143,29 @@ if ((do_all || do_array ) && (do_array != -1)) {
 
   cart("vfill")
 
-/*
+
+  RunDirTests("Subrange","subrange");
+
    RunDirTests("Array","ae,arraystore,arrayele,arraysubset")
 
    RunDirTests("Array","arrayrange,arraysubvec,arraysubsref,arraysubsrange,arraysubscbyvec")
-   RunDirTests("Array","dynarray,lhrange,lhe,joinarray,vec_cat,vgen,array_sr,mdele,vsp,arrayindex")
+
+   RunDirTests("Array","dynarray,lhrange,lhe,joinarray,vec-cat,vgen,array-sr,mdele,vsp,arrayindex")
 
   RunDirTests("Scalarvec","scalarvec")
 
-  RunDirTests("Subrange","subrange");
-  
   Run2Test("PrePostOp")
 
   cart("prepost_opr")
+
+/*
+
+
+
+
+
+  
+
 
   RunDirTests("M3D","m3d,m3d_assign")
 
@@ -1231,7 +1241,7 @@ if ((do_all || do_func ) && (do_func != -1)) {
 
    if ((do_all || do_vmf) && (do_vmf != -1)) {
   <<"trying vmf \n"
-    RunDirTests("Vmf","vmf,vmf-range")
+    RunDirTests("Vmf","vmf,vmf-range,genv")
   }
 
 /////////////////////////////////////////
@@ -1410,9 +1420,12 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
     hdg("S-FUNCTIONS")
 
-    RunSFtests("Fio,Sscan,Fscanf,Bscan,Cut,Cmp,Sel,Shift,Median,Findval,Lip,Pow,Minof,Maxof,Ftest,Convert,Return,Dec2,Pincdec");
+    RunSFtests("Fio,Sscan,Fscanf,Bscan,Cut,Cmp,Sel,Shift,Median,Findval,Lip");
+    
 
-    RunSFtests("Pow,Minof,Maxof,Ftest,Convert,Return,Dec2,Pincdec,Quicksort,Readfile,Skeyval");
+   RunSFtests("Pow,Minof,Maxof,Ftest,Convert,Return,Dec2,Pincdec,Rowzoom");
+
+   RunSFtests("Quicksort,Readfile,Skeyval,ReadRecord,Icall");
 
 
 

@@ -1,25 +1,28 @@
-//%*********************************************** 
-//*  @script scalarvec.asl 
-//* 
-//*  @comment scalar vec ops 
-//*  @release CARBON 
-//*  @vers 1.3 Li Lithium                                                 
-//*  @date Thu Mar  7 23:34:50 2019 
-//*  @cdate 1/1/2001 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script scalarvec.asl 
+ * 
+ *  @comment scalar vec ops 
+ *  @release CARBON 
+ *  @vers 1.4 Be Beryllium [asl 6.3.8 C-Li-O] 
+ *  @date Mon Jan 11 15:13:30 2021 
+ *  @cdate 1/1/2001 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                   
 
 
-include "debug.asl"; 
-  debugON(); 
+#include "debug.asl"; 
+/*
+debugON(); 
   setdebug(1,@keep,@pline,@trace); 
   FilterFileDebug(REJECT_,"storetype_e","ds_storevar","ds_sivmem");
   FilterFuncDebug(REJECT_,"~ArraySpecs",); 
- 
+ */
 
- chkIn()
+ chkIn(_dblevel)
 
  I = vgen(INT_,10,0,1)
 

@@ -1,31 +1,59 @@
+/* 
+ *  @script sort.asl 
+ * 
+ *  @comment test inplace sort,reverse and isort VMF, SF 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.8 C-Li-O]                                  
+ *  @date Mon Jan 11 08:36:29 2021 
+ *  @cdate 1/1/2005 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
 
-setdebug(atoi(getenv(GS_DEBUG)));
+///
+///
+///
+
+
+chkIn(_dblevel)
 
 
 I = vgen(INT_,10,0,2)
 
 <<"$I \n"
+chkN(I[1],2)
 
 I->reverse()
 
 <<"$I \n"
+chkN(I[1],16)
+
 
 I->sort()
 
 <<"$I \n"
 
+chkN(I[1],2)
+
 I->reverse()
 
-K =Sort(I)
+chkN(I[1],16)
 
+K =Sort(I)
+K->info(1)
 <<"K: $K \n"
 <<"I: $I \n"
+
+I->shuffle(10)
+
+<<"I: $I \n"
+
 
 K = Isort(I)
 
 <<"$K \n"
-
-
 
 
 
@@ -56,32 +84,6 @@ L= cyclecol(M,1)
 
 <<"$L \n"
 
+chkOut()
 exit()
 
-
-
-
-I->reverse()
-
-
-<<"$I \n"
-
-I->Sort()
-
-<<"$I \n"
-
-I->reverse()
-
-
-
-
-
-
-//<<"$K \n"
-
-I->Sort()
-
-
-
-
-<<"$I \n"

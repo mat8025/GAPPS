@@ -1,7 +1,7 @@
 //
 //  test mutex wrappers
 
-setdebug(0)
+
 
 m_id = createMutex()
 <<"%V $m_id\n"
@@ -132,4 +132,4 @@ ret = -1;
 
 
 
-stop!
+

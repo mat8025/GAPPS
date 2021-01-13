@@ -1313,7 +1313,8 @@ Sort
 .FD
 Sort(A)
 Performs a sort of an array vector, default is to use quicksort
-A->Sort() - performs an inplace sort of vector
+A->Sort() - performs an inplace sort (low to high)  of vector
+Use A->reverse() to then obtain results in high to low order.
 Sort(A)
 .EF
 =============================================================
@@ -1324,7 +1325,8 @@ Isort
 .)x 
 .FD
 P=Isort(A)
-Performs sort of an array vector returns a vector of the  positions of the sorted elements
+Performs sort of an array vector returns a vector of the  positions
+of the elements in low to high order.
 .EF
 
 =============================================================
@@ -1593,7 +1595,7 @@ fp=Lfit(X,Y)
 fp[0] is the constant c and fp[1] is the slope parameter m so a new value  y = mx + c.
 e.g.
 fp=Lfit(X[0:n-1],Y[0:n-1])
-The first n values of X,Y vectors are lineraly fitted - constant and slope parameters return in vector fp
+The first n values of X,Y vectors are linearly fitted - constant and slope parameters return in vector fp
 .EF
 
 =============================================================
@@ -9205,16 +9207,18 @@ then characters from the end of the string can be selected.
 .EF
 =============================================================
 .BF
-rele()
+rover()
 .(x
-rele
+rover
 .)x 
 .FD
-w3=rele(w1,w2,index)
-replace a substring of w1 at index position with string w2.
+w3=rover(w1,w2,index)
+replace a characters of w1 at index position with string w2.
 The replacement will extend the string if needed, as long as index is within the first string.
-
-
+If index is negative the replacement is offset to the end of the string
+(-1 would have the replacement streing end at the current end of the string)
+rover("growling","XY",1)   returns "gXYwling"
+rover("growling","XY",-2)   returns "growlXYg" 
 .EF
 =============================================================
 .BF
@@ -10016,7 +10020,8 @@ bubblesort
 .)x 
 .FD
 bubblesort(Vec)
-performs bubble sort on a vector returns the sorted vector.
+performs bubble sort (low to high) on a vector returns the sorted vector.
+Use Vec->reverse() to then obtain results in high to low order.
 Should work on all types.
 can be used as Vec->BubbleSort() returns 1 if sorted.
 .EF

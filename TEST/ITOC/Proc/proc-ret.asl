@@ -181,7 +181,7 @@ int foo1(int a)
 
 
 
-int foo2(real a) 
+int foo2(int a) 
 {
 int ret = 0;
 <<" $_proc foo2 $a \n"
@@ -223,7 +223,7 @@ int ret = 0;
 int foo3(real a) 
 {
 int ret = 0;
-<<" $_proc foo2 $a \n"
+<<" $_proc foo3 $a \n"
   a->info(1)
     if (a > 300) {
 <<" $a > 300 foo3 should be returning 30 !\n"
@@ -363,9 +363,9 @@ in = 1
 
    chkN(c,-6)
 
-   in = 110
+   fin = 110.0
 
-   d = foo2(in) 
+   d = foo2(fin) 
 
 <<"ret will be  $d\n"
 
@@ -395,7 +395,7 @@ in = 1
 
 <<"ret will be $d\n"
 
-   e = foo3(in) 
+   e = foo3(fin) 
 
 <<"ret will be  $e\n"
 

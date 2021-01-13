@@ -1,7 +1,7 @@
 //
 //  test mutex wrappers
 
-setdebug(0)
+
 
 m_id = createMutex()
 
@@ -50,7 +50,7 @@ proc foo1()
      nanosleep(100000)
    }
 
-<<" DONE foo1 $_cproc exiting %V$foo1tid and releasing mutex $m_id\n"
+<<" DONE foo1 $_proc exiting %V$foo1tid and releasing mutex $m_id\n"
       ret=mutexUnLock(m_id)
 
       GthreadExit()
@@ -120,7 +120,3 @@ proc foo1()
    nt = gthreadHowMany()
   <<" should be back in main thread %V$nt \n"
 
-
-
-
-stop!

@@ -13,7 +13,7 @@
   
 
 
-chkIn (_dblevel)
+ chkIn (_dblevel)
 
  int HT[10][10]
 
@@ -87,6 +87,7 @@ sz=Caz(CT)
 <<"%v $sz\n"
 
 chkN (sz,56)
+
 
 
 bnds= Cab(CT)

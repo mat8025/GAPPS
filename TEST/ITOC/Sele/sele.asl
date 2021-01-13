@@ -1,18 +1,20 @@
-//%*********************************************** 
-//*  @script sele.asl 
-//* 
-//*  @comment test sele function
-//*  @release CARBON 
-//*  @vers 1.6 C Carbon                                                    
-//*  @date Mon Mar 18 10:23:59 2019 
-//*  @cdate 1/1/2001 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//*
-//***********************************************%
+/* 
+ *  @script sele.asl 
+ * 
+ *  @comment test sele function 
+ *  @release CARBON 
+ *  @vers 1.7 N Nitrogen [asl 6.3.8 C-Li-O] 
+ *  @date Sun Jan 10 21:17:49 2021 
+ *  @cdate 1/1/2001 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                    
    
    
-   /{/*; 
+   /* 
    sele(sv,index,nc);
    used to select part of string variable; 
    index in string (0...length-1), nc  number of chars required; 
@@ -33,7 +35,7 @@
    if nc is negative then the selection is towards the beginning of the string,; 
    e.g. astr= "penultimate"; b=sele(astr,-1,-4) -- b would hold "mate".; 
    
-   /}*/
+   */
    
    
    chkIn(); 

@@ -120,7 +120,7 @@ index = 3
 t = 0xbefacebe
 chkN(k,t)
 
-exit()
+
  na = bscan(&C[index+1],swab,&k,&j)
 
 <<"%V $na $k $j \n"
@@ -149,9 +149,6 @@ uint j1
 
 
 
-chkOut()
-
-exit()
 
 
  na = bscan(&C[0],1,&k,&j)
