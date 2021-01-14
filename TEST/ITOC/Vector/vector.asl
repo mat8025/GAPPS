@@ -5,7 +5,6 @@
 //*  @release CARBON 
 //*  @vers 1.2 He Helium [asl 6.2.57 C-He-La]                              
 //*  @date Tue Jun  9 20:28:45 2020 
- 
 //*  @cdate Thu Apr 16 23:13:22 2020 
 //*  @author Mark Terry 
 //*  @Copyright © RootMeanSquare  2010,2020 → 
@@ -45,6 +44,11 @@ chkN (T[1],0.75)
 H = (4.0 * (V+1))
 <<"%V%6.1f $H\n"
 
+<<"%V$V\n"
+//!p T
+
+<<"%V$T\n"
+
 T = (2+ V)/(4.0 * (V+1)) 
 
 chkN (T[1],0.375)
@@ -53,8 +57,10 @@ chkN (T[1],0.375)
 
 <<"$(Caz(T)) $(Cab(T))\n"
 
-
 chkStage("vop")
+
+
+
 
 proc ask()
 {

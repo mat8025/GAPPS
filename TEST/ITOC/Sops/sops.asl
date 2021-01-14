@@ -414,9 +414,15 @@ ok = 0
    else {
 <<" scmp not working \n"
    }
+<<"%V$ok\n"
+<<"<|$A|>\n"
 
+ok->info(1)
+A->info(1)
 
+//chkStr(A,"how")
 chkN(1,ok)
+
 
      ok = 0
    if (A @= "wow") {

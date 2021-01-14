@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @script svar_hash.asl 
-//* 
-//*  @comment svar as hash table 
-//*  @release CARBON 
-//*  @vers 1.3 Li Lithium                                                  
-//*  @date Tue May  7 19:17:52 2019 
-//*  @cdate 1/1/2010 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2019 → 
-//* 
-//***********************************************%
+/* 
+ *  @script svar_hash.asl 
+ * 
+ *  @comment svar as hash table 
+ *  @release CARBON 
+ *  @vers 1.4 Be Beryllium [asl 6.3.9 C-Li-F] 
+ *  @date Wed Jan 13 21:11:15 2021 
+ *  @cdate 1/1/2010 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                      
 
 #include "debug"
 
@@ -29,7 +31,7 @@ Svar _HV
 
 _HV->info(1)
 
-_HV->table("HASH",50,2) //
+_HV->table("HASH",2,50) //
 
 
 _HV->info(1)
@@ -40,7 +42,7 @@ _HV->info(1)
 tsz = 30;
 nplace = 2
 
-S->table("HASH",tsz,nplace) // makes Svar a hash type -- could extend table
+S->table("HASH",nplace,tsz) // makes Svar a hash type -- could extend table
 
 key = "Hastings"
 ival = 1066

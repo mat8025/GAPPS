@@ -174,14 +174,19 @@ chkN(sz,9)
 chkN(SI[0],2)
 chkN(SI[-1],10)
 
+isz= Caz(I)
 
 SI= I[::2] ;   // all skip every other
 sz=Caz(SI)
-<<"%V $sz\n"
+
+<<"%V$isz $sz\n"
 <<"%V$SI\n"
 <<"%V$I[::2]\n"
 
 chkN(sz,15)
+
+
+
 chkN(SI[0],0)
 chkN(SI[-1],28)
 

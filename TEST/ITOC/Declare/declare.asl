@@ -13,7 +13,7 @@
 myScript = getScript();///
 ///
 ///
-include "debug"
+#include "debug"
 
 <<"%V $_dblevel\n"
 
@@ -458,9 +458,15 @@ char dv[] = { 'G', 84, 85, 78, 'O', 69,  75,76,77,'0' }
 <<"%c $dv \n"
 sz= Caz(dv)
 <<"%V $sz\n"
- chkN(dv[0], 'G' )
- chkN(dv[1], 84 )
-  chkN(dv[2], 85 )
+!pdv
+
+chkN(dv[0], 'G' )
+chkN(dv[1], 84 )
+
+exit()
+
+
+chkN(dv[2], 85 )
    chkN(dv[3], 78 )
  chkN(dv[4], 'O' )
  chkN(dv[5], 69 )
