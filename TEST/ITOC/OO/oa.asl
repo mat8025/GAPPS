@@ -12,11 +12,11 @@
 //***********************************************%
 
 
-//sdb(1,@trace)
+#include "debug"
 chkIn (_dblevel)
 
 
-//include "debug"
+
 
 //debugON()
 

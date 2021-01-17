@@ -1,41 +1,43 @@
+/* 
+ *  @script lharraysubsrange.asl 
+ * 
+ *  @comment test sub vector range specification and subset value setting 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.11 C-Li-Na]                                
+ *  @date Sat Jan 16 21:57:31 2021 
+ *  @cdate 1/1/2007 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
 //
 // test sub vector range specification and subset value setting
 //
 
-proc ask()
-{
-   ok=chkStage();
-   <<"%6.2f$ok\n"
-   ans=iread(); 
-}
 
 
-//#define  ASK ask();
-#define  ASK ;
+
+chkIn(_dblevel)
 
 
-chkIn()
 
-setDebug(1,"pline")
-
-float real[]  // dynamic array
+float vreal[]  // dynamic array
 
  wlen = 10
 
 
- real[1:wlen] = 77.0
+ vreal[1:wlen] = 77.0
 
-<<"%V6.2f$real \n"
+<<"%V6.2f$vreal \n"
 
 
 chkN(wlen,10);
 
-chkR(real[0],0,1)   
+chkR(vreal[0],0,1)   
 
-chkR(real[2],77,1)   
+chkR(vreal[2],77,1)   
 
-
-ASK
 
 // FIX float YS[] = Fgen(32,0,1)
 
@@ -49,7 +51,7 @@ chkR(YS[1],1,1)
 chkR(YS[31],31,1)   
 
 
-ASK
+
 
 float swin[wlen];
    
@@ -67,24 +69,24 @@ rwlm = wlen -1;
 ki = 2
 ji = ki + wlen -1
 
-  real[0:wlen-1] = YS[ki:ji] 
+  vreal[0:wlen-1] = YS[ki:ji] 
 
 <<"%V $ki $ji $wlen \n"
 
-<<"%V %6.2f$real \n"
+<<"%V %6.2f$vreal \n"
 
-   chkR(real[2],4.0,1)   
-   chkR(real[9],11.0,1)   
+   chkR(vreal[2],4.0,1)   
+   chkR(vreal[9],11.0,1)   
 
 
-ASK
+
 
 ki = 4
 ji = ki + wlen -1
 
-  real[0:wlen-1] = YS[ki:ji] 
+  vreal[0:wlen-1] = YS[ki:ji] 
 
-<<"$ki %6.2f$real \n"
+<<"$ki %6.2f$vreal \n"
 
 
 
@@ -94,11 +96,11 @@ ji = ki + wlen -1
    ki = j
    ji = ki + wlen -1
 
-  real[0:wlen-1] = YS[ki:ji] 
-<<"$ki %6.2f$real \n"
-   chkR(real[0],j,1)   
+  vreal[0:wlen-1] = YS[ki:ji] 
+<<"$ki %6.2f$vreal \n"
+   chkR(vreal[0],j,1)   
 
-ASK
+
 }
 
 
@@ -125,14 +127,14 @@ tv= sum(sr)
 
   for (j=0;j<3;j++) {
 
-    real[0:wlen-1] = YS[ki:ji] 
+    vreal[0:wlen-1] = YS[ki:ji] 
 
-    av = real;
+    av = vreal;
 
 <<"%V$wlen \n"
 <<"%V$av \n"
 
-    tv = sum(real);
+    tv = sum(vreal);
 
 <<"Num Dims $(Cab(tv))\n"
 
@@ -140,35 +142,35 @@ tv= sum(sr)
 
     chkN(tv,142)  
 
-<<"$j %6.2f$real \n"
+<<"$j %6.2f$vreal \n"
 
-ASK
+
 
    }
 
 
 
-<<" //FIX   real[0:(wlen-1)] = YS[ki:ji]  \n"
+<<" //FIX   vreal[0:(wlen-1)] = YS[ki:ji]  \n"
 
 <<"last loop \n"
   for (j=0;j<3;j++) {
 
-    real[0:(wlen-1)] = YS[ki:ji] 
+    vreal[0:(wlen-1)] = YS[ki:ji] 
 
-   tv = sum(real)
+   tv = sum(vreal)
 
    <<" $tv[0] \n"
     chkN(tv,142)  
 
-<<"%V$j %$real \n"
-ASK
+<<"%V$j %$vreal \n"
+
    }
 
-   tv = sum(real)
+   tv = sum(vreal)
 
 <<" $tv \n"  
 
-ASK
+
 
    chkOut()
 

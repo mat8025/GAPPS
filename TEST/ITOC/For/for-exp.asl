@@ -11,10 +11,11 @@
 //* 
 //***********************************************%//
 
-include "debug.asl"
-debugON()
+#include "debug.asl"
+//debugON()
+//sdb(1,@pline)
 
-chkIn()
+chkIn(_dblevel)
 
 prog = GetScript()
 
@@ -79,47 +80,34 @@ int cnt = 0
 
    chkN(k,N+1)
    chkN(cnt,N)
-<<" DONE %V $k  $N  \n"
-
+<<" DONE %V $k  $N $cnt \n"
+<<"//////////////////\n"
 
 //  for ( j = 1; j <= (N-1); j++)
-  for ( j = 1; j <= N-1 ; j++)  // bug does not get RHS exp correct
-   {
 
-    <<"loop val $k < $N $cnt\n"
+//for ( j = 1; j <= (N-1) ; j++)  // bug does not get RHS exp correct
+
+
+ 
+
+for ( j = 1; j <= N-1 ; j++) { // bug does not get RHS exp correct
+   
+
+    cnt = j
+    <<"loop val $j <= $(N-1) $cnt\n"
 
     a= j * tt
 
     <<"%V$j * $tt = $a \n"
 
-    cnt = j
+
   }
 
-<<" DONE %V $j  $(N-1)  \n"
+<<" DONE %V $j  $(N-1)  $cnt \n"
 
   chkN(j,N)
 
-//  for ( j = 1; j <= (N-1); j++)
-  for ( j = 1; j <= N-1; j++)
-   {
-
-    <<"loop val $k < $N $cnt\n"
-
-    a= j * tt
-
-    <<"%V$j * $tt = $a \n"
-
-    cnt = j
-  }
-
-<<" DONE %V $j  $(N-1)  \n"
-
-  chkN(j,N)
-
-
-
-
-<<" $cnt == $N ?? \n"
+<<" $cnt == $(N-1) ?? \n"
    chkN(cnt,N-1)
 
 

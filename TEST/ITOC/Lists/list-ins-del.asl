@@ -1,5 +1,5 @@
 //%*********************************************** 
-//*  @script list_ins_del.asl 
+//*  @script list-ins-del.asl 
 //* 
 //*  @comment test list insert delete 
 //*  @release CARBON 
@@ -11,19 +11,19 @@
 //* 
 //***********************************************%
    
-   
-   include "debug.asl"; 
+#include "debug.asl"; 
    
    debugON();
    
-  // setdebug (1, @pline, @~step, @~trace,@break,57) ;
+/*
+// setdebug (1, @pline, @~step, @~trace,@break,57) ;
    setdebug (1, @pline, @~step, @~trace,) ;
    FilterFileDebug(REJECT_,"~storetype_e");
    FilterFuncDebug(REJECT_,"~ArraySpecs",);
+*/
 
 
-
-chkIn(1)
+chkIn(_dblevel)
 
 ShoppingList = ("xxx",  )  // empty list --- bug first item null?
 

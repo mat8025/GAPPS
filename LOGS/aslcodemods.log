@@ -725,3 +725,5 @@ ds_getvarasstr.cpp	 2.64	 Sat Jan  9 11:56:59 2021 fix STRV
 vmf_l.cpp	 1.57	 Tue Jan 12 09:16:25 2021 rand subscript
 stat_m.cpp	 1.96	 Wed Jan 13 07:54:10 2021 runStats
 ds_sivrange.cpp	 1.100	 Wed Jan 13 08:28:23 2021 check stride value
+sop_l.cpp	 1.93	 Thu Jan 14 11:10:24 2021 added strchr SF
+fior.cpp	 1.74	 Thu Jan 14 13:29:05 2021 readline -remover_cr option

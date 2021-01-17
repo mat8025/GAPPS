@@ -13,9 +13,6 @@
    
 #include "debug"
 
-  if (_dblevel >0) {
-    debugON()
-   }
 
 /*
 sdb(1,@pline,@trace)

@@ -5166,9 +5166,13 @@ readline()
 readline,getline
 .)x 
 .FD
-C=readline(A,[max_chars])
-reads an entire line (or at most max_chars if set) from the current position 
-in file A into a string (svar) variable.
+C=readline(A,[max_chars=-1],[remove_cr=0])
+A is the file handle (0 stdin is the default);
+reads an entire line (or at most max_chars if set) from the current file position
+into a string  variable.
+The CR/LF character is included unless the remove_cr option is set;
+Setting max_chars to minus 1 means line length is unlimited ( resource limited by system),
+
 If there is an error e.g. end of file then a file status error is set.
 The function ferror(A) returns the current error if set.
 End of file error is  EOF_ERROR_ value 6.
@@ -6317,13 +6321,13 @@ diff= strdiff(s1,s2)
 .EF
 =============================================================
 .BF
-scnt()
+scnt,scntascii()
 .(x
 scnt
 .)x 
 .FD
 scnt(w1)
-tallys up the ascii values of the string
+tallys up the ascii values of the string.
 
 
 .EF

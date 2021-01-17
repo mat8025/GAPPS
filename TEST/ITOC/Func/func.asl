@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @script func.asl 
-//* 
-//*  @comment test CL args 
-//*  @release CARBON 
-//*  @vers 1.38 Sr Strontium                                               
-//*  @date Tue Apr 21 16:16:17 2020 
-//*  @cdate 1/1/2005 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script func.asl 
+ * 
+ *  @comment test CL args 
+ *  @release CARBON 
+ *  @vers 1.39 Y Yttrium [asl 6.3.11 C-Li-Na] 
+ *  @date Sat Jan 16 21:52:11 2021 
+ *  @cdate 1/1/2005 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                    
 
 #include "debug";
 
@@ -224,7 +226,7 @@ fvs = fva[jal]
 
 <<"%V $fvs\n"
 
-Checkstr(fvs,"6")
+chkStr(fvs,"6")
 
 
 jal++
@@ -260,7 +262,7 @@ col = split(fvs)
 <<"$fvs\n"
 <<"$col\n"
 
-   checkstr(col[1],"0.000000")
+   chkStr(col[1],"0.000000")
 
 jal = 3
 fvs = fva2[jal]

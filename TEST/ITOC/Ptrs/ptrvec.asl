@@ -14,10 +14,11 @@
 ///
 ///
 
-include "debug.asl"
-debugON()
-setdebug(1,@keep,@pline)
-FilterFileDebug(REJECT_,"storetype_e","ds_storevar")
+#include "debug.asl"
+
+//debugON()
+//setdebug(1,@keep,@pline)
+//FilterFileDebug(REJECT_,"storetype_e","ds_storevar")
 
 
 proc foov ()

@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @script dynv.asl 
-//* 
-//*  @comment test dynamic array ops 
-//*  @release CARBON 
-//*  @vers 1.3 Li Lithium [asl 6.3.2 C-Li-He]                            
-//*  @date Mon Dec 28 21:55:45 2020 9 
-//*  @cdate Wed Apr  3 13:09:11 2019 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script dynv.asl 
+ * 
+ *  @comment test dynamic array ops 
+ *  @release CARBON 
+ *  @vers 1.4 Be Beryllium [asl 6.3.11 C-Li-Na] 
+ *  @date Sat Jan 16 20:05:29 2021 
+ *  @cdate Wed Apr 3 13:09:11 2019 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                   
 
 /*
 Set(),set ~ sets values in a vector or a scalar()
@@ -27,14 +29,14 @@ The initial vaue can be incremented at each set step to create a series.
 a vector is tagged as dynamic ( allowed resize on access)
 via the declare statement
 
-int Vec[>10];
+int Veci[>10];
 
 which sets the initial size of Vec to ten but allows
 runtime resize when needed 
 e.g.
-Vec[12] = 47;
+Veci[12] = 47;
 
-the size of the Vec is increased to 13 plus;
+the size of the Veci is increased to 13 plus;
 
 */
 
@@ -49,19 +51,19 @@ if (_dblevel >0) {
 chkIn(_dblevel)
 
 
-int Vec[>10];
+int Veci[>10];
 
-Vec[3] = 79;
+Veci[3] = 79;
 
-Vec->info(1)
+Veci->info(1)
 
-Vec[12] = 47;
+Veci[12] = 47;
 
-sz=Caz(Vec);
+sz=Caz(Veci);
 
 <<"%V $sz \n"
 
-Vec->info(1);
+Veci->info(1);
 
 chkT (sz>=13)
 

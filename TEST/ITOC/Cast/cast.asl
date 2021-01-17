@@ -35,7 +35,7 @@ FV = vgen(FLOAT_,3,0,1)
 <<"%V $FV\n"
 
 
-
+//sdb(1,@step,@pline)
 
 
 uchar C[] = { 0xCA , 0xFE, 0xBA, 0xBE, 0xFA, 0xCE, 0xBE, 0xAD , 0xDE,0xAD, 0xC0, 0xDE };
@@ -79,8 +79,8 @@ D = C
 
 
 
-   checknum(202.0,C[0])
-   checknum(254.0,C[1])
+   chkN(202.0,C[0])
+   chkN(254.0,C[1])
 
 <<" $(typeof(D)) \n"
 <<" $D \n"

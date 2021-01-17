@@ -22,8 +22,9 @@ if (_dblevel >0) {
 
 chkIn(_dblevel)
 
+//sdb(1,@step)
 
- A = ofr("rf.asl")
+ A = ofr("fops.asl")
 
 
   S=readfile(A)
@@ -36,18 +37,19 @@ chkIn(_dblevel)
 
 <<"%V$sz \n"
 
- A = ofr("rf.asl")
+ A = ofr("fops.asl")
  k = 0;
  while (1) {
 
   res =readline(A)
   err = f_error(A)
-  <<"$k $err :: $res \n";
+
   if (f_error(A) == EOF_ERROR_) {
-    <<"@ EOF\n"
+    <<"\n@ EOF\n"
        break;
 	   }
-	   
+  len = slen(res)	   
+  <<"$k $len :: $res";	   
   k++;
    if (k > (sz+10))
     break;

@@ -1,5 +1,18 @@
+/* 
+ *  @script list-ele.asl 
+ * 
+ *  @comment test list ele access 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.11 C-Li-Na]                                
+ *  @date Sat Jan 16 22:09:47 2021 
+ *  @cdate 1/1/2008 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
 
-include "debug"
+#include "debug"
 
 if (_dblevel >0) {
    debugON()

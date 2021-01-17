@@ -1,5 +1,5 @@
 //%*********************************************** 
-//*  @script list_declare.asl 
+//*  @script list-declare.asl 
 //* 
 //*  @comment test list declare 
 //*  @release CARBON 
@@ -84,7 +84,7 @@ chkStr(Mol[1],"FEB")
 
 
 
-checkProgress()
+chkProgress()
 
 <<" DONE Lists \n"
 

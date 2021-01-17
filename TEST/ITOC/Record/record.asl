@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
 ///
-///  Record
+/// Record
 /// test record type
 /// each record is an Svar
 ///
@@ -52,8 +52,11 @@ sz= csz(&ra);
 
  R->info(1)
 
+// ',' parsed as CHAR
+//split intreprets via s->makeStrFromArg ()
+// single character string  e.g. as "," 
 
- R[0] = Split("80,1,2,3,40,5,6,7,8,9",',');
+ R[0] = Split("80,1,2,3,40,5,6,7,8,9",','); 
  R[1] = Split("82,5,4,3,40,5,6,7,8,9",',');
  R[2] = Split("83,7,6,5,40,5,6,7,8,9",',');
  R[3] = Split("84,8,7,6,40,5,6,7,8,9",',');
@@ -70,7 +73,18 @@ sz= csz(&ra);
 
 <<"num of records $Nrecs  num cols $Ncols\n";
 
+//wsv=Split("80,1,2,3,79,5,6,7,8,9",',');
+wsv=Split("80,1,2,3,79,5,6,7,8,9", ",");
+!pwsv
+!iwsv
+
 R->info(1)
+
+rval = R[0][4];
+
+
+!prval
+!irval
 
 
 
@@ -517,7 +531,7 @@ for (k=0; k <1; k++) {
  <<"%V $fr0 $sr0 $sr1\n"
 chkStr(sr1,"move")
 
-checkProgress()
+chkProgress()
 
 <<"%V$R[3]\n"
 <<"inserting muy bien into R[3][4]\n"
@@ -539,7 +553,7 @@ chkStr(sr3,"and");
 chkStr(sr1,"muy bien");
 
 
-checkProgress();
+chkProgress();
 <<"0 $R[0]\n"
 <<"1 $R[1]\n"
 <<"3 $R[3]\n"

@@ -1,6 +1,11 @@
 
-//setdebug(1)
-chkIn()
+
+
+#include "debug"
+
+//sdb(1,@step,@trace)
+
+chkIn(_dblevel)
 
 int a = 1.0
 
@@ -11,9 +16,10 @@ float f = 3.1
   a += f
   
 <<"%V $a $(typeof(a)) \n"
+!ia
 
+chkN(a,4.1)
 
-chkN(a,4)
 
 VI = dgen(10,0,1)
 
@@ -75,6 +81,18 @@ VI = igen(10,0,1)
 
   }
 
-chkN(b,13.0)
+b->info(1)
+
+<<"%V $b $(typeof(b)) \n"
+chkStage("??")
+
+  chkR(b,13.0)
+
+
+!pb
+!ib
+
+
+
 
 chkOut()

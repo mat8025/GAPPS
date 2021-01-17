@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @script types.asl 
-//* 
-//*  @comment test asl types 
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                    
-//*  @date Fri Apr 17 11:14:54 2020 
-//*  @cdate Fri Apr 17 11:14:54 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script types.asl 
+ * 
+ *  @comment test asl types 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.10 C-Li-Ne] 
+ *  @date Fri Jan 15 11:22:42 2021 
+ *  @cdate Fri Apr 17 11:14:54 2020 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                         
 
 myScript = getScript();
 
@@ -168,7 +170,7 @@ CMD[2][0] = 17
 <<"$CMD \n"
 
 B = CMD[2][1:4:];
-// B should be a vector!
+// B will be @D  [1][4]
 B->Redimn()
 
 <<"%V$B \n"
@@ -186,16 +188,15 @@ cv2 = B[2];
 
 chkN(B[1],12);
 
-D = CMD[2][1:3:];
+D = CMD[2][1:3:]; // D is 2D 
 
 <<"%V$D \n"
 <<"$(typeof(D)) $(Cab(D)) \n"
 
+!iD
 
+chkN(D[0][0],6);
 
-chkN(D[0],6);
-
-<<"\\\\\\ \n";
 
 E = CMD[0:2][1:3:];
 
@@ -247,6 +248,8 @@ UV[5] = 'A'
 chkN(UV[2],47)
 
 chkN(UV[5],'A')
+
+chkStage("char")
 
 
 
@@ -440,9 +443,19 @@ chkN(f,-1)
 <<"$sa float $f $(typeof(f))\n"
 long L = 47
 <<"long $L $(typeof(L))\n"
+
+
+
 l=  atol("12");
 chkN(l,12)
+
 <<"long $l $(typeof(l))\n"
+s12="12"
+l=  atol(s12);
+
+<<"long $l $(typeof(l))\n"
+
+chkN(l,12)
 
 <<"%V $sa $(typeof(sa))\n"
 
@@ -464,18 +477,26 @@ chkN(l,-2)
 
 
 
-l =  2^32 
+l =  2^^32 
 <<"$l $(typeof(l))\n"
 u=  atou(sa);
 
 <<"$u $(typeof(u))\n"
 
-ul = l -1; 
+ul = l -1;
+!pu
+!pul
+
+!iu
+!iul
 
 
 <<"$s ulong $ul $u $(typeof(u))\n"
 
 chkN(u,ul)
+
+
+
 chkStage("atou,l,f")
 
 sa ="-1.0"

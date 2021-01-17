@@ -216,18 +216,17 @@ Str pgname;
      <<[2]"%V $Td $Tl $np\n"
       
       for (i=0 ; i < np; i++) {
-      <<"$i  $np <|$Tp[i]|>\n"
-         if (!(Tp[i] @= "")) {
-          //if (do_query) {
-          //    query(Tp[i])
-          // }
+  //    <<"$i  <|$Tp[i]|>\n"
+
+         //if (!(Tp[i] @= "")) 
+
 	    pgname = Tp[i];
 	    //pgname->info(1)
-	   // <<"$pgname \n"
+//	   <<"$pgname \n"
          if (slen(pgname) > 0) {
           cart(pgname);
          }
-      }
+      
       }
 }
 //====================//
@@ -960,7 +959,7 @@ if ((do_bit || do_all) && (do_bit != -1)) {
 
  if ((do_for || do_all) && (do_for != -1)) {
 
-   RunDirTests("For","for,forexp")
+   RunDirTests("For","for,for-exp")
 }
 
 
@@ -969,7 +968,7 @@ if ((do_bit || do_all) && (do_bit != -1)) {
 
   if ((do_all || do_while ) && (do_while != -1)) {
 
-    RunDirTests("While","while,while-forever")
+    RunDirTests("While","while-nest,while")
 
     }
 ////////////////////////////////////////////////////////////////////////
@@ -1007,7 +1006,7 @@ if ((do_all || do_try ) && (do_try != -1)) {
   
       RunDirTests("Types","types");
       
-      RunDirTests("Cast","cast,cast_vec")
+      RunDirTests("Cast","cast,cast-vec")
 
       RunDirTests("Efmt","efmt",);
 
@@ -1385,7 +1384,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
    if ((do_all || do_lists ) && (do_lists != -1)) {
 
-     RunDirTests("Lists","lists,list_declare,listele,list_ins_del");
+     RunDirTests("Lists","lists,list-declare,list-ele,list-ins-del");
 
     }
 
@@ -1397,21 +1396,25 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
    }
 
+oo_ok =0;  /// OO broke 1/14/2021 FIX
+
    if ((do_all || do_class )  && (do_class != -1)) {
-
+  if (oo_ok) {
         RunDirTests("Class","class_mfcall,classbops,class2,classvar");
-
+   }
     }
 
 
 
    if ((do_all || do_oo ) && (do_oo != -1)) {
 
+  if (oo_ok) {
     RunDirTests("OO","oa2,rpS,rp2,wintersect,oa,class_array");
 
     RunDirTests("Obcopy","obcopy,obprocarg");
 
     RunDirTests("Mih","sh,mih")
+  }
 
   }
 

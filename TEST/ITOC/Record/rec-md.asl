@@ -10,12 +10,14 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
+/*
 #include "debug.asl";
 
 
 if (_dblevel >0) {
    debugON()
 }
+*/
 
 chkIn(_dblevel)
 
@@ -74,8 +76,10 @@ Record RSV[>3]
 
 RSV= MD
 
+!pRSV
 
 RSV->info(1)
+
 
 
 <<"$RSV\n"
@@ -92,11 +96,18 @@ chkStr(val,"85.000000")
 
 chkStr(RSV[2][1],"85.000000")
 
+SM= MD[0:2][1:5:]
+
+!pSM
 
 RSV= MD[0:2][1:5:]
 
+<<"after subscript RHS\n"
 RSV->info(1)
+
 <<"$RSV\n"
+
+
 
 V=vgen(FLOAT_,10,0,1)
 <<"$V\n"

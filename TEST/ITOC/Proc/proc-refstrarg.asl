@@ -26,7 +26,7 @@ Str pstrarg (str v, str u)
  m = v;
  v->info(1)
  u->info(1)
- ans= query("args are correct?");
+// ans= query("args are correct?");
  v = "hola"
  u = "que tal?"
 

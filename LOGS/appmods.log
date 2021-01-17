@@ -204,3 +204,7 @@ sele.asl                 1.7	Sun Jan 10 21:17:49 2021 tidy
 scalarvec.asl            1.4	Mon Jan 11 15:13:30 2021 dbg
 matrix.asl               1.2	Tue Jan 12 19:13:09 2021 DBG
 svar_hash.asl            1.4	Wed Jan 13 21:11:15 2021 fields,rows
+types.asl                1.2	Fri Jan 15 11:22:42 2021 create array via 2D subscript
+dynv.asl                 1.4	Sat Jan 16 20:05:29 2021 Vec->Veci - vec is a siv type
+swab.asl                 1.2	Sat Jan 16 21:18:56 2021 reType -memory same but reclassified as diffent type
+func.asl                 1.39	Sat Jan 16 21:52:11 2021 chkStr

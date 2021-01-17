@@ -1,26 +1,29 @@
-//%*********************************************** 
-//*  @script swab.asl 
-//* 
-//*  @comment test swap function 
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                 
-//*  @date Sun Mar 10 08:42:29 2019 
-//*  @cdate 1/1/2002 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script swab.asl 
+ * 
+ *  @comment test swab function 
+ *  @release CARBON 
+ *  @vers 1.3 Li Lithium [asl 6.3.11 C-Li-Na] 
+ *  @date Sat Jan 16 21:19:58 2021 
+ *  @cdate 1/1/2002 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                   
 
 
-include "debug.asl";
+#include "debug.asl";
 
-
+/*
 debugON();
   setdebug(1,@keep,@pline,@trace);
   FilterFileDebug(REJECT_,"~storetype_e");
   FilterFuncDebug(REJECT_,"~ArraySpecs",);
+*/
 
-chkIn()
+chkIn(_dblevel)
 
 uchar C[] = { 0xCA , 0xFE, 0xBA, 0xBE, 0xFA, 0xCE, 0xBE, 0xAD , 0xDE,0xAD, 0xC0, 0xDE };
 
@@ -40,6 +43,16 @@ chkN(C[0],0xCA)
 chkN(C[11],0xDE)
 
 
+swab(C)
+
+<<"%x $C \n"
+
+swab(C)
+
+<<"%x $C \n"
+
+
+
 
 // just copy
 <<" just assign/copy to new vector \n"
@@ -54,7 +67,7 @@ D = C
 <<"D[]  %x $D \n"
 D->info(1)
 
-swab(D)
+  swab(D)
 
 <<"D[]  %x $D \n"
 
@@ -83,8 +96,8 @@ bscan(U,0,&c0,&c1)
 c0->info(1)
 c1->info(1)
 
-chkN(c0,0xBE)
-chkN(c1,0xBA)
+chkN(c0,0xFE)
+chkN(c1,0xCA)
 
 chkOut()
 

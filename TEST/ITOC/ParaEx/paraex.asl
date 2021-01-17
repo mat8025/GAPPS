@@ -1,5 +1,23 @@
+/* 
+ *  @script paraex.asl 
+ * 
+ *  @comment test scpy,scat char []  
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.10 C-Li-Ne]                                
+ *  @date Thu Jan 14 21:51:08 2021 
+ *  @cdate 1/1/2010 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
 
-chkIn()
+///
+///
+///
+
+
+chkIn(_dblevel)
 
 
 w="a"
@@ -37,12 +55,19 @@ v="oow.asl"
 char C[]
 char E[]
 
+
+!iC
+
+
+
 //C[0] = 47
 
 sz= Caz(C)
 <<"C sz $sz\n"
 
 scpy(C,"Mark")
+
+
 
 <<"Char array C contains $C[0] %s$C\n"
 
@@ -99,4 +124,4 @@ chkOut()
 
 
 
-;
+

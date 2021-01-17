@@ -463,7 +463,7 @@ sz= Caz(dv)
 chkN(dv[0], 'G' )
 chkN(dv[1], 84 )
 
-exit()
+
 
 
 chkN(dv[2], 85 )

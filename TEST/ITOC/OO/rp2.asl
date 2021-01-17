@@ -15,21 +15,21 @@
   
   Nhouses = 0;
   
-  class house {
+  Class house {
     
     int rooms; 
     int floors; 
     int area; 
     int number;
     
-    cmf setrooms(int val); 
+    Cmf setrooms(int val)
     {
       rooms = val;
      <<" $_proc  $_cobj set rooms  $rooms  for house $number  \n"; 
       return rooms; 
      }
     
-    cmf setfloors(int val); 
+    Cmf setfloors(int val) 
     {
       if (floors > 0) {
         floors = val; 
@@ -38,19 +38,19 @@
       return area; 
       }
     
-    cmf getrooms(); 
+    Cmf getrooms()
     {
       <<"$_proc %V  $_cobj $rooms for house  $number \n"
          return rooms;
     }
     
-    cmf print(); 
+    Cmf print() 
     {
       <<" $_cobj has %V $floors and  $rooms $area\n"; 
       }
     
     
-    cmf house(); 
+    Cmf house() 
     {
       floors = 2; 
       rooms = 4; 

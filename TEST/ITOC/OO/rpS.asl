@@ -5,7 +5,7 @@
 //*  @release CARBON 
 //*  @vers 1.3 Li Lithium [asl 6.2.48 C-He-Cd]                             
 //*  @date Tue May 19 07:41:22 2020 
-/*  @cdate 1/1/2003 
+//*  @cdate 1/1/2003 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
@@ -21,7 +21,7 @@
 
 
 
-class house {
+Class house {
     
     int rooms; 
     int floors; 

@@ -1,10 +1,12 @@
 
 #include "debug.asl"
 
-debugON();
+//debugON();
+if (_dblevel >0) {
+   debugON()
+}
 
-record R[5];
-Rn = 6;
+
 
 chkIn(_dblevel)
 
@@ -23,12 +25,28 @@ proc Score()
 
 //===========================//
 
+Record R[>10];
+
+  Nrecs = Caz(R);
+  Ncols = Caz(R,1);
+
+<<"num of records $Nrecs  num cols $Ncols\n";
+
+ R->info(1)
  R[0] = Split("0 1 2 3 4 5")
  R[1] = Split("0 1 2 3 4 5")
+
  R[2] = Split("0 1 2 3 4 5")
  R[3] = Split("10 11 12 13 14 15")
  R[4] = Split("20 21 22 23 24 25")
  R[5] = Split("30 31 32 33 34 35")
+
+!pR
+!iR
+
+
+
+Rn = 6;
 
 PCDoneCol = 3;
 
