@@ -2,6 +2,9 @@
 // Show some colors
 //
 
+#include "debug"
+
+
 
 Graphic = checkGWM()
 
@@ -23,7 +26,7 @@ int b_index = index++
  greenv = 0.5;
  bluev = 0.5;
  
-include "tbqrd"
+#include "tbqrd"
 
     bvp = cWi("title","Button",@pixmapon,@drawon,"save",@bhue,WHITE_)
 
@@ -67,7 +70,7 @@ include "tbqrd"
 
   sWo(gwo,@color,GREEN_)
 
-  bwo=cWo(bvp,@Bstate,@bhue,BLUE_,@NAME,"Blue",@value,bluev)
+  bwo=cWo(bvp,@BS,@bhue,BLUE_,@NAME,"Blue",@value,bluev)
 
   sWo(bwo,@color,BLUE_,@penhue,WHITE_)
 
@@ -90,9 +93,9 @@ include "tbqrd"
 
   nxtcolwo=cWo(bvp,@BN,@name,"Next",@VALUE,"NextColor",@color,"cyan",@resize_fr,bx,by,bX,bY)
 
-  sWo(qwo,@border,@drawon,@clipborder,@fonthue,"black", @style, "SVB", "redraw")
+  sWo(qwo,@border,@drawon,@clipborder,@fonthue,BLACK_, @style, "SVB", @redraw)
 
-  sWo(nxtcolwo,@border,@drawon,@clipborder,@fonthue,"black", @style, "SVB", "redraw")
+  sWo(nxtcolwo,@border,@drawon,@clipborder,@fonthue,"black", @style, "SVB", @redraw)
 
   // these are a list of values that the color wo can have  - each click cycles thru them
 
@@ -120,7 +123,7 @@ int awo[4]
      index = 150;
 
      for (k = 0; k < 4; k++) { 
-        awo[k]=cWo(cvp,"GRAPH","name","${k}_col",@color,index,@value,k)
+        awo[k]=cWo(cvp,@GRAPH,@name,"${k}_col",@color,index,@value,k)
         index++
      }
 
@@ -142,7 +145,7 @@ int htwo[3]
      index = 1;
 
      for (k = 0; k < 3; k++) { 
-      htwo[k]=cWo(vp3,"GRAPH","name","${k}_col",@color,index,@value,k)
+      htwo[k]=cWo(vp3,@GRAPH,@name,"${k}_col",@color,index,@value,k)
       index++
      }
 
@@ -180,8 +183,12 @@ int htwo[3]
 
 //////////////////// BKG LOOP ////////////////////////////////
 // Event vars
-include "gevent"
-   bctx=0.4;
+<<"include gevent?\n"
+
+#include "gevent"
+
+
+bctx=0.4;
    wctx =0.6
    
    while (1) {

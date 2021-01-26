@@ -81,14 +81,46 @@ testArgs(1,vi,vs)
 S=testArgs(1,{1,2,3,4,5,6,7,8,9})
 
 <<"$S\n"
+!a
+
+sum = Sum({1,2,3,4,5,6,7,8,9})
+
+!psum
+
+!a
+
+long Lv[] = vgen(LONG_,10,12,3)
+!pLv
+
+sum = Sum(Lv)
+
+!psum
+
+S=testArgs(1,{1.8,2.2,3,4,5,6,7,8,9})
+
+<<"$S\n"
+!a
+
+
+sum = Sum({1.8,2.2,3.4,4.4,5.5,600.6,7.7,888.8,999.9})
+
+!psum
+
+!a
+
 
 
 T=testArgs(1,{"hey","hago","haces","hace"})
 
-
-
 <<"%(1,,,\n)$T\n"
 
+!a
+
+//R=testArgs(1,("hey","hago","haces","hace"))
+
+//<<"%(1,,,\n)$R\n"
+
+//!a
 
 vi->info(1)
 

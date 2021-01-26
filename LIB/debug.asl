@@ -32,7 +32,7 @@ dbid = IDof("_DB");
 
 
 
-void DummyP()
+proc DummyP()
 {
 // $_proc  called if $pname() does not resolve to known Proc
 <<" $_proc called if invalid proc name\n" 
@@ -40,7 +40,7 @@ void DummyP()
 //==========================
 
 
-void debugON()
+proc debugON()
 {
 
 if (_dblevel < 1) {
@@ -58,7 +58,7 @@ _DB =1;
 }
 //==========================
 
-void debugOFF()
+proc debugOFF()
 {
 
 setdebug(-1,@~pline,@~step,@~trace,@~showresults,1)
@@ -69,13 +69,19 @@ _DB=-1
 }
 //==========================
 
-void debugAllowErrors()
+proc ignoreErrors()
 {
 setmaxcodeerrors(-1); // just keep going
 setmaxicerrors(-1);
 }
 //==========================
-void turnDEBUG(int on)
+proc allowErrors(int n)
+{
+setmaxcodeerrors(n); // just keep going
+setmaxicerrors(n);
+}
+//==========================
+proc turnDEBUG(int on)
 {
 
    if (on) {
@@ -89,7 +95,7 @@ void turnDEBUG(int on)
 
 }
 //==========================
-void setNICerrors( int n)
+proc setNICerrors( int n)
 {
  setmaxICerrors(n)
 }

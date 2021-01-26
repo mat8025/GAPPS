@@ -1270,7 +1270,7 @@ if ((do_all || do_proc ) && (do_proc != -1)) {
 
   RunDirTests("Proc","proc,proc-declare,proc-ret,proc-arg,proc-sv0");
   
-  RunDirTests("Proc","proc-str-ret,proc-refarg,proc-ra,proc-refstrarg,proc-loc-main-var");
+  RunDirTests("Proc","proc-refarg,proc-ra,proc-refstrarg,proc-loc-main-var");
 
   cart("proc-var-define", 10)
 
@@ -1396,7 +1396,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
    }
 
-oo_ok =0;  /// OO broke 1/14/2021 FIX
+oo_ok =1;  /// OO broke 1/14/2021 FIX
 
    if ((do_all || do_class )  && (do_class != -1)) {
   if (oo_ok) {

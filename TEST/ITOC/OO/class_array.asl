@@ -11,6 +11,9 @@
 //* 
 //***********************************************%
   
+#include "debug"
+debugON()
+
 
 
 chkIn (_dblevel); 
@@ -103,10 +106,14 @@ Dil E;
 
    E->showIV();
 
+
+
+
 Dil D;
 
 <<" after cons\n"
   D->showIV();
+
 
 
   D->Set(5,32)
@@ -115,6 +122,7 @@ Dil D;
   D->showIV();
 
 <<" done dec of D\n"
+
 
 
   D->Print(5);
@@ -175,7 +183,7 @@ Dil D;
 
 chkN (D->IV[2],79);
 
-chkOut ()
+
 
   E->showIV()
 

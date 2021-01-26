@@ -13,12 +13,8 @@
 
 #include "debug"
 
-<<"%V $_dblevel\n"
 
-if (_dblevel >0) {
-   debugON()
-}
-  
+ ignoreErrors()
    
 
 
@@ -67,13 +63,7 @@ vid = i->varid()
 
 float F[10]
 
-vid = F->varid()
 
-<<" $vid \n"
-
-vid = F[2]->varid()
-
-<<" $vid \n"
 ////////////////////////////////////////////////////////////
 
 proc Pset( svar s)
@@ -93,7 +83,7 @@ proc Pset( svar s)
 ///////////////////////////////////////////////////////////
 int Act_ocnt = 0;
 
-Class Act {
+class Act {
 
  public:
 
@@ -102,7 +92,7 @@ Class Act {
  int t;
  int id;
  svar svtype;
-  str stype;
+ str stype;
  
  cmf Set(int s)
  {
@@ -115,7 +105,7 @@ Class Act {
  cmf Set(svar s)
  {
      <<"Act Set svar  $_cobj \n"
-     s->info(1)
+      s->info(1)
       svtype = s;
    <<"$s[1] : $s[2]\n"
       val = s[1]
@@ -125,7 +115,7 @@ Class Act {
     //  val1 = SV[2]
     //  <<"%V $val1\n"      
      <<"stype  $s $svtype\n"
-     return svtype;
+     //return svtype;
  }
 
  cmf Set(str s)
@@ -179,7 +169,7 @@ a->info(1)
 
 
  obid = a->objid();
-<<"%V $obid  $vid \n"
+<<"%V $obid  \n"
  a_info = a->info();
 
 
@@ -243,9 +233,9 @@ val2 = SV2[3]
 
 
 
- sv =  X[m2]->Set(SV)
+ X[m2]->Set(SV)
 
-<<"%V $sv \n"
+<<"%V $X[m2]->stype \n"
 
 
 
@@ -267,7 +257,7 @@ val2 = SV2[3]
   obid = b->objid()
  
 
-  vid = b->varid()
+ vid = b->varid()
 
 
 
@@ -301,9 +291,9 @@ chkN(br,71)
 
  obid = c->objid()
 
- vid = c->varid()
+// vid = c->varid()
 
-<<"%V$obid $vid\n"
+//<<"%V$obid $vid\n"
 
 
 
@@ -389,19 +379,21 @@ chkN(br,71)
 
 <<"type for $i $yt = 90 ?\n"
 
-  if (yt != 90) {
-     pass = 0
-  }
+ chkN(yt,90)
 
 
 
  val = 50
+!p val
+
+
+ ival = 50;
+ 
  i = 2
- X[i]->type = val
+ X[i]->type = ival
  yt = X[i]->type
-  if (yt != val) {
-  pass = 0
-  }
+
+  chkN(yt,ival)
 
 <<"type for $i $yt = $val ?\n"
 

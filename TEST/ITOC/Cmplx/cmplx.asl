@@ -1,21 +1,28 @@
-//%*********************************************** 
-//*  @script cmplx.asl 
-//* 
-//*  @comment test cmplx types 
-//*  @release CARBON 
-//*  @vers 1.3 Li Lithium [asl 6.2.54 C-He-Xe]                               
-//*  @date Sun May 31 06:49:43 2020 
-//*  @cdate 1/1/2003 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script cmplx.asl 
+ * 
+ *  @comment test cmplx types 
+ *  @release CARBON 
+ *  @vers 1.4 Be Beryllium [asl 6.3.12 C-Li-Mg] 
+ *  @date Tue Jan 19 08:05:59 2021 
+ *  @cdate 1/1/2003 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                      
 myScript = getScript();
 
 
 chkIn(_dblevel)
 
-cmplx a
+
+int I[10] = {0,1,2,3,4,5,6,7,8,9};
+
+!iI
+
+cmplx a;
 cmplx b;
 
 
@@ -47,13 +54,12 @@ chkR (y,-4.7)
 a->info(1)
 
 
-//chkOut(); exit()
-
 cmplx g[16] = {1,2,3,4,5,6,7,8,9,10};
 
 sz = Caz(g)
-<<"%V$sz $g\n"
-g->info(1)
+
+!ig
+!pg
 
 
 
@@ -65,23 +71,32 @@ int A[3] = {1,2,3}
 <<"%V$sum \n"
  chkN(sum,6)
 
-//A={1,2,3,4}
+A={1,2,3,4,} ;   // OK
   sum = Sum(A);
+<<"%VA \n"
 <<"%V$sum \n"
+ chkN(sum,10)
 
   //sum = Sum({1,2,3,4});
-//  sum = Sum((A={1,2,3,4}));
+
+sum = Sum({1,2,3,4});  //!OK
+
 <<"%V$sum \n"
+//!p sum
+
 
  chkN(sum,10)
+
+
+
+
+
 
 sz = Caz({1,2,3});
 
 <<"%V $sz\n"
 
-int I[10] = {0,1,2,3,4,5,6,7,8,9};
 
-<<"$I\n"
 
 
 float F[10] = {0,1,2,3,4,5,6,7,8,9};
@@ -94,18 +109,24 @@ int I2[] = {11,1,2,3,4,5,6,7,8,12};
 
 
 
-/{
+/*
   g->SetReal(77);
 <<"%V$sz $g\n"
   g->SetImag(-21);
 <<"%V$sz $g\n"
+*/
 
 g[0]->Set(80,15);
 <<"$g\n"
 
-/}
-  
-g[1:6:1]->SetReal({1,2,3,4,5,6})
+A= {11,12,13,14,15,16};
+!pA
+B= A * -1;
+
+g[1:6:1]->SetReal(A)
+g[1:6:1]->SetImag(B)
+
+//g[1:6:1]->SetReal({1,2,3,4,5,6})  // FIX anon array as arg?
 
 <<"$g\n"
 

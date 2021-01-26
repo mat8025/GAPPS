@@ -291,6 +291,8 @@ int moo(double a)
   return mb;  // TBD crash
 }
 //==================================//
+
+
 int roo(ptr a)
 {
 <<"$_proc $($a)\n"
@@ -365,7 +367,7 @@ in = 1
 
    fin = 110.0
 
-   d = foo2(fin) 
+   d = foo3(fin) 
 
 <<"ret will be  $d\n"
 
@@ -375,6 +377,13 @@ in = 1
    d = foo2(in) 
 
 <<"ret will be  $d\n"
+!iin
+real rin = in
+!irin
+   e = foo3(rin) 
+
+<<"ret will be  $e\n"
+
 
    e = foo3(in) 
 
@@ -420,7 +429,8 @@ in = 1
   }
 
    x =1;
-   goo(&x)
+   xp = &x;
+   goo(xp)
 
 <<"goo $x\n"
 
@@ -441,9 +451,9 @@ in = 1
 
    int ixm = 14;
    
-   mr= roo(&ixm)
+ //  mr= roo(&ixm)
 
-<<"%V $ixm $mr\n"
+//<<"%V $ixm $mr\n"
 
 
 

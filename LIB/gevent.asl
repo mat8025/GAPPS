@@ -15,7 +15,7 @@
 //
 //
 
-
+<<"loading gevent.asl \n"
 
 
 proc eventDecode()
@@ -24,7 +24,7 @@ proc eventDecode()
    // can get all of these in one by using ref parameters
    _ename = Ev->getEventType(_eid,_etype,_ewoid,_ewoaw,_ebutton,_ekeyc,_ewoproc,_ex,_ey,_ewoval);
      
-<<"$_proc %V $_ex $_ey  $_ewoid\n"
+//<<"$_proc %V $_ex $_ey  $_ewoid\n"
 
 // get all below button,rx,ry via parameters to wait_for_msg
 //    _ewoval = Ev->getEventWoValue();
@@ -32,7 +32,7 @@ proc eventDecode()
 
   //  Ev->geteventrxy(_erx,_ery);    
 
-<<"$_proc  %V _erx  _ery \n"
+//<<"$_proc  %V _erx  _ery \n"
 
     _ewid = -1;
 
@@ -40,7 +40,7 @@ proc eventDecode()
        _ekeyw =  "EXIT_ON_WIN_INTRP";
     }
     else {
-  <<"$_proc %V $_emsg \n"
+//  <<"$_proc %V $_emsg \n"
     if (!(_emsg @= "")) {
     _ewords = Split(_emsg);
 
@@ -108,10 +108,10 @@ proc eventWait()
 
 
     _emsg = Ev->waitForMsg();
-<<"$_proc  %V $_emsg\n"
+//<<"$_proc  %V $_emsg\n"
      Ev->geteventrxy(_erx,_ery);    
      Ev->geteventwoid(_ewoid);
-<<"$_proc  %V $_ewoid $_erx $_ery\n"     
+//<<"$_proc  %V $_ewoid $_erx $_ery\n"     
 
      eventDecode();
 
@@ -139,6 +139,10 @@ int _last_eid = -1;
 
 float _erx = 0;
 float _ery = 0;
+
+!i_erx
+!p_ery
+
 
 int _ex = -15;
 int _ey = 0;

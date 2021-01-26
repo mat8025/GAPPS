@@ -178,7 +178,7 @@ int dday;
 <<"%V $maxday \n"
 
 
- A=ofr("DAT/wex2020.tsv")
+ A=ofr("DAT/wex2021.tsv")
 
  
 if (A == -1) {
@@ -440,7 +440,7 @@ showTarget();
 _DB=-1;
 
 
-mc=getMouseClick()
+mc=getMouseEvent()
 
     sWo(tw_wo,@move,targetday,NextGoalWt,gwo,@redraw));
 

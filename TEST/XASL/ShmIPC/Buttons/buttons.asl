@@ -89,9 +89,9 @@ Graphic = checkGWM()
  sWo(two,@SCALES,-1,-1,1,1)
  sWo(two,@help," Mouse & Key Info ")
 
- gwo=cWo(vp,@BV,@name,"ColorTeal",@color,"green",@resize,bx,by,bX,bY)
+ gwo=cWo(vp,@BV,@name,"ColorTeal",@color,GREEN_,@resize,bx,by,bX,bY)
  
- sWo(gwo,@border,@drawon,@clipborder,@fonthue,"red",@VALUE,"color is teal",@STYLE,SVB_)
+ sWo(gwo,@border,@drawon,@clipborder,@fonthue,RED_,@VALUE,"color is teal",@STYLE,SVB_)
  sWo(gwo,@bhue,TEAL_,@clipbhue,"skyblue",@redraw )
 
  bY = by - ypad
@@ -124,13 +124,13 @@ Graphic = checkGWM()
  bY = 0.95
  by = bY - yht
 
- rwo=cWo(vp2,"BS",@name,"FRUIT",@color,"yellow",@resize,bx,by,bX,bY)
+ rwo=cWo(vp2,@BS,@name,"FRUIT",@color,"yellow",@resize,bx,by,bX,bY)
  sWo(rwo,@CSV,"mango,cherry,apple,banana,orange,Peach,pear")
 
  sWo(rwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@STYLE,SVR_, @redraw )
  sWo(rwo,@fhue,"orange",@clipbhue,"steelblue")
 
- boatwo=cWo(vp3,"BS",@name,"BOATS",@color,"yellow",@resize_fr,bx,by,bX,bY)
+ boatwo=cWo(vp3,@BS,@name,"BOATS",@color,"yellow",@resize_fr,bx,by,bX,bY)
  sWo(boatwo,@CSV,"sloop,yacht,catamaran,cruiser,trawler,ketch")
  sWo(boatwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@STYLE,SVR_, @redraw)
  sWo(boatwo,@help," click to choose a boat ")
@@ -147,7 +147,7 @@ Graphic = checkGWM()
 <<"%V$bsketchwo \n"
 
 
- grwo=cWo(vp2,@GRAPH,@name,"pic",@color,"yellow",@resize,bx,by,bX,bY)
+ grwo=cWo(vp2,@GRAPH,@name,"pic",@color,YELLOW_,@resize,bx,by,bX,bY)
  sWo(grwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,RED_, @redraw )
  sWo(grwo,@SCALES,0,0,1,1)
 
@@ -324,7 +324,7 @@ sWi( allwins ,@redraw)
       sWo(two,@texthue,"black",@clear,@textr,"$_ekeyw",-0.9,0)
 
       if (_ename @= "PRESS") {
-	    <<"%V $_ewoname";
+	    <<"%V $_ewoname \n";
 //        if (!(_ewoname @= "")) {
             <<"calling function via woname $_ewoname !\n"
             $_ewoname()

@@ -1,10 +1,10 @@
 /* 
  *  @script opxeq.asl 
  * 
- *  @comment test sel op  += *= ++ 
+ *  @comment test sel op += *= ++ 
  *  @release CARBON 
- *  @vers 1.1 H Hydrogen [asl 6.3.6 C-Li-C]                                 
- *  @date Mon Jan  4 14:31:06 2021 
+ *  @vers 1.2 He Helium [asl 6.3.11 C-Li-Na] 
+ *  @date Sun Jan 17 10:29:34 2021 
  *  @cdate 1/1/2005 
  *  @author Mark Terry 
  *  @Copyright © RootMeanSquare  2010,2021 → 
@@ -12,26 +12,33 @@
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
 
-
-
 ///
 ///
 ///
 
 
-chkIn()
-int n = 3
+chkIn(_dblevel)
+int n = 3;
 
-    m = 4
+    m = 4;
 
-    n += m
+    n += m;
 
 <<"%V $n $m \n"
  chkN(m,4)
+
+!im
+ 
  chkN(n,7)
+
+!in
+
+
     n -= m
 
 <<"%V $n $m \n"
+!in
+
 
  chkN(m,4)
  chkN(n,3)
@@ -77,6 +84,8 @@ int n = 3
 
 <<"%V $n $m \n"
 
+!in
+
 int k = 45
 
 k->info(1)
@@ -84,10 +93,12 @@ k->info(1)
 <<" $k \n"
 
    k++
+!ik
 
 <<" $k \n"
 
    ++k 
+!ik
 
 <<" $k \n"
 
@@ -97,7 +108,9 @@ k->info(1)
 
 k->info(1)
 
-   n = 5
+   n = 5;
+!in
+
    k /= n;  // k should stay int type!
 
 k->info(1)

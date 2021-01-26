@@ -727,3 +727,12 @@ stat_m.cpp	 1.96	 Wed Jan 13 07:54:10 2021 runStats
 ds_sivrange.cpp	 1.100	 Wed Jan 13 08:28:23 2021 check stride value
 sop_l.cpp	 1.93	 Thu Jan 14 11:10:24 2021 added strchr SF
 fior.cpp	 1.74	 Thu Jan 14 13:29:05 2021 readline -remover_cr option
+ds_siv.cpp	 2.73	 Sun Jan 17 07:20:04 2021 DBG
+ds_convert.cpp	 1.84	 Mon Jan 18 09:15:32 2021 cmplx
+ds_convert_store.cpp	 1.99	 Mon Jan 18 09:16:30 2021 cmplx
+firstpass.cpp	 2.33	 Mon Jan 18 09:17:29 2021 !a
+aop_l.cpp	 1.22	 Mon Jan 18 11:21:43 2021 sum long
+declare_fillarray_e.cpp	 2.39	 Mon Jan 18 11:22:24 2021 fillarray checklisttype
+declare_fillarray_e.cpp	 2.40	 Wed Jan 20 09:38:55 2021 vfillr vals cnt
+com_menu.cpp	 1.83	 Mon Jan 25 23:38:41 2021 menu abs path
+navi_w.cpp	 1.25	 Mon Jan 25 23:40:42 2021 DBG

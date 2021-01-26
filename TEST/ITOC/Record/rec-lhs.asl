@@ -14,7 +14,7 @@ myScript = getScript();
 
 #include "debug.asl"
 
-debugON();
+//debugON();
 
 
 chkIn(_dblevel)
@@ -57,7 +57,8 @@ wrd2= R[j][3+kc]
 
 
 
- R[j][3] = "%6.2f$nval";
+ //R[j][3] = "%6.2f$nval";
+  R[j][3] = "$nval";
 
 
 <<"$j R[j] $R[j] \n"
@@ -75,12 +76,14 @@ nval = 1.23;
 kc = 1;
 
 
+
 for (j= 0; j < 5; j++) {
 
  R[j][2+kc] = "$nval";
 
  R[j][kc] = "$nval";
-
+!pnval
+<<"$j <|$nval|>\n"
 R->info(1)
  <<"$j $kc $R[j][2+kc] $nval \n"
  <<"$R[j]\n"
@@ -89,7 +92,7 @@ R->info(1)
  wrd = R[j][kc]
 
  R->info(1)
- <<"%V $wrd    $nval\n" 
+ <<"%V $wrd  $nval\n" 
  chkStr(wrd,"$nval",4)
  //ans=query()
  nval += 0.01;
@@ -114,7 +117,7 @@ R->info(1)
 
 
 
-wrd = R[5][4];
+wrd = R[5][3];
 <<"<|$wrd|>\n"
 chkStr(wrd,"4.30",4)
 
@@ -123,6 +126,6 @@ R->info(1)
 <<"$R[5][4]\n"
 
 
-chkStr(R[5][4],"4.30",4)
+chkStr(R[5][4],"4.300",4)
 
 chkOut()

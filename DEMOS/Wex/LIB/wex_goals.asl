@@ -14,12 +14,12 @@
 ///
 
 //  SET     START DATE      END DATE  TARGET WEIGHT
-Goals = Split("10/21/2020 11/30/2020 180")
+Goals = Split("01/01/2021 04/08/2021 178")
 ////////////////////==============/////////////////
 
 
-GoalWt = 180;  // ideal -- flying weight
-StartWt = 210;
+GoalWt = 178;  // ideal -- flying weight
+StartWt = 215;
 MinWt = 165;
 
 
@@ -34,8 +34,8 @@ gday =  targetday;    // next goal day
 
 got_start = 0
 
-long yday = julian("01/01/2020")   // this should be found from data file
-long eday = julian("12/31/2020")  // this should be found from data file
+long yday = julian("01/01/2021")   // this should be found from data file
+long eday = julian("12/31/2021")  // this should be found from data file
 today = julian("$(date(2))");
 
 

@@ -3,15 +3,15 @@
  * 
  *  @comment test some usage of proc args 
  *  @release CARBON 
- *  @vers 1.6 C Carbon [asl 6.3.3 C-Li-Li] 
- *  @date Thu Dec 31 13:53:24 2020 
+ *  @vers 1.7 N Nitrogen [asl 6.3.11 C-Li-Na] 
+ *  @date Sun Jan 17 11:08:15 2021 
  *  @cdate Sat May 9 14:53:10 2020 
  *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2020 → 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
-                                                                           
+                                                                        
 myScript = getScript();
 
 chkIn(_dblevel)
@@ -40,7 +40,26 @@ proc ReadPulseFile(str pfname)
  return len
 }
 
-proc poo (str vstr)
+
+
+proc soo (svar vstr)
+{
+
+<<"$_proc $vstr \n"
+<<"$vstr[0] $vstr[1] \n"
+ mstr = split(vstr)
+
+  s = mstr[0]
+  m = mstr[1]
+//   s = vstr[0]
+//   m = vstr[1]
+
+<<"%V$s $m\n"
+}
+//------------------------------
+
+
+proc soo (str vstr)
 {
 
 <<"$_proc $vstr \n"
@@ -135,7 +154,7 @@ ssa = sen[0]
 <<"test 4 $ok\n"
 <<"craash  $sen\n"
 
-   poo(sen)
+
 
 
 
@@ -152,13 +171,16 @@ ssa = sen[0]
    if (nwr > 0) {
 <<"$nwr $k $sen[0] $sen[1] $sen[2] $sen[3]\n"
   //  sen->split()
-  poo(sen)
+    soo(sen)
 //  Foo(sen)
    }
    
   k++
   
  }
+
+   soo("Once upon a time")
+
 
 <<" done loop %i $k \n"
 

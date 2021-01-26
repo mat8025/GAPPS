@@ -15,6 +15,7 @@
 include "debug"
 include "hv.asl"
 
+openDll("image")
 
 setdebug(0)
 
@@ -281,3 +282,6 @@ include "gevent.asl"
          titleMsg("%V $_ekeyw  $_ebutton $_eloop")
 
   }
+
+
+exit()

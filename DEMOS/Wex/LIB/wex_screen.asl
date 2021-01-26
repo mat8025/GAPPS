@@ -194,7 +194,7 @@
 
   titleVers();
 
-mc=getMouseClick()
+mc=getMouseEvent()
 
 
 //======================================//

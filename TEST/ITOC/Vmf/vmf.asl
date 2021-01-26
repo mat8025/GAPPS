@@ -349,10 +349,14 @@ chkStr(TS[6],"123456DEF")
 
 TS[::]->Substitute("123","XYZ")
 
+
+<<"////////////////////\n"
 for (i=0;i<=10;i++) {
 chkStr(TS[i],"XYZ",3)
 }
 <<"%(1,,,\n)$TS \n"
+<<"$(Cab(TS))\n"
+
 
 TS[3]->Substitute("XYZ","AAA")
 
@@ -364,9 +368,20 @@ TS[4]->Substitute("XYZ","BBB")
 
 TS[5]->Substitute("XYZ","CCC")
 
+chkStr(TS[3],"AAA",3)
+
+<<"$(Cab(TS))\n"
+
+TS[7] = "aaa123"
+
+<<"%(1,,,\n)$TS \n"
+
+
+!iTS
 TS->Sort()
 
 <<"%(1,,,\n)$TS \n"
+
 chkStr(TS[0],"AAA",3)
 
 

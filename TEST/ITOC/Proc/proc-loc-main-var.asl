@@ -13,9 +13,7 @@
 
 
 #include "debug"
-debugON()
 
-sdb(1,@pline)
 
 void Foo()
  {

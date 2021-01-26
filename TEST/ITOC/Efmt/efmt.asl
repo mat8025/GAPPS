@@ -2,28 +2,55 @@
 ///  parse scientific notation
 ///
 
-setDebug(1,"~trace","pline","~step");
 
 
-chkIn();
+
+chkIn(_dblevel);
 
 e = 1234.567
+//sdb(1,@step)
+a =2;
+
 
 f = 1.3e2;
 <<"$f\n"
 
+//f = 1.3e(a);
+//<<"$f\n"
+
 g = 1.3e-2;
 <<"$g\n"
 
+//g = 1.3e(-a);
+//<<"$g\n"
 
-h = 1.3e-2 * 1.3e2;
+
 
 h1 = f *g;
+!ph1
+h = 1.3e-2 * 1.3e2;
 
-<<"%V $f $g $h $h1\n"
+
+!ph
+
+
+//!a
 
 
 
+h1 = 1.3^^-2 
+!ph1
+
+h0 =  1.3^^2;
+!ph0
+
+
+!ph1
+//!a
+
+h2 = f *g;
+
+<<"%V $f $g $h $h1 $h2\n"
 
 
 chkR(e,1234.567);
@@ -70,12 +97,12 @@ const double Ev1 = 1.602e-10;
 
 chkN(Ev1,1.602e-10);
 
-const double Ev2 = 1.602 * 10^-7;
+const double Ev2 = 1.602 * 10^^-7;
 
 
 <<"%Ve $Ev2\n"
 
-chkN(Ev2, 1.602 * 10^-7);
+chkN(Ev2, 1.602 * 10^^-7);
 
 const double Ev3 = 1.602e29;
 
