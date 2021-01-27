@@ -1,38 +1,23 @@
-///
-///   stuff2Do screen
-///
-
-/{
-proc colorRows(r,c)
-{
-int icr=0;
-int jcr = c -1;
-
-   for(icr = 0; icr < r ; icr++) {
-	
-        if ((icr%2)) {
-          sWo(cellwo,@cellbhue,icr,1,icr,jcr,LILAC_);
-
-	}
-	else {
-	    sWo(cellwo,@cellbhue,icr,1,icr,jcr,YELLOW_);
-	 }
-     }
-
-<<[_DB]"$_proc done\n"
-}
-//============================================//
-/}
-
-
-
+/* 
+ *  @script stuff2do_screen.asl 
+ * 
+ *  @comment Screen setup 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.14 C-Li-Si]                                
+ *  @date Wed Jan 27 10:06:58 2021 
+ *  @cdate 1/1/2018 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
 
 
 
 //==============================================//
 <<"in stuff2do_scrn\n"
 
-    vp = cWi(@title,"S2D:$fname",@resize,0.1,0.1,0.9,0.8)
+    vp = cWi(@title,"S2D:$fname",@resize,0.1,0.05,0.8,0.95)
 
     sWi(vp,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
 
@@ -71,7 +56,7 @@ int jcr = c -1;
       int ssmods[] = { openwo,readwo,savewo,sortwo,swprwo,swpcwo,delrwo,  atwo,pguwo,pgdwo,pgnwo };
 
 
-    wovtile(ssmods,0.05,0.05,0.1,0.9,0.01);
+    wovtile(ssmods,0.01,0.05,0.1,0.9,0.01);
 
 
     cellwo=cWo(vp,"SHEET",@name,"Stuff2Do",@color,GREEN_,@resize,0.12,0.25,0.9,0.95)
@@ -90,11 +75,12 @@ int jcr = c -1;
  sWo(txtwo,@clipsize,0.1,0.05,0.9,0.95,@save,@savepixmap,@drawon,@pixmapon,@pixmapdrawon)
  sWo(txtwo,@font,"medium")
 
- scorewo = cWo(vp,@BV,@name,"SCORE",@color,ORANGE_,@bhue,"cyan",@value,0,@style,"SVR");
+ scorewo = cWo(vp,@BV,@name,"SCORE",@color,ORANGE_,@bhue,"cyan",@value,1,@style,"SVR");
 
- sWo(scorewo,@resize,0.82,0.05,0.9,0.24);
+ sWo(scorewo,@resize,0.82,0.05,0.95,0.24);
 
  titleVers();
+ 
    sWi(vp,@redraw)
 
    sWo(ssmods,@redraw)

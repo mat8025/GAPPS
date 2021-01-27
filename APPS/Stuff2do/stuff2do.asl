@@ -1,17 +1,17 @@
-//%*********************************************** 
-//*  @script stuff2do.asl 
-//* 
-//*  @comment  
-//*  @release CARBON 
-//*  @vers 1.56 Ba Barium                                                  
-//*  @date Sat Oct 12 09:52:36 2019 
-//*  @cdate Mon Jan  1 08:00:00 2018 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
-
-
+/* 
+ *  @script stuff2do.asl 
+ * 
+ *  @comment GSS of tasks to do 
+ *  @release CARBON 
+ *  @vers 1.4 Be Beryllium [asl 6.3.14 C-Li-Si] 
+ *  @date Wed Jan 27 10:05:15 2021 
+ *  @cdate Thu Mar 26 11:05:07 2018 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                     
 ////////////   TASK LIST  EXAMPLE /////////////
 
 
@@ -25,21 +25,18 @@
 // and the sheet is update xgs sid
 // user can enter text into cells via the gui interface
 
-include "debug.asl"
+#include "debug"
 
-scriptDBON();
-debugON();
+allowErrors(-1);
+//debugOFF()
 
-include "gevent.asl"
-include "hv.asl"
-include "stuff2do_gss.asl"
 
+
+include "gevent"
+include "hv"
+include "stuff2do_ssp"
 //vers = "xxx";
 
-
-
-
-setdebug(1,@keep,@pline)
 
 CatCol= 1;
 PriorityCol= 2;
@@ -50,19 +47,25 @@ StartDateCol= 6;
 UpdateDateCol= 7;
 PCDoneCol= 8;
 
+Str fname="xxx"
+
+//chdir ("./TASKS")
 
 //  fname = "pp.rec"
-  fname = _clarg[1];
+   in_fname = _clarg[1];
+<<"%V fname\n"
 
+  if (in_fname @= "")  {
+   fname = "TASKS/stuff2do.csv";
+  }
+  else {
 
-  if (fname @= "")  {
-   fname = "STUFF/stuff2do.csv";
+  fname = "TASKS/${in_fname}.csv"
+
   }
 
-
 <<"%V $fname \n"
-//isok =sWo(cellwo,@sheetread,fname,2);
- //<<"%V$isok\n";
+
 
 A= ofr(fname)
  if (A == -1) {
@@ -86,26 +89,38 @@ today = date(2);
   nextwk = julmdy(jdayn+7);
 
 //Task,Code,Priority,Difficulty,TimeEst,TimeSpent,Startdate,Update,%Done,Tags,
-   DF[0] = Split("?,?,3,3,1,0,$today,$today,0, ,",',');
+   TC = Split("?,?,3,3,1,0,$today,$today,0,x,",',');
    
 
    R= readRecord(A,@del,',')
    cf(A);
    sz = Caz(R);
 
-  ncols = Caz(R[0]);
-<<"num of records $sz  num cols $ncols\n"
+  rows = sz;
+  cols = Caz(R[0])
+  Ncols = cols;
+  Nrows = rows;
+  Rn = Nrows;
+   
+  tags_col = cols-1;
+
+<<"num of records $sz  num cols $Ncols\n"
+
+<<"%V $tags_col \n"
+
 
 //////////////////////////////////
 <<"before Graphic \n"
 
-include "stuff2do_ssp.asl"
+<<"$R \n"
 
-include "graphic.asl"
- 
 
-include "stuff2do_scrn.asl"
 
+
+include "graphic"
+include "stuff2do_screen"
+
+titleVers()
 
 
 //===============
@@ -114,72 +129,52 @@ include "stuff2do_scrn.asl"
 
 
 
-//ans=iread(":>")
 
 
 int cv = 0;
 
-  sz= Caz(R);
-  rows = sz;
-  Nrows = rows;
-  cols = Caz(R[0])
 
-  tags_col = cols-1;
-
-<<"%V $tags_col \n"
 
   
- sWo(cellwo,@setrowscols,rows+5,cols+1);
+ sWo(cellwo,@setrowscols,rows+1,cols+1);
  
 <<"%V$rows $sz \n"
 
-for (i = 0; i < rows;i++) {
-<<"[${i}] $R[i]\n"
-}
-
-
+    <<"$R\n"
+  
 
      colorRows(rows,cols);
 
-
-
-
      sWo(cellwo,@cellval,R);
- //  sWo(cellwo,@cellval,R,1,1,5,5,1,1);
 
 
    rows = sz;
    Nrows = sz;
   //cols = Caz(R[0])
    
-   sWo(cellwo,@setrowscols,rows+10,cols+1);
-   sWo(cellwo,@selectrowscols,0,rows-1,0,cols);
+   sWo(cellwo,@setrowscols,rows+2,cols+1);
+   sWo(cellwo,@selectrows,0,rows+1);
    sWo(cellwo,@setcolsize,3,0,1);
-// sWo(cellwo,@cellbhue,1,-2,LILAC_); // row,col wr,-2 all cells in row
-   sWi(vp,@redraw)
-
    sWo(ssmods,@redraw)
-
    sWo(cellwo,@redraw);
 
-/{
-   swaprow_a = 1;
-   swaprow_b = 2;
 
-   swapcol_a = 1;
-   swapcol_b = 2;
-<<"%V $cellwo\n"
-/}
 
-  // PGDWN();
-  // PGUP();
-   //SCORE();
+   gotoLastPage()
+
    sWi(vp,@redraw);
-      //   eventWait();
+
 
 int mwr = 0;
 int mwc = 0;
-symbol_num = 1
+symbol_num = 1;
+
+
+   PGDWN();
+
+	         sWo(cellwo,@setcolsize,3,0,1);
+		 sWo(cellwo,@redraw);
+
   while (1) {
 
         // resetDebug();
@@ -287,34 +282,27 @@ symbol_num = 1
 
 <<[_DB]"calling script procedure $ind $_ewoid $cellwo $_ename $_ewoname !\n"
        // sWo(txtwo,@clear)
-//Text(txtwo,"calling script procedure  $_ename $_ewoname !\n",0.2,0.2,1)
+//sWo(txtwo,@scrollclip,UP_,16)
+//sWo(txtwo,@print," calling script procedure  $_ewoname !\n")
 
-//plot(txtwo,@wosymbol,1,5,RED_)
-//sWo(txtwo,@penhue,@symbolshape,symbol_num,@symsize,5,@redraw)
-/{
-   if (_ewoid == pguwo) {
-    Plot(txtwo,@line,0,0,1,1,RED_)
-  }
-   else {
-    Plot(txtwo,@line,0,0,1,1,BLUE_)
-  }
-/}
-// sWo(txtwo,@savepixmap)
-// sWo(txtwo,@scrollclip,UP_,16)
+           titleMsg("calling script procedure  $_ewoname ")
+   
+          $_ewoname()
 
- sWo(txtwo,@print," calling script procedure  $_ename $_ewoname !\n")
- 
-    $_ewoname()
-	    }
-	    else {
+        //  eventWait(); // consume stray event
+       }
+      else {
 <<[_DB]"script procedure $_ewoname $ind does not exist!\n"
             }
-        }
+
+       }
 	         sWo(cellwo,@setcolsize,3,0,1);
 		 sWo(cellwo,@redraw);
       }
+           colorRows(rows,cols);
       sWo(ssmods,@redraw);
- 
+   //   SCORE();
+       
 }
 <<"out of loop\n"
 
