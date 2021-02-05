@@ -736,3 +736,32 @@ declare_fillarray_e.cpp	 2.39	 Mon Jan 18 11:22:24 2021 fillarray checklisttype
 declare_fillarray_e.cpp	 2.40	 Wed Jan 20 09:38:55 2021 vfillr vals cnt
 com_menu.cpp	 1.83	 Mon Jan 25 23:38:41 2021 menu abs path
 navi_w.cpp	 1.25	 Mon Jan 25 23:40:42 2021 DBG
+wo_g.cpp	 1.28	 Fri Jan 29 09:51:18 2021 DBG
+curs_g.cpp	 1.21	 Fri Jan 29 09:53:18 2021 DBG
+func_g.cpp	 1.23	 Fri Jan 29 09:54:59 2021 DBG
+plot_g.cpp	 1.23	 Fri Jan 29 10:01:39 2021 DBG
+poly_g.cpp	 1.24	 Fri Jan 29 10:04:36 2021 DBG
+sym_g.cpp	 1.26	 Fri Jan 29 10:06:10 2021 DBG
+menu_int.cpp	 1.33	 Fri Jan 29 10:14:37 2021 DBG
+menu.cpp	 1.34	 Fri Jan 29 10:18:49 2021 DBG
+menu_func.cpp	 1.32	 Fri Jan 29 10:21:24 2021 DBG
+array_parse.cpp	 2.77	 Sat Jan 30 08:22:48 2021 fix SCLASS array 
+vmf_l.cpp	 1.58	 Sat Jan 30 18:16:58 2021 free s->result before vmf function
+proc_return_e.cpp	 3.49	 Sat Jan 30 18:18:06 2021 push return siv/value onto stack
+ic_pushobj.cpp	 1.2	 Sat Jan 30 18:19:31 2021 mbrp to use IciSiv
+ic_xic.cpp	 1.73	 Sat Jan 30 18:20:42 2021 mbrp use IciSiv
+ic_getsiv.cpp	 1.57	 Sat Jan 30 18:22:42 2021 getMbrSivp - Parset mf
+svar_pf.cpp	 1.64	 Sat Jan 30 18:24:32 2021 fstat error report
+vmf_e.cpp	 3.52	 Sat Jan 30 18:25:55 2021 stack var eval
+ds_storestr.cpp	 1.74	 Sat Jan 30 18:27:30 2021 num => str DBG
+ic_wic.cpp	 1.70	 Sat Jan 30 18:28:44 2021 push_mbrp, push_objele
+ic_call.cpp	 1.53	 Sat Jan 30 18:29:45 2021 callvmf ipdate
+parse.h	 2.4	 Sat Jan 30 18:31:13 2021 ic funcs
+ic_pic.cpp	 1.59	 Sat Jan 30 18:31:59 2021 push_mbrp
+ic_pop.cpp	 1.62	 Sat Jan 30 18:33:00 2021 DBG
+oo_class_dec.cpp	 2.35	 Sat Jan 30 18:36:31 2021 DBG
+icode.h	 1.34	 Sat Jan 30 18:37:48 2021 mbrp->icisiv
+ic_xic.cpp	 1.74	 Sun Jan 31 15:06:48 2021 line num XIC dbg
+proc_e.cpp	 2.68	 Wed Feb  3 16:10:40 2021 recurse check SporcXic
+parset_e.cpp	 2.84	 Wed Feb  3 16:12:05 2021 step mode for trace
+dbug.cpp	 1.49	 Wed Feb  3 16:14:01 2021 more db options step-trace output

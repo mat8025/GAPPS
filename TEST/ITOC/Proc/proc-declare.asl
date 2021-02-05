@@ -15,7 +15,7 @@ myScript = getScript();
 
 #include "debug"
 
-debugON()
+//debugON()
 
 chkIn(_dblevel)
 

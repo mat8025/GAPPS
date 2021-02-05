@@ -22,7 +22,17 @@
 
 */
 
-chkIn()
+chkIn(_dblevel)
+
+A= vgen(INT_,10,-1,1)
+
+<<"$A\n"
+
+k = A[2]
+
+<<"$k\n"
+
+chkN(k,1)
   str s = "407"
   i = atoi("407");
 
@@ -34,7 +44,7 @@ chkN(i,407);
 <<"  INT VEC SET/GET \n"
  int IV[];
 
-   W = Split("0,1,2,3,4,5,6,7,8,9",",");
+   W = Split("-1,0,1,2,3,4,5,6,7,8,9",',');
 
 
   <<"%V $W[2] \n"
@@ -42,9 +52,18 @@ chkN(i,407);
 
 <<"%V$IV\n"
 
-  chkN(IV[3],3);
-  chkN(IV[8],8);
 
+
+
+   chkN(IV[3],2);
+  chkN(IV[8],7);
+
+  iv3 = IV[3]
+  
+  iv8 = IV[8]
+
+
+<<"%V $iv3 $iv8\n"
 
   chkOut()
 

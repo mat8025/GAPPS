@@ -3,6 +3,7 @@ find . -name "*.out" -print -delete
 find . -name "*.xout" -print -delete
 find . -name "*.lic" -print -delete
 find . -name "*.err" -print -delete
+find . -name "*.src" -print -delete
 find . -name "*.xerr" -print -delete
 find . -name "*.tst" -print -delete
 find . -name "*.xtst" -print -delete

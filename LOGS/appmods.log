@@ -213,3 +213,4 @@ proc-arg.asl             1.7	Sun Jan 17 11:08:15 2021 svar,str procs
 cmplx.asl                1.4	Tue Jan 19 08:05:59 2021 DBG
 stuff2do_ssp.asl         1.2	Wed Jan 27 10:03:07 2021 update
 stuff2do.asl             1.4	Wed Jan 27 10:05:15 2021 update
+arch.asl                 1.3	Thu Feb  4 09:21:54 2021 added uname -a test

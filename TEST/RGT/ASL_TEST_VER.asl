@@ -549,7 +549,9 @@ void cart (Str aprg)
       !!"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl > /dev/null   2>&1";
 
      // !!"ls -l *";
-
+       wstr= aprg
+<<"%V$wstr \n"
+!i wstr
 
       if (f_exist("${aprg}.tst") > 0) {
 
@@ -582,7 +584,8 @@ void cart (Str aprg)
   if (do_xic >0 ) {
     //<<"<|$aprg|>\n"
 //  TBF  
-    prg = aprg;
+
+    //prg = aprg;
      
     //aprg->info(1)    
     //prg->info(1)

@@ -17,7 +17,8 @@
 
 
  na = argc()
- <<"%V $na\n"
+
+<<"%V $na\n"
 
  na2= Caz(_clarg)
  <<"%V $na2\n"

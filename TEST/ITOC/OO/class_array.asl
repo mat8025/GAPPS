@@ -12,19 +12,21 @@
 //***********************************************%
   
 #include "debug"
-debugON()
 
 
+//debugON()
+
+ allowErrors(-1)
 
 chkIn (_dblevel); 
 
-
+uint SC = 50;
 uint OC = 1;  // object counter
 
 class Dil {
 
 public:
-
+ int type;
  int n_actv;
  int IV[30];
  int id;
@@ -33,6 +35,23 @@ public:
  {
    k = IV[wa]
    <<"$wa $k \n"
+ }
+ 
+cmf Set(int s)
+ {
+     <<"$_cobj $s\n" 
+     <<"%V$type\n"
+     type = s;
+     type->info(1);
+     return type;
+ }
+ 
+  cmf Get()
+ {
+ <<"$_proc  Get\n"
+//!i type
+<<"getting type $type\n"
+   return type;
  }
 
 
@@ -52,7 +71,11 @@ public:
 
 // <<"memcpy to %u $mad from $mas #bytes $nbytes\n"
 //   memcpy(mad, mas, nbytes)
- <<"%V $IV[::] \n" 
+IV->info(1)
+<<"%V $IV[::] \n"
+
+<<"%V $IV[8]\n"
+ 
   }
 
  cmf Dil() 
@@ -62,19 +85,30 @@ public:
 
      OC++;
 
+    type->info(1);
+n_actv->info(1)
 
-     IV[0:9] = 1;
+IV->info(1)
 
-//<<"%V$I \n"
+ IV[0:9] = 1;
+
+<<"%V$I \n"
      <<"cons for $_cobj  $id \n"
 
-     IV[23] = SC++ ;
+   //  IV[23] = SC++ ;
+
+    SC++;
+
+     IV[23] = SC;
+
+
+  
 
      k = IV[0];
 
 <<"%V$k \n"
 
-     IV[1] = 28;
+    IV[1] = 28;
 
  <<"%V$I \n" 
 
@@ -87,6 +121,20 @@ public:
 }
 //------------------------------------------------
 
+int agv =8;
+
+agv->info(1);
+
+Dil E;
+
+E->info(1)
+
+   E->showIV();
+
+  E->Set(5)
+
+
+
 nbytes = 10 * 4
 
 <<"%V$nbytes \n"
@@ -95,16 +143,15 @@ nbytes = 10 * 4
 
 <<"%V$OC\n"
 
-uint SC = 50;
+
 
 char C[1024];
 
 C[0] = 1;
  <<" $C[0:10]\n"
 
-Dil E;
 
-   E->showIV();
+
 
 
 
@@ -150,7 +197,8 @@ Dil D;
 
 <<"%V $D->IV[9]  78? \n"
   D->showIV()
-  
+
+!a
   E->IV[9] = 93;
 
 <<"%V $E->IV[9]  93? \n"
@@ -173,7 +221,7 @@ Dil D;
 
 <<" show D \n"
 
-
+!a
 
 
   D->IV[2] =79;
@@ -205,7 +253,61 @@ chkN (D->IV[2],79);
 
   val = D->IV[8]
 
+  D->Set(67)
 <<"%V $val\n"
+   val = D->Get()
+
+
+
+<<"Got $val\n"
+
+
+
+Dil X[5];
+
+X[3]->Set(5)
+
+ val = X[3]->Get()
+
+<<"Got $val\n"
+
+  chkN (val,5 )
+
+
+!a
+
+
+
+j= 2
+j->info(1)
+k= 44;
+
+ X[j]->Set(k)
+
+ val = X[j]->Get()
+
+<<"Got $val\n"
+
+ chkN (val,44)
+
+
+ X[j]->Set(89)
+
+ val = X[j]->Get()
+
+<<"Got $val\n"
+
+ chkN (val,89)
+
+sval = 92
+
+X[j]->Set(sval)
+
+val = X[j]->Get()
+
+<<"Got $val\n"
+
+chkN (val,sval
 
 
 chkOut ()

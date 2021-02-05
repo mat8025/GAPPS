@@ -123,6 +123,33 @@ chkIn(_dblevel)
 <<"%V $a $b $c \n"
 
 
+a =1
+b = 1
+
+ if ( a XOR_ b) {
+  
+  <<"  XOR is true $a $b \n"
+ }
+ else {
+chkT(1)
+  <<"  XOR is NOT true $a $b \n"
+
+ }
+
+b = 0
+
+ if ( a XOR_ b) {
+chkT(1)  
+  <<"  XOR is true $a $b \n"
+ }
+ else {
+
+  <<"  XOR is NOT true $a $b \n"
+
+ }
+
+
+
 chkOut()
 
 

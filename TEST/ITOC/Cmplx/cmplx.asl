@@ -73,7 +73,7 @@ int A[3] = {1,2,3}
 
 A={1,2,3,4,} ;   // OK
   sum = Sum(A);
-<<"%VA \n"
+<<"%V$A \n"
 <<"%V$sum \n"
  chkN(sum,10)
 

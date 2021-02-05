@@ -1,0 +1,14 @@
+# /usr/bin/bash
+for y in $*
+do
+
+    echo $y
+    if [ -d $y ]
+       then
+    cd $y
+    ls *.asl
+    do-tests *.asl
+    cd ../
+    fi
+
+done

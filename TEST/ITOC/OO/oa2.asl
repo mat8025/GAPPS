@@ -96,15 +96,18 @@ class Act {
  
  cmf Set(int s)
  {
-     <<"Act Set int  $_cobj \n" 
-      type = s;
-     <<"type  $s $type\n"
+     <<"Act_Set INT  $_cobj $s\n" 
+     <<"%V$type\n"
+    type = s;
+
+//!i type
+     type->info(1);
      return type;
  }
  
  cmf Set(svar s)
  {
-     <<"Act Set svar  $_cobj \n"
+     <<"Act Set svar $_cobj \n"
       s->info(1)
       svtype = s;
    <<"$s[1] : $s[2]\n"
@@ -118,18 +121,20 @@ class Act {
      //return svtype;
  }
 
- cmf Set(str s)
+ cmf Set(str sr)
  {
      <<"Act Set  str $_cobj \n" 
-      stype = s;
-           s->info(1)
-     <<"stype  $s $stype\n"
+      stype = sr;
+           sr->info(1)
+     <<"stype  $sr $stype\n"
      return stype;
  }
 
  cmf Get()
  {
- <<"getting type $type\n"
+ <<"$_proc  Get\n"
+!i type
+<<"getting type $type\n"
    return type;
  }
 
@@ -181,7 +186,14 @@ a->info(1)
 
 
 
- Act X[4];
+ Act X[7];
+
+ X->info(1)
+
+
+
+
+
 
 m2 = 2
 
@@ -382,9 +394,10 @@ chkN(br,71)
  chkN(yt,90)
 
 
-
- val = 50
-!p val
+// numberstring
+//  num_type = num-str   - allow with warning?
+// val = 50
+//!p val
 
 
  ival = 50;
@@ -398,16 +411,16 @@ chkN(br,71)
 <<"type for $i $yt = $val ?\n"
 
  for (i = 0; i < 4; i++) {
-  X[i]->type = val
+  X[i]->type = ival
   yt = X[i]->type
 
 <<"type for $i $yt = $val ?\n"
 
-  if (yt != val) {
+  if (yt != ival) {
   pass = 0
   }
 
-  val++
+  ival++
  }
 
 
@@ -429,9 +442,15 @@ chkN(br,71)
  yst =  X[2]->Set(m)
 
  <<"%V $yst\n"
- yst =  X[3]->Set(m2)
+ 
+!i yst
 
- <<"%V $yst\n"
+ 
+ yst =  X[3]->Set(m2)
+ 
+!i yst
+
+ 
 
  yst =  X[m2]->Set(m2)
 
@@ -450,23 +469,26 @@ chkN(br,71)
 
   chkN(yst,3)
 
-
+ j = 66;
  for (i = 0; i < 4; i++) {
 
-   yst =  X[i]->Set(66)
+   yst =  X[i]->Set(j)
    yt = X[i]->type
    ygt =  X[i]->Get()
-<<"type for $i $yst $yt $ygt\n"
+<<"type for $i $yst $yt $ygt $j\n"
    if (yt != ygt) { 
       pass = 0
    }
+   chkN(ygt,j);
+   j++;
 
  }
 
-
- yst =  X[3]->Set(7)
- yt  =  X[3]->type
- ygt =  X[3]->Get()
+ j = 7;
+ i = 4
+ yst =  X[i]->Set(j)
+ yt  =  X[i]->type
+ ygt =  X[i]->Get()
 
  if (yt != 7) {
     pass = 0
@@ -474,12 +496,51 @@ chkN(br,71)
 
 <<"3 type %V$yst $yt $ygt\n"
 
- chkN(yst,7)
+pass1= chkN(yst,7)
 
 
 <<"$yst $(typeof(yst)) \n"
 
-<<" PASS? $pass \n"
+<<" PASS? $pass $pass1\n"
+
+i = 3
+yst =  X[i]->Set(8)
+ yt  =  X[i]->type
+ ygt =  X[i]->Get()
+
+ if (yt != 8) {
+    pass = 0
+ }
+
+<<"3 type %V$yst $yt $ygt\n"
+
+pass1= chkN(yst,8)
+
+
+<<"$yst $(typeof(yst)) \n"
+
+<<" PASS? $pass $pass1\n"
+
+
+
+for (i = 5; i >= 0; i--) {
+
+   yt = X[i]->type
+   ygt =  X[i]->Get()
+<<"type for $i  $yt $ygt \n"
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
