@@ -1,12 +1,15 @@
 //  test the bitwise ops
 
+
+
 int  j = 0xDEADBEEF
 int  k = 0xCAFEBABE
 int  l = 0x2FACE00F
 int  d = 0xDEADC0DE
 
 
-ans =iread(" band & ")
+//ans =iread(" band & ")
+<<" BAND_ & \n"
 
 m = j & k
 
@@ -15,7 +18,16 @@ m = j & k
 <<"%o$j\t$k\t$m\n"
 <<"%u$j\t$k\t$m\n"
 
-ans= i_read("bor | ")
+m = j BAND_ k
+
+<<"%x$j\t$k\t$m\n"
+<<"%X$j\t$k\t$m\n"
+<<"%o$j\t$k\t$m\n"
+<<"%u$j\t$k\t$m\n"
+
+//ans= i_read("bor | ")
+
+<<"bor | \n"
 
 m = ( j | k )
 
@@ -25,17 +37,20 @@ m = ( j | k )
 <<"%u$j\t$k\t$m\n"
 
 
-
-ans= i_read("bxor ^^")
-m = ( j XOR k )
+<<"bxor ^ \n"
+//ans= i_read("bxor ^^")
+//m = ( j XOR k )
+m = ( j ^ k )
 
 <<"%x$j\t$k\t$m\n"
 <<"%X$j\t$k\t$m\n"
 <<"%o$j\t$k\t$m\n"
 <<"%u$j\t$k\t$m\n"
 
+m = ( j BXOR_ k )
+<<" BXOR_  ^ \n"
 
-ans= i_read("3")
+//ans= i_read("3")
 
 m = ~j
 
@@ -43,7 +58,7 @@ m = ~j
 
 <<"%x\t$j\n\t$m\n"
 
-ans= i_read("4")
+//ans= i_read("4")
 
 m = ~k
 
@@ -52,7 +67,7 @@ m = ~k
 <<"%x\t$k\n\t$m\n"
 <<"%o\t$k\n\t$m\n"
 
-ans= i_read("5")
+//ans= i_read("5")
 
 m =  j << 1
 
@@ -65,7 +80,7 @@ m =  j << 4
 <<"\n  j << 4  \n"
 
 <<"\n%x\t$j\n\t$m\n"
-ans= i_read("6")
+//ans= i_read("6")
 
 m =  j >> 4
 
@@ -73,5 +88,5 @@ m =  j >> 4
 
 <<"\n%x\t$j\n\t$m\n"
 
-ans= i_read("7")
+//ans= i_read("7")
 exit()

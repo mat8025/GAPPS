@@ -45,3 +45,5 @@ F = vgen(FLOAT_,100,1,1)
   B=stdev(F)
 
 <<"%6.2f$B\n"
+
+exit()

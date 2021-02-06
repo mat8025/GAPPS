@@ -10,22 +10,15 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-myScript = getScript();///
+
 ///
 ///
+
+
 #include "debug"
-
-<<"%V $_dblevel\n"
-
-if (_dblevel >0) {
-   debugON()
-}
 
 chkIn(_dblevel)
 
-
-
-// make 1 to stop if error
 
 
 proc Foo(int a, int b)
@@ -580,3 +573,4 @@ for (k=0;k<sz;k++) {
 
 
 
+exit()

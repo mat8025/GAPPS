@@ -10,7 +10,7 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-myScript = getScript();///
+
 ///
 ///
 
@@ -59,12 +59,6 @@ e = -6;
 <<"%V $f $N \n"
 
 
-
-
-
-
-
-
 chkN(e,-6)
 
 int b = 79;
@@ -79,17 +73,16 @@ b = f * e;
 
 chkN(b,-42);
 
+// use float arg -
+// Foo(int) will convert to call -- 
 
-
-proc Foo(int a)
+proc Foo(float a)
  {
 
  int b;
  b = a;
 
  int e = a;
-  
-
 
   c= e * 13;
 

@@ -16,31 +16,49 @@
 
 #include "debug"
 
-debugAllowErrors()
+allowErrors(-1)
+
+chkIn()
   ws = nsc(10,"\"")
-<<"$ws\n"
-ans=query("OK?")
+!i ws  
+<<"<|$ws|>\n"
+len = slen(ws)
+<<"%V$len\n"
+chkN(len,11)
+c=ws[3]
+
+!i c
+!i ws
+
+
+
 
 
   ws = nsc(10,"\\")
 <<"$ws\n"
 
-ans=query("OK?")
+
+
+  ws = nsc(10,"AZ")
+<<"$ws\n"
+
+
+
 
 \\  ws = nsc(3,"\\\")
 \\<<"$ws\n"
 
-ans=query("OK?")
+
 
   ws = nsc(10,'\\')
 <<"$ws\n"
 
-ans=query("OK?")
+
 
   ws = nsc(10,'\\\')
 <<"$ws\n"
 
-ans=query("OK?")
+
 
 //  ws = nsc(10,'\\')
 //<<"$ws\n"
@@ -48,11 +66,13 @@ ans=query("OK?")
 //  ws = nsc(10,92)
 //<<"$ws\n"
 
-  ws = nsc(10,"AZ")
-<<"$ws\n"
-ans=query("OK?")
+
+
   ws = nsc(10,"\\AB")
 <<"$ws\n"
+len = slen(ws)
+<<"%V$len\n"
+chkN(len,33)
 
-
-
+chkOut()
+exit()

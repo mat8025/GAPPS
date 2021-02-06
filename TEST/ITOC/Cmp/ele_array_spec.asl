@@ -2,9 +2,12 @@
 ///
 ///
 
+#include "debug"
 
+allowErrors(-1)
 
 chkIn()
+
 int bounds[5];
 int nb = 3;
 
@@ -28,7 +31,7 @@ ele = 36; // r*c  - n'th ele is what array spec
 // 36 should be [1][4][0]
 int spec[15][3];
 
-proc ele2spec( ele , row)
+proc ele2spec(int ele ,int row)
 {
 ev= ele;
 for (i= 0; i < nb; i++) {

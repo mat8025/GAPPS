@@ -10,11 +10,11 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-myScript = getScript();
+
 
 /// Sel
 
-/{/*
+/*
 Sel(A,condition,val,{1},{justfirst})
 compares array values  using "<,>,==,,!=,>=,<=" operations with value
     delivers an integer array which contains indices - where the
@@ -23,7 +23,7 @@ optionally delivers integer array where elements are 0 or 1 depending on TRUE/FA
 If you need just the first element/index where the condition was true set the final optional arg (justfirst) to one,
 the default is to work through the vector.
 (see Cmp)
-/}*/
+*/
 
 
 chkIn(_dblevel)
@@ -73,10 +73,10 @@ chkOut()
 
 
 
-/{/*
+/*
 /////////// TBD //////////
 
   option to get justfirst should return array size 1
 
-/}*/
+*/
 

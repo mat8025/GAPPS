@@ -5,12 +5,14 @@
 //N = atoi(_clarg[1])
 
 
-setDebug(1,@keep,@trace)
-filterFuncDebug(ALLOWALL_);
-filterFileDebug(ALLOWALL_,"declare_type","array_subset","storetype","ds_store","ds_vector");
+//setDebug(1,@keep,@trace)
+//filterFuncDebug(ALLOWALL_);
+//filterFileDebug(ALLOWALL_,"declare_type","array_subset","storetype","ds_store","ds_vector");
+
+#include "debug"
 
 
-chkIn();
+chkIn(_dblevel);
 
 N = 200;
 int K = 1;
@@ -26,17 +28,17 @@ int K = 1;
 
 <<" $y = $a \n"
 
-proc poo()
+proc voo()
 {
 // increments global k
 // does calc and returns that value
-static int poon = 0;
+static int voon = 0;
 int a;
    K++;
    a= K * 2;
    b = noo();
-   poon++;
-<<"  $_proc %V $K $a $b $poon\n"
+   voon++;
+<<"  $_proc %V $K $a $b $voon\n"
 
    return a;
 }
@@ -99,12 +101,12 @@ last_mem = memused();
     memleak = totmem - last_mem
 <<" before poo call %V $K $totmem $memleak \n"
     last_mem = totmem
-     poo()
+     voo()
 
-//<<" ln 1 after poo call \n"
-//<<" ln 2  after poo call \n"
+//<<" ln 1 after voo call \n"
+//<<" ln 2  after voo call \n"
 
-// <<" poo a is $a k is now $k\n"
+// <<" voo a is $a k is now $k\n"
   
 
  }
@@ -120,9 +122,7 @@ last_mem = memused();
 <<"OK $K == $N\n"
  }
 
-chkN(K,N)
-
-
+ chkN(K,N)
  chkN(K,N,GTE_)
  
 <<" DONE %V $K $N  $init_mem $totmem\n"

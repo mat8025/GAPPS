@@ -56,7 +56,7 @@ Str S;
 
 //scpy(&S,"hola que tal");// crash
 
-scpy(S,"hola que tal");// 
+  scpy(S,"hola que tal");// 
 
 <<"S= $S\n"
 

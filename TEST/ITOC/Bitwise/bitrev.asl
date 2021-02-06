@@ -1,5 +1,16 @@
 
+
+if (argc() > 1) {
+
 N = atoi(_clarg[1])
+}
+else {
+
+ N =16;
+}
+
+
+chkIn()
 I = vgen(INT_,N,0,1)
 
 <<"$I\n"
@@ -23,7 +34,7 @@ I = vgen(INT_,N,0,1)
 
  for (i= 0;i < N; i++) {
    a = i;
- //  <<"$i $a $(decbin(i)) \n"
+ //  <<"$i $a $(dec2bin(i)) \n"
 
    b = 0;
    for (j = 0; j < np ; j++) {
@@ -36,7 +47,7 @@ I = vgen(INT_,N,0,1)
    }
     //b /=2;
     b = b >> 1;
-  // <<"%$i $b $(decbin(b)) \n"
+   <<"%$i $b $(dec2bin(b)) \n"
   pd = 0;
   if (i == b) {
     pd = 1;
@@ -49,10 +60,13 @@ I = vgen(INT_,N,0,1)
    I[b] = I[i];
    I[i] = tmp;
   }
-   <<"%$i $b $pd $(sele(decbin(i),-1,np))\n"
+   <<"%$i $b $pd $(sele(dec2bin(i),-1,np))\n"
  }
 
 <<"%V$npd\n"
 
 
 <<"$I\n"
+chkT(1)
+
+chkOut()

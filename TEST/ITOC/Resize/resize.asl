@@ -158,7 +158,7 @@ L=testargs(Wans)
 
 
 
-chkStage("svar");
+//chkStage("svar");
 
 
 int V[20];

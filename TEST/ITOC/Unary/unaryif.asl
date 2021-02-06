@@ -1,11 +1,14 @@
-#! /usr/local/GASP/bin/asl
+
+
+chkIn()
 
 float dFT60 = 2.0
+
 //int xbin
 
-N = $2
+N = 5
 <<" $N \n"
-OpenDll("math")
+//OpenDll("math")
 int ok = 0
 int bad = 0
 int ntest = 0
@@ -61,6 +64,9 @@ nwr = -1
 
  pcc= (100.0 * ok)/ntest
 
-<<"%-24s:$1: :success $ok failures $bad  %6.1f $pcc\% \n"
+<<"%-24s:$N : :success $ok failures $bad  %6.1f $pcc\% \n"
 
-STOP!
+chkN(ok,5)
+
+chkOut()
+

@@ -892,7 +892,7 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
   if ((do_bops || do_all) && (do_bops != -1)) {
 
-    RunDirTests("Bops","bops,fvmeq,fsc1,mainvar");
+    RunDirTests("Bops","bops,fvmeq,fsc1,mainvar,snew");
     
     Run2Test("Bops")
 
@@ -1071,7 +1071,7 @@ if ((do_all || do_try ) && (do_try != -1)) {
 if ((do_all  || do_declare ) && (do_declare != -1))  {
 
 
-   RunDirTests("Declare","declare");
+   RunDirTests("Declare","declare,dec1,declare-vec");
 
  //  Run2Test("Consts")
 

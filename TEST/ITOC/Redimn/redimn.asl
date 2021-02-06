@@ -1,12 +1,30 @@
+/* 
+ *  @script redimn.asl 
+ * 
+ *  @comment test redimn func 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.16 C-Li-S]                                 
+ *  @date Fri Feb  5 13:04:56 2021 
+ *  @cdate 1/1/2005 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+
 ///
 ///  redimn
 ///
 
-setdebug(1,"~step")
 
+//  always use debug.asl to init
+//setdebug(0,"~step")
 
+#include "debug"
 
-chkIn();
+debugOFF()
+
+chkIn(_dblevel);
 
 int V[20];
 

@@ -1,7 +1,23 @@
+/* 
+ *  @script snew.asl 
+ * 
+ *  @comment test some basic ops 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.16 C-Li-S]                                 
+ *  @date Thu Feb  4 20:13:04 2021 
+ *  @cdate 1/1/2005 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+
+
+#include "debug"
+
+  //   setdebug(1,@pline,@~trace,@keep); 
      
-     setdebug(1,@pline,@~trace,@keep); 
-     
-     chkIn(1); 
+     chkIn(_dblevel); 
      
 //prog= GetScript()
      

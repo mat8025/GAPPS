@@ -1,7 +1,7 @@
 
-setdebug(1)
+#include "debug"
 
-chkIn(1)
+chkIn(_dblevel)
 
  x = vgen(INT_,5,0,1)
 
@@ -19,19 +19,19 @@ chkIn(1)
 <<"%V$x\n"
 <<"%V$x1\n"
 
-checkVector(x1,x)
+chkVector(x1,x)
 
 <<"%V$y1\n"
 <<"%V$y2\n"
 
-checkVector(y1,y2)
+chkVector(y1,y2)
 
 
 
  y1 = x + b*x*x
  y2 = x + x*x*b
 
-checkVector(y1,y2)
+chkVector(y1,y2)
 
 <<"%V$x\n"
 <<"%V$y1\n"
@@ -40,7 +40,7 @@ checkVector(y1,y2)
  y1 = x + x*x + x*x*x
  y2 = x + x*x + x*x*x
 
-checkVector(y1,y2)
+chkVector(y1,y2)
 
 <<"%V$y1\n"
 <<"%V$y2\n"
@@ -57,7 +57,7 @@ checkVector(y1,y2)
 <<"%V$y2\n"
 
 // need vector check
-checkVector(y1,y2)
+chkVector(y1,y2)
 
  c= 3
 
@@ -67,7 +67,7 @@ checkVector(y1,y2)
 <<"%V$y1\n"
 <<"%V$y2\n"
 
-checkVector(y1,y2)
+chkVector(y1,y2)
 
 
 

@@ -5062,24 +5062,18 @@ retype
 .)x 
 .FD
 retypes a variable or a vector to a different type.
-  ---the memory held by a variable is converted to the required type
-where possible and the size ( number of items is adjusted) e.g a CHAR vector can be 
-retyped as an INT r.g.
-retype(INT_,vec) 
-( the last item will be padded with bytes as necessary)
+but with no memory conversion.
+e.g.
+F=vgen(DOUBLE_,10,0,1)
 
-A vector can be copied and converted by implicit cast via
-char C[] = vgen(CHAR_,10,0,1)
-int D[]
-D= C
-float F[]
-F =C
-The C vector of chars is converted to ints and placed in the D int vector, 
-similarly with for float.
-Loss of precison will occur if the type is 'demoted' i.e INT-->CHAR
+retype(INT_,F)
+or
+F->retype(INT_)
+
+the vector of 10 doubles is 'relabelled' as a vector of 20 integers.
+
+To convert to required type and maintain the size of the vector use Cast()
 (see cast)
-
-
 
 
 .EF
