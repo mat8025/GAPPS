@@ -1,14 +1,17 @@
-//%*********************************************** 
-//*  @script debug.asl 
-//* 
-//*  @comment  
-//*  @release CARBON 
-//*  @vers 1.13 Al Aluminium [asl 6.3.2 C-Li-He]                         
-//*  @date Tue Dec 29 09:20:36 2020 0 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2014,2018 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script debug.asl 
+ * 
+ *  @comment  
+ *  @release CARBON 
+ *  @vers 1.14 Si Silicon [asl 6.3.16 C-Li-S] 
+ *  @date Sat Feb  6 06:54:04 2021 
+ *  @cdate  1/1/2014  
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                      
 
 
 //<<"Including  debug \n"
@@ -19,7 +22,21 @@
 filterFileDebug(ALLOWALL_,"yyy");
 filterFuncDebug(REJECTALL_,"xxx");
 
+// working variables
 int _DB = -1; // dbg FH set to nop --set to 2 for error output
+
+_IV = vgen(INT_,10,0,1)
+_DV = vgen(DOUBLE_,10,0,1)
+
+Str _S = "abcde";
+Svar _SV;
+
+Pan _P ;
+
+_P= 4.0*atan(1.0);
+
+!p _P
+
 
 dbid = IDof("_DB");
 //<<"%V dbid _DB\n"

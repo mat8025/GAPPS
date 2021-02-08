@@ -1,3 +1,16 @@
+/* 
+ *  @script vecmul.asl 
+ * 
+ *  @comment test vector multiply  
+ *  @release CARBON 
+ *  @vers 1.3 Li Lithium [asl 6.3.16 C-Li-S]                                
+ *  @date Sat Feb  6 07:01:49 2021 
+ *  @cdate 1/1/2010 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
 
 #include "debug"
 
@@ -25,8 +38,6 @@ chkVector(x1,x)
 <<"%V$y2\n"
 
 chkVector(y1,y2)
-
-
 
  y1 = x + b*x*x
  y2 = x + x*x*b

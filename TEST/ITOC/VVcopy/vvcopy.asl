@@ -26,15 +26,78 @@ returns number of values copied into array B.
 
 */
 
-chkIn()
+#include "debug"
+debugON()
+
+chkIn(_dblevel)
 
 N= 10;
 
-//A= vgen(CHAR_,N,0,1)
+A= vgen(INT_,N,0,-1)
 B= vgen(INT_,N,0,1)
-A = B;
+C=B
 <<"A: $A\n"
 <<"B: $B\n"
+
+vvcopy(B,A)
+
+<<"B: $B\n"
+
+chkN(B[1],A[1])
+
+B=C
+
+vvcopy(&B[3],A,5)
+
+<<"B: $B\n"
+
+
+chkN(B[3],A[0])
+
+
+int ki = 2
+
+
+B=C
+
+vvcopy(&B[ki],A,5)
+
+<<"B: $B\n"
+
+chkN(B[ki],A[0])
+
+
+
+B=C
+ki = 4
+vvcopy(&B[ki],A,5)
+
+<<"B: $B\n"
+
+chkN(B[ki],A[0])
+
+int kia = 3
+ki = 2
+B=C
+
+<<"%V $ki $kia\n"
+vvcopy(&B[ki],&A[kia],4)
+
+<<"B: $B\n"
+//A->info(1)
+
+//<<"A: $A\n"
+//<<"B: $B\n"
+
+chkN(B[ki],A[kia])
+
+bval = B[ki]
+aval = A[kia]
+<<"%V $bval $aval\n"
+A->info(1)
+chkN(bval,aval)
+
+
 
 A = 0;
 chkN(A[3],0)

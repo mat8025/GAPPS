@@ -2,9 +2,40 @@
 ///
 ///
 
-setDebug(1,"pline","trace","~step")
+//setDebug(1,"pline","trace","~step")
 
-k = 1;
+#include "debug"
+
+int k = 1;
+
+V=vgen(INT_,10,0,1)
+
+A = testargs(&V);
+<<"$A\n"
+
+!i V
+
+
+A = testargs(&V[8]);
+<<"$A\n"
+
+
+
+
+!i V
+
+A = testargs(&V[k]);
+<<"$A\n"
+
+
+!a
+
+
+
+
+
+
+
 <<"$k\n"
 k++;
 

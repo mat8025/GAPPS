@@ -1,3 +1,16 @@
+/* 
+ *  @script polynom.asl 
+ * 
+ *  @comment test polynom  
+ *  @release CARBON 
+ *  @vers 1.3 Li Lithium [asl 6.3.16 C-Li-S]                                
+ *  @date Sat Feb  6 07:00:16 2021 
+ *  @cdate 1/1/2010 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
 ////
 ///
 ///
@@ -38,8 +51,6 @@ float z[5]
 <<"Cube %6.3f$cof \n"
 
 chkR(cof[3],1.0)
-
-
 
 
  y = x * x * x   + 1.8 * x * x

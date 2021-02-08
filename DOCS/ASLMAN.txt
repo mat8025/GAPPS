@@ -10455,7 +10455,7 @@ checkin
 .)x 
 .FD
 checkIn()
- entry point for a series of tests using checkNum,checkFNum,checkStr, ... finish with CheckOut()
+ entry point for a series of tests using checkNumber,checkReal,checkStr, ... finish with CheckOut()
 .EF
 ===================================================
 .BF
@@ -10469,14 +10469,24 @@ checkOut()
 .EF
 ===================================================
 .BF
-checkNum()
+checkNumber()
 .(x
-checkNum
+checkNumber,chkN
 .)x 
 .FD
-checkNum(a,b,[operator],[precision])
+checkNum(a,b,[operator])
 tests for equality between a and b (default).
 Operators allows GT_,LT_,GTE_,LTE_,NEQ_,EQ_.  
+.EF
+==================================================
+.BF
+checkReal()
+.(x
+checkReal,chkR
+.)x 
+.FD
+chkR(a,b,[precision])
+tests for equality between a and b with optional precesion.
 .EF
 ==================================================
 .BF

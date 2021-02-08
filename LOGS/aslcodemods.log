@@ -765,3 +765,13 @@ ic_xic.cpp	 1.74	 Sun Jan 31 15:06:48 2021 line num XIC dbg
 proc_e.cpp	 2.68	 Wed Feb  3 16:10:40 2021 recurse check SporcXic
 parset_e.cpp	 2.84	 Wed Feb  3 16:12:05 2021 step mode for trace
 dbug.cpp	 1.49	 Wed Feb  3 16:14:01 2021 more db options step-trace output
+svar_utils.cpp	 1.2	 Sat Feb  6 12:43:18 2021 isVarName
+svar_utils.cpp	 1.2	 Sat Feb  6 12:45:05 2021 IsVarName
+svar_utils.cpp	 1.57	 Sat Feb  6 12:48:31 2021 IsVarName
+test_l.cpp	 1.48	 Sun Feb  7 09:26:37 2021 dbp format
+scope_e.cpp	 2.77	 Sun Feb  7 22:16:03 2021 resetOffSets() setArraySpecs
+ic_pushsiv.cpp	 1.64	 Sun Feb  7 22:18:53 2021 refarg - pop index info
+ic_pushref.cpp	 1.3	 Sun Feb  7 22:26:30 2021 refarg pop
+ic_pushref.cpp	 1.4	 Sun Feb  7 22:31:34 2021 DBG
+ic_call.cpp	 1.54	 Sun Feb  7 22:36:24 2021 SfuncXic
+func_e.cpp	 3.49	 Sun Feb  7 22:39:06 2021 SprocFunc --> ic_call
