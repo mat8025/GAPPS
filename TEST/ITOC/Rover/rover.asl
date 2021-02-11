@@ -1,4 +1,9 @@
 
+#include "debug"
+
+chkIn()
+
+
 str s1 = "happyHolidays"
 str s2 = "xyz"
 
@@ -8,6 +13,11 @@ str s2 = "xyz"
 s3= rover(s1,s2,4)
 
 <<"$s3\n"
+
+chkStr(s3,"happxyzli",9)
+
+
+
 i = 0
 while (i < 20) {
 s3= rover(s1,s2,i)
@@ -21,10 +31,12 @@ i++
 s3= rover(s1,s2,LAST_)
 
 
-<<"$s3\n"
-
+<<"LAST_ $s3\n"
+chkStr(s3,"happyHolidxyz")
 
 s3= rover(s1,s2,-3)
 
 
-<<"$s3\n"
+<<"-3: $s3\n"
+
+chkOut()

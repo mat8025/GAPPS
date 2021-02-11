@@ -1,26 +1,38 @@
+/* 
+ *  @script loop_cmd.asl 
+ * 
+ *  @comment test command in loop  
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.18 C-Li-Ar]                                
+ *  @date Mon Feb  8 20:26:33 2021 
+ *  @cdate 1/1/2005 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
 
 
-setdebug(1)
+#include "debug"
 
-
-  int k = 0
+  chkIn()
+  int k = 0;
   while (1) 
   {
 
 
   k++;
-    !!"date "
-
-      ;
-
+dc= !!"date "
   
 
-  <<"count is $k\n"
+  <<"$dc count is $k\n"
 
 //    T=FineTime()
 //    <<" time is : $T\n"
-      sleep(1)
+      sleep(0.5)
 
-     if (k > 10)
+     if (k > 3 )
            break
   }
+  chkN(k,4)
+  chkOut()

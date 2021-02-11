@@ -13,11 +13,11 @@
  */ 
  
                                                                         
-myScript = getScript();
+#include "debug"
 
 
 chkIn(_dblevel)
-
+debugON()
 Str say()
   {
    <<"$_proc hey there I exist\n"
@@ -91,16 +91,21 @@ c->info(1)
 
 
 
-   j = 1
+   j = 1;
    n = 12
-   while (j < 4) {
+
+  while (j < 4) {
 
       a = Foo(j,n)
-
+j->info(1)
 
 <<" $j * $n  = $a\n"
-    j++
+
+     j++
+    
    }
+
+
 
 int pmaj;
 int pmin;
@@ -209,12 +214,14 @@ int ret = 0;
   }
 
   else if (a < 0) {
-<<" $a > 1 should be returning 1 !\n"
+<<" $a > 1 should be returning -1 !\n"
     ret=  -1;
   }
   else {
 <<" $a <= 1 should be returning 0 !\n"
   }
+
+<<"return $ret\n"
 
    return ret;
 }
@@ -390,10 +397,22 @@ real rin = in
 <<"ret will be  $e\n"
 
 
-   //c = foo2(in) * 6
-   c = 6 * foo2(in) 
+//   c = foo2(in)
+//!p c   
 
-  <<" $in $c \n"
+    c = foo2(in) * 6
+    <<" foo2(in) * 6\n"
+
+   chkN(c,120)
+
+//!p c
+
+
+    c = 6 * foo2(in)
+    <<" 6 * foo2(in)\n"
+
+//!p c
+
 
    chkN(c,120)
 

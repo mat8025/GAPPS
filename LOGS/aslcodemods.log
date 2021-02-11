@@ -775,3 +775,9 @@ ic_pushref.cpp	 1.3	 Sun Feb  7 22:26:30 2021 refarg pop
 ic_pushref.cpp	 1.4	 Sun Feb  7 22:31:34 2021 DBG
 ic_call.cpp	 1.54	 Sun Feb  7 22:36:24 2021 SfuncXic
 func_e.cpp	 3.49	 Sun Feb  7 22:39:06 2021 SprocFunc --> ic_call
+firstpass.cpp	 2.34	 Mon Feb  8 11:00:25 2021 ask with message shortcut
+stateparse_e.cpp	 2.60	 Mon Feb  8 14:28:19 2021 checkProcFunc - compile
+ic_vfill.cpp	 1.60	 Tue Feb  9 08:51:18 2021 svar fill via stackvar
+test_l.cpp	 1.49	 Wed Feb 10 23:44:21 2021 init interact
+ic_xic.cpp	 1.75	 Wed Feb 10 23:45:22 2021 stack depth recurse
+ic_print.cpp	 1.60	 Wed Feb 10 23:46:55 2021 prtrow stack eval

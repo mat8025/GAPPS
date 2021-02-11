@@ -13,6 +13,7 @@
 
 
 //take a vector and make it as leading diagonal of a square matrix other elements are zero
+
 #include "debug.asl";
 
 
@@ -37,19 +38,21 @@ V->info(1)
 
 
 P= Diagonal(V)
-
+!i P
 <<"$P\n"
 
 P->info(1)
 
-Q = reflectRow(P)
+Q = mrevRows(P)
 
-<<"$Q\n"
+<<"Q revrows\n"
+<<" $Q\n"
 
 
-Q = reflectCol(P)
+Q = mrevcols (P)
 
-<<"%4.1f$Q\n"
+<<"Q revcols \n"
+<<" $Q\n"
 
 R= mdiag(V)
 

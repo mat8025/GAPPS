@@ -19,14 +19,18 @@
 
 chkIn(_dblevel)
 
+debugON()
+
+//filterFileDebug(ALLOWALL_,"yyy");
+//filterFuncDebug(ALLOWALL_,"yyy");
 
 
 proc Foo(int a, int b)
 {
-<<" $_proc $a $b\n"
+<<" $_proc 2 args $a $b\n"
   int x;
   int y = 1;
-
+  y->info(1);
   chkN (y ,1)
   x = a;
   y = b;
@@ -56,15 +60,17 @@ int n = 4;
 
 chkN(pri,7)
 
+//!a 2 args
+//!a 2 args version?
+ pri = Foo(74,79)
 
- pri = Foo(47,79)
 
 
 <<"%V  $m $n\n"
 
 
 
-chkN(pri,126)
+chkN(pri,(74+79))
 
 
 
@@ -324,7 +330,7 @@ prec=setap(20)
 proc Foo(int a)
 {
 int k = 2
-<<" entered $_proc $a $k\n"
+<<" entered $_proc single arg %V$a $k $A\n"
  chkN(k,2)
  chkN(a,A)
 }
@@ -332,6 +338,7 @@ int k = 2
 
 A =5
 Foo(A)
+
 A++
 Foo(A)
 

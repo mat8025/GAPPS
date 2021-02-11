@@ -10,7 +10,7 @@
 //*  @Copyright © RootMeanSquare  2010,2019 → 
 //* 
 //***********************************************%
-<<"Running $_script\n"
+
 
 #include "debug"
 
@@ -18,7 +18,22 @@ if (_dblevel >0) {
    debugON()
 }
 
+allowErrors(-1)
+
    chkIn(_dblevel);
+
+   svar E[] = { "the first ten elements are:", "H", "He", "Li", "Be" ,"B" ,"C", "N", "O", "F", "Ne"  };
+   
+   <<"$E\n"; 
+   <<"$E[1] \n"; 
+
+   chkStr(E[1],"H"); 
+   
+   <<"$E[2] \n"; 
+
+
+
+
 
  //  checkMemory(1,1)
    svar  S = "una larga noche"; 
@@ -34,21 +49,8 @@ if (_dblevel >0) {
    <<"%V $S[2] \n"; 
    
    
-   svar E[] = { "the first ten elements are:", "H", "He", "Li", "Be" ,"B" ,"C", "N", "O", "F", "Ne"  };
-   svar E3[] = { "third row elements are:", "Na", "Mg", "Al", "Si" ,"P" ,"S", "Cl", "Ar" };
-   
-   
-   <<"$E\n"; 
-   <<"$E[1] \n"; 
 
-
-
-   chkStr(E[1],"H"); 
-   
-   <<"$E[2] \n"; 
-
-
-
+svar E3[] = { "third row elements are:", "Na", "Mg", "Al", "Si" ,"P" ,"S", "Cl", "Ar" };
    <<"$E[3:6] \n"; 
    
    
@@ -441,8 +443,11 @@ R= M[3::]
 <<"$R \n"
 R->info(1)
 <<"%V$R\n"
+<<"last? $R[-1]\n"
+
+
 chkStr(R[0],"3")
-chkStr(R[-1],"19")
+//chkStr(R[-1],"19")
 
 
 

@@ -19,8 +19,9 @@
 //sdb(-1,@~pline,@~step,@~trace)
 
 //sdb(_dblevel,@~pline,@~step,@~trace)
-filterFileDebug(ALLOWALL_,"yyy");
-filterFuncDebug(REJECTALL_,"xxx");
+filterFuncDebug(REJECTALL_,"proc");
+filterFileDebug(REJECTALL_,"yyy");
+
 
 // working variables
 int _DB = -1; // dbg FH set to nop --set to 2 for error output
@@ -66,7 +67,7 @@ if (_dblevel < 1) {
 
 //<<"%V $_DB ALLOWALL debug from files and funcs\n"
 //<<"use filterFuncDebug() filterFileDebug() to control\n"
-//sdb(1,@keep,@pline,@~step,@trace)
+//sdb(_dblevel,@keep,@~pline,@trace)
 filterFuncDebug(ALLOWALL_,"xxx");
 filterFileDebug(ALLOWALL_,"yyy");
 setmaxcodeerrors(-1); // just keep going

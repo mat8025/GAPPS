@@ -48,36 +48,36 @@
    
    s=Foo(38,33);
 
-   checknum(s,71); 
+   chkN(s,71); 
 
    s=Doo(2,3); 
    
    <<"%V$s\n"; 
    
-   checknum(s,5); 
+   chkN(s,5); 
    
    <<" yellow $(C_YELLOW) \n"; 
    
    if (argc() > 1) {
      s=Boo(2,3);
      <<"%V$s\n"; 
-     checknum(s,-1); 
+     chkN(s,-1); 
      s=Boo(47,79);
      <<"%V$s\n"; 
-     checknum(s,-32); 
+     chkN(s,-32); 
      }
    
    g=Goo(47,79);
    <<"%V$g\n"; 
    
-   checknum(g,47*79); 
+   chkN(g,47*79); 
    
    
    h=Hoo(47.0,79);
    
    <<"%V$h\n"; 
    
-   checknum(h,47.0/79); 
+   chkN(h,47.0/79); 
    
    dd= Doo(4,5); 
    <<"$dd\n"; 

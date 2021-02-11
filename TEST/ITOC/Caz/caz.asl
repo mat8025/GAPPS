@@ -10,8 +10,10 @@
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%///
-<<"Running $_script\n"
+
+
 <<"$_clarg[0] $_clarg[1] \n"
+#include "debug"
 
 chkIn(_dblevel);
 

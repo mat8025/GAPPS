@@ -14,7 +14,7 @@
 
 ///
 
-
+#incldue "debug"
 
 
  chkIn(_dblevel)
@@ -55,6 +55,8 @@ vecp->info(1)
 
    vecp2= vgen(PAN_,10,0,1)
 
+<<"%p $vecp2 \n"
+!a
   for (i= 0; i <3 ; i++) {
 
         starti =i+1;
