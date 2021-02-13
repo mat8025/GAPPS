@@ -781,3 +781,17 @@ ic_vfill.cpp	 1.60	 Tue Feb  9 08:51:18 2021 svar fill via stackvar
 test_l.cpp	 1.49	 Wed Feb 10 23:44:21 2021 init interact
 ic_xic.cpp	 1.75	 Wed Feb 10 23:45:22 2021 stack depth recurse
 ic_print.cpp	 1.60	 Wed Feb 10 23:46:55 2021 prtrow stack eval
+proc_args_e.cpp	 3.47	 Thu Feb 11 11:28:17 2021 strv arg
+ds_storestr.cpp	 1.75	 Thu Feb 11 11:29:03 2021 PTR code
+ds_storesiv.cpp	 1.87	 Thu Feb 11 11:29:51 2021 PTR code
+test_l.cpp	 1.50	 Thu Feb 11 11:31:24 2021 interact
+rdp_main.cpp	 1.72	 Thu Feb 11 11:32:56 2021 l1_store proc_arg_ref
+primitive.cpp	 1.64	 Fri Feb 12 10:18:06 2021 DBG
+rdp_main.cpp	 1.73	 Fri Feb 12 10:22:42 2021 DBG
+rdp_token.cpp	 1.73	 Fri Feb 12 10:27:30 2021 DBG
+toknum.cpp	 1.78	 Fri Feb 12 10:30:08 2021 DBG
+tokfunc.cpp	 1.75	 Fri Feb 12 10:33:34 2021 DBG
+ic_pushsivele.cpp	 1.64	 Sat Feb 13 08:12:14 2021 use getStackInt for MD ele
+ic_pushrec.cpp	 1.9	 Sat Feb 13 08:20:14 2021 use getStackInt
+ic_pushobj.cpp	 1.3	 Sat Feb 13 08:24:05 2021 use getStackInt
+event_l.cpp	 1.22	 Sat Feb 13 08:59:22 2021 check returns

@@ -10,25 +10,32 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-myScript = getScript();
+
+#include "debug"
 
 
 ///
 /// procrefarg
 
-
+debugOFF()
 chkIn(_dblevel)
 
 Str pstrarg (str v, str u)
 {
 <<"args in %V  $v $u \n"
 
- m = v;
+ m = scat(v," ",u);
+ m->info(1);
  v->info(1)
  u->info(1)
 // ans= query("args are correct?");
  v = "hola"
- u = "que tal?"
+ v->info(1)
+ s->info(1)
+!p v
+
+
+u = "que tal?"
 
   return m;
 
@@ -37,20 +44,23 @@ Str pstrarg (str v, str u)
 
 
   str s = "hi"
-  str t =  "how are you?"
+  str t =  "Comment allez-vous?"
 
 <<"%V $s $t \n"
+
+  chkStr(s,"hi")
+  chkStr(t,"Comment allez-vous?");
 
   s->info(1)
   t->info(1)
 
  w = pstrarg(s,t)
 
-
+ w->info(1)
 <<"%V $s $t $w\n"
-
- chkStr(s,"hi")
-
+ chkStr(w,"hi Comment allez-vous?")
+  s->info(1)
+ chkStr(s,"hola")
 
 
 
@@ -83,8 +93,8 @@ Str pstrarg (str v, str u)
 
 
 <<"%V $s $t $w\n"
-
- chkStr(s,"buenas")
+ s->info(1)
+ chkStr(s,"hola")
 
  chkOut()
 

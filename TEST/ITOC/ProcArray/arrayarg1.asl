@@ -164,13 +164,20 @@ U = Vgen(INT_,10,0,1)
 
  // TBD FIX it does not compute the offset - so proc operates on the third element in
 
+<<"$U\n"
 
 y = voo(&U[3]) 
 
 <<"after proc call $U\n"
 
 chkN(U[4],47);
+
+
+
+
 chkN(U[7],78);
+
+
 chkN(U[8],50);
 
 

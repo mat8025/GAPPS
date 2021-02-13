@@ -11,10 +11,15 @@
 //* 
 //***********************************************%
 
+#include "debug"
 
+if (_dblevel >0) {
+   debugON()
+}
 
 
 chkIn(_dblevel)
+
 A= vgen(FLOAT_,10,0,1)
 
 

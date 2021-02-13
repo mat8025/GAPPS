@@ -2,13 +2,13 @@
 
 astr = "Mark Terry"
 
-<<"%i %v $astr \n"
+<<"%v $astr \n"
 
-name = { "Mark Terry", "use standard libraries!" }
+svar name[] = { "Mark Terry", "use standard libraries!" }
 
 <<" $(typeof(name)) $name \n"
 
-<<"%i $name \n"
+<<" $name \n"
 
 <<"assignment: $name[0] \n"
 
@@ -125,7 +125,7 @@ name[0]->Substitute("paste this ON","Substitute my truth with lies")
  
 <<"Substitute: $name[0] \n"
 
-STOP!
+
 
 /////////////////////
 

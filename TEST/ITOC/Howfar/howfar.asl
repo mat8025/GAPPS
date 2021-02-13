@@ -10,44 +10,87 @@
  *  @Copyright © RootMeanSquare  2010,2021 → 
  * 
  *  \\-----------------<v_&_v>--------------------------//  
- */ 
+ */
+
+
 #include "debug"
-debugON()
+
+//debugON()
+
+allowErrors(-1)
+
+filterFuncDebug(ALLOWALL_,"xxx");
+filterFileDebug(REJECT_,"args_process","ds_storestr","scope_e","array_parse");
+filterFuncDebug(REJECT_,"checkOffSet");
+
 #include "consts"
+
+<<"%V $_km2mile \n"
 
 //  nashville  N 36 7.2   W 86 40.2
 //  los angeles N 33 56.4   W 118 24.0
-
+do_query = 0;
 
 //Berlin="Germany	52	30 N	13	25 E	6:00 p.m."
 Svar City
 
 
-City->table("HASH",421,2) //
-
-
-
-
-
-
+City->table("HASH",977,2) //
 
 
 
 //City	°	'	°	'	Time
 // m.1 means On the following day.
 index= City->addkeyval("Aberdeen","Scotland	57	9 N	2	9 W	5:00 p.m.");
+key = "Aberdeen";
+val = City->lookup(key)
+<<"$index $key  $val\n"
+!p index
 index= City->addkeyval("Adelaide", "Australia	34	55 S	138	36 E	2:30 a.m.1");
+key = "Adelaide";
+val2 = City->lookup(key)
+<<"$index $key  $val2\n"
 index= City->addkeyval("Algiers", "Algeria	36	50 N	3	0 E	6:00 p.m.");
+key = "Algiers";
+val = City->lookup(key)
+<<"$index $key  $val\n"
+
 index= City->addkeyval("Amsterdam", "Netherlands	52	22 N	4	53 E	6:00 p.m.");
+key = "Amsterdam";
+val = City->lookup(key)
+<<"$index $key  $val\n"
 index= City->addkeyval("Ankara", "Turkey	39	55 N	32	55 E	7:00 p.m.");
+key = "Ankara";
+val = City->lookup(key)
+<<"$index $key  $val\n"
 index= City->addkeyval("Asunción", "Paraguay	25	15 S	57	40 W	1:00 p.m.");
+key = "Asunción";
+val = City->lookup(key)
+<<"$index $key  $val\n"
 index= City->addkeyval("Athens", "Greece	37	58 N	23	43 E	7:00 p.m.");
+key = "Athens";
+val = City->lookup(key)
+<<"$index $key  $val\n"
+
 index= City->addkeyval("Auckland", "New Zealand	36	52 S	174	45 E	5:00 a.m.1");
+key = "Auckland";
+val = City->lookup(key)
+
+<<"$index $key  $val\n"
+
 index= City->addkeyval("Bangkok", "Thailand	13	45 N	100	30 E	midnight");
+key = "Bangkok";
+val = City->lookup(key)
+<<"$index $key  $val\n"
+
+
+
+
+
 index= City->addkeyval("Barcelona", "Spain	41	23 N	2	9 E	6:00 p.m.");
 index= City->addkeyval("Beijing", "China	39	55 N	116	25 E	1:00 a.m.1");
 index= City->addkeyval("Belém", "Brazil	1	28 S	48	29 W	2:00 p.m.");
-index= City->addkeyval("Belfast", "Northern Ireland	54	37 N	5	56 W	5:00 p.m.");
+index= City->addkeyval("Belfast", "NorthernIreland	54	37 N	5	56 W	5:00 p.m.");
 index= City->addkeyval("Belgrade", "Serbia	44	52 N	20	32 E	6:00 p.m.");
 index= City->addkeyval("Berlin", "Germany	52	30 N	13	25 E	6:00 p.m.");
 index= City->addkeyval("Birmingham", "England	52	25 N	1	55 W	5:00 p.m.");
@@ -75,7 +118,7 @@ index= City->addkeyval("Dakar", "Senegal	14	40 N	17	28 W	5:00 p.m.");
 index= City->addkeyval("Darwin", "Australia	12	28 S	130	51 E	2:30 a.m.1");
 index= City->addkeyval("Djibouti", "Djibouti	11	30 N	43	3 E	8:00 p.m.");
 index= City->addkeyval("Dublin", "Ireland	53	20 N	6	15 W	5:00 p.m.");
-index= City->addkeyval("Durban", "South Africa	29	53 S	30	53 E	7:00 p.m.");
+index= City->addkeyval("Durban", "SouthAfrica	29	53 S	30	53 E	7:00 p.m.");
 index= City->addkeyval("Edinburgh", "Scotland	55	55 N	3	10 W	5:00 p.m.");
 index= City->addkeyval("Frankfurt", "Germany	50	7 N	8	41 E	6:00 p.m.");
 index= City->addkeyval("Georgetown", "Guyana	6	45 N	58	15 W	1:00 p.m.");
@@ -287,73 +330,120 @@ index= City->addkeyval("Wichita", "Kan.	37	43	97	17	11:00 a.m.");
 index= City->addkeyval("Wilmington", "N.C.	34	14	77	57	12:00 noon");
 index= City->addkeyval("Winnipeg", "Man., Can.	49	54	97	7	11:00 a.m.");
 
+<<"%V $index\n"
 
 //========================================
 
 float C2C (str cityto , str cityfr)
-
 {
-//Str vs;
 
-<<"$_proc   $cityto $cityfr \n"
-cityto->info(1)
-val = City->lookup(cityto)
-//val->info(1);
-<<"<|$cityto|>  ==> \n"
-<<"$val \n"
+//Str vs;
+//svar lval;
+//svar wval;
+//svar wval2;
+//   TBF - crash unless declared here
+double miles;
+
+
+
+
+//<<"$_proc   $cityto $cityfr \n"
+
+//cityto->info(1);
+
+svar lval = City->lookup(cityto);
+
+//lval->info(1);
+//<<"<|$cityfr|>  ==> \n"
+
 //vs= val[0]
 //<<"$vs \n"
 //vs->info(1)
-wval = split(val[0])
+svar wval = split(lval[0])
 sz=Caz(wval)
 
 //<<"%V $sz   $wval\n"
 //wval->info(1)
 
-//lat =  atof(wval[1]))
+lat =  atof(wval[1])
 //lat->info(1)
+
 //<<"$wval[1] $wval[2] $lat\n"
+/*
+   la1 =  atof(wval[1]) ;
+   la2 =  atof(wval[2]) ;   
+   la3 =  atof(wval[3]) ;
+   la4 =  atof(wval[4]) ;
+<<"%V $la1 $la2 $la3 $la4 \n"   
+*/
 
 
   if (sz == 7) {
    latA = atof(wval[1]) + 0.01* atof(wval[2]);
+   //latA = la1 + 0.01 * la2;
    lngA = atof(wval[3]) + 0.01* atof(wval[4]);
+   //lngA = la3 + 0.01 * la4;
+
   }
   else {
+  
    latA = atof(wval[1]) + 0.01* atof(wval[2]);
+   //latA = la1 + 0.01* la2;
+
    cd = wval[3];
    if (cd @= "S") {
        latA *= -1;
    }
+   
    lngA = atof(wval[4]) + 0.01* atof(wval[5]);
+   //lngA = la4 + 0.01* la5;
+
    cd = wval[6];
    if (cd @= "E") {
-       lngAA *= -1;
+       lngA *= -1;
    }
+
+
   }
+//<<"%V $latA  $lngA \n"
+//ans= query("c1");
 
-ans= query("c1");
+//cityfr->info(1)
+
+lval = City->lookup(cityfr)
+
+//lval->info(1)
 
 
-val2 = City->lookup(cityfr)
+wval = split(lval[0])
+
+//wval2->info(1)
+
+sz=Caz(wval)
+
+//<<"$sz   $wval\n"
+/*
+   la1 =  atof(wval2[1]) ;
+   la2 =  atof(wval2[2]) ;   
+   la3 =  atof(wval2[3]) ;
+   la4 =  atof(wval2[4]) ;
+*/
 
 
-
-wval2 = split(val2[0])
-sz=Caz(wval2)
-//<<"$sz   $wval2\n"
-  if (sz == 7) {
-   latB = atof(wval2[1]) + 0.01* atof(wval2[2]);
-   lngB = atof(wval2[3]) + 0.01* atof(wval2[4]);
+ if (sz == 7) {
+   latB = atof(wval[1]) + 0.01* atof(wval[2]);
+   lngB = atof(wval[3]) + 0.01* atof(wval[4]);
+ //   latB = la1 + la2;
+   // lngB = la3 + 0.01* la4;
   }
- else {
-   latB= atof(wval2[1]) + 0.01* atof(wval2[2]);
-   cd = wval2[3];
+ else  {
+   latB= atof(wval[1]) + 0.01* atof(wval[2]);
+   cd = wval[3];
    if (cd @= "S") {
        latB *= -1;
    }
-   lngB = atof(wval2[4]) + 0.01* atof(wval2[5]);
-   cd = wval2[6];
+   lngB = atof(wval[4]) + 0.01* atof(wval[5]);
+   cd = wval[6];
    if (cd @= "E") {
        lngB *= -1;
    }
@@ -361,13 +451,29 @@ sz=Caz(wval2)
 
 
   km = HowFar(latA,lngA,latB,lngB);
- miles = km * _km2mile
- cityfr->info(1)
-<<"<|$cityfr|>   \n"
-<<"$val2 \n"
-<<" $km km  $miles miles \n"  
-ans= query("c2");
-return km;
+
+<<"$km * $_km2mile\n"
+// TBF 
+// double miles = km * _km2mile;
+
+   miles = km * _km2mile;
+
+// double smiles = km * _km2mile;
+
+
+ miles->info(1)
+
+
+
+<<" $cityfr ==> $cityto $km km  miles $miles \n"  
+
+
+//cityfr->info(1)
+//<<"<|$cityfr|>   \n"
+
+
+
+  return km;
 }
 //================================
 
@@ -379,6 +485,7 @@ val = City->lookup(key)
 
 <<"$key  $val\n"
 
+
 key = "London";
 val = City->lookup(key)
 
@@ -389,17 +496,17 @@ val = City->lookup(key)
 
 <<"$key  $val\n"
 
-//key = "New York";
 
 
 
 
   latA = 36 +  7.2/60.0
-  lngA = - (86 +  40.2/60.0)
+  lngA = (86 +  40.2/60.0)
 
 
   latB = 33 + 56.4/60.0
-  lngB = - (118 + 24/60.0)
+  lngB = (118 + 24/60.0)
+
 
 
 key = "London";
@@ -408,18 +515,105 @@ key2 = "Sydney";
 key->info(1)
 
 
-<<"$key ===> $key2 \n"
+//<<"$key ===> $key2 \n"
 
 km= C2C (key , key2)
 
 
 
+str cityA ="London"
+str cityB = "Tokyo"
+
+km= C2C (cityA , cityB)
+
+
+miles = km * _km2mile
+
+
+
 cityA ="London"
-cityB = "Tokyo"
+cityB = "Edinburgh"
 
-km= C2C ("London" , "Tokyo")
+//<<"$cityA ===> $cityB \n"
+km= C2C (cityA , cityB)
+ smiles = km * _km2mile
+//<<"$cityA to $cityB is $km  $smiles ??\n"
 
 
+
+
+////   str const as var
+cityA="Denver"
+cityB = "Madrid"
+//<<"$cityA ===> $cityB \n"
+
+//km= C2C ("Denver" , "Madrid")
+//km= C2C (cityA , cityB)
+
+km= C2C (cityA , cityB)
+
+
+cityA ="Berlin"
+cityB = "Paris"
+//<<"$cityA ===> $cityB \n"
+
+km= C2C (cityA , cityB)
+ smiles = km * _km2mile
+//<<"$cityA to $cityB is $km  $smiles ??\n"
+
+
+
+
+
+
+
+cityB ="Denver"
+cityA = "Rome"
+
+//<<"$cityA ===> $cityB \n"
+
+km= C2C (cityA , cityB)
+ smiles = km * _km2mile
+//<<"$cityA ==> $cityB is $km  $smiles ??\n"
+
+
+
+
+km= C2C ("Rome" , "New York")
+miles = km * _km2mile
+
+
+
+
+
+
+
+
+
+
+
+
+if (do_query) {
+
+
+city1 = query("from ?")
+city2 = query("to ?")
+
+km= C2C (city1 , city2)
+
+ miles = km * _km2mile
+ 
+<<"$city1 to $city2 is $km  $miles ??\n"
+}
+
+
+
+
+
+/////////////////////////////////////////
+
+
+/*
   km = HowFar(latA,lngA,latB,lngB,2)
 
 
@@ -463,23 +657,4 @@ km= C2C ("London" , "Tokyo")
   D = 6371 * ang2
 
 <<"%V$D \n"
-
-cityA ="London"
-cityB = "Edinburgh"
-
-
-km= C2C (cityA , cityB)
-
-km= C2C ("Denver" , "Madrid")
-
-km= C2C ("Berlin" , "Paris")
-
-
-km= C2C ("Rome" , "New York")
-
-
-city1 = query("from ?")
-city2 = query("to ?")
-
-km= C2C (city1 , city2)
-
+*/

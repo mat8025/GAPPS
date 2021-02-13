@@ -1,5 +1,29 @@
+/* 
+ *  @script ae.asl 
+ * 
+ *  @comment test vector ele eval 
+ *  @release CARBON 
+ *  @vers 1.3 Li Lithium [asl 6.3.19 C-Li-K]                                
+ *  @date Thu Feb 11 22:36:55 2021 
+ *  @cdate 1/1/2005 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
 
-chkIn()
+
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+}
+
+
+
+
+chkIn(_dblevel);
 
 I = vgen(INT_,30,0,1)
 
@@ -47,5 +71,3 @@ s = S[(a+b)]
 chkN(s,9)
 
  chkOut()
-
-stop!

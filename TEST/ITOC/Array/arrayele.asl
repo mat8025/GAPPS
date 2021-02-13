@@ -10,20 +10,17 @@
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-/*
+
+
 #include "debug"
 
 if (_dblevel >0) {
    debugON()
 }
 
-*/
+
 chkIn (_dblevel);
 
-
-<<"%V $_dblevel\n"
-
-//*/
 
 
 float f= 3.142;
@@ -47,6 +44,9 @@ asv = sv;
 
 sv->info(1);
 asv->info(1);
+
+
+
 
 Real1 = vgen (FLOAT_, 10, 0, 1);
 
@@ -345,7 +345,7 @@ Real1[0] = 74.47;
 
 val = array_sub (Real1);
 
-chkStage()
+//chkStage()
 
 
 
