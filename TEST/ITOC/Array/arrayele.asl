@@ -22,7 +22,6 @@ if (_dblevel >0) {
 chkIn (_dblevel);
 
 
-
 float f= 3.142;
 
 f->info(1)
@@ -73,7 +72,6 @@ kp->info(1)
 //ans=query()
 
     rl[1] = 77;
-
     rl[kp] = 67
     rl[kp2] = 14
 
@@ -452,11 +450,17 @@ chkR (t4, 5);
 
 Real[k] = Real[j1] - Real[j2];
 
-chkR (Real[k], -2);
+<<"%V $k $Real[k] $Real[j1] $Real[j2]\n";
+
+
 
 <<"ele[${k}] $Real[k] \n";
 
+
+chkR (Real[k], -2);
+
 <<"$Real \n";
+
 
 t2 = Real[k];
 

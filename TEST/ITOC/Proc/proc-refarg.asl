@@ -24,6 +24,8 @@ if (_dblevel >0) {
 
 
 chkIn(_dblevel)
+
+
 /*
 proc sumarg (ptr v, ptr u)
 {
@@ -152,10 +154,6 @@ chkR(x,14.3,3)
 chkR(y,53.4,3)
 
 chkR(w,40.0,6)
-
-
-
-
 
 
 
@@ -320,7 +318,7 @@ chkOut()
 //
 // xic version fails - fix
 //
- chkOut()
+
 
 
 

@@ -1,4 +1,4 @@
-# test internal consts
+
 
 setAP(0)
 
@@ -6,12 +6,12 @@ setAP(0)
 //const double h_ = 6.626e-34
 //<<"%v %e $h_ \n"
 
+#include "debug"
+debugON()
 
-lib = "/usr/local/GASP/gasp/LIB/"
+#include "consts"
 
-include "$lib/consts.asl"
-
-chkIn()
+chkIn(_dblevel)
 
 
 a= _PI
@@ -31,14 +31,19 @@ chkR(a,_PI,6)
 
 //setdebug(1)
 const double ALV = 59.0
+//ALV->info(1)
 
 
-
-<<"%V $ALV  $(typeof(ALV)) \n"
+//<<"%V $ALV  $(typeof(ALV)) \n"
+//ALV->info(1)
  chkR(ALV,59.0,6)
 
 <<"trying to modify a declared const variable  --- which won't work error is correct behaviour! \n"
+//ALV->info(1)
+
 ALV = 23
+
+ALV->info(1)
 
 <<"%V$ALV  $(typeof(ALV)) \n"
 
@@ -53,11 +58,8 @@ ALV = 23
   did_mod = 0
   }
 
-  checknum(did_mod,0)
+  chkN(did_mod,0)
 
-  chkOut()
-
-stop!
 
 const int Gyear = 2009
 
@@ -74,21 +76,3 @@ Gyear = 2027
 
   chkOut()
 
-stop!
-
-<<"\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ \n"
-
-units()
-
-
-<<"\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ \n"
-
-consts()
-
-<<"\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ \n"
-
-<<"%e $k_ \n"
-
-  chkOut()
-
-;

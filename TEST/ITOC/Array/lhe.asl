@@ -13,7 +13,7 @@
 ///
 ///
 ///
-
+#include "debug"
 
 
 chkIn(_dblevel)
@@ -34,9 +34,11 @@ Data = vgen(INT_,10,-5,1)
 
 //query()
 Data->info(1)
-
+<<"$Data \n"
 chkN(Data[1],-4)
 
+k= Data[1];
+<<"%V $k $Data[1]\n"
 
 H= vgen(INT_,10,0,1)
 M= vgen(INT_,10,0,1)
@@ -44,8 +46,13 @@ M= vgen(INT_,10,0,1)
 <<"%V $H \n"
 
 Data[3] = 36
+
 <<"$Data \n"
+
 chkN(Data[3],36)
+chkN(Data[2],-3)
+
+
 
 Data->info(1)
 
@@ -75,6 +82,10 @@ Data->info(1)
 <<"H $H\n"
 
 Data[H[2]] = 65
+<<"%V$Data \n"
+
+
+
 Data[H[3]] = H[9]
 
 Data[H[4]] = H[M[8]]
@@ -96,7 +107,7 @@ Arglist=testargs(Data[1],e,d)
 <<"%(1, ,,\n)$(testargs(Data[1],e,d))\n"
 
 Data->info(1)
-<<"%d $Data \n"
+<<" $Data \n"
 
 chkN(Data[2],65)
 
@@ -111,7 +122,29 @@ Data[H[4]] = H[8]
 
 chkN(Data[4],76)
 
+
+int MD[3][3];
+
+   MD[1][2] = 7
+
+<<"$MD \n"
+
+Data[MD[1][2]]  = 37
+
+
+chkN(Data[7],37)
+
+<<"$Data \n"
+
+
+
+
+
+
 chkOut()
+
+exit()
+
 int k = 0
 
 
@@ -214,6 +247,10 @@ b = 67
      break
 
   }
+
+
+
+
 
 
 chkOut()
