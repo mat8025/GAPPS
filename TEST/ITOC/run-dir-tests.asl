@@ -37,7 +37,7 @@ while (1) {
    if (fexist("${test}.asl")) {
     <<"asl -cwl ${test}.asl $arg\n"
     !!"asl -cwl -o ${test}.out -t ${test}${arg}.tst -e ${test}.err ${test}.asl $arg"
-
+    <<"asl -x ${test} $arg\n"
     !!"asl -o ${test}.xout -e ${test}.xerr  -t ${test}${arg}.xtst  -x $test $arg"    
    }
    kt++;

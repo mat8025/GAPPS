@@ -803,3 +803,4 @@ ic_store.cpp	 1.72	 Sun Feb 14 09:14:19 2021 const modify guard
 engine_e.cpp	 2.20	 Sun Feb 14 09:17:40 2021 allow exe write if code errors
 storetype_e.cpp	 2.61	 Sun Feb 14 09:18:37 2021 const var modify guard
 declare_e.cpp	 2.28	 Sun Feb 14 10:18:30 2021 SI_CONST wic 
+ap_addsub.cpp	 1.22	 Sun Feb 14 19:32:49 2021 fix ap_sub

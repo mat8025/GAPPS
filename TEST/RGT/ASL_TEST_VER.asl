@@ -201,8 +201,10 @@ void Run2Test(str td)
 //Str pgname;
 void RunDirTests(str Td, str Tl )
 {
+
 //<<"$Td  $Tl\n"
-Str pgname;
+
+Str pgname = "xx";
 
    //Tl->info(1)
 //ri=Tl->info()
@@ -213,7 +215,7 @@ Str pgname;
 
       np = Caz(Tp);
       
-     <<[2]"%V $Td $Tl $np\n"
+     <<"%V $Td $Tl $np\n"
       
       for (i=0 ; i < np; i++) {
   //    <<"$i  <|$Tp[i]|>\n"
@@ -222,9 +224,15 @@ Str pgname;
 
 	    pgname = Tp[i];
 	    //pgname->info(1)
-//	   <<"$pgname \n"
-         if (slen(pgname) > 0) {
-          cart(pgname);
+//
+!p pgname
+!a
+        nl = slen(pgname);
+!i nl
+!a
+         if (nl > 0) {
+	   <<"$pgname \n"
+            cart(pgname);
          }
       
       }
@@ -443,7 +451,7 @@ void doxictest(str prog, str a1)
 void cart_xic(Str aprg)
 {
 
-//<<"%V $_proc  <|$aprg|>  \n"
+<<"%V $_proc  <|$aprg|>  \n"
 
     if (fexist(aprg) != -1) {
 
@@ -665,10 +673,11 @@ void cart (Str aprg,  Str a1)
 
 //str aa = a1
 
-    //str prg2 = aprg;
-
+    str arg2 = "$a1";
+   
     if (do_xic >0 ) {
-      cart_xic(aprg,"$a1")
+
+      cart_xic(aprg,arg2)
     }
 
 //<<"DONE $_proc cart 2 args\n"

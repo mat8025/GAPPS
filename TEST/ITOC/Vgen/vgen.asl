@@ -14,7 +14,7 @@
 
 ///
 
-#incldue "debug"
+#include "debug"
 
 
  chkIn(_dblevel)
@@ -38,9 +38,11 @@ veci->info(1)
 <<"$veci \n"
 
 
-pan incr;
+//pan incr;
 incr = 1.5;
-pan starti;
+//pan starti;
+
+
 
 starti = 5;
 
@@ -56,15 +58,15 @@ vecp->info(1)
    vecp2= vgen(PAN_,10,0,1)
 
 <<"%p $vecp2 \n"
-!a
+
   for (i= 0; i <3 ; i++) {
 
         starti =i+1;
    vecp2= vgen(PAN_,10,starti,incr)
  // chkR(vecp[1],1+i)
-<<"$i vecp2 $vecp2[i] $vecp2[1+i] $vecp2[3+i] \n"
+//<<"$i vecp2 $vecp2[i] $vecp2[1+i] $vecp2[3+i] \n"
 vecp->info(1)
-ans=query("->")
+//ans=query("->")
   }
 
 <<"$vecp[0:9:]\n"
@@ -77,7 +79,7 @@ ans=query("->")
 
         vecf= vgen(FLOAT_,10+i,i,1)
   chkR(vecf[1],1+i)
-ans=query("->")
+//ans=query("->")
   }
 <<" $(typeof(vecf))  $(Caz(vecf)) \n"
 <<"$vecf \n"

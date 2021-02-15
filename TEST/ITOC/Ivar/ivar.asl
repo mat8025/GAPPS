@@ -10,10 +10,7 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-   myScript = getScript();
-//
-   
-   <<"Running $_script\n"
+
 
 #include "debug"
 

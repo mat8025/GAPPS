@@ -767,19 +767,22 @@ chkN(ab,0)
 
 chkN(asz,0)
 DC->info(1)
-asz= Csz(&DC)
+asz= Csz(DC)
 //<<"%V$asz\n"
 //DC->info(1)
 
 <<"array size of $DC $(typeof(DC))  is: $asz \n"
 chkN(asz,5)
-nd = Cnd(&DC)
+nd = Cnd(DC)
 <<"number of dimensions are: $nd \n"
 chkN(nd,1)
 
-ab = Cab(&DC)
+ab = Cab(DC)
+ab->info(1)
 <<"bounds are: $ab \n"
-chkN(ab,5)
+
+chkN(ab[0],5)
+
 
 
 ////////////////////////////////
@@ -861,8 +864,11 @@ ab = Cab(B)
 asz= Csz(B)
 <<"array size (number of elements) is: $asz \n"
 chkN(asz,6);
+
 nd2 = Cnd(B)
+
 <<"number of dimensions are: $nd2 \n"
+nd2->info(1)
 chkN(nd2,2)
 ab = Cab(B)
 
