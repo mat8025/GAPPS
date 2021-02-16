@@ -804,3 +804,6 @@ engine_e.cpp	 2.20	 Sun Feb 14 09:17:40 2021 allow exe write if code errors
 storetype_e.cpp	 2.61	 Sun Feb 14 09:18:37 2021 const var modify guard
 declare_e.cpp	 2.28	 Sun Feb 14 10:18:30 2021 SI_CONST wic 
 ap_addsub.cpp	 1.22	 Sun Feb 14 19:32:49 2021 fix ap_sub
+opera_mat.cpp	 1.51	 Mon Feb 15 23:52:48 2021 template matmul
+matrix.cpp	 1.95	 Mon Feb 15 23:53:45 2021 minv 
+ds_arraycopy.cpp	 2.71	 Tue Feb 16 00:00:38 2021 arrayConvert

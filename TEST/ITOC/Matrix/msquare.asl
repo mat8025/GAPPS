@@ -35,7 +35,7 @@ debugON()
 
 
 
-chkIn()
+chkIn(_dblevel)
 
 
 
@@ -65,7 +65,7 @@ int B[] = {16, 3, 2, 13, 5, 10, 11, 8, 9, 6, 7, 12, 4 ,15, 14, 1}
 <<" $(typeof(A)) $(typeof(B)) \n"
 
 
-stageComment("RowSum Test -summing rows of magic square 34");
+chkStage("RowSum Test -summing rows of magic square 34");
 
  R= RowSum(A)
 R->redimn()
@@ -85,7 +85,7 @@ R->info(1)
 
 
 
-stageComment("ColSum Test -summing cols of magic square 34");
+chkStage("ColSum Test -summing cols of magic square 34");
 
  C= ColSum(A)
  C->redimn()
@@ -122,7 +122,7 @@ stageComment("ColSum Test -summing cols of magic square 34");
 <<"\n\tC\n%(4,\t\s,\s,\n)%5d${C} "
 
 <<"\n"
-
+!a
 
 <<" Sum $M \n"
 
@@ -141,14 +141,16 @@ sz  = Caz(A)
 <<"T \n"
 <<"$T\n"
 X= Sum(T)
-
-
-
- V = Sum( transpose(A) )
-
-
 <<"tsum of X \n"
 <<"$X \n"
+
+ V1 = Sum(A)
+ <<"V1 $(Cab(V1))\n"
+ <<"$V1\n"
+
+ V = Sum( transpose(A) )
+  <<"V $(Cab(V))\n"
+<<"$V\n"
 
 <<"$X[0] $X[1] $X[2] $X[3] \n"
 
@@ -158,7 +160,9 @@ X= Sum(T)
 
 V->redimn()
 
+<<"$V\n"
 
+!a
 
 
    chkR(V[0],34,6)
