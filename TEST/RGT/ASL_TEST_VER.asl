@@ -768,6 +768,8 @@ int do_query = 0;
 int do_tests = 0;
 int do_array = 0;
 int do_matrix = 0;
+int do_math = 0;
+
 int do_bugs = 0;
 int do_bops = 0;
 int do_vops = 0;
@@ -777,7 +779,7 @@ int do_class = 0;
 
 
 int do_declare = 0;
-
+int do_recurse = 0;
 
 int do_syntax = 0;
 int do_include = 0;
@@ -799,7 +801,7 @@ int do_try = 0;
 int do_exp = 0;
 
 
-int do_paraex = 0;
+int do_paraex = -1;
 
 int do_types = 0;
 
@@ -809,7 +811,7 @@ int do_lhsubsc = 0;
 int do_dynv = 0;
 int do_mops = 0;
 
-int do_oo = 0;
+int do_oo = -1;
 int do_sfunc = 0;
 int do_svar = 0;
 int do_record = 0;
@@ -941,7 +943,9 @@ if (do_syntax == -1) {
 
 }
 
-
+if (do_math) {
+    do_mops = 1;
+}
 
 
 <<" check Include $do_include $do_types\n"
@@ -1376,17 +1380,28 @@ if ((do_all || do_proc ) && (do_proc != -1)) {
 
   }
 
-if ((do_all || do_mops ) && (do_mops != -1)) {
 
-    RunDirTests("Mops","mops")
+ changeDir(Testdir)
 
-    hdg("RECURSION")
+if ((do_all || do_recurse ) && (do_recurse != -1)) {
+
+     hdg("RECURSION")
     
      Run2Test("Fact")
 
      cart("fact", 10)
 
      cart_xic("fact",10)
+
+
+}
+
+
+
+if ((do_all || do_mops ) && (do_mops != -1)) {
+
+     RunDirTests("Mops","mops")
+
      
      Run2Test("Cmplx")
 
@@ -1446,16 +1461,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
  if ((do_all || do_mops ) && (do_mops != -1)) {
   
     Run2Test("Math")
-/*
-    Dirname = "Math"
-    Run2Test(Dirname)
-    Progname ="inewton"
-    cart (Progname)
-    Progname ="inewton_cbrt"
-    cart (Progname)
-    Progname ="opxeq"
-    cart (Progname)
-*/
+
     do_carts ("inewton")
 
     

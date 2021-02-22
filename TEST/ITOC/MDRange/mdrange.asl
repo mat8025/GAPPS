@@ -18,12 +18,16 @@ chkIn(_dblevel)
 
 int MD[5][20];
 
+MD->info(1)
+//!p MD
 chkN("init Array zero ",MD[0][1],0)
 
 
 chkN("init Array zero ",MD[0][-1],0)
 
 MD[0][1] = 79
+
+
 
 chkN("Set element",MD[0][1],79)
 
@@ -50,8 +54,7 @@ MD[1][6:11:] = 28
 
 chkN("set subset of eles-default step",MD[1][6],28)
 
-chkOut()
-exit()
+
 
 <<"$MD\n"
 
@@ -325,7 +328,7 @@ chkOut();
 
 
 
-/{/*
+/*
 
  Should be able to specify a subset of a MD array for operations
 
@@ -335,4 +338,4 @@ chkOut();
 
 
 
-/}*/
+*/

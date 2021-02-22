@@ -813,3 +813,7 @@ varcon_e.cpp	 2.62	 Sat Feb 20 14:13:30 2021 update flags
 array_parse.cpp	 2.78	 Sat Feb 20 14:14:38 2021 WIC info
 ic_wic.cpp	 1.71	 Sat Feb 20 14:16:10 2021 WIC call info file,func,line
 args_process_e.cpp	 2.36	 Sat Feb 20 14:18:01 2021 ptraddr => use push_sivoffset (array_parse)
+vmf_l.cpp	 1.59	 Mon Feb 22 08:54:41 2021 info strlen guard
+ds_getvarasstr.cpp	 2.65	 Mon Feb 22 08:55:53 2021 added getArrayAsStr
+ds_sivflags.cpp	 1.90	 Mon Feb 22 08:58:20 2021 number arrays printed
+test_l.cpp	 1.51	 Mon Feb 22 09:17:49 2021 chkN comment first arg
