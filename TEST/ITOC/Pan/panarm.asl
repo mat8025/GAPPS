@@ -2,7 +2,7 @@
 ///  generate armstrong numbers
 ///
 
-setdebug(0,@keep,@trace)
+//setdebug(0,@keep,@trace)
 
 proc getArmN (char  cna[])
 {
@@ -42,18 +42,18 @@ char nvm[np];
 //pan ks = (1 * 10^(np-1));
 pan ks;
 
-ks = (1 * 10^(np-1));
+ks = (1 * 10^^(np-1));
 
 <<"%V $ks \n"
 
       for (i=0; i < np ;i++) {
-            totn += 9*10^i ;
+            totn += 9*10^^i ;
       }
 
 
 <<"%V $totn\n"
 
-
+exit()
 
 
 T = FineTime()
@@ -66,7 +66,7 @@ last_ut = u1;
 long pw[10];  //TBF
 
       for (i=0; i < 10 ;i++) {
-            pw[i] = i^np ;
+            pw[i] = i^^np ;
 	    <<"<$i>$pw[i] \n"
       }
 

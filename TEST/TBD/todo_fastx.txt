@@ -1,0 +1,235 @@
+#testDir      asl     xic   TBD
+AnonVec     OK   OK
+Arch           OK   OK
+Argc           OK   OK    'needs a range spec fix'
+Args		 OK    BROKE
+Array         OK  OK
+ASL2CPP   NOK   NOK in progress lots to do
+Assign      OK  OK    'add more tests'
+Atoi		OK   OK             
+Audio        BRNOKE BRNOKE  'needs prelim kernel/device setup'
+Bitwise     OK OK
+Blife          Not relevant
+Bops         OK OK
+Bscan        NOK NOK
+BubbleSort  OK  OK
+bug_ex
+BUGFIX
+BXOR       OK OK
+Calc
+CARBON
+Cast       OK OK 
+Caz        OK OK
+Cbrt       OK OK
+Chem     OK  OK
+Clargs    OK OK
+Class
+Cmp       OK OK
+Cmplx      OK OK
+Cmpsetv  OK OK
+Command  OK OK
+Compile
+Consts    OK OK
+Contin    NOK NOK  - bug needs to ignore embedded comment-continue line not wrap
+Convert  OK OK - test only vector
+Convolve  OK OK - needs test of result but calls convolve SF
+Crypt       OK OK
+CTS
+Cut           OK  OK  - some dynamic array warnings
+D2R         OK  OK
+Date      OK  OK
+Debug
+Dec2     OK  OK
+Declare           OK           OK
+Define             NOK		NOK
+Diagonal          OK		OK
+Do			OK		OK
+Documentation
+Dotp     OK  OK
+Dynv   OK	OK
+Edit
+Efmt   OK		OK
+Enum  NOK NOK
+Env
+Events
+ExchangeCols    OK		OK
+ExchangeRows  OK		OK
+Fabs            	OK		OK
+Fact                 OK		OK
+FASTX
+Fexist        OK		OK
+Fh            NOK		NOK
+Filters
+Findval      OK OK
+Fio            OK	OK
+Fixit
+Flipdim    OK OK
+Fops         OK OK
+For		OK	OK
+Fread       OK	OK
+Fscanf      NOK	NOK
+Fscanv     NOK	NOK
+Ftest       NOK	NOK
+Func        OK	OK
+Funcs      NOK	NOK
+Gcontour
+Getdir      OK	OK
+getRow
+Hash        OK	OK
+Howfar     OK	OK
+Icall         OK	OK
+Icspeed
+If			OK	OK
+Ifunc            OK  OK
+Iproc            OK  OK
+Imave
+Include   OK	OK
+Info
+Intrnlvar       BRNOKE
+Iread           OK	OK
+Iterate
+Ivar             OK OK  
+Job
+Julian    NOK	NOK
+Lexp      BRNOKE
+Lfit
+Limit     OK	OK
+Lip        OK	OK
+Lists    OK        OK
+Logic    OK	OK
+Lol       NOK   NOK --- make incomplete <<"$F[1] \n" not crash if F MD array
+Lotto   NOK	NOK
+M3D
+MainVar  OK	OK
+Mapvec
+MaskSrc
+Math       NOK   NOK   (pan version does not work!)
+Math2     ? xgs displays
+Matrix    OK OK
+Maxof    OK OK
+Mdimn    NOK NOK
+MDRange  NOK NOK
+Median   OK	OK
+Memp
+Memusage  OK OK -- but it leaks  260 per loop
+Mih
+Minof    OK OK
+Mod      OK OK
+Mops     OK OK
+Msort    NOK NOK
+Mutex    BRNOKE ?
+Name   NOK NOK
+newparse
+Nsc      OK OK
+Num2Str  OK OK
+Obcopy
+OnceOnly
+OneLiner
+OneLiners
+OO
+Packb        NOK NOK
+Pan            OK OK
+ParaEx      NOK NOK
+Parse
+PatMatRep
+Perm    BRNOKE BRNOKE -  perm alg not working
+PI
+Pid    OK OK
+Pincdec  OK OK
+Pipes
+Polynom  OK OK
+Pow     OK OK
+PrePostOp   OK OK
+Preprocessor
+Prime   OK OK   - but not panprimes
+PrintColor
+Printvec
+Proc           OK OK 
+ProcArray   OK OK 
+Ptrs
+Putmem
+Quicksort   OK OK 
+Rand          OK OK 
+Readfile     OK OK
+ReadRecord  OK OK
+Record   NOK NOK
+Redimn   OK OK
+Regex
+Rover     OK OK
+Reload
+Resize   OK OK
+Return   OK OK
+Reverse OK OK
+Rgb
+Round  OK OK
+Rowzoom  NOK NOK
+Rpc
+Scalarvec  OK OK
+Scat    OK OK
+Scope  NOK NOK
+Scores
+Scpy   OK OK    
+Scut   OK OK
+Sel     OK OK
+Sele   OK OK
+Sexp
+Sgen OK OK
+Shift  OK OK
+Sin    OK OK
+Single
+Sizeof OK OK
+Skeyval  OK OK
+Sockets
+Sops     OK OK
+Sort      NOK NOK
+Spat      OK OK
+Speed
+Splice    OK OK
+Split      OK OK
+Sscan	   NOK  BRNOKE
+Sstr       OK OK
+Static     OK OK
+Stats      NOK NOK
+Str         NOK NOK
+Strops
+Subrange OK OK
+Subscript
+Sum      NOK NOK  -2D/3D  not tested
+Svar       OK OK
+Swab
+Swap
+Switch   NOK NOK  - need syntax error for misspelling void - vois
+Syntax
+Testargs
+Tests
+Threads
+Tid      NOK NOK
+Time   NOK NOK  
+Top     OK OK
+Tranf   OK OK
+Trig     OK OK  
+Trim    NOK OK
+Trunc   OK OK
+TryThrowCatch BRNOKE BRNOKE
+Typeof      OK OK
+Types       OK OK
+Unary       OK OK
+Variables   OK OK
+Varname     OK OK
+Vector       OK OK
+Vfill           OK OK
+Vgen         OK OK
+Vmf          OK   OK
+Vops         OK OK
+Vrange      OK OK
+Vsh
+VVcomp    OK OK
+VVcopy     OK OK
+VVgen      OK OK
+Vzoom    OK OK
+Wdata    OK	OK
+While     OK	OK
+Xic
+Zipper   OK	OK
+/////////////////////////////////////////////
+

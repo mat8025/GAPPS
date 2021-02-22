@@ -807,3 +807,9 @@ ap_addsub.cpp	 1.22	 Sun Feb 14 19:32:49 2021 fix ap_sub
 opera_mat.cpp	 1.51	 Mon Feb 15 23:52:48 2021 template matmul
 matrix.cpp	 1.95	 Mon Feb 15 23:53:45 2021 minv 
 ds_arraycopy.cpp	 2.71	 Tue Feb 16 00:00:38 2021 arrayConvert
+init_e.cpp	 1.3	 Fri Feb 19 09:32:42 2021 Pan
+hop_e.cpp	 50.51	 Fri Feb 19 09:32:52 2021 allow Pan,Str,List as fw
+varcon_e.cpp	 2.62	 Sat Feb 20 14:13:30 2021 update flags
+array_parse.cpp	 2.78	 Sat Feb 20 14:14:38 2021 WIC info
+ic_wic.cpp	 1.71	 Sat Feb 20 14:16:10 2021 WIC call info file,func,line
+args_process_e.cpp	 2.36	 Sat Feb 20 14:18:01 2021 ptraddr => use push_sivoffset (array_parse)

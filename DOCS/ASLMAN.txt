@@ -6696,12 +6696,12 @@ filterFuncDebug
 filterFuncDebug
 .)x 
 .FD
-filterFuncDebug(ALLOW,"foo","checkprocfunc", ...)
+filterFuncDebug(ALLOW_,"foo","checkprocfunc", ...)
 Would pass debug statements from internal code module foo to debug stream.
 the filter can be set to
-ALLOWALL
-REJECT
-and REJECTALL
+ALLOWALL_
+REJECT_
+and REJECTALL_
 
 .EF
 =============================================================
@@ -6711,12 +6711,12 @@ filterFileDebug
 filterFileDebug
 .)x 
 .FD
-filterFilterDebug(ALLOW,"args_parse", ...)
+filterFilterDebug(ALLOW_,"args_parse", ...)
 Would pass debug statements from internal code file(s) args_parse*cpp  to debug stream.
 the filter can be set to
-ALLOWALL
-REJECT
-and REJECTALL
+ALLOWALL_
+REJECT_
+and REJECTALL_
 
 .EF
 =============================================================

@@ -17,8 +17,8 @@ pan pk = 400;
        break;
     }
      Mu= memused();
-//<<"<$i> $psum $(Mu[0] -svm) $Mu \n"
-<<"<$i> $psum $Mu \n"
+<<"<$i> $psum $(Mu[0] -svm) $Mu \n"
+//<<"<$i> $psum $Mu \n"
       svm = Mu[0];
   }
 

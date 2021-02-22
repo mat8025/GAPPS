@@ -13,7 +13,7 @@ int Ni = 0
 
 A=ofw("panprimes")
 
-proc is_n_prime(n)
+proc is_n_prime(pan n)
 {
 
   is_p = 1;
@@ -69,9 +69,9 @@ if (is_p) {
 }
 
 
-   KP = 50000; // get first 1000 primes
+ //  KP = 50000; // get first 1000 primes
 
-KP = 1000; // get first 1000 primes
+KP = 100; // get first 1000 primes
     int jj =1
    int ip
    pan j = 1

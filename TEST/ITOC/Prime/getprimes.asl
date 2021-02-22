@@ -45,7 +45,7 @@ int N
 //<<"%V$n $a $m $i\n"
      if (m == n) {
 
-    <<" $n div by $i factor is $a -- not prime \n"
+   // <<" $n div by $i factor is $a -- not prime \n"
         is_p = 0;
        break;
      }
@@ -64,7 +64,7 @@ int N
 
    hi = i
    if (is_p) {
-<<"Prime $n $i $is_p\n"
+//<<"Prime $n $i $is_p\n"
    }
 
 
@@ -73,7 +73,7 @@ int N
 
 //=======================================//
 
-   KP = 2000; // get first n primes
+   KP = 500; // get first n primes
 
 A=ofw ("Primes${KP}.txt")
 
@@ -82,19 +82,21 @@ A=ofw ("Primes${KP}.txt")
    int k = 1
    int d = 0
    int lp = 1
-   <<"$j $k $d\n"
+   
+   <<"PRIME [${j}] $k $d $hi\n"
     <<[A]"[${j}] $k $d $hi\n"     
    j++;
 
    k = 2
    d = k-lp
-   <<"$j $k $d\n"
+   <<"PRIME [${j}] $k $d $hi\n"
     <<[A]"[${j}] $k $d $hi\n"           
    lp = k
    j++;
    k = 3
    d = k-lp
-   <<"$j $k $d\n"
+   <<"PRIME [${j}] $k $d $hi\n"
+   
 
     <<[A]"[${j}] $k $d $hi\n"     
    lp = k
@@ -103,8 +105,8 @@ A=ofw ("Primes${KP}.txt")
    k = 5
    d = k-lp
    j++
-   <<"$j $k $d\n"
 
+<<"PRIME [${j}] $k $d $hi\n"
     <<[A]"[${j}] $k $d $hi\n"     
    lp = k
 
@@ -126,7 +128,7 @@ A=ofw ("Primes${KP}.txt")
      d = k-lp
      j++
      <<"PRIME [${j}] $k $d $hi\n"
-    <<[A]"[${j}] $k $d $hi\n"     
+    //<<[A]"[${j}] $k $d $hi\n"     
      lp = k
     }
 

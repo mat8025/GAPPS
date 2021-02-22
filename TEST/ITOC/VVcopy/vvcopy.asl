@@ -38,21 +38,28 @@ B= vgen(INT_,N,0,1)
 C=B
 <<"A: $A\n"
 <<"B: $B\n"
-
+<<"$A[1] $B[1]\n"
 vvcopy(B,A)
 
 <<"B: $B\n"
 
 chkN(B[1],A[1])
 
+
+
+
 B=C
+
+<<"B: $B\n"
 
 vvcopy(&B[3],A,5)
 
 <<"B: $B\n"
 
+<<"%V $B[3]  $A[0] \n"
 
 chkN(B[3],A[0])
+
 
 
 int ki = 2
@@ -77,7 +84,7 @@ vvcopy(&B[ki],A,5)
 chkN(B[ki],A[0])
 
 int kia = 3
-ki = 2
+ki = 2;
 B=C
 
 <<"%V $ki $kia\n"
@@ -86,10 +93,16 @@ vvcopy(&B[ki],&A[kia],4)
 <<"B: $B\n"
 //A->info(1)
 
-//<<"A: $A\n"
-//<<"B: $B\n"
+<<"A: $A\n"
+<<"B: $B\n"
+
+<<"%V $B[ki] $A[kia] \n"
 
 chkN(B[ki],A[kia])
+
+chkOut()
+exit()
+
 
 bval = B[ki]
 aval = A[kia]

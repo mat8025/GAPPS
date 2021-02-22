@@ -1,130 +1,46 @@
+/* 
+ *  @script ifunc.asl 
+ * 
+ *  @comment test indirect call of a func () 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.23 C-Li-V]                                 
+ *  @date Thu Feb 18 12:06:13 2021 
+ *  @cdate 1/1/2011 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
 ///
 ///
 ///
 
-
-
-proc goo()
-{
-static int nt = 0;
-nt++;
-<<"IN $_proc $nt\n"
-
-if (nt > 10) {
-  <<" repeat call $nt \n"
-  exit();
-}
-}
-//================//
-proc poo()
-{
-static int nt = 0;
-nt++;
-<<"IN $_proc $nt\n"
-
-<<"never seen\n"
-if (nt > 10) {
-  <<" repeat call $nt \n"
-  exit();
-}
-}
-//=======================//
-proc zoo(int m)
-{
-static int znt = 0;
-znt++;
-<<"IN $_proc $znt $m\n"
-
-
-if (znt > 3) {
-  <<" repeat call $znt \n"
-  exit();
-}
-}
-//=======================//
-
-
-icompile(0)
-
-<<"premer \n"
-
-<<"segundo \n"
-
-
-<<"tercio \n"
-
-<<"proximo \n"
+ chkIn (_dblevel)
 
 
 
-  //goo()
-
- // poo()
+ y = sin(0.7)
 
 
-<<"ultimo \n"
+ fname="_sin" ; // use _name to have asl lookup name as SFunction
+                        // no leading _   then asl  will look up Proc
+			
 
-<<"salida \n"
+ z=$fname(0.7)
 
+<<"%V $y $z\n"
 
-exit()
+chkR(z,y)
 
-  cbname = "goo"
+ x = 0.5
+ y = cos(x)
 
-/{
-<<"indirect call of $cbname\n"
-  $cbname();
-<<" exito - segamos adelante!\n"
+ fname="_cos" ; // use _name to have asl lookup name as SFunction
+                        // no leading _   then asl  will look up Proc
+			
 
-  cbname = "poo"
-<<"indirect call of $cbname\n"
-  $cbname();
+ z=$fname(x)
 
-  cbname = "zoo"
-<<"indirect call of $cbname\n"
-  $cbname();
+chkR(z,y)
 
-
-/}
- // icompile(0);
- int k = 0;
-   while (1) {
-k++;
-cbname = iread("what to call?:")
-
-<<"indirect call of $cbname\n"
- //  icompile(0);
-  $cbname(k);
-   //zoo()
-   <<" exito - segamos adelante!\n"
-
-  // icompile(1)
-   
-   <<"next up!\n"
-}
-
-
-
-
-
-
-
-
-
-   while (1) {
-
-  cbname = iread("what to call?:")
-
-<<"indirect call of $cbname\n"
-  icompile(0);
-  
-  //$cbname();
-  goo()
-  poo()
-  zoo()
-   <<" exito - segamos adelante!\n"
-   icompile(1)   
-   }
-
-
-exit()
+chkOut(); exit();

@@ -122,7 +122,7 @@ chkStage("ColSum Test -summing cols of magic square 34");
 <<"\n\tC\n%(4,\t\s,\s,\n)%5d${C} "
 
 <<"\n"
-!a
+
 
 <<" Sum $M \n"
 
@@ -162,7 +162,7 @@ V->redimn()
 
 <<"$V\n"
 
-!a
+
 
 
    chkR(V[0],34,6)

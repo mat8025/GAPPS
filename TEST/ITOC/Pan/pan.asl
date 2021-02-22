@@ -17,6 +17,7 @@ setap(50);    // set precision to 100? decimal places
 
 // FIX pan N  = GetArgN()
 
+debugON()
 
 chkIn(_dblevel);
 
@@ -123,7 +124,9 @@ chkR(r,M,2);
 
 <<"M++\n"
 
- M++;
+   M++;
+
+
 <<"%V$M\n"
 
 

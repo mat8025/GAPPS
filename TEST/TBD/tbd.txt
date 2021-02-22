@@ -1,0 +1,83 @@
+//                what to do?
+
+
+anonarray -
+{
+
+// allow 
+   int v[] = {1,2,3,4}
+// v is dynamic
+
+   int v[4] = {1,2,3,4}
+//  v is fixed
+
+// allow following
+
+  v = {5,6,7,8}
+//  allow subsequent  - done
+//  allow  partial fill
+
+//  allow expansion if dynamic 
+
+  v2 = {1,2,3,4}
+// allowed v2  will declare if not already -done
+
+}
+
+enum - fix
+
+vga - type variants
+
+
+proc mangle --  float --? default to int  - check return.asl
+
+vector
+
+vrange
+
+//===============================
+
+ ASL_TEST_VER --- crash ??
+
+//===============================
+
+ trythrowcatch --  non if throw bug
+
+//===============================
+  Func
+  {
+  Noo(a,b,c)  -  should give error if args not as specified or can not be
+  promoted or used --- i.e. strs not substituted for numbers
+  FIX now gives error
+
+dv= testargs(A,1,2,3)
+
+//<<"%(1,,\s,\n)$dv \n" // TBF
+
+
+  }
+
+//=================================
+   Funcs
+   {
+
+      gss - xgs TBF
+
+    }
+
+//=================================
+
+
+   Include
+   {
+  include statements should be
+  #include "inc"
+  or 
+  #include "inc.asl"
+
+    can be nested --
+    
+  
+
+
+   }

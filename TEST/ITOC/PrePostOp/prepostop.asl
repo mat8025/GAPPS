@@ -10,7 +10,7 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-myScript = getScript();
+
 
 
 
@@ -248,3 +248,4 @@ chkN(BV[1],3)
 
 chkOut()
 exit()
+

@@ -1,0 +1,11 @@
+Task				,ID		,Code	,Priority	,Diff		,TimeEst	,TimeSpent	,Start		,Update		,PCDone	,Tags	
+Pan declare		        ,103		,A		,7		,4		,1		,1.0			,02/19/2021	,02/19/2021	,100
+#t "Pan p = atan(1.0) ; fails  while f = 4.0*atan(1.0) OK   - fix allow Pan as keyword"
+svar array transfer		,104		,A		,7		,7		,1		,1.5			,01/08/2019	,01/08/2019	,100		
+#t "??"
+recurse proc args fact!	,105		,A		,8		,7		,8		,0.5			,01/07/2019	,01/08/2019	,5		
+#t
+base wo plot	  		,106		,X		,9		,8		,8		,1			,03/29/2020	,03/29/2020	,10		
+#t
+proc chain call			,107		,A		,9		,9		,4		,1.0			,02/18/2021	,02/19/2021	,10		
+#t "proc p calls proc f calls proc p up to stack limit ?20   xic version fails  not moving past first call on return"

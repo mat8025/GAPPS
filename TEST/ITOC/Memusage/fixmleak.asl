@@ -1,11 +1,17 @@
+
+///
+///
+///
+
+
 checkMemory(1);
 
-setdebug(1,"keep","trace","showresults")
+//setdebug(1,"keep","trace","showresults")
 
-filterDebug(0,"args")
+//filterDebug(0,"args")
 
 
-proc addf(a,b)
+proc addf(float a,float b)
 {
    c= a+b;
    return c;
@@ -40,7 +46,7 @@ int nmem_changes =0;
 
 do {
 
-      Mu= memused(); // does not leak
+      Mu= memused(); // does not leak ?
 //  <<"begin $mu \n"
 
       y = (i *.2);
@@ -69,15 +75,18 @@ do {
           
 	   <<"<$i>  %V   $Mu\n"
            if (Mu[1] > last_Mu[1]) {
-               <<"msize change  \n"
-	       last_Mu = Mu;
+               <<"msize change   $(Mu[1] - last_Mu[1])\n"
+	   //    last_Mu = Mu;
 	       nmem_changes++;       
            }
+	   
 	   if (Mu[0] > last_Mu[0]) {
-  <<"mu change $(mu - last_mu) \n"
-	       last_Mu = Mu;
+  <<"mu change $(Mu[0] - last_Mu[0]) \n"
+	     //  last_Mu = Mu;
 	       nmem_changes++;       
            }
+
+  last_Mu = Mu;
            }
 
       }
@@ -91,3 +100,7 @@ do {
 
       Mu= memused(); // does not leak
       <<"$Mu\n"
+
+if (nmem_changes > N-10) {
+  <<"it's leaking Jim!\n"
+}

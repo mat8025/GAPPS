@@ -50,6 +50,8 @@ MD[1][6:11:] = 28
 
 chkN("set subset of eles-default step",MD[1][6],28)
 
+chkOut()
+exit()
 
 <<"$MD\n"
 
