@@ -15,7 +15,7 @@
 
 <<"%V $_dblevel\n"
 
-sdb(_dblevel,@~trace)
+//sdb(_dblevel,@~trace)
 
 if (_dblevel >0) {
    debugON()
@@ -24,7 +24,7 @@ if (_dblevel >0) {
 
 chkIn(_dblevel);
 
-sdb(_dblevel,@~trace)
+//sdb(_dblevel,@~trace)
    
 aaa: <<"aaa label !\n"
 
@@ -37,19 +37,21 @@ aaa: <<"aaa label !\n"
 
 <<"after break point !\n"
 
-   proc Foo(int vect[],int k)
+   proc Woo(int vect[],int k)
    {
    
-     vect->info(1); 
+     vect->info(1);
+     
      k->info(1);
      Z->info(1) ;
      
 <<"IN %V $vect \n"; 
 <<"IN  %V $Z\n"
-
+vect->info(1);
       vect[1] = 47; 
       vect[2] = 79;
-      vect[3] = 80;      
+      vect[3] = 80;
+      
       vect->info(1); 
 
      <<"OUT %V $vect \n";
@@ -71,12 +73,12 @@ aaa: <<"aaa label !\n"
    
   <<"before calling proc $Z\n"; 
    
-   Y=Foo(Z,3); 
+   Y=Woo(Z,3); 
    
    <<"after calling proc $Z\n"; 
 
     Z->info(1)
-   
+
    chkN(Z[1],47);
    chkN(Z[2],79);
    chkN(Z[3],80);       
@@ -108,12 +110,12 @@ aaa: <<"aaa label !\n"
 
 // Y = foo(&Z,3)  // TBF-------- Y 
 
-    Y = Foo(&Z[0],3)  // FIXED -------- Y is now created correctly with the return vector; 
+    Y = Woo(&Z[0],3)  // FIXED -------- Y is now created correctly with the return vector; 
    
    <<"postZ $Z\n"; 
 
    Z->info(1); 
-   
+
    chkN(Z[1],47);
    chkN(Z[2],79);
    chkN(Z[3],80);      
@@ -130,9 +132,9 @@ aaa: <<"aaa label !\n"
    Z[1] = 53;    
    Z[9] = 28; 
    
-   <<"preZ $Z\n"; 
+   <<"////////////////////////////////////////\npreZ $Z\n"; 
    
-   Y2= Foo(&Z[3],4); 
+   Y2= Woo(&Z[3],4); 
    
    <<"postZ $Z\n";
    

@@ -36,10 +36,9 @@ chkIn(_dblevel)
 
 <<"first wrd was $fwrd \n"
 
-if (fwrd @= "how") {
+   if (fwrd @= "how") {
 
      <<" fine\n"
-
    }
 
 
@@ -96,12 +95,11 @@ E->info(1);
 
 //query()
 
+hh=  scat("Happy"," Hols")
+hh->info(1)
+<<"$hh\n"
 
 E = scat("Happy"," Hols")
-
-<<"$(typeof(E))\n"
-<<"$(Caz(E)) \n"
-<<"%Vs$E\n"
 
 <<"%d$E \n"
 
@@ -116,6 +114,7 @@ ac= E[1]
 chkN(E[0],72);
 chkN(E[1],97);
 chkN(E[1],'a');
+
 
 <<"%c$E[0] \n"
 <<"%d$E[1] \n"
@@ -135,10 +134,10 @@ chkStage("Scat: multiple cats")
 //============================//
 
 
-/{/*
+/*
  w2=scut(w1,nc) :- cuts nc chars of string from head or tail if nc is negative 
  or a section scut(w1,startc,endc) returns result
-/}*/
+*/
 
 
 
@@ -173,19 +172,22 @@ chkStage("Scat: multiple cats")
 
  chkStr(wm,"a_winters.cpp")
 
- S = "una larga noche"
+svar Sv = "una larga noche"
 
-S[1] = "el gato mira la puerta"
+Sv[1] = "el gato mira la puerta"
 
-S[2] = "y espera ratones"
+Sv[2] = "y espera ratones"
 
-S[3] = "un plan simple"
+Sv[3] = "un plan simple"
 
-<<"$S \n"
-T=S
+
+Sv->info(1)
+<<"$Sv \n"
+
+
+str T=Sv[3]
 
 T->scut(-3)
-
 
 <<"$T \n"
 
@@ -200,36 +202,38 @@ T->scut(3)
 
 //======================= SSUB ========================//
 
-/{/*
+/*
 ssub
 ssub(w1,w2,w3,{dir})
 substitutes string w3 into w1 for  first occurrence of w2 returns the result.
 if dir 1 (default) starts at left, -1 from right, dir = 0 global substitute.
 if w3 set to "" (i.e. NULL)  delete operation (deletes occurence of w2).
 if dir > 1 then that many substitutions are performed from the left if possible.
-/}*/
+*/
 
+//S->init()
+S="";
+// XIC bug not re copy
+S1="The very next day - he started to improve"
 
-S="The very next day - he started to improve"
+chkStr(S1,"The very next day - he started to improve")
 
-chkStr(S,"The very next day - he started to improve")
+<<"$S1\n"
 
-<<"$S\n"
-
-T=ssub(S,"improve","improvise")
+T=ssub(S1,"improve","improvise")
 
 chkStr(T,"The very next day - he started to improvise")
 
 
 <<"$T\n"
 
-R= ssub(ssub(S,"improve","improvase"),"vase","vuse")
+R= ssub(ssub(S1,"improve","improvase"),"vase","vuse")
 
 chkStr(R,"The very next day - he started to improvuse")
 
 <<"$R\n"
 
-U= ssub(ssub(S,"improve","improvase"),"vase",ssub("vase","a","i"))
+U= ssub(ssub(S1,"improve","improvase"),"vase",ssub("vase","a","i"))
 
 chkStr(U,"The very next day - he started to improvise")
 

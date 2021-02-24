@@ -39,23 +39,43 @@ c = spat(a,b,0,-1) : c is ,0.7
 
 */
 
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+}
+
+
+
 chkIn()
 
 fname = "mt_20100422_112017.txt"
+
+fname->info(1)
 
 mat = 0
 index = 0
 ss = "."
 
-posn = -1 ; dir = 1
+posn = -1 ;
+dir = 1;
 
 
 fstem = spat(fname,ss,posn,dir,&mat,&index)
 
+fstem->info(1)
+
+
+
+
 cc = slen(fname)
+
+
 stem_len = slen(fstem)
+!p stem_len
 
 <<"%V$fname $cc $stem_len $ss $fstem $mat $index \n"
+
 
 chkN(mat,1);
 

@@ -19,6 +19,8 @@ if (_dblevel >0) {
    debugON()
 }
 
+ ignoreErrors()
+
 chkIn(_dblevel)
 
 
@@ -70,15 +72,43 @@ int voo(int vect[])
   return z;
 }
 //============================
+int voo2(int vect[])
+{
+//<<"$_proc IN $vect \n"
+//Z->info(1)
+//<<"pa_arg2 %V$k\n"
+
+  vect->info(1)
+  vect[1] = 47;
+<<"add Ag vect: $vect \n"
+<<"add Ag U: $U \n"  
+  vect[2] = 79;
+<<"add Au vect: $vect \n"
+
+  vect[3] = 80
+  vect[4] = 78
+  vect[5] = 50
+  z= vect[1]
+
+<<"$z\n"
+vect->info(1)
+<<"OUT vect: $vect \n"
+U->info(1)
+<<"OUT U: $U \n"
+
+  return z;
+}
+//============================
 
 int roo(int vect[])
 {
 <<"$_proc IN $vect \n"
-Z->info(1)
+//Z->info(1)
 //<<"pa_arg2 %V$k\n"
 
   vecp = vect;  // creates local copy of vect
   vecp[1] = 47;
+  
 <<"add 47 $vect \n"  
   vecp[2] = 79;
 <<"add Au $vect \n"
@@ -95,34 +125,6 @@ Z->info(1)
 }
 //============================
 
-/*
-proc zoo(int* vect)
-proc zoo(ptr int vect)
-
-{
-<<"$_proc IN $vec \n"
-
-//<<"pa_arg2 %V$k\n"
-
-  vecp = vect;
-
-  vecp[1] = 47;
-<<"add 47 $vect \n"  
-  vecp[2] = 79;
-<<"add 79 $vect \n"
-
-  vecp[3] = 80
-  vecp[4] = 78
-  vecp[5] = 50
-
-<<"OUT $vecp \n"
-
-<<"OUT orig entry $vect \n"
-
-  return vecp
-}
-//============================
-*/
 
 
 
@@ -159,16 +161,25 @@ chkN(Z[6],28);
 
 U = Vgen(INT_,10,0,1)
 
+
+W = U
+
+
+
 <<"pre proc call $U\n"
 
 
  // TBD FIX it does not compute the offset - so proc operates on the third element in
 
-<<"$U\n"
+<<"//////////////////////////////////\nB4 $U\n"
 
-y = voo(&U[3]) 
+y = voo2(&U[3]) 
 
-<<"after proc call $U\n"
+<<"after $U\n"
+
+uv= U[4]
+
+<<"%V $uv $U[4]\n"
 
 chkN(U[4],47);
 
@@ -180,11 +191,12 @@ chkN(U[7],78);
 
 chkN(U[8],50);
 
+ voo2(W) 
 
 
+chkOut();
 
-chkOut(); exit();
-
+exit()
 
 
 //Y = foo(&Z,3)  // FIXED -------- Y is now created correctly with the return vector 

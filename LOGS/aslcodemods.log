@@ -817,3 +817,4 @@ vmf_l.cpp	 1.59	 Mon Feb 22 08:54:41 2021 info strlen guard
 ds_getvarasstr.cpp	 2.65	 Mon Feb 22 08:55:53 2021 added getArrayAsStr
 ds_sivflags.cpp	 1.90	 Mon Feb 22 08:58:20 2021 number arrays printed
 test_l.cpp	 1.51	 Mon Feb 22 09:17:49 2021 chkN comment first arg
+storetype_e.cpp	 2.62	 Wed Feb 24 09:41:24 2021 postpone poffset til storeSiv

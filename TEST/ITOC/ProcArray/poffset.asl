@@ -17,19 +17,20 @@
 
 #include "debug"
 
+
 if (_dblevel >0) {
    debugON()
 }
 
 
-
-
 chkIn(_dblevel);
 
+//sdb(2,@keep);
 
 int voo(int vect[])
 {
-<<"$_proc IN $vect \n"
+//<<"$_proc IN $vect \n" ;  // debug version alters poffset??
+
 //Z->info(1)
 //<<"pa_arg2 %V$k\n"
 
@@ -44,6 +45,7 @@ int voo(int vect[])
   vect[4] = 78
   vect[5] = 50
   z= vect[5]
+  vect->info(1)
   
 <<"OUT $vect \n"
 
@@ -90,7 +92,7 @@ int Roo(int ivec[])
 <<"OUT %V $Z\n"
 
      rvec = ivec;
-
+<<"OUT %V $rvec \n";
      return rvec; 
 }
 
@@ -121,7 +123,8 @@ int Roo(int ivec[])
 
    chkN(Z[4],47);
    chkN(Z[5],79);
-   chkN(Z[6],80);      
+   chkN(Z[6],80);
+//chkOut ()
 
     Z = W
 
@@ -130,7 +133,10 @@ int Roo(int ivec[])
    <<"after calling proc $Z\n"; 
 
  //  chkStage("PO correct?")
-<<"$Y \n"
+<<"Y: $Y \n"
+<<"$Y[1] $Y[2] $Y[3]\n"
+y1= Y[1]
+<<"%V $y1\n"
 
    chkN(Y[1],47);
    chkN(Y[2],79);
