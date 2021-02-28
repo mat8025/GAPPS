@@ -1,21 +1,27 @@
-//%*********************************************** 
-//*  @script caz.asl 
-//* 
-//*  @comment test Caz func 
-//*  @release CARBON 
-//*  @vers 1.3 Li Lithium [asl 6.2.98 C-He-Cf]                           
-//*  @date Tue Dec 22 18:00:22 2020 0 
-//*  @cdate Tue Mar 12 07:50:33 2019 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%///
+/* 
+ *  @script caz.asl 
+ * 
+ *  @comment test Caz func 
+ *  @release CARBON 
+ *  @vers 1.6 C Carbon [asl 6.3.27 C-Li-Co] 
+ *  @date 02/27/2021 09:36:03 
+ *  @cdate Tue Mar 12 07:50:33 2019 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
 
 
-<<"$_clarg[0] $_clarg[1] \n"
+//<<"$_clarg[0] $_clarg[1] \n"
 #include "debug"
 
 chkIn(_dblevel);
+
+if (_dblevel >0) {
+   debugON()
+}
+
 
 int D[5];
 
@@ -51,6 +57,8 @@ chkN(nd,0)
 
 ab = Cab(&d)
 <<"bounds are: $ab \n"
+
+ab->info(1)
 chkN(ab,0)
 
 
@@ -65,10 +73,12 @@ chkN(asz,5)
 nd = Cnd(&D)
 <<"number of dimensions are: $nd \n"
 chkN(nd,1)
-
+D->info(1)
 ab = Cab(&D)
 <<"bounds are: $ab \n"
-chkN(ab,5)
+ab->info(1)
+
+chkN(ab[0],5)
 
 
 ////////////////////////////////
@@ -161,6 +171,7 @@ ab = Cab(B)
 
 
 chkOut()
+
 
 
 /{/*

@@ -1,7 +1,7 @@
 //%*********************************************** 
 //*  @script arrayrange.asl 
 //* 
-//*  @comment test vecotr range spec - forward,backward 
+//*  @comment test vector range spec - forward,backward 
 //*  @release CARBON 
 //*  @vers 1.1 H Hydrogen                                                  
 //*  @date Tue Jun 25 18:48:42 2019 
@@ -10,6 +10,11 @@
 //*  @Copyright © RootMeanSquare  2010,2019 → 
 //* 
 //***********************************************%
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+}
 
 
 

@@ -47,7 +47,7 @@ aaa: <<"aaa label !\n"
      
 <<"IN %V $vect \n"; 
 <<"IN  %V $Z\n"
-vect->info(1);
+      vect->info(1);
       vect[1] = 47; 
       vect[2] = 79;
       vect[3] = 80;
@@ -56,9 +56,11 @@ vect->info(1);
 
      <<"OUT %V $vect \n";
      <<"OUT %V $Z\n"
+     Z->info(1)
 
      rvec = vect;
-     <<"OUT %V $rvec \n"; 
+     <<"OUT %V $rvec \n";
+      Z->info(1)
      return rvec; 
      }
    
@@ -135,7 +137,7 @@ vect->info(1);
    <<"////////////////////////////////////////\npreZ $Z\n"; 
    
    Y2= Woo(&Z[3],4); 
-   
+   Z->info(1)
    <<"postZ $Z\n";
    
 //~c <<" this is the  brk_pt \n" ; // needs to stop before executing this statement   

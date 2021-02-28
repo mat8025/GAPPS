@@ -91,6 +91,9 @@ na = bscan(&C[1],swab,&k,&j)
 chkN(na,8)
 // depends on endian
 
+
+
+
 uint t1 = 12345;
 
 <<"%V$t1 \n"
@@ -180,18 +183,6 @@ n = 2
 <<"%v $n \n"
 
 
-
-
-<<"%I $s1   $g \n"
-chkStr(s1,"baby")
-
-chkStr(g,"hey")
-
-<<"%I $s1   $g \n"
-
-chkStr(s1,"baby")
-
-<<"%I $s1   $g \n"
 
 
 chkOut()

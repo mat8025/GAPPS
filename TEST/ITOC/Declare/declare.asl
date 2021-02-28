@@ -17,12 +17,27 @@
 
 #include "debug"
 
-chkIn(_dblevel)
 
-debugON()
+
+if (_dblevel >0) {
+   debugON()
+}
+chkIn(_dblevel)
 
 //filterFileDebug(ALLOWALL_,"yyy");
 //filterFuncDebug(ALLOWALL_,"yyy");
+
+proc Foo(int a)
+{
+int k = 2
+<<" entered $_proc single arg %V$a $k $A\n"
+ chkN(k,2)
+ chkN(a,A)
+}
+
+//======================================//
+
+
 
 
 proc Foo(int a, int b)
@@ -42,6 +57,14 @@ proc Foo(int a, int b)
   return c;
 }
 //======================================//
+
+A =5
+Foo(A)
+
+A++
+Foo(A)
+
+
 
 int q;
 
@@ -289,295 +312,7 @@ P = 76
 
 
 
-prec=setap(20)
-
-<<" %v $prec \n"
-
- pan p = 9.0345679979e8
-
- pan c =  2.9979e8
-
-  z= p / c
-
-
-
-  q = z * c 
-
-<<" $(typeof(p))  $(typeof(z)) $(typeof(q))\n"
-
-<<"   $p $c $z \n"
-<<"  %e $p $c $z \n"
-<<" %V %p $p $q $c $z \n"
-
-<<"%v  %e $q \n"
-
-//  check within acceptable range
-
-   pan pr
-   pan qr
-
-<<"%V $p $q\n"
-   pr = fround(p,0)
-   qr = fround(q*1.0,2)
-
-<<" %v $pr \n"
-<<" %v $qr \n"
-
-
-   chkR(pr-1,qr,5)
-
-
-proc Foo(int a)
-{
-int k = 2
-<<" entered $_proc single arg %V$a $k $A\n"
- chkN(k,2)
- chkN(a,A)
-}
-
-
-A =5
-Foo(A)
-
-A++
-Foo(A)
-
-
-
-
-//%*********************************************** 
-//*  @script chardeclare.asl 
-//* 
-//*  @comment test declare of char vector 
-//*  @release CARBON 
-//*  @vers 1.4 Be Beryllium                                                
-//*  @date Fri Apr 12 16:13:07 2019 
-//*  @cdate 1/1/2000 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
-
-
-
-Z="hey"
-
-<<"%V $Z\n"
-
-chkStr(Z,"hey");
-
-S="hey";
-
-<<"%V $S\n"
-
-chkStr(S,"hey");
-
-V="hey"  // gets hey"
-
-<<"%V $V\n"
-
-chkStr(V,"hey");
-
-
-
-//sdb(1,@pline)
-char c2 = 65;
-char p2 = 'q';
-
-<<"%I $c $p2 \n"
-<<"%I %c$c2 %c$p2 \n"
-
-<<"%V $c2\n"
-<<"%V $p2\n"
-
-
-str s = "abc"
-
-<<"%I $s %s$s \n"
-
-str tease = "a b c "
-
-//FIXIT missing varname
-
-
-tease->info(1)
-<<"<|$tease|> \n"
-
-uchar cv[] = { 65,47,79,0xBA };
-
-
- sz= Caz(cv)
- 
-<<"%V$sz $cv \n"
-
- cve = cv[0]
-
-<<"%V$cve\n"
-<<"%V$cv[0]\n"
-
- chkN(cve,65)
-
-
-
- cv[0] = 'M';
- 
- cve = cv[0]
-
-<<"%V$cve\n"
-<<"%V$cv[0]\n"
-
- chkN(cv[0],77)
-
-
-
- str ls = 'abc'
-
- chkN(cv[3],0xBA)
-
-
-
-<<"%I %hx $cv \n"
-<<"%I %s $cv \n"
-
-wc = scnt("G")
-
-<<"%V $wc $(typeof(wc))\n"
-
-int iv[] = { 0,1,2,3,4,5,6,7,8,9, }
-
-iv->info(1)
-<<" $iv \n"
-
-//sdb(1,@step)
-
-char dv[] = { 'G', 84, 85, 78, 'O', 69,  75,76,77,'0' }
-
-
-<<"$(vinfo(dv))\n"
-<<"$dv \n"
-<<"%c $dv \n"
-sz= Caz(dv)
-<<"%V $sz\n"
-!pdv
-
-chkN(dv[0], 'G' )
-chkN(dv[1], 84 )
-
-
-
-
-chkN(dv[2], 85 )
-   chkN(dv[3], 78 )
- chkN(dv[4], 'O' )
- chkN(dv[5], 69 )
- chkN(dv[6], 75 )
-  chkN(dv[7], 76 )
- chkN(dv[8], 77 )
- chkN(dv[9], '0' )
-
-char ev[] = { 71, 84, 85, 78, 79, 48, 69, 75,76,77 }
-
-<<"$ev \n"
-
-chkOut ()
-
-
-char a = 'G';
-
-<<" $(vinfo(a)) \n"
-
-<<"%V $dv[0] $a \n"
-
- chkN(dv[0],a)
-
- chkN(dv[0], wc )
-
- chkN(dv[0], 'G' )
-
-
- chkStage()
-
-<<"%V $dv  \n"
-
-<<"%V $dv[1]  \n"
-
- chkN(dv[1],84)
-
-
-
-  char b = dv[4];
-
-<<"%V $b %d $b\n"
-<<"%V $dv[4]\n";
-
-<<"dv %d $dv\n"
-<<"dv %c $dv\n"
-
- printargs(dv[4],'O')
- chkN(dv[4], 'O' )
-  chkN(dv[4], 79 )
-
- chkOut()
-
-<<" whaat is happening here $dv[5] \n"
-
- tc = scnt("0");
- <<"%V $tc\n";
- chkN(dv[5], scnt("0") )
-<<" Imm not really cleaaaaaaar \n" 
-
-
- chkN(dv[5], '0' )
-
-
-
-char lv[] = { 'ABCDEF MARK$S PERRY NEEDS TO FOCUS ' }
-
-sz = Caz(lv)
-<<"%v $sz \n"
-<<"%V $lv \n"
-
-<<" $lv[0] \n"
-<<" $lv[1] \n"
-//iread("->");
-
-char ev[] = { "ABCDEF MARK$S BERRY NEEDS TO FOCUS " }
-
-
-<<"%V$ev \n"
-sz = Caz(ev)
-<<"%v $sz \n"
-
-<<"%V %c $ev \n"
-<<"%V $ev \n"
-
-//iread("->");
-
- chkN(ev[0],'A')
- chkN(ev[7],'M')
-
-<<"%I %s $lv \n"
-
- chkN(lv[0],'A')
- chkN(lv[7],'M')
- chkN(lv[11],'$')
-
-
- <<" chardec DONE\n"
-
-for (k=0;k<sz;k++) {
-
-<<"$k $ev[k] %c $ev[k] \n"
-}
-
-
- chkStage("char")
  
 
 
  chkOut()
-
-
-
-
-exit()

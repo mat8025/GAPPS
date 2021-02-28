@@ -11,11 +11,11 @@
 //* 
 //***********************************************%
 
-//#include "debug";
+#include "debug";
 
-//if (_dblevel >0) {
-//   debugON()
-//}
+if (_dblevel >0) {
+  debugON()
+}
 
 
 chkIn(_dblevel)
@@ -46,15 +46,9 @@ int n = 3;
  Refarg(n);
 
 
-chkN(n,3)
+ chkN(n,3)
 
 <<"%V post value call $n  \n"
-
-
-
-
-
-
 
 
 // reset
@@ -64,22 +58,21 @@ chkN(n,3)
 
   Refarg(&n);
 
-
 <<"%V post reference $n  \n"
-
-
-
+//  n->info(1)
   p = &n
 
-p->info(1)
+  p->info(1)
 
   q = $p;
 
-q->info(1)
-
-
+  q->info(1)
 
 <<"%V  post $n  \n"
+
+//n->info(1)
+
+
 chkN(n,9)
 chkOut()
 

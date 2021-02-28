@@ -16,23 +16,30 @@
 
 ///
 /// procrefarg
+if (_dblevel >0) {
+  debugON()
+}
 
-debugOFF()
+
 chkIn(_dblevel)
 
 Str pstrarg (str v, str u)
 {
 <<"args in %V  $v $u \n"
 
- m = scat(v," ",u);
- m->info(1);
+
  v->info(1)
  u->info(1)
+m = scat(v,"-x-",u);
+
+
+m->info(1);
+
 // ans= query("args are correct?");
  v = "hola"
  v->info(1)
  s->info(1)
-!p v
+!p m
 
 
 u = "que tal?"
@@ -58,7 +65,7 @@ u = "que tal?"
 
  w->info(1)
 <<"%V $s $t $w\n"
- chkStr(w,"hi Comment allez-vous?")
+ chkStr(w,"hi-x-Comment allez-vous?")
   s->info(1)
  chkStr(s,"hola")
 

@@ -223,11 +223,11 @@ str pgname = "xx";
 
       np = Caz(Tp);
       
-     //<<"%V $Td $Tl $np\n"
+ //    <<"%V $Td $Tl $np\n"
       
       for (i=0 ; i < np; i++) {
 
-       //  <<"$i  <|$Tp[i]|>\n"
+//<<"$i  <|$Tp[i]|>\n"
 
          //if (!(Tp[i] @= "")) 
 
@@ -395,6 +395,10 @@ str prg;
 	 if (ans @="q") {
           exit()
          }
+	       if (ans @="r") {
+                  do_query = 0;
+               }	       
+
          }
 
 //<<" run xic $wasl\n";
@@ -512,7 +516,7 @@ void cart_xic(Str aprg)
   }
 
       tst_file = "${aprg}.xtst";
-      //<<"%V $tst_file\n"
+    //  <<"%V $tst_file\n"
       if (f_exist(tst_file) > 0) {
          wlen = slen(xwt_prog)
          padit =nsc(40-wlen," ")
@@ -599,8 +603,13 @@ void cart (str aprg)
            
 	       ans= i_read("run it?")
 	       if (ans @="q") {
-               exit()
+                  exit()
                }
+	       if (ans @="r") {
+                  do_query = 0;
+               }	       
+
+
            }
    
      // <<"here $wasl \n";
@@ -966,6 +975,8 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
     RunDirTests("Assign","assign");
 
+    RunDirTests("Assign","assign");
+
     RunDirTests("Bops","bops,fvmeq,fsc1,mainvar,snew");
 
 
@@ -1145,7 +1156,7 @@ if ((do_all || do_try ) && (do_try != -1)) {
 if ((do_all  || do_declare ) && (do_declare != -1))  {
 
 
-   RunDirTests("Declare","declare,dec1,declare-vec");
+   RunDirTests("Declare","declare,dec1,dec-char,dec-pan,dec-vec");
 
  //  Run2Test("Consts")
 
@@ -1207,30 +1218,21 @@ changeDir(Testdir)
 
 if ((do_all || do_array ) && (do_array != -1)) {
 
-  Run2Test("VVcopy")
 
-  cart("vvcopy")
+  RunDirTests("VVcomp","vvcomp");
 
-  cart_xic("vvcopy")
-
-  Run2Test("VVcomp")
-
-  do_carts("vvcomp")
+  RunDirTests("Vfill","vfill");
 
 
+   RunDirTests("Subrange","subrange");
 
-  Run2Test("Vfill")
-
-  do_carts("vfill")
-
-
-  RunDirTests("Subrange","subrange");
+   RunDirTests("VVcopy","range-copy,vvcopy")
 
    RunDirTests("Array","ae,arraystore,arrayele,arraysubset")
 
-   RunDirTests("Array","arrayrange,arraysubvec,arraysubsref,arraysubsrange,arraysubscbyvec")
+   RunDirTests("Array","array-range,array-subvec,arraysubsref,array-subsrange,arraysubscbyvec")
 
-   RunDirTests("Array","dynarray,lhrange,lhe,joinarray,vec-cat,vgen,array-sr,mdele,vsp,arrayindex")
+   RunDirTests("Array","dynarray,lhrange,lhe,joinarray,vec-cat,vgen,array-sr,mdele,vsp,array-index")
 
   RunDirTests("Scalarvec","scalarvec")
 
@@ -1413,30 +1415,13 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
      do_carts("rand")
 
 
-/*
-    Dirname = "Fact"
-    Run2Test(Dirname)
-    Progname = "fact"
-    
-    cart(Progname, 10)
-        Dirname = "Cmplx"
-    
-        Progname = "cmplx"
-
-    cart(Progname)
-        Dirname = "Rand"
-    Run2Test(Dirname)
-      Progname = "rand"
-    //cart("rand")
-    cart(Progname)
-*/
     }
 
 
    if ((do_all || do_svar ) && (do_svar != -1)) {
 
     RunDirTests("Svar","svar");
-    RunDirTests("Hash","hash,svar_table,svar_hash")    
+    RunDirTests("Hash","hash,svar-table,svar-hash")    
     }
 
   if ((do_all || do_ivar ) && (do_ivar != -1)) {

@@ -29,10 +29,16 @@ checkMemory(1,1)
 
 initmem=memused()
 
-<<"memused $(memused()) \n";
-
 float Vsp[>1024];
 float Tsp[>1024];
+
+//<<"memused $(memused()) \n";
+//<<"memused $(memused()) \n";
+<<"memused $initmem $(typeof(initmem))\n";
+
+//<<"memused $(memused()) \n";
+
+
 
 
 fftsz = 2^10;

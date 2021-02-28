@@ -1,7 +1,26 @@
+/* 
+ *  @script array-subsrange.asl 
+ * 
+ *  @comment test array range subscript 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.28 C-Li-Ni]                                
+ *  @date 02/27/2021 13:39:27 
+ *  @cdate 1/1/2010 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
 
-chkIn()
 
-setdebug(1)
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+}
+
+chkIn(_dblevel)
+
 
 // test array indexing
 
@@ -139,4 +158,3 @@ setdebug(1)
 //iread()
  chkOut()
 
-STOP!

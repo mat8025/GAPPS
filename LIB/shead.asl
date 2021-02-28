@@ -52,8 +52,8 @@
    set_vers = 0;
    set_cdate = 0;
 
-   date = date();
-   cdate = date();
+   date = date(GS_MDYHMS_);
+   cdate = date(GS_MDYHMS_);
    na = argc();
    <<"%V $na $cdate \n"
    comment ="";
@@ -198,7 +198,7 @@ if (found_vers) {
    <<[A]" *  @date $date \n"
    <<[A]" *  @cdate $cdate \n"      
    <<[A]" *  @author $author \n"
-   <<[A]" *  @Copyright © RootMeanSquare  2010,$(date(8)) → \n"           
+   <<[A]" *  @Copyright © RootMeanSquare  2010,$(date(GS_YEAR_)) → \n"           
    <<[A]" * \n"
    <<[A]" *  \\\\-----------------<v_&_v>--------------------------//  \n"                          
    <<[A]" */ \n"

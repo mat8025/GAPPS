@@ -29,9 +29,12 @@ R[3] first index location of smallest difference
 
 #include "debug.asl";
 
-debugON();
+if (_dblevel >0) {
+  debugON()
+}
+
+
 /*
-  setdebug(1,@keep,@pline,@trace);
   FilterFileDebug(REJECT_,"~storetype_e");
   FilterFuncDebug(REJECT_,"~ArraySpecs",);
  */

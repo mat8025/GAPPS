@@ -281,35 +281,35 @@ cf(A)
 
 ///////////////////////
 
-/{/*
+/*
 Armstrong 1
 there are 9 Armstrong 1 numbers 0,1,2,3,4,5,6,7,8,9
- /}*/
+ */
 
-/{/*
+/*
 Armstrong 2
 there are 0 Armstrong 2 numbers took 0.007702  secs
- /}*/
+ */
  
 
-/{/*
+/*
 Armstrong 3
 there are 4 Armstrong 3 numbers took 0.536666  secs
  1   153
 2  370
 3  371
 4  407
-/}*/
+*/
  
 
 
-/{/*
+/*
 Armstrong 4
 there are 3 Armstrong 4 numbers took 5.891107  secs
  1   1634
 2  8208
 3  9474
-/}*/
+*/
 
 
 

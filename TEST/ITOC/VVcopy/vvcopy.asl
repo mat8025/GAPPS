@@ -27,25 +27,34 @@ returns number of values copied into array B.
 */
 
 #include "debug"
-debugON()
+
+if (_dblevel >0) {
+  debugON()
+}
+
 
 chkIn(_dblevel)
 
 N= 10;
 
 A= vgen(INT_,N,0,-1)
+
 B= vgen(INT_,N,0,1)
 C=B
 <<"A: $A\n"
 <<"B: $B\n"
+
 <<"$A[1] $B[1]\n"
+
+r = ( B[1] == 1)
+
+!p r
+
 vvcopy(B,A)
 
 <<"B: $B\n"
 
 chkN(B[1],A[1])
-
-
 
 
 B=C
@@ -54,12 +63,23 @@ B=C
 
 vvcopy(&B[3],A,5)
 
+B->info(1)
+
 <<"B: $B\n"
 
 <<"%V $B[3]  $A[0] \n"
 
 chkN(B[3],A[0])
 
+//    do the same with vec ops
+B = C
+<<"C $C\n"
+<<"B $B\n"
+<<"A $A\n"
+
+B[4:8:] = A[1:5]
+
+<<"$B\n"
 
 
 int ki = 2
@@ -91,7 +111,9 @@ B=C
 vvcopy(&B[ki],&A[kia],4)
 
 <<"B: $B\n"
-//A->info(1)
+A->info(1)
+B->info(1)
+
 
 <<"A: $A\n"
 <<"B: $B\n"
@@ -99,9 +121,6 @@ vvcopy(&B[ki],&A[kia],4)
 <<"%V $B[ki] $A[kia] \n"
 
 chkN(B[ki],A[kia])
-
-chkOut()
-exit()
 
 
 bval = B[ki]
@@ -114,26 +133,39 @@ chkN(bval,aval)
 
 A = 0;
 chkN(A[3],0)
+
 <<"A: should be 0 $A\n"
+
 A = B
-chkN(A[3],3)
+<<"B: $B\n"
+<<"A: $A\n"
+
+chkN(A[3],B[3])
+
 A[0:-1:] = 0;
 
 <<"A: should be 0 $A\n"
 chkN(A[3],0)
+
+A->info(1)
 A[3]=79
+
 B[3]=47
+
 <<"A: $A\n"
 <<"B: $B\n"
+
 n = N;
 nc=vvcopy(A,B,n);
 <<"$nc ALL\n"
 <<"A: $A\n"
 <<"B: $B\n"
 
+A->info(1)
 R=vvcomp(A,B,n);
-<<"vvcomp %V$R\n"
 
+<<"vvcomp %V$R\n"
+A->info(1)
 chkN(A[3],47)
 
 B= vgen(INT_,100,0,1)

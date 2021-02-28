@@ -161,7 +161,7 @@
    }
  }
  
-  date = date();
+  date = date(16);
   maj_ele = ptsym(pmaj);
   min_ele = ptsym(pmin);
   min_name = ptname(pmin);
@@ -197,7 +197,10 @@ fseek(A,0,2)
 
 ans=iread("asl code-what modification?:")
 <<"$ans\n"
-<<[A]"$srcfile\t ${pmaj}.$pmin\t $date $ans\n"
+len = slen(srcfile)
+nsp = 32-len
+ws=nsc(nsp," ")
+<<[A]"$srcfile $ws  ${pmaj}.$pmin  $(date(16))  $ans\n"
 cf(A)
 
 

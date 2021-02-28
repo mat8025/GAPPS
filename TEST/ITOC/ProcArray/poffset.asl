@@ -29,14 +29,19 @@ chkIn(_dblevel);
 
 int voo(int vect[])
 {
-//<<"$_proc IN $vect \n" ;  // debug version alters poffset??
+  vect->info(1)
+<<"$_proc IN $vect \n" ;  // debug version alters poffset??
+// vect->info(1)
+
 
 //Z->info(1)
 //<<"pa_arg2 %V$k\n"
 
   vect->info(1)
+!t poffset correct?
+
   vect[1] = 47;
-<<"add 47 $vect \n"
+<<"add Ag $vect \n"
   vect->info(1)
   vect[2] = 79;
 <<"add Au $vect \n"
@@ -78,18 +83,18 @@ void Noo(int ivec[])
 int Roo(int ivec[])
    {
      ivec->info(1);
-     Z->info(1);      
+  //   Z->info(1);      
      
-<<"IN %V $ivec \n"; 
-<<"  %V $Z\n"
+<<"IN %V $ivec \n";
+
 
       ivec[1] = 47; 
       ivec[2] = 79;
       ivec[3] = 80;      
+
       ivec->info(1); 
 
 <<"OUT %V $ivec \n";
-<<"OUT %V $Z\n"
 
      rvec = ivec;
 <<"OUT %V $rvec \n";
@@ -115,9 +120,11 @@ int Roo(int ivec[])
 
     Z = W
 
-  <<"before calling proc $Z\n";
+  <<"before calling proc &Z[3] $Z\n";
+  Z->info(1)
+
    voo(&Z[3]);
-  <<"after calling proc $Z\n";
+  <<"after calling proc &Z[3] $Z\n";
 
 <<"$Z[4] \n"
 
@@ -127,10 +134,10 @@ int Roo(int ivec[])
 //chkOut ()
 
     Z = W
-
-    Y=Roo(&Z[3]); 
+   <<"B4 calling  Roo $W\n"; 
+    Y=Roo(&W[3]); 
    
-   <<"after calling proc $Z\n"; 
+   <<"after calling proc $W\n"; 
 
  //  chkStage("PO correct?")
 <<"Y: $Y \n"
@@ -140,7 +147,9 @@ y1= Y[1]
 
    chkN(Y[1],47);
    chkN(Y[2],79);
-   chkN(Y[3],80);      
+   chkN(Y[3],80);
+   chkN(Y[4],7);
+   
 //   chkStage("return ivec correct?")
 
 chkOut ()

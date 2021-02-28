@@ -87,7 +87,7 @@ Str cvers ="0.0";
   maj_ele = ptsym(pmaj);
   min_ele = ptsym(pmin);
   
-  date = date();
+  date = date(GS_MDYHMS_);
   
  
  
@@ -215,7 +215,7 @@ L->info(1)
    }
  }
  
-  date = date();
+  date = date(GS_MDYHMS_);
   maj_ele = ptsym(pmaj);
   min_ele = ptsym(pmin);
    min_name = ptname(pmin);

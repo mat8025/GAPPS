@@ -1,22 +1,25 @@
-proc ask()
-{
-   ok=chkStage();
-   <<"%6.2f$ok\n"
-  if (ok[0] < 100.0) {
-  ans=iread();
-  }
+/* 
+ *  @script packalot.asl 
+ * 
+ *  @comment test packb SF 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.28 C-Li-Ni]                                
+ *  @date 02/27/2021 13:32:51 
+ *  @cdate 01/01/2019 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
 
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
 }
 
 
-//#define  ASK ask();
-#define  ASK ;
-
-setdebug(1,@~pline,@trace,@~stderr)
-
-
-
-chkIn()
+chkIn(_dblevel)
 
 int i = 5;
 float f = 3.1;
@@ -47,7 +50,6 @@ UCV[0] = 7;
 int IV[10];
 int FV[10];
 
-chkIn()
 int nc;
 i = 0;
 f = 0.0;
@@ -62,17 +64,17 @@ nc = unpackb (UCV,"I1",IV)
 
 chkN(i,IV[0]);
 
-nc = packb (UCV,"F",f)
+nc = packb (UCV,"f",f)
 
 <<"$nc  :: $UCV\n"
-nc = unpackb (UCV,"F1",FV)
+nc = unpackb (UCV,"f1",FV)
 
 chkN(f,FV[0]);
 
-packb (UCV,"I,F,U,C,L",i,f,uc,c,l)
+packb (UCV,"i,f,u,c,l",i,f,uc,c,l)
 
 
-unpackb (UCV,"I,F,C,C,L",&i2,&f2,&uc2,&c2,&l2)
+unpackb (UCV,"i,f,C,C,L",&i2,&f2,&uc2,&c2,&l2)
 
 
 chkN(i,i2)
@@ -82,7 +84,7 @@ chkN(uc,uc2)
 chkN(l,l2)
 
 
-ASK
+
 i++;
 f++;
 
@@ -99,4 +101,4 @@ if (i >= 5) {
 
 chkOut()
 
-exit();
+

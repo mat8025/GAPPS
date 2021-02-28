@@ -818,3 +818,17 @@ ds_getvarasstr.cpp	 2.65	 Mon Feb 22 08:55:53 2021 added getArrayAsStr
 ds_sivflags.cpp	 1.90	 Mon Feb 22 08:58:20 2021 number arrays printed
 test_l.cpp	 1.51	 Mon Feb 22 09:17:49 2021 chkN comment first arg
 storetype_e.cpp	 2.62	 Wed Feb 24 09:41:24 2021 postpone poffset til storeSiv
+ds_getvarasstr.cpp	 2.66	 Fri Feb 26 09:40:26 2021 STRV case 359
+func_e.cpp                          3.50	 Fri Feb 26 13:33:11 2021 reset siv offsets after func call
+ic_call.cpp                         1.55	 Fri Feb 26 13:34:59 2021 reset siv offsets after func call
+vop_copy.cpp                        2.2  Fri Feb 26 13:37:51 2021 refactor
+ic_print.cpp                        1.61  Fri Feb 26 16:57:50 2021 lic file to .GASP/WORK/Debug unless -u -U option
+vop_copy.cpp                        2.3  Fri Feb 26 16:59:24 2021 poffset check
+args_process_e.cpp                  2.37  Fri Feb 26 21:50:10 2021 process_args_ptr
+sscan_l.cpp                         1.84  Fri Feb 26 22:00:56 2021 refactor
+engine_e.cpp                        2.21  02/26/2021 22:11:44 DBG
+vmf_svar_l.cpp                      1.22  02/27/2021 10:25:00  table returns number of rows
+vmf_svar_l.cpp                      1.23  02/27/2021 10:37:53  LUT_, HASH_ for table def
+prep.cpp                            2.55  02/27/2021 10:39:09  LUT_,HASH_,GS_MDYHMS_
+vmf_l.cpp                           1.60  02/27/2021 12:04:33  findVal return array of indexes
+pack_l.cpp                          1.81  02/27/2021 12:47:01  isSameLetter

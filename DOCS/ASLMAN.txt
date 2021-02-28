@@ -9345,8 +9345,8 @@ svar vector.
 The svar type can be used to set up a lookup table or a hash table with a  variable number of fields.
 e.g.
 svar ST
-ST->table("HASH",num_fields,num_rows)
-makes svar ST into hash table with num_fields and initial num_rows.
+nr=ST->table("HASH",num_rows,[num_fields=2]);
+makes svar ST into hash table with num_fields(default 2) and initial num_rows.
 index=ST->addkeyval(key,ival) 
 addkeyval can be used to add a key (string) plus a value (int,float,string).
 val= ST->lookup(key)
@@ -9361,10 +9361,11 @@ table
 .)x 
 .FD
 svar ST
-ST->table("LUT",num_fields,num_rows);
+ST->table("LUT",num_rows,[num_fields=2]);
 makes svar ST into a lookup  table with num_fields and initial num_rows.
-ST->table("HASH",num_fields,num_rows);
+nr=ST->table("HASH",num_rows,num_fields);
 makes svar ST into a hash  table with num_fields and initial num_rows.
+returns number of rows in table.
 See lookup,addentry,getentry. 
 
 .EF

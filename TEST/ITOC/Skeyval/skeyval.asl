@@ -13,6 +13,11 @@
  */
  
 // key-val pairs via Svar
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+}
 
 chkIn(_dblevel)
 
@@ -31,7 +36,7 @@ chkStr(S[5],"ele 5");
 
 
 Svar kv
-kv->table("LUT",2,1)
+kv->table(LUT_,1,2)
 
   kv->addKeyVal("mark","is",0)
   kv->addKeyVal("terry","good")
@@ -39,17 +44,31 @@ kv->table("LUT",2,1)
   kv->addKeyVal("smarter","pushed")
 
 <<"%V $kv[0] $kv[1] \n"
+<<"%V $kv[2] $kv[3] \n"
+<<"%V $kv[4] $kv[5] \n"
+
+  iv = kv->lookup("smarter")
+
+<<"%V$iv \n"
+
 
   iv = kv->lookup("work")
 
 <<"%V$iv \n"
 
+
+
 chkStr(iv,"when")
 
-  wi = kv->findVal("work")
+ wi = kv->findVal("work")
 
-<<"$wi \n"
-chkN(wi,4)
+<<"%V $wi \n"
+wi->info(1)
+
+
+chkN(wi[0],4)
+
+
 
 wi = kv->keySort()
 
@@ -59,6 +78,7 @@ wi = kv->keySort()
 <<"%(2,, ,\n)$kv \n"
 <<"value sort\n"
 
+
 wi = kv->Sort(1)
 
 <<"%(2,<,\, ,>\n)$kv \n"
@@ -67,7 +87,7 @@ wi = kv->Sort(1)
 chkStr(kv[1],"good")
 Svar kvn
 
-kvn->table("LUT",2,1)
+kvn->table(LUT_,1,2)
 
   kvn->addKeyVal("mark",1,0)
   kvn->addKeyVal("terry",3)
