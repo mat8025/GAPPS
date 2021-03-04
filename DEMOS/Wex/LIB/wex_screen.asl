@@ -34,16 +34,16 @@
 
 
 
-    gwo=cWo(vp,@graph,@name,"WTLB",@value,0,@clipborder); //
+    gwo=cWo(vp,@graph,@name,"WTLB",@value,0,@clipborder); //   weight
 
     calwo=cWo(vp,@graph,@name,"CAL",@value,0,@clipborder,BLACK_) ; // cals 
 
- //   carbwo=cWo(vp,@graph,@name,"CARB",@value,0,@clipborder,BLACK_) ; // carbs
+    carbwo=cWo(vp,@graph,@name,"CARB",@value,0,@clipborder,BLACK_) ; // carbs
 
     extwo=cWo(vp,@graph,@name,"XT",@value,0,@clipborder,BLACK_); // exercise time
 
 
-   int wedwo[] = { gwo, calwo,  extwo  };
+   int wedwo[] = { gwo, calwo,  carbwo, extwo  };
 
 <<[_DB]"%V$wedwo \n"
 
@@ -65,13 +65,13 @@
      CalsY1 = 5000.0;
 
 
-    carb_upper = 300;
+    carb_upper = 200;
 
-    sWo(wedwo,@clip,CXY, @color,LILAC_,@clipbhue,PINK_,@bhue,WHITE_,@font,F_SMALL_)
+    sWo(wedwo,@clip,CXY, @color,LILAC_,@clipbhue,PINK_,@bhue,WHITE_,@font,F_SMALL_,@save,@savepixmap)
 
     sWo(calwo,@clip,CXY, @color,MAGENTA_,@clipbhue,PINK_,@bhue,WHITE_,@font,F_SMALL_)
 
- //   sWo(carbwo,@clip,CXY, @color,BROWN_,@clipbhue,BROWN_,@bhue,GREEN_,@font,F_SMALL_,@fonthue,WHITE_)
+    sWo(carbwo,@clip,CXY, @color,WHITE_,@clipbhue,LILAC_,@bhue,WHITE_,@font,F_SMALL_,@fonthue,WHITE_)
 
     sWo(extwo,@clip,CXY, @color,YELLOW_,@clipbhue,LILAC_,@bhue,WHITE_,@font,F_SMALL_)
 
@@ -84,7 +84,7 @@
 
     sWo(calwo,@scales,sc_startday,0,sc_endday+10,CalsY1,@savescales,0)
 
-   sWo(calwo,@scales,sc_startday,0,sc_endday+10,carb_upper,@savescales,1)
+   //sWo(calwo,@scales,sc_startday,0,sc_endday+10,carb_upper,@savescales,1)
 
 
     swo= cWo(vp1,@type,"GRAPH",@name,"BenchPress",@color,"white");
@@ -115,16 +115,16 @@
 
 <<[_DB]"SCALES %V$sc_startday $sc_endday $bp_upper\n"
 
-  //  sWo(carbwo,@scales,sc_startday,0,sc_endday+10,carb_upper)
+    sWo(carbwo,@scales,sc_startday,0,sc_endday+10,carb_upper)
 
 <<[_DB]"SCALES %V$sc_startday $sc_endday $carb_upper\n"
 
 
-    int allwo[] = {gwo,swo, calwo,  extwo}
+    int allwo[] = {gwo,swo, calwo,  extwo , carbwo}
 
 //<<"%V $allwo \n"
 
-    sWo(allwo,@save,@redraw,@drawon,@pixmapon)
+    sWo(allwo,@drawon,@pixmapon,@redraw,@save,@savepixmap)
 
 
 ///////////////////////////////////////////////////////////
@@ -178,11 +178,6 @@
   gdwo=cWo(vp,@BIV,@name,"GoalDay",@color,RED_,@value,"$Goals[1]",@help," goalday ")
   gwtwo=cWo(vp,@BIV,@name,"WtGoal",@value,"$Goals[2]",@color,BLUE_,@fonthue,WHITE_,@help," next goal wt ")
 
-
-
-
-  
-
   int  goalwos[] = { sdwo, gdwo, gwtwo};
 
   wo_vtile( goalwos, 0.02,0.1,0.08,0.45,0.05);
@@ -194,7 +189,7 @@
 
   titleVers();
 
-mc=getMouseEvent()
+
 
 
 //======================================//

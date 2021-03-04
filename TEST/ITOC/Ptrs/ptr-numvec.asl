@@ -36,7 +36,9 @@
    
    
    ptr z;
-   
+
+   z->info(1);
+
    z = &c;
    
    <<"%V $(typeof(z)) $z \n"; 
@@ -124,12 +126,14 @@
    float d[] = vgen(FLOAT_,10,0,1); 
 
 <<"%V $d\n"
+   d->info(1)
+
    sz=Caz(d);
    
    z = &d;
 
    z->info(1)
-
+d->info(1)
    z = &c;
 
    z->info(1)
@@ -141,7 +145,7 @@
    float fval;
 
 <<"%V $sz \n"
-
+    d->info(1)
 
    for (i=0;i<sz;i++) {
      
@@ -153,11 +157,11 @@
       chkN(fval,d[i]); 
      }
 
-chkStage("num vecs - get value")
-chkOut()
+//chkStage("num vecs - get value")
+
 
 //================================//
-
+d->info(1)
 
      z[5] = 85;
      
@@ -183,7 +187,7 @@ DIS= Split(DI)
 
 <<"$DIS[0]\n"
 
-chkStage("num vecs - set value")
+//chkStage("num vecs - set value")
 
 chkOut(); 
 exit()

@@ -11,8 +11,12 @@
 //* 
 //***********************************************%
 
+#include "debug"
 
 
+if (_dblevel >0) {
+   debugON()
+}
 
 chkIn(_dblevel)
 
@@ -25,12 +29,15 @@ proc Foo(int a,int b)
  return c;
 }
 
-
 //======================================//
 
+int VA[3] = {1,2,3};
+VA->info(1)
 
+int k = 0;
+k->info(1)
 A= vgen(INT_,10,0,1)
-
+A->info(1)
 <<"$A\n"
 
 A[0] = 47;
@@ -40,7 +47,7 @@ A[3] = 14;
 
 <<"$A\n"
 
-int k = 0;
+
 
 b = A[k]
 
@@ -70,7 +77,6 @@ b= A[k++]
 <<"1st ele is $b \n"
 
 chkN(b,79)
-
 
 <<"%V$k\n"
 
@@ -106,7 +112,6 @@ b= A[--k]
 
 <<"%V$b \n"
 
-
 chkN(b,14)
 
 <<"%V$k\n"
@@ -135,12 +140,7 @@ int w = --k ;
 chkN(e,4)
 chkN(w,3)
 
-
-
 int Gc;
-
-
-
 
 
  k = 0
@@ -200,7 +200,6 @@ chkN(m,4)
 chkN(r,4)
 
 
-
 <<"b4foo %V $k $m \n"
 
  r = Foo(++k,++m)
@@ -213,7 +212,9 @@ chkN(m,5)
 chkN(r,8)
 
 
-AV = igen(10,0,1)
+AV = vgen(INT_,10,0,1)
+
+AV->info(1)
 
 <<"%V$AV\n"
 
@@ -230,10 +231,11 @@ chkN(AV[1],2);
 BV = ++AV ; // this should increment all elements in the vector
 
 <<"after ++ $AV\n"
-
+BV->info(1)
 <<"%V $BV\n"
 
 chkN(BV[1],3)
+
 
 BV = AV++ ; // this should increment all elements in the vector
 
@@ -247,5 +249,7 @@ chkN(BV[1],3)
 
 
 chkOut()
+
+
 exit()
 

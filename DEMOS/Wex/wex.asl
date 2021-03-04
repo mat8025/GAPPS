@@ -103,7 +103,7 @@ jtoday = julian(today)
 
 
 minWt = 160;
-topWt = 220;
+upperWt = 225;
 //StartWt = 205;
 
 // rates per min
@@ -210,7 +210,8 @@ lastRX = RX[Nrecs-1]
 // so far not logged often 
 
 
- ACC=ofr("DAT/jcc.tsv")
+// ACC=ofr("DAT/jcc.tsv")
+ ACC=ofr("DAT/ccwx.tsv")
 
 Record RCC[];
 
@@ -225,7 +226,6 @@ else {
   
   cf(ACC)
   RCC->info(1);
- // sdb(1,@trace)
   NCCrecs = Caz(RCC);
   NCCrecs->info(1)
   <<"%V $NCCrecs \n"
@@ -260,9 +260,11 @@ nrd=readData();
 // 
    init_period = 32;
    
-   sc_endday = (jtoday - bday) + init_period;
+  
 
-   sc_startday = (jtoday - bday) - 30;
+   sc_startday = (jtoday - bday) - 10;
+
+   sc_endday = targetday + 3;
 
    <<[_DB]"%V$ngday \n"
 
@@ -440,13 +442,16 @@ showTarget();
 _DB=-1;
 
 
-mc=getMouseEvent()
+
 
     sWo(tw_wo,@move,targetday,NextGoalWt,gwo,@redraw));
 
 <<"%V $_eloop\n"
-sleep(1)
 
+     drawScreens();
+ans=query("proceed?")
+
+mc=getMouseEvent();
 while (1) {
 
      //if ((m_num % 50) ==0) {
@@ -454,7 +459,7 @@ while (1) {
 //	}
 
      m_num++
-
+sleep(1)
         msg =eventWait();
 <<[2]"$m_num $msg  $_ename $_ewoname\n"
 
@@ -504,7 +509,7 @@ while (1) {
 
 
 
-exit_si()
+exit()
 
 ///////////////////////////////// TBD /////////////////////////
 // date-day

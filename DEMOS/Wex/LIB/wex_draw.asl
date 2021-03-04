@@ -110,16 +110,11 @@ proc  drawGrids(int  ws )
   
   axnum(gwo,AXIS_LEFT_);
 
-  //sWo(gwo,@axnum,4)
-  //sWo(gwo,@axnum,1)
 
-  //sWo(calwo,@axnum,2,500,5500,500,100)
+  sWo(carbwo,@axnum,AXIS_LEFT_);
+  sWo(carbwo,@yscales,0,carb_upper,@savescales);
 
-
-  sWo(calwo,@axnum,AXIS_LEFT_);
-  sWo(calwo,@yscales,0,carb_upper,@savescales,1);
-
-  sWo(calwo,@usescales,1,@axnum,AXIS_RIGHT_);
+  sWo(calwo,@usescales,0,@axnum,AXIS_LEFT_);
 //  sWo(carbwo,@axnum,2);
   
   sWo(extwo,@yscales,0,250,@savescales,1);
@@ -129,9 +124,9 @@ proc  drawGrids(int  ws )
   //Text(gwo, "Weight (lbs)",-4,0.7,4,-90)
 
    AxLabel(gwo,AXIS_BOTTOM_,"Weight (lbs)",0.5,1.5)
-   AxLabel(calwo,AXIS_BOTTOM_,"Calories and Carbs",0.5,1.5)
+   AxLabel(calwo,AXIS_BOTTOM_,"Calories",0.5,1.5)
    AxLabel(extwo,AXIS_BOTTOM_,"Exercise Time (mins)",0.5,1.5)
-
+   AxLabel(carbwo,AXIS_BOTTOM_,"Carbs",0.5,1.5)
   //Text(calwo,"Cals In/Out",-4,0.7,4,-90)
 
  }
@@ -207,7 +202,7 @@ proc drawScreens()
       dGl(calb_gl)
 
 
-      sWo(gwo,@scales,sc_startday,minWt,sc_endday+10,topWt,@savescales,0)
+      sWo(gwo,@scales,sc_startday,minWt,sc_endday+10,upperWt,@savescales,0)
 
       dGl(wt_gl)
        }
@@ -250,7 +245,7 @@ proc drawScreens()
     sWo(fewos,@redraw)
 
     sWo(tw_wo,@move,targetday,NextGoalWt,gwo,@redraw);
-    <<"leaving $_proc\n"
+
 }
 //=================================================
 
@@ -330,7 +325,7 @@ proc adjustYear(int updown)
 
    sWo(swo,@xscales,rx,rX) 
 
-   sWo(gwo,@scales,rx,minWt,rX,topWt,@savescales,0)
+   sWo(gwo,@scales,rx,minWt,rX,upperWt,@savescales,0)
 
    drawScreens()
 }
@@ -366,7 +361,7 @@ proc adjustQrt(int updown)
 
    sWo(wedwo,@xscales,rx,rX,@savescales,0)
 
-   sWo(gwo,@scales,rx,minWt,rX,topWt,@savescales,0)
+   sWo(gwo,@scales,rx,minWt,rX,upperWt,@savescales,0)
  
    sWo(swo,@xscales,rx,rX,@savescales,0)
  
@@ -385,8 +380,8 @@ proc showCompute()
 
 proc showTarget()
 {
-// target wt and date
 
+// target wt and date
 //  <<"$_proc $gday $NextGoalWt $last_known_day\n"
   
 //  plot(gwo,@symbol,gday,NextGoalWt, "triangle",1, YELLOW_);

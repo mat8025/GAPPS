@@ -270,9 +270,9 @@ proc readCCData()
 
     //day = ccol[0];
 
-    wday = RCC[tl][0];
+    day = RCC[tl][0];
 
-    //wday = julian(day) 
+    wday = julian(day) 
 
     kd = wday - bday;
 
@@ -281,9 +281,9 @@ proc readCCData()
   
   CCDV[j] = kd;  // julian day - bday - #daysofar
 
-  cals = atof(RCC[tl][1]);
+  cals = atof(RCC[tl][2]);
   CALSCON[j] = cals;
-  carbs = atof(RCC[tl][2]);
+  carbs = atof(RCC[tl][3]);
   CARBSCON[j] = carbs;
   CARBSCON[j+1] = 0;    
 //<<[_DB]"%V $j $cals $CALSCON[j]\n"

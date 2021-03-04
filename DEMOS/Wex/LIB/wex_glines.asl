@@ -51,17 +51,17 @@ if ( gw_gl == -1 || bp_gl == -1) {
    exit_si()
  }
 
- calb_gl = cGl(calwo,@TXY,DVEC,CALBURN,@color,BLUE_,@ltype,SYMBOLS_,DIAMOND_)
+ calb_gl = cGl(calwo,@TXY,DVEC,CALBURN,@color,RED_,@ltype,SYMBOLS_,DIAMOND_,@symhue, RED_)
 
 // calc_gl = cGl(calwo,@TXY,DFVEC,CALCON,@color,RED_,@ltype,SYMBOLS_,"triangle",@symhue, BLUE_)
 
  calc_gl = cGl(calwo,@TXY,CCDV,CALSCON,@color,RED_,@ltype,SYMBOLS_,STAR_,@symhue, RED_)
 
- carb_gl = cGl(calwo,@TXY,CCDV,CARBSCON,@color,RED_,@ltype,SYMBOLS_,STAR_,@symhue, RED_)
+ carb_gl = cGl(carbwo,@TXY,CCDV,CARBSCON,@color,BLUE_,@ltype,SYMBOLS_,TRI_,@symhue, BROWN_)
 
  ave_ext_gl  = cGl(extwo,@TXY,DVEC,AVE_EXTV,@color,RED_,@ltype,LINE_)
 
- se_gl   = cGl(extwo,@TXY,DVEC,SEVEC,@color,GREEN_,@ltype,SYMBOLS_,"diamond")
+ se_gl   = cGl(extwo,@TXY,DVEC,SEVEC,@color,GREEN_,@ltype,SYMBOLS_,DIAMOND_)
 
 
   int allgl[] = {wt_gl, gw_gl,bp_gl,ext_gl, se_gl, calb_gl, calc_gl, carb_gl, pwt_gl, cardio_gl, strength_gl}
@@ -84,11 +84,11 @@ if ( gw_gl == -1 || bp_gl == -1) {
 
   sGl(se_gl,@symbol,DIAMOND_,Symsz)
 
-  sGl(calb_gl,@symbol,DIAMOND_,Symsz,@symfill,@symhue,BLUE_)
-  sGl(calc_gl,@symbol,DIAMOND_,Symsz,@symfill,@symhue,RED_)
+  sGl(calb_gl,@symbol,DIAMOND_,Symsz,@symfill,@symhue,RED_)
+  sGl(calc_gl,@symbol,TRI_,Symsz,@symfill,@symhue,BLUE_)
 //  sGl(carb_gl,@symbol,"circle",Symsz,@symfill,@symhue,BLUE_)
- sGl(carb_gl,@symbol,SQUARE_,Symsz,@symfill,@symhue,BLUE_)
-  sGl(bp_gl,@symbol,INVTRI_,Symsz,@missing,0)
+  sGl(carb_gl,@symbol,ITRI_,Symsz,@symfill,@symhue,BROWN_)
+  sGl(bp_gl,@symbol,ITRI_,Symsz,@missing,0)
 
 
 

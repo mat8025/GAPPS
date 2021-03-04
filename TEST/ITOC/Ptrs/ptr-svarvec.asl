@@ -13,14 +13,9 @@
    
 #include "debug"
 
-
-/*
-sdb(1,@pline,@trace)
-
-filterFileDebug(ALLOWALL_,"xxx")
-filterFuncDebug(ALLOW_,"CheckProcFunc")
-filterFuncDebug(ALLOWALL_,"xxx")
-*/
+  if (_dblevel >0) {
+    debugON()
+   }
 
    chkIn(_dblevel);
    
@@ -80,7 +75,7 @@ chkStr(val,"bien")
 <<"%V$sval\n"
 chkStr(sval,"avec")
 
-exit()
+
 
    sz=Caz(S);
 

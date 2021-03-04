@@ -1,21 +1,26 @@
-//%*********************************************** 
-//*  @script vgen.asl 
-//* 
-//*  @comment test vgen  
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                  
-//*  @date Fri Apr 26 06:56:03 2019 
-//*  @cdate Fri Apr 26 06:56:03 2019 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script vgen.asl 
+ * 
+ *  @comment test vgen 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.28 C-Li-Ni] 
+ *  @date 02/28/2021 08:17:21 
+ *  @cdate Fri Apr 26 06:56:03 2019 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                           
 
 
 ///
 
 #include "debug"
 
+if (_dblevel >0) {
+   debugON()
+}
 
  chkIn(_dblevel)
 

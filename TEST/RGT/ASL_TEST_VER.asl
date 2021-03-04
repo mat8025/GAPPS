@@ -1232,35 +1232,27 @@ if ((do_all || do_array ) && (do_array != -1)) {
 
    RunDirTests("Array","array-range,array-subvec,arraysubsref,array-subsrange,arraysubscbyvec")
 
-   RunDirTests("Array","dynarray,lhrange,lhe,joinarray,vec-cat,vgen,array-sr,mdele,vsp,array-index")
+   RunDirTests("Array","dynarray,lhrange,lhe,joinarray,vec-cat,array-sr,mdele,vsp,array-index")
 
   RunDirTests("Scalarvec","scalarvec")
 
+  RunDirTests("Vgen","vgen,vgen-pan")
+
   Run2Test("PrePostOp")
 
-  //cart("prepostop")
 
    do_carts("prepostop")
-
-/*
-
-
-
-
-
-  
-
 
   RunDirTests("M3D","m3d,m3d_assign")
 
   Run2Test("Sgen")
 
-  cart("sgen")
+  do_carts("sgen")
 
   Run2Test("VVgen")
 
-  cart("vvgen")
-*/
+  do_carts("vvgen")
+
 
 
 
@@ -1497,7 +1489,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
    if ((do_all || do_ptrs ) && (do_ptrs != -1)) {
      <<"running ptrs !\n"
       RunDirTests("Swap","swap,swap1");
-      RunDirTests("Ptrs","ptr,ptrvec,ptr-numvec,ptr-svarvec,ptr-varvec,indirect");
+      RunDirTests("Ptrs","ptr,ptr-vec,ptr-numvec,ptr-svarvec,ptr-varvec,indirect");
 
 
    }

@@ -1,15 +1,27 @@
-///
-///
+/* 
+ *  @script vgen-pan.asl 
+ * 
+ *  @comment test vec gen of pan type 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.28 C-Li-Ni]                                
+ *  @date 02/28/2021 08:19:42 
+ *  @cdate 1/1/2021 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
 
-////
 
 #include "debug"
-debugON()
+
+
+if (_dblevel >0) {
+   debugON()
+}
+
 
  chkIn(_dblevel)
-
-
-
 
 
 pan incr = 1.5;
