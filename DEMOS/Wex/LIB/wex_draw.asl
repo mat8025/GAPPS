@@ -90,7 +90,7 @@ proc  drawMonths(int wwo)
    }
    the_date = julmdy("$jd");
    mday = spat(the_date,"/",-1,-1)
-   AxText(wwo, 1, mday, wdate, 0.25, BLUE_);
+   AxText(wwo, 1, mday, wdate, 0.35, BLUE_);
  //  <<"%V $jd $wdate $RS[3] $the_date\n"
     draw_months++;
    }
@@ -114,11 +114,11 @@ proc  drawGrids(int  ws )
   sWo(carbwo,@axnum,AXIS_LEFT_);
   sWo(carbwo,@yscales,0,carb_upper,@savescales);
 
-  sWo(calwo,@usescales,0,@axnum,AXIS_LEFT_);
+  sWo(calwo,@usescales,0,@axnum,  AXIS_LEFT_);
 //  sWo(carbwo,@axnum,2);
   
   sWo(extwo,@yscales,0,250,@savescales,1);
-  sWo(extwo,@axnum,2);
+  sWo(extwo,@axnum,AXIS_LEFT_);
 
   //sWo(extwo,@axnum,2,0,sc_endday,20,10)
   //Text(gwo, "Weight (lbs)",-4,0.7,4,-90)
@@ -214,9 +214,9 @@ proc drawScreens()
       sWo(allwo,@clipborder,"black")
 
       drawMonths(gwo)
-      drawMonths(calwo)
+    //  drawMonths(calwo)
       //drawMonths(carbwo)
-      drawMonths(extwo)      
+    //  drawMonths(extwo)      
 
       //Text(extwo,"Exercise mins",-4,0.5,4,-90)
       //Text(gwo,  "Weight (lbs)",0.8,0.8,1)
@@ -226,6 +226,8 @@ proc drawScreens()
        //dGl(wt_gl)
 
       showTarget();
+
+     
      }
 
       if ( wScreen == 1) {
@@ -250,18 +252,22 @@ proc drawScreens()
 //=================================================
 
 
-proc showWL()
+proc showWL(long ws, long we)
 {
+/*
        RS=wogetrscales(gwo)
 
        rx = RS[1];
        rX = RS[3];
-       
+<<"$_proc %V $rx $rX\n"       
         long ws;
         long we;
 
        ws = rx + bday
        we = rX + bday
+*/
+
+<<"$_proc $ws $we\n"
 
        computeWL( ws, we);
 
@@ -371,10 +377,12 @@ proc adjustQrt(int updown)
 
 proc showCompute()
 {
+<<"$_proc %V $Nsel_exeburn $Nsel_lbs\n"
   sWo(nobswo,@value,Nxy_obs,@update)
-  sWo(xtwo,@value,xhrs,@update)
-  sWo(xbwo,@value,"%6.2f$Nsel_exeburn",@update)
+  sWo(xtwo,@value,xhrs,@redraw)
+  sWo(xbwo,@value,"%6.2f$Nsel_exeburn",@redraw)
   sWo(xlbswo,@value,"%4.1f$Nsel_lbs",@update)
+  
 }
 //========================================================
 

@@ -2,7 +2,8 @@
 //*  @script wex_compute.asl 
 //* 
 //*  @comment  
-//*  @release CARBON 
+//*  @release CARBON
+
 //*  @vers 1.1 H Hydrogen                                                 
 //*  @date Sat Dec 29 09:06:02 2018 
 //*  @author Mark Terry 
@@ -12,7 +13,7 @@
 
 xhrs = 0;
 
-proc computeWL(int wlsday, int wleday)
+proc computeWL(long wlsday, long wleday)
 {
 /// use input of juldays
 /// find the number of exe hours
@@ -22,12 +23,12 @@ proc computeWL(int wlsday, int wleday)
 int i;
 
    Nsel_exemins = 0
-   Nsel_exeburn = 0
+   Nsel_exeburn = 0.0
 
    Nxy_obs = 0
 
    Nsel_lbs = 0.0
-
+<<"$_proc %V $wlsday $wleday  $Nobs\n"
 
    for (i = 0; i < Nobs ; i++) {
 
@@ -46,12 +47,9 @@ int i;
 
    Nsel_lbs = Nsel_exeburn/ 4000.0
 
-  xhrs = (Nsel_exemins/60.0)
+   xhrs = (Nsel_exemins/60.0)
 
-//<<"%V$Nxy_obs %6.2f $Nsel_exemins $(Nsel_exemins/60.0) $Nsel_exeburn $Nsel_lbs $xhrs\n"
-
-
-
+<<"%V$Nxy_obs %6.2f $Nsel_exemins $(Nsel_exemins/60.0) $Nsel_exeburn $Nsel_lbs $xhrs\n"
 
 }
 //=========================

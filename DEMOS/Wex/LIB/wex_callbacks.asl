@@ -55,17 +55,18 @@ proc QUIT()
 
 proc ZIN()
 {
-<<" In $_proc\n"
+<<" In $_proc  $lcpx  $rcpx\n"
        sc_startday = lcpx;
        sc_endday = rcpx;
        
        sWo(wedwo,@xscales,lcpx,rcpx);
 
-       sWo(swo,@xscales,lcpx,rcpx);
+       sWo(gwo,@xscales,lcpx,rcpx);
 
-       drawScreens();
+       //drawScreens();
+<<"calling showWL  $sc_startday\n"
 
-       showWL();
+       showWL(sc_startday, sc_endday);
 
 }
 //--------------------------------------------------
@@ -80,6 +81,8 @@ float RS[10];
        rx = RS[1]
        rX = RS[3]
 
+<<"%V $rx rX\n"
+
        rx -= 14.0;
        rX += 14.0;
 
@@ -93,7 +96,7 @@ float RS[10];
        }
        
 
-       sWo(gwo,@scales,rx,minWt,rX,topWt) 
+       sWo(gwo,@scales,rx,minWt,rX,upperWt) 
        sWo(gwo,@redraw,@update)
 
        sWo(swo,@xscales,rx,rX) 
@@ -105,14 +108,12 @@ float RS[10];
 
        drawScreens()
 
-       showWL()
+       showWL(sc_startday, sc_enday)
 }
 
 //---------------------------------------------
 proc WTLB()
 {
-<<" $_proc \n"
-
        <<" setting cursors $button $Rinfo\n"
 
        if (_ebutton == 1) {

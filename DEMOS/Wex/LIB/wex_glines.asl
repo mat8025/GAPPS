@@ -59,7 +59,7 @@ if ( gw_gl == -1 || bp_gl == -1) {
 
  carb_gl = cGl(carbwo,@TXY,CCDV,CARBSCON,@color,BLUE_,@ltype,SYMBOLS_,TRI_,@symhue, BROWN_)
 
- ave_ext_gl  = cGl(extwo,@TXY,DVEC,AVE_EXTV,@color,RED_,@ltype,LINE_)
+// ave_ext_gl  = cGl(extwo,@TXY,DVEC,AVE_EXTV,@color,RED_,@ltype,LINE_)
 
  se_gl   = cGl(extwo,@TXY,DVEC,SEVEC,@color,GREEN_,@ltype,SYMBOLS_,DIAMOND_)
 

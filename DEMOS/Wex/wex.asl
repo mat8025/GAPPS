@@ -11,6 +11,7 @@
 //* 
 //***********************************************%
 
+
 ///
 /// exercise weight display
 /// calories burned (wt at 180)
@@ -262,9 +263,9 @@ nrd=readData();
    
   
 
-   sc_startday = (jtoday - bday) - 10;
+   long sc_startday = (jtoday - bday) - 10;
 
-   sc_endday = targetday + 3;
+   long sc_endday = targetday + 3;
 
    <<[_DB]"%V$ngday \n"
 
@@ -393,9 +394,14 @@ openDll("plot")
 openDll("image")
 
 include "wex_screen"
+//ans=query("proceed?")
+sleep(0.1)
 include "wex_draw"
+//ans=query("proceed?")
+sleep(0.1)
 include "wex_glines"
-
+//ans=query("proceed?")
+sleep(0.1)
 
 
 ///////////////////////// PLOT  ////////////////////////////////////////////
@@ -431,11 +437,16 @@ int button = 0
   ZIN(); // goes in does'nt leave -- proc stack error
 
 woname = ""
-
+/*
+ans=query("proceed?")
 resize_screen();
+ans=query("proceed?")
 drawScreens();
-showTarget();
+ans=query("proceed?")
+*/
 
+showTarget();
+//ans=query("proceed?")
   titleVers();
 
 
@@ -449,9 +460,9 @@ _DB=-1;
 <<"%V $_eloop\n"
 
      drawScreens();
-ans=query("proceed?")
+//ans=query("proceed?")
 
-mc=getMouseEvent();
+//mc=getMouseEvent();
 while (1) {
 
      //if ((m_num % 50) ==0) {
@@ -459,14 +470,14 @@ while (1) {
 //	}
 
      m_num++
-sleep(1)
+sleep(0.1)
         msg =eventWait();
 <<[2]"$m_num $msg  $_ename $_ewoname\n"
 
        if (_ename @= "PRESS") {
       // ans=iread(">>");
         if (!(_ewoname @= "")) {
-<<[_DB]"calling function via $woname !\n"
+<<"calling function via $woname !\n"
             $_ewoname()
         }
       }
