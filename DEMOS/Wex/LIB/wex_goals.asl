@@ -14,7 +14,7 @@
 ///
 
 //  SET     START DATE      END DATE  TARGET WEIGHT
-Goals = Split("03/01/2021 04/08/2021 175")
+Goals = Split("02/25/2021 04/08/2021 175")
 ////////////////////==============/////////////////
 
 
@@ -34,8 +34,9 @@ gday =  targetday;    // next goal day
 got_start = 0
 
 long yday = julian("01/01/2021")   // this should be found from data file
-long eday = julian("12/31/2021")  
-today = julian("$(date(2))");
+long eday = julian("12/31/2021")
+
+jtoday = julian("$(date(2))");
 
 
 int ngday = 7;
@@ -53,7 +54,7 @@ kdays = k
 
 <<[_DB]"%V$kdays \n"
 
-<<[_DB]"%V$yday  $eday $today  $(date(2))\n"
+<<[_DB]"%V$yday  $eday $jtoday  $(date(2))\n"
 
 _DB =1
 
@@ -88,7 +89,7 @@ proc computeGoalLine()
 // our goal line  wtloss per day!
 <<[_DB]"%V $try_lpd $lpd \n"
 for (i= 0; i < ngday; i++) {
-//<<[_DB]"$(ty_gsday+i) $lw \n"
+<<"$(ty_gsday+i) $lw \n"
     GVEC[i] = lw;
     WDVEC[i] = gsday+i;
     lw -= try_lpd;

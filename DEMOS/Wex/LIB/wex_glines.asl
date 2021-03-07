@@ -29,10 +29,10 @@
 
   sGl(ext_gl,@symsize,3,@symhue,GREEN_)
 
-  wt_gl    = cGl(gwo,@TXY,DVEC,WTVEC,@color,RED_,@ltype,SYMBOLS_,DIAMOND_)
+  wt_gl    = cGl(gwo,@TXY,DVEC,WTVEC,@color,BLUE_,@ltype,SYMBOLS_,DIAMOND_)
 
 
-  sGl(wt_gl,@symbol,TRI_,1.2, @fill_symbol,1,@symsize,0.75,@symhue,RED_)
+
 
   if ((wt_gl == -1)  || (ext_gl == -1)) {
     exit()
@@ -40,7 +40,9 @@
 
 
 
- gw_gl   = cGl(gwo,@TXY,WDVEC,GVEC,@color,BLUE_)
+ gw_gl   = cGl(gwo,@TXY,WDVEC,GVEC,@color,RED_)
+
+
 // gw_gl   = cGl(gwo,@TXY,WDVEC,GVEC,@color,RED_)
 
  bp_gl   = cGl(swo,@TXY,DVEC,BPVEC,@color,RED_,@ltype,SYMBOLS_,@name,"benchpress")
@@ -79,8 +81,8 @@ if ( gw_gl == -1 || bp_gl == -1) {
   sGl(ext_gl,@symbol,TRI_,Symsz, @symfill,)
   sGl(cardio_gl,@symbol,DIAMOND_,Symsz, @symfill)
   sGl(strength_gl,@symbol,STAR5_,Symsz, @symfill)  
-
-  sGl(wt_gl,@symbol,TRI_,Symsz, @symfill,@symhue,RED_)
+  sGl(wt_gl,@symbol,DIAMOND_,Symsz, @symfill,@symhue,BLUE_)
+ 
 
   sGl(se_gl,@symbol,DIAMOND_,Symsz)
 
@@ -94,9 +96,9 @@ if ( gw_gl == -1 || bp_gl == -1) {
 
 //  CURSORS
  // TBC cursor opt?
-  lc_gl   = cGl(gwo,@type,"XY",@color,"orange",@ltype,"cursor")
+  lc_gl   = cGl(gwo,@type,XY_,@color,RED_,@ltype,"cursor")
 
-  rc_gl   = cGl(gwo,@type,"XY",@color,BLUE_,@ltype,"cursor")
+  rc_gl   = cGl(gwo,@type,XY_,@color,WHITE_,@ltype,CURSOR_)
 
 
 //===========================================//

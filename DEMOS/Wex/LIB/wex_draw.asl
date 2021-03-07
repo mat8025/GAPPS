@@ -117,7 +117,7 @@ proc  drawGrids(int  ws )
   sWo(calwo,@usescales,0,@axnum,  AXIS_LEFT_);
 //  sWo(carbwo,@axnum,2);
   
-  sWo(extwo,@yscales,0,250,@savescales,1);
+  sWo(extwo,@yscales,0,upperWt,@savescales,1);
   sWo(extwo,@axnum,AXIS_LEFT_);
 
   //sWo(extwo,@axnum,2,0,sc_endday,20,10)
@@ -164,7 +164,7 @@ proc drawScreens()
   
   <<[_DB]" draw lines \n"
 
-      sWo(extwo,@scales,sc_startday,0,sc_endday+10,250,@savescales,1);
+      sWo(extwo,@scales,sc_startday,0,sc_endday,upperWt,@savescales,1);
 
 
       dGl(exgls)
@@ -193,16 +193,16 @@ proc drawScreens()
       dGl(gw_gl);
 
       
-      sWo(calwo,@scales,sc_startday,0,sc_endday+10,carb_upper,@savescales,1)      
+      sWo(calwo,@scales,sc_startday,0,sc_endday,carb_upper,@savescales,1)      
       dGl(carb_gl) ; //which scale is this going to use      
 
 
-      sWo(calwo,@scales,sc_startday,0,sc_endday+10,CalsY1,@savescales,0)
+      sWo(calwo,@scales,sc_startday,0,sc_endday,CalsY1,@savescales,0)
       dGl(calc_gl)
       dGl(calb_gl)
 
 
-      sWo(gwo,@scales,sc_startday,minWt,sc_endday+10,upperWt,@savescales,0)
+      sWo(gwo,@scales,sc_startday,minWt,sc_endday,upperWt,@savescales,0)
 
       dGl(wt_gl)
        }

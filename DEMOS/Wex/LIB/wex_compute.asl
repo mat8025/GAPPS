@@ -31,17 +31,17 @@ int i;
 <<"$_proc %V $wlsday $wleday  $Nobs\n"
 
    for (i = 0; i < Nobs ; i++) {
-
-     if (LDVEC[i] >= wlsday) {
+        aday = LDVEC[i] - bday;
+     if (aday >= wlsday) {
 
         Nxy_obs++
 
         Nsel_exeburn += EXEBURN[i]
         Nsel_exemins += EXTV[i]
-//<<"%V $i $Nsel_exeburn $Nsel_exemins \n"
+//<<"%V $i $Nsel_exeburn $Nsel_exemins $wlsday  $LDVEC[i]  $bday\n"
      }
 
-     if (LDVEC[i] > wleday) 
+     if (aday > wleday) 
              break; 
    }
 
@@ -54,7 +54,7 @@ int i;
 }
 //=========================
 
-proc getDay(int dayv)
+proc getDay(long dayv)
 {
 
  int m_day;
@@ -62,7 +62,7 @@ proc getDay(int dayv)
 
    for (i = 0; i < Nobs ; i++) {
 
-
+//<<" $i $dayv  $mday $LDVEC[i] \n"
 
      if (LDVEC[i] == m_day) {
 

@@ -56,15 +56,19 @@ proc QUIT()
 proc ZIN()
 {
 <<" In $_proc  $lcpx  $rcpx\n"
+
+
        sc_startday = lcpx;
        sc_endday = rcpx;
        
-       sWo(wedwo,@xscales,lcpx,rcpx);
+       
+       sWo(wedwo,@xscales,sc_startday,sc_endday);
 
-       sWo(gwo,@xscales,lcpx,rcpx);
+       sWo(gwo,@xscales,sc_startday,sc_endday);
 
-       //drawScreens();
-<<"calling showWL  $sc_startday\n"
+
+       drawScreens();
+<<"calling showWL  $sc_startday   $sc_endday\n"
 
        showWL(sc_startday, sc_endday);
 
@@ -73,7 +77,7 @@ proc ZIN()
 
 proc ZOUT()
 {
-
+/*
 float RS[10];
 
        RS=wogetrscales(gwo)
@@ -103,18 +107,26 @@ float RS[10];
        sc_startday = rx;
        sc_endday = rX;
        sWo(swo,@redraw,@update)       
+*/
+
+       sc_startday -= 10;
+       sc_endday  += 10;
+
+       sWo(wedwo,@xscales,sc_startday,sc_endday);
+
+       sWo(gwo,@xscales,sc_startday,sc_endday);
 
        dGl(wt_gl)
 
        drawScreens()
 
-       showWL(sc_startday, sc_enday)
+       showWL(sc_startday, sc_endday)
 }
 
 //---------------------------------------------
 proc WTLB()
 {
-       <<" setting cursors $button $Rinfo\n"
+       <<" setting cursors $button \n"
 
        if (_ebutton == 1) {
          lcpx = _erx;
@@ -127,7 +139,7 @@ proc WTLB()
        if (_ebutton == 3) {
          rcpx = _erx
          sGl(rc_gl,@cursor,rcpx,0,rcpx,300)
-	 getDay(_erx);
+	 getDay(rcpx);
        }
 
 }
@@ -155,7 +167,12 @@ proc setGoals()
    sWo(tw_wo,@moveto,targetday,NextGoalWt,gwo,@redraw);
 }
 
+proc setCursors()
+{
+        sGl(lc_gl,@cursor,lcpx,0,lcpx,300)
+         sGl(rc_gl,@cursor,rcpx,0,rcpx,300)
 
+}
 
 
 ////////////////////////KEYW CALLBACKS///////////////////////////////////////

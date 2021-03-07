@@ -20,17 +20,19 @@
 /// sleep 8 hours   71.5 per hour
 /// office computer work (24-8-exercise hours) 119.3 per hour
 
-myscript = getScript();
+
 
 include "debug"
 include "hv"
-//setDebug(1,@keep,@~pline);
 
-  scriptDBOFF();
+if (_dblevel >0) {
+    debugON()
+   }
 
-setmaxcodeerrors(-1); // just keep going
-setmaxicerrors(-1);
 
+
+
+allowErrors(2)
 _DB =1;
 
 //<<[_DB]"%V$vers $ele_vers\n"
@@ -89,7 +91,7 @@ svar Mo[] = { "JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", 
 
 
 
-
+float WXY[];
 
 
 
@@ -103,8 +105,8 @@ jtoday = julian(today)
 <<[_DB]"%V $today $jtoday \n"
 
 
-minWt = 160;
-upperWt = 225;
+float minWt = 160;
+float upperWt = 225;
 //StartWt = 205;
 
 // rates per min
@@ -263,9 +265,9 @@ nrd=readData();
    
   
 
-   long sc_startday = (jtoday - bday) - 10;
+   long sc_startday = (jtoday - bday) - 20;
 
-   long sc_endday = targetday + 3;
+   long sc_endday = targetday + 10;
 
    <<[_DB]"%V$ngday \n"
 
@@ -395,7 +397,7 @@ openDll("image")
 
 include "wex_screen"
 //ans=query("proceed?")
-sleep(0.1)
+//sleep(0.1)
 include "wex_draw"
 //ans=query("proceed?")
 sleep(0.1)
@@ -455,13 +457,17 @@ _DB=-1;
 
 
 
-    sWo(tw_wo,@move,targetday,NextGoalWt,gwo,@redraw));
+   
 
 <<"%V $_eloop\n"
-
-     drawScreens();
+  sWi(vp,@resize,0.05,0.1,0.9,0.95,0);
+    // drawScreens();
 //ans=query("proceed?")
 
+ sWo(tw_wo,@move,targetday,NextGoalWt,gwo,@redraw));
+
+ sWi(vp,@redraw)
+      drawScreens();
 //mc=getMouseEvent();
 while (1) {
 
@@ -470,7 +476,13 @@ while (1) {
 //	}
 
      m_num++
-sleep(0.1)
+sleep(0.05)
+/*
+   if (m_num == 1) {
+      drawScreens();
+     // setCursors();
+       }
+*/
         msg =eventWait();
 <<[2]"$m_num $msg  $_ename $_ewoname\n"
 
@@ -505,7 +517,7 @@ sleep(0.1)
       }
 
        WXY=WoGetPosition(tw_wo)
-<<"$WXY \n"
+//<<"$WXY \n"
 
        if (!(_ekeyw @= "")) {
          <<[_DB]"calling |${_ekeyw}| $(typeof(_ekeyw))\n"
