@@ -131,16 +131,20 @@ proc WTLB()
        if (_ebutton == 1) {
          lcpx = _erx;
 	// <<"%V $lcpx\n"
-         sGl(lc_gl,@cursor,lcpx,0,lcpx,300)
+         sGl(lc_gl,@cursor,lcpx,0,lcpx,300, CL_init)
+	 CL_init = 0;
          getDay(lcpx);
 
         }
 
        if (_ebutton == 3) {
          rcpx = _erx
-         sGl(rc_gl,@cursor,rcpx,0,rcpx,300)
-	 getDay(rcpx);
+         sGl(rc_gl,@cursor,rcpx,0,rcpx,300, CR_init)
+         CR_init = 0;
+         getDay(rcpx);
        }
+
+
 
 }
 //=========================================

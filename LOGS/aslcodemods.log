@@ -832,3 +832,9 @@ vmf_svar_l.cpp                      1.23  02/27/2021 10:37:53  LUT_, HASH_ for t
 prep.cpp                            2.55  02/27/2021 10:39:09  LUT_,HASH_,GS_MDYHMS_
 vmf_l.cpp                           1.60  02/27/2021 12:04:33  findVal return array of indexes
 pack_l.cpp                          1.81  02/27/2021 12:47:01  isSameLetter
+parset_e.cpp                        2.86  03/09/2021 08:52:32  P_obptr
+parset_e.cpp                        2.85  03/09/2021 08:57:50  P_obptr, P_lhobptr
+ic_call.cpp                         1.56  03/09/2021 09:41:07  P_obptr
+proc_e.cpp                          2.69  03/09/2021 09:41:42  P_obptr
+oo_class.cpp                        2.22  03/09/2021 09:42:14  P_obptr
+oo_class_mbr.cpp                    2.39  03/09/2021 09:42:28  P_obptr

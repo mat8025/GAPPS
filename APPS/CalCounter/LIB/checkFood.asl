@@ -32,6 +32,7 @@ proc Compare(str phr1,str phr2)
 
   fwds = Split(phr2);
   swds = Split(phr1);
+  //swds = phr1;
 
   n2 = Caz (fwds);
 
@@ -148,7 +149,7 @@ str the_food;
   nci = scin(myfood,",")
 
   if (nci > 0) {
-    food_d = split(myfood,',');
+      food_d = split(myfood,',');
     }
   else {
       food_d = split(myfood)
@@ -180,7 +181,9 @@ str the_food;
 	
         //score = Compare(food_d,RF[i][0]);
 //<<"$i $food_wrd\n"
-       score = Compare(food_d,food_wrd);
+
+      // score = Compare(food_d,food_wrd);
+       score = Compare(myfood,food_wrd);
 
       if (score > 0) {
         //  <<"$('PRED_') $Wans $('POFF_')\n"

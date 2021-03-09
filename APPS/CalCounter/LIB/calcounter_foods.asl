@@ -12,7 +12,7 @@
 //***********************************************%
 
 
-record FF[>10];
+record FF[>20];
 
 //============== set up favorites  ====================//
 // select porridge, eggs scrambled, whole milk , coffee
@@ -26,9 +26,6 @@ proc food_init()
 {
 
  A=  ofr("Foods/foods-breakfast.csv");
-
-
-
 
  if (A != -1) {
 
@@ -119,7 +116,7 @@ proc foodsDisplay()
 
     sWo(foodswo,@redraw);
 
-/{/*
+/*
 
 
    if (Nfav < Page_rows) {
@@ -141,9 +138,8 @@ proc foodsDisplay()
 //   sWo(cellwo,@setcolsize,FOODCOLSZ,0,1) ;
 
     sWo(foodswo,@redraw);
-/}*/
 
-/{
+
   for (i = 0; i< Page_rows ; i++) {
   if (i > Nfav) break;
      for (j = 0; j< Fcols ; j++) {
@@ -155,7 +151,7 @@ proc foodsDisplay()
 	 }
        }
      }
-/}
+*/
 
 <<"loaded new foods\n"
 }
@@ -182,11 +178,11 @@ proc FoodType()
   <<" $Nfav $FF[0]\n"
     <<" $FF[Nfav-1]\n"
 
-/{/*
+/*
   for (i=0;i<Nfav;i++) {
    <<"$i $FF[i]\n"
   }
-/}*/
+*/
 
    foodsDisplay()
  }

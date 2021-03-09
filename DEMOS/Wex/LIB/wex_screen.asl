@@ -29,6 +29,8 @@
 
     sWi(allwin,@drawon,@pixmapoff,@save,@bhue,WHITE_)
 
+    CL_init = 1;
+    CR_init = 1;    
 
 ////////////////  WOBS ///////////////
 

@@ -161,6 +161,9 @@ chkN (d3,100);
 <<"%v$a \n"
 
 chkOut()
+
+
+
   while (1) {
 <<"Que pasa $ans ?\n"
 

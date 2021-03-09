@@ -25,18 +25,9 @@
     mr=sWi(vp,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
 
 
-// mr=getmouse_click()
-
-
     sWi(vp,@redraw)
-// mr=getmouse_click()
-
 
 //    sWi(vp,@resize,0.01,0.01,0.99,0.99,@clip,0.01,0.01,0.99,0.99)
-
- //  ME=getmouse_event()
-
-<<"%V $mr $ME\n"
 
     titleButtonsQRD(vp);
 

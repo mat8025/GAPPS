@@ -170,10 +170,12 @@ svar wans;
       // add to daily log ? 
          yn=yesornomenu("Add to Daily Log?")
  yn->info(1)
-         if (yn @="1") {
+        // if (yn @="1") {
+	 if (yn) {
 	 wans = FF[_erow]
 <<"ADDDING %V$_erow  $wans \n"
 //ans=iread("->?")
+         wans->info(1)
          addFoodItem(wans) ; // and save
          }
    }
@@ -432,6 +434,36 @@ proc clearTags()
    return ;
 }
 //============================
+proc gotoLastPage()
+{
+/*
+ int jj = 0;
+ for (jj=0;jj<5;jj++) {
+     PGDWN()
+     gflush()
+ }
+        
+ for (jj=0;jj<10;jj++) {
+     //sleep(0.1)
+     PGUP()
+ //  <<"PGUP $jj $Curr_page\n"
+         gflush()
+    if (Curr_page == 0)
+       break
+ }
+ int last_page =Curr_page;
+ for (jj=0; jj<15; jj++) {
+     PGDWN()
+   
+//     <<"PGDWN $jj $Curr_page\n"
+    if (Curr_page == last_page)
+        break;
+     last_page = Curr_page;
+ }
+*/
+}
+
+//================================
 
 
 <<[_DB]"Done $_include \n"

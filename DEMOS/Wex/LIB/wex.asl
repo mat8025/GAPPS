@@ -22,8 +22,8 @@
 
 
 
-include "debug"
-include "hv"
+#include "debug"
+#include "hv"
 
 if (_dblevel >0) {
     debugON()
@@ -110,8 +110,8 @@ float upperWt = 225;
 //StartWt = 205;
 
 // rates per min
-include "wex_rates"
-include "wex_types"
+#include "wex_rates"
+#include "wex_types"
 
 
 
@@ -243,8 +243,8 @@ else {
 
 
 
-include "wex_goals"
-include "wex_read"
+#include "wex_goals"
+#include "wex_read"
 
 readCCData();
 
@@ -286,7 +286,7 @@ nrd=readData();
 
 
 
-include "wex_foodlog"
+#include "wex_foodlog"
 
 
 //////////////////   Predicted Wt   //////////////////////////////////
@@ -380,11 +380,11 @@ first_k = 0
 //////////////////// DISPLAY /////////////////////////////
 
 
-include "gevent"
+#include "gevent"
 
 <<"%V $_eloop\n"
 
-include "graphic"
+#include "graphic"
 
 msg ="x y z"     // event vars
 msgw =split(msg)
@@ -395,13 +395,13 @@ msgw =split(msg)
 openDll("plot")
 openDll("image")
 
-include "wex_screen"
+#include "wex_screen"
 //ans=query("proceed?")
 //sleep(0.1)
-include "wex_draw"
+#include "wex_draw"
 //ans=query("proceed?")
 sleep(0.1)
-include "wex_glines"
+#include "wex_glines"
 //ans=query("proceed?")
 sleep(0.1)
 
@@ -409,8 +409,8 @@ sleep(0.1)
 ///////////////////////// PLOT  ////////////////////////////////////////////
 //  
 
-include "wex_compute";
-include "wex_callbacks";
+#include "wex_compute";
+#include "wex_callbacks";
 
 
 int wScreen = 0

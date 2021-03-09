@@ -15,22 +15,22 @@
 
 ////////////    DDC  /////////////
 
-include "debug"
-include "gevent"
+#include "debug"
+#include "gevent"
 
-include "hv"
+#include "hv"
 
 
-include "graphic"
-include "calcounter_day"; // check in local LIB first
-include "checkFood";
+#include "graphic"
+#include "calcounter_day"; // check in local LIB first
+#include "checkFood";
 
-include "calcounter_foods";
+#include "calcounter_foods";
 
-include "calcounter_ssp";
-include "calcounter_addrow";
-include "calcounter_adjust";
-include "calcounter_totals";
+#include "calcounter_ssp";
+#include "calcounter_addrow";
+#include "calcounter_adjust";
+#include "calcounter_totals";
 
 
 
@@ -38,44 +38,10 @@ if (_dblevel >0) {
    debugON()
 }
 
-//debugOFF()
-
-_DB = -1;
-
-setNICerrors(-1)
-setmaxcodeerrors(20)
-
-//////   create MENUS here  /////
-/{
-A=ofw("HowMuch.m")
-<<[A],"title HowMuchMore\n"
-<<[A],"item 1.5x M_VALUE 1.5\n"
-<<[A],"help 1.5x \n"
-<<[A],"item 2x M_VALUE 2\n"
-<<[A],"help twice\n"
-<<[A],"item 3x M_VALUE 3\n"
-<<[A],"help 3x \n"
-<<[A],"item 4x M_VALUE 4\n"
-<<[A],"help 4x\n"
-<<[A],"item 10x M_VALUE 10\n"
-<<[A],"help 10x\n"
-<<[A],"item 1/2 M_VALUE 0.5\n"
-<<[A],"help half\n"
-<<[A],"item 1/3 M_VALUE 0.333\n"
-<<[A],"help third\n"
-<<[A],"item 1/4 M_VALUE 0.25\n"
-<<[A],"help quarter\n"
-<<[A],"item 1/10 M_VALUE 0.1\n"
-<<[A],"help  tenth\n"
-<<[A],"factor ? C_INTER "?"\n"
-<<[A],"help set mins\n"  
-cf(A)
-/}
-
 
 record Tot[2];
 
-Tot[0]= Split("#FoodT,NF,ITM,Cals,Carbs,Fat,Prot,Choles,SatFat,Wt,Choline,vA,vC,vB1Th,vB2Rb,vB3Ni,vB5Pa,vB6,vB9Fo,B12,vE,vK,Ca,Fe,Na,K,Zn,",",");
+Tot[0]= Split("#FoodT,NF,ITM,Cals,Carbs,Fat,Prot,Choles,SatFat,Wt,Choline,vA,vC,vB1,vB2,vB3,vB5,vB6,vB9,B12,vE,vK,Ca,Fe,Na,K,Zn,",",");
 tot_rows = Caz(Tot)
 tot_cols = Caz(Tot,0);
 
@@ -84,7 +50,8 @@ tot_cols = Caz(Tot,0);
 //==========================
 int Fcols = 10;
 
-<<[_DB]" In Main ? $_script  <|$_scope|>\n"
+<<" In Main ? $_script  <|$_scope|>\n"
+
   myfood = "pie apple";
   f_unit = "slice";
   f_amt = 1.0;
@@ -93,7 +60,8 @@ Nbp = 4; // number of search results
 Nchoice = 4;   // display choice row size
 Nfav = 4;   // display choice row size  was 8
 
-  ftfile = "Foods/foodtable2020.csv";
+  ftfile = "Foods/foodtable.csv";
+  
   A=  ofr(ftfile);
 
  if (A == -1) {
@@ -116,7 +84,7 @@ Nfav = 4;   // display choice row size  was 8
 
 
 
-/{/*
+/*
    for (i= 0; i < 3; i++) {
        nc = Caz(RF,i);
       <<"<$i> $nc $RF[i] \n";
@@ -127,7 +95,7 @@ Nfav = 4;   // display choice row size  was 8
      nc = Caz(RF,i);
   <<"<$i> $nc $RF[i] \n";
     }
-/}*/
+*/
 //===========================================
 
 
@@ -205,17 +173,18 @@ else {
 
 
 <<"/////////// %v $rows\n"
-/{
+/*
   for (j=0; j<rows; j++) {
 <<"$j  $R[j]\n"
   }
 
-/}
+*/
+
 R->info(1)
 
 
 
-include "calcounter_scrn";
+#include "calcounter_scrn";
 
 //totalRows();
 
@@ -245,15 +214,15 @@ int cv = 0;
   sWo(totalswo,@selectrows,0,1);
   sWo(totalswo,@cellval,Tot,0,1,0,Ncols);
   sWo(totalswo,@setcolsize,FOODCOLSZ,0,1) ;
-  sWo(totalswo,@setcolsize,2,3,1) ;  
+  sWo(totalswo,@setcolsize,1,3,1) ;  
  // sWo(totalswo,@setcolsize,3,0,1);
 
 <<"%V$rows $sz \n"
-/{
+/*
   for (i = 0; i < rows;i++) { 
     <<"[${i}] $R[i]\n";
    }
-/}
+*/
 // color rows
 
    color_foodlog();
@@ -499,7 +468,7 @@ exit()
 
 
 ////////////// TBD ////////////////
-/{/*
+/*
 
   totals == crash
   added yesterday dd-1, dd-2, dd-N
@@ -518,4 +487,4 @@ exit()
 
 
 
-/}*/
+*/

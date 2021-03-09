@@ -248,6 +248,8 @@ proc drawScreens()
 
     sWo(tw_wo,@move,targetday,NextGoalWt,gwo,@redraw);
 
+    CR_init = 1;
+    CL_init = 1;    
 }
 //=================================================
 

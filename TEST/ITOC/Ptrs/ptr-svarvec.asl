@@ -52,19 +52,29 @@ ps->info(1)
 
 
    <<"%V $val\n";
-
-
    val->info(1); 
 
-
-
    val = ps[3];
-
+   S->info(1)
    ps->info(1);
 
    <<"$val\n";
 
 chkStr(val,"bien")
+
+   val = ps[4];
+   S->info(1)
+   ps->info(1);
+
+   <<"$val\n";
+
+   val = ps[4];
+
+   ps->info(1);
+
+   <<"$val\n";
+
+
 
   i= 4;
    

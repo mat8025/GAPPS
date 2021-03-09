@@ -41,7 +41,7 @@ proc addFoodItem(svar wfd)
 
 
 <<"in $_proc record $rows row $er\n"
-    // TBF wvd shoud not be PTR type! - but ARGPTR
+    // TBF wvd should not be PTR type! - but ARGPTR
     R[er] = wfd;
 <<"%V $wfd\n"
 

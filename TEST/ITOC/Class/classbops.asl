@@ -1,20 +1,21 @@
-//%*********************************************** 
-//*  @script classbops.asl 
-//* 
-//*  @comment test class basic ops 
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                 
-//*  @date Tue Mar 12 07:50:33 2019 
-//*  @cdate Tue Mar 12 07:50:33 2019 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script classbops.asl 
+ * 
+ *  @comment test class basic ops 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.29 C-Li-Cu] 
+ *  @date 03/08/2021 11:24:33 
+ *  @cdate Tue Mar 12 07:50:33 2019 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                         
 
-include "debug.asl";
+#include "debug";
 
 
-sdb(_dblevel,@~trace)
 
 if (_dblevel >0) {
    debugON()
@@ -22,15 +23,19 @@ if (_dblevel >0) {
   
 chkIn(_dblevel);
 
-  
+
+#include "abc"
+
+
+
+
 //////////////////////////////////////////////////////
 proc goo( real x)
 {
   a= x;
 <<"$_proc %V $x $a\n";
-
 }
-
+//==================//
 
 goo(1.2)
 
@@ -91,7 +96,7 @@ class Point
  
     cmf getx() 
      {
-      <<"getting $x $_cobj \n"; 
+      <<"$_proc getting $x $_cobj \n"; 
       return x;
       };
     
@@ -99,36 +104,20 @@ class Point
      {
       <<"getting $y  $_cobj  \n"; 
       return y;
-      }
-/{
-    cmf  mul( a) {
-      float tmp;
-      tmp = (a * x); 
-      return tmp; 
-      }
-
-
-    cmf  mul(float a) {
-      float tmp;
-      
-      tmp = (a * x);
-    <<"$_proc %V $a $tmp $x\n";   
-      return tmp; 
-      }
-/}
+      };
 
     cmf  mul(real a) {
       double tmp;
       tmp = (a * x);
     <<"$_proc %V $a $tmp $x\n";         
       return tmp; 
-      }
+      };
 
     cmf  mul(int mi) {
       float tmp;
       tmp = (mi * x); 
       return tmp; 
-      }
+      };
     
     cmf Print() {
       <<"%V $x,$y %i $x,$y\n"; 
@@ -137,9 +126,12 @@ class Point
    cmf Point()
    {
     // same name as class is the constructor
-     x=1;
-     y=1;
-     <<"constructor $_proc  %V $x $y \n"
+
+     y=2;
+     x=4;
+<<"constructor $_proc  %V $x $y \n"
+
+
    };
 
 }
@@ -164,11 +156,19 @@ real r1 = 2.3;
 real r2 = 4.5;
 
 
+  rx=   A->getx();
+  <<"%V $rx\n"
+
+  chkR(rx,4.0);
+
+
   A->setx(r1);
   rx=   A->getx();
   <<"%V $rx\n"
 
   chkR(r1,rx)
+
+
 
  my = A->mul(r2 ); 
   
@@ -374,7 +374,7 @@ real r2 = 4.5;
   
   Point P[3];
   
-  checkProgress(" 4"); 
+  chkProgress(" 4"); 
   v  = 1.3; 
   
   
@@ -391,7 +391,7 @@ real r2 = 4.5;
   <<"%V $i $B->y    $my $v \n"; 
     
     ok=chkR(my,v,5); 
-    checkProgress(" for $i"); 
+    chkProgress(" for $i"); 
     <<"%V$ok $i $my $v\n"; 
     B->y += 0.2; 
     v  =  B->y/2.0;
@@ -403,7 +403,7 @@ real r2 = 4.5;
   
   chkN(i,4); 
   
-  checkProgress("$i  i == 4 ");
+  chkProgress("$i  i == 4 ");
 
 
 
@@ -415,11 +415,9 @@ real r2 = 4.5;
   
   <<" $v\n"; 
   
-  checkProgress();
-  
-  checkProgress("  v xx C->y ");
-  
-  checkProgress("  v -= C->y ");
+  chkProgress();
+    
+  chkProgress("  v -= C->y ");
   
   
   my = B->gety() - C->y; 
@@ -523,9 +521,9 @@ real r2 = 4.5;
   chkOut(); 
 
   
-/{/*  
+/*  
 /// TBD ///////////
-/// still have to check this  gives correct answer  for
+/// still have to chk this  gives correct answer  for
 ///
 //  A->x     - done
 //  A->getx() - done
@@ -534,5 +532,22 @@ real r2 = 4.5;
 //  A->add( B->gety(), C->gety())  ...
 //  A->x->z ....
 //  ...
-/}*/  
+*/  
   
+      
+/*
+    cmf  mul( a) {
+      float tmp;
+      tmp = (a * x); 
+      return tmp; 
+      }
+
+
+    cmf  mul(float a) {
+      float tmp;
+      
+      tmp = (a * x);
+    <<"$_proc %V $a $tmp $x\n";   
+      return tmp; 
+      }
+*/

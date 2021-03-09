@@ -820,7 +820,7 @@ int do_lhsubsc = 0;
 int do_dynv = 0;
 int do_mops = 0;
 
-int do_oo = -1;
+int do_oo = 0;
 int do_sfunc = 0;
 int do_svar = 0;
 int do_record = 0;
@@ -1355,6 +1355,8 @@ if ((do_all || do_proc ) && (do_proc != -1)) {
   cart("proc-var-define", 10)
 
   RunDirTests("ProcArray","poffset,arrayarg1,arrayarg2")
+
+  RunDirTests("ProcCall","proc-call")
 
   Run2Test("Static")
   
