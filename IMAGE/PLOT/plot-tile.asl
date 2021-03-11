@@ -15,8 +15,8 @@ myScript = getScript();
 ///
 ///
 
-include "debug"
-include "hv"
+#include "debug"
+#include "hv"
 
   scriptDBOFF();
 
@@ -146,8 +146,8 @@ nir=vread(AF3,PH,3,UINT_)
  // <<" $CM[::][::] \n"
 
 
-include "graphic"
-include "gevent"
+#include "graphic"
+#include "gevent"
 
 fullpic = 0;
 reduce = 1;

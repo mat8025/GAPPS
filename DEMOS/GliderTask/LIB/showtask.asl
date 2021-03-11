@@ -16,15 +16,13 @@
 
 # map of turn_points
 
-include "debug"
-include "hv.asl"
+#include "debug"
+#include "hv.asl"
 
-//envDebug()
-//#define DBG <<
 
 setMaxICerrors(-1) // ignore - overruns etc
 
-#define DBG ~!
+#define DBG <<
 
 float Max_ele = 18000.0
 float Min_ele  = 0.0;
@@ -32,7 +30,7 @@ float Margin = 0.05;
 
 int Ntpts = 1000;
 
-include "ootlib"
+#include "ootlib"
 
 int Maxtaskpts = 10;
 
@@ -291,8 +289,6 @@ int gtp_wo[>20];
 int ltp_wo[>20];
 
 
-
-
 LoD = 35.0;
 
 char MS[240]
@@ -530,7 +526,7 @@ Nlegs = Ntaskpts;
 
 
 ///////////////////// SETUP GRAPHICS ///////////////////////////
-include "showtask_scrn"
+#include "showtask_scrn"
 
 
 
@@ -593,7 +589,7 @@ include "showtask_scrn"
 # main
 
 
-include  "gevent";
+#include  "gevent";
 
 int dindex;
 int witp = 0;

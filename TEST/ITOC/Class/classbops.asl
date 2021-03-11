@@ -318,21 +318,46 @@ real r2 = 4.5;
   B->Print();
   
   ax = A->getx();
-  <<"A %V $ax \n"; 
+  <<"A %V $ax \n";
+  
   chkR(ax,47,5);
   ay = A->gety();
   <<"A %V $ay \n"; 
+
   chkR(ay,79,5); 
   
   A->Print();
   
-  
+   axy = A->getx() + A->gety();
+
+<<"%V $axy $ax $ay\n"
+
+   axy = A->gety() + A->getx();
+   axy2 = ax + ay;
+   axy3 = ax + ay;   
+<<"%V $axy $axy2 $axy3 $ax $ay\n"
+
+  chkR(axy,(ax+ay),5);
+chkOut()  
   bx = B->getx();
+
   chkR(bx,83,5); 
+
   by = B->gety();
+  
   chkR(by,65,5); 
-  axy = A->getx() + A->gety(); 
+
+  bxy = B->getx() + B->gety();
+
+<<"%V $bxy $bx $by\n"
+
+  axy = A->getx() + A->gety();
+
+<<"%V $axy $ax $ay\n"
+  
   chkR(axy,(ax+ay),5); 
+  chkOut()
+
   bxy = B->getx() + B->gety(); 
   chkR(bxy,(bx+by),5);
   

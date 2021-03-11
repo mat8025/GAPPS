@@ -223,7 +223,7 @@ str pgname = "xx";
 
       np = Caz(Tp);
       
- //    <<"%V $Td $Tl $np\n"
+//    <<"%V $Td $Tl $np\n"
       
       for (i=0 ; i < np; i++) {
 
@@ -237,7 +237,7 @@ str pgname = "xx";
 
 
          if (nl > 0) {
-	   //<<"$pgname \n"
+//	   <<"$pgname \n"
 
            do_carts(pgname);
 
@@ -466,25 +466,21 @@ str prg;
 // variable length args ??
 
 
-void cart_xic(Str aprg)
+void cart_xic(Str prg)
 {
 
-//<<"%V $_proc  <|$aprg|>  \n"
+//<<"%V $_proc  <|$prg|>  \n"
 //aprg->info(1)
 
-//str  xwt_prog;
-//str prog;
-    if (fexist(aprg) != -1) {
+str  xwt_prog;
+str prog = prg;
+    if (fexist(prog) != -1) {
 
       str tim = time() ;  //   TBC -- needs to reinstated
      
    // wt_prog = "$tim "
 
-      str xwt_prog = "$tim ./${aprg}: "
-
-      str prog = aprg;
-      // doxictest("./$aprg")
-
+      xwt_prog = "$tim ./${prog}: "
 
      if (f_exist(prog) != -1) {
 
@@ -515,7 +511,7 @@ void cart_xic(Str aprg)
   fflush(1)
   }
 
-      tst_file = "${aprg}.xtst";
+      tst_file = "${prog}.xtst";
     //  <<"%V $tst_file\n"
       if (f_exist(tst_file) > 0) {
          wlen = slen(xwt_prog)
@@ -527,9 +523,9 @@ void cart_xic(Str aprg)
       }
      else {
 
-       <<[Tcf]"#CRASH FAIL:--failed to run $aprg\n"
+       <<[Tcf]"#CRASH FAIL:--failed to run $prog\n"
        
-       CrashList->Insert("${Curr_dir}/xic_${aprg}")
+       CrashList->Insert("${Curr_dir}/xic_${prog}")
      }
   }
   
@@ -573,21 +569,22 @@ void cart_xic(Str aprg, Str a1)
 //================================//
 
 
-void cart (str aprg)
+void cart (str prg)
 {
 
-//<<"%V $_proc $aprg    \n"  
+//<<"%V $_proc $prg    \n"  
 
   int wlen;
   //str tim;
-  str prg ="xx";
+  str aprg = prg;
   str wstr ="";
 //  in_pargc = _pargc;
   
   xwt_prog = "xxx";
 
   str tim = time();
- // aprg->info(1)
+  
+  //aprg->info(1)
 
 //  <<"rm -f $aprg  ${aprg}.tst  last_test* \n"
   !!"rm -f $aprg  ${aprg}.tst  last_test*"
@@ -663,13 +660,14 @@ void cart (str aprg)
 
 
 //proc cart (str aprg,  gen a1)
-void cart (Str aprg,  Str a1)
+void cart (Str prg,  Str a1)
 {
 
-<<"$_proc  $aprg $a1\n"
+//<<"$_proc  $aprg $a1\n"
   int wlen;
   //str tim;
-   <<"%V $_pstack \n"
+//   <<"%V $_pstack \n"
+   str aprg = prg;
    in_pargc = _pargc;
   
    xwt_prog = "xxx";
@@ -746,7 +744,7 @@ void cart (Str aprg,  Str a1)
 void do_carts (str aprog)
 {
   str wprg = aprog;
-
+//!!"pwd"
 //<<"run cart vers  $wprg \n"
        cart (wprg);
 
@@ -889,7 +887,7 @@ int do_release = 0;
       $do_arg = 1;
      }
      
-//<<[2]" $i $wt $do_arg \n"
+<<[2]" $i $wt $do_arg \n"
 
      i++;
 
@@ -1193,9 +1191,8 @@ changeDir(Testdir)
  if ((do_exp || do_all) && (do_exp != -1)) {
 
 
-   Run2Test("Sexp")
-
-   cart("sexp", 10)
+<<"running Sexp $do_exp \n"
+   RunDirTests("Sexp","sexp");
 
 
 
@@ -1304,7 +1301,7 @@ if ((do_all || do_func ) && (do_func != -1)) {
   Run2Test("Func")
   cart("func", 3)
 
-  RunDirTests("Func","func")
+  RunDirTests("Func","func,repeat-func-call")
   RunDirTests("Args","args")  
 
 
@@ -1509,7 +1506,7 @@ oo_ok =1;  /// OO broke 1/14/2021 FIX
    if ((do_all || do_oo ) && (do_oo != -1)) {
 
   if (oo_ok) {
-    RunDirTests("OO","oa2,rpS,rp2,wintersect,oa,class_array");
+    RunDirTests("OO","oa2,rpS,rp2,wintersect,oa,class-array");
 
     RunDirTests("Obcopy","obcopy,obprocarg");
 
@@ -1608,7 +1605,8 @@ if ((do_all || do_threads )) {
 
 
 // and the Grand Total is ???
-
+   if (rt_tests <=0)
+       rt_tests =1;
    pcc = rt_pass/(1.0*rt_tests) * 100
 
    flsz = caz(FailedList)

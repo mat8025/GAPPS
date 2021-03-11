@@ -90,7 +90,6 @@ svar Mo[] = { "JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", 
 <<"$Mo \n"
 
 
-
 float WXY[];
 
 
@@ -392,8 +391,7 @@ msgw =split(msg)
 
 <<[_DB]"%V$msgw \n"
 
-openDll("plot")
-openDll("image")
+
 
 #include "wex_screen"
 //ans=query("proceed?")

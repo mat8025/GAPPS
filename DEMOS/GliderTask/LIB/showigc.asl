@@ -1,27 +1,30 @@
-//%*********************************************** 
-//*  @script showigc.asl 
-//* 
-//*  @comment show igc trace 
-//*  @release CARBON 
-//*  @vers 2.1 H Hydrogen                                                  
-//*  @date Tue Aug 20 01:48:25 2019 
-//*  @cdate 7/21/1997 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2019 → 
-//* 
-//***********************************************%
+/* 
+ *  @script showigc.asl 
+ * 
+ *  @comment show igc trace 
+ *  @release CARBON 
+ *  @vers 2.2 He Helium [asl 6.3.30 C-Li-Zn] 
+ *  @date 03/10/2021 09:50:10 
+ *  @cdate 7/21/1997 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                            
 ///
 /// "$Id: showigc.asl,v 1.5 1997/07/21 15:01:08 mark Exp mark $"
 ///
 
-# map of turn_points
+
+// map of turn_points
 
 
-include "debug"
-include "hv.asl"
-setDebug(1,@keep,@~pline)
+#include "debug"
+#include "hv.asl"
 
-include "ootlib"
+
+#include "ootlib"
 
 
 
@@ -66,7 +69,7 @@ float R[10];
 igcfn = GetArgStr()
 
   if (igcfn @= "") {
-  igcfn = "spk.igc"
+      igcfn = "IGC/spk.igc"
    }
 
 
@@ -105,66 +108,25 @@ igcfn = GetArgStr()
       max_ele = ssele[6];
 <<" min ele $ssele[5] max $ssele[6] \n"
 
-  LatS = min_lat -0.1;
-  LatN = max_lat+0.1;
+    LatS = min_lat -0.1;
+   LatN = max_lat+0.1;
 
    LongW = max_lng +0.1;
     LongE = min_lng -0.1;
 
-exit()
+
 
 ///////////////////// SETUP GRAPHICS ///////////////////////////
-
-Graphic = CheckGwm();
-
-  if (!Graphic) {
-    Xgm = spawnGwm("ShowTask")
-  }
-
-// create window and scale
-
-  vp = cWi("title","vp","resize",0.1,0.01,0.9,0.95,0)
-
-  sWi(vp,"scales",-200,-200,200,200,0, @drawoff,@pixmapon,@save,@bhue,WHITE_); // but we dont draw to a window!
-
-  sWi(vp,"clip",0.01,0.1,0.95,0.99);
-
-  vptxt= cWo(vp,@TEXT,@resize_fr,0.55,0.01,0.95,0.1,@name,"TXT",@color,WHITE_,@save,@drawon,@pixmapoff);
-
-  tdwo= cWo(vp,@BV,@resize_fr,0.01,0.01,0.14,0.1,@name,"TaskDistance",@color,WHITE_,@style,"SVB");
-
-  sawo= cWo(vp,@BV,@resize_fr,0.15,0.01,0.54,0.1,"name","SafetyAlt",@color,WHITE_,@style,"SVB");
-
-  vvwo= cWo(vp,@GRAPH,@resize_fr,0.2,0.11,0.95,0.25,@name,"MAP",@color,WHITE_);
-
-  sWo(vvwo, @scales, 0, 0, 86400, 8000, @save, @redraw, @drawon, @pixmapon);
-
-  mapwo= cWo(vp,@GRAPH,@resize_fr,0.2,0.26,0.95,0.95,@name,"MAP",@color,WHITE_);
-
-<<"%V $mapwo \n"
-
-  sWo(mapwo, @scales, LongW, LatS, LongE, LatN, @save, @redraw, @drawon, @pixmapon);
-
-
-
-
-
-   c= "EXIT"
-
-   sWi(vp,@redraw); // need a redraw proc for app
-
-   //igcfn = "spk.igc"
-
-
-
-
-  sWo(mapwo, @scales, LongW, LatS, LongE, LatN, @save, @redraw, @drawon, @pixmapon);
+#include "graphic"
+#include "showigc_scrn"
 
 
 //  set up the IGC track for plot
     igc_tgl = cGl(mapwo,@TXY,IGCLONG,IGCLAT,@color,BLUE_);
 
     igc_vgl = cGl(vvwo,@TY,IGCELE,@color,RED_);
+
+
 
     DrawMap(mapwo);   // show the turnpts
 
@@ -175,8 +137,10 @@ Graphic = CheckGwm();
     DrawGline(igc_vgl);  // plot the igc climb -- if supplied
    }
 
+
+
 # main
-setdebug(0,"proc");
+
 
 int wwo = 0;
 int witp = 0;
@@ -187,56 +151,48 @@ float d_ll = 0.05;
 
 keyw = "";
 
-float mrx;
-float mry;
+int m_num =0;
 str wcltpt="XY";
 
-gevent E;
+#include "gevent"
 
   while (1) {
 
     drawit = 1
-
-    E->waitForMsg()
-
-    keyw = E->getEventKeyw();
-    keyc = E->getEventKey();
-    woname = E->getEventWoName();    
-    wwo = E->getEventWoid();
+    msg =eventWait();
+    m_num++;
     
-    E->getEventRXY(mrx,mry);    
+<<"%V $m_num $msg  $_ename $_ewoname $_ekeyc \n"
 
 
-<<"%V $keyw $keyc $woname\n"; 
+    Text(vptxt," $_ekeyw   ",0,0.05,1)
 
-    Text(vptxt," $keyw   ",0,0.05,1)
-
-       if ( ! (keyc @= "")) {
+       if ( ! (_ekeyc @= "")) {
 
        d_ll = (LatN-LatS)/ 10.0 
 
-       if (keyc @= "Q") {
+       if (_ekeyc @= "Q") {
            LongW += d_ll
            LongE += d_ll
        }
 
-       if (keyc @= "S") {
+       if (_ekeyc @= "S") {
            LongW -= d_ll
            LongE -= d_ll
        }
 
-       if (keyc @= "R") {
+       if (_ekeyc @= "R") {
            LatN += d_ll
            LatS += d_ll
        }
 
-       if (keyc @= "T") {
+       if (_ekeyc @= "T") {
            LatN -= d_ll
            LatS -= d_ll
        }
 
 
-       if (keyc @= "x") {
+       if (_ekeyc @= "x") {
            LatN += d_ll
            LatS -= d_ll
            LongW += d_ll
@@ -244,14 +200,15 @@ gevent E;
 
        }
 
-       if (keyc @= "z") {
+       if (_ekeyc @= "z") {
            LatN -= (d_ll * 0.9)
            LatS += (d_ll * 0.9)
            LongW -= (d_ll * 0.9)
            LongE += (d_ll * 0.9)
        }
-
-       if (keyw @= "_Start_") {
+    }
+    
+       if (_ekeyw @= "_Start_") {
              sWo(wwo, @cxor)
              if (PickaTP(0)) {
 	     wcltpt = Tasktp[0]->cltpt;
@@ -260,44 +217,38 @@ gevent E;
 	     sWo(wwo, @cxor)
        }
 
+       if (_ekeyw @= "MAP") {
 
+    //
 
-
-       if (keyw @= "MAP") {
-
-               drawit = 0;
-
-               ntp = ClosestLand(mrx,mry);
-
-
-
+               ntp = ClosestLand(_erx,_ery);
         }
 
 
         if (drawit) {
-	
+	<<"drawing !\n"
         sWo(mapwo, @scales, LongW, LatS, LongE, LatN )
-        sWo(mapwo,@clearpixmap,@clipborder);
+        sWo(mapwo,@clearpixmap,@clipborder,@savepixmap);
 
         //DrawTask(mapwo,"orange")
         DrawMap(mapwo);
 	if (Ntpts > 0) {
         sWo(vvwo, @scales, 0, 0, Ntpts, 6000 )
         DrawGline(igc_tgl);
-	sWo(vvwo,@clearpixmap,@clipborder);
+	sWo(vvwo,@clearpixmap,@clipborder,@savepixmap);
 	DrawGline(igc_vgl);
         sWo(mapwo,@showpixmap);
         sWo(vvwo,@showpixmap);
 	}
-        }
+    }
 
-      }
+     
 
   }
 ///
 
 //////////////////////////// TBD ///////////////////////////////////////////
-/{/*
+/*
 
 
  BUGS:  
@@ -327,7 +278,7 @@ gevent E;
 
 
 
-/}*/
+*/
 
 
 

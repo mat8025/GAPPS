@@ -1,27 +1,29 @@
-//%*********************************************** 
-//*  @script m3d.asl 
-//* 
-//*  @comment test multi dim 3 
-//*  @release CARBON 
-//*  @vers 1.3 Li Lithium                                                 
-//*  @date Fri Feb  8 20:22:01 2019 
-//*  @cdate 1/1/2001 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script m3d.asl 
+ * 
+ *  @comment test multi dim 3 
+ *  @release CARBON 
+ *  @vers 1.4 Be Beryllium [asl 6.3.30 C-Li-Zn] 
+ *  @date 03/11/2021 10:51:53 
+ *  @cdate 1/1/2001 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                      
 
 
-include "debug.asl";
-
-  debugON();
-  setdebug(1,@keep,@pline,@trace);
-  FilterFileDebug(REJECT_,"~storetype_e");
-  FilterFuncDebug(REJECT_,"~ArraySpecs",);
+#include "debug";
 
 
 
-chkIn(0)
+if (_dblevel >0) {
+   debugON()
+}
+  
+chkIn(_dblevel);
+
 
 
 N = 10

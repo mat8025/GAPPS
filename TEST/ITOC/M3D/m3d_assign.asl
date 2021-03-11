@@ -1,30 +1,27 @@
-//%*********************************************** 
-//*  @script substitute.asl 
-//* 
-//*  @comment test substitute func 
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                 
-//*  @date Tue Mar 12 07:50:33 2019 
-//*  @cdate Tue Mar 12 07:50:33 2019 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
-/{/*
+/* 
+ *  @script m3d_assign.asl 
+ * 
+ *  @comment test substitute func 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.30 C-Li-Zn] 
+ *  @date 03/11/2021 10:52:56 
+ *  @cdate Tue Mar 12 07:50:33 2019 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                         
 
 
-/}*/
+#include "debug";
 
- include "debug.asl";
+if (_dblevel >0) {
+   debugON()
+}
+  
+chkIn(_dblevel);
 
-  debugON();
-  setdebug(1,@keep,@pline,@trace);
-  FilterFileDebug(REJECT_,"~storetype_e");
-  FilterFuncDebug(REJECT_,"~ArraySpecs",);
-
-
-
-chkIn()
 
 nrows = 10
 n_feat = 8

@@ -1,10 +1,40 @@
+/* 
+ *  @script sexp.asl 
+ * 
+ *  @comment test simple expression 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.30 C-Li-Zn]                                
+ *  @date 03/11/2021 09:31:21 
+ *  @cdate 1/1/2005 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
 
+#include "debug";
+
+
+
+if (_dblevel >0) {
+   debugON()
+}
+  
+
+<<"Running $_script\n"
 chkIn(_dblevel)
 
-// this has to done - don't use automatic linking
-// since does not have IC equivalent - yet
 
-zz = 75 * 40 * 4
+  zz = 75 * 40 ;
+
+<<"%V $zz\n"
+
+chkN(zz,3000)
+
+
+chkOut()
+
+  zz = 75 * 40 * 4;
 
  if ( zz != 12000) {
 
@@ -12,7 +42,7 @@ zz = 75 * 40 * 4
 
  }
  else {
-<<" a simple SUCCESS!\n"
+<<" a simple SUCCESS! $zz\n"
  }
 
    chkN(zz,12000)
@@ -29,6 +59,8 @@ zz = 75 + 40 * 4
 
  }
 
+
+
 prog = GetScript()
 
 <<" %v is  $prog \n"
@@ -38,12 +70,13 @@ prog = GetScript()
 
  N = GetArgD()
 
-<<"%I %v $N \n"
+<<"%v $N \n"
 
  if (N == 0.0) {
 
 <<" enter parameter value != 0.0  on command line -> e.g. \n ./sexp 10 \n"
-    exit()
+<<" use  10\n"
+    N = 10;
   }
 
 

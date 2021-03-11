@@ -32,7 +32,7 @@ int Bestpick[5][2];
 int drows[10];
 Page_rows = 10;  // was 6
 
-FOODCOLSZ = 6;
+FOODCOLSZ = 5;
 
 //////////////////////   these records needed and used for any GSS /////////////////////
 
