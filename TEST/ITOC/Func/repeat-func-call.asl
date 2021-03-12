@@ -12,7 +12,7 @@ if (_dblevel >0) {
   
  chkIn(_dblevel);
 
-N = 10
+N = 1000;
 y= 0.0;
 //x= 0.0;
 //int i = 0;

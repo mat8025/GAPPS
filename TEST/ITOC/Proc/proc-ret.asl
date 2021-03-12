@@ -15,9 +15,14 @@
                                                                         
 #include "debug"
 
-
+if (_dblevel >0) {
+   debugON()
+}
+  
 chkIn(_dblevel)
-debugON()
+
+
+
 Str say()
   {
    <<"$_proc hey there I exist\n"
@@ -250,28 +255,27 @@ int ret = 0;
     return ret;
 }
 //========================
+
 void goo(ptr a)
-//proc goo(int a)
 {
 <<"$_proc $a\n"
   a->info(1)
   $a += 1;
   a->info(1)
-// does,nt really return anything
+// does'nt really return anything
 // return on own crash TBF crash
    return;
 }
 //==================================//
 
-void hoo(real a)
+real hoo(real a)
 {
 <<"$_proc $a\n"
   a->info(1)
   a += 1;
-
+  b = a;
 // does'nt really return anything
-     return;  // TBD crash
- //   return ; // OK
+     return b;  // TBD crash
 }
 //==================================//
 
@@ -451,13 +455,16 @@ real rin = in
    xp = &x;
    goo(xp)
 
-<<"goo $x\n"
+<<"after call goo $x\n"
 
    chkN(x,2);
 
-   hoo(x)
+   xr= hoo(x)
+
+<<"after call hoo $x $xr\n"
 
    chkN(x,2);
+   chkN(xr,3);   
 
 
    double xm=14.0

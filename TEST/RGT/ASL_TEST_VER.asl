@@ -17,12 +17,12 @@
 //<<"TESTING\n"
 #include "debug"
 
-
 #include "hv.asl"
 
-
-//debugON()
-//sdb(1,@~pline,@~trace)
+if (_dblevel > 0) {
+   debugON()
+}
+  
 
 setmaxcodeerrors(-1); // just keep going
 setmaxicerrors(-1);
@@ -36,6 +36,8 @@ setmaxicerrors(-1);
 wasl = "aslx"   // alsx should be stable
 wasl = "asl"
 <<"using $wasl for testing \n"
+
+
 
 //str Progname = "abcd";
 //str Dirname = "Fact"
@@ -839,7 +841,7 @@ int do_release = 0;
   pdir=updir()
   chdir("ITOC")
   Testdir = getdir()
-//<<[2]"Test Dir is $Testdir\n"
+<<[2]"Test Dir is $Testdir\n"
 
 
 
@@ -1226,6 +1228,8 @@ if ((do_all || do_array ) && (do_array != -1)) {
    RunDirTests("VVcopy","range-copy,vvcopy")
 
    RunDirTests("Array","ae,arraystore,arrayele,arraysubset")
+
+
 
    RunDirTests("Array","array-range,array-subvec,arraysubsref,array-subsrange,arraysubscbyvec")
 

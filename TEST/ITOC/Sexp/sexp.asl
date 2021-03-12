@@ -32,7 +32,7 @@ chkIn(_dblevel)
 chkN(zz,3000)
 
 
-chkOut()
+
 
   zz = 75 * 40 * 4;
 

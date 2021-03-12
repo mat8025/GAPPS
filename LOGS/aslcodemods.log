@@ -838,3 +838,6 @@ ic_call.cpp                         1.56  03/09/2021 09:41:07  P_obptr
 proc_e.cpp                          2.69  03/09/2021 09:41:42  P_obptr
 oo_class.cpp                        2.22  03/09/2021 09:42:14  P_obptr
 oo_class_mbr.cpp                    2.39  03/09/2021 09:42:28  P_obptr
+ic_xic.cpp                          1.76  03/12/2021 11:51:42  callproc.calliproc
+ic_call.cpp                         1.57  03/12/2021 11:52:43  callproc,calliproc
+proc_return_e.cpp                   3.50  03/12/2021 11:53:51  guard return no var/val
