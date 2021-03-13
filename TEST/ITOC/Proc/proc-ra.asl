@@ -39,6 +39,22 @@ void Refarg (int v)
 }
 //=====================
 
+void RefargP (ptr v)
+{
+<<"IN %V  $v $n \n"
+   v->info(1)
+  // v++; // fail
+      v = v + 1; // ok
+    //v = v + 5; // ok
+  <<"  %V $v  $n\n"   
+   //  v *= 2; // fail
+     v =  v * 2; // fail
+<<"  %V $v $n\n"        
+     v++;
+  <<"OUT  %V $v  $n\n"   
+}
+//=====================
+
 int n = 3;
 
 <<"%V pre $n  \n"

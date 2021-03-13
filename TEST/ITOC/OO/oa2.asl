@@ -14,7 +14,11 @@
 #include "debug"
 
 
- ignoreErrors()
+if (_dblevel >0) {
+   debugON()
+}
+
+
    
 
 
@@ -24,7 +28,7 @@ int i = 0;
 
 //<<" $(i->info()) \n"  // TBF recurses 
 
- iv = info(&i);
+ i->info(1)
 
 <<"$iv \n"
 
@@ -596,71 +600,74 @@ for (i = 5; i >= 0; i--) {
 
 int dil_ocnt = 0;
 
+<<"%V $dil_ocnt \n"
+
 class Dil {
 
  public:
  int w_day;
-
+ int w_min;
+ int w_sec;
+ 
 // Act A[3] ;
 // FIXME each cons of A tacks on anotherstatement ??
 //
 
  Act B;
- Act A[10];
+ //Act A[10];
+ cmf Get()
+ {
+ <<"$_proc  \n"
+   w_day->info(1)
+<<"getting w_day $w_day\n"
+   return w_day;
+ }
 
  cmf Dil() 
  {
-   w_day = 1
-  // <<"cons of Dil $_cobj $w_day $dil_ocnt\n"
    dil_ocnt++ 
- }
+   w_day = dil_ocnt;
+  <<"cons of Dil $_cobj $w_day $dil_ocnt\n"
+
+}
 
 }
 //=========================//
 
 
-xov = 20;
+
 
 <<" after class def Dil \n"
 
-
-Dil H[2];
-
-<<" after class def Dil H \n"
-
-
-
-
-<<"FIRST H[2] $(xov--) \n"
-
-chkN(xov,19)
-
-
-<<"$(xov--) \n"
-<<"$(xov--) \n"
-<<"$(xov--) \n"
-
-
-<<" after H[2] \n"
-
-
 <<" attempting Dil E \n"
-xov = 20
+!a
 
  Dil E 
 
-<<"FIRST E $(xov--) \n"
+<<"%V $dil_ocnt \n"
+ E->info(1)
 
- chkN(xov,19)
+ od =E->Get();
+<<"E->w_day $od\n"
+
+!a
+
+Dil H[2];
+
+<<" after class def Dil H[2] \n"
+<<"%V $dil_ocnt \n"
+
+H->info(1)
+
+od = H[1]->Get();
+
+<<"%V $od\n"
+!a
 
 
 
 
-<<"$(xov--) \n"
-<<"$(xov--) \n"
-<<"$(xov--) \n"
-<<"$(xov--) \n"
-<<"$(xov--) \n"
+
 
 //  FIXME ---- not going to first following statement in E has nested class!!
 
@@ -1024,7 +1031,7 @@ exit()
 
 
 //////////////////////////  TBD //////////////////////////////////////
-#{
+/*
 
 						       RDP	XIC
 1. Direct Set & Get   - Simple Class                 - OK      OK
@@ -1048,5 +1055,5 @@ FIX  --- nested class
 
 
 
-#}
+*/
 //////////////////////////////////////////////////////////////////////

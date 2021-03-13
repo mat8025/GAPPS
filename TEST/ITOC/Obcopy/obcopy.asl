@@ -12,7 +12,7 @@
 //***********************************************%
 
 
-include "debug"
+#include "debug"
 
 if (_dblevel >0) {
    debugON()
@@ -40,9 +40,11 @@ proc cart (str aprg)
 }
 pdef++; <<"%V$pdef \n"
 //=========================//
-proc goo(ptr a)
-{
 
+void goo(ptr a)
+{
+<<"$_proc $a\n"
+   a->info(1)
    b = $a;
 
 <<"%V $a $b\n"
@@ -72,10 +74,14 @@ pdef++; <<"%V$pdef \n"
 
 <<"%V $x $y\n";
 
-
- goo(&x)
+ xp = &x;
+ xp->info(1)
+ //$xp = 1;
+ // xp->info(1)
+ goo(xp)
 
  x->info(1)
+
  
  chkN(x,2)
 
@@ -85,7 +91,7 @@ pdef++; <<"%V$pdef \n"
 
 
 
-goo(&x)
+goo(xp)
 
 x->info(1)
 <<"%V $x\n"
@@ -197,13 +203,13 @@ class fruit  {
    
     }
 
-/{/*
+/*
   cmf ~fruit()
     {
 <<" doing destructor   for %v $_cobj \n"
      ASK
    }
-/}*/
+*/
 
  }
 //==================================//
@@ -294,11 +300,6 @@ proc roo2 (str a)
 
 
 
-
-
-
-
-//proc goo(int noo)
 proc goo()
 {
 

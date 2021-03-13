@@ -11,7 +11,16 @@
 //* 
 //***********************************************%
   
-  chkIn(_dblevel); 
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+}
+
+
+
+chkIn(_dblevel); 
   
   Nhouses = 0;
 

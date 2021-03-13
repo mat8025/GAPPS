@@ -10,25 +10,25 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-myScript = getScript();
+
 ///
 ///
 ///
 
-include "debug"
-include "hv"
+#include "debug"
+#include "hv"
 
  if (_dblevel >0) {
     debugON()
    }
    
 
+void useage()
+{
 
-filterFileDebug(ALLOWALL_,"xxx")
-filterFuncDebug(ALLOW_,"CheckProcFunc")
-filterFuncDebug(ALLOWALL_,"xxx")
-
-
+<<" cat Scores/score_03-*2021 | grep Modules | asl plot-tresults\n"
+<<"plot scores (when number of modules tested > 100) \n"
+}
 
 A = 0  // read on stdio
 
@@ -53,7 +53,7 @@ ycol = 1
 
 <<"%V $A\n"
 
- R = ReadRecord(A,@type,FLOAT_,@del,-1,@pickcond,">",7,100)
+ R = ReadRecord(A,@type,FLOAT_,@del,-1,@pickcond,">",6,100)
 
      sz = Caz(R)
 
@@ -80,14 +80,15 @@ ncols = dmn[1]
 //}
 
 
-//for (i = 0; i <5 ;i++) {
-//<<" $R[i][7] $R[i][14] $R[i][15] $R[i][16] $R[i][17] $R[i][18] $R[i][20] \n"
-//}
+for (i = 0; i <5 ;i++) {
+<<" $R[i][6] $R[i][8] $R[i][14] \n"
+}
+
 
 
 ///    Data results  in record  float type
 
-  FV = R[::][15]
+  FV = R[::][14]
 
   Redimn(FV)
 
@@ -96,7 +97,7 @@ ncols = dmn[1]
 
 //<<"$FV\n"
 
-  CV = R[::][17]
+  CV = R[::][16]
 
   Redimn(CV)
 
@@ -107,7 +108,7 @@ ncols = dmn[1]
 
 //<<"$CV\n"
 
- NM = R[::][7]
+ NM = R[::][6]
 
   Redimn(NM)
 
@@ -116,7 +117,7 @@ ncols = dmn[1]
   NM *= 0.1
 
 
- NT = R[::][9]
+ NT = R[::][8]
 
   Redimn(NT)
 
@@ -125,7 +126,7 @@ ncols = dmn[1]
 
 
 
-  PCV = R[::][13]
+  PCV = R[::][12]
 
   Redimn(PCV)
 
@@ -136,8 +137,8 @@ ncols = dmn[1]
 
 //<<"$XV\n"
 
-include "graphic"
-include "gevent"
+#include "graphic"
+#include "gevent"
 
 
   aslw = asl_w("PLOT_ASL_RESULTS")

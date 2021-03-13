@@ -10,7 +10,15 @@
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-  
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+}
+
+
+
   chkIn(_dblevel); 
   
   Nhouses = 0;
