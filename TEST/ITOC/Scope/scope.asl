@@ -1,8 +1,28 @@
+/* 
+ *  @script scope.asl 
+ * 
+ *  @comment test scope main, proc 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.30 C-Li-Zn]                                
+ *  @date 03/13/2021 22:09:15 
+ *  @cdate 1/1/2004 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */
+ 
 ///
 ///   Scope -- local and Global refs inside of procs
 ///
 
-setdebug(1,@keep,@~trace)
+#include "debug"
+
+
+if (_dblevel >0) {
+   debugON()
+}
+
 
 proc soo()
 {
@@ -70,7 +90,6 @@ chkN(Y,4);
 <<"%V $X $Y\n"
 
 
-
  moo();
 
 chkN(X,4)
@@ -91,7 +110,7 @@ chkN(X,4)
 
   if (m == 1) {
 
-    foo()
+    soo()
 
 <<"%V $j $k $X \n"
     m = 2

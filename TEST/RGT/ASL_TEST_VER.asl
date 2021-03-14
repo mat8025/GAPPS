@@ -654,18 +654,18 @@ if ((do_all || do_lhsubsc )   && (do_lhsubsc != -1)) {
 if ((do_all || do_func ) && (do_func != -1)) {
 
   Run2Test("Func")
-  cart("func", 3)
+  do_carts("func", 3)
 
   RunDirTests("Func","func,repeat-func-call")
   RunDirTests("Args","args")  
 
 
   Run2Test("Ifunc")
-  cart ("ifunc")   //TBC
+  do_carts ("ifunc")   //TBC
 
-  Run2Test("IProc")
-  cart ("iproc")   //TBC
-   <<" skip iproc TBF \n"
+  Run2Test("Iproc")
+  do_carts ("iproc")   //TBC
+   
 }
 
 /////////////////////////////////////////
@@ -942,7 +942,7 @@ TS=!!"ls *.asl "
 tslist="$TS"
 //<<"$(typeof(tslist)) $tslist\n"
    test_list = ssub(tslist,".asl",",",0)
-   
+   test_list = ssub(test_list," ","",0)
 <<"%V $test_list\n"
      RunDirTests("Tests",test_list);
     

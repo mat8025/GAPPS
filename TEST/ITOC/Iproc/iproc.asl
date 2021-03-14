@@ -15,6 +15,14 @@
 ///
 ///
 
+#include "debug"
+
+
+if (_dblevel >0) {
+   debugON()
+}
+
+
  chkIn (_dblevel)
  
 just_once = 0;

@@ -628,7 +628,7 @@ class Dil {
    dil_ocnt++ 
    w_day = dil_ocnt;
   <<"cons of Dil $_cobj $w_day $dil_ocnt\n"
-
+    w_day->info(1)
 }
 
 }
@@ -640,7 +640,7 @@ class Dil {
 <<" after class def Dil \n"
 
 <<" attempting Dil E \n"
-!a
+
 
  Dil E 
 
@@ -650,7 +650,7 @@ class Dil {
  od =E->Get();
 <<"E->w_day $od\n"
 
-!a
+
 
 Dil H[2];
 
@@ -662,7 +662,7 @@ H->info(1)
 od = H[1]->Get();
 
 <<"%V $od\n"
-!a
+
 
 
 

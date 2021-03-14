@@ -14,7 +14,7 @@
 ///
 ///
 
-include "debug"
+#include "debug"
 
 if (_dblevel >0) {
    debugON()
@@ -33,8 +33,8 @@ proc goo( real x)
 }
 
 //======================================//
-class Scalc
-{
+class Scalc {
+
 
  public:
  
@@ -48,7 +48,7 @@ class Scalc
    a= x;
 
   <<"$_proc %V $x $a\n";
-}
+ }
 
 //==========================
 
@@ -68,7 +68,7 @@ class Scalc
     return z;
   }
 //==========================
-/{/*
+
  cmf mul (double x,double y)
   {
    <<"in DOUBLE $_proc $x $y\n";
@@ -76,7 +76,7 @@ class Scalc
    z = x*y;
     return z;
   }
-  /}*/
+
 //==========================
 
  cmf mul (real x,real y)
@@ -113,7 +113,7 @@ class Scalc
 cmf Scalc()
  {
   <<"constructing Scalc \n"
-  a =1
+  a = 1;
   b = 1;
   }
 
@@ -230,7 +230,7 @@ int ag = 47;
 
     acalc->set(ag,79.0)
 
-    acalc->set(47,79)
+    acalc->set(47.0,79.0)
 
     acalc->print();
 
@@ -264,7 +264,7 @@ svar S;
 
 
 
-/{/*
+/*
 
 // so as yet  no overloading via prototyping --- just replaces
 
@@ -287,4 +287,4 @@ svar S;
 //==========================
 
 
-/}*/
+*/

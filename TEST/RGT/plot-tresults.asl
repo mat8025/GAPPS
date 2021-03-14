@@ -158,7 +158,7 @@ for (i = 0; i <5 ;i++) {
 
    grwo=cWo(aw,@GRAPH,@resize,0.1,0.1,0.95,0.95,@name,"PXY",@color,WHITE_)
   <<"%V $aw $grwo \n"
-   sWo(grwo,@drawoff,@pixmapon,@clip,0.1,0.1,0.9,0.9,@scales,0,0,nrows,maxFC,@savescales,0)
+   sWo(grwo,@drawon,@pixmapon,@clip,0.1,0.1,0.9,0.9,@scales,0,0,nrows,maxFC,@savescales,0)
    sWo(grwo,@rhtscales,0,0,nrows,5000,@savescales,1)
 
    sWo(grwo,@clearclip)
@@ -170,7 +170,7 @@ for (i = 0; i <5 ;i++) {
 
 
    sWi(aw,@redraw)
- 
+
   fgl=cGl(grwo,@TXY,XV, FV, @color, BLUE_,@ltype,SYMBOLS_,TRI_);
 
 //<<"%V $fgl \n"
@@ -215,6 +215,10 @@ for (i = 0; i <5 ;i++) {
 //ans=query("?")
 <<"%V $cgl \n"
     sWi(aw,@redraw)
+
+   sWo(grwo,@axnum,AXIS_LEFT_);
+   sWo(grwo,@axnum,AXIS_RIGHT_);
+
 while (1) {
 
      sleep(1)
@@ -226,8 +230,11 @@ while (1) {
      dGl(nmgl)
 
      dGl(ntgl)
+   sWo(grwo,@usescales,1,@axnum,  AXIS_RIGHT_);
+   sWo(grwo,@axnum,AXIS_LEFT_);
+    AxText(grwo, 1, 0, maxFC, 1.0, BLUE_);
      sWo(grwo,@showpixmap)
-       
+
 }
  
 
