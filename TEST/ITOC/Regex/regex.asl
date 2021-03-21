@@ -1,19 +1,21 @@
-//%*********************************************** 
-//*  @script regex.asl 
-//* 
-//*  @comment test 
-//*  @release CARBON 
-//*  @vers 1.41 Nb Niobium                                                 
-//*  @date Mon Apr  8 09:51:04 2019 
-//*  @cdate 1/1/2004 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script regex.asl 
+ * 
+ *  @comment test 
+ *  @release CARBON 
+ *  @vers 1.42 Mo Molybdium [asl 6.3.31 C-Li-Ga] 
+ *  @date 03/14/2021 10:42:28 
+ *  @cdate 1/1/2004 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                      
 #
 
 
-#include "debug.asl";
+#include "debug";
 
 
 
@@ -43,8 +45,9 @@ G = scat(D,"|",E,":",C,",",F,";",H)
 
 p = regex(C,"vox")
 
-<<"$p \n"
-
+<<"index for pattern vox in $C  $p \n"
+chkN(p[0],4)
+chkN(p[1],7)
 
 p = regex(G,"vox")
 
@@ -113,16 +116,16 @@ chkN(p[0],0)
 }
 
 p = regex(S[3],"DBPR *\t*\\(")
-exit()
+
 <<"$p\n"
 chkN(p[0],-1)
 
 
 <<"//////////////////////\n"
 <<"DQ  single line\n"
-/{/*
+/*
 T= "Highlighting regular expression matches in EditPad Pro. As a quick test, copy and paste the text of this page into EditPad Pro. Then select Search|Multiline Search Panel in the menu. In the search panel that appears near the bottom, type in regex in the box labeled \"Search Text\". Mark the \"Regular expression\" checkbox, and click the Find First button. This is the leftmost button on the search panel. See how EditPad Pro's regex engine finds the first match. Click the Find Next button, which sits next to the Find First button, to find further matches. When there are no further matches, the Find Next button's icon flashes briefly.";
-/}*/
+*/
 
 T= "Highlighting regular expression matches in EditPad Pro. As a quick test, copy and paste the text of this page into EditPad Pro. ";
 <<"$T\n"

@@ -841,3 +841,6 @@ oo_class_mbr.cpp                    2.39  03/09/2021 09:42:28  P_obptr
 ic_xic.cpp                          1.76  03/12/2021 11:51:42  callproc.calliproc
 ic_call.cpp                         1.57  03/12/2021 11:52:43  callproc,calliproc
 proc_return_e.cpp                   3.50  03/12/2021 11:53:51  guard return no var/val
+aop_l.cpp                           1.23  03/14/2021 09:40:56  sum returns scalar if vector input (1D)
+vmf_l.cpp                           1.61  03/16/2021 11:04:48  strcasecmp objid
+scope_e.cpp                         2.78  03/17/2021 11:23:04  refactor

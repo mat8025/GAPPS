@@ -69,7 +69,7 @@
 
     carb_upper = 120;
 
-    ok=sWo(wedwo,@clip,CXY, @color,LILAC_,@clipbhue,MAGENTA_,@bhue,WHITE_,@font,F_SMALL_,@save,@savepixmap)
+    ok=sWo(wedwo,@clip,CXY, @color,LILAC_,@clipbhue,WHITE_,@bhue,WHITE_,@font,F_SMALL_,@save,@savepixmap)
 
     ok=sWo(calwo,@clip,CXY, @color,MAGENTA_,@clipbhue,LILAC_,@bhue,WHITE_,@font,F_SMALL_)
 
@@ -87,7 +87,7 @@
     sWo(calwo,@scales,sc_startday,0,sc_endday+10,CalsY1,@savescales,0)
 
    //sWo(calwo,@scales,sc_startday,0,sc_endday+10,carb_upper,@savescales,1)
-    sleep(1)
+    //sleep(0.1)
 
     swo= cWo(vp1,@type,"GRAPH",@name,"BenchPress",@color,"white");
     
@@ -127,7 +127,7 @@
 //<<"%V $allwo \n"
 
     sWo(allwo,@drawon,@pixmapon,@redraw,@save,@savepixmap)
-sleep(1)
+//sleep(0.2)
 
 ///////////////////////////////////////////////////////////
 
@@ -161,7 +161,7 @@ sleep(1)
   sWo(xwos,@style,"SVB",@redraw);
   sWo(gwo,@showpixmap,@save);
   sWo(calwo,@showpixmap,@save);
-  sleep(1)
+  sleep(0.1)
   // Measure WOBS
   dtmwo=cWo(vp,@BV,@name,"DAY",@color,RED_,@help," date on day ")
   wtmwo=cWo(vp,@BV,@name,"WTM",@color,RED_,@help," wt on day ")

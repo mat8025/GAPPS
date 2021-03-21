@@ -12,7 +12,13 @@
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
                                                                       
-myScript = getScript();
+#include "debug"
+
+
+if (_dblevel >0) {
+   debugON()
+}
+
 
 
 chkIn(_dblevel)
@@ -61,15 +67,20 @@ sz = Caz(g)
 !ig
 !pg
 
-
+//float sum =0;
 
 int A[3] = {1,2,3}
   sz = Caz(A)
-  <<"%V $sz $A\n"
 
+<<"%V $sz $A\n"
+!i A
   sum = Sum(A);
+
 <<"%V$sum \n"
+  sum->info(1)
+
  chkN(sum,6)
+
 
 A={1,2,3,4,} ;   // OK
   sum = Sum(A);

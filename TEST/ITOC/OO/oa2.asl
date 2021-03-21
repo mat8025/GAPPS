@@ -30,7 +30,7 @@ int i = 0;
 
  i->info(1)
 
-<<"$iv \n"
+<<"$i \n"
 
  iv2 = i->info();
 
@@ -97,49 +97,60 @@ class Act {
  int id;
  svar svtype;
  str stype;
+ int a_day;
  
- cmf Set(int s)
+ cmf Set(int k)
  {
-     <<"Act_Set INT  $_cobj $s\n" 
+     <<"Act_Set INT  $_cobj $k\n" 
      <<"%V$type\n"
-    type = s;
+    type = k;
 
 //!i type
      type->info(1);
      return type;
  }
  
- cmf Set(svar s)
+ cmf Set(svar sa)
  {
      <<"Act Set svar $_cobj \n"
-      s->info(1)
-      svtype = s;
-   <<"$s[1] : $s[2]\n"
-      val = s[1]
+      sa->info(1)
+      svtype = sa;
+   <<"$sa[1] : $sa[2]\n"
+      val = sa[1]
       <<"%V $val\n"
-      val1 = SV[1]
-      <<"%V $val1\n"
-    //  val1 = SV[2]
-    //  <<"%V $val1\n"      
-     <<"stype  $s $svtype\n"
-     //return svtype;
+      //val1 = SV[1]
+      cval1 = SV[1]
+      <<"%V $cval1\n"
+
+     <<"stype  $sa $svtype\n"
+     return svtype;
  }
 
  cmf Set(str sr)
  {
      <<"Act Set  str $_cobj \n" 
       stype = sr;
-           sr->info(1)
+       sr->info(1)
      <<"stype  $sr $stype\n"
      return stype;
  }
 
  cmf Get()
  {
- <<"$_proc  Get\n"
-!i type
-<<"getting type $type\n"
+ <<"$_proc  Get %V $type\n"
+     type->info(1)
+
    return type;
+ }
+ 
+ cmf GetWD()
+ {
+ <<"$_proc  GetWD\n"
+
+
+   a_day->info(1)
+<<"getting  $a_day\n"
+   return a_day;
  }
 
  cmf Act() 
@@ -148,12 +159,16 @@ class Act {
 //   co = _cobj->offset()
 
    id= Act_ocnt++ ;
-  <<"Act cons of $_cobj $id $Act_ocnt\n"
+ 
    type = 1;
 
    mins = 10;
 
    t = 0;
+   a_day = Act_ocnt;
+   a_day->info(1)
+ <<"Act cons of $_cobj $id $Act_ocnt %V $a_day $mins $type\n"
+
  }
 
 }
@@ -161,36 +176,58 @@ class Act {
 
 Act a;
 
+    a->info(1)
     a->type = 2;
 <<"%V$a->type \n"
     a->type = 3;
 <<"%V$a->type \n"
-    a->Set(5);
-<<"%V$a->type \n"
+    at=a->Set(7);
+<<"%V $at $a->type \n"
+
+  chkN(at,7)
 
 
-a->info(1)
+   
+
+ int od = 33;
+
+    at=a->Set(od);
+<<"%V $at $a->type \n"
+
+  chkN(at,33)
 
 
-  <<"%V$a->type \n"
+ obid = a->ObjID();
 
-// FIXME <<" a $(IDof(&a)) $(a->obid())\n"
-
-
- obid = a->objid();
-<<"%V $obid  \n"
- a_info = a->info();
+ <<"%V $obid  \n"
 
 
-<<"$a_info \n"
- <<" a $(IDof(&a))  \n"
-<<" $a->info() \n"
-<<" %V $obid \n"
+
+ od=a->GetWD()
+
+<<"%V $od\n"
 
 
+
+
+  chkN(od,1)
+  
 
 
  Act X[7];
+
+
+ X->info(1)
+
+od=X[2]->GetWD()
+
+<<"X[2] %V $od\n"
+chkN(od,4)
+
+od=X[3]->GetWD()
+
+<<"X[3] %V $od\n"
+chkN(od,5)
 
  X->info(1)
 
@@ -198,14 +235,21 @@ a->info(1)
 
 
 
-
 m2 = 2
+od = 34;
+at = X[m2]->Set(od)
+
+chkN(at,od)
 
 str S = "hey how are you"
 
- strv =  X[m2]->Set(S)
+ rstr =  X[m2]->Set(S)
 
-<<"%V $strv \n"
+<<"%V $rstr \n"
+
+chkStr(rstr,S);
+
+
 
 
 //svar SV;
@@ -255,25 +299,26 @@ val2 = SV2[3]
 
 
 
-  obid = X[1]->objid(); // TBF fails crashes ?
+  obid = X[1]->ObjID(); // TBF fails crashes ?
 
 <<"X[1] $obid \n"
 
 
-  obid = X[0]->objid(); // TBF fails crashes ?
+  obid = X[0]->ObjID(); // TBF fails crashes ?
 
 <<"X[0] $obid \n"
+ X->info(1)
 
 
- Act b;
- Act c;
+ Act B;
+ Act C;
 
- <<" b $(IDof(&b)) \n"
+ <<" B $(IDof(&B)) \n"
 
-  obid = b->objid()
+  obid = B->ObjID()
  
 
- vid = b->varid()
+ vid = B->varid()
 
 
 
@@ -283,33 +328,33 @@ val2 = SV2[3]
 <<"%V$obid $vid\n"
 int bs = 5;
 
-  b->Set(bs)
+  B->Set(bs)
 
-  br= b->Get()
+  br= B->Get()
 
 <<"$br $bs\n"
 
 chkN(br,bs)
 
 
-b->Set(71)
+B->Set(71)
 
-br= b->Get()
+br= B->Get()
 
 <<"$br \n"
 
 chkN(br,71)
 
 
- b->type = 7
+ B->type = 7
 
-<<"%V$b->type \n"
+<<"%V$B->type \n"
 
- obid = c->objid()
+ obid = C->ObjID()
 
-// vid = c->varid()
 
-//<<"%V$obid $vid\n"
+
+<<"%V$obid \n"
 
 
 
@@ -340,12 +385,12 @@ chkN(br,71)
 
 
 
-/{
+/*
 //  cmf to run over subscript of object array !!
  X[0:2]->Set(4)
  yt = X[1]->type
 <<"type $yt \n"
-/}
+*/
 
 
 <<"\n//////////////// Direct Set-Get /////////////////\n"
@@ -362,7 +407,8 @@ chkN(br,71)
 <<"47? type for 2 $yt $(typeof(yt)) \n"
 
  chkN(yt,47);
- 
+  X->info(1)
+
 
  yt = X[3]->type;
 
@@ -594,7 +640,7 @@ for (i = 5; i >= 0; i--) {
    <<"%V  $yt  $X[1]->type \n"
 
 
-
+chkOut()
 
 <<"/////////////////// Nested Class /////////////\n"
 
@@ -605,15 +651,20 @@ int dil_ocnt = 0;
 class Dil {
 
  public:
- int w_day;
+ 
+
  int w_min;
  int w_sec;
- 
-// Act A[3] ;
+ int w_day; 
+
+ Act B;
+ /// now an array 
+
+ Act A[10] ;
 // FIXME each cons of A tacks on anotherstatement ??
 //
 
- Act B;
+
  //Act A[10];
  cmf Get()
  {
@@ -648,7 +699,13 @@ class Dil {
  E->info(1)
 
  od =E->Get();
-<<"E->w_day $od\n"
+<<"E->w_day $od  $E->w_day\n"
+ od->info(1)
+
+//E->w_day->info(1);  // broke
+
+chkN(od,1)
+
 
 
 
@@ -663,25 +720,13 @@ od = H[1]->Get();
 
 <<"%V $od\n"
 
-
-
-
+ chkN(od,3)
 
 
 
 //  FIXME ---- not going to first following statement in E has nested class!!
 
 
-chkOut();
-
-
-
-
-
-
-
-
-exit()
 
 
 
@@ -711,7 +756,7 @@ syt = 80 //
 
 //chkOut()
 
- 
+
 
 
 
@@ -737,6 +782,8 @@ syt = 60; //
 k = 3;
    chkN(gyt,60)
 
+
+
  E->A[0]->t = 28;
 
 
@@ -755,10 +802,10 @@ k = 3;
 
 <<"%V $k $t1\n"
 <<"%V $E->A[0]->t \n"
- chkN(t1,72);
 
-chkOut()
-exit()
+chkN(t1,72);
+
+
 
  yt0 = E->A[0]->t
 
@@ -797,7 +844,7 @@ exit()
 
  chkN(yt1,29)
 
-
+//chkOut()
 
  yt2 = E->A[2]->t
 
@@ -850,20 +897,24 @@ chkN(yt,75);
 
 
 
- for (j = 0; j < 4 ; j++) {
+ for (j = 0; j < 10 ; j++) {
 
     E->A[j]->t = 50 + j;
- }
+
+}
 
 <<"\n"
 
- E->A[8]->t = 47;
 
- for (j = 0; j < 4 ; j++) {
+
+
+ for (j = 0; j < 10 ; j++) {
 
     yt = E->A[j]->t;
     <<" [${j}] $yt \n"
  }
+
+ chkN(yt,59)
 
 //iread()
 
@@ -884,7 +935,7 @@ j = 3
 
 <<"bug? %V $yt3 \n"
 
-//iread()
+
 
  yt4 = E->A[4]->t
 
@@ -894,11 +945,11 @@ j = 3
  yt8 = E->A[8]->t
 
 <<"%V $yt8 \n"
+ chkN(yt8,58)
 
 
 
-
-
+//chkOut() 
 <<"///////////////G[i]->A[j]->type////////////////////////////\n"
 
 xov = 20
@@ -919,6 +970,8 @@ Dil G[10]
 
   chkN(yt0,60)
 
+chkOut() 
+
    yt1 = G[1]->A[1]->t
 
 <<"%V$yt1 \n"
@@ -931,7 +984,7 @@ Dil G[10]
 
    chkN(yt2,33)
 
-
+//chkOut() 
  i = 0 ; j = 1;
 
   G[i]->A[j]->t = 53
@@ -978,9 +1031,10 @@ Dil G[10]
 
 
 
+
+
+
 ndiy = 10;
-
-
 
 
 Dil Yod[ndiy]

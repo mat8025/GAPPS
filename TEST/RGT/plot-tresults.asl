@@ -21,12 +21,13 @@
  if (_dblevel >0) {
     debugON()
    }
-   
+
+allowErrors(-1)
 
 void useage()
 {
 
-<<" cat Scores/score_03-*2021 | grep Modules | asl plot-tresults\n"
+<<" cat Scores/score_0x-*202x | grep Modules | asl plot-tresults\n"
 <<"plot scores (when number of modules tested > 100) \n"
 }
 
@@ -88,7 +89,7 @@ for (i = 0; i <5 ;i++) {
 
 ///    Data results  in record  float type
 
-  FV = R[::][14]
+  FV = R[::][14] ; // mods failed
 
   Redimn(FV)
 
@@ -97,7 +98,7 @@ for (i = 0; i <5 ;i++) {
 
 //<<"$FV\n"
 
-  CV = R[::][16]
+  CV = R[::][16] ; //  mods crashed 
 
   Redimn(CV)
 
@@ -108,16 +109,16 @@ for (i = 0; i <5 ;i++) {
 
 //<<"$CV\n"
 
- NM = R[::][6]
+ NM = R[::][6] ;   // mods tested
 
   Redimn(NM)
 
   sz = Caz(NM)
 
-  NM *= 0.1
+ // NM *= 0.1
 
 
- NT = R[::][8]
+ NT = R[::][8] ;  //  num of tests
 
   Redimn(NT)
 
@@ -126,7 +127,7 @@ for (i = 0; i <5 ;i++) {
 
 
 
-  PCV = R[::][12]
+  PCV = R[::][12]  ;  // overall % score
 
   Redimn(PCV)
 
@@ -199,7 +200,7 @@ for (i = 0; i <5 ;i++) {
 
   nmgl=cGl(grwo,@TXY,XV, NM, @color, BLACK_,@ltype,SYMBOLS_,DIAMOND_);
 
-  sGl(nmgl,@symbol,DIAMOND_,Symsz, @symfill,@symhue,BLACK_)
+  sGl(nmgl,@symbol,DIAMOND_,Symsz, @symfill,@symhue,BLACK_,@usescales,1)
 
   dGl(nmgl)
 
@@ -216,23 +217,36 @@ for (i = 0; i <5 ;i++) {
 <<"%V $cgl \n"
     sWi(aw,@redraw)
 
-   sWo(grwo,@axnum,AXIS_LEFT_);
-   sWo(grwo,@axnum,AXIS_RIGHT_);
+  float yt = NT[1];
+  float ym = NM[1];
+  
+  float yp = PCV[nrows-1];
+
+
 
 while (1) {
 
      sleep(1)
      sWo(grwo,@clearpixmap)     
      //sWo(grwo,@usescales,1)     
+
+
+
+     sWo(grwo,@usescales,1,@axnum,  AXIS_LEFT_);
+     sWo (grwo, @textr, "ntests", 1,yt, 2, 0, PINK_)
+     dGl(nmgl)
+     dGl(ntgl)
+     sWo (grwo, @textr, "nmods", 1,ym, 2, 0, BLACK_)
+
+
+     sWo(grwo,@usescales,0,@axnum,  AXIS_RIGHT_);
+     sWo (grwo, @textr, "%% score", nrows-1,yp-5, 2, 0, GREEN_)
      dGl(pcgl)
      dGl(cgl)
-    dGl(fgl)
-     dGl(nmgl)
+     dGl(fgl)
 
-     dGl(ntgl)
-   sWo(grwo,@usescales,1,@axnum,  AXIS_RIGHT_);
-   sWo(grwo,@axnum,AXIS_LEFT_);
-    AxText(grwo, 1, 0, maxFC, 1.0, BLUE_);
+
+   // AxText(grwo, 1, 0, maxFC, 1.0, BLUE_);
      sWo(grwo,@showpixmap)
 
 }

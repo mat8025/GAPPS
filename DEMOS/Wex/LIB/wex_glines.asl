@@ -40,7 +40,7 @@
 
 
 
- gw_gl   = cGl(gwo,@TXY,WDVEC,GVEC,@color,RED_)
+ gw_gl   = cGl(gwo,@TXY,WDVEC,GVEC,@color,GREEN_)
 
 
 // gw_gl   = cGl(gwo,@TXY,WDVEC,GVEC,@color,RED_)

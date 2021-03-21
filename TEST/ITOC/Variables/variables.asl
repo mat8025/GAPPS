@@ -1,18 +1,34 @@
-///
-/// Variables
-///
+/* 
+ *  @script variables.asl 
+ * 
+ *  @comment test variables SF -list out current variables 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.31 C-Li-Ga]                                
+ *  @date 03/14/2021 11:07:48 
+ *  @cdate 1/1/2003 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
 
-
-/{/*
+/*
 
   Variables (fn, [type,values])
 
-/}*/
+*/
+
+#include "debug"
+
+
+if (_dblevel >0) {
+   debugON()
+}
+
 
 #define OAL (2,-->,,\n)
 
-setdebug(1,@~step,@~pline)
-chkIn()
+str FirstName = "Lauren";
 
 pan p = 1.23456789;
 
@@ -70,5 +86,8 @@ chkStr(S[0],"C, CHAR, 10")
  T= vinfo(&p,P,C,D,I,&f);
 
 <<"%(1,,,\n)$T\n"
+
+
+FirstName->info(1)
 
 chkOut()

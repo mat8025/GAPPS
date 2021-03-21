@@ -17,7 +17,8 @@ if (_dblevel >0) {
    debugON()
 }
 
-
+filterFileDebug(REJECT_,"scope_e","proc_e.cpp","ic_pushsivele.cpp","ic_pop.cpp");
+filterFuncDebug(REJECT_,"var_ptr");
 
   chkIn(_dblevel); 
   
@@ -30,7 +31,7 @@ if (_dblevel >0) {
     int area; 
     int number;
     
-    Cmf setrooms(int val)
+    Cmf setRooms(int val)
     {
       rooms = val;
      <<" $_proc  $_cobj set rooms  $rooms  for house $number  \n"; 
@@ -84,7 +85,7 @@ if (_dblevel >0) {
   bsr=  BS->getrooms();
   csr = CS->getrooms();
 
-  res =AS->setrooms(BS->getrooms() + CS->getrooms())
+  res =AS->setRooms(BS->getrooms() + CS->getrooms())
 
  <<"%V $res $asr $bsr $csr \n"
 
@@ -112,7 +113,7 @@ if (_dblevel >0) {
   <<" myhouse is $(typeof(house)) \n"; 
   <<" myhouse is $(infoof(house)) \n"; 
   <<" myhouse is $(statusof(house)) \n"; 
-  /{
+  /*
     A=examine(C[0]);
     <<"$A\n"; 
     
@@ -121,7 +122,7 @@ if (_dblevel >0) {
     <<"$A\n"; 
     
     iread(); 
-    /}
+   */
   <<"sz $(Caz(C)) \n"; 
   
 
@@ -138,7 +139,7 @@ if (_dblevel >0) {
 
 
 
-  C[3]->setrooms(15); 
+  C[3]->setRooms(15); 
   
   y = C[3]->getrooms(); 
   
@@ -146,13 +147,13 @@ if (_dblevel >0) {
   
   a = 4; 
   
-  C[a]->setrooms(17); 
+  C[a]->setRooms(17); 
     
   y = C[a]->getrooms(); 
   
   <<"house $a has $y rooms \n"; 
   
-  x=C[a+1]->setrooms(19); 
+  x=C[a+1]->setRooms(19); 
     
   y = C[a+1]->getrooms(); 
 
@@ -174,38 +175,62 @@ if (_dblevel >0) {
   <<"house $a -1 has $y rooms \n"; 
   
   
-  x=C[a+1]->setrooms(C[a]->getrooms()); 
+  x=C[a+1]->setRooms(C[a]->getrooms()); 
   
   <<"house ${a}+1 has $x rooms \n"; 
 
  chkN(x,15); 
 
-  x=C[a+1]->setrooms(C[a-1]->getrooms()); 
+  x=C[a+1]->setRooms(C[a-1]->getrooms()); 
   
   <<"house ${a}+1 has $x rooms \n"; 
   
-  x=C[a]->setrooms(C[a-2]->getrooms()); 
+  x=C[a]->setRooms(C[a-2]->getrooms()); 
   
   <<"house ${a} has $x rooms \n"; 
   
-  x=C[a-2]->setrooms(22); 
+  x=C[a-2]->setRooms(22); 
 
-  y=C[a]->setrooms(C[a-2]->getrooms()) ;
+  y=C[a]->setRooms(C[a-2]->getrooms()) ;
 
   chkN(y,22); 
 
 
   am1r =C[a-1]->getrooms();
+
   ar =C[a]->getrooms();
-  <<"%V $am1r $ar\n"
+
+  z= C[a-1]->getrooms() + C[a]->getrooms() ;
+<<"%V $a $z \n"
+
+z3 = C[2]->getrooms() + C[3]->getrooms() ;
+  b= a-1
+  z4 = C[b]->getrooms() + C[a]->getrooms() ;
+<<"%V $a $z $z3 $z4\n"
+
+z2 = ar + am1r;
+
+  chkN(z,z2)
+
+
+
   
-  y=C[a+1]->setrooms(C[a-1]->getrooms() + C[a]->getrooms()) ;
+  z3 = C[2]->getrooms() + C[3]->getrooms() ;
+  
+  y=C[a+1]->setRooms(C[a-1]->getrooms() + C[a]->getrooms()) ;
 
- chkN(y,(am1r+ar));
- 
-  y=C[a]->setrooms(C[a-2]->getrooms())
+  y2=C[a+1]->setRooms(C[2]->getrooms() + C[3]->getrooms()) ;
 
-<<"house  $a has $y rooms \n"; 
+<<"%V $y $y2 $z $z2 $z3 $am1r $ar\n"
+
+  chkN(y,(am1r+ar));
+
+<<"house  $(a+1) has $y rooms \n"; 
+
+
+  y=C[a]->setRooms(C[a-2]->getrooms())
+
+
  chkN(y,22);
 
   a1r= C[1]->getrooms() ;
@@ -213,7 +238,7 @@ if (_dblevel >0) {
 
 
 
-   a2r= C[2]->setrooms(11) ;
+   a2r= C[2]->setRooms(11) ;
   <<"%V $a2r \n"
 
    a2r= C[2]->getrooms() ;
@@ -223,9 +248,9 @@ if (_dblevel >0) {
 
 <<"%V $a4r\n"
 
-  a4r=C[4]->setrooms( C[2]->getrooms()  ) ; //XIC wrong
+  a4r=C[4]->setRooms( C[2]->getrooms()  ) ; //XIC wrong
   
-//a4r=C[4]->setrooms( a2r ) ; 
+//a4r=C[4]->setRooms( a2r ) ; 
 <<"%V $a4r\n"
 
   a4r=C[4]->getrooms() ;
@@ -233,10 +258,10 @@ if (_dblevel >0) {
 <<"%V $a2r $a4r\n"
  chkN(a4r,a2r);
 
-chkOut()
+
   d2r = D[2]->getrooms()  ) ; 
 
-  a5r=C[5]->setrooms( D[2]->getrooms() + C[2]->getrooms() ) ; 
+  a5r=C[5]->setRooms( D[2]->getrooms() + C[2]->getrooms() ) ; 
 
  chkN(a5r,d2r+a2r);
 
@@ -247,11 +272,11 @@ chkOut()
 
 
 
-  res=C[5]->setrooms( C[2]->getrooms() + C[1]->getrooms() ) ;
+  res=C[5]->setRooms( C[2]->getrooms() + C[1]->getrooms() ) ;
 
 // fails since it sets C[1] instead pf C[4]   - xic works
 
-//res=C[4]->setrooms( c1r + c2r ) ;
+//res=C[4]->setRooms( c1r + c2r ) ;
 
   c5r = C[5]->getrooms()
 
@@ -267,7 +292,7 @@ chkOut()
   
   <<"%V $a1r $a2r $a3r $a6r\n"
 
-  res=C[6]->setrooms( C[3]->setrooms(C[2]->getrooms()) + C[1]->getrooms()) ;
+  res=C[6]->setRooms( C[3]->setRooms(C[2]->getrooms()) + C[1]->getrooms()) ;
 
   a1r= C[1]->getrooms() ;
   a2r= C[2]->getrooms() ;
@@ -281,7 +306,7 @@ chkOut()
 
 
 
-  res= C[7]->setrooms(C[2]->getrooms() + C[3]->setrooms(C[1]->getrooms())) ;
+  res= C[7]->setRooms(C[2]->getrooms() + C[3]->setRooms(C[1]->getrooms())) ;
 
   a1r= C[1]->getrooms() ;
   a2r= C[2]->getrooms() ;
@@ -296,15 +321,15 @@ chkOut()
 
 
 
-   Ar= AS->setrooms(a1r))) ;
+   Ar= AS->setRooms(a1r))) ;
   <<"%V $Ar \n"
 
-   Br= BS->setrooms(a2r))) ;
+   Br= BS->setRooms(a2r))) ;
   <<"%V $Br \n"
 
-  csr =   CS->setrooms(AS->getrooms())  ;
+  csr =   CS->setRooms(AS->getrooms())  ;
 
-  res= DS->setrooms(BS->getrooms() + CS->setrooms(AS->getrooms()))  ;
+  res= DS->setRooms(BS->getrooms() + CS->setRooms(AS->getrooms()))  ;
 
   dsr = DS->getrooms()
 
@@ -313,9 +338,6 @@ chkOut()
   chkN(res,33);
   chkN(res,dsr); 
 
-
-
-  chkOut()
 
 
  a1 = a+1;
@@ -327,13 +349,13 @@ chkOut()
   
 
 
-  x= C[a]->setrooms(C[a-2]->getrooms()) ;
+  x= C[a]->setRooms(C[a-2]->getrooms()) ;
 
-  x=C[a+1]->setrooms(C[a-1]->getrooms() + C[a]->setrooms(C[a-2]->getrooms())) ;
+  x=C[a+1]->setRooms(C[a-1]->getrooms() + C[a]->setRooms(C[a-2]->getrooms())) ;
  chkN(x,26);
  
 
-  x=C[a1]->setrooms(C[am1]->getrooms() + C[a]->setrooms(C[am2]->getrooms())) ;
+  x=C[a1]->setRooms(C[am1]->getrooms() + C[a]->setRooms(C[am2]->getrooms())) ;
   <<"%V $x\n"
   chkN(x,26); 
 
@@ -351,11 +373,14 @@ chkOut()
     
     }
   
-  chkOut(); 
+  chkOut();
+
+
+
   exit(); 
   
   
-  C[1]->setrooms(8); 
+  C[1]->setRooms(8); 
   C[1]->setfloors(3); 
   
   

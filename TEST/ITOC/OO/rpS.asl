@@ -81,7 +81,8 @@ Class house {
       number= Nhouses;
       Nhouses++;
 
-      <<"cons $Nhouses for $_cobj setting  $floors  $rooms $area $number\n"; 
+      //<<"cons $Nhouses for $_cobj setting  $floors  $rooms $area $number\n";
+      <<"cons $Nhouses for $_cobj \n"; 
       }
     
     }
@@ -197,7 +198,8 @@ CSr= CS->getrooms() ;
    chkN(DSr,res); 
 
 
-   y=DS->setrooms(BS->getrooms() + CS->setrooms(checkRooms(AS->getrooms()))) ;
+  // y=DS->setrooms(BS->getrooms() + CS->setrooms(checkRooms(AS->getrooms()))) ;
+   y=DS->setrooms(BS->getrooms() + CS->setrooms(AS->getrooms())) ;
 
 <<"%V $y  should be $res +1 ?\n"
    chkN(y,res+1); 

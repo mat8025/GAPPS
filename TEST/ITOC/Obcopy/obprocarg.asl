@@ -15,6 +15,13 @@
 // to deliver ptr to that object to a script procedure
 
 
+#include "debug"
+
+
+if (_dblevel >0) {
+   debugON()
+}
+
 
 
 chkIn(_dblevel)
@@ -112,7 +119,7 @@ proc eat( fruit oba)
     oba->print();
 
 oba->isEdible(1);
-/{
+/*
  ans = iread (" is $oba->name edible ? y/n:");
 
  if (ans @="y") {
@@ -121,10 +128,10 @@ oba->isEdible(1);
  else {
  oba->isEdible(0);
 }
-/} 
+*/ 
     oba->print()
 
-    locfruit = oba;  // locfruit is a ptr to passed in fruit
+    locfruit = &oba;  // locfruit is a ptr to passed in fruit
 
     locfruit->print()
 
@@ -321,7 +328,7 @@ proc objcopy(fruit oba,  fruit obb)
    
    chkOut()
 
-/{/*
+/*
   TBD:
 
      cmf key word -- should be redundant inside of class
@@ -329,4 +336,4 @@ proc objcopy(fruit oba,  fruit obb)
      int getX();
      for both proc and cmf
 
-/}*/
+*/

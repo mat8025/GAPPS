@@ -937,12 +937,13 @@ bflist="$BFS"
 <<"Doing Tests"
 !!"pwd"
 
-TS=!!"ls *.asl "
+TS=!!"ls *.asl"
 <<"$(typeof(TS)) $TS\n"
 tslist="$TS"
 //<<"$(typeof(tslist)) $tslist\n"
    test_list = ssub(tslist,".asl",",",0)
-   test_list = ssub(test_list," ","",0)
+   test_list = scut(ssub(test_list," ","",0),-1)
+   
 <<"%V $test_list\n"
      RunDirTests("Tests",test_list);
     

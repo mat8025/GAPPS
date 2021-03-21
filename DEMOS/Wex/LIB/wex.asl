@@ -398,10 +398,10 @@ msgw =split(msg)
 //sleep(0.1)
 #include "wex_draw"
 //ans=query("proceed?")
-sleep(0.1)
+//sleep(0.1)
 #include "wex_glines"
 //ans=query("proceed?")
-sleep(0.1)
+//sleep(0.1)
 
 
 ///////////////////////// PLOT  ////////////////////////////////////////////
