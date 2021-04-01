@@ -349,15 +349,26 @@ z2 = ar + am1r;
   
 
 
-  x= C[a]->setRooms(C[a-2]->getrooms()) ;
-
+  x1= C[a]->setRooms(C[a-2]->getrooms()) ;
+  <<"%V $x1\n"
+  x2=C[a-1]->getrooms()
+  <<"%V $x2\n"
+  x3 =C[a+1]->setRooms(x1+x2)
+  <<"%V $x3\n"
   x=C[a+1]->setRooms(C[a-1]->getrooms() + C[a]->setRooms(C[a-2]->getrooms())) ;
- chkN(x,26);
- 
+    <<"%V $x\n"
+ chkN(x,x3);
 
-  x=C[a1]->setRooms(C[am1]->getrooms() + C[a]->setRooms(C[am2]->getrooms())) ;
+
+x1=C[a]->setRooms(C[am2]->getrooms())) ;
+x2 =C[am1]->getrooms() ;
+x3 =C[a1]->setRooms(x1+x2)
+x=C[a1]->setRooms(C[am1]->getrooms() + C[a]->setRooms(C[am2]->getrooms())) ;
+
+<<"%V $x $x1 $x2 $x3 \n"
+
   <<"%V $x\n"
-  chkN(x,26); 
+  chkN(x,x3); 
 
 <<"%V $a $a1 $am1 $am2 \n"
 

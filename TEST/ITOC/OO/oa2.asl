@@ -26,9 +26,13 @@ chkIn(_dblevel)
 
 int i = 0;
 
+
+
 //<<" $(i->info()) \n"  // TBF recurses 
 
  i->info(1)
+
+chkN(i,0);
 
 <<"$i \n"
 
@@ -91,23 +95,21 @@ class Act {
 
  public:
 
- int type;
+ int otype;
  int mins; 
  int t;
  int id;
  svar svtype;
  str stype;
  int a_day;
- 
+ //===================//
  cmf Set(int k)
  {
-     <<"Act_Set INT  $_cobj $k\n" 
-     <<"%V$type\n"
-    type = k;
-
-//!i type
-     type->info(1);
-     return type;
+     <<"Act_Set INT  $_cobj k $k\n" 
+     <<"%V$otype\n"
+     otype = k;
+     otype->info(1);
+     return otype;
  }
  
  cmf Set(svar sa)
@@ -137,10 +139,10 @@ class Act {
 
  cmf Get()
  {
- <<"$_proc  Get %V $type\n"
-     type->info(1)
+ <<"$_proc  Get %V $otype\n"
+     otype->info(1)
 
-   return type;
+   return otype;
  }
  
  cmf GetWD()
@@ -160,14 +162,14 @@ class Act {
 
    id= Act_ocnt++ ;
  
-   type = 1;
+   otype = 1;
 
    mins = 10;
 
    t = 0;
    a_day = Act_ocnt;
    a_day->info(1)
- <<"Act cons of $_cobj $id $Act_ocnt %V $a_day $mins $type\n"
+ <<"Act cons of $_cobj $id $Act_ocnt %V $a_day $mins $otype\n"
 
  }
 
@@ -177,12 +179,14 @@ class Act {
 Act a;
 
     a->info(1)
-    a->type = 2;
-<<"%V$a->type \n"
-    a->type = 3;
-<<"%V$a->type \n"
+    a->otype = 2;
+<<"%V$a->otype \n"
+    a->otype = 3;
+<<"%V$a->otype \n"
+
     at=a->Set(7);
-<<"%V $at $a->type \n"
+
+<<"%V $at $a->otype \n"
 
   chkN(at,7)
 
@@ -192,7 +196,8 @@ Act a;
  int od = 33;
 
     at=a->Set(od);
-<<"%V $at $a->type \n"
+    
+<<"%V $at $a->otype \n"
 
   chkN(at,33)
 
@@ -211,27 +216,30 @@ Act a;
 
 
   chkN(od,1)
-  
 
+//chkOut()
+
+chkStage(" Simple Obj reference")
 
  Act X[7];
 
+ <<"%V $Act_ocnt \n"
 
  X->info(1)
-
+!a
 od=X[2]->GetWD()
 
 <<"X[2] %V $od\n"
 chkN(od,4)
+
+
 
 od=X[3]->GetWD()
 
 <<"X[3] %V $od\n"
 chkN(od,5)
 
- X->info(1)
-
-
+X->info(1)
 
 
 
@@ -240,6 +248,10 @@ od = 34;
 at = X[m2]->Set(od)
 
 chkN(at,od)
+
+//chkOut()
+
+chkStage(" Array Obj reference")
 
 str S = "hey how are you"
 
@@ -250,6 +262,7 @@ str S = "hey how are you"
 chkStr(rstr,S);
 
 
+//chkOut();
 
 
 //svar SV;
@@ -309,6 +322,7 @@ val2 = SV2[3]
 <<"X[0] $obid \n"
  X->info(1)
 
+chkStage(" Svar Mbr reference")
 
  Act B;
  Act C;
@@ -346,9 +360,9 @@ br= B->Get()
 chkN(br,71)
 
 
- B->type = 7
+ B->otype = 7
 
-<<"%V$B->type \n"
+<<"%V$B->otype \n"
 
  obid = C->ObjID()
 
@@ -364,13 +378,13 @@ chkN(br,71)
 
  yrt = X[3]->Set(7)
 
- yt = X[3]->type;
+ yt = X[3]->otype;
 
 <<"type %V$yrt $yt\n"
 
-  X[3]->type = 66
+  X[3]->otype = 66
 
- yt = X[3]->type;
+ yt = X[3]->otype;
 
  chkN(yt,66);
 
@@ -378,11 +392,11 @@ chkN(br,71)
 
 
  yrt2 = X[2]->Set(8)
- yt2 = X[2]->type
+ yt2 = X[2]->otype
 
 <<"type %V$yrt $yt $yrt2 $yt2\n"
 
-
+chkStage(" Simple Get/Set")
 
 
 /*
@@ -396,50 +410,50 @@ chkN(br,71)
 <<"\n//////////////// Direct Set-Get /////////////////\n"
  pass = 1
 
- X[0]->type = 50
- X[1]->type = 79
- X[2]->type = 47
- X[3]->type = 80;
+ X[0]->otype = 50
+ X[1]->otype = 79
+ X[2]->otype = 47
+ X[3]->otype = 80;
 
  
- yt = X[2]->type
+ yt = X[2]->otype
 
 <<"47? type for 2 $yt $(typeof(yt)) \n"
 
  chkN(yt,47);
   X->info(1)
+!a
 
-
- yt = X[3]->type;
+ yt = X[3]->otype;
 
 <<"80? type for X[3] $yt \n"
 
  chkN(yt,80);
   
- yt = X[0]->type
+ yt = X[0]->otype
 
 <<"type for 0 $yt \n"
 
  chkN(yt,50);
 
 
- yt = X[1]->type
+ yt = X[1]->otype
 <<"type for 1 $yt = 79 ?\n"
 
  chkN(yt,79) ;
 
 
 
- yt = X[2]->type
-<<"type for 2 $yt = 47 ?\n"
+ yt = X[2]->otype
+<<"otype for 2 $yt = 47 ?\n"
 
  chkN(yt,47) 
 
  i = 3
- X[i]->type = 90
- yt = X[i]->type
+ X[i]->otype = 90
+ yt = X[i]->otype
 
-<<"type for $i $yt = 90 ?\n"
+<<"otype for $i $yt = 90 ?\n"
 
  chkN(yt,90)
 
@@ -453,18 +467,18 @@ chkN(br,71)
  ival = 50;
  
  i = 2
- X[i]->type = ival
- yt = X[i]->type
+ X[i]->otype = ival
+ yt = X[i]->otype
 
   chkN(yt,ival)
 
-<<"type for $i $yt = $val ?\n"
+<<"otype for $i $yt = $val ?\n"
 
  for (i = 0; i < 4; i++) {
-  X[i]->type = ival
-  yt = X[i]->type
+  X[i]->otype = ival
+  yt = X[i]->otype
 
-<<"type for $i $yt = $val ?\n"
+<<"otype for $i $yt = $val ?\n"
 
   if (yt != ival) {
   pass = 0
@@ -478,7 +492,7 @@ chkN(br,71)
 
 <<"PASS? $pass \n"
 
- 
+ chkStage(" Array Direct Get/Set")
 
 
 <<"\n//////////////// cmf Set-Get /////////////////\n"
@@ -488,7 +502,8 @@ chkN(br,71)
 
  m = 4
  m2 =3
-
+ X->info(1)
+!a
  yst =  X[2]->Set(m)
 
  <<"%V $yst\n"
@@ -510,11 +525,11 @@ chkN(br,71)
 
  i = 2
 
- yt  =  X[i]->type
+ yt  =  X[i]->otype
 
  ygt =  X[i]->Get()
 
-<<"2 type %V $yst $yt $ygt\n"
+<<"2 otype %V $yst $yt $ygt\n"
 
 
   chkN(yst,3)
@@ -523,9 +538,9 @@ chkN(br,71)
  for (i = 0; i < 4; i++) {
 
    yst =  X[i]->Set(j)
-   yt = X[i]->type
+   yt = X[i]->otype
    ygt =  X[i]->Get()
-<<"type for $i $yst $yt $ygt $j\n"
+<<"otype for $i $yst $yt $ygt $j\n"
    if (yt != ygt) { 
       pass = 0
    }
@@ -537,14 +552,14 @@ chkN(br,71)
  j = 7;
  i = 4
  yst =  X[i]->Set(j)
- yt  =  X[i]->type
+ yt  =  X[i]->otype
  ygt =  X[i]->Get()
 
  if (yt != 7) {
     pass = 0
  }
 
-<<"3 type %V$yst $yt $ygt\n"
+<<"3 otype %V$yst $yt $ygt\n"
 
 pass1= chkN(yst,7)
 
@@ -555,7 +570,7 @@ pass1= chkN(yst,7)
 
 i = 3
 yst =  X[i]->Set(8)
- yt  =  X[i]->type
+ yt  =  X[i]->otype
  ygt =  X[i]->Get()
 
  if (yt != 8) {
@@ -575,7 +590,7 @@ pass1= chkN(yst,8)
 
 for (i = 5; i >= 0; i--) {
 
-   yt = X[i]->type
+   yt = X[i]->otype
    ygt =  X[i]->Get()
 <<"type for $i  $yt $ygt \n"
 
@@ -583,64 +598,55 @@ for (i = 5; i >= 0; i--) {
 
 
 
+ X[0]->otype = 2;
 
+ yt = X[0]->otype;
 
-
-
-
-
-
-
-
-
-
- X[0]->type = 2;
-
- yt = X[0]->type;
-
- <<"%V$yt  $X[0]->type \n"
+ <<"%V$yt  $X[0]->otype \n"
 
   chkN(yt,2)
 
- X[2]->type = 28
+ X[2]->otype = 28
 
- yt2 =  X[2]->type
+ yt2 =  X[2]->otype
 
- <<"%V$yt2  $X[2]->type \n"
+ <<"%V$yt2  $X[2]->otype \n"
 
   chkN(yt2,28)
 
-    X[1]->type = 79
+    X[1]->otype = 79
 
-    yt1 =  X[1]->type
+    yt1 =  X[1]->otype
 
- <<"%V$yt1  $X[1]->type \n"
+ <<"%V$yt1  $X[1]->otype \n"
 
   chkN(yt1,79)
 
-  yt = X[0]->type
+  yt = X[0]->otype
  
-  <<"%V$yt  $X[0]->type \n"
+  <<"%V$yt  $X[0]->otype \n"
 
    chkN(yt,2)
 
-   yt = X[1]->type
-   <<"%V  $yt  $X[1]->type \n"
-   yt = X[2]->type
-   <<"%V  $yt  $X[2]->type \n"
+   yt = X[1]->otype
+   <<"%V  $yt  $X[1]->otype \n"
+   yt = X[2]->otype
+   <<"%V  $yt  $X[2]->otype \n"
 
    chkN(yt,28)
 
  for ( i = 0; i < 4; i++) { 
-   yt = X[i]->type
-   <<"%V $i $yt  $X[i]->type \n"
+   yt = X[i]->otype
+   <<"%V $i $yt  $X[i]->otype \n"
  }
 
-   yt = X[1]->type
-   <<"%V  $yt  $X[1]->type \n"
-
+   yt = X[1]->otype
+   <<"%V  $yt  $X[1]->otype \n"
 
 chkOut()
+
+//////////////////////   do this in separate test module ////////////
+
 
 <<"/////////////////// Nested Class /////////////\n"
 
@@ -821,6 +827,10 @@ chkN(t1,72);
 
 <<"%V $yt3 \n"
 
+chkN(yt3,72);
+
+
+
 
 
  E->A[1]->t = 29;
@@ -916,6 +926,8 @@ chkN(yt,75);
 
  chkN(yt,59)
 
+
+
 //iread()
 
 yt2 = E->A[2]->t
@@ -949,8 +961,14 @@ j = 3
 
 
 
-//chkOut() 
-<<"///////////////G[i]->A[j]->type////////////////////////////\n"
+chkOut()
+
+
+///  Needs XIC FIX
+<<"///////////////G[i]->A[j]->otype////////////////////////////\n"
+
+
+//////////////////////////////////////////////////////////////////
 
 xov = 20
 Dil G[10]
@@ -970,7 +988,7 @@ Dil G[10]
 
   chkN(yt0,60)
 
-chkOut() 
+
 
    yt1 = G[1]->A[1]->t
 
@@ -998,8 +1016,12 @@ chkOut()
 
   k = 7
 
+      yt = G[i]->A[j]->t 
+<<"[${i}] [$j ] %V $k $yt \n"
+      k++
+!a
 
-
+chkOut()
 
   for (i = 0; i < 3 ; i++) {
 
@@ -1008,13 +1030,16 @@ chkOut()
       G[i]->A[j]->t = k
 
       yt = G[i]->A[j]->t 
-<<"%V$k $yt \n"
+<<" [${i}] [${j}] %V $k $yt \n"
       k++
+!a      
    }
 
   }
 
 <<"\n"
+chkOut()
+
 
   k = 7
   for (i = 0; i < 3 ; i++) {
@@ -1063,14 +1088,14 @@ Dil Yod[ndiy]
 
 
  yrt = X[0]->Set(7)
-<<"type for 0 $yrt \n"
+<<"otype for 0 $yrt \n"
  yrt = X[2]->Set(4)
-<<"type for 2 $yrt \n"
+<<"otype for 2 $yrt \n"
  yrt = X[3]->Set(5)
-<<"type for 3 $yrt \n"
+<<"otype for 3 $yrt \n"
 
  yrt = X[1]->Set(6)
-<<"type for 1 $yrt \n"
+<<"otype for 1 $yrt \n"
 
 
 

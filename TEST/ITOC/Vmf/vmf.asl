@@ -11,10 +11,16 @@
 //* 
 //***********************************************%
 
-chkIn(_dblevel)
+#include "debug"
 
-setmaxICerrors(-1);
-setmaxcodeerrors(-1);
+if (_dblevel >0) {
+   debugON()
+}
+
+filterFileDebug(REJECT_,"scopesindex_e.cpp","array_parse.cpp");
+filterFuncDebug(REJECT_,"storeSiv","checkProcFunc");
+
+chkIn(_dblevel)
 
 int do_all = 1;
 int do_cut = 0;
@@ -33,15 +39,26 @@ int I[] ;
 
 I= Igen(20,0,1)
 
-<<" $I \n"
+<<"I[] : $I \n"
+
+I->info(1)
+
 
  I[14]->Set(747)
 
-<<" $I\n"
+<<"I[] : $I \n"
+ chkN(I[14],747)
+!a
+
+
 
 I[5:13:2]->Set(50,1)
 
-<<"$I \n"
+<<"I[] : $I \n"
+!a
+
+
+chkOut()
 
 C = Igen(4,12,1)
 
@@ -88,6 +105,8 @@ I[3:8]->cut()
 <<" $I[::] \n"
 chkN(I[3],52)
 
+!a
+
 F[3:8]->cut()
 
 <<" %6.1f $F[::] \n"
@@ -100,7 +119,7 @@ chkStage("cut")
 
 }
 
-
+chkOut()
 
 
 float FS[]

@@ -14,11 +14,14 @@
 
 #include "debug"
 
-//debugOFF()
+
+if (_dblevel >0) {
+   debugON()
+}
+
 
 chkIn(_dblevel)
 
-//prog= GetScript()
 
 int n1 = 1;
 

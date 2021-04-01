@@ -142,6 +142,21 @@ class Point
   
   Point A;
 
+
+  A->x = 3.4
+
+  x1= A->x;
+
+
+<<"$x1\n"
+
+  chkR(x1,3.4)
+
+
+
+
+ A->x = 4.0
+ 
   Point B;
 
   Point C;

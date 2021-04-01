@@ -44,26 +44,21 @@ double Foo(double a)
 double Goo(real a)
 {
  <<" IN $_proc $a \n"
-//  real d;
- a->info(1);
-// d= atof(a)
+/*
+   a->info(1);
+
 
   tmp = a/2.0;
   tmp->info(1)
- tmp2 = a * 2.0;
-   tmp2->info(1)
+  tmp2 = a * 2.0;
+  tmp2->info(1)
 <<"%V $tmp $tmp2 \n"
+*/
+  d =a * 2.0;
 
- d =a * 2.0;
+  d->info(1);
 
-d->info(1);
-
-// real tmp;
-// real tmp2;
- 
- 
- tmp2->info(1)
- return tmp2;
+ return d;
 
 }
 //===================
@@ -84,22 +79,26 @@ d->info(1);
 
 <<"%V $y \n"
 
-
-
 y /= 2.0;
 
+y->info(1)
 
-  y->info(1)
+//double gr =Goo(x)
 
+//double gr;
 
+gr =Goo(x)
 
+<<"%V $x $gr \n"
 
-gr=Goo(x)
-<<"$x $gr \n"
+gr->Info(1)
 
+!a
 chkR(gr, (x*2))
 
+gr->Info(1)
 
+chkOut()
 
 x = 14.89
 

@@ -906,7 +906,7 @@ proc setWoTask()
    <<"%V $Ntaskpts\n"
     for (k = 0; k < Ntaskpts ; k++) {
        index= Taskpts[k]
-       Wtp[index]->Print()
+       Wtp[index]->Print();
      }
 
       TaskDistance();

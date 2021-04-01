@@ -199,23 +199,37 @@ CSr= CS->getrooms() ;
 
 
   // y=DS->setrooms(BS->getrooms() + CS->setrooms(checkRooms(AS->getrooms()))) ;
-   y=DS->setrooms(BS->getrooms() + CS->setrooms(AS->getrooms())) ;
 
-<<"%V $y  should be $res +1 ?\n"
-   chkN(y,res+1); 
+y1=AS->getrooms();
+y2= CS->setrooms(AS->getrooms());
+y3 = BS->getrooms();
+y4 = DS->setrooms(y3+y2);
+
+
+y=DS->setrooms(BS->getrooms() + CS->setrooms(AS->getrooms())) ;
+
+<<"%V $y $y1 $y2 $y3 $y4 \n"
+
+
+   chkN(y,y4); 
 
 
    ASr= AS->getrooms() ;
   <<"%V $ASr \n"
 
    res2= BS->getrooms() ;
-  <<"%V $BSr $res2 \n"
 
-   chkN(BSr,res2); 
+<<"%V $BSr $res2 \n"
+
+   chkN(BSr,res2);
+   
 
    CSr= CS->getrooms() ;
-  <<"%V $CSr \n"
-  chkN(CSr,ASr+1);
+
+<<"%V $CSr \n"
+   Asr=AS->setrooms(CS->getrooms()) ;
+
+  chkN(CSr,ASr);
 
 
 
