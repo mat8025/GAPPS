@@ -1,6 +1,11 @@
-setdebug(1,"pline","step","trace")
+#include "debug"
 
-chkIn();
+if (_dblevel >0) {
+   debugON()
+}
+
+
+chkIn(_dblevel)
 
 
 proc array_sub(float rl[])

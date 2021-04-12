@@ -12,15 +12,21 @@
 //***********************************************%
 
 
-//include "debug"
-//debugON();
-//sdb(1,@~trace,@~pline,@keep)
-
+#include "debug"
 
 /// get measures on icode speed - which is too slow
-#define N 1000
+#define N 500
 
-int Vec[N];
+if (_dblevel >0) {
+   debugON()
+}
+
+
+chkIn(_dblevel)
+
+
+
+int Ivec[N];
 
 
 int Ptest(int val)
@@ -88,7 +94,7 @@ for (i=0;i< 4; i++) {
 
      for (i = 0; i < N ; i++) {
            c = a * b;
-	   Vec[i] =c;
+	   Ivec[i] =c;
 	   a++;
 	   b++;
 
@@ -97,7 +103,7 @@ for (i=0;i< 4; i++) {
 
    e= Ptest(c);
 
-<<"%V $a $b $c $e $Vec[N-1]\n"
+<<"%V $a $b $c $e $Ivec[N-1]\n"
 
 
 
@@ -110,3 +116,6 @@ for (i=0;i< 4; i++) {
 <<"Nes $(getNes())\n"
 <<"Ndbs $(getNdbs())\n"
 
+chkN(i,N)
+
+chkOut()

@@ -1,7 +1,14 @@
 
-setdebug(1,"trace")
 
-chkIn()
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+}
+
+
+chkIn(_dblevel)
+
 
 proc array_sub(float rl[])
 {
@@ -52,15 +59,10 @@ chkR(rlm[j1],47)
 
 
 val = array_sub(Real)
+
 <<"%V$val \n";
 
 chkOut();
-exit();
+
 
  
-
-
-
-
-
-chkOut();

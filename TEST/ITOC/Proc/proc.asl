@@ -93,12 +93,12 @@ gr =Goo(x)
 
 gr->Info(1)
 
-!a
+
 chkR(gr, (x*2))
 
 gr->Info(1)
 
-chkOut()
+
 
 x = 14.89
 

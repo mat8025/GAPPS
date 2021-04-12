@@ -3027,6 +3027,17 @@ For complex vectors each real imag pair is set to value and then the step is inc
 (INT_  name followed by _  are internal definitions CHAR_ is 1, SHORT_ is 2, INT_,FLOAT_ ,..)
 .EF
 =============================================================
+..BF
+vga()
+.(x
+vga
+.)x 
+.FD
+DV=vga(0,1,2,3.3,4,b,V)
+generates a double vector using a list of args numbers or variables.
+A vector of numeric values  is a valid argument.
+.EF
+=============================================================
 .BF
 matgen()
 .(x

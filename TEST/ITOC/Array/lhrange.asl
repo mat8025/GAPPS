@@ -12,11 +12,8 @@
 //***********************************************%
 
 
-
-
 #include "debug.asl";
 
-//sdb(_dblevel,@~trace)
 
 if (_dblevel >0) {
    debugON()
@@ -26,10 +23,7 @@ if (_dblevel >0) {
 //filterFuncDebug(REJECT_,"~ArraySpecs");
 
 
-
 chkIn(_dblevel)
-
-
 
 
 N= 20

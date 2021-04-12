@@ -1,7 +1,13 @@
 
-setdebug(1,"trace")
+#include "debug"
 
-chkIn()
+if (_dblevel >0) {
+   debugON()
+}
+
+
+chkIn(_dblevel)
+
 
 proc array_sub(float rl[])
 {
@@ -24,11 +30,13 @@ rl[j1] = 47.0;
 
 <<"%V $rl \n"
 
+<<"%V $rl[j1] $rl[j2] \n"
+
 rl[j1] = rl[j1] - rl[j2];
 
 <<"%V $rl \n"
 
-chkR(rl[j1],-2)
+chkR(rl[j1],41)
 
 return rls
 }
@@ -67,7 +75,7 @@ chkR(rlm[j1],-2)
 val = array_sub(Real)
 
 chkOut();
-exit();
+
 
  
 

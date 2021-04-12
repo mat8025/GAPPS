@@ -58,21 +58,47 @@ int Foo(int x,int  y)
 
 Str vers2ele(str vstr)
   {
-  //<<"%V $vstr\n"
-   pmaj = atoi(spat(vstr,".",-1))
-   <<[2]"$pmaj $(typeof(pmaj)) $(ptsym(pmaj)) \n"  
-   pmin = atoi(spat(vstr,".",1))
+   vstr->info(1)
+  <<"$_proc   <|$vstr|>\n"
 
-//<<[2]"$pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
+
+   pmaj = atoi(spat(vstr,".",-1))
+   
+   <<"$pmaj $(typeof(pmaj)) $(ptsym(pmaj)) \n"  
+
+    pmin = atoi(spat(vstr,".",1))
+
+<<"$pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
+
    elestr = pt(pmin);
-   str ele =" ";
+   
+   elestr->info(1)
+
+
+  str ele = "XYZ";
+  
+   ele->info(1)
+   es= spat(elestr,",")
+
+
+<<"%V $es\n";
+
+
+   es->info(1)
+   
    ele = spat(elestr,",")
+
+   ele->info(1)
+
+
+
   <<"$ele $(typeof(ele))\n";
   <<"$ele\n";
+  
    return ele;
   }
   
-
+//===============================
 
   a = Foo(2,3)
  chkR(a,6)
@@ -100,9 +126,9 @@ c->info(1)
    n = 12
 
   while (j < 4) {
-
+  
       a = Foo(j,n)
-j->info(1)
+    j->info(1)
 
 <<" $j * $n  = $a\n"
 
@@ -116,13 +142,16 @@ int pmaj;
 int pmin;
 
 cvers ="1.54"
+cvers->info(1)
 
 nele = vers2ele(cvers);
 
 
-<<"%I $nele\n"
+<<"%V $cvers $nele\n"
 
 nele->info(1)
+
+
 chkStr(nele,"Xeon")
 
 
@@ -193,42 +222,43 @@ int foo1(int a)
 
 int foo2(int a) 
 {
-int ret = 0;
+
+int fret = 0;
 <<" $_proc foo2 $a \n"
 
     if (a > 300) {
 <<" $a > 300 foo2 should be returning 30 !\n"
-    ret =30
+    fret =30
     }
 
     else if (a > 200) {
 <<" $a > 200 foo2 vshould be returning 20 !\n"
-    ret = 20
+    fret = 20
     }
 
     else if (a > 100) {
 <<" $a > 100 foo2 should be returning 10 !\n"
-    ret = 10
+    fret = 10
     }
 
 //////////////////////////////////////////////
 
   else if (a > 1) {
 <<" $a > 1 should be returning 1 !\n"
-    ret=  1;
+    fret=  1;
   }
 
   else if (a < 0) {
 <<" $a > 1 should be returning -1 !\n"
-    ret=  -1;
+    fret=  -1;
   }
   else {
 <<" $a <= 1 should be returning 0 !\n"
   }
 
-<<"return $ret\n"
+<<"return $fret\n"
 
-   return ret;
+   return fret;
 }
 //////////////////////////////////
 
@@ -401,25 +431,25 @@ real rin = in
 <<"ret will be  $e\n"
 
 
-//   c = foo2(in)
-//!p c   
+  c = foo2(in)
+!p c   
 
     c = foo2(in) * 6
-    <<" foo2(in) * 6\n"
+    <<"$c foo2(in) * 6\n"
 
    chkN(c,120)
 
-//!p c
+!p c
 
 
     c = 6 * foo2(in)
-    <<" 6 * foo2(in)\n"
+    <<"$c  6 * foo2(in)\n"
 
-//!p c
+!p c
 
 
    chkN(c,120)
-
+chkOut()
 
   in = 310
 

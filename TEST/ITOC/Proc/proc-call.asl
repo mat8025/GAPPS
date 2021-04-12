@@ -16,6 +16,11 @@
 
 #include "debug"
 
+if (_dblevel >0) {
+   debugON()
+}
+
+
 chkIn(_dblevel)
 
 
@@ -44,7 +49,7 @@ proc moo(int a)
 {
 <<" $_proc $a \n"
 
-  a->info(1)
+     a->info(1)
      return a;
 }
 <<"moo(float) ?\n"
@@ -56,7 +61,11 @@ proc moo(float x)
   x->info(1)
        return x;
 }
+
+
 <<"moo(short,char) ?\n"
+
+
 proc moo(short s, char c)
 {
 <<" $_proc $s $c\n"
@@ -86,8 +95,9 @@ proc moo (pan m, pan n)
 //===============
 
 
-<<"moo(m , gen) ?\n"
-proc moo (generic m, generic n)
+<<"moo(double, int ) ?\n"
+
+proc moo (double m, double n)
 {
 
    double d;
@@ -129,6 +139,8 @@ pan p  = 3.4
 
 pan q = 1.2
 
+<<" call  moo (pan , pan) \n"
+
  d4 = moo(p,q)
 
 d4->info(1)
@@ -138,11 +150,12 @@ d4->info(1)
 ans = "mark"
 <<"Que pasa $ans ?\n"
 
-gen g = 3.4
-gen h = 8
+double g = 3.4
+double h = 8
 
+<<" call  moo (double , double) \n"
+    d3 = moo(g,h)
 
-    d3 = moo(h,g)
 
 chkN (d3,11.4);
 

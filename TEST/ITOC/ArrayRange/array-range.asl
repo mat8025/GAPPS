@@ -91,9 +91,14 @@ chkN (D[2],6)
 
 <<" lets do circular buffer\n"
 
+<<"%V$B\n"
+
 D= B[-1:8:1]
 
 <<"%V$D\n"
+
+
+
 <<"B[-1:2:1] $B[-1:2:1]   \n"
 
 chkN (D[0],9)

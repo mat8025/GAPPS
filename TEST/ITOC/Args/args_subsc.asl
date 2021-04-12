@@ -13,12 +13,18 @@
 
 #include "debug.asl";
 
-   debugON();
-   
-   setdebug (1, @pline, @~step, @~trace,) ;
    
    
-   chkIn(); 
+   if (_dblevel >0) {
+   debugON()
+   }
+
+
+ chkIn (_dblevel)
+
+   
+   
+   
    
    
    IV= vgen(INT_,10,0,1); 
@@ -32,15 +38,19 @@
    
    S=testargs(fh,IV[1:9:2]); 
    
-   <<"$S\n"; 
+   <<"%(1,,,\n)$S\n"; 
    
    
    S=Split("$IV"); 
    
    
-   testargs(2,S); 
-   
-   //setdebug (1, @trace) ;
-   testargs(2,S[1:5]); 
-   
+   T=testargs(2,S); 
 
+<<"%(1,,,\n)$T\n"; 
+
+   T=testargs(2,S[1:5]); 
+   
+<<"%(1,,,\n)$T\n"; 
+
+chkR(fh,2.0)
+chkOut()

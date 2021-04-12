@@ -1,15 +1,17 @@
 ///
 /// # test proc arrays
 ///
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+}
+  
+chkIn(_dblevel)
 
 
 
-setdebug(0)
-
-chkIn()
-
-//proc sumarg(int V[], int U[])
-proc sumarg(V,  U)
+proc sumarg(int V[],  int U[])
 {
 <<"in $_proc\n"
 
@@ -22,15 +24,19 @@ proc sumarg(V,  U)
 
 <<"type $(typeof(U)) sz $(Caz(U)) \n"
 
-//   a = V[2]
-//   b = U[2]
+   a = V[2]
+   b = U[2]
 
-//<<"%V $a $b\n"
+<<"%V $a $b\n"
 
    Z = V + U
 
-<<" %v $Z \n"
-  return Z
+
+
+<<"%V $Z \n"
+
+
+return Z
 
 }
 ///
@@ -56,6 +62,10 @@ Y = Igen(10,9,2)
 
  <<"\n%V $S \n"
  <<"type  $(typeof(S)) sz $(Caz(S)) \n"
+
+chkN(S[0],9)
+chkN(S[9],36)
+  
 
 Y[9] = 31
 Y[0] = 47
@@ -86,7 +96,7 @@ chkN(S[9],100)
 
 chkOut()
 
-stop!
+
 
 
 ////////////////////////////////////////////////////////////

@@ -1,7 +1,7 @@
 
 
 //  
-set_debug(0)
+
 
 R= Igen(20,1,j)
 
@@ -196,5 +196,5 @@ sz = Caz(Y)
 
 }
 
-STOP!
+
 

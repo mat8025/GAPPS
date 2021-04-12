@@ -1,0 +1,249 @@
+AnonVec	      OK	OK
+Arch               OK	OK
+Argc
+Args               OK	OK
+Array
+ArrayJoin        OK	OK   vsp fail ?
+ArrayProc       OK	OK   
+ArrayRange    OK	OK   
+ArrayStore     OK	OK   
+ArraySubSet   FAIL   FAIL  
+ASL2CPP
+Assign	     OK	OK   
+Atoi	     	     OK	OK   
+Audio
+Bitwise         OK	OK   
+Blife
+Bops	    OK	OK   
+BPfilters
+Bscan	    FAIL   FAIL  
+BubbleSort   OK	OK   
+bug_ex
+BXOR	OK	OK   
+Calc
+CARBON
+Cast		OK	NOK   
+Caz		NOK	NOK   
+Cbrt	           OK	OK   
+Chem          OK          OK   
+Clargs
+Class
+Cmp		   OK	OK   
+Cmplx          OK	OK   
+Cmpsetv
+Command
+Compile
+Consts
+Contin
+Convert      OK	    NOK   
+Convolve
+Crypt
+CTS
+Cut	           OK	OK   
+D2R		   OK	OK   
+Date		   OK	OK   
+Debug
+Dec2	OK	OK   
+Declare
+Define
+Diagonal	OK	OK   
+Do		OK	OK   
+Documentation
+Dotp	OK	OK   
+DSP
+Dynv	OK	OK   
+Edit
+Efmt
+Enum
+Env
+Events
+ExchangeCols	OK	NOK   
+ExchangeRows	OK	OK   
+Fabs		OK	OK   
+Fact		 NOK	NOK   
+FASTX
+Fexist
+Fh
+Filters
+Findval
+Fio		OK	NOK   
+Fixit
+Flipdim	OK	OK   
+Fops	OK	OK   
+For
+Fpass
+Fread
+Fscanf	OK	OK   
+Fscanv      OK	OK   
+Ftest
+Func
+Funcs
+Gcontour
+Getdir
+getRow
+Hash
+Howfar
+Icall
+Icspeed
+If		OK	OK   
+Ifunc
+Imave
+Include
+Info
+Intrnlvar
+Iproc
+Iread
+Iterate
+Ivar
+Job
+Julian
+Lexp
+Lfit
+Limit  OK	OK   
+Lip	OK	OK   
+Lists  NOK	NOK   
+Logic  OK	OK   
+Lol
+Lotto
+M3D
+MainVar
+Mangle
+Mapvec
+MaskSrc
+Math
+Math2
+Matrix
+Maxof   OK	OK   
+Mdimn   OK	OK   
+MDRange
+Median    NOK	NOK   
+Memp
+Memusage
+Mih
+Minof    OK	OK   
+Mod	    OK	OK   
+Mops
+Msort
+Mutex
+Name
+newparse
+Nsc
+Num2Str
+Obcopy
+OLDSCORES
+OnceOnly
+OneLiner
+OneLiners
+OO
+Packb	OK	OK   
+Pan          OK	OK   
+ParaEx
+Parse
+PatMatRep
+Perm
+PI
+Pid
+Pincdec
+Pipes
+Polynom
+Pow		OK	OK   
+Prep
+PrePostOp  OK	OK   
+Preprocessor
+Prime
+PrintColor
+Printvec
+Proc		OK	OK
+ProcArray  OK	OK
+ProcChain
+Ptrs
+Putmem
+Quicksort
+Rand	OK	OK
+Readfile
+ReadRecord
+Record
+Redimn
+Regex
+Reload
+Resize
+Return
+Retype
+Reverse		OK	OK   
+Rgb
+Round		OK	OK
+Rover
+Rowzoom
+Rpc
+Scalarvec
+Scat			OK	OK
+Scope
+Scores
+Scpy
+Scut		OK	OK   
+Sel
+Sele
+Sexp
+Sgen
+Shift
+Sin
+Single
+Sizeof
+Skeyval
+Sockets
+Sops	OK	OK   
+Sort
+Spat       OK	OK   
+Speed
+Splice     OK	OK   
+Split
+Sscan	OK	NOK   
+Sstr
+Static
+Stats
+Str
+Strops
+Strv
+Subrange
+Subscript
+Sum		OK	OK   
+Svar         OK	NOK   
+Swab	OK	NOK   
+Swap	OK	NOK   
+Switch		OK	OK   
+Syntax
+Testargs
+Tests
+Threads
+Tid
+Time
+Top		OK	OK   
+Tranf
+Trig		OK	OK   
+Trim		OK	OK   
+Trunc	OK	OK   
+TryThrowCatch
+Typeof
+Types	OK	OK   
+Unary
+Variables
+Varname
+Vector	       NOK	NOK
+Vfill	       		OK	OK
+Vgen	      OK	OK
+Vga                 OK	NOK
+Vmf	               OK	OK
+Vops                OK	NOK
+Vrange		NOK	NOK
+Vsh
+Vsmath
+VVcomp		OK	OK
+VVcopy		OK	NOK
+VVgen		OK	OK
+Vzoom		OK	OK
+Wdata              OK	OK
+While		OK	OK
+Xic
+XOR                  OK	OK
+Zipper		OK	OK
+

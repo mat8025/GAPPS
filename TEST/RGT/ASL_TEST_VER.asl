@@ -33,7 +33,8 @@ setmaxicerrors(-1);
 #define POFF  '\033[0m'
 
 
-wasl = "aslx"   // alsx should be stable
+//wasl = "aslx"   // alsx should be stable
+
 wasl = "asl"
 <<"using $wasl for testing \n"
 
@@ -344,20 +345,21 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
   updir()
 
-  changeDir("Contin")
+  chdir ("Contin")
+  //changeDir("Contin")
 
   cart("contin")
 
   updir()
 
-  changeDir("Mod")
+  chdir("Mod")
 
   cart("mod")
 
   updir()
 
 
-  changeDir("Info")
+  chdir("Info")
 
   cart("info")
 
@@ -539,7 +541,7 @@ if ((do_all  || do_declare ) && (do_declare != -1))  {
 
 
 
-changeDir(Testdir)
+chdir(Testdir)
 
  if ((do_exp || do_all) && (do_exp != -1)) {
 
@@ -578,7 +580,7 @@ if ((do_all || do_array ) && (do_array != -1)) {
 
    RunDirTests("VVcopy","range-copy,vvcopy")
 
-   RunDirTests("Array","ae,arraystore,arrayele,arraysubset")
+   RunDirTests("Array","ae,array-store,array-ele,array-subset")
 
 
 
@@ -672,7 +674,7 @@ if ((do_all || do_func ) && (do_func != -1)) {
 
    if ((do_all || do_vmf) && (do_vmf != -1)) {
   <<"trying vmf \n"
-    RunDirTests("Vmf","vmf,vmf-range,genv")
+    RunDirTests("Vmf","vmf-trim,vmf-range,vmf-cut,vmf-substitute,genv")
   }
 
 /////////////////////////////////////////
@@ -729,7 +731,7 @@ if ((do_all || do_proc ) && (do_proc != -1)) {
   }
 
 
- changeDir(Testdir)
+ chdir(Testdir)
 
 if ((do_all || do_recurse ) && (do_recurse != -1)) {
 
@@ -787,7 +789,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
 
   }
- changeDir(Testdir)
+ chdir(Testdir)
 
  if ((do_all || do_mops ) && (do_mops != -1)) {
   
@@ -814,7 +816,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
     }
 
 
- changeDir(Testdir)
+ chdir(Testdir)
 
  if ((do_all || do_stat ) && (do_stat != -1)) {
 
@@ -911,7 +913,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
   if ((do_all || do_bugs )  && (!do_bugs == -1)) {
       //cart("bf_40")   // this has intentional error and exits before test checks
-    changeDir(Testdir)
+    chdir(Testdir)
 
      chdir("BUGFIX")
 <<"Doing bug tests"
@@ -931,7 +933,7 @@ bflist="$BFS"
 
 
   if ((do_all || do_tests ) && (do_tests != -1)) {
-    changeDir(Testdir)
+    chdir(Testdir)
 //  get a list of asl files in this dir and run them
      chdir("Tests")
 <<"Doing Tests"
@@ -1038,7 +1040,7 @@ fflush(Tff)
 cf(Tff);
 fflush(Tlogf)
 cf(Tlogf);
-changeDir(cwd)
+chdir(cwd)
 
 //!!"pwd"
 

@@ -1,5 +1,5 @@
 //%*********************************************** 
-//*  @script arraysubset.asl 
+//*  @script array-subset.asl 
 //* 
 //*  @comment test  operation on array subsets 
 //*  @release CARBON 
@@ -16,18 +16,19 @@
  // bug2fix should clear subi/subset each statement
  // else old selection overwritten 
 */
+#include "debug"
 
+if (_dblevel >0) {
+   debugON()
+}
 
-  
-#include "debug.asl";
+chkIn(_dblevel)
+
 /*
-  debugON();
-  setdebug(1,@keep,@pline,@~trace);
   FilterFileDebug(REJECT_,"~storetype_e");
   FilterFuncDebug(REJECT_,"~ArraySpecs",);
 */  
   
-  chkIn(_dblevel); 
   
   B = vgen(INT_,10,0,1); 
   
@@ -35,11 +36,13 @@
   
   B[3,5,6] = 96;
 
+  <<"$B\n"; 
+!a
+
   chkN(B[3],96); 
   chkN(B[5],96); 
   chkN(B[6],96); 
 
-  <<"$B\n"; 
 
 
  // should clear subi/subset each statement

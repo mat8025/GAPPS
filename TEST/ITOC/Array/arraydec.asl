@@ -1,6 +1,16 @@
 
 
 
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+}
+
+
+chkIn(_dblevel)
+
+
 int F[] = { 1,2,3,4 };
 
 <<"%v $(Caz(F)) \n"
@@ -47,9 +57,9 @@ svar S[] = { "mark", "nick" , "lauren", "pepe", "dena", "lucky", "scruffy", "jil
 
 
 svar R[] = { {"mark", "nick" , "lauren",}\
-             { "pepe", "dena", "lucky", }\
-             {"scruffy", "jill", "ruby" }\
-             {"jack", "tinkerbell", "jake" }};
+                { "pepe", "dena", "lucky", }\
+                {"scruffy", "jill", "ruby" }\
+                {"jack", "tinkerbell", "jake" }};
 
 
 <<"%v $R \n"
@@ -71,4 +81,4 @@ svar R[] = { {"mark", "nick" , "lauren",}\
 
 <<"%v $R[0:3][0:2:2] \n"
 
-STOP!
+chkOut()

@@ -10,11 +10,20 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-myScript = getScript();
+
 ///
 ///
 ///
-   
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+}
+
+filterFileDebug(REJECT_,"scopesindex_e.cpp","array_parse.cpp");
+filterFuncDebug(REJECT_,"~storeSiv","checkProcFunc");
+
    chkIn();
 
    int n;
@@ -43,14 +52,18 @@ myScript = getScript();
    chkN(P[0],0)
    chkN(P[9],0)   
    chkN(J[0],0)
-  
+
+<<"$J\n"
+   J->info(1)
+
 
    J[0:19:2]->set(10,1); 
 
    J->info(1)
 
    <<"$J \n"; 
-   
+
+
    chkN(J[0],10);
    
 //chkOut();exit()
@@ -75,6 +88,6 @@ myScript = getScript();
    
    
 //////////////////////////////////
-///  TBCDF
-///  TBF  pic lic of  J[0:19:2]->set(10,1)  repeats section
-///  but xic works?
+/// ? TBCDF
+/// ? TBF  pic lic of  J[0:19:2]->set(10,1)  repeats section
+/// ? but xic works?

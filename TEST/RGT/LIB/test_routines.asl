@@ -86,7 +86,7 @@ void Help()
 
 void changeDir(str td)
 {
-  //<<" $_proc $td\n"
+  <<" $_proc $td\n"
   chdir(td)
   Curr_dir = getDir();
 }
@@ -98,7 +98,7 @@ void Run2Test(str td)
 //<<" $_proc $td $Testdir\n"
   //td->info(1)
 
-  changeDir(Testdir)
+  chdir(Testdir)
 
   hdg(td)
 
@@ -124,7 +124,7 @@ str pgname = "xx";
 //Tl->info(1)
 
 //ri=Tl->info()
-      changeDir(Testdir)
+      chdir(Testdir)
       chdir(Td)
       
      // Run2Test(Td);
@@ -171,7 +171,7 @@ void RunSFtests(str Td)
       for (i=0 ; i < np; i++) {
          wsf = Tp[i];
 
-         changeDir(Testdir)
+         chdir(Testdir)
 
          hdg(wsf)
 
