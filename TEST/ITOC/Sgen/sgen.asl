@@ -31,9 +31,14 @@ The size of vec does not need to be an exact factor
 of the size of the generated array.
 */
 
+#include "debug"
 
+if (_dblevel >0) {
+   debugON()
+}
+  
+chkIn(_dblevel)
 
-chkIn()
 
 int v[2] = {2,-1}
 <<"$v \n"
@@ -62,4 +67,3 @@ chkN(J[3],3)
 
 chkOut()
 
-exit()

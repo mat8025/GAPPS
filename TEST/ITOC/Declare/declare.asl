@@ -13,15 +13,23 @@
 
 ///
 ///
+<|Use_=
+Demo  of declare 
+e.g.
+double yr0 = -1.5
+etc
+///////////////////////
+|>
 
 
 #include "debug"
 
-
-
 if (_dblevel >0) {
    debugON()
+   <<"$Use_\n"
 }
+
+
 chkIn(_dblevel)
 
 //filterFileDebug(ALLOWALL_,"yyy");
@@ -29,7 +37,7 @@ chkIn(_dblevel)
 
 proc Foo(int a)
 {
-int k = 2
+  int k = 2
 <<" entered $_proc single arg %V$a $k $A\n"
  chkN(k,2)
  chkN(a,A)
@@ -49,7 +57,7 @@ proc Foo(int a, int b)
   chkN (y ,1)
   x = a;
   y = b;
-
+  a->info(1)
   c= x+ y;
 
 <<"%V $c $a $b $x $y \n"
@@ -58,11 +66,24 @@ proc Foo(int a, int b)
 }
 //======================================//
 
-A =5
-Foo(A)
+<<" Main \n"
+
+
+A =4;
+
+Foo(A,5)
+
 
 A++
-Foo(A)
+
+d=Foo(A,5)
+
+
+
+A++;
+
+
+e=Foo(A)
 
 
 
@@ -97,7 +118,7 @@ chkN(pri,(74+79))
 
 
 
-int ok = 0
+int ok = 0;
 int ntest = 0;
 
 jj = 6
@@ -107,13 +128,13 @@ jj = 6
    chkN(jj,6)
 
 
-int k =34
+int k =34;
 
 <<" %v $k \n"
 
    chkN(k,34)
 
-float ytest = 1.234
+float ytest = 1.234;
 
 <<"%V$ytest \n"
 
@@ -307,12 +328,6 @@ P = 76
 <<"%e$dp $dc $dz $dq\n"
 
    chkN(dp,dq)
-
-//<<" using which chkOut ??\n"
-
-
-
- 
 
 
  chkOut()

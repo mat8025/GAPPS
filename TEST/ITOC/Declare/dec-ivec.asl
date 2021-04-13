@@ -1,11 +1,25 @@
+///
+///
+///
+
+//  TxtBox for Usage
+
+<|Use_=
+Demo  of declare vector
+int iv[] = { 0,1,2,3,4,5,6,7,8,9, };
+|>
 
 
 #include "debug"
 
-
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"
+}
+  
 chkIn(_dblevel)
 
-int iv[] = { 0,1,2,3,4,5,6,7,8,9, }
+int iv[] = { 0,1,2,3,4,5,6,7,8,9, };
 
 iv->info(1)
 <<" $iv \n"
@@ -13,6 +27,7 @@ iv->info(1)
 for (i=0;i<10;i++) {
 chkN(iv[i],i)
 }
+
 
 
 char cv[] = { 'F','G','H','I','J','K','L','M','N','O' }

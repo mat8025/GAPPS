@@ -16,14 +16,33 @@
 /// Sizeof
 ///
 
-/*
-
+<|Use=
 Sizeof(V)
   - returns the number of bytes for array elements of this type
+|>
 
-*/
+proc showUse()
+{
+  <<"$Use\n"
+}
 
-chkIn();
+
+//==================================
+
+
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   showUse();
+}
+  
+chkIn(_dblevel)
+
+
+
+
 int i;
 sz = sizeof(i);
 <<"$(typeof(i)) $(sizeof(i)) \n"

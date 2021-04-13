@@ -36,7 +36,7 @@ Pan _P ;
 
 _P= 4.0*atan(1.0);
 
-!p _P
+//!p _P
 
 
 dbid = IDof("_DB");
@@ -119,6 +119,12 @@ proc setNICerrors( int n)
 }
 //==========================
 
+
+
+proc showUse()
+{
+  <<"$Use_\n"
+}
 
 
 //<<" %V $_include  $_dblevel DONE debug.asl\n"

@@ -11,24 +11,36 @@
 //* 
 //***********************************************%
 
-
-
-/*
+<|Use=
 shiftL()
-
-/////
 I->shiftL(newval,[nplaces],[vecsize])
 An  VMF operation to shift elements of an vector one place to the left 
-and replace the last element with
-a  new val. 
+and replace the last element with a  new val. 
 Can be repeated nplaces. 
 If vector size is specified as less than actual size the element can 
 be inserted at the specified 'end'. (same for shiftR) 
-*/
+|>
+
+proc showUse()
+{
+  <<"$Use\n"
+}
+
+
+//==================================
 
 
 
-chkIn()
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   showUse();
+}
+  
+chkIn(_dblevel)
+
+
 
 I = vgen(INT_,10,0,1)
 

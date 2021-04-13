@@ -15,6 +15,18 @@
 
 ///    Mops -- test some SF mops
 
+<|Use_=
+Demo  of math ops
+///////////////////////
+|>
+
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"
+}
 
 
 chkIn(_dblevel)
@@ -50,10 +62,6 @@ testargs(" TRY HARDER $xyv[2] ")
 
 
   chkN(Caz(xyv),12)
-// FIX runs twice ?
-
-
-//   chkOut()
 
 
 short zx[4]
@@ -96,9 +104,12 @@ short zx[4]
    xyv[0,2,4,6] = 77
 
 
-<<"%v $xyv[::] \n"
+<<"%V $xyv[::] \n"
+chkN(xyv[2],77)
 
-   chkN(xyv[2],77)
+chkOut()
+
+   
 
 
    chkN(xyv[6],77)

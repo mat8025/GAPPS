@@ -33,7 +33,7 @@ Cmplx          OK	OK
 Cmpsetv
 Command
 Compile
-Consts
+Consts	  OK	OK   
 Contin
 Convert      OK	    NOK   
 Convolve
@@ -44,7 +44,7 @@ D2R		   OK	OK
 Date		   OK	OK   
 Debug
 Dec2	OK	OK   
-Declare
+Declare     OK	OK     TBF dec-pan
 Define
 Diagonal	OK	OK   
 Do		OK	OK   
@@ -162,37 +162,37 @@ Quicksort
 Rand	OK	OK
 Readfile
 ReadRecord
-Record
-Redimn
+Record	NOK	NOK
+Redimn	OK	OK
 Regex
 Reload
-Resize
+Resize	OK	OK
 Return
 Retype
 Reverse		OK	OK   
 Rgb
 Round		OK	OK
-Rover
+Rover		OK	OK
 Rowzoom
 Rpc
 Scalarvec
 Scat			OK	OK
 Scope
 Scores
-Scpy
+Scpy		NOK	NOK   
 Scut		OK	OK   
-Sel
-Sele
+Sel		OK	OK
+Sele		OK	OK
 Sexp
-Sgen
-Shift
-Sin
-Single
-Sizeof
-Skeyval
+Sgen	OK	OK
+Shift	OK	OK
+Sin		OK	OK
+Single       OK	OK
+Sizeof	OK	OK
+Skeyval    OK	OK
 Sockets
 Sops	OK	OK   
-Sort
+Sort       OK	OK   
 Spat       OK	OK   
 Speed
 Splice     OK	OK   
@@ -204,7 +204,7 @@ Stats
 Str
 Strops
 Strv
-Subrange
+Subrange	OK	OK   
 Subscript
 Sum		OK	OK   
 Svar         OK	NOK   
@@ -223,12 +223,12 @@ Trig		OK	OK
 Trim		OK	OK   
 Trunc	OK	OK   
 TryThrowCatch
-Typeof
+Typeof     OK	OK   
 Types	OK	OK   
-Unary
+Unary	OK	OK   
 Variables
 Varname
-Vector	       NOK	NOK
+Vector	       OK	OK
 Vfill	       		OK	OK
 Vgen	      OK	OK
 Vga                 OK	NOK

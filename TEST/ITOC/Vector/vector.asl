@@ -11,8 +11,25 @@
 //* 
 //***********************************************%
 
-#include "debug.asl"
 
+<|Use_=
+Demo  of vector ops
+e.g.
+
+V= vgen(FLOAT_,10,0,1);
+// add 1.0 to all elements of vector V and assign to T
+T = V + 1.0;
+etc
+///////////////////////
+|>
+
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"
+}
 
 chkIn(_dblevel)
 
@@ -60,22 +77,6 @@ chkN (T[1],0.375)
 chkStage("vop")
 
 
-
-
-proc ask()
-{
-   ok=chkStage();
-   <<"%6.2f$ok\n"
-  if (ok[0] < 100.0) {
-  ans=iread();
-  }
-
-}
-
-
-
-
-
 proc foo()
 {
 
@@ -94,10 +95,10 @@ proc foo()
  Y = vgen(FLOAT_,10,1,1);
 
 
-<<"Y $Y\n"
-Y->info(1)
-  Y *= 2;
-Y->info(1)
+ <<"Y $Y\n"
+ Y->info(1)
+ Y *= 2;
+ Y->info(1)
 <<"$Y\n"
 
 
@@ -207,8 +208,6 @@ chkStage("opeq")
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-
-
 
   V= vgen(INT_,10,0,1);
 
@@ -355,19 +354,24 @@ chkN (IV[4],8)
 
 IV2= vgen(INT_,15,0,1)
 
-
 <<"$IV2 \n"
 
 
 IV2[1:3] *=2 ;
 
+<<"$IV2 \n"
+<<"$IV2[1:3] *= 2 \n"
+
+//chkOut()
+
 chkN (IV2[1],2)
+
 chkN (IV2[2],4)
 chkN (IV2[3],6)
 chkN (IV2[4],4)
 
 chkStage("self op * on lhrange  ")
-
+chkOut()
 
 <<"$IV2 \n"
 

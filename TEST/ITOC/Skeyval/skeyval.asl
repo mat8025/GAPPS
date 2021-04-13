@@ -13,6 +13,19 @@
  */
  
 // key-val pairs via Svar
+
+<|Use=
+Demo key-value pairs use of Svar
+kv->addKeyVal("smarter","pushed")
+  
+|>
+
+proc showUse()
+{
+  <<"$Use\n"
+}
+
+
 #include "debug"
 
 if (_dblevel >0) {

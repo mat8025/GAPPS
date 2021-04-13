@@ -1,3 +1,34 @@
+///
+///
+///
+
+
+<|Use=
+Demo of pan addition
+pan a = 1;
+pan b = 1;
+  a = a + b;
+
+|>
+
+proc showUse()
+{
+  <<"$Use\n"
+}
+
+
+//==================================
+
+
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   showUse();
+}
+  
+chkIn(_dblevel)
 
 pan a = 1
 
@@ -6,8 +37,8 @@ pan b = 0
 //pan t = 3
 
 //<<"$t \n"
-
-for (i=0;i<1000;i++)
+N = 500;
+for (i=0;i<N;i++)
  {
 <<"$i $b  \n";  
   t= a ; 
@@ -20,3 +51,5 @@ for (i=0;i<1000;i++)
 
 //<<"%V$i $b \n"
 }
+chkN(i,N)
+chkOut()
