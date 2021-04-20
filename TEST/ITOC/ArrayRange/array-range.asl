@@ -10,12 +10,23 @@
 //*  @Copyright © RootMeanSquare  2010,2019 → 
 //* 
 //***********************************************%
+
+<|Use_=
+Demo  of vector range  e.g. V[0:10:2] = 5;
+///////////////////////
+|>
+
+
+
 #include "debug"
 
 if (_dblevel >0) {
    debugON()
+   <<"$Use_\n"   
 }
 
+filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
+filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
 
 
 chkIn(_dblevel)
@@ -38,6 +49,10 @@ C= B[1:3];
 <<"%V$C\n"
 
 chkN (C[0],1)
+chkN (C[1],2)
+chkN (C[2],3)
+
+
 
 D= B[::]
 <<"%V$D\n"
@@ -62,12 +77,6 @@ D= B[1:-2]
 chkN (D[0],1)
 chkN (D[2],3)
 
-
-
-
-
-
-
 D= B[-1:0:-1]
 <<"reverse opr\n"
 <<"%V$D\n"
@@ -89,9 +98,33 @@ chkN (D[2],6)
 
 
 
-<<" lets do circular buffer\n"
+<<"  circular buffer  B[-1:8:1] \n"
 
-<<"%V$B\n"
+<<"%V$B \n"
+
+E= B[1:8:1]
+
+<<"%V$E\n"
+
+
+E= B[-1:8:1]
+
+
+<<"%V$E\n"
+
+
+
+chkN (E[0],9)
+
+
+
+F= B[-1:8:1]
+
+<<"%V$F\n"
+
+
+
+D->info(1)
 
 D= B[-1:8:1]
 
@@ -108,7 +141,7 @@ chkN (D[3],2)
 
 
 
-<<" -2:3:1 \n"
+
 D= B[-2:2:1]
 <<"%V$D\n"
 <<"%V$B[-2:2:1] \n"

@@ -1,5 +1,39 @@
+//%*********************************************** 
+//*  @script array-subsref.asl 
+//* 
+//*  @comment test vector range spec - forward,backward 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                  
+//*  @date Tue Jun 25 18:48:42 2019 
+//*  @cdate Tue Jun 25 18:48:42 2019 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2019 → 
+//* 
+//***********************************************%
 
-chkIn()
+
+
+<|Use_=
+Demo  of vector range
+///////////////////////
+|>
+
+
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   
+}
+
+filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
+filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
+
+
+chkIn(_dblevel)
+
+
 
 // test array indexing
 

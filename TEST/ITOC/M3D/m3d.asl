@@ -12,6 +12,10 @@
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
                                                                       
+<|Use_=
+Demo  of MD3
+///////////////////////
+|>
 
 
 #include "debug";
@@ -20,8 +24,14 @@
 
 if (_dblevel >0) {
    debugON()
+   <<"$Use_\n"
 }
-  
+
+
+filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
+filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
+filterFuncDebug(REJECT_,"vrealloc","Svar","init");
+
 chkIn(_dblevel);
 
 
@@ -30,12 +40,22 @@ N = 10
 P = 10
 L = 10
 
-//int M[L][P][N]
+int M2[L][P]
+M2->info(1)
+M2[0][2] = 67;
+M2->info(1)
 
 
 int M[N][P][L];
 
- V = vgen(INT_,N,0,1)
+M->info(1)
+!a
+M[0][0][2] = 67;
+M->info(1)
+
+
+
+V = vgen(INT_,N,0,1)
 
 <<"$V\n"
 b = Cab(V)
@@ -80,32 +100,69 @@ b = Cab(M)
 <<"%V $val2 $M[0][1][4] \n"
     val2= M[0][1][2] ;
 <<"%V $val2 $M[0][1][2] \n"
-  for (i = 0; i < P; i++) {
+
+    M[0][2][1] = 66;
+
+<<"%V $M[0][2][1]  \n"
+<<"%V $M[0][3][1]  \n"
+<<"%V $M[0][3][2]  \n"
+
+    mval = M[0][2][1] ;
+<<"%V $M[0][2][1]  $mval\n"
+    i= 0;
+    M[0][i][1] = val++;
+    i = 1;
+    M[0][i][1] = val++;
+
+  for (i = 0; i < 10; i++) {
     M[0][i][1] = val++;
     val2= M[0][i][1] ;
-    <<" $M[0][i][1] $val2  $val\n"
+    <<"%V $i $M[0][i][1] $val2  $val\n"
   }
 
+
 <<"%V $M[0][0][1]  \n"
+//  chkN(M[0][0][1],7)
+
 <<"%V $M[0][1][1]  \n"
+//  chkN(M[0][1][1],8)
+
+<<"%V $M[0][2][1]  \n"
+<<"%V $M[0][3][1]  \n"
+<<"%V $M[0][3][2]  \n"
+M[0][0][0] = 65;
+M->info(1)
+
+
 
 <<"%V $M[0][1][2]  \n"
     val2= M[0][1][4] ;
 <<"%V $val2 $M[0][1][4] \n"
 
-  chkN(M[0][0][1],7)
+//<<"$M \n"
 
-  chkN(M[0][1][1],8)
+
+
 
  val = 7
- 
- for (i = 0; i < P; i++) {
+
+for (i = 0; i < P; i++) {
+
+    M[0][i][1] = val
 <<"M 0,$i,1 $M[0][i][1] \n"
+   val++
+ }
+
+
+ val = 7
+ for (i = 0; i < P; i++) {
+<<"M 0,$i,1 $M[0][i][1] $val\n"
     chkN(M[0][i][1],val)
     val++
  }
 
-chkStage()
+
+//chkOut()  ; // xic bug after
 
 
 b = Cab(M)
@@ -134,7 +191,32 @@ b = Cab(M)
   }
 //======================================//
 
+M[0][1][4] = 80
 
+M[0][1][0:3:] = 81
+M[1][1][0:3:] = 82
+
+mval = M[0][1][1]
+
+<<"$mval\n"
+
+chkN(mval,81)
+
+
+mval = M[1][1][2]
+
+<<"$mval\n"
+
+chkN(mval,82)
+
+mval = M[0][1][4]
+
+<<"$mval\n"
+
+chkN(mval,80)
+
+
+chkOut()
 
 M[0:1][1][0:3:] = 8
 

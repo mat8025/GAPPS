@@ -152,23 +152,28 @@ if (adjust >=2) {
 //==============================//
 
 float totalD = 0;
+float totalDur = 0.0
 proc  computeHTD()
 {
   totalD = 0;
+  <<"$_proc $n_legs \n"
   for (nl = 0; nl < n_legs ; nl++) {
 
         tkm = ComputeTPD(nl, nl+1);
 
        Leg[nl] = tkm;
        //Leg[nl] = ComputeTPD(nl, nl+1)
-             tcd =  ComputeTC(nl, nl+1)
+       tcd =  ComputeTC(nl, nl+1)
        TC[nl] = tcd;
+       
        Dur[nl] = Leg[nl]/ Cruise_speed;
-//<<"<$nl>  $tcd $Dur[nl] $TC[nl] "
-//<<"$Leg[nl]  \n"
+       
 
+//<<"$Leg[nl]  \n"
+       totalDur += Dur[nl];
        totalD += Leg[nl]
-  }
+<<"<$nl> $Leg[nl]  $tkm $tcd $Dur[nl] $TC[nl] $totalD $totalDur \n"
+ }
 }
 //==============================//
 
@@ -1646,7 +1651,7 @@ proc ComputeTPD(int j, int k)
 
     lo2 = Wtp[k]->Longdeg;
 
-/{/*
+/*
   // DBG"%V $lo1 $lo2 \n"
     rL2 = d2r(L2)
     rL1 = d2r(L1)
@@ -1666,7 +1671,7 @@ proc ComputeTPD(int j, int k)
     N = LegK * D
 
     km1 = N * nm_to_km
-/}*/
+*/
 
     km2 = Gcd(L1,lo1 , L2, lo2 );
 
@@ -1680,7 +1685,7 @@ proc ComputeTPD(int j, int k)
 //====================================//
 
 
-/{/*
+/*
 proc ComputeTPD( j, k)
 {
 
@@ -1722,5 +1727,5 @@ proc ComputeTPD( j, k)
     return km
  }
 
-/}*/
+*/
 #

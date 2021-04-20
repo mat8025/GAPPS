@@ -14,17 +14,24 @@
 ///
 ///
 ///
+<|Use_=
+Demo  of vmf range
+///////////////////////
+|>
+
+
 
 #include "debug"
 
 if (_dblevel >0) {
    debugON()
+    <<"$Use_\n"
 }
 
 filterFileDebug(REJECT_,"scopesindex_e.cpp","array_parse.cpp");
 filterFuncDebug(REJECT_,"~storeSiv","checkProcFunc");
 
-   chkIn();
+   chkIn(_dblevel);
 
    int n;
 

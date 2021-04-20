@@ -11,13 +11,23 @@
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
+<|Use_=
+Demo  of subsrange
+///////////////////////
+|>
 
 
 #include "debug"
 
 if (_dblevel >0) {
    debugON()
+     <<"$Use_\n"
 }
+
+filterFileDebug(REJECT_,"scopesindex_e","scope_e","scope_findvar","exp_e","exp_lhs_e","ds_sivmem");
+
+
+
 
 chkIn(_dblevel)
 
@@ -39,6 +49,12 @@ chkIn(_dblevel)
  S = YV[0:-3:]
 
  <<"%V$S \n"
+
+
+  chkN(S[0],20)
+  chkN(S[5],25)
+
+
 
  e = S[-1]
 
@@ -158,3 +174,4 @@ chkIn(_dblevel)
 //iread()
  chkOut()
 
+# list of files where debug is filtered out

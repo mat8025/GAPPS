@@ -14,12 +14,12 @@
 ///
 
 //  SET     START DATE      END DATE  TARGET WEIGHT
-Goals = Split("02/25/2021 04/08/2021 175")
+Goals = Split("03/25/2021 05/08/2021 175")
 ////////////////////==============/////////////////
 
 
 GoalWt = 175;  // ideal -- flying weight
-StartWt = 220;
+StartWt = 210;
 MinWt = 165;
 
 

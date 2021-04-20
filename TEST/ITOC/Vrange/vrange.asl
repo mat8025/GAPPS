@@ -30,22 +30,34 @@ The function returns a new vector (float, double) with the transformed values.
 /////
 */
 
-//#include "debug"
+<|Use_=
+Demo  of vector range [start:stop:stride]  selection
+///////////////////////
+|>
 
 
-//debugON()
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"
+}
 
 
-//setdebug(1,@pline,@trace,@keep)
+filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
+filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
+
 //filterFuncDebug(ALLOWALL_,"xxx");
 //filterFileDebug(ALLOWALL_,"yyy");
-//setDebug(1,@pline)
+
 
 chkIn(_dblevel)
+
  I = Vgen(INT_,30,-10,1)
 
 <<"$I \n"
-//sdb(1,@step)
+
 chkR(I[0],-10)
 chkR(I[29],19)
 

@@ -11,16 +11,42 @@
 //* 
 //***********************************************%
 
-#include "debug"
-debugON()
+<|Use_=
+Demo  of MD  range
+///////////////////////
+|>
+
+
+#include "debug";
+
+
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"
+}
+
+
+filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
+filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
+filterFuncDebug(REJECT_,"vrealloc","Svar","init");
+
 
 chkIn(_dblevel)
 
 int MD[5][20];
 
 MD->info(1)
+
 //!p MD
-chkN("init Array zero ",MD[0][1],0)
+MD[0][1] = 77;
+<<"%V $MD[0][1]\n"
+chkN(MD[0][1],77)
+
+chkN("init Array zero ",MD[0][1],77)
+
+chkN(MD[0][-1],0)
+
 
 
 chkN("init Array zero ",MD[0][-1],0)
