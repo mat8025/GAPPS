@@ -19,14 +19,15 @@
 //sdb(-1,@~pline,@~step,@~trace)
 
 //sdb(_dblevel,@~pline,@~step,@~trace)
-filterFuncDebug(REJECTALL_,"proc");
-filterFileDebug(REJECTALL_,"yyy");
+//filterFuncDebug(REJECTALL_,"proc");
+//filterFileDebug(REJECTALL_,"yyy");
 
 
 // working variables
 int _DB = -1; // dbg FH set to nop --set to 2 for error output
 
 _IV = vgen(INT_,10,0,1)
+
 _DV = vgen(DOUBLE_,10,0,1)
 
 Str _S = "abcde";

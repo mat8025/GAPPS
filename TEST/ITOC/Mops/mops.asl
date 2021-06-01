@@ -28,11 +28,104 @@ if (_dblevel >0) {
    <<"$Use_\n"
 }
 
+filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
+filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e","ds_storesiv");
+filterFuncDebug(REJECT_,"vrealloc","init","VarArrayIndex");
+
 
 chkIn(_dblevel)
 
-short xyv[12];
+int a = 14;
+int b = 16;
+short xyv[20];
 
+xyv->info(1)
+
+chkN (xyv[0],0)
+
+
+xyv->info(1)
+
+
+xyv[{2,4,7,a}] = 36;
+xyv->info(1)
+
+<<"$xyv\n"
+
+chkN(xyv[2],36);
+chkN(xyv[14],36);
+chkN(xyv[0],0);
+
+chkOut()
+
+xyv[{2,4,7,b}] = 77;
+
+
+<<"$xyv\n"
+
+chkN(xyv[2],77);
+
+chkOut()
+
+
+
+B=vgen(INT_,20,0,1)
+
+//X=vgen(INT_,10,0,1)
+chkN (B[0],0)
+chkN (B[19],19)
+// X[{0,2,4,6}] = 77;
+//B[0,2,4,a] = 77;
+
+ B[{2,4,a}] = 77;
+<<"%V$B\n"
+
+chkN(B[2],77)
+chkN (B[0],0)
+
+
+
+
+//int B[20];
+
+<<"%V$B\n"
+
+
+//chkN (B[4],4)
+
+B[0] =0;
+<<"%V$B\n"
+B[{2, 4,7,a}] = 36;
+
+<<"%V$B\n"
+chkN (B[0],0)
+
+B[{2,4 ,7,a,}] = 37;
+
+<<"%V$B\n"
+
+chkN (B[0],0)
+chkN (B[4],37)
+
+<<"%V$B\n"
+!a
+
+
+
+
+chkOut()
+
+
+
+ xyv[{2,4,7,a}] = 77;
+
+chkN(xyv[2],77);
+
+ xyv[{2,4,7,a}] = 79;
+!a 
+
+
+/*
 
 <<"%v $(Caz(xyv)) \n"
 
@@ -53,6 +146,15 @@ testargs(" TRY HARDER $xyv[2] ")
 
    chkN(xyv[2],as)
 
+*/
+
+xyz[{2,4,7,a}] = 79;
+
+
+
+chkN(xyv[2],79)
+
+chkOut()
 
 //FIX chkN(Caz(xyv),8)
 
@@ -101,7 +203,8 @@ short zx[4]
 <<"%v $(Caz(xyv)) \n"
 
 
-   xyv[0,2,4,6] = 77
+ //  xyv[0,2,4,6] = 77
+   xyv[{0,2,4,6}] = 77
 
 
 <<"%V $xyv[::] \n"

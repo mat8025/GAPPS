@@ -1,34 +1,34 @@
-AnonVec	      OK	OK
-Arch               OK	OK
+AnonVec	      OK	OK    34_OK
+Arch               OK	OK    34_OK
 Argc
-Args               OK	OK
+Args               OK	OK    34_OK
 Array
-ArrayJoin        OK	OK   vsp fail ?
-ArrayProc       OK	OK   
-ArrayRange    OK	OK   
-ArrayStore     OK	OK   
-ArraySubSet   FAIL   FAIL  
+ArrayJoin        OK	OK    34_OK
+ArrayProc       OK	OK    34_OK
+ArrayRange    OK	OK    34_OK
+ArrayStore     OK	OK    34_OK
+ArraySubSet   OK	OK    34_OK
 ASL2CPP
-Assign	     OK	OK   
-Atoi	     	     OK	OK   
+Assign	     OK	OK    34_OK
+Atoi	     	     OK	OK    34_OK
 Audio
 Bitwise         OK	OK   
 Blife
-Bops	    OK	OK   
+Bops	    OK	OK   34_OK
 BPfilters
 Bscan	    FAIL   FAIL  
-BubbleSort   OK	OK   
+BubbleSort   OK	OK   34_OK
 bug_ex
 BXOR	OK	OK   
 Calc
 CARBON
-Cast		OK	NOK   
+Cast		OK	OK   34_OK
 Caz		NOK	NOK   
 Cbrt	           OK	OK   
 Chem          OK          OK   
-Clargs
+Clargs         OK	         OK    34_OK
 Class
-Cmp		   OK	OK   
+Cmp		   OK	OK   34_OK
 Cmplx          OK	OK   
 Cmpsetv
 Command
@@ -40,16 +40,16 @@ Convolve
 Crypt
 CTS
 Cut	           OK	OK   
-D2R		   OK	OK   
-Date		   OK	OK   
+D2R		   OK	OK   34_OK
+Date		   OK	OK   34_OK
 Debug
 Dec2	OK	OK   
 Declare     OK	OK     TBF dec-pan
 Define
-Diagonal	OK	OK   
-Do		OK	OK   
+Diagonal	OK	OK   34_OK
+Do		OK	OK   34_OK
 Documentation
-Dotp	OK	OK   
+Dotp	OK	OK   34_OK
 DSP
 Dynv	OK	OK   
 Edit
@@ -69,8 +69,8 @@ Findval
 Fio		OK	NOK   
 Fixit
 Flipdim	OK	OK   
-Fops	OK	OK   
-For
+Fops	OK	OK   34_OK
+For           OK	OK   34_OK
 Fpass
 Fread
 Fscanf	OK	OK   
@@ -163,73 +163,73 @@ Rand	OK	OK
 Readfile
 ReadRecord
 Record	NOK	NOK
-Redimn	OK	OK
+Redimn	OK	OK 34_OK
 Regex
 Reload
 Resize	OK	OK
 Return
 Retype
-Reverse		OK	OK   
+Reverse		OK	OK   34_OK
 Rgb
-Round		OK	OK
-Rover		OK	OK
+Round		OK	OK 34_OK
+Rover		OK	OK 34_OK
 Rowzoom
 Rpc
 Scalarvec
-Scat			OK	OK
+Scat			OK	OK 34_OK
 Scope
 Scores
-Scpy		NOK	NOK   
-Scut		OK	OK   
-Sel		OK	OK
-Sele		OK	OK
+Scpy		OK	OK   34_OK
+Scut		OK	OK    34_OK
+Sel		OK	OK    34_OK
+Sele		OK	OK    34_OK
 Sexp
-Sgen	OK	OK
-Shift	OK	OK
-Sin		OK	OK
+Sgen	OK	OK  34_OK
+Shift	OK	OK  34_OK
+Sin		OK	OK  34_OK
 Single       OK	OK
-Sizeof	OK	OK
-Skeyval    OK	OK
+Sizeof	OK	OK  34_OK
+Skeyval    OK	OK  34_OK
 Sockets
-Sops	OK	OK   
-Sort       OK	OK   
-Spat       OK	OK   
+Sops	OK	OK   34_OK
+Sort       OK	OK   34_OK
+Spat       OK	OK    34_OK
 Speed
-Splice     OK	OK   
-Split
+Splice     OK	OK   34_OK
+Split       OK	OK    34_OK
 Sscan	OK	NOK   
-Sstr
-Static
+Sstr      OK	OK    34_OK
+Static   OK	OK    34_OK
 Stats
 Str
 Strops
-Strv
+Strv          OK	OK    34_OK
 Subrange	OK	OK   
 Subscript
 Sum		OK	OK   
 Svar         OK	NOK   
 Swab	OK	NOK   
 Swap	OK	NOK   
-Switch		OK	OK   
+Switch      OK	OK   34_OK
 Syntax
 Testargs
 Tests
 Threads
 Tid
 Time
-Top		OK	OK   
-Tranf
-Trig		OK	OK   
-Trim		OK	OK   
-Trunc	OK	OK   
+Top		OK	OK   34_OK
+Tranf        OK	OK   34_OK
+Trig		OK	OK   34_OK
+Trim		OK	OK   34_OK
+Trunc	OK	OK   34_OK
 TryThrowCatch
 Typeof     OK	OK   
 Types	OK	OK   
-Unary	OK	OK   
+Unary	OK	OK   34_OK
 Variables
 Varname
-Vector	       OK	OK
-Vfill	       		OK	OK
+Vector	       OK	OK 34_OK
+Vfill	       		OK	OK 34_OK
 Vgen	      OK	OK
 Vga                 OK	NOK
 Vmf	               OK	OK
@@ -237,13 +237,13 @@ Vops                OK	NOK
 Vrange		NOK	NOK
 Vsh
 Vsmath
-VVcomp		OK	OK
+VVcomp		OK	OK   34_OK
 VVcopy		OK	NOK
-VVgen		OK	OK
-Vzoom		OK	OK
-Wdata              OK	OK
-While		OK	OK
+VVgen		OK	OK   34_OK
+Vzoom		OK	OK   34_OK
+Wdata              OK	OK   
+While		OK	OK   34_OK
 Xic
-XOR                  OK	OK
-Zipper		OK	OK
+XOR                  OK	OK   34_OK
+Zipper		OK	OK   34_OK
 

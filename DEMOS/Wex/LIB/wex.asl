@@ -23,7 +23,7 @@
 
 
 #include "debug"
-#include "hv"
+//#include "hv"
 
 if (_dblevel >0) {
     debugON()
@@ -49,7 +49,7 @@ chdir(wexdir)
 //<<[_DB]"%V$wherearewe \n"
 
 
-/{/*
+/*
 
 class Activity {
 
@@ -72,7 +72,7 @@ class Measure {
 }
 //
 
-/}*/
+*/
 
 #define WALK 1
 #define HIKE 2
@@ -94,7 +94,10 @@ float WXY[];
 
 
 
-char sep = '/'
+//char sep = '/'
+char sep = 47;
+
+
 today = getDate(2,sep)
 
 today = date(2);
@@ -199,10 +202,13 @@ RX=readrecord(A,@del,-1)
 Nrecs = Caz(RX);
 
 <<"%V $Nrecs RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n"
-lastRX = RX[Nrecs-1]
-<<"$RX[Nrecs-1]\n"
-<<"$lastRX\n"
 
+<<"$RX[Nrecs-1]\n"
+
+lastRX = RX[Nrecs-1]
+
+<<"$lastRX\n"
+//exit()
 
     //WDVEC= vgen(_INT_,2*kdays,0,1);
 

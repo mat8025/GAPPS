@@ -16,6 +16,29 @@
 ///
 ///
 
+<|Use_=
+Demo  of svar;
+///////////////////////
+|>
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"   
+}
+
+
+k= 2
+
+  if (k > 0) {
+  <<"$k > 0\n"  
+  <<"$Use_\n"   
+  }
+  else {
+<<"$k  (k >0 )  not working - fix \n"
+
+  }
 
 chkIn(_dblevel)
 
@@ -31,35 +54,55 @@ I->reverse()
 chkN(I[1],16)
 
 
+I->shuffle(10)
+
+<<"$I \n"
+
 I->sort()
 
 <<"$I \n"
 
 chkN(I[1],2)
 
-I->reverse()
 
-chkN(I[1],16)
+
 
 K =Sort(I)
+
 K->info(1)
 <<"K: $K \n"
 <<"I: $I \n"
+
+
 
 I->shuffle(10)
 
 <<"I: $I \n"
 
 
-K = Isort(I)
+//K = Isort(I)
+
+K = sort(I)
 
 <<"$K \n"
 
+I->sort()
+
+<<"$I \n"
+
+KS = I[1:7:1]
+
+<<"KS:= I[1:7:1] $KS \n"
+
+chkN(KS[0],2)
+chkN(KS[1],4)
 
 
 K =Sort(I[0:5])
 
 <<"K: $K \n"
+
+
 
 <<"$I \n"
 
@@ -78,12 +121,15 @@ L= cyclerow(M,1)
 
 <<"$L \n"
 
+chkN(L[0][0],15)
+
 <<"$M\n"
 
 L= cyclecol(M,1)
 
 <<"$L \n"
+chkN(L[0][0],1)
 
 chkOut()
-exit()
+
 

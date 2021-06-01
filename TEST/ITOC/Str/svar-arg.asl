@@ -10,36 +10,69 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-myScript = getScript();///
+
 ///
 ///
+
+<|Use_=
+ proc chain call with svar variable
+|>
+
+
 #include "debug"
-debugON()
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"   
+}
+
+
 
 
 chkIn(_dblevel)
+
+str pstr( str val)
+{
+ Str spv;
+ Str xpv = "xpv";
+<<"\nval <|$val|>\n"
+
+   val->Info(1)
+   spv = val;
+   spv->info(1)
+
+<<"ret $spv\n"
+   return spv;
+}
+//===========================//
+
 
 void psvar( svar val)
 {
 
 <<"\nval <|$val|>\n"
 
-val->Info(1)
-
+   val->info(1)
+!z
    cart(val)
 
 }
 //===========================//
 
-void cart( svar pname)
+void cart(svar pname)
 {
 
-<<"\n arg is <|$pname|>\n"
-svar xn;
-pname->Info(1)
-    xn=scat(pname," xic")
-    xn->info(1)
-!a
+<<"$_proc  arg is <|$pname|>\n"
+
+  pname->info(1)
+!z
+    svar xn;
+
+
+      xn=scat(pname,"_xic")
+
+     xn->info(1)
+!z
     cart_xic(xn)
 
 !i xn    
@@ -51,10 +84,10 @@ pname->Info(1)
 void cart_xic( svar pxname)
 {
 
-<<"\n arg is <|$pxname|>\n"
-
-pxname->Info(1)
-
+<<"$_proc arg is <|$pxname|>\n"
+!z
+  pxname->info(1)
+!z
 }
 
 //===========================//
@@ -67,7 +100,7 @@ svar xyz = "xyz"
  psvar(abc);
 
 
- psvar("defgh")
+ //psvar("defgh")
 
 
  psvar(xyz);
@@ -80,7 +113,6 @@ svar vsv= "hola que pasa"
 
 // pstr("hola que pasa")
 
-exit()
 
 
 char c= abc[3];
@@ -92,7 +124,7 @@ abc[4] = 'A'
 
 <<"$abc\n"
 
-exit()
+
 
 Str s = "h";
 
@@ -151,8 +183,8 @@ s->reverse()
 
 s->info(1);
 
-chkOut()
-char c;
+
+
 
 c = pickc(s,3)
 
@@ -192,8 +224,7 @@ for (i= 0; i < len; i++)
 
 <<"%V %s $R\n"
 
-str abc = "abcdefg"
-str xyz = "xyz"
+ abc = "abcdefghiklmnopqrstuvwxyz"
 
 <<"$abc"
 

@@ -1,29 +1,50 @@
-# test ASL function findval
-chkIn()
 
-setdebug(0)
+<|Use_=
+Demo  of findval;
+searches vector V for a value comparison (default ==]
+fvec = findval(V,val,si,fi,dir,all,cmp)
+fvec = findval(V,6,0,-1,1,1,GTE_)
+
+///////////////////////
+|>
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"   
+}
+
+
+chkIn(_dblevel)
+
 
 I= Igen(20,0,1)
 
 
-<<" $I \n"
-
-<<" $I[3:7] \n"
-
-;
+ <<" $I \n"
 
 
 
+   fi = findval(I,6,0,-1,1,1,"<=")
 
-   fi = findval(I,6,0,1)
+<<" is 6 in vec ?  \n"
 
-<<" is 6 in vec ? $fi \n"
+<<" $fi \n"
 
-chkN(fi,6)
 
-   fi= I->findval(7,0,1)
 
-chkN(fi,7)
+fi->info(1)
+
+chkN(fi[0],6)
+
+// <<" $I[3:7] \n"
+
+   fi= I->findval(7,0,-1,1,EQU_)
+
+<<"$fi \n"
+
+chkN(fi[0],7)
 
 <<"is 7 in vec ? $fi \n"
 
@@ -44,7 +65,7 @@ chkN(fi,7)
 
    I[4] = 6
    vf = findval(I,6,0,1,1)
-
+vf->info(1)
 <<" $vf \n"
 
 
@@ -52,7 +73,7 @@ chkN(fi,7)
 
 <<" $vf \n"
 
-stop!
+
 
 F= Fgen(20,0,1)
 
@@ -72,4 +93,3 @@ F= Fgen(20,0,1)
 
 chkOut()
 
-;

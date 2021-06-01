@@ -1,5 +1,22 @@
 
 
+<|Use_=
+Demo  of exp-sivs;
+///////////////////////
+|>
+/*
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"   
+}
+*/
+//filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
+//filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
+
+
+
 if (argc() > 1) {
 
 N = atoi(_clarg[1])
@@ -11,18 +28,48 @@ else {
 
 
 chkIn()
+
+
+ M = 2^^4
+
+
+ap=log2(32.0);
+
+<<"$N $M 2^^4 $ap\n"
+
+ap=log2(N);
+
+int np2 = log2(N)
+
+
+<<"%V $M $ap $np2\n"
+
+N++;
+
+
+int np3 = log2(N)
+
+
+<<"%V $N  $np3\n"
+
+N++;
+
+!a
+
+N -= 2;
+
 I = vgen(INT_,N,0,1)
 
 <<"$I\n"
 
- int np = log2(N);
+ int np = ap;
 
-<<"$N must be pwr of 2\n"
+<<"$N must be pwr of 2 $np\n"
 
  M = 2^^np
 
  if (N != M) {
-<<"$N must be pwr of 2\n"
+<<"$N not a pwr of 2\n"
   exit()
  }
 

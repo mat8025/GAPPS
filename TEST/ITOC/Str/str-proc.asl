@@ -15,13 +15,22 @@
 ///
 ///
 
+<|Use_=
+S string use in proc
+|>
+
+
 #include "debug"
-debugON()
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"   
+}
 
 
 chkIn(_dblevel)
 
-Str pstr( str val)
+str pstr( str val)
 {
  Str spv;
  Str xpv = "xpv";
@@ -30,6 +39,8 @@ Str pstr( str val)
    val->Info(1)
    spv = val;
    spv->info(1)
+
+<<"ret $spv\n"
    return spv;
 }
 //===========================//
@@ -82,6 +93,15 @@ xyz = "xyz"
 
  pstr(abc);
 
+
+ ns=pstr(xyz)
+
+ str def = "defgh"
+
+ ns=pstr(def)
+
+  chkStr(ns,"defgh")
+
  ns=pstr("defgh")
 
 
@@ -91,7 +111,8 @@ xyz = "xyz"
 
 
 chkOut()
-exit()
+
+
 
 
 

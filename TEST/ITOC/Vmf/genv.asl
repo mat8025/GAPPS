@@ -15,19 +15,45 @@
 ///
 ///
 
+<|Use_=
+Demo  of vmf set
+
+///////////////////////
+|>
+                                                               
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"   
+}
+filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
+filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e","ds_storesiv");
+filterFuncDebug(REJECT_,"vrealloc","init","varIndex");
+
+
 chkIn(_dblevel)
+
+
+
 int I[]
 
 I->info(1)
 
+<<" $I \n"
+
   I[0:8]->Set(0,1)
-chkN(I[1],1)
+
+  
 
 <<" $I \n"
 
+chkN(I[1],1)
+
 I->info(1)
 
-
+chkN(I[8],8)
 
   I[0:30]->Set(0,3)
 
@@ -43,6 +69,8 @@ sz = I->Caz()
 //<<" $(I->Caz()) \n"
 
 <<" $sz \n"
+
+
 
 float F[]
 

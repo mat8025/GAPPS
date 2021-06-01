@@ -13,7 +13,7 @@
  */ 
 
 
-/*
+<|Use_=
 scpy(&M[0],&T[0],{n})
 returns len of string copied, (from second to first parameter) 
 used for char arrays 
@@ -21,27 +21,27 @@ but can also copy the string contained by an sivar
 the maximum number of characters to be copied can also be set.
 e.g.
 scpy(&M[0],&w1) or  scpy(&w1,&M[0]) 
-.br
 scpy(&M[1],&T[2],4)
-*/
+|>
 
 /////
 
 #include "debug"
 
-debugON()
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"   
+}
+
+
 //filterFileDebug(REJECT_,"ic_wic.cpp","get_args.cpp","~ds_storestr.cpp");
 //filterFileDebug(REJECT_,"array_parse.cpp","args_process_e.cpp","get_args.cpp");
-
 //filterFuncDebug(REJECT_,"var_main");
 
 
 chkIn(_dblevel)
-/*
-!p _DV
-!p _IV
-!p _P
-*/
+
 
 int ki = 3;
 
@@ -59,6 +59,7 @@ sz=Caz(M)
 scpy(M,"hola que tal");
 <<"%I $M\n"
 <<"%s <|$M|>\n"
+
 A= -67
 
 chkStr(M,"hola que tal");
@@ -104,7 +105,11 @@ scpy(&A[5],M,10)
 M->info(1)
 <<"M %d $M\n"
 <<"A %d $A\n"
+
+
 chkN(A[5],M[0])
+
+
 <<"A %s $A\n" // bug?
 
 
@@ -114,14 +119,24 @@ scpy(&A[ki],M,10)
 
 chkN(A[ki],M[0])
 
+scpy(R,M,10)
+<<"R %s $R\n"
 
 scpy(&R[2],&M[3],10)
 
-<<"R %d $R[::]\n"
+R->info(1)
+
 
 <<"R %s $R\n"
+
 chkR(R[2],M[3])
 
+
+<<"R %d $R[0:9:1]\n"
+
+r2 = R[0:9:1]
+<<"%V$r2\n"
+r2->info(1)
 
 scpy(R,&M[ki],10)
 
@@ -167,3 +182,4 @@ chkR(num[1],M[20])
 
 <<"%d $num[1]  $M[20] \n"
 chkOut()
+

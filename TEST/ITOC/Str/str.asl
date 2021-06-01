@@ -13,8 +13,17 @@
 
 ///
 ///
+<|Use_=
+S string but should be able to be accessed like a dynamic char array
+|>
+
+
 #include "debug"
-debugON()
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"   
+}
 
 
 chkIn(_dblevel)
@@ -186,9 +195,8 @@ str vstr= "hola que pasa"
 
 //  do_carts("Estoy muy bien gracias")
 
+chkT(1)
 
-
-exit()
 
 
 char c= abc[3];
@@ -200,7 +208,7 @@ abc[4] = 'A'
 
 <<"$abc\n"
 
-exit()
+
 
 Str s = "h";
 
@@ -259,12 +267,12 @@ s->reverse()
 
 s->info(1);
 
-chkOut()
-char c;
 
-c = pickc(s,3)
+char c2;
 
-<<"%V %c $c  $c     $s\n"
+c2 = pickc(s,3)
+
+<<"%V %c $c2       $s\n"
 
 
 d= sele(s,2,3)
@@ -300,8 +308,8 @@ for (i= 0; i < len; i++)
 
 <<"%V %s $R\n"
 
-str abc = "abcdefg"
-str xyz = "xyz"
+abc = "abcdefg"
+xyz = "xyz"
 
 <<"$abc"
 

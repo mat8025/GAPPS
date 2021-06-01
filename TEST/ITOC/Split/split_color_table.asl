@@ -2,8 +2,27 @@
 ///
 ///
 
+<|Use_=
+Demo  of sscan;
+///////////////////////
+|>
 
-setdebug(1,@keep);
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"   
+}
+
+filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
+filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
+
+
+chkIn(_dblevel)
+
+
+
 
 T="abcXXdefXXefgXXhijXklm"
 S=split(T,"XX")
@@ -51,7 +70,7 @@ int nc = 0;
    fv1 =S->gfv(1,",");
 
    
- <<" |$fv1| |$fv2| [${fv4}]\n"
+ <<"%V |$fv1| |$fv2| [${fv4}]\n"
 
   }
 
@@ -76,3 +95,7 @@ int mat = 0;
 //<<"NOT BLUE $CT[i]\n"
     }
   }
+
+
+chkT(1)
+chkOut()

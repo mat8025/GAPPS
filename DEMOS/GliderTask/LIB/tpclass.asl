@@ -30,7 +30,7 @@ class Turnpt
   str tptype;
   
   str Cltpt;
-  float Radio;
+  str Radio;
   float Alt;
   float Ladeg;
   float Longdeg;
@@ -54,7 +54,11 @@ class Turnpt
 
 
      Idnt =  wval[1];
-     
+
+    <<"%V$Idnt  \n"
+
+Idnt->info(1)
+
      Lat = wval[2]; // wayp 
 
     // <<"%V$Lat  \n"
@@ -68,9 +72,9 @@ class Turnpt
      
      rway = wval[5];
 
-//<<"radio $wval[6] \n"
+<<"radio $wval[6] \n"
      
-     Radio = atof(wval[6]);
+     Radio = wval[6];
 
      tptype = wval[7];
      
@@ -88,33 +92,68 @@ class Turnpt
   cmf TPCUPset (svar wval) 
    {
 
-     val = scut(wval[0],1)
+//    <<"%V $wval[::]\n"
+//    <<"<|$wval[0]|>\n"
+
+     val = dewhite(wval[0])
+//val->info(1)
+//<<"%V$val  \n"
+     val = scut(val,1)
+     val = scut(val,-1)
      
-     Place=dewhite(scut(val,-1)); // wayp 
+
+//     val = wval[9]
+//     val->info(1)
+
+     Place=val; // wayp 
     
-     //<<"%V$Place\n"
+//    <<"%V$Place\n"
 
 
      Idnt =  wval[1];
-     
+
+//  <<"%V$Idnt\n"
+//Idnt->info(1)
+
      Lat = wval[3]; // wayp 
 
 
      Lon = wval[4];
 
-    //<<"%V$Lon  \n" 
+//  <<"%V$Lon  \n"
+  
+     val = wval[5];
+
+//  <<"%V$val  \n"
+
      val = scut(wval[5],-2); 
-     Alt = wval[5];
+
+//     <<"%V$val  \n"
+
+
+     Alt = atof(val)
+
+//     <<"%V$Alt  \n"
 
      is_airport =0
 
      rway = wval[7];
 
+//     <<"%V$rway  \n"
+
      if (!rway @="") {
          is_airport =1
      }
      
-     Radio = atof(wval[9]);
+//     val = wval[9];
+
+//  <<"Radio ?? $val  \n"
+
+     //Radio = atof(wval[9]);
+
+     Radio = wval[9];
+
+//     <<"%V$Radio  \n"
 
      tptype = wval[10];
      

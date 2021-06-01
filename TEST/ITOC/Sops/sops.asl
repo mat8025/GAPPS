@@ -11,7 +11,11 @@
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
-                                                                           
+<|Use_=
+Demo  of str-ops;
+///////////////////////
+|>
+                                                              
 
 #include "debug"
 
@@ -64,11 +68,11 @@ chkIn(_dblevel)
 
 
 
-/{/*
+/*
 scat
 ws=scat(w1,w2,{w3,w4,...})
 concatenates w2 to w1 (or more args) returns the result
-/}*/
+*/
 
 
 
@@ -142,7 +146,7 @@ chkStage("Scat: multiple cats")
 
 
 
- w1="a_winters-tail.cpp"
+ w1="a_winters-tale.cpp"
 
 <<"$w1\n"
 
@@ -150,20 +154,20 @@ chkStage("Scat: multiple cats")
 
 <<"$wt\n"
 
- chkStr(wt,"a_winters-tail")
+ chkStr(wt,"a_winters-tale")
 
  wh= scut(w1,2)
 
 <<"$wh\n"
 
- chkStr(wh,"winters-tail.cpp")
+ chkStr(wh,"winters-tale.cpp")
 
 
  wm= scut(w1,2,9)
 
 <<"$wm\n"
 
- chkStr(wm,"a_tail.cpp")
+ chkStr(wm,"a_tale.cpp")
 
 
  wm= scut(w1,-9,-5)

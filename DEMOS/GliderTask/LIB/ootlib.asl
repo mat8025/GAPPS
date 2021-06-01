@@ -13,7 +13,8 @@
 ///
 /// 9/17/2017
 
-
+float totalD = 0;
+float totalDur = 0.0
 
   ntpts = 0
   Min_lat = 90.0
@@ -129,7 +130,7 @@ DBG"$_proc  $Ntaskpts \n"
      if (la1 != 1000.0) {
         kmd = computeGCD(la1,la2,lon1,lon2);
      }
-<<" tpt $tpl $i  $index <|$Wtp[index]->Place|>  $Wtp[index]->Ladeg  $Wtp[index]->Longdeg %6.0f $kmd\n"
+//<<" tpt $tpl $i  $index <|$Wtp[index]->Place|>  $Wtp[index]->Ladeg  $Wtp[index]->Longdeg %6.0f $kmd\n"
      la1 = la2;
      lon1 = lon2;
      adjust++;
@@ -151,12 +152,18 @@ if (adjust >=2) {
 }
 //==============================//
 
-float totalD = 0;
-float totalDur = 0.0
+
+
+
 proc  computeHTD()
 {
-  totalD = 0;
-  <<"$_proc $n_legs \n"
+
+//  <<"$_proc $n_legs \n"
+
+totalD = 0;
+//totalD->info(1)
+
+
   for (nl = 0; nl < n_legs ; nl++) {
 
         tkm = ComputeTPD(nl, nl+1);
@@ -169,10 +176,10 @@ proc  computeHTD()
        Dur[nl] = Leg[nl]/ Cruise_speed;
        
 
-//<<"$Leg[nl]  \n"
+//<<"$Leg[nl] $tkm \n"
        totalDur += Dur[nl];
        totalD += Leg[nl]
-<<"<$nl> $Leg[nl]  $tkm $tcd $Dur[nl] $TC[nl] $totalD $totalDur \n"
+//<<"<$nl> $Leg[nl]  $tkm $tcd $Dur[nl] $TC[nl] $totalD $totalDur \n"
  }
 }
 //==============================//
@@ -709,7 +716,7 @@ proc insert_tp()
              if (wptp < 9 ) {
              for (i = 9 ; i > wtpt ; i--) {
                   tval = getWoValue(tpwo[i-1])
-         <<"$i <|$tval|>  \n"
+         //<<"$i <|$tval|>  \n"
                   setWoValue (tpwo[i],tval)
                 }
               }
@@ -1638,7 +1645,7 @@ proc ComputeTC(int j, int k)
 //===========================//
 
 
-proc ComputeTPD(int j, int k)
+float ComputeTPD(int j, int k)
 {
 //DBG" $_proc %V $j $k \n"
     float km = 0.0;
@@ -1673,14 +1680,15 @@ proc ComputeTPD(int j, int k)
     km1 = N * nm_to_km
 */
 
-    km2 = Gcd(L1,lo1 , L2, lo2 );
+   // km2 = Gcd(L1,lo1 , L2, lo2 );
+    km2 = Howfar(L1,lo1 , L2, lo2 );
 
     km = km2;
+    //km->info(1)
+  //<<" %V   $LegK   $nm_to_km $km\n" ;
 
-//  DBG" %V $D  $LegK $N  $nm_to_km $km\n" ;
 
-
-    return km
+    return km;
  }
 //====================================//
 

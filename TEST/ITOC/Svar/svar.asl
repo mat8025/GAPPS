@@ -10,15 +10,19 @@
 //*  @Copyright © RootMeanSquare  2010,2019 → 
 //* 
 //***********************************************%
+<|Use_=
+  Demo svar type use
+|>
 
 
 #include "debug"
 
 if (_dblevel >0) {
    debugON()
+    <<"$Use_\n"   
 }
 
-allowErrors(-1)
+    allowErrors(-1)
 
    chkIn(_dblevel);
 
@@ -34,12 +38,21 @@ allowErrors(-1)
 
 
 
-
- //  checkMemory(1,1)
-   svar  S = "una larga noche"; 
+   svar  S[] = {"una larga noche"}; 
    
    <<"%V $S\n"; 
-   
+
+   svar  S1 = "una larga noche";
+
+   <<"%V $S1\n";
+
+   chkStr(S1[0], "una larga noche");
+
+   S1->info(1)
+
+
+
+
    <<" $(typeof(S)) $(Caz(S)) \n"; 
    
    S[1] = "el gato mira la puerta"; 
@@ -134,8 +147,15 @@ VF = vgen(FLOAT_,10,1,0.5)
 //TSV="%6.2f$(VF*2)"
 TSV="$(VF*2)"
 <<"%V$TSV\n"
+
 TS= "%6.2f$(vgen(FLOAT_,10,1,0.5))"
 <<"%V$TS\n"
+
+T= Split(TS)
+
+<<"$T\n"
+!a
+
 T= Split("%6.2f$(vgen(FLOAT_,10,1,0.5))")
 
 <<"$T\n"

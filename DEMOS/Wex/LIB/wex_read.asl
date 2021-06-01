@@ -271,7 +271,7 @@ proc readCCData()
     //day = ccol[0];
 
     day = RCC[tl][0];
-
+<<"%V $day\n"
     wday = julian(day) 
 
     kd = wday - bday;

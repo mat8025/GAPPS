@@ -1,5 +1,23 @@
 
 
+<|Use_=
+Demo  of arraycmp;
+///////////////////////
+|>
+
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+}
+
+
+chkIn (_dblevel);
+
+
+
+
 ushort S[10]
 
 
@@ -20,12 +38,6 @@ ushort S[10]
  }
 
 
-stop!
-
-
-
-
-
   int I[10]
 
 
@@ -33,12 +45,14 @@ stop!
 
 Ag = 47
  k = 0
-  while (k < 10) {
+
+while (k < 10) {
 
   if (I[k] == 47) {
 
    <<" $I[k] == 47 \n"
 
+   chkN(k,3)
   }
 
 
@@ -53,18 +67,20 @@ Ag = 47
 
    <<"%V $k $I[k] == $Ag \n"
 
+   chkN(k,3)
   }
 
-j = k
+   j = k
 
 
   if (I[j] == Ag) {
 
    <<"%V $j $I[j] == $Ag \n"
-
+   chkN(j,3)
   }
 
   k++
 }
 
-;
+
+chkOut()

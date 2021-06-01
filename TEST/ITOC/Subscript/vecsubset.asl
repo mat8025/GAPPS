@@ -32,26 +32,48 @@ filterFuncDebug(REJECT_,"vrealloc","init");
 
 chkIn(_dblevel)
 
+float F = 3.142;
+<<"%V $F\n"
+long L = 123456789;
+<<"%V $L\n"
+
 
 B=vgen(INT_,20,0,1)
 
 <<"%V$B\n"
-
+int a = 14;
 chkN (B[0],0)
 chkN (B[4],4)
 
- B[{2,4,7}] = 36;
+ B[{2,4,7,a}] = 36;
 
 
 <<"%V$B\n"
-
+!a
 chkN (B[0],0)
 
 chkN (B[2],36)
 chkN (B[7],36)
+chkN (B[14],36)
 
 chkN (B[8],8)
-<<"%V$B[{2,4,7,8}]\n"
+//<<"%V$B[{2,4,7,8,14}]\n"
 
+
+/// xic ?
+///
+
+C=vgen(INT_,4,34,1)
+
+<<"%V$C\n"
+
+B[{2,4,7,a}] = C
+
+<<"%V$B\n"
+
+chkN (B[2],34)
+chkN (B[4],35)
+chkN (B[7],36)
+chkN (B[14],37)
 
 chkOut()

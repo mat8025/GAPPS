@@ -11,9 +11,27 @@
 //* 
 //***********************************************%
 
+<|Use_=
+Demo of scat
+strcat
+ws=scat("abc","def")
+///////////////////////
+|>
 
 
-chkIn()
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"   
+}
+
+
+chkIn(_dblevel )
+
+pc = 20.0/249;
+<<"%v $pc\n"
+
 
 ws=scat("Happy"," Hols")
 <<"%V$ws\n"

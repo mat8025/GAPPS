@@ -23,6 +23,12 @@ if (_dblevel >0) {
 chkIn(_dblevel)
 
 
+int ab = 2 + 3
+<<"%V$ab\n"
+
+chkN(ab,5)
+
+
 int n1 = 1;
 
 <<"%V $n1 \n"
@@ -30,7 +36,7 @@ int n1 = 1;
         chkN(n1,1)
 
 
-   n1++;
+       n1++;
 
 <<"%V $n1 \n"
 
@@ -143,10 +149,10 @@ if (na >= 1) {
 <<"args listed\n"
 
 
-int a = 2 + 2
+int a = 2 + 3
 <<"%V$a\n"
 
-chkN(a,4)
+chkN(a,5)
 
 b = 7 * 6
 
@@ -157,7 +163,7 @@ chkN(b,42)
 
 c= a * b
 
-chkN(c,(4*42))
+chkN(c,(5*42))
 
 <<"$c $a $b \n"
 
@@ -259,13 +265,14 @@ N = 24
 
 k = 2
 ok =0
+
   if (k <= N) {
 <<" $k  <= $N \n"
    ok = 1
 <<" <= op  working!\n"
   }
   else {
-<<" <= op not working! %V$k\n"
+<<" <= op not working! %V $k <= $N\n"
   }
 
 chkN(1,ok)
@@ -322,24 +329,34 @@ chkR(q,-7);
 
   int sum = 0;
   double mi = 1;
-  N = 100;
-  
-  for (k = 0; k < N; k++) {
+  N = 10;
+  k1 = 0;
+<<"%V $k1 $sum $mi \n"
+  for (k1 = 2; k1 < N; k1++) {
+<<"%V $k1 $sum $mi \n"
+    sum += k1;
+    mi *= k1;
+<<"%V $k1 $sum $mi \n"
 
-    sum += k;
-    mi *= k;
-<<"%V $k $sum $mi \n"
   }
 
 <<"%V $sum  $k  $(k*N/2) $mi\n"
 
-fv = vgen(FLOAT_,10,0,1)
-fv->info()
+
+
+ fv = vgen(FLOAT_,10,0,1)
+
+ fv->info(1)
 
 <<"$fv \n"
 
  fv[0] = -32;
+<<"$fv \n"
+
+
  fv[2] = 77;
+ <<"$fv \n"
+ 
  fv[3] = 80;
 
 <<"$fv \n"

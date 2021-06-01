@@ -10,13 +10,14 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-
+/*
 #include "debug"
 
 if (_dblevel >0) {
    debugON()
 }
 
+*/
 
 chkIn(_dblevel)
 
@@ -33,19 +34,26 @@ N = 20
 int PV[10]
 
   PV[1] = 1
-  PV[2] = 3
-  PV[3] = 8
+  PV[2] = 2
+  PV[3] = 3
+  PV[8] = 8
+  PV[9] = 9  
  
 
 YV[0] = 74
-<<"%v $PV \n"
+<<"%V $PV \n"
 
 NV = YV @+ PV
+
+<<"%V $NV \n"
 
 sz = Caz(NV)
 
 <<"%v $sz \n"
 
+<<"%v $NV[29] \n"
+chkN(NV[19],40)
+chkN(NV[29],9)
 <<"%v $NV \n"
 chkN(sz,30)
 

@@ -9,7 +9,7 @@ if (_dblevel >0) {
 chkIn(_dblevel)
 
 
-proc array_sub(float rl[])
+float array_sub(float rl[])
 {
 
 
@@ -19,6 +19,12 @@ proc array_sub(float rl[])
 j1 = 4
 j2 = 6
 
+<<"%V $rl[j1] \n"
+x = rl[j1];
+y = rl[j2]; 
+<<"%V $rl[j2] \n"
+z = x - y;
+<<"%V $x $y $z\n"
 
 rls = rl[j1] - rl[j2];
 
@@ -56,7 +62,11 @@ return rls
 
  kp = 3;
 
-
+x = rlm[j1];
+y = rlm[j2]; 
+<<"%V $rlm[j2] \n"
+z = x - y;
+<<"%V $x $y $z\n"
 rls = rlm[j1] - rlm[j2];
 
 <<"%V$rls\n"

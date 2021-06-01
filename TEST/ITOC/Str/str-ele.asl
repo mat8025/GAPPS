@@ -15,8 +15,19 @@
 ///
 ///
 
+<|Use_=
+S string but should be able to be accessed like a dynamic char array
+|>
+
+
+
+
 #include "debug"
-debugON()
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"   
+}
 
 
 chkIn(_dblevel)
@@ -50,7 +61,7 @@ void pstr( str val)
 
  abc->info(1);
 
-
+ chkStr(abc,"abcdefg");
  char c;
 
   c->info(1)
@@ -59,6 +70,8 @@ void pstr( str val)
 
 <<"%V$c %c $c\n"
 
+chkC(c,'d')
+
 c->info(1)
 
   abc[4] = 'X';
@@ -66,9 +79,6 @@ c->info(1)
 
 abc->info(1)
  
-exit()
-
-
 
 str xyz = "xyz"
 
@@ -85,7 +95,7 @@ abc[4] = 'A'
 
 <<"$abc\n"
 
-exit()
+
 
 Str s = "h";
 

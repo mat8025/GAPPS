@@ -1,24 +1,25 @@
 
 
-
+chkIn(_dblevel)
 #define BLUE 4
 
-k = RED
-<<"$k  RED   is $(RED) \n"
+k = RED_
+<<"$k  RED   is $(RED_) \n"
 
+chkN(k,2)
 
 k = BLUE
 <<"$k  BLUE   is $(BLUE) \n"
 
+chkN(k,4)
 
-
-proc WC (c)
+proc WC (char c)
 {
 
    switch (c) {
 
       case 'A':
-           printf("A we  have %c %d\n",c,c);
+           <<"A we  have %c$c %d$c\n";
       break;
 
       case 'B':
@@ -33,7 +34,7 @@ proc WC (c)
 
       default:
         // FIXME  printf("Default we  have %c %d\n",c, c);
-           <<"Default we  have %c$c %d$c\n";
+           <<"Default we  have %c $c %d $c\n";
 
       break;
 
@@ -48,23 +49,15 @@ char  sc = 'B'
 <<" %V$sc\n"
 
 
-   for (sc =  'T'; sc <= 'Z' ; sc++) {
+   for (sc =  'M'; sc <= 'Z' ; sc++) {
 
-     <<"%d$sc %c$sc\n"
+     <<"%d $sc %c$sc\n"
 
 
    }
 
 
-
-
-;
-
-
-
-
-
-   WC(sc)
+   WC(sc-1)
 
    WC('A')
 
@@ -78,10 +71,13 @@ char  sc = 'B'
 
      WC(sc)
 
-     <<"%V$sc \n"
+  //   <<"%V$sc \n"
 
    }
 
 
+ chkN(sc,'N')
 
+
+chkOut()
 

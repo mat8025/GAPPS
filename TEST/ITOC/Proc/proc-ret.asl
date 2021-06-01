@@ -11,15 +11,73 @@
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
- 
+
+<|Use_=
+Demo  of proc return ;
+///////////////////////
+|>
+
+
                                                                         
 #include "debug"
 
 if (_dblevel >0) {
    debugON()
+    <<"$Use_\n"   
 }
   
 chkIn(_dblevel)
+
+
+/*
+real Foo(real x,real  y)
+{
+<<"in real Foo\n"
+   z = x * y
+
+   return z;
+}
+*/
+
+float Foo(float x,float  y)
+{
+<<"in float Foo\n"
+   z = x * y
+
+   return z;
+}
+
+
+
+int Foo(int x,int  y)
+{
+<<"in int Foo\n"
+   z = x * y
+
+   return z;
+}
+
+  a = Foo(2,3)
+ chkR(a,6)
+a->info(1)
+
+<<"%v $a \n"
+
+
+  b = Foo(4.0,3.0)
+ chkR(b,12.0)
+b->info(1)
+
+<<"%v $b \n"
+
+
+   str Mele = "XYZ";
+  
+   Mele->info(1)
+
+!a
+
+
 
 
 
@@ -33,42 +91,50 @@ Str say()
 
 ws = say()
 
+ws->info(1)
 
-<<"$ws $(typeof(ws))\n"
-
+<<"<|$ws|>\n"
 chkStr(ws,"hey hey");
 
 
-real Foo(real x,real  y)
-{
-
-   z = x * y
-
-   return z
-}
 
 
-int Foo(int x,int  y)
-{
 
-   z = x * y
 
-   return z
-}
+
 
 Str vers2ele(str vstr)
   {
-   vstr->info(1)
+  
+  
   <<"$_proc   <|$vstr|>\n"
 
 
+ vstr->info(1)
+
+   pmaj->info(1)
+
+
    pmaj = atoi(spat(vstr,".",-1))
-   
-   <<"$pmaj $(typeof(pmaj)) $(ptsym(pmaj)) \n"  
+
+   pmaj->info(1)
+
+
+<<"$pmaj \n"
+
+
+
+<<"$(typeof(pmaj)) \n"
+
+
+
+
+<<"$(ptsym(pmaj)) \n"  
+
 
     pmin = atoi(spat(vstr,".",1))
 
-<<"$pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
+<<"$pmin $(ptsym(pmin))\n"
 
    elestr = pt(pmin);
    
@@ -100,15 +166,7 @@ Str vers2ele(str vstr)
   
 //===============================
 
-  a = Foo(2,3)
- chkR(a,6)
-a->info(1)
 
-  b = Foo(4.0,3.0)
- chkR(b,12)
-b->info(1)
-
-<<"%v $b \n"
 
 
 int a1 = 2;
@@ -143,7 +201,7 @@ int pmin;
 
 cvers ="1.54"
 cvers->info(1)
-
+!a
 nele = vers2ele(cvers);
 
 
@@ -155,18 +213,6 @@ nele->info(1)
 chkStr(nele,"Xeon")
 
 
-//%*********************************************** 
-//*  @script procret0.asl 
-//* 
-//*  @comment test procedure return 
-//*  @release CARBON 
-//*  @vers 1.23 V Vanadium                                                
-//*  @date Sun Jan 27 21:50:27 2019 
-//*  @cdate 1/1/2004 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
 
 
 

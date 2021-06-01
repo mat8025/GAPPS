@@ -17,7 +17,6 @@ Demo  of vector range  e.g. V[0:10:2] = 5;
 |>
 
 
-
 #include "debug"
 
 if (_dblevel >0) {
@@ -30,6 +29,21 @@ filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
 
 
 chkIn(_dblevel)
+
+
+int V[10];
+ V= 68;
+<<"%V$V\n"
+
+  V[1:5:1] = 77
+
+<<"%V$V\n"
+
+chkN(V[2],77)
+chkN(V[5],77)
+
+
+
 
 B=vgen(INT_,10,0,1)
 <<"%V$B\n"
@@ -99,13 +113,21 @@ chkN (D[2],6)
 
 
 <<"  circular buffer  B[-1:8:1] \n"
-
+B->info(1)
 <<"%V$B \n"
 
 E= B[1:8:1]
 
 <<"%V$E\n"
 
+Z= B[-1:7:1]
+
+<<"%V$Z\n"
+
+chkN(Z[0],9)
+chkN(Z[1],0)
+chkN(Z[2],1)
+chkN(Z[3],2)
 
 E= B[-1:8:1]
 

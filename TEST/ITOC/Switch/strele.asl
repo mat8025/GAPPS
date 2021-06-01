@@ -1,4 +1,9 @@
 
+
+chkIn(_dblevel)
+
+
+
 Str msg = "HELLO"
 
 <<"%V$msg \n"
@@ -7,12 +12,13 @@ Str msg2 = 'H'
 
 <<"%V$msg2 \n"
 
-char C[] 
+char C[>1] 
  //   C = msg
-
+<<"%V$msg\n"
   scpy(C,msg)
 
 <<"%c$C[1] \n"
+chkStr(C,"HELLO")
 
 char wc = C[1]
 
@@ -33,13 +39,19 @@ char wc = C[1]
 
 
 
- sc = sele(msg,1,1)
+ sc = sele(msg,1,2)
 
-<<"%V$sc \n"
+<<"sc <|$sc|> \n"
+sc->info(1)
+chkStr(sc,"EL")
 
  wc = pickc(msg,2)
-
+ wc->info(1)
 <<"%V%c$wc \n"
+
+chkC(wc,'L');
+
+
 
  wc = pickc(msg,-1)
 
@@ -56,3 +68,7 @@ char wc = C[1]
  wc = pickc(msg,-2)
 
 <<"%V%c$wc \n"
+
+chkT(1)
+chkOut()
+

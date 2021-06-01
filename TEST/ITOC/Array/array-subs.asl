@@ -1,7 +1,16 @@
 
 // test array indexing
+#include "debug"
 
-N = 14
+if (_dblevel >0) {
+   debugON()
+}
+
+
+chkIn (_dblevel);
+
+
+N = 20
 int nloop = 1
 
  YV = Fgen(N,0,0.1)
@@ -34,9 +43,8 @@ while ( nloop < M) {
  nloop++
 }
 
+chkN(nloop,7)
 
-
-STOP!
 Redimn(YV,5,4)
 
 dmn = Cab(YV)
@@ -70,7 +78,7 @@ dmn = Cab(YV)
  while (k < 4) {
  av = YV[i][k]
 
-<<" [$i][$k] $av \n"
+<<" [$i ][$k ] $av \n"
  k++
  }
 
@@ -93,7 +101,7 @@ while (j < 2) {
   k = 0
   while (k <2) {
    av = YV[j][i][k]
-  <<" [$j][$i][$k] $av \n"
+  <<" [$j ][$i ][$k ] $av \n"
    k++
   }
    i++
@@ -103,4 +111,5 @@ while (j < 2) {
 
 
 
-STOP!
+
+chkOut()

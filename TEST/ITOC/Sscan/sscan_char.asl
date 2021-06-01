@@ -1,17 +1,41 @@
 
-# test ASL function sscan
+<|Use_=
+Demo  of sscan;
+///////////////////////
+|>
 
-chkIn()
 
-setdebug(1,@keep,@filter,0)
+#include "debug"
 
-char s[] = "hey baby you got the love I need" 
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"   
+}
+
+filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
+filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
+
+
+chkIn(_dblevel)
+
+
+
+char s[] = "hey baby you got the love I need" ;
+
+<<"%s $s \n"
+
+
+
+
 w = "life full of dreams"
 
 <<"%s $s\n"
 
+
 str g
 str s1
+
+
 
 na=sscan(s,'%s %s',&g,&s1)
 
@@ -43,7 +67,7 @@ na=sscan(&C[1],'%d',&ws);
 
 <<"$na <$ws> \n"
 
-exit()
+
 
 int k =0
 
@@ -66,8 +90,8 @@ na = sscan("6.123 1 hey baby",'%f %d %s %s',&f,&k,&g,&s1)
 
 
 
-na = sscan("3 1 hey baby","\%f \%d \%s \%s",&f,&k,&g,&s1)
-<<" $na $f $k $g $s1\n"
+//na = sscan("3 1 hey baby","\%f \%d \%s \%s",&f,&k,&g,&s1)
+//<<" $na $f $k $g $s1\n"
 
 na = sscan("4.5 2 hey baby",'%f %d %s %s',&f,&k,&g,&s1)
 <<" $na $f $k $g $s1\n"
@@ -140,7 +164,3 @@ chkStr(news,"star bright")
 
 
 chkOut()
-
-
-
-STOP!

@@ -16,14 +16,14 @@
 /// Sizeof
 ///
 
-<|Use=
+<|Use_=
 Sizeof(V)
   - returns the number of bytes for array elements of this type
 |>
 
 proc showUse()
 {
-  <<"$Use\n"
+  <<"$Use_\n"
 }
 
 

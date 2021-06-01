@@ -11,8 +11,19 @@
 //* 
 //***********************************************%
 
+<|Use_=
+  test the buttons
+|>
 
-_DB = 0;
+
+#include "debug"
+
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"   
+}
+
 
 
 Graphic = checkGWM()
@@ -189,7 +200,7 @@ sWi( allwins ,@woredrawall)
 
    xp = 0.1
    yp = 0.5
-/{
+/*
 //   plotline(vp2,0,0,1,1,"blue")
 
    plotline(vp2,0,0,1,1,"blue")
@@ -211,7 +222,7 @@ sWi( allwins ,@woredrawall)
    setGwindow(vp2,@clipborder,"red")
    setGwindow(vp3,@clipborder,"blue")
    setGwindow(vp4,@save)
-/}
+*/
 
 
 //---------------------------------------------------------------------
@@ -349,6 +360,6 @@ sWi( allwins ,@redraw)
 
 
 
-;
+
 
 ////////////////////   TBD -- FIX //////////////////////

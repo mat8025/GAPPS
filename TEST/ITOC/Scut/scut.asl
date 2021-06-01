@@ -5,14 +5,11 @@
 //*  @release CARBON 
 //*  @vers 1.2 He Helium                                                   
 //*  @date Fri Apr 17 22:20:06 2020 
- 
 //*  @cdate Fri Apr 17 22:10:11 2020 
 //*  @author Mark Terry 
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-
-
 /*
 ws=scut(w1,nc)
 cuts n chars from head or tail ( if n is negative) of the string w1,
@@ -20,7 +17,21 @@ and returns result to string ws.
 */
 
 
-chkIn()
+<|Use_=
+Demo  of scut   e.g.  ws=scut(w1,nc);
+///////////////////////
+|>
+
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"   
+}
+
+
+chkIn(_dblevel)
 
 str w1 = "Je le sais bien"
 

@@ -1,11 +1,20 @@
 
-
+<|Use_=
+Demo  of array declaration;
+///////////////////////
+|>
 
 #include "debug"
 
 if (_dblevel >0) {
    debugON()
+   <<"$Use_\n"   
 }
+
+filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
+filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
+
+
 
 
 chkIn(_dblevel)
@@ -22,27 +31,40 @@ n= Cab(F)
 
 <<"%v $F \n"
 
-<<"%v $F[*] \n"
+<<"%v $F[::] \n"
 
 <<"%V $F[0] $F[2] \n"
 
 
 
-int G[] = { {1,2,3}, {4,5,6} };
+//int G[] = { {1,2,3}, {4,5,6} };
+
+int G[] = { 1,2,3,4,5,6 };
+
+G->redimn(2,3)
 
 n= Cab(G)
 
+<<"G: $G \n"
+
+
+svar S[] = { "mark", "nick" , "lauren", "pepe", "dena", "lucky", "scruffy", "jill", "ruby" }
+
+<<"$S \n"
+chkT(1)
+chkOut()
 <<"%V $n $(Cab(G)) $(Caz(G)) \n"
 
 <<"%v $G \n"
 
-<<"%v $G[*] \n"
+<<"%v $G \n"
 
 <<"%V $G[0][1] $G[1][1] \n"
 
+chkOut()
 
 
-svar S[] = { "mark", "nick" , "lauren", "pepe", "dena", "lucky", "scruffy", "jill", "ruby" }
+
 
 <<"%v $S \n"
 
@@ -55,7 +77,7 @@ svar S[] = { "mark", "nick" , "lauren", "pepe", "dena", "lucky", "scruffy", "jil
 
 <<"%v $S[1::2] \n"
 
-
+/*
 svar R[] = { {"mark", "nick" , "lauren",}\
                 { "pepe", "dena", "lucky", }\
                 {"scruffy", "jill", "ruby" }\
@@ -80,5 +102,5 @@ svar R[] = { {"mark", "nick" , "lauren",}\
 <<"%v $R[0:3][0:1] \n"
 
 <<"%v $R[0:3][0:2:2] \n"
-
+*/
 chkOut()

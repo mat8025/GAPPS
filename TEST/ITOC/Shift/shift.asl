@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
 
-<|Use=
+<|Use_=
 shiftL()
 I->shiftL(newval,[nplaces],[vecsize])
 An  VMF operation to shift elements of an vector one place to the left 
@@ -23,7 +23,7 @@ be inserted at the specified 'end'. (same for shiftR)
 
 proc showUse()
 {
-  <<"$Use\n"
+  <<"$Use_\n"
 }
 
 

@@ -12,9 +12,26 @@
 //***********************************************%
 
 
+chkIn(_dblevel)
+na= argc()
+<<"there are $na Cl args\n"
+
+
+ k = _clarg[1];
+ <<"arg1 is $k\n"
+
+ j = atoi(_clarg[1])
+ 
+ <<"arg1 is $j\n"
+
+
+  k->info(1)
+  j->info(1)
 
 
  for (i = 0; i < argc() ; i++) {
 <<"$i $_clarg[i] \n"
-
  }
+
+chkT(1)
+chkOut()

@@ -32,6 +32,7 @@ F = vgen(FLOAT_,100,1,1)
 
 <<"%(4,, ,\n)6.2f$F\n"
 
+F->info(1)
 
    S= Stats(F)
 

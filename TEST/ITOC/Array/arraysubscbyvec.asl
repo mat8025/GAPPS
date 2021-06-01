@@ -10,18 +10,27 @@
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
+
+<|Use_=
+Demo  of subs by vec;
+///////////////////////
+|>
+
+
+
+
 #include "debug.asl";
 
 if (_dblevel >0) {
    debugON()
+   <<"$Use_\n"   
 }
  
 
 
 
  //filterFileDebug(ALLOWALL_,"yyy");
- 
- //FilterFileDebug(REJECT_,"storetype_e");
+  //FilterFileDebug(REJECT_,"storetype_e");
 // FilterFuncDebug(REJECT_,"~ArraySpecs",);
   
 
@@ -71,7 +80,7 @@ sz = Caz(NV)
 <<" $NV[22] \n"
 <<" $YV \n"
 
- S = YV[P]
+ S = YV[{P}]
 
 <<" %v $P \n"
 <<" %v $S \n"

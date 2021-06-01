@@ -27,7 +27,19 @@ assuming A has at least 10 elements.
 
 */
 
+<|Use_=
+Demo  of Caz SF
 
+///////////////////////
+|>
+                                                               
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"   
+}
 
 int DC[5];
 
