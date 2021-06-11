@@ -10,8 +10,9 @@
  *  @Copyright © RootMeanSquare  2010,2021 → 
  * 
  *  \\-----------------<v_&_v>--------------------------//  
- */ 
-
+ */
+ 
+///
 ///
 ///
 
@@ -27,8 +28,12 @@ if (_dblevel >0) {
    <<"$Use_\n"   
 }
 
-
+filterFuncDebug(REJECT_,"varIndex","FindVar","ArrayCopy","storeString");	
+filterFileDebug(REJECT_,"scopesindex_e","scope_e","scope_findvar","rdp_token");
 chkIn(_dblevel)
+
+
+
 
 str pstr( str val)
 {

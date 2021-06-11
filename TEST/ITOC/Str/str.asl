@@ -18,6 +18,9 @@ S string but should be able to be accessed like a dynamic char array
 |>
 
 
+//#define DIF !~
+#define DIF 
+
 #include "debug"
 
 if (_dblevel >0) {
@@ -28,35 +31,53 @@ if (_dblevel >0) {
 
 chkIn(_dblevel)
 
+DoVarId = 1;
+DoInfo = 0;
+
 void pstr( str val)
 {
 
 <<"\nval <|$val|>\n"
+   id = val->varid()
+<<"%V $id\n"   
+!~   val->Info(1)
 
-   val->Info(1)
-
-   //cart(val)
+!!  val->Info(1)
+   iv = vgen(INT_,10,0,1)
+   <<"$iv\n"
+   iv->reverse()
+   <<"$iv\n"
+   iv->info(1)
+!a
+  cart(val)
 
 }
 //===========================//
 
 void cart( str pname)
 {
-<<"\nIN $_proc arg is <|$pname|>\n"
+<<"$_proc   arg is <|$pname|>\n"
 //str xn;
-    pname->Info(1)
+
+   if (DoVarId) {
+     id = pname->varid()
+<<"%V $id\n"
+    }
+
+
+DIF pname->info(1);
 
     xn=scat(pname," Senor")
 
-    xn->info(1)
-!a
+DIF xn->info(1)
+
     cart_y(xn, pname) ;  // fails
     //xn2 = pname
     //cart_y(xn, xn2) ;  // ok made a copy
 !t on ret from cart_y xn ?    
-!i xn
-!i pname
-!a
+//!i xn
+
+
 
 }
 
@@ -65,8 +86,9 @@ void cart_xic( str pxname)
 {
 
 <<"\n arg is <|$pxname|>\n"
-
-pxname->Info(1)
+   id = pxname->varid()
+<<"%V $id\n"   
+DIF pxname->Info(1)
 
 }
 
@@ -74,32 +96,54 @@ pxname->Info(1)
 void cart_y( str pxname, str arg2)
 {
 <<"IN $_proc arg1 is <|$pxname|>  arg2 is <|$arg2|\n"
+     sdb(2,@step)
 
-     pxname->Info(1)
-     arg2->info(1)
+    if (DoVarId) {
+     id = pxname->varid()
+<<"%V $id\n"
+    }
+
+DIF pxname->Info(1)
+
+
+DIF arg2->info(1)
+
+
     xn=scat(pxname," Que Pasa?")
-    xn->info(1)
-!a
+     id = xn->varid()
+<<"%V $id\n"   
+
+     if (DoInfo) xn->info(1)
+
      cart_z(xn, arg2)
 !t on ret from cart_z xn ?    
-        xn->info(1)
-!a
+       if (DoInfo)   xn->info(1)
+
 }
 //===========================//
 void cart_z( str arg1, str arg2)
 {
 
 <<"IN $_proc arg is <|$arg1|>  arg2 is <|$arg2|> \n"
+     id = arg1->varid()
+<<"%V $id\n"   
+        if (DoInfo) arg1->Info(1)
+        if (DoInfo) arg2->Info(1)
 
-     arg1->Info(1)
-     arg2->Info(1)     
     zn=scat(arg1," hasta luego")
-    zn->info(1)
-!a
-cart_w(zn, arg2)
+         id = zn->varid()
+<<"%V $id\n"   
+
+DIF zn->info(1)
+
+
+    cart_w(zn, arg2)
+
 !t on ret from cart_w ?    
-        zn->info(1)
-!a    
+     id = zn->varid()
+<<"%V $id\n"   
+DIF zn->info(1)
+
 
 }
 
@@ -109,10 +153,11 @@ void cart_w( str arg1, str arg2)
 {
 
 <<"IN $_proc arg is <|$arg1|>  arg2 is <|$arg2|> \n"
+   id = arg1->varid()
+<<"%V $id\n"   
+      if (DoInfo)   arg1->Info(1)
+      if (DoInfo)  arg2->Info(1)
 
-     arg1->Info(1)
-     arg2->Info(1)
-!a
      cart_v (arg1,arg2);
 
 }
@@ -121,10 +166,10 @@ void cart_v( str arg1, str arg2)
 {
 
 <<"IN $_proc arg is <|$arg1|>  arg2 is <|$arg2|> \n"
-
-     arg1->Info(1)
-     arg2->Info(1)
-!a
+   id = arg1->varid()
+<<"%V $id\n"   
+      if (DoInfo)  arg1->Info(1)
+   
    cart_u (arg1,arg2);
 
 }
@@ -133,11 +178,12 @@ void cart_u( str arg1, str arg2)
 {
 
 <<"IN $_proc arg is <|$arg1|>  arg2 is <|$arg2|> \n"
-
-     arg1->Info(1)
-     arg2->Info(1)
+   id = arg1->varid()
+<<"%V $id\n"   
+      if (DoInfo)  arg1->Info(1)
+      if (DoInfo)  arg2->Info(1)
 !t begin return down call chain     
-!a
+
 }
 //===========================//
 
@@ -146,13 +192,16 @@ void do_carts (str wprg)
 {
 //  str wprg = aprog;
 <<"$_proc  $wprg \n"
-   wprg->info(1)
+
+   id = wprg->varid()
+<<"%V $id\n"   
+     if (DoInfo) wprg->info(1)
 
 <<"run cart vers  $wprg \n"
 
       cart (wprg);
       
-      wprg->info(1)
+       if (DoInfo)  wprg->info(1)
 
  <<"run xic vers  $wprg \n"
 
@@ -167,6 +216,9 @@ void do_carts (str wprg)
 str abc = "abcdefg"
 str xyz = "xyz"
 
+
+  abc->info(1);
+
 <<"$abc\n"
 
 
@@ -177,6 +229,11 @@ str xyz = "xyz"
 
 
  pstr(xyz);
+
+
+ chkT(1)
+ chkOut()
+
 
 /*
 str vstr= "hola que pasa"
