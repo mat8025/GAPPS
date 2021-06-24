@@ -23,7 +23,7 @@
 
 
 #include "debug"
-//#include "hv"
+#include "hv"
 
 if (_dblevel >0) {
     debugON()
@@ -32,7 +32,7 @@ if (_dblevel >0) {
 
 
 
-allowErrors(2)
+allowErrors(-1)
 _DB =1;
 
 //<<[_DB]"%V$vers $ele_vers\n"
@@ -194,6 +194,8 @@ if (A == -1) {
 
 // check period
 
+svar rx;
+rx->pinfo()
 
 Record RX[];
 
@@ -201,14 +203,22 @@ RX=readrecord(A,@del,-1)
 
 Nrecs = Caz(RX);
 
-<<"%V $Nrecs RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n"
+<<"%V $Nrecs $RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n"
 
+<<"$RX[Nrecs-2]\n"
+ rx= RX[Nrecs-1]
+ 
 <<"$RX[Nrecs-1]\n"
+<<"$rx\n"
 
 lastRX = RX[Nrecs-1]
 
-<<"$lastRX\n"
-//exit()
+  <<"$lastRX\n"
+
+lastRX->pinfo();
+
+chkT(1)
+
 
     //WDVEC= vgen(_INT_,2*kdays,0,1);
 
@@ -218,7 +228,7 @@ lastRX = RX[Nrecs-1]
 // so far not logged often 
 
 
-// ACC=ofr("DAT/jcc.tsv")
+
  ACC=ofr("DAT/ccwx.tsv")
 
 Record RCC[];

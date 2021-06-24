@@ -20,7 +20,7 @@
 //  _val will contain word1 word2 ... till the end of that header line
 //  so you can retrieve @vers,@author,@date values that are in the header
 
-Svar _HV
+Svar _HV;
 
 _HV->info(1)
 
@@ -38,24 +38,26 @@ void hv_func()
   Str fl;
   int sz;
 
-for (wln = 1; wln <= 40; wln++) {
+  for (wln = 1; wln <= 10; wln++) {
 
   fl = getcodeln(wln,0);
-
+   if (fl @= "") {
+       break;
+   }
+//<<"$wln $fl\n"
 
  if (! (fl @= "")) {
- L=split(fl)
+   L=split(fl)
 
  sz=Caz(L)
 
 if (sz > 1) {
 
-if (scmp(L[0],"//",2)) {
+ if (scmp(L[0],"//",2)) {
 
-if (!(L[1] @= "")) {
+   if (!(L[1] @= "")) {
 
    if (scmp(L[1],"@",1)) {
-
 
     _val = spat(fl,L[1],1)
 
@@ -68,7 +70,7 @@ if (!(L[1] @= "")) {
     }
 
     index=_HV->addkeyval(L[1],_val); // returns index
- <<"$index $L[1] $_val \n"
+ //<<"$index $L[1] $_val \n"
   }
   }
   }
@@ -92,9 +94,11 @@ _vw= split(_vers)
 _ele_vers = _vw[2]
 _ele = ptAN(_ele_vers)
 //<<"%V $_ele_vers $_ele \n"
-<<[_DB]"%V$vers $_ele_vers\n"
+
 }
 //=============================//
+
+
 delete(hv_found);
 
 /////////////////////////// DEV //////////////////////////

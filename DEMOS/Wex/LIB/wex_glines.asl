@@ -17,7 +17,7 @@
 //<<[_DB]"\n%(10,, ,\n)$DVEC \n"
 
    pwt_gl = -1
-   pwt_gl  = cGl(@wid,gwo,@TXY,DVEC,PWTVEC,@color,GREEN_,@ltype,"line")
+   pwt_gl  = cGl(gwo,@TXY,DVEC,PWTVEC,@color,GREEN_,@ltype,"line")
 
 
 

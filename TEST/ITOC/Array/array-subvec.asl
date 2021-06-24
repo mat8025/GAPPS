@@ -34,7 +34,7 @@ chkIn(_dblevel)
 
  N = 20
 
- YV = Igen(N,20,1)
+ YV = vgen(INT_,N,20,1)
 
 <<" %V$YV \n"
 
@@ -48,7 +48,7 @@ int P[5]
   P[1] = 2  
   P[2] = 3
   P[3] = 8
-  P[4] = 3
+  P[4] = 16
 
 <<"%V$P\n"
 
@@ -60,12 +60,13 @@ int P[5]
  S = YV[{P,6,7,12,13}]
 
 <<"%V$S\n"
+  S->pinfo()
+  
 !a
- chkN(S[1],YV[37])
-
- chkN(S[2],YV[23])
-
- chkN(S[3],YV[28])
+ chkN(S[0],YV[1])
+ chkN(S[1],YV[2])
+ chkN(S[2],YV[3])
+ chkN(S[3],YV[8])
 
 // even better
 

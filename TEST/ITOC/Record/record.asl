@@ -15,17 +15,24 @@
 /// test record type
 /// each record is an Svar
 ///
+<|Use_=
+Demo  of Record class ;
+///////////////////////
+|>
 
-#include "debug.asl";
 
-
+                                                                        
+#include "debug"
 
 if (_dblevel >0) {
-   debugON()
+  debugON()
+    <<"$Use_\n"   
 }
 
 
+
 chkIn(_dblevel)
+chkT(1)
 
 
 int ra = 2;
@@ -42,7 +49,7 @@ sz= csz(&ra);
 
 
 
-  Record R[>4];
+  Record R[>10];
 
 
   Nrecs = Caz(R);
@@ -53,20 +60,41 @@ sz= csz(&ra);
  R->info(1)
 
 // ',' parsed as CHAR
-//split intreprets via s->makeStrFromArg ()
-// single character string  e.g. as "," 
+// split intreprets via s->makeStrFromArg ()
+// single character string  e.g. as ","
 
- R[0] = Split("80,1,2,3,40,5,6,7,8,9",','); 
+ S = Split("80,1,2,3,40,5,6,7,8,9",',');
+ 
+ S->info()
+ 
+ <<"$S\n"
+   R[0] = S;
+// R[0] = Split("80,1,2,3,40,5,6,7,8,9",','); 
+
+<<" $R[0] \n"
+!a
+
+
  R[1] = Split("82,5,4,3,40,5,6,7,8,9",',');
+<<" $R[1][2] \n"
+
+
  R[2] = Split("83,7,6,5,40,5,6,7,8,9",',');
+<<" $R[2] \n"
  R[3] = Split("84,8,7,6,40,5,6,7,8,9",',');
+<<" $R[3] \n"
  R[4] = Split("85,9,8,7,40,5,6,7,8,47",',');
  R[5] = Split("49,9,8,77,47,5,6,7,80,95",',');
  R[6] = Split("87,9,8,7,40,5,6,7,8,79",',');
 
+R->info(1)
 
+<<" $R[4] \n"
+!a
 <<" $R[::] \n"
 
+
+  R[7] = R[1];
 
   Nrecs = Caz(R);
   Ncols = Caz(R,1);
@@ -79,6 +107,14 @@ wsv=Split("80,1,2,3,79,5,6,7,8,9", ",");
 !iwsv
 
 R->info(1)
+
+
+lastRX = R[Nrecs-1]
+
+<<"%V $lastRX\n"
+
+!a
+chkOut()
 
 rval = R[0][4];
 
@@ -94,7 +130,7 @@ rval = R[0][4];
 <<"%V$R[0][2]\n"
 <<"%V$R[0][4]\n"
 
-
+/*
 int ival = atoi(R[0][2]);
 ival->info(1)
 
@@ -107,7 +143,7 @@ sz->info(1)
 chkN(sz,0)
 
 chkN(ival,2)
-
+*/
 
 
 //=============================
@@ -442,10 +478,15 @@ R->info(1)
    sr2 = R[2][2]
    
 chkStr(sr2,"learn")
+<<"%V $sr2\n"
 
    sr2 = R[3][2]
    sr3 = R[3][2]
-   
+
+sr3->info(1)
+
+<<"%V $sr3\n"
+!a
 chkStr(sr3,"focus")
 
 
@@ -696,7 +737,7 @@ R[7] = R[5];
 
 // pick fields
 //<<"\n\n%1r$R[13:23][0]\n"
-
+chkT(1)
 chkOut()
 
 

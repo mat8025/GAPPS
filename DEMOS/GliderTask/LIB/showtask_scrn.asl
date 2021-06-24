@@ -4,7 +4,11 @@
 
 
 
-Graphic = CheckGwm();
+  Graphic = CheckGwm();
+
+<<"%V $Graphic\n"
+
+
 
   if (!Graphic) {
     Xgm = spawnGwm("ShowTask")
@@ -12,7 +16,7 @@ Graphic = CheckGwm();
 
 // create window and scales
 
-include "tbqrd"
+#include "tbqrd"
 
 
   vp = cWi(@title,"vp",@resize,0.1,0.01,0.9,0.95,0)

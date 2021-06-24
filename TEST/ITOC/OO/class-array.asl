@@ -11,10 +11,22 @@
 //* 
 //***********************************************%
   
+
+<|Use_=
+Demo  of OO class ;
+///////////////////////
+|>
+
+
+                                                                        
 #include "debug"
+#include "hv.asl"
 
 
-//debugON()
+if (_dblevel >0) {
+  debugON()
+    <<"$Use_\n"   
+}
 
  allowErrors(-1)
 
@@ -22,6 +34,22 @@ chkIn (_dblevel);
 
 uint SC = 50;
 uint OC = 1;  // object counter
+
+
+MIV= vgen(INT_,30,0,1)
+
+
+     MIV[7] = 52;
+
+     k = MIV[7];
+
+<<"%V$k \n"
+
+<<"$MIV \n"
+
+!a
+
+
 
 class Dil {
 
@@ -31,13 +59,13 @@ public:
  int IV[30];
  int id;
 
- cmf Print(int wa) 
+ void cmf Print(int wa) 
  {
    k = IV[wa]
    <<"$wa $k \n"
  }
  
-cmf Set(int s)
+int cmf Set(int s)
  {
      <<"$_cobj $s\n" 
      <<"%V$type\n"
@@ -46,7 +74,7 @@ cmf Set(int s)
      return type;
  }
  
-  cmf Get()
+  int cmf Get()
  {
  <<"$_proc  Get\n"
 //!i type
@@ -55,7 +83,7 @@ cmf Set(int s)
  }
 
 
- cmf Set(int wi, int val)
+ void cmf Set(int wi, int val)
  {
     <<"%V $wi $val\n"
    <<"$IV[::] \n"
@@ -63,7 +91,7 @@ cmf Set(int s)
    <<"$IV[::] \n" 
  }
 
- cmf showIV()
+ svar cmf showIV()
   {
 //mas = memaddr(&I[0])
 
@@ -71,11 +99,14 @@ cmf Set(int s)
 
 // <<"memcpy to %u $mad from $mas #bytes $nbytes\n"
 //   memcpy(mad, mas, nbytes)
-IV->info(1)
+
+
+   iv=IV->info()
+<<"%V $iv\n"
 <<"%V $IV[::] \n"
 
 <<"%V $IV[8]\n"
- 
+    return iv;
   }
 
  cmf Dil() 
@@ -84,13 +115,13 @@ IV->info(1)
      id = OC;
 
      OC++;
-
+    int k = 0;
     type->info(1);
-n_actv->info(1)
+    n_actv->info(1)
 
-IV->info(1)
+   IV->info(1)
 
- IV[0:9] = 1;
+   IV[0:9] = 1;
 
 <<"%V$I \n"
      <<"cons for $_cobj  $id \n"
@@ -101,16 +132,25 @@ IV->info(1)
 
      IV[23] = SC;
 
+     IV[7] = 52;
 
-  
+     IV[12] = 67;
 
+
+
+<<"$IV\n"
+
+     k = IV[7];
+<<"$IV\n"
+<<"%V$k \n"
+!a
      k = IV[0];
 
 <<"%V$k \n"
 
     IV[1] = 28;
 
- <<"%V$I \n" 
+ <<"%V$IV \n" 
 
      k = IV[0];
 
@@ -127,11 +167,30 @@ agv->info(1);
 
 Dil E;
 
-E->info(1)
+   E->info(1)
 
-   E->showIV();
+   vim=E->showIV();
 
-  E->Set(5)
+<<"%v $vim\n"
+
+   E->Set(5)
+
+   et= E->Get()
+
+<<"%V $et\n"
+
+
+   ei = E->IV[7]
+
+<<"%V $ei \n"
+  chkN(ei,52)
+
+
+
+
+chkT(1)
+chkOut()
+
 
 
 

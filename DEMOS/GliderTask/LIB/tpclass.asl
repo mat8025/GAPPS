@@ -25,6 +25,7 @@ class Turnpt
   str Lat;
   str Lon;
   str Place;
+  
   str Idnt;
   str rway;
   str tptype;
@@ -57,7 +58,7 @@ class Turnpt
 
     <<"%V$Idnt  \n"
 
-Idnt->info(1)
+//Idnt->info(1)
 
      Lat = wval[2]; // wayp 
 
@@ -93,7 +94,7 @@ Idnt->info(1)
    {
 
 //    <<"%V $wval[::]\n"
-//    <<"<|$wval[0]|>\n"
+DBG"<|$wval[0]|>\n"
 
      val = dewhite(wval[0])
 //val->info(1)
@@ -116,7 +117,6 @@ Idnt->info(1)
 //Idnt->info(1)
 
      Lat = wval[3]; // wayp 
-
 
      Lon = wval[4];
 

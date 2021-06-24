@@ -24,6 +24,19 @@ int x = 5;
 
 int Bid =0;
 
+proc checkRooms(int i, int k)
+{
+
+  irm = C[i]->rooms;
+  iid =   C[i]->id;
+  krm = C[k]->rooms;
+  kid =  C[k]->id;
+
+<<"%V $i $irm $iid $k $krm $kid\n"
+!a
+}
+//================
+
 proc pfloors(int r)
 {
  int prf = 0;
@@ -95,7 +108,7 @@ class Building {
 //======================================//
  cmf Building()
  {
- <<"Cons $_cobj $Bid\n"
+
     id = Bid;
     <<"%V $id\n"
     Bid++;
@@ -105,22 +118,52 @@ class Building {
     rooms = 4 +id ;
     area = floors * 200;
    
- <<"cons $_cobj %V $id  $Bid $floors  $rooms $area\n"
+ <<"Cons $_cobj %V $id  $Bid $floors  $rooms $area\n"
   }
 
 }
 
 
 ////////////////////////////////////
+
+
+  Building C[10]
+
+<<" done object array  declare ! \n"
+
+
+   b6 = 6;
+   b6rooms = C[b6]->rooms;
+
+<<"%V $b6rooms \n"
+
+   b7 = 7;
+   b7rooms = C[b7]->rooms;
+   b7id = C[b7]->id;
+<<"%V $b7rooms $b7id\n"
+
+!a
+
+   checkRooms(5,7)
+
+   checkRooms(0,9)
+   
+
+
   Building A;
+  
+   Arooms = A->rooms;
+
+<<"%V$Arooms";
+
   Building B;
   Building D;  
 
    Arooms = A->getRooms();
 
 <<"%V $Arooms \n"
-
-   chkN (Arooms,4);
+!a
+   chkN (Arooms,14);
    Afloors = A->getFloors();
 
 <<"%V $Afloors \n"
@@ -128,11 +171,11 @@ class Building {
    Brooms = B->getRooms();
 
 <<"%V $Brooms \n"
- chkN (Brooms,5);
+ chkN (Brooms,15);
    Bfloors = B->getFloors();
 
 <<"%V $Bfloors \n"
- chkN (Bfloors,8);
+ chkN (Bfloors,18);
 
    Drooms = D->getRooms();
 
@@ -146,9 +189,6 @@ class Building {
     chkN (Dfloors,7)
 
 
-  Building C[10]
-
-<<" done object array  declare ! \n"
 
  
    C[1]->Print()
@@ -156,9 +196,10 @@ class Building {
 
    b1rooms = C[1]->getRooms();
 
+
 <<"%V $b1rooms \n"
 
- chkN (b1rooms,8);
+ chkN (b1rooms,5);
 
    C[2]->Print()
 
@@ -181,7 +222,7 @@ class Building {
 <<"%V $b0rooms \n"
 
 
-   chkN (b0rooms,7);
+   chkN (b0rooms,4);
    
 
 
@@ -189,7 +230,7 @@ class Building {
 
 <<"%V $b2rooms \n"
 
-  chkN (b2rooms,9);
+  chkN (b2rooms,6);
 
   
 
@@ -202,7 +243,8 @@ class Building {
 
 <<"%V $b5rooms \n"
 
-   chkN (b5rooms,12);
+
+   chkN (b5rooms,9);
 
    C[6]->Print()
 
@@ -210,7 +252,7 @@ class Building {
 
 <<"%V $b6rooms \n"
 
-   chkN (b6rooms,13);
+   chkN (b6rooms,10);
 
 
    C[2]->setFloors(15);
@@ -267,7 +309,7 @@ class Building {
   nrms = C[0]->getRooms()
   <<" C[0] rooms $nrms \n"
 
-  chkN (nrms,7)
+  chkN (nrms,4)
 
 <<" main refer %i $C   [0] \n"
   C[0]->setRooms(56)
@@ -371,16 +413,20 @@ chkN (a,15)
 <<" %v $bnf \n"
 
    bz->Print()
-
-
-
-
-
+!a
+<<" making copy of obj bz \n"
    d = bz
 
    d->setFloors(11)
 
    d->Print()
+
+   dr = d->getRooms()
+<<"%V $dr\n"
+ //  d->pinfo()
+    info(d)
+    <<"d: $d\n"
+!a
 
    c = d
 
@@ -539,8 +585,8 @@ chkN (a,15)
   j++
  }
 
-
-
-Building BD[30]
+   checkRooms(1,7)
+!a
+//Building BD[30]
 
 chkOut()

@@ -327,7 +327,6 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
     RunDirTests("Assign","assign");
 
-    RunDirTests("Assign","assign");
 
     RunDirTests("Bops","bops,fvmeq,fsc1,mainvar,snew");
 

@@ -19,12 +19,18 @@ prog = GetScript()
 
 <<"Running $prog\n"
 
+av = 80;
+<<"%V $av\n"
+
 
 char A[20]
 
- for (i= 0; i < 20; i++) {
-  A[i] = i
+ for (i= 1; i < 20; i++) {
+  A[i] = i;
+<<"$i $A[i]\n"  
  }
+
+<<"$A\n"
 
 chkN(A[2],2)
 

@@ -16,13 +16,29 @@
 
 # map of turn_points
 
+<|Use_=
+ view and select turnpts  ;
+///////////////////////
+|>
+
+
+                                                                        
 #include "debug"
+
+if (_dblevel >0) {
+  debugON()
+    <<"$Use_\n"   
+}
+
+
 #include "hv.asl"
 
-
+ignoreErrors()
 setMaxICerrors(-1) // ignore - overruns etc
 
-#define DBG <<
+//#define DBG <<
+#define DBG ~!
+
 
 float Max_ele = 18000.0
 float Min_ele  = 0.0;
@@ -795,7 +811,7 @@ str wcltpt="XY";
 ///
 
 //////////////////////////// TBD ///////////////////////////////////////////
-/{/*
+/*
 
 
  BUGS:  
@@ -832,9 +848,7 @@ str wcltpt="XY";
 
   menus
 
-
-
-/}*/
+*/
 
 
 

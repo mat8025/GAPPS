@@ -12,27 +12,38 @@
 //***********************************************%
 
 
-//#define DBG <<
 
-#define DBG ~!
+
+
+
 <|Use_=
 Compute task distance
 e.g  asl anytask.asl   gross laramie mtevans boulder  LD 40 
 ///////////////////////
+
 |>
 
 
 #include "debug"
 
+ignoreErrors()
+
 if (_dblevel >0) {
    debugON()
    <<"$Use_\n"
 }
+ignoreErrors()
+//#define DBG ~!
+
+
+#define DBG <<
 
 
 _DB = 0;
 chkIn(_dblevel)
 
+
+//setMaxICerrors(-1) // ignore - overruns etc
 
 Main_init = 1;
 
@@ -41,10 +52,12 @@ Main_init = 1;
 //<<"%V $totalD\n"
 
 
+float Leg[20];
+
 float CSK = 70.0
 float Cruise_speed = (CSK * nm_to_km);
 
-//<<"%V $Cruise_speed\n"
+<<"%V $Cruise_speed\n"
 
 // try Wtp as args
 
@@ -95,6 +108,8 @@ show_title = 1
 
  na = get_argc()
 
+DBG"%v $na\n"
+
 int ac = 1;
 via_keyb = 0
 via_file = 0
@@ -115,13 +130,15 @@ int cltpt = 0
   while (ac < na) {
 
 
+
     istpt = 1
 
     targ = _argv[ac]
 
+DBG"%V $ac $targ\n"
+
     sz = targ->Caz()
     ac++
-
 
 
     if (targ @= "LD") {
@@ -219,7 +236,9 @@ int input_lat_long = 0
 
 int i = -1
 
-    //<<"DONE ARGS  $cltpt\n"
+    <<"DONE ARGS  $cltpt\n"
+
+
 
     ////   do this to check routine    
     //<<"Start  $the_start \n"
@@ -474,11 +493,49 @@ ild= abs(LoD)
 
 
     
-   computeHTD()
+   //computeHTD()
+totalD = 0;
+//totalD->info(1)
 
 
+  for (nl = 0; nl < n_legs ; nl++) {
 
-  //  <<" $total \n"
+       L1 = Wtp[nl]->Ladeg;
+       L2 = Wtp[nl+1]->Ladeg;
+       
+       //DBG"%V $L1 $L2 \n"
+       lo1 = Wtp[nl]->Longdeg;
+
+       lo2 = Wtp[nl+1]->Longdeg;
+
+       //DBG"%V $lo1 $lo2 \n"
+
+
+      // tkm = ComputeTPD(nl, nl+1);
+       tkm = Howfar(L1,lo1 , L2, lo2 );
+
+      // DBG"%V $nl $tkm \n"
+
+       Leg[nl] = tkm;
+       
+       //Leg[nl] = ComputeTPD(nl, nl+1)
+       
+       tcd =  ComputeTC(nl, nl+1)
+       TC[nl] = tcd;
+       
+       Dur[nl] = Leg[nl]/ Cruise_speed;
+       
+
+//<<"%V $Leg[nl] $tkm \n"
+       totalDur += Dur[nl];
+
+       totalD += tkm;
+       
+//<<"<$nl> $Leg[nl]  $tkm $tcd $Dur[nl] $TC[nl] $totalD $totalDur \n"
+
+}
+
+    //  <<" $total \n"
 
    
 

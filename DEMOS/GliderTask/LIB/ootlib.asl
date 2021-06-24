@@ -30,20 +30,20 @@ float totalDur = 0.0
   nm_to_km = 6080.0/3281.0
 
 
-//DBG"%V $nm_to_km $km_to_sm  \n"
+DBG"%V $nm_to_km $km_to_sm  \n"
 
   Units = "KM"
   lat = "A"
   longit = "B"
 
   LegK =  0.5 * (7915.6 * 0.86838);
-  //DBG" %v $LegK \n"
+  DBG" %v $LegK \n"
   //  Main_init = 0
 
 DBG" read in unit conversions \n"
 
 int n_legs = 0
-float Leg[>20];
+//float Leg[20];
 float TC[>20];
 float Dur[>20];
 
@@ -181,6 +181,8 @@ totalD = 0;
        totalD += Leg[nl]
 //<<"<$nl> $Leg[nl]  $tkm $tcd $Dur[nl] $TC[nl] $totalD $totalDur \n"
  }
+
+
 }
 //==============================//
 
@@ -1647,45 +1649,46 @@ proc ComputeTC(int j, int k)
 
 float ComputeTPD(int j, int k)
 {
-//DBG" $_proc %V $j $k \n"
+<<" $_proc %V $j $k \n"
     float km = 0.0;
 
     L1 = Wtp[j]->Ladeg;
 
     L2 = Wtp[k]->Ladeg;
 
+   DBG"%V $L1 $L2 \n"
+
     lo1 = Wtp[j]->Longdeg;
 
     lo2 = Wtp[k]->Longdeg;
 
-/*
-  // DBG"%V $lo1 $lo2 \n"
+
+   DBG"%V $lo1 $lo2 \n"
     rL2 = d2r(L2)
     rL1 = d2r(L1)
 
-   // DBG" %V $rL1 $rL2 \n"
+   DBG" %V $rL1 $rL2 \n"
 
     rlo1 = d2r(lo1);
     rlo2 = d2r(lo2);
 
-    sL1 = sin(rL1);
-    cL2 = cos(rL2);
-
-//DBG"%V $sL1 $cL2 \n"
+    DBG" %V $rlo1 $rlo2 \n"
 
     D= acos (sin(rL1) * sin(rL2) + cos(rL1) * cos(rL2) * cos(rlo1-rlo2));
+
+    DBG"%V $D\n"
 
     N = LegK * D
 
     km1 = N * nm_to_km
-*/
+
 
    // km2 = Gcd(L1,lo1 , L2, lo2 );
     km2 = Howfar(L1,lo1 , L2, lo2 );
 
     km = km2;
     //km->info(1)
-  //<<" %V   $LegK   $nm_to_km $km\n" ;
+  <<" %V   $LegK   $nm_to_km $km1 $km2\n" ;
 
 
     return km;
