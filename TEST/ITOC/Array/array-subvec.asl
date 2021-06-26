@@ -62,7 +62,7 @@ int P[5]
 <<"%V$S\n"
   S->pinfo()
   
-!a
+
  chkN(S[0],YV[1])
  chkN(S[1],YV[2])
  chkN(S[2],YV[3])

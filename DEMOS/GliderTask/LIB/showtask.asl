@@ -99,8 +99,6 @@ int use_cup = 1;
 if (use_cup) {
 
     tp_file = "CUP/bbrief.cup"
-    //tp_file = "CUP/ABC_CO.cup"  
-
 }
 else {
 
@@ -136,52 +134,7 @@ recinfo = info(RF);
   Ncols = Caz(RF,1);
 
 <<"num of records $Nrecs  num cols $Ncols\n";
-/{/*
-for (i= 0; i< Nrecs; i++) {
-  <<"<|$i|> $RF[i]\n"
-}
 
-
-lat = RF[2][3];
-longv = RF[2][4];
-
-<<"%V $RF[2][0] $lat $longv \n"
-
-WH=searchRecord(RF,"Laramie",0,0)
-
-<<"$WH \n"
-index = WH[0][0]
-
-place = RF[index][0]
-lat = RF[index][2]
-longv = RF[WH[0][0]][3]
-
-<<"$RF[index][0] \n"
-<<"$RF[index][2] \n"
-<<"%V $place $lat $longv\n"
-
-WH=searchRecord(RF,"Salida",0,0)
-index = WH[0][0]
-place = RF[index][0]
-lat = RF[index][2]
-longv = RF[WH[0][0]][3]
-
-<<"$RF[index][0] \n"
-<<"$RF[index][2] \n"
-<<"%V $place $lat $longv\n"
-
-<<"$WH \n"
-index = WH[0][0]
-<<"%V $index\n"
-
-place = RF[index][0]
-lat = RF[index][2]
-longv = RF[WH[0][0]][3]
-
-<<"$RF[index][0] \n"
-<<"$RF[index][2] \n"
-<<"%V $place $lat $longv\n"
-/}*/
 
 WH=searchRecord(RF,"jamest",0,0)
 
@@ -341,13 +294,19 @@ Ntaskpts = 0;
 
 long posn = 0;
 svar Tskval;
-
-
+  na = argc()
+ <<"na $na\n"
+ int ai =0;
  while (AnotherArg()) {
 
-
-         targ = GetArgStr()
-
+<<"$ai $_clarg[ai]\n"
+          ai++;
+          targ = GetArgStr()
+	  if (targ @= "task") {
+            TaskType = GetArgStr()
+	    <<"set %V $TaskType \n"
+          }
+          else {
           WH=searchRecord(RF,targ,0,0)
 	  <<"%V $WH\n"
 	  
@@ -358,7 +317,8 @@ svar Tskval;
 <<"$ttp \n"
           Taskpts[Ntaskpts] = index;
           Ntaskpts++;
-
+          }
+	  
           }
 
 }
@@ -368,7 +328,7 @@ svar Tskval;
 // set a default task
 if (Ntaskpts == -1) {
 
-svar targ_list = {"jamestown","laramie","salida","jamestown"}
+svar targ_list = {"eldorado","casper","rangely","eldorado"}
     sz= Caz(targ_list);
 <<"$sz : $targ_list \n"
 
@@ -563,7 +523,8 @@ Nlegs = Ntaskpts;
        
         sWo(tpwo[i],@value,"$tpl",@update,@redraw);  
        // woSetValue(tpwo[i],k,1)
-	woSetValue(tpwo[i],alt,1)
+       // display alt?
+//	woSetValue(tpwo[i],alt,1)   
        if (i >= MaxSelTps) {
          <<"$i > $MaxSelTps \n"
           break;
@@ -631,7 +592,7 @@ str wcltpt="XY";
   zoom_to_task(mapwo,1)
 
   sWo(mapwo, @scales, LongW, LatS, LongE, LatN );
-
+  sWo(TASK_wo,@value,TaskType,@redraw);
 
   DrawMap(mapwo)
 
@@ -727,12 +688,42 @@ str wcltpt="XY";
 	     
 	     gflush();
 
+             wc=choice_menu("TP.m")
+             if (wc @= "R") { // replace
+
              wtp = PickaTP(witp)
              if (wtp >= 0) {
               wcltpt = Wtp[wtp]->Place;
               sWo(wtpwo,@value,wcltpt,@redraw);
              }
+             }
+             if (wc @= "D") {
+                <<"delete and move lower TPs up!\n"
+               showTaskPts()	
 
+              if (witp == 9) {
+                    setWoValue (tpwo[9],"")
+               }
+	       else {
+               for (i = witp ; i < 10 ; i++) {
+                  tval = getWoValue(tpwo[i+1])
+		  Taskpts[i-1] = Taskpts[i];
+         <<"$i <|$tval|>  \n"
+                  setWoValue (tpwo[i],tval)
+		  if (tval @= "")
+		    break;
+                }
+              }
+	         Taskpts[Ntaskpts-1] = 0;
+
+             }
+
+             if (wc @= "I") {
+                 insert_tp(witp);
+            }
+
+                 showTaskPts()	
+                 sWo(tpwos,@redraw);
            sWo(wtpwo,@cxor);
 
        }

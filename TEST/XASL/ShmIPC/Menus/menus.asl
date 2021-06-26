@@ -160,7 +160,7 @@ cf(A)
         X=spawngwm()
      }
 
-include "tbqrd.asl" 
+#include "tbqrd.asl" 
 
 // make a window
 
@@ -218,7 +218,7 @@ sWo(gwo2,@func,"wo_menu",@menu,"FoodTypes.m")
  sWo(gwo3,@sheetrow,0,0,"When,Food,Portion,Qty_Oz,Cals,Carbs,Fat_g,Prot_g")
  sWo(gwo3,@sheetrow,1,0,"Breakfast,egg,2,20,90,1,7,6")
 
- sWo(gwo3,@selectrowscols,0,7,0,9);
+ //sWo(gwo3,@selectrowscols,0,7,0,9);
 
  when = "Breakfast"
  portion = "2"

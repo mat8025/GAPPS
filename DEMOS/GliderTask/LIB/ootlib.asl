@@ -16,7 +16,7 @@
 float totalD = 0;
 float totalDur = 0.0
 
-  ntpts = 0
+  int Ntaskpts = 0
   Min_lat = 90.0
   Max_lat = 0.0
   Min_W = 109.0
@@ -704,19 +704,13 @@ proc reset_map()
 }
 //======================================//
 
-proc insert_tp()
+proc insert_tp(int wtpt)
 {
 /// click on tpwo
-      MouseCursor("gumby", tpwo[0], 0.5, 0.5);  // TBC
-     
-             eventWait();
 
-            if (scmp(_ewoname,"_TP",3)) {
-
-             np = spat(_ewoname,"_TP",1)
-             wtpt= atoi(spat(np,"_",-1))
              if (wptp < 9 ) {
-             for (i = 9 ; i > wtpt ; i--) {
+
+                for (i = 9 ; i > wtpt ; i--) {
                   tval = getWoValue(tpwo[i-1])
          //<<"$i <|$tval|>  \n"
                   setWoValue (tpwo[i],tval)
@@ -734,19 +728,19 @@ proc insert_tp()
 
              nval = Wtp[ntp]->GetPlace()
 
-<<" found %V $ntp $nval  $itaskp\n"
+<<" found %V $ntp $nval \n"
              setWoValue (tpwo[wtpt],ntp,1)
 	     setWoValue (tpwo[wtpt],nval,0)
                 
-           // Taskpts[itaskp] = ntp;
+             Taskpts[wtpt] = ntp;
 
           //  ret = ntp;
-            Task_update = 1;
+              Task_update = 1;
               MouseCursor("cross", tpwo[9], 0.5, 0.5);  
               sWo(tpwos,@redraw);
               }
              
-          }
+          
 /// pick a tp
 /// insert before
 
@@ -767,11 +761,13 @@ proc delete_tp()
               <<"delete $_ewoname $wtpt \n")
                if (wtpt == 9) {
                     setWoValue (tpwo[9],"")
+		    Taskpts[9] = 0;
                }
 	       else {
                for (i = wtpt ; i < 10 ; i++) {
                   tval = getWoValue(tpwo[i+1])
          <<"$i <|$tval|>  \n"
+	          Taskpts[i] = Taskpts[i+1];
                   setWoValue (tpwo[i],tval)
 		  if (tval @= "")
 		    break;
@@ -779,6 +775,7 @@ proc delete_tp()
               }
               MouseCursor("cross", tpwo[9], 0.5, 0.5);  
               sWo(tpwos,@redraw);
+	      Ntaskpts--;
             }
    
 }
@@ -786,12 +783,12 @@ proc delete_tp()
 proc delete_alltps()
 {
 # get_tp
-                for (i = 0 ; i <ntpts ; i++) {
+                for (i = 0 ; i <Ntaskpts ; i++) {
                   ff=setWoValue (tpwo[i],"")
                   setWoValue (ltpwo[i],"0",1)
                 }
 
-              ntpts = 1
+              Ntaskpts = 1
 }
 //======================================//
 
@@ -950,7 +947,7 @@ proc chk_start_finish()
       setWoValue (tpwo[3],val)
       setWoValue (tpwo[4],"")
       setWoValue (finish_wo,val)
-      ntpts = 3
+      Ntaskpts = 3
     }
 
     if (val @= "OB") {
@@ -958,29 +955,29 @@ proc chk_start_finish()
       setWoValue (tpwo[2],val)
       setWoValue (tpwo[3],"")
       setWoValue (finish_wo,val)
-      ntpts = 2
+      Ntaskpts = 2
     }
 
     if ((val @= "SO") ) {
       val = getWoValue(tpwo[1])
       setWoValue (finish_wo,val)
-      ntpts = 1
+      Ntaskpts = 1
     }
 
     if ((val @= "DL") ) {
       val = getWoValue(tpwo[2])
       setWoValue (finish_wo,val)
-      ntpts = 2
+      Ntaskpts = 2
     }
 
     if ((val @= "W") ) {
       val = getWoValue(tpwo[4])
       setWoValue (finish_wo,val)
-      ntpts = 4
+      Ntaskpts = 4
     }
 
     if (val @= "MT")  {
-      ntpts = 0
+      Ntaskpts = 0
       mti = 1
 
         while (1) {
@@ -991,11 +988,11 @@ proc chk_start_finish()
             }
           mti++
           lval = val
-          ntpts++
+          Ntaskpts++
 	  if (mti > 9)
 	     break;
         }
-      <<"MT lval $lval $ntpts $finish_wo \n")
+      <<"MT lval $lval $Ntaskpts $finish_wo \n")
       setWoValue (finish_wo,lval)
     }
 
@@ -1028,26 +1025,26 @@ proc task_menu(int w)
     else if (ur_c @= "plot_igc") {
        plot_igc(w)
     }
-
+/*
     else if (ur_c @= "delete_tp") {
       delete_tp()
       setWoTask()
       taskDistance()
     }
-
+*/
     else if (ur_c @= "delete_all") {
       delete_alltps()
       DrawMap(w)
 
     }
-
+/*
     else if (ur_c @= "insert_tp") {
        insert_tp()
       setWoTask()
       taskDistance()
 
     }
-
+*/
     else if (ur_c @= "coors") {
       new_coors(w)
     }
@@ -1100,6 +1097,13 @@ proc task_menu(int w)
       get_tpt(-1)
       set_task()
     }
+
+for (i=0; i < Ntaskpts; i++) {
+<<"$i    $Taskpts[i]  Wtp[i]->Place\n"
+ }
+
+
+
 }
 
 
@@ -1695,7 +1699,16 @@ float ComputeTPD(int j, int k)
  }
 //====================================//
 
-
+proc showTaskPts()
+{
+               for (i = 0 ; i < 10 ; i++) {
+	          if (Taskpts[i] == 0) 
+		      break;
+		      kt= Taskpts[i] \n"
+                 <<"$i  $Taskpts[i]  $Wtp[kt]->Place \n"
+                }
+}	       
+//====================================//
 /*
 proc ComputeTPD( j, k)
 {

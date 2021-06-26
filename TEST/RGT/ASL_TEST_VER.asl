@@ -17,7 +17,7 @@
 //<<"TESTING\n"
 #include "debug"
 
-//#include "hv.asl"
+#include "hv.asl"
 
 if (_dblevel > 0) {
    debugON()
@@ -26,6 +26,7 @@ if (_dblevel > 0) {
 
 setmaxcodeerrors(-1); // just keep going
 setmaxicerrors(-1);
+ignoreErrors()
 
 #define PGREEN '\033[1;32m'
 #define PRED '\033[1;31m'
@@ -54,6 +55,13 @@ wasl = "asl"
 //!!"rm -f ../*/*.idb"
 //!!"rm -f ../*/*.xdb"
 
+hdir = getdir();
+
+wd=chdir(hdir)
+wdir = getdIr()
+<<"%V $wd $hdir $wdir\n"
+
+//ans=query("where are we")
 
 
 str S = "all,array,matrix,bugs,bops,vops,sops,fops,class, declare,include,exp,if,logic,for,do,paraex,proc,switch,"
@@ -74,8 +82,9 @@ TM= FineTime();
 today=getDate(1);
 <<"$today $(get_version())\n"
 
+chdir(hdir)
 cwd=getdir()
-
+<<"%V $cwd\n"
 //Opf=ofw("Scores/score_$(date(2,'-'))")
 Opf=ofw("current_score")
 
@@ -950,13 +959,13 @@ tslist="$TS"
     
   }
 
-/{
+/*
 if ((do_all || do_threads )) {
         Run2Test("Threads")
         cart("threads")
     
 }
-/}
+*/
   ///////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -1055,8 +1064,16 @@ cf(A)
 
 
 //!!"cp Scores/score_$(date(2,'-')) current_score"
-!!"cp current_score Scores/score_$(date(2,'-')) "
 
+wd=chdir(hdir)
+wdir = getdIr()
+<<"%V $wd $hdir $wdir\n"
+
+ans=query("where are we")
+!!"ls "
+!a
+!!"cp current_score Scores/score_$(date(2,'-')) "
+!a
 dtms= FineTimeSince(TM);
 secs = dtms/1000000.0
 

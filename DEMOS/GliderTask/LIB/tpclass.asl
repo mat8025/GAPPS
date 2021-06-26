@@ -10,13 +10,39 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-myScript = getScript();
+//myScript = getScript();
 
 
 //<<"read in tpclass\n"
 
 //============================================
 int Ntp_id = 0;
+
+
+class Tleg 
+ {
+
+ public:
+
+  
+  int tpA;
+  int tpB;
+  
+  float dist;
+  float pc;
+
+ cmf Tleg() 
+ {
+ //<<"Starting cons \n"
+  dist = 0.0
+  pc = 0.0;
+    
+ // <<"Done cons $dist $pc\n"
+ }
+}
+
+
+
 class Turnpt 
  {
 
@@ -198,7 +224,7 @@ cmf SetPlace (str val)
 //=========================//
  cmf Turnpt()
     {
-     //DBG"CONS $_proc \n"
+    // <<"CONS $_proc \n"
       Place=" ";
       Ladeg = 0.0;
       Longdeg = 0.0;
@@ -208,4 +234,3 @@ cmf SetPlace (str val)
 
 }
 //======================================//
-

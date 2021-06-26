@@ -22,11 +22,11 @@
 
 Svar _HV;
 
-_HV->info(1)
+//_HV->info(1)
 
 _HV->table("HASH",50,2) //
 
-_HV->info(1)
+//_HV->info(1)
 
 
 int hv_found =0;

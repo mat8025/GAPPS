@@ -36,7 +36,8 @@ ignoreErrors()
 //#define DBG ~!
 
 
-#define DBG <<
+//#define DBG <<
+#define DBG ~!
 
 
 _DB = 0;
@@ -65,6 +66,11 @@ float Cruise_speed = (CSK * nm_to_km);
 
 
 Turnpt  Wtp[50];
+
+
+Tleg  Wleg[20];
+
+
 
 svar CLTPT;
 
@@ -497,7 +503,7 @@ ild= abs(LoD)
 totalD = 0;
 //totalD->info(1)
 
-
+float TKM[20];
   for (nl = 0; nl < n_legs ; nl++) {
 
        L1 = Wtp[nl]->Ladeg;
@@ -515,9 +521,11 @@ totalD = 0;
        tkm = Howfar(L1,lo1 , L2, lo2 );
 
       // DBG"%V $nl $tkm \n"
-
+       TKM[nl] = tkm;
        Leg[nl] = tkm;
-       
+       Wleg[nl+1]->dist = tkm;
+//<<"%V $nl $tkm $Leg[nl] $TKM[nl]\n"
+DBG"%V $Wleg[nl]->dist\n"
        //Leg[nl] = ComputeTPD(nl, nl+1)
        
        tcd =  ComputeTC(nl, nl+1)
@@ -554,6 +562,8 @@ totalD = 0;
              pc_tot = 0.0;
              if (totalD > 0) {
              pc_tot = the_leg/totalD * 100.0
+	     Wleg[nl-1]->pc = pc_tot;
+	     //<<"%V $nl $the_leg $pc_tot\n"
 	     }
     }
 
@@ -621,10 +631,11 @@ ws =  nsc((15-tplen)," ")
 idlen = slen(ident)
 wsi= nsc((15-idlen)," ")
 
+ // <<"$li $Wleg[li]->dist  $Wleg[li]->pc_tot \n"
 
 
- <<"$li ${tpb}${ws}${ident}${wsi}${Wtp[li]->Lat}\t${Wtp[li]->Lon} %9.0f$agl ${Wtp[li]->Alt} %4.1f$pc_tot\t"
-<<"%5.1f$wleg\t$rtotal\t$rtime\t%6.2f${Wtp[li]->Radio}"
+ <<"$li ${tpb}${ws}${ident}${wsi} %9.3f${Wtp[li]->Lat} %11.3f${Wtp[li]->Lon}\s%11.0f$agl ${Wtp[li]->Alt} %4.1f$Wleg[li]->pc_tot\t"
+<<"%5.1f$Wleg[li]->dist\t$rtotal\t$rtime\t%6.2f${Wtp[li]->Radio}"
 <<"\t%6.0f$TC[li] "
 <<"\t%6.2f$Dur[li]\n"
 

@@ -32,6 +32,8 @@ filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
 filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
 filterFuncDebug(REJECT_,"vrealloc","Svar","init");
 
+ignoreErrors()
+
 chkIn(_dblevel);
 
 
@@ -49,7 +51,7 @@ M2->info(1)
 int M[N][P][L];
 
 M->info(1)
-!a
+
 M[0][0][2] = 67;
 M->info(1)
 
@@ -269,7 +271,7 @@ M[0][9][::] = V
   V += 3
 
 
-/{
+/*
 // will throw an error
 
 M[0][10][::] = V
@@ -281,7 +283,7 @@ M[0][10][::] = V
 
   V += 3
 
-/}
+/*
 
 
 

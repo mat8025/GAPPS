@@ -2,6 +2,17 @@
 ///  Screen setup for showtask
 ///
 
+A=ofw("TP.m")
+<<[A],"title TP-Choice\n"
+<<[A],"type CHOICE\n"
+<<[A],"item Replace M_VALUE R\n"
+<<[A],"item Delete M_VALUE D\n"
+<<[A],"item Insert M_VALUE I\n"
+<<[A],"item Flip M_VALUE F\n"
+<<[A],"help - swap with following TP\n"
+cf(A)
+
+
 
 
   Graphic = CheckGwm();
@@ -89,13 +100,18 @@
   
   titleVers();
   gflush()
- sWo(tpwos,@color,ORANGE_,@fonthue,BLACK_,@font,F_TINY_,@redraw);
+  sWo(tpwos,@color,ORANGE_,@fonthue,BLACK_,@font,F_TINY_,@redraw);
 
   TASK_wo=cWo(vp,@BV,@resize,0.05,0.25,0.15,0.34);
   
-<<"%V$TASK_wo\n"
+//<<"%V$TASK_wo\n"
 
-  sWo(TASK_wo, @help, "Set Task Type", @name, "TaskType", @func,  "wo_menu",  @menu, "SO,TRI,OAR,W,MT",  @value, "MT")
+  sWo(TASK_wo, @help, "Set Task Type", @name, "TaskType", @func,  "wo_menu",  @menu, "SO,TRI,OAR,W,MT",  @value, "TRI")
+
+
+
+  sWo(TASK_wo, @help, "Set Task Type", @name, "TaskType", @func,  "wo_menu",  @menu, "SO,TRI,OAR,W,MT",  @value, "TRI")
+
 
 
   TASK_menu_wo=cWo(vp,@BV,@resize,0.05,0.12,0.15,0.24);
