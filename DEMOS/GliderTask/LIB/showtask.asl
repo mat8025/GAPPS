@@ -268,18 +268,8 @@ num_tpts = 700
 float R[10];
 
 
+    Have_igc = 0;
 
-    igcfn = getArgStr();
-    Have_igc = 1;
-    if (spat(igcfn,"igc") @= "") {
-      Have_igc = 0;
-      setArgIndex(1); // not igc step back 
-    }
-    else {
-
-<<"IGC file $igcfn \n"
-
-    }
 
 
 //  Read in a Task via command line
@@ -306,6 +296,14 @@ svar Tskval;
             TaskType = GetArgStr()
 	    <<"set %V $TaskType \n"
           }
+      else if (targ @= "igc") {
+           igcfn = getArgStr();
+
+       if (isin(igcfn,"igc")) {
+        Have_igc = 1;
+        <<"IGC file $igcfn \n"
+       }
+      }
           else {
           WH=searchRecord(RF,targ,0,0)
 	  <<"%V $WH\n"
@@ -697,7 +695,7 @@ str wcltpt="XY";
               sWo(wtpwo,@value,wcltpt,@redraw);
              }
              }
-             if (wc @= "D") {
+             else if (wc @= "D") {
                 <<"delete and move lower TPs up!\n"
                showTaskPts()	
 
@@ -715,16 +713,25 @@ str wcltpt="XY";
                 }
               }
 	         Taskpts[Ntaskpts-1] = 0;
-
              }
 
-             if (wc @= "I") {
+             else if (wc @= "I") {
                  insert_tp(witp);
-            }
+             }
+             else {
+                Atarg = wc;
+                wtp=PickTP(witp)
+		if (wtp != -1) {
+                  wcltpt = Wtp[wtp]->Place;
+                  sWo(wtpwo,@value,wcltpt,@redraw);
+                }
+             }
+
+
 
                  showTaskPts()	
                  sWo(tpwos,@redraw);
-           sWo(wtpwo,@cxor);
+                 sWo(wtpwo,@cxor);
 
        }
 

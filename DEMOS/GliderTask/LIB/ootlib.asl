@@ -704,21 +704,27 @@ proc reset_map()
 }
 //======================================//
 
-proc insert_tp(int wtpt)
+void insert_tp()
 {
 /// click on tpwo
+wt = witp;
 
-             if (wptp < 9 ) {
 
-                for (i = 9 ; i > wtpt ; i--) {
+             if (wt < 9 ) {
+
+                for (i = 9 ; i > wt ; i--) {
                   tval = getWoValue(tpwo[i-1])
-         //<<"$i <|$tval|>  \n"
+                 <<"$i <|$tval|>  \n"
                   setWoValue (tpwo[i],tval)
+		  kt = Taskpts[i-1]
+		  Taskpts[i] = kt;
                 }
               }
-             setWoValue (tpwo[wtpt],"XXX")
 
+           setWoValue (tpwo[wt],"XXX")
 
+            sWo(tpwo[wt],@redraw);
+	         MouseCursor("hand", tpwo[9], 0.5, 0.5);  
                        eventWait();
           ntp = ClosestTP(_erx,_ery);
 
@@ -729,55 +735,52 @@ proc insert_tp(int wtpt)
              nval = Wtp[ntp]->GetPlace()
 
 <<" found %V $ntp $nval \n"
-             setWoValue (tpwo[wtpt],ntp,1)
-	     setWoValue (tpwo[wtpt],nval,0)
+             setWoValue (tpwo[wt],ntp,1)
+	     setWoValue (tpwo[wt],nval,0)
                 
-             Taskpts[wtpt] = ntp;
+             Taskpts[wt] = ntp;
 
           //  ret = ntp;
               Task_update = 1;
               MouseCursor("cross", tpwo[9], 0.5, 0.5);  
               sWo(tpwos,@redraw);
               }
-             
+             Ntaskpts++;
           
 /// pick a tp
 /// insert before
 
 }
 //======================================//
-proc delete_tp()
+void delete_tp()
 {
-    
-             MouseCursor("pirate", tpwo[0], 0.5, 0.5);  // TBC
-     
-             eventWait();
+int wt = witp;
+            // MouseCursor("pirate", tpwo[0], 0.5, 0.5);  // TBC
 
-            if (scmp(_ewoname,"_TP",3)) {
-
-             np = spat(_ewoname,"_TP",1)
-             wtpt= atoi(spat(np,"_",-1))
-
-              <<"delete $_ewoname $wtpt \n")
-               if (wtpt == 9) {
+              <<"$_proc delete $_ewoname $wt \n")
+               if (wt == 9) {
                     setWoValue (tpwo[9],"")
 		    Taskpts[9] = 0;
                }
 	       else {
-               for (i = wtpt ; i < 10 ; i++) {
-                  tval = getWoValue(tpwo[i+1])
-         <<"$i <|$tval|>  \n"
-	          Taskpts[i] = Taskpts[i+1];
-                  setWoValue (tpwo[i],tval)
-		  if (tval @= "")
-		    break;
+               for (i = wt ; i < 10 ; i++) {
+                 // tval = getWoValue(tpwo[i+1])
+	          kt = Taskpts[i+1];
+
+                  Taskpts[i] = kt;
+		 
+                  if (kt == 0) {
+                      setWoValue (tpwo[i],"")
+                     break;
+		  }
+                  plc = Wtp[kt]->Place;
+         <<"del $i $kt  $plc \n"
+                  setWoValue (tpwo[i],plc)
+
                 }
               }
-              MouseCursor("cross", tpwo[9], 0.5, 0.5);  
               sWo(tpwos,@redraw);
 	      Ntaskpts--;
-            }
-   
 }
 //======================================//
 proc delete_alltps()
@@ -973,7 +976,7 @@ proc chk_start_finish()
     if ((val @= "W") ) {
       val = getWoValue(tpwo[4])
       setWoValue (finish_wo,val)
-      Ntaskpts = 4
+      Ntaskpts = 5
     }
 
     if (val @= "MT")  {
@@ -1025,26 +1028,12 @@ proc task_menu(int w)
     else if (ur_c @= "plot_igc") {
        plot_igc(w)
     }
-/*
-    else if (ur_c @= "delete_tp") {
-      delete_tp()
-      setWoTask()
-      taskDistance()
-    }
-*/
+
     else if (ur_c @= "delete_all") {
       delete_alltps()
       DrawMap(w)
 
     }
-/*
-    else if (ur_c @= "insert_tp") {
-       insert_tp()
-      setWoTask()
-      taskDistance()
-
-    }
-*/
     else if (ur_c @= "coors") {
       new_coors(w)
     }
@@ -1410,7 +1399,7 @@ proc DrawTask(int w,str col)
     }
     else {
 
-    for (i = 0 ; i < (Nlegs-1) ; i++ ) { 
+    for (i = 0 ; i < (Ntaskpts-1) ; i++ ) { 
 
 //   <<"$i %V $w, $Tasktp[i]->Longdeg $Tasktp[i]->Ladeg,$Tasktp[i+1]->Longdeg,$Tasktp[i+1]->Ladeg, $col \n "
       index = Taskpts[i]
@@ -1427,25 +1416,30 @@ proc DrawTask(int w,str col)
 }
 //=============================================
 
+str Atarg="xxx";
 
-proc PickTP(str atarg,  int witp) 
+//proc PickTP(str atarg,  int wtp)
+int PickTP(int wtp) 
 {
 ///
 /// 
+int ret = -1;
+<<" looking for  $Atarg  $wtp\n"
 
-    int kk;
+       WH=searchRecord(RF,Atarg,0,0)
+	  <<"%V $WH\n"
+	  
+          index = WH[0][0]
+          if (index >=0) {
+          ttp = RF[index];
+<<" found $Atarg  $index\n"
+<<"$ttp \n"
+          Taskpts[wtp] = index;
+          ret =index;
+<<" found $Atarg $index $wtp $ttp\n"
+         }
 
-    Fseek(A,0,0)
-DBG" looking for  $atarg \n"
-    i=Fsearch(A,atarg,-1,1,0)
-    if (i != -1) {
-     kk= witp;
-DBG" %V $kk $witp $(typeof(witp)) \n"
-    Tasktp[kk]->cltpt = atarg;
-    nwr = Tasktp[kk]->Read(A)
-DBG" found $atarg $kk $witp $nwr\n"
-
-   }
+      return ret;
 }
 //=============================================
 
@@ -1542,7 +1536,7 @@ DBG" found $mkey \n"
 //=============================================
 
 
-proc PickaTP(int itaskp)
+int PickaTP(int itaskp)
 {
 
 // 
@@ -1701,6 +1695,8 @@ float ComputeTPD(int j, int k)
 
 proc showTaskPts()
 {
+<<"%V $Ntaskpts\n"
+
                for (i = 0 ; i < 10 ; i++) {
 	          if (Taskpts[i] == 0) 
 		      break;

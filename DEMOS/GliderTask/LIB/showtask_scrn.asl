@@ -8,8 +8,8 @@ A=ofw("TP.m")
 <<[A],"item Replace M_VALUE R\n"
 <<[A],"item Delete M_VALUE D\n"
 <<[A],"item Insert M_VALUE I\n"
-<<[A],"item Flip M_VALUE F\n"
-<<[A],"help - swap with following TP\n"
+<<[A],"item Name? C_INTER ?\n"
+<<[A],"help  replace via name"
 cf(A)
 
 
@@ -89,10 +89,12 @@ cf(A)
 
   tpwo[9] =cWo(vp,@BV,@name,"_TP9_",@style,"SVR", @drawon)
 
-  finish_wo = tpwo[9]
-  tpwos = tpwo[0:9];
+  tpwo[10] =cWo(vp,@BV,@name,"_Finish_",@style,"SVR", @drawon)
 
-  MaxSelTps = 10;
+  finish_wo = tpwo[10]
+  tpwos = tpwo[0:10];
+
+  MaxSelTps = 11;
   
   <<"%V $tpwos\n"
   
@@ -107,11 +109,6 @@ cf(A)
 //<<"%V$TASK_wo\n"
 
   sWo(TASK_wo, @help, "Set Task Type", @name, "TaskType", @func,  "wo_menu",  @menu, "SO,TRI,OAR,W,MT",  @value, "TRI")
-
-
-
-  sWo(TASK_wo, @help, "Set Task Type", @name, "TaskType", @func,  "wo_menu",  @menu, "SO,TRI,OAR,W,MT",  @value, "TRI")
-
 
 
   TASK_menu_wo=cWo(vp,@BV,@resize,0.05,0.12,0.15,0.24);
