@@ -11,7 +11,23 @@
 //* 
 //***********************************************%
   
-  
+<|Use_=
+update asl script version ;
+///////////////////////
+|>
+
+#include "debug"
+#include "hv.asl"
+
+
+if (_dblevel >0) {
+  debugON()
+    <<"$Use_\n"   
+}
+
+ignoreErrors()
+
+
   void vers2ele(str vstr)
   {
   //<<"%V $vstr\n"
@@ -55,7 +71,13 @@ cdate ="";
   <<[2]"can't find script file $srcfile\n";
     exit();
   }
-  
+
+pid=getpid()
+
+ <<[2]"make a bakup ${srcfile}.${pid}.bak"
+
+!!"cp $srcfile  ${srcfile}.${pid}.bak"
+
   set_vers = 0;
   na = argc();
    
@@ -71,11 +93,19 @@ Str cvers ="0.0";
   
   file= fexist(srcfile,ISFILE_,0);
   
-  //<<[2]" FILE $file \n"
+  <<[2]" FILE $file \n"
   
   dir= fexist(srcfile,ISDIR_,0);
   
-  //<<[2]" DIR $dir \n"
+  <<[2]" DIR $dir \n"
+
+ if (dir) {
+
+ <<[2]"error $srcfile is DIR! \n"
+}
+
+
+
   author = "Mark Terry"
   fname = srcfile
   release = "CARBON"
@@ -88,9 +118,7 @@ Str cvers ="0.0";
   min_ele = ptsym(pmin);
   
   date = date(GS_MDYHMS_);
-  
- 
- 
+   
   len = slen(fname);
   
   ind = (80-len)/2;
@@ -105,7 +133,13 @@ Str cvers ="0.0";
   //<<[2]" $(nsc(5,\"\\n\"))\n"
 
 
+
   release = "";
+
+
+
+
+
 
   A=ofile(srcfile,"r+")
   //T=readfile(A);
@@ -139,12 +173,11 @@ L->info(1)
      T = readline(A);
      where = ftell(A)
 <<"$j $where line is $T \n"
-
    }
 
      found_vers =0;
 
-  fseek(A,0,0);
+    fseek(A,0,0);
 
 //   tsz = Caz(T)
 
@@ -180,6 +213,7 @@ L->info(1)
    }         
    }
    //found_where = where;
+
   }
  
 
@@ -194,7 +228,10 @@ L->info(1)
  <<[2]" does not have vers number in header\n";
  exit();
  }
- 
+
+
+
+
 
  if (set_vers) {
  // set to _clarg[2] - if correct format
@@ -233,7 +270,7 @@ L->info(1)
 
 
 where = ftell(A);
-
+int nsp = 0;
 j= 0;
 
 
@@ -277,10 +314,14 @@ j= 0;
   if (white_out) {
     fseek(A,here,0)
     nsp = where - here;
-    for (i=0;i<nsp-1;i++) {
-    <<[A]" ";
-    }
+<<"%V $where $here $nsp\n"
+   nsp->pinfo()
 
+   for ( i=0; i<nsp-1; i++) {
+      <<[A]" ";
+   
+   }
+   
    }
 
 cf(A);

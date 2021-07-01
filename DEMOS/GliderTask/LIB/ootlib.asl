@@ -704,15 +704,15 @@ proc reset_map()
 }
 //======================================//
 
-void insert_tp()
+void insert_tp(int wt)
 {
 /// click on tpwo
-wt = witp;
+//wt = Witp;
 
 
-             if (wt < 9 ) {
+             if (wt < LastTP ) {
 
-                for (i = 9 ; i > wt ; i--) {
+                for (i = LastTP ; i > wt ; i--) {
                   tval = getWoValue(tpwo[i-1])
                  <<"$i <|$tval|>  \n"
                   setWoValue (tpwo[i],tval)
@@ -723,9 +723,11 @@ wt = witp;
 
            setWoValue (tpwo[wt],"XXX")
 
-            sWo(tpwo[wt],@redraw);
-	         MouseCursor("hand", tpwo[9], 0.5, 0.5);  
-                       eventWait();
+           sWo(tpwo[wt],@redraw);
+	    
+	   MouseCursor("hand", tpwo[9], 0.5, 0.5);  
+
+          eventWait();
           ntp = ClosestTP(_erx,_ery);
 
            if (ntp >= 0) {
@@ -735,7 +737,7 @@ wt = witp;
              nval = Wtp[ntp]->GetPlace()
 
 <<" found %V $ntp $nval \n"
-             setWoValue (tpwo[wt],ntp,1)
+             //setWoValue (tpwo[wt],ntp,1)
 	     setWoValue (tpwo[wt],nval,0)
                 
              Taskpts[wt] = ntp;
@@ -752,32 +754,37 @@ wt = witp;
 
 }
 //======================================//
-void delete_tp()
+void delete_tp(int wt)
 {
-int wt = witp;
-            // MouseCursor("pirate", tpwo[0], 0.5, 0.5);  // TBC
-
-              <<"$_proc delete $_ewoname $wt \n")
-               if (wt == 9) {
-                    setWoValue (tpwo[9],"")
-		    Taskpts[9] = 0;
+//int wt = Witp;
+int kt = 0;
+	          kt = Taskpts[wt];
+//              <<"$_proc delete $_ewoname $wt $Wtp[kt]->Place \n"
+              <<"$_proc delete $_ewoname $wt $kt \n"
+               if (wt == LastTP) {
+                    setWoValue (tpwo[LastTP],"")
+		    Taskpts[LastTP] = 0;
                }
 	       else {
-               for (i = wt ; i < 10 ; i++) {
+	       j= wt+1;
+               for (i = wt ; i < (Ntaskpts-1) ; i++) {
                  // tval = getWoValue(tpwo[i+1])
 	          kt = Taskpts[i+1];
 
                   Taskpts[i] = kt;
 		 
                   if (kt == 0) {
-                      setWoValue (tpwo[i],"")
+                      sWo (tpwo[j],@value," ",@redraw)
                      break;
 		  }
                   plc = Wtp[kt]->Place;
-         <<"del $i $kt  $plc \n"
-                  setWoValue (tpwo[i],plc)
-
+        // <<"del $i $kt  $plc \n"
+                  sWo (tpwo[i],@value,plc)
+		  j++;
                 }
+		<<"last was $j $plc\n"
+		  Taskpts[j-1] = 0;
+		  sWo (tpwo[j-1],@value," ",@redraw)
               }
               sWo(tpwos,@redraw);
 	      Ntaskpts--;
@@ -791,7 +798,7 @@ proc delete_alltps()
                   setWoValue (ltpwo[i],"0",1)
                 }
 
-              Ntaskpts = 1
+              Ntaskpts = 0;
 }
 //======================================//
 
@@ -1418,13 +1425,13 @@ proc DrawTask(int w,str col)
 
 str Atarg="xxx";
 
-//proc PickTP(str atarg,  int wtp)
-int PickTP(int wtp) 
+int  PickTP(str atarg,  int wtp)
+
 {
 ///
 /// 
 int ret = -1;
-<<" looking for  $Atarg  $wtp\n"
+<<" looking for $atarg  $Atarg  $wtp\n"
 
        WH=searchRecord(RF,Atarg,0,0)
 	  <<"%V $WH\n"
@@ -1693,11 +1700,11 @@ float ComputeTPD(int j, int k)
  }
 //====================================//
 
-proc showTaskPts()
+void listTaskPts()
 {
 <<"%V $Ntaskpts\n"
 
-               for (i = 0 ; i < 10 ; i++) {
+               for (i = 0 ; i < Ntaskpts ; i++) {
 	          if (Taskpts[i] == 0) 
 		      break;
 		      kt= Taskpts[i] \n"

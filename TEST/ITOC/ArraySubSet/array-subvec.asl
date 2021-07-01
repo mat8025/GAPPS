@@ -48,25 +48,41 @@ int P[5]
   P[1] = 2  
   P[2] = 3
   P[3] = 8
-  P[4] = 16
+  P[4] = 10
 
 <<"%V$P\n"
 
+  G={P,12,13}
+
+<<"$G\n"
+
+
+
  chkN(P[2],3);
- chkN(P[4],16);
+ chkN(P[4],10);
 
 
  
- S = YV[{P,6,7,12,13}]
+ S = YV[{P,12,13}]
 
 <<"%V$S\n"
-  S->pinfo()
+
+ S->pinfo()
   
 
  chkN(S[0],YV[1])
+
  chkN(S[1],YV[2])
+
  chkN(S[2],YV[3])
+ 
  chkN(S[3],YV[8])
+
+ chkN(S[4],YV[10])
+
+ chkN(S[5],YV[12])
+
+
 
 // even better
 

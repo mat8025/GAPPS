@@ -64,9 +64,9 @@ cf(A)
 
   sWo(mapwo, @scales, LongW, LatS, LongE, LatN, @save, @redraw, @drawon, @pixmapon,@savepixmap);
 
-
-  int tpwo[>10];
-  int ltpwo[>10];
+  int LastTP = 10; 
+  int tpwo[>11];
+  int ltpwo[>11];
   
 
   tpwo[0]=cWo(vp,@BV,@name,"_Start_",@style,"SVR",@drawon)

@@ -189,7 +189,7 @@ DBG"<|$wval[0]|>\n"
 
      Longdeg = coorToDeg(Lon,2);
      
-     DBG"%V $Ladeg $Longdeg \n"
+
 
 
       }

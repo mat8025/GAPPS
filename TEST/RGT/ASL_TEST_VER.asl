@@ -588,13 +588,15 @@ if ((do_all || do_array ) && (do_array != -1)) {
 
    RunDirTests("VVcopy","range-copy,vvcopy")
 
-   RunDirTests("Array","ae,array-store,array-ele,array-subset")
+   RunDirTests("Array","ae,array-store,array-ele")
 
+   RunDirTests("Array","dynarray,lhe,vec-cat,array-sr,mdele,vsp")
 
+   RunDirTests("ArrayRange","array-range,array-subsrange,lhrange")
 
-   RunDirTests("Array","array-range,array-subvec,arraysubsref,array-subsrange,arraysubscbyvec")
+  RunDirTests("ArraySubSet","arraysubset,array-subvec,array-subsref,arraysubscbyvec,vdec")
 
-   RunDirTests("Array","dynarray,lhrange,lhe,joinarray,vec-cat,array-sr,mdele,vsp,array-index")
+  RunDirTests("ArrayJoin","arrayjoin")
 
   RunDirTests("Scalarvec","scalarvec")
 
@@ -1069,11 +1071,11 @@ wd=chdir(hdir)
 wdir = getdIr()
 <<"%V $wd $hdir $wdir\n"
 
-ans=query("where are we")
-!!"ls "
-!a
+//ans=query("where are we")
+//!!"ls "
+
 !!"cp current_score Scores/score_$(date(2,'-')) "
-!a
+
 dtms= FineTimeSince(TM);
 secs = dtms/1000000.0
 

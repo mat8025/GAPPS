@@ -1,25 +1,36 @@
-//%*********************************************** 
-//*  @script arrayarg1.asl 
-//* 
-//*  @comment test proc array args 
-//*  @release CARBON 
-//*  @vers 1.37 Rb Rubidium                                               
-//*  @date Mon Jan 21 06:40:50 2019 
-//*  @cdate 1/1/2005 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script arrayarg1.asl 
+ * 
+ *  @comment test proc array args 
+ *  @release CARBON 
+ *  @vers 1.39 Y Yttrium [asl 6.3.38 C-Li-Sr] 
+ *  @date 06/28/2021 22:10:34 
+ *  @cdate 1/1/2005 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+/ 
+                                                                     
+
+<|Use_=
+Demo  of args  ;
+///////////////////////
+|>
+
 
 #include "debug"
+#include "hv.asl"
 
 <<"%V $_dblevel\n"
 
 if (_dblevel >0) {
    debugON()
+    <<"$Use_\n"   
 }
 
- ignoreErrors()
+ignoreErrors()
 
 chkIn(_dblevel)
 
@@ -183,9 +194,6 @@ uv= U[4]
 
 chkN(U[4],47);
 
-
-
-
 chkN(U[7],78);
 
 
@@ -202,8 +210,6 @@ exit()
 //Y = foo(&Z,3)  // FIXED -------- Y is now created correctly with the return vector 
 
  // FIXED ?-------- Y is now created correctly with the return vector 
-
-
 
 
 W = vgen(INT_,10,0,-1)

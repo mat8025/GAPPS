@@ -567,7 +567,7 @@ Nlegs = Ntaskpts;
 #include  "gevent";
 
 int dindex;
-int witp = 0;
+int Witp = 0;
 int drawit = 0;
 msgv = "";
 
@@ -679,17 +679,18 @@ str wcltpt="XY";
              np = spat(_ewoname,"_TP",1)
              np = spat(np,"_",-1)
 
-              witp = atoi(np);
-              wtpwo = tpwo[witp]
+              Witp = atoi(np);
+              wtpwo = tpwo[Witp]
 
              sWo(wtpwo, @cxor);
 	     
 	     gflush();
 
              wc=choice_menu("TP.m")
+               listTaskPts()	
              if (wc @= "R") { // replace
 
-             wtp = PickaTP(witp)
+             wtp = PickaTP(Witp)
              if (wtp >= 0) {
               wcltpt = Wtp[wtp]->Place;
               sWo(wtpwo,@value,wcltpt,@redraw);
@@ -697,30 +698,19 @@ str wcltpt="XY";
              }
              else if (wc @= "D") {
                 <<"delete and move lower TPs up!\n"
-               showTaskPts()	
 
-              if (witp == 9) {
-                    setWoValue (tpwo[9],"")
-               }
-	       else {
-               for (i = witp ; i < 10 ; i++) {
-                  tval = getWoValue(tpwo[i+1])
-		  Taskpts[i-1] = Taskpts[i];
-         <<"$i <|$tval|>  \n"
-                  setWoValue (tpwo[i],tval)
-		  if (tval @= "")
-		    break;
-                }
-              }
-	         Taskpts[Ntaskpts-1] = 0;
+               delete_tp(Witp); // 
+	      // delete_tp();
+
              }
 
              else if (wc @= "I") {
-                 insert_tp(witp);
+                 insert_tp(Witp);
+	//	 insert_tp();
              }
              else {
                 Atarg = wc;
-                wtp=PickTP(witp)
+                wtp=PickTP(wc,Witp)
 		if (wtp != -1) {
                   wcltpt = Wtp[wtp]->Place;
                   sWo(wtpwo,@value,wcltpt,@redraw);
@@ -729,9 +719,10 @@ str wcltpt="XY";
 
 
 
-                 showTaskPts()	
+
                  sWo(tpwos,@redraw);
                  sWo(wtpwo,@cxor);
+                 listTaskPts()	
 
        }
 

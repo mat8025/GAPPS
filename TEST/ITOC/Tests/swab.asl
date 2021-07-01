@@ -1,0 +1,104 @@
+/* 
+ *  @script swab.asl 
+ * 
+ *  @comment test swab function 
+ *  @release CARBON 
+ *  @vers 1.3 Li Lithium [asl 6.3.11 C-Li-Na] 
+ *  @date Sat Jan 16 21:19:58 2021 
+ *  @cdate 1/1/2002 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                   
+
+
+#include "debug.asl";
+
+/*
+debugON();
+  setdebug(1,@keep,@pline,@trace);
+  FilterFileDebug(REJECT_,"~storetype_e");
+  FilterFuncDebug(REJECT_,"~ArraySpecs",);
+*/
+
+chkIn(_dblevel)
+
+uchar C[] = { 0xCA , 0xFE, 0xBA, 0xBE, 0xFA, 0xCE, 0xBE, 0xAD , 0xDE,0xAD, 0xC0, 0xDE };
+
+
+<<" $C[0]  $C[1]\n"
+<<" $(typeof(C)) \n"
+<<" $C \n"
+
+<<"%x $C \n"
+
+C->Info(1)
+
+
+
+
+chkN(C[0],0xCA)
+chkN(C[11],0xDE)
+
+
+swab(C)
+
+<<"%x $C \n"
+
+swab(C)
+
+<<"%x $C \n"
+
+
+
+
+// just copy
+<<" just assign/copy to new vector \n"
+D = C
+<<"D $D\n"
+// convert
+
+   retype(D,INT_)
+
+<<" $(typeof(D)) \n"
+<<"D[]  $D \n"
+<<"D[]  %x $D \n"
+D->info(1)
+
+  swab(D)
+
+<<"D[]  %x $D \n"
+
+E=D
+<<" $(typeof(E)) \n"
+<<"E[]  %x $E \n"
+   retype(E,CHAR_)
+<<" $(typeof(E)) \n"
+<<"E[]  %x $E \n"
+E->Info(1)
+
+uchar U[] ;
+U = E;
+U->Info(1)
+<<"U[]  %x $U \n"
+
+uchar c0;
+uchar c1 = 0xFE;
+c0 = 0xCA;
+//c1 = 0xBE;
+<<"%x $c0 $c1\n"
+
+bscan(U,0,&c0,&c1)
+
+<<"%x $c0 $c1\n"
+c0->info(1)
+c1->info(1)
+
+chkN(c0,0xFE)
+chkN(c1,0xCA)
+
+chkOut()
+
+exit()

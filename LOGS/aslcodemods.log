@@ -852,3 +852,6 @@ parset_e.cpp                        2.86  04/23/2021 09:30:34  listToIndex Subse
 array_subset.cpp                    2.79  04/23/2021 09:31:19  parse_list
 ds_convert.cpp                      1.85  04/23/2021 09:32:14  setVal INT dynamic_array
 ic_ops.cpp                          1.58  04/26/2021 09:50:09  BUILD_VEC
+ic_vfill.cpp                        1.61  06/30/2021 18:00:18  list of array
+declare_fillarray_e.cpp             2.41  06/30/2021 18:01:34  list array fill
+ds_convert_store.cpp                1.100  06/30/2021 18:02:43  use froffset

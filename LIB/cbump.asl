@@ -10,9 +10,6 @@
 //*  @Copyright  RootMeanSquare  2014,2018 --> 
 //* 
 //***********************************************%
-
-
- 
   
   
   proc Vers2ele(str vstr)
