@@ -10,26 +10,38 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-///
-///  vvcopy
-///
 
-/*
 
-vvcopy(&A[0],&B[0],n,{s1,s2,condition,cond_value,offset})
-copys n locations of array B to corresponding locations in array A.
+<|Use_ =
+vvcopy(A,B,n,{condition,cond_value},{stepA,stepB},{offsetA,offsetB})
+copies n locations of array B to corresponding locations in array A.
 s1 and s2 are step sizes default is 1.
-Also the copy can be conditional (condition set to ">","<",">=","<=","!=")
-for a comparision of array value and cond_value, for the copy operation
-to take place, i.e. the array data can be filtered via a condition
-returns number of values copied into array B.
+Also the copy can be conditional
+(condition set to GT_,LT_,GTE_,LTE_,EQ_,NEQ_,ALWAYS_)
+or (condition set to ">","<",">=","<=","!=")
+for a comparison of array value and cond_value,
+for the copy operation
+to take place, i.e. the array data can be filtered via a condition.
 
-*/
+Additionally the steps and offsets into the arrays can be set
+e.g.
+vvcopy(A,B,n,GTE_,0,1,2,5,6);
+where the access starts at element 6 of B and steps by two.
+the first successful compare (number GTE to 0)  goes into element 5 of vector A.
+and the next into element 6, ...
+There is an internal check to prevent accessing or writing beyond
+the arrays, but the success of the operation requires programming
+inspection with respect to array size.
+
+Returns number of values copied into array A.
+|>
+
 
 #include "debug"
 
 if (_dblevel >0) {
   debugON()
+  <<"$Use_\n"
 }
 
 
@@ -40,9 +52,13 @@ N= 10;
 A= vgen(INT_,N,0,-1)
 
 B= vgen(INT_,N,0,1)
+
 C=B
+
+
 <<"A: $A\n"
 <<"B: $B\n"
+<<"C: $C\n"
 
 <<"$A[1] $B[1]\n"
 
@@ -169,13 +185,22 @@ A->info(1)
 chkN(A[3],47)
 
 B= vgen(INT_,100,0,1)
-
+chkN(B[0],0)
+chkN(B[99],99)
+<<"%V$B\n"
 
 nc=vvcopy(A,B,20,ALWAYS_,0,1,1,0,10);
 
 <<"$nc \n"
 
 <<"$A\n"
+
+/*
+chkN(B[0],0)
+chkN(B[99],99)
+<<"%V$B\n"
+*/
+
 chkN(A[0],10)
 C= B[10:19:1]
 
@@ -183,11 +208,26 @@ C= B[10:19:1]
 <<"$C\n"
 chkN(C[0],10)
 
+//sdb(2)
 C= B[20:29:1]
+B->pinfo()
+//k= B[0]
+//!p k
+<<"%V$B\n"
 
+//chkN(B[1],1)
+
+/*
+
+chkN(B[99],99)
+<<"%V$B\n"
+*/
 
 <<"$C\n"
 chkN(C[0],20)
+
+<<"%V$A\n"
+<<"%V$B\n"
 
 nc=vvcopy(A,B,20,ALWAYS_,0,1,1,0,20);
 
@@ -195,9 +235,6 @@ nc=vvcopy(A,B,20,ALWAYS_,0,1,1,0,20);
 
 <<"$A\n"
 chkN(A[0],20)
-
-
-
 
 
 chkOut()

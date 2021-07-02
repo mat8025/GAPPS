@@ -7331,10 +7331,10 @@ s1 and s2 are step sizes default is 1.
 Also the copy can be conditional
 (condition set to GT_,LT_,GTE_,LTE_,EQ_,NEQ_,ALWAYS_)
 or (condition set to ">","<",">=","<=","!=")
-for a comparision of array value and cond_value,
+for a comparison of array value and cond_value,
 for the copy operation
 to take place, i.e. the array data can be filtered via a condition.
-returns number of values copied into array A.
+
 
 Additionally the steps and offsets into the arrays can be set
 e.g.
@@ -7346,7 +7346,7 @@ and the next into element 6, ...
 There is an internal check to prevent accessing or writing beyond
 the arrays, but the success of the operation requires programming
 inspection with respect to array size.
-
+Returns number of values copied into array A.
 .EF
 =============================================================.BF
 ()

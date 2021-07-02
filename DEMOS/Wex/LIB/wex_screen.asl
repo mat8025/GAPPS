@@ -14,6 +14,7 @@
 
 //////////////////  WED SCREEN --- WINDOWS ////////////////
 
+_DB = -1
     vptitle = "Wex"
 
     vp =  cWi(@title,"$vptitle");
@@ -191,7 +192,7 @@
 
   titleVers();
 
-sleep(0.1)
+//sleep(0.1)
 
 
 //======================================//

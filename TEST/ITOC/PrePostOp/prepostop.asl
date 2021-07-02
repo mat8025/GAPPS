@@ -10,12 +10,19 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
+<|Use_ =
+demo pre post incr
+|>
+
+
+
 
 #include "debug"
 
 
 if (_dblevel >0) {
    debugON()
+     <<"$Use_\n"
 }
 
 chkIn(_dblevel)
@@ -236,16 +243,28 @@ BV->info(1)
 
 chkN(BV[1],3)
 
+<<"%V $BV\n"
+<<"%V $AV\n"
+
+BV= 67
+
+<<"$BV\n"
+
+chkN(BV[1],67)
 
 BV = AV++ ; // this should increment all elements in the vector
 
 <<"after  $AV ++\n"
 
+
 chkN(AV[1],4)
 
 chkN(BV[1],3)
 
+<<"%V $AV\n"
 <<"%V $BV\n"
+
+<<"%V $BV[2]\n"
 
 
 chkOut()

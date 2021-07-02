@@ -33,7 +33,7 @@ if (_dblevel >0) {
 
 
 allowErrors(-1)
-_DB =1;
+_DB =-1;
 
 //<<[_DB]"%V$vers $ele_vers\n"
 
@@ -87,7 +87,7 @@ class Measure {
 
 svar Mo[] = { "JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC"}
 
-<<"$Mo \n"
+<<[_DB]"$Mo \n"
 
 
 float WXY[];
@@ -152,6 +152,9 @@ float STRENGTH[>10]
 // cals,carbs consumed & when
 float CALSCON[>10]
 float CARBSCON[>10]
+float FATCON[>10]
+float PROTCON[>10]
+float FIBRCON[>10]
 float CCDV[>10]
 ///
 
@@ -174,13 +177,13 @@ int dday;
  str bdate = "04/09/1949"
  //bday = julian(bdate)
 
-<<"%V $bdate  $bday \n"
+<<[_DB]"%V $bdate  $bday \n"
 
  maxday = julian("04/09/2049") -bday
 
 // this is a new format -- allowing us to put comment labels on graphs
 
-<<"%V $maxday \n"
+<<[_DB]"%V $maxday \n"
 
 
  A=ofr("DAT/wex2021.tsv")
@@ -195,7 +198,7 @@ if (A == -1) {
 // check period
 
 svar rx;
-rx->pinfo()
+//rx->pinfo()
 
 Record RX[];
 
@@ -203,19 +206,19 @@ RX=readrecord(A,@del,-1)
 
 Nrecs = Caz(RX);
 
-<<"%V $Nrecs $RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n"
+<<[_DB]"%V $Nrecs $RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n"
 
-<<"$RX[Nrecs-2]\n"
+<<[_DB]"$RX[Nrecs-2]\n"
  rx= RX[Nrecs-1]
  
 <<"$RX[Nrecs-1]\n"
-<<"$rx\n"
+<<[_DB]"$rx\n"
 
 lastRX = RX[Nrecs-1]
 
-  <<"$lastRX\n"
+  <<[_DB]"%V$lastRX\n"
 
-lastRX->pinfo();
+//lastRX->pinfo();
 
 chkT(1)
 
@@ -229,7 +232,9 @@ chkT(1)
 
 
 
- ACC=ofr("DAT/ccwx.tsv")
+ //ACC=ofr("DAT/ccwx.tsv")
+
+ACC=ofr("DAT/cc2021.tsv")
 
 Record RCC[];
 
@@ -243,13 +248,13 @@ else {
   RCC=readrecord(ACC)
   
   cf(ACC)
-  RCC->info(1);
+  //RCC->info(1);
   NCCrecs = Caz(RCC);
-  NCCrecs->info(1)
+  //NCCrecs->info(1)
   <<"%V $NCCrecs \n"
 
  for (i=0; i < NCCrecs ;i++) {
-  <<"$RCC[i] \n"
+  <<[_DB]"$RCC[i] \n"
   }
 
 <<[_DB]"/////////\n"
@@ -265,7 +270,7 @@ readCCData();
 
 
 nrd=readData();
-<<"%V$nrd\n"
+//<<"%V$nrd\n"
 
 
 
@@ -410,12 +415,11 @@ msgw =split(msg)
 
 
 #include "wex_screen"
-//ans=query("proceed?")
-//sleep(0.1)
+
 #include "wex_draw"
-//ans=query("proceed?")
-//sleep(0.1)
+
 #include "wex_glines"
+
 //ans=query("proceed?")
 //sleep(0.1)
 
@@ -490,7 +494,7 @@ while (1) {
 //	}
 
      m_num++
-sleep(0.05)
+//sleep(0.05)
 /*
    if (m_num == 1) {
       drawScreens();

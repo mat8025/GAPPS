@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
 
-_DB = 1;
+_DB = -1;
 
 last_known_wt = 208.8;
 last_known_day = 0;
@@ -156,7 +156,7 @@ proc readData()
 //<<"%V $day $Nrecs\n"
 
 // data has already been read into Record array RX
-     RX->info(1)
+ // RX->info(1)
       
    
 
@@ -200,7 +200,6 @@ proc readData()
 
    if (kd < 0) {
        <<" $kd neg offset ! \n";
-   
    }
 
 
@@ -222,7 +221,7 @@ proc readData()
 
 
 
-<<"$Nrecs there were $tl $Nobs measurements \n"
+<<[_DB]"$Nrecs there were $tl $Nobs measurements \n"
      return tl;
 }
 
@@ -241,9 +240,9 @@ proc fillInCCObsVec()
   CCDV[j] = kd;  // julian day - bday - #daysofar
   CALCON[j] =  atof(col[1]);
   CARBCON[j] = atof(col[2]);
-    CARBCON[j+1] = 0.0;  
+  CARBCON[j+1] = 0.0;  
 
-<<[_DB]"$NCCobs $CCDV[j] $CALCON[j] $CARBCON[j] \n"
+//<<[_DB]"$NCCobs $CCDV[j] $CALCON[j] $CARBCON[j] \n"
 
    NCCobs++;
 
@@ -271,7 +270,7 @@ proc readCCData()
     //day = ccol[0];
 
     day = RCC[tl][0];
-<<"%V $day\n"
+//<<"%V $day\n"
     wday = julian(day) 
 
     kd = wday - bday;
@@ -281,12 +280,19 @@ proc readCCData()
   
   CCDV[j] = kd;  // julian day - bday - #daysofar
 
-  cals = atof(RCC[tl][2]);
+  cals = atof(RCC[tl][6]);
   CALSCON[j] = cals;
   carbs = atof(RCC[tl][3]);
   CARBSCON[j] = carbs;
-  CARBSCON[j+1] = 0;    
-//<<[_DB]"%V $j $cals $CALSCON[j]\n"
+  CARBSCON[j+1] = 0;
+  fat = atof(RCC[tl][2]);
+  FATCON[j] = fat;
+  prot = atof(RCC[tl][5]);  
+  PROTCON[j] = prot;
+  fiber = atof(RCC[tl][4]);  
+  FIBRCON[j] = fiber;   
+
+<<"%V $day $cals $carbs $fat $prot $fiber\n"
    NCCobs++;     
 
     tl++;

@@ -14,12 +14,12 @@
 ///
 
 //  SET     START DATE      END DATE  TARGET WEIGHT
-Goals = Split("06/01/2021 08/08/2021 175")
+Goals = Split("06/27/2021 08/08/2021 175")
 ////////////////////==============/////////////////
 
 
 GoalWt = 175;  // ideal -- flying weight
-StartWt = 212;
+StartWt = 211;
 MinWt = 165;
 
 
@@ -52,16 +52,18 @@ if ( k < 0) {
 
 kdays = k
 
+_DB =-1
+
 <<[_DB]"%V$kdays \n"
 
 <<[_DB]"%V$yday  $eday $jtoday  $(date(2))\n"
 
-_DB =1
+
 
 proc computeGoalLine()
 {
 
-  <<"%V$StartWt $NextGoalWt\n"
+ // <<"%V$StartWt $NextGoalWt\n"
 
   ngday = gday - gsday;
 
@@ -87,9 +89,9 @@ proc computeGoalLine()
 
 
 // our goal line  wtloss per day!
-<<[_DB]"%V $try_lpd $lpd \n"
+//<<[_DB]"%V $try_lpd $lpd \n"
 for (i= 0; i < ngday; i++) {
-<<"$(ty_gsday+i) $lw \n"
+//<<"$(ty_gsday+i) $lw \n"
     GVEC[i] = lw;
     WDVEC[i] = gsday+i;
     lw -= try_lpd;

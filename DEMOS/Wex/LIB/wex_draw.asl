@@ -150,7 +150,7 @@ proc  drawGrids(int  ws )
 proc drawScreens()
 {
 
-<<" $_proc \n"
+//<<" $_proc \n"
 
   if ( wScreen == 0) {
 

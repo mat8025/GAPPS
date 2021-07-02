@@ -855,3 +855,5 @@ ic_ops.cpp                          1.58  04/26/2021 09:50:09  BUILD_VEC
 ic_vfill.cpp                        1.61  06/30/2021 18:00:18  list of array
 declare_fillarray_e.cpp             2.41  06/30/2021 18:01:34  list array fill
 ds_convert_store.cpp                1.100  06/30/2021 18:02:43  use froffset
+ic_pushsiv.cpp                      1.66  07/01/2021 07:10:12  SUBI flags set OFF
+ds_storearray.cpp                   1.100  07/02/2021 09:16:31  intoArray from array or scalar
