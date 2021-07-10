@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @script wex.asl 
-//* 
-//*  @comment  
-//*  @release CARBON 
-//*  @vers 2.50 Sn Tin                                                     
-//*  @date Wed Mar 11 18:58:29 2020 
-//*  @cdate Fri Jan  1 08:00:00 2010 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2014,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script wex.asl 
+ * 
+ *  @comment  
+ *  @release CARBON 
+ *  @vers 2.52 Te Tellurium [asl 6.3.38 C-Li-Sr] 
+ *  @date 07/02/2021 15:24:19 
+ *  @cdate Fri Jan 1 08:00:00 2010 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                       
 
 
 ///

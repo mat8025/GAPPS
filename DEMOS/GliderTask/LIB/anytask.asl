@@ -1,18 +1,17 @@
-//%*********************************************** 
-//*  @script anytask.asl 
-//* 
-//*  @comment task-planner 
-//*  @release CARBON 
-//*  @vers 4.2 He Helium [asl 6.2.60 C-He-Nd]                              
-//*  @date Wed Jun 24 07:29:33 2020 
-//*  @cdate 9/17/1997 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2019 → 
-//* 
-//***********************************************%
-
-
-
+/* 
+ *  @script anytask.asl 
+ * 
+ *  @comment task-planner 
+ *  @release CARBON 
+ *  @vers 4.3 Li Lithium [asl 6.3.39 C-Li-Y] 
+ *  @date 07/09/2021 19:47:29 
+ *  @cdate 9/17/1997 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                            
 
 
 

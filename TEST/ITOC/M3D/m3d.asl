@@ -29,8 +29,8 @@ if (_dblevel >0) {
 
 
 filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
-filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
-filterFuncDebug(REJECT_,"vrealloc","Svar","init");
+//filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
+//filterFuncDebug(REJECT_,"vrealloc","Svar","init");
 
 ignoreErrors()
 
@@ -42,10 +42,72 @@ N = 10
 P = 10
 L = 10
 
+int G[] = {1,2,3};
+<<"%V$G\n"
+
+
+V = vgen(INT_,N,0,1)
+
+V[0:3] = 68;
+
+
+val = V[2]
+
+<<"$val \n"
+
+
+chkN(val,68)
+
+
+V[{5,6,7}] = 77;
+
+
+<<"$V\n"
+chkN(V[5],77)
+chkN(V[6],77)
+chkN(V[7],77)
+
+
+
+
 int M2[L][P]
+
 M2->info(1)
 M2[0][2] = 67;
 M2->info(1)
+
+//M2[1:4][3] = 68;
+
+
+M2[1,4,5][1,3] = 68;
+
+
+val = M2[4][1]
+
+<<"$val \n"
+
+
+chkN(val,68)
+
+<<"%V$M2\n"
+
+
+M2[{3,4,5}][{5,6}] = 55;
+
+<<"%V$M2\n"
+
+M2[6:9:1][{5,6}] = 77;
+
+
+<<"%V$M2\n"
+
+M2[6:9:1][1:3:1] = 44;
+
+
+<<"%V$M2\n"
+
+
+
 
 
 int M[N][P][L];
@@ -57,7 +119,7 @@ M->info(1)
 
 
 
-V = vgen(INT_,N,0,1)
+
 
 <<"$V\n"
 b = Cab(V)
@@ -195,8 +257,11 @@ b = Cab(M)
 
 M[0][1][4] = 80
 
-M[0][1][0:3:] = 81
-M[1][1][0:3:] = 82
+M[0:3:1][{1,2}][{1}] = 81
+
+<<"$M[0][1][1]\n"
+
+//<<"$M[0][1][::]\n"
 
 mval = M[0][1][1]
 
@@ -205,6 +270,47 @@ mval = M[0][1][1]
 chkN(mval,81)
 
 
+mval = M[1][2][1]
+
+<<"$mval\n"
+
+chkN(mval,81)
+
+M[5:8:1][4:8:1][1] = 39 // NOK
+
+mval = M[5][5][1]
+
+<<"$mval\n"
+
+chkN(mval,39)
+
+!a
+
+
+//M[5:8:1][4:8:1][{1}] = 39
+
+//M[5:8:1][4:8:1][1:3:1] = 39  // OK
+
+
+
+<<"$M\n"
+
+chkOut()
+
+
+
+M[0][1][0:3:1] = 81
+
+
+M[1][1][0:3:1] = 82
+
+mval = M[0][1][1]
+
+<<"$mval\n"
+
+chkN(mval,81)
+
+chkOut()
 mval = M[1][1][2]
 
 <<"$mval\n"

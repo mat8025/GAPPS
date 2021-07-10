@@ -162,7 +162,7 @@ _DB = -1
   sWo(xwos,@style,"SVB",@redraw);
   sWo(gwo,@showpixmap,@save);
   sWo(calwo,@showpixmap,@save);
-  sleep(0.1)
+  //sleep(0.1)
   // Measure WOBS
   dtmwo=cWo(vp,@BV,@name,"DAY",@color,RED_,@help," date on day ")
   wtmwo=cWo(vp,@BV,@name,"WTM",@color,RED_,@help," wt on day ")
