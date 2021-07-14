@@ -16,15 +16,18 @@ Demo  of subsrange
 ///////////////////////
 |>
 
+// TBF -- #include "debug"  // will crash during ic_rw of exe
+// but not for other scripts?? - mem corruption? 7/10/21
 
-#include "debug"
+
+#include "debug.asl"
 
 if (_dblevel >0) {
    debugON()
      <<"$Use_\n"
 }
 
-filterFileDebug(REJECT_,"scopesindex_e","scope_e","scope_findvar","exp_e","exp_lhs_e","ds_sivmem");
+//filterFileDebug(REJECT_,"scopesindex_e","scope_e","scope_findvar","exp_e","exp_lhs_e","ds_sivmem");
 
 
 
@@ -173,5 +176,6 @@ chkIn(_dblevel)
 
 //iread()
  chkOut()
+ 
 
 # list of files where debug is filtered out

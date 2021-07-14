@@ -10,8 +10,22 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-   myScript = getScript();
    
+<|Use_=
+Demo  of logic ops
+///////////////////////
+|>
+
+
+#include "debug.asl";
+
+
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"
+}
+
    
    chkIn(_dblevel); 
    
@@ -211,8 +225,11 @@
      <<" NOT ($a == 1) && ($b > 1) && ($c == 3)) \n"; 
      }
    
-   
-   chkT(lop); 
+   <<"%V $a $b $c\n"
+   chkT(lop);
+
+
+
 ////////////////////////////////////////////////////
    lop = 0; 
    

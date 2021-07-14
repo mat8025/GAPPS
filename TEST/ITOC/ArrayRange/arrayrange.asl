@@ -24,8 +24,8 @@ if (_dblevel >0) {
    <<"$Use_\n"   
 }
 
-filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
-filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
+//filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
+//filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
 
 
 chkIn(_dblevel)
@@ -42,6 +42,37 @@ int V[10];
 chkN(V[2],77)
 chkN(V[5],77)
 
+  V[::] = 76
+
+<<"%V$V\n"
+
+chkN(V[2],76)
+chkN(V[5],76)
+
+
+
+ V[1:-1:] = 97
+
+chkN(V[2],97)
+
+<<"%V$V\n"
+
+ V[1::] = 79
+<<"%V$V\n"
+chkN(V[2],79)
+
+<<"%V$V\n"
+
+
+  V[::2] = 49
+
+<<"%V$V\n"
+
+chkN(V[0],49)
+chkN(V[1],79)
+chkN(V[2],49)
+chkN(V[3],79)
+chkN(V[4],49)
 
 
 

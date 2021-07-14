@@ -298,7 +298,7 @@ svar Tskval;
       else if (targ @= "igc") {
            igcfn = getArgStr();
 
-       if (isin(igcfn,"igc")) {
+       if (issin(igcfn,"igc")) {
         Have_igc = 1;
         <<"IGC file $igcfn \n"
        }

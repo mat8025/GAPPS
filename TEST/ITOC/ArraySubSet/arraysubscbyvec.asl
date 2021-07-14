@@ -12,7 +12,10 @@
 //***********************************************%
 
 <|Use_=
-Demo  of subs by vec;
+Demo  of subs of a vec by svec;
+svec supplies a list of indices of vec
+this constructs a subset of the vec ( repeats of an index - count as one)
+indices out side of vec are ignored
 ///////////////////////
 |>
 
@@ -29,8 +32,8 @@ if (_dblevel >0) {
 
 
 
- //filterFileDebug(ALLOWALL_,"yyy");
-  //FilterFileDebug(REJECT_,"storetype_e");
+//filterFileDebug(ALLOWALL_,"yyy");
+//FilterFileDebug(REJECT_,"storetype_e");
 // FilterFuncDebug(REJECT_,"~ArraySpecs",);
   
 
@@ -78,20 +81,27 @@ sz = Caz(NV)
 <<" $NV[2] \n"
 
 <<" $NV[22] \n"
-<<" $YV \n"
+<<"%V $YV \n"
 
  S = YV[{P,10}]
-
+ I = vgen(INT_,20,0,1)
+<<"%V $I\n"
 <<" %v $P \n"
 <<" %v $S \n"
+
  chkN(S[0],74)
 
+ chkN(S[1],22)
  chkN(S[2],24)
+  chkN(S[3],28)
+    chkN(S[4],29)
+
+
  sz=Caz(S)
 
 <<"%v $sz\n"
 
- chkN(sz,6)
+ chkN(sz,7)
  
  chkOut()
 exit()

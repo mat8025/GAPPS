@@ -12,14 +12,19 @@
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
                                                                          
+<|Use_=
+Demo  of asl types
+///////////////////////
+|>
 
-myScript = getScript();
+
+#include "debug.asl";
 
 
-#include "debug"
 
 if (_dblevel >0) {
    debugON()
+   <<"$Use_\n"
 }
 
 
@@ -331,14 +336,20 @@ chkR(b,-0.987654000001,2)
 
 pan P[50]
 
+<<"%V$P\n"
+P->pinfo()
 
 P[20] = 787.0
 P[30] = 429.0
 
-
+<<"%V$P\n"
 p20 = P[20]
+<<"%V$p20\n"
+
 chkR(p20,787.0,5)
+
 chkR(P[20],787.0,5)
+
 chkR(P[30],429.0,5)
 
 chkStage("Pan")

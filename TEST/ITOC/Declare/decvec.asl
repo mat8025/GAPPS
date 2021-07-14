@@ -12,10 +12,23 @@
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
 
+<|Use_=
+Demo  of declare vecs
+///////////////////////
+|>
 
-#include "debug"
-debugON()
-  chkIn(_dblevel)
+
+#include "debug.asl";
+
+
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"
+}
+
+
+chkIn(_dblevel)
 
 
 
@@ -47,16 +60,28 @@ char dv2[] = { 1, 2, 3, 4, 'P',76,77, }
 
 char dv3[] = { 'ABCDEF' }
 
+dv3->pinfo();
+<<"%V$dv3\n"
 chkN(dv3[1],66)
+
 chkN(dv3[0],65)
+dv3->pinfo();
 chkN(dv3[2],67)
+
+chkN(dv3[3],68)
+dv3->pinfo();
+
 
 !pdv3
 !idv3
 
 
 
-char dv4[] = { 'ABCDEF', 'GHI', }
+char dv4[] = { 'ABCDEFGHI', }
+
+
+//char dv4[] = { 'ABC','DEFGHI', } // bug does not allow successive strings
+
 
 
 !pdv4
@@ -64,8 +89,11 @@ char dv4[] = { 'ABCDEF', 'GHI', }
 
 sz=Caz(dv4)
 <<"$sz  ==? 9\n"
+<<"%V$dv4\n"
 
+char dv5[] = { 'A','B','c','D',67 }
 
+<<"%V$dv5\n"
 
 float fv[] = { 1,2,3,4,5,6.0,7, }
 

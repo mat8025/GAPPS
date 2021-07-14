@@ -32,13 +32,32 @@ prec=setap(20)
 
  pan c =  2.9979e8
 
+ pan d = 0.05;
+
   z= p / c
 
+z->pinfo()
 
+   zfl = z->fl()
+<<"%V$zfl\n"
+
+  q = z / c
+
+   qfl = q->fl()
+<<"%V$qfl\n"
+
+
+q->pinfo()
 
   q = z * c 
 
+q->pinfo()
+
+   qfl = q->fl()
+<<"%V$qfl\n"
+
 <<" $(typeof(p))  $(typeof(z)) $(typeof(q))\n"
+
 
 <<"   $p $c $z \n"
 <<"  %e $p $c $z \n"
@@ -91,11 +110,27 @@ prm = pr - qr;
 <<"%V minus $prm \n"
 
 
+<<"%V$p\n"
+
+   pfl = p->fl()
+<<"%V$pfl\n"
 
 
+<<"%V$q\n"
+q->pinfo()
+
+   qfl = q->fl()
+<<"%V$qfl\n"
+
+
+
+   qfl = q->fl()
+<<"%V$qfl\n"
+
+   qr = fround(q,0)
 
    pr = fround(p,0)
-   qr = fround(q,0)
+
 
 <<" %v $pr \n"
 <<" %v $qr \n"
@@ -103,8 +138,17 @@ prm = pr - qr;
 //prm1 = pr -1;
 
 
+   q = q + d
 
-   chkR(qr,pr,1)
+<<"%V$q\n"
+
+   qfl = q->fl()
+<<"%V$qfl\n"
+
+   qr = fround(q,0)
+<<" %v $qr \n"   
+
+   chkR(qr,pr,2)
 
 
 chkOut()

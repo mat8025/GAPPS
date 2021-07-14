@@ -154,7 +154,7 @@ TS= "%6.2f$(vgen(FLOAT_,10,1,0.5))"
 T= Split(TS)
 
 <<"$T\n"
-!a
+
 
 T= Split("%6.2f$(vgen(FLOAT_,10,1,0.5))")
 
@@ -179,17 +179,22 @@ T1= S[1:7:]
 <<"$T1\n"
 
 
-
+<<"%V$S\n"
 
 R= Split("47 79 80 81 82 83 84 85 86 87")
 
+R->pinfo()
 <<"$R\n"
 
 
 S[1:4:] = R
 
 
-<<"$S\n"
+<<"%V$S\n"
+
+<<"$S[1]  $S[2] \n"
+S->pinfo()
+
 
 chkStr(S[1],"47")
 chkStr(S[2],"79")
@@ -288,15 +293,17 @@ W[0] = "hey"
 <<"W[2::]  $W[2::]\n"
 
 
-T= W[2::]
+T= W[2:-1:]
 
 <<"T $T\n"
 
-<<"T[0] $T[0]\n"
+<<"%V$T[0]\n"
 
 <<"T[1] $T[1]\n"
 
 chkStr(T[0],"puedes")
+
+
 chkStr(T[0],W[2])
 
 /////////////////////////
@@ -458,7 +465,9 @@ IV2->Info(1);
 
 
 
-R= M[3::]
+//R= M[3::]   // TBF xic does not use default for range end
+
+R= M[3:-1:]
 
 <<"$R \n"
 R->info(1)
@@ -568,7 +577,9 @@ chkN(IV3[2], 2)
 IV3->Info(1);
 
 
-IV3= atoi(M[3::])
+//IV3= atoi(M[3::])
+
+IV3= atoi(M[3:-1:])
 
 
 <<"$IV3\n"

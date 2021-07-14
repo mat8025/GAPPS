@@ -517,7 +517,7 @@ if ((do_all || do_try ) && (do_try != -1)) {
 if ((do_all  || do_declare ) && (do_declare != -1))  {
 
 
-   RunDirTests("Declare","declare,dec1,dec-char,dec-pan,dec-vec");
+   RunDirTests("Declare","declare,dec1,decchar,decpan,decvec");
 
  //  Run2Test("Consts")
 
@@ -592,7 +592,7 @@ if ((do_all || do_array ) && (do_array != -1)) {
 
    RunDirTests("Array","dynarray,lhe,vec-cat,array-sr,mdele,vsp")
 
-   RunDirTests("ArrayRange","array-range,array-subsrange,lhrange")
+   RunDirTests("ArrayRange","arrayrange,array-subsrange,lhrange")
 
   RunDirTests("ArraySubSet","arraysubset,array-subvec,array-subsref,arraysubscbyvec,vdec")
 

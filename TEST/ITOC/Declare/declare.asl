@@ -136,6 +136,8 @@ int k =34;
 
 float ytest = 1.234;
 
+<<"Sin $(Sin(ytest)) \n"
+
 <<"%V$ytest \n"
 
    chkR(ytest,1.234,6)
@@ -163,7 +165,7 @@ Leg[8] = 8
 <<"%V$cb \n"
 
 
-<<"%v $(Caz(Leg)) $(Cab(Leg)) \n"
+//<<"%v $(Caz(Leg)) $(Cab(Leg)) \n" // TBF
 
 
 

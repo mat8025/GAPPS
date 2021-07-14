@@ -3,8 +3,8 @@
  * 
  *  @comment test substitute func 
  *  @release CARBON 
- *  @vers 1.2 He Helium [asl 6.3.30 C-Li-Zn] 
- *  @date 03/11/2021 10:52:56 
+ *  @vers 1.3 Li Lithium [asl 6.3.39 C-Li-Y] 
+ *  @date 07/11/2021 10:55:07 
  *  @cdate Tue Mar 12 07:50:33 2019 
  *  @author Mark Terry 
  *  @Copyright © RootMeanSquare  2010,2021 → 
@@ -69,13 +69,30 @@ i++
 
 <<"$Nit[2:5][0:7:] \n"
 
+<<"%V$kc $kci $i\n"
+
+      Nic[kc][kci][0] = Nit[i][0]
+      Nic[kc][kci][1] = Nit[i][2]
 
 
-   Nic[kc][kci][::] = Nit[i][::]
+<<"%V $Nic[kc][kci][0] \n"
+<<"%V $Nic[kc][kci][1] \n"
+
+
+      Nic[0:4][0:9][1] = Nit[i][2]
+<<"%V $Nic[3][kci][1] \n"
+
+   Nic[1][2][0:7:1] = Nit[i][0:7:1]
+
+   kci = 4
+   kc = 3;
+   Nic[kc][kci][0:7:1] = Nit[i][0:7:1]
 
 <<"%V $Nic[kc][kci][0:7:] \n"
 
 i++;
+<<"%V$i\n"
+
 
 
 
@@ -83,6 +100,7 @@ i++;
 //<<"%V$i $Nit[i][0:7:] \n"
 
    Nic[kc][kci][::] = Nit[i][::]
+
 
 <<"%V $Nic[kc][kci][0:7:] \n"
 
@@ -92,7 +110,7 @@ i++;
 
 i++
 
- Nic[kc][kci][0:5:] = Nit[i][2:7:]
+ Nic[kc:kc][kci][0:5:] = Nit[i][2:7:]
   <<"%V$i $Nit[i][0:7:] \n"
 <<"%V $Nic[kc][kci][0:5:] \n"
 
@@ -104,7 +122,7 @@ chkN(Nic[kc][kci][0] ,Nit[i][2])
 
   <<"%V$i $kc $kci \n"
   <<"%V$Nit[i][0:7:] \n"
-   Nic[kc][kci][::] = Nit[i][::]
+   Nic[kc:kc][kci][::] = Nit[i][::]
   <<"%V $Nic[kc][kci][0:7:] \n"
 //   x= Nic[kc][kci][0] = 47
 
@@ -136,7 +154,7 @@ if (fail1) {
 
  for (i = 0 ; i < nrows ; i++) {
 
-   Nic[kc][kci][0:5:] = Nit[i][2:7:]
+   Nic[kc:kc][kci][0:5:] = Nit[i][2:7:]
   <<"$Nit[i][0:7:] \n"
  // <<"sp $Nic[kc][kci][0:7:] \n"
 //i_read()
@@ -162,8 +180,8 @@ if (fail2) {
 
 chkN(fail1,0)
 chkN(fail2,0)
-
+chkT(1)
 
 chkOut();
 
-exit();
+

@@ -857,3 +857,14 @@ declare_fillarray_e.cpp             2.41  06/30/2021 18:01:34  list array fill
 ds_convert_store.cpp                1.100  06/30/2021 18:02:43  use froffset
 ic_pushsiv.cpp                      1.66  07/01/2021 07:10:12  SUBI flags set OFF
 ds_storearray.cpp                   1.100  07/02/2021 09:16:31  intoArray from array or scalar
+pan_mem.cpp                         1.28  07/12/2021 07:41:06  array attach ND
+svarg_e.cpp                         2.32  07/12/2021 07:42:44  makeresultpanvec - ND bounds
+ds_convert_get.cpp                  1.99  07/12/2021 07:43:58  getval use froffset
+ds_convert_store.cpp                2.1  07/13/2021 09:21:37  vtype ==> type if unset
+ic_pic.cpp                          1.60  07/13/2021 09:22:28  DBS=>DBF
+declare_type_e.cpp                  2.44  07/14/2021 06:53:38  pan array alloc
+declare_fillarray_e.cpp             2.42  07/14/2021 07:22:41  char string vec fill
+vmf_l.cpp                           1.62  07/14/2021 10:15:29  pan flength
+array_range.cpp                     2.81  07/14/2021 15:24:22  range xic defaults
+ds_sivflags.cpp                     1.91  07/14/2021 15:25:19  svar first 10 eles
+ds_storearray.cpp                   2.1  07/14/2021 15:26:00  svar==>svar

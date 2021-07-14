@@ -16,7 +16,7 @@
 
 ///
 
-#include "debug"
+#include "debug.asl"
 
 if (_dblevel >0) {
    debugON()
@@ -51,11 +51,15 @@ incr = 1.5;
 
 starti = 5;
 
-        vecp= vgen(PAN_,10,0,incr)
+        vecf= vgen(FLOAT_,10,0,incr)
+
+<<" $vecf \n"
+
+        vecp= vgen(PAN_,10,1.0,incr)
 
 vecp->info(1)
 
-<<"%p $vecp \n"
+<<"$vecp \n"
 
 <<"$vecp[2]  $vecp[3]\n"
 <<"vecp $vecp[0] $vecp[1] $vecp[3] \n"
@@ -64,14 +68,20 @@ vecp->info(1)
 
 <<"%p $vecp2 \n"
 
+
   for (i= 0; i <3 ; i++) {
 
         starti =i+1;
    vecp2= vgen(PAN_,10,starti,incr)
- // chkR(vecp[1],1+i)
-//<<"$i vecp2 $vecp2[i] $vecp2[1+i] $vecp2[3+i] \n"
-vecp->info(1)
-//ans=query("->")
+vecp2->info(1)
+<<"$i vecp2 $vecp2[i] $vecp2[1+i] $vecp2[3+i] \n"
+<<"$i $vecp2   \n"
+
+
+// chkR(vecp[1],1+i)
+
+
+
   }
 
 <<"$vecp[0:9:]\n"
