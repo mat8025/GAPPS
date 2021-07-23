@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @script arrayrange.asl 
-//* 
-//*  @comment test vector range spec - forward,backward 
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                  
-//*  @date Tue Jun 25 18:48:42 2019 
-//*  @cdate Tue Jun 25 18:48:42 2019 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2019 → 
-//* 
-//***********************************************%
+/* 
+ *  @script arrayrange.asl 
+ * 
+ *  @comment test vector range spec - forward,backward 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.42 C-Li-Mo] 
+ *  @date 07/14/2021 16:12:25 
+ *  @cdate Tue Jun 25 18:48:42 2019 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                            
 
 <|Use_=
 Demo  of vector range  e.g. V[0:10:2] = 5;

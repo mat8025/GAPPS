@@ -11,9 +11,26 @@
 //* 
 //***********************************************%
 
-chkIn()
 
-setdebug(0)
+                                                                        
+<|Use_=
+Demo  of vector ops;
+///////////////////////
+|>
+
+
+#include "debug.asl"
+
+
+if (_dblevel >0) {
+   debugON()
+      <<"$Use_\n"   
+}
+
+
+chkIn(_dblevel)
+
+
 
  PFIV = Igen(10,0,1)
 
@@ -86,7 +103,7 @@ chkN(PFIV[0],5)
 //* 
 //***********************************************%
 
-/{/*
+/*
 set() ~ sets values in a vector or a scalar()
 V->set(value)
 V[3]->set(value)
@@ -98,15 +115,19 @@ Can be used to set a specified element of the variable array,
 or a subrange or the entire array.
 The initial vaue can be incremented at each set step to create a series.
 //===================================//
-/}*/
+*/
 
 
 
 
 // leading > make it a dynamic expandable array
+
 int J[>20] 
 
   J[0:30]->Set(10,2)
+
+
+J->pinfo();
 
 <<"$J \n"
 

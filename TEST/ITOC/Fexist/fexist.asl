@@ -2,9 +2,30 @@
 /// @vers
 ///
 
-chkIn()
+
+                                                                       
+<|Use_=
+Demo  of fexist;
+///////////////////////
+|>
+
+
+#include "debug.asl"
+
+
+if (_dblevel >0) {
+   debugON()
+      <<"$Use_\n"   
+}
+
+
+chkIn(_dblevel)
+
+<<" $(argc())\n"
 
 srcfile = _clarg[1];
+
+<<"%V$srcfile\n"
 
 if (srcfile @= "") {
 <<"no script file entered\n"

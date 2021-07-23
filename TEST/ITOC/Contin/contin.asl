@@ -1,3 +1,34 @@
+/* 
+ *  @script contin.asl 
+ * 
+ *  @comment 1.2 
+ *  @release CARBON 
+ *  @vers 0.0   [asl 6.3.42 C-Li-Mo]                                        
+ *  @date 07/14/2021 17:19:16 
+ *  @cdate 07/14/2021 17:19:16 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+
+<|Use_=
+Demo  of continue line 
+///////////////////////
+|>
+
+
+#include "debug.asl"
+
+
+if (_dblevel >0) {
+   debugON()
+      <<"$Use_\n"   
+}
+
+
+
+
 //
 // continue line test
 //
@@ -19,7 +50,7 @@ chkR(c,62,6)
 <<" $a * $b = $c \n"
 
 chkR(c,285,6)
-
+!a
 
   c = a / \
   b ;
@@ -52,7 +83,7 @@ chkStr(w1,"hey buddy")
 
    w2=					\
         scat("hey"," buddy ", "what's", \
-//                   " going ", 		\
+//        " going ", 		\
 		   " on ?");
    <<"$w2\n"
 

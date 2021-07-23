@@ -240,3 +240,5 @@ wex.asl                  2.51	07/02/2021 15:13:46 CCFP data
 wex.asl                  2.52	07/02/2021 15:24:19 tidy
 anytask.asl              4.3	07/09/2021 19:47:29 tidy
 m3d_assign.asl           1.3	07/11/2021 10:55:07 rework subscript code
+arrayrange.asl           1.2	07/14/2021 16:12:25 xic range defaults
+pan.asl                  1.4	07/22/2021 09:01:10 tidy

@@ -56,11 +56,14 @@ padtit =nsc(15,"/")
 void hdg(str atit)
 {
 
-  len = slen(atit)
+  int len = slen(atit)
+  int rlen = 20- len;
+<<"$_proc  $atit  $len\n"
 
+  tpad = nsc(rlen,"/")
 
-<<"\n$(time()) ${padtit}${atit}$(nsc(20-len,\"/\"))\n"
-<<[Opf]"\n$(time()) ${padtit}${atit}$(nsc(20-len,\"/\"))\n"
+<<"\n$(time()) ${padtit}${atit}$tpad\n"
+<<[Opf]"\n$(time()) ${padtit}${atit}$tpad\n"
 
 //!!"ps wax | grep asl | grep -v emacs"
 }
@@ -117,7 +120,7 @@ void Run2Test(str td)
 void RunDirTests(str Td, str Tl )
 {
 
-//<<"$Td  $Tl\n"
+//<<"$_proc $Td  <|$Tl|> \n"
 
 str pgname = "xx";
 
@@ -148,7 +151,8 @@ str pgname = "xx";
 
 
          if (nl > 0) {
-//	   <<"$pgname \n"
+	 //  <<"%V$pgname \n"
+	//   pgname->pinfo()
 
            do_carts(pgname);
 
@@ -258,8 +262,13 @@ void scoreTest(str tname)
 	    //<<"%V $i_time\n"
           }
 	  
-if (pcc < 100){
- <<"$(PRED)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\%$(POFF) took $took msecs\n"
+if (pcc < 100  && pcc > 90){
+// <<"\033[1;31m DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% \033[0m took $took msecs\n"
+ <<"$(PRED_)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\%$(POFF_) took $took msecs\n"
+}
+else if (pcc < 90 ){
+// <<"\033[1;31m DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% \033[0m took $took msecs\n"
+ <<"$(PDKRED_)DONE tests $(POFF_)$ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs\n"
 }
 else {
  <<"DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs\n"
@@ -456,7 +465,9 @@ void cart_xic(Str aprg, Str a1)
 
      xwt_prog = "$tim ./${aprg}:$a1"
 //str aa = a1
+
       doxictest("./$aprg", "$a1")
+      
       tst_file = "${aprg}.xtst";
       //<<"%V $tst_file\n"
       if (f_exist(tst_file) > 0) {
@@ -489,6 +500,8 @@ void cart (str prg)
   str aprg = prg;
   str wstr ="";
 //  in_pargc = _pargc;
+//  aprg->pinfo();
+//  prg->pinfo();
   
   xwt_prog = "xxx";
 
@@ -496,8 +509,10 @@ void cart (str prg)
   
   //aprg->info(1)
 
-//  <<"rm -f $aprg  ${aprg}.tst  last_test* \n"
-  !!"rm -f $aprg  ${aprg}.tst  last_test*"
+//<<"rm -f $aprg  ${aprg}.tst  last_test* \n"
+//<<"rm -f $prg  ${prg}.tst  last_test* \n"
+ 
+  !!"rm -f $prg  ${prg}.tst  last_test*"
 
    jpid  =0
       
@@ -548,12 +563,12 @@ void cart (str prg)
 
        //<<"CRASH FAIL:--failed to run \n"
        // insert works??
-       CrashList->Insert("${Curr_dir}/${aprg}")
+       CrashList->Insert("${Curr_dir}/${prg}")
 
      }
    
    setErrorNum(0)
-   w_file(Todo,"$(getdir())/${aprg}.asl $jpid $(time())\n")
+   w_file(Todo,"$(getdir())/${prg}.asl $jpid $(time())\n")
 
   //<<"$(getdir())/${aprg}.asl $jpid $(time())\n"
  
@@ -573,11 +588,13 @@ void cart (str prg)
 void cart (Str prg,  Str a1)
 {
 
-//<<"$_proc  $aprg $a1\n"
+<<"$_proc  $prg $a1\n"
   int wlen;
   //str tim;
 //   <<"%V $_pstack \n"
+
    str aprg = prg;
+   
    in_pargc = _pargc;
   
    xwt_prog = "xxx";
@@ -585,7 +602,7 @@ void cart (Str prg,  Str a1)
    str tim = time();
 
  
-  !!"rm -f $aprg  ${aprg}.tst  last_test*"
+  !!"rm -f $prg  ${prg}.tst  last_test*"
 
 
    jpid  =0
@@ -596,20 +613,20 @@ void cart (Str prg,  Str a1)
 
 
            if (do_query) {
-<<"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1 \n "
+<<"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst  $CFLAGS ${prg}.asl  $a1 \n "
            //ans=query("$aprg run it?")
 	   ans= iread("$aprg run it?")
          }
 	 
-!!"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1  > /dev/null"
+!!"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst  $CFLAGS ${prg}.asl  $a1  > /dev/null"
 
-     wt_prog = "$(time()) ${aprg}:$a1 "
+     wt_prog = "$(time()) ${prg}:$a1 "
      wlen = slen(wt_prog)
      padit =nsc(40-wlen," ")
 
     //  <<"${wt_prog}$padit"
       <<[Opf]"${wt_prog}$padit"
-      tst_file = "${aprg}.tst";
+      tst_file = "${prg}.tst";
     //  <<"%V $tst_file\n"
       if (f_exist(tst_file) > 0) {
           // should test if DONE
@@ -621,12 +638,12 @@ void cart (Str prg,  Str a1)
      else {
 
        //<<"CRASH FAIL:--failed to run inseting $aprg into crashed list\n"
-        CrashList->Insert("${Curr_dir}/${aprg}")
+        CrashList->Insert("${Curr_dir}/${prg}")
 //	<<[Tcf]"${Curr_dir}/${aprg}\n"
      }
 
 
-   w_file(Todo,"$(getdir())/${aprg}.asl $jpid $(time())\n")
+   w_file(Todo,"$(getdir())/${prg}.asl $jpid $(time())\n")
 
 //  <<"$(getdir())/${aprg}.asl $jpid $(time())\n"
  
@@ -653,9 +670,13 @@ void cart (Str prg,  Str a1)
 
 void do_carts (str aprog)
 {
-  str wprg = aprog;
+//<<"$_proc  <|$aprog|>\n"
+
 //!!"pwd"
-//<<"run cart vers  $wprg \n"
+
+  str wprg = aprog;
+//  wprg->pinfo()
+//<<"run carts vers  <|$wprg|>  <|$aprog|> \n"
        cart (wprg);
 
 //<<"run xic vers  $wprg \n"

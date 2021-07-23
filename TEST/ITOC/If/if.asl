@@ -12,10 +12,19 @@
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
                                                                                               
+<|Use_=
+Demo  of if command
+///////////////////////
+|>
 
-#include "debug"
 
-debugON()
+#include "debug.asl"
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"
+}
+
 
 chkIn(_dblevel)
 
@@ -310,7 +319,7 @@ ICAO_SA[2][3] = 18
 
 
  chkR(ICAO_SA[2][3],18,6)
- chkRICAO_SA[0][3],7,6)
+ chkR(ICAO_SA[0][3],7,6)
 
 
  i = 1
@@ -803,24 +812,35 @@ c = 0;
  if ( !is_comment && !is_proc && !is_if  && (sl > 0) && (  sstr(";/{}\\",cs,1) == -1) ) { 
     chkT(1)
   <<"all tests true %V is_comment && $is_proc && $is_if $sl\n" 
+ }
+ else {
+  chkT(0)
 
  }
 
 
+  vv = sstr(";/{}\\",cs,1)
+<<"%V$vv $cs\n"
 
+  if (  (sstr(";/{}\\",cs,1) == -1) ) {
+<<"%V$vv $cs  sstr test correct\n" 
+  }
 
- if ( !is_comment && !is_proc && !is_if  && (sl > 0) \
-      && (  sstr(";/{}\\",cs,1) == -1) )
-      { 
+  vv->pinfo()
+<<"%V $(!is_comment) && $(!is_proc) && $(!is_if)  && $(sl > 0)   $vv[0]\n"
+// if ( !is_comment && !is_proc && !is_if  && (sl > 0)   && (sstr(";/{}\\",cs,1) == -1) ) {
+ if ( !is_comment && !is_proc && !is_if  && (sl > 0)   && (  vv[0] == -1) ) {
+     
     chkT(1)
   <<"fold 5 all tests true %V is_comment && $is_proc && $is_if $sl\n" 
 
  }
  else {
+    chkT(0)
 <<"fold 5 not correct!\n";
  }
 
-
+chkOut()
 
  if ( !is_comment && !is_proc && !is_if  && (sl > 0) &&\  
      (  sstr(";/{}\\",cs,1) == -1) )  {
@@ -830,6 +850,7 @@ c = 0;
 
  }
  else {
+    chkT(0)
 <<"fold 6 not correct!\n";
  }
 
@@ -844,6 +865,7 @@ c = 0;
 
  }
  else {
+    chkT(0)
 <<"fold 7 not correct!  WS after fold control?\n";
  }
 

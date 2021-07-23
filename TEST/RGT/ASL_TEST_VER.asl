@@ -59,7 +59,7 @@ hdir = getdir();
 
 wd=chdir(hdir)
 wdir = getdIr()
-<<"%V $wd $hdir $wdir\n"
+//<<"%V $wd $hdir $wdir\n"
 
 //ans=query("where are we")
 
@@ -115,7 +115,7 @@ int x_time = 0;
 
 Todo=ofw("to_test")
 
-#include "test_routines"
+#include "test_routines.asl"
 
 
 tout ="testoutput"
@@ -202,7 +202,7 @@ int do_release = 0;
   pdir=updir()
   chdir("ITOC")
   Testdir = getdir()
-<<[2]"Test Dir is $Testdir\n"
+//<<[2]"Test Dir is $Testdir\n"
 
 
 
@@ -229,7 +229,7 @@ int do_release = 0;
 
 
       wt = _argv[i]
-    <<"$i $wt \n"  
+//    <<"$i $wt \n"  
     if (wt @= "") {
       break
     }
@@ -250,7 +250,7 @@ int do_release = 0;
       $do_arg = 1;
      }
      
-<<[2]" $i $wt $do_arg \n"
+//<<[2]" $i $wt $do_arg \n"
 
      i++;
 
@@ -271,7 +271,7 @@ int do_release = 0;
 
 //================
 
-<<"%V $do_all \n"
+//<<"%V $do_all \n"
 
 if (do_release) {
   wasl = "aslx"
@@ -318,9 +318,9 @@ if (do_math) {
 }
 
 
-<<" check Include $do_include $do_types\n"
+//<<" check Include $do_include $do_types\n"
 
-<<"%V $do_query\n"
+//<<"%V $do_query\n"
 
 
 if ((do_include || do_all ) && (do_include != -1)) {
@@ -336,7 +336,6 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
     RunDirTests("Assign","assign");
 
-
     RunDirTests("Bops","bops,fvmeq,fsc1,mainvar,snew");
 
 
@@ -348,8 +347,9 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
   cart("bops","7")
 
-  cart("fvmeq","3")
+  cart_xic("bops","7")
 
+  cart("fvmeq","3")
 
   updir()
 
@@ -369,7 +369,7 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
   chdir("Info")
 
-  cart("info")
+  do_carts("info")
 
    //RunDirTests("Assign","assign");
 
@@ -381,7 +381,7 @@ if ((do_include || do_all ) && (do_include != -1)) {
 if ((do_if || do_all) && (do_if != -1)) {
 
   
-  RunDirTests("If","if")
+  RunDirTests("If","if,ifand")
 
   Run2Test("Define")
   cart("define")
@@ -471,7 +471,6 @@ if ((do_all || do_try ) && (do_try != -1)) {
 
      RunDirTests("Reverse","reverse") ; // BUG needs more than one
 
-
      RunDirTests("Vops","vops")
 
      RunDirTests("Vector","vector")
@@ -488,7 +487,7 @@ if ((do_all || do_try ) && (do_try != -1)) {
 
   RunDirTests("Sops","sops");
   
-  RunDirTests("Splice","splice,strsplice");
+   RunDirTests("Splice","splice,strsplice");
  
   // make this a pattern OP
 
@@ -502,13 +501,18 @@ if ((do_all || do_try ) && (do_try != -1)) {
 
   if ((do_fops || do_all) && (do_fops != -1)) {
 
+  RunDirTests("Fops","fops")
+
+//  cart("fops")
+
+
   Run2Test("Fexist")
 
   cart("fexist","fexist.asl")
 
-  Run2Test("Fops")
+  cart_xic("fexist","fexist.asl")
 
-  cart("fops")
+
 
 
   }
@@ -693,10 +697,7 @@ if ((do_all || do_func ) && (do_func != -1)) {
 if ((do_all || do_unary ) && (do_unary != -1)) {
 
 
-  Run2Test("Unary")
-
-  cart("unaryexp")
-
+  RunDirTests("Unary","unaryexp,unaryif")
 
 }
 
@@ -712,15 +713,17 @@ if ((do_all || do_unary ) && (do_unary != -1)) {
 /////////////////////////////////////////
 if ((do_all || do_proc ) && (do_proc != -1)) {
 
-  RunDirTests("Proc","proc,proc-declare,proc-ret,proc-arg,proc-sv0");
+  RunDirTests("ProcArray","procarray,poffset,arrayarg1,arrayarg2")
+
+  RunDirTests("ProcCall","proccall")
+
   
-  RunDirTests("Proc","proc-refarg,proc-ra,proc-refstrarg,proc-loc-main-var");
+  
+  RunDirTests("Proc","proc,procdeclare,procret,procarg,procsv0");
+  
+  RunDirTests("Proc","procrefarg,procra,procrefstrarg,proc-loc-main-var");
 
   cart("proc-var-define", 10)
-
-  RunDirTests("ProcArray","poffset,arrayarg1,arrayarg2")
-
-  RunDirTests("ProcCall","proc-call")
 
   Run2Test("Static")
   
@@ -734,9 +737,8 @@ if ((do_all || do_proc ) && (do_proc != -1)) {
 //rdb()
   if ((do_all || do_scope ) && (do_scope != -1)) {
 
-   Run2Test("Scope") ; 
+   RunDirTests("Scope","scope") ; 
 
-   cart("scope");
 
   }
 

@@ -868,3 +868,7 @@ vmf_l.cpp                           1.62  07/14/2021 10:15:29  pan flength
 array_range.cpp                     2.81  07/14/2021 15:24:22  range xic defaults
 ds_sivflags.cpp                     1.91  07/14/2021 15:25:19  svar first 10 eles
 ds_storearray.cpp                   2.1  07/14/2021 15:26:00  svar==>svar
+paramexpsvar.cpp                    1.34  07/15/2021 14:20:26  expandStr
+prep.cpp                            2.56  07/16/2021 18:13:48  color print defs
+checkconstantexp.cpp                1.3  07/16/2021 18:21:30  tidy
+sint_l.cpp                          1.19  07/23/2021 08:28:09  xcompile

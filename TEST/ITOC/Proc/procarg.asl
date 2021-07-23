@@ -1,5 +1,5 @@
 /* 
- *  @script proc-arg.asl 
+ *  @script procarg.asl 
  * 
  *  @comment test some usage of proc args 
  *  @release CARBON 
@@ -12,7 +12,20 @@
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
                                                                         
-myScript = getScript();
+<|Use_=
+Demo  of proc arc scalar;
+///////////////////////
+|>
+
+
+#include "debug.asl"
+
+
+if (_dblevel >0) {
+   debugON()
+      <<"$Use_\n"   
+}
+
 
 chkIn(_dblevel)
 
@@ -158,10 +171,10 @@ ssa = sen[0]
 
 
 
-   A=ofr("../Proc/proc-arg.asl")
+   A=ofr("procarg.asl")
 
    if (A == -1) {
-     A=ofr("proc-arg.asl")
+     A=ofr("procarg.asl")
    }
 
    k = 0;

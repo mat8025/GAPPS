@@ -1,23 +1,36 @@
-//%*********************************************** 
-//*  @script pan.asl 
-//* 
-//*  @comment test_pan numbers 
-//*  @release CARBON 
-//*  @vers 1.3 Li Lithium [asl 6.2.47 C-He-Ag]                             
-//*  @date Fri May 15 23:25:45 2020 
-//*  @cdate 1/1/1999 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script pan.asl 
+ * 
+ *  @comment test_pan numbers 
+ *  @release CARBON 
+ *  @vers 1.4 Be Beryllium [asl 6.3.43 C-Li-Tc] 
+ *  @date 07/22/2021 09:01:10 
+ *  @cdate 1/1/1999 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                       
+<|Use_=
+Demo  of pan type
+///////////////////////
+|>
 
-#include "debug"
+
+#include "debug.asl";
+
+
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"
+}
 
 setap(50);    // set precision to 100? decimal places
 
 // FIX pan N  = GetArgN()
 
-debugON()
 
 chkIn(_dblevel);
 
@@ -118,9 +131,17 @@ chkR(r,M,2);
 
 //query()
 <<"%V$M\n"
- M = M + 1.5;  // TBF XIC bug
 
-<<"%V$M\n"
+pan mr = 1.5
+   Q = M;
+// M = M + 1.5;  // TBF XIC bug
+
+M = M + mr;  // TBF XIC bug
+
+<<"%V$mr $M\n"
+
+
+
 
 <<"M++\n"
 
@@ -134,6 +155,11 @@ chkR(r,M,2);
 
  chkR(M,6.5,pan_prec);
 
+<<"%V$Q   \n"
+
+ Q = Q + 1.5;  // TBF XIC bug
+
+<<"%V$Q  + 1.5?\n"
 
 
  k = 3;
@@ -174,9 +200,7 @@ pan P = 2.1
 
 chkR(M,12.5,pan_prec);
 
- chkOut()
 
-exit()
 
 <<"%V$N $M\n"
 
@@ -199,13 +223,13 @@ N = P / M
 
 <<"$N $(typeof(N))\n"
 
-icompile(0)
+//xcompile(0)
 
 pan ans
 
-uint n
+uint nui
 uint m
-uint p
+ulong p
 
  if (anotherArg()) {
   N  = getArgN()
@@ -229,10 +253,10 @@ P = N * M
 <<" $P = $N * $M \n"
 <<"$(typeof(N)) $(typeof(M)) $(typeof(P))\n"
 
-n = N
+nui= N
 m = M
-p = n * m
-<<" $p = $n * $m \n"
+p = nui * m
+<<" $p = $nui * $m \n"
 <<"$(typeof(n)) $(typeof(m)) $(typeof(p))\n"
 
 nc = 35
@@ -244,13 +268,17 @@ nc = 35
 
 //ans=iread("-)")
 
+
+
 nc = 200
   P = 1
+  p = 1
   for (i = 1; i < nc ; i++) {
      P = P * 2
+     p = p * 2
 //    P *= 2
 
-<<"$i $P \n"
+<<"$i $p $P \n"
 //ans=iread("-)")
   }
 
@@ -261,7 +289,7 @@ P = 2
 M = 1
 N = 0
  
-for (i=0;i<15;i++)  {
+for (i=0;i<5;i++)  {
     <<"$i $N\n"
     <<" $M \n"
     <<"$P  \n";  
@@ -287,18 +315,18 @@ float y
 
 <<"%V$y \n"
 
-int k
+int k1
 
-  k = Fround(R,2)
+  k1 = Fround(R,2)
 
-<<"%V$k \n"
+<<"%V$k1 \n"
 
    y = Fround(R)
 
 <<"%V$y \n"
 
 
-  k = Fround(R)
+  k1 = Fround(R)
 
 <<"%V$k \n"
 
@@ -365,6 +393,8 @@ int k
   i++
 
  }
+
+ chkOut()
 
 
 exit()

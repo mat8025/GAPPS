@@ -14,12 +14,18 @@
 ///
 ///
 ///
+<|Use_=
+Demo  of poffset;
+///////////////////////
+|>
 
-#include "debug"
+
+#include "debug.asl"
 
 
 if (_dblevel >0) {
    debugON()
+      <<"$Use_\n"   
 }
 
 
@@ -30,7 +36,8 @@ chkIn(_dblevel);
 int voo(int vect[])
 {
   vect->info(1)
-<<"$_proc IN $vect \n" ;  // debug version alters poffset??
+  
+<<"IN $vect \n" ;  // debug version alters poffset??
 // vect->info(1)
 
 
@@ -56,8 +63,7 @@ int voo(int vect[])
 
   return z;
 }
-//============================
-
+//[EP]=================
 
 void Noo(int ivec[])
    {
@@ -77,20 +83,22 @@ void Noo(int ivec[])
 
      
 }
-
+//[EP]=================
 
 
 int Roo(int ivec[])
    {
+   
      ivec->info(1);
   //   Z->info(1);      
      
-<<"IN %V $ivec \n";
+<<"IN $_proc %V $ivec \n";
 
 
       ivec[1] = 47; 
       ivec[2] = 79;
-      ivec[3] = 80;      
+      ivec[3] = 80;
+      ivec[4] = 7;            
 
       ivec->info(1); 
 
@@ -110,34 +118,36 @@ int Roo(int ivec[])
 //   Z[0] = 36; 
 //   Z[1] = 53; 
 //   Z[9] = 28; 
-
+ name_ref = 1;
+ if (name_ref) {
 <<"before calling proc $Z\n";
     voo(Z);
   <<"after calling proc $Z\n";
+  
    chkN(Z[1],47);
    chkN(Z[2],79);
    chkN(Z[3],80);      
+}
 
-    Z = W
+<<"%V$W\n"
 
-  <<"before calling proc &Z[3] $Z\n";
-  Z->info(1)
+   voo(&W[3]);
 
-   voo(&Z[3]);
-  <<"after calling proc &Z[3] $Z\n";
+<<"%V$W\n"
 
-<<"$Z[4] \n"
 
-   chkN(Z[4],47);
-   chkN(Z[5],79);
-   chkN(Z[6],80);
-//chkOut ()
+
+
+   chkN(W[4],47);
+   chkN(W[5],79);
+   chkN(W[6],80);
+
 
     Z = W
    <<"B4 calling  Roo $W\n"; 
     Y=Roo(&W[3]); 
    
-   <<"after calling proc $W\n"; 
+   <<"%V$W\n"; 
 
  //  chkStage("PO correct?")
 <<"Y: $Y \n"
