@@ -72,7 +72,7 @@ sz= csz(&ra);
 // R[0] = Split("80,1,2,3,40,5,6,7,8,9",','); 
 
 <<" $R[0] \n"
-!a
+
 
 
  R[1] = Split("82,5,4,3,40,5,6,7,8,9",',');
@@ -90,7 +90,7 @@ sz= csz(&ra);
 R->info(1)
 
 <<" $R[4] \n"
-!a
+
 <<" $R[::] \n"
 
 
@@ -113,8 +113,8 @@ lastRX = R[Nrecs-1]
 
 <<"%V $lastRX\n"
 
-!a
-chkOut()
+
+
 
 rval = R[0][4];
 
@@ -370,7 +370,7 @@ str sr1;
 
 
 
-/{
+/*
 // how many cols ??
  svar S;
 
@@ -387,7 +387,7 @@ str sr1;
 
 
  <<"$W[0] $W[1]\n"
-/}
+*/
 
 
  R[0] = Split("how many cols are in this record?")
@@ -486,7 +486,7 @@ chkStr(sr2,"learn")
 sr3->info(1)
 
 <<"%V $sr3\n"
-!a
+
 chkStr(sr3,"focus")
 
 

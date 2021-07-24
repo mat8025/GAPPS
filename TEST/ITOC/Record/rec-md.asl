@@ -10,14 +10,21 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-/*
-#include "debug.asl";
 
+
+<|Use_=
+Demo  of Record class MD ;
+///////////////////////
+|>
+
+
+                                                                        
+#include "debug"
 
 if (_dblevel >0) {
-   debugON()
+  debugON()
+    <<"$Use_\n"   
 }
-*/
 
 chkIn(_dblevel)
 
@@ -82,11 +89,14 @@ RSV->info(1)
 
 
 
-<<"$RSV\n"
+<<"%V $RSV\n"
 
 val = RSV[2][4]
 
-<<"$val\n"
+<<"%V$val\n"
+
+
+
 chkStr(val,"78.000000")
 
 val = RSV[2][1]
