@@ -13,7 +13,7 @@
  */ 
                                                                       
 <|Use_=
-Demo  of of cmplx array set
+Demo  of cmplx array set
 
 ///////////////////////
 |>
@@ -25,11 +25,11 @@ if (_dblevel >0) {
    debugON()
    <<"$Use_\n"   
 }
-
+/*
 filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
 filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e","ds_storesiv");
 filterFuncDebug(REJECT_,"vrealloc","init");
-
+*/
 
 chkIn(_dblevel)
 
@@ -56,7 +56,7 @@ sum = Sum({1,2,3,4,5,6,7,8,9,10});
 
 chkN(sum,55)
 
-//chkOut();
+
 
 
 
@@ -113,7 +113,7 @@ sz = Caz(g)
 
 
 
-A={1,2,3,4,} ;   // OK
+A[]={1,2,3,4,} ;   // OK
   sum = Sum(A);
 <<"%V$A \n"
 <<"%V$sum \n"
@@ -154,7 +154,7 @@ int I2[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 g[0]->Set(80,15);
 <<"$g\n"
 
-A= {11,12,13,14,15,16};
+A[]= {11,12,13,14,15,16};
 !pA
 B= A * -1;
 

@@ -1,28 +1,39 @@
-//%*********************************************** 
-//*  @script mdiag.asl 
-//* 
-//*  @comment test Mdiag func 
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                 
-//*  @date Tue Mar 12 07:50:33 2019 
-//*  @cdate Tue Mar 12 07:50:33 2019 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%///
+/* 
+ *  @script mdiag.asl 
+ * 
+ *  @comment test Mdiag func 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.45 C-Li-Rh] 
+ *  @date 07/25/2021 16:05:51 
+ *  @cdate Tue Mar 12 07:50:33 2019 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                            
 
-/*
+<|Use_=
 mdiag
 M=mdiag(V)
 take a vector and make it as leading diagonal of a square matrix 
 other elements are zero
-*/
+|>
+
+
+
+
 
 #include "debug.asl"
-debugON()
-//  diag
 
-chkIn()
+//  diag
+if (_dblevel >0) {
+   debugON()
+    <<"$Use_\n"   
+}
+
+chkIn(_dblevel);
+
 
 // print out 2D mat easily ?
 
@@ -53,6 +64,11 @@ nd = cnd(e)
 
 <<"Bounds $(Cab(E)) \n"
 <<"Size   $(Caz(E)) \n"
+
+<<"%6.2f$E \n"
+
+<<"%V$e\n"
+
 
 <<"%(4, , ,\n)%6.2f$E \n"
 

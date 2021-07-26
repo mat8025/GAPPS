@@ -58,7 +58,7 @@ void hdg(str atit)
 
   int len = slen(atit)
   int rlen = 20- len;
-<<"$_proc  $atit  $len\n"
+//<<"$_proc  $atit  $len\n"
 
   tpad = nsc(rlen,"/")
 

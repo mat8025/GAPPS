@@ -11,15 +11,42 @@
 //* 
 //***********************************************%
 
+<|Use_=
+Demo  of Sum 1D,2D,3D,4D
+and flipdim --- reverses along a dimension
+///////////////////////
+|>
+                                                               
 
+#include "debug.asl"
 
-// flipdim --- reverses along a dimension
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"   
+}
 
-
-
-// vector ?
 
 chkIn(_dblevel)
+
+
+int A[3] = {1,2,3,4}
+  sz = Caz(A)
+  <<"%V $sz $A\n"
+
+  sum = Sum(A);
+<<"%V$sum \n"
+ chkN(sum,10)
+
+
+sum = Sum({1,2,3,4,5,6,7,8,9,10});  
+
+<<"%V$sum \n"
+!p sum
+
+
+chkN(sum,55)
+
+
 
 // 2D
 
@@ -40,7 +67,7 @@ chkN(S,78)
  Redimn(R,3,4)
 T= R
 <<"$T\n"
-/{
+/*
 <<"R dimns $(cab(R)) = \n"
 <<"$R"
 <<"flipDim(R,0)\n"
@@ -49,7 +76,7 @@ T= flipDim(R,0)
 <<"flipDim(R,1)\n"
 T= flipDim(R,1)
 <<"$T\n"
-/}
+*/
 
  S2D = sum(R)
 

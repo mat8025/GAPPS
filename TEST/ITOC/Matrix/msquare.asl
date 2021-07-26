@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @script msquare.asl 
-//* 
-//*  @comment test matrix funcs 
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                 
-//*  @date Tue Mar 12 07:50:33 2019 
-//*  @cdate Tue Mar 12 07:50:33 2019 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%///
+/* 
+ *  @script msquare.asl 
+ * 
+ *  @comment test matrix funcs 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.45 C-Li-Rh] 
+ *  @date 07/25/2021 12:14:31 
+ *  @cdate Tue Mar 12 07:50:33 2019 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                            
 
 /*
 ColSum()
@@ -29,10 +31,27 @@ V->redimn() - would redimension to vector
 ///
 /// magic square
 ///
+<|Use_=
+Demo  of magic square   ;
+ColSum()
+V=ColSum(A)
+returns array V - containing the sum of the columns of a 2D array.
+dimensions [1][n_of_cols]
+V->redimn() - would redimension to vector
+
+///////////////////////
+|>
+
+
+
+
+
 #include "debug.asl"
 
-debugON()
-
+if (_dblevel >0) {
+   debugON()
+    <<"$Use_\n"   
+}
 
 
 chkIn(_dblevel)
@@ -241,7 +260,7 @@ lw = E[0:1][::]
 <<" $(typeof(A)) \n"
 
 
- A2[] = {16, 3, 2, 13, 5,10,11, 8, 9, 6, 7, 12, 4 ,15, 14, 1}
+int A2[] = {16, 3, 2, 13, 5,10,11, 8, 9, 6, 7, 12, 4 ,15, 14, 1}
 
 <<" $(typeof(A2)) \n"
 <<" $(Cab(A2)) \n"

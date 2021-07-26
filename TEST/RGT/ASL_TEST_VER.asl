@@ -840,7 +840,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
  if ((do_all || do_pan )  && (do_pan != -1)) {
 
     hdg("PAN")
-
+// TBD - more tests -- xic is using double for pan consts??
     //RunDirTests("Pan","pan,pan-loop-test,pancmp,panarray")
     RunDirTests("Pan","pan,pancmp,panarray")
 

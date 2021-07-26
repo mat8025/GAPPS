@@ -875,3 +875,7 @@ sint_l.cpp                          1.19  07/23/2021 08:28:09  xcompile
 rdp_store.cpp                       2.2  07/23/2021 12:12:01  added store refactor rdp_main
 rdp_store.cpp                       2.3  07/23/2021 12:13:42  debug
 ic_pic.cpp                          1.61  07/23/2021 14:15:28  PUSHD,PUSHF, cast to sv[0]
+rdp_l4.cpp                          1.65  07/25/2021 12:07:14  exp res,hold swop
+matrix.cpp                          1.96  07/26/2021 08:38:38  debug tidy
+sop_l.cpp                           1.94  07/26/2021 08:59:06  debug tidy
+svar_alias.cpp                      1.48  07/26/2021 09:04:10  debug tidy
