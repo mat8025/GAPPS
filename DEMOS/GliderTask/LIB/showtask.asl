@@ -81,13 +81,13 @@ proc drawTrace()
 
 
 
-
-
 TaskType = "TRI"; 
 
 int Nlegs = 3;
 
 Turnpt  Wtp[800]; // 
+
+Tleg  Wleg[20];
 
 /// open turnpoint file lat,long 
 
@@ -582,6 +582,7 @@ str wcltpt="XY";
   DBG"%V $LongE \n"
 
   TaskDistance();
+        updateLegs();
   sWo(tdwo,@value,"$totalK km",@update);
  
   drawTrace();
@@ -662,15 +663,25 @@ str wcltpt="XY";
        if (_ewoname @= "_Start_") {
              Task_update =1
              sWo(_ewoid, @cxor)
-
-             wtp = PickaTP(0)
+              wc=choice_menu("STP.m")
+               listTaskPts()	
+            if (wc @= "R") { // replace
+          wtp = PickaTP(0)
              if (wtp >= 0) {
                 wcltpt = Wtp[wtp]->Place;
                sWo(tpwo[0],@value,wcltpt,@redraw)
              }
+           }
+	    else {
+                Atarg = wc;
+                wtp=PickTP(wc,0)
+		if (wtp != -1) {
+                  wcltpt = Wtp[wtp]->Place;
+                  sWo(tpwo[0],@value,wcltpt,@redraw);
+                }
 	     sWo(tpwo[0], @cxor)
+          }
        }
-
 
        if (scmp(_ewoname,"_TP",3)) {
        
@@ -720,6 +731,7 @@ str wcltpt="XY";
 
 
                  sWo(tpwos,@redraw);
+                 sWo(legwos,@redraw);		 
                  sWo(wtpwo,@cxor);
                  listTaskPts()	
 
@@ -792,8 +804,11 @@ str wcltpt="XY";
 
      if ( Task_update ) {
       TaskDistance();
+
       sWo(tdwo,@value,"$totalK km",@update);
       Task_update = 0;
+      TaskStats();
+      updateLegs();
       }
   }
 ///

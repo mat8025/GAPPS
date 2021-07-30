@@ -30,17 +30,18 @@ class Tleg
   
   float dist;
   float pc;
-
+  float fga;
+  float msl;
  cmf Tleg() 
  {
  //<<"Starting cons \n"
   dist = 0.0
   pc = 0.0;
-    
+  fga =0;
+  msl = 0.0;
  // <<"Done cons $dist $pc\n"
  }
 }
-
 
 
 class Turnpt 
@@ -59,6 +60,7 @@ class Turnpt
   str Cltpt;
   str Radio;
   float Alt;
+  float fga;  // final glide msl to next TP?
   float Ladeg;
   float Longdeg;
   int is_airport;

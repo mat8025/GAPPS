@@ -2,12 +2,20 @@
 ///  Screen setup for showtask
 ///
 
-A=ofw("TP.m")
+A=ofw("MENUS/TP.m")
 <<[A],"title TP-Choice\n"
 <<[A],"type CHOICE\n"
 <<[A],"item Replace M_VALUE R\n"
 <<[A],"item Delete M_VALUE D\n"
 <<[A],"item Insert M_VALUE I\n"
+<<[A],"item Name? C_INTER ?\n"
+<<[A],"help  replace via name"
+cf(A)
+
+A=ofw("MENUS/STP.m")
+<<[A],"title Start-Choice\n"
+<<[A],"type CHOICE\n"
+<<[A],"item ReplaceViaMouse M_VALUE R\n"
 <<[A],"item Name? C_INTER ?\n"
 <<[A],"help  replace via name"
 cf(A)
@@ -28,6 +36,30 @@ cf(A)
 // create window and scales
 
 #include "tbqrd"
+
+
+
+void updateLegs()
+{
+ float agl;
+ str val;
+   for (i = 0; i < Ntaskpts ; i++) {
+
+    lwo = legwo[i+1];
+    fga =  Wleg[i]->fga;
+    msl =  Wleg[i]->msl;
+     dist =  Wleg[i]->dist;
+     val = "%6.0f$fga"
+     
+    <<"leg $i %6.1f $msl $dist  $fga <|$val|> \n"
+
+     sWo(lwo,@value,val,@redraw);
+
+  }
+ 
+}
+//======================================//
+
 
 
   vp = cWi(@title,"vp",@resize,0.1,0.01,0.9,0.95,0)
@@ -58,15 +90,15 @@ cf(A)
 
   sWo(vvwo, @scales, 0, 0, 100, 6000, @savepixmap, @redraw, @drawoff, @pixmapon);
 
-  mapwo= cWo(vp,@GRAPH,@resize_fr,0.2,0.26,0.95,0.95,@name,"MAP",@color,WHITE_);
+  mapwo= cWo(vp,@GRAPH,@resize_fr,0.30,0.26,0.95,0.95,@name,"MAP",@color,WHITE_);
 
 <<"%V $mapwo \n"
 
   sWo(mapwo, @scales, LongW, LatS, LongE, LatN, @save, @redraw, @drawon, @pixmapon,@savepixmap);
 
-  int LastTP = 10; 
-  int tpwo[>11];
-  int ltpwo[>11];
+  int LastTP = 12; 
+  int tpwo[>12];
+  int ltpwo[>12];
   
 
   tpwo[0]=cWo(vp,@BV,@name,"_Start_",@style,"SVR",@drawon)
@@ -89,20 +121,61 @@ cf(A)
 
   tpwo[9] =cWo(vp,@BV,@name,"_TP9_",@style,"SVR", @drawon)
 
-  tpwo[10] =cWo(vp,@BV,@name,"_Finish_",@style,"SVR", @drawon)
+  tpwo[10] =cWo(vp,@BV,@name,"_TP10_",@style,"SVR", @drawon)
 
-  finish_wo = tpwo[10]
-  tpwos = tpwo[0:10];
+  tpwo[11] =cWo(vp,@BV,@name,"_TP11_",@style,"SVR", @drawon)
 
-  MaxSelTps = 11;
+  tpwo[12] =cWo(vp,@BV,@name,"_TP12_",@style,"SVR", @drawon)
+
+
+
+  finish_wo = tpwo[12]
+  tpwos = tpwo[0:12];
+
+  MaxSelTps = 13;
   
   <<"%V $tpwos\n"
   
-  wovtile(tpwos, 0.02, 0.4, 0.15, 0.95)
-  
+  wovtile(tpwos, 0.02, 0.4, 0.14, 0.95)
+
+  int legwo[>12];
+
+  legwo[0]=-1;
+
+  legwo[1] =cWo(vp,@BV,@name,"_LEG1_",@style,"SVR",@drawon)
+
+  legwo[2] =cWo(vp,@BV,@name,"_LEG2_",@style,"SVR", @drawon)
+
+  legwo[3] =cWo(vp,@BV,@name,"_LEG3_",@style,"SVR", @drawon,@color,BLUE_,@fonthue,BLACK_)
+
+  legwo[4] =cWo(vp,@BV,@name,"_LEG4_",@style,"SVR", @drawon,@color,BLUE_,@fonthue,BLACK_)
+
+  legwo[5] =cWo(vp,@BV,@name,"_LEG5_",@style,"SVR", @drawon,@color,ORANGE_,@fonthue,BLACK_)
+
+  legwo[6] =cWo(vp,@BV,@name,"_LEG6_",@style,"SVR", @drawon)
+
+  legwo[7] =cWo(vp,@BV,@name,"_LEG7_",@style,"SVR", @drawon)
+
+  legwo[8] =cWo(vp,@BV,@name,"_LEG8_",@style,"SVR", @drawon)
+
+  legwo[9] =cWo(vp,@BV,@name,"_LEG9_",@style,"SVR", @drawon)
+
+  legwo[10] =cWo(vp,@BV,@name,"_LEG10_",@style,"SVR", @drawon)
+
+  legwo[11] =cWo(vp,@BV,@name,"_LEG11_",@style,"SVR", @drawon)
+
+  legwo[12] =cWo(vp,@BV,@name,"_LEG12_",@style,"SVR", @drawon)
+
+  legwos = legwo[1:12];
+
+  wovtile(legwos, 0.15, 0.4, 0.29, 0.90)
+
+
   titleVers();
-  gflush()
+  gflush();
+  
   sWo(tpwos,@color,ORANGE_,@fonthue,BLACK_,@font,F_TINY_,@redraw);
+  sWo(legwos,@color,BLUE_,@fonthue,WHITE_,@font,F_TINY_,@redraw);
 
   TASK_wo=cWo(vp,@BV,@resize,0.05,0.25,0.15,0.34);
   

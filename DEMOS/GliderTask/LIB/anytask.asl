@@ -503,6 +503,8 @@ totalD = 0;
 //totalD->info(1)
 
 float TKM[20];
+
+
   for (nl = 0; nl < n_legs ; nl++) {
 
        L1 = Wtp[nl]->Ladeg;
@@ -590,6 +592,8 @@ DBG"%V $Wleg[nl]->dist\n"
     }
 
 
+    Wtp[nl]->fga = agl;
+
     tpb = Wtp[nl]->Place
     
     ident = Wtp[nl]->Idnt
@@ -633,7 +637,7 @@ wsi= nsc((15-idlen)," ")
  // <<"$li $Wleg[li]->dist  $Wleg[li]->pc_tot \n"
 
 
- <<"$li ${tpb}${ws}${ident}${wsi} %9.3f${Wtp[li]->Lat} %11.3f${Wtp[li]->Lon}\s%11.0f$agl ${Wtp[li]->Alt} %4.1f$Wleg[li]->pc_tot\t"
+ <<"$li ${tpb}${ws}${ident}${wsi} %9.3f${Wtp[li]->Lat} %11.3f${Wtp[li]->Lon}\s%11.0f${Wtp[li]->fga} ${Wtp[li]->Alt} %4.1f$Wleg[li]->pc_tot\t"
 <<"%5.1f$Wleg[li]->dist\t$rtotal\t$rtime\t%6.2f${Wtp[li]->Radio}"
 <<"\t%6.0f$TC[li] "
 <<"\t%6.2f$Dur[li]\n"

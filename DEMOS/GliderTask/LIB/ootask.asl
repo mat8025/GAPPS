@@ -513,7 +513,7 @@ dur =  (total*km_to_nm) /avespd
 
 
 
-/{
+  /*
 
 
   TBD ==============================
@@ -521,5 +521,5 @@ dur =  (total*km_to_nm) /avespd
   add  bearing to next turnpoint
 
 
-/}
+  */
 

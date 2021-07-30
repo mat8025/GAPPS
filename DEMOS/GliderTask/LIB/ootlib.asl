@@ -89,7 +89,7 @@ DBG"$_proc  $Ntaskpts \n"
    float lon1 = 1000.0;
    float la2   = 1000.0;
    float lon2 = 1000.0;
-
+   float msl;
   Min_lat = 90.0
   Max_lat = 0.0
   Min_W = 109.0
@@ -106,7 +106,7 @@ DBG"$_proc  $Ntaskpts \n"
      tpl = Wtp[index]->Place;
      
      la2 = Wtp[index]->Ladeg;
-
+     msl = Wtp[index]->Alt;
 
      if (la2 > Max_lat) {
          Max_lat = la2;
@@ -129,14 +129,25 @@ DBG"$_proc  $Ntaskpts \n"
 
      if (la1 != 1000.0) {
         kmd = computeGCD(la1,la2,lon1,lon2);
+	
      }
 //<<" tpt $tpl $i  $index <|$Wtp[index]->Place|>  $Wtp[index]->Ladeg  $Wtp[index]->Longdeg %6.0f $kmd\n"
      la1 = la2;
      lon1 = lon2;
      adjust++;
      totalK += kmd;
-   }
+// add in the fga to reach this turnpt from previous
+     Wleg[i]->msl = msl;
+     if (i > 0) {
+      Wleg[i-1]->dist = kmd;
+      ght = (kmd * km_to_feet) / LoD
+      fga = ght + 1200.0 + msl
+      Wleg[i-1]->fga = fga;
+     }
 
+   }
+   
+  Wleg[Ntaskpts]->dist = 0.0;
 
 <<"%V $Min_lat $Min_W $Max_lat $Max_W \n"
 <<"%V $LongW $LatS $LongE $LatN   \n"
@@ -153,6 +164,16 @@ if (adjust >=2) {
 //==============================//
 
 
+void TaskStats()
+{
+
+   for (i = 0; i < Ntaskpts ; i++) {
+
+     <<"Stat $i $Wleg[i]->msl $Wleg[i]->dist   $Wleg[i]->agl\n"
+
+  }
+ 
+}
 
 
 proc  computeHTD()
@@ -330,7 +351,7 @@ proc computeGCD(float la1,float la2,float lo1,float lo2)
 }
 
 //==================================================
-proc screen_dump()
+void screen_print()
 {
 # make it monochrome
   ff=open_laser("st.ps")
@@ -399,7 +420,7 @@ proc write_task()
 
     if (tsk_file @= "")       return
     
-  val = getWoValue(TASK_wo)
+     val = getWoValue(TASK_wo)
 
     WF=ofw(tsk_file)
     w_file(WF,val,"\n")
@@ -931,6 +952,7 @@ proc setWoTask()
      }
 
       TaskDistance();
+      
 
 
  // finish_key = getWoValue(finish_wo)
@@ -1023,7 +1045,7 @@ proc task_menu(int w)
             zoom_to_task(mapwo,1)
   }
 
-   else  if (ur_c @= "save") {
+   else  if (ur_c @= "save_pic") {
        save_image(w,"task_pic")
     }
     
@@ -1039,7 +1061,6 @@ proc task_menu(int w)
     else if (ur_c @= "delete_all") {
       delete_alltps()
       DrawMap(w)
-
     }
     else if (ur_c @= "coors") {
       new_coors(w)
@@ -1060,6 +1081,7 @@ proc task_menu(int w)
       reset_map()
     }
     else if (ur_c @= "read_task") {
+
       read_task(tfile,1)
       set_task()
       zoom_to_task(tw,0)
@@ -1068,32 +1090,20 @@ proc task_menu(int w)
     }
 
     else if (ur_c @= "screen_print") {
-      screen_dump()
+      screen_print()
       }
       
     else if (ur_c @= "write_task") {
       write_task()
     }
     
-    else if (ur_c @= "get_start") {
-      ff=w_show_curs(tw,1,"left_arrow")
-      get_tpt(0)
-      set_task()
-    }
-
-    else if ( scmp(ur_c,"get_tpt_",8)) {
-      wtpt = spat(ur_c,"get_tpt_",1)
-   //   ff=w_show_curs(tw,1,"left_arrow")
-      get_tpt(wtpt)
-      set_task()
-    }
-
+/*
     else if (ur_c @= "get_finish") {
     //  ff=w_show_curs(tw,1,"left_arrow")
       get_tpt(-1)
       set_task()
     }
-
+*/
 for (i=0; i < Ntaskpts; i++) {
 <<"$i    $Taskpts[i]  Wtp[i]->Place\n"
  }
