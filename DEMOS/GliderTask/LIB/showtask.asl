@@ -1,23 +1,26 @@
-//%*********************************************** 
-//*  @script showtask.asl 
-//* 
-//*  @comment show/create glider task 
-//*  @release CARBON 
-//*  @vers 3.3 Li Lithium [asl 6.2.60 C-He-Nd]                             
-//*  @date Tue Jun 23 07:05:33 2020 
-//*  @cdate 7/21/1997 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2019 → 
-//* 
-//***********************************************%
+/* 
+ *  @script showtask.asl 
+ * 
+ *  @comment show/create glider task 
+ *  @release CARBON 
+ *  @vers 3.4 Be Beryllium [asl 6.3.45 C-Li-Rh] 
+ *  @date 07/30/2021 09:02:34 
+ *  @cdate 7/21/1997 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                         
 ///
 /// "$Id: showtask.asl,v 1.5 1997/07/21 15:01:08 mark Exp mark $"
 ///
 
-# map of turn_points
+
 
 <|Use_=
- view and select turnpts  ;
+ view and select turnpts
+ create read tasks   
 ///////////////////////
 |>
 
@@ -45,9 +48,10 @@ float Margin = 0.05;
 
 int Ntpts = 1000;
 
+#include "tpclass"
 #include "ootlib"
 
-int Maxtaskpts = 10;
+int Maxtaskpts = 13;
 
 
 
@@ -117,7 +121,7 @@ A=  ofr(tp_file);
  }
 
 if (use_cup) {
-  RF= readRecord(A,@del,',');
+  RF= readRecord(A,@del,',',@comment,"#");
 }
 else {
  RF= readRecord(A);
@@ -153,6 +157,8 @@ longv = RF[WH[0][0]][3]
 
 
 //================================//
+ svar Wval;
+
 
   A=ofr(tp_file)
   
@@ -166,14 +172,20 @@ longv = RF[WH[0][0]][3]
   Ntaskpts = 0;
   Ntp = 0;
 
- svar Wval;
+
   if (!use_cup) {
          C=readline(A);
 	 C=readline(A);
    }
-   
-  while (1) {
 
+int c1;
+
+while (1) {
+
+  //  before = ftell(A)
+   c1 = fgetc(A,-1);
+    //after = ftell(A)
+//<<"$Ntp $wd1 $before $after\n"    
     if (use_cup) {
                nwr = Wval->ReadWords(A,0,',')
     }
@@ -184,24 +196,23 @@ longv = RF[WH[0][0]][3]
 	      break
             }
 	    
-            if (nwr > 6) {
-	    
+    if (nwr > 6) {
 
-
-    if (use_cup) {
+     if ( c1 != '#') {
+     
+      if (use_cup) {
              Wtp[Ntp]->TPCUPset(Wval);
-    }
-    else {
+      }
+      else {
             Wtp[Ntp]->TPset(Wval);
-    }
+      }
 
 
              Ntp++;
-            }
+//<<"$Ntp $wd1 $Wval[0] $Wval[1]\n"
+      }
+    }
 
-      //  if (Ntp > 10) {
-      //       break; // DEBUG
-      //  }
       }
 
 <<" Read $Ntp turnpts \n"
@@ -660,7 +671,7 @@ str wcltpt="XY";
 
       }
 
-       if (_ewoname @= "_Start_") {
+       else if (_ewoname @= "_Start_") {
              Task_update =1
              sWo(_ewoid, @cxor)
               wc=choice_menu("STP.m")
@@ -669,7 +680,7 @@ str wcltpt="XY";
           wtp = PickaTP(0)
              if (wtp >= 0) {
                 wcltpt = Wtp[wtp]->Place;
-               sWo(tpwo[0],@value,wcltpt,@redraw)
+                sWo(tpwo[0],@value,wcltpt,@redraw)
              }
            }
 	    else {
@@ -683,7 +694,7 @@ str wcltpt="XY";
           }
        }
 
-       if (scmp(_ewoname,"_TP",3)) {
+       else if (scmp(_ewoname,"_TP",3)) {
        
              Task_update =1
              np = spat(_ewoname,"_TP",1)
@@ -698,7 +709,7 @@ str wcltpt="XY";
 
              wc=choice_menu("TP.m")
                listTaskPts()	
-             if (wc @= "R") { // replace
+             if (wc == "R") { // replace
 
              wtp = PickaTP(Witp)
              if (wtp >= 0) {
@@ -706,7 +717,7 @@ str wcltpt="XY";
               sWo(wtpwo,@value,wcltpt,@redraw);
              }
              }
-             else if (wc @= "D") {
+             else if (wc == "D") {
                 <<"delete and move lower TPs up!\n"
 
                delete_tp(Witp); // 
@@ -714,7 +725,7 @@ str wcltpt="XY";
 
              }
 
-             else if (wc @= "I") {
+             else if (wc == "I") {
                  insert_tp(Witp);
 	//	 insert_tp();
              }
@@ -738,7 +749,7 @@ str wcltpt="XY";
        }
 
 
-       if (_ewoname @= "ALT") {
+       else if (_ewoname @= "ALT") {
 
          drawit = 0;
          dindex = rint(_erx)
@@ -784,12 +795,25 @@ str wcltpt="XY";
 
         }
 
-       else if (_ewoname @= "TaskMenu") {
-              task_menu(mapwo)
-	      drawit = 0;
+       else if (_ewoname == "TaskMenu") {
+            sdb(1)
+             //task_menu(mapwo)
+    //          read_task()
+  task_file = "XXX";
+  task_file = navi_w("TASK_File","task file?",task_file,".tsk","TASKS")
+  <<"%V$task_file\n"
+  
+             readTaskFile (task_file);
+	     
+<<"after readTaskFile (task_file) $SetWoT \n";
+
+         setWoTask()
+<<"done  setWoTask() $SetWoT \n"
+             Task_update =1;
+
        }
        
-       if ( _ekeyw @= "Menu") {
+       else if ( _ekeyw @= "Menu") {
            <<" task type is $_ekeyw \n"
            TaskType = _ekeyw;
            <<" Set %V$TaskType \n"
@@ -809,8 +833,17 @@ str wcltpt="XY";
       Task_update = 0;
       TaskStats();
       updateLegs();
+
+      sWo(tpwos,@redraw);
+       sWo(legwos,@redraw);		 
       }
   }
+
+
+exit_gs(1);
+
+exit();
+
 ///
 
 //////////////////////////// TBD ///////////////////////////////////////////

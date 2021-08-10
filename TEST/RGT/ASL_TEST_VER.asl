@@ -485,14 +485,19 @@ if ((do_all || do_try ) && (do_try != -1)) {
   if ( (do_sops || do_all) && (do_sops != -1)) {
       //  need more str ops tests than this!
 
-  RunDirTests("Sops","sops");
-  
+   RunDirTests("Sops","sops");
+
+   hdg("Strops");
+   
+   RunDirTests("Strops","scmp_syntax");
+
+   hdg("Splice");
    RunDirTests("Splice","splice,strsplice");
  
   // make this a pattern OP
 
  // RunSFtests("Date,Sele,Sstr,Spat,Str,Split,Regex,Fread,Trunc,Tranf");
-   RunSFtests("Date,Sele,Sstr,Spat,Split,Regex,Fread,Trunc,Tranf");
+   RunSFtests("Scmp,Date,Sele,Sstr,Spat,Split,Regex,Fread,Trunc,Tranf");
 
 
   }

@@ -13,14 +13,29 @@
 ///
 ///  Test Query Window
 ///
- include "debug.asl"; 
- include "gevent.asl"; 
- debugON()
+                                                                      
+<|Use_=
+Demo  of query window
 
-include "graphic"
+///////////////////////
+|>
+                                                               
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"   
+}
 
 
-setdebug(1)
+
+
+
+#include "graphic"
+
+
+
 
 
 A=ofw("Food.m")
@@ -42,13 +57,17 @@ A=ofw("Meats.m")
 
 cf(A)
 
-
+#include "gevent.asl"; 
 
    vp = cWi(@title,"QUERY")
 
     sWi(vp,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
+    sWi(vp,@resize,0.1,0.1,0.45,0.95,0)
+    sWi(vp,@clip,0.1,0.2,0.95,0.8)
 
-    sWi(vp,@clip,0.1,0.2,0.95,0.9)
+
+   tdwo= cWo(vp, @BV,@resize_fr,0.01,0.01,0.14,0.1,@name,"TaskDistance")
+   sWo(tdwo,@color,WHITE_,@style,"SVB",@redraw);
 
     sWi(vp,@redraw)
 
@@ -56,7 +75,32 @@ cf(A)
 
 
 
-/{
+   vp2 = cWi(@title,"QUERY2")
+
+    sWi(vp2,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
+    sWi(vp2,@resize,0.5,0.1,0.95,0.95,0)
+    sWi(vp2,@clip,0.1,0.2,0.95,0.8)
+
+   tdwo2= cWo(vp2, @BV,@resize_fr,0.01,0.01,0.14,0.1,@name,"TBD")
+   sWo(tdwo2,@color,WHITE_,@style,"SVB",@redraw);
+
+   tdwo3= cWo(vp, @TEXT,@resize_fr,0.01,0.8,0.9,0.95,@name,"TEXT")
+   sWo(tdwo3,@value,"Some text here",@fonthue,BLACK_,@drawon,@redraw);
+sWo(tdwo3,@bhue,WHITE_,@scales,0,0,1,1)
+ sWo(tdwo3,@font,"big")
+
+   tdwo4= cWo(vp2, @TEXT,@resize_fr,0.01,0.8,0.9,0.95,@name,"TEXT")
+   sWo(tdwo4,@value,"Some text here",@fonthue,BLACK_,@drawon,@redraw);
+   sWo(tdwo4,@bhue,WHITE_,@scales,0,0,1,1)
+ sWo(tdwo4,@clipsize,0.1,0.1,0.9,0.9,@clipbhue,LILAC_)
+
+ sWo(tdwo4,@font,"small")
+    sWi(vp2,@redraw)
+
+
+
+
+/*
 <<" using menu function \n"
 ans=popamenu("Food.m");
 
@@ -74,7 +118,7 @@ ans = exeGwmFunc("decisionw","CHECK","did decisionw appear ?", "YES", "NO" )
 
 <<"%V$ans\n"
 
-/}
+*/
 
 
 <<" using query function \n"
@@ -94,7 +138,7 @@ ans = queryw("QUERY?","Something?","$ans");
 
 //<<"you typed $ans \n"
 
-  sipause(1);
+  
 
   kloop = 1;
 
@@ -103,23 +147,26 @@ ans = queryw("QUERY?","Something?","$ans");
 
  while (1) {
 
-  <<" using query function - wait on click \n"
+  <<" using query function - wait on click $kloop \n"
 
     eventWait();
 
   <<"got event %V $_etype $_erx  $_ery $_ex $_ey $_ebutton\n"
   // then center? query window at that position
-    eventWait();
+
 //   ans = exeGwmFunc("queryw","Question?","AnotherThing $kloop ?","$ans", qwx, qwy);
 
-   ans = queryw("Question?","AnotherThing $kloop ?","$ans", _ex, _ey);
-   titleMessage(ans);
-   
+   txt = queryw("Question?","AnotherThing $kloop ?","$ans", _ex, _ey);
+  
+//   titleMessage(ans);
+//     sWo(tdwo3,@font,MEDIUM_,@textr,"$ans",0.0,0.4,0,0,MAGENTA_);
+
+
 
   <<"$kloop you typed $ans \n"
   qwy -= 10;
   qwx += 200;
-  sipause(1);
+  //sipause(1);
 
   if (scmp(ans,"salida")) {
       break;
@@ -128,11 +175,22 @@ ans = queryw("QUERY?","Something?","$ans");
   if (scmp(ans,"quit")) {
       break;
   }
-  
-  kloop++;
+
+    sWi(vp,@redraw)
+        sWi(vp2,@redraw)
+
+  sWo(tdwo3,@print,"PR_DEF\n");
+    
+    sWo(tdwo3,@textr,"$txt",0.0,0.1,0,0,BLACK_);
+
+   sWo(tdwo4,@print,"PR_ABC\n");   
+
+   sWo(tdwo4,@textr,"$txt",0.0,0.1,0,0,BLACK_);
+
+kloop++;
  }
 
  <<" and we have quit the loop\n"
 
 
-gsexit();
+exitgs();

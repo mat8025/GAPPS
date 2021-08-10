@@ -47,6 +47,7 @@ chkIn(_dblevel)
 
 Main_init = 1;
 
+#include "tpclass"
 #include "ootlib"
 
 //<<"%V $totalD\n"
@@ -62,10 +63,10 @@ float Cruise_speed = (CSK * nm_to_km);
 // try Wtp as args
 
 //<<" done class def \n"
-
+<<"%V$Ntp_id\n"
 
 Turnpt  Wtp[50];
-
+<<"%V$Ntp_id\n"
 
 Tleg  Wleg[20];
 

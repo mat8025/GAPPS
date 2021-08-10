@@ -18,13 +18,13 @@
 <<"loading gevent.asl \n"
 
 
-proc eventDecode()
+void eventDecode()
 {
 
    // can get all of these in one by using ref parameters
    _ename = Ev->getEventType(_eid,_etype,_ewoid,_ewoaw,_ebutton,_ekeyc,_ewoproc,_ex,_ey,_ewoval);
      
-//<<"$_proc %V $_ex $_ey  $_ewoid\n"
+<<"$_proc %V $_ex $_ey  $_ewoid\n"
 
 // get all below button,rx,ry via parameters to wait_for_msg
 //    _ewoval = Ev->getEventWoValue();
@@ -57,7 +57,7 @@ proc eventDecode()
 //<<"%V $_evalue \n"
     if (ewsz >= 2) {
     _ekeyw2 = _ewords[1];
-   if (ewsz >= 3) 
+     if (ewsz >= 3) 
     _ekeyw3 = _ewords[2];
     }
 
@@ -108,7 +108,7 @@ proc eventWait()
 
 
     _emsg = Ev->waitForMsg();
-//<<"$_proc  %V $_emsg\n"
+<<"$_proc  %V $_emsg\n"
      Ev->geteventrxy(_erx,_ery);    
      Ev->geteventwoid(_ewoid);
 //<<"$_proc  %V $_ewoid $_erx $_ery\n"     

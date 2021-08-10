@@ -1,23 +1,31 @@
-//%*********************************************** 
-//*  @script tpclass.asl 
-//* 
-//*  @comment turnpt class for showtask 
-//*  @release CARBON 
-//*  @vers 1.3 Li Lithium [asl 6.2.60 C-He-Nd]                               
-//*  @date Tue Jun 23 07:00:24 2020 
-//*  @cdate 1/1/2001 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script tpclass.asl 
+ * 
+ *  @comment turnpt class for showtask 
+ *  @release CARBON 
+ *  @vers 1.4 Be Beryllium [asl 6.3.46 C-Li-Pd] 
+ *  @date 08/09/2021 09:57:07 
+ *  @cdate 1/1/2001 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+;//-----------------------//                                                                           
 //myScript = getScript();
 
 
-//<<"read in tpclass\n"
-
+<<"read in tpclass\n"
+//<<" que pasa\n"
 //============================================
-int Ntp_id = 0;
 
+
+
+
+
+int Tleg_id = 0;
+
+<<"%V $_include $Tleg_id\n"
 
 class Tleg 
  {
@@ -32,6 +40,10 @@ class Tleg
   float pc;
   float fga;
   float msl;
+
+  str Place;
+  str Tow;
+
  cmf Tleg() 
  {
  //<<"Starting cons \n"
@@ -43,6 +55,7 @@ class Tleg
  }
 }
 
+int Ntp_id = 0;
 
 class Turnpt 
  {
@@ -226,13 +239,24 @@ cmf SetPlace (str val)
 //=========================//
  cmf Turnpt()
     {
-    // <<"CONS $_proc \n"
+
+
+//id = Ntp_id++;
+            Ntp_id++;
+	    id = Ntp_id;
       Place=" ";
       Ladeg = 0.0;
       Longdeg = 0.0;
-      id = Ntp_id++;
-    }
+    //<<"CONS $id $Ntp_id\n"
+}
 //=========================//
 
 }
 //======================================//
+
+
+
+
+<<"%V $_include $Ntp_id\n"
+
+

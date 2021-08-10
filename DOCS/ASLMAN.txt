@@ -4471,6 +4471,19 @@ print(A," is less than ",B)
 .EF
 =============================================================
 .BF
+query()
+.(x
+query
+.)x 
+.FD
+ans=query("type name ->:")
+puts prompt string.
+reads typed string into variable 
+
+
+.EF
+=============================================================
+.BF
 query_w()
 .(x
 queryw

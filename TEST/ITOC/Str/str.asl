@@ -39,6 +39,52 @@ if (_dblevel >0) {
 chkIn(_dblevel)
 
 
+str as = "aBc"
+
+str bs = "aBc"
+
+str cs = "dEf"
+
+
+  if (as @= bs) {
+<<"%V $as @=  $bs\n"
+  }
+
+
+  if (as == bs) {
+<<"%V $as  ==  $bs\n"
+  }
+
+
+  if (as @= cs) {
+<<"%V $as @=  $cs\n"
+  }
+
+
+  if (as == cs) {
+<<"%V $as  ==  $cs\n"
+  }
+
+
+  if (as != cs) {
+<<"%V $as  !=  $cs\n"
+  }
+
+
+  if (!(as @= cs)) {
+<<"%V $as  ! @=  $cs\n"
+  }
+
+
+
+
+
+
+chkT(1)
+chkOut()
+
+
+
  av = 1;
  <<"%V$av\n"
 

@@ -879,3 +879,6 @@ rdp_l4.cpp                          1.65  07/25/2021 12:07:14  exp res,hold swop
 matrix.cpp                          1.96  07/26/2021 08:38:38  debug tidy
 sop_l.cpp                           1.94  07/26/2021 08:59:06  debug tidy
 svar_alias.cpp                      1.48  07/26/2021 09:04:10  debug tidy
+fileop.cpp                          1.77  07/30/2021 10:09:56  multiple args to w_file
+wob_cr.cpp                          1.44  07/31/2021 17:16:12  SEND_INFO default
+navi_w.cpp                          1.26  08/08/2021 09:58:59  quit returns null str

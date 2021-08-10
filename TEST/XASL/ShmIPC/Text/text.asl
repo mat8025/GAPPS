@@ -28,9 +28,21 @@ envdebug()
     Xgm = spawnGWM()
   }
 
-include "debug.asl"
-include "hv.asl"
-include "tbqrd"
+
+
+!!"xset fp+ /home/mark/gasp-CARBON/fonts "
+<<"xset fp+ /home/mark/gasp-CARBON/fonts "
+
+//ans=query("-->")
+
+
+
+#include "debug.asl"
+#include "hv.asl"
+#include "tbqrd"
+
+
+ignoreErrors()
 
   txtwin = cWi("title","MK_INFO")
 
@@ -68,6 +80,26 @@ include "tbqrd"
  sWo(bigwo,@font,F_BIG_)
 
 
+ ipwo=cWo(txtwin,@TEXT,@name,"InputText",@VALUE,"",@color,RED_,@resize,6,1,12,12,3)
+  //sWo(ipwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"inputText")
+  //sWo(ipwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"inputValue",@style,SVO_)
+
+ sWo(ipwo,@clipsize,0.1,0.1,0.9,0.9,@clipbhue,LILAC_)
+ sWo(ipwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"editValue")
+ sWo(ipwo,@font,"small")
+//ans=query("--> italic font F_ITALIC_")
+sWo(ipwo,@font,F_ITALIC_)
+
+
+
+
+// resize fractional 0, pixel offset 1, real scales 2, grid pos 3
+
+
+
+
+
+
  lvwo=cWo(txtwin,@TEXT,@name,"PrintText",@VALUE,"lvtext",@color,"orange",@resize,2,1,3,9,3)
  sWo(lvwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_ ,@pixmapoff,@drawon,@save)
  sWo(lvwo,@SCALES,0,0,1,1)
@@ -77,15 +109,9 @@ include "tbqrd"
  sWo(rvwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@save)
  sWo(rvwo,@SCALES,0,0,1,1)
  sWo(rvwo,@font,"rotated90")
-// resize fractional 0, pixel offset 1, real scales 2, grid pos 3
 
- ipwo=cWo(txtwin,@TEXT,@name,"InputText",@VALUE,"",@color,RED_,@resize,6.1,1,12,12,3)
-  //sWo(ipwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"inputText")
-  //sWo(ipwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"inputValue",@style,SVO_)
 
- sWo(ipwo,@clipsize,0.1,0.1,0.9,0.9,@clipbhue,LILAC_)
- sWo(ipwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"editValue")
- sWo(ipwo,@font,"italic")
+
 
 
  ipwo2=cWo(txtwin,@TEXT,@name,"InputText2",@VALUE,"abc",@color,RED_,@resize,12.1,1,19,12,3)
@@ -101,11 +127,15 @@ include "tbqrd"
 
 
   int txwos[] = {lvwo,rvwo,bigwo,two};
+//  int txwos[] = {two, bigwo,ipwo};
 
 
  titleVers();
  
 //////////////////////////////////////////////////
+
+//ans=query("-->")
+
 
 include "gevent"
 
@@ -116,8 +146,7 @@ yp = 0.5
 
 char txtip[512];
 
-!!"xset fp+ /home/mark/gasp-CARBON/fonts "
-<<"xset fp+ /home/mark/gasp-CARBON/fonts "
+
 
 
 
@@ -155,7 +184,9 @@ while (1) {
 
       sWo(bigwo,@font,BIG_,@textr,"$txt",0.0,0.6,0,0,BLACK_);
       sWo(bigwo,@font,MEDIUM_,@textr,"$txt",0.0,0.4,0,0,MAGENTA_);
-      sWo(bigwo,@font,SMALL_,@textr,"$txt",0.0,0.5,0,0,BLACK_);            
+      sWo(bigwo,@font,SMALL_,@textr,"$txt",0.0,0.5,0,0,BLACK_);
+
+      sWo(lvwo,@font,SMALL_,@print,"$txt");            
 
       mnum++;
       //sWo(ipwo,@value,"");
