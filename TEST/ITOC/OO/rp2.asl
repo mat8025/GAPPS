@@ -11,10 +11,17 @@
 //* 
 //***********************************************%
 
+
+<|Use_=
+  demo test class member access 
+|>
+
+
 #include "debug"
 
 if (_dblevel >0) {
    debugON()
+   <<"$Use_\n"   
 }
 
 filterFileDebug(REJECT_,"scope_e","proc_e.cpp","ic_pushsivele.cpp","ic_pop.cpp");
@@ -360,9 +367,19 @@ z2 = ar + am1r;
  chkN(x,x3);
 
 
+<<"%V $a   $am2\n"
+!a
+
 x1=C[a]->setRooms(C[am2]->getrooms())) ;
+
+
+<<"%V $x1\n"
+!a
+
 x2 =C[am1]->getrooms() ;
+
 x3 =C[a1]->setRooms(x1+x2)
+
 x=C[a1]->setRooms(C[am1]->getrooms() + C[a]->setRooms(C[am2]->getrooms())) ;
 
 <<"%V $x $x1 $x2 $x3 \n"

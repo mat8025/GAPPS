@@ -11,11 +11,20 @@
 //* 
 //***********************************************%
 
+
+
+<|Use_=
+  demo some OO syntax/ops
+|>
+
+
 #include "debug"
 
 
 if (_dblevel >0) {
    debugON()
+    <<"$Use_\n"   
+
 }
 
 
@@ -226,7 +235,7 @@ chkStage(" Simple Obj reference")
  <<"%V $Act_ocnt \n"
 
  X->info(1)
-!a
+
 od=X[2]->GetWD()
 
 <<"X[2] %V $od\n"
@@ -422,7 +431,7 @@ chkStage(" Simple Get/Set")
 
  chkN(yt,47);
   X->info(1)
-!a
+
 
  yt = X[3]->otype;
 
@@ -503,7 +512,7 @@ chkStage(" Simple Get/Set")
  m = 4
  m2 =3
  X->info(1)
-!a
+
  yst =  X[2]->Set(m)
 
  <<"%V $yst\n"
@@ -643,7 +652,8 @@ for (i = 5; i >= 0; i--) {
    yt = X[1]->otype
    <<"%V  $yt  $X[1]->otype \n"
 
-chkOut()
+
+
 
 //////////////////////   do this in separate test module ////////////
 
@@ -961,9 +971,6 @@ j = 3
 
 
 
-chkOut()
-
-
 ///  Needs XIC FIX
 <<"///////////////G[i]->A[j]->otype////////////////////////////\n"
 
@@ -1019,9 +1026,9 @@ Dil G[10]
       yt = G[i]->A[j]->t 
 <<"[${i}] [$j ] %V $k $yt \n"
       k++
-!a
 
-chkOut()
+
+
 
   for (i = 0; i < 3 ; i++) {
 
@@ -1032,7 +1039,7 @@ chkOut()
       yt = G[i]->A[j]->t 
 <<" [${i}] [${j}] %V $k $yt \n"
       k++
-!a      
+
    }
 
   }
