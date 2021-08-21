@@ -18,7 +18,7 @@ Demo  of if command
 |>
 
 
-#include "debug.asl"
+#include "debug"
 
 if (_dblevel >0) {
    debugON()
@@ -808,14 +808,62 @@ c = 0;
 
  cs ="ABCDefg"
  sl = slen(cs)
- 
+
+ts=sstr(";/{}\\",cs,1) 
+<<"%V$is_if $sl $ts\n"
+
+ if ( (  sstr(";/{}\\",cs,1) == -1) ) { 
+<<"Pass exp test\n"
+  chkT(1)
+ }
+ else {
+<<"Fail exp test\n"
+  chkT(0)
+   
+ }
+
+ if ( (sl >0 ) && (  sstr(";/{}\\",cs,1) == -1) ) { 
+    chkT(1)
+       <<"Pass exp && exp test\n"
+ }
+ else {
+   <<"Fail exp && exp test\n"
+    chkT(0)
+
+ }
+
+
+
+ if (!is_comment && (sl>0) && (  sstr(";/{}\\",cs,1) == -1) ) { 
+    chkT(1)
+       <<"Pass not && exp && exp test\n"
+ }
+ else {
+   <<"Fail not && exp && exp test\n"
+  chkT(0)
+
+ }
+
+ if (!is_comment && !is_proc &&  (sl>0) && (  sstr(";/{}\\",cs,1) == -1) ) { 
+    chkT(1)
+       <<"Pass not && exp && exp test\n"
+ }
+ else {
+   chkT(0)
+   <<"Fail not && exp && exp test\n"
+ }
+
+
+
+
+
  if ( !is_comment && !is_proc && !is_if  && (sl > 0) && (  sstr(";/{}\\",cs,1) == -1) ) { 
     chkT(1)
   <<"all tests true %V is_comment && $is_proc && $is_if $sl\n" 
  }
  else {
   chkT(0)
-
+   <<"Fail not && not &&  exp && exp test\n"
  }
 
 

@@ -14,7 +14,7 @@
 /// wait and catch mouse/key window events
 //
 //
-
+;
 <<"loading gevent.asl \n"
 
 
@@ -41,7 +41,7 @@ void eventDecode()
     }
     else {
 //  <<"$_proc %V $_emsg \n"
-    if (!(_emsg @= "")) {
+    if (_emsg != "") {
     _ewords = Split(_emsg);
 
     ewsz=Caz(_ewords);

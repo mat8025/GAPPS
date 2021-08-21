@@ -882,3 +882,8 @@ svar_alias.cpp                      1.48  07/26/2021 09:04:10  debug tidy
 fileop.cpp                          1.77  07/30/2021 10:09:56  multiple args to w_file
 wob_cr.cpp                          1.44  07/31/2021 17:16:12  SEND_INFO default
 navi_w.cpp                          1.26  08/08/2021 09:58:59  quit returns null str
+parset_e.cpp                        2.87  08/13/2021 09:09:15  icstack create via new - clearStack function
+rdp_token.cpp                       1.74  08/20/2021 11:11:12  transfer to self check
+args_process_e.cpp                  2.38  08/20/2021 11:13:06  check for STR arg - no getExp
+tokquote.cpp                        1.79  08/21/2021 09:16:49  ctype == STRV
+rdp_token.cpp                       1.75  08/21/2021 09:19:46  literal string

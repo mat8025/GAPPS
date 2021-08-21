@@ -11,8 +11,20 @@
 //* 
 //***********************************************%
 
+<|Use_=
+  demo some OO syntax/ops
+|>
+
 
 #include "debug"
+
+
+if (_dblevel >0) {
+   debugON()
+    <<"$Use_\n"   
+
+}
+
 chkIn (_dblevel)
 
 
@@ -33,7 +45,7 @@ proc checkRooms(int i, int k)
   kid =  C[k]->id;
 
 <<"%V $i $irm $iid $k $krm $kid\n"
-!a
+
 }
 //================
 
@@ -142,7 +154,7 @@ class Building {
    b7id = C[b7]->id;
 <<"%V $b7rooms $b7id\n"
 
-!a
+
 
    checkRooms(5,7)
 
@@ -162,7 +174,7 @@ class Building {
    Arooms = A->getRooms();
 
 <<"%V $Arooms \n"
-!a
+
    chkN (Arooms,14);
    Afloors = A->getFloors();
 
@@ -351,7 +363,7 @@ chkN (a,15)
 
   a=   C[j]->floors
 <<" %I $C[j]->floors  $a \n"
-chkN (a,15)
+  chkN (a,15)
 
 
 <<" Single object ! \n"
@@ -413,7 +425,7 @@ chkN (a,15)
 <<" %v $bnf \n"
 
    bz->Print()
-!a
+
 <<" making copy of obj bz \n"
    d = bz
 
@@ -426,7 +438,6 @@ chkN (a,15)
  //  d->pinfo()
     info(d)
     <<"d: $d\n"
-!a
 
    c = d
 
@@ -586,7 +597,7 @@ chkN (a,15)
  }
 
    checkRooms(1,7)
-!a
+
 //Building BD[30]
 
 chkOut()

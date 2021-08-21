@@ -59,6 +59,10 @@ proc getDay(long dayv)
 
  int m_day;
  m_day= dayv + bday;
+ float cbm;
+ float xtm;
+ float wtm;
+ int dt;
 
    for (i = 0; i < Nobs ; i++) {
 
@@ -70,7 +74,7 @@ proc getDay(long dayv)
     wtm  = WTVEC[i]
     cbm  = CALBURN[i]
  
-   // <<"FOUND $i %V $dayv $m_day  $wtm $xtm $cbm\n"
+   <<"FOUND $i %V $dayv $m_day  $wtm $xtm $cbm\n"
 
      dt = julmdy(m_day);
      sWo(dtmwo,@value,dt,@redraw);

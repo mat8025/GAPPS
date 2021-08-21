@@ -487,6 +487,9 @@ if ((do_all || do_try ) && (do_try != -1)) {
 
    RunDirTests("Sops","sops");
 
+ 
+   RunDirTests("Str","str-proc,str-arg,str-lit");
+
    hdg("Strops");
    
    RunDirTests("Strops","scmp_syntax");

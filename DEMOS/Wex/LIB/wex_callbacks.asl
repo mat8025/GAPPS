@@ -9,7 +9,7 @@
 //*  @Copyright  RootMeanSquare  2014,2018 --> 
 //* 
 //***********************************************%
-
+;
 
 
 proc QRTD()
@@ -126,14 +126,14 @@ float RS[10];
 //---------------------------------------------
 proc WTLB()
 {
-       <<" setting cursors $button \n"
+       <<" setting cursors $_ebutton \n"
 
        if (_ebutton == 1) {
          lcpx = _erx;
 	// <<"%V $lcpx\n"
          sGl(lc_gl,@cursor,lcpx,0,lcpx,300, CL_init)
 	 CL_init = 0;
-         getDay(lcpx);
+        getDay(lcpx);
 
         }
 
@@ -141,7 +141,7 @@ proc WTLB()
          rcpx = _erx
          sGl(rc_gl,@cursor,rcpx,0,rcpx,300, CR_init)
          CR_init = 0;
-         getDay(rcpx);
+        // getDay(rcpx);
        }
 
 

@@ -506,40 +506,40 @@ while (1) {
         msg =eventWait();
 <<[2]"$m_num $msg  $_ename $_ewoname\n"
 
-       if (_ename @= "PRESS") {
+       if (_ename == "PRESS") {
       // ans=iread(">>");
-        if (!(_ewoname @= "")) {
-<<"calling function via $woname !\n"
+        if (_ewoname != "") {
+<<"calling function via <|$woname|> !\n"
             $_ewoname()
         }
       }
 
-       if (_ewoname @= "RESIZE") {
+       if (_ewoname == "RESIZE") {
        <<" RESIZE\n"
          drawScreens();
       }
 
-       if (_ewoname @= "REDRAW") {
+       if (_ewoname == "REDRAW") {
          drawScreens();
       }
 
 
-       if (_ewoname @= "StartDay") {
+       if (_ewoname == "StartDay") {
            setGoals()
       }
 
-      if (_ewoname @= "GoalDay") {
+      if (_ewoname == "GoalDay") {
            setGoals()
       }
 
-      if (_ewoname @= "WtGoal") {
+      if (_ewoname == "WtGoal") {
            setGoals()
       }
 
        WXY=WoGetPosition(tw_wo)
 //<<"$WXY \n"
 
-       if (!(_ekeyw @= "")) {
+       if (_ekeyw != "") {
          <<[_DB]"calling |${_ekeyw}| $(typeof(_ekeyw))\n"
          $_ekeyw()        
        }
