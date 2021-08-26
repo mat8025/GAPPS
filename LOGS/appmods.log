@@ -248,3 +248,5 @@ showtask.asl             3.4	07/30/2021 09:02:34 legwos
 ootlib.asl               4.2	07/30/2021 14:48:36 task_file,read,write
 tpclass.asl              1.4	08/09/2021 09:57:07 debug
 showrbh.asl              1.5	08/21/2021 07:47:34 tidy
+median.asl               1.3	08/23/2021 06:33:06 median of vector is scalar
+readfile.asl             1.7	08/23/2021 08:06:28 debug

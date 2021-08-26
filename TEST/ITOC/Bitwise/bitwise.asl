@@ -12,12 +12,22 @@
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
                                                                              
-myScript = getScript();
+//  
 
-<<"Running $myScript $_script\n"
-//  test the bitwise ops
+<|Use_=
+Demo  of test the bitwise ops
+///////////////////////
+|>
+
+
 #include "debug"
-debugON()
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"
+}
+
+
 
 chkIn(_dblevel)
 

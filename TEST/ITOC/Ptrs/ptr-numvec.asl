@@ -11,10 +11,20 @@
 //* 
 //***********************************************%
 
+<|Use_=
+Demo  of ptrs
+
+///////////////////////
+|>
+
+
+
+
 #include "debug"
 
   if (_dblevel >0) {
     debugON()
+    <<"$Use_\n"
    }
    
    chkIn(_dblevel);
@@ -126,26 +136,39 @@
    float d[] = vgen(FLOAT_,10,0,1); 
 
 <<"%V $d\n"
-   d->info(1)
+   d->pinfo()
 
    sz=Caz(d);
-   
+
+   c->pinfo()
+
    z = &d;
 
-   z->info(1)
-d->info(1)
+   z->pinfo()
+
+   c->pinfo()
+
+   d->pinfo()
+
+
+
    z = &c;
 
-   z->info(1)
+   z->pinfo()
 
    z = &d;
 
-   z->info(1)
+   z->pinfo()
+
+
+
+
 
    float fval;
 
 <<"%V $sz \n"
-    d->info(1)
+    d->pinfo()
+    
 
    for (i=0;i<sz;i++) {
      

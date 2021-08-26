@@ -1,17 +1,39 @@
-//%*********************************************** 
-//*  @script readfile.asl 
-//* 
-//*  @comment test readfile 
-//*  @release CARBON 
-//*  @vers 1.6 C Carbon                                                    
-//*  @date Fri Apr  3 19:25:54 2020 
-//*  @cdate 1/1/2001 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script readfile.asl 
+ * 
+ *  @comment test readfile 
+ *  @release CARBON 
+ *  @vers 1.7 N Nitrogen [asl 6.3.49 C-Li-In] 
+ *  @date 08/23/2021 08:06:28 
+ *  @cdate 1/1/2001 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                         
+<|Use_=
+Demo  of readfile function
+C=readfile(A)
+reads the entire  file attached to file handle  A into svar variable C
+or
+C=readfile("filename")
+where the file is opened then read and then closed.
+line 0 is C[0], line 1 is C[1], ...
+the line will contain the final cr/lf character.
+The last character cr \n can be removed using option
+C=readfile(A,1) that element in svar C will then be null.
+///////////////////////
+|>
+
 
 #include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"
+}
+
 
 
 chkIn(_dblevel)
@@ -25,14 +47,14 @@ chkIn(_dblevel)
 
 
 //if (fname @= NULL_) {
-if (fname @= "") {
+if (fname == "") {
 
    fname = "readfile.asl"
 }
 
 
 // A = ofr(fname)
-//<<"%V $A $fname \n"
+<<"%V $fname \n"
 
   S=readfile(fname)
 
@@ -41,7 +63,7 @@ if (fname @= "") {
 
 <<" error? $en  $(errname()) $(errornum())  $(errorname())\n"
 
- if (errornum()){
+ if (en){
      exit(en, errorName()))
   }
 

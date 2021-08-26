@@ -10,7 +10,7 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-   myScript = getScript();
+;//
    
 
    <<"start including  inc3\n"; 
@@ -23,10 +23,11 @@
    <<"inc3 adds global %V$Z\n"; 
    
    proc Hoo(real a, real b)
+//   proc Hoo(double a, double b)
    {
-     
+     <<"$_proc $a , $b $(typeof(a)) $(typeof(b))\n"; 
      c= a/b;
-     <<"$_proc $a / $b = $c\n"; 
+     <<"$a / $b = $c\n"; 
      return c;
      }
    

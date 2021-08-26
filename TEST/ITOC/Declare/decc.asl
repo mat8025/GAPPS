@@ -1,13 +1,37 @@
+/* 
+ *  @script decc.asl 
+ * 
+ *  @comment char declare 
+ *  @release CARBON 
+ *  @vers 1.3 Li Lithium [asl 6.3.49 C-Li-In]                               
+ *  @date 08/25/2021 10:43:34 
+ *  @cdate 08/25/2021 10:43:34 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+;//----------------------//;
+
+
+
+
+
+<|Use_=
+Demo  of declare char type
+
+///////////////////////
+|>
 
 
 #include "debug"
 
-filterfuncdebug(ALLOWALL_,"xxx");
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"
+}
 
-filterfiledebug(ALLOWALL_,"proc_","args_","scope_","class_","hop_");
 
-
-setdebug(1,@trace,@keep)
 
 chkIn(_dblevel)
 
@@ -35,6 +59,10 @@ chkN(cv[9],'O')
 
 
 char cv2[] = { 'FGHIJKLMNO' }
+
+
+
+
 
 <<"$(vinfo(cv2))\n"
 <<"$cv2 \n"

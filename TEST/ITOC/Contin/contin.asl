@@ -50,7 +50,7 @@ chkR(c,62,6)
 <<" $a * $b = $c \n"
 
 chkR(c,285,6)
-!a
+
 
   c = a / \
   b ;
@@ -83,7 +83,7 @@ chkStr(w1,"hey buddy")
 
    w2=					\
         scat("hey"," buddy ", "what's", \
-//        " going ", 		\
+       " going ", 		\
 		   " on ?");
    <<"$w2\n"
 
@@ -101,7 +101,7 @@ chkOut()
 
 /*
 
- TBF -- can not comment out sucessive continuation lines
+ TBF -- can not comment out between sucessive continuation lines
 
 
 */

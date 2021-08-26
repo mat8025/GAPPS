@@ -17,7 +17,7 @@
 //<<"TESTING\n"
 #include "debug"
 
-#include "hv.asl"
+#include "hv"
 
 if (_dblevel > 0) {
    debugON()
@@ -115,7 +115,7 @@ int x_time = 0;
 
 Todo=ofw("to_test")
 
-#include "test_routines.asl"
+#include "test_routines"
 
 
 tout ="testoutput"
@@ -326,7 +326,10 @@ if (do_math) {
 if ((do_include || do_all ) && (do_include != -1)) {
 
   Run2Test("Include")
+
   cart("include")
+
+  //RunDirTests("Include","include")
 
 }
 
@@ -338,8 +341,6 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
     RunDirTests("Bops","bops,fvmeq,fsc1,mainvar,snew");
 
-
-
     Run2Test("Bops")
 
 
@@ -347,7 +348,7 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
   cart("bops","7")
 
-  cart_xic("bops","7")
+  //cart_xic("bops","7")
 
   cart("fvmeq","3")
 
@@ -395,9 +396,9 @@ if ((do_if || do_all) && (do_if != -1)) {
 
 if ((do_bit || do_all) && (do_bit != -1)) {
 
-  Run2Test("Bitwise");
-  cart("bitwise");
-
+//  Run2Test("Bitwise");
+//  cart("bitwise");
+ RunDirTests("Bitwise","bitwise")
 }
 
 
@@ -488,7 +489,8 @@ if ((do_all || do_try ) && (do_try != -1)) {
    RunDirTests("Sops","sops");
 
  
-   RunDirTests("Str","str-proc,str-arg,str-lit");
+  // RunDirTests("Str","str-proc,str-arg,str-lit");
+   RunDirTests("Str","str-proc,str-arg");
 
    hdg("Strops");
    
@@ -529,7 +531,7 @@ if ((do_all || do_try ) && (do_try != -1)) {
 if ((do_all  || do_declare ) && (do_declare != -1))  {
 
 
-   RunDirTests("Declare","declare,dec1,decchar,decpan,decvec");
+   RunDirTests("Declare","declare,decc,decchar,decpan,decvec");
 
  //  Run2Test("Consts")
 
@@ -931,7 +933,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
 //////////////////// BUGFIXs/////////////////////////////////////////
 
-  if ((do_all || do_bugs )  && (!do_bugs == -1)) {
+  if ((do_all || do_bugs )  && (!do_bugs != -1)) {
       //cart("bf_40")   // this has intentional error and exits before test checks
     chdir(Testdir)
 
@@ -944,7 +946,7 @@ BFS=!!"ls bf*.asl "
 bflist="$BFS"
 
    bug_list = ssub(bflist,".asl"," ,",0)
-   
+   bug_list = scut(ssub(bug_list," ","",0),-1)
 <<"$bug_list\n"
 
       RunDirTests("BUGFIX",bug_list)
@@ -1095,9 +1097,13 @@ today=getDate(1);
 <<"used $wasl for tests \n"
 !!"$wasl -v"
 <<"$today tested $(get_version())\n"
+ if (lsz >0) {
+   pcc -= lsz;
+ }
 sipause(1)
 if (pcc < 100.0) {
 <<"$pcc fixes needed!! \n"
+<<"\n$lsz modules   crashed! \n"
 }
 else {
 <<"$pcc Success Hooray! \n"

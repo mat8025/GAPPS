@@ -368,13 +368,13 @@ z2 = ar + am1r;
 
 
 <<"%V $a   $am2\n"
-!a
+
 
 x1=C[a]->setRooms(C[am2]->getrooms())) ;
 
 
 <<"%V $x1\n"
-!a
+
 
 x2 =C[am1]->getrooms() ;
 

@@ -30,7 +30,50 @@ if (_dblevel >0) {
 chkIn(_dblevel)
 
 
+void soo( str sa)
+{
+<<"$_proc $sa\n"
 
+str s1 = sa;
+
+<<"$sa $s1\n"
+
+  s1->pinfo()
+!a
+
+}
+
+void soo2( str s)
+{
+<<"$_proc $s\n"
+
+str s2 = s;
+<<"%V $s $s2\n"
+  s2->pinfo()
+!a
+ soo(s)
+
+}
+
+void soo3( str sb)
+{
+<<"$_proc $sb\n"
+
+str s3 = sb;
+<<"%V $sb $s3\n"
+  s3->pinfo()
+!a
+<<"call soo2 \n"
+ soo2(sb)
+
+}
+
+str sf = "abc"
+
+<<"%V $sf\n"
+
+soo3(sf)
+!a
 
 str s_lit;
 

@@ -1,16 +1,17 @@
-//%*********************************************** 
-//*  @script median.asl 
-//* 
-//*  @comment test Median of an array 
-//*  @release CARBON 
-//*  @vers 1.2 He Helium [asl 6.2.99 C-He-Es]                                
-//*  @date Wed Dec 23 22:37:40 2020 
-//*  @cdate 1/1/2005 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
-
+/* 
+ *  @script median.asl 
+ * 
+ *  @comment test Median of an array 
+ *  @release CARBON 
+ *  @vers 1.3 Li Lithium [asl 6.3.49 C-Li-In] 
+ *  @date 08/23/2021 06:33:06 
+ *  @cdate 1/1/2005 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                             
 ///
 /// median
 ///
@@ -21,13 +22,23 @@ returns median value of array-- the array size is obtained from the array variab
 If A is a matrix - a column vector of the medians for each row is returned.
 
 */
-#include "debug.asl";
 
-sdb(_dblevel,@~trace)
+
+
+<|Use_=
+Demo  of Median func ;
+///////////////////////
+|>
+
+
+                                                                        
+#include "debug"
 
 if (_dblevel >0) {
-   debugON()
+  debugON()
+    <<"$Use_\n"   
 }
+
 
 
 chkIn(_dblevel)
@@ -88,7 +99,8 @@ sz = Caz(s)
 
 //ans = iread();
 <<"%V$s\n"
-chkN(s[0],292)
+s->pinfo()
+chkN(s,292)
 
 //ird!
 

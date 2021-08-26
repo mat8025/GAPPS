@@ -71,8 +71,15 @@ T = (2+ V)/(4.0 * (V+1))
 chkN (T[1],0.375)
 
 <<"%6.4f$T \n"
+T->pinfo()
 
-<<"$(Caz(T)) $(Cab(T))\n"
+tz =Caz(T)
+
+tb = Cab(T)
+
+<<"%V $tz $tb\n"
+tb->pinfo()
+//<<"$(Caz(T)) $(Cab(T))\n" // TBF nest error
 
 chkStage("vop")
 

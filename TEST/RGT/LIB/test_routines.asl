@@ -11,7 +11,7 @@
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
-
+;//----------------------//
 
 
 
@@ -68,7 +68,7 @@ void hdg(str atit)
 //!!"ps wax | grep asl | grep -v emacs"
 }
 //===============================
-Curr_dir = "xx";
+Curr_dir = "xyz";
 
 void Help()
 {
@@ -99,7 +99,8 @@ void Run2Test(str td)
 {
 
 //<<" $_proc $td $Testdir\n"
-  //td->info(1)
+
+//td->info(1)
 
   chdir(Testdir)
 
@@ -137,7 +138,7 @@ str pgname = "xx";
 
       np = Caz(Tp);
       
-//    <<"%V $Td $Tl $np\n"
+     // <<"%V $Td $Tl $np\n"
       
       for (i=0 ; i < np; i++) {
 
@@ -151,10 +152,11 @@ str pgname = "xx";
 
 
          if (nl > 0) {
-	 //  <<"%V$pgname \n"
-	//   pgname->pinfo()
+	     //<<"%V$pgname \n"
+	     //pgname->pinfo()
 
-           do_carts(pgname);
+        // do_carts(pgname);
+	 do_carts(Tp[i] );
 
          }
       
@@ -190,7 +192,7 @@ void RunSFtests(str Td)
 
 /////////////////////////////
 
-void scoreTest(str tname)
+void scoreTest(str itname)
 {
  int scored = 0;
  int ntests;
@@ -200,6 +202,7 @@ void scoreTest(str tname)
  int npass2;
 
 //<<"$_proc $tname  \n"
+tname = itname;
 
         RT=ofr(tname);
        
@@ -385,33 +388,41 @@ str prg;
 // variable length args ??
 
 
-void cart_xic(Str prg)
+void cart_xic(Str aprg)
 {
 
-//<<"%V $_proc  <|$prg|>  \n"
+
 //aprg->info(1)
 
 str  xwt_prog;
-str prog = prg;
-    if (fexist(prog) != -1) {
+str prg = "xxxxxxxxxxxxxxxxx";
 
+prg = aprg;
+
+//<<" $_proc  <|$aprg|> <|$prg|> \n"
+
+
+//<<"looking for xic file $prg\n"
+
+  if (fexist(prg) != -1) {
+//<<"found xic file $prg\n"
       str tim = time() ;  //   TBC -- needs to reinstated
      
    // wt_prog = "$tim "
 
-      xwt_prog = "$tim ./${prog}: "
+      xwt_prog = "$tim ./${prg}: "
 
-     if (f_exist(prog) != -1) {
+//  <<"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -dx $prg  \n  "
 
       !!"rm -f last_xic_test"
 
-       prg = scut(prog,2);
+     //  prg = scut(prg,2);
 
-//     !!"nohup $prog  | tee --append $ictout "
+//     !!"nohup $prg  | tee --append $ictout "
 
         if (do_query) {
-<<"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx $prog  \n  "
-         ans = query("$prog run it?")
+<<"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -dx $prg  \n  "
+         ans = query("$prg run it?")
 	 if (ans @="q") {
           exit()
          }
@@ -419,19 +430,22 @@ str prog = prg;
 
 //<<" run xic $wasl\n";
 
-      !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -x $prog   > /dev/null "
+      !!"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -x $prg   > /dev/null "
 
 //      !!"ls -l *";
       
-// what happens if prog crashes !!
+// what happens if prg crashes !!
 
   ntest++
 
   fflush(1)
-  }
+  
 
-      tst_file = "${prog}.xtst";
-    //  <<"%V $tst_file\n"
+      tst_file = "${prg}.xtst";
+      
+     //<<"%V $prg <|$tst_file|>\n"
+
+
       if (f_exist(tst_file) > 0) {
          wlen = slen(xwt_prog)
          padit =nsc(40-wlen," ")
@@ -442,9 +456,9 @@ str prog = prg;
       }
      else {
 
-       <<[Tcf]"#CRASH FAIL:--failed to run $prog\n"
+       <<[Tcf]"#CRASH FAIL:--failed to run $prg\n"
        
-       CrashList->Insert("${Curr_dir}/xic_${prog}")
+       CrashList->Insert("${Curr_dir}/xic_${prg}")
      }
   }
   
@@ -454,7 +468,7 @@ str prog = prg;
 void cart_xic(Str aprg, Str a1)
 {
 
-//<<"%V $_proc  $aprg $a1 \n"
+  //<<"%V $_proc  $aprg $a1 \n"
 
     if (fexist(aprg) != -1) {
 
@@ -490,16 +504,20 @@ void cart_xic(Str aprg, Str a1)
 //================================//
 
 
-void cart (str prg)
+void cart (str aprg)
 {
 
-//<<"%V $_proc $prg    \n"  
+
 
   int wlen;
-  //str tim;
-  str aprg = prg;
+  str prg; // TBF  not copied!!
+
+ prg = aprg; // TBF  not copied!!
+
+//<<"%V $_proc $prg  $aprg  \n"  
+
   str wstr ="";
-//  in_pargc = _pargc;
+ //  in_pargc = _pargc;
 //  aprg->pinfo();
 //  prg->pinfo();
   
@@ -507,7 +525,7 @@ void cart (str prg)
 
   str tim = time();
   
-  //aprg->info(1)
+//  aprg->info(1)
 
 //<<"rm -f $aprg  ${aprg}.tst  last_test* \n"
 //<<"rm -f $prg  ${prg}.tst  last_test* \n"
@@ -521,7 +539,7 @@ void cart (str prg)
 
            if (do_query) {
 	   
-      <<"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl \n"
+      <<"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst $CFLAGS ${prg}.asl \n"
            
 	       ans= i_read("run it?")
 	       if (ans @="q") {
@@ -534,19 +552,19 @@ void cart (str prg)
 
            }
    
-     // <<"here $wasl \n";
- // <<"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl > /dev/null   2>&1";
+
+//  <<"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst $CFLAGS ${prg}.asl > /dev/null   2>&1";
 
 //!!"pwd"
 //!!"ls -l *";
   
-!!"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl > /dev/null   2>&1";
+!!"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst $CFLAGS ${prg}.asl > /dev/null   2>&1";
 
      // !!"ls -l *";
-       wstr= aprg
+       wstr= prg
 //<<"%V$wstr \n"
 
-      tst_file = "${aprg}.tst";
+      tst_file = "${prg}.tst";
       //<<"%V $tst_file\n"
       if (f_exist(tst_file) > 0) {
 
@@ -576,7 +594,7 @@ void cart (str prg)
     
      ntest++
 
-//<<"DONE $_proc cart\n"
+//<<"DONE $_proc cart  $prg\n"
 
    return;
   
@@ -588,12 +606,14 @@ void cart (str prg)
 void cart (Str prg,  Str a1)
 {
 
-<<"$_proc  $prg $a1\n"
+//<<"$_proc  $prg $a1\n"
   int wlen;
   //str tim;
 //   <<"%V $_pstack \n"
 
-   str aprg = prg;
+   str aprg;
+   
+   aprg = prg;
    
    in_pargc = _pargc;
   
@@ -668,19 +688,36 @@ void cart (Str prg,  Str a1)
 }
 //===============================
 
-void do_carts (str aprog)
+
+// str as arg should have local copy -- not treat as vec
+
+void do_carts (str aprg)
 {
-//<<"$_proc  <|$aprog|>\n"
+ // <<"$_proc  <|$aprg|>\n"
+//  aprg->pinfo()
 
 //!!"pwd"
+//str bprg = "XYZF";  // TBF fails
+//bprg->pinfo()
+//bprg[2] = "A"; // FAIL sticky offset ele
+//bprg->pinfo()
 
-  str wprg = aprog;
+bprg = aprg;  // TBF fails
+//aprg->pinfo()
+//bprg->pinfo()
+
+//str wprg = "xx";
+//   wprg->pinfo()
+wprg = aprg;
+
+
+ //  wprg->pinfo()
+//  <<"run carts vers  <|$wprg|>  <|$aprg|> \n"
+
+   cart (wprg);
+
+//  <<"run xic vers  $wprg \n"
 //  wprg->pinfo()
-//<<"run carts vers  <|$wprg|>  <|$aprog|> \n"
-       cart (wprg);
-
-//<<"run xic vers  $wprg \n"
-
        cart_xic (wprg);
 
 }

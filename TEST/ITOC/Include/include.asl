@@ -11,8 +11,19 @@
 //* 
 //***********************************************%
    
+                                                                                              
+<|Use_=
+Demo  of include - nest
+///////////////////////
+|>
 
-   
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"
+}
+
    
    <<"does nested includes\n"; 
    
@@ -31,12 +42,10 @@
    
    <<" before include\n"; 
    
-   #include "inc1_nest";
+#include "inc1_nest";
    
    <<" after include\n"; 
    
-   
-   chkIn();
    
    <<"main sees globals %V $A $X $Y $Z\n"; 
    

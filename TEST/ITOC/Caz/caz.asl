@@ -50,7 +50,7 @@ asz= Csz(&d)
 <<"array size of $d $(typeof(d))  is: $asz \n"
 
 
-
+d->pinfo()
 nd = Cnd(&d)
 <<"number of dimensions are: $nd \n"
 chkN(nd,0)
@@ -58,8 +58,10 @@ chkN(nd,0)
 ab = Cab(&d)
 <<"bounds are: $ab \n"
 
-ab->info(1)
-chkN(ab,0)
+ab->pinfo()
+chkN(ab[0],0)
+
+
 
 
 chkN(asz,0)
@@ -174,7 +176,7 @@ chkOut()
 
 
 
-/{/*
+/*
 
 
  int C[3][3][3] = { { {0,1,2}, {3,4,5}, {6,7,8} },
@@ -215,4 +217,4 @@ ab = Cab(B)
  d= Cab(B)
 
 <<"%V $d \n"
-/}*/
+*/

@@ -3,8 +3,8 @@
 //* 
 //*  @comment test SF cut (array) 
 //*  @release CARBON 
-//*  @vers 1.2 He Helium [asl 6.2.98 C-He-Cf]                                
-//*  @date Tue Dec 22 22:09:34 2020 
+//    @vers 1.3 Li Lithium                                                   
+//    @date 08/23/2021 07:27:032020 
 //*  @cdate 1/1/2005 
 //*  @author Mark Terry 
 //*  @Copyright © RootMeanSquare  2010,2020 → 
@@ -13,7 +13,29 @@
 
 // test cut array
 
-chkIn()
+<|Use_=
+Demo  of cut function
+An  VMF operation to remove selected elements of an vector. 
+I->cut(V) the cut function that uses the vector V to indicate which elements of I to 'cut'.
+I[3:7]->cut() --- the subscripted range of I is cut from the vector.
+The cut operation can be applied to most types,  Float, Double, Int ...
+
+
+///////////////////////
+|>
+
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"
+}
+
+
+chkIn(_dblevel)
+
+
 
 int I[] ;
 
@@ -54,9 +76,11 @@ F->cut(C)
 chkR(F[12],16,6)
 
 
+<<" $I \n"
+
+//I[3:8]->cut()
 I[3:8]->cut()
 
-//<<" $I[::] \n"
 <<" $I \n"
 
 chkN(I[3],9)

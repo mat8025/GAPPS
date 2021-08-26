@@ -13,6 +13,23 @@
 
 
 
+
+
+<|Use_=
+Demo  of declare char type
+
+///////////////////////
+|>
+
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"
+}
+
+
 Z="hey"
 
 <<"%V $Z\n"
