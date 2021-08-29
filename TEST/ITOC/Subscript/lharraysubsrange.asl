@@ -15,6 +15,19 @@
 // test sub vector range specification and subset value setting
 //
 
+<|Use_=
+Demo  of LH array subscript
+
+///////////////////////
+|>
+
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"
+}
 
 
 
@@ -24,7 +37,7 @@ chkIn(_dblevel)
 
 float vreal[]  // dynamic array
 
- wlen = 10
+ wlen = 14
 
 
  vreal[1:wlen] = 77.0
@@ -32,7 +45,7 @@ float vreal[]  // dynamic array
 <<"%V6.2f$vreal \n"
 
 
-chkN(wlen,10);
+chkN(wlen,14);
 
 chkR(vreal[0],0,1)   
 
@@ -100,8 +113,7 @@ ji = ki + wlen -1
 <<"$ki %6.2f$vreal \n"
    chkR(vreal[0],j,1)   
 
-
-}
+  }
 
 
 
@@ -125,52 +137,64 @@ tv= sum(sr)
 
 
 
-  for (j=0;j<3;j++) {
-
-    vreal[0:wlen-1] = YS[ki:ji] 
-
-    av = vreal;
-
-<<"%V$wlen \n"
-<<"%V$av \n"
-
-    tv = sum(vreal);
-
-<<"Num Dims $(Cab(tv))\n"
-
-    <<"%V6.2f $tv is sum of vec\n"  
-
-    chkN(tv,142)  
-
-<<"$j %6.2f$vreal \n"
-
-
-
-   }
 
 
 
 <<" //FIX   vreal[0:(wlen-1)] = YS[ki:ji]  \n"
 
-<<"last loop \n"
-  for (j=0;j<3;j++) {
+<<"last loop $wlen\n"
+YS->pinfo()
+<<"%V$YS[ki:ji]\n"
 
-    vreal[0:(wlen-1)] = YS[ki:ji] 
+vreal->pinfo()
+vreal = 78;
+vreal->pinfo()
+vlen = 8;
+ji = ki + 7;
+    ys = sum(YS[ki:ji])
+   <<"%V $wlen  $ki $ji  $ys\n"
+//    vreal[1:(vlen-1)] = YS[ki:ji]
 
-   tv = sum(vreal)
+<<"%V$YS[ki:ji]\n"
 
-   <<" $tv[0] \n"
-    chkN(tv,142)  
+    vreal[1:vlen] = YS[ki:ji] 
 
-<<"%V$j %$vreal \n"
-
-   }
-
-   tv = sum(vreal)
-
-<<" $tv \n"  
+    vreal->pinfo()
+    
+    tv = sum(vreal)
+    tv->pinfo()
 
 
+<<"%V$vreal \n"
+
+
+
+
+tv = sum(vreal)
+
+<<"sum vreal $tv \n"  
+
+  chkN(tv,590)
+
+vreal = 79;
+
+<<"%V$vreal \n"
+
+ji = ki + 6;
+
+    vreal[1:(vlen-1)] = YS[ki:ji] 
+
+    vreal->pinfo()
+    
+    tv = sum(vreal)
+    tv->pinfo()
+
+
+<<"%V$vreal \n"
+
+ chkN(tv,667)
+
+ chkN(vreal[1],2.0)
 
    chkOut()
 

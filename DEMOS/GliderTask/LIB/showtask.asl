@@ -226,6 +226,8 @@ while (1) {
 
 int is_an_airport
 //sdb(1,@trace)
+
+Wtp->pinfo()
     for (k = 0 ; k < 5  ; k++) {
 
         is_an_airport = Wtp[k]->is_airport;

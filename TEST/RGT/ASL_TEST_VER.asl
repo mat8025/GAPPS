@@ -760,10 +760,11 @@ if ((do_all || do_recurse ) && (do_recurse != -1)) {
      hdg("RECURSION")
     
      Run2Test("Fact")
+     str pgn = "fact"
+     
+     cart(pgn, "10")
 
-     cart("fact", 10)
-
-     cart_xic("fact",10)
+     cart_xic(pgn,"10")
 
 
 }

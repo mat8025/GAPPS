@@ -1,20 +1,32 @@
-//%*********************************************** 
-//*  @script mdele.asl 
-//* 
-//*  @comment test  multi dimn ele access 
-//*  @release CARBON 
-//*  @vers 1.15 P Phosphorus                                              
-//*  @date Sun Feb 10 10:43:30 2019 
-//*  @cdate 1/1/2001 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
-  
+/* 
+ *  @script mdele.asl 
+ * 
+ *  @comment test multi dimn ele access 
+ *  @release CARBON 
+ *  @vers 1.16 S Sulfur [asl 6.3.50 C-Li-Sn] 
+ *  @date 08/29/2021 06:37:58 
+ *  @cdate 1/1/2001 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                          
+
+
+<|Use_=
+Demo  of MD ele/range selection
+///////////////////////
+|>
+
+
+
+
 #include "debug"
 
 if (_dblevel >0) {
    debugON()
+     <<"$Use_\n"
 }
 
 
@@ -79,17 +91,20 @@ jt = 0;
 
 DT = HT
 
-DT->info(1)
+DT->pinfo()
 <<"$DT \n"
+
+HT->pinfo()
 
 CT = HT[1:8:][1:7:]    ;  // TBF not selecting 2D vec correctly
 
-<<"HT $(Caz(HT)) $(Cab(HT)) \n"
-<<"CT $(Caz(CT)) $(Cab(CT)) \n"
+//<<"HT $(Caz(HT)) $(Cab(HT)) \n"
+//<<"CT $(Caz(CT)) $(Cab(CT)) \n"
+
 <<"$CT \n"
 
 
-CT->info(1)
+CT->pinfo()
 
 sz=Caz(CT)
 
@@ -128,7 +143,12 @@ R= vgen(INT_,10,0,1)
 T= R[2:8]
 
 <<"$T\n"
-<<"T $(Caz(T)) $(Cab(T)) \n"
+//<<"T $(Caz(T)) $(Cab(T)) \n"  // xic bug TBF 8/29/21
+
+tsz= Caz(T)
+tab = Cab(T)
+
+<<"%V $tsz $tab \n"
 
 chkN (R[1],1)
 chkN (T[0],2)

@@ -508,11 +508,13 @@ void cart (str aprg)
 {
 
 
+//<<"$_proc $aprg\n"
 
   int wlen;
   str prg; // TBF  not copied!!
 
- prg = aprg; // TBF  not copied!!
+
+  prg = aprg; // TBF  not copied!!
 
 //<<"%V $_proc $prg  $aprg  \n"  
 
@@ -644,8 +646,9 @@ void cart (Str prg,  Str a1)
      wlen = slen(wt_prog)
      padit =nsc(40-wlen," ")
 
-    //  <<"${wt_prog}$padit"
+      <<"${wt_prog}$padit"
       <<[Opf]"${wt_prog}$padit"
+      
       tst_file = "${prg}.tst";
     //  <<"%V $tst_file\n"
       if (f_exist(tst_file) > 0) {

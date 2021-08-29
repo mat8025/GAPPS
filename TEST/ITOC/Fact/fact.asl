@@ -16,6 +16,18 @@
 //int N = $2
 //double M
 
+<|Use_=
+Demo  of recursion
+
+///////////////////////
+|>
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"
+}
 
 
 

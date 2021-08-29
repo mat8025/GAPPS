@@ -206,6 +206,10 @@ chkN(SI[-1],28)
 //exit()
 
 SI= I[1::2] ;   // start 1 skip very other
+<<"%V$SI\n"
+SI= I[1:-1:2] ;   // start 1 skip very other
+<<"%V$SI\n"
+!a
 sz=Caz(SI)
 <<"%V $sz\n"
 <<"%V$SI\n"

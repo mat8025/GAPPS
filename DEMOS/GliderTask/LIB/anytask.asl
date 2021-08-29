@@ -66,7 +66,22 @@ float Cruise_speed = (CSK * nm_to_km);
 <<"%V$Ntp_id\n"
 
 Turnpt  Wtp[50];
+
+
+
 <<"%V$Ntp_id\n"
+
+Wtp[1]->Alt = 100.0;
+
+Wtp[40]->Alt = 5300.0;
+
+<<"$Wtp[1]->Alt\n"
+
+Wtp->pinfo() ;  // should identify Obj
+
+exit()
+
+
 
 Tleg  Wleg[20];
 

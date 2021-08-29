@@ -11,16 +11,31 @@
 //* 
 //***********************************************%
   
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+}
 
 
 chkIn(_dblevel)
 
 /// simple class test
 
+<<"simple class test\n"
+
 class Rec {
 
 public:
     svar srec;
+    int a;
+
+  cmf Rec ()
+    {
+      <<"constructing $_proc $_cmf  \n"
+      a = 1;
+    }
+
 }
 //===========================//
 

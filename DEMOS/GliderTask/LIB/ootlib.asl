@@ -97,6 +97,7 @@ DBG"$_proc  $Ntaskpts \n"
    float la2   = 1000.0;
    float lon2 = 1000.0;
    float msl;
+   float fga;
   Min_lat = 90.0
   Max_lat = 0.0
   Min_W = 109.0
@@ -144,13 +145,15 @@ DBG"$_proc  $Ntaskpts \n"
      adjust++;
      totalK += kmd;
 // add in the fga to reach this turnpt from previous
+     Wleg->pinfo()
      Wleg[i]->msl = msl;
      Wleg[i]->Place = tpl;     
      if (i > 0) {
       Wleg[i-1]->dist = kmd;
-      Wleg[i-1]->tow = tpl;      
+      Wleg[i-1]->Tow = tpl;      
       ght = (kmd * km_to_feet) / LoD
-      fga = ght + 1200.0 + msl
+      fga = ght + 1200.0 + msl;
+      <<"%V$i $fga $msl\n"
       Wleg[i-1]->fga = fga;
      }
 
@@ -823,6 +826,7 @@ void insert_tp(int wt)
              nval = Wtp[ntp]->GetPlace()
 
 <<" found %V $ntp $nval \n"
+
              //setWoValue (tpwo[wt],ntp,1)
 	     setWoValue (tpwo[wt],nval,0)
                 

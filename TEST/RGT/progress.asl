@@ -6,55 +6,57 @@
 //08/23/21   68%
 //08/25/2021 81.82%
 //08/26/2021   84.09%
+//08/27/2021   86.36%
+//08/29/2021   90.91%
 
 ////////////////// Good /////////////////////
 <|Good =
-bops
-sops
-fops
-syntax
-include
-if
-bit
-logic
-for
-do
-proc
-switch
-scope
-while
-exp
-paraex
-types
-matrix
-func
-command
-dynv
-svar
-record
-ivar
-lists
-stat
-pan
-unary
-tests
-sfunc
 array
+bit
+bops
+bugs
+command
 declare
+do
+dynv
+exp
+fops
+for
+func
+if
+include
+ivar
+lhsubsc
+lists
+logic
 math
+matrix
 mops
+pan
+paraex
+proc
 ptrs
+record
+recurse
+scope
+sfunc
+sops
+stat
+svar
+switch
+syntax
+tests
+types
+unary
 vmf
 vops
+while
 |>
 //===========BAD =======================//
 <|Bad =
-bugs
-recurse
-lhsubsc
-threads
-oo
 class
+oo
+threads
 try
 |>
 //=======================================//
