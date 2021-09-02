@@ -11,19 +11,20 @@
 //*
 //***********************************************%
 
-/*
+<|Use_=
 BubbleSort
 
 bubblesort(Vec)
 performs bubble sort on a vector returns the sorted vector.
 Should work on all types.
 can be used as Vec->BubbleSort() returns 1 if sorted.
-*/
+|>
 
 #include "debug"
 
 if (_dblevel >0) {
    debugON()
+      <<"$Use_ \n"       
 }
 
 chkIn(_dblevel)
@@ -32,7 +33,7 @@ I = vgen(INT_,30,0,1)
 
 <<"$I \n"
 
-I->info(1)
+I<-info(1)
 
 //chkOut()
 
@@ -40,16 +41,16 @@ I->info(1)
 chkN(I[1],1)
 chkN(I[29],29)
 
-I->reverse()
+I<-reverse()
 
 <<"$I \n"
 chkN(I[1],28)
 chkN(I[29],0)
 
-I->info(1)
+I<-info(1)
 
 
-I->bubbleSort()
+I<-bubbleSort()
 
 <<"$I \n"
 
@@ -60,11 +61,11 @@ rs= scat("Now ", " Shuffle ");
 <<"$rs\n"
 
 
-I->shuffle(20)
+I<-shuffle(20)
 
 <<"$I \n"
 
-I->bubbleSort()
+I<-bubbleSort()
 
 <<"$I \n"
 

@@ -11,7 +11,7 @@
 //* 
 //***********************************************%
 
-/*
+<|Use_=
 Trim(S)
 Trims a string variable (or array of strings)
 S->Trim(nc) - trims chaaracters from head or tail of string
@@ -19,11 +19,14 @@ S[a:b]->Trim(- 4)
 would trim four chars from end of  a range of an array of strings - where S is an array
 S->Trim(4)
 would trim four chars from nead of  a range of an array of strings - where S is an array 
-*/
+|>
+
+
 #include "debug"
 
 if (_dblevel >0) {
    debugON()
+   <<"$Use_ \n"    
 }
 chkIn(_dblevel)
 
@@ -47,16 +50,17 @@ S[3] = "123456789"
 
 <<"%(1,,,\n)$S \n"
 //<<"%V $S[0] \n"
-S->info(1)
 
-S->trim(-3)
+S<-info(1)
+
+S<-trim(-3)
 
 <<"%(1,,,\n)$S \n"
 
 
 chkStr(S[3],"123456")
 
-S[3]->trim(3)
+S[3]<-trim(3)
 
 <<"%V$S[3]\n"
 
@@ -64,7 +68,7 @@ chkStr(S[3],"456")
 
 
 
-S->trim(3)
+S<-trim(3)
 
 
 

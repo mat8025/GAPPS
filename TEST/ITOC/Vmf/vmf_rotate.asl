@@ -32,14 +32,14 @@ IV = vgen(INT_,20,0,1)
 
 chkN(IV[0],0)
 
-IV->rotate(1,3)
+IV<-rotate(1,3)
 
 
 <<"$IV\n"
 
 chkN(IV[0],17)
 
-IV->rotate(-1,4)
+IV<-rotate(-1,4)
 
 
 <<"$IV\n"

@@ -28,9 +28,9 @@ if (_dblevel >0) {
    debugON()
    <<"$Use_\n"   
 }
-filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
-filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e","ds_storesiv");
-filterFuncDebug(REJECT_,"vrealloc","init","varIndex");
+//filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
+//filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e","ds_storesiv");
+//filterFuncDebug(REJECT_,"vrealloc","init","varIndex");
 
 
 chkIn(_dblevel)
@@ -39,11 +39,11 @@ chkIn(_dblevel)
 
 int I[]
 
-I->info(1)
+I<-info(1)
 
 <<" $I \n"
 
-  I[0:8]->Set(0,1)
+  I[0:8]<-Set(0,1)
 
   
 
@@ -51,22 +51,22 @@ I->info(1)
 
 chkN(I[1],1)
 
-I->info(1)
+I<-info(1)
 
 chkN(I[8],8)
 
-  I[0:30]->Set(0,3)
+  I[0:30]<-Set(0,3)
 
 
 <<" $I \n"
 
-I->info(1)
+I<-info(1)
 
 
 
-sz = I->Caz()
+sz = I<-Caz()
 
-//<<" $(I->Caz()) \n"
+//<<" $(I<-Caz()) \n"
 
 <<" $sz \n"
 
@@ -76,9 +76,9 @@ float F[]
 
 <<"%v $F \n"
   j = 30
-  F[0:j]->Set(0)
+  F[0:j]<-Set(0)
 
-  F[1:j:3]->Set(1,2)
+  F[1:j:3]<-Set(1,2)
 
 chkR(F[1],1)
 chkR(F[4],3)
@@ -88,7 +88,7 @@ chkR(F[4],3)
 
   R= Urand(30)
   <<"$R\n"
-  F[0:j:3]->Rand(3.0)
+  F[0:j:3]<-Rand(3.0)
 
 
 <<"\n//////\n $F \n"

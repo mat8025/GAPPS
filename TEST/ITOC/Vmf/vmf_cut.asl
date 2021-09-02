@@ -11,14 +11,22 @@
 //* 
 //***********************************************%
 
+<|Use_= 
+Demo  of vmf trim function
+/////////////////////// 
+|>
+
+
+
 #include "debug"
 
 if (_dblevel >0) {
    debugON()
+   <<"$Use_ \n"    
 }
 
-filterFileDebug(REJECT_,"scopesindex_e.cpp","array_parse.cpp");
-filterFuncDebug(REJECT_,"~storeSiv","checkProcFunc");
+//filterFileDebug(REJECT_,"scopesindex_e.cpp","array_parse.cpp");
+//filterFuncDebug(REJECT_,"~storeSiv","checkProcFunc");
 
 chkIn(_dblevel)
 
@@ -29,23 +37,24 @@ I= Igen(20,0,1)
 
 <<"I[] : $I \n"
 
-I->info(1)
+I<-pinfo()
 
 
-I[14]->Set(747)
+I[14]<-Set(747)
 
 
 <<"I[] : $I[::] \n"
 
-I->info(1)
+I<-pinfo()
 
 chkN(I[14],747)
 
 
-I[5:13:2]->Set(50,3)
+
+I[5:13:2]<-Set(50,3)
 
 
- I->info(1)
+ I<-pinfo()
 
 <<"I[] : $I[::] \n"
 
@@ -58,7 +67,7 @@ C = Igen(4,12,1)
 
 <<"%V $C \n"
 
-I->cut(C)
+I<-cut(C)
 
 
 
@@ -85,7 +94,7 @@ C = Igen(4,12,1)
 
 <<"%V $C \n"
 
-F->cut(C)
+F<-cut(C)
 
 
 <<"%6.1f  $F \n"
@@ -96,19 +105,19 @@ chkR(I[12],16,6)
 
 <<" $I[::] \n"
 
-I[3:8]->cut()
+I[3:8]<-cut()
 
 <<" $I[::] \n"
 
 chkN(I[3],56)
 
 
-F[3:8]->cut()
+F[3:8]<-cut()
 
 <<" %6.1f $F[::] \n"
 chkR(F[3],9,6)
 
-F[3]->cut()
+F[3]<-cut()
 
 <<" %6.1f $F[::] \n"
 //chkStage("cut")

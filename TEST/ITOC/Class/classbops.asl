@@ -11,14 +11,17 @@
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
-                                                                         
+
+<|Use_= 
+Demo  of class ops
+/////////////////////// 
+|>
 
 #include "debug";
 
-
-
 if (_dblevel >0) {
    debugON()
+   <<"$Use_ \n" 
 }
   
 chkIn(_dblevel);
@@ -50,7 +53,7 @@ class Point
   
     float x;
     float y;
-
+    double DV[10];
 //============================//
 
 
@@ -62,7 +65,7 @@ class Point
       };
 
 
-    cmf set (real m,real n) 
+    cmf set (real m, real n) 
     {
   <<"$_proc set via real %V $m $n  \n";
        x = m;
@@ -94,9 +97,13 @@ class Point
       <<"set via ints %V $m $n $x $y \n";
       };
  
-    cmf getx() 
+    cmf Getx() 
      {
       <<"$_proc getting $x $_cobj \n"; 
+        v=y<-isVector()
+    <<"%v$v\n"
+        dv= DV<-isVector()
+<<"%v$dv\n"	
       return x;
       };
     
@@ -123,13 +130,22 @@ class Point
       <<"%V $x,$y %i $x,$y\n"; 
       }
 
+     cmf Pinfo() {
+      <<"$_proc %V $x,$y\n";
+       v=y<-isVector()
+   <<"%v$v\n"	
+      y<-pinfo()
+      x<-pinfo()
+      }
+      
+
    cmf Point()
    {
     // same name as class is the constructor
 
      y=2;
      x=4;
-<<"constructor $_proc  %V $x $y \n"
+<<"cons $_proc  %V $x $y \n"
 
 
    };
@@ -142,6 +158,14 @@ class Point
   
   Point A;
 
+double x1;
+
+
+
+  x1<-pinfo();
+
+
+
 
   A->x = 3.4
 
@@ -153,9 +177,14 @@ class Point
   chkR(x1,3.4)
 
 
+   A<-pinfo()
+!a
+   A->Pinfo()
+!a
 
 
- A->x = 4.0
+//chkOut()
+   A->x = 4.0
  
   Point B;
 
@@ -163,7 +192,7 @@ class Point
 
   Point D;
 
-  rx= D->getx();
+  rx= D->Getx();
 
 <<"%V $rx\n"
 
@@ -171,14 +200,14 @@ real r1 = 2.3;
 real r2 = 4.5;
 
 
-  rx=   A->getx();
+  rx=   A->Getx();
   <<"%V $rx\n"
 
   chkR(rx,4.0);
 
 
   A->setx(r1);
-  rx=   A->getx();
+  rx=   A->Getx();
   <<"%V $rx\n"
 
   chkR(r1,rx)
@@ -217,17 +246,17 @@ real r2 = 4.5;
   <<"%V$my $A->x  \n";
 
 
-
-
-
-
-
   A->set(2.2,0.123);
-  rx=   A->getx();
-  <<"%V $rx\n"
+  rx=   A->Getx();
+
+<<"%V $rx\n"
+  chkR(rx,2.2)
+  
+
+
 
   B->set(4,2);
-  rx=   B->getx();
+  rx=   B->Getx();
   <<"%V $rx\n"
 
 
@@ -286,7 +315,7 @@ real r2 = 4.5;
   <<"%V $C->x $C->y \n"; 
   
   
-  wx = A->getx();
+  wx = A->Getx();
   
   ok=chkR(wx,0.15,5); 
   
@@ -332,7 +361,7 @@ real r2 = 4.5;
   A->Print();
   B->Print();
   
-  ax = A->getx();
+  ax = A->Getx();
   <<"A %V $ax \n";
   
   chkR(ax,47,5);
@@ -343,18 +372,18 @@ real r2 = 4.5;
   
   A->Print();
   
-   axy = A->getx() + A->gety();
+   axy = A->Getx() + A->gety();
 
 <<"%V $axy $ax $ay\n"
 
-   axy = A->gety() + A->getx();
+   axy = A->gety() + A->Getx();
    axy2 = ax + ay;
    axy3 = ax + ay;   
 <<"%V $axy $axy2 $axy3 $ax $ay\n"
 
   chkR(axy,(ax+ay),5);
 chkOut()  
-  bx = B->getx();
+  bx = B->Getx();
 
   chkR(bx,83,5); 
 
@@ -362,23 +391,23 @@ chkOut()
   
   chkR(by,65,5); 
 
-  bxy = B->getx() + B->gety();
+  bxy = B->Getx() + B->gety();
 
 <<"%V $bxy $bx $by\n"
 
-  axy = A->getx() + A->gety();
+  axy = A->Getx() + A->gety();
 
 <<"%V $axy $ax $ay\n"
   
   chkR(axy,(ax+ay),5); 
   chkOut()
 
-  bxy = B->getx() + B->gety(); 
+  bxy = B->Getx() + B->gety(); 
   chkR(bxy,(bx+by),5);
   
   z2 = A->x + B->y; 
   
-  z = A->getx() + B->gety(); 
+  z = A->Getx() + B->gety(); 
   
   <<"%V $ax $ay $axy $bx $by  $bxy $z2 $z\n"; 
   
@@ -389,7 +418,7 @@ chkOut()
   
   <<"%V $z $wx $wy \n"; 
   
-  z = A->getx() * A->gety(); 
+  z = A->Getx() * A->gety(); 
   
   <<"%V $z $wx $wy \n"; 
   
@@ -410,7 +439,7 @@ chkOut()
   ok=chkR(my,32.6,4); 
   <<"%V$ok $my 1.1\n"; 
   
- //setdebug(1,"step")
+
   
   Point P[3];
   
@@ -464,7 +493,7 @@ chkOut()
   <<"%V$ok $my $v\n"; 
   ok=chkR(my,v,5); 
   
-  v = A->getx(); 
+  v = A->Getx(); 
   v *= 2; 
   my = A->mul(2); 
   
@@ -472,7 +501,7 @@ chkOut()
   
   chkN(my,v); 
   
-  u = B->getx(); 
+  u = B->Getx(); 
   u *= 3; 
   my = B->mul(3); 
   
@@ -538,19 +567,19 @@ chkOut()
   chkOut(); 
 
 
-  r1 = B->getx()
+  r1 = B->Getx()
 
 <<"%V$r1\n"; 
 
   my = A->mul( r1); 
 
-  my3 = A->mul( B->getx() ); 
+  my3 = A->mul( B->Getx() ); 
 
 <<" %V $my $my3 $A->x $B->x \n"; 
 
 
 
-  my2 = A->x    * B->getx()
+  my2 = A->x    * B->Getx()
 
 <<" %V $my $my2 $A->x $B->x \n"; 
 
@@ -566,9 +595,9 @@ chkOut()
 /// still have to chk this  gives correct answer  for
 ///
 //  A->x     - done
-//  A->getx() - done
+//  A->Getx() - done
 //  A->mul(z) - done
-//  A->getx() + B->getx() + ...
+//  A->Getx() + B->Getx() + ...
 //  A->add( B->gety(), C->gety())  ...
 //  A->x->z ....
 //  ...

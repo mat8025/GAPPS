@@ -77,9 +77,9 @@ Wtp[40]->Alt = 5300.0;
 
 <<"$Wtp[1]->Alt\n"
 
-Wtp->pinfo() ;  // should identify Obj
+//Wtp->pinfo() ;  // should identify Obj
 
-exit()
+
 
 
 

@@ -698,7 +698,8 @@ if ((do_all || do_func ) && (do_func != -1)) {
 
    if ((do_all || do_vmf) && (do_vmf != -1)) {
   <<"trying vmf \n"
-    RunDirTests("Vmf","vmf-trim,vmf-range,vmf-cut,vmf-substitute,genv")
+    RunDirTests("Vmf","vmf_trim,vmf_range,vmf_cut,vmf_substitute,genv")
+    RunDirTests("Vmf","vmf_prune,vmf_bubblesort,vmf_rotate,vmf_white")    
   }
 
 /////////////////////////////////////////
@@ -876,7 +877,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
    if ((do_all || do_class )  && (do_class != -1)) {
 
-        RunDirTests("Class","class_mfcall,classbops,class2,classvar");
+        RunDirTests("Class","classbops,class_mfcall,class2,classvar");
 
     }
 
