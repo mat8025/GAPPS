@@ -100,7 +100,7 @@ void Run2Test(str td)
 
 //<<" $_proc $td $Testdir\n"
 
-//td->info(1)
+//td<-info(1)
 
   chdir(Testdir)
 
@@ -125,15 +125,15 @@ void RunDirTests(str Td, str Tl )
 
 str pgname = "xx";
 
-//Tl->info(1)
+//Tl<-info(1)
 
-//ri=Tl->info()
+//ri=Tl<-info()
       chdir(Testdir)
       chdir(Td)
       
      // Run2Test(Td);
 
-      Tl->DeWhite()
+      Tl<-DeWhite()
       Tp = Split(Tl,",");
 
       np = Caz(Tp);
@@ -153,7 +153,7 @@ str pgname = "xx";
 
          if (nl > 0) {
 	     //<<"%V$pgname \n"
-	     //pgname->pinfo()
+	     //pgname<-pinfo()
 
         // do_carts(pgname);
 	 do_carts(Tp[i] );
@@ -287,7 +287,7 @@ else {
 
           if (pcc != 100.0) {
 	  //<<"${Curr_dir} inserting $tname into failed list \n"
-            FailedList->Insert("${Curr_dir}/${tname}")
+            FailedList<-Insert("${Curr_dir}/${tname}")
 	  //<<[Tff]"${Curr_dir}/${tname}\n"  
           }
        }
@@ -392,7 +392,7 @@ void cart_xic(Str aprg)
 {
 
 
-//aprg->info(1)
+//aprg<-info(1)
 
 str  xwt_prog;
 str prg = "xxxxxxxxxxxxxxxxx";
@@ -458,7 +458,7 @@ prg = aprg;
 
        <<[Tcf]"#CRASH FAIL:--failed to run $prg\n"
        
-       CrashList->Insert("${Curr_dir}/xic_${prg}")
+       CrashList<-Insert("${Curr_dir}/xic_${prg}")
      }
   }
   
@@ -496,7 +496,7 @@ void cart_xic(Str aprg, Str a1)
 
        <<[Tcf]"#CRASH FAIL:--failed to run $aprg\n"
        
-       CrashList->Insert("${Curr_dir}/xic_${aprg}")
+       CrashList<-Insert("${Curr_dir}/xic_${aprg}")
      }
 
   }
@@ -520,14 +520,14 @@ void cart (str aprg)
 
   str wstr ="";
  //  in_pargc = _pargc;
-//  aprg->pinfo();
-//  prg->pinfo();
+//  aprg<-pinfo();
+//  prg<-pinfo();
   
   xwt_prog = "xxx";
 
   str tim = time();
   
-//  aprg->info(1)
+//  aprg<-info(1)
 
 //<<"rm -f $aprg  ${aprg}.tst  last_test* \n"
 //<<"rm -f $prg  ${prg}.tst  last_test* \n"
@@ -536,7 +536,7 @@ void cart (str aprg)
 
    jpid  =0
       
-      //aprg->info(1)
+      //aprg<-info(1)
 
 
            if (do_query) {
@@ -583,7 +583,7 @@ void cart (str aprg)
 
        //<<"CRASH FAIL:--failed to run \n"
        // insert works??
-       CrashList->Insert("${Curr_dir}/${prg}")
+       CrashList<-Insert("${Curr_dir}/${prg}")
 
      }
    
@@ -661,7 +661,7 @@ void cart (Str prg,  Str a1)
      else {
 
        //<<"CRASH FAIL:--failed to run inseting $aprg into crashed list\n"
-        CrashList->Insert("${Curr_dir}/${prg}")
+        CrashList<-Insert("${Curr_dir}/${prg}")
 //	<<[Tcf]"${Curr_dir}/${aprg}\n"
      }
 
@@ -697,30 +697,30 @@ void cart (Str prg,  Str a1)
 void do_carts (str aprg)
 {
  // <<"$_proc  <|$aprg|>\n"
-//  aprg->pinfo()
+//  aprg<-pinfo()
 
 //!!"pwd"
 //str bprg = "XYZF";  // TBF fails
-//bprg->pinfo()
+//bprg<-pinfo()
 //bprg[2] = "A"; // FAIL sticky offset ele
-//bprg->pinfo()
+//bprg<-pinfo()
 
 bprg = aprg;  // TBF fails
-//aprg->pinfo()
-//bprg->pinfo()
+//aprg<-pinfo()
+//bprg<-pinfo()
 
 //str wprg = "xx";
-//   wprg->pinfo()
+//   wprg<-pinfo()
 wprg = aprg;
 
 
- //  wprg->pinfo()
+ //  wprg<-pinfo()
 //  <<"run carts vers  <|$wprg|>  <|$aprg|> \n"
 
    cart (wprg);
 
 //  <<"run xic vers  $wprg \n"
-//  wprg->pinfo()
+//  wprg<-pinfo()
        cart_xic (wprg);
 
 }

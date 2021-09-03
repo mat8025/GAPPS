@@ -65,7 +65,7 @@ wdir = getdIr()
 
 
 str S = "all,array,matrix,bugs,bops,vops,sops,fops,class, declare,include,exp,if,logic,for,do,paraex,proc,switch,"
-S->cat("types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc, svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help");
+S<-cat("types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc, svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help");
 
 
 svar Opts[] = Split(S,",");
@@ -207,9 +207,9 @@ int do_release = 0;
 
 
  CrashList = ( "",  )  // empty list
- CrashList->LiDelete(0)
+ CrashList<-LiDelete(0)
  FailedList = ( "",  )  // empty list --- bug first item null? 
- FailedList->LiDelete(0)
+ FailedList<-LiDelete(0)
  
 
 
@@ -1003,7 +1003,7 @@ if ((do_all || do_threads )) {
 <<[Opf]"\n$flsz modules  failed! \n"
 <<[Tlogf]"\n$flsz modules  failed! \n"
 
-   FailedList->Sort()
+   FailedList<-Sort()
 
 //<<" %(2,\t, ,\n)$FailedList \n"  // would like this to work like for vectors ---
 
@@ -1022,8 +1022,8 @@ if ((do_all || do_threads )) {
   
    lsz = caz(CrashList)
 //<<"failed list size $flsz crash $lsz \n"
-//   flsz->info(1)
-//   lsz->info(1)
+//   flsz<-info(1)
+//   lsz<-info(1)
    
 
 if (lsz >= 1) {
@@ -1033,8 +1033,8 @@ if (lsz >= 1) {
 <<[Tlogf]"\n$lsz modules   crashed! \n"
 
 
-   CrashList->info(1);
-   CrashList->Sort()
+   CrashList<-info(1);
+   CrashList<-Sort()
 
 <<" crashlist $lsz   \n"
    for (i = 0; i < lsz ; i++) {

@@ -217,8 +217,8 @@ chkR(fans,10.89)
 real r1 = 2.2
 real r2 = 3.3
 
-r1->info(1)
-r2->info(1)
+r1<-pinfo()
+r2<-pinfo()
 
     fans = acalc->mul(r1,r2);
 

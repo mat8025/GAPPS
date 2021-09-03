@@ -22,11 +22,10 @@
 
 Svar _HV;
 
-//_HV->info(1)
 
-_HV->table("HASH",50,2) //
+_HV<-table("HASH",50,2) //
 
-//_HV->info(1)
+//_HV<-info(1)
 
 
 int hv_found =0;
@@ -69,7 +68,7 @@ if (sz > 1) {
       hv_found = 1;
     }
 
-    index=_HV->addkeyval(L[1],_val); // returns index
+    index=_HV<-addkeyval(L[1],_val); // returns index
  //<<"$index $L[1] $_val \n"
   }
   }
@@ -89,7 +88,7 @@ _ele_vers = "H";
 _ele = 1;
 if (hv_found) {
 key = "@vers" ;
-_vers = _HV->lookup(key);
+_vers = _HV<-lookup(key);
 _vw= split(_vers)
 _ele_vers = _vw[2]
 _ele = ptAN(_ele_vers)
