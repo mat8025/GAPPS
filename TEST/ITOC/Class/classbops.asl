@@ -84,9 +84,11 @@ class Point
     cmf set (double m, double n) 
     {
   <<"$_proc set via double %V $m $n  \n";
+  
        x = m;
        y = n;
-   <<"%V $m $n \n" 
+       
+   <<"%V $x $y \n" 
       };
 
 
@@ -107,7 +109,7 @@ class Point
       return x;
       };
     
-    cmf gety()
+    cmf Gety()
      {
       <<"getting $y  $_cobj  \n"; 
       return y;
@@ -130,7 +132,7 @@ class Point
       <<"%V $x,$y %i $x,$y\n"; 
       }
 
-     cmf Pinfo() {
+     cmf info() {
       <<"$_proc %V $x,$y\n";
        v=y<-isVector()
    <<"%v$v\n"	
@@ -178,12 +180,14 @@ double x1;
 
 
    A<-pinfo()
-!a
-   A->Pinfo()
-!a
 
 
-//chkOut()
+<<"should call cmf  A->info() \n"
+   A->info()
+
+
+
+
    A->x = 4.0
  
   Point B;
@@ -201,16 +205,21 @@ real r2 = 4.5;
 
 
   rx=   A->Getx();
-  <<"%V $rx\n"
+
+ <<"%V <|$rx|>\n"
 
   chkR(rx,4.0);
 
+ <<"%V <|$r1|>\n"
 
   A->setx(r1);
+
   rx=   A->Getx();
-  <<"%V $rx\n"
+  
+ <<"%V <|$rx|>\n"
 
   chkR(r1,rx)
+
 
 
 
@@ -311,10 +320,16 @@ real r2 = 4.5;
   ok=chkR(B->y,0.123,5); 
   
   C->set(1.1,0.2); 
+
+  C->Print();
   
-  <<"%V $C->x $C->y \n"; 
-  
-  
+  cy = C->Gety()
+
+  <<"%V $C->x $C->y $cy\n"; 
+
+chkR(cy,0.2);
+
+
   wx = A->Getx();
   
   ok=chkR(wx,0.15,5); 
@@ -348,8 +363,8 @@ real r2 = 4.5;
   
   <<"%V$ok x  $wx 0.15\n"; 
   
-  wy = A->gety(); 
-  <<"%V $wy $A->gety()\n"; 
+  wy = A->Gety(); 
+  <<"%V $wy $A->Gety()\n"; 
   
   
   ok=chkR(wy,79,5); 
@@ -365,49 +380,49 @@ real r2 = 4.5;
   <<"A %V $ax \n";
   
   chkR(ax,47,5);
-  ay = A->gety();
+  ay = A->Gety();
   <<"A %V $ay \n"; 
 
   chkR(ay,79,5); 
   
   A->Print();
   
-   axy = A->Getx() + A->gety();
+   axy = A->Getx() + A->Gety();
 
 <<"%V $axy $ax $ay\n"
 
-   axy = A->gety() + A->Getx();
+   axy = A->Gety() + A->Getx();
    axy2 = ax + ay;
    axy3 = ax + ay;   
 <<"%V $axy $axy2 $axy3 $ax $ay\n"
 
   chkR(axy,(ax+ay),5);
-chkOut()  
+
   bx = B->Getx();
 
   chkR(bx,83,5); 
 
-  by = B->gety();
+  by = B->Gety();
   
   chkR(by,65,5); 
 
-  bxy = B->Getx() + B->gety();
+  bxy = B->Getx() + B->Gety();
 
 <<"%V $bxy $bx $by\n"
 
-  axy = A->Getx() + A->gety();
+  axy = A->Getx() + A->Gety();
 
 <<"%V $axy $ax $ay\n"
   
   chkR(axy,(ax+ay),5); 
-  chkOut()
 
-  bxy = B->Getx() + B->gety(); 
+
+  bxy = B->Getx() + B->Gety(); 
   chkR(bxy,(bx+by),5);
   
   z2 = A->x + B->y; 
   
-  z = A->Getx() + B->gety(); 
+  z = A->Getx() + B->Gety(); 
   
   <<"%V $ax $ay $axy $bx $by  $bxy $z2 $z\n"; 
   
@@ -418,20 +433,21 @@ chkOut()
   
   <<"%V $z $wx $wy \n"; 
   
-  z = A->Getx() * A->gety(); 
+  z = A->Getx() * A->Gety(); 
   
   <<"%V $z $wx $wy \n"; 
   
   my = B->y; 
-  
-  <<"%V $B->y  $my \n"; 
+  cy = C->y;
+  <<"%V $B->y  $my $cy $C->y\n"; 
   
   my = B->y - C->y;
-  
+
+ <<"%V$ok $B->y - $C->y =  $my \n"; 
+
   ok=chkR(my,(65-0.2),4); 
-  <<"%V$ok $B->y - $C->y =  $my \n"; 
-  
-  
+ 
+
   my = ((B->y - C->y)/2.0) + C->y; 
   
   <<"%V $B->y $C->y  $my \n"; 
@@ -476,7 +492,7 @@ chkOut()
 
 
 
-  v = B->gety(); 
+  v = B->Gety(); 
   <<" $v\n"; 
   v1 = C->y;
   <<" $v1\n"; 
@@ -489,7 +505,7 @@ chkOut()
   chkProgress("  v -= C->y ");
   
   
-  my = B->gety() - C->y; 
+  my = B->Gety() - C->y; 
   <<"%V$ok $my $v\n"; 
   ok=chkR(my,v,5); 
   
@@ -564,7 +580,7 @@ chkOut()
   
   <<"%V$my $A->x  \n"; 
 
-  chkOut(); 
+
 
 
   r1 = B->Getx()
@@ -598,7 +614,7 @@ chkOut()
 //  A->Getx() - done
 //  A->mul(z) - done
 //  A->Getx() + B->Getx() + ...
-//  A->add( B->gety(), C->gety())  ...
+//  A->add( B->Gety(), C->Gety())  ...
 //  A->x->z ....
 //  ...
 */  

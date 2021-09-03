@@ -158,7 +158,7 @@ int cltpt = 0
 
 DBG"%V $ac $targ\n"
 
-    sz = targ->Caz()
+    sz = targ<-Caz();
     ac++
 
 
@@ -367,10 +367,10 @@ DBG"inputs  $the_start\n"
 
 	  // need to step back a line
         if (use_cup) {
-         nwr = Wval->readWords(A,0,',');
+         nwr = Wval<-readWords(A,0,',');
 	 }
         else { 
-         nwr = Wval->readWords(A)
+         nwr = Wval<-readWords(A)
         }
       //    <<" %i $Wval \n"
 
@@ -476,15 +476,15 @@ DBG"$nwr $Wval[0] $Wval[1] $Wval[2] $Wval[3] \n"
 	// Fseek(A,w,0)
             ki = seek_line(A,0)
            if (use_cup) {
-             nwr = Wval->readWords(A,0,',')
+             nwr = Wval<-readWords(A,0,',')
              Wtp[n_legs]->TPCUPset(Wval)
 	   }
 	   else {
-             nwr = Wval->readWords(A)
+             nwr = Wval<-readWords(A)
              Wtp[n_legs]->TPset(Wval)
 
            }
-            msz = Wval->Caz()
+            msz = Wval<-Caz()
       }
 
   }
