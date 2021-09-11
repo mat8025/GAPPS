@@ -27,6 +27,7 @@ if (_dblevel >0) {
 
 }
 
+allowErrors(-1)
 
    
 
@@ -39,13 +40,13 @@ int i = 0;
 
 //<<" $(i->info()) \n"  // TBF recurses 
 
- i->info(1)
+ i->pinfo()
 
 chkN(i,0);
 
 <<"$i \n"
 
- iv2 = i->info();
+ iv2 = i<-info();
 
 <<"$iv2 \n"
 
@@ -53,40 +54,41 @@ chkN(i,0);
 
 IV = vgen(INT_,10,0,1);
 
- iv2 = IV->info();
+ iv2 = IV<-info();
 
 <<"$iv2 \n"
 
   IV[5] = 47;
 
- iv2 = IV->info();
+ iv2 = IV<-info();
 
 <<"$iv2 \n"
 
- ivec = IV->isvector();
+ ivec = IV<-isvector();
 
  <<"%v $ivec\n"
 
- //<<" $(IV->isvector()) \n"
+ 
 
-// <<" $IV->isvector() \n" // TBF vmf in paramexp print fails!!
+<<"is IV vec?  $(IV->isvector()) \n" // TBF vmf in paramexp print fails!!
 
 
 
-vid = i->varid()
+vid = i<-varid()
 
 //FIXME <<" $vid $(i->vid())\n"
 <<" $vid \n"
 
 float F[10]
 
+chkT(1)
 
 ////////////////////////////////////////////////////////////
 
 proc Pset( svar s)
 {
 <<"proc $_proc   $s \n"  
-      s->info(1)
+      s<-info(1)
    <<"$s[1] : $s[2]\n"
       val = s[1]
       <<"%V $val\n"
@@ -117,14 +119,15 @@ class Act {
      <<"Act_Set INT  $_cobj k $k\n" 
      <<"%V$otype\n"
      otype = k;
-     otype->info(1);
+     //otype->info(1);
+     otype<-pinfo();
      return otype;
  }
  
  cmf Set(svar sa)
  {
      <<"Act Set svar $_cobj \n"
-      sa->info(1)
+      sa<-pinfo()
       svtype = sa;
    <<"$sa[1] : $sa[2]\n"
       val = sa[1]
@@ -141,7 +144,7 @@ class Act {
  {
      <<"Act Set  str $_cobj \n" 
       stype = sr;
-       sr->info(1)
+       sr<-pinfo()
      <<"stype  $sr $stype\n"
      return stype;
  }
@@ -149,7 +152,7 @@ class Act {
  cmf Get()
  {
  <<"$_proc  Get %V $otype\n"
-     otype->info(1)
+     otype<-info(1)
 
    return otype;
  }
@@ -159,7 +162,7 @@ class Act {
  <<"$_proc  GetWD\n"
 
 
-   a_day->info(1)
+   a_day<-info(1)
 <<"getting  $a_day\n"
    return a_day;
  }
@@ -177,8 +180,8 @@ class Act {
 
    t = 0;
    a_day = Act_ocnt;
-   a_day->info(1)
- <<"Act cons of $_cobj $id $Act_ocnt %V $a_day $mins $otype\n"
+   a_day<-info(1)
+ //<<"Act cons of $_cobj $id $Act_ocnt %V $a_day $mins $otype\n"
 
  }
 
@@ -187,7 +190,7 @@ class Act {
 
 Act a;
 
-    a->info(1)
+    a<-info(1)
     a->otype = 2;
 <<"%V$a->otype \n"
     a->otype = 3;
@@ -234,7 +237,7 @@ chkStage(" Simple Obj reference")
 
  <<"%V $Act_ocnt \n"
 
- X->info(1)
+ X<-info(1)
 
 od=X[2]->GetWD()
 
@@ -248,7 +251,7 @@ od=X[3]->GetWD()
 <<"X[3] %V $od\n"
 chkN(od,5)
 
-X->info(1)
+X<-info(1)
 
 
 
@@ -292,7 +295,7 @@ val = SV[3]
 svar SV2
 SV2="estoy bien y tu"
 
-SV2->split()
+SV2<-split()
 
 <<"$SV2[0]  $SV2[3] \n"
 
@@ -329,7 +332,7 @@ val2 = SV2[3]
   obid = X[0]->ObjID(); // TBF fails crashes ?
 
 <<"X[0] $obid \n"
- X->info(1)
+ X<-info(1)
 
 chkStage(" Svar Mbr reference")
 
@@ -430,7 +433,7 @@ chkStage(" Simple Get/Set")
 <<"47? type for 2 $yt $(typeof(yt)) \n"
 
  chkN(yt,47);
-  X->info(1)
+  X<-info(1)
 
 
  yt = X[3]->otype;
@@ -511,7 +514,7 @@ chkStage(" Simple Get/Set")
 
  m = 4
  m2 =3
- X->info(1)
+ X<-info(1)
 
  yst =  X[2]->Set(m)
 
@@ -685,7 +688,7 @@ class Dil {
  cmf Get()
  {
  <<"$_proc  \n"
-   w_day->info(1)
+   w_day<-info(1)
 <<"getting w_day $w_day\n"
    return w_day;
  }
@@ -695,7 +698,7 @@ class Dil {
    dil_ocnt++ 
    w_day = dil_ocnt;
   <<"cons of Dil $_cobj $w_day $dil_ocnt\n"
-    w_day->info(1)
+    w_day<-info(1)
 }
 
 }
@@ -712,13 +715,13 @@ class Dil {
  Dil E 
 
 <<"%V $dil_ocnt \n"
- E->info(1)
+ E<-info(1)
 
  od =E->Get();
 <<"E->w_day $od  $E->w_day\n"
- od->info(1)
+ od<-info(1)
 
-//E->w_day->info(1);  // broke
+//E->w_day<-info(1);  // broke
 
 chkN(od,1)
 
@@ -730,7 +733,7 @@ Dil H[2];
 <<" after class def Dil H[2] \n"
 <<"%V $dil_ocnt \n"
 
-H->info(1)
+H<-info(1)
 
 od = H[1]->Get();
 

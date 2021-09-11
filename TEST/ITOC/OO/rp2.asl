@@ -24,8 +24,8 @@ if (_dblevel >0) {
    <<"$Use_\n"   
 }
 
-filterFileDebug(REJECT_,"scope_e","proc_e.cpp","ic_pushsivele.cpp","ic_pop.cpp");
-filterFuncDebug(REJECT_,"var_ptr");
+//filterFileDebug(REJECT_,"scope_e","proc_e.cpp","ic_pushsivele.cpp","ic_pop.cpp");
+//filterFuncDebug(REJECT_,"var_ptr");
 
   chkIn(_dblevel); 
   
@@ -368,6 +368,7 @@ z2 = ar + am1r;
 
 
 <<"%V $a   $am2\n"
+
 
 
 x1=C[a]->setRooms(C[am2]->getrooms())) ;

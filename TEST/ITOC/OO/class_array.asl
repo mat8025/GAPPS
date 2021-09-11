@@ -47,10 +47,6 @@ MIV= vgen(INT_,30,0,1)
 
 <<"$MIV \n"
 
-!a
-
-
-
 class Dil {
 
 public:
@@ -70,7 +66,7 @@ int cmf Set(int s)
      <<"$_cobj $s\n" 
      <<"%V$type\n"
      type = s;
-     type->info(1);
+     type<-pinfo();
      return type;
  }
  
@@ -86,9 +82,9 @@ int cmf Set(int s)
  void cmf Set(int wi, int val)
  {
     <<"%V $wi $val\n"
-   <<"$IV[::] \n"
+   <<"IN: $IV[::] \n"
       IV[wi] = val;
-   <<"$IV[::] \n" 
+   <<"OUT: $IV[::] \n" 
  }
 
  svar cmf showIV()
@@ -101,7 +97,7 @@ int cmf Set(int s)
 //   memcpy(mad, mas, nbytes)
 
 
-   iv=IV->info()
+   iv=IV<-info()
 <<"%V $iv\n"
 <<"%V $IV[::] \n"
 
@@ -115,11 +111,14 @@ int cmf Set(int s)
      id = OC;
 
      OC++;
+   
     int k = 0;
-    type->info(1);
-    n_actv->info(1)
+    type<-pinfo();
+    n_actv<-pinfo();
 
-   IV->info(1)
+
+
+   IV<-pinfo()
 
    IV[0:9] = 1;
 
@@ -143,7 +142,7 @@ int cmf Set(int s)
      k = IV[7];
 <<"$IV\n"
 <<"%V$k \n"
-!a
+
      k = IV[0];
 
 <<"%V$k \n"
@@ -155,6 +154,7 @@ int cmf Set(int s)
      k = IV[0];
 
 <<"%V$k \n"
+
  <<"Done cons \n"
  }
 
@@ -163,11 +163,13 @@ int cmf Set(int s)
 
 int agv =8;
 
-agv->info(1);
+agv<-pinfo();
 
 Dil E;
 
-   E->info(1)
+   E<-pinfo()
+
+
 
    vim=E->showIV();
 
@@ -189,7 +191,7 @@ Dil E;
 
 
 chkT(1)
-chkOut()
+
 
 
 
@@ -304,13 +306,27 @@ chkN (D->IV[2],79);
 
   E->showIV()
 
+  val = D->IV[8]
+
+<<"%V $val  $D->IV[5]\n"
+
   D->Set(8,47)
+
+
+
+  val = D->IV[8]
+  
+//<<"%V $val  $D->IV[8]\n"
+
+
 
   D->showIV()
 
+
+
   chkN (D->IV[8],47)
 
-  val = D->IV[8]
+
 
   D->Set(67)
 <<"%V $val\n"
@@ -338,7 +354,10 @@ X[3]->Set(5)
 
 
 j= 2
-j->info(1)
+
+j<-pinfo()
+
+
 k= 44;
 
  X[j]->Set(k)

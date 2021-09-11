@@ -508,43 +508,49 @@ while (1) {
 
        if (_ename == "PRESS") {
       // ans=iread(">>");
-        if (_ewoname != "") {
-<<"calling function via <|$woname|> !\n"
-            $_ewoname()
+<<"calling function via <|$_ewoname|> !\n"
+     if (_ewoname != "") {
+
+           // $_ewoname()
         }
       }
 
-       if (_ewoname == "RESIZE") {
+       if (_ewoname == "WTLB") {
+
+               WTLB();
+       }
+       
+       else if (_ewoname == "RESIZE") {
        <<" RESIZE\n"
          drawScreens();
       }
 
-       if (_ewoname == "REDRAW") {
+      else if (_ewoname == "REDRAW") {
          drawScreens();
       }
 
 
-       if (_ewoname == "StartDay") {
+      else if (_ewoname == "StartDay") {
            setGoals()
       }
 
-      if (_ewoname == "GoalDay") {
+      else if (_ewoname == "GoalDay") {
            setGoals()
       }
 
-      if (_ewoname == "WtGoal") {
+      else if (_ewoname == "WtGoal") {
            setGoals()
       }
 
-       WXY=WoGetPosition(tw_wo)
-//<<"$WXY \n"
-
-       if (_ekeyw != "") {
+      else if (_ekeyw != "") {
          <<[_DB]"calling |${_ekeyw}| $(typeof(_ekeyw))\n"
          $_ekeyw()        
        }
 
         <<[_DB]"%V$lcpx $rcpx \n"
+
+       WXY=WoGetPosition(tw_wo)
+<<"$WXY \n"
 
     //   place_curs( gwo,100,5,1,1)
 

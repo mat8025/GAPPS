@@ -132,7 +132,7 @@ cbname = "goo"
 chkN(goo_call,2)
 
 
-
+!a
 
 
 
@@ -211,7 +211,9 @@ z=$fname(0.7)
 
 chkR(z,y)
 
-chkOut(); exit();
+chkOut();
+
+exit();
 
 
 

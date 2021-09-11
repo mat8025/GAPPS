@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @document ASLMAN.txt 
-//* 
-//*  @comment docs for ASL commands and usage 
-//*  @release CARBON 
-//*  @vers 2.3 Li Lithium [asl 6.2.92 C-He-Ur]                               
-//*  @date Wed Dec  2 13:20:18 2020 
-//*  @cdate 1/1/2001 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script ASLMAN.txt 
+ * 
+ *  @comment docs for ASL commands and usage 
+ *  @release CARBON 
+ *  @vers 2.4 Be Beryllium [asl 6.3.51 C-Li-Sb] 
+ *  @date 09/04/2021 09:34:59 
+ *  @cdate 1/1/2001 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                             
 
 
 .de NP
@@ -1440,7 +1442,29 @@ the description and value (where possible) of the argument.
 the statement
 <<"%(1,,,\n)$Arglist\n"
 would print those one per line to stdout.
-
+(see printargs() )
+.EF
+=============================================================
+.BF
+printargs()
+.(x
+printargs
+.)x 
+.FD
+printargs(a1,a2,...)
+use for debug -- function will print 
+the description and value (where possible) of the argument.
+.EF
+=============================================================
+.BF
+fprintargs()
+.(x
+fprintargs
+.)x 
+.FD
+fprintargs(Fh,a1,a2,...)
+use for debug -- function will print to file using file handle (see ofile) 
+the description and value (where possible) of the argument.
 .EF
 =============================================================
 .BF

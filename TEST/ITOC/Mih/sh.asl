@@ -10,7 +10,30 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-myScript = getScript();
+;
+
+
+
+<|Use_=
+Demo  of inheritance
+///////////////////////
+|>
+
+#include "debug"
+#include "hv.asl"
+
+if (_dblevel >0) {
+  debugON()
+    <<"$Use_\n"   
+}
+
+ allowErrors(-1)
+
+
+
+
+
+
 
 chkIn(_dblevel)
 //chkIn(1)
@@ -19,9 +42,9 @@ chkIn(_dblevel)
 
 class building {
 
- int rooms
- int floors
- int area
+ int rooms;
+ int floors;
+ int area;
 
  cmf setrooms(int val)
  {
@@ -83,8 +106,9 @@ class house : building {
  cmf print()
  {
   
-  rr = getrooms()
-  ff = getfloors()
+  //rr = getrooms(); // ERROR TBF 9/3/21
+  rr = rooms;
+  ff = floors;
   <<"%V $_cobj $bedrooms $baths $ff\n"
   <<"$_cobj has $bedrooms bedrooms $baths bathrooms and $ff floors $rr rooms %V $rooms $floors\n"
 

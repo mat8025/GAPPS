@@ -12,20 +12,33 @@
 //***********************************************%
 
 
+<|Use_=
+Demo  of Object copy ;
+want to show that can use &obj as an arg
+ to deliver ptr to that object to a script procedure
+///////////////////////
+|>
+
+
+                                                                        
 #include "debug"
+#include "hv.asl"
+
 
 if (_dblevel >0) {
-   debugON()
+  debugON()
+    <<"$Use_\n"   
 }
+
+ allowErrors(-1)
+
 
 
  chkIn(_dblevel)
-#
-# test oop features
-#
 
-// want to show that can use &obj as an arg
-// to deliver ptr to that object to a script procedure
+
+
+
 int pdef = 0;
 proc cart (str aprg)
 {
@@ -44,11 +57,11 @@ pdef++; <<"%V$pdef \n"
 void goo(ptr a)
 {
 <<"$_proc $a\n"
-   a->info(1)
+   a<-pinfo()
    b = $a;
 
 <<"%V $a $b\n"
-   b->info(1)
+   b<-pinfo()
 //   $a +=1
      $a = $a +1
      
@@ -75,12 +88,12 @@ pdef++; <<"%V$pdef \n"
 <<"%V $x $y\n";
 
  xp = &x;
- xp->info(1)
+ xp<-pinfo()
  //$xp = 1;
- // xp->info(1)
+ // xp<-pinfo()
  goo(xp)
 
- x->info(1)
+ x<-pinfo()
 
  
  chkN(x,2)
@@ -93,7 +106,7 @@ pdef++; <<"%V$pdef \n"
 
 goo(xp)
 
-x->info(1)
+x<-pinfo()
 <<"%V $x\n"
 
 chkN(x,3)
@@ -203,13 +216,13 @@ class fruit  {
    
     }
 
-/*
+
   cmf ~fruit()
     {
 <<" doing destructor   for %v $_cobj \n"
      ASK
    }
-*/
+
 
  }
 //==================================//
@@ -225,7 +238,7 @@ proc eat(fruit oba)
     <<"fruit thine name is $oba->name \n"
 
 
-    oba->info(1)   
+    oba<-pinfo()   
 
     oba->color ="red";
     
@@ -348,11 +361,21 @@ cherry->print()
 fruit orange;
 
 orange->print()
+<<" <|$orange->color|> \n"
 
+orange->color<-pinfo()
+
+clr = orange->color;
+clr<-pinfo()
+
+chkStr(clr,"white")
+
+printargs(orange->name,clr,orange->color)
 
 chkStr(orange->color,"white")
+chkStr("white",orange->color)
 
-//chkOut(); exit()
+
 
 // test of redef of proc and use
 proc goo()
@@ -392,7 +415,7 @@ goo()
 apple->print()
 cherry->print()
 
-//chkOut() ; exit();
+
 
 //setdebug (1, @~pline, @~step, @trace) ;
 
@@ -400,7 +423,9 @@ cherry->print()
   apple->print();
 
   fp = &apple;
-  fp->info(1)
+
+
+  fp<-pinfo()
   
   fp->print()
 
@@ -429,7 +454,7 @@ EA= examine(apple)
 
 <<"attempt to eat fruit!\n"
   eat(apple)
-  
+!a  
   apple->print();
 
 
@@ -509,7 +534,7 @@ chkStr(cherry->color,"red")
   
 cherry->print()
   chkStr(cherry->state,"eaten")
-//chkOut() ; exit();
+
 
 
 
@@ -572,7 +597,6 @@ cherry->print()
 
    chkStr(orange->color,"white")
 
- // chkOut() ;  exit()
 
 
 //<<"$(examine(orange))\n"
@@ -593,7 +617,7 @@ cherry->print()
 
    roo2("cuando")
 
-  //chkOut() ;  exit()
+
 
 <<"attempt to eat fruit!\n"
   orange->print()
@@ -607,7 +631,7 @@ cherry->print()
 
   orange->print()
 
- // chkOut() ;   exit()
+
 
 
      
@@ -630,7 +654,7 @@ cherry->print()
 
    apple->print()
 
-// chkOut(); exit()
+
   
    apple->color = "blue"
 
@@ -738,4 +762,6 @@ cherry->print()
 
    chkOut()
 
+
+/////////////////////////
 

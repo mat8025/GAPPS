@@ -27,7 +27,8 @@ if (_dblevel > 0) {
 setmaxcodeerrors(-1); // just keep going
 setmaxicerrors(-1);
 ignoreErrors()
-
+ allowErrors(-1)
+ 
 #define PGREEN '\033[1;32m'
 #define PRED '\033[1;31m'
 #define PBLACK '\033[1;39m'
@@ -375,6 +376,29 @@ if ((do_include || do_all ) && (do_include != -1)) {
    //RunDirTests("Assign","assign");
 
    }
+
+////////////// OO ///////////////////////
+
+
+   if ((do_all || do_class )  && (do_class != -1)) {
+
+        RunDirTests("Class","classbops,class_mfcall,class2,classvar");
+
+    }
+
+
+
+   if ((do_all || do_oo ) && (do_oo != -1)) {
+
+
+    RunDirTests("OO","oa2,rpS,rp2,wintersect,oa,class_array,simple_class");
+
+    RunDirTests("Obcopy","obcopy,obprocarg");
+
+    RunDirTests("Mih","sh,mih")
+
+
+  }
 
 
 ////////////// IF ///////////////////////
@@ -873,27 +897,6 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
    }
 
-
-
-   if ((do_all || do_class )  && (do_class != -1)) {
-
-        RunDirTests("Class","classbops,class_mfcall,class2,classvar");
-
-    }
-
-
-
-   if ((do_all || do_oo ) && (do_oo != -1)) {
-
-
-    RunDirTests("OO","oa2,rpS,rp2,wintersect,oa,class-array");
-
-    RunDirTests("Obcopy","obcopy,obprocarg");
-
-    RunDirTests("Mih","sh,mih")
-
-
-  }
 
 
  if ((do_all || do_sfunc ) && (do_sfunc != -1)) {

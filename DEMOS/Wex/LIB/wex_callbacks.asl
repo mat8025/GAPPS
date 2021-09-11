@@ -126,11 +126,11 @@ float RS[10];
 //---------------------------------------------
 proc WTLB()
 {
-       <<" setting cursors $_ebutton \n"
+       <<"$_proc setting cursors $_ebutton \n"
 
        if (_ebutton == 1) {
          lcpx = _erx;
-	// <<"%V $lcpx\n"
+	<<"%V $lcpx\n"
          sGl(lc_gl,@cursor,lcpx,0,lcpx,300, CL_init)
 	 CL_init = 0;
         getDay(lcpx);
@@ -139,9 +139,10 @@ proc WTLB()
 
        if (_ebutton == 3) {
          rcpx = _erx
+	<<"%V $rcpx\n"	 
          sGl(rc_gl,@cursor,rcpx,0,rcpx,300, CR_init)
          CR_init = 0;
-        // getDay(rcpx);
+         getDay(rcpx);
        }
 
 

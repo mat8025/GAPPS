@@ -10,8 +10,22 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-myScript = getScript();
-# test  multiple inheritance
+;
+<|Use_=
+Demo  of multiple inheritance
+///////////////////////
+|>
+
+#include "debug"
+#include "hv.asl"
+
+if (_dblevel >0) {
+  debugON()
+    <<"$Use_\n"   
+}
+
+ allowErrors(-1)
+
 
 chkIn(_dblevel)
 

@@ -25,6 +25,8 @@ if (_dblevel >0) {
 
 }
 
+ allowErrors(-1)
+
 chkIn (_dblevel)
 
 
@@ -109,8 +111,8 @@ class Building {
 <<" $_proc  $_cobj [${id}]$rooms $floors $area \n"
    rnf = floors;
 <<"$rnf \n"   
-   return rnf;  // TBF returning local -- deleted does not remain on stack for assignment?
-  // return floors;
+   //return rnf;  // TBF 9/3/21 returning local -- deleted does not remain on stack for assignment?
+  return floors;
  }
 
  cmf Print()
@@ -120,7 +122,6 @@ class Building {
 //======================================//
  cmf Building()
  {
-
     id = Bid;
     <<"%V $id\n"
     Bid++;
@@ -129,7 +130,6 @@ class Building {
    <<"%V $floors\n" 
     rooms = 4 +id ;
     area = floors * 200;
-   
  <<"Cons $_cobj %V $id  $Bid $floors  $rooms $area\n"
   }
 
@@ -425,9 +425,17 @@ chkN (a,15)
 <<" %v $bnf \n"
 
    bz->Print()
+   
+bz<-pinfo()
 
 <<" making copy of obj bz \n"
+
    d = bz
+
+ d<-pinfo()
+ d->Print()
+
+
 
    d->setFloors(11)
 
@@ -435,11 +443,13 @@ chkN (a,15)
 
    dr = d->getRooms()
 <<"%V $dr\n"
- //  d->pinfo()
-    info(d)
-    <<"d: $d\n"
+ d<-pinfo()
+    
+ <<"d: $d\n"
 
    c = d
+
+c<-pinfo()
 
    c->Print()
 
@@ -452,6 +462,7 @@ chkN (a,15)
    dnf = d->getFloors()
 
 <<" %v $dnf \n"
+
 
     if (dnf != bnf ) {
   <<" object copy fail! \n"

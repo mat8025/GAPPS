@@ -252,3 +252,4 @@ median.asl               1.3	08/23/2021 06:33:06 median of vector is scalar
 readfile.asl             1.7	08/23/2021 08:06:28 debug
 mdele.asl                1.16	08/29/2021 06:37:58 debug
 vmf_range.asl            1.3	09/02/2021 08:57:31 <- operator
+ASLMAN.txt               2.4	09/04/2021 09:34:59 printargs

@@ -13,6 +13,12 @@
  */ 
                                                                               
 
+<|Use_=
+Demo  of ptr type
+
+///////////////////////
+|>
+
 
 
 
@@ -20,10 +26,34 @@
 
 if (_dblevel >0) {
    debugON()
+     <<"$Use_\n"   
 }
 
+allowErrors(-1)
+ 
 chkIn(_dblevel);
+
+
+  KI = vgen(INT_,10,0,1)
+
+<<"$KI\n"
+  chkN(KI[1],1)
+
+  ptr vp;
+
+  KI<-pinfo()
+
+  vp = &KI;
+
+
+ vp<-pinfo();
   
+  <<" %V $vp \n"
+
+
+
+
+
   void goo(ptr a)
   {
  <<"$_proc $a\n"
@@ -44,7 +74,8 @@ chkIn(_dblevel);
   
   kp = &k;   // kp ptr to k
   
-  kp->info(1)
+  kp<-pinfo()
+  
   $kp = 8;
 
    kp->info(1)
@@ -61,8 +92,11 @@ chkIn(_dblevel);
 
   chkN(k,10)
 
+<<"%V $_scope\n"
 
   goo(&k)
+
+<<"%V $_scope\n"
 
   chkN(k,11)
   
@@ -128,8 +162,28 @@ chkIn(_dblevel);
   
   tok=chkN(k, 47)
   <<"%V $tok\n"
+
+<<"%V $_scope\n"
+
+  ptr vp2;
+
+  KI<-pinfo()
+
+  vp2 = &KI;
+
+
+ vp2<-pinfo();
+  
+  <<" %V $vp2 \n"
+
   
   
+  <<" %V $vp2[1] \n"
+
+  vp2[3] = 47; // correct
+  
+  
+  <<"$KI\n"  
   
    n = 2 * $kp 
   
@@ -144,33 +198,21 @@ chkIn(_dblevel);
   
   <<" %V $$kp \n"
   
-  KI = vgen(INT_,10,0,1)
-    <<"$KI\n"
-  vecp = &KI
-  vecp->info(1)
-  
-  <<" %V $vecp \n"
-  
-  
-  <<" %V $vecp[1] \n"
 
-  vecp[3] = 47; // correct
+    
+
   
-  
-  <<"$KI\n"
-  
-  $vecp = 89;  // wrong -- want this to only update current element
+  $vp = 89;  // wrong -- want this to only update current element
 
     <<"$KI\n"
   
   
-  chkOut ()
-  exit()
+
   
   
   
   
-  proc add( a,b )
+  proc add(int a, int b )
   {
    c= a +b
   <<"%V$c $a $b\n"
@@ -187,7 +229,7 @@ chkIn(_dblevel);
   intsz = sizeof(N)
   
   
-  int n = 79
+  n = 79
   a=3.14159
   
   <<"%I $n\n"
@@ -204,12 +246,12 @@ chkIn(_dblevel);
   
    add (5,6)
   
-   x = 2
-   y = 3
+   x = 2;
+   y = 3;
   <<"%V $x $y \n"
    add (x,y)
   
-  ans=iread()
+  
   
   <<"%V $x $y \n"
   
@@ -233,18 +275,26 @@ chkIn(_dblevel);
   //vn a_3 k 66 a_3 77 
   
   
-  exit()
   
   
   
-  ptr z = &x;
+  
+//  ptr z = &x;    //    TBF 9/4/21
+
+
+  ptr z;
+  
+  z = &x;
+  
+  z->info(1)
   
      z = 6;
-  <<"%V $(typeof(z)) $z $x\n"
+     
+  <<"%V $x\n"
   
+  z<-pinfo()
   
-  
-  
+
   int I[N]
   
   
@@ -331,37 +381,37 @@ chkIn(_dblevel);
   
   
   
+  ////////////////////////
   
-  
-  int a[]
-  int b[]
+  int AV[>10]
+  int b[>2]
   
   //ptr d
   
-  // a[0:20:2] = 3
+  // AV[0:20:2] = 3
   
   
-   a[0:20:2]->Set(3)
+   AV[0:20:2]<-Set(3)
   
-  <<" $a \n"
+  <<" $AV \n"
   
-   b[0:20:2]->Set(2,4)
+   b[0:20:2]<-Set(2,4)
   
   <<"%v $b \n"
   
-  <<"%v $a \n"
+  <<"%v $AV \n"
   
-  <<" $(typeof(a)) \n"
+  <<" $(typeof(AV)) \n"
   
-     d = &a
+     d = &AV
   
-  <<" $(typeof(d)) \n"
+  d<-pinfo()
   
   <<" ptr %v $d \n"
   
-   a[0:20:2]->Set(4,3)
+   AV[0:20:2]<-Set(4,3)
   
-  <<" reset %v $a \n"
+  <<" reset %v $AV \n"
   
   <<" ptr update %v $d \n"
   
@@ -372,14 +422,14 @@ chkIn(_dblevel);
   <<"%I $c \n $d \n"
   <<"%v $c \n"
   
-    d[0:20:2]->Set(5,3)
+    d[0:20:2]<-Set(5,3)
   
   
-  <<"%v $a \n"
+  <<"%v $AV \n"
   
   <<"%v $d \n"
   
-    <<"%v $a \n"
+    <<"%v $AV \n"
   
   <<"%v $d \n"
   
@@ -391,3 +441,4 @@ chkIn(_dblevel);
   
   
   
+chkOut()

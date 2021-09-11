@@ -1,13 +1,27 @@
 ///
 ///
 ///
-//include "debug"
-//debugON()
+
+<|Use_=
+  demo some OO syntax/ops
+|>
 
 
+#include "debug"
+
+
+if (_dblevel >0) {
+   debugON()
+    <<"$Use_\n"   
+
+}
+
+allowErrors(-1)
+
+   
 
 chkIn (_dblevel);
-//setdebug(2,@keep,@trace@pline,@~step)
+
 
 class Simple {
 
@@ -33,7 +47,8 @@ class Simple {
 
  cmf Get ()
   {
-     sa->info(1);
+     //sa->info(1);
+     sa<-pinfo();
      return sa;
   }
 
@@ -69,6 +84,8 @@ class Simple {
 
  val = S->Get();
 
+ chkN(val,67);
+ 
 !p val
 
 
@@ -150,6 +167,4 @@ nval = oa[wo]->Getlocalpv()
 !i nval
 
 
-
-
-exit();
+chkOut()

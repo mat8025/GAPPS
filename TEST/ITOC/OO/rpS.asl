@@ -184,16 +184,32 @@ CSr= CS->getrooms() ;
   res = BSr + ASr;
 <<"%V $res\n"
 
-   x=DS->setrooms(BS->getrooms() + CS->setrooms(AS->getrooms())) ;
+
+  CSr= CS->setrooms(AS->getrooms()) ;
+
+   DSr= DS->getrooms() ;
+
+<<"%V $ASr $BSr  $CSr $DSr \n"
+
+   x= DS->setrooms(BS->getrooms() + CS->setrooms(AS->getrooms())) ;
 
 <<"%V $x  should be $res ?\n"
 
+   ASr= AS->getrooms() ;
+
+   BSr= BS->getrooms() ;
+
+   CSr= CS->getrooms() ;
+
+   DSr= DS->getrooms() ;
+
+<<"%V $ASr $BSr  $CSr $DSr\n"
 
   chkN(x,res); 
 
 
-   DSr= DS->getrooms() ;
-  <<"%V $DSr \n"
+   
+  <<"%V $DSr $res\n"
 
    chkN(DSr,res); 
 
