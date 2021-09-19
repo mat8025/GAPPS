@@ -110,10 +110,10 @@ Graphic = checkGWM()
  
 
 
- hwo=cWo(vp,@ONOFF,@name,"ENGINE",@VALUE,"ON",@color,GREEN_,@resize,bx,by,bX,bY)
+ hwo=cWo(vp,@ONOFF,@name,"ENGINE",@VALUE,"ON",@color,RED_,@resize,bx,by,bX,bY)
 
- sWo(hwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_, @STYLE,SVR_)
- sWo(hwo,@bhue,"white",@clipbhue,"magenta");
+ sWo(hwo,@BORDER,@DRAWON,@CLIPBORDER,@fonthue,WHITE_, @STYLE,SVR_)
+ sWo(hwo,@fhue,LILAC_,@bhue,BLUE_,@clipbhue,MAGENTA_);
 
 
  // GetValue after entering text
@@ -125,9 +125,9 @@ Graphic = checkGWM()
  bY = by - ypad
  by = bY - yht
 
- lwo=cWo(vp,@ONOFF,@name,"PLAY",@VALUE,"ON",@color,"red",@resize,bx,by,bX,bY)
- sWo(lwo,@border,@drawon,@clipborder,@fonthue,"blue", @style,"SVL", @redraw)
- sWo(lwo,@fhue,"teal",@clipbhue,"violet")
+ lwo=cWo(vp,@ONOFF,@name,"PLAY",@VALUE,"ON",@color,RED_,@resize,bx,by,bX*0.5,bY)
+ sWo(lwo,@border,@drawon,@clipborder,@fonthue,WHITE_, @style,SVB_, @redraw)
+ sWo(lwo,@fhue,TEAL_,@clipbhue,PINK_)
 
 
 <<"%V$two $hwo $gwo $gvwo $lwo\n"
@@ -303,6 +303,25 @@ proc do_sketch()
  } 
 //--------------------------------------------------------
 
+void FRUIT()
+{
+
+  <<"want a fruit?\n"
+
+}
+
+
+void BOATS()
+{
+
+  <<"want to sail a boat?\n"
+
+}
+
+
+
+
+
 proc QUIT()
 {
  exitgs();
@@ -318,7 +337,7 @@ proc tb_q()
 
 ////////////////////////////////////
 
-include "gevent" ;   // our Gevent variable - holds last message
+#include "gevent" ;   // our Gevent variable - holds last message
                             // could use another or an array to compare events
 
 sWi( allwins ,@redraw)
@@ -333,17 +352,18 @@ sWi( allwins ,@redraw)
       }
 
       sWo(two,@texthue,"black",@clear,@textr,"$_ekeyw",-0.9,0)
-
-      if (_ename @= "PRESS") {
+/*
+      if (_ename == "PRESS") {
 	    <<"%V $_ewoname \n";
-//        if (!(_ewoname @= "")) {
+
+ if (_ewoname != "") {
             <<"calling function via woname $_ewoname !\n"
             $_ewoname()
             continue;
-  //      }
+        }
 
        }
-
+*/
   }
 
 
