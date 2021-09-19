@@ -15,7 +15,7 @@
 //myScript = getScript();
 
 
-<<"read in tpclass\n"
+//<<"read in tpclass\n"
 //<<" que pasa\n"
 //============================================
 
@@ -25,7 +25,7 @@
 
 int Tleg_id = 0;
 
-<<"%V $_include $Tleg_id\n"
+//<<"%V $_include $Tleg_id\n"
 
 class Tleg 
  {
@@ -133,26 +133,31 @@ class Turnpt
 
   cmf TPCUPset (svar wval) 
    {
+//wval<-pinfo()
+//<<"%V $wval[::]\n"
+//<<"0 <|$wval[0]|>\n"
+//<<"1 <|$wval[1]|>\n"
+//<<"2 <|$wval[2]|>\n"
+str val;
 
-//    <<"%V $wval[::]\n"
-DBG"<|$wval[0]|>\n"
 
      val = dewhite(wval[0])
 //val->info(1)
 //<<"%V$val  \n"
+
+
      val = scut(val,1)
      val = scut(val,-1)
-     
-
-//     val = wval[9]
-//     val->info(1)
 
      Place=val; // wayp 
     
-//    <<"%V$Place\n"
+//   <<"%V$Place\n"
 
+     val =  wval[1];
+     val = scut(val,1)
+     val = scut(val,-1)
 
-     Idnt =  wval[1];
+     Idnt = val;
 
 //  <<"%V$Idnt\n"
 //Idnt->info(1)
@@ -257,6 +262,6 @@ cmf SetPlace (str val)
 
 
 
-<<"%V $_include $Ntp_id\n"
+//<<"%V $_include $Ntp_id\n"
 
 

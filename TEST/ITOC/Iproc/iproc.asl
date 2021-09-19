@@ -132,7 +132,7 @@ cbname = "goo"
 chkN(goo_call,2)
 
 
-!a
+
 
 
 
@@ -170,6 +170,13 @@ N = 6;
 kp= 0;
 
 svar pnames = {"goo","zoo","moo","roo" }
+
+<<"%V $pnames \n"
+
+<<"%V $pnames[1] \n"
+
+
+
 
 for (i=0; i< 4; i++) {
        cbname = pnames[i]

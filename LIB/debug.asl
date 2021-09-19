@@ -23,8 +23,8 @@
 //filterFileDebug(REJECTALL_,"yyy");
 
 hold_dbl = _dblevel;
-<<"%V $hold_dbl\n"
-_dblevel = 0;
+//<<"%V $hold_dbl\n"
+//_dblevel = 0;
 
 // working variables
 int _DB = -1; // dbg FH set to nop --set to 2 for error output
@@ -132,7 +132,7 @@ proc showUse()
 
 
 
-_dblevel = hold_dbl;
+//_dblevel = hold_dbl;
 
 
 

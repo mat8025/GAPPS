@@ -63,13 +63,13 @@ float Cruise_speed = (CSK * nm_to_km);
 // try Wtp as args
 
 //<<" done class def \n"
-<<"%V$Ntp_id\n"
+//<<"%V$Ntp_id\n"
 
 Turnpt  Wtp[50];
 
 
 
-<<"%V$Ntp_id\n"
+//<<"%V$Ntp_id\n"
 
 Wtp[1]->Alt = 100.0;
 
@@ -257,7 +257,7 @@ int input_lat_long = 0
 
 int i = -1
 
-    <<"DONE ARGS  $cltpt\n"
+//    <<"DONE ARGS  $cltpt\n"
 
 
 
@@ -368,6 +368,8 @@ DBG"inputs  $the_start\n"
 	  // need to step back a line
         if (use_cup) {
          nwr = Wval<-readWords(A,0,',');
+//<<"%V $nwr\n"
+//<<"$Wval[0] $Wval[1] $Wval[3] $Wval[4] \n"	 
 	 }
         else { 
          nwr = Wval<-readWords(A)
@@ -477,7 +479,9 @@ DBG"$nwr $Wval[0] $Wval[1] $Wval[2] $Wval[3] \n"
             ki = seek_line(A,0)
            if (use_cup) {
              nwr = Wval<-readWords(A,0,',')
-             Wtp[n_legs]->TPCUPset(Wval)
+//<<"%V $nwr\n"
+//<<"$n_legs $Wval[0] $Wval[1] $Wval[3] $Wval[4] \n"
+            Wtp[n_legs]->TPCUPset(Wval)
 	   }
 	   else {
              nwr = Wval<-readWords(A)
@@ -490,6 +494,9 @@ DBG"$nwr $Wval[0] $Wval[1] $Wval[2] $Wval[3] \n"
   }
 
     //      prompt("%v $more_legs next turn %-> ")
+
+
+
 
 # compute legs
 
