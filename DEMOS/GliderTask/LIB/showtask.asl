@@ -35,6 +35,8 @@ if (_dblevel >0) {
 
 #include "hv.asl"
 
+
+chkIn(_dblevel);
 ignoreErrors()
 setMaxICerrors(-1) // ignore - overruns etc
 
@@ -48,14 +50,15 @@ float Margin = 0.05;
 
 int Ntpts = 1000;
 
+float MSL=0;
+
+uplegs = 0;  // needed?
+
 #include "tpclass"
 #include "ootlib"
 
+int main_chk =1;
 int Maxtaskpts = 13;
-
-
-
-
 
 //======================================//
 proc drawTrace()
@@ -82,16 +85,74 @@ proc drawTrace()
 }
 
 //======================================//
+///////////////////// SETUP GRAPHICS ///////////////////////////
 
 
+/////////////  Arrays : Globals //////////////
+
+LatS= 37.5;
+
+LatN = 42.0;
+
+LongW= 108.5;
+
+LongE= 104.8;
+
+ MidLong = (LongW - LongE)/2.0 + LongE;
+ MidLat = (LatN - LatS)/2.0 + LatS;
+
+LoD = 35.0;
 
 TaskType = "TRI"; 
 
 int Nlegs = 3;
 
-Turnpt  Wtp[800]; // 
+
+int Taskpts[>10];
+
+Turnpt  Wtp[300]; //
 
 Tleg  Wleg[20];
+
+
+index = 7;
+for (i= 0; i <5; i++) {
+
+  Taskpts[Ntaskpts] = index;
+
+  index++;
+  Ntaskpts++;
+  
+}
+
+
+
+
+
+ 
+  
+/*
+#include "showtask_scrn"
+Taskpts<-pinfo()
+
+   for (k= 0; k < Ntaskpts; k++) {
+     index = Taskpts[k];
+<<"%V $k $index $Taskpts[k] \n";
+   }
+*/
+
+/*
+
+TaskDist() ;   // TBF  ?? 9/20/21 has to be run before TP readin ???
+
+
+ DrawMap(mapwo)
+
+  drawTask(mapwo,"red")
+*/
+//==========================//
+
+
 
 /// open turnpoint file lat,long 
 
@@ -154,7 +215,8 @@ longv = RF[WH[0][0]][3]
 <<"%V $place $lat $longv\n"
 
 
-
+<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+main_chk++;
 
 //================================//
  svar Wval;
@@ -187,10 +249,15 @@ while (1) {
     //after = ftell(A)
 //<<"$Ntp $wd1 $before $after\n"    
     if (use_cup) {
-               nwr = Wval->ReadWords(A,0,',')
+               nwr = Wval<-ReadWords(A,0,',')
+
+<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+main_chk++;
+
+	       
     }
     else {
-            nwr = Wval->ReadWords(A)
+            nwr = Wval<-ReadWords(A)
     }
             if (nwr == -1) {
 	      break
@@ -201,7 +268,11 @@ while (1) {
      if ( c1 != '#') {
      
       if (use_cup) {
+<<"main precmf %V $_scope $_cmfnest $_proc $_pnest\n"      
              Wtp[Ntp]->TPCUPset(Wval);
+<<"main postcmf %V $_scope $_cmfnest $_proc $_pnest\n"
+<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+main_chk++;
       }
       else {
             Wtp[Ntp]->TPset(Wval);
@@ -210,9 +281,11 @@ while (1) {
 
              Ntp++;
 //<<"$Ntp $wd1 $Wval[0] $Wval[1]\n"
+        }
       }
-    }
 
+//if (Ntp >=3) break;
+//<<"while_end main postcmf %V $_scope $_cmfnest $_proc $_pnest\n"
       }
 
 <<" Read $Ntp turnpts \n"
@@ -221,48 +294,56 @@ while (1) {
   exit("BAD turnpts");
  }
 ////////////////////////////////////
+chkT(1)
+
+
+
 
 // Nlegs = Ntp -1;
+<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+main_chk++;
+
 
 int is_an_airport
-//sdb(1,@trace)
 
-Wtp->pinfo()
-    for (k = 0 ; k < 5  ; k++) {
+<<"pre_pinfo() %V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+main_chk++;
+
+
+Wtp<-pinfo()
+
+<<"post_pinfo() %V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+main_chk++;
+
+
+    for (k = 1 ; k <=  5 ; k++) {
 
         is_an_airport = Wtp[k]->is_airport;
-
+if (is_an_airport) {
         mlab = Wtp[k]->Place;
 
-//<<"<|$k|> $mlab  $is_an_airport\n"
-       if (mlab @= "Jamestown") {
- //         <<"SF\n"
-       }
+<<"TP $k $mlab  $is_an_airport\n"
+//       if (mlab @= "Jamestown") {
+//         <<"SF\n"
+//       }
+}
+
    }
 
-
-
+<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+main_chk++;
+chkT(1)
 
 /////////////////// TASK DEF ////////////
 
-int Taskpts[>10]; 
+
+
+
 
 Task_update =1
 Units = "KM"
 
 
-/////////////  Arrays : Globals //////////////
-
-LatS= 37.5;
-
-LatN = 42.0;
-
-LongW= 108.5;
-
-LongE= 104.8;
-
- MidLong = (LongW - LongE)/2.0 + LongE;
- MidLat = (LatN - LatS)/2.0 + LatS;
 
 
 int tp_wo[>20];
@@ -270,7 +351,7 @@ int gtp_wo[>20];
 int ltp_wo[>20];
 
 
-LoD = 35.0;
+
 
 char MS[240]
 char Word[128]
@@ -299,6 +380,9 @@ svar Tskval;
   na = argc()
  <<"na $na\n"
  int ai =0;
+
+<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+main_chk++;
  while (AnotherArg()) {
 
 <<"$ai $_clarg[ai]\n"
@@ -323,16 +407,22 @@ svar Tskval;
           index = WH[0][0]
           if (index >=0) {
           ttp = RF[index];
-<<" found $targ  $index\n"
+
 <<"$ttp \n"
+
           Taskpts[Ntaskpts] = index;
-          Ntaskpts++;
-          }
+<<" $Ntaskpts found $targ  $index  $Taskpts[Ntaskpts]\n"
+           Ntaskpts++;
+
+           }
 	  
           }
 
 }
 //======================================//
+chkT(1)
+<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+main_chk++;
 
 // home field
 // set a default task
@@ -357,162 +447,85 @@ sz->info(1)
           ttp = RF[index];
 <<"$ttp \n"
           Taskpts[Ntaskpts] = index;
-          Ntaskpts++;
+<<"%V $index $Taskpts[Ntaskpts] \n";
+           Ntaskpts++;
           }
     }
 }
 //======================================//
+
+<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+main_chk++;
+
 Nlegs = Ntaskpts;
 <<"%V $Ntaskpts \n"
+Taskpts<-pinfo()
+
+   for (k= 0; k < Ntaskpts; k++) {
+       index = Taskpts[k];
+<<"%V $k $index $Taskpts[k] \n";
+   }
+
+//   for (k= 1; k < 15; k++) {
+//             Wtp[k]->Print()
+//    }
+<<"//////////\n"
+<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+main_chk++;
+Taskpts<-pinfo()
+
 
 <<" Now print task\n"
+<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+main_chk++;
 
 
-      TaskDistance();
 
+      for (i = 0; i < Ntaskpts ; i++) {
+         MSL = Wleg[i]->msl;
+       <<"Stat $i $MSL $Wleg[i]->dist   $Wleg[i]->fga\n"
+      }
+
+<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+main_chk++;
+<<"main  pre TaskDist %V $_scope $_cmfnest $_proc $_pnest\n"	       
+
+ TaskDist();
+
+
+/**
+<<"after include  proc \n"
+
+   for (k= 0; k < Ntaskpts; k++) {
+       index = Taskpts[k];
+<<"%V $k $index $Taskpts[k] \n";
+   }
+*/
+
+
+<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+main_chk++;
 
 <<"%V $Have_igc\n"
+
+
+
   if (Have_igc) {
-
-      Ntpts=IGC_Read(igcfn);
-
-<<"sz $Ntpts $(Caz(IGCLONG))   $(Caz(IGCLAT))\n"
-
-      k = Ntpts - 30;
-
-//<<"%(10,, ,\n) $IGCLONG[0:30] \n"
-//<<"%(10,, ,\n) $IGCLONG[k:Ntpts-1] \n"
-
-
-     sslng= Stats(IGCLONG)
-
-     for (i=0; i < Ntpts; i += 5) {
-     
-      <<"$i $IGCTIM[i] $IGCELE[i] $IGCLAT[i]  $IGCLONG[i] \n";
-
-     }
-
-     <<"%V $sslng \n"
-
-     sslt= Stats(IGCLAT)
-
-<<"%V $sslt \n"
-
-    ///
-    sstart = Ntpts /10;
-
-    sfin = Ntpts /5;
-    
-    //sstart = 1000;
-   // sfin = 1500;
-
-//     for (i=sstart; i < sfin; i++) {
-     
-//      <<"$i $IGCTIM[i] $IGCELE[i] $IGCLAT[i]  $IGCLONG[i] \n";
-
-//     }
-
-
-
-     ssele= Stats(IGCELE,">",0)
-
-<<"%V $ssele \n"
-
-      Min_ele = ssele[5];
-      Max_ele = ssele[6];
-<<" min ele $ssele[5] max $ssele[6] \n"
-
-      min_lng = sslng[5];
-      max_lng = sslng[6];
-
-<<"%V $min_lng $max_lng \n"
-
-
-      min_lat = sslt[5];
-      max_lat = sslt[6];
-
-
-<<"%V $min_lat $max_lat \n"
-
-
-
-  
-     LatS = min_lat -Margin;
-     LatN = max_lat+Margin;
-
-     MidLat = (LatN - LatS)/2.0 + LatS;
-
-  <<"%V $MidLat \n"
-
-    dlat = max_lat - min_lat;
-
-  <<"%V $dlat \n"
-
-  <<"%V $LongW \n"
-  <<"%V $LongE \n"
-
-
-
-    LongW = max_lng + Margin;
-
-    LongE = min_lng - Margin;
-
-
-    MidLong = (LongW - LongE)/2.0 + LongE;
-
-  DBG"%V $MidLong \n"
-
-
-    dlng = max_lng - min_lng;
-
-    da = dlat;
-  DBG"%V $da $dlng $dlat \n"
-// TBF if corrupts following expression assignment
-    if ( dlng > dlat )
-    {
-        da = dlng
-	DBG"da = dlng\n"
-    }
-    else {
-  	DBG"da = dlat\n"
-    }
-
-  DBG"%V $da $dlng $dlat \n"
-////////////////////// center //////////
-
-//  longW = MidLong + da;
-
-//  DBG"%V $longW $MidLong $da \n"
-  
-  latWB = MidLat + da/2.0;
-  LongW = MidLong + da/2.0;
-  <<"%V $latWB $MidLat $da \n"
-
-  LongW = MidLong + da/2.0;
-
-  <<"%V $longW $MidLong $da \n"
-
-
-  LongE = MidLong - da/2.0;
-
-
-  <<"%V $LongW \n"
-  <<"%V $LongE \n"
-
+      processIGC()
   }
-  
 
-   for (k= 0; k < 5; k++) {
-             Wtp[k]->Print()
-    }
-<<"//////////\n"
+chkT(1)
+
+
+
+
+
        //      Wtp[3]->Print()
 
 
-
-
-///////////////////// SETUP GRAPHICS ///////////////////////////
 #include "showtask_scrn"
+
+
 
 
 
@@ -594,8 +607,11 @@ str wcltpt="XY";
   DBG"%V $LongW \n"
   DBG"%V $LongE \n"
 
-  TaskDistance();
-        updateLegs();
+  TaskDist();
+   if (uplegs) {
+    updateLegs();
+   }
+
   sWo(tdwo,@value,"$totalK km",@update);
  
   drawTrace();
@@ -605,13 +621,13 @@ str wcltpt="XY";
   sWo(mapwo, @scales, LongW, LatS, LongE, LatN );
   sWo(TASK_wo,@value,TaskType,@redraw);
 
-  DrawMap(mapwo)
+  DrawMap(mapwo);
 
 
-  DrawTask(mapwo,"green");
+  drawTask(mapwo,"green");
 
 
-  //DrawTask(mapwo,"yellow")
+
 
   while (1) {
  //   zoom_to_task(mapwo,1)
@@ -731,6 +747,9 @@ str wcltpt="XY";
                  insert_tp(Witp);
 	//	 insert_tp();
              }
+             else if (wc == "N") {
+                 insert_name_tp(Witp);
+             }	     
              else {
                 Atarg = wc;
                 wtp=PickTP(wc,Witp)
@@ -825,17 +844,35 @@ str wcltpt="XY";
         if (drawit || Task_update) {
 	      DrawMap(mapwo)
   	      drawTrace();
-              DrawTask(mapwo,"green");
+              drawTask(mapwo,"green");
         }
 
      if ( Task_update ) {
-      TaskDistance();
+
+<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
+     
+      TaskDist();
 
       sWo(tdwo,@value,"$totalK km",@update);
       Task_update = 0;
-      TaskStats();
-      updateLegs();
 
+      for (i = 0; i < Ntaskpts ; i++) {
+         MSL = Wleg[i]->msl;
+       <<"Stat $i $MSL $Wleg[i]->dist   $Wleg[i]->fga\n"
+      }
+
+
+// scope  cmf_nest proc nest check ??
+          <<"main %V $_scope $_cmfnest $_proc $_pnest\n"
+
+
+      TaskStats();
+          <<"main %V $_scope $_cmfnest $_proc $_pnest\n"
+
+
+         if (uplegs) {
+           updateLegs();
+         }
       sWo(tpwos,@redraw);
        sWo(legwos,@redraw);		 
       }
@@ -843,7 +880,7 @@ str wcltpt="XY";
 
 
 exit_gs(1);
-
+chkOut()
 exit();
 
 ///

@@ -1,0 +1,23 @@
+cd ../include
+#IFS=' ' # WS is set as delimiter
+
+for y in $*
+do
+
+i="${y%.*}"
+#echo y $y
+#echo i $i
+
+IFS='/' # hyphen (/) is set as delimiter
+read -ra NME <<< "$i" # str is read into an array 
+j=${NME[1]}
+
+
+echo  $j
+cp $j.h ../BAK
+cat $j.h | sed s/DBOFF/DBON/ > $j.new
+cp $j.new $j.h
+rm $j.new
+IFS='  ' # WS is set as delimiter
+done
+#IFS='  ' # WS is set as delimiter

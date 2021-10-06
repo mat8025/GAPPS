@@ -58,6 +58,139 @@ float Dur[>20];
 
 
 
+proc processIGC()
+{
+
+      Ntpts=IGC_Read(igcfn);
+
+<<"sz $Ntpts $(Caz(IGCLONG))   $(Caz(IGCLAT))\n"
+
+      k = Ntpts - 30;
+
+//<<"%(10,, ,\n) $IGCLONG[0:30] \n"
+//<<"%(10,, ,\n) $IGCLONG[k:Ntpts-1] \n"
+
+
+     sslng= Stats(IGCLONG)
+      // BUG FIXIT 9/20/21
+/*
+     for (i=0; i < Ntpts; i += 5) {
+     
+      <<"$i $IGCTIM[i] $IGCELE[i] $IGCLAT[i]  $IGCLONG[i] \n";
+     }
+*/
+      i = 10;
+ //     <<"$i $IGCTIM[i] $IGCELE[i] $IGCLAT[i]  $IGCLONG[i] \n";
+
+     <<"%V $sslng \n"
+
+     sslt= Stats(IGCLAT)
+
+<<"%V $sslt \n"
+
+    ///
+    sstart = Ntpts /10;
+
+    sfin = Ntpts /5;
+    
+    //sstart = 1000;
+   // sfin = 1500;
+
+//     for (i=sstart; i < sfin; i++) {
+     
+//      <<"$i $IGCTIM[i] $IGCELE[i] $IGCLAT[i]  $IGCLONG[i] \n";  // BUG FIXIT 9/20/21
+
+//     }
+
+
+
+     ssele= Stats(IGCELE,">",0)
+
+<<"%V $ssele \n"
+
+      Min_ele = ssele[5];
+      Max_ele = ssele[6];
+<<" min ele $ssele[5] max $ssele[6] \n"
+
+      min_lng = sslng[5];
+      max_lng = sslng[6];
+
+<<"%V $min_lng $max_lng \n"
+
+
+      min_lat = sslt[5];
+      max_lat = sslt[6];
+
+
+<<"%V $min_lat $max_lat \n"
+
+
+
+  
+     LatS = min_lat -Margin;
+     LatN = max_lat+Margin;
+
+     MidLat = (LatN - LatS)/2.0 + LatS;
+
+  <<"%V $MidLat \n"
+
+    dlat = max_lat - min_lat;
+
+  <<"%V $dlat \n"
+
+  <<"%V $LongW \n"
+  <<"%V $LongE \n"
+
+
+
+    LongW = max_lng + Margin;
+
+    LongE = min_lng - Margin;
+
+
+    MidLong = (LongW - LongE)/2.0 + LongE;
+
+  DBG"%V $MidLong \n"
+
+
+    dlng = max_lng - min_lng;
+
+    da = dlat;
+  DBG"%V $da $dlng $dlat \n"
+// TBF if corrupts following expression assignment
+    if ( dlng > dlat )
+    {
+        da = dlng
+	DBG"da = dlng\n"
+    }
+    else {
+  	DBG"da = dlat\n"
+    }
+
+  DBG"%V $da $dlng $dlat \n"
+////////////////////// center //////////
+
+//  longW = MidLong + da;
+
+//  DBG"%V $longW $MidLong $da \n"
+  
+  latWB = MidLat + da/2.0;
+  LongW = MidLong + da/2.0;
+  <<"%V $latWB $MidLat $da \n"
+
+  LongW = MidLong + da/2.0;
+
+  <<"%V $longW $MidLong $da \n"
+
+
+  LongE = MidLong - da/2.0;
+
+
+  <<"%V $LongW \n"
+  <<"%V $LongE \n"
+}
+//===============================//
+
 
 //<<"$_include %V$Ntp_id\n"
 
@@ -87,12 +220,24 @@ proc nameMangle(str aname)
 
 float totalK = 0;
 
-void TaskDistance()
+void TaskDist()
 {
    // is there a start?
-DBG"$_proc  $Ntaskpts \n"
-   totalK = 0;
-   float la1   = 1000.0;
+<<"$_proc  $Ntaskpts \n"
+<<"in TaskDist  %V $_scope $_cmfnest $_proc $_pnest\n"	       
+int tindex =0;
+Taskpts<-pinfo();
+ totalK = 0.0;
+ <<"%V $_scope $_cmfnest $_proc \n"
+
+   for (k= 0; k < Ntaskpts; k++) {
+        tindex = Taskpts[k]
+<<"%V $k $tindex $Taskpts[k] \n";
+   }
+
+
+
+  float la1   = 1000.0;
    float lon1 = 1000.0;
    float la2   = 1000.0;
    float lon2 = 1000.0;
@@ -102,17 +247,23 @@ DBG"$_proc  $Ntaskpts \n"
   Max_lat = 0.0
   Min_W = 109.0
   Max_W = 105.0
-
+  str tpl;
    int adjust = 0;
 
    // num of taskpts
-   for (i = 0; i < Ntaskpts ; i++) {
+
+<<"%V $Ntaskpts \n"
+Taskpts<-pinfo()
+
+  for (i = 0; i < Ntaskpts ; i++) {
 
      index = Taskpts[i]
      kmd = 0.0;
-     
-     tpl = Wtp[index]->Place;
-     
+//<<"%V $i $index $Taskpts[k] \n";
+
+    tpl = Wtp[index]->Place;
+//     <<"%V  $tpl \n"
+
      la2 = Wtp[index]->Ladeg;
      msl = Wtp[index]->Alt;
 
@@ -123,8 +274,7 @@ DBG"$_proc  $Ntaskpts \n"
      if (la2 < Min_lat) {
          Min_lat = la2;
      }
-
-     lon2 = Wtp[index]->Longdeg;
+   lon2 = Wtp[index]->Longdeg;
 
      if (lon2 > Max_W) {
          Max_W = lon2;
@@ -137,29 +287,29 @@ DBG"$_proc  $Ntaskpts \n"
 
      if (la1 != 1000.0) {
         kmd = computeGCD(la1,la2,lon1,lon2);
-	
      }
-//<<" tpt $tpl $i  $index <|$Wtp[index]->Place|>  $Wtp[index]->Ladeg  $Wtp[index]->Longdeg %6.0f $kmd\n"
+
      la1 = la2;
      lon1 = lon2;
      adjust++;
      totalK += kmd;
 // add in the fga to reach this turnpt from previous
-     Wleg->pinfo()
+ //    Wleg->pinfo()
      Wleg[i]->msl = msl;
      Wleg[i]->Place = tpl;     
-     if (i > 0) {
+
+   if (i > 0) {
       Wleg[i-1]->dist = kmd;
       Wleg[i-1]->Tow = tpl;      
       ght = (kmd * km_to_feet) / LoD
       fga = ght + 1200.0 + msl;
-      <<"%V$i $fga $msl\n"
-      Wleg[i-1]->fga = fga;
+      //<<"%V$i $fga $msl\n"
+     Wleg[i-1]->fga = fga;
      }
 
-   }
-   
-  Wleg[Ntaskpts]->dist = 0.0;
+  }
+  
+ Wleg[Ntaskpts]->dist = 0.0;
 
 <<"%V $Min_lat $Min_W $Max_lat $Max_W \n"
 <<"%V $LongW $LatS $LongE $LatN   \n"
@@ -172,19 +322,23 @@ if (adjust >=2) {
 <<"%V $totalK\n"
 <<"%V $LongW $LatS $LongE $LatN   \n"
  Task_update = 1;
-<<"DONE $_proc\n"
+
+
+<<"DONE $_proc  $totalK \n"
 
 }
+       
 //==============================//
 
 
 void TaskStats()
 {
 
+ <<"%V $_scope $_cmfnest $_proc $_pnest\n"
+ float amsl = 0.0;
    for (i = 0; i < Ntaskpts ; i++) {
-
-     <<"Stat $i $Wleg[i]->msl $Wleg[i]->dist   $Wleg[i]->agl\n"
-
+    amsl = Wleg[i]->msl;
+     <<"Stat $i $amsl $Wleg[i]->dist   $Wleg[i]->fga\n"
   }
  
 }
@@ -536,7 +690,7 @@ proc set_task()
   //chk_start_finish()
   //set_wo_task(tw)
   
-  //total = taskDistance()
+  //total = taskDist()
 
   drawTask(mapwo,"red")
  // tot_units = scat(total,Units)
@@ -844,6 +998,53 @@ void insert_tp(int wt)
 
 }
 //======================================//
+
+void insert_name_tp(int wt)
+{
+/// pick a tp via name
+/// insert before current selected
+
+str nval;
+
+             if (wt < LastTP ) {
+
+                for (i = LastTP ; i > wt ; i--) {
+                  tval = getWoValue(tpwo[i-1])
+                 <<"$i <|$tval|>  \n"
+                  setWoValue (tpwo[i],tval)
+		  kt = Taskpts[i-1]
+		  Taskpts[i] = kt;
+                }
+              }
+
+           setWoValue (tpwo[wt],"XXX")
+           nval = "XYZ"
+
+       nval=query_w("TurnPt","TP $Witp enter name:",nval)
+
+<<"name sel:  <|$nval|> \n"
+
+       wtp= PickTP(nval,Witp)
+
+        aplace = Wtp[wtp]->GetPlace();
+
+        nval = RF[wtp][0]
+
+<<"Found %V $wtp $nval $aplace\n"
+
+	     setWoValue (tpwo[wt],nval,0)
+                
+             Task_update = 1;
+
+	    sWo(tpwos,@redraw);
+
+
+}
+//======================================//
+
+
+
+
 void delete_tp(int wt)
 {
 //int wt = Witp;
@@ -1243,7 +1444,7 @@ proc the_menu (str c)
            // l=sscan(&MS[5],&val)
             //chk_start_finish()
          //   set_wo_task(mapwo)
-            total = taskDistance()
+            total = taskDist()
             DrawMap(mapwo)
             drawTask(mapwo,"blue")
             
@@ -1253,7 +1454,7 @@ proc the_menu (str c)
    if ( (c == "Start:") || (strcmp(c,"TP",2) ==1) || (c == "Finish:") ) {
            // set_wo_task(tw)
             //chk_start_finish()
-            total = taskDistance()
+            total = taskDist()
             DrawMap(mapwo)
             drawTask(mapwo,"red")
 
@@ -1376,14 +1577,22 @@ proc DrawMap(int wo)
       sWo(wo,@clearpixmap,@clipborder);
 
 //DBG"$mlab $(typeof(mlab))\n";
-//DBG"%V $Ntp\n"
-    for (k = 0 ; k < Ntp ; k++) {
+<<"%V $_proc $Ntp\n"
+    int np = Ntp;
+    if (np <3) {
+        np =3;
+    }
+    ///
+    ///  Wtp ref has to be compiled before readin ??  FIX
+    /// 
+    for (k = 0 ; k < np ; k++) {
 
        // is_an_airport = Wtp[k]->is_airport;
 
         mlab = Wtp[k]->Place;
 
 //DBG"%V $k $mlab\n"
+//<<"%V $k $mlab\n"
 
         if (!is_an_airport) {
          mlab = slower(mlab)
@@ -1397,7 +1606,7 @@ proc DrawMap(int wo)
 
         longi = Wtp[k]->Longdeg;
 
-//DBG"%V $k $mlab $msl $lat $longi $Wtp[k]->Ladeg\n"
+//<<"%V $k $mlab $msl $lat $longi $Wtp[k]->Ladeg\n"
 
         if ( msl > 7000) {
              Text(wo,mlab,longi,lat,0,0,1,RED_)
@@ -1406,7 +1615,7 @@ proc DrawMap(int wo)
         else {
             if ( msl > 5000) {
              Text(wo,mlab,longi,lat,0,0,1,BLUE_)
-	     	    // DBG"above 5K $mlab\n"
+	        //<<"above 5K $mlab\n"
             }
             else {
 	    	   //  DBG"below 5K $mlab\n"
@@ -1423,14 +1632,20 @@ proc DrawMap(int wo)
 //====================================================
 str TaskType = "MT";
 
-proc DrawTask(int w,str col)
+proc drawTask(int w,str col)
 {
 
-<<"$_proc   DrawTask $w $col\n"
+<<"$_proc    $w $col\n"
+
    if ( Task_update) {
-    TaskDistance();
+    TaskDist();
   //  <<"$_proc  $TaskType $col $Nlegs \n"
     }
+      //Wtp<-pinfo()
+//      index = Taskpts[0]
+//      tpl = Wtp[index]->Place;
+
+//<<"%V$index $tpl \n"
     if ( (TaskType == "OAR")   || (TaskType == "SO")) {
 
       index = Taskpts[0]
@@ -1445,7 +1660,8 @@ proc DrawTask(int w,str col)
 //   <<"$i %V $w, $Tasktp[i]->Longdeg $Tasktp[i]->Ladeg,$Tasktp[i+1]->Longdeg,$Tasktp[i+1]->Ladeg, $col \n "
       index = Taskpts[i]
       index1 = Taskpts[i+1]
-      plot(w,@line,Wtp[index]->Longdeg,Wtp[index]->Ladeg,Wtp[index1]->Longdeg,Wtp[index1]->Ladeg,col)
+<<"%V $index $index1\n"
+     plot(w,@line,Wtp[index]->Longdeg,Wtp[index]->Ladeg,Wtp[index1]->Longdeg,Wtp[index1]->Ladeg,col)
 
     }
 
@@ -1460,24 +1676,23 @@ proc DrawTask(int w,str col)
 str Atarg="xxx";
 
 int  PickTP(str atarg,  int wtp)
-
 {
 ///
 /// 
 int ret = -1;
-<<" looking for $atarg  $Atarg  $wtp\n"
+<<" looking for <|$atarg|>  $Atarg  $wtp\n"
 
-       WH=searchRecord(RF,Atarg,0,0)
+       WH=searchRecord(RF,atarg,0,0)
 	  <<"%V $WH\n"
 	  
           index = WH[0][0]
           if (index >=0) {
           ttp = RF[index];
-<<" found $Atarg  $index\n"
+<<" found  $index\n"
 <<"$ttp \n"
           Taskpts[wtp] = index;
           ret =index;
-<<" found $Atarg $index $wtp $ttp\n"
+<<" found $atarg $index $wtp $ret $ttp\n"
          }
 
       return ret;
@@ -1631,7 +1846,7 @@ int PickaTP(int itaskp)
 
 
 
-proc ComputeTC(int j, int k)
+float ComputeTC(int j, int k)
 {
     float km = 0.0
     float tc = 0.0;

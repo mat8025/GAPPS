@@ -36,83 +36,28 @@ if (_dblevel >0) {
 
  chkIn(_dblevel)
 
+void chkCmfNest()
+{
+ if (_cmfnest != -1) {
+ <<"Bad $_cmfnest \n"
+ listCode(5,6)
+ iread("continue?")
+ }
+}
 
+
+void pf (float f)
+{
+
+<<"$_proc $f\n"
+f<-pinfo()
+
+}
 
 
 int pdef = 0;
-proc cart (str aprg)
-{
-
-<<"%V $_proc $aprg    \n"  
-   sin = aprg
-   <<"%V $sin\n"
-   Tp = Split(aprg,",");
-
-<<"$Tp \n"
-
-}
-pdef++; <<"%V$pdef \n"
-//=========================//
-
-void goo(ptr a)
-{
-<<"$_proc $a\n"
-   a<-pinfo()
-   b = $a;
-
-<<"%V $a $b\n"
-   b<-pinfo()
-//   $a +=1
-     $a = $a +1
-     
-<<"%V $a $b\n"
-
-}
-pdef++; <<"%V$pdef \n"
-//=========================//
-proc choo (str s)
-{
-  // str s = "hi";
-
-<<"$_proc  $s\n";
-
-}
-pdef++; <<"%V$pdef \n"
-//==================================//
 
 
- x = 1;
-
- y = x;
-
-<<"%V $x $y\n";
-
- xp = &x;
- xp<-pinfo()
- //$xp = 1;
- // xp<-pinfo()
- goo(xp)
-
- x<-pinfo()
-
- 
- chkN(x,2)
-
-<<"%V $x\n"
-
- cart("hey,buddy")
-
-
-
-goo(xp)
-
-x<-pinfo()
-<<"%V $x\n"
-
-chkN(x,3)
-
-
-chkStage("Simple var arg : value and Ref")
 
 
 
@@ -121,6 +66,7 @@ chkStage("Simple var arg : value and Ref")
 
 # class definition
 int JuiceyF = 0;
+
 class fruit  {
 
 #  variable list
@@ -142,8 +88,10 @@ class fruit  {
 
 
    cmf print () {
-     //<<" in cmf print \n"
-      j++;
+<<" in cmf print \n"
+<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
+
+     j++;
     <<"$_proc of $_cobj $j\n"
       <<"%V$name $color $state $x $y $z  $j\n"
 
@@ -163,6 +111,7 @@ class fruit  {
    }
 
    cmf set_color (str val) {
+<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"   
        color = val
    <<" $_proc $color \n"       
    }
@@ -220,7 +169,7 @@ class fruit  {
   cmf ~fruit()
     {
 <<" doing destructor   for %v $_cobj \n"
-     ASK
+     
    }
 
 
@@ -229,22 +178,58 @@ class fruit  {
 <<" after class definition !\n"
 
 
+fruit apple;
+
+//  apple->set_name("apple")
+<<" after object declaration !\n"
+fruit cherry;
+
+<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
+apple->print()
+<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
+cherry->print()
+<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
+cherry->set_color("red")
+<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
+chkStr(cherry->color,"red")
+apple->set_color("green")
+<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
+chkStr(apple->color,"green")
+
+<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
+<<" can I eat apple $_cobj\n"
+
+
+int munch(int a)
+{
+   <<"$_proc $a\n";
+   b = 2 *a;
+   return b;
+}
 
  /////
-proc eat(fruit oba)
+ /// fruit is sclass -- all objs passed as ptr to object - not copied
+ 
+void eat(fruit oba)
 {
     <<" $_proc $_cobj \n"
-    
+  <<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"  
     <<"fruit thine name is $oba->name \n"
 
-
     oba<-pinfo()   
+!a
+
+//<<"apple $apple->color \n"
 
     oba->color ="red";
-    
+
+//<<"apple $apple->color \n"
+
     oba->state = "eaten"
-    
+
     oba->print()
+
+
 
  //   locfruit = oba;
 
@@ -253,9 +238,32 @@ proc eat(fruit oba)
     <<" leaving $_proc $_cobj \n"
 
   // ans=query("c_obj?")
+   return 1;
 }
+
 pdef++; <<"%V$pdef \n"
 //==================================//
+
+ok = 1
+!a
+ok=eat(apple)
+
+<<" $ok after eating apple $_cobj\n"
+
+apple->print()
+
+
+<<" b4 eating cherry $_cobj\n"
+
+cherry->print()
+
+ok=eat(cherry)
+
+<<" $ok after eating cherry $_cobj\n"
+
+cherry->print()
+
+chkOut()
 
 
 
@@ -346,17 +354,25 @@ chkN(pdef,7)
 //roo("que")
 
 
-fruit apple;
 
-//  apple->set_name("apple")
-<<" after object declaration !\n"
-fruit cherry;
+
 
 goo()
 
+<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
 apple->print()
-
+<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
 cherry->print()
+<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
+cherry->set_color("red")
+<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
+chkStr(cherry->color,"red")
+apple->set_color("green")
+<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
+chkStr(apple->color,"green")
+
+
+/////////////////////////////////////////////
 
 fruit orange;
 
@@ -366,9 +382,17 @@ orange->print()
 orange->color<-pinfo()
 
 clr = orange->color;
+
 clr<-pinfo()
 
+
+
 chkStr(clr,"white")
+
+  chkCmfNest()
+
+
+
 
 printargs(orange->name,clr,orange->color)
 
@@ -376,59 +400,16 @@ chkStr(orange->color,"white")
 chkStr("white",orange->color)
 
 
-
-// test of redef of proc and use
-proc goo()
-{
-
-<<"HEY2 in $_proc\n"
-
-
-<<"%v $_pstack \n"
-
-   apple->color = "purple"
-
-<<" %v $apple->color \n"
-
-<<" setting $cherry->color  to $apple->color \n"
-
-    cherry->color = apple->color
-
-<<" %v $cherry->color \n"
-
-    cherry->x = apple->x;
-
-<<" %v $cherry->x \n"
-
-<<" now a cmf inside a proc \n"
-
-    cherry->print()
-}
-pdef++; <<"%V$pdef \n";
-//==================================//
-
-chkN(pdef,8)
-
-
-goo()
-
-apple->print()
-cherry->print()
-
-
-
-//setdebug (1, @~pline, @~step, @trace) ;
-
-
   apple->print();
 
-  fp = &apple;
+  chkCmfNest()
 
 
-  fp<-pinfo()
-  
-  fp->print()
 
+
+<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
+
+chkCmfNest()
 
 a=1
 bs="la apuesta inteligente"
@@ -437,32 +418,53 @@ bs="la apuesta inteligente"
 
 <<"$(testargs(a,bs))\n"
 
+<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
 
-EA= examine(apple)
 
-<<"$EA\n"
+  chkCmfNest()
+  
 
-<<"class $apple\n"
+
+//<<"class $apple\n"
+
+<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
+
 
 <<"$(testargs(apple))\n"
 
-
 <<"$(examine(apple))\n"
 
-
+  chkCmfNest()
 
 
 <<"attempt to eat fruit!\n"
-  eat(apple)
-!a  
+   eat(apple)
+<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
   apple->print();
+<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
 
 
+  chkCmfNest()
+chkOut()
+ ccol = apple->get_color()
+<<"%V $ccol \n"
 
-
-
-
+  chkCmfNest()
+  
 <<" IN MAIN\n"
+
+<<"Examine apple\n"
+EA= examine(apple)
+<<"$EA\n"
+<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
+
+  fp = &apple;
+
+  chkCmfNest()
+
+  fp<-pinfo()
+  
+//  fp->print()
 
 
 
@@ -519,8 +521,15 @@ EA= examine(apple)
 
   cherry->print()
   cherry->x = 76
+  cherry76 = cherry->x;
 
-cherry->set_color("red")
+ cherry<-pinfo()
+  
+<<"%V $cherry76\n"
+<<" %V  $cherry->x \n"
+
+!a
+ cherry->set_color("red")
 
 chkStr(cherry->color,"red")
 
@@ -536,11 +545,15 @@ cherry->print()
   chkStr(cherry->state,"eaten")
 
 
-
-
+<<" %V  $cherry->x \n"
+  apple->print()
+//listCode(5,4)
+<<"now margin call list\n"
 # set some globals
-
- <<" %V  $apple->x \n"
+!l 7 5
+<<"listing ??\n"
+!a
+<<" %V  $apple->x \n"
 
 <<" doing class member assign \n"
 
@@ -635,9 +648,6 @@ cherry->print()
 
 
      
-     choo("focus,man")
-
-//    cart("focus,man")
 
     cherry->print()
 
@@ -760,7 +770,53 @@ cherry->print()
 
    cherry->print()
 
-   chkOut()
+
+
+
+////////////////////////////////////////////////////////////////////
+
+// test of redef of proc and use
+proc goo()
+{
+
+<<"HEY2 in $_proc\n"
+
+
+<<"%v $_pstack \n"
+
+   apple->color = "purple"
+
+<<" %v $apple->color \n"
+
+<<" setting $cherry->color  to $apple->color \n"
+
+    cherry->color = apple->color
+
+<<" %v $cherry->color \n"
+
+    cherry->x = apple->x;
+
+<<" %v $cherry->x \n"
+
+<<" now a cmf inside a proc \n"
+
+    cherry->print()
+}
+pdef++; <<"%V$pdef \n";
+//==================================//
+
+chkN(pdef,8)
+
+
+goo()
+
+apple->print()
+cherry->print()
+
+
+
+
+chkOut()
 
 
 /////////////////////////

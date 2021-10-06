@@ -338,9 +338,12 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
   if ((do_bops || do_all) && (do_bops != -1)) {
 
+    RunDirTests("Bops","bops,fvmeq,fsc1,mainvar,snew");
+
+
     RunDirTests("Assign","assign");
 
-    RunDirTests("Bops","bops,fvmeq,fsc1,mainvar,snew");
+
 
     Run2Test("Bops")
 
@@ -514,7 +517,7 @@ if ((do_all || do_try ) && (do_try != -1)) {
 
  
   // RunDirTests("Str","str-proc,str-arg,str-lit");
-   RunDirTests("Str","str-proc,str-arg");
+   RunDirTests("Str","str_proc,str_arg");
 
    hdg("Strops");
    
@@ -624,15 +627,15 @@ if ((do_all || do_array ) && (do_array != -1)) {
 
    RunDirTests("Subrange","subrange");
 
-   RunDirTests("VVcopy","range-copy,vvcopy")
+   RunDirTests("VVcopy","range_copy,vvcopy")
 
-   RunDirTests("Array","ae,array-store,array-ele")
+   RunDirTests("Array","ae,array_store,array_ele")
 
-   RunDirTests("Array","dynarray,lhe,vec-cat,array-sr,mdele,vsp")
+   RunDirTests("Array","dynarray,lhe,vec_cat,array_sr,mdele,vsp")
 
-   RunDirTests("ArrayRange","arrayrange,array-subsrange,lhrange")
+   RunDirTests("ArrayRange","arrayrange,array_subsrange,lhrange")
 
-  RunDirTests("ArraySubSet","arraysubset,array-subvec,array-subsref,arraysubscbyvec,vdec")
+  RunDirTests("ArraySubSet","arraysubset,array_subvec,array_subsref,arraysubscbyvec,vdec")
 
   RunDirTests("ArrayJoin","arrayjoin")
 
@@ -756,9 +759,9 @@ if ((do_all || do_proc ) && (do_proc != -1)) {
   
   RunDirTests("Proc","proc,procdeclare,procret,procarg,procsv0");
   
-  RunDirTests("Proc","procrefarg,procra,procrefstrarg,proc-loc-main-var");
+  RunDirTests("Proc","procrefarg,procra,procrefstrarg,proc_loc_main_var");
 
-  cart("proc-var-define", 10)
+  cart("proc_var_define", 10)
 
   Run2Test("Static")
   

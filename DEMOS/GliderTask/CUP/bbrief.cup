@@ -1,6 +1,6 @@
 Title,Code,Country,Latitude,Longitude,Elevation,Style,Direction,Length,Frequency,Description
 "8URch","8U RCH",US,4047.477N,10517.638W,5900ft,3,,,,"TP, E-W 24G"
-"AARch","WY11",WY,4109.498N,10633.452W,7780ft,5,000,5700ft,122.8,"Private, TP, WY11, Nw/Se 22.8, RWW: 50"
+"AARch","WY11",WY,4109.498N,10633.452W,7780ft,5,000,5700ft,122.8,"Private TP  WY11, Nw/Se 22.8, RWW: 50"
 "Akron Wsh","AKO",CO,4010.538N,10313.322W,4689ft,5,110,7000ft,122.8,"TP, AKO, 11/29 22.8, RWW: 100"
 "Alamosa","ALS",CO,3726.095N,10551.993W,7539ft,5,020,8519ft,122.8,"TP San Luis, ALS, 02/20 122.8, 35.17 RWW: 100"
 "Alliance","ALLIANCE",CO,4203.195N,10248.223W,3931ft,5,120,9202ft,123.000,"TP, AIA, 08/26 62a, RWW: 150"
@@ -18,7 +18,7 @@ Title,Code,Country,Latitude,Longitude,Elevation,Style,Direction,Length,Frequency
 "BadgerFlat?","BADGRFLT",CO,3903.384N,10527.734W,8809ft,3,,,,"TP, Unknown ??"
 "BellamyFrm","27KS",KS,3907.734N,10142.994W,3650ft,2,130,3000ft,,"Private, TP, 27KS, 13/31 30T, RWW: 150"
 "Berthound","BERTHOND",US,4018.364N,10504.946W,5025ft,1,,,,"TP, Town"
-# "Bierstadt Mt","BRSTDTMT",US,3934.966N,10540.117W,14060ft,1,,,,"TP, MTPk"
+"Bierstadt Mt","BRSTDTMT",US,3934.966N,10540.117W,14060ft,1,,,,"TP, MTPk"
 "BijouBasin","CD17",US,3954.499N,10407.564W,4885ft,2,080,2200ft,,"Private, TP, CD17, 08/26 22D, RWW: 30"
 "Black","BLACK",US,3949.550N,10121.760W,3345ft,2,170,2625ft,,"Private, TP, 5KS9, 17/35 26T, RWW: 40"
 "Blake","BLAKE",US,3847.100N,10803.800W,5150ft,5,030,5600ft,122.8,"TP, 1V9, 03/21 22.8, RWW: 75"
@@ -30,7 +30,7 @@ Title,Code,Country,Latitude,Longitude,Elevation,Style,Direction,Length,Frequency
 "Breckenridg?","BRCKNRDG",CO,3930.607N,10603.032W,9383ft,3,,,,"TP, 16/34 61D?"
 "Buford","buf",WY,4107.000N,10518.000W,7500ft,1,,,,"TP, town"	_	_	T 
 "Bressler","BRESSLER",US,3944.550N,10133.343W,3489ft,2,080,3460ft,122.900,"TP, 5K0, 08/26 22.9, RWW: 70"
-"Bross Mt","BROSS MT",US,3920.116N,10606.451W,14172ft,1,,,,"TP, MTPk"
+"Bross Mt","BROSS MT",US,3920.116N,10606.451W,14172ft,1, , ,,"TP, MTPk"
 "Brush","7v5",CO,4015.832N,10334.863W,4280ft,5,070,4300ft,122.8,"TP, 7V5, 7/25 22.8, RWW: 60"
 "BuckHrnRch","0CO2",CO,3851.116N,10655.969W,8887ft,5,110,4000ft,122.8,"Private, TP, 0CO2, 11/29 22.8, RWW: 40"
 "BuenaVista","7v1",CO,3848.818N,10607.225W,7936ft,5,150,8300ft,122.8,"TP, 7V1, 15/33 122.8, 32.92  RWW: 75"
@@ -281,4 +281,5 @@ Title,Code,Country,Latitude,Longitude,Elevation,Style,Direction,Length,Frequency
 "Youtsey","CO09",CO,3816.000N,10417.031W,4660ft,2,110,2300ft,,"Private, TP, CO09, 11/29 23G, RWW: 35"
 "Yuma","2V6",CO,4006.249N,10242.779W,4136ft,5,160,4200ft,122.8,"TP, 2V6, 12/30 22.8, RWW: 75"
 # version 3 9/19/21
+
 

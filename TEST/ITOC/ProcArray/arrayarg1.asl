@@ -85,7 +85,7 @@ int voo(int vect[])
 //============================
 int voo2(int vect[])
 {
-//<<"$_proc IN $vect \n"
+<<"$_proc IN $vect \n"
 //Z->info(1)
 //<<"pa_arg2 %V$k\n"
 

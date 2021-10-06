@@ -62,7 +62,7 @@ void hdg(str atit)
 
   tpad = nsc(rlen,"/")
 
-<<"\n$(time()) ${padtit}${atit}$tpad\n"
+//<<"\n$(time()) ${padtit}${atit}$tpad\n"
 <<[Opf]"\n$(time()) ${padtit}${atit}$tpad\n"
 
 //!!"ps wax | grep asl | grep -v emacs"
@@ -89,7 +89,7 @@ void Help()
 
 void changeDir(str td)
 {
-  <<" $_proc $td\n"
+  //<<" $_proc $td\n"
   chdir(td)
   Curr_dir = getDir();
 }
@@ -147,16 +147,21 @@ str pgname = "xx";
          //if (!(Tp[i] @= "")) 
 
 	    pgname = Tp[i];
+//<<" $i  <|$Tp[i]|>  <|$pgname|>\n"
+
 
         nl = slen(pgname);
 
 
          if (nl > 0) {
 	     //<<"%V$pgname \n"
-	     //pgname<-pinfo()
+	    // pgname<-pinfo()
 
-        // do_carts(pgname);
-	 do_carts(Tp[i] );
+         //do_carts(pgname);
+	 cart(pgname);
+
+	// do_carts(Tp[i] );
+          cart_xic (pgname);
 
          }
       
@@ -192,8 +197,10 @@ void RunSFtests(str Td)
 
 /////////////////////////////
 
-void scoreTest(str itname)
+int scoreTest(str itname)
 {
+//<<"$_proc <|$itname|>  \n"
+
  int scored = 0;
  int ntests;
  int npass;
@@ -201,7 +208,9 @@ void scoreTest(str itname)
  int ntests2;
  int npass2;
 
-//<<"$_proc $tname  \n"
+
+//itname<-pinfo();
+
 tname = itname;
 
         RT=ofr(tname);
@@ -452,7 +461,7 @@ prg = aprg;
          <<"${xwt_prog}$padit" // print time prog arg
 	 <<[Opf]"${xwt_prog}$padit"
 
-         scoreTest(tst_file)
+         wscore =scoreTest(tst_file)
       }
      else {
 
@@ -490,7 +499,7 @@ void cart_xic(Str aprg, Str a1)
          <<"${xwt_prog}$padit"      // print time prog arg
 	 <<[Opf]"${xwt_prog}$padit"
 
-         scoreTest(tst_file)
+         wscore =scoreTest(tst_file)
       }
      else {
 
@@ -507,15 +516,16 @@ void cart_xic(Str aprg, Str a1)
 void cart (str aprg)
 {
 
+//<<"$_proc <|$aprg|> \n"
 
-//<<"$_proc $aprg\n"
+//aprg<-pinfo()
 
   int wlen;
   str prg; // TBF  not copied!!
 
 
   prg = aprg; // TBF  not copied!!
-
+//prg<-pinfo()
 //<<"%V $_proc $prg  $aprg  \n"  
 
   str wstr ="";
@@ -541,7 +551,7 @@ void cart (str aprg)
 
            if (do_query) {
 	   
-      <<"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst $CFLAGS ${prg}.asl \n"
+      <<"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl \n"
            
 	       ans= i_read("run it?")
 	       if (ans @="q") {
@@ -568,6 +578,8 @@ void cart (str aprg)
 
       tst_file = "${prg}.tst";
       //<<"%V $tst_file\n"
+      //tst_file<-pinfo()
+
       if (f_exist(tst_file) > 0) {
 
          wt_prog = "$(time()) ${wstr}: "
@@ -577,7 +589,8 @@ void cart (str aprg)
 
          <<[Opf]"${wt_prog}$padit"	 
 
-         scoreTest(tst_file)
+         wscore = scoreTest(tst_file)
+	// <<"%V $wscore\n"
       }
      else {
 
@@ -656,7 +669,7 @@ void cart (Str prg,  Str a1)
        //!!"grep DONE ${aprg}.tst"
            
 	   
-           scoreTest(tst_file)
+           wscore=scoreTest(tst_file)
       }
      else {
 
@@ -696,7 +709,7 @@ void cart (Str prg,  Str a1)
 
 void do_carts (str aprg)
 {
- // <<"$_proc  <|$aprg|>\n"
+//  <<"%V$_proc  <|$aprg>\n"
 //  aprg<-pinfo()
 
 //!!"pwd"
@@ -705,16 +718,17 @@ void do_carts (str aprg)
 //bprg[2] = "A"; // FAIL sticky offset ele
 //bprg<-pinfo()
 
-bprg = aprg;  // TBF fails
+//bprg = aprg;  // TBF fails
+
 //aprg<-pinfo()
 //bprg<-pinfo()
 
-//str wprg = "xx";
-//   wprg<-pinfo()
+//
+str wprg = "xx";
+//wprg<-pinfo()
 wprg = aprg;
 
-
- //  wprg<-pinfo()
+//wprg<-pinfo()
 //  <<"run carts vers  <|$wprg|>  <|$aprg|> \n"
 
    cart (wprg);

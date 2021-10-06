@@ -1,6 +1,8 @@
 ///
 ///  Screen setup for showtask
 ///
+;
+
 
 A=ofw("MENUS/TP.m")
 <<[A],"title TP-Choice\n"
@@ -8,6 +10,7 @@ A=ofw("MENUS/TP.m")
 <<[A],"item Replace M_VALUE R\n"
 <<[A],"item Delete M_VALUE D\n"
 <<[A],"item Insert M_VALUE I\n"
+<<[A],"item InsertName M_VALUE N\n"
 <<[A],"item Name? C_INTER ?\n"
 <<[A],"help  replace via name"
 cf(A)
@@ -41,17 +44,18 @@ cf(A)
 
 void updateLegs()
 {
- float agl;
+
  str val;
+ float lfga
    for (i = 0; i < Ntaskpts ; i++) {
 
     lwo = legwo[i+1];
-    fga =  Wleg[i]->fga;
+    lfga =  Wleg[i]->fga;
     msl =  Wleg[i]->msl;
      dist =  Wleg[i]->dist;
      val = "%6.0f$fga"
      
-    <<"leg $i %6.1f $msl $dist  $fga <|$val|> \n"
+    <<"leg $i %6.1f $msl $dist  $lfga <|$val|> \n"
 
      sWo(lwo,@value,val,@redraw);
 

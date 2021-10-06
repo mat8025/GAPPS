@@ -1,10 +1,11 @@
 ///
 ///
 ///
+
 #include "debug"
 
 
-//debugON()
+debugON()
 
 
 void Run2Test(str td)

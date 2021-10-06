@@ -12,6 +12,7 @@
 //***********************************************%
 
 
+
 #include "debug"
 
 if (_dblevel >0) {
@@ -21,7 +22,9 @@ if (_dblevel >0) {
 
 chkIn (_dblevel);
 
-
+int main_chk = 0;
+<<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n"
+ 
 float f= 3.142;
 
 f->info(1)
@@ -53,10 +56,12 @@ Real1->info(1);
 
 <<"%V$Real1\n";
 
-
+<<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n"
 
 //exit()
-
+j= 5
+<<"$j $Real1[j]\n"
+ 
 
 float array_asg (float rl[])
 {
@@ -93,7 +98,11 @@ float array_sub (float rl[])
 {
 
 <<"In $_proc   $rl\n";
-  rl->info(1)
+<<"PROC %V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n"
+
+ rl<-pinfo()
+
+<<"PROC after pinfo %V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n"
 
  //SA = SA + 1;
  SA++;
@@ -107,7 +116,7 @@ float array_sub (float rl[])
   t1->info(1)
 
 //ans=query();
-  rl->info(1)
+  //rl->info(1)
 //  <<"%6.2f%V$t1\n";
 
 //<<"%6.2f$rl \n"
@@ -118,7 +127,7 @@ float array_sub (float rl[])
 
 
   <<"$(Caz(t1))\n";
-  rl->info(1)
+  //rl<-pinfo()
 //  chkR (t1, 4.0);
 
 //query()
@@ -139,6 +148,8 @@ float array_sub (float rl[])
   <<"$(Caz(t3))\n";
 
   chkR (t3, -2);
+
+
 
 //<<"$rl[j1]\n";
 
@@ -173,16 +184,19 @@ float array_sub (float rl[])
 
     rj2 = rl[j2];
 
-   rj2->info(1);
+    rj2->info(1);
    
 <<"%V $rj2\n"    
 
   wrl = rj1 -rj2
 
- <<"%V $wrl\n"
+ <<"%V $wrl $rj1 $rj2\n"
 
-wrl->info(1);
+  wrl->info(1);
   chkR (wrl, -2);
+
+
+
 
   rl[kp] = rl[j1] - rl[j2];
 
@@ -190,13 +204,19 @@ wrl->info(1);
 <<"%V $rl[kp] $rl[j1]  $rl[j2] \n"
   
 <<"rl $rl \n"
-
+ 
 //<<"%6.2f$rl \n";
 //  <<"%V $rl[kp] \n";
 
   wrl = rl[kp];
-<<"%V $wrl\n"
+<<"%V $wrl  $rl[kp] = $rl[j1] - $rl[j2]\n"
+
+
   chkR (wrl, -2);
+
+<<"%V $wrl  $rl[kp] \n"
+
+
 
   rl[0] = 47;
 
@@ -213,69 +233,34 @@ wrl->info(1);
 
   chkR (jj, -2);
 
+<<"%V $rl\n"
+!p rl
 
-  
-//  query()
-/{/*  
-  ff= rl[kp];
-  //<<"$rl \n"
-  <<"%V $ff $jj $rl[kp] \n"
-  
-  chkR (rl[kp], -2.0);
+  <<"%V $j1  $rl[j1] \n"
 
-  rl->info(1)
+ rl<-pinfo()
 
-
-
-  <<"just rl[k] :: $rl[kp] \n";
-
- // <<"%6.2f$rl \n";
-
-  t2 = rl[kp];
-
-  <<"%V$t2\n";
-  <<"$(Caz(t2))\n";
-
-  chkR (t2, -2);
-  
-//<<"$rl[0:3]\n"     ;
-
-  rf1= rl[j1];
-   rl->info(1)
-  rf2= rl[j2];  
-  
-<<"%V $j1 $j2 $rf1 $rf2\n" 
-  rl->info(1)
-  TA=testargs(rl[j1],rl[j2],rf1,rf2)
+  TA=testargs(rl[j1],rl[j2],jj,kp)
 
 <<"%(1,,,\n)$TA\n";
 
-  rl[j1] = rl[j1] - rl[j2];
+  <<"%V $j1  $rl[j1] \n"
 
-  rf1= rl[j1];
-  rf2= rl[j2];  
+  <<"%V $rl \n"
+
+  chkR (rl[j1], 4);
   
-<<"%V $j1 $j2 $rf1 $rf2\n" 
+ 
 
-
-
-//<<"%V $rl[j1] = $rl[j1] - $rl[j2] \n";
-
-  rl->info(1)
-  TA=testargs(rl[j1],rl[j2],rf1,rf2)
-
-<<"%(1,,,\n)$TA\n";
-  
-  chkR (rl[j1], -2);
 
   ff= rl[j1];
 <<" $ff   \n"
-<<" $rl[j1]  -2 \n"
+<<" $rl[j1]  5 \n"
 
 
 //<<"$rl\n"   // FIX does not parse rl here why?
 
-  chkR (rl[4], -2);
+  chkR (rl[4], 4);
 
   <<"rl vec $rl[0:-1]\n";
 
@@ -288,21 +273,30 @@ wrl->info(1);
   <<"%V$t6\n";
   <<"$(Caz(t6))\n";
 
-//<<"$rl\n";
-/}*/
+<<"$rl\n";
+
+
+<<"PROC_OUT %V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n"
+
   return t3;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////
 
 
-
-
 chkR (Real1[2],2)
 
+Real2 = vgen (FLOAT_, 10, 0, 1);
+<<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n"
+ 
+val = array_sub (Real2);
+
+<<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n"
+
+ 
 
 
-Real2 = vgen (FLOAT_, 10, 1, 1);
+
 
 <<"%V$Real2\n";
 
@@ -321,16 +315,6 @@ val = array_asg (Real2);
 <<"%V$Real2\n"
 
 
-
-
-val = array_sub (Real2);
-//ans= query()
-
-
-
-
-
-
 float mt1;
 
 mt1 = Real1[4];
@@ -341,15 +325,17 @@ Real1[0] = 74.47;
 
 <<"%V$Real1\n";
 
-val = array_sub (Real1);
+
+
+<<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n"
+
+Real3 = vgen (FLOAT_, 10, 0, 1);
+val = array_sub (Real3);
+<<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n"
+ 
+
 
 //chkStage()
-
-
-
-
-val = array_sub (Real2);
-
 
 
 ////////////////////
@@ -360,11 +346,12 @@ Real = vgen (DOUBLE_,10, 0, 1);
 
 <<"Real %6.2f $Real \n";
 
-Real->info(1);
+Real<-pinfo()
 
 
 
 val = array_sub (Real);
+<<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n"
 
 
 
@@ -447,15 +434,22 @@ t4 = Real[j1 + 1];
 chkR (t4, 5);
 
 <<"$Real \n";
+<<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n"
 
 Real[k] = Real[j1] - Real[j2];
 
-<<"%V $k $Real[k] $Real[j1] $Real[j2]\n";
+diff = Real[j1] - Real[j2];
+
+<<"%V $k $diff $Real[k] $Real[j1] $Real[j2]\n";
+!p diff
 
 
 
 <<"ele[${k}] $Real[k] \n";
+Real<-pinfo()
+<<"MAIN %V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n"
 
+ 
 
 chkR (Real[k], -2);
 
@@ -489,7 +483,8 @@ Real2 = fgen (10, 0, 1);
 <<"%V$Real\n";
 
 val = array_sub (Real2);
-
+<<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n"
+ 
 <<"$val \n";
 
 N=10

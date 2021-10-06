@@ -1,0 +1,11 @@
+#
+for y in $*
+do
+echo making $y
+if [[ -d $y ]]; then
+pushd $y
+make install
+popd
+fi
+done
+mka

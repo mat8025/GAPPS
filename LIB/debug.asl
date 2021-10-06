@@ -29,12 +29,12 @@ hold_dbl = _dblevel;
 // working variables
 int _DB = -1; // dbg FH set to nop --set to 2 for error output
 
-_IV = vgen(INT_,10,0,1)
+//_IV = vgen(INT_,10,0,1)
 
-_DV = vgen(DOUBLE_,10,0,1)
+//_DV = vgen(DOUBLE_,10,0,1)
 
-Str _S = "abcde";
-Svar _SV;
+//Str _S = "abcde";
+//Svar _SV;
 
 Pan _P ;
 
@@ -43,7 +43,7 @@ _P= 4.0*atan(1.0);
 //!p _P
 
 
-dbid = IDof("_DB");
+//dbid = IDof("_DB");
 //<<"%V dbid _DB\n"
 
 
@@ -65,7 +65,7 @@ proc DummyP()
 proc debugON()
 {
 
-if (_dblevel < 1) {
+ if (_dblevel < 1) {
      _dblevel = 1;
  }
 

@@ -29,6 +29,15 @@ if (_dblevel >0) {
 
 chkIn(_dblevel)
 
+int sumarg(int a, int b)
+{
+<<" sumarg int vers\n"
+   c = a+ b
+
+  <<" %V$a + $b = $c \n"
+
+  return c
+}
 
 
 real sumarg(real a, real b)
@@ -98,7 +107,14 @@ proc Foo(str vstr)
 }
 //------------------------------
 
+x = 3
+ y = 7
+ z= sumarg( x,y)
 
+<<" $x + $y = $z \n"
+
+chkN(z,10)
+chkOut()
 
 
  I = Igen(10,0,1)
@@ -116,12 +132,7 @@ I->info(1)
 
 
 
- x = 3
- y = 7
- z= sumarg( x,y)
-
-<<" $x + $y = $z \n"
-
+ 
 
 fname= "procarg.asl"
 <<" %V$fname \n"

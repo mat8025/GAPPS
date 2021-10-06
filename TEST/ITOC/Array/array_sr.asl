@@ -10,12 +10,18 @@
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-  
+
+
+<|Use_=
+ demo array select range
+|>
+
   
 #include "debug"
 
 if (_dblevel >0) {
    debugON()
+   <<"$Use_\n"   
 }
 
 
@@ -26,14 +32,18 @@ if (_dblevel >0) {
   
   <<"%V$I \n"; 
   
-  K = I[2:8]; 
+  K = I[2:8:1]; 
 
-  K->info(1)
+  K<-pinfo()
  
   <<"%V$K\n"; 
   
-   chkN(K[0],2); 
-  
+   chkN(K[0],2);
+   
+    chkN(K[1],3); 
+
+
+
    K = I[6:1:-1]; 
 
    K->info(1)
@@ -43,6 +53,7 @@ if (_dblevel >0) {
   <<"K5 $K[5]\n"
   k = K[5];
   <<"%V $k $K[5]\n"
+  
   chkN(K[0],6); 
   chkN(K[1],5); 
   chkN(K[5],1); 

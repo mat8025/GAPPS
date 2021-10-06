@@ -113,39 +113,44 @@ svar E3[] = { "third row elements are:", "Na", "Mg", "Al", "Si" ,"P" ,"S", "Cl",
    chkStage("svar array ele");
 
 
-//%*********************************************** 
-//*  @script svar_range.asl 
-//* 
-//*  @comment test svar range use 
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                  
-//*  @date Sun Apr  7 08:51:31 2019 
-//*  @cdate Sun Apr  7 08:51:31 2019 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
-
-
 IV = vgen(INT_,10,0,1)
+<<"IV: $IV\n"
 
+RS= Split("$IV")
+
+RS<-pinfo()
+
+<<"RS: $RS\n"
+
+
+S<-pinfo()
 
 S= Split("$IV")
 
-S->info(1)
+S<-pinfo()
 
 <<"$S\n"
 
 chkStr(S[1],"1")
 chkStr(S[2],"2")
 chkStr(S[3],"3")
+chkStr(S[9],"9")
+
+
+<<"$S[1:7]\n"
+
+
+
+
 
 chkStage ("assign via Split")
 
 VF = vgen(FLOAT_,10,1,0.5)
 <<"%V $VF\n"
 //TSV="%6.2f$(VF*2)"
+
 TSV="$(VF*2)"
+
 <<"%V$TSV\n"
 
 TS= "%6.2f$(vgen(FLOAT_,10,1,0.5))"
@@ -171,8 +176,7 @@ chkStage ("assign via Split print")
 
 //
 
-<<"$S\n"
-<<"$S[1:7]\n"
+
 
 T1= S[1:7:]
 

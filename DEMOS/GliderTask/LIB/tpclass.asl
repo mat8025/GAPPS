@@ -18,7 +18,7 @@
 //<<"read in tpclass\n"
 //<<" que pasa\n"
 //============================================
-
+;
 
 
 
@@ -41,8 +41,9 @@ class Tleg
   float fga;
   float msl;
 
-  str Place;
   str Tow;
+  str Place;
+
 
  cmf Tleg() 
  {
@@ -53,7 +54,10 @@ class Tleg
   msl = 0.0;
  // <<"Done cons $dist $pc\n"
  }
+ 
 }
+
+
 
 int Ntp_id = 0;
 
@@ -90,9 +94,9 @@ class Turnpt
 //      wval->info(1)
 //<<": $wval[0] 1: $wval[1] 2: $wval[2] 3: $wval[3] 4: $wval[4] \n"
 
-     Place=wval[0]; // wayp 
+     Place = wval[0]; // wayp 
     
-     //<<"%V$Place\n"
+     <<"%V$Place\n"
 
 
      Idnt =  wval[1];
@@ -139,7 +143,7 @@ class Turnpt
 //<<"1 <|$wval[1]|>\n"
 //<<"2 <|$wval[2]|>\n"
 str val;
-
+<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
 
      val = dewhite(wval[0])
 //val->info(1)
@@ -149,7 +153,7 @@ str val;
      val = scut(val,1)
      val = scut(val,-1)
 
-     Place=val; // wayp 
+     Place = val; // wayp 
     
 //   <<"%V$Place\n"
 
@@ -183,14 +187,21 @@ str val;
 
      is_airport =0
 
-     rway = wval[7];
+     rway = wval[6];
 
-//     <<"%V$rway  \n"
+  //  <<"%V$rway  \n"
 
-     if (!rway @="") {
+     if (rway == "5") {
          is_airport =1
      }
-     
+
+     rway = wval[7];
+
+     if (rway != "") {
+         is_airport =1
+     }
+
+
 //     val = wval[9];
 
 //  <<"Radio ?? $val  \n"
