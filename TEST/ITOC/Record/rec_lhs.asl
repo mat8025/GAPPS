@@ -10,11 +10,19 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-myScript = getScript();
+<|Use_=
+Demo  of record lhs
+///////////////////////
+|>
 
-#include "debug.asl"
 
-//debugON();
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"
+}
+
 
 
 chkIn(_dblevel)
@@ -22,6 +30,11 @@ chkIn(_dblevel)
 record R[10];
 
  R[0] = Split("0 1 2 3 4 5 6 7 8 9")
+
+
+<<"$R[0]\n"
+
+
  R[1] = Split("0 1 2 3 4 5")
  R[2] = Split("0 1 2 3 4 5")
  R[3] = Split("10 11 12 13 14 15")
@@ -29,9 +42,14 @@ record R[10];
  R[5] = Split("30 31 32 33 34 35")
  R[6] = Split("40 41 42 43 44 45") 
 
+<<"$R[6]\n"
+
+
 Str wrd2;
 
-   R->info(1)
+   R->pinfo()
+
+
    kc = 1;
    j = 5;
    

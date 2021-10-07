@@ -125,6 +125,8 @@ ictout ="ictestoutput"
 //!!"echo ictest > $tout"
 //!!"echo ictest > $ictout"
 
+//cart("bops","78")
+//chkT(0)
 
 CFLAGS = "-cwl"
 
@@ -519,11 +521,11 @@ if ((do_all || do_try ) && (do_try != -1)) {
   // RunDirTests("Str","str-proc,str-arg,str-lit");
    RunDirTests("Str","str_proc,str_arg");
 
-   hdg("Strops");
+   //hdg("Strops");
    
    RunDirTests("Strops","scmp_syntax");
 
-   hdg("Splice");
+ //  hdg("Splice");
    RunDirTests("Splice","splice,strsplice");
  
   // make this a pattern OP
@@ -540,14 +542,9 @@ if ((do_all || do_try ) && (do_try != -1)) {
 
   RunDirTests("Fops","fops")
 
-//  cart("fops")
 
+  RunDirTests("Fexist","fexist")
 
-  Run2Test("Fexist")
-
-  cart("fexist","fexist.asl")
-
-  cart_xic("fexist","fexist.asl")
 
 
 
@@ -641,22 +638,21 @@ if ((do_all || do_array ) && (do_array != -1)) {
 
   RunDirTests("Scalarvec","scalarvec")
 
-  RunDirTests("Vgen","vgen,vgen-pan")
+  RunDirTests("Vgen","vgen,vgen_pan")
 
-  Run2Test("PrePostOp")
+  RunDirTests("PrePostOp","prepostop");
 
-
-   do_carts("prepostop")
+ // Run2Test("PrePostOp")
+//   do_carts("prepostop")
 
   RunDirTests("M3D","m3d,m3d_assign")
 
-  Run2Test("Sgen")
+  RunDirTests("Sgen","sgen")
 
-  do_carts("sgen")
+  //do_carts("sgen")
 
-  Run2Test("VVgen")
+   RunDirTests("VVgen","vvgen")
 
-  do_carts("vvgen")
 
 
 
@@ -735,7 +731,7 @@ if ((do_all || do_func ) && (do_func != -1)) {
 if ((do_all || do_unary ) && (do_unary != -1)) {
 
 
-  RunDirTests("Unary","unaryexp,unaryif")
+  RunDirTests("Unary","unaryif,unaryexp")
 
 }
 
@@ -759,13 +755,14 @@ if ((do_all || do_proc ) && (do_proc != -1)) {
   
   RunDirTests("Proc","proc,procdeclare,procret,procarg,procsv0");
   
-  RunDirTests("Proc","procrefarg,procra,procrefstrarg,proc_loc_main_var");
+  RunDirTests("Proc","procrefarg,procra,procrefstrarg,proc_loc_main_var,proc_var_define");
 
-  cart("proc_var_define", 10)
-
-  Run2Test("Static")
+  //pgn = "proc_var_define";
+  //cart(pgn, 10)
+   hnm= "Static"
+ Run2Test(hnm)
   
-  hdg("Static") ; 
+ // hdg("Static") ; 
 
   cart("static");
 
@@ -836,7 +833,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
    
 
-   RunDirTests("Record","record,rec-read,rec-prt,rec-atof,rec-lhs,rec-test,rec-md,rec-dyn");
+   RunDirTests("Record","record,rec_read,rec_prt,rec_atof,rec_lhs,rec_test,rec_md,rec_dyn");
 
 
   }

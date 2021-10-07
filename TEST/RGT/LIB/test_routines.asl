@@ -55,9 +55,11 @@ padtit =nsc(15,"/")
 
 void hdg(str atit)
 {
+atit<-pinfo()
 
   int len = slen(atit)
   int rlen = 20- len;
+
 //<<"$_proc  $atit  $len\n"
 
   tpad = nsc(rlen,"/")
@@ -98,9 +100,9 @@ void changeDir(str td)
 void Run2Test(str td)
 {
 
-//<<" $_proc $td $Testdir\n"
+<<" $_proc $td $Testdir\n"
 
-//td<-info(1)
+  td<-pinfo()
 
   chdir(Testdir)
 
@@ -113,7 +115,7 @@ void Run2Test(str td)
   
   Curr_dir = getDir();
   
-//<<"changing to $td dir from $Prev_dir in $Curr_dir\n"
+<<"changing to $td dir from $Prev_dir in $Curr_dir\n"
 }
 //===============================
 
@@ -152,16 +154,18 @@ str pgname = "xx";
 
         nl = slen(pgname);
 
+	    pgxname = Tp[i];
 
          if (nl > 0) {
 	     //<<"%V$pgname \n"
-	    // pgname<-pinfo()
+	 //   pgname<-pinfo()
 
          //do_carts(pgname);
 	 cart(pgname);
 
 	// do_carts(Tp[i] );
-          cart_xic (pgname);
+	
+          cart_xic (pgxname);
 
          }
       
@@ -184,13 +188,16 @@ void RunSFtests(str Td)
 
          chdir(Testdir)
 
-         hdg(wsf)
+      //   hdg(wsf)
 
          chdir(wsf)
+	 wd=getDir()
+//<<"$i  $wsf $wd\n"	 
 	 
 	 wsf = slower(wsf);
-	 
-         do_carts(wsf);
+	 cart(wsf)
+	 cart_xic(wsf)
+        // do_carts(wsf);
       }
 }
 
@@ -401,7 +408,7 @@ void cart_xic(Str aprg)
 {
 
 
-//aprg<-info(1)
+//aprg<-pinfo()
 
 str  xwt_prog;
 str prg = "xxxxxxxxxxxxxxxxx";
@@ -617,19 +624,26 @@ void cart (str aprg)
 //===============================
 
 
-//proc cart (str aprg,  gen a1)
-void cart (Str prg,  Str a1)
+
+void cart (Str aprg,  Str pa1)
 {
 
-//<<"$_proc  $prg $a1\n"
+//<<"$_proc  $aprg $a1\n"
   int wlen;
   //str tim;
 //   <<"%V $_pstack \n"
+//   aprg<-pinfo()
+//   pa1<-pinfo()
 
-   str aprg;
-   
-   aprg = prg;
-   
+   str prg;
+   str a1;
+   prg = aprg;
+  
+ //  prg->pinfo()
+
+   a1= pa1;
+//   a1<-pinfo()
+
    in_pargc = _pargc;
   
    xwt_prog = "xxx";

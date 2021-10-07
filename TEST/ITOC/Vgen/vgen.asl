@@ -16,10 +16,17 @@
 
 ///
 
+<|Use_=
+ demo vgen
+|>
+
+
+
 #include "debug.asl"
 
 if (_dblevel >0) {
    debugON()
+   <<"$Use_\n"      
 }
 
  chkIn(_dblevel)

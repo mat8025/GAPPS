@@ -1,5 +1,5 @@
 //%*********************************************** 
-//*  @script proc-var-define.asl 
+//*  @script proc_var_define.asl 
 //* 
 //*  @comment test assign within proc 
 //*  @release CARBON 
@@ -13,8 +13,23 @@
 
 ///
 ///
+<|Use_=
+  Demo  proc define
+|>
 
 
+#include "debug"
+
+
+
+
+if (_dblevel >0) {
+   debugON()
+       <<"$Use_\n"   
+}
+
+
+allowErrors(-1)
 
 
 int f = 7;
@@ -24,6 +39,45 @@ int f = 7;
 chkIn(_dblevel);
 
 chkR(f,7);
+
+int poo(int x)
+{
+
+ y = x *2;
+ return y;
+
+}
+
+
+void hdg(str atit)
+{
+  atit<-pinfo();
+
+  int len = slen(atit)
+  int rlen = 20- len;
+
+<<"$_proc  $atit  $len\n"
+}
+
+
+
+z=54;
+
+ poo(z)
+ 
+
+str mtit = "Turquoise Lake"
+
+int len = slen(mtit)
+
+<<"$len $mtit\n"
+
+
+ ok=hdg(mtit)
+
+
+
+
 
 int N =   79;
 
@@ -76,7 +130,7 @@ chkN(b,-42);
 // use float arg -
 // Foo(int) will convert to call -- 
 
-proc Foo(float a)
+int Foo(float a)
  {
 
  int b;

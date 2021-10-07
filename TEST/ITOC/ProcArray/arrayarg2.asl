@@ -39,14 +39,16 @@ aaa: <<"aaa label !\n"
 
    proc Woo(int vect[],int k)
    {
-   
-     vect->info(1);
+   <<"$_proc    $k\n"
+     vect<-pinfo();
      
-     k->info(1);
+
      Z->info(1) ;
      
 <<"IN %V $vect \n"; 
 <<"IN  %V $Z\n"
+
+
       vect->info(1);
       vect[1] = 47; 
       vect[2] = 79;
@@ -108,9 +110,16 @@ aaa: <<"aaa label !\n"
 
    <<"preZ $Z\n"; 
 
-    Z->info(1); 
+    pinfo(Z); 
 
-// Y = foo(&Z,3)  // TBF-------- Y 
+// Y = foo(&Z,3)  // TBF-------- Y
+
+    YA = &Z[3];
+
+    pinfo(YA)
+
+    YA->pinfo()
+
 
     Y = Woo(&Z[0],3)  // FIXED -------- Y is now created correctly with the return vector; 
    
@@ -135,11 +144,15 @@ aaa: <<"aaa label !\n"
    Z[9] = 28; 
    
    <<"////////////////////////////////////////\npreZ $Z\n"; 
+<<"call using &Z[3] \n"
+
+   Y2= Woo(&Z[3],4);
    
-   Y2= Woo(&Z[3],4); 
-   Z->info(1)
+   pinfo(Z)
+   
    <<"postZ $Z\n";
-   
+
+
 //~c <<" this is the  brk_pt \n" ; // needs to stop before executing this statement   
 
    chkN(Z[4],47);

@@ -118,7 +118,7 @@
      
      padtit =nsc(15,"/"); 
      
-     proc hdg(atit)
+     proc hdg(str atit)
      {
        
        len = slen(atit); 

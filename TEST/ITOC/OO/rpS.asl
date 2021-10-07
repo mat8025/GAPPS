@@ -210,7 +210,7 @@ CSr= CS->getrooms() ;
 
    
   <<"%V $DSr $res\n"
-
+!a
    chkN(DSr,res); 
 
 

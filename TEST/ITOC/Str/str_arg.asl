@@ -31,6 +31,24 @@ if (_dblevel >0) {
 
 chkIn(_dblevel)
 
+proc woo(str a1)
+{
+
+<<"$_proc $a1\n";
+
+a1<-pinfo();
+pinfo(a1);
+
+ a2= a1;
+ a2<-pinfo();
+
+ a4=scat(a1," bitte")
+ <<"$a4\n"
+  return a4;
+}
+
+
+
 a="hey"
 b="man"
 
@@ -56,6 +74,15 @@ w1 = scat('$k ',"$i")
 
 chkStr(w1,'$k 2')
 
-chkT(1)
+a3=woo(w1)
+
+<<"$a3\n"
+
+a3=woo("jetzt vortreten")
+
+<<"$a3\n"
+
+
+
 
 chkOut()

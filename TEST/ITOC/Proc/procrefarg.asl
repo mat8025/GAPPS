@@ -74,7 +74,9 @@ float z;
 
 <<"%V$v + $u = $z\n"
 
-   v++;
+//   v++;
+
+      v = v +1;
 <<" changing first arg to %V$v\n"
 
    u = u * 2;
@@ -95,7 +97,8 @@ float z;
 
 <<"%V$v + $u = $z\n"
 
-   v++;
+   //v++;
+      v = v +1;
 <<" changing first arg to %V$v\n"
 
    u = u * 2;

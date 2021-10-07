@@ -48,11 +48,15 @@ S=testargs(incr,starti)
 
    vecp= vgen(PAN_,30,starti,incr)
 
-   vecp->info(1)
 
 <<" $vecp \n"
 
+    pinfo(vecp)
+<<"$vecp[1] \n"
+
 chkR(vecp[1],2.5)
+
+
 
 incr = -1.5;
 

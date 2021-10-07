@@ -126,7 +126,7 @@ str ostr( str val)
  Str oxpv = "xpv";
 <<"\nval <|$val|>\n"
 <<"in ostr \n"
-!a
+
    val<-pinfo()
    spv = val;
    spv<-pinfo()
@@ -146,7 +146,7 @@ str pstr( str val)
    spv = val;
    spv<-pinfo()
 <<" calling ostr? with $val \n"
-!a
+
 
    ps=ostr(val);
 <<"ostr return $ps\n"
@@ -160,7 +160,7 @@ str qstr( str val)
  Str qxpv = "xpv";
 <<"\nval <|$val|>\n"
 <<"in qstr \n"
-!a
+
    val<-pinfo()
    spv = scat(val,"vorwarts");
    spv<-pinfo()
@@ -168,7 +168,7 @@ str qstr( str val)
    ps=rstr(val);
 <<"rstr return $ps\n"
    return ps;
-cd ../}
+}
 //===========================//
 
 
@@ -178,7 +178,7 @@ str rstr( str val)
  Str qxpv = "xpv";
 <<"\nval <|$val|>\n"
 <<"in rstr \n"
-!a
+
    val<-pinfo()
    spv = scat(val," Ende der Strasse");
    spv<-pinfo()
@@ -250,7 +250,7 @@ str xyz;
 xyz = "xYz"
 
 <<"$abc\n"
-!a
+
 
 //ns=ystr(xyz);
 

@@ -34,8 +34,9 @@ void Refarg (int v)
    //  v *= 2; // fail
      v =  v * 2; // fail
 <<"  %V $v $n\n"        
-     v++;
-  <<"OUT  %V $v  $n\n"   
+//     v++;  // TBF --- ref arg incr
+   v = v +1;
+<<"OUT  %V $v  $n\n"   
 }
 //=====================
 
@@ -50,7 +51,8 @@ void RefargP (ptr v)
    //  v *= 2; // fail
      v =  v * 2; // fail
 <<"  %V $v $n\n"        
-     v++;
+    // v++;
+   v = v +1;     
   <<"OUT  %V $v  $n\n"   
 }
 //=====================
