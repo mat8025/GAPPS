@@ -28,12 +28,14 @@ if (_dblevel >0) {
 }
 
 //filterFileDebug(REJECT_,"scopesindex_e","scope_e","scope_findvar","exp_e","exp_lhs_e","ds_sivmem");
-
+filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar","#array_parse","#array_subset")
 
 
 
 chkIn(_dblevel)
 
+
+do_circ = 1;
 
 // test array indexing
 
@@ -43,9 +45,9 @@ chkIn(_dblevel)
 
  ok=chkN(YV[0],20)
 
- if (!ok) {
-   <<"FAIL \n"
- }
+
+YV<-pinfo()
+
 
  <<"%V$YV \n"
 
@@ -70,26 +72,37 @@ chkIn(_dblevel)
 <<"$e $S[-2]\n"
 
  e= YV[-3]
- ok =chkN(e,YV[17])
 
- if (!ok) {
-   <<"FAIL 1\n"
- }
+ok =chkN(e,YV[17])
 
-
- AV = YV[-16:-6:2] 
-
-<<"%V$YV[-16:-10:2] \n"
-<<"%V$YV[-16:-6:2] \n"
+<<" $YV \n"
+ AV = YV[6:16:2] 
 
 <<" $AV \n"
+AV<-pinfo()
+ AV = YV[4:14:2]
+AV<-pinfo()
 
- e = YV[-1]
+
+ e= AV[0]
+
+<<"$e\n"
+
+
+
+ e = YV[-1];
 
 <<"%V$e $YV[19]\n"
 
- ok=chkN(e,YV[19])
- if (!ok) {
+YV<-pinfo()
+
+
+// ok=chkN(e,YV[19])
+
+ chkN(e,YV[19])
+
+
+if (!ok) {
    <<"FAIL 2\n"
  }
 
@@ -164,15 +177,41 @@ chkIn(_dblevel)
 <<" \n"
 
 
+if (do_circ) {
+
+
+
+
+
+ AVN = YV[-16:-6:2]
+
+<<"[-16:-6:2]  $AVN\n"
+
 <<"%V$YV[-16:-10:2] \n"
+<<"%V$YV[-16:-6:2] \n"
+
+
+chkN(AVN[0],24)
+
+
 
 // testargs(YV[-16:-10:2])
 //iread()
 
 <<" \n"
+}
 
+
+AVC = YV[-16:-15:-1]
+<<"[-16:-15:-1]  $AVC\n"
+AVC<-pinfo()
+
+//<<"%V$YV[-16:-10:-2] \n"
 
 // testargs(YV[-16:-10:2],YV[1:-1:3])
+
+
+<<"YVC $(YV[-16:-15:-1])\n"
 
 //iread()
  chkOut()

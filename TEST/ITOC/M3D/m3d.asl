@@ -112,25 +112,28 @@ M2[6:9:1][1:3:1] = 44;
 
 int M[N][P][L];
 
-M->info(1)
+M<-pinfo()
 
 M[0][0][2] = 67;
-M->info(1)
 
+M<-pinfo()
 
 
 
 
 <<"$V\n"
+
+V<-pinfo()
+
 b = Cab(V)
 <<"Vbounds $b \n"
 
 
-b = Cab(&M)
+b = Cab(M)
 //b = Cab(M)
 <<"0 bounds $b \n"
 
-//M->info(1)
+M<-pinfo()
 
 val = 7
 

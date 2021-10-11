@@ -11,22 +11,10 @@
 //* 
 //***********************************************%
   
-
-<|Use_=
-Demo  of OO class ;
-///////////////////////
-|>
-
-
-                                                                        
 #include "debug"
-#include "hv.asl"
 
 
-if (_dblevel >0) {
-  debugON()
-    <<"$Use_\n"   
-}
+//debugON()
 
  allowErrors(-1)
 
@@ -35,17 +23,35 @@ chkIn (_dblevel);
 uint SC = 50;
 uint OC = 1;  // object counter
 
-
 MIV= vgen(INT_,30,0,1)
 
 
-     MIV[7] = 52;
+ MIV[7] = 3;
 
-     k = MIV[7];
+int km = 12;
 
-<<"%V$k \n"
+int km2 = 14;
+ MIV[km] = 78;
 
-<<"$MIV \n"
+ MIV[km2] = 79;
+<<"$MIV\n"
+
+MIV<-pinfo();
+
+
+chkN(MIV[7],3)
+chkN(MIV[km],78)
+
+
+MIV[0:12] = -16
+
+
+MIV<-pinfo();
+
+
+
+
+
 
 class Dil {
 
@@ -55,13 +61,13 @@ public:
  int IV[30];
  int id;
 
- void cmf Print(int wa) 
+ cmf Print(int wa) 
  {
    k = IV[wa]
    <<"$wa $k \n"
  }
  
-int cmf Set(int s)
+cmf Set(int s)
  {
      <<"$_cobj $s\n" 
      <<"%V$type\n"
@@ -70,7 +76,7 @@ int cmf Set(int s)
      return type;
  }
  
-  int cmf Get()
+  cmf Get()
  {
  <<"$_proc  Get\n"
 //!i type
@@ -79,15 +85,15 @@ int cmf Set(int s)
  }
 
 
- void cmf Set(int wi, int val)
+ cmf Set(int wi, int val)
  {
     <<"%V $wi $val\n"
-   <<"IN: $IV[::] \n"
+  // <<"$IV[::] \n"
       IV[wi] = val;
-   <<"OUT: $IV[::] \n" 
+  // <<"$IV[::] \n" 
  }
 
- svar cmf showIV()
+ cmf showIV()
   {
 //mas = memaddr(&I[0])
 
@@ -95,14 +101,11 @@ int cmf Set(int s)
 
 // <<"memcpy to %u $mad from $mas #bytes $nbytes\n"
 //   memcpy(mad, mas, nbytes)
-
-
-   iv=IV<-info()
-<<"%V $iv\n"
-<<"%V $IV[::] \n"
+     IV<-pinfo()
+//<<"%V $IV[::] \n"
 
 <<"%V $IV[8]\n"
-    return iv;
+ 
   }
 
  cmf Dil() 
@@ -111,16 +114,16 @@ int cmf Set(int s)
      id = OC;
 
      OC++;
-   
-    int k = 0;
+
     type<-pinfo();
-    n_actv<-pinfo();
+n_actv<-pinfo()
 
+IV<-pinfo()
 
+ IV[0:12] = 1;
 
-   IV<-pinfo()
+IV<-pinfo()
 
-   IV[0:9] = 1;
 
 <<"%V$I \n"
      <<"cons for $_cobj  $id \n"
@@ -131,17 +134,8 @@ int cmf Set(int s)
 
      IV[23] = SC;
 
-     IV[7] = 52;
 
-     IV[12] = 67;
-
-
-
-<<"$IV\n"
-
-     k = IV[7];
-<<"$IV\n"
-<<"%V$k \n"
+  
 
      k = IV[0];
 
@@ -149,13 +143,13 @@ int cmf Set(int s)
 
     IV[1] = 28;
 
- <<"%V$IV \n" 
+ <<"%V$I \n" 
 
      k = IV[0];
 
 <<"%V$k \n"
-
  <<"Done cons \n"
+ 
  }
 
 }
@@ -167,32 +161,11 @@ agv<-pinfo();
 
 Dil E;
 
-   E<-pinfo()
+E<-pinfo()
 
+   E->showIV();
 
-
-   vim=E->showIV();
-
-<<"%v $vim\n"
-
-   E->Set(5)
-
-   et= E->Get()
-
-<<"%V $et\n"
-
-
-   ei = E->IV[7]
-
-<<"%V $ei \n"
-  chkN(ei,52)
-
-
-
-
-chkT(1)
-
-
+  E->Set(5)
 
 
 
@@ -306,27 +279,13 @@ chkN (D->IV[2],79);
 
   E->showIV()
 
-  val = D->IV[8]
-
-<<"%V $val  $D->IV[5]\n"
-
   D->Set(8,47)
-
-
-
-  val = D->IV[8]
-  
-//<<"%V $val  $D->IV[8]\n"
-
-
 
   D->showIV()
 
-
-
   chkN (D->IV[8],47)
 
-
+  val = D->IV[8]
 
   D->Set(67)
 <<"%V $val\n"
@@ -350,14 +309,8 @@ X[3]->Set(5)
 
 
 
-
-
-
 j= 2
-
 j<-pinfo()
-
-
 k= 44;
 
  X[j]->Set(k)

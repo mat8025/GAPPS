@@ -29,7 +29,7 @@ if (_dblevel >0) {
     <<"$Use_\n"   
 }
 
-
+filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar")
 
 chkIn(_dblevel)
 chkT(1)
@@ -106,7 +106,7 @@ wsv=Split("80,1,2,3,79,5,6,7,8,9", ",");
 !pwsv
 !iwsv
 
-R->info(1)
+R<-pinfo()
 
 
 lastRX = R[Nrecs-1]
@@ -132,11 +132,11 @@ rval = R[0][4];
 
 /*
 int ival = atoi(R[0][2]);
-ival->info(1)
+ival<-pinfo()
 
 sz  = csz(ival)
 
-sz->info(1)
+sz<-pinfo()
 
 <<"ival <|$ival|>  bounds $(Cab(ival)) sz   $(csz(ival))\n"
 
@@ -151,7 +151,7 @@ chkN(ival,2)
 
 <<"R7 $R[7]\n"
 
-R->info(1)
+R<-pinfo()
 
 <<"%V$R[1]\n"
 
@@ -168,7 +168,7 @@ ival = atoi(R[1][3]);
 
 <<"%V$ival \n"
 
-ival->info(1)
+ival<-pinfo()
 
 chkN(ival,fval)
 
@@ -200,13 +200,25 @@ chkN(ival,fval)
 
   sz = Caz(R);
   <<"%V$sz\n"
+<<"<|$R[2][2]|> \n"
+rval= R[2][2];
+irval = atoi(rval)
+irval<-pinfo()
 
 ival = atoi(R[2][2]);
+
 sz  = csz(ival)
 <<"ival $ival  bounds $(Cab(ival)) sz   $(csz(ival))\n"
+sz<-pinfo()
+ivs=ival<-pinfo()
+
+<<"$ivs\n"
+
 
 chkN(sz,0)
 chkN(ival,2)
+
+
 
 <<"%V$R[2][4]\n"
 
@@ -258,7 +270,7 @@ recinfo = info(R);
 recinfo = info(R);
 <<"$recinfo \n"
 
-R->info(1)
+R<-pinfo()
 
 
 //////////////////////////////////////////
@@ -273,7 +285,7 @@ ival = atoi(R[1][4]);
 sz  = csz(ival)
 <<"ival $ival  bounds $(Cab(ival))    $(csz(ival))  $sz\n"
 
-ival->info(1)
+ival<-pinfo()
 
 chkN(sz,0)
 
@@ -449,7 +461,7 @@ chkStr(sr2,"cols")
 
 <<"inrecord[3] we have:- $R[3] \n"
 
-R->info(1)
+R<-pinfo()
 
    sr1 = R[3][2]
    
@@ -483,7 +495,7 @@ chkStr(sr2,"learn")
    sr2 = R[3][2]
    sr3 = R[3][2]
 
-sr3->info(1)
+sr3<-pinfo()
 
 <<"%V $sr3\n"
 

@@ -29,6 +29,8 @@ if (_dblevel >0) {
    <<"$Use_\n"      
 }
 
+ allowErrors(-1)
+
  chkIn(_dblevel)
 
 

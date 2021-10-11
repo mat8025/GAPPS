@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @script vops.asl 
-//* 
-//*  @comment test vector ops 
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                  
-//*  @date Wed Apr  3 22:25:24 2019 
-//*  @cdate Wed Apr  3 22:25:24 2019 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script vops.asl 
+ * 
+ *  @comment test vector ops 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.53 C-Li-I] 
+ *  @date 10/11/2021 07:14:44 
+ *  @cdate Wed Apr 3 22:25:24 2019 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                            
 
 
                                                                         
@@ -124,10 +126,15 @@ The initial vaue can be incremented at each set step to create a series.
 
 int J[>20] 
 
-  J[0:30]->Set(10,2)
+  J[0:30:]<-Set(12,2)  ;   // TBF XIC version does not fill in stride and fails ??
 
+<<"$J \n"
 
-J->pinfo();
+  J[0:30:1]<-Set(10,2)
+
+chkN(J[30],70)
+
+J<-pinfo();
 
 <<"$J \n"
 
@@ -137,7 +144,7 @@ int sum
 
   sum = J[1] + J[2] 
 
-<<"  %V$sum = $J[1] + $J[2]   \n"
+<<"  %V$sum = $(J[1]) + $(J[2])   \n"
 
 
 chkN(sum,26)

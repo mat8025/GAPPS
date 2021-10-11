@@ -10,76 +10,34 @@
 //08/29/2021   90.91%
 
 ////////////////// Good /////////////////////
-<|Good =
-array
-bit
-bops
-bugs
-command
-declare
-do
-dynv
-exp
-fops
-for
-func
-if
-include
-ivar
-lhsubsc
-lists
-logic
-math
-matrix
-mops
-pan
-paraex
-proc
-ptrs
-record
-recurse
-scope
-sfunc
-sops
-stat
-svar
-switch
-syntax
-tests
-types
-unary
-vmf
-vops
-while
-|>
-//===========BAD =======================//
-<|Bad =
-class
-oo
-threads
-try
-|>
-//=======================================//
+#include "progress.txt"
+<<"Good:\n $Good\n"
 
-
-<<"%V$Good\n"
-
-<<"$Good[0] $Good[1]\n"
+//<<"$Good[0] $Good[1]\n"
 gsz=Caz(Good)
-<<"$gsz\n"
 
-<<"%V$Bad\n"
 
-<<"$Bad[0] $Bad[1]\n"
+<<"Maybe:\n $Maybe\n"
+
+maybesz = Caz(Maybe);
+
+
+<<"Bad:\n$Bad\n"
+
+
 bsz=Caz(Bad)
-<<"$bsz\n"
 
 
 
+<<"goodsz $gsz\n"
+<<"%V$maybesz\n"
+<<"badsz $bsz\n"
 
-ppc = (gsz*1.0)/(gsz+bsz)  *100
 
-<<"$(date(2)) %6.2f ${ppc}\%\n"
+ppc = (gsz*1.0)/(gsz+maybesz+bsz)  *100
 
+<<"$(date(2)) $gsz %6.2f ${ppc}\% \n"
+
+//<<"Bad: $Bad[0] $Bad[1]\n"
 
 exit()

@@ -28,10 +28,10 @@ srcfile = _clarg[1];
 <<"%V$srcfile\n"
 
 if (srcfile @= "") {
-<<"no script file entered\n"
-  exit();
+//<<"no script file entered\n"
+  srcfile = "fexist.asl"
 }
-
+<<" %V $srcfile\n"
 sz= fexist(srcfile,RW_,0);
 
 <<"$srcfile exists  RW size $sz \n"

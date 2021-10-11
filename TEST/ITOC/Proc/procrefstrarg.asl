@@ -30,7 +30,7 @@ Str pstrarg (str v, str u)
 
  v->info(1)
  u->info(1)
-m = scat(v,"-x-",u);
+ m = scat(v,"-x-",u);
 
 
 m->info(1);
@@ -58,15 +58,15 @@ u = "que tal?"
   chkStr(s,"hi")
   chkStr(t,"Comment allez-vous?");
 
-  s->info(1)
-  t->info(1)
+  s<-pinfo()
+  t<-pinfo()
 
  w = pstrarg(s,t)
 
- w->info(1)
+ w<-pinfo()
 <<"%V $s $t $w\n"
  chkStr(w,"hi-x-Comment allez-vous?")
-  s->info(1)
+  s<-pinfo()
  chkStr(s,"hola")
 
 
@@ -74,8 +74,8 @@ u = "que tal?"
   s = "buenos"
   t = "dias"
 
-  s->info(1)
-  t->info(1)
+  s<-pinfo()
+  t<-pinfo()
 
 <<"%V $s $t \n"
 
@@ -90,8 +90,8 @@ u = "que tal?"
   s = "buenas"
   t = "tardes"
 
-  s->info(1)
-  t->info(1)
+  s<-pinfo()
+  t<-pinfo()
   
 
 <<"%V $s $t \n"
@@ -100,7 +100,7 @@ u = "que tal?"
 
 
 <<"%V $s $t $w\n"
- s->info(1)
+ s<-pinfo()!a
  chkStr(s,"hola")
 
  chkOut()

@@ -542,7 +542,7 @@ if ((do_all || do_try ) && (do_try != -1)) {
 
   RunDirTests("Fops","fops")
 
-
+  // need to do  script arg1 agr2 ...
   RunDirTests("Fexist","fexist")
 
 
@@ -562,13 +562,10 @@ if ((do_all  || do_declare ) && (do_declare != -1))  {
  //  cart ("consts_test")
 
 
-   Run2Test("Resize")
+   RunDirTests("Resize","resize")
 
-   cart ("resize")
+   RunDirTests("Redimn","redimn")
 
-   Run2Test("Redimn")
-
-   cart ("redimn")
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -822,9 +819,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
   if ((do_all || do_ivar ) && (do_ivar != -1)) {
 
-     Run2Test("Ivar")
-
-     cart("ivar")
+     RunDirTests("Ivar","ivar")
 
     }
 

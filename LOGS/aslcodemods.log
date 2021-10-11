@@ -896,3 +896,12 @@ ic_vfill.cpp                        1.62  08/25/2021 10:21:27  revise
 rdp_token.cpp                       1.76  08/27/2021 10:19:07  PTR check
 vmf_e.cpp                           3.53  08/27/2021 22:44:28  allow SCLASS 
 array_range.cpp                     2.82  08/29/2021 07:27:52  MD rc reset
+ds_recordstore.cpp                  1.84  10/09/2021 07:33:51  newsvar(1) for record ele to svar
+oo_class.cpp                        2.23  10/09/2021 07:47:18  OBJSTK
+storetype_e.cpp                     2.63  10/09/2021 07:48:16  revise
+proc_checkfname_e.cpp               2.43  10/09/2021 07:49:20  mangle args
+ic_xic.cpp                          1.78  10/09/2021 07:50:20  final store check
+vmf_l.cpp                           1.63  10/09/2021 07:52:06  pinfo
+proc_call_e.cpp                     3.47  10/09/2021 07:53:57  procv ptr 
+proc_args_e.cpp                     3.48  10/09/2021 07:54:33  ptr args
+ds_sivflags.cpp                     1.92  10/10/2021 10:35:02  linfo shows complete info if AW_SIV_UPD ON

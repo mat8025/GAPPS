@@ -19,7 +19,7 @@ if (_dblevel >0) {
    debugON()
 }
 
-
+filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar","array_parse","array_subset")
 chkIn (_dblevel);
 
 int main_chk = 0;
@@ -244,13 +244,20 @@ float array_sub (float rl[])
 
 <<"%(1,,,\n)$TA\n";
 
-  <<"%V $j1  $rl[j1] \n"
+  <<"%V $j1   \n"
 
-  <<"%V $rl \n"
+  <<"%V $rl[j1] \n"
 
-  chkR (rl[j1], 4);
+res= rl[j1]
+
+  <<"%V $res \n"
+  chkR (res, 4.0);
+
+  chkR (res, rl[j1]);
+
+  chkR (rl[j1], 4.0);
   
- 
+
 
 
   ff= rl[j1];

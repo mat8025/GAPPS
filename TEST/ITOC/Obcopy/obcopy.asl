@@ -32,7 +32,7 @@ if (_dblevel >0) {
 
  allowErrors(-1)
 
-
+filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar")
 
  chkIn(_dblevel)
 
@@ -217,7 +217,7 @@ void eat(fruit oba)
     <<"fruit thine name is $oba->name \n"
 
     oba<-pinfo()   
-!a
+
 
 //<<"apple $apple->color \n"
 
@@ -245,7 +245,7 @@ pdef++; <<"%V$pdef \n"
 //==================================//
 
 ok = 1
-!a
+
 ok=eat(apple)
 
 <<" $ok after eating apple $_cobj\n"
@@ -528,7 +528,7 @@ EA= examine(apple)
 <<"%V $cherry76\n"
 <<" %V  $cherry->x \n"
 
-!a
+
  cherry->set_color("red")
 
 chkStr(cherry->color,"red")

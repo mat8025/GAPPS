@@ -10,7 +10,7 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-myScript = getScript();
+
 //
 //
 // test vsp
@@ -21,6 +21,8 @@ myScript = getScript();
 if (_dblevel >0) {
    debugON()
 }
+
+filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar","array_parse","array_subset")
 
 
 chkIn(_dblevel)
@@ -44,6 +46,8 @@ float Tsp[>1024];
 fftsz = 2^10;
 <<"%V $fftsz\n"
 fftsz2 = fftsz/2;
+<<"%V $fftsz $fftsz2 \n"
+
 //ans=query()
 float Sf = 20480.0
 
@@ -131,10 +135,11 @@ proc setupTsp()
 
 float Dif[]
   // compare Tsp Vsp
-int bad = 0
+int bad = 0;
   for (i = 0; i < fftsz2; i++) {
 
       Dif[i] = Vsp[i] - Tsp[i]
+<<"$i $Dif[i] \n"
 
       if (Dif[i] != 0.0) {
 <<"bad $i $Dif[i] \n"

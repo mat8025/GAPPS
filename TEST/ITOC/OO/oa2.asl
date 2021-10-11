@@ -46,7 +46,7 @@ chkN(i,0);
 
 <<"$i \n"
 
- iv2 = i<-info();
+ iv2 = i<-pinfo();
 
 <<"$iv2 \n"
 
@@ -60,7 +60,7 @@ IV = vgen(INT_,10,0,1);
 
   IV[5] = 47;
 
- iv2 = IV<-info();
+ iv2 = IV<-pinfo();
 
 <<"$iv2 \n"
 
@@ -88,7 +88,7 @@ chkT(1)
 proc Pset( svar s)
 {
 <<"proc $_proc   $s \n"  
-      s<-info(1)
+      s<-pinfo()
    <<"$s[1] : $s[2]\n"
       val = s[1]
       <<"%V $val\n"
@@ -152,7 +152,7 @@ class Act {
  cmf Get()
  {
  <<"$_proc  Get %V $otype\n"
-     otype<-info(1)
+     otype<-pinfo()
 
    return otype;
  }
@@ -162,7 +162,7 @@ class Act {
  <<"$_proc  GetWD\n"
 
 
-   a_day<-info(1)
+   a_day<-pinfo()
 <<"getting  $a_day\n"
    return a_day;
  }
@@ -180,7 +180,7 @@ class Act {
 
    t = 0;
    a_day = Act_ocnt;
-   a_day<-info(1)
+   a_day<-pinfo()
  //<<"Act cons of $_cobj $id $Act_ocnt %V $a_day $mins $otype\n"
 
  }
@@ -190,7 +190,7 @@ class Act {
 
 Act a;
 
-    a<-info(1)
+    a<-pinfo()
     a->otype = 2;
 <<"%V$a->otype \n"
     a->otype = 3;
@@ -237,7 +237,7 @@ chkStage(" Simple Obj reference")
 
  <<"%V $Act_ocnt \n"
 
- X<-info(1)
+ X<-pinfo()
 
 od=X[2]->GetWD()
 
@@ -251,7 +251,7 @@ od=X[3]->GetWD()
 <<"X[3] %V $od\n"
 chkN(od,5)
 
-X<-info(1)
+X<-pinfo()
 
 
 
@@ -332,7 +332,7 @@ val2 = SV2[3]
   obid = X[0]->ObjID(); // TBF fails crashes ?
 
 <<"X[0] $obid \n"
- X<-info(1)
+ X<-pinfo()
 
 chkStage(" Svar Mbr reference")
 
@@ -433,7 +433,7 @@ chkStage(" Simple Get/Set")
 <<"47? type for 2 $yt $(typeof(yt)) \n"
 
  chkN(yt,47);
-  X<-info(1)
+  X<-pinfo()
 
 
  yt = X[3]->otype;
@@ -514,7 +514,7 @@ chkStage(" Simple Get/Set")
 
  m = 4
  m2 =3
- X<-info(1)
+ X<-pinfo()
 
  yst =  X[2]->Set(m)
 
@@ -688,7 +688,7 @@ class Dil {
  cmf Get()
  {
  <<"$_proc  \n"
-   w_day<-info(1)
+   w_day<-pinfo()
 <<"getting w_day $w_day\n"
    return w_day;
  }
@@ -698,7 +698,7 @@ class Dil {
    dil_ocnt++ 
    w_day = dil_ocnt;
   <<"cons of Dil $_cobj $w_day $dil_ocnt\n"
-    w_day<-info(1)
+    w_day<-pinfo()
 }
 
 }
@@ -714,14 +714,20 @@ class Dil {
 
  Dil E 
 
+
+ //E<-pinfo()
+ <<"$_scope\n"
+<<"scope $(showscope())\n"
+<<"stack $(showstack())\n"
 <<"%V $dil_ocnt \n"
- E<-info(1)
+
+
 
  od =E->Get();
 <<"E->w_day $od  $E->w_day\n"
- od<-info(1)
+ od<-pinfo()
 
-//E->w_day<-info(1);  // broke
+//E->w_day<-pinfo();  // broke
 
 chkN(od,1)
 
@@ -733,7 +739,7 @@ Dil H[2];
 <<" after class def Dil H[2] \n"
 <<"%V $dil_ocnt \n"
 
-H<-info(1)
+H<-pinfo()
 
 od = H[1]->Get();
 
