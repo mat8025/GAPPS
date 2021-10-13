@@ -13,7 +13,7 @@
 
 
 
-include "debug"
+#include "debug"
 
 if (_dblevel >0) {
    debugON()
@@ -124,7 +124,7 @@ enum drinks {
    TEA,
    COFFEE,
    MILK,
-   BEER
+   BEER,
 };
 
 sz= Caz(drinks);

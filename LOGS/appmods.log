@@ -254,3 +254,11 @@ mdele.asl                1.16	08/29/2021 06:37:58 debug
 vmf_range.asl            1.3	09/02/2021 08:57:31 <- operator
 ASLMAN.txt               2.4	09/04/2021 09:34:59 printargs
 vops.asl                 1.2	10/11/2021 07:14:44 stride test
+list_ins_del.asl         1.38	10/12/2021 09:43:17 sort
+cmplx.asl                1.5	10/12/2021 13:20:34 use vmf operator <-
+cmplx.asl                1.6	10/12/2021 13:27:43 tidy
+cmplx.asl                1.7	10/12/2021 13:28:21 dbheader
+cut.asl                  1.4	10/12/2021 13:35:43 use vmf p <-
+flipdim.asl              1.3	10/12/2021 14:40:57 vmf op <-
+ptr_svarvec.asl          1.4	10/12/2021 22:09:01 vmf op <-
+ptr_numvec.asl           1.2	10/12/2021 22:10:28 vmf op <-

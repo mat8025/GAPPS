@@ -31,6 +31,7 @@ if (_dblevel >0) {
 
 filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar")
 
+
 chkIn(_dblevel)
 chkT(1)
 

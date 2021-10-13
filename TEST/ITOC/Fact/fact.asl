@@ -111,7 +111,7 @@ long FactbyMI(int pf)
 
 //======================================//
 
-pan FactbyMP(int pf)
+pan FactbyMP(pan pf)
 {
 
  pan t = 1;
@@ -135,7 +135,7 @@ pan FactbyMP(int pf)
 
 
 long n = 1;
-long N = 10;
+long N = 20;
 int k= atoi(_clarg[1])
 if (k != 0) {
    N= k
@@ -147,6 +147,8 @@ else {
 // recursion -- statement XIC is rentered
 // compute initial conditions 1,2 - first for xic to work
 // then statement is closed -so no more WIC/XIC
+
+
 m= Fact(n)
 <<"%V $m $n\n"
 n++;

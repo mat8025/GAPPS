@@ -905,3 +905,8 @@ vmf_l.cpp                           1.63  10/09/2021 07:52:06  pinfo
 proc_call_e.cpp                     3.47  10/09/2021 07:53:57  procv ptr 
 proc_args_e.cpp                     3.48  10/09/2021 07:54:33  ptr args
 ds_sivflags.cpp                     1.92  10/10/2021 10:35:02  linfo shows complete info if AW_SIV_UPD ON
+exp_e.cpp                           3.54  10/11/2021 07:18:01  PTR/UNSET check
+ic_pic.cpp                          1.62  10/12/2021 07:51:21  callvmf vmfunc name
+gs_lists.cpp                        1.70  10/12/2021 09:38:25  sort
+gs_lists.cpp                        1.70  10/12/2021 09:39:37  sort order
+proc_checkfname_e.cpp               2.44  10/12/2021 10:06:11  vdesc

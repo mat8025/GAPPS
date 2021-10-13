@@ -40,4 +40,7 @@ ppc = (gsz*1.0)/(gsz+maybesz+bsz)  *100
 
 //<<"Bad: $Bad[0] $Bad[1]\n"
 
+
+<<"TBF:\n $TBF\n"
+
 exit()

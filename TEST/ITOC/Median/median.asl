@@ -16,17 +16,11 @@
 /// median
 ///
 
-/*
+<|Use_=
+Demo  of Median func ;
 Median(A)
 returns median value of array-- the array size is obtained from the array variable
 If A is a matrix - a column vector of the medians for each row is returned.
-
-*/
-
-
-
-<|Use_=
-Demo  of Median func ;
 ///////////////////////
 |>
 
@@ -54,10 +48,11 @@ med = median(I)
 chkN(med,4.5)
 
 s= Sum(I)
-s->info(1)
+s->pinfo()
 <<"Sum is $s\n"
 
-I += 1  // add one to each element in vector
+
+I += 1;  // add one to each element in vector
 
 <<"$I\n"
 
@@ -99,14 +94,14 @@ sz = Caz(s)
 
 //ans = iread();
 <<"%V$s\n"
-s->pinfo()
+s<-pinfo()
 chkN(s,292)
 
 //ird!
 
 I= vgen(INT_,100,0,1)
 
-I->redimn(20,5)
+I<-redimn(20,5)
 
 <<"$I\n"
 

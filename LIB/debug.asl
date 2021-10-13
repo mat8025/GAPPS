@@ -69,11 +69,12 @@ proc debugON()
      _dblevel = 1;
  }
 
+
 //<<"%V $_DB ALLOWALL debug from files and funcs\n"
 //<<"use filterFuncDebug() filterFileDebug() to control\n"
 //sdb(_dblevel,@keep,@~pline,@trace)
-filterFuncDebug(ALLOWALL_,"xxx");
-filterFileDebug(ALLOWALL_,"yyy");
+//filterFuncDebug(ALLOWALL_,"xxx");
+//filterFileDebug(ALLOWALL_,"yyy");
 setmaxcodeerrors(-1); // just keep going
 setmaxicerrors(-1);
 _DB =1;

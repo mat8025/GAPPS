@@ -1,23 +1,30 @@
-//%*********************************************** 
-//*  @script ptr-svarvec.asl 
-//* 
-//*  @comment test ptr access to vec 
-//*  @release CARBON 
-//*  @vers 1.3 Li Lithium [asl 6.2.73 C-He-Ta]                             
-//*  @date Wed Sep 23 20:15:50 2020 
-//*  @cdate Wed Jun 26 08:46:49 2019 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2019 → 
-//* 
-//***********************************************%
+/* 
+ *  @script ptr_svarvec.asl 
+ * 
+ *  @comment test ptr access to vec 
+ *  @release CARBON 
+ *  @vers 1.4 Be Beryllium [asl 6.3.55 C-Li-Cs] 
+ *  @date 10/12/2021 22:09:01 
+ *  @cdate Wed Jun 26 08:46:49 2019 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                         
    
+
 #include "debug"
+
+
 
   if (_dblevel >0) {
     debugON()
    }
+   
+allowErrors(-1) ; // keep going
 
-   chkIn(_dblevel);
+ chkIn(_dblevel);
    
    svar S;
    
@@ -35,42 +42,42 @@
    
    ptr  ps; 
 
-   ps->info(1)
+   ps<-pinfo()
  
    ps = &S;
 
 <<"$S\n"
 
-   ps->info(1)
+   ps<-pinfo()
 
-   S->info(1)
+   S<-pinfo()
 
    val = ps[2];
 
 chkStr(val,"tres")
-ps->info(1)
+
 
 
    <<"%V $val\n";
-   val->info(1); 
+   val<-pinfo(); 
 
    val = ps[3];
-   S->info(1)
-   ps->info(1);
+   S<-pinfo()
+   ps<-pinfo();
 
    <<"$val\n";
 
 chkStr(val,"bien")
 
    val = ps[4];
-   S->info(1)
-   ps->info(1);
+   S<-pinfo()
+   ps<-pinfo();
 
    <<"$val\n";
 
    val = ps[4];
 
-   ps->info(1);
+   ps<-pinfo();
 
    <<"$val\n";
 
@@ -80,7 +87,7 @@ chkStr(val,"bien")
    
    sval= ps[i];
 
-  ps->info(1);
+  ps<-pinfo();
 
 <<"%V$sval\n"
 chkStr(sval,"avec")
@@ -89,13 +96,13 @@ chkStr(sval,"avec")
 
    sz=Caz(S);
 
-   S->info(1)
+   S<-pinfo()
 
     i= 4;
    
    sval= ps[i];
    
-   ps->info(1)
+   ps<-pinfo()
    
 <<"%V <|$sval|> \n"
   chkStr(sval,"avec")
@@ -105,7 +112,7 @@ chkStr(sval,"avec")
 
 
    sval= ps[1];
-   ps->info(1)
+   ps<-pinfo()
    <<"%V <|$sval|> \n"
 
 
@@ -121,12 +128,12 @@ chkStr(sval,"va")
      }
    
    <<"\n";
-      ps->info(1);
+      ps<-pinfo();
 <<"$S\n"
      ps[3] = "mal"
 
 <<"$S\n"
-     S->info(1)
+     S<-pinfo()
    
      chkStr(S[3],"mal")
 
@@ -158,7 +165,7 @@ chkStr(sval,"va")
 
       sz=Caz(S);
 <<" S sz $sz \n"
-S->info(1)
+S<-pinfo()
      for (i=0;i<sz;i++) {
      
       sval= ps[i];
@@ -166,7 +173,7 @@ S->info(1)
      <<"<$i> $sval  $S[i]  $ps[i]\n";
 
       chkStr(sval,S[i])
-  //   sval->info(1); 
+  //   sval<-pinfo(); 
      }
 
      chkStr(ps[1],"va")

@@ -1,8 +1,20 @@
-#! /usr/local/GASP/bin/asl
-#/* -*- c -*- */
 
 //  
-set_debug(0)
+
+<|Use_=
+Demo  of md subset  
+///////////////////////
+|>
+
+
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"   
+}
+
 
 float Y[] = { 1.0, 2.0, 3.5 }    ;                 
 
@@ -66,7 +78,7 @@ float YV[4][]
 
 
 
-STOP!
+
 
  PG = R[*][2]
 
@@ -78,10 +90,11 @@ sz = Caz(PG)
 <<" $(typeof(PG)) $sz  $PG \n"
 
 
-STOP!
+
 
  PG = 4^PG
 
 <<" $PG \n"
 
-
+  chkT(1)
+  chkOut()

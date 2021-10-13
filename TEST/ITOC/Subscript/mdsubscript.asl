@@ -1,14 +1,30 @@
+///
+///
+
+<|Use_=
+Demo  of md subset  
+///////////////////////
+|>
+
+
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"   
+}
 
 
 //  
-
+//  TBF 10/11/21   * range fail
 
 R= Igen(20,1,j)
 
 
 Redimn(R,4,5)
 
-<<"%v %r $R \n"
+<<"%v  $R \n"
  k =0
  p = 0
  for (j = 0; j < 3; j++) {
@@ -39,9 +55,6 @@ Redimn(R,4,5)
 
 
 
-  exit();
-
-
 
  for (j = 1 ; j <= 3 ; j++) {
 R= Igen(20,1,j)
@@ -55,7 +68,7 @@ R= Igen(20,1,j)
 
 }
 
-STOP!
+
 
 
  R = 77.0
@@ -86,7 +99,7 @@ R = V
 
  <<"%v \n $R \n"
 
-STOP!
+
 
 Redimn(R,4,5)
 
@@ -102,7 +115,7 @@ j = 0
  <<"%v \n $R \n"
 
 
-STOP!
+
 
 
 
@@ -123,8 +136,6 @@ STOP!
 
 
 
-
-STOP!
 
 
 
@@ -183,7 +194,7 @@ R = M[0:2][*]
     <<"\n M[0:2,4:6][*] --> \n\n $T\n"
 
 <<" DONE \n"
-STOP!
+
 
 
 for (i = 0; i < 4 ; i++) {
@@ -198,3 +209,5 @@ sz = Caz(Y)
 
 
 
+  chkT(1)
+  chkOut()

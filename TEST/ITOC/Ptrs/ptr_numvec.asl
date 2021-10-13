@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @script ptr-numvec.asl 
-//* 
-//*  @comment test ptr access to vec 
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                  
-//*  @date Wed Jun 26 08:46:49 2019 
-//*  @cdate Wed Jun 26 08:46:49 2019 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2019 → 
-//* 
-//***********************************************%
+/* 
+ *  @script ptr_numvec.asl 
+ * 
+ *  @comment test ptr access to vec 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.55 C-Li-Cs] 
+ *  @date 10/12/2021 22:10:28 
+ *  @cdate Wed Jun 26 08:46:49 2019 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                            
 
 <|Use_=
 Demo  of ptrs
@@ -47,19 +49,19 @@ Demo  of ptrs
    
    ptr z;
 
-   z->info(1);
+   z<-pinfo();
 
    z = &c;
    
    <<"%V $(typeof(z)) $z \n"; 
    
-   z->info(1); 
+   z<-pinfo(); 
 
    f= z[6];
    <<"%V $f \n"
-   z->info(1); 
+   z<-pinfo(); 
    
-   f->info(1);
+   f<-pinfo();
    
    chkN(f,6); 
 
@@ -67,20 +69,20 @@ Demo  of ptrs
    
    f= z[7];
    
-   z->info(1); 
+   z<-pinfo(); 
    
-   f->info(1);
+   f<-pinfo();
    
    chkN(f,7); 
    <<"%V $f \n"
    <<"$c \n"
 
-   c->info(1)
+   c<-pinfo()
   <<"%V$c\n"
    c[12]= 45;
 
    <<"%V$c\n"
-   c->info(1)
+   c<-pinfo()
    chkN(c[12],45)
 
 
@@ -107,8 +109,8 @@ Demo  of ptrs
    
    f= z[12];
    <<"%V $f \n"; 
-   c->info(1); 
-   z->info(1); 
+   c<-pinfo(); 
+   z<-pinfo(); 
    
    chkN(f,45); 
 
@@ -116,7 +118,7 @@ Demo  of ptrs
    
    
    f= z[i];
-   z->info(1)
+   z<-pinfo()
    <<"%V$i $f \n"; 
    
    chkN(f,45); 
@@ -173,7 +175,7 @@ Demo  of ptrs
    for (i=0;i<sz;i++) {
      
      fval= z[i];
-     z->info(1)
+     z<-pinfo()
      
      <<"<$i> $fval $d[i]\n"; 
 
@@ -184,21 +186,21 @@ Demo  of ptrs
 
 
 //================================//
-d->info(1)
+d<-pinfo()
 
      z[5] = 85;
      
 <<"%V $d\n"
-z->info(1)
-d->info(1)
+z<-pinfo()
+d<-pinfo()
 
    chkN(d[5],85)
 
 
     z[12] = 86;
 <<"%V $d\n"
-z->info(1)
-d->info(1)
+z<-pinfo()
+d<-pinfo()
 
    chkN(d[12],86)
 

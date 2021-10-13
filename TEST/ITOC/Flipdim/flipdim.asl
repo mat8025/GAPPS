@@ -1,20 +1,24 @@
-//%*********************************************** 
-//*  @script flipdim.asl 
-//* 
-//*  @comment test flipdimn reverse along a dimn 
-//*  @release CARBON 
-//*  @vers 1.2 He Helium [asl 6.2.99 C-He-Es]                                
-//*  @date Sat Dec 26 11:06:13 2020 
-//*  @cdate 1/1/2007 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script flipdim.asl 
+ * 
+ *  @comment test flipdimn reverse along a dimn 
+ *  @release CARBON 
+ *  @vers 1.3 Li Lithium [asl 6.3.55 C-Li-Cs] 
+ *  @date 10/12/2021 14:40:57 
+ *  @cdate 1/1/2007 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                             
 
-/*
+
+
+<|Use_=
 flipDim(A,dim)
 flips (reverses) multidimension along a dimension
-*/
+|>
 
 #include "debug.asl";
 
@@ -22,12 +26,13 @@ flips (reverses) multidimension along a dimension
 
 if (_dblevel >0) {
    debugON()
+      <<"$Use_\n"
 }
 
 
 chkIn(_dblevel)
 
-
+allowErrors(-1)
 
 // 2D
 
@@ -46,10 +51,15 @@ T= flipDim(R,0)
 <<"$T"
 chkN(T[0][0],R[2][0])
 chkN(T[0][1],R[2][1])
+
+
+
 <<"flipDim(R,1)\n"
 T= flipDim(R,1)
 
 <<"$T\n"
+
+
 chkN(T[0][3],R[0][0])
 chkN(T[0][2],R[0][1])
 
@@ -60,7 +70,7 @@ chkN(T[0][2],R[0][1])
 <<"$S\n"
 
 <<"$R"
-  t=R->flipDim(0)
+  t=R<-flipDim(0)
 <<"$R"
 <<"%V$t\n"
 

@@ -14,6 +14,7 @@
 ///
 ///
 ///
+
 <|Use_=
 Demo  of poffset;
 ///////////////////////
@@ -28,36 +29,35 @@ if (_dblevel >0) {
       <<"$Use_\n"   
 }
 
+allowErrors(-1) ; // keep going
 
 chkIn(_dblevel);
 
-//sdb(2,@keep);
+
 
 int voo(int vect[])
 {
-  vect->info(1)
+  vect<-pinfo()
   
 <<"IN $vect \n" ;  // debug version alters poffset??
-// vect->info(1)
 
-
-//Z->info(1)
+Z<-pinfo()
 //<<"pa_arg2 %V$k\n"
 
-  vect->info(1)
+
 !t poffset correct?
 
   vect[1] = 47;
 <<"add Ag $vect \n"
-  vect->info(1)
+
   vect[2] = 79;
 <<"add Au $vect \n"
-
+  vect<-pinfo()
   vect[3] = 80
   vect[4] = 78
   vect[5] = 50
   z= vect[5]
-  vect->info(1)
+    vect<-pinfo()
   
 <<"OUT $vect \n"
 
@@ -119,15 +119,19 @@ int Roo(int ivec[])
 //   Z[1] = 53; 
 //   Z[9] = 28; 
  name_ref = 1;
+ 
  if (name_ref) {
 <<"before calling proc $Z\n";
-    voo(Z);
+
+  voo(Z); // crash TBF 10/12/21
+ 
   <<"after calling proc $Z\n";
   
    chkN(Z[1],47);
    chkN(Z[2],79);
    chkN(Z[3],80);      
 }
+
 
 <<"%V$W\n"
 

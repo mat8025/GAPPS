@@ -1,26 +1,22 @@
-//%*********************************************** 
-//*  @script list-ins-del.asl 
-//* 
-//*  @comment test list insert delete 
-//*  @release CARBON 
-//*  @vers 1.37 Rb Rubidium                                               
-//*  @date Mon Jan 21 06:40:50 2019 
-//*  @cdate 1/1/2005 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script list_ins_del.asl 
+ * 
+ *  @comment test list insert delete 
+ *  @release CARBON 
+ *  @vers 1.38 Sr Strontium [asl 6.3.54 C-Li-Xe] 
+ *  @date 10/12/2021 09:43:17 
+ *  @cdate 1/1/2005 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                     
    
 #include "debug.asl"; 
    
    debugON();
    
-/*
-// setdebug (1, @pline, @~step, @~trace,@break,57) ;
-   setdebug (1, @pline, @~step, @~trace,) ;
-   FilterFileDebug(REJECT_,"~storetype_e");
-   FilterFuncDebug(REJECT_,"~ArraySpecs",);
-*/
 
 
 chkIn(_dblevel)
@@ -33,7 +29,7 @@ ShoppingList = ("xxx",  )  // empty list --- bug first item null?
 
 <<"Shopping list size $flsz \n"
 
-  ShoppingList->LiDelete(0)
+  ShoppingList<-LiDelete(0)
 
 <<" $ShoppingList \n"
 
@@ -42,35 +38,50 @@ ShoppingList = ("xxx",  )  // empty list --- bug first item null?
 <<"Shopping list size $flsz \n"
 
 
-  tname = "debe esforzarse más"
+  //tname = "debe esforzarse más"
+  tname = "debe esforzarse mas"
 
  <<"inserting <$tname> into Shopping list \n"
- 
-  ShoppingList->Insert(tname)
+
+  ShoppingList<-pinfo()
+
+
+preval = ShoppingList<-getPrevLitem();
+ <<"preval  <|$preval|>\n"
+
+
+  ShoppingList<-Insert(tname)
 
    flsz = caz(ShoppingList)
 
 <<"Shopping list size $flsz \n"
 
+preval = ShoppingList<-getPrevLitem();
+ <<"preval  <|$preval|>\n"
+
+
 
 <<" $ShoppingList \n"
 
 
-tname = "Camino a cinco kilómetros al día"
+
+tname = "Camino a cinco kilometros al dia"
 
  <<"inserting <$tname> into Shopping list \n"
-            ShoppingList->Insert(tname)
+            ShoppingList<-Insert(tname)
 
    flsz = caz(ShoppingList)
 
 <<"Shopping list size $flsz \n"
 <<" $ShoppingList \n"
-
+preval = ShoppingList<-getPrevLitem();
+ <<"preval  <|$preval|>\n"
 
 //  flab = cab(ShoppingList)
 //<<"Shopping list bounds $flab \n"
- ShoppingList->Insert("Debo organizar mi vida")
- ShoppingList->Insert("Irse a tiempo","leave on time"); // multiple inserts
+ ShoppingList<-Insert("Debo organizar mi vida")
+ ShoppingList<-Insert("Irse a tiempo","leave on time"); // multiple inserts
+  ShoppingList<-Insert("lost in  space"); //  same initial letter -cause a swop
 
    flsz = caz(ShoppingList)
 
@@ -79,12 +90,12 @@ tname = "Camino a cinco kilómetros al día"
 if (flsz > 1) {
 <<" These modules added! \n"
 
-   ShoppingList->Sort()
+   ShoppingList<-Sort() ; // TBF 10/12/21
 
 <<" $ShoppingList \n"
 }
 
- ShoppingList->Sort()
+
 
 <<"%V $ShoppingList \n"
 
@@ -97,23 +108,26 @@ if (flsz > 1) {
 <<"3 $ShoppingList[3] \n"
 
   tname = "head here"
-  ShoppingList->Insert(0,tname)
+  ShoppingList<-Insert(0,tname)
    flsz = caz(ShoppingList)
 
 <<"Shopping list size $flsz \n"
 <<" $ShoppingList \n"
   tname = "tail here"
-  ShoppingList->Insert(-1,tname)
+  ShoppingList<-Insert(-1,tname)
      flsz = caz(ShoppingList)
 <<"Shopping list size $flsz \n"
 <<" $ShoppingList \n"
   tname = "gracias"
-  ShoppingList->Insert(2,tname)
+  ShoppingList<-Insert(2,tname)
 <<"Shopping list size $flsz \n"
 <<" $ShoppingList \n"
   tname = "que tal"
-  ShoppingList->Insert(3,tname)
+  ShoppingList<-Insert(3,tname)
+     flsz = caz(ShoppingList)
 <<"Shopping list size $flsz \n"
+
+ ShoppingList<-Sort()
 <<" $ShoppingList \n"
 
 testargs(1,ShoppingList)
@@ -125,14 +139,14 @@ testargs(1,ShoppingList)
 
 // delete current, head, tail
 
-  ShoppingList->LiDelete(-1)
+  ShoppingList<-LiDelete(-1)
 
 <<" $ShoppingList \n"
    flsz = caz(ShoppingList)
 
 <<"Shopping list size $flsz \n"
 
-  ShoppingList->LiDelete(0)
+  ShoppingList<-LiDelete(0)
 
 <<" $ShoppingList \n"
 
@@ -143,7 +157,7 @@ testargs(1,ShoppingList)
 // delete nth item
 
 
-  ShoppingList->LiDelete(2)
+  ShoppingList<-LiDelete(2)
 
 <<" $ShoppingList \n"
 
@@ -152,7 +166,7 @@ testargs(1,ShoppingList)
 <<"Shopping list size $flsz \n"
 
 
- chkN(flsz,6)
+ chkN(flsz,7)
 
 <<" %(1,<|, ,|>\n)$ShoppingList \n"
  lhead = ShoppingList[0];
@@ -161,33 +175,38 @@ testargs(1,ShoppingList)
 
  
 
- lval = ShoppingList->getLitem();
+ lval = ShoppingList<-getLitem();
 
 <<"%V $lhead $ltail $lval\n"
 
- nxtval = ShoppingList->getNextLitem();
+ nxtval = ShoppingList<-getNextLitem();
 
 <<"%V  $nxtval\n"
 
- nxtval = ShoppingList->getNextLitem();
+ nxtval = ShoppingList<-getNextLitem();
 
 <<"%V  $nxtval\n"
 
- for (i=0;i < (flsz+10); i++) {
- preval = ShoppingList->getPrevLitem();
+ preval = ShoppingList<-getPrevLitem();
+ <<"%V  $preval\n"
+
+
+// for (i=0;i < (flsz+10); i++) {
+ for (i=0;i < (flsz-1); i++) {
+ preval = ShoppingList<-getPrevLitem();
  <<"$i  $preval\n"
 }
 
  for (i=0; i < (flsz+10); i++) {
-  nxtval = ShoppingList->getNextLitem();
+  nxtval = ShoppingList<-getNextLitem();
   <<"$i   $nxtval\n"
 }
 
-  ShoppingList->Insert(0,"top item")
+  ShoppingList<-Insert(0,"top item")
    flsz = caz(ShoppingList)
 
 
- hval = ShoppingList->getLitem(0);
+ hval = ShoppingList<-getLitem(0);
 
 <<"%V $lhead $ltail $hval\n"
 
@@ -196,11 +215,11 @@ testargs(1,ShoppingList)
 <<" $ShoppingList \n"
 
 
-  ShoppingList->Insert(-1,"bottom item")
+  ShoppingList<-Insert(-1,"bottom item")
    flsz = caz(ShoppingList)
 
 
- tval = ShoppingList->getLitem(-1);
+ tval = ShoppingList<-getLitem(-1);
 
 <<"%V  <|$tval|>\n"
 
@@ -217,27 +236,27 @@ flsz = caz(AList)
 
 <<"size $flsz\n"
 
- hval = AList->getLitem(0);
- tval = AList->getLitem(-1);
+ hval = AList<-getLitem(0);
+ tval = AList<-getLitem(-1);
 
 <<"%V $hval $tval\n"
- AList->Insert(0,"top item")
+ AList<-Insert(0,"top item")
    flsz = caz(AList)
 
 
 <<"size $flsz\n"
 
- hval = AList->getLitem(0);
- tval = AList->getLitem(-1);
+ hval = AList<-getLitem(0);
+ tval = AList<-getLitem(-1);
 
 <<"%V $hval $tval\n"
 <<" $AList \n"
 
-AList->Insert(-1,"bottom item")
+AList<-Insert(-1,"bottom item")
    flsz = caz(AList)
 
- hval = AList->getLitem(0);
- tval = AList->getLitem(-1);
+ hval = AList<-getLitem(0);
+ tval = AList<-getLitem(-1);
 
 <<"%V $hval $tval\n"
 <<" $AList \n"

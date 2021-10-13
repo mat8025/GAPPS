@@ -10,6 +10,8 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
+
+
 ////
 ////
 ////
@@ -45,8 +47,8 @@ if (_dblevel >0) {
 }
 
 
-filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
-filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
+//filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
+//filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
 
 //filterFuncDebug(ALLOWALL_,"xxx");
 //filterFileDebug(ALLOWALL_,"yyy");
@@ -70,11 +72,11 @@ chkR(R[29],500)
 
 <<"I[0:10:1]   $I[0:10:1]   \n"
 
-I->info(1)
+I<-pinfo()
 
 SI = I[0:10:1]
 
-SI->info(1)
+SI<-pinfo()
 
 <<"%V $SI\n"
 

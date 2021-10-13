@@ -152,11 +152,13 @@ int do_class = 0;
 
 
 int do_declare = 0;
+int do_define = 0;
 int do_recurse = 0;
 
 int do_syntax = 0;
 int do_include = 0;
 int do_if = 0;
+int do_enum = 0;
 int do_bit = 0;
 int do_logic = 0;
 int do_for = 0;
@@ -413,15 +415,38 @@ if ((do_if || do_all) && (do_if != -1)) {
   
   RunDirTests("If","if,ifand")
 
-  Run2Test("Define")
-  cart("define")
 
-  Run2Test("Enum")
 
-  cart("colors_enum")
+  
+
 
   }
 ////////////////////////////////////////////////////////////////////////
+
+////////////// Define ///////////////////////
+
+if ((do_define || do_all) && (do_define != -1)) {
+
+  RunDirTests("Define","define")
+
+
+
+  }
+////////////////////////////////////////////////////////////////////////
+
+////////////// Enum ///////////////////////
+
+if ((do_enum || do_all) && (do_enum != -1)) {
+
+
+  RunDirTests("Enum","enum,colors_enum")
+
+
+  }
+////////////////////////////////////////////////////////////////////////
+
+
+
 
 if ((do_bit || do_all) && (do_bit != -1)) {
 
@@ -689,9 +714,7 @@ if ((do_all || do_array ) && (do_array != -1)) {
 
 if ((do_all || do_lhsubsc )   && (do_lhsubsc != -1)) {
 
-  Run2Test("Subscript")
-
-  cart("lharraysubsrange")
+  RunDirTests("Subscript","vecsubset,lharraysubsrange")
 
     }
 
@@ -744,24 +767,22 @@ if ((do_all || do_unary ) && (do_unary != -1)) {
 /////////////////////////////////////////
 if ((do_all || do_proc ) && (do_proc != -1)) {
 
+  RunDirTests("Proc","proc,procdeclare,procret,procarg,procsv0");
+
+  RunDirTests("Proc","procrefarg,procra,procrefstrarg,proc_loc_main_var,proc_var_define");
+  
   RunDirTests("ProcArray","procarray,poffset,arrayarg1,arrayarg2")
 
   RunDirTests("ProcCall","proccall")
+  
 
   
-  
-  RunDirTests("Proc","proc,procdeclare,procret,procarg,procsv0");
-  
-  RunDirTests("Proc","procrefarg,procra,procrefstrarg,proc_loc_main_var,proc_var_define");
+
 
   //pgn = "proc_var_define";
   //cart(pgn, 10)
-   hnm= "Static"
- Run2Test(hnm)
   
- // hdg("Static") ; 
-
-  cart("static");
+  RunDirTests("Static","static");
 
   
   }
@@ -779,14 +800,15 @@ if ((do_all || do_proc ) && (do_proc != -1)) {
 
 if ((do_all || do_recurse ) && (do_recurse != -1)) {
 
-     hdg("RECURSION")
+     //hdg("RECURSION")
     
-     Run2Test("Fact")
-     str pgn = "fact"
+     RunDirTests("Fact","fact")
      
-     cart(pgn, "10")
+     //str pgn = "fact"
+     
+     //cart(pgn, "10")
 
-     cart_xic(pgn,"10")
+     //cart_xic(pgn,"10")
 
 
 }
@@ -796,16 +818,10 @@ if ((do_all || do_recurse ) && (do_recurse != -1)) {
 if ((do_all || do_mops ) && (do_mops != -1)) {
 
      RunDirTests("Mops","mops")
-
      
-     Run2Test("Cmplx")
+     RunDirTests("Cmplx","cmplx")
 
-     do_carts("cmplx")
-
-
-     Run2Test("Rand")
-
-     do_carts("rand")
+     RunDirTests("Rand","rand")
 
 
     }
@@ -836,15 +852,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
  if ((do_all || do_mops ) && (do_mops != -1)) {
   
-    Run2Test("Math")
-
-    do_carts ("inewton")
-
-    
-    do_carts ("inewton_cbrt")
-
-    
-    do_carts ("opxeq")
+    RunDirTests("Math","inewton,inewton_cbrt,opxeq")
 
 /*
      Run2Test("Prime")
@@ -852,9 +860,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
     cart ("prime_127")
 */
 
-    Run2Test("Pow")
-
-    do_carts("pow")
+    RunDirTests("Pow","pow")
 
     }
 
@@ -881,14 +887,14 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
    if ((do_all || do_lists ) && (do_lists != -1)) {
 
-     RunDirTests("Lists","lists,list-declare,list-ele,list-ins-del");
+     RunDirTests("Lists","lists,list_declare,list_ele,list_ins_del");
 
     }
 
    if ((do_all || do_ptrs ) && (do_ptrs != -1)) {
    
       RunDirTests("Swap","swap,swap1");
-      RunDirTests("Ptrs","ptrs,ptr-vec,ptr-numvec,ptr-svarvec,ptr-varvec,indirect");
+      RunDirTests("Ptrs","ptrs,ptr_vec,ptr_numvec,ptr_svarvec,ptr_varvec,indirect");
 
    }
 

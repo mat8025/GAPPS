@@ -10,20 +10,32 @@
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
+<|Use_=
+Demo  of proc ref arg
+///////////////////////
+|>
 
 
 ///
 /// procrefarg
 #include "debug"
 
-<<"%V $_dblevel\n"
+
+
+
+
+
 
 if (_dblevel >0) {
    debugON()
+     <<"$Use_\n"   
 }
 
 
 chkIn(_dblevel)
+
+allowErrors(-1) ; // keep going
+
 
 
 /*
@@ -137,8 +149,12 @@ p = 0;
  
 <<"OUT %V $n $m $p \n"
 
+
 chkN(n,3)
+
 chkN(m,6)
+
+
 
 
 float x = 13.3;

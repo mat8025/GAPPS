@@ -11,8 +11,36 @@
 //* 
 //***********************************************%
 
+<|Use_=
+Demo  of enum
+///////////////////////
+|>
+
+// filter out these internal debugs
+filterFileDebug(REJECT_,"#scopesindex_e.cpp","scope_e.cpp","#scope_findvar_e.cpp","exp_e.cpp");
+filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e","ds_storesiv");
+filterFuncDebug(REJECT_,"vrealloc","init","varIndex","var_sindex");
+
+#include "debug.asl"
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_\n"   
+}
+
+
+allowErrors(-1) ; // keep going
+
+
+
+
+
 
 #define RED 1
+
+
+
+
 
 #define GREEN (RED + RED +1)
 
@@ -40,19 +68,28 @@ b = BLUE
 
 
 
-enum  days { MON = 1, TUE, WED, THU, FRI, SAT, SUN, FUN = 80 };
+enum  days {
+MON = 1,
+TUE,
+WED,
+THU,
+FRI,
+SAT,
+SUN,
+FUN = 80,
+};
 
 <<"%V $days \n"
 
 <<"$(typeof(days))\n"
-<<"$days[2]\n"
-<<"$days[3]\n"
+<<"tue 2 $days[2]\n"
+<<"wed 3 $(days[3])\n"
 <<"$days[4] \n"
 <<"$days[5]\n"
 
-<<"%V $MON \n"
+<<"%V $(MON) \n"
 
-<<"$typeof(MON))\n"
+<<"$(typeof(MON))\n"
 
 
 
@@ -62,13 +99,19 @@ myday = WED
 
 <<"%V WED $myday \n"
 
+
+
+
+
 fday = FUN
 
 <<"%V $fday \n"
 
 
 
-enum  months { JAN =1, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC } ;
+enum  months {
+ JAN =1, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC,
+} ;
 
 a = APR
 
@@ -76,15 +119,27 @@ a = APR
 
 
 
+chkN(a,4)
+
+chkOut()
+
+/*
+
+//enum DBG_Flags_BMP {     DPT_START_SECS = 1,    PT_START_USECS,    PT_DUR_USECS,    PT_PER_USECS,    POLL_WC, \
+//    POLL_RD,    POLL_WD};    
+
+proc  woo (int a) {
 
 
-enum DBG_Flags_BMP
-  {
-    PT_START_SECS = 1,
+ <<"hey $a\n";
+}
+
+enum DBG_Flags_BMP { 
+    PT_START_SECS,
     PT_START_USECS,
     PT_DUR_USECS,
     PT_PER_USECS,
-    POLL_WC,    
+    POLL_WC,
     POLL_RD,
     POLL_WD,
     POLL_IVC,
@@ -92,19 +147,35 @@ enum DBG_Flags_BMP
     IVPAGE, 
     BMP_END_FLAGS,
     CTS_FLAG_CHK,
-
-
     POLL_SVC = 220,
     RMSGID= 300,
-   
   }; // can use upto 375 flags --- 1500 bytes  -- UDP size pkt header of 20
 
+//   same name  diff enums - redefine?? no clash ??
 
 <<"\n%(2,, ,\n)$DBG_Flags_BMP \n"
 
-   k = POLL_RD
+
+
+   k = POLL_RD;
 
 <<"%V $k = 6 ?\n"
+
+chkN(k,6)
+
+<<" PT_START_SECS $(PT_START_SECS) \n"
+
+<<" PT_RD $(PT_RD) \n"
+
+chkOut();
+
+
+
+//<<" DPT_START_SECS $(DPT_START_SECS) \n"
+
+
+
+
 
 int IV[500]
 
@@ -136,3 +207,6 @@ int IV[500]
   }
 
 
+chkOut()
+
+*/

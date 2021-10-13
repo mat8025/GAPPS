@@ -20,7 +20,7 @@
 S string use in proc
 |>
 
-/*
+
 #include "debug"
 
 if (_dblevel >0) {
@@ -30,7 +30,7 @@ if (_dblevel >0) {
 
 filterFuncDebug(REJECT_,"varIndex","FindVar","ArrayCopy","storeString");	
 filterFileDebug(REJECT_,"scopesindex_e","scope_e","scope_findvar","rdp_token");
-*/
+
 
 chkIn(_dblevel)
 
@@ -111,8 +111,8 @@ str ystr( str val)
   val = scat(val,"123")
 <<"$val\n"
 
-val<-pinfo()
-
+  val<-pinfo()
+  yval = val;
   return val;
 
 
