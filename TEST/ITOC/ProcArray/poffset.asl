@@ -37,11 +37,12 @@ chkIn(_dblevel);
 
 int voo(int vect[])
 {
+
   vect<-pinfo()
   
 <<"IN $vect \n" ;  // debug version alters poffset??
 
-Z<-pinfo()
+//Z<-pinfo() // TBC
 //<<"pa_arg2 %V$k\n"
 
 
@@ -56,7 +57,7 @@ Z<-pinfo()
   vect[3] = 80
   vect[4] = 78
   vect[5] = 50
-  z= vect[5]
+   z= vect[5]
     vect<-pinfo()
   
 <<"OUT $vect \n"
@@ -89,8 +90,8 @@ void Noo(int ivec[])
 int Roo(int ivec[])
    {
    
-     ivec->info(1);
-  //   Z->info(1);      
+     ivec<-pinfo();
+  //   Z<-pinfo();      
      
 <<"IN $_proc %V $ivec \n";
 
@@ -100,12 +101,16 @@ int Roo(int ivec[])
       ivec[3] = 80;
       ivec[4] = 7;            
 
-      ivec->info(1); 
+      ivec<-pinfo(); 
 
 <<"OUT %V $ivec \n";
 
      rvec = ivec;
+
+     rvec<-pinfo()
+
 <<"OUT %V $rvec \n";
+
      return rvec; 
 }
 
@@ -139,9 +144,6 @@ int Roo(int ivec[])
 
 <<"%V$W\n"
 
-
-
-
    chkN(W[4],47);
    chkN(W[5],79);
    chkN(W[6],80);
@@ -150,7 +152,6 @@ int Roo(int ivec[])
     Z = W
    <<"B4 calling  Roo $W\n"; 
     Y=Roo(&W[3]); 
-   
    <<"%V$W\n"; 
 
  //  chkStage("PO correct?")

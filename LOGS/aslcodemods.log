@@ -910,3 +910,7 @@ ic_pic.cpp                          1.62  10/12/2021 07:51:21  callvmf vmfunc na
 gs_lists.cpp                        1.70  10/12/2021 09:38:25  sort
 gs_lists.cpp                        1.70  10/12/2021 09:39:37  sort order
 proc_checkfname_e.cpp               2.44  10/12/2021 10:06:11  vdesc
+proc_return_e.cpp                   3.51  10/12/2021 22:12:18  PTR return
+ds_storearray.cpp                   2.2  10/14/2021 17:29:56  storeNUmber lhoffset
+ds_storearray.cpp                   2.3  10/15/2021 07:38:27  vdb
+ds_storesvar.cpp                    1.84  10/15/2021 08:44:02  strv->svar lhoffset

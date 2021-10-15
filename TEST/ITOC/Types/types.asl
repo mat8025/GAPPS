@@ -337,13 +337,21 @@ chkR(b,-0.987654000001,2)
 pan P[50]
 
 <<"%V$P\n"
-P->pinfo()
+P<-pinfo()
 
-P[20] = 787.0
-P[30] = 429.0
+ P[20] = 787.0
+ 
+ P[30] = 429.0
+
+<<"$P[20]\n"
+<<"$P[30]\n"
+<<"$P[31]\n"
+
 
 <<"%V$P\n"
+
 p20 = P[20]
+
 <<"%V$p20\n"
 
 chkR(p20,787.0,5)
@@ -490,11 +498,22 @@ chkN(l,-2)
 
 l =  2^^32 
 <<"$l $(typeof(l))\n"
+
 u=  atou(sa);
 
 <<"$u $(typeof(u))\n"
 
+<<"%V $l\n"
+
+ul = l   ;
+
+<<"%V $l $ul\n"
+
+
 ul = l -1;
+
+
+
 !pu
 !pul
 
@@ -502,7 +521,9 @@ ul = l -1;
 !iul
 
 
-<<"$s ulong $ul $u $(typeof(u))\n"
+<<"$s $(typeof(ul))  $(typeof(ul))  \n"
+<<"$ul $u  $(l-1)\n"
+
 
 chkN(u,ul)
 

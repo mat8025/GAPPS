@@ -11,6 +11,12 @@
 
 ////////////////// Good /////////////////////
 #include "progress.txt"
+
+<<"Stable:\n $Stable\n"
+
+stablesz=Caz(Stable)
+
+
 <<"Good:\n $Good\n"
 
 //<<"$Good[0] $Good[1]\n"
@@ -25,16 +31,16 @@ maybesz = Caz(Maybe);
 <<"Bad:\n$Bad\n"
 
 
-bsz=Caz(Bad)
+badsz=Caz(Bad)
 
 
-
-<<"goodsz $gsz\n"
+<<"%V$stablesz\n"
+<<"%V$gsz\n"
 <<"%V$maybesz\n"
-<<"badsz $bsz\n"
+<<"%V$badsz\n"
 
 
-ppc = (gsz*1.0)/(gsz+maybesz+bsz)  *100
+ppc = (stablesz+gsz*1.0)/(stablesz+gsz+maybesz+badsz)  *100.0
 
 <<"$(date(2)) $gsz %6.2f ${ppc}\% \n"
 

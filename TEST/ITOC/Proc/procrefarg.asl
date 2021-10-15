@@ -10,6 +10,7 @@
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
+
 <|Use_=
 Demo  of proc ref arg
 ///////////////////////
@@ -22,7 +23,7 @@ Demo  of proc ref arg
 
 
 
-
+allowErrors(-1) ; // keep going
 
 
 
@@ -34,7 +35,7 @@ if (_dblevel >0) {
 
 chkIn(_dblevel)
 
-allowErrors(-1) ; // keep going
+
 
 
 
@@ -80,21 +81,30 @@ u->info(1)
 
 proc sumarg (int v, int u)
 {
-<<"args in %V  $v $u \n"
-float z;
+
+<<"args int %V  $v $u \n"
+v<-pinfo()
+u<-pinfo()
+
+int z;
+z<-pinfo()
    z = v + u;
+z<-pinfo()
+v<-pinfo()
+u<-pinfo()
+
 
 <<"%V$v + $u = $z\n"
-
+!z
 //   v++;
 
       v = v +1;
 <<" changing first arg to %V$v\n"
-
-   u = u * 2;
+v<-pinfo()
+      u = u * 2;
 
 <<" changing second arg to %V$u \n"
-
+u<-pinfo()
 <<"args out %V$v $u $z\n"
 
   return z;
@@ -103,7 +113,7 @@ float z;
 
 proc sumarg (float v, float u)
 {
-<<"args in %V  $v $u \n"
+<<"args float  %V  $v $u \n"
 float z;
    z = v + u;
 
@@ -112,7 +122,7 @@ float z;
    //v++;
       v = v +1;
 <<" changing first arg to %V$v\n"
-
+!z
    u = u * 2;
 
 <<" changing second arg to %V$u \n"
@@ -144,15 +154,30 @@ int m = 3;
 p = 0;
 
 <<"IN %V $n $m $p \n"
-
+<<"should be calling summarg int args vers with  ref args\n"
  p = sumarg(&n,&m)
  
-<<"OUT %V $n $m $p \n"
+<<"returned %V $n $m $p \n"
 
 
 chkN(n,3)
 
 chkN(m,6)
+
+<<"should be calling summarg int args vers with  val args\n"
+<<"IN %V $n $m $p \n"
+
+int o = 4;
+int q = 7;
+
+ p = sumarg(o,q)
+
+<<"returned %V $n $m $p \n"
+chkN(o,4)
+chkN(q,7)
+
+chkN(p,11)
+
 
 
 

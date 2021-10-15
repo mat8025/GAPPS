@@ -145,6 +145,10 @@ int Foo(float a)
   return c
 }
 
+    df=Foo(2.0);
+
+df<-pinfo();
+
 
     d=Foo(2);
 

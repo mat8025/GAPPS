@@ -302,7 +302,7 @@ if (do_syntax ==1) {
  do_while = 1;
  do_scope = 1;  
  do_include = 1;
- do_try = 1;  
+ //do_try = 1;  
 }
 
 if (do_syntax == -1) {
@@ -740,7 +740,7 @@ if ((do_all || do_func ) && (do_func != -1)) {
 /////////////////////////////////////////
 
    if ((do_all || do_vmf) && (do_vmf != -1)) {
-  <<"trying vmf \n"
+
     RunDirTests("Vmf","vmf_trim,vmf_range,vmf_cut,vmf_substitute,genv")
     RunDirTests("Vmf","vmf_prune,vmf_bubblesort,vmf_rotate,vmf_white")    
   }
