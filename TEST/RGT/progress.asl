@@ -22,10 +22,9 @@ stablesz=Caz(Stable)
 //<<"$Good[0] $Good[1]\n"
 gsz=Caz(Good)
 
+//<<"Maybe:\n $Maybe\n"
 
-<<"Maybe:\n $Maybe\n"
-
-maybesz = Caz(Maybe);
+//maybesz = Caz(Maybe);
 
 
 <<"Bad:\n$Bad\n"
@@ -36,11 +35,11 @@ badsz=Caz(Bad)
 
 <<"%V$stablesz\n"
 <<"%V$gsz\n"
-<<"%V$maybesz\n"
+//<<"%V$maybesz\n"
 <<"%V$badsz\n"
 
 
-ppc = (stablesz+gsz*1.0)/(stablesz+gsz+maybesz+badsz)  *100.0
+ppc = (stablesz+gsz*1.0)/(stablesz+gsz+badsz)  *100.0
 
 <<"$(date(2)) $gsz %6.2f ${ppc}\% \n"
 

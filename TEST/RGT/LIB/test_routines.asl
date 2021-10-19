@@ -13,7 +13,23 @@
  */ 
 ;//----------------------//
 
+int Nsuites =0;
+int Nspassed =0;
 
+
+void outcome (str title)
+{
+   Nsuites++;
+   outflsz = caz(FailedList)
+   if (inflsz == outflsz) {
+   Nspassed++;
+    <<"/////////////// $title PASS////////////////\n"
+   }
+   else {
+   <<"%V$inflsz  $outflsz \n"
+<<"/////////////////// $title FAIL $(outflsz-inflsz) //////////////////////\n"
+   }
+}
 
 //////////////////////////////
 Ks = 0

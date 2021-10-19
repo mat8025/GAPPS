@@ -58,6 +58,10 @@ ycol = 1
 
      sz = Caz(R)
 
+<<"%V$sz\n"
+<<"$R\n"
+
+
      dmn = Cab(R)
 
 nrows = dmn[0]
@@ -65,6 +69,8 @@ nrows = dmn[0]
 <<"%V$nrows \n"
 
 <<"%V$sz $dmn\n"
+
+
 
 ncols = dmn[1]
 
@@ -81,8 +87,8 @@ ncols = dmn[1]
 //}
 
 
-for (i = 0; i <5 ;i++) {
-<<" $R[i][6] $R[i][8] $R[i][14] \n"
+for (i = 0; i <nrows ;i++) {
+<<"$i $R[i][6] $R[i][8] $R[i][14] \n"
 }
 
 
@@ -125,8 +131,6 @@ for (i = 0; i <5 ;i++) {
   sz = Caz(NT)
 
 
-
-
   PCV = R[::][12]  ;  // overall % score
 
   Redimn(PCV)
@@ -137,6 +141,13 @@ for (i = 0; i <5 ;i++) {
   XV= vgen(FLOAT_,nrows,0,1)
 
 //<<"$XV\n"
+
+<<"R:\n "
+<<"%6.2f$R\n"
+
+
+
+
 
 #include "graphic"
 #include "gevent"
@@ -185,9 +196,9 @@ for (i = 0; i <5 ;i++) {
 //sGl(fgl,@draw)
 
 
-  cgl=cGl(grwo,@TXY,XV, CV, @color, RED_,@ltype,SYMBOLS_,DIAMOND_);
+  cgl=cGl(grwo,@TXY,XV, CV, @color, YELLOW_,@ltype,SYMBOLS_,DIAMOND_);
 
-  sGl(cgl,@symbol,DIAMOND_,Symsz, @symfill,@symhue,RED_)
+  sGl(cgl,@symbol,DIAMOND_,Symsz, @symfill,@symhue,ORANGE_)
 
   dGl(cgl)
 
@@ -221,6 +232,7 @@ for (i = 0; i <5 ;i++) {
   float ym = NM[1];
   
   float yp = PCV[nrows-1];
+    float yc = CV[1];
 
 
 
@@ -239,8 +251,10 @@ while (1) {
      sWo (grwo, @textr, "nmods", 1,ym, 2, 0, BLACK_)
 
 
+
      sWo(grwo,@usescales,0,@axnum,  AXIS_RIGHT_);
      sWo (grwo, @textr, "%% score", nrows-1,yp-5, 2, 0, GREEN_)
+          sWo (grwo, @textr, "crash", 1,yc, 2, 0, BLACK_)
      dGl(pcgl)
      dGl(cgl)
      dGl(fgl)

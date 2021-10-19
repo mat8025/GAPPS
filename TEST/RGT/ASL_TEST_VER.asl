@@ -22,7 +22,10 @@
 if (_dblevel > 0) {
    debugON()
 }
-  
+
+int inflsz = 0;
+int outflsz = 0;
+
 
 setmaxcodeerrors(-1); // just keep going
 setmaxicerrors(-1);
@@ -335,13 +338,13 @@ if ((do_include || do_all ) && (do_include != -1)) {
   cart("include")
 
   //RunDirTests("Include","include")
-
+  outcome("INCLUDE")
 }
 
 //================================//
 
   if ((do_bops || do_all) && (do_bops != -1)) {
-
+        inflsz = caz(FailedList)
     RunDirTests("Bops","bops,fvmeq,fsc1,mainvar,snew");
 
 
@@ -381,43 +384,44 @@ if ((do_include || do_all ) && (do_include != -1)) {
   do_carts("info")
 
    //RunDirTests("Assign","assign");
-
+  outcome("BOPS")
    }
 
 ////////////// OO ///////////////////////
 
 
    if ((do_all || do_class )  && (do_class != -1)) {
-
+    inflsz = caz(FailedList)
         RunDirTests("Class","classbops,class_mfcall,class2,classvar");
-
+  outcome("CLASS")
     }
 
 
 
    if ((do_all || do_oo ) && (do_oo != -1)) {
+    inflsz = caz(FailedList)
 
-
-    RunDirTests("OO","oa2,rpS,rp2,wintersect,oa,class_array,simple_class");
+    //RunDirTests("OO","oa2,rpS,rp2,wintersect,oa,class_array,simple_class");
+    RunDirTests("OO","oa2,rpS,rp2,oa,class_array,simple_class");
 
     RunDirTests("Obcopy","obcopy,obprocarg");
 
     RunDirTests("Mih","sh,mih")
 
-
+    outcome("OO")
   }
 
 
 ////////////// IF ///////////////////////
 
 if ((do_if || do_all) && (do_if != -1)) {
-
+    inflsz = caz(FailedList)
   
   RunDirTests("If","if,ifand")
 
 
 
-  
+    outcome("IF")
 
 
   }
@@ -426,11 +430,11 @@ if ((do_if || do_all) && (do_if != -1)) {
 ////////////// Define ///////////////////////
 
 if ((do_define || do_all) && (do_define != -1)) {
-
+      inflsz = caz(FailedList)
   RunDirTests("Define","define")
 
 
-
+  outcome("DEFINE")
   }
 ////////////////////////////////////////////////////////////////////////
 
@@ -438,10 +442,10 @@ if ((do_define || do_all) && (do_define != -1)) {
 
 if ((do_enum || do_all) && (do_enum != -1)) {
 
-
+    inflsz = caz(FailedList)
   RunDirTests("Enum","enum,colors_enum")
 
-
+  outcome("ENUM")
   }
 ////////////////////////////////////////////////////////////////////////
 
@@ -449,23 +453,34 @@ if ((do_enum || do_all) && (do_enum != -1)) {
 
 
 if ((do_bit || do_all) && (do_bit != -1)) {
-
+    inflsz = caz(FailedList)
 //  Run2Test("Bitwise");
 //  cart("bitwise");
  RunDirTests("Bitwise","bitwise")
+   outcome("BITWISE")
 }
 
 
 
   if ((do_logic || do_all) && (do_logic != -1)) {
-
+  
+   inflsz = caz(FailedList)
    RunDirTests("Logic","logic,logic-ops,logic-def")
+
+
+  outcome("LOGIC")
 
   }
 
  if ((do_for || do_all) && (do_for != -1)) {
 
-   RunDirTests("For","for,for-exp")
+  inflsz = caz(FailedList)
+
+  RunDirTests("For","for,for-exp")
+   
+  
+  outcome("FOR")
+
 }
 
 
@@ -473,7 +488,7 @@ if ((do_bit || do_all) && (do_bit != -1)) {
  
 
   if ((do_all || do_while ) && (do_while != -1)) {
-
+        inflsz = caz(FailedList)
     RunDirTests("While","while-nest,while")
 
     }
@@ -485,13 +500,13 @@ if ((do_bit || do_all) && (do_bit != -1)) {
 
 
 if ((do_all || do_do ) && (do_do != -1)) {
-
+    inflsz = caz(FailedList)
       RunDirTests("Do","do")
 
     }
 
 if ((do_all || do_try ) && (do_try != -1)) {
-
+    inflsz = caz(FailedList)
       RunDirTests("TryThrowCatch","trythrowcatch")
 
     }
@@ -500,8 +515,8 @@ if ((do_all || do_try ) && (do_try != -1)) {
 
 //======================================//
     if ((do_switch || do_all) && (do_switch != -1)) {
-
-      <<"switch $do_all $do_switch \n"
+    inflsz = caz(FailedList)
+     
 
        RunDirTests("Switch","switch")
    }
@@ -509,7 +524,7 @@ if ((do_all || do_try ) && (do_try != -1)) {
 //======================================//
 
     if ( (do_types || do_all) && (do_types != -1)) {
-  
+      inflsz = caz(FailedList)
       RunDirTests("Types","types");
       
       RunDirTests("Cast","cast,cast-vec")
@@ -523,7 +538,7 @@ if ((do_all || do_try ) && (do_try != -1)) {
 //======================================//
 
   if ((do_vops || do_all ) && (do_vops != -1)) {
-
+    inflsz = caz(FailedList)
      RunDirTests("Reverse","reverse") ; // BUG needs more than one
 
      RunDirTests("Vops","vops")
@@ -539,7 +554,7 @@ if ((do_all || do_try ) && (do_try != -1)) {
 
   if ( (do_sops || do_all) && (do_sops != -1)) {
       //  need more str ops tests than this!
-
+    inflsz = caz(FailedList)
    RunDirTests("Sops","sops");
 
  
@@ -564,7 +579,7 @@ if ((do_all || do_try ) && (do_try != -1)) {
 /////////////////////////////////////////////////
 
   if ((do_fops || do_all) && (do_fops != -1)) {
-
+    inflsz = caz(FailedList)
   RunDirTests("Fops","fops")
 
   // need to do  script arg1 agr2 ...
@@ -579,7 +594,7 @@ if ((do_all || do_try ) && (do_try != -1)) {
 
 if ((do_all  || do_declare ) && (do_declare != -1))  {
 
-
+    inflsz = caz(FailedList)
    RunDirTests("Declare","declare,decc,decchar,decpan,decvec");
 
  //  Run2Test("Consts")
@@ -613,8 +628,8 @@ chdir(Testdir)
 
  if ((do_exp || do_all) && (do_exp != -1)) {
 
+    inflsz = caz(FailedList)
 
-<<"running Sexp $do_exp \n"
    RunDirTests("Sexp","sexp");
 
 
@@ -624,7 +639,7 @@ chdir(Testdir)
 //rdb()
 
  if ((do_all || do_paraex ) && (do_paraex != -1)) {
-
+    inflsz = caz(FailedList)
   Run2Test("ParaEx")
 
   cart("paraex")
@@ -638,6 +653,7 @@ chdir(Testdir)
 
 if ((do_all || do_array ) && (do_array != -1)) {
 
+  inflsz = caz(FailedList)
 
   RunDirTests("VVcomp","vvcomp");
 
@@ -675,8 +691,9 @@ if ((do_all || do_array ) && (do_array != -1)) {
 
    RunDirTests("VVgen","vvgen")
 
+  
 
-
+  outcome("ARRAY")
 
 
     }
@@ -685,7 +702,7 @@ if ((do_all || do_array ) && (do_array != -1)) {
 /////////////////////////////////////////
 
  if ((do_all || do_matrix ) && (do_matrix != -1)) {
- 
+     inflsz = caz(FailedList)
    RunDirTests("Mdimn","mdimn")
 
 
@@ -695,33 +712,33 @@ if ((do_all || do_array ) && (do_array != -1)) {
    Run2Test("Msort")
    cart("msort")
 
-
+  outcome("MATRIX")
    }
 
 
 /////////////////////////////////////////
 
  if ((do_all || do_dynv ) && (do_dynv != -1)) {
-
+    inflsz = caz(FailedList)
     hdg("DYNAMIC_V")
 
     RunDirTests("Dynv","dynv");
-
+  outcome("DYNV")
 
     }
 
 /////////////////////////////////////////
 
 if ((do_all || do_lhsubsc )   && (do_lhsubsc != -1)) {
-
+      inflsz = caz(FailedList)
   RunDirTests("Subscript","vecsubset,lharraysubsrange")
-
+  outcome("SUBSCRIPT")
     }
 
 /////////////////////////////////////////
 
 if ((do_all || do_func ) && (do_func != -1)) {
-
+    inflsz = caz(FailedList)
   Run2Test("Func")
   do_carts("func", 3)
 
@@ -734,39 +751,40 @@ if ((do_all || do_func ) && (do_func != -1)) {
 
   Run2Test("Iproc")
   do_carts ("iproc")   //TBC
-   
+     outcome("FUNC")
 }
 
 /////////////////////////////////////////
 
    if ((do_all || do_vmf) && (do_vmf != -1)) {
-
+    inflsz = caz(FailedList)
     RunDirTests("Vmf","vmf_trim,vmf_range,vmf_cut,vmf_substitute,genv")
     RunDirTests("Vmf","vmf_prune,vmf_bubblesort,vmf_rotate,vmf_white")    
-  }
+  outcome("VMF")
+}
 
 /////////////////////////////////////////
 
 
 if ((do_all || do_unary ) && (do_unary != -1)) {
-
+    inflsz = caz(FailedList)
 
   RunDirTests("Unary","unaryif,unaryexp")
-
+  outcome("UNARY")
 }
 
 /////////////////////////////////////////
 //rdb()
    if ((do_all || do_command ) && (do_command != -1)) {
-
+    inflsz = caz(FailedList)
      RunDirTests("Command","command,command_parse")
-
+  outcome("COMMAND")
     }
 
 
 /////////////////////////////////////////
 if ((do_all || do_proc ) && (do_proc != -1)) {
-
+  inflsz = caz(FailedList)
   RunDirTests("Proc","proc,procdeclare,procret,procarg,procsv0");
 
   RunDirTests("Proc","procrefarg,procra,procrefstrarg,proc_loc_main_var,proc_var_define");
@@ -784,22 +802,26 @@ if ((do_all || do_proc ) && (do_proc != -1)) {
   
   RunDirTests("Static","static");
 
+   outflsz = caz(FailedList)
+
+   outcome("PROC")
+
   
   }
 
 //rdb()
   if ((do_all || do_scope ) && (do_scope != -1)) {
-
+    inflsz = caz(FailedList)
    RunDirTests("Scope","scope") ; 
 
-
+  outcome("SCOPE")
   }
 
 
  chdir(Testdir)
 
 if ((do_all || do_recurse ) && (do_recurse != -1)) {
-
+    inflsz = caz(FailedList)
      //hdg("RECURSION")
     
      RunDirTests("Fact","fact")
@@ -809,7 +831,7 @@ if ((do_all || do_recurse ) && (do_recurse != -1)) {
      //cart(pgn, "10")
 
      //cart_xic(pgn,"10")
-
+  outcome("RECURSE")
 
 }
 
@@ -817,41 +839,46 @@ if ((do_all || do_recurse ) && (do_recurse != -1)) {
 
 if ((do_all || do_mops ) && (do_mops != -1)) {
 
-     RunDirTests("Mops","mops")
+   inflsz = caz(FailedList)
+
+    RunDirTests("Mops","mops")
      
-     RunDirTests("Cmplx","cmplx")
+    RunDirTests("Cmplx","cmplx")
 
-     RunDirTests("Rand","rand")
+    RunDirTests("Rand","rand")
 
-
+    outcome("MOPS")
     }
 
 
    if ((do_all || do_svar ) && (do_svar != -1)) {
 
+    inflsz = caz(FailedList)
     RunDirTests("Svar","svar");
-    RunDirTests("Hash","hash,svar-table,svar-hash")    
+    RunDirTests("Hash","hash,svar-table,svar-hash")
+
+    outcome("SVAR")
     }
 
   if ((do_all || do_ivar ) && (do_ivar != -1)) {
 
      RunDirTests("Ivar","ivar")
-
+  outcome("IVAR")
     }
 
 
   if ((do_all || do_record ) && (do_record != -1)) {
 
-   
+       inflsz = caz(FailedList)
 
    RunDirTests("Record","record,rec_read,rec_prt,rec_atof,rec_lhs,rec_test,rec_md,rec_dyn");
 
-
+  outcome("RECORD")
   }
  chdir(Testdir)
 
  if ((do_all || do_mops ) && (do_mops != -1)) {
-  
+      inflsz = caz(FailedList)
     RunDirTests("Math","inewton,inewton_cbrt,opxeq")
 
 /*
@@ -861,47 +888,48 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 */
 
     RunDirTests("Pow","pow")
-
+  outcome("MATH")
     }
 
 
  chdir(Testdir)
 
  if ((do_all || do_stat ) && (do_stat != -1)) {
-
+    inflsz = caz(FailedList)
 //    hdg("STAT")
 
     RunDirTests("Polynom","checkvm,polynom")
 }
 
  if ((do_all || do_pan )  && (do_pan != -1)) {
-
+    inflsz = caz(FailedList)
     hdg("PAN")
 // TBD - more tests -- xic is using double for pan consts??
     //RunDirTests("Pan","pan,pan-loop-test,pancmp,panarray")
     RunDirTests("Pan","pan,pancmp,panarray")
 
    // cart("derange","100") ; /// TBF
+     outcome("PAN")
  }
 
 
    if ((do_all || do_lists ) && (do_lists != -1)) {
-
+    inflsz = caz(FailedList)
      RunDirTests("Lists","lists,list_declare,list_ele,list_ins_del");
-
+  outcome("LISTS")
     }
 
    if ((do_all || do_ptrs ) && (do_ptrs != -1)) {
-   
+       inflsz = caz(FailedList)
       RunDirTests("Swap","swap,swap1");
       RunDirTests("Ptrs","ptrs,ptr_vec,ptr_numvec,ptr_svarvec,ptr_varvec,indirect");
-
+  outcome("PTRS")
    }
 
 
 
  if ((do_all || do_sfunc ) && (do_sfunc != -1)) {
-
+    inflsz = caz(FailedList)
     hdg("S-FUNCTIONS")
 
     RunSFtests("Fio,Sscan,Fscanf,Bscan,Cut,Cmp,Sel,Shift,Median,Findval,Lip");
@@ -929,7 +957,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
     RunDirTests("Packb","packb,packalot");
     
 //============================    
-
+  outcome("SFUNC")
     }
 
 
@@ -940,6 +968,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 //////////////////// BUGFIXs/////////////////////////////////////////
 
   if ((do_all || do_bugs )  && (!do_bugs != -1)) {
+      inflsz = caz(FailedList)
       //cart("bf_40")   // this has intentional error and exits before test checks
     chdir(Testdir)
 
@@ -956,12 +985,13 @@ bflist="$BFS"
 <<"$bug_list\n"
 
       RunDirTests("BUGFIX",bug_list)
-    
+      outcome("BUGFIX")
   }
 
 
   if ((do_all || do_tests ) && (do_tests != -1)) {
-    chdir(Testdir)
+    inflsz = caz(FailedList)
+chdir(Testdir)
 //  get a list of asl files in this dir and run them
      chdir("Tests")
 <<"Doing Tests"
@@ -976,7 +1006,7 @@ tslist="$TS"
    
 <<"%V $test_list\n"
      RunDirTests("Tests",test_list);
-    
+  outcome("TESTS")    
   }
 
 /*
@@ -1054,7 +1084,7 @@ if (lsz >= 1) {
 
 <<"----------------------------------------------------------------------------\n"
 <<"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$flsz Crash $lsz vers $(get_version())\n"
-
+<<"TestSuites: $Nsuites passed $Nspassed  %6.2f $(Nspassed/(Nsuites*1.0) *100.0)%%\n"  
 <<[Opf]"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$flsz Crash $lsz $(get_version())\n"
 <<[Tlogf]"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$flsz Crash $lsz $(get_version())\n"    
 

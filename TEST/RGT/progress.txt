@@ -1,0 +1,79 @@
+
+<|Score=
+08/22/21   65%
+08/23/21   68%
+10/09/2021   23 52.27% 
+10/10/2021 25   56.82%
+10/11/2021 32   69.57%
+10/12/2021 39   79.59%
+10/14/2021 40   81.63%
+10/15/2021 34   88.89%
+10/16/2021 35   91.11%
+10/19/2021 36   91.30% 
+|>
+////////////////// Stable /////////////////////
+<|Stable =
+bit
+bops
+declare
+types
+for
+if
+|>
+////////////////// Good /////////////////////
+<|Good =
+array
+command
+define
+do
+dynv
+enum
+exp
+fops
+include
+ivar
+lhsubsc
+lists
+logic
+matrix
+mops
+pan
+paraex
+proc
+record
+scope
+stat
+switch
+syntax
+tests
+unary
+vops
+while
+bugs
+vmf
+svar
+func
+sops
+sfunc
+class
+ptrs
+oo
+|>
+//===========BAD =======================//
+<|Bad =
+recurse
+threads
+try
+|>
+//=======================================//
+<|TBF =
+mdsubset
+cmplx
+enum_is_a_hack
+try-throw-catch
+|>
+
+
+//<<"%V$Good\n"
+
+

@@ -41,30 +41,28 @@ chkIn(_dblevel);
 
   ptr vp;
 
-  KI<-pinfo()
+!i KI
 
   vp = &KI;
 
 
- vp<-pinfo();
+!i vp
   
   <<" %V $vp \n"
 
-
-
-
-
-  void goo(ptr a)
+void goo(ptr a)
   {
- <<"$_proc $a\n"
-  a->info(1)
+
+<<"$_proc  $a  ptr\n"
+ 
+!i a
   b = $a;
-  b->info(1)
+!i b
 
   $a = $a +1;
       
  <<"%V $a $b\n"
-
+!z
  }
 //===================
   int m = 0;
@@ -74,19 +72,21 @@ chkIn(_dblevel);
   
   kp = &k;   // kp ptr to k
   
-  kp<-pinfo()
+!i  kp
   
   $kp = 8;
 
-   kp->info(1)
+!i k
+
+!i  kp
+
+!z
+
   goo (kp)
 
   chkN(k,9)
- 
 
-  <<"%V $k\n"
-
-  
+<<"%V $k\n"
 
    $kp = $kp +1
 
@@ -104,11 +104,11 @@ chkIn(_dblevel);
    
   m= $kp
   
-  k->info(1)
-  kp->info(1)
+!i  k
+!i  kp
   
   
-    m->info(1)
+!i m
   
    <<" %V $$kp \n"
     
@@ -123,7 +123,7 @@ chkIn(_dblevel);
   <<"%V $kp \n"
   
   
-  k->info(1)
+!i k
   
   <<"%V $k \n"
   
@@ -132,17 +132,17 @@ chkIn(_dblevel);
   <<"%V $tok\n"
   
    au = 79
+
+!i au
   
-   au->info(1)
-  
-  k->info(1)
+!i k
   
    $kp = au
   
-  k->info(1)
+!i k
   <<"%V $k\n"
   
-  au->info(1)
+!i au
   
   
   tok= chkN (k, 79)
@@ -155,10 +155,11 @@ chkIn(_dblevel);
   
   sp = &silv;
   
-  sp->info(1)
+!i sp
+
    $kp = $sp
   
-  k->info(1)
+!i kp
   
   tok=chkN(k, 47)
   <<"%V $tok\n"
@@ -167,12 +168,12 @@ chkIn(_dblevel);
 
   ptr vp2;
 
-  KI<-pinfo()
+!i KI
 
   vp2 = &KI;
 
 
- vp2<-pinfo();
+!i vp2
   
   <<" %V $vp2 \n"
 
@@ -188,9 +189,7 @@ chkIn(_dblevel);
    n = 2 * $kp 
   
   <<" %V $k $m $n\n"
-  
-  
-  kp->info(1)
+
   
   <<" %V $kp \n"
   
@@ -286,13 +285,11 @@ chkIn(_dblevel);
   
   z = &x;
   
-  z->info(1)
-  
-     z = 6;
+  z = 6;
      
   <<"%V $x\n"
   
-  z<-pinfo()
+!i  z
   
 
   int I[N]
@@ -405,7 +402,7 @@ chkIn(_dblevel);
   
      d = &AV
   
-  d<-pinfo()
+!i d
   
   <<" ptr %v $d \n"
   
@@ -419,7 +416,6 @@ chkIn(_dblevel);
   
   <<" $c \n"
   
-  <<"%I $c \n $d \n"
   <<"%v $c \n"
   
     d[0:20:2]<-Set(5,3)

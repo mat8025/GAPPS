@@ -914,3 +914,7 @@ proc_return_e.cpp                   3.51  10/12/2021 22:12:18  PTR return
 ds_storearray.cpp                   2.2  10/14/2021 17:29:56  storeNUmber lhoffset
 ds_storearray.cpp                   2.3  10/15/2021 07:38:27  vdb
 ds_storesvar.cpp                    1.84  10/15/2021 08:44:02  strv->svar lhoffset
+svar_hash.cpp                       1.67  10/15/2021 10:17:50  vdb
+proc_checkfname_e.cpp               2.45  10/16/2021 10:02:45  PTR_I,D,S,F,C
+ds_sivflags.cpp                     1.93  10/19/2021 15:08:17  single val same line
+ic_stack.cpp                        1.70  10/19/2021 15:20:27  adjust UNUSE release for xrn

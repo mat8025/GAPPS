@@ -10,7 +10,21 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-myScript = getScript();
+
+
+<|Use_= 
+Demo  of class ops
+/////////////////////// 
+|>
+
+#include "debug";
+
+if (_dblevel >0) {
+   debugON()
+   <<"$Use_ \n" 
+}
+
+allowErrors(-1) ; // keep going
 
 
 
@@ -145,7 +159,7 @@ int V = 4 ;  // global
 
 <<"global %V $V \n";
 
-<<"%I $V\n"
+!i V
 
    apple->set_VS( 88,66);
    

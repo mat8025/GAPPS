@@ -23,7 +23,9 @@ if (_dblevel >0) {
    debugON()
    <<"$Use_ \n" 
 }
-  
+
+allowErrors(-1) ; // keep going
+
 chkIn(_dblevel);
 
 
