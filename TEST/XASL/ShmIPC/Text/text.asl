@@ -47,7 +47,7 @@ ignoreErrors()
   txtwin = cWi("title","MK_INFO")
 
  sWi(txtwin,@pixmapon,@drawon,@save,@bhue,"teal",@sticky,1)
- sWi(txtwin,@grid,20,20);  // setting a grid on parent window for position
+ 
 
    titleButtonsQRD(txtwin);
 
@@ -56,22 +56,30 @@ ignoreErrors()
 // sWo(tbqwo,@BORDER,@DRAWON,@PIXMAPON,@CLIPBORDER,RED_@FONTHUE,RED_, @symbol,"triangle", \
 // @symsize, 10, @redraw)
 
-
+sWi(txtwin,@setgrid,20,20);  // setting a grid on parent window for position
 
 
  // using grid positions for Wo boxes
  
- two=cWo(txtwin,"TEXT",@name,"TextR",@VALUE,"howdy",@color,"orange",@resize,1,16,8,19,3)
+two=cWo(txtwin,"TEXT",@name,"TextR",@VALUE,"howdy",@color,ORANGE_,@resize,1,16,8,19,3)
+
+// two=cWo(txtwin,"TEXT",@name,"TextR",@VALUE,"howdy",@color,ORANGE_,@resize,0.1,0.7,0.5,0.9)
  sWo(two,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff )
  sWo(two,@SCALES,0,0,1,1)
- sWo(two,@help," Mouse & Key Info ")
+ sWo(two,@help," Mouse & Key Info ",@redraw);
 
 
- stwo=cWo(txtwin,@TEXT,@name,"PrintText",@VALUE,"howdy this is the first line",@color,"orange",@resize,2,10,6,15,3)
+
+
+
+ stwo=cWo(txtwin,@TEXT,@name,"PrintText",@VALUE,"howdy this is the first line",@color,BLUE_,@resize,2,10,6,15,3)
  sWo(stwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_ ,@pixmapoff,@drawon,@save)
  sWo(stwo,@SCALES,0,0,1,1)
  sWo(stwo,@font,F_SMALL_)
- sWo(stwo,@help," Mouse & Key Info ");
+ sWo(stwo,@help," Mouse & Key Info ",@redraw);
+
+getMouseClick()
+
 
 
  bigwo=cWo(txtwin,@TEXT,@name,"BigText",@VALUE,"Big Font?",@color,"orange",@resize,9,13,18,19,3)
@@ -129,7 +137,8 @@ sWo(ipwo,@font,F_ITALIC_)
   int txwos[] = {lvwo,rvwo,bigwo,two};
 //  int txwos[] = {two, bigwo,ipwo};
 
-
+ sWo(txwovs,@redraw);
+ 
  titleVers();
  
 //////////////////////////////////////////////////
@@ -157,6 +166,14 @@ while (1) {
     eventWait()
 
    sWo(two,@redraw)
+
+ if (_ekeyw == "EXIT_ON_WIN_INTRP") {
+     <<"break exit on WIN_INTR\n"
+     break;
+   }
+
+
+
 
    msgw= split(_emsg)
 
@@ -194,6 +211,7 @@ while (1) {
 
   }
 
+exit()
 
 ////////////////////////////////
 /// text starts space in?

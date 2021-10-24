@@ -315,7 +315,8 @@ else {
 
           scored = 1;
 
-          n_modules += 1 
+//          n_modules += 1
+          n_modules++; 
 
           if (pcc != 100.0) {
 	  //<<"${Curr_dir} inserting $tname into failed list \n"

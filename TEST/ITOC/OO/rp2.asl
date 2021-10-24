@@ -273,7 +273,7 @@ am1 = a - 1;
 
 
  chkN(y,20);
-chkOut()
+
 
   y=C[a]->setRooms(C[a-2]->getRooms())
 

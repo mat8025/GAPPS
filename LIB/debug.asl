@@ -15,16 +15,18 @@
 
 
 //<<"Including  debug \n"
+hold_dbl = _dblevel;
+<<"%V$hold_dbl \n"
 
-//sdb(-1,@~pline,@~step,@~trace)
+sdb(1,@~pline,@~step,@~trace)
 
 //sdb(_dblevel,@~pline,@~step,@~trace)
 //filterFuncDebug(REJECTALL_,"proc");
 //filterFileDebug(REJECTALL_,"yyy");
 
-hold_dbl = _dblevel;
+
 //<<"%V $hold_dbl\n"
-//_dblevel = 0;
+//_dblevel = -1;
 
 // working variables
 int _DB = -1; // dbg FH set to nop --set to 2 for error output
@@ -36,9 +38,9 @@ int _DB = -1; // dbg FH set to nop --set to 2 for error output
 //Str _S = "abcde";
 //Svar _SV;
 
-Pan _P ;
+//Pan _P ;
 
-_P= 4.0*atan(1.0);
+//_P= 4.0*atan(1.0);
 
 //!p _P
 
@@ -133,9 +135,11 @@ proc showUse()
 
 
 
-//_dblevel = hold_dbl;
+_dblevel = hold_dbl;
 
-
+if (_dblevel >0) {
+  sdb(_dblevel,@keep,@trace)
+}
 
 <<" %V $_include  $_dblevel DONE debug.asl\n"
 

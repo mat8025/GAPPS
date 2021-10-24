@@ -456,7 +456,7 @@ if ((do_bit || do_all) && (do_bit != -1)) {
     inflsz = caz(FailedList)
 //  Run2Test("Bitwise");
 //  cart("bitwise");
- RunDirTests("Bitwise","bitwise")
+   RunDirTests("Bitwise","bitwise")
    outcome("BITWISE")
 }
 
@@ -488,8 +488,8 @@ if ((do_bit || do_all) && (do_bit != -1)) {
  
 
   if ((do_all || do_while ) && (do_while != -1)) {
-        inflsz = caz(FailedList)
-    RunDirTests("While","while-nest,while")
+        inflsz = caz(FailedList);
+       RunDirTests("While","while-nest,while")
 
     }
 ////////////////////////////////////////////////////////////////////////

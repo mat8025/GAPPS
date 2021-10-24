@@ -918,3 +918,11 @@ svar_hash.cpp                       1.67  10/15/2021 10:17:50  vdb
 proc_checkfname_e.cpp               2.45  10/16/2021 10:02:45  PTR_I,D,S,F,C
 ds_sivflags.cpp                     1.93  10/19/2021 15:08:17  single val same line
 ic_stack.cpp                        1.70  10/19/2021 15:20:27  adjust UNUSE release for xrn
+prep.cpp                            2.57  10/21/2021 10:27:28  NULL_ ""
+try_e.cpp                           1.6  10/21/2021 10:28:34  revise
+while_e.cpp                         1.28  10/21/2021 10:29:04  revise try SM
+top_m.cpp                           1.97  10/23/2021 16:30:15  ptinpoly poly,nverts,x,y
+test_l.cpp                          1.52  10/23/2021 17:17:10  condComment
+rdp_store.cpp                       2.4  10/23/2021 18:45:42  don't unset global/declared vars
+gs_cr_w.cpp                         1.16  10/24/2021 09:50:24  VXYLineToR
+win_p.cpp                           1.83  10/24/2021 13:21:35  WGRID

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 
 main()
@@ -27,5 +28,9 @@ main()
   printf("double %f %g %d \n",d,d,sizeof(double));
 
 
+  bool b = true;
+
+  printf("C bool %d  %d \n",b,sizeof(bool));
+  
 
 }

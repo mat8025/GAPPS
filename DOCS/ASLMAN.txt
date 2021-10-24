@@ -1558,6 +1558,20 @@ for 5 coefficients
 .EF
 =============================================================
 .BF
+ptinpoly()
+.(x
+ptinpoly
+.)x 
+.FD
+inout = ptinpoly(poly2d,nverts, x,y )
+Is the point (x,y) in the closed polygon (polygon array of points, number of verts, x,y)
+return 1 if point is in , 0 if not.
+.EF
+=============================================================
+
+
+
+.BF
 Mlip()
 .(x
 MLip
@@ -8924,13 +8938,16 @@ creategline,cGl
 
 cGl(wid,@TY,YV)
 cGl(wid,@TXY,XV,YV)
+cGl(wid,@TXYP,XYV)
+Y vector of y values
+XV,YV  vecotrs of X and Y values
+XYV vector of XYpairs
+
 first parameter is the id of the window area and then follows a tage fpr the type of line
 and the array of values to specify the xy positions.
-where the tag can be TY,TXY,TXZ,THIST, TCURSOR and the following parameters are the vectors
+where the tag can be TY,TXY,TXZ,TXYP,THIST, TCURSOR and the following parameters are the vectors
 
 
-or alternatively
-cGl(woid,@type,["Y","XY","XYZ","HIST"],@xvec,XV,@yvec,YV)
 
 
 cGl
@@ -8962,6 +8979,7 @@ setgline(handle, [tag,value, ...]
 and then redrawn
 
 xygl=CreateGline(wid,@TXY,xvec,yvec,@color,RED_,@name,"XYPLOT")
+xypgl=CreateGline(wid,@TXYP,xyvec,@color,RED_,@name,"XYPLOT")
 
 the tag TXY is used for XY plots -- @TXY is followed by two args which are the x vector and y vector to be plotted.
 the tag TY is used for Y plots -- @TY is followed by one arg which is y vector to be plotted 
