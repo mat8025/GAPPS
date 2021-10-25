@@ -158,6 +158,7 @@ int test_try_throw_catch(int val)
 	<<"try no throw of $val $cball\n";
 
         just_one_try++;
+	
       <<" continue in try block $just_one_try\n"
       
    //     throw 0; // TBF

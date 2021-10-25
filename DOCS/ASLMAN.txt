@@ -8978,7 +8978,7 @@ Current values can be changed by calling
 setgline(handle, [tag,value, ...]
 and then redrawn
 
-xygl=CreateGline(wid,@TXY,xvec,yvec,@color,RED_,@name,"XYPLOT")
+xygl=cGl(wid,@TXY,xvec,yvec,@color,RED_,@name,"XYPLOT")
 xypgl=CreateGline(wid,@TXYP,xyvec,@color,RED_,@name,"XYPLOT")
 
 the tag TXY is used for XY plots -- @TXY is followed by two args which are the x vector and y vector to be plotted.
@@ -8992,10 +8992,11 @@ the tag TY is used for Y plots -- @TY is followed by one arg which is y vector t
 .BF
 setgline()
 .(x
-setgline
+setgline,sGl
 .)x 
 .FD
 SetGline(gl_handle,@xvec,XV,@yvec,YV)
+sGl(gl_handle,@xvec,XV,@yvec,YV)
 Current values can be changed by calling
 setgline(handle, [tag,value, ...]
 prior to a redraw using DrawGline(gl_handle)

@@ -44,9 +44,9 @@ envdebug()
 
 ignoreErrors()
 
-  txtwin = cWi("title","MK_INFO")
+  txtwin = cWi(@title,"TXT_INFO")
 
- sWi(txtwin,@pixmapon,@drawon,@save,@bhue,"teal",@sticky,1)
+ sWi(txtwin,@pixmapon,@drawon,@save,@bhue,YELLOW_,@sticky,1)
  
 
    titleButtonsQRD(txtwin);
@@ -61,13 +61,17 @@ sWi(txtwin,@setgrid,20,20);  // setting a grid on parent window for position
 
  // using grid positions for Wo boxes
  
-two=cWo(txtwin,"TEXT",@name,"TextR",@VALUE,"howdy",@color,ORANGE_,@resize,1,16,8,19,3)
+two=cWo(txtwin,@TEXT,@name,"TextR",@VALUE,"howdy",@color,ORANGE_,@resize,1,16,8,19,3)
 
 // two=cWo(txtwin,"TEXT",@name,"TextR",@VALUE,"howdy",@color,ORANGE_,@resize,0.1,0.7,0.5,0.9)
  sWo(two,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff )
  sWo(two,@SCALES,0,0,1,1)
  sWo(two,@help," Mouse & Key Info ",@redraw);
 
+
+ sWi(txtwin,@redraw);
+
+//ans=iread("->");
 
 
 
@@ -78,7 +82,7 @@ two=cWo(txtwin,"TEXT",@name,"TextR",@VALUE,"howdy",@color,ORANGE_,@resize,1,16,8
  sWo(stwo,@font,F_SMALL_)
  sWo(stwo,@help," Mouse & Key Info ",@redraw);
 
-getMouseClick()
+//getMouseClick()
 
 
 
@@ -92,11 +96,11 @@ getMouseClick()
   //sWo(ipwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"inputText")
   //sWo(ipwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"inputValue",@style,SVO_)
 
- sWo(ipwo,@clipsize,0.1,0.1,0.9,0.9,@clipbhue,LILAC_)
+ sWo(ipwo,@clipsize,0.1,0.1,0.9,0.9,@clipbhue,YELLOW_)
  sWo(ipwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"editValue")
- sWo(ipwo,@font,"small")
+ sWo(ipwo,@font,F_MEDIUM_)
 //ans=query("--> italic font F_ITALIC_")
-sWo(ipwo,@font,F_ITALIC_)
+//sWo(ipwo,@font,F_ITALIC_)
 
 
 
@@ -115,7 +119,7 @@ sWo(ipwo,@font,F_ITALIC_)
 
  rvwo=cWo(txtwin,@TEXT,@name,"PrintText",@VALUE,"rvtext",@color,ORANGE_,@resize,4,1,5,9,3)
  sWo(rvwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@save)
- sWo(rvwo,@SCALES,0,0,1,1)
+ sWo(rvwo,@scales,0,0,1,1)
  sWo(rvwo,@font,"rotated90")
 
 
@@ -128,16 +132,13 @@ sWo(ipwo,@font,F_ITALIC_)
 
  sWo(ipwo2,@clipsize,0.1,0.1,0.9,0.9,@clipbhue,MAGENTA_)
  sWo(ipwo2,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_,@pixmapoff,@drawon,@func,"editValue")
- sWo(ipwo2,@font,"italic")
-
-
-
+ sWo(ipwo2,@font,F_ITALIC_)
 
 
   int txwos[] = {lvwo,rvwo,bigwo,two};
 //  int txwos[] = {two, bigwo,ipwo};
 
- sWo(txwovs,@redraw);
+ sWo(txwos,@redraw);
  
  titleVers();
  
@@ -146,7 +147,7 @@ sWo(ipwo,@font,F_ITALIC_)
 //ans=query("-->")
 
 
-include "gevent"
+#include "gevent"
 
 
 
@@ -156,28 +157,24 @@ yp = 0.5
 char txtip[512];
 
 
-
-
-
 mnum = 0
+
+str txt ="WXYZ";
+
+int do_txt_stuff = 1;
 
 while (1) {
 
-    eventWait()
-
-   sWo(two,@redraw)
-
- if (_ekeyw == "EXIT_ON_WIN_INTRP") {
-     <<"break exit on WIN_INTR\n"
-     break;
-   }
 
 
 
+   if (do_txt_stuff) {
 
-   msgw= split(_emsg)
+//   msgw= split(_emsg)
 
-<<"%V$msgw \n"
+//<<"%V$msgw \n"
+
+<<" textr <|$_emsg|> \n"
 
     sWo(two,@textr,"$_emsg",0.1,0.8)
 
@@ -185,29 +182,42 @@ while (1) {
     
     sWo(stwo,@print,"%V$_ewoname $_ebutton\n");
 
-     if (_ewoid == ipwo) {
+<<"$_ewoid  $ipwo gotit ?\n"
+
+
 
 //      sWo(txwos,@clear);
 
-      woGetText(ipwo,txtip,512);
-       
-  <<" got %s < $txtip >  \n as input \n";
+     txt=woGetText(ipwo);
+ <<" got $txt  \n";
       // rotated text??
+      deftxt ="WAKEUP";
 
-      txt = woGetValue(ipwo)
-      <<" $txt \n"
-      //sWo(lvwo,@font,6,@textr,"$txt",0.3,0.1,0,-90,RED_);
-      //sWo(rvwo,@font,"rotated90",@textr,"$txt",0.5,0.9,0,90,BLUE_);
+      //txt = woGetValue(ipwo)
+      <<"ipwo_txt: $txt \n"
 
-      sWo(bigwo,@font,BIG_,@textr,"$txt",0.0,0.6,0,0,BLACK_);
-      sWo(bigwo,@font,MEDIUM_,@textr,"$txt",0.0,0.4,0,0,MAGENTA_);
-      sWo(bigwo,@font,SMALL_,@textr,"$txt",0.0,0.5,0,0,BLACK_);
 
-      sWo(lvwo,@font,SMALL_,@print,"$txt");            
+      sWo(lvwo,@font,6,@textr,"$txt",0.3,0.1,0,-90,RED_);
+      sWo(rvwo,@font,"rotated90",@textr,"$deftxt",0.5,0.9,0,90,BLUE_);
+
+      sWo(bigwo,@font,F_BIG_,@textr,"$deftxt",0.0,0.6,0,0,BLACK_);
+      sWo(bigwo,@font,F_MEDIUM_,@textr,"$txt",0.0,0.4,0,0,MAGENTA_);
+      sWo(bigwo,@font,F_SMALL_,@textr,"$txt",0.0,0.5,0,0,BLACK_);
+
+      sWo(lvwo,@font,F_SMALL_,@print,"$txt");            
 
       mnum++;
       //sWo(ipwo,@value,"");
     }
+
+     eventWait()
+
+
+    if (_ekeyw ==  "EXIT_ON_WIN_INTRP") {
+     <<"WIN_INTRP\n";
+     break;
+    }
+
 
   }
 

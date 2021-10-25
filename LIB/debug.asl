@@ -16,9 +16,9 @@
 
 //<<"Including  debug \n"
 hold_dbl = _dblevel;
-<<"%V$hold_dbl \n"
+//<<"%V$hold_dbl \n"
 
-sdb(1,@~pline,@~step,@~trace)
+//sdb(1,@~pline,@~step,@~trace)
 
 //sdb(_dblevel,@~pline,@~step,@~trace)
 //filterFuncDebug(REJECTALL_,"proc");
@@ -138,7 +138,9 @@ proc showUse()
 _dblevel = hold_dbl;
 
 if (_dblevel >0) {
+
   sdb(_dblevel,@keep,@trace)
+  //<<"keep and trace\n"
 }
 
 <<" %V $_include  $_dblevel DONE debug.asl\n"

@@ -670,7 +670,7 @@ if ((do_all || do_array ) && (do_array != -1)) {
 
    RunDirTests("ArrayRange","arrayrange,array_subsrange,lhrange")
 
-  RunDirTests("ArraySubSet","arraysubset,array_subvec,array_subsref,arraysubscbyvec,vdec")
+  RunDirTests("ArraySubSet","arraysubset,array_subvec,array_subsref,arraysubscbyvec,array_ele_incr,vdec")
 
   RunDirTests("ArrayJoin","arrayjoin")
 
