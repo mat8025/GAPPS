@@ -137,11 +137,16 @@ proc showUse()
 
 _dblevel = hold_dbl;
 
-if (_dblevel >0) {
+sdb(_dblevel,@keep,@~trace)
 
-  sdb(_dblevel,@keep,@trace)
+if (_dblevel < 1) {
+
+  sdb(_dblevel,@keep,@~trace)
   //<<"keep and trace\n"
 }
+
+
+
 
 <<" %V $_include  $_dblevel DONE debug.asl\n"
 

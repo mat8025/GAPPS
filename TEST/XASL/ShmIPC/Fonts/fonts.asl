@@ -62,7 +62,7 @@ sWo(stwo,@border,@drawon,@clipborder,@fonthue,BLACK_ ,@pixmapoff,@drawon,@save)
 
   sWo(stwo,@print," abcdefghijklmnopqrstuvwxzy \n ABCDEFGHIJKLMNOPQRSTUVXYZ\n") ;
 
-ans=iread("->")
+//ans=iread("->")
 
 <<" $SF[1] \n"
 
@@ -120,7 +120,7 @@ else {
 
   sWo(stwo,@print,"!@#\$%^&\n") ;
 
-ans=iread("->")
+//ans=iread("->")
   sWo(stwo,@redraw);
 
 
@@ -145,27 +145,30 @@ while (1) {
 
 
 <<"%V$msgw \n"
-<<"$kf  $SF[kf]" 
+<<"$kf  $SF[kf]\n" 
   wf4=loadFont("$SF[kf]");
 
  <<"%v$wf4 \n"
-//    if (wf4 != 0) {
+    if (wf4 != 0) {
   if (use_pixmap) {    
         sWo(stwo,@clearpixmap) ;
   }
-    sWo(stwo,@font,F_BIG_,@fonthue,RED_);
+        sWo(stwo,@clearclip) ;
+    sWo(stwo,@font,wf4,@fonthue,RED_);
+    sWo(stwo,@font,wf4,@textr,"$SF[kf]",0.2,0.9,0,0,BLUE_);
+
     sWo(stwo,@print,"$kf $wf4 $SF[kf] \n\n") ;
     //sWo(stwo,@font,wf2,@fonthue,BLACK_);
     sWo(stwo,@print," abcdefghijklmnopqrstuvwxyz \n") ;
-
+    sWo(stwo,@font,wf4,@textr,"abcdef",0.0,0.6,0,0,BLACK_);
 // sWo(stwo,@showpixmap) ;
     
-    sWo(stwo,@print," ABCDEFGHIJKLMNOPQRSTUVWXYZ \n") ;
+    sWo(stwo,@textr," ABCDEFGHIJKLMNOPQRSTUVWXYZ",0.1,0.3) ;
     sWo(stwo,@print," 0123456789 \n") ;
 if (use_pixmap) {
   sWo(stwo,@showpixmap) ;
 }
-//}
+}
 
 
     kf++;

@@ -95,7 +95,6 @@ caught = 0;
 
  catch(int ball)
   {
-
 <<" caught $ball\n"
 
     chkN(ball,tval);
@@ -131,11 +130,11 @@ int test_try_throw_catch(int val)
 
   <<"in $_proc $val  $(pt(val))  $cball\n";
     just_one_try = 0;
-   
+    no_throws =0;
     try
     {
        <<"in proc try $val\n";
-!a
+
    
 
         if (val == 47)
@@ -162,14 +161,15 @@ int test_try_throw_catch(int val)
       <<" continue in try block $just_one_try\n"
       
    //     throw 0; // TBF
+	no_throws = 1;
 	
     } // try block end
-    
 //
 // nothing allowed here
 //
-//    val = 47;   // correct causes syntax error
-    catch ( int ball)
+//    val = 47;   // TBF  does not  cause a  syntax error
+
+   catch ( int ball)
     {
 
        cball = ball;
@@ -177,10 +177,8 @@ int test_try_throw_catch(int val)
 
 //ans=query("next\n")
     }
-
-
-
-  <<"Out $_proc $val  $(pt(val))  $cball\n";
+    
+  <<"Out $_proc $no_throws $val  $(pt(val))  $cball\n";
 
     return cball;
 }
@@ -200,34 +198,37 @@ chkN(rball,val);
 
 rball=test_try_throw_catch(76)
 
-<<" after first try in proc $rball\n"
+<<" after second try in proc $rball\n"
 //ans=query("next\n")
 
 chkN(rball,-1);
 
+
+
 rball=test_try_throw_catch(79)
 
-<<" after second try in proc $rball\n"
-//ans=query("next\n")
 
+//ans=query("next\n")
+<<" after third try in proc $rball\n"
 chkN(rball,79);
 
 rball=test_try_throw_catch(77)
-
-
+<<" proc returns $rball\n"
+<<" after fourth try in proc $rball\n"
 chkN(rball,77)
-<<" after third try in proc $rball\n"
+
 
 rball= test_try_throw_catch(47)
-
+<<" proc returns $rball\n"
+<<" after fifth try in proc $rball\n"
 chkN(rball,47)
-<<" after forth try in proc $rball\n"
+
 
 rball= test_try_throw_catch(50)
-<<" tin returns $rball\n"
+<<" proc returns $rball\n"
 chkN(rball,-1)
 
-<<" after fifth try in proc $rball\n"
+
 
 chkOut()
-
+exit()
