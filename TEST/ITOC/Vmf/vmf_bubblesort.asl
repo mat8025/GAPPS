@@ -33,7 +33,7 @@ I = vgen(INT_,30,0,1)
 
 <<"$I \n"
 
-I<-info(1)
+I.pinfo()
 
 //chkOut()
 
@@ -41,16 +41,16 @@ I<-info(1)
 chkN(I[1],1)
 chkN(I[29],29)
 
-I<-reverse()
+I.reverse()
 
 <<"$I \n"
 chkN(I[1],28)
 chkN(I[29],0)
 
-I<-info(1)
+I.pinfo()
 
 
-I<-bubbleSort()
+I.bubbleSort()
 
 <<"$I \n"
 
@@ -61,11 +61,11 @@ rs= scat("Now ", " Shuffle ");
 <<"$rs\n"
 
 
-I<-shuffle(20)
+I.shuffle(20)
 
 <<"$I \n"
 
-I<-bubbleSort()
+I.bubbleSort()
 
 <<"$I \n"
 

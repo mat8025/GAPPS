@@ -706,7 +706,7 @@ if ((do_all || do_array ) && (do_array != -1)) {
    RunDirTests("Mdimn","mdimn")
 
 
-   RunDirTests("Matrix","mat-mul,mat-inv,mat-sum,msquare,mdiag");
+   RunDirTests("Matrix","mat_mul,mat_inv,mat_sum,msquare,mdiag");
    
 
    Run2Test("Msort")

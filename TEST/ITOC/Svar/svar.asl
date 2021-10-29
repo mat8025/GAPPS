@@ -31,11 +31,14 @@ if (_dblevel >0) {
    <<"$E\n"; 
    <<"$E[1] \n"; 
 
+    E<-pinfo();
+
+
    chkStr(E[1],"H"); 
    
    <<"$E[2] \n"; 
 
-
+    
 
 
    svar  S[] = {"una larga noche"}; 

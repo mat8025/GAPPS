@@ -45,18 +45,18 @@ double Goo(real a)
 {
  <<" IN $_proc $a \n"
 /*
-   a->info(1);
+   a<-pinfo();
 
 
   tmp = a/2.0;
-  tmp->info(1)
+  tmp<-pinfo()
   tmp2 = a * 2.0;
-  tmp2->info(1)
+  tmp2<-pinfo()
 <<"%V $tmp $tmp2 \n"
 */
   d =a * 2.0;
 
-  d->info(1);
+  d<-pinfo();
 
  return d;
 
@@ -67,21 +67,21 @@ double Goo(real a)
  x = 20.2
 
 <<"%V $x\n"
- x->info(1)
+ x<-pinfo()
 
  cy = Cos(x)
  
- cy->info(1)
+ cy<-pinfo()
 
  y = Sin(cy)
 
- y->info(1)
+ y<-pinfo()
 
 <<"%V $y \n"
 
 y /= 2.0;
 
-y->info(1)
+y<-pinfo()
 
 //double gr =Goo(x)
 
@@ -91,12 +91,12 @@ gr =Goo(x)
 
 <<"%V $x $gr \n"
 
-gr->Info(1)
+gr<-pinfo()
 
 
 chkR(gr, (x*2))
 
-gr->Info(1)
+gr<-pinfo()
 
 
 
@@ -119,9 +119,9 @@ chkR(gr, (x*2))
 
 <<" $y \n"
 
-  y->info(1)
+  y<-pinfo()
   y /= 2.0;
-  y->info(1)
+  y<-pinfo()
   
   t = Foo(x)
 
@@ -141,15 +141,15 @@ chkR(gr, (x*2))
 
 <<"%V $t \n"
 
-  y->info(1)
+  y<-pinfo()
 
 
   y = x/2.0;
 
-  y->info(1)
+  y<-pinfo()
   t = Foo(x)
   
- t->info(1)
+ t<-pinfo()
 <<"%V $x $y $t\n"
 
   chkR (t,y,6)

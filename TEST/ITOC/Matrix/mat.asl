@@ -1,69 +1,67 @@
+/* 
+ *  @script mat.asl 
+ * 
+ *  @comment matrix ops 
+ *  @release CARBON 
+ *  @vers 1.1 H Hydrogen [asl 6.3.57 C-Li-La]                               
+ *  @date 10/27/2021 13:03:14 
+ *  @cdate 10/27/2021 13:03:14 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+;//----------------------//;
+<|Use_= 
+Demo  of matrix ops 
+/////////////////////// 
+|>
 
-// FIXME  - won't make D an in vector
-//  D[] = {2,3,4,6,0,-1}
-//<<" $D \n"
+#include "debug" 
+if (_dblevel >0) { 
+   debugON() 
+   <<"$Use_ \n" 
+} 
+
+chkIn(_dblevel)
+
+allowErrors(-1) ; // keep going
 
 
-int A[] = {2,3,4,-6,3,1}
+
+
+int A[] = {2,3,4,-6,3,1};
 
 <<" $(Cab(A)) $(Caz(A)) \n"
 
 <<"%V$A \n"
 
 
-// FIXME  -- won't fill in rows
-//int  B[2][3] = { {0,3,2 }, {-1,1,-2} }
+Mat M(INT_,5,4);
+
+//Mat T(M);
+
+       M = 78;
+       M[2][3] = -47;
+!i M
 
 
-int B[] = { 0,3,-2 ,-1,1,2 }
+      T= Mtrp(M);
 
-<<"$(Cab(B)) $(Caz(B)) \n"
-<<"%V$B \n"
+      //M<-Transpose();
 
- A->redimn(3,2)
-<<"%(2,\n|, , |)$A \n"
+!i T
 
+    X= M * T;
 
- B->redimn(3,2)
+!i X
 
+chkT(1)
 
-<<"%(2,\n|, , |)$B \n"
+Siv v;
 
+!i v
 
- C = A + B
+testargs(v);
 
-<<"$C\n"
-
-exit()
-
-
- E = B
- E->redimn(2,3)
-
-
-<<"%(2,\n|, , |)%2d$A\n"
-
-<<"%(3,\n|, , |)%2d$E\n"
-
- D = A * E
-
-<<"%V%(3,\n|, , |)%2d$D\n"
- 
-
-
-
-<<"%V%(,\n|, , |)%2d$C\n"
-
-
-  D = -A
-
-<<"%V %(3,\n|, , |)%2d $D\n"
-
-  D = -1 * A
-
-
-<<"%V %(3,\n|, , |)%2d $A\n"
-
-<<"%V %(3,\n|, , |)%2d $D\n"
-
-stop!
+chkOut()
