@@ -84,4 +84,5 @@ dir = -1;
 
 <<"\n$W \n"
 T= ssubrgx(W,"([^_])SUBSC_([A-N])",'\1SI_SUBSC_\2',dir)
+
 <<"$T \n"

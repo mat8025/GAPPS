@@ -139,9 +139,9 @@ _dblevel = hold_dbl;
 
 sdb(_dblevel,@keep,@~trace)
 
-if (_dblevel < 1) {
+if (_dblevel > 1) {
 
-  sdb(_dblevel,@keep,@~trace)
+  //sdb(_dblevel,@keep,@trace)
   //<<"keep and trace\n"
 }
 

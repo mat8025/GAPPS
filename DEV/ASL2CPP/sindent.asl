@@ -14,9 +14,10 @@
 
   
 #include "debug"
-debugOFF()
 
-sdb(0,@~pline,@~trace,@~step)
+//debugOFF()
+
+//sdb(0,@~pline,@~trace,@~step)
 
 
    do_query = 0;
@@ -49,6 +50,8 @@ sdb(0,@~pline,@~trace,@~step)
   
   is_comment = 0;
   is_trailing_comment = 0;
+  in_comment_blk = 0  ;
+  in_txt_blk = 0  ;
   
   nw = 2;
   
@@ -68,7 +71,7 @@ sdb(0,@~pline,@~trace,@~step)
     is_empty_line = 1;
     is_trailing_comment = 0;
     needs_semi_colon = 0;
-    L = readline(A);
+    L = readline(A,-1,1);
     
     
     if (ferror(A) == EOF_ERROR_) {
@@ -90,11 +93,31 @@ sdb(0,@~pline,@~trace,@~step)
       scpy(nsv,eatWhiteEnds(NL));
       <<[2]"check comment $nsv[0] $nsv[1] \n"; 
       
-      if ((nsv[0] == 47) && (nsv[1] == '/')) {
+      if ((nsv[0] == '/') && (nsv[1] == '/')) {
         is_comment = 1;
         <<[2]"comment $NL\n"; 
         }
-      else if (nsv[0] == 35) {
+      else if ((nsv[0] == '/') && (nsv[1] == '*')) {
+        is_comment = 1;
+	in_comment_blk = 1
+        <<[2]"comment $NL\n"; 
+        }
+      else if ((nsv[0] == '*') && (nsv[1] == '/')) {
+        is_comment = 1;
+	in_comment_blk = 0
+        <<[2]"comment $NL\n"; 
+        }
+      else if ((nsv[0] == '<') && (nsv[1] == '|')) {
+        is_comment = 1;
+	in_txt_blk = 1
+        <<[2]"txt blk startcomment $NL\n"; 
+        }
+      else if ((nsv[0] == '|') && (nsv[1] == '>')) {
+        is_comment = 1;
+	in_txt_blk = 0;
+        <<[2]"txt blk startcomment $NL\n"; 
+        }		
+      else if (nsv[0] == '#') {
         is_comment = 1;
         <<[2]"comment $NL\n"; 
         }	
@@ -255,7 +278,13 @@ sdb(0,@~pline,@~trace,@~step)
 	if (c != 59) {
 	   needs_semi_colon = 1;
 	   }
-	   
+
+       if (in_comment_blk) {
+             needs_semi_colon = 0;
+       }
+       if (in_txt_blk) {
+             needs_semi_colon = 0;
+       }       
       <<[2]" needs ; ? $needs_semi_colon <|$c|>\n";
       <<[2]" needs ; $NL\n";
       
