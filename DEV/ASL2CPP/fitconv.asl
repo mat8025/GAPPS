@@ -10,14 +10,27 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-//myScript = getScript();
+;
 ///
-///  convert fit file --- extract lon,lat, time,speed, pulse
+///  
 ///
+
+<|Use_= 
+ Convert fit file --- extract lon,lat, time,speed, pulse 
+/////////////////////// 
+|>
 
 #include "debug"
 
-debugOFF()
+if (_dblevel >0) { 
+   debugON() 
+   <<"$Use_ \n" 
+} 
+
+chkIn(_dblevel)
+
+allowErrors(-1) ; // keep going
+
 
 //filterFileDebug(ALLOWALL_,"xxx");
 //filterFuncDebug(ALLOWALL_,"xxx")
@@ -27,6 +40,7 @@ debugOFF()
 
 //////////////   GLOBALS ///////////////
 
+int tot_br =0;
 
 normal = 1;
 cmpts = 0;
@@ -52,9 +66,9 @@ long where;
 double scdeg = 180.0/ (2 ^31);
 
 //<<"%V %e $scdeg \n"
-
-float lat;
-float lon;
+double deg;
+double lat;
+double  lon;
 
 float alt = 0;
 
@@ -122,18 +136,27 @@ fit_hdr = 0;
 int A;
 int B;
 
-
+int kfs;
 //////////// TBD ////////////////
 //  need array of local msg defs
 //
 //
 //
 
+/*
 #define DBANS ~!
 #define DBG ~!
 _DB=-1
+*/
+
+
+_DB= 1;
+
 //#define DBG <<
 
+#define DBG ~! 
+
+//#define DBANS ~!
 ///////////////////   PROCS /////////////////
 
 <<" reading procs\n"
@@ -142,23 +165,34 @@ _DB=-1
 void rd_hdr()
 {
 
-<<[_DB]"$_proc\n"
-
+//<<[_DB]"$_proc\n"
+   int k;
    k= fscanv(A,0,"C1,C1,S1,I1,C4,S1",&hsz,&protover,&profver,&datasz,&C,&CRC)
+   tot_br += k;
 
-  DBG[_DB]"%V $k $hsz  $protover $profver $datasz %s $C  \n"
+
+//  DBG[_DB]"%V $k $hsz  $protover $profver $datasz %s $C  \n"
+
+
 
 if (feof(A)) {
 <<" EOF exit!\n"
-
 }
+
 //<<" %s $C\n"
  if (scmp(C,".FIT")) {
      fit_hdr = 1;
  }
 
 //<<[_DB]"CRC %x $CRC\n"
-DBANS=query("$_proc exit")
+/*
+DBANS=query("$_proc out ? ")
+
+if (DBANS == "q") {
+   exit()
+}
+*/
+
 }
 //=========================//
 
@@ -170,14 +204,17 @@ void rd_hdb()
 
     //k=fscanv(A,0,"C1",&ht)
     fread(&ht,1,1,A);
-    
+    tot_br +=1 ;
+   // <<"fread rd_hdb 1 $tot_br\n"
     if (feof(A)) {
-    <<" EOF exit!\n"
+    <<" EOF  so break put\n"
     }
+    else {
     // fread(&ht,1,1,A)
 //<<[_DB]"%V $where  %X $ht\n"
 //bc=dec2bin(ht)
-DBG[_DB]"rd hdb %V $where $ht $(typeof(ht))\n";
+//   DBG[_DB]"rd hdb %V $where $ht $(typeof(ht))\n";
+   
    normal = 0;
    data = 0;
    defin = 0;
@@ -187,20 +224,25 @@ DBG[_DB]"rd hdb %V $where $ht $(typeof(ht))\n";
    nfdd = 0;
 
    ct= ht & 0x80
-   DBG[_DB]"%V $ht %X  $ht $ct\n"
+   
+//   DBG[_DB]"%V $ht %X  $ht $ct\n"
 
 
     if (ht & 0x80) {
         normal = 0;
 	cmpts = 1; // compressed time stamp
-	//<<"Compressed Time Stamp!! \n"
-DBG[_DB]"$ht %X $ht  0x80 cmpts  \n"	
+      // DBG[_DB]"Compressed Time Stamp!! \n"
+      // DBG[_DB]"$ht %X $ht  0x80 cmpts  \n"	
    }
    else {
-   DBG[_DB]"normal $ht %X $ht \n"	
+   
+   //DBG[_DB]"normal $ht %X $ht \n"	
+
    normal = 1;
    if (ht & 0x40) {
-   DBG[_DB]"0x40 $ht %x $ht &  0x40\n"
+   
+   //DBG[_DB]"0x40 $ht %x $ht &  0x40\n"
+
         defin = 1;
 	data = 0;
         devdata = 0;
@@ -210,8 +252,10 @@ DBG[_DB]"$ht %X $ht  0x80 cmpts  \n"
     }
     
      if (ht & 0x20) {
-        DBG[_DB]"0x20 $ht %x $ht &= 0x20 ?\n"
-	devdata = 1;
+     
+        //DBG[_DB]"0x20 $ht %x $ht &= 0x20 ?\n"
+
+      devdata = 1;
 //<<[_DB]"devdata "		
      }
 
@@ -226,32 +270,39 @@ DBG[_DB]"$ht %X $ht  0x80 cmpts  \n"
 
    where = ftell(A);
 
- //<<"%V $where $normal   $data    $defin    $cmpts $devdata $lmt \n"
+ //DBG[_DB]"%V $where $normal   $data    $defin    $cmpts $devdata $lmt \n"
 
 
 
   if (defin) {
      storeLMT( lmt);
   }
-
-DBANS=query("%V $where $k $normal  $data $cmpts $devdata %X $ht")
+ }
+ 
+/*
+DBANS=query("$_proc out ? ")
+if (DBANS == "q") {
+   exit()
+}
+*/
 
 }
 //=========================//
+
 void rd_dfds()
 {
 
-  n= 3 * nfields;
+  n = 3 * nfields;
 
-DBG[_DB]"$_proc %V $nfields\n"
+//  DBG[_DB]"$_proc %V $nfields\n"
 
   if (nfields == 0) {
 <<"WARNING no fields $nfields \n"
   }
 
 
-
   if (nfields > 0) {
+
 //  fmt = "C$n"
   //<<[_DB]"%V $fmt \n"
   dfd = 0;
@@ -259,36 +310,58 @@ DBG[_DB]"$_proc %V $nfields\n"
 
 
  // kfs=fscanv(A,0,fmt,&dfd)
+
     kfs=fread(dfd,1,n,A)
+    
+    tot_br +=kfs ;
+
+//<<"fread rd_dfds $kfs $tot_br\n"
+
     if (feof(A)) {
-    DBG"$_proc $kfs EOF exit!\n"
+       DBG"$_proc $kfs EOF exit!\n"
        break;
     }
     
-  DBG[_DB]"dfd %V $(Cab(dfd)) \n"
-/{
+ // DBG[_DB]"dfd %V $(Cab(dfd)) \n"
+
+/*
   for (j=0; j< nfields; j++) {
  <<[_DB]"<|$j|> $dfd[j][::]\n"
   }
-/}
+*/
 
- //<<[_DB]"%V $lmt \n"
+   //DBG[_DB]"%V $lmt $nfields \n"
   
    DEFS_NF[lmt] = nfields;
 
+//<<"$DEFS_NF\n"
+
+
+
+/*
+DBANS=query("lmt $lmt ? ")
+if (DBANS == "q") {
+   exit()
+}
+*/
+
+
+
+
    vd = dfd;
 
-   //vd->Redimn(85,3);
+   //vd<-Redimn(85,3);
 
   //<<[_DB]"%V $(Cab(vd)) \n"
-/{
-  for (j=0; j< nfields; j++) {
- <<[_DB]"$j $vd[j][::]\n"
-  }
-/}
+
+//  for (j=0; j< nfields; j++) {
+// <<[_DB]"$j $vd[j][::]\n"
+//  }
+
 
    // <<[_DB]"vd $vd\n"
-  vd->Redimn();
+  vd<-Redimn();
+  
   //<<[_DB]"/////////////////////// \n"
   //<<[_DB]"%V $(Cab(vd)) \n"
   //<<[_DB]"%V $vd\n"
@@ -296,29 +369,38 @@ DBG[_DB]"$_proc %V $nfields\n"
 //<<[_DB]"DEFS $(Cab(DEFS)) $(typeof(DEFS)) \n"
 
   DEFS[lmt][::] = vd;
+  
 //  DEFS[lmt] = vd;
     
-  DBG[_DB]"DEFS %V $lmt $n\n "
+  //DBG[_DB]"DEFS %V $lmt $n\n "
 
-DBG[_DB]"DEFS $(Cab(DEFS)) $(typeof(DEFS)) \n"
+  //DBG[_DB]"DEFS $(Cab(DEFS)) $(typeof(DEFS)) \n"
+
 //  <<[_DB]"%(3,, ,\n)$DEFS[lmt][0:n-1:]\n"
   //<<[_DB]"$DEFS[lmt][0:n-1:]\n"
   //<<[_DB]"/////////////////////// \n"
   }
-  DBANS=query("$_proc exit")
+
+
+//<<"Out of $_proc \n";
+
 }
+
 //==============================//
 
 void rd_devfds()
 {
-DBG[_DB]"$_proc\n"
+    //DBG[_DB]"$_proc\n"
 
- kfs = fscanv(A,0,"C1",&nfdd)
 
+    kfs = fscanv(A,0,"C1",&nfdd)
+    tot_br += kfs;
+
+//<<"rd_devfds $kfs  $tot_br\n"
 
     if (feof(A)) {
     <<"$_proc $kfs EOF exit!\n"
-      
+     
     }
 
 
@@ -339,11 +421,14 @@ DBG[_DB]"$_proc\n"
 
   kr=fread(&devfd,1,n,A);
 
-    if (feof(A)) {
-    DBG"$_proc $kfs EOF exit!\n"
-       exit()
-    }
+  tot_br += kr ;
 
+//<<"fread rd_devfds $kr $tot_br\n"
+
+  if (feof(A)) {
+    DBG"$_proc $kfs EOF exit!\n"
+   }
+  else {
 
 
     for (i = 0; i < nfdd ; i++) {
@@ -364,30 +449,45 @@ DBG[_DB]"$_proc\n"
 //"%X $devfd \n"
 
   }
-
-DBANS=query("$_proc exit")
+  }
+/*
+DBANS=query("$_proc out ? ")
+if (DBANS == "q") {
+   exit()
+}
+*/
 }
 //==============================//
 
 void rd_def()
 {
 
- kfs= fscanv(A,0,"C1,C1,S1,C1",&rserv,&arch,&gmn,&nfields)
-    if (feof(A)) {
-    <<"$_proc $kfs EOF exit!\n"
+ kfs= fscanv(A,0,"C1,C1,S1,C1",&rserv,&arch,&gmn,&nfields);
+ 
+ tot_br += kfs;
+
+  if (feof(A)) {
+    <<"$_proc $kfs EOF break!\n"
        break;
     }
-DBG"RD_DEV %V $rserv $arch $gmn $nfields \n"
+
+//DBG[_DB]"rd_dev $tot_br %V $rserv $arch $gmn $nfields \n"
+
 }
 //==============================//
 
 int vecd[255];
 int cat;
 float tot_secs = 0.0;
+
+
 void rd_data()
 {
+
 // what local message ?
-decode = 1;
+
+  decode = 1;
+  
    T=FineTime()
 
    tim = 0
@@ -397,12 +497,17 @@ decode = 1;
 // then what data fields ??
 
 
-  if (nfields != DEFS_NF[lmt]) {
+ if (nfields != DEFS_NF[lmt]) {
 //<<"DIFFER? %V$nfields $lmt $DEFS_NF[lmt] \n"
     nfields = DEFS_NF[lmt];
   }
+
+
    where = ftell(A)
-DBG[_DB]"$_proc @ posn $where reading data %V$lmt $nfields\n"
+
+   nfields = DEFS_NF[lmt];
+
+//DBG[_DB]"$_proc @ posn $where reading data %V$lmt $nfields\n"
 
   if (nfields <=0) {
 <<"ERROR no fields!!\n"
@@ -427,32 +532,49 @@ DBG[_DB]"$_proc @ posn $where reading data %V$lmt $nfields\n"
 //vecd = dfd;
 //<<[_DB]"%V $vecd[0:32] \n"
 
-  dfd->Redimn(85,3);
-DBG[_DB]"%V $nfields\n"
+  dfd<-Redimn(85,3);
+
+
+//<<"$dfd[0:9:1][::] \n"
+
+//DBG[_DB]"%V $nfields\n"
+
+
  for (i = 0; i < nfields ; i++) {
+
    cat = dfd[i][0];
-   dfdt = dfd[i][2];
    nbs =  dfd[i][1];
-DBG[_DB]"%v $i $cat $nbs $dfdt\n"
+   dfdt = dfd[i][2];
 
      if (nbs > 0) {
+
+
 
     //   nb = dfd[i][1];
     //    fmt = "C$nbs"
 
     //kfs= fscanv(A,0,fmt,CD);
-    fread(CD,1,nbs,A);
-    where = ftell(A);
-    if (feof(A)) {
-    <<"$_proc $kfs EOF exit!\n"
-     //  exit();
-    }
 
+   kfs = fread(CD,1,nbs,A);
+   tot_br += kfs ;
+
+//<<"fread rd_data CD $kfs $tot_br\n" 
+
+//DBG[_DB]"%v $i $kfs $cat $nbs $dfdt\n"
+
+   // where = ftell(A);
+
+    if (feof(A)) {
+    <<"$_proc EOF exit!\n"
+    }
+    else {
 	//<<[_DB]"READ $nbs data bytes\n";
 //	if (nbs > 120) {
          // ans = iread("$nb dbytes too big?");
 //	 <<[_DB]"$nbs dbytes too big?\n"
 //        }
+
+
 
 
 
@@ -479,7 +601,7 @@ DBG[_DB]"%v $i $cat $nbs $dfdt\n"
            bpm = CD[0];
         }
 
-	  DBG[_DB]"$i <0> $evn enum %u $wc\n"
+	  //DBG[_DB]"$i <0> $evn enum %u $wc\n"
 	 evn++;
 	 }
 	 break;
@@ -491,7 +613,7 @@ DBG[_DB]"%v $i $cat $nbs $dfdt\n"
          case  132:
 	  {
 //<<"%V $CD[0:10]\n"
-            ws= CD->mscan(SHORT_,0);
+            ws= CD<-mscan(SHORT_,0);
 
         if (cat == 2) {
              alt = ws * 0.2 -500;
@@ -516,9 +638,10 @@ DBG[_DB]"%v $i $cat $nbs $dfdt\n"
 	// time created
 //<<[_DB]"TIME  $CD[0:3] \n";
         //pos = 0;
-	
+
+//<<" got data 133 \n"
        
-	pos=CD->mscan(INT_,0);
+	pos=CD<-mscan(INT_,0);
        //   k= sscan(CD,'%d',&wt)
 	 // TV[tvn] = wt;
         deg = pos * scdeg;
@@ -529,22 +652,25 @@ DBG[_DB]"%v $i $cat $nbs $dfdt\n"
              lon = deg;
         }
        else {
-        <<"miss %v$cat $dfdt $pos\n";
+        DBG[DB_]"miss %v$cat $dfdt $pos\n";
         }
+
+
 	fndpos++;
-	DBG[_DB]"$i <133>  pos_deg   $deg\n"
+
+        //DBG[_DB]"$i <133>  pos_deg   $deg\n"
 	//	<<"$i <133>  $cat pos_deg   $deg\n"
 	  //tvn++;
 	  }
         break;  
        case   134:
         {// time created 
-DBG[_DB]"TIME  $CD[0:3] \n";
+//DBG[_DB]"TIME  $CD[0:3] \n";
       //  wt = 0;
       
         //bscan(CD,0,&wt); // works - sscan does not why?
 
-        wt=CD->mscan(INT_,0);
+        wt=CD<-mscan(INT_,0);
 
         if (cat == 253) { // timestamp
            tim = wt;
@@ -564,13 +690,13 @@ DBG[_DB]"TIME  $CD[0:3] \n";
  
 	case 140:
               // serial
-        DBG[_DB]"read serial %d $CD[0:nbs-1]\n"
+        //DBG[_DB]"read serial %d $CD[0:nbs-1]\n"
 
      //   wi = 0;
 //        bscan(CD,0,&wi); // works - sscan does not why?
        //  k= sscan(&CD[0],'%d',&wi)
           // IV[ivn] = wi;
-               wt=CD->mscan(INT_,0);
+               wt=CD<-mscan(INT_,0);
 
 //        <<"$i <140> $ivn serial  %u $wi\n"
 	  wvn++;       
@@ -578,16 +704,16 @@ DBG[_DB]"TIME  $CD[0:3] \n";
   
          default:
 	  {
-	  ws= CD->mscan(SHORT_,0);
+	  ws= CD<-mscan(SHORT_,0);
     	 // <<"default $i  <$dfdt> cat $cat $CD[0] $ws \n";
            }
          break;
         }
-
+       }
      }
  }
 
-DBG[_DB]"%V $lmt\n"
+//DBG[_DB]"%V $lmt\n"
 
 //ans=query("lmt $lmt")
 
@@ -606,9 +732,22 @@ DBG[_DB]"%V $lmt\n"
 
 
  if (fndpos) {
+ 
 <<[B]"$tim $lat $lon $dist $spd $alt $bpm\n";
-<<"$tim $lat $lon $dist $spd $alt $bpm\n";
-ans=query("$where $lat :")
+
+//<<"$tim $lat $lon $dist $spd $alt $bpm\n";
+
+
+  if (do_ask) {
+    ans=query("$where $lat $lon :")
+    if (ans @="q") {
+       wloop = 0;
+   }
+    if (ans @="c") {
+     do_ask = 0;
+    }
+   }
+  
 }
 
   if (lmt == 9) {  // what ?
@@ -621,10 +760,14 @@ ans=query("$where $lat :")
   
  }
  
-  dt= fineTimeSince(T)
-  secs = dt/1000000.0
- //<<"took  $secs\n"
-DBANS=query("$_proc exit")
+  dt= fineTimeSince(T);
+
+  secs = dt/1000000.0;
+
+<<"took  $secs\n"
+
+//  <<"end of $_proc \n"
+
 }
 //===============================//
 void rd_devdata()
@@ -643,7 +786,7 @@ void rd_devdata()
 
 void storeLMT(int almt)
 {
-DBG[_DB]"$_proc \n"
+//DBG[_DB]"$_proc \n"
 static int nlmts = 0;
 int k;
 
@@ -664,11 +807,17 @@ int k;
             break;  // already logged
      }
    }
-DBANS=query("$_proc exit")
+
+/*
+DBANS=query("$_proc out ? ")
+if (DBANS == "q") {
+   exit()
+}
+*/
 }
 //===========================//
 
-fname = "../TRACES/bike.fit";
+fname = "bike.fit";
 ask = 0;
 
 fname = _clarg[1];
@@ -677,7 +826,7 @@ fname = _clarg[1];
 //file_size= fstat(fname,"size")
 file_size= fexist(fname)
 
-//<<"%V$file_size \n";
+<<"%V$file_size \n";
 
    TL=FineTime()
 A= ofr(fname);
@@ -717,8 +866,9 @@ int cnt9 =0;
 ///            MAIN  LOOP ///
 
    do_ask = 0;
+   wloop = 1;
    
-while (1) {
+while (wloop) {
 
 //<<"%V $kl \n"
 
@@ -731,36 +881,46 @@ while (1) {
        break;
     }
 
-
-   
-
    if (defin) {
 
      rd_def();
 //ans=query("rd_def");
+
+
+
      rd_dfds();
+
+
+
 //ans=query("rd_dfds");
+
       if (devdata) {
+      
          rd_devfds();
+	 
      }
 
    }
 
 
     if (data) {
+    
        rd_data()
 
+
       if (devdata) {
+      
           rd_devdata();
+	  
        }
 
     }
 
    kl++;
 
-
+/*
    if (do_ask) {
-   ans=query("continue:\n");
+     ans=query("continue:\n");
     if (ans @="q") {
      break;
    }
@@ -768,8 +928,11 @@ while (1) {
      do_ask = 0;
     }
   }
-  
-//  if (kl > 100)  break;
+*/
+
+    //if (kl > 50)       break;
+//<<"wloop $kl\n"
+
 }
 //========================//
 
@@ -780,23 +943,21 @@ while (1) {
      if (LMTS[k][0] == -1) {
           break;
      }
-    <<" $k $LMTS[k][0] $LMTS[k][1]\n"
+   // <<" $k $LMTS[k][0] $LMTS[k][1]\n"
+
     k++;
 
     }
+<<" at end $k\n";
 
 cf(B)
 
 exit()
 //////////////////////////////////////////   DEV //////////////////////////////////////
 /*
-
-
   too slow!
 
   ? what to move to cpp?
-
-
 
 
 

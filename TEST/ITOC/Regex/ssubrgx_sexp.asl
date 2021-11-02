@@ -11,9 +11,9 @@
 //* 
 //***********************************************%///
 
-include "debug"
+#include "debug"
 debugON()
-sdb(1,@pline)
+
 
 //sed 's/\([^_]\)SUBSC_/\1SI_SUBSC_/g' 
 
