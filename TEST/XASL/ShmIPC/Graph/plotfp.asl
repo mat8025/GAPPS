@@ -204,6 +204,7 @@ sz = Caz(R)
 
 
 
+  
       // redraw
       // if not gwm -exit
 
@@ -342,4 +343,4 @@ Event E
 
 
 
-STOP!
+

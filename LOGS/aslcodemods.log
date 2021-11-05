@@ -929,3 +929,11 @@ win_p.cpp                           1.83  10/24/2021 13:21:35  WGRID
 findbtw_e.cpp                       2.44  10/31/2021 00:18:11  protect squote,dquote
 func_e.cpp                          3.51  10/31/2021 00:25:20  vdb
 storetype_e.cpp                     2.64  11/01/2021 13:09:59  return code storeintoarray
+rdp_l4.cpp                          1.66  11/02/2021 10:53:53  result SVPTR tmp store
+checkconstantexp.cpp                1.4  11/02/2021 13:21:48  check for ^, ^^ 2^^5
+ic_store.cpp                        1.73  11/04/2021 20:14:21  speed flow
+ic_store.cpp                        1.74  11/04/2021 20:34:06  function debug
+ic_store.cpp                        1.75  11/04/2021 20:46:06  copyRight
+ic_store.cpp                        1.76  11/04/2021 20:48:03  tidy
+ic_store.cpp                        1.77  11/04/2021 20:50:10  tidy++
+declare_e.cpp                       2.29  11/04/2021 22:16:07  exp eval of args to vec declare

@@ -134,7 +134,7 @@ int J[>20]
 
 chkN(J[30],70)
 
-J<-pinfo();
+J.pinfo();
 
 <<"$J \n"
 
@@ -148,7 +148,7 @@ int sum
 
 
 chkN(sum,26)
-
+chkOut()
   sum = J[2] + J[1] 
 
 <<"  %V$sum = $J[2] + $J[1]   \n"

@@ -12,6 +12,9 @@ gssys= GetEnv("GS_SYS")
 //<<" ENV $gssys \n"
 //<<" looking for manual in $gssys\n"
 
+int w = 0;
+
+
 proc pr_fun()
 {
 
@@ -68,8 +71,10 @@ DBG"%V $w $k\n"
                             if ( w >= (k-4) ) {
                               break
                             }
+
+
                             if (w == -1) {
-                              break
+                              break;
                             }
                         }
         <<"\n/////\n"
@@ -128,7 +133,7 @@ int nfs = 0;
 
     while (1) {
 
-         if ( pat @= "q" ) {
+         if ( pat == "q" ) {
           exit(-1)
          }
 

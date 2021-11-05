@@ -7,7 +7,7 @@
 //*  @date Mon Nov 30 09:30:26 2020 
 //*  @cdate Sun Dec 23 09:22:34 2018 
 //*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2014,2018 --> 
+//*  @Copyright  RootMeanSquare  2014,2021 --> 
 //* 
 //***********************************************%
   
@@ -255,7 +255,7 @@ L->info(1)
   date = date(GS_MDYHMS_);
   maj_ele = ptsym(pmaj);
   min_ele = ptsym(pmin);
-   min_name = ptname(pmin);
+  min_name = ptname(pmin);
 
 
 
@@ -285,7 +285,7 @@ j= 0;
    <<[A]" *  @comment $comment \n"
    <<[A]" *  @release $release \n"   
    <<[A]" * $vers \n"
-   <<[A]" *  @date $date \n"
+   <<[A]" *  @date $date          \n"
    <<[A]" *  @cdate $cdate \n"      
    <<[A]" *  @author $author \n"
    <<[A]" *  @Copyright © RootMeanSquare  2010,$(date(8)) → \n"           

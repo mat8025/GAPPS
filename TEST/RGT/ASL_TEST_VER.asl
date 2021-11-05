@@ -345,6 +345,8 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
   if ((do_bops || do_all) && (do_bops != -1)) {
         inflsz = caz(FailedList)
+
+
     RunDirTests("Bops","bops,fvmeq,fsc1,mainvar,snew");
 
 
@@ -359,7 +361,7 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
   cart("bops","7")
 
-  //cart_xic("bops","7")
+  cart_xic("bops","7")
 
   cart("fvmeq","3")
 
@@ -465,6 +467,9 @@ if ((do_bit || do_all) && (do_bit != -1)) {
   if ((do_logic || do_all) && (do_logic != -1)) {
   
    inflsz = caz(FailedList)
+
+   RunDirTests("Compare","compare")
+
    RunDirTests("Logic","logic,logic-ops,logic-def")
 
 
@@ -539,13 +544,13 @@ if ((do_all || do_try ) && (do_try != -1)) {
 
   if ((do_vops || do_all ) && (do_vops != -1)) {
     inflsz = caz(FailedList)
-     RunDirTests("Reverse","reverse") ; // BUG needs more than one
+
 
      RunDirTests("Vops","vops")
 
      RunDirTests("Vector","vector")
 
-
+     RunDirTests("Reverse","reverse") ; // BUG needs more than one
   }
 
 

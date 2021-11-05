@@ -27,6 +27,7 @@
     
    }
    //======================
+   
    A=-1;
    
    // if script found
@@ -185,8 +186,8 @@ if (found_vers) {
    <<[A]" * \n"
    <<[A]" *  \\\\-----------------<v_&_v>--------------------------//  \n"                          
    <<[A]" */ \n"
-   <<[A]";//----------------------//;\n"
-
+   <<[A]"\n;//----------------------//;\n"
+<<[A]"\n";
 <<[A]"<|Use_= \n"
 <<[A]"Demo  of $comment \n"
 
@@ -194,13 +195,13 @@ if (found_vers) {
 <<[A]"|>\n\n"
 
 
-<<[A]"#include \"debug\" \n"
+<<[A]"\n#include \"debug\" \n"
 
 <<[A]"if (_dblevel >0) { \n"
 <<[A]"   debugON() \n"
 <<[A]"   <<\"\$Use_ \\n\" \n"
 <<[A]"} \n\n"
-<<[A]"chkIn(_dblevel)\n"
+<<[A]"chkIn(_dblevel)\n\n"
 
 
 fflush(A)
@@ -213,5 +214,7 @@ fflush(A)
 
    fflush(A)
    cf(A)
+   
 !!"mv $newsrc $srcfile"
+
 /////

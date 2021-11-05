@@ -1,25 +1,26 @@
-//%*********************************************** 
-//*  @script sindent.asl 
-//* 
-//*  @comment format asl code 
-//*  @release CARBON 
-//*  @vers 1.17 Cl Chlorine                                                
-//*  @date Mon Apr  8 09:49:04 2019 
-//*  @cdate 1/1/2015 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script sindent.asl 
+ * 
+ *  @comment format asl code 
+ *  @release CARBON 
+ *  @vers 1.18 Ar Argon [asl 6.3.58 C-Li-Ce] 
+ *  @date 11/03/2021 12:04:22          
+ *  @cdate 1/1/2015 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                 
 ;
 
   
 #include "debug"
-debugOFF()
-
-sdb(0,@~pline,@~trace,@~step)
 
 
-   do_query = 0;
+
+   do_query = 1;
+   
 // use an indent of 2 spaces - for all non-comment lines
 
 //<<"? $_clarg[1]\n"
@@ -33,10 +34,11 @@ sdb(0,@~pline,@~trace,@~step)
   <<"can't find $fname \n"
    exit()
   }
-
-  B=ofw("${fname}.pp");
+  ofname = scut(fname,-4);
+  ofname = scat(ofname,"_pp.asl");
+  B=ofw(ofname);
   if (B ==-1) {
-  <<"can't write $fname .pp \n"
+  <<"can't write $ofname \n"
    exit()
   }
 
@@ -48,7 +50,11 @@ sdb(0,@~pline,@~trace,@~step)
   int ln = 0;
   
   is_comment = 0;
+  is_define = 0;
+  is_include = 0;    
   is_trailing_comment = 0;
+  in_comment_blk = 0  ;
+  in_txt_blk = 0  ;
   
   nw = 2;
   
@@ -66,9 +72,11 @@ sdb(0,@~pline,@~trace,@~step)
     
     is_comment = 0;
     is_empty_line = 1;
+    is_define = 0;
+    is_include = 0;        
     is_trailing_comment = 0;
     needs_semi_colon = 0;
-    L = readline(A);
+    L = readline(A,-1,1);
     
     
     if (ferror(A) == EOF_ERROR_) {
@@ -89,21 +97,46 @@ sdb(0,@~pline,@~trace,@~step)
          is_empty_line = 0;   
       scpy(nsv,eatWhiteEnds(NL));
       <<[2]"check comment $nsv[0] $nsv[1] \n"; 
-      
-      if ((nsv[0] == 47) && (nsv[1] == '/')) {
+
+       is_define = scmp(nsv,"#define",7);
+       is_include = scmp(nsv,"#include",8);
+
+<<[2]"%s $nsv %v %d $is_define $is_include\n"
+
+
+      if ((nsv[0] == '/') && (nsv[1] == '/')) {
         is_comment = 1;
         <<[2]"comment $NL\n"; 
         }
-      else if (nsv[0] == 35) {
+      else if ((nsv[0] == '/') && (nsv[1] == '*')) {
+        is_comment = 1;
+	in_comment_blk = 1
+        <<[2]"comment $NL\n"; 
+        }
+      else if ((nsv[0] == '*') && (nsv[1] == '/')) {
+        is_comment = 1;
+	in_comment_blk = 0
+        <<[2]"comment $NL\n"; 
+        }
+      else if ((nsv[0] == '<') && (nsv[1] == '|')) {
+        is_comment = 1;
+	in_txt_blk = 1
+        <<[2]"txt blk startcomment $NL\n"; 
+        }
+      else if ((nsv[0] == '|') && (nsv[1] == '>')) {
+        is_comment = 1;
+	in_txt_blk = 0;
+        <<[2]"txt blk startcomment $NL\n"; 
+        }		
+      else if (nsv[0] == '#') {
         is_comment = 1;
         <<[2]"comment $NL\n"; 
-        }	
+        }
       else {
         ws = dewhite(NL); 
-        if (slen(ws) == 0) {
+        if (slen(ws) == 1) {
           <<[2]"empty? $sl  $L\n"; 
           is_empty_line = 1;
-          
           }
         }
 
@@ -131,9 +164,9 @@ sdb(0,@~pline,@~trace,@~step)
     
 //k = sstr(s1,c,1)
     
-    k = sstr(";{}/\\",c,1); 
+    iv = sstr(";{}/\\",c,1); 
     
- <<[2]"$L $sl %c$c %d$k\n"
+ <<[2]"$L $sl %c$c $iv[0] \n"
 
     if (slen(NL) >0) {
       NL=eatWhiteEnds(NL);
@@ -141,13 +174,18 @@ sdb(0,@~pline,@~trace,@~step)
     
     is_cbe = 0;
     is_cbs = 0;
-    
+    is_equ = 0;
+
+
     
     if (slen(NL) > 0) {
       
       is_cbs = scmp(NL,"{",-1,0,0);
       
       is_cbe = scmp(NL,"}",-1,0,0);
+
+      is_equ = scin(NL,"=[]",1);
+
       }
     <<[2]"<|$L|> <|$NL|> %V $nw $is_cbs $is_cbe \n"; 
     
@@ -174,7 +212,7 @@ sdb(0,@~pline,@~trace,@~step)
     conline = 0;
 
 
-    if (len > 60) {
+    if (len > 70) {
       <<[2]"SPLIT $NL \n"; 
       //index =sstr(NL,",",1);
       
@@ -232,13 +270,16 @@ sdb(0,@~pline,@~trace,@~step)
       c= nsv[0];
       <<[2]"last char? $ln  $c $sl $ind %s $c \n";
       }
-    
-    if (is_empty_line && (empty_line_cnt > 2)) {
+
+
+
+
+    if (is_empty_line && (empty_line_cnt > 1)) {
       <<[2]"%V $empty_line_cnt\n"; 
       }
     else  if ( !is_comment && !is_proc && !is_if  \
-                 && (sl > 0) \
-		 && (  sstr(";/{}\\",c,1) == -1) ) { 
+                 && (sl > 0) ) {
+
 //
 //    check for trailing comment - if so eol is just before
        mat =0;
@@ -251,43 +292,74 @@ sdb(0,@~pline,@~trace,@~step)
        }
 
 
-	<<"%c $c %d $c \n"
+
+
+	<<[2]"%c $c %d $c \n"
 	if (c != 59) {
 	   needs_semi_colon = 1;
-	   }
-	   
+	 
+
+         iv =sstr(";/{}\\",c,1);
+<<[2]"$iv\n"
+          if (iv[0] != -1) {
+            needs_semi_colon = 0;
+          if (is_equ) {
+         <<[2]" declare St $NL needs ; \n";
+             needs_semi_colon = 1;
+          }
+        }
+       }
+       if (in_comment_blk) {
+             needs_semi_colon = 0;
+       }
+       if (in_txt_blk) {
+             needs_semi_colon = 0;
+       }
+       
       <<[2]" needs ; ? $needs_semi_colon <|$c|>\n";
       <<[2]" needs ; $NL\n";
       
-    }
+      }
 
 
 
-<<"%V $conline $is_empty_line $is_comment \n";
+<<[2]"%V $conline $is_empty_line $is_comment $empty_line_cnt\n";
 
       if (conline) {
         <<[B]"${tws}$NL1		\\\n"; 
         <<[B]"$tws  \t\t$NL2; \n"; 
         }
       else if ((is_empty_line) && (empty_line_cnt < 1)) {
-         <<"empty line!\n"
+        <<[2]"adding empty line! $empty_line_cnt\n"
         <<[B]"\n"; 
         }
       else if (is_trailing_comment) {
-         <<"trailing comment\n"
+         <<[2]"trailing comment\n"
          <<[B]"${tws}$NL \n"; 
         }	
+      else if (is_define || is_include) {
+               <<[2]"define/include\n"
+      <<[B]"$NL\n"; 
+      }      
       else if (is_comment) {
-               <<"comment\n"
+               <<[2]"comment\n"
       <<[B]"$L\n"; 
       }
       else if (needs_semi_colon) {
-                     <<"add ; \n"
+                     <<[2]"add ; \n"
+      if (empty_line_cnt == 0) {
+             <<[B]"\n"; 
+       }
           <<[B]"${tws}$NL;\n"; 
       }
       else {
-               <<"asis\n"
-        <<[B]"${tws}$NL\n"; 
+               <<[2]"asis\n"
+      if (empty_line_cnt == 0) {
+             <<[B]"\n"; 
+       }
+       if (!is_empty_line) {
+         <<[B]"${tws}$NL\n";
+	 }
       }
 
 
@@ -307,9 +379,13 @@ sdb(0,@~pline,@~trace,@~step)
 
   if (do_query) {
    ans=query("pp correct?")
-    if (ans @="n")
+    if (ans =="n") {
          break;
-    if (ans @="c") {
+	 }
+    if (ans == "q") {
+         exit();
+	 }
+    if (ans == "c") {
       do_query = 0;
     }
   }
@@ -319,7 +395,10 @@ sdb(0,@~pline,@~trace,@~step)
   cf(B);
   
 //==================================//
-///--------------  TBDFC ------------------------------
+/*--------------  TBDFC ------------------------------
+
 /// TBF  bug split of long lines
 /// TBF  bug - puts ; end of if without a brace
 /// TBD #define should start @ col 0
+
+*/

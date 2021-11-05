@@ -1,16 +1,17 @@
-//%*********************************************** 
-//*  @script subrange.asl 
-//* 
-//*  @comment test lhs vector range assignment 
-//*  @release CARBON 
-//*  @vers 1.2 He Helium                                                   
-//*  @date Sun Apr 26 22:12:02 2020 
- 
-//*  @cdate Sun Apr 26 10:20:19 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script subrange.asl 
+ * 
+ *  @comment test lhs vector range assignment 
+ *  @release CARBON 
+ *  @vers 1.3 Li Lithium [asl 6.3.58 C-Li-Ce] 
+ *  @date 11/04/2021 20:56:27          
+ *  @cdate Sun Apr 26 10:20:19 2020 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                  
 ///
 ///  subrange vector assign
 ///
@@ -19,14 +20,36 @@
 
 chkIn(_dblevel)
 
+
+
+void Hey(int V[])
+{
+<<"\nIN V: $V\n"
+
+   L= 17; // set global vec to constant
+
+   L.pinfo(); // show info on vector
+
+   V = 18;
+   
+   V.pinfo()
+
+  <<"V: $V\n"
+
+
+}
+//==========================
+
+
+
  I = Vgen(INT_,40,0)
 
-<<"$I \n"
+ pinfo(I);
+ 
 
  I[5:8] = 10;
 
- <<" $(info(I)) \n"
-<<"$I\n"
+ pinfo(I);
 
 chkR(I[0],0)
 chkR(I[5],10)
@@ -118,27 +141,17 @@ chkN(L[23],0)
 chkN(L[5],1)
 chkN(L[8],1)
 
-proc Hey(int V[])
-{
-<<"\nIN V: $V\n"
-
- L= 17;
-
-<<"L: $L\n"
-
- V = 18;
-
-<<"V: $V\n"
-
-}
-//==========================
-
-Hey(L);
+ Hey(L);
 
 <<"$L\n"
 
+ pinfo(L);
+
 chkN(L[0],18)
+
 chkN(L[23],18)
+
+chkOut()
 
 
 L= 80;

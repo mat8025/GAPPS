@@ -6570,12 +6570,21 @@ iv=sstr(haystack_str,needle_str,[ignore_case=0],[all=0])
 :- finds needle_str in haystack_str returns index to first occurence or all.
 returns integer vector of indices -- if not found iv[0] == -1,
 else iv contains position indexes of needle_str.
-
-
-
-
 .EF
 =============================================================
+
+.BF
+scin()
+.(x
+scin
+.)x 
+.FD
+scin(str1,str2,[all=0]) : count occurrence of any char from str2 
+               which is in str1  default return on first occurrence option count all=1");
+.EF
+=============================================================
+
+
 .BF
 getrgb()
 .(x

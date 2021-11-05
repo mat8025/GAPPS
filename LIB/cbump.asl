@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @script cbump.asl 
-//* 
-//*  @comment  
-//*  @release CARBON 
-//*  @vers 1.7 N Nitrogen                                               
-//*  @date Tue Jan  1 09:18:09 2019 
-//*  @cdate Sun Dec 23 09:22:34 2018 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2014,2018 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script cbump.asl 
+ * 
+ *  @comment  
+ *  @release CARBON 
+ *  @vers 1.8 O Oxygen [asl 6.3.58 C-Li-Ce] 
+ *  @date 11/04/2021 20:51:41          
+ *  @cdate Sun Dec 23 09:22:34 2018 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                               
   
   
   proc Vers2ele(str vstr)
@@ -44,7 +46,9 @@
   sz= fexist(srcfile,RW_,0);
   
   //<<[2]" RW sz $sz \n"
-  
+
+  !!"cp $srcfile ~/.GASP/WORK/Bak"
+
   if (sz == -1) {
   <<[2]"can't find script file $srcfile\n"
     exit();
@@ -173,7 +177,8 @@
 <<[A]"//$vers $pad"
 seekline(A,1)
 <<[A]"//    @date $date"   
-
+seekline(A,2)
+<<[A]"//    @Copyright © RootMeanSquare  2010,$(date(8)) → "           
 
 // <<[A]" ??? \n"
 

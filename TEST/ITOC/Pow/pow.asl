@@ -1,8 +1,8 @@
 
 /* 
- *  @script caz.asl 
+ *  @script pow.asl 
  * 
- *  @comment test Caz func 
+ *  @comment test pow and ^^ operator func 
  *  @release CARBON 
  *  @vers 1.6 C Carbon [asl 6.3.27 C-Li-Co] 
  *  @date 02/27/2021 09:36:03 
@@ -38,8 +38,9 @@ vp = 2 * 4.2
 vp = pow(2,(4.2))
 
  v = 2^^4.2
+ 
  v2 = 2.0^^(4.2)
-  v3 = 2.0^^4.2
+ v3 = 2.0^^4.2
 
 
 v4= pow(4.2,4.2)
@@ -114,10 +115,21 @@ vp = pow(2.0,(1.0/12))
 
 v = 2^^4
 
-vp = pow(2,4)
+int vi;
 
-<<"$v $vp\n"
+vi = 2^^5 ;
+
+long vl;
+
+vl = 2^^7 ;
+vp = pow(2,5)
+
+<<"%V $v $vp $vi $vl\n"
+
+
 chkR(v,16.0)
+
+chkN(vl,128)
 
 
 chkOut()

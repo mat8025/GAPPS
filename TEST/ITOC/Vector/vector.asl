@@ -65,20 +65,27 @@ H = (4.0 * (V+1))
 //!p T
 
 <<"%V$T\n"
+T.pinfo()
+V.pinfo()
 
-T = (2+ V)/(4.0 * (V+1)) 
+//T = (2+ V)/(4.0 * (V+1))
+T = (V+2)/(4.0 * (V+1)) 
+
+T.pinfo()
+
+
 
 chkN (T[1],0.375)
 
 <<"%6.4f$T \n"
-T->pinfo()
+T.pinfo()
 
 tz =Caz(T)
 
 tb = Cab(T)
 
 <<"%V $tz $tb\n"
-tb->pinfo()
+tb.pinfo()
 //<<"$(Caz(T)) $(Cab(T))\n" // TBF nest error
 
 chkStage("vop")
@@ -103,9 +110,9 @@ proc foo()
 
 
  <<"Y $Y\n"
- Y->info(1)
+ Y.pinfo()
  Y *= 2;
- Y->info(1)
+ Y.pinfo()
 <<"$Y\n"
 
 
@@ -228,11 +235,30 @@ chkStage("opeq")
   <<"$T\n"
 
   j=1;
-  
-  for (i=0;i<3;i++) {
+j.pinfo()
+   --j;
+
+j.pinfo()
+
+   --j;
+
+j.pinfo()
+    ++j;
+    <<" ++j\n"
+j.pinfo()
+    j++;
+        <<" j++\n"
+j.pinfo()
+
+  j =1;
+  for (i=0; i<3; i++) {
+    <<"$i $j $T[i] \n"
+    
     chkN (T[i],j++)
   }
- 
+
+
+
   T = V[1:3] + V[2:4]
   <<"$T\n"
    j = 3
@@ -290,13 +316,13 @@ int vec1[]  = { 1,2,3};
 
 <<"%V $vec1 \n"
 
-vec1->info(1)
+vec1.pinfo()
 
 int vec2[] = {7,8,9}
 
 <<"%V $vec2\n"
 
-vec2->info(1)
+vec2.pinfo()
 
 //int vec3 []  = vec1 @+  vec2;   // TBF -- WS should be OK
 int vec3[]  = vec1 @+  vec2;
@@ -407,26 +433,26 @@ chkStage("RH range inserted correctly to new vec")
 IV3[7:9] =IV2[1:3]
 
 <<"$IV3 \n"
-IV3->info(1)
+IV3.pinfo()
 chkN (IV3[7],9)
 chkN (IV3[8],4)
 chkN (IV3[9],13)
 
 <<"$IV3\n"
-IV3->Info(1);
+IV3.pinfo();
 chkStage("RH range inserted correctly to LH range")
 
 
 //int IV4[>5] = IV3
 // BUG XIC
 // BUG  does not clear existing range
-IV3->info(1)
+IV3.pinfo()
 
 int IV4[>5] = IV3[::]   // BUG xic
 
 <<"$IV4\n"
 
-IV4->info(1)
+IV4.pinfo()
 
 
 
@@ -456,7 +482,7 @@ chkN (IV5[i++],23)
 chkStage("lhrange")
 
 
-/{/*
+/*
 
   TBD
   warning for overrun of fixed array ?
@@ -467,7 +493,7 @@ chkStage("lhrange")
   BUG XIC
   BUG  does not clear existing range
 
-/}*/
+*/
 
 
 

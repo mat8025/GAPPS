@@ -63,9 +63,14 @@ long where;
 
 // deg = semicirs *  180.0/ (2^31)
 
-double scdeg = 180.0/ (2 ^31);
+long pexp = pow(2,31);
+double scdeg = 180.0/ pexp;
+long pexp2;
 
-//<<"%V %e $scdeg \n"
+pexp2 = 2^^31;
+
+<<"%V $pexp $pexp2 $scdeg %e $scdeg \n"
+
 double deg;
 double lat;
 double  lon;
@@ -450,12 +455,7 @@ void rd_devfds()
 
   }
   }
-/*
-DBANS=query("$_proc out ? ")
-if (DBANS == "q") {
-   exit()
-}
-*/
+
 }
 //==============================//
 
@@ -491,7 +491,7 @@ void rd_data()
    T=FineTime()
 
    tim = 0
-   lat =0;
+   lat =0.0;
    fndpos = 0;
    
 // then what data fields ??
@@ -636,15 +636,21 @@ void rd_data()
          case    133:
 	{
 	// time created
-//<<[_DB]"TIME  $CD[0:3] \n";
-        //pos = 0;
 
 //<<" got data 133 \n"
+//<<[_DB]"  $CD[0:3] \n";
+        //pos = 0;
+
+
        
-	pos=CD<-mscan(INT_,0);
+	pos = CD<-mscan(INT_,0);
+	
        //   k= sscan(CD,'%d',&wt)
 	 // TV[tvn] = wt;
+
         deg = pos * scdeg;
+//<<"%V $deg $scdeg $pos \n"
+
         if (cat == 0) {
              lat = deg;
         }
@@ -752,7 +758,7 @@ void rd_data()
 
   if (lmt == 9) {  // what ?
     cnt9++;
-    <<[_DB]" $cnt9  \n";
+ //   <<[_DB]" $cnt9  \n";
 
    // <<[B]"$tim $lat $lon $dist $spd $alt $bpm\n";
 
@@ -764,7 +770,7 @@ void rd_data()
 
   secs = dt/1000000.0;
 
-<<"took  $secs\n"
+//<<"took  $secs\n"
 
 //  <<"end of $_proc \n"
 

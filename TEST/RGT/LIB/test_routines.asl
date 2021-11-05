@@ -71,9 +71,12 @@ padtit =nsc(15,"/")
 
 void hdg(str atit)
 {
-atit<-pinfo()
+   //atit.pinfo()
 
   int len = slen(atit)
+
+
+
   int rlen = 20- len;
 
 //<<"$_proc  $atit  $len\n"
@@ -116,13 +119,13 @@ void changeDir(str td)
 void Run2Test(str td)
 {
 
-<<" $_proc $td $Testdir\n"
+//<<" $_proc $td $Testdir\n"
 
-  td<-pinfo()
+  //td.pinfo()
 
   chdir(Testdir)
 
-  hdg(td)
+  hdg(td);
 
 
   Prev_dir = getDir();
@@ -142,16 +145,17 @@ void RunDirTests(str Td, str Tl )
 //<<"$_proc $Td  <|$Tl|> \n"
 
 str pgname = "xx";
+str pgxname = "xy";
 
-//Tl<-info(1)
+//Tl.info(1)
 
-//ri=Tl<-info()
+//ri=Tl.info()
       chdir(Testdir)
       chdir(Td)
       
      // Run2Test(Td);
 
-      Tl<-DeWhite()
+      Tl.DeWhite()
       Tp = Split(Tl,",");
 
       np = Caz(Tp);
@@ -165,19 +169,22 @@ str pgname = "xx";
          //if (!(Tp[i] @= "")) 
 
 	    pgname = Tp[i];
-//<<" $i  <|$Tp[i]|>  <|$pgname|>\n"
+
 
 
         nl = slen(pgname);
 
 	    pgxname = Tp[i];
 
+
+//<<" $i  <|$Tp[i]|>  <|$pgname|>  <|$pgxname|> \n"
+
          if (nl > 0) {
 	     //<<"%V$pgname \n"
-	 //   pgname<-pinfo()
+	 //   pgname.pinfo()
 
          //do_carts(pgname);
-	 cart(pgname);
+	  cart(pgname);
 
 	// do_carts(Tp[i] );
 	
@@ -222,7 +229,8 @@ void RunSFtests(str Td)
 
 int scoreTest(str itname)
 {
-//<<"$_proc <|$itname|>  \n"
+
+ //<<"$_proc <|$itname|>  \n"
 
  int scored = 0;
  int ntests;
@@ -232,25 +240,29 @@ int scoreTest(str itname)
  int npass2;
 
 
-//itname<-pinfo();
+   //itname.pinfo();
 
-tname = itname;
+   tname = itname;
+
+   //tname.pinfo();
 
         RT=ofr(tname);
        
 //<<"$_proc $tname fh $RT \n"
 
+    //RT.pinfo()
 
-       if (RT != -1) {
-//<<"$tname\n"
-/*
-       tstf = readFile(RT);
-       <<"/////\n"
-       <<"$tstf"
-       <<"/////\n"
-*/       
+
+
+      if (RT != -1) {
+
+       
+      //<<"RT SCORING  $RT  \n"
+
           posn = fseek(RT,0,2)
-//<<"EOF @ $posn\n";
+
+   //<<" @ $posn\n";
+
 
           posn =seekLine(RT,-1);
 //<<"LL @ $posn\n";
@@ -311,7 +323,7 @@ else {
 
 <<[Opf]"DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\%\n"
  
-          cf(RT)
+
 
           scored = 1;
 
@@ -320,10 +332,22 @@ else {
 
           if (pcc != 100.0) {
 	  //<<"${Curr_dir} inserting $tname into failed list \n"
-            FailedList<-Insert("${Curr_dir}/${tname}")
+            FailedList.Insert("${Curr_dir}/${tname}")
 	  //<<[Tff]"${Curr_dir}/${tname}\n"  
           }
-       }
+
+
+
+
+
+     }
+
+
+    if (RT >  0) {
+//    <<"closing RT fh $RT\n";
+          cf(RT);
+    }
+     
 
     return scored;
 }
@@ -425,20 +449,28 @@ void cart_xic(Str aprg)
 {
 
 
-//aprg<-pinfo()
+//aprg.pinfo()
 
 str  xwt_prog;
 str prg = "xxxxxxxxxxxxxxxxx";
 
 prg = aprg;
 
-//<<" $_proc  <|$aprg|> <|$prg|> \n"
+//prg.pinfo();
+
+//<<" $_proc  aprg <|$aprg|> prg <|$prg|> \n"
 
 
-//<<"looking for xic file $prg\n"
 
-  if (fexist(prg) != -1) {
-//<<"found xic file $prg\n"
+foundit = fexist(prg) ;
+
+//<<"looking for xic file <|$prg|>  found? $foundit \n"
+
+
+//  if (fexist(prg) != -1) {
+      if ( foundit ) {
+  
+   //<<"found xic file $prg\n"
       str tim = time() ;  //   TBC -- needs to reinstated
      
    // wt_prog = "$tim "
@@ -491,7 +523,7 @@ prg = aprg;
 
        <<[Tcf]"#CRASH FAIL:--failed to run $prg\n"
        
-       CrashList<-Insert("${Curr_dir}/xic_${prg}")
+       CrashList.Insert("${Curr_dir}/xic_${prg}")
      }
   }
   
@@ -516,7 +548,10 @@ void cart_xic(Str aprg, Str a1)
       doxictest("./$aprg", "$a1")
       
       tst_file = "${aprg}.xtst";
-      //<<"%V $tst_file\n"
+
+//<<"%V $tst_file\n"
+
+
       if (f_exist(tst_file) > 0) {
          wlen = slen(xwt_prog)
          padit =nsc(40-wlen," ")
@@ -529,7 +564,7 @@ void cart_xic(Str aprg, Str a1)
 
        <<[Tcf]"#CRASH FAIL:--failed to run $aprg\n"
        
-       CrashList<-Insert("${Curr_dir}/xic_${aprg}")
+       CrashList.Insert("${Curr_dir}/xic_${aprg}")
      }
 
   }
@@ -540,28 +575,30 @@ void cart_xic(Str aprg, Str a1)
 void cart (str aprg)
 {
 
-//<<"$_proc <|$aprg|> \n"
+// <<"$_proc <|$aprg|> \n"
 
-//aprg<-pinfo()
+  //aprg.pinfo()
 
   int wlen;
   str prg; // TBF  not copied!!
 
 
   prg = aprg; // TBF  not copied!!
-//prg<-pinfo()
+
+
+  //prg.pinfo()
 //<<"%V $_proc $prg  $aprg  \n"  
 
   str wstr ="";
  //  in_pargc = _pargc;
-//  aprg<-pinfo();
-//  prg<-pinfo();
+//  aprg.pinfo();
+//  prg.pinfo();
   
   xwt_prog = "xxx";
 
   str tim = time();
   
-//  aprg<-info(1)
+//  aprg.info(1)
 
 //<<"rm -f $aprg  ${aprg}.tst  last_test* \n"
 //<<"rm -f $prg  ${prg}.tst  last_test* \n"
@@ -570,12 +607,14 @@ void cart (str aprg)
 
    jpid  =0
       
-      //aprg<-info(1)
+      //aprg.info(1)
 
 
            if (do_query) {
 	   
-      <<"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl \n"
+      //<<"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl \n"
+
+      <<"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst $CFLAGS ${prg}.asl \n"
            
 	       ans= i_read("run it?")
 	       if (ans @="q") {
@@ -602,7 +641,7 @@ void cart (str aprg)
 
       tst_file = "${prg}.tst";
       //<<"%V $tst_file\n"
-      //tst_file<-pinfo()
+      //tst_file.pinfo()
 
       if (f_exist(tst_file) > 0) {
 
@@ -620,7 +659,7 @@ void cart (str aprg)
 
        //<<"CRASH FAIL:--failed to run \n"
        // insert works??
-       CrashList<-Insert("${Curr_dir}/${prg}")
+       CrashList.Insert("${Curr_dir}/${prg}")
 
      }
    
@@ -649,8 +688,8 @@ void cart (Str aprg,  Str pa1)
   int wlen;
   //str tim;
 //   <<"%V $_pstack \n"
-//   aprg<-pinfo()
-//   pa1<-pinfo()
+//   aprg.pinfo()
+//   pa1.pinfo()
 
    str prg;
    str a1;
@@ -659,7 +698,7 @@ void cart (Str aprg,  Str pa1)
  //  prg->pinfo()
 
    a1= pa1;
-//   a1<-pinfo()
+//   a1.pinfo()
 
    in_pargc = _pargc;
   
@@ -705,7 +744,7 @@ void cart (Str aprg,  Str pa1)
      else {
 
        //<<"CRASH FAIL:--failed to run inseting $aprg into crashed list\n"
-        CrashList<-Insert("${Curr_dir}/${prg}")
+        CrashList.Insert("${Curr_dir}/${prg}")
 //	<<[Tcf]"${Curr_dir}/${aprg}\n"
      }
 
@@ -741,31 +780,31 @@ void cart (Str aprg,  Str pa1)
 void do_carts (str aprg)
 {
 //  <<"%V$_proc  <|$aprg>\n"
-//  aprg<-pinfo()
+//  aprg.pinfo()
 
 //!!"pwd"
 //str bprg = "XYZF";  // TBF fails
-//bprg<-pinfo()
+//bprg.pinfo()
 //bprg[2] = "A"; // FAIL sticky offset ele
-//bprg<-pinfo()
+//bprg.pinfo()
 
 //bprg = aprg;  // TBF fails
 
-//aprg<-pinfo()
-//bprg<-pinfo()
+//aprg.pinfo()
+//bprg.pinfo()
 
 //
 str wprg = "xx";
-//wprg<-pinfo()
+//wprg.pinfo()
 wprg = aprg;
 
-//wprg<-pinfo()
+//wprg.pinfo()
 //  <<"run carts vers  <|$wprg|>  <|$aprg|> \n"
 
    cart (wprg);
 
 //  <<"run xic vers  $wprg \n"
-//  wprg<-pinfo()
+//  wprg.pinfo()
        cart_xic (wprg);
 
 }

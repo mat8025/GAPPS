@@ -14,7 +14,7 @@
                                                                    
 
 
-#include "debug.asl"; 
+#include "debug"
 /*
 debugON(); 
   setdebug(1,@keep,@pline,@trace); 
@@ -49,7 +49,8 @@ debugON();
 
   U = vgen(UCHAR_,12,0,1)
 
-U->info(1)
+  pinfo(U)
+  
 <<"$U\n"
 
  sz = Caz(U)
@@ -105,13 +106,32 @@ sz = Caz(T)
 
 <<"%v$sz \n"
 
-  V = 255 -U
-  <<"%V$V\n"
+pinfo(U)
+sz= Caz(U)
+<<"U %V$sz\n"
+//  V = 255 -U ; // should be illegal not produce vector - not CPP trans
 
+sz.pinfo()
+!a
+
+
+//Vec V(INT_,sz,255) ; // TBF 11/04/21  doesn't process var arg??
+// needs full spec of args
+//Vec V(INT_,sz,255,0) ; 
+
+Vec V(INT_,sz,255,0)
+
+V -= U
+
+pinfo(V)
+
+!a
 chkN(V[0],255)
 chkN(V[1],254)
 
-U->info(1)
+pinfo(U)
+
+
 sz = Caz(U)
  <<"%v$sz \n"
 <<"%V $U\n"

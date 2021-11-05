@@ -34,7 +34,7 @@ chkIn(_dblevel)
 
 MA.pinfo()
 
-  Vec V(DOUBLE_,10,10,1)
+  Vec V(DOUBLE_,10,10,1);
 
 
   V[2] = 76
