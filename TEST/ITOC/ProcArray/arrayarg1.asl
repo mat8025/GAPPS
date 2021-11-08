@@ -68,6 +68,7 @@ int voo(int vect[])
 //Z->info(1)
 //<<"pa_arg2 %V$k\n"
 
+  vect.pinfo();
   
   vect[1] = 47;
 <<"add 47 $vect \n"  
@@ -148,23 +149,25 @@ wt= Z->typeof();
 Z[0] = 36
 
 <<"$Z\n"
-
+!a
 Z[6] = 28
 
 <<"before calling proc\n"
 
 <<"%V $Z\n"
-Z->info(1)
+Z.pinfo()
 //Z[0] = 37
 
 y = voo(Z) 
 
 <<"%V $y \n"
+<<"%V $Z\n"
+Z.pinfo()
 
 chkN(Z[1],47);
 chkN(Z[5],50);
 chkN(Z[6],28);
-
+!a
 
 
 
@@ -173,6 +176,11 @@ chkN(Z[6],28);
 U = Vgen(INT_,10,0,1)
 
 
+  U[1] = 47;
+
+<<"$U\n"
+
+!a
 W = U
 
 

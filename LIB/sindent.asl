@@ -1,17 +1,17 @@
 /* 
  *  @script sindent.asl 
  * 
- *  @comment format asl code 
+ *  @comment format asl scripts 
  *  @release CARBON 
- *  @vers 1.18 Ar Argon [asl 6.3.58 C-Li-Ce] 
- *  @date 11/03/2021 12:04:22          
+ *  @vers 1.19 K Potassium [asl 6.3.58 C-Li-Ce] 
+ *  @date 11/05/2021 08:21:11          
  *  @cdate 1/1/2015 
  *  @author Mark Terry 
  *  @Copyright © RootMeanSquare  2010,2021 → 
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
-                                                                 
+                                                              
 ;
 
   
@@ -34,8 +34,8 @@
   <<"can't find $fname \n"
    exit()
   }
-  ofname = scut(fname,-4);
-  ofname = scat(ofname,"_pp.asl");
+//  ofname = scut(fname,-4);
+  ofname = scat("pp_",fname);
   B=ofw(ofname);
   if (B ==-1) {
   <<"can't write $ofname \n"
@@ -55,6 +55,7 @@
   is_trailing_comment = 0;
   in_comment_blk = 0  ;
   in_txt_blk = 0  ;
+  is_margin_call = 0;
   
   nw = 2;
   
@@ -76,6 +77,7 @@
     is_include = 0;        
     is_trailing_comment = 0;
     needs_semi_colon = 0;
+    is_margin_call = 0;    
     L = readline(A,-1,1);
     
     
@@ -110,7 +112,7 @@
         }
       else if ((nsv[0] == '/') && (nsv[1] == '*')) {
         is_comment = 1;
-	in_comment_blk = 1
+	in_comment_blk = 1;
         <<[2]"comment $NL\n"; 
         }
       else if ((nsv[0] == '*') && (nsv[1] == '/')) {
@@ -132,9 +134,14 @@
         is_comment = 1;
         <<[2]"comment $NL\n"; 
         }
+       else if (nsv[0] == '!'  && (scin("apwei",nsv[1]))) {
+        is_margin_call = 1;
+        is_comment = 1; // treat as	
+        <<[2]"margin call $NL\n"; 
+        }	
       else {
         ws = dewhite(NL); 
-        if (slen(ws) == 1) {
+        if (slen(ws) == 0) {
           <<[2]"empty? $sl  $L\n"; 
           is_empty_line = 1;
           }
@@ -323,13 +330,13 @@
 
 
 
-<<[2]"%V $conline $is_empty_line $is_comment $empty_line_cnt\n";
+<<[2]"%V $conline $is_empty_line $is_comment $in_comment_blk $empty_line_cnt\n";
 
       if (conline) {
         <<[B]"${tws}$NL1		\\\n"; 
         <<[B]"$tws  \t\t$NL2; \n"; 
         }
-      else if ((is_empty_line) && (empty_line_cnt < 1)) {
+      else if ((is_empty_line) && (empty_line_cnt < 1) && !in_comment_blk) {
         <<[2]"adding empty line! $empty_line_cnt\n"
         <<[B]"\n"; 
         }
@@ -343,7 +350,7 @@
       }      
       else if (is_comment) {
                <<[2]"comment\n"
-      <<[B]"$L\n"; 
+               <<[B]"$L\n"; 
       }
       else if (needs_semi_colon) {
                      <<[2]"add ; \n"
@@ -353,13 +360,16 @@
           <<[B]"${tws}$NL;\n"; 
       }
       else {
-               <<[2]"asis\n"
-      if (empty_line_cnt == 0) {
+               <<[2]"asis: $NL\n"
+      if (empty_line_cnt == 0  && !in_comment_blk  && !in_txt_blk) {
              <<[B]"\n"; 
        }
-       if (!is_empty_line) {
-         <<[B]"${tws}$NL\n";
+         if (!is_empty_line) {
+          <<[B]"${tws}$NL\n";
 	 }
+	 else {
+<<"empty ? <|$NL|> \n"
+         }
       }
 
 

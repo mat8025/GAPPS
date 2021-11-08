@@ -937,3 +937,4 @@ ic_store.cpp                        1.75  11/04/2021 20:46:06  copyRight
 ic_store.cpp                        1.76  11/04/2021 20:48:03  tidy
 ic_store.cpp                        1.77  11/04/2021 20:50:10  tidy++
 declare_e.cpp                       2.29  11/04/2021 22:16:07  exp eval of args to vec declare
+siv.h                               2.6  11/07/2021 08:40:29  testAndCW,testOrCW

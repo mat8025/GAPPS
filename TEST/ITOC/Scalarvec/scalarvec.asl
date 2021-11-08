@@ -112,12 +112,12 @@ sz= Caz(U)
 //  V = 255 -U ; // should be illegal not produce vector - not CPP trans
 
 sz.pinfo()
-!a
+
 
 
 //Vec V(INT_,sz,255) ; // TBF 11/04/21  doesn't process var arg??
 // needs full spec of args
-//Vec V(INT_,sz,255,0) ; 
+//Vec V(INT_,sz,255,0) ;  // TBF
 
 Vec V(INT_,sz,255,0)
 
@@ -125,7 +125,7 @@ V -= U
 
 pinfo(V)
 
-!a
+
 chkN(V[0],255)
 chkN(V[1],254)
 

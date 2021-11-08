@@ -1,263 +1,300 @@
 /* 
- *  @script arrayrange.asl 
- * 
- *  @comment test vector range spec - forward,backward 
- *  @release CARBON 
- *  @vers 1.2 He Helium [asl 6.3.42 C-Li-Mo] 
- *  @date 07/14/2021 16:12:25 
- *  @cdate Tue Jun 25 18:48:42 2019 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
- * 
- *  \\-----------------<v_&_v>--------------------------//  
+   *  @script arrayrange.asl
+   *  @comment test vector range spec - forward,backward
+   *  @release CARBON
+   *  @vers 1.2 He Helium [asl 6.3.42 C-Li-Mo]
+   *  @date 07/14/2021 16:12:25
+   *  @cdate Tue Jun 25 18:48:42 2019
+   *  @author Mark Terry
+   *  @Copyright © RootMeanSquare  2010,2021 →
+   *  \\-----------------<v_&_v>--------------------------//
  */ 
-                                                                            
 
+   
 <|Use_=
-Demo  of vector range  e.g. V[0:10:2] = 5;
+   Demo  of vector range  e.g. V[0:10:2] = 5;
 ///////////////////////
 |>
 
-
 #include "debug"
 
-if (_dblevel >0) {
-   debugON()
-   <<"$Use_\n"   
-}
+   if (_dblevel >0) {
 
-//filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
+     debugON();
+
+     <<"$Use_\n";
+ }     
+//filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");		
 //filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
 
+   chkIn(_dblevel);
 
-chkIn(_dblevel)
+   int V[10];
 
+   V= 68;
 
-int V[10];
- V= 68;
-<<"%V$V\n"
+   <<"%V$V\n";
 
-  V[1:5:1] = 77
+   V[1:5:1] = 77;
 
-<<"%V$V\n"
+   <<"%V$V\n";
 
-chkN(V[2],77)
-chkN(V[5],77)
+   chkN(V[2],77);
 
-  V[::] = 76
+   chkN(V[5],77);
 
-<<"%V$V\n"
+   V[::] = 76;
 
-chkN(V[2],76)
-chkN(V[5],76)
+   <<"%V$V\n";
 
+   chkN(V[2],76);
 
+   chkN(V[5],76);
 
- V[1:-1:] = 97
+   V[1:-1:] = 97;
 
-chkN(V[2],97)
+   chkN(V[2],97);
 
-<<"%V$V\n"
+   <<"%V$V\n";
 
- V[1::] = 79
-<<"%V$V\n"
-chkN(V[2],79)
+   V[1::] = 79;
 
-<<"%V$V\n"
+   <<"%V$V\n";
 
+   chkN(V[2],79);
 
-  V[::2] = 49
+   <<"%V$V\n";
 
-<<"%V$V\n"
+   V[::2] = 49;
 
-chkN(V[0],49)
-chkN(V[1],79)
-chkN(V[2],49)
-chkN(V[3],79)
-chkN(V[4],49)
+   <<"%V$V\n";
 
+   chkN(V[0],49);
 
+   chkN(V[1],79);
 
-B=vgen(INT_,10,0,1)
-<<"%V$B\n"
+   chkN(V[2],49);
 
-chkN (B[0],0)
-chkN (B[4],4)
+   chkN(V[3],79);
 
-D= B
-<<"%V$D\n"
-<<"%V$B\n"
+   chkN(V[4],49);
+//int B[]=vgen(INT_,10,0,1)
 
-chkN (D[0],0)
-chkN (D[4],4)
+   B=vgen(INT_,10,0,1);
+//Vec B(INT_,10,0,1)  // TBF 11/06/21  XIC crash
 
-C= B[1:3];
+   B.pinfo();
 
-<<"%V$C\n"
+   <<"%V$B\n";
 
-chkN (C[0],1)
-chkN (C[1],2)
-chkN (C[2],3)
+   chkN (B[0],0);
 
+   chkN (B[4],4);
 
+   D= B;
 
-D= B[::]
-<<"%V$D\n"
-<<"%V$B[0:-1]\n"
+   D.pinfo();
 
-chkN (D[0],0)
-chkN (D[4],4)
+   <<"%V$D\n";
 
+   <<"%V$B\n";
 
-D= B[0:-1]
-<<"%V$D\n"
-<<"%V$B[0:-1]\n"
+   chkN (D[0],0);
 
-chkN (D[0],0)
-chkN (D[5],5)
+   chkN (D[4],4);
 
+   C= B[1:3];
 
-D= B[1:-2]
-<<"%V$D\n"
-<<"%V$B[1:-2]\n"
+   <<"%V$C\n";
 
-chkN (D[0],1)
-chkN (D[2],3)
+   chkN (C[0],1);
 
-D= B[-1:0:-1]
-<<"reverse opr\n"
-<<"%V$D\n"
-<<"%V$B[-1:0:-1]\n"
+   chkN (C[1],2);
 
-chkN (D[0],9)
-chkN (D[4],5)
+   chkN (C[2],3);
 
+   D= B[::];
 
-D= B[-2:1:-1]
+   <<"%V$D\n";
 
+   <<"%V$B[0:-1]\n";
 
-<<"%V$D\n"
-<<"%V$B[-1:0:-1]\n"
+   chkN (D[0],0);
 
-chkN (D[0],8)
-chkN (D[2],6)
+   chkN (D[4],4);
 
+   D= B[0:-1];
 
+   <<"%V$D\n";
 
+   <<"%V$B[0:-1]\n";
 
-<<"  circular buffer  B[-1:8:1] \n"
-B->info(1)
-<<"%V$B \n"
+   chkN (D[0],0);
 
-E= B[1:8:1]
+   chkN (D[5],5);
 
-<<"%V$E\n"
+   D= B[1:-2];
 
-Z= B[1:7:1]
+   <<"%V$D\n";
 
-<<"%V$Z\n"
-chkN(Z[0],1)
+   <<"%V$B[1:-2]\n";
 
+   chkN (D[0],1);
 
+   chkN (D[2],3);
 
-Z= B[-1:7:1]
+   D= B[-1:0:-1];
 
-<<"%V$Z\n"
+   <<"reverse opr\n";
 
-chkN(Z[0],9)
+   <<"%V$D\n";
 
-chkN(Z[1],0)
+   <<"%V$B[-1:0:-1]\n";
 
-chkN(Z[2],1)
+   chkN (D[0],9);
 
-chkN(Z[3],2)
+   chkN (D[4],5);
 
-E= B[-1:8:1]
+   D= B[-2:1:-1];
 
+   <<"%V$D\n";
 
-<<"%V$E\n"
+   <<"%V$B[-1:0:-1]\n";
 
+   chkN (D[0],8);
 
+   chkN (D[2],6);
 
-chkN (E[0],9)
+   <<"circular buffer  B[-1:8:1] \n";
 
+   B.pinfo();
 
+   <<"%V$B \n";
 
-F= B[-1:8:1]
+   E= B[1:8:1];
 
-<<"%V$F\n"
+   <<"%V$E\n";
 
+   Z= B[1:7:1];
 
+   <<"%V$Z\n";
 
-D->info(1)
+   chkN(Z[0],1);
+   chkN(Z[1],2);   
 
-D= B[-1:8:1]
 
-<<"%V$D\n"
 
+   Z= B[-1:7:1];
 
+   <<"%V$Z\n";
 
-<<"B[-1:2:1] $B[-1:2:1]   \n"
+   chkN(Z[0],9);
 
-chkN (D[0],9)
-chkN (D[1],0)
-chkN (D[2],1)
-chkN (D[3],2)
+   chkN(Z[1],0);
 
 
 
 
-D= B[-2:2:1]
-<<"%V$D\n"
-<<"%V$B[-2:2:1] \n"
 
-chkN (D[0],8)
-chkN (D[4],2)
+   chkN(Z[2],1);
 
+   chkN(Z[3],2);
 
+   E= B[-1:8:1];
 
-<<" 3:3:1 \n"
-D= B[4:3:1]
-<<"%V$D\n"
-<<"%V$B[3:3:1] \n"
+   <<"%V$E\n";
 
+   chkN (E[0],9);
+
+
+
+
+   F= B[-1:8:1];
+
+   <<"%V$F\n";
+
+   D->info(1);
+
+   D= B[-1:8:1];
+
+   <<"%V$D\n";
+
+   <<"B[-1:2:1] $B[-1:2:1]   \n";
+
+   chkN (D[0],9);
+
+   chkN (D[1],0);
+
+   chkN (D[2],1);
+
+   chkN (D[3],2);
+
+
+
+   D= B[-2:2:1];
+
+   <<"%V$D\n";
+
+   <<"%V$B[-2:2:1] \n";
+
+   chkN (D[0],8);
+
+   chkN (D[4],2);
+
+   <<" 3:3:1 \n";
+
+   D= B[4:3:1];
+
+   <<"%V$D\n";
+
+   <<"%V$B[3:3:1] \n";
 //chkN (D[0],3)
 //chkN (D[5],3)
 
-<<" 3:3:-1 \n"
-D= B[3:3:-1]
-<<"%V$D\n"
+   <<" 3:3:-1 \n";
+
+   D= B[3:3:-1];
+
+   <<"%V$D\n";
 //<<"%V$B[3:3:-1] \n"
 
+   <<" 3:3:0 \n";
+
+   D= B[3:3:0];
+
+   <<"%V$D\n";
 
 
-<<" 3:3:0 \n"
-D= B[3:3:0]
-<<"%V$D\n"
-/{
-<<"%V$B[3:3:-1] \n"
-/}
 
+/*
+
+     <<"%V$B[3:3:-1] \n";
+
+*/
 //chkN (D[0],3)
 //chkN (D[5],3)
 
-D = B[-3:4:-1]
+   D = B[-3:4:-1];
 
-<<"$D\n"
-
-e = B[9]
-<<"%V $e $B[9]\n"
+   <<"$D\n";
 
 
-f=  B[-1]
-
-<<"%V $f $B[-1]\n"
-
-chkN (f,9)
-
-f=  B[-2]
-<<"%V $f $B[-2]\n"
-chkN (f,8)
 
 
-chkOut () ;
+   e = B[9];
+
+   <<"%V $e $B[9]\n";
+
+   f=  B[-1];
+
+   <<"%V $f $B[-1]\n";
+
+   chkN (f,9);
+
+   f=  B[-2];
+
+   <<"%V $f $B[-2]\n";
+
+   chkN (f,8);
+
+   chkOut () ;

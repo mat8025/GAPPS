@@ -11,264 +11,310 @@
 //* 
 //***********************************************%
 <|Use_ =
-demo pre post incr
+   demo pre post incr
 |>
-
-
-
 
 #include "debug"
 
+   if (_dblevel >0) {
 
-if (_dblevel >0) {
-   debugON()
-     <<"$Use_\n"
-}
+     debugON();
 
-chkIn(_dblevel)
+     <<"$Use_\n";
 
-proc Foo(int a,int b)
-{
-<<"%V$a $b\n"
- c= a + b
- 
-<<"sum %V$c \n"
- return c;
-}
+     }
 
+   chkIn(_dblevel);
+
+   proc Foo(int a,int b)
+   {
+
+     <<"%V$a $b\n";
+
+     c= a + b;
+
+     <<"sum %V$c \n";
+
+     return c;
+
+     }
 //======================================//
 
-int VA[3] = {1,2,3};
-VA->info(1)
 
-int k = 0;
-k->info(1)
-A= vgen(INT_,10,0,1)
-A->info(1)
-<<"$A\n"
 
-A[0] = 47;
-A[1] = 79;
-A[2] = 80;
-A[3] = 14;
+   k = 0;
 
-<<"$A\n"
+   <<"%v $k \n";
 
+   k++;
 
+   <<"%v $k \n";
 
-b = A[k]
+   chkN(k,1);
 
-<<"0th ele is $b\n"
+   k--;
 
-chkN(b,47)
+   <<"%v $k \n";
 
+   chkN(k,0);
 
-b= A[k++]
+   ++k++;
 
-<<"0th ele is still $b\n"
+   <<"%v $k \n";
 
-chkN(b,47)
+   chkN(k,2);
 
+   k = 2;
+   
+   --k--;
 
-<<"%V$k\n"
+   <<"%v $k \n";
 
-b = A[k]
+   chkN(k,0);
 
-<<"1st ele is $b \n"
 
-chkN(b,79)
 
 
-b= A[k++]
 
-<<"1st ele is $b \n"
+  chkOut()
 
-chkN(b,79)
 
-<<"%V$k\n"
 
-b= A[k++]
 
-<<"2nd ele $b \n"
 
-chkN(b,80)
 
-<<"%V$k\n"
 
-k++;
 
-b= A[k++]
+   int VA[3] = {1,2,3};
 
-<<"4th ele $b \n"
+   VA->info(1);
 
-chkN(b,4)
+   int k = 0;
 
-<<"%V$k\n"
+   k->info(1);
 
+   A= vgen(INT_,10,0,1);
 
-b= A[k--]
+   A->info(1);
 
-<<"%V$b \n"
+   <<"$A\n";
 
-chkN(b,5)
+   A[0] = 47;
 
-<<"%V$k\n"
+   A[1] = 79;
 
+   A[2] = 80;
 
-b= A[--k]
+   A[3] = 14;
 
-<<"%V$b \n"
+   <<"$A\n";
 
-chkN(b,14)
+   b = A[k];
 
-<<"%V$k\n"
+   <<"0th ele is $b\n";
 
-chkN(k,3)
+   chkN(b,47);
 
-b= A[++k--]
+   b= A[k++];
 
-<<"%V$b \n"
+   <<"0th ele is still $b\n";
 
-<<"%V$k\n"
+   chkN(b,47);
 
-chkN(k,3)
-chkN(b,4)
+   <<"%V$k\n";
 
+   b = A[k];
 
-int e = ++k ;
+   <<"1st ele is $b \n";
 
-<<"%V$e $k \n"
+   chkN(b,79);
 
+   b= A[k++];
 
-int w = --k ;
+   <<"1st ele is $b \n";
 
-<<"%V$w $k \n"
+   chkN(b,79);
 
-chkN(e,4)
-chkN(w,3)
+   <<"%V$k\n";
 
-int Gc;
+   b= A[k++];
 
+   <<"2nd ele $b \n";
 
- k = 0
+   chkN(b,80);
 
-<<"%v $k \n"
-k++
-<<"%v $k \n"
-chkN(k,1)
-k--
-<<"%v $k \n"
-chkN(k,0)
-++k++
-<<"%v $k \n"
-chkN(k,2)
---k--
-<<"%v $k \n"
-chkN(k,0)
+   <<"%V$k\n";
 
-double x0 = -10.0
+   k++;
 
-<<"%v $x0 \n"
+   b= A[k++];
 
-chkR(x0,-10)
+   <<"4th ele $b \n";
 
-x0++
+   chkN(b,4);
 
-chkR(x0,-9)
+   <<"%V$k\n";
 
-k = 2
-m = 2
+   b= A[k--];
 
-n = k++ + m--
+   <<"%V$b \n";
 
-<<"%V $n $k $m \n"
+   chkN(b,5);
 
-chkN(n,4)
+   <<"%V$k\n";
 
-k = 2
-m = 2
+   b= A[--k];
 
-n = --k + ++m
+   <<"%V$b \n";
 
-chkN(n,4)
+   chkN(b,14);
 
+   <<"%V$k\n";
 
-<<"%V $n $k $m \n"
+   chkN(k,3);
 
+   b= A[++k--];
 
-<<"b4foo %V $k $m \n"
+   <<"%V$b \n";
 
- r=Foo(k++,m++)
-<<"%V $k $m \n"
+   <<"%V$k\n";
 
-chkN(k,2)
-chkN(m,4)
+   chkN(k,3);
 
-chkN(r,4)
+   chkN(b,4);
 
+   int e = ++k ;
 
-<<"b4foo %V $k $m \n"
+   <<"%V$e $k \n";
 
- r = Foo(++k,++m)
+   int w = --k ;
 
-<<"%V $k $m $r\n"
+   <<"%V$w $k \n";
 
-chkN(k,3)
-chkN(m,5)
+   chkN(e,4);
 
-chkN(r,8)
+   chkN(w,3);
 
+   int Gc;
 
-AV = vgen(INT_,10,0,1)
 
-AV->info(1)
 
-<<"%V$AV\n"
+   double x0 = -10.0;
 
-chkN(AV[1],1)
+   <<"%v $x0 \n";
 
- AV++;
- 
-<<"%V$AV\n"
+   chkR(x0,-10);
 
-chkN(AV[1],2);
+   x0++;
 
+   chkR(x0,-9);
+
+   k = 3;
+
+   m = 2;
+
+   n = k++ + m++;
+
+   <<"%V $n $k $m \n";
+
+    chkN(n,5);
+
+    chkN(k,4);
+    chkN(m,3);    
+
+
+
+   k = 2;
+
+   m = 2;
+
+n.pinfo()
+
+   n = --k + --m;
+
+n.pinfo()
+
+   chkN(n,2);
+
+   <<"%V $n = $k + $m \n";
+
+chkN(k,1);
+chkN(m,1);
+
+!a
+   <<"b4foo %V $k $m \n";
+
+   r=Foo(k++,m++);
+
+   <<"%V $k $m \n";
+
+   chkN(k,2);
+
+   chkN(m,4);
+
+   chkN(r,4);
+
+   <<"b4foo %V $k $m \n";
+
+   r = Foo(++k,++m);
+
+   <<"%V $k $m $r\n";
+
+   chkN(k,3);
+
+   chkN(m,5);
+
+   chkN(r,8);
+
+   AV = vgen(INT_,10,0,1);
+
+   AV->info(1);
+
+   <<"%V$AV\n";
+
+   chkN(AV[1],1);
+
+   AV++;
+
+   <<"%V$AV\n";
+
+   chkN(AV[1],2);
 //setdebug(1,"trace")
 
-BV = ++AV ; // this should increment all elements in the vector
+   BV = ++AV ; // this should increment all elements in the vector;
 
-<<"after ++ $AV\n"
-BV->info(1)
-<<"%V $BV\n"
+   <<"after ++ $AV\n";
 
-chkN(BV[1],3)
+   BV->info(1);
 
-<<"%V $BV\n"
-<<"%V $AV\n"
+   <<"%V $BV\n";
 
-BV= 67
+   chkN(BV[1],3);
 
-<<"$BV\n"
+   <<"%V $BV\n";
 
-chkN(BV[1],67)
+   <<"%V $AV\n";
 
-BV = AV++ ; // this should increment all elements in the vector
+   BV= 67;
 
-<<"after  $AV ++\n"
+   <<"$BV\n";
 
+   chkN(BV[1],67);
 
-chkN(AV[1],4)
+   BV = AV++ ; // this should increment all elements in the vector;
 
-chkN(BV[1],3)
+   <<"after  $AV ++\n";
 
-<<"%V $AV\n"
-<<"%V $BV\n"
+   chkN(AV[1],4);
 
-<<"%V $BV[2]\n"
+   chkN(BV[1],3);
 
+   <<"%V $AV\n";
 
-chkOut()
+   <<"%V $BV\n";
 
+   <<"%V $BV[2]\n";
 
-exit()
+   chkOut();
 
+   exit();

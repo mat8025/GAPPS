@@ -156,6 +156,9 @@ TSV="$(VF*2)"
 
 <<"%V$TSV\n"
 
+<<"Que $(vgen(DOUBLE_,10,1,0.5) )\n"
+
+
 TS= "%6.2f$(vgen(FLOAT_,10,1,0.5))"
 <<"%V$TS\n"
 
@@ -166,9 +169,14 @@ T= Split(TS)
 
 T= Split("%6.2f$(vgen(FLOAT_,10,1,0.5))")
 
-<<"$T\n"
+<<"T: $T\n"
+
+T.pinfo()
+
 
 chkStr(T[1],"1.50")
+
+
 chkStr(T[2],"2.00")
 chkStr(T[3],"2.50")
 
@@ -453,12 +461,12 @@ IV= vgen(INT_,20,0,1)
 
 T= itoa(IV) // does not deliver svar array
 
-T->info(1)
+T.pinfo()
 <<"$T\n"
 
 M=Split("$IV")
 
-M->info(1)
+M.pinfo()
 <<"$M \n"
 
 
@@ -617,6 +625,11 @@ void pSv (svar SV)
 static int k = 1;
 
 <<"$(typeof(SV)) $SV[::]\n"
+
+str w2;
+
+SV.pinfo()
+
 sz = Caz(SV)
 
 <<"%V $sz $SV[2] \n"
@@ -649,6 +662,8 @@ else if (k==3) {
 S = Split("how did we get here")
 
 <<"$(typeof(S)) $S[::]\n"
+
+S.pinfo()
 
 pSv(S)
 
