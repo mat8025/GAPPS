@@ -4,7 +4,8 @@
 
 openDll("uac")
 
-proc getArmN (char  cna[])
+//proc getArmN (char  cna[])
+proc getArmN (char  cna)
 {
 Pan psum = 0;
 //<<"%V $cna[::] \n"
@@ -53,7 +54,7 @@ Pan pw[10];
 
 <<" $np powers 0 to 9\n"
       for (i=0; i < 10 ;i++) {
-            pw[i] = i^np ;
+            pw[i] = i^^np ;
 	    <<"<$i>$pw[i] \n"
       }
 
@@ -66,7 +67,7 @@ sum =getArmN(cnum);
 <<" is $sum == to $N   $(sum - N)?\n"
 
 if (sum == N) {
-<<" Yes $N is Armstrong (Narcissitic) number\n"
+<<" Yes $N is Armstrong (Nacissitic) number\n"
 }
 else {
 <<" No $N not Armstrong - try another!\n"
@@ -79,7 +80,7 @@ else {
 
 <<"$ret  %d $ret  $pk\n"
 
-/{/*
+/*
 
 there are 9 Armstrong 1 numbers 
  0,1,2,3,4,5,6,7,8,9
@@ -137,4 +138,4 @@ there are 2?   Armstrong 11 numbers
 
 
 
-/}*/
+*/

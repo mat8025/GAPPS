@@ -3,14 +3,15 @@
  * 
  *  @comment format asl scripts 
  *  @release CARBON 
- *  @vers 1.19 K Potassium [asl 6.3.58 C-Li-Ce] 
- *  @date 11/05/2021 08:21:11          
+ *  @vers 1.20 Ca Calcium [asl 6.3.59 C-Li-Pr] 
+ *  @date 11/12/2021 09:04:05          
  *  @cdate 1/1/2015 
  *  @author Mark Terry 
  *  @Copyright © RootMeanSquare  2010,2021 → 
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
+
                                                               
 ;
 
@@ -22,10 +23,76 @@
 #define MARGINCALL 3
 #define EMPTYLN 5
 
+void doTrailingComment()
+{
+         sposn = regex(NL,"; *//")
 
+         if (sposn[0] == -1)  {
+           NL = ssub(NL,"//","; //")
+	 }
+	 is_trailing_comment = 1;
+}
+//=========================//      
 
+void Conline()
+{
+      <<[2]"SPLIT $NL \n"; 
+      //index =sstr(NL,",",1);
+      
+// use ,
+      iv = sstr(NL,",",1,1);
+      <<[2]"found? $iv\n"; 
+      index = iv[0];
+      if (index == -1) {
+        index = -1;
+        }
+      else {
+        sz=Caz(iv);
+        wi = sz/2;
+        index = iv[wi];
+        if (index != -1) 
+            index++;
+        else
+            index = -1;
+        }
+      
+// else use space
+      if (index == -1) {
+      // but space not quoted !
+        iv = sstr(NL," ",1,1);
+        <<[2]"found? $iv\n"; 
+        index = iv[0];
+        if (index == -1) {
+          index = -1;
+          }
+        else {
+          sz=Caz(iv);
+          wi = sz/2;
+          index = iv[wi];
+          if (index != -1) 
+             index++;
+          else 
+             index = -1;
+          }
+        }
+      
+      if (index != -1) {
+        <<[2]"SPLIT  %v $index\n";
+        scpy(NL1,NL,index);
+        <<[2]"%V $NL1 \n"; 
+        scpy(NL2,sele(NL,index,len-index));
+        <<[2]"%V $NL2 \n"; 
+        conline =1;
+        }
+}
+//=========================//      
+
+int sposn[300];
 int ltype = 0;
 int last_ltype = 0;
+int mat =0;
+int cr =0;
+
 
    do_query = 1;
    
@@ -271,56 +338,9 @@ ESL="//===***===//";
 
 
     if (len > 100) {
-      <<[2]"SPLIT $NL \n"; 
-      //index =sstr(NL,",",1);
-      
-// use ,
-      iv = sstr(NL,",",1,1);
-      <<[2]"found? $iv\n"; 
-      index = iv[0];
-      if (index == -1) {
-        index = -1;
-        }
-      else {
-        sz=Caz(iv);
-        wi = sz/2;
-        index = iv[wi];
-        if (index != -1) 
-            index++;
-        else
-            index = -1;
-        }
-      
-// else use space
-      if (index == -1) {
-      // but space not quoted !
-        iv = sstr(NL," ",1,1);
-        <<[2]"found? $iv\n"; 
-        index = iv[0];
-        if (index == -1) {
-          index = -1;
-          }
-        else {
-          sz=Caz(iv);
-          wi = sz/2;
-          index = iv[wi];
-          if (index != -1) 
-             index++;
-          else 
-             index = -1;
-          }
-        }
-      
-      if (index != -1) {
-        <<[2]"SPLIT  %v $index\n";
-        scpy(NL1,NL,index);
-        <<[2]"%V $NL1 \n"; 
-        scpy(NL2,sele(NL,index,len-index));
-        <<[2]"%V $NL2 \n"; 
-        conline =1;
-        }
-      }
-    
+       Conline()
+    }
+     
     sl = Slen(NL);
     ind = sl -1;
     if (ind >= 0) {
@@ -340,17 +360,13 @@ ESL="//===***===//";
 
 //
 //    check for trailing comment - if so eol is just before
-       mat =0;
-       cr =0;
+
        spat(NL,"//",-1,-1,&mat,&cr);
        
        if (mat) {
-         NL = ssub(NL,"//","; //")
-	 is_trailing_comment = 1;
-       }
-
-
-
+         // ; before //
+         doTrailingComment()
+      }
 
 	<<[2]"%c $c %d $c \n"
 	if (c != 59) {
@@ -381,7 +397,7 @@ ESL="//===***===//";
 
 
 
-<<[2]"%V $conline $is_empty_line $is_comment $in_comment_blk $empty_line_cnt\n";
+<<[2]"%V $conline $is_empty_line $is_comment $in_comment_blk $empty_line_cnt $last_ltype\n";
 
       if (conline) {
         <<[B]"${tws}$NL1		\\\n"; 
@@ -391,10 +407,12 @@ ESL="//===***===//";
         <<[2]"adding empty line! $empty_line_cnt\n"
         <<[B]"\n"; 
         }
+/*
       else if (is_trailing_comment) {
          <<[2]"trailing comment\n"
          <<[B]"${tws}$NL \n"; 
-        }	
+        }
+*/	
       else if (is_define || is_include) {
                <<[2]"define/include\n"
       <<[B]"$NL\n"; 
@@ -411,8 +429,11 @@ ESL="//===***===//";
           <<[B]"${tws}$NL;\n"; 
       }
       else {
-               <<[2]"asis: $NL\n"
-      if (empty_line_cnt == 0  && !in_comment_blk  && !in_txt_blk  && (last_ltype != PROCCALL)) {
+
+     <<[2]"asis: $NL\n"
+	       
+      if ((empty_line_cnt <= 1)  && !in_comment_blk  && !in_txt_blk  && (last_ltype != PROCCALL)) {
+<<"adding empty line for spacing \n";      
              <<[B]"\n"; 
        }
 

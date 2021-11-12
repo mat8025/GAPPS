@@ -79,19 +79,20 @@ u->info(1)
 //=======================//
 */
 
-proc sumarg (int v, int u)
+int sumarg (int v, int u)
 {
 
 <<"args int %V  $v $u \n"
-v<-pinfo()
-u<-pinfo()
 
+v.pinfo()
+u.pinfo()
+!z
 int z;
-z<-pinfo()
+z.pinfo()
    z = v + u;
-z<-pinfo()
-v<-pinfo()
-u<-pinfo()
+z.pinfo()
+v.pinfo()
+u.pinfo()
 
 
 <<"%V$v + $u = $z\n"
@@ -100,34 +101,34 @@ u<-pinfo()
 
       v = v +1;
 <<" changing first arg to %V$v\n"
-v<-pinfo()
+v.pinfo()
       u = u * 2;
 
 <<" changing second arg to %V$u \n"
-u<-pinfo()
+u.pinfo()
 <<"args out %V$v $u $z\n"
-
+!z
   return z;
 }
 //=======================//
 
-proc sumarg (float v, float u)
+proc sumarg (float vf, float uf)
 {
-<<"args float  %V  $v $u \n"
+<<"args float  %V  $vf $uf \n"
 float z;
-   z = v + u;
+   z = vf + uf;
 
-<<"%V$v + $u = $z\n"
+<<"%V$vf + $uf = $z\n"
 
    //v++;
-      v = v +1;
-<<" changing first arg to %V$v\n"
+      vf = vf +1;
+<<" changing first arg to %V$vf\n"
 !z
-   u = u * 2;
+   uf = uf * 2;
 
-<<" changing second arg to %V$u \n"
+<<" changing second arg to %V$uf \n"
 
-<<"args out %V$v $u $z\n"
+<<"args out %V$vf $uf $z\n"
 
   return z;
 }
@@ -245,11 +246,15 @@ int k = 0;
  n = 54;
  m = 49;
 
+<<"ref arg n $n  val m $m\n"
+!z
  k = sumarg(&n,m)
 
   chkN(n,55)
   chkN(m,49)
   chkN(k,103);
+
+
 <<"%V $n $m $k \n"
 
 
@@ -280,6 +285,8 @@ k = sumarg(&n,m)
   chkN(k,48);
 
 <<"%V $n $m $k \n"
+
+chkOut()
 
 
 //%*********************************************** 
