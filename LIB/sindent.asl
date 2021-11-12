@@ -17,13 +17,23 @@
   
 #include "debug"
 
+#define COMMENT 1
+#define PROCCALL 2
+#define MARGINCALL 3
+#define EMPTYLN 5
 
+
+
+int ltype = 0;
+int last_ltype = 0;
 
    do_query = 1;
    
 // use an indent of 2 spaces - for all non-comment lines
 
 //<<"? $_clarg[1]\n"
+
+ESL="//===***===//"; 
 
   fname = _clarg[1];
 
@@ -60,11 +70,14 @@
   nw = 2;
   
   Str L;
+  Str LL;
   Str NL;
   Str NL1;
 
   str tws;
   Svar NL2;
+  Svar wrds;
+  Svar wrds1;
   
   int empty_line_cnt = 0;
   is_empty_line = 0;
@@ -74,19 +87,37 @@
     is_comment = 0;
     is_empty_line = 1;
     is_define = 0;
-    is_include = 0;        
+    is_include = 0;
+    is_proc = 0;
     is_trailing_comment = 0;
     needs_semi_colon = 0;
     is_margin_call = 0;    
     L = readline(A,-1,1);
-    
-    
     if (ferror(A) == EOF_ERROR_) {
-          break;
+
+     <<"end @ $L\n"
+        break;
         }
+
+    posn = ftell(A);
+
+    L2 = readline(A,-1,1);
+
+    if (ferror(A) == EOF_ERROR_) {
+
+    L2 = " \n";
+
+    }
+
+    fseek(A,posn,0);
+    LL= L;
+
 	
     ln++;
-    
+
+    wrds = split(L)
+    wrds2 = split(L2);
+
     NL = L;
     <<[2]"in:$NL\n" ;
 
@@ -134,7 +165,7 @@
         is_comment = 1;
         <<[2]"comment $NL\n"; 
         }
-       else if (nsv[0] == '!'  && (scin("apwei",nsv[1]))) {
+       else if (nsv[0] == '!'  && (scin("apweitz",nsv[1]))) {
         is_margin_call = 1;
         is_comment = 1; // treat as	
         <<[2]"margin call $NL\n"; 
@@ -157,7 +188,13 @@
     if (is_empty_line) {
       empty_line_cnt++;
       <<[2]"%V $empty_line_cnt\n"; 
-      }
+      ltype = EMPTYLN;
+    }
+
+     if (is_comment) {
+        ltype = COMMENT;
+
+    }
     
     sl = Slen(NL);
     ind = sl -1;
@@ -198,6 +235,20 @@
     
     is_proc = scmp(NL,"proc",4,0);
 
+   if (scmp(wrds[0],"void")) {
+       is_proc = 1;
+    }
+
+   if ( isaType(wrds[0])) {
+     if (scmp(wrds2[0],"{")) {
+        is_proc = 1;
+	}
+    }
+    
+    if (is_proc) {
+       ltype = PROCCALL;
+    }
+
     is_if = scmp(NL,"if",2,0);
 
 
@@ -219,7 +270,7 @@
     conline = 0;
 
 
-    if (len > 70) {
+    if (len > 100) {
       <<[2]"SPLIT $NL \n"; 
       //index =sstr(NL,",",1);
       
@@ -361,9 +412,11 @@
       }
       else {
                <<[2]"asis: $NL\n"
-      if (empty_line_cnt == 0  && !in_comment_blk  && !in_txt_blk) {
+      if (empty_line_cnt == 0  && !in_comment_blk  && !in_txt_blk  && (last_ltype != PROCCALL)) {
              <<[B]"\n"; 
        }
+
+
          if (!is_empty_line) {
           <<[B]"${tws}$NL\n";
 	 }
@@ -399,9 +452,14 @@
       do_query = 0;
     }
   }
-
-  }
   
+    last_ltype = ltype;
+  }
+
+<<"LL: <|$LL|>\n"
+if (LL != ESL) {
+  <<[B]"\n$ESL\n";
+  }
   cf(B);
   
 //==================================//

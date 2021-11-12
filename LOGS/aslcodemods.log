@@ -938,3 +938,8 @@ ic_store.cpp                        1.76  11/04/2021 20:48:03  tidy
 ic_store.cpp                        1.77  11/04/2021 20:50:10  tidy++
 declare_e.cpp                       2.29  11/04/2021 22:16:07  exp eval of args to vec declare
 siv.h                               2.6  11/07/2021 08:40:29  testAndCW,testOrCW
+ds_siv.cpp                          2.74  11/10/2021 14:12:47  Deref
+storetype_e.cpp                     2.65  11/10/2021 14:14:03  Deref
+ic_pushsivele.cpp                   1.66  11/10/2021 14:15:52  eleloc - skip push of copy
+ic_store.cpp                        1.78  11/11/2021 22:10:45  refactor poffset fix
+ic_store_rtosiv.cpp                 1.78  11/11/2021 22:11:38  refactor from ic_store

@@ -238,13 +238,13 @@ int scoreTest(str itname)
 
  int ntests2;
  int npass2;
+ str tname;
 
-
-   //itname.pinfo();
+//   itname.pinfo();
 
    tname = itname;
 
-   //tname.pinfo();
+//   tname.pinfo();
 
         RT=ofr(tname);
        

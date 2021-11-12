@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @script prepost_opr.asl 
-//* 
-//*  @comment  test a++ ++a ops 
-//*  @release CARBON 
-//*  @vers 1.2 He Helium [asl 6.2.47 C-He-Ag]                                
-//*  @date Wed May 13 11:09:50 2020 
-//*  @cdate Wed May 13 11:09:50 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script prepostop.asl 
+ * 
+ *  @comment test a++ ++a ops 
+ *  @release CARBON 
+ *  @vers 1.3 Li Lithium [asl 6.3.58 C-Li-Ce] 
+ *  @date 11/08/2021 14:28:28          
+ *  @cdate Wed May 13 11:09:50 2020 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                       
 <|Use_ =
    demo pre post incr
 |>
@@ -58,11 +60,19 @@
 
    chkN(k,0);
 
+
+   ++k;
+
+   <<"%v $k \n";
+
+   chkN(k,1);
+
+
    ++k++;
 
    <<"%v $k \n";
 
-   chkN(k,2);
+   chkN(k,3);
 
    k = 2;
    
@@ -73,23 +83,11 @@
    chkN(k,0);
 
 
-
-
-
-  chkOut()
-
-
-
-
-
-
-
-
    int VA[3] = {1,2,3};
 
    VA->info(1);
 
-   int k = 0;
+   k = 0;
 
    k->info(1);
 
@@ -241,7 +239,7 @@ n.pinfo()
 chkN(k,1);
 chkN(m,1);
 
-!a
+
    <<"b4foo %V $k $m \n";
 
    r=Foo(k++,m++);
@@ -250,9 +248,11 @@ chkN(m,1);
 
    chkN(k,2);
 
-   chkN(m,4);
+   chkN(m,2);
 
-   chkN(r,4);
+   chkN(r,2);
+
+
 
    <<"b4foo %V $k $m \n";
 
@@ -262,9 +262,9 @@ chkN(m,1);
 
    chkN(k,3);
 
-   chkN(m,5);
+   chkN(m,3);
 
-   chkN(r,8);
+   chkN(r,6);
 
    AV = vgen(INT_,10,0,1);
 

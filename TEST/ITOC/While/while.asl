@@ -1,312 +1,392 @@
-//%*********************************************** 
-//*  @script while.asl 
-//* 
-//*  @comment test While syntax 
-//*  @release CARBON 
-//*  @vers 1.5 B Boron [asl 6.2.98 C-He-Cf]                              
-//*  @date Mon Dec 21 21:10:31 2020 0
-//*  @cdate Sat Apr 18 21:48:17 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script while.asl 
+ * 
+ *  @comment test While syntax 
+ *  @release CARBON 
+ *  @vers 1.6 C Carbon [asl 6.3.58 C-Li-Ce] 
+ *  @date 11/09/2021 14:47:53          
+ *  @cdate Sat Apr 18 21:48:17 2020 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                   
 //
 ///
+<|Use_ =
+   test while syntax
+|>
+
+#include "debug"
+
+   if (_dblevel >0) {
+
+     debugON();
+
+     <<"$Use_\n";
+
+     }
 
 
 
-chkIn(_dblevel)
+   chkIn(_dblevel);
 
-proc Foo()
-{
-int fi =0;
-<<"%V  $Nrecs\n"
-while (fi < Nrecs) {
+   int k = 0;
+
+   k++;
+
+   ++k;
+
+   --k++;
+
+
+
+
+k.pinfo()
+
+
+
+   proc Foo()
+
+   {
+
+     int fi =0;
+
+     <<"%V  $Nrecs\n";
+
+     while (fi < Nrecs) {
 //<<"%V$fi\n"
 
-  fi->info(1)
-  
-  fi++;
-   if (fi < Nrecs) {
-<<"$fi $(Nrecs-fi) to go \n"
- }
-  
+       fi.pinfo();
 
-}
- chkN (fi,Nrecs)
- return fi;
- 
-}
+       fi++;
+
+       if (fi < Nrecs) {
+
+         <<"$fi $(Nrecs-fi) to go \n";
+
+         }
+
+       }
+
+     chkN (fi,Nrecs);
+
+     return fi;
+
+     }
 //======================================//
-proc readData2()
-{
 
-  int tl = 0;
+   proc readData2()
 
+   {
 
-  while (tl < Nrecs) {
+     int tl = 0;
 
-//  tl->info(1)
+     while (tl < Nrecs) {
 
-    tl++;
-   if (tl < Nrecs) {
-<<"$tl $(Nrecs-tl) to go \n"
- }
-    
+       tl++;
+
+       if (tl < Nrecs) {
+
+         <<"$tl $(Nrecs-tl) to go \n";
+
+         }
 //<<"EOWHILE $tl $Nrecs\n"
-   
-  }
 
+       }
 
+     <<"$Nrecs there were $tl  measurements \n";
 
-<<"$Nrecs there were $tl  measurements \n"
-chkN (tl,Nrecs)
-   return tl
+     chkN (tl,Nrecs);
 
-}
+     return tl;
+
+     }
 //==============================================//
 
-proc readData()
-{
+   int readData();
 
-  int tl = 0;
+   {
 
+     int tl = 0;
 
-  while (tl < Nrecs) {
-
+     while (tl < Nrecs) {
 //  tl->info(1)
 
-    tl++;
-   if (tl < Nrecs) {
-<<"$tl $(Nrecs-tl) to go \n"
- }
-    
-<<"EOWHILE $tl $Nrecs\n"
-   
-  }
+       tl++;
 
+       if (tl < Nrecs) {
 
-chkN (tl,Nrecs)
-<<"$Nrecs there were $tl  data reads \n"
+         <<"$tl $(Nrecs-tl) to go \n";
 
-   return tl
+         }
 
-}
+       <<"EOWHILE $tl $Nrecs\n";
+
+       }
+
+     chkN (tl,Nrecs);
+
+     <<"$Nrecs there were $tl  data reads \n";
+
+     return tl;
+
+     }
 //==============================================//
 
+   Nrecs = 10;
 
+   nt =readData();
 
-Nrecs = 10
+   <<"looped $nt times\n";
 
-nt =readData()
+   chkN (nt,Nrecs);
 
-<<"looped $nt times\n"
+   nt =Foo();
 
-chkN (nt,Nrecs)
+   <<"looped $nt times\n";
 
-nt =Foo()
-
-<<"looped $nt times\n"
-
-chkN (nt,Nrecs)
-
+   chkN (nt,Nrecs);
 //chkOut ()
-
 //===========================//
 
 
 
+   int ok =0;
 
+   <<"always trying forever \n";
 
-int k = 0
-int ok =0
-<<"always trying forever \n"
+   while (1) {
 
+     if (k++ > 20) {
 
-  while (1) {
+       <<"break $k\n";
 
-  if (k++ > 20) {
-<<"break $k\n"
-   break;
-  }
- k++
-   <<"forever! $k\n"
-  }
-
-
- k = 0
-
-  while (1) {
-   if (k >=9) {
-   break;
-   }
-   else {
-    <<"this while loop $k\n";
-    k++;
-    }
-  };
-
-<<"%V$k == ? 9 \n";
-
-
-chkN (k,9);
-
-k= 0;
-n = 1;
-
-  while (1) {
-
-   if (k >=10) {
-      break;
-   }
-   k++;
-
-  }
-
-<<"%V$k == ? 10 \n"
-
-chkN (k,10);
-
-k= 0;
-n = 1;
-
-  while (1) {
-
-   if (k >=10) {
-      break;
-   }
-   k += n
-
-  }
-
-<<"%V$k == ? 10 \n"
-
-chkN (k,10);
-
-///
-///
-///
-
-N = 10
-
- k = 0
-
- while ( k < N)  k++;
-
-<<" DONE $k $N \n"
-
-chkN (k,N);
-
- k =0;
- int m = 0;
- while ( k++ < N) {
-   m++;
-   <<" $k $m \n"
-
- }
-
-<<" DONE $k $N \n"
-chkN (k,N+1);
- m = 0;
- k = 0;
- while ( ++k < N) {
-   m++;
-   <<" $k $m \n"
- }
-
-chkN (k,N);
-<<" DONE $k $N \n"
-
-chkStage("2")
-
-
-
-tt = 13
-N = 15
-
-M = 2 *N
-
-<<"%V $tt $N \n"
-
-
-<<" $tt times table \n"
-//tt =3
-
-k = 0
-kc = 0;
-a = 3
-
-b = 3 ; c = a * b
-
-<<" %v $c \n"
-
- while ( k < M ) {
-
-   k++
-
-   if ( k > N )
-   { 
-  <<" attempting continue to end of loop -skipping code lines\n" 
-  <<" ! $k > $N \n"
-   continue
-  <<" should not see this !\n"
-   }
-
-//<<" out of if $k \n"
-
-  a= k * tt
-  kc++;
- <<" $k * $tt = $a \n"
-
- }
-
-chkN (kc,N)
-
-<<" DONE %V $k $kc  $N $M $a\n"
-
-chkStage("continue")
-
-///////////////////////////////
-int tl = 0;
-
-while (tl < Nrecs) {
-<<"$tl\n"
-
-tl++;
- if (tl < Nrecs) {
-<<"$tl $(Nrecs-tl) to go \n"
- }
-}
-
-chkN (tl,Nrecs)
-
-Foo()
-
-readData()
-
-
- k = 0;
-N = 4;
-
-
-       while (1) {
-
-        k++;
-	<<"$k \n"
-
-
-        if (k >= N) {
-<<"breaking out of while $k\n"
-           break;
-        }
+       break;
 
        }
 
+     k++;
 
-<<"Out of while $k $N\n"
+     <<"forever! $k\n";
 
-chkN(k,N)
+     }
+
+   k = 0;
+
+   while (1) {
+
+     if (k >=9) {
+
+       break;
+
+       }
+
+     else {
+
+       <<"this while loop $k\n";
+
+       k++;
+
+       }
+
+     };
+
+     <<"%V$k == ? 9 \n";
+
+     chkN (k,9);
+
+     k= 0;
+
+     n = 1;
+
+     while (1) {
+
+       if (k >=10) {
+
+         break;
+
+         }
+
+       k++;
+
+       }
+
+     <<"%V$k == ? 10 \n";
+
+     chkN (k,10);
+
+     k= 0;
+
+     n = 1;
+
+     while (1) {
+
+       if (k >=10) {
+
+         break;
+
+         }
+
+       k += n;
+
+       }
+
+     <<"%V$k == ? 10 \n";
+
+     chkN (k,10);
+///
+///
+///
+
+     N = 10;
+
+     k = 0;
+
+     while ( k < N)  k++;
+
+     <<" DONE $k $N \n";
+
+     chkN (k,N);
+
+     k =0;
+
+     int m = 0;
+
+     while (k++ < N) {
+
+       m++;
+
+       <<" $k $m \n";
+
+       }
+
+     <<" DONE $k $N \n";
+
+     chkN (k,N+1);
+
+     m = 0;
+
+     k = 0;
+
+     N = 5;
 
 
+     while ( ++k < N) {
 
-chkOut()
+       m++;
+
+       <<" $k $m \n";
+       if ( k > 10)
+           break;
+       }
+
+     chkN (k,N);
+
+     <<" DONE $k $N \n";
+
+     chkStage("2");
+
+     tt = 13;
+
+     N = 15;
+
+     M = 2 *N;
+
+     <<"%V $tt $N \n";
+
+     <<" $tt times table \n";
+//tt =3
+
+     k = 0;
+
+     kc = 0;
+
+     a = 3;
+
+     b = 3 ; c = a * b;
+
+     <<" %v $c \n";
+
+     while ( k < M ) {
+
+       k++;
+
+       if ( k > N )
+
+       {
+
+         <<" attempting continue to end of loop -skipping code lines\n";
+
+         <<" ! $k > $N \n";
+
+         continue;
+
+         <<" should not see this !\n";
+
+         }
+//<<" out of if $k \n"
+
+       a= k * tt;
+
+       kc++;
+
+       <<" $k * $tt = $a \n";
+
+       }
+
+     chkN (kc,N);
+
+     <<" DONE %V $k $kc  $N $M $a\n";
+
+     chkStage("continue");
+///////////////////////////////
+
+     int tl = 0;
+
+     while (tl < Nrecs) {
+
+       <<"$tl\n";
+
+       tl++;
+
+       if (tl < Nrecs) {
+
+         <<"$tl $(Nrecs-tl) to go \n";
+
+         }
+
+       }
+
+     chkN (tl,Nrecs);
+
+     Foo();
+
+     readData();
+
+     k = 0;
+
+     N = 4;
+
+     while (1) {
+
+       k++;
+
+       <<"$k \n";
+
+       if (k >= N) {
+
+         <<"breaking out of while $k\n";
+
+         break;
+
+         }
+
+       }
+
+     <<"Out of while $k $N\n";
+
+     chkN(k,N);
+
+     chkOut();
