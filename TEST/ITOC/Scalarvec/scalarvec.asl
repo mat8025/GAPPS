@@ -12,9 +12,22 @@
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
                                                                    
+<|Use_=
+Demo  of scalar ? vector ops
+///////////////////////
+|>
+
 
 
 #include "debug"
+
+if (_dblevel >0) {
+   debugON()
+     <<"$Use_\n"   
+}
+
+
+
 /*
 debugON(); 
   setdebug(1,@keep,@pline,@trace); 
@@ -23,6 +36,9 @@ debugON();
  */
 
  chkIn(_dblevel)
+
+
+allowErrors(-1) ; // keep going
 
  I = vgen(INT_,10,0,1)
 
@@ -49,7 +65,7 @@ debugON();
 
   U = vgen(UCHAR_,12,0,1)
 
-  pinfo(U)
+  U.pinfo()
   
 <<"$U\n"
 
@@ -61,6 +77,7 @@ debugON();
 
   chkN(U[1],1)
 
+u.pinfo()
   chkN(u,1)
 
 
@@ -141,8 +158,6 @@ sz = Caz(U)
 chkN(U[1],1)
 chkN(U[2],2)
 
-//chkOut()
-//exit()
 
  chkN(V[1],254)
 
@@ -158,7 +173,7 @@ chkN(U[1],1)
 
 <<"%V$W \n"
 
-
+<<" $U[1:8:2]\n"
 
  T = 255 - U[1:8:2]
 

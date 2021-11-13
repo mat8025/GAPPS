@@ -41,7 +41,9 @@ ignoreErrors()
 //wasl = "aslx"   // alsx should be stable
 
 wasl = "asl"
-<<"using $wasl for testing \n"
+
+
+//<<"using $wasl for testing \n"
 
 
 
@@ -84,11 +86,11 @@ svar Opts[] = Split(S,",");
 TM= FineTime();
 
 today=getDate(1);
-<<"$today $(get_version())\n"
+//<<"$today $(get_version())\n"
 
 chdir(hdir)
 cwd=getdir()
-<<"%V $cwd\n"
+//<<"%V $cwd\n"
 //Opf=ofw("Scores/score_$(date(2,'-'))")
 Opf=ofw("current_score")
 
@@ -141,7 +143,14 @@ ntest = 0
 int do_all = 1;
 int do_level2 = 0;
 int do_query = 0;
-int do_tests = 0;
+int do_help = 0;
+int do_module = 0;
+int do_release = 0;
+
+
+
+
+
 int do_array = 0;
 int do_matrix = 0;
 int do_math = 0;
@@ -171,24 +180,14 @@ int do_switch = 0;
 int do_scope = 0;;
 int do_while = 0;
 int do_try = 0;
-
-//======================================//
-
-
-
 int do_exp = 0;
-
-
 int do_paraex = -1;
-
 int do_types = 0;
-
 int do_func = 0;
 int do_command = 0;
 int do_lhsubsc = 0;
 int do_dynv = 0;
 int do_mops = 0;
-
 int do_oo = 0;
 int do_sfunc = 0;
 int do_svar = 0;
@@ -197,13 +196,13 @@ int do_ivar = 0;
 int do_lists = 0;
 int do_stat = 0;
 int do_threads = 0;
-
 int do_pan = 0;
 int do_unary = 0;
 int do_ptrs = 0;
 int do_vmf = 0;
-int do_help = 0;
-int do_release = 0;
+int do_tests = 0;
+
+
 
 
 
@@ -283,7 +282,7 @@ int do_release = 0;
 
 if (do_release) {
   wasl = "aslx"
-  <<"testing release vers \n"
+//  <<"testing release vers \n"
   !!"$wasl -v"
 }
 
@@ -395,7 +394,7 @@ if ((do_include || do_all ) && (do_include != -1)) {
    if ((do_all || do_class )  && (do_class != -1)) {
     inflsz = caz(FailedList)
         RunDirTests("Class","classbops,class_mfcall,class2,classvar");
-  outcome("CLASS")
+       outcome("CLASS")
     }
 
 
@@ -445,7 +444,7 @@ if ((do_define || do_all) && (do_define != -1)) {
 if ((do_enum || do_all) && (do_enum != -1)) {
 
     inflsz = caz(FailedList)
-  RunDirTests("Enum","enum,colors_enum")
+    RunDirTests("Enum","enum,colors_enum")
 
   outcome("ENUM")
   }
@@ -495,7 +494,7 @@ if ((do_bit || do_all) && (do_bit != -1)) {
   if ((do_all || do_while ) && (do_while != -1)) {
         inflsz = caz(FailedList);
        RunDirTests("While","while_nest,while")
-
+      outcome("WHILE")
     }
 ////////////////////////////////////////////////////////////////////////
 
@@ -507,23 +506,25 @@ if ((do_bit || do_all) && (do_bit != -1)) {
 if ((do_all || do_do ) && (do_do != -1)) {
     inflsz = caz(FailedList)
       RunDirTests("Do","do")
-
+      outcome("DO")
     }
 
 if ((do_all || do_try ) && (do_try != -1)) {
     inflsz = caz(FailedList)
       RunDirTests("TryThrowCatch","trythrowcatch")
-
+outcome("TRY")
     }
 ////////////////////////////////////////////////////////////////////////
 
 
 //======================================//
     if ((do_switch || do_all) && (do_switch != -1)) {
-    inflsz = caz(FailedList)
+
+       inflsz = caz(FailedList)
      
 
        RunDirTests("Switch","switch")
+       outcome("SWITCH")
    }
 
 //======================================//
@@ -547,9 +548,10 @@ if ((do_all || do_try ) && (do_try != -1)) {
 
 
      RunDirTests("Vops","vops")
-
+outcome("VOPS")
+    inflsz = caz(FailedList)
      RunDirTests("Vector","vector")
-
+outcome("VECTOR")
      RunDirTests("Reverse","reverse") ; // BUG needs more than one
   }
 
@@ -562,10 +564,13 @@ if ((do_all || do_try ) && (do_try != -1)) {
     inflsz = caz(FailedList)
    RunDirTests("Sops","sops");
 
+    outcome("SOPS")
  
   // RunDirTests("Str","str-proc,str-arg,str-lit");
-   RunDirTests("Str","str_proc,str_arg");
+    inflsz = caz(FailedList)
+  RunDirTests("Str","str_proc,str_arg");
 
+outcome("STR")
    //hdg("Strops");
    
    RunDirTests("Strops","scmp_syntax");
@@ -587,6 +592,7 @@ if ((do_all || do_try ) && (do_try != -1)) {
     inflsz = caz(FailedList)
   RunDirTests("Fops","fops")
 
+    outcome("SOPS")
   // need to do  script arg1 agr2 ...
   RunDirTests("Fexist","fexist")
 
@@ -601,6 +607,8 @@ if ((do_all  || do_declare ) && (do_declare != -1))  {
 
     inflsz = caz(FailedList)
    RunDirTests("Declare","declare,decc,decchar,decpan,decvec");
+    outcome("DECLARE")
+
 
  //  Run2Test("Consts")
 
@@ -744,10 +752,15 @@ if ((do_all || do_lhsubsc )   && (do_lhsubsc != -1)) {
 
 if ((do_all || do_func ) && (do_func != -1)) {
     inflsz = caz(FailedList)
-  Run2Test("Func")
-  do_carts("func", 3)
+
+//  Run2Test("Func")
+  
+
 
   RunDirTests("Func","func,repeat-func-call")
+
+  do_carts("func", 3)
+
   RunDirTests("Args","args")  
 
 
@@ -756,7 +769,8 @@ if ((do_all || do_func ) && (do_func != -1)) {
 
   Run2Test("Iproc")
   do_carts ("iproc")   //TBC
-     outcome("FUNC")
+
+  outcome("FUNC")
 }
 
 /////////////////////////////////////////
@@ -765,8 +779,8 @@ if ((do_all || do_func ) && (do_func != -1)) {
     inflsz = caz(FailedList)
     RunDirTests("Vmf","vmf_trim,vmf_range,vmf_cut,vmf_substitute,genv")
     RunDirTests("Vmf","vmf_prune,vmf_bubblesort,vmf_rotate,vmf_white")    
-  outcome("VMF")
-}
+    outcome("VMF")
+ }
 
 /////////////////////////////////////////
 
@@ -866,9 +880,9 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
     }
 
   if ((do_all || do_ivar ) && (do_ivar != -1)) {
-
+    inflsz = caz(FailedList)
      RunDirTests("Ivar","ivar")
-  outcome("IVAR")
+    outcome("IVAR")
     }
 
 
@@ -919,16 +933,16 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
 
    if ((do_all || do_lists ) && (do_lists != -1)) {
-    inflsz = caz(FailedList)
+     inflsz = caz(FailedList)
      RunDirTests("Lists","lists,list_declare,list_ele,list_ins_del");
-  outcome("LISTS")
+     outcome("LISTS")
     }
 
    if ((do_all || do_ptrs ) && (do_ptrs != -1)) {
        inflsz = caz(FailedList)
       RunDirTests("Swap","swap,swap1");
       RunDirTests("Ptrs","ptrs,ptr_vec,ptr_numvec,ptr_svarvec,ptr_varvec,indirect");
-  outcome("PTRS")
+      outcome("PTRS")
    }
 
 
@@ -978,16 +992,16 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
     chdir(Testdir)
 
      chdir("BUGFIX")
-<<"Doing bug tests"
-!!"pwd"
+//<<"Doing bug tests"
+//!!"pwd"
 
 BFS=!!"ls bf*.asl "
-<<"$(typeof(BFS)) $BFS\n"
+//<<"$(typeof(BFS)) $BFS\n"
 bflist="$BFS"
 
    bug_list = ssub(bflist,".asl"," ,",0)
    bug_list = scut(ssub(bug_list," ","",0),-1)
-<<"$bug_list\n"
+//<<"$bug_list\n"
 
       RunDirTests("BUGFIX",bug_list)
       outcome("BUGFIX")
@@ -999,17 +1013,17 @@ bflist="$BFS"
 chdir(Testdir)
 //  get a list of asl files in this dir and run them
      chdir("Tests")
-<<"Doing Tests"
-!!"pwd"
+//<<"Doing Tests"
+//!!"pwd"
 
 TS=!!"ls *.asl"
-<<"$(typeof(TS)) $TS\n"
+//<<"$(typeof(TS)) $TS\n"
 tslist="$TS"
 //<<"$(typeof(tslist)) $tslist\n"
    test_list = ssub(tslist,".asl",",",0)
    test_list = scut(ssub(test_list," ","",0),-1)
    
-<<"%V $test_list\n"
+//<<"%V $test_list\n"
      RunDirTests("Tests",test_list);
   outcome("TESTS")    
   }
@@ -1038,16 +1052,16 @@ if ((do_all || do_threads )) {
 
   if (flsz >= 1) {
 
-<<"\n$flsz modules  failed! \n"
+<<"\n\t\t\t$flsz modules  failed! \n"
 <<[Opf]"\n$flsz modules  failed! \n"
 <<[Tlogf]"\n$flsz modules  failed! \n"
 
-   FailedList<-Sort()
+   FailedList.Sort()
 
 //<<" %(2,\t, ,\n)$FailedList \n"  // would like this to work like for vectors ---
 
    for (i = 0; i < flsz ; i++) {
-       <<"$FailedList[i] \n"
+       <<"\t\t\t$FailedList[i] \n"
 
        <<[Opf]"$FailedList[i] \n"
 
@@ -1056,7 +1070,8 @@ if ((do_all || do_threads )) {
        <<[Tlogf]"$i $FailedList[i] \n"       
     }
 }
-<<"----------------------------------------------------------------------------\n"
+
+//<<"----------------------------------------------------------------------------\n"
 
   
    lsz = caz(CrashList)
@@ -1067,17 +1082,17 @@ if ((do_all || do_threads )) {
 
 if (lsz >= 1) {
 
-<<"\n$lsz modules   crashed! \n"
+<<"\n\t\t\t$lsz modules   crashed! \n"
 <<[Opf]"\n$lsz modules   crashed! \n"
 <<[Tlogf]"\n$lsz modules   crashed! \n"
 
 
-   CrashList<-info(1);
-   CrashList<-Sort()
+  // CrashList.pinfo();
+   CrashList.Sort()
 
-<<" crashlist $lsz   \n"
+//<<" crashlist $lsz   \n"
    for (i = 0; i < lsz ; i++) {
-   <<"$i $CrashList[i] \n"
+   <<"\t\t\t$i $CrashList[i] \n"
    <<[Opf]"$CrashList[i] \n"
    <<[Tcf]"$CrashList[i] \n"
    <<[Tlogf]"$i $CrashList[i] \n"
@@ -1086,12 +1101,13 @@ if (lsz >= 1) {
    
 }
 
-
+if (!do_module) {
 <<"----------------------------------------------------------------------------\n"
 <<"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$flsz Crash $lsz vers $(get_version())\n"
 <<"TestSuites: $Nsuites passed $Nspassed  %6.2f $(Nspassed/(Nsuites*1.0) *100.0)%%\n"  
 <<[Opf]"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$flsz Crash $lsz $(get_version())\n"
 <<[Tlogf]"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$flsz Crash $lsz $(get_version())\n"    
+}
 
 fflush(Opf)
 cf(Opf)
@@ -1117,12 +1133,11 @@ cf(A)
 
 
 
-
 //!!"cp Scores/score_$(date(2,'-')) current_score"
 
 wd=chdir(hdir)
 wdir = getdIr()
-<<"%V $wd $hdir $wdir\n"
+//<<"%V $wd $hdir $wdir\n"
 
 //ans=query("where are we")
 //!!"ls "
@@ -1132,8 +1147,9 @@ wdir = getdIr()
 dtms= FineTimeSince(TM);
 secs = dtms/1000000.0
 
-
+if (!do_module) {
 <<"script vers $_ele_vers took %6.3f$secs secs %d %V $i_time $x_time\n"
+
 today=getDate(1);
 <<"used $wasl for tests \n"
 !!"$wasl -v"
@@ -1148,6 +1164,8 @@ if (pcc < 100.0) {
 }
 else {
 <<"$pcc Success Hooray! \n"
+}
+
 }
 exit(0)
 

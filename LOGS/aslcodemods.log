@@ -943,3 +943,6 @@ storetype_e.cpp                     2.65  11/10/2021 14:14:03  Deref
 ic_pushsivele.cpp                   1.66  11/10/2021 14:15:52  eleloc - skip push of copy
 ic_store.cpp                        1.78  11/11/2021 22:10:45  refactor poffset fix
 ic_store_rtosiv.cpp                 1.78  11/11/2021 22:11:38  refactor from ic_store
+ic_pushref.cpp                      1.6  11/12/2021 14:05:25  added pushvalarg
+scope_findvar_e.cpp                 2.55  11/12/2021 22:10:47  array range copy to temp var neede
+varcon.h                            1.17  11/13/2021 08:13:04  VC_MADE_SIV

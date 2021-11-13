@@ -106,8 +106,20 @@ ESL="//===***===//";
 
 <<[2]"$fname \n"
 
+
+
+// xyz.asl ?  - no extension tag on .asl
+ int pma[100];
+
+  pma=regex(fname,"\\.asl")
+
+ if (pma[0] == -1) {
+   fname = scat(fname,".asl")
+ }
+
   A=ofr(fname);
-  if (A ==-1) {
+
+  if (A == -1) {
   <<"can't find $fname \n"
    exit()
   }
@@ -432,7 +444,7 @@ ESL="//===***===//";
 
      <<[2]"asis: $NL\n"
 	       
-      if ((empty_line_cnt <= 1)  && !in_comment_blk  && !in_txt_blk  && (last_ltype != PROCCALL)) {
+      if ((empty_line_cnt < 1)  && !in_comment_blk  && !in_txt_blk  && (last_ltype != PROCCALL)) {
 <<"adding empty line for spacing \n";      
              <<[B]"\n"; 
        }

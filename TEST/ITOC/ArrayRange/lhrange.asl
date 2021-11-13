@@ -11,105 +11,97 @@
 //* 
 //***********************************************%
 
+#include "debug.asl"
 
-#include "debug.asl";
+   if (_dblevel >0) {
 
+     debugON();
 
-if (_dblevel >0) {
-   debugON()
-}
-
+     }
 //filterFileDebug(ALLOWALL_,"yyy");
 //filterFuncDebug(REJECT_,"~ArraySpecs");
 
+   chkIn(_dblevel);
 
-chkIn(_dblevel)
+   N= 20;
 
+   int RHV[N];
 
-N= 20
+   int LHV[N];
 
-int RHV[N]
+   RHV= Igen(N,0,1);
 
-int LHV[N]
+   <<" %V$RHV \n";
 
+   LHV = RHV;
 
-    RHV= Igen(N,0,1)
+   <<" %V$LHV \n";
 
-<<" %V$RHV \n"
+   <<" %V$RHV \n";
 
+   x= RHV[1];
 
-    LHV = RHV
+   <<"%v$x\n";
 
-<<" %V$LHV \n"
+   chkN(x,1);
 
-<<" %V$RHV \n"
+   <<" %V$RHV[1] \n";
 
-     x= RHV[1]
+   <<" %V$RHV[2] \n";
 
-<<"%v$x\n"
-   chkN(x,1)
+   <<" %V$LHV[1] \n";
 
+   <<" %V$LHV[2] \n";
 
+   chkN(LHV[1],1);
 
-<<" %V$RHV[1] \n"
-<<" %V$RHV[2] \n"
+   LHV[1] = RHV[7];
 
+   <<" %V$LHV[1] \n";
 
+   LHV[1:3] = RHV[7:9];
 
-<<" %V$LHV[1] \n"
-<<" %V$LHV[2] \n"
+   <<" %V$LHV \n";
 
- chkN(LHV[1],1)
+   chkN(LHV[1],7);
 
+   <<" $RHV[12:14] \n";
 
+   LHV[5:9:2] = RHV[12:14];
 
+   <<" $LHV[5:9:2] \n";
 
-    LHV[1] = RHV[7]
+   <<" $LHV \n";
 
-<<" %V$LHV[1] \n"
+   chkN(LHV[7],13);
 
+//   TSN = RHV[1:5] + RHV[7:11];
 
+   <<" $RHV[1:5:1] \n";
 
-    LHV[1:3] = RHV[7:9]
-
-<<" %V$LHV \n"
-
-
-
- chkN(LHV[1],7)
-
-
-<<" $RHV[12:14] \n"
-
-    LHV[5:9:2] = RHV[12:14]
-
-<<" $LHV[5:9:2] \n"
-
-<<" $LHV \n"
-
- chkN(LHV[7],13)
+    <<" $RHV[7:11] \n";
 
 
-   TSN = RHV[1:5] + RHV[7:11]
+     TSN = RHV[1:5:1] + RHV[7:11:1];
 
-<<"%v $TSN \n"
+   <<"%v $TSN \n";
 
- chkN(TSN[1],10)
+   chkN(TSN[1],10);
 
+   TSN = RHV[0:-1:2] + RHV[1:-1:2];
 
-   TSN = RHV[0:-1:2] + RHV[1:-1:2]
+   <<"%v $RHV \n";
 
-<<"%v $RHV \n"
-<<"%v $TSN \n"
+   <<"%v $TSN \n";
 
- chkN(TSN[1],5)
+   chkN(TSN[1],5);
 
-   TSN = RHV[0:-1:] + RHV[1:-1:1]
+   TSN = RHV[0:-1:] + RHV[1:-1:1];
 
-<<"%v $RHV \n"
-<<"%v $TSN \n"
+   <<"%v $RHV \n";
 
+   <<"%v $TSN \n";
 
- chkOut()
+   chkOut();
 
-//======================================//
+//===***===//

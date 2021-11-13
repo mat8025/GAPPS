@@ -26,7 +26,7 @@ void outcome (str title)
     <<"/////////////// $title PASS////////////////\n"
    }
    else {
-   <<"%V$inflsz  $outflsz \n"
+   //<<"%V$inflsz  $outflsz \n"
 <<"/////////////////// $title FAIL $(outflsz-inflsz) //////////////////////\n"
    }
 }
@@ -71,10 +71,10 @@ padtit =nsc(15,"/")
 
 void hdg(str atit)
 {
-   //atit.pinfo()
+   atit.pinfo()
 
   int len = slen(atit)
-
+<<"%V $len\n"
 
 
   int rlen = 20- len;
@@ -119,9 +119,9 @@ void changeDir(str td)
 void Run2Test(str td)
 {
 
-//<<" $_proc $td $Testdir\n"
+<<" $_proc $td $Testdir\n"
 
-  //td.pinfo()
+  td.pinfo()
 
   chdir(Testdir)
 
@@ -134,7 +134,7 @@ void Run2Test(str td)
   
   Curr_dir = getDir();
   
-<<"changing to $td dir from $Prev_dir in $Curr_dir\n"
+//<<"changing to $td dir from $Prev_dir in $Curr_dir\n"
 }
 //===============================
 
@@ -308,7 +308,7 @@ int scoreTest(str itname)
 	    i_time += tmsecs;
 	    //<<"%V $i_time\n"
           }
-	  
+ if (!do_module) {	  
 if (pcc < 100  && pcc > 90){
 // <<"\033[1;31m DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% \033[0m took $took msecs\n"
  <<"$(PRED_)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\%$(POFF_) took $took msecs\n"
@@ -322,7 +322,7 @@ else {
 }
 
 <<[Opf]"DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\%\n"
- 
+ }
 
 
           scored = 1;
@@ -393,7 +393,7 @@ str prg;
   fflush(1)
   }
   else {
-   <<" NO xic $prog to test\n"
+   <<[2]" NO xic $prog to test\n"
   }
 }
 //===============================
@@ -514,9 +514,10 @@ foundit = fexist(prg) ;
       if (f_exist(tst_file) > 0) {
          wlen = slen(xwt_prog)
          padit =nsc(40-wlen," ")
+	 if (!do_module) {
          <<"${xwt_prog}$padit" // print time prog arg
 	 <<[Opf]"${xwt_prog}$padit"
-
+         }
          wscore =scoreTest(tst_file)
       }
      else {
@@ -555,9 +556,11 @@ void cart_xic(Str aprg, Str a1)
       if (f_exist(tst_file) > 0) {
          wlen = slen(xwt_prog)
          padit =nsc(40-wlen," ")
-         <<"${xwt_prog}$padit"      // print time prog arg
-	 <<[Opf]"${xwt_prog}$padit"
+if (!do_module) {
+        <<"${xwt_prog}$padit"      // print time prog arg
 
+        <<[Opf]"${xwt_prog}$padit"
+}
          wscore =scoreTest(tst_file)
       }
      else {
@@ -648,10 +651,11 @@ void cart (str aprg)
          wt_prog = "$(time()) ${wstr}: "
          wlen = slen(wt_prog)
          padit =nsc(40-wlen," ")
+	 if (!do_module) {
          <<"${wt_prog}$padit";  // keep
 
          <<[Opf]"${wt_prog}$padit"	 
-
+         }
          wscore = scoreTest(tst_file)
 	// <<"%V $wscore\n"
       }
@@ -728,10 +732,10 @@ void cart (Str aprg,  Str pa1)
      wt_prog = "$(time()) ${prg}:$a1 "
      wlen = slen(wt_prog)
      padit =nsc(40-wlen," ")
-
+     if (!do_module)  {
       <<"${wt_prog}$padit"
       <<[Opf]"${wt_prog}$padit"
-      
+      }
       tst_file = "${prg}.tst";
     //  <<"%V $tst_file\n"
       if (f_exist(tst_file) > 0) {
