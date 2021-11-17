@@ -36,6 +36,9 @@ void doTrailingComment()
 
 void Conline()
 {
+
+// TBF - will split  "xxx..." but should leave
+
       <<[2]"SPLIT $NL \n"; 
       //index =sstr(NL,",",1);
       
@@ -354,7 +357,7 @@ ESL="//===***===//";
     conline = 0;
 
 
-    if (len > 100) {
+    if (len > 500) {
        Conline()
     }
      

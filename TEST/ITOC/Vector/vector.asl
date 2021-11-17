@@ -11,205 +11,191 @@
 //* 
 //***********************************************%
 
-
 <|Use_=
-Demo  of vector ops
-e.g.
-
-V= vgen(FLOAT_,10,0,1);
+   Demo  of vector ops
+   e.g.
+   
+   V= vgen(FLOAT_,10,0,1);
 // add 1.0 to all elements of vector V and assign to T
-T = V + 1.0;
-etc
+   T = V + 1.0;
+   etc
 ///////////////////////
 |>
 
-
 #include "debug"
 
-if (_dblevel >0) {
-   debugON()
-   <<"$Use_\n"
-}
+   if (_dblevel >0) {
 
-chkIn(_dblevel)
+     debugON();
 
-V= vgen(FLOAT_,10,0,1)
+     <<"$Use_\n";
 
-<<"%V6.1f $V\n"
+     }
 
+   chkIn(_dblevel);
 
-T = V + 1.0
+   V= vgen(FLOAT_,10,0,1);
 
-<<"(V+1) %6.1f$T \n"
+   <<"%V6.1f $V\n";
 
-chkN (T[1],2)
+   T = V + 1.0;
 
-T = 2+ V 
+   <<"(V+1) %6.1f$T \n";
 
-<<"(V+2) %6.2f$T \n"
+   chkN (T[1],2);
 
-chkN (T[1],3)
+   T = 2+ V;
 
-T = (2+ V)/4.0 
+   <<"(V+2) %6.2f$T \n";
 
-<<"(2+V/4.0) %6.2f$T \n"
+   chkN (T[1],3);
 
-chkN (T[1],0.75)
+   T = (2+ V)/4.0;
 
+   <<"(2+V/4.0) %6.2f$T \n";
 
+   chkN (T[1],0.75);
 // FIX XIC fail
-H = (4.0 * (V+1))
-<<"%V%6.1f $H\n"
 
-<<"%V$V\n"
+   H = (4.0 * (V+1));
+
+   <<"%V%6.1f $H\n";
+
+   <<"%V$V\n";
 //!p T
 
-<<"%V$T\n"
-T.pinfo()
-V.pinfo()
+   <<"%V$T\n";
 
+   T.pinfo();
+
+   V.pinfo();
 //T = (2+ V)/(4.0 * (V+1))
-T = (V+2)/(4.0 * (V+1)) 
 
-T.pinfo()
+   T = (V+2)/(4.0 * (V+1));
+
+   T.pinfo();
 
 
+   chkN (T[1],0.375);
 
-chkN (T[1],0.375)
+   <<"%6.4f$T \n";
 
-<<"%6.4f$T \n"
-T.pinfo()
+   T.pinfo();
 
-tz =Caz(T)
+   tz =Caz(T);
 
-tb = Cab(T)
+   tb = Cab(T);
 
-<<"%V $tz $tb\n"
-tb.pinfo()
+   <<"%V $tz $tb\n";
+
+   tb.pinfo();
 //<<"$(Caz(T)) $(Cab(T))\n" // TBF nest error
 
-chkStage("vop")
+   chkStage("vop");
 
+   proc foo()
+   {
 
-proc foo()
-{
+     <<"in $_proc Y: $Y\n";
 
-<<"in $_proc Y: $Y\n"
-<<"in $_proc T: $T\n"
+     <<"in $_proc T: $T\n";
 
-  Y *= T
-<<"out $_proc $Y\n"
+     Y *= T;
 
-}
+     <<"out $_proc $Y\n";
+
+     }
 //========================
 
+   Y = vgen(FLOAT_,10,1,1);
 
+   <<"Y $Y\n";
 
+   Y.pinfo();
 
- Y = vgen(FLOAT_,10,1,1);
+   Y *= 2;
 
+   Y.pinfo();
 
- <<"Y $Y\n"
- Y.pinfo()
- Y *= 2;
- Y.pinfo()
-<<"$Y\n"
+   <<"$Y\n";
 
+   chkN (Y[2],6);
 
+   T = vgen(FLOAT_,10,0,1);
 
-chkN (Y[2],6)
-
-
-
-  T = vgen(FLOAT_,10,0,1);
-
-<<"$T\n"
-
+   <<"$T\n";
 //chkN (T[2],2)
 //
 
-  Y *= T
+   Y *= T;
 
-<<"Y: $Y\n"
+   <<"Y: $Y\n";
 
-chkN (Y[2],12)
+   chkN (Y[2],12);
 
+   Y = vgen(FLOAT_,10,0,1);
 
- Y = vgen(FLOAT_,10,0,1);
+   <<"Y $Y\n";
 
+   Y *= 2;
 
-<<"Y $Y\n"
+   <<"$Y\n";
 
-  Y *= 2;
+   chkN (Y[2],4);
 
-<<"$Y\n"
+   Y =  Y * T;
 
-chkN (Y[2],4)
+   <<"Y: $Y\n";
 
+   chkN (Y[2],8);
 
-  Y =  Y * T
-  
+   <<"$Y\n";
 
+   foo();
 
-<<"Y: $Y\n"
+   chkN (Y[2],16);
 
+   <<"$Y\n";
 
-chkN (Y[2],8)
+   foo();
 
+   chkN (Y[2],32);
 
+   <<"$Y\n";
 
-<<"$Y\n"
+   Y *= T;
 
- foo()
+   chkN (Y[2],64);
 
-chkN (Y[2],16)
+   <<"$Y\n";
 
-<<"$Y\n"
+   foo();
 
- foo()
+   chkN (Y[2],128);
 
-chkN (Y[2],32)
-<<"$Y\n"
+   Y = vgen(FLOAT_,10,0,1);
 
- Y *= T
+   <<"Y: $Y\n";
 
+   <<"T $T\n";
 
-chkN (Y[2],64)
+   Y += T;
 
-<<"$Y\n"
+   <<"Y: $Y\n";
 
+   chkN (Y[2],4);
 
+   chkN (Y[9],18);
 
-foo()
+   Y -= T;
 
-chkN (Y[2],128)
+   <<"Y: $Y\n";
 
+   chkN (Y[2],2);
 
- Y = vgen(FLOAT_,10,0,1);
+   chkN (Y[9],9);
 
-<<"Y: $Y\n"
-<<"T $T\n"
-
-  Y += T;
-
-<<"Y: $Y\n"
-
-chkN (Y[2],4)
-
-chkN (Y[9],18)
-
-  Y -= T;
-
-<<"Y: $Y\n"
-
-chkN (Y[2],2)
-
-chkN (Y[9],9)
-
-chkStage("opeq")
-
-
-
+   chkStage("opeq");
 //%*********************************************** 
 //*  @script vecrange.asl 
 //* 
@@ -223,82 +209,107 @@ chkStage("opeq")
 //* 
 //***********************************************%
 
-  V= vgen(INT_,10,0,1);
+   V= vgen(INT_,10,0,1);
 
- <<"$V\n"
+   <<"$V\n";
 
+   chkN (V[2],2);
 
-  chkN (V[2],2)
-  chkN (V[9],9)
+   chkN (V[9],9);
 
-  T = V[1:3]
-  <<"$T\n"
+   T = V[1:3];
 
-  j=1;
-j.pinfo()
+   <<"$T\n";
+
+   j=1;
+
+   j.pinfo();
+
    --j;
 
-j.pinfo()
+   j.pinfo();
 
    --j;
 
-j.pinfo()
-    ++j;
-    <<" ++j\n"
-j.pinfo()
-    j++;
-        <<" j++\n"
-j.pinfo()
+   j.pinfo();
 
-  j =1;
-  for (i=0; i<3; i++) {
-    <<"$i $j $T[i] \n"
-    
-    chkN (T[i],j++)
-  }
+   ++j;
 
+   <<" ++j\n";
 
+   j.pinfo();
 
-  T = V[1:3] + V[2:4]
-  <<"$T\n"
-   j = 3
+   j++;
+
+   <<" j++\n";
+
+   j.pinfo();
+
+   j =1;
+
+   for (i=0; i<3; i++) {
+
+     <<"$i $j $T[i] \n";
+
+     chkN (T[i],j++);
+
+     }
+
+   T = V[1:3] + V[2:4];
+
+   <<"$T\n";
+
+   j = 3;
+
    for (i=0;i<3;i++) {
-    chkN (T[i],j); j +=2;
-  }
 
+     chkN (T[i],j); j +=2;
 
-  T = V[1:3] + V[2:4] + V[3:5]
-  <<"$T\n"
+     }
+
+   T = V[1:3] + V[2:4] + V[3:5];
+
+   <<"$T\n";
 
    j = 6;
+
    for (i=0;i<3;i++) {
-    chkN (T[i],j); j +=3;
-  }
 
+     chkN (T[i],j); j +=3;
 
-  T = V[1:3] + V[2:4] + V[3:5] + V[4:6]
-  <<"$T\n"
-  
+     }
+
+   T = V[1:3] + V[2:4] + V[3:5] + V[4:6];
+
+   <<"$T\n";
+
    j = 10;
+
    for (i=0;i<3;i++) {
-    chkN (T[i],j); j +=4;
-  }
 
-   S= V[7:9] + V[2:4]
-<<"$S\n"   
-   V[0:2] =  V[7:9] + V[2:4]
+     chkN (T[i],j); j +=4;
 
-<<"$V\n"
+     }
 
-  chkN (V[0],S[0])
-  chkN (V[1],S[1])
-  chkN (V[2],S[2])  
+   S= V[7:9] + V[2:4];
 
-   R=vvcomp(S,V,3)
-   <<"$R\n"
+   <<"$S\n";
 
-  chkStage("vecrange")
+   V[0:2] =  V[7:9] + V[2:4];
 
+   <<"$V\n";
+
+   chkN (V[0],S[0]);
+
+   chkN (V[1],S[1]);
+
+   chkN (V[2],S[2]);
+
+   R=vvcomp(S,V,3);
+
+   <<"$R\n";
+
+   chkStage("vecrange");
 //%*********************************************** 
 //*  @script veccat.asl 
 //* 
@@ -312,49 +323,49 @@ j.pinfo()
 //* 
 //***********************************************%
 
-int vec1[]  = { 1,2,3};
+   int vec1[]  = { 1,2,3};
 
-<<"%V $vec1 \n"
+   <<"%V $vec1 \n";
 
-vec1.pinfo()
+   vec1.pinfo();
 
-int vec2[] = {7,8,9}
+   int vec2[] = {7,8,9};
 
-<<"%V $vec2\n"
+  <<"%V $vec2\n";
 
-vec2.pinfo()
-
+  vec2.pinfo();
 //int vec3 []  = vec1 @+  vec2;   // TBF -- WS should be OK
-int vec3[]  = vec1 @+  vec2;
 
-<<"$vec3[1] $vec3[2] $vec3[4] \n"
-<<"%V $vec3 \n"
+  int vec3[]  = vec1 @+  vec2;
+
+  <<"$vec3[1] $vec3[2] $vec3[4] \n";
+
+  <<"%V $vec3 \n";
 //exit()
 
-vec4 = vec1 @+  vec2;
+  vec4 = vec1 @+  vec2;
 
-<<"%V $vec4 \n"
+  <<"%V $vec4 \n";
 
+  chkN (vec4[5],9);
 
-chkN (vec4[5],9)
+  chkN (vec4[1],2);
 
-chkN (vec4[1],2)
+  vec4 = vec4 @+  vec2;
 
-vec4 = vec4 @+  vec2;
+  <<"%V $vec4 \n";
 
-<<"%V $vec4 \n"
+  chkN (vec4[8],9);
 
-chkN (vec4[8],9)
-chkN (vec4[1],2)
+  chkN (vec4[1],2);
 
-vec5 = vec1 @+  vec2 @+ vec3 ;
+  vec5 = vec1 @+  vec2 @+ vec3 ;
 
-<<"%V $vec5 \n"
+  <<"%V $vec5 \n";
 
-chkN (vec5[1],2)
+  chkN (vec5[1],2);
 
-chkStage("veccat")
-
+  chkStage("veccat");
 //%*********************************************** 
 //*  @script veclhrange.asl 
 //* 
@@ -368,135 +379,141 @@ chkStage("veccat")
 //* 
 //***********************************************%
 
+  IV= vgen(INT_,10,0,1);
 
-IV= vgen(INT_,10,0,1)
+  <<"$IV \n";
 
+  IV *=2 ;
 
-<<"$IV \n"
+  <<"$IV \n";
 
+  chkN (IV[1],2);
 
-IV *=2 ;
+  chkN (IV[2],4);
 
+  chkN (IV[3],6);
 
-<<"$IV \n"
+  chkN (IV[4],8);
 
-chkN (IV[1],2)
-chkN (IV[2],4)
-chkN (IV[3],6)
-chkN (IV[4],8)
+  IV2= vgen(INT_,15,0,1);
 
-IV2= vgen(INT_,15,0,1)
+  <<"$IV2 \n";
 
-<<"$IV2 \n"
+  IV2[1:3] *=2 ;
 
+  <<"$IV2 \n";
 
-IV2[1:3] *=2 ;
-
-<<"$IV2 \n"
-<<"$IV2[1:3] *= 2 \n"
-
+  <<"$IV2[1:3] *= 2 \n";
 //chkOut()
 
-chkN (IV2[1],2)
+  chkN (IV2[1],2);
 
-chkN (IV2[2],4)
-chkN (IV2[3],6)
-chkN (IV2[4],4)
+  chkN (IV2[2],4);
 
-chkStage("self op * on lhrange  ")
-chkOut()
+  chkN (IV2[3],6);
 
-<<"$IV2 \n"
+  chkN (IV2[4],4);
 
+  chkStage("self op * on lhrange  ");
 
-IV2[1:8:2] +=7 ;
+  chkOut();
 
-chkStage("self op + on lhrange  ")
+  <<"$IV2 \n";
 
-<<"$IV2 \n"
-chkN (IV2[0],0)
-chkN (IV2[1],9)
-chkN (IV2[2],4)
-chkN (IV2[3],13)
+  IV2[1:8:2] +=7 ;
 
+  chkStage("self op + on lhrange  ");
 
-IV3 = IV2[1:-3]
+  <<"$IV2 \n";
 
-chkN (IV3[0],9)
-chkN (IV3[1],4)
-chkN (IV3[2],13)
+  chkN (IV2[0],0);
 
-chkStage("RH range inserted correctly to new vec")
-<<"$IV3 \n"
+  chkN (IV2[1],9);
 
+  chkN (IV2[2],4);
+
+  chkN (IV2[3],13);
+
+  IV3 = IV2[1:-3];
+
+  chkN (IV3[0],9);
+
+  chkN (IV3[1],4);
+
+  chkN (IV3[2],13);
+
+  chkStage("RH range inserted correctly to new vec");
+
+  <<"$IV3 \n";
 //  what of range overruns current array sizes
-IV3[7:9] =IV2[1:3]
 
-<<"$IV3 \n"
-IV3.pinfo()
-chkN (IV3[7],9)
-chkN (IV3[8],4)
-chkN (IV3[9],13)
+  IV3[7:9] =IV2[1:3];
 
-<<"$IV3\n"
-IV3.pinfo();
-chkStage("RH range inserted correctly to LH range")
+  <<"$IV3 \n";
 
+  IV3.pinfo();
 
+  chkN (IV3[7],9);
+
+  chkN (IV3[8],4);
+
+  chkN (IV3[9],13);
+
+  <<"$IV3\n";
+
+  IV3.pinfo();
+
+  chkStage("RH range inserted correctly to LH range");
 //int IV4[>5] = IV3
 // BUG XIC
 // BUG  does not clear existing range
-IV3.pinfo()
 
-int IV4[>5] = IV3[::]   // BUG xic
+  IV3.pinfo();
 
-<<"$IV4\n"
+  int IV4[>5] = IV3[::]   ; // BUG xic;
 
-IV4.pinfo()
+  <<"$IV4\n";
 
+  IV4.pinfo();
 
+  <<"$IV3\n";
 
-<<"$IV3\n"
+  <<"$IV3[0:-1:2]\n";
 
-<<"$IV3[0:-1:2]\n"
-<<"$IV3[1:-1:2]\n"
+  <<"$IV3[1:-1:2]\n";
 
+  IV5 =    IV3[0:-1:2] + IV3[1:-1:2];
 
-IV5 =    IV3[0:-1:2] + IV3[1:-1:2]
+  <<"$IV5 \n";
 
-<<"$IV5 \n"
-i=0;
-chkN (IV5[i++],13)
-chkN (IV5[i++],17)
-chkN (IV5[i++],18)
-chkN (IV5[i++],23)
-chkN (IV5[i++],17)
+  i=0;
+
+  chkN (IV5[i++],13);
+
+  chkN (IV5[i++],17);
+
+  chkN (IV5[i++],18);
+
+  chkN (IV5[i++],23);
+
+  chkN (IV5[i++],17);
 //chkN (IV5[i++],23)
-chkN (IV5[i++],23)
 
+  chkN (IV5[i++],23);
 //cn IV5[i++] 23
-
 //13 17 18 23 17 23
 
-
-chkStage("lhrange")
-
-
+  chkStage("lhrange");
 /*
-
   TBD
   warning for overrun of fixed array ?
-  allow runtime mod to dynamic? - or exit store or op on vector 
- 
-   int IV4[>5] = IV3
- 
+  allow runtime mod to dynamic? - or exit store or op on vector
+  int IV4[>5] = IV3
   BUG XIC
   BUG  does not clear existing range
-
 */
 
 
+  chkOut ();
 
-
-chkOut ()
-  
+//===***===//
