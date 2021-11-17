@@ -946,3 +946,8 @@ ic_store_rtosiv.cpp                 1.78  11/11/2021 22:11:38  refactor from ic_
 ic_pushref.cpp                      1.6  11/12/2021 14:05:25  added pushvalarg
 scope_findvar_e.cpp                 2.55  11/12/2021 22:10:47  array range copy to temp var neede
 varcon.h                            1.17  11/13/2021 08:13:04  VC_MADE_SIV
+ic_store_rtosiv.cpp                 1.79  11/14/2021 09:03:37  SUBI/SUBSC tests correct order
+array_parse.cpp                     2.79  11/16/2021 10:11:33  getexpnum - wic value
+exp_e.cpp                           3.55  11/16/2021 10:14:42  pvc ARGEXP
+ic_pushsivele.cpp                   1.67  11/16/2021 10:16:49  eleloc push
+args_process_e.cpp                  2.39  11/16/2021 21:13:20  PAN arg

@@ -3,186 +3,179 @@
  * 
  *  @comment scalar vec ops 
  *  @release CARBON 
- *  @vers 1.4 Be Beryllium [asl 6.3.8 C-Li-O] 
- *  @date Mon Jan 11 15:13:30 2021 
+ *  @vers 1.5 B Boron [asl 6.3.59 C-Li-Pr] 
+ *  @date 11/13/2021 11:44:02          
  *  @cdate 1/1/2001 
  *  @author Mark Terry 
  *  @Copyright © RootMeanSquare  2010,2021 → 
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
-                                                                   
+
+
 <|Use_=
-Demo  of scalar ? vector ops
+   Demo  of scalar ? vector ops
+   
+   
 ///////////////////////
 |>
 
-
-
 #include "debug"
 
-if (_dblevel >0) {
-   debugON()
-     <<"$Use_\n"   
-}
+   if (_dblevel >0) {
 
+     debugON();
 
+     <<"$Use_\n";
 
+     }
 /*
-debugON(); 
-  setdebug(1,@keep,@pline,@trace); 
-  FilterFileDebug(REJECT_,"storetype_e","ds_storevar","ds_sivmem");
-  FilterFuncDebug(REJECT_,"~ArraySpecs",); 
+   debugON();
+   setdebug(1,@keep,@pline,@trace);
+   FilterFileDebug(REJECT_,"storetype_e","ds_storevar","ds_sivmem");
+   FilterFuncDebug(REJECT_,"~ArraySpecs",);
  */
 
- chkIn(_dblevel)
 
+   chkIn(_dblevel);
 
-allowErrors(-1) ; // keep going
+   allowErrors(-1) ; // keep going;
 
- I = vgen(INT_,10,0,1)
+   I = vgen(INT_,10,0,1);
 
-<<"$I\n"
+   <<"$I\n";
 
- chkN(I[1],1)
+   chkN(I[1],1);
 
+   K = I - 255;
 
- K = I - 255
+   chkN(K[1],-254);
 
+   <<"$K\n";
 
- chkN(K[1],-254)
+   M = 512 - I;
 
-<<"$K\n"
+   <<"$M\n";
 
+   chkN(M[1],511);
 
- M = 512 - I 
+   U = vgen(UCHAR_,12,0,1);
 
+   U.pinfo();
 
-<<"$M\n"
+   <<"$U\n";
 
- chkN(M[1],511)
+   sz = Caz(U);
 
+   <<"%v$sz\n";
 
-  U = vgen(UCHAR_,12,0,1)
+   u = U[1];
 
-  U.pinfo()
-  
-<<"$U\n"
+   chkN(U[1],1);
 
- sz = Caz(U)
+   u.pinfo();
 
-<<"%v$sz\n"
+   chkN(u,1);
 
- u = U[1]
+   W= U[1:8:2];
 
-  chkN(U[1],1)
+   <<"%V$W \n";
 
-u.pinfo()
-  chkN(u,1)
-
-
-
- W= U[1:8:2]
-
-<<"%V$W \n"
-
- chkN(W[1],3)
-
+   chkN(W[1],3);
 // chkN(U[1],1)
 
+   <<"%V$U\n";
 
-<<"%V$U\n"
+   W= U - 32;
 
- W= U - 32
+   <<"%V$W \n";
 
-<<"%V$W \n"
-<<"$(typeof(W)) \n"
+   <<"$(typeof(W)) \n";
 
+   if (! chkN(W[1],225)) {  // U is unsigned
 
- if (! chkN(W[1],225)) {  // U is unsigned
+   <<"FAIL $W[1] 255\n");
 
-<<"FAIL $W[1] 255\n")
+   }
 
- }
-<<"%V$U\n"
+  <<"%V$U\n";
 
+  if (! chkN(U[1],1) ) {
 
+   <<"FAIL $U[1] 1\n");
 
-if (! chkN(U[1],1) ) {
+   }
 
-<<"FAIL $U[1] 1\n")
+  sz = Caz(U);
 
-}
+  <<"%v$sz \n";
 
-sz = Caz(U)
-<<"%v$sz \n"
+  T = U -255;
 
-T = U -255 
-<<"%V$T\n"
-sz = Caz(T)
+  <<"%V$T\n";
 
-<<"%v$sz \n"
+  sz = Caz(T);
 
-pinfo(U)
-sz= Caz(U)
-<<"U %V$sz\n"
+  <<"%v$sz \n";
+
+  pinfo(U);
+
+  sz= Caz(U);
+
+  <<"U %V$sz\n";
 //  V = 255 -U ; // should be illegal not produce vector - not CPP trans
 
-sz.pinfo()
-
-
-
+  sz.pinfo();
 //Vec V(INT_,sz,255) ; // TBF 11/04/21  doesn't process var arg??
 // needs full spec of args
 //Vec V(INT_,sz,255,0) ;  // TBF
 
-Vec V(INT_,sz,255,0)
+  Vec V(INT_,sz,255,0);
 
-V -= U
+  V -= U;
 
-pinfo(V)
+  pinfo(V);
 
+  chkN(V[0],255);
 
-chkN(V[0],255)
-chkN(V[1],254)
+  chkN(V[1],254);
 
-pinfo(U)
+  pinfo(U);
 
+  sz = Caz(U);
 
-sz = Caz(U)
- <<"%v$sz \n"
-<<"%V $U\n"
+  <<"%v$sz \n";
 
+  <<"%V $U\n";
 
+  chkN(U[1],1);
 
-chkN(U[1],1)
-chkN(U[2],2)
+  chkN(U[2],2);
 
+  chkN(V[1],254);
 
- chkN(V[1],254)
+  <<"%V$U\n";
 
+  chkN(U[1],1);
 
+  <<"%V$U\n";
 
-<<"%V$U\n"
+  W= U[0:9:3];
 
-chkN(U[1],1)
+  <<"%V$W \n";
 
-<<"%V$U\n"
+  <<" $U[1:8:2]\n";
 
- W= U[0:9:3]
+  T = 255 - U[1:8:2];
 
-<<"%V$W \n"
+  <<"%V$T\n";
 
-<<" $U[1:8:2]\n"
+  chkN(T[1],252);
 
- T = 255 - U[1:8:2]
+  <<"%V$U\n";
 
-<<"%V$T\n"
- chkN(T[1],252)
+  chkN(U[1],1);
 
-<<"%V$U\n"
+  chkOut();
 
-
- chkN(U[1],1)
-
- chkOut()
+//===***===//

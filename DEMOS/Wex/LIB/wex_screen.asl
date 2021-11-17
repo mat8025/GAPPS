@@ -68,7 +68,7 @@ _DB = -1
      CalsY1 = 5000.0;
 
 
-    carb_upper = 120;
+    carb_upper = 250;
 
     ok=sWo(wedwo,@clip,CXY, @color,LILAC_,@clipbhue,WHITE_,@bhue,WHITE_,@font,F_SMALL_,@save,@savepixmap)
 

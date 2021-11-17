@@ -133,7 +133,7 @@ ESL="//===***===//";
 
 
   char nsv[];
-  char c;
+  char lastc;
   char lc;
   
   int ln = 0;
@@ -228,7 +228,8 @@ ESL="//===***===//";
       else if ((nsv[0] == '*') && (nsv[1] == '/')) {
         is_comment = 1;
 	in_comment_blk = 0
-        <<[2]"comment $NL\n"; 
+	  empty_line_cnt = -1;
+        <<[2]"end commentblk $empty_line_cnt $NL\n"; 
         }
       else if ((nsv[0] == '<') && (nsv[1] == '|')) {
         is_comment = 1;
@@ -238,7 +239,8 @@ ESL="//===***===//";
       else if ((nsv[0] == '|') && (nsv[1] == '>')) {
         is_comment = 1;
 	in_txt_blk = 0;
-        <<[2]"txt blk startcomment $NL\n"; 
+        empty_line_cnt = -1;
+        <<[2]"txt blk $empty_line_cnt endcomment $NL\n"; 
         }		
       else if (nsv[0] == '#') {
         is_comment = 1;
@@ -258,14 +260,17 @@ ESL="//===***===//";
         }
 
 
-      if (!is_empty_line) {
+      if (!is_empty_line && !is_comment) {
         empty_line_cnt = 0;
         }
+
       }
    
     
     if (is_empty_line) {
-      empty_line_cnt++;
+      if (!in_txt_blk) {
+        empty_line_cnt++;
+	}
       <<[2]"%V $empty_line_cnt\n"; 
       ltype = EMPTYLN;
     }
@@ -279,17 +284,17 @@ ESL="//===***===//";
     ind = sl -1;
     if (ind >=0) {
       nsv = sele(NL,ind,1); 
-      c= nsv[0];
-      <<[2]"last char? $ln  $c $sl $ind %s $c \n";
+      lastc= nsv[0];
+      <<[2]"last char? $ln  $lastc $sl $ind %s $lastc \n";
       }
 
     s1 = ";{}/\\" ;
     
 //k = sstr(s1,c,1)
     
-    iv = sstr(";{}/\\",c,1); 
+    iv = sstr(";{}/\\",lastc,1); 
     
- <<[2]"$L $sl %c$c $iv[0] \n"
+ <<[2]"$L $sl %c $lastc $iv[0] \n"
 
     if (slen(NL) >0) {
       NL=eatWhiteEnds(NL);
@@ -357,8 +362,8 @@ ESL="//===***===//";
     ind = sl -1;
     if (ind >= 0) {
       nsv = sele(NL,ind,1); 
-      c= nsv[0];
-      <<[2]"last char? $ln  $c $sl $ind %s $c \n";
+      lastc= nsv[0];
+      <<[2]"last char? $ln  $lastc $sl $ind %s $lastc \n";
       }
 
 
@@ -380,12 +385,12 @@ ESL="//===***===//";
          doTrailingComment()
       }
 
-	<<[2]"%c $c %d $c \n"
-	if (c != 59) {
+	<<[2]"%c $lastc %d $lastc \n"
+	if (lastc != 59 && lastc != 123 ) {
 	   needs_semi_colon = 1;
 	 
 
-         iv =sstr(";/{}\\",c,1);
+         iv =sstr(";/{}\\",lastc,1);
 <<[2]"$iv\n"
           if (iv[0] != -1) {
             needs_semi_colon = 0;
@@ -395,14 +400,13 @@ ESL="//===***===//";
           }
         }
        }
-       if (in_comment_blk) {
+
+     if (in_comment_blk || in_txt_blk) {
              needs_semi_colon = 0;
        }
-       if (in_txt_blk) {
-             needs_semi_colon = 0;
-       }
+
        
-      <<[2]" needs ; ? $needs_semi_colon <|$c|>\n";
+      <<[2]" needs ; ? $needs_semi_colon <|$lastc|>\n";
       <<[2]" needs ; $NL\n";
       
       }
@@ -415,7 +419,7 @@ ESL="//===***===//";
         <<[B]"${tws}$NL1		\\\n"; 
         <<[B]"$tws  \t\t$NL2; \n"; 
         }
-      else if ((is_empty_line) && (empty_line_cnt < 1) && !in_comment_blk) {
+      else if ((is_empty_line) && (empty_line_cnt < 1) && !in_comment_blk  && !in_txt_blk ) {
         <<[2]"adding empty line! $empty_line_cnt\n"
         <<[B]"\n"; 
         }
@@ -449,8 +453,9 @@ ESL="//===***===//";
              <<[B]"\n"; 
        }
 
+         
 
-         if (!is_empty_line) {
+         if (!is_empty_line || in_txt_blk) {
           <<[B]"${tws}$NL\n";
 	 }
 	 else {

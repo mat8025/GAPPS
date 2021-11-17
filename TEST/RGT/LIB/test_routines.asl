@@ -74,7 +74,7 @@ void hdg(str atit)
    atit.pinfo()
 
   int len = slen(atit)
-<<"%V $len\n"
+//<<"%V $len\n"
 
 
   int rlen = 20- len;
@@ -119,9 +119,9 @@ void changeDir(str td)
 void Run2Test(str td)
 {
 
-<<" $_proc $td $Testdir\n"
+//<<" $_proc $td $Testdir\n"
 
-  td.pinfo()
+ // td.pinfo()
 
   chdir(Testdir)
 

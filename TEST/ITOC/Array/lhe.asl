@@ -1,256 +1,281 @@
-//%*********************************************** 
-//*  @script lhe.asl 
-//* 
-//*  @comment test LHS array ele use 
-//*  @release CARBON 
-//*  @vers 1.38 Sr Strontium                                              
-//*  @date Fri Jan 18 20:40:11 2019 
-//*  @cdate 1/1/2007 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script lhe.asl 
+ * 
+ *  @comment test LHS array ele access 
+ *  @release CARBON 
+ *  @vers 1.39 Y Yttrium [asl 6.3.59 C-Li-Pr] 
+ *  @date 11/14/2021 20:21:44          
+ *  @cdate 1/1/2007 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                               
 ///
 ///
 ///
+
+<|Use_=
+   Demo  of LHS array ele access
+|>
+
 #include "debug"
 
+   if (_dblevel >0) {
 
-chkIn(_dblevel)
+     debugON();
 
-// _dblevel == 1 stop - interact on fail else run until exit -- report status on chkOut
+     <<"$Use_\n";
 
+     }
 
+   chkIn(_dblevel);
 
-Data = vgen(INT_,10,-5,1)
+   Data = vgen(INT_,10,-5,1);
 
+   <<"$Data \n";
 
-<<"$Data \n"
+   <<"$Data[1:3] \n";
 
-<<"$Data[1:3] \n"
-<<"$Data[1]\n"
-<<"$Data[2]\n"
-<<"$Data[3]\n"
+   <<"$Data[1]\n";
 
+   <<"$Data[2]\n";
+
+   <<"$Data[3]\n";
 //query()
-Data->info(1)
-<<"$Data \n"
-chkN(Data[1],-4)
 
-k= Data[1];
-<<"%V $k $Data[1]\n"
+   Data.pinfo();
 
-H= vgen(INT_,10,0,1)
-M= vgen(INT_,10,0,1)
+   <<"$Data \n";
 
-<<"%V $H \n"
+   chkN(Data[1],-4);
 
-Data[3] = 36
+   k= Data[1];
 
-<<"$Data \n"
+   <<"%V $k $Data[1]\n";
 
-chkN(Data[3],36)
-chkN(Data[2],-3)
+   H= vgen(INT_,10,0,1);
 
+   M= vgen(INT_,10,0,1);
 
+   <<"%V $H \n";
 
-Data->info(1)
+   Data[3] = 36;
 
- i = 2
- j = 4
+   <<"$Data \n";
 
-Data[i] = 80
-<<"$Data \n"
+   chkN(Data[3],36);
 
+   chkN(Data[2],-3);
 
-Data->info(1)
-chkN(Data[i],80)
+   Data.pinfo();
 
-H[8] = 76;
-H[9] = 77;
-<<"%V$H\n"
+   i = 2;
 
-Data[H[1]] = 47
+   j = 4;
 
-Data->info(1)
+   Data[i] = 80;
 
-<<"$H[1] $Data[1]\n"
-<<"%V$H\n"
-<<"%V$Data \n"
+   <<"$Data \n";
 
+   Data.pinfo();
 
-<<"H $H\n"
+   chkN(Data[i],80);
 
-Data[H[2]] = 65
-<<"%V$Data \n"
+   H[8] = 76;
+
+   H[9] = 77;
+
+   <<"%V$H\n";
+   Data[3] = H[1];
+
+   chkN(Data[3],1)
 
 
+   //Data[(H[1] *1)] = 47;
+   Data[H[8]-75] = 47;
 
-Data[H[3]] = H[9]
+   Data.pinfo();
 
-Data[H[4]] = H[M[8]]
+   <<"$H[1] $Data[1]\n";
 
-<<"$Data \n"
+   <<"%V$H\n";
 
+   <<"%V$Data \n";
 
+   <<"H $H\n";
 
-
-Data->info(1)
-
-chkN(Data[1],47)
-<<"$Data[1] $Data[2] \n"
-d= 47
-e= Data[1]
-Arglist=testargs(Data[1],e,d)
-<<"%(1,,,\n)$Arglist\n"
-
-<<"%(1, ,,\n)$(testargs(Data[1],e,d))\n"
-
-Data->info(1)
-<<" $Data \n"
-
-chkN(Data[2],65)
-
-chkN(Data[3],77)
-
-chkN(Data[4],76)
-
-Data[H[4]] = H[8]
-<<"%V $M[8]\n"
-
-<<"$Data \n"
-
-chkN(Data[4],76)
-
-
-int MD[3][3];
-
-   MD[1][2] = 7
-
-<<"$MD \n"
-
-Data[MD[1][2]]  = 37
-
-
-chkN(Data[7],37)
-
-<<"$Data \n"
+   chkN(Data[1],47)
 
 
 
+   Data[H[2]] = 65;
 
+   <<"%V$Data \n";
 
+   Data[H[3]] = H[9];
 
-chkOut()
+   Data[H[4]] = H[M[8]];
 
-exit()
+   <<"$Data \n";
 
-int k = 0
+   Data.pinfo();
 
+   chkN(Data[1],47);
 
+   <<"$Data[1] $Data[2] \n";
+
+   d= 47;
+
+   e= Data[1];
+
+   Arglist=testargs(Data[1],e,d);
+
+   <<"%(1,,,\n)$Arglist\n";
+
+   <<"%(1, ,,\n)$(testargs(Data[1],e,d))\n";
+
+   Data.pinfo();
+
+   <<" $Data \n";
+
+   chkN(Data[2],65);
+
+   chkN(Data[3],77);
+
+   chkN(Data[4],76);
+
+   Data[H[4]] = H[8];
+
+   <<"%V $M[8]\n";
+
+   <<"$Data \n";
+
+   chkN(Data[4],76);
+
+   int MD[3][3];
+
+   MD[1][2] = 7;
+
+   <<"$MD \n";
+
+   Data[MD[1][2]]  = 37;
+
+   chkN(Data[7],37);
+
+   <<"$Data \n";
+
+   chkOut();
+
+   exit();
+
+   int k = 0;
 ///////////////////////////////////////////////////////
 
+   Data[1] = 47;
 
+   <<"$Data \n";
 
-Data[1] = 47
+   <<"$Data[1] \n";
 
-<<"$Data \n"
+   chkN(Data[1],47);
 
-<<"$Data[1] \n"
+   k = 2;
 
-chkN(Data[1],47)
+   Data[k] = 79;
 
-k = 2
-Data[k] = 79
+   <<"$Data[2] $Data[k]\n";
 
-<<"$Data[2] $Data[k]\n"
+   chkN(Data[2],79);
 
-chkN(Data[2],79)
-chkN(Data[k],79)
+   chkN(Data[k],79);
 
+   int Vec[10];
 
+   int LP[10];
 
+   Data[j] = 26;
 
+   <<"$Data \n";
 
+   <<" %(1,,,,)$Data \n";
 
+   chkN(Data[4],26);
 
+   Data[1] = k;
 
+   Data[2] = Data[1];
 
-int Vec[10]
-int LP[10]
+   Data.pinfo();
 
-Data[j] = 26;
+   <<"$Data \n";
 
-<<"$Data \n"
+   <<"$Data[::] \n";
 
-<<" %(1,,,,)$Data \n"
+   <<"%V$i $j\n";
 
+   Data[j] = Data[i];
 
+   <<"$Data \n";
 
-chkN(Data[4],26)
-     Data[1] = k
-     Data[2] = Data[1]
-Data->info(1)
+   <<"%V$Data[2]  $k $i\n";
 
-<<"$Data \n"
+   chkN(Data[2],k);
 
-<<"$Data[::] \n"
+   m = 7;
 
+   Data[i] = 80;
 
-<<"%V$i $j\n"
-     Data[j] = Data[i]
-<<"$Data \n"
-<<"%V$Data[2]  $k $i\n"
+   Data[j] = 26;
 
-chkN(Data[2],k)
+   <<"$Data \n\n";
 
+   b = 67;
 
- m = 7
+   k = 1;
 
-Data[i] = 80
-Data[j] = 26
+   Data[1] = k;
 
-<<"$Data \n\n"
+   Data[2] = Data[1];
 
-b = 67
-     k = 1;
-     Data[1] = k;
-     Data[2] = Data[1];
+   <<"%V $Data[1] $Data[2] $k $i\n";
 
-<<"%V $Data[1] $Data[2] $k $i\n"
-     chkN(Data[1],k)
-     chkN(Data[2],k)
+   chkN(Data[1],k);
 
+   chkN(Data[2],k);
 
-  while (1) {
+   while (1) {
 
      k++;
 
-<<"%V$k\n"
+     <<"%V$k\n";
 
      Data[1] = k;
+
      Data[2] = Data[1];
 
-<<"%V $Data[1] $Data[2] $k $i\n"
+     <<"%V $Data[1] $Data[2] $k $i\n";
 //ans =iread()
-     chkN(Data[1],k)
-     chkN(Data[2],k)
 
+     chkN(Data[1],k);
 
-<<"$Data \n"
-<<"%V$i $j\n"
-     Data[j] = Data[i]
-<<"$Data \n"
+     chkN(Data[2],k);
 
+     <<"$Data \n";
+
+     <<"%V$i $j\n";
+
+     Data[j] = Data[i];
+
+     <<"$Data \n";
 
      if (k > 5)
-     break
 
-  }
+     break;
 
+     }
 
+   chkOut();
 
-
-
-
-chkOut()
+//===***===//

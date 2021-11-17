@@ -538,7 +538,7 @@ outcome("TRY")
       RunDirTests("Efmt","efmt",);
 
       RunDirTests("Swab","swab")
-
+outcome("TYPES")
       //rdb()
   }
 //======================================//
@@ -646,6 +646,7 @@ chdir(Testdir)
    RunDirTests("Sexp","sexp");
 
 
+outcome("EXP")
 
     }
 
@@ -657,7 +658,7 @@ chdir(Testdir)
 
   cart("paraex")
 
-
+outcome("PARAEX")
 
  }
 

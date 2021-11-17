@@ -3,185 +3,212 @@
  * 
  *  @comment test substitute func 
  *  @release CARBON 
- *  @vers 1.3 Li Lithium [asl 6.3.39 C-Li-Y] 
- *  @date 07/11/2021 10:55:07 
+ *  @vers 1.4 Be Beryllium [asl 6.3.59 C-Li-Pr] 
+ *  @date 11/14/2021 20:00:49          
  *  @cdate Tue Mar 12 07:50:33 2019 
  *  @author Mark Terry 
  *  @Copyright © RootMeanSquare  2010,2021 → 
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
-                                                                         
-
 
 #include "debug";
 
-if (_dblevel >0) {
-   debugON()
-}
-  
-chkIn(_dblevel);
+   if (_dblevel >0) {
 
+     debugON();
 
-nrows = 10
-n_feat = 8
+     }
 
-int Nit[nrows][n_feat];
+   chkIn(_dblevel);
 
-int Nic[5][100][n_feat];
+   nrows = 10;
 
+   n_feat = 8;
 
-Nit[1:4:][0] = 47;
+   int Nit[nrows][n_feat];
 
-chkN(Nit[1][0],47);
+   int Nic[5][100][n_feat];
 
+   Nit[1:4:][0] = 47;
 
+   chkN(Nit[1][0],47);
 
-Nit[::][0] = 2;
+   Nit[::][0] = 2;
 
-chkN(Nit[1][0],2);
+   chkN(Nit[1][0],2);
 
+   Nit[::][7] = 7;
 
-Nit[::][7] = 7
+   fail1 = 0;
 
-fail1 = 0
-fail2 = 0
+   fail2 = 0;
 
-  for (k = 0; k < 8; k++) {
-    for (i = 0; i < 8; i++) {
-       Nit[k][i] = i+k
-    }
-  }
+   for (k = 0; k < 8; k++) {
 
+     for (i = 0; i < 8; i++) {
 
+       Nit[k][i] = i+k;
 
-  kc = 0
-  kci = 0
-  i = 0
+       }
 
-<<"%V$i \n"
+     }
 
-<<"$Nit[i][0:7:] \n"
-i++
-<<"$Nit[i][0:7:] \n"
+   kc = 0;
 
-<<"Nit[2:5][0:7:] \n"
+   kci = 0;
 
-<<"$Nit[2:5][0:7:] \n"
+   i = 0;
 
-<<"%V$kc $kci $i\n"
+   <<"%V$i \n";
 
-      Nic[kc][kci][0] = Nit[i][0]
-      Nic[kc][kci][1] = Nit[i][2]
+   <<"$Nit[i][0:7:] \n";
 
+   i++;
 
-<<"%V $Nic[kc][kci][0] \n"
-<<"%V $Nic[kc][kci][1] \n"
+   <<"$Nit[i][0:7:] \n";
 
+   <<"Nit[2:5][0:7:] \n";
 
-      Nic[0:4][0:9][1] = Nit[i][2]
-<<"%V $Nic[3][kci][1] \n"
+   <<"$Nit[2:5][0:7:] \n";
 
-   Nic[1][2][0:7:1] = Nit[i][0:7:1]
+   <<"%V$kc $kci $i\n";
 
-   kci = 4
+   Nic[kc][kci][0] = Nit[i][0];
+
+   Nic[kc][kci][1] = Nit[i][2];
+
+   <<"%V $Nic[kc][kci][0] \n";
+
+   <<"%V $Nic[kc][kci][1] \n";
+
+   Nic[0:4][0:9][1] = Nit[i][2];
+
+   <<"%V $Nic[3][kci][1] \n";
+
+   Nic[1][2][0:7:1] = Nit[i][0:7:1];
+
+   kci = 4;
+
    kc = 3;
-   Nic[kc][kci][0:7:1] = Nit[i][0:7:1]
 
-<<"%V $Nic[kc][kci][0:7:] \n"
+   Nic[kc][kci][0:7:1] = Nit[i][0:7:1];
 
-i++;
-<<"%V$i\n"
+   <<"%V $Nic[kc][kci][0:7:] \n";
 
+   i++;
 
-
-
-
+   <<"%V$i\n";
 //<<"%V$i $Nit[i][0:7:] \n"
 
-   Nic[kc][kci][::] = Nit[i][::]
+   Nic[kc][kci][::] = Nit[i][::];
 
+   <<"%V $Nic[kc][kci][0:7:] \n";
 
-<<"%V $Nic[kc][kci][0:7:] \n"
-
- Nic[kc][kci][0:5:] = Nit[i][2:7:]
+   Nic[kc][kci][0:5:] = Nit[i][2:7:];
 //  <<"%V$i $Nit[i][0:7:] \n"
-<<"%V $Nic[kc][kci][0:7:] \n"
 
-i++
+   <<"%V $Nic[kc][kci][0:7:] \n";
 
- Nic[kc:kc][kci][0:5:] = Nit[i][2:7:]
-  <<"%V$i $Nit[i][0:7:] \n"
-<<"%V $Nic[kc][kci][0:5:] \n"
+   i++;
 
-chkN(Nic[kc][kci][0] ,Nit[i][2])
+   Nic[kc:kc][kci][0:5:] = Nit[i][2:7:];
+
+   <<"%V$i $Nit[i][0:7:] \n";
+
+   <<"%V $Nic[kc][kci][0:5:] \n";
+
+   <<"%V$i $Nit[i][2] \n";
+
+   <<"%V $Nic[kc][kci][0] \n";
 
 
+   chkN(Nic[kc][kci][0] ,Nit[i][2]);
 
-  for (i = 0 ; i < nrows ; i++) {
+   for (i = 0 ; i < nrows ; i++) {
 
-  <<"%V$i $kc $kci \n"
-  <<"%V$Nit[i][0:7:] \n"
-   Nic[kc:kc][kci][::] = Nit[i][::]
-  <<"%V $Nic[kc][kci][0:7:] \n"
+     <<"%V$i $kc $kci \n";
+
+     <<"%V$Nit[i][0:7:] \n";
+
+     Nic[kc:kc][kci][::] = Nit[i][::];
+
+     <<"%V $Nic[kc][kci][0:7:] \n";
 //   x= Nic[kc][kci][0] = 47
 
-   for (j = 0; j < n_feat ; j++) {
-     x= Nic[kc][kci][j]
-     y= Nit[i][j]
-    if (x != y) {
-        fail1=1;
-    }
-   }
+     for (j = 0; j < n_feat ; j++) {
 
-if (fail1) {
-<<"%V$fail1 \n"
+<<"%V $kc $kci $j \n"
+       x= Nic[kc][kci][j];
+
+       y= Nit[i][j];
+
+       if (x != y) {
+
+         fail1=1;
+
+         }
+
+       }
+
+     if (fail1) {
+
+       <<"%V$fail1 \n";
 //ans =iread()
-}
 
+       }
 
-}
+     }
 
+   if (fail1) {
 
-
-
-
-if (fail1) {
-<<"%V$fail1 \n"
+     <<"%V$fail1 \n";
 //ans =iread()
-}
 
+     }
 
- for (i = 0 ; i < nrows ; i++) {
+   for (i = 0 ; i < nrows ; i++) {
 
-   Nic[kc:kc][kci][0:5:] = Nit[i][2:7:]
-  <<"$Nit[i][0:7:] \n"
+     Nic[kc:kc][kci][0:5:] = Nit[i][2:7:];
+
+     <<"$Nit[i][0:7:] \n";
  // <<"sp $Nic[kc][kci][0:7:] \n"
 //i_read()
-   x1= Nic[kc][kci][0]
-   y1= Nit[i][2]
 
-   if (x1 != y1) {
-        fail2++;
+     x1= Nic[kc][kci][0];
+
+     y1= Nit[i][2];
+
+     if (x1 != y1) {
+
+       fail2++;
 //	iread()
-<<"%V$x1 $y1 \n"	
-<<"sp $Nic[kc][kci][0:7:] \n"
-  }
 
-if (fail2) {
-<<"%V$fail2 \n"
+       <<"%V$x1 $y1 \n";
+
+       <<"sp $Nic[kc][kci][0:7:] \n";
+
+       }
+
+     if (fail2) {
+
+       <<"%V$fail2 \n";
 //ans =iread()
-}
-   kci++
-  }
 
-<<"%V$fail1 $fail2\n"
+       }
 
+     kci++;
 
-chkN(fail1,0)
-chkN(fail2,0)
-chkT(1)
+     }
 
-chkOut();
+   <<"%V$fail1 $fail2\n";
 
+   chkN(fail1,0);
 
+   chkN(fail2,0);
+
+   chkT(1);
+
+   chkOut();
+
+//===***===//

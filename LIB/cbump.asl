@@ -11,8 +11,6 @@
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
-                                                               
-  
   
   proc Vers2ele(str vstr)
   {
@@ -176,7 +174,7 @@
    pad = nsc(69-vlen," ")
 <<[A]"//$vers $pad"
 seekline(A,1)
-<<[A]"//    @date $date"   
+<<[A]"//    @date $date     "   
 seekline(A,2)
 <<[A]"//    @Copyright © RootMeanSquare  2010,$(date(8)) → "           
 
