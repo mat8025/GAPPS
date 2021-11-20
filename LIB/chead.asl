@@ -21,7 +21,7 @@
 //
 
 
-proc vers2ele( vstr)
+proc vers2ele(str vstr)
 {
 
  pmaj = atoi(spat(vstr,"."))
@@ -97,8 +97,8 @@ dir= fexist(srcfile,ISDIR_,0);
 Author = "Mark Terry"
 fname = srcfile
 release = "CARBON"
-maj = 2;
-min = 4;
+maj = 1;
+min = 1;
 
 if (set_vers) {
   maj = atoi(spat(svers,".",-1))
@@ -182,3 +182,4 @@ first_inc =0;
 for (i = first_inc; i < tsz;i++) {
 <<"$T[i]"
 }
+

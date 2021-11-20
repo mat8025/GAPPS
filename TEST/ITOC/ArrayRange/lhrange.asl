@@ -1,15 +1,24 @@
-//%*********************************************** 
-//*  @script lhrange.asl 
-//* 
-//*  @comment test lh range select 
-//*  @release CARBON 
-//*  @vers 1.15 P Phosphorus                                              
-//*  @date Sun Feb 10 10:43:30 2019 
-//*  @cdate 1/1/2001 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script lhrange.asl 
+ * 
+ *  @comment test lh range select 
+ *  @release CARBON 
+ *  @vers 1.16 S Sulfur [asl 6.3.60 C-Li-Nd] 
+ *  @date 11/18/2021 07:01:39          
+ *  @cdate 1/1/2001 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                
+
+
+<|Use_=
+   Demo  of lhrange assignment
+///////////////////////
+|>
+
 
 #include "debug.asl"
 
@@ -18,6 +27,7 @@
      debugON();
 
      }
+     
 //filterFileDebug(ALLOWALL_,"yyy");
 //filterFuncDebug(REJECT_,"~ArraySpecs");
 

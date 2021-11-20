@@ -1,147 +1,147 @@
-//%*********************************************** 
-//*  @script mdrecord.asl 
-//* 
-//*  @comment check md range ops 
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                    
-//*  @date Mon Feb  3 08:48:06 2020 
-//*  @cdate Mon Feb 15 08:48:06 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
-
+/* 
+ *  @script rec_md.asl 
+ * 
+ *  @comment check md range ops 
+ *  @release CARBON 
+ *  @vers 1.3 Li Lithium [asl 6.3.60 C-Li-Nd] 
+ *  @date 11/18/2021 06:57:17          
+ *  @cdate Mon Feb 15 08:48:06 2020 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                      
 
 <|Use_=
-Demo  of Record class MD ;
+   Demo  of Record class MD ;
 ///////////////////////
 |>
 
-
-                                                                        
 #include "debug"
 
-if (_dblevel >0) {
-  debugON()
-    <<"$Use_\n"   
-}
+   if (_dblevel >0) {
 
-chkIn(_dblevel)
+     debugON();
 
-int MD[5][10];
+     <<"$Use_\n";
 
-chkN("init Array zero ",MD[0][1],0)
-chkN("init Array zero ",MD[0][-1],0)
+     }
 
-MD[0][1] = 79
+   chkIn(_dblevel);
 
-chkN("Set element",MD[0][1],79)
+   int MD[5][10];
 
-MD[0][0:8:1] = 79
+   chkN("init Array zero ",MD[0][1],0);
 
-chkN("set subset of elements",MD[0][8],79)
+   chkN("init Array zero ",MD[0][-1],0);
 
-MD[1][::] = 80
+   MD[0][1] = 79;
 
-chkN("set default range",MD[1][1],80)
+   chkN("Set element",MD[0][1],79);
 
-<<"$MD\n"
+   MD[0][0:8:1] = 79;
 
-MD[0][5:9:1] = 54
+   chkN("set subset of elements",MD[0][8],79);
 
+   MD[1][::] = 80;
 
-chkN("set subset of eles",MD[0][5],54)
+   chkN("set default range",MD[1][1],80);
 
-MD[1][3:8:1] = 28
+   <<"$MD\n";
 
-chkN("set subset of eles",MD[1][6],28)
+   MD[0][5:9:1] = 54;
 
-MD[1][3:8:] = 27
+   chkN("set subset of eles",MD[0][5],54);
 
-chkN("set subset of eles-default step",MD[1][6],27)
+   MD[1][3:8:1] = 28;
 
+   chkN("set subset of eles",MD[1][6],28);
 
-<<"$MD\n"
+   MD[1][3:8:] = 27;
 
+   chkN("set subset of eles-default step",MD[1][6],27);
 
-MD[2:4:1][4:9:1] = 77
+   <<"$MD\n";
 
-<<"$MD\n"
+   MD[2:4:1][4:9:1] = 77;
 
-chkN("set subset of eles",MD[3][6],77)
+   <<"$MD\n";
 
+   chkN("set subset of eles",MD[3][6],77);
 
-MD[2:4:1][4:9:] = 78
+   MD[2:4:1][4:9:] = 78;
 
-chkN("set subset of eles-default stride",MD[3][9],78)
-MD[2:4][0:3] = 85
+   chkN("set subset of eles-default stride",MD[3][9],78);
 
-MD[0:3][0] = -34
+   MD[2:4][0:3] = 85;
 
-Record RSV[>3]
+   MD[0:3][0] = -34;
 
+   Record RSV[>3];
 
-RSV= MD
+MD.pinfo()
 
+   RSV= MD;
+   
 !pRSV
 
-RSV->info(1)
+   RSV.pinfo();
 
+   <<"%V $RSV\n";
 
+str sval ;
 
-<<"%V $RSV\n"
+   sval = RSV[2][4];
 
-val = RSV[2][4]
+sval.pinfo()
 
-<<"%V$val\n"
+  <<"%V<|$sval|>\n";
 
+ chkStr(sval,"78.000000");
+ 
+   val = RSV[2][4];
 
+val.pinfo()
 
-chkStr(val,"78.000000")
+   <<"%V<|$val|>\n";
 
-val = RSV[2][1]
+   chkStr(val,"78.000000");
 
-<<"$val\n"
-chkStr(val,"85.000000")
+   val = RSV[2][1];
 
-chkStr(RSV[2][1],"85.000000")
+   <<"$val\n";
 
-SM= MD[0:2][1:5:]
+   chkStr(val,"85.000000");
 
+   chkStr(RSV[2][1],"85.000000");
+
+   SM= MD[0:2][1:5:];
 !pSM
 
-RSV= MD[0:2][1:5:]
+   RSV= MD[0:2][1:5:];
 
-<<"after subscript RHS\n"
-RSV->info(1)
+   <<"after subscript RHS\n";
 
-<<"$RSV\n"
+   RSV->info(1);
 
+   <<"$RSV\n";
 
+   V=vgen(FLOAT_,10,0,1);
 
-V=vgen(FLOAT_,10,0,1)
-<<"$V\n"
+   <<"$V\n";
 
+   Record RV[>3];
 
-Record RV[>3]
+   RV =V;
 
+   RV->info(1);
 
-RV =V
+   <<"$RV\n";
 
-RV->info(1)
-<<"$RV\n"
+   chkOut();
+/*
+   Should be able to specify a subset of a MD array for operations
+*/
 
-chkOut()
-
-
-/{/*
-
- Should be able to specify a subset of a MD array for operations
-
-
-
-
-
-
-
-/}*/
+//===***===//

@@ -42,15 +42,15 @@ allowErrors(-1) ; // keep going
    
    ptr  ps; 
 
-   ps<-pinfo()
+   ps.pinfo()
  
    ps = &S;
 
 <<"$S\n"
 
-   ps<-pinfo()
+   ps.pinfo()
 
-   S<-pinfo()
+   S.pinfo()
 
    val = ps[2];
 
@@ -59,25 +59,25 @@ chkStr(val,"tres")
 
 
    <<"%V $val\n";
-   val<-pinfo(); 
+   val.pinfo(); 
 
    val = ps[3];
-   S<-pinfo()
-   ps<-pinfo();
+   S.pinfo()
+   ps.pinfo();
 
    <<"$val\n";
 
 chkStr(val,"bien")
 
    val = ps[4];
-   S<-pinfo()
-   ps<-pinfo();
+   S.pinfo()
+   ps.pinfo();
 
    <<"$val\n";
 
    val = ps[4];
 
-   ps<-pinfo();
+   ps.pinfo();
 
    <<"$val\n";
 
@@ -87,7 +87,7 @@ chkStr(val,"bien")
    
    sval= ps[i];
 
-  ps<-pinfo();
+  ps.pinfo();
 
 <<"%V$sval\n"
 chkStr(sval,"avec")
@@ -96,13 +96,13 @@ chkStr(sval,"avec")
 
    sz=Caz(S);
 
-   S<-pinfo()
+   S.pinfo()
 
     i= 4;
    
    sval= ps[i];
    
-   ps<-pinfo()
+   ps.pinfo()
    
 <<"%V <|$sval|> \n"
   chkStr(sval,"avec")
@@ -112,7 +112,7 @@ chkStr(sval,"avec")
 
 
    sval= ps[1];
-   ps<-pinfo()
+   ps.pinfo()
    <<"%V <|$sval|> \n"
 
 
@@ -128,12 +128,12 @@ chkStr(sval,"va")
      }
    
    <<"\n";
-      ps<-pinfo();
+      ps.pinfo();
 <<"$S\n"
      ps[3] = "mal"
 
 <<"$S\n"
-     S<-pinfo()
+     S.pinfo()
    
      chkStr(S[3],"mal")
 
@@ -165,7 +165,7 @@ chkStr(sval,"va")
 
       sz=Caz(S);
 <<" S sz $sz \n"
-S<-pinfo()
+S.pinfo()
      for (i=0;i<sz;i++) {
      
       sval= ps[i];
@@ -173,7 +173,7 @@ S<-pinfo()
      <<"<$i> $sval  $S[i]  $ps[i]\n";
 
       chkStr(sval,S[i])
-  //   sval<-pinfo(); 
+  //   sval.pinfo(); 
      }
 
      chkStr(ps[1],"va")

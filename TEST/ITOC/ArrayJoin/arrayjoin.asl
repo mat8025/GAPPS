@@ -1,95 +1,95 @@
-//%*********************************************** 
-//*  @script arrayjoin.asl 
-//* 
-//*  @comment  test array join 
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                    
-//*  @date Fri May  1 07:35:20 2020 
-//*  @cdate Fri May  1 07:35:20 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
-/*
+/* 
+ *  @script arrayjoin.asl 
+ * 
+ *  @comment test array join 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.60 C-Li-Nd] 
+ *  @date 11/19/2021 11:53:51          
+ *  @cdate Fri May 1 07:35:20 2020 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                       
 #include "debug"
 
-if (_dblevel >0) {
-   debugON()
-}
+   if (_dblevel >0) {
 
-*/
+     debugON();
 
-chkIn(_dblevel)
+     }
 
-N = 20
+   chkIn(_dblevel);
 
+   N = 20;
 
- YV = Igen(N,21,1)
+   YV = Igen(N,21,1);
 
-<<"%v $YV \n"
+   <<"%v $YV \n";
 
- vi = 5
+   vi = 5;
 
+   int PV[10];
 
-int PV[10]
+   PV[1] = 1;
 
-  PV[1] = 1
-  PV[2] = 2
-  PV[3] = 3
-  PV[8] = 8
-  PV[9] = 9  
- 
+   PV[2] = 2;
 
-YV[0] = 74
-<<"%V $PV \n"
+   PV[3] = 3;
 
-NV = YV @+ PV
+   PV[8] = 8;
 
-<<"%V $NV \n"
+   PV[9] = 9;
 
-sz = Caz(NV)
+   YV[0] = 74;
 
-<<"%v $sz \n"
+   <<"%V $PV \n";
 
-<<"%v $NV[29] \n"
-chkN(NV[19],40)
-chkN(NV[29],9)
-<<"%v $NV \n"
-chkN(sz,30)
+   NV = YV @+ PV;
 
-chkOut()
+   <<"%V $NV \n";
 
+   sz = Caz(NV);
 
+   <<"%v $sz \n";
 
+   <<"%v $NV[29] \n";
 
-<<" $YV \n"
+   chkN(NV[19],40);
 
-<<" $NV[2] \n"
+   chkN(NV[29],9);
 
-<<" $NV[22] \n"
+   <<"%v $NV \n";
 
+   chkN(sz,30);
 
-<<" $YV \n"
+   chkOut();
 
+   <<" $YV \n";
 
-YV = YV @+ PV
+   <<" $NV[2] \n";
 
-<<" $YV \n"
+   <<" $NV[22] \n";
 
+   <<" $YV \n";
 
- S = YV[PV]
+   YV = YV @+ PV;
 
-<<" %v $PV \n"
-<<" %v $S \n"
+   <<" $YV \n";
 
- chkN(NV[1],YV[1])
+   S = YV[PV];
 
- chkN(NV[2],YV[2])
+   <<" %v $PV \n";
 
- chkN(NV[21],P[1])
+   <<" %v $S \n";
 
+   chkN(NV[1],YV[1]);
 
- chkOut()
+   chkN(NV[2],YV[2]);
 
+   chkN(NV[21],P[1]);
 
+   chkOut();
 
+//===***===//
