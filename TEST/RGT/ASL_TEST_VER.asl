@@ -114,10 +114,12 @@ do_xic = 1;   // option?
 int n_modules = 0
 int rt_tests = 0
 int rt_pass = 0
+int rt_crash = 0
 int rt_fail = 0
 int i_time = 0;
 int x_time = 0;
 
+str rt_script = "xyz"
 
 Todo=ofw("to_test")
 
@@ -343,7 +345,8 @@ if ((do_include || do_all ) && (do_include != -1)) {
 //================================//
 
   if ((do_bops || do_all) && (do_bops != -1)) {
-        inflsz = caz(FailedList)
+
+    inflsz = caz(FailedList)
 
 
     RunDirTests("Bops","bops,fvmeq,fsc1,mainvar,snew");
@@ -357,13 +360,15 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
 
 // !!!! if basics fail warn/ask before going on to rest of testsuite
+  rt_script = "bops"
+  rt_arg1 = "7"
+  cart(rt_script,rt_arg1)
 
-  cart("bops","7")
+  cart_xic(rt_script,rt_arg1)
+  rt_script = "fvmeq"
+  cart(rt_script,rt_arg1)
 
-  cart_xic("bops","7")
-
-  cart("fvmeq","3")
-
+  cart_xic(rt_script,rt_arg1)
   updir()
 
   chdir ("Contin")
@@ -446,7 +451,7 @@ if ((do_enum || do_all) && (do_enum != -1)) {
     inflsz = caz(FailedList)
     RunDirTests("Enum","enum,colors_enum")
 
-  outcome("ENUM")
+    outcome("ENUM")
   }
 ////////////////////////////////////////////////////////////////////////
 

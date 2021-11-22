@@ -16,19 +16,24 @@
 int Nsuites =0;
 int Nspassed =0;
 
+int last_npass = 0
+int last_ncrash = 0
 
 void outcome (str title)
 {
    Nsuites++;
    outflsz = caz(FailedList)
-   if (inflsz == outflsz) {
+   if ((inflsz == outflsz) && (rt_crash == last_ncrash)) {
    Nspassed++;
-    <<"/////////////// $title PASS////////////////\n"
+   
+    <<"/////////////// $title PASS/////$(rt_pass - last_npass)///////////\n"
    }
    else {
    //<<"%V$inflsz  $outflsz \n"
-<<"/////////////////// $title FAIL $(outflsz-inflsz) //////////////////////\n"
+<<"$(PRED_)/////////////////// $title FAIL $(outflsz-inflsz) /////CRASH $(rt_crash-last_ncrash)///$(POFF_)/////////\n"
    }
+   last_npass = rt_pass;
+   last_ncrash = rt_crash;
 }
 
 //////////////////////////////
@@ -71,7 +76,7 @@ padtit =nsc(15,"/")
 
 void hdg(str atit)
 {
-   atit.pinfo()
+   //atit.pinfo()
 
   int len = slen(atit)
 //<<"%V $len\n"
@@ -523,6 +528,7 @@ foundit = fexist(prg) ;
      else {
 
        <<[Tcf]"#CRASH FAIL:--failed to run $prg\n"
+       rt_crash++;
        
        CrashList.Insert("${Curr_dir}/xic_${prg}")
      }
@@ -566,7 +572,7 @@ if (!do_module) {
      else {
 
        <<[Tcf]"#CRASH FAIL:--failed to run $aprg\n"
-       
+       rt_crash++;
        CrashList.Insert("${Curr_dir}/xic_${aprg}")
      }
 
@@ -663,6 +669,7 @@ void cart (str aprg)
 
        //<<"CRASH FAIL:--failed to run \n"
        // insert works??
+       rt_crash++;
        CrashList.Insert("${Curr_dir}/${prg}")
 
      }
@@ -748,7 +755,8 @@ void cart (Str aprg,  Str pa1)
      else {
 
        //<<"CRASH FAIL:--failed to run inseting $aprg into crashed list\n"
-        CrashList.Insert("${Curr_dir}/${prg}")
+      rt_crash++;
+      CrashList.Insert("${Curr_dir}/${prg}")
 //	<<[Tcf]"${Curr_dir}/${aprg}\n"
      }
 

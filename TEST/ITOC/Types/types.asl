@@ -18,7 +18,7 @@ Demo  of asl types
 |>
 
 
-#include "debug.asl";
+#include "debug.asl"
 
 
 
@@ -29,6 +29,23 @@ if (_dblevel >0) {
 
 
 chkIn(_dblevel)
+chkT(1)
+
+Siv q = 1;
+
+q.pinfo()
+
+q= 54.67;
+
+q.pinfo()
+
+<<"%V $q\n"
+
+ print(' q %f \n',q);
+
+
+chkOut()
+
 
 double DV[10]
 

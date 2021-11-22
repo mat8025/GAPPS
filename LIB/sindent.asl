@@ -3,15 +3,14 @@
  * 
  *  @comment format asl scripts 
  *  @release CARBON 
- *  @vers 1.20 Ca Calcium [asl 6.3.59 C-Li-Pr] 
- *  @date 11/12/2021 09:04:05          
+ *  @vers 1.21 Sc Scandium [asl 6.3.61 C-Li-Pm] 
+ *  @date 11/20/2021 10:20:44          
  *  @cdate 1/1/2015 
  *  @author Mark Terry 
  *  @Copyright © RootMeanSquare  2010,2021 → 
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
-
                                                               
 ;
 
@@ -148,6 +147,8 @@ ESL="//===***===//";
   in_comment_blk = 0  ;
   in_txt_blk = 0  ;
   is_margin_call = 0;
+  is_case = 0;
+  is_public = 0;  
   
   nw = 2;
   
@@ -201,7 +202,10 @@ ESL="//===***===//";
     wrds2 = split(L2);
 
     NL = L;
-    <<[2]"in:$NL\n" ;
+    
+<<"in: \033[1;32m $NL  \033[0m\n" ;
+
+//<<[2]"in: $NL   \n" ;
 
 //ans=query("2pp")
   
@@ -215,8 +219,9 @@ ESL="//===***===//";
 
        is_define = scmp(nsv,"#define",7);
        is_include = scmp(nsv,"#include",8);
+       is_case = scmp(nsv,"case",4);
 
-<<[2]"%s $nsv %v %d $is_define $is_include\n"
+<<[2]"%s $nsv %v %d $is_define $is_include $is_case\n"
 
 
       if ((nsv[0] == '/') && (nsv[1] == '/')) {
@@ -385,15 +390,17 @@ ESL="//===***===//";
        
        if (mat) {
          // ; before //
-         doTrailingComment()
-      }
+         if (!is_case) {	 
+           doTrailingComment()
+        }
+       }
 
 	<<[2]"%c $lastc %d $lastc \n"
 	if (lastc != 59 && lastc != 123 ) {
 	   needs_semi_colon = 1;
 	 
 
-         iv =sstr(";/{}\\",lastc,1);
+         iv =sstr(";:/{}\\",lastc,1);
 <<[2]"$iv\n"
           if (iv[0] != -1) {
             needs_semi_colon = 0;
@@ -404,10 +411,12 @@ ESL="//===***===//";
         }
        }
 
-     if (in_comment_blk || in_txt_blk) {
+     if (is_case || in_comment_blk || in_txt_blk) {
              needs_semi_colon = 0;
        }
 
+       
+     
        
       <<[2]" needs ; ? $needs_semi_colon <|$lastc|>\n";
       <<[2]" needs ; $NL\n";
@@ -470,10 +479,10 @@ ESL="//===***===//";
 
 
     if (needs_semi_colon) {
-   <<"out:${tws}${NL};\n";
+   <<"\033[1;34m out:${tws}${NL};\n \033[0m";
    }
    else {
-   <<"out:${tws}$NL\n";
+   <<"\033[1;34m out:${tws}$NL  \033[0m\n";
    }
 
 //      <<[B]"${tws}$NL\n"; 
@@ -483,7 +492,7 @@ ESL="//===***===//";
 
   if (do_query) {
    ans=query("pp correct?")
-    if (ans =="n") {
+    if (ans == "n") {
          break;
 	 }
     if (ans == "q") {

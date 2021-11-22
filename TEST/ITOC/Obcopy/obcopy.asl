@@ -1,823 +1,875 @@
-//%*********************************************** 
-//*  @script obcopy.asl 
-//* 
-//*  @comment use &obj as an arg to deliver ptr 
-//*  @release CARBON 
-//*  @vers 1.38 Sr Strontium [asl 6.2.68 C-He-Er]                          
-//*  @date Sun Aug 30 08:12:32 2020 
-//*  @cdate 1/1/2005 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
-
-
+/* 
+ *  @script obcopy.asl 
+ * 
+ *  @comment use &obj as an arg to deliver ptr 
+ *  @release CARBON 
+ *  @vers 1.39 Y Yttrium [asl 6.3.61 C-Li-Pm] 
+ *  @date 11/20/2021 10:28:21          
+ *  @cdate 1/1/2005 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                
 <|Use_=
-Demo  of Object copy ;
-want to show that can use &obj as an arg
- to deliver ptr to that object to a script procedure
+   Demo  of Object copy ;
+   want to show that can use &obj as an arg
+   to deliver ptr to that object to a script procedure
 ///////////////////////
 |>
 
-
-                                                                        
 #include "debug"
 #include "hv.asl"
 
+   if (_dblevel >0) {
 
-if (_dblevel >0) {
-  debugON()
-    <<"$Use_\n"   
-}
+     debugON();
 
- allowErrors(-1)
+     <<"$Use_\n";
 
-filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar")
+     }
 
- chkIn(_dblevel)
+   allowErrors(-1);
 
-void chkCmfNest()
-{
- if (_cmfnest != -1) {
- <<"Bad $_cmfnest \n"
- listCode(5,6)
- iread("continue?")
- }
-}
+   filterFileDebug(REJECT_,"store","tok");
 
+   chkIn(_dblevel);
 
-void pf (float f)
-{
+int Val = 8;
+int X = 0;
 
-<<"$_proc $f\n"
-f<-pinfo()
+Str mval = "red";
 
-}
+       <<"%V setting $X to $Val \n";
 
-
-int pdef = 0;
+  <<"%Vsetting $X to $Val \n";
+    <<"%dsetting $X to $Val \n";
+    <<"%d$X to $Val \n";
+       
+          X =Val;
+chkN(X,8)
 
 
 
 
+   void chkCmfNest()
+   {
+     if (_cmfnest != -1) {
 
+       <<"Bad $_cmfnest \n";
 
+       listCode(5,6);
+ //iread("continue?")
 
+       }
 
+     }
+
+   void pf (float f)
+   {
+
+     <<"$_proc $f\n";
+
+     f.pinfo();
+
+     }
+
+   int pdef = 0;
 # class definition
-int JuiceyF = 0;
 
-class fruit  {
+   int JuiceyF = 0;
 
+   class fruit  {
+   
 #  variable list
 
-   public:
+     public:
 
-   int x ;
-   str color;
-   str name;
-   str state;
-   private:
-   
-   int y;
-   float z;
-   int j;
-   int edible;
+     int x ;
 
+     str color;
+
+     str name;
+
+     str state;
+
+     private:
+
+     int y;
+
+     float z;
+
+     int j;
+
+     int id;
+
+     int edible;
+     
 #  method list
 
+     cmf print () {
 
-   cmf print () {
-<<" in cmf print \n"
-<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
+       <<" in cmf print \n";
 
-     j++;
-    <<"$_proc of $_cobj $j\n"
-      <<"%V$name $color $state $x $y $z  $j\n"
+       <<"cmf %V $_scope $_cmfnest $_proc $_pnest\n";
 
-   }
+       j++;
 
+       <<"%V $name $id $color $state $x $y $z  $j\n";
 
-   cmf set_x (int val) {
+       <<"%V $_cobj \n";
 
-    //   <<" $_proc setting x to $val \n"
-   <<" setting x to $val \n"
+       }
+
+     cmf set_x (int val) {
+
+       <<"%V setting $x to $val \n";
+
        x = val;
-   }
 
-   cmf get_x() {
-       <<" $_proc returning  $x \n"
-      return x;
-   }
+       <<"%V $x ==  $val ? \n";
 
-   cmf set_color (str val) {
-<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"   
-       color = val
-   <<" $_proc $color \n"       
-   }
+       }
 
-   cmf get_color () {
-   
-    val = color;
-   <<" $_proc  $val  $color\n"
+     cmf get_x() {
+
+       <<" $_proc returning  $x \n";
+
+       return x;
+
+       }
+
+     cmf set_color (str val) {
+
+       <<"current %V $color \n";
+       <<"%V $_scope $_cmfnest $_proc $_pnest $val\n";
+
+       color = val;
+
+       <<"$color == $val \n";
+
+       }
+
+     cmf get_color () {
+
+       val = color;
+
+       <<" $_proc  $val  $color\n";
+
        return val;
-   }
 
-   cmf set_name (str val) {
-       name = val
-   }
+       }
 
-   cmf set_y (int val) {
-<<" $_proc %V$val \n"
-       y = val
-   }
+     cmf set_name (str val) {
 
-   cmf set_z (float val) {
-       z = val
-   }
+       name = val;
 
-   cmf get_z() {
- 
+       }
+
+     cmf set_y (int val) {
+
+       <<" $_proc %V$val \n";
+
+       y = val;
+
+       }
+
+     cmf set_z (float val) {
+
+       z = val;
+
+       }
+
+     cmf get_z() {
 //   <<" $cproc %v $z \n"
 
-   <<" %v $z \n"
+       <<" %v $z \n";
 
-   <<" $_cproc \n"
+       <<" $_cproc \n";
 
        return z ;
-   }
 
+       }
 // constructor
 
-  cmf fruit()
-    {
+     cmf fruit() {
 
-      JuiceyF++;
+       JuiceyF++;
 
+       id = JuiceyF;
 //<<"%v $_pstack \n"
-  
+
        x = 5;  y = 1;  z = 3;  j = 0;
-       color = "white"
-       state = "ripe"
-       name = "$_cobj"
 
-<<" cons for  $name $color $state $JuiceyF \n"  
-   
-    }
+       color = "white";
 
+       state = "ripe";
 
-  cmf ~fruit()
-    {
-<<" doing destructor   for %v $_cobj \n"
-     
-   }
+       name = "$_cobj";
 
+       <<" cons for  $name $color $state $JuiceyF \n";
 
- }
+       }
+
+     cmf ~fruit() {
+
+       <<" doing destructor   for %v $_cobj \n";
+
+       }
+
+     }
 //==================================//
-<<" after class definition !\n"
 
+   <<" after class definition !\n";
 
-fruit apple;
+   fruit apple;
 
+   apple.pinfo();
 //  apple->set_name("apple")
-<<" after object declaration !\n"
-fruit cherry;
 
-<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
-apple->print()
-<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
-cherry->print()
-<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
-cherry->set_color("red")
-<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
-chkStr(cherry->color,"red")
-apple->set_color("green")
-<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
-chkStr(apple->color,"green")
+   <<" after object declaration !\n";
 
-<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
-<<" can I eat apple $_cobj\n"
+   fruit cherry;
+
+   <<"main %V $_scope $_cmfnest $_proc $_pnest\n";
+
+   apple->print();
+
+   <<"main %V $_scope $_cmfnest $_proc $_pnest\n";
+
+   cherry->print();
+
+   <<"main %V $_scope $_cmfnest $_proc $_pnest\n";
+int ns = 4;
+
+    apple->set_x(ns);
+
+<<"%V$apple->x \n";
+
+   chkN(apple->x,4)
 
 
-int munch(int a)
-{
-   <<"$_proc $a\n";
-   b = 2 *a;
-   return b;
-}
+    cherry->set_x(7);
 
+<<"%V cherry->x \n";
+
+   chkN(cherry->x,7)
+
+
+    cherry->set_color("green");
+
+   chkStr(cherry->color,"green");
+
+
+
+
+   cherry->set_color(mval);
+
+   <<"main %V $_scope $_cmfnest $_proc $_pnest\n";
+
+   chkStr(cherry->color,"red");
+
+
+   apple->set_color("green");
+
+   <<"main %V $_scope $_cmfnest $_proc $_pnest\n";
+
+   chkStr(apple->color,"green");
+
+   <<"main %V $_scope $_cmfnest $_proc $_pnest\n";
+
+   <<" can I eat apple $_cobj\n";
+
+
+
+
+
+
+
+
+   int munch(int a)
+   {
+     <<"$_proc $a\n";
+     b = 2 *a;
+     return b;
+     }
  /////
  /// fruit is sclass -- all objs passed as ptr to object - not copied
- 
-void eat(fruit oba)
-{
-    <<" $_proc $_cobj \n"
-  <<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"  
-    <<"fruit thine name is $oba->name \n"
 
-    oba<-pinfo()   
+   void eat(fruit oba)
+   {
 
+     <<" $_proc $_cobj \n";
 
+     <<"cmf %V $_scope $_cmfnest $_proc $_pnest\n";
+
+     <<"fruit thine name is $oba->name \n";
+
+     oba.pinfo();
 //<<"apple $apple->color \n"
 
-    oba->color ="red";
-
+     oba->color = "red";
 //<<"apple $apple->color \n"
 
-    oba->state = "eaten"
+     oba->state = "eaten";
 
-    oba->print()
-
-
-
+     oba->print();
  //   locfruit = oba;
-
  //   locfruit->print()
+      oba.pinfo()
 
-    <<" leaving $_proc $_cobj \n"
-
+     <<" leaving $_proc $_cobj \n";
   // ans=query("c_obj?")
-   return 1;
-}
 
-pdef++; <<"%V$pdef \n"
+     return 1;
+
+     }
+
+   pdef++; <<"%V$pdef \n";
 //==================================//
 
-ok = 1
+   ok = 1;
 
-ok=eat(apple)
+   ok=eat(apple);
 
-<<" $ok after eating apple $_cobj\n"
+   <<" $ok after eating apple $_cobj\n";
 
-apple->print()
+   apple->print();
 
+   <<" b4 eating cherry $_cobj\n";
 
-<<" b4 eating cherry $_cobj\n"
+   cherry->print();
 
-cherry->print()
+   ok=eat(cherry);
 
-ok=eat(cherry)
+   <<" $ok after eating cherry $_cobj\n";
 
-<<" $ok after eating cherry $_cobj\n"
+   cherry->print();
 
-cherry->print()
+   proc objcopy(fruit oba,  fruit obb)
+   {
 
-chkOut()
+     <<"$_proc  copying $obb->color to $oba->color \n";
 
+     oba->x = obb->x;
 
+     oba->y = obb->y;
 
-proc objcopy(fruit oba,  fruit obb)
-{
-<<"$_proc  copying $obb->color to $oba->color \n"
+     oba->color = obb->color;
 
-    oba->x = obb->x;
-    oba->y = obb->y;
-    oba->color = obb->color;
-}
-pdef++; <<"%V$pdef \n"
+     }
+
+   pdef++; <<"%V$pdef \n";
 //==================================//
-
-
 //proc foo2 (int a)
-proc roo (str a)
-{
-   k = a;
+
+   proc roo (str a)
+   {
+     k = a;
  //  float d = exp(1);
  //  float d = 3.4;
  //  str s = "hi";
- int d;
+
+     int d;
 //    d = k;
-<<"$_proc $a $d \n";
 
-
+     <<"$_proc $a $d \n";
 // local obj
  // apple->print();
-  
  // fruit peach;
-
  //  peach->print()
-}
-pdef++; <<"%V$pdef \n"
+
+     }
+
+   pdef++; <<"%V$pdef \n";
 //==================================//
-proc roo2 (str a)
-{
-   k = a;
+
+   proc roo2 (str a)
+   {
+     k = a;
  //  float d = exp(1);
  //  float d = 3.4;
  //  str s = "hi";
- int d;
+
+     int d;
 //   d = k;
-<<"$_proc $a $d \n";
 
-
+     <<"$_proc $a $d \n";
 //  local obj
 //  apple->print();  // TBF
-  
 //  fruit peach; // TBF
-
  //  peach->print() // TBF
-}
 
+     }
 
+   proc goo()
+   {
 
-proc goo()
-{
+     <<"HEY in $_proc\n";
 
-<<"HEY in $_proc\n"
+     <<"%v $_pstack \n";
 
+     apple->color = "vermillion";
 
-<<"%v $_pstack \n"
+     <<" %v $apple->color \n";
 
-   apple->color = "vermillion"
+     <<" setting $cherry->color  to $apple->color \n";
 
-<<" %v $apple->color \n"
+     cherry->color = apple->color;
 
-<<" setting $cherry->color  to $apple->color \n"
+     <<" %v $cherry->color \n";
 
-    cherry->color = apple->color
+     cherry->x = apple->x;
 
-<<" %v $cherry->color \n"
+     <<" %v $cherry->x \n";
 
-    cherry->x = apple->x;
+     <<" now a cmf inside a proc \n";
 
-<<" %v $cherry->x \n"
+     cherry->print();
 
-<<" now a cmf inside a proc \n"
+     }
 
-    cherry->print()
-}
-pdef++; <<"%V$pdef \n";
+   pdef++; <<"%V$pdef \n";
 //==================================//
-chkN(pdef,7)
+
+   chkN(pdef,4);
 
 //roo("que")
 
+   goo();
 
+   <<"main %V $_scope $_cmfnest $_proc $_pnest\n";
 
+   apple->print();
 
+   <<"main %V $_scope $_cmfnest $_proc $_pnest\n";
 
-goo()
+   cherry->print();
 
-<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
-apple->print()
-<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
-cherry->print()
-<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
-cherry->set_color("red")
-<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
-chkStr(cherry->color,"red")
-apple->set_color("green")
-<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
-chkStr(apple->color,"green")
+   <<"main %V $_scope $_cmfnest $_proc $_pnest\n";
 
+   cherry->set_color("red");
 
+   <<"main %V $_scope $_cmfnest $_proc $_pnest\n";
+
+   chkStr(cherry->color,"red");
+
+   apple->set_color("green");
+
+   <<"main %V $_scope $_cmfnest $_proc $_pnest\n";
+
+   chkStr(apple->color,"green");
 /////////////////////////////////////////////
 
-fruit orange;
+   fruit orange;
 
-orange->print()
-<<" <|$orange->color|> \n"
+   orange->print();
 
-orange->color<-pinfo()
+   <<" <|$orange->color|> \n";
 
-clr = orange->color;
+   orange->color->pinfo();
 
-clr<-pinfo()
+   clr = orange->color;
 
+   clr.pinfo();
 
+   chkStr(clr,"white");
 
-chkStr(clr,"white")
+   chkCmfNest();
 
-  chkCmfNest()
+   printargs(orange->name,clr,orange->color);
 
+   chkStr(orange->color,"white");
 
+   chkStr("white",orange->color);
 
+   apple->print();
 
-printargs(orange->name,clr,orange->color)
+   chkCmfNest();
 
-chkStr(orange->color,"white")
-chkStr("white",orange->color)
+   <<"main %V $_scope $_cmfnest $_proc $_pnest\n";
 
+   chkCmfNest();
 
-  apple->print();
+   a=1;
 
-  chkCmfNest()
+   bs="la apuesta inteligente";
 
+   <<"$(bs)\n";
 
+   <<"$(testargs(a,bs))\n";
 
+   <<"main %V $_scope $_cmfnest $_proc $_pnest\n";
 
-<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
-
-chkCmfNest()
-
-a=1
-bs="la apuesta inteligente"
-
-<<"$(bs)\n"
-
-<<"$(testargs(a,bs))\n"
-
-<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
-
-
-  chkCmfNest()
-  
-
-
+   chkCmfNest();
 //<<"class $apple\n"
 
-<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
+   <<"main %V $_scope $_cmfnest $_proc $_pnest\n";
 
+   <<"$(testargs(apple))\n";
 
-<<"$(testargs(apple))\n"
+   <<"$(examine(apple))\n";
 
-<<"$(examine(apple))\n"
+   chkCmfNest();
 
-  chkCmfNest()
+   <<"attempt to eat fruit!\n";
 
+   eat(apple);
 
-<<"attempt to eat fruit!\n"
-   eat(apple)
-<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
-  apple->print();
-<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
+   <<"main %V $_scope $_cmfnest $_proc $_pnest\n";
 
+   apple->print();
 
-  chkCmfNest()
-chkOut()
- ccol = apple->get_color()
-<<"%V $ccol \n"
+   <<"main %V $_scope $_cmfnest $_proc $_pnest\n";
 
-  chkCmfNest()
-  
-<<" IN MAIN\n"
+   chkCmfNest();
 
-<<"Examine apple\n"
-EA= examine(apple)
-<<"$EA\n"
-<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
+   ccol = apple->get_color();
 
-  fp = &apple;
+   <<"%V $ccol \n";
 
-  chkCmfNest()
+   chkCmfNest();
 
-  fp<-pinfo()
-  
+   <<" IN MAIN\n";
+
+   <<"Examine apple\n";
+
+   EA= examine(apple);
+
+   <<"$EA\n";
+
+   <<"main %V $_scope $_cmfnest $_proc $_pnest\n";
+
+   fp = &apple;
+
+   chkCmfNest();
+
+   fp.pinfo();
 //  fp->print()
-
-
-
 //<<"%V$_proc \n"
 //<<"%V$_pstack \n"
 # object declaration
 
+   apple->print();
 
+   apple->color = "green";
 
+   chkStr(apple->color,"green");
 
+   apple->x = 80;
 
-
-  apple->print() 
-
-  apple->color = "green"
-
-  chkStr(apple->color,"green")
-
-  apple->x = 80
-
-  chkN(apple->x,80)
-  
+   chkN(apple->x,80);
 //<<" %I $apple->color \n"
-<<" %V $apple->color \n"
-<<" %V $apple->x \n"
 
-  apple->print()
+   <<" %V $apple->color \n";
 
+   <<" %V $apple->x \n";
 
+   apple->print();
 
-
-
-
-
-
-
-
-
-<<" after object declaration of $cherry !\n"
+   <<" after object declaration of $cherry !\n";
 //<<" %I $cherry->color \n"
-<<"%V $cherry->color \n"
-  cherry->print() 
+
+   <<"%V $cherry->color \n";
+
+   cherry->print();
 //<<" %I $apple->color \n"
-<<"  $apple->color \n"
 
-  cherry->x = 77
+   <<"  $apple->color \n";
 
-  cherry->color = "black"
+   cherry->x = 77;
 
-<<"%V$cherry->color \n"
+   cherry->color = "black";
+
+   <<"%V$cherry->color \n";
 //<<"%I$cherry->x \n"
 
-  chkStr(cherry->color,"black")
+   chkStr(cherry->color,"black");
 
-  cherry->print()
-  cherry->x = 76
-  cherry76 = cherry->x;
+   cherry->print();
 
- cherry<-pinfo()
-  
-<<"%V $cherry76\n"
-<<" %V  $cherry->x \n"
+   cherry->x = 76;
 
+   cherry76 = cherry->x;
 
- cherry->set_color("red")
+   cherry.pinfo();
 
-chkStr(cherry->color,"red")
+   <<"%V $cherry76\n";
 
-  ccol = cherry->get_color()
-  
-<<"%V $ccol\n"
+   <<" %V  $cherry->x \n";
 
-  cherry->print()
+   cherry->set_color("red");
 
-  eat(cherry)
-  
-cherry->print()
-  chkStr(cherry->state,"eaten")
+   chkStr(cherry->color,"red");
 
+   ccol = cherry->get_color();
 
-<<" %V  $cherry->x \n"
-  apple->print()
+   <<"%V $ccol\n";
+
+   cherry->print();
+
+   eat(cherry);
+
+   cherry->print();
+
+   chkStr(cherry->state,"eaten");
+
+   <<" %V  $cherry->x \n";
+
+   apple->print();
 //listCode(5,4)
-<<"now margin call list\n"
-# set some globals
-!l 7 5
-<<"listing ??\n"
-!a
-<<" %V  $apple->x \n"
 
-<<" doing class member assign \n"
+   <<"now margin call list\n";
+# set some globals
+
+!l 7 5
+
+   <<"listing ??\n";
+
+   <<" %V  $apple->x \n";
+
+   <<" doing class member assign \n";
 
    apple->x = 8;
 
- <<" %V  $apple->x \n"
+   <<" %V  $apple->x \n";
 
+   apple->set_y(5);
 
-  apple->set_y(5);
-
-   apple->set_color("green")
-
+   apple->set_color("green");
  //  apple->color = "green"
 
-<<" %v $apple->color \n"
+   <<" %v $apple->color \n";
 
-  chkStr(apple->color,"green")
+   chkStr(apple->color,"green");
 
-  apple->print()
+   apple->print();
 
+   <<"%v $apple->color \n";
 
+   <<"apple:\n";
 
+   apple->print();
 
-<<"%v $apple->color \n"
+   chkStr(apple->color,"green");
 
+   apple->color="red";
 
-<<"apple:\n"
-   apple->print()
+   chkStr(apple->color,"red");
 
-   chkStr(apple->color,"green")
+   apple->print();
 
-   apple->color="red"
+   apple->set_color("yellow");
 
-   chkStr(apple->color,"red")
+   chkStr(apple->color,"yellow");
 
-   apple->print()
-
-   apple->set_color("yellow")
-
-   chkStr(apple->color,"yellow")
-
-   apple->print()
-
+   apple->print();
 //<<"%v $orange->color \n"
  //  chkStr(orange->color,"white")
 
-    roo("que")
-
+   roo("que");
 //  orange->set_name("orange")
-
 //<<"$(Infoof(orange))\n"
 
-   orange->print()
+   orange->print();
 
-   chkStr(orange->color,"white")
-
-
-
+   chkStr(orange->color,"white");
 //<<"$(examine(orange))\n"
 
-  orange->set_y(7);
+   orange->set_y(7);
 
-  orange->set_color("pink")
+   orange->set_color("pink");
 
-<<"%v $orange->color \n"
-  orange->print()
+   <<"%v $orange->color \n";
 
-  ocol = orange->get_color();
-  <<"%V $ocol \n"
+   orange->print();
 
-  ocol = orange->color;
-  <<"%V $ocol \n"
-  chkStr(orange->color,"pink")
+   ocol = orange->get_color();
 
-   roo2("cuando")
+   <<"%V $ocol \n";
+
+   ocol = orange->color;
+
+   <<"%V $ocol \n";
+
+   chkStr(orange->color,"pink");
+
+   roo2("cuando");
+
+   <<"attempt to eat fruit!\n";
+
+   orange->print();
+
+<<"prepare to eat orange\n"
+   orange.pinfo();
+   
+
+   eat(orange);
+
+   <<"%V$orange->state\n"
+   chkStr(orange->state,"eaten");
+   <<"%V$orange->color\n"
+   chkStr(orange->color,"red");
 
 
+   orange->print();
 
-<<"attempt to eat fruit!\n"
-  orange->print()
+   cherry->print();
 
-  eat(orange);
+   orange->print();
 
-  chkStr(orange->state,"eaten")
-  chkStr(orange->color,"red")
+   <<" %V$orange->color \n";
 
- //      roo("manana")
+   <<" %V$apple->color \n";
 
-  orange->print()
+   <<" %V$cherry->color \n";
 
+   <<" %V$apple->color \n";
 
-
-
-     
-
-    cherry->print()
-
-    orange->print()
-       
-<<" %V$orange->color \n"
-<<" %V$apple->color \n"
-<<" %V$cherry->color \n"
-<<" %V$apple->color \n"
-
-   orange->print()
-
+   orange->print();
  // roo("quizas")
 
-   apple->print()
+   apple->print();
 
+   apple->color = "blue";
 
-  
-   apple->color = "blue"
+   <<"%V$apple->color \n";
 
-<<"%V$apple->color \n"
+   <<" setting $cherry->color  to $apple->color \n";
 
-<<" setting $cherry->color  to $apple->color \n"
+   cherry->color = apple->color;
 
-    cherry->color = apple->color
+   <<"%V$cherry->color \n";
 
-<<"%V$cherry->color \n"
+   chkStr(cherry->color,"blue");
 
-   chkStr(cherry->color,"blue")
+   cherry->print();
 
+   goo();
 
+   apple->name = "apple";
 
-   cherry->print()
+   <<"fruit thine name is $apple->name \n";
 
-   goo()
+   <<" obj now copy orange apple \n";
 
-   apple->name = "apple"
+   apple->color = "green";
 
-    <<"fruit thine name is $apple->name \n"
+   orange->color = "orange";
 
+   apple->print();
 
-
-<<" obj now copy orange apple \n"
-
-  apple->color = "green"
-  orange->color = "orange"
-
-
-  apple->print()
-
-  orange->print()
-
+   orange->print();
 // use ref - objs   are not treated like arrays ??
 
-<<"$(objinfo(apple))\n"
+   <<"$(objinfo(apple))\n";
 //<<"$(examine(&apple))\n"
 //<<"$(examine(orange))\n"
-<<"$(objinfo(&orange))\n"
 
+   <<"$(objinfo(&orange))\n";
   //objcopy( orange, apple) ; // TBF should find proc (fruit,fruit)
-
   //chkStr(apple->color,orange->color)
 
-  orange->print()
+   orange->print();
 
    eat(apple);
-   
   //  objcopy( orange, apple)
 
-   apple->print()
+   apple->print();
 
+   orange->print();
 
-  orange->print()
+   eat(apple);
 
-  eat(apple);
+   orange->print();
 
+   chkStr(orange->color,"orange");
 
-  orange->print()
+   chkStr(apple->color,"red");
 
-  chkStr(orange->color,"orange")
+   orange->color = "orange";
 
-  chkStr(apple->color,"red")
+   orange->print();
 
+   apple->color = orange->color;
 
+   chkStr(apple->color,"orange");
 
-  orange->color = "orange"
+   apple->color = "blue";
 
-  orange->print()
+   chkStr(apple->color,"blue");
 
-  apple->color = orange->color
+   apple->print();
 
-  chkStr(apple->color,"orange")
+   apple->color = "red";
 
+   cherry->color = "black";
 
-  apple->color = "blue"
+   <<" %V $apple->color \n";
 
-  chkStr(apple->color,"blue")
-
-  apple->print()
-  apple->color = "red"
-  cherry->color = "black"
-
-<<" %V $apple->color \n"
-
-<<" %V $apple->color \n"
-
-
+   <<" %V $apple->color \n";
 //<<" %I$orange->color \n"
 //<<" %I$cherry->color \n"
 
-   apple->print()
+   apple->print();
 
-   cherry->print()
+   cherry->print();
 
-   apple->color = "green"
-
+   apple->color = "green";
 //<<" %I$apple->color \n"
 
-   apple->print()
+   apple->print();
 
-   cherry->print()
-
-
-
-
+   cherry->print();
 ////////////////////////////////////////////////////////////////////
-
 // test of redef of proc and use
-proc goo()
-{
+/*
+   proc goo()
+   {
 
-<<"HEY2 in $_proc\n"
+     <<"HEY2 in $_proc\n";
 
+     <<"%v $_pstack \n";
 
-<<"%v $_pstack \n"
+     apple->color = "purple";
 
-   apple->color = "purple"
+     <<" %v $apple->color \n";
 
-<<" %v $apple->color \n"
+     <<" setting $cherry->color  to $apple->color \n";
 
-<<" setting $cherry->color  to $apple->color \n"
+     cherry->color = apple->color;
 
-    cherry->color = apple->color
+     <<" %v $cherry->color \n";
 
-<<" %v $cherry->color \n"
+     cherry->x = apple->x;
 
-    cherry->x = apple->x;
+     <<" %v $cherry->x \n";
 
-<<" %v $cherry->x \n"
+     <<" now a cmf inside a proc \n";
 
-<<" now a cmf inside a proc \n"
+     cherry->print();
 
-    cherry->print()
-}
-pdef++; <<"%V$pdef \n";
+     }
+
+   pdef++; <<"%V$pdef \n";
 //==================================//
 
-chkN(pdef,8)
+   chkN(pdef,5);
+*/
+
+   goo();
+
+   apple->print();
+
+   cherry->print();
+
+     apple->color = "purple";
+
+     <<" %v $apple->color \n";
 
 
-goo()
-
-apple->print()
-cherry->print()
-
-
-
-
-chkOut()
-
-
+   chkOut();
 /////////////////////////
 
+//===***===//

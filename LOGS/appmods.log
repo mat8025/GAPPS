@@ -284,3 +284,7 @@ lhrange.asl              1.16	11/18/2021 07:01:39 pp
 array_subvec.asl         1.3	11/19/2021 07:55:53 pp
 arrayjoin.asl            1.2	11/19/2021 11:53:51 pp
 array_cmp.asl            1.2	11/19/2021 12:05:44 pp
+switch.asl               1.4	11/20/2021 10:19:59 pp
+sindent.asl              1.21	11/20/2021 10:20:44 case 0:
+obcopy.asl               1.39	11/20/2021 10:28:21 pp
+obprocarg.asl            1.3	11/20/2021 10:52:27 pp
