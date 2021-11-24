@@ -20,7 +20,7 @@
 |>
 
 #include "debug"
-#include "hv.asl"
+//#include "hv.asl"
 
    <<"%V $_dblevel\n";
 
@@ -37,7 +37,7 @@
    chkIn(_dblevel);
 /////////////////////  simple scalar ///////////////////
 
-   proc doo(int a,int b)
+   int doo(int a,int b)
    {
 
      c= a + b;
@@ -90,7 +90,7 @@
      vect[5] = 50;
 
      z= vect[5];
-
+vect.pinfo();
      <<"OUT $vect \n";
 
      return z;
@@ -131,7 +131,7 @@
 
      <<"OUT vect: $vect \n";
 
-     U->info(1);
+     U.pinfo();
 
      <<"OUT U: $U \n";
 
@@ -190,7 +190,7 @@
    Z.pinfo();
 //Z[0] = 37
 
-   y = voo(Z);
+   y = voo(&Z);
 
    <<"%V $y \n";
 
@@ -204,6 +204,7 @@
 
    chkN(Z[6],28);
 // reset
+
 
    U = Vgen(INT_,10,0,1);
 
@@ -233,9 +234,6 @@
 
    voo2(W);
 
-   chkOut();
-
-   exit();
 //Y = foo(&Z,3)  // FIXED -------- Y is now created correctly with the return vector 
  // FIXED ?-------- Y is now created correctly with the return vector 
 
@@ -257,14 +255,20 @@
    pv.pinfo();
 
    <<"pv $pv\n";
-//U= voo(&W[2],4)
-//T= zoo(pv)
+
+
+  U= voo(&W[2])
+
+  pv.pinfo()
+
+  T= voo(pv)
+
+
 // TBD FIX it does not compute the offset
 // - so proc operates on the third element in
 
    <<"%V$T\n";
 
-   chkOut();
 
    if (Y[1] == 47) {
 
@@ -278,4 +282,6 @@
 
      }
 
+
+chkOut()
 //===***===//

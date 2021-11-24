@@ -28,8 +28,8 @@ Str pstrarg (str v, str u)
 <<"args in %V  $v $u \n"
  Rn++;
 
- v<-pinfo()
- u<-pinfo()
+ v.pinfo()
+ u.pinfo()
 
 
  r=  sele(v,1)
@@ -40,12 +40,12 @@ m = scat(v,"-x-",u);
  
 
 
-m<-pinfo();
+m.pinfo();
 
 // ans= query("args are correct?");
  v = "hola"
- v<-pinfo()
- s<-pinfo()
+ v.pinfo()
+ s.pinfo()
 !p m
 
 
@@ -69,24 +69,27 @@ u = "que tal?"
   chkStr(s,"hi")
   chkStr(t,"Comment allez-vous?");
 
-  s<-pinfo()
-  t<-pinfo()
+  s.pinfo()
+  t.pinfo()
 
- w = pstrarg(s,t)
+ w = pstrarg(s,"Comment allez-vous?");
 <<"%V$Rn\n"
- w<-pinfo()
+ w.pinfo()
 <<"%V $s $t $w\n"
+
  chkStr(w,"hi-x-Comment allez-vous?")
-  s<-pinfo()
+  s.pinfo()
+  <<"$s\n"
+  
  chkStr(s,"hola")
 
-
+chkOut()
 
   s = "buenos"
   t = "dias"
 
-  s<-pinfo()
-  t<-pinfo()
+  s.pinfo()
+  t.pinfo()
 
 <<"%V $s $t \n"
   Rn= 0;
@@ -101,8 +104,8 @@ u = "que tal?"
   s = "buenas"
   t = "tardes"
 
-  s<-pinfo()
-  t<-pinfo()
+  s.pinfo()
+  t.pinfo()
   
 
 <<"%V $s $t \n"
@@ -111,7 +114,7 @@ Rn= 0;
 <<"%V$Rn\n"
 
 <<"%V $s $t $w\n"
- s<-pinfo()
+ s.pinfo()
  chkStr(s,"hola")
 
  chkOut()

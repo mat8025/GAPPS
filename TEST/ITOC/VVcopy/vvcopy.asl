@@ -300,8 +300,11 @@ A.pinfo()
    chkN(C[0],20);
 
    <<"%V$A\n";
+   BM.pinfo()
 
    <<"%V$B\n";
+// TBF BUG BM has PROC_ARG_REF set ??
+   BM.pinfo()
 
    nc=vvcopy(A,BM,20,ALWAYS_,0,1,1,0,20);
 

@@ -12,31 +12,40 @@
 ///
 //setdebug(1,@keep)
 
-chkIn()
+   chkIn();
 
- I = vgen(INT_,20,0,1);
+   I = vgen(INT_,20,0,1);
 
-<<"$I \n"
+   <<"$I \n";
 
- chkN(I[19],19)
- J = vreverse(I)
+   chkN(I[19],19);
 
-<<"$J \n"
- chkN(J[0],19)
-  chkN(J[19],0)
+   J = vreverse(I);
 
- M = redimn(J,4,5);
-<<"\n"
-<<"$J \n"
+   <<"$J \n";
 
- T= mrevrows(J);
-<<" revrows\n"
-<<"$T \n"
+   chkN(J[0],19);
 
+   chkN(J[19],0);
 
+   M = redimn(J,4,5);
 
- T= mrevcols(J);
-<<"revcols\n"
-<<"$T \n"
+   <<"\n";
 
-chkOut()
+   <<"$J \n";
+
+   T= mrevrows(J);
+
+   <<" revrows\n";
+
+   <<"$T \n";
+
+   T= mrevcols(J);
+
+   <<"revcols\n";
+
+   <<"$T \n";
+
+   chkOut();
+
+//===***===//

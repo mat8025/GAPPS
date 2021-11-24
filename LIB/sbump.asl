@@ -193,7 +193,8 @@ L->info(1)
 // <<"sz $(caz(L)) \n"
 //<<[2]"$where $i $L \n"
    if (sz >2) {
-//<<[2]"L1 $L[1]\n"
+<<[2]"L1 $L[1]\n"
+
     if (scmp(L[1],"@vers")) {
      found_vers =1;
      cvers = L[2];

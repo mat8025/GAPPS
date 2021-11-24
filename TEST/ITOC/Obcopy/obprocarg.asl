@@ -65,7 +65,7 @@
        yt= Yorn(edible);
 //<<" %V $id $color $x\n $y\n $z\n edible $edible $yt  \n"
 
-       <<" %V $id $color $x\n $y\n $z\n is it edible $(yorn(edible))  \n";
+       <<" %V$id $color $x $y $z is it edible $(yorn(edible))  \n";
 
        }
 
@@ -165,9 +165,24 @@
 
      oba->print();
 
-     locfruit = &oba;  // locfruit is a ptr to passed in fruit;
+     obc = oba->color;
+     
+     //locfruit = &oba;  // locfruit is a ptr to passed in fruit;
+     // sclass proc args are always ptrs to objs 
+//   BUG - ptr to ptr assignment 11/22/21
+
+     oba.info()
+
+     locfruit = &oba;  // means locfruit is a ptr to passed in fruit;
+     // locfruit = oba ; // should be the same 
+     locfruit.info()
 
      locfruit->print();
+     locc = locfruit->color;
+
+<<"%V$obc $locc\n"
+    chkStr(obc,locc);
+
 
      <<" leaving $_proc $_cobj \n";
 
@@ -226,7 +241,10 @@
 
    apple->print();
 
+<<" eat via ref arg \n"
+
    eat(&apple);
+
 
    eat(apple);
 
@@ -308,6 +326,9 @@
    <<"$(examine(orange))\n";
 
    <<"$(examine(&orange))\n";
+
+    eat(orange);
+
 
    objcopy( &orange, &apple);
 

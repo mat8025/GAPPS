@@ -25,6 +25,15 @@ str ans;
 
 inter()
 
+!!"asl ASL_TEST_VER module  pan ";
+inter()
+
+!!"asl ASL_TEST_VER module  sfunc ";
+inter()
+
+!!"asl ASL_TEST_VER module  scope ";
+inter()
+
 //!!"asl ASL_TEST_VER module syntax ";
 //inter()
 
@@ -132,10 +141,8 @@ inter()
 
 
 
- do_sfunc 
  do_stat 
  do_threads 
- do_pan 
 
  do_tests 
 */

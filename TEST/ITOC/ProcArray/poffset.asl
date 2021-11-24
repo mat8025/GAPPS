@@ -134,7 +134,9 @@
    if (name_ref) {
 
      <<"before calling proc $Z\n";
-     voo(Z); ; // crash TBF 10/12/21 
+//     voo(&Z);  // crash TBF 10/12/21
+
+     voo(Z);  // name only - want to be equiv with &Z  
 
      <<"after calling proc $Z\n";
 

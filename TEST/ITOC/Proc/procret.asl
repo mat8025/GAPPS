@@ -1,567 +1,591 @@
 /* 
- *  @script proc-ret.asl 
+ *  @script procret.asl 
  * 
  *  @comment test return type vs proc args 
  *  @release CARBON 
- *  @vers 1.6 C Carbon [asl 6.3.3 C-Li-Li] 
- *  @date Thu Dec 31 13:34:29 2020 
+ *  @vers 1.7 N Nitrogen [asl 6.3.61 C-Li-Pm] 
+ *  @date 11/23/2021 12:16:24          
  *  @cdate Sat May 9 10:35:36 2020 
  *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2020 → 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
 
+
+
 <|Use_=
-Demo  of proc return ;
+   Demo  of proc return ;
 ///////////////////////
 |>
 
-
-                                                                        
 #include "debug"
 
-if (_dblevel >0) {
-   debugON()
-    <<"$Use_\n"   
-}
-  
-chkIn(_dblevel)
+   if (_dblevel >0) {
 
+     debugON();
 
+     <<"$Use_\n";
+
+     }
+
+   chkIn(_dblevel);
 /*
-real Foo(real x,real  y)
-{
-<<"in real Foo\n"
-   z = x * y
-
-   return z;
-}
+   real Foo(real x,real  y)
+   {
+     <<"in real Foo\n"
+     z = x * y
+     return z;
+     }
 */
 
-float Foo(float x,float  y)
-{
-<<"in float Foo\n"
-   z = x * y
 
-   return z;
-}
+   float Foo(float x,float  y)
+   {
 
+     <<"in float Foo\n";
 
+     z = x * y;
 
-int Foo(int x,int  y)
-{
-<<"in int Foo\n"
-   z = x * y
+     return z;
 
-   return z;
-}
+     }
 
-  a = Foo(2,3)
- chkR(a,6)
-a->info(1)
+   int Foo(int x,int  y)
+   {
 
-<<"%v $a \n"
+     <<"in int Foo\n";
 
+     z = x * y;
 
-  b = Foo(4.0,3.0)
- chkR(b,12.0)
-b->info(1)
+     return z;
 
-<<"%v $b \n"
+     }
 
+   a = Foo(2,3);
+
+   chkR(a,6);
+
+   a.pinfo();
+
+   <<"%v $a \n";
+
+   b = Foo(4.0,3.0);
+
+   chkR(b,12.0);
+
+   b.pinfo();
+
+   <<"%v $b \n";
 
    str Mele = "XYZ";
-  
-   Mele->info(1)
 
+   Mele.pinfo();
 
+   Str say()
+   {
 
+     <<"$_proc hey there I exist\n";
 
+     isay="hey hey";
 
+     <<"$isay $(typeof(isay))\n";
+     return isay;
+     }
 
+   ws = say();
 
-Str say()
-  {
-   <<"$_proc hey there I exist\n"
-   isay="hey hey"
-   <<"$isay $(typeof(isay))\n"
-   return isay;
-  }
+   ws.pinfo();
 
-ws = say()
+   <<"<|$ws|>\n";
 
-ws->info(1)
+   chkStr(ws,"hey hey");
 
-<<"<|$ws|>\n"
-chkStr(ws,"hey hey");
+   Str vers2ele(str vstr)
+   {
 
+     <<"$_proc   <|$vstr|>\n";
 
+     vstr.pinfo();
 
+     pmaj.pinfo();
 
+     pmaj = atoi(spat(vstr,".",-1));
 
+     pmaj.pinfo();
 
+     <<"$pmaj \n";
 
+     <<"$(typeof(pmaj)) \n";
 
-Str vers2ele(str vstr)
-  {
-  
-  
-  <<"$_proc   <|$vstr|>\n"
+     <<"$(ptsym(pmaj)) \n";
 
+     pmin = atoi(spat(vstr,".",1));
 
- vstr->info(1)
+     <<"$pmin $(ptsym(pmin))\n";
 
-   pmaj->info(1)
+     elestr = pt(pmin);
 
+     elestr.pinfo();
 
-   pmaj = atoi(spat(vstr,".",-1))
+     str ele = "XYZ";
 
-   pmaj->info(1)
+     ele.pinfo();
 
+     es= spat(elestr,",");
 
-<<"$pmaj \n"
+     <<"%V $es\n";
 
+     es.pinfo();
 
+     ele = spat(elestr,",");
 
-<<"$(typeof(pmaj)) \n"
+     ele.pinfo();
 
+     <<"$ele $(typeof(ele))\n";
 
+     <<"$ele\n";
 
+     return ele;
 
-<<"$(ptsym(pmaj)) \n"  
-
-
-    pmin = atoi(spat(vstr,".",1))
-
-<<"$pmin $(ptsym(pmin))\n"
-
-   elestr = pt(pmin);
-   
-   elestr->info(1)
-
-
-  str ele = "XYZ";
-  
-   ele->info(1)
-   es= spat(elestr,",")
-
-
-<<"%V $es\n";
-
-
-   es->info(1)
-   
-   ele = spat(elestr,",")
-
-   ele->info(1)
-
-
-
-  <<"$ele $(typeof(ele))\n";
-  <<"$ele\n";
-  
-   return ele;
-  }
-  
+     }
 //===============================
 
+   int a1 = 2;
 
+   int a2 = 4;
 
+   c = Foo(a1,a2);
 
-int a1 = 2;
-int a2 = 4;
+   chkR(c,8);
 
-  c = Foo(a1,a2)
- chkR(c,8)
-c->info(1)
+   c.pinfo();
 
-<<"%v $b \n"
-
-
+   <<"%v $b \n";
 
    j = 1;
-   n = 12
 
-  while (j < 4) {
-  
-      a = Foo(j,n)
-    j->info(1)
+   n = 12;
 
-<<" $j * $n  = $a\n"
+   while (j < 4) {
 
-     j++
-    
-   }
+     a = Foo(j,n);
 
+     j.pinfo();
 
+     <<" $j * $n  = $a\n";
 
-int pmaj;
-int pmin;
+     j++;
 
-cvers ="1.54"
-cvers->info(1)
+     }
 
-nele = vers2ele(cvers);
+   int pmaj;
 
+   int pmin;
 
-<<"%V $cvers $nele\n"
+   cvers ="1.54";
 
-nele->info(1)
+   cvers.pinfo();
 
+   nele = vers2ele(cvers);
 
-chkStr(nele,"Xeon")
+   <<"%V $cvers $nele\n";
 
+   nele.pinfo();
 
+   chkStr(nele,"Xeon");
 
+   int foo1(real a)
+   {
+     ret = 0;
 
+     <<" $_proc foo $a \n";
 
-int foo1(real a) 
-{
- ret = 0;
-<<" $_proc foo $a \n"
+     if (a > 1) {
 
-  if (a > 1) {
-<<" $a > 1 should be returning 1 !\n"
-    ret =  1    // FIX?? needs a ; statement terminator
-  }
+       <<" $a > 1 should be returning 1 !\n";
 
-  else if (a < 0) {
-<<" $a < 0 should be returning -1 !\n"
+       ret =  1    ; // FIX?? needs a ; statement terminator;
 
-    ret =  -1;
+       }
 
-  }
-  else {
-<<" $a <= 1 should be returning 0 !\n"
-  }
-  return ret;
+     else if (a < 0) {
 
-}
+       <<" $a < 0 should be returning -1 !\n";
 
+       ret =  -1;
+
+       }
+
+     else {
+
+       <<" $a <= 1 should be returning 0 !\n";
+
+       }
+
+     return ret;
+
+     }
 ////////////////////////////////////////
-int foo1(int a) 
-{
- ret = 0;
-<<" $_proc foo $a \n"
 
-  if (a > 1) {
-<<" $a > 1 should be returning 1 !\n"
-    ret =  1;    // FIX?? needs a ; statement terminator
-  }
+   int foo1(int a)
+   {
+     ret = 0;
 
-  else if (a < 0) {
-<<" $a < 0 should be returning -1 !\n"
+     <<" $_proc foo $a \n";
 
-    ret =  -1;
+     if (a > 1) {
 
-  }
-  else {
-<<" $a <= 1 should be returning 0 !\n"
-  }
-  return ret;
+       <<" $a > 1 should be returning 1 !\n";
 
-}
+       ret =  1;    // FIX?? needs a ; statement terminator;
 
+       }
 
+     else if (a < 0) {
 
+       <<" $a < 0 should be returning -1 !\n";
 
-int foo2(int a) 
-{
+       ret =  -1;
 
-int fret = 0;
-<<" $_proc foo2 $a \n"
+       }
 
-    if (a > 300) {
-<<" $a > 300 foo2 should be returning 30 !\n"
-    fret =30
-    }
+     else {
 
-    else if (a > 200) {
-<<" $a > 200 foo2 vshould be returning 20 !\n"
-    fret = 20
-    }
+       <<" $a <= 1 should be returning 0 !\n";
 
-    else if (a > 100) {
-<<" $a > 100 foo2 should be returning 10 !\n"
-    fret = 10
-    }
+       }
 
+     return ret;
+
+     }
+
+   int foo2(int a)
+   {
+
+     int fret = 0;
+
+     <<" $_proc foo2 $a \n";
+
+     if (a > 300) {
+
+       <<" $a > 300 foo2 should be returning 30 !\n";
+
+       fret =30;
+
+       }
+
+     else if (a > 200) {
+
+       <<" $a > 200 foo2 vshould be returning 20 !\n";
+
+       fret = 20;
+
+       }
+
+     else if (a > 100) {
+
+       <<" $a > 100 foo2 should be returning 10 !\n";
+
+       fret = 10;
+
+       }
 //////////////////////////////////////////////
 
-  else if (a > 1) {
-<<" $a > 1 should be returning 1 !\n"
-    fret=  1;
-  }
+     else if (a > 1) {
 
-  else if (a < 0) {
-<<" $a > 1 should be returning -1 !\n"
-    fret=  -1;
-  }
-  else {
-<<" $a <= 1 should be returning 0 !\n"
-  }
+       <<" $a > 1 should be returning 1 !\n";
 
-<<"return $fret\n"
+       fret=  1;
 
-   return fret;
-}
+       }
+
+     else if (a < 0) {
+
+       <<" $a > 1 should be returning -1 !\n";
+
+       fret=  -1;
+
+       }
+
+     else {
+
+       <<" $a <= 1 should be returning 0 !\n";
+
+       }
+
+     <<"return $fret\n";
+
+     return fret;
+
+     }
 //////////////////////////////////
 
-int foo3(real a) 
-{
-int ret = 0;
-<<" $_proc foo3 $a \n"
-  a->info(1)
-    if (a > 300) {
-<<" $a > 300 foo3 should be returning 30 !\n"
-    ret = 30;
-    }
+   int foo3(real a)
+   {
+     int ret = 0;
 
-    else if (a > 200) {
-<<" $a > 200 foo3 vshould be returning 20 !\n"
-    ret = 20
-    }
+     <<" $_proc foo3 $a \n";
 
-    else  if (a > 100) {
-<<" $a > 100 foo3 should be returning 10 !\n"
-    ret = 10;
-    }
+     a.pinfo();
+     if (a > 300) {
 
-    return ret;
-}
+       <<" $a > 300 foo3 should be returning 30 !\n";
+       ret = 30;
+       }
+
+     else if (a > 200) {
+
+       <<" $a > 200 foo3 vshould be returning 20 !\n";
+
+       ret = 20;
+
+       }
+
+     else  if (a > 100) {
+
+       <<" $a > 100 foo3 should be returning 10 !\n";
+
+       ret = 10;
+
+       }
+
+     return ret;
+
+     }
 //========================
 
-void goo(ptr a)
-{
-<<"$_proc $a\n"
-  a->info(1)
-  $a += 1;
-  a->info(1)
+   void goo(ptr a)
+   {
+
+     <<"$_proc $a\n";
+
+     a.pinfo();
+     $a += 1;
+
+     a.pinfo();
 // does'nt really return anything
 // return on own crash TBF crash
-   return;
-}
+
+     return;
+
+     }
 //==================================//
 
-real hoo(real a)
-{
-<<"$_proc $a\n"
-  a->info(1)
-  a += 1;
-  b = a;
+   real hoo(real a)
+   {
+
+     <<"$_proc $a\n";
+
+     a.pinfo();
+     a += 1;
+     b = a;
 // does'nt really return anything
-     return b;  // TBD crash
-}
+
+     return b;  // TBD crash;
+
+     }
 //==================================//
 
-int moo(double a)
-{
-<<"$_proc $a\n"
-  a += 1;
-<<"%V $a\n"
+   int moo(double a)
+   {
 
+     <<"$_proc $a\n";
+     a += 1;
 
- a->info(1)
- 
- if (a >1) a += 1;
+     <<"%V $a\n";
 
+     a.pinfo();
+
+     if (a >1) a += 1;
 // if (a >10)  return; // TBF needs {}
 
-  int mb = a;
-  mb += 2;
-  
-<<"%V $a\n"
+   int mb = a;
 
-  mb->info(1);
-  
-  return mb;  // TBD crash
-}
+   mb += 2;
+
+   <<"%V $a\n";
+
+   mb.pinfo();
+
+   return mb;  // TBD crash;
+
+   }
 //==================================//
 
+  int roo(ptr a)
+  {
 
-int roo(ptr a)
-{
-<<"$_proc $($a)\n"
-  $a += 1;
-<<"%V $a\n"
+   <<"$_proc $($a)\n";
+   $a += 1;
 
+   <<"%V $a\n";
 
- a->info(1)
- 
- if ($a >1) $a += 1;
+   a.pinfo();
 
+   if ($a >1) $a += 1;
 // if (a >10)  return; // TBF needs {}
 
   int mb = $a;
 
-<<"%V $mb \n"
-  mb += 2;
-  
-<<"%V $a\n"
+  <<"%V $mb \n";
 
-  mb->info(1);
-  
-  return mb;  // TBD crash
-}
+  mb += 2;
+
+  <<"%V $a\n";
+
+  mb.pinfo();
+
+  return mb;  // TBD crash;
+
+  }
 //==================================//
 
-   in = 2
+  in = 2;
 
-   c = foo1(in)
+  c = foo1(in);
 
-<<" $in $c \n"
+  <<" $in $c \n";
 
-   chkN(c,1)
+  chkN(c,1);
 
+  c = foo1(in) * 2;
 
-   c = foo1(in) * 2
+  <<" $in $c \n";
 
-   <<" $in $c \n"
+  chkN(c,2);
 
-   chkN(c,2)
+  in = 1;
 
+  c = foo1(in);
 
-in = 1
+  <<" $in $c \n";
 
-   c = foo1(in)
+  chkN(c,0);
 
-<<" $in $c \n"
+  in = 3;
 
-   chkN(c,0)
+  c = foo1(in);
 
- in = 3
+  <<" $in out $c \n";
 
- c = foo1(in)
+  chkN(c,1);
 
-<<" $in out $c \n"
+  c = foo1(in) * 6;
 
-   chkN(c,1)
+  <<" $in $c \n";
 
- c = foo1(in) * 6
+  chkN(c,6);
 
-<<" $in $c \n"
+  in = -4;
 
-   chkN(c,6)
+  c = foo1(in) * 6;
 
-  in = -4
+  <<" $in $c \n";
 
- c = foo1(in) * 6
+  chkN(c,-6);
 
-<<" $in $c \n"
+  fin = 110.0;
 
-   chkN(c,-6)
+  d = foo3(fin);
 
-   fin = 110.0
+  <<"ret will be  $d\n";
 
-   d = foo3(fin) 
+  in = 210;
 
-<<"ret will be  $d\n"
+  d = foo2(in);
 
-
-   in = 210
-
-   d = foo2(in) 
-
-<<"ret will be  $d\n"
+  <<"ret will be  $d\n";
 !iin
-real rin = in
+
+  real rin = in;
 !irin
-   e = foo3(rin) 
 
-<<"ret will be  $e\n"
+  e = foo3(rin);
 
+  <<"ret will be  $e\n";
 
-   e = foo3(in) 
+  e = foo3(in);
 
-<<"ret will be  $e\n"
+  <<"ret will be  $e\n";
 
-
-  c = foo2(in)
+  c = foo2(in);
 !p c   
 
-    c = foo2(in) * 6
-    <<"$c foo2(in) * 6\n"
+  c = foo2(in) * 6;
 
-   chkN(c,120)
+  <<"$c foo2(in) * 6\n";
 
+  chkN(c,120);
 !p c
 
+  c = 6 * foo2(in);
 
-    c = 6 * foo2(in)
-    <<"$c  6 * foo2(in)\n"
-
+  <<"$c  6 * foo2(in)\n";
 !p c
 
+  chkN(c,120);
 
-   chkN(c,120)
-chkOut()
+  chkOut();
 
-  in = 310
+  in = 310;
 
-   d = foo2(in) 
+  d = foo2(in);
 
-<<"ret will be $d\n"
+  <<"ret will be $d\n";
 
-   e = foo3(fin) 
+  e = foo3(fin);
 
-<<"ret will be  $e\n"
+  <<"ret will be  $e\n";
 
+  c = foo2(in) * 7;
 
-   c = foo2(in) * 7
+  <<"%V $in $c \n";
 
-<<"%V $in $c \n"
-    
-  chkN(c,210)
-
+  chkN(c,210);
 
   for (j = 0 ; j < 3; j++) {
 
-      in = 3
+  in = 3;
 
-      c = foo1(in) * (j + 1)
+  c = foo1(in) * (j + 1);
 
-      <<" $in  returned * 3  $c \n"
+  <<" $in  returned * 3  $c \n";
 
-      chkN(c,(j+1))
+  chkN(c,(j+1));
 
   }
 
-   x =1;
-   xp = &x;
-   goo(xp)
+  x =1;
 
-<<"after call goo $x\n"
+  xp = &x;
 
-   chkN(x,2);
+  goo(xp);
 
-   xr= hoo(x)
+  <<"after call goo $x\n";
 
-<<"after call hoo $x $xr\n"
+  chkN(x,2);
 
-   chkN(x,2);
-   chkN(xr,3);   
+  xr= hoo(x);
 
+  <<"after call hoo $x $xr\n";
 
-   double xm=14.0
+  chkN(x,2);
 
-   mr= moo(xm)
-   
-<<"%V $xm $mr\n"
+  chkN(xr,3);
 
-   chkN(mr,18);
+  double xm=14.0;
 
-   int ixm = 14;
-   
+  mr= moo(xm);
+
+  <<"%V $xm $mr\n";
+
+  chkN(mr,18);
+
+  int ixm = 14;
  //  mr= roo(&ixm)
-
 //<<"%V $ixm $mr\n"
 
+  chkOut();
 
-
-
-chkOut();
-
-
-
-
+//===***===//

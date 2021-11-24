@@ -22,6 +22,8 @@
 #define MARGINCALL 3
 #define EMPTYLN 5
 
+   allowErrors(-1) ;  // keep going
+
 void doTrailingComment()
 {
          sposn = regex(NL,"; *//")

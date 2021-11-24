@@ -1,190 +1,204 @@
-//%*********************************************** 
-//*  @script proc_call.asl 
-//* 
-//*  @comment test out name mangling for proc/cmf  
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                    
-//*  @date Tue Mar 31 14:52:28 2020 
-//*  @cdate Tue Mar 31 14:52:28 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script proccall.asl 
+ * 
+ *  @comment test out name mangling for proc/cmf 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.61 C-Li-Pm] 
+ *  @date 11/23/2021 12:11:15          
+ *  @cdate Tue Mar 31 14:52:28 2020 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                       
 ///
 ///
 ///
-
 #include "debug"
 
-if (_dblevel >0) {
-   debugON()
-}
+   if (_dblevel >0) {
 
+     debugON();
 
-chkIn(_dblevel)
+     }
 
+   allowErrors(-1) ;  // keep going;
 
-int n1 = 3;
+   chkIn(_dblevel);
 
-<<"%V$n1\n"
+   int n1 = 3;
 
-      chkN (n1,3)
+   <<"%V$n1\n";
 
-n1++
+   chkN (n1,3);
 
-<<"%V$n1\n"
+   n1++;
 
-      chkN (n1,4)
+   <<"%V$n1\n";
 
-++n1
+   chkN (n1,4);
 
-<<"%V$n1\n"
-      chkN (n1,5)
+   ++n1;
 
+   <<"%V$n1\n";
 
+   chkN (n1,5);
 
+   int moo(int a)
+   {
 
+     <<" $_proc $a \n";
 
-proc moo(int a)
-{
-<<" $_proc $a \n"
+     a.pinfo();
 
-     a->info(1)
      return a;
-}
-<<"moo(float) ?\n"
 
-proc moo(float x)
-{
-<<" $_proc $x \n"
+     }
 
-  x->info(1)
-       return x;
-}
+   <<"moo(float) ?\n";
 
+   float moo(float x)
+   {
 
-<<"moo(short,char) ?\n"
+     <<" $_proc $x \n";
 
+     x.pinfo();
 
-proc moo(short s, char c)
-{
-<<" $_proc $s $c\n"
+     return x;
 
-  s->info(1)
-  c->info(1)
+     }
 
-   d= s + c;
+   <<"moo(short,char) ?\n";
 
-   return d;
+   char  moo(short s, char c)
+   {
 
-}
+     <<" $_proc $s $c\n";
 
-<<"moo(pan , pan) ?\n"
-proc moo (pan m, pan n)
-{
+     s.pinfo();
 
-   pan    d;
+     c.pinfo();
 
-    d = m + n;
-<<" $_proc %V $m $n $d \n"
+     d= s + c;
 
-   return d;
+     return d;
 
+     }
 
-}
+   <<"moo(pan , pan) ?\n";
+
+   pan moo (pan m, pan n)
+   {
+
+     pan    d;
+
+     d = m + n;
+
+     <<" $_proc %V $m $n $d \n";
+
+     return d;
+
+     }
 //===============
 
+   <<"moo(double, int ) ?\n";
 
-<<"moo(double, int ) ?\n"
+   double moo (double m, double n)
+   {
 
-proc moo (double m, double n)
-{
+     double d;
 
-   double d;
+     d = m + n;
 
-    d = m + n;
-<<" $_proc %V $m $n $d \n"
+     <<" $_proc %V $m $n $d \n";
 
-   return d;
+     return d;
 
-
-}
+     }
 //===============
-int j = 52;
 
-<<"call moo int\n"
-  k= moo(j)
+   int j = 52;
 
-chkN (k,52);
+   <<"call moo int\n";
 
-float y = 2.1
+   k= moo(j);
 
+   chkN (k,52);
 
-<<"call moo float\n"
-   z= moo(y)
+   float y = 2.1;
 
+   <<"call moo float\n";
 
-chkN (z,2.1);
+   z= moo(y);
 
-short s1 = 67;
-char c1 = 33;
+   chkN (z,2.1);
 
+   short s1 = 67;
 
-<<"call moo short,char\n"
-    s2 = moo(s1,c1)
+   char c1 = 33;
 
-chkN (s2,100);
+   <<"call moo short,char\n";
 
-pan p  = 3.4
+   s2 = moo(s1,c1);
 
-pan q = 1.2
+   chkN (s2,100);
 
-<<" call  moo (pan , pan) \n"
+   pan p  = 3.4;
 
- d4 = moo(p,q)
+   pan q = 1.2;
 
-d4->info(1)
-<<"%V$d4\n"
+   <<" call  moo (pan , pan) \n";
 
+   d4 = moo(p,q);
 
-ans = "mark"
-<<"Que pasa $ans ?\n"
+   d4.pinfo();
 
-double g = 3.4
-double h = 8
+   <<"%V$d4\n";
 
-<<" call  moo (double , double) \n"
-    d3 = moo(g,h)
+   ans = "mark";
 
+   <<"Que pasa $ans ?\n";
 
-chkN (d3,11.4);
+   double g = 3.4;
 
- g = 77
- h = 23.0
+   double h = 8;
 
-    d3 = moo(h,g)
+   <<" call  moo (double , double) \n";
 
+   d3 = moo(g,h);
+
+   chkN (d3,11.4);
+
+   g = 77;
+
+   h = 23.0;
+
+   d3 = moo(h,g);
 //<<"%V$d3\n"
-d3->info(1)
-chkN (d3,100);
 
+   d3.pinfo();
 
- a  = sin(0.5)
+   chkN (d3,100);
 
-<<"%v$a \n"
+   a  = sin(0.5);
 
-chkOut()
+   <<"%v$a \n";
 
+   chkOut();
 
+   while (1) {
 
-  while (1) {
-<<"Que pasa $ans ?\n"
+     <<"Que pasa $ans ?\n";
 
+     ans= i_read("??");
 
-   ans= i_read("??");
+     if (ans == "quit") {
 
-   if (ans == "quit") {
        break;
-   }
-   
-}
+
+       }
+
+     }
+
+//===***===//

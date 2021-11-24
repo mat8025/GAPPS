@@ -1,21 +1,39 @@
-//%*********************************************** 
-//*  @script static.asl 
-//* 
-//*  @comment  test static statement 
-//*  @release CARBON 
-//*  @vers 1.3 Li Lithium [asl 6.2.98 C-He-Cf]                           
-//*  @date Wed Dec 23 10:28:22 2020 020 
-//*  @cdate 1/1/2001 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script static.asl 
+ * 
+ *  @comment test static statement 
+ *  @release CARBON 
+ *  @vers 1.6 C Carbon [asl 6.3.61 C-Li-Pm] 
+ *  @date 11/23/2021 12:51:01          
+ *  @cdate 1/1/2001 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
 
-   <<"Running $_script\n"
+                                                                   
+
+ //  <<"Running $_script\n"
    
 // test static statement
-   
-   
+<|Use_=
+   Demo  of static statement  ;
+///////////////////////
+|>
+
+#include "debug"
+
+    if (_dblevel >0) {
+
+     debugON();
+
+     <<"$Use_\n";
+
+     }
+
+ignoreErrors();
+
    chkIn(_dblevel);
 
    
@@ -23,7 +41,7 @@
    {
      static int a = 0;
 
-     a->info(1)
+     a.pinfo()
      
      <<" entered $_proc %V$a \n"; 
      
@@ -44,11 +62,11 @@
 
    int b = 7;
 
-   b->info(1);
+   b.pinfo();
 
    int A =0;
 
-   A->info(1);
+   A.pinfo();
    
    Foo(); 
 

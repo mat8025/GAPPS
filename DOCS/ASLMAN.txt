@@ -3,15 +3,15 @@
  * 
  *  @comment docs for ASL commands and usage 
  *  @release CARBON 
- *  @vers 2.4 Be Beryllium [asl 6.3.51 C-Li-Sb] 
- *  @date 09/04/2021 09:34:59 
+ *  @vers 2.5 B Boron [asl 6.3.61 C-Li-Pm] 
+ *  @date 11/23/2021 11:18:09          
  *  @cdate 1/1/2001 
  *  @author Mark Terry 
  *  @Copyright © RootMeanSquare  2010,2021 → 
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
-                                                                             
+                                                                         
 
 
 .de NP
@@ -4093,23 +4093,30 @@ A= Igen(n,{start_value,step_value})
 returns a int vector of n numbers 
 will be initialize to zero, but a start_value
 and step increment can be optionally specified
-
-
-
-
 .EF
 =============================================================
 .BF
-laser_resize ()
+scrlaser()
 .(x
-laserresize
+scrlaser
 .)x 
 .FD
-laser_resize(wid)
+scrlaser(wid)
 resizes the window ready for laser output device
-
 .EF
 =============================================================
+.BF
+laserscr()
+.(x
+laserscr
+.)x 
+.FD
+laserscr(wid)
+resets the window from laser(printer coors) to the screen 
+.EF
+=============================================================
+
+
 .BF
 Log,log()
 .(x
@@ -4282,12 +4289,16 @@ open_laser()
 openlaser
 .)x 
 .FD
-open_laser(file_name)
+open_laser(file_name,[land=0],[fntsize=12])
 
 opens a file which will contain instructions (default postscript) for plotting to a 
 laser printer. The Unix command line
 cat file_name | rsh machine_name lpr
 will result in laser hardcopy. If the machine has a postscript printer.
+The optional args allow setting to lanscape or portrait (def postrait)
+and the general font size (def 12).
+Font size can be set for any indiviual text (or window object)
+
 
 .EF
 =============================================================

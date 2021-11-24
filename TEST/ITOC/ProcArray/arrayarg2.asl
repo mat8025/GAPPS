@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @script arrayarg2.asl 
-//* 
-//*  @comment test proc array args 
-//*  @release CARBON 
-//*  @vers 1.37 Rb Rubidium                                               
-//*  @date Mon Jan 21 06:40:50 2019 
-//*  @cdate 1/1/2005 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script arrayarg2.asl 
+ * 
+ *  @comment test proc array args 
+ *  @release CARBON 
+ *  @vers 1.38 Sr Strontium [asl 6.3.61 C-Li-Pm] 
+ *  @date 11/23/2021 08:29:29          
+ *  @cdate 1/1/2005 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                            
 
 #include "debug"
 
@@ -43,26 +45,26 @@ aaa: <<"aaa label !\n"
      vect<-pinfo();
      
 
-     Z->info(1) ;
+     Z.pinfo() ;
      
 <<"IN %V $vect \n"; 
 <<"IN  %V $Z\n"
 
 
-      vect->info(1);
+      vect.pinfo();
       vect[1] = 47; 
       vect[2] = 79;
       vect[3] = 80;
       
-      vect->info(1); 
+      vect.pinfo(); 
 
      <<"OUT %V $vect \n";
      <<"OUT %V $Z\n"
-     Z->info(1)
+     Z.pinfo()
 
      rvec = vect;
      <<"OUT %V $rvec \n";
-      Z->info(1)
+      Z.pinfo()
      return rvec; 
      }
    
@@ -77,11 +79,11 @@ aaa: <<"aaa label !\n"
    
   <<"before calling proc $Z\n"; 
    
-   Y=Woo(Z,3); 
+   Y=Woo(&Z,3); 
    
    <<"after calling proc $Z\n"; 
 
-    Z->info(1)
+    Z.pinfo()
 
    chkN(Z[1],47);
    chkN(Z[2],79);
@@ -118,14 +120,14 @@ aaa: <<"aaa label !\n"
 
     pinfo(YA)
 
-    YA->pinfo()
+    YA.pinfo()
 
 
     Y = Woo(&Z[0],3)  // FIXED -------- Y is now created correctly with the return vector; 
    
    <<"postZ $Z\n"; 
 
-   Z->info(1); 
+   Z.pinfo(); 
 
    chkN(Z[1],47);
    chkN(Z[2],79);
