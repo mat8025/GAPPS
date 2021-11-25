@@ -7,7 +7,7 @@ if (_dblevel >0) {
 }
 
 
-  
+  filterFileDebug(REJECT_,"store")
   
   chkIn(_dblevel)
   
@@ -16,19 +16,20 @@ if (_dblevel >0) {
   
   short c = 3;
   
-  c->info(1)
+  c.pinfo()
   
   ci = c->info()
   
   
   <<"%V $c  $ci\n"
   chkN(c,3)
+  
   }
   
   
   int a = 1;
   
-  a->info(1)
+  a.pinfo()
   
   ai = a->info()
   
@@ -38,7 +39,7 @@ if (_dblevel >0) {
   
   float b = 2;
   
-  b->info(1)
+  b.pinfo()
   
   bi = b->info()
   
@@ -51,17 +52,17 @@ if (_dblevel >0) {
   
   IV = vgen(INT_,10,0,1)
   
-  IV->info(1)
+  IV.pinfo()
   
   k = IV[3]
   IV[4] = 67;
 
   chkN(k,3)
 
-  SOF=IV->info()
+  SOF=IV.pinfo()
   <<"SOF:: $SOF\n"
   
-  offs = IV->offsets()
+  offs = IV.offsets()
   
   <<"%V $offs \n"
 
@@ -72,9 +73,9 @@ chkN(offs[2],4)
   IVi = IV->info()
   
   <<"$IVi \n"
-  vid = IV->varid()
+  vid = IV.varid()
   <<"%V $vid \n"
-  obid = IV->objid()
+  obid = IV.objid()
   <<"%V $obid \n"
   chkN(obid,-1)
   

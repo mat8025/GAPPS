@@ -26,6 +26,7 @@ if (_dblevel >0) {
 
  allowErrors(-1)
 
+<<"$hdr_vers \n"
 
 chkIn(_dblevel)
 

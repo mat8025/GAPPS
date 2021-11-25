@@ -120,8 +120,9 @@ Svar T;
    A=ofr(srcfile);
    T=readfile(A);
    tsz= Caz(T);
-//<<"$tsz $T[0] \n"
-//for (i = 0 ; i < 10; i++)
+<<"$tsz $T[0] \n"
+
+//for (i = 0 ; i < tsz; i++)
 //{
 //<<"$i $T[i] \n"
 //}
@@ -205,16 +206,17 @@ if (found_vers) {
 
 
 fflush(A)
-
+<<"now tack on file %V $tsz\n"
    for (i = 0; i < tsz; i++) {
     ln = T[i];
-//    <<"$i $ln\n"
-   <<[A]"$T[i]"
+  // <<"$i $ln\n"
+   <<[A]"$ln\n"
+//   <<[2]"$ln\n"
    }
-
+//<<[A]"$T[i]"  // bug
    fflush(A)
    cf(A)
    
-!!"mv $newsrc $srcfile"
+//!!"mv $newsrc $srcfile"
 
 /////

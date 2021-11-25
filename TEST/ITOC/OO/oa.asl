@@ -1,271 +1,299 @@
 //%*********************************************** 
-//*  @script oa.asl 
-//* 
-//*  @comment test object array 
-//*  @release CARBON 
-//*  @vers 1.2 He Helium [asl 6.2.48 C-He-Cd]                              
-//*  @date Tue May 19 07:06:21 2020 
-//*  @cdate Tue Apr 28 19:55:38 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+//*  @script oa.asl;
+//*
+//*  @comment test object array;
+//*  @release CARBON;
+//*  @vers 1.2 He Helium [asl 6.2.48 C-He-Cd];
+//*  @date Tue May 19 07:06:21 2020;
+//*  @cdate Tue Apr 28 19:55:38 2020;
+//*  @author Mark Terry;
+//*  @Copyright © RootMeanSquare  2010,2020 →;
+//*
+//***********************************************%;
+
 
 <|Use_=
-  demo some OO syntax/ops
+   demo some OO syntax/ops
 |>
-
 
 #include "debug"
 
+   if (_dblevel >0) {
 
-if (_dblevel >0) {
-   debugON()
-    <<"$Use_\n"   
+     debugON();
 
-}
+     <<"$Use_\n";
 
- allowErrors(-1)
+     }
 
-chkIn (_dblevel)
+   allowErrors(-1);
 
+   chkIn (_dblevel);
 
+   //debugON();
 
+   int x = 5;
 
-//debugON()
+   int Bid =0;
 
-int x = 5;
+   proc checkRooms(int i, int k)
+   {
 
-int Bid =0;
+     irm = C[i]->rooms;
 
-proc checkRooms(int i, int k)
-{
+     iid =   C[i]->id;
 
-  irm = C[i]->rooms;
-  iid =   C[i]->id;
-  krm = C[k]->rooms;
-  kid =  C[k]->id;
+     krm = C[k]->rooms;
 
-<<"%V $i $irm $iid $k $krm $kid\n"
+     kid =  C[k]->id;
 
-}
-//================
+     <<"%V $i $irm $iid $k $krm $kid\n";
 
-proc pfloors(int r)
-{
- int prf = 0;
+     }
 
- prf = r +1;
+   //================;
 
- return prf;
-}
-//================
+   proc pfloors(int r)
+   {
+     int prf = 0;
 
- nr = pfloors(7);
+     prf = r +1;
 
-<<"%V $nr\n"
+     return prf;
 
+     }
 
- nr = pfloors(8);
+   //================;
 
-<<"%V $nr\n"
+   nr = pfloors(7);
 
+   <<"%V $nr\n";
 
+   nr = pfloors(8);
 
+   <<"%V $nr\n";
 
+   //=====================;
 
+   class Building {
 
+     int rooms;
 
-//=====================
-class Building {
+     int floors;
 
- int rooms;
- int floors;
- int area ;
- int id;
- 
- cmf setRooms(int val)
- {
-  <<" $_proc  $_cobj [${id}]  $rooms $floors $area \n"
-   rooms = val;
- }
+     int area ;
 
- cmf getRooms()
- {
-<<" $_proc  $_cobj [${id}]  $rooms $floors $area \n"
-   nr = rooms;
-   return rooms; 
- }
-//========================
- cmf setFloors(int val)
- {
-    floors = val;
-<<" $_cobj $_proc %V $id $val $floors \n"
-   area = floors * 200;
-//   my->print()
- }
+     int id;
 
- cmf getFloors()
- {
-   int rnf = 0; // TBF crash
-<<" $_proc  $_cobj [${id}]$rooms $floors $area \n"
-   rnf = floors;
-<<"$rnf \n"   
-   //return rnf;  // TBF 9/3/21 returning local -- deleted does not remain on stack for assignment?
-  return floors;
- }
+     cmf setRooms(int val)
 
- cmf Print()
- {
-  <<" $_proc $_cobj  [${id}] \n %V $rooms \n $floors \n $area \n"
- }
-//======================================//
- cmf Building()
- {
-    id = Bid;
-    <<"%V $id\n"
-    Bid++;
-   <<"%V $Bid\n"
-    floors = 7 + id;
-   <<"%V $floors\n" 
-    rooms = 4 +id ;
-    area = floors * 200;
- <<"Cons $_cobj %V $id  $Bid $floors  $rooms $area\n"
-  }
+     {
 
-}
+       <<" $_proc  $_cobj [${id}]  $rooms $floors $area \n";
 
+       rooms = val;
 
-////////////////////////////////////
+       }
 
+     cmf getRooms()
 
-  Building C[10]
+     {
 
-<<" done object array  declare ! \n"
+       <<" $_proc  $_cobj [${id}]  $rooms $floors $area \n";
 
+       nr = rooms;
+
+       return rooms;
+
+       }
+
+     //========================;
+
+     cmf setFloors(int val)
+
+     {
+
+       floors = val;
+
+       <<" $_cobj $_proc %V $id $val $floors \n";
+
+       area = floors * 200;
+
+       //   my->print();
+
+       }
+
+     cmf getFloors()
+
+     {
+
+       int rnf = 0; // TBF crash;
+
+       <<" $_proc  $_cobj [${id}]$rooms $floors $area \n";
+
+       rnf = floors;
+
+       <<"$rnf \n";
+
+       //return rnf;  // TBF 9/3/21 returning local -- deleted does not remain on stack for assignment?;
+
+       return floors;
+
+       }
+
+     cmf Print()
+
+     {
+
+       <<" $_proc $_cobj  [${id}] \n %V $rooms \n $floors \n $area \n";
+
+       }
+
+     //======================================//;
+
+     cmf Building()
+
+     {
+
+       id = Bid;
+
+       <<"%V $id\n";
+
+       Bid++;
+
+       <<"%V $Bid\n";
+
+       floors = 7 + id;
+
+       <<"%V $floors\n";
+
+       rooms = 4 +id ;
+
+       area = floors * 200;
+
+       <<"Cons $_cobj %V $id  $Bid $floors  $rooms $area\n";
+
+       }
+
+     }
+
+   ////////////////////////////////////
+
+   Building C[10];
+
+   <<" done object array  declare ! \n";
 
    b6 = 6;
+
    b6rooms = C[b6]->rooms;
 
-<<"%V $b6rooms \n"
+   <<"%V $b6rooms \n";
 
    b7 = 7;
+
    b7rooms = C[b7]->rooms;
+
    b7id = C[b7]->id;
-<<"%V $b7rooms $b7id\n"
 
+   <<"%V $b7rooms $b7id\n";
 
+   checkRooms(5,7);
 
-   checkRooms(5,7)
+   checkRooms(0,9);
 
-   checkRooms(0,9)
-   
+   Building A;
 
-
-  Building A;
-  
    Arooms = A->rooms;
 
-<<"%V$Arooms";
+   <<"%V$Arooms";
 
-  Building B;
-  Building D;  
+   Building B;
+
+   Building D;
 
    Arooms = A->getRooms();
 
-<<"%V $Arooms \n"
+   <<"%V $Arooms \n";
 
    chkN (Arooms,14);
+
    Afloors = A->getFloors();
 
-<<"%V $Afloors \n"
+   <<"%V $Afloors \n";
 
    Brooms = B->getRooms();
 
-<<"%V $Brooms \n"
- chkN (Brooms,15);
+   <<"%V $Brooms \n";
+
+   chkN (Brooms,15);
+
    Bfloors = B->getFloors();
 
-<<"%V $Bfloors \n"
- chkN (Bfloors,18);
+   <<"%V $Bfloors \n";
+
+   chkN (Bfloors,18);
 
    Drooms = D->getRooms();
 
-<<"%V $Drooms \n"
-    D->setFloors(7)
+   <<"%V $Drooms \n";
+
+   D->setFloors(7);
 
    Dfloors = D->getFloors();
 
-<<"%V $Dfloors \n"
+   <<"%V $Dfloors \n";
 
-    chkN (Dfloors,7)
+   chkN (Dfloors,7);
 
-
-
- 
-   C[1]->Print()
-
+   C[1]->Print();
 
    b1rooms = C[1]->getRooms();
 
+   <<"%V $b1rooms \n";
 
-<<"%V $b1rooms \n"
+   chkN (b1rooms,5);
 
- chkN (b1rooms,5);
-
-   C[2]->Print()
+   C[2]->Print();
 
    b2rooms = C[2]->getRooms();
 
-<<"%V $b2rooms \n"
+   <<"%V $b2rooms \n";
 
    b0rooms = C[0]->getRooms();
 
-<<"%V $b0rooms \n"
+   <<"%V $b0rooms \n";
 
+   C[3]->Print();
 
-   C[3]->Print()
-
-  C[0]->Print()
-
+   C[0]->Print();
 
    b0rooms = C[0]->getRooms();
 
-<<"%V $b0rooms \n"
-
+   <<"%V $b0rooms \n";
 
    chkN (b0rooms,4);
-   
-
 
    b2rooms = C[2]->getRooms();
 
-<<"%V $b2rooms \n"
+   <<"%V $b2rooms \n";
 
-  chkN (b2rooms,6);
+   chkN (b2rooms,6);
 
-  
-
-
-
-
-   C[5]->Print()
+   C[5]->Print();
 
    b5rooms = C[5]->getRooms();
 
-<<"%V $b5rooms \n"
-
+   <<"%V $b5rooms \n";
 
    chkN (b5rooms,9);
 
-   C[6]->Print()
+   C[6]->Print();
 
    b6rooms = C[6]->getRooms();
 
-<<"%V $b6rooms \n"
+   <<"%V $b6rooms \n";
 
    chkN (b6rooms,10);
-
 
    C[2]->setFloors(15);
 
@@ -273,342 +301,358 @@ class Building {
 
    b2floors = C[2]->getFloors();
 
-<<"%V $b2floors \n"
-  chkN (b2floors,15)
+   <<"%V $b2floors \n";
 
-  n = 2;
+   chkN (b2floors,15);
 
-  C[n]->setFloors(16);
-  
-  C[n]->Print()
+   n = 2;
 
-<<"  return n floors for [${n}] \n"
+   C[n]->setFloors(16);
 
+   C[n]->Print();
 
-  nf = C[2]->getFloors()
+   <<"  return n floors for [${n}] \n";
 
-<<"%V $nf \n"
+   nf = C[2]->getFloors();
 
-  chkN (nf,16)
+   <<"%V $nf \n";
 
+   chkN (nf,16);
 
-  nf = C[n]->getFloors()
+   nf = C[n]->getFloors();
 
-<<"%V $nf \n"
+   <<"%V $nf \n";
 
-  chkN (nf,16)
+   chkN (nf,16);
 
-  chkStage();
+   chkStage();
 
+   /////////
 
-/////////
+   // j = 3; // TBF ---;
 
- // j = 3; // TBF ---
-  j = 9;
+   j = 9;
 
-  C[j]->setFloors(12); // this has to set C offset first time through
+   C[j]->setFloors(12); // this has to set C offset first time through;
 
-  C[j]->Print();
+   C[j]->Print();
 
-  nf = C[j]->getFloors();
+   nf = C[j]->getFloors();
 
-<<"floors $nf \n"
+   <<"floors $nf \n";
 
-  chkN (nf,12);
+   chkN (nf,12);
 
-//chkOut()
 
-  nrms = C[0]->getRooms()
-  <<" C[0] rooms $nrms \n"
 
-  chkN (nrms,4)
+   nrms = C[0]->getRooms();
 
-<<" main refer %i $C   [0] \n"
-  C[0]->setRooms(56)
+   <<" C[0] rooms $nrms \n";
 
-nrms = C[0]->getRooms()
+   chkN (nrms,4);
 
+   <<" main refer %i $C   [0] \n";
 
-<<" main refer %i $C   [1] \n"
-  C[1]->setRooms(12)
+   C[0]->setRooms(56);
 
-  C[4]->setRooms(14)
+   nrms = C[0]->getRooms();
 
+   <<" main refer %i $C   [1] \n";
 
-  nr = C[4]->getRooms()
-  
-  chkN (nr,14)
+   C[1]->setRooms(12);
 
+   C[4]->setRooms(14);
 
+   nr = C[4]->getRooms();
 
-// FIX  chkN ( C[4]->getFloors(),14)
+   chkN (nr,14);
 
+   // FIX  chkN ( C[4]->getFloors(),14);
 
+   <<" test  object accessor functions\n";
 
+   C[2]->setFloors(15);
 
+   <<" test  direct public reference\n";
 
+   a=   C[2]->floors;
 
-<<" test  object accessor functions\n"
-  C[2]->setFloors(15);
- 
+   <<"  %I $C[0]->floors  $a \n";
 
-<<" test  direct public reference\n"
+   chkN (a,15);
 
-  a=   C[2]->floors
-<<"  %I $C[0]->floors  $a \n"
-chkN (a,15)
+   j = 2;
 
+   a=   C[j]->floors;
 
-  j = 2
+   <<" %I $C[j]->floors  $a \n";
 
-  a=   C[j]->floors
-<<" %I $C[j]->floors  $a \n"
-  chkN (a,15)
+   chkN (a,15);
 
+   <<" Single object ! \n";
 
-<<" Single object ! \n"
+   for (i = 0 ; i < 5 ; i++) {
 
+     nrms = C[i]->getRooms();
 
-  for (i = 0 ; i < 5 ; i++) {
-   nrms = C[i]->getRooms()
-  <<" %V $i $nrms \n"
-  }
+     <<" %V $i $nrms \n";
 
+     }
 
+   for (i = 0 ; i < 5 ; i++) {
 
+     C[i]->setRooms(i);
 
-  for (i = 0 ; i < 5 ; i++) {
-   C[i]->setRooms(i)
-   nrms = C[i]->getRooms()
-  <<" %V $i $nrms \n"
-  }
+     nrms = C[i]->getRooms();
 
+     <<" %V $i $nrms \n";
 
-  for (i = 0 ; i < 5 ; i++) {
-   nrms = C[i]->getRooms()
-  <<" %V $i $nrms \n"
-  }
+     }
 
-  for (i = 0 ; i < 5 ; i++) {
-   nrms = C[i]->getRooms()
-  <<" %V $i $nrms \n"
-  }
+   for (i = 0 ; i < 5 ; i++) {
 
-  for (i = 0 ; i < 5 ; i++) {
-   C[i]->setRooms(i+15)
-   nrms = C[i]->getRooms()
-  <<" %V $i $nrms \n"
-  }
+     nrms = C[i]->getRooms();
 
+     <<" %V $i $nrms \n";
 
+     }
 
+   for (i = 0 ; i < 5 ; i++) {
 
-  A->Print()
+     nrms = C[i]->getRooms();
 
-  nf = A->getFloors()
+     <<" %V $i $nrms \n";
 
-<<" $nf \n"
+     }
 
+   for (i = 0 ; i < 5 ; i++) {
 
-   Building bz
+     C[i]->setRooms(i+15);
 
-   bz->Print()
+     nrms = C[i]->getRooms();
 
-   nf = bz->getFloors()
+     <<" %V $i $nrms \n";
 
-<<" $nf \n"
+     }
 
-   bz->setFloors(17)
+   A->Print();
 
-   bnf = bz->getFloors()
+   nf = A->getFloors();
 
-<<" %v $bnf \n"
+   <<" $nf \n";
 
-   bz->Print()
-   
-bz<-pinfo()
+   Building bz;
 
-<<" making copy of obj bz \n"
+   bz->Print();
 
-   d = bz
+   nf = bz->getFloors();
 
- d<-pinfo()
- d->Print()
+   <<" $nf \n";
 
+   bz->setFloors(17);
 
+   bnf = bz->getFloors();
 
-   d->setFloors(11)
+   <<" %v $bnf \n";
 
-   d->Print()
+   bz->Print();
 
-   dr = d->getRooms()
-<<"%V $dr\n"
- d<-pinfo()
-    
- <<"d: $d\n"
+   bz.pinfo();
 
-   c = d
+   <<" making copy of obj bz \n";
 
-c<-pinfo()
+   d = bz;
 
-   c->Print()
+   d.pinfo();
 
-   c->setFloors(12)
+   d->Print();
 
-   cnf = c->getFloors()
+   d->setFloors(11);
 
-<<" %v $cnf \n"
+   d->Print();
 
-   dnf = d->getFloors()
+   dr = d->getRooms();
 
-<<" %v $dnf \n"
+   <<"%V $dr\n";
 
+   d.pinfo();
 
-    if (dnf != bnf ) {
-  <<" object copy fail! \n"
-  }
-    else {
-  <<" object copy success! \n"
-  }
+   <<"d: $d\n";
 
-   dnf = d->getFloors()
+   c = d;
 
-<<" %v $dnf \n"
+   c.pinfo();
 
-   cnf = c->getFloors()
+   c->Print();
 
-<<" %v $cnf \n"
+   c->setFloors(12);
 
-   d->setFloors(12)
+   cnf = c->getFloors();
 
-   dnf = d->getFloors()
+   <<" %v $cnf \n";
 
-<<" %v $dnf \n"
+   dnf = d->getFloors();
 
-   d->Print()
+   <<" %v $dnf \n";
 
-   bz->setFloors(60)
+   if (dnf != bnf ) {
 
-   bz->Print()
+     <<" object copy fail! \n";
 
-   d->Print()
+     }
 
-   cnf = c->getFloors()
+   else {
 
-<<" %v $cnf \n"
+     <<" object copy success! \n";
 
-   bz->setFloors(30)
+     }
 
-   nf = bz->getFloors()
+   dnf = d->getFloors();
 
-<<" $nf \n"
+   <<" %v $dnf \n";
 
+   cnf = c->getFloors();
 
-//  bptr = &C[0]
+   <<" %v $cnf \n";
 
+   d->setFloors(12);
 
-//  sz = C->Caz()
+   dnf = d->getFloors();
 
-// <<" %v $sz \n"
+   <<" %v $dnf \n";
 
-  nf = C[1]->getFloors()
+   d->Print();
 
-<<" $nf \n"
+   bz->setFloors(60);
 
-  C[0]->setFloors(6)
+   bz->Print();
 
-  C[0]->setRooms(12)
+   d->Print();
 
-//  C[1]->setFloors(9)
+   cnf = c->getFloors();
 
-  nf = C[1]->getFloors()
+   <<" %v $cnf \n";
 
-<<" $nf \n"
+   bz->setFloors(30);
 
+   nf = bz->getFloors();
 
+   <<" $nf \n";
 
-  C[2]->setFloors(96)
+   //  bptr = &C[0];
 
-  C[3]->setFloors(69)
+   //  sz = C->Caz();
 
-//  C[3]->setRooms(22)
+   // <<" %v $sz \n";
 
-  C[4]->setFloors(54)
+   nf = C[1]->getFloors();
 
-  C[4]->setRooms(100)
+   <<" $nf \n";
 
-  nf = C[2]->getFloors()
+   C[0]->setFloors(6);
 
-<<" $nf \n"
+   C[0]->setRooms(12);
 
+   //  C[1]->setFloors(9);
 
-  nf = C[1]->getFloors()
+   nf = C[1]->getFloors();
 
-<<" $nf \n"
+   <<" $nf \n";
 
-  nf = C[3]->getFloors()
+   C[2]->setFloors(96);
 
-<<" $nf \n"
+   C[3]->setFloors(69);
 
-  nr = C[4]->getRooms()
+   //  C[3]->setRooms(22);
 
-<<" %v $nr \n"
+   C[4]->setFloors(54);
 
-  i = 3
+   C[4]->setRooms(100);
 
-  nf = C[i]->getFloors()
+   nf = C[2]->getFloors();
 
-<<" $nf \n"
-  j = 2
-  for (i = 0 ; i < 5 ; i++) {
+   <<" $nf \n";
 
-  C[i]->setFloors(j)
-  nf = C[i]->getFloors()
-  nr = C[i]->getRooms()
+   nf = C[1]->getFloors();
 
-<<" %V $i $nf $nr \n"
-   j += 2
-  }
+   <<" $nf \n";
 
-  for (i = 0 ; i < 5 ; i++) {
+   nf = C[3]->getFloors();
 
-  C[i]->setFloors(i+1)
+   <<" $nf \n";
 
-  C[i]->setRooms(i*4+2)
+   nr = C[4]->getRooms();
 
-<<" setFloors $i  \n"
+   <<" %v $nr \n";
 
-  nf = C[i]->getFloors()
-  nr = C[i]->getRooms()
+   i = 3;
 
-<<" %V $i $nf $nr \n"
+   nf = C[i]->getFloors();
 
-  }
+   <<" $nf \n";
 
+   j = 2;
 
-  nf = C[2]->getFloors()
+   for (i = 0 ; i < 5 ; i++) {
 
-<<" $nf \n"
+     C[i]->setFloors(j);
 
+     nf = C[i]->getFloors();
 
-  C[2]->setFloors(8)
+     nr = C[i]->getRooms();
 
-  nf = C[2]->getFloors()
+     <<" %V $i $nf $nr \n";
 
-<<" $nf \n"
+     j += 2;
 
+     }
 
-  C[1]->setFloors(7)
-  j = 1
- while (j < 4) {
-  C[j]->setFloors(66)
-  nf = C[j]->getFloors()
-<<" $j $nf \n"
-  j++
- }
+   for (i = 0 ; i < 5 ; i++) {
 
-   checkRooms(1,7)
+     C[i]->setFloors(i+1);
 
-//Building BD[30]
+     C[i]->setRooms(i*4+2);
 
-chkOut()
+     <<" setFloors $i  \n";
+
+     nf = C[i]->getFloors();
+
+     nr = C[i]->getRooms();
+
+     <<" %V $i $nf $nr \n";
+
+     }
+
+   nf = C[2]->getFloors();
+
+   <<" $nf \n";
+
+   C[2]->setFloors(8);
+
+   nf = C[2]->getFloors();
+
+   <<" $nf \n";
+
+   C[1]->setFloors(7);
+
+   j = 1;
+
+   while (j < 4) {
+
+     C[j]->setFloors(66);
+
+     nf = C[j]->getFloors();
+
+     <<" $j $nf \n";
+
+     j++;
+
+     }
+
+   checkRooms(1,7);
+
+   //Building BD[30];
+
+   chkOut();
+
+//===***===//

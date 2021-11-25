@@ -6793,7 +6793,7 @@ filterFileDebug
 filterFileDebug
 .)x 
 .FD
-filterFilterDebug(ALLOW_,"args_parse", ...)
+filterFileDebug(ALLOW_,"args_parse", ...)
 Would pass debug statements from internal code file(s) args_parse*cpp  to debug stream.
 the filter can be set to
 ALLOWALL_

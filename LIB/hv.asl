@@ -10,101 +10,216 @@
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-;//------------------------------//;
 
-//  examines header
-//  any @var that is found is added to _HV table e.g.
-//  @hvar  word1 word2 ...
-//  and can be retrieved via
-//  key = "@varname" ; _val = _HV->lookup(key);
-//  _val will contain word1 word2 ... till the end of that header line
-//  so you can retrieve @vers,@author,@date values that are in the header
+   ;//------------------------------//;
+//  parses header creates hdr_xxx vars from @ tags in header 
+//
 
-Svar _HV;
+//filterFileDebug(REJECT_,"array_");
+
+str hdr_script = "none";
+str hdr_vers = "1.1"
+str hdr_release = "BORON";
+str hdr_author = "mt";
+str hdr_cdate = "1964"
+str hdr_date = "1964"
+
+   int hv_found =0;
+      int hv_show =0;
 
 
-_HV<-table("HASH",50,2) //
-
-//_HV<-info(1)
+    str  rs = "comment ca va"
 
 
-int hv_found =0;
+   void hdrv_func()
+   {
+     Svar L;
+     Str val;
+     Str fl;
+     int sz;
+     int header_valid = 1;
 
-void hv_func()
-{
-  Svar L;
+     for (wln = 1; wln <= 10; wln++) {
 
-  Str fl;
-  int sz;
+      fl = getcodeln(wln,0);
+  //fl = readLine(A);
+  vl = slen(fl)
+//<<"$vl $fl\n"
 
-  for (wln = 1; wln <= 10; wln++) {
+     if (header_valid  == 0) {
+           break;
+     }
+     if (vl == 0) {
+         break;
+         }
 
-  fl = getcodeln(wln,0);
-   if (fl @= "") {
-       break;
-   }
-//<<"$wln $fl\n"
+//       <<"$wln <|$fl|>\n";
 
- if (! (fl @= "")) {
-   L=split(fl)
 
- sz=Caz(L)
+         L=split(fl);
 
-if (sz > 1) {
+         sz=Caz(L);
 
- if (scmp(L[0],"//",2)) {
 
-   if (!(L[1] @= "")) {
+         if (sz >= 3) {
 
-   if (scmp(L[1],"@",1)) {
+//	 <<"L1 <|$L[1]|> \n"
 
-    _val = spat(fl,L[1],1)
+         rs = L[1];
+	// rs.pinfo()
 
-    if (!hv_found) {
-      if (!(L[1] @="@script")) {
-<<"no header found!\n"
-        break;
-      }
-      hv_found = 1;
-    }
+         vl=slen(rs);
+//	 <<"vl $vl \n"
 
-    index=_HV<-addkeyval(L[1],_val); // returns index
- //<<"$index $L[1] $_val \n"
-  }
-  }
-  }
-  }
- }
+
+            if (vl > 0) {
+//           <<"$wln $rs $L[1] \n"
+
+             if (scmp(rs,"@",1)) { // first @ should be @script 
+
+              // val = spat(fl,rs,1);
+
+
+//	       val.pinfo()
+
+
+               if (!hv_found) {
+                   // rs.pinfo();
+//                   <<"$wln check $rs for @script \n";
+		   
+               if (scmp(rs,"@script")) {
+	        //  if (!(rs == "@script")) 
+		  
+
+		//   rs.pinfo()
+//                <<"it is an asl script header!\n";
+                    hv_found = 1;
+               }
+               else {
+                   <<"no header found!\n";
+		     header_valid = 0;
+               }
+             }
+
+            //     rs.pinfo()
+//		 <<"$wln $rs  $L[1] $L[2] \n"
+
+
+               if (scmp(rs,"@script")) {
+
+                    hdr_script = L[2]
+               }
+                else if (scmp(rs,"@vers")) {
+
+                  hdr_vers = L[2]
+                }
+                else if (scmp(rs,"@author")) {
+
+                  hdr_author = scat(L[2],L[3])
+                }
+                else if (scmp(rs,"@release")) {
+
+                  hdr_release = L[2]
+                }
+                else if (scmp(rs,"@cdate")) {
+
+                  hdr_cdate = L[2]
+                }
+                else if (scmp(rs,"@date")) {
+                  hdr_date = scat(L[2],L[3],L[4]);
+                }
+/*
+                if (rs == "@script") {
+
+                  hdr_script = L[2]
+                }
+
+
+                else if (rs == "@vers") {
+
+                  hdr_vers = L[2]
+                }
+                else if (rs == "@author") {
+
+                  hdr_author = L[2]
+                }
+                else if (rs == "@release") {
+
+                  hdr_release = L[2]
+                }
+                else if (rs == "@cdate") {
+
+                  hdr_cdate = L[2]
+                }
+                else if (rs == "@date") {
+<<"got date $L[2]\n"
+                  hdr_date = scat(L[2],L[3],[4]);
+		  
+                }								
+*/
+
+                 } // scmp
+
+ //              <<" $rs $val \n";
+
+               } // vl
+
+             } //sz 
+         } // 
+
 }
-   
+
+
+///////////////////////////////
+
+
+
+
+
+
+
+   hdrv_func();
+_ele_vers = hdr_vers;
+
+if (hv_show) {
+<<"%V $hdr_script\n"
+
+<<"%V $hdr_vers\n"
+
+<<"%V $hdr_release\n"
+
+<<"%V $hdr_author\n"
+
+<<"%V $hdr_date\n"
+
+<<"%V $hdr_cdate\n"
 }
 
-hv_func();
 
-
-
-//============================//
-_ele_vers = "H";
-_ele = 1;
-if (hv_found) {
-key = "@vers" ;
-_vers = _HV<-lookup(key);
-_vw= split(_vers)
-_ele_vers = _vw[2]
-_ele = ptAN(_ele_vers)
-//<<"%V $_ele_vers $_ele \n"
-
-}
-//=============================//
-
-
-delete(hv_found);
 
 /////////////////////////// DEV //////////////////////////
 /*
+   make proc and call
+   otherwise have globals
+   delete any tmp? globals
 
- make proc and call
- otherwise have globals 
- delete any tmp? globals
+TBF  11/24/21  if (rs == "@script")  - this str comparison corrupts  memory
 
 */
+
+//===***===//
+
+/*
+                 // if (!(rs == "@script")) 
+		  //if (!(rs == "script")) 
+		 //  if (!(rso == "script"))
+		 
+		   if (!(scmp(rso,"script"))) {
+
+                    <<"@ is $rs\n"
+                  
+                     // break;  // crash  ?? 
+                   }
+          //  val.pinfo()
+	   <<" que pasa?\n"
+ */              

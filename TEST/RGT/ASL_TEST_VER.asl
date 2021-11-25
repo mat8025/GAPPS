@@ -19,6 +19,7 @@
 
 #include "hv"
 
+
 if (_dblevel > 0) {
    debugON()
 }
@@ -216,9 +217,9 @@ int do_tests = 0;
 
 
  CrashList = ( "",  )  // empty list
- CrashList<-LiDelete(0)
+ CrashList.LiDelete(0)
  FailedList = ( "",  )  // empty list --- bug first item null? 
- FailedList<-LiDelete(0)
+ FailedList.LiDelete(0)
  
 
 
@@ -471,10 +472,11 @@ if ((do_bit || do_all) && (do_bit != -1)) {
   if ((do_logic || do_all) && (do_logic != -1)) {
   
    inflsz = caz(FailedList)
+   //<<"%V $inflsz \n"
 
    RunDirTests("Compare","compare")
 
-   RunDirTests("Logic","logic,logic-ops,logic-def")
+   RunDirTests("Logic","logic,logic_ops,logic_def")
 
 
   outcome("LOGIC")
@@ -1154,7 +1156,7 @@ dtms= FineTimeSince(TM);
 secs = dtms/1000000.0
 
 if (!do_module) {
-<<"script vers $_ele_vers took %6.3f$secs secs %d %V $i_time $x_time\n"
+<<"script vers $hdr_vers took %6.3f$secs secs %d %V $i_time $x_time\n"
 
 today=getDate(1);
 <<"used $wasl for tests \n"

@@ -19,6 +19,7 @@
    <<"$I \n";
 
    chkN(I[19],19);
+   
 
    J = vreverse(I);
 

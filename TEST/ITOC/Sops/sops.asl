@@ -95,19 +95,19 @@ chkStage("single cat")
 
 char E[>3]
 
-E->info(1);
+E.pinfo();
 
 //query()
 
 hh=  scat("Happy"," Hols")
-hh->info(1)
+hh.pinfo()
 <<"$hh\n"
 
 E = scat("Happy"," Hols")
 
 <<"%d$E \n"
 
-E->info(1)
+E.pinfo()
 
 ac= E[1]
 
@@ -185,19 +185,19 @@ Sv[2] = "y espera ratones"
 Sv[3] = "un plan simple"
 
 
-Sv->info(1)
+Sv.pinfo()
 <<"$Sv \n"
 
 
 str T=Sv[3]
 
-T->scut(-3)
+T.scut(-3)
 
 <<"$T \n"
 
 T=S
 
-T->scut(3)
+T.scut(3)
 
 
 <<"$T \n"
@@ -362,7 +362,7 @@ chkStr(T,"aaabbbqqqdd dxxxqqqeeeqqqfffhhh")
 
 
 rpat = 'abc*'
-rpat->info(1)
+rpat.pinfo()
 
 <<"%V $rpat\n"
 
@@ -425,8 +425,8 @@ ok = 0
 <<"%V$ok\n"
 <<"<|$A|>\n"
 
-ok->info(1)
-A->info(1)
+ok.pinfo()
+A.pinfo()
 
 //chkStr(A,"how")
 chkN(1,ok)
@@ -518,12 +518,12 @@ s2=split(s1)
 <<"$s2\n"
 <<"$s2[5]\n"
 
-rv=s2->findVal("all")
+rv=s2.findVal("all")
 
 <<"$(typeof(rv)) $(Caz(rv))\n"
 <<"$rv \n"
 
-riv=s2->scmp("all")
+riv=s2.scmp("all")
 
 <<"$(typeof(riv)) $(Caz(riv))\n"
 <<"$riv \n"

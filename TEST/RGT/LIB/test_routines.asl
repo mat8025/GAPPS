@@ -23,6 +23,7 @@ void outcome (str title)
 {
    Nsuites++;
    outflsz = caz(FailedList)
+//     <<"%V $inflsz $outflsz \n"
    if ((inflsz == outflsz) && (rt_crash == last_ncrash)) {
    Nspassed++;
    

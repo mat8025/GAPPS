@@ -20,7 +20,7 @@ Demo  of inheritance
 |>
 
 #include "debug"
-#include "hv.asl"
+//#include "hv.asl"
 
 if (_dblevel >0) {
   debugON()
@@ -180,7 +180,7 @@ class room : house {
 
 
 <<"after house $h \n"
-h->info(1)
+h.pinfo()
 
 
    h->print()
