@@ -15,6 +15,7 @@
 
 #include "debug"
 
+filterFileDebug(REJECT_,"array_","exp","store","tok","args")
 
 chkIn(_dblevel)
 
@@ -31,7 +32,7 @@ chkIn(_dblevel)
 
  I = vgen(INT_,100,0,1)
 
- I[5] = 47
+// I[5] = 47
 
 <<"$I \n"
 
@@ -50,11 +51,11 @@ chkIn(_dblevel)
 
  F = vgen(FLOAT_,N,0,1)
 
- F[5] = 47
+// F[5] = 47
 
 //<<"$F \n"
 
- F->shuffle(200)
+ F.shuffle(200)
 
 //<<"$F \n"
 T=fineTime()
@@ -64,11 +65,13 @@ T=fineTime()
 bdt=fineTimeSince(T)
 <<"Bubble $(bdt/1000.0) msec\n"
 
- F->shuffle(200)
+ F.shuffle(200)
 
 //<<"$F \n"
 T=fineTime()
- quicksort(F)
+
+quicksort(F)
+
 qdt=fineTimeSince(T)
 <<"Quick $(qdt/1000.0) msec\n"
 
@@ -83,10 +86,35 @@ else {
 }
 
 chkN(F[0],0)
+
 chkN(F[1],1)
+F.pinfo()
+
+f = F[7];
+
+<<"%V $f $F[7]\n"
+
+chkN(F[7],7)
+
+
+
+
+F.pinfo()
+int q= 8;
+
+chkN(F[q],8)
+
+
+
+
 chkN(F[N-1],N-1)
 
-<<"$F[0]  $F[N-1]\n"
+f = F[N-1]
+
+chkN(f,N-1)
+
+<<"%V $N $F[0]  $F[1] $F[N-1]\n"
+
 chkOut()
 
 //<<"$F \n"

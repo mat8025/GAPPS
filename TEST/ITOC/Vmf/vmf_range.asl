@@ -37,20 +37,20 @@ if (_dblevel >0) {
 
    int n;
 
-   n<-info(1);
+   n.pinfo();
 
    int M[10];
 
-   M<-info(1)
+   M.pinfo()
 
    int  P[>10];
 
-   P<-info(1)
+   P.pinfo()
    
    int J[]; 
 
 
-   J<-info(1)
+   J.pinfo()
    
    <<"$(Cab(J)) \n"; 
 
@@ -63,12 +63,12 @@ if (_dblevel >0) {
    chkN(J[0],0)
 
 <<"$J\n"
-   J<-info(1)
+   J.pinfo()
 
 
-   J[0:19:2]<-set(10,1); 
+   J[0:19:2].set(10,1); 
 
-   J<-info(1)
+   J.pinfo()
 
    <<"$J \n"; 
 
@@ -98,5 +98,5 @@ if (_dblevel >0) {
    
 //////////////////////////////////
 /// ? TBCDF
-/// ? TBF  pic lic of  J[0:19:2]<-set(10,1)  repeats section
+/// ? TBF  pic lic of  J[0:19:2].set(10,1)  repeats section
 /// ? but xic works?

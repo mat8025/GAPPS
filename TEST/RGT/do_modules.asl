@@ -35,12 +35,22 @@ int do_query = 1;
 
 
 void inter()
-
 {
-
+int ask = 0;
 str ans;
+!!"cat mod_score"
+A=ofr("mod_score")
+L=readfile(A)
+iv= sstr(L,"PASS")
 
- if (do_query) {
+
+cf(A)
+ask =0
+if (iv[0] == -1) {
+ ask = 1;
+}
+
+ if (do_query && ask) {
 
   ans= query("->")
 
@@ -50,51 +60,45 @@ str ans;
 
   }
 
-
-
   if (ans == "q") {
 
       exit()
 
   }
 
-
-
  }
-
-
-
 }
 
 
 
 
 
-!!"asl ASL_TEST_VER module command ";
+!!"asl ASL_TEST_VER module command > mod_score";
+
+inter()
 
 
-
-!!"asl ASL_TEST_VER module paraex ";
-
-
+!!"asl ASL_TEST_VER module paraex > mod_score ";
 
 inter()
 
 
 
-!!"asl ASL_TEST_VER module  pan ";
+!!"asl ASL_TEST_VER module  pan > mod_score";
+
+inter()
+
+!!"asl ASL_TEST_VER module stat > mod_score";
+
+inter()
+
+!!"asl ASL_TEST_VER module  sfunc > mod_score";
 
 inter()
 
 
 
-!!"asl ASL_TEST_VER module  sfunc ";
-
-inter()
-
-
-
-!!"asl ASL_TEST_VER module  scope ";
+!!"asl ASL_TEST_VER module  scope > mod_score";
 
 inter()
 
@@ -106,89 +110,89 @@ inter()
 
 
 
-!!"asl ASL_TEST_VER module include ";
+!!"asl ASL_TEST_VER module include  > mod_score";
 
 inter()
 
-!!"asl ASL_TEST_VER module if ";
+!!"asl ASL_TEST_VER module if  > mod_score";
 
 inter()
 
-!!"asl ASL_TEST_VER module declare ";
+!!"asl ASL_TEST_VER module declare  > mod_score";
 
 inter()
 
-!!"asl ASL_TEST_VER module bops ";
+!!"asl ASL_TEST_VER module bops  > mod_score";
 
 inter()
 
-!!"asl ASL_TEST_VER module bit ";
+!!"asl ASL_TEST_VER module bit  > mod_score";
 
 inter()
 
-!!"asl ASL_TEST_VER module proc";
+!!"asl ASL_TEST_VER module proc  > mod_score";
 
 inter()
 
-!!"asl ASL_TEST_VER module logic";
+!!"asl ASL_TEST_VER module logic  > mod_score";
 
 inter()
 
- !!"asl ASL_TEST_VER module try ";
+ !!"asl ASL_TEST_VER module try  > mod_score";
 
 inter()
 
-!!"asl ASL_TEST_VER module exp ";
+!!"asl ASL_TEST_VER module exp  > mod_score";
 
 inter()
 
-!!"asl ASL_TEST_VER module types ";
+!!"asl ASL_TEST_VER module types  > mod_score";
 
 
 
 
 
- !!"asl ASL_TEST_VER module enum ";
-
-inter()
-
-!!"asl ASL_TEST_VER module for ";
+ !!"asl ASL_TEST_VER module enum  > mod_score";
 
 inter()
 
-!!"asl ASL_TEST_VER module do ";
+!!"asl ASL_TEST_VER module for  > mod_score";
 
 inter()
 
-!!"asl ASL_TEST_VER module while ";
+!!"asl ASL_TEST_VER module do  > mod_score";
 
 inter()
 
-!!"asl ASL_TEST_VER module matrix";
+!!"asl ASL_TEST_VER module while  > mod_score";
 
 inter()
 
-
-
-!!"asl ASL_TEST_VER module math";
+!!"asl ASL_TEST_VER module matrix > mod_score ";
 
 inter()
 
 
 
-!!"asl ASL_TEST_VER module switch";
+!!"asl ASL_TEST_VER module math > mod_score ";
 
 inter()
 
 
 
- !!"asl ASL_TEST_VER module func ";
+!!"asl ASL_TEST_VER module switch > mod_score ";
+
+inter()
+
+
+
+ !!"asl ASL_TEST_VER module func  > mod_score ";
 
 inter()
 
  
 
-!!"asl ASL_TEST_VER module proc";
+!!"asl ASL_TEST_VER module proc > mod_score ";
 
 inter()
 
@@ -198,83 +202,77 @@ inter()
 
 
 
-!!"asl ASL_TEST_VER module vops ";
+!!"asl ASL_TEST_VER module vops  > mod_score ";
 
 inter()
 
 
 
-!!"asl ASL_TEST_VER module sops ";
+!!"asl ASL_TEST_VER module sops  > mod_score ";
 
 inter()
 
 
 
-!!"asl ASL_TEST_VER module mops ";
+!!"asl ASL_TEST_VER module mops  > mod_score ";
 
 inter()
 
 
 
- !!"asl ASL_TEST_VER module svar ";
+ !!"asl ASL_TEST_VER module svar  > mod_score ";
 
 inter()
 
- !!"asl ASL_TEST_VER module record ";
+ !!"asl ASL_TEST_VER module record  > mod_score ";
 
 inter()
 
- !!"asl ASL_TEST_VER module ivar ";
+ !!"asl ASL_TEST_VER module ivar  > mod_score ";
 
 inter()
 
- !!"asl ASL_TEST_VER module lists ";
-
-inter()
-
-
-
- !!"asl ASL_TEST_VER module lhsubsc ";
-
-inter()
-
- !!"asl ASL_TEST_VER module dynv ";
+ !!"asl ASL_TEST_VER module lists  > mod_score ";
 
 inter()
 
 
 
- !!"asl ASL_TEST_VER module unary ";
+ !!"asl ASL_TEST_VER module lhsubsc  > mod_score ";
 
 inter()
 
- !!"asl ASL_TEST_VER module ptrs ";
-
-inter()
-
- !!"asl ASL_TEST_VER module vmf ";
+ !!"asl ASL_TEST_VER module dynv  > mod_score ";
 
 inter()
 
 
 
-!!"asl ASL_TEST_VER module array";
+ !!"asl ASL_TEST_VER module unary  > mod_score ";
+
+inter()
+
+ !!"asl ASL_TEST_VER module ptrs  > mod_score ";
+
+inter()
+
+ !!"asl ASL_TEST_VER module vmf  > mod_score ";
 
 inter()
 
 
 
- !!"asl ASL_TEST_VER module class ";
+!!"asl ASL_TEST_VER module array > mod_score ";
 
 inter()
 
 
 
+ !!"asl ASL_TEST_VER module class  > mod_score ";
 
+inter()
 
-
-
-!!"asl ASL_TEST_VER module  oo ";
+!!"asl ASL_TEST_VER module  oo  > mod_score ";
 
 inter()
 

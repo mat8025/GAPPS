@@ -213,7 +213,8 @@ ESL="//===***===//";
   
     nc = Caz(NL); 
     sl = Slen(NL);
-    
+
+
     if (sl >= 1) {
          is_empty_line = 0;   
       scpy(nsv,eatWhiteEnds(NL));
@@ -224,7 +225,7 @@ ESL="//===***===//";
        is_case = scmp(nsv,"case",4);
 
 <<[2]"%s $nsv %v %d $is_define $is_include $is_case\n"
-
+<<[2]"nsv[0],[1]  $nsv[0]  $nsv[1]\n"
 
       if ((nsv[0] == '/') && (nsv[1] == '/')) {
         is_comment = 1;

@@ -85,15 +85,15 @@
 
    int VA[3] = {1,2,3};
 
-   VA->info(1);
+   VA.pinfo();
 
    k = 0;
 
-   k->info(1);
+   k.pinfo();
 
    A= vgen(INT_,10,0,1);
 
-   A->info(1);
+   A.pinfo();
 
    <<"$A\n";
 
@@ -268,7 +268,7 @@ chkN(m,1);
 
    AV = vgen(INT_,10,0,1);
 
-   AV->info(1);
+   AV.pinfo();
 
    <<"%V$AV\n";
 
@@ -285,7 +285,7 @@ chkN(m,1);
 
    <<"after ++ $AV\n";
 
-   BV->info(1);
+   BV.pinfo();
 
    <<"%V $BV\n";
 

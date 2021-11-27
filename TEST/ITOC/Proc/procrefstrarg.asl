@@ -36,7 +36,7 @@ Str pstrarg (str v, str u)
  <<"$r $v\n"
 
 //m = scat(v,u);
-m = scat(v,"-x-",u);
+ m = scat(v,"-x-",u);
  
 
 
@@ -46,6 +46,7 @@ m.pinfo();
  v = "hola"
  v.pinfo()
  s.pinfo()
+
 !p m
 
 
@@ -79,7 +80,9 @@ u = "que tal?"
 
  chkStr(w,"hi-x-Comment allez-vous?")
   s.pinfo()
-  <<"$s\n"
+
+
+<<"%V $s\n"
   
  chkStr(s,"hola")
 

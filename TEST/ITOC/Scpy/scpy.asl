@@ -1,4 +1,5 @@
 /* 
+ *
  *  @script scpy.asl 
  * 
  *  @comment test scpy SF  
@@ -11,6 +12,7 @@
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
+
 
 
 <|Use_=
@@ -35,26 +37,67 @@ if (_dblevel >0) {
 }
 
 
-//filterFileDebug(REJECT_,"ic_wic.cpp","get_args.cpp","~ds_storestr.cpp");
-//filterFileDebug(REJECT_,"array_parse.cpp","args_process_e.cpp","get_args.cpp");
-//filterFuncDebug(REJECT_,"var_main");
+filterFileDebug(REJECT_,"exp","tok","~ds_storestr.cpp");
+
 
 
 chkIn(_dblevel)
 
 
 int ki = 3;
-
+char lc;
 char M[32];
 char A[32];
 char T[32];
 
 char R[32];
+char nsv[];
 
-M->info(1)
+M.pinfo()
 sz=Caz(M)
 <<"%v$sz\n"
 <<"%I $M\n"
+
+fname = "scpy.asl"
+ A=ofr(fname);
+
+  if (A == -1) {
+  <<"can't find $fname \n"
+   exit()
+  }
+
+int IV[] = vgen(INT_,10,22,1)
+
+<<"IV: $IV \n"
+
+for (i= 0; i < 3; i++) {
+<<"$i $IV[i]\n"
+chkN(IV[i],(22+i));
+}
+
+for (i= 0; i < 4; i++) {
+
+  NL = readline(A,-1,1);
+
+  nc = Caz(NL); 
+    sl = Slen(NL);
+<<"%V $nc $sl  $NL\n"
+
+
+    scpy(nsv,NL);
+    kc = nsv[0]
+    lc = nsv[1]
+<<"%c $kc $lc $nsv[1]\n"    
+<<[2]"nsv[0],[1]  $nsv[0]  $nsv[1]\n"
+    if (nsv[1] == '*') {
+<<"found a star $nsv[1]\n"
+     }
+
+}
+cf(A)
+
+
+
 
 scpy(M,"hola que tal");
 <<"%I $M\n"

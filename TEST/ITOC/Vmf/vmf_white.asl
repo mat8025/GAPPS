@@ -41,7 +41,7 @@ SV[1] = "dog barking"
 
 <<"$SV\n"
 
-SV<-info(1)
+SV.pinfo()
 
 
 
@@ -64,7 +64,7 @@ T[1] = T[0]
 
 T[2] = T[1]
 
-T<-info(1)
+T.pinfo()
 //query()
 
 
@@ -73,12 +73,12 @@ T[i] = T[0]
 <<"$T[i]  $T[0]\n"
 }
 
-T<-info(1)
+T.info(1)
 <<"%(1,,,\n)$T \n"
 
 
-T[2]<-dewhite()
-T<-info(1)
+T[2].dewhite()
+T.info(1)
 ns="123 456   789  ";
 
 <<"<|$T[2]|>\n"
@@ -92,11 +92,11 @@ chkStr(T[0],ns)
 
 chkStr(T[0],"123 456   789  ")
 
-T<-info(1)
+T.info(1)
 
 <<"%(1,,,|>\n)$T \n"
 
-T[4:6]<-dewhite()
+T[4:6].dewhite()
 
 <<"%(1,<|,,|>\n)$T \n"
 

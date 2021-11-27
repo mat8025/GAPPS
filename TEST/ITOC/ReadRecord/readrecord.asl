@@ -15,6 +15,12 @@
 /// 
 ///
 
+#include "debug"
+
+allowErrors(-1) ; // keep going
+
+filterFileDebug(REJECT_,"array_","exp","store","tok","args")
+
 chkIn(_dblevel)
 
 
@@ -41,14 +47,24 @@ nb = Cab(R);
 <<"%V$R[0][0] \n"
 chkStr(R[0][0],"1")
 
-<<"%V$R[0][1]\n"
-ws=R[0][1]
+
+
+   ws=R[0][1]
+
+<<"%V$R[0][1] $ws\n"
+
+
 chkStr(ws,"2")
 
 <<"<|$R[0][2]|>\n"
 
 <<"$R[1]\n"
+
+<<"%V$R[0][2]\n"
+
 chkStr(R[0][2],"3")
+
+
  for (i= 0; i < 3; i++) {
 <<"%V$R[2][i] \n"
  }
@@ -66,8 +82,11 @@ nb = Cab(R);
 
 
 <<"%V$nb $(typeof(nb))\n"
+<<"%V$R[0][0] \n"
 chkStr(R[0][0],"47")
 <<"%V$R[0][0] \n"
+
+//<<"%V$R[0][1] \n"
 chkStr(R[0][1],"79")
 chkStr(R[0][2],"80")
 <<"%V$R[0][1]\n"
@@ -75,6 +94,10 @@ chkStr(R[0][2],"80")
 <<"<|$R[0][2]|>\n"
 
 <<"$R[1]\n"
+chkStr(R[1][2],"6")
+
+
+
 
  for (i= 0; i < 3; i++) {
 <<"%V$R[2][i] \n"

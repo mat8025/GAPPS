@@ -84,7 +84,7 @@ int si = 0;
 
 //int found[];
 
-//found->info(1)
+//found.info(1)
 
 found= findval(I,6,si,-1,1,0)
 
@@ -144,7 +144,7 @@ chkN(fi,6)
 
 
 
-   found= I->findval(7,si,-1,-1,1)
+   found= I.findval(7,si,-1,-1,1)
 
 fi = found[0];
 
@@ -156,7 +156,7 @@ chkN(fi,7)
 
 si = 19;
 
-   found= I->findval(17,si,-1,-1,1)
+   found= I.findval(17,si,-1,-1,1)
 <<" $(Cab(found))  \n"
    fi = found[0];
 
@@ -165,7 +165,7 @@ si = 19;
 chkN(fi,-1)
 
 si = -1;
-   found= I->findval(17,si,0,0)
+   found= I.findval(17,si,0,0)
 
    fi = found[0];
 
@@ -175,7 +175,7 @@ chkN(fi,17)
 
 si = 19;
 
-   found= I->findval(17,si,-1,0)
+   found= I.findval(17,si,-1,0)
 
 
 <<"%V $fi \n"
@@ -185,9 +185,9 @@ chkN(fi,17)
 
 si = 19;
 
-//   found= I->findval(17,-1,-1,1,'>=')
+//   found= I.findval(17,-1,-1,1,'>=')
 
-   found= I->findval(17,-1,-1,0,1,GTE_)
+   found= I.findval(17,-1,-1,0,1,GTE_)
 
 nd= Cab(found);
 sz = Caz(found);
@@ -217,7 +217,7 @@ fi = found[0];
 
 chkN(fi,8)
 
-   found= F->findval(7,si,-1,1,0)
+   found= F.findval(7,si,-1,1,0)
 
 fi = found[0];
 

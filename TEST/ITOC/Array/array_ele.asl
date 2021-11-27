@@ -99,7 +99,7 @@
 
      <<"PROC %V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
 
-     rl<-pinfo();
+     rl.pinfo();
 
      <<"PROC after pinfo %V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
  //SA = SA + 1;
@@ -123,7 +123,7 @@
 //  <<"%6.2f%V$t1\n";
 
      <<"$(Caz(t1))\n";
-  //rl<-pinfo()
+  //rl.pinfo()
 //  chkR (t1, 4.0);
 //query()
 
@@ -227,7 +227,7 @@
 
      <<"%V $j1  $rl[j1] \n";
 
-     rl<-pinfo();
+     rl.pinfo();
 
      TA=testargs(rl[j1],rl[j2],jj,kp);
 
@@ -330,7 +330,7 @@
 
    <<"Real %6.2f $Real \n";
 
-   Real<-pinfo();
+   Real.pinfo();
 
    val = array_sub (Real);
 
@@ -423,7 +423,7 @@
 
    <<"ele[${k}] $Real[k] \n";
 
-   Real<-pinfo();
+   Real.pinfo();
 
    <<"MAIN %V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
 
@@ -506,7 +506,7 @@
 
      chkR (rxp,11);
 
-     <<"%I$rl   $(Caz(rl))\n";
+     <<"$rl   $(Caz(rl))\n";
 
      j1 = 1;
 
@@ -522,7 +522,7 @@
 
      rl[j2] = rl[j1];
 
-     <<"%I$rl   $(Caz(rl))\n";
+     <<"%V$rl   $(Caz(rl))\n";
 
      <<"$rl\n";
 

@@ -21,6 +21,8 @@ kv->addKeyVal("smarter","pushed")
   
 |>
 
+
+
 proc showUse()
 {
   <<"$Use\n"
@@ -34,6 +36,8 @@ if (_dblevel >0) {
 }
 
 allowErrors(-1) ; // keep going
+
+filterFileDebug(REJECT_,"array_","exp","store","tok","args")
 
 chkIn(_dblevel)
 
@@ -55,12 +59,12 @@ chkStr(S[5],"ele 5");
 
 
 Svar kv
-kv<-table(LUT_,1,2)
+kv.table(LUT_,1,2)
 
-  kv<-addKeyVal("mark","is",0)
-  kv<-addKeyVal("terry","good")
-  kv<-addKeyVal("work","when")
-  kv<-addKeyVal("smarter","pushed")
+  kv.addKeyVal("mark","is",0)
+  kv.addKeyVal("terry","good")
+  kv.addKeyVal("work","when")
+  kv.addKeyVal("smarter","pushed")
 
 <<"%V $kv[0] $kv[1] \n"
 <<"%V $kv[2] $kv[3] \n"
@@ -68,13 +72,13 @@ kv<-table(LUT_,1,2)
 
 str iv;
 
-  iv = kv<-lookup("smarter")
+  iv = kv.lookup("smarter")
 
 <<"%V$iv \n"
 !i iv
 !i kv
 
-  iv = kv<-lookup("work")
+  iv = kv.lookup("work")
 
 <<"%V$iv \n"
 
@@ -86,7 +90,7 @@ chkStr(iv,"when")
 
 !z
 
- wi = kv<-findVal("work")
+ wi = kv.findVal("work")
 
 <<"%V $wi \n"
 !i wi
@@ -96,7 +100,7 @@ chkN(wi[0],4)
 
 
 
-wi = kv<-keySort()
+wi = kv.keySort()
 
 <<"key sort \n"
 <<"$kv \n"
@@ -105,7 +109,7 @@ wi = kv<-keySort()
 <<"value sort\n"
 
 
-wi = kv<-Sort(1)
+wi = kv.Sort(1)
 
 <<"%(2,<,\, ,>\n)$kv \n"
 
@@ -115,15 +119,15 @@ chkStr(kv[1],"good")
 
 Svar kvn
 
-kvn<-table(LUT_,1,2)
+kvn.table(LUT_,1,2)
 
-  kvn<-addKeyVal("mark",1,0)
-  kvn<-addKeyVal("terry",3)
-  kvn<-addKeyVal("work",7)
-  kvn<-addKeyVal("smarter",0)
+  kvn.addKeyVal("mark",1,0)
+  kvn.addKeyVal("terry",3)
+  kvn.addKeyVal("work",7)
+  kvn.addKeyVal("smarter",0)
 
-//wi = kvn<-valueNumSort()
-wi = kvn<-sortNum(1)
+//wi = kvn.valueNumSort()
+wi = kvn.sortNum(1)
 
 
 <<"$kvn\n"
@@ -143,7 +147,7 @@ ws= kvn[1]
 <<"%V$sz $ws\n"
 
 !i ws
-kvn<-pinfo();
+kvn.pinfo();
 !i kvn
 
 ws= kvn[4]

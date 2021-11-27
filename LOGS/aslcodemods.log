@@ -964,3 +964,8 @@ vmf_l.cpp                           1.64  11/24/2021 08:28:02  refactor
 vmf_limit.cpp                       1.11  11/24/2021 08:36:16  refactor
 vmf_rotate.cpp                      1.11  11/24/2021 08:36:36  refactor
 vmf_table.cpp                       1.3  11/24/2021 09:18:02  refactor vmf outof spil
+ic_call.cpp                         1.58  11/25/2021 09:32:15  extract ele - if array_ele for arg
+margincall.cpp                      2.35  11/25/2021 09:46:53  vmf syntaxe !i
+ds_siv.cpp                          2.75  11/26/2021 21:05:41  extractEle
+ic_call.cpp                         1.59  11/26/2021 21:07:36  extractEle
+ic_opera.cpp                        1.58  11/26/2021 21:08:22  extractEle

@@ -64,22 +64,22 @@ S[3] = "123456789"
 <<"%(1,,,\n)$S \n"
 //<<"%V $S[0] \n"
 
-S<-pinfo()
+S.pinfo()
 
-S<-trim(-3)
+S.trim(-3)
 
 <<"%(1,,,\n)$S \n"
 
 
 chkStr(S[3],"123456")
 
-S[3]<-trim(3)
+S[3].trim(3)
 
 <<"%V$S[3]\n"
 
 chkStr(S[3],"456")
 
-S<-trim(3)
+S.trim(3)
 
 chkStr(S[3],"")
 

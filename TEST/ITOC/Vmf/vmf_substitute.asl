@@ -32,13 +32,13 @@ chkIn(_dblevel)
 
 
 svar  TS;
-TS<-pinfo()
+TS.pinfo()
 
 //TS= "123456789" ; // bug converts to STRV - instead of writing to svar field 0
 
 TS[0] = "123456789";
 
-TS<-pinfo()
+TS.pinfo()
 
 for (i=1;i<=10;i++) {
 TS[i] = TS[0]
@@ -48,9 +48,9 @@ TS[i] = TS[0]
 
 <<"%(1,,,\n)$TS \n"
 
-TS<-pinfo()
-TS[2]<-Substitute("456","ABC")
-TS<-pinfo()
+TS.pinfo()
+TS[2].Substitute("456","ABC")
+TS.pinfo()
 
 
 
@@ -73,7 +73,7 @@ chkStr(TS[2],"123ABC789")
 
 
 
-TS[4:6]<-Substitute("789","DEF")
+TS[4:6].Substitute("789","DEF")
 
 chkStr(TS[4],"123456DEF")
 chkStr(TS[5],"123456DEF")
@@ -82,7 +82,7 @@ chkStr(TS[6],"123456DEF")
 
 
 
-TS[::]<-Substitute("123","XYZ")
+TS[::].Substitute("123","XYZ")
 
 
 <<"////////////////////\n"
@@ -93,15 +93,15 @@ for (i=0;i<=10;i++) {
 <<"$(Cab(TS))\n"
 
 
-TS[3]<-Substitute("XYZ","AAA")
+TS[3].Substitute("XYZ","AAA")
 
-//TS[4]<-Substitute("XYZ",BBB)  // use to check error flag in svarg
+//TS[4].Substitute("XYZ",BBB)  // use to check error flag in svarg
 // error in args - skip function
 
-TS[4]<-Substitute("XYZ","BBB")
+TS[4].Substitute("XYZ","BBB")
 
 
-TS[5]<-Substitute("XYZ","CCC")
+TS[5].Substitute("XYZ","CCC")
 
 chkStr(TS[3],"AAA",3)
 
@@ -113,7 +113,7 @@ TS[7] = "aaa123"
 
 
 !iTS
-TS<-Sort()
+TS.Sort()
 
 <<"%(1,,,\n)$TS \n"
 

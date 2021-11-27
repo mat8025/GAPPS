@@ -72,7 +72,7 @@ wdir = getdIr()
 
 
 str S = "all,array,matrix,bugs,bops,vops,sops,fops,class, declare,include,exp,if,logic,for,do,paraex,proc,switch,"
-S<-cat("types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc, svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help");
+S->cat("types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc, svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help");
 
 
 svar Opts[] = Split(S,",");
@@ -959,7 +959,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
     inflsz = caz(FailedList)
     hdg("S-FUNCTIONS")
 
-    RunSFtests("Fio,Sscan,Fscanf,Bscan,Cut,Cmp,Sel,Shift,Median,Findval,Lip");
+    RunSFtests("Fio,Sscan,Scpy,Fscanf,Bscan,Cut,Cmp,Sel,Shift,Median,Findval,Lip");
     
 
    RunSFtests("Pow,Minof,Maxof,Ftest,Convert,Return,Dec2,Pincdec,Rowzoom");

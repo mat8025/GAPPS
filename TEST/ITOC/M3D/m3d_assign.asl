@@ -22,7 +22,7 @@
 
    chkIn(_dblevel);
 
-   nrows = 10;
+   nrows = 7;
 
    n_feat = 8;
 
@@ -40,13 +40,18 @@
 
    Nit[::][7] = 7;
 
+   Nit[::][3] = 79;
+
    fail1 = 0;
 
    fail2 = 0;
 
-   for (k = 0; k < 8; k++) {
+<<"$Nit \n"
 
-     for (i = 0; i < 8; i++) {
+
+   for (k = 0; k < nrows; k++) {
+
+     for (i = 0; i < n_feat; i++) {
 
        Nit[k][i] = i+k;
 
@@ -54,6 +59,25 @@
 
      }
 
+
+
+
+<<"$Nit \n"
+
+   for (k = 0; k < nrows; k++) {
+
+     for (i = 0; i < n_feat; i++) {
+
+//       chkN(Nit[k][i], (i+k));
+<<"$k $i  $Nit[k][i]  $(i+k)\n"
+       }
+
+     }
+
+
+
+
+   <<"$Nit[i][0:7:] \n";
    kc = 0;
 
    kci = 0;
@@ -62,25 +86,28 @@
 
    <<"%V$i \n";
 
-   <<"$Nit[i][0:7:] \n";
-
    i++;
 
-   <<"$Nit[i][0:7:] \n";
+   <<"%V $Nic[kc][kci][2] \n";
+!a   
 
-   <<"Nit[2:5][0:7:] \n";
+   <<"$Nit[i][0:7:] \n";
 
    <<"$Nit[2:5][0:7:] \n";
 
    <<"%V$kc $kci $i\n";
 
+
    Nic[kc][kci][0] = Nit[i][0];
 
    Nic[kc][kci][1] = Nit[i][2];
 
-   <<"%V $Nic[kc][kci][0] \n";
+   <<"%V $Nic[kc][kci][0] $Nit[i][0] \n"
 
-   <<"%V $Nic[kc][kci][1] \n";
+   <<"%V $Nic[kc][kci][1] $Nit[i][2] \n"
+   chkN(Nic[kc][kci][1],Nit[i][2])
+
+
 
    Nic[0:4][0:9][1] = Nit[i][2];
 
@@ -103,8 +130,12 @@
 
    Nic[kc][kci][::] = Nit[i][::];
 
+   <<"%V $Nic[kc][kci][2] \n";
+!a   
    <<"%V $Nic[kc][kci][0:7:] \n";
-
+   <<"%V $kc  $kci \n"
+ Nic.pinfo()   
+!a
    Nic[kc][kci][0:5:] = Nit[i][2:7:];
 //  <<"%V$i $Nit[i][0:7:] \n"
 
@@ -114,16 +145,17 @@
 
    Nic[kc:kc][kci][0:5:] = Nit[i][2:7:];
 
-   <<"%V$i $Nit[i][0:7:] \n";
-
+   <<"%V$i $Nit[i][2:7:] \n";
+!a
    <<"%V $Nic[kc][kci][0:5:] \n";
-
+!a
    <<"%V$i $Nit[i][2] \n";
-
+!a
    <<"%V $Nic[kc][kci][0] \n";
-
+!a
 
    chkN(Nic[kc][kci][0] ,Nit[i][2]);
+!a
 
    for (i = 0 ; i < nrows ; i++) {
 
