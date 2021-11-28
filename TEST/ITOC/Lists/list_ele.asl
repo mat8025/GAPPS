@@ -1,10 +1,10 @@
 /* 
- *  @script list-ele.asl 
+ *  @script list_ele.asl 
  * 
  *  @comment test list ele access 
  *  @release CARBON 
- *  @vers 1.2 He Helium [asl 6.3.11 C-Li-Na]                                
- *  @date Sat Jan 16 22:09:47 2021 
+ *  @vers 1.3 Li Lithium [asl 6.3.63 C-Li-Eu] 
+ *  @date 11/27/2021 23:51:45          
  *  @cdate 1/1/2008 
  *  @author Mark Terry 
  *  @Copyright © RootMeanSquare  2010,2021 → 
@@ -12,111 +12,108 @@
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
 
+
 #include "debug"
 
-if (_dblevel >0) {
-   debugON()
-}
+   if (_dblevel >0) {
 
-chkIn(_dblevel)
+     debugON();
 
+     }
+
+   chkIn(_dblevel);
 //FIXME --- have to have a declare statement afore LIST DECLARE ??
 
-m = 2
+   m = 2;
 
+   ws = getScript();
 
-ws = getScript()
-<<" $ws \n"
+   <<" $ws \n";
 
+   L = ( "say", "what", "can" ,"I", "do", "now", "with", "this", "amazingly", "lovely" ,"list" );
 
+   <<"$L\n";
 
-L = ( "say", "what", "can" ,"I", "do", "now", "with", "this", "amazingly", "lovely" ,"list" )
+   m = Caz(L);
 
-
-<<"$L\n"
-
-
- m = Caz(L)
-
-<<"list size is $m \n"
-
+   <<"list size is $m \n";
  //chkN(m,11)
 
-<<" should be unreversed !\n"
+   <<" should be unreversed !\n";
 
-<<"L= $L\n"
+   <<"L= $L\n";
 
- str le = "astring"
+   str le = "astring";
 
-<<" $(typeof(le)) $le\n"
+   <<" $(typeof(le)) $le\n";
 
- le = L[1];
+   le = L[1];
 
-<<"%V$le \n"
-<<"le type is $(typeof(le)) \n"
+   <<"%V$le \n";
 
-  li = L[2];
-  
-<<"%V$li $(typeof(li))\n"
+   <<"le type is $(typeof(le)) \n";
+
+   li = L[2];
+
+   <<"%V$li $(typeof(li))\n";
 // FIX li shouldn be string !\n";
 
+   <<"li type is $(typeof(li)) \n";
 
-<<"li type is $(typeof(li)) \n"
- m = Caz(li)
-<<"list size is $m \n"
+   m = Caz(li);
 
-<<"\n"
+   <<"list size is $m \n";
 
-lib = L[2:6];
+   <<"\n";
 
- m = Caz(lib)
-<<"list size is $m \n"
+   lib = L[2:6];
 
+   m = Caz(lib);
 
-<<"%V contains $lib \n"
-<<"lib type is $(typeof(lib)) \n"
+   <<"list size is $m \n";
 
+   <<"%V contains $lib \n";
 
+   <<"lib type is $(typeof(lib)) \n";
 
+   <<" $L[1] $L[10] \n";
 
-<<" $L[1] $L[10] \n"
+   <<"%V$le %V$L[1]\n";
 
+   aw="what";
 
-<<"%V$le %V$L[1]\n"
+   tt=chkStr(aw,"what");
 
- aw="what"
+   <<"%V$tt\n";
 
- tt=chkStr(aw,"what")
+   aw=L[1];
 
-<<"%V$tt\n"
+   <<" $(typeof(aw)) $aw \n";
 
- aw=L[1]
+   tt=chkStr(le,"what");
 
-<<" $(typeof(aw)) $aw \n"
+   <<"%V$tt\n";
 
- tt=chkStr(le,"what")
+   L.reverse();
 
-<<"%V$tt\n"
- 
- L->reverse()
+   <<"Reversed: $L \n";
 
-<<"Reversed: $L \n"
-<<" $L[1] $L[10] \n"
+   <<" $L[1] $L[10] \n";
 
- le = L[1]
+   le = L[1];
 
-<<"%V$le \n"
+   <<"%V$le \n";
 
+   L.sort();
 
- L->sort()
+   <<"sort list \n";
 
-<<"sort list \n"
-<<" $L \n"
+   <<" $L \n";
 
- le = L[1]
+   le = L[1];
 
-<<"%V$le \n"
+   <<"%V$le \n";
 
+   chkOut();
 
-chkOut()
-
+//===***===//

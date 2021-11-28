@@ -10,233 +10,212 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-///
-///
-///
+
+
+
 
 #include "debug.asl"
 //debugON()
 //setdebug(1,@keep,@pline)
 //FilterFileDebug(REJECT_,"storetype_e","ds_storevar")
 
-chkIn();
+   chkIn(_dblevel);
 
-svar Wans;
-
+   svar Wans;
 //   Wans[0] = "stuff to do";
-Wans = "stuff to do";
-
-<<"sz $(Caz(Wans)) $Wans\n"
-
-W=testargs(1,Wans)
-
-<<"%(1,,,\n)$W\n"
-
-
-Wans[3] = "more stuff to do";
-
-<<"sz $(Caz(Wans)) $Wans\n"
-
-S=testargs(1,Wans)
-
-<<"%(1,,,\n)$S\n"
-
-
-
-Wans->resize(12)
-Wans->info(1)
-sz= Caz(Wans)
-
-<<"sz $(Caz(Wans)) $Wans\n"
-chkN(sz,12)
-
-Wans[9] = "keeps going"
-    
-<<"sz $(Caz(Wans)) $Wans\n"
-Wans->info(1)
-
-
-M=testargs(1,Wans)
-
-
-<<"%(1,,,\n)$M\n"
-
-
-
-Wans->resize(5)
-
-<<"sz $(Caz(Wans)) $Wans\n"
-sz= Caz(Wans)
-chkN(sz,5)
-
-Wans->info(1)
-
-R=testargs(1,Wans)
-
-<<"%(1,,,\n)$R\n"
-
-<<"%V $(Typeof(Wans)) $Wans\n"
-
-Wans->info(1)
-delete(Wans);
-//Wans->info(1)
-
-
 
    Wans = "stuff to do";
 
-<<"sz $(Caz(Wans)) $Wans\n"
+   <<"sz $(Caz(Wans)) $Wans\n";
 
-W=testargs(Wans)
+   W=testargs(1,Wans);
 
-<<"%(1,,,\n)$W\n"
+   <<"%(1,,,\n)$W\n";
 
+   Wans[3] = "more stuff to do";
+
+   <<"sz $(Caz(Wans)) $Wans\n";
+
+   S=testargs(1,Wans);
+
+   <<"%(1,,,\n)$S\n";
+
+   Wans.resize(12);
+
+   Wans.pinfo();
+
+   sz= Caz(Wans);
+
+   <<"sz $(Caz(Wans)) $Wans\n";
+
+   chkN(sz,12);
+
+   Wans[9] = "keeps going";
+
+   <<"sz $(Caz(Wans)) $Wans\n";
+
+   Wans.pinfo();
+
+   M=testargs(1,Wans);
+
+   <<"%(1,,,\n)$M\n";
+
+   Wans.resize(5);
+
+   <<"sz $(Caz(Wans)) $Wans\n";
+
+   sz= Caz(Wans);
+
+   chkN(sz,5);
+
+   Wans.pinfo();
+
+   R=testargs(1,Wans);
+
+   <<"%(1,,,\n)$R\n";
+
+   <<"%V $(Typeof(Wans)) $Wans\n";
+
+   Wans.pinfo();
+
+   delete(Wans);
+//Wans.pinfo()
+
+   Wans = "stuff to do";
+
+   <<"sz $(Caz(Wans)) $Wans\n";
+
+   W=testargs(Wans);
+
+   <<"%(1,,,\n)$W\n";
 //ans = iread();
-Wans[3] = "more stuff to do";
 
-<<"sz $(Caz(Wans)) $Wans\n"
+   Wans[3] = "more stuff to do";
 
-S=testargs(Wans)
+   <<"sz $(Caz(Wans)) $Wans\n";
 
-<<"%(1,,,\n)$S\n"
+   S=testargs(Wans);
 
+   <<"%(1,,,\n)$S\n";
 //ans = iread();
 
-   Wans->resize(10)
+   Wans.resize(10);
 
-<<"sz $(Caz(Wans)) $Wans\n"
+   <<"sz $(Caz(Wans)) $Wans\n";
 
-    Wans[9] = "keeps going"
-    
-<<"sz $(Caz(Wans)) $Wans\n"
+   Wans[9] = "keeps going";
 
-delete(W)
-W=testargs(Wans)
+   <<"sz $(Caz(Wans)) $Wans\n";
 
+   delete(W);
 
-<<"%(1,,,\n)$W\n"
+   W=testargs(Wans);
 
+   <<"%(1,,,\n)$W\n";
 //ans = iread();
 
-   Wans->resize(5)
+   Wans.resize(5);
 
-<<"sz $(Caz(Wans)) $Wans\n"
+   <<"sz $(Caz(Wans)) $Wans\n";
 
+   R=testargs(Wans);
 
-R=testargs(Wans)
+   <<"%(1,,,\n)$R\n";
 
-<<"%(1,,,\n)$R\n"
+   <<"%V $(Typeof(Wans)) $Wans\n";
 
-<<"%V $(Typeof(Wans)) $Wans\n"
+   <<"resize svar to sz 1 \n";
 
-<<"resize svar to sz 1 \n"
+   Wans.resize(1);
 
- Wans->resize(1)
+   <<"sz $(Caz(Wans)) $Wans\n";
 
-<<"sz $(Caz(Wans)) $Wans\n"
-<<"check args \n"
+   <<"check args \n";
 
+   R1=testargs(Wans);
 
-R1=testargs(Wans)
-
-<<"%(1,,,\n)$R1\n"
-
-
+   <<"%(1,,,\n)$R1\n";
 //ans = iread();
 
+   delete(Wans);
 
-delete(Wans);
+   Wans="again";
 
+   L=testargs(Wans);
 
-Wans="again";
+   <<"%(1,,,\n)$L\n";
 
-L=testargs(Wans)
-
-<<"%(1,,,\n)$L\n"
-
-<<"%V $(Typeof(Wans)) $Wans\n"
-
-
-
+   <<"%V $(Typeof(Wans)) $Wans\n";
 //chkStage("svar");
 
+   int V[>20];
 
-int V[20];
+V.pinfo()
+!a
+   V[10] = 47;
 
+   chkN(V[0],0);
 
- V[10] = 47;
+   chkN(V[10],47);
 
-chkN(V[0],0)
-chkN(V[10],47)
-chkN(V[19],0)
-<<"$V\n"
+   chkN(V[19],0);
 
+   <<"$V\n";
+//V.resize(30)
+//V.pinfo()
 
-//V->resize(30)
+   resize(V,30);
 
-//V->info(1)
+   V[20] = 80;
 
-resize(V,30);
+   chkN(V[20],80);
 
+   chkN(V[29],0);
 
- V[20] = 80;
-chkN(V[20],80)
-chkN(V[29],0)
-<<"$V\n"
-
-
+   <<"$V\n";
 //  should give error --- not dynamic
+V.pinfo()
 
-V[30] = 79;
+   V[30] = 79;
 
-chkN(V[30],79)
+V.pinfo()
+!a
+   chkN(V[30],79);
 
+   <<"$V\n";
 
+   TR=testargs(1,V);
 
-<<"$V\n"
-TR=testargs(1,V)
+   resize(V,40);
 
+   V[35] = 80;
 
- resize(V,40);
+   chkN(V[35],80);
 
-V[35] = 80;
+   <<"%(1,,,\n)$TR\n";
 
-chkN(V[35],80)
+   resize(V,6,6);
 
-<<"%(1,,,\n)$TR\n"
+   V[0][3] = 79;
 
- resize(V,6,6);
+   chkN(V[0][3],79);
 
- V[0][3] = 79;
-chkN(V[0][3],79)
+   <<"$V\n";
 
+   TR=testargs(1,V);
 
-<<"$V\n";
+   <<"%(1,,,\n)$TR\n";
 
-TR=testargs(1,V)
+   Delete(V);
 
-<<"%(1,,,\n)$TR\n"
+   float V = 4*atan(1.0);
 
+   <<"%V $(Caz(V)) $V\n";
 
+   TR2=testargs(1,V);
 
+   <<"%(1,,,\n)$TR2\n";
 
- Delete(V);
+   chkOut();
 
-
-
-float V = 4*atan(1.0)
-<<"%V $(Caz(V)) $V\n"
-
-
-TR2=testargs(1,V)
-
-<<"%(1,,,\n)$TR2\n"
-
-chkOut();
-
-
-
-
-
-
-
+//===***===//

@@ -10,83 +10,74 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-myScript = getScript();
-#  
-
-
 #include "debug"
 
-if (_dblevel >0) {
-   debugON()
-}
+   if (_dblevel >0) {
 
+     debugON();
 
-chkIn(_dblevel)
+     }
 
+   chkIn(_dblevel);
 
-str le;
-str le12;
+   str le;
 
-Mol = ( "JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC" ) ;
+   str le12;
 
-<<"List is $Mol \n"
+   Mol = ( "JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC" ) ;
 
-sz = caz(Mol)
-<<" %V $sz \n";
+   <<"List is $Mol \n";
 
-<<"$(typeof(Mol)) size $(caz(Mol)) $sz \n"
+   sz = caz(Mol);
 
-chkN(sz,12)
+   <<" %V $sz \n";
 
+   <<"$(typeof(Mol)) size $(caz(Mol)) $sz \n";
 
-<<"first month $Mol[0]\n"
+   chkN(sz,12);
 
-<<"second month $Mol[1]\n"
+   <<"first month $Mol[0]\n";
 
-<<"twelveth month $Mol[11]\n"
+   <<"second month $Mol[1]\n";
 
-le4 = Mol[3];
+   <<"twelveth month $Mol[11]\n";
 
+   le4 = Mol[3];
 //<<"$(typeof(le4)) %V$le4\n"
 
-<<"le4 $le4 \n"
+   <<"le4 $le4 \n";
 
+   chkStr(le4,"APR");
 
-chkStr(le4,"APR")
+   le12 = Mol[11];
 
-le12 = Mol[11];
+   <<"$(typeof(le12)) %V$le12\n";
 
-<<"$(typeof(le12)) %V$le12\n"
+   le = Mol[0];
 
-le = Mol[0]
+   <<"$(typeof(le)) %V$le\n";
 
-<<"$(typeof(le)) %V$le\n"
+   chkStr(le,"JAN");
 
-chkStr(le,"JAN")
+   <<"le checked\n";
 
-<<"le checked\n"
+   chkStr(Mol[0],"JAN");
 
-chkStr(Mol[0],"JAN")
+   <<"Mol[0] checked\n";
 
-<<"Mol[0] checked\n"
+   le = Mol[1];
 
-le = Mol[1]
+   chkStr(le,"FEB");
 
-chkStr(le,"FEB")
+   <<"$(typeof(le)) %V$le\n";
 
-<<"$(typeof(le)) %V$le\n"
+   chkStr("FEB",Mol[1]);
 
-chkStr("FEB",Mol[1])
+   <<"$Mol[1] Mol[1] checked\n";
 
-<<"$Mol[1] Mol[1] checked\n"
+   chkStr(Mol[1],"FEB");
 
-chkStr(Mol[1],"FEB")
-
-
-
-chkProgress()
-
-<<" DONE Lists \n"
-
-chkOut()
+   chkOut();
 //////////////////////////////////
+
+//===***===//

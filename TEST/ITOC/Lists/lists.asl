@@ -1,401 +1,369 @@
-//%*********************************************** 
-//*  @script lists.asl 
-//* 
-//*  @comment test list functionality 
-//*  @release CARBON 
-//*  @vers 1.3 Li Lithium [asl 6.2.55 C-He-Cs]                             
-//*  @date Wed Jun  3 20:27:57 2020 
-//*  @cdate Sun Apr 12 19:06:46 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script lists.asl 
+ * 
+ *  @comment test list functionality 
+ *  @release CARBON 
+ *  @vers 1.4 Be Beryllium [asl 6.3.63 C-Li-Eu] 
+ *  @date 11/27/2021 23:47:05          
+ *  @cdate Sun Apr 12 19:06:46 2020 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
+                                                                
 ///
 ///
 ///
 #include "debug.asl";
 
+   if (_dblevel >0) {
 
+     debugON();
 
-if (_dblevel >0) {
-   debugON()
-}
+     }
 
-chkIn(_dblevel)
+   chkIn(_dblevel);
 
-ws = getScript()
+   ws = getScript();
 
-<<"%V $ws  $_script\n"
+   <<"%V $ws  $_script\n";
 
+   CrashList = ( "",  )  ; // empty list;
 
-CrashList = ( "",  )  // empty list
+   <<"%V$CrashList \n";
 
-<<"%V$CrashList \n"
+   CrashList.LiDelete(0);
 
-CrashList->LiDelete(0)
+   FailedList = ( "",  )  ; // empty list --- bug first item null?;
 
- FailedList = ( "",  )  // empty list --- bug first item null? 
+   FailedList.LiDelete(0);
 
- FailedList->LiDelete(0)
- 
-<<" $ws \n"
-<<"%V$CrashList \n"
+   <<" $ws \n";
 
+   <<"%V$CrashList \n";
 
-<<"%V$FailedList \n"
+   <<"%V$FailedList \n";
 
+   int J[] = { 1,2,3,4 };
 
-int J[] = { 1,2,3,4 }
+  J.pinfo();
 
-J->info(1)
-m = Caz(J)
+  m = Caz(J);
 
-<<"%V$m \n"
+  <<"%V$m \n";
 
-<<"$J\n"
+  <<"$J\n";
 
-chkN(m,4,GTE_)
+  chkN(m,4,GTE_);
 
+  L1 = ( "a", "small" , "list" , "1", "2", "3", "4", "5" ,"6" ,"yellow", "green", "blue" ,"indigo", "violet");
 
-  L1 = ( "a", "small" , "list" , "1", "2", "3", "4", "5" ,"6" ,"yellow", "green", "blue" ,"indigo", "violet")
+  <<"$L1 \n";
 
-<<"$L1 \n"
+  l0 = L1[0];
 
-l0 = L1[0]
-<<"$l0\n"
+  <<"$l0\n";
 
-l0->info(1)
+  l0.pinfo();
 
- str ww
+  str ww;
 
- ww= L1[1]
+  ww= L1[1];
 
-<<"$ww\n"
-
-
+  <<"$ww\n";
 // str fw
 
-str fw = L1[9];  // fails
+  str fw = L1[9];  // fails;
 
-fw->info(1)
+  fw.pinfo();
 
-<<"$fw\n"
-chkStr(fw,"yellow")
-fw= L1[0]
+  <<"$fw\n";
 
-<<"$fw\n"
+  chkStr(fw,"yellow");
 
-<<"%V$fw $(typeof(fw))\n"
+  fw= L1[0];
 
-chkStr(fw,"a")
+  <<"$fw\n";
 
-l1sz = Caz(L1)
-<<"%V$l1sz\n"
+  <<"%V$fw $(typeof(fw))\n";
 
-fw = L1[l1sz-1]
+  chkStr(fw,"a");
 
-<<"%V$fw $(typeof(fw))\n"
+  l1sz = Caz(L1);
 
-chkStr(fw,"violet")
+  <<"%V$l1sz\n";
 
- for (i= 0; i < l1sz; i++) {
+  fw = L1[l1sz-1];
 
-ww= L1[i]
-<<"$i $ww\n"
-}
+  <<"%V$fw $(typeof(fw))\n";
 
-chkStage("list - element access")
+  chkStr(fw,"violet");
 
+  for (i= 0; i < l1sz; i++) {
 
-L2 = ( "The", "colors", "of" ,"the", "rainbow", "are", "red", "orange", "yellow", "green", "blue" ,"indigo", "violet" )
+   ww= L1[i];
 
-<<"L2 = $L2 \n"
+   <<"$i $ww\n";
 
- L1 = L2
+   }
 
-<<"L1 = $L1 \n"
+  chkStage("list - element access");
 
- fw = L1[0]
+  L2 = ( "The", "colors", "of" ,"the", "rainbow", "are", "red", "orange", "yellow", "green", "blue" ,"indigo", "violet" );
 
-<<"%V$fw $(typeof(fw))\n"
+  <<"L2 = $L2 \n";
 
-chkStr(fw,"The")
+  L1 = L2;
 
+  <<"L1 = $L1 \n";
 
+  fw = L1[0];
 
+  <<"%V$fw $(typeof(fw))\n";
+
+  chkStr(fw,"The");
 // FIXED!! -- FIXME not overwriting
 
-<<"L2->L1 = $L1 \n"
+  <<"L2.L1 = $L1 \n";
 
+  <<"%(,= , ,)Vs${L1} \n";
 
+  L1.reverse();
 
-<<"%(,= , ,)Vs${L1} \n"
+  <<"%(,= , ,)Vs${L1} \n";
+ //n=L1.Shuffle(100)
 
- L1->reverse()
+  L1.Shuffle(100);
 
-<<"%(,= , ,)Vs${L1} \n"
+  <<"shuffle %V$L1  \n";
 
- //n=L1->Shuffle(100)
- L1->Shuffle(100)
-<<"shuffle %V$L1  \n"
+  L1.Shuffle(20);
 
- L1->Shuffle(20)
-<<"shuffle %V$L1  \n"
+  <<"shuffle %V$L1  \n";
 
+  fw = L1[0];
 
-     fw = L1[0]
+  L3 = L1;
 
+  <<"L3 = $L3 \n";
 
-     L3 = L1
+  L = ( "say", "what", "can" ,"I", "do", "now", "with", "this", "amazingly", "lovely" ,"list" );
 
-<<"L3 = $L3 \n"
+  <<"L = %s$L \n";
 
+  fw = L[0];
 
+  <<"%V$fw $(typeof(fw))\n";
 
- L = ( "say", "what", "can" ,"I", "do", "now", "with", "this", "amazingly", "lovely" ,"list" )
+  chkStr(fw,"say");
 
+  L.reverse();
 
-<<"L = %s$L \n"
+  fw = L[0];
 
-  fw = L[0]
+  chkStr(fw,"list");
 
-<<"%V$fw $(typeof(fw))\n"
+  <<"L = $L \n";
 
-chkStr(fw,"say")
-
-
- L->reverse()
-
-fw = L[0]
-
-
-
-chkStr(fw,"list")
-
-<<"L = $L \n"
-
-
-<<"%v$L[1:4] \n"
-
+  <<"%v$L[1:4] \n";
 //<<"%v$L[1:-2] \n"
-<<"%v\s$L[1:-3] \n"
-<<"%V$L \n"
 
- L3 = L[1:7]
+  <<"%v\s$L[1:-3] \n";
 
-<<" $(typeof(L3)) \n"
-<<"%V$L3 \n"
+  <<"%V$L \n";
 
+  L3 = L[1:7];
 
+  <<" $(typeof(L3)) \n";
 
-fw = L3[0]
-<<"fw $fw\n"
-chkStr(fw,"lovely")
+  <<"%V$L3 \n";
 
+  fw = L3[0];
 
- litem = "focus"
- n= L->Insert(litem)
+  <<"fw $fw\n";
 
-<<"insert %V$L    $n\n"
+  chkStr(fw,"lovely");
 
- sz= caz(L)
+  litem = "focus";
 
-<<"%v $sz \n"
+  n= L.Insert(litem);
 
+  <<"insert %V$L    $n\n";
 
- litem = "on-working"
- n= L->Insert(litem,-1)
+  sz= caz(L);
 
-<<"insert %V$L    $n\n"
+  <<"%v $sz \n";
 
+  litem = "on-working";
 
- sz= caz(L)
+  n= L.Insert(litem,-1);
 
-<<"%v $sz \n"
+  <<"insert %V$L    $n\n";
 
- litem = "first"
+  sz= caz(L);
 
- n= L->Insert(0,litem)
+  <<"%v $sz \n";
 
-<<"insert %V$L    $n\n"
+  litem = "first";
 
- sz= caz(L)
+  n= L.Insert(0,litem);
 
-<<"%v $sz \n"
+  <<"insert %V$L    $n\n";
 
- fw = L[0]
-<<"%V $fw \n"
- chkStr(fw,"first")
+  sz= caz(L);
 
-chkOut()
+  <<"%v $sz \n";
 
- L3 = L[1:-2]
+  fw = L[0];
 
-<<"1:-2 %V$L3 \n"
+  <<"%V $fw \n";
 
+  chkStr(fw,"first");
+
+  chkOut();
+
+  L3 = L[1:-2];
+
+  <<"1:-2 %V$L3 \n";
 // L3 = L[6:1:]
 
+  L3 = L[6:1];
 
- L3 = L[6:1]
+  <<"6.1%V$L3 \n";
 
-<<"6->1%V$L3 \n"
+  L3 = L[-3:2:-1];
 
+  <<"-3->2%V$L3 \n";
 
- L3 = L[-3:2:-1]
-
-<<"-3->2%V$L3 \n"
-
-<<" %V$L3[1:7:2] \n"
-
-
+  <<" %V$L3[1:7:2] \n";
 // FIXME <<" %V$L3[-3:1:-1] \n"
 // FIMXME
 //<<"%v\s$L3[-1:0:] \n"
 //iread(";>")
 
+  m = Caz(L);
 
+  <<" %v$m \n";
 
+  chkN(m,11);
 
+  n=L.Sort();
 
- m = Caz(L)
+  <<"%v$L \n";
 
-<<" %v$m \n"
-
-chkN(m,11)
-
- n=L->Sort()
-
-
-<<"%v$L \n"
-
-
-<<"L is a $(typeof(L)) \n"
-
+  <<"L is a $(typeof(L)) \n";
 //iread(";>")
 
+  L2 = ( "say", "what", "can" ,"I", "do", "now", "with", "this", "amazingly", "lovely" ,"list" );
 
- L2 = ( "say", "what", "can" ,"I", "do", "now", "with", "this", "amazingly", "lovely" ,"list" )
+  <<"%v $L2 \n";
 
-<<"%v $L2 \n"
+  <<"%v $L2 \n";
 
-<<"%v $L2 \n"
+  L2.Reverse();
 
+  <<"$L2 \n";
 
- L2->Reverse()
+  <<"%vs$L[1] \n";
 
-<<"$L2 \n"
+  <<"%vs$L[2] \n";
 
+  <<"%vs$L[3] \n";
 
-
-
-<<"%vs$L[1] \n"
-<<"%vs$L[2] \n"
-<<"%vs$L[3] \n"
-
-<<"last element ? %vs $L[-1] \n"
-
+  <<"last element ? %vs $L[-1] \n";
 //iread(";>")
-
 # TDB make subscript work  --- DONE
 
-<<"%vs$L[1:4] \n"
+  <<"%vs$L[1:4] \n";
 
-<<"%v$L \n"
-
+  <<"%v$L \n";
 //svar sl = L[3]
 
+  sl = L[3];
 
-sl = L[3]
-
-<<"%V$sl \n"
-
+  <<"%V$sl \n";
 //iread(";>")
 
-k= 5
+  k= 5;
 
-<<" %v$k \n"
-<<"%vs$L[k] \n"
+  <<" %v$k \n";
 
+  <<"%vs$L[k] \n";
 
- L->Reverse()
+  L.Reverse();
 
-<<"reversed %V$L[0:3] \n"
+  <<"reversed %V$L[0:3] \n";
 
-<<"reversed %vs$L[0:-2] \n"
+  <<"reversed %vs$L[0:-2] \n";
 
-<<"reversed %vs$L[1:-3] \n"
-
+  <<"reversed %vs$L[1:-3] \n";
 //iread(";>")
 
- L->Reverse()
+  L.Reverse();
 
-<<"reversed %V$L \n"
-
+  <<"reversed %V$L \n";
 //iread(";>")
 
- L->Shuffle(20)
+  L.Shuffle(20);
 
-<<"shuffle %V$L  \n"
-
+  <<"shuffle %V$L  \n";
 //iread(";>")
 
- L->Sort()
+  L.Sort();
 
-<<"sorted %V$L  \n"
-
+  <<"sorted %V$L  \n";
 //iread(";>")
 
- L->Reverse()
+  L.Reverse();
 
-<<"reversed %vs$L \n"
+  <<"reversed %vs$L \n";
+// int ns=L.Sort()
 
-// int ns=L->Sort()
- int ns
+  int ns;
 
-   ns=L->Sort()
+  ns=L.Sort();
 
-<<"$(typeof(ns)) $ns \n"
+  <<"$(typeof(ns)) $ns \n";
 
-<<"sorted %V$L   swaps $ns\n"
-
+  <<"sorted %V$L   swaps $ns\n";
 //iread(";>")
 
- L->Reverse()
+  L.Reverse();
 
-<<"reversed %vs$L \n"
+  <<"reversed %vs$L \n";
 
- ns=L->Sort()
+  ns=L.Sort();
 
-<<"sorted %v$L   swaps $ns\n"
+  <<"sorted %v$L   swaps $ns\n";
 
-<<"$(typeof(ns)) $ns \n"
+  <<"$(typeof(ns)) $ns \n";
 
+  n=L.Shuffle(20);
 
- n=L->Shuffle(20)
-<<"shuffle %V$L  \n"
+  <<"shuffle %V$L  \n";
 
+  n=L.Sort();
 
- n=L->Sort()
-<<"sorted %V$L   swaps $n\n"
+  <<"sorted %V$L   swaps $n\n";
 
- n=L->Shuffle(100)
-<<"shuffle %V$L  \n"
+  n=L.Shuffle(100);
 
+  <<"shuffle %V$L  \n";
 
- n=L->Sort()
-<<"sorted %V$L   swaps $n\n"
+  n=L.Sort();
 
+  <<"sorted %V$L   swaps $n\n";
 //iread(";>")
 
- litem = "focus"
- n= L->Insert(litem)
+  litem = "focus";
 
-<<"insert %V$L    $n\n"
+  n= L.Insert(litem);
 
- chkOut()
+  <<"insert %V$L    $n\n";
 
-
-
-
+  chkOut();
 //////////////////// TBD //////////////////////
 //  FIX XIC is doing a copypush_siv and push_siv - should just be copypush_siv
+
+//===***===//
