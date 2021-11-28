@@ -882,7 +882,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
     inflsz = caz(FailedList)
     RunDirTests("Svar","svar");
-    RunDirTests("Hash","hash,svar-table,svar-hash")
+    RunDirTests("Hash","hash,svar_table,svar_hash")
 
     outcome("SVAR")
     }

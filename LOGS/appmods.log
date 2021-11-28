@@ -296,3 +296,6 @@ proc_loc_main_var.asl    1.3	11/23/2021 12:36:47 pp
 static.asl               1.4	11/23/2021 12:48:20 [A
 static.asl               1.6	11/23/2021 12:51:01 pp
 array_ele.asl            1.41	11/23/2021 13:01:47 pp
+vops.asl                 1.3	11/27/2021 10:05:43 pp
+svar_table.asl           1.4	11/27/2021 22:56:25 vmf/pp
+svar_hash.asl            1.6	11/27/2021 23:00:23 vmf/pp

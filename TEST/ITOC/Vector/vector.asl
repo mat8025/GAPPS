@@ -341,7 +341,7 @@
   vec2.pinfo();
 //int vec3 []  = vec1 @+  vec2;   // TBF -- WS should be OK
 
-  int vec3[]  = vec1 @+  vec2;
+  int vec3[]  = vec2 @+  vec3;
 
   <<"$vec3[1] $vec3[2] $vec3[4] \n";
 
@@ -364,13 +364,29 @@
 
   chkN (vec4[1],2);
 
+  vec6 = vec1 @+  vec2 ;
+
+  <<"%V $vec6 \n";
+
+  vec6.pinfo();
+
+
   vec5 = vec1 @+  vec2 @+ vec3 ;
 
+  <<"%V $vec1 \n";
+  <<"%V $vec2 \n";
+  <<"%V $vec3 \n";
+
   <<"%V $vec5 \n";
+
+  vec5.pinfo();
+  
+
 
   chkN (vec5[1],2);
 
   chkStage("veccat");
+  
 //%*********************************************** 
 //*  @script veclhrange.asl 
 //* 

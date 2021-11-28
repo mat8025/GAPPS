@@ -11,114 +11,105 @@
 //* 
 //***********************************************%
 
-<|Use_= 
-Demo  of vmf trim function
+<|Use_=
+
+   Demo  of vmf cut function;
 /////////////////////// 
 |>
 
-
-
 #include "debug"
 
-if (_dblevel >0) {
-   debugON()
-   <<"$Use_ \n"    
-}
+   if (_dblevel >0) {
 
+     debugON();
+
+     <<"$Use_ \n";
+
+     }
+     
 //filterFileDebug(REJECT_,"scopesindex_e.cpp","array_parse.cpp");
 //filterFuncDebug(REJECT_,"~storeSiv","checkProcFunc");
 
-chkIn(_dblevel)
+   chkIn(_dblevel);
 
+   int I[] ;
 
-int I[] ;
+   I= Igen(20,0,1);
 
-I= Igen(20,0,1)
+   <<"I[] : $I \n";
 
-<<"I[] : $I \n"
+   I.pinfo();
 
-I.pinfo()
+   I[14].Set(747);
 
+   <<"I[] : $I[::] \n";
 
-I[14].Set(747)
+   I.pinfo();
 
+   chkN(I[14],747);
 
-<<"I[] : $I[::] \n"
+   I[5:13:2].Set(50,3);
 
-I.pinfo()
+   I.pinfo();
 
-chkN(I[14],747)
+   <<"I[] : $I[::] \n";
 
+   chkN(I[5],50);
 
+   chkN(I[7],53);
 
-I[5:13:2].Set(50,3)
+   chkN(I[9],56);
 
+   C = Igen(4,12,1);
 
- I.pinfo()
+   <<"%V $C \n";
 
-<<"I[] : $I[::] \n"
+   I.cut(C);
 
-chkN(I[5],50)
-chkN(I[7],53)
-chkN(I[9],56)
+   <<" $I \n";
 
+   chkN(I[12],16);
 
-C = Igen(4,12,1)
+   float F[];
 
-<<"%V $C \n"
+   F= Fgen(20,0,1);
 
-I.cut(C)
+   sz = Caz(F);
 
-
-
-<<" $I \n"
-
-chkN(I[12],16)
-
-
-
-
-
-
-float F[]
-
-F= Fgen(20,0,1)
-
-sz = Caz(F)
-<<"$sz $F \n"
+   <<"$sz $F \n";
 //<<"%,j%{5<,\,>\n}%6.1f$F\n"
 
-<<"%6.1f $F\n"
+   <<"%6.1f $F\n";
 
-C = Igen(4,12,1)
+   C = Igen(4,12,1);
 
-<<"%V $C \n"
+   <<"%V $C \n";
 
-F.cut(C)
+   F.cut(C);
 
+   <<"%6.1f  $F \n";
 
-<<"%6.1f  $F \n"
+   chkR(I[12],16,6);
 
+   <<" $I[::] \n";
 
-chkR(I[12],16,6)
+   I[3:8].cut();
 
+   <<" $I[::] \n";
 
-<<" $I[::] \n"
+   chkN(I[3],56);
 
-I[3:8].cut()
+   F[3:8].cut();
 
-<<" $I[::] \n"
+   <<" %6.1f $F[::] \n";
 
-chkN(I[3],56)
+   chkR(F[3],9,6);
 
+   F[3].cut();
 
-F[3:8].cut()
-
-<<" %6.1f $F[::] \n"
-chkR(F[3],9,6)
-
-F[3].cut()
-
-<<" %6.1f $F[::] \n"
+   <<" %6.1f $F[::] \n";
 //chkStage("cut")
-chkOut()
+
+   chkOut();
+
+//===***===//

@@ -18,13 +18,13 @@ ColSum()
 V=ColSum(A)
 returns array V - containing the sum of the columns of a 2D array.
 dimensions [1][n_of_cols]
-V->redimn() - would redimension to vector
+V.redimn() - would redimension to vector
 //===================================//
 RowSum()
 V=RowSum(A)
 returns array V - containing the sum of the columns of a 2D array.
 dimensions [num_of_rows][1]
-V->redimn() - would redimension to vector
+V.redimn() - would redimension to vector
 //===================================//
 */
 
@@ -37,7 +37,7 @@ ColSum()
 V=ColSum(A)
 returns array V - containing the sum of the columns of a 2D array.
 dimensions [1][n_of_cols]
-V->redimn() - would redimension to vector
+V.redimn() - would redimension to vector
 
 ///////////////////////
 |>
@@ -69,7 +69,7 @@ int B[] = {16, 3, 2, 13, 5, 10, 11, 8, 9, 6, 7, 12, 4 ,15, 14, 1}
 <<" $(Cab(B)) $(typeof(B)) \n"
 <<"%V$B \n"
 
-  B->Redimn(4,4)
+  B.Redimn(4,4)
 
 <<"\n B[][] $(Cab(B)) \n"
 
@@ -87,7 +87,7 @@ int B[] = {16, 3, 2, 13, 5, 10, 11, 8, 9, 6, 7, 12, 4 ,15, 14, 1}
 chkStage("RowSum Test -summing rows of magic square 34");
 
  R= RowSum(A)
-R->redimn()
+R.redimn()
 <<"$R\n"
 
 
@@ -96,7 +96,7 @@ R->redimn()
    chkN(R[i],34);
 
 }
-R->info(1)
+R.pinfo()
  //  chkN(R[0],33);
 
  chkStage("RowSum")
@@ -107,11 +107,11 @@ R->info(1)
 chkStage("ColSum Test -summing cols of magic square 34");
 
  C= ColSum(A)
- C->redimn()
+ C.redimn()
  CV= C
 
 <<"$C\n"
-//C->info(1)
+//C.pinfo()
   for (i=0;i < 4; i++) {
   <<"<$i> $C[i] $CV[i] \n"
    chkN(C[i],34);
@@ -177,7 +177,7 @@ X= Sum(T)
 
 <<"$V[0][0] $V[1][0] $V[2][0] $V[3][0] \n"
 
-V->redimn()
+V.redimn()
 
 <<"$V\n"
 
@@ -196,7 +196,7 @@ V->redimn()
 
   D= B
 
-  D->Redimn(2,2,4)
+  D.Redimn(2,2,4)
 
 <<"\n\tD\n%(2,\t[\s, ,\s]\n)$D \n "
 
@@ -211,7 +211,7 @@ int  D2[]= {16, 3, 2, 13, 5,10,11, 8, 9, 6, 7, 12, 4 ,15, 14, 1}
 <<" $(Cab(D2)) \n"
 <<"%v $D2 \n"
 
-  D2->Redimn(4,4)
+  D2.Redimn(4,4)
 <<" $D2[0][0] \n"
 <<"%V%(4, , ,\n)$D2 \n"
 

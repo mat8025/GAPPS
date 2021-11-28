@@ -84,7 +84,7 @@
 
    <<"$T\n";
 
-   sz=T->Caz();
+   sz=T.Caz();
 
    <<"$sz\n";
 
@@ -96,7 +96,7 @@
 
    T.pinfo();
 
-   sz=T->Caz();
+   sz=T.Caz();
 
    <<"$sz\n";
 
@@ -106,7 +106,7 @@
 
    R.pinfo();
 
-   sz=R->Caz();
+   sz=R.Caz();
 
    <<"$sz\n";
 
@@ -163,11 +163,21 @@
 
    <<"$T\n";
 
+float TFV[] = vgen(FLOAT_,10,1,0.5);
+
+<<"TFV  %6.2f $TFV\n";
+
+<<"%V  %6.3f $TFV[2]\n";
+
    T= Split("%6.2f$(vgen(FLOAT_,10,1,0.5))");
 
    <<"T: $T\n";
 
    T.pinfo();
+
+<<" $T[1] $T[2] $T[3] \n"
+
+
 
    chkStr(T[1],"1.50");
 
@@ -186,7 +196,7 @@
 
    R= Split("47 79 80 81 82 83 84 85 86 87");
 
-   R->pinfo();
+   R.pinfo();
 
    <<"$R\n";
 
@@ -196,7 +206,7 @@
 
    <<"$S[1]  $S[2] \n";
 
-   S->pinfo();
+   S.pinfo();
 
    chkStr(S[1],"47");
 

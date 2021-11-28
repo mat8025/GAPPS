@@ -21,6 +21,11 @@ S string use in proc
 |>
 
 
+<|Use_=
+ and some other stuff
+|>
+
+
 #include "debug"
 
 if (_dblevel >0) {
@@ -29,7 +34,7 @@ if (_dblevel >0) {
 }
 
 filterFuncDebug(REJECT_,"varIndex","FindVar","ArrayCopy","storeString");	
-filterFileDebug(REJECT_,"scopesindex_e","scope_e","scope_findvar","rdp_token");
+//filterFileDebug(REJECT_,"scopesindex_e","scope_e","scope_findvar","rdp_token");
 
 
 chkIn(_dblevel)
@@ -53,16 +58,17 @@ int x = 21;
 <<"$iv\n"
 
  iv[3] = 65;
+ 
  <<"$iv\n"
-//chkOut()
+
 
  int k = iv[3];
 
- k<-pinfo();
+ k.pinfo();
 
 chkN(k,65);
 
-
+chkOut()
 
 
 
@@ -111,7 +117,7 @@ str ystr( str val)
   val = scat(val,"123")
 <<"$val\n"
 
-  val<-pinfo()
+  val.pinfo()
   yval = val;
   return val;
 
@@ -127,9 +133,9 @@ str ostr( str val)
 <<"\nval <|$val|>\n"
 <<"in ostr \n"
 
-   val<-pinfo()
+   val.pinfo()
    spv = val;
-   spv<-pinfo()
+   spv.pinfo()
    ps= qstr(val);
 <<"ostr ret $spv $ps\n"
    return ps;
@@ -142,9 +148,9 @@ str pstr( str val)
  Str xpv = "xpv";
 <<"\nval <|$val|>\n"
 
-   val<-pinfo()
+   val.pinfo()
    spv = val;
-   spv<-pinfo()
+   spv.pinfo()
 <<" calling ostr? with $val \n"
 
 
@@ -161,9 +167,9 @@ str qstr( str val)
 <<"\nval <|$val|>\n"
 <<"in qstr \n"
 
-   val<-pinfo()
+   val.pinfo()
    spv = scat(val,"vorwarts");
-   spv<-pinfo()
+   spv.pinfo()
    val =  scat(val," vorwarts");
    ps=rstr(val);
 <<"rstr return $ps\n"
@@ -179,9 +185,9 @@ str rstr( str val)
 <<"\nval <|$val|>\n"
 <<"in rstr \n"
 
-   val<-pinfo()
+   val.pinfo()
    spv = scat(val," Ende der Strasse");
-   spv<-pinfo()
+   spv.pinfo()
    
 <<"qstr ret $spv\n"
    return spv;
@@ -222,25 +228,25 @@ str  S = "abcde";
 
  str abc = "abcdefg"
 
- abc<-pinfo();
+ abc.pinfo();
 
 
 
 
  char c;
 
-  c->info(1)
+  c.pinfo()
 
   c = abc[3];
 
 <<"%V$c %c $c\n"
 
-c->info(1)
+c.pinfo()
 
   abc[4] = 'X';   // xic bug TBF
 
 
-abc<-pinfo()
+abc.pinfo()
  
 
 
