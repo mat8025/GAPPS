@@ -1,23 +1,23 @@
-//%*********************************************** 
-//*  @script resize.asl 
-//* 
-//*  @comment test resize ops 
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                    
-//*  @date Fri Apr 17 14:18:41 2020 
-//*  @cdate Fri Apr 17 14:18:41 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
-
+/* 
+ *  @script resize.asl 
+ * 
+ *  @comment test resize ops 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.3.63 C-Li-Eu] 
+ *  @date 11/28/2021 07:09:32          
+ *  @cdate Fri Apr 17 14:18:41 2020 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ *  \\-----------------<v_&_v>--------------------------//  
+ */ 
 
 
 
 #include "debug.asl"
 //debugON()
 //setdebug(1,@keep,@pline)
-//FilterFileDebug(REJECT_,"storetype_e","ds_storevar")
+filterFileDebug(REJECT_,"args","tok")
 
    chkIn(_dblevel);
 
@@ -151,20 +151,25 @@
    int V[>20];
 
 V.pinfo()
-!a
+!z
    V[10] = 47;
-
+   V[11] = 77;
+   V[19] = -1
    chkN(V[0],0);
 
    chkN(V[10],47);
 
-   chkN(V[19],0);
+   chkN(V[19],-1);
 
    <<"$V\n";
 //V.resize(30)
-//V.pinfo()
+
+V.pinfo()
 
    resize(V,30);
+
+V.pinfo()
+!z
 
    V[20] = 80;
 
@@ -179,7 +184,7 @@ V.pinfo()
    V[30] = 79;
 
 V.pinfo()
-!a
+!z
    chkN(V[30],79);
 
    <<"$V\n";

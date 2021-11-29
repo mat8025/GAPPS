@@ -3,198 +3,185 @@
  * 
  *  @comment test CL args 
  *  @release CARBON 
- *  @vers 1.39 Y Yttrium [asl 6.3.11 C-Li-Na] 
- *  @date Sat Jan 16 21:52:11 2021 
+ *  @vers 1.40 Zr Zirconium [asl 6.3.63 C-Li-Eu] 
+ *  @date 11/28/2021 07:49:03          
  *  @cdate 1/1/2005 
  *  @author Mark Terry 
  *  @Copyright © RootMeanSquare  2010,2021 → 
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
-                                                                    
+
 
 #include "debug";
 
+   if (_dblevel >0) {
 
+     debugON();
 
-if (_dblevel >0) {
-   debugON()
-}
-
+     }
 ///
 ///
 ///
 
+   chkIn(_dblevel);
 
-chkIn(_dblevel)
+   double goo(double a)
+   {
 
+     float tmp;
 
-double goo(double a)
-{
- float tmp
+     tmp = a/2.0;
 
- tmp = a/2.0
+     return tmp;
 
- return tmp
-
-}
+     }
 //=====================
 
-gen N = "a1"
-gen M = "a2"
-if (argc() > 1) {
-N = _clarg[1]
-}
+   gen N = "a1";
 
-if (argc() > 2) {
-M = _clarg[2]
-}
-<<"$N $M\n"
-<<" $_clarg[0:-1] \n"
+   gen M = "a2";
 
- sa=testargs(N,M)
+   if (argc() > 1) {
 
-<<" $sa $N $M\n"
+     N = _clarg[1];
 
+     }
 
+   if (argc() > 2) {
 
- int k = 0
+     M = _clarg[2];
 
- kt = typeof(k)
+     }
 
- <<"%V $k $kt \n"
+   <<"$N $M\n";
 
- ut = utime()
+   <<" $_clarg[0:-1] \n";
 
- <<"%V $ut \n"
+   sa=testargs(N,M);
 
- y = 1.0 
+   <<" $sa $N $M\n";
 
- m = 2
+   int k = 0;
 
-  d = 45.0
+   kt = typeof(k);
 
-  r = deg2rad(d)
+   <<"%V $k $kt \n";
 
-<<"%V $r \n"
+   ut = utime();
 
-  x= Sin(r)
+   <<"%V $ut \n";
 
-  <<"Sin $r = $x   \n"
+   y = 1.0;
 
-  x= Sin(deg2rad(d))
+   m = 2;
 
-  <<"Sin $d degs = $x   \n"
+   d = 45.0;
 
+   r = deg2rad(d);
 
-  y= Cos(deg2rad(d))
+   <<"%V $r \n";
 
-  <<"Cos $d degs = $y   \n"
+   x= Sin(r);
 
+   <<"Sin $r = $x   \n";
 
-  z = Sin(deg2rad(d)) * Cos(deg2rad(d))
+   x= Sin(deg2rad(d));
 
-  <<" Sin $d * Cos $d  = $z\n"
+   <<"Sin $d degs = $x   \n";
 
-  float w = x * y
+   y= Cos(deg2rad(d));
 
-  <<" $x * $y = $w \n"
+   <<"Cos $d degs = $y   \n";
 
+   z = Sin(deg2rad(d)) * Cos(deg2rad(d));
+
+   <<" Sin $d * Cos $d  = $z\n";
+
+   float w = x * y;
+
+   <<" $x * $y = $w \n";
   //     chkN(w,z)
 
-  z = Cos(Sin(deg2rad(d))) * Sin(Cos(deg2rad(d)))
+   z = Cos(Sin(deg2rad(d))) * Sin(Cos(deg2rad(d)));
 
-<<" $z \n"
+   <<" $z \n";
 
-  w = Cos(x) * Sin(y)
+   w = Cos(x) * Sin(y);
 
-<<" $w \n"
+   <<" $w \n";
 
-  chkR(w,z,4)
-
+   chkR(w,z,4);
 // FIXME
 
-  z = Sin(Cos(Sin(deg2rad(d)))) * Cos(Sin(Cos(deg2rad(d))))
+   z = Sin(Cos(Sin(deg2rad(d)))) * Cos(Sin(Cos(deg2rad(d))));
 
-<<" $z \n"
+   <<" $z \n";
 
+   w = Sin(Cos(x)) * Cos(Sin(y));
 
+   <<" $w \n";
 
-  w = Sin(Cos(x)) * Cos(Sin(y))
+   chkR(w,z,3);
 
-<<" $w \n"
+   t = goo(x);
 
-  chkR(w,z,3)
+   <<"$x $t \n";
 
+   t = goo(Cos(x));
 
-  t = goo(x)
+   <<"$x $t \n";
 
-<<"$x $t \n"
+   k = 0;
 
+   while (k <= 10) {
 
+     x= Sin(deg2rad(k));
 
- t = goo(Cos(x))
- <<"$x $t \n"
+     <<"$k  $x\n";
 
+     k++;
 
+     }
 
-  k = 0
+   prog= GetScript();
 
- while (k <= 10) {
+   y=Sin(1.0);
 
-  x= Sin(deg2rad(k))
+   <<" $y \n";
 
- <<"$k  $x\n"
+   y=Cos(0);
 
-  k++
+   <<"cos $y \n";
 
- }
+   chkN(y,1.0);
 
+   pi = 4.0 * atan(1.0);
 
+   <<"%v $pi \n";
 
-prog= GetScript()
+   y = Sin(pi/2.0);
 
+   <<" sin pi/2 $y \n";
 
+   chkN(Fround(y,2),1.0);
 
+   pir =Fround(pi,5);
 
- y=Sin(1.0)
+   if ( Fround(pi,5) == 3.14159) {
 
- <<" $y \n"
+     <<" $pir == 3.14159 \n";
 
- y=Cos(0)
+     }
 
- <<"cos $y \n"
+   else {
 
-  chkN(y,1.0)
+     <<" $pir != 3.14159 \n";
 
+     }
 
-
- pi = 4.0 * atan(1.0)
-
-<<"%v $pi \n"
-
-y = Sin(pi/2.0)
-
-<<" sin pi/2 $y \n"
-
-  chkN(Fround(y,2),1.0)
-
-
-
-  pir =Fround(pi,5)  
-
- if ( Fround(pi,5) == 3.14159) {
-<<" $pir == 3.14159 \n"
- }
- else {
-<<" $pir != 3.14159 \n"
-
-  }
-
-   chkN(Fround(pir,5),3.14159)
-
+   chkN(Fround(pir,5),3.14159);
 /////////////////////////////////////////
-
 //%*********************************************** 
 //*  @script func1.asl 
 //* 
@@ -207,71 +194,72 @@ y = Sin(pi/2.0)
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-
 // foota returns arg values into double array
 // dv = testargs(1,2)
 
-<<"func test depends on testargs - which may change!\n"
+   <<"func test depends on testargs - which may change!\n";
 
-jal = 0
+   jal = 0;
 
-j = 4
+   j = 4;
 
-fva= testargs(1,2*3,4+1,j*2)
+   fva= testargs(1,2*3,4+1,j*2);
 
-<<"%(1,,,\n)$fva \n"
+   <<"%(1,,,\n)$fva \n";
 
-jal = 6
-fvs = fva[jal]
+   jal = 6;
 
-<<"%V $fvs\n"
+   fvs = fva[jal];
 
-chkStr(fvs,"6")
+   <<"%V $fvs\n";
 
+   chkStr(fvs,"6");
 
-jal++
+   jal++;
 
-jal += (2 * 10)
+   jal += (2 * 10);
 
+   int A[];
 
-int A[]
+   A=igen(5,0,1);
 
-  A=igen(5,0,1)
+   jal += 9;
 
-jal += 9
-
-dv= testargs(A,1,2,3)
-
+   dv= testargs(A,1,2,3);
 //<<"%(1,,\s,\n)$dv \n" // TBF
 
- F = vgen(FLOAT_,6,0,1)
+   F = vgen(FLOAT_,6,0,1);
 
-<<"$F\n"
+   <<"$F\n";
 
-fva2= testargs(F)
+   fva2= testargs(F);
 
-fva2->info(1)
+   fva2.pinfo();
 //<<"%(1,,,\n)$fva2 \n"   // TBF
 
-jal = 2
-fvs = fva2[jal]
-col = split(fvs)
+   jal = 2;
 
+   fvs = fva2[jal];
 
-<<"%V$jal \n"
-<<"$fvs\n"
-<<"$col\n"
+   col = split(fvs);
 
-   chkStr(col[1],"0.000000")
+   <<"%V$jal \n";
 
-jal = 3
-fvs = fva2[jal]
-col = split(fvs)
-<<"%V $col \n"
-chkStr(col[1],"1.000000")
+   <<"$fvs\n";
 
+   <<"$col\n";
 
+   chkStr(col[1],"0.000000");
 
+   jal = 3;
+
+   fvs = fva2[jal];
+
+   col = split(fvs);
+
+   <<"%V $col \n";
+
+   chkStr(col[1],"1.000000");
 ///////////////////////////////
 //%*********************************************** 
 //*  @script funcargs.asl 
@@ -286,138 +274,116 @@ chkStr(col[1],"1.000000")
 //* 
 //***********************************************%
 
+   void Noo(int x,int y,int z)
+   {
 
-void Noo(int x,int y,int z)
-{
-<<"%V $x $y $z\n"
-int m =x;
-int n =y;
-int p =z;
-int i;
- i->info(1)
- ans ="c"
- for (i=0; i< 4; i++) {
+     <<"%V $x $y $z\n";
+     int m =x;
+     int n =y;
+     int p =z;
+     int i;
 
- SV2=testargs(-1,m,n,p,1,2,3)
+     i.pinfo();
+
+     ans ="c";
+     for (i=0; i< 4; i++) {
+
+       SV2=testargs(-1,m,n,p,1,2,3);
 // <<"%V$SV2 \n"
 
-   <<"%V $m $n $p\n"
-    m++;
-    n++;
+       <<"%V $m $n $p\n";
 
-  <<"%V $i $m $n $p\n";
+       m++;
 
+       n++;
+
+       <<"%V $i $m $n $p\n";
 //ans=query("proc");
  // if (ans @="q")    break;
 //  p++;
     //if (m >20)
    // m = 20;
-  
-  }
 
-}
+       }
 
-
+     }
 //======================//
 
+   int A2[5];
 
+   A2= igen(5,0,1);
 
- int A2[5];
+   B = A2 * 2;
 
- A2= igen(5,0,1)
+   a = 1;
 
- B = A2 * 2
-
- a = 1;
-
-a->info(1)
+   a.pinfo();
 //ans=query("a?")
 
- chkR (a,1)
+   chkR (a,1);
 
+   int b = 79;
 
+   int c = 47;
 
+   <<"%V $a $b $c \n";
 
- int b = 79;
- int c = 47;
- 
-<<"%V $a $b $c \n"
+   SV=testargs(1,a,b,c);
 
-SV=testargs(1,a,b,c)
+   <<"%V$SV[0] $SV[1] $SV[2]\n";
 
-<<"%V$SV[0] $SV[1] $SV[2]\n"
+   SV=testargs(1,&a,&b,&c);
 
-SV=testargs(1,&a,&b,&c)
-<<"%V$SV\n"
-
-
+   <<"%V$SV\n";
 //SV=testargs(1,c,a,b)
 //<<"%V$SV\n"
 
+   <<"%V $a $b $c \n";
 
-
-<<"%V $a $b $c \n"
-
-a->info(1)
+   a.pinfo();
 //ans=query("a?")
-
-
-
-
-
 //Noo(1,2,3);
 
-a->info(1)
-b->info(1)
-c->info(1)
+   a.pinfo();
 
-Noo(a,b,c);
+   b.pinfo();
 
+   c.pinfo();
 
-
-
+   Noo(a,b,c);
 /*
-
-
-
-
- testargs(1,@head,"big",@tail,"tiny",1,2,3,A)
- SV=testargs(-1,@head,"big",@tail,"tiny",1,2,3,A)
-
+   testargs(1,@head,"big",@tail,"tiny",1,2,3,A)
+   SV=testargs(-1,@head,"big",@tail,"tiny",1,2,3,A)
 //iread();
-<<"whats in SV\n"
-<<"%V$SV[0] $SV[1] $SV[2]\n"
-<<"%(12,,\,,\n)$SV[0:10]\n"
-
-<<"%(1,,,\n)$SV\n"
-
-<<"%V$SV[3] $SV[8] $SV[18]\n"
-
+   <<"whats in SV\n"
+   <<"%V$SV[0] $SV[1] $SV[2]\n"
+   <<"%(12,,\,,\n)$SV[0:10]\n"
+   <<"%(1,,,\n)$SV\n"
+   <<"%V$SV[3] $SV[8] $SV[18]\n"
 */
 
-SV=testargs(1,c,a,b)
-<<"%V$SV\n"
+
+   SV=testargs(1,c,a,b);
+
+   <<"%V$SV\n";
 ////////////////////////////
-chkStage("funcargs")
 
- pan pnum = 123456789.98765432100;
+   chkStage("funcargs");
 
-<<"%V$pnum \n"
+   pan pnum = 123456789.98765432100;
 
-  testArgs(pnum,  123456789)
+   <<"%V$pnum \n";
 
-  testArgs(pnum,  123.456)
+   testArgs(pnum,  123456789);
 
-  testArgs(pnum,  123456789.98765432100)
+   testArgs(pnum,  123.456);
 
-  chkR (pnum,  123456789.98765432100, 5)
+   testArgs(pnum,  123456789.98765432100);
 
+   chkR (pnum,  123456789.98765432100, 5);
 
-chkStage("pan")
+   chkStage("pan");
 
+   chkOut ();
 
-chkOut ()
-
-
-
-
+//===***===//

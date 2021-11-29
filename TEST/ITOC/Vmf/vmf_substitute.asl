@@ -17,7 +17,7 @@
 substitute
 substitutes string w3 into w1 for  first occurence of w2 returns the result.
 substitute
-V->SubStitute(this_str,with_str)
+V.SubStitute(this_str,with_str)
 Substitutes a sub string with another  in the  string variable V 
 
 |>

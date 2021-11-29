@@ -1,7 +1,22 @@
 
+//%*********************************************** 
+//*  @script rec_atof.asl 
+//* 
+//*  @comment test record atof 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                    
+//*  @date Mon Feb 17 08:12:54 2020 
+//*  @cdate Mon Feb 17 08:12:54 2020 
+//*  @author Mark Terry 
+//*  @Copyright © RootMeanSquare  2010,2020 → 
+//* 
+//***********************************************%
+
+
+
 #include "debug.asl"
 
-//debugON();
+
 if (_dblevel >0) {
    debugON()
 }
@@ -10,7 +25,7 @@ if (_dblevel >0) {
 
 chkIn(_dblevel)
 
-proc Score()
+void Score()
 {
   f =0;
   for (i=0; i<Rn;i++) {
@@ -52,9 +67,9 @@ PCDoneCol = 3;
 
 wrow= 1;
 wcol=2;
-R->info(1)
+R.pinfo()
 wrd= "$R[wrow][wcol]";
-R->info(1)
+R.pinfo()
 <<"$wrow $wcol  <|$wrd|>\n"
 
 <<"$R[1][2]\n"

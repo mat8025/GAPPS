@@ -1,5 +1,5 @@
 //%*********************************************** 
-//*  @script rrdyn.asl 
+//*  @script rec_dyn.asl 
 //* 
 //*  @comment test record dynamic expansion 
 //*  @release CARBON 
@@ -25,12 +25,12 @@ chkIn(_dblevel);
 Record R[>2] ;
    
    
-   proc recspecs()
+   void recspecs()
    {
      cb = Cab(R); 
      sz= Caz(R); 
      <<"%V$sz $cb\n"; 
-     R->info(1); 
+     R.pinfo(); 
      }
    
    recspecs(); 
@@ -49,7 +49,11 @@ Record R[>2] ;
 
    <<"$R\n"
 
+   <<"%V $R[1][2] \n"
+
     chkStr(R[1][2],"tous")
+
+
 
    R[2] = Split("Camino todos los dias")
 

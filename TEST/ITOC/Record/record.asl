@@ -41,7 +41,7 @@ int ra = 2;
 sz= csz(ra);
 
 <<"$sz  $(csz(ra)) \n"
-ra->info(1)
+ra.pinfo()
 
 sz= csz(&ra);
 
@@ -58,7 +58,7 @@ sz= csz(&ra);
 
 <<"num of records $Nrecs  num cols $Ncols\n";
 
- R->info(1)
+ R.pinfo()
 
 // ',' parsed as CHAR
 // split intreprets via s->makeStrFromArg ()
@@ -88,7 +88,7 @@ sz= csz(&ra);
  R[5] = Split("49,9,8,77,47,5,6,7,80,95",',');
  R[6] = Split("87,9,8,7,40,5,6,7,8,79",',');
 
-R->info(1)
+R.pinfo()
 
 <<" $R[4] \n"
 
@@ -107,7 +107,7 @@ wsv=Split("80,1,2,3,79,5,6,7,8,9", ",");
 !pwsv
 !iwsv
 
-R<-pinfo()
+R.pinfo()
 
 
 lastRX = R[Nrecs-1]
@@ -133,11 +133,11 @@ rval = R[0][4];
 
 /*
 int ival = atoi(R[0][2]);
-ival<-pinfo()
+ival.pinfo()
 
 sz  = csz(ival)
 
-sz<-pinfo()
+sz.pinfo()
 
 <<"ival <|$ival|>  bounds $(Cab(ival)) sz   $(csz(ival))\n"
 
@@ -152,7 +152,7 @@ chkN(ival,2)
 
 <<"R7 $R[7]\n"
 
-R<-pinfo()
+R.pinfo()
 
 <<"%V$R[1]\n"
 
@@ -169,7 +169,7 @@ ival = atoi(R[1][3]);
 
 <<"%V$ival \n"
 
-ival<-pinfo()
+ival.pinfo()
 
 chkN(ival,fval)
 
@@ -204,14 +204,14 @@ chkN(ival,fval)
 <<"<|$R[2][2]|> \n"
 rval= R[2][2];
 irval = atoi(rval)
-irval<-pinfo()
+irval.pinfo()
 
 ival = atoi(R[2][2]);
 
 sz  = csz(ival)
 <<"ival $ival  bounds $(Cab(ival)) sz   $(csz(ival))\n"
-sz<-pinfo()
-ivs=ival<-pinfo()
+sz.pinfo()
+ivs=ival.pinfo()
 
 <<"$ivs\n"
 
@@ -271,7 +271,7 @@ recinfo = info(R);
 recinfo = info(R);
 <<"$recinfo \n"
 
-R<-pinfo()
+R.pinfo()
 
 
 //////////////////////////////////////////
@@ -286,7 +286,7 @@ ival = atoi(R[1][4]);
 sz  = csz(ival)
 <<"ival $ival  bounds $(Cab(ival))    $(csz(ival))  $sz\n"
 
-ival<-pinfo()
+ival.pinfo()
 
 chkN(sz,0)
 
@@ -462,7 +462,7 @@ chkStr(sr2,"cols")
 
 <<"inrecord[3] we have:- $R[3] \n"
 
-R<-pinfo()
+R.pinfo()
 
    sr1 = R[3][2]
    
@@ -496,7 +496,7 @@ chkStr(sr2,"learn")
    sr2 = R[3][2]
    sr3 = R[3][2]
 
-sr3<-pinfo()
+sr3.pinfo()
 
 <<"%V $sr3\n"
 
