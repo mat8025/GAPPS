@@ -973,3 +973,5 @@ ic_push.cpp                         1.63  11/27/2021 12:30:52  pushTV clear CW f
 utils_e.cpp                         2.60  11/29/2021 09:20:46  isaPrintCntrl
 tokget.cpp                          1.75  11/29/2021 09:21:58  isaPrintCntrl check
 ic_pushsivele.cpp                   1.68  11/29/2021 10:19:31  set offset same as lh or from offset
+oo_class.cpp                        2.24  11/29/2021 23:25:38  CopyScalar
+oo_class_def.cpp                    2.64  11/29/2021 23:26:33  CopyScalar

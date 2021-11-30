@@ -10,8 +10,15 @@
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
+#include "debug";
 
+   if (_dblevel >0) {
 
+     debugON();
+
+     }
+///
+ allowErrors(-1);
 chkIn(_dblevel)
 
 
@@ -73,7 +80,8 @@ chkN(MI[2][3],36)
 for ( i= 0; i<4; i++) {
 val = MI[i][3]
 <<"$MI[i][3] $val\n"
-<<"$MI[i][::] \n"
+
+//<<"$MI[i][::] \n";      // TBF 11/29/21
 
 }
  

@@ -1,290 +1,280 @@
-//%*********************************************** 
-//*  @script class_mfcall.asl 
-//* 
-//*  @comment show mf call 
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                    
-//*  @date Tue Mar 31 20:10:28 2020 
-//*  @cdate Tue Mar 31 20:10:28 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
-///
-///
-///
+/* 
+   *  @script class_mfcall.asl
+   *
+   *  @comment show mf call
+   *  @release CARBON
+   *  @vers 1.2 He Helium [asl 6.3.64 C-Li-Gd]
+   *  @date 11/29/2021 23:31:12
+   *  @cdate Tue Mar 31 20:10:28 2020
+   *  @author Mark Terry
+   *  @Copyright © RootMeanSquare  2010,2021 →
+   *
+   *  \\-----------------<v_&_v>--------------------------; //
+ */ 
 
+///
+///
+///
 #include "debug"
 
-if (_dblevel >0) {
-   debugON()
-}
+   if (_dblevel >0) {
 
+     debugON();
 
-chkIn (_dblevel)
+     }
 
+   chkIn (_dblevel);
 
-
-proc goo( real x)
-{
-  a= 2* x;
-<<"$_proc %V $x $a\n";
-  return a;
-}
-
-//======================================//
-class Scalc {
-
-
- public:
- 
-  float a;
-  float b;
-
-
- cmf seta (real x)
- {
-
-   a= x;
-
-  <<"$_proc %V $x $a\n";
- }
-
-//==========================
-
- cmf geta ()
- {
- <<"$_proc getting $a\n"
+   real goo( real x)
+   {
+     a= 2* x;
+     <<"$_proc %V $x $a\n";
      return a;
- }
+     }
+//======================================//
+
+   class Scalc {
+
+     public:
+
+     float a;
+
+     float b;
+
+     void seta (real x)
+     {
+
+       a= x;
+
+       <<"$_proc %V $x $a\n";
+
+       }
+//==========================
+
+     float geta ()
+     {
+
+       <<"$_proc getting $a\n";
+       return a;
+       }
  //==========================
- 
 
- cmf mul (int x,int y)
-  {
-   <<"in $_proc $x $y\n";
-    int z;
-    z = x*y;
-    return z;
-  }
+     int mul (int x,int y)
+     {
+       <<"in $_proc $x $y\n";
+       int z;
+       z = x*y;
+       return z;
+       }
 //==========================
 
- cmf mul (double x,double y)
-  {
-   <<"in DOUBLE $_proc $x $y\n";
-   float z;
-   z = x*y;
-    return z;
-  }
-
+     float mul (double x,double y)
+     {
+       <<"in DOUBLE $_proc $x $y\n";
+       float z;
+       z = x*y;
+       return z;
+       }
 //==========================
 
- cmf mul (real x,real y)
-  {
-   <<"in REAL $_proc $x $y\n";
-   real z;
-   z = x*y;
-    return z;
-  }
+     real mul (real x,real y)
+     {
+
+       <<"in REAL $_proc $x $y\n";
+
+       real z;
+
+       z = x*y;
+
+       return z;
+
+       }
 //==========================
 
- cmf set (real x, real y)
- {
-   a= x;
-   b =y;
- }
+     void set (real x, real y)
+     {
 
+       a= x;
 
- cmf set (float x, float y)
- {
-   a= x;
-   b =y;
- }
- 
- cmf print ()
- {
-  <<"%V $a $b\n"
- }
+       b =y;
 
+       }
 
+     void set (float x, float y)
+     {
 
+       a= x;
+
+       b =y;
+
+       }
+
+     void print ()
+      {
+       <<"%V $a $b\n";
+       }
 //===============================//
 
-cmf Scalc()
- {
-  <<"constructing Scalc \n"
-  a = 1;
-  b = 1;
-  }
+     cmf Scalc()
+     {
 
-};
+       <<"constructing Scalc \n";
 
+       a = 1;
 
+       b = 1;
 
- gr=goo(3.14)
+       }
 
-<<"%V$gr\n"
+     };
 
-  gr=goo(sin(0.8))
+     gr=goo(3.14);
 
-<<"%V$gr\n"
+     <<"%V$gr\n";
 
+     gr=goo(sin(0.8));
 
-Scalc acalc;
+     <<"%V$gr\n";
 
-int c =2;
-int d =4;
+     Scalc acalc;
 
-double w = 3.3
+     int c =2;
 
-    acalc->seta(sin(0.8))
-    wr = acalc->geta();
-   
-<<" $acalc->a\n"
-<<" $wr\n"
-   chkR (wr, sin(0.8))
+     int d =4;
 
+     double w = 3.3;
 
-     acalc->seta(w)
-    wr = acalc->geta();
+     acalc->seta(sin(0.8));
 
-<<" $acalc->a\n"
-<<" $wr\n"
+     wr = acalc->geta();
 
-   chkR (wr, w)
+     <<" $acalc->a\n";
 
+     <<" $wr\n";
 
-  
+     chkR (wr, sin(0.8));
 
+     acalc->seta(w);
 
+     wr = acalc->geta();
 
+     <<" $acalc->a\n";
 
+     <<" $wr\n";
 
-     w= Sin(0.7)
+     chkR (wr, w);
 
-     acalc->seta(w)
+     w= Sin(0.7);
 
-<<" $acalc->a\n"
+     acalc->seta(w);
 
+     <<" $acalc->a\n";
 
+     wr = acalc->geta();
 
-wr = acalc->geta();
+     <<" $wr\n";
 
-<<" $wr\n"
-
-<<" $acalc->geta() \n"
-
-
+     <<" $acalc->geta() \n";
 //<<" $acalc->x\n"  // should give error
 
+     <<"%V $acalc->x  $w\n";
 
+     ans = acalc->mul(c,d);
 
+     chkN(ans,8);
 
+     <<"$ans \n";
 
-<<"%V $acalc->x  $w\n"
+     w = 2.2;
 
+     double r = 3.3;
 
+     fans = acalc->mul(w,r);
 
+     <<"$fans \n";
 
-    ans = acalc->mul(c,d);
+     chkN(fans,7.26);
 
- chkN(ans,8)
-<<"$ans \n"
+     <<" $(infoof(acalc))\n";
 
- w = 2.2
-double r = 3.3
+     float fw = 3.3;
 
-    fans = acalc->mul(w,r);
+     float fr = 3.3;
 
-<<"$fans \n"
- chkN(fans,7.26)
-<<" $(infoof(acalc))\n"
+     fans = acalc->mul(fw,fr);
 
-float fw = 3.3
-float fr = 3.3
+     <<"$fans \n";
 
-    fans = acalc->mul(fw,fr);
+     chkR(fans,10.89);
 
-<<"$fans \n"
-chkR(fans,10.89)
+     fans = acalc->mul(2.0,5.0);
 
-    fans = acalc->mul(2.0,5.0);
+     <<"$fans \n";
 
-<<"$fans \n"
+     chkN(fans,10.0);
 
- chkN(fans,10.0)
+     real r1 = 2.2;
 
-real r1 = 2.2
-real r2 = 3.3
+     real r2 = 3.3;
 
-r1<-pinfo()
-r2<-pinfo()
+     r1.pinfo();
 
-    fans = acalc->mul(r1,r2);
+     r2.pinfo();
 
-<<"$fans \n"
+     fans = acalc->mul(r1,r2);
 
- chkR(fans,7.26)
+     <<"$fans \n";
 
-int ag = 47;
+     chkR(fans,7.26);
 
-    acalc->set(ag,79.0)
+     int ag = 47;
 
-    acalc->set(47.0,79.0)
+     acalc->set(ag,79.0);
 
-    acalc->print();
+     acalc->set(47.0,79.0);
 
-FV = fgen(10,0,1);
+     acalc->print();
 
-<<"$FV \n"
+     FV = fgen(10,0,1);
 
-    ok=examine(FV);
+     <<"$FV \n";
 
-<<"%V $ok\n"
+     ok=examine(FV);
 
+     <<"%V $ok\n";
 
+     ok=examine(acalc);
 
-    ok=examine(acalc);
+     <<"%V $ok\n";
 
-<<"%V $ok\n"
-
- chkOut()
- exit()
-
+     chkOut();
 //////////////////////////////////////////////////
 
-svar S;
+     svar S;
 
-  S = "how can we move forward";
+     S = "how can we move forward";
 
-    ok=examine(S);
+     ok=examine(S);
 
-<<"%V $ok\n"
-
-
-
-
+     <<"%V $ok\n";
 /*
-
 // so as yet  no overloading via prototyping --- just replaces
-
- cmf mul (int x,int y)
-  {
-   <<"in $_proc $x $y\n";
-    int z;
-    z = x*y;
-    return z;
-  }
+     cmf mul (int x,int y)
+     {
+       <<"in $_proc $x $y\n";
+       int z;
+       z = x*y;
+       return z;
+       }
 //==========================
-
- cmf mul (float x,float y)
-  {
-   <<"in $_proc $x $y\n";
-   float z;
-   z = x*y;
-    return z;
-  }
+     cmf mul (float x,float y)
+     {
+       <<"in $_proc $x $y\n";
+       float z;
+       z = x*y;
+       return z;
+       }
 //==========================
-
-
 */
+
+//===***===//

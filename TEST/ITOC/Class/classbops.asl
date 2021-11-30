@@ -59,7 +59,7 @@ class Point
 //============================//
 
 
-   cmf setx(real m) 
+   float setx(real m) 
      {
       x = m;
       <<"$_proc $m $x  \n"; 
@@ -67,7 +67,7 @@ class Point
       };
 
 
-    cmf set (real m, real n) 
+    void set (real m, real n) 
     {
   <<"$_proc set via real %V $m $n  \n";
        x = m;
@@ -75,7 +75,7 @@ class Point
    <<"%V $m $n \n" 
       };
 
-    cmf set (float m,float n) 
+    void set (float m,float n) 
     {
   <<"$_proc set via float %V $m $n  \n";
        x = m;
@@ -83,7 +83,7 @@ class Point
    <<"%V $m $n \n" 
       };
 
-    cmf set (double m, double n) 
+    void set (double m, double n) 
     {
   <<"$_proc set via double %V $m $n  \n";
   
@@ -94,7 +94,7 @@ class Point
       };
 
 
-    cmf set (int m, int n) 
+    void set (int m, int n) 
     {
        x = m;
        y = n;
@@ -104,9 +104,9 @@ class Point
     cmf Getx() 
      {
       <<"$_proc getting $x $_cobj \n"; 
-        v=y<-isVector()
+        v=y.isVector()
     <<"%v$v\n"
-        dv= DV<-isVector()
+        dv= DV.isVector()
 <<"%v$dv\n"	
       return x;
       };
@@ -117,29 +117,29 @@ class Point
       return y;
       };
 
-    cmf  mul(real a) {
+    double  mul(real a) {
       double tmp;
       tmp = (a * x);
     <<"$_proc %V $a $tmp $x\n";         
       return tmp; 
       };
 
-    cmf  mul(int mi) {
+    float  mul(int mi) {
       float tmp;
       tmp = (mi * x); 
       return tmp; 
       };
     
-    cmf Print() {
+    void Print() {
       <<"%V $x,$y %i $x,$y\n"; 
       }
 
-     cmf info() {
+     void info() {
       <<"$_proc %V $x,$y\n";
        v=y<-isVector()
    <<"%v$v\n"	
-      y<-pinfo()
-      x<-pinfo()
+      y.pinfo()
+      x.pinfo()
       }
       
 
@@ -166,7 +166,7 @@ double x1;
 
 
 
-  x1<-pinfo();
+  x1.pinfo();
 
 
 
@@ -181,11 +181,11 @@ double x1;
   chkR(x1,3.4)
 
 
-   A<-pinfo()
+   A.pinfo()
 
 
 <<"should call cmf  A->info() \n"
-   A->info()
+   A.pinfo()
 
 
 
