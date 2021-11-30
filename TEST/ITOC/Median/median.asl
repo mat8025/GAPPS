@@ -3,146 +3,142 @@
  * 
  *  @comment test Median of an array 
  *  @release CARBON 
- *  @vers 1.3 Li Lithium [asl 6.3.49 C-Li-In] 
- *  @date 08/23/2021 06:33:06 
+ *  @vers 1.4 Be Beryllium [asl 6.3.64 C-Li-Gd] 
+ *  @date 11/29/2021 21:57:57          
  *  @cdate 1/1/2005 
  *  @author Mark Terry 
  *  @Copyright © RootMeanSquare  2010,2021 → 
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
-                                                                             
+
+
 ///
 /// median
 ///
-
 <|Use_=
-Demo  of Median func ;
-Median(A)
-returns median value of array-- the array size is obtained from the array variable
-If A is a matrix - a column vector of the medians for each row is returned.
+   Demo  of Median func ;
+   Median(A)
+   returns median value of array-- the array size is obtained from the array variable
+   If A is a matrix - a column vector of the medians for each row is returned.
 ///////////////////////
 |>
 
-
-                                                                        
 #include "debug"
 
-if (_dblevel >0) {
-  debugON()
-    <<"$Use_\n"   
-}
+   if (_dblevel >0) {
 
+     debugON();
 
+     <<"$Use_\n";
 
-chkIn(_dblevel)
+     }
 
-I= vgen(INT_,10,0,1)
+   chkIn(_dblevel);
 
-<<"$I\n"
+   I= vgen(INT_,10,0,1);
 
+   <<"$I\n";
 
-med = median(I)
+   med = median(I);
 
-<<"%V$med\n"
-chkN(med,4.5)
+   <<"%V$med\n";
 
-s= Sum(I)
-s->pinfo()
-<<"Sum is $s\n"
+   chkN(med,4.5);
 
+   s= Sum(I);
 
-I += 1;  // add one to each element in vector
+   s.pinfo();
 
-<<"$I\n"
+   <<"Sum is $s\n";
 
-s= Sum(I)
+   I += 1;  // add one to each element in vector;
 
-<<"Sum is $s\n"
+   <<"$I\n";
 
+   s= Sum(I);
+
+   <<"Sum is $s\n";
 //ird()
 
-J= vgen(INT_,9,1,1)
+   J= vgen(INT_,9,1,1);
 
-<<"$J\n"
+   <<"$J\n";
 
+   med = median(J);
 
-med = median(J)
+   <<"%V$med\n";
 
-<<"%V$med\n"
+   chkN(med,5);
 
-chkN(med,5)
+   int K[] = {3, 5, 7, 12, 13, 14, 21, 23, 23, 23, 23, 29, 40, 56};
 
-int K[] = {3, 5, 7, 12, 13, 14, 21, 23, 23, 23, 23, 29, 40, 56} 
+  <<" $K \n";
 
-<<" $K \n"
+  med = median(K);
 
-med = median(K)
+  <<"%V$med\n";
 
-<<"%V$med\n"
+  chkN(med,22);
 
-chkN(med,22)
+  s = Sum(K);
 
+  <<"sum K is $s  $(typeof(s))\n";
 
-s = Sum(K);
+  bd=Cab(s);
 
-<<"sum K is $s  $(typeof(s))\n"
-bd=Cab(s)
-sz = Caz(s)
+  sz = Caz(s);
 
-<<"$bd $sz $(infoof(s)) \n"
-
+  <<"$bd $sz $(infoof(s)) \n";
 //ans = iread();
-<<"%V$s\n"
-s<-pinfo()
-chkN(s,292)
 
+  <<"%V$s\n";
+
+  s.pinfo();
+
+  chkN(s,292);
 //ird!
 
-I= vgen(INT_,100,0,1)
+  I= vgen(INT_,100,0,1);
 
-I<-redimn(20,5)
+  I.redimn(20,5);
 
-<<"$I\n"
+  <<"$I\n";
 
-Q=median(I)
+  Q=median(I);
 
-<<"median is :\n"
+  <<"median is :\n";
 
-<<"%6.2f$Q\n"
+  <<"%6.2f$Q\n";
 
+  S=Sum(I,0);
 
-S=Sum(I,0)
+  <<"$(Cab(S)) \n ";
 
-<<"$(Cab(S)) \n "
+  <<"SumCols is :\n";
 
-<<"SumCols is :\n"
-<<"$S\n"
+  <<"$S\n";
 
+  S=Sum(I,1);
 
-S=Sum(I,1)
+  <<"$(Cab(S)) \n ";
 
-<<"$(Cab(S)) \n "
+  <<"SumRows is :\n";
 
-<<"SumRows is :\n"
-<<"$S\n"
+  <<"$S\n";
 
+  T= transpose(I);
 
+  <<"$(Cab(T)) \n\n ";
 
+  <<"$T \n";
 
-T= transpose(I)
+  V=median(T);
 
-<<"$(Cab(T)) \n\n "
+  <<"$V\n";
 
-<<"$T \n"
+  <<"$(Cab(V))\n";
 
+  chkOut();
 
-
-V=median(T)
-
-<<"$V\n"
-
-<<"$(Cab(V))\n"
-
-
-chkOut()
+//===***===//

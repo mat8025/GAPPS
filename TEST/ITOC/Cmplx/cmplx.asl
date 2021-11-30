@@ -73,42 +73,42 @@ cmplx a;
 cmplx b;
 
 
-a<-set(2.5,0.5)
+a.set(2.5,0.5)
 
 
-a<-info(1)
+a.pinfo()
 
-x= a<-getReal();
+x= a.getReal();
 
-y= a<-getImag();
+y= a.getImag();
 
 <<"%V $x $y \n"
 
 
 
-chkR (a<-getReal(),2.5);
+chkR (a.getReal(),2.5);
 
 
 
 
 <<"%V $a  $x  $y\n"
 
-a<-setReal(3.5)
+a.setReal(3.5)
 
 <<"%V $a\n"
 
-a<-setImag(-4.7)
+a.setImag(-4.7)
 
 <<"%V $a\n"
 
-x= a<-getReal();
-y= a<-getImag();
+x= a.getReal();
+y= a.getImag();
 <<"%V $a  $x  $y\n"
 
 chkR (x,3.5)
 chkR (y,-4.7)
 
-a<-info(1)
+a.pinfo()
 
 
 cmplx g[16] = {1,2,3,4,5,6,7,8,9,10};
@@ -125,7 +125,7 @@ sz = Caz(g)
   sum = Sum(A);
 
 <<"%V$A \n"
-A<-pinfo()
+A.pinfo()
 
 <<"%V$sum \n"
 
@@ -153,33 +153,33 @@ int I2[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 
 
 /*
-  g<-SetReal(77);
+  g.SetReal(77);
 <<"%V$sz $g\n"
-  g<-SetImag(-21);
+  g.SetImag(-21);
 <<"%V$sz $g\n"
 */
 
-g[0]<-Set(80,15);
+g[0].Set(80,15);
 <<"$g\n"
 
 A[]= {11,12,13,14,15,16};
 !pA
 B= A * -1;
 
-g[1:6:1]<-SetReal(A)
-g[1:6:1]<-SetImag(B)
+g[1:6:1].SetReal(A)
+g[1:6:1].SetImag(B)
 
-//g[1:6:1]<-SetReal({1,2,3,4,5,6})  // FIX anon array as arg?
+//g[1:6:1].SetReal({1,2,3,4,5,6})  // FIX anon array as arg?
 
 <<"$g\n"
 
 
-g[1:6:1]<-SetImag({6.1,6.2,6.3,6.4,6.5,6.6})
+g[1:6:1].SetImag({6.1,6.2,6.3,6.4,6.5,6.6})
 
 sz = Caz(g)
 <<"%V$sz $g\n"
 
-g[1:6:1]<-SetReal({1,2,3,4,5,6})
+g[1:6:1].SetReal({1,2,3,4,5,6})
 
 <<"$g\n"
   
@@ -194,10 +194,10 @@ rv[5] = 68;
 
 <<"%V$g\n"
 
-  g[1:6:1]<-SetReal({1.2,2,3,4,5,6})
+  g[1:6:1].SetReal({1.2,2,3,4,5,6})
 
 <<"%V$g\n"
-gr = g<-getReal()
+gr = g.getReal()
 
 <<"%V $gr\n"
 
@@ -217,13 +217,13 @@ for (i= 2; i < 6; i++) {
 
 
 
-g[1:6:1]<-SetImag({7,8,9,10,11,12})
+g[1:6:1].SetImag({7,8,9,10,11,12})
 
 <<"$g\n"
 
-gi = g<-getImag()
+gi = g.getImag()
 
-gi<-info(1)
+gi.pinfo()
 
 <<"%V $gi \n"
 
@@ -233,34 +233,34 @@ for (i= 1; i <= 6; i++) {
 }
 
 
-g[1:6:1]<-SetImag({-1.0,-2.0,-3.0,-4,-5,-6.2})
+g[1:6:1].SetImag({-1.0,-2.0,-3.0,-4,-5,-6.2})
 
 <<"$g\n"
 
 
-g[1:6:1]<-SetReal(rv)
+g[1:6:1].SetReal(rv)
 
 <<"$g\n"
 
-g[1:6:1]<-SetImag(rv)
+g[1:6:1].SetImag(rv)
 
 <<"$g\n"
 
 
 
-  a<-set(2.5,0.5)
+  a.set(2.5,0.5)
 
-  mag = a<-Mag()
-  ph = a<-Phase()
-  re = a<-getReal()
-  im = a<-getImag()
+  mag = a.Mag()
+  ph = a.Phase()
+  re = a.getReal()
+  im = a.getImag()
 
 <<"%V$mag $ph $re $im\n"
 
 <<"%V$a $b\n"
 
 
-  b<-Set(0.5,-1.0)
+  b.Set(0.5,-1.0)
 
   c = a + b
 
@@ -287,22 +287,22 @@ g[1:6:1]<-SetImag(rv)
     dcmplx  t;
     dcmplx  rt;
 
-  r<-Set(2.5,0.5)
+  r.Set(2.5,0.5)
 
-  rmag = r<-Mag()
-  rph = r<-Phase()
-  rre = r<-getReal()
-  rim = r<-getImag()
+  rmag = r.Mag()
+  rph = r.Phase()
+  rre = r.getReal()
+  rim = r.getImag()
 
 <<"%V$rmag $rph $rre $rim\n"
 <<"$(typeof(r))\n"
 
-  t<-Set(-3.512345,0.767345)
+  t.Set(-3.512345,0.767345)
 
-  rmag = t<-Mag()
-  rph = t<-Phase()
-  rre = t<-getReal()
-  rim = t<-getImag()
+  rmag = t.Mag()
+  rph = t.Phase()
+  rre = t.getReal()
+  rim = t.getImag()
 
 <<"%V$rmag $rph $rre $rim\n"
 <<"$(typeof(t))\n"
@@ -327,10 +327,10 @@ g[1:6:1]<-SetImag(rv)
   
   
   
-  rmag = rt<-Mag()
-  rph = rt<-Phase()
-  rre = rt<-getReal()
-  rim = rt<-getImag()
+  rmag = rt.Mag()
+  rph = rt.Phase()
+  rre = rt.getReal()
+  rim = rt.getImag()
 
 <<"PLUS %V$rmag $rph $rre $rim\n"
 <<"$(typeof(rt))\n"
@@ -340,10 +340,10 @@ g[1:6:1]<-SetImag(rv)
   
   rt = t * r
 
-  rmag = rt<-Mag()
-  rph = rt<-Phase()
-  rre = rt<-getReal()
-  rim = rt<-getImag()
+  rmag = rt.Mag()
+  rph = rt.Phase()
+  rre = rt.getReal()
+  rim = rt.getImag()
 
 <<"MUL %V$rmag $rph $rre $rim\n"
 
@@ -354,10 +354,10 @@ g[1:6:1]<-SetImag(rv)
 
   rt = t / r
 
-  rmag = rt<-Mag()
-  rph = rt<-Phase()
-  rre = rt<-getReal()
-  rim = rt<-getImag()
+  rmag = rt.Mag()
+  rph = rt.Phase()
+  rre = rt.getReal()
+  rim = rt.getImag()
 
     <<"DIV %V$rmag $rph $rre $rim\n"
 
@@ -372,24 +372,24 @@ g[1:6:1]<-SetImag(rv)
 <<"$fv\n"
 
 
-  g[3]<-Set(47,79)
+  g[3].Set(47,79)
 
   <<"%V$sz $g\n"
 
-  g[4]<-setReal(80)
+  g[4].setReal(80)
 
-  g[5]<-setImag(85)
+  g[5].setImag(85)
   
 <<"%V $g\n"
   
-  g<-SetReal(rv)
+  g.SetReal(rv)
 
   
 <<"%V $g\n"
 
 
 
-  g[6]<-SetReal(1001)
+  g[6].SetReal(1001)
 
      <<"%V $g\n"
 
@@ -397,39 +397,39 @@ g[1:6:1]<-SetImag(rv)
 
        <<"%V $g\n"
        
-  g[2:12:2]<-SetReal(rv);
+  g[2:12:2].SetReal(rv);
 
      <<"%V $g\n"
 
-  g[0:12:2]<-SetImag(rv);
+  g[0:12:2].SetImag(rv);
 
      <<"%V $g\n"
 
-     g[6:12:]<-SetReal({4,5,6});
+     g[6:12:].SetReal({4,5,6});
 
      <<"%V $g\n"
 
 
-     g[0:2]<-SetReal({1,2,3});
+     g[0:2].SetReal({1,2,3});
 
      <<"%V $g\n"     
      
-g[0]<-Set(1,2);
+g[0].Set(1,2);
 <<"$g\n"
 
 
-g[1]<-Set(3,4);
+g[1].Set(3,4);
 
 <<"$g\n"
 
 
-g<-Set(1,2,3,4);
+g.Set(1,2,3,4);
 
 <<"$g\n"
 
     cmplx f;
 
-f<-set(1,2);
+f.set(1,2);
 
 <<"%V$f \n"
 
@@ -462,22 +462,22 @@ G = vgen (CMPLX_,10,1,-1)
 
 <<"%V$Z \n"
 
-  G<-setReal(vgen(FLOAT_,10,1,3))
-  G<-setImag(vgen(FLOAT_,10,1,-4))
+  G.setReal(vgen(FLOAT_,10,1,3))
+  G.setImag(vgen(FLOAT_,10,1,-4))
 
 <<"%V$G \n"
 
-  R=G<-getReal()
+  R=G.getReal()
 <<"%V$R \n"
 
-  I=G<-getReal()
+  I=G.getReal()
 <<"%V$I \n"
 
   
-  Mg=G<-Mag()
+  Mg=G.Mag()
 <<"%V$Mg \n"
 
-  Ph=G<-Phase()
+  Ph=G.Phase()
 <<"%V$Ph \n"
 
 
@@ -486,31 +486,31 @@ N = 11
 cmplx AV[N]
 
 
-AV<-info(1)
+AV.pinfo()
 <<"%v $AV[0:10] \n"
 
 <<"$(typeof(AV)) $(Caz(AV)) \n"
 
 // FIX IC redundant ele/push_sivele
 
-   AV[2]<-Setreal (0.3)  // just real ele
+   AV[2].Setreal (0.3)  // just real ele
 
-   AV[3]<-SetImag (0.4)  // just imag ele
+   AV[3].SetImag (0.4)  // just imag ele
 
 <<"%v $AV \n"
 
-AV<-info(1)
+AV.pinfo()
 
-   R=AV<-getReal() // real part
-R<-info(1)
+   R=AV.getReal() // real part
+R.pinfo()
 <<"%v $R \n"
 
 
-   AV[4]<-Set(0.55,0.69)
+   AV[4].Set(0.55,0.69)
 
 <<"%v $AV[*] \n"
 
-   I=AV<-GetImag() // imag part
+   I=AV.GetImag() // imag part
 
 <<"%v $I \n"
 
@@ -521,11 +521,11 @@ R<-info(1)
 
     for (j = 1; j < 10; j++) {
 
-     AV[j]<-SetReal(val)  // just real ele
+     AV[j].SetReal(val)  // just real ele
 
-     AV[12]<-SetReal(val)
+     AV[12].SetReal(val)
 
-     R=AV<-getReal() // real part
+     R=AV.getReal() // real part
 
    
      <<"%v $R \n"
@@ -535,11 +535,11 @@ R<-info(1)
    }
 
 
-   AV<-Setreal(Sin(Fgen(N,0,0.1)))
+   AV.Setreal(Sin(Fgen(N,0,0.1)))
 
 
-   R = AV<-SetR(Cos(Fgen(N,0,0.1)))
-R<-info(1);
+   R = AV.SetR(Cos(Fgen(N,0,0.1)))
+R.pinfo();
 <<" $(Caz(R)) \n"
 
    T= R[0:10];
@@ -549,21 +549,21 @@ R<-info(1);
   <<"\n%v $R[0:10] \n"
 
 
-   R = AV<-setR(Sin(Fgen(N,0,0.1)))
+   R = AV.setR(Sin(Fgen(N,0,0.1)))
 
 <<" $(Caz(R)) \n"
 
 
   <<"\n%v $R[0:10] \n"
 
-   AV<-SetI(4.0)      // imag vector set to zero
+   AV.SetI(4.0)      // imag vector set to zero
 
-   I= AV<-getImag()     // get imag part
+   I= AV.getImag()     // get imag part
 
 <<" $(Caz(I)) \n"
   <<"%v $I[0:10] \n"
 
-<<"%v $AV<-getImag() \n"
+//<<"%v $(AV.getImag()) \n" ;   // TBF 11/29/21 bad
 
 
 <<"\n %v $AV[0:10] \n"
@@ -590,17 +590,17 @@ R<-info(1);
 <<"\n %v $C[0:10] \n"
 
 
-   AV[3]<-set(0.3,42.0)  
+   AV[3].set(0.3,42.0)  
 
 <<"\n %v $AV[0:10] \n"
 
 
-   AV[3]<-set(0.3,42.0)  
+   AV[3].set(0.3,42.0)  
 
 <<"\n %v $AV[0:10] \n"
 
 
-   AV[9]<-set(0.3,42.0)  
+   AV[9].set(0.3,42.0)  
 
 <<"\n %v $AV[0:10] \n"
 
@@ -614,10 +614,10 @@ R<-info(1);
 
 
 
-  r= a<-Set(1.0,0.5)
+  r= a.Set(1.0,0.5)
 
 <<" %v $r \n"
-  b<-Set(0.5,-1.0)
+  b.Set(0.5,-1.0)
 
 <<"%v $(typeof(a)) \n"
 <<"%v $(typeof(b)) \n"
@@ -632,12 +632,12 @@ R<-info(1);
 
 
 
-   AV[2]<-setI (-0.5)  // just imag ele
+   AV[2].setI (-0.5)  // just imag ele
 
-   AV[3]<-Set(0.3,0.4) 
+   AV[3].Set(0.3,0.4) 
 
 
-   AV[0:20:2]<-SetImag(5.0)      // imag subscripted part of vector set to zero
+   AV[0:20:2].SetImag(5.0)      // imag subscripted part of vector set to zero
 
 
 
@@ -666,13 +666,13 @@ DVI=vgen(DOUBLE_,10,-10,0.25)
 <<"$DVR\n"
 <<"$DVI\n"
 
-DCV<-setReal(DVR)
-DCV<-setImag(DVI)
+DCV.setReal(DVR)
+DCV.setImag(DVI)
 
 
 <<"$DCV\n"
 
-DVGR=DCV<-getReal()
+DVGR=DCV.getReal()
 
 <<"$DVGR\n"
 dv= 0.0

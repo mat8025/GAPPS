@@ -10,7 +10,13 @@
  *  @Copyright © RootMeanSquare  2010,2021 → 
  * 
  *  \\-----------------<v_&_v>--------------------------//  
- */ 
+ */
+ 
+<|Use_=
+   Demo  M3D 
+|>
+
+
 
 #include "debug";
 
@@ -18,11 +24,18 @@
 
      debugON();
 
+ <<"$Use_\n";
+ 
      }
+
+   allowErrors(-1);
 
    chkIn(_dblevel);
 
+
    nrows = 7;
+
+chkT(0)
 
    n_feat = 8;
 
@@ -89,7 +102,7 @@
    i++;
 
    <<"%V $Nic[kc][kci][2] \n";
-!a   
+
 
    <<"$Nit[i][0:7:] \n";
 
@@ -131,11 +144,11 @@
    Nic[kc][kci][::] = Nit[i][::];
 
    <<"%V $Nic[kc][kci][2] \n";
-!a   
+ 
    <<"%V $Nic[kc][kci][0:7:] \n";
    <<"%V $kc  $kci \n"
  Nic.pinfo()   
-!a
+
    Nic[kc][kci][0:5:] = Nit[i][2:7:];
 //  <<"%V$i $Nit[i][0:7:] \n"
 
@@ -146,16 +159,16 @@
    Nic[kc:kc][kci][0:5:] = Nit[i][2:7:];
 
    <<"%V$i $Nit[i][2:7:] \n";
-!a
+
    <<"%V $Nic[kc][kci][0:5:] \n";
-!a
+
    <<"%V$i $Nit[i][2] \n";
-!a
+
    <<"%V $Nic[kc][kci][0] \n";
-!a
+
 
    chkN(Nic[kc][kci][0] ,Nit[i][2]);
-!a
+
 
    for (i = 0 ; i < nrows ; i++) {
 

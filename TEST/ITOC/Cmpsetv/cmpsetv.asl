@@ -28,14 +28,15 @@ would limit vector between range -10,10.
 #include "debug.asl"
 debugON()
 
+filterFileDebug(REJECT_,"array","args","exp")
 
-proc limit_vec()
+void limit_vec()
 {
    cmpsetv(I,">",1,10)
 }
 
 
-chkIn()
+chkIn(_dblevel)
 
 I = vgen(INT_,20,0,1)
 
@@ -47,11 +48,34 @@ I = vgen(INT_,20,0,1)
   <<"[${k}] $I \n"
   cmpsetv(I,">",50,10)
   <<"$I \n"
+
 //ans=iread()
 }
 
-chkN(I[0],10)
-/////
+<<"%V$I[0] \n"
+<<"$I \n"
+ I.pinfo()
+
+m= I[0]
+
+n = I[1]
+
+r = I[19]
+
+
+
+<<"$m $n $r $I[0] $I[1] $I[19] \n"
+
+chkN(m,50)
+
+chkN(I[0],50)
+
+chkN(n,10)
+
+chkN(I[1],10)
+
+
+////
 
 
 for (i = 0; i < 5; i++) {

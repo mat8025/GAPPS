@@ -253,7 +253,6 @@ float q = 4.0;
  chkN(r,3.0)
 
 
-
    r = _PI ;
    
 <<"pre- swap? %V $r $a\n"

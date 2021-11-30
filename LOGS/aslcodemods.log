@@ -970,3 +970,6 @@ ds_siv.cpp                          2.75  11/26/2021 21:05:41  extractEle
 ic_call.cpp                         1.59  11/26/2021 21:07:36  extractEle
 ic_opera.cpp                        1.58  11/26/2021 21:08:22  extractEle
 ic_push.cpp                         1.63  11/27/2021 12:30:52  pushTV clear CW flags
+utils_e.cpp                         2.60  11/29/2021 09:20:46  isaPrintCntrl
+tokget.cpp                          1.75  11/29/2021 09:21:58  isaPrintCntrl check
+ic_pushsivele.cpp                   1.68  11/29/2021 10:19:31  set offset same as lh or from offset

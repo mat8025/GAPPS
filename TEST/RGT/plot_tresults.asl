@@ -58,26 +58,26 @@ ycol = 1
 
      sz = Caz(R)
 
-<<"%V$sz\n"
-<<"$R\n"
+////<<"%V$sz\n"
+//<<"$R\n"
 
 
      dmn = Cab(R)
 
 nrows = dmn[0]
 
-<<"%V$nrows \n"
+//<<"%V$nrows \n"
 
-<<"%V$sz $dmn\n"
+//<<"%V$sz $dmn\n"
 
 
 
 ncols = dmn[1]
 
-<<"%V$ncols \n"
+//<<"%V$ncols \n"
 
 
-<<" $R[0][15] $R[0][17] \n"
+//<<" $R[0][15] $R[0][17] \n"
 
 
 //<<" $R[50][::] \n"
@@ -86,11 +86,11 @@ ncols = dmn[1]
 //<<"$i $R[1][i]  \n"
 //}
 
-
+/*
 for (i = 0; i <nrows ;i++) {
 <<"$i $R[i][6] $R[i][8] $R[i][14] \n"
 }
-
+*/
 
 
 ///    Data results  in record  float type
@@ -142,8 +142,8 @@ for (i = 0; i <nrows ;i++) {
 
 //<<"$XV\n"
 
-<<"R:\n "
-<<"%6.2f$R\n"
+//<<"R:\n "
+//<<"%6.2f$R\n"
 
 
 

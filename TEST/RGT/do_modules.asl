@@ -30,10 +30,11 @@ chkIn(_dblevel)
 
 
 
-int do_query = 1;
+int do_query = 0;
 
-
-
+B=ofw("modules_that_pass")
+C=ofw("modules_that_fail")
+D=ofw("modules_stat")
 void inter()
 {
 int ask = 0;
@@ -42,14 +43,17 @@ str ans;
 A=ofr("mod_score")
 L=readfile(A)
 iv= sstr(L,"PASS")
-
-
 cf(A)
 ask =0
 if (iv[0] == -1) {
  ask = 1;
+<<[C]"$L\n"
+<<[D]"$L[2]\n"
 }
+else {
+<<[B]"$L\n"
 
+}
  if (do_query && ask) {
 
   ans= query("->")
@@ -276,7 +280,7 @@ inter()
 
 inter()
 
-
+cf(B)
 
 /*
 

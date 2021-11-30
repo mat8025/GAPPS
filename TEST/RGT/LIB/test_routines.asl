@@ -95,7 +95,7 @@ void hdg(str atit)
 //!!"ps wax | grep asl | grep -v emacs"
 }
 //===============================
-Curr_dir = "xyz";
+Curr_dir = "";
 
 void Help()
 {
@@ -158,7 +158,8 @@ str pgxname = "xy";
 //ri=Tl.info()
       chdir(Testdir)
       chdir(Td)
-      
+      Curr_dir = getDir();
+  
      // Run2Test(Td);
 
       Tl.DeWhite()
@@ -236,7 +237,7 @@ void RunSFtests(str Td)
 int scoreTest(str itname)
 {
 
- //<<"$_proc <|$itname|>  \n"
+//<<"$_proc <|$itname|>  \n"
 
  int scored = 0;
  int ntests;
@@ -259,15 +260,14 @@ int scoreTest(str itname)
     //RT.pinfo()
 
 
-
       if (RT != -1) {
 
        
-      //<<"RT SCORING  $RT  \n"
+//      <<"RT SCORING  $RT  \n"
 
           posn = fseek(RT,0,2)
 
-   //<<" @ $posn\n";
+//   <<" @ $posn\n";
 
 
           posn =seekLine(RT,-1);
@@ -339,13 +339,9 @@ else {
           if (pcc != 100.0) {
 	  //<<"${Curr_dir} inserting $tname into failed list \n"
             FailedList.Insert("${Curr_dir}/${tname}")
+	    <<"${Curr_dir}/${tname}\n"
 	  //<<[Tff]"${Curr_dir}/${tname}\n"  
           }
-
-
-
-
-
      }
 
 
@@ -499,9 +495,10 @@ foundit = fexist(prg) ;
          }
          }
 
-//<<" run xic $wasl\n";
+//<<" run xic $wasl <|$prg|>\n";
 
-      !!"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -x $prg   > /dev/null "
+    !!"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -x $prg   > /dev/null "
+//      !!"$wasl -o ${prg}.xout  -t ${prg}.xtst -x $prg  > xjunk "
 
 //      !!"ls -l *";
       
@@ -514,7 +511,7 @@ foundit = fexist(prg) ;
 
       tst_file = "${prg}.xtst";
       
-     //<<"%V $prg <|$tst_file|>\n"
+ //    <<"%V $prg <|$tst_file|>\n"
 
 
       if (f_exist(tst_file) > 0) {
@@ -524,7 +521,7 @@ foundit = fexist(prg) ;
          <<"${xwt_prog}$padit" // print time prog arg
 	 <<[Opf]"${xwt_prog}$padit"
          }
-         wscore =scoreTest(tst_file)
+         wscore = scoreTest(tst_file)
       }
      else {
 

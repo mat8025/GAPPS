@@ -20,11 +20,16 @@ if (_dblevel >0) {
 
 
 chkIn(_dblevel)
+//na = argc();
+na = Caz(_clarg)
 
-<<" $(argc())\n"
+<<"$na $(argc())\n"
 
+srcfile = "";
+//if (argc() > 0) {
+if (na > 0)
 srcfile = _clarg[1];
-
+}
 <<"%V$srcfile\n"
 
 if (srcfile @= "") {

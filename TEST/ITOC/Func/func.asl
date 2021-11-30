@@ -368,7 +368,7 @@
    <<"%V$SV\n";
 ////////////////////////////
 
-   chkStage("funcargs");
+   //chkStage("funcargs");
 
    pan pnum = 123456789.98765432100;
 
@@ -382,7 +382,7 @@
 
    chkR (pnum,  123456789.98765432100, 5);
 
-   chkStage("pan");
+   //chkStage("pan");
 
    chkOut ();
 

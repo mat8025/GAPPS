@@ -11,7 +11,6 @@
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
-                                                               
 
    <<"Running $_script\n";
 #include "debug"
@@ -168,7 +167,7 @@
 
        break;
 // BUG    default: // no trailing comment
-// BUG is not ignoring trailing commnet   default:  // this is the default
+// BUG is not ignoring trailing comment   default:  // this is the default
 
        default:
     // x=2;
@@ -201,7 +200,6 @@
      D++;
 
      if (D > C)
-
      break;
 
      }
@@ -316,38 +314,24 @@
 
    chkN(rc,0);
 //======================================//
-//%*********************************************** 
-//*  @script switch2.asl 
-//* 
-//*  @comment test switch syntax
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                  
-//*  @date Mon Apr  8 09:07:32 2019 
-//*  @cdate Mon Apr  8 09:07:32 2019 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
-///
-///
-///
 
-   proc foo (double wc)
-   {
 
-     <<"in $_proc %V$wc  int version!\n";
+   double foo (double wc)
+    {
+     double ret =1;
+     <<"in $_proc %V$wc  double version!\n";
 
-     ret = -3;
+     ret = wc * -1;
      return ret;
      }
 //======================================//
 //proc foo (char wc)
 
-   proc foo (int wc)
+   int foo (int wc)
    {
 
      int ret = -2;
-//<<"in $_proc %V$wc %c$wc $(typeof(wc))\n"
+<<"in $_proc %V$wc %c$wc $(typeof(wc))\n"
 
      <<"in $_proc %V$wc %c$wc \n";
 
@@ -471,6 +455,7 @@
 
    pf=chkN(rn,':');
 
+
    <<"%V$rn $pf\n";
 
    rn = foo(':');
@@ -545,21 +530,28 @@
 
    rn = foo('e');
 
+   c.pinfo()
+
    c = '\s';
 
-   <<"%V$c  %d$c %c$c\n";
+    c.pinfo()
+
+   <<"space %V$c  %d$c %c$c\n";
 
    foo(c);
 
    c = '\t';
 
-   <<"%V$c  %d$c %c$c\n";
+   c.pinfo()
+
+   <<"tab %V$c  %d $c %c $c\n";
 
    rn = foo(c);
+   
 // FIXME
 // chkN('\t',rn)
 
-   /{
+     rn.pinfo();
 
      oc = chkN(9,rn);
 
@@ -571,7 +563,7 @@
 
        }
 
-     /}
+
 
    if (!chkN(9,rn)) {
 
@@ -580,6 +572,8 @@
      <<"FAIL  %2.0f$(checkTests()) \n";
 
      }
+
+
 //  chkN(9,8)
 
    c= ';';

@@ -120,7 +120,7 @@ int rt_fail = 0
 int i_time = 0;
 int x_time = 0;
 
-str rt_script = "xyz"
+str rt_script = "xy"
 
 Todo=ofw("to_test")
 
@@ -158,7 +158,7 @@ int do_array = 0;
 int do_matrix = 0;
 int do_math = 0;
 
-int do_bugs = 0;
+int do_bugs = -1;
 int do_bops = 0;
 int do_vops = 0;
 int do_sops = 0;
@@ -218,7 +218,7 @@ int do_tests = 0;
 
  CrashList = ( "",  )  // empty list
  CrashList.LiDelete(0)
- FailedList = ( "",  )  // empty list --- bug first item null? 
+ FailedList = ( "fail",  )  // empty list --- bug first item null? 
  FailedList.LiDelete(0)
  
 
@@ -765,18 +765,22 @@ if ((do_all || do_func ) && (do_func != -1)) {
   
 
 
-  RunDirTests("Func","func,repeat-func-call")
+  RunDirTests("Func","func,repeat_func_call")
 
   do_carts("func", 3)
 
-  RunDirTests("Args","args")  
+  RunDirTests("Args","args")
+
+  RunDirTests("Iproc","iproc")
+
+  RunDirTests("Func","func")  
 
 
-  Run2Test("Ifunc")
-  do_carts ("ifunc")   //TBC
+  //Run2Test("Ifunc")
+  //do_carts ("ifunc")   //TBC
 
-  Run2Test("Iproc")
-  do_carts ("iproc")   //TBC
+  //Run2Test("Iproc")
+  //do_carts ("iproc")   //TBC
 
   outcome("FUNC")
 }
@@ -942,7 +946,8 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
    if ((do_all || do_lists ) && (do_lists != -1)) {
      inflsz = caz(FailedList)
-     RunDirTests("Lists","lists,list_declare,list_ele,list_ins_del");
+     RunDirTests("Lists","list_declare,lists,list_ele,list_ins_del");
+     //RunDirTests("Lists","lists");
      outcome("LISTS")
     }
 
@@ -993,8 +998,8 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
 
 //////////////////// BUGFIXs/////////////////////////////////////////
-
-  if ((do_all || do_bugs )  && (!do_bugs != -1)) {
+  
+  if ((do_all || do_bugs )  && (do_bugs != -1)) {
       inflsz = caz(FailedList)
       //cart("bf_40")   // this has intentional error and exits before test checks
     chdir(Testdir)
@@ -1069,9 +1074,12 @@ if ((do_all || do_threads )) {
 //<<" %(2,\t, ,\n)$FailedList \n"  // would like this to work like for vectors ---
 
    for (i = 0; i < flsz ; i++) {
-       <<"\t\t\t$FailedList[i] \n"
+       <<"\t\t\t$FailedList[i]"
 
-       <<[Opf]"$FailedList[i] \n"
+    if (i> 0)
+       <<"\n"
+       
+       <<[Opf]"$FailedList[i]"
 
       <<[Tff]"$FailedList[i] \n"
        
@@ -1079,7 +1087,7 @@ if ((do_all || do_threads )) {
     }
 }
 
-//<<"----------------------------------------------------------------------------\n"
+//<<"\n----------------------------------------------------------------------------\n"
 
   
    lsz = caz(CrashList)
@@ -1100,7 +1108,9 @@ if (lsz >= 1) {
 
 //<<" crashlist $lsz   \n"
    for (i = 0; i < lsz ; i++) {
-   <<"\t\t\t$i $CrashList[i] \n"
+   <<"\t\t\t$i $CrashList[i]"
+    if (i> 0)
+       <<"\n"
    <<[Opf]"$CrashList[i] \n"
    <<[Tcf]"$CrashList[i] \n"
    <<[Tlogf]"$i $CrashList[i] \n"
@@ -1110,7 +1120,7 @@ if (lsz >= 1) {
 }
 
 if (!do_module) {
-<<"----------------------------------------------------------------------------\n"
+<<"\n----------------------------------------------------------------------------\n"
 <<"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$flsz Crash $lsz vers $(get_version())\n"
 <<"TestSuites: $Nsuites passed $Nspassed  %6.2f $(Nspassed/(Nsuites*1.0) *100.0)%%\n"  
 <<[Opf]"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$flsz Crash $lsz $(get_version())\n"

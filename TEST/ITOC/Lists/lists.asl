@@ -15,19 +15,24 @@
 ///
 ///
 ///
-#include "debug.asl";
+#include "debug";
 
    if (_dblevel >0) {
 
      debugON();
 
      }
+<<[2]"running lists $_script\n"     
 
    chkIn(_dblevel);
 
    ws = getScript();
 
    <<"%V $ws  $_script\n";
+
+chkT(1)
+
+
 
    CrashList = ( "",  )  ; // empty list;
 
@@ -44,6 +49,8 @@
    <<"%V$CrashList \n";
 
    <<"%V$FailedList \n";
+
+
 
    int J[] = { 1,2,3,4 };
 
@@ -74,9 +81,15 @@
   <<"$ww\n";
 // str fw
 
+
+
   str fw = L1[9];  // fails;
 
   fw.pinfo();
+
+  chkStr(fw,"yellow");
+
+  fw = L1[9];  
 
   <<"$fw\n";
 
@@ -100,6 +113,8 @@
 
   chkStr(fw,"violet");
 
+
+
   for (i= 0; i < l1sz; i++) {
 
    ww= L1[i];
@@ -108,7 +123,7 @@
 
    }
 
-  chkStage("list - element access");
+  //chkStage("list - element access");
 
   L2 = ( "The", "colors", "of" ,"the", "rainbow", "are", "red", "orange", "yellow", "green", "blue" ,"indigo", "violet" );
 
@@ -117,6 +132,8 @@
   L1 = L2;
 
   <<"L1 = $L1 \n";
+
+
 
   fw = L1[0];
 
@@ -130,6 +147,8 @@
   <<"%(,= , ,)Vs${L1} \n";
 
   L1.reverse();
+
+
 
   <<"%(,= , ,)Vs${L1} \n";
  //n=L1.Shuffle(100)
@@ -152,6 +171,12 @@
 
   <<"L = %s$L \n";
 
+   L.pinfo();
+   
+
+
+
+
   fw = L[0];
 
   <<"%V$fw $(typeof(fw))\n";
@@ -160,18 +185,32 @@
 
   L.reverse();
 
+// OK here
+
   fw = L[0];
+
+
+
 
   chkStr(fw,"list");
 
+
+
   <<"L = $L \n";
 
-  <<"%v$L[1:4] \n";
-//<<"%v$L[1:-2] \n"
+//chkOut(); // OK?
+
+//<<"%v$L[1:4] \n";
+ L.pinfo();
+ 
+<<"$L[1:3] \n";
+
 
   <<"%v\s$L[1:-3] \n";
 
   <<"%V$L \n";
+
+//chkOut(); // bad here
 
   L3 = L[1:7];
 
@@ -184,6 +223,10 @@
   <<"fw $fw\n";
 
   chkStr(fw,"lovely");
+
+
+
+
 
   litem = "focus";
 
@@ -221,7 +264,7 @@
 
   chkStr(fw,"first");
 
-  chkOut();
+ chkOut();
 
   L3 = L[1:-2];
 
@@ -251,33 +294,32 @@
   n=L.Sort();
 
   <<"%v$L \n";
-
+  chkOut() ;  // ?? xtst empty
   <<"L is a $(typeof(L)) \n";
 //iread(";>")
 
-  L2 = ( "say", "what", "can" ,"I", "do", "now", "with", "this", "amazingly", "lovely" ,"list" );
+  L4 = ( "say", "what", "can" ,"I", "do", "now", "with", "this", "amazingly", "lovely" ,"list" );
 
-  <<"%v $L2 \n";
+  <<"%v $L4 \n";
 
-  <<"%v $L2 \n";
 
-  L2.Reverse();
+  L4.Reverse();
 
-  <<"$L2 \n";
+  <<"$L4 \n";
 
-  <<"%vs$L[1] \n";
+  <<"%vs$L4[1] \n";
 
-  <<"%vs$L[2] \n";
+  <<"%vs$L4[2] \n";
 
-  <<"%vs$L[3] \n";
+  <<"%vs$L4[3] \n";
 
-  <<"last element ? %vs $L[-1] \n";
+  <<"last element ? %vs $L4[-1] \n";
 //iread(";>")
 # TDB make subscript work  --- DONE
 
-  <<"%vs$L[1:4] \n";
+  <<"%vs$L4[1:4] \n";
 
-  <<"%v$L \n";
+  <<"%v$L4 \n";
 //svar sl = L[3]
 
   sl = L[3];
@@ -363,6 +405,7 @@
   <<"insert %V$L    $n\n";
 
   chkOut();
+  
 //////////////////// TBD //////////////////////
 //  FIX XIC is doing a copypush_siv and push_siv - should just be copypush_siv
 
