@@ -12,108 +12,118 @@
 ///
 ///        long-term and current weight loss goals 
 ///
-
 //  SET     START DATE      END DATE  TARGET WEIGHT
-Goals = Split("11/10/2021 12/20/2021 175")
+
+   Goals = Split("11/01/2021 03/01/2022 175");
 ////////////////////==============/////////////////
 
+   GoalWt = 175;  // ideal -- flying weight
 
-GoalWt = 175;  // ideal -- flying weight
-StartWt = 210;
-MinWt = 165;
+   StartWt = 214;
 
+   MinWt = 165;
 
-long sday = julian(Goals[0]) -bday // start date
-long targetday = julian(Goals[1]) -bday;
-NextGoalWt = atoi(Goals[2]);
+   long sday = julian(Goals[0]) -bday ; // start date
 
-gsday = sday;
-gday =  targetday;    // next goal day 
+   long targetday = julian(Goals[1]) -bday;
 
+   NextGoalWt = atoi(Goals[2]);
 
-got_start = 0
+   gsday = sday;
 
-long yday = julian("01/01/2021")   // this should be found from data file
-long eday = julian("12/31/2021")
+   gday =  targetday;    // next goal day;
 
-jtoday = julian("$(date(2))");
+   got_start = 0;
 
+   long yday = julian("01/01/2021")   ; // this should be found from data file
 
-int ngday = 7;
+   long eday = julian("12/31/2021");
 
+   jtoday = julian("$(date(2))");
 
-k = eday - sday;
+   int ngday = 7;
 
-if ( k < 0) {
- DBPR" time backwards !\n"
- exit_gs()
-}
+   k = eday - sday;
 
+   if ( k < 0) {
 
-kdays = k
+     DBPR" time backwards !\n";
 
-_DB =-1
+     exit_gs();
 
-<<[_DB]"%V$kdays \n"
+     }
 
-<<[_DB]"%V$yday  $eday $jtoday  $(date(2))\n"
+   kdays = k;
 
+   _DB =-1;
 
+   <<[_DB]"%V$kdays \n";
 
-proc computeGoalLine()
-{
+   <<[_DB]"%V$yday  $eday $jtoday  $(date(2))\n";
 
+   void computeGoalLine()
+   {
  // <<"%V$StartWt $NextGoalWt\n"
 
-  ngday = gday - gsday;
+     ngday = gday - gsday;
 
-  GVEC[0] = StartWt;  // start  Wt
-  GVEC[1] = NextGoalWt;
+     GVEC[0] = StartWt;  // start  Wt
 
-  ty_gsday = gsday;
+     GVEC[1] = NextGoalWt;
 
-  gwt =  NextGoalWt;
-  GVEC[ngday-1] = gwt;  // goal wt
+     ty_gsday = gsday;
 
-  WDVEC[ngday-1] = gsday+ngday;
-  k =0
+     gwt =  NextGoalWt;
 
+     GVEC[ngday-1] = gwt;  // goal wt
+
+     WDVEC[ngday-1] = gsday+ngday;
+
+     k =0;
 //  lpd = 1.75/7.0      // 1.75 lb a  week
 
-  lpd = 4.0/7.0;      // 4 lb a  week
+     lpd = 4.0/7.0;      // 4 lb a  week
 
-  try_lpd = (StartWt - NextGoalWt) / (1.0 * ngday)
+     try_lpd = (StartWt - NextGoalWt) / (1.0 * ngday);
 
-  sw = StartWt;
-  lw = sw;
+     sw = StartWt;
 
-
+     lw = sw;
 // our goal line  wtloss per day!
 //<<[_DB]"%V $try_lpd $lpd \n"
-for (i= 0; i < ngday; i++) {
+
+     for (i= 0; i < ngday; i++) {
 //<<"$(ty_gsday+i) $lw \n"
-    GVEC[i] = lw;
-    WDVEC[i] = gsday+i;
-    lw -= try_lpd;
-    if (lw < MinWt)
-        lw = MinWt;
-  }
 
+       GVEC[i] = lw;
 
+       WDVEC[i] = gsday+i;
 
+       lw -= try_lpd;
+
+       if (lw < MinWt)
+
+       lw = MinWt;
+
+       }
 ///  revised goal line
-  sz = Caz(GVEC);
-<<[_DB]" days $sz to lose $(StartWt-gwt) \n"
-  sz = Caz(WDVEC);
 
-<<[_DB]"$sz\n"
-<<[_DB]"%6.1f%(7,, ,\n)$WDVEC\n"
-<<[_DB]"%6.1f%(7,, ,\n)$GVEC\n"
+     sz = Caz(GVEC);
 
-}
+     <<[_DB]" days $sz to lose $(StartWt-gwt) \n";
 
+     sz = Caz(WDVEC);
+
+     <<[_DB]"$sz\n";
+
+     <<[_DB]"%6.1f%(7,, ,\n)$WDVEC\n";
+
+     <<[_DB]"%6.1f%(7,, ,\n)$GVEC\n";
+
+     }
 //==================================//
 
-<<[_DB]"$_include \n"
-
+   <<[_DB]"$_include \n";
 ///////////////////////////////////
+
+//===***===//

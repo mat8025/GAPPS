@@ -30,7 +30,7 @@
  //  sdb(1,"soe")
    chkIn(_dblevel);
    
-chkT(0)
+chkT(1)
    svar E[] = { "the first ten elements are:", "H", "He", "Li", "Be" ,"B" ,"C", "N", "O", "F", "Ne"  };
 
    <<"$E\n";
@@ -554,15 +554,19 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
   IV3.pinfo();
 //IV3= atoi(M[3::])
 
-<<"$M\n"
+   IV3[0] = 99;
 <<"$M[4:-2]\n"
 
   IV3= atoi(M[3:-1:]);
+  <<"%V $M\n"
+<<"%V$M[3:-1]\n"
 
-  <<"$IV3\n";
+<<"%V $IV3\n";
 
   IV3.pinfo();
 
+  iv3 = IV3[0];
+  
   chkN(IV3[0], 79);
 
   if (IV3[0] == 79) {

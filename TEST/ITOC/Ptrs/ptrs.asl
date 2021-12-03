@@ -211,7 +211,7 @@ void goo(ptr a)
   
   
   
-  proc add(int a, int b )
+  int add(int a, int b )
   {
    c= a +b
   <<"%V$c $a $b\n"

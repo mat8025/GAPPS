@@ -105,16 +105,16 @@ Fixed ic_pushsivele.cpp  set offset
 11/29/21 15:57
 cmpsetv
 storeSiv
-fix 
+Fixed argref flag sticks
 11/29/21 17:23
 |>
 <|P
-id
-din
-code
-cpp
-fix
-dout
+14
+11/30/21 08:05
+msquare.asl
+array_subset
+Fixed  I[0][::]  range sep parse
+11/30/21 09:05
 |>
 <|P
 id

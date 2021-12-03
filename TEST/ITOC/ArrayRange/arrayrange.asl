@@ -23,8 +23,10 @@
      debugON();
 
      <<"$Use_\n";
- }     
-//filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");		
+ }
+
+
+filterFileDebug(REJECT_,"scope","args","rdp","exp");		
 //filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
 
    chkIn(_dblevel);
@@ -59,13 +61,21 @@
 
    V[1::] = 79;
 
+//       V[1:-1:1] = 79;
+
    <<"%V$V\n";
+
+   chkN(V[0],76);
+
+   chkN(V[1],79);
 
    chkN(V[2],79);
 
    <<"%V$V\n";
 
-   V[::2] = 49;
+  // V[::2] = 49;
+
+   V[0:-1:2] = 49;
 
    <<"%V$V\n";
 
@@ -73,14 +83,18 @@
 
    chkN(V[1],79);
 
+
+
    chkN(V[2],49);
 
    chkN(V[3],79);
 
    chkN(V[4],49);
+   
 //int B[]=vgen(INT_,10,0,1)
 
    B=vgen(INT_,10,0,1);
+   
 //Vec B(INT_,10,0,1)  // TBF 11/06/21  XIC crash
 
    B.pinfo();
@@ -182,7 +196,8 @@
    chkN(Z[0],1);
    chkN(Z[1],2);   
 
-
+   //B.pinfo()
+  // <<"%V$B\n"
 
    Z= B[-1:7:1];
 
@@ -213,7 +228,7 @@
 
    <<"%V$F\n";
 
-   D->info(1);
+   D.pinfo();
 
    D= B[-1:8:1];
 

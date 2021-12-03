@@ -130,6 +130,10 @@ chkN(k,t)
 <<"%x $k $j \n"
 t = 0xfacebead
 
+t.pinfo()
+
+<<"$k $t\n"
+
 
 
 chkN(k,t)

@@ -16,8 +16,6 @@
 
 
 #include "debug"
-//debugON()
-//debugAllowErrors();
 
 chkIn(_dblevel)
 
@@ -29,7 +27,7 @@ int veci[] = {1,2,3}
 int vi[2] = {0,0}
 
 <<"$vi \n"
-vi->info(1)
+vi.pinfo()
 
 int vs[2] = {1,-1}
 
@@ -38,23 +36,23 @@ chkN(vs[1],-1)
 
 
 <<"$vs \n"
-vs->info(1)
+vs.pinfo()
 
 
 
 
-veci->info(1)
+veci.pinfo()
 
 veci =  {41,52,53,4,5,6,7,8,9}
 
 <<"%V $veci\n"
 
-veci->info(1)
+veci.pinfo()
 
 
 int vec2[] = {86,87,89};
 
-vec2->info(1)
+vec2.pinfo()
 
 <<"$vec2\n"
 
@@ -65,9 +63,6 @@ vec2 = {90,91,92}
   v3 = {35,36,37,38} ;  // should give warning -dynamic
 
 <<"$v3 \n"
-
-
-
 
 
 
@@ -90,7 +85,7 @@ T=testArgs(1,{"hey","hago","haces","hace"})
 <<"%(1,,,\n)$T\n"
 
 
-vi->info(1)
+vi.pinfo()
 
 vi = {3,7}
 
@@ -106,7 +101,7 @@ vi = {32,45,55}
 
   int v2[] = {1,2,3,4} ;  // should give warning -dynamic
 
-v2->info(1)
+v2.pinfo()
 
 <<"$v2 \n"
 

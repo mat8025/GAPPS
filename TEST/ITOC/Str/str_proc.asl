@@ -62,13 +62,20 @@ int x = 21;
  <<"$iv\n"
 
 
- int k = iv[3];
+int k = iv[3];
+
+
 
  k.pinfo();
 
 chkN(k,65);
 
-chkOut()
+ k2 = iv[4];
+
+chkN(k2,80);
+
+
+
 
 
 

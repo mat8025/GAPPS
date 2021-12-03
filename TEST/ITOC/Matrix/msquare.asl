@@ -1,280 +1,287 @@
 /* 
- *  @script msquare.asl 
- * 
- *  @comment test matrix funcs 
- *  @release CARBON 
- *  @vers 1.2 He Helium [asl 6.3.45 C-Li-Rh] 
- *  @date 07/25/2021 12:14:31 
- *  @cdate Tue Mar 12 07:50:33 2019 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
- * 
- *  \\-----------------<v_&_v>--------------------------//  
+   *  @script msquare.asl
+   *
+   *  @comment test matrix funcs
+   *  @release CARBON
+   *  @vers 1.2 He Helium [asl 6.3.45 C-Li-Rh]
+   *  @date 07/25/2021 12:14:31
+   *  @cdate Tue Mar 12 07:50:33 2019
+   *  @author Mark Terry
+   *  @Copyright © RootMeanSquare  2010,2021 →
+   *
+   *  \\-----------------<v_&_v>--------------------------; //
  */ 
-                                                                            
 
 /*
-ColSum()
-V=ColSum(A)
-returns array V - containing the sum of the columns of a 2D array.
-dimensions [1][n_of_cols]
-V.redimn() - would redimension to vector
+   ColSum()
+   V=ColSum(A)
+   returns array V - containing the sum of the columns of a 2D array.
+   dimensions [1][n_of_cols]
+   V.redimn() - would redimension to vector
 //===================================//
-RowSum()
-V=RowSum(A)
-returns array V - containing the sum of the columns of a 2D array.
-dimensions [num_of_rows][1]
-V.redimn() - would redimension to vector
+   RowSum()
+   V=RowSum(A)
+   returns array V - containing the sum of the columns of a 2D array.
+   dimensions [num_of_rows][1]
+   V.redimn() - would redimension to vector
 //===================================//
 */
 
 ///
 /// magic square
 ///
-<|Use_=
-Demo  of magic square   ;
-ColSum()
-V=ColSum(A)
-returns array V - containing the sum of the columns of a 2D array.
-dimensions [1][n_of_cols]
-V.redimn() - would redimension to vector
 
+
+<|Use_=
+   Demo  of magic square   ;
+   ColSum()
+   V=ColSum(A)
+   returns array V - containing the sum of the columns of a 2D array.
+   dimensions [1][n_of_cols]
+   V.redimn() - would redimension to vector
+   
 ///////////////////////
 |>
 
-
-
-
-
 #include "debug.asl"
 
-if (_dblevel >0) {
-   debugON()
-    <<"$Use_\n"   
-}
+   if (_dblevel >0) {
+
+     debugON();
+
+     <<"$Use_\n";
+
+     }
+
+   chkIn(_dblevel);
 
 
-chkIn(_dblevel)
+   int A[>10];
 
+   int B[] = {16, 3, 2, 13, 5, 10, 11, 8, 9, 6, 7, 12, 4 ,15, 14, 1};
 
+  <<" $(Cab(B)) $(typeof(B)) \n";
 
-//#define ASK ans=iread();
-#define ASK ;
+  <<"%V$B \n";
 
+  B.Redimn(4,4);
 
-int A[>10]
+  <<"\n B[][] $(Cab(B)) \n";
 
-int B[] = {16, 3, 2, 13, 5, 10, 11, 8, 9, 6, 7, 12, 4 ,15, 14, 1}
+  A = B;
 
-<<" $(Cab(B)) $(typeof(B)) \n"
-<<"%V$B \n"
+  <<"B= %(4,\t<\s, ,\s>\n)%2d$B \n";
 
-  B.Redimn(4,4)
+  <<"A= %(4,\t{\s, ,\s}\n)%3d$A \n";
 
-<<"\n B[][] $(Cab(B)) \n"
+  <<" $(Cab(A)) $(Cab(B)) \n";
 
-  A = B
+  <<" $(Caz(A)) $(Caz(B)) \n";
 
-<<"B= %(4,\t<\s, ,\s>\n)%2d$B \n"
+  <<" $(typeof(A)) $(typeof(B)) \n";
 
-<<"A= %(4,\t{\s, ,\s}\n)%3d$A \n"
+  chkStage("RowSum Test -summing rows of magic square 34");
 
-<<" $(Cab(A)) $(Cab(B)) \n"
-<<" $(Caz(A)) $(Caz(B)) \n"
-<<" $(typeof(A)) $(typeof(B)) \n"
+  R= RowSum(A);
 
+  R.redimn();
 
-chkStage("RowSum Test -summing rows of magic square 34");
-
- R= RowSum(A)
-R.redimn()
-<<"$R\n"
-
+  <<"$R\n";
 
   for (i=0;i < 4; i++) {
-   <<"<$i> $R[i] \n"
+
+   <<"<$i> $R[i] \n";
+
    chkN(R[i],34);
 
-}
-R.pinfo()
+   }
+
+  R.pinfo();
  //  chkN(R[0],33);
 
- chkStage("RowSum")
+  chkStage("RowSum");
 
+  chkStage("ColSum Test -summing cols of magic square 34");
 
+  C= ColSum(A);
 
+  C.redimn();
 
-chkStage("ColSum Test -summing cols of magic square 34");
+  CV= C;
 
- C= ColSum(A)
- C.redimn()
- CV= C
-
-<<"$C\n"
+  <<"$C\n";
 //C.pinfo()
+
   for (i=0;i < 4; i++) {
-  <<"<$i> $C[i] $CV[i] \n"
+
+   <<"<$i> $C[i] $CV[i] \n";
+
    chkN(C[i],34);
-  }
+
+   }
+
+  chkStage("ColSum");
 
 
- chkStage("ColSum")
+  M = Sum(A);
 
-//chkOut();
-//exit();
+  <<"$M \n\n";
 
+  D = A;
 
- M = Sum(A)
+  <<"D= %(4,\t{\s, ,\s}\n)%3d$D \n";
 
- <<"$M \n\n"
+  <<" Transpose \n";
 
-  D = A
+  C = Transpose(A);
 
-<<"D= %(4,\t{\s, ,\s}\n)%3d$D \n"
-<<" Transpose \n"
-
- C = Transpose(A)
-
-<<"C= %(4,\t{\s, ,\s}\n)%3d$C \n"
-
+  <<"C= %(4,\t{\s, ,\s}\n)%3d$C \n";
 // FIXME
-<<"\n\tC\n%(4,\t\s,\s,\n)%5d${C} "
 
-<<"\n"
+  <<"\n\tC\n%(4,\t\s,\s,\n)%5d${C} ";
 
+  <<"\n";
 
-<<" Sum $M \n"
+  <<" Sum $M \n";
 
-sz  = Caz(A)
-<<" %V$sz  $(Cab(A))\n"
+  sz  = Caz(A);
 
-<<"$A \n"
+  <<" %V$sz  $(Cab(A))\n";
 
+  <<"$A \n";
 
- V = Sum(A)
- 
-<<"$V \n"
+  V = Sum(A);
 
+  <<"$V \n";
 
- T= transpose(A)
-<<"T \n"
-<<"$T\n"
-X= Sum(T)
-<<"tsum of X \n"
-<<"$X \n"
+  T= transpose(A);
 
- V1 = Sum(A)
- <<"V1 $(Cab(V1))\n"
- <<"$V1\n"
+  <<"T \n";
 
- V = Sum( transpose(A) )
-  <<"V $(Cab(V))\n"
-<<"$V\n"
+  <<"$T\n";
 
-<<"$X[0] $X[1] $X[2] $X[3] \n"
+  X= Sum(T);
 
-<<"tsum $V \n"
+  <<"tsum of X \n";
 
-<<"$V[0][0] $V[1][0] $V[2][0] $V[3][0] \n"
+  <<"$X \n";
 
-V.redimn()
+  V1 = Sum(A);
 
-<<"$V\n"
+  <<"V1 $(Cab(V1))\n";
 
+  <<"$V1\n";
 
+  V = Sum( transpose(A) );
 
+  <<"V $(Cab(V))\n";
 
-   chkR(V[0],34,6)
+  <<"$V\n";
 
-   chkR(V[1],34,6)
+  <<"$X[0] $X[1] $X[2] $X[3] \n";
 
-   chkR(V[2],34,6)
+  <<"tsum $V \n";
 
-   chkR(V[3],34,6)
+  <<"$V[0][0] $V[1][0] $V[2][0] $V[3][0] \n";
 
+  V.redimn();
 
+  <<"$V\n";
 
-  D= B
+  chkR(V[0],34,6);
 
-  D.Redimn(2,2,4)
+  chkR(V[1],34,6);
 
-<<"\n\tD\n%(2,\t[\s, ,\s]\n)$D \n "
+  chkR(V[2],34,6);
 
+  chkR(V[3],34,6);
 
+  D= B;
 
+  D.Redimn(2,2,4);
 
-
+  <<"\n\tD\n%(2,\t[\s, ,\s]\n)$D \n ";
  //D2[]= {16, 3, 2, 13, 5,10,11, 8, 9, 6, 7, 12, 4 ,15, 14, 1}
-int  D2[]= {16, 3, 2, 13, 5,10,11, 8, 9, 6, 7, 12, 4 ,15, 14, 1}
 
-<<" $(typeof(D2)) \n"
-<<" $(Cab(D2)) \n"
-<<"%v $D2 \n"
+  int  D2[]= {16, 3, 2, 13, 5,10,11, 8, 9, 6, 7, 12, 4 ,15, 14, 1};
 
-  D2.Redimn(4,4)
-<<" $D2[0][0] \n"
-<<"%V%(4, , ,\n)$D2 \n"
+  <<" $(typeof(D2)) \n";
 
-<<"\n"
+  <<" $(Cab(D2)) \n";
 
+  <<"%v $D2 \n";
 
+  D2.Redimn(4,4);
 
-float e[] = {1.1,2.2,3.3,4.4}
+  <<" $D2[0][0] \n";
 
-<<"%v$e\n\n"
+  <<"%V%(4, , ,\n)$D2 \n";
 
- E = mdiag(e)
+  <<"\n";
 
-<<"%v$E \n"
+  float e[] = {1.1,2.2,3.3,4.4};
+
+  <<"%v$e\n\n";
+
+  E = mdiag(e);
+
+  <<"%v$E \n";
 //<<" $(Cab(E)) $(Caz(E)) \n"
 
-<<"%(4,, ,\n)$E \n"
+  <<"%(4,, ,\n)$E \n";
 
-<<"\n %v$E[0][0] \n"
-<<"\n %v$E[0][1] \n"
-<<"\n %v$E[1][1] \n"
-<<"\n %v$E[2][2] \n"
-<<"\n %v$E[3][3] \n"
+  <<"\n %v$E[0][0] \n";
 
-lw = E[0][::]
+  <<"\n %v$E[0][1] \n";
 
-<<" $lw \n"
+  <<"\n %v$E[1][1] \n";
 
+  <<"\n %v$E[2][2] \n";
 
-lw = E[1][::]
+  <<"\n %v$E[3][3] \n";
 
-<<" $lw \n"
+  lw = E[0][::];
 
+  <<" $lw \n";
 
-lw = E[0:1][::]
+  lw = E[1][::];
 
-<<" $lw \n"
+  <<" $lw \n";
 
+  lw = E[0:1][::];
 
-<<"\n %v${E[0][::]} \n"
-<<"%I$A\n"
-<<" $(typeof(A)) $(Caz(A)) \n"
+  <<" $lw \n";
+
+  <<"\n %v${E[0][::]} \n";
+
+  <<"%I$A\n";
+
+  <<" $(typeof(A)) $(Caz(A)) \n";
 // already declared -- no error ??
 //int A[] 
-<<"%I$A\n"
-<<" $(typeof(A)) \n"
 
+  <<"%I$A\n";
 
-int A2[] = {16, 3, 2, 13, 5,10,11, 8, 9, 6, 7, 12, 4 ,15, 14, 1}
+  <<" $(typeof(A)) \n";
 
-<<" $(typeof(A2)) \n"
-<<" $(Cab(A2)) \n"
-<<" $A2 \n"
+  int A2[] = {16, 3, 2, 13, 5,10,11, 8, 9, 6, 7, 12, 4 ,15, 14, 1};
 
-<<" %(4,, ,\n)%2d$A2 \n"
+  <<" $(typeof(A2)) \n";
 
+  <<" $(Cab(A2)) \n";
 
+  <<" $A2 \n";
 
-float G[]= { 16, 3, 2, 13, 5, 10, 11, 8, 9, 6, 7, 12, 4 ,15, 14, 1}
+  <<" %(4,, ,\n)%2d$A2 \n";
 
-<<" $(typeof(G)) \n"
-<<" $(Cab(G)) \n"
-<<"%4.0f$G \n"
+  float G[]= { 16, 3, 2, 13, 5, 10, 11, 8, 9, 6, 7, 12, 4 ,15, 14, 1};
 
+  <<" $(typeof(G)) \n";
 
-  chkOut()
+  <<" $(Cab(G)) \n";
+
+  <<"%4.0f$G \n";
+
+  chkOut();
+
+//===***===//

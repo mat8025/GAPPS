@@ -1,88 +1,92 @@
 /* 
- *  @script str-arg.asl 
+ *  @script str_arg.asl 
  * 
  *  @comment str args 
  *  @release CARBON 
- *  @vers 1.1 H Hydrogen [asl 6.3.48 C-Li-Cd]                               
- *  @date 08/21/2021 06:50:56 
+ *  @vers 1.3 Li Lithium [asl 6.3.64 C-Li-Gd] 
+ *  @date 12/02/2021 10:46:14          
  *  @cdate 08/21/2021 06:50:56 
  *  @author Mark Terry 
  *  @Copyright © RootMeanSquare  2010,2021 → 
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
-;//
 
-
-                                                                                              
+   ;//
 <|Use_=
-Demo  of str args command
+   Demo  of str args command
 ///////////////////////
 |>
 
-
 #include "debug"
 
-if (_dblevel >0) {
-   debugON()
-   <<"$Use_\n"
-}
+   if (_dblevel >0) {
 
+     debugON();
 
-chkIn(_dblevel)
+     <<"$Use_\n";
 
-proc woo(str a1)
-{
+     }
 
-<<"$_proc $a1\n";
+   chkIn(_dblevel);
 
-a1<-pinfo();
-pinfo(a1);
+   str woo(str a1)
+   {
 
- a2= a1;
- a2<-pinfo();
+     <<"$_proc $a1\n";
 
- a4=scat(a1," bitte")
- <<"$a4\n"
-  return a4;
-}
+     a1.pinfo();
 
+     pinfo(a1);
 
+     a2= a1;
 
-a="hey"
-b="man"
+     a2.pinfo();
 
-w1 = scat("$a ","$b")
+     a4=scat(a1," bitte");
 
-<<"$w1\n"
+     <<"$a4\n";
 
-a="say"
+     return a4;
 
+     }
 
-w1 = scat("$a ","$b")
+   a="hey";
 
-<<"$w1\n"
+   b="man";
 
-chkStr(w1,"say man")
-k= 2
+   w1 = scat("$a ","$b");
 
-for (i=0;i < 3; i++) {
+   <<"$w1\n";
 
-w1 = scat('$k ',"$i")
-<<"$w1\n"
-}
+   a="say";
 
-chkStr(w1,'$k 2')
+   w1 = scat("$a ","$b");
 
-a3=woo(w1)
+   <<"$w1\n";
 
-<<"$a3\n"
+   chkStr(w1,"say man");
 
-a3=woo("jetzt vortreten")
+   k= 2;
 
-<<"$a3\n"
+   for (i=0;i < 3; i++) {
 
+     w1 = scat('$k ',"$i");
 
+     <<"$w1\n";
 
+     }
 
-chkOut()
+   chkStr(w1,'$k 2');
+
+   a3=woo(w1);
+
+   <<"$a3\n";
+
+   a3=woo("jetzt vortreten");
+
+   <<"$a3\n";
+
+   chkOut();
+
+//===***===//

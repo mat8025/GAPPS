@@ -203,7 +203,7 @@ int do_pan = 0;
 int do_unary = 0;
 int do_ptrs = 0;
 int do_vmf = 0;
-int do_tests = 0;
+int do_tests = -1;
 
 
 
@@ -1023,21 +1023,30 @@ bflist="$BFS"
 
   if ((do_all || do_tests ) && (do_tests != -1)) {
     inflsz = caz(FailedList)
-chdir(Testdir)
+    chdir(Testdir)
 //  get a list of asl files in this dir and run them
      chdir("Tests")
 //<<"Doing Tests"
 //!!"pwd"
 
-TS=!!"ls *.asl"
-//<<"$(typeof(TS)) $TS\n"
-tslist="$TS"
+  TS=!!"ls *.asl"
+
+<<"$(typeof(TS)) $TS\n"
+//<<"$TS\n"
+
+ tslist="$TS"
+
 //<<"$(typeof(tslist)) $tslist\n"
+
+<<" $tslist\n"
+
+ //  test_list = ssub(tslist,".asl",",",0)
    test_list = ssub(tslist,".asl",",",0)
+   <<"$test_list\n"
    test_list = scut(ssub(test_list," ","",0),-1)
    
 //<<"%V $test_list\n"
-     RunDirTests("Tests",test_list);
+  RunDirTests("Tests",test_list);
   outcome("TESTS")    
   }
 

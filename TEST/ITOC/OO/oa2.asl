@@ -45,7 +45,7 @@ int i = 0;
 chkN(i,0);
 
 <<"$i \n"
-
+!a
  iv2 = i.pinfo();
 
 <<"$iv2 \n"

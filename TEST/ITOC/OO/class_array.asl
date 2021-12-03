@@ -16,7 +16,7 @@
 
 //debugON()
 
- allowErrors(-1)
+allowErrors(-1)
 
 chkIn (_dblevel); 
 
@@ -36,7 +36,7 @@ int km2 = 14;
  MIV[km2] = 79;
 <<"$MIV\n"
 
-MIV<-pinfo();
+MIV.pinfo();
 
 
 chkN(MIV[7],3)
@@ -46,7 +46,7 @@ chkN(MIV[km],78)
 MIV[0:12] = -16
 
 
-MIV<-pinfo();
+MIV.pinfo();
 
 
 
@@ -61,22 +61,22 @@ public:
  int IV[30];
  int id;
 
- cmf Print(int wa) 
+ void Print(int wa) 
  {
    k = IV[wa]
    <<"$wa $k \n"
  }
  
-cmf Set(int s)
+int Set(int s)
  {
      <<"$_cobj $s\n" 
      <<"%V$type\n"
      type = s;
-     type<-pinfo();
+     type.pinfo();
      return type;
  }
  
-  cmf Get()
+ int Get()
  {
  <<"$_proc  Get\n"
 //!i type
@@ -85,7 +85,7 @@ cmf Set(int s)
  }
 
 
- cmf Set(int wi, int val)
+ void Set(int wi, int val)
  {
     <<"%V $wi $val\n"
   // <<"$IV[::] \n"
@@ -93,7 +93,7 @@ cmf Set(int s)
   // <<"$IV[::] \n" 
  }
 
- cmf showIV()
+ void showIV()
   {
 //mas = memaddr(&I[0])
 
@@ -101,7 +101,7 @@ cmf Set(int s)
 
 // <<"memcpy to %u $mad from $mas #bytes $nbytes\n"
 //   memcpy(mad, mas, nbytes)
-     IV<-pinfo()
+     IV.pinfo()
 //<<"%V $IV[::] \n"
 
 <<"%V $IV[8]\n"
@@ -115,14 +115,14 @@ cmf Set(int s)
 
      OC++;
 
-    type<-pinfo();
-n_actv<-pinfo()
+    type.pinfo();
+n_actv.pinfo()
 
-IV<-pinfo()
+IV.pinfo()
 
  IV[0:12] = 1;
 
-IV<-pinfo()
+IV.pinfo()
 
 
 <<"%V$I \n"
@@ -133,8 +133,6 @@ IV<-pinfo()
     SC++;
 
      IV[23] = SC;
-
-
   
 
      k = IV[0];
@@ -157,11 +155,11 @@ IV<-pinfo()
 
 int agv =8;
 
-agv<-pinfo();
+agv.pinfo();
 
 Dil E;
 
-E<-pinfo()
+E.pinfo()
 
    E->showIV();
 
@@ -310,7 +308,7 @@ X[3]->Set(5)
 
 
 j= 2
-j<-pinfo()
+j.pinfo()
 k= 44;
 
  X[j]->Set(k)

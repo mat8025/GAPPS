@@ -29,7 +29,7 @@ class Rec {
 public:
     svar srec;
     int a;
-
+// currently need cmf keyword for constructor
   cmf Rec ()
     {
       <<"constructing $_proc $_cmf  \n"
@@ -130,26 +130,26 @@ class Add
   }
 
 
-  cmf sum (real a,real b)
+  real sum (real a,real b)
   {
    t = a +b;
    return t;
   }
 
-  cmf sum (int a,int b)
+  int sum (int a,int b)
   {
    t = a +b;
    return t;
   }
 
-  cmf diff (int a,int b)
+  int diff (int a,int b)
   {
 //  int t;
    t = a -b;
    return t;
   }
 
-  cmf say()
+  str say()
   {
    <<"$_proc hey there I exist\n"
    isay="hey hey"
@@ -157,7 +157,7 @@ class Add
    //return isay;
   }
 
-  cmf isay()
+  str isay()
   {
    <<"$_proc hey there I exist\n"
    isay="Do what I say"
@@ -215,8 +215,6 @@ chkN(s,126)
 chkN(s,-32);
 
 <<"%V $s $(typeof(s))\n"
-
-
 
 
    s= mc->diff(47,79);

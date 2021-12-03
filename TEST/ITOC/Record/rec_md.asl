@@ -37,12 +37,17 @@
    chkN("init Array zero ",MD[0][-1],0);
 
    MD[0][1] = 79;
+    mda =  MD[0][1];
+<<"%V $MD[0][1] $mda \n"
+
 
    chkN("Set element",MD[0][1],79);
 
-   MD[0][0:8:1] = 79;
+   MD[0][0:8:1] = 77;
 
-   chkN("set subset of elements",MD[0][8],79);
+<<"$MD[0][::]\n"
+
+   chkN("set subset of elements",MD[0][8],77);
 
    MD[1][::] = 80;
 
@@ -123,7 +128,7 @@ val.pinfo()
 
    <<"after subscript RHS\n";
 
-   RSV->info(1);
+   RSV.pinfo();
 
    <<"$RSV\n";
 
@@ -135,7 +140,7 @@ val.pinfo()
 
    RV =V;
 
-   RV->info(1);
+   RV.pinfo();
 
    <<"$RV\n";
 

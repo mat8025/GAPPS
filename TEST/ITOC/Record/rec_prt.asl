@@ -28,12 +28,12 @@ record R[5];
 
 wrow= 1;
 wcol=2;
-R->info(1)
+R.pinfo()
 
 val = R[wrow][wcol];
 wrd= "$R[wrow][wcol]";
 
-R->info(1)
+R.pinfo()
 
 <<"$wrow $wcol  $val <|$wrd|>\n"
 
@@ -67,9 +67,9 @@ wrd= "$R[1][2]";
 wrow = 1;
 wcol = 2;
 
-R->info(1)
+R.pinfo()
 wrd= "$R[wrow][wcol]";
-R->info(1)
+R.pinfo()
 <<"%V$wrow $wcol  $wrd\n"
 
 chkStr(wrd,"devil")
