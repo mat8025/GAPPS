@@ -28,13 +28,22 @@ if (_dblevel >0) {
    debugON()
    <<"$Use_\n"   
 }
-/*
-filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
-filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e","ds_storesiv");
-filterFuncDebug(REJECT_,"vrealloc","init");
-*/
+
+filterFileDebug(REJECT_,"scope","args","ds_store","tok");
+//filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e","ds_storesiv");
+filterFuncDebug(REJECT_,"store","vrealloc","init");
+
 
 chkIn(_dblevel)
+
+
+int k = 371:
+
+<<"$k \n"
+
+chkN(k,371)
+
+
 
 
 int I[10] = {0,1,2,3,4,5,6,7,8,9};
@@ -54,6 +63,8 @@ int A[] = {1,2,3,4}
  chkN(sum,10)
 
 
+//A[77] = X;  // test will create error X not defined at this point
+
 
 
 sum = Sum({1,2,3,4,5,6,7,8,9,10});  
@@ -63,6 +74,7 @@ sum = Sum({1,2,3,4,5,6,7,8,9,10});
 
 
 chkN(sum,55)
+
 
 
 
@@ -182,7 +194,9 @@ sz = Caz(g)
 g[1:6:1].SetReal({1,2,3,4,5,6})
 
 <<"$g\n"
-  
+
+
+
 float rv[10];
 
 rv[0] = 19;
@@ -568,6 +582,9 @@ R.pinfo();
 
 <<"\n %v $AV[0:10] \n"
 
+chkOut()
+
+//  TBF 12/03/21 --- crash ahead!!
 
    B = AV
 

@@ -312,32 +312,32 @@ void goo(ptr a)
   
   <<"ma %u $ma \n"
   
-   memfill(ma,INT,80)
+   memfill(ma,INT_,80)
   
   <<"%V $n  $(periodicName(n))\n"
   
-   memfill(ma,INT,50)
-  
-  <<"%V $n  $(periodicName(n))\n"
-  
-  
-   memfill(ma,INT,80)
+   memfill(ma,INT_,50)
   
   <<"%V $n  $(periodicName(n))\n"
   
   
-   memfill(ma,INT,79)
+   memfill(ma,INT_,80)
+  
+  <<"%V $n  $(periodicName(n))\n"
+  
+  
+   memfill(ma,INT_,79)
   
   <<"%V $n  $(periodicName(n))\n"
   
   
   
-   memfill(ma,INT,47)
+   memfill(ma,INT_,47)
   
   <<"%V $n  $(periodicName(n))\n"
   
   
-   memfill(ma,INT,28)
+   memfill(ma,INT_,28)
   
   <<"%V $n  $(periodicName(n))\n"
   
@@ -350,12 +350,12 @@ void goo(ptr a)
   <<"ma %u $ma \n"
    ma = memaddr(&I[3])
   <<"ma %u $ma \n"
-   memfill(ma,INT,0xa600ddeed)
+   memfill(ma,INT_,0xa600ddeed)
    ma = memaddr(&I[4])
   <<"ma %u $ma \n"
   
   
-   memfill(ma,INT,0xace2face)
+   memfill(ma,INT_,0xace2face)
   
   <<"%X $I[0] $I[1] $I[2] $I[3] $I[4] \n"
   <<"\n OCTDUMP \n"
@@ -388,11 +388,11 @@ void goo(ptr a)
   // AV[0:20:2] = 3
   
   
-   AV[0:20:2]<-Set(3)
+   AV[0:20:2].Set(3)
   
   <<" $AV \n"
   
-   b[0:20:2]<-Set(2,4)
+   b[0:20:2].Set(2,4)
   
   <<"%v $b \n"
   
@@ -406,7 +406,7 @@ void goo(ptr a)
   
   <<" ptr %v $d \n"
   
-   AV[0:20:2]<-Set(4,3)
+   AV[0:20:2].Set(4,3)
   
   <<" reset %v $AV \n"
   
@@ -418,7 +418,7 @@ void goo(ptr a)
   
   <<"%v $c \n"
   
-    d[0:20:2]<-Set(5,3)
+    d[0:20:2].Set(5,3)
   
   
   <<"%v $AV \n"

@@ -188,6 +188,7 @@
 
      chkR (wrl, -2);
 
+
      rl[kp] = rl[j1] - rl[j2];
 
      <<"%V $kp  $j1 $j2 \n";
