@@ -45,7 +45,7 @@ int i = 0;
 chkN(i,0);
 
 <<"$i \n"
-!a
+
  iv2 = i.pinfo();
 
 <<"$iv2 \n"
@@ -121,7 +121,7 @@ class Act {
      return otype;
  }
  
- cmf Set(svar sa)
+ svar Set(svar sa)
  {
      <<"Act Set SVAR $_cobj \n"
       sa.pinfo()
@@ -139,16 +139,18 @@ class Act {
 
  Str Set(str sr)
  {
-     <<"Act Set  STR $_cobj \n" 
-      stype = sr;
+     <<"Act Set  STR $_cobj <|$sr|> \n" 
+
+      stype = sr; // fail?
+      
       sr.pinfo()
       stype.pinfo()      
-     <<"sr  <|$sr|> stype $stype\n"
+     <<"sr  <|$sr|> stype <|$stype|>\n"
 !z     
      return stype;
  }
 
- cmf Get()
+ int Get()
  {
  <<"$_proc  Get %V $otype\n"
      otype.pinfo()
@@ -156,7 +158,7 @@ class Act {
    return otype;
  }
  
- cmf GetWD()
+ int GetWD()
  {
  <<"$_proc  GetWD\n"
 
@@ -262,7 +264,7 @@ chkN(at,od)
 
 //chkOut()
 
-chkStage(" Array Obj reference")
+chkStage("Array Obj reference")
 
 str S = "hey how are you"
 

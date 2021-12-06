@@ -108,7 +108,7 @@ storeSiv
 Fixed argref flag sticks
 11/29/21 17:23
 |>
-<|P
+<|F
 14
 11/30/21 08:05
 msquare.asl
@@ -116,11 +116,26 @@ array_subset
 Fixed  I[0][::]  range sep parse
 11/30/21 09:05
 |>
-<|P
-id
-din
-code
-cpp
-fix
-dout
+<|F
+15
+12/04/21 08:51
+vvcopy
+ic_pushref.cpp
+PUSH_REFARG - clears range,subsc flags
+12/04/21 09:14
+|>
+<|F
+16
+12/05/21 07:06
+oa2.asl
+ds_storestr
+rework storetype ds_storestr
+12/05/21 10:06
+|>
+<|F
+17
+12/05/21 10:57
+lists.asl
+vmf_list,gs_lists cpp
+12/05/21 14:23
 |>

@@ -35,7 +35,7 @@
 
    nrows = 7;
 
-chkT(0)
+
 
    n_feat = 8;
 

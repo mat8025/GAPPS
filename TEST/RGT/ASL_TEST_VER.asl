@@ -349,13 +349,10 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
     inflsz = caz(FailedList)
 
-
     RunDirTests("Bops","bops,fvmeq,fsc1,mainvar,snew");
 
 
     RunDirTests("Assign","assign");
-
-
 
     Run2Test("Bops")
 
@@ -685,13 +682,15 @@ if ((do_all || do_array ) && (do_array != -1)) {
 
    RunDirTests("VVcopy","range_copy,vvcopy")
 
+  RunDirTests("ArraySubSet","arraysubset,array_subvec,array_subsref,arraysubscbyvec,array_ele_incr,vdec")
+
    RunDirTests("Array","ae,array_cmp,array_ele")
 
    RunDirTests("Array","dynarray,lhe,vec_cat,array_sr,mdele,vsp")
 
    RunDirTests("ArrayRange","arrayrange,array_subsrange,lhrange")
 
-  RunDirTests("ArraySubSet","arraysubset,array_subvec,array_subsref,arraysubscbyvec,array_ele_incr,vdec")
+  
 
   RunDirTests("ArrayJoin","arrayjoin")
 

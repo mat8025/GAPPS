@@ -309,8 +309,10 @@ A.pinfo()
    nc=vvcopy(A,BM,20,ALWAYS_,0,1,1,0,20);
 
    <<"$nc \n";
+   <<"%V$BM\n";
+   <<"%V$A\n";
 
-   <<"$A\n";
+<<"%V$A[0] $A[1]\n"
 
    chkN(A[0],20);
 

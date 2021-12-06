@@ -30,7 +30,27 @@
 
    <<"%V $ws  $_script\n";
 
-chkT(1)
+    L0 = ( "a", "minimal" , "list" );
+
+    L0.pinfo();
+
+<<"$L0 \n"
+
+
+
+    li = L0.getLitem(-1);
+    li.pinfo();
+
+<<"hot item is $li \n";
+
+    li1 = L0[1];
+
+<<"%V $li1 \n";
+
+chkStr(li1,"minimal");
+
+chkStr(li,"list");
+
 
 
 
@@ -60,13 +80,23 @@ chkT(1)
 
   <<"%V$m \n";
 
-  <<"$J\n";
+  <<"%V$J\n";
 
   chkN(m,4,GTE_);
 
   L1 = ( "a", "small" , "list" , "1", "2", "3", "4", "5" ,"6" ,"yellow", "green", "blue" ,"indigo", "violet");
 
-  <<"$L1 \n";
+
+
+  <<"%V$L1 \n";
+  <<"%V$L1[2] \n";
+
+  li = L1.getLitem()
+
+<<"%V$li \n";
+
+  L1.pinfo()
+
 
   l0 = L1[0];
 
@@ -88,6 +118,8 @@ chkT(1)
   fw.pinfo();
 
   chkStr(fw,"yellow");
+
+
 
   fw = L1[9];  
 
@@ -223,9 +255,6 @@ chkT(1)
   <<"fw $fw\n";
 
   chkStr(fw,"lovely");
-
-
-
 
 
   litem = "focus";

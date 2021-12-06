@@ -35,9 +35,18 @@
 
      <<"$_proc $a1\n";
 
-     a1.pinfo();
+     str la1;
 
-     pinfo(a1);
+     la1 = a1;
+     
+     a1.pinfo();
+     la1.pinfo();
+
+<<"%V $la1 ==  $a1 \n"
+
+
+
+
 
      a2= a1;
 
@@ -86,6 +95,20 @@
    a3=woo("jetzt vortreten");
 
    <<"$a3\n";
+
+str fphrase = "pour le faire"
+
+   a7=woo(fphrase);
+
+   <<"$a7\n";
+
+fphrase = "para que puede"
+
+   a8=woo(fphrase);
+
+   <<"$a8\n";
+
+
 
    chkOut();
 

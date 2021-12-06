@@ -179,12 +179,12 @@ str pgxname = "xy";
 
 
 
-        nl = slen(pgname);
+            nl = slen(pgname);
 
 	    pgxname = Tp[i];
 
 
-//<<" $i  <|$Tp[i]|>  <|$pgname|>  <|$pgxname|> \n"
+//<<"[$i]  $nl <|$Tp[i]|>  == <|$pgname|> ==  <|$pgxname|> \n"
 
          if (nl > 0) {
 	     //<<"%V$pgname \n"
@@ -195,7 +195,8 @@ str pgxname = "xy";
 
 	// do_carts(Tp[i] );
 	
-          cart_xic (pgxname);
+          //cart_xic (pgxname);
+	  cart_xic (pgname);
 
          }
       
@@ -249,14 +250,14 @@ int scoreTest(str itname)
 
 //   itname.pinfo();
 
-   tname = itname;
+ //  tname = itname;
 
 //   tname.pinfo();
 
-        RT=ofr(tname);
+        RT=ofr(itname);
        
-//<<"$_proc $tname fh $RT \n"
-
+//<<"fh $RT \n"
+//!a
     //RT.pinfo()
 
 
@@ -304,9 +305,9 @@ int scoreTest(str itname)
           rt_pass += npass;
 	  took = rtwords[12];
 	  tmsecs =atoi(took);
-	  wextn = scut(tname,-4);
+	  wextn = scut(itname,-4);
 	 // <<"$tname $wextn \n"
-          if ((sele(tname,-1,-4)) @= "xtst") {
+          if ((sele(itname,-1,-4)) @= "xtst") {
             x_time += tmsecs; 
 	    	    //<<"%V $x_time\n"
           }
@@ -338,8 +339,8 @@ else {
 
           if (pcc != 100.0) {
 	  //<<"${Curr_dir} inserting $tname into failed list \n"
-            FailedList.Insert("${Curr_dir}/${tname}")
-	    <<"${Curr_dir}/${tname}\n"
+            FailedList.Insert("${Curr_dir}/${itname}")
+	    <<"${Curr_dir}/${itname}\n"
 	  //<<[Tff]"${Curr_dir}/${tname}\n"  
           }
      }
@@ -447,24 +448,32 @@ str prg;
 // variable length args ??
 
 
-void cart_xic(Str aprg)
+void cart_xic(Str prg)
 {
 
 
 //aprg.pinfo()
 
 str  xwt_prog;
-str prg = "xxxxxxxxxxxxxxxxx";
+str lprg = "xxxxxxxxxxxxxxxxx";
 
-prg = aprg;
+lprg = prg;
 
 //prg.pinfo();
+//lprg.pinfo();
 
-//<<" $_proc  aprg <|$aprg|> prg <|$prg|> \n"
+if (!scmp(lprg,prg)) {
+<<"FAIL $_proc  lprg <|$lprg|> ==  prg <|$prg|> \n"
+
+}
 
 
 
-foundit = fexist(prg) ;
+//<<"looking for xic file <|$prg|>  \n"
+
+     foundit = fexist(prg) ;
+
+//prg.pinfo();
 
 //<<"looking for xic file <|$prg|>  found? $foundit \n"
 
@@ -550,7 +559,9 @@ void cart_xic(Str aprg, Str a1)
      xwt_prog = "$tim ./${aprg}:$a1"
 //str aa = a1
 
-      doxictest("./$aprg", "$a1")
+     // doxictest("./$aprg", "$a1")
+
+  doxictest(aprg, a1)
       
       tst_file = "${aprg}.xtst";
 
@@ -579,22 +590,22 @@ if (!do_module) {
 //================================//
 
 
-void cart (str aprg)
+void cart (str prg)
 {
 
-// <<"$_proc <|$aprg|> \n"
+//<<"$_proc <|$prg|> \n"
 
   //aprg.pinfo()
 
   int wlen;
-  str prg; // TBF  not copied!!
+//  str prg; // TBF  not copied!!
 
 
-  prg = aprg; // TBF  not copied!!
+  //prg = aprg; // TBF  not copied!! ///
 
-
-  //prg.pinfo()
-//<<"%V $_proc $prg  $aprg  \n"  
+ // aprg.pinfo()
+ // prg.pinfo()
+//<<"$_proc  prg <|$prg|> ==   aprg <|$aprg|>  arg copied correctly?  \n"
 
   str wstr ="";
  //  in_pargc = _pargc;
@@ -690,7 +701,7 @@ void cart (str aprg)
 
 
 
-void cart (Str aprg,  Str pa1)
+void cart (Str prg,  Str pa1)
 {
 
 //<<"$_proc  $aprg $a1\n"
@@ -700,9 +711,9 @@ void cart (Str aprg,  Str pa1)
 //   aprg.pinfo()
 //   pa1.pinfo()
 
-   str prg;
+   str aprg;
    str a1;
-   prg = aprg;
+//   prg = aprg;
   
  //  prg->pinfo()
 
