@@ -137,5 +137,64 @@ rework storetype ds_storestr
 12/05/21 10:57
 lists.asl
 vmf_list,gs_lists cpp
+storeStr,:expandStr
 12/05/21 14:23
+|>
+<|P
+18
+12/06/21 06:53
+class2.asl
+public: member    svar srec;
+main reference<<"$FI[0]->srec[::] \n"
+ic_getsiv.cpp GetObjMemberSivp: @514 ERROR can't find objsivp!
+fix_date
+|>
+<|P
+id_num
+in_date
+script exp
+code
+fix_date
+|>
+<|P
+id_num
+in_date
+script exp
+code
+fix_date
+|>
+<|P
+id_num
+in_date
+script exp
+code
+fix_date
+|>
+<|P
+id_num
+in_date
+script exp
+code
+fix_date
+|>
+<|P
+id_num
+in_date
+script exp
+code
+fix_date
+|>
+<|P
+id_num
+in_date
+script exp
+code
+fix_date
+|>
+<|P
+id_num
+in_date
+script exp
+code
+fix_date
 |>

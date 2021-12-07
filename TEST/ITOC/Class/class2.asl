@@ -10,7 +10,14 @@
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-  
+
+
+ 
+<|Use_=
+   simple class svar member
+|>
+
+
 #include "debug"
 
 if (_dblevel >0) {
@@ -29,6 +36,21 @@ class Rec {
 public:
     svar srec;
     int a;
+
+   str Get( int wf)
+   {
+      str val;
+      val = srec[wf];
+      return val;
+   };
+
+
+   str Set(str val, int wf)
+   {
+      srec[wf] = val;
+      return srec[wf];
+   };
+   
 // currently need cmf keyword for constructor
   cmf Rec ()
     {
@@ -52,43 +74,48 @@ loc = Split("how did we get here")
 
  FI[0]->srec = Split("how did we get here")
 
-<<"$FI[0]->srec[::] \n"
+ <<"$FI[0]->srec[::] \n"
 
 
  r00 = FI[0]->srec[0];
 
+<<"%V $r00 \n"
+
+  chkStr(r00,"how");
+
+
+
+
  r01 = FI[0]->srec[1];
 
- r02 = FI[0]->srec[2];
+<<"%V $r01 \n"
 
-<<"$(typeof(r00)) \n"
+  chkStr(r01,"did");
+
+  
+
+ r02 = FI[0]->Get(2);
+
+  chkStr(r02,"we");
+
 
 <<"%V $r00 $r01 $r02\n"
+
+
 
  FI[1]->srec = Split("just evolved with many trials")
 
+<<"$FI[1]->srec[::] \n"
 
- r00 = FI[0]->srec[0];
-
- r01 = FI[0]->srec[1];
-
- r02 = FI[0]->srec[2];
-
-<<"$(typeof(r00)) \n"
-
-<<"%V $r00 $r01 $r02\n"
 
  r10 = FI[1]->srec[0];
 
  r11 = FI[1]->srec[1];
 
- r12 = FI[1]->srec[2];
+ r12 = FI[1]->Get(2);
 
 
 <<"%V $r10 $r11 $r12\n"
- chkStr(r00,"how");
- 
- chkStr(r02,"we");
 
  r10 = FI[1]->srec[0];
 
@@ -108,6 +135,21 @@ chkStr(r11,"evolved");
 chkStr(r12,"with");
 
 
+  ans=FI[3]->Set("Yes",2)
+
+
+  r32 = FI[3]->Get(2)
+
+<<"%V$r32 $ans\n"
+
+chkStr(r32,"Yes");
+
+
+ r12 = FI[1]->Get(2);
+ 
+chkStr(r12,"with");
+
+chkOut()
 
 ////////////////////////
 int Obid = 0;

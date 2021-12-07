@@ -58,15 +58,16 @@ if (_clarg[1] != NULL_) {
 
 if (_clarg[1] != "") {
 
-
-
-
    tval = atoi(_clarg[1]);
 }
 
 <<"%V $tval $na $_clarg[0] $_clarg[1]  \n"
 no_throws =0;
 caught = 0;
+
+ tval.pinfo()
+
+!a
  try {
 
   <<" estoy intentando  \n"
@@ -83,7 +84,7 @@ caught = 0;
    }
 
   if (tval > 30) {
-  <<" preparing to throw $tval\n"
+  <<" $tval > 30 preparing to throw $tval\n"
      throw tval;
    }
 
@@ -112,8 +113,7 @@ caught = 0;
 <<" %V there were no throws$no_throws  \n"
   chkN(no_throws,1)
  }
-
-
+ 
 
 
 
