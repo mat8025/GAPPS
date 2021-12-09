@@ -140,35 +140,37 @@ vmf_list,gs_lists cpp
 storeStr,:expandStr
 12/05/21 14:23
 |>
-<|P
+<|F
 18
 12/06/21 06:53
 class2.asl
 public: member    svar srec;
 main reference<<"$FI[0]->srec[::] \n"
 ic_getsiv.cpp GetObjMemberSivp: @514 ERROR can't find objsivp!
-fix_date
+work around - remove call in Pic - no obj on stack
+12/06/21 09:30
 |>
-<|P
-id_num
-in_date
-script exp
-code
-fix_date
+<|F
+19
+12/06/21 15:51
+trythrowcatch.asl
+try_e.cpp  sexp(throw_expression,&result)
+throw_val = result->getAsInt()
+12/07/21 13:08
 |>
-<|P
-id_num
-in_date
-script exp
-code
-fix_date
+<|F
+20
+12/08/21 09:00
+arrayrange  <"%V$B[3:0:-1] \n" - not following range spec
+parrayexpand
+12/08/21 12:23
 |>
-<|P
-id_num
-in_date
-script exp
-code
-fix_date
+<|F
+21
+12/09/21 09:24
+arrayrange  - neg start - mem corruption?
+ds_sivrange
+12/09/21 15:55
 |>
 <|P
 id_num

@@ -978,3 +978,9 @@ oo_class_def.cpp                    2.64  11/29/2021 23:26:33  CopyScalar
 storetype_e.cpp                     0.1  12/05/2021 10:08:10  refactor
 ds_storestr.cpp                     1.76  12/05/2021 19:13:55  PROC_ARG_REF psiv
 paramexpsvar.cpp                    1.35  12/06/2021 07:20:27  expandStr
+paramexpand.cpp                      2.74  12/09/2021 15:57:24  range
+parrayexpand.cpp                     2.73  12/09/2021 15:57:50  getNextEle range
+ds_sivrange.cpp                      2.1  12/09/2021 15:58:39  neg ranges start
+ds_arraycopy.cpp                     2.72  12/09/2021 16:00:36  UNSET check
+ds_sivarray.cpp                      2.74  12/09/2021 16:01:36  UNSET check
+getvar_e.cpp                         2.46  12/09/2021 16:07:38  str ==> num in Sexp ans

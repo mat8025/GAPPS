@@ -23,7 +23,7 @@
 if (_dblevel >0) {
    debugON()
 }
-
+ allowErrors(-1);
 
 chkIn(_dblevel)
 
@@ -31,12 +31,16 @@ chkIn(_dblevel)
 
 <<"simple class test\n"
 
-class Rec {
+
+int Rec_id = 0;
+
+class Arec {
 
 public:
     svar srec;
     int a;
-
+    int id;
+    
    str Get( int wf)
    {
       str val;
@@ -52,29 +56,51 @@ public:
    };
    
 // currently need cmf keyword for constructor
-  cmf Rec ()
-    {
-      <<"constructing $_proc $_cmf  \n"
-      a = 1;
-    }
+  cmf Arec ()
+  { 
+    
+      id=Rec_id++;
+
+     a = 1;
+      
+      //id = Rec_id;
+       <<"constructing  %V $id  $Rec_id\n"
+
+    };
 
 }
 //===========================//
 
-Rec FI[10];
+Arec R;
 
- svar loc;
+
+Arec FI[5];
+
+chkT(1)
+
+svar loc;
 
 loc = Split("how did we get here")
 
+
+
+
 <<"$loc[1]\n"
 
-<<"$loc[::]\n"
+//<<"$loc[::]\n"
 
 
  FI[0]->srec = Split("how did we get here")
 
- <<"$FI[0]->srec[::] \n"
+
+<<"$FI[0]->srec[2] \n"
+
+
+<<"$FI[0]->srec[0:2:1] \n"
+
+
+
+<<"$FI[0]->srec[::] \n"
 
 
  r00 = FI[0]->srec[0];

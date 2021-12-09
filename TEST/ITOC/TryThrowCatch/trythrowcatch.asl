@@ -67,7 +67,7 @@ caught = 0;
 
  tval.pinfo()
 
-!a
+
  try {
 
   <<" estoy intentando  \n"
@@ -85,6 +85,7 @@ caught = 0;
 
   if (tval > 30) {
   <<" $tval > 30 preparing to throw $tval\n"
+     tval.pinfo()
      throw tval;
    }
 
@@ -96,7 +97,9 @@ caught = 0;
 
  catch(int ball)
   {
+ball.pinfo();
 <<" caught $ball\n"
+
 
     chkN(ball,tval);
     no_throws = 0;

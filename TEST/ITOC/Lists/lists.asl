@@ -22,7 +22,7 @@
      debugON();
 
      }
-<<[2]"running lists $_script\n"     
+//<<[2]"running lists $_script\n"     
 
    chkIn(_dblevel);
 

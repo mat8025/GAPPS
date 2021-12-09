@@ -26,10 +26,12 @@
  }
 
 
-filterFileDebug(REJECT_,"scope","args","rdp","exp");		
+//filterFileDebug(REJECT_,"scope","args","rdp","exp");		
 //filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
 
    chkIn(_dblevel);
+
+int do_minus_range =1;
 
    int V[10];
 
@@ -149,6 +151,8 @@ filterFileDebug(REJECT_,"scope","args","rdp","exp");
 
    D= B[1:-2];
 
+<<"after   D= B[1:-2]; \n"
+
    <<"%V$D\n";
 
    <<"%V$B[1:-2]\n";
@@ -156,6 +160,9 @@ filterFileDebug(REJECT_,"scope","args","rdp","exp");
    chkN (D[0],1);
 
    chkN (D[2],3);
+
+   D[11] = 11;
+
 
    D= B[-1:0:-1];
 
@@ -179,7 +186,7 @@ filterFileDebug(REJECT_,"scope","args","rdp","exp");
 
    chkN (D[2],6);
 
-   <<"circular buffer  B[-1:8:1] \n";
+   <<"circular buffer  $B[-1:8:1] \n";
 
    B.pinfo();
 
@@ -196,10 +203,11 @@ filterFileDebug(REJECT_,"scope","args","rdp","exp");
    chkN(Z[0],1);
    chkN(Z[1],2);   
 
-   //B.pinfo()
-  // <<"%V$B\n"
+//   B.pinfo()
 
-   Z= B[-1:7:1];
+<<"%V$B\n"
+
+   Z= B[-1:7:1]; //[-1:7:1]
 
    <<"%V$Z\n";
 
@@ -208,33 +216,49 @@ filterFileDebug(REJECT_,"scope","args","rdp","exp");
    chkN(Z[1],0);
 
 
-
+//chkOut()
 
 
    chkN(Z[2],1);
 
    chkN(Z[3],2);
 
-   E= B[-1:8:1];
+ //     E= B[1:8:1];
+
+   E= B[1:8:1];
 
    <<"%V$E\n";
 
-   chkN (E[0],9);
+   chkN (E[0],1);
 
 
-
-
-   F= B[-1:8:1];
+   F= B[-1:8:1];  // -1:8:1]; 
 
    <<"%V$F\n";
 
    D.pinfo();
 
-   D= B[-1:8:1];
+   D[11] = 7;
+
+   D.pinfo();
+   B.pinfo()
+<<"before  D= B[-1:8:1]; \n"
+ //  D= B[9:8:1];
+ D= B[-1:8:1]; 
+//  <<"%V$D\n";
+
+   D.pinfo();
+
+// D= B[-1:7:1];
+
+ //  D= B[9:8:1];
+
 
    <<"%V$D\n";
 
-   <<"B[-1:2:1] $B[-1:2:1]   \n";
+
+
+ //  <<"B[-1:2:1] $B[-1:2:1]   \n";
 
    chkN (D[0],9);
 
@@ -246,11 +270,16 @@ filterFileDebug(REJECT_,"scope","args","rdp","exp");
 
 
 
-   D= B[-2:2:1];
-
+   D= B[-2:2:1]; // -2:2:1
+  // D= B[0:2:1]; // -2:2:1
    <<"%V$D\n";
 
-   <<"%V$B[-2:2:1] \n";
+D.pinfo()
+B.pinfo()
+
+ if (do_minus_range) {
+  <<"%V$B[-3:2:1] \n";
+ }
 
    chkN (D[0],8);
 
@@ -258,36 +287,36 @@ filterFileDebug(REJECT_,"scope","args","rdp","exp");
 
    <<" 3:3:1 \n";
 
+D.pinfo()
+    D[20] = 20;
+    
    D= B[4:3:1];
 
    <<"%V$D\n";
-
-   <<"%V$B[3:3:1] \n";
+D.pinfo()
+//   <<"%V$B[3:3:1] \n";
 //chkN (D[0],3)
 //chkN (D[5],3)
 
    <<" 3:3:-1 \n";
 
-   D= B[3:3:-1];
+   D= B[3:0:-1];
 
    <<"%V$D\n";
-//<<"%V$B[3:3:-1] \n"
 
-   <<" 3:3:0 \n";
+ if (do_minus_range) {
+   <<"%V$B[3:0:-1] \n"
+}
+
+
+<<" 3:3:0 \n";
 
    D= B[3:3:0];
 
    <<"%V$D\n";
 
+chkN (D[0],3)
 
-
-/*
-
-     <<"%V$B[3:3:-1] \n";
-
-*/
-//chkN (D[0],3)
-//chkN (D[5],3)
 
    D = B[-3:4:-1];
 
