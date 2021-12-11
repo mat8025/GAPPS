@@ -1,302 +1,290 @@
-//%*********************************************** 
-//*  @script proc.asl 
-//* 
-//*  @comment test proc syntax/operation 
-//*  @release CARBON 
-//*  @vers 1.2 He Helium [asl 6.2.50 C-He-Sn]                              
-//*  @date Sat May 23 23:27:05 2020 
-//*  @cdate Fri Apr 17 23:49:26 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+   *  @script proc.asl
+   *
+  *  @comment test proc syntax/operation
+  *  @release
+  *  @vers 1.3 Li Lithium [asl 6.3.65 C-Li-Tb]
+  *  @date 12/10/2021 09:44:56
+  *  @cdate
+  *  @author
+  *  @Copyright © RootMeanSquare  2010,2021 →
+  *
+  *  \\-----------------<v_&_v>--------------------------; //
+ */ 
+
 ///
 /// test proc
 ///
-
 #include "debug"
 
-if (_dblevel >0) {
-   debugON()
-}
+  if (_dblevel >0) {
 
+  debugON();
 
-chkIn(_dblevel)
+  }
 
+  chkIn(_dblevel);
 
-double Foo(double a)
-{
- <<" IN $_proc $a \n"
+  double Foo(double a)
+  {
 
+  <<" IN $_proc $a \n";
 // float tmp;
 
- tmp = a/2.0;
- tmp2 = a * 2.0;
-
-<<"%V $a $tmp $tmp2\n"
-
- return tmp;
-
-}
-//===================
-
-
-double Goo(real a)
-{
- <<" IN $_proc $a \n"
-/*
-   a<-pinfo();
-
-
   tmp = a/2.0;
-  tmp<-pinfo()
+
   tmp2 = a * 2.0;
-  tmp2<-pinfo()
-<<"%V $tmp $tmp2 \n"
+
+  <<"%V $a $tmp $tmp2\n";
+
+  return tmp;
+
+  }
+//===================//
+
+  double Goo(real a)
+  {
+
+  <<" IN $_proc $a \n";
+/*
+  a.pinfo();
+  tmp = a/2.0;
+  tmp.pinfo()
+  tmp2 = a * 2.0;
+  tmp2.pinfo()
+  <<"%V $tmp $tmp2 \n"
 */
+
+
   d =a * 2.0;
 
-  d<-pinfo();
+  d.pinfo();
 
- return d;
+  return d;
 
-}
+  }
 //===================
 
+  x = 20.2;
 
- x = 20.2
+  <<"%V $x\n";
 
-<<"%V $x\n"
- x<-pinfo()
+  x.pinfo();
 
- cy = Cos(x)
- 
- cy<-pinfo()
+  cy = Cos(x);
 
- y = Sin(cy)
+  cy.pinfo();
 
- y<-pinfo()
+  y = Sin(cy);
 
-<<"%V $y \n"
+  y.pinfo();
 
-y /= 2.0;
+  <<"%V $y \n";
 
-y<-pinfo()
+  y /= 2.0;
 
+  y.pinfo();
 //double gr =Goo(x)
-
 //double gr;
 
-gr =Goo(x)
+  gr =Goo(x);
 
-<<"%V $x $gr \n"
+  <<"%V $x $gr \n";
 
-gr<-pinfo()
+  gr.pinfo();
 
+  chkR(gr, (x*2));
 
-chkR(gr, (x*2))
+  gr.pinfo();
 
-gr<-pinfo()
+  x = 14.89;
 
+  gr=Goo(x);
 
+  <<"%V  $gr $x \n";
 
-x = 14.89
+  chkR(gr, (x*2));
 
-gr=Goo(x)
+  <<" $cy \n";
 
- <<"%V  $gr $x \n"
+  y = Sin(cy);
 
-chkR(gr, (x*2))
+  <<" $y \n";
 
+  y.pinfo();
 
-
-
-
-
-<<" $cy \n"
-
- y = Sin(cy)
-
-<<" $y \n"
-
-  y<-pinfo()
   y /= 2.0;
-  y<-pinfo()
-  
-  t = Foo(x)
 
-<<"$x $t \n"
+  y.pinfo();
 
+  t = Foo(x);
 
-  t = Foo(Cos(x))
+  <<"$x $t \n";
 
-<<"$x $t \n"
+  t = Foo(Cos(x));
 
+  <<"$x $t \n";
 
-  t = Foo(Sin(Cos(x)))
+  t = Foo(Sin(Cos(x)));
 
-<<"$t \n"
+  <<"$t \n";
 
-  t = Goo(x)
+  t = Goo(x);
 
-<<"%V $t \n"
+  <<"%V $t \n";
 
-  y<-pinfo()
-
+  y.pinfo();
 
   y = x/2.0;
 
-  y<-pinfo()
-  t = Foo(x)
-  
- t<-pinfo()
-<<"%V $x $y $t\n"
+  y.pinfo();
 
-  chkR (t,y,6)
+  t = Foo(x);
 
+  t.pinfo();
 
+  <<"%V $x $y $t\n";
 
-x = -20.2;
+  chkR (t,y,6);
 
- <<"%V $_proc $x \n"
+  x = -20.2;
 
- y = Cos(x)
+  <<"%V $_proc $x \n";
 
-<<" $y \n"
+  y = Cos(x);
 
- y = Sin(y)
+  <<" $y \n";
 
-<<" $y \n"
+  y = Sin(y);
 
- y /= 2
+  <<" $y \n";
 
+  y /= 2;
 
-  t = Foo(Sin(Cos(x)))
+  t = Foo(Sin(Cos(x)));
 
-<<"$x $t \n"
+  <<"$x $t \n";
 
-  chkR(t,y,6)
+  chkR(t,y,6);
 
+  x = -15.2;
 
- x = -15.2
+  y = Sin(x);
 
- y = Sin(x)
+  y = Cos(y);
 
- y = Cos(y)
+  <<" $y \n";
 
-<<" $y \n"
+  y /= 2;
 
- y /= 2
+  t = Foo(Cos(Sin(x)));
 
-  t = Foo(Cos(Sin(x)))
+  <<"$x $t \n";
 
-<<"$x $t \n"
+  chkR (t,y,6);
 
-  chkR (t,y,6)
+  x = -15.2;
 
- x = -15.2
+  y = Sin(x);
 
- y = Sin(x)
+  y = Cos(y);
 
- y = Cos(y)
+  y = Sin(y);
 
- y = Sin(y)
+  y /= 2;
 
- y /= 2
+  t = Foo(Sin(Cos(Sin(x))));
 
-  t = Foo(Sin(Cos(Sin(x))))
+  <<"$x $t \n";
 
-<<"$x $t \n"
+  chkR(t,y,6);
 
-  chkR(t,y,6)
+  x = -15.2;
 
+  y = Sin(x);
 
- x = -15.2
+  y = Cos(y);
 
- y = Sin(x)
+  y = Sin(y);
 
- y = Cos(y)
+  y = Sqrt(y);
 
- y = Sin(y)
+  y /= 2;
 
- y = Sqrt(y)
+  t = Foo(Sqrt(Sin(Cos(Sin(x)))));
 
- y /= 2
+  <<"$x $t \n";
 
-  t = Foo(Sqrt(Sin(Cos(Sin(x)))))
-
-<<"$x $t \n"
-
-  chkR (t,y,6)
-
-
-
-
-
-
+  chkR (t,y,6);
 //FIXME   t = foo(Cos(x))
 
-t = Foo(Cos(x))
+  t = Foo(Cos(x));
 
- <<"$x $t \n"
+  <<"$x $t \n";
 
-chkOut()
+  chkOut();
 
+  N = _clargs[1];
 
-N = _clargs[1]
+  <<" $_clargs[::] \n";
 
-<<" $_clargs[::] \n"
+  int k = 1;
 
-int k = 1
+  <<" START $k $N \n";
 
-<<" START $k $N \n"
+  a = 2;
 
- a = 2
- y = a
+  y = a;
 
-<<" $y = $a \n"
+  <<" $y = $a \n";
 
-proc poo()
-{
+  proc poo()
+  {
 // increments global k
 // does calc and returns that value   
-   k++
-   a= k * 2
-<<" in $_cproc %v $k $a\n" 
-}
 
+  k++;
 
-proc noo()
-{
-   k++
-   a= k * 4
-<<" in $_cproc %v $k $a\n" 
-    return a 
-}
+  a= k * 2;
 
+  <<" in $_cproc %v $k $a\n";
 
- k = 0
- while ( k < N) {
+  }
 
-<<" before poo call k is $k\n"
+  proc noo()
+  {
 
-    poo()
+  k++;
 
-<<" after poo call \n"
-<<" 2 after poo call \n"
+  a= k * 4;
 
- <<" poo a is $a k is now $k\n"
+  <<" in $_cproc %v $k $a\n";
 
- }
+  return a;
 
+  }
 
-<<" DONE $k $N \n"
+  k = 0;
 
-exit()
+  while ( k < N) {
 
+  <<" before poo call k is $k\n";
 
+  poo();
 
+  <<" after poo call \n";
+
+  <<" 2 after poo call \n";
+
+  <<" poo a is $a k is now $k\n";
+
+  }
+
+  <<" DONE $k $N \n";
+
+  exit();
 ////  TODO/FIX /////////////
 // does not move to statement after proc call
 // immediate statement after proc return is not executed
 
+//==============\_(^-^)_/==================//

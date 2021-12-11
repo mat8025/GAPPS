@@ -104,7 +104,8 @@ int cr =0;
 
 //<<"? $_clarg[1]\n"
 
-ESL="//===***===//"; 
+ESL='//==============\_(^-^)_/==================//';
+
 
   fname = _clarg[1];
 
@@ -174,6 +175,7 @@ ESL="//===***===//";
     is_define = 0;
     is_include = 0;
     is_proc = 0;
+    is_cmf = 0;    
     is_trailing_comment = 0;
     needs_semi_colon = 0;
     is_margin_call = 0;    
@@ -218,34 +220,34 @@ ESL="//===***===//";
     if (sl >= 1) {
          is_empty_line = 0;   
       scpy(nsv,eatWhiteEnds(NL));
-      <<[2]"check comment $nsv[0] $nsv[1] \n"; 
+      //<<[2]"check comment $nsv[0] $nsv[1] \n"; 
 
        is_define = scmp(nsv,"#define",7);
        is_include = scmp(nsv,"#include",8);
        is_case = scmp(nsv,"case",4);
 
-<<[2]"%s $nsv %v %d $is_define $is_include $is_case\n"
-<<[2]"nsv[0],[1]  $nsv[0]  $nsv[1]\n"
+//<<[2]"%s $nsv %v %d $is_define $is_include $is_case\n"
+//<<[2]"nsv[0],[1]  $nsv[0]  $nsv[1]\n"
 
       if ((nsv[0] == '/') && (nsv[1] == '/')) {
         is_comment = 1;
-        <<[2]"comment $NL\n"; 
+        //<<[2]"comment $NL\n"; 
         }
       else if ((nsv[0] == '/') && (nsv[1] == '*')) {
         is_comment = 1;
 	in_comment_blk = 1;
-        <<[2]"comment $NL\n"; 
+        //<<[2]"comment $NL\n"; 
         }
       else if ((nsv[0] == '*') && (nsv[1] == '/')) {
         is_comment = 1;
 	in_comment_blk = 0
 	  empty_line_cnt = -1;
-        <<[2]"end commentblk $empty_line_cnt $NL\n"; 
+        //<<[2]"end commentblk $empty_line_cnt $NL\n"; 
         }
       else if ((nsv[0] == '<') && (nsv[1] == '|')) {
         is_comment = 1;
 	in_txt_blk = 1
-        <<[2]"txt blk startcomment $NL\n"; 
+        //<<[2]"txt blk startcomment $NL\n"; 
         }
       else if ((nsv[0] == '|') && (nsv[1] == '>')) {
         is_comment = 1;
@@ -255,17 +257,17 @@ ESL="//===***===//";
         }		
       else if (nsv[0] == '#') {
         is_comment = 1;
-        <<[2]"comment $NL\n"; 
+        //<<[2]"comment $NL\n"; 
         }
        else if (nsv[0] == '!'  && (scin("apweitz",nsv[1]))) {
         is_margin_call = 1;
         is_comment = 1; // treat as	
-        <<[2]"margin call $NL\n"; 
+        //<<[2]"margin call $NL\n"; 
         }	
       else {
         ws = dewhite(NL); 
         if (slen(ws) == 0) {
-          <<[2]"empty? $sl  $L\n"; 
+          //<<[2]"empty? $sl  $L\n"; 
           is_empty_line = 1;
           }
         }
@@ -282,13 +284,12 @@ ESL="//===***===//";
       if (!in_txt_blk) {
         empty_line_cnt++;
 	}
-      <<[2]"%V $empty_line_cnt\n"; 
+      //<<[2]"%V $empty_line_cnt\n"; 
       ltype = EMPTYLN;
     }
 
      if (is_comment) {
         ltype = COMMENT;
-
     }
     
     sl = Slen(NL);
@@ -296,7 +297,7 @@ ESL="//===***===//";
     if (ind >=0) {
       nsv = sele(NL,ind,1); 
       lastc= nsv[0];
-      <<[2]"last char? $ln  $lastc $sl $ind %s $lastc \n";
+      //<<[2]"last char? $ln  $lastc $sl $ind %s $lastc \n";
       }
 
     s1 = ";{}/\\" ;
@@ -305,7 +306,7 @@ ESL="//===***===//";
     
     iv = sstr(";{}/\\",lastc,1); 
     
- <<[2]"$L $sl %c $lastc $iv[0] \n"
+ //<<[2]"$L $sl %c $lastc $iv[0] \n"
 
     if (slen(NL) >0) {
       NL=eatWhiteEnds(NL);
@@ -322,13 +323,20 @@ ESL="//===***===//";
       is_cbs = scmp(NL,"{",-1,0,0);
       
       is_cbe = scmp(NL,"}",-1,0,0);
+      is_cbe = scmp(NL,"};",-2,0,0);
 
       is_equ = scin(NL,"=[]",1);
 
       }
-    <<[2]"<|$L|> <|$NL|> %V $nw $is_cbs $is_cbe \n"; 
+    //<<[2]"<|$L|> <|$NL|> %V $nw $is_cbs $is_cbe \n"; 
     
     is_proc = scmp(NL,"proc",4,0);
+
+    is_cmf = scmp(NL,"cmf",3,0);
+    if (is_cmf) {
+      is_proc = 1;
+    }
+
 
    if (scmp(wrds[0],"void")) {
        is_proc = 1;
@@ -351,13 +359,13 @@ ESL="//===***===//";
     if (is_cbs) {
       nw += 2;
   //<<[2]"PROC %v$nw \n"
-      <<[2]"CBS %v$nw \n"; 
+      //<<[2]"CBS %v$nw \n"; 
       }
     
     if (is_cbe) {
       
       nw -= 2;
-      <<[2]"CBE %v$nw \n"; 
+      //<<[2]"CBE %v$nw \n"; 
       }
     
     
@@ -374,14 +382,14 @@ ESL="//===***===//";
     if (ind >= 0) {
       nsv = sele(NL,ind,1); 
       lastc= nsv[0];
-      <<[2]"last char? $ln  $lastc $sl $ind %s $lastc \n";
+      //<<[2]"last char? $ln  $lastc $sl $ind %s $lastc \n";
       }
 
 
 
 
     if (is_empty_line && (empty_line_cnt > 1)) {
-      <<[2]"%V $empty_line_cnt\n"; 
+      //<<[2]"%V $empty_line_cnt\n"; 
       }
     else  if ( !is_comment && !is_proc && !is_if  \
                  && (sl > 0) ) {
@@ -398,17 +406,17 @@ ESL="//===***===//";
         }
        }
 
-	<<[2]"%c $lastc %d $lastc \n"
+	//<<[2]"%c $lastc %d $lastc \n"
 	if (lastc != 59 && lastc != 123 ) {
 	   needs_semi_colon = 1;
 	 
 
          iv =sstr(";:/{}\\",lastc,1);
-<<[2]"$iv\n"
+//<<[2]"$iv\n"
           if (iv[0] != -1) {
             needs_semi_colon = 0;
           if (is_equ) {
-         <<[2]" declare St $NL needs ; \n";
+         //<<[2]" declare St $NL needs ; \n";
              needs_semi_colon = 1;
           }
         }
@@ -421,21 +429,21 @@ ESL="//===***===//";
        
      
        
-      <<[2]" needs ; ? $needs_semi_colon <|$lastc|>\n";
-      <<[2]" needs ; $NL\n";
+      //<<[2]" needs ; ? $needs_semi_colon <|$lastc|>\n";
+      //<<[2]" needs ; $NL\n";
       
       }
 
 
 
-<<[2]"%V $conline $is_empty_line $is_comment $in_comment_blk $empty_line_cnt $last_ltype\n";
+//<<[2]"%V $nw $conline $is_empty_line $is_comment $in_comment_blk $empty_line_cnt $last_ltype\n";
 
       if (conline) {
         <<[B]"${tws}$NL1		\\\n"; 
         <<[B]"$tws  \t\t$NL2; \n"; 
         }
       else if ((is_empty_line) && (empty_line_cnt < 1) && !in_comment_blk  && !in_txt_blk ) {
-        <<[2]"adding empty line! $empty_line_cnt\n"
+        //<<[2]"adding empty line! $empty_line_cnt\n"
         <<[B]"\n"; 
         }
 /*
@@ -445,15 +453,15 @@ ESL="//===***===//";
         }
 */	
       else if (is_define || is_include) {
-               <<[2]"define/include\n"
+               //<<[2]"define/include\n"
       <<[B]"$NL\n"; 
       }      
       else if (is_comment) {
-               <<[2]"comment\n"
+               //<<[2]"comment\n"
                <<[B]"$L\n"; 
       }
       else if (needs_semi_colon) {
-                     <<[2]"add ; \n"
+                     //<<[2]"add ; \n"
       if (empty_line_cnt == 0) {
              <<[B]"\n"; 
        }
@@ -461,7 +469,7 @@ ESL="//===***===//";
       }
       else {
 
-     <<[2]"asis: $NL\n"
+     //<<[2]"asis: $NL\n"
 	       
       if ((empty_line_cnt < 1)  && !in_comment_blk  && !in_txt_blk  && (last_ltype != PROCCALL)) {
 <<"adding empty line for spacing \n";      
@@ -474,7 +482,8 @@ ESL="//===***===//";
           <<[B]"${tws}$NL\n";
 	 }
 	 else {
-<<"empty ? <|$NL|> \n"
+//<<"empty ? <|$NL|> \n"
+          ;
          }
       }
 
@@ -509,7 +518,7 @@ ESL="//===***===//";
     last_ltype = ltype;
   }
 
-<<"LL: <|$LL|>\n"
+//<<"LL: <|$LL|>\n"
 if (LL != ESL) {
   <<[B]"\n$ESL\n";
   }

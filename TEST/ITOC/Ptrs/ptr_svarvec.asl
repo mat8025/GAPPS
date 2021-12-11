@@ -23,6 +23,7 @@
    }
    
 allowErrors(-1) ; // keep going
+//filterFileDebug(REJECT_,"exp");
 
  chkIn(_dblevel);
    
@@ -54,20 +55,20 @@ allowErrors(-1) ; // keep going
 
    val = ps[2];
 
-chkStr(val,"tres")
-
-
+   chkStr(val,"tres")
 
    <<"%V $val\n";
    val.pinfo(); 
 
    val = ps[3];
-   S.pinfo()
+   
+   S.pinfo();
+   
    ps.pinfo();
 
    <<"$val\n";
 
-chkStr(val,"bien")
+   chkStr(val,"bien")
 
    val = ps[4];
    S.pinfo()
@@ -147,18 +148,41 @@ chkStr(sval,"va")
 
 
 
-
+      ps.pinfo()
      sval= ps[4];
      nval = S[4];
 
 <<"%V $sval $nval $ps[4]\n"
 
-     ps[4] = "trop"     
+     ps[4] = "trop"
+      ps.pinfo()
+
      ps[5] = "merci"
 
-<<"CHECKING   ps[3] $ps[3]\n"
+<<"$S \n"
+
+<<"ps[4]  $ps[4] ps[3] $ps[3]\n"
+
+<<"CHECKING:  $S\n"
+
+
+     sval= ps[4];
+
+
+     chkStr(sval,"trop")
+     
+     sval= ps[5];
+     
+     chkStr(sval,"merci")
+
+     sval = ps[3];
+
+     chkStr(sval,"mal")
 
      chkStr(ps[3],"mal")
+
+     chkStr(ps[4],"trop")
+	  
      chkStr(ps[5],"merci")          
 
 <<"CHECKING   ps[3] $ps[3]\n"

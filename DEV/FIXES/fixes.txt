@@ -172,31 +172,79 @@ arrayrange  - neg start - mem corruption?
 ds_sivrange
 12/09/21 15:55
 |>
+<|F
+22
+12/09/21 17:00
+skeyval
+ds_arraycopy
+UNSET array copy - resetOffSets for working variable xic_result
+12/09/21 17:12
+|>
+<|F
+23
+12/10/21 08:50
+fexist.asl
+svar_pf.cpp
+gave error when checking permissions - now just a warning
+12/10/21 08:55
+|>
+<|F
+24
+12/10/21 09:30
+func.asl
+ds_storestr
+GENERIC promote STRV
+12/10/21 09:40
+|>
 <|P
-id_num
-in_date
-script exp
-code
+25
+12/10/21 09:54
+plot_tresults.asl
+titleVers
+scope_findvar
 fix_date
 |>
 <|P
-id_num
+26
+12/10/21 12:32
+ptr_svarvec
+store
+ps[4]= "trop"
+ps PTR to svar - assign str to field 4 of svar
+exp_e -- ptr -ele  copy to esp result
+fix_date
+|>
+<|F
+27
+12/10/21 20:00
+ptrs.asl
+storetype_e storeScalar - deref PTR var
+igonored PTR type
+12/10/21 20:08
+|>
+<|P
+id
 in_date
-script exp
-code
+asl
+cpp
+descr:
 fix_date
 |>
 <|P
-id_num
+id
 in_date
-script exp
-code
+asl
+cpp
+descr:
 fix_date
 |>
 <|P
-id_num
+id
 in_date
-script exp
-code
+asl
+cpp
+descr:
 fix_date
 |>
+
+

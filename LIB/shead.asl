@@ -28,7 +28,7 @@
    }
    //======================
    
-   A=-1;
+   A= -1;
    
    // if script found
    // then  read current vers and  bump number and update date
@@ -216,6 +216,8 @@ fflush(A)
 //<<[A]"$T[i]"  // bug
    fflush(A)
    cf(A)
+
+<<"output to $newsrc\n"
    
 //!!"mv $newsrc $srcfile"
 

@@ -221,7 +221,7 @@ for (i = 0; i <nrows ;i++) {
   sGl(ntgl,@symbol,CIRCLE_,Symsz, @symfill,@symhue,PINK_,@usescales,1)
 
 
- titleVers();
+ //titleVers();
 
   sWo(grwo,@showpixmap)
 //ans=query("?")

@@ -189,7 +189,7 @@ int do_scope = 0;;
 int do_while = 0;
 int do_try = 0;
 int do_exp = 0;
-int do_paraex = -1;
+int do_paraex = 0;
 int do_types = 0;
 int do_func = 0;
 int do_command = 0;
@@ -208,7 +208,7 @@ int do_pan = 0;
 int do_unary = 0;
 int do_ptrs = 0;
 int do_vmf = 0;
-int do_tests = -1;
+int do_tests = 0;
 
 
 
@@ -771,13 +771,16 @@ if ((do_all || do_func ) && (do_func != -1)) {
 
   RunDirTests("Func","func,repeat_func_call")
 
-  do_carts("func", 3)
+  //do_carts("func", 3)
+  cart("func","3")
+    cart_xic("func","4")
+
 
   RunDirTests("Args","args")
 
   RunDirTests("Iproc","iproc")
 
-  RunDirTests("Func","func")  
+ // RunDirTests("Func","func")  
 
 
   //Run2Test("Ifunc")

@@ -280,6 +280,10 @@ inter()
 
 inter()
 
+!!"asl ASL_TEST_VER module  tests  > mod_score ";
+
+inter()
+
 cf(B)
 
 /*
