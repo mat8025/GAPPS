@@ -190,7 +190,7 @@ _DB = -1
   sWo(goalwos,@style,"SVB",@redraw);
 
 
-  titleVers();
+ // titleVers();
 
 //sleep(0.1)
 

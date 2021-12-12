@@ -22,15 +22,15 @@ void eventDecode()
 {
 
    // can get all of these in one by using ref parameters
-   _ename = Ev<-getEventType(_eid,_etype,_ewoid,_ewoaw,_ebutton,_ekeyc,_ewoproc,_ex,_ey,_ewoval);
+   _ename = Ev.getEventType(_eid,_etype,_ewoid,_ewoaw,_ebutton,_ekeyc,_ewoproc,_ex,_ey,_ewoval);
      
 //<<"$_proc %V $_ex $_ey  $_ewoid\n"
 
 // get all below button,rx,ry via parameters to wait_for_msg
-//    _ewoval = Ev<-getEventWoValue();
+//    _ewoval = Ev.getEventWoValue();
 //  <<"%V $_ewoval \n"       
 
-  //  Ev<-geteventrxy(_erx,_ery);    
+  //  Ev.geteventrxy(_erx,_ery);    
 
 //<<"$_proc  %V _erx  _ery \n"
 
@@ -71,25 +71,25 @@ void eventDecode()
      }
     }
     
-     _ewoname = Ev<-getEventWoName();
-//     _ewoproc = Ev<-getEventWoProc();
+     _ewoname = Ev.getEventWoName();
+//     _ewoproc = Ev.getEventWoProc();
   
 //  Motion event -- will have 1 or more 'event' readings
 //  read these into array or rxy and erow-col
 
-  //  Ev<-geteventxy(&_ex,&_ey);
+  //  Ev.geteventxy(&_ex,&_ey);
 
 
-    Ev<-geteventrowcol(&_erow,&_ecol);
+    Ev.geteventrowcol(&_erow,&_ecol);
 
-//_erow<-info(1); // DBG
-//_ecol<-info(1); // DBG
+//_erow.info(1); // DBG
+//_ecol.info(1); // DBG
 //  Mouse window pos, screen pos?
 
     }
 
    }
-   // Ev<-geteventrxy(_erx,_ery);    
+   // Ev.geteventrxy(_erx,_ery);    
 
 //<<"$_proc  %V _erx  _ery \n"
 }
@@ -106,12 +106,12 @@ void eventWait()
     _ecol = -1;    
     _ewoname = "";
     _ewovalue = "";
+    _emsg = "";
 
-
-    _emsg = Ev<-waitForMsg();
+    _emsg = Ev.waitForMsg();
 <<"$_proc  %V $_emsg\n"
-     Ev<-geteventrxy(_erx,_ery);    
-     Ev<-geteventwoid(_ewoid);
+     Ev.geteventrxy(_erx,_ery);    
+     Ev.geteventwoid(_ewoid);
 //<<"$_proc  %V $_ewoid $_erx $_ery\n"     
 
      eventDecode();
@@ -126,10 +126,10 @@ void eventWait()
 }
 //==============================
 
-proc eventRead()
+void eventRead()
 {
     
-    _emsg = Ev<-readMsg();
+    _emsg = Ev.readMsg();
     _eloop++;
     
   
@@ -174,7 +174,7 @@ str _ekeyw = "nada";
 str _ekeyw2 = "nada2"
 str _ekeyw3 = "nada3"
 
-str _emsg = "xyz";
+str _emsg = "";
 
 str _evalue = "abc";
 

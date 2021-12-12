@@ -29,7 +29,7 @@ int tbqrd_msg = 0;
 //<<[_DB]"FIRST %V $tbqrd_tv \n"
 
 
-proc  titleButtonsQRD(int v)
+void  titleButtonsQRD(int v)
 {
 
 //////////////////////////////// TITLE BUTTON QUIT RESIZE REDRAW ////////////////////////////////////////////////
@@ -57,9 +57,9 @@ qrd[2]= td;
  
 }
 //============================//
-proc titleComment(str msg)
+void titleComment(str msg)
 {
- //<<"%V $msg \n"
+ <<"%V $msg \n"
  sWo(tbqrd_tv,@value,"$msg",@clear,@redraw);
 
 }

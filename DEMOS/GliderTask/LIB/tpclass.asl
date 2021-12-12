@@ -137,7 +137,7 @@ class Turnpt
 
   cmf TPCUPset (svar wval) 
    {
-//wval<-pinfo()
+//wval.pinfo()
 //<<"%V $wval[::]\n"
 //<<"0 <|$wval[0]|>\n"
 //<<"1 <|$wval[1]|>\n"

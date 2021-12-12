@@ -17,6 +17,25 @@
 
 //filterFileDebug(REJECT_,"array_");
 
+  void vers2ele(str vstr)
+  {
+  //<<"%V $vstr\n"
+   pmaj = atoi(spat(vstr,".",-1))
+   <<[2]"$pmaj $(typeof(pmaj)) $(ptsym(pmaj)) \n"  
+   pmin = atoi(spat(vstr,".",1))
+
+//<<[2]"$pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
+   elestr = pt(pmin);
+   _ele =" ";
+   _ele = spat(elestr,",")
+//  <<"$ele $(typeof(_ele))\n";
+//  <<"$ele\n";
+
+  }
+  //======================
+
+str _ele = "1";
+
 str hdr_script = "none";
 str hdr_vers = "1.1"
 str hdr_release = "BORON";
@@ -179,6 +198,9 @@ str hdr_date = "1964"
 
 
    hdrv_func();
+
+  vers2ele(hdr_vers)
+
 _ele_vers = hdr_vers;
 
 if (hv_show) {

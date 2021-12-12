@@ -149,14 +149,13 @@
 
   chkStr(r12,"with");
 
-  chkOut();
+
 ////////////////////////
 
   int Obid = 0;
 
-  class Add;
-
-  {
+  class Add {
+  
 
   public:
 
@@ -282,6 +281,61 @@
   <<"%V$what $(typeof(what))\n";
 
   chkStr(what,"Do what I say");
+
+
+
+
+class Turnpt 
+ {
+
+ public:
+
+  str Lat;
+  str Lon;
+  str Place;
+  
+
+   void Tset (svar wval) 
+   {
+//wval<-pinfo()
+//<<"%V $wval[::]\n"
+//<<"0 <|$wval[0]|>\n"
+//<<"1 <|$wval[1]|>\n"
+//<<"2 <|$wval[2]|>\n"
+str val;
+<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
+
+     val = dewhite(wval[0])
+//val->info(1)
+//<<"%V$val  \n"
+
+     val = scut(val,1)
+     val = scut(val,-1)
+
+     Lat = wval[3]; // wayp 
+
+     Lon = wval[4];
+  };
+
+}
+
+
+Turnpt  Wtp[50];
+
+svar SV;
+
+    SV = split("one day at 40.09 105.09 dude")
+
+<<"%V$SV\n"
+
+    Wtp[1]->Tset(SV)
+
+    <<"%V $Wtp[1]->Lat \n"
+        <<"%V $Wtp[1]->Lon \n"
+
+
+
+
 
   chkOut();
 

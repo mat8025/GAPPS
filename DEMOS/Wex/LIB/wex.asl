@@ -543,8 +543,10 @@ while (1) {
       }
 
       else if (_ekeyw != "") {
-         <<[_DB]"calling |${_ekeyw}| $(typeof(_ekeyw))\n"
-         $_ekeyw()        
+
+        <<[_DB]"calling |${_ekeyw}| $(typeof(_ekeyw))\n"
+         $_ekeyw()
+	 
        }
 
         <<[_DB]"%V$lcpx $rcpx \n"

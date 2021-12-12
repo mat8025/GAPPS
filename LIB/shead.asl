@@ -168,7 +168,7 @@ if (found_vers) {
  !!"cp $srcfile old-$srcfile"  
    
    //ns = spat(srcfile,".asl",-1)
-   newsrc=scat(srcfile,"-new")
+   newsrc=scat("shead-",srcfile)
 
    A=ofw(newsrc);
    vers="@vers ${pmaj}.$pmin $min_ele $min_name [asl $(getversion())]"
@@ -198,11 +198,14 @@ if (found_vers) {
 
 <<[A]"\n#include \"debug\" \n"
 
-<<[A]"if (_dblevel >0) { \n"
+<<[A]"  if (_dblevel >0) { \n"
 <<[A]"   debugON() \n"
 <<[A]"   <<\"\$Use_ \\n\" \n"
 <<[A]"} \n\n"
-<<[A]"chkIn(_dblevel)\n\n"
+<<[A]"   allowErrors(-1); \n\n"
+
+<<[A]"  chkIn(_dblevel)\n\n"
+<<[A]"  chkT(1);\n\n"
 
 
 fflush(A)

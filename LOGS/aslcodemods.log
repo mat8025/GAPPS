@@ -987,3 +987,4 @@ getvar_e.cpp                         2.46  12/09/2021 16:07:38  str ==> num in S
 ds_storestr.cpp                      1.77  12/10/2021 09:39:11  GENERIC <==> STRV when storing string
 storetype_e.cpp                      2.68  12/10/2021 20:11:22  storeScalar - process PTR type
 storetype_e.cpp                      2.69  12/10/2021 20:17:43  tidy
+paramexpand.cpp                      2.75  12/10/2021 22:32:43  error for undeclared variable

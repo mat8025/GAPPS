@@ -19,6 +19,29 @@
 
 chkIn(_dblevel)
 
+  void vers2ele(str vstr)
+  {
+  //<<"%V $vstr\n"
+   pmaj = atoi(spat(vstr,".",-1))
+   <<[2]"$pmaj $(typeof(pmaj)) $(ptsym(pmaj)) \n"  
+   pmin = atoi(spat(vstr,".",1))
+
+//<<[2]"$pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
+   elestr = pt(pmin);
+   _ele =" ";
+   _ele = spat(elestr,",")
+ // <<"$ele $(typeof(_ele))\n";
+ // <<"$ele\n";
+   //return ele;
+  }
+  //======================
+
+
+str _ele = "";
+
+
+vers2ele("1.1")
+
 
 w="a"
 

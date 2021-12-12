@@ -223,13 +223,31 @@ igonored PTR type
 12/10/21 20:08
 |>
 <|P
-id
+28
+12/10/21 20:44
+prepostop.asl
+opera/icode
+b= A[++k--]; - b gets k ele not ++k in xic
+fix_date
+|>
+<|F
+29
+12/10/21 20:50
+titleVers
+store?
+crash of Wex <<"$ele\n"  - ele not declared
+now just gives codeError
+12/10/21 22:30
+|>
+<|P
+30
 in_date
 asl
 cpp
 descr:
 fix_date
 |>
+
 <|P
 id
 in_date
@@ -247,4 +265,32 @@ descr:
 fix_date
 |>
 
+
+
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+
+
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
 
