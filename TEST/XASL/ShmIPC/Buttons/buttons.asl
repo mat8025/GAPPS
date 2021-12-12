@@ -34,6 +34,8 @@ Graphic = checkGWM()
 
 }
 
+ask=iread("wait?")
+
     rsig=checkTerm();
     <<"%V$rsig \n";
 

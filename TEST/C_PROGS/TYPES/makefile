@@ -1,3 +1,3 @@
 
 install:
-	 gcc -o types types.c
+	 gcc -o types types.cpp

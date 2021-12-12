@@ -218,20 +218,20 @@ L.pinfo()
    }
    //found_where = where;
    i++;
-   if (i >13) {
+   if (i >14) {
 <<[2]"not an sheader\n"
-    found_vers = 0;
+//    found_vers = 0;
     break;
    }
    
-   if (scmp(L[0],"*/")) {
+   if (scmp(L[0],";//-",4)) {
 <<[2]"header end? line $i\n"
     break;
    }
 
   }
  
-
+where = ftell(A);
  if (found_vers) {
  
   vers2ele(cvers)
@@ -280,11 +280,11 @@ L.pinfo()
    vers=" @vers ${pmaj}.$pmin $min_ele $min_name [asl $(getversion())]"
    vlen = slen(vers);
 
-//   Pad = nsc(67-vlen," ")
+  
 //<<[2]"vlen $vlen <|$Pad|>\n"
 
 
-where = ftell(A);
+
 
 int nsp = 0;
 j= 0;
@@ -306,12 +306,15 @@ j= 0;
    <<[A]" *  @author $author \n"
    <<[A]" *  @Copyright © RootMeanSquare  2010,$(date(8)) → \n"           
    <<[A]" * \n"
-   <<[A]" *  \\\\-----------------<v_&_v>--------------------------//  \n" ;
    <<[A]" */ \n"
-   
+   <<[A]";//-----------------<v_&_v>--------------------------//;" ;
+     here = ftell(A);
+     Pad = nsc(400-here," ")
+   <<[A]"$Pad\n";  
+ 
     fflush(A);
   
-   here = ftell(A);
+ 
 
 <<[2]"%V$where $here\n"
 
