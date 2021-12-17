@@ -43,17 +43,17 @@ long l;
 ulong ul;
 
 
-fscanf(A,'%d %d %d %f %lf %ld %ld',&c,&i,&s,&f,&d,&l,&ul)
+   fscanf(A,'%d %d %d %f %lf %ld %ld',&c,&i,&s,&f,&d,&l,&ul)
 
 <<"%V$c $i $s $f $d $l $ul\n" 
 
-c->info(1)
-i->info(1)
-s->info(1)
-f->info(1)
-d->info(1)
-l->info(1)
-ul->info(1)
+c.pinfo()
+i.pinfo()
+s.pinfo()
+f.pinfo()
+d.pinfo()
+l.pinfo()
+ul.pinfo()
 
 
 chkN(c,1)

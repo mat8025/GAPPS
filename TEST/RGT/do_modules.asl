@@ -35,6 +35,7 @@ int do_query = 0;
 B=ofw("modules_that_pass")
 C=ofw("modules_that_fail")
 D=ofw("modules_stat")
+
 void inter()
 {
 int ask = 0;
@@ -176,13 +177,9 @@ inter()
 
 inter()
 
-
-
 !!"asl ASL_TEST_VER module math > mod_score ";
 
 inter()
-
-
 
 !!"asl ASL_TEST_VER module switch > mod_score ";
 

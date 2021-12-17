@@ -3,19 +3,36 @@
  * 
  *  @comment test readrecord SF 
  *  @release CARBON 
- *  @vers 1.2 He Helium [asl 6.3.8 C-Li-O]                                  
- *  @date Sun Jan 10 21:27:59 2021 
+ *  @vers 1.4 Be Beryllium [asl 6.3.66 C-Li-Dy] 
+ *  @date 12/12/2021 11:52:54          
  *  @cdate 1/1/2012 
  *  @author Mark Terry 
  *  @Copyright © RootMeanSquare  2010,2021 → 
  * 
- *  \\-----------------<v_&_v>--------------------------//  
  */ 
-///
-/// 
-///
+;//-----------------<v_&_v>--------------------------//;                                                               
+
+
+
+<|Use=
+ read a file into record
+|>
+
+
+
 
 #include "debug"
+
+
+
+  if (_dblevel >0) {
+
+  debugON();
+
+  <<"$Use_\n";
+
+  }
+
 
 allowErrors(-1) ; // keep going
 

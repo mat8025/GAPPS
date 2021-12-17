@@ -988,3 +988,4 @@ ds_storestr.cpp                      1.77  12/10/2021 09:39:11  GENERIC <==> STR
 storetype_e.cpp                      2.68  12/10/2021 20:11:22  storeScalar - process PTR type
 storetype_e.cpp                      2.69  12/10/2021 20:17:43  tidy
 paramexpand.cpp                      2.75  12/10/2021 22:32:43  error for undeclared variable
+exp_e.cpp                            3.56  12/12/2021 12:10:57  STRV not array unless subscripted

@@ -253,7 +253,9 @@ sz=Caz(SI)
 SI= I[:10:] ;  
 sz=Caz(SI)
 <<"%V $sz\n"
+
 chkN(sz,11)
+
 <<"%V$SI\n"
 <<"%V$I[0] $I[10]\n"
 

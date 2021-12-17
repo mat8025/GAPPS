@@ -1,15 +1,18 @@
-//%*********************************************** 
-//*  @script class2.asl 
-//* 
-//*  @comment test class member set/access 
-//*  @release CARBON 
-//*  @vers 1.2 He Helium                                                  
-//*  @date Sun Mar  3 12:41:16 2019 
-//*  @cdate 1/1/2003 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script class2.asl  
+ * 
+ *  @comment test class member set/access 
+ *  @release CARBON 
+ *  @vers 1.3 Li Lithium [asl 6.3.66 C-Li-Dy] 
+ *  @date 12/12/2021 09:01:30          
+ *  @cdate 1/1/2003 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ */ 
+;//-----------------<v_&_v>--------------------------//;                                                          
+
+
 <|Use_=
    simple class svar member
 |>

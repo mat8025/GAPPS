@@ -36,6 +36,39 @@ chkIn(_dblevel)
   }
   //======================
 
+str srcfile = _clarg[1];
+
+
+   len = slen(srcfile);
+
+<<"$len <|$srcfile|>\n"
+
+srcfile.pinfo()
+
+str w2 = srcfile;
+
+w2.pinfo()
+
+   len = slen(w2);
+
+<<"$len <|$w2|>\n"
+
+
+
+str w3 = w2;
+
+   len = slen(w3);
+
+w3.pinfo()
+
+<<"$len <|$w2|>\n"
+
+
+
+chkStr(w3,srcfile)
+
+
+
 
 str _ele = "";
 
@@ -44,6 +77,23 @@ vers2ele("1.1")
 
 
 w="a"
+
+
+<<"<|$w|>\n"
+
+pid=getpid()
+
+<<"<|${w}.$pid|>\n"
+
+<<"<|${srcfile[0]}.$pid|>\n"
+
+<<"<|${w2}.$pid|>\n"
+
+<<"<|${w3}.$pid|>\n"
+
+
+
+
 
 a="Happy New"
 

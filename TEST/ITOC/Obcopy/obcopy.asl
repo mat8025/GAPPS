@@ -1,17 +1,22 @@
 /* 
- *  @script obcopy.asl 
+ *  @script obcopy.asl  
  * 
  *  @comment use &obj as an arg to deliver ptr 
  *  @release CARBON 
- *  @vers 1.39 Y Yttrium [asl 6.3.61 C-Li-Pm] 
- *  @date 11/20/2021 10:28:21          
+ *  @vers 1.40 Zr Zirconium [asl 6.3.66 C-Li-Dy] 
+ *  @date 12/12/2021 09:03:30          
  *  @cdate 1/1/2005 
  *  @author Mark Terry 
  *  @Copyright © RootMeanSquare  2010,2021 → 
  * 
- *  \\-----------------<v_&_v>--------------------------//  
  */ 
-                                                                
+;//-----------------<v_&_v>--------------------------//;                                                  
+                                
+                                                                                  
+
+
+
+
 <|Use_=
    Demo  of Object copy ;
    want to show that can use &obj as an arg

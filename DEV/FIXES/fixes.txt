@@ -239,15 +239,225 @@ crash of Wex <<"$ele\n"  - ele not declared
 now just gives codeError
 12/10/21 22:30
 |>
-<|P
+<|F
 30
+12/11/21 10:59
+asl:svar_print.asl
+cpp:paramexpsvar
+descr: bdate = "$L[2::]";   - range not applied correctly
+12/12/21 08:41
+|>
+<|P
+31
+12/12/21 09:34
+asl:sbump.asl
+cpp:paramexpand
+descr:"$var"  adds space after var expansion - not for single ele
+fix_date
+|>
+<|F
+32
+12/12/21 10:47
+asl: paraex.asl
+cpp:exp_e.cpp ds_storesvar.cpp
+descr: str srcfile = _clarg[1];  // error srcfile 'promoted' to svar -
+exp_e.cpp - treat STRV not as array unless subscripted -- checkWholeArrayRef
+12/12/21 11:55
+|>
+<|P
+33
+12/14/21 21:30
+all
+ic_wic,ic_xic
+descr: revise ic_wic,ic_xic,ic_push for faster sivp access
+fix_date
+|>
+<|P
+34
+12/16/21 10:34
+sindent.asl
+cpp
+descr:broke parsing comment header
+fix_date
+|>
+<|F
+35
+12/16/21 10:34
+vmf_range
+ic_store
+descr:xic range in store  J[0:7] = 6; range not obeyed
+bug when revise ic_wic,xic
+12/16/21 16:36
+|>
+<|F
+36
+12/16/21 21:00
+fh
+ic_wic,ic_xic,ic_print
+prt_fh - corrupt memory classified as icode when was icip
+revise wic,xic
+12/16/21 21:52
+|>
+<|P
+id
 in_date
 asl
 cpp
 descr:
 fix_date
 |>
-
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
 <|P
 id
 in_date
@@ -265,32 +475,4 @@ descr:
 fix_date
 |>
 
-
-
-<|P
-id
-in_date
-asl
-cpp
-descr:
-fix_date
-|>
-<|P
-id
-in_date
-asl
-cpp
-descr:
-fix_date
-|>
-
-
-<|P
-id
-in_date
-asl
-cpp
-descr:
-fix_date
-|>
 

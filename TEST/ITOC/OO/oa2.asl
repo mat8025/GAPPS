@@ -1,16 +1,31 @@
-//%*********************************************** 
-//*  @script oa2.asl 
-//* 
-//*  @comment test object array 
-//*  @release CARBON 
-//*  @vers 1.2 He Helium [asl 6.2.49 C-He-In]                              
-//*  @date Thu May 21 08:59:16 2020 
-//*  @cdate Tue Apr 28 19:55:01 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script oa2.asl  
+ * 
+ *  @comment test object array 
+ *  @release CARBON 
+ *  @vers 1.3 Li Lithium [asl 6.3.66 C-Li-Dy] 
+ *  @date 12/12/2021 09:23:54          
+ *  @cdate Tue Apr 28 19:55:01 2020 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ */ 
+;//-----------------<v_&_v>--------------------------//;                                                        
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+                       ///////////////////////////////////////////////////////////////
 
 
 <|Use_=

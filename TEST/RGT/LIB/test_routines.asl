@@ -26,8 +26,13 @@ void outcome (str title)
 //     <<"%V $inflsz $outflsz \n"
    if ((inflsz == outflsz) && (rt_crash == last_ncrash)) {
    Nspassed++;
-   
-    <<"/////////////// $title PASS/////$(rt_pass - last_npass)///////////\n"
+   len = slen(title);
+        Pad = nsc(12-len," ")
+	rtn = (rt_pass - last_npass);
+	rta = "$rtn";
+	len= slen(rta)
+	Pad2 =nsc(5-len,"/") 
+    <<"/////////////// ${title}$Pad///PASS/////${Pad2}$rta///////////\n"
    }
    else {
    //<<"%V$inflsz  $outflsz \n"

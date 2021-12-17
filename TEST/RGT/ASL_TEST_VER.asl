@@ -426,7 +426,7 @@ if ((do_include || do_all ) && (do_include != -1)) {
 if ((do_if || do_all) && (do_if != -1)) {
     inflsz = caz(FailedList)
   
-  RunDirTests("If","if,ifand")
+    RunDirTests("If","if,ifand")
 
 
 
@@ -600,8 +600,9 @@ outcome("STR")
   if ((do_fops || do_all) && (do_fops != -1)) {
     inflsz = caz(FailedList)
   RunDirTests("Fops","fops")
+  RunDirTests("Fh","fh")  
 
-    outcome("SOPS")
+    outcome("FOPS")
   // need to do  script arg1 agr2 ...
   RunDirTests("Fexist","fexist")
 

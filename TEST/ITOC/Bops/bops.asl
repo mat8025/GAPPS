@@ -1,368 +1,389 @@
-//%*********************************************** 
-//*  @script bops.asl 
-//* 
-//*  @comment test basic ops  
-//*  @release CARBON 
-//*  @vers 1.4 Be Beryllium                                               
-//*  @date Thu Mar  7 23:24:30 2019 
-//*  @cdate 1/1/2002 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
-
+/* 
+ *  @script bops.asl 
+ * 
+ *  @comment test basic ops 
+ *  @release CARBON 
+ *  @vers 1.9 F Fluorine [asl 6.3.66 C-Li-Dy] 
+ *  @date 12/13/2021 10:47:18          
+ *  @cdate 1/1/2002 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ */ 
+;//-----------------<v_&_v>--------------------------//;                                                                           
+#1234
 
 #include "debug"
 
 
 if (_dblevel >0) {
-   debugON()
+   debugON();
 }
 
+ allowErrors(-1);
 
-chkIn(_dblevel)
+ chkIn(_dblevel);
 
 
-int ab = 2 + 3
-<<"%V$ab\n"
 
-chkN(ab,5)
+  int ab = 2 + 3;
 
+  <<"%V$ab\n";
 
-int n1 = 1;
+  chkN(ab,5);
 
-<<"%V $n1 \n"
+  int n1 = 1;
 
-        chkN(n1,1)
+  <<"%V $n1 \n";
 
+  chkN(n1,1);
 
-       n1++;
+  n1++;
 
-<<"%V $n1 \n"
+  <<"%V $n1 \n";
 
-      chkN(n1,2)
+  chkN(n1,2);
 
+  ++n1;
 
+  <<"%V $n1 \n";
 
+  chkN(n1,3);
 
-   ++n1;
+  n1 += 2;
 
-<<"%V $n1 \n"
+  chkN(n1,5);
 
-  chkN(n1,3)
+  n1 -= 2;
 
+  chkN(n1,3);
 
+  n1 *= 2;
 
-   n1 += 2
+  chkN(n1,6);
 
-chkN(n1,5)
+  n1 /= 2;
 
+  chkN(n1,3);
 
-   n1 -= 2
+  float fn=2.71828;
 
-chkN(n1,3)
+  <<"%V$fn\n";
 
+  chkR(fn,2.71828);
 
-  n1 *= 2
+  int d= 7;
 
-chkN(n1,6)
+  int e = -6;
 
+  int u = 47;
 
-  n1 /= 2
+  int w = -79;
 
-chkN(n1,3)
+  <<"%V$d $e\n";
 
+  <<"%V$u $w\n";
 
+  chkN(d,7);
 
+  chkN(e,-6);
 
+  int b = 79;
 
+  <<"%V $b\n";
 
+  chkN(b,79);
 
-float fn=2.71828;
-<<"%V$fn\n"
- chkR(fn,2.71828)
+  <<"%V$d $e\n";
 
-int d= 7;
+  b = d * e;
 
-int e = -6;
+  <<"%V$b\n";
 
-int u = 47
-int w = -79;
+  chkN(b,-42);
 
-<<"%V$d $e\n"
+  b++;
 
-<<"%V$u $w\n"
+  <<"%V$b\n";
 
+  chkN(b,-41);
 
 
+  na = argc();
 
-chkN(d,7)
-chkN(e,-6)
+  <<"%V $na\n";
 
-int b = 79;
+  i = 0;
 
-<<"%V $b\n"
+  <<"arg [${i}] $_clarg[i] \n";
 
-chkN(b,79)
-<<"%V$d $e\n"
-b = d * e;
+  i++;
 
-<<"%V$b\n"
+  <<"arg [${i}] $_clarg[i] \n";
 
-chkN(b,-42);
+  i++;
 
+  <<"arg [${i}] $_clarg[i] \n";
 
-b++;
+  if (na >= 1) {
 
+  for (i = 0 ; i < na ; i++) {
 
-<<"%V$b\n"
+   <<"arg [${i}] $_clarg[i] \n";
 
-chkN(b,-41);
+   if (i == 10) {
 
-//co()
-//exit()
+     <<"i == 5 %V $i\n";
 
-na = argc()
-<<"%V $na\n"
-i = 0
-<<"arg [${i}] $_clarg[i] \n"
-i++;
-<<"arg [${i}] $_clarg[i] \n"
-i++;
-<<"arg [${i}] $_clarg[i] \n"
+     break;
 
-
-
-if (na >= 1) {
-
- for (i = 0 ; i < na ; i++) {
-<<"arg [${i}] $_clarg[i] \n"
-
-  if (i == 10) {
-<<"i == 5 %V $i\n"
-   break;
-  }
+     }
  // <<"%V $i\n"
- }
 
-}
-<<"args listed\n"
+   }
 
+  }
 
-int a = 2 + 3
-<<"%V$a\n"
+  <<"args listed\n";
 
-chkN(a,5)
+  int a = 2 + 3;
 
-b = 7 * 6
+  <<"%V$a\n";
 
-<<"%V$b\n"
+  chkN(a,5);
 
-chkN(b,42)
+  b = 7 * 6;
 
+  <<"%V$b\n";
 
-c= a * b
+  chkN(b,42);
 
-chkN(c,(5*42))
+  c= a * b;
 
-<<"$c $a $b \n"
+  chkN(c,(5*42));
 
+  <<"$c $a $b \n";
 
-z = Sin(0.9)
+  z = Sin(0.9);
 
-<<" %v $z \n"
+  <<" %v $z \n";
 
+  x = Cos(0.9);
 
-x = Cos(0.9)
-
-<<" %v $z $x \n"
-
+  <<" %v $z $x \n";
 //   test some basics -- before using testsuite  
 
+  int k=4;
 
+  <<"%V $k \n";
 
-int k=4;
+  chkN(k,4);
 
+  int k1 = 47;
 
-<<"%V $k \n"
+  <<"%V $k1 \n";
 
-chkN(k,4)
+  chkN(k1,47);
 
-int k1 = 47
+  float y = 3.2;
 
-<<"%V $k1 \n"
+  <<"%V $y \n";
 
-chkN(k1,47)
+  chkR(y,3.2,6);
 
+  a = 2 + 2;
 
-float y = 3.2
-
-<<"%V $y \n"
-
- chkR(y,3.2,6)
-
-a = 2 + 2
-
-<<"%v $a \n"
+  <<"%v $a \n";
 //     chkN(a,4)
 
-sal = 40 * 75 * 4
+  sal = 40 * 75 * 4;
 
-<<"%v $sal \n"
+  <<"%v $sal \n";
 
- chkN(sal,12000)
+  chkN(sal,12000);
 
+  int n = 1;
 
-
-int n = 1;
-
-<<"%V $n \n"
-
+  <<"%V $n \n";
       //  chkN(n,1)
 
+  n++;
 
-   n++
-
-<<"%V $n \n"
-
+  <<"%V $n \n";
     //   chkN(n,2)
 
+  ++n;
 
-   ++n
+  <<"%V $n \n";
 
-<<"%V $n \n"
+  chkN(n,3);
 
-      chkN(n,3)
+  <<"%V $n \n";
 
-<<"%V $n \n"
+  z = n++ + 1;
 
-   z = n++ + 1
-<<"%V $z \n"
+  <<"%V $z \n";
 
-      chkN(n,4)
+  chkN(n,4);
 
-      chkN(z,4)
+  chkN(z,4);
 
-<<"%v $n \n"
+  <<"%v $n \n";
 
-   z = ++n + 1
-<<"%V $z \n"
+  z = ++n + 1;
 
-      chkN(z,6)
+  <<"%V $z \n";
 
-<<"%V $n \n"
+  chkN(z,6);
 
-++n++
+  <<"%V $n \n";
 
-<<"%V $n \n"
+  ++n++;
 
-    chkN(n,7)
+  <<"%V $n \n";
 
+  chkN(n,7);
 
+  N = 24;
 
+  k = 2;
 
-N = 24
-
-k = 2
-ok =0
+  ok =0;
 
   if (k <= N) {
-<<" $k  <= $N \n"
-   ok = 1
-<<" <= op  working!\n"
+
+  <<" $k  <= $N \n";
+
+  ok = 1;
+
+  <<" <= op  working!\n";
+
   }
+
   else {
-<<" <= op not working! %V $k <= $N\n"
+
+  <<" <= op not working! %V $k <= $N\n";
+
   }
 
-chkN(1,ok)
+  chkN(1,ok);
 
-ok = 0
-k = 25
+  ok = 0;
+
+  k = 25;
 
   if (k >= N) {
-<<" $k  >= $N \n"
-   ok = 1
-<<" >= op  working!\n"
+
+  <<" $k  >= $N \n";
+
+  ok = 1;
+
+  <<" >= op  working!\n";
+
   }
+
   else {
-<<" >= op not working! %V$k\n"
+
+  <<" >= op not working! %V$k\n";
+
   }
 
+  chkN(1,ok);
 
-chkN(1,ok)
-
-  ok = 0
+  ok = 0;
 
   if (k != N) {
-<<" $k  != $N \n"
-   ok = 1
-<<" != op  working!\n"
+
+  <<" $k  != $N \n";
+
+  ok = 1;
+
+  <<" != op  working!\n";
+
   }
+
   else {
-<<" != op not working! %V$k\n"
+
+  <<" != op not working! %V$k\n";
+
   }
 
-chkN(1,ok)
+  chkN(1,ok);
 
+  float fa = 1;
 
-float fa = 1;
-float fb = 2.3;
-float fc = 4.8;
+  float fb = 2.3;
 
-chkR(fb,2.3)
-<<"%V$fa $fb $fc\n"
-  fb++ 
-chkR(fb,3.3)
+  float fc = 4.8;
 
-<<"%V$fa $fb $fc\n"  
+  chkR(fb,2.3);
 
-int h = -4;
+  <<"%V$fa $fb $fc\n";
 
-<<"%V$h\n"
+  fb++;
 
-chkN(h,-4);
+  chkR(fb,3.3);
 
-float q=-7;<<"$q\n"
+  <<"%V$fa $fb $fc\n";
 
-chkR(q,-7);
+  int h = -4;
+
+  <<"%V$h\n";
+
+  chkN(h,-4);
+
+  float q=-7;<<"$q\n";
+
+  chkR(q,-7);
 
   int sum = 0;
+
   double mi = 1;
+
   N = 10;
+
   k1 = 0;
-<<"%V $k1 $sum $mi \n"
+
+  <<"%V $k1 $sum $mi \n";
+
   for (k1 = 2; k1 < N; k1++) {
-<<"%V $k1 $sum $mi \n"
-    sum += k1;
-    mi *= k1;
-<<"%V $k1 $sum $mi \n"
+
+  <<"%V $k1 $sum $mi \n";
+
+  sum += k1;
+
+  mi *= k1;
+
+  <<"%V $k1 $sum $mi \n";
 
   }
 
-<<"%V $sum  $k  $(k*N/2) $mi\n"
+  <<"%V $sum  $k  $(k*N/2) $mi\n";
+
+  fv = vgen(FLOAT_,10,0,1);
+
+  //fv.pinfo();
+
+  <<"$fv \n";
+
+  fv[0] = -32;
+
+  <<"%V$fv \n";
+
+  fv[2] = 77;
+
+  <<"%V$fv \n";
 
 
 
- fv = vgen(FLOAT_,10,0,1)
+  fv[3] = 80;
 
- fv->info(1)
+  <<"%V$fv \n";
 
-<<"$fv \n"
+  chkN(fv[3],80);
+  chkN(fv[2],77);
+  chkN(fv[0],-32);
+  
+  chkOut();
 
- fv[0] = -32;
-<<"$fv \n"
-
-
- fv[2] = 77;
- <<"$fv \n"
- 
- fv[3] = 80;
-
-<<"$fv \n"
-
-chkN(fv[3],80)
-
-chkOut()
-
-
+//==============\_(^-^)_/==================//

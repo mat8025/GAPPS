@@ -110,7 +110,7 @@
 
      float t2;
 //  <<"%V$rl \n";
-
+     int jj = 0;
      t1 = rl[2];
 
      t1.pinfo();

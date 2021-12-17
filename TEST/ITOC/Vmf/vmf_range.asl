@@ -74,11 +74,13 @@ if (_dblevel >0) {
 
 
    chkN(J[0],10);
+   chkN(J[2],11);
+   chkN(J[4],12);   
    
 //chkOut();exit()
    
-   J[0:7] = 6; 
-   
+//   J[0:7] = 6; 
+      J[0:7:1] = 6; 
    chkN(J[0],6); 
    chkN(J[7],6); 
    

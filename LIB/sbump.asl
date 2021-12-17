@@ -17,7 +17,7 @@ update asl script version ;
 |>
 
 #include "debug"
-#include "hv.asl"
+//#include "hv.asl"
 
 
 if (_dblevel >0) {
@@ -56,8 +56,13 @@ cdate ="";
   // then  read current vers and  bump number and update date
   // if no @vers line -- then prepend the vers header lines
   
-  srcfile = _clarg[1];
-  
+   str srcfile = _clarg[1];
+
+   len = slen(srcfile);
+
+<<"$len $srcfile|\n"
+
+
   if (srcfile @= "") {
   <<[2]"no script file entered\n"
     exit();
@@ -74,9 +79,11 @@ cdate ="";
 
 pid=getpid()
 
- <<[2]"make a bakup ${srcfile}.${pid}.bak"
+<<[2]"make a bakup ${srcfile}.${pid}.bak \n"
 
 !!"cp $srcfile  ${srcfile}.${pid}.bak"
+
+
 
   set_vers = 0;
   na = argc();
@@ -155,21 +162,21 @@ Str cvers ="0.0";
 
 long where;
 
-where->info(1)
+where.pinfo()
 
 Str T;
 
-T->info(1)
+T.pinfo()
 
 Str Pad;
 
-Pad->info(1)
+
 
 Svar L;
 
-L->info(1)
+L.pinfo()
 
-   for (j=0; j<15; j++) {
+   for (j=0; j<12; j++) {
      T = readline(A);
      where = ftell(A)
 <<"$j $where line is $T \n"
@@ -180,9 +187,9 @@ L->info(1)
     fseek(A,0,0);
 
 //   tsz = Caz(T)
-
-   for (i = 0; i < 12;i++) {
-   
+   i = 0;
+   //for (i = 0; i < 12;i++) {
+   while (1) {
    T = readline(A);
    
 //<<[2]"$i line is $T \n"
@@ -191,7 +198,7 @@ L->info(1)
    L = Split(T);
    sz = Caz(L);
 // <<"sz $(caz(L)) \n"
-//<<[2]"$where $i $L \n"
+<<[2]"$i $sz $where  $L \n"
    if (sz >2) {
 <<[2]"L1 $L[1]\n"
 
@@ -201,7 +208,9 @@ L->info(1)
      <<[2]"$where $cvers $L[2]\n"
    }
     else if (scmp(L[1],"@cdate")) {
-     cdate = "$L[2::]";
+     cdate = "$L[2:-1:1]";
+<<"found cdate  $L\n"     
+<<[2]"%V$cdate  $L[2]\n"     
    }
     else if (scmp(L[1],"@comment")) {
      comment = "$L[2::]";
@@ -211,13 +220,25 @@ L->info(1)
    }
     else if (scmp(L[1],"@author")) {
       author = "$L[2::]";
-   }         
+   }
+   
    }
    //found_where = where;
+   i++;
+   if (i >14) {
+<<[2]"not an sheader\n"
+//    found_vers = 0;
+    break;
+   }
+   
+   if (scmp(L[0],";//-",4)) {
+<<[2]"header end? line $i\n"
+    break;
+   }
 
   }
  
-
+where = ftell(A);
  if (found_vers) {
  
   vers2ele(cvers)
@@ -266,11 +287,12 @@ L->info(1)
    vers=" @vers ${pmaj}.$pmin $min_ele $min_name [asl $(getversion())]"
    vlen = slen(vers);
 
-//   Pad = nsc(67-vlen," ")
+  
 //<<[2]"vlen $vlen <|$Pad|>\n"
 
 
-where = ftell(A);
+
+
 int nsp = 0;
 j= 0;
 
@@ -291,12 +313,19 @@ j= 0;
    <<[A]" *  @author $author \n"
    <<[A]" *  @Copyright © RootMeanSquare  2010,$(date(8)) → \n"           
    <<[A]" * \n"
-   <<[A]" *  \\\\-----------------<v_&_v>--------------------------//  \n" ;
    <<[A]" */ \n"
-   
-  fflush(A);
+   <<[A]";//-----------------<v_&_v>--------------------------//;" ;
+     here = ftell(A);
+     Pad = nsc(400-here," ")
+   <<[A]"$Pad\n";  
+ 
+    fflush(A);
   
-   here = ftell(A);
+ 
+
+<<[2]"%V$where $here\n"
+
+/*
    for (j=0; j<3; j++) {
    T = readline(A);
    
@@ -324,21 +353,30 @@ j= 0;
    }
    
    }
+*/
 
 cf(A);
 
-// lets' log this change 
-logfile= "~/gapps/LOGS/appmods.log"
-A=ofile(logfile,"r+")
-fseek(A,0,2)
+
 
 ans=iread("app code -what modification?:")
 <<"$ans\n"
+
+log_it = 1;
+
+if (log_it) {
+// lets' log this change 
+logfile= "~/gapps/LOGS/appmods.log"
+//logfile= "LOGS/appmods.log"
+A=ofile(logfile,"r+")
+fseek(A,0,2)
+
+
 len = slen(srcfile)
 Pad = nsc(24-len," ")
 <<[A]"${srcfile}${Pad}${pmaj}.${pmin}\t$date $ans\n"
 cf(A)
-
+}
 
 
 
@@ -352,12 +390,6 @@ cf(A)
 
  // so bump minor if over 100 then bump maj and min to 1
  
- 
-//  for (i = 4; i < tsz;i++) {
-//   ln=T[i]
-//  <<"$ln"
-//  }
-
 
 
 

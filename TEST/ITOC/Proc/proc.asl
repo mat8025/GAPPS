@@ -238,7 +238,7 @@
 
   <<" $y = $a \n";
 
-  proc poo()
+  void poo()
   {
 // increments global k
 // does calc and returns that value   
@@ -251,7 +251,7 @@
 
   }
 
-  proc noo()
+  int noo()
   {
 
   k++;

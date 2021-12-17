@@ -21,7 +21,7 @@
   {
   //<<"%V $vstr\n"
    pmaj = atoi(spat(vstr,".",-1))
-   <<[2]"$pmaj $(typeof(pmaj)) $(ptsym(pmaj)) \n"  
+//   <<[2]"$pmaj $(typeof(pmaj)) $(ptsym(pmaj)) \n"  
    pmin = atoi(spat(vstr,".",1))
 
 //<<[2]"$pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
