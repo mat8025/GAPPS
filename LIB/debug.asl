@@ -94,16 +94,11 @@ _DB=-1
 }
 //==========================
 
+
 proc ignoreErrors()
 {
 setmaxcodeerrors(-1); // just keep going
 setmaxicerrors(-1);
-}
-//==========================
-proc allowErrors(int n)
-{
-setmaxcodeerrors(n); // just keep going
-setmaxicerrors(n);
 }
 //==========================
 proc turnDEBUG(int on)
@@ -125,7 +120,6 @@ proc setNICerrors( int n)
  setmaxICerrors(n)
 }
 //==========================
-
 
 
 proc showUse()

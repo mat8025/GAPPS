@@ -27,7 +27,9 @@ int Obid = 0;
 #if CPP
  int n = sarg->getArgI() ;
  int m = sarg->getArgI() ;
-  cout << " Simple class demo "  << endl;
+
+DB_xic_bp = 0;
+cout << " Simple class demo "  << endl;
  cout << " paras are n " <<  n << " m " << m << endl;
 #endif
 
@@ -152,25 +154,109 @@ Siv Ladeg(DOUBLE_);
 
 cout << "Siv Ladeg " << Ladeg << endl;
 
+
+float f = 4.2;
+int cnt = 2;
+uint ucnt = 34;
+short si = 35;
+ulong ul = 36;
+ushort us = 37;
+cout<<"cnt is of type: "<<typeid(cnt).name()<<std::endl;
+
+    char FMT[256];
+    FMT[0] = '\0';
+
+    strcat(FMT,typeid(cnt).name());
+    strcat(FMT,",");
+
+    strcat(FMT,typeid(ucnt).name());
+    strcat(FMT,",");
+    strcat(FMT,typeid(si).name());
+    strcat(FMT,",");
+    strcat(FMT,typeid(ul).name());
+    strcat(FMT,",");
+    strcat(FMT,typeid(us).name());
+    strcat(FMT,",");            
+    strcat(FMT,typeid(&cnt).name());
+    strcat(FMT,",");
+    strcat(FMT,typeid(&Lat).name());
+    strcat(FMT,",");
+    strcat(FMT,typeid("Voy a dar un paseo ahora").name());
+    strcat(FMT,",");    
+    strcat(FMT,typeid((cnt*ucnt)).name());
+    strcat(FMT,",");
+    strcat(FMT,typeid((cnt*f)).name());
+    strcat(FMT,",");        
+    printf("FMT %s\n",FMT);
 //
-//  Ladeg =  coorToDeg(Lat,2);
-//  preprocess to
+
 //  Ladeg = cpp2asl (3,"coorToDeg", Lat, 2);
 //  Ladeg = cpp2asl (3,"coorToDeg", "S,I,", Lat, 2);
-//  which will construct args inst Svarg form
+
+//
+//
+
+//  Ladeg =  coorToDeg(Lat,2);  ==>
+
+///  FMT = scat(typeid(Lat).name(),typeid(M).name(), typeid(2).name());
+
+    FMT[0] = '\0';
+    strcat(FMT,typeid(Lat).name());
+    strcat(FMT,",");
+    strcat(FMT,typeid(M).name());
+    strcat(FMT,",");
+    strcat(FMT,typeid(2).name());
+    strcat(FMT,",");
+    strcat(FMT,typeid(q).name());
+    strcat(FMT,",");    
+
+    printf("FMT %s\n",FMT);
+
+
+//  Ladeg =  coorToDeg(Lat,1);
+//  preprocess to
+//    Ladeg = cpp2asl ("coorToDeg",FMT,&Lat,1);
+//  which will construct args into Svarg form
 //  and call asl function
 //  return Siv*
-//
-//
+
+   FMT[0] = '\0';
+    strcat(FMT,typeid(Lat).name());
+    strcat(FMT,",");
+    strcat(FMT,typeid(2).name());
+    strcat(FMT,",");
+    printf("FMT %s\n",FMT);
 
 
+   Ladeg = cpp2asl ("coorToDeg",FMT,&Lat,1);
 
-    Ladeg = cpp2asl (3,"coorToDeg", M, Lat);
-   // cpp2asl (3,"coorToDeg", M, Lat);
 
 cout << "Siv Ladeg " << Ladeg << endl;
 
 
+cout<<"Lat is of type: "<<typeid(Lat).name()<<std::endl;
+cout<<"M is of type: "<<typeid(M).name()<<std::endl;
+cout<<"R is of type: "<<typeid(R).name()<<std::endl;
+cout<<"W is of type: "<<typeid(W).name()<<std::endl;
+cout<<"2 is of type: "<<typeid(2).name()<<std::endl;
+
+
+  //         q=scat(t,r);
+  //    ==> 
+    FMT[0] = '\0';
+    strcat(FMT,typeid(t).name());
+    strcat(FMT,",");
+    strcat(FMT,typeid(r).name());
+    strcat(FMT,",");    
+    printf("FMT %s\n",FMT);
+
+    t = "One feature ";
+    r = "at a time! ";
+    // afmt(2,FMT,typeid(&t).name(),typeid(&r).name());
+
+    R =cpp2asl ("scat",FMT,&t,&r);
+
+cout << "str R = "  << R << " str t " << t << " str r " << r << endl;
 
 chkN(1,1);
 chkOut();

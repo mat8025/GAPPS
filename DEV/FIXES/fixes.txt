@@ -299,35 +299,45 @@ revise wic,xic
 12/16/21 21:52
 |>
 <|P
-id
-in_date
-asl
-cpp
-descr:
+37
+12/19/21 09:00
+any asl for cpp 
+cpp2asl
+descr: function for cpp to call asl script functions
+needs statements to work out FMT
+Ladeg =  coorToDeg(Lat,1); asl
+   FMT[0] = '\0';
+    strcat(FMT,typeid(Lat).name());
+    strcat(FMT,",");
+    strcat(FMT,typeid(2).name());
+    strcat(FMT,",");
+and a statement to call with ... args
+Ladeg = cpp2asl ("coorToDeg",FMT,&Lat,1); cpp
+
+12/22/21 11:22
+|>
+<|P
+38
+12/22/21 11:22
+any asl
+include, ic_rw
+descr: making src for xic fails in nested infludes
 fix_date
 |>
 <|P
-id
-in_date
-asl
-cpp
-descr:
+39
+12/22/21 11:22
+any asl
+include, ic_rw
+descr: need to write out included asl code blocks as separate xic files
 fix_date
 |>
 <|P
-id
-in_date
-asl
-cpp
-descr:
-fix_date
-|>
-<|P
-id
-in_date
-asl
-cpp
-descr:
+40
+12/22/21 11:25
+any asl
+include , engine
+descr: include "foo" - use foo.xic unless foo.asl more recent or no xic
 fix_date
 |>
 <|P

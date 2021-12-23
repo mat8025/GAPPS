@@ -24,6 +24,7 @@ if (_dblevel >0) {
    <<"$Use_\n"
 }
 
+allowErrors();
    
    <<"does nested includes\n"; 
    
@@ -44,8 +45,9 @@ if (_dblevel >0) {
    
 #include "inc1_nest";
    
-   <<" after include\n"; 
-   
+   <<" before xic include\n"; 
+
+#include "mini.xic"
    
    <<"main sees globals %V $A $X $Y $Z\n"; 
    

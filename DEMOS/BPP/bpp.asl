@@ -1,58 +1,72 @@
-//%*********************************************** 
-//*  @script bpp.asl 
-//* 
-//*  @comment show BBP 
-//*  @release CARBON 
-//*  @vers 1.3 Li Lithium                                                    
-//*  @date Sat Mar 21 09:12:31 2020 
-//*  @cdate Sat Mar 21 09:12:31 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script bpp.asl 
+ * 
+ *  @comment show BPP 
+ *  @release CARBON 
+ *  @vers 1.4 Be Beryllium [asl 6.3.67 C-Li-Ho] 
+ *  @date 12/21/2021 11:26:44          
+ *  @cdate Sat Mar 21 09:12:31 2020 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare  2010,2021 → 
+ * 
+ */ 
+;//-----------------<v_&_v>--------------------------//;                                                                
 ///
 ///
 ///
 
-
-
-include "gevent.asl"
-include "debug"
-include "hv.asl"
-include "gss.asl"  // import the main subroutines
+<|Use_=
+    show bpp
+|>
 
 
 
-debugON()
-setdebug(1,@~pline,@~trace,@keep)
+#include "debug"
+#include "hv.asl"
+#include "gss.asl"  // import the main subroutines
 
-filterFuncDebug(ALLOWALL_,"xxx");
-filterFileDebug(ALLOWALL_,"yyy");
+if (_dblevel >0) {
+
+     debugON();
+
+     <<"$Use_\n";
+
+     }
+
+allowErrors(-1)
 
 
-///////////////  PROCS //////////////////////////////////
+//filterFuncDebug(ALLOWALL_,"xxx");
+//filterFileDebug(ALLOWALL_,"yyy");
 
-proc drawBPP()
- {
- dGl(sys_gl);
- dGl(dysys_gl);
- dGl(p_gl);
+chkIn(_dblevel)
 
-    axlabel(syswo,1,"SYSTOLIC",0.5,1)
-    axlabel(dysyswo,1,"DYSYSTOLIC",0.5,1)
-    axlabel(pwo,1,"PULSE",0.5,1)
-}
+int a = 67;
 
-//=============================//
+<<"%V $a\n"
+
+
+
 
 
 
  fname = "bpp.tsv"
 
+# date sys  dys  prate
+
+#define PRATE 3
+
+
+
+
 
     A=ofr(fname)
+
+<<"%V$fname $A\n"
     R= readRecord(A)
     cf(A);
+
+
 
     sz = Caz(R);
     rows = sz;
@@ -78,7 +92,7 @@ int DATE[]
 j=0;
 
      for (i =1; i < sz; i++) {
-       di = julian(R[i][3]))
+       di = julian(R[i][0]))
        <<"$j $di\n"
       R[i][4] = itoa(di)
       if (di != 0) {
@@ -130,7 +144,7 @@ nsamples = j;
 //<<"$S\n"
 
    V=colSum(MF)
-   V->redimn()
+   V.redimn()
 <<"Sum $V\n"
 
     AV = V/ nm
@@ -138,7 +152,7 @@ nsamples = j;
 <<"Average $AV\n"
 
    V=colAve(MF)
-   V->redimn()
+   V.redimn()
 
    nb = Cab(V)
 <<"%V$nb\n"
@@ -149,7 +163,7 @@ nsamples = j;
 
    SV=colStats(MF);
    nb = Cab(SV)
-   SV->info(1)
+   SV.pinfo()
 
 <<"%V $nb $(Caz(SV))\n"
 
@@ -162,7 +176,7 @@ RSV=   NSV
 <<"%V$RSV\n"
 
 
-RSV->info(1);
+RSV.pinfo();
 //NRSV=mcyclerow(RSV,1)
 
 <<"%V$RSV\n"
@@ -185,7 +199,8 @@ RSV->info(1);
 // R[Rn] = Split("$AV")
 // Rn++;
 <<"%V $Rn\n"
- R->info(1) 
+
+R.pinfo() 
 
 <<"$R[::] \n"
 
@@ -225,13 +240,34 @@ Rsn++;
 <<"%V$RS\n"
 
 
+///////////////  PROCS //////////////////////////////////
 
+proc drawBPP()
+ {
+ dGl(sys_gl);
+ dGl(dysys_gl);
+ dGl(p_gl);
 
+    axlabel(syswo,1,"SYSTOLIC",0.5,1)
+    axlabel(dysyswo,1,"DYSYSTOLIC",0.5,1)
+    axlabel(pwo,1,"PULSE",0.5,1)
+}
 
+//=============================//
+
+<<"including graphic modules \n"
+
+#include "graphic" ; // Connect with Graphic server
+
+#include "gevent.asl"
 ///
 ///   gss screen
 ///
-include "graphic" ; // Connect with Graphic server
+
+
+
+
+
     vp = cWi(@title,"BPP:$fname")
 
     sWi(vp,@pixmapoff,@drawoff,@save,@bhue,WHITE_)
@@ -271,10 +307,12 @@ include "graphic" ; // Connect with Graphic server
       pguwo = cWo(vp,@BN,@name,"PGUP",@color,ORANGE_,@bhue,"golden");
 
       pgnwo = cWo(vp,@BV,@name,"PGN",@color,ORANGE_,@bhue,"cyan",@value,0,@style,"SVR");
+
+      exitwo = cWo(vp,@BN,@name,"EXIT",@color,RED_);
       
       sWo(pgnwo,@bhue,WHITE_,@clipbhue,RED_,@FUNC,"inputValue",@callback,"PGN",@MESSAGE,1)
 
-      int ssmods[] = { readwo,savewo,sortwo,swprwo,delrwo,arwo,pguwo,pgdwo,pgnwo }
+      int ssmods[] = { readwo,savewo,sortwo,swprwo,delrwo,arwo,pguwo,pgdwo,pgnwo,exitwo }
 
       wovtile(ssmods,0.05,0.1,0.1,0.9,0.01);
 
@@ -301,18 +339,20 @@ include "graphic" ; // Connect with Graphic server
 
    page_rows = Rn;
    sWo(cellwo,@setrowscols,Rn+2,cols+1);
-   sWo(cellwo,@selectrowscols,0,page_rows,0,cols);
+//   sWo(cellwo,@selectrowscols,0,page_rows,0,cols);
 
    
 
    sWo(ssmods,@redraw)
+
+
 
    for (i= 1; i< rows; i++) {
       R[i][tags_col] = "x";
    }
 
 <<"$R\n"
-   R->info(1);
+   R.pinfo();
 
    sWo(cellwo,@cellval,R);
    titleVers();
@@ -327,7 +367,8 @@ include "graphic" ; // Connect with Graphic server
    <<"$RS \n"
    <<"%V $Rsn $cols\n"
    sWo(statswo,@setrowscols,Rsn,cols);
-   sWo(statswo,@selectrowscols,0,Rsn-1,0,cols-1);
+  // sWo(statswo,@selectrowscols,0,Rsn-1,0,cols-1);
+   sWo(statswo,@selectrows,0,Rsn-1);
 
    sWo(statswo,@cellval,RSV);
    sWo(statswo,@redraw);
@@ -364,14 +405,14 @@ include "graphic" ; // Connect with Graphic server
 
 
 
-    SYSVEC = MF[::][0]
-    SYSVEC->redimn()
+    SYSVEC = MF[::][1]
+    SYSVEC.redimn()
 
-    DYSYSVEC = MF[::][1]
-    DYSYSVEC->redimn()
+    DYSYSVEC = MF[::][2]
+    DYSYSVEC.redimn()
 
-    PVEC = MF[::][2]
-    PVEC->redimn()
+    PVEC = MF[::][PRATE]
+    PVEC.redimn()
 
 
     mfsz = Caz(MF)
@@ -393,7 +434,7 @@ include "graphic" ; // Connect with Graphic server
 
 <<"%V $PVEC\n"
 
-   XVEC->resize(nsamples)
+   XVEC.resize(nsamples)
 
    sx= XVEC[0];
    //sX= XVEC[nsamples-1];
@@ -406,13 +447,18 @@ include "graphic" ; // Connect with Graphic server
 
 <<"%V $sx $sy $sX $sY \n"
 
+
+
+
+
+
    //sWo({gwo,syswo,pwo},@scales, sx, sy, sX, sY, @save,@redraw,@drawon,@pixmapon);
 
    sWo(syswo,@scales, sx, sy, sX, sY, @save,@redraw,@drawon,@pixmapon);
 
    sWo(dysyswo,@scales, sx, 50, sX, 100, @save,@redraw,@drawon,@pixmapon);
 
-   sWo(pwo,@scales, sx, 40, sX, 100, @save,@redraw,@drawon,@pixmapon);
+   sWo(pwo,@scales, sx, 40, sX, 110, @save,@redraw,@drawon,@pixmapon);
 
   // draw vecs should be float!
   
@@ -430,7 +476,7 @@ include "graphic" ; // Connect with Graphic server
     dGl(dysys_gl);
     dGl(p_gl);        
 
-sWo({syswo,dysyswo,pwo},@redraw,@showpixmap);
+    sWo({syswo,dysyswo,pwo},@redraw,@showpixmap);
 
     axlabel(syswo,1,"SYSTOLIC",0.5,1)
     axlabel(dysyswo,1,"DYSYSTOLIC",0.5,1)
@@ -439,10 +485,10 @@ sWo({syswo,dysyswo,pwo},@redraw,@showpixmap);
 bps = MF[::][0]
 
 //<<"$bps\n"
-bps->redimn()
+bps.redimn()
 <<"$bps\n"
 
-S=stats(bps)
+  S=stats(bps)
 <<"$S\n"
 
 
@@ -452,12 +498,33 @@ S=stats(bps)
 
 drawBPP()
 
+ans=query("interact?");
+<<"%V $ans\n"
+
+if (ans == "n") { 
+chkT(1)
+chkOut()
+exitgs(1)
+exit()
+}
+
+
+
+
+
 while (1) {
 
         eventWait();
 
   if ((_ewoid > 0) && (_ename @= "PRESS")) {
-             if (!(_ewoname @= "")) {
+
+   if (_ewoname == "EXIT") {
+     <<" DONE interacting \n";
+      exit()
+      break;
+   }
+
+          if (!(_ewoname @= "")) {
 	       ind = findProc(_ewoname) ;
                if (ind  > 0) {
               <<"calling script procedure %V $ind $_ewoid $cellwo $_ename $_ewoname !\n"
@@ -472,7 +539,15 @@ while (1) {
 
  sWi(vp2,@clipborder,RED_,@redraw)
   drawBPP()
-  
-
      //break;
 }
+
+
+
+<<" Out of inter loop!\n"
+
+
+chkT(1)
+chkOut()
+exitgs(1)
+exit()

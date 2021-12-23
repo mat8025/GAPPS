@@ -31,6 +31,8 @@
    chkIn(_dblevel);
    
 chkT(1)
+
+
    svar E[] = { "the first ten elements are:", "H", "He", "Li", "Be" ,"B" ,"C", "N", "O", "F", "Ne"  };
 
    <<"$E\n";
@@ -38,6 +40,23 @@ chkT(1)
    <<"$E[1] \n";
 
    E.pinfo();
+
+Siv F(SVAR_);
+
+   F  = split ("uno dos tres" );
+
+   F.pinfo();
+   
+Siv Q(INT_,67);
+
+   Q.pinfo();
+
+  
+Siv Ivec(INT_,10,0,1,2);
+
+   Ivec.pinfo();
+
+
 
    chkStr(E[1],"H");
 
