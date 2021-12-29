@@ -43,11 +43,11 @@ allowErrors();
    
    <<" before include\n"; 
    
-#include "inc1_nest";
+#include "inc1_nest.xic";
    
    <<" before xic include\n"; 
 
-#include "mini.xic"
+#include "mini"
    
    <<"main sees globals %V $A $X $Y $Z\n"; 
    
