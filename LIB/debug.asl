@@ -56,7 +56,7 @@ int _DB = -1; // dbg FH set to nop --set to 2 for error output
 
 
 
-proc DummyP()
+void DummyP()
 {
 // $_proc  called if $pname() does not resolve to known Proc
 <<" $_proc called if invalid proc name\n" 
@@ -64,7 +64,7 @@ proc DummyP()
 //==========================
 
 
-proc debugON()
+void debugON()
 {
 
  if (_dblevel < 1) {
@@ -83,7 +83,7 @@ _DB =1;
 }
 //==========================
 
-proc debugOFF()
+void debugOFF()
 {
 
 setdebug(-1,@~pline,@~step,@~trace,@~showresults,1)
@@ -95,34 +95,21 @@ _DB=-1
 //==========================
 
 
-proc ignoreErrors()
+void ignoreErrors()
 {
 setmaxcodeerrors(-1); // just keep going
 setmaxicerrors(-1);
 }
 //==========================
-proc turnDEBUG(int on)
-{
 
-   if (on) {
-     debugON()
-   }
-   else {
-
-     debugOFF()
-   }
-   
-
-}
-//==========================
-proc setNICerrors( int n)
+void setNICerrors( int n)
 {
  setmaxICerrors(n)
 }
 //==========================
 
 
-proc showUse()
+void showUse()
 {
   <<"$Use_\n"
 }

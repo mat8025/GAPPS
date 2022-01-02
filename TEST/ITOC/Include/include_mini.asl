@@ -36,14 +36,19 @@ allowErrors();
    
    A= 1;
    
-   int n = 0 ;
+   int N = 0 ;
    
-   <<"%V$n\n";
-   
+   na= argc();
+   if (na >1) {
+    N = atoi(_clarg[1])
+    <<"$N set from command line\n";
+   }
+
+<<"%V$N\n";
    
    <<" before include\n"; 
 
-#include "mini.xic"
+#include "mini"
 
 <<"%V$Mini\n"
 
@@ -54,63 +59,4 @@ chkOut();
 exit()
 
 
-
-
-
-/*
-
-#include "inc1_nest";
-   
-   <<" before xic include\n"; 
-
-
-   
-   <<"main sees globals %V $A $X $Y $Z\n"; 
-
-   chkR(A,1); 
-   chkR(X,1.2345); 
-   chkR(Y,2.2345); 
-   chkR(Z,3.2345); 
-   
-   s=Foo(38,33);
-
-   chkN(s,71); 
-
-   s=Doo(2,3); 
-   
-   <<"%V$s\n"; 
-   
-   chkN(s,5); 
-   
-   <<" yellow $(C_YELLOW) \n"; 
-   
-   if (argc() > 1) {
-     s=Boo(2,3);
-     <<"%V$s\n"; 
-     chkN(s,-1); 
-     s=Boo(47,79);
-     <<"%V$s\n"; 
-     chkN(s,-32); 
-     }
-   
-   g=Goo(47,79);
-   <<"%V$g\n"; 
-   
-   chkN(g,47*79); 
-   
-   
-   h=Hoo(47.0,79);
-   
-   <<"%V$h\n"; 
-   
-   chkN(h,47.0/79); 
-   
-   dd= Doo(4,5); 
-   <<"$dd\n"; 
-   
-   chkOut(); 
-   
-
-   
-*/
 

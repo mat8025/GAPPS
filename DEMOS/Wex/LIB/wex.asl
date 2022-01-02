@@ -122,7 +122,7 @@ float upperWt = 225;
 
 
 
-N = 1000
+N = 1000;
 
 //float DVEC[200+];
 
@@ -188,7 +188,7 @@ int dday;
 <<[_DB]"%V $maxday \n"
 
 
- A=ofr("DAT/wex2021.tsv")
+ A=ofr("DAT/wex2022.tsv")
 
  
 if (A == -1) {
@@ -236,7 +236,7 @@ chkT(1)
 
  //ACC=ofr("DAT/ccwx.tsv")
 
-ACC=ofr("DAT/cc2021.tsv")
+ACC=ofr("DAT/cc2022.tsv")
 
 Record RCC[];
 
@@ -264,9 +264,9 @@ else {
 ////////////////// READ CEX DATA ///////////////////
 
 
-
 #include "wex_goals"
 #include "wex_read"
+
 
 readCCData();
 
@@ -284,8 +284,6 @@ nrd=readData();
 
 // 
    init_period = 32;
-   
-  
 
    long sc_startday = (jtoday - bday) - 20;
 
@@ -402,11 +400,12 @@ first_k = 0
 //////////////////// DISPLAY /////////////////////////////
 
 
-#include "gevent"
 
-<<"%V $_eloop\n"
 
 #include "graphic"
+
+
+
 
 msg ="x y z"     // event vars
 msgw =split(msg)
@@ -422,14 +421,103 @@ msgw =split(msg)
 
 #include "wex_glines"
 
+
+#include "gevent"
+
 //ans=query("proceed?")
 //sleep(0.1)
+
+<<"%V $_eloop\n"
 
 
 ///////////////////////// PLOT  ////////////////////////////////////////////
 //  
 
-#include "wex_compute";
+//#include "wex_compute";
+
+
+xhrs = 0;
+
+void computeWL(long wlsday, long wleday)
+{
+/// use input of juldays
+/// find the number of exe hours
+// read the number of cals burnt during exercise
+// compute the number of lbs burnt
+
+int i;
+
+   Nsel_exemins = 0
+   Nsel_exeburn = 0.0
+
+   Nxy_obs = 0
+
+   Nsel_lbs = 0.0
+<<"$_proc %V $wlsday $wleday  $Nobs\n"
+
+   for (i = 0; i < Nobs ; i++) {
+        aday = LDVEC[i] - bday;
+     if (aday >= wlsday) {
+
+        Nxy_obs++
+
+        Nsel_exeburn += EXEBURN[i]
+        Nsel_exemins += EXTV[i]
+//<<"%V $i $Nsel_exeburn $Nsel_exemins $wlsday  $LDVEC[i]  $bday\n"
+     }
+
+     if (aday > wleday) 
+             break; 
+   }
+
+   Nsel_lbs = Nsel_exeburn/ 4000.0
+
+   xhrs = (Nsel_exemins/60.0)
+
+<<"%V$Nxy_obs %6.2f $Nsel_exemins $(Nsel_exemins/60.0) $Nsel_exeburn $Nsel_lbs $xhrs\n"
+
+}
+//=========================
+
+void getDay(long dayv)
+{
+
+ int m_day;
+ m_day= dayv + bday;
+ float cbm;
+ float xtm;
+ float wtm;
+ int dt;
+
+   for (i = 0; i < Nobs ; i++) {
+
+//<<" $i $dayv  $mday $LDVEC[i] \n"
+
+     if (LDVEC[i] == m_day) {
+
+    xtm = EXTV[i]
+    wtm  = WTVEC[i]
+    cbm  = CALBURN[i]
+ 
+   <<"FOUND $i %V $dayv $m_day  $wtm $xtm $cbm\n"
+
+     dt = julmdy(m_day);
+     sWo(dtmwo,@value,dt,@redraw);
+     sWo(xtmwo,@value,xtm,@redraw);
+     sWo(wtmwo,@value,wtm,@redraw);
+     sWo(cbmwo,@value,cbm,@redraw);
+
+      break;
+     }
+  }
+
+}
+
+
+//[EM]=================================//
+
+
+
 #include "wex_callbacks";
 
 
@@ -514,6 +602,12 @@ while (1) {
            // $_ewoname()
         }
       }
+
+       if (_emsg == "EXIT") {
+        <<"leaving WEX !\n"
+	 break;
+       }
+
 
        if (_ewoname == "WTLB") {
 

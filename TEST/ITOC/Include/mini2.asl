@@ -3,18 +3,30 @@
 ///
 ;
 
-<<"going to include mini3\n"
+Mini = 7;
+int amin = 5*Mini;
+<<"INCLUDE %V its just me $Mini $amin\n"
+amin++;
+int im;
 
-//#include "mini3"
-;
+<<"%V$N switch \n"
 
-Mini2 = -1;
-int amin2 = 5*Mini2;
-<<"INCLUDE %V its just me $Mini2 $amin2\n"
-amin2++;
-<<" now I added more stuff $amin2\n"
+if (N > 0) {
+<<" $N path followed\n"
+ for (im = 1; im <=N ; im++) {
+    amin = im * Mini;
+<<"$im $amin\n"
+  }
+ }
+ else {
+<<" zero path followed\n"
 
+ }
+<<" now I added more stuff $amin\n"
 
+//  a comment line
 ///
-<<"Included Mini2 \n"
+<<"B4 Mini comment \n"; // trailing comment
+//  another comment line
+<<"Included Mini \n"
 

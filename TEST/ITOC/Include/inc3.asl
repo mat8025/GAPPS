@@ -22,8 +22,8 @@
    
    <<"inc3 adds global %V$Z\n"; 
    
-   proc Hoo(real a, real b)
-//   proc Hoo(double a, double b)
+
+double Hoo(double a, double b)
    {
      <<"$_proc $a , $b $(typeof(a)) $(typeof(b))\n"; 
      c= a/b;
@@ -34,6 +34,7 @@
    
    <<"included $_include  _scope \n"; 
    
-
+   hc= Hoo(2.3,3.2)
+   <<"Hoo returns $hc\n"
    
    <<"ignored repeated include\n"; 

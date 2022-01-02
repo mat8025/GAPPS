@@ -1,3 +1,4 @@
+
 //%*********************************************** 
 //*  @script wex_compute.asl 
 //* 
@@ -13,7 +14,7 @@
 
 xhrs = 0;
 
-proc computeWL(long wlsday, long wleday)
+void computeWL(long wlsday, long wleday)
 {
 /// use input of juldays
 /// find the number of exe hours
@@ -54,7 +55,7 @@ int i;
 }
 //=========================
 
-proc getDay(long dayv)
+void getDay(long dayv)
 {
 
  int m_day;
