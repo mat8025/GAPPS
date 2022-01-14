@@ -44,12 +44,25 @@
    sz= fexist(srcfile,RW_,0);
    
    //<<[2]" RW sz $sz \n"
-   
+
+   create_template =0;
+
    if (sz == -1) {
    <<[2]"can't find script file $srcfile\n"
-     exit();
+   ans=query("create minimal template y/n ?")
+   if (ans != "y") {
+         exit()
    }
+   create_template =1;
+    A=ofw(srcfile);
+    <<[A]"///\n chkOut();\n  exit();\n;///--------(^-^)--------///\n"
+    cf(A);
    
+   }
+
+
+
+
    set_vers = 0;
    set_cdate = 0;
 
@@ -168,9 +181,14 @@ if (found_vers) {
  !!"cp $srcfile old-$srcfile"  
    
    //ns = spat(srcfile,".asl",-1)
-   newsrc=scat("shead-",srcfile)
+  newsrc=srcfile)
+   if (!create_template) {
+      newsrc=scat("shead_",srcfile)
+   }
+   
 
    A=ofw(newsrc);
+
    vers="@vers ${pmaj}.$pmin $min_ele $min_name [asl $(getversion())]"
    vlen = slen(vers);
    pad = nsc(70-vlen," ")
@@ -183,11 +201,11 @@ if (found_vers) {
    <<[A]" *  @date $date \n"
    <<[A]" *  @cdate $cdate \n"      
    <<[A]" *  @author $author \n"
-   <<[A]" *  @Copyright © RootMeanSquare  2010,$(date(GS_YEAR_)) → \n"           
+   <<[A]" *  @Copyright © RootMeanSquare $(date(GS_YEAR_))\n"           
    <<[A]" * \n"
-   <<[A]" *  \\\\-----------------<v_&_v>--------------------------//  \n"                          
    <<[A]" */ \n"
-   <<[A]"\n;//----------------------//;\n"
+   <<[A]";//-----------------<v_&_v>------------------------//\n"                          
+
 <<[A]"\n";
 <<[A]"<|Use_= \n"
 <<[A]"Demo  of $comment \n"
@@ -213,7 +231,7 @@ fflush(A)
    for (i = 0; i < tsz; i++) {
     ln = T[i];
   // <<"$i $ln\n"
-   <<[A]"$ln\n"
+   <<[A]"$ln"
 //   <<[2]"$ln\n"
    }
 //<<[A]"$T[i]"  // bug

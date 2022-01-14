@@ -298,7 +298,7 @@ prt_fh - corrupt memory classified as icode when was icip
 revise wic,xic
 12/16/21 21:52
 |>
-<|P
+<|D
 37
 12/19/21 09:00
 any asl for cpp 
@@ -316,21 +316,21 @@ Ladeg = cpp2asl ("coorToDeg",FMT,&Lat,1); cpp
 
 12/22/21 11:22
 |>
-<|P
+<|F
 38
 12/22/21 11:22
 any asl
 include, ic_rw
-descr: making src for xic fails in nested infludes
-fix_date
+descr: masking src for xic fails in nested includes
+12/22/21 13:07
 |>
-<|P
+<|F
 39
 12/22/21 11:22
 any asl
 include, ic_rw
 descr: need to write out included asl code blocks as separate xic files
-fix_date
+01/03/22 09:47
 |>
 <|P
 40
@@ -341,28 +341,28 @@ descr: include "foo" - use foo.xic unless foo.asl more recent or no xic
 fix_date
 |>
 <|P
-id
-in_date
-asl
-cpp
-descr:
+41
+01/03/22 09:47
+include_mini,mini, mini2.asl
+ic_rw.cpp
+descr: now needs first stament and link written/read for xic include blocks
 fix_date
 |>
 <|P
-id
-in_date
-asl
-cpp
-descr:
+42
+01/03/22 09:47
+asl compile function call
+asl2cpp
+descr: args nad call pre prep  process of asl script before cpp compile
 fix_date
 |>
-<|P
-id
-in_date
-asl
-cpp
-descr:
-fix_date
+<|F
+43
+01/03/22 09:00
+include.asl
+ic_rw.cpp
+descr: nested include broke - rework into ic_wcb, ic_rcb
+01/06/22 13:04
 |>
 <|P
 id

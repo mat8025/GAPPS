@@ -14,7 +14,12 @@
 ///
 //  SET     START DATE      END DATE  TARGET WEIGHT
 
+
    Goals = Split("01/01/2022 03/31/2022 175");
+
+<<"Setting goals $Goals\n"
+
+   Goals2 = Split("01/11/2022 01/31/2022 197");
 ////////////////////==============/////////////////
 
    GoalWt = 175;  // ideal -- flying weight
@@ -23,27 +28,45 @@
 
    MinWt = 165;
 
-   long sday = julian(Goals[0]) -bday ; // start date
+   long tjd =  julian(Goals[0]) ;
 
-   long targetday = julian(Goals[1]) -bday;
+   //long sday = julian(Goals[0]) -bday ; // start date
+   long Sday = tjd - bday;
+   
+   //long targetday = julian(Goals[1]) -bday;
+   long tarxday = julian(Goals[1]) -bday;
+   long targetday = julian(Goals[1]);
+          targetday -= bday;
+	  
+<<"%V $tjd $bday $Sday $targetday  $tarxday; \n"
+
 
    NextGoalWt = atoi(Goals[2]);
 
-   gsday = sday;
+   long Sday2 = julian(Goals2[0]) -bday ; // start date
+
+   long tday2 = julian(Goals2[1]) -bday;
+
+   StGoalWt = atoi(Goals2[2]);
+
+
+
+
+   gsday = Sday;
 
    gday =  targetday;    // next goal day;
 
    got_start = 0;
 
-   long yday = julian("01/01/2021")   ; // this should be found from data file
+   long yday = julian("01/01/2022")   ; // this should be found from data file
 
-   long eday = julian("12/31/2021");
+   long eday = julian("12/31/2022");
 
    jtoday = julian("$(date(2))");
 
    int ngday = 7;
 
-   k = eday - sday;
+   k = eday - Sday;
 
    if ( k < 0) {
 
@@ -126,4 +149,4 @@
    <<[_DB]"$_include \n";
 ///////////////////////////////////
 
-//===***===//
+;//==============\_(^-^)_/==================//;

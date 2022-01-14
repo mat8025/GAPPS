@@ -231,7 +231,7 @@ cout<<"cnt is of type: "<<typeid(cnt).name()<<std::endl;
    Ladeg = cpp2asl ("coorToDeg",FMT,&Lat,1);
 
 
-cout << "Siv Ladeg " << Ladeg << endl;
+cout << "Lat " << Lat << " Siv Ladeg " << Ladeg << endl;
 
 
 cout<<"Lat is of type: "<<typeid(Lat).name()<<std::endl;

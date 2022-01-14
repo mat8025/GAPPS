@@ -64,7 +64,16 @@ void getDay(long dayv)
  float xtm;
  float wtm;
  int dt;
+ str mdy;
 
+    mdy = julmdy(m_day);
+    sWo(dtmwo,@value,mdy,@redraw);
+    wtm = 0.0;
+     sWo(wtmwo,@value,wtm,@redraw);
+          sWo(cbmwo,@value,0,@redraw);
+     sWo(xtmwo,@value,0,@redraw);
+     sWo(obswo,@value,0,@redraw);
+     
    for (i = 0; i < Nobs ; i++) {
 
 //<<" $i $dayv  $mday $LDVEC[i] \n"
@@ -75,10 +84,14 @@ void getDay(long dayv)
     wtm  = WTVEC[i]
     cbm  = CALBURN[i]
  
-   <<"FOUND $i %V $dayv $m_day  $wtm $xtm $cbm\n"
 
-     dt = julmdy(m_day);
-     sWo(dtmwo,@value,dt,@redraw);
+
+
+
+     dt = dayv -Sday;
+     <<"%V $tjd $bday $Sday $mdy\n"
+   <<"FOUND $i %V $dayv $Sday $dt  $wtm $xtm $cbm\n"
+     sWo(obswo,@value,dt+1,@redraw);
      sWo(xtmwo,@value,xtm,@redraw);
      sWo(wtmwo,@value,wtm,@redraw);
      sWo(cbmwo,@value,cbm,@redraw);
@@ -91,3 +104,4 @@ void getDay(long dayv)
 
 
 //[EM]=================================//
+<<"Included compute module\n"

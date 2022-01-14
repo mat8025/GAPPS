@@ -43,21 +43,6 @@ allowErrors();
    
    <<" before include\n"; 
 
-#include "mini.xic"
-
-<<"%V$Mini\n"
-
-chkT(Mini>0)
-
-chkOut();
-
-exit()
-
-
-
-
-
-/*
 
 #include "inc1_nest";
    
@@ -112,5 +97,5 @@ exit()
    
 
    
-*/
+
 

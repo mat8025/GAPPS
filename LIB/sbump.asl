@@ -176,21 +176,17 @@ Svar L;
 
 L.pinfo()
 
-   for (j=0; j<12; j++) {
-     T = readline(A);
-     where = ftell(A)
-<<"$j $where line is $T \n"
-   }
 
-     found_vers =0;
+   found_vers =0;
 
-    fseek(A,0,0);
+   fseek(A,0,0);
 
 //   tsz = Caz(T)
    i = 0;
-   //for (i = 0; i < 12;i++) {
+   
    while (1) {
-   T = readline(A);
+
+    T = readline(A);
    
 //<<[2]"$i line is $T \n"
 
@@ -225,20 +221,31 @@ L.pinfo()
    }
    //found_where = where;
    i++;
-   if (i >14) {
+   if (i >16) {
 <<[2]"not an sheader\n"
-//    found_vers = 0;
-    break;
-   }
-   
-   if (scmp(L[0],";//-",4)) {
-<<[2]"header end? line $i\n"
+    found_vers = 0;
     break;
    }
 
+    if (scmp(L[0],"*/",2)) {
+<<[2]"header end? line $i\n"
+    // check for new
+        T = readline(A);
+        L = Split(T);
+       if (scmp(L[0],";//-",4)) {
+      <<[2]"new header end? line $i\n"
+       }
+       else {
+         // step back
+	 fseek(A,where,0);
+       }
+   
+    break;
+    }
   }
  
-where = ftell(A);
+  where = ftell(A);
+
  if (found_vers) {
  
   vers2ele(cvers)
@@ -284,7 +291,8 @@ where = ftell(A);
  <<[2]"///  @vers $release ${pmaj}.$pmin ${maj_ele}.$min_ele $min_name    \n"
 
 
-   vers=" @vers ${pmaj}.$pmin $min_ele $min_name [asl $(getversion())]"
+//   vers=" @vers ${pmaj}.$pmin $min_ele $min_name [asl $(getversion())]"
+   vers=" @vers ${pmaj}.$pmin $(getversion())"
    vlen = slen(vers);
 
   
@@ -311,12 +319,12 @@ j= 0;
    <<[A]" *  @date $date          \n"
    <<[A]" *  @cdate $cdate \n"      
    <<[A]" *  @author $author \n"
-   <<[A]" *  @Copyright © RootMeanSquare  2010,$(date(8)) → \n"           
+   <<[A]" *  @Copyright © RootMeanSquare $(date(8))\n"           
    <<[A]" * \n"
    <<[A]" */ \n"
-   <<[A]";//-----------------<v_&_v>--------------------------//;" ;
+   <<[A]";//----------------<v_&_v>-------------------------//;" ;
      here = ftell(A);
-     Pad = nsc(400-here," ")
+     Pad = nsc(where-here-2," ")
    <<[A]"$Pad\n";  
  
     fflush(A);

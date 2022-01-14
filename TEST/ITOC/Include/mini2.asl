@@ -3,19 +3,19 @@
 ///
 ;
 
-Mini = 7;
-int amin = 5*Mini;
-<<"INCLUDE %V its just me $Mini $amin\n"
-amin++;
-int im;
+float Mini2 = 13;
+float amin2 = 5*Mini2;
+<<"INCLUDE %V its just me $Mini2 $amin2\n"
+amin2++;
+int im2;
 
 <<"%V$N switch \n"
 
 if (N > 0) {
 <<" $N path followed\n"
- for (im = 1; im <=N ; im++) {
-    amin = im * Mini;
-<<"$im $amin\n"
+ for (im2 = 1; im2 <=N ; im2++) {
+    amin2 =  Mini2/ im2;
+<<"$im2 $amin2\n"
   }
  }
  else {
@@ -26,7 +26,7 @@ if (N > 0) {
 
 //  a comment line
 ///
-<<"B4 Mini comment \n"; // trailing comment
+<<"B4 Mini2 comment \n"; // trailing comment
 //  another comment line
-<<"Included Mini \n"
+<<"Included %V Mini2 \n"
 

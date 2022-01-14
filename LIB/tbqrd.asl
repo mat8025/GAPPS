@@ -64,10 +64,14 @@ void titleComment(str msg)
 
 }
 //============================//
-proc titleVers()
+void titleVers()
 {
- titleComment("$_ele_vers $_ele");
+// str tit = "$_ele_vers $_ele";
+ str tit = scriptVers();
+ <<"script vers $tit\n"
+ titleComment(tit);
 }
+
 
 //============================//
 proc titleMessage(str msg)

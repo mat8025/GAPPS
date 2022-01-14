@@ -17,13 +17,14 @@ Demo  of include - nest
 ///////////////////////
 |>
 
+/*
 #include "debug"
 
 if (_dblevel >0) {
    debugON()
    <<"$Use_\n"
 }
-
+*/
 allowErrors();
    
    <<"does nested includes\n"; 
@@ -45,18 +46,45 @@ allowErrors();
    }
 
 <<"%V$N\n";
-   
-   <<" before include\n"; 
 
-#include "mini"
+int do_mini2 = 0;
 
-<<"%V$Mini\n"
+if (N > 10) {
+   do_mini2 = 1;
+}
 
-chkT(Mini>0)
+<<" before include mini0 \n"; 
+
+#include "mini0"
+
+   <<" before include wex_rates \n"; 
+
+#include "wex_rates"
+
+<<"%V$Mini0\n"
+
+chkT(Mini0==0)
+
+#include "miniX"
+
+chkN(MiniX,10)
 
 chkOut();
 
 exit()
+
+/*
+if (do_mini2) {
+
+<<" before include mini2 \n"; 
+
+
+
+chkT(Mini2>0)
+}
+*/
+
+
 
 
 

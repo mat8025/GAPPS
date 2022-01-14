@@ -22,8 +22,8 @@
 
 
 #include "debug"
-#include "hv.asl"
-#include "gss.asl"  // import the main subroutines
+#include "hv"
+#include "gss"  // import the main subroutines
 
 if (_dblevel >0) {
 
@@ -259,7 +259,7 @@ proc drawBPP()
 
 #include "graphic" ; // Connect with Graphic server
 
-#include "gevent.asl"
+#include "gevent"
 ///
 ///   gss screen
 ///

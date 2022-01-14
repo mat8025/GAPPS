@@ -18,4 +18,6 @@
 Wexcats = Split("Date   Weight  Walk    Hike    Run     Bike    Swim      Yard    Gym     Bpress");
 
 
-<<[_DB]"$Wexcats[::] \n"
+//<<[_DB]"$Wexcats[::] \n"
+
+

@@ -826,7 +826,7 @@ if ((do_all || do_proc ) && (do_proc != -1)) {
   inflsz = caz(FailedList)
   RunDirTests("Proc","proc,procdeclare,procret,procarg,procsv0");
 
-  RunDirTests("Proc","procrefarg,procra,procrefstrarg,proc_loc_main_var,proc_var_define");
+  RunDirTests("Proc","procrefarg,procra,procrefstrarg,proc_loc_main_var,proc_var_define,procnest_args");
   
   RunDirTests("ProcArray","procarray,poffset,arrayarg1,arrayarg2")
 

@@ -21,15 +21,16 @@
 /// Scuba   556   Gardening 318
 /// sleep 8 hours   71.5 per hour
 /// office computer work (24-8-exercise hours) 119.3 per hour
-
+///
 
 
 #include "debug"
 #include "hv"
+#include "tbqrd.asl"  //
 
-if (_dblevel >0) {
-    debugON()
-   }
+//if (_dblevel >0) {
+//    debugON()
+//   }
 
 
 
@@ -50,31 +51,6 @@ chdir(wexdir)
 
 //<<[_DB]"%V$wherearewe \n"
 
-
-/*
-
-class Activity {
-
- public:
-
- int type;
- uint duration;  //  secs
- float distance;  // Km 
- float speed;
- int intensity;
-
-}
-//--------------------------------------------------
-
-class Measure {
- public:
-
- int type;
- float weight;  // kg
-}
-//
-
-*/
 
 #define WALK 1
 #define HIKE 2
@@ -114,9 +90,13 @@ float upperWt = 225;
 //StartWt = 205;
 
 // rates per min
-#include "wex_rates"
+
+
 #include "wex_types"
 
+<<"Done include of types\n";
+
+#include "wex_rates"
 
 
 
@@ -169,7 +149,7 @@ float Nsel_lbs = 0.0
 
 int k = 0;
 
-int bday;  // birthday 
+long bday;  // birthday 
 int lday;  // last day recorded in file
 int dday;
 
@@ -179,13 +159,13 @@ int dday;
  str bdate = "04/09/1949"
  //bday = julian(bdate)
 
-<<[_DB]"%V $bdate  $bday \n"
+<<"%V $bdate  $bday \n"
 
  maxday = julian("04/09/2049") -bday
 
 // this is a new format -- allowing us to put comment labels on graphs
 
-<<[_DB]"%V $maxday \n"
+<<"%V $maxday \n"
 
 
  A=ofr("DAT/wex2022.tsv")
@@ -285,6 +265,7 @@ nrd=readData();
 // 
    init_period = 32;
 
+ //  long sc_startday = (jtoday - bday) - 20;
    long sc_startday = (jtoday - bday) - 20;
 
    long sc_endday = targetday + 10;
@@ -305,7 +286,6 @@ nrd=readData();
   cf(A);
 
 
-
 #include "wex_foodlog"
 
 
@@ -319,74 +299,6 @@ nrd=readData();
 
       //   first_k = 220
 
-/*
-first_k = 0
-
-//         end_k = first_k + 90;
-         end_k = first_k + 30;
-
-         last_wt = last_known_wt
-
-         last_cal_out = day_burn
-         last_cal_in =  day_burn
-         cal_in_strike = 0
-         cal_out_strike = 0
-         strike_n = 10  // continue trend for 30 days
-      
-
-         j = first_k
-
-         while (j > 0) {
-//<<[_DB]"%V $j $WTVEC[j] \n"
-          if (WTVEC[j] > 0) {
-           last_known_wt = WTVEC[j]
-//<<[_DB]"%V $j $last_known_wt \n"
-           break
-          }
-         j--
-
-         }
-
-
-       for (k = first_k; k <= end_k ; k++) {
-
-          if (CALBURN[k] > 0.0) {
-              cal_out = CALBURN[k]
-              last_cal_out = cal_out
-              cal_out_strike = 0
-          }
-          else {
-
-              if (cal_out_strike < strike_n) {
-                cal_out = last_cal_out
-              }
-              else {
-                cal_out =  day_burn + 100
-              }
-
-              cal_out_strike++
-          }
-
-              if (cal_in_strike < strike_n) {
-                cal_in = last_cal_in
-              }
-              else {
-               cal_in = day_burn 
-              }
-              cal_in_strike++
-
-          calc_wtg = (cal_in - cal_out) / 4000.0
-
-          last_wt +=   calc_wtg 
-
-          PWTVEC[k] = last_wt
-
-     <<"day $k %V $PWTVEC[k] $CALSCON[k] $CALBURN[k]\n"
-    // PWTVEC->info(1)
-    CALSCON->info(1)
-        }
-
-*/
 /////////////////////////////////////////////////////////////////////
 
 
@@ -422,6 +334,8 @@ msgw =split(msg)
 #include "wex_glines"
 
 
+  titleVers();
+
 #include "gevent"
 
 //ans=query("proceed?")
@@ -433,88 +347,8 @@ msgw =split(msg)
 ///////////////////////// PLOT  ////////////////////////////////////////////
 //  
 
-//#include "wex_compute";
+#include "wex_compute";
 
-
-xhrs = 0;
-
-void computeWL(long wlsday, long wleday)
-{
-/// use input of juldays
-/// find the number of exe hours
-// read the number of cals burnt during exercise
-// compute the number of lbs burnt
-
-int i;
-
-   Nsel_exemins = 0
-   Nsel_exeburn = 0.0
-
-   Nxy_obs = 0
-
-   Nsel_lbs = 0.0
-<<"$_proc %V $wlsday $wleday  $Nobs\n"
-
-   for (i = 0; i < Nobs ; i++) {
-        aday = LDVEC[i] - bday;
-     if (aday >= wlsday) {
-
-        Nxy_obs++
-
-        Nsel_exeburn += EXEBURN[i]
-        Nsel_exemins += EXTV[i]
-//<<"%V $i $Nsel_exeburn $Nsel_exemins $wlsday  $LDVEC[i]  $bday\n"
-     }
-
-     if (aday > wleday) 
-             break; 
-   }
-
-   Nsel_lbs = Nsel_exeburn/ 4000.0
-
-   xhrs = (Nsel_exemins/60.0)
-
-<<"%V$Nxy_obs %6.2f $Nsel_exemins $(Nsel_exemins/60.0) $Nsel_exeburn $Nsel_lbs $xhrs\n"
-
-}
-//=========================
-
-void getDay(long dayv)
-{
-
- int m_day;
- m_day= dayv + bday;
- float cbm;
- float xtm;
- float wtm;
- int dt;
-
-   for (i = 0; i < Nobs ; i++) {
-
-//<<" $i $dayv  $mday $LDVEC[i] \n"
-
-     if (LDVEC[i] == m_day) {
-
-    xtm = EXTV[i]
-    wtm  = WTVEC[i]
-    cbm  = CALBURN[i]
- 
-   <<"FOUND $i %V $dayv $m_day  $wtm $xtm $cbm\n"
-
-     dt = julmdy(m_day);
-     sWo(dtmwo,@value,dt,@redraw);
-     sWo(xtmwo,@value,xtm,@redraw);
-     sWo(wtmwo,@value,wtm,@redraw);
-     sWo(cbmwo,@value,cbm,@redraw);
-
-      break;
-     }
-  }
-
-}
-
-
-//[EM]=================================//
 
 
 
@@ -547,16 +381,11 @@ int button = 0
   ZIN(); // goes in does'nt leave -- proc stack error
 
 woname = ""
-/*
-ans=query("proceed?")
-resize_screen();
-ans=query("proceed?")
-drawScreens();
-ans=query("proceed?")
-*/
+
 
 showTarget();
-//ans=query("proceed?")
+
+
   titleVers();
 
 
@@ -574,8 +403,11 @@ _DB=-1;
 
  sWo(tw_wo,@move,targetday,NextGoalWt,gwo,@redraw));
 
- sWi(vp,@redraw)
+ sWi(vp,@redraw);
+ 
       drawScreens();
+
+
 //mc=getMouseEvent();
 while (1) {
 
@@ -674,4 +506,6 @@ exit()
 //
 //  get today's date and set up view for this quarter
 //  can we add comments
-//  
+//
+//  1/12/22   - startup with yesterdays date and display of activity - for last 7 days (average?)
+//

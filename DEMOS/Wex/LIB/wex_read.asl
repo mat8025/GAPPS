@@ -28,7 +28,7 @@ long wday;
 //=========================================
 
 
-proc isData()
+void isData()
 {
    dok = 1
 
@@ -46,7 +46,7 @@ proc isData()
 }
 //===========================================================
 
-proc fillInObsVec()
+void fillInObsVec()
 {
 
  
@@ -142,7 +142,7 @@ long kd;
 svar col;
 
 
-proc readData()
+void readData()
 {
 
   int tl = 0;
@@ -251,7 +251,7 @@ proc fillInCCObsVec()
 //====================================================//
 
 
-proc readCCData()
+void readCCData()
 {
 
   tl = 0;
@@ -306,5 +306,7 @@ proc readCCData()
   //<<[2]"$j $CCDV[j] $CALSCON[j] $CARBSCON[j]\n"
   //}
 }
+
 //=======================================//
 <<[_DB]"$_include \n"
+;//==============\_(^-^)_/==================//;

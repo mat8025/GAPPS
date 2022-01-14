@@ -12,16 +12,17 @@
 //***********************************************%
 
 
-proc drawGoals(int ws)
+void drawGoals(int ws)
   {
 
    if (ws == 0) {
-    Plot(gwo,@line,sc_startday,165,sc_endday,165, GREEN_)
-    Plot(calwo,@line,sc_startday,day_burn,sc_endday+10,day_burn, GREEN_)
-    Plot(calwo,@line,sc_startday,out_cal,sc_endday+10,out_cal, BLUE_)
-    Plot(calwo,@line,sc_startday,in_cal,sc_endday+10,in_cal, RED_)
-    Plot(calwo,@line,sc_startday,50,sc_endday+10,50, GREEN_)    
-
+    Plot(gwo,@line,sc_startday,165,sc_end,165, GREEN_)
+    Plot(calwo,@line,sc_startday,day_burn,sc_end,day_burn, GREEN_)
+    Plot(calwo,@line,sc_startday,out_cal,sc_end,out_cal, BLUE_)
+    Plot(calwo,@line,sc_startday,in_cal,sc_end,in_cal, RED_)
+    Plot(calwo,@line,sc_startday,50,sc_end,50, GREEN_)
+    //if still time - todays date and wt to the intermediate short-term goal
+    Plot(gwo,@line,Sday2,214,tday2,StGoalWt, RED_)
    }
 
   if (ws == 1) {
@@ -33,7 +34,7 @@ proc drawGoals(int ws)
 
   }
 //---------------------------------------------------------
-proc  drawMonths(int wwo)
+void  drawMonths(int wwo)
  {
   // as either Months Jan,Feb, ... Dec  
 
@@ -98,7 +99,7 @@ proc  drawMonths(int wwo)
 }
 //---------------------------------------------------------------
 
-proc  drawGrids(int  ws )
+void  drawGrids(int  ws )
 {
 // <<[_DB]" $ws \n"
 
@@ -147,13 +148,21 @@ proc  drawGrids(int  ws )
 
 #define ALL_LINES 1
 
-proc drawScreens()
+void drawScreens()
 {
 
 //<<" $_proc \n"
+<<"%V $sc_startday  $sc_end \n"
+
+// sc_startday.pinfo()
+
+ //sc_startday = (jtoday - bday) - 20;
+
+<<"RESET? %V $sc_startday  $sc_end \n"
 
   if ( wScreen == 0) {
 
+      // sWo(wedwo,@clearclip,WHITE_,@save,@clearpixmap,@clipborder,BLACK_)
        sWo(wedwo,@clearclip,@save,@clearpixmap,@clipborder,BLACK_)
 
        //sWo(extwo,@clipborder,@save)
@@ -164,7 +173,7 @@ proc drawScreens()
   
   <<[_DB]" draw lines \n"
 
-      sWo(extwo,@scales,sc_startday,0,sc_endday,upperWt,@savescales,1);
+//      sWo(extwo,@scales,sc_startday,0,sc_endday,upperWt,@savescales,1);
 
 
       dGl(exgls)
@@ -193,30 +202,40 @@ proc drawScreens()
       dGl(gw_gl);
 
       
-      sWo(calwo,@scales,sc_startday,0,sc_endday,carb_upper,@savescales,1)      
+   //   sWo(calwo,@scales,sc_startday,0,sc_endday,carb_upper,@savescales,1)      
       dGl(carb_gl) ; //which scale is this going to use      
 
 
-      sWo(calwo,@scales,sc_startday,0,sc_endday,CalsY1,@savescales,0)
+  //    sWo(calwo,@scales,sc_startday,0,sc_endday,CalsY1,@savescales,0)
       dGl(calc_gl)
       dGl(calb_gl)
 
 
-      sWo(gwo,@scales,sc_startday,minWt,sc_endday,upperWt,@savescales,0)
+//      sWo(gwo,@scales,sc_startday,minWt,sc_endday,upperWt,@savescales,0)
+
+<<"%V $sc_startday $minWt $sc_end $upperWt\n"
+
+      sc_startday.pinfo();
+
+      ok=sWo(gwo,@scales,sc_startday,minWt,sc_end,upperWt,@savescales,0)
 
       dGl(wt_gl)
+
+ //sc_startday.pinfo();
        }
 
-      drawGoals(0);
-      drawGrids(0);
+
+      drawGoals( wScreen);
+
+      drawGrids( wScreen);
 
 
-      sWo(allwo,@clipborder,"black")
+      sWo(allwo,@clipborder,BLACK_)
 
       drawMonths(gwo)
-    //  drawMonths(calwo)
-      //drawMonths(carbwo)
-    //  drawMonths(extwo)      
+      drawMonths(calwo)
+      drawMonths(carbwo)
+      drawMonths(extwo)      
 
       //Text(extwo,"Exercise mins",-4,0.5,4,-90)
       //Text(gwo,  "Weight (lbs)",0.8,0.8,1)
@@ -238,10 +257,10 @@ proc drawScreens()
       drawGrids(1);
       drawMonths(swo);
 
-      DrawGline(bp_gl)
+      dGl(bp_gl)
 
       sWo(swo,@showpixmap)
-      sWo(allwo,@clipborder,"green")
+      sWo(allwo,@clipborder,GREEN_)
       }
 
     sWo(fewos,@redraw)
@@ -249,12 +268,15 @@ proc drawScreens()
     sWo(tw_wo,@move,targetday,NextGoalWt,gwo,@redraw);
 
     CR_init = 1;
-    CL_init = 1;    
+    CL_init = 1;
+
+ //sc_startday.pinfo();
+
 }
 //=================================================
 
 
-proc showWL(long ws, long we)
+void showWL(long ws, long we)
 {
 /*
        RS=wogetrscales(gwo)
@@ -281,7 +303,7 @@ proc showWL(long ws, long we)
 
 //////////////////////// UTIL PROCS /////////////////////////////
 
-proc adjustYear(int updown)
+void adjustYear(int updown)
 {
 
 // find current mid-year
@@ -340,7 +362,7 @@ proc adjustYear(int updown)
 
 //////////////////////////////////////////////////////////////////////
 
-proc adjustQrt(int updown)
+void adjustQrt(int updown)
 {
 // find mid-date 
 // adjust to a 90 day resolution
@@ -377,7 +399,7 @@ proc adjustQrt(int updown)
 }
 //========================================================
 
-proc showCompute()
+void showCompute()
 {
 <<"$_proc %V $Nsel_exeburn $Nsel_lbs\n"
   sWo(nobswo,@value,Nxy_obs,@update)
@@ -388,8 +410,9 @@ proc showCompute()
 }
 //========================================================
 
-proc showTarget()
+void showTarget()
 {
+<<"$_proc "
 
 // target wt and date
 //  <<"$_proc $gday $NextGoalWt $last_known_day\n"
@@ -397,13 +420,13 @@ proc showTarget()
 //  plot(gwo,@symbol,gday,NextGoalWt, "triangle",1, YELLOW_);
 //  plot(gwo,@symbol,gday-1,NextGoalWt, 3,1,GREEN_);
   symsz =5;
-  
+    plot(gwo,@symbol,tday2,StGoalWt,"cross",symsz,BLACK_);
   plot(gwo,@symbol,gday,NextGoalWt,"diamond",symsz,BLUE_);
   plot(gwo,@symbol,last_known_day,NextGoalWt,2,symsz,RED_,1);
 
   hlng = (last_known_wt - NextGoalWt) / 0.43; 
   if (hlng  > 0) {
-//  <<"$_proc %v $hlng\n"
+<<"%v $hlng\n"
   plot(gwo,@symbol,last_known_day+hlng,NextGoalWt,"star",symsz, BLUE_);
   plot(gwo,@symbol,last_known_day+hlng,last_known_wt,"cross",symsz,GREEN_);
   }
@@ -417,12 +440,21 @@ proc showTarget()
 
   plot(gwo,@symbol,targetday,GoalWt,"star",symsz, LILAC_);
 //  dGl(gw_gl);
+
+//sc_startday.pinfo();
+
 }
 //===========================
-proc resize_screen()
+
+
+void resize_screen()
 {
 
   sWi(vp,@resize,0.05,0.1,0.95,0.9,@redraw)
 
 }
-<<[_DB]"$_include \n"
+
+<<"$_include \n"
+
+
+//===========//

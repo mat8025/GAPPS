@@ -38,19 +38,20 @@ str _ele = "1";
 
 str hdr_script = "none";
 str hdr_vers = "1.1"
-str hdr_release = "BORON";
+str hdr_release = "CARBON";
 str hdr_author = "mt";
 str hdr_cdate = "1964"
 str hdr_date = "1964"
 
    int hv_found =0;
-      int hv_show =0;
+      int hv_show =1;
 
 
     str  rs = "comment ca va"
 
+// to work with xic code ?
 
-   void hdrv_func()
+ void hdrv_func()
    {
      Svar L;
      Str val;
@@ -216,8 +217,13 @@ if (hv_show) {
 
 <<"%V $hdr_cdate\n"
 }
+if (hv_found) {
+ ScriptVers(hdr_vers);
+}
 
 
+<<"Done hv\n"
+;//==============\_(^-^)_/==================//;
 
 /////////////////////////// DEV //////////////////////////
 /*

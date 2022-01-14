@@ -74,6 +74,7 @@
 
 
     carb_upper = 250;
+    int sc_end = sc_endday+10;
 
     ok=sWo(wedwo,@clip,CXY, @color,LILAC_,@clipbhue,WHITE_,@bhue,WHITE_,@font,F_SMALL_,@save,@savepixmap)
 
@@ -85,14 +86,17 @@
 
     sWo(wedwo,@border,@clipborder,BLACK_,@drawon)
 
-    sWo(gwo,@scales,sc_startday,160,sc_endday+10,220,@savescales,0,@font,F_SMALL_)
-
-    ok=sWo(extwo,@scales,sc_startday,0,sc_endday+10,250,@savescales,0);
 
 
-    sWo(calwo,@scales,sc_startday,0,sc_endday+10,CalsY1,@savescales,0)
+    ok=sWo(extwo,@scales,sc_startday,0,sc_end,250);
 
-   //sWo(calwo,@scales,sc_startday,0,sc_endday+10,carb_upper,@savescales,1)
+<<"SCALES %V$sc_startday $sc_end \n"
+     ok=sWo(extwo,@savescales,0);
+
+
+    sWo(calwo,@scales,sc_startday,0,sc_end,CalsY1,@savescales,0)
+
+   //sWo(calwo,@scales,sc_startday,0,sc_end,carb_upper,@savescales,1)
     //sleep(0.1)
 
     swo= cWo(vp1,@type,"GRAPH",@name,"BenchPress",@color,"white");
@@ -117,16 +121,22 @@
  
    //  defaults are ?  @save,@redraw,@drawon,@pixmapon
 
+    wt_upper = 220;
+
+    sWo(swo,@scales,sc_startday,110,sc_end,bp_upper)
+
+<<"SCALES %V$sc_startday $sc_endday $bp_upper\n"
+
+    sWo(carbwo,@scales,sc_startday,0,sc_end,carb_upper)
+
+<<"SCALES %V$sc_startday $sc_endday $carb_upper\n"
+
+    sWo(gwo,@scales,sc_startday,160,sc_end,wt_upper)
+    
+//    sWo(gwo,@savescales,0,@font,F_SMALL_)
 
 
-    sWo(swo,@scales,sc_startday,110,sc_endday,bp_upper)
-
-<<[_DB]"SCALES %V$sc_startday $sc_endday $bp_upper\n"
-
-    sWo(carbwo,@scales,sc_startday,0,sc_endday+10,carb_upper)
-
-<<[_DB]"SCALES %V$sc_startday $sc_endday $carb_upper\n"
-
+<<"SCALES %V$sc_startday $sc_endday $wt_upper\n"
 
     int allwo[] = {gwo,swo, calwo,  extwo , carbwo}
 
@@ -170,11 +180,12 @@
   //sleep(0.1)
   // Measure WOBS
   dtmwo=cWo(vp,@BV,@name,"DAY",@color,RED_,@help," date on day ")
+  obswo=cWo(vp,@BV,@name,"OBS",@color,YELLOW_,@help," obs day ")
   wtmwo=cWo(vp,@BV,@name,"WTM",@color,RED_,@help," wt on day ")
   cbmwo=cWo(vp,@BV,@name,"CBM",@color,BLUE_,@fonthue,WHITE_,@help," cals burnt on day ")
   xtmwo=cWo(vp,@BV,@name,"EXT",@color,GREEN_,@help," xtime on day ")
 
-  int mwos[] = { dtmwo, wtmwo, cbmwo, xtmwo};
+  int mwos[] = { dtmwo, obswo, wtmwo, cbmwo, xtmwo};
 
   wo_vtile( mwos, 0.02,0.5,0.08,0.9,0.05);
 

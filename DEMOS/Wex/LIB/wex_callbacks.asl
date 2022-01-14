@@ -12,15 +12,14 @@
 ;
 
 
-proc QRTD()
+void QRTD()
 {
 //<<" In $_proc\n"
   adjustQrt(-1)
   showWL()
-  return;
 }
 
-proc QRTI()
+void QRTI()
 {
 
   adjustQrt(1)
@@ -31,21 +30,21 @@ proc QRTI()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-proc YRD()
+void YRD()
 {
   adjustYear(-1)
   drawScreens()
   showWL()
 }
 //--------------------------------------------------
-proc YRI()
+void YRI()
 {
     adjustYear(1)
 }
 //--------------------------------------------------
 
 
-proc QUIT()
+void QUIT()
 {
 
   exitgs();
@@ -53,14 +52,17 @@ proc QUIT()
 }
 //===================================
 
-proc ZIN()
+void ZIN()
 {
 <<" In $_proc  $lcpx  $rcpx\n"
 
 
        sc_startday = lcpx;
        sc_endday = rcpx;
-       
+
+//sc_startday.pinfo();
+//sc_endday.pinfo();
+
        
        sWo(wedwo,@xscales,sc_startday,sc_endday);
 
@@ -68,14 +70,22 @@ proc ZIN()
 
 
        drawScreens();
-<<"calling showWL  $sc_startday   $sc_endday\n"
+       
+//<<"calling showWL  $sc_startday   $sc_endday\n"
 
        showWL(sc_startday, sc_endday);
+
+//<<"AFTER showWL  $sc_startday   $sc_endday\n"
+
+sc_startday.pinfo();
+sc_endday.pinfo();
+
+//ans=query("?");
 
 }
 //--------------------------------------------------
 
-proc ZOUT()
+void ZOUT()
 {
 /*
 float RS[10];
@@ -124,7 +134,7 @@ float RS[10];
 }
 
 //---------------------------------------------
-proc WTLB()
+void WTLB()
 {
        <<"$_proc setting cursors $_ebutton \n"
 
@@ -133,7 +143,7 @@ proc WTLB()
 	<<"%V $lcpx\n"
          sGl(lc_gl,@cursor,lcpx,0,lcpx,300, CL_init)
 	 CL_init = 0;
-        getDay(lcpx);
+         getDay(lcpx);
 
         }
 
@@ -151,7 +161,7 @@ proc WTLB()
 //=========================================
 ///    WONAME PROCS ///
 
-proc setGoals()
+void setGoals()
 {
 
    wtv = getWoValue(gwtwo)
@@ -172,7 +182,7 @@ proc setGoals()
    sWo(tw_wo,@moveto,targetday,NextGoalWt,gwo,@redraw);
 }
 
-proc setCursors()
+void setCursors()
 {
         sGl(lc_gl,@cursor,lcpx,0,lcpx,300)
          sGl(rc_gl,@cursor,rcpx,0,rcpx,300)
@@ -181,22 +191,22 @@ proc setCursors()
 
 
 ////////////////////////KEYW CALLBACKS///////////////////////////////////////
-proc EXIT()
+void EXIT()
 {
   exit_gs()
 }
 //-------------------------------------------
-proc REDRAW()
+void REDRAW()
 {
   drawScreens()
 }
 //-------------------------------------------
-proc RESIZE()
+void RESIZE()
 {
   drawScreens()
 }
 //-------------------------------------------
-proc SWITCHSCREEN()
+void SWITCHSCREEN()
 {
   if (_ename @= "SWITCHSCREEN") { 
      wScreen = atoi(_ewords[1])
