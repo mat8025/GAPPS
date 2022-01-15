@@ -29,7 +29,7 @@
 
   sGl(ext_gl,@symsize,3,@symhue,GREEN_)
 
-  wt_gl    = cGl(gwo,@TXY,DVEC,WTVEC,@color,BLUE_,@ltype,SYMBOLS_,DIAMOND_)
+  wt_gl = cGl(gwo,@TXY,DVEC,WTVEC,@color,BLUE_,@ltype,SYMBOLS_,DIAMOND_)
 
 
 

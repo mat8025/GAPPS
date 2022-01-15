@@ -989,3 +989,4 @@ storetype_e.cpp                      2.68  12/10/2021 20:11:22  storeScalar - pr
 storetype_e.cpp                      2.69  12/10/2021 20:17:43  tidy
 paramexpand.cpp                      2.75  12/10/2021 22:32:43  error for undeclared variable
 exp_e.cpp                            3.56  12/12/2021 12:10:57  STRV not array unless subscripted
+chem_l.cpp                           1.18  01/14/2022 11:16:12  db pt

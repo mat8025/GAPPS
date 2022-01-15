@@ -1,4 +1,6 @@
-   ASL   ==>  C++ compile
+//////////////////////////////////////////////////////////////////////////////////////////
+
+ASL   ==>  C++ compile
 
 
  With some restrictions an asl script can be put into a form
@@ -63,3 +65,36 @@ and the code is executed via calling the named extern C function.
 
   in class definitions  of member functions replace cmf with void or return type.
   This function/procedure definition syntax is standard already for  asl.
+
+
+  In order to compile and run script functions (sfunc)  : the original
+  script line had to be parsed into two opertions.
+  One to identify the arguments and prepare a format statement,
+  and the other to call the internal script function via a cpp statement.
+  e.g.
+
+    an ASL function to take a coordinate specification and return 
+    a equivalent decimal degree would be
+
+     Ladeg =  coorToDeg(Lat,2);
+
+     this is preprocessed into
+
+Siv Ladeg(DOUBLE_);
+
+    FMT[0] = '\0';
+    strcat(FMT,typeid(Lat).name());
+    strcat(FMT,",");
+    strcat(FMT,typeid(2).name());
+    strcat(FMT,",");
+
+    cppargs(2,FMT,typeid(Lat).name(),typeid(2).name());
+
+    cppargs(FMT,typeid(Lat).name(),typeid(2).name(),"last");
+
+    Ladeg = cpp2asl ("coorToDeg",FMT,&Lat,1);
+
+
+    Graphic commands require the plot library
+    
+    asl -d -s 'opendll("uac"); opendll("plot"); cinclude(2); '

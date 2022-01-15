@@ -99,7 +99,7 @@
    //sWo(calwo,@scales,sc_startday,0,sc_end,carb_upper,@savescales,1)
     //sleep(0.1)
 
-    swo= cWo(vp1,@type,"GRAPH",@name,"BenchPress",@color,"white");
+    swo= cWo(vp1,@graph,@name,"BenchPress",@color,"white");
     
     int xwo[] = { swo }
 

@@ -74,6 +74,8 @@ Svar T;
 
 Str t;
 
+
+
     t= T[3];
 
 cout << " str t = "  << t << endl;
