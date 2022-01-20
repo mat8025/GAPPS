@@ -1,0 +1,690 @@
+F  01/17/22 09:53:03 abs, (top_m), returns absolute value of a variable value 
+F  01/17/22 09:53:03 acos, (top_m), acos function   that is the value whose cosine is x.
+F 01/17/22 10:03:07  acosh, (top_m), acosh function   that is the value whose cosh is x.
+P allowerrors, (sp_wave), 
+P anotherarg, (sint_l),  
+P ans, (fileop), answer([n])  returns last nth (default 0) answer to query   
+P argc, (sint_l),  
+F 01/17/22 10:09:37  asin, (top_m), arc sin function   that is the value whose sine is x.
+F01/17/22 10:13:11  asinh, (top_m), asinh function   that is the value whose sinh is x.
+P assert, (test_l), check val false == 0 , True != 0 -keeps runnning score
+P atan, (top_m), arc tan function   that is the value whose tan is x.
+P atan2, (top_m), atan2(y,x) delievers principle value of args using sign to determine quadrant
+P atanh, (top_m), atanh function   that is the value whose tanh is x.
+P atof, (num_l),  
+P atoi, (num_l),  
+P atol, (num_l),  
+P atop, (num_l),  ascii to pan number 
+P atou, (num_l),  
+P ave, (stat_m),  mean mean  of vector
+P bankangle, (navi_l),  bankangle for 2 min turn for tas(knots) [ min_per_360 ]
+P bell, (ssop),  bell     
+P biln, (dsp_main),  Analog coeffs D,C -upperdimn LN returns B and A coeffs 
+P bin2dec, (num_l),  
+P bitrev, (vop_m),  bitreverse a number
+P bscan, (ssop),  bscan     
+P bubble, (sort_l), returns bubble sorted  vector 
+P bubblesort, (sort_l), returns bubble sorted  vector 
+P cab, (sint_l),  returns array bounds 
+P cast, (), 
+P casubsz, (sint_l),  
+P caz, (sint_l), returns  size if scalar  0 if scalar 
+P cbrt, (top_m), returns value of cube root of value
+P cconvolve, (dsp_main),  circular convolves two vectors
+P cdel, (cw_l),  state delete
+P ceil, (top_m), ceil(x) returns smallest integral value not less than arg ceil(0.5) is 1.0 ceil (-0.5) is 0.0
+P centroid, (top_m), finds centroid x.y (float) for polygon (x,y) computes if centroid is within returns vec [x,y,within]
+P cerror, (sint_l),  
+P cf, (fileop), closeFile     
+P cfft, (dsp_main),  fft takes complex input output is complex 
+P cfr, (sint_l),  
+P cgain, (dsp_main),  B[], A[], order,order ,freq  
+P cgen, (gen_l), generates char array cgen(N,[startval],[stepi])
+P chdir, (fileop), ch_dir     
+P checkeof, (fileop), checkEof     
+P checkerror, (sint_l),  
+P checkfiletype, (fiow), 
+P checkgwm, (fileop),  is gwm attached? 
+P checkmem, (ssop),  checkmem     
+P checkmemory, (fileop), checkmemory     
+P checknumber, (test_l), checkNum(n1,n2,[EQU,LT,GT]) make comparison between two numbers default EQU  
+P checkreal, (test_l), checkFnum(x,y,p) compare two real numbers with precision p (decimal places) 
+P checkreset, (signal_e),  check for reset sig from xgs  
+P checkstate, (cw_l),  checkstate
+P checksum, (mop_m),   
+P checkterm, (signal_e),  check for term sig  
+P checktype, (thread_e), checkType(t,[FLOAT,INT,...] returns 1 if types agree 
+P chkc, (test_l), chkC(c1,c2,[EQU,LT,GT]) make comparison between two chars default EQU  
+P chkcomment, (test_l),  prints  comment
+P chkf, (test_l), check argval == 0 -keeps runnning score
+P chkin, (test_l), inits test scoring
+P chkn, (test_l), checkNum(n1,n2,[EQU,LT,GT]) make comparison between two numbers default EQU  
+P chkout, (test_l), tallys the tests so far prints (default stdout) the score -exits script
+P chkprogress, (test_l), checkProgress([comment]) tallys the tests so far prints (default stdout) the score
+P chkr, (test_l), checkFnum(x,y,p) compare two real numbers with precision p (decimal places) 
+P chkstage, (test_l), tallys the tests in this stage prints (default stdout) the score
+P chkstr, (test_l), make equality comparison between two strings checkStr(w1,w2,[nchars]) -keeps runnning score
+P chkt, (test_l), check val false == 0 , True != 0 -keeps runnning score
+P chktests, (test_l), returns running score ntests,fails,passes, pcc as float array
+P chkvec, (test_l), make equality comparison between two vectors 
+P chkvector, (test_l), make equality comparison between two vectors 
+P clone, (fileop), clone     
+P close, (fileop), close_fd     
+P closeasl, (sort_l), 
+P closedll, (ssop), 
+P closefd, (fileop), close_fd     
+P closefile, (fileop), closeFile     
+P cmp, (vop_m),  cmp    compares 2 arrays  using <,>,==,,!=,>=,<=  operations    delivers an integer array which contains the indices 
+P cmparray, (vop_m),  cmp    compares 2 arrays  using <,>,==,,!=,>=,<=  operations    delivers an integer array which contains the indices 
+P cmpsetv, (matrix),  cmpsetv(vec,op,cmp_value,set_value) in place compare and set  vector elements
+P cnd, (sint_l),  returns array dimensions 
+P cntwords, (fileop), cnt_words     
+P codeend, (fileop), code_end     
+P colave, (aop_l), for a matrix 2d returns the column averages as an array [1][numcols]
+P colstats, (aop_l), for a matrix 2d returns the column ave,sdev,sum as an array [3][numcols]
+P colsum, (aop_l), for a matrix 2d returns the column sums as an array [1][numcols]
+P colzoom, (matrix),  all columns in matrix are interpolated to new size
+P command, (), 
+P computepi, (mop_m),   
+P condcomment, (test_l),  true_false, comment, true_txt, false_txt  - evaluates true_false value and then   
+P coortodeg, (navi_l), convert lat/long to deg  e.g.40,09.75,N to 40.162498 (E/S are negative)
+P cos, (top_m), cos(x) function - argument in radians
+P cosh, (top_m), cosh hyperbolic ::  cosh(x) = (exp(x) + exp(-x)) / 2
+P read, (cw_l),  state read
+P reatemutex, (timedate_l),  
+P createsem, (timedate_l),  creates semaphore 
+P crun, (cw_l),  state run
+P cspline, (stat_m), cspline 
+P csz, (sint_l), returns  size if scalar  0 if scalar 
+P ctime, (fileop), time2date     
+P cvow, (ssop),  cvow     
+P cyclecol, (matrix),  cycle matrix cols by a step 
+P cyclerow, (matrix),  cycle matrix rows by  a step 
+P d2r, (top_m), degrees to radians
+P date, (timedate_l), date
+P dateconvert, (rdrec),  dateconvert  
+P dayconvert, (rdrec),  dayconvert 
+P dbfseek, (sp_wave), 
+P dconvolve, (dsp_main),  dconvolve - input signal vector, convolver window (wts) -
+P debugenv, (sp_wave), debugEnv() -- check for env var GS_DEBUG and uses that to set debug level
+P debugproc, (sp_wave), 
+P dec2bin, (num_l), decimal to binary 
+P dec2hex, (num_l),  
+P dec2oct, (num_l), decimal to octal
+P decfradix, (mop_m),   
+P decradix, (mop_m),   
+P defines, (sp_wave),  returns list of internal defines
+P deg2rad, (top_m), degrees to radians
+P delete, (sint_l),  
+P deletemessages, (wcom_msg),  deletemsgs    
+P deleterows, (rdrec),  deleteRows 
+P deletesw, (wcom_msg),  delete sw    
+P determinant, (matrix),  find determinant of square matrix 
+P dewhite, (ssop), dewhite the string
+P dgen, (gen_l), generates double array dgen(N,[startval],[stepi])
+P diagonal, (matrix), use vector as leading diagonal of a square matrix other elements are zero
+P dimnof, (thread_e),    
+P doscript, (ssop),  do_script     
+P dotp, (dsp_main),  forms dot product of two vectors
+P drange, (gen_l), generates array with values linearly spaced frange(N,startval,endval)
+P dround, (mop_m),  dround(x,n) 
+P dtoa, (num_l), double to ascii
+P dumpmemtable, (fileop), dumpmemtable     
+P eatwhiteends, (ssop), remove white space from ends of string
+P eletoarrayspec, (vop_m), M=eletoarrayspec(VI,nb,b0,b1,b2,...) return array spec for indice to array definition   
+P envdebug, (sp_wave), debugEnv() -- check for env var GS_DEBUG and uses that to set debug level
+P errname, (sp_wave),  returns name of last system (unix) error
+P errno, (sp_wave),  returns last system (unix) error
+P errorname, (sp_wave),  returns name of last asl error
+P errornum, (sp_wave),  returns last asl error
+P examine, (thread_e),  examine - prints out Sclass datatable   
+P exchangecols, (matrix), exchange matrix cols P = exchangeCols(M,a,b) 
+P exchangerows, (matrix), exchange matrix rows P = exchangeRows(M,a,b) 
+P execute, (cw_l),  runs an asl statement e.g. xstate('a=2+2;') 
+P exit, (fileop), exit_asl     
+P exityn, (fileop), confirm exit y/n     
+P exp, (top_m), exponential function  e to power of x where e is base of natural log 2.718282... 
+P abs, (top_m), returns absolute value of a float value 
+P astx, (sint_l), fastxic[on/off]     
+P fblt, (dsp_main),  Analog coeffs D,C -upperdimn LN returns B and A coeffs 
+P feof, (fileop), checkEof     
+P ferror, (fileop), f_error     
+P fexist, (fileop), returns size of file - sz=fexist(name,mode)
+P fflush , (fileop), f_flush     
+P fft, (dsp_main),  fft takes real, imag arrays output in place 
+P fftdecode, (dsp_main),  fft decodes into two separate transforms 
+P fftdit, (dsp_main),  fft takes real, imag arrays output in place 
+P fgen, (gen_l), generates float array fgen(N,[startval],[stepi])
+P fgetc, (fileop), fgetc  reads  the  next character from file as int    
+P fillcircle, (top_m), fillCircle( vec, ix,iy, radius, val)  vector of char, index ix,iy to origin cell then fill surrounding using radius
+P fillellipse, (top_m), fillEllipse( vec, ix,iy, a,b, val
+P fillvec, (aop_l), fills a vector fillvec (Nvalues, start_value, increment) 
+P filterdebug, (sp_wave),  filterDebug(InOut,mod_name1,mod_name2,...)            
+P filterfiledebug, (sp_wave),  filterFileDebug(InOut,file1,file2,...)  allows/rejects debugs from these files
+P filterfuncdebug, (sp_wave),  filterDebug(InOut,mod_name1,mod_name2,...)  allows/rejects debug prints from these functions 
+P findfunc, (vmf_l),  findfunc(str) finds index for asl function  if it exists - returns 0 on fail
+P findproc, (vmf_l),  findfunc(str) finds index for script function  if it exists - returns 0 on fail
+P findval, (vmf_l), 
+P finetime, (timedate_l), finetime 
+P finetimesince, (timedate_l), finetimesince 
+P firl, (dsp_main),  firlowpass design order, cutoff, window_type --- output BCoeffs  
+P fitconv, (navi_l),  convert fit file to tsv format file 
+P flipdim, (aop_l), flips,reverses order of a multidimension array along specified dimension
+P floor, (top_m), returns largest integral value not greater than arg floor(0.5) is 0.0, and floor(-0.5) is -1.0
+P fmod, (top_m), fmod(x,y) returns remainder of  x/y
+P fprint, (print), fprintf use like C equivalent
+P fprintf, (print), fprintf use like C equivalent
+P fprintfargs, (sint_l), fprintfargs(fh,'a',...) use for debug-  fprints out arg values to open file (fh) [fh=ofw(fname)] 
+P fputv, (fileop), fputv     
+P frange, (gen_l), generates array with values linearly spaced frange(N,startval,endval)
+P fread, (fileop), f_read     
+P free, (sint_l), frees memory for a variable - vector reset for dynamic use 
+P fround, (mop_m),  fround(x,n) 
+P fscanf, (ssop),  fscan     
+P fscanv, (fileop), fscanv     
+P fsearch, (fileop), search_file     
+P fseek, (fileop), seekFile     
+P fstat, (fileop), fstat(fname,[atime,mtime,adate,uid,...]) returns attribute
+P ftell, (fileop), f_tell     
+P ftoa, (num_l), float to ascii
+P ftype, (fileop), ftype(fname) returns [dir,regular,symlink,socket,fifo,block])
+P functions, (sp_wave),  returns list of script functions and descriptions
+P fwrite, (fileop), f_write     
+P gcd, (navi_l),  distance between a pair of lat,lng's 
+P gclfile, (fileop), gcl_file     
+P getalias, (fileop), get_alias     
+P getarch, (sint_l), returns machine arch
+P getargc, (sint_l),  
+P getargd, (sint_l), get arg(n) from CL as a double(real)  
+P getargf, (sint_l),  
+P getargi, (sint_l), get arg(n) from CL as a integer  
+P getargn, (sint_l),  
+P getargr, (sint_l), get arg(n) from CL as a double(real)  
+P getargstr, (sint_l),  
+P getaslpid, (sint_l), returns pid for asl process
+P getaslwid, (wcom_msg),  get asl wid    
+P getbyteorder, (fileop), getbyteorder     
+P getchannelpara, (fiow), 
+P getcodeln, (), 
+P getcol, (aop_l), returns column as vector from 2D array, optionally supply subrange
+P getdate, (timedate_l), date
+P getdfhdsize, (fiow), 
+P getdfpara, (fiow), 
+P getdir, (fileop), returns the current directory
+P getenv, (sint_l),  
+P getenvvar, (sint_l),  
+P geteoh, (fiow), 
+P geterrors, (sp_wave),  returns number of errors
+P getframepara, (fiow), 
+P getgshome, (ssop),  get_gs_HOME     
+P gethashindex, (vmf_l),  gethashindex(str)gets hash index value for key string
+P gethdrsize, (fiow), 
+P gethtmlcolors, (fileop), returns html color table as an svar variable
+P getincr, (ssop), getincr 
+P getkeyval, (vmf_l),  getkeyval(str) returns value from key,value pair from hash table
+P getlastcall, (), 
+P getmachinearch, (sint_l), returns machine arch
+P getmachinename, (fiow), 
+P getmem, (ssop),  getmem     
+P getmenuindex, (), 
+P getmenuvalue, (), 
+P getmsecs, (sint_l), returns msecs since asl start
+P getnd, (sint_l),  returns array dimensions 
+P getndbs, (sint_l), returns number of DB statements executed 
+P getnes, (sint_l), returns number of engine statements executed 
+P getnfastx, (sint_l), returns number of fastx statements executed 
+P getnodename, (fiow), 
+P getnumfrommem, (num_l),  inspect memory location 
+P getnumoferrors, (sp_wave),  returns number of errors
+P getnumofincludes, (), 
+P getpid, (sint_l), returns pid for asl process
+P getpipindex, (sort_l), 
+P getpippid, (sort_l), 
+P getradialvals, (top_m), getRadialVals ( vec[][],int ix,int iy,float  theta, int npts) 
+P getrow, (aop_l), returns row as vector from 2D array, optionally supply subrange
+P getrunstats, (stat_m),  get stats from running statistician
+P getscript, (test_l), 
+P getscriptdir, (), 
+P getsemval, (timedate_l), returns sem val
+P getsierrorfunc, (), 
+P getsig, (signal_e),  get list of recent signals received 
+P getsod, (fiow), 
+P getsymbolname, (sint_l), returns symbol name from number
+P gettime, (timedate_l), get time 
+P getuname, (ssop),  get_uname     
+P getversion, (sp_wave), 
+P getwinfo, (fileop), get_winfo     
+P gflush, (wcom_msg),  gflush    
+P grand, (mop_m),  generates gaussian random numbers
+P gsjob, (), 
+P gsockaccept, (gsocket_l), gsockaccept      
+P gsockbind, (gsocket_l), gsockbind      
+P gsockclose, (gsocket_l), gsockclose      
+P gsockconnect, (gsocket_l), gsockconnect      
+P gsockcreate, (gsocket_l), gsockcreate      
+P gsocklisten, (gsocket_l), gsocklisten      
+P gsockread, (gsocket_l), gsockread      
+P gsockrecv, (gsocket_l), gsockrecv      
+P gsockrecvfrom, (gsocket_l), gsockrecvfrom      
+P gsocksendto, (gsocket_l), gsocksendto      
+P gsockwrite, (gsocket_l), gsockwrite      
+P gthreadcreate, (thread_e), tid = gthreadCreate(proc_name,{arg1,arg2, ...}) :-   
+P gthreadexit, (thread_e),  gthreadexit(t_id) causes thread to exit
+P gthreadgetid, (thread_e), tid = GthreadGetId() :- returns thread id/handle
+P gthreadgetpriority, (thread_e),  gthreadgetpriority
+P gthreadhowmany, (thread_e),  returns number of active threads 
+P gthreadkill, (thread_e),  (t_id,signal) sends signal to thread 
+P gthreadsetflag, (thread_e), gthreadsetflag 
+P gthreadsetpriority, (thread_e),  threadsetpriority
+P gthreadwait, (thread_e), threadwait 
+P gwm, (sort_l), 
+P help, (thread_e),  returns a short description of function 
+P hex2dec, (num_l), hexidecimal to decimal
+P hist, (stat_m), hist 
+P howfar, (navi_l),  distance between a pair of lat,lng's 
+P hsieve, (dsp_main),  harmonic sieve of spectrl peaks
+P idof, (thread_e),    
+P igcread, (navi_l),  readIGC obtain lat,lng,elev,time from igc file 
+P igen, (gen_l), generates int array igen(N,[startval],[stepi])
+P iirfilter, (dsp_main),  Acoeffs and BCoeffs input X -  output in Y
+P impulsereject, (dsp_main),  impulse reject 
+P info, (thread_e),    
+P infoof, (thread_e),    
+P insertrows, (rdrec),  insertRows(R,a,nr,b) insert nr rows from rowa @ rowb 
+P invert, (matrix),  invert the matrix 
+P iread, (fileop), i_read     
+P ireadln, (cw_l), ans=ireadln(prompt_str,default)     
+P isadigit, (ssop),  is_a_digit     
+P isalpha, (num_l),  is char an alpha 
+P isanumber, (sint_l),  
+P isargnumber, (sint_l),  
+P isatype, (sint_l), is this a variable type name e.g. int,float,char ... 
+P isdigit, (num_l),  is char a digit 
+P isort, (sort_l), returns vector of element positions using input vector to sort
+P issin, (ssop), issin(str s1, str s2) is s2 in string s1
+P isspace, (num_l),  is char a space char 
+P itoa, (num_l), integer to string  str=itoa(i,base)
+P julday, (timedate_l), juldayofweek(julian) returns dayofweek for julian day 
+P juldayofweek, (timedate_l), juldayofweek(julian) returns dayofweek for julian day 
+P julian, (timedate_l), julian(mm/day/year)  returns julian day number 
+P julmdy, (timedate_l), julmdy(julian) returns mm/dd/yy 
+P killchild, (sort_l), 
+P lasterror, (sp_wave),  returns last asl error
+P lasterrorline, (sp_wave),  returns last error line#
+P latlongfromradialopad, (navi_l), get lat,lng from radial , position(lat,lng) and distance (km)
+P latlongfromtcopad, (navi_l), get lat,lng from true course , position(lat,lng) and distance (km)
+P launchgwm, (sort_l), 
+P lconvolve, (dsp_main),  linearly convolves two vectors
+P lfit, (stat_m), lfit 
+P life, (mop_m),  game of life 
+P limitval, (mop_m),  limitval(v,lowerv,upperv)  limits scalar or vector to values between lower and upper   
+P lip, (stat_m), lip(X,Y,n,x,y,m) linear inter  vecs X,Y, n vals and vec x, m vals  interp y vec 
+P listcode, (sint_l),  prints code lines arounc current statement
+P loadsrc, (), 
+P localtime, (timedate_l), get local time 
+P log, (top_m), Log natural base e
+P log10, (top_m), Log10 base 10
+P log10powspec, (dsp_main), spectrum analysis - input float real,imag  - output 10*log10 power spec
+P log2, (top_m), Log2 base 2
+P lsfit, (stat_m), lsfit 
+P ma, (sint_l),  
+P magspec, (dsp_main), spectrum analysis - input real,imag float arrays - output magnitude spectrum
+P mandel, (mop_m),   
+P mapvec, (aop_l), maps a vector to new values mapvec(vec,low,high,new_value)       
+P matgen, (gen_l), generates array matrix ([INT_,FLOAT_,DOUBLE_,...],rows,cols,[startval],[stepi])
+P maxof, (ssop), compares two or more values returns the max
+P maxvalcoli, (aop_l), returns indices of  max val of cols in 2D array, optionally supply subrange
+P mcolsmooth, (stat_m),  mcolsmooth 
+P mcolzoom, (matrix),  all columns in matrix are interpolated to new size
+P mcspline, (stat_m),  mcspline 
+P mcyclecol, (matrix),  cycle matrix cols by a step 
+P mcyclerow, (matrix),  cycle matrix rows by  a step 
+P mdet, (matrix),  find determinant of square matrix 
+P mdiag, (matrix), use vector as leading diagonal of a square matrix other elements are zero
+P mdimn, (matrix),  redimensions to multi-dimension array 
+P mean, (stat_m),  mean mean  of vector
+P median, (sort_l), returns median of a vector or a vector of medians for 2D array 
+P memaddr, (sint_l),  
+P memcopy, (sint_l),  
+P memcpy, (sint_l),  
+P memfill, (sint_l),  
+P memoption, (sint_l),  
+P memused, (fileop), memused() returns array [TotalSivMem,CountMemAlloc,TotalAlloced,TotalFreeded,CountMemBlocks,CountMemOps]
+P memvalue, (sint_l),  
+P messageread, (wcom_msg),  messageread    
+P messagewait, (wcom_msg),  messagewait    
+P mfnv, (stat_m), mfnv  
+P mfoo, (mop_m), math foo  
+P mfread, (fileop), m_fread     
+P minmax, (vop_m),  finds min max for vector results two element with min,max values
+P minmaxi, (aop_l), returns indices of  min and max in vector,optionally supply subrange
+P minof, (ssop), compares two or more values returns the min
+P minv, (matrix),  invert the matrix 
+P minvalcoli, (aop_l), returns indices of  min val of cols in 2D array, optionally supply subrange
+P mlip, (stat_m),  mlip 
+P month, (timedate_l), month([1-12])
+P mprt, (matrix),  print matrix 
+P mread, (fileop), mread  read data (binary) as 2D rows,cols into matrix (mrows,mcols)     
+P mreflect, (matrix),  reflect matrix around a diagonal 
+P mrevcols, (matrix), reverse col order 
+P mrevrows, (matrix), reverse row order 
+P mrowzoom, (matrix),  all rows in matrix are interpolated to new size
+P mscan, (vmf_l), 
+P msmooth, (stat_m),  msmooth 
+P msortcol, (sort_l), sorts matrix according to selected col
+P msortrow, (sort_l), sorts matrix according to selected row
+P mtile, (matrix),  submat(M,r,c,R,C)  return a submat/subgrid of the matrix 
+P mtrp, (matrix),  transpose the matrix 
+P mutexcreate, (timedate_l),  
+P mutexdestroy, (timedate_l),  
+P mutexgetprioceiling, (timedate_l),  (mutex_id) gets current priority
+P mutexgetpriority, (timedate_l),  (mutex_id) gets current priority
+P mutexlock, (timedate_l),  
+P mutexsetprioceiling, (timedate_l), (mutex_id, new_prior) sets the mutex priority
+P mutexsetpriority, (timedate_l), (mutex_id, new_prior) sets the mutex priority
+P mutextrylock, (timedate_l),  
+P mutexunlock, (timedate_l),  
+P mxcols, (matrix), exchange matrix cols P = exchangeCols(M,a,b) 
+P mxrows, (matrix), exchange matrix rows P = exchangeRows(M,a,b) 
+P mzoom, (matrix),  mzoom(M,newrows,newcols)  return a matrix exanded/reduced linearly/cspline 
+P namedebug, (sp_wave), 
+P nanosleep, (timedate_l), nanosleep 
+P ndb, (sp_wave), 
+P nop, (sp_wave), 
+P nsc, (ssop), nsc(<count>,<string>) - concats second string arg together count times
+P objinfo, (thread_e),  examine - prints out Sclass datatable   
+P oct2dec, (num_l),  
+P ofa, (fileop), ofa(name) append a file with read/write permissions
+P ofile, (fileop), o_file     
+P ofr, (fileop), ofr(name) open a file with read only permissions
+P ofw, (fileop), ofw(name) open a file with read/write permissions
+P oof, (mop_m),   
+P opendll, (ssop), 
+P packb, (ssop), packs constants into char array
+P packv, (ssop),  packv     
+P panflength, (sint_l),  
+P panilength, (sint_l),  
+P panlen, (thread_e),  returns length of char arrays currently used by this pan variable  
+P paraip, (stat_m),  paraip 
+P pascal, (sort_l), 
+P pclfile, (fileop), pcl_file     
+P pclose, (fileop), p_close     
+P periodicname, (chem_l), ptname(80) --> Mercury
+P periodicnumber, (chem_l), ptan("hydrogen") ---> 1
+P periodicsymbol, (chem_l), ptsym("Silver") ---> Ag
+P periodictable, (chem_l), pt(1) Hydrogen - pt(80) Mercury  element info
+P periodicwt, (chem_l), ptwt(82) ----> 207.19
+P perm, (sort_l), 
+P pgen, (gen_l), generates Pan array pgen(N,[startval],[stepi])
+P pickc, (ssop),  pickc     
+P pinfo, (sint_l),  prints siv info 
+P polygen, (stat_m), polygen  
+P polyncof, (stat_m), polyncof  
+P popen, (fileop), p_open     
+P pow, (top_m), pow(x,y) returns value of x ^ y 
+P powspec, (dsp_main), performs spectrum analysis - input real,imag float arrays - output power spectrum
+P pr, (ssop), pr(val,[fh]) --- print arg values as string to stdout [or to fh stream]
+P print, (print), printf like C equivalent- but the format string is within single quotes
+P printargs, (sint_l), printargs('a',...) use for debug-  prints out arg values to stdout
+P printf, (print), printf like C equivalent- but the format string is within single quotes
+P procedures, (sp_wave),  returns list of current procedures
+P pt, (chem_l), pt(1) Hydrogen - pt(80) Mercury  element info
+P ptan, (chem_l), ptan("hydrogen") ---> 1
+P ptinpoly, (top_m), is point x.y (float) in polygon point (x,y) ( vec_points, n_points, [point || x,y] )
+P ptname, (chem_l), ptname(80) --> Mercury
+P ptsym, (chem_l), ptsym("Silver") ---> Ag
+P ptwt, (chem_l), ptwt(82) ----> 207.19
+P pulse, (sp_wave), generates pulse train
+P putmem, (ssop),  putmem (tag, value)    
+P pwd, (fileop), returns the current directory
+P query, (fileop),  ans=query(prompt_str,default_ans)     
+P quicksort, (sort_l), returns quicksorted  vector 
+P r2d, (top_m), radians to degrees
+P rad2deg, (top_m), radians to degrees
+P rand, (top_m), returns random number (0-32767)
+P randseed, (top_m), set up random number generator 
+P range, (num_l),  check range spec from (beg,end,stride) 
+P rascii, (fior), 
+P rcfile, (fileop), rc_file     
+P rdata, (fior), 
+P rdb, (sp_wave), closes and reopens debugfile
+P rdmenu, (), 
+P readchannel, (fior), 
+P readchanneltimes, (fior), (fname,chnum,t1,t2) reads data from a channel file between t1,t2)
+P readchild, (sort_l), 
+P readchildmsg, (sort_l), 
+P readfile, (fileop), returns ascii file as an svar variable-one line per element
+P readframe, (fior), 
+P readgwmsock, (gsocket_l), readgwmsock      
+P readigc, (navi_l),  readIGC obtain lat,lng,elev,time from igc file 
+P readline, (fileop), read a line store to str variable     
+P readmatrix, (fileop), readMatrix     
+P readmessage, (wcom_msg),  messageread    
+P readmother, (sort_l), 
+P readmothermsg, (sort_l), 
+P readpipv, (sort_l), 
+P readrecord, (rdrec),  readrecord 
+P readtable, (rdrec),  readrecord 
+P readwords, (fileop), readwords     
+P recsortrows, (rdrec),  sortRows 
+P recswaprows, (rdrec),  swapRows 
+P redimn, (vmf_l), 
+P reflectdiagonal, (matrix),  reflect matrix around a diagonal 
+P regex, (ssop), regex(str,pat) searches for pat in string returns array of start,end index for that pattern [-1,-1] not found
+P rele, (ssop),  rover(f_str,s_str,index) :- replaces part of first string @ index with second string
+P reloadsrc, (), 
+P rescape, (fiow), 
+P resetdebug, (sp_wave), closes and reopens debugfile
+P resize, (sint_l),  
+P retype, (), 
+P reverse, (aop_l), returns the reverse of vector
+P rfgen, (mop_m),  generates a vector  uniform random numbers scaled between min/max  Vec=rfgen(N, min,max) 
+P rint, (top_m), returns  argument value to nearest integral value 
+P rmat, (fior), 
+P rms, (stat_m),  rms  computes rootmeansquare of vector
+P rotate, (vop_m),  vrotate(dir,nsteps)  rotate vec forward/back (1,-1) by nsteps
+P round, (top_m), returns  argument value to nearest integral value (away from zero)
+P rover, (ssop),  rover(f_str,s_str,index) :- replaces part of first string @ index with second string
+P rowsum, (aop_l), for a matrix 2d returns the row sums as an array [numrows][1]
+P rowzoom, (matrix),  all rows in matrix are interpolated to new size
+P rpc, (stat_m), rpc  
+P rtcf, (fileop), rtcf     
+P runningstats, (stat_m),  run stats
+P runstats, (stat_m),  run stats
+P rwdfile, (fileop), rwd_file     
+P rwlfile, (fileop), rwl_file     
+P rwords, (fileop), readwords     
+P saw, (sp_wave), generates saw tooth 
+P scat, (ssop), concats string args together - returns result
+P scin, (ssop), scin(str1,str2,[all]) : count occurrence of any char from str2                in str1  default return on first occurrence option count all
+P scmp, (ssop),  scmp     
+P scnt, (ssop),  scnt sums up ascii values in string     
+P scntascii, (ssop),  scnt sums up ascii values in string     
+P scompare, (ssop), scompare(haystack_str,compare_str, ignore_case)  :- returns number float indicating comparison strength 
+P scpy, (ssop),  scpy     
+P scriptvers, (sint_l), set/get script vers
+P scut, (ssop), w2=scut(w1,nc) :- cuts nc chars of string from head or tail if nc is negative or a section scut(w1,startc,endc) returns result
+P sdb, (sp_wave), setdebug(level,{action}) level -1 nodebug, 0 default,                1 high action "pline" prints current line
+P sdel, (cw_l),  state delete
+P sdevclose, (sort_l), 
+P sdevget, (sort_l), 
+P sdevopen, (sort_l), 
+P sdevread, (sort_l), 
+P sdevreadbuf, (sort_l), 
+P sdevreadjs, (sort_l), 
+P sdevreadline, (sort_l), 
+P sdevset, (sort_l), 
+P sdevwrite, (sort_l), 
+P sdm, (stat_m), sdm  
+P searchfile, (fileop), search_file     
+P searchrecord, (rdrec),  searchRecord (Rec, pat, [start,finish, dir, nfinds] 
+P seekfile, (fileop), seekFile     
+P seekline, (fileop), seekLine     
+P sel, (vop_m), compares array against scalar value using <,>,==,,!=,>=,<= operations      - returns array of indices where comparion is TRUE
+P sele, (ssop), sele(index, nchars) selects part of a string via index and num of chars
+P selvi, (vop_m),  SelVi(Vec, VecI)  = uses indices in VecI to build a subset array from Vec 
+P semcreate, (timedate_l),  creates semaphore 
+P semdestroy, (timedate_l),  destroys semaphore 
+P sempost, (timedate_l), posts a semaphore sem_post 
+P semtrywait, (timedate_l), tries waits on a semaphore sem_wait 
+P semwait, (timedate_l), waits on a semaphore sem_wait 
+P sendsig, (signal_e),  send signal to pid 
+P seqgen, (gen_l), generates array sgen([INT_,FLOAT_,DOUBLE_,...],N,step_vector,[startval])
+P setalias, (fileop), set_alias     
+P setap, (top_m), sets precision for pan numbers -- they can be arbitarily long
+P setargindex, (sint_l),  set the current arg index  and returns value ( 1 -- first) - does not advance 
+P setdebug, (sp_wave), setdebug(level,{action}) level -1 nodebug, 0 default,                1 high action "pline" prints current line
+P seterrornum, (sp_wave), setErrorNum(errno)  sets the last error number
+P setferror, (fileop), setFerror     
+P setjump, (signal_e),  set jmp instruction 
+P setkeyval, (vmf_l),  setkeyval(str,str)  store key value pair returns -1 on fail
+P setmaxcodeerrors, (), 
+P setmaxicerrors, (), 
+P setmaxnd, (sint_l), setmaxnd(N) sets max number of dimensions - no arg returns current value
+P setmaxsvarsz, (sint_l), setmaxsvarsz({N}) sets max size of svars - no arg returns current value
+P setmemoption, (fileop), setmemoption     
+P setmenuvalue, (), 
+P setnamedebug, (sp_wave), 
+P setpcw, (), 
+P setprintgwm, (fileop),  script print passed to GWM (default) set to zero to disable
+P setprintindent, (fileop), setprintindent     
+P setscale, (top_m), sets floating point scale
+P sfile, (fileop), seekFile     
+P sfind, (ssop), sfind(svar_str,str,[case],[whole]) -         for an svar array looks for str in any of svar elements
+P sfoo, (ssop),   
+P sgen, (gen_l), generates array sgen([INT_,FLOAT_,DOUBLE_,...],N,step_vector,[startval])
+P shexpand, (fileop), shexpand     
+P showinclude, (sint_l),  return the current codeblock include filename
+P showscope, (sint_l),  returns the current scope and CMF state
+P showstack, (sint_l),  
+P showstatements, (fileop), showstatements     
+P shuffle, (ssop),  Shuffle  vector of strings, numbers   
+P sighandler, (signal_e),  setup sighandling 
+P sigpause, (wcom_msg),  sigpause    
+F 01/17/22 10:09:37 sin, (top_m), sin function - radians
+P sine, (top_m), sin function - radians
+P sinh, (top_m), sinh hyperbolic  ::  sinh(x) = (exp(x) - exp(-x)) / 2
+P sipause, (timedate_l), sleep 
+P sizeof, (thread_e), sizeof("float"), sizeof("Svar") returns sizeof object or memory type   
+P sleep, (timedate_l), sleep 
+F 01/17/22 09:14:27 slen(&Str) slen, (ssop),  slen - returns length of str argument
+P slist, (cw_l),  state list
+P slower, (ssop), transforms string to lower case
+P sncat, (ssop),  sncat     
+P sob, (ssop),  sob - strip outer brackets  -default round sob(exp,'[') or sob(exp,'{')) etc     
+P solvequad, (mop_m),   
+P sort, (sort_l), returns sorted vector  sort(A,[bubble,quick]) default quicksort
+P sortrows, (rdrec),  sortRows 
+P spat, (ssop),   spat  search for pattern in string return index into string    
+P spatrgx, (ssop),   spat    search for regex pattern in string return index into string    
+P spawnasl, (), 
+P spawngwm, (sort_l), 
+P spec, (dsp_main), spectrum analysis - input float real,imag  - output 10*log10 power spec
+P spectrum, (dsp_main), spectrum analysis - input float real,imag  - output 10*log10 power spec
+P split, (ssop), split a string into tokens S=split(str,"del")  Caz(S) gives num of tokens - if none sz = 1 S[0] == NULL   
+P splitp, (ssop), splitp     
+P sprint, (print), sprintf use like C equivalent
+P sprintf, (print), sprintf use like C equivalent
+P sqr, (top_m), returns value of square  of value
+P sqrt, (top_m), returns value of square root of value
+P square, (sp_wave), generates square wave 
+P sread, (cw_l),  state read
+P srev, (ssop),  srev     
+P srun, (cw_l),  state run
+P sscan, (ssop),  sscan     
+P sstr, (ssop), sstr(haystack,needle,ignorecase):- finds needle in haystack returns index to first occurence
+P ssub, (ssop),  sres=ssub(w1,w2,w3)  - substitute w3 in w1 for pat w2    
+P ssubrgx, (ssop),  sres=ssubrgx(w1,w2,w3)  - substitute w3 in w1 for regex pat w2    
+P stats, (stat_m),  stats  computes sum, mean, ssquares, variance, ,sdev of vector
+P statusof, (thread_e),    
+P stdev, (stat_m),  std dev  of vector
+P stok, (ssop), split a string into tokens S=split(str,"del")  Caz(S) gives num of tokens - if none sz = 1 S[0] == NULL   
+P stop, (sp_wave), 
+P stran, (ssop),  stran     
+P strcasecmp, (ssop),  strcasecmp(w1,w2,[n])  string compare ignoring case - optionally for n chars     
+P strchr, (ssop), strchr(str s,char c,[dir=1,sindex=0]  find a char in string dir=1 first dir=-1 last ,sindex start index in string 
+P strcmp, (ssop),  strcmp(w1,w2,[n])  string compare  - optionally for for first n chars (n negative for last n chars)    
+P submat, (matrix),  submat(M,r,c,R,C)  return a submat/subgrid of the matrix 
+P sum, (aop_l), returns sum of a vector or for MD array sums along specified dimension e.g. sum(MD,0) 
+P supper, (ssop), transforms string to upper case
+P svowrm, (ssop),  svowrm     
+P swab, (ssop),  swab   swap bytes  
+P swapcols, (rdrec),  swapCols 
+P swaprows, (rdrec),  swapRows 
+P swindow, (dsp_main), smoothing window  W=swindow({rectangular,triangular,Guassian,Hamming,Hanning,Kaiser},n_points) 
+P tan, (top_m), tan function - radians
+P tanh, (top_m), tanhh hyperbolic ::  tanh(x) = sinh(x)/cosh(x)
+P testargs, (sint_l), testargs(a,b,c,...) use for debug-  returns arg values as svar
+P tid, (thread_e),    
+P time, (timedate_l), time
+P time2date, (fileop), time2date     
+P timeconvert, (rdrec),  timeconvert 
+P togglemenuvalue, (), 
+P tone, (sp_wave), generates a tone group  ( sf,npts,{frq,amp,ph},...) 
+P torf, (ssop), torf(val) --- convert val non-zero to true   else false 
+P transpose, (matrix),  transpose the matrix 
+P truecourse, (navi_l),  course between a pair of lat,lng's 
+P trunc, (top_m), returns truncates argument value to nearest lower integer value (round to zero)
+P turnradius, (navi_l),  turnradius for  tas, bankangle 
+P typeof, (thread_e), typeof - returns the type of the argument  as a string FLOAT,INT,...
+P unpackb, (ssop), unpacks constants from char array into suppied args
+P updir, (fileop), ch_dir     
+P urand, (mop_m),  generates uniform random numbers
+P utime, (timedate_l), get time 
+P variables, (sp_wave),  will list out current variables and values
+P varinfo, (sint_l),  returns siv info 
+P varoffsets, (aop_l), returns current offset for a variable  LH,FR,OFFSET,POFFSET
+P vbitrev, (vop_m),  vbitrev (vec, size) bitreverse a vector
+P vcmpset, (matrix),  cmpsetv(vec,op,cmp_value,set_value) in place compare and set  vector elements
+P version, (sp_wave), 
+P vexpand, (vop_m),  linearly interpolates new vector to a different size
+P vfill, (gen_l), fills vector with values vfill(vec,Nvalues, [start_index], [start_value], [incr_value], [stepindex])
+P vfree, (sint_l), frees memory for a variable - vector reset for dynamic use 
+P vfunctions, (sp_wave), returns list of script variable member functions (VMF) and descriptions
+P vga, (gen_l), generates double array from list or ags  dvec= vga(4.0,-1.0,371, ...
+P vgate, (vop_m),  compute a gate for filtering 
+P vgen, (gen_l), generates array vgen([INT_,FLOAT_,DOUBLE_,...],N,[startval],[stepi])
+P vinfo, (sp_wave),  will return internal specification of a variable(s) 
+P vpeak, (vop_m),  find vibration peaks 
+P vrange, (vop_m),  translate vector into a new range
+P vread, (fileop), vread  read data (binary) into buffer with conversion    
+P vrealloc, (sint_l), vrealloc(Vec,npts) realloc to npts length
+P vreverse, (aop_l), returns the reverse of vector
+P vrotate, (vop_m),  vrotate(dir,nsteps)  rotate vec forward/back (1,-1) by nsteps
+P vsmooth, (vop_m),  smooths vector with average of n points second arg is number of points
+P vsplice, (aop_l), splices one vector into another
+P vswop, (vop_m),  vswop (vec, i,j,) swop elements in vec
+P vtrans, (vop_m),  replace value in array according to code matrix 
+P vunique, (vop_m),  find unique values in vector 
+P vvcomp, (vop_m),  R=vvcomp(X,Y) compares vec2 elements to vec1 result      
+P vvcopy, (vop_m),  vvcopy copies vec2 elements to vec1 
+P vvgen, (gen_l), generates array vvgen([INT_,FLOAT_,DOUBLE_,...],N,init_vector,step_vector)
+P vvtally, (vop_m),  vvtally counts occurrence of ve2 elements in vec1 
+P vwrite, (fiow),  writes data vectors and scalars e.g. wdata(Vec1,Vec2[0:10:2],a,b) 
+P vzipper, (aop_l), interleaves one vector with another
+P vzoom, (vop_m),  linearly interpolates new vector to a different size
+P waitformessage, (wcom_msg),  messagewait    
+P wcdata, (fiow),  converts and writes data e.g. wcdata(FLOAT_,Vec1,Vec2[0:10:2],a,b) 
+P wcfile, (fileop), wc_file     
+P wdata, (fiow),  writes data vectors and scalars e.g. wdata(Vec1,Vec2[0:10:2],a,b) 
+P wfile, (fileop), w_file     
+P whatis, (thread_e),  returns a short description of function 
+P wmat, (fiow), 
+P wrecord, (fileop), w_record     
+P writechild, (sort_l), 
+P writechildmsg, (sort_l), 
+P writegwmsock, (gsocket_l), writegwmsock      
+P writeline, (fileop), writes string  to file-returns chars written
+P writemother, (sort_l), 
+P writemothermsg, (sort_l), 
+P writerecord, (rdrec),  writerecord 
+P writetable, (rdrec),  writerecord 
+P wrtchanhead, (fiow), 
+P wrtframehead, (fiow), 
+P xcompile, (sint_l), xcompile[on/off]     
+P xstate, (cw_l),  runs an asl statement e.g. xstate('a=2+2;') 
+P yieldprocess, (ssop),  yieldprocess     
+P yorn, (ssop), yorn(val)  --- convert val non-zero to yes   else no 
+P zipper, (aop_l), interleaves one vector with another
+P zulu, (timedate_l), zulutime
+P zulutime, (timedate_l), zulutime

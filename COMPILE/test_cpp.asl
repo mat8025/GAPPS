@@ -62,6 +62,8 @@ Str q;
 
   cout << " str t = "  << t << endl;
 
+///////////////////// SOP /////////////////////////
+
 
 Siv S(STRV);
 
@@ -73,6 +75,62 @@ cout << "Siv S " << S << endl;
     S= strmcat( t,q);
 
 cout << "Siv S " << S << endl;
+
+int len;
+
+    len =slen(&t);
+
+    cout << t << " slen " << len << endl;
+
+   cout << "Siv S " << S << endl;
+
+int index[20];
+
+   //index = regex(&S,&q);
+
+cout << "index " << index <<endl;
+
+
+
+
+
+////////////////////////  TOP ///////////////////////////
+
+
+double d;
+float f = 0.5;
+
+  d= abs(-10.345);
+
+ cout << "d = abs(-10.345) " << d << endl;
+
+  d = acos(f);
+
+cout << "d = acos(f); " 
+   << d << endl;
+
+f = 1.2;
+  d = acosh(f);
+
+cout << "d = acosh(f); "  << f << " d "
+   << d << endl;
+f = 0.707;
+  d = asin(f);
+
+d = sin(f);
+
+cout << "d = sin(f); "  << f << " d "
+   << d << endl;
+ f =d;
+ d = asin(f);
+cout << "d = asin(f); "  << f << " d "
+   << d << endl;
+   
+f = 1.2;
+  d = asinh(f);
+cout << "d = asinh(f); "  << f << " d "
+   << d << endl;
+
 
 
 
@@ -92,7 +150,14 @@ cout << "Siv S " << S << endl;
 
     Uac *o_uac = new Uac;
 
+   // can use sargs to selec uac->method via name
+   // so just have to edit in new mathod to uac class definition
+   // and recompile uac -- one line change !
+   // plus include this script into 
+
+
     o_uac->helloWorld();
+    //o_uac->newWorld();
 
   }
 
