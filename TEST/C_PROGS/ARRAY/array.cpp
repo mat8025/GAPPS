@@ -120,7 +120,7 @@ class Array
   // int operator [] ( uint i);
     int &operator [] ( long long l);
   // int &operator [] ( uint st) int &operator[] (uint k);
-  //int &operator [][] ( uint i, uint k);
+  int &operator [][] ( uint i, uint k);
 
 
   

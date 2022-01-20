@@ -40,7 +40,7 @@ class Tleg
   str Place;
 
 
- cmf Tleg() 
+ void Tleg() 
  {
  //<<"Starting cons \n"
   dist = 0.0
@@ -81,7 +81,7 @@ class Turnpt
 
 //  method list
 
-  cmf TPset (svar wval) 
+  void TPset (svar wval) 
    {
 
 //<<"TPset $_proc $wval \n"
@@ -130,7 +130,7 @@ class Turnpt
       }
 //=========================//
 
-  cmf TPCUPset (svar wval) 
+  void TPCUPset (svar wval) 
    {
 //wval.pinfo()
 //<<"%V $wval[::]\n"
@@ -221,25 +221,25 @@ str val;
       }
 //=========================//
 
-cmf SetPlace (str val)   
+void SetPlace (str val)   
    {
        Place = val;
    }
 //=========================//
 
-   cmf GetPlace ()   
+  void GetPlace ()   
    {
        return Place; 
    }
 //=========================//
-   cmf Print ()    
+   void Print ()    
    {
      <<"$Place $Idnt $Lat $Lon $Alt $rway $Radio $Ladeg $Longdeg\n"
    }
 //=========================//
 
 
- cmf GetTA()   
+ void GetTA()   
    {
       int amat =0;
       spat (tptype,"A",-1,-1,&amat);
@@ -248,7 +248,7 @@ cmf SetPlace (str val)
       return amat;
    }
 //=========================//
- cmf Turnpt()
+ void Turnpt()
     {
 
 

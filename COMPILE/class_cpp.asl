@@ -16,8 +16,16 @@
 
 int Obid = 0;
 
-#define ASL 0
-#define CPP 1
+#define ASL 1
+#define CPP 0
+
+#if ASL
+ int n = 4;
+ int m = 5;
+  <<" Simple class demo \n";
+ <<" paras are %V $n $m\n";
+#endif
+
 
 #if CPP
  extern "C" int class_cpp(Svarg * sarg)  {
@@ -32,22 +40,27 @@ int Obid = 0;
 #endif
 
 
+<<"Hey \n"
+
+
+
 chkIn(1);
 
 /// simple class test
 
 //<<"simple class test\n"
-
+#if CPP
 cout << "hello simple class test" << endl;
-
+#endif
 
 
 ////////////////////////
-#include "tpclass.asl"
+//#include "tpclass.asl"
 
 
 class Add
  {
+ 
   public:
    
    float x ;
@@ -55,7 +68,7 @@ class Add
    int id;
    
 // cmf Add()
- Add()
+  void Add()
   {
     id = Obid++;
  //   <<"CONS $_cobj %V $id\n"
@@ -85,53 +98,49 @@ class Add
    t = a -b;
    return t;
   };
-  
-/*
-  Str say()
-  {
-   //<<"$_proc hey there I exist\n";
-   Str isay ("hey hey");
-   return isay;
-  }
-
-  Str isay()
-  {
-   //<<"$_proc hey there I exist\n";
-   isay="Do what I say";
-   return isay;
-  }
- */ 
+ 
 };
+
+<<"hey now\n"
 
 
 int s;
 
-//pinfo(s);
+pinfo(s);
 
 Add  tc;   
 
+
 //Add.pinfo();
 
-    s= tc.sum(n,m);
+    s= tc->sum(n,m);
 
 chkN(s,(n+m));
 
 //<<"%V $s $(typeof(s)) \n";
+#if CPP
+//cout << " sum s " << s << endl;
+#endif
 
-cout << " sum s " << s << endl;
+#if ASL
+s= tc->diff(n,m);  // ? fix tc.diff - asl convention  but tc not ptr 
 
+ <<" diff $s ";
+#endif
+
+#if CPP
       s= tc.diff(n,m);
-
-cout << " diff s " << s << endl;
+      cout << " diff s " << s << endl;
+#endif
 
 chkN(s,(n-m));
 
 chkOut();
 
 
-
+#if CPP
 }
-
+#endif
 
 
 
