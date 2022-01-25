@@ -23,18 +23,19 @@ av = 80;
 <<"%V $av\n"
 
 
-char A[20]
+char A[20];
 
  for (i= 1; i < 20; i++) {
+ 
   A[i] = i;
-<<"$i $A[i]\n"  
+
+<<"$i $A[i]\n"
+chkN(A[i],i)
+
  }
 
 <<"$A\n"
 
-chkN(A[2],2)
-
-chkN(A[19],19)
 
 
 

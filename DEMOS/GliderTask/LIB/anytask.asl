@@ -12,7 +12,7 @@
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
 
-<|Use=
+<|Use_=
 compute task distance
   e.g  asl anytask.asl   gross laramie mtevans boulder  LD 40
 ///////////////////////

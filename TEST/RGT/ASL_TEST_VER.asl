@@ -4,7 +4,7 @@
 //*  @comment asl test modules 
 //*  @release CARBON 
 //*  @vers 1.63 Eu Europium [asl 6.2.51 C-He-Sb]                           
-//*  @date Sun May 24 09:28:05 2020 
+//*  @date Sun May 24 09:28:05 2020
 //*  @cdate 1/1/2005 
 //*  @author Mark Terry 
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
@@ -77,7 +77,7 @@ wdir = getdIr()
 
 
 str S = "all,array,matrix,bugs,bops,vops,sops,fops,class, declare,include,exp,if,logic,for,do,paraex,proc,switch,"
-S->cat("types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc, svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help");
+S.cat("types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc, svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help");
 
 
 svar Opts[] = Split(S,",");

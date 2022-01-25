@@ -37,7 +37,7 @@ void pstr( str val)
 
 <<"\nval <|$val|>\n"
 
-   val->Info(1)
+   val.pinfo()
 
 }
 //===========================//
@@ -57,28 +57,53 @@ void pstr( str val)
  k->info(1);
 
 
- str abc = "abcdefg"
+ str abc = "abcdefghijklmnopqrstuvwxyz"
 
- abc->info(1);
+ abc.pinfo();
 
- chkStr(abc,"abcdefg");
+ chkStr(abc,"abcdefghijklmnopqrstuvwxyz");
+ 
  char c;
 
-  c->info(1)
+  c.pinfo()
 
   c = abc[3];
 
 <<"%V$c %c $c\n"
 
+  c.pinfo()
+
 chkC(c,'d')
 
-c->info(1)
+c.pinfo()
+
+
+  c = abc[13];
+
+<<"%V$c %c $c\n"
+
+chkC(c,'n')
+
+
+str s;
+
+  s = abc[2:15:2]
+
+<<"%v $s\n"
+
+chkStr(s,"cegikmo");
+
+s.pinfo();
+
 
   abc[4] = 'X';
 
 
-abc->info(1)
+abc.pinfo()
  
+
+chkOut()
+exit()
 
 str xyz = "xyz"
 
@@ -113,7 +138,7 @@ pstr("B");
 
 s = "hi there";
 
-s->info(1)
+s.info()
 
 <<"%V $s \n"
 

@@ -44,7 +44,7 @@ str hdr_cdate = "1964"
 str hdr_date = "1964"
 
    int hv_found =0;
-      int hv_show =1;
+      int hv_show =0;
 
 
     str  rs = "comment ca va"

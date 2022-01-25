@@ -16,10 +16,10 @@
 #include "debug.asl"
 
 if (_dblevel >0) {
-debugON()
+  debugON()
 }
 
-int FF[10]
+int FF[10];
 
 FF[1] = 51;
 
@@ -30,7 +30,7 @@ chkIn(_dblevel)
 
 chkN(FF[1],51)
 
-proc localv()
+void localv()
 {
 
  int FF[10];
@@ -51,7 +51,7 @@ proc localv()
  <<"$FF \n"
 }
 
-proc localmv()
+void localmv()
 {
 
  int ::GF[10];
@@ -71,7 +71,7 @@ chkN(FF[5],-5)
 
 <<"$FF\n "
 
-FF->delete()
+FF.delete();
 
 //exit()
 

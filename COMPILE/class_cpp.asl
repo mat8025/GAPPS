@@ -123,7 +123,7 @@ chkN(s,(n+m));
 #endif
 
 #if ASL
-s= tc->diff(n,m);  // ? fix tc.diff - asl convention  but tc not ptr 
+s= tc.diff(n,m);  // ? fix tc.diff - asl convention  but tc not ptr 
 
  <<" diff $s ";
 #endif
@@ -134,6 +134,19 @@ s= tc->diff(n,m);  // ? fix tc.diff - asl convention  but tc not ptr
 #endif
 
 chkN(s,(n-m));
+
+ Vec V(DOUBLE_,10,10,1);
+
+  V.pinfo();
+double rms;
+
+  rms = V.rms();
+
+<<"%V $rms \n";
+
+
+
+
 
 chkOut();
 
