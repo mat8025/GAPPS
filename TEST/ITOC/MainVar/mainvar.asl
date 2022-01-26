@@ -1,15 +1,16 @@
-//%*********************************************** 
-//*  @script mainvar.asl 
-//* 
-//*  @comment  
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                    
-//*  @date Tue Jan 28 07:47:40 2020 
-//*  @cdate Tue Jan 28 07:47:40 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script mainvar.asl 
+ * 
+ *  @comment  
+ *  @release CARBON 
+ *  @vers 1.2 6.3.76 C-Li-Os 
+ *  @date 01/25/2022 09:55:47          
+ *  @cdate Tue Jan 28 07:47:40 2020 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare 2022
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                                                                                                       
 ///
 ///
 ///
@@ -87,13 +88,13 @@ localmv()
 
 chkN(GF[1],75)
 
-GF->delete()
+GF.delete()
 
 localmv()
 
  <<"$GF[1] \n"
 
-GF->delete()
+GF.delete()
 
 localmv()
 

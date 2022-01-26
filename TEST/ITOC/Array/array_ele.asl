@@ -3,14 +3,14 @@
  * 
  *  @comment test array vec and ele use 
  *  @release CARBON 
- *  @vers 1.41 Nb Niobium [asl 6.3.61 C-Li-Pm] 
- *  @date 11/23/2021 13:01:47          
+ *  @vers 1.42 6.3.76 C-Li-Os 
+ *  @date 01/25/2022 09:58:17          
  *  @cdate 1/1/2007 
  *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
+ *  @Copyright © RootMeanSquare 2022
  * 
- *  \\-----------------<v_&_v>--------------------------//  
  */ 
+;//----------------<v_&_v>-------------------------//;                                  
 
 #include "debug"
 
@@ -62,8 +62,8 @@
    float array_asg (float rl[])
    {
 
-     <<"In $_proc   $rl\n";
-
+     <<"In $_proc \n";
+     float val;
      rl.pinfo();
 
      int kp = 3;
@@ -74,15 +74,31 @@
 //ans=query()
 
      rl[1] = 77;
+     rl.pinfo();
+     
+<<"%V %6.2f $rl\n";
 
      rl[kp] = 67;
+     rl.pinfo();
+<<"%V %6.2f $rl\n";
 
      rl[kp2] = 14;
+     rl.pinfo();
+ <<"%V %6.2f $rl\n";
 
-     <<"%V $rl\n";
-
+     val = rl[1];
+     chkR (rl[1],77);
+     rl.pinfo();
+<<"%V $val %6.2f $rl\n";
+     val = rl[3];
      chkR (rl[3],67);
 
+<<"%V $val $rl\n";
+     chkR (rl[kp2],14);
+     val = rl[kp2];
+     
+<<"%V$val $rl\n";
+!a
      t3 = rl[8];
 
      return t3;
@@ -293,12 +309,13 @@
    val = array_asg (Real1);
 
    <<"%V $val\n";
-//ans= query()
+   //ans= query("first use")
 
    <<"%V$Real1\n";
 
    val = array_asg (Real2);
-//ans= query()
+
+   //ans= query("xic")
 
    <<"%V $val\n";
 
@@ -405,13 +422,16 @@
 
    t4 = Real[j1 + 1];
 
+
+
+
    <<"%V $t4  \n";
 
    <<"$(Caz(t4))\n";
 
    chkR (t4, 5);
 
-   <<"$Real \n";
+   <<"%6.2f$Real \n";
 
    <<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
 
@@ -419,23 +439,26 @@
 
    diff = Real[j1] - Real[j2];
 
-   <<"%V $k $diff $Real[k] $Real[j1] $Real[j2]\n";
+   <<"%V $k $j1 $j2 $diff $Real[k] $Real[j1] $Real[j2]\n";
 !p diff
 
-   <<"ele[${k}] $Real[k] \n";
-
+   <<"ele[${k}] %6.2f $Real[k] \n";
+!a
    Real.pinfo();
 
    <<"MAIN %V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
 
-   chkR (Real[k], -2);
 
-   <<"$Real \n";
+
+<<"%V $k \n";
+   <<"%6.2f$Real \n";
+
+   chkR (Real[k], -2);
 
    t2 = Real[k];
 
    <<"%V$t2\n";
-
+!a
    <<"$(Caz(t2))\n";
 
    chkR (t2, -2);

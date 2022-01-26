@@ -1,15 +1,16 @@
-//%*********************************************** 
-//*  @script assign.asl 
-//* 
-//*  @comment test assign values to variables arrays 
-//*  @release CARBON 
-//*  @vers 1.2 He Helium [asl 6.2.98 C-He-Cf]                            
-//*  @date Tue Dec 22 09:34:43 2020 020 
-//*  @cdate 1/1/2005 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script assign.asl 
+ * 
+ *  @comment test assign values to variables arrays 
+ *  @release CARBON 
+ *  @vers 1.3 6.3.76 C-Li-Os 
+ *  @date 01/25/2022 09:57:09          
+ *  @cdate 1/1/2005 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare 2022
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                                                                                                       
 
 
 chkIn(_dblevel)
@@ -25,7 +26,7 @@ av = 80;
 
 char A[20];
 
- for (i= 1; i < 20; i++) {
+ for (i= 1; i < 10; i++) {
  
   A[i] = i;
 

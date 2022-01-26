@@ -219,6 +219,7 @@ L.pinfo()
    }
    
    }
+   
    //found_where = where;
    i++;
    if (i >16) {
@@ -226,6 +227,16 @@ L.pinfo()
     found_vers = 0;
     break;
    }
+
+    if (scmp(L[0],"//****",6)) {
+
+      <<[2]"old header end? line $i\n"
+
+
+      break;
+    }
+
+
 
     if (scmp(L[0],"*/",2)) {
 <<[2]"header end? line $i\n"
@@ -239,10 +250,10 @@ L.pinfo()
          // step back
 	 fseek(A,where,0);
        }
-   
     break;
     }
-  }
+
+}
  
   where = ftell(A);
 

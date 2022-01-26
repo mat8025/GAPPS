@@ -33,6 +33,8 @@
 //   }
 
 
+filterFuncDebug(REJECT_,"pushsivele","storer","init");
+
 
 
 allowErrors(-1)

@@ -48,7 +48,6 @@ void isData()
 
 void fillInObsVec()
 {
-
  
  if (kd >= 0) {
 
@@ -56,19 +55,20 @@ void fillInObsVec()
 
    mywt = atof(col[j++]);
 
-   if (mywt > 0) {
+   if (mywt > 0.0) {
    
     LDVEC[Nobs] = wday;
     DVEC[Nobs] = kd;
 
     WTVEC[Nobs] = mywt;
 
-//<<[_DB]"$k  $DVEC[Nobs]  $WTVEC[Nobs] \n"
-
-    if (WTVEC[Nobs] > 0.0) {
-      last_known_wt = WTVEC[Nobs]
+//<<"$k  mywt  $WTVEC[Nobs] \n"
+    if (mywt > 0.0) {
+   // if (WTVEC[Nobs] > 0.0) 
+    //  last_known_wt = WTVEC[Nobs]
+       last_known_wt = mywt;
       last_known_day = wday -bday;
-    } 
+    }
     else {
      WTVEC[Nobs] = last_known_wt;
     }
@@ -134,7 +134,7 @@ void fillInObsVec()
       Nobs++;
       }
    }
-}
+ }
 //====================================================//
 
 

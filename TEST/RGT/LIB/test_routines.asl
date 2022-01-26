@@ -243,7 +243,7 @@ void RunSFtests(str Td)
 int scoreTest(str itname)
 {
 
-<<"$_proc <|$itname|>  \n"
+//<<"$_proc <|$itname|>  \n"
 
  int scored = 0;
  int ntests;
@@ -464,7 +464,7 @@ str lprg = "xxxxxxxxxxxxxxxxx";
 
 lprg = prg;
 
-prg.pinfo();
+//prg.pinfo();
 //lprg.pinfo();
 
 if (!scmp(lprg,prg)) {
@@ -474,7 +474,7 @@ if (!scmp(lprg,prg)) {
 
 
 
-<<"looking for xic file <|$prg|>  \n"
+//<<"looking for xic file <|$prg|>  \n"
 
      foundit = fexist(prg) ;
 
@@ -493,7 +493,7 @@ if (!scmp(lprg,prg)) {
 
       xwt_prog = "$tim ./${prg}: "
 //      xwt_prog = "$tim x ${prg}: "
-<<"%V $xwt_prog \n"
+//<<"%V $xwt_prog \n"
 //  <<"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -dx $prg  \n  "
 
 //ans=query(": ");
@@ -531,7 +531,7 @@ if (!scmp(lprg,prg)) {
 
       tst_file = "${prg}.xtst";
       
-  <<"%V <|$prg|> <|$tst_file|>\n"
+//  <<"%V <|$prg|> <|$tst_file|>\n"
 
 
       if (f_exist(tst_file) > 0) {
@@ -541,7 +541,7 @@ if (!scmp(lprg,prg)) {
          <<"${xwt_prog}$padit" // print time prog arg
 	 <<[Opf]"${xwt_prog}$padit"
          }
-	 <<"%V $tst_file \n"
+	 //<<"%V $tst_file \n"
          wscore = scoreTest(tst_file)
       }
      else {
@@ -684,7 +684,7 @@ void cart (str prg)
          <<[Opf]"${wt_prog}$padit"	 
          }
          wscore = scoreTest(tst_file)
-	<<"%V $wscore\n"
+	//<<"%V $wscore\n"
       }
      else {
 

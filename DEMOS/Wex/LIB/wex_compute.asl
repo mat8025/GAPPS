@@ -58,25 +58,29 @@ int i;
 void getDay(long dayv)
 {
 
- int m_day;
- m_day= dayv + bday;
+ long m_day;  // int ?
+
  float cbm;
  float xtm;
  float wtm;
  int dt;
  str mdy;
 
+    m_day= dayv + bday;
+
     mdy = julmdy(m_day);
+
+
     sWo(dtmwo,@value,mdy,@redraw);
     wtm = 0.0;
      sWo(wtmwo,@value,wtm,@redraw);
-          sWo(cbmwo,@value,0,@redraw);
+     sWo(cbmwo,@value,0,@redraw);
      sWo(xtmwo,@value,0,@redraw);
      sWo(obswo,@value,0,@redraw);
      
    for (i = 0; i < Nobs ; i++) {
 
-//<<" $i $dayv  $mday $LDVEC[i] \n"
+<<" $i $m_day $LDVEC[i] \n"
 
      if (LDVEC[i] == m_day) {
 

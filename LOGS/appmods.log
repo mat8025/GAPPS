@@ -350,3 +350,6 @@ procB.asl                1.4	01/13/2022 10:38:06 v7
 procB.asl                1.4	01/13/2022 10:39:21 v9
 xic.asl                  1.8	01/13/2022 10:40:07 v10
 proc_loc_main_var.asl    1.4	01/13/2022 11:40:00 pp
+mainvar.asl              1.2	01/25/2022 09:55:47 pp
+assign.asl               1.3	01/25/2022 09:57:09 pp
+array_ele.asl            1.42	01/25/2022 09:58:17 pp
