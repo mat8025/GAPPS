@@ -98,7 +98,7 @@
      val = rl[kp2];
      
 <<"%V$val $rl\n";
-!a
+//!a
      t3 = rl[8];
 
      return t3;
@@ -443,7 +443,7 @@
 !p diff
 
    <<"ele[${k}] %6.2f $Real[k] \n";
-!a
+//!a
    Real.pinfo();
 
    <<"MAIN %V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
@@ -458,7 +458,7 @@
    t2 = Real[k];
 
    <<"%V$t2\n";
-!a
+//!a
    <<"$(Caz(t2))\n";
 
    chkR (t2, -2);
