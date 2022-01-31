@@ -55,57 +55,39 @@ int i;
 }
 //=========================
 
-void getDay(long dayv)
+float predictWL()
 {
+float pw;
+double pwl[10];
+pwl[0] = 0.0;
+pwl[1] = 1.0;
+double xv[5];
+double yv[5];
+int k = Nobs -5;
+double xs = LDVEC[k];
+pw = WTVEC[Nobs-1];
 
- long m_day;  // int ?
+  if (Nobs > 5) {
+    for (i =0; i < 5; i++) {   
+       xv[i] = LDVEC[k] -xs;
+       yv[i] =  WTVEC[k];
+       k++;
+       <<"$i $k $LDVEC[k] $WTVEC[k] $xv[i] $yv[i]\n"; // TBF
+    }
+   <<"%V $xv\n"
+   <<"%V $yv\n"
+   
+   pwl = Lfit(xv,yv);
+   <<"pwl $pwl \n"
+   // next day prediction
 
- float cbm;
- float xtm;
- float wtm;
- int dt;
- str mdy;
+    pw = pwl[0] + (pwl[1] *5);
 
-    m_day= dayv + bday;
-
-    mdy = julmdy(m_day);
-
-
-    sWo(dtmwo,@value,mdy,@redraw);
-    wtm = 0.0;
-     sWo(wtmwo,@value,wtm,@redraw);
-     sWo(cbmwo,@value,0,@redraw);
-     sWo(xtmwo,@value,0,@redraw);
-     sWo(obswo,@value,0,@redraw);
-     
-   for (i = 0; i < Nobs ; i++) {
-
-<<" $i $m_day $LDVEC[i] \n"
-
-     if (LDVEC[i] == m_day) {
-
-    xtm = EXTV[i]
-    wtm  = WTVEC[i]
-    cbm  = CALBURN[i]
- 
-
-
-
-
-     dt = dayv -Sday;
-     <<"%V $tjd $bday $Sday $mdy\n"
-   <<"FOUND $i %V $dayv $Sday $dt  $wtm $xtm $cbm\n"
-     sWo(obswo,@value,dt+1,@redraw);
-     sWo(xtmwo,@value,xtm,@redraw);
-     sWo(wtmwo,@value,wtm,@redraw);
-     sWo(cbmwo,@value,cbm,@redraw);
-
-      break;
-     }
   }
 
+<<"tomorrow's wt will be $pw \n"
+          return pw;
 }
-
 
 //[EM]=================================//
 <<"Included compute module\n"

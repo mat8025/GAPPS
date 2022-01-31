@@ -1,15 +1,16 @@
-//%*********************************************** 
-//*  @script wex_screen.asl 
-//* 
-//*  @comment  
-//*  @release CARBON 
-//*  @vers 1.4 Be Beryllium                                                
-//*  @date Tue Mar  3 08:00:19 2020 
-//*  @cdate Sun Dec 23 09:22:34 2018 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2014,2018 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script wex_screen.asl 
+ * 
+ *  @comment  
+ *  @release CARBON 
+ *  @vers 1.5 B 6.3.78 C-Li-Pt 
+ *  @date 01/31/2022 08:58:38          
+ *  @cdate Sun Dec 23 09:22:34 2018 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare 2022
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                                                                                                 
 ;
 
 //////////////////  WED SCREEN --- WINDOWS ////////////////
@@ -24,16 +25,16 @@
 
     vp =  cWi(@title,"$vptitle");
 
-    vp1 = cWi(@title,"XED",@resize,0.01,0.05,0.90,0.9,1)
+    vp1 = cWi(@title,"XED",@resize,0.01,0.05,0.90,0.95,1)
 
-    sWi(vp,@clip,0.1,0.1,0.85,0.9,@redraw)
+    sWi(vp,@clip,0.1,0.05,0.85,0.95,@redraw)
 
-    sWi(vp,@resize,0.05,0.1,0.8,0.9,0);
-    sWi(vp,@clip,0.1,0.1,0.9,0.9)
+    sWi(vp,@resize,0.05,0.01,0.9,0.98,0);
+    sWi(vp,@clip,0.1,0.05,0.9,0.95)
 
     int allwin[] = {vp,vp1}
 
-    sWi(allwin,@drawon,@pixmapoff,@save,@bhue,WHITE_)
+    sWi(allwin,@drawon,@pixmapon,@save,@bhue,WHITE_)
 
     CL_init = 1;
     CR_init = 1;    
@@ -57,7 +58,7 @@
 
     // vtile before set clip!
 
-    wo_vtile(wedwo,0.1,0.08,0.99,0.97,0.01)   // vertically tile the drawing areas into the main window
+    wo_vtile(wedwo,0.1,0.08,0.99,0.99,0.01)   // vertically tile the drawing areas into the main window
 
     //cx = 0.05 ; cX = 0.95 ; cy = 0.2 ; cY = 0.97;
     float CXY[4] = { 0.05 ,0.2,0.95 ,0.97};
@@ -90,7 +91,7 @@
 
     ok=sWo(extwo,@scales,sc_startday,0,sc_end,250);
 
-<<"SCALES %V$sc_startday $sc_end \n"
+//<<"SCALES %V$sc_startday $sc_end \n"
      ok=sWo(extwo,@savescales,0);
 
 
@@ -109,7 +110,7 @@
 
 
 ///  measurement
-     tw_wo= cWo(gwo,@symbol,@resize,0.1,0.1,0.15,0.25,0,@name,"TW",@value,185)
+     tw_wo= cWo(gwo,@symbol,@resize,0.1,0.1,0.15,0.25,0,@name,"TW",@value,175)
      sWo(tw_wo,@vhmove,ON_,@symbol,STARDAVID_,@pixmapon,@redraw)
 
 
@@ -153,14 +154,14 @@
 
  // yrdecwo= cWo(vp,@BN,@name,"YRD",@color,"violetred",@help," show previous Year  ")
 //  yrincwo= cWo(vp,@BN,@name,"YRI",@color,"purple",@help," show next Year  ")
-  qrtdwo=  cWo(vp,@BN,@name,"QRTD",@color,"violetred",@help," show previous Qtr period ")
-  qrtiwo=  cWo(vp,@BN,@name,"QRTI",@color,"purple",@help," show next Qtr period ")
+//  qrtdwo=  cWo(vp,@BN,@name,"QRTD",@color,"violetred",@help," show previous Qtr period ")
+//  qrtiwo=  cWo(vp,@BN,@name,"QRTI",@color,"purple",@help," show next Qtr period ")
 
 
  // int fewos[] = {zinwo,zoomwo, yrdecwo, yrincwo, qrtdwo, qrtiwo }
-  int fewos[] = {zinwo,zoomwo, qrtdwo, qrtiwo }
+  int fewos[] = {zinwo,zoomwo,  }
 
-  wo_htile( fewos, 0.03,0.01,0.43,0.08,0.05)
+  wo_htile( fewos, 0.03,0.01,0.43,0.07,0.05)
 
   nobswo= cWo(vp,@BV,@name,"Nobs",@color,"Cyan",@value,0)
 
@@ -172,7 +173,7 @@
   
   int xwos[] = { nobswo, xtwo, xbwo, xlbswo };
   
-  wo_htile( xwos, 0.45,0.01,0.83,0.08,0.05);
+  wo_htile( xwos, 0.45,0.01,0.83,0.07,0.05);
 
   sWo(xwos,@style,"SVB",@redraw);
   sWo(gwo,@showpixmap,@save);

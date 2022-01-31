@@ -1,14 +1,16 @@
-//%*********************************************** 
-//*  @script wex_goals.asl 
-//* 
-//*  @comment  
-//*  @release CARBON 
-//*  @vers 1.3 Li Lithium                                                  
-//*  @date Tue Mar  3 07:57:45 2020 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2014,2018 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script wex_goals.asl 
+ * 
+ *  @comment  
+ *  @release CARBON 
+ *  @vers 1.4 Be 6.3.78 C-Li-Pt 
+ *  @date 01/31/2022 09:04:34          
+ *  @cdate Tue Mar 3 07:57:45 2020 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare 2022
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                                                                                                
 ///
 ///        long-term and current weight loss goals 
 ///
@@ -19,7 +21,7 @@
 
 <<"Setting goals $Goals\n"
 
-   Goals2 = Split("01/11/2022 01/31/2022 197");
+   Goals2 = Split("01/29/2022 02/14/2022 194");
 ////////////////////==============/////////////////
 
    GoalWt = 175;  // ideal -- flying weight

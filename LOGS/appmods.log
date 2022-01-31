@@ -353,3 +353,13 @@ proc_loc_main_var.asl    1.4	01/13/2022 11:40:00 pp
 mainvar.asl              1.2	01/25/2022 09:55:47 pp
 assign.asl               1.3	01/25/2022 09:57:09 pp
 array_ele.asl            1.42	01/25/2022 09:58:17 pp
+record.asl               1.37	01/29/2022 09:10:50 update
+record.asl               1.38	01/29/2022 09:17:14 pp
+record.asl               1.39	01/29/2022 09:17:56 pp2
+wex.asl                  2.53	01/31/2022 08:56:58 predict tomorrow
+wex_screen.asl           1.5	01/31/2022 08:58:38 prot,fibre
+wex_goals.asl            1.4	01/31/2022 09:04:34 short-term-goal
+wex_glines.asl           1.3	01/31/2022 09:06:20 fat,fibre,prot glines
+wex_callbacks.asl        1.2	01/31/2022 09:07:34 pp
+wex_draw.asl             1.4	01/31/2022 09:08:26 fat,prot,fibre
+wex_read.asl             1.6	01/31/2022 09:08:56 fat,prot,fibre

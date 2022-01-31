@@ -1,20 +1,21 @@
-//%*********************************************** 
-//*  @script wex_read.asl 
-//* 
-//*  @comment  
-//*  @release CARBON 
-//*  @vers 1.5 B Boron                                                    
-//*  @date Tue Jan  1 09:19:14 2019 
-//*  @cdate Fri Jan 01 08:00:45 2010 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2014,2018 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script wex_read.asl 
+ * 
+ *  @comment  
+ *  @release CARBON 
+ *  @vers 1.6 C 6.3.78 C-Li-Pt 
+ *  @date 01/31/2022 09:08:56          
+ *  @cdate Fri Jan 01 08:00:45 2010 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare 2022
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                                                                                                
 
 _DB = -1;
 
-last_known_wt = 208.8;
-last_known_day = 0;
+float last_known_wt = 208.8;
+long last_known_day = 0;
 
 float tot_exeburn =0
 float tot_exetime = 0

@@ -1,14 +1,16 @@
-//%*********************************************** 
-//*  @script wex_glines.asl 
-//* 
-//*  @comment  
-//*  @release CARBON 
-//*  @vers 1.2 He Helium                                                  
-//*  @date Sat Dec 29 09:04:43 2018 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2014,2018 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script wex_glines.asl 
+ * 
+ *  @comment  
+ *  @release CARBON 
+ *  @vers 1.3 Li 6.3.78 C-Li-Pt 
+ *  @date 01/31/2022 09:06:20          
+ *  @cdate Sat Dec 29 09:04:43 2018 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare 2022
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                                                                                              
 
 
 ///////////////////// GLINES & SYMBOLS ///////////////////////////////
@@ -61,6 +63,12 @@ if ( gw_gl == -1 || bp_gl == -1) {
 
  carb_gl = cGl(carbwo,@TXY,CCDV,CARBSCON,@color,BLUE_,@ltype,SYMBOLS_,TRI_,@symhue, BROWN_)
 
+ fibre_gl = cGl(carbwo,@TXY,CCDV,FIBRCON,@color,BLUE_,@ltype,SYMBOLS_,DIAMOND_,@symhue, PINK_)
+
+ fat_gl = cGl(carbwo,@TXY,CCDV,FATCON,@color,BLUE_,@ltype,SYMBOLS_,CROSS_,@symhue, PINK_)
+
+ prot_gl = cGl(carbwo,@TXY,CCDV,PROTCON,@color,BLUE_,@ltype,SYMBOLS_,CROSS_,@symhue, PINK_)
+
 // ave_ext_gl  = cGl(extwo,@TXY,DVEC,AVE_EXTV,@color,RED_,@ltype,LINE_)
 
  se_gl   = cGl(extwo,@TXY,DVEC,SEVEC,@color,GREEN_,@ltype,SYMBOLS_,DIAMOND_)
@@ -68,7 +76,7 @@ if ( gw_gl == -1 || bp_gl == -1) {
 
   int allgl[] = {wt_gl, gw_gl,bp_gl,ext_gl, se_gl, calb_gl, calc_gl, carb_gl, pwt_gl, cardio_gl, strength_gl}
 
-  int wedgl[] = {wt_gl, gw_gl, ext_gl, calb_gl, se_gl, calc_gl, carb_gl, pwt_gl , cardio_gl, strength_gl}
+  int wedgl[] = {wt_gl, gw_gl, ext_gl, calb_gl, se_gl, calc_gl, carb_gl, fibre_gl,fat_gl,prot_gl, pwt_gl , cardio_gl, strength_gl}
 
   int exgls[] = {ext_gl, cardio_gl,strength_gl}
 
@@ -90,6 +98,13 @@ if ( gw_gl == -1 || bp_gl == -1) {
   sGl(calc_gl,@symbol,TRI_,Symsz,@symfill,@symhue,BLUE_)
 //  sGl(carb_gl,@symbol,"circle",Symsz,@symfill,@symhue,BLUE_)
   sGl(carb_gl,@symbol,ITRI_,Symsz,@symfill,@symhue,BROWN_)
+  
+  sGl(fibre_gl,@symbol,DIAMOND_,Symsz,@symfill,@symhue,PINK_)
+
+  sGl(fat_gl,@symbol,CROSS_,Symsz,@symfill,@symhue,BLUE_)
+
+  sGl(prot_gl,@symbol,TRI_,Symsz,@symfill,@symhue,RED_)
+  
   sGl(bp_gl,@symbol,ITRI_,Symsz,@missing,0)
 
 

@@ -1,5 +1,5 @@
 /* 
- *  @script test_cpp.asl  
+ *  @script test_vec.asl  
  * 
  *  @comment test cpp compile include and sfunc 
  *  @release CARBON 
@@ -104,10 +104,10 @@ cout <<" V range assign\n" << V << endl ;
 
   cout << "Siv R " << R << endl;
 
-int do_sop = 0;
+int do_sop = 1;
 if (do_sop )  {
 Siv S(STRV);
-
+cout << " doing sop !!" << endl;
   S= "we will attempt just one feature at a time ";
 
 
@@ -115,11 +115,16 @@ Siv S(STRV);
 Str q = "at";
 Str t = "im";
 
+cout << " t "  << t.pinfo() << endl;
+
+t.pinfo();
+
 Vec index;
 
 cout << "S " << S << " q " << q << endl;
 
    index = regex(&S,&q);
+   
 index.pinfo();
 
 cout << "index " << index <<endl;
@@ -132,7 +137,55 @@ cout << "index zero? " << index <<endl;
 
 cout << "index " << index <<endl;
 
+Svar SV("SV");
+
+ cout  << "SV  "  << SV << endl ;
+
+  SV = "esto se esta complicando";
+
+ cout  << "SV  "  << SV << endl ;
+
+  SV.findWsTokens("esto se esta muy complicando");
+
+cout  << "SV  "  << SV << endl ;
+
+Siv VS(SVAR);
+
+   VS = "esto se esta muy complicando";
+
+ cout  << "VS  "  << VS << endl ;
+
+
+  //   VS.split("esto se esta muy complicando");
+
+ //cout  << "VS  "  << VS << endl ;
+
 }
+int do_record = 1;
+
+
+if (do_record )  {
+
+//Siv SV(SVAR);
+
+Svar SV;
+
+//   SV.split("80,1,2,3,40,5,6,7,8,9",',');
+
+  //SV.pinfo();
+
+ cout  << "SV  "  << SV  << endl ;
+
+Record R;
+
+  R[0] = S;
+
+ cout  << "R  "  << R  << endl ;
+
+
+}
+
+
   cout << "Exit cpp HelloVec " << endl;
 
 }

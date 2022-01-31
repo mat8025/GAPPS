@@ -3,14 +3,14 @@
  * 
  *  @comment  
  *  @release CARBON 
- *  @vers 2.52 Te Tellurium [asl 6.3.38 C-Li-Sr] 
- *  @date 07/02/2021 15:24:19 
+ *  @vers 2.53 I 6.3.78 C-Li-Pt 
+ *  @date 01/31/2022 08:56:58          
  *  @cdate Fri Jan 1 08:00:00 2010 
  *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
+ *  @Copyright © RootMeanSquare 2022
  * 
- *  \\-----------------<v_&_v>--------------------------//  
  */ 
+;//----------------<v_&_v>-------------------------//;                         
                                                                        
 
 
@@ -33,7 +33,7 @@
 //   }
 
 
-filterFuncDebug(REJECT_,"pushsivele","storer","init");
+filterFuncDebug(REJECT_,"pushsivele","storer","varIndex","var_sindex","init");
 
 
 
@@ -184,13 +184,16 @@ if (A == -1) {
 svar rx;
 //rx->pinfo()
 
-Record RX[];
+Record RX[1];
 
-RX=readrecord(A,@del,-1)
-
+//RX=readrecord(A,@del,-1)
+RX.readrecord(A,@del,-1)
+//cf(A);
+RX.pinfo();
+//!a
 Nrecs = Caz(RX);
 
-<<[_DB]"%V $Nrecs $RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n"
+<<"%V $Nrecs $RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n"
 
 <<[_DB]"$RX[Nrecs-2]\n"
  rx= RX[Nrecs-1]
@@ -200,8 +203,8 @@ Nrecs = Caz(RX);
 
 lastRX = RX[Nrecs-1]
 
-  <<[_DB]"%V$lastRX\n"
-
+  <<"%V$lastRX\n"
+//!a
 //lastRX->pinfo();
 
 chkT(1)
@@ -216,11 +219,11 @@ chkT(1)
 
 
 
- //ACC=ofr("DAT/ccwx.tsv")
+
 
 ACC=ofr("DAT/cc2022.tsv")
 
-Record RCC[];
+Record RCC[1]; // TBC has to be at least 1
 
 NCCrecs = 0;
 if (ACC == -1) {
@@ -229,7 +232,7 @@ if (ACC == -1) {
 }
 else {
 
-  RCC=readrecord(ACC)
+  RCC.readrecord(ACC)
   
   cf(ACC)
   //RCC->info(1);
@@ -309,6 +312,9 @@ nrd=readData();
 //<<[_DB]" Done calcs !\n"
 //<<[_DB]"$Nxy_obs total exeburn %6.2f $tot_exeburn  cals  $(tot_exeburn/4000.0) lbs in $(tot_exetime/60.0) hrs\n"
 
+#include "wex_compute";
+
+ PWT=predictWL();
 
 
 //////////////////// DISPLAY /////////////////////////////
@@ -349,7 +355,7 @@ msgw =split(msg)
 ///////////////////////// PLOT  ////////////////////////////////////////////
 //  
 
-#include "wex_compute";
+
 
 
 
@@ -399,17 +405,22 @@ _DB=-1;
    
 
 <<"%V $_eloop\n"
-  sWi(vp,@resize,0.05,0.1,0.9,0.95,0);
+
     // drawScreens();
 //ans=query("proceed?")
+ resize_screen()
 
  sWo(tw_wo,@move,targetday,NextGoalWt,gwo,@redraw));
 
  sWi(vp,@redraw);
  
       drawScreens();
+//ans=query("%V$last_known_day")
 
+    getDay(last_known_day);
 
+   CR_init = 1; sGl(rc_gl,@cursor,last_known_day,0,last_known_day,300, CR_init); CR_init = 0;
+	 
 //mc=getMouseEvent();
 while (1) {
 

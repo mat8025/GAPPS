@@ -303,7 +303,7 @@ L.pinfo()
 
 
 //   vers=" @vers ${pmaj}.$pmin $min_ele $min_name [asl $(getversion())]"
-   vers=" @vers ${pmaj}.$pmin $(getversion())"
+   vers=" @vers ${pmaj}.$pmin $min_ele $(getversion())"
    vlen = slen(vers);
 
   
