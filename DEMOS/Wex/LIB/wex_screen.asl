@@ -77,6 +77,9 @@
     carb_upper = 250;
     int sc_end = sc_endday+10;
 
+    int sc_zend = sc_end;   // for zooming
+    int sc_zstart = sc_startday;
+    
     ok=sWo(wedwo,@clip,CXY, @color,LILAC_,@clipbhue,WHITE_,@bhue,WHITE_,@font,F_SMALL_,@save,@savepixmap)
 
     ok=sWo(calwo,@clip,CXY, @color,MAGENTA_,@clipbhue,LILAC_,@bhue,WHITE_,@font,F_SMALL_)

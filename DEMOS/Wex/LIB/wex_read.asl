@@ -293,7 +293,7 @@ void readCCData()
   fiber = atof(RCC[tl][4]);  
   FIBRCON[j] = fiber;   
 
-<<"%V $day $cals $carbs $fat $prot $fiber\n"
+//<<"%V $day $cals $carbs $fat $prot $fiber\n"
    NCCobs++;     
 
     tl++;

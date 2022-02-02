@@ -13,6 +13,9 @@
 ;//----------------<v_&_v>-------------------------//;                                                                                                
 
 
+int symsz =5;
+
+
 void drawGoals(int ws)
   {
 
@@ -22,8 +25,8 @@ void drawGoals(int ws)
     Plot(calwo,@line,sc_startday,out_cal,sc_end,out_cal, BLUE_)
     Plot(calwo,@line,sc_startday,in_cal,sc_end,in_cal, RED_)
     Plot(calwo,@line,sc_startday,50,sc_end,50, GREEN_)
-    //if still time - todays date and wt to the intermediate short-term goal
-    Plot(gwo,@line,Sday2,last_known_wt,tday2,StGoalWt, RED_) ;  // TBF - use specified wt on short-term satrt date
+    // usetodays date and wt to the intermediate short-term goal
+    Plot(gwo,@line,last_known_day,last_known_wt,tday2,StGoalWt, RED_) ;  
    }
 
   if (ws == 1) {
@@ -128,7 +131,7 @@ void  drawGrids(int  ws )
    AxLabel(gwo,AXIS_BOTTOM_,"Weight (lbs)",0.5,1.7)
    AxLabel(calwo,AXIS_BOTTOM_,"Calories",0.5,1.7)
    //AxLabel(extwo,AXIS_LEFT_,"Exercise Time (mins)",0.1,0.7); // TBF
-      AxLabel(extwo,AXIS_LEFT_,"Minz",0.1,4.0); // TBF
+      AxLabel(extwo,AXIS_LEFT_,"Mins",0.1,4.0); // TBF
    AxLabel(carbwo,AXIS_LEFT_,"Carbs",0.1,4)
   //Text(calwo,"Cals In/Out",-4,0.7,4,-90)
 
@@ -154,28 +157,28 @@ void drawScreens()
 {
 
 //<<" $_proc \n"
-<<"%V $sc_startday  $sc_end \n"
+//<<"%V $sc_startday  $sc_end \n"
 
 // sc_startday.pinfo()
 
  //sc_startday = (jtoday - bday) - 20;
 
-<<"RESET? %V $sc_startday  $sc_end \n"
+//<<"RESET? %V $sc_startday  $sc_end \n"
 
   if ( wScreen == 0) {
 
+//<<"%V $sc_startday $minWt $sc_end $upperWt\n"
+
       // sWo(wedwo,@clearclip,WHITE_,@save,@clearpixmap,@clipborder,BLACK_)
+       sWo(wedwo,@xscales,sc_zstart,sc_zend);
+
        sWo(wedwo,@clearclip,@save,@clearpixmap,@clipborder,BLACK_)
 
-       //sWo(extwo,@clipborder,@save)
-  
-      //DrawGline(wedgl)
+
      
   if (ALL_LINES) {
   
   <<[_DB]" draw lines \n"
-
-//      sWo(extwo,@scales,sc_startday,0,sc_endday,upperWt,@savescales,1);
 
 
       dGl(exgls)
@@ -189,8 +192,8 @@ void drawScreens()
       sWo(calwo,@font,"small")
       //Text(calwo,"Calories Burnt", 0.8,0.9,1)      
 
-     // plot(calwo,@keysymbol,0.78 ,0.8,DIAMOND_,symsz,RED_,1);      
-      //Text(calwo,"Calories Ate", 0.8,0.82,1)
+      plot(calwo,@keysymbol,0.78 ,0.8,DIAMOND_,symsz,RED_,1);      
+      Text(calwo,"Calories Ate", 0.8,0.82,1)
 
      // plot(calwo,@keysymbol,0.78 ,0.7,TRI_,symsz,RED_,1,@fonthue,WHITE_);      
       //Text(calwo,"Carbs Ate", 0.8,0.72,1)
@@ -198,13 +201,12 @@ void drawScreens()
 
       sWo(extwo,@font,"small")
       //plot(extwo,@keysymbol,0.78,0.7,TRI_,symsz,GREEN_,1);
-      //Text(extwo,"Exercise Time (mins)", 0.8,0.7,1)
+
+       Text(extwo,"Exercise Time (mins)", 0.8,0.7,1);
       
 
       dGl(gw_gl);
 
-      
-   //   sWo(calwo,@scales,sc_startday,0,sc_endday,carb_upper,@savescales,1)      
       dGl(carb_gl) ; //which scale is this going to use LH
       
       dGl(fibre_gl) ;
@@ -213,23 +215,13 @@ void drawScreens()
 
       dGl(prot_gl) ;            
 
-
-  //    sWo(calwo,@scales,sc_startday,0,sc_endday,CalsY1,@savescales,0)
       dGl(calc_gl)
+      
       dGl(calb_gl)
-
-
-//      sWo(gwo,@scales,sc_startday,minWt,sc_endday,upperWt,@savescales,0)
-
-<<"%V $sc_startday $minWt $sc_end $upperWt\n"
-
-      sc_startday.pinfo();
-
-      ok=sWo(gwo,@scales,sc_startday,minWt,sc_end,upperWt,@savescales,0)
 
       dGl(wt_gl)
 
- //sc_startday.pinfo();
+
        }
 
 
@@ -286,18 +278,6 @@ void drawScreens()
 
 void showWL(long ws, long we)
 {
-/*
-       RS=wogetrscales(gwo)
-
-       rx = RS[1];
-       rX = RS[3];
-<<"$_proc %V $rx $rX\n"       
-        long ws;
-        long we;
-
-       ws = rx + bday
-       we = rX + bday
-*/
 
 <<"$_proc $ws $we\n"
 
@@ -429,13 +409,14 @@ void showTarget()
   
 //  plot(gwo,@symbol,gday,NextGoalWt, "triangle",1, YELLOW_);
 //  plot(gwo,@symbol,gday-1,NextGoalWt, 3,1,GREEN_);
-  symsz =5;
+
   <<"%V $last_known_day $PWT $tday2 $StGoalWt \n"
     plot(gwo,@symbol,tday2,StGoalWt,TRI_,symsz,BLACK_,1);
   plot(gwo,@symbol,gday,NextGoalWt,"diamond",symsz,BLUE_);
   plot(gwo,@symbol,last_known_day,NextGoalWt,DIAMOND_,symsz,RED_,1);
   plot(gwo,@symbol,last_known_day+1,PWT,DIAMOND_,symsz,GREEN_,1);
-  plot(gwo,@symbol,last_known_day+2,PWT,STAR_,symsz,GREEN_,1);
+  plot(gwo,@symbol,last_known_day+7,PWT7,DIAMOND_,symsz,LILAC_,1);
+    plot(gwo,@symbol,last_known_day+14,PWT14,DIAMOND_,symsz,PINK_,1);
   
 
   hlng = (last_known_wt - NextGoalWt) / 0.43; 
@@ -480,7 +461,7 @@ void getDay(long dayv)
     m_day= dayv + bday;
 
     mdy = julmdy(m_day);
-<<"%V $dayv $m_day \n"
+//<<"%V $dayv $m_day \n"
 
     sWo(dtmwo,@value,mdy,@redraw);
     wtm = 0.0;
@@ -491,7 +472,7 @@ void getDay(long dayv)
      
    for (i = 0; i < Nobs ; i++) {
 
-<<" $i $m_day $LDVEC[i] \n"
+//<<" $i $m_day $LDVEC[i] \n"
 
      if (LDVEC[i] == m_day) {
 

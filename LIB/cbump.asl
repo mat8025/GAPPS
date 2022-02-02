@@ -3,16 +3,16 @@
  * 
  *  @comment  
  *  @release CARBON 
- *  @vers 1.8 O Oxygen [asl 6.3.58 C-Li-Ce] 
- *  @date 11/04/2021 20:51:41          
+ *  @vers 1.9 F 6.3.79 C-Li-Au 
+ *  @date 02/02/2022 12:55:03          
  *  @cdate Sun Dec 23 09:22:34 2018 
  *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
+ *  @Copyright © RootMeanSquare 2022
  * 
- *  \\-----------------<v_&_v>--------------------------//  
  */ 
+;//----------------<v_&_v>-------------------------//;                              
   
-  proc Vers2ele(str vstr)
+  Str Vers2ele(str vstr)
   {
   
    pmaj = atoi(spat(vstr,"."))
@@ -45,7 +45,7 @@
   
   //<<[2]" RW sz $sz \n"
 
-  !!"cp $srcfile ~/.GASP/WORK/Bak"
+  !!"cp $srcfile ${srcfile}.bak"
 
   if (sz == -1) {
   <<[2]"can't find script file $srcfile\n"
@@ -81,8 +81,7 @@
   maj_ele = ptsym(pmaj);
   min_ele = ptsym(pmin);
   
-  date = date();
-  
+  date = date(GS_MDYHMS_);
  
  
   len = slen(fname);
@@ -111,83 +110,181 @@
   //<<"nlines ? $tsz\n"
   cvers = "1.1"
   //<<"%(1,,,)$T\n"
+  
+Str comment ="xxx";
+long where;
+
+where.pinfo()
+
+Str T;
+
+T.pinfo()
+
+Str Pad;
+
+
+
+Svar L;
+
+L.pinfo()
+
+
+
   found_vers =0;
 
 
 
   fseek(A,0,0);
 
-//tsz = Caz(T)
-   for (i = 0; i < 8;i++) {
-   T = readline(A);
+//   tsz = Caz(T)
+   i = 0;
+
+Str old_comment ="yyy"
+   
+   while (1) {
+
+    T = readline(A);
+   
+//<<[2]"$i line is $T \n"
+   if (i ==2) {
+old_comment =T;
+   }
    where = ftell(A)
    L = Split(T);
-   if (scmp(L[1],"@vers")) {
+   sz = Caz(L);
+// <<"sz $(caz(L)) \n"
+<<[2]"$i $sz $where  $L \n"
+   if (sz >2) {
+<<[2]"L1 $L[1]\n"
+
+    if (scmp(L[1],"@vers")) {
      found_vers =1;
      cvers = L[2];
-     //<<[2]"$where $T\n"
-     break;
+     <<[2]"$where $cvers $L[2]\n"
    }
-   found_where = where;
-  }
+    else if (scmp(L[1],"@cdate")) {
+     cdate = "$L[2:-1:1]";
+<<"found cdate  $L\n"     
+<<[2]"%V$cdate  $L[2]\n"     
+   }
+    else if (scmp(L[1],"@comment")) {
+     comment = "$L[2::]";
+   }
+    else if (scmp(L[1],"@release")) {
+      release = "$L[2::]";
+   }
+    else if (scmp(L[1],"@author")) {
+      author = "$L[2::]";
+   }
+   
+   }
+   
+   //found_where = where;
+   i++;
+   if (i >16) {
+<<[2]"not an C header\n"
+    found_vers = 0;
+    break;
+   }
+
+
+    if (scmp(L[0],"///////////////////////////////////<v_&_v>//////////////////////////////////*/")) {
+<<[2]"header end? line $i\n"
+      break;
+    }
+
+}
+
+   where = ftell(A);
+
+<<"oldc $old_comment\n"
+   L = Split(old_comment);
+   sz = Caz(L);
+<<"$sz $L[0]  $L[1] $L[2]\n"
+   if (L[1] != "") {
+
+    comment = "$L[1::]";
+<<"update comment $L[1] $comment\n"
+   }
+
+
+if (found_vers) {
  
- 
- if (found_vers) {
- 
- nele = Vers2ele(cvers)
- <<[2]"found_vers $cvers $nele\n"
+  Vers2ele(cvers)
+// nele = 7;
+
+<<[2]"found_vers $cvers \n"
  }
  else {
- <<" does not have vers number in header\n")
+ <<[2]" does not have vers number in header\n";
  exit();
  }
- 
+
  if (set_vers) {
  // set to _clarg[2] - if correct format
-  Vers2ele(new_vers)
+  vers2ele(new_vers)
  }
  else {
-   pmin++;
+
+    pmin++;
+   
    if (pmin > 100) {
        pmin =1;
        pmaj++;
    }
    <<[2]"bumped to $pmaj $pmin\n"
-   <<"$pmaj $pmin\n"   
-   if (pmaj > 103) {
+   if (pmaj > 100) {
  <<" need a new major release current \n"
    exit();
    }
  }
  
-  date = date(16);
+  date = date(GS_MDYHMS_);
   maj_ele = ptsym(pmaj);
   min_ele = ptsym(pmin);
   min_name = ptname(pmin);
 
 
 
-   fseek(A,found_where,0)
+ <<[2]"///  @vers $release ${pmaj}.$pmin ${maj_ele}.$min_ele $min_name    \n"
 
-   vers="    @vers ${pmaj}.$pmin $min_ele $min_name "
+
+   vers=" @vers ${pmaj}.$pmin $min_ele $(getversion())"
    vlen = slen(vers);
-   pad = nsc(69-vlen," ")
-<<[A]"//$vers $pad"
-seekline(A,1)
-<<[A]"//    @date $date     "   
-seekline(A,2)
-<<[A]"//    @Copyright © RootMeanSquare  2010,$(date(8)) → "           
 
-// <<[A]" ??? \n"
 
-//  fseek(A,0,0)
+<<[2]"vlen $vlen <|$Pad|>\n"
 
-//<<[A],"new line \n"
+ fseek(A,0,0);
 
-  fflush(A);
+
+<<[A]"/*//////////////////////////////////<**|**>///////////////////////////////////\n"
+<<[A]"//$insp $fname \n"
+<<[A]"//		          \n"
+<<[A]"//    @comment  $comment \n"
+<<[A]"//    @release   $release  \n"
+<<[A]"//   $vers \n"
+<<[A]"//    @date $date    \n"
+<<[A]"//    @cdate $cdate    \n"              
+<<[A]"//    @author: $Author                                  \n"
+<<[A]"//    @Copyright   RootMeanSquare - 1990,$(date(8)) --> \n"                 
+<<[A]"//  \n"
+<<[A]"// ^.  .^ \n"
+<<[A]"//  ( ^ ) \n"
+<<[A]"//    - \n"
+<<[A]"///////////////////////////////////<v_&_v>//////////////////////////////////*/ \n"
+<<[A]"\n"
+
+
+  here = ftell(A);
+     Pad = nsc(where-here-2," ")
+   <<[A]"$Pad\n";  
+ 
+    fflush(A);
   
-
 cf(A);
+
+
 // used for asl bump version -- no interaction!
 
 // lets' log this change 

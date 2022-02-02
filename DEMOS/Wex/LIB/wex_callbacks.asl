@@ -58,81 +58,33 @@ void ZIN()
 {
 <<" In $_proc  $lcpx  $rcpx\n"
 
-
-       sc_startday = lcpx;
-       sc_endday = rcpx;
-
-//sc_startday.pinfo();
-//sc_endday.pinfo();
-
-       
-       sWo(wedwo,@xscales,sc_startday,sc_endday);
-
-       sWo(gwo,@xscales,sc_startday,sc_endday);
-
+       sc_zstart = lcpx;
+       sc_zend = rcpx;
 
        drawScreens();
-       
-//<<"calling showWL  $sc_startday   $sc_endday\n"
 
-       showWL(sc_startday, sc_endday);
-
-//<<"AFTER showWL  $sc_startday   $sc_endday\n"
-
-sc_startday.pinfo();
-sc_endday.pinfo();
-
-//ans=query("?");
-
+       showWL(sc_zstart, sc_zend);
 }
 //--------------------------------------------------
 
 void ZOUT()
 {
-/*
-float RS[10];
 
-       RS=wogetrscales(gwo)
+       sc_zstart -= 10;
+       sc_zend  += 10;
 
-       rx = RS[1]
-       rX = RS[3]
-
-<<"%V $rx rX\n"
-
-       rx -= 14.0;
-       rX += 14.0;
-
-
-       if (rX > maxday) {
-          Rx = maxday;
+       if (sc_zstart < sc_startday) {
+           sc_zstart =  sc_startday;
        }
 
-       if (rx < 0) {
-          rx = 0;
+       if (sc_zend > sc_end) {
+           sc_zend =  sc_end;
        }
-       
 
-       sWo(gwo,@scales,rx,minWt,rX,upperWt) 
-       sWo(gwo,@redraw,@update)
-
-       sWo(swo,@xscales,rx,rX) 
-       sc_startday = rx;
-       sc_endday = rX;
-       sWo(swo,@redraw,@update)       
-*/
-
-       sc_startday -= 10;
-       sc_endday  += 10;
-
-       sWo(wedwo,@xscales,sc_startday,sc_endday);
-
-       sWo(gwo,@xscales,sc_startday,sc_endday);
-
-       dGl(wt_gl)
 
        drawScreens()
 
-       showWL(sc_startday, sc_endday)
+       showWL(sc_zstart, sc_zend);
 }
 
 //---------------------------------------------

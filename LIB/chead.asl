@@ -21,7 +21,7 @@
 //
 
 
-proc vers2ele(str vstr)
+Str vers2ele(str vstr)
 {
 
  pmaj = atoi(spat(vstr,"."))
@@ -43,7 +43,23 @@ A=-1;
 // then  read current vers and  bump number and update date
 // if no @vers line -- then prepend the vers header lines
 
-srcfile = _clarg[1];
+Str srcfile = _clarg[1];
+
+<<"<|$srcfile|> \n"
+
+
+srcfile->deWhite();
+
+<<"<|$srcfile|> \n"
+
+headfile = "${srcfile}_head"
+
+<<"<|$srcfile|> <|$headfile|> \n"
+
+
+
+
+
 
 if (srcfile @= "") {
 <<[2]"no script file entered\n"
@@ -64,7 +80,7 @@ svers = "1.1"
 na = argc();
 
 comment ="";
-comment2 ="";
+
 
 if (na > 2) {
   comment = _clarg[2];
@@ -130,36 +146,39 @@ sp="\n"
 
 A=ofr(srcfile)
 T=readfile(A);
+cf(A);
+
+A=ofw("$headfile")
+
    vers="    @vers ${maj}.$min $min_ele $min_name "
    vlen = slen(vers);
    pad = nsc(70-vlen," ")
 
-<<"/*//////////////////////////////////<**|**>///////////////////////////////////\n"
-<<"//$insp $fname \n"
-<<"//    $comment2   \n"
-<<"//    @comment  $comment \n"
-<<"//    @release   $release  \n"
-<<"//$vers $pad\n"
-<<"//    @date $date    \n"
+<<[A]"/*//////////////////////////////////<**|**>///////////////////////////////////\n"
+<<[A]"//$insp $fname \n"
+<<[A]"//		          \n"
+<<[A]"//    @comment  $comment \n"
+<<[A]"//    @release   $release  \n"
+<<[A]"//$vers $pad\n"
+<<[A]"//    @date $date    \n"
 if (use_epoch) {
  if (w4 @= "epoch") {
-<<"//    @cdate Sun Jun  9 08:00:00 1996  \n"
+<<[A]"//    @cdate Sun Jun  9 08:00:00 1996  \n"
  } else {
-<<"//    @cdate $w4              \n"
+<<[A]"//    @cdate $w4              \n"
  }
 }
 else {
-<<"//    @cdate $date    \n"              
+<<[A]"//    @cdate $date    \n"              
 }
-
-<<"//    @Copyright   RootMeanSquare - 1990,$(date(8)) --> \n"                 
-<<"//    @author: $Author                                  \n"
-<<"//  \n"
-<<"// ^. .^ \n"
-<<"//  ( ' ) \n"
-<<"//    - \n"
-<<"///////////////////////////////////<v_&_v>//////////////////////////////////*/ \n"
-<<"\n"
+<<[A]"//    @author: $Author                                  \n"
+<<[A]"//    @Copyright   RootMeanSquare - 1990,$(date(8)) --> \n"                 
+<<[A]"//  \n"
+<<[A]"// ^. .^ \n"
+<<[A]"//  ( ' ) \n"
+<<[A]"//    - \n"
+<<[A]"///////////////////////////////////<v_&_v>//////////////////////////////////*/ \n"
+<<[A]"\n"
 tsz = Caz(T)
 //<<[2]"nlines ? $tsz\n"
 
@@ -180,6 +199,19 @@ first_inc =0;
 //<<[2]"%V $first_inc \n"
 
 for (i = first_inc; i < tsz;i++) {
-<<"$T[i]"
+<<[A]"$T[i]"
 }
 
+cf(A);
+
+
+<<"mv $srcfile ${srcfile}.old\n"
+<<"mv $headfile $srcfile\n";
+
+!!"mv $srcfile ${srcfile}.old"
+!!"mv $headfile $srcfile";
+
+
+
+exit();
+//==================//

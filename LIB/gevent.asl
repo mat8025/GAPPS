@@ -170,20 +170,24 @@ svar _ewords;
 
 str _ename;
 
-str _ekeyw = "nada";
-str _ekeyw2 = "nada2"
-str _ekeyw3 = "nada3"
+Str _ekeyw = "nada";
+Str _ekeyw2 = "nada2"
+Str _ekeyw3 = "nada3"
 
 str _emsg = "";
 
 str _evalue = "abc";
 
-str _ewoname = "";
+Str _ewoname = "noname";
 
 str _ewoval = "yyy";
 
 str _ewoproc = "abc";
 
 <<" %V $_include $_emsg\n"
+
+_ekeyw.pinfo()
+
+
 
 //====================================

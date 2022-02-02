@@ -993,3 +993,16 @@ chem_l.cpp                           1.18  01/14/2022 11:16:12  db pt
 filesearch.cpp                       1.3  02/01/2022 14:04:50  c++ vers
 filesearch.cpp                       1.4  02/01/2022 14:06:48  pp
 filesearch.cpp                       1.5  02/01/2022 16:39:39  pclFile
+trychead.cpp                         1.2  02/02/2022 14:13:02  pp
+trychead.cpp                         1.2  02/02/2022 14:16:32  pp
+trychead.cpp                         1.3  02/02/2022 14:17:05  pp2
+trychead.cpp                         1.4  02/02/2022 14:18:25  pp3
+trycbump.cpp                         2.84  02/02/2022 14:19:51  pp
+trycbump.cpp                         2.84  02/02/2022 14:33:36  pp3
+trycbump.cpp                         2.84  02/02/2022 14:41:27  pp4
+trycbump.cpp                         2.84  02/02/2022 14:43:16  pp7
+trycbump.cpp                         2.84  02/02/2022 14:45:49  pp
+trycbump.cpp                         2.84  02/02/2022 14:46:13  pp8
+scopesindex_e.cpp                    2.84  02/02/2022 14:48:28  iproc
+proc_checkfname_e.cpp                2.46  02/02/2022 14:49:13  iproc
+sstr.cpp                             1.6  02/02/2022 14:52:22  operators ()

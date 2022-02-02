@@ -358,10 +358,6 @@ msgw =split(msg)
 //  
 
 
-
-
-
-
 #include "wex_callbacks";
 
 
@@ -388,7 +384,7 @@ int button = 0
 
 
 
-  ZIN(); // goes in does'nt leave -- proc stack error
+  ZIN(); 
 
 woname = ""
 
@@ -424,6 +420,15 @@ _DB=-1;
    CR_init = 1; sGl(rc_gl,@cursor,last_known_day,0,last_known_day,300, CR_init); CR_init = 0;
 	 
 //mc=getMouseEvent();
+
+
+ _ekeyw.pinfo();
+
+_ename.pinfo();
+
+ans=query("->");
+
+
 while (1) {
 
      //if ((m_num % 50) ==0) {
@@ -441,13 +446,19 @@ while (1) {
         msg =eventWait();
 <<[2]"$m_num $msg  $_ename $_ewoname\n"
 
+_ekeyw.pinfo();
+
+_ename.pinfo();
+
        if (_ename == "PRESS") {
       // ans=iread(">>");
-<<"calling function via <|$_ewoname|> !\n"
+/*
      if (_ewoname != "") {
-
-           // $_ewoname()
+<<"calling function via <|$_ewoname|> !\n"
+        $_ewoname()
         }
+*/
+
       }
 
        if (_emsg == "EXIT") {
@@ -483,9 +494,13 @@ while (1) {
            setGoals()
       }
 
+      else if (_ewoname == "ZIN") {
+           ZIN()
+      }
+
       else if (_ekeyw != "") {
 
-        <<[_DB]"calling |${_ekeyw}| $(typeof(_ekeyw))\n"
+        <<"calling <|${_ekeyw}|>  $(typeof(_ekeyw))\n"
          $_ekeyw()
 	 
        }

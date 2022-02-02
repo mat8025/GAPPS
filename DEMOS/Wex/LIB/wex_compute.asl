@@ -1,16 +1,16 @@
-
-//%*********************************************** 
-//*  @script wex_compute.asl 
-//* 
-//*  @comment  
-//*  @release CARBON
-
-//*  @vers 1.1 H Hydrogen                                                 
-//*  @date Sat Dec 29 09:06:02 2018 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2014,2018 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script wex_compute.asl 
+ * 
+ *  @comment  
+ *  @release CARBON 
+ *  @vers 1.2 He 6.3.78 C-Li-Pt 
+ *  @date 02/02/2022 07:54:13          
+ *  @cdate  
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare 2022
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                                                                                 
 
 xhrs = 0;
 
@@ -29,7 +29,7 @@ int i;
    Nxy_obs = 0
 
    Nsel_lbs = 0.0
-<<"$_proc %V $wlsday $wleday  $Nobs\n"
+//<<"$_proc %V $wlsday $wleday  $Nobs\n"
 
    for (i = 0; i < Nobs ; i++) {
         aday = LDVEC[i] - bday;
@@ -50,10 +50,13 @@ int i;
 
    xhrs = (Nsel_exemins/60.0)
 
-<<"%V$Nxy_obs %6.2f $Nsel_exemins $(Nsel_exemins/60.0) $Nsel_exeburn $Nsel_lbs $xhrs\n"
+//<<"%V$Nxy_obs %6.2f $Nsel_exemins $(Nsel_exemins/60.0) $Nsel_exeburn $Nsel_lbs $xhrs\n"
 
 }
 //=========================
+float PWT7 = 0.0;
+float PWT14 = 0.0;
+float PWT = 0.0; // tomorrow
 
 float predictWL()
 {
@@ -72,22 +75,23 @@ pw = WTVEC[Nobs-1];
        xv[i] = LDVEC[k] -xs;
        yv[i] =  WTVEC[k];
        k++;
-       <<"$i $k $LDVEC[k] $WTVEC[k] $xv[i] $yv[i]\n"; // TBF
+//      <<"$i $k $LDVEC[k] $WTVEC[k] $xv[i] $yv[i]\n"; // TBF
     }
-   <<"%V $xv\n"
-   <<"%V $yv\n"
+//   <<"%V $xv\n"
+//   <<"%V $yv\n"
    
    pwl = Lfit(xv,yv);
    <<"pwl $pwl \n"
    // next day prediction
 
     pw = pwl[0] + (pwl[1] *5);
-
+    PWT7 = pwl[0] + (pwl[1] * 12);
+    PWT14 = pwl[0] + (pwl[1] * 19);
   }
 
-<<"tomorrow's wt will be $pw \n"
+<<"tomorrow's wt will be $pw +7 $PWT7\n"
           return pw;
 }
 
 //[EM]=================================//
-<<"Included compute module\n"
+//<<"Included compute module\n"
