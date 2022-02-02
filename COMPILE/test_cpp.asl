@@ -131,6 +131,57 @@ f = 1.2;
 cout << "d = asinh(f); "  << f << " d "
    << d << endl;
 
+int do_read_file = 1;
+
+if (do_read_file) {
+Str s;
+
+  Str Lat;
+  Str Lon;
+  Str Place;
+  
+
+Svar Wval;
+ int nwr;
+ int A=ofr("DAT/bbrief.cup");
+
+ cout <<"A "<<A<<endl;
+
+   nwr = Wval.readWords(A,0,',') ;
+
+cout <<"Wval " << Wval << endl;
+
+   nwr = Wval.readWords(A,0,',') ;
+
+cout <<"Wval " << Wval << endl;
+    s = Wval[1];
+
+cout <<"s " << s << endl;
+
+int k =0;
+    while (nwr > 0) {
+   nwr = Wval.readWords(A,0,',') ;
+
+//cout <<"Wval " << Wval << endl;
+
+     Place = Wval[0]; // wayp 
+     Lat = Wval[3]; 
+     Lon = Wval[4];
+
+cout <<" " << Place <<" "<<Lat<<" "<< Lon << endl;
+
+    k++;
+    if (k > 20)
+     break;
+    }
+ Place = "laramie";
+long where = searchFile(A,Place);
+
+cout << "where " << where << endl;
+ where = seekLine(A,-3);
+cout << "where " << where << endl;
+ pclFile(A);
+}
 
 
 

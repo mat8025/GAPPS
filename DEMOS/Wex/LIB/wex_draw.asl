@@ -128,8 +128,8 @@ void  drawGrids(int  ws )
    AxLabel(gwo,AXIS_BOTTOM_,"Weight (lbs)",0.5,1.7)
    AxLabel(calwo,AXIS_BOTTOM_,"Calories",0.5,1.7)
    //AxLabel(extwo,AXIS_LEFT_,"Exercise Time (mins)",0.1,0.7); // TBF
-      AxLabel(extwo,AXIS_BOTTOM_,"Exercise Time (mins)",0.1,0.1); // TBF
-   AxLabel(carbwo,AXIS_BOTTOM_,"Carbs",0.5,1.7)
+      AxLabel(extwo,AXIS_LEFT_,"Minz",0.1,4.0); // TBF
+   AxLabel(carbwo,AXIS_LEFT_,"Carbs",0.1,4)
   //Text(calwo,"Cals In/Out",-4,0.7,4,-90)
 
  }

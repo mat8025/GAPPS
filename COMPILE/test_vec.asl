@@ -166,23 +166,48 @@ int do_record = 1;
 
 if (do_record )  {
 
-//Siv SV(SVAR);
 
 Svar SV;
 
-//   SV.split("80,1,2,3,40,5,6,7,8,9",',');
+   SV.findCommaTokens("80,1,2,3,40,5,6,7,8,9");
 
   //SV.pinfo();
 
  cout  << "SV  "  << SV  << endl ;
 
-Record R;
+Record R(10);
 
-  R[0] = S;
+  R(0) = SV;
 
- cout  << "R  "  << R  << endl ;
+ cout  << "done row assign  "  << endl ;
+
+ cout  << "R(0)  "  << R(0)  << endl ;
+
+ SV.findCommaTokens("82,11,2,3,40,5,6,7,8,99");
+
+  R(1) = SV;
 
 
+ cout  << "R(1)  "  << R(1)  << endl ;
+
+
+SV.findCommaTokens("9,8,7,6,5,4,3,2,1,0");
+
+cout << "SV  " << SV << endl;
+
+  R(3) = SV;
+
+ cout  << "R()  "  << R(-1)  << endl ;
+
+Svar SV2;
+Svar *sp = &SV2;
+
+  SV2 = R(1);
+
+ cout << "SV2  " << SV2 << endl;
+ 
+
+ cout  << "done record test  "  << endl ;
 }
 
 

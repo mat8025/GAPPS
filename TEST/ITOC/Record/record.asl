@@ -130,7 +130,7 @@
 !iwsv
 
   R.pinfo();
-!a
+
   lastRX = R[Nrecs-1];
 
   <<"%V $lastRX\n";

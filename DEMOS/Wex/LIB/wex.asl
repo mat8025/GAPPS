@@ -45,6 +45,8 @@ _DB =-1;
 
 //#define DBPR  ~!
 
+!!"xset fp+ /home/mark/gasp-CARBON/fonts "
+
 wexdir = "./"
 
 chdir(wexdir)

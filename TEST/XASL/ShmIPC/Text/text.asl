@@ -191,14 +191,14 @@ while (1) {
      txt=woGetText(ipwo);
  <<" got $txt  \n";
       // rotated text??
-      deftxt ="WAKEUP";
+      deftxt ="says me";
 
       //txt = woGetValue(ipwo)
       <<"ipwo_txt: $txt \n"
 
 
-      sWo(lvwo,@font,6,@textr,"$txt",0.3,0.1,0,-90,RED_);
-      sWo(rvwo,@font,"rotated90",@textr,"$deftxt",0.5,0.9,0,90,BLUE_);
+      sWo(lvwo,@font,"rot90",@textr,"$deftxt",0.3,0.1,0,-90,RED_);
+      sWo(rvwo,@font,"rot",@textr,"$deftxt",0.5,0.9,0,90,BLUE_);
 
       sWo(bigwo,@font,F_BIG_,@textr,"$deftxt",0.0,0.6,0,0,BLACK_);
       sWo(bigwo,@font,F_MEDIUM_,@textr,"$txt",0.0,0.4,0,0,MAGENTA_);
