@@ -25,7 +25,7 @@ void drawGoals(int ws)
     Plot(calwo,@line,sc_startday,out_cal,sc_end,out_cal, BLUE_)
     Plot(calwo,@line,sc_startday,in_cal,sc_end,in_cal, RED_)
     Plot(calwo,@line,sc_startday,50,sc_end,50, GREEN_)
-    // usetodays date and wt to the intermediate short-term goal
+    // use todays date and wt to the intermediate short-term goal
     Plot(gwo,@line,last_known_day,last_known_wt,tday2,StGoalWt, RED_) ;  
    }
 
@@ -73,14 +73,14 @@ void  drawMonths(int wwo)
    q1_date = (RS[3] - RS[1])/4 + RS[1];
    q3_date = 3*(RS[3] - RS[1])/4 + RS[1];
 
-   jd= mid_date +bday
+   jd= mid_date +Bday
    the_date = julmdy("$jd")
 
 <<[_DB]"%V$mid_date $jd $the_date \n"
 
    //AxText(wwo, 1, the_date, mid_date, -0.25, BLUE_)
 
-   jd= RS[1] +bday
+   jd= RS[1] + Jan1;
    the_date = julmdy("$jd");
 //  AxText(wwo, 1, the_date, q1_date, -0.25, BLUE_);
    wdate = RS[1];
@@ -161,15 +161,14 @@ void drawScreens()
 
 // sc_startday.pinfo()
 
- //sc_startday = (jtoday - bday) - 20;
+ //sc_startday = (jtoday - Bday) - 20;
 
 //<<"RESET? %V $sc_startday  $sc_end \n"
 
   if ( wScreen == 0) {
 
-//<<"%V $sc_startday $minWt $sc_end $upperWt\n"
+<<"%V $sc_zstart $minWt $sc_zend $upperWt\n"
 
-      // sWo(wedwo,@clearclip,WHITE_,@save,@clearpixmap,@clipborder,BLACK_)
        sWo(wedwo,@xscales,sc_zstart,sc_zend);
 
        sWo(wedwo,@clearclip,@save,@clearpixmap,@clipborder,BLACK_)
@@ -305,7 +304,7 @@ void adjustYear(int updown)
 // just plot at mid - the date
    mid_date = (RS[3] - RS[1])/2 + RS[1]
 
-   jd= mid_date +bday
+   jd= mid_date +Bday
    the_date = julmdy("$jd")
 
    // which year?
@@ -332,8 +331,8 @@ void adjustYear(int updown)
 
   //<<"%V  $yrd  $st_jday $ed_jday\n"
 
-   rx = st_jday - bday
-  rX = ed_jday - bday
+   rx = st_jday - Bday
+  rX = ed_jday - Bday
 
      // rx = st_jday 
     //  rX = ed_jday 
@@ -363,7 +362,7 @@ void adjustQrt(int updown)
 // just plot at mid - the date
    mid_date = (RS[3] - RS[1])/2 + RS[1]
 
-   jd= mid_date +bday
+   jd= mid_date +Bday
    the_date = julmdy("$jd")
 
    if (updown > 0) {
@@ -416,7 +415,7 @@ void showTarget()
   plot(gwo,@symbol,last_known_day,NextGoalWt,DIAMOND_,symsz,RED_,1);
   plot(gwo,@symbol,last_known_day+1,PWT,DIAMOND_,symsz,GREEN_,1);
   plot(gwo,@symbol,last_known_day+7,PWT7,DIAMOND_,symsz,LILAC_,1);
-    plot(gwo,@symbol,last_known_day+14,PWT14,DIAMOND_,symsz,PINK_,1);
+  plot(gwo,@symbol,last_known_day+14,PWT14,DIAMOND_,symsz,PINK_,1);
   
 
   hlng = (last_known_wt - NextGoalWt) / 0.43; 
@@ -458,10 +457,10 @@ void getDay(long dayv)
  int dt;
  str mdy;
 
-    m_day= dayv + bday;
+    m_day= dayv + Jan1 -1;  // ? OBO
 
     mdy = julmdy(m_day);
-//<<"%V $dayv $m_day \n"
+
 
     sWo(dtmwo,@value,mdy,@redraw);
     wtm = 0.0;
@@ -470,31 +469,24 @@ void getDay(long dayv)
      sWo(xtmwo,@value,0,@redraw);
      sWo(obswo,@value,0,@redraw);
      
-   for (i = 0; i < Nobs ; i++) {
+     i = dayv -1;
 
 //<<" $i $m_day $LDVEC[i] \n"
 
-     if (LDVEC[i] == m_day) {
 
     xtm = EXTV[i]
     wtm  = WTVEC[i]
     cbm  = CALBURN[i]
  
-
-
-
-
      dt = dayv -Sday;
-     <<"%V $tjd $bday $Sday $mdy\n"
+   <<"%V $dayv  $Sday $mdy\n"
    <<"FOUND $i %V $dayv $Sday $dt  $wtm $xtm $cbm\n"
+
      sWo(obswo,@value,dt+1,@redraw);
      sWo(xtmwo,@value,xtm,@redraw);
      sWo(wtmwo,@value,wtm,@redraw);
      sWo(cbmwo,@value,cbm,@redraw);
 
-      break;
-     }
-  }
 
 }
 

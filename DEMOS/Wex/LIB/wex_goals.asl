@@ -16,6 +16,7 @@
 ///
 //  SET     START DATE      END DATE  TARGET WEIGHT
 
+// days will days of year not Julian
 
    Goals = Split("01/01/2022 03/31/2022 175");
 
@@ -31,23 +32,26 @@
    MinWt = 165;
 
    long tjd =  julian(Goals[0]) ;
-
-   //long sday = julian(Goals[0]) -bday ; // start date
-   long Sday = tjd - bday;
    
-   //long targetday = julian(Goals[1]) -bday;
-   long tarxday = julian(Goals[1]) -bday;
+
+   //long sday = julian(Goals[0]) -Jan1 ; // start date
+
+   long Sday = tjd - Jan1;
+   
+
+   long tarxday = julian(Goals[1]) -Jan1;
    long targetday = julian(Goals[1]);
-          targetday -= bday;
+
+   targetday -= Jan1;
 	  
-<<"%V $tjd $bday $Sday $targetday  $tarxday; \n"
+<<"%V $tjd $Jan1 $Sday $targetday  $tarxday; \n"
 
 
    NextGoalWt = atoi(Goals[2]);
 
-   long Sday2 = julian(Goals2[0]) -bday ; // start date
+   long Sday2 = julian(Goals2[0]) -Jan1 ; // start date
 
-   long tday2 = julian(Goals2[1]) -bday;
+   long tday2 = julian(Goals2[1]) -Jan1;
 
    StGoalWt = atoi(Goals2[2]);
 
@@ -60,9 +64,9 @@
 
    got_start = 0;
 
-   long yday = julian("01/01/2022")   ; // this should be found from data file
+   long yday = julian("01/01/$Year")   ; // this should be found from data file
 
-   long eday = julian("12/31/2022");
+   long eday = julian("12/31/$Year");
 
    jtoday = julian("$(date(2))");
 

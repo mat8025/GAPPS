@@ -19,7 +19,7 @@
 //<<[_DB]"\n%(10,, ,\n)$DVEC \n"
 
    pwt_gl = -1
-   pwt_gl  = cGl(gwo,@TXY,DVEC,PWTVEC,@color,GREEN_,@ltype,"line")
+//   pwt_gl  = cGl(gwo,@TXY,DVEC,PWTVEC,@color,GREEN_,@ltype,"line")
 
 
 
@@ -42,7 +42,7 @@
 
 
 
- gw_gl   = cGl(gwo,@TXY,WDVEC,GVEC,@color,GREEN_)
+ gw_gl   = cGl(gwo,@TXY,DVEC,GVEC,@color,GREEN_)
 
 
 // gw_gl   = cGl(gwo,@TXY,WDVEC,GVEC,@color,RED_)
@@ -59,15 +59,15 @@ if ( gw_gl == -1 || bp_gl == -1) {
 
 // calc_gl = cGl(calwo,@TXY,DFVEC,CALCON,@color,RED_,@ltype,SYMBOLS_,"triangle",@symhue, BLUE_)
 
- calc_gl = cGl(calwo,@TXY,CCDV,CALSCON,@color,RED_,@ltype,SYMBOLS_,STAR_,@symhue, RED_)
+ calc_gl = cGl(calwo,@TXY,DVEC,CALSCON,@color,RED_,@ltype,SYMBOLS_,STAR_,@symhue, RED_)
 
- carb_gl = cGl(carbwo,@TXY,CCDV,CARBSCON,@color,BLUE_,@ltype,SYMBOLS_,TRI_,@symhue, BROWN_)
+ carb_gl = cGl(carbwo,@TXY,DVEC,CARBSCON,@color,BLUE_,@ltype,SYMBOLS_,TRI_,@symhue, BROWN_)
 
- fibre_gl = cGl(carbwo,@TXY,CCDV,FIBRCON,@color,BLUE_,@ltype,SYMBOLS_,DIAMOND_,@symhue, PINK_)
+ fibre_gl = cGl(carbwo,@TXY,DVEC,FIBRCON,@color,BLUE_,@ltype,SYMBOLS_,DIAMOND_,@symhue, PINK_)
 
- fat_gl = cGl(carbwo,@TXY,CCDV,FATCON,@color,BLUE_,@ltype,SYMBOLS_,CROSS_,@symhue, PINK_)
+ fat_gl = cGl(carbwo,@TXY,DVEC,FATCON,@color,BLUE_,@ltype,SYMBOLS_,CROSS_,@symhue, PINK_)
 
- prot_gl = cGl(carbwo,@TXY,CCDV,PROTCON,@color,BLUE_,@ltype,SYMBOLS_,CROSS_,@symhue, PINK_)
+ prot_gl = cGl(carbwo,@TXY,DVEC,PROTCON,@color,BLUE_,@ltype,SYMBOLS_,CROSS_,@symhue, PINK_)
 
 // ave_ext_gl  = cGl(extwo,@TXY,DVEC,AVE_EXTV,@color,RED_,@ltype,LINE_)
 

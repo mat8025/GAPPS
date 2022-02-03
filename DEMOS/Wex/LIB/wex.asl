@@ -80,13 +80,7 @@ float WXY[];
 char sep = 47;
 
 
-today = getDate(2,sep)
 
-today = date(2);
-
-jtoday = julian(today)
-
-<<[_DB]"%V $today $jtoday \n"
 
 
 float minWt = 160;
@@ -109,40 +103,49 @@ float upperWt = 225;
 N = 1000;
 
 //float DVEC[200+];
-
-long LDVEC[>10]
-float DVEC[>10];
-float DFVEC[>10];
-float DXVEC[>10];
-
-float WTVEC[>10] 
-
-float PWTVEC[>10] 
+//  let's use 400 to contain the year [1] will be first day
+// [365] or [366] will be the end year 
 
 
-float WTPMV[>10] 
-float GVEC[>10]; // goal line
-float BPVEC[>10] 
-float SEVEC[>10] 
-float CARBV[>10] 
-float WDVEC[>10]
-float EXTV[>10]
-float AVE_EXTV[>10]
-float EXEBURN[>10]
-float CALBURN[>10]
-float CARDIO[>10]
-float STRENGTH[>10]
+
+long LDVEC[400];
+
+//float DVEC[400]; // have to be floats for plot -- may adjust TBC 2/3/22
+
+float DVEC = vgen(FLOAT_,400,1,1);
+
+
+float DFVEC[400];
+float DXVEC[400];
+
+float WTVEC[400] 
+
+//float PWTVEC[400] 
+
+
+float WTPMV[400];
+float GVEC[400]; // goal line
+float BPVEC[400] 
+float SEVEC[400] 
+float CARBV[400] 
+float WDVEC[400]
+float EXTV[400]
+float AVE_EXTV[400]
+float EXEBURN[400]
+float CALBURN[400]
+float CARDIO[400]
+float STRENGTH[400]
 
 
 
 // cals,carbs consumed & when
-float CALSCON[>10]
-float CARBSCON[>10]
-float FATCON[>10]
-float PROTCON[>10]
-float FIBRCON[>10]
-float CCDV[>10]
-///
+float CALSCON[400]
+float CARBSCON[400]
+float FATCON[400]
+float PROTCON[400]
+float FIBRCON[400]
+
+////////////////////////////////////////////////////
 
 float Nsel_exemins = 0.0
 float Nsel_exeburn = 0.0
@@ -153,23 +156,41 @@ float Nsel_lbs = 0.0
 
 int k = 0;
 
-long bday;  // birthday 
+
+today = getDate(2,sep)
+
+today = date(2);
+
+jtoday = julian(today)
+
+Year= date(YEAR_);
+
+<<"%V $today $jtoday $Year\n"
+
+
+long Bday;  // birthday 
+Bday = julian("04/09/1949")
+
 int lday;  // last day recorded in file
 int dday;
 
- bday = julian("04/09/1949")
+long Jan1;  // get they current year
 
+Jan1 = julian("01/01/$Year")
 
- str bdate = "04/09/1949"
- //bday = julian(bdate)
+Yday = jtoday -Jan1;
 
-<<"%V $bdate  $bday \n"
+ Str bdate = "04/09/1949"
+ //Bday = julian(bdate)
 
- maxday = julian("04/09/2049") -bday
+<<"%V $bdate  $Bday $Jan1 \n"
+
+ maxday = julian("04/09/2049") -Bday
 
 // this is a new format -- allowing us to put comment labels on graphs
 
 <<"%V $maxday \n"
+
 
 
  A=ofr("DAT/wex2022.tsv")
@@ -272,12 +293,17 @@ nrd=readData();
 // 
    init_period = 32;
 
- //  long sc_startday = (jtoday - bday) - 20;
-   long sc_startday = (jtoday - bday) - 20;
+
+   long sc_startday = (jtoday - Jan1) -20;
+
+  if (sc_startday <0)
+      sc_startday =0;
+     
+
 
    long sc_endday = targetday + 10;
 
-   <<[_DB]"%V$ngday \n"
+   <<"%V$sc_startday $targetday $sc_endday \n"
 
   gwt = NextGoalWt;
 
@@ -422,11 +448,10 @@ _DB=-1;
 //mc=getMouseEvent();
 
 
- _ekeyw.pinfo();
+// _ekeyw.pinfo();
+//_ename.pinfo();
 
-_ename.pinfo();
 
-ans=query("->");
 
 
 while (1) {
@@ -446,9 +471,9 @@ while (1) {
         msg =eventWait();
 <<[2]"$m_num $msg  $_ename $_ewoname\n"
 
-_ekeyw.pinfo();
+//_ekeyw.pinfo();
 
-_ename.pinfo();
+//_ename.pinfo();
 
        if (_ename == "PRESS") {
       // ans=iread(">>");

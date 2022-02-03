@@ -25,32 +25,38 @@ int i;
 
    Nsel_exemins = 0
    Nsel_exeburn = 0.0
+   Nsel_calsinout = 0.0
 
    Nxy_obs = 0
 
    Nsel_lbs = 0.0
-//<<"$_proc %V $wlsday $wleday  $Nobs\n"
+<<"$_proc %V $wlsday $wleday  $Nobs\n"
 
-   for (i = 0; i < Nobs ; i++) {
-        aday = LDVEC[i] - bday;
-     if (aday >= wlsday) {
+   for (i = wlsday; i < wleday ; i++) {
 
         Nxy_obs++
 
         Nsel_exeburn += EXEBURN[i]
-        Nsel_exemins += EXTV[i]
-//<<"%V $i $Nsel_exeburn $Nsel_exemins $wlsday  $LDVEC[i]  $bday\n"
-     }
+        Nsel_exemins += EXTV[i];
 
-     if (aday > wleday) 
-             break; 
+        ccals = CALSCON[i];
+
+        bcals = CALBURN[i];
+	
+        Nsel_calsinout +=  (bcals - ccals);
+
+<<"$i Exeburn $Nsel_exeburn Mins $Nsel_exemins   \n"
+<<"$i CIO $Nsel_calsinout in $ccals out $bcals \n"
+      if (i > Nobs)
+         break;
+
    }
 
-   Nsel_lbs = Nsel_exeburn/ 4000.0
+   Nsel_lbs = Nsel_exeburn/ 4000.0;
 
-   xhrs = (Nsel_exemins/60.0)
+   xhrs = (Nsel_exemins/60.0);
 
-//<<"%V$Nxy_obs %6.2f $Nsel_exemins $(Nsel_exemins/60.0) $Nsel_exeburn $Nsel_lbs $xhrs\n"
+<<"%V$Nxy_obs %6.2f $Nsel_exemins $(Nsel_exemins/60.0) $Nsel_exeburn $Nsel_calsinout $Nsel_lbs $xhrs\n"
 
 }
 //=========================
@@ -66,17 +72,18 @@ pwl[0] = 0.0;
 pwl[1] = 1.0;
 double xv[5];
 double yv[5];
-int k = Nobs -5;
-double xs = LDVEC[k];
-pw = WTVEC[Nobs-1];
 
-  if (Nobs > 5) {
+int k = Yday-5; // 
+
+
+  if (Yday > 5) {
     for (i =0; i < 5; i++) {   
-       xv[i] = LDVEC[k] -xs;
+       xv[i] =  i;
        yv[i] =  WTVEC[k];
+
+      <<"$i $k  $WTVEC[k] $xv[i] $yv[i]\n"; // TBF
        k++;
-//      <<"$i $k $LDVEC[k] $WTVEC[k] $xv[i] $yv[i]\n"; // TBF
-    }
+   }
 //   <<"%V $xv\n"
 //   <<"%V $yv\n"
    
