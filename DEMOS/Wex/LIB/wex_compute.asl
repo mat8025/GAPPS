@@ -13,7 +13,8 @@
 ;//----------------<v_&_v>-------------------------//;                                                                                 
 
 xhrs = 0;
-
+Ndiet_lbs = 0.0;
+   
 void computeWL(long wlsday, long wleday)
 {
 /// use input of juldays
@@ -29,8 +30,9 @@ int i;
 
    Nxy_obs = 0
 
-   Nsel_lbs = 0.0
+   Nsel_lbs = 0.0;
 <<"$_proc %V $wlsday $wleday  $Nobs\n"
+   Ndiet_lbs = 0.0;
 
    for (i = wlsday; i < wleday ; i++) {
 
@@ -43,7 +45,7 @@ int i;
 
         bcals = CALBURN[i];
 	
-        Nsel_calsinout +=  (bcals - ccals);
+        Nsel_calsinout +=  (ccals - bcals);
 
 <<"$i Exeburn $Nsel_exeburn Mins $Nsel_exemins   \n"
 <<"$i CIO $Nsel_calsinout in $ccals out $bcals \n"
@@ -53,6 +55,7 @@ int i;
    }
 
    Nsel_lbs = Nsel_exeburn/ 4000.0;
+   Ndiet_lbs = Nsel_calsinout/ 4000.0;   
 
    xhrs = (Nsel_exemins/60.0);
 

@@ -176,8 +176,10 @@
   xbwo= cWo(vp,@BV,@name,"xBurn",@color,"violetred",@value,0)
 
   xlbswo= cWo(vp,@BV,@name,"xLbs",@color,"violetred",@value,0)
+
+  dlbswo= cWo(vp,@BV,@name,"dLbs",@color,YELLOW_,@value,0)
   
-  int xwos[] = { nobswo, xtwo, xbwo, xlbswo };
+  int xwos[] = { nobswo, xtwo, xbwo, xlbswo, dlbswo };
   
   wo_htile( xwos, 0.45,0.01,0.83,0.07,0.05);
 

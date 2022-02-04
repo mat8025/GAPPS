@@ -395,6 +395,7 @@ void showCompute()
   sWo(xtwo,@value,xhrs,@redraw)
   sWo(xbwo,@value,"%6.2f$Nsel_exeburn",@redraw)
   sWo(xlbswo,@value,"%4.1f$Nsel_lbs",@update)
+  sWo(dlbswo,@value,"%4.1f$Ndiet_lbs",@update)  
   
 }
 //========================================================
@@ -470,9 +471,6 @@ void getDay(long dayv)
      sWo(obswo,@value,0,@redraw);
      
      i = dayv -1;
-
-//<<" $i $m_day $LDVEC[i] \n"
-
 
     xtm = EXTV[i]
     wtm  = WTVEC[i]

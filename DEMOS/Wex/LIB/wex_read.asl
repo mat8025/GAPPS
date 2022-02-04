@@ -58,8 +58,6 @@ void fillInObsVec()
 
    if (mywt > 0.0) {  // we have an entry = not all days are logged
    
-   // LDVEC[Nobs] = jday;
-    
 
     WTVEC[Yd] = mywt;
 

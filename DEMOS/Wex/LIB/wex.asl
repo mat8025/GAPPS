@@ -3,14 +3,14 @@
  * 
  *  @comment  
  *  @release CARBON 
- *  @vers 2.53 I 6.3.78 C-Li-Pt 
- *  @date 01/31/2022 08:56:58          
+ *  @vers 2.55 Cs 6.3.79 C-Li-Au 
+ *  @date 02/03/2022 12:40:55          
  *  @cdate Fri Jan 1 08:00:00 2010 
  *  @author Mark Terry 
  *  @Copyright © RootMeanSquare 2022
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                         
+;//----------------<v_&_v>-------------------------//;                        
                                                                        
 
 
@@ -105,12 +105,6 @@ N = 1000;
 //float DVEC[200+];
 //  let's use 400 to contain the year [1] will be first day
 // [365] or [366] will be the end year 
-
-
-
-long LDVEC[400];
-
-//float DVEC[400]; // have to be floats for plot -- may adjust TBC 2/3/22
 
 float DVEC = vgen(FLOAT_,400,1,1);
 

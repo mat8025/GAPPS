@@ -365,3 +365,5 @@ wex_draw.asl             1.4	01/31/2022 09:08:26 fat,prot,fibre
 wex_read.asl             1.6	01/31/2022 09:08:56 fat,prot,fibre
 wex_compute.asl          1.2	02/02/2022 07:54:13 5 day predict
 cbump.asl                1.9	02/02/2022 12:55:03 pp
+wex.asl                  2.54	02/03/2022 12:38:51 day axis
+wex.asl                  2.55	02/03/2022 12:40:55 pp
