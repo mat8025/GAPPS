@@ -367,3 +367,7 @@ wex_compute.asl          1.2	02/02/2022 07:54:13 5 day predict
 cbump.asl                1.9	02/02/2022 12:55:03 pp
 wex.asl                  2.54	02/03/2022 12:38:51 day axis
 wex.asl                  2.55	02/03/2022 12:40:55 pp
+sbump.asl                1.11	02/04/2022 09:46:48 pp
+gevent.asl               1.4	02/04/2022 09:58:26 pp
+lsd_screen.asl           1.3	02/06/2022 11:50:17 pp
+lsd.asl                  1.2	02/06/2022 11:51:07 pp

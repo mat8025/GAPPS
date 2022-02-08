@@ -16,32 +16,16 @@
 
 int Obid = 0;
 
-#define ASL 1
-#define CPP 0
-
-#if ASL
- int n = 4;
- int m = 5;
-  <<" Simple class demo \n";
- <<" paras are %V $n $m\n";
-#endif
+#define ASL 0
+#define CPP 1
 
 
-#if CPP
- extern "C" int class_cpp(Svarg * sarg)  {
-#endif
 
+void
+Uac::objWorld(int n, int m)
+{
 
-#if CPP
- int n = sarg->getArgI() ;
- int m = sarg->getArgI() ;
-  cout << " Simple class demo "  << endl;
- cout << " paras are n " <<  n << " m " << m << endl;
-#endif
-
-
-<<"Hey \n"
-
+   cout << "hello simple Obj/class test  " << endl;
 
 
 chkIn(1);
@@ -49,10 +33,6 @@ chkIn(1);
 /// simple class test
 
 //<<"simple class test\n"
-#if CPP
-cout << "hello simple class test" << endl;
-#endif
-
 
 ////////////////////////
 //#include "tpclass.asl"
@@ -68,11 +48,11 @@ class Add
    int id;
    
 // cmf Add()
-  void Add()
+  Add()
   {
     id = Obid++;
  //   <<"CONS $_cobj %V $id\n"
-    x = 0;
+    x = Obid;
     y = 0;
 
   };
@@ -101,37 +81,28 @@ class Add
  
 };
 
-<<"hey now\n"
 
 
 int s;
 
-pinfo(s);
 
 Add  tc;   
 
 
 //Add.pinfo();
 
-    s= tc->sum(n,m);
+    s= tc.sum(n,m);
 
 chkN(s,(n+m));
 
 //<<"%V $s $(typeof(s)) \n";
-#if CPP
+
 //cout << " sum s " << s << endl;
-#endif
 
-#if ASL
-s= tc.diff(n,m);  // ? fix tc.diff - asl convention  but tc not ptr 
 
- <<" diff $s ";
-#endif
 
-#if CPP
       s= tc.diff(n,m);
       cout << " diff s " << s << endl;
-#endif
 
 chkN(s,(n-m));
 
@@ -142,20 +113,41 @@ double rms;
 
   rms = V.rms();
 
-<<"%V $rms \n";
+cout <<"rms " << rms << endl;
 
+Add  am[5];
 
+   s= am[0].sum(n,m);
+chkN(s,(n+m));
 
-
+cout << "am[1].x " << am[1].x << endl;
 
 chkOut();
 
 
-#if CPP
 }
-#endif
+//==============================//
 
 
+ extern "C" int test_class(Svarg * sarg)  {
+
+
+ int n = sarg->getArgI() ;
+ int m = sarg->getArgI() ;
+ cout << " Simple class demo "  << endl;
+ cout << " paras are n " <<  n << " m " << m << endl;
+
+    Uac *o_uac = new Uac;
+
+   // can use sargs to selec uac->method via name
+   // so just have to edit in new mathod to uac class definition
+   // and recompile uac -- one line change !
+   // plus include this script into 
+
+
+    o_uac->objWorld(n,m);
+
+  }
 
 
 

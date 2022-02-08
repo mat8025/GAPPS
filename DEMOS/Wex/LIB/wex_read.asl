@@ -168,7 +168,7 @@ void readData()
 
     Yd = jday - Jan1;
 
-<<"%V $jday  $Yd\n"
+//<<"%V $jday  $Yd\n"
 
     lday = Yd;
 
@@ -216,7 +216,7 @@ proc fillInCCObsVec()
   CARBSCON[Yd] = atof(col[2]);
 
    NCCobs++;
-<<"Yd $NCCobs $CALSCON[Yd] $CARBSCON[Yd] \n"
+//<<"Yd $NCCobs $CALSCON[Yd] $CARBSCON[Yd] \n"
 
 
 
@@ -258,7 +258,7 @@ void readCCData()
   CALSCON[Yd] = cals;
   ccals =  CALSCON[Yd];
   
-<<"calscon $Yd   $CALSCON[Yd]  cals <|$cals|>  ccals $ccals \n"
+//<<"calscon $Yd   $CALSCON[Yd]  cals <|$cals|>  ccals $ccals \n"
 
   carbs = atof(RCC[tl][3]);
 

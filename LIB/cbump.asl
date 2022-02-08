@@ -181,15 +181,15 @@ old_comment =T;
    
    //found_where = where;
    i++;
-   if (i >16) {
+   if (i >17) {
 <<[2]"not an C header\n"
     found_vers = 0;
     break;
    }
 
 
-    if (scmp(L[0],"///////////////////////////////////<v_&_v>//////////////////////////////////*/")) {
-<<[2]"header end? line $i\n"
+    if (spat(L[0],"///////<v_&_v>//") != "") {
+<<[2]"@header end? line $i\n"
       break;
     }
 

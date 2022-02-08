@@ -20,7 +20,10 @@ void drawGoals(int ws)
   {
 
    if (ws == 0) {
-    Plot(gwo,@line,sc_startday,165,sc_end,165, GREEN_)
+    Plot(gwo,@box,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_,3) ; // never go above
+    Plot(gwo,@box,sc_startday,DX_MEW,sc_end,DX_NEW, YELLOW_,3) ; // diet x max above
+    Plot(gwo,@box,sc_startday,GoalWt-5,sc_end,GoalWt+5, LIGHTGREEN_,3) ; //
+
     Plot(calwo,@line,sc_startday,day_burn,sc_end,day_burn, GREEN_)
     Plot(calwo,@line,sc_startday,out_cal,sc_end,out_cal, BLUE_)
     Plot(calwo,@line,sc_startday,in_cal,sc_end,in_cal, RED_)
@@ -30,6 +33,7 @@ void drawGoals(int ws)
    }
 
   if (ws == 1) {
+
 <<[_DB]"$ws $swo $kdays \n"
 
    Plot(swo,@line,0,150,kdays-10,250, BLUE_)
@@ -42,7 +46,7 @@ void  drawMonths(int wwo)
  {
   // as either Months Jan,Feb, ... Dec  
 
-  // or quarter and cross-quater days
+  // or quarter and cross-quarter days
   // Candlemass Feb 2
   // Lady Day   March 25
   // Beltane (may day) May 1
@@ -167,12 +171,15 @@ void drawScreens()
 
   if ( wScreen == 0) {
 
-<<"%V $sc_zstart $minWt $sc_zend $upperWt\n"
+//<<"%V $sc_zstart $minWt $sc_zend $upperWt\n"
 
        sWo(wedwo,@xscales,sc_zstart,sc_zend);
 
        sWo(wedwo,@clearclip,@save,@clearpixmap,@clipborder,BLACK_)
 
+      drawGoals( wScreen);
+
+      drawGrids( wScreen);
 
      
   if (ALL_LINES) {
@@ -224,9 +231,6 @@ void drawScreens()
        }
 
 
-      drawGoals( wScreen);
-
-      drawGrids( wScreen);
 
 
       sWo(allwo,@clipborder,BLACK_)
@@ -278,7 +282,7 @@ void drawScreens()
 void showWL(long ws, long we)
 {
 
-<<"$_proc $ws $we\n"
+//<<"$_proc $ws $we\n"
 
        computeWL( ws, we);
 
@@ -390,7 +394,7 @@ void adjustQrt(int updown)
 
 void showCompute()
 {
-<<"$_proc %V $Nsel_exeburn $Nsel_lbs\n"
+//<<"$_proc %V $Nsel_exeburn $Nsel_lbs\n"
   sWo(nobswo,@value,Nxy_obs,@update)
   sWo(xtwo,@value,xhrs,@redraw)
   sWo(xbwo,@value,"%6.2f$Nsel_exeburn",@redraw)
@@ -402,7 +406,7 @@ void showCompute()
 
 void showTarget()
 {
-<<"$_proc "
+
 
 // target wt and date
 //  <<"$_proc $gday $NextGoalWt $last_known_day\n"
@@ -414,9 +418,9 @@ void showTarget()
     plot(gwo,@symbol,tday2,StGoalWt,TRI_,symsz,BLACK_,1);
   plot(gwo,@symbol,gday,NextGoalWt,"diamond",symsz,BLUE_);
   plot(gwo,@symbol,last_known_day,NextGoalWt,DIAMOND_,symsz,RED_,1);
-  plot(gwo,@symbol,last_known_day+1,PWT,DIAMOND_,symsz,GREEN_,1);
-  plot(gwo,@symbol,last_known_day+7,PWT7,DIAMOND_,symsz,LILAC_,1);
-  plot(gwo,@symbol,last_known_day+14,PWT14,DIAMOND_,symsz,PINK_,1);
+  plot(gwo,@symbol,last_known_day+2,PWT,DIAMOND_,symsz,GREEN_,1);
+  plot(gwo,@symbol,last_known_day+8,PWT7,DIAMOND_,symsz,LILAC_,1);
+  plot(gwo,@symbol,last_known_day+15,PWT14,DIAMOND_,symsz,PINK_,1);
   
 
   hlng = (last_known_wt - NextGoalWt) / 0.43; 
@@ -477,8 +481,8 @@ void getDay(long dayv)
     cbm  = CALBURN[i]
  
      dt = dayv -Sday;
-   <<"%V $dayv  $Sday $mdy\n"
-   <<"FOUND $i %V $dayv $Sday $dt  $wtm $xtm $cbm\n"
+   //<<"%V $dayv  $Sday $mdy\n"
+   //<<"FOUND $i %V $dayv $Sday $dt  $wtm $xtm $cbm\n"
 
      sWo(obswo,@value,dt+1,@redraw);
      sWo(xtmwo,@value,xtm,@redraw);
@@ -492,7 +496,7 @@ void getDay(long dayv)
 //[EM]=================================//
 
 
-<<"$_include \n"
+
 
 
 //===========//

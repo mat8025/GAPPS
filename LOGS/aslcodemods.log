@@ -1007,3 +1007,9 @@ scopesindex_e.cpp                    2.84  02/02/2022 14:48:28  iproc
 proc_checkfname_e.cpp                2.46  02/02/2022 14:49:13  iproc
 sstr.cpp                             1.6  02/02/2022 14:52:22  operators ()
 prep.cpp                             2.58  02/03/2022 09:57:27  YEAR_
+stat_m.cpp                           1.97  02/05/2022 09:47:54  Lfit vec size specify
+proc_checkfname_e.cpp                2.47  02/07/2022 09:53:19  pp
+wo_sheetsel_w.cpp                    1.57  02/07/2022 10:20:19  pp
+wo_sheetsel_w.cpp                    1.58  02/07/2022 10:21:48  pp
+opera_promote.cpp                    1.53  02/08/2022 07:46:39  don't promote set types - only working vars
+opera_logic.cpp                      1.50  02/08/2022 08:01:44  pp

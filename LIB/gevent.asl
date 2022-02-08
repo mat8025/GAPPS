@@ -1,20 +1,21 @@
-//%*********************************************** 
-//*  @script gevent.asl 
-//* 
-//*  @comment  
-//*  @release CARBON 
-//*  @vers 1.3 Li Lithium                                                  
-//*  @date Wed May  1 12:05:43 2019 
-//*  @cdate Tue Jan  1 10:36:56 2019 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
-;///
+/* 
+ *  @script gevent.asl 
+ * 
+ *  @comment  
+ *  @release CARBON 
+ *  @vers 1.4 Be 6.3.79 C-Li-Au 
+ *  @date 02/04/2022 09:58:26          
+ *  @cdate Tue Jan 1 10:36:56 2019 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare 2022
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                                                                                                 
+///
 /// wait and catch mouse/key window events
 //
 //
-;
+
 <<"loading gevent.asl \n"
 
 
@@ -184,9 +185,9 @@ str _ewoval = "yyy";
 
 str _ewoproc = "abc";
 
-<<" %V $_include $_emsg\n"
+//<<" %V $_include $_emsg\n"
 
-_ekeyw.pinfo()
+//_ekeyw.pinfo()
 
 
 

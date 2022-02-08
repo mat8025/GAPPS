@@ -47,8 +47,8 @@ int i;
 	
         Nsel_calsinout +=  (ccals - bcals);
 
-<<"$i Exeburn $Nsel_exeburn Mins $Nsel_exemins   \n"
-<<"$i CIO $Nsel_calsinout in $ccals out $bcals \n"
+//<<"$i Exeburn $Nsel_exeburn Mins $Nsel_exemins   \n"
+//<<"$i CIO $Nsel_calsinout in $ccals out $bcals \n"
       if (i > Nobs)
          break;
 
@@ -76,11 +76,12 @@ pwl[1] = 1.0;
 double xv[5];
 double yv[5];
 
-int k = Yday-5; // 
+int k = Yday-2; // 
 
+<<"$Yday $k\n"
 
   if (Yday > 5) {
-    for (i =0; i < 5; i++) {   
+    for (i =0; i < 3; i++) {   
        xv[i] =  i;
        yv[i] =  WTVEC[k];
 
@@ -90,16 +91,16 @@ int k = Yday-5; //
 //   <<"%V $xv\n"
 //   <<"%V $yv\n"
    
-   pwl = Lfit(xv,yv);
+   pwl = Lfit(xv,yv,3);
    <<"pwl $pwl \n"
    // next day prediction
 
-    pw = pwl[0] + (pwl[1] *5);
-    PWT7 = pwl[0] + (pwl[1] * 12);
-    PWT14 = pwl[0] + (pwl[1] * 19);
+    pw = yv[0] + (pwl[1] *3);
+    PWT7 = yv[0] + (pwl[1] * 9);
+    PWT14 = yv[0] + (pwl[1] * 16);
   }
 
-<<"tomorrow's wt will be $pw +7 $PWT7\n"
+<<"tomorrow's wt will be $pw +7 $PWT7  +14 PWT14\n"
           return pw;
 }
 

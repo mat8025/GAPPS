@@ -1628,12 +1628,14 @@ Lfit()
 Lfit
 .)x 
 .FD
-fp=Lfit(X,Y)
+fp=Lfit(X,Y,[n])
  Linear fit of values in X and Y array. The fit is returned as an array
 fp[0] is the constant c and fp[1] is the slope parameter m so a new value  y = mx + c.
 e.g.
-fp=Lfit(X[0:n-1],Y[0:n-1])
-The first n values of X,Y vectors are linearly fitted - constant and slope parameters return in vector fp
+fp=Lfit(X,Y,[n])
+The first n values of X,Y vectors are linearly fitted
+- constant and slope parameters return in vector fp
+Use the size of smallext array or specified size using [n].
 .EF
 
 =============================================================

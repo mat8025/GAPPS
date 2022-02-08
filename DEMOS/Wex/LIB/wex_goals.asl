@@ -25,11 +25,17 @@
    Goals2 = Split("02/01/2022 02/14/2022 194");
 ////////////////////==============/////////////////
 
-   GoalWt = 175;  // ideal -- flying weight
+float   GoalWt = 175;  // ideal -- flying weight
 
-   StartWt = 215;
+float   StartWt = 215;
 
-   MinWt = 165;
+float   MinWt = 165;
+
+// move these done 10 when reached -- until we are at desired operating weight!
+float   DX_NEW = 200.0;  // never exceed
+
+float   DX_MEW = GoalWt+5;  // max dx effort above
+
 
    long tjd =  julian(Goals[0]) ;
    
@@ -44,7 +50,7 @@
 
    targetday -= Jan1;
 	  
-<<"%V $tjd $Jan1 $Sday $targetday  $tarxday; \n"
+//<<"%V $tjd $Jan1 $Sday $targetday  $tarxday; \n"
 
 
    NextGoalWt = atoi(Goals[2]);

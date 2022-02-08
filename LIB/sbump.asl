@@ -1,15 +1,16 @@
-//%*********************************************** 
-//*  @script sbump.asl 
-//* 
-//*  @comment  
-//*  @release CARBON 
-//*  @vers 1.10 Ne Neon [asl 6.2.91 C-He-Pa]                               
-//*  @date Mon Nov 30 09:30:26 2020 
-//*  @cdate Sun Dec 23 09:22:34 2018 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2014,2021 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script sbump.asl 
+ * 
+ *  @comment  
+ *  @release CARBON 
+ *  @vers 1.11 Na 6.3.79 C-Li-Au 
+ *  @date 02/04/2022 09:46:48          
+ *  @cdate Sun Dec 23 09:22:34 2018 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare 2022
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                                                                                               
   
 <|Use_=
 update asl script version ;

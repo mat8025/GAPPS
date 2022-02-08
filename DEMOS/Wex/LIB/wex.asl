@@ -92,8 +92,6 @@ float upperWt = 225;
 
 #include "wex_types"
 
-<<"Done include of types\n";
-
 #include "wex_rates"
 
 
@@ -177,13 +175,13 @@ Yday = jtoday -Jan1;
  Str bdate = "04/09/1949"
  //Bday = julian(bdate)
 
-<<"%V $bdate  $Bday $Jan1 \n"
+//<<"%V $bdate  $Bday $Jan1 \n"
 
  maxday = julian("04/09/2049") -Bday
 
 // this is a new format -- allowing us to put comment labels on graphs
 
-<<"%V $maxday \n"
+//<<"%V $maxday \n"
 
 
 
@@ -215,7 +213,7 @@ Nrecs = Caz(RX);
 <<[_DB]"$RX[Nrecs-2]\n"
  rx= RX[Nrecs-1]
  
-<<"$RX[Nrecs-1]\n"
+//<<"$RX[Nrecs-1]\n"
 <<[_DB]"$rx\n"
 
 lastRX = RX[Nrecs-1]
@@ -256,11 +254,11 @@ else {
   NCCrecs = Caz(RCC);
   //NCCrecs->info(1)
   <<"%V $NCCrecs \n"
-
+/*
  for (i=0; i < NCCrecs ;i++) {
   <<[_DB]"$RCC[i] \n"
   }
-
+*/
 <<[_DB]"/////////\n"
 }
 ////////////////// READ CEX DATA ///////////////////
@@ -297,7 +295,7 @@ nrd=readData();
 
    long sc_endday = targetday + 10;
 
-   <<"%V$sc_startday $targetday $sc_endday \n"
+//   <<"%V$sc_startday $targetday $sc_endday \n"
 
   gwt = NextGoalWt;
 
@@ -353,7 +351,7 @@ msg ="x y z"     // event vars
 msgw =split(msg)
 
 
-<<[_DB]"%V$msgw \n"
+//<<[_DB]"%V$msgw \n"
 
 
 
@@ -371,7 +369,7 @@ msgw =split(msg)
 //ans=query("proceed?")
 //sleep(0.1)
 
-<<"%V $_eloop\n"
+//<<"%V $_eloop\n"
 
 
 ///////////////////////// PLOT  ////////////////////////////////////////////
@@ -463,7 +461,7 @@ while (1) {
        }
 */
         msg =eventWait();
-<<[2]"$m_num $msg  $_ename $_ewoname\n"
+//<<[2]"$m_num $msg  $_ename $_ewoname\n"
 
 //_ekeyw.pinfo();
 
@@ -492,7 +490,6 @@ while (1) {
        }
        
        else if (_ewoname == "RESIZE") {
-       <<" RESIZE\n"
          drawScreens();
       }
 
@@ -527,7 +524,7 @@ while (1) {
         <<[_DB]"%V$lcpx $rcpx \n"
 
        WXY=WoGetPosition(tw_wo)
-<<"$WXY \n"
+//<<"$WXY \n"
 
     //   place_curs( gwo,100,5,1,1)
 

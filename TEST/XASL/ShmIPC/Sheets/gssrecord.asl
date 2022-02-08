@@ -22,13 +22,12 @@
 
 
 
-include "gevent.asl"
+#include "gevent.asl"
 
 
-setdebug(1,"keep");
 
 
-proc SAVE()
+void SAVE()
 {
          <<"saving sheet\n"
        //  for (i = 0; i < rows;i++) { 
@@ -41,7 +40,7 @@ proc SAVE()
 }
 //======================
 
-proc READ()
+void READ()
 {
       <<"reading $fname\n"
        // isok =sWo(cellwo,@sheetread,fname,2)
@@ -53,7 +52,7 @@ proc READ()
           sWo(cellwo,@cellval,R);
 }
 //======================
-proc SORT()
+void SORT()
 {
 
   sortcol = swapcol_a;
@@ -69,7 +68,12 @@ proc SORT()
 
 }
 //======================
+void Stuff2Do()
+{
 
+	//	ans = query("new stuff:");
+
+}
 
 Graphic = CheckGwm()
 
@@ -79,7 +83,7 @@ Graphic = CheckGwm()
      }
 
 
-include "tbqrd"
+#include "tbqrd"
 
     vp = cWi(@title,"Simple Spread Sheet")
 
@@ -206,7 +210,7 @@ sWo(cellwo,@cellbhue,i,j,YELLOW_);
    
    sWo(cellwo,@setrowscols,rows,cols);
 
-   sWo(cellwo,@selectrowscols,0,rows-1,0,cols-1);
+//   sWo(cellwo,@selectrowscols,0,rows-1,0,cols-1);
 
 // sWo(cellwo,@cellbhue,1,-2,LILAC_); // row,col wr,-2 all cells in row
    sWi(vp,@redraw)
@@ -239,12 +243,13 @@ sWo(cellwo,@cellbhue,i,j,YELLOW_);
 
        if (_ewoid == cellwo) {
        
-             if (_ekeyw @="CELLVAL") {
+             if (_ekeyw @= "Stuff2Do") {
                 r= _erow;
-		c= Cev->col;
-		<<"%V$Cev->row $Cev->col\n"
-//R[Cev->row][Cev->col] = _ekeyw2;   // TBF
-                R[r][c] = _evalue;
+		c= _ecol;
+		<<"%V$_erow $_ecol\n"
+		ans = queryw("new val","new val:","xxx");
+		<<"ans entered was $ans\n"
+                R[r][c] = ans;
 		
 	//	<<"update cell val $r $c $_erow $_ecol $_ekeyw2 $R[_erow][_ecol] \n"
 		<<"update cell val $r $c $_erow $_ecol $_ekeyw2 $R[r][c] \n"
@@ -276,19 +281,20 @@ sWo(cellwo,@cellbhue,i,j,YELLOW_);
          sWo(cellwo,@swapcols,swapcol_a,swapcol_b);
 	 	 R->SwapCols(swapcol_a,swapcol_b);
        }
-
+       
+       sWo(cellwo,@cellval,R);
         sWo(cellwo,@redraw);
 
 
        if (_ename @= "PRESS") {
         if (!(_ewoname @= "")) {
-DBPR"calling function via $woname !\n"
+<<"calling function via $_ewoname !\n"
             $_ewoname()
         }
       }
 
 
-/{
+/*
        if (_ewoid == savewo) {   //SAVE
          <<"saving sheet\n"
        //  for (i = 0; i < rows;i++) { 
@@ -311,7 +317,7 @@ DBPR"calling function via $woname !\n"
           <<"num of records $sz\n"
           sWo(cellwo,@cellval,R);
        }
-/}
+*/
 
 }
 <<"out of loop\n"

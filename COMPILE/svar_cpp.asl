@@ -14,8 +14,6 @@
 // Any Globals
 
 
-int Obid = 0;
-
 #define ASL 0
 #define CPP 1
 
