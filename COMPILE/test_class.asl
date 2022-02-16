@@ -22,11 +22,17 @@ int Obid = 0;
 
 
 void
-Uac::objWorld(int n, int m)
+Uac::objWorld(Svarg * sarg)  
 {
 
    cout << "hello simple Obj/class test  " << endl;
+ Str a1  = sarg->getArgStr(1) ;
+ Str a2 = sarg->getArgStr(2) ;
 
+ cout << " objWorld paras are: "  << a1 << " a2 " << a2 << endl;
+
+int n = 3;
+int m = 4;
 
 chkIn(1);
 
@@ -131,11 +137,14 @@ chkOut();
 
  extern "C" int test_class(Svarg * sarg)  {
 
-
- int n = sarg->getArgI() ;
- int m = sarg->getArgI() ;
+ Str a0 = sarg->getArgStr(0) ;
+ Str a1 = sarg->getArgStr(1);
+ Str a2 = sarg->getArgStr(2) ;
+  Str a3 = sarg->getArgStr(3) ;
+  
  cout << " Simple class demo "  << endl;
- cout << " paras are n " <<  n << " m " << m << endl;
+ cout << " paras are: "  << " a0 " <<  a0 << " a1 " << a1 << " a2 " << a2
+ << " a3 " << a3 << endl;
 
     Uac *o_uac = new Uac;
 
@@ -145,7 +154,7 @@ chkOut();
    // plus include this script into 
 
 
-    o_uac->objWorld(n,m);
+    o_uac->objWorld(sarg);
 
   }
 

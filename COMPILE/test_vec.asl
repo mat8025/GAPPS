@@ -19,7 +19,7 @@
 #define ASL 0
 #define CPP 1
 void
-Uac::vecWorld()
+Uac::vecWorld(Svarg * sarg)  
 {
 
    cout << "hello simple Vec test  " << endl;
@@ -232,7 +232,7 @@ Svar *sp = &SV2;
    // plus include this script into 
 
 
-    o_uac->vecWorld();
+    o_uac->vecWorld(sarg);
     //o_uac->newWorld();
 
   }

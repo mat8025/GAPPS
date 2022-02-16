@@ -11,8 +11,6 @@
    *
    *  \\-----------------<v_&_v>--------------------------; //
  */ 
-
-
    ;//----------------------//;
    
 <|Use_= 
@@ -32,8 +30,20 @@
 
    chkIn(_dblevel);
 
-   filterFileDebug(REJECT_,"array","args","exp");
+ //  filterFileDebug(REJECT_,"array","args","exp");
 
+
+float f = 1.2345;
+double d = 123456.789;
+char c = 'A';
+
+  printf('f %f d %lf \n',f,d);
+
+  printf("f %f d %lf \n",f,d);
+
+
+
+exit()
 
    A=ofw("pr.log");
 
@@ -46,7 +56,7 @@
     <<" [$i] %V$F[i]\n"
     i++;
    }
-!a
+
 
 
   <<"%v6.2f$F \n";
