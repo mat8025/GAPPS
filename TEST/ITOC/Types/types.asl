@@ -3,14 +3,14 @@
  * 
  *  @comment test asl types 
  *  @release CARBON 
- *  @vers 1.2 He Helium [asl 6.3.10 C-Li-Ne] 
- *  @date Fri Jan 15 11:22:42 2021 
+ *  @vers 1.3 Li 6.3.83 C-Li-Bi 
+ *  @date 02/16/2022 09:58:56          
  *  @cdate Fri Apr 17 11:14:54 2020 
  *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
+ *  @Copyright © RootMeanSquare 2022
  * 
- *  \\-----------------<v_&_v>--------------------------//  
  */ 
+;//----------------<v_&_v>-------------------------//;                          
                                                                          
 <|Use_=
 Demo  of asl types

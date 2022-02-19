@@ -6449,7 +6449,8 @@ if posn = 1 rest of characters from right of match
 posn = 0 including match string, posn = -1 before match, (default -1)
 If dir = 1 search starts at the left, -1 from right. (default 1)
 If the variables match vector supplied
-then match[0] is one of there was a match and how many characters are remaining is in match[1].
+then match[0] is one if there was a match
+and how many characters are remaining is in match[1].
 also spat will return the string "" if no match
 use match and charrem to determine the result of pattern search.
 e.g.
@@ -6466,7 +6467,8 @@ For regex patterns use
 cresult =spatrgx(w1,w2,{posn,dir, [match[2] })
 or
 regex " pma=regex(w1,w2) "
-where w2 is a regex pattern and pma is array of start and end indices for that pattern if found,
+where w2 is a regex pattern and pma is array of start and end indices
+for that pattern if found,
 if first entry in pma is [-1,-1] then the pattern was not found. 
 
 

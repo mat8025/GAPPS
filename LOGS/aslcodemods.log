@@ -1030,3 +1030,6 @@ vmf_svar.cpp                         1.24  02/13/2022 09:44:53  add slen
 print.cpp                            1.78  02/15/2022 09:35:03  revise
 ds_storestr.cpp                      1.79  02/15/2022 11:42:26  replace ele/range or str
 str.h                                1.3  02/15/2022 12:51:10  access []
+navi_l.cpp                           1.17  02/18/2022 09:14:56  cpp vers
+ds_sivmem.cpp                       1.97  02/18/2022 11:28:18  newsvar(1) default
+asl.cpp                             3.85  02/18/2022 12:07:47  

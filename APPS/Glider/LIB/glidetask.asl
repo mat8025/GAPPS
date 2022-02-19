@@ -19,6 +19,9 @@
 int Ntp_id = 0; // ids for turnpt objs
 int Tleg_id = 0;
 
+#include "ootlib.asl"
+
+
 void
 Uac::glideTask(Svarg * sarg)  
 {
@@ -34,7 +37,7 @@ int  Main_init = 1;
 
 #include "conv.asl"
 #include "tpclass.asl"
-//#include "ootlib"
+
 
 //<<"%V $totalD\n"
 

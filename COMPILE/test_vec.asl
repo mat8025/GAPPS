@@ -29,12 +29,48 @@ Uac::vecWorld(Svarg * sarg)
   M=14;
 
   cout << "Siv M " << M << endl;
+  
 double rms;
 
  Vec V(DOUBLE,10,10,1);
 
   V.pinfo();
 
+cout << "V = " << V << endl;
+
+cout << " trying access " << endl;
+//  rms = V[3];
+
+//cout << "V[3] " << rms << endl;
+
+//  V[4] = (rms+15);
+
+ //cout << "V[4] " << V[4] << endl;
+
+
+ Vec U(DOUBLE,10,-1,-2);
+
+  U.pinfo();
+
+cout << "U = " << U << endl;
+
+ Vec W(DOUBLE,10,20,1);
+
+ W.pinfo();
+
+
+  W = V ;
+
+  W.pinfo();
+
+cout << " W = V " << W << endl;
+
+ W = V + U;
+
+cout << " W = V+U " << W << endl;
+
+
+/*
 rms = V().rms();
 
   cout << "V().rms() " << rms << endl;
@@ -210,7 +246,7 @@ Svar *sp = &SV2;
  cout  << "done record test  "  << endl ;
 }
 
-
+*/
   cout << "Exit cpp HelloVec " << endl;
 
 }

@@ -8,53 +8,100 @@
 
 
 
-
 //<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
 
 // << _scope
 
-Str s = ' cmf %V $_scope $_cmfnest $_proc $_pnest\n' ;
+//Str s = ' cmf %V $_scope $_cmfnest $_proc $_pnest\n' ;
 
+
+
+void trans ()
+{
 <<"$s\n"
+s2= ssub(s,"<<\"","'")
+//<<"$s2\n"
 
-Svar t = split(' cmf %V $_scope $_cmfnest $_proc $_pnest\n')
+s2 = ssub(s2,"\\n"," endl ")
+//<<"$s2\n"
+s2 = ssub(s2,";"," ",0)
+//<<"$s2\n"
+s2 = ssub(s2,"\"","'")
+//<<"$s2\n"
+s2 = ssub(s2,"\'","",0)
+//<<"$s2\n"
+Svar t = split(s2)
 sz= Caz(t);
-<<"split $sz t: $t\n"
-<<"$t[2]\n"
+//<<"split $sz t: $t\n"
+//<<"$t[0] $t[1]\n"
 Str wd
+ add_name = 0;
+ co = 'cout '; 
+ char c;
  for (i=0;i<sz;i++) {
   wd= t[i]
+  c=wd[0];
+//<<[2]"<|$wd|> $c \n"  
   if (scmp(wd,'%V',2)) {
 //<<[2]"\nis a fmt\n"
+    add_name = 1;
   }  
-  else if (wd[0] == "\$") {
- // <<[2]"is a var\n"
+  else if (c == '$') {
+// <<[2]"<|$wd|>is a var\n"
    var = scut(wd,1)
-   <<" <<\" \"<< $var "
+   if (add_name) {
+     co=scat(co," <<\"$var \"<< $var ")
+     }
+   else  {
+   co=scat(co," <<\" \"<< $var ")
+   }
   }
+  else if (wd == "endl") {
+  //<<[2]" endofline\n"
+
+   co=scat(co," <<endl ")
+  }  
 
   else {
-<<" << \"$t[i] \" "
+   co=scat(co," << \"$t[i] \" ")
   }
  }
-<<"\n";
+co=scat(co,";");
+}
 
-s1=ssub(s, " ",' <<"  " ',0)
+Str s = '<<" $i $IGCTIM[i] $IGCELE[i] ; $IGCLAT[i] ;  $IGCLONG[i] \n";';
+Str s2;
+Str co= "";
 
-<<"$s1\n"
 
-s1=ssub(s1, "%V"," ",0)
+ trans()
 
-s1=ssub(s1, "\$","<< ",0)
+<<"$co \n"
 
-<<"$s1\n"
 
-s1=ssub(s1, "\\n","<< endl ; ",0)
+A=ofr("asl_pr_lines.txt")
+B=ofw("cpp_pr_lines.txt")
+int k =1;
+while (1) {
+co="";
+s=readline(A,-1,1)
+ trans()
+ <<"$k <|$co|> \n"
+<<[B]"$co \n" 
+  k++;
+if (ferror(A) == EOF_ERROR_) {
+  break;
+}
+ if (k>20) {
+;
+  }
+}
 
-<<"$s1\n"
 
-s1= scat("cout  ",s1)
-
-<<"$s1\n"
+cf(B)
+cf(A)
 
 exit()
+
+
+

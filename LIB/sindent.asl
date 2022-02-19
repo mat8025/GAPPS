@@ -3,16 +3,16 @@
  * 
  *  @comment format asl scripts 
  *  @release CARBON 
- *  @vers 1.21 Sc Scandium [asl 6.3.61 C-Li-Pm] 
- *  @date 11/20/2021 10:20:44          
+ *  @vers 1.22 Ti 6.3.83 C-Li-Bi 
+ *  @date 02/16/2022 09:49:43          
  *  @cdate 1/1/2015 
  *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
+ *  @Copyright © RootMeanSquare 2022
  * 
- *  \\-----------------<v_&_v>--------------------------//  
  */ 
+;//----------------<v_&_v>-------------------------//;                                
                                                               
-;
+
 
   
 #include "debug"
@@ -21,6 +21,8 @@
 #define PROCCALL 2
 #define MARGINCALL 3
 #define EMPTYLN 5
+
+int match[2];
 
    allowErrors(-1) ;  // keep going
 
@@ -160,7 +162,7 @@ ESL=';//==============\_(^-^)_/==================//;';
   Str NL;
   Str NL1;
 
-  str tws;
+  Str tws;
   Svar NL2;
   Svar wrds;
   Svar wrds1;
@@ -244,6 +246,10 @@ ESL=';//==============\_(^-^)_/==================//;';
 	  empty_line_cnt = -1;
         //<<[2]"end commentblk $empty_line_cnt $NL\n"; 
         }
+
+      else if (scmp(nsv,";//---",6)) {
+           is_comment = 1;
+      }
       else if ((nsv[0] == '<') && (nsv[1] == '|')) {
         is_comment = 1;
 	in_txt_blk = 1
@@ -319,7 +325,11 @@ ESL=';//==============\_(^-^)_/==================//;';
 
     
     if (slen(NL) > 0) {
-      
+
+      nls=ssub(NL,"str ","Str ",1);
+      NL=ssub(nls,"svar ","Svar ",1);
+
+
       is_cbs = scmp(NL,"{",-1,0,0);
       
       is_cbe = scmp(NL,"}",-1,0,0);
@@ -331,6 +341,10 @@ ESL=';//==============\_(^-^)_/==================//;';
     //<<[2]"<|$L|> <|$NL|> %V $nw $is_cbs $is_cbe \n"; 
     
     is_proc = scmp(NL,"proc",4,0);
+    if (is_proc) {
+       nls=ssub(NL,"proc ","void ",1);
+       NL=nls;
+    }
 
     is_cmf = scmp(NL,"cmf",3,0);
     if (is_cmf) {
@@ -397,9 +411,9 @@ ESL=';//==============\_(^-^)_/==================//;';
 //
 //    check for trailing comment - if so eol is just before
 
-       spat(NL,"//",-1,-1,&mat,&cr);
+       spat(NL,"//",0,-1,match);
        
-       if (mat) {
+       if (match[0]) {
          // ; before //
          if (!is_case) {	 
            doTrailingComment()
@@ -456,7 +470,7 @@ ESL=';//==============\_(^-^)_/==================//;';
                //<<[2]"define/include\n"
       <<[B]"$NL\n"; 
       }      
-      else if (is_comment) {
+      else if (is_comment || in_comment_blk ) {
                //<<[2]"comment\n"
                <<[B]"$L\n"; 
       }
@@ -507,7 +521,8 @@ ESL=';//==============\_(^-^)_/==================//;';
    fflush();
 
   if (do_query) {
-   ans=query("pp correct?")
+   ans=query("pp correct?");
+   
     if (ans == "n") {
          break;
 	 }
@@ -516,6 +531,7 @@ ESL=';//==============\_(^-^)_/==================//;';
 	 }
     if (ans == "c") {
       do_query = 0;
+      <<"%V $do_query\n"
     }
   }
   

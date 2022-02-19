@@ -1,29 +1,29 @@
-//%*********************************************** 
-//*  @script spat.asl 
-//* 
-//*  @comment test Spat func 
-//*  @release CARBON 
-//*  @vers 1.3 Li Lithium [asl 6.2.98 C-He-Cf]                           
-//*  @date Wed Dec 23 11:17:59 2020 9 
-//*  @cdate Tue Mar 12 07:50:33 2019 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%///
+/* 
+ *  @script spat.asl 
+ * 
+ *  @comment test Spat func 
+ *  @release CARBON 
+ *  @vers 1.4 Be 6.3.83 C-Li-Bi 
+ *  @date 02/16/2022 10:08:43          
+ *  @cdate Tue Mar 12 07:50:33 2019 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare 2022
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                                                                                                   
 
 /*
 
 spat
-spat(w1,w2,posn,dir,&match,&charrem)
-matches string w2 in w1 returns the characters 
-before or after the match (default before)
+matches string w2 in w1 returns the characters before or after the match (default before)
 depending on optional parameters (posn, dir).
 if posn = 1 rest of characters from right of match
 posn = 0 including match string, posn = -1 before match, (default -1)
 If dir = 1 search starts at the left, -1 from right. (default 1)
-If the variables match and charrem are given they will contain,
-if there was a match (1 or 0) and how many characters are remaining in rest of w1.
-spat will return the string "" if No match,
+If the variables match vector supplied
+then match[0] is one if there was a match
+and how many characters are remaining is in match[1].
+also spat will return the string "" if no match
 use match and charrem to determine the result of pattern search.
 e.g.
 a is 4.0,0.5,0.7  b is ,
@@ -34,8 +34,13 @@ spat(a,b,0)   : c is ,0.5,0.7
 c = spat(a,b,1,-1) : c is 0.7
 c = spat(a,b,-1,-1) : c is 4.0,0.5 
 c = spat(a,b,0,-1) : c is ,0.7
-
-(for regex patterns use regex " pma=regex(w1,w2) "
+For regex patterns use
+cresult =spatrgx(w1,w2,{posn,dir, [match[2] })
+or
+regex " pma=regex(w1,w2) "
+where w2 is a regex pattern and pma is array of start and end indices
+for that pattern if found,
+if first entry in pma is [-1,-1] then the pattern was not found. 
 
 */
 
@@ -46,24 +51,24 @@ if (_dblevel >0) {
 }
 
 
+chkIn(_dblevel)
 
-chkIn()
+int match[2];
 
 fname = "mt_20100422_112017.txt"
 
-fname->info(1)
+fname.pinfo()
 
-mat = 0
-index = 0
+
 ss = "."
 
 posn = -1 ;
 dir = 1;
 
 
-fstem = spat(fname,ss,posn,dir,&mat,&index)
+fstem = spat(fname,ss,posn,dir,match)
 
-fstem->info(1)
+fstem.pinfo()
 
 
 
@@ -74,26 +79,25 @@ cc = slen(fname)
 stem_len = slen(fstem)
 !p stem_len
 
-<<"%V$fname $cc $stem_len $ss $fstem $mat $index \n"
+<<"%V$fname $cc $stem_len $ss $fstem\n"
 
 
-chkN(mat,1);
 
 chkStr(fstem,"mt_20100422_112017");
 
 posn = 0 ; dir = 1
 
-fstem = spat(fname,ss,posn,dir,&mat,&index)
+fstem = spat(fname,ss,posn,dir,match)
 
-<<"%V $posn $dir  $fstem \n"
+<<"%V $posn $dir  $fstem $match\n"
 
 chkStr(fstem,".txt")
 
 posn = 1 ; dir = 1;
 
-fstem = spat(fname,ss,posn,dir,&mat,&index)
+fstem = spat(fname,ss,posn,dir,match)
 
-<<"%V $posn $dir  $fstem \n"
+<<"%V $posn $dir  $fstem $match\n"
 
 chkStr(fstem,"txt")
 
@@ -104,25 +108,33 @@ ss="mad"
 
 posn = 1 ; dir = 1;
 
-fstem = spat(fname,ss,posn,dir,&mat,&index)
+fstem = spat(fname,ss,posn,dir,match)
 
-<<"%V $posn  $dir : $fstem \n"
-
-
-posn = 1 ; dir = -1;
-
-fstem = spat(fname,ss,posn,dir,&mat,&index)
-
-<<"%V $posn  $dir : $fstem \n"
+<<"%V $posn  $dir : $fstem $match\n"
 
 
 posn = 1 ; dir = -1;
 
-fstem = spat(fname,ss,posn,dir,&mat,&index)
+fstem = spat(fname,ss,posn,dir,match)
+
+<<"%V $posn  $dir : $fstem $match \n"
+
+
+posn = 1 ; dir = -1;
+
+fstem = spat(fname,ss,posn,dir,match)
 
 
 <<"%V $posn  $dir : $fstem \n"
 
+
+rem = spat("whatremains","rem",posn,dir,match)
+
+<<"%V $rem $match \n"
+
+rem = spat("whatremains","at",0,dir,match)
+
+<<"%V $rem $match \n"
 
 
 //////////////////////// spatrgx
@@ -131,14 +143,14 @@ fname = "mt_20100422_112017.txt"
 
 ss = "\\."
 
-fstem = SpatRgx(fname,ss,-1,1,&mat,&index)
+fstem = SpatRgx(fname,ss,-1,1,match)
 
 cc = slen(fname)
 stem_len = slen(fstem)
 
-<<"%V$fname $cc $stem_len $ss $fstem $mat $index \n"
+<<"%V$fname $cc $stem_len $ss $fstem $match \n"
 
-chkN(mat,1);
+chkN(match[0],1);
 
 chkStr(fstem,"mt_20100422_112017");
 
