@@ -39,13 +39,13 @@ double rms;
 cout << "V = " << V << endl;
 
 cout << " trying access " << endl;
-//  rms = V[3];
+  rms = V[7];
 
-//cout << "V[3] " << rms << endl;
+cout << "V[7] " << rms << endl;
 
-//  V[4] = (rms+15);
+  V[4] = (rms+15);
 
- //cout << "V[4] " << V[4] << endl;
+ cout << "V[4] " << V[4] << endl;
 
 
  Vec U(DOUBLE,10,-1,-2);
@@ -69,6 +69,9 @@ cout << " W = V " << W << endl;
 
 cout << " W = V+U " << W << endl;
 
+Vec T = W + U + V;
+
+cout << " T = W+V+U " << T << endl;
 
 /*
 rms = V().rms();
