@@ -33,7 +33,7 @@ char c;
 char cv[32] = "hi char str";
 
  Str s = "hello Str";
-
+cout << "s= " << s << endl;
 #if ASL
 <<"%V $s %s $cv\n";
 #endif
@@ -59,7 +59,7 @@ printf("cv %s\n",cv);
 printf("c  %c\n",c);
 //printf("asl s  %s\n",s);
 printf("cpp s  %s\n",s.cptr());
-
+cout << "s= " << s << endl;
 //<<"asl s  $s \n";
 
 #if CPP

@@ -22,7 +22,8 @@ void
 Uac::vecWorld(Svarg * sarg)  
 {
 
-   cout << "hello simple Vec test  " << endl;
+   Str ans= "xyz";
+   cout << "hello simple Vec test  " << ans << endl;
 
   Siv M(INT_);
 
@@ -73,13 +74,24 @@ Vec T = W + U + V;
 
 cout << " T = W+V+U " << T << endl;
 
-/*
+
 rms = V().rms();
 
   cout << "V().rms() " << rms << endl;
 
   V(4) = 82;
 
+  cout << "V(4) " << V(4) << endl;
+//Str prompt = "?:";
+
+ cout << "ans " << ans << endl;
+
+ans= query("??:");
+
+ cout << "ans " << ans << endl;
+ 
+
+/*
 rms = V().rms();
 
   cout << "V().rms() " << rms << endl;
