@@ -21,6 +21,27 @@
 int Tleg_id = 0;
 
 //<<"%V $_include $Tleg_id\n"
+/*
+str ccoor (str dm)
+  {
+  <<"$_proc  $dm\n";
+    Svar sv;
+    Str deg;
+    Str min;
+    Str dms;
+    sv = Split(dm,'.');
+    deg = scut(sv[0],-2);
+    min = prune(sv[0],2);
+    sec= scut(sv[1],-1);
+    dir = prune(sv[1],1)
+    <<" $deg,${min}.$sec \n"
+    dms = "$deg,${min}.${sec},$dir"
+    <<"$dms\n"
+
+     return dms;
+  }
+*/
+
 
 class Tleg 
  {
@@ -55,6 +76,9 @@ class Tleg
 
 
 int Ntp_id = 0;
+
+
+
 
 class Turnpt 
  {
@@ -91,18 +115,18 @@ class Turnpt
 
      Place = wval[0]; // wayp 
     
-     <<"%V$Place\n"
+//     <<"%V$Place\n"
 
 
      Idnt =  wval[1];
 
-    <<"%V$Idnt  \n"
+//    <<"%V$Idnt  \n"
 
 //Idnt->info(1)
 
      Lat = wval[2]; // wayp 
 
-    // <<"%V$Lat  \n"
+   <<"%V$Lat  \n"
 
      //   DBG"%V$wval[3]\n"	 
      Lon = wval[3];
@@ -113,7 +137,7 @@ class Turnpt
      
      rway = wval[5];
 
-<<"radio $wval[6] \n"
+//<<"radio $wval[6] \n"
      
      Radio = wval[6];
 
@@ -130,6 +154,9 @@ class Turnpt
       }
 //=========================//
 
+
+
+
   void TPCUPset (svar wval) 
    {
 //wval.pinfo()
@@ -137,8 +164,10 @@ class Turnpt
 //<<"0 <|$wval[0]|>\n"
 //<<"1 <|$wval[1]|>\n"
 //<<"2 <|$wval[2]|>\n"
-str val;
-<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
+Str val;
+Str Lon2;
+Str Lat2;
+//<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
 
      val = dewhite(wval[0])
 //val->info(1)
@@ -161,11 +190,22 @@ str val;
 //  <<"%V$Idnt\n"
 //Idnt->info(1)
 
-     Lat = wval[3]; // wayp 
 
-     Lon = wval[4];
+     
+     Lon2 = wval[4];
 
-//  <<"%V$Lon  \n"
+//<<"%V $Lon2\n"
+
+
+     Lon =  ccoor (Lon2);
+//<<"%V$Lon  $Lon2\n"
+
+     Lat2 = wval[3]; // wayp
+     
+     Lat =  ccoor (Lat2);
+
+
+//<<"%V$Lat  $Lat2\n"
   
      val = wval[5];
 
@@ -211,9 +251,9 @@ str val;
      
     // spat (tptype,"A",-1,-1,&is_airport);
 
-     Ladeg =  coorToDeg(Lat,2); 
+     Ladeg =  coorToDeg(Lat); 
 
-     Longdeg = coorToDeg(Lon,2);
+     Longdeg = coorToDeg(Lon);
      
 
 

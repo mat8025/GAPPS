@@ -17,14 +17,39 @@
 //uint Turnpt::Ntp_id = 0;
 
 int Ntp_id = 0; // ids for turnpt objs
-int Tleg_id = 0;
+int TF; // task file FH
+int AFH= -1;
+float CSK;
+float Cruise_speed;
+
+Svar Task;
+ 
+#include "conv.asl"
+#include "tpclass.asl"
+
+Turnpt  Wtp[50];
+
+Tleg  Wleg[20];
 
 #include "ootlib.asl"
 
+  int via_keyb = 0;
 
+  int via_file = 0;
+
+  int via_cl = 1;
+  int ok_to_compute = 1;
 void
 Uac::glideTask(Svarg * sarg)  
 {
+
+ Str a0  = sarg->getArgStr(0) ;
+
+ Svar sa;
+
+ sa.split(a0.cptr(),' ');
+
+cout << " gliderTask paras are: sa "  << sa << endl;
 
 
  // ignoreErrors(); // put in uac.h ??
@@ -34,9 +59,6 @@ Uac::glideTask(Svarg * sarg)
 //setMaxICerrors(-1) // ignore - overruns etc
 
 int  Main_init = 1;
-
-#include "conv.asl"
-#include "tpclass.asl"
 
 
 //<<"%V $totalD\n"
@@ -49,7 +71,7 @@ int  Main_init = 1;
 
   cout <<" Cruise_speed "  << Cruise_speed << endl;
 
-  Turnpt  Wtp[50];
+
 
 
   Wtp[1].Alt = 100.0;
@@ -58,27 +80,24 @@ int  Main_init = 1;
 
 //  <<"$Wtp[1].Alt\n";
 
-}
+//  Wtp.pinfo() ;  // should identify Obj
 
+  Str tlon;
+  Str tplace;
 
+  Svar CLTPT;
 
+  Svar Wval;
 
-/*
-//Wtp.pinfo() ;  // should identify Obj
-
-  Tleg  Wleg[20];
-
-  svar CLTPT;
-
-  svar Wval;
-
-  str tpb ="";
+  Str tpb ="";
 
   Units="KM";
-  //<<" done defines \n"
-# dynamic variables no need to declare and set to default
-# unless default value used
-#  the_min = "0"
+  
+//<<" done defines \n"
+
+// dynamic variables no need to declare and set to default
+// unless default value used
+// the_min = "0"
 
   int nerror = 0;
 
@@ -86,79 +105,82 @@ int  Main_init = 1;
 
   if (use_cup) {
 
-  A=ofr("CUP/bbrief.cup")  ; // open turnpoint file;
+  AFH=ofr("CUP/bbrief.cup")  ; // open turnpoint file;
 
   }
 
   else {
 
-  A=ofr("DAT/turnptsA.dat")  ; // open turnpoint file;
+  AFH=ofr("DAT/turnptsA.dat")  ; // open turnpoint file;
 
   }
 
-  if (A == -1) {
+  if (AFH == -1) {
 
-  exit(-1, " can't find turnpts file ");
+  printf( " can't find turnpts file \n");
+  exit(-1);
 
   }
 
-  brief = 0;
+  int brief = 0;
 
-  show_dist = 1;
+  int show_dist = 1;
 
-  show_title = 1;
-# main
+  int show_title = 1;
 
-  na = get_argc();
+//main
 
-  DBG"%v $na\n";
+  int na = getargc();
+
+//  DBG"%v $na\n";
+
+  printf(" na %d\n",na);
+
+
 
   int ac = 1;
 
-  via_keyb = 0;
 
-  via_file = 0;
 
-  via_cl = 1;
-# 
 
   float LoD = 35;
 
   int istpt = 1;
 
   int cltpt = 0;
+  int sz;
+  
+  Str targ;
 
-  str targ;
-
-  <<" %V $LoD \n";
+  //<<" %V $LoD \n";
 
   while (ac < na) {
 
   istpt = 1;
 
-  targ = _argv[ac];
+  targ = sa.cptr(ac);
 
-  DBG"%V $ac $targ\n";
+//  DBG"%V $ac $targ\n";
 
-  sz = targ.Caz();
+  sz = targ.slen();
 
   ac++;
 
-  if (targ @= "LD") {
+  if (targ == "LD") {
 
-  LoD= atof(_argv[ac]);
+  LoD= atof(sa.cptr(ac));
 
   ac++;
 
   istpt = 0;
 
-  <<"setting LD %V $LoD \n";
+  cout <<"setting LD " << LoD << endl;
 
   }
 
-  if (targ @= "CS") {
+  if (targ == "CS") {
 
-  CSK = atof(_argv[ac]);
+  CSK = atof(sa.cptr(ac));
 
   ac++;
 
@@ -166,54 +188,55 @@ int  Main_init = 1;
 
   Cruise_speed = (CSK * nm_to_km);
 
-  <<"setting CS %V $CSK knots $Cruise_speed kmh \n";
+ printf("setting CS CSK %f knots Cruise_speed %f kmh \n",CSK,Cruise_speed);
 
   }
 
-  if ( targ @= "task") {
+  if ( targ == "task") {
 
   via_keyb = 0;
 
   via_file = 1;
 
-  byfile = _argv[ac];
+  Str byfile = sa.cptr(ac);
 
   ac++;
 	//     <<" opening taskfile $byfile \n"
 
   TF = ofr(byfile);
 
-  tasktype = r_file(TF);
+  if (TF == -1 ) {
 
-  if (TF == -1 || si_error()) {
+   printf ("file error");
+   exit(-1);
 
-   exit(-1,"file error");
-
-   }
-
-  else {
-
-   <<"$TF  $tasktype \n";
 
    }
+
+  Task.readFile(TF);
+
+
+   cout <<" task" <<  Task.cptr(0) << endl;
+
+
 
   istpt = 0;
 
   }
 
-  if (targ @= ">") {
+  if (targ == ">") {
 
   break;
 
   }
 
-  if (targ @= "briefreport") {
+  if (targ == "briefreport") {
 
   brief = 1;
 
   }
 
-  if (targ @= "tasklist") {
+  if (targ == "tasklist") {
 
   show_dist = 0;
 
@@ -231,7 +254,10 @@ int  Main_init = 1;
 
   via_cl = 1;
 
-  CLTPT[cltpt] = targ;
+ // CLTPT[cltpt] = targ;   // TBF 02/24/22
+  CLTPT.cpy(targ,cltpt); 
+
+
 //	<<"%V$targ $sz $cltpt $CLTPT[cltpt] \n"
 
   cltpt++;
@@ -240,31 +266,38 @@ int  Main_init = 1;
     //    <<"%V $ac  $targ $sz \n"
 
   }
-# look up lat/long
+// look up lat/long
 
-  the_start= "Longmont";
+  Str the_start= "Longmont";
 
-  nxttpt = "Laramie";
+  Str nxttpt = "Laramie";
 
-  N = 0.0;
+  float N = 0.0;
 
   int ki;
 
   int cnttpt = 0;
-# enter start
+// enter start
 
   int input_lat_long = 0;
 
   int i = -1;
-//    <<"DONE ARGS  $cltpt\n"
-    ////   do this to check routine    
+
+
+ cout << "DONE ARGS  " << endl;
+
+
+
+
+////   do this to check routine    
     //<<"Start  $the_start \n"
 // first parse code bug on reading svar fields?
-
+  int k;
+  
   for (k= 0; k < cltpt; k++) {
 
-  <<"$k  $CLTPT[k] \n";
-
+//  <<"$k  $CLTPT[k] \n";
+cout  <<" "<< k  <<" "<< CLTPT[k]  <<endl ; 
   }
 /////////////////////////////
 
@@ -272,9 +305,9 @@ int  Main_init = 1;
 
   while ( i == -1) {
 
-  <<[_DB]" iw %V $cnttpt $i %v $via_keyb $via_cl\n";
+ // <<[_DB]" iw %V $cnttpt $i %v $via_keyb $via_cl\n";
 
-  Fseek(A,0,0);
+  fseek(AFH,0,0);
 
   if (via_cl) {
 
@@ -291,21 +324,21 @@ int  Main_init = 1;
 
   }
 
-  else {
-
-  the_start = get_word(the_start);
-
-  }
+//  else {
+//
+//  the_start = get_word(the_start);
+//
+//  }
       // <<"Start  $the_start \n"
 	//    	prompt(" ? ")
 
-  if (the_start @= "done") {
+  if (the_start == "done") {
 
-  exit(0,"done");
+  exit(0);
 
   }
 
-  if (the_start @= "input") {
+  if (the_start == "input") {
 
   input_lat_long = 1;
 
@@ -318,9 +351,9 @@ int  Main_init = 1;
       // <<"         \n";
       //<<" \n";
 
-  i=Fsearch(A,the_start,0,1,0);
+  i=searchFile(AFH,the_start,0,1,0);
 
-  <<[_DB]"$i\n";
+//  <<[_DB]"$i\n";
       //<<"index found was $i \n"
 
   if (i == -1) {
@@ -329,27 +362,28 @@ int  Main_init = 1;
 
   }
 
-  i=Fsearch(A,the_start,0,1,0);
+  i=searchFile(AFH,the_start,0,1,0);
 
   if (i == -1) {
 
-  <<"$the_start not found \n";
-
+//  <<"$the_start not found \n";
+cout  <<" "<< the_start  << "not "  << "found "  <<endl ; 
   ok_to_compute = 0;
 
   if (!via_keyb) {
 		//testargs(1,0,"start not found");
 
-   exit(0,"start not found");
+   exit(-1);
 
    }
 
   }
 
-  DBG"inputs  $the_start\n";
+//  DBG"inputs  $the_start\n";
 // -------------------------------
 //<<"%V$input_lat_long  $i \n"
-
+  int nwr;
+  Str w;
   if (input_lat_long) {
 // <<" input place !\n"
 
@@ -357,11 +391,11 @@ int  Main_init = 1;
 
   else {
 
-  Fseek(A,i,0);
+  fseek(AFH,i,0);
 
   if (via_keyb) {
 
-   w=pcl_file(A);
+   w=pclFile(AFH);
 
    }
 
@@ -371,14 +405,14 @@ int  Main_init = 1;
 
    }
 
-  ki = seek_line(A,0);
+  ki = seekLine(AFH,0);
 
-  <<[_DB]" $ki back to beginning of line ?\n";
+  //<<[_DB]" $ki back to beginning of line ?\n";
 	  // need to step back a line
 
   if (use_cup) {
 
-   nwr = Wval.readWords(A,0,',');
+   nwr = Wval.readWords(AFH,0,',');
 //<<"%V $nwr\n"
 //<<"$Wval[0] $Wval[1] $Wval[3] $Wval[4] \n"	 
 
@@ -386,12 +420,12 @@ int  Main_init = 1;
 
   else {
 
-   nwr = Wval.readWords(A);
+   nwr = Wval.readWords(AFH);
 
    }
       //    <<" %i $Wval \n"
 
-  DBG"$nwr $Wval[0] $Wval[1] $Wval[2] $Wval[3] \n";
+//  DBG"$nwr $Wval[0] $Wval[1] $Wval[2] $Wval[3] \n";
 	  //    msz = Wval.Caz()
 	// <<"%V$msz \n"
 	// <<"%V$n_legs \n"
@@ -428,18 +462,18 @@ int  Main_init = 1;
 
   }
 //<<"next \n"
-# NEXT TURN
+// NEXT TURN
 
-  more_legs = 1;
-
-  ok_to_compute = 1;
+  int more_legs = 1;
+  int nwr;
+  int ok_to_compute = 1;
  // FIX
 
   float the_leg;
 
   while (more_legs == 1) {
 
-  Fseek(A,0,0);
+  fseek(AFH,0,0);
 
   if (via_cl) {
 
@@ -449,7 +483,7 @@ int  Main_init = 1;
 
   if (cnttpt > cltpt) {
 
-   <<[_DB]" done reading turnpts $cnttpt\n ";
+   //<<[_DB]" done reading turnpts $cnttpt\n ";
 
    nxttpt = "done";
 
@@ -457,6 +491,7 @@ int  Main_init = 1;
 
   }
 
+/*
   else {
 
   <<" get via a keyboard or file !! \n";
@@ -464,10 +499,10 @@ int  Main_init = 1;
   nxttpt = get_word(nxttpt);
 
   }
+*/
+  if ((nxttpt == "done") || (nxttpt == "finish") || (nxttpt == "quit") ) {
 
-  if ((nxttpt @= "done") || (nxttpt @= "finish") || (nxttpt @= "quit") ) {
-
-  <<"\n";
+ cout << endl;
 
   more_legs = 0;
 
@@ -475,17 +510,17 @@ int  Main_init = 1;
 
   else {
 
-  i=Fsearch(A,nxttpt,0,1,0);
+  i=searchFile(AFH,nxttpt,0,1,0);
 
   if (i == -1) {
 
-   <<"$nxttpt not found \n";
+//   <<"$nxttpt not found \n";
 
    ok_to_compute = 0;
 
    if (!via_keyb) {
-
-     exit(0,"$nxttpt not found ");
+printf ("nxttpt not found %s",nxttpt);
+     exit(-1);
 
      }
 
@@ -495,27 +530,27 @@ int  Main_init = 1;
 
   if (more_legs) {
 
-  Fseek(A,i,0);
+  fseek(AFH,i,0);
 
   n_legs++;
 
   if (via_keyb) {
 
-   w=pcl_file(A);
+  pclFile(AFH);
 
    }
 
   else {
-	      // w=pcl_file(A,0,1,0)
+	      // w=pclFile(AFH,0,1,0)
 
    }
-	// Fseek(A,w,0)
+	// fseek(A,w,0)
 
-  ki = seek_line(A,0);
+  ki = seekLine(AFH,0);
 
   if (use_cup) {
 
-   nwr = Wval.readWords(A,0,',');
+   nwr = Wval.readWords(AFH,0,',');
 //<<"%V $nwr\n"
 //<<"$n_legs $Wval[0] $Wval[1] $Wval[3] $Wval[4] \n"
 
@@ -525,39 +560,41 @@ int  Main_init = 1;
 
   else {
 
-   nwr = Wval.readWords(A);
+   nwr = Wval.readWords(AFH);
 
    Wtp[n_legs].TPset(Wval);
 
    }
 
-  msz = Wval.Caz();
+ // msz = Wval.Caz();
 
   }
 
   }
     //      prompt("%v $more_legs next turn %-> ")
-# compute legs
+// compute legs
  //<<"compute \n"
 
-  ild= abs(LoD);
+//  ild= abs(LoD);
 
-  <<"%V  $CSK knots $Cruise_speed kmh\n";
-
+//  <<"%V  $CSK knots $Cruise_speed kmh\n";
+  cout  <<"CSK "<< CSK  << "knots "  <<"Cruise_speed "<< Cruise_speed  << "kmh "  <<endl ;
+  
   if (show_title) {
+cout  << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ "  <<endl ; 
 
-  <<" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n";
-
-  <<"Leg\tTP\t\tID\tLAT\t\tLONGI\t\tFGA\t  MSL\tPC\t $Units\tRTOT\tRTIM\t Radio\t TC \n";
-
+//  <<"Leg   TP      ID   LAT      LONGI      FGA     MSL   PC    $Units   RTOT   RTIM    Radio    TC \n";
+cout  << "Leg   TP      ID   LAT      LONGI      FGA    "  << "MSL   PC    "  <<" "<< Units   << " RTOT   RTIM  Radio  TC "  <<endl ; 
   }
-# get totals
+  
+// get totals
 
   float rtime = 0.0;
 
   float rtotal = 0.0;
 // in main --- no obj on stack?
-
+  float nleg,wleg;
+  float agl,ght,pc_tot,alt;
   if (ok_to_compute) {
    //computeHTD()
 
@@ -565,7 +602,10 @@ int  Main_init = 1;
 //totalD->info(1)
 
   float TKM[20];
-
+  float L1,L2,lo1,lo2,tkm;
+  float tcd,rmsl,msl;
+  int nl,li;
+  Str ident;
   for (nl = 0; nl < n_legs ; nl++) {
 
   L1 = Wtp[nl].Ladeg;
@@ -579,7 +619,7 @@ int  Main_init = 1;
        //DBG"%V $lo1 $lo2 \n"
       // tkm = ComputeTPD(nl, nl+1);
 
-  tkm = Howfar(L1,lo1 , L2, lo2 );
+  tkm = HowFar(L1,lo1 , L2, lo2 );
       // DBG"%V $nl $tkm \n"
 
   TKM[nl] = tkm;
@@ -589,7 +629,7 @@ int  Main_init = 1;
   Wleg[nl+1].dist = tkm;
 //<<"%V $nl $tkm $Leg[nl] $TKM[nl]\n"
 
-  DBG"%V $Wleg[nl].dist\n";
+  //DBG"%V $Wleg[nl].dist\n";
        //Leg[nl] = ComputeTPD(nl, nl+1)
 
   tcd =  ComputeTC(nl, nl+1);
@@ -672,13 +712,15 @@ int  Main_init = 1;
 
   tpb = Wtp[nl].Place;
 
-<<"%V  $nl $Wtp[nl].Place   $Wtp[nl].fga\n"
+//<<"%V  $nl $Wtp[nl].Place   $Wtp[nl].fga\n"
+cout  <<"nl "<< nl  <<"Wtp[nl].Place "<< Wtp[nl].Place  <<"Wtp[nl].fga "<< Wtp[nl].fga  <<endl ;
+
 
   ident = Wtp[nl].Idnt;
 
-<<"%V $tpb $ident \n"
+//<<"%V $tpb $ident \n"
 
-
+cout  <<"tpb "<< tpb  <<"ident "<< ident  <<endl ; 
 
 
 
@@ -687,7 +729,7 @@ int  Main_init = 1;
 
   rtotal += the_leg;
 
-  if (Units @= "KM") {
+  if (Units == "KM") {
 
    wleg = the_leg ;
 
@@ -719,22 +761,23 @@ int  Main_init = 1;
 
    }
 
-  tplen = slen(tpb);
+  int tplen = tpb.slen();
 
-  ws =  nsc((15-tplen)," ");
+  Str ws =  nsc((15-tplen)," ");
 
-  idlen = slen(ident);
+  int idlen = ident.slen();
 
-  wsi= nsc((15-idlen)," ");
+  Str wsi= nsc((15-idlen)," ");
  // <<"$li $Wleg[li]->dist  $Wleg[li]->pc_tot \n"
 
   <<"$li ${tpb}${ws}${ident}${wsi} %9.3f${Wtp[li]->Lat} %11.3f${Wtp[li]->Lon}\s%11.0f${Wtp[li]->fga} ${Wtp[li]->Alt} %4.1f$Wleg[li]->pc_tot\t";
 
   <<"%5.1f$Wleg[li]->dist\t$rtotal\t$rtime\t%6.2f${Wtp[li]->Radio}";
+//cout  << "%5.1f$Wleg[li]->dist\t$rtotal\t$rtime\t%6.2f${Wtp[li]->Radio} " ; 
+  printf("\t%6.0f",TC[li]);
 
-  <<"\t%6.0f$TC[li] ";
-
-  <<"\t%6.2f$Dur[li]\n";
+  //<<"\t%6.2f$Dur[li]\n";
+  printf("\t%6.2f\n",Dur[li]);
 
   }
 
@@ -757,7 +800,7 @@ int  Main_init = 1;
   <<"%6.1f$totalD km to fly -  $totalDur hrs - bon voyage!\n";
 
 }
-*/
+
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -766,9 +809,7 @@ int  Main_init = 1;
 extern "C" int glider_task(Svarg * sarg)  {
 
  Str a0 = sarg->getArgStr(0) ;
- Str a1 = sarg->getArgStr(1);
- Str a2 = sarg->getArgStr(2) ;
- Str a3 = sarg->getArgStr(3) ;
+
 
 Str Use_ ="compute task distance\n  e.g  asl anytask.asl   gross laramie mtevans boulder  LD 40";
 
@@ -776,15 +817,10 @@ Str Use_ ="compute task distance\n  e.g  asl anytask.asl   gross laramie mtevans
 
 
  cout << " glider task app " << Use_   << endl;
- cout << " paras are: "  << " a0 " <<  a0 << " a1 " << a1 << " a2 " << a2
- << " a3 " << a3 << endl;
+ cout << " paras are: "  << " a0 " <<  a0 << endl;
 
     Uac *o_uac = new Uac;
 
-   // can use sargs to selec uac->method via name
-   // so just have to edit in new mathod to uac class definition
-   // and recompile uac -- one line change !
-   // plus include this script into 
 
 
     o_uac->glideTask(sarg);

@@ -1,5 +1,5 @@
 /* 
- *  @script class_mfcall.asl 
+ *  @script chain_mfcall.asl 
  * 
  *  @comment show mf call 
  *  @release CARBON 
@@ -71,7 +71,9 @@
        a= x;
 
        <<"$_proc %V $x $a\n";
-           //   myprint ();
+             <<"calling cmf myprint from $_proc\n"
+         this->myprint();
+	 
        }
 //==========================
 
@@ -79,7 +81,9 @@
      {
 
        <<"$_proc getting $a\n";
-      // print ();
+       <<"calling cmf myprint from $_proc\n"
+         this->myprint();
+	 
          return a;
        }
  //==========================
@@ -132,13 +136,8 @@
 
        b =y;
 
-       print ()
+       myprint ()
 
-       }
-
-     void print ()
-      {
-       <<"cmf print %V $a $b\n";
        }
 
      void myprint ()
@@ -288,7 +287,7 @@ if (fix_bug) {
 
      acalc.set(47.0,79.0);
 
-     acalc.print();
+     acalc.myprint();
 
      FV = fgen(10,0,1);
 

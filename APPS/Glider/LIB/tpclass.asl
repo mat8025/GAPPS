@@ -14,9 +14,6 @@
 
 
 
-
-
-
 int Tleg_id = 0;
 
 //<<"%V $_include $Tleg_id\n"

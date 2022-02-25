@@ -16,14 +16,19 @@
 ///  cinclude  ---  chain of include asl - cpp compile OK?
 ///
 
+/// cpp debug ??
+
+
 #define ASL 0
 #define CPP 1
 void
 Uac::vecWorld(Svarg * sarg)  
 {
-
+   dbt("debug 1\n");
    Str ans= "xyz";
    cout << "hello simple Vec test  " << ans << endl;
+
+   dbt("debug in vecWorld\n");
 
   Siv M(INT_);
 
@@ -32,7 +37,7 @@ Uac::vecWorld(Svarg * sarg)
   cout << "Siv M " << M << endl;
   
 double rms;
-
+double val;
  Vec V(DOUBLE,10,10,1);
 
   V.pinfo();
@@ -55,7 +60,7 @@ cout << "V[7] " << rms << endl;
 
 cout << "U = " << U << endl;
 
- Vec W(DOUBLE,10,20,1);
+ Vec W(INT,10,20,1);
 
  W.pinfo();
 
@@ -64,15 +69,39 @@ cout << "U = " << U << endl;
 
   W.pinfo();
 
-cout << " W = V " << W << endl;
+ cout << " W = V " << W << endl;
 
  W = V + U;
 
-cout << " W = V+U " << W << endl;
+ cout << " W = V+U " << W << endl;
 
-Vec T = W + U + V;
+ //W[2] = 2222;
+    dbt("debug val %f\n",val); // appears in debug file
+ val = 2.2;
+ W *= val;
+ 
+ cout << " W *= val " << val <<" " << W << endl;
 
-cout << " T = W+V+U " << T << endl;
+  W += val;
+ cout << " W += val " << val <<" " << W << endl;
+ 
+cout << "U = " << U << endl;
+
+  U *= val;
+
+ cout << " U *= val " << val <<" " << U << endl;
+ans= query(" U *= val");
+
+
+//Vec T(DOUBLE,10,-1,-2.5);
+
+ //cout << "T = " << T << endl;
+
+ans= query("T = W + U;");
+
+Vec T =  U + W +V ; // not filled correctly TBF
+
+cout << " T = U +W+V " << T << endl;
 
 
 rms = V().rms();
@@ -82,14 +111,33 @@ rms = V().rms();
   V(4) = 82;
 
   cout << "V(4) " << V(4) << endl;
+
 //Str prompt = "?:";
 
  cout << "ans " << ans << endl;
 
 ans= query("??:");
+    V[5] = 54.67;
+
+cout << "V[5] " << V[5] << endl;
 
  cout << "ans " << ans << endl;
  
+ans= query("??:");
+
+
+    W[7] = 85;
+
+cout << "W[7] " << W[7] << endl;
+
+ cout << "ans " << ans << endl;
+ 
+ans= query("??:");
+
+
+    val = W[7];
+
+ cout << "val " << val << endl;
 
 /*
 rms = V().rms();
@@ -262,8 +310,8 @@ Svar *sp = &SV2;
 }
 
 */
-  cout << "Exit cpp HelloVec " << endl;
-
+  cout << "Exit cpp testing Vec " << endl;
+  dbt("done debug vecworlds\n");
 }
   
  
@@ -282,10 +330,11 @@ Svar *sp = &SV2;
    // and recompile uac -- one line change !
    // plus include this script into 
 
-
+    dbt("extern C test_vec\n");
     o_uac->vecWorld(sarg);
+        dbt("EXIT extern C test_vec\n");
     //o_uac->newWorld();
-
+     return 1;
   }
 
 

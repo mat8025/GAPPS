@@ -6,7 +6,7 @@
 using namespace std;
 //namespace CS1124 {
 	
-   template <class T>
+template <class T>
 	class Vector {
 
 		// Within the class definition, any use of "Vector" as a class
@@ -119,7 +119,11 @@ using namespace std;
 		}
 		return *this;
 	}
-	
+	  template <class T, class W>
+		// Note that the return type is NOT IN THE SCOPE of the function name,
+		// so we have to put Vector<T> instead of just Vector.
+	  Vector<T>& Vector<T>::operator=(const Vector<W>& right) ;
+
 	// operator<< is printing a ", " after each element in
 	// the Vector except for the last.
 	template <class T>
@@ -140,4 +144,30 @@ using namespace std;
 			return data[index];
 	}
 
+template <class T, class W>
+		// Note that the return type is NOT IN THE SCOPE of the function name,
+		// so we have to put Vector<T> instead of just Vector.
+	Vector<T>& Vector<T>::operator=(const Vector<W>& right) {
+		// Assignment operators should begin
+		// with a check that you're not being
+		// asked to do a "self-assignment" as in:
+		// x = x;
+		// Here we look to see if the "this" pointer
+		// contains the same address as the address
+		// of the argument.
+		if (this != &right) {
+			if (size != right.size) {
+				// if our target array isn't the same size
+				// as the target's, then we delete ours and
+				// get one that is the correct size.
+				delete [] data;
+				size = right.size;
+				data = new T[size];
+			}
+			for (int i = 0; i < size; i++)
+			  data[i] = (T) right.data[i];
+		}
+		return *this;
+	}
+	
 #endif

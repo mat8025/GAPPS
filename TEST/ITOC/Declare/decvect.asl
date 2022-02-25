@@ -50,13 +50,12 @@ chkIn(_dblevel)
 
    D.pinfo();
 
-chkOut()
-exit()
+
 
    D[3] = 67;
 
 <<"$D\n"
    D.pinfo()
 
-
+chkN(D[3],67);
 chkOut()

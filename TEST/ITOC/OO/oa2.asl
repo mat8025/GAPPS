@@ -441,13 +441,13 @@ chkStage(" Simple Get/Set")
 <<"\n//////////////// Direct Set-Get /////////////////\n"
  pass = 1
 
- X[0]->otype = 50
- X[1]->otype = 79
- X[2]->otype = 47
- X[3]->otype = 80;
+ X[0].otype = 50
+ X[1].otype = 79
+ X[2].otype = 47
+ X[3].otype = 80;
 
  
- yt = X[2]->otype
+ yt = X[2].otype
 
 <<"47? type for 2 $yt $(typeof(yt)) \n"
 
@@ -455,34 +455,34 @@ chkStage(" Simple Get/Set")
   X.pinfo()
 
 
- yt = X[3]->otype;
+ yt = X[3].otype;
 
 <<"80? type for X[3] $yt \n"
 
  chkN(yt,80);
   
- yt = X[0]->otype
+ yt = X[0].otype
 
 <<"type for 0 $yt \n"
 
  chkN(yt,50);
 
 
- yt = X[1]->otype
+ yt = X[1].otype
 <<"type for 1 $yt = 79 ?\n"
 
  chkN(yt,79) ;
 
 
 
- yt = X[2]->otype
+ yt = X[2].otype
 <<"otype for 2 $yt = 47 ?\n"
 
  chkN(yt,47) 
 
  i = 3
- X[i]->otype = 90
- yt = X[i]->otype
+ X[i].otype = 90
+ yt = X[i].otype
 
 <<"otype for $i $yt = 90 ?\n"
 
@@ -498,16 +498,16 @@ chkStage(" Simple Get/Set")
  ival = 50;
  
  i = 2
- X[i]->otype = ival
- yt = X[i]->otype
+ X[i].otype = ival
+ yt = X[i].otype
 
   chkN(yt,ival)
 
 <<"otype for $i $yt = $val ?\n"
 
  for (i = 0; i < 4; i++) {
-  X[i]->otype = ival
-  yt = X[i]->otype
+  X[i].otype = ival
+  yt = X[i].otype
 
 <<"otype for $i $yt = $val ?\n"
 
@@ -535,20 +535,20 @@ chkStage(" Simple Get/Set")
  m2 =3
  X.pinfo()
 
- yst =  X[2]->Set(m)
+ yst =  X[2].Set(m)
 
  <<"%V $yst\n"
  
 !i yst
 
  
- yst =  X[3]->Set(m2)
+ yst =  X[3].Set(m2)
  
 !i yst
 
  
 
- yst =  X[m2]->Set(m2)
+ yst =  X[m2].Set(m2)
 
 <<"%V $yst\n"
 
@@ -556,9 +556,9 @@ chkStage(" Simple Get/Set")
 
  i = 2
 
- yt  =  X[i]->otype
+ yt  =  X[i].otype
 
- ygt =  X[i]->Get()
+ ygt =  X[i].Get()
 
 <<"2 otype %V $yst $yt $ygt\n"
 
@@ -568,9 +568,9 @@ chkStage(" Simple Get/Set")
  j = 66;
  for (i = 0; i < 4; i++) {
 
-   yst =  X[i]->Set(j)
-   yt = X[i]->otype
-   ygt =  X[i]->Get()
+   yst =  X[i].Set(j)
+   yt = X[i].otype
+   ygt =  X[i].Get()
 <<"otype for $i $yst $yt $ygt $j\n"
    if (yt != ygt) { 
       pass = 0
@@ -582,9 +582,9 @@ chkStage(" Simple Get/Set")
 
  j = 7;
  i = 4
- yst =  X[i]->Set(j)
- yt  =  X[i]->otype
- ygt =  X[i]->Get()
+ yst =  X[i].Set(j)
+ yt  =  X[i].otype
+ ygt =  X[i].Get()
 
  if (yt != 7) {
     pass = 0
@@ -600,9 +600,9 @@ pass1= chkN(yst,7)
 <<" PASS? $pass $pass1\n"
 
 i = 3
-yst =  X[i]->Set(8)
- yt  =  X[i]->otype
- ygt =  X[i]->Get()
+yst =  X[i].Set(8)
+ yt  =  X[i].otype
+ ygt =  X[i].Get()
 
  if (yt != 8) {
     pass = 0
@@ -621,58 +621,58 @@ pass1= chkN(yst,8)
 
 for (i = 5; i >= 0; i--) {
 
-   yt = X[i]->otype
-   ygt =  X[i]->Get()
+   yt = X[i].otype
+   ygt =  X[i].Get()
 <<"type for $i  $yt $ygt \n"
 
 }
 
 
 
- X[0]->otype = 2;
+ X[0].otype = 2;
 
- yt = X[0]->otype;
+ yt = X[0].otype;
 
- <<"%V$yt  $X[0]->otype \n"
+ <<"%V$yt  $X[0].otype \n"
 
   chkN(yt,2)
 
- X[2]->otype = 28
+ X[2].otype = 28
 
- yt2 =  X[2]->otype
+ yt2 =  X[2].otype
 
- <<"%V$yt2  $X[2]->otype \n"
+ <<"%V$yt2  $X[2].otype \n"
 
   chkN(yt2,28)
 
-    X[1]->otype = 79
+    X[1].otype = 79
 
-    yt1 =  X[1]->otype
+    yt1 =  X[1].otype
 
- <<"%V$yt1  $X[1]->otype \n"
+ <<"%V$yt1  $X[1].otype \n"
 
   chkN(yt1,79)
 
-  yt = X[0]->otype
+  yt = X[0].otype
  
-  <<"%V$yt  $X[0]->otype \n"
+  <<"%V$yt  $X[0].otype \n"
 
    chkN(yt,2)
 
-   yt = X[1]->otype
-   <<"%V  $yt  $X[1]->otype \n"
-   yt = X[2]->otype
-   <<"%V  $yt  $X[2]->otype \n"
+   yt = X[1].otype
+   <<"%V  $yt  $X[1].otype \n"
+   yt = X[2].otype
+   <<"%V  $yt  $X[2].otype \n"
 
    chkN(yt,28)
 
  for ( i = 0; i < 4; i++) { 
-   yt = X[i]->otype
-   <<"%V $i $yt  $X[i]->otype \n"
+   yt = X[i].otype
+   <<"%V $i $yt  $X[i].otype \n"
  }
 
-   yt = X[1]->otype
-   <<"%V  $yt  $X[1]->otype \n"
+   yt = X[1].otype
+   <<"%V  $yt  $X[1].otype \n"
 
 
 
@@ -742,11 +742,11 @@ class Dil {
 
 
 
- od =E->Get();
-<<"E->w_day $od  $E->w_day\n"
+ od =E.Get();
+<<"E.w_day $od  $E.w_day\n"
  od.pinfo()
 
-//E->w_day.pinfo();  // broke
+//E.w_day.pinfo();  // broke
 
 chkN(od,1)
 
@@ -760,7 +760,7 @@ Dil H[2];
 
 H.pinfo()
 
-od = H[1]->Get();
+od = H[1].Get();
 
 <<"%V $od\n"
 
@@ -787,11 +787,11 @@ syt = 80 //
 //int gyt
 <<"nested class setting direct reference %V $syt \n"
 
-   E->B->t = syt;
+   E.B.t = syt;
 
-<<"%V $E->B->t \n"
+<<"%V $E.B.t \n"
 
-   tys = E->B->t;
+   tys = E.B.t;
 
 <<"%V $syt  $tys \n"
 
@@ -804,7 +804,7 @@ syt = 80 //
 
 
 
- gyt = E->B->t;
+ gyt = E.B.t;
 
 <<" $gyt $(typeof(gyt)) \n"
 
@@ -817,51 +817,51 @@ syt = 60; //
 
 <<"nested class setting direct reference %V $syt \n"
 
- E->B->t = syt
+ E.B.t = syt
 
- gyt = E->B->t
+ gyt = E.B.t
 
 <<"nested class getting direct reference %V $gyt \n"
 
 k = 3;
    chkN(gyt,60)
 
+// dot ref should work for nested class
+
+ E.A[0].t = 28;
 
 
- E->A[0]->t = 28;
-
-
- t1 = E->A[0]->t;
+ t1 = E.A[0].t;
 
 <<"$t1\n"
-<<"%V $E->A[0]->t \n"
+<<"%V $E.A[0].t \n"
 
 
 
- E->A[1]->t = 92;
+ E.A[1].t = 92;
 
- E->A[k]->t = 72;
+ E.A[k].t = 72;
 
- t1 = E->A[k]->t;
+ t1 = E.A[k].t;
 
 <<"%V $k $t1\n"
-<<"%V $E->A[0]->t \n"
+<<"%V $E.A[0].t \n"
 
 chkN(t1,72);
 
 
 
- yt0 = E->A[0]->t
+ yt0 = E.A[0].t
 
 <<"%V $yt0 \n"
 
 
 
- yt1 = E->A[1]->t;
+ yt1 = E.A[1].t;
 
 <<"%V $yt1 \n"
 
- yt3 = E->A[3]->t
+ yt3 = E.A[3].t
 
 <<"%V $yt3 \n"
 
@@ -871,13 +871,13 @@ chkN(yt3,72);
 
 
 
- E->A[1]->t = 29;
- E->A[2]->t = 92;
- E->A[3]->t = 75;
+ E.A[1].t = 29;
+ E.A[2].t = 92;
+ E.A[3].t = 75;
 
- yt0 = E->A[0]->t
+ yt0 = E.A[0].t
 
-<<"%V $E->A[0]->t \n"
+<<"%V $E.A[0].t \n"
 
 <<"%V $yt0 \n"
 
@@ -886,7 +886,7 @@ chkN(yt3,72);
 
 
 
- yt1 = E->A[1]->t
+ yt1 = E.A[1].t
 
 <<"%V $yt1 \n"
 
@@ -894,7 +894,7 @@ chkN(yt3,72);
 
 //chkOut()
 
- yt2 = E->A[2]->t
+ yt2 = E.A[2].t
 
 <<"%V $yt2 \n"
 
@@ -905,7 +905,7 @@ chkN(yt3,72);
 
 // FIX crash -- xic generation?
 
- yt3 = E->A[3]->t
+ yt3 = E.A[3].t
 
 <<"%V $yt3 \n"
 
@@ -916,7 +916,7 @@ chkN(yt3,72);
 
   j = 2
 
- yt = E->A[j]->t
+ yt = E.A[j].t
 
 <<" [${j}] $yt \n"
 
@@ -930,14 +930,14 @@ chkN(yt3,72);
 
  for (j = 0; j < 4 ; j++) {
 
-    yt = E->A[j]->t
+    yt = E.A[j].t
     <<" [${j}] $yt \n"
  }
 
 <<"\n"
 
 
-yt = E->A[3]->t;
+yt = E.A[3].t;
 
 chkN(yt,75);
 
@@ -947,7 +947,7 @@ chkN(yt,75);
 
  for (j = 0; j < 10 ; j++) {
 
-    E->A[j]->t = 50 + j;
+    E.A[j].t = 50 + j;
 
 }
 
@@ -958,7 +958,7 @@ chkN(yt,75);
 
  for (j = 0; j < 10 ; j++) {
 
-    yt = E->A[j]->t;
+    yt = E.A[j].t;
     <<" [${j}] $yt \n"
  }
 
@@ -968,31 +968,31 @@ chkN(yt,75);
 
 //iread()
 
-yt2 = E->A[2]->t
+yt2 = E.A[2].t
 
 <<"%V $yt2 \n"
 
-yt1 = E->A[1]->t
+yt1 = E.A[1].t
 
 <<"%V $yt1 \n"
 
 j = 3
- yt3 = E->A[j]->t
+ yt3 = E.A[j].t
 
 <<"%V $yt3 \n"
 
- yt3 = E->A[3]->t
+ yt3 = E.A[3].t
 
 <<"bug? %V $yt3 \n"
 
 
 
- yt4 = E->A[4]->t
+ yt4 = E.A[4].t
 
 <<"?%V $yt4 \n"
 
 
- yt8 = E->A[8]->t
+ yt8 = E.A[8].t
 
 <<"%V $yt8 \n"
  chkN(yt8,58)

@@ -1036,3 +1036,11 @@ asl.cpp                             3.85  02/18/2022 12:07:47
 declare_e.cpp                       2.30  02/19/2022 21:18:33  Vec template declare
 vec.h                               1.4  02/19/2022 21:20:31  template vers
 vec_ops.cpp                         1.4  02/19/2022 21:21:36  template 
+vec_ops.cpp                         1.5  02/23/2022 08:44:26  sop
+vec.h                               1.5  02/23/2022 08:45:45  sop
+oo_stack.cpp                        2.2  02/23/2022 13:11:26  revise
+oo_class_mbr.cpp                    2.40  02/23/2022 13:12:07  refactor
+ssop.cpp                            1.95  02/24/2022 16:10:04  pp
+ssop.cpp                            1.96  02/24/2022 16:40:20  pp
+ssop.cpp                            1.95  02/24/2022 16:41:10  nsc
+proc_checkfname_e.cpp               2.48  02/24/2022 16:42:09  vmf/cmf try sequence
