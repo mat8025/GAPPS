@@ -82,7 +82,10 @@ class Turnpt
 
 //  method list
 
-  void TPset (Svar wval) 
+// for cpp  either use reference or ptr
+// else copy constructor - memory corruption??
+
+  void TPset (Svar& wval) 
    {
 
 //<<"TPset $_proc $wval \n"
@@ -121,34 +124,37 @@ class Turnpt
       }
 //=========================//
 
-  void TPCUPset (Svar wval) 
+  void TPCUPset (Svar& wval) 
    {
    
 
 
 Str val;
+Str val2;
 
 //<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
 
      val = wval[0];
 
+//cout << "val " << val << endl;
+
      val.dewhite();
-     
-     val.pinfo();
 
+//cout << "val " << val << endl;
 
+    // val.pinfo();
 
-
-     val = scut(val,1);
-     val = scut(val,-1);
-
+     val.scut(1);
+//cout << "val " << val << endl;     
+     val.scut(-1);
+//cout << "val " << val << endl;
      Place = val; // wayp 
     
-//   <<"%V$Place\n"
+cout << "Place " << Place << endl;
 
      val =  wval[1];
-     val = scut(val,1);
-     val = scut(val,-1);
+     val.scut(1);
+     val.scut(-1);
 
      Idnt = val;
 
@@ -165,20 +171,20 @@ Str val;
 
 //  <<"%V$val  \n"
 
-     val = scut(wval[5],-2); 
+     val.scut(-2); 
 
 //     <<"%V$val  \n"
 
 
      Alt = atof(val);
-
+cout  <<"Alt "<< Alt  <<endl ; 
 //     <<"%V$Alt  \n"
 
      is_airport =0;
 
      rway = wval[6];
 
-  //  <<"%V$rway  \n"
+cout << "rway " << rway  << endl;
 
      if (rway == "5") {
          is_airport =1;
@@ -199,7 +205,8 @@ Str val;
 
      Radio = wval[9];
 
-//     <<"%V$Radio  \n"
+//     
+ cout  <<"Radio "<< Radio  <<endl ; 
 
      tptype = wval[10];
      
@@ -207,10 +214,11 @@ Str val;
 
      Ladeg =  coorToDeg(Lat,2); 
 
+cout  <<"Lat " << Lat <<" Ladeg "<< Ladeg  <<endl ; 
+
      Longdeg = coorToDeg(Lon,2);
-     
 
-
+cout  <<"Lon " << Lon <<" Longdeg "<< Longdeg  <<endl ; 
 
       }
 //=========================//

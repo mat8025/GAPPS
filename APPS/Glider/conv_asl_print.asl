@@ -79,7 +79,7 @@ Str co= "";
 //s= '<<"%V  $nl $Wtp[nl].Place   $Wtp[nl].fga\n";'
 
 s= '   \
-  <<"%V  $CSK knots $Cruise_speed kmh\n";   '
+<<"$n_legs $Wval[0] $Wval[1] $Wval[3] $Wval[4] \n" '
 
 
  trans()

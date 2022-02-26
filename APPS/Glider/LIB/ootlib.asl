@@ -68,14 +68,13 @@
 //============================================
 
 
+  Vec IGCLONG(FLOAT,20);
 
-  Vec IGCLONG(FLOAT,10);
+  Vec IGCLAT(FLOAT,30);
 
-  Vec IGCLAT(FLOAT,10);
+  Vec IGCELE(FLOAT,40);
 
-  Vec IGCELE(FLOAT,10);
-
-  Vec IGCTIM(FLOAT,10);
+  Vec IGCTIM(FLOAT,50);
 
 
   float computeGCD(float la1,float la2,float lo1,float lo2)
@@ -427,6 +426,7 @@ cout  <<" sslng " << sslng  << endl;
 
   }
 //========================
+
 
   float ComputeTC(int j, int k)
   {

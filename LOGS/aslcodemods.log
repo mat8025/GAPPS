@@ -1044,3 +1044,5 @@ ssop.cpp                            1.95  02/24/2022 16:10:04  pp
 ssop.cpp                            1.96  02/24/2022 16:40:20  pp
 ssop.cpp                            1.95  02/24/2022 16:41:10  nsc
 proc_checkfname_e.cpp               2.48  02/24/2022 16:42:09  vmf/cmf try sequence
+fileop.cpp                          1.78  02/25/2022 20:05:43  getWords
+svar_pf.cpp                         1.65  02/25/2022 20:07:02  getWords

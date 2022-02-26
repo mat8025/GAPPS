@@ -83,8 +83,8 @@ cout << " str t = "  << t << endl;
 
 cout << "[2] str t = "  << t << endl;
 Str r;
-
-r = scut(t,3);
+r =t;
+r.scut(3);
 
 cout << "str r = "  << r << endl;
 

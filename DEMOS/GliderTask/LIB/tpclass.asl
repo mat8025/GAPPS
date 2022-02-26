@@ -169,21 +169,21 @@ Str Lon2;
 Str Lat2;
 //<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
 
-     val = dewhite(wval[0])
+     val = dewhite(wval[0]);
 //val->info(1)
 //<<"%V$val  \n"
 
 
-     val = scut(val,1)
-     val = scut(val,-1)
+     val=scut(val,1);
+     val=scut(val,-1);
 
      Place = val; // wayp 
     
 //   <<"%V$Place\n"
 
      val =  wval[1];
-     val = scut(val,1)
-     val = scut(val,-1)
+     val=scut(val,1);
+     val=scut(val,-1);
 
      Idnt = val;
 
@@ -211,7 +211,7 @@ Str Lat2;
 
 //  <<"%V$val  \n"
 
-     val = scut(wval[5],-2); 
+     scut(val,-2); 
 
 //     <<"%V$val  \n"
 

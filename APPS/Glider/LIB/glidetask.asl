@@ -23,8 +23,9 @@ float CSK;
 float Cruise_speed;
 
 Svar Task;
- 
+
 #include "conv.asl"
+
 #include "tpclass.asl"
 
 Turnpt  Wtp[50];
@@ -33,23 +34,30 @@ Tleg  Wleg[20];
 
 #include "ootlib.asl"
 
+
+
   int via_keyb = 0;
 
   int via_file = 0;
 
   int via_cl = 1;
   int ok_to_compute = 1;
+  long where ;
+  
 void
 Uac::glideTask(Svarg * sarg)  
 {
 
  Str a0  = sarg->getArgStr(0) ;
 
+a0.pinfo();
  Svar sa;
 
- sa.split(a0.cptr(),' ');
+ sa.findWords(a0.cptr());
 
-cout << " gliderTask paras are: sa "  << sa << endl;
+cout << " gliderTask paras are:  "  << sa << endl;
+
+cout << " para[1] is:  "  << sa.cptr(1) << endl;
 
 
  // ignoreErrors(); // put in uac.h ??
@@ -88,6 +96,7 @@ int  Main_init = 1;
   Svar CLTPT;
 
   Svar Wval;
+  Svar Wval2;  
 
   Str tpb ="";
 
@@ -130,18 +139,16 @@ int  Main_init = 1;
 
 //main
 
-  int na = getargc();
+//  int na = getargc();
+
+  int na = sa.getNarg();
 
 //  DBG"%v $na\n";
 
   printf(" na %d\n",na);
 
 
-
-  int ac = 1;
-
-
-
+  int ac = 0;
 
   float LoD = 35;
 
@@ -160,11 +167,15 @@ int  Main_init = 1;
 
   targ = sa.cptr(ac);
 
+cout <<"ac "<< ac <<" " << targ << endl;
+
 //  DBG"%V $ac $targ\n";
 
   sz = targ.slen();
 
   ac++;
+
+  if (sz > 0) {
 
   if (targ == "LD") {
 
@@ -188,7 +199,7 @@ int  Main_init = 1;
 
   Cruise_speed = (CSK * nm_to_km);
 
- printf("setting CS CSK %f knots Cruise_speed %f kmh \n",CSK,Cruise_speed);
+    printf("setting CS CSK %f knots Cruise_speed %f kmh \n",CSK,Cruise_speed);
 
   }
 
@@ -226,13 +237,13 @@ int  Main_init = 1;
 
   if (targ == ">") {
 
-  break;
+     break;
 
   }
 
-  if (targ == "briefreport") {
+  if (targ == "brief") {
 
-  brief = 1;
+     brief = 1;
 
   }
 
@@ -259,12 +270,13 @@ int  Main_init = 1;
 
 
 //	<<"%V$targ $sz $cltpt $CLTPT[cltpt] \n"
+cout  <<"cltpt "<< cltpt  <<" CLTPT[cltpt] "<< CLTPT[cltpt]  <<endl ; 
 
   cltpt++;
 
   }
     //    <<"%V $ac  $targ $sz \n"
-
+   } // arg was valid
   }
 // look up lat/long
 
@@ -284,7 +296,7 @@ int  Main_init = 1;
   int i = -1;
 
 
- cout << "DONE ARGS  " << endl;
+ cout << "DONE ARGS  ac "<<ac << endl;
 
 
 
@@ -292,6 +304,8 @@ int  Main_init = 1;
 ////   do this to check routine    
     //<<"Start  $the_start \n"
 // first parse code bug on reading svar fields?
+
+
   int k;
   
   for (k= 0; k < cltpt; k++) {
@@ -302,8 +316,8 @@ cout  <<" "<< k  <<" "<< CLTPT[k]  <<endl ;
 /////////////////////////////
 
   i = -1;
-
-  while ( i == -1) {
+ int got_start = 0;
+  while ( !got_start) {
 
  // <<[_DB]" iw %V $cnttpt $i %v $via_keyb $via_cl\n";
 
@@ -322,7 +336,7 @@ cout  <<" "<< k  <<" "<< CLTPT[k]  <<endl ;
 
    }
 
-  }
+  
 
 //  else {
 //
@@ -359,10 +373,10 @@ cout  <<" "<< k  <<" "<< CLTPT[k]  <<endl ;
   if (i == -1) {
 
   the_start = nameMangle(the_start);
-
+  i=searchFile(AFH,the_start,0,1,0);
   }
 
-  i=searchFile(AFH,the_start,0,1,0);
+
 
   if (i == -1) {
 
@@ -379,9 +393,16 @@ cout  <<" "<< the_start  << "not "  << "found "  <<endl ;
 
   }
 
+
+  }
+
+  got_start =1;
+}
+
 //  DBG"inputs  $the_start\n";
 // -------------------------------
 //<<"%V$input_lat_long  $i \n"
+
   int nwr;
   Str w;
   if (input_lat_long) {
@@ -413,7 +434,10 @@ cout  <<" "<< the_start  << "not "  << "found "  <<endl ;
   if (use_cup) {
 
    nwr = Wval.readWords(AFH,0,',');
-//<<"%V $nwr\n"
+
+
+   cout <<" cup nwr " << nwr << endl;
+
 //<<"$Wval[0] $Wval[1] $Wval[3] $Wval[4] \n"	 
 
    }
@@ -447,25 +471,22 @@ cout  <<" "<< the_start  << "not "  << "found "  <<endl ;
 //<<"$Wval[::]\n"	  
 
   if (use_cup) {
-
    Wtp[n_legs].TPCUPset(Wval);
-
    }
-
   else {
-
      Wtp[n_legs].TPset(Wval);
-
    }
 
-  }
+ }
 
-  }
+   
+  cout << "Next TP " << endl;
+  
 //<<"next \n"
 // NEXT TURN
 
   int more_legs = 1;
-  int nwr;
+
   int ok_to_compute = 1;
  // FIX
 
@@ -510,11 +531,17 @@ cout  <<" "<< the_start  << "not "  << "found "  <<endl ;
 
   else {
 
-  i=searchFile(AFH,nxttpt,0,1,0);
+  cout <<"looking for " << nxttpt << endl;
 
-  if (i == -1) {
 
-//   <<"$nxttpt not found \n";
+  where =searchFile(AFH,nxttpt,0,1,0);
+
+  cout <<"Found? " << nxttpt << " @ " << where <<endl;
+
+
+  if (where  == -1) {
+
+   cout <<"not found! " << nxttpt << endl;
 
    ok_to_compute = 0;
 
@@ -530,13 +557,15 @@ printf ("nxttpt not found %s",nxttpt);
 
   if (more_legs) {
 
-  fseek(AFH,i,0);
+  where = fseek(AFH,where,0);
 
   n_legs++;
 
+cout << " n_legs "<< n_legs <<" @ " << where << endl;
+
   if (via_keyb) {
 
-  pclFile(AFH);
+      pclFile(AFH);
 
    }
 
@@ -546,16 +575,26 @@ printf ("nxttpt not found %s",nxttpt);
    }
 	// fseek(A,w,0)
 
-  ki = seekLine(AFH,0);
+  where  = seekLine(AFH,0);
+
+cout << n_legs <<" @2 " << where << endl;
 
   if (use_cup) {
 
+ //  nwr = Wval.readWords(AFH,0,',');
+ 
    nwr = Wval.readWords(AFH,0,',');
-//<<"%V $nwr\n"
-//<<"$n_legs $Wval[0] $Wval[1] $Wval[3] $Wval[4] \n"
+   
+    cout <<" next  nwr " << nwr << endl;
+
+
+// <<"$n_legs $Wval[0] $Wval[1] $Wval[3] $Wval[4] \n"
 
    Wtp[n_legs].TPCUPset(Wval);
 
+ //  cout  <<" "<< n_legs  <<" "<< Wval2[0]  <<" "<< Wval2[1]  <<" "<< Wval2[3]  <<" "<< Wval2[4]  <<endl ; 
+ //  Wval2.vfree();
+   
    }
 
   else {
@@ -726,6 +765,7 @@ cout  <<"tpb "<< tpb  <<"ident "<< ident  <<endl ;
 
 
   li = nl;
+  
 
   rtotal += the_leg;
 
@@ -770,9 +810,11 @@ cout  <<"tpb "<< tpb  <<"ident "<< ident  <<endl ;
   Str wsi= nsc((15-idlen)," ");
  // <<"$li $Wleg[li]->dist  $Wleg[li]->pc_tot \n"
 
-  <<"$li ${tpb}${ws}${ident}${wsi} %9.3f${Wtp[li]->Lat} %11.3f${Wtp[li]->Lon}\s%11.0f${Wtp[li]->fga} ${Wtp[li]->Alt} %4.1f$Wleg[li]->pc_tot\t";
+ // <<"$li ${tpb}${ws}${ident}${wsi} %9.3f${Wtp[li]->Lat} %11.3f${Wtp[li]->Lon}\s%11.0f${Wtp[li]->fga} ${Wtp[li]->Alt} %4.1f$Wleg[li]->pc_tot\t";
 
-  <<"%5.1f$Wleg[li]->dist\t$rtotal\t$rtime\t%6.2f${Wtp[li]->Radio}";
+ // <<"%5.1f$Wleg[li]->dist\t$rtotal\t$rtime\t%6.2f${Wtp[li]->Radio}";
+  printf("%5.1f dist \n",Wleg[li].dist);
+  
 //cout  << "%5.1f$Wleg[li]->dist\t$rtotal\t$rtime\t%6.2f${Wtp[li]->Radio} " ; 
   printf("\t%6.0f",TC[li]);
 
@@ -783,21 +825,22 @@ cout  <<"tpb "<< tpb  <<"ident "<< ident  <<endl ;
 
   if (show_dist) {
 
-  <<"Total distance\t %8.2f$totalD km\t%8.2f$(totalD*km_to_sm) sm\t%6.2f$(totalD*km_to_nm) nm    LOD %6.1f$LoD \n";
+  //<<"Total distance\t %8.2f$totalD km\t%8.2f$(totalD*km_to_sm) sm\t%6.2f$(totalD*km_to_nm) nm    LOD %6.1f$LoD \n";
 
-  <<" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n";
+  //<<" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n";
 
   }
 
   else {
 
-  <<"# \n";
+ // <<"# \n";
 
   }
 
   }
 
-  <<"%6.1f$totalD km to fly -  $totalDur hrs - bon voyage!\n";
+//  <<"%6.1f $totalD km to fly -  $totalDur hrs - bon voyage!\n";
+ cout   << totalD  << "km to fly - " << totalDur  << "hrs "  << "- bon voyage! "  <<endl ; 
 
 }
 
@@ -810,13 +853,12 @@ extern "C" int glider_task(Svarg * sarg)  {
 
  Str a0 = sarg->getArgStr(0) ;
 
+ a0.pinfo();
 
 Str Use_ ="compute task distance\n  e.g  asl anytask.asl   gross laramie mtevans boulder  LD 40";
 
 
-
-
- cout << " glider task app " << Use_   << endl;
+ cout << " glideTask app " << Use_   << endl;
  cout << " paras are: "  << " a0 " <<  a0 << endl;
 
     Uac *o_uac = new Uac;
