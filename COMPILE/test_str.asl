@@ -13,8 +13,9 @@
 ;//-----------------<v_&_v>------------------------//
 
 ///
-///  cinclude  ---  chain of include asl - cpp compile OK?
+///  
 ///
+
 
 #define ASL 0
 #define CPP 1
@@ -51,8 +52,13 @@ printf("cv %s\n",cv);
 
  printf("c  %c\n",c);
 
+  c = s[3];
+
+ printf("c  %c\n",c);
+
  c='L';
 
+  s[1] ='a';
  s[2] =c;
  s[5] = '_';
  

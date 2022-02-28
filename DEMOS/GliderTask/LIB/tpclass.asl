@@ -255,7 +255,7 @@ Str Lat2;
 
      Longdeg = coorToDeg(Lon);
      
-
+<<"%V $Ladeg  $Longdeg \n"
 
 
       }

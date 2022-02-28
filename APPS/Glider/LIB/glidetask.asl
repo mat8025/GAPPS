@@ -531,12 +531,12 @@ cout  <<" "<< the_start  << "not "  << "found "  <<endl ;
 
   else {
 
-  cout <<"looking for " << nxttpt << endl;
+ // cout <<"looking for " << nxttpt << endl;
 
 
   where =searchFile(AFH,nxttpt,0,1,0);
 
-  cout <<"Found? " << nxttpt << " @ " << where <<endl;
+//  cout <<"Found? " << nxttpt << " @ " << where <<endl;
 
 
   if (where  == -1) {
@@ -546,7 +546,7 @@ cout  <<" "<< the_start  << "not "  << "found "  <<endl ;
    ok_to_compute = 0;
 
    if (!via_keyb) {
-printf ("nxttpt not found %s",nxttpt);
+        printf ("nxttpt not found %s",nxttpt);
      exit(-1);
 
      }
@@ -641,7 +641,8 @@ cout  << "Leg   TP      ID   LAT      LONGI      FGA    "  << "MSL   PC    "  <<
 //totalD->info(1)
 
   float TKM[20];
-  float L1,L2,lo1,lo2,tkm;
+  float L1,L2,lo1,lo2;
+  double tkm;
   float tcd,rmsl,msl;
   int nl,li;
   Str ident;
@@ -658,8 +659,8 @@ cout  << "Leg   TP      ID   LAT      LONGI      FGA    "  << "MSL   PC    "  <<
        //DBG"%V $lo1 $lo2 \n"
       // tkm = ComputeTPD(nl, nl+1);
 
-  tkm = HowFar(L1,lo1 , L2, lo2 );
-      // DBG"%V $nl $tkm \n"
+  tkm = HowFar(lo1 ,L1, lo2, L2);
+cout << "L1 " << L1 << " lo1 " << lo1 << " L2 " << L2 << " lo2 " << lo2 << " tkm " << tkm << endl;      // DBG"%V $nl $tkm \n"
 
   TKM[nl] = tkm;
 
@@ -752,14 +753,14 @@ cout  << "Leg   TP      ID   LAT      LONGI      FGA    "  << "MSL   PC    "  <<
   tpb = Wtp[nl].Place;
 
 //<<"%V  $nl $Wtp[nl].Place   $Wtp[nl].fga\n"
-cout  <<"nl "<< nl  <<"Wtp[nl].Place "<< Wtp[nl].Place  <<"Wtp[nl].fga "<< Wtp[nl].fga  <<endl ;
+//cout  <<"nl "<< nl  <<"Wtp[nl].Place "<< Wtp[nl].Place  <<"Wtp[nl].fga "<< Wtp[nl].fga  <<endl ;
 
 
   ident = Wtp[nl].Idnt;
 
 //<<"%V $tpb $ident \n"
 
-cout  <<"tpb "<< tpb  <<"ident "<< ident  <<endl ; 
+//cout  <<"tpb "<< tpb  <<" ident "<< ident  <<endl ; 
 
 
 
@@ -811,9 +812,9 @@ cout  <<"tpb "<< tpb  <<"ident "<< ident  <<endl ;
  // <<"$li $Wleg[li]->dist  $Wleg[li]->pc_tot \n"
 
  // <<"$li ${tpb}${ws}${ident}${wsi} %9.3f${Wtp[li]->Lat} %11.3f${Wtp[li]->Lon}\s%11.0f${Wtp[li]->fga} ${Wtp[li]->Alt} %4.1f$Wleg[li]->pc_tot\t";
-
+ printf("%d %s  %s %s   %f   %f         ",li,ident.cptr(),Wtp[li].Lat.cptr(),Wtp[li].Lon.cptr(), Wtp[li].fga, Wtp[li].Alt);
  // <<"%5.1f$Wleg[li]->dist\t$rtotal\t$rtime\t%6.2f${Wtp[li]->Radio}";
-  printf("%5.1f dist \n",Wleg[li].dist);
+  printf("%5.1f ",Wleg[li].dist);
   
 //cout  << "%5.1f$Wleg[li]->dist\t$rtotal\t$rtime\t%6.2f${Wtp[li]->Radio} " ; 
   printf("\t%6.0f",TC[li]);

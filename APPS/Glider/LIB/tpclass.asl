@@ -131,7 +131,7 @@ class Turnpt
 
 Str val;
 Str val2;
-
+Str Lon2;
 //<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
 
      val = wval[0];
@@ -150,7 +150,7 @@ Str val2;
 //cout << "val " << val << endl;
      Place = val; // wayp 
     
-cout << "Place " << Place << endl;
+//cout << "Place " << Place << endl;
 
      val =  wval[1];
      val.scut(1);
@@ -164,7 +164,7 @@ cout << "Place " << Place << endl;
      Lat = wval[3]; // wayp 
 
      Lon = wval[4];
-
+    // Lon =ccoor (Lon2);
 //  <<"%V$Lon  \n"
   
      val = wval[5];
@@ -177,14 +177,14 @@ cout << "Place " << Place << endl;
 
 
      Alt = atof(val);
-cout  <<"Alt "<< Alt  <<endl ; 
+//cout  <<"Alt "<< Alt  <<endl ; 
 //     <<"%V$Alt  \n"
 
      is_airport =0;
 
      rway = wval[6];
 
-cout << "rway " << rway  << endl;
+//cout << "rway " << rway  << endl;
 
      if (rway == "5") {
          is_airport =1;
@@ -206,7 +206,7 @@ cout << "rway " << rway  << endl;
      Radio = wval[9];
 
 //     
- cout  <<"Radio "<< Radio  <<endl ; 
+ //cout  <<"Radio "<< Radio  <<endl ; 
 
      tptype = wval[10];
      

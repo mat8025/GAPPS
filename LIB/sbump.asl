@@ -29,7 +29,7 @@ if (_dblevel >0) {
 ignoreErrors()
 
 
-  void vers2ele(str vstr)
+  void vers2ele(Str& vstr)
   {
   //<<"%V $vstr\n"
    pmaj = atoi(spat(vstr,".",-1))
@@ -186,7 +186,7 @@ L.pinfo()
 //<<[2]"$i line is $T \n"
 
    where = ftell(A)
-   L = Split(T);
+   L.Split(T);
    sz = Caz(L);
 // <<"sz $(caz(L)) \n"
 <<[2]"$i $sz $where  $L \n"
@@ -237,7 +237,7 @@ L.pinfo()
 <<[2]"header end? line $i\n"
     // check for new
         T = readline(A);
-        L = Split(T);
+        L.Split(T);
        if (scmp(L[0],";//-",4)) {
       <<[2]"new header end? line $i\n"
        }

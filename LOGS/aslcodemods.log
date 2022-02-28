@@ -1046,3 +1046,14 @@ ssop.cpp                            1.95  02/24/2022 16:41:10  nsc
 proc_checkfname_e.cpp               2.48  02/24/2022 16:42:09  vmf/cmf try sequence
 fileop.cpp                          1.78  02/25/2022 20:05:43  getWords
 svar_pf.cpp                         1.65  02/25/2022 20:07:02  getWords
+firstpass.cpp                       2.35  02/26/2022 09:41:24  warn ascci accent?
+vmf_svar.cpp                        1.25  02/26/2022 09:44:06  fix svar split
+tokquote.cpp                        1.80  02/26/2022 14:10:02  pp
+tokfunc.cpp                         1.76  02/26/2022 14:10:34  remove cset op
+tokcmd.cpp                          1.71  02/26/2022 14:11:17  remove cset
+svar_find.cpp                       1.66  02/26/2022 14:12:17  remove cset
+svar_read.cpp                       1.61  02/26/2022 14:14:05  use getWords
+ssop.cpp                            1.97  02/27/2022 10:38:26  pp
+ssop.cpp                            1.98  02/27/2022 10:40:04  pp
+ds_types.cpp                        1.89  02/27/2022 10:44:05  svar_r,svar_p   ref,ptr
+proc_def_e.cpp                      2.67  02/27/2022 13:48:19  VM_REF

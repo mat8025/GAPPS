@@ -13,7 +13,6 @@
  */ 
                                                                          
 
-
 .de NP
 .ft R
 .sp 1
@@ -9734,7 +9733,7 @@ HowFar()
 HowFar
 .)x 
 .FD
-howFar( latA_dd, longA_dd,latB_dd, longB_dd)
+howFar( longA_dd,latA_dd,longB_dd, latB_dd)
 returns distance in kilometers between two positions
 
 

@@ -1,5 +1,7 @@
 find . -name "*.his" -print -delete
 find . -name "*.out" -print -delete
+find . -name "*.xic" -print -delete
+find . -name "tas_*.asl" -print -delete
 find . -name "*.xout" -print -delete
 find . -name "*.lic" -print -delete
 find . -name "*.err" -print -delete
