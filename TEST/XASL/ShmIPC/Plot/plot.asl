@@ -26,12 +26,15 @@ include "gevent"
     vp = cWi(@title,"PLOT_OBJECTS",@resize,0.05,0.01,0.99,0.95)
     //SetGwindow(vp,@pixmapon,@drawon,@save,@bhue,"white")
 
-    sWi(vp,@pixmapon,@drawoff,@save,@bhue,"white")
+    sWi(vp,@pixmapon,@drawoff,@save,@bhue,YELLOW_,@redraw)
 
     cx = 0.1
     cX = 0.9
     cy = 0.2
     cY = 0.95
+
+
+ans=query("See window?");
 
     // drawing area within window
     // drawing area object - wob -- needs script level class definition
@@ -60,14 +63,14 @@ include "gevent"
     sWo(g2wo,@scales, sx, sy, sX, sY,@save, @savepixmap,@redraw,@pixmapon,@drawon)
 
 
-/{
+/*
     plot(gwo,@line,-2,-2,2,2,"blue",@line,-2,2,2,-2,"red")
     //plot(gwo,@line,-2,2,2,-2,"red")
     plot(gwo,@box,-1,-1,1,1,"red",1.0)
     plot(gwo,@circle,0,0,1)
     plot(gwo,@ellipse,0,0,0.7,0.3)
     plot(gwo,@triangle,0.1,0.1,0.2,0.9,0.4,0.5,"green",1)
-/}
+*/
 
 
 
@@ -108,7 +111,7 @@ proc redraw_po()
     ticks(gwo,1)
     ticks(gwo,2)
 
-/{
+/*
     plot(gwo,@line,-2,-1,0,-1,ORANGE_,@lineto,0,1,RED_)
 
    plot(gwo,@lineto,-2,1,"blue",@lineto,-2,-1,RED_)
@@ -122,7 +125,7 @@ proc redraw_po()
     plot(gwo,@arrow,-1,-2,3,3,5,RED_,1.0)
 
     plot(gwo,@polarline,0,0,2,ang,"blue");
-/}
+*/
 
     plot(gwo,@poly,PV,BLUE_,1);
 
@@ -130,7 +133,7 @@ proc redraw_po()
 
 
 
-/{
+/*
     plot(g2wo,@line,-2,-1,0,-1,ORANGE_,@lineto,0,1,RED_)
 
     plot(g2wo,@lineto,-2,1,"blue",@lineto,-2,-1,RED_)
@@ -144,7 +147,7 @@ proc redraw_po()
     plot(g2wo,@arrow,-1,-2,3,3,5,RED_,1.0)
 
     plot(g2wo,@polarline,0,0,2,ang,"blue");
-/}
+*/
         plot(g2wo,@poly,PV2,MAGENTA_,1);
  //       plot(g2wo,@polyreg,6,1);
 
@@ -247,7 +250,7 @@ float PV2[12]
          PV2[kv++] = -1.5
 	 PV2[kv++] = 1.4	 	 	 
 
-
+   redraw_po();
 
   while (1) {
 

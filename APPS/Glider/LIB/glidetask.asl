@@ -623,7 +623,7 @@ cout << n_legs <<" @2 " << where << endl;
 cout  << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ "  <<endl ; 
 
 //  <<"Leg   TP      ID   LAT      LONGI      FGA     MSL   PC    $Units   RTOT   RTIM    Radio    TC \n";
-cout  << "Leg   TP      ID   LAT      LONGI      FGA    "  << "MSL   PC    "  <<" "<< Units   << " RTOT   RTIM  Radio  TC "  <<endl ; 
+cout  << "Leg   TP      ID   LAT      LONGI      FGA    "  << "MSL   PC    " << Units   << " RTOT   RTIM  Radio  TC "  <<endl ; 
   }
   
 // get totals
@@ -660,7 +660,7 @@ cout  << "Leg   TP      ID   LAT      LONGI      FGA    "  << "MSL   PC    "  <<
       // tkm = ComputeTPD(nl, nl+1);
 
   tkm = HowFar(lo1 ,L1, lo2, L2);
-cout << "L1 " << L1 << " lo1 " << lo1 << " L2 " << L2 << " lo2 " << lo2 << " tkm " << tkm << endl;      // DBG"%V $nl $tkm \n"
+//cout << "L1 " << L1 << " lo1 " << lo1 << " L2 " << L2 << " lo2 " << lo2 << " tkm " << tkm << endl;      // DBG"%V $nl $tkm \n"
 
   TKM[nl] = tkm;
 
@@ -812,15 +812,18 @@ cout << "L1 " << L1 << " lo1 " << lo1 << " L2 " << L2 << " lo2 " << lo2 << " tkm
  // <<"$li $Wleg[li]->dist  $Wleg[li]->pc_tot \n"
 
  // <<"$li ${tpb}${ws}${ident}${wsi} %9.3f${Wtp[li]->Lat} %11.3f${Wtp[li]->Lon}\s%11.0f${Wtp[li]->fga} ${Wtp[li]->Alt} %4.1f$Wleg[li]->pc_tot\t";
- printf("%d %s  %s %s   %f   %f         ",li,ident.cptr(),Wtp[li].Lat.cptr(),Wtp[li].Lon.cptr(), Wtp[li].fga, Wtp[li].Alt);
+ printf("%d %s  \t%s\t%s   %6.0fft   %6.0fft         ",li,ident.cptr(),Wtp[li].Lat.cptr(),Wtp[li].Lon.cptr(), Wtp[li].fga, Wtp[li].Alt);
  // <<"%5.1f$Wleg[li]->dist\t$rtotal\t$rtime\t%6.2f${Wtp[li]->Radio}";
   printf("%5.1f ",Wleg[li].dist);
   
 //cout  << "%5.1f$Wleg[li]->dist\t$rtotal\t$rtime\t%6.2f${Wtp[li]->Radio} " ; 
-  printf("\t%6.0f",TC[li]);
+  printf("\t%6.0f hdg",TC[li]);
 
+   printf("\t%6.2f %",Wleg[li].pc);
   //<<"\t%6.2f$Dur[li]\n";
-  printf("\t%6.2f\n",Dur[li]);
+  printf("\t%6.2f hrs",Dur[li]);
+
+  printf("\t%s\n",Wtp[li].Radio.cptr())  ; 
 
   }
 

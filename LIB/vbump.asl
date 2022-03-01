@@ -12,7 +12,7 @@
  */ 
 ;//----------------<v_&_v>-------------------------//;                              
   
-  Str Vers2ele(str vstr)
+  Str Vers2ele(Str& vstr)
   {
   
    pmaj = atoi(spat(vstr,"."))
@@ -150,7 +150,7 @@ Str old_comment ="yyy"
 old_comment =T;
    }
    where = ftell(A)
-   L = Split(T);
+   L.Split(T);
    sz = Caz(L);
 // <<"sz $(caz(L)) \n"
 <<[2]"$i $sz $where  $L \n"
@@ -198,7 +198,7 @@ old_comment =T;
    where = ftell(A);
 
 <<"oldc $old_comment\n"
-   L = Split(old_comment);
+   L.Split(old_comment);
    sz = Caz(L);
 <<"$sz $L[0]  $L[1] $L[2]\n"
    if (L[1] != "") {

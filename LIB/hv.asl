@@ -17,7 +17,7 @@
 
 //filterFileDebug(REJECT_,"array_");
 
-  void vers2ele(str vstr)
+  void vers2ele(Str& vstr)
   {
   //<<"%V $vstr\n"
    pmaj = atoi(spat(vstr,".",-1))

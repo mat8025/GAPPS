@@ -2,16 +2,16 @@
  *  @script ASLMAN.txt 
  * 
  *  @comment docs for ASL commands and usage 
- *  @release CARBON 
- *  @vers 2.5 B Boron [asl 6.3.61 C-Li-Pm] 
- *  @date 11/23/2021 11:18:09          
- *  @cdate 1/1/2001 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
+ *  @release CARBON for ASL commands and usage 
+ *  @vers 2.6 C 6.3.88 C-Li-Ra 
+ *  @date 02/28/2022 06:33:58          
+ *  @cdate 1/1/2001 11:18:09 Boron [asl 6.3.61 C-Li-Pm] 
+ *  @author Mark Terry Boron [asl 6.3.61 C-Li-Pm] 
+ *  @Copyright © RootMeanSquare 2022
  * 
- *  \\-----------------<v_&_v>--------------------------//  
  */ 
-                                                                         
+;//----------------<v_&_v>-------------------------//;  
+          
 
 .de NP
 .ft R

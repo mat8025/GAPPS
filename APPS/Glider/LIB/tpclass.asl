@@ -131,7 +131,7 @@ class Turnpt
 
 Str val;
 Str val2;
-Str Lon2;
+
 //<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
 
      val = wval[0];
@@ -161,10 +161,16 @@ Str Lon2;
 //  <<"%V$Idnt\n"
 //Idnt->info(1)
 
-     Lat = wval[3]; // wayp 
+     Lat = wval[3]; // wayp
+     
+//cout << "Lat " << Lat <<endl;
 
+     ccoor(Lat);
+     
      Lon = wval[4];
-    // Lon =ccoor (Lon2);
+
+     ccoor(Lon);
+
 //  <<"%V$Lon  \n"
   
      val = wval[5];
@@ -212,13 +218,13 @@ Str Lon2;
      
     // spat (tptype,"A",-1,-1,&is_airport);
 
-     Ladeg =  coorToDeg(Lat,2); 
+     Ladeg =  coorToDeg(Lat); 
 
-cout  <<"Lat " << Lat <<" Ladeg "<< Ladeg  <<endl ; 
+//cout  <<"Lat " << Lat <<" Ladeg "<< Ladeg  <<endl ; 
 
-     Longdeg = coorToDeg(Lon,2);
+     Longdeg = coorToDeg(Lon);
 
-cout  <<"Lon " << Lon <<" Longdeg "<< Longdeg  <<endl ; 
+//cout  <<"Lon " << Lon <<" Longdeg "<< Longdeg  <<endl ; 
 
       }
 //=========================//

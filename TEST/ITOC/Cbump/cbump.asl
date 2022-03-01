@@ -155,7 +155,7 @@ old_comment =T;
    L.Split(T);
    sz = Caz(L);
 // <<"sz $(caz(L)) \n"
-<<[2]"$i $sz $where  $L \n"
+//<<[2]"$i $sz $where  $L \n"
    if (sz >2) {
 <<[2]"L1 $L[1]\n"
 
