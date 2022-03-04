@@ -1,19 +1,20 @@
-//%*********************************************** 
-//*  @script buttons.asl 
-//* 
-//*  @comment test buttons 
-//*  @release CARBON 
-//*  @vers 1.14 Si Silicon                                                
-//*  @date Wed Feb  6 14:53:24 2019 
-//*  @cdate 1/1/2001 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script buttons.asl 
+ * 
+ *  @comment test buttons 
+ *  @release CARBON buttons 
+ *  @vers 1.15 P 6.3.90 C-Li-Th 
+ *  @date 03/01/2022 11:01:10          
+ *  @cdate 1/1/2001 Feb 6 14:53:24 2019 
+ *  @author Mark Terry 6 14:53:24 2019 
+ *  @Copyright © RootMeanSquare 2022
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                                                   
 
-<|Use_=
-  test the buttons
-|>
+
+
+Str Use_= "  test the buttons";
 
 
 #include "debug"
@@ -34,7 +35,7 @@ Graphic = checkGWM()
 
 }
 
-ask=iread("wait?")
+//ask=iread("wait?")
 
     rsig=checkTerm();
     <<"%V$rsig \n";
@@ -280,7 +281,7 @@ proc processKeys()
 
 
 
-proc do_sketch()
+void do_sketch()
 {
    sWo(bsketchwo,@clear,@clearclip,@clipborder,@plotline,0.1,0.1,0.8,yp,"red")
    sWo(bsketchwo,@plotline,0.1,yp,0.8,0.1,"blue")
@@ -324,7 +325,7 @@ void BOATS()
 
 
 
-proc QUIT()
+void QUIT()
 {
  exitgs();
  <<"kill xgs now exit!\n";
@@ -332,7 +333,7 @@ proc QUIT()
 
 }
 
-proc tb_q()
+void tb_q()
 {
 <<"expecting sig1 signal\n";
 }

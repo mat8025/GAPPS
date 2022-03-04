@@ -21,7 +21,7 @@
 //
 
 
-Str vers2ele(str vstr)
+Str vers2ele(Str& vstr)
 {
 
  pmaj = atoi(spat(vstr,"."))
@@ -207,9 +207,11 @@ cf(A);
 
 <<"mv $srcfile ${srcfile}.old\n"
 <<"mv $headfile $srcfile\n";
+<<"output to $headfile \n"
+!!"cp $srcfile ${srcfile}.old"
 
-!!"mv $srcfile ${srcfile}.old"
-!!"mv $headfile $srcfile";
+//!!"mv $srcfile ${srcfile}.old"
+//!!"mv $headfile $srcfile";
 
 
 

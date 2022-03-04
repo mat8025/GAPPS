@@ -51,7 +51,7 @@ Str ans;
 
   //  vp = cWi(@title,"PLOT_OBJECTS",@resize,0.05,0.01,0.99,0.95)
 /// create a window
-  int vp = cWi(0);
+  int vp = cWi("PLOT_STUFF");
     //SetGwindow(vp,@pixmapon,@drawon,@save,@bhue,"white")
 cout << "vp " << vp << endl;
      float x0= 0.1;
@@ -59,42 +59,111 @@ cout << "vp " << vp << endl;
      float x1 = 0.5;
      float y1 = 0.7;
 
+      float rsz[5] = {0.1,0.1,0.5,0.6,0.0};
 
-     float rvec[4] = {0.1,0.1,0.5,0.6};
      int ws = 0; //which screen 0,7 -1 is current
 
 //   int vok= sWi(vp,WRESIZE,0.1,0.2,0.5,0.5,-1,WHUE,YELLOW_,WPIXMAPDRAWON,WDRAWON,WREDRAW);
 
-   int vok= sWi(vp,WTITLE,"PLOT_OBJECTS",WRESIZE,rvec,ws,WHUE,YELLOW,WBHUE,WHITE_,
+   int vok= sWi(vp,WTITLE,"PLOT_OBJECTS",WRESIZE,rsz,WHUE,YELLOW,WBHUE,WHITE_,
                    WPIXMAPON,WDRAWON,WCLEAR,WREDRAW,EO);
 
 cout << "vok " << vok << endl;
 
 
 
-ans=query("see window?");
+//ans=query("see window?");
+
+      rsz[3] = 0.8;
+      vok =sWi(vp,WHUE,MAGENTA_,WRESIZE,rsz,WREDRAW,EO);
 
 
-      vok =sWi(vp,WHUE,MAGENTA_,WREDRAW,EO);
-
-
-ans=query("see window?");
+//ans=query("see window?");
 
 /// create a window obj
 
       int wo1 = cWo(vp);
 
 cout << "wo1 " << wo1 << endl;
-      rvec[3] 0.7;
-      int wok = sWo(wo1,WRESIZE,rvec,WHUE,YELLOW,WBHUE,WHITE_,WCLIPBORDER,RED,WDRAWON,WCLEAR,WREDRAW,EO);
+
+
+      int wok = sWo(wo1,WTYPE,WO_GRAPH,WVISIBLE,WDRAWON,WRESIZE,rsz,WFHUE,YELLOW_,WBHUE,WHITE_,WCLIPBORDER,RED,
+      WBORDER,BLACK,WCLEAR,WREDRAW,EO);
+            rsz[3]= 0.9;
+//ans=query("see wob?");
+    float wline[5] = {0.1,0.1,0.5,0.6,(float) BLUE_};
+wok = sWo(wo1,WRESIZE,rsz,WHUE,ORANGE_,WBHUE,PINK_,WCLIPBORDER,RED,WCLEAR,WLINE,wline,WDRAWON,WREDRAW,EO);
+            rsz[2] = 0.9;
+//ans=query("see wob?");
+
+wok = sWo(wo1,WLINE,wline,EO);
+//ans=query("see line?");
+    vok=  sWi(vp,WHUE,BLACK_,WRESIZE,rsz,WREDRAW,EO);
+   wline[4] = RED_;
+   wline[3] = 0.8;
+   wok = sWo(wo1,WLINE,wline,EO);
 
 ///  draw some lines
+   for (int i= 0; i <10; i++) {
+    wline[0] += 0.1;
+    wline[1] += 0.1;
+    sWo(wo1,WLINE,wline,EO);
+    xsleep(0.01); // not pausing ?
+//ans=query("see line resized?");    
+// getclick();
+   }
+ans=query("did we see all?");
 
-ans=query("see wob?");
-///
+
+ int txtwin = cWi("Info_text_window");
+
+
+  sWi(txtwin,WPIXMAPOFF,WDRAWON,WSAVE,WBHUE,WHITE_,WSTICKY,0,EO);
+
+    float clipbox[5] = {0.1,0.2,0.9,0.9,0.0};
+    int vp1 = cWi("Buttons1");
+
+
+    sWi(vp,WPIXMAPON,WDRAWON,WSAVE,WBHUE,WHITE_,0);
+
+
+    sWi(vp,WCLIP,clipbox,EO);
+
+ans=query("did we see buttons?");
 
 
 
+
+    int vp2 = cWi("Buttons2");
+
+
+
+    sWi(vp2,WPIXMAPON,WDRAWOFF,WSAVE,WBHUE,PINK_,EO);
+
+    sWi(vp2,WCLIP,WCLIP,clipbox,EO);
+
+ans=query("did we see buttons?");
+
+int fswins[5] =  {txtwin,vp1,vp2,vp};
+
+/*
+
+// list   ?
+    
+
+
+    wrctile(fswins, 0.05,0.05,0.95,0.95, 2, 2,-1,2) ;
+
+    for (i=0;i<4;i++) {
+      wwi = fswins[i];
+      sWi(wwi, Wredraw Wsave);
+   }
+   // 
+
+/////////////////////////////////////////////////////////
+
+
+*/
 
 
 

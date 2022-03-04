@@ -15,6 +15,7 @@
 ///
 ///
 ///
+
 #include "debug";
 
    if (_dblevel >0) {
@@ -29,8 +30,29 @@
    ws = getScript();
 
    <<"%V $ws  $_script\n";
+   
+    List LS(STRV_);
 
-    L0 = ( "a", "minimal" , "list" );
+ LS.pinfo()
+
+    LS.insert( LIEND_,"restart", "math", "modules")
+
+<<"$LS \n"
+
+
+
+   sli = LS.getLitem(LIBEG_);
+
+   sli.pinfo();
+    
+
+<<"hot item is $sli \n";
+
+
+
+   List L0(STRV_);
+
+    L0.insert(LIEND_, "a", "minimal" , "list" );
 
     L0.pinfo();
 
@@ -43,7 +65,7 @@
 
 <<"hot item is $li \n";
 
-    li1 = L0[1];
+    li1 = L0.getLitem(1);
 
 <<"%V $li1 \n";
 
@@ -54,13 +76,13 @@ chkStr(li,"list");
 
 
 
-   CrashList = ( "",  )  ; // empty list;
+   List CrashList(STRV_)  ; // empty list;
 
    <<"%V$CrashList \n";
 
    CrashList.LiDelete(0);
 
-   FailedList = ( "",  )  ; // empty list --- bug first item null?;
+   List FailedList(STRV_)  ; // empty list --- bug first item null?;
 
    FailedList.LiDelete(0);
 
@@ -83,8 +105,8 @@ chkStr(li,"list");
   <<"%V$J\n";
 
   chkN(m,4,GTE_);
-
-  L1 = ( "a", "small" , "list" , "1", "2", "3", "4", "5" ,"6" ,"yellow", "green", "blue" ,"indigo", "violet");
+  List L1(STRV_);
+  L1.insert(LIEND_, "a", "small" , "list" , "1", "2", "3", "4", "5" ,"6" ,"yellow", "green", "blue" ,"indigo", "violet");
 
 
 
@@ -113,7 +135,7 @@ chkStr(li,"list");
 
 
 
-  str fw = L1[9];  // fails;
+  fw = L1.getLitem(9);  // fails;
 
   fw.pinfo();
 
@@ -121,13 +143,13 @@ chkStr(li,"list");
 
 
 
-  fw = L1[9];  
+  fw = L1[9];  // can we access list as an array ?
 
   <<"$fw\n";
 
   chkStr(fw,"yellow");
 
-  fw= L1[0];
+  fw= L1.getLitem(0);
 
   <<"$fw\n";
 
@@ -156,8 +178,8 @@ chkStr(li,"list");
    }
 
   //chkStage("list - element access");
-
-  L2 = ( "The", "colors", "of" ,"the", "rainbow", "are", "red", "orange", "yellow", "green", "blue" ,"indigo", "violet" );
+  List L2(STRV_);
+  L2.insert(LIEND_,"The", "colors", "of" ,"the", "rainbow", "are", "red", "orange", "yellow", "green", "blue" ,"indigo", "violet" );
 
   <<"L2 = $L2 \n";
 
@@ -198,8 +220,8 @@ chkStr(li,"list");
   L3 = L1;
 
   <<"L3 = $L3 \n";
-
-  L = ( "say", "what", "can" ,"I", "do", "now", "with", "this", "amazingly", "lovely" ,"list" );
+  List L(STRV_);
+  L.insert(LIEND_, "say", "what", "can" ,"I", "do", "now", "with", "this", "amazingly", "lovely" ,"list" );
 
   <<"L = %s$L \n";
 

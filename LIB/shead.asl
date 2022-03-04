@@ -12,7 +12,7 @@
 //***********************************************%
 
    
-   proc vers2ele(str vstr)
+   Str vers2ele(Str& vstr)
    {
    
     pmaj = atoi(spat(vstr,"."))
@@ -45,6 +45,12 @@
    
    //<<[2]" RW sz $sz \n"
 
+   int mat[2];
+   p=spat(srcfile,".asl",0,1,mat)
+   is_asl_script = 0;
+   if (mat[0] ) {
+      is_asl_script = 1;
+   }
    create_template =0;
 
    if (sz == -1) {
@@ -183,7 +189,7 @@ if (found_vers) {
    //ns = spat(srcfile,".asl",-1)
   newsrc=srcfile)
    if (!create_template) {
-      newsrc=scat("shead_",srcfile)
+      newsrc=scat("hd_",srcfile)
    }
    
 
@@ -207,14 +213,15 @@ if (found_vers) {
    <<[A]";//-----------------<v_&_v>------------------------//\n"                          
 
 <<[A]"\n";
-<<[A]"<|Use_= \n"
-<<[A]"Demo  of $comment \n"
-
-<<[A]"/////////////////////// \n"
-<<[A]"|>\n\n"
 
 
-<<[A]"\n#include \"debug\" \n"
+
+
+if (is_asl_script) {
+<<[A]"Str Use_= \" Demo  of $comment \";";
+<<[A]"\n"
+
+<<[A]"\n\n#include \"debug\" \n"
 
 <<[A]"  if (_dblevel >0) { \n"
 <<[A]"   debugON() \n"
@@ -227,7 +234,8 @@ if (found_vers) {
 
 
 fflush(A)
-<<"now tack on file %V $tsz\n"
+}
+//<<"now tack on file %V $tsz\n"
    for (i = 0; i < tsz; i++) {
     ln = T[i];
   // <<"$i $ln\n"

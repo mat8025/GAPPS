@@ -33,16 +33,16 @@ void  titleButtonsQRD(int v)
 {
 
 //////////////////////////////// TITLE BUTTON QUIT RESIZE REDRAW ////////////////////////////////////////////////
- tq=cWo(v,@TBS,@name,"tbq",@value,"QUIT",@func,"window_term",@resize,0.97,0,0.99,1,@symbol,X_);
+ tq=cWo(v,@TBS,@name,"tbq",@value,"QUIT",@func,"window_term",@resize,0.97,0,0.99,1,@symbol,X_,@flush);
  
- tr=cWo(v,@TBS,@name,"tbr",@value,"RESIZE",@func,"window_resize",@resize,0.94,0,0.96,1,@symbol,CROSS_);
+ tr=cWo(v,@TBS,@name,"tbr",@value,"RESIZE",@func,"window_resize",@resize,0.94,0,0.96,1,@symbol,CROSS_,@flush);
  
- td=cWo(v,@TBS,@name,"tbd",@value,"REDRAW",@func,"window_redraw",@resize,0.91,0,0.93,1,@symbol,DIAMOND_);
+ td=cWo(v,@TBS,@name,"tbd",@value,"REDRAW",@func,"window_redraw",@resize,0.91,0,0.93,1,@symbol,DIAMOND_,@flush);
 
- tbqrd_tv = cWo(v,@TBV,@name,"tbv",@value,"VERS",@style,SVO_,@resize,0.2,0,0.50,1);
+ tbqrd_tv = cWo(v,@TBV,@name,"tbv",@value,"VERS",@style,SVO_,@resize,0.2,0,0.50,1,@flush);
 <<[_DB]"SET %V $tbqrd_tv \n"
 //int qrd[] = {tr,tq,td};
- tbqrd_msg = cWo(v,@TBV,@name,"tbm",@value,"MSG",@style,SVO_,@resize,0.52,0,0.90,1);
+ tbqrd_msg = cWo(v,@TBV,@name,"tbm",@value,"MSG",@style,SVO_,@resize,0.52,0,0.90,1,@flush);
 int qrd[3]
 
 qrd[0]= tq;
@@ -51,7 +51,7 @@ qrd[2]= td;
 
 <<[_DB]"%V $tr $tq $td\n"
 <<[_DB]"%V $qrd $(caz(qrd)) $(typeof(qrd))\n"
- sWo(qrd,@drawon,@pixmapon,@fonthue,RED_,@color,WHITE_,@symsize,45, @clip,0,0,1,1);
+ sWo(qrd,@drawon,@pixmapon,@fonthue,RED_,@color,WHITE_,@symsize,45, @clip,0,0,1,1,@flush);
 // sWo(tbqrd_tv,@redraw);
 // sWo(tbqrd_msg,@redraw);
  
