@@ -1,0 +1,6 @@
+
+
+echo "bash args" $*
+
+
+asl -d -s 'Svar z=_clarg[1:-1:1]; Str sa="$z"; opendll("uac"); opendll("plot"); <<"%V $sa \n"; test_class(sa); exit(0) ' $*

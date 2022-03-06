@@ -1,0 +1,1 @@
+asl -d -s 'opendll("uac"); opendll("plot"); test_str(2); '
