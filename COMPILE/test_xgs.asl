@@ -22,6 +22,26 @@
 
 
 #if CPP
+
+ //opendll("plot");
+
+#include "gevent.h"
+
+
+
+void drawLines(int wo1,float wline[])
+ {
+  for (int i= 0; i <10; i++) {
+    wline[0] += 0.1;
+    wline[1] += 0.1;
+    sWo(wo1,WLINE,wline,EO);
+    xsleep(0.1); // not pausing ?
+//ans=query("see line resized?");    
+// getclick();
+   }
+ };
+
+
 void
 Uac::xgsWorld(Svarg * sarg)  
 {
@@ -41,6 +61,8 @@ cout << "s= " << s << endl;
 
 /// launch xgs
 #include "graphic.asl"
+
+Gevent gev;
 
 
 Str ans;
@@ -104,15 +126,8 @@ wok = sWo(wo1,WLINE,wline,EO);
    wok = sWo(wo1,WLINE,wline,EO);
 
 ///  draw some lines
-   for (int i= 0; i <10; i++) {
-    wline[0] += 0.1;
-    wline[1] += 0.1;
-    sWo(wo1,WLINE,wline,EO);
-    xsleep(0.01); // not pausing ?
-//ans=query("see line resized?");    
-// getclick();
-   }
-ans=query("did we see all?");
+   drawLines(wo1,wline);
+//ans=query("did we see all?");
 
 
  int txtwin = cWi("Info_text_window");
@@ -120,7 +135,7 @@ ans=query("did we see all?");
 
   sWi(txtwin,WPIXMAPOFF,WDRAWON,WSAVE,WBHUE,WHITE_,WSTICKY,0,EO);
 
-    float clipbox[5] = {0.1,0.2,0.9,0.9,0.0};
+    float clipbox[6] = {0.1,0.2,0.9,0.9,0.0,-1234.50};
     int vp1 = cWi("Buttons1");
 
 
@@ -129,7 +144,7 @@ ans=query("did we see all?");
 
     sWi(vp,WCLIP,clipbox,EO);
 
-ans=query("did we see buttons?");
+//ans=query("did we see buttons?");
 
 
 
@@ -139,32 +154,79 @@ ans=query("did we see buttons?");
 
 
     sWi(vp2,WPIXMAPON,WDRAWOFF,WSAVE,WBHUE,PINK_,EO);
+//ans=query("doing a bad WGM ");
+  sWi(vp2,WCLIP,WCLIP,clipbox,EO); // can we guard against bad arg ? without crashing yes!
+//ans=query("bad WGM ");
+    sWi(vp2,WCLIP,clipbox,EO);
 
-    sWi(vp2,WCLIP,WCLIP,clipbox,EO);
+//ans=query("did we see buttons?");
 
-ans=query("did we see buttons?");
+int fswins[5] =  {txtwin,vp1,vp2,vp,-1};
 
-int fswins[5] =  {txtwin,vp1,vp2,vp};
+cout << "fswins " << fswins << endl;
 
-/*
 
 // list   ?
     
 
 
-    wrctile(fswins, 0.05,0.05,0.95,0.95, 2, 2,-1,2) ;
-
-    for (i=0;i<4;i++) {
+    wrctile(fswins, 0.05,0.05,0.95,0.95, 2, 2) ;
+    int wwi;
+    for (int i=0;i<4;i++) {
       wwi = fswins[i];
-      sWi(wwi, Wredraw Wsave);
+      sWi(wwi, WREDRAW, WSAVE);
    }
-   // 
+   //
+
+   drawLines(wo1,wline);
 
 /////////////////////////////////////////////////////////
 
 
-*/
+ float  bx = 0.1;
+ float bX = 0.4;
+ float yht = 0.2;
+ float ypad = 0.05;
 
+ float bY = 0.95;
+ float by = bY - yht;
+	      float worsz[6] = {bx,by,bX,bY,0.0};
+//ans=query("did we see wrc wins?");
+
+  int hwo=cWo(vp,WO_BUTTON_ONOFF);
+
+sWo(hwo,WNAME, "ENGINE", WVALUE,"ON" ,WCOLOR,RED_,WRESIZE,worsz,WFLUSH);
+
+ sWo(hwo,WBORDER,WDRAWON,WCLIPBORDER,RED_,WSTYLE,WO_SVR,WFLUSH);
+ //sWo(hwo,@fonthue,WHITE_, @STYLE,SVR_)
+ sWo(hwo,WFHUE,RED_,WBHUE,GREEN_,WREDRAW,WFLUSH);
+ //sWo(hwo,@clipbhue,MAGENTA_);
+
+
+ int rwo=cWo(vp2, WO_BUTTON_STATE);
+   float fworsz[6] = {bx,by,bX,bY,0.0};
+
+sWo(rwo,WNAME,"FRUIT",WCOLOR,YELLOW_,WRESIZE,fworsz,WFLUSH);
+ sWo(rwo,WCSV,"mango,cherry,apple,banana,orange,Peach,pear",WFLUSH);
+
+ sWo(rwo,WBORDER,WDRAWON,WCLIPBORDER,BLUE_,WFONTHUE,RED_,WSTYLE,WO_SVR, WREDRAW ,WFLUSH);
+ //sWo(rwo,WFHUE,ORANGE_,WCLIPBHUE,"steelblue",WFLUSH); // check to see if we can spot INT versus char*
+
+sWo(rwo,WFHUE,ORANGE_,WCLIPBHUE,BLUE_,WFLUSH); // check to see if we can spot INT versus char*
+
+
+
+ans=query("did we see wob -CSV  button?");
+
+
+
+ans=query("looking for events ?");
+int nevent = 0;
+while (1) {
+   gev.eventWait();
+   nevent++;
+   printf("nevent %d button %d\n",nevent,gev.ebutton);
+}
 
 
  exitXGS();
@@ -182,7 +244,7 @@ printf("str s = %s\n",s.cptr());
    // so just have to edit in new mathod to uac class definition
    // and recompile uac -- one line change !
    // plus include this script into 
-    //openDll("plot");
+
     o_uac->xgsWorld(sarg);
 
   }

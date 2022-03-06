@@ -116,9 +116,10 @@ long where;
 
 where.pinfo()
 
+
 Str T;
 
-T.pinfo()
+T.pinfo();
 
 Str Pad;
 
@@ -126,7 +127,8 @@ Str Pad;
 
 Svar L;
 
-L.pinfo()
+ L.pinfo()
+ pinfo(L)
 
 
 
@@ -150,10 +152,16 @@ Str old_comment ="yyy"
 old_comment =T;
    }
    where = ftell(A)
-   L.Split(T);
+
+   sz = Caz(L);
+//<<"Lsz $sz\n"
+    L[0:-1:1] = "";
+//<<"clear L $L\n"
+
+L.Split(T);
    sz = Caz(L);
 // <<"sz $(caz(L)) \n"
-<<[2]"$i $sz $where  $L \n"
+//<<[2]"$i $sz $where  $L \n"
    if (sz >2) {
 <<[2]"L1 $L[1]\n"
 
@@ -172,6 +180,7 @@ old_comment =T;
    }
     else if (scmp(L[1],"@release")) {
       release = "$L[2::]";
+<<"release line <|$release|>\n"      
    }
     else if (scmp(L[1],"@author")) {
       author = "$L[2::]";
@@ -196,7 +205,7 @@ old_comment =T;
 }
 
    where = ftell(A);
-
+/*
 <<"oldc $old_comment\n"
    L.Split(old_comment);
    sz = Caz(L);
@@ -206,7 +215,7 @@ old_comment =T;
     comment = "$L[1::]";
 <<"update comment $L[1] $comment\n"
    }
-
+*/
 
 if (found_vers) {
  
@@ -249,7 +258,7 @@ if (found_vers) {
  <<[2]"///  @vers $release ${pmaj}.$pmin ${maj_ele}.$min_ele $min_name    \n"
 
 
-   vers=" @vers ${pmaj}.$pmin $min_ele $(getversion())"
+   vers=" @vers ${pmaj}.$pmin $min_ele $min_name $(getversion())"
    vlen = slen(vers);
 
 
