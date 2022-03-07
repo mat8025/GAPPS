@@ -158,7 +158,7 @@ old_comment =T;
     L[0:-1:1] = "";
 //<<"clear L $L\n"
 
-L.Split(T);
+   L.Split(T);
    sz = Caz(L);
 // <<"sz $(caz(L)) \n"
 //<<[2]"$i $sz $where  $L \n"
@@ -294,7 +294,7 @@ if (found_vers) {
 cf(A);
 
 
-// used for asl bump version -- no interaction!
+
 
 // lets' log this change 
 logfile= "~gapps/LOGS/aslcodemods.log"

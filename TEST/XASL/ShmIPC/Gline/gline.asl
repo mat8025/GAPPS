@@ -40,9 +40,9 @@
 //
 //    CreateGwindow      cWi
   
-  vp = cWi(@title,"WAVES",@resize,0.05,0.01,0.99,0.9,0);
+  vp = cWi(_title,"WAVES",_resize,0.05,0.01,0.99,0.9,0);
   
-  sWi(vp,@pixmapon,@drawon,@save,@savepixmap,@bhue,WHITE_);
+  sWi(vp,_pixmapon,_drawon,_save,_savepixmap,_bhue,WHITE_);
   
   titleButtonsQRD(vp);
   titleVers();
@@ -58,9 +58,9 @@
   
   daname = "RADAR_SCREEN";
   
-  gwo= cWo(vp,@GRAPH,@name,"GL",@color,RED_);
+  gwo= cWo(vp,_GRAPH,_name,"GL",_COLOR,RED_);
   
-  sWo(gwo,@clip,cx,cy,cX,cY, @resize,0.05,0.1,0.99,0.95,0,@flush);
+  sWo(gwo,_clip,cx,cy,cX,cY, _resize,0.05,0.1,0.99,0.95,0,_FLUSH);
   
     // scales 
   sx = 0.0;
@@ -71,9 +71,9 @@
   <<"scales $sx $sX $sy $sY \n";
   
   
-  sWo(gwo,@scales, sx, sy, sX, sY,  @save,@redraw,@drawon,@pixmapon,@clipbhue,GREEN_);
+  sWo(gwo,_scales, sx, sy, sX, sY,  _save,_redraw,_drawon,_pixmapon,_clipbhue,GREEN_);
   
-  sWo(gwo,@savepixmap);
+  sWo(gwo,_savepixmap);
   
   
 ////////////////////////////// GLINE ////////////////////////////////////////
@@ -109,17 +109,17 @@
   
   // CreateGline   cGl
   
-//  xn_gl = cGl(@wid,gwo,@type,"XY",@xvec,XVEC,@yvec,Rnvec,@color,"red")
+//  xn_gl = cGl(_wid,gwo,@type,"XY",@xvec,XVEC,@yvec,Rnvec,@color,"red")
   
-  xn_gl = cGl(gwo,@TXY,XVEC,Rnvec,@color,RED_,@flush);
+  xn_gl = cGl(gwo,_TXY,XVEC,Rnvec,_COLOR,RED_,_flush);
   
-  xs_gl = cGl(gwo,@TXY,XVEC,SVEC,@color,BLUE_,@flush);
+  xs_gl = cGl(gwo,_TXY,XVEC,SVEC,_COLOR,BLUE_,_flush);
   
-  xz_gl = cGl(gwo,@TXY,XVEC,ZVEC,@hue,YELLOW_,@eo);
+  xz_gl = cGl(gwo,_TXY,XVEC,ZVEC,_HUE,YELLOW_,_eo);
   
-  sWo(gwo,@hue,GREEN_,@refresh);
+  sWo(gwo,_hue,GREEN_,_refresh);
   
-  sWo(gwo,@showpixmap);
+  sWo(gwo,_showpixmap);
   
   f = 0.5;
   
@@ -153,9 +153,9 @@
   int i = 0;
   
   
-  sGl(xn_gl,@hue,BLACK_);
+  sGl(xn_gl,_hue,BLACK_);
   
-  sWo(gwo,@clearpixmap,@clipborder);
+  sWo(gwo,_clearpixmap,_clipborder);
   
   
   while (1) {
@@ -176,13 +176,13 @@
     ZVEC = Rnvec + (CVEC * 0.5);
     
     
-   sWo(gwo,@clearpixmap,@clipborder,BLACK_,@flush);
+   sWo(gwo,_clearpixmap,_clipborder,BLACK_,_flush);
     
-    //sWo(gwo,@line,0.1,0.1,3.0,2.0 ,RED_,@flush);
+    //sWo(gwo,_line,0.1,0.1,3.0,2.0 ,RED_,_flush);
 
-    //plot(gwo,@line,0.1,0.1,18.0,2 ,RED_);
+    //plot(gwo,_line,0.1,0.1,18.0,2 ,RED_);
     
-    sWo(gwo,@line,0.1,0.1,15,f ,BLUE_,@flush);
+    sWo(gwo,_line,0.1,0.1,15,f ,BLUE_,_flush);
 	
     dGl(xn_gl);  // DrawGline; 
     
@@ -190,7 +190,7 @@
     
     dGl(xz_gl);
     
-    sWo(gwo,@showpixmap,@clipborder,ORANGE_,@flush);
+    sWo(gwo,_showpixmap,_clipborder,ORANGE_,_flush);
     
     if (i < M/2) {
       f += 0.005;

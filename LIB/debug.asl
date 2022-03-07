@@ -14,17 +14,19 @@
 
 //<<"Including  debug \n"
 hold_dbl = _dblevel;
+int dblevel = _dblevel;
+
 //<<"%V$hold_dbl \n"
 
 //sdb(1,@~pline,@~step,@~trace)
 
-//sdb(_dblevel,@~pline,@~step,@~trace)
+//sdb(dblevel,@~pline,@~step,@~trace)
 //filterFuncDebug(REJECTALL_,"proc");
 //filterFileDebug(REJECTALL_,"yyy");
 
 
 //<<"%V $hold_dbl\n"
-//_dblevel = -1;
+//dblevel = -1;
 
 // working variables
   int _DB = -1; // dbg FH set to nop --set to 2 for error output;
@@ -53,14 +55,14 @@ hold_dbl = _dblevel;
   void debugON()
   {
 
-  if (_dblevel < 1) {
+  if (dblevel < 1) {
 
   _dblevel = 1;
 
   }
 //<<"%V $_DB ALLOWALL debug from files and funcs\n"
 //<<"use filterFuncDebug() filterFileDebug() to control\n"
-//sdb(_dblevel,@keep,@~pline,@trace)
+//sdb(dblevel,@keep,@~pline,@trace)
 //filterFuncDebug(ALLOWALL_,"xxx");
 //filterFileDebug(ALLOWALL_,"yyy");
 
@@ -112,7 +114,7 @@ hold_dbl = _dblevel;
 
   _dblevel = hold_dbl;
 
-  sdb(_dblevel,@keep,@~trace);
+  sdb(dblevel,_keep,_~trace);
 
   if (_dblevel > 1) {
   //sdb(_dblevel,@keep,@trace)
