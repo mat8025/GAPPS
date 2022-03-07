@@ -15,6 +15,7 @@
   include "hv.asl";
   include "tbqrd";
   include "gevent.asl";
+  
   debugON();
   
   
@@ -41,7 +42,7 @@
   
   vp = cWi(@title,"WAVES",@resize,0.05,0.01,0.99,0.9,0);
   
-  sWi(vp,@pixmapon,@drawon,@save,@bhue,WHITE_);
+  sWi(vp,@pixmapon,@drawon,@save,@savepixmap,@bhue,WHITE_);
   
   titleButtonsQRD(vp);
   titleVers();
@@ -57,9 +58,9 @@
   
   daname = "RADAR_SCREEN";
   
-  gwo= cWo(vp,@GRAPH,@name,"GL",@color,WHITE_);
+  gwo= cWo(vp,@GRAPH,@name,"GL",@color,RED_);
   
-  sWo(gwo,@clip,cx,cy,cX,cY, @resize,0.05,0.1,0.99,0.95);
+  sWo(gwo,@clip,cx,cy,cX,cY, @resize,0.05,0.1,0.99,0.95,0,@flush);
   
     // scales 
   sx = 0.0;
@@ -67,11 +68,10 @@
   sy = -2;
   sY = 2.1;
     // units  - radians
-  <<"$sx $sX $sy $sY \n";
+  <<"scales $sx $sX $sy $sY \n";
   
   
-  sWo(gwo,@scales, sx, sy, sX, sY,		\
-  @save,@redraw,@drawoff,@pixmapon);
+  sWo(gwo,@scales, sx, sy, sX, sY,  @save,@redraw,@drawon,@pixmapon,@clipbhue,GREEN_);
   
   sWo(gwo,@savepixmap);
   
@@ -111,11 +111,11 @@
   
 //  xn_gl = cGl(@wid,gwo,@type,"XY",@xvec,XVEC,@yvec,Rnvec,@color,"red")
   
-  xn_gl = cGl(gwo,@TXY,XVEC,Rnvec,@color,RED_);
+  xn_gl = cGl(gwo,@TXY,XVEC,Rnvec,@color,RED_,@flush);
   
-  xs_gl = cGl(gwo,@TXY,XVEC,SVEC,@color,BLUE_);
+  xs_gl = cGl(gwo,@TXY,XVEC,SVEC,@color,BLUE_,@flush);
   
-  xz_gl = cGl(gwo,@TXY,XVEC,ZVEC,@hue,GREEN_);
+  xz_gl = cGl(gwo,@TXY,XVEC,ZVEC,@hue,YELLOW_,@eo);
   
   sWo(gwo,@hue,GREEN_,@refresh);
   
@@ -123,7 +123,7 @@
   
   f = 0.5;
   
-  
+  <<"%V $xn_gl $xs_gl $xz_gl  \n"
   <<"%V $XVEC[0:20] \n";
   
   WVEC = XVEC * f;
@@ -135,7 +135,7 @@
   
   <<"%V $SVEC[0:20] \n";
   
-   // go_on= iread("--->");
+  //go_on= iread("--->");
   
   //<<"you typed $go_on $(typeof(goon))\n"
   
@@ -153,7 +153,7 @@
   int i = 0;
   
   
-  sGl(xn_gl,@hue,"red");
+  sGl(xn_gl,@hue,BLACK_);
   
   sWo(gwo,@clearpixmap,@clipborder);
   
@@ -162,7 +162,8 @@
     
     Rnvec  = Grand(N)  * 0.1;
     
-<<"$Rnvec[0:10]\n"
+//<<"$Rnvec[0:10]\n"
+//<<"$SVEC[0:10]\n"
     
     WVEC = XVEC * f;
     OVEC = WVEC + pi2;
@@ -175,16 +176,21 @@
     ZVEC = Rnvec + (CVEC * 0.5);
     
     
-    sWo(gwo,@clearpixmap,@clipborder);
+   sWo(gwo,@clearpixmap,@clipborder,BLACK_,@flush);
     
+    //sWo(gwo,@line,0.1,0.1,3.0,2.0 ,RED_,@flush);
+
+    //plot(gwo,@line,0.1,0.1,18.0,2 ,RED_);
     
+    sWo(gwo,@line,0.1,0.1,15,f ,BLUE_,@flush);
+	
     dGl(xn_gl);  // DrawGline; 
     
     dGl(xs_gl);
     
     dGl(xz_gl);
     
-    sWo(gwo,@showpixmap,@clipborder);
+    sWo(gwo,@showpixmap,@clipborder,ORANGE_,@flush);
     
     if (i < M/2) {
       f += 0.005;
@@ -199,6 +205,8 @@
       i = 0;
       }
     
+//    getMouseClick()
+    <<"loop $i\n"
     
     }
 //=====================================//
