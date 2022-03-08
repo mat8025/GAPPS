@@ -33,16 +33,16 @@ void  titleButtonsQRD(int v)
 {
 
 //////////////////////////////// TITLE BUTTON QUIT RESIZE REDRAW ////////////////////////////////////////////////
- tq=cWo(v,@TBS,@name,"tbq",@value,"QUIT",@func,"window_term",@resize,0.97,0,0.99,1,@symbol,X_,@flush);
+ tq=cWo(v,_TBS,_name,"tbq",_value,"QUIT",_func,"window_term",_resize,0.97,0,0.99,1,_symbol,X_,_flush);
  
- tr=cWo(v,@TBS,@name,"tbr",@value,"RESIZE",@func,"window_resize",@resize,0.94,0,0.96,1,@symbol,CROSS_,@flush);
+ tr=cWo(v,_TBS,_name,"tbr",_value,"RESIZE",_func,"window_resize",_resize,0.94,0,0.96,1,_symbol,CROSS_,_flush);
  
- td=cWo(v,@TBS,@name,"tbd",@value,"REDRAW",@func,"window_redraw",@resize,0.91,0,0.93,1,@symbol,DIAMOND_,@flush);
+ td=cWo(v,_TBS,_name,"tbd",_value,"REDRAW",_func,"window_redraw",_resize,0.91,0,0.93,1,_symbol,DIAMOND_,_flush);
 
- tbqrd_tv = cWo(v,@TBV,@name,"tbv",@value,"VERS",@style,SVO_,@resize,0.2,0,0.50,1,@flush);
+ tbqrd_tv = cWo(v,_TBV,_name,"tbv",_value,"VERS",_style,SVO_,_resize,0.2,0,0.50,1,_flush);
 <<[_DB]"SET %V $tbqrd_tv \n"
 //int qrd[] = {tr,tq,td};
- tbqrd_msg = cWo(v,@TBV,@name,"tbm",@value,"MSG",@style,SVO_,@resize,0.52,0,0.90,1,@flush);
+ tbqrd_msg = cWo(v,_TBV,_name,"tbm",_value,"MSG",_style,SVO_,_resize,0.52,0,0.90,1,_flush);
 int qrd[3]
 
 qrd[0]= tq;
@@ -51,16 +51,16 @@ qrd[2]= td;
 
 <<[_DB]"%V $tr $tq $td\n"
 <<[_DB]"%V $qrd $(caz(qrd)) $(typeof(qrd))\n"
- sWo(qrd,@drawon,@pixmapon,@fonthue,RED_,@color,WHITE_,@symsize,45, @clip,0,0,1,1,@flush);
-// sWo(tbqrd_tv,@redraw);
-// sWo(tbqrd_msg,@redraw);
+ sWo(qrd,_drawon,_pixmapon,_fonthue,RED_,_color,WHITE_,_symsize,45, _clip,0,0,1,1,_flush);
+// sWo(tbqrd_tv,_redraw);
+// sWo(tbqrd_msg,_redraw);
  
 }
 //============================//
 void titleComment(str msg)
 {
  <<"%V $msg \n"
- sWo(tbqrd_tv,@value,"$msg",@clear,@redraw);
+ sWo(tbqrd_tv,_value,"$msg",_clear,_redraw);
 
 }
 //============================//
@@ -77,13 +77,13 @@ void titleVers()
 proc titleMessage(str msg)
 {
  //<<"%V $msg \n"
- sWo(tbqrd_msg,@value,"$msg",@clear,@redraw);
+ sWo(tbqrd_msg,_value,"$msg",_clear,_redraw);
 }
 
 proc titleMsg(str msg)
 {
  //<<"%V $msg \n"
- sWo(tbqrd_msg,@value,"$msg",@clear,@redraw);
+ sWo(tbqrd_msg,_value,"$msg",_clear,_redraw);
 }
 
 

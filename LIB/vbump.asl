@@ -150,9 +150,10 @@ Str old_comment ="yyy"
 old_comment =T;
    }
    where = ftell(A)
-   L.Split(T);
-   sz = Caz(L);
      L[0:-1:1] = "";
+L.Split(T);
+   sz = Caz(L);
+
 // <<"sz $(caz(L)) \n"
 <<[2]"$i $sz $where  $L \n"
    if (sz >2) {

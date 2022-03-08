@@ -114,7 +114,7 @@ int dblevel = _dblevel;
 
   _dblevel = hold_dbl;
 
-  sdb(dblevel,_keep,_~trace);
+  sdb(hold_dbl,_keep,_~trace);
 
   if (_dblevel > 1) {
   //sdb(_dblevel,@keep,@trace)

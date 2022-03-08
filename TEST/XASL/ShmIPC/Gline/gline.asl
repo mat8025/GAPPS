@@ -14,7 +14,7 @@
   include "debug.asl";
   include "hv.asl";
   include "tbqrd";
-  include "gevent.asl";
+ // include "gevent.asl";
   
   debugON();
   
@@ -42,7 +42,7 @@
   
   vp = cWi(_title,"WAVES",_resize,0.05,0.01,0.99,0.9,0);
   
-  sWi(vp,_pixmapon,_drawon,_save,_savepixmap,_bhue,WHITE_);
+  sWi(vp,_pixmapon,_drawon,_save,_savepixmap,_bhue,RED_,_flush);
   
   titleButtonsQRD(vp);
   titleVers();
@@ -58,7 +58,7 @@
   
   daname = "RADAR_SCREEN";
   
-  gwo= cWo(vp,_GRAPH,_name,"GL",_COLOR,RED_);
+  gwo= cWo(vp,_GRAPH,_name,"GL",_COLOR,RED_,_FLUSH);
   
   sWo(gwo,_clip,cx,cy,cX,cY, _resize,0.05,0.1,0.99,0.95,0,_FLUSH);
   
@@ -71,7 +71,7 @@
   <<"scales $sx $sX $sy $sY \n";
   
   
-  sWo(gwo,_scales, sx, sy, sX, sY,  _save,_redraw,_drawon,_pixmapon,_clipbhue,GREEN_);
+  sWo(gwo,_scales, sx, sy, sX, sY,  _save,_redraw,_drawon,_pixmapon,_clipbhue,GREEN_,_EO);
   
   sWo(gwo,_savepixmap);
   
@@ -81,9 +81,9 @@
   
   N = 200;
   
-  float XVEC[];
+  float Xvec[];
   
-  XVEC = Frange(N,0,6*pi);
+  Xvec = Frange(N,0,6*pi);
   
   
   Float Rnvec[];
@@ -93,47 +93,53 @@
   
   pi2 = pi * 0.5;
   
-  <<" $(Caz(XVEC)) \n";
-  <<" $XVEC[0:10] \n";
+  <<" $(Caz(Xvec)) \n";
+  <<" $Xvec[0:10] \n";
   <<"%V $Rnvec[0:10] \n";
   <<"$(typeof(Rnvec)) \n";
   
 // 
-//float SVEC = Sin(XVEC)
+//float Svec = Sin(Xvec)
   
-  SVEC = Sin(XVEC);
+  Svec = Sin(Xvec);
   
-  <<" $(typeof(SVEC)) \n";
+  <<" $(typeof(Svec)) \n";
   
-  ZVEC = Rnvec + SVEC;
+  Zvec = Rnvec + Svec;
   
   // CreateGline   cGl
   
-//  xn_gl = cGl(_wid,gwo,@type,"XY",@xvec,XVEC,@yvec,Rnvec,@color,"red")
+//  xn_gl = cGl(_wid,gwo,@type,"XY",@xvec,Xvec,@yvec,Rnvec,@color,"red")
   
-  xn_gl = cGl(gwo,_TXY,XVEC,Rnvec,_COLOR,RED_,_flush);
+  xn_gl = cGl(gwo)
   
-  xs_gl = cGl(gwo,_TXY,XVEC,SVEC,_COLOR,BLUE_,_flush);
+  sGl(xn_gl,_GLTXY,Xvec,Rnvec,_GLHUE,RED_,_flush);
   
-  xz_gl = cGl(gwo,_TXY,XVEC,ZVEC,_HUE,YELLOW_,_eo);
+  xs_gl = cGl(gwo)
+
+  sGl(xs_gl,_GLTXY,Xvec,Svec,_GLHUE,BLUE_,_flush);
   
-  sWo(gwo,_hue,GREEN_,_refresh);
+  xz_gl = cGl(gwo);
+
+  sGl(xz_gl,_GLTXY,Xvec,Zvec,_GLHUE,YELLOW_,_eo);
   
-  sWo(gwo,_showpixmap);
+  sWo(gwo,_hue,GREEN_,_refresh,_FLUSH);
+  
+  sWo(gwo,_showpixmap,_eo);
   
   f = 0.5;
   
   <<"%V $xn_gl $xs_gl $xz_gl  \n"
-  <<"%V $XVEC[0:20] \n";
+  <<"%V $Xvec[0:20] \n";
   
-  WVEC = XVEC * f;
+  Wvec = Xvec * f;
   
-  <<"%V $WVEC[0:20] \n";
+  <<"%V $Wvec[0:20] \n";
   
   
-  SVEC = Sin(WVEC);
+  Svec = Sin(Wvec);
   
-  <<"%V $SVEC[0:20] \n";
+  <<"%V $Svec[0:20] \n";
   
   //go_on= iread("--->");
   
@@ -153,27 +159,27 @@
   int i = 0;
   
   
-  sGl(xn_gl,_hue,BLACK_);
+  sGl(xn_gl,_GLHUE,RED_,_GLEO);
   
   sWo(gwo,_clearpixmap,_clipborder);
-  
+  ans=query("listo?:");
   
   while (1) {
     
     Rnvec  = Grand(N)  * 0.1;
     
 //<<"$Rnvec[0:10]\n"
-//<<"$SVEC[0:10]\n"
+//<<"$Svec[0:10]\n"
     
-    WVEC = XVEC * f;
-    OVEC = WVEC + pi2;
+    Wvec = Xvec * f;
+    OVEC = Wvec + pi2;
     
-    SVEC = Sin(WVEC);
+    Svec = Sin(Wvec);
     CVEC = Cos(OVEC);
     
-    //SVEC = Sin(XVEC * f)
+    //Svec = Sin(Xvec * f)
     
-    ZVEC = Rnvec + (CVEC * 0.5);
+    Zvec = Rnvec + (CVEC * 0.5);
     
     
    sWo(gwo,_clearpixmap,_clipborder,BLACK_,_flush);
@@ -205,10 +211,18 @@
       i = 0;
       }
     
-//    getMouseClick()
+  //  getMouseClick()
+
+ans=query("again?",ans)
+if (ans != "y") {
+    break
+}
     <<"loop $i\n"
     
     }
 //=====================================//
-  
-  
+
+<<"out of loop - trying to quit!\n"
+
+exitgs();
+exit();
