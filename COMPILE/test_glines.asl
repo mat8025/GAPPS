@@ -93,9 +93,10 @@ ans=query("see window?");
     // units  - radians
   //<<"scales $sx $sX $sy $sY \n";
   float vscale[5] = {sx,sy,sX,sY,0.0};
-  
+
+
  // sWo(gwo,_scales, sx, sy, sX, sY,  _save,_redraw,_drawon,_pixmapon,_clipbhue,GREEN_,_EO);
-  sWo(gwo,WSAVE,WREDRAW,WDRAWON,WPIXMAPON,WCLIPBHUE,GREEN_,WFLUSH);
+  sWo(gwo,WSAVE,WREDRAW,WDRAWOFF,WPIXMAPON,WCLIPBHUE,GREEN_,WFLUSH);
   sWo(gwo,WSCALES,vscale,WFLUSH);
   sWo(gwo,WSAVEPIXMAP,WFLUSH);
   
@@ -206,6 +207,8 @@ cout << "Svec " << Svec << endl;
    sWo(gwo,WCLEARPIXMAP,WCLIPBORDER,WFLUSH);
   ans=query("listo?:");
   int kk = 0;
+
+  float lvec[5] = {0.1,0.1,15,f,3.0};
   while (1) {
     
     Rnvec  = addGrand(Rnvec) ;
@@ -221,13 +224,18 @@ cout << "Svec " << Svec << endl;
 
 //cout << "Tvec " << Tvec << endl;
 
-    Svec = Sin(Wvec);
+ //   Svec = Sin(Wvec);
+    Svec = Wvec;
+    Svec.Sin();
 
     Cvec= Cos(Tvec);
     
+  //  Tvec.Cos();
+    //Tvec *= 0.5;
     //Svec = Sin(Xvec * f)
     
     Zvec = Rnvec + (Cvec * 0.5);
+   // Zvec = Rnvec + Tvec;
 
 //   ans=query("see Zvec");
 
@@ -240,7 +248,8 @@ cout << "Svec " << Svec << endl;
 
     //plot(gwo,_line,0.1,0.1,18.0,2 ,RED_);
     ff= f;
-  // sWo(gwo,WLINE,0.1,0.1,15,ff,BLUE_,WFLUSH);
+    lvec[3]= f;
+   sWo(gwo,WLINE,lvec,WFLUSH);
 	
     sGl(xn_gl,_GLDRAW);  // DrawGline; 
     
@@ -276,7 +285,7 @@ cout << "Svec " << Svec << endl;
 //    }
     if (kk++ > 20000)
        break;
-    //xsleep(0.1);
+   // xsleep(0.1);
   }
 
 
