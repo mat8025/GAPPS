@@ -22,6 +22,47 @@ int UseGevent =1;
 float _erx = 0;
 float _ery = 0;
 
+int _eloop = 0;
+int _last_eid = -1;
+
+
+
+
+
+int _ex = -15;
+int _ey = 0;
+
+int _etype = 0;
+int _erow = -1;
+int _ecol = -1;
+int _ebutton = 0;
+int _eid = 0;
+int _ekeyc;
+int _ewoid;
+int _ewoaw;
+int _ewid;
+
+Svar _emsgwd;
+Svar _ewords;
+
+Str _ename;
+
+Str _ekeyw = "nada";
+Str _ekeyw2 = "nada2";
+Str _ekeyw3 = "nada3";
+
+Str _emsg = "";
+
+Str _evalue = "abc";
+
+Str _ewoname = "noname";
+
+Str _ewoval = "yyy";
+
+Str _ewoproc = "abc";
+
+//
+
 
 void eventDecode()
 {
@@ -114,7 +155,7 @@ void eventWait()
     _emsg = "";
 
     _emsg = Ev.waitForMsg();
-<<"$_proc  %V $_emsg\n"
+//<<"$_proc  %V $_emsg\n"
      Ev.geteventrxy(_erx,_ery);    
      Ev.geteventwoid(_ewoid);
 //<<"$_proc  %V $_ewoid $_erx $_ery\n"     
@@ -146,45 +187,6 @@ void eventRead()
 
 Gevent Ev; // event type - can inspect for all event attributes
 
-
-int _eloop = 0;
-int _last_eid = -1;
-
-
-
-
-
-int _ex = -15;
-int _ey = 0;
-
-int _etype = 0;
-int _erow = -1;
-int _ecol = -1;
-int _ebutton = 0;
-int _eid = 0;
-int _ekeyc;
-int _ewoid;
-int _ewoaw;
-int _ewid;
-
-Svar _emsgwd;
-Svar _ewords;
-
-Str _ename;
-
-Str _ekeyw = "nada";
-Str _ekeyw2 = "nada2";
-Str _ekeyw3 = "nada3";
-
-Str _emsg = "";
-
-Str _evalue = "abc";
-
-Str _ewoname = "noname";
-
-Str _ewoval = "yyy";
-
-Str _ewoproc = "abc";
 
 //<<" %V $_include $_emsg\n"
 

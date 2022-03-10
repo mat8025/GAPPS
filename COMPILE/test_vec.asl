@@ -60,10 +60,11 @@ cout << "V[7] " << rms << endl;
 
 cout << "U = " << U << endl;
 
- Vec W(INT,10,20,1);
+ Vec W(DOUBLE_,10,20,1);
 
  W.pinfo();
 
+ans= query("W = V");
 
   W = V ;
 
@@ -71,16 +72,29 @@ cout << "U = " << U << endl;
 
  cout << " W = V " << W << endl;
 
+
+
+V.pinfo();
+
+U.pinfo();
+
+ans= query("V + U");
+
  W = V + U;
 
  cout << " W = V+U " << W << endl;
 
+ans= query("V + U");
+
  //W[2] = 2222;
     dbt("debug val %f\n",val); // appears in debug file
  val = 2.2;
+ 
  W *= val;
  
  cout << " W *= val " << val <<" " << W << endl;
+
+ans= query("W *= val;");
 
   W += val;
  cout << " W += val " << val <<" " << W << endl;
@@ -117,6 +131,7 @@ rms = V().rms();
  cout << "ans " << ans << endl;
 
 ans= query("??:");
+
     V[5] = 54.67;
 
 cout << "V[5] " << V[5] << endl;
@@ -138,6 +153,23 @@ ans= query("??:");
     val = W[7];
 
  cout << "val " << val << endl;
+
+  int N = 200;
+ double pi = 4.0 * atan(1.0); 
+
+cout << "pi " << pi << endl;
+
+ Vec Xvec(DOUBLE_,N,0.0, (6.0*pi/(1.0*N)));
+
+cout << " Xvec " << Xvec << endl;
+
+    Vec Svec(DOUBLE_,N);
+
+
+  Svec = Sin(Xvec);
+
+
+cout << " Svec " << Svec << endl;
 
 /*
 rms = V().rms();
