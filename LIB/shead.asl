@@ -1,15 +1,16 @@
-//%*********************************************** 
-//*  @script shead.asl 
-//* 
-//*  @comment  
-//*  @release CARBON 
-//*  @vers 1.8 O Oxygen                                                   
-//*  @date Tue Jan  1 09:16:41 2019 
-//*  @cdate Sun Dec 23 09:23:42 2018 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2014,2020 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script shead.asl 
+ * 
+ *  @comment shead.asl 
+ *  @release CARBON 
+ *  @vers 1.9 F 6.3.94 C-Li-Pu 
+ *  @date 03/10/2022 14:30:18          
+ *  @cdate Sun Dec 23 09:23:42 2018 
+ *  @author Mark Terry 23 09:23:42 2018 
+ *  @Copyright © RootMeanSquare 2022
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                                                                      
 
    
    Str vers2ele(Str& vstr)
@@ -34,9 +35,9 @@
    // then  read current vers and  bump number and update date
    // if no @vers line -- then prepend the vers header lines
    
-   srcfile = _clarg[1];
+   Str srcfile = _clarg[1];
    
-   if (srcfile @= "") {
+   if (srcfile == "") {
    <<[2]"no script file entered\n"
      exit();
    }
@@ -59,6 +60,8 @@
    if (ans != "y") {
          exit()
    }
+
+
    create_template =1;
     A=ofw(srcfile);
     <<[A]"///\n chkOut();\n  exit();\n;///--------(^-^)--------///\n"
@@ -187,10 +190,15 @@ if (found_vers) {
  !!"cp $srcfile old-$srcfile"  
    
    //ns = spat(srcfile,".asl",-1)
-  newsrc=srcfile)
+//  Str newsrc=srcfile;
+  newsrc=srcfile;
+<<"$newsrc \n"
+  newsrc.pinfo();
    if (!create_template) {
+   
       newsrc=scat("hd_",srcfile)
-   }
+
+  }
    
 
    A=ofw(newsrc);

@@ -17,7 +17,8 @@
 ///
 
 /// cpp debug ??
-
+#include <iostream>
+#include <ostream>
 
 #define ASL 0
 #define CPP 1
@@ -64,7 +65,7 @@ cout << "U = " << U << endl;
 
  W.pinfo();
 
-ans= query("W = V");
+//ans= query("W = V");
 
   W = V ;
 
@@ -78,13 +79,13 @@ V.pinfo();
 
 U.pinfo();
 
-ans= query("V + U");
+//ans= query("V + U");
 
  W = V + U;
 
  cout << " W = V+U " << W << endl;
 
-ans= query("V + U");
+//ans= query("V + U");
 
  //W[2] = 2222;
     dbt("debug val %f\n",val); // appears in debug file
@@ -94,7 +95,7 @@ ans= query("V + U");
  
  cout << " W *= val " << val <<" " << W << endl;
 
-ans= query("W *= val;");
+//ans= query("W *= val;");
 
   W += val;
  cout << " W += val " << val <<" " << W << endl;
@@ -104,14 +105,14 @@ cout << "U = " << U << endl;
   U *= val;
 
  cout << " U *= val " << val <<" " << U << endl;
-ans= query(" U *= val");
+//ans= query(" U *= val");
 
 
 //Vec T(DOUBLE,10,-1,-2.5);
 
  //cout << "T = " << T << endl;
 
-ans= query("T = W + U;");
+//ans= query("T = W + U;");
 
 Vec T =  U + W +V ; // not filled correctly TBF
 
@@ -130,7 +131,7 @@ rms = V().rms();
 
  cout << "ans " << ans << endl;
 
-ans= query("??:");
+//ans= query("??:");
 
     V[5] = 54.67;
 
@@ -138,7 +139,7 @@ cout << "V[5] " << V[5] << endl;
 
  cout << "ans " << ans << endl;
  
-ans= query("??:");
+//ans= query("??:");
 
 
     W[7] = 85;
@@ -147,7 +148,7 @@ cout << "W[7] " << W[7] << endl;
 
  cout << "ans " << ans << endl;
  
-ans= query("??:");
+//ans= query("??:");
 
 
     val = W[7];
@@ -166,10 +167,150 @@ cout << " Xvec " << Xvec << endl;
     Vec Svec(DOUBLE_,N);
 
 
-  Svec = Sin(Xvec);
-
+  Svec = Xvec;
+  Svec.Sin();
 
 cout << " Svec " << Svec << endl;
+
+
+int do_list = 1;
+
+if (do_list) {
+
+Svar VLS;
+Str ls;
+    VLS.split("restart math modules");
+cout << "VLS " << VLS << endl;
+
+ans=query("do_list");
+   List LS(STRV);
+
+ans=query("info?");
+
+ LS.pinfo();
+
+ LS.setType(STRV);
+
+ans=query("insert ?");
+
+    LS.insert( LIEND,VLS);
+
+
+
+ans=query("get LIBEG?");
+
+   Siv sli(STRV);
+
+
+sli= LS.getLitem(LIBEG);
+
+ cout << " test Siv print " << endl;
+
+cout <<"sli  " << sli <<endl;
+
+
+
+   sli.pinfo();
+
+ans=query("sli ?");
+
+ls=LS.getItemAsStr(1);
+
+cout <<" ls  " << ls <<endl;
+
+ans=query("get LIEND?");
+
+sli = LS.getLitem(LIEND);
+
+
+cout <<"WHATS sli  " <<  endl;
+
+cout <<"whats sli  " << sli <<endl;
+
+   sli.pinfo();
+
+cout <<"hot item is sli " << sli << endl;
+
+cout  << "LS "  << LS << endl;
+
+ans=query("seen sli val ?\n");
+// try an INT List
+
+   List LSI(INT);
+
+  LSI.insert( LIEND,1);
+  LSI.insert( LIEND,2);
+  LSI.insert( LIEND,3);
+  LSI.insert( LIBEG,4);
+
+cout  << "LSI "  << LSI << endl;
+
+ans=query("List INT ?\n");
+
+}
+
+
+int do_sop = 1;
+if (do_sop )  {
+Siv S(STRV);
+cout << " doing sop !!" << endl;
+  S= "we will attempt just one feature at a time ";
+
+
+
+Str q = "at";
+Str t = "im";
+
+cout << " t "  << t.pinfo() << endl;
+
+t.pinfo();
+
+Vec index;
+
+cout << "S " << S << " q " << q << endl;
+
+   index = regex(&S,&q);
+   
+index.pinfo();
+
+cout << "index " << index <<endl;
+
+index = 0;
+
+cout << "index zero? " << index <<endl;
+
+   index = regex(&S,&t);
+
+cout << "index " << index <<endl;
+
+Svar SV("SV");
+
+ cout  << "SV  "  << SV << endl ;
+
+  SV = "esto se esta complicando";
+
+ cout  << "SV  "  << SV << endl ;
+
+  SV.findWsTokens("esto se esta muy complicando");
+
+cout  << "SV  "  << SV << endl ;
+
+Svar VS;
+
+   VS = "esto se esta muy complicando";
+
+ cout  << "VS  "  << VS << endl ;
+
+
+  VS.split("esto se esta muy complicando");
+
+ cout  << "VS  "  << VS << endl ;
+
+ cout  << "VS  "  << VS[1] << endl ;
+
+}
+
+
 
 /*
 rms = V().rms();

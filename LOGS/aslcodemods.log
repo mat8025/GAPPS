@@ -1090,3 +1090,5 @@ gline_p.cpp                         1.74  03/07/2022 21:36:29  cpp interface
 gline_p.cpp                         1.75  03/09/2022 21:16:45  cpp
 mod_wo_p.cpp                        1.4  03/09/2022 21:17:37  cpp
 win_p.cpp                           1.85  03/09/2022 21:18:15  cpp
+gs_lists.cpp                        1.71  03/10/2022 13:11:45  getval
+gmsg_w.cpp                          1.17  03/11/2022 20:46:02  void no return

@@ -73,7 +73,7 @@ Str ans;
 
 
 
-ans=query("see window?");
+//ans=query("see window?");
 
       rsz[3] = 0.8;
       vok =sWi(vp,WHUE,MAGENTA_,WRESIZE,rsz,WREDRAW,EO);
@@ -205,7 +205,7 @@ cout << "Svec " << Svec << endl;
   sGl(xn_gl,_GLHUE,RED_,_GLEO);
   
    sWo(gwo,WCLEARPIXMAP,WCLIPBORDER,WFLUSH);
-  ans=query("listo?:");
+  //ans=query("listo?:");
   int kk = 0;
 
   float lvec[5] = {0.1,0.1,15,f,3.0};

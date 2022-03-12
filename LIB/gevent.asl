@@ -110,7 +110,7 @@ void eventWait()
     _emsg = "";
 
     _emsg = Ev.waitForMsg();
-<<"$_proc  %V $_emsg\n"
+//<<"$_proc  %V $_emsg\n"
      Ev.geteventrxy(_erx,_ery);    
      Ev.geteventwoid(_ewoid);
 //<<"$_proc  %V $_ewoid $_erx $_ery\n"     
@@ -149,8 +149,6 @@ int _last_eid = -1;
 float _erx = 0;
 float _ery = 0;
 
-!i_erx
-!p_ery
 
 
 int _ex = -15;
