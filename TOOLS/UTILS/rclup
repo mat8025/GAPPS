@@ -8,6 +8,7 @@ find . -name "*.err" -print -delete
 find . -name "*.src" -print -delete
 find . -name "*.xerr" -print -delete
 find . -name "*.tst" -print -delete
+find . -name "tas_*" -print -delete
 find . -name "*.xtst" -print -delete
 find . -name "*.idb" -print -delete
 find . -name "old-*.asl" -print -delete

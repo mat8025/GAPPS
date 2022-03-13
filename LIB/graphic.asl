@@ -26,7 +26,8 @@
      }
    
       OpenDll("plot") ;  //  should be automatic -- but for XIC launch best to use! 
-      OpenDll("image")   
-//#include "tbqrd.asl"  // bug nested?
+      OpenDll("image")
+      
+#include "tbqrd.asl"  // bug nested?
    
 ////////////////////////////////////////////////////////////////////////////////////////////////

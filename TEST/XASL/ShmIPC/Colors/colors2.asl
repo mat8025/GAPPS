@@ -1,21 +1,22 @@
-//%*********************************************** 
-//*  @script colors2.asl 
-//* 
-//*  @comment show color map 
-//*  @release CARBON 
-//*  @vers 1.4 Be Beryllium                                                
-//*  @date Sun Mar 22 11:08:30 2020 
-//*  @cdate Sun Mar 22 11:05:34 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script colors2.asl 
+ * 
+ *  @comment show color map 
+ *  @release CARBON color map 
+ *  @vers 1.6 C 6.3.94 C-Li-Pu 
+ *  @date 03/12/2022 11:04:28          
+ *  @cdate Sun Mar 22 11:05:34 2020 
+ *  @author Mark Terry 22 11:05:34 2020 
+ *  @Copyright © RootMeanSquare 2022
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                                                                        
 
-include "gevent.asl"
-include "debug"
-include "hv.asl"
 
-setdebug(0)
+#include "debug"
+#include "hv.asl"
+
+ignoreErrors();
 
 Pi = 4.0 * atan(1.0)
 
@@ -23,34 +24,32 @@ Pi = 4.0 * atan(1.0)
  greenv = 0.5
  bluev = 0.5
 
-Graphic = checkGWM()
+#include "graphic"
 
-  if (!Graphic) {
-    Xgm = spawnGWM()
-  }
-
-
-include "tbqrd"
+#include "gevent"
+//#include "tbqrd"
 
 
 
     rainbow()
     
-    vp = cWi(@title,"Button",@resize,0.01,0.01,0.45,0.49,0)
+    vp = cWi(_title,"Button")
+    sWi(vp,_resize,0.01,0.01,0.45,0.49,0,_eo)
 
    titleButtonsQRD(vp);
 
 
-    sWi(vp,@pixmapon,@drawon,@save,@bhue,WHITE_)
-    sWi(vp,"scales",0,-0.2,1.5,1.5)
-    sWi(vp,"clip",0.2,0.2,0.9,0.9)
-    sWi(vp,@clipborder,BLACK_,@redraw,@save)
+    sWi(vp,_pixmapon,_drawon,_save,_bhue,WHITE_)
+    sWi(vp,"scales",0,-0.2,1.5,1.5,_eo)
+    sWi(vp,"clip",0.2,0.2,0.9,0.9,_eo)
+    sWi(vp,_clipborder,BLACK_,_redraw,_save)
 
-    vp2 = cWi(@title,"Colors","resize",0.51,0.1,0.99,0.99,0)
-    sWi(vp2,@pixmapon,@drawon,@save,@bhue,"white")
+    vp2 = cWi(_title,"Colors");
+    sWi(vp2,"resize",0.51,0.1,0.99,0.99,0,_eo)
+    sWi(vp2,_pixmapon,_drawon,_save,_bhue,"white")
 
 
-    txtwin = cWi("title","MC_INFO","resize",0.01,0.51,0.49,0.99,0)
+    txtwin = cWi("title","MC_INFO","resize",0.01,0.51,0.49,0.99,0,_eo)
 
 
   rx = 0.2
@@ -69,58 +68,62 @@ include "tbqrd"
   cbX = 0.6
 
 
-  rwo=cWo(vp,"BV",@name,"Red",@value,"$redv",@style,"SVB")
+  rwo=cWo(vp,"BV",_name,"Red",_value,"$redv",_style,"SVB")
 
-  sWo(rwo,@color,RED_,@penhue,"black",@vmove,1)
+  sWo(rwo,_color,RED_,_penhue,"black",_vmove,1,_eo)
 
-  gwo=cWo(vp,"BV",@name,"Green"@resize,gx,cby,gX,cbY,@NAME,"Green",@VALUE,"$greenv")
+  gwo=cWo(vp,"BV",_name,"Green"_resize,gx,cby,gX,cbY,_NAME,"Green",_VALUE,"$greenv",_eo)
 
-  sWo(gwo,@color,GREEN_,@penhue,"black",@style,"SVB",@symbol,"tri")
+  sWo(gwo,_color,GREEN_,_penhue,"black",_style,"SVB",_symbol,"tri",_eo)
 
-  bwo=cWo(vp,"BV",@name,"Blue",@resize,bx,cby,bX,cbY,@NAME,"Blue",@VALUE,bluev)
+  bwo=cWo(vp,"BV",_name,"Blue",_resize,bx,cby,bX,cbY,_NAME,"Blue",_VALUE,bluev,_eo)
 
-  sWo(bwo,@color,BLUE_,@penhue,"black",@style,"SVB")
+  sWo(bwo,_color,BLUE_,_penhue,"black",_style,"SVB",_eo)
 
 
   int rgbwo[] = { rwo, gwo, bwo }
 
   wo_htile( rgbwo, cbx,cby,cbX,cbY,0.02)
-  //sWo( rgbwo, @vmove,1, "setmsg",1 )
-  sWo( rgbwo, @vmove,1)
+  //sWo( rgbwo, _vmove,1, "setmsg",1 )
+  sWo( rgbwo, _vmove,1,_eo)
 
-  qwo=cWo(vp,"BV",@name,"QUIT?",@VALUE,"QUIT",@color,"orange",@resize,0.8,0.1,0.95,0.2)
-
-  sWo(qwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw)
+ // use title quit button
+ // qwo=cWo(vp,"BV",_name,"QUIT?",_VALUE,"QUIT",_color,"orange",_resize,0.8,0.1,0.95,0.2,_eo)
+ // sWo(qwo,_BORDER,_DRAWON,_CLIPBORDER,_FONTHUE,"black", _redraw)
 
   sWi(vp,"woredrawall")
 
- two=cWo(txtwin,"TEXT",@name,"Text",@VALUE,"howdy",@color,"orange",@resize_fr,0.1,0.1,0.9,0.9)
+ two=cWo(txtwin,"TEXT",_name,"Text",_VALUE,"howdy",_color,"orange",_resize_fr,0.1,0.1,0.9,0.9,_eo)
 
- sWo(two,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", "redraw",@pixmapon,@drawon)
+ sWo(two,_BORDER,_DRAWON,_CLIPBORDER,_FONTHUE,BLACK_, _redraw,_pixmapon,_drawon)
 
- sWo(two,@scales,-1,-1,1,1)
+ sWo(two,_scales,-1,-1,1,1,_eo)
 
-int awo[100]
+int awo[100];
 k = 0
+
 
      matrix_index = 64
      index = matrix_index;
-     for (k = 0; k < 100; k++) { 
+set_gsmap(100, matrix_index);
+    for (k = 0; k < 100; k++) { 
    
-      awo[k]=cWo(vp2,GRAPH_,@name,"${k}_col")
+     // awo[k]=cWo(vp2,GRAPH_,_name,"${k}_col",_eo)
+    //  awo[k]=cWo(vp2,GRAPH_);
+      awo[k]=cWo(vp2,GRAPH_);
    
-      sWo(awo[k],@drawon,@color,index,@value,k)
+      sWo(awo[k],_type,GRAPH_,_drawon,_color,index,_value,k,_name,"${k}_col",_eo)
        index++
      }
 
 //<<"%v $awo \n"
 
-     sWo(awo,@BORDER,@DRAWON,@CLIPBORDER)
+     sWo(awo,_BORDER,_DRAWON,_CLIPBORDER)
 
-     worctile(awo,0.1,0.1,0.9,0.9,10,10)
+     worctile(awo,0.1,0.1,0.9,0.9,10,10);
      titleVers()
-     sWi(vp,@redraw)
-     sWi(vp2,@redraw)
+     sWi(vp,_redraw)
+     sWi(vp2,_redraw)
 
 
 
@@ -150,15 +153,15 @@ float WXY[]
    WXY= wogetposition(bwo)
    bluev = limitval(WXY[2],0,1)
 
-   sWo(rwo,@value,"%3.2f$redv",@update)
-   sWo(gwo,@value,"%3.2f$greenv",@update)
-   sWo(bwo,@value,"%3.2f$bluev",@update)
+   sWo(rwo,_value,"%3.2f$redv",_update,_eo)
+   sWo(gwo,_value,"%3.2f$greenv",_update)
+   sWo(bwo,_value,"%3.2f$bluev",_update)
 
    setRGB(rgb_index,redv,greenv,bluev)
 
    color_index = getColorIndexFromRGB(redv,greenv,bluev)
 
-   cname = getColorName(color_index)
+   cname = getColorName(color_index) ; // image lib auto open??
 
 
    c_index = matrix_index
@@ -204,22 +207,37 @@ float WXY[]
    bv = 0.0
    bdv = 1.0/7.0
 
- 
+ <<"%V $_ewoid  $rwo $gwo $bwo \n";
+
+  woval =wogetvalue (rwo);
+
+<<"rwo $woval \n"
+
+  woval =wogetvalue (gwo);
+
+<<"gwo $woval \n"
+woval =wogetvalue (bwo);
+<<"bwo $woval \n"
+
    for (rj = 0; rj < 8 ; rj++) {
    jv = 0.0
    for (j = 0; j < 10 ; j++) {
-// _ewoname @= "Red"
+// _ewoname _= "Red"
        //setRGB(ki,redv,bv,jv)
+
+    
+    
      if (_ewoid == rwo) {
        setRGB(ki,redv,bv,jv)
      }
-      elif (_ewoid == gwo) {
+      else if(_ewoid == gwo) {
        setRGB(ki,bv,greenv,jv)
       }
-      elif (_ewoid == bwo) {
+      else if (_ewoid == bwo) {
         setRGB(ki,bv,jv,bluev)
       }
 
+//  setRGB(ki,bv,jv,bluev);
       //<<"$ki $redv $bv $jv \n"
    ki++
    jv += jdv
@@ -228,18 +246,15 @@ float WXY[]
    }
 
   
-   sWo(awo,@redraw)
+   sWo(awo,_redraw)
 
-   sWo(rwo,@VALUE,redv)
-   sWo(bwo,@VALUE,bluev)
-   sWo(gwo,@VALUE,greenv)
+   sWo(rwo,_VALUE,redv,_eo)
+   sWo(bwo,_VALUE,bluev,_eo)
+   sWo(gwo,_VALUE,greenv,_eo)
 
-   sWo(two,@clear,@texthue,"black",@textr,"$_emsg\n $cname\n%V$_ebutton \n %V3.2f$redv $greenv $bluev",-0.9,0)
+   sWo(two,_clear,_texthue,"black",_textr,"$_emsg\n $cname\n%V$_ebutton \n %V3.2f$redv $greenv $bluev",-0.9,0,_eo)
 
-   if (_ewoid == qwo) {
-        break;
-   }
-
+  
    sleep(0.05)
 
   }

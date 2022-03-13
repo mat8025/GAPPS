@@ -12,12 +12,12 @@
 //***********************************************%
 
 
-include "debug"
-include "hv.asl"
+#include "debug"
+#include "hv.asl"
 
 openDll("image")
 
-setdebug(0)
+ignoreErrors();
 
 Pi = 4.0 * atan(1.0)
 
@@ -206,14 +206,14 @@ CC[kc++] = ci
 
  rainbow();
 
-include "graphic.asl"
-include "gevent.asl"
+#include "graphic"
+#include "gevent"
 
 
 // how to draw wheel  with twelve sections ?
- vp = cWi(@title,"COLOR_WHEEL",@resize,0.05,0.01,0.5,0.9,0);
+ vp = cWi(_title,"COLOR_WHEEL",_resize,0.05,0.01,0.5,0.9,0,_eo);
   
-  sWi(vp,@pixmapon,@drawon,@save,@savepixmap,@bhue,WHITE_);
+  sWi(vp,_pixmapon,_drawon,_save,_savepixmap,_bhue,WHITE_);
   
   titleButtonsQRD(vp);
   titleVers();
@@ -229,9 +229,9 @@ include "gevent.asl"
   
   daname = "WHEEL";
   
-  gwo= cWo(vp,@GRAPH,@name,"GL",@color,WHITE_);
+  gwo= cWo(vp,_GRAPH,_name,"GL",_color,WHITE_);
   
-  sWo(gwo,@clip,cx,cy,cX,cY, @drawon, @resize,0.05,0.1,0.99,0.95);
+  sWo(gwo,_clip,cx,cy,cX,cY, _drawon, _resize,0.05,0.1,0.99,0.95,_eo);
 
  // scales 
     sx = -3
@@ -239,9 +239,9 @@ include "gevent.asl"
     sy = -3
     sY = 3.0
 
-  sWo(gwo,@scales, sx, sy, sX, sY,@save, @savepixmap,@redraw,@pixmapon,@drawon)
+  sWo(gwo,_scales, sx, sy, sX, sY,_save, _savepixmap,_redraw,_pixmapon,_drawon)
 
-  sWi(vp,@redraw)
+  sWi(vp,_redraw)
 
 
   int kp = 0;
@@ -250,32 +250,32 @@ include "gevent.asl"
   while (1) {
 
 
-          sWo(gwo,@drawon)
+          sWo(gwo,_drawon)
 
-          sWo(gwo,@clearpixmap,@pixmapon,@savepixmap)
+          sWo(gwo,_clearpixmap,_pixmapon,_savepixmap)
 
-          sWo(gwo,@clear,@border,BLUE_,@clipborder,RED_)
+          sWo(gwo,_clear,_border,BLUE_,_clipborder,RED_,_eo)
 
-          plot(gwo,@circle,0,0,2,YELLOW_,0)
+          plot(gwo,_circle,0,0,2,YELLOW_,0)
 
-          plot(gwo,@circle,0,0,2.5, RED_,0)
+          plot(gwo,_circle,0,0,2.5, RED_,0)
 
-          plot(gwo,@box,-0.5,-0.5,0.5,0.5,LILAC_,1.0)
+          plot(gwo,_box,-0.5,-0.5,0.5,0.5,LILAC_,1.0)
 
 	  for (kp = 0; kp < 12; kp++) {
 
           PX = PV[kp][::]
 	  co = ((kp + _eloop) % 12)
           col = CC[co]	  
-          plot(gwo,@poly,PX,col,1);
+          plot(gwo,_poly,PX,col,1);
 
          }
          <<"%V $col\n"
 
 
 
-       //  sWi(vp,@redraw);
-         sWo(gwo, @showpixmap)
+       //  sWi(vp,_redraw);
+         sWo(gwo, _showpixmap)
 
          eventWait();
 

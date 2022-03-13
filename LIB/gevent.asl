@@ -27,9 +27,8 @@ void eventDecode()
      
 //<<"$_proc %V $_ex $_ey  $_ewoid\n"
 
-// get all below button,rx,ry via parameters to wait_for_msg
-//    _ewoval = Ev.getEventWoValue();
-//  <<"%V $_ewoval \n"       
+  _ewoval = Ev.getEventWoValue();
+  <<"%V $_ewoval \n"       
 
   //  Ev.geteventrxy(_erx,_ery);    
 
@@ -112,8 +111,9 @@ void eventWait()
     _emsg = Ev.waitForMsg();
 //<<"$_proc  %V $_emsg\n"
      Ev.geteventrxy(_erx,_ery);    
-     Ev.geteventwoid(_ewoid);
-//<<"$_proc  %V $_ewoid $_erx $_ery\n"     
+     _ewoid=Ev.geteventwoid();
+
+<<"$_proc  %V $_ewoid $_erx $_ery\n"     
 
      eventDecode();
 /*     

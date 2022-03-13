@@ -62,7 +62,7 @@ int dblevel = _dblevel;
   }
 //<<"%V $_DB ALLOWALL debug from files and funcs\n"
 //<<"use filterFuncDebug() filterFileDebug() to control\n"
-//sdb(dblevel,@keep,@~pline,@trace)
+//sdb(dblevel,_keep,_~pline,_trace)
 //filterFuncDebug(ALLOWALL_,"xxx");
 //filterFileDebug(ALLOWALL_,"yyy");
 
@@ -78,7 +78,7 @@ int dblevel = _dblevel;
   void debugOFF()
   {
 
-  setdebug(-1,@~pline,@~step,@~trace,@~showresults,1);
+  setdebug(-1,_~pline,_~step,_~trace,_~showresults,1);
 
   filterFuncDebug(REJECTALL_,"proc");
 
@@ -117,7 +117,7 @@ int dblevel = _dblevel;
   sdb(hold_dbl,_keep,_~trace);
 
   if (_dblevel > 1) {
-  //sdb(_dblevel,@keep,@trace)
+  //sdb(_dblevel,_keep,_trace)
   //<<"keep and trace\n"
 
   }
