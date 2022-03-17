@@ -68,20 +68,20 @@ Pi = 4.0 * atan(1.0)
   cbX = 0.6
 
 
-  rwo=cWo(vp,"BV",_name,"Red",_value,"$redv",_style,"SVB")
+  rwo=cWo(vp,"BV",_WNAME,"Red",_WVALUE,"$redv",_WSTYLE,"SVB")
 
-  sWo(rwo,_color,RED_,_penhue,"black",_vmove,1,_eo)
+  sWo(rwo,_WCOLOR,RED_,_WPENHUE,"black",_WVMOVE,1,_eo)
 
-  gwo=cWo(vp,"BV",_name,"Green"_resize,gx,cby,gX,cbY,_NAME,"Green",_VALUE,"$greenv",_eo)
+  gwo=cWo(vp,"BV",_WNAME,"Green"_resize,gx,cby,gX,cbY,_NAME,"Green",_VALUE,"$greenv",_eo)
 
-  sWo(gwo,_color,GREEN_,_penhue,"black",_style,"SVB",_symbol,"tri",_eo)
+  sWo(gwo,_color,GREEN_,_WPENHUE,"black",_WSTYLE,"SVB",_symbol,"tri",_eo)
 
-  bwo=cWo(vp,"BV",_name,"Blue",_resize,bx,cby,bX,cbY,_NAME,"Blue",_VALUE,bluev,_eo)
+  bwo=cWo(vp,"BV",_WNAME,"Blue",_resize,bx,cby,bX,cbY,_NAME,"Blue",_VALUE,bluev,_eo)
 
-  sWo(bwo,_color,BLUE_,_penhue,"black",_style,"SVB",_eo)
+  sWo(bwo,_color,BLUE_,_WPENHUE,"black",_WSTYLE,"SVB",_eo)
 
 
-  int rgbwo[] = { rwo, gwo, bwo }
+  int rgbwo[] = { rwo, gwo, bwo };
 
   wo_htile( rgbwo, cbx,cby,cbX,cbY,0.02)
   //sWo( rgbwo, _vmove,1, "setmsg",1 )
@@ -93,11 +93,11 @@ Pi = 4.0 * atan(1.0)
 
   sWi(vp,"woredrawall")
 
- two=cWo(txtwin,"TEXT",_name,"Text",_VALUE,"howdy",_color,"orange",_resize_fr,0.1,0.1,0.9,0.9,_eo)
+ two=cWo(txtwin,"TEXT",_WNAME,"Text",_VALUE,"howdy",_color,"orange",_WRESIZE_fr,0.1,0.1,0.9,0.9,_eo)
 
- sWo(two,_BORDER,_DRAWON,_CLIPBORDER,_FONTHUE,BLACK_, _redraw,_pixmapon,_drawon)
+ sWo(two,_WBORDER,_WDRAWON,_WCLIPBORDER,RED_,_WFONTHUE,BLACK_, _WREDRAW,_WPIXMAPON,_WDRAWON)
 
- sWo(two,_scales,-1,-1,1,1,_eo)
+ sWo(two,_Wscales,-1,-1,1,1,_eo)
 
 int awo[100];
 k = 0
@@ -112,13 +112,13 @@ set_gsmap(100, matrix_index);
     //  awo[k]=cWo(vp2,GRAPH_);
       awo[k]=cWo(vp2,GRAPH_);
    
-      sWo(awo[k],_type,GRAPH_,_drawon,_color,index,_value,k,_name,"${k}_col",_eo)
+      sWo(awo[k],_type,GRAPH_,_WDRAWON,_WCOLOR,index,_WVALUE,k,_WNAME,"${k}_col",_eo)
        index++
      }
 
 //<<"%v $awo \n"
 
-     sWo(awo,_BORDER,_DRAWON,_CLIPBORDER)
+     sWo(awo,_WBORDER,_WDRAWON,_WCLIPBORDER);
 
      worctile(awo,0.1,0.1,0.9,0.9,10,10);
      titleVers()

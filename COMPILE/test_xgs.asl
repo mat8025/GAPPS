@@ -34,7 +34,7 @@ void drawLines(int wo1,float wline[])
   for (int i= 0; i <10; i++) {
     wline[0] += 0.1;
     wline[1] += 0.1;
-    sWo(wo1,WLINE,wline,EO);
+    sWo(wo1,_WLINE,wline,_WEO);
     xsleep(0.1); // not pausing ?
 //ans=query("see line resized?");    
 // getclick();
@@ -85,10 +85,10 @@ cout << "vp " << vp << endl;
 
      int ws = 0; //which screen 0,7 -1 is current
 
-//   int vok= sWi(vp,WRESIZE,0.1,0.2,0.5,0.5,-1,WHUE,YELLOW_,WPIXMAPDRAWON,WDRAWON,WREDRAW);
+//   int vok= sWi(vp,_WRESIZE,0.1,0.2,0.5,0.5,-1,_WHUE,YELLOW_,_WPIXMAPDRAWON,_WDRAWON,_WREDRAW);
 
-   int vok= sWi(vp,WTITLE,"PLOT_OBJECTS",WRESIZE,rsz,WHUE,YELLOW,WBHUE,WHITE_,
-                   WPIXMAPON,WDRAWON,WCLEAR,WREDRAW,EO);
+   int vok= sWi(vp,_WTITLE,"PLOT_OBJECTS",_WRESIZE,rsz,_WHUE,YELLOW,_WBHUE,WHITE_,
+                   _WPIXMAPON,_WDRAWON,_WCLEAR,_WREDRAW,_WEO);
 
 cout << "vok " << vok << endl;
 
@@ -97,7 +97,7 @@ cout << "vok " << vok << endl;
 //ans=query("see window?");
 
       rsz[3] = 0.8;
-      vok =sWi(vp,WHUE,MAGENTA_,WRESIZE,rsz,WREDRAW,EO);
+      vok =sWi(vp,_WHUE,MAGENTA_,_WRESIZE,rsz,_WREDRAW,_WEO);
 
 
 //ans=query("see window?");
@@ -109,21 +109,20 @@ cout << "vok " << vok << endl;
 cout << "wo1 " << wo1 << endl;
 
 
-      int wok = sWo(wo1,WTYPE,WO_GRAPH,WVISIBLE,WDRAWON,WRESIZE,rsz,WFHUE,YELLOW_,WBHUE,WHITE_,WCLIPBORDER,RED,
-      WBORDER,BLACK,WCLEAR,WREDRAW,EO);
+      int wok = sWo(wo1,_WTYPE,WO_GRAPH,_WVISIBLE,_WDRAWON,_WRESIZE,rsz,_WFHUE,YELLOW_,_WBHUE,WHITE_,_WCLIPBORDER,RED,_WBORDER,BLACK,_WCLEAR,_WREDRAW,_WEO);
             rsz[3]= 0.9;
 //ans=query("see wob?");
     float wline[5] = {0.1,0.1,0.5,0.6,(float) BLUE_};
-wok = sWo(wo1,WRESIZE,rsz,WHUE,ORANGE_,WBHUE,PINK_,WCLIPBORDER,RED,WCLEAR,WLINE,wline,WDRAWON,WREDRAW,EO);
+wok = sWo(wo1,_WRESIZE,rsz,_WHUE,ORANGE_,_WBHUE,PINK_,_WCLIPBORDER,RED,_WCLEAR,_WLINE,wline,_WDRAWON,_WREDRAW,_WEO);
             rsz[2] = 0.9;
 //ans=query("see wob?");
 
-wok = sWo(wo1,WLINE,wline,EO);
+wok = sWo(wo1,_WLINE,wline,_WEO);
 //ans=query("see line?");
-    vok=  sWi(vp,WHUE,BLACK_,WRESIZE,rsz,WREDRAW,EO);
+    vok=  sWi(vp,_WHUE,BLACK_,_WRESIZE,rsz,_WREDRAW,_WEO);
    wline[4] = RED_;
    wline[3] = 0.8;
-   wok = sWo(wo1,WLINE,wline,EO);
+   wok = sWo(wo1,_WLINE,wline,_WEO);
 
 ///  draw some lines
    drawLines(wo1,wline);
@@ -133,16 +132,16 @@ wok = sWo(wo1,WLINE,wline,EO);
  int txtwin = cWi("Info_text_window");
 
 
-  sWi(txtwin,WPIXMAPOFF,WDRAWON,WSAVE,WBHUE,WHITE_,WSTICKY,0,EO);
+  sWi(txtwin,_WPIXMAPOFF,_WDRAWON,_WSAVE,_WBHUE,WHITE_,_WSTICKY,0,_WEO);
 
     float clipbox[6] = {0.1,0.2,0.9,0.9,0.0,-1234.50};
     int vp1 = cWi("Buttons1");
 
 
-    sWi(vp,WPIXMAPON,WDRAWON,WSAVE,WBHUE,WHITE_,0);
+    sWi(vp,_WPIXMAPON,_WDRAWON,_WSAVE,_WBHUE,WHITE_,_WEO);
 
 
-    sWi(vp,WCLIP,clipbox,EO);
+    sWi(vp,_WCLIP,clipbox,_WEO);
 
 //ans=query("did we see buttons?");
 
@@ -153,11 +152,12 @@ wok = sWo(wo1,WLINE,wline,EO);
 
 
 
-    sWi(vp2,WPIXMAPON,WDRAWOFF,WSAVE,WBHUE,PINK_,EO);
+
+    sWi(vp2,_WPIXMAPON,_WDRAWOFF,_WSAVE,_WBHUE,PINK_,_WEO);
 //ans=query("doing a bad WGM ");
-  sWi(vp2,WCLIP,WCLIP,clipbox,EO); // can we guard against bad arg ? without crashing yes!
+  sWi(vp2,_WCLIP,_WCLIP,clipbox,_WEO); // can we guard against bad arg ? without crashing yes!
 //ans=query("bad WGM ");
-    sWi(vp2,WCLIP,clipbox,EO);
+    sWi(vp2,_WCLIP,clipbox,_WEO);
 
 //ans=query("did we see buttons?");
 
@@ -174,7 +174,7 @@ cout << "fswins " << fswins << endl;
     int wwi;
     for (int i=0;i<4;i++) {
       wwi = fswins[i];
-      sWi(wwi, WREDRAW, WSAVE);
+      sWi(wwi, _WREDRAW, _WSAVE);
    }
    //
 
@@ -195,24 +195,24 @@ cout << "fswins " << fswins << endl;
 
   int hwo=cWo(vp,WO_BUTTON_ONOFF);
 
-sWo(hwo,WNAME, "ENGINE", WVALUE,"ON" ,WCOLOR,RED_,WRESIZE,worsz,WFLUSH);
+sWo(hwo,_WNAME, "ENGINE",_WVALUE,"ON" ,_WCOLOR,RED_,_WRESIZE,worsz,_WFLUSH);
 
- sWo(hwo,WBORDER,WDRAWON,WCLIPBORDER,RED_,WSTYLE,WO_SVR,WFLUSH);
- //sWo(hwo,@fonthue,WHITE_, @STYLE,SVR_)
- sWo(hwo,WFHUE,RED_,WBHUE,GREEN_,WREDRAW,WFLUSH);
+ sWo(hwo,_WBORDER,_WDRAWON,_WCLIPBORDER,RED_,_WSTYLE,WO_SVR,_WFLUSH);
+ //sWo(hwo,@fonthue,_WHITE_, @STYLE,SVR_)
+ sWo(hwo,_WFHUE,RED_,_WBHUE,GREEN_,_WREDRAW,_WFLUSH);
  //sWo(hwo,@clipbhue,MAGENTA_);
 
 
  int rwo=cWo(vp2, WO_BUTTON_STATE);
    float fworsz[6] = {bx,by,bX,bY,0.0};
 
-sWo(rwo,WNAME,"FRUIT",WCOLOR,YELLOW_,WRESIZE,fworsz,WFLUSH);
- sWo(rwo,WCSV,"mango,cherry,apple,banana,orange,Peach,pear",WFLUSH);
+sWo(rwo,_WNAME,"FRUIT",_WCOLOR,YELLOW_,_WRESIZE,fworsz,_WFLUSH);
+ sWo(rwo,_WCSV,"mango,cherry,apple,banana,orange,Peach,pear",_WFLUSH);
 
- sWo(rwo,WBORDER,WDRAWON,WCLIPBORDER,BLUE_,WFONTHUE,RED_,WSTYLE,WO_SVR, WREDRAW ,WFLUSH);
+ sWo(rwo,_WBORDER,_WDRAWON,_WCLIPBORDER,BLUE_,_WFONTHUE,RED_,_WSTYLE,WO_SVR,_WREDRAW ,_WFLUSH);
  //sWo(rwo,WFHUE,ORANGE_,WCLIPBHUE,"steelblue",WFLUSH); // check to see if we can spot INT versus char*
 
-sWo(rwo,WFHUE,ORANGE_,WCLIPBHUE,BLUE_,WFLUSH); // check to see if we can spot INT versus char*
+sWo(rwo,_WFHUE,ORANGE_,_WCLIPBHUE,BLUE_,_WFLUSH); // check to see if we can spot INT versus char*
 
 
 

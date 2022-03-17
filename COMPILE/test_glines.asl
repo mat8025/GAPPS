@@ -66,8 +66,8 @@ Str ans;
 
 //   int vok= sWi(vp,WRESIZE,0.1,0.2,0.5,0.5,-1,WHUE,YELLOW_,WPIXMAPDRAWON,WDRAWON,WREDRAW);
 
-   int vok= sWi(vp,WTITLE,"PLOT_OBJECTS",WRESIZE,rsz,WHUE,YELLOW,WBHUE,WHITE_,
-                   WPIXMAPON,WDRAWON,WCLEAR,WREDRAW,EO);
+   int vok= sWi(vp,_WTITLE,"PLOT_OBJECTS",_WRESIZE,rsz,_WHUE,YELLOW,_WBHUE,WHITE_,
+                   _WPIXMAPON,_WDRAWON,_WCLEAR,_WREDRAW,_WEO);
 
    cout << "vok " << vok << endl;
 
@@ -76,12 +76,12 @@ Str ans;
 //ans=query("see window?");
 
       rsz[3] = 0.8;
-      vok =sWi(vp,WHUE,MAGENTA_,WRESIZE,rsz,WREDRAW,EO);
+      vok =sWi(vp,_WHUE,MAGENTA_,_WRESIZE,rsz,_WREDRAW,_WEO);
 
 
   int gwo= cWo(vp,WO_GRAPH);
    float worsz[6] = {0.1,0.1,0.9,0.9,0.0};
-  sWo(gwo,WRESIZE,worsz,WFLUSH);
+  sWo(gwo,_WRESIZE,worsz,_WFLUSH);
 
 
   double pi = 4.0 * atan(1.0); 
@@ -96,9 +96,9 @@ Str ans;
 
 
  // sWo(gwo,_scales, sx, sy, sX, sY,  _save,_redraw,_drawon,_pixmapon,_clipbhue,GREEN_,_EO);
-  sWo(gwo,WSAVE,WREDRAW,WDRAWOFF,WPIXMAPON,WCLIPBHUE,GREEN_,WFLUSH);
-  sWo(gwo,WSCALES,vscale,WFLUSH);
-  sWo(gwo,WSAVEPIXMAP,WFLUSH);
+  sWo(gwo,_WSAVE,_WREDRAW,_WDRAWOFF,_WPIXMAPON,_WCLIPBHUE,GREEN_,_WFLUSH);
+  sWo(gwo,_WSCALES,vscale,_WFLUSH);
+  sWo(gwo,_WSAVEPIXMAP,_WFLUSH);
   
 
 
@@ -170,18 +170,18 @@ cout << "Rnvec " << Rnvec << endl;
 
 //ans=query("see xz_gl");
 
-  sWo(gwo,WHUE,GREEN_,WREFRESH,WFLUSH);
+  sWo(gwo,_WHUE,GREEN_,_WREFRESH,_WFLUSH);
   
-  sWo(gwo,WSHOWPIXMAP,WFLUSH);
+  sWo(gwo,_WSHOWPIXMAP,_WFLUSH);
   
   double f = 0.5;
   float ff =f;
 
   
   Wvec = Xvec * f;
-    Wvec.pinfo();
+  Wvec.pinfo();
   Svec = Sin(Wvec);
-    Svec.pinfo();
+  Svec.pinfo();
 
 //ans=query("see Sin");
 
@@ -204,7 +204,7 @@ cout << "Svec " << Svec << endl;
   
   sGl(xn_gl,_GLHUE,RED_,_GLEO);
   
-   sWo(gwo,WCLEARPIXMAP,WCLIPBORDER,WFLUSH);
+   sWo(gwo,_WCLEARPIXMAP,_WCLIPBORDER,_WFLUSH);
   //ans=query("listo?:");
   int kk = 0;
 
@@ -242,14 +242,14 @@ cout << "Svec " << Svec << endl;
 //cout << "Zvec " << Zvec << endl;
 
     
-   sWo(gwo,WCLEARPIXMAP,WCLIPBORDER,BLACK_,WFLUSH);
+   sWo(gwo,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_,_WFLUSH);
     
     //sWo(gwo,_line,0.1,0.1,3.0,2.0 ,RED_,_flush);
 
     //plot(gwo,_line,0.1,0.1,18.0,2 ,RED_);
     ff= f;
     lvec[3]= f;
-   sWo(gwo,WLINE,lvec,WFLUSH);
+   sWo(gwo,_WLINE,lvec,_WFLUSH);
 	
     sGl(xn_gl,_GLDRAW);  // DrawGline; 
     
@@ -259,7 +259,7 @@ cout << "Svec " << Svec << endl;
 
 //ans=query("did DrawLINES");
 
-    sWo(gwo,WSHOWPIXMAP,WCLIPBORDER,ORANGE_,WFLUSH);
+    sWo(gwo,_WSHOWPIXMAP,_WCLIPBORDER,ORANGE_,_WFLUSH);
 
 //ans=query("see LINES");
 
