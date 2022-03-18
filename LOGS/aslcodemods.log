@@ -1116,3 +1116,8 @@ ds_sivmem.cpp                       1.98  03/16/2022 19:23:19  free
 fileop.cpp                          1.79  03/16/2022 19:24:22  cpp
 gline_p.cpp                         1.76  03/16/2022 19:25:09  cpp
 utils_e.cpp                         2.61  03/16/2022 19:26:34  cpp
+uac_table.cpp                       1.12  03/17/2022 07:55:37  cpp
+uac.h                               1.31  03/17/2022 07:58:32  cpp
+rec_ops.cpp                         1.91  03/17/2022 10:16:21  cout
+win_p.cpp                           1.87  03/17/2022 14:14:58  wbox
+mod_wo_p.cpp                        1.6  03/17/2022 21:28:06  WHELP

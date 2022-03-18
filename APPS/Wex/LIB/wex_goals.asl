@@ -1,0 +1,164 @@
+/* 
+ *  @script wex_goals.asl 
+ * 
+ *  @comment  
+ *  @release CARBON 
+ *  @vers 1.4 Be 6.3.78 C-Li-Pt 
+ *  @date 01/31/2022 09:04:34          
+ *  @cdate Tue Mar 3 07:57:45 2020 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare 2022
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                                                                                                
+///
+///        long-term and current weight loss goals 
+///
+//  SET     START DATE      END DATE  TARGET WEIGHT
+
+// days will days of year not Julian
+
+   Svar Goals = Split("01/01/2022 03/31/2022 175");
+
+//<<"Setting goals $Goals\n"
+
+   Svar Goals2 = Split("03/01/2022 04/09/2022 194");
+////////////////////==============/////////////////
+
+float   GoalWt = 175;  // ideal -- flying weight
+
+float   StartWt = 215;
+
+float   MinWt = 165;
+
+// move these done 10 when reached -- until we are at desired operating weight!
+float   DX_NEW = 200.0;  // never exceed
+
+float   DX_MEW = GoalWt+5;  // max dx effort above
+
+
+   long tjd =  julian(Goals[0]) ;
+   
+
+   //long sday = julian(Goals[0]) -Jan1 ; // start date
+
+   long Sday = tjd - Jan1;
+   
+
+   long tarxday = julian(Goals[1]) -Jan1;
+   long targetday = julian(Goals[1]);
+
+   targetday -= Jan1;
+	  
+//<<"%V $tjd $Jan1 $Sday $targetday  $tarxday; \n"
+
+
+   int NextGoalWt = atoi(Goals[2]);
+
+   long Sday2 = julian(Goals2[0]) -Jan1 ; // start date
+
+   long tday2 = julian(Goals2[1]) -Jan1;
+
+   int StGoalWt = atoi(Goals2[2]);
+
+
+
+
+   long gsday = Sday;
+
+   long gday =  targetday;    // next goal day;
+
+   int got_start = 0;
+
+   long yday = julian("01/01/$Year")   ; // this should be found from data file
+
+   long eday = julian("12/31/$Year");
+
+   jtoday = julian("$(date(2))");
+
+   int ngday = 7;
+
+   int k = eday - Sday;
+
+   if ( k < 0) {
+
+     DBPR" time backwards !\n";
+
+     exit_gs();
+
+     }
+
+   int kdays = k;
+
+ //  _DB =-1;
+
+//   <<[_DB]"%V$kdays \n";
+
+//   <<[_DB]"%V$yday  $eday $jtoday  $(date(2))\n";
+
+   void computeGoalLine()
+   {
+ // <<"%V$StartWt $NextGoalWt\n"
+
+     ngday = gday - gsday;
+
+     GVEC[0] = StartWt;  // start  Wt
+
+     GVEC[1] = NextGoalWt;
+
+     ty_gsday = gsday;
+
+     gwt =  NextGoalWt;
+
+     GVEC[ngday-1] = gwt;  // goal wt
+
+     WDVEC[ngday-1] = gsday+ngday;
+
+     k =0;
+//  lpd = 1.75/7.0      // 1.75 lb a  week
+
+     lpd = 4.0/7.0;      // 4 lb a  week
+
+     try_lpd = (StartWt - NextGoalWt) / (1.0 * ngday);
+
+     sw = StartWt;
+
+     lw = sw;
+// our goal line  wtloss per day!
+//<<[_DB]"%V $try_lpd $lpd \n"
+
+     for (i= 0; i < ngday; i++) {
+//<<"$(ty_gsday+i) $lw \n"
+
+       GVEC[i] = lw;
+
+       WDVEC[i] = gsday+i;
+
+       lw -= try_lpd;
+
+       if (lw < MinWt)
+
+       lw = MinWt;
+
+       }
+///  revised goal line
+
+     sz = Caz(GVEC);
+
+     <<[_DB]" days $sz to lose $(StartWt-gwt) \n";
+
+     sz = Caz(WDVEC);
+
+     <<[_DB]"$sz\n";
+
+     <<[_DB]"%6.1f%(7,, ,\n)$WDVEC\n";
+
+     <<[_DB]"%6.1f%(7,, ,\n)$GVEC\n";
+
+     }
+//==================================//
+
+//   <<[_DB]"$_include \n";
+///////////////////////////////////
+
+;//==============\_(^-^)_/==================//;

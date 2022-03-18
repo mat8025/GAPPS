@@ -53,15 +53,18 @@ Str ans;
     int vp = cWi("Button");
     // neead rsz[]
 
-    float rsz[6] = {0.01,0.01,0.45,0.49,0};
 
-    sWi(vp,_WRESIZE,rsz,_WEO);
+    sWi(vp,_WRESIZE,wbox(0.01,0.01,0.45,0.49,0),_WEO);
+
+  //  sWi(vp,_WRESIZE,{0.01,0.01,0.45,0.49,0},_WEO);
 
    titleButtonsQRD(vp);
 
-    float scales[5] = {0,-0.2,1.5,1.5};
-    float rclip[5] = {0.2,0.2,0.9,0.9,0.0};
+    float scales[] = {0,-0.2,1.5,1.5};
+    float rclip[] = {0.2,0.2,0.9,0.9,0.0};
+    
     sWi(vp,_WPIXMAPON,_WDRAWON,_WSAVE,_WBHUE,WHITE_,_WLAST);
+
     sWi(vp,_WSCALES,scales,_WEO);
 
    sWi(vp,_WCLIP,rclip,_WEO);
@@ -69,15 +72,20 @@ Str ans;
     sWi(vp,_WCLIPBORDER,BLACK_,_WREDRAW,_WSAVE,_WLAST);
 cout << "done vp" << endl;
     int vp2 = cWi("Colors");
-    float rsz2[5] = {0.51,0.1,0.99,0.99,0};
-    sWi(vp2,_WRESIZE,rsz2,_WEO);
+    
+       
+
+  sWi(vp2,_WRESIZE,wbox(0.51,0.1,0.99,0.99,0) ,_WEO);
+
+
+
     sWi(vp2,_WPIXMAPON,_WDRAWON,_WSAVE,_WBHUE,WHITE_,_WEO);
 
 cout << "done vp2" << endl;
 
     int txtwin = cWi("MC_INFO");
-    float trsz[6]= {0.01,0.51,0.49,0.99};
-    sWi(txtwin,_WRESIZE,trsz,_WEO);
+
+    sWi(txtwin,_WRESIZE,wbox(0.01,0.51,0.49,0.99),_WEO);
 
    float rs,bs,gs,rc,bc,gc;
   float rx = 0.2;
@@ -97,30 +105,24 @@ cout << "done vp2" << endl;
 
 
   int rwo=cWo(vp);
-  rsz[0] = rx;
-  rsz[1] = cby;
-  rsz[2] = rX;
-    rsz[3] = cbY;    
-  wovalue.strPrintf("%f",redv);
-  sWo(rwo,_WTYPE, WO_BV,_WNAME,"Red",_WRESIZE,rsz,_WVALUE,wovalue.cptr(),_WSTYLE,WO_SVB,_WEO);
+
+ wovalue.strPrintf("%f",redv);
+  sWo(rwo,_WTYPE, WO_BV,_WNAME,"Red",_WRESIZE,wbox(rx,cby,rX,cbY),  _WVALUE,wovalue.cptr(),_WSTYLE,WO_SVB,_WEO);
 
   sWo(rwo,_WCOLOR,RED_,_WPENHUE,BLACK_,_WVMOVE,1,_WEO);
 
   int gwo=cWo(vp);
 
-  rsz[0] = gx;
-  rsz[2] = gX;
+
   wovalue.strPrintf("%f",greenv);
-  sWo(gwo,_WTYPE, WO_BV,_WNAME,"Green",_WRESIZE,rsz,_WVALUE,wovalue.cptr(),_WEO);
+  sWo(gwo,_WTYPE, WO_BV,_WNAME,"Green",_WRESIZE,wbox(gx,cby,gX,cbY),  _WVALUE,wovalue.cptr(),_WEO);
 
   sWo(gwo,_WCOLOR,GREEN_,_WPENHUE,BLACK_,_WSTYLE,WO_SVB,_WSYMBOL,3,_WVMOVE,1,_WEO);
 
   int bwo=cWo(vp);
 
-  rsz[0] = bx;
-  rsz[2] = bX;
   wovalue.strPrintf("%f",bluev);
-  sWo(bwo,_WTYPE, WO_BV,_WNAME,"Blue",_WRESIZE,rsz,_WVALUE,wovalue.cptr(),_WVMOVE,1,_WEO);
+  sWo(bwo,_WTYPE, WO_BV,_WNAME,"Blue",_WRESIZE,wbox(bx,cby,bX,cbY),_WVALUE,wovalue.cptr(),_WVMOVE,1,_WEO);
 
   sWo(bwo,_WCOLOR,BLUE_,_WSTYLE,WO_SVB,_WEO);
 

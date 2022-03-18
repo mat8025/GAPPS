@@ -1,0 +1,492 @@
+/* 
+ *  @script wex.asl 
+ * 
+ *  @comment  exercise/diet logger cpp vers
+ *  @release CARBON 
+ *  @vers 2.55 Cs 6.3.79 C-Li-Au 
+ *  @date 02/03/2022 12:40:55          
+ *  @cdate Fri Jan 1 08:00:00 2010 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare 2022
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                        
+
+///
+/// exercise weight display
+/// calories burned (wt at 180)
+/// Walk 4mhr 397, Hike 477, R 10mhr 795 Cycle 12mhr 636  Wt lift 350
+/// Scuba   556   Gardening 318
+/// sleep 8 hours   71.5 per hour
+/// office computer work (24-8-exercise hours) 119.3 per hour
+///
+//!!"xset fp+ /home/mark/gasp-CARBON/fonts "
+//wexdir = "./"
+//chdir(wexdir)
+//wherearewe=!!"pwd "
+//<<[_DB]"%V$wherearewe \n"
+#define WALK 1
+#define HIKE 2
+#define RUN 3
+#define BIKE 4
+#define SWIM 5
+#define GYM_SS 6
+#define GYM_WTS  7
+#define NDAYS 1000
+
+  Svar Mo[] = { "JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC"};
+
+  //<<[_DB]"$Mo \n";
+
+  float WXY[];
+
+  char sep = 47;
+
+  float minWt = 160;
+
+  float upperWt = 225;
+//StartWt = 205;
+// rates per min
+
+#include "wex_types.asl"
+#include "wex_rates.asl"
+#include "wex_goals.asl"
+#include "wex_read.asl"
+#include "wex_callbacks.asl"
+
+  int N = 1000;
+//float DVEC[200+];
+//  let's use 400 to contain the year [1] will be first day
+// [365] or [366] will be the end year 
+
+  float DVEC = vgen(FLOAT_,400,1,1);
+
+  float DFVEC[400];
+
+  float DXVEC[400];
+
+  float WTVEC[400];
+//float PWTVEC[400] 
+
+  float WTPMV[400];
+
+  float GVEC[400]; // goal line;
+
+  float BPVEC[400];
+
+  float SEVEC[400];
+
+  float CARBV[400];
+
+  float WDVEC[400];
+
+  float EXTV[400];
+
+  float AVE_EXTV[400];
+
+  float EXEBURN[400];
+
+  float CALBURN[400];
+
+  float CARDIO[400];
+
+  float STRENGTH[400];
+// cals,carbs consumed & when
+
+  float CALSCON[400];
+
+  float CARBSCON[400];
+
+  float FATCON[400];
+
+  float PROTCON[400];
+
+  float FIBRCON[400];
+////////////////////////////////////////////////////
+
+  float Nsel_exemins = 0.0;
+
+  float Nsel_exeburn = 0.0;
+
+  float Nsel_lbs = 0.0;
+
+  //<<[_DB]"%V $Nsel_exemins $Nsel_exeburn  $(typeof(Nsel_exemins))\n";
+
+  int k = 0;
+
+
+///////////////////////////////////////////////////
+  void Uac::wex(Svarg * sarg)
+  {
+
+  today = getDate(2,sep);
+
+  today = date(2);
+
+  jtoday = julian(today);
+
+  Year= date(YEAR_);
+
+  //<<"%V $today $jtoday $Year\n";
+
+  long Bday;  // birthday;
+
+  Bday = julian("04/09/1949");
+
+  int lday;  // last day recorded in file;
+
+  int dday;
+
+  long Jan1;  // get they current year;
+
+  Jan1 = julian("01/01/$Year");
+
+  Yday = jtoday -Jan1;
+
+  Str bdate = "04/09/1949";
+ //Bday = julian(bdate)
+//<<"%V $bdate  $Bday $Jan1 \n"
+
+  maxday = julian("04/09/2049") -Bday;
+// this is a new format -- allowing us to put comment labels on graphs
+//<<"%V $maxday \n"
+
+  A=ofr("DAT/wex2022.tsv");
+
+  if (A == -1) {
+
+  //<<"FILE not found \n";
+
+  exitsi();
+
+  }
+// check period
+
+  Svar rx;
+//rx->pinfo()
+
+  Record RX[1];
+//RX=readrecord(A,@del,-1)
+
+  RX.readrecord(A,_del,-1);
+//cf(A);
+
+  RX.pinfo();
+//!a
+
+  Nrecs = Caz(RX);
+
+  //<<"%V $Nrecs $RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n";
+  printf("Nrecs RX[0] \n (Caz(RX))  (Caz(RX,0)) \n",Nrecs ,RX[0] ,Caz(RX),Caz(RX,0));
+
+  //<<[_DB]"$RX[Nrecs-2]\n";
+
+  rx= RX[Nrecs-1];
+//<<"$RX[Nrecs-1]\n"
+
+  <<[_DB]"$rx\n";
+
+  lastRX = RX[Nrecs-1];
+
+  <<"%V$lastRX\n";
+//!a
+//lastRX->pinfo();
+//chkT(1)
+    //WDVEC= vgen(_INT_,2*kdays,0,1);
+
+  n = 0;
+
+  k = 0;
+///////////// Cals & Carb Consumed ////////
+// so far not logged often 
+
+  ACC=ofr("DAT/cc2022.tsv");
+
+  Record RCC[1]; // TBC has to be at least 1;
+
+  NCCrecs = 0;
+
+  if (ACC == -1) {
+
+  //<<" no cc data!\n";
+
+  }
+
+  else {
+
+  RCC.readrecord(ACC);
+
+  cf(ACC);
+  //RCC->info(1);
+
+  NCCrecs = Caz(RCC);
+  //NCCrecs->info(1)
+
+  <<"%V $NCCrecs \n";
+/*
+ for (i=0; i < NCCrecs ;i++) {
+  <<[_DB]"$RCC[i] \n"
+  }
+*/
+
+ // <<[_DB]"; /////////\n";
+
+  }
+  
+////////////////// READ CEX DATA ///////////////////
+
+
+
+  readCCData();
+
+  nrd=readData();
+//<<"%V$nrd\n"
+////////////// PLOT GOAL LINE  ///////////////////////////////////////////
+//    sc_endday = lday + 10
+//    sc_endday = 75 * 365
+// 
+
+  init_period = 32;
+
+  long sc_startday = (jtoday - Jan1) -20;
+
+  if (sc_startday <0)
+
+  sc_startday =0;
+
+  long sc_endday = targetday + 10;
+//   <<"%V$sc_startday $targetday $sc_endday \n"
+
+  gwt = NextGoalWt;
+
+  computeGoalLine();
+////////////////////////////////////////////////////////////////////////
+
+  sw2 = 205;
+
+  gw2 = 170;
+
+  cf(A);
+
+#include "wex_foodlog.asl"
+//////////////////   Predicted Wt   //////////////////////////////////
+// (cal_consumed - cal_burn) / 4000.0    is wt gain in lbs
+//  if no cal_burn registered for the day assume no exercise
+//  if no cal_consumed assume  typical day_burn + 200 
+//         first_k = ty_gsday
+      //   first_k = 220
+/////////////////////////////////////////////////////////////////////
+
+  AVE_EXTV = vsmooth(EXTV,7);
+//<<[_DB]" Done calcs !\n"
+//<<[_DB]"$Nxy_obs total exeburn %6.2f $tot_exeburn  cals  $(tot_exeburn/4000.0) lbs in $(tot_exetime/60.0) hrs\n"
+#include "wex_compute.asl";
+
+  PWT=predictWL();
+//////////////////// DISPLAY /////////////////////////////
+#include "graphic.asl"
+
+  msg ="x y z"     ; // event vars;
+
+  msgw =split(msg);
+//<<[_DB]"%V$msgw \n"
+#include "wex_screen.asl"
+#include "wex_draw.asl"
+#include "wex_glines.asl"
+
+  titleVers();
+#include "gevent"
+//ans=query("proceed?")
+//sleep(0.1)
+//<<"%V $_eloop\n"
+///////////////////////// PLOT  ////////////////////////////////////////////
+//  
+
+
+  int wScreen = 0;
+
+  float Rinfo[30];
+//<<[_DB]"%(7,, ,\n)$CALBURN \n"
+//<<[_DB]"%(7,, ,\n)$CALCON \n"
+
+  int m_num = 0;
+
+  int button = 0;
+
+  Keyw = "";
+
+  lcpx = sc_startday;
+
+  rcpx = sc_endday;
+
+  sGl(lc_gl,_cursor,lcpx,0,lcpx,300);
+
+  sGl(rc_gl,_cursor,rcpx,0,rcpx,300);
+
+  ZIN();
+
+  woname = "";
+
+  showTarget();
+
+  titleVers();
+
+  _DB=-1;
+
+ // <<"%V $_eloop\n";
+    // drawScreens();
+//ans=query("proceed?")
+
+  resize_screen();
+
+  sWo(tw_wo,_move,targetday,NextGoalWt,gwo,_redraw));
+
+  sWi(vp,_redraw);
+
+  drawScreens();
+//ans=query("%V$last_known_day")
+
+  getDay(last_known_day);
+
+  CR_init = 1; sGl(rc_gl,_cursor,last_known_day,0,last_known_day,300, CR_init); CR_init = 0;
+//mc=getMouseEvent();
+// _ekeyw.pinfo();
+//_ename.pinfo();
+
+  while (1) {
+
+  m_num++;
+//sleep(0.05)
+/*
+   if (m_num == 1) {
+      drawScreens();
+     // setCursors();
+       }
+*/
+
+  msg =eventWait();
+//<<[2]"$m_num $msg  $_ename $_ewoname\n"
+//_ekeyw.pinfo();
+//_ename.pinfo();
+
+  if (_ename == "PRESS") {
+      // ans=iread(">>");
+/*
+     if (_ewoname != "") {
+<<"calling function via <|$_ewoname|> !\n"
+        $_ewoname()
+        }
+*/
+
+
+   }
+
+  if (_emsg == "EXIT") {
+
+   <<"leaving WEX !\n";
+
+   break;
+
+   }
+
+  if (_ewoname == "WTLB") {
+
+   WTLB();
+
+   }
+
+  else if (_ewoname == "RESIZE") {
+
+   drawScreens();
+
+   }
+
+  else if (_ewoname == "REDRAW") {
+
+   drawScreens();
+
+   }
+
+  else if (_ewoname == "StartDay") {
+
+   setGoals();
+
+   }
+
+  else if (_ewoname == "GoalDay") {
+
+   setGoals();
+
+   }
+
+  else if (_ewoname == "WtGoal") {
+
+   setGoals();
+
+   }
+
+  else if (_ewoname == "ZIN") {
+
+   ZIN();
+
+   }
+
+  else if (_ekeyw != "") {
+
+   <<"calling <|${_ekeyw}|>  $(typeof(_ekeyw))\n";
+
+   $_ekeyw();
+
+   }
+
+  <<[_DB]"%V$lcpx $rcpx \n";
+
+  WXY=WoGetPosition(tw_wo);
+//<<"$WXY \n"
+    //   place_curs( gwo,100,5,1,1)
+
+  }
+
+  }
+
+
+
+
+  extern "C" int wex_task(Svarg * sarg)  {
+
+  Str a0 = sarg->getArgStr(0) ;
+
+  Str Use_ ="plot Wex data";
+
+  Uac *o_uac = new Uac;
+
+  o_uac->wex(sarg);
+
+  }
+
+  exit();
+
+
+///////////////////////////////// TBD /////////////////////////
+// date-day
+// interpolate missing
+// carb, cal lookup   carb,protein,fat proportions
+// energy expenditure
+//- run,walk, cycle  --- weight/resistance exercise
+// 
+// OO activity organizer
+// XML for data
+// trend prediction toward goal (wt,strength) done?
+// scrollable windows
+// text - events ( notable days, events)
+//  organize in Quarters  JFM,  AMJ,  JAS, OND
+//  (last month, current month, next)
+//  bench press value, arm curl, lat pull ?? values
+//
+//  get today's date and set up view for this quarter
+//  can we add comments
+//
+//  1/12/22   - startup with yesterdays date and display of activity - for last 7 days (average?)
+//
+
+;//==============\_(^-^)_/==================//;

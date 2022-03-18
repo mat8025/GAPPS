@@ -50,14 +50,18 @@ Uac::glideTask(Svarg * sarg)
 
  Str a0  = sarg->getArgStr(0) ;
 
-a0.pinfo();
+//a0.pinfo();
  Svar sa;
 
  sa.findWords(a0.cptr());
 
-cout << " gliderTask paras are:  "  << sa << endl;
+cout << " The gliderTask parameters are:  "  << sa << endl;
 
 cout << " para[1] is:  "  << sa.cptr(1) << endl;
+
+cout << " para[2] is:  "  << sa.cptr(2) << endl;
+
+cout << " para[3] is:  "  << sa.cptr(3) << endl;
 
 
  // ignoreErrors(); // put in uac.h ??
