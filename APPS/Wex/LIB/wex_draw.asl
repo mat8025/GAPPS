@@ -20,23 +20,27 @@ void drawGoals(int ws)
   {
 
    if (ws == 0) {
-    Plot(gwo,@box,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_,3) ; // never go above
-    Plot(gwo,@box,sc_startday,DX_MEW,sc_end,DX_NEW, YELLOW_,3) ; // diet x max above
-    Plot(gwo,@box,sc_startday,GoalWt-5,sc_end,GoalWt+5, LIGHTGREEN_,3) ; //
+   
+   // Plot(gwo,@box,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_) ; // never go above
+    plotBox(gwo,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_) ; // never go above
 
-    Plot(calwo,@line,sc_startday,day_burn,sc_end,day_burn, GREEN_)
-    Plot(calwo,@line,sc_startday,out_cal,sc_end,out_cal, BLUE_)
-    Plot(calwo,@line,sc_startday,in_cal,sc_end,in_cal, RED_)
-    Plot(calwo,@line,sc_startday,50,sc_end,50, GREEN_)
+    plotBox(gwo,sc_startday,DX_MEW,sc_end,DX_NEW, YELLOW_) ; // diet x max above
+    plotBox(gwo,sc_startday,GoalWt-5,sc_end,GoalWt+5, LIGHTGREEN_) ; //
+
+    //Plot(calwo,@line,sc_startday,day_burn,sc_end,day_burn, GREEN_)
+    plotLine(calwo,sc_startday,day_burn,sc_end,day_burn, GREEN_);
+    plotLine(calwo,sc_startday,out_cal,sc_end,out_cal, BLUE_)
+    plotLine(calwo,sc_startday,in_cal,sc_end,in_cal, RED_)
+    plotLine(calwo,sc_startday,50,sc_end,50, GREEN_)
     // use todays date and wt to the intermediate short-term goal
-    Plot(gwo,@line,last_known_day,last_known_wt,tday2,StGoalWt, RED_) ;  
+    plotLine(gwo,last_known_day,last_known_wt,tday2,StGoalWt, RED_) ;  
    }
 
   if (ws == 1) {
 
 <<[_DB]"$ws $swo $kdays \n"
 
-   Plot(swo,@line,0,150,kdays-10,250, BLUE_)
+   plotLine(swo,0,150,kdays-10,250, BLUE_);
    }
 
 
@@ -99,7 +103,7 @@ void  drawMonths(int wwo)
    }
    the_date = julmdy("$jd");
    mday = spat(the_date,"/",-1,-1)
-   AxText(wwo, 1, mday, wdate, 0.7, BLUE_);
+   axisLabel(wwo, 1, mday, wdate, 0.7, BLUE_);
  //  <<"%V $jd $wdate $RS[3] $the_date\n"
     draw_months++;
    }
@@ -132,12 +136,12 @@ void  drawGrids(int  ws )
   //sWo(extwo,@axnum,2,0,sc_endday,20,10)
   //Text(gwo, "Weight (lbs)",-4,0.7,4,-90)
 
-   AxLabel(gwo,AXIS_BOTTOM_,"Weight (lbs)",0.5,1.7)
-   AxLabel(calwo,AXIS_BOTTOM_,"Calories",0.5,1.7)
-   //AxLabel(extwo,AXIS_LEFT_,"Exercise Time (mins)",0.1,0.7); // TBF
-      AxLabel(extwo,AXIS_LEFT_,"Mins",0.1,4.0); // TBF
-   AxLabel(carbwo,AXIS_LEFT_,"Carbs",0.1,4)
-  //Text(calwo,"Cals In/Out",-4,0.7,4,-90)
+   axisLabel(gwo,AXIS_BOTTOM_,"Weight (lbs)",0.5,1.7);
+   axisLabel(calwo,AXIS_BOTTOM_,"Calories",0.5,1.7);
+   //axisLabel(extwo,AXIS_LEFT_,"Exercise Time (mins)",0.1,0.7); // TBF
+      axisLabel(extwo,AXIS_LEFT_,"Mins",0.1,4.0); // TBF
+   axisLabel(carbwo,AXIS_LEFT_,"Carbs",0.1,4);
+  //Text(calwo,"Cals In/Out",-4,0.7,4,-90);
 
  }
  else {
@@ -411,30 +415,30 @@ void showTarget()
 // target wt and date
 //  <<"$_proc $gday $NextGoalWt $last_known_day\n"
   
-//  plot(gwo,@symbol,gday,NextGoalWt, "triangle",1, YELLOW_);
+//  plot(gwo,@symbol,gday,NextGoalWt, TRI_,1, YELLOW_);
 //  plot(gwo,@symbol,gday-1,NextGoalWt, 3,1,GREEN_);
 
   <<"%V $last_known_day $PWT $tday2 $StGoalWt \n"
-    plot(gwo,@symbol,tday2,StGoalWt,TRI_,symsz,BLACK_,1);
-  plot(gwo,@symbol,gday,NextGoalWt,"diamond",symsz,BLUE_);
-  plot(gwo,@symbol,last_known_day,NextGoalWt,DIAMOND_,symsz,RED_,1);
-  plot(gwo,@symbol,last_known_day+2,PWT,DIAMOND_,symsz,GREEN_,1);
-  plot(gwo,@symbol,last_known_day+8,PWT7,DIAMOND_,symsz,LILAC_,1);
-  plot(gwo,@symbol,last_known_day+15,PWT14,DIAMOND_,symsz,PINK_,1);
+  plotSymbol(gwo,tday2,StGoalWt,TRI_,symsz,BLACK_,1);
+  plotSymbol(gwo,gday,NextGoalWt,DIAMOND_,symsz,BLUE_);
+  plotSymbol(gwo,last_known_day,NextGoalWt,DIAMOND_,symsz,RED_,1);
+  plotSymbol(gwo,last_known_day+2,PWT,DIAMOND_,symsz,GREEN_,1);
+  plotSymbol(gwo,last_known_day+8,PWT7,DIAMOND_,symsz,LILAC_,1);
+  plotSymbol(gwo,last_known_day+15,PWT14,DIAMOND_,symsz,PINK_,1);
   
 
   hlng = (last_known_wt - NextGoalWt) / 0.43; 
   if (hlng  > 0) {
 <<"%v $hlng\n"
-  plot(gwo,@symbol,last_known_day+hlng,NextGoalWt,"star",symsz, BLUE_);
-  plot(gwo,@symbol,last_known_day+hlng,last_known_wt,"cross",symsz,GREEN_);
+  plotSymbol(gwo,last_known_day+hlng,NextGoalWt,STAR_,symsz, BLUE_);
+  plotSymbol(gwo,last_known_day+hlng,last_known_wt,CROSS_,symsz,GREEN_);
  // <<"$_proc %v $hlng\n"
-  plot(gwo,@symbol,last_known_day+hlng,GoalWt,"star",symsz, RED_);
-  plot(gwo,@symbol,last_known_day+hlng,last_known_wt,"cross",symsz,GREEN_);
+  plotSymbol(gwo,last_known_day+hlng,GoalWt,STAR_,symsz, RED_);
+  plotSymbol(gwo,last_known_day+hlng,last_known_wt,CROSS_,symsz,GREEN_);
   }
 
   sWo(gwo,@showpixmap);
-  //plot(gwo,@symbol,targetday,GoalWt,"star",symsz, LILAC_);
+  //plotSymbol(gwo,targetday,GoalWt,STAR_,symsz, LILAC_);
 //  dGl(gw_gl);
 
 //sc_startday.pinfo();
