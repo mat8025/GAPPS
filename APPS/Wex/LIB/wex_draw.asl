@@ -13,43 +13,48 @@
 ;//----------------<v_&_v>-------------------------//;                                                                                                
 
 
-int symsz =5;
+  int symsz =5;
 
-
-void drawGoals(int ws)
+  void drawGoals(int ws)
   {
 
-   if (ws == 0) {
-   
-   // Plot(gwo,@box,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_) ; // never go above
-    plotBox(gwo,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_) ; // never go above
+  if (ws == 0) {
+   // Plot(gwo,_WBOX,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_) ; // never go above
 
-    plotBox(gwo,sc_startday,DX_MEW,sc_end,DX_NEW, YELLOW_) ; // diet x max above
-    plotBox(gwo,sc_startday,GoalWt-5,sc_end,GoalWt+5, LIGHTGREEN_) ; //
+  plotBox(gwo,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_) ; 
 
-    //Plot(calwo,@line,sc_startday,day_burn,sc_end,day_burn, GREEN_)
-    plotLine(calwo,sc_startday,day_burn,sc_end,day_burn, GREEN_);
-    plotLine(calwo,sc_startday,out_cal,sc_end,out_cal, BLUE_)
-    plotLine(calwo,sc_startday,in_cal,sc_end,in_cal, RED_)
-    plotLine(calwo,sc_startday,50,sc_end,50, GREEN_)
+  plotBox(gwo,sc_startday,DX_MEW,sc_end,DX_NEW, YELLOW_) ; 
+
+  plotBox(gwo,sc_startday,GoalWt-5,sc_end,GoalWt+5, LIGHTGREEN_) ; //
+    //Plot(calwo,_WLINE,sc_startday,day_burn,sc_end,day_burn, GREEN_)
+
+  plotLine(calwo,sc_startday,day_burn,sc_end,day_burn, GREEN_);
+
+  plotLine(calwo,sc_startday,out_cal,sc_end,out_cal, BLUE_);
+
+  plotLine(calwo,sc_startday,in_cal,sc_end,in_cal, RED_);
+
+  plotLine(calwo,sc_startday,50,sc_end,50, GREEN_);
     // use todays date and wt to the intermediate short-term goal
-    plotLine(gwo,last_known_day,last_known_wt,tday2,StGoalWt, RED_) ;  
-   }
+
+  plotLine(gwo,last_known_day,last_known_wt,tday2,StGoalWt, RED_) ;
+
+  }
 
   if (ws == 1) {
 
-<<[_DB]"$ws $swo $kdays \n"
+  <<[_DB]"$ws $swo $kdays \n";
 
-   plotLine(swo,0,150,kdays-10,250, BLUE_);
-   }
+  plotLine(swo,0,150,kdays-10,250, BLUE_);
 
+  }
 
   }
 //---------------------------------------------------------
-void  drawMonths(int wwo)
- {
-  // as either Months Jan,Feb, ... Dec  
 
+  void  drawMonths(int wwo)
+  {
+  // as either Months Jan,Feb, ... Dec  
   // or quarter and cross-quarter days
   // Candlemass Feb 2
   // Lady Day   March 25
@@ -63,444 +68,481 @@ void  drawMonths(int wwo)
   // Equinoxes Dec 21, March 21, June 21, Sep 21 -
   // winter ,vernal, midsummer, fall
 
-   int sd
-   int k
-   int yd
-   int wd
-   int wm = 0
+  int sd;
 
-   float lty = 0
-   float qfwd = 0.0
- 
+  int k;
 
-   RS=wogetrscales(wwo)
+  int yd;
 
+  int wd;
+
+  int wm = 0;
+
+  float lty = 0;
+
+  float qfwd = 0.0;
+
+  RS=wogetrscales(wwo);
 // just plot at mid - the date
 
-   mid_date = (RS[3] - RS[1])/2 + RS[1];
-   q1_date = (RS[3] - RS[1])/4 + RS[1];
-   q3_date = 3*(RS[3] - RS[1])/4 + RS[1];
+  mid_date = (RS[3] - RS[1])/2 + RS[1];
 
-   jd= mid_date +Bday
-   the_date = julmdy("$jd")
+  q1_date = (RS[3] - RS[1])/4 + RS[1];
 
-<<[_DB]"%V$mid_date $jd $the_date \n"
+  q3_date = 3*(RS[3] - RS[1])/4 + RS[1];
 
+  jd= mid_date +Bday;
+
+  the_date = julmdy("$jd");
+
+  <<[_DB]"%V$mid_date $jd $the_date \n";
    //AxText(wwo, 1, the_date, mid_date, -0.25, BLUE_)
 
-   jd= RS[1] + Jan1;
-   the_date = julmdy("$jd");
-//  AxText(wwo, 1, the_date, q1_date, -0.25, BLUE_);
-   wdate = RS[1];
-   sWo(wwo,@font,"small")
- //  AxText(wwo, 1, the_date, wdate, 0.25, BLUE_);
-  int draw_months =1;
-  while (draw_months <= 12) {
-   jd += 7;
-   wdate += 7;
-   if (wdate >= RS[3]) {
-      break;
-   }
-   the_date = julmdy("$jd");
-   mday = spat(the_date,"/",-1,-1)
-   axisLabel(wwo, 1, mday, wdate, 0.7, BLUE_);
- //  <<"%V $jd $wdate $RS[3] $the_date\n"
-    draw_months++;
-   }
+  jd= RS[1] + Jan1;
 
-}
+  the_date = julmdy("$jd");
+//  AxText(wwo, 1, the_date, q1_date, -0.25, BLUE_);
+
+  wdate = RS[1];
+
+  sWo(wwo,_WFONT,"small");
+ //  AxText(wwo, 1, the_date, wdate, 0.25, BLUE_);
+
+  int draw_months =1;
+
+  while (draw_months <= 12) {
+
+  jd += 7;
+
+  wdate += 7;
+
+  if (wdate >= RS[3]) {
+
+  break;
+
+  }
+
+  the_date = julmdy("$jd");
+
+  mday = spat(the_date,"/",-1,-1);
+
+  axisLabel(wwo, 1, mday, wdate, 0.7, BLUE_);
+ //  <<"%V $jd $wdate $RS[3] $the_date\n"
+
+  draw_months++;
+
+  }
+
+  }
 //---------------------------------------------------------------
 
-void  drawGrids(int  ws )
-{
+  void  drawGrids(int  ws )
+  {
 // <<[_DB]" $ws \n"
 
- if (ws == 0) {
-
+  if (ws == 0) {
   //<<[_DB]"drawing Grids for screen 0 \n"
-  //sWo({extwo,calwo,gwo},@font,"small");
-  sWo(extwo,@font,"small");
-  
-  axnum(gwo,AXIS_LEFT_);
+  //sWo({extwo,calwo,gwo},_WFONT,"small");
 
+  sWo(extwo,_WFONT,"small"); // check font can accept a int or char *;
+//  axnum(gwo,AXIS_LEFT_);
 
-  sWo(carbwo,@axnum,AXIS_LEFT_);
-  sWo(carbwo,@yscales,0,carb_upper,@savescales);
+  sWo(carbwo,_WAXNUM,AXIS_LEFT_);
 
-  sWo(calwo,@usescales,0,@axnum,  AXIS_LEFT_);
-//  sWo(carbwo,@axnum,2);
-  
-  sWo(extwo,@yscales,0,upperWt,@savescales,1);
-  sWo(extwo,@axnum,AXIS_LEFT_);
+  sWo(carbwo,_WYSCALES,wpt(0,carb_upper),_WSAVESCALES);
 
-  //sWo(extwo,@axnum,2,0,sc_endday,20,10)
+  sWo(calwo,_WUSESCALES,0,_WAXNUM,  AXIS_LEFT_);
+//  sWo(carbwo,_WAXNUM,2);
+
+  sWo(extwo,_WYSCALES,wpt(0,upperWt),_WSAVESCALES,1);
+
+  sWo(extwo,_WAXNUM,AXIS_LEFT_);
+  //sWo(extwo,_WAXNUM,2,0,sc_endday,20,10)
   //Text(gwo, "Weight (lbs)",-4,0.7,4,-90)
 
-   axisLabel(gwo,AXIS_BOTTOM_,"Weight (lbs)",0.5,1.7);
-   axisLabel(calwo,AXIS_BOTTOM_,"Calories",0.5,1.7);
+  axisLabel(gwo,AXIS_BOTTOM_,"Weight (lbs)",0.5,1.7);
+
+  axisLabel(calwo,AXIS_BOTTOM_,"Calories",0.5,1.7);
    //axisLabel(extwo,AXIS_LEFT_,"Exercise Time (mins)",0.1,0.7); // TBF
-      axisLabel(extwo,AXIS_LEFT_,"Mins",0.1,4.0); // TBF
-   axisLabel(carbwo,AXIS_LEFT_,"Carbs",0.1,4);
+
+  axisLabel(extwo,AXIS_LEFT_,"Mins",0.1,4.0); // TBF;
+
+  axisLabel(carbwo,AXIS_LEFT_,"Carbs",0.1,4);
   //Text(calwo,"Cals In/Out",-4,0.7,4,-90);
 
- }
- else {
+  }
 
-  axnum(swo,2)
+  else {
 
-  //sWo(swo,@axnum,2,150,bp_upper,50,10)
+  axnum(swo,2);
+  //sWo(swo,_WAXNUM,2,150,bp_upper,50,10)
 
-  sWo(xwo,@clipborder,@save);
+  sWo(xwo,_WCLIPBORDER,BLACK_,_WSAVE,_WEO);
 
- }
-  sWo(allwo,@showpixmap,@save)
+  }
 
-  sWo(allwo,@clipborder)
-}
+   for(int j =0; allwo[j] > 0; j++) {
+    sWo(allwo,_WSHOWPIXMAP,_WSAVE,_WCLIPBORDER,-1,_WEO);
+   }
+  }
 //---------------------------------------------------------------------------------
-
 #define ALL_LINES 1
 
-void drawScreens()
-{
-
+  void drawScreens()
+  {
 //<<" $_proc \n"
 //<<"%V $sc_startday  $sc_end \n"
-
 // sc_startday.pinfo()
-
  //sc_startday = (jtoday - Bday) - 20;
-
 //<<"RESET? %V $sc_startday  $sc_end \n"
 
   if ( wScreen == 0) {
-
 //<<"%V $sc_zstart $minWt $sc_zend $upperWt\n"
 
-       sWo(wedwo,@xscales,sc_zstart,sc_zend);
+  sWo(wedwo,_Wxscales,sc_zstart,sc_zend);
 
-       sWo(wedwo,@clearclip,@save,@clearpixmap,@clipborder,BLACK_)
+  sWo(wedwo,_Wclearclip,_Wsave,_Wclearpixmap,_Wclipborder,BLACK_);
 
-      drawGoals( wScreen);
+  drawGoals( wScreen);
 
-      drawGrids( wScreen);
+  drawGrids( wScreen);
 
-     
   if (ALL_LINES) {
-  
-  <<[_DB]" draw lines \n"
 
+ // <<[_DB]" draw lines \n";
 
-      dGl(exgls)
-
+  dGl(exgls);
       //dGl(cardio_gl);
       //dGl(strength_gl);
-      
-      sWo(calwo,@font,"small")
+
+  sWo(calwo,_Wfont,"small");
       /// these need to be a separate wo to contain key  symbol and text
-     // plot(calwo,@keysymbol,0.78 ,0.9,DIAMOND_,symsz,BLUE_,1);
-      sWo(calwo,@font,"small")
+     // plot(calwo,_Wkeysymbol,0.78 ,0.9,DIAMOND_,symsz,BLUE_,1);
+
+  sWo(calwo,_Wfont,"small");
       //Text(calwo,"Calories Burnt", 0.8,0.9,1)      
 
-      plot(calwo,@keysymbol,0.78 ,0.8,DIAMOND_,symsz,RED_,1);      
-      Text(calwo,"Calories Ate", 0.8,0.82,1)
+  plot(calwo,_Wkeysymbol,0.78 ,0.8,DIAMOND_,symsz,RED_,1);
 
-     // plot(calwo,@keysymbol,0.78 ,0.7,TRI_,symsz,RED_,1,@fonthue,WHITE_);      
+  Text(calwo,"Calories Ate", 0.8,0.82,1);
+     // plot(calwo,_Wkeysymbol,0.78 ,0.7,TRI_,symsz,RED_,1,_Wfonthue,WHITE_);      
       //Text(calwo,"Carbs Ate", 0.8,0.72,1)
 
+  sWo(extwo,_Wfont,"small");
+      //plot(extwo,_Wkeysymbol,0.78,0.7,TRI_,symsz,GREEN_,1);
 
-      sWo(extwo,@font,"small")
-      //plot(extwo,@keysymbol,0.78,0.7,TRI_,symsz,GREEN_,1);
+  Text(extwo,"Exercise Time (mins)", 0.8,0.7,1);
 
-       Text(extwo,"Exercise Time (mins)", 0.8,0.7,1);
-      
+  dGl(gw_gl);
 
-      dGl(gw_gl);
+  dGl(carb_gl) ; //which scale is this going to use LH
 
-      dGl(carb_gl) ; //which scale is this going to use LH
-      
-      dGl(fibre_gl) ;
+  dGl(fibre_gl) ;
 
-      dGl(fat_gl) ;
+  dGl(fat_gl) ;
 
-      dGl(prot_gl) ;            
+  dGl(prot_gl) ;
 
-      dGl(calc_gl)
-      
-      dGl(calb_gl)
+  dGl(calc_gl);
 
-      dGl(wt_gl)
+  dGl(calb_gl);
 
+  dGl(wt_gl);
 
-       }
+  }
 
+  sWo(allwo,_Wclipborder,BLACK_);
 
+  drawMonths(gwo);
 
+  drawMonths(calwo);
 
-      sWo(allwo,@clipborder,BLACK_)
+  drawMonths(carbwo);
 
-      drawMonths(gwo)
-      drawMonths(calwo)
-      drawMonths(carbwo)
-      drawMonths(extwo)      
-
+  drawMonths(extwo);
       //Text(extwo,"Exercise mins",-4,0.5,4,-90)
       //Text(gwo,  "Weight (lbs)",0.8,0.8,1)
-
        //dGl(wt_gl)
-   
        //dGl(wt_gl)
 
-      showTarget();
- sWo(wedwo,@showpixmap,@clipborder,BLACK_)
-     
-     }
+  showTarget();
 
-      if ( wScreen == 1) {
+  sWo(wedwo,_Wshowpixmap,_Wclipborder,BLACK_);
 
-<<[_DB]" Drawscreen 1  BP!!\n"
- 
-      drawGoals(1);
-      drawGrids(1);
-      drawMonths(swo);
+  }
 
-      dGl(bp_gl)
+  if ( wScreen == 1) {
 
-      sWo(swo,@showpixmap)
-      sWo(allwo,@clipborder,GREEN_)
-      }
+  <<[_DB]" Drawscreen 1  BP!!\n";
 
-    sWo(fewos,@redraw)
+  drawGoals(1);
 
-    sWo(tw_wo,@move,targetday,NextGoalWt,gwo,@redraw);
+  drawGrids(1);
 
-    CR_init = 1;
-    CL_init = 1;
+  drawMonths(swo);
 
+  dGl(bp_gl);
+
+  sWo(swo,_Wshowpixmap);
+
+  sWo(allwo,_Wclipborder,GREEN_);
+
+  }
+
+  sWo(fewos,_Wredraw);
+
+  sWo(tw_wo,_Wmove,targetday,NextGoalWt,gwo,_Wredraw);
+
+  CR_init = 1;
+
+  CL_init = 1;
  //sc_startday.pinfo();
 
-}
+  }
 //=================================================
 
-
-void showWL(long ws, long we)
-{
-
+  void showWL(long ws, long we)
+  {
 //<<"$_proc $ws $we\n"
 
-       computeWL( ws, we);
+  computeWL( ws, we);
 
-       showCompute();
+  showCompute();
 
-
-}
+  }
 //========================================================
-
-
-
 //////////////////////// UTIL PROCS /////////////////////////////
 
-void adjustYear(int updown)
-{
-
+  void adjustYear(int updown)
+  {
 // find current mid-year
 // decrement - and set rx,RX to jan 1, dec 31 of that year
 // then label 1/4 days
 
-   RS=wogetrscales(gwo)
-
+  RS=wogetrscales(gwo);
 // just plot at mid - the date
-   mid_date = (RS[3] - RS[1])/2 + RS[1]
 
-   jd= mid_date +Bday
-   the_date = julmdy("$jd")
+  mid_date = (RS[3] - RS[1])/2 + RS[1];
 
+  jd= mid_date +Bday;
+
+  the_date = julmdy("$jd");
    // which year?
-   yrs = sele(the_date,-4,4)
-   
-   yrd = atoi(yrs)
-//<<[_DB]"%V$jd $the_date $yrs $yrd \n"
 
+  yrs = sele(the_date,-4,4);
+
+  yrd = atoi(yrs);
+//<<[_DB]"%V$jd $the_date $yrs $yrd \n"
 //<<"%V$jd $the_date $yrs $yrd \n"
 
+  if (updown > 0) {
 
-   if (updown > 0) {
-    yrd++
-   }
-   
-   if (updown < 0) {
-    yrd--
+  yrd++;
+
+  }
+
+  if (updown < 0) {
+
+  yrd--;
+
   }
 //  <<"%V  $yrd \n"
 
+  st_jday = julian("01/01/$yrd");
 
-   st_jday = julian("01/01/$yrd")
-   ed_jday = julian("12/31/$yrd")
-
+  ed_jday = julian("12/31/$yrd");
   //<<"%V  $yrd  $st_jday $ed_jday\n"
 
-   rx = st_jday - Bday
-  rX = ed_jday - Bday
+  rx = st_jday - Bday;
 
+  rX = ed_jday - Bday;
      // rx = st_jday 
     //  rX = ed_jday 
 
-       sc_startday = rx;
-       sc_endday = rX;
+  sc_startday = rx;
 
-   sWo(wedwo,@xscales,rx,rX,@savescales,0)
+  sc_endday = rX;
 
-   sWo(swo,@xscales,rx,rX) 
+  sWo(wedwo,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
 
-   sWo(gwo,@scales,rx,minWt,rX,upperWt,@savescales,0)
+  sWo(swo,_Wxscales,rx,rX);
 
-   drawScreens()
-}
+  sWo(gwo,_Wscales,rx,minWt,rX,upperWt,_Wsavescales,0);
 
+  drawScreens();
+
+  }
 //////////////////////////////////////////////////////////////////////
 
-void adjustQrt(int updown)
-{
+  void adjustQrt(int updown)
+  {
 // find mid-date 
 // adjust to a 90 day resolution
 // shift up/down by 30
 
-   RS=wogetrscales(gwo)
-
+  RS=wogetrscales(gwo);
 // just plot at mid - the date
-   mid_date = (RS[3] - RS[1])/2 + RS[1]
 
-   jd= mid_date +Bday
-   the_date = julmdy("$jd")
+  mid_date = (RS[3] - RS[1])/2 + RS[1];
 
-   if (updown > 0) {
-     rx = mid_date -30
-     rX = mid_date +60
-   }
+  jd= mid_date +Bday;
 
-   if (updown < 0) {
-     rx = mid_date -60
-     rX = mid_date +30
-   }
+  the_date = julmdy("$jd");
 
-       sc_startday = rx;
-       sc_endday = rX;
+  if (updown > 0) {
 
-   sWo(wedwo,@xscales,rx,rX,@savescales,0)
+  rx = mid_date -30;
 
-   sWo(gwo,@scales,rx,minWt,rX,upperWt,@savescales,0)
- 
-   sWo(swo,@xscales,rx,rX,@savescales,0)
- 
-   drawScreens()
-}
-//========================================================
+  rX = mid_date +60;
 
-void showCompute()
-{
-//<<"$_proc %V $Nsel_exeburn $Nsel_lbs\n"
-  sWo(nobswo,@value,Nxy_obs,@update)
-  sWo(xtwo,@value,xhrs,@redraw)
-  sWo(xbwo,@value,"%6.2f$Nsel_exeburn",@redraw)
-  sWo(xlbswo,@value,"%4.1f$Nsel_lbs",@update)
-  sWo(dlbswo,@value,"%4.1f$Ndiet_lbs",@update)  
-  
-}
-//========================================================
-
-void showTarget()
-{
-
-
-// target wt and date
-//  <<"$_proc $gday $NextGoalWt $last_known_day\n"
-  
-//  plot(gwo,@symbol,gday,NextGoalWt, TRI_,1, YELLOW_);
-//  plot(gwo,@symbol,gday-1,NextGoalWt, 3,1,GREEN_);
-
-  <<"%V $last_known_day $PWT $tday2 $StGoalWt \n"
-  plotSymbol(gwo,tday2,StGoalWt,TRI_,symsz,BLACK_,1);
-  plotSymbol(gwo,gday,NextGoalWt,DIAMOND_,symsz,BLUE_);
-  plotSymbol(gwo,last_known_day,NextGoalWt,DIAMOND_,symsz,RED_,1);
-  plotSymbol(gwo,last_known_day+2,PWT,DIAMOND_,symsz,GREEN_,1);
-  plotSymbol(gwo,last_known_day+8,PWT7,DIAMOND_,symsz,LILAC_,1);
-  plotSymbol(gwo,last_known_day+15,PWT14,DIAMOND_,symsz,PINK_,1);
-  
-
-  hlng = (last_known_wt - NextGoalWt) / 0.43; 
-  if (hlng  > 0) {
-<<"%v $hlng\n"
-  plotSymbol(gwo,last_known_day+hlng,NextGoalWt,STAR_,symsz, BLUE_);
-  plotSymbol(gwo,last_known_day+hlng,last_known_wt,CROSS_,symsz,GREEN_);
- // <<"$_proc %v $hlng\n"
-  plotSymbol(gwo,last_known_day+hlng,GoalWt,STAR_,symsz, RED_);
-  plotSymbol(gwo,last_known_day+hlng,last_known_wt,CROSS_,symsz,GREEN_);
   }
 
-  sWo(gwo,@showpixmap);
+  if (updown < 0) {
+
+  rx = mid_date -60;
+
+  rX = mid_date +30;
+
+  }
+
+  sc_startday = rx;
+
+  sc_endday = rX;
+
+  sWo(wedwo,_Wxscales,rx,rX,_Wsavescales,0);
+
+  sWo(gwo,_Wscales,rx,minWt,rX,upperWt,_Wsavescales,0);
+
+  sWo(swo,_Wxscales,rx,rX,_Wsavescales,0);
+
+  drawScreens();
+
+  }
+//========================================================
+
+  void showCompute()
+  {
+//<<"$_proc %V $Nsel_exeburn $Nsel_lbs\n"
+
+  sWo(nobswo,_Wvalue,Nxy_obs,_Wupdate);
+
+  sWo(xtwo,_Wvalue,xhrs,_Wredraw);
+
+  sWo(xbwo,_Wvalue,"%6.2f$Nsel_exeburn",_Wredraw);
+
+  sWo(xlbswo,_Wvalue,"%4.1f$Nsel_lbs",_Wupdate);
+
+  sWo(dlbswo,_Wvalue,"%4.1f$Ndiet_lbs",_Wupdate);
+
+  }
+//========================================================
+
+  void showTarget()
+  {
+// target wt and date
+//  <<"$_proc $gday $NextGoalWt $last_known_day\n"
+//  plot(gwo,_Wsymbol,gday,NextGoalWt, TRI_,1, YELLOW_);
+//  plot(gwo,_Wsymbol,gday-1,NextGoalWt, 3,1,GREEN_);
+
+  <<"%V $last_known_day $PWT $tday2 $StGoalWt \n";
+
+  plotSymbol(gwo,tday2,StGoalWt,TRI_,symsz,BLACK_,1);
+
+  plotSymbol(gwo,gday,NextGoalWt,DIAMOND_,symsz,BLUE_);
+
+  plotSymbol(gwo,last_known_day,NextGoalWt,DIAMOND_,symsz,RED_,1);
+
+  plotSymbol(gwo,last_known_day+2,PWT,DIAMOND_,symsz,GREEN_,1);
+
+  plotSymbol(gwo,last_known_day+8,PWT7,DIAMOND_,symsz,LILAC_,1);
+
+  plotSymbol(gwo,last_known_day+15,PWT14,DIAMOND_,symsz,PINK_,1);
+
+  hlng = (last_known_wt - NextGoalWt) / 0.43;
+
+  if (hlng  > 0) {
+
+  <<"%v $hlng\n";
+
+  plotSymbol(gwo,last_known_day+hlng,NextGoalWt,STAR_,symsz, BLUE_);
+
+  plotSymbol(gwo,last_known_day+hlng,last_known_wt,CROSS_,symsz,GREEN_);
+ // <<"$_proc %v $hlng\n"
+
+  plotSymbol(gwo,last_known_day+hlng,GoalWt,STAR_,symsz, RED_);
+
+  plotSymbol(gwo,last_known_day+hlng,last_known_wt,CROSS_,symsz,GREEN_);
+
+  }
+
+  sWo(gwo,_Wshowpixmap);
   //plotSymbol(gwo,targetday,GoalWt,STAR_,symsz, LILAC_);
 //  dGl(gw_gl);
-
 //sc_startday.pinfo();
 
-}
+  }
 //===========================
 
+  void resize_screen()
+  {
 
-void resize_screen()
-{
+  sWi(vp,_Wresize,0.05,0.01,0.98,0.98,_Wredraw);
 
-  sWi(vp,@resize,0.05,0.01,0.98,0.98,@redraw)
+  }
 
-}
+  void getDay(long dayv)
+  {
 
+  long m_day;  // int ?;
 
-void getDay(long dayv)
-{
+  float cbm;
 
- long m_day;  // int ?
+  float xtm;
 
- float cbm;
- float xtm;
- float wtm;
- int dt;
- str mdy;
+  float wtm;
 
-    m_day= dayv + Jan1 -1;  // ? OBO
+  int dt;
 
-    mdy = julmdy(m_day);
+  Str mdy;
 
+  m_day= dayv + Jan1 -1;  // ? OBO;
 
-    sWo(dtmwo,@value,mdy,@redraw);
-    wtm = 0.0;
-     sWo(wtmwo,@value,wtm,@redraw);
-     sWo(cbmwo,@value,0,@redraw);
-     sWo(xtmwo,@value,0,@redraw);
-     sWo(obswo,@value,0,@redraw);
-     
-     i = dayv -1;
+  mdy = julmdy(m_day);
 
-    xtm = EXTV[i]
-    wtm  = WTVEC[i]
-    cbm  = CALBURN[i]
- 
-     dt = dayv -Sday;
+  sWo(dtmwo,_WVALUE2 ,mdy,_WREDRAW );
+
+  wtm = 0.0;
+
+  sWo(wtmwo,_WVALUE,wtm,_WREDRAW);
+
+  sWo(cbmwo,_WVALUE,0,_WREDRAW);
+
+  sWo(xtmwo,_WVALUE,0,_WREDRAW);
+
+  sWo(obswo,_WVALUE,0,_WREDRAW);
+
+  i = dayv -1;
+
+  xtm = EXTV[i];
+
+  wtm  = WTVEC[i];
+
+  cbm  = CALBURN[i];
+
+  dt = dayv -Sday;
    //<<"%V $dayv  $Sday $mdy\n"
    //<<"FOUND $i %V $dayv $Sday $dt  $wtm $xtm $cbm\n"
 
-     sWo(obswo,@value,dt+1,@redraw);
-     sWo(xtmwo,@value,xtm,@redraw);
-     sWo(wtmwo,@value,wtm,@redraw);
-     sWo(cbmwo,@value,cbm,@redraw);
+  sWo(obswo,_WVALUE,dt+1,_WREDRAW);
 
+  sWo(xtmwo,_WVALUE,xtm,_WREDRAW);
 
-}
+  sWo(wtmwo,_WVALUE,wtm,_WREDRAW);
 
+  sWo(cbmwo,_WVALUE,cbm,_WREDRAW);
 
+  }
 //[EM]=================================//
-
-
-
-
-
 //===========//
+
+;//==============\_(^-^)_/==================//;

@@ -42,6 +42,8 @@
 //exit(-1);
 ////
 
+//  Svar KK;
+//  KK.Split("restart math modules");
 
   void Uac::listWorld(Svarg * sarg)
   {
@@ -56,7 +58,7 @@
 
   Str ls;
 
-  VLS.split("restart math modules");
+  VLS.Split("restart math modules");
 
   cout << "VLS " << VLS << endl;
 
@@ -134,6 +136,9 @@
    // so just have to edit in new mathod to uac class definition
    // and recompile uac -- one line change !
    // plus include this script into 
+
+  Svar KK;
+  KK.Split("restart math modules");
 
   o_uac->listWorld(sarg);
 

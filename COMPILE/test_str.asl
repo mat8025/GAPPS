@@ -22,6 +22,9 @@
 
 
 #if CPP
+Svar WM;
+
+
 void
 Uac::strWorld(Svarg * sarg)  
 {
@@ -67,6 +70,12 @@ printf("c  %c\n",c);
 printf("cpp s  %s\n",s.cptr());
 cout << "s= " << s << endl;
 //<<"asl s  $s \n";
+
+ WM.Split("just one feature at a time ");
+ cout << "WM  " << WM << endl;
+
+
+
 
 #if CPP
 printf("str s = %s\n",s.cptr());

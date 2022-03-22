@@ -19,9 +19,7 @@
   
   Str task_file = "XXX";
 
-  float totalD = 0;
 
-  float totalDur = 0.0;
 
   int Ntaskpts = 0;
 

@@ -12,170 +12,137 @@
  */ 
 ;//----------------<v_&_v>-------------------------//;                                                                                                
 
-//_DB = -1;
+  
+  void fillInObsVec()
+  {
 
-float last_known_wt = 208.8;
-long last_known_day = 0;
+  if (Yd >= 0) {
 
-float tot_exeburn =0;
-float tot_exetime = 0;
+ int j = 1;
 
-int Nobs = 0;
-int nxobs = 0;
+  float mywt = atof(col[j++]);
 
-int Nxy_obs = 0
+  if (mywt > 0.0) {  // we have an entry = not all days are logged
 
-long wday;
-//=========================================
-
-
-void isData()
-{
-   dok = 1
-
-   fword=""
-
-   sscan(S,'%s',&fword) // get first word -non WS
-
-   if (scmp(fword,"#",1)) {
-       dok = 0;
-   }
-
- //  <<[_DB]"$fword $dok\n"
-
-   return dok
-}
-//===========================================================
-
-void fillInObsVec()
-{
- 
- if (Yd >= 0) {
-
-   j = 1;
-
-   mywt = atof(col[j++]);
-
-   if (mywt > 0.0) {  // we have an entry = not all days are logged
-   
-
-    WTVEC[Yd] = mywt;
-
+  WTVEC[Yd] = mywt;
 //<<"$k  mywt  $WTVEC[Nobs] \n"
-    if (mywt > 0.0) {
-       last_known_wt = mywt;
-       last_known_day = Yd;
-    }
-    else {
-      WTVEC[Yd] = last_known_wt;
-    }
 
+  if (mywt > 0.0) {
 
-   walk =  atof(col[j++])
-   hike = atof(col[j++]) 
-   run = atof(col[j++]) 
-   cycle =  atof(col[j++])
-   swim =  atof(col[j++])
-   yardwrk =  atof(col[j++])
-   wex = atof(col[j++])
+  last_known_wt = mywt;
 
-   EXTV[Yd] =  ( walk + hike + run + cycle + swim + yardwrk + wex)
+  last_known_day = Yd;
 
-   CARDIO[Yd] = ( walk + hike + run + cycle + swim )
+  }
 
-   STRENGTH[Yd] = (yardwrk + wex)
+  else {
 
-      
-   tot_exetime = tot_exetime + EXTV[Yd];
+  WTVEC[Yd] = last_known_wt;
 
+  }
 
-   SEVEC[Yd] =  wex;
-   
-   BPVEC[Yd] =  atof(col[j++]);
+   float walk =  atof(col[j++]);
 
+   float hike = atof(col[j++]);
+
+   float    run = atof(col[j++]);
+
+   float cycle =  atof(col[j++]);
+
+   float swim =  atof(col[j++]);
+
+   float yardwrk =  atof(col[j++]);
+
+   float wex = atof(col[j++]);
+
+  EXTV[Yd] =  ( walk + hike + run + cycle + swim + yardwrk + wex);
+
+  CARDIO[Yd] = ( walk + hike + run + cycle + swim );
+
+  STRENGTH[Yd] = (yardwrk + wex);
+
+  tot_exetime = tot_exetime + EXTV[Yd];
+
+  SEVEC[Yd] =  wex;
+
+  BPVEC[Yd] =  atof(col[j++]);
 // any extra activities ?
 
-   tex = EXTV[Yd];
+  float tex = EXTV[Yd];
 
-   exer_burn =   walk * w_rate; 
-   exer_burn += hike * h_rate
-   exer_burn += run * run_rate
-   exer_burn +=  cycle * c_rate
-   exer_burn += swim * swim_rate
-   exer_burn += yardwrk * yard_rate
-   exer_burn += wex * wex_rate;
+  float  exer_burn =   walk * w_rate;
 
+  exer_burn += hike * h_rate;
 
-   EXEBURN[Yd] =  exer_burn;
+  exer_burn += run * run_rate;
 
+  exer_burn +=  cycle * c_rate;
 
-   tot_exeburn += exer_burn;
+  exer_burn += swim * swim_rate;
 
+  exer_burn += yardwrk * yard_rate;
 
-   wrk_sleep  = (sleep_burn + (16 * 60 - tex) * office_rate )  ;
+  exer_burn += wex * wex_rate;
 
-    CALBURN[Yd] =  wrk_sleep + exer_burn ;
+  EXEBURN[Yd] =  exer_burn;
 
-    Nobs++;
-      }
-   }
- }
+  tot_exeburn += exer_burn;
+
+   float wrk_sleep  = (sleep_burn + (16 * 60 - tex) * office_rate )  ;
+
+  CALBURN[Yd] =  wrk_sleep + exer_burn ;
+
+  Nobs++;
+
+  }
+
+  }
+
+  }
 //====================================================//
 
 
-long Yd;
-svar col;
 
-
-void readData()
-{
+  int readData()
+  {
 
   int tl = 0;
+  long jday;
+  Str day;
+ // RX->info(1)
+  long sday;
+  
+  int got_start = 0;
+  
+  while (tl < Nrecs) {
+
 
   col= RX[tl];
-
-//<<"$col\n"
+ //<<"<$tl> $RX[tl]\n"
 
   day = col[0];
 
-//<<"%V $day $Nrecs\n"
+  jday = Julian(day);
 
-// data has already been read into Record array RX
- // RX->info(1)
-      
-   
 
-  while (tl < Nrecs) {
+  if (!got_start) {
 
-  //tl->info(1)     // ? bad
-  
+  sday = jday;
 
-      col= RX[tl];
+  got_start = 1;
 
- //<<"<$tl> $RX[tl]\n"
+  }
 
-    day = col[0];
- //   day->info(1);
-
-     jday = julian(day) 
-
-//   jday->info(1)
-    
-    if (!got_start) {
-        sday = jday
-        got_start = 1;
-    }
-
-    Yd = jday - Jan1;
-
+  Yd = jday - Jan1;
 //<<"%V $jday  $Yd\n"
 
-    lday = Yd;
+  lday = Yd;
 
+  if (Yd < 0) {
 
-   if (Yd < 0) {
-       <<" $Yd neg offset ! \n";
-   }
+  cout << " $Yd neg offset ! \n";
+
+  }
 
 
 //<<[_DB]" what day $k\n"
@@ -183,109 +150,104 @@ void readData()
    // -( we count/estimate those) 
    // variables are plotted against dates (juldays - birthday)
 
-    fillInObsVec();
+  fillInObsVec();
 
-    tl++;
-
+  tl++;
 //<<"%V $tl\n"
 
-   if (tl >= Nrecs) {
-       break;
-    }
+  if (tl >= Nrecs) {
 
-}
+  break;
 
+  }
 
+  }
+//<<[_DB]"$Nrecs there were $tl $Nobs measurements \n"
 
-<<[_DB]"$Nrecs there were $tl $Nobs measurements \n"
-     return tl;
-}
+  return tl;
 
-
+  }
 //==============================================//
 
-int NCCobs =0;
 
-void fillInCCObsVec()
-{
- 
- if (Yd >= 0) {
 
+  void fillInCCObsVec()
+  {
+
+  if (Yd >= 0) {
 
   CALSCON[Yd] =  atof(col[1]);
+
   CARBSCON[Yd] = atof(col[2]);
 
-   NCCobs++;
+  NCCobs++;
 //<<"Yd $NCCobs $CALSCON[Yd] $CARBSCON[Yd] \n"
 
+  }
 
-
-   }
-}
+  }
 //====================================================//
 
+  void readCCData()
+  {
 
-void readCCData()
-{
-
- int tl = 0;
-
-//svar ccol;
-
-
+  int tl = 0;
+  long jday;
+  Str day;
+  
   while (tl < NCCrecs) {
-
-
+  
     //ccol = RCC[tl];
-
 //<<[_DB]"$RCC[tl]\n"
 //<<[_DB]"$tl  $NCCobs $NCCrecs\n"
-
     //day = ccol[0];
 
-    day = RCC[tl][0];
+  day = RCC.getRC(tl,0);
 //<<"%V $day\n"
-    jday = julian(day) 
 
-    Yd = jday - Jan1;  // so 0 - 364
+  jday = Julian(day);
 
-    lday = Yd;
-   
+  Yd = jday - Jan1;  // so 0 - 364;
 
+  lday = Yd;
 
-  cals = atof(RCC[tl][6]);
-  
+  float cals = atof(RCC.getRC(tl,6));
+
   CALSCON[Yd] = cals;
-  ccals =  CALSCON[Yd];
-  
+
+  float ccals =  CALSCON[Yd];
 //<<"calscon $Yd   $CALSCON[Yd]  cals <|$cals|>  ccals $ccals \n"
 
-  carbs = atof(RCC[tl][3]);
+  float carbs = atof(RCC.getRC(tl,3));
 
   CARBSCON[Yd] = carbs;
 
-  fat = atof(RCC[tl][2]);
+  float fat = atof(RCC.getRC(tl,2));
+
   FATCON[Yd] = fat;
 
-  prot = atof(RCC[tl][5]);  
+  float prot = atof(RCC.getRC(tl,5));
+
   PROTCON[Yd] = prot;
 
-  fiber = atof(RCC[tl][4]);  
-  FIBRCON[Yd] = fiber;   
+  float fiber = atof(RCC.getRC(tl,4));
 
+  FIBRCON[Yd] = fiber;
 //<<"%V $day $cals $carbs $fat $prot $fiber\n"
 
-   NCCobs++;     
+  NCCobs++;
 
-    tl++;
-    if (tl >= NCCrecs) {
-        break;
-    }
+  tl++;
 
- }
+  if (tl >= NCCrecs) {
 
-}
+  break;
 
+  }
+
+  }
+
+  }
 //=======================================//
 
-;//==============\_(^-^)_/==================//;
+  ;//==============\_(^-^)_/==================//;

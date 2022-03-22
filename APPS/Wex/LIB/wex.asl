@@ -25,6 +25,27 @@
 //chdir(wexdir)
 //wherearewe=!!"pwd "
 //<<[_DB]"%V$wherearewe \n"
+
+#include "si.h"
+#include "parse.h"
+#include "codeblock.h"
+#include "sproc.h"
+#include "sclass.h"
+#include "declare.h"
+#include "gthread.h"
+#include "paraex.h"
+#include "scope.h"
+#include "debug.h"
+
+#include "uac.h"
+
+#include <iostream>
+#include <ostream>
+
+class Svar;
+
+  Svar Mo;
+
 #define WALK 1
 #define HIKE 2
 #define RUN 3
@@ -34,39 +55,27 @@
 #define GYM_WTS  7
 #define NDAYS 1000
 
-  Svar Mo[] = { "JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC"};
+//  Svar Mo[] = { "JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC"};
 
-  //<<[_DB]"$Mo \n";
+////////////////////////////////////////  Globals //////////////////////////////
 
-  float WXY[];
-
-  char sep = 47;
-
-  float minWt = 160;
-
-  float upperWt = 225;
-//StartWt = 205;
-// rates per min
-
-#include "wex_types.asl"
 #include "wex_rates.asl"
-#include "wex_goals.asl"
-#include "wex_read.asl"
-#include "wex_callbacks.asl"
 
-  int N = 1000;
-//float DVEC[200+];
-//  let's use 400 to contain the year [1] will be first day
-// [365] or [366] will be the end year 
+ //float DVEC = vgen(FLOAT_,400,1,1);
 
-  float DVEC = vgen(FLOAT_,400,1,1);
+  // all vecs should become Vec
+
+  Vec Vtst(DOUBLE,10,10,1);
+
+   float DVEC[400];
+   // vset(DVEC,1,1,400);
 
   float DFVEC[400];
 
   float DXVEC[400];
 
   float WTVEC[400];
-//float PWTVEC[400] 
+//float PWTVEC[400] ;
 
   float WTPMV[400];
 
@@ -104,125 +113,358 @@
   float FIBRCON[400];
 ////////////////////////////////////////////////////
 
+  int Nrecs;
+  
   float Nsel_exemins = 0.0;
 
   float Nsel_exeburn = 0.0;
 
   float Nsel_lbs = 0.0;
 
-  //<<[_DB]"%V $Nsel_exemins $Nsel_exeburn  $(typeof(Nsel_exemins))\n";
 
-  int k = 0;
+  //<<[_DB]"$Mo \n";
 
+  float WXY[20];
 
-///////////////////////////////////////////////////
-  void Uac::wex(Svarg * sarg)
-  {
+  char sep = 47;
 
-  today = getDate(2,sep);
+  float minWt = 160;
 
-  today = date(2);
+  float upperWt = 225;
+//StartWt = 205;
+// rates per min
 
-  jtoday = julian(today);
+ float   GoalWt = 175;  // ideal -- flying weight
 
-  Year= date(YEAR_);
+ float   StartWt = 215;
 
-  //<<"%V $today $jtoday $Year\n";
+float   MinWt = 165;
+
+  Str today;
+
+ // today = date(2);
+
+  long jtoday;
+  long maxday;
+  
+  Str Year;
 
   long Bday;  // birthday;
 
-  Bday = julian("04/09/1949");
-
+  Str Bdate ;
+  
   int lday;  // last day recorded in file;
 
   int dday;
 
-  long Jan1;  // get they current year;
+  long Jan1;  // get the current year;
 
-  Jan1 = julian("01/01/$Year");
+  long Yday ;
+  long Yd ;
+
+
+Svar GoalsC;
+   
+//GoalsC.Split("01/01/2022 03/31/2022 175"); // does not work
+
+  int NCCobs =0;
+  int NCCrecs = 0;
+  
+Record RX;
+
+Svar col;
+
+  float last_known_wt = 208.8;
+
+  long last_known_day = 0;
+
+  float tot_exeburn =0;
+
+  float tot_exetime = 0;
+
+  int Nobs = 0;
+  int nxobs = 0;
+
+  int Nxy_obs = 0;
+
+  long wday;
+  long gday;
+  long gsday;
+
+  int NextGoalWt;
+  int StGoalWt;
+
+  Record RCC; // TBC has to be at least 1;
+
+//=========================================
+//    Svar Goals;
+//    Svar Goals2;
+//#include "wex_goals.asl"
+
+////////////////////////////////////////  routines //////////////////////////////
+#include "gevent.h"
+
+
+#include "wex_read.asl"
+
+  int N = 1000;
+//float DVEC[200+];
+//  let's use 400 to contain the year [1] will be first day
+// [365] or [366] will be the end year 
+
+
+   void computeGoalLine()
+   {
+ // <<"%V$StartWt $NextGoalWt\n"
+     int sz;
+     long ngday = gday - gsday;
+
+     GVEC[0] = StartWt;  // start  Wt
+
+     GVEC[1] = NextGoalWt;
+
+     long ty_gsday = gsday;
+
+     float gwt =  NextGoalWt;
+
+     GVEC[ngday-1] = gwt;  // goal wt
+
+     WDVEC[ngday-1] = gsday+ngday;
+
+     int k =0;
+//  lpd = 1.75/7.0      // 1.75 lb a  week
+
+     float lpd = 4.0/7.0;      // 4 lb a  week
+
+     float try_lpd = (StartWt - NextGoalWt) / (1.0 * ngday);
+
+     float lw = StartWt;
+
+// our goal line  wtloss per day!
+//<<[_DB]"%V $try_lpd $lpd \n"
+
+     for (int i= 0; i < ngday; i++) {
+//<<"$(ty_gsday+i) $lw \n"
+
+       GVEC[i] = lw;
+
+       WDVEC[i] = gsday+i;
+
+       lw -= try_lpd;
+
+       if (lw < MinWt)
+
+       lw = MinWt;
+
+       }
+///  revised goal line
+
+   //  sz = Caz(GVEC);
+
+ //    <<[_DB]" days $sz to lose $(StartWt-gwt) \n";
+
+ //    sz = Caz(WDVEC);
+
+ //    <<[_DB]"$sz\n";
+
+ //    <<[_DB]"%6.1f%(7,, ,\n)$WDVEC\n";
+
+ //    <<[_DB]"%6.1f%(7,, ,\n)$GVEC\n";
+
+     }
+//==================================//
+
+
+ ///////////////////////////////////////////////////
+  void Uac::Wex(Svarg * sarg)
+  {
+
+
+// test Vec Global
+
+  cout << "Vtst "  << Vtst << endl;
+
+//    Svar Mo;
+  // Mo scope  - wex_task
+
+/////////////////////////////////////////////////  SET GOALS  ////////////////////////////////////////
+///
+///        long-term and current weight loss goals 
+///
+//  SET     START DATE      END DATE  TARGET WEIGHT
+
+// days will days of year not Julian
+   Str stmp;
+   Svar Goals;
+   
+   Goals.Split("01/01/2022 03/31/2022 175");
+
+//<<"Setting goals $Goals\n"
+
+   Svar Goals2;
+   
+   Goals2.Split("03/21/2022 04/09/2022 194");
+////////////////////==============/////////////////
+
+// move these done 10 when reached -- until we are at desired operating weight!
+  float   DX_NEW = 200.0;  // never exceed
+
+  float   DX_MEW = GoalWt+5;  // max dx effort above
+
+
+   long tjd =  Julian(Goals[0]) ;
+   
+
+   //long sday = julian(Goals[0]) -Jan1 ; // start date
+
+   long Sday = tjd - Jan1;
+   
+
+   long tarxday = Julian(Goals[1]) -Jan1;
+   long targetday = Julian(Goals[1]);
+
+   targetday -= Jan1;
+	  
+//<<"%V $tjd $Jan1 $Sday $targetday  $tarxday; \n"
+
+   cout << " Jan1 " << Jan1 << endl;
+
+   NextGoalWt = atoi(Goals[2]);
+
+   long Sday2 = Julian(Goals2[0]) -Jan1 ; // start date
+
+   long tday2 = Julian(Goals2[1]) -Jan1;
+
+   StGoalWt = atoi(Goals2[2]);
+
+   long gsday = Sday;
+
+   long gday =  targetday;    // next goal day;
+
+   int got_start = 0;
+
+   long yday = Julian("01/01/2022")   ; // this should be found from data file
+
+   long eday = Julian("12/31/2022");
+
+   stmp = getDate(2);
+   jtoday = Julian(stmp);
+
+   int ngday = 7;
+
+   int k = eday - Sday;
+
+   if ( k < 0) {
+
+     cout <<" time backwards !\n";
+
+     exit_si();
+
+     }
+
+   int kdays = k;
+/////////////////////////////////////////////////  READ RECORDS ////////////////////////////////////////
+  int n = 0;
+
+
+
+  today = getDate(2);
+
+ // today = date(2);
+
+  jtoday = Julian(today);
+
+  Year= getDate(YEAR_);
+
+  //<<"%V $today $jtoday $Year\n";
+
+  Bday = Julian("04/09/1949");
+
+  Jan1 = Julian("01/01/2022"); // Str adate ; adate.strPrintf("01/01/%s",Year.cptr()");
 
   Yday = jtoday -Jan1;
 
-  Str bdate = "04/09/1949";
- //Bday = julian(bdate)
-//<<"%V $bdate  $Bday $Jan1 \n"
+  Bdate = "04/09/1949";
 
-  maxday = julian("04/09/2049") -Bday;
+  Mo.Split ("JAN,FEB,MAR,APR ,MAY,JUN, JUL, AUG, SEP, OCT, NOV , DEC",44);
+
+  GoalsC.Split("01/01/2022 03/31/2022 175");
+
+
+  maxday = Julian("04/09/2049") -Bday;
 // this is a new format -- allowing us to put comment labels on graphs
 //<<"%V $maxday \n"
 
-  A=ofr("DAT/wex2022.tsv");
+
+
+  int A=ofr("DAT/wex2022.tsv");
 
   if (A == -1) {
 
-  //<<"FILE not found \n";
+  cout <<"FILE not found \n";
 
-  exitsi();
+  exit_si();
 
   }
 // check period
 
   Svar rx;
-//rx->pinfo()
 
-  Record RX[1];
-//RX=readrecord(A,@del,-1)
+  Nrecs=RX.readRecord(A,_RDEL,-1);  // no back ptr to Siv?
 
-  RX.readrecord(A,_del,-1);
-//cf(A);
+  // reader in readRecord closes file
 
-  RX.pinfo();
-//!a
+//  RX.pinfo();
 
-  Nrecs = Caz(RX);
+  cout <<"Nrecs "  << Nrecs << endl;
+
 
   //<<"%V $Nrecs $RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n";
-  printf("Nrecs RX[0] \n (Caz(RX))  (Caz(RX,0)) \n",Nrecs ,RX[0] ,Caz(RX),Caz(RX,0));
+
 
   //<<[_DB]"$RX[Nrecs-2]\n";
 
   rx= RX[Nrecs-1];
+
+cout << "last rec " << rx << endl;
+
 //<<"$RX[Nrecs-1]\n"
 
-  <<[_DB]"$rx\n";
+//  <<[_DB]"$rx\n";
 
-  lastRX = RX[Nrecs-1];
-
-  <<"%V$lastRX\n";
+//  lastRX = RX[Nrecs-1];
+//  <<"%V$lastRX\n";
 //!a
 //lastRX->pinfo();
 //chkT(1)
     //WDVEC= vgen(_INT_,2*kdays,0,1);
 
-  n = 0;
-
+  
   k = 0;
 ///////////// Cals & Carb Consumed ////////
 // so far not logged often 
 
-  ACC=ofr("DAT/cc2022.tsv");
-
-  Record RCC[1]; // TBC has to be at least 1;
+  int ACC=ofr("DAT/cc2022.tsv");
 
   NCCrecs = 0;
 
   if (ACC == -1) {
 
-  //<<" no cc data!\n";
+  cout <<" no cc data!\n";
 
   }
 
   else {
 
-  RCC.readrecord(ACC);
+  RCC.readRecord(ACC);
 
   cf(ACC);
   //RCC->info(1);
 
-  NCCrecs = Caz(RCC);
+  NCCrecs = RCC.getNrows();
   //NCCrecs->info(1)
 
-  <<"%V $NCCrecs \n";
+ // <<"%V $NCCrecs \n";
 /*
  for (i=0; i < NCCrecs ;i++) {
   <<[_DB]"$RCC[i] \n"
@@ -235,11 +477,84 @@
   
 ////////////////// READ CEX DATA ///////////////////
 
+    readCCData();
+
+    int nrd=readData();
+
+cout <<"nrd " <<nrd << endl;
+  /////////////////////  part 1 ////////////////////////////
+
+  
+}
 
 
-  readCCData();
 
-  nrd=readData();
+  extern "C" int wex_task(Svarg * sarg)  {
+
+  Str a0 = sarg->getArgStr(0) ;
+
+  Str Use_ ="plot Wex data";
+
+
+  //<<[_DB]"%V $Nsel_exemins $Nsel_exeburn  $(typeof(Nsel_exemins))\n";
+
+  int k = 0;
+
+   Svar GoalsB;
+   
+    GoalsB.Split("01/01/2022 03/31/2022 175");
+
+
+#include "wex_types.asl"
+
+
+
+//#include "wex_callbacks.asl"
+
+//#include "wex_screen.asl"
+//#include "wex_draw.asl"
+//#include "wex_glines.asl"
+
+
+
+  Uac *o_uac = new Uac;
+
+  o_uac->Wex(sarg);
+
+    exit(0);
+  }
+
+
+   
+
+
+///////////////////////////////// TBD /////////////////////////
+// date-day
+// interpolate missing
+// carb, cal lookup   carb,protein,fat proportions
+// energy expenditure
+//- run,walk, cycle  --- weight/resistance exercise
+// 
+// OO activity organizer
+// XML for data
+// trend prediction toward goal (wt,strength) done?
+// scrollable windows
+// text - events ( notable days, events)
+//  organize in Quarters  JFM,  AMJ,  JAS, OND
+//  (last month, current month, next)
+//  bench press value, arm curl, lat pull ?? values
+//
+//  get today's date and set up view for this quarter
+//  can we add comments
+//
+//  1/12/22   - startup with yesterdays date and display of activity - for last 7 days (average?)
+//
+
+;//==============\_(^-^)_/==================//;
+
+/////////////////////  part 1 ////////////////////////////
+/*
+
 //<<"%V$nrd\n"
 ////////////// PLOT GOAL LINE  ///////////////////////////////////////////
 //    sc_endday = lday + 10
@@ -290,12 +605,10 @@
 
   msgw =split(msg);
 //<<[_DB]"%V$msgw \n"
-#include "wex_screen.asl"
-#include "wex_draw.asl"
-#include "wex_glines.asl"
+
 
   titleVers();
-#include "gevent"
+
 //ans=query("proceed?")
 //sleep(0.1)
 //<<"%V $_eloop\n"
@@ -357,12 +670,12 @@
 
   m_num++;
 //sleep(0.05)
-/*
-   if (m_num == 1) {
-      drawScreens();
+
+//   if (m_num == 1) {
+//      drawScreens();
      // setCursors();
-       }
-*/
+//       }
+
 
   msg =eventWait();
 //<<[2]"$m_num $msg  $_ename $_ewoname\n"
@@ -371,12 +684,12 @@
 
   if (_ename == "PRESS") {
       // ans=iread(">>");
-/*
-     if (_ewoname != "") {
-<<"calling function via <|$_ewoname|> !\n"
-        $_ewoname()
-        }
-*/
+
+//     if (_ewoname != "") {
+//<<"calling function via <|$_ewoname|> !\n"
+//        $_ewoname()
+//        }
+
 
 
    }
@@ -446,47 +759,4 @@
     //   place_curs( gwo,100,5,1,1)
 
   }
-
-  }
-
-
-
-
-  extern "C" int wex_task(Svarg * sarg)  {
-
-  Str a0 = sarg->getArgStr(0) ;
-
-  Str Use_ ="plot Wex data";
-
-  Uac *o_uac = new Uac;
-
-  o_uac->wex(sarg);
-
-  }
-
-  exit();
-
-
-///////////////////////////////// TBD /////////////////////////
-// date-day
-// interpolate missing
-// carb, cal lookup   carb,protein,fat proportions
-// energy expenditure
-//- run,walk, cycle  --- weight/resistance exercise
-// 
-// OO activity organizer
-// XML for data
-// trend prediction toward goal (wt,strength) done?
-// scrollable windows
-// text - events ( notable days, events)
-//  organize in Quarters  JFM,  AMJ,  JAS, OND
-//  (last month, current month, next)
-//  bench press value, arm curl, lat pull ?? values
-//
-//  get today's date and set up view for this quarter
-//  can we add comments
-//
-//  1/12/22   - startup with yesterdays date and display of activity - for last 7 days (average?)
-//
-
-;//==============\_(^-^)_/==================//;
+*/  

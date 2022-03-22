@@ -1121,3 +1121,8 @@ uac.h                               1.31  03/17/2022 07:58:32  cpp
 rec_ops.cpp                         1.91  03/17/2022 10:16:21  cout
 win_p.cpp                           1.87  03/17/2022 14:14:58  wbox
 mod_wo_p.cpp                        1.6  03/17/2022 21:28:06  WHELP
+timedate_l.cpp                      1.19  03/21/2022 09:03:34  Julian
+rec_ops.cpp                         1.92  03/21/2022 09:17:26  get rol,col as char*
+fileop.cpp                          1.80  03/21/2022 13:39:49  int cf(int fh) cpp
+rdrec.cpp                           1.82  03/21/2022 22:13:05  cpp interface record memp
+record.h                            1.24  03/21/2022 22:14:43  readrecord ptr memp

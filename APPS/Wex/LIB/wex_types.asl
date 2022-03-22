@@ -16,9 +16,13 @@
 ///  current fields kept in data file
 ///
 
-Svar Wexcats;
 
-Wexcats = Split("Date   Weight  Walk    Hike    Run     Bike    Swim      Yard    Gym     Bpress");
+  Str swex = "hey?";
+  swex = " really";
+  
+  Svar Wexcats;
+
+  Wexcats.Split("Date   Weight  Walk    Hike    Run     Bike    Swim      Yard    Gym     Bpress",-1);
 
 
 //<<[_DB]"$Wexcats[::] \n"

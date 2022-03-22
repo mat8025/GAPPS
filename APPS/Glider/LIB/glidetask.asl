@@ -12,7 +12,10 @@
  */ 
 ;//----------------<v_&_v>-------------------------//;                    
 
+#include <iostream>
+#include <ostream>
 
+using namespace std;
 ///////////////////////
 //uint Turnpt::Ntp_id = 0;
 
@@ -23,6 +26,10 @@ float CSK;
 float Cruise_speed;
 
 Svar Task;
+
+  float totalD = 0;
+
+  float totalDur = 0.0;
 
 #include "conv.asl"
 
@@ -57,22 +64,27 @@ Uac::glideTask(Svarg * sarg)
 
 cout << " The gliderTask parameters are:  "  << sa << endl;
 
+cout << " para[0] is:  "  << sa.cptr(0) << endl;
+
 cout << " para[1] is:  "  << sa.cptr(1) << endl;
 
 cout << " para[2] is:  "  << sa.cptr(2) << endl;
 
-cout << " para[3] is:  "  << sa.cptr(3) << endl;
+//cout << " ??? \n"  ;
+
+
+//cout << " para[3] is:  "  << sa.cptr(3) << endl;
 
 
  // ignoreErrors(); // put in uac.h ??
 
-  chkIn(1);  //  _dblevel ?
+//  chkIn(1);  //  _dblevel ?
   
 //setMaxICerrors(-1) // ignore - overruns etc
 
 int  Main_init = 1;
 
-
+//cout << " ??? & \n";
 //<<"%V $totalD\n"
 
   float Leg[20];
@@ -112,7 +124,7 @@ int  Main_init = 1;
 // unless default value used
 // the_min = "0"
 
-  int nerror = 0;
+//  int nerror = 0;
 
   int use_cup = 1;
 
@@ -162,6 +174,7 @@ int  Main_init = 1;
   int sz;
   
   Str targ;
+  Str ans;
 
   //<<" %V $LoD \n";
 
@@ -622,9 +635,9 @@ cout << n_legs <<" @2 " << where << endl;
 
 //  <<"%V  $CSK knots $Cruise_speed kmh\n";
   cout  <<"CSK "<< CSK  << "knots "  <<"Cruise_speed "<< Cruise_speed  << "kmh "  <<endl ;
-  
+//  ans=query("show");
   if (show_title) {
-cout  << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ "  <<endl ; 
+cout  << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ "  <<endl ; 
 
 //  <<"Leg   TP      ID   LAT      LONGI      FGA     MSL   PC    $Units   RTOT   RTIM    Radio    TC \n";
 cout  << "Leg   TP      ID   LAT      LONGI      FGA    "  << "MSL   PC    " << Units   << " RTOT   RTIM  Radio  TC "  <<endl ; 
@@ -836,7 +849,17 @@ cout  << "Leg   TP      ID   LAT      LONGI      FGA    "  << "MSL   PC    " << 
   //<<"Total distance\t %8.2f$totalD km\t%8.2f$(totalD*km_to_sm) sm\t%6.2f$(totalD*km_to_nm) nm    LOD %6.1f$LoD \n";
 
   //<<" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n";
+//ans=query("totalD ?");
 
+//printf("totalD %f   totalDur %f\n",totalD,totalDur);
+
+//     cout << "total D "  << endl;
+  //   cout << ::totalD    <<endl ; 
+
+     cout  << "   " << totalD  << " km to fly - " << totalDur  << " hrs "  << "- bon voyage! "  <<endl ; 
+     cout.flush();
+
+//ans=query("totalD ?");
   }
 
   else {
@@ -848,7 +871,7 @@ cout  << "Leg   TP      ID   LAT      LONGI      FGA    "  << "MSL   PC    " << 
   }
 
 //  <<"%6.1f $totalD km to fly -  $totalDur hrs - bon voyage!\n";
- cout   << totalD  << "km to fly - " << totalDur  << "hrs "  << "- bon voyage! "  <<endl ; 
+
 
 }
 
@@ -860,7 +883,7 @@ cout  << "Leg   TP      ID   LAT      LONGI      FGA    "  << "MSL   PC    " << 
 extern "C" int glider_task(Svarg * sarg)  {
 
  Str a0 = sarg->getArgStr(0) ;
-
+ Str ans;
  a0.pinfo();
 
 Str Use_ ="compute task distance\n  e.g  asl anytask.asl   gross laramie mtevans boulder  LD 40";
@@ -874,6 +897,9 @@ Str Use_ ="compute task distance\n  e.g  asl anytask.asl   gross laramie mtevans
 
 
     o_uac->glideTask(sarg);
+
+   cout << "total D " << ::totalD    <<endl ;
+     
 
   }
 

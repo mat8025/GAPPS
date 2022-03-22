@@ -18,6 +18,12 @@
 #define CPP 1
 
 #if CPP
+
+Svar WM;
+
+
+
+
  extern "C" int svar_cpp(Svarg * sarg)  {
 #endif
 
@@ -39,6 +45,12 @@ chkIn(1);
 //<<"simple class test\n"
 
 cout << "hello simple Siv/Str/Svar test  " << endl;
+
+
+//   WM.Split("just one feature at a time ");
+
+
+//cout << "WM  " << WM << endl;
 
 ////////////////////////
 Siv M(INT_);
