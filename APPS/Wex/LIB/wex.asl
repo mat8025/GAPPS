@@ -456,12 +456,15 @@ cout << "last rec " << rx << endl;
 
   else {
 
-  RCC.readRecord(ACC);
+  int nrc =RCC.readRecord(ACC,_RDEL,-1);  
 
-  cf(ACC);
+
+ // cf(ACC);
   //RCC->info(1);
 
   NCCrecs = RCC.getNrows();
+cout << "NCCrecs " << NCCrecs << endl;
+
   //NCCrecs->info(1)
 
  // <<"%V $NCCrecs \n";
@@ -477,9 +480,9 @@ cout << "last rec " << rx << endl;
   
 ////////////////// READ CEX DATA ///////////////////
 
-    readCCData();
-
-    int nrd=readData();
+    int nrd= readCCData();
+cout <<"nrd " <<nrd << endl;
+    nrd=readData();
 
 cout <<"nrd " <<nrd << endl;
   /////////////////////  part 1 ////////////////////////////

@@ -188,7 +188,7 @@
   }
 //====================================================//
 
-  void readCCData()
+  int readCCData()
   {
 
   int tl = 0;
@@ -201,9 +201,10 @@
 //<<[_DB]"$RCC[tl]\n"
 //<<[_DB]"$tl  $NCCobs $NCCrecs\n"
     //day = ccol[0];
-
+cout << "RCC tl " << tl << " " << RCC(tl) << endl; 
   day = RCC.getRC(tl,0);
-//<<"%V $day\n"
+  if (day != "") {
+cout <<" day " << day << endl;
 
   jday = Julian(day);
 
@@ -236,7 +237,7 @@
 //<<"%V $day $cals $carbs $fat $prot $fiber\n"
 
   NCCobs++;
-
+  }
   tl++;
 
   if (tl >= NCCrecs) {
@@ -244,9 +245,9 @@
   break;
 
   }
-
+  
   }
-
+   return tl;
   }
 //=======================================//
 
