@@ -67,50 +67,50 @@ class Svar;
 
   Vec Vtst(DOUBLE,10,10,1);
 
-   float DVEC[400];
-   // vset(DVEC,1,1,400);
+   Vec DVEC(FLOAT_,400);
 
-  float DFVEC[400];
 
-  float DXVEC[400];
+  Vec DFVEC(FLOAT_,400);
 
-  float WTVEC[400];
-//float PWTVEC[400] ;
+  Vec DXVEC(FLOAT_,400);
 
-  float WTPMV[400];
+  Vec WTVEC(FLOAT_,400);
+//Vec PWTVEC(FLOAT_,400) ;
 
-  float GVEC[400]; // goal line;
+  Vec WTPMV(FLOAT_,400);
 
-  float BPVEC[400];
+  Vec GVEC(FLOAT_,400); // goal line;
 
-  float SEVEC[400];
+  Vec BPVEC(FLOAT_,400);
 
-  float CARBV[400];
+  Vec SEVEC(FLOAT_,400);
 
-  float WDVEC[400];
+  Vec CARBV(FLOAT_,400);
 
-  float EXTV[400];
+  Vec WDVEC(FLOAT_,400);
 
-  float AVE_EXTV[400];
+  Vec EXTV(FLOAT_,400);
 
-  float EXEBURN[400];
+  Vec AVE_EXTV(FLOAT_,400);
 
-  float CALBURN[400];
+  Vec EXEBURN(FLOAT_,400);
 
-  float CARDIO[400];
+  Vec CALBURN(FLOAT_,400);
 
-  float STRENGTH[400];
+  Vec CARDIO(FLOAT_,400);
+
+  Vec STRENGTH(FLOAT_,400);
 // cals,carbs consumed & when
 
-  float CALSCON[400];
+  Vec CALSCON(FLOAT_,400);
 
-  float CARBSCON[400];
+  Vec CARBSCON(FLOAT_,400);
 
-  float FATCON[400];
+  Vec FATCON(FLOAT_,400);
 
-  float PROTCON[400];
+  Vec PROTCON(FLOAT_,400);
 
-  float FIBRCON[400];
+  Vec FIBRCON(FLOAT_,400);
 ////////////////////////////////////////////////////
 
   int Nrecs;
@@ -172,7 +172,7 @@ Svar GoalsC;
   
 Record RX;
 
-Svar col;
+ Svar Col;
 
   float last_known_wt = 208.8;
 
@@ -481,13 +481,63 @@ cout << "NCCrecs " << NCCrecs << endl;
 ////////////////// READ CEX DATA ///////////////////
 
     int nrd= readCCData();
-cout <<"nrd " <<nrd << endl;
-    nrd=readData();
 
-cout <<"nrd " <<nrd << endl;
+COUT (nrd) ;
+
+
+
+    nrd= readData();
+
+
+COUT (nrd) ;
   /////////////////////  part 1 ////////////////////////////
 
-  
+//   init_period = 32;
+
+  long sc_startday = (jtoday - Jan1) -20;
+
+  if (sc_startday <0)
+
+  sc_startday =0;
+
+  long sc_endday = targetday + 10;
+//   <<"%V$sc_startday $targetday $sc_endday \n"
+
+  float gwt = NextGoalWt;
+
+  computeGoalLine();
+////////////////////////////////////////////////////////////////////////
+
+  float sw2 = 205;
+
+  float gw2 = 170;
+
+COUT(gw2);
+
+
+//////////////////   Predicted Wt   //////////////////////////////////
+// (cal_consumed - cal_burn) / 4000.0    is wt gain in lbs
+//  if no cal_burn registered for the day assume no exercise
+//  if no cal_consumed assume  typical day_burn + 200 
+//         first_k = ty_gsday
+      //   first_k = 220
+/////////////////////////////////////////////////////////////////////
+
+float ae = EXTV[15];
+
+COUT(ae);
+
+   AVE_EXTV = EXTV;
+
+  ae = AVE_EXTV[15];
+
+COUT(ae);
+   AVE_EXTV.Smooth(7);  // add Smooth (smooth_win_size)
+
+   ae = AVE_EXTV[15];
+
+COUT(ae);
+
 }
 
 
@@ -584,7 +634,7 @@ cout <<"nrd " <<nrd << endl;
 
   gw2 = 170;
 
-  cf(A);
+  //cf(A);
 
 #include "wex_foodlog.asl"
 //////////////////   Predicted Wt   //////////////////////////////////

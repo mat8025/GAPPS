@@ -16,7 +16,7 @@ template <class T>
 		// you can write "Vector<T>" or "Vector" -- both are correct.
 
      	 template <class W>
-     	friend std::ostream& operator<< (std::ostream&, const Vector<W>&);
+       	 friend std::ostream& operator<< (std::ostream&, const Vector<W>&);
 		
 	public:
 		//CONSTRUCTORS
@@ -34,7 +34,21 @@ template <class T>
 		
 		// Assignment operator
 		// C++ requires that it be a member function.
-		Vector& operator=(const Vector&);
+  //	Vector& operator=(const Vector&);
+
+                Vector& operator=(const Vector<int>&);
+                Vector& operator=(const Vector<double>&);
+                Vector& operator=(const Vector<float>&);
+                Vector& operator=(const Vector<short>&);  
+
+
+		// Note that the return type is NOT IN THE SCOPE of the function name,
+		// so we have to put Vector<T> instead of just Vector.
+
+  //  Vector<T>& operator=(const Vector<W>& right) ;
+
+
+  
 		// [] operator.
 		// C++ requires that it be a member function.
 		// The reference return type is to allow us to assign to it.
@@ -43,7 +57,9 @@ template <class T>
 		//private:
 		int size;
 		T * data;
-	};
+  };
+
+
 
 	// Note the use of the member initialization list.
 	template <class T>
@@ -94,7 +110,8 @@ template <class T>
 	// The text chooses to return void, however it is
 	// the usual practice to return a reference to the 
 	// class.
-	template <class T>
+/*
+template <class T>
 		// Note that the return type is NOT IN THE SCOPE of the function name,
 		// so we have to put Vector<T> instead of just Vector.
 	Vector<T>& Vector<T>::operator=(const Vector& right) {
@@ -115,14 +132,128 @@ template <class T>
 				data = new T[size];
 			}
 			for (int i = 0; i < size; i++)
-				data[i] = right.data[i];
+			  data[i] = right.data[i];
 		}
 		return *this;
-	}
-	  template <class T, class W>
+   }
+*/
+
+template <class T>
 		// Note that the return type is NOT IN THE SCOPE of the function name,
 		// so we have to put Vector<T> instead of just Vector.
-	  Vector<T>& Vector<T>::operator=(const Vector<W>& right) ;
+	Vector<T>& Vector<T>::operator=(const Vector<double>& right) {
+		// Assignment operators should begin
+		// with a check that you're not being
+		// asked to do a "self-assignment" as in:
+		// x = x;
+		// Here we look to see if the "this" pointer
+		// contains the same address as the address
+		// of the argument.
+
+			if (size != right.size) {
+				// if our target array isn't the same size
+				// as the target's, then we delete ours and
+				// get one that is the correct size.
+				delete [] data;
+				size = right.size;
+				data = new T[size];
+			}
+			for (int i = 0; i < size; i++)
+			  data[i] = (T) right.data[i];
+
+		return *this;
+   }
+
+
+template < class T, class W> int
+//tcopy(T val, W val2, Vector<T> *v, const Vector<W> *x)
+tcopy(Vector<T> *v, const Vector<W> *x)
+{
+
+  			if (v->size != x->size) {
+				// if our target array isn't the same size
+				// as the target's, then we delete ours and
+				// get one that is the correct size.
+				delete [] v->data;
+				v->size = x->size;
+				v->data = new T[v->size];
+			}
+			for (int i = 0; i < v->size; i++)
+			  v->data[i] = (T) x->data[i];
+
+
+			return v->size;
+}
+
+template <class T>
+	Vector<T>& Vector<T>::operator=(const Vector<float>& right) {
+          if ((void *) this != (void *) &right) {
+             tcopy(this,  &right);
+      }
+
+   return *this;
+}
+
+template <class T>
+	Vector<T>& Vector<T>::operator=(const Vector<int>& right) {
+         if ((void *) this != (void *) &right) {
+          tcopy(this,  &right);
+         }
+		return *this;
+     }
+
+template <class T>
+	Vector<T>& Vector<T>::operator=(const Vector<short>& right) {
+         if ((void *) this != (void *) &right) {
+          tcopy(this,  &right);
+         }
+		return *this;
+     }
+
+
+
+// ?? class T, Class W 
+
+/*
+template <class T, class W>
+		// Note that the return type is NOT IN THE SCOPE of the function name,
+		// so we have to put Vector<T> instead of just Vector.
+	Vector<T>& Vector<T>::operator=(const Vector<W>& right) {
+		// Assignment operators should begin
+		// with a check that you're not being
+		// asked to do a "self-assignment" as in:
+		// x = x;
+		// Here we look to see if the "this" pointer
+		// contains the same address as the address
+		// of the argument.
+
+			if (size != right.size) {
+				// if our target array isn't the same size
+				// as the target's, then we delete ours and
+				// get one that is the correct size.
+				delete [] data;
+				size = right.size;
+				data = new T[size];
+			}
+			for (int i = 0; i < size; i++)
+			  data[i] = (T) right.data[i];
+
+		return *this;
+   } 
+*/
+
+
+
+
+
+	template <class T>
+	T& Vector<T>::operator[] (int index) {
+			return data[index];
+	}
+	template <class T>
+	T Vector<T>::operator[] (int index) const {
+			return data[index];
+	}
 
 	// operator<< is printing a ", " after each element in
 	// the Vector except for the last.
@@ -134,15 +265,18 @@ template <class T>
 		}
 		return os;
 	}
+
+
+
+/*
+	  template <class T, class W>
+		// Note that the return type is NOT IN THE SCOPE of the function name,
+		// so we have to put Vector<T> instead of just Vector.
+	  Vector<T>& Vector<T>::operator=(const Vector<W>& right) ;
+
+
 	
-	template <class T>
-	T& Vector<T>::operator[] (int index) {
-			return data[index];
-	}
-	template <class T>
-	T Vector<T>::operator[] (int index) const {
-			return data[index];
-	}
+
 
 template <class T, class W>
 		// Note that the return type is NOT IN THE SCOPE of the function name,
@@ -168,6 +302,7 @@ template <class T, class W>
 			  data[i] = (T) right.data[i];
 		}
 		return *this;
-	}
-	
+   }
+*/
+
 #endif

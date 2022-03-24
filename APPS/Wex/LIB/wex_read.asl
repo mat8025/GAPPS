@@ -16,11 +16,19 @@
   void fillInObsVec()
   {
 
+
+float tex;
+int iyd = Yd;
+
+COUT2(Yd,iyd);
+
   if (Yd >= 0) {
 
  int j = 1;
 
-  float mywt = atof(col[j++]);
+  float mywt = atof(Col[j++]);
+
+COUT(mywt);
 
   if (mywt > 0.0) {  // we have an entry = not all days are logged
 
@@ -41,21 +49,27 @@
 
   }
 
-   float walk =  atof(col[j++]);
+   float walk =  atof(Col[j++]);
 
-   float hike = atof(col[j++]);
+   float hike = atof(Col[j++]);
 
-   float    run = atof(col[j++]);
+   float    run = atof(Col[j++]);
 
-   float cycle =  atof(col[j++]);
+   float cycle =  atof(Col[j++]);
 
-   float swim =  atof(col[j++]);
+   float swim =  atof(Col[j++]);
 
-   float yardwrk =  atof(col[j++]);
+   float yardwrk =  atof(Col[j++]);
 
-   float wex = atof(col[j++]);
+   float wex = atof(Col[j++]);
 
-  EXTV[Yd] =  ( walk + hike + run + cycle + swim + yardwrk + wex);
+   tex = ( walk + hike + run + cycle + swim + yardwrk + wex);
+
+COUT(tex);
+
+  EXTV[iyd] = tex; 
+
+COUT(EXTV[iyd]);
 
   CARDIO[Yd] = ( walk + hike + run + cycle + swim );
 
@@ -65,10 +79,10 @@
 
   SEVEC[Yd] =  wex;
 
-  BPVEC[Yd] =  atof(col[j++]);
+  BPVEC[Yd] =  atof(Col[j++]);
 // any extra activities ?
 
-  float tex = EXTV[Yd];
+  tex = EXTV[iyd];
 
   float  exer_burn =   walk * w_rate;
 
@@ -84,7 +98,7 @@
 
   exer_burn += wex * wex_rate;
 
-  EXEBURN[Yd] =  exer_burn;
+  EXEBURN[iyd] =  exer_burn;
 
   tot_exeburn += exer_burn;
 
@@ -113,14 +127,21 @@
   long sday;
   
   int got_start = 0;
-  
+
+COUT(Nrecs);
+
+// access of record row Rx(i)
+// access of record Col Rx(i,j)
+
   while (tl < Nrecs) {
 
 
-  col= RX[tl];
+  Col= RX(tl); 
  //<<"<$tl> $RX[tl]\n"
 
-  day = col[0];
+  day = Col[0];
+
+COUT2(tl,day);
 
   jday = Julian(day);
 
@@ -164,6 +185,8 @@
   }
 //<<[_DB]"$Nrecs there were $tl $Nobs measurements \n"
 
+cout << "Nobs " << Nobs << endl;
+ COUT(Nobs) ;
   return tl;
 
   }
@@ -176,9 +199,9 @@
 
   if (Yd >= 0) {
 
-  CALSCON[Yd] =  atof(col[1]);
+  CALSCON[Yd] =  atof(Col[1]);
 
-  CARBSCON[Yd] = atof(col[2]);
+  CARBSCON[Yd] = atof(Col[2]);
 
   NCCobs++;
 //<<"Yd $NCCobs $CALSCON[Yd] $CARBSCON[Yd] \n"
@@ -201,10 +224,13 @@
 //<<[_DB]"$RCC[tl]\n"
 //<<[_DB]"$tl  $NCCobs $NCCrecs\n"
     //day = ccol[0];
-cout << "RCC tl " << tl << " " << RCC(tl) << endl; 
+cout << "RCC tl " << tl << " " << RCC(tl) << endl;
+
+//COUT2(tl,RCC(tl)) ;
+
   day = RCC.getRC(tl,0);
   if (day != "") {
-cout <<" day " << day << endl;
+//cout <<" day " << day << endl;
 
   jday = Julian(day);
 

@@ -75,6 +75,68 @@ cout << "s= " << s << endl;
  cout << "WM  " << WM << endl;
 
 
+int do_sop = 1;
+
+if (do_sop )  {
+Siv S(STRV);
+cout << " doing sop !!" << endl;
+  S= "we will attempt just one feature at a time ";
+
+
+
+Str q = "at";
+Str t = "im";
+
+cout << " t "  << t.pinfo() << endl;
+
+t.pinfo();
+
+Vec index;
+
+cout << "S " << S << " q " << q << endl;
+
+   index = regex(&S,&q);
+   
+index.pinfo();
+
+cout << "index " << index <<endl;
+
+index = 0;
+
+cout << "index zero? " << index <<endl;
+
+   index = regex(&S,&t);
+
+cout << "index " << index <<endl;
+
+Svar SV("SV");
+
+ cout  << "SV  "  << SV << endl ;
+
+  SV = "esto se esta complicando";
+
+ cout  << "SV  "  << SV << endl ;
+
+  SV.findWsTokens("esto se esta muy complicando");
+
+cout  << "SV  "  << SV << endl ;
+
+Svar VS;
+
+   VS = "esto se esta muy complicando";
+
+ cout  << "VS  "  << VS << endl ;
+
+
+  VS.split("esto se esta muy complicando");
+
+ cout  << "VS  "  << VS << endl ;
+
+ cout  << "VS  "  << VS[1] << endl ;
+
+}
+
+
 
 
 #if CPP

@@ -1126,3 +1126,4 @@ rec_ops.cpp                         1.92  03/21/2022 09:17:26  get rol,col as ch
 fileop.cpp                          1.80  03/21/2022 13:39:49  int cf(int fh) cpp
 rdrec.cpp                           1.82  03/21/2022 22:13:05  cpp interface record memp
 record.h                            1.24  03/21/2022 22:14:43  readrecord ptr memp
+rec_ops.cpp                         1.93  03/23/2022 10:01:45  use nrows for realloc
