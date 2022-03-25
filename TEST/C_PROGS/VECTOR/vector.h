@@ -1,7 +1,7 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 #include <iostream>
-
+#include <type_traits>
 
 using namespace std;
 //namespace CS1124 {
@@ -42,6 +42,8 @@ template <class T>
                 Vector& operator=(const Vector<short>&);  
 
 
+
+  
 		// Note that the return type is NOT IN THE SCOPE of the function name,
 		// so we have to put Vector<T> instead of just Vector.
 
@@ -53,7 +55,8 @@ template <class T>
 		// C++ requires that it be a member function.
 		// The reference return type is to allow us to assign to it.
 		T& operator[](int i);
-		T operator[] (int i) const;		
+		T operator[] (int i) const;
+  
 		//private:
 		int size;
 		T * data;
@@ -61,13 +64,42 @@ template <class T>
 
 
 
+int whatType(char* t)
+{
+  int wtype = 0;
+      printf("type %s\n",t);
+  if (strcmp(t,"i") == 0) {
+    printf(" int type\n");
+    wtype = 1;
+  }
+  else if (strcmp(t,"f") == 0) {
+    printf(" float type\n");
+    wtype = 2;
+  }
+      if (strcmp(t,"d") == 0) {
+    printf(" double type\n");
+    wtype = 3;
+  }
+    
+      return wtype;
+}
+//============================//
+
 	// Note the use of the member initialization list.
 	template <class T>
 	Vector<T>::Vector() : size (4), data (new T[size]) {
 	}
 	
 	template <class T>
-	Vector<T>::Vector(int s) : size (s), data (new T[size]){
+	Vector<T>::Vector(int s) {
+          int wtype;
+	  size = s;
+	  data = new T[size];
+	  cout << typeid(T).name() << endl;
+	  if (std::is_same<T, float>::value) 
+	    printf("is_same making float vector size %d\n",size);
+	  wtype= whatType((char *) typeid(T).name());
+	 cout << "wtype " << wtype << endl;
 	}
 	
 	// Copy Constructor
