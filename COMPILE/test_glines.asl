@@ -107,14 +107,14 @@ Str ans;
   
   int N = 200;
   
-  Vec Xvec(FLOAT_,N,0.0, (6.0*pi/(1.0*N)));
+  Vec<float> Xvec(N,0.0, (6.0*pi/(1.0*N)));
 
 //ans=query("Xvec?");
 
   //Xvec = Frange(N,0,6*pi);
   
   
-  Vec Rnvec(FLOAT_,N);
+  Vec<float> Rnvec(N);
   
   
   Rnvec  =addGrand(Rnvec); // fill with gaussian random numbers
@@ -130,22 +130,24 @@ cout << "Rnvec " << Rnvec << endl;
   // <<"%V $Rnvec[0:10] \n";
   // <<"$(typeof(Rnvec)) \n";
 
-    Vec Svec(FLOAT_,N);
-    Vec Tvec(FLOAT_,N);
+    Vec<float> Svec(N);
+    Vec<float> Tvec(N);
 
 
-      Vec Wvec(FLOAT_,N);
+      Vec<float> Wvec(N);
 
-      Vec Cvec(FLOAT_,N);      
+      Vec<float> Cvec(N);      
 
 // 
 //float Svec = Sin(Xvec)  //Svec.Sin(); // apply Sin function to all elements
   
-  Svec = Sin(Xvec);
+  //Svec = Sin(Xvec);
+  Svec = Xvec.Sin();
+  
   Svec.pinfo();
   //<<" $(typeof(Svec)) \n";
   
-  Vec Zvec(FLOAT_,N);
+  Vec<float> Zvec(N);
 
 
   Zvec = Rnvec + Svec;
@@ -180,7 +182,7 @@ cout << "Rnvec " << Rnvec << endl;
   
   Wvec = Xvec * f;
   Wvec.pinfo();
-  Svec = Sin(Wvec);
+  Svec = Wvec.Sin();
   Svec.pinfo();
 
 //ans=query("see Sin");
@@ -228,7 +230,7 @@ cout << "Svec " << Svec << endl;
     Svec = Wvec;
     Svec.Sin();
 
-    Cvec= Cos(Tvec);
+    Cvec= Tvec.Cos();
     
   //  Tvec.Cos();
     //Tvec *= 0.5;

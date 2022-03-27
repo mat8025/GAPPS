@@ -1,4 +1,4 @@
 
 # debug stream -- to test_vec.idb ?
 
-asl -d -s  'opendll("uac"); opendll("plot"); test_vec(2); '
+asl -D -s  'opendll("uac"); opendll("plot"); test_vec(2); '

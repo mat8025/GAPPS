@@ -91,7 +91,7 @@ cout << " t "  << t.pinfo() << endl;
 
 t.pinfo();
 
-Vec index;
+Vec<int> index;
 
 cout << "S " << S << " q " << q << endl;
 

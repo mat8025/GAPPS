@@ -140,7 +140,7 @@ chkN(s,(n+m));
 
 chkN(s,(n-m));
 
- Vec V(DOUBLE_,10,10,1);
+ Vec<double> V(10,10,1);
 
   V.pinfo();
 double rms;

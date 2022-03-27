@@ -66,13 +66,13 @@
 //============================================
 
 
-  Vec IGCLONG(FLOAT,20);
+  Vec<float> IGCLONG(20);
 
-  Vec IGCLAT(FLOAT,30);
+  Vec<float> IGCLAT(30);
 
-  Vec IGCELE(FLOAT,40);
+  Vec<float> IGCELE(40);
 
-  Vec IGCTIM(FLOAT,50);
+  Vec<float> IGCTIM(50);
 
 
   float computeGCD(float la1,float la2,float lo1,float lo2)
@@ -149,9 +149,9 @@
   void processIGC()
   {
 
-   Vec sslng(DOUBLE,12);
-   Vec sslat(DOUBLE,12);
-   Vec ssele(DOUBLE,12);   
+   Vec<double> sslng(12);
+   Vec<double> sslat(12);
+   Vec<double> ssele(12);   
 
 
   Ntpts=readIGC(igcfn,&IGCLONG, &IGCLAT,&IGCELE,&IGCTIM);
@@ -407,8 +407,8 @@ cout  <<" sslng " << sslng  << endl;
   return 0;
 
   }
-
-  int ntps =readIGC(fh,&IGCTIM,&IGCLAT,&IGCLONG,&IGCELE);
+  int ntps =0;
+ ntps = readIGC(fh,&IGCTIM,&IGCLAT,&IGCLONG,&IGCELE); // vec siv base
 
   IGCELE *= 3.280839 ;
   

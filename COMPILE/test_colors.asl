@@ -189,7 +189,7 @@ cout << "setting up awo " << endl;
 //  now loop wait for message  and print
 
 int rgb_index = 32;
-Vec WXY(FLOAT_, 20);
+Vec<float> WXY( 20);
 
 int nevent = 0;
 Str cname = "red";

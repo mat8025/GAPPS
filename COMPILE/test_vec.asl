@@ -28,7 +28,7 @@ Uac::vecWorld(Svarg * sarg)
    dbt("debug 1\n");
    Str ans= "xyz";
    cout << "hello simple Vec test  " << ans << endl;
-
+   setDebug(2,"pline");
    dbt("debug in vecWorld\n");
 
   Siv M(INT_);
@@ -40,10 +40,12 @@ Uac::vecWorld(Svarg * sarg)
 double rms;
 double val;
 
-// need Vec<DOUBLE> V (10,10,1)   // so that compiler knows type of vectot
+// need Vec<DOUBLE> V (10,10,1)   // so that compiler knows type of vector
          // at moment it is hidden and need to access via V(4) instead of V[4]
 
- Vec V(DOUBLE,10,10,1);
+ //Vec V(DOUBLE,10,10,1);
+
+ Vec<double> V(10,10,1.50);
 
   V.pinfo();
 
@@ -54,34 +56,143 @@ cout << "V = " << V << endl;
 cout << " trying access " << endl;
 COUT(V[7]);
 
- int index = 7;
- rms = V.getVal(index);
+ int index = 6;
+// rms = V.getVal(index);
 
-cout << " rms =V[7] " << rms << endl;
+  rms = V[index];
+cout << " rms =V[6] " << rms << endl;
 
 //COUT(V(index));
 
 // will only work for Vec type double
- V(4) = 37;
+ V[4] = 37;
 
  cout << "V[4]= 37 " << V[4] << endl;
 
 COUT(V[4]);
  short jj = 9;
- V[9] = 98;
+ V[jj] = 98;
 
  cout << "V(9)= 98 " << V[9] << endl;
 
 COUT(V[9]);
 
 
- V(4) = 15;
+ V[4] = 15;
 
  cout << "V[4]= 15 " << V[4] << endl;
 
 COUT(V[4]);
 
-ans= query("??V[4]");
+//ans= query("??V[4]");
+
+
+ Vec<float> F(10,0,0.5);
+
+ Vec<float> G(10,7,0.5);
+
+ Vec<float> H(5,0,0.5);
+  
+
+
+ COUT(F);
+
+ F[3]=16.78;
+
+ COUT(F);
+
+ COUT(G);
+
+ans= query("?? G = 45.67 "); 
+
+  G= 45.57;
+
+COUT(G);
+
+ans= query("?? G = F "); 
+
+  G = F ;
+  
+COUT(G);
+
+ans= query("?? G += 23.45;");
+
+  G += 23.45;
+
+COUT(G);
+
+
+ans= query("?? G *= 11.5;");
+
+  G *= 11.5;
+
+COUT(G);
+
+ans= query("?? G = F * 5.01;"); 
+
+  G = F * 5.01;
+  
+COUT(G);
+
+ans= query("?? G = F(1,5,1);");
+
+
+  G = F(1,7,1);
+
+COUT(G);
+
+COUT(H);
+ans= query("?? H = F(1,7,1);");
+
+  H = F(1,7,1);
+
+COUT(H);
+
+
+ans= query("?? F(1)= ");
+
+  F[1] = 42;
+
+COUT(F);
+
+ans= query("?? F(1,6,1) = 48.0");
+
+  F(1,6,1) = 48.0;
+
+
+ COUT(F);
+
+ans= query("?? F(2,7,1) = 56.3;");
+
+  F(2,7,1) = 56.3;
+  
+COUT(F);
+
+ans= query("?? rms = 35;");
+
+ rms = F(1,7,1).rms();
+
+COUT(rms);
+
+ float f = F[6];
+long rng = 2;
+COUT(f);
+
+ans= query("?? F(rng)");
+      F[rng] = 35;
+
+COUT(F);
+ans= query("?? f=F(4) = 35;");
+f= F[4];
+
+COUT(f);
+
+   F[rng] = 35;
+   
+COUT(F);
+
+ //Vec<Str> S(10);
+
 
 /*
 
