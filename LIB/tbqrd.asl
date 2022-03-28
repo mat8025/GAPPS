@@ -74,13 +74,13 @@ void titleVers()
 
 
 //============================//
-proc titleMessage(str msg)
+void titleMessage(str msg)
 {
  //<<"%V $msg \n"
  sWo(tbqrd_msg,_value,"$msg",_clear,_redraw);
 }
 
-proc titleMsg(str msg)
+void titleMsg(str msg)
 {
  //<<"%V $msg \n"
  sWo(tbqrd_msg,_value,"$msg",_clear,_redraw);

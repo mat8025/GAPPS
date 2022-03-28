@@ -29,6 +29,7 @@
  double bluev = 0.5;
 
 //#include "graphic"
+
 #include "gevent.h"
 #include "tbqrd.asl"
 
@@ -50,7 +51,7 @@ Str ans;
 
     rainbow();
     
-    int vp = cWi("Button");
+    auto vp = cWi("Button");
     // neead rsz[]
 
 
@@ -71,7 +72,7 @@ Str ans;
     
     sWi(vp,_WCLIPBORDER,BLACK_,_WREDRAW,_WSAVE,_WLAST);
 cout << "done vp" << endl;
-    int vp2 = cWi("Colors");
+    auto vp2 = cWi("Colors");
     
        
 
@@ -111,7 +112,7 @@ cout << "done vp2" << endl;
 
   sWo(rwo,_WCOLOR,RED_,_WPENHUE,BLACK_,_WVMOVE,1,_WEO);
 
-  int gwo=cWo(vp);
+  auto gwo=cWo(vp);
 
 
   wovalue.strPrintf("%f",greenv);
@@ -119,7 +120,7 @@ cout << "done vp2" << endl;
 
   sWo(gwo,_WCOLOR,GREEN_,_WPENHUE,BLACK_,_WSTYLE,WO_SVB,_WSYMBOL,3,_WVMOVE,1,_WEO);
 
-  int bwo=cWo(vp);
+  auto bwo=cWo(vp);
 
   wovalue.strPrintf("%f",bluev);
   sWo(bwo,_WTYPE, WO_BV,_WNAME,"Blue",_WRESIZE,wbox(bx,cby,bX,cbY),_WVALUE,wovalue.cptr(),_WVMOVE,1,_WEO);

@@ -12,25 +12,22 @@
 //***********************************************%
    
 //////////////////////////// Connect with Graphic server ///////////////////////
-<<"local LIB Graphic check\n"   
-   Graphic = CheckGwm(); 
-
-
+   
+   int Graphic = checkGWM(); 
+   int X;
+   
    if (!Graphic) {
-    X=spawngwm(); 
-    Graphic = CheckGwm(); 
+     X=spawnGWM("ASL"); 
+     Graphic = checkGWM(); 
      }
    
    if (! Graphic) {
-     <<"can't go graphic!! exiting\n"; 
-    exit(); 
+     printf("can't go graphic!! exiting\n"); 
+     exit(-1); 
      }
    
-      OpenDll("plot") ;  //  should be automatic -- but for XIC launch best to use! 
-      OpenDll("image")
-      
+     openDll("plot") ;  //  should be automatic -- but for XIC launch best to use! 
+     openDll("image") ;  
 //#include "tbqrd.asl"  // bug nested?
-
-<<"Done graphic \n";
-
+ cout<<"Graphic DONE\n";  
 ////////////////////////////////////////////////////////////////////////////////////////////////

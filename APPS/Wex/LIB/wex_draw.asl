@@ -43,7 +43,7 @@
 
   if (ws == 1) {
 
-  <<[_DB]"$ws $swo $kdays \n";
+  //<<[_DB]"$ws $swo $kdays \n";
 
   plotLine(swo,0,150,kdays-10,250, BLUE_);
 
@@ -85,17 +85,18 @@
   RS=wogetrscales(wwo);
 // just plot at mid - the date
 
-  mid_date = (RS[3] - RS[1])/2 + RS[1];
+  float mid_date = (RS[3] - RS[1])/2 + RS[1];
 
-  q1_date = (RS[3] - RS[1])/4 + RS[1];
+  float q1_date = (RS[3] - RS[1])/4 + RS[1];
 
-  q3_date = 3*(RS[3] - RS[1])/4 + RS[1];
+  float q3_date = 3*(RS[3] - RS[1])/4 + RS[1];
 
-  jd= mid_date +Bday;
+  long jd= mid_date +Bday;
 
-  the_date = julmdy("$jd");
+//  the_date = julmdy("$jd");
+    Str the_date = julmdy(jd);
 
-  <<[_DB]"%V$mid_date $jd $the_date \n";
+ // <<[_DB]"%V$mid_date $jd $the_date \n";
    //AxText(wwo, 1, the_date, mid_date, -0.25, BLUE_)
 
   jd= RS[1] + Jan1;
@@ -199,9 +200,9 @@
   if ( wScreen == 0) {
 //<<"%V $sc_zstart $minWt $sc_zend $upperWt\n"
 
-  sWo(wedwo,_Wxscales,sc_zstart,sc_zend);
+  sWo(wedwo,_WXSCALES,sc_zstart,sc_zend);
 
-  sWo(wedwo,_Wclearclip,_Wsave,_Wclearpixmap,_Wclipborder,BLACK_);
+  sWo(wedwo,_WCLEARCLIP,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_);
 
   drawGoals( wScreen);
 
@@ -211,43 +212,30 @@
 
  // <<[_DB]" draw lines \n";
 
-  dGl(exgls);
+  //dGl(exgls);
       //dGl(cardio_gl);
       //dGl(strength_gl);
 
-  sWo(calwo,_Wfont,"small");
+  sWo(calwo,_WFONT,F_SMALL_);
       /// these need to be a separate wo to contain key  symbol and text
      // plot(calwo,_Wkeysymbol,0.78 ,0.9,DIAMOND_,symsz,BLUE_,1);
 
-  sWo(calwo,_Wfont,"small");
       //Text(calwo,"Calories Burnt", 0.8,0.9,1)      
 
-  plot(calwo,_Wkeysymbol,0.78 ,0.8,DIAMOND_,symsz,RED_,1);
+  plot(calwo,_WKEYSYMBOL,wpt(0.78 ,0.8),DIAMOND_,symsz,RED_,1);
 
   Text(calwo,"Calories Ate", 0.8,0.82,1);
      // plot(calwo,_Wkeysymbol,0.78 ,0.7,TRI_,symsz,RED_,1,_Wfonthue,WHITE_);      
       //Text(calwo,"Carbs Ate", 0.8,0.72,1)
 
-  sWo(extwo,_Wfont,"small");
+  sWo(extwo,_WFONT,F_SMALL_);
       //plot(extwo,_Wkeysymbol,0.78,0.7,TRI_,symsz,GREEN_,1);
 
   Text(extwo,"Exercise Time (mins)", 0.8,0.7,1);
+   int allgls[] = {gw_gl,   carb_gl,  fibre_gl,  fat_gl,  prot_gl,  calc_gl,  calb_gl,  wt_gl,-1);
 
-  dGl(gw_gl);
-
-  dGl(carb_gl) ; //which scale is this going to use LH
-
-  dGl(fibre_gl) ;
-
-  dGl(fat_gl) ;
-
-  dGl(prot_gl) ;
-
-  dGl(calc_gl);
-
-  dGl(calb_gl);
-
-  dGl(wt_gl);
+    for(int j=0; allgls[j]>0;j++)
+      sGl(allgls[j],_GLDRAW);  
 
   }
 
@@ -267,13 +255,13 @@
 
   showTarget();
 
-  sWo(wedwo,_Wshowpixmap,_Wclipborder,BLACK_);
+  sWo(wedwo,_WSHOWPIXMAP,_WCLIPBORDER,BLACK_);
 
   }
 
   if ( wScreen == 1) {
 
-  <<[_DB]" Drawscreen 1  BP!!\n";
+ // <<[_DB]" Drawscreen 1  BP!!\n";
 
   drawGoals(1);
 
@@ -283,15 +271,15 @@
 
   dGl(bp_gl);
 
-  sWo(swo,_Wshowpixmap);
+  sWo(swo,_WSHOWPIXMAP);
 
-  sWo(allwo,_Wclipborder,GREEN_);
+  sWo(allwo,_WCLIPBORDER,GREEN_);
 
   }
 
-  sWo(fewos,_Wredraw);
+  sWo(fewos,_WREDRAW);
 
-  sWo(tw_wo,_Wmove,targetday,NextGoalWt,gwo,_Wredraw);
+  sWo(tw_wo,_WMOVE,targetday,NextGoalWt,gwo,_WREDRAW);
 
   CR_init = 1;
 
@@ -318,7 +306,7 @@
 // find current mid-year
 // decrement - and set rx,RX to jan 1, dec 31 of that year
 // then label 1/4 days
-
+    float rx,ry,rX,rY;
   RS=wogetrscales(gwo);
 // just plot at mid - the date
 
@@ -365,9 +353,9 @@
 
   sWo(wedwo,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
 
-  sWo(swo,_Wxscales,rx,rX);
+  sWo(swo,_WXSCALES,rx,rX);
 
-  sWo(gwo,_Wscales,rx,minWt,rX,upperWt,_Wsavescales,0);
+  sWo(gwo,_WSCALES,rx,minWt,rX,upperWt,_WSAVESCALES,0);
 
   drawScreens();
 
@@ -379,6 +367,7 @@
 // find mid-date 
 // adjust to a 90 day resolution
 // shift up/down by 30
+  float rx,ry,rX,rY;
 
   RS=wogetrscales(gwo);
 // just plot at mid - the date
@@ -409,11 +398,11 @@
 
   sc_endday = rX;
 
-  sWo(wedwo,_Wxscales,rx,rX,_Wsavescales,0);
+  sWo(wedwo,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
 
-  sWo(gwo,_Wscales,rx,minWt,rX,upperWt,_Wsavescales,0);
+  sWo(gwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0);
 
-  sWo(swo,_Wxscales,rx,rX,_Wsavescales,0);
+  sWo(swo,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
 
   drawScreens();
 
@@ -424,15 +413,15 @@
   {
 //<<"$_proc %V $Nsel_exeburn $Nsel_lbs\n"
 
-  sWo(nobswo,_Wvalue,Nxy_obs,_Wupdate);
+  sWo(nobswo,_WVALUE,Nxy_obs,_WUPDATE);
 
-  sWo(xtwo,_Wvalue,xhrs,_Wredraw);
+  sWo(xtwo,_WVALUE,xhrs,_WREDRAW);
 
-  sWo(xbwo,_Wvalue,"%6.2f$Nsel_exeburn",_Wredraw);
+  sWo(xbwo,_WVALUE,"%6.2f$Nsel_exeburn",_WREDRAW);
 
-  sWo(xlbswo,_Wvalue,"%4.1f$Nsel_lbs",_Wupdate);
+  sWo(xlbswo,_WVALUE,"%4.1f$Nsel_lbs",_WUPDATE);
 
-  sWo(dlbswo,_Wvalue,"%4.1f$Ndiet_lbs",_Wupdate);
+  sWo(dlbswo,_WVALUE,"%4.1f$Ndiet_lbs",_WUPDATE);
 
   }
 //========================================================
@@ -444,7 +433,7 @@
 //  plot(gwo,_Wsymbol,gday,NextGoalWt, TRI_,1, YELLOW_);
 //  plot(gwo,_Wsymbol,gday-1,NextGoalWt, 3,1,GREEN_);
 
-  <<"%V $last_known_day $PWT $tday2 $StGoalWt \n";
+  //<<"%V $last_known_day $PWT $tday2 $StGoalWt \n";
 
   plotSymbol(gwo,tday2,StGoalWt,TRI_,symsz,BLACK_,1);
 
@@ -462,7 +451,7 @@
 
   if (hlng  > 0) {
 
-  <<"%v $hlng\n";
+ // <<"%v $hlng\n";
 
   plotSymbol(gwo,last_known_day+hlng,NextGoalWt,STAR_,symsz, BLUE_);
 
@@ -475,7 +464,7 @@
 
   }
 
-  sWo(gwo,_Wshowpixmap);
+  sWo(gwo,_WSHOWPIXMAP);
   //plotSymbol(gwo,targetday,GoalWt,STAR_,symsz, LILAC_);
 //  dGl(gw_gl);
 //sc_startday.pinfo();
@@ -486,7 +475,7 @@
   void resize_screen()
   {
 
-  sWi(vp,_Wresize,0.05,0.01,0.98,0.98,_Wredraw);
+  sWi(vp,_WRESIZE,wbox(0.05,0.01,0.98,0.98),_WREDRAW);
 
   }
 
@@ -521,7 +510,7 @@
 
   sWo(obswo,_WVALUE,0,_WREDRAW);
 
-  i = dayv -1;
+  int i = dayv -1;
 
   xtm = EXTV[i];
 

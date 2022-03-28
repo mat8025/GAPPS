@@ -47,7 +47,7 @@ double val;
 
  Vec<double> V(10,10,1.50);
 
-  V.pinfo();
+  V.pinfo(); // info about variable
 
 cout << "V = " << V << endl;
 
@@ -59,19 +59,19 @@ COUT(V[7]);
  int index = 6;
 // rms = V.getVal(index);
 
-  rms = V[index];
+  rms = V[index]; // [] access
 cout << " rms =V[6] " << rms << endl;
 
 //COUT(V(index));
 
 // will only work for Vec type double
- V[4] = 37;
+ V[4] = 37; // [] LH access
 
  cout << "V[4]= 37 " << V[4] << endl;
 
 COUT(V[4]);
  short jj = 9;
- V[jj] = 98;
+ V[jj] = 98; // {j] LH access
 
  cout << "V(9)= 98 " << V[9] << endl;
 
@@ -86,8 +86,9 @@ COUT(V[4]);
 
 //ans= query("??V[4]");
 
+cout <<"vec  type sequence\n";
 
- Vec<float> F(10,0,0.5);
+ Vec<float> F(10,0,0.5); // vec  type sequence
 
  Vec<float> G(10,7,0.5);
 
@@ -103,38 +104,46 @@ COUT(V[4]);
 
  COUT(G);
 
-ans= query("?? G = 45.67 "); 
+//ans= query("?? G = 45.67 "); 
 
-  G= 45.57;
+cout<<" // vec set to value \n";
+
+  G= 45.57; 
 
 COUT(G);
 
-ans= query("?? G = F "); 
+//ans= query("?? G = F ");
 
-  G = F ;
+cout<<"G = F vec copy \n"; 
+
+  G = F ;  // vec copy
   
 COUT(G);
 
-ans= query("?? G += 23.45;");
-
-  G += 23.45;
+//ans= query("?? G += 23.45;");
+cout<<"SOP G += 23.45;";
+  G += 23.45; // self += op
 
 COUT(G);
 
 
-ans= query("?? G *= 11.5;");
+//ans= query("?? G *= 11.5;");
+
+cout<<"SOP G *= 11.5;";
 
   G *= 11.5;
 
 COUT(G);
 
-ans= query("?? G = F * 5.01;"); 
+//ans= query("?? G = F * 5.01;"); 
 
   G = F * 5.01;
   
 COUT(G);
 
-ans= query("?? G = F(1,5,1);");
+//ans= query("?? G = F(1,5,1);");
+
+cout<<"range set G = F(1,5,1);";
 
 
   G = F(1,7,1);
@@ -142,33 +151,35 @@ ans= query("?? G = F(1,5,1);");
 COUT(G);
 
 COUT(H);
-ans= query("?? H = F(1,7,1);");
+cout<<"?? H = F(1,7,1);";
 
   H = F(1,7,1);
 
 COUT(H);
 
 
-ans= query("?? F(1)= ");
-
+//ans= query("?? F(1)= ");
+cout<<" F[1] = 42; ele set \n";
   F[1] = 42;
 
+  chkN(F[1],42);
+  
 COUT(F);
 
-ans= query("?? F(1,6,1) = 48.0");
-
+//ans= query("?? F(1,6,1) = 48.0");
+cout<<"vec range set F(1,6,1) = 48.0";
   F(1,6,1) = 48.0;
 
 
  COUT(F);
 
-ans= query("?? F(2,7,1) = 56.3;");
+cout<<"?? F(2,7,1) = 56.3;";
 
   F(2,7,1) = 56.3;
   
 COUT(F);
 
-ans= query("?? rms = 35;");
+cout<<"?? rms = 35;";
 
  rms = F(1,7,1).rms();
 
@@ -178,11 +189,11 @@ COUT(rms);
 long rng = 2;
 COUT(f);
 
-ans= query("?? F(rng)");
+cout<<"?? F(rng)";
       F[rng] = 35;
 
 COUT(F);
-ans= query("?? f=F(4) = 35;");
+cout<<"?? f=F[4] = 35;";
 f= F[4];
 
 COUT(f);
@@ -206,7 +217,7 @@ cout << "U = " << U << endl;
 
  W.pinfo();
 
-//ans= query("W = V");
+//cout<<"W = V");
 
   W = V ;
 
@@ -220,13 +231,13 @@ V.pinfo();
 
 U.pinfo();
 
-//ans= query("V + U");
+//cout<<"V + U");
 
  W = V + U;
 
  cout << " W = V+U " << W << endl;
 
-//ans= query("V + U");
+//cout<<"V + U");
 
  //W[2] = 2222;
     dbt("debug val %f\n",val); // appears in debug file
@@ -236,7 +247,7 @@ U.pinfo();
  
  cout << " W *= val " << val <<" " << W << endl;
 
-//ans= query("W *= val;");
+//cout<<"W *= val;");
 
   W += val;
  cout << " W += val " << val <<" " << W << endl;
@@ -246,14 +257,14 @@ cout << "U = " << U << endl;
   U *= val;
 
  cout << " U *= val " << val <<" " << U << endl;
-//ans= query(" U *= val");
+//cout<<" U *= val");
 
 
 //Vec T(DOUBLE,10,-1,-2.5);
 
  //cout << "T = " << T << endl;
 
-//ans= query("T = W + U;");
+//cout<<"T = W + U;");
 
 Vec T =  U + W +V ; // not filled correctly TBF
 
@@ -272,7 +283,7 @@ rms = V().rms();
 
  cout << "ans " << ans << endl;
 
-//ans= query("??:");
+//cout<<"??:");
 
     V[5] = 54.67;
 
@@ -280,7 +291,7 @@ cout << "V[5] " << V[5] << endl;
 
  cout << "ans " << ans << endl;
  
-ans= query("??:");
+cout<<"??:");
 
 
     W[7] = 85;
@@ -289,7 +300,7 @@ cout << "W[7] " << W[7] << endl;
 
  cout << "ans " << ans << endl;
  
-ans= query("??:");
+cout<<"??:");
 
 
     val = W[7];
@@ -375,6 +386,7 @@ cout <<" V range assign\n" << V << endl ;
 
   cout << "Siv R " << R << endl;
 */
+chkOut();
 cout << "Exit cpp testing Vec " << endl;
   dbt("done debug vecworlds\n");
 }

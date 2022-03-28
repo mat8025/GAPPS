@@ -15,9 +15,9 @@
 ///////////////////// GLINES & SYMBOLS ///////////////////////////////
 //<<[_DB]"\n%(10,, ,\n)$DVEC \n"
 
-  int pwt_gl = -1;
+  pwt_gl = -1;
 
-  int ext_gl  = cGl(extwo);
+  ext_gl  = cGl(extwo);
 
   sGl(ext_gl,_GLTXY,DVEC,EXTV,_WCOLOR,GREEN_,_GLSYMLINE,TRI_,_GLEO);
 

@@ -59,58 +59,62 @@ class Svar;
 
 ////////////////////////////////////////  Globals //////////////////////////////
 
+
+
 #include "wex_rates.asl"
+//#include "tbqrd.asl"
 
  //float DVEC = vgen(FLOAT_,400,1,1);
 
   // all vecs should become Vec
+  Str ans="xyz";
+  
+  Vec<double> Vtst(10,10,1);
 
-  Vec Vtst(DOUBLE,10,10,1);
-
-   Vec DVEC(FLOAT_,400);
+   Vec<float> DVEC(400);
 
 
-  Vec DFVEC(FLOAT_,400);
+  Vec<float> DFVEC(400);
 
-  Vec DXVEC(FLOAT_,400);
+  Vec<float> DXVEC(400);
 
-  Vec WTVEC(FLOAT_,400);
-//Vec PWTVEC(FLOAT_,400) ;
+  Vec<float> WTVEC(400);
+//Vec<float> PWTVEC(400) ;
 
-  Vec WTPMV(FLOAT_,400);
+  Vec<float> WTPMV(400);
 
-  Vec GVEC(FLOAT_,400); // goal line;
+  Vec<float> GVEC(400); // goal line;
 
-  Vec BPVEC(FLOAT_,400);
+  Vec<float> BPVEC(400);
 
-  Vec SEVEC(FLOAT_,400);
+  Vec<float> SEVEC(400);
 
-  Vec CARBV(FLOAT_,400);
+  Vec<float> CARBV(400);
 
-  Vec WDVEC(FLOAT_,400);
+  Vec<float> WDVEC(400);
 
-  Vec EXTV(FLOAT_,400);
+  Vec<float> EXTV(400);
 
-  Vec AVE_EXTV(FLOAT_,400);
+  Vec<float> AVE_EXTV(400);
 
-  Vec EXEBURN(FLOAT_,400);
+  Vec<float> EXEBURN(400);
 
-  Vec CALBURN(FLOAT_,400);
+  Vec<float> CALBURN(400);
 
-  Vec CARDIO(FLOAT_,400);
+  Vec<float> CARDIO(400);
 
-  Vec STRENGTH(FLOAT_,400);
+  Vec<float> STRENGTH(400);
 // cals,carbs consumed & when
 
-  Vec CALSCON(FLOAT_,400);
+  Vec<float> CALSCON(400);
 
-  Vec CARBSCON(FLOAT_,400);
+  Vec<float> CARBSCON(400);
 
-  Vec FATCON(FLOAT_,400);
+  Vec<float> FATCON(400);
 
-  Vec PROTCON(FLOAT_,400);
+  Vec<float> PROTCON(400);
 
-  Vec FIBRCON(FLOAT_,400);
+  Vec<float> FIBRCON(400);
 ////////////////////////////////////////////////////
 
   int Nrecs;
@@ -194,15 +198,44 @@ Record RX;
   int NextGoalWt;
   int StGoalWt;
 
+  float   DX_NEW = 200.0;  // never exceed
+
+  float   DX_MEW = GoalWt+5;  // max dx effort above
+
   Record RCC; // TBC has to be at least 1;
 
+  int kdays;
+//////////////////////  WOS ///////////////////////////
+
+  int vp,vp1;
+
+  int gwo,calwo,calcwo,carbwo,extwo;
+  int swo,tw_wo,zinwo,zoomwo;
+  int nobswo,xtwo,xbwo,xlbswo,dlbswo;
+  int dtmwo,obswo,cbmwo,xtmwo,sdwo,gdwo,gwtwo,wtmwo;
+
+//////////////////// GLINES /////////////////
+  int calb_gl,carb_gl,fibre_gl,fat_gl,prot_gl,se_gl,bp_gl,pwt_gl,ext_gl, gw_gl,wt_gl;
 //=========================================
+  float CalsY1 = 5000.0;
+
+  float carb_upper = 250;
+
+  int sc_end ;
+
+  long sc_zend ;   // for zooming;
+
+  long sc_zstart;
+  long sc_startday;
+
+  long tday2,Sday,Sday2,yday,eday;
 //    Svar Goals;
 //    Svar Goals2;
 //#include "wex_goals.asl"
 
 ////////////////////////////////////////  routines //////////////////////////////
 #include "gevent.h"
+
 
 
 #include "wex_read.asl"
@@ -275,12 +308,18 @@ Record RX;
 //==================================//
 
 
+
+//#include "wex_screen.asl"
+
+#include "wex_draw.asl"
+
  ///////////////////////////////////////////////////
   void Uac::Wex(Svarg * sarg)
   {
-
+   #include "graphic.asl"
 
 // test Vec Global
+   setDebug(2,"pline");
 
   cout << "Vtst "  << Vtst << endl;
 
@@ -307,9 +346,7 @@ Record RX;
 ////////////////////==============/////////////////
 
 // move these done 10 when reached -- until we are at desired operating weight!
-  float   DX_NEW = 200.0;  // never exceed
 
-  float   DX_MEW = GoalWt+5;  // max dx effort above
 
 
    long tjd =  Julian(Goals[0]) ;
@@ -317,7 +354,7 @@ Record RX;
 
    //long sday = julian(Goals[0]) -Jan1 ; // start date
 
-   long Sday = tjd - Jan1;
+   Sday = tjd - Jan1;
    
 
    long tarxday = Julian(Goals[1]) -Jan1;
@@ -331,21 +368,21 @@ Record RX;
 
    NextGoalWt = atoi(Goals[2]);
 
-   long Sday2 = Julian(Goals2[0]) -Jan1 ; // start date
+   Sday2 = Julian(Goals2[0]) -Jan1 ; // start date
 
-   long tday2 = Julian(Goals2[1]) -Jan1;
+   tday2 = Julian(Goals2[1]) -Jan1;
 
    StGoalWt = atoi(Goals2[2]);
 
-   long gsday = Sday;
+   gsday = Sday;
 
-   long gday =  targetday;    // next goal day;
+   gday =  targetday;    // next goal day;
 
    int got_start = 0;
 
-   long yday = Julian("01/01/2022")   ; // this should be found from data file
+   yday = Julian("01/01/2022")   ; // this should be found from data file
 
-   long eday = Julian("12/31/2022");
+   eday = Julian("12/31/2022");
 
    stmp = getDate(2);
    jtoday = Julian(stmp);
@@ -362,7 +399,7 @@ Record RX;
 
      }
 
-   int kdays = k;
+   kdays = k;
 /////////////////////////////////////////////////  READ RECORDS ////////////////////////////////////////
   int n = 0;
 
@@ -464,7 +501,7 @@ cout << "last rec " << rx << endl;
 
   NCCrecs = RCC.getNrows();
 cout << "NCCrecs " << NCCrecs << endl;
-
+//ans = query("NCCrecs");
   //NCCrecs->info(1)
 
  // <<"%V $NCCrecs \n";
@@ -482,7 +519,7 @@ cout << "NCCrecs " << NCCrecs << endl;
 
     int nrd= readCCData();
 
-COUT (nrd) ;
+ COUT (nrd) ;
 
 
 
@@ -494,7 +531,7 @@ COUT (nrd) ;
 
 //   init_period = 32;
 
-  long sc_startday = (jtoday - Jan1) -20;
+  sc_startday = (jtoday - Jan1) -20;
 
   if (sc_startday <0)
 
@@ -538,6 +575,12 @@ COUT(ae);
 
 COUT(ae);
 
+#include "wex_screen.asl"
+
+
+
+cout<<"DONE\n";
+
 }
 
 
@@ -564,8 +607,7 @@ COUT(ae);
 
 //#include "wex_callbacks.asl"
 
-//#include "wex_screen.asl"
-//#include "wex_draw.asl"
+
 //#include "wex_glines.asl"
 
 
