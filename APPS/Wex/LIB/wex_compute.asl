@@ -12,9 +12,9 @@
  */ 
 ;//----------------<v_&_v>-------------------------//;                                                                                 
 
-xhrs = 0;
-Ndiet_lbs = 0.0;
-   
+float xhrs = 0;
+float Ndiet_lbs = 0.0;
+float Nsel_calsinout = 0.0;
 void computeWL(long wlsday, long wleday)
 {
 /// use input of juldays
@@ -23,22 +23,22 @@ void computeWL(long wlsday, long wleday)
 // compute the number of lbs burnt
 
 int i;
+   float ccals,bcals;
+   Nsel_exemins = 0;
+   Nsel_exeburn = 0.0;
+   Nsel_calsinout = 0.0;
 
-   Nsel_exemins = 0
-   Nsel_exeburn = 0.0
-   Nsel_calsinout = 0.0
-
-   Nxy_obs = 0
+   Nxy_obs = 0;
 
    Nsel_lbs = 0.0;
-<<"$_proc %V $wlsday $wleday  $Nobs\n"
+//<<"$_proc %V $wlsday $wleday  $Nobs\n"
    Ndiet_lbs = 0.0;
 
    for (i = wlsday; i < wleday ; i++) {
 
-        Nxy_obs++
+        Nxy_obs++;
 
-        Nsel_exeburn += EXEBURN[i]
+        Nsel_exeburn += EXEBURN[i];
         Nsel_exemins += EXTV[i];
 
         ccals = CALSCON[i];
@@ -59,7 +59,7 @@ int i;
 
    xhrs = (Nsel_exemins/60.0);
 
-<<"%V$Nxy_obs %6.2f $Nsel_exemins $(Nsel_exemins/60.0) $Nsel_exeburn $Nsel_calsinout $Nsel_lbs $xhrs\n"
+//<<"%V$Nxy_obs %6.2f $Nsel_exemins $(Nsel_exemins/60.0) $Nsel_exeburn $Nsel_calsinout $Nsel_lbs $xhrs\n"
 
 }
 //=========================
@@ -70,29 +70,29 @@ float PWT = 0.0; // tomorrow
 float predictWL()
 {
 float pw;
-double pwl[10];
+Vec<float> pwl(10);
 pwl[0] = 0.0;
 pwl[1] = 1.0;
-double xv[5];
-double yv[5];
-
+float xv[5];
+float yv[5];
+int i;
 int k = Yday-2; // 
 
-<<"$Yday $k\n"
+//<<"$Yday $k\n"
 
   if (Yday > 5) {
     for (i =0; i < 3; i++) {   
        xv[i] =  i;
        yv[i] =  WTVEC[k];
 
-      <<"$i $k  $WTVEC[k] $xv[i] $yv[i]\n"; // TBF
+ //     <<"$i $k  $WTVEC[k] $xv[i] $yv[i]\n"; // TBF
        k++;
    }
 //   <<"%V $xv\n"
 //   <<"%V $yv\n"
    
    pwl = Lfit(xv,yv,3);
-   <<"pwl $pwl \n"
+//   <<"pwl $pwl \n"
    // next day prediction
 
     pw = yv[0] + (pwl[1] *3);
@@ -100,7 +100,7 @@ int k = Yday-2; //
     PWT14 = yv[0] + (pwl[1] * 16);
   }
 
-<<"tomorrow's wt will be $pw +7 $PWT7  +14 PWT14\n"
+//<<"tomorrow's wt will be $pw +7 $PWT7  +14 PWT14\n"
           return pw;
 }
 

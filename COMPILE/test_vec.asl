@@ -93,7 +93,16 @@ cout <<"vec  type sequence\n";
  Vec<float> G(10,7,0.5);
 
  Vec<float> H(5,0,0.5);
+
+ Vec<float> X(20,0,0.5);
+
+ Vec<float> Y(20,0,-0.5);
+
+
+  Vec<float> R(20);
   
+  X[3] =3.7;
+  X[5] = 2.1;
 
 
  COUT(F);
@@ -143,15 +152,26 @@ COUT(G);
 
 //ans= query("?? G = F(1,5,1);");
 
-cout<<"range set G = F(1,5,1);";
+cout<<"range set G = F(1,5,1);\n";
 
+COUT(F);
 
   G = F(1,7,1);
 
-COUT(G);
+ans= query("?? op range?");
+
+ COUT(G);
+ 
+ cout <<"G[0] " << G[0] << endl;
+ 
+ cout <<"F[1] " << F[1] << endl;
+
+  chkF(G[0],F[1]);
+
+//ans= query("?? G[0] = F[1]");
 
 COUT(H);
-cout<<"?? H = F(1,7,1);";
+cout<<"?? H = F(1,7,1);\n";
 
   H = F(1,7,1);
 
@@ -170,13 +190,15 @@ COUT(F);
 cout<<"vec range set F(1,6,1) = 48.0";
   F(1,6,1) = 48.0;
 
-
+chkF(F[1],48.0);
  COUT(F);
 
 cout<<"?? F(2,7,1) = 56.3;";
 
   F(2,7,1) = 56.3;
-  
+
+chkF(F[3],56.3);
+
 COUT(F);
 
 cout<<"?? rms = 35;";
@@ -202,6 +224,13 @@ COUT(f);
    
 COUT(F);
 
+COUT(X);
+
+COUT(Y);
+
+R= Lfit(X,Y,-1);
+
+COUT(R);
  //Vec<Str> S(10);
 
 

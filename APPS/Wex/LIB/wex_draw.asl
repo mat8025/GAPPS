@@ -14,6 +14,25 @@
 
 
   int symsz =5;
+  Str mdy;
+   Vec<float> RS(25);
+
+  void showCompute()
+  {
+//<<"$_proc %V $Nsel_exeburn $Nsel_lbs\n"
+
+  sWo(nobswo,_WVALUE,Nxy_obs,_WUPDATE);
+
+  sWo(xtwo,_WVALUE,xhrs,_WREDRAW);
+
+  sWo(xbwo,_WVALUE,"%6.2f$Nsel_exeburn",_WREDRAW);
+
+  sWo(xlbswo,_WVALUE,"%4.1f$Nsel_lbs",_WUPDATE);
+
+  sWo(dlbswo,_WVALUE,"%4.1f$Ndiet_lbs",_WUPDATE);
+
+  }
+//========================================================
 
   void drawGoals(int ws)
   {
@@ -82,10 +101,10 @@
 
   float qfwd = 0.0;
 
-  RS=wogetrscales(wwo);
+  RS=wgetrscales(wwo);
 // just plot at mid - the date
 
-  float mid_date = (RS[3] - RS[1])/2 + RS[1];
+  mid_date = (RS[3] - RS[1])/2 + RS[1];
 
   float q1_date = (RS[3] - RS[1])/4 + RS[1];
 
@@ -94,14 +113,14 @@
   long jd= mid_date +Bday;
 
 //  the_date = julmdy("$jd");
-    Str the_date = julmdy(jd);
+   the_date = Julmdy(jd);
 
  // <<[_DB]"%V$mid_date $jd $the_date \n";
    //AxText(wwo, 1, the_date, mid_date, -0.25, BLUE_)
 
   jd= RS[1] + Jan1;
 
-  the_date = julmdy("$jd");
+  the_date = Julmdy(jd);
 //  AxText(wwo, 1, the_date, q1_date, -0.25, BLUE_);
 
   wdate = RS[1];
@@ -123,7 +142,7 @@
 
   }
 
-  the_date = julmdy("$jd");
+  the_date = Julmdy(jd);
 
   mday = spat(the_date,"/",-1,-1);
 
@@ -178,10 +197,10 @@
   axnum(swo,2);
   //sWo(swo,_WAXNUM,2,150,bp_upper,50,10)
 
-  sWo(xwo,_WCLIPBORDER,BLACK_,_WSAVE,_WEO);
+  //sWo(xwo,_WCLIPBORDER,BLACK_,_WSAVE,_WEO);
 
   }
-
+  int allwo[] = {gwo,swo, calwo,  extwo , carbwo,-1};
    for(int j =0; allwo[j] > 0; j++) {
     sWo(allwo,_WSHOWPIXMAP,_WSAVE,_WCLIPBORDER,-1,_WEO);
    }
@@ -196,13 +215,13 @@
 // sc_startday.pinfo()
  //sc_startday = (jtoday - Bday) - 20;
 //<<"RESET? %V $sc_startday  $sc_end \n"
-
+ int wedwos[] = { gwo, calwo,  carbwo, extwo,-1  };
   if ( wScreen == 0) {
 //<<"%V $sc_zstart $minWt $sc_zend $upperWt\n"
 
-  sWo(wedwo,_WXSCALES,sc_zstart,sc_zend);
+  sWo(wedwos,_WXSCALES,sc_zstart,sc_zend);
 
-  sWo(wedwo,_WCLEARCLIP,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_);
+  sWo(wedwos,_WCLEARCLIP,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_);
 
   drawGoals( wScreen);
 
@@ -222,7 +241,7 @@
 
       //Text(calwo,"Calories Burnt", 0.8,0.9,1)      
 
-  plot(calwo,_WKEYSYMBOL,wpt(0.78 ,0.8),DIAMOND_,symsz,RED_,1);
+  plotSymbol(calwo,_WKEYSYMBOL,wpt(0.78 ,0.8),DIAMOND_,symsz,RED_,1);
 
   Text(calwo,"Calories Ate", 0.8,0.82,1);
      // plot(calwo,_Wkeysymbol,0.78 ,0.7,TRI_,symsz,RED_,1,_Wfonthue,WHITE_);      
@@ -232,14 +251,14 @@
       //plot(extwo,_Wkeysymbol,0.78,0.7,TRI_,symsz,GREEN_,1);
 
   Text(extwo,"Exercise Time (mins)", 0.8,0.7,1);
-   int allgls[] = {gw_gl,   carb_gl,  fibre_gl,  fat_gl,  prot_gl,  calc_gl,  calb_gl,  wt_gl,-1);
+   int allgls[] = {gw_gl,   carb_gl,  fibre_gl,  fat_gl,  prot_gl,  calc_gl,  calb_gl,  wt_gl,-1};
 
     for(int j=0; allgls[j]>0;j++)
       sGl(allgls[j],_GLDRAW);  
 
   }
-
-  sWo(allwo,_Wclipborder,BLACK_);
+  int allwo[] = {gwo,swo, calwo,  extwo , carbwo,-1};
+  sWo(allwo,_WCLIPBORDER,BLACK_);
 
   drawMonths(gwo);
 
@@ -255,7 +274,7 @@
 
   showTarget();
 
-  sWo(wedwo,_WSHOWPIXMAP,_WCLIPBORDER,BLACK_);
+  sWo(wedwos,_WSHOWPIXMAP,_WCLIPBORDER,BLACK_);
 
   }
 
@@ -269,7 +288,7 @@
 
   drawMonths(swo);
 
-  dGl(bp_gl);
+  sGl(bp_gl,_GLDRAW);   
 
   sWo(swo,_WSHOWPIXMAP);
 
@@ -306,20 +325,21 @@
 // find current mid-year
 // decrement - and set rx,RX to jan 1, dec 31 of that year
 // then label 1/4 days
-    float rx,ry,rX,rY;
-  RS=wogetrscales(gwo);
+ int wedwos[] = { gwo, calwo,  carbwo, extwo,-1  };
+  float rx,ry,rX,rY;
+  RS=wgetrscales(gwo);
 // just plot at mid - the date
 
   mid_date = (RS[3] - RS[1])/2 + RS[1];
 
   jd= mid_date +Bday;
 
-  the_date = julmdy("$jd");
+  the_date = Julmdy(jd);
    // which year?
 
-  yrs = sele(the_date,-4,4);
+  Str yrs = sele(the_date,-4,4);
 
-  yrd = atoi(yrs);
+  long yrd = atoi(yrs);
 //<<[_DB]"%V$jd $the_date $yrs $yrd \n"
 //<<"%V$jd $the_date $yrs $yrd \n"
 
@@ -336,9 +356,9 @@
   }
 //  <<"%V  $yrd \n"
 
-  st_jday = julian("01/01/$yrd");
+  long st_jday = Julian("01/01/$yrd");
 
-  ed_jday = julian("12/31/$yrd");
+  long ed_jday = Julian("12/31/$yrd");
   //<<"%V  $yrd  $st_jday $ed_jday\n"
 
   rx = st_jday - Bday;
@@ -351,7 +371,7 @@
 
   sc_endday = rX;
 
-  sWo(wedwo,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
+  sWo(wedwos,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
 
   sWo(swo,_WXSCALES,rx,rX);
 
@@ -367,16 +387,17 @@
 // find mid-date 
 // adjust to a 90 day resolution
 // shift up/down by 30
-  float rx,ry,rX,rY;
+   int wedwos[] = { gwo, calwo,  carbwo, extwo,-1  };
+   float rx,ry,rX,rY;
 
-  RS=wogetrscales(gwo);
+   RS=wgetrscales(gwo);
 // just plot at mid - the date
 
   mid_date = (RS[3] - RS[1])/2 + RS[1];
 
   jd= mid_date +Bday;
 
-  the_date = julmdy("$jd");
+  the_date = Julmdy(jd);
 
   if (updown > 0) {
 
@@ -398,7 +419,7 @@
 
   sc_endday = rX;
 
-  sWo(wedwo,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
+  sWo(wedwos,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
 
   sWo(gwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0);
 
@@ -409,22 +430,7 @@
   }
 //========================================================
 
-  void showCompute()
-  {
-//<<"$_proc %V $Nsel_exeburn $Nsel_lbs\n"
 
-  sWo(nobswo,_WVALUE,Nxy_obs,_WUPDATE);
-
-  sWo(xtwo,_WVALUE,xhrs,_WREDRAW);
-
-  sWo(xbwo,_WVALUE,"%6.2f$Nsel_exeburn",_WREDRAW);
-
-  sWo(xlbswo,_WVALUE,"%4.1f$Nsel_lbs",_WUPDATE);
-
-  sWo(dlbswo,_WVALUE,"%4.1f$Ndiet_lbs",_WUPDATE);
-
-  }
-//========================================================
 
   void showTarget()
   {
@@ -492,13 +498,14 @@
 
   int dt;
 
-  Str mdy;
+
 
   m_day= dayv + Jan1 -1;  // ? OBO;
 
-  mdy = julmdy(m_day);
+  mdy = Julmdy(m_day);
 
-  sWo(dtmwo,_WVALUE2 ,mdy,_WREDRAW );
+  //sWo(dtmwo,_WVALUE2 ,mdy,_WREDRAW );
+  sWo(dtmwo,_WVALUE ,mdy,_WREDRAW );
 
   wtm = 0.0;
 

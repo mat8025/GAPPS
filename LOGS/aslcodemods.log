@@ -1130,3 +1130,9 @@ rec_ops.cpp                         1.93  03/23/2022 10:01:45  use nrows for rea
 parse.h                             2.6  03/27/2022 07:35:29  oprtype.h
 mod_wo_p.cpp                        1.7  03/27/2022 21:39:27  _Wxxx
 vec.h                               1.6  03/27/2022 21:40:29  <typename T>
+mod_wo_p.cpp                        1.8  03/28/2022 08:40:11  X&Y SCALES
+uac.h                               1.32  03/29/2022 10:02:32  tagdefs.h
+test_l.cpp                          1.53  03/29/2022 15:06:47  chkF cpp
+vec.h                               1.7  03/29/2022 16:06:25  vrng.range fix
+str.h                               1.5  03/29/2022 21:45:50  range
+sstr.cpp                            1.8  03/29/2022 21:46:30  range copy

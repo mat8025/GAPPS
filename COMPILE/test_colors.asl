@@ -219,7 +219,7 @@ int color_index;
 
  greenv = WXY[2];
 
-cout << "greenv  " << greenv << endl;
+  cout << "greenv  " << greenv << endl;
 
 //  greenv = limitval(WXY[2],0.0,1.0);
 

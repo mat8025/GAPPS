@@ -166,7 +166,7 @@ float   MinWt = 165;
   long Yday ;
   long Yd ;
 
-
+  long sc_endday;
 Svar GoalsC;
    
 //GoalsC.Split("01/01/2022 03/31/2022 175"); // does not work
@@ -197,6 +197,7 @@ Record RX;
 
   int NextGoalWt;
   int StGoalWt;
+  float mid_date;
 
   float   DX_NEW = 200.0;  // never exceed
 
@@ -205,6 +206,13 @@ Record RX;
   Record RCC; // TBC has to be at least 1;
 
   int kdays;
+  long jd;
+  Str the_date;
+  float hlng;
+  
+//////////////////////  SCREEN ///////////////////////////
+
+  int wScreen = 0;
 //////////////////////  WOS ///////////////////////////
 
   int vp,vp1;
@@ -215,7 +223,7 @@ Record RX;
   int dtmwo,obswo,cbmwo,xtmwo,sdwo,gdwo,gwtwo,wtmwo;
 
 //////////////////// GLINES /////////////////
-  int calb_gl,carb_gl,fibre_gl,fat_gl,prot_gl,se_gl,bp_gl,pwt_gl,ext_gl, gw_gl,wt_gl;
+  int calc_gl,calb_gl,carb_gl,fibre_gl,fat_gl,prot_gl,se_gl,bp_gl,pwt_gl,ext_gl, gw_gl,wt_gl;
 //=========================================
   float CalsY1 = 5000.0;
 
@@ -229,6 +237,7 @@ Record RX;
   long sc_startday;
 
   long tday2,Sday,Sday2,yday,eday;
+  
 //    Svar Goals;
 //    Svar Goals2;
 //#include "wex_goals.asl"
@@ -236,7 +245,7 @@ Record RX;
 ////////////////////////////////////////  routines //////////////////////////////
 #include "gevent.h"
 
-
+#include "wex_compute.asl"
 
 #include "wex_read.asl"
 
@@ -537,7 +546,7 @@ COUT (nrd) ;
 
   sc_startday =0;
 
-  long sc_endday = targetday + 10;
+  sc_endday = targetday + 10;
 //   <<"%V$sc_startday $targetday $sc_endday \n"
 
   float gwt = NextGoalWt;
@@ -711,7 +720,7 @@ cout<<"DONE\n";
 //  
 
 
-  int wScreen = 0;
+
 
   float Rinfo[30];
 //<<[_DB]"%(7,, ,\n)$CALBURN \n"

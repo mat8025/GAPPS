@@ -91,6 +91,22 @@ cout << " t "  << t.pinfo() << endl;
 
 t.pinfo();
 
+
+Str abc= "abcdefghijklmnopqrstuvwxyz";
+
+
+COUT(abc)
+
+Str an = "xyz";
+COUT(an);
+
+cout<<"do the subrange copy 1,13\n";
+an = abc(1,13,2);
+
+
+COUT(an);
+
+
 Vec<int> index;
 
 cout << "S " << S << " q " << q << endl;
