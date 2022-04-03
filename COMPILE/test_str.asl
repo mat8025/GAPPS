@@ -78,15 +78,15 @@ cout << "s= " << s << endl;
 int do_sop = 1;
 
 if (do_sop )  {
-Siv S(STRV);
+//Siv S(STRV);
 cout << " doing sop !!" << endl;
-  S= "we will attempt just one feature at a time ";
+Str  S= "we will attempt just one feature at a time ";
 
 
 
 Str q = "at";
 Str t = "im";
-
+Str ans ="y";
 cout << " t "  << t.pinfo() << endl;
 
 t.pinfo();
@@ -94,8 +94,35 @@ t.pinfo();
 
 Str abc= "abcdefghijklmnopqrstuvwxyz";
 
+Str xyz= "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-COUT(abc)
+Str def = abc;
+
+char cval = 'T';
+ COUT(abc)
+
+ COUT(def)
+
+ def(4,-1,2) = cval;
+
+ chkChar(def[4],cval);
+ chkChar(def[6],cval);
+
+COUT(def)
+
+ans=query("OK?");
+
+def = abc;
+COUT(def)
+
+def(20,4,2) = 'X';
+COUT(def)
+ chkChar(def[20],'X');
+  chkChar(def[4],'X');
+
+ans=query("OK?");
+
+
 
 Str an = "xyz";
 COUT(an);
@@ -106,22 +133,27 @@ an = abc(1,13,2);
 
 COUT(an);
 
+abc(1,13,2) = xyz(1,13,2);
+
+cout << " abc = " << abc << endl;
 
 Vec<int> index;
 
 cout << "S " << S << " q " << q << endl;
 
-   index = regex(&S,&q);
-   
-index.pinfo();
+cout << "   index = regex(S&q); \n";
 
-cout << "index " << index <<endl;
+   index = regex(S,q);
+   
+//index.pinfo();
+
+COUT(index);
 
 index = 0;
 
 cout << "index zero? " << index <<endl;
 
-   index = regex(&S,&t);
+   index = regex(S,t);
 
 cout << "index " << index <<endl;
 
@@ -149,7 +181,8 @@ Svar VS;
  cout  << "VS  "  << VS << endl ;
 
  cout  << "VS  "  << VS[1] << endl ;
-
+chkOut();
+  cout << "DONE str tests \n";
 }
 
 
