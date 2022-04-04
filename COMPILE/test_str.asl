@@ -96,6 +96,17 @@ Str abc= "abcdefghijklmnopqrstuvwxyz";
 
 Str xyz= "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+cout << "abc[0]  " << abc[0] << endl;
+
+cout << "abc[1]  " << abc[1] << endl;
+
+cout << "abc[12]  " << abc[12] << endl;
+
+cout << "abc[25]  " << abc[25] << endl;
+
+cout << "abc[26]  " << abc[26] << endl;
+
+
 Str def = abc;
 
 char cval = 'T';
@@ -113,6 +124,15 @@ COUT(def)
 ans=query("OK?");
 
 def = abc;
+COUT(def)
+ans=query("OK?");
+
+chkChar(def[4],'e');
+chkChar(def[6],'g');
+
+
+COUT(def)
+def[4] = 'e';
 COUT(def)
 
 def(20,4,2) = 'X';
@@ -136,6 +156,21 @@ COUT(an);
 abc(1,13,2) = xyz(1,13,2);
 
 cout << " abc = " << abc << endl;
+
+ans=query("OK?");
+
+
+abc = xyz;
+
+COUT(abc);
+
+ans=query("OK?");
+
+abc(1,13,2) = xyz(13,1,-2);
+
+COUT(abc)
+
+ans=query("OK?");
 
 Vec<int> index;
 
