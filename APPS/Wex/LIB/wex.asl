@@ -173,7 +173,10 @@ Svar GoalsC;
 
   int NCCobs =0;
   int NCCrecs = 0;
-  
+
+int CR_init = 0;
+int CL_init = 0;
+
 Record RX;
 
  Svar Col;
@@ -181,6 +184,7 @@ Record RX;
   float last_known_wt = 208.8;
 
   long last_known_day = 0;
+  long targetday;
 
   float tot_exeburn =0;
 
@@ -223,7 +227,9 @@ Record RX;
   int dtmwo,obswo,cbmwo,xtmwo,sdwo,gdwo,gwtwo,wtmwo;
 
 //////////////////// GLINES /////////////////
-  int calc_gl,calb_gl,carb_gl,fibre_gl,fat_gl,prot_gl,se_gl,bp_gl,pwt_gl,ext_gl, gw_gl,wt_gl;
+  int calc_gl,calb_gl,carb_gl,fibre_gl,fat_gl,prot_gl,se_gl,bp_gl,pwt_gl,ext_gl, gw_gl,wt_gl,lc_gl,rc_gl;
+
+  int Symsz= 5;
 //=========================================
   float CalsY1 = 5000.0;
 
@@ -584,11 +590,21 @@ COUT(ae);
 
 COUT(ae);
 
+
+
 #include "wex_screen.asl"
 
+#include "wex_glines.asl"
+
+  showTarget();
+
+cout<<"showTarget \n";
+
+  drawScreens();
 
 
-cout<<"DONE\n";
+
+  cout<<"DONE\n";
 
 }
 
@@ -617,7 +633,7 @@ cout<<"DONE\n";
 //#include "wex_callbacks.asl"
 
 
-//#include "wex_glines.asl"
+
 
 
 

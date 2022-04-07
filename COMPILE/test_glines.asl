@@ -20,11 +20,12 @@
 #define ASL 0
 #define CPP 1
 
+//#define cdbp //
 
 #if CPP
 
  //opendll("plot");
-
+#include "vec.h"
 #include "gevent.h"
 
 
@@ -47,7 +48,7 @@ Gevent gev;
 Str ans;
 
     rainbow();
-
+ignoreErrors();
 
 
   //  vp = cWi(@title,"PLOT_OBJECTS",@resize,0.05,0.01,0.99,0.95)
@@ -80,7 +81,7 @@ Str ans;
 
 
   int gwo= cWo(vp,WO_GRAPH);
-   float worsz[6] = {0.1,0.1,0.9,0.9,0.0};
+  float worsz[6] = {0.1,0.1,0.9,0.9,0.0};
   sWo(gwo,_WRESIZE,worsz,_WFLUSH);
 
 
@@ -103,11 +104,12 @@ Str ans;
 
 
 ////////////////////////////// GLINE ////////////////////////////////////////
-
   
   int N = 200;
   
   Vec<float> Xvec(N,0.0, (6.0*pi/(1.0*N)));
+
+COUT(Xvec)
 
 //ans=query("Xvec?");
 
@@ -115,13 +117,19 @@ Str ans;
   
   
   Vec<float> Rnvec(N);
-  
-  
-  Rnvec  =addGrand(Rnvec); // fill with gaussian random numbers
+
+COUT(Rnvec)
 
 //ans=query("see Rnvec?");
+  
+  
+  Rnvec.addGrand(0); // fill with gaussian random numbers
+
+
 
 cout << "Rnvec " << Rnvec << endl;
+
+//ans=query("see Rnvec?");
 
   double pi2 = pi * 0.5;
   
@@ -131,41 +139,82 @@ cout << "Rnvec " << Rnvec << endl;
   // <<"$(typeof(Rnvec)) \n";
 
     Vec<float> Svec(N);
+COUT(Svec);
+
     Vec<float> Tvec(N);
 
 
       Vec<float> Wvec(N);
 
-      Vec<float> Cvec(N);      
+      Vec<float> Cvec(N);
+
+Svec.pinfo();
+
+Wvec.pinfo();
+
 
 // 
 //float Svec = Sin(Xvec)  //Svec.Sin(); // apply Sin function to all elements
   
   //Svec = Sin(Xvec);
-  Svec = Xvec.Sin();
-  
+
+COUT(Xvec)
+
+  Svec = Xvec;
+
+COUT(Svec)
+
+//ans=query("copy Xvec to Svec?");
+
+
+
+  Svec.Cos();
+
+COUT(Svec)
+
+//ans=query("see Sin Svec?");
+
   Svec.pinfo();
   //<<" $(typeof(Svec)) \n";
   
   Vec<float> Zvec(N);
 
+  Zvec = Rnvec ;
 
-  Zvec = Rnvec + Svec;
-  
+COUT(Zvec)
+
+ // Zvec += Svec;
+
+//COUT(Zvec)
+
   // CreateGline   cGl
   
 //  xn_gl = cGl(_wid,gwo,@type,"XY",@xvec,Xvec,@yvec,Rnvec,@color,"red")
   
   int xn_gl = cGl(gwo);
-  
+
+COUT(xn_gl)
+
+//ans=query("see xn_gl?");
+ Xvec.pinfo();
+ Rnvec.pinfo();
+ 
+// make these ref args?
   sGl(xn_gl,_GLTXY,&Xvec,&Rnvec,_GLHUE,RED_,_GLEO);
 
-//ans=query("see xn_gl");
+//ans=query("set xn_gl");
 
   int xs_gl = cGl(gwo);
 
+COUT(Xvec)
+COUT(Svec)
+
   sGl(xs_gl,_GLTXY,&Xvec,&Svec,_GLHUE,BLUE_,_GLEO);
-  
+
+
+
+
+//ans=query("set xs_gl");
   int xz_gl = cGl(gwo);
 
   sGl(xz_gl,_GLTXY,&Xvec,&Zvec,_GLHUE,YELLOW_,_GLEO);
@@ -207,13 +256,36 @@ cout << "Svec " << Svec << endl;
   sGl(xn_gl,_GLHUE,RED_,_GLEO);
   
    sWo(gwo,_WCLEARPIXMAP,_WCLIPBORDER,_WFLUSH);
-  //ans=query("listo?:");
+  ans=query("listo?:");
   int kk = 0;
 
   float lvec[5] = {0.1,0.1,15,f,3.0};
-  while (1) {
+
+  Siv** sv = vbox(Xvec,Rnvec);
+
+   sv[0]->pinfo();
+
+   sv[1]->pinfo();
+
+
+
+ans=query("check vecs");
+
+//ans=query("looking for events ?");
+
+
+
+int nevent = 0;
+while (1) {
+//   gev.eventWait();
+
+    if ((kk % 100)  == 0)
+         gev.eventRead();
+	 
+   nevent++;
+ //  printf("nevent %d button %d\n",nevent,gev.ebutton);
     
-    Rnvec  = addGrand(Rnvec) ;
+    Rnvec.addGrand(0) ;
     Rnvec *= 0.1;
     
 //<<"$Rnvec[0:10]\n"
@@ -282,15 +354,15 @@ cout << "Svec " << Svec << endl;
 
 
 //   ans=query("again? y");
-//   if (ans == "n") {
+//  if (ans == "n") {
 //      break;
 //    }
-    if (kk++ > 20000)
+    if (kk++ > 10000)
        break;
    // xsleep(0.1);
-  }
+  
 
-
+}
 
 
 
@@ -302,13 +374,7 @@ ans=query("did we see wob -CSV  button?");
 
 
 
-ans=query("looking for events ?");
-int nevent = 0;
-while (1) {
-   gev.eventWait();
-   nevent++;
-   printf("nevent %d button %d\n",nevent,gev.ebutton);
-}
+
 
 
  exitXGS();

@@ -37,9 +37,9 @@
 
    sWi(vp1,_WDRAWON,_WPIXMAPON,_WSAVE,_WBHUE,WHITE_,_WEO);
 
-  auto CL_init = 1;
+  CL_init = 1;
 
-  auto CR_init = 1;
+  CR_init = 1;
 
 cout<<"Wins done\n";
 ////////////////  WOBS ///////////////

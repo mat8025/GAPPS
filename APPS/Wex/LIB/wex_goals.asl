@@ -46,7 +46,7 @@ float   DX_MEW = GoalWt+5;  // max dx effort above
    
 
    long tarxday = Julian(Goals[1]) -Jan1;
-   long targetday = Julian(Goals[1]);
+   targetday = Julian(Goals[1]);
 
    targetday -= Jan1;
 	  

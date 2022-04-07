@@ -166,7 +166,10 @@ COUT(abc);
 
 ans=query("OK?");
 
-abc(1,13,2) = xyz(13,1,-2);
+abc(1,15,2) = xyz(15,1,-2);
+
+chkChar(abc[1],xyz[15]);
+chkChar(abc[3],xyz[13]);
 
 COUT(abc)
 

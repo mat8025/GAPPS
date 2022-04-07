@@ -177,8 +177,12 @@ cout<<"?? H = F(1,7,1);\n";
 
 COUT(H);
 
+  H(1,3,1) = F(3,1,-1);
 
-//ans= query("?? F(1)= ");
+COUT(F);
+COUT(H);
+
+ans= query("?? H(1,3,1) = F(3,1,-1);");
 cout<<" F[1] = 42; ele set \n";
   F[1] = 42;
 
