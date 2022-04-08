@@ -46,15 +46,15 @@ cout<<"Wins done\n";
 
   gwo=cWo(vp,WO_GRAPH);
 
-  sWo(gwo,_WNAME,"WTLB",_WVALUE,0,_WCLIPBORDER,_WEO); //   weight;
+  sWo(gwo,_WNAME,"WTLB",_WVALUE,0,_WCLIPBORDER,YELLOW_,_WEO); //   weight;
 
   calwo=cWo(vp,WO_GRAPH);
 
-   sWo(calwo,_WNAME,"CAL",_WVALUE,0,_WCLIPBORDER,BLACK_) ; // cals;
+   sWo(calwo,_WNAME,"CAL",_WVALUE,0,_WCLIPBORDER,BLACK_,_WEO) ; // cals;
 
   carbwo=cWo(vp,WO_GRAPH);
   
-  sWo(carbwo,_WNAME,"CARB",_WVALUE,0,_WCLIPBORDER,BLACK_) ; // carbs;
+  sWo(carbwo,_WNAME,"CARB",_WVALUE,0,_WCLIPBORDER,BLACK_,_WEO) ; // carbs;
 
   extwo=cWo(vp,WO_GRAPH);
   
@@ -89,23 +89,29 @@ cout<<" vtile before set clip!\n";
 COUT(sc_zstart);
  //  _WFONT arg wfont(char*) wfont(int) --- 
 
-  sWo(calwo,_WCLIP,CXY,_WCOLOR,MAGENTA_,_WCLIPBHUE,LILAC_,_WBHUE,WHITE_,_WFONT,F_SMALL_,_WEO);
+  sWo(calwo,_WCLIP,CXY,_WCOLOR,MAGENTA_,_WCLIPBHUE,WHITE_,_WBHUE,WHITE_,_WFONT,F_SMALL_,_WEO);
 
 COUT(calwo);
- for (int i= 0; wedwos[i]> 0;i++) 
-  sWo(wedwos[i],_WCLIP,CXY,_WCOLOR,LILAC_,_WCLIPBHUE,WHITE_,_WBHUE,WHITE_,_WFONT, F_SMALL_,_WSAVE,_WSAVEPIXMAP,_WEO);
 
 
 
-  sWo(carbwo,_WCLIP,CXY,_WCOLOR,WHITE_,_WCLIPBHUE,ORANGE_,_WBHUE,WHITE_,_WFONT,F_SMALL_,_WFONTHUE,WHITE_,_WEO);
 
-  sWo(extwo,_WCLIP,CXY,_WCOLOR,YELLOW_,_WCLIPBHUE,RED_,_WBHUE,WHITE_,_WFONT,F_SMALL_,_WEO);
+ // sWo(carbwo,_WCLIP,CXY,_WCOLOR,WHITE_,_WCLIPBHUE,RED_,_WBHUE,RED_  ,_WFONT,F_SMALL_,_WFONTHUE,WHITE_,_WEO);
+  sWo(carbwo,_WCLIP,CXY,_WCOLOR,WHITE_,_WCLIPBHUE,RED_,_WBHUE,RED_  ,_WFONT,F_SMALL_,_WEO);
 
- for (int i= 0; wedwos[i]> 0;i++) 
-  sWo(wedwos[i],_WBORDER,_WCLIPBORDER,BLACK_,_WDRAWON,_WEO);
+  sWo(extwo,_WCLIP,CXY,_WCOLOR,YELLOW_,_WCLIPBHUE,GREEN_,_WBHUE,ORANGE_,_WFONT,F_SMALL_,_WEO);
+
+  sWo(gwo,_WCOLOR,ORANGE_,_WCLIPBHUE,RED_,_WEO);
+
+  sWo(wedwos,_WCLIP,CXY,_WCOLOR,RED_,_WCLIPBHUE,ORANGE_,_WBHUE,LILAC_,_WFONT, F_SMALL_,_WSAVE,_WSAVEPIXMAP,_WEO);
+
+  sWo(wedwos,_WBORDER,_WCLIPBORDER,BLACK_,_WDRAWON,_WCOLOR,BLUE_,_WREDRAW,_WEO);
+
+
 
   sWo(extwo,_WSCALES,wbox(sc_startday,0,sc_end,250),_WEO);
-//<<"SCALES %V$sc_startday $sc_end \n"
+
+cout <<"SCALES " << sc_startday << " sc_end " <<sc_end << endl;
 
 //  sWo(extwo,_WSAVESCALES,0,_WEO);
 
@@ -142,22 +148,22 @@ COUT(tw_wo);
 
   sWo(swo,_WSCALES,wbox(sc_startday,110,sc_end,bp_upper),_WEO);
 
-cout<<"scales \n";
+cout<<"scales " << sc_startday << " sc_end " << sc_end << " bp_upper " << bp_upper << endl;
   //<<"SCALES %V$sc_startday $sc_endday $bp_upper\n";
 
   sWo(carbwo,_WSCALES,wbox(sc_startday,0,sc_end,carb_upper),_WEO);
 
   //<<"SCALES %V$sc_startday $sc_endday $carb_upper\n";
 
-  sWo(gwo,_WSCALES,wbox(sc_startday,160,sc_end,wt_upper),_WEO);
+  sWo(gwo,_WSCALES,wbox(sc_startday,minWt,sc_end,upperWt),_WEO);
 //    sWo(gwo,_WSAVESCALES,0,_WFONT,F_SMALL_)
 
   //<<"SCALES %V$sc_startday $sc_endday $wt_upper\n";
 
   int allwo[] = {gwo,swo, calwo,  extwo , carbwo,-1};
 //<<"%V $allwo \n"
- for (int i= 0; allwo[i]> 0;i++) 
-  sWo(allwo[i],_WDRAWON,_WPIXMAPON,_WREDRAW,_WSAVE,_WSAVEPIXMAP,_WEO);
+
+  sWo(allwo,_WDRAWON,_WPIXMAPON,_WREDRAW,_WSAVE,_WSAVEPIXMAP,_WEO);
   
 //sleep(0.2)
 ///////////////////////////////////////////////////////////
@@ -181,27 +187,27 @@ COUT(fewos);
 
   nobswo= cWo(vp,WO_BV);
   
-  sWo(nobswo,_WNAME,"Nobs",_WCOLOR,"Cyan",_WVALUE,0,_WEO);
+  sWo(nobswo,_WNAME,"Nobs",_WCLIPBHUE,CYAN_,_WVALUE,0,_WEO);
 
   xtwo= cWo(vp,WO_BV);
-  sWo(xtwo,  _WNAME,"xTime",_WCOLOR,"violetred",_WVALUE,0,_WEO);
+  sWo(xtwo,  _WNAME,"xTime",_WCLIPBHUE,ORANGE_,_WVALUE,0,_WEO);
 
   xbwo= cWo(vp,WO_BV);
-  sWo(xbwo,_WNAME,"xBurn",_WCOLOR,"violetred",_WVALUE,0,_WEO);
+  sWo(xbwo,_WNAME,"xBurn",_WCLIPBHUE,GREEN_     ,_WVALUE,0,_WEO);
 
   xlbswo= cWo(vp,WO_BV);
-  sWo(xlbswo,_WNAME,"xLbs",_WCOLOR,"violetred",_WVALUE,0,_WEO);
+  sWo(xlbswo,_WNAME,"xLbs",_WCOLOR,BLUE_      ,_WVALUE,0,_WEO);
 
   dlbswo= cWo(vp,WO_BV);
 
- sWo(dlbswo,_WNAME,"dLbs",_WCOLOR,YELLOW_,_WVALUE,0,_WEO);
+ sWo(dlbswo,_WNAME,"dLbs",_WCLIPBHUE,YELLOW_,_WVALUE,0,_WEO);
 
   int xwos[] = { nobswo, xtwo, xbwo, xlbswo, dlbswo ,-1};
 
   wohtile( xwos, 0.45,0.01,0.83,0.07,5);
 
-  for (int j= 0; xwos[j]>0; j++) 
-   sWo(xwos[j],_WSTYLE,WO_SVB,_WREDRAW,_WEO);
+
+   sWo(xwos,_WSTYLE,WO_SVB,_WREDRAW,_WEO);
 
 
   sWo(gwo,_WSHOWPIXMAP,_WSAVE,_WEO);
@@ -211,43 +217,43 @@ COUT(fewos);
   // Measure WOBS
 
   dtmwo=cWo(vp,WO_BV);
-  sWo(dtmwo,_WNAME,"DAY",_WCOLOR,RED_,_WHELP," date on day ",_WEO);
+  sWo(dtmwo,_WNAME,"DAY",_WCLIPBHUE,RED_,_WHELP," date on day ",_WEO);
 
   obswo=cWo(vp,WO_BV);
-  sWo(obswo,_WNAME,"OBS",_WCOLOR,YELLOW_,_WHELP," obs day ",_WEO);
+  sWo(obswo,_WNAME,"OBS",_WCLIPBHUE,YELLOW_,_WHELP," obs day ",_WEO);
 
   wtmwo=cWo(vp,WO_BV);
-  sWo(wtmwo,_WNAME,"WTM",_WCOLOR,RED_,_WHELP," wt on day ",_WEO);
+  sWo(wtmwo,_WNAME,"WTM",_WCLIPBHUE,RED_,_WHELP," wt on day ",_WEO);
 
   cbmwo=cWo(vp,WO_BV);
   
-  sWo(cbmwo,_WNAME,"CBM",_WCOLOR,BLUE_,_WFONTHUE,WHITE_,_WHELP," cals burnt on day ",_WEO);
+  sWo(cbmwo,_WNAME,"CBM",_WCLIPBHUE,CYAN_,_WFONTHUE,WHITE_,_WHELP," cals burnt on day ",_WEO);
 
   xtmwo=cWo(vp,WO_BV);
-  sWo(xtmwo,_WNAME,"EXT",_WCOLOR,GREEN_,_WHELP," xtime on day ",_WEO);
+  sWo(xtmwo,_WNAME,"EXT",_WCOLOR,BLUE_,_WHELP," xtime on day ",_WEO);
 
   int mwos[] = { dtmwo, obswo, wtmwo, cbmwo, xtmwo,-1};
 
   wovtile( mwos, 0.02,0.5,0.08,0.9);
-  for (int j= 0; mwos[j]>0; j++)
-     sWo(mwos[j],_WSTYLE,WO_SVB,_WREDRAW,_WEO);
+
+     sWo(mwos,_WSTYLE,WO_SVB,_WREDRAW,_WEO);
 //  Goal WOBS
 
   sdwo=cWo(vp,WO_BV);
-  sWo(sdwo,_WNAME,"StartDay",_WCOLOR,RED_,_WVALUE,"$Goals[0]",_WHELP,"   startday ",_WEO);
+  sWo(sdwo,_WNAME,"StartDay",_WCLIPBHUE,RED_,_WVALUE,"$Goals[0]",_WHELP,"   startday ",_WEO);
 
   gdwo=cWo(vp,WO_BV);
-  sWo(gdwo,_WNAME,"GoalDay",_WCOLOR,RED_,_WVALUE,"$Goals[1]",_WHELP," goalday ",_WEO);
+  sWo(gdwo,_WNAME,"GoalDay",_WCLIPBHUE,ORANGE_,_WVALUE,"$Goals[1]",_WHELP," goalday ",_WEO);
 
   gwtwo=cWo(vp,WO_BV);
-  sWo(gwtwo,_WNAME,"WtGoal",_WVALUE,"$Goals[2]",_WCOLOR,BLUE_,_WFONTHUE,WHITE_,_WHELP," next goal wt ",_WEO);
+  sWo(gwtwo,_WNAME,"WtGoal",_WVALUE,"$Goals[2]",_WCLIPBHUE,BLUE_,_WFONTHUE,WHITE_,_WHELP," next goal wt ",_WEO);
 
   int  goalwos[] = { sdwo, gdwo, gwtwo, -1};
 
   wovtile( goalwos, 0.02,0.1,0.08,0.45);
 
-for (int j= 0; goalwos[j]>0; j++)
-  sWo(goalwos[j],_WSTYLE,WO_SVB,_WREDRAW,_WEO);
+
+  sWo(goalwos,_WSTYLE,WO_SVB,_WREDRAW,_WEO);
 
 cout<<"Screen DONE\n";
 

@@ -71,7 +71,7 @@ class Svar;
   
   Vec<double> Vtst(10,10,1);
 
-   Vec<float> DVEC(400);
+   Vec<float> DVEC(400,1,1);
 
 
   Vec<float> DFVEC(400);
@@ -132,7 +132,7 @@ class Svar;
 
   char sep = 47;
 
-  float minWt = 160;
+  float minWt = 150;
 
   float upperWt = 225;
 //StartWt = 205;
@@ -142,7 +142,7 @@ class Svar;
 
  float   StartWt = 215;
 
-float   MinWt = 165;
+float   MinWt = 160;
 
   Str today;
 
@@ -227,7 +227,7 @@ Record RX;
   int dtmwo,obswo,cbmwo,xtmwo,sdwo,gdwo,gwtwo,wtmwo;
 
 //////////////////// GLINES /////////////////
-  int calc_gl,calb_gl,carb_gl,fibre_gl,fat_gl,prot_gl,se_gl,bp_gl,pwt_gl,ext_gl, gw_gl,wt_gl,lc_gl,rc_gl;
+  int calc_gl,calb_gl,carb_gl,fibre_gl,fat_gl,prot_gl,se_gl,bp_gl,pwt_gl,ext_gl, gw_gl,wt_gl,lc_gl,rc_gl,wt_gl2;
 
   int Symsz= 5;
 //=========================================
@@ -288,7 +288,7 @@ Record RX;
 
      float lw = StartWt;
 
-// our goal line  wtloss per day!
+// our goal line  wt loss per day!
 //<<[_DB]"%V $try_lpd $lpd \n"
 
      for (int i= 0; i < ngday; i++) {
@@ -549,10 +549,11 @@ COUT (nrd) ;
   sc_startday = (jtoday - Jan1) -20;
 
   if (sc_startday <0)
-
-  sc_startday =0;
+     sc_startday =0;
 
   sc_endday = targetday + 10;
+
+    sc_endday = sc_startday + 90;
 //   <<"%V$sc_startday $targetday $sc_endday \n"
 
   float gwt = NextGoalWt;
@@ -590,21 +591,44 @@ COUT(ae);
 
 COUT(ae);
 
+COUT(DVEC);
+
+
+COUT(WTVEC);
+
+//ans=query("proceed?");
+
+COUT(WDVEC);
+
+//ans=query("proceed?");
+
+
+
+
+
+
+
 
 
 #include "wex_screen.asl"
 
 #include "wex_glines.asl"
 
+//ans=query("proceed?");
+
   showTarget();
 
 cout<<"showTarget \n";
 
+ans=query("proceed?");
+
   drawScreens();
 
+ // showTarget();
 
+  drawScreens();
 
-  cout<<"DONE\n";
+cout<<"DONE\n";
 
 }
 
@@ -772,7 +796,8 @@ cout<<"showTarget \n";
 
   resize_screen();
 
-  sWo(tw_wo,_move,targetday,NextGoalWt,gwo,_redraw));
+ //qq
+   sWo(tw_wo,_move,targetday,NextGoalWt,gwo,_redraw));
 
   sWi(vp,_redraw);
 

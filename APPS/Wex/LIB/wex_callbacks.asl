@@ -164,7 +164,7 @@
 
   drawScreens();
 
-  sWo(tw_wo,_WMOVETO,targetday,NextGoalWt,gwo,_WREDRAW);
+  sWo(tw_wo,_WMOVETO,targetday,NextGoalWt,gwo,_WREDRAW,_WEO);
 
   }
 

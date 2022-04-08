@@ -26,8 +26,11 @@
 //  plot(gwo,_Wsymbol,gday-1,NextGoalWt, 3,1,GREEN_);
 
   //<<"%V $last_known_day $PWT $tday2 $StGoalWt \n";
-
+  cout<<"showTarget()\n";
+  
   plotSymbol(gwo,tday2,StGoalWt,TRI_,symsz,BLACK_,1);
+
+cout<<"plotSymbol\n";
 
   plotSymbol(gwo,gday,NextGoalWt,DIAMOND_,symsz,BLUE_);
 
@@ -56,7 +59,9 @@
 
   }
 
-  sWo(gwo,_WSHOWPIXMAP,_WEO);
+//  sWo(gwo,_WSHOWPIXMAP,_WEO);
+
+cout<<"Done showTarget\n";
   //plotSymbol(gwo,targetday,GoalWt,STAR_,symsz, LILAC_);
 //  dGl(gw_gl);
 //sc_startday.pinfo();
@@ -209,15 +214,15 @@
 // <<[_DB]" $ws \n"
 
   if (ws == 0) {
-  //<<[_DB]"drawing Grids for screen 0 \n"
+
   //sWo({extwo,calwo,gwo},_WFONT,"small");
 
-  sWo(extwo,_WFONT,"small"); // check font can accept a int or char *;
+  sWo(extwo,_WFONT,"small",_WEO); // check font can accept a int or char *;
 //  axnum(gwo,AXIS_LEFT_);
 
   sWo(carbwo,_WAXNUM,AXIS_LEFT_,_WEO);
 
-  sWo(carbwo,_WYSCALES,wpt(0,carb_upper),_WSAVESCALES,_WEO);
+  sWo(carbwo,_WYSCALES,wpt(0,carb_upper),_WSAVESCALES,0,_WEO);
 
   sWo(calwo,_WUSESCALES,0,_WAXNUM,  AXIS_LEFT_,_WEO);
 //  sWo(carbwo,_WAXNUM,2);
@@ -249,9 +254,9 @@
 
   }
   int allwo[] = {gwo,swo, calwo,  extwo , carbwo,-1};
-   for(int j =0; allwo[j] > 0; j++) {
+
     sWo(allwo,_WSHOWPIXMAP,_WSAVE,_WCLIPBORDER,-1,_WEO);
-   }
+
   }
 //---------------------------------------------------------------------------------
 #define ALL_LINES 1
@@ -264,17 +269,26 @@
  //sc_startday = (jtoday - Bday) - 20;
 //<<"RESET? %V $sc_startday  $sc_end \n"
  int wedwos[] = { gwo, calwo,  carbwo, extwo,-1  };
+
+cout<<"DrawScreens\n";
+
   if ( wScreen == 0) {
 //<<"%V $sc_zstart $minWt $sc_zend $upperWt\n"
+ // sWo(gwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0,_WFLUSH);
+  //sWo(wedwos,_WXSCALES,wpt(sc_zstart,sc_zend),_WFLUSH);
+  
 
-  sWo(wedwos,_WXSCALES,wpt(sc_zstart,sc_zend),_WFLUSH);
+  sWo(wedwos,_WCLEARCLIP,WHITE_,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_,_WFLUSH);
 
-  sWo(wedwos,_WCLEARCLIP,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_,_WFLUSH);
+//  drawGoals( wScreen);
 
-  drawGoals( wScreen);
+//  drawGrids( wScreen);
 
-  drawGrids( wScreen);
+ sWo(gwo,_WCLEARCLIP,LILAC_,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_,_WFLUSH);
 
+ sWo(calwo,_WCLEARCLIP,YELLOW_,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_,_WFLUSH);
+ sWo(gwo,_WSCALES,wbox(sc_startday,MinWt,sc_end,upperWt),_WEO);
+ 
   if (ALL_LINES) {
 
  // <<[_DB]" draw lines \n";
@@ -298,33 +312,42 @@
   sWo(extwo,_WFONT,F_SMALL_,_WEO);
       //plot(extwo,_Wkeysymbol,0.78,0.7,TRI_,symsz,GREEN_,1);
 
-  sWo(extwo,"Exercise Time (mins)",wpt( 0.8,0.7),1,0,RED_);
-   int allgls[] = {gw_gl,   carb_gl,  fibre_gl,  fat_gl,  prot_gl,  calc_gl,  calb_gl,  wt_gl,-1};
+  sWo(extwo,"Exercise Time (mins)",wpt( 0.8,0.7),1,0,RED_,_WEO);
 
-    for(int j=0; allgls[j]>0;j++)
-      sGl(allgls[j],_GLDRAW);  
+
+   int allgls[] = {gw_gl,   carb_gl,  fibre_gl,  fat_gl,  prot_gl,  calc_gl,  calb_gl,  wt_gl,wt_gl2,ext_gl, -1};
+
+
+   sGl(allgls,_GLDRAW,_GLEO);
+
+      
+      
 
   }
   
   int allwo[] = {gwo,swo, calwo,  extwo , carbwo,-1};
-   for(int j =0; allwo[j] > 0; j++) {
-      sWo(allwo,_WCLIPBORDER,BLACK_,_WEO);
-   }
-  drawMonths(gwo);
+   
+  sWo(allwo,_WCLIPBORDER,BLACK_,_WEO);
+   
+   
+  //drawMonths(gwo);
 
-  drawMonths(calwo);
+//  drawMonths(calwo);
 
-  drawMonths(carbwo);
+//  drawMonths(carbwo);
 
-  drawMonths(extwo);
+//  drawMonths(extwo);
       //Text(extwo,"Exercise mins",-4,0.5,4,-90)
       //Text(gwo,  "Weight (lbs)",0.8,0.8,1)
        //dGl(wt_gl)
        //dGl(wt_gl)
 
-  showTarget();
+  //showTarget();
 
+ 
   sWo(wedwos,_WSHOWPIXMAP,_WCLIPBORDER,BLACK_,_WEO);
+
+
 
   }
 
@@ -340,7 +363,7 @@
 
   sGl(bp_gl,_GLDRAW);   
 
-  sWo(swo,_WSHOWPIXMAP);
+  sWo(swo,_WSHOWPIXMAP,_WEO);
 
   //sWo(allwo,_WCLIPBORDER,GREEN_);
 
@@ -348,13 +371,13 @@
 
   //sWo(fewos,_WREDRAW);
 
-  sWo(tw_wo,_WMOVE,wpt(targetday,NextGoalWt),gwo,_WREDRAW,_WEO);
+ // sWo(tw_wo,_WMOVE,wpt(targetday,NextGoalWt),gwo,_WREDRAW,_WEO); // ?? parent wo
 
   CR_init = 1;
 
   CL_init = 1;
  //sc_startday.pinfo();
-
+   cout<<"Done drawScreens\n";
  }
   
  
@@ -428,7 +451,7 @@
 
   sWo(swo,_WXSCALES,wpt(rx,rX),_WEO);
 
-  sWo(gwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0);
+  sWo(gwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0,_WFLUSH);
 
   drawScreens();
 
@@ -472,11 +495,11 @@
 
   sc_endday = rX;
 
-  sWo(wedwos,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
+  //sWo(wedwos,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
 
-  sWo(gwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0);
+  sWo(gwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0,_WEO);
 
-  sWo(swo,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
+  sWo(swo,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0,_WEO);
 
   drawScreens();
 
@@ -516,13 +539,13 @@
 
   wtm = 0.0;
 
-  sWo(wtmwo,_WVALUE,wtm,_WREDRAW);
+  sWo(wtmwo,_WVALUE,wtm,_WREDRAW,_WEO);
 
-  sWo(cbmwo,_WVALUE,0,_WREDRAW);
+  sWo(cbmwo,_WVALUE,0,_WREDRAW,_WEO);
 
-  sWo(xtmwo,_WVALUE,0,_WREDRAW);
+  sWo(xtmwo,_WVALUE,0,_WREDRAW,_WEO);
 
-  sWo(obswo,_WVALUE,0,_WREDRAW);
+  sWo(obswo,_WVALUE,0,_WREDRAW,_WEO);
 
   int i = dayv -1;
 
@@ -536,13 +559,13 @@
    //<<"%V $dayv  $Sday $mdy\n"
    //<<"FOUND $i %V $dayv $Sday $dt  $wtm $xtm $cbm\n"
 
-  sWo(obswo,_WVALUE,dt+1,_WREDRAW);
+  sWo(obswo,_WVALUE,dt+1,_WREDRAW,_WEO);
 
-  sWo(xtmwo,_WVALUE,xtm,_WREDRAW);
+  sWo(xtmwo,_WVALUE,xtm,_WREDRAW,_WEO);
 
-  sWo(wtmwo,_WVALUE,wtm,_WREDRAW);
+  sWo(wtmwo,_WVALUE,wtm,_WREDRAW,_WEO);
 
-  sWo(cbmwo,_WVALUE,cbm,_WREDRAW);
+  sWo(cbmwo,_WVALUE,cbm,_WREDRAW,_WEO);
 
   }
 //[EM]=================================//
