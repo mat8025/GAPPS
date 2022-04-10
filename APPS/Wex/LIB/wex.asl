@@ -227,7 +227,7 @@ Record RX;
   int dtmwo,obswo,cbmwo,xtmwo,sdwo,gdwo,gwtwo,wtmwo;
 
 //////////////////// GLINES /////////////////
-  int calc_gl,calb_gl,carb_gl,fibre_gl,fat_gl,prot_gl,se_gl,bp_gl,pwt_gl,ext_gl, gw_gl,wt_gl,lc_gl,rc_gl,wt_gl2;
+  int calc_gl,calb_gl,carb_gl,fibre_gl,fat_gl,prot_gl,se_gl,bp_gl,pwt_gl,ext_gl, gw_gl,wt_gl,lc_gl,rc_gl,wt_gl2, wt_gl3;
 
   int Symsz= 5;
 //=========================================
@@ -254,6 +254,8 @@ Record RX;
 #include "wex_compute.asl"
 
 #include "wex_read.asl"
+
+#include "wex_draw.asl"
 
   int N = 1000;
 //float DVEC[200+];
@@ -326,7 +328,7 @@ Record RX;
 
 //#include "wex_screen.asl"
 
-#include "wex_draw.asl"
+//#include "wex_draw.asl"
 
  ///////////////////////////////////////////////////
   void Uac::Wex(Svarg * sarg)
@@ -603,31 +605,26 @@ COUT(WDVEC);
 //ans=query("proceed?");
 
 
-
-
-
-
-
-
-
 #include "wex_screen.asl"
 
 #include "wex_glines.asl"
 
 //ans=query("proceed?");
 
+  //showTarget();
+
+//cout<<"showTarget \n";
+
+//ans=query("proceed?");
+
+  drawScreens();
+
+//ans=query("proceed?");
   showTarget();
 
-cout<<"showTarget \n";
 
-ans=query("proceed?");
-
-  drawScreens();
-
- // showTarget();
-
-  drawScreens();
-
+ drawScreens();
+ 
 cout<<"DONE\n";
 
 }
@@ -784,7 +781,7 @@ cout<<"DONE\n";
 
   woname = "";
 
-  showTarget();
+//  showTarget();
 
   titleVers();
 

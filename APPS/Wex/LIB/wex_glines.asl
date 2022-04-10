@@ -17,6 +17,7 @@
 
   pwt_gl = -1;
 
+
 COUT(pwt_gl)
 
   ext_gl  = cGl(extwo);
@@ -41,7 +42,7 @@ COUT(strength_gl)
 
   wt_gl = cGl(gwo);
 
- sGl(wt_gl,_GLTXY,&DVEC,&WTVEC,_GLHUE,BLUE_, _GLSYMLINE,DIAMOND_,_GLEO);
+ sGl(wt_gl,_GLTXY,&DVEC,&WTVEC,_GLHUE, RED_, _GLSYMLINE, TRI_,_GLEO);
   //sGl(wt_gl,_GLTXY,&DVEC,&WTVEC,_GLHUE,BLUE_,_GLEO);
 
 COUT(wt_gl)
@@ -51,24 +52,29 @@ COUT(wt_gl)
  sGl(wt_gl2,_GLTXY,&DVEC,&WTVEC,_GLHUE,BLUE_, _GLSYMLINE,DIAMOND_,_GLEO);
 
 
+  wt_gl3 = cGl(calwo);
+
+ sGl(wt_gl3,_GLTXY,&DVEC,&WTVEC,_GLHUE,BLUE_, _GLSYMLINE,DIAMOND_,_GLEO);
+
+
   if ((wt_gl == -1)  || (ext_gl == -1)) {
 
   exit(-1);
 
   }
 
-  gw_gl   = cGl(gwo);
+//  gw_gl   = cGl(gwo);
 
-  sGl(gw_gl,_GLTXY,&DVEC,&GVEC,_GLHUE,GREEN_,_GLEO);
+//  sGl(gw_gl,_GLTXY,&DVEC,&GVEC,_GLHUE,GREEN_,_GLEO);
 // gw_gl   = cGl(gwo,_GLTXY,WDVEC,GVEC,_GLHUE,RED_)
-
+gw_gl = -1;
 COUT(gw_gl)
 
   bp_gl   = cGl(swo);
 
   sGl(bp_gl,_GLTXY,&DVEC,&BPVEC,_GLHUE,RED_,_GLSYMBOL,TRI_,_GLNAME,"benchpress",_GLEO);
 
-  if ( gw_gl == -1 || bp_gl == -1) {
+  if (  bp_gl == -1) {
 
   exit_si();
 
@@ -110,9 +116,9 @@ COUT(carb_gl)
 
 COUT(se_gl)
 
-  int allgl[] = {wt_gl, gw_gl,bp_gl,ext_gl, se_gl, calb_gl, calc_gl, carb_gl, pwt_gl, cardio_gl, strength_gl,-1};
+  int allgl[] = {bp_gl,ext_gl, se_gl, calb_gl, calc_gl, carb_gl, cardio_gl, wt_gl, strength_gl,-1};  // remove gw_gl
 
-  int wedgl[] = {wt_gl, wt_gl2,gw_gl, ext_gl, calb_gl, se_gl, calc_gl, carb_gl, fibre_gl,fat_gl,prot_gl, pwt_gl , cardio_gl, strength_gl,-1};
+  int wedgl[] = { wt_gl2,wt_gl3, ext_gl, calb_gl, se_gl, calc_gl, carb_gl, fibre_gl,fat_gl,prot_gl, cardio_gl, wt_gl, strength_gl,-1};
 
   int exgls[] = {ext_gl, cardio_gl,strength_gl,-1};
 //<<[_DB]"%V$allgl \n"
@@ -120,19 +126,23 @@ COUT(se_gl)
   float missing_val = 0.0;
   sGl(wedgl,_GLMISSING,&missing_val,_GLEO);
 
+   // sGl(wt_gl,_GLMISSING,&missing_val,_GLEO);
+
   cout<<"set symbols \n";
 
-  sGl(ext_gl,_GLSYMBOL,TRI_, _GLSYMFILL,_GLEO);
+  sGl(ext_gl,_GLSYMBOL,TRI_, _GLSYMFILL,ON_,_GLEO);
 
 COUT(ext_gl);
 
-  sGl(cardio_gl,_GLSYMBOL,DIAMOND_, _GLSYMFILL,_GLEO);
+  sGl(cardio_gl,_GLSYMBOL,DIAMOND_, _GLEO);
 
 COUT(cardio_gl);
 
-  sGl(strength_gl,_GLSYMBOL, STAR5_, _GLSYMFILL,_GLEO);
+  sGl(strength_gl,_GLSYMBOL, STAR5_, _GLEO);
 
-  sGl(wt_gl,_GLSYMBOL,DIAMOND_,_GLSYMSIZE, Symsz, _GLSYMFILL,_GLSYMHUE,BLUE_,_GLEO);
+ sGl(wt_gl,_GLSYMBOL,TRI_,_GLSYMSIZE, Symsz, _GLSYMHUE,BLUE_,_GLEO);
+
+ sGl(wt_gl2,_GLSYMBOL,TRI_,_GLSYMSIZE, Symsz, _GLSYMHUE,BLUE_,_GLEO);
 
 COUT(strength_gl);
 
@@ -143,22 +153,22 @@ COUT(strength_gl);
 
   sGl(se_gl,_GLSYMBOL,DIAMOND_,_GLEO);
 
-  sGl(calb_gl,_GLSYMBOL,DIAMOND_,_GLSYMFILL,_GLSYMHUE,RED_,_GLEO);
+  sGl(calb_gl,_GLSYMBOL,DIAMOND_,_GLSYMHUE,RED_,_GLEO);
 
-  sGl(calc_gl,_GLSYMBOL,TRI_,_GLSYMFILL,_GLSYMHUE,BLUE_,_GLEO);
-//  sGl(carb_gl,_GLSYMBOL,"circle",_GLSYMFILL,_GLSYMHUE,BLUE_)
+  sGl(calc_gl,_GLSYMBOL,TRI_,_GLSYMHUE,BLUE_,_GLEO);
+//  sGl(carb_gl,_GLSYMBOL,"circle",_GLSYMHUE,BLUE_)
 
 
 
-  sGl(carb_gl,_GLSYMBOL,ITRI_,_GLSYMFILL,_GLSYMHUE,BROWN_,_GLEO);
+  sGl(carb_gl,_GLSYMBOL,ITRI_,_GLSYMHUE,BROWN_,_GLEO);
 
 COUT(carb_gl);
 
-  sGl(fibre_gl,_GLSYMBOL,DIAMOND_,_GLSYMFILL,_GLSYMHUE,PINK_,_GLEO);
+  sGl(fibre_gl,_GLSYMBOL,DIAMOND_,_GLSYMHUE,PINK_,_GLEO);
 
-  sGl(fat_gl,_GLSYMBOL,CROSS_,_GLSYMFILL,_GLSYMHUE,BLUE_,_GLEO);
+  sGl(fat_gl,_GLSYMBOL,CROSS_,_GLSYMHUE,BLUE_,_GLEO);
 
-  sGl(prot_gl,_GLSYMBOL,TRI_,_GLSYMFILL,_GLSYMHUE,RED_,_GLEO);
+  sGl(prot_gl,_GLSYMBOL,TRI_,_GLSYMHUE,RED_,_GLEO);
 
 COUT(prot_gl);
 

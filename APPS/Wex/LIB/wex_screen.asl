@@ -60,7 +60,7 @@ cout<<"Wins done\n";
   
   sWo(extwo,_WNAME,"XT",_WVALUE,0,_WCLIPBORDER,BLACK_,_WEO); // exercise time;
 
-  int wedwos[] = { gwo, calwo,  carbwo, extwo,-1  };
+  int wedwos[] = { gwo,calwo,  carbwo, extwo,-1  };
 //<<[_DB]"%V$wedwo \n"
 
 cout<<" vtile before set clip!\n";
@@ -101,15 +101,15 @@ COUT(calwo);
 
   sWo(extwo,_WCLIP,CXY,_WCOLOR,YELLOW_,_WCLIPBHUE,GREEN_,_WBHUE,ORANGE_,_WFONT,F_SMALL_,_WEO);
 
-  sWo(gwo,_WCOLOR,ORANGE_,_WCLIPBHUE,RED_,_WEO);
+  sWo(gwo,_WCLIP,CXY,_WCOLOR,ORANGE_,_WCLIPBHUE,RED_,_WBHUE,ORANGE_,_WFONT,F_SMALL_,_WEO);
 
   sWo(wedwos,_WCLIP,CXY,_WCOLOR,RED_,_WCLIPBHUE,ORANGE_,_WBHUE,LILAC_,_WFONT, F_SMALL_,_WSAVE,_WSAVEPIXMAP,_WEO);
 
-  sWo(wedwos,_WBORDER,_WCLIPBORDER,BLACK_,_WDRAWON,_WCOLOR,BLUE_,_WREDRAW,_WEO);
+  sWo(wedwos,_WBORDER,_WCLIPBORDER,BLACK_,_WDRAWON,_WPIXMAPON,_WCOLOR,BLUE_,_WREDRAW,_WEO);
 
 
 
-  sWo(extwo,_WSCALES,wbox(sc_startday,0,sc_end,250),_WEO);
+  sWo(extwo,_WSCALES,wbox(sc_startday,110,sc_end,250),_WEO);
 
 cout <<"SCALES " << sc_startday << " sc_end " <<sc_end << endl;
 
@@ -155,12 +155,10 @@ cout<<"scales " << sc_startday << " sc_end " << sc_end << " bp_upper " << bp_upp
 
   //<<"SCALES %V$sc_startday $sc_endday $carb_upper\n";
 
-  sWo(gwo,_WSCALES,wbox(sc_startday,minWt,sc_end,upperWt),_WEO);
-//    sWo(gwo,_WSAVESCALES,0,_WFONT,F_SMALL_)
+  sWo(gwo,_WSCALES,wbox(sc_startday,150,sc_end,220),_WEO);
 
-  //<<"SCALES %V$sc_startday $sc_endday $wt_upper\n";
 
-  int allwo[] = {gwo,swo, calwo,  extwo , carbwo,-1};
+  int allwo[] = {gwo, calwo,  extwo , carbwo,swo,-1};
 //<<"%V $allwo \n"
 
   sWo(allwo,_WDRAWON,_WPIXMAPON,_WREDRAW,_WSAVE,_WSAVEPIXMAP,_WEO);
@@ -209,10 +207,9 @@ COUT(fewos);
 
    sWo(xwos,_WSTYLE,WO_SVB,_WREDRAW,_WEO);
 
+   sWo(gwo,_WSHOWPIXMAP,_WSAVE,_WEO);
 
-  sWo(gwo,_WSHOWPIXMAP,_WSAVE,_WEO);
-
-  sWo(calwo,_WSHOWPIXMAP,_WSAVE,_WEO);
+ // sWo(calwo,_WSHOWPIXMAP,_WSAVE,_WEO);
   //sleep(0.1)
   // Measure WOBS
 

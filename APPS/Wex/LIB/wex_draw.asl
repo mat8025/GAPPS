@@ -12,6 +12,7 @@
  */ 
 ;//----------------<v_&_v>-------------------------//;                                                                                                
 
+#include "uac.h"
 
   int symsz =5;
   Str mdy;
@@ -59,7 +60,7 @@ cout<<"plotSymbol\n";
 
   }
 
-//  sWo(gwo,_WSHOWPIXMAP,_WEO);
+sWo(gwo,_WSHOWPIXMAP,_WEO);
 
 cout<<"Done showTarget\n";
   //plotSymbol(gwo,targetday,GoalWt,STAR_,symsz, LILAC_);
@@ -269,7 +270,7 @@ cout<<"Done showTarget\n";
  //sc_startday = (jtoday - Bday) - 20;
 //<<"RESET? %V $sc_startday  $sc_end \n"
  int wedwos[] = { gwo, calwo,  carbwo, extwo,-1  };
-
+  Str ans;
 cout<<"DrawScreens\n";
 
   if ( wScreen == 0) {
@@ -278,16 +279,16 @@ cout<<"DrawScreens\n";
   //sWo(wedwos,_WXSCALES,wpt(sc_zstart,sc_zend),_WFLUSH);
   
 
-  sWo(wedwos,_WCLEARCLIP,WHITE_,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_,_WFLUSH);
+ // sWo(wedwos,_WCLEARCLIP,WHITE_,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_,_WFLUSH);
 
 //  drawGoals( wScreen);
 
 //  drawGrids( wScreen);
 
- sWo(gwo,_WCLEARCLIP,LILAC_,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_,_WFLUSH);
+ //sWo(gwo,_WCLEARCLIP,CYAN_,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_,_WFLUSH);
 
- sWo(calwo,_WCLEARCLIP,YELLOW_,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_,_WFLUSH);
- sWo(gwo,_WSCALES,wbox(sc_startday,MinWt,sc_end,upperWt),_WEO);
+// sWo(calwo,_WCLEARCLIP,YELLOW_,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_,_WFLUSH);
+ sWo(gwo,_WSCALES,wbox(sc_startday,150,sc_end,220),_WFLUSH);
  
   if (ALL_LINES) {
 
@@ -315,17 +316,25 @@ cout<<"DrawScreens\n";
   sWo(extwo,"Exercise Time (mins)",wpt( 0.8,0.7),1,0,RED_,_WEO);
 
 
-   int allgls[] = {gw_gl,   carb_gl,  fibre_gl,  fat_gl,  prot_gl,  calc_gl,  calb_gl,  wt_gl,wt_gl2,ext_gl, -1};
+  int allgls[] = {wt_gl,  carb_gl,  fibre_gl,  fat_gl,  prot_gl,  calc_gl,  calb_gl,  wt_gl,wt_gl2,ext_gl, -1};
+
+   // int allgls[] = {wt_gl2,wt_gl, wt_gl3,-1};
 
 
    sGl(allgls,_GLDRAW,_GLEO);
 
-      
+
+   
+ //  ans= query("see lines?\n");
       
 
   }
-  
+
+
+//ans=query("proceed?");
+
   int allwo[] = {gwo,swo, calwo,  extwo , carbwo,-1};
+ // int allwo[] = {gwo,-1};
    
   sWo(allwo,_WCLIPBORDER,BLACK_,_WEO);
    
@@ -342,12 +351,10 @@ cout<<"DrawScreens\n";
        //dGl(wt_gl)
        //dGl(wt_gl)
 
-  //showTarget();
+ showTarget();
 
  
   sWo(wedwos,_WSHOWPIXMAP,_WCLIPBORDER,BLACK_,_WEO);
-
-
 
   }
 
@@ -451,7 +458,7 @@ cout<<"DrawScreens\n";
 
   sWo(swo,_WXSCALES,wpt(rx,rX),_WEO);
 
-  sWo(gwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0,_WFLUSH);
+ sWo(gwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0,_WFLUSH);
 
   drawScreens();
 
