@@ -218,8 +218,8 @@ cout<<"Done showTarget\n";
 
   //sWo({extwo,calwo,gwo},_WFONT,"small");
 
-  sWo(extwo,_WFONT,"small",_WEO); // check font can accept a int or char *;
-//  axnum(gwo,AXIS_LEFT_);
+  //sWo(extwo,_WFONT,"small",_WEO); // check font can accept a int or char *;
+
 
   sWo(carbwo,_WAXNUM,AXIS_LEFT_,_WEO);
 
@@ -234,14 +234,14 @@ cout<<"Done showTarget\n";
   //sWo(extwo,_WAXNUM,2,0,sc_endday,20,10)
   //Text(gwo, "Weight (lbs)",-4,0.7,4,-90)
 
-  axisLabel(gwo,AXIS_BOTTOM_,"Weight (lbs)",0.5,1.7);
+ // axisLabel(gwo,AXIS_BOTTOM_,"Weight (lbs)",0.5,1.7);
 
-  axisLabel(calwo,AXIS_BOTTOM_,"Calories",0.5,1.7);
+ // axisLabel(calwo,AXIS_BOTTOM_,"Calories",0.5,1.7);
    //axisLabel(extwo,AXIS_LEFT_,"Exercise Time (mins)",0.1,0.7); // TBF
 
-  axisLabel(extwo,AXIS_LEFT_,"Mins",0.1,4.0); // TBF;
+ // axisLabel(extwo,AXIS_LEFT_,"Mins",0.1,4.0); // TBF;
 
-  axisLabel(carbwo,AXIS_LEFT_,"Carbs",0.1,4);
+ // axisLabel(carbwo,AXIS_LEFT_,"Carbs",0.1,4);
   //Text(calwo,"Cals In/Out",-4,0.7,4,-90);
 
   }
@@ -281,9 +281,9 @@ cout<<"DrawScreens\n";
 
  // sWo(wedwos,_WCLEARCLIP,WHITE_,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_,_WFLUSH);
 
-//  drawGoals( wScreen);
+  drawGoals( wScreen);
 
-//  drawGrids( wScreen);
+  drawGrids( wScreen);
 
  //sWo(gwo,_WCLEARCLIP,CYAN_,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_,_WFLUSH);
 
@@ -576,6 +576,6 @@ cout<<"DrawScreens\n";
 
   }
 //[EM]=================================//
-//===========//
+
 
 ;//==============\_(^-^)_/==================//;

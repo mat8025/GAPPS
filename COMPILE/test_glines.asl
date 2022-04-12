@@ -117,16 +117,22 @@ COUT(Xvec)
   
   
   Vec<float> Rnvec(N);
+  Rnvec.setName("Rnvec");
 
-COUT(Rnvec)
+    if (Rnvec.getType() != FLOAT) {
+    cout<<"Rnvec wrong type " << Rnvec.getName()  << " " << Rnvec.Dtype() << endl;
+    }
+    COUT(Rnvec)
 
-//ans=query("see Rnvec?");
+//   ans=query("see Rnvec?");
   
   
   Rnvec.addGrand(0); // fill with gaussian random numbers
+    if (Rnvec.getType() != FLOAT) {
+    cout<<"Rnvec wrong type " << Rnvec.getName()  << " " << Rnvec.Dtype() << endl;
+    }
 
-
-
+//ans=query("see Rnvec?");
 cout << "Rnvec " << Rnvec << endl;
 
 //ans=query("see Rnvec?");
@@ -141,6 +147,8 @@ cout << "Rnvec " << Rnvec << endl;
     Vec<float> Svec(N);
 COUT(Svec);
 
+//ans=query("see Svec?");
+
     Vec<float> Tvec(N);
 
 
@@ -152,7 +160,7 @@ Svec.pinfo();
 
 Wvec.pinfo();
 
-
+Cvec.pinfo();
 // 
 //float Svec = Sin(Xvec)  //Svec.Sin(); // apply Sin function to all elements
   
@@ -166,20 +174,30 @@ COUT(Svec)
 
 //ans=query("copy Xvec to Svec?");
 
+Svec.pinfo();
 
 
   Svec.Cos();
 
-COUT(Svec)
-
-//ans=query("see Sin Svec?");
+  COUT(Svec)
 
   Svec.pinfo();
-  //<<" $(typeof(Svec)) \n";
+//  ans=query("see Cos Svec?");
+
   
   Vec<float> Zvec(N);
 
+    if (Zvec.getType() != FLOAT) {
+    cout<<"Zvec wrong type " << Zvec.getName()  << " " << Zvec.Dtype() << endl;
+    }
+
+
   Zvec = Rnvec ;
+
+
+    if (Zvec.getType() != FLOAT) {
+    cout<<"Zvec wrong type " << Zvec.getName()  << " " << Zvec.Dtype() << endl;
+    }
 
 COUT(Zvec)
 
@@ -230,8 +248,11 @@ COUT(Svec)
 
   
   Wvec = Xvec * f;
+
   Wvec.pinfo();
+
   Svec = Wvec.Sin();
+
   Svec.pinfo();
 
 //ans=query("see Sin");
@@ -267,9 +288,21 @@ cout << "Svec " << Svec << endl;
 
    sv[1]->pinfo();
 
-
-
+    if (Xvec.getType() != FLOAT) {
+cout<<"Xvec wrong type !\n";
 ans=query("check vecs");
+    }
+
+
+
+    if (Rnvec.getType() != FLOAT) {
+        cout<<"wrong type " << Rnvec.getName()  << endl;
+        Rnvec.pinfo();
+        Rnvec.setType(FLOAT);
+ans=query("check vecs");
+}
+
+//
 
 //ans=query("looking for events ?");
 
@@ -290,9 +323,25 @@ while (1) {
     
 //<<"$Rnvec[0:10]\n"
 //<<"$Svec[0:10]\n"
+
+    if (Rnvec.getType() != FLOAT) {
+    cout<<"Rnvec wrong type " << Rnvec.getName()  << endl;
+    }
+    
+
     
     Wvec = Xvec * f;
-   Tvec = Wvec + pi2;
+
+    if (Wvec.getType() != FLOAT) {
+cout<<"Wvec wrong type !\n";
+    }
+
+     Tvec = Wvec + pi2;
+
+    if (Tvec.getType() != FLOAT) {
+cout<<"Tvec wrong type !\n";
+
+    }
 
 //ans=query("see Tvec");
 
@@ -302,8 +351,24 @@ while (1) {
     Svec = Wvec;
     Svec.Sin();
 
-    Cvec= Tvec.Cos();
-    
+   Cvec= Tvec.Cos();
+   
+Tvec.pinfo();
+
+    if (Tvec.getType() != FLOAT) {
+cout<<"wrong type !\n";
+    }
+
+   // Cvec= Tvec;
+
+
+Cvec.pinfo();
+
+    if (Cvec.getType() != FLOAT) {
+cout<<"Cvec wrong type !\n";
+    }
+
+    //ans=query("see Cvec?");
   //  Tvec.Cos();
     //Tvec *= 0.5;
     //Svec = Sin(Xvec * f)
@@ -311,7 +376,14 @@ while (1) {
     Zvec = Rnvec + (Cvec * 0.5);
    // Zvec = Rnvec + Tvec;
 
-//   ans=query("see Zvec");
+    if (Zvec.getType() != FLOAT) {
+cout<<"Zvec wrong type !\n";
+        Zvec.setType(FLOAT);
+ans=query("see Zvec");
+  }
+
+
+   
 
 //cout << "Zvec " << Zvec << endl;
 
@@ -351,17 +423,13 @@ while (1) {
       }
     
     //getMouseClick()
-
-
 //   ans=query("again? y");
 //  if (ans == "n") {
 //      break;
 //    }
-    if (kk++ > 10000)
+    if (kk++ > 200)
        break;
    // xsleep(0.1);
-  
-
 }
 
 
@@ -371,11 +439,6 @@ while (1) {
 /// create a window obj
 
 ans=query("did we see wob -CSV  button?");
-
-
-
-
-
 
  exitXGS();
 

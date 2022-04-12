@@ -123,7 +123,7 @@
 
   sGl(xz_gl,_GLTXY,Xvec,Zvec,_GLHUE,YELLOW_,_eo);
   
-  sWo(gwo,_hue,GREEN_,_refresh,_FLUSH);
+  sWo(gwo,_hue,GREEN_,_update,_FLUSH);
   
   sWo(gwo,_showpixmap,_eo);
   
@@ -190,11 +190,11 @@
     
     sWo(gwo,_line,0.1,0.1,15,f ,BLUE_,_flush);
 	
-    dGl(xn_gl);  // DrawGline; 
+    sGl(xn_gl,_GLDRAW);  // DrawGline; 
     
-    dGl(xs_gl);
+    sGl(xs_gl,_GLDRAW); // if error should  warn and remove/skip  this line on next loop?
     
-    dGl(xz_gl);
+    sGl(xz_gl,_GLDRAW);
     
     sWo(gwo,_showpixmap,_clipborder,ORANGE_,_flush);
     
@@ -213,10 +213,10 @@
     
   //  getMouseClick()
 
-ans=query("again?",ans)
-if (ans != "y") {
-    break
-}
+//ans=query("again?",ans)
+//if (ans == "n") {
+//    break
+//}
     <<"loop $i\n"
     
     }

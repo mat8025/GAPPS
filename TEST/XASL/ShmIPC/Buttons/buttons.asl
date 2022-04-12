@@ -41,6 +41,7 @@ Graphic = checkGWM()
     <<"%V$rsig \n";
 
     txtwin = cWi("title","Info_text_window")
+<<"%V $txtwin \n"
 
     sWi(txtwin,@pixmapoff,@drawon,@save,@bhue,"white",@sticky,0)
 

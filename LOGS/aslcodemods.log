@@ -1138,3 +1138,4 @@ str.h                               1.5  03/29/2022 21:45:50  range
 sstr.cpp                            1.8  03/29/2022 21:46:30  range copy
 vec_ops.cpp                         1.7  03/31/2022 10:29:01  regex
 gline_p.cpp                         1.77  04/10/2022 07:59:16  autoscale
+gline_p.cpp                         1.78  04/12/2022 12:14:58  SVEC_V/VEC_V
