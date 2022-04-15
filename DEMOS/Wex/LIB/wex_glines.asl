@@ -23,17 +23,35 @@
 
 
 
-   ext_gl  = cGl(extwo,@TXY,DVEC,EXTV,@color,GREEN_,@ltype,SYMBOLS_,TRI_);
-   cardio_gl  = cGl(extwo,@TXY,DVEC,CARDIO,@color,BLUE_,@ltype,SYMBOLS_,DIAMOND_);
-   strength_gl  = cGl(extwo,@TXY,DVEC,STRENGTH,@color,RED_,@ltype,SYMBOLS_,STAR5_);
+   ext_gl  = cGl(extwo);
+
+<<"%V$ext_gl\n"
+
+   sGl(ext_gl,_GLTXY,DVEC,EXTV,_GLCOLOR,GREEN_,_GLSYMBOL,TRI_,_GLEO);
+
+   cardio_gl  = cGl(extwo);
+
+   sGl(cardio_gl,_GLTXY,DVEC,CARDIO,_GLCOLOR,BLUE_,_GLSYMBOL, DIAMOND_,_GLEO);
+
+<<"%V$cardio_gl\n"
+
+   xs_gl  = cGl(extwo);
+
+<<"%V$xs_gl\n"
+
+   sGl( xs_gl ,_GLTXY,DVEC,XSTRENGTH,_GLCOLOR,RED_,_GLSYMBOL,STAR5_,_GLEO);
    
 
 
-  sGl(ext_gl,@symsize,3,@symhue,GREEN_)
+  sGl(ext_gl,_GLsymsize,3,_GLsymhue,GREEN_)
 
-  wt_gl = cGl(gwo,@TXY,DVEC,WTVEC,@color,BLUE_,@ltype,SYMBOLS_,DIAMOND_)
+  wt_gl = cGl(gwo)
 
+   sGl(wt_gl,_GLTXY,DVEC,WTVEC,_GLcolor,BLUE_,_GLSYMBOL,DIAMOND_,_GLEO);
 
+<<"%V$wt_gl\n"
+
+//ans=query("see GLS?");
 
 
   if ((wt_gl == -1)  || (ext_gl == -1)) {
@@ -42,12 +60,12 @@
 
 
 
- gw_gl   = cGl(gwo,@TXY,DVEC,GVEC,@color,GREEN_)
+ gw_gl   = cGl(gwo,_GLTXY,DVEC,GVEC,_GLcolor,GREEN_)
 
 
-// gw_gl   = cGl(gwo,@TXY,WDVEC,GVEC,@color,RED_)
+// gw_gl   = cGl(gwo,_GLTXY,WDVEC,GVEC,_GLcolor,RED_)
 
- bp_gl   = cGl(swo,@TXY,DVEC,BPVEC,@color,RED_,@ltype,SYMBOLS_,@name,"benchpress")
+ bp_gl   = cGl(swo,_GLTXY,DVEC,BPVEC,_GLcolor,RED_,_GLSYMBOL,_GLname,"benchpress")
 
 
 
@@ -55,65 +73,66 @@ if ( gw_gl == -1 || bp_gl == -1) {
    exit_si()
  }
 
- calb_gl = cGl(calwo,@TXY,DVEC,CALBURN,@color,RED_,@ltype,SYMBOLS_,DIAMOND_,@symhue, RED_)
 
-// calc_gl = cGl(calwo,@TXY,DFVEC,CALCON,@color,RED_,@ltype,SYMBOLS_,"triangle",@symhue, BLUE_)
+ calb_gl = cGl(calwo,_GLTXY,DVEC,CALBURN,_GLHUE,RED_,_GLSYMBOL,DIAMOND_,_GLsymhue, RED_,_GLEO);
 
- calc_gl = cGl(calwo,@TXY,DVEC,CALSCON,@color,RED_,@ltype,SYMBOLS_,STAR_,@symhue, RED_)
+// calc_gl = cGl(calwo,_GLTXY,DFVEC,CALCON,_GLHUE,RED_,_GSYMBOL,"triangle",_GLsymhue, BLUE_,_GLEO);
 
- carb_gl = cGl(carbwo,@TXY,DVEC,CARBSCON,@color,BLUE_,@ltype,SYMBOLS_,TRI_,@symhue, BROWN_)
+ calc_gl = cGl(calwo,_GLTXY,DVEC,CALSCON,_GLHUE,RED_,_GLSYMBOL,STAR_,_GLsymhue, RED_,_GLEO);
 
- fibre_gl = cGl(carbwo,@TXY,DVEC,FIBRCON,@color,BLUE_,@ltype,SYMBOLS_,DIAMOND_,@symhue, PINK_)
+ carb_gl = cGl(carbwo,_GLTXY,DVEC,CARBSCON,_GLHUE,BLUE_,_GLSYMBOL,TRI_,_GLsymhue, BROWN_,_GLEO);
 
- fat_gl = cGl(carbwo,@TXY,DVEC,FATCON,@color,BLUE_,@ltype,SYMBOLS_,CROSS_,@symhue, PINK_)
+ fibre_gl = cGl(carbwo,_GLTXY,DVEC,FIBRCON,_GLHUE,BLUE_,_GLSYMBOL,DIAMOND_,_GLsymhue, PINK_,_GLEO);
 
- prot_gl = cGl(carbwo,@TXY,DVEC,PROTCON,@color,BLUE_,@ltype,SYMBOLS_,CROSS_,@symhue, PINK_)
+ fat_gl = cGl(carbwo,_GLTXY,DVEC,FATCON,_GLHUE,BLUE_,_GLSYMBOL,CROSS_,_GLsymhue, PINK_,_GLEO);
 
-// ave_ext_gl  = cGl(extwo,@TXY,DVEC,AVE_EXTV,@color,RED_,@ltype,LINE_)
+ prot_gl = cGl(carbwo,_GLTXY,DVEC,PROTCON,_GLHUE,BLUE_,_GLSYMBOL,CROSS_,_GLsymhue, PINK_,_GLEO);
 
- se_gl   = cGl(extwo,@TXY,DVEC,SEVEC,@color,GREEN_,@ltype,SYMBOLS_,DIAMOND_)
+// ave_ext_gl  = cGl(extwo,_GLTXY,DVEC,AVE_EXTV,_GLHUE,RED_,_GLltype,LINE_)
+
+ se_gl   = cGl(extwo,_GLTXY,DVEC,SEVEC,_GLHUE,GREEN_,_GLSYMBOL_,DIAMOND_,_GLEO);
 
 
-  int allgl[] = {wt_gl, gw_gl,bp_gl,ext_gl, se_gl, calb_gl, calc_gl, carb_gl, pwt_gl, cardio_gl, strength_gl}
+  int allgl[] = {wt_gl, gw_gl,bp_gl,ext_gl, se_gl, calb_gl, calc_gl, carb_gl, pwt_gl, cardio_gl, xs_gl,-1}
 
-  int wedgl[] = {wt_gl, gw_gl, ext_gl, calb_gl, se_gl, calc_gl, carb_gl, fibre_gl,fat_gl,prot_gl, pwt_gl , cardio_gl, strength_gl}
+  int wedgl[] = {wt_gl, gw_gl, ext_gl, calb_gl, se_gl, calc_gl, carb_gl, fibre_gl,fat_gl,prot_gl, pwt_gl , cardio_gl, xs_gl}
 
-  int exgls[] = {ext_gl, cardio_gl,strength_gl}
+  int exgls[] = {ext_gl, cardio_gl,xs_gl}
 
 //<<[_DB]"%V$allgl \n"
 
-  sGl(allgl,@missing,0,@symbol,"diamond",5)
+  sGl(allgl,_GLmissing,0,_GLsymbol,"diamond",5)
 
   Symsz= 5.0;
   
-  sGl(ext_gl,@symbol,TRI_,Symsz, @symfill,)
-  sGl(cardio_gl,@symbol,DIAMOND_,Symsz, @symfill)
-  sGl(strength_gl,@symbol,STAR5_,Symsz, @symfill)  
-  sGl(wt_gl,@symbol,DIAMOND_,Symsz, @symfill,@symhue,BLUE_)
+  sGl(ext_gl,_GLSYMBOL,TRI_, _GLsymfill,)
+  sGl(cardio_gl,_GLSYMBOL,DIAMOND_, _GLsymfill)
+  sGl(xs_gl,_GLSYMBOL,STAR5_, _GLsymfill)  
+  sGl(wt_gl,_GLsymbol,DIAMOND_, _GLsymfill,_GLsymhue,BLUE_)
  
 
-  sGl(se_gl,@symbol,DIAMOND_,Symsz)
+  sGl(se_gl,_GLsymbol,DIAMOND_)
 
-  sGl(calb_gl,@symbol,DIAMOND_,Symsz,@symfill,@symhue,RED_)
-  sGl(calc_gl,@symbol,TRI_,Symsz,@symfill,@symhue,BLUE_)
-//  sGl(carb_gl,@symbol,"circle",Symsz,@symfill,@symhue,BLUE_)
-  sGl(carb_gl,@symbol,ITRI_,Symsz,@symfill,@symhue,BROWN_)
+  sGl(calb_gl,_GLsymbol,DIAMOND_,_GLsymfill,_GLsymhue,RED_)
+  sGl(calc_gl,_GLsymbol,TRI_,_GLsymfill,_GLsymhue,BLUE_)
+//  sGl(carb_gl,_GLsymbol,"circle",Symsz,_GLsymfill,_GLsymhue,BLUE_)
+  sGl(carb_gl,_GLsymbol,ITRI_,_GLsymfill,_GLsymhue,BROWN_)
   
-  sGl(fibre_gl,@symbol,DIAMOND_,Symsz,@symfill,@symhue,PINK_)
+  sGl(fibre_gl,_GLsymbol,DIAMOND_,_GLsymfill,_GLsymhue,PINK_)
 
-  sGl(fat_gl,@symbol,CROSS_,Symsz,@symfill,@symhue,BLUE_)
+  sGl(fat_gl,_GLsymbol,CROSS_,_GLsymfill,_GLsymhue,BLUE_)
 
-  sGl(prot_gl,@symbol,TRI_,Symsz,@symfill,@symhue,RED_)
+  sGl(prot_gl,_GLsymbol,TRI_,_GLsymfill,_GLsymhue,RED_)
   
-  sGl(bp_gl,@symbol,ITRI_,Symsz,@missing,0)
+  sGl(bp_gl,_GLsymbol,ITRI_,_GLmissing,0)
 
 
 
 //  CURSORS
  // TBC cursor opt?
-  lc_gl   = cGl(gwo,@type,XY_,@color,RED_,@ltype,"cursor")
+  lc_gl   = cGl(gwo,_GLtype,XY_,_GLHUE,RED_,_GLltype,"cursor")
 
-  rc_gl   = cGl(gwo,@type,XY_,@color,WHITE_,@ltype,CURSOR_)
+  rc_gl   = cGl(gwo,_GLtype,XY_,_GLHUE,WHITE_,_GLltype,CURSOR_)
 
 
 //===========================================//

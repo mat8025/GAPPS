@@ -32,40 +32,39 @@ Graphic = checkGWM()
   if (!Graphic) {
     Xgm_pid = spawnGWM()
 <<"xgs pid ? $Xgm_pid \n"
-
-}
+  }
 
 //ask=iread("wait?")
 
     rsig=checkTerm();
     <<"%V$rsig \n";
 
-    txtwin = cWi("title","Info_text_window")
+    txtwin = cWi("Info_text_window")
 <<"%V $txtwin \n"
 
-    sWi(txtwin,@pixmapoff,@drawon,@save,@bhue,"white",@sticky,0)
+    sWi(txtwin,_wpixmapoff,_wdrawon,_wsave,_wbhue,WHITE_,_wsticky,0)
 
-    vp = cWi(@title,"Buttons1")
+    vp = cWi("Buttons1")
 
 <<"%V$vp \n"
 
-    sWi(vp,@pixmapon,@drawon,@save,@bhue,"white")
+    sWi(vp,_Wpixmapon,_Wdrawon,_Wsave,_Wbhue,"white")
 
-    sWi(vp,@clip,0.1,0.2,0.9,0.9)
+    sWi(vp,_Wclip,0.1,0.2,0.9,0.9)
 
-    vp2 = CWi(@title,"Buttons2")
+    vp2 = cWi("Buttons2")
 
 <<"%V$vp2 \n"
 
-    sWi(vp2,@pixmapon,@drawoff,@save,@bhue,"white")
+    sWi(vp2,_Wpixmapon,_Wdrawoff,_Wsave,_Wbhue,"white")
 
-    sWi(vp2,@clip,0.1,0.2,0.9,0.9)
+    sWi(vp2,_Wclip,0.1,0.2,0.9,0.9)
 
-     vp3 = CWi("title","Buttons3")  
+     vp3 = cWi("Buttons3")  
 
-    sWi(vp3,@pixmapon,@drawon,@save,@bhue,"white")
+    sWi(vp3,_Wpixmapon,_Wdrawon,_Wsave,_Wbhue,"white")
 
-    sWi(vp3,@clip,0.1,0.2,0.9,0.9)
+    sWi(vp3,_Wclip,0.1,0.2,0.9,0.9)
 
 <<"%V$vp3 \n"
 
@@ -75,17 +74,17 @@ Graphic = checkGWM()
 //       wrctile( {txtwin,vp,vp2,vp3}, 0.05,0.05,0.95,0.95, 2, 2,-1,0) // tile windows in 2,2 matrix on  screen zero
        wrctile( fswins, 0.05,0.05,0.95,0.95, 2, 2,-1,2) // tile windows in 2,2 matrix on  current screen 
 
-//       sWi({txtwin,vp,vp2,vp3}, @redraw)
+//       sWi({txtwin,vp,vp2,vp3}, _Wredraw)
 
-       sWi(fswins, @redraw @save)
-
-
-       vp4 = cWi(@title,"Buttons4")
-       sWi(vp4,@resize,0.1,0.1,0.8,0.8,1) on screen 1
-
+       sWi(fswins, _Wredraw _Wsave)
+       vp4= -1;
+       //? puts this on screen 1?
+      // vp4 = cWi("Buttons4")
+      // sWi(vp4,_Wresize,0.1,0.1,0.8,0.8,1)// on screen 1
+     //<<"%V$vp4 \n"
 //       wrctile(vp1, 0.05,0.05,0.95,0.95, 1, 1,1,0) 
 
-<<"%V$vp4 \n"
+
 
 //////// Wob //////////////////
 
@@ -98,40 +97,41 @@ Graphic = checkGWM()
  bY = 0.95
  by = bY - yht
 
- two=cWo(txtwin,@TEXT,@name,"Text",@VALUE,"howdy",@color,ORANGE_,@resize_fr,0.1,0.1,0.9,0.9)
+ two=cWo(txtwin,WO_TEXT_,_Wname,"Text",_WVALUE,"howdy",_Wcolor,ORANGE_,_Wresize_fr,0.1,0.1,0.9,0.9,_WEO)
 
- sWo(two,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black",@pixmapoff,@redraw)
- sWo(two,@SCALES,-1,-1,1,1)
- sWo(two,@help," Mouse & Key Info ")
+ sWo(two,_WBORDER,_WDRAWON,_WCLIPBORDER,_WFONTHUE,"black",_Wpixmapoff,_Wredraw)
+ sWo(two,_WSCALES,-1,-1,1,1,_WEO)
+ sWo(two,_Whelp," Mouse & Key Info ",_WEO)
 
- gwo=cWo(vp,@BV,@name,"ColorTeal",@color,GREEN_,@resize,bx,by,bX,bY)
+ gwo=cWo(vp,WO_BV_,_Wname,"ColorTeal",_Wcolor,GREEN_,_Wresize,bx,by,bX,bY,_WEO)
  
- sWo(gwo,@border,@drawon,@clipborder,@fonthue,RED_,@VALUE,"color is teal",@STYLE,SVB_)
- sWo(gwo,@bhue,TEAL_,@clipbhue,"skyblue",@redraw )
+ sWo(gwo,_Wborder,_Wdrawon,_Wclipborder,_Wfonthue,RED_,_WVALUE,"color is teal",_WSTYLE,SVB_)
+ sWo(gwo,_Wbhue,TEAL_,_Wclipbhue,"skyblue",_Wredraw )
 
  bY = by - ypad
  by = bY - yht
  
 
 
- hwo=cWo(vp,@ONOFF,@name,"ENGINE",@VALUE,"ON",@color,RED_,@resize,bx,by,bX,bY)
+ hwo=cWo(vp,WO_ONOFF_,_Wname,"ENGINE",_WVALUE,"ON",_Wcolor,RED_,_Wresize,bx,by,bX,bY,_WEO)
 
- sWo(hwo,@BORDER,@DRAWON,@CLIPBORDER,@fonthue,WHITE_, @STYLE,SVR_)
- sWo(hwo,@fhue,LILAC_,@bhue,BLUE_,@clipbhue,MAGENTA_);
+ sWo(hwo,_Wborder,_Wdrawon,_Wclipborder,_Wfonthue,WHITE_, _WSTYLE,SVR_)
+ sWo(hwo,_Wfhue,LILAC_,_Wbhue,BLUE_,_Wclipbhue,MAGENTA_);
 
 
  // GetValue after entering text
- gvwo=cWo(vp,@BV,@name,"GMYVAL",@VALUE,0,@color,GREEN_,@resize,0.5,by,0.9,bY)
- sWo(gvwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,BLACK_, @STYLE,SVR_)
- sWo(gvwo,@bhue,"white",@clipbhue,"red",@FUNC,"inputValue",@MESSAGE,1)
+ gvwo=cWo(vp,WO_BV_,_Wname,"GMYVAL",_WVALUE,0,_Wcolor,GREEN_,_Wresize,0.5,by,0.9,bY,_WEO)
+ 
+ sWo(gvwo,_WBORDER,_WDRAWON,_WCLIPBORDER,_WFONTHUE,BLACK_, _WSTYLE,SVR_)
+ sWo(gvwo,_Wbhue,WHITE_,_Wclipbhue,RED_,_Wfunc,"inputValue",_Wmessage,1,_WEO)
 
 
  bY = by - ypad
  by = bY - yht
 
- lwo=cWo(vp,@ONOFF,@name,"PLAY",@VALUE,"ON",@color,RED_,@resize,bx,by,bX*0.5,bY)
- sWo(lwo,@border,@drawon,@clipborder,@fonthue,WHITE_, @style,SVB_, @redraw)
- sWo(lwo,@fhue,TEAL_,@clipbhue,PINK_)
+ lwo=cWo(vp,WO_ONOFF_,_Wname,"PLAY",_WVALUE,"ON",_Wcolor,RED_,_Wresize,bx,by,bX*0.5,bY,_WEO)
+ sWo(lwo,_Wborder,_Wdrawon,_Wclipborder,_Wfonthue,WHITE_, _Wstyle,SVB_, _Wredraw)
+ sWo(lwo,_Wfhue,TEAL_,_Wclipbhue,PINK_)
 
 
 <<"%V$two $hwo $gwo $gvwo $lwo\n"
@@ -139,32 +139,33 @@ Graphic = checkGWM()
  bY = 0.95
  by = bY - yht
 
- rwo=cWo(vp2,@BS,@name,"FRUIT",@color,"yellow",@resize,bx,by,bX,bY)
- sWo(rwo,@CSV,"mango,cherry,apple,banana,orange,Peach,pear")
+ rwo=cWo(vp2,WO_BS_,_Wname,"FRUIT",_Wcolor,YELLOW_,_Wresize,bx,by,bX,bY,_WEO)
+ sWo(rwo,_WCSV,"mango,cherry,apple,banana,orange,Peach,pear",_WEO);
 
- sWo(rwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@STYLE,SVR_, @redraw )
- sWo(rwo,@fhue,"orange",@clipbhue,"steelblue")
+ sWo(rwo,_WBORDER,_WDRAWON,_WCLIPBORDER,_WFONTHUE,"red",_WSTYLE,SVR_, _Wredraw )
+ sWo(rwo,_Wfhue,"orange",_Wclipbhue,"steelblue")
 
- boatwo=cWo(vp3,@BS,@name,"BOATS",@color,"yellow",@resize_fr,bx,by,bX,bY)
- sWo(boatwo,@CSV,"sloop,yacht,catamaran,cruiser,trawler,ketch")
- sWo(boatwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red",@STYLE,SVR_, @redraw)
- sWo(boatwo,@help," click to choose a boat ")
+ boatwo=cWo(vp3,WO_BS_,_Wname,"BOATS",_Wcolor,YELLOW_,_Wresize_fr,bx,by,bX,bY,_WEO);
+ sWo(boatwo,_WCSV,"sloop,yacht,catamaran,cruiser,trawler,ketch",_WEO);
+ sWo(boatwo,_WBORDER,_WDRAWON,_WCLIPBORDER,_WFONTHUE,RED_,_WSTYLE,SVR_, _Wredraw,_WEO);
+ sWo(boatwo,_Whelp," click to choose a boat ",_WEO);
+
  bY = by - ypad
  by = bY - yht
 
 <<"%V$boatwo \n"
 
- bsketchwo=cWo(vp3,@GRAPH,@name,"sketch",@color,"yellow",@resize,bx,0.1,0.9,bY)
- sWo(bsketchwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"red", @redraw )
- sWo(bsketchwo,@clip,0.1,0.15,0.95,0.85,@bhue,"lime")
- sWo(bsketchwo,@SCALES,-1,-1,1,1)
+ bsketchwo=cWo(vp3,WO_GRAPH_,_Wname,"sketch",_Wcolor,YELLOW_,_Wresize,bx,0.1,0.9,bY,_WEO)
+ sWo(bsketchwo,_WBORDER,_WDRAWON,_WCLIPBORDER,_WFONTHUE,"red", _Wredraw )
+ sWo(bsketchwo,_Wclip,0.1,0.15,0.95,0.85,_Wbhue,CYAN_)
+ sWo(bsketchwo,_WSCALES,-1,-1,1,1,_WEO)
 
 <<"%V$bsketchwo \n"
 
 
- grwo=cWo(vp2,@GRAPH,@name,"pic",@color,YELLOW_,@resize,bx,by,bX,bY)
- sWo(grwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,RED_, @redraw )
- sWo(grwo,@SCALES,0,0,1,1)
+ grwo=cWo(vp2,WO_GRAPH_,_Wname,"pic",_Wcolor,YELLOW_,_Wresize,bx,by,bX,bY,_WEO)
+ sWo(grwo,_WBORDER,_WDRAWON,_WCLIPBORDER,_WFONTHUE,RED_, _Wredraw )
+ sWo(grwo,_WSCALES,0,0,1,1,_WEO)
 
 <<"%V$grwo \n"
 
@@ -172,10 +173,10 @@ Graphic = checkGWM()
  by = bY - yht
 
 
- qwo=cWo(vp2,@BN,@name,"QUIT",@VALUE,"QUIT",@color,MAGENTA_,@resize_fr,bx,by,bX,bY)
- sWo(qwo,@help," click to quit")
- sWo(qwo,@BORDER ,@DRAWON ,@CLIPBORDER, @FONTHUE,BLUE_, @redraw ,@DRAWON)
- //sWo(qwo,@BORDER,@DRAWON,@CLIPBORDER ,@FONTHUE,"black", "redraw")
+ qwo=cWo(vp2,WO_BN_,_Wname,"QUIT",_WVALUE,"QUIT",_Wcolor,MAGENTA_,_Wresize_fr,bx,by,bX,bY,_WEO)
+ sWo(qwo,_Whelp," click to quit",_WEO)
+ sWo(qwo,_WBORDER ,_WDRAWON ,_WCLIPBORDER, _WFONTHUE,BLUE_, _Wredraw ,_WDRAWON)
+ //sWo(qwo,_WBORDER,_WDRAWON,_WCLIPBORDER ,_WFONTHUE,"black", "redraw")
 
 <<"%V$qwo \n"
 
@@ -186,18 +187,18 @@ include "tbqrd";
 
 titleButtonsQRD(vp);
 
- sWi(vp,@redraw)
- sWi(vp2,@redraw)
- sWi(vp3,@woredrawall)
- sWi(txtwin,@woredrawall)
+ sWi(vp,_Wredraw)
+ sWi(vp2,_Wredraw)
+ sWi(vp3,_Wworedrawall)
+ sWi(txtwin,_Wworedrawall)
 
  int allwins[] = {vp,vp2,vp3,txtwin};
  
- //omy = sWi( {vp,vp2,vp3,txtwin} ,@woredrawall)
+ //omy = sWi( {vp,vp2,vp3,txtwin} ,_Wworedrawall)
 // BUG anonymous array as func argument
-// sWi( {vp,vp2,vp3,txtwin} ,@woredrawall)
+// sWi( {vp,vp2,vp3,txtwin} ,_Wworedrawall)
 
-sWi( allwins ,@woredrawall)
+sWi( allwins ,_Wworedrawall)
 
 //  now loop wait for message  and print
 
@@ -216,16 +217,16 @@ sWi( allwins ,@woredrawall)
    for (ry  = 0 ; ry < 1.0; ry += 0.1) 
    plotline(vp2,0,ry,1,ry,"red")
 
-   setGwindow(vp2,@save)
+   setGwindow(vp2,_Wsave)
 
-   setGwindow(vp4,@pixmapon,@redraw)
+   setGwindow(vp4,_Wpixmapon,_Wredraw)
    plotline(vp4,0,0,1,1,"blue")
    plotline(vp4,0,1,1,0,"red")
    plotline(vp4,0.5,0,0.5,1,"green")
 
-   setGwindow(vp2,@clipborder,"red")
-   setGwindow(vp3,@clipborder,"blue")
-   setGwindow(vp4,@save)
+   setGwindow(vp2,_Wclipborder,"red")
+   setGwindow(vp3,_Wclipborder,"blue")
+   setGwindow(vp4,_Wsave)
 */
 
 
@@ -236,43 +237,43 @@ proc processKeys()
 
        case 'R':
        {
-       sWo(symwo,@move,0,2,@redraw)
-       sWo(two,@textr,"R RMOVE 2 ",0.1,0.2)
+       sWo(symwo,_Wmove,0,2,_Wredraw)
+       sWo(two,_Wtextr,"R RMOVE 2 ",0.1,0.2)
        }
        break;
 
        case 'T':
        {
-       sWo(symwo,@move,0,-2,@redraw)
-       sWo(two,@textr,"T RMOVE -2 ",0.1,0.2)
+       sWo(symwo,_Wmove,0,-2,_Wredraw)
+       sWo(two,_Wtextr,"T RMOVE -2 ",0.1,0.2)
        }
        break;
 
        case 'Q':
        {
-       sWo(symwo,@move,-2,0,@redraw)
-       sWo(two,@textr,"Q RMOVE -2 ",0.1,0.2)
+       sWo(symwo,_Wmove,-2,0,_Wredraw)
+       sWo(two,_Wtextr,"Q RMOVE -2 ",0.1,0.2)
        }
        break;
 
        case 'S':
        {
-       sWo(symwo,@move,2,0,@redraw)
-       sWo(two,@textr,"S RMOVE 2 ",0.1,0.2)
+       sWo(symwo,_Wmove,2,0,_Wredraw)
+       sWo(two,_Wtextr,"S RMOVE 2 ",0.1,0.2)
        }
        break;
 
        case 'h':
        {
-       sWo(symwo,@hide)
-       setgwindow(vp2,@redraw)
+       sWo(symwo,_Whide)
+       setgwindow(vp2,_Wredraw)
        }
        break;
 
        case 's':
        {
-       sWo(symwo,@show)
-       setgwindow(vp2,@redraw)
+       sWo(symwo,_Wshow)
+       setgwindow(vp2,_Wredraw)
        }
        break;
 
@@ -284,13 +285,13 @@ proc processKeys()
 
 void do_sketch()
 {
-   sWo(bsketchwo,@clear,@clearclip,@clipborder,@plotline,0.1,0.1,0.8,yp,"red")
-   sWo(bsketchwo,@plotline,0.1,yp,0.8,0.1,"blue")
+   sWo(bsketchwo,_Wclear,_Wclearclip,_Wclipborder,_Wplotline,0.1,0.1,0.8,yp,RED_,_WEO)
+   sWo(bsketchwo,_Wplotline,0.1,yp,0.8,0.1,"blue")
    axnum(bsketchwo,1)
    axnum(bsketchwo,2)
 
-   sWo(grwo,@clearclip,@clipborder,@plotline,xp,0.1,0.5,0.5,"green")
-   sWo(grwo,@plotline,xp,0.5,0.5,0.1,"black")
+   sWo(grwo,_Wclearclip,_Wclipborder,_Wplotline,xp,0.1,0.5,0.5,GREEN_,_WEO)
+   sWo(grwo,_Wplotline,xp,0.5,0.5,0.1,"black")
 
    xp += 0.05
    yp += 0.05
@@ -344,18 +345,18 @@ void tb_q()
 #include "gevent" ;   // our Gevent variable - holds last message
                             // could use another or an array to compare events
 
-sWi( allwins ,@redraw)
+sWi( allwins ,_Wredraw)
 
    while (1) {
 
       eventWait();
 
-      if (_ekeyw @= "EXIT_ON_WIN_INTRP") {
+      if (_ekeyw _W= "EXIT_ON_WIN_INTRP") {
 <<"have win interup -- exiting!\n"
       break;
       }
 
-      sWo(two,@texthue,"black",@clear,@textr,"$_ekeyw",-0.9,0)
+      sWo(two,_Wtexthue,BLACK_,_Wclear,_Wtextr,"$_ekeyw",-0.9,0,_WEO)
 /*
       if (_ename == "PRESS") {
 	    <<"%V $_ewoname \n";

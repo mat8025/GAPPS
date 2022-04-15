@@ -201,20 +201,13 @@ int i = 0;
        i = 0
    }
 
-/{
-  goon= iread("Enter to go on--->");
-  <<"you typed $goon $(typeof(goon))\n"
-  
-    if (goon @= "q") {
-     exitgs()
-    }
-/}
+
 
   }
 //==========================================
 
 
 
-STOP!
+
 
 

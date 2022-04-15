@@ -126,7 +126,8 @@ float AVE_EXTV[400]
 float EXEBURN[400]
 float CALBURN[400]
 float CARDIO[400]
-float STRENGTH[400]
+
+float XSTRENGTH[400]
 
 
 
@@ -202,13 +203,27 @@ svar rx;
 Record RX[1];
 
 //RX=readrecord(A,@del,-1)
-RX.readrecord(A,@del,-1)
-//cf(A);
+
+ //Nrecs =RX.readrecord(A,_DEL,-1)
+ Nrecs =RX.readrecord(A)
+
+<<"%V $Nrecs $RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n"
+
 RX.pinfo();
+
+ans=query("see rec proceed?");
+
+  if (ans == "n") {
+     exit(-1);
+   }
+
+
+//cf(A);
+
 //!a
 Nrecs = Caz(RX);
 
-<<"%V $Nrecs $RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n"
+
 
 <<[_DB]"$RX[Nrecs-2]\n"
  rx= RX[Nrecs-1]
@@ -221,6 +236,8 @@ lastRX = RX[Nrecs-1]
   <<"%V$lastRX\n"
 //!a
 //lastRX->pinfo();
+
+
 
 chkT(1)
 
@@ -396,9 +413,9 @@ int button = 0
    lcpx = sc_startday
    rcpx = sc_endday
 
-   sGl(lc_gl,@cursor,lcpx,0,lcpx,300)
+   sGl(lc_gl,_GLCURSOR,lcpx,0,lcpx,300)
 
-   sGl(rc_gl,@cursor,rcpx,0,rcpx,300)
+   sGl(rc_gl,_GLCURSOR,rcpx,0,rcpx,300)
 
 
 
@@ -415,9 +432,6 @@ showTarget();
 
 _DB=-1;
 
-
-
-
    
 
 <<"%V $_eloop\n"
@@ -426,16 +440,16 @@ _DB=-1;
 //ans=query("proceed?")
  resize_screen()
 
- sWo(tw_wo,@move,targetday,NextGoalWt,gwo,@redraw));
+ sWo(tw_wo,_Wmove,targetday,NextGoalWt,gwo,_Wredraw));
 
- sWi(vp,@redraw);
+ sWi(vp,_Wredraw);
  
       drawScreens();
 //ans=query("%V$last_known_day")
 
     getDay(last_known_day);
 
-   CR_init = 1; sGl(rc_gl,@cursor,last_known_day,0,last_known_day,300, CR_init); CR_init = 0;
+   CR_init = 1; sGl(rc_gl,_GLCURSOR,last_known_day,0,last_known_day,300, CR_init); CR_init = 0;
 	 
 //mc=getMouseEvent();
 
@@ -461,6 +475,7 @@ while (1) {
        }
 */
         msg =eventWait();
+	
 //<<[2]"$m_num $msg  $_ename $_ewoname\n"
 
 //_ekeyw.pinfo();
@@ -485,13 +500,12 @@ while (1) {
 
 
        if (_ewoname == "WTLB") {
-
                WTLB();
        }
        
        else if (_ewoname == "RESIZE") {
-         drawScreens();
-      }
+             drawScreens();
+       }
 
       else if (_ewoname == "REDRAW") {
          drawScreens();

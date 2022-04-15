@@ -95,7 +95,7 @@ void WTLB()
        if (_ebutton == 1) {
          lcpx = _erx;
 	<<"%V $lcpx\n"
-         sGl(lc_gl,@cursor,lcpx,0,lcpx,300, CL_init)
+         sGl(lc_gl,_GLCURSOR,lcpx,0,lcpx,300, CL_init)
 	 CL_init = 0;
          getDay(lcpx);
 
@@ -104,7 +104,7 @@ void WTLB()
        if (_ebutton == 3) {
          rcpx = _erx
 	<<"%V $rcpx\n"	 
-         sGl(rc_gl,@cursor,rcpx,0,rcpx,300, CR_init)
+         sGl(rc_gl,_GLCURSOR,rcpx,0,rcpx,300, CR_init)
          CR_init = 0;
          getDay(rcpx);
        }
@@ -125,6 +125,7 @@ void setGoals()
    sgday = getWoValue(gdwo)
 
    long lsday =julian(ssday) -bday // start date
+   
    targetday = julian(sgday) -bday;
 
 
@@ -133,13 +134,13 @@ void setGoals()
  //  sGl(gw_gl,@TXY,WDVEC,GVEC,@color,RED_)
 
    drawScreens();
-   sWo(tw_wo,@moveto,targetday,NextGoalWt,gwo,@redraw);
+   sWo(tw_wo,_Wmoveto,targetday,NextGoalWt,gwo,_Wredraw);
 }
 
 void setCursors()
 {
-        sGl(lc_gl,@cursor,lcpx,0,lcpx,300)
-         sGl(rc_gl,@cursor,rcpx,0,rcpx,300)
+        sGl(lc_gl,_GLCURSOR,lcpx,0,lcpx,300)
+         sGl(rc_gl,_GLCURSOR,rcpx,0,rcpx,300)
 
 }
 
@@ -162,7 +163,7 @@ void RESIZE()
 //-------------------------------------------
 void SWITCHSCREEN()
 {
-  if (_ename @= "SWITCHSCREEN") { 
+  if (_ename == "SWITCHSCREEN") { 
      wScreen = atoi(_ewords[1])
     <<[_DB]"Setting %V$wScreen msgw[1]\n"
       drawScreens()

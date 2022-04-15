@@ -88,8 +88,8 @@ int k = Yday-2; //
       <<"$i $k  $WTVEC[k] $xv[i] $yv[i]\n"; // TBF
        k++;
    }
-//   <<"%V $xv\n"
-//   <<"%V $yv\n"
+  <<"%V $xv\n"
+   <<"%V $yv\n"
    
    pwl = Lfit(xv,yv,3);
    <<"pwl $pwl \n"

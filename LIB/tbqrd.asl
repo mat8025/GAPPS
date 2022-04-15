@@ -33,11 +33,11 @@ void  titleButtonsQRD(int v)
 {
 
 //////////////////////////////// TITLE BUTTON QUIT RESIZE REDRAW ////////////////////////////////////////////////
- tq=cWo(v,_TBS,_name,"tbq",_value,"QUIT",_func,"window_term",_resize,0.97,0,0.99,1,_symbol,X_,_flush);
+ tq=cWo(v,WO_TB_,_name,"tbq",_value,"QUIT",_func,"window_term",_resize,0.97,0,0.99,1,_symbol,X_,_flush);
  
- tr=cWo(v,_TBS,_name,"tbr",_value,"RESIZE",_func,"window_resize",_resize,0.94,0,0.96,1,_symbol,CROSS_,_flush);
+ tr=cWo(v,WO_TB_,_name,"tbr",_value,"RESIZE",_func,"window_resize",_resize,0.94,0,0.96,1,_symbol,CROSS_,_flush);
  
- td=cWo(v,_TBS,_name,"tbd",_value,"REDRAW",_func,"window_redraw",_resize,0.91,0,0.93,1,_symbol,DIAMOND_,_flush);
+ td=cWo(v,WO_TB_,_name,"tbd",_value,"REDRAW",_func,"window_redraw",_resize,0.91,0,0.93,1,_symbol,DIAMOND_,_flush);
 
  tbqrd_tv = cWo(v,_TBV,_name,"tbv",_value,"VERS",_style,SVO_,_resize,0.2,0,0.50,1,_flush);
 <<[_DB]"SET %V $tbqrd_tv \n"
