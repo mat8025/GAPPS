@@ -67,18 +67,18 @@
 
  bp_gl   = cGl(swo,_GLTXY,DVEC,BPVEC,_GLcolor,RED_,_GLSYMBOL,_GLname,"benchpress")
 
-
-
 if ( gw_gl == -1 || bp_gl == -1) {
    exit_si()
  }
 
 
- calb_gl = cGl(calwo,_GLTXY,DVEC,CALBURN,_GLHUE,RED_,_GLSYMBOL,DIAMOND_,_GLsymhue, RED_,_GLEO);
-
+ calb_gl = cGl(calwo)
+ sGl(calb_gl,_GLTXY,DVEC,CALBURN,_GLHUE,RED_,_GLSYMBOL,DIAMOND_,_GLSYMHUE, RED_,_GLEO);
+// sGl(calb_gl,_GLTXY,&DVEC,&CALBURN,_GLHUE,RED_,_GLSYMBOL,DIAMOND_,_GLSYMHUE, RED_,_GLEO);
 // calc_gl = cGl(calwo,_GLTXY,DFVEC,CALCON,_GLHUE,RED_,_GSYMBOL,"triangle",_GLsymhue, BLUE_,_GLEO);
 
- calc_gl = cGl(calwo,_GLTXY,DVEC,CALSCON,_GLHUE,RED_,_GLSYMBOL,STAR_,_GLsymhue, RED_,_GLEO);
+ calc_gl = cGl(calwo)
+ sGl(calc_gl,_GLTXY,DVEC,CALSCON,_GLHUE,RED_,_GLSYMBOL,STAR_,_GLsymhue, RED_,_GLEO);
 
  carb_gl = cGl(carbwo,_GLTXY,DVEC,CARBSCON,_GLHUE,BLUE_,_GLSYMBOL,TRI_,_GLsymhue, BROWN_,_GLEO);
 
@@ -101,7 +101,7 @@ if ( gw_gl == -1 || bp_gl == -1) {
 
 //<<[_DB]"%V$allgl \n"
 
-  sGl(allgl,_GLmissing,0,_GLsymbol,"diamond",5)
+  sGl(allgl,_GLMISSING,0,_GLSYMBOL,DIAMOND_,_GLEO)
 
   Symsz= 5.0;
   

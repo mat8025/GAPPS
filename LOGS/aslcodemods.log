@@ -1139,3 +1139,5 @@ sstr.cpp                            1.8  03/29/2022 21:46:30  range copy
 vec_ops.cpp                         1.7  03/31/2022 10:29:01  regex
 gline_p.cpp                         1.77  04/10/2022 07:59:16  autoscale
 gline_p.cpp                         1.78  04/12/2022 12:14:58  SVEC_V/VEC_V
+ic_pushrec.cpp                      1.10  04/15/2022 20:39:41  re-init stack var for use to push record row
+rdrec.cpp                           1.83  04/15/2022 20:43:19  realloc before store if needed

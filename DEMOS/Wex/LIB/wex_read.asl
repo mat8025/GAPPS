@@ -138,7 +138,7 @@ void readData()
 
   day = col[0];
 
-//<<"%V $day $Nrecs\n"
+<<"%V $day $Nrecs\n"
 
 // data has already been read into Record array RX
  // RX->info(1)
@@ -152,7 +152,7 @@ void readData()
 
       col= RX[tl];
 
- //<<"<$tl> $RX[tl]\n"
+ <<"<$tl> $RX[tl]\n"
 
     day = col[0];
  //   day->info(1);
@@ -230,49 +230,65 @@ void readCCData()
 
   tl = 0;
 
-//svar ccol;
+Svar ccol;
 
+Str day = "x/y/z";
 
   while (tl < NCCrecs) {
 
 
-    //ccol = RCC[tl];
+    ccol = RCC[tl];
+    
+<<"$ccol\n"
+<<"$RCC[tl]\n"
 
-//<<[_DB]"$RCC[tl]\n"
+<<"%V $ccol[1] $ccol[2] $ccol[3] $ccol[4]\n"
 //<<[_DB]"$tl  $NCCobs $NCCrecs\n"
 
-    //day = ccol[0];
+    day = ccol[0];
 
-    day = RCC[tl][0];
-//<<"%V $day\n"
+    //day = RCC[tl][0];
+
+    <<"%V $tl $day\n"
+
     jday = julian(day) 
+
+<<"%V $jday\n"
 
     Yd = jday - Jan1;  // so 0 - 364
 
+
+<<"%V $Yd\n"
+   if (Yd <0) Yd = 0;
+
     lday = Yd;
    
+!z
 
-
-  cals = atof(RCC[tl][6]);
+ // cals = atof(RCC[tl][6]);
+  cals = atof(ccol[6]);
   
   CALSCON[Yd] = cals;
+
+
   ccals =  CALSCON[Yd];
   
 //<<"calscon $Yd   $CALSCON[Yd]  cals <|$cals|>  ccals $ccals \n"
 
-  carbs = atof(RCC[tl][3]);
+  //carbs = atof(RCC[tl][3]);
+  carbs = atof(ccol[3]);
 
   CARBSCON[Yd] = carbs;
 
-  fat = atof(RCC[tl][2]);
+  fat = atof(ccol[2]);
   FATCON[Yd] = fat;
 
-  prot = atof(RCC[tl][5]);  
+  prot = atof(ccol[5]);  
   PROTCON[Yd] = prot;
 
-  fiber = atof(RCC[tl][4]);  
+  fiber = atof(ccol[4]);  
   FIBRCON[Yd] = fiber;   
-
+//<<"%V $ccol[1] $ccol[2] $ccol[3] $ccol[4]\n"
 //<<"%V $day $cals $carbs $fat $prot $fiber\n"
 
    NCCobs++;     

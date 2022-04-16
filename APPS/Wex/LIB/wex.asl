@@ -71,8 +71,7 @@ class Svar;
   
   Vec<double> Vtst(10,10,1);
 
-   Vec<float> DVEC(400,1,1);
-
+  Vec<float> DVEC(400,1,1);
 
   Vec<float> DFVEC(400);
 

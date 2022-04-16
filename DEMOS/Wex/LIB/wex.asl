@@ -200,22 +200,32 @@ if (A == -1) {
 svar rx;
 //rx->pinfo()
 
-Record RX[1];
+Record RX[400];
 
 //RX=readrecord(A,@del,-1)
 
  //Nrecs =RX.readrecord(A,_DEL,-1)
- Nrecs =RX.readrecord(A)
+ RX.readrecord(A)
+ Nrecs = Caz(RX);
 
-<<"%V $Nrecs $RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n"
+<<"%V $Nrecs $RX[0] \n\n"
+  <<"%V $RX[1] \n"
+  <<"%V $RX[2] \n"
+  <<"%V $RX[3] \n"  
+    <<"%V $RX[4] \n"  
+
 
 RX.pinfo();
 
-ans=query("see rec proceed?");
+for (i=0; i < Nrecs ;i++) {
+<<"$RX[i] \n"
+  }
 
-  if (ans == "n") {
-     exit(-1);
-   }
+
+//ans=query("see rec proceed?");
+//  if (ans == "n") {
+//     exit(-1);
+//   }
 
 
 //cf(A);
@@ -255,7 +265,7 @@ chkT(1)
 
 ACC=ofr("DAT/cc2022.tsv")
 
-Record RCC[1]; // TBC has to be at least 1
+Record RCC[400]; // TBC has to be at least 1
 
 NCCrecs = 0;
 if (ACC == -1) {
@@ -271,13 +281,26 @@ else {
   NCCrecs = Caz(RCC);
   //NCCrecs->info(1)
   <<"%V $NCCrecs \n"
-/*
- for (i=0; i < NCCrecs ;i++) {
-  <<[_DB]"$RCC[i] \n"
+  <<"%V $RCC[0] \n"
+  <<"%V $RCC[1] \n"
+  <<"%V $RCC[2] \n"
+  <<"%V $RCC[3] \n"  
+    <<"%V $RCC[4] \n"  
+
+  i = NCCrecs-1;
+
+  <<"%V $i $RCC[i] \n"  
+
+for (i=2; i < NCCrecs ;i++) {
+<<"$RCC[i] \n"
   }
-*/
-<<[_DB]"/////////\n"
+
+
+<<"/////////\n"
 }
+
+
+
 ////////////////// READ CEX DATA ///////////////////
 
 
@@ -285,12 +308,11 @@ else {
 #include "wex_read"
 
 
-readCCData();
-
-
 nrd=readData();
-//<<"%V$nrd\n"
 
+<<"%V$nrd\n"
+
+readCCData();
 
 
 

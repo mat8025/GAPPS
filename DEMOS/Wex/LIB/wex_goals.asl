@@ -18,11 +18,11 @@
 
 // days will days of year not Julian
 
-   Goals = Split("01/01/2022 03/31/2022 175");
+   Goals = Split("04/01/2022 05/22/2022 175");
 
 <<"Setting goals $Goals\n"
 
-   Goals2 = Split("02/01/2022 02/14/2022 194");
+   Goals2 = Split("04/14/2022 04/30/2022 197");
 ////////////////////==============/////////////////
 
 float   GoalWt = 175;  // ideal -- flying weight
