@@ -72,9 +72,18 @@
   
   
   sWo(gwo,_scales, sx, sy, sX, sY,  _save,_redraw,_drawon,_pixmapon,_clipbhue,GREEN_,_EO);
+
+sWo(gwo,_WSAVEPIXMAP,_WFLUSH);
+    sWo(gwo,_WAXNUM,2,_WFLUSH);
+   sWo(gwo,_WAXNUM,1,_WFLUSH);
   
-  sWo(gwo,_savepixmap);
-  
+
+
+
+  sWo(gwo,_WSHOWPIXMAP);
+
+
+
   
 ////////////////////////////// GLINE ////////////////////////////////////////
   
@@ -162,7 +171,7 @@
   sGl(xn_gl,_GLHUE,RED_,_GLEO);
   
   sWo(gwo,_clearpixmap,_clipborder);
-  ans=query("listo?:");
+  //ans=query("listo?:");
   
   while (1) {
     
@@ -207,8 +216,9 @@
     
     
     i++;
-    if (i > 2000) {
+    if (i > 200) {
       i = 0;
+      break;
       }
     
   //  getMouseClick()
@@ -222,7 +232,24 @@
     }
 //=====================================//
 
+   sWi(vp,_WCLEAR,ORANGE_,_WSAVEPIXMAP,_WEO);
+  sWi(vp,_WSHOWPIXMAP,_WEO);
+
+quit=query("quit");
+
+   sWo(gwo,_WCLEARCLIP,WHITE_,_WSAVEPIXMAP,_WFLUSH);
+   sWo(gwo,_WAXNUM,2,_WFLUSH);
+   sWo(gwo,_WAXNUM,1,_WFLUSH);
+  
+
+
+
+  sWo(gwo,_WSHOWPIXMAP);
+
 <<"out of loop - trying to quit!\n"
 
-exitgs();
+
+//exitgs();
+quit=query("quit");
+
 exit();

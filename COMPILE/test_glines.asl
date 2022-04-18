@@ -100,6 +100,8 @@ ignoreErrors();
   sWo(gwo,_WSAVE,_WREDRAW,_WDRAWOFF,_WPIXMAPON,_WCLIPBHUE,GREEN_,_WFLUSH);
   sWo(gwo,_WSCALES,vscale,_WFLUSH);
   sWo(gwo,_WSAVEPIXMAP,_WFLUSH);
+    sWo(gwo,_WAXNUM,2,_WFLUSH);
+   sWo(gwo,_WAXNUM,1,_WFLUSH);
   
 
 
@@ -427,13 +429,15 @@ ans=query("see Zvec");
 //  if (ans == "n") {
 //      break;
 //    }
-    if (kk++ > 200)
+    if (kk++ > 1000)
        break;
    // xsleep(0.1);
 }
 
 
-
+   sWo(gwo,_WAXNUM,2,_WFLUSH);
+   sWo(gwo,_WAXNUM,1,_WFLUSH);
+   sWo(gwo,_WSHOWPIXMAP,_WFLUSH);  
 //ans=query("see window?");
 
 /// create a window obj
