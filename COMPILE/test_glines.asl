@@ -14,12 +14,16 @@
 
 ///
 ///  
-///
-
+/// -- use asl option to run asl 
+/// -- else use make uac to recompile
 
 #define ASL 0
 #define CPP 1
 
+
+#if ASL
+#define COUT //
+#endif
 //#define cdbp //
 
 #if CPP
@@ -28,7 +32,6 @@
 #include "vec.h"
 #include "gevent.h"
 
-
 void
 Uac::glineWorld(Svarg * sarg)  
 {
@@ -36,7 +39,7 @@ Uac::glineWorld(Svarg * sarg)
 #endif
 
 #if ASL
-<<"%V $s %s $cv\n";
+<<"%V running as ASL\n";
 #endif
 
 /// launch xgs
@@ -55,7 +58,9 @@ ignoreErrors();
 /// create a window
   int vp = cWi("PLOT_STUFF");
     //SetGwindow(vp,@pixmapon,@drawon,@save,@bhue,"white")
-     cout << "vp " << vp << endl;
+
+//cout << "vp " << vp << endl;
+     
      float x0= 0.1;
      float y0 =0.1;
      float x1 = 0.5;
@@ -67,10 +72,10 @@ ignoreErrors();
 
 //   int vok= sWi(vp,WRESIZE,0.1,0.2,0.5,0.5,-1,WHUE,YELLOW_,WPIXMAPDRAWON,WDRAWON,WREDRAW);
 
-   int vok= sWi(vp,_WTITLE,"PLOT_OBJECTS",_WRESIZE,rsz,_WHUE,YELLOW,_WBHUE,WHITE_,
+   int vok= sWi(vp,_WTITLE,"PLOT_OBJECTS",_WRESIZE,rsz,_WHUE,YELLOW_,_WBHUE,WHITE_,\
                    _WPIXMAPON,_WDRAWON,_WCLEAR,_WREDRAW,_WEO);
 
-   cout << "vok " << vok << endl;
+//cout << "vok " << vok << endl;
 
 
 
@@ -80,8 +85,9 @@ ignoreErrors();
       vok =sWi(vp,_WHUE,MAGENTA_,_WRESIZE,rsz,_WREDRAW,_WEO);
 
 
-  int gwo= cWo(vp,WO_GRAPH);
+  int gwo= cWo(vp,WO_GRAPH_);
   float worsz[6] = {0.1,0.1,0.9,0.9,0.0};
+  
   sWo(gwo,_WRESIZE,worsz,_WFLUSH);
 
 
@@ -119,23 +125,26 @@ COUT(Xvec)
   
   
   Vec<float> Rnvec(N);
+  
   Rnvec.setName("Rnvec");
 
-    if (Rnvec.getType() != FLOAT) {
+    if (Rnvec.getType() != FLOAT_) {
     cout<<"Rnvec wrong type " << Rnvec.getName()  << " " << Rnvec.Dtype() << endl;
     }
+
+
     COUT(Rnvec)
 
 //   ans=query("see Rnvec?");
   
   
   Rnvec.addGrand(0); // fill with gaussian random numbers
-    if (Rnvec.getType() != FLOAT) {
+    if (Rnvec.getType() != FLOAT_) {
     cout<<"Rnvec wrong type " << Rnvec.getName()  << " " << Rnvec.Dtype() << endl;
     }
 
 //ans=query("see Rnvec?");
-cout << "Rnvec " << Rnvec << endl;
+//cout << "Rnvec " << Rnvec << endl;
 
 //ans=query("see Rnvec?");
 
@@ -147,12 +156,12 @@ cout << "Rnvec " << Rnvec << endl;
   // <<"$(typeof(Rnvec)) \n";
 
     Vec<float> Svec(N);
-COUT(Svec);
+
+    COUT(Svec);
 
 //ans=query("see Svec?");
 
-    Vec<float> Tvec(N);
-
+      Vec<float> Tvec(N);
 
       Vec<float> Wvec(N);
 
@@ -189,7 +198,7 @@ Svec.pinfo();
   
   Vec<float> Zvec(N);
 
-    if (Zvec.getType() != FLOAT) {
+    if (Zvec.getType() != FLOAT_) {
     cout<<"Zvec wrong type " << Zvec.getName()  << " " << Zvec.Dtype() << endl;
     }
 
@@ -197,7 +206,7 @@ Svec.pinfo();
   Zvec = Rnvec ;
 
 
-    if (Zvec.getType() != FLOAT) {
+    if (Zvec.getType() != FLOAT_) {
     cout<<"Zvec wrong type " << Zvec.getName()  << " " << Zvec.Dtype() << endl;
     }
 
@@ -241,7 +250,7 @@ COUT(Svec)
 
 //ans=query("see xz_gl");
 
-  sWo(gwo,_WHUE,GREEN_,_WREFRESH,_WFLUSH);
+//  sWo(gwo,_WHUE,GREEN_,_WREFRESH,_WFLUSH);
   
   sWo(gwo,_WSHOWPIXMAP,_WFLUSH);
   
@@ -259,7 +268,7 @@ COUT(Svec)
 
 //ans=query("see Sin");
 
-cout << "Svec " << Svec << endl;
+//cout << "Svec " << Svec << endl;
 
 //  <<"%V $Svec[0:20] \n";
 //===================================//
@@ -282,25 +291,27 @@ cout << "Svec " << Svec << endl;
   ans=query("listo?:");
   int kk = 0;
 
-  float lvec[5] = {0.1,0.1,15,f,3.0};
+  float lvec[5] = {0.1,0.1,15,f,RED_};
 
+#if CPP
   Siv** sv = vbox(Xvec,Rnvec);
 
    sv[0]->pinfo();
 
    sv[1]->pinfo();
+#endif
 
-    if (Xvec.getType() != FLOAT) {
+    if (Xvec.getType() != FLOAT_) {
 cout<<"Xvec wrong type !\n";
 ans=query("check vecs");
     }
 
 
 
-    if (Rnvec.getType() != FLOAT) {
+    if (Rnvec.getType() != FLOAT_) {
         cout<<"wrong type " << Rnvec.getName()  << endl;
         Rnvec.pinfo();
-        Rnvec.setType(FLOAT);
+        Rnvec.setType(FLOAT_);
 ans=query("check vecs");
 }
 
@@ -326,7 +337,7 @@ while (1) {
 //<<"$Rnvec[0:10]\n"
 //<<"$Svec[0:10]\n"
 
-    if (Rnvec.getType() != FLOAT) {
+    if (Rnvec.getType() != FLOAT_) {
     cout<<"Rnvec wrong type " << Rnvec.getName()  << endl;
     }
     
@@ -334,13 +345,13 @@ while (1) {
     
     Wvec = Xvec * f;
 
-    if (Wvec.getType() != FLOAT) {
+    if (Wvec.getType() != FLOAT_) {
 cout<<"Wvec wrong type !\n";
     }
 
      Tvec = Wvec + pi2;
 
-    if (Tvec.getType() != FLOAT) {
+    if (Tvec.getType() != FLOAT_) {
 cout<<"Tvec wrong type !\n";
 
     }
@@ -355,18 +366,18 @@ cout<<"Tvec wrong type !\n";
 
    Cvec= Tvec.Cos();
    
-Tvec.pinfo();
+//Tvec.pinfo();
 
-    if (Tvec.getType() != FLOAT) {
+    if (Tvec.getType() != FLOAT_) {
 cout<<"wrong type !\n";
     }
 
    // Cvec= Tvec;
 
 
-Cvec.pinfo();
+//Cvec.pinfo();
 
-    if (Cvec.getType() != FLOAT) {
+    if (Cvec.getType() != FLOAT_) {
 cout<<"Cvec wrong type !\n";
     }
 
@@ -378,9 +389,9 @@ cout<<"Cvec wrong type !\n";
     Zvec = Rnvec + (Cvec * 0.5);
    // Zvec = Rnvec + Tvec;
 
-    if (Zvec.getType() != FLOAT) {
+    if (Zvec.getType() != FLOAT_) {
 cout<<"Zvec wrong type !\n";
-        Zvec.setType(FLOAT);
+        Zvec.setType(FLOAT_);
 ans=query("see Zvec");
   }
 
@@ -466,9 +477,5 @@ ans=query("did we see wob -CSV  button?");
 
 
 //================================//
-
-
-
-
 
 

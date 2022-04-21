@@ -1141,3 +1141,5 @@ gline_p.cpp                         1.77  04/10/2022 07:59:16  autoscale
 gline_p.cpp                         1.78  04/12/2022 12:14:58  SVEC_V/VEC_V
 ic_pushrec.cpp                      1.10  04/15/2022 20:39:41  re-init stack var for use to push record row
 rdrec.cpp                           1.83  04/15/2022 20:43:19  realloc before store if needed
+svar_ops.cpp                        1.65  04/19/2022 12:22:01  scan in until cterm
+navi_l.cpp                          1.19  04/21/2022 01:24:56  truecourse

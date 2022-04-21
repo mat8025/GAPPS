@@ -17,7 +17,30 @@
  // include "gevent.asl";
   
   debugON();
+
+
+  pi = 4.0 * atan(1.0); 
+
+
+  N = 200;
   
+  //   float Xvec[];
+
+  Vec Xvec(FLOAT_,N);
+
+  Xvec.pinfo();
+
+  Xvec = Frange(N,0,6*pi);
+
+
+  Xvec.pinfo();
+
+
+ <<"%V$Xvec \n"
+
+
+
+
   
   Graphic = CheckGwm();
   
@@ -30,8 +53,9 @@
     <<"asl pid $X ?\n";
     }
   
-  pi = 4.0 * atan(1.0); 
-  
+
+
+
 /////////////////////////////  SCREEN --- WOB ///////////////
   
   str vptitle = "WAVES"; 
@@ -58,7 +82,9 @@
   
   daname = "RADAR_SCREEN";
   
-  gwo= cWo(vp,_GRAPH,_name,"GL",_COLOR,RED_,_FLUSH);
+  gwo= cWo(vp,WO_GRAPH_);
+
+  sWo(gwo,_WNAME,"GL",_WCOLOR,RED_,_WFLUSH);
   
   sWo(gwo,_clip,cx,cy,cX,cY, _resize,0.05,0.1,0.99,0.95,0,_FLUSH);
   
@@ -73,29 +99,21 @@
   
   sWo(gwo,_scales, sx, sy, sX, sY,  _save,_redraw,_drawon,_pixmapon,_clipbhue,GREEN_,_EO);
 
-sWo(gwo,_WSAVEPIXMAP,_WFLUSH);
-    sWo(gwo,_WAXNUM,2,_WFLUSH);
+   sWo(gwo,_WSAVEPIXMAP,_WFLUSH);
+   sWo(gwo,_WAXNUM,2,_WFLUSH);
    sWo(gwo,_WAXNUM,1,_WFLUSH);
-  
-
 
 
   sWo(gwo,_WSHOWPIXMAP);
-
-
 
   
 ////////////////////////////// GLINE ////////////////////////////////////////
   
   
-  N = 200;
+
+
   
-  float Xvec[];
-  
-  Xvec = Frange(N,0,6*pi);
-  
-  
-  Float Rnvec[];
+  Vec Rnvec(FLOAT_,N);
   
   
   Rnvec = Grand(N);
@@ -216,7 +234,11 @@ sWo(gwo,_WSAVEPIXMAP,_WFLUSH);
     
     
     i++;
-    if (i > 200) {
+
+   if ((i % 50) == 0 0) {
+ <<"loop $i\n"
+   }
+   if (i > 500) {
       i = 0;
       break;
       }
@@ -227,7 +249,7 @@ sWo(gwo,_WSAVEPIXMAP,_WFLUSH);
 //if (ans == "n") {
 //    break
 //}
-    <<"loop $i\n"
+   
     
     }
 //=====================================//

@@ -440,7 +440,8 @@ cout  <<" sslng " << sslng  << endl;
 
   lo2 = Wtp[k].Longdeg;
 
-  tc = TrueCourse(L1,lo1,L2,lo2);
+//  tc = TrueCourse(L1,lo1,L2,lo2);
+  tc = TrueCourse(lo1,L1,lo2,L2);
 
   return tc;
 

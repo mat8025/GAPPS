@@ -640,7 +640,7 @@ cout << n_legs <<" @2 " << where << endl;
 cout  << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ "  <<endl ; 
 
 //  <<"Leg   TP      ID   LAT      LONGI      FGA     MSL   PC    $Units   RTOT   RTIM    Radio    TC \n";
-cout  << "Leg   TP      ID   LAT      LONGI      FGA    "  << "MSL   PC    " << Units   << " RTOT   RTIM  Radio  TC "  <<endl ; 
+cout  << "Leg   TP      ID   LAT      LONGI      FGA    "  << "MSL   PC   Dist Hdg  " << Units   << " RTOT   RTIM  Radio  TC "  <<endl ; 
   }
   
 // get totals
@@ -691,7 +691,7 @@ cout  << "Leg   TP      ID   LAT      LONGI      FGA    "  << "MSL   PC    " << 
 
   tcd =  ComputeTC(nl, nl+1);
 
-  TC[nl] = tcd;
+  TC[nl+1] = tcd;
 
   Dur[nl] = Leg[nl]/ Cruise_speed;
 //<<"%V $Leg[nl] $tkm \n"
@@ -834,11 +834,11 @@ cout  << "Leg   TP      ID   LAT      LONGI      FGA    "  << "MSL   PC    " << 
   printf("%5.1f ",Wleg[li].dist);
   
 //cout  << "%5.1f$Wleg[li]->dist\t$rtotal\t$rtime\t%6.2f${Wtp[li]->Radio} " ; 
-  printf("\t%6.0f hdg",TC[li]);
+  printf("\t%6.0f ",TC[li]);
 
    printf("\t%6.2f %",Wleg[li].pc);
   //<<"\t%6.2f$Dur[li]\n";
-  printf("\t%6.2f hrs",Dur[li]);
+  printf("\t%6.2f ",Dur[li]);
 
   printf("\t%s\n",Wtp[li].Radio.cptr())  ; 
 
