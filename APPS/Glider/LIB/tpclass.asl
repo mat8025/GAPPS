@@ -35,9 +35,11 @@ class Tleg
   Str Tow;
   Str Place;
 
-
-// void Tleg()   //  use cons,destroy   -- have then set to NULL in CPP header
- Tleg() 
+#if ASL
+ void Tleg()   //  use cons,destroy   -- have then set to NULL in CPP header
+#else
+Tleg()
+#endif
  {
  //<<"Starting cons \n"
   dist = 0.0;
@@ -259,9 +261,12 @@ cout << " " << Place <<" " << Idnt <<" " << Lat <<" " << Lon <<" " << Alt <<" " 
       return amat[0];
    }
 //=========================//
-
+#if ASL
+void Turnpt()
+#else
  Turnpt()
-    {
+#endif
+ {
 
 
 //id = Ntp_id++;

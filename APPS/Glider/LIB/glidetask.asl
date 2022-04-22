@@ -10,14 +10,39 @@
  *  @Copyright © RootMeanSquare 2022
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                    
+;//----------------<v_&_v>-------------------------//;
 
+
+
+#define ASL 1
+#define CPP 0
+
+#if ASL
+// the include  when cpp compiling will re-define ASL 0 and CPP 1
+#include "/home/mark/gasp-CARBON/include/compile.h"
+#endif
+
+
+
+
+
+#if CPP
 #include <iostream>
 #include <ostream>
 
 using namespace std;
+#endif
+
 ///////////////////////
 //uint Turnpt::Ntp_id = 0;
+
+#if ASL
+#define COUT //
+int run_asl = runASL();
+<<" running as ASL \n";
+#include "debug"
+#endif
+
 
 int Ntp_id = 0; // ids for turnpt objs
 int TF; // task file FH
@@ -50,25 +75,48 @@ Tleg  Wleg[20];
   int via_cl = 1;
   int ok_to_compute = 1;
   long where ;
-  
+
+#if CPP
+
 void
 Uac::glideTask(Svarg * sarg)  
 {
+
+int run_asl = runASL();
+ cout <<"CPP  ASL?  " << run_asl << endl;
 
  Str a0  = sarg->getArgStr(0) ;
 
 //a0.pinfo();
  Svar sa;
 
+
  sa.findWords(a0.cptr());
 
-cout << " The gliderTask parameters are:  "  << sa << endl;
+cout << " The glider Task turnpts and  parameters are:  "  << sa << endl;
 
 cout << " para[0] is:  "  << sa.cptr(0) << endl;
 
 cout << " para[1] is:  "  << sa.cptr(1) << endl;
 
-cout << " para[2] is:  "  << sa.cptr(2) << endl;
+//cout << " para[2] is:  "  << sa.cptr(2) << endl;
+#endif
+
+  int na;
+
+#if ASL
+
+
+ Svar sa;
+
+ <<" na $_clargc \n"
+ na = _clargc;
+ <<" na $_clarg[1]  $_clarg[2] \n"
+ 
+
+ sa = _clarg;
+
+#endif
 
 //cout << " ??? \n"  ;
 
@@ -76,7 +124,7 @@ cout << " para[2] is:  "  << sa.cptr(2) << endl;
 //cout << " para[3] is:  "  << sa.cptr(3) << endl;
 
 
- // ignoreErrors(); // put in uac.h ??
+  ignoreErrors(); // put in uac.h ??
 
 //  chkIn(1);  //  _dblevel ?
   
@@ -89,14 +137,11 @@ int  Main_init = 1;
 
   float Leg[20];
 
-  float CSK = 70.0;
+  CSK = 70.0;
 
-  float Cruise_speed = (CSK * nm_to_km);
+  Cruise_speed = (CSK * nm_to_km);
 
-  cout <<" Cruise_speed "  << Cruise_speed << endl;
-
-
-
+  printf(" Cruise_speed %f ",Cruise_speed);
 
   Wtp[1].Alt = 100.0;
 
@@ -131,13 +176,13 @@ int  Main_init = 1;
   if (use_cup) {
 
   AFH=ofr("CUP/bbrief.cup")  ; // open turnpoint file;
-
+printf( "opened CUP/bbrief.cup %d \n",AFH);
   }
 
   else {
 
   AFH=ofr("DAT/turnptsA.dat")  ; // open turnpoint file;
-
+  printf("opened  DAT/turnptsA.dat %d \n" ,AFH );
   }
 
   if (AFH == -1) {
@@ -155,11 +200,12 @@ int  Main_init = 1;
 
 //main
 
-//  int na = getargc();
 
-  int na = sa.getNarg();
-
-//  DBG"%v $na\n";
+#if CPP
+  na = sa.getNarg();
+#else
+  na = _clargc;
+#endif  
 
   printf(" na %d\n",na);
 
@@ -184,7 +230,7 @@ int  Main_init = 1;
 
   targ = sa.cptr(ac);
 
-cout <<"ac "<< ac <<" " << targ << endl;
+//cout <<"ac "<< ac <<" " << targ << endl;
 
 //  DBG"%V $ac $targ\n";
 
@@ -202,7 +248,7 @@ cout <<"ac "<< ac <<" " << targ << endl;
 
   istpt = 0;
 
-  cout <<"setting LD " << LoD << endl;
+  printf("setting LD %d ",LoD);
 
   }
 
@@ -244,7 +290,7 @@ cout <<"ac "<< ac <<" " << targ << endl;
   Task.readFile(TF);
 
 
-   cout <<" task" <<  Task.cptr(0) << endl;
+  // cout <<" task" <<  Task.cptr(0) << endl;
 
 
 
@@ -287,7 +333,7 @@ cout <<"ac "<< ac <<" " << targ << endl;
 
 
 //	<<"%V$targ $sz $cltpt $CLTPT[cltpt] \n"
-cout  <<"cltpt "<< cltpt  <<" CLTPT[cltpt] "<< CLTPT[cltpt]  <<endl ; 
+//cout  <<"cltpt "<< cltpt  <<" CLTPT[cltpt] "<< CLTPT[cltpt]  <<endl ; 
 
   cltpt++;
 
@@ -313,7 +359,7 @@ cout  <<"cltpt "<< cltpt  <<" CLTPT[cltpt] "<< CLTPT[cltpt]  <<endl ;
   int i = -1;
 
 
- cout << "DONE ARGS  ac "<<ac << endl;
+  printf("DONE ARGS  %d\n", ac );
 
 
 
@@ -324,12 +370,12 @@ cout  <<"cltpt "<< cltpt  <<" CLTPT[cltpt] "<< CLTPT[cltpt]  <<endl ;
 
 
   int k;
-  
+#if 0  
   for (k= 0; k < cltpt; k++) {
-
 //  <<"$k  $CLTPT[k] \n";
-cout  <<" "<< k  <<" "<< CLTPT[k]  <<endl ; 
+    cout  <<" "<< k  <<" "<< CLTPT[k]  <<endl ; 
   }
+#endif  
 /////////////////////////////
 
   i = -1;
@@ -398,7 +444,7 @@ cout  <<" "<< k  <<" "<< CLTPT[k]  <<endl ;
   if (i == -1) {
 
 //  <<"$the_start not found \n";
-cout  <<" "<< the_start  << "not "  << "found "  <<endl ; 
+//cout  <<" "<< the_start  << "not "  << "found "  <<endl ; 
   ok_to_compute = 0;
 
   if (!via_keyb) {
@@ -453,7 +499,7 @@ cout  <<" "<< the_start  << "not "  << "found "  <<endl ;
    nwr = Wval.readWords(AFH,0,',');
 
 
-   cout <<" cup nwr " << nwr << endl;
+   //cout <<" cup nwr " << nwr << endl;
 
 //<<"$Wval[0] $Wval[1] $Wval[3] $Wval[4] \n"	 
 
@@ -471,8 +517,10 @@ cout  <<" "<< the_start  << "not "  << "found "  <<endl ;
 	// <<"%V$msz \n"
 	// <<"%V$n_legs \n"
 
+COUT(Wval)
   tplace = Wval[0];
 
+COUT(Wval[4])
   if (use_cup) {
 
    tlon = Wval[4];
@@ -484,6 +532,8 @@ cout  <<" "<< the_start  << "not "  << "found "  <<endl ;
    tlon = Wval[3];
 
    }
+
+COUT(tlon)
 //<<"%V$tplace $tlon \n"
 //<<"$Wval[::]\n"	  
 
@@ -540,7 +590,7 @@ cout  <<" "<< the_start  << "not "  << "found "  <<endl ;
 */
   if ((nxttpt == "done") || (nxttpt == "finish") || (nxttpt == "quit") ) {
 
- cout << endl;
+ //cout << endl;
 
   more_legs = 0;
 
@@ -558,7 +608,7 @@ cout  <<" "<< the_start  << "not "  << "found "  <<endl ;
 
   if (where  == -1) {
 
-   cout <<"not found! " << nxttpt << endl;
+   printf("not found! %s ",nxttpt);
 
    ok_to_compute = 0;
 
@@ -578,7 +628,7 @@ cout  <<" "<< the_start  << "not "  << "found "  <<endl ;
 
   n_legs++;
 
-cout << " n_legs "<< n_legs <<" @ " << where << endl;
+//cout << " n_legs "<< n_legs <<" @ " << where << endl;
 
   if (via_keyb) {
 
@@ -594,7 +644,7 @@ cout << " n_legs "<< n_legs <<" @ " << where << endl;
 
   where  = seekLine(AFH,0);
 
-cout << n_legs <<" @2 " << where << endl;
+//cout << n_legs <<" @2 " << where << endl;
 
   if (use_cup) {
 
@@ -602,7 +652,7 @@ cout << n_legs <<" @2 " << where << endl;
  
    nwr = Wval.readWords(AFH,0,',');
    
-    cout <<" next  nwr " << nwr << endl;
+  //  cout <<" next  nwr " << nwr << endl;
 
 
 // <<"$n_legs $Wval[0] $Wval[1] $Wval[3] $Wval[4] \n"
@@ -637,13 +687,14 @@ cout << n_legs <<" @2 " << where << endl;
   cout  <<"CSK "<< CSK  << "knots "  <<"Cruise_speed "<< Cruise_speed  << "kmh "  <<endl ;
 //  ans=query("show");
   if (show_title) {
-cout  << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ "  <<endl ; 
+printf("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n")'
 
 //  <<"Leg   TP      ID   LAT      LONGI      FGA     MSL   PC    $Units   RTOT   RTIM    Radio    TC \n";
-cout  << "Leg   TP      ID   LAT      LONGI      FGA    "  << "MSL   PC   Dist Hdg  " << Units   << " RTOT   RTIM  Radio  TC "  <<endl ; 
+printf("Leg   TP      ID   LAT      LONGI      FGA    MSL   PC   Dist  Hdg   RTOT   RTIM  Radio  TC \n") ; 
   }
   
 // get totals
+
 
   float rtime = 0.0;
 
@@ -655,7 +706,7 @@ cout  << "Leg   TP      ID   LAT      LONGI      FGA    "  << "MSL   PC   Dist H
    //computeHTD()
 
   totalD = 0;
-//totalD->info(1)
+
 
   float TKM[20];
   float L1,L2,lo1,lo2;
@@ -856,8 +907,9 @@ cout  << "Leg   TP      ID   LAT      LONGI      FGA    "  << "MSL   PC   Dist H
 //     cout << "total D "  << endl;
   //   cout << ::totalD    <<endl ; 
 
-     cout  << "   " << totalD  << " km to fly - " << totalDur  << " hrs "  << "- bon voyage! "  <<endl ; 
-     cout.flush();
+     printf("totalD  %f km to fly - %f hrs\n ", totalD, totalDur);
+     printf("- bon voyage! \n"); 
+     //cout.flush();
 
 //ans=query("totalD ?");
   }
@@ -873,6 +925,7 @@ cout  << "Leg   TP      ID   LAT      LONGI      FGA    "  << "MSL   PC   Dist H
 //  <<"%6.1f $totalD km to fly -  $totalDur hrs - bon voyage!\n";
 
 
+#if CPP
 }
 
 
@@ -889,8 +942,8 @@ extern "C" int glider_task(Svarg * sarg)  {
 Str Use_ ="compute task distance\n  e.g  asl anytask.asl   gross laramie mtevans boulder  LD 40";
 
 
- cout << " glideTask app " << Use_   << endl;
- cout << " paras are: "  << " a0 " <<  a0 << endl;
+ printf(" glideTask app %s "Use_.cptr() );
+ //cout << " paras are: "  << " a0 " <<  a0 << endl;
 
     Uac *o_uac = new Uac;
 
@@ -898,12 +951,11 @@ Str Use_ ="compute task distance\n  e.g  asl anytask.asl   gross laramie mtevans
 
     o_uac->glideTask(sarg);
 
-   cout << "total D " << ::totalD    <<endl ;
-     
+   //cout << "total D " << ::totalD    <<endl ;
 
   }
 
-
+#endif
 
 
 

@@ -1,24 +1,32 @@
 /* 
- *  @script test_glines.asl  
+ *  @script test_glines.asl 
  * 
- *  @comment test cpp interface to xgs directives
- *  @release CARBON 
- *  @vers 1.2 He Helium [asl 6.3.73 C-Li-Ta]                                
- *  @date 01/16/2022 10:43:41 
- *  @cdate 01/16/2022 10:43:41 
+ *  @comment test cpp interface to xgs directives 
+ *  @release CARBON
+ *  @vers 1.4 Be 6.4.10 C-Be-Ne 
+ *  @date 04/21/2022 13:34:50          
+ *  @cdate 01/16/2022 10:43:41
  *  @author Mark Terry 
  *  @Copyright © RootMeanSquare 2022
  * 
  */ 
-;//-----------------<v_&_v>------------------------//
+;//----------------<v_&_v>-------------------------//;
 
-///
-///  
-/// -- use asl option to run asl 
-/// -- else use make uac to recompile
 
-#define ASL 0
-#define CPP 1
+
+#define ASL 1
+#define CPP 0
+
+#if ASL
+// the include  when cpp compiling will re-define ASL 0 and CPP 1
+#include "/home/mark/gasp-CARBON/include/compile.h"
+#endif
+
+
+
+#if ASL
+<<"ASL   $(ASL) CPP $(CPP)\n"
+#endif
 
 
 #if ASL
@@ -26,20 +34,34 @@
 #endif
 //#define cdbp //
 
+ int run_asl = runASL();
+
 #if CPP
 
  //opendll("plot");
 #include "vec.h"
 #include "gevent.h"
 
+
+
+
 void
 Uac::glineWorld(Svarg * sarg)  
 {
-   cout << "hello testing gline ops " << endl;
+ cout <<"CPP   \n";
+
+ cout <<"CPP  ASL?  " << run_asl << endl;
+
+ cout << "hello testing gline ops " << endl;
+
+
 #endif
 
+
+
 #if ASL
-<<"%V running as ASL\n";
+<<"%V running as ASL $run_asl\n";
+#include "debug"
 #endif
 
 /// launch xgs
@@ -47,11 +69,25 @@ Uac::glineWorld(Svarg * sarg)
 
 Gevent gev;
 
+Str ans = "y";
 
-Str ans;
+printf("run_asl %d\n",run_asl);
+
+ans.strPrintf("run_asl %d",run_asl);
+COUT(ans);
+
+//Str prompt = "ASL/CPP?";
+//ans=query(prompt,ans);
+
+ans=query("ASL/CPP?",ans);
+
+if (ans == "q") {
+    exit(-1);
+}
+
 
     rainbow();
-ignoreErrors();
+    ignoreErrors();
 
 
   //  vp = cWi(@title,"PLOT_OBJECTS",@resize,0.05,0.01,0.99,0.95)
@@ -288,7 +324,7 @@ COUT(Svec)
   sGl(xn_gl,_GLHUE,RED_,_GLEO);
   
    sWo(gwo,_WCLEARPIXMAP,_WCLIPBORDER,_WFLUSH);
-  ans=query("listo?:");
+ ans=query("listo?:");
   int kk = 0;
 
   float lvec[5] = {0.1,0.1,15,f,RED_};
@@ -325,9 +361,9 @@ int nevent = 0;
 while (1) {
 //   gev.eventWait();
 
-    if ((kk % 100)  == 0)
+    if ((kk % 100)  == 0) {
          gev.eventRead();
-	 
+	 }
    nevent++;
  //  printf("nevent %d button %d\n",nevent,gev.ebutton);
     
@@ -453,7 +489,7 @@ ans=query("see Zvec");
 
 /// create a window obj
 
-ans=query("did we see wob -CSV  button?");
+//ans=query("did we see wob -CSV  button?");
 
  exitXGS();
 
