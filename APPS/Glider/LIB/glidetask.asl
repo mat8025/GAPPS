@@ -238,7 +238,7 @@ while (ac < na) {
 #endif
 
  printf("ac %d targ %s\n",ac,targ);
-!a 
+
 //cout <<"ac "<< ac <<" " << targ << endl;
 
 //  DBG"%V $ac $targ\n";
@@ -555,7 +555,7 @@ COUT(tlon)
 
   if (use_cup) {
    Wtp[n_legs].TPCUPset(Wval);
-!a   
+
    }
   else {
      Wtp[n_legs].TPset(Wval);
@@ -575,16 +575,16 @@ COUT(tlon)
  // FIX
 
   float the_leg;
-
+<<"%V $AFH\n";
   while (more_legs == 1) {
 
-  fseek(AFH,0,0);
+ // fseek(AFH,0,0);
 
   if (via_cl) {
 
   nxttpt = CLTPT[cnttpt];
 
-<<"%V  $nexttpt   $cnttpt $cltpt \n"
+<<"%V  $nxttpt   $cnttpt $cltpt \n"
 
   cnttpt++;
 
@@ -899,20 +899,21 @@ printf("Leg   TP      ID   LAT      LONGI      FGA    MSL   PC   Dist  Hdg   RTO
 
   Str wsi= nsc((15-idlen)," ");
  // <<"$li $Wleg[li]->dist  $Wleg[li]->pc_tot \n"
- <<"$li ${tpb}${ws}${ident}${wsi} %9.3f${Wtp[li]->Lat} %11.3f${Wtp[li]->Lon}\s%10.0f${Wtp[li]->fga} ${Wtp[li]->Alt} %4.1f$Wleg[li]->pc ";
+ //<<"$li ${tpb}${ws}${ident}${wsi} %9.3f${Wtp[li]->Lat} %11.3f${Wtp[li]->Lon}\s%10.0f${Wtp[li]->fga} ${Wtp[li]->Alt} %4.1f$Wleg[li]->pc ";
  // <<"$li ${tpb}${ws}${ident}${wsi} %9.3f${Wtp[li]->Lat} %11.3f${Wtp[li]->Lon}\s%11.0f${Wtp[li]->fga} ${Wtp[li]->Alt} %4.1f$Wleg[li]->pc_tot\t";
- printf("%d %s  \t%s\t%s   %6.0fft   %6.0fft         ",li,ident.cptr(),Wtp[li].Lat.cptr(),Wtp[li].Lon.cptr(), Wtp[li].fga, Wtp[li].Alt);
+// printf("%d %s  \t%s\t%s   %6.0fft   %6.0fft         ",li,ident.cptr(),Wtp[li].Lat.cptr(),Wtp[li].Lon.cptr(), Wtp[li].fga, Wtp[li].Alt);
+ printf("%d %s  \t%s\t%s   %6.0fft   %6.0fft         ",li,ident,Wtp[li].Lat,Wtp[li].Lon, Wtp[li].fga, Wtp[li].Alt);
  // <<"%5.1f$Wleg[li]->dist\t$rtotal\t$rtime\t%6.2f${Wtp[li]->Radio}";
   printf("%5.1f ",Wleg[li].dist);
   
 //cout  << "%5.1f$Wleg[li]->dist\t$rtotal\t$rtime\t%6.2f${Wtp[li]->Radio} " ; 
   printf("\t%6.0f ",TC[li]);
 
-   printf("\t%6.2f %",Wleg[li].pc);
+   printf("\t%6.2f %%",Wleg[li].pc);
   //<<"\t%6.2f$Dur[li]\n";
   printf("\t%6.2f ",Dur[li]);
 
-  printf("\t%s\n",Wtp[li].Radio.cptr())  ; 
+  printf("\t%s\n",Wtp[li].Radio)  ; 
 
   }
 

@@ -134,7 +134,7 @@ Str val2;
      val = wval[0];
 
 <<"%V $val\n"
-!a
+
      val.dewhite();
 
 //cout << "val " << val << endl;
