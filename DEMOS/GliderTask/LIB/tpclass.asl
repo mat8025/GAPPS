@@ -85,16 +85,16 @@ class Turnpt
 
  public:
 
-  str Lat;
-  str Lon;
-  str Place;
+  Str Lat;
+  Str Lon;
+  Str Place;
   
-  str Idnt;
-  str rway;
-  str tptype;
+  Str Idnt;
+  Str rway;
+  Str tptype;
   
-  str Cltpt;
-  str Radio;
+  Str Cltpt;
+  Str Radio;
   float Alt;
   float fga;  // final glide msl to next TP?
   float Ladeg;
@@ -157,16 +157,27 @@ class Turnpt
 
 
 
-  void TPCUPset (svar wval) 
+  void TPCUPset (Svar wval) 
    {
-//wval.pinfo()
-//<<"%V $wval[::]\n"
-//<<"0 <|$wval[0]|>\n"
-//<<"1 <|$wval[1]|>\n"
-//<<"2 <|$wval[2]|>\n"
-Str val;
 Str Lon2;
+Lon2.pinfo();
+wval.pinfo()
+   Lon2= wval[4];
+
+<<"%V$Lon2\n"
+
+<<"%V $wval[::]\n"
+<<"0 <|$wval[0]|>\n"
+<<"1 <|$wval[1]|>\n"
+<<"2 <|$wval[2]|>\n"
+<<"3 <|$wval[3]|>\n"
+<<"4 <|$wval[4]|>\n"
+!z
+Str val;
+
 Str Lat2;
+
+
 //<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
 
      val = dewhite(wval[0]);
@@ -194,11 +205,12 @@ Str Lat2;
      
      Lon2 = wval[4];
 
-//<<"%V $Lon2\n"
+<<"%V $Lon2\n"
 
 
      Lon =  ccoor (Lon2);
-//<<"%V$Lon  $Lon2\n"
+
+<<"%V$Lon  $Lon2\n"
 
      Lat2 = wval[3]; // wayp
      
@@ -261,7 +273,7 @@ Str Lat2;
       }
 //=========================//
 
-void SetPlace (str val)   
+void SetPlace (Str val)   
    {
        Place = val;
    }

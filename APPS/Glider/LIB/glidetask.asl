@@ -223,13 +223,22 @@ printf( "opened CUP/bbrief.cup %d \n",AFH);
   Str ans;
 
   //<<" %V $LoD \n";
+#if ASL
+ac =1;
+#endif
 
-  while (ac < na) {
+while (ac < na) {
 
   istpt = 1;
 
+#if CPP
   targ = sa.cptr(ac);
+#else
+  targ = _clarg[ac];
+#endif
 
+ printf("ac %d targ %s\n",ac,targ);
+!a 
 //cout <<"ac "<< ac <<" " << targ << endl;
 
 //  DBG"%V $ac $targ\n";
@@ -320,7 +329,7 @@ printf( "opened CUP/bbrief.cup %d \n",AFH);
 
   }
     //<<" %V $targ $istpt $(typeof(istpt)) \n"
- //   <<"%V $ac  $targ $sz $istpt \n"
+ <<"%V $ac  $targ $sz $istpt \n"
 
   if (istpt) {
 
@@ -328,11 +337,13 @@ printf( "opened CUP/bbrief.cup %d \n",AFH);
 
   via_cl = 1;
 
- // CLTPT[cltpt] = targ;   // TBF 02/24/22
-  CLTPT.cpy(targ,cltpt); 
+  CLTPT[cltpt] = targ;   // TBF 02/24/22
+
+//CLTPT.cpy(targ,cltpt); 
 
 
-//	<<"%V$targ $sz $cltpt $CLTPT[cltpt] \n"
+<<"%V $targ $sz $cltpt $CLTPT[cltpt] \n"
+
 //cout  <<"cltpt "<< cltpt  <<" CLTPT[cltpt] "<< CLTPT[cltpt]  <<endl ; 
 
   cltpt++;
@@ -340,7 +351,8 @@ printf( "opened CUP/bbrief.cup %d \n",AFH);
   }
     //    <<"%V $ac  $targ $sz \n"
    } // arg was valid
-  }
+
+}
 // look up lat/long
 
   Str the_start= "Longmont";
@@ -359,7 +371,7 @@ printf( "opened CUP/bbrief.cup %d \n",AFH);
   int i = -1;
 
 
-  printf("DONE ARGS  %d\n", ac );
+  printf("DONE ARGS  ac %d cltpt %d \n", ac,cltpt);
 
 
 
@@ -370,10 +382,10 @@ printf( "opened CUP/bbrief.cup %d \n",AFH);
 
 
   int k;
-#if 0  
+#if 1
   for (k= 0; k < cltpt; k++) {
-//  <<"$k  $CLTPT[k] \n";
-    cout  <<" "<< k  <<" "<< CLTPT[k]  <<endl ; 
+ <<"$k  $CLTPT[k] \n";
+//    cout  <<" "<< k  <<" "<< CLTPT[k]  <<endl ; 
   }
 #endif  
 /////////////////////////////
@@ -382,14 +394,15 @@ printf( "opened CUP/bbrief.cup %d \n",AFH);
  int got_start = 0;
   while ( !got_start) {
 
- // <<[_DB]" iw %V $cnttpt $i %v $via_keyb $via_cl\n";
+    <<" %V $cnttpt $i    $via_keyb $via_cl\n";
 
   fseek(AFH,0,0);
 
   if (via_cl) {
 
   the_start = CLTPT[cnttpt];
-	//<<"$the_start $cnttpt \n"
+
+<<"$the_start $cnttpt \n"
 
   cnttpt++;
 
@@ -424,7 +437,7 @@ printf( "opened CUP/bbrief.cup %d \n",AFH);
   break;
 
   }
-      //<<"searching file for $the_start\n";
+      <<"searching file for $the_start\n";
       // <<"         \n";
       //<<" \n";
 
@@ -534,11 +547,15 @@ COUT(Wval[4])
    }
 
 COUT(tlon)
-//<<"%V$tplace $tlon \n"
-//<<"$Wval[::]\n"	  
+<<"%V$tplace $tlon \n"
+
+#if ASL
+<<"$Wval[::]\n"	  
+#endif
 
   if (use_cup) {
    Wtp[n_legs].TPCUPset(Wval);
+!a   
    }
   else {
      Wtp[n_legs].TPset(Wval);
@@ -547,14 +564,14 @@ COUT(tlon)
  }
 
    
-  cout << "Next TP " << endl;
+//  cout << "Next TP " << endl;
   
-//<<"next \n"
+<<"next   $cnttpt \n"
 // NEXT TURN
 
   int more_legs = 1;
 
-  int ok_to_compute = 1;
+  ok_to_compute = 1;
  // FIX
 
   float the_leg;
@@ -567,7 +584,11 @@ COUT(tlon)
 
   nxttpt = CLTPT[cnttpt];
 
+<<"%V  $nexttpt   $cnttpt $cltpt \n"
+
   cnttpt++;
+
+
 
   if (cnttpt > cltpt) {
 
@@ -655,7 +676,7 @@ COUT(tlon)
   //  cout <<" next  nwr " << nwr << endl;
 
 
-// <<"$n_legs $Wval[0] $Wval[1] $Wval[3] $Wval[4] \n"
+<<"$n_legs $Wval[0] $Wval[1] $Wval[3] $Wval[4] \n"
 
    Wtp[n_legs].TPCUPset(Wval);
 
@@ -684,10 +705,10 @@ COUT(tlon)
 //  ild= abs(LoD);
 
 //  <<"%V  $CSK knots $Cruise_speed kmh\n";
-  cout  <<"CSK "<< CSK  << "knots "  <<"Cruise_speed "<< Cruise_speed  << "kmh "  <<endl ;
+  //cout  <<"CSK "<< CSK  << "knots "  <<"Cruise_speed "<< Cruise_speed  << "kmh "  <<endl ;
 //  ans=query("show");
   if (show_title) {
-printf("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n")'
+printf("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n");
 
 //  <<"Leg   TP      ID   LAT      LONGI      FGA     MSL   PC    $Units   RTOT   RTIM    Radio    TC \n";
 printf("Leg   TP      ID   LAT      LONGI      FGA    MSL   PC   Dist  Hdg   RTOT   RTIM  Radio  TC \n") ; 
@@ -878,7 +899,7 @@ printf("Leg   TP      ID   LAT      LONGI      FGA    MSL   PC   Dist  Hdg   RTO
 
   Str wsi= nsc((15-idlen)," ");
  // <<"$li $Wleg[li]->dist  $Wleg[li]->pc_tot \n"
-
+ <<"$li ${tpb}${ws}${ident}${wsi} %9.3f${Wtp[li]->Lat} %11.3f${Wtp[li]->Lon}\s%10.0f${Wtp[li]->fga} ${Wtp[li]->Alt} %4.1f$Wleg[li]->pc ";
  // <<"$li ${tpb}${ws}${ident}${wsi} %9.3f${Wtp[li]->Lat} %11.3f${Wtp[li]->Lon}\s%11.0f${Wtp[li]->fga} ${Wtp[li]->Alt} %4.1f$Wleg[li]->pc_tot\t";
  printf("%d %s  \t%s\t%s   %6.0fft   %6.0fft         ",li,ident.cptr(),Wtp[li].Lat.cptr(),Wtp[li].Lon.cptr(), Wtp[li].fga, Wtp[li].Alt);
  // <<"%5.1f$Wleg[li]->dist\t$rtotal\t$rtime\t%6.2f${Wtp[li]->Radio}";
@@ -927,12 +948,7 @@ printf("Leg   TP      ID   LAT      LONGI      FGA    MSL   PC   Dist  Hdg   RTO
 
 #if CPP
 }
-
-
 ////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 extern "C" int glider_task(Svarg * sarg)  {
 
  Str a0 = sarg->getArgStr(0) ;
@@ -942,7 +958,7 @@ extern "C" int glider_task(Svarg * sarg)  {
 Str Use_ ="compute task distance\n  e.g  asl anytask.asl   gross laramie mtevans boulder  LD 40";
 
 
- printf(" glideTask app %s "Use_.cptr() );
+ printf(" glideTask app %s ",Use_.cptr() );
  //cout << " paras are: "  << " a0 " <<  a0 << endl;
 
     Uac *o_uac = new Uac;

@@ -1143,3 +1143,6 @@ ic_pushrec.cpp                      1.10  04/15/2022 20:39:41  re-init stack var
 rdrec.cpp                           1.83  04/15/2022 20:43:19  realloc before store if needed
 svar_ops.cpp                        1.65  04/19/2022 12:22:01  scan in until cterm
 navi_l.cpp                          1.19  04/21/2022 01:24:56  truecourse
+svarg_e.cpp                         2.34  04/22/2022 20:39:30  clear args after func/proc
+ds_storestr.cpp                     1.82  04/22/2022 20:44:57  check for proc_arg_ref and psiv
+oo_cmf.cpp                          2.43  04/23/2022 17:27:11  check for ref arg PV22 call PV21

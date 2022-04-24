@@ -87,7 +87,7 @@ class Turnpt
 // for cpp  either use reference or ptr
 // else copy constructor - memory corruption??
 
-  void TPset (Svar& wval) 
+  void TPset (Svar& wval)
    {
 
 //<<"TPset $_proc $wval \n"
@@ -119,27 +119,22 @@ class Turnpt
      Ladeg =  coorToDeg(Lat); // wayp
      
      Longdeg = coorToDeg(Lon);
-     
-     
-
 
       }
 //=========================//
 
-  void TPCUPset (Svar& wval) 
-   {
-   
-
+ void TPCUPset (Svar& wval)
+ {
 
 Str val;
 Str val2;
 
-//<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
-
+<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
+<<"$wval \n"
      val = wval[0];
 
-//cout << "val " << val << endl;
-
+<<"%V $val\n"
+!a
      val.dewhite();
 
 //cout << "val " << val << endl;
