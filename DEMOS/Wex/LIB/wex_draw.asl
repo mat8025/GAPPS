@@ -20,16 +20,16 @@ void drawGoals(int ws)
   {
 
    if (ws == 0) {
-    PlotBox(gwo,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_,3) ; // never go above
-    PlotBox(gwo,sc_startday,DX_MEW,sc_end,DX_NEW, YELLOW_,3) ; // diet x max above
-    PlotBox(gwo,sc_startday,GoalWt-5,sc_end,GoalWt+5, LIGHTGREEN_,3) ; //
+    PlotBox(wtwo,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_,3) ; // never go above
+    PlotBox(wtwo,sc_startday,DX_MEW,sc_end,DX_NEW, YELLOW_,3) ; // diet x max above
+    PlotBox(wtwo,sc_startday,GoalWt-5,sc_end,GoalWt+5, LIGHTGREEN_,3) ; //
 
     PlotLine(calwo,sc_startday,day_burn,sc_end,day_burn, GREEN_)
     PlotLine(calwo,sc_startday,out_cal,sc_end,out_cal, BLUE_)
     PlotLine(calwo,sc_startday,in_cal,sc_end,in_cal, RED_)
     PlotLine(calwo,sc_startday,50,sc_end,50, GREEN_)
     // use todays date and wt to the intermediate short-term goal
-    PlotLine(gwo,last_known_day,last_known_wt,tday2,StGoalWt, RED_) ;  
+    PlotLine(wtwo,last_known_day,last_known_wt,tday2,StGoalWt, RED_) ;  
    }
 
   if (ws == 1) {
@@ -114,10 +114,10 @@ void  drawGrids(int  ws )
  if (ws == 0) {
 
   //<<[_DB]"drawing Grids for screen 0 \n"
-  //sWo({extwo,calwo,gwo},_Wfont,"small");
+  //sWo({extwo,calwo,wtwo},_Wfont,"small");
   sWo(extwo,_Wfont,"small",_WEO);
   
-  axnum(gwo,AXIS_LEFT_);
+  axnum(wtwo,AXIS_LEFT_);
 
 
   sWo(carbwo,_Waxnum,AXIS_LEFT_,_WEO);
@@ -126,13 +126,13 @@ void  drawGrids(int  ws )
   sWo(calwo,_Wusescales,0,_Waxnum,  AXIS_LEFT_,_WEO);
 //  sWo(carbwo,_Waxnum,2);
   
-  sWo(extwo,_Wyscales,0,upperWt,_Wsavescales,1,_WEO);
+  sWo(extwo,_Wyscales,0,exer_upper,_Wsavescales,1,_WEO);
   sWo(extwo,_Waxnum,AXIS_LEFT_,_WEO);
 
   //sWo(extwo,_Waxnum,2,0,sc_endday,20,10)
-  //Text(gwo, "Weight (lbs)",-4,0.7,4,-90)
+  //Text(wtwo, "Weight (lbs)",-4,0.7,4,-90)
 
-   AxLabel(gwo,AXIS_BOTTOM_,"Weight (lbs)",0.5,1.7)
+   AxLabel(wtwo,AXIS_BOTTOM_,"Weight (lbs)",0.5,1.7)
    AxLabel(calwo,AXIS_BOTTOM_,"Calories",0.5,1.7,_WEO);
    //AxLabel(extwo,AXIS_LEFT_,"Exercise Time (mins)",0.1,0.7); // TBF
       AxLabel(extwo,AXIS_LEFT_,"Mins",0.1,4.0); // TBF
@@ -235,13 +235,13 @@ void drawScreens()
 
       sWo(allwo,_Wclipborder,BLACK_,_WEO)
 
-      drawMonths(gwo)
+      drawMonths(wtwo)
       drawMonths(calwo)
       drawMonths(carbwo)
       drawMonths(extwo)      
 
       //Text(extwo,"Exercise mins",-4,0.5,4,-90)
-      //Text(gwo,  "Weight (lbs)",0.8,0.8,1)
+      //Text(wtwo,  "Weight (lbs)",0.8,0.8,1)
 
        //dGl(wt_gl)
    
@@ -268,7 +268,7 @@ void drawScreens()
 
     sWo(fewos,_Wredraw,_WEO)
 
-    sWo(tw_wo,_Wmove,targetday,NextGoalWt,gwo,_Wredraw,_WEO);
+    sWo(tw_wo,_Wmove,targetday,NextGoalWt,wtwo,_Wredraw,_WEO);
 
     CR_init = 1;
     CL_init = 1;
@@ -303,7 +303,7 @@ void adjustYear(int updown)
 // decrement - and set rx,RX to jan 1, dec 31 of that year
 // then label 1/4 days
 
-   RS=wogetrscales(gwo)
+   RS=wogetrscales(wtwo)
 
 // just plot at mid - the date
    mid_date = (RS[3] - RS[1])/2 + RS[1]
@@ -348,7 +348,7 @@ void adjustYear(int updown)
 
    sWo(swo,_Wxscales,rx,rX) 
 
-   sWo(gwo,_Wscales,rx,minWt,rX,upperWt,_Wsavescales,0,_WEO)
+   sWo(wtwo,_Wscales,rx,minWt,rX,upperWt,_Wsavescales,0,_WEO)
 
    drawScreens()
 }
@@ -361,7 +361,7 @@ void adjustQrt(int updown)
 // adjust to a 90 day resolution
 // shift up/down by 30
 
-   RS=wogetrscales(gwo)
+   RS=wogetrscales(wtwo)
 
 // just plot at mid - the date
    mid_date = (RS[3] - RS[1])/2 + RS[1]
@@ -384,7 +384,7 @@ void adjustQrt(int updown)
 
    sWo(wedwo,_Wxscales,rx,rX,_Wsavescales,0)
 
-   sWo(gwo,_Wscales,rx,minWt,rX,upperWt,_Wsavescales,0)
+   sWo(wtwo,_Wscales,rx,minWt,rX,upperWt,_Wsavescales,0)
  
    sWo(swo,_Wxscales,rx,rX,_Wsavescales,0)
  
@@ -414,26 +414,26 @@ void showTarget()
 
 
   <<"%V $last_known_day $PWT $tday2 $StGoalWt \n"
-    plotSymbol(gwo,tday2,StGoalWt,TRI_,symsz,BLACK_,1);
-  plotSymbol(gwo,gday,NextGoalWt,"diamond",symsz,BLUE_);
-  plotSymbol(gwo,last_known_day,NextGoalWt,DIAMOND_,symsz,RED_,1);
-  plotSymbol(gwo,last_known_day+2,PWT,DIAMOND_,symsz,GREEN_,1);
-  plotSymbol(gwo,last_known_day+8,PWT7,DIAMOND_,symsz,LILAC_,1);
-  plotSymbol(gwo,last_known_day+15,PWT14,DIAMOND_,symsz,PINK_,1);
+    plotSymbol(wtwo,tday2,StGoalWt,TRI_,symsz,BLACK_,1);
+  plotSymbol(wtwo,gday,NextGoalWt,"diamond",symsz,BLUE_);
+  plotSymbol(wtwo,last_known_day,NextGoalWt,DIAMOND_,symsz,RED_,1);
+  plotSymbol(wtwo,last_known_day+2,PWT,DIAMOND_,symsz,GREEN_,1);
+  plotSymbol(wtwo,last_known_day+8,PWT7,DIAMOND_,symsz,LILAC_,1);
+  plotSymbol(wtwo,last_known_day+15,PWT14,DIAMOND_,symsz,PINK_,1);
   
 
   hlng = (last_known_wt - NextGoalWt) / 0.43; 
   if (hlng  > 0) {
 <<"%v $hlng\n"
-  plotSymbol(gwo,last_known_day+hlng,NextGoalWt,"star",symsz, BLUE_);
-  plotSymbol(gwo,last_known_day+hlng,last_known_wt,"cross",symsz,GREEN_);
+  plotSymbol(wtwo,last_known_day+hlng,NextGoalWt,"star",symsz, BLUE_);
+  plotSymbol(wtwo,last_known_day+hlng,last_known_wt,"cross",symsz,GREEN_);
  // <<"$_proc %v $hlng\n"
-  plotSymbol(gwo,last_known_day+hlng,GoalWt,"star",symsz, RED_);
-  plotSymbol(gwo,last_known_day+hlng,last_known_wt,"cross",symsz,GREEN_);
+  plotSymbol(wtwo,last_known_day+hlng,GoalWt,"star",symsz, RED_);
+  plotSymbol(wtwo,last_known_day+hlng,last_known_wt,"cross",symsz,GREEN_);
   }
 
-  sWo(gwo,_Wshowpixmap);
-  //plot(gwo,targetday,GoalWt,"star",symsz, LILAC_);
+  sWo(wtwo,_Wshowpixmap);
+  //plot(wtwo,targetday,GoalWt,"star",symsz, LILAC_);
 //  dGl(gw_gl);
 
 //sc_startday.pinfo();

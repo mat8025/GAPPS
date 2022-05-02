@@ -19,7 +19,7 @@
 //<<[_DB]"\n%(10,, ,\n)$DVEC \n"
 
    pwt_gl = -1
-//   pwt_gl  = cGl(gwo,@TXY,DVEC,PWTVEC,@color,GREEN_,@ltype,"line")
+//   pwt_gl  = cGl(wtwo,@TXY,DVEC,PWTVEC,@color,GREEN_,@ltype,"line")
 
 
 
@@ -45,7 +45,7 @@
 
   sGl(ext_gl,_GLsymsize,3,_GLsymhue,GREEN_)
 
-  wt_gl = cGl(gwo)
+  wt_gl = cGl(wtwo)
 
    sGl(wt_gl,_GLTXY,DVEC,WTVEC,_GLcolor,BLUE_,_GLSYMBOL,DIAMOND_,_GLEO);
 
@@ -60,10 +60,10 @@
 
 
 
- gw_gl   = cGl(gwo,_GLTXY,DVEC,GVEC,_GLcolor,GREEN_)
+ gw_gl   = cGl(wtwo,_GLTXY,DVEC,GVEC,_GLcolor,GREEN_)
 
 
-// gw_gl   = cGl(gwo,_GLTXY,WDVEC,GVEC,_GLcolor,RED_)
+// gw_gl   = cGl(wtwo,_GLTXY,WDVEC,GVEC,_GLcolor,RED_)
 
  bp_gl   = cGl(swo,_GLTXY,DVEC,BPVEC,_GLcolor,RED_,_GLSYMBOL,_GLname,"benchpress")
 
@@ -105,10 +105,10 @@ if ( gw_gl == -1 || bp_gl == -1) {
 
   Symsz= 5.0;
   
-  sGl(ext_gl,_GLSYMBOL,TRI_, _GLsymfill,)
-  sGl(cardio_gl,_GLSYMBOL,DIAMOND_, _GLsymfill)
-  sGl(xs_gl,_GLSYMBOL,STAR5_, _GLsymfill)  
-  sGl(wt_gl,_GLsymbol,DIAMOND_, _GLsymfill,_GLsymhue,BLUE_)
+  sGl(ext_gl,_GLSYMBOL,TRI_, _GLsymfill,_GLEO)
+  sGl(cardio_gl,_GLSYMBOL,DIAMOND_, _GLsymfill,_GLEO)
+  sGl(xs_gl,_GLSYMBOL,STAR5_, _GLsymfill,_GLEO)  
+  sGl(wt_gl,_GLsymbol,DIAMOND_, _GLsymfill,_GLsymhue,BLUE_,_GLEO)
  
 
   sGl(se_gl,_GLsymbol,DIAMOND_)
@@ -130,9 +130,9 @@ if ( gw_gl == -1 || bp_gl == -1) {
 
 //  CURSORS
  // TBC cursor opt?
-  lc_gl   = cGl(gwo,_GLtype,XY_,_GLHUE,RED_,_GLltype,"cursor")
+  lc_gl   = cGl(wtwo,_GLtype,XY_,_GLHUE,RED_,_GLltype,CURSOR_)
 
-  rc_gl   = cGl(gwo,_GLtype,XY_,_GLHUE,WHITE_,_GLltype,CURSOR_)
+  rc_gl   = cGl(wtwo,_GLtype,XY_,_GLHUE,WHITE_,_GLltype,CURSOR_)
 
 
 //===========================================//

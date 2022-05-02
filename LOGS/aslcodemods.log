@@ -1146,3 +1146,4 @@ navi_l.cpp                          1.19  04/21/2022 01:24:56  truecourse
 svarg_e.cpp                         2.34  04/22/2022 20:39:30  clear args after func/proc
 ds_storestr.cpp                     1.82  04/22/2022 20:44:57  check for proc_arg_ref and psiv
 oo_cmf.cpp                          2.43  04/23/2022 17:27:11  check for ref arg PV22 call PV21
+proc_checkfname_e.cpp               2.50  05/01/2022 21:27:59  Str mod value VM_VALUE

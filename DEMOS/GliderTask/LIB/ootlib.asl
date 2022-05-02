@@ -194,13 +194,14 @@ proc processIGC()
 
 //<<"$_include %V$Ntp_id\n"
 
-proc nameMangle(str aname)
+Str nameMangle(Str aname)
 {
-  // FIXIT --- bad return
-  str fname;
+  // FIXIT --- bad arg  bad return
+  <<"$_proc   $aname\n";
+  Str fname;
 
  nname=aname
- //<<" %V $nname $aname \n"
+ <<" %V $nname $aname \n"
 
   kc =slen(nname)
 

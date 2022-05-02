@@ -1,5 +1,5 @@
 /* 
- *  @script str-proc.asl 
+ *  @script str_proc.asl 
  * 
  *  @comment test access and setting of Ste elements 
  *  @release CARBON 
@@ -16,14 +16,7 @@
 ///
 ///
 
-<|Use_=
-S string use in proc
-|>
-
-
-<|Use_=
- and some other stuff
-|>
+Str Use_ ="S string use in proc";
 
 
 #include "debug"
@@ -42,6 +35,70 @@ chkIn(_dblevel)
 
 
 chkT(1)
+
+int  goo( int val)
+{
+<<"$_proc $val\n"
+
+ pval = val + 78;
+
+ return pval;
+}
+//===========================//
+
+Str nameMangle(Str aname, int a)
+{
+  // FIXIT --- bad arg  bad return
+  <<" $_proc   $aname\n";
+  Str fname;
+
+ nname=aname
+ <<" %V $nname $aname \n"
+
+  kc =slen(nname)
+
+ if (kc >7) {
+ nname=svowrm(nname)
+ }
+
+ scpy(fname,nname,7)
+
+   // <<"%V$nname --> $fname \n"
+
+
+ return fname
+}
+//======================================//
+
+int a = 34;
+
+
+  b = goo(a);
+
+
+<<"%V $a $b \n"
+   chkN(b,112);
+!a
+
+ Str abc = "abcdefghi"
+
+ abc.pinfo();
+
+
+ rov = nameMangle(abc,1);
+
+<<"%V $rov\n";
+!a
+
+
+chkStr(rov,"bcdfgh");
+
+
+
+chkOut();
+
+exit(-1);
+
 
 int x = 21;
 
@@ -80,13 +137,13 @@ chkN(k2,80);
 
 
 
-str  T;
+Str  T;
 
 T= "XYZ";
 
 <<"%V $T \n"
 
-str  R = "Help";
+Str  R = "Help";
 
 <<"%V $T $R\n"
 
@@ -94,8 +151,7 @@ str  R = "Help";
 
 
 
-
-proc  moo( int val)
+void  moo( int val)
 {
 <<"$_proc $val\n"
 
@@ -116,7 +172,7 @@ int  goo( int val)
 }
 //===========================//
 
-str ystr( str val)
+Str ystr( Str val)
 {
 
 <<"$_proc $val \n"
@@ -133,7 +189,7 @@ str ystr( str val)
 
 
 
-str ostr( str val)
+Str ostr( Str val)
 {
  Str ospv;
  Str oxpv = "xpv";
@@ -149,7 +205,7 @@ str ostr( str val)
 }
 //===========================//
 
-str pstr( str val)
+Str pstr( Str val)
 {
  Str spv;
  Str xpv = "xpv";
@@ -167,7 +223,7 @@ str pstr( str val)
    return ps;
 }
 //===========================//
-str qstr( str val)
+Str qstr( Str val)
 {
  Str qspv;
  Str qxpv = "xpv";
@@ -185,7 +241,7 @@ str qstr( str val)
 //===========================//
 
 
-str rstr( str val)
+Str rstr( Str val)
 {
  Str qspv;
  Str qxpv = "xpv";
@@ -207,7 +263,7 @@ str rstr( str val)
 
 
 
-str  S = "abcde";
+Str  S = "abcde";
 
 
 
@@ -233,13 +289,6 @@ str  S = "abcde";
 
 
 
- str abc = "abcdefg"
-
- abc.pinfo();
-
-
-
-
  char c;
 
   c.pinfo()
@@ -258,7 +307,7 @@ abc.pinfo()
 
 
 
-str xyz;
+Str xyz;
 
 xyz = "xYz"
 
@@ -283,7 +332,7 @@ chkT(1)
 
 chkOut()
 
- str def = "defgh"
+ Str def = "defgh"
 
  ns=pstr(def)
 

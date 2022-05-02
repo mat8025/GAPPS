@@ -29,9 +29,9 @@ Str Use_ ="compute task distance\n  e.g  asl anytask.asl   gross laramie mtevans
   }
 
   ignoreErrors();
-
-#define DBG <<
 //#define DBG ~!
+//#define DBG <<
+#define DBG ~!
 
   _DB = 0;
 
@@ -145,8 +145,7 @@ Str Use_ ="compute task distance\n  e.g  asl anytask.asl   gross laramie mtevans
   if (targ @= "LD") {
 
   LoD= atof(_argv[ac]);
-  LoD.pinfo()
-  
+
   ac++;
 
   istpt = 0;
@@ -761,7 +760,6 @@ Str Use_ ="compute task distance\n  e.g  asl anytask.asl   gross laramie mtevans
 
   }
 
-
   else {
 
   <<"# \n";
@@ -771,11 +769,6 @@ Str Use_ ="compute task distance\n  e.g  asl anytask.asl   gross laramie mtevans
   }
 
   <<"%6.1f$totalD km to fly -  $totalDur hrs - bon voyage!\n");
-
-Ndbs =getndbs();
-
-<<"DEBUG  %V$Ndbs \n"
-
 //exit(0,"%6.1f$totalD km to fly -  $totalDur hrs")
 /*
   TBD ==============================

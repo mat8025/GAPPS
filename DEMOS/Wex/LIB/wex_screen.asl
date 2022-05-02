@@ -43,7 +43,7 @@
 
 
 
-    gwo=cWo(vp,WO_GRAPH_,_Wname,"WTLB",_Wvalue,0,_Wclipborder,BLACK_,_WEO); //   weight
+    wtwo=cWo(vp,WO_GRAPH_,_Wname,"WTLB",_Wvalue,0,_Wclipborder,BLACK_,_WEO); //   weight
 
     calwo=cWo(vp,WO_GRAPH_,_Wname,"CAL",_Wvalue,0,_Wclipborder,BLACK_,_WEO) ; // cals 
 
@@ -51,9 +51,9 @@
 
     extwo=cWo(vp,WO_GRAPH_,_Wname,"XT",_Wvalue,0,_Wclipborder,BLACK_,_WEO); // exercise time
 
-<<" %V $gwo, $calwo,  $carbwo, $extwo  \n";
+<<" %V $wtwo, $calwo,  $carbwo, $extwo  \n";
 
-   int wedwo[] = { gwo, calwo,  carbwo, extwo  };
+   int wedwo[] = { wtwo, calwo,  carbwo, extwo  };
 
 <<[_DB]"%V$wedwo \n"
 
@@ -95,8 +95,9 @@
     sWo(wedwo,_Wborder,_Wclipborder,BLACK_,_Wdrawon)
 
 
-
-    ok=sWo(extwo,_Wscales,sc_startday,0,sc_end,250,_WEO);
+    float exer_upper = 300.0;
+    
+    ok=sWo(extwo,_Wscales,sc_startday,0,sc_end,exer_upper,_WEO);
 
 //<<"SCALES %V$sc_startday $sc_end \n"
      ok=sWo(extwo,_Wsavescales,0,_WEO);
@@ -117,7 +118,7 @@
 
 
 ///  measurement
-     tw_wo= cWo(gwo,WO_SYM_,_Wresize,0.1,0.1,0.15,0.25,0,_Wname,"TW",_Wvalue,175)
+     tw_wo= cWo(wtwo,WO_SYM_,_Wresize,0.1,0.1,0.15,0.25,0,_Wname,"TW",_Wvalue,175)
      sWo(tw_wo,_Wvhmove,ON_,_Wsymbol,STARDAVID_,_Wpixmapon,_Wredraw)
 
 
@@ -139,14 +140,14 @@
 
 <<"SCALES %V$sc_startday $sc_endday $carb_upper\n"
 
-    sWo(gwo,_Wscales,sc_startday,160,sc_end,wt_upper,_WEO)
+    sWo(wtwo,_Wscales,sc_startday,160,sc_end,wt_upper,_WEO)
     
-//    sWo(gwo,_Wsavescales,0,_Wfont,F_SMALL_)
+//    sWo(wtwo,_Wsavescales,0,_Wfont,F_SMALL_)
 
 
 <<"SCALES %V$sc_startday $sc_endday $wt_upper\n"
 
-    int allwo[] = {gwo,swo, calwo,  extwo , carbwo}
+    int allwo[] = {wtwo,swo, calwo,  extwo , carbwo}
 
 //<<"%V $allwo \n"
 
@@ -185,7 +186,7 @@
   wo_htile( xwos, 0.45,0.01,0.83,0.07,0.05);
 
   sWo(xwos,_Wstyle,"SVB",_Wredraw);
-  sWo(gwo,_Wshowpixmap,_Wsave);
+  sWo(wtwo,_Wshowpixmap,_Wsave);
   sWo(calwo,_Wshowpixmap,_Wsave);
   //sleep(0.1)
   // Measure WOBS

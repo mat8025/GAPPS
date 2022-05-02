@@ -267,10 +267,13 @@ cout  <<" sslng " << sslng  << endl;
   Str nameMangle(Str aname)
   {
 
+//<<"$_proc $aname \n";
+
   Str fname;
 
   Str nname=aname;
- //<<" %V $nname $aname \n"
+
+//  <<" %V $nname $aname \n";  // TBF
 
   int kc = nname.slen();
 
@@ -280,9 +283,12 @@ cout  <<" sslng " << sslng  << endl;
 
   }
 
-  fname.scpy(nname);
+  //fname.scpy(nname);
+  fname = nname;
 
- // <<"%V$nname --> $fname \n"
+// <<"%V $kc  $nname --> $fname \n"
+
+// is this going to work as cpp 
 
   return fname;
 

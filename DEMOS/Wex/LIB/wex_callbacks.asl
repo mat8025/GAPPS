@@ -90,21 +90,21 @@ void ZOUT()
 //---------------------------------------------
 void WTLB()
 {
-       <<"$_proc setting cursors $_ebutton \n"
+       <<"$_proc setting cursors %V  $Ev_button \n"
 
-       if (_ebutton == 1) {
-         lcpx = _erx;
-	<<"%V $lcpx\n"
-         sGl(lc_gl,_GLCURSOR,lcpx,0,lcpx,300, CL_init)
+       if (Ev_button == 1) {
+         lcpx = Ev_rx;
+	<<"CURSOR %V $Ev_rx $lcpx\n"
+         sGl(lc_gl,_GLCURSOR,lcpx,0,lcpx,300, CL_init,_GLEO);
 	 CL_init = 0;
          getDay(lcpx);
 
         }
 
-       if (_ebutton == 3) {
-         rcpx = _erx
-	<<"%V $rcpx\n"	 
-         sGl(rc_gl,_GLCURSOR,rcpx,0,rcpx,300, CR_init)
+       if (Ev_button == 3) {
+         rcpx = Ev_rx;
+	<<"%V $Ev_rx $rcpx\n"	 
+         sGl(rc_gl,_GLCURSOR,rcpx,0,rcpx,310, CR_init,_GLEO);
          CR_init = 0;
          getDay(rcpx);
        }
@@ -120,7 +120,7 @@ void setGoals()
 
    wtv = getWoValue(gwtwo)
    NextGoalWt = atof(wtv);
-   <<"%V$wtv $NextGoalWt\n"
+//   <<"%V$wtv $NextGoalWt\n"
    ssday = getWoValue(sdwo)
    sgday = getWoValue(gdwo)
 
@@ -134,14 +134,15 @@ void setGoals()
  //  sGl(gw_gl,@TXY,WDVEC,GVEC,@color,RED_)
 
    drawScreens();
-   sWo(tw_wo,_Wmoveto,targetday,NextGoalWt,gwo,_Wredraw);
+   
+   sWo(tw_wo,_Wmoveto,targetday,NextGoalWt,wtwo,_Wredraw);
 }
-
+//=========================================
 void setCursors()
 {
-        sGl(lc_gl,_GLCURSOR,lcpx,0,lcpx,300)
-         sGl(rc_gl,_GLCURSOR,rcpx,0,rcpx,300)
-
+<<"$_proc : $_lcpx\n"
+        sGl(lc_gl,_GLCURSOR,lcpx,0,lcpx,300,_GLEO);
+        sGl(rc_gl,_GLCURSOR,rcpx,0,rcpx,300,_GLEO);
 }
 
 
@@ -163,10 +164,10 @@ void RESIZE()
 //-------------------------------------------
 void SWITCHSCREEN()
 {
-  if (_ename == "SWITCHSCREEN") { 
-     wScreen = atoi(_ewords[1])
+  if (Ev_name == "SWITCHSCREEN") { 
+     wScreen = atoi(Ev_words[1]);
     <<[_DB]"Setting %V$wScreen msgw[1]\n"
-      drawScreens()
+      drawScreens();
   }
 }
 

@@ -85,15 +85,14 @@ char sep = 47;
 
 float minWt = 160;
 float upperWt = 225;
-//StartWt = 205;
 
-// rates per min
+
 
 
 #include "wex_types"
 
 #include "wex_rates"
-
+// rates per min
 
 
 
@@ -185,7 +184,6 @@ Yday = jtoday -Jan1;
 //<<"%V $maxday \n"
 
 
-
  A=ofr("DAT/wex2022.tsv")
 
  
@@ -197,7 +195,7 @@ if (A == -1) {
 
 // check period
 
-svar rx;
+Svar rx;
 //rx->pinfo()
 
 Record RX[400];
@@ -408,7 +406,7 @@ msgw =split(msg)
 //ans=query("proceed?")
 //sleep(0.1)
 
-//<<"%V $_eloop\n"
+//<<"%V $Ev_loop\n"
 
 
 ///////////////////////// PLOT  ////////////////////////////////////////////
@@ -432,8 +430,8 @@ int button = 0
    Keyw = ""
  
 
-   lcpx = sc_startday
-   rcpx = sc_endday
+   lcpx = sc_startday +4;
+   rcpx = sc_endday -4;
 
    sGl(lc_gl,_GLCURSOR,lcpx,0,lcpx,300)
 
@@ -456,13 +454,13 @@ _DB=-1;
 
    
 
-<<"%V $_eloop\n"
+<<"%V $Ev_loop\n"
 
     // drawScreens();
 //ans=query("proceed?")
  resize_screen()
 
- sWo(tw_wo,_Wmove,targetday,NextGoalWt,gwo,_Wredraw));
+ sWo(tw_wo,_Wmove,targetday,NextGoalWt,wtwo,_Wredraw));
 
  sWi(vp,_Wredraw);
  
@@ -476,10 +474,8 @@ _DB=-1;
 //mc=getMouseEvent();
 
 
-// _ekeyw.pinfo();
-//_ename.pinfo();
-
-
+// Ev_keyw.pinfo();
+//Ev_name.pinfo();
 
 
 while (1) {
@@ -497,63 +493,64 @@ while (1) {
        }
 */
         msg =eventWait();
-	
-//<<[2]"$m_num $msg  $_ename $_ewoname\n"
+<<"%V $m_num $Ev_button \n"
 
-//_ekeyw.pinfo();
+//<<[2]"$m_num $msg  $Ev_name $Ev_woname\n"
 
-//_ename.pinfo();
+//Ev_keyw.pinfo();
 
-       if (_ename == "PRESS") {
+//Ev_name.pinfo();
+
+       if (Ev_name == "PRESS") {
       // ans=iread(">>");
 /*
-     if (_ewoname != "") {
-<<"calling function via <|$_ewoname|> !\n"
-        $_ewoname()
+     if (Ev_woname != "") {
+<<"calling function via <|$Ev_woname|> !\n"
+        $Ev_woname()
         }
 */
 
       }
 
-       if (_emsg == "EXIT") {
+       if (Ev_msg == "EXIT") {
         <<"leaving WEX !\n"
 	 break;
        }
 
 
-       if (_ewoname == "WTLB") {
+       if (Ev_woname == "WTLB") {
                WTLB();
        }
        
-       else if (_ewoname == "RESIZE") {
+       else if (Ev_woname == "RESIZE") {
              drawScreens();
        }
 
-      else if (_ewoname == "REDRAW") {
+      else if (Ev_woname == "REDRAW") {
          drawScreens();
       }
 
 
-      else if (_ewoname == "StartDay") {
+      else if (Ev_woname == "StartDay") {
            setGoals()
       }
 
-      else if (_ewoname == "GoalDay") {
+      else if (Ev_woname == "GoalDay") {
            setGoals()
       }
 
-      else if (_ewoname == "WtGoal") {
+      else if (Ev_woname == "WtGoal") {
            setGoals()
       }
 
-      else if (_ewoname == "ZIN") {
+      else if (Ev_woname == "ZIN") {
            ZIN()
       }
 
-      else if (_ekeyw != "") {
+      else if (Ev_keyw != "") {
 
-        <<"calling <|${_ekeyw}|>  $(typeof(_ekeyw))\n"
-         $_ekeyw()
+        <<"calling <|${Ev_keyw}|>  $(typeof(Ev_keyw))\n"
+         $Ev_keyw()
 	 
        }
 

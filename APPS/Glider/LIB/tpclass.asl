@@ -129,11 +129,11 @@ class Turnpt
 Str val;
 Str val2;
 
-<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
-<<"$wval \n"
+//<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
+//<<"$wval \n"
      val = wval[0];
 
-<<"%V $val\n"
+//<<"%V $val\n"
 
      val.dewhite();
 

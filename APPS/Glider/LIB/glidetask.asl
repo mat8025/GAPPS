@@ -31,6 +31,7 @@
 #include <ostream>
 
 using namespace std;
+
 #endif
 
 ///////////////////////
@@ -109,9 +110,9 @@ cout << " para[1] is:  "  << sa.cptr(1) << endl;
 
  Svar sa;
 
- <<" na $_clargc \n"
+// <<" na $_clargc \n"
  na = _clargc;
- <<" na $_clarg[1]  $_clarg[2] \n"
+// <<" na $_clarg[1]  $_clarg[2] \n"
  
 
  sa = _clarg;
@@ -329,7 +330,7 @@ while (ac < na) {
 
   }
     //<<" %V $targ $istpt $(typeof(istpt)) \n"
- <<"%V $ac  $targ $sz $istpt \n"
+ //<<"%V $ac  $targ $sz $istpt \n"
 
   if (istpt) {
 
@@ -337,13 +338,13 @@ while (ac < na) {
 
   via_cl = 1;
 
-  CLTPT[cltpt] = targ;   // TBF 02/24/22
+ // CLTPT[cltpt] = targ;   // TBF 02/24/22
 
-//CLTPT.cpy(targ,cltpt); 
+CLTPT.cpy(targ,cltpt); 
 
-
+#if ASL
 <<"%V $targ $sz $cltpt $CLTPT[cltpt] \n"
-
+#endif
 //cout  <<"cltpt "<< cltpt  <<" CLTPT[cltpt] "<< CLTPT[cltpt]  <<endl ; 
 
   cltpt++;
@@ -356,7 +357,8 @@ while (ac < na) {
 // look up lat/long
 
   Str the_start= "Longmont";
-
+  Str try_place = "xxx";
+  Str try_start = "xxx";
   Str nxttpt = "Laramie";
 
   float N = 0.0;
@@ -384,9 +386,12 @@ while (ac < na) {
   int k;
 #if 1
   for (k= 0; k < cltpt; k++) {
- <<"$k  $CLTPT[k] \n";
-//    cout  <<" "<< k  <<" "<< CLTPT[k]  <<endl ; 
-  }
+#if ASL
+<<"$k  $CLTPT[k] \n";
+#else
+  cout  <<" "<< k  <<" "<< CLTPT[k]  <<endl ; 
+#endif
+}
 #endif  
 /////////////////////////////
 
@@ -394,7 +399,7 @@ while (ac < na) {
  int got_start = 0;
   while ( !got_start) {
 
-    <<" %V $cnttpt $i    $via_keyb $via_cl\n";
+   // <<" %V $cnttpt $i    $via_keyb $via_cl\n";
 
   fseek(AFH,0,0);
 
@@ -402,7 +407,7 @@ while (ac < na) {
 
   the_start = CLTPT[cnttpt];
 
-<<"$the_start $cnttpt \n"
+//<<"$the_start $cnttpt \n"
 
   cnttpt++;
 
@@ -437,27 +442,39 @@ while (ac < na) {
   break;
 
   }
-      <<"searching file for $the_start\n";
+     // <<"searching file for $the_start\n";
+      the_start.pinfo();
       // <<"         \n";
       //<<" \n";
 
   i=searchFile(AFH,the_start,0,1,0);
 
 //  <<[_DB]"$i\n";
-      //<<"index found was $i \n"
+
+//<<"index found was $i \n"
 
   if (i == -1) {
+ // printf("the_start  %s not found \n", stoa(the_start));
 
-  the_start = nameMangle(the_start);
-  i=searchFile(AFH,the_start,0,1,0);
+ printf("the_start  %s not found \n", the_start);
+
+  try_start = nameMangle(the_start);
+  
+  i=searchFile(AFH,try_start,0,1,0);
+  if (i != -1) {
+       the_start = try_start;
+  }
+
   }
 
 
 
   if (i == -1) {
 
-//  <<"$the_start not found \n";
-//cout  <<" "<< the_start  << "not "  << "found "  <<endl ; 
+  //<<"$the_start not found \n";
+  the_start.pinfo();
+cout  <<" "<< the_start  << "not "  << "found "  <<endl ;
+//  printf("the_start  %s not found \n", stoa(the_start));
   ok_to_compute = 0;
 
   if (!via_keyb) {
@@ -547,7 +564,7 @@ COUT(Wval[4])
    }
 
 COUT(tlon)
-<<"%V$tplace $tlon \n"
+//<<"%V$tplace $tlon \n"
 
 #if ASL
 <<"$Wval[::]\n"	  
@@ -566,7 +583,7 @@ COUT(tlon)
    
 //  cout << "Next TP " << endl;
   
-<<"next   $cnttpt \n"
+//<<"next   $cnttpt \n"
 // NEXT TURN
 
   int more_legs = 1;
@@ -575,7 +592,7 @@ COUT(tlon)
  // FIX
 
   float the_leg;
-<<"%V $AFH\n";
+//<<"%V $AFH\n";
   while (more_legs == 1) {
 
  // fseek(AFH,0,0);
@@ -584,7 +601,7 @@ COUT(tlon)
 
   nxttpt = CLTPT[cnttpt];
 
-<<"%V  $nxttpt   $cnttpt $cltpt \n"
+//<<"%V  $nxttpt   $cnttpt $cltpt \n"
 
   cnttpt++;
 
@@ -676,7 +693,7 @@ COUT(tlon)
   //  cout <<" next  nwr " << nwr << endl;
 
 
-<<"$n_legs $Wval[0] $Wval[1] $Wval[3] $Wval[4] \n"
+//<<"$n_legs $Wval[0] $Wval[1] $Wval[3] $Wval[4] \n"
 
    Wtp[n_legs].TPCUPset(Wval);
 
