@@ -495,15 +495,19 @@ while (1) {
      // setCursors();
        }
 */
-       // msg =eventWait();
+       // 
 	
-<<"%V $m_num $Ev_button \n";
+
 
 <<" trying gev.eventWait() \n";
 
         gev.eventWait();
 
 <<" got gev.Wait() \n";
+
+        msg =eventWait();
+<<"%V $m_num $Ev_button \n";
+
 
 //<<[2]"$m_num $msg  $Ev_name $Ev_woname\n"
 

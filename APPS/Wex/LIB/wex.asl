@@ -65,6 +65,7 @@ class Svar;
 
 
 #include "wex_rates.asl"
+
 //#include "tbqrd.asl"
 
  //float DVEC = vgen(FLOAT_,400,1,1);
@@ -209,6 +210,8 @@ Record RX;
   long gday;
   long gsday;
 
+
+  
   int NextGoalWt;
   int StGoalWt;
   float mid_date;
@@ -231,13 +234,13 @@ Record RX;
 
   int vp,vp1;
 
-  int gwo,calwo,calcwo,carbwo,extwo;
+  int wtwo,calwo,calcwo,carbwo,extwo;
   int swo,tw_wo,zinwo,zoomwo;
   int nobswo,xtwo,xbwo,xlbswo,dlbswo;
   int dtmwo,obswo,cbmwo,xtmwo,sdwo,gdwo,gwtwo,wtmwo;
 
 //////////////////// GLINES /////////////////
-  int calc_gl,calb_gl,carb_gl,fibre_gl,fat_gl,prot_gl,se_gl,bp_gl,pwt_gl,ext_gl, gw_gl,wt_gl,lc_gl,rc_gl,wt_gl2, wt_gl3;
+  int calc_gl,calb_gl,carb_gl,fibre_gl,fat_gl,prot_gl,se_gl,bp_gl,pwt_gl,ext_gl, gw_gl,wt_gl,lc_gl,rc_gl;
 
   int Symsz= 5;
 //=========================================
@@ -251,9 +254,11 @@ Record RX;
 
   long sc_zstart;
   long sc_startday;
+  float lcpx = 0.0;
+  float rcpx = 10.0;
 
-
-  
+  int Button;
+  float Erx;
 //    Svar Goals;
 //    Svar Goals2;
 //#include "wex_goals.asl"
@@ -261,24 +266,27 @@ Record RX;
 ////////////////////////////////////////  routines //////////////////////////////
 #include "gevent.h"
 
+ Gevent gev;
+
 #include "wex_compute.asl"
 
 #include "wex_read.asl"
 
 #include "wex_draw.asl"
 
+#include "wex_callbacks.asl"
   int N = 1000;
 //float DVEC[200+];
 //  let's use 400 to contain the year [1] will be first day
 // [365] or [366] will be the end year
 
-void Onwards()
-{
- ans= query("onwards n? ");
- if (ans == "n") {
+   void Onwards()
+  {
+   ans= query("onwards n? ");
+   if (ans == "n") {
     exit (-1);
- }
-}
+   }
+  }
 
 
    void computeGoalLine()
@@ -344,6 +352,7 @@ void Onwards()
 
 
 
+
 //#include "wex_screen.asl"
 
 //#include "wex_draw.asl"
@@ -356,7 +365,7 @@ void Onwards()
 // test Vec Global
    setDebug(2,"pline");
 
-  Gevent gev;
+//  Gevent gev; // this has be specific to this app
 
   cout << "Vtst "  << Vtst << endl;
 
@@ -448,11 +457,7 @@ cout << " Jan1 " << Jan1 << " Yday " << Yday  << endl;
 
 COUT(gday);
 
-   Onwards();
-// ans= query("onwards n? ");
-// if (ans == "n") {
-//    exit (-1);
-// }
+//   Onwards();
 
 
 
@@ -491,7 +496,7 @@ COUT(gday);
 
 COUT(GoalsC);
 
-  Onwards();
+//  Onwards();
 
   int A=ofr("DAT/wex2022.tsv");
 
@@ -515,12 +520,6 @@ cout <<" readRecord \n";
 //  RX.pinfo();
 
 COUT (Nrecs);
-
-
- ans= query("onwards n? ");
- if (ans == "n") {
-    exit (-1);
- }
 
 
 
@@ -600,12 +599,12 @@ COUT (nrd) ;
 
 //   init_period = 32;
 
-  sc_startday = (jtoday - Jan1) -20;
+  sc_startday = (jtoday - Jan1) -7;
 
   if (sc_startday <0)
      sc_startday =0;
 
-  sc_endday = targetday + 10;
+  sc_endday = targetday + 7;
 
     sc_endday = sc_startday + 90;
 //   <<"%V$sc_startday $targetday $sc_endday \n"
@@ -619,7 +618,7 @@ COUT (nrd) ;
 
   float gw2 = 170;
 
-COUT(gw2);
+  COUT(gw2);
 
 
 //////////////////   Predicted Wt   //////////////////////////////////
@@ -668,7 +667,9 @@ COUT(WDVEC);
 //cout<<"showTarget \n";
 
 //ans=query("proceed?");
-
+  lcpx = sc_startday;
+  rcpx = sc_endday;
+  
   drawScreens();
 
 //ans=query("proceed?");
@@ -679,17 +680,27 @@ COUT(WDVEC);
  
 cout<<"DONE PLOT\n";
 int nevent = 0;
-int button;
+
+
      while (1) {
 
          gev.eventWait();
          nevent++;
-	 button= gev.ebutton;
-	 COUT(button);
+	 Button= gev.ebutton;
+	 Erx = gev.erx;
+	 COUT(Button);
+	 COUT(Erx);	 
 	 COUT(nevent);
-	 if (button == 4)
+
+  if (Button == 1 || Button == 3) 
+          WTLB();
+
+	 if (Button == 4)
 	    break;
+	 if (nevent > 200)
+	   break;
      }
+
 cout<<"Exit Wex\n";
 
 }
@@ -716,7 +727,7 @@ cout<<"Exit Wex\n";
 
 
 
-//#include "wex_callbacks.asl"
+
 
 
 

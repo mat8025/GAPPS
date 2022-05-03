@@ -12,6 +12,13 @@
  */ 
 ;//----------------<v_&_v>-------------------------//;                                                                                              
 
+ void EXIT()
+  {
+  cout << "exit ?\n";
+  exit_si();
+    // exit_gs();
+  }
+
 
   void QRTD()
   {
@@ -19,7 +26,7 @@
 
   adjustQrt(-1);
 
-  showWL();
+     showWL(sc_zstart, sc_zend);
 
   }
 
@@ -30,7 +37,7 @@
 
   drawScreens();
 
-  showWL();
+     showWL(sc_zstart, sc_zend);
 
   }
 //////////////////////////////////////////////////////////////////////////////////
@@ -42,7 +49,7 @@
 
   drawScreens();
 
-  showWL();
+     showWL(sc_zstart, sc_zend);
   }
 //--------------------------------------------------
 
@@ -56,7 +63,7 @@
   void QUIT()
   {
 
-  exitgs();
+  exit_si();
 
   }
 //===================================
@@ -64,7 +71,7 @@
   void ZIN()
   {
 
-  <<" In $_proc  $lcpx  $rcpx\n";
+  //<<" In $_proc  $lcpx  $rcpx\n";
 
   sc_zstart = lcpx;
 
@@ -102,48 +109,42 @@
 
   }
 //---------------------------------------------
+void WTLB()
+{
+      // <<"$_proc setting cursors %V  $Ev_button \n"
+cout << "trying to draw cursor\n";
+COUT(Button);
 
-  void WTLB()
-  {
+int button = gev.ebutton;
+COUT(button);
+       if (Button == 1) {
+         lcpx = Erx;
+//	<<"CURSOR %V $lcpx\n"
+         sGl(lc_gl,_GLCURSOR,rbox(lcpx,0,lcpx,300), CL_init,_GLEO);
+	 CL_init = 0;
+        // getDay(lcpx);
+COUT(lcpx);
+        }
 
-  <<"$_proc setting cursors $_ebutton \n";
+       if (Button == 3) {
+         rcpx = Erx;
 
-  if (_ebutton == 1) {
+         sGl(rc_gl,_GLCURSOR,rbox(rcpx,0,rcpx,310), CR_init,_GLEO);
+         CR_init = 0;
+        // getDay(rcpx);
+       }
 
-  lcpx = _erx;
 
-  <<"%V $lcpx\n";
 
-  sGl(lc_gl,_WCURSOR,lcpx,0,lcpx,300, CL_init);
-
-  CL_init = 0;
-
-  getDay(lcpx);
-
-  }
-
-  if (_ebutton == 3) {
-
-  rcpx = _erx;
-
-  <<"%V $rcpx\n";
-
-  sGl(rc_gl,_WCURSOR,rcpx,0,rcpx,300, CR_init);
-
-  CR_init = 0;
-
-  getDay(rcpx);
-
-  }
-
-  }
+}
 //=========================================
+
 ///    WONAME PROCS ///
 
   void setGoals()
   {
-
-  wtv = getWoValue(gwtwo);
+/*
+  Str wtv = getWoValue(gwtwo);
 
   NextGoalWt = atof(wtv);
 
@@ -164,29 +165,26 @@
 
   drawScreens();
 
-  sWo(tw_wo,_WMOVETO,targetday,NextGoalWt,gwo,_WREDRAW,_WEO);
-
+  sWo(tw_wo,_WMOVETO,targetday,NextGoalWt,wtwo,_WREDRAW,_WEO);
+*/
   }
 
 
-  void setCursors()
-  {
 
-  sGl(lc_gl,_WCURSOR,lcpx,0,lcpx,300);
+void setCursors()
+{
+//<<"$_proc : $_lcpx\n"
+        sGl(lc_gl,_GLCURSOR,rbox(lcpx,0,lcpx,300),_GLEO);
+        sGl(rc_gl,_GLCURSOR,rbox(rcpx,0,rcpx,300),_GLEO);
+}
 
-  sGl(rc_gl,_WCURSOR,rcpx,0,rcpx,300);
 
-  }
+
 ////////////////////////KEYW CALLBACKS///////////////////////////////////////
 
-  void EXIT()
-  {
 
-  exit_gs();
-  }
-//-------------------------------------------
 
-  void REDRAW()
+ void REDRAW()
   {
    drawScreens();
   }
@@ -197,7 +195,7 @@
    drawScreens();
   }
 //-------------------------------------------
-
+/*
   void SWITCHSCREEN()
   {
   if (_ename _ == "SWITCHSCREEN") {
@@ -210,6 +208,7 @@
   }
 
   }
+*/
 ///////////////////////////////////////////////////////////////////////////////////////
 
 ;//==============\_(^-^)_/==================//;

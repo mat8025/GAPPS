@@ -45,9 +45,9 @@ cout<<"Wins done\n";
 ////////////////  WOBS ///////////////
 
 
-  gwo=cWo(vp,WO_GRAPH);
+  wtwo=cWo(vp,WO_GRAPH);
 
-  sWo(gwo,_WNAME,"WTLB",_WVALUE,0,_WCLIPBORDER,YELLOW_,_WEO); //   weight;
+  sWo(wtwo,_WNAME,"WTLB",_WVALUE,0,_WCLIPBORDER,YELLOW_,_WEO); //   weight;
 
   calwo=cWo(vp,WO_GRAPH);
 
@@ -61,7 +61,7 @@ cout<<"Wins done\n";
   
   sWo(extwo,_WNAME,"XT",_WVALUE,0,_WCLIPBORDER,BLACK_,_WEO); // exercise time;
 
-  int wedwos[] = { gwo,calwo,  carbwo, extwo,-1  };
+  int wedwos[] = { wtwo,calwo,  carbwo, extwo,-1  };
 //<<[_DB]"%V$wedwo \n"
 
 cout<<" vtile before set clip!\n";
@@ -102,7 +102,7 @@ COUT(calwo);
 
   sWo(extwo,_WCLIP,CXY,_WCOLOR,YELLOW_,_WCLIPBHUE,GREEN_,_WBHUE,ORANGE_,_WFONT,F_SMALL_,_WEO);
 
-  sWo(gwo,_WCLIP,CXY,_WCOLOR,ORANGE_,_WCLIPBHUE,RED_,_WBHUE,ORANGE_,_WFONT,F_SMALL_,_WEO);
+  sWo(wtwo,_WCLIP,CXY,_WCOLOR,ORANGE_,_WCLIPBHUE,RED_,_WBHUE,ORANGE_,_WFONT,F_SMALL_,_WEO);
 
   sWo(wedwos,_WCLIP,CXY,_WCOLOR,RED_,_WCLIPBHUE,ORANGE_,_WBHUE,LILAC_,_WFONT, F_SMALL_,_WSAVE,_WSAVEPIXMAP,_WEO);
 
@@ -135,7 +135,7 @@ COUT(swo);
 //  sWo(swos[0],_WCLIP,CXY,_WCOLOR,WHITE_,_WCLIPBORDER,BLACK_,_WEO);
 ///  measurement
 
-  tw_wo= cWo(gwo,WO_BS);
+  tw_wo= cWo(wtwo,WO_BS);
   sWo(tw_wo,_WRESIZE,wbox(0.1,0.1,0.15,0.25,0),_WNAME,"TW",_WVALUE,"175",_WEO);
 COUT(tw_wo);
 //  sWo(tw_wo,_WVHMOVE,ON,_WSYMBOL,STAR_,_WPIXMAPON,_WREDRAW,_WEO);
@@ -156,10 +156,10 @@ cout<<"scales " << sc_startday << " sc_end " << sc_end << " bp_upper " << bp_upp
 
   //<<"SCALES %V$sc_startday $sc_endday $carb_upper\n";
 
-  sWo(gwo,_WSCALES,wbox(sc_startday,150,sc_end,220),_WEO);
+  sWo(wtwo,_WSCALES,wbox(sc_startday,150,sc_end,220),_WEO);
 
 
-  int allwo[] = {gwo, calwo,  extwo , carbwo,swo,-1};
+  int allwo[] = {wtwo, calwo,  extwo , carbwo,swo,-1};
 //<<"%V $allwo \n"
 
   sWo(allwo,_WDRAWON,_WPIXMAPON,_WREDRAW,_WSAVE,_WSAVEPIXMAP,_WEO);
@@ -208,7 +208,7 @@ COUT(fewos);
 
    sWo(xwos,_WSTYLE,WO_SVB,_WREDRAW,_WEO);
 
-   sWo(gwo,_WSHOWPIXMAP,_WSAVE,_WEO);
+   sWo(wtwo,_WSHOWPIXMAP,_WSAVE,_WEO);
 
  // sWo(calwo,_WSHOWPIXMAP,_WSAVE,_WEO);
   //sleep(0.1)

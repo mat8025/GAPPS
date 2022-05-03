@@ -40,21 +40,12 @@ COUT(strength_gl)
 
  // sGl(ext_gl,_GLSYMSIZE,3,_GLSYMHUE,GREEN_);
 
-  wt_gl = cGl(gwo);
+  wt_gl = cGl(wtwo);
 
  sGl(wt_gl,_GLTXY,&DVEC,&WTVEC,_GLHUE, RED_, _GLSYMLINE, TRI_,_GLEO);
   //sGl(wt_gl,_GLTXY,&DVEC,&WTVEC,_GLHUE,BLUE_,_GLEO);
 
 COUT(wt_gl)
-
-  wt_gl2 = cGl(extwo);
-
- sGl(wt_gl2,_GLTXY,&DVEC,&WTVEC,_GLHUE,BLUE_, _GLSYMLINE,DIAMOND_,_GLEO);
-
-
-  wt_gl3 = cGl(calwo);
-
- sGl(wt_gl3,_GLTXY,&DVEC,&WTVEC,_GLHUE,BLUE_, _GLSYMLINE,DIAMOND_,_GLEO);
 
 
   if ((wt_gl == -1)  || (ext_gl == -1)) {
@@ -63,10 +54,10 @@ COUT(wt_gl)
 
   }
 
-//  gw_gl   = cGl(gwo);
+//  gw_gl   = cGl(wtwo);
 
 //  sGl(gw_gl,_GLTXY,&DVEC,&GVEC,_GLHUE,GREEN_,_GLEO);
-// gw_gl   = cGl(gwo,_GLTXY,WDVEC,GVEC,_GLHUE,RED_)
+// gw_gl   = cGl(wtwo,_GLTXY,WDVEC,GVEC,_GLHUE,RED_)
 gw_gl = -1;
 COUT(gw_gl)
 
@@ -118,7 +109,7 @@ COUT(se_gl)
 
   int allgl[] = {bp_gl,ext_gl, se_gl, calb_gl, calc_gl, carb_gl, cardio_gl, wt_gl, strength_gl,-1};  // remove gw_gl
 
-  int wedgl[] = { wt_gl2,wt_gl3, ext_gl, calb_gl, se_gl, calc_gl, carb_gl, fibre_gl,fat_gl,prot_gl, cardio_gl, wt_gl, strength_gl,-1};
+  int wedgl[] = { ext_gl, calb_gl, se_gl, calc_gl, carb_gl, fibre_gl,fat_gl,prot_gl, cardio_gl, wt_gl, strength_gl,-1};
 
   int exgls[] = {ext_gl, cardio_gl,strength_gl,-1};
 //<<[_DB]"%V$allgl \n"
@@ -142,7 +133,7 @@ COUT(cardio_gl);
 
  sGl(wt_gl,_GLSYMBOL,TRI_,_GLSYMSIZE, Symsz, _GLSYMHUE,BLUE_,_GLEO);
 
- sGl(wt_gl2,_GLSYMBOL,TRI_,_GLSYMSIZE, Symsz, _GLSYMHUE,BLUE_,_GLEO);
+
 
 COUT(strength_gl);
 
@@ -176,11 +167,11 @@ COUT(prot_gl);
 //  CURSORS
  // TBC cursor opt?
 
-  lc_gl   = cGl(gwo);
+  lc_gl   = cGl(wtwo);
 
   //sGl(lc_gl,_GLTXY,_GLHUE,RED_,_GLCURSOR,_GLEO);
 
-  rc_gl   = cGl(gwo);
+  rc_gl   = cGl(wtwo);
   //sGl(rc_gl,_GLTXY,_GLHUE,WHITE_,_GLCURSOR,_GLEO);
 
 
