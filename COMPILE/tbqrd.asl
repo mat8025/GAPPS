@@ -15,8 +15,8 @@
 ///
 
 // TBF has to be a 'starter' line before any decs in include file?
-// keep following
-
+// keep for TBQRD 2
+#ifndef TBQRD
 #define TBQRD 2
 
 //<<"including tbqrd.asl TBQRD $(TBQRD)\n"
@@ -112,7 +112,7 @@ void titleMsg(Str msg)
  sWo(tbqrd_msg,_WVALUE,"$msg",_WCLEAR,_WREDRAW,_WLAST);
 }
 
-
+#endif
 
 
 //<<[_DB]"EXIT %V $tbqrd_tv \n"

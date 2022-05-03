@@ -140,7 +140,7 @@ void eventRead()
 
 
 
-gevent Ev; // event type - can inspect for all event attributes
+Gevent Ev; // event type - can inspect for all event attributes
 
 
 int Ev_loop = 0;

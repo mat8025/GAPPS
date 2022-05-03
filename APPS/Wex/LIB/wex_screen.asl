@@ -44,6 +44,7 @@
 cout<<"Wins done\n";
 ////////////////  WOBS ///////////////
 
+
   gwo=cWo(vp,WO_GRAPH);
 
   sWo(gwo,_WNAME,"WTLB",_WVALUE,0,_WCLIPBORDER,YELLOW_,_WEO); //   weight;

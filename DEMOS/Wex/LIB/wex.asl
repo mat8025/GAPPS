@@ -371,7 +371,7 @@ readCCData();
 
 #include "wex_compute";
 
- PWT=predictWL();
+   PWT = predictWL();
 
 
 //////////////////// DISPLAY /////////////////////////////
@@ -473,6 +473,9 @@ _DB=-1;
 	 
 //mc=getMouseEvent();
 
+  Gevent gev;
+
+  gev.pinfo();
 
 // Ev_keyw.pinfo();
 //Ev_name.pinfo();
@@ -492,8 +495,15 @@ while (1) {
      // setCursors();
        }
 */
-        msg =eventWait();
-<<"%V $m_num $Ev_button \n"
+       // msg =eventWait();
+	
+<<"%V $m_num $Ev_button \n";
+
+<<" trying gev.eventWait() \n";
+
+        gev.eventWait();
+
+<<" got gev.Wait() \n";
 
 //<<[2]"$m_num $msg  $Ev_name $Ev_woname\n"
 

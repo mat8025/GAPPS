@@ -39,6 +39,9 @@
 
 #include "uac.h"
 
+
+#include "tbqrd.asl"
+
 #include <iostream>
 #include <ostream>
 
@@ -154,7 +157,7 @@ float   MinWt = 160;
 
   long Bday;  // birthday;
 
-  Str Bdate ;
+  
   
   int lday;  // last day recorded in file;
 
@@ -166,6 +169,14 @@ float   MinWt = 160;
   long Yd ;
 
   long sc_endday;
+
+//////////////////////  Set Dates /////////////////////////////////
+
+  long tday2,Sday,Sday2,yday,eday;
+
+
+
+
 Svar GoalsC;
    
 //GoalsC.Split("01/01/2022 03/31/2022 175"); // does not work
@@ -241,7 +252,7 @@ Record RX;
   long sc_zstart;
   long sc_startday;
 
-  long tday2,Sday,Sday2,yday,eday;
+
   
 //    Svar Goals;
 //    Svar Goals2;
@@ -259,7 +270,15 @@ Record RX;
   int N = 1000;
 //float DVEC[200+];
 //  let's use 400 to contain the year [1] will be first day
-// [365] or [366] will be the end year 
+// [365] or [366] will be the end year
+
+void Onwards()
+{
+ ans= query("onwards n? ");
+ if (ans == "n") {
+    exit (-1);
+ }
+}
 
 
    void computeGoalLine()
@@ -337,6 +356,8 @@ Record RX;
 // test Vec Global
    setDebug(2,"pline");
 
+  Gevent gev;
+
   cout << "Vtst "  << Vtst << endl;
 
 //    Svar Mo;
@@ -347,6 +368,37 @@ Record RX;
 ///        long-term and current weight loss goals 
 ///
 //  SET     START DATE      END DATE  TARGET WEIGHT
+
+
+  
+   yday = Julian("01/01/2022")   ; // this should be found from data file
+
+   eday = Julian("12/31/2022");
+
+  
+  today = getDate(2);
+
+ // today = date(2);
+
+  jtoday = Julian(today);
+
+  Year= getDate(YEAR_);
+
+  //<<"%V $today $jtoday $Year\n";
+
+  Bday = Julian("04/09/1949");
+
+  Jan1 = Julian("01/01/2022"); // Str adate ; adate.strPrintf("01/01/%s",Year.cptr()");
+
+  Yday = jtoday -Jan1;
+
+cout << " Jan1 " << Jan1 << " Yday " << Yday  << endl;
+
+
+
+
+///////////////////////////////////////////////////////////////////////
+
 
 // days will days of year not Julian
    Str stmp;
@@ -394,14 +446,19 @@ Record RX;
 
    gday =  targetday;    // next goal day;
 
+COUT(gday);
+
+   Onwards();
+// ans= query("onwards n? ");
+// if (ans == "n") {
+//    exit (-1);
+// }
+
+
+
+
    int got_start = 0;
 
-   yday = Julian("01/01/2022")   ; // this should be found from data file
-
-   eday = Julian("12/31/2022");
-
-   stmp = getDate(2);
-   jtoday = Julian(stmp);
 
    int ngday = 7;
 
@@ -421,23 +478,7 @@ Record RX;
 
 
 
-  today = getDate(2);
 
- // today = date(2);
-
-  jtoday = Julian(today);
-
-  Year= getDate(YEAR_);
-
-  //<<"%V $today $jtoday $Year\n";
-
-  Bday = Julian("04/09/1949");
-
-  Jan1 = Julian("01/01/2022"); // Str adate ; adate.strPrintf("01/01/%s",Year.cptr()");
-
-  Yday = jtoday -Jan1;
-
-  Bdate = "04/09/1949";
 
   Mo.Split ("JAN,FEB,MAR,APR ,MAY,JUN, JUL, AUG, SEP, OCT, NOV , DEC",44);
 
@@ -448,7 +489,9 @@ Record RX;
 // this is a new format -- allowing us to put comment labels on graphs
 //<<"%V $maxday \n"
 
+COUT(GoalsC);
 
+  Onwards();
 
   int A=ofr("DAT/wex2022.tsv");
 
@@ -463,13 +506,23 @@ Record RX;
 
   Svar rx;
 
-  Nrecs=RX.readRecord(A,_RDEL,-1);  // no back ptr to Siv?
+cout <<" readRecord \n";
+
+  Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST);  // no back ptr to Siv?
 
   // reader in readRecord closes file
 
 //  RX.pinfo();
 
-  cout <<"Nrecs "  << Nrecs << endl;
+COUT (Nrecs);
+
+
+ ans= query("onwards n? ");
+ if (ans == "n") {
+    exit (-1);
+ }
+
+
 
 
   //<<"%V $Nrecs $RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n";
@@ -624,7 +677,20 @@ COUT(WDVEC);
 
  drawScreens();
  
-cout<<"DONE\n";
+cout<<"DONE PLOT\n";
+int nevent = 0;
+int button;
+     while (1) {
+
+         gev.eventWait();
+         nevent++;
+	 button= gev.ebutton;
+	 COUT(button);
+	 COUT(nevent);
+	 if (button == 4)
+	    break;
+     }
+cout<<"Exit Wex\n";
 
 }
 
