@@ -499,14 +499,16 @@ while (1) {
 	
 
 
-<<" trying gev.eventWait() \n";
+<<" trying  vmf  gev.eventWait() \n";
 
-        gev.eventWait();
+        msg=gev.eventWait();
 
-<<" got gev.Wait() \n";
+<<" got gev.Wait() $msg\n";
+//ans=query("got wait?");
 
+<<" trying asl eventWait() \n";
         msg =eventWait();
-<<"%V $m_num $Ev_button \n";
+<<"%V $m_num $Ev_button $msg \n";
 
 
 //<<[2]"$m_num $msg  $Ev_name $Ev_woname\n"

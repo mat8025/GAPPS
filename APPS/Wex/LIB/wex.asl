@@ -176,7 +176,7 @@ float   MinWt = 160;
   long tday2,Sday,Sday2,yday,eday;
 
 
-
+  Str emsg;
 
 Svar GoalsC;
    
@@ -684,10 +684,14 @@ int nevent = 0;
 
      while (1) {
 
-         gev.eventWait();
+         emsg =gev.eventWait();
+	 COUT(emsg);
+	 emsg = gev.emsg;
+	 COUT(emsg);
          nevent++;
 	 Button= gev.ebutton;
 	 Erx = gev.erx;
+	 
 	 COUT(Button);
 	 COUT(Erx);	 
 	 COUT(nevent);
