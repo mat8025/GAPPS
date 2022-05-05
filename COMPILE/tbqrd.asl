@@ -41,26 +41,26 @@ float rsz[5] = {0.97,0,0.99,1};
  
 int  tr=cWo(v,TBS_);
 rsz[0] = 0.94;
-rsz[3] = 0.96;
+rsz[2] = 0.96;
  sWo(tr,_WNAME,"tbr",_WVALUE,"RESIZE",_WFUNC,"window_resize",_WRESIZE,rsz,_WSYMBOL,CROSS_,_WFLUSH);
  
  int td=cWo(v,TBS_);
  rsz[0] = 0.91;
- rsz[3] = 0.93;
+ rsz[2] = 0.93;
  
 sWo(td, _WNAME,"tbd",_WVALUE,"REDRAW",_WFUNC,"window_redraw",_WRESIZE,rsz,_WSYMBOL,DIAMOND_,_WFLUSH);
 
 int  tbqrd_tv = cWo(v,TBV_);
 rsz[0] = 0.2;
-rsz[3] = 0.5;
+rsz[2] = 0.5;
 sWo(tbqrd_tv,_WNAME,"tbv",_WVALUE,"VERS",_WSTYLE,WO_SVO,_WRESIZE,rsz,_WFLUSH);
 
 //<<[_DB]"SET %V $tbqrd_tv \n"
 //int qrd[] = {tr,tq,td};
 int  tbqrd_msg = cWo(v,TBV_);
 rsz[0] = 0.52;
-rsz[3] = 0.90;
-sWo(tbqrd_msg,_WNAME,"tbm",_WVALUE,"MSG",_WSTYLE,WO_SVO,_WRESIZE,rsz,_WFLUSH);
+rsz[2] = 0.80;
+sWo(tbqrd_msg,_WNAME,"tbm",_WVALUE,"MSG",_WSTYLE,WO_SVO,_WRESIZE,rsz,_WREDRAW,_WFLUSH);
 
 int qrd[3];
 
@@ -73,9 +73,9 @@ qrd[2]= td;
 float clip[5] = {0,0,1,1};
 int i;
 // need cpp version to process array without for loop 03/14/22
-for (i=0;i<3;i++) {
- sWo(qrd[i],_WDRAWON,_WPIXMAPON,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45, _WCLIP,clip,_WFLUSH);
-}
+
+ sWo(qrd,_WDRAWON,_WPIXMAPON,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45, _WCLIP,clip,_WREDRAW,_WFLUSH);
+
 // sWo(tbqrd_tv,_redraw);
 // sWo(tbqrd_msg,_redraw);
  

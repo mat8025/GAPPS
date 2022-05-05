@@ -71,14 +71,14 @@ cout<<" vtile before set clip!\n";
 
   float CXY[4] = { 0.05 ,0.2,0.95 ,0.97};
 //<<"%V$CXY\n"
-//cout<<"  titleButtonsQRD(vp);\n";
-  //titleButtonsQRD(vp);
+cout<<"  titleButtonsQRD(vp);\n";
+ titleButtonsQRD(vp);
   
-//cout <<"aftertitleButtons\n";
+cout <<"aftertitleButtons\n";
  //////////////////////////////// TITLE BUTTON QUIT ////////////////////////////////////////////////
 //<<"after proc - next statement missed? \n" // MUST FIX
 
-
+//ans=query("?#?");
 
   sc_end = sc_endday+10;
 
@@ -169,10 +169,10 @@ cout<<"scales " << sc_startday << " sc_end " << sc_end << " bp_upper " << bp_upp
   //quitwo=cWo(vp,WO_BN,_WNAME,"QUIT",_WCOLOR,"red")
 
   zinwo=cWo(vp,WO_BN);
-  sWo(zinwo,_WNAME,"ZIN",_WCOLOR,PINK_,_WHELP," zoom in on selected days ",_WEO);
+  sWo(zinwo,_WNAME,"ZIN",_WCOLOR,PINK_,_WHELP," zoom in on selected days ",_WREDRAW,_WEO);
 
   zoomwo=cWo(vp,WO_BN);
-  sWo(zoomwo,_WNAME,"ZOUT",_WCOLOR,BLUE_,_WEO);
+  sWo(zoomwo,_WNAME,"ZOUT",_WCOLOR,BLUE_,_WREDRAW,_WEO);
  // yrdecwo= cWo(vp,WO_BN,_WNAME,"YRD",_WCOLOR,"violetred",_WHELP," show previous Year  ")
 //  yrincwo= cWo(vp,WO_BN,_WNAME,"YRI",_WCOLOR,"purple",_WHELP," show next Year  ")
 //  qrtdwo=  cWo(vp,WO_BN,_WNAME,"QRTD",_WCOLOR,"violetred",_WHELP," show previous Qtr period ")
@@ -234,7 +234,7 @@ COUT(fewos);
 
   wovtile( mwos, 0.02,0.5,0.08,0.9);
 
-     sWo(mwos,_WSTYLE,WO_SVB,_WREDRAW,_WEO);
+  sWo(mwos,_WSTYLE,WO_SVB,_WREDRAW,_WEO);
 //  Goal WOBS
 
   sdwo=cWo(vp,WO_BV);
@@ -252,7 +252,8 @@ COUT(fewos);
 
 
   sWo(goalwos,_WSTYLE,WO_SVB,_WREDRAW,_WEO);
-
+int zoomwos[] = {zoomwo, zinwo, -1};
+    sWo(zoomwos,_WSTYLE,WO_SVB,_WREDRAW,_WEO);
 cout<<"Screen DONE\n";
 
  // titleVers();

@@ -72,14 +72,14 @@
   {
 
   //<<" In $_proc  $lcpx  $rcpx\n";
+  cout <<"In ZIN " << lcpx  << endl;
+   sc_zstart = lcpx;
 
-  sc_zstart = lcpx;
+   sc_zend = rcpx;
 
-  sc_zend = rcpx;
+   drawScreens();
 
-  drawScreens();
-
-  showWL(sc_zstart, sc_zend);
+ // showWL(sc_zstart, sc_zend);
 
   }
 //--------------------------------------------------
@@ -105,7 +105,7 @@
 
   drawScreens();
 
-  showWL(sc_zstart, sc_zend);
+ // showWL(sc_zstart, sc_zend);
 
   }
 //---------------------------------------------

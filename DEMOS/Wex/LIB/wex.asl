@@ -506,8 +506,8 @@ while (1) {
 <<" got gev.Wait() $msg\n";
 //ans=query("got wait?");
 
-<<" trying asl eventWait() \n";
-        msg =eventWait();
+//<<" trying asl eventWait() \n";
+//        msg =eventWait();
 <<"%V $m_num $Ev_button $msg \n";
 
 

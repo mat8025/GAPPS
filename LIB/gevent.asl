@@ -27,7 +27,7 @@ void eventDecode()
      
 //<<"$_proc %V $Ev_x $Ev_y  $Ev_woid\n"
 
-  Ev_woval = Ev.getEventWoValue();
+   Ev_woval = Ev.getEventWoValue();
   <<"%V $Ev_woval \n"       
 
   //  Ev.geteventrxy(Ev_rx,Ev_ry);    

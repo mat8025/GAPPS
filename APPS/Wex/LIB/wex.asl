@@ -40,7 +40,7 @@
 #include "uac.h"
 
 
-#include "tbqrd.asl"
+
 
 #include <iostream>
 #include <ostream>
@@ -66,7 +66,7 @@ class Svar;
 
 #include "wex_rates.asl"
 
-//#include "tbqrd.asl"
+#include "tbqrd.asl"
 
  //float DVEC = vgen(FLOAT_,400,1,1);
 
@@ -228,6 +228,7 @@ Record RX;
   float hlng;
   
 //////////////////////  SCREEN ///////////////////////////
+#include "tbqrd.asl"
 
   int wScreen = 0;
 //////////////////////  WOS ///////////////////////////
@@ -695,9 +696,33 @@ int nevent = 0;
 	 COUT(Button);
 	 COUT(Erx);	 
 	 COUT(nevent);
+          COUT (gev.ewoname);
+      if (gev.ewoname == "WTLB") {
 
-  if (Button == 1 || Button == 3) 
-          WTLB();
+               WTLB();
+       }
+       
+       else if (gev.ewoname == "REDRAW") {
+             drawScreens();
+       }
+
+       else if (gev.ewoname == "RESIZE") {
+             drawScreens();
+       }
+       else if (gev.ewoname == "ZIN") {
+        cout <<"trying zin ";
+             ZIN();
+       }
+
+       else if (gev.ewoname == "ZOUT") {
+        cout <<"trying zout ";
+             ZOUT();
+       }
+
+
+
+ // if (Button == 1 || Button == 3) 
+ //         WTLB();
 
 	 if (Button == 4)
 	    break;

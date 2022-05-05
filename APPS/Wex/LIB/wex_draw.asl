@@ -276,11 +276,12 @@ cout<<"DrawScreens\n";
   if ( wScreen == 0) {
 //<<"%V $sc_zstart $minWt $sc_zend $upperWt\n"
  // sWo(wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0,_WFLUSH);
-  //sWo(wedwos,_WXSCALES,wpt(sc_zstart,sc_zend),_WFLUSH);
+
+  sWo(wedwos,_WXSCALES,wpt(sc_zstart,sc_zend),_WFLUSH);
   
 
- // sWo(wedwos,_WCLEARCLIP,WHITE_,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_,_WFLUSH);
-
+ sWo(wedwos,_WCLEARCLIP,WHITE_,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_,_WFLUSH);
+cout <<"Draw Screen\n";
   drawGoals( wScreen);
 
   drawGrids( wScreen);
@@ -288,7 +289,7 @@ cout<<"DrawScreens\n";
  //sWo(wtwo,_WCLEARCLIP,CYAN_,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_,_WFLUSH);
 
 // sWo(calwo,_WCLEARCLIP,YELLOW_,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_,_WFLUSH);
- sWo(wtwo,_WSCALES,wbox(sc_startday,150,sc_end,220),_WFLUSH);
+// sWo(wtwo,_WSCALES,wbox(sc_startday,150,sc_end,220),_WFLUSH);
  
   if (ALL_LINES) {
 
