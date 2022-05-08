@@ -99,7 +99,7 @@ class Turnpt
 
      Idnt =  wval[1];
 
-   cout  << "Idnt  "  << Idnt  << endl ;
+    //cout  << "Idnt  "  << Idnt  << endl ;
 
 
      Lat = wval[2]; // wayp 
@@ -129,6 +129,8 @@ class Turnpt
 Str val;
 Str val2;
 
+//<<"$_proc \n";
+
 //<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
 //<<"$wval \n"
      val = wval[0];
@@ -139,7 +141,7 @@ Str val2;
 
 //cout << "val " << val << endl;
 
-    // val.pinfo();
+//    val.pinfo();
 
      val.scut(1);
 //cout << "val " << val << endl;     
@@ -168,7 +170,7 @@ Str val2;
 
      ccoor(Lon);
 
-//  <<"%V$Lon  \n"
+ //<<"%V$Lon  \n"
   
      val = wval[5];
 
@@ -176,12 +178,12 @@ Str val2;
 
      val.scut(-2); 
 
-//     <<"%V$val  \n"
+// <<"%V$val  \n"
 
 
      Alt = atof(val);
 //cout  <<"Alt "<< Alt  <<endl ; 
-//     <<"%V$Alt  \n"
+// <<"%V$Alt  \n"
 
      is_airport =0;
 
@@ -200,13 +202,16 @@ Str val2;
      }
 
 
-//     val = wval[9];
+    val = wval[9];
 
-//  <<"Radio ?? $val  \n"
 
      //Radio = atof(wval[9]);
 
      Radio = wval[9];
+
+//<<"Radio wval[9] $val  \n"
+//ans=query("??");
+
 
 //     
  //cout  <<"Radio "<< Radio  <<endl ; 
@@ -215,14 +220,16 @@ Str val2;
      
     // spat (tptype,"A",-1,-1,&is_airport);
 
-     Ladeg =  coorToDeg(Lat); 
+     Ladeg =  coorToDeg(Lat,2); 
 
+ //Lat.pinfo();
+//<<"%V $Lat $Ladeg \n";
 //cout  <<"Lat " << Lat <<" Ladeg "<< Ladeg  <<endl ; 
 
-     Longdeg = coorToDeg(Lon);
+     Longdeg = coorToDeg(Lon,2);
 
 //cout  <<"Lon " << Lon <<" Longdeg "<< Longdeg  <<endl ; 
-
+//<<"%V $Lon $Longdeg \n";
       }
 //=========================//
 

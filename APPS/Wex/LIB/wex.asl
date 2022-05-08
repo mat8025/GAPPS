@@ -499,7 +499,7 @@ COUT(GoalsC);
 
 //  Onwards();
 
-  int A=ofr("DAT/wex2022.tsv");
+  int A=ofr("~/gapps/DAT/wex2022.tsv");
 
   if (A == -1) {
 
@@ -550,7 +550,7 @@ cout << "last rec " << rx << endl;
 ///////////// Cals & Carb Consumed ////////
 // so far not logged often 
 
-  int ACC=ofr("DAT/cc2022.tsv");
+  int ACC=ofr("~/gapps/DAT/cc2022.tsv");
 
   NCCrecs = 0;
 
@@ -632,27 +632,27 @@ COUT (nrd) ;
 
 float ae = EXTV[15];
 
-COUT(ae);
+ //COUT(ae);
 
    AVE_EXTV = EXTV;
 
   ae = AVE_EXTV[15];
 
-COUT(ae);
+// COUT(ae);
    AVE_EXTV.Smooth(7);  // add Smooth (smooth_win_size)
 
    ae = AVE_EXTV[15];
 
 COUT(ae);
 
-COUT(DVEC);
+//COUT(DVEC);
 
 
-COUT(WTVEC);
+//COUT(WTVEC);
 
 //ans=query("proceed?");
 
-COUT(WDVEC);
+//COUT(WDVEC);
 
 //ans=query("proceed?");
 

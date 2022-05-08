@@ -66,11 +66,11 @@ COUT(mywt);
 
    tex = ( walk + hike + run + cycle + swim + yardwrk + wex);
 
-COUT(tex);
+//COUT(tex);
 
   EXTV[iyd] = tex; 
 
-COUT(EXTV[iyd]);
+//COUT(EXTV[iyd]);
 
   CARDIO[Yd] = ( walk + hike + run + cycle + swim );
 
@@ -225,7 +225,7 @@ cout << "Nobs " << Nobs << endl;
 //<<[_DB]"$RCC[tl]\n"
 //<<[_DB]"$tl  $NCCobs $NCCrecs\n"
     //day = ccol[0];
-cout << "RCC tl " << tl << " " << RCC(tl) << endl;
+//cout << "RCC tl " << tl << " " << RCC(tl) << endl;
 
 //COUT2(tl,RCC(tl)) ;
 

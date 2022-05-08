@@ -184,7 +184,7 @@ Yday = jtoday -Jan1;
 //<<"%V $maxday \n"
 
 
- A=ofr("DAT/wex2022.tsv")
+ A=ofr("~/gapps/DAT/wex2022.tsv")
 
  
 if (A == -1) {
@@ -261,7 +261,7 @@ chkT(1)
 
 
 
-ACC=ofr("DAT/cc2022.tsv")
+ACC=ofr("~/gapps/DAT/cc2022.tsv")
 
 Record RCC[400]; // TBC has to be at least 1
 

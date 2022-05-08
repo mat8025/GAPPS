@@ -231,6 +231,10 @@ cout<<"Done showTarget\n";
   sWo(extwo,_WYSCALES,wpt(0,upperWt),_WSAVESCALES,1,_WEO);
 
   sWo(extwo,_WAXNUM,AXIS_LEFT_,_WFLUSH);
+
+  sWo(wtwo,_WYSCALES,wpt(110,220),_WEO);
+
+    sWo(wtwo,_WAXNUM,AXIS_LEFT_,_WFLUSH);
   //sWo(extwo,_WAXNUM,2,0,sc_endday,20,10)
   //Text(wtwo, "Weight (lbs)",-4,0.7,4,-90)
 
