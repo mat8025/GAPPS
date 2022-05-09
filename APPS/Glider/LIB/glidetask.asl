@@ -57,6 +57,9 @@ int AFH= -1;
 float CSK;
 float Cruise_speed;
 
+float TC[20];
+float Dur[20];
+
 Svar Task;
 
   float totalD = 0;
@@ -1044,6 +1047,9 @@ COUT(tlon)
   int idlen = ident.slen();
 
   Str wsi= nsc((15-idlen)," ");
+  float tct;
+  float dct;
+  
  // <<"$li $Wleg[li]->dist  $Wleg[li]->pc_tot \n"
  //<<"$li ${tpb}${ws}${ident}${wsi} %9.3f${Wtp[li]->Lat} %11.3f${Wtp[li]->Lon}\s%10.0f${Wtp[li]->fga} ${Wtp[li]->Alt} %4.1f$Wleg[li]->pc ";
 
@@ -1051,8 +1057,15 @@ COUT(tlon)
 
 
 #if ASL
- <<"$li ${tpb}${ws}${ident}${wsi} ${Wtp[li]->Lat} ${Wtp[li]->Lon}\s%11.0f${Wtp[li]->fga} ${Wtp[li]->Alt} %4.1f$Wleg[li]->pc_tot\t ";
-<<"%5.1f$Wleg[li]->dist\t$TC[li]\t$Dur[li]\t$rtotal\t%6.2f${Wtp[li]->Radio}\n";
+// <<"$li ${tpb}${ws}${ident}${wsi} ${Wtp[li]->Lat} ${Wtp[li]->Lon}\s%11.0f${Wtp[li]->fga} ${Wtp[li]->Alt} %4.1f$Wleg[li]->pc_tot ";
+tct = TC[li];
+dct = Dur[li];
+<<"$li ${tpb}${ws}${ident}${wsi} ${Wtp[li]->Lat} ${Wtp[li]->Lon}\s%11.0f${Wtp[li]->fga} ${Wtp[li]->Alt} %4.1f$Wleg[li]->pc_tot ";
+<<" $Wleg[li]->dist\t $TC[li]\t $Dur[li]\t $rtotal\t%6.2f${Wtp[li]->Radio}\n";
+
+
+//<<"$Wleg[li]->dist\t$tct\t$dct\t$rtotal\t%6.2f${Wtp[li]->Radio}\n";
+
 //  ans=query("??");
 #else
 // printf("%d %s  \t%s\t%s   %6.0fft   %6.0fft         \n",li,ident,Wtp[li].Lat,Wtp[li].Lon, Wtp[li].fga, Wtp[li].Alt);
