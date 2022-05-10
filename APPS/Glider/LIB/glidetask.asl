@@ -862,7 +862,7 @@ COUT(tlon)
 
 
   float rtime = 0.0;
-
+  float tot_time = 0.0;
   float rtotal = 0.0;
 // in main --- no obj on stack?
   float nleg,wleg;
@@ -1042,18 +1042,18 @@ COUT(tlon)
 
   int tplen = tpb.slen();
 
-  Str ws =  nsc((15-tplen)," ");
+  Str ws =  nsc((12-tplen)," ");
 
   int idlen = ident.slen();
 
-  Str wsi= nsc((15-idlen)," ");
+  Str wsi= nsc((10-idlen)," ");
   float tct;
   float dct;
   
  // <<"$li $Wleg[li]->dist  $Wleg[li]->pc_tot \n"
  //<<"$li ${tpb}${ws}${ident}${wsi} %9.3f${Wtp[li]->Lat} %11.3f${Wtp[li]->Lon}\s%10.0f${Wtp[li]->fga} ${Wtp[li]->Alt} %4.1f$Wleg[li]->pc ";
 
-
+   tot_time += Dur[li];
 
 
 #if ASL
@@ -1061,7 +1061,7 @@ COUT(tlon)
 tct = TC[li];
 dct = Dur[li];
 <<"$li ${tpb}${ws}${ident}${wsi} ${Wtp[li]->Lat} ${Wtp[li]->Lon}\s%11.0f${Wtp[li]->fga} ${Wtp[li]->Alt} %4.1f$Wleg[li]->pc_tot ";
-<<" $Wleg[li]->dist\t $TC[li]\t $Dur[li]\t $rtotal\t%6.2f${Wtp[li]->Radio}\n";
+<<"%6.2f $Wleg[li]->dist\t $TC[li]\t $Dur[li]\t $rtotal\t$tot_time ${Wtp[li]->Radio}\n";
 
 
 //<<"$Wleg[li]->dist\t$tct\t$dct\t$rtotal\t%6.2f${Wtp[li]->Radio}\n";
@@ -1069,7 +1069,7 @@ dct = Dur[li];
 //  ans=query("??");
 #else
 // printf("%d %s  \t%s\t%s   %6.0fft   %6.0fft         \n",li,ident,Wtp[li].Lat,Wtp[li].Lon, Wtp[li].fga, Wtp[li].Alt);
-printf("%d %s%s%s%s\t%s   %6.0fft   %6.0fft         ",li,Wtp[li].Place.cptr(),ws.cptr(),ident.cptr(),wsi.cptr(),Wtp[li].Lat.cptr(),Wtp[li].Lon.cptr(), Wtp[li].fga, Wtp[li].Alt);
+printf("%d %s%s%s%s%s %s  %6.0fft  %6.0fft ",li,Wtp[li].Place.cptr(),ws.cptr(),ident.cptr(),wsi.cptr(),Wtp[li].Lat.cptr(),Wtp[li].Lon.cptr(), Wtp[li].fga, Wtp[li].Alt);
 
    printf("\t%6.2f%%",Wleg[li].pc); 
     printf("\t%5.1f ",Wleg[li].dist);
@@ -1077,7 +1077,7 @@ printf("%d %s%s%s%s\t%s   %6.0fft   %6.0fft         ",li,Wtp[li].Place.cptr(),ws
 //cout  << "%5.1f$Wleg[li]->dist\t$rtotal\t$rtime\t%6.2f${Wtp[li]->Radio} " ; 
   printf("\t%6.0f ",TC[li]);
 
-  printf("\t%6.2f %6.2f ",Dur[li],rtotal);
+  printf("\t%6.2f %6.2f %6.2f ",Dur[li],rtotal,tot_time);
 
   printf("\t%s\n",Wtp[li].Radio.cptr())  ; 
 #endif
@@ -1086,7 +1086,7 @@ printf("%d %s%s%s%s\t%s   %6.0fft   %6.0fft         ",li,Wtp[li].Place.cptr(),ws
 
   if (show_dist) {
 #if ASL
-  <<"Total distance\t %8.2f $totalD km\t%8.2f $(totalD*km_to_sm)sm\t%6.2f  $(totalD*km_to_nm) nm    LOD %6.1f$LoD CS $CSK\n";
+  <<"Total distance\t %8.2f $totalD km\t%8.2f $(totalD*km_to_sm) sm\t%6.2f  $(totalD*km_to_nm) nm    LOD %6.1f$LoD CS $CSK knots\n";
 
   <<" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n";
 #else
@@ -1099,7 +1099,7 @@ printf("%d %s%s%s%s\t%s   %6.0fft   %6.0fft         ",li,Wtp[li].Place.cptr(),ws
 //     cout << "total D "  << endl;
   //   cout << ::totalD    <<endl ; 
 
-     printf("totalD  %f km to fly - %f hrs - bon voyage!\n ", totalD, totalDur);
+     printf("totalD  %6.2f km to fly - %6.2f hrs - bon voyage!\n ", totalD, totalDur);
 
      //cout.flush();
 
