@@ -156,7 +156,7 @@ cout<<"scales " << sc_startday << " sc_end " << sc_end << " bp_upper " << bp_upp
 
   //<<"SCALES %V$sc_startday $sc_endday $carb_upper\n";
 
-  sWo(wtwo,_WSCALES,wbox(sc_startday,150,sc_end,220),_WEO);
+  sWo(wtwo,_WSCALES,wbox(sc_startday,155,sc_end,220),_WEO);
 
 
   int allwo[] = {wtwo, calwo,  extwo , carbwo,swo,-1};

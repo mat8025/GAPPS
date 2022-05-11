@@ -1,0 +1,17 @@
+#                          Fat  Carbohydrate Protein  Cholesterol  Weight Saturated_Fat Calories. 
+#                          (Grams) (Grams) (Grams) (Milligrams)    (Grams)  (Grams)     (cals)
+#  computed from food_log.dat  and food_table.dat   via getfpc.asl
+#
+04/9/2011    * 80 * * * * 1980
+04/10/2011    * 30 * * * * 1500
+04/11/2011    * 30 * * * * 1500
+04/12/2011    * 30 * * * * 1500
+04/13/2011    * 30 * * * * 1500
+04/14/2011    * 30 * * * * 1500
+04/15/2011    * 30 * * * * 1500
+05/17/2011    * 150 * * * * 3500
+05/18/2011    * 120 * * * * 3500
+05/19/2011    * 120 * * * * 3500
+05/20/2011    * 120 * * * * 3500
+05/21/2011    * 70 * * * * 1510
+05/22/2011    * 13 * * * * 598

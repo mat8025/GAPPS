@@ -122,7 +122,7 @@ COUT(button);
 //	<<"CURSOR %V $lcpx\n"
          sGl(lc_gl,_GLCURSOR,rbox(lcpx,0,lcpx,300), CL_init,_GLEO);
 	 CL_init = 0;
-        // getDay(lcpx);
+        getDay(lcpx);
 COUT(lcpx);
         }
 

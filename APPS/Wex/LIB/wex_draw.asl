@@ -232,7 +232,7 @@ cout<<"Done showTarget\n";
 
   sWo(extwo,_WAXNUM,AXIS_LEFT_,_WFLUSH);
 
-  sWo(wtwo,_WYSCALES,wpt(110,220),_WEO);
+  sWo(wtwo,_WYSCALES,wpt(170,215),_WEO);
 
     sWo(wtwo,_WAXNUM,AXIS_LEFT_,_WFLUSH);
   //sWo(extwo,_WAXNUM,2,0,sc_endday,20,10)
@@ -545,12 +545,25 @@ cout <<"Draw Screen\n";
   m_day= dayv + Jan1 -1;  // ? OBO;
 
   mdy = Julmdy(m_day);
-
+  COUT(mdy);
+  
   //sWo(dtmwo,_WVALUE2 ,mdy,_WREDRAW );
-  sWo(dtmwo,_WVALUE ,mdy,_WREDRAW ,_WEO);
+    woSetValue(dtmwo,mdy);
 
   wtm = 0.0;
 
+  woSetValue(wtmwo,wtm);
+    woSetValue(cbmwo,0.0);
+        woSetValue(xtmwo,0.0);
+
+  sWo(wtmwo,_WREDRAW,_WEO);
+  sWo(dtmwo,_WREDRAW,_WEO);
+  sWo(xtmwo,_WREDRAW,_WEO);  
+
+
+sWo(dtmwo,_WSTRVALUE ,&mdy,_WREDRAW,_WEO );
+
+#if 0
   sWo(wtmwo,_WVALUE,wtm,_WREDRAW,_WEO);
 
   sWo(cbmwo,_WVALUE,0,_WREDRAW,_WEO);
@@ -578,6 +591,7 @@ cout <<"Draw Screen\n";
   sWo(wtmwo,_WVALUE,wtm,_WREDRAW,_WEO);
 
   sWo(cbmwo,_WVALUE,cbm,_WREDRAW,_WEO);
+#endif
 
   }
 //[EM]=================================//

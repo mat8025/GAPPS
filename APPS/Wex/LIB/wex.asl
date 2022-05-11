@@ -699,7 +699,7 @@ int nevent = 0;
           COUT (gev.ewoname);
       if (gev.ewoname == "WTLB") {
 
-               WTLB();
+               WTLB ();
        }
        
        else if (gev.ewoname == "REDRAW") {
