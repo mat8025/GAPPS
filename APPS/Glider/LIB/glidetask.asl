@@ -51,7 +51,7 @@ ignoreErrors(-1);
 #endif
 
 
-int Ntp_id = 0; // ids for turnpt objs
+
 int TF; // task file FH
 int AFH= -1;
 float CSK;
@@ -1104,7 +1104,7 @@ printf("%d %s%s%s%s%s %s  %6.0fft  %6.0fft ",li,Wtp[li].Place.cptr(),ws.cptr(),i
      //cout.flush();
 
 //ans=query("totalD ?");
-  }
+}
 
   else {
 

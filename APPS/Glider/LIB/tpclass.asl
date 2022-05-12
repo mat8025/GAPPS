@@ -15,8 +15,9 @@
 
 
 int Tleg_id = 0;
-
-//<<"%V $_include $Tleg_id\n"
+#if ASL
+<<"%V $_include $Tleg_id\n"
+#endif
 
 class Tleg 
  {
@@ -53,7 +54,7 @@ Tleg()
 
 
 
-//int Ntp_id = 0;
+int Ntp_id = 0; // ids for turnpt objs
 
 
 class Turnpt 
@@ -132,7 +133,7 @@ Str val2;
 //<<"$_proc \n";
 
 //<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
-//<<"$wval \n"
+<<"$wval \n"
      val = wval[0];
 
 //<<"%V $val\n"
@@ -220,11 +221,17 @@ Str val2;
      
     // spat (tptype,"A",-1,-1,&is_airport);
 
+<<"%V $lat \n";
+
      Ladeg =  coorToDeg(Lat,2); 
 
- //Lat.pinfo();
-//<<"%V $Lat $Ladeg \n";
-//cout  <<"Lat " << Lat <<" Ladeg "<< Ladeg  <<endl ; 
+
+
+ Ladeg.pinfo();
+ 
+<<"%V $Lat $Ladeg \n";
+
+ //cout  <<"Lat " << Lat <<" Ladeg "<< Ladeg  <<endl ; 
 
      Longdeg = coorToDeg(Lon,2);
 
@@ -286,7 +293,7 @@ void Turnpt()
 
 
 
-
-//<<"%V $_include $Ntp_id\n"
-
+#if ASL
+<<"%V $_include  DONE\n"
+#endif
 

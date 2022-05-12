@@ -17,51 +17,58 @@
 ///
 
 
+#define ASL 1
+#define ASL_DB 0
+#define GT_DB   0
+#define CPP 0
 
-<|Use_=
- view and select turnpts
- create read tasks   
-///////////////////////
-|>
 
-                                                                        
+
+Str Use_= "  view and select turnpts  create read tasks ";
+
 #include "debug"
+
+
 
 if (_dblevel >0) {
   debugON()
     <<"$Use_\n"   
 }
 
+chkIn(_dblevel);
 
 #include "hv.asl"
 
 
-chkIn(_dblevel);
-ignoreErrors()
-setMaxICerrors(-1) // ignore - overruns etc
+
+ ignoreErrors(-1);
+//setMaxICerrors(-1) // ignore - overruns etc
 
 //#define DBG <<
 #define DBG ~!
 
 
-float Max_ele = 18000.0
-float Min_ele  = 0.0;
-float Margin = 0.05;
-
-int Ntpts = 1000;
-
-float MSL=0;
-
 uplegs = 0;  // needed?
 
-#include "tpclass"
+
+#include "conv.asl"
+
+#include "tpclass.asl"
+
 #include "ootlib"
+
+#include "graphic_glide.asl"
+
+
+
+
+
 
 int main_chk =1;
 int Maxtaskpts = 13;
 
 //======================================//
-proc drawTrace()
+void drawTrace()
 {
      if (Have_igc) {
          sWo(mapwo, @scales, LongW, LatS, LongE, LatN )
@@ -108,12 +115,12 @@ TaskType = "TRI";
 int Nlegs = 3;
 
 
-int Taskpts[>10];
+int Taskpts[20];
 
 Turnpt  Wtp[300]; //
 
 Tleg  Wleg[20];
-
+Record RX;
 
 index = 7;
 for (i= 0; i <5; i++) {
@@ -130,27 +137,6 @@ for (i= 0; i <5; i++) {
 
 
  
-  
-/*
-#include "showtask_scrn"
-Taskpts<-pinfo()
-
-   for (k= 0; k < Ntaskpts; k++) {
-     index = Taskpts[k];
-<<"%V $k $index $Taskpts[k] \n";
-   }
-*/
-
-/*
-
-TaskDist() ;   // TBF  ?? 9/20/21 has to be run before TP readin ???
-
-
- DrawMap(mapwo)
-
-  drawTask(mapwo,"red")
-*/
-//==========================//
 
 
 
@@ -182,41 +168,49 @@ A=  ofr(tp_file);
  }
 
 if (use_cup) {
-  RF= readRecord(A,@del,',',@comment,"#");
+
+  Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST);  // no back ptr to Siv?
+  //RF= readRecord(A,@del,',',@comment,"#");
 }
 else {
- RF= readRecord(A);
+// RF= readRecord(A);
 }
 cf(A);
 
 
-recinfo = info(RF);
-<<"$recinfo \n"
+ 
 
 
-  Nrecs = Caz(RF);
-  Ncols = Caz(RF,1);
+
+  Nrecs = Caz(RX);
+  Ncols = Caz(RX,1);
 
 <<"num of records $Nrecs  num cols $Ncols\n";
 
 
-WH=searchRecord(RF,"jamest",0,0)
+  WH=searchRecord(RX,"jamest",0,0)
 
 <<"$WH \n"
+  WH.pinfo();
+/*
 index = WH[0][0]
 <<"%V $index\n"
 
-place = RF[index][0]
-lat = RF[index][2]
-longv = RF[WH[0][0]][3]
+place = RX[index][0]
+lat = RX[index][2]
+longv = RX[WH[0][0]][3]
 
-<<"$RF[index][0] \n"
-<<"$RF[index][2] \n"
+<<"$RX[index][0] \n"
+<<"$RX[index][2] \n"
 <<"%V $place $lat $longv\n"
 
 
 <<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+*/
+
 main_chk++;
+
+//ans=query("??");
 
 //================================//
  svar Wval;
@@ -244,23 +238,27 @@ int c1;
 
 while (1) {
 
-  //  before = ftell(A)
+    before = ftell(A);
    c1 = fgetc(A,-1);
-    //after = ftell(A)
-//<<"$Ntp $wd1 $before $after\n"    
-    if (use_cup) {
-               nwr = Wval<-ReadWords(A,0,',')
+    after = ftell(A);
 
-<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
-main_chk++;
+
+<<"$Ntp $before $after\n"    
+    if (use_cup) {
+               nwr = Wval.ReadWords(A,0,',')
+
+<<"%V $nwr\n";
+<<"%V $Wval\n";
+
+        main_chk++;
 
 	       
     }
     else {
-            nwr = Wval<-ReadWords(A)
+            nwr = Wval.ReadWords(A)
     }
             if (nwr == -1) {
-	      break
+	      break;
             }
 	    
     if (nwr > 6) {
@@ -268,14 +266,13 @@ main_chk++;
      if ( c1 != '#') {
      
       if (use_cup) {
-<<"main precmf %V $_scope $_cmfnest $_proc $_pnest\n"      
-             Wtp[Ntp]->TPCUPset(Wval);
-<<"main postcmf %V $_scope $_cmfnest $_proc $_pnest\n"
-<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
-main_chk++;
+
+         Wtp[Ntp].TPCUPset(Wval);
+
+         main_chk++;
       }
       else {
-            Wtp[Ntp]->TPset(Wval);
+         Wtp[Ntp].TPset(Wval);
       }
 
 
@@ -284,9 +281,11 @@ main_chk++;
         }
       }
 
-//if (Ntp >=3) break;
+if (Ntp >=100) break;
 //<<"while_end main postcmf %V $_scope $_cmfnest $_proc $_pnest\n"
-      }
+   <<"%V $Ntp \n"
+
+}
 
 <<" Read $Ntp turnpts \n"
 
@@ -294,26 +293,22 @@ main_chk++;
   exit("BAD turnpts");
  }
 ////////////////////////////////////
+
 chkT(1)
 
 
 
 
 // Nlegs = Ntp -1;
-<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+//<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
 main_chk++;
 
 
-int is_an_airport
+int is_an_airport = 0;
 
-<<"pre_pinfo() %V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+//<<"pre_pinfo() %V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
 main_chk++;
 
-
-Wtp<-pinfo()
-
-<<"post_pinfo() %V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
-main_chk++;
 
 
     for (k = 1 ; k <=  5 ; k++) {
@@ -332,6 +327,7 @@ if (is_an_airport) {
 
 <<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
 main_chk++;
+
 chkT(1)
 
 /////////////////// TASK DEF ////////////
@@ -343,12 +339,9 @@ chkT(1)
 Task_update =1
 Units = "KM"
 
-
-
-
-int tp_wo[>20];
-int gtp_wo[>20];
-int ltp_wo[>20];
+int tp_wo[20];
+int gtp_wo[20];
+int ltp_wo[20];
 
 
 
@@ -356,7 +349,7 @@ int ltp_wo[>20];
 char MS[240]
 char Word[128]
 char Long[128]
-num_tpts = 700
+num_tpts = 700;
 
 float R[10];
 
@@ -381,11 +374,12 @@ svar Tskval;
  <<"na $na\n"
  int ai =0;
 
-<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+
 main_chk++;
  while (AnotherArg()) {
+//<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+//<<"$ai $_clarg[ai]\n"
 
-<<"$ai $_clarg[ai]\n"
           ai++;
           targ = GetArgStr()
 	  if (targ @= "task") {
@@ -401,12 +395,12 @@ main_chk++;
        }
       }
           else {
-          WH=searchRecord(RF,targ,0,0)
+          WH=searchRecord(RX,targ,0,0)
 	  <<"%V $WH\n"
 	  
           index = WH[0][0]
           if (index >=0) {
-          ttp = RF[index];
+          ttp = RX[index];
 
 <<"$ttp \n"
 
@@ -417,11 +411,16 @@ main_chk++;
            }
 	  
           }
-
+      if (main_chk > 20) {
+               break;
+      }
 }
 //======================================//
+
+ans=query("2?");
+
 chkT(1)
-<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+//<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
 main_chk++;
 
 // home field
@@ -432,22 +431,24 @@ svar targ_list = {"eldorado","casper","rangely","eldorado"}
     sz= Caz(targ_list);
 <<"$sz : $targ_list \n"
 
-<<" $targ_list[1] \n"
+//<<" $targ_list[1] \n"
         targ = targ_list[2]
-<<" $targ \n"
-sz->info(1)
+//<<" $targ \n"
+
     for (i= 0; i < sz; i++) {
-    targ = targ_list[i]
-    <<"$i  <|$targ|> \n"
-          WH=searchRecord(RF,targ,0,0)
-	  <<"$WH\n"
+
+       targ = targ_list[i]
+       //<<"$i  <|$targ|> \n"
+          WH=searchRecord(RX,targ,0,0)
+	 // <<"$WH\n"
 	  
           index = WH[0][0]
           if (index >=0) {
-          ttp = RF[index];
-<<"$ttp \n"
+          ttp = RX[index];
+          //<<"$ttp \n"
           Taskpts[Ntaskpts] = index;
-<<"%V $index $Taskpts[Ntaskpts] \n";
+
+           <<"%V $index $Taskpts[Ntaskpts] \n";
            Ntaskpts++;
           }
     }
@@ -459,7 +460,7 @@ main_chk++;
 
 Nlegs = Ntaskpts;
 <<"%V $Ntaskpts \n"
-Taskpts<-pinfo()
+Taskpts.pinfo()
 
    for (k= 0; k < Ntaskpts; k++) {
        index = Taskpts[k];
@@ -472,7 +473,7 @@ Taskpts<-pinfo()
 <<"//////////\n"
 <<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
 main_chk++;
-Taskpts<-pinfo()
+Taskpts.pinfo()
 
 
 <<" Now print task\n"
@@ -486,9 +487,9 @@ main_chk++;
        <<"Stat $i $MSL $Wleg[i]->dist   $Wleg[i]->fga\n"
       }
 
-<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+//<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
 main_chk++;
-<<"main  pre TaskDist %V $_scope $_cmfnest $_proc $_pnest\n"	       
+//<<"main  pre TaskDist %V $_scope $_cmfnest $_proc $_pnest\n"	       
 
  TaskDist();
 
