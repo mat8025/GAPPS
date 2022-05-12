@@ -43,7 +43,10 @@ chkR(a,3.141593)
  V[0] = a;
  V[1] = b;
  V[2] = c;
+ openDll("plot");
+ rsz = wbox(1,2,3,4);
+ rsz.pinfo();
 
- printargs(1,a,b,Sin(c), V);
+ printargs(1,a,b,Sin(c), V, wbox(1,2,3,4,5));
 
 chkOut()
