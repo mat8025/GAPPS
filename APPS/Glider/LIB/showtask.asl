@@ -417,7 +417,7 @@ main_chk++;
 }
 //======================================//
 
-ans=query("2?");
+//ans=query("2?");
 
 chkT(1)
 //<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
@@ -545,7 +545,7 @@ chkT(1)
       <<"$i   $tpl  $tpwo[i]\n"
 
        
-        sWo(tpwo[i],@value,"$tpl",@update,@redraw);  
+        sWo(tpwo[i],_WVALUE,"$tpl",_WUPDATE,_WREDRAW);  
        // woSetValue(tpwo[i],k,1)
        // display alt?
 //	woSetValue(tpwo[i],alt,1)   
@@ -562,17 +562,17 @@ chkT(1)
 
 
 
-    sWo(tpwos,@redraw);
-    sWo(tpwo[1],@redraw);
-    sWo(tpwo[2],@redraw);
+    sWo(tpwos,_Wredraw);
+    sWo(tpwo[1],_Wredraw);
+    sWo(tpwo[2],_Wredraw);
 
 
      c= "EXIT"
 
-     sWi(vp,@redraw); // need a redraw proc for app
+     sWi(vp,_WREDRAW); // need a redraw proc for app
 
 
-    sWo(mapwo, @scales, LongW, LatS, LongE, LatN );
+    sWo(mapwo, _WSCALES, LongW, LatS, LongE, LatN );
 
 //  set up the IGC track for plot
     igc_tgl = cGl(mapwo,@TXY,IGCLONG,IGCLAT,@color,BLUE_);
@@ -583,7 +583,7 @@ chkT(1)
 
    if (Ntpts > 0) {
     dGl(igc_tgl);  // plot the igc track -- if supplied
-    sWo(vvwo, @scales, 0, 0, Ntpts, Max_ele +500)
+    sWo(vvwo, _WSCALES, 0, 0, Ntpts, Max_ele +500)
     dGl(igc_vgl);  // plot the igc climb -- if supplied
    }
 

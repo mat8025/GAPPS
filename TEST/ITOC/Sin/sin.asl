@@ -4,7 +4,7 @@
 //
 
 chkIn()
- a = 1.0;
+ double a = 1.0;
 
  a = Sin(0.5)
 
@@ -28,5 +28,22 @@ chkR(a,0.877583)
  a = 4*atan(1.0)
 <<"atan(1.0) $a = $(atan(1.0)) $(4*a)\n"
 chkR(a,3.141593)
+
+ c = Cos(a);
+ b = Sin( Cos(a));
+ d = Sin(c);
+<<"Sin( Cos(a))  $a $b $d\n"
+
+ e = Sin ( Cos(a,b))
+
+<<"%V $e\n";
+
+ float V[5];
+
+ V[0] = a;
+ V[1] = b;
+ V[2] = c;
+
+ printargs(1,a,b,Sin(c), V);
 
 chkOut()
