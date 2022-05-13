@@ -89,7 +89,7 @@ void updateLegs()
 
   <<"%V $rsz\n";
   rsz.pinfo();
-!a
+
 
  // sWo(sawo,_WRESIZE, wbox (0.15,0.01,0.54,0.1),_WEO);
   sWo(sawo,_WRESIZE, rsz,_WEO);
@@ -98,10 +98,16 @@ void updateLegs()
 
 
   vvwo= cWo(vp, WO_GRAPH_);
-  sWo(vvwo,_WRESIZE,wbox (0.2,0.11,0.95,0.25),_WEO);
-
 
   sWo(vvwo,_WName,"ALT",_Wcolor,WHITE_);
+
+// printargs(vvwo,_WRESIZE, wbox(1,2,3,4,5),_WEO);
+
+
+
+ sWo(vvwo,_WRESIZE,wbox(0.2,0.11,0.95,0.25),_WEO);
+
+  <<"did wbox all float ?\n";
 
 
   
@@ -203,22 +209,26 @@ void updateLegs()
   sWo(tpwos,_Wcolor,ORANGE_,_Wfonthue,BLACK_,_Wfont,F_TINY_,_Wredraw);
   sWo(legwos,_Wcolor,BLUE_,_Wfonthue,WHITE_,_Wfont,F_TINY_,_Wredraw);
 
-  TASK_wo=cWo(vp,WO_BV_,_Wresize,0.05,0.25,0.15,0.34);
+  TASK_wo=cWo(vp,WO_BV_);
+  sWo(TASK_wo, _WRESIZE,wbox(0.05,0.25,0.15,0.34),_WEO);
   
 //<<"%V$TASK_wo\n"
 
-  sWo(TASK_wo, _Whelp, "Set Task Type", _Wname, "TaskType", _Wfunc,  "wo_menu",  _Wmenu, "SO,TRI,OAR,W,MT",  _Wvalue, "TRI")
+  sWo(TASK_wo, _Whelp, "Set Task Type", _Wname, "TaskType", _Wfunc,  "wo_menu",  _Wmenu, "SO,TRI,OAR,W,MT",  _WVALUE, "TRI")
 
 
-  TASK_menu_wo=cWo(vp,WO_BV_,_Wresize,0.05,0.12,0.15,0.24);
+  TASK_menu_wo=cWo(vp,WO_BV_);
 
-  sWo(TASK_menu_wo, _Whelp, "Set Task Type", _Wname, "TaskMenu")
+  sWo( TASK_menu_wo,_WRESIZE,wbox(0.05,0.12,0.15,0.24),_WEO);
+
+  sWo(TASK_menu_wo, _Whelp, "Set Task Type", _Wname, "TaskMenu",_WEO)
 
 
   gflush()
   
-  vptxt= cWo(vp, _WTEXT,_Wresize_fr,0.55,0.01,0.95,0.1,_Wname,"TXT")
-  sWo(vptxt,_Wcolor,WHITE_,_Wsave,_Wdrawon,_Wpixmapoff);
+  vptxt= cWo(vp, WO_TEXT_);
+  sWo(vptxt,_WRESIZE,wbox(0.55,0.01,0.95,0.1),_WNAME,"TXT", _WEO);
+  sWo(vptxt,_WCOLOR,WHITE_,_WSAVE,_WDRAWON,_WPIXMAPOFF);
 
 
 <<" DONE SCREEN\n";

@@ -29,5 +29,6 @@
      openDll("plot") ;  //  should be automatic -- but for XIC launch best to use! 
      openDll("image") ;  
 //#include "tbqrd.asl"  // bug nested?
- cout<<"Graphic DONE\n";  
+// cout<<"Graphic DONE\n";  
+
 ////////////////////////////////////////////////////////////////////////////////////////////////

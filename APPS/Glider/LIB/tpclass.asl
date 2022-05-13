@@ -130,33 +130,53 @@ class Turnpt
 Str val;
 Str val2;
 
-//<<"$_proc \n";
+<<"$_proc  $AFH \n";
 
 //<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
-<<"$wval \n"
+//<<"$wval \n"
+
      val = wval[0];
 
-//<<"%V $val\n"
 
-     val.dewhite();
+
+      val.pinfo();
+
+
+
+      val.dewhite(); // TBF ? corrupting vars ?
+
+      val.pinfo();
+
+
 
 //cout << "val " << val << endl;
 
-//    val.pinfo();
+   val.pinfo();
 
-     val.scut(1);
-//cout << "val " << val << endl;     
+//<<"%V $AFH\n"
+
+    val.scut(1);
+//cout << "val " << val << endl;
+
+//<<"post-scut 1 %V $AFH\n"
+
      val.scut(-1);
+
+//<<"post-scut -1 %V $AFH\n"
+
 //cout << "val " << val << endl;
      Place = val; // wayp 
     
 //cout << "Place " << Place << endl;
 
      val =  wval[1];
-     val.scut(1);
+
+    val.scut(1);
+     
      val.scut(-1);
 
      Idnt = val;
+//<<"%V $AFH\n"
 
 //  <<"%V$Idnt\n"
 //Idnt->info(1)
@@ -203,6 +223,7 @@ Str val2;
      }
 
 
+
     val = wval[9];
 
 
@@ -221,15 +242,12 @@ Str val2;
      
     // spat (tptype,"A",-1,-1,&is_airport);
 
-<<"%V $lat \n";
+//<<"%V $lat \n";
 
      Ladeg =  coorToDeg(Lat,2); 
-
-
-
- Ladeg.pinfo();
  
-<<"%V $Lat $Ladeg \n";
+ 
+//<<"%V $Lat $Ladeg \n";
 
  //cout  <<"Lat " << Lat <<" Ladeg "<< Ladeg  <<endl ; 
 
@@ -237,6 +255,8 @@ Str val2;
 
 //cout  <<"Lon " << Lon <<" Longdeg "<< Longdeg  <<endl ; 
 //<<"%V $Lon $Longdeg \n";
+
+
       }
 //=========================//
 

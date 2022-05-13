@@ -1,4 +1,4 @@
-Title,Code,Country,Latitude,Longitude,Elevation,Style,Direction,Length,Frequency,Description
+#Title,Code,Country,Latitude,Longitude,Elevation,Style,Direction,Length,Frequency,Description
 "8URch","8U RCH",US,4047.477N,10517.638W,5900ft,3,,,,"TP, E-W 24G"
 "AARch","WY11",WY,4109.498N,10633.452W,7780ft,5,000,5700ft,122.8,"Private TP  WY11, Nw/Se 22.8, RWW: 50"
 "Akron Wsh","AKO",CO,4010.538N,10313.322W,4689ft,5,110,7000ft,122.8,"TP, AKO, 11/29 22.8, RWW: 100"

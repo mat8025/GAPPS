@@ -62,7 +62,7 @@ uplegs = 0;  // needed?
 
 
 
-
+int WH[100][2];
 
 int main_chk =1;
 int Maxtaskpts = 13;
@@ -71,22 +71,23 @@ int Maxtaskpts = 13;
 void drawTrace()
 {
      if (Have_igc) {
-         sWo(mapwo, @scales, LongW, LatS, LongE, LatN )
-         sWo(mapwo,@clearpixmap);
-         sWo(vvwo,@clearpixmap);
+         sWo(mapwo,_WSCALES, wbox(LongW, LatS, LongE, LatN),_WEO );
+	 
+         sWo(mapwo,_WCLEARPIXMAP);
+         sWo(vvwo,_WCLEARPIXMAP);
 
          
           DrawMap(mapwo);
 	  
   	 if (Ntpts > 0) {
-            sWo(vvwo, @scales, 0, Min_ele, Ntpts, Max_ele + 500 )
+            sWo(vvwo, _WSCALES, wbox(0, Min_ele, Ntpts, Max_ele + 500),_WEO )
               dGl(igc_tgl);
-	    sWo(vvwo,@clearpixmap);
+	    sWo(vvwo,_WCLEARPIXMAP);
 	      dGl(igc_vgl);
-            sWo(mapwo,@showpixmap,@clipborder);
-            sWo(vvwo,@showpixmap,@clipborder);
+            sWo(mapwo,_WSHOWPIXMAP,_WCLIPBORDER);
+            sWo(vvwo,_WSHOWPIXMAP,_WCLIPBORDER);
 	 }
-	sWo(mapwo,@showpixmap,@clipborder);
+	sWo(mapwo,_WSHOWPIXMAP,_WCLIPBORDER);
 
       }
 }
@@ -108,7 +109,7 @@ LongE= 104.8;
  MidLong = (LongW - LongE)/2.0 + LongE;
  MidLat = (LatN - LatS)/2.0 + LatS;
 
-LoD = 35.0;
+float LoD = 35.0;
 
 TaskType = "TRI"; 
 
@@ -120,6 +121,8 @@ int Taskpts[20];
 Turnpt  Wtp[300]; //
 
 Tleg  Wleg[20];
+
+
 Record RX;
 
 index = 7;
@@ -154,28 +157,29 @@ else {
 
   tp_file = "DAT/turnptsA.dat"  // open turnpoint file TA airports
 
-  if (tp_file @= "") {
+  if (tp_file == "") {
     tp_file = "DAT/turnptsSM.dat"  // open turnpoint file 
    }
 }
 
 
-A=  ofr(tp_file);
+  int AFH =  ofr(tp_file);
 
- if (A == -1) {
+ if (AFH == -1) {
   <<" can't open file   \n";
     exit();
  }
 
 if (use_cup) {
 
-  Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST);  // no back ptr to Siv?
+  Nrecs=RX.readRecord(AFH,_RDEL,-1,_RLAST);  // no back ptr to Siv?
   //RF= readRecord(A,@del,',',@comment,"#");
 }
 else {
 // RF= readRecord(A);
 }
-cf(A);
+
+  cf(AFH);
 
 
  
@@ -192,6 +196,9 @@ cf(A);
 
 <<"$WH \n"
   WH.pinfo();
+
+
+
 /*
 index = WH[0][0]
 <<"%V $index\n"
@@ -216,10 +223,10 @@ main_chk++;
  svar Wval;
 
 
-  A=ofr(tp_file)
+  AFH =ofr(tp_file)
   
 
-  if (A == -1) {
+  if (AFH == -1) {
     exit(-1," can't find turnpts file \n");
   }
 
@@ -230,32 +237,40 @@ main_chk++;
 
 
   if (!use_cup) {
-         C=readline(A);
-	 C=readline(A);
+         C=readline(AFH);
+	 C=readline(AFH);
    }
 
-int c1;
+int c1 = 0;
+long before;
+long after;
+
+int KAFH = AFH;
 
 while (1) {
 
-    before = ftell(A);
-   c1 = fgetc(A,-1);
-    after = ftell(A);
 
 
-<<"$Ntp $before $after\n"    
+   before = ftell(AFH);
+    c1 = fgetc(AFH,-1);
+    after = ftell(AFH);
+
+
+<<"%V $AFH $Ntp $before $c1 $after\n"
+
     if (use_cup) {
-               nwr = Wval.ReadWords(A,0,',')
+    
 
-<<"%V $nwr\n";
-<<"%V $Wval\n";
+       nwr = Wval.ReadWords(AFH,0,',')
+
+        <<"%V $nwr  $AFH $Wval\n";
 
         main_chk++;
 
 	       
     }
     else {
-            nwr = Wval.ReadWords(A)
+            nwr = Wval.ReadWords(AFH)
     }
             if (nwr == -1) {
 	      break;
@@ -263,12 +278,16 @@ while (1) {
 	    
     if (nwr > 6) {
 
+
+
      if ( c1 != '#') {
      
       if (use_cup) {
+<<"pre_set $Ntp $AFH $Wval[0] $Wval[1]\n"
 
          Wtp[Ntp].TPCUPset(Wval);
-
+	 
+<<"post_set $Ntp $AFH $Wval[0] $Wval[1]\n"
          main_chk++;
       }
       else {
@@ -277,27 +296,31 @@ while (1) {
 
 
              Ntp++;
-//<<"$Ntp $wd1 $Wval[0] $Wval[1]\n"
+<<"$Ntp $AFH $Wval[0] $Wval[1]\n"
         }
       }
 
-if (Ntp >=100) break;
-//<<"while_end main postcmf %V $_scope $_cmfnest $_proc $_pnest\n"
-   <<"%V $Ntp \n"
+   <<"%V $AFH $KAFH $Ntp \n"
+   if (AFH != KAFH) {
+<<"fix file handle $AFH != $KAFH\n";
+    AFH = KAFH;
 
+   }
+
+    if (Ntp >= 20)
+       break;
 }
 
 <<" Read $Ntp turnpts \n"
 
- if (Ntp < 1) {
+ if (Ntp < 3) {
   exit("BAD turnpts");
  }
 ////////////////////////////////////
 
-chkT(1)
 
 
-
+//ans=query("? $main_chk");
 
 // Nlegs = Ntp -1;
 //<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
@@ -313,12 +336,12 @@ main_chk++;
 
     for (k = 1 ; k <=  5 ; k++) {
 
-        is_an_airport = Wtp[k]->is_airport;
+        is_an_airport = Wtp[k].is_airport;
 if (is_an_airport) {
-        mlab = Wtp[k]->Place;
+        mlab = Wtp[k].Place;
 
 <<"TP $k $mlab  $is_an_airport\n"
-//       if (mlab @= "Jamestown") {
+//       if (mlab == "Jamestown") {
 //         <<"SF\n"
 //       }
 }
@@ -382,11 +405,11 @@ main_chk++;
 
           ai++;
           targ = GetArgStr()
-	  if (targ @= "task") {
+	  if (targ == "task") {
             TaskType = GetArgStr()
 	    <<"set %V $TaskType \n"
           }
-      else if (targ @= "igc") {
+      else if (targ == "igc") {
            igcfn = getArgStr();
 
        if (issin(igcfn,"igc")) {
@@ -395,6 +418,7 @@ main_chk++;
        }
       }
           else {
+	  
           WH=searchRecord(RX,targ,0,0)
 	  <<"%V $WH\n"
 	  
@@ -406,6 +430,7 @@ main_chk++;
 
           Taskpts[Ntaskpts] = index;
 <<" $Ntaskpts found $targ  $index  $Taskpts[Ntaskpts]\n"
+
            Ntaskpts++;
 
            }
@@ -419,7 +444,7 @@ main_chk++;
 
 //ans=query("2?");
 
-chkT(1)
+
 //<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
 main_chk++;
 
@@ -468,7 +493,7 @@ Taskpts.pinfo()
    }
 
 //   for (k= 1; k < 15; k++) {
-//             Wtp[k]->Print()
+//             Wtp[k].Print()
 //    }
 <<"//////////\n"
 <<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
@@ -483,8 +508,8 @@ main_chk++;
 
 
       for (i = 0; i < Ntaskpts ; i++) {
-         MSL = Wleg[i]->msl;
-       <<"Stat $i $MSL $Wleg[i]->dist   $Wleg[i]->fga\n"
+         MSL = Wleg[i].msl;
+       <<"Stat $i $MSL $Wleg[i].dist   $Wleg[i].fga\n"
       }
 
 //<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
@@ -521,12 +546,12 @@ chkT(1)
 
 
 
-       //      Wtp[3]->Print()
+       //      Wtp[3].Print()
 
 
 #include "showtask_scrn"
 
-
+Str place;
 
 
 
@@ -534,18 +559,21 @@ chkT(1)
 //===========================================//
  if (Ntaskpts > 1) {
   int alt;
+  
   for (i = 0; i < Ntaskpts ; i++) {
 
         k= Taskpts[i];
 	
-        tpl =   Wtp[k]->Place;
+        place =   Wtp[k].Place;
 	
-        alt = Wtp[k]->Alt;  
+        alt = Wtp[k].Alt;  
       
-      <<"$i   $tpl  $tpwo[i]\n"
+      <<"$i   $place  $tpwo[i]\n"
 
+
+        woSetValue(tpwo[i],place);
        
-        sWo(tpwo[i],_WVALUE,"$tpl",_WUPDATE,_WREDRAW);  
+        sWo(tpwo[i],_WUPDATE,_WREDRAW);  
        // woSetValue(tpwo[i],k,1)
        // display alt?
 //	woSetValue(tpwo[i],alt,1)   
@@ -572,18 +600,20 @@ chkT(1)
      sWi(vp,_WREDRAW); // need a redraw proc for app
 
 
-    sWo(mapwo, _WSCALES, LongW, LatS, LongE, LatN );
+    sWo(mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN),_WEO );
 
 //  set up the IGC track for plot
-    igc_tgl = cGl(mapwo,@TXY,IGCLONG,IGCLAT,@color,BLUE_);
+    igc_tgl = cGl(mapwo);
+    sGl(igc_tgl, _GLTXY,IGCLONG,IGCLAT,_GLHUE,BLUE_);
 
-    igc_vgl = cGl(vvwo,@TY,IGCELE,@color,RED_);
+    igc_vgl = cGl(vvwo);
+    sGl(igc_vgl, _GLTY,IGCELE,_GLHUE,RED_,_GLEO);
 
- DBG"%V $mapwo \n"
+
 
    if (Ntpts > 0) {
     dGl(igc_tgl);  // plot the igc track -- if supplied
-    sWo(vvwo, _WSCALES, 0, 0, Ntpts, Max_ele +500)
+    sWo(vvwo, _WSCALES, wbox(0, 0, Ntpts, Max_ele +500),_WEO)
     dGl(igc_vgl);  // plot the igc climb -- if supplied
    }
 
@@ -591,6 +621,8 @@ chkT(1)
 
 
 #include  "gevent";
+
+ Gevent gev;
 
 int dindex;
 int Witp = 0;
@@ -603,7 +635,7 @@ str wcltpt="XY";
 
   DBG"%V $vvwo $Ntpts\n"
  // sWo(vvwo,@clear,@clearpixmap,@savepixmap,@clipborder);
- // sWo(vvwo, @scales, 0, 0, Ntpts, Max_ele +500);
+ // sWo(vvwo, _Wscales, 0, 0, Ntpts, Max_ele +500);
 
   DBG"%V $LongW \n"
   DBG"%V $LongE \n"
@@ -613,22 +645,23 @@ str wcltpt="XY";
     updateLegs();
    }
 
-  sWo(tdwo,@value,"$totalK km",@update);
+  sWo(tdwo,_WVALUE,"$totalK km",_WUPDATE);
  
   drawTrace();
 
   zoom_to_task(mapwo,1)
 
-  sWo(mapwo, @scales, LongW, LatS, LongE, LatN );
-  sWo(TASK_wo,@value,TaskType,@redraw);
+  sWo(mapwo,_WSCALES,wbox( LongW, LatS, LongE, LatN),_WEO );
+  sWo(TASK_wo,_WVALUE,TaskType,_WREDRAW);
 
   DrawMap(mapwo);
-
+ans=query("see map?");
 
   drawTask(mapwo,"green");
 
 
-
+int ekey;
+Str WoName = "xyz";
 
   while (1) {
  //   zoom_to_task(mapwo,1)
@@ -636,48 +669,49 @@ str wcltpt="XY";
     drawit = 1;
     Task_update =0
   
-    eventWait();
-
-<<"%V $_ekeyw $_ekeyc $_ewoname  %c $_ekeyc \n"; 
+    //eventWait();
+    emsg =gev.eventWait();
+    ekey = gev.getEventKey();
+    WoName = gev.getEventWoName();
 
     //Text(vptxt," $_ekeyw   ",0,0.05,1)
 
-       if ( _ekeyc >= 65) {
+       if ( gev.getEventKey() >= 65) {
        
        d_ll = (LatN-LatS)/ 10.0 ;
 <<"%V $LongW $LatS $LongE $LatN   $d_ll\n"
 
 
-       if (_ekeyc == 'Q') {
+       if (ekey == 'Q') {
            LongW += d_ll
            LongE += d_ll
        }
 
-       if (_ekeyc == 'S') {
+       if (ekey == 'S') {
            LongW -= d_ll
            LongE -= d_ll
        }
 
-       if (_ekeyc == 'R') {
+       if (ekey == 'R') {
            LatN += d_ll
            LatS += d_ll
        }
 
-       if (_ekeyc == 'T') {
+       if (ekey == 'T') {
            LatN -= d_ll
            LatS -= d_ll
        }
 
 
-       if (_ekeyc == 'X') {
-       <<"expand \n"
+       if (ekey == 'X') {
+     //  <<"expand \n"
            LatN += d_ll
            LatS -= d_ll
            LongW += d_ll
            LongE -= d_ll
        }
 
-       if (_ekeyc == 'x') {
+       if (ekey == 'x') {
        <<"Zoom IN\n"
            LatN -= (d_ll * 0.9)
            LatS += (d_ll * 0.9)
@@ -686,43 +720,43 @@ str wcltpt="XY";
        }
               drawit = 1;
 <<"%V $LongW $LatS $LongE $LatN\n"
- sWo(mapwo, @scales, LongW, LatS, LongE, LatN);
+ sWo(mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN), _WEO);
 
       }
 
-       else if (_ewoname @= "_Start_") {
+       else if (WoName == "_Start_") {
              Task_update =1
-             sWo(_ewoid, @cxor)
+             sWo(_ewoid, _WCXOR)
               wc=choice_menu("STP.m")
                listTaskPts()	
-            if (wc @= "R") { // replace
+            if (wc == "R") { // replace
           wtp = PickaTP(0)
              if (wtp >= 0) {
-                wcltpt = Wtp[wtp]->Place;
-                sWo(tpwo[0],@value,wcltpt,@redraw)
+                wcltpt = Wtp[wtp].Place;
+                sWo(tpwo[0],_WVALUE,wcltpt,_WREDRAW)
              }
            }
 	    else {
                 Atarg = wc;
                 wtp=PickTP(wc,0)
 		if (wtp != -1) {
-                  wcltpt = Wtp[wtp]->Place;
-                  sWo(tpwo[0],@value,wcltpt,@redraw);
+                  wcltpt = Wtp[wtp].Place;
+                  sWo(tpwo[0],_WVALUE,wcltpt,_WREDRAW);
                 }
-	     sWo(tpwo[0], @cxor)
+	     sWo(tpwo[0], _WCXOR)
           }
        }
 
-       else if (scmp(_ewoname,"_TP",3)) {
+       else if (scmp(WoName,"_TP",3)) {
        
              Task_update =1
-             np = spat(_ewoname,"_TP",1)
+             np = spat(WoName,"_TP",1)
              np = spat(np,"_",-1)
 
               Witp = atoi(np);
               wtpwo = tpwo[Witp]
 
-             sWo(wtpwo, @cxor);
+             sWo(wtpwo, _WCXOR);
 	     
 	     gflush();
 
@@ -732,8 +766,8 @@ str wcltpt="XY";
 
              wtp = PickaTP(Witp)
              if (wtp >= 0) {
-              wcltpt = Wtp[wtp]->Place;
-              sWo(wtpwo,@value,wcltpt,@redraw);
+              wcltpt = Wtp[wtp].Place;
+              sWo(wtpwo,_WVALUE,wcltpt,_WREDRAW);
              }
              }
              else if (wc == "D") {
@@ -755,23 +789,23 @@ str wcltpt="XY";
                 Atarg = wc;
                 wtp=PickTP(wc,Witp)
 		if (wtp != -1) {
-                  wcltpt = Wtp[wtp]->Place;
-                  sWo(wtpwo,@value,wcltpt,@redraw);
+                  wcltpt = Wtp[wtp].Place;
+                  sWo(wtpwo,_WVALUE,wcltpt,_WREDRAW);
                 }
              }
 
 
 
 
-                 sWo(tpwos,@redraw);
-                 sWo(legwos,@redraw);		 
-                 sWo(wtpwo,@cxor);
+                 sWo(tpwos,_WREDRAW);
+                 sWo(legwos,_WREDRAW);		 
+                 sWo(wtpwo,_Wcxor);
                  listTaskPts()	
 
        }
 
 
-       else if (_ewoname @= "ALT") {
+       else if (WoName == "ALT") {
 
          drawit = 0;
          dindex = rint(_erx)
@@ -784,17 +818,17 @@ str wcltpt="XY";
 	 
        
 	 
-	 swo(mapwo,@clear,@clearclip,BLUE_,@clearpixmap)
+	 swo(mapwo,_WCLEAR,_WCLEARCLIP,BLUE_,_WCLEARPIXMAP);
 	 
-	 plot(mapwo,@symbol,symx,symy, 11,2,RED_)
+	 plot(mapwo,_WSYMBOL,symx,symy, 11,2,RED_);
 
-         plot(mapwo,@circle,symx,symy, 0.01,GREEN_,1)
+         plot(mapwo,_WCIRCLE,symx,symy, 0.01,GREEN_,1);
 	 
-	 swo(mapwo,@showpixmap)
+	 swo(mapwo,_WSHOWPIXMAP);
 	 
        }
        
-       else if (_ewoname @= "MAP") {
+       else if (WoName == "MAP") {
 
                drawit = 0;
 
@@ -802,23 +836,23 @@ str wcltpt="XY";
 
              if (ntp >= 0) {
 
-               Wtp[ntp]->Print()
-               nval = Wtp[ntp]->GetPlace()
+               Wtp[ntp].Print()
+               nval = Wtp[ntp].GetPlace()
 	       
               <<" found %V $ntp $nval \n"
                 Text(  vptxt," $ntp $nval   ",0,0.05,1)
-                msl = Wtp[ntp]->Alt;
-                mkm = HowFar(_erx,_ery, Wtp[ntp]->Longdeg, Wtp[ntp]->Ladeg)
+                msl = Wtp[ntp].Alt;
+                mkm = HowFar(_erx,_ery, Wtp[ntp].Longdeg, Wtp[ntp].Ladeg)
                 ght = (mkm * km_to_feet) / LoD;
                 sa = msl + ght + 2000;
-          	sWo(sawo,@value,"$nval %5.1f $msl $mkm $sa",@redraw)
+          	sWo(sawo,_WVALUE,"$nval %5.1f $msl $mkm $sa",_WREDRAW)
 
              }
 
         }
 
-       else if (_ewoname == "TaskMenu") {
-            sdb(1)
+       else if (WoName == "TaskMenu") {
+
              //task_menu(mapwo)
     //          read_task()
   task_file = "XXX";
@@ -835,7 +869,7 @@ str wcltpt="XY";
 
        }
        
-       else if ( _ekeyw @= "Menu") {
+       else if ( _ekeyw == "Menu") {
            <<" task type is $_ekeyw \n"
            TaskType = _ekeyw;
            <<" Set %V$TaskType \n"
@@ -854,12 +888,12 @@ str wcltpt="XY";
      
       TaskDist();
 
-      sWo(tdwo,@value,"$totalK km",@update);
+      sWo(tdwo,_WVALUE,"$totalK km",_WUPDATE);
       Task_update = 0;
 
       for (i = 0; i < Ntaskpts ; i++) {
-         MSL = Wleg[i]->msl;
-       <<"Stat $i $MSL $Wleg[i]->dist   $Wleg[i]->fga\n"
+         MSL = Wleg[i].msl;
+       <<"Stat $i $MSL $Wleg[i].dist   $Wleg[i].fga\n"
       }
 
 
@@ -874,8 +908,8 @@ str wcltpt="XY";
          if (uplegs) {
            updateLegs();
          }
-      sWo(tpwos,@redraw);
-       sWo(legwos,@redraw);		 
+      sWo(tpwos,_WREDRAW);
+       sWo(legwos,_WREDRAW);		 
       }
   }
 

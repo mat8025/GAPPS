@@ -49,4 +49,35 @@ chkR(a,3.141593)
 
  printargs(1,a,b,Sin(c), V, wbox(1,2,3,4,5));
 
+<<"wbox int \n"
+
+
+  printargs(1,a,b,Sin(c), V, wbox(a,2,3,4,5));
+
+<<"wbox did float a, \n"
+
+  printargs(1,a,b,Sin(c), V, wbox(a,b,c,4,5.3));
+
+<<"wbox did float a, 5.3\n"
+
+  printargs(1,a,b,Sin(c), V, wbox(a,b,c,4.0,5.3));
+
+<<"wbox did float a, 4.0,5.3\n"
+
+  printargs(1,a,b,Sin(c), V, wbox(0.4,0.92,0.35,4.4,5.0));
+
+<<"wbox float2 \n"
+
+  printargs(1,a,b,Sin(c), V, wbox(0.4));
+
+<<"wbox float3 \n"
+
+  printargs(1,a,b,Sin(c), V, wbox(0.4,0.5));
+
+<<"wbox float4 \n"
+
+  printargs(1,a,b,Sin(c), V, wbox(a));
+
+<<"wbox float5 \n"
+
 chkOut()

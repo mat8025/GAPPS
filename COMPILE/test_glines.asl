@@ -271,8 +271,8 @@ COUT(xn_gl)
 
   int xs_gl = cGl(gwo);
 
-COUT(Xvec)
-COUT(Svec)
+  COUT(Xvec);
+  COUT(Svec);
 
   sGl(xs_gl,_GLTXY,&Xvec,&Svec,_GLHUE,BLUE_,_GLEO);
 

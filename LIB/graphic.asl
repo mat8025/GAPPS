@@ -13,7 +13,7 @@
    
 //////////////////////////// Connect with Graphic server ///////////////////////
    
-   Graphic = CheckGwm(); 
+   int Graphic = CheckGwm(); 
    
    if (!Graphic) {
      X=spawngwm(); 
@@ -21,13 +21,13 @@
      }
    
    if (! Graphic) {
-     <<"can't go graphic!! exiting\n"; 
-     exit(); 
+     printf("can't go graphic!! exiting\n"; 
+     exit(-1); 
      }
    
       OpenDll("plot") ;  //  should be automatic -- but for XIC launch best to use! 
       OpenDll("image")
       
-#include "tbqrd.asl"  // bug nested?
+//#include "tbqrd.asl"  // bug nested?
    
 ////////////////////////////////////////////////////////////////////////////////////////////////
