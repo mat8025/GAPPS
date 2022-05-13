@@ -28,10 +28,10 @@ Str Use_= "  view and select turnpts  create read tasks ";
 
 #include "debug"
 
-
+//Str Qans_ = "xyz";
 
 if (_dblevel >0) {
-  debugON()
+    debugON()
     <<"$Use_\n"   
 }
 
@@ -231,6 +231,8 @@ main_chk++;
   }
 
 
+
+
  
   Ntaskpts = 0;
   Ntp = 0;
@@ -283,11 +285,11 @@ while (1) {
      if ( c1 != '#') {
      
       if (use_cup) {
-<<"pre_set $Ntp $AFH $Wval[0] $Wval[1]\n"
+
 
          Wtp[Ntp].TPCUPset(Wval);
 	 
-<<"post_set $Ntp $AFH $Wval[0] $Wval[1]\n"
+
          main_chk++;
       }
       else {
@@ -296,7 +298,8 @@ while (1) {
 
 
              Ntp++;
-<<"$Ntp $AFH $Wval[0] $Wval[1]\n"
+<<"$Ntp $AFH \n $Wval \n"
+
         }
       }
 
@@ -307,7 +310,7 @@ while (1) {
 
    }
 
-    if (Ntp >= 20)
+    if (Ntp >= 100)
        break;
 }
 
@@ -351,7 +354,7 @@ if (is_an_airport) {
 <<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
 main_chk++;
 
-chkT(1)
+
 
 /////////////////// TASK DEF ////////////
 
@@ -540,11 +543,6 @@ main_chk++;
       processIGC()
   }
 
-chkT(1)
-
-
-
-
 
        //      Wtp[3].Print()
 
@@ -655,7 +653,7 @@ str wcltpt="XY";
   sWo(TASK_wo,_WVALUE,TaskType,_WREDRAW);
 
   DrawMap(mapwo);
-ans=query("see map?");
+//ans=query("see map?");
 
   drawTask(mapwo,"green");
 

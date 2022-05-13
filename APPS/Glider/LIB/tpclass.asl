@@ -130,28 +130,20 @@ class Turnpt
 Str val;
 Str val2;
 
-<<"$_proc  $AFH \n";
+//<<"$_proc  $AFH \n";
 
 //<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
 //<<"$wval \n"
 
      val = wval[0];
 
-
-
-      val.pinfo();
-
-
+//      val.pinfo();
 
       val.dewhite(); // TBF ? corrupting vars ?
-
-      val.pinfo();
-
 
 
 //cout << "val " << val << endl;
 
-   val.pinfo();
 
 //<<"%V $AFH\n"
 
@@ -254,8 +246,9 @@ Str val2;
      Longdeg = coorToDeg(Lon,2);
 
 //cout  <<"Lon " << Lon <<" Longdeg "<< Longdeg  <<endl ; 
-//<<"%V $Lon $Longdeg \n";
-
+#if ASL
+<<"%V $Lon $Longdeg \n";
+#endif
 
       }
 //=========================//

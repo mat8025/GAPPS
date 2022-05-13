@@ -69,7 +69,7 @@ void updateLegs()
   vp = cWi("vp");
   
 
-  sWi(vp,_Wscales,-200,-200,200,200,0, _Wdrawoff,_Wpixmapon,_Wsave,_Wbhue,WHITE_,_Wresize,0.1,0.01,0.9,0.95,0)
+  sWi(vp,_Wscales,wbox(-200,-200,200,200,0), _WDRAWON,_WPIXMAPON,_WSAVE,_WBHUE,WHITE_,_Wresize,0.1,0.01,0.9,0.95,0)
   // but we don't draw to a window! = draw to Wob in a Window
 
   sWi(vp,_Wclip,0.01,0.1,0.95,0.99);
@@ -115,11 +115,11 @@ void updateLegs()
   sWo(vvwo, _Wscales, wbox(0, 0, 100, 6000), _Wsavepixmap, _Wredraw, _Wdrawoff, _Wpixmapon);
 
   mapwo= cWo(vp,WO_GRAPH_);
-  sWo(mapwo,_Wresize,wbox(0.30,0.26,0.95,0.95),_Wname,"MAP",_Wcolor,WHITE_);
+  sWo(mapwo,_WRESIZE,wbox(0.30,0.26,0.95,0.95),_Wname,"MAP",_Wcolor,WHITE_);
 
-<<"%V $mapwo \n"
+<<"%V $mapwo $LongW $LatS \n"
 
-  sWo(mapwo, _Wscales, wbox(LongW, LatS, LongE, LatN), _Wsave, _Wredraw, _Wdrawon, _Wpixmapon,_Wsavepixmap);
+  sWo(mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN), _WSAVE, _WREDRAW, _WDRAWON, _WPIXMAPON,_WSAVEPIXMAP,_WEO);
 
   int LastTP = 12; 
   int tpwo[12];
