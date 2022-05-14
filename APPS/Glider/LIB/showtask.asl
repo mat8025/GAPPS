@@ -671,7 +671,7 @@ str wcltpt="XY";
 //ans=query("see map?");
 
   drawTask(mapwo,"green");
-
+  drawTrace();
 
 int ekey;
 Str WoName = "xyz";
@@ -685,7 +685,10 @@ Str WoName = "xyz";
     //eventWait();
     emsg =gev.eventWait();
     ekey = gev.getEventKey();
+    
     WoName = gev.getEventWoName();
+
+<<"%V $ekey $WoName \n"
 
     //Text(vptxt," $_ekeyw   ",0,0.05,1)
 
