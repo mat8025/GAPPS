@@ -395,8 +395,10 @@ Ntaskpts = 0;
 //////////////// PARSE COMMAND LINE ARGS ///////////////////////
 
 long posn = 0;
-svar Tskval;
-  na = argc()
+Svar Tskval;
+Str targ;
+Str igc_fname ="xyz";
+na = argc()
  <<"na $na\n"
  int ai =0;
 
@@ -407,18 +409,25 @@ main_chk++;
 //<<"$ai $_clarg[ai]\n"
 
           ai++;
-          targ = GetArgStr()
+          targ = getArgStr()
+//<<"%V $ai $targ \n"	  
 	  if (targ == "task") {
-            TaskType = GetArgStr()
-	    <<"set %V $TaskType \n"
+            TaskType = GetArgStr();
+	    ai++;
+//	    <<"set %V $TaskType \n"
           }
       else if (targ == "igc") {
-           igcfn = getArgStr();
+           igc_fname = getArgStr();
+	   ai++;
+	   
+        Have_igc = 1;
+  //      <<"IGC file $igc_fname \n"
 
        if (issin(igcfn,"igc")) {
         Have_igc = 1;
-        <<"IGC file $igcfn \n"
+
        }
+       
       }
           else {
 	  
@@ -429,10 +438,10 @@ main_chk++;
           if (index >=0) {
           ttp = RX[index];
 
-<<"$ttp \n"
+//<<"$ttp \n"
 
           Taskpts[Ntaskpts] = index;
-<<" $Ntaskpts found $targ  $index  $Taskpts[Ntaskpts]\n"
+//<<" $Ntaskpts found $targ  $index  $Taskpts[Ntaskpts]\n"
 
            Ntaskpts++;
 
@@ -483,11 +492,14 @@ svar targ_list = {"eldorado","casper","rangely","eldorado"}
 }
 //======================================//
 
-<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+//<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+
 main_chk++;
 
 Nlegs = Ntaskpts;
-<<"%V $Ntaskpts \n"
+
+//<<"%V $Ntaskpts \n"
+
 Taskpts.pinfo()
 
    for (k= 0; k < Ntaskpts; k++) {
@@ -540,7 +552,10 @@ main_chk++;
 
 
   if (Have_igc) {
-      processIGC()
+      Igcfn = ofr(igc_fname);
+      if (Igcfn != -1) {
+       processIGC();
+      }
   }
 
 
@@ -602,7 +617,7 @@ Str place;
 
 //  set up the IGC track for plot
     igc_tgl = cGl(mapwo);
-    sGl(igc_tgl, _GLTXY,IGCLONG,IGCLAT,_GLHUE,BLUE_);
+    sGl(igc_tgl, _GLTXY,IGCLONG,IGCLAT,_GLHUE,BLUE_,_GLEO);
 
     igc_vgl = cGl(vvwo);
     sGl(igc_vgl, _GLTY,IGCELE,_GLHUE,RED_,_GLEO);

@@ -15,7 +15,7 @@
 ///
 ///
   int Ntpts = 0;
-  int igcfn = -1;
+  int Igcfn = -1;
   
   Str task_file = "XXX";
 
@@ -64,13 +64,13 @@
 //============================================
 
 
-  Vec<float> IGCLONG(20);
+  Vec<float> IGCLONG(500);
 
-  Vec<float> IGCLAT(30);
+  Vec<float> IGCLAT(500);
 
-  Vec<float> IGCELE(40);
+  Vec<float> IGCELE(500);
 
-  Vec<float> IGCTIM(50);
+  Vec<float> IGCTIM(500);
 
 
   float computeGCD(float la1,float la2,float lo1,float lo2)
@@ -151,10 +151,13 @@
    Vec<double> sslat(12);
    Vec<double> ssele(12);   
 
-
-  Ntpts=readIGC(igcfn,&IGCLONG, &IGCLAT,&IGCELE,&IGCTIM);
-//<<"sz $Ntpts $(Caz(IGCLONG))   $(Caz(IGCLAT))\n"
-
+  printf("processIGC Igcfn %d\n",Igcfn);
+  
+  Ntpts= readIGC(Igcfn,&IGCTIM,&IGCLAT,&IGCLONG, &IGCELE);
+  
+#if ASL
+   <<"sz $Ntpts $(Caz(IGCLONG))   $(Caz(IGCLAT))\n"
+#endif
   
 //<<"%(10,, ,\n) $IGCLONG[0:30] \n"
 //<<"%(10,, ,\n) $IGCLONG[k:Ntpts-1] \n"
@@ -171,7 +174,7 @@
   int i = 10;
  //     <<"$i $IGCTIM[i] $IGCELE[i] $IGCLAT[i]  $IGCLONG[i] \n";
 
-cout  <<" sslng " << sslng  << endl;
+//cout  <<" sslng " << sslng  << endl;
 
   sslat= IGCLAT.stats();
 //<<"%V $sslt \n"
@@ -202,8 +205,10 @@ cout  <<" sslng " << sslng  << endl;
   float min_lat = sslat[5];
 
   float max_lat = sslat[6];
-//<<"%V $min_lat $max_lat \n"
 
+#if ASL
+<<"%V $min_lat $max_lat \n"
+#endif
   LatS = min_lat -Margin;
 
   LatN = max_lat+Margin;
@@ -255,9 +260,10 @@ cout  <<" sslng " << sslng  << endl;
   //<<"%V $longW $MidLong $da \n"
 
   LongE = MidLong - da/2.0;
-  //<<"%V $LongW \n"
-  //<<"%V $LongE \n"
-
+#if ASL  
+  <<"%V $LongW \n"
+  <<"%V $LongE \n"
+#endif
   }
 //===============================//
 //<<"$_include %V$Ntp_id\n"
