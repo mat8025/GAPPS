@@ -258,14 +258,14 @@ while (1) {
     after = ftell(AFH);
 
 
-<<"%V $AFH $Ntp $before $c1 $after\n"
+//<<"%V $AFH $Ntp $before $c1 $after\n"
 
     if (use_cup) {
     
 
        nwr = Wval.ReadWords(AFH,0,',')
 
-        <<"%V $nwr  $AFH $Wval\n";
+       //<<"%V $nwr  $AFH $Wval\n";
 
         main_chk++;
 
@@ -298,19 +298,19 @@ while (1) {
 
 
              Ntp++;
-<<"$Ntp $AFH \n $Wval \n"
+//<<"$Ntp $AFH \n $Wval \n"
 
         }
       }
 
-   <<"%V $AFH $KAFH $Ntp \n"
+
    if (AFH != KAFH) {
 <<"fix file handle $AFH != $KAFH\n";
     AFH = KAFH;
 
    }
 
-    if (Ntp >= 100)
+    if (Ntp >= 500)
        break;
 }
 
@@ -423,7 +423,7 @@ main_chk++;
         Have_igc = 1;
   //      <<"IGC file $igc_fname \n"
 
-       if (issin(igcfn,"igc")) {
+       if (issin(igc_fname,"igc")) {
         Have_igc = 1;
 
        }
@@ -500,7 +500,7 @@ Nlegs = Ntaskpts;
 
 //<<"%V $Ntaskpts \n"
 
-Taskpts.pinfo()
+//Taskpts.pinfo()
 
    for (k= 0; k < Ntaskpts; k++) {
        index = Taskpts[k];
@@ -513,7 +513,7 @@ Taskpts.pinfo()
 <<"//////////\n"
 <<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
 main_chk++;
-Taskpts.pinfo()
+//Taskpts.pinfo()
 
 
 <<" Now print task\n"
@@ -644,7 +644,7 @@ msgv = "";
 
 float d_ll = Margin;
 
-str wcltpt="XY";
+Str wcltpt="XY";
 
   DBG"%V $vvwo $Ntpts\n"
  // sWo(vvwo,@clear,@clearpixmap,@savepixmap,@clipborder);
@@ -675,6 +675,8 @@ str wcltpt="XY";
 
 int ekey;
 Str WoName = "xyz";
+Str wc = "Salida";
+int wtpwo;
 
   while (1) {
  //   zoom_to_task(mapwo,1)
@@ -744,7 +746,7 @@ Str WoName = "xyz";
              Task_update =1
              sWo(_ewoid, _WCXOR)
               wc=choice_menu("STP.m")
-               listTaskPts()	
+               listTaskPts();	
             if (wc == "R") { // replace
           wtp = PickaTP(0)
              if (wtp >= 0) {
@@ -754,7 +756,7 @@ Str WoName = "xyz";
            }
 	    else {
                 Atarg = wc;
-                wtp=PickTP(wc,0)
+                wtp=PickTP(wc,0);
 		if (wtp != -1) {
                   wcltpt = Wtp[wtp].Place;
                   sWo(tpwo[0],_WVALUE,wcltpt,_WREDRAW);
@@ -765,22 +767,28 @@ Str WoName = "xyz";
 
        else if (scmp(WoName,"_TP",3)) {
        
-             Task_update =1
+             Task_update =1;
              np = spat(WoName,"_TP",1)
              np = spat(np,"_",-1)
 
               Witp = atoi(np);
               wtpwo = tpwo[Witp]
 
-             sWo(wtpwo, _WCXOR);
+            // sWo(wtpwo, _WCXOR);
 	     
 	     gflush();
 
-             wc=choice_menu("TP.m")
-               listTaskPts()	
+             wc = choice_menu("TP.m")
+<<"menu choice  name or action  %V $wc\n";
+
+            //   listTaskPts();
+	       
              if (wc == "R") { // replace
 
-             wtp = PickaTP(Witp)
+//<<"$wc  REPLACE\n";
+printf("$wc  REPLACE\n");
+
+               wtp = PickaTP(Witp)
              if (wtp >= 0) {
               wcltpt = Wtp[wtp].Place;
               sWo(wtpwo,_WVALUE,wcltpt,_WREDRAW);
@@ -799,14 +807,23 @@ Str WoName = "xyz";
 	//	 insert_tp();
              }
              else if (wc == "N") {
+	     <<"Insert Name\n";
+	     
+	         Witp.pinfo();
                  insert_name_tp(Witp);
              }	     
              else {
                 Atarg = wc;
-                wtp=PickTP(wc,Witp)
-		if (wtp != -1) {
+<<"ask for name?\n";		
+                wtp= PickTP(wc,Witp);
+<<"%V $wtp \n"
+
+                if (wtp != -1) {
                   wcltpt = Wtp[wtp].Place;
-                  sWo(wtpwo,_WVALUE,wcltpt,_WREDRAW);
+<<"%V $wtpwo $wcltpt $wtp  $Wtp[wtp].Place\n"
+                woSetValue(wtpwo, wcltpt);
+                sWo(wtpwo,_WREDRAW,_WEO);
+		 
                 }
              }
 
@@ -815,8 +832,8 @@ Str WoName = "xyz";
 
                  sWo(tpwos,_WREDRAW);
                  sWo(legwos,_WREDRAW);		 
-                 sWo(wtpwo,_Wcxor);
-                 listTaskPts()	
+                // sWo(wtpwo,_Wcxor);
+//                 listTaskPts()	
 
        }
 

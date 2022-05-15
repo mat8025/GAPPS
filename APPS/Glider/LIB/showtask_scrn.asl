@@ -88,7 +88,7 @@ void updateLegs()
   rsz= wbox(0.15,0.01,0.54,0.1);
 
   <<"%V $rsz\n";
-  rsz.pinfo();
+  //rsz.pinfo();
 
 
  // sWo(sawo,_WRESIZE, wbox (0.15,0.01,0.54,0.1),_WEO);

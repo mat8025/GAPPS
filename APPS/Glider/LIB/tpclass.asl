@@ -247,7 +247,7 @@ Str val2;
 
 //cout  <<"Lon " << Lon <<" Longdeg "<< Longdeg  <<endl ; 
 #if ASL
-<<"%V $Lon $Longdeg \n";
+//<<"%V $Lon $Longdeg \n";
 #endif
 
       }

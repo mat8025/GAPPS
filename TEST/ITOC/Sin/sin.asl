@@ -80,4 +80,24 @@ chkR(a,3.141593)
 
 <<"wbox float5 \n"
 
+
+Str wc = "R";
+
+<<"%V $wc";
+
+for (i=0; i <6 ; i++) {
+  if (wc == "R") {
+<<"%V $i $wc  == R\n";
+  }
+
+  if (wc == "T") {
+<<"%V $i $wc  == T\n";
+  }
+  if (i == 3) {
+   wc = "T";
+  }
+}
+
+
+
 chkOut()

@@ -207,7 +207,7 @@
   float max_lat = sslat[6];
 
 #if ASL
-<<"%V $min_lat $max_lat \n"
+//<<"%V $min_lat $max_lat \n"
 #endif
   LatS = min_lat -Margin;
 
@@ -261,8 +261,8 @@
 
   LongE = MidLong - da/2.0;
 #if ASL  
-  <<"%V $LongW \n"
-  <<"%V $LongE \n"
+//  <<"%V $LongW \n"
+//  <<"%V $LongE \n"
 #endif
   }
 //===============================//
