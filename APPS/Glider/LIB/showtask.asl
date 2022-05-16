@@ -123,24 +123,7 @@ Turnpt  Wtp[300]; //
 Tleg  Wleg[20];
 
 
-Record RX;
-
-index = 7;
-for (i= 0; i <5; i++) {
-
-  Taskpts[Ntaskpts] = index;
-
-  index++;
-  Ntaskpts++;
-  
-}
-
-
-
-
-
- 
-
+Record RX[10];
 
 
 /// open turnpoint file lat,long 
@@ -152,6 +135,7 @@ int use_cup = 1;
 if (use_cup) {
 
     tp_file = "CUP/bbrief.cup"
+
 }
 else {
 
@@ -172,8 +156,9 @@ else {
 
 if (use_cup) {
 
-  Nrecs=RX.readRecord(AFH,_RDEL,-1,_RLAST);  // no back ptr to Siv?
+  Nrecs=RX.readRecord(AFH,_RDEL,44,_RLAST);  // no back ptr to Siv?
   //RF= readRecord(A,@del,',',@comment,"#");
+  
 }
 else {
 // RF= readRecord(A);
@@ -182,21 +167,21 @@ else {
   cf(AFH);
 
 
- 
-
-
-
   Nrecs = Caz(RX);
   Ncols = Caz(RX,1);
 
 <<"num of records $Nrecs  num cols $Ncols\n";
 
 
-  WH=searchRecord(RX,"jamest",0,0)
+for (i= 0; i <30 ; i++) {
+<<"$i $RX[i] \n"
+}
 
-<<"$WH \n"
+
+WH=searchRecord(RX,"AngelFire",0,0)
+
+<<"AngelFire @ $WH \n"
   WH.pinfo();
-
 
 
 /*
@@ -234,7 +219,7 @@ main_chk++;
 
 
  
-  Ntaskpts = 0;
+
   Ntp = 0;
 
 
@@ -332,11 +317,11 @@ main_chk++;
 
 int is_an_airport = 0;
 
-//<<"pre_pinfo() %V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+
 main_chk++;
 
 
-
+/*
     for (k = 1 ; k <=  5 ; k++) {
 
         is_an_airport = Wtp[k].is_airport;
@@ -350,8 +335,8 @@ if (is_an_airport) {
 }
 
    }
+*/
 
-<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
 main_chk++;
 
 
@@ -390,7 +375,7 @@ float min_lat;
 float max_lat;
 float longW =0.0;
 
-Ntaskpts = 0;
+
 
 //////////////// PARSE COMMAND LINE ARGS ///////////////////////
 
@@ -404,8 +389,12 @@ na = argc()
 
 
 main_chk++;
- while (AnotherArg()) {
-//<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+
+// while (AnotherArg()) {  // TBC 
+
+
+ while (1) {
+
 //<<"$ai $_clarg[ai]\n"
 
           ai++;
@@ -430,9 +419,9 @@ main_chk++;
        
       }
           else {
-	  
+	  if (slen(targ) > 1) {
           WH=searchRecord(RX,targ,0,0)
-	  <<"%V $WH\n"
+	  <<"%V $targ $WH\n"
 	  
           index = WH[0][0]
           if (index >=0) {
@@ -441,22 +430,23 @@ main_chk++;
 //<<"$ttp \n"
 
           Taskpts[Ntaskpts] = index;
-//<<" $Ntaskpts found $targ  $index  $Taskpts[Ntaskpts]\n"
+<<" $Ntaskpts found $targ  $index  $Taskpts[Ntaskpts]\n"
 
            Ntaskpts++;
 
            }
-	  
+	  }
           }
-      if (main_chk > 20) {
+	  
+      if (ai >= na) {
                break;
       }
 }
 //======================================//
 
-//ans=query("2?");
+ans=query("%V $Ntaskpts");
 
-
+//exit(-1);
 //<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
 main_chk++;
 
@@ -746,7 +736,7 @@ int wtpwo;
              Task_update =1
              sWo(_ewoid, _WCXOR)
               wc=choice_menu("STP.m")
-               listTaskPts();	
+            //   listTaskPts();	
             if (wc == "R") { // replace
           wtp = PickaTP(0)
              if (wtp >= 0) {
@@ -781,7 +771,7 @@ int wtpwo;
              wc = choice_menu("TP.m")
 <<"menu choice  name or action  %V $wc\n";
 
-            //   listTaskPts();
+           //  listTaskPts();
 	       
              if (wc == "R") { // replace
 
