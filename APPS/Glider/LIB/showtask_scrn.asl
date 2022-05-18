@@ -3,25 +3,17 @@
 ///
 ;
 
-
+/*
 A=ofw("MENUS/TP.m")
 <<[A],"title TP-Choice\n"
 <<[A],"type CHOICE\n"
 <<[A],"item Replace M_VALUE R\n"
 <<[A],"item Delete M_VALUE D\n"
 <<[A],"item Insert M_VALUE I\n"
-<<[A],"item InsertName M_VALUE N\n"
-<<[A],"item Name? C_INTER ?\n"
+<<[A],"item Add M_VALUE A\n"
 <<[A],"help  replace via name"
 cf(A)
-
-A=ofw("MENUS/STP.m")
-<<[A],"title Start-Choice\n"
-<<[A],"type CHOICE\n"
-<<[A],"item ReplaceViaMouse M_VALUE R\n"
-<<[A],"item Name? C_INTER ?\n"
-<<[A],"help  replace via name"
-cf(A)
+*/
 
 
 

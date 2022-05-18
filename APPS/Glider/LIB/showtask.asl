@@ -172,11 +172,11 @@ else {
 
 <<"num of records $Nrecs  num cols $Ncols\n";
 
-
+/*
 for (i= 0; i <30 ; i++) {
 <<"$i $RX[i] \n"
 }
-
+*/
 
 WH=searchRecord(RX,"AngelFire",0,0)
 
@@ -357,9 +357,9 @@ int ltp_wo[20];
 
 
 
-char MS[240]
-char Word[128]
-char Long[128]
+char MS[240];
+char Word[128];
+char Long[128];
 num_tpts = 700;
 
 float R[10];
@@ -384,7 +384,7 @@ Svar Tskval;
 Str targ;
 Str igc_fname ="xyz";
 na = argc()
- <<"na $na\n"
+ <<"na $na\n";
  int ai =0;
 
 
@@ -421,7 +421,7 @@ main_chk++;
           else {
 	  if (slen(targ) > 1) {
           WH=searchRecord(RX,targ,0,0)
-	  <<"%V $targ $WH\n"
+	 // <<"%V $targ $WH\n"
 	  
           index = WH[0][0]
           if (index >=0) {
@@ -431,11 +431,17 @@ main_chk++;
 
           Taskpts[Ntaskpts] = index;
 <<" $Ntaskpts found $targ  $index  $Taskpts[Ntaskpts]\n"
-
            Ntaskpts++;
 
            }
-	  }
+          else {
+<<"Warning can't find $targ as a TP - skipping \n"
+
+           }
+       }
+//<<" $Ntaskpts  \n"
+
+
           }
 	  
       if (ai >= na) {
@@ -444,11 +450,10 @@ main_chk++;
 }
 //======================================//
 
-ans=query("%V $Ntaskpts");
+//ans=query("%V $Ntaskpts\n");
 
 //exit(-1);
-//<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
-main_chk++;
+
 
 // home field
 // set a default task
@@ -487,7 +492,7 @@ svar targ_list = {"eldorado","casper","rangely","eldorado"}
 main_chk++;
 
 Nlegs = Ntaskpts;
-
+                 listTaskPts();		 
 //<<"%V $Ntaskpts \n"
 
 //Taskpts.pinfo()
@@ -501,13 +506,13 @@ Nlegs = Ntaskpts;
 //             Wtp[k].Print()
 //    }
 <<"//////////\n"
-<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+//<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
 main_chk++;
 //Taskpts.pinfo()
 
 
 <<" Now print task\n"
-<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+//<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
 main_chk++;
 
 
@@ -517,9 +522,7 @@ main_chk++;
        <<"Stat $i $MSL $Wleg[i].dist   $Wleg[i].fga\n"
       }
 
-//<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
-main_chk++;
-//<<"main  pre TaskDist %V $_scope $_cmfnest $_proc $_pnest\n"	       
+
 
  TaskDist();
 
@@ -534,7 +537,7 @@ main_chk++;
 */
 
 
-<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
+//<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
 main_chk++;
 
 <<"%V $Have_igc\n"
@@ -644,6 +647,8 @@ Str wcltpt="XY";
   DBG"%V $LongE \n"
 
   TaskDist();
+
+
    if (uplegs) {
     updateLegs();
    }
@@ -667,10 +672,21 @@ int ekey;
 Str WoName = "xyz";
 Str wc = "Salida";
 int wtpwo;
+Str wway="P";
+int ok =0;
+
+//ans=query("listTask?");
+<<"%V $Ntaskpts\n"
+
+
+            showTaskPts();
+<<"now list them \n";		 
+                 listTaskPts();
+		 
 
   while (1) {
  //   zoom_to_task(mapwo,1)
-
+    ok = 0;
     drawit = 1;
     Task_update =0
   
@@ -736,14 +752,16 @@ int wtpwo;
              Task_update =1
              sWo(_ewoid, _WCXOR)
               wc=choice_menu("STP.m")
-            //   listTaskPts();	
-            if (wc == "R") { // replace
-          wtp = PickaTP(0)
+            //   showTaskPts();	
+            if (wc == "M") { // replace
+	    
+             wtp = PickaTP(0)
              if (wtp >= 0) {
                 wcltpt = Wtp[wtp].Place;
                 sWo(tpwo[0],_WVALUE,wcltpt,_WREDRAW)
              }
-           }
+
+            }
 	    else {
                 Atarg = wc;
                 wtp=PickTP(wc,0);
@@ -753,6 +771,7 @@ int wtpwo;
                 }
 	     sWo(tpwo[0], _WCXOR)
           }
+	  
        }
 
        else if (scmp(WoName,"_TP",3)) {
@@ -771,63 +790,78 @@ int wtpwo;
              wc = choice_menu("TP.m")
 <<"menu choice  name or action  %V $wc\n";
 
-           //  listTaskPts();
+           //  showTaskPts();
 	       
              if (wc == "R") { // replace
 
 //<<"$wc  REPLACE\n";
-printf("$wc  REPLACE\n");
+printf("REPLACE TP \n");
+               wc=choice_menu("CTP.m");
 
-               wtp = PickaTP(Witp)
+             if (wc == "M") { // replace
+	    
+             wtp = PickaTP(Witp)
              if (wtp >= 0) {
-              wcltpt = Wtp[wtp].Place;
-              sWo(wtpwo,_WVALUE,wcltpt,_WREDRAW);
+                wcltpt = Wtp[wtp].Place;
+                sWo(tpwo[0],_WVALUE,wcltpt,_WREDRAW)
              }
+
+            }
+	    else {
+                Atarg = wc;
+                wtp=PickTP(wc,Witp);
+		if (wtp != -1) {
+                  wcltpt = Wtp[wtp].Place;
+                  sWo(tpwo[0],_WVALUE,wcltpt,_WREDRAW);
+                }
+	     sWo(tpwo[0], _WCXOR)
+          }
+
              }
              else if (wc == "D") {
                 <<"delete and move lower TPs up!\n"
-
                delete_tp(Witp); // 
-	      // delete_tp();
-
              }
 
              else if (wc == "I") {
-                 insert_tp(Witp);
-	//	 insert_tp();
-             }
-             else if (wc == "N") {
-	     <<"Insert Name\n";
-	     
-	         Witp.pinfo();
+	          wc=choice_menu("CTP.m")
+printf("choose how? %s\n",vtoa(wc));		
+               if (wc == M) {
+                  insert_tp(Witp);
+		 }
+		 else {
                  insert_name_tp(Witp);
-             }	     
-             else {
-                Atarg = wc;
-<<"ask for name?\n";		
-                wtp= PickTP(wc,Witp);
-<<"%V $wtp \n"
-
-                if (wtp != -1) {
-                  wcltpt = Wtp[wtp].Place;
-<<"%V $wtpwo $wcltpt $wtp  $Wtp[wtp].Place\n"
-                woSetValue(wtpwo, wcltpt);
-                sWo(wtpwo,_WREDRAW,_WEO);
-		 
-                }
+		 }
              }
+             else if (wc == "A")  {  // this is add
+
+//                              wc=choice_menu("CTP.m")
+//printf("choose how? %s\n",wc.cptr());
+//printf("choose how? %s\n",vtoa(wc));		
+		 <<"getting name $wc\n"
+		  ok=PickViaName(Witp);
+		  if (ok) {
+                   <<"added TP\n"
+		    Ntaskpts++;
+                  }
+		  DrawMap(mapwo);
+             }
+             else if (wc == "P")  {  // this is add
 
 
-
-
+                  insert_tp(Witp);
+                  Ntaskpts++;
+		  DrawMap(mapwo);
+             }	     
+             
+             Task_update =1;
                  sWo(tpwos,_WREDRAW);
-                 sWo(legwos,_WREDRAW);		 
+                 sWo(legwos,_WREDRAW,_WEO);		 
                 // sWo(wtpwo,_Wcxor);
-//                 listTaskPts()	
+                 showTaskPts();
 
+		 
        }
-
-
        else if (WoName == "ALT") {
 
          drawit = 0;
@@ -934,6 +968,9 @@ printf("$wc  REPLACE\n");
       sWo(tpwos,_WREDRAW);
        sWo(legwos,_WREDRAW);		 
       }
+
+     sWi(vp,_WREDRAW,_WEO);
+    DrawMap(mapwo);
   }
 
 
@@ -965,7 +1002,11 @@ exit();
   readIGC - C++ function  done
 
   can we plot on top sectional image - where to get those?
+  use cursors on time graph to zoom to map 
 
+  button to switch to 3D projection (DEMS) already had that working once
+  where is that code (tiles) 
+ ?? what happed to viewterrain and elevation - magic carpet viewer??
 
   projection  --  square degrees - square map window --- conical??
 
@@ -976,7 +1017,7 @@ exit();
   and task plotting to work
 
 
-  ?? what happed to viewterrain and elevation - magic carpet viewer??
+  request 300,500,1000 K triangles , W, OAR,  given start, first turn
 
 
   menus

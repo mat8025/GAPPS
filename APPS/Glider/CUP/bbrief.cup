@@ -1,4 +1,4 @@
-#Title,Code,Country,Latitude,Longitude,Elevation,Style,Direction,Length,Frequency,Description
+Title,Code,Country,Latitude,Longitude,Elevation,Style,Direction,Length,Frequency,Description
 "8URch","8U RCH",US,4047.477N,10517.638W,5900ft,3,,,,"TP, E-W 24G"
 "AARch","WY11",WY,4109.498N,10633.452W,7780ft,5,100,5700ft,122.8,"Private TP  WY11 Nw 22.8 RWW: 50"
 "AkronWsh","AKO",CO,4010.538N,10313.322W,4689ft,5,110,7000ft,122.8,"TP, AKO, 11/29 22.8 RWW: 100"
@@ -28,7 +28,7 @@
 "Boulder","1V5",CO,4002.366N,10513.549W,5288ft,5,080,4100ft,122.720,"Start Finish Point, TP, 1V5, 08/26 122.72 , 18.82 RWW: 75"
 "BowenFms","CO98",US,3932.999N,10502.032W,5449ft,2,000,1800ft,,"Private, TP, CO98, Grass, RWW: 50"
 "Breckenridg?","BRCKNRDG",CO,3930.607N,10603.032W,9383ft,3,,,,"TP, 16/34 61D?"
-"Buford","buf",WY,4107.000N,10518.000W,7500ft,1,,,,"TP, town"	_	_	T 
+"Buford","buf",WY,4107.000N,10518.000W,7500ft,1,,,,"TP, town" 
 "Bressler","BRESSLER",US,3944.550N,10133.343W,3489ft,2,080,3460ft,122.900,"TP, 5K0, 08/26 22.9, RWW: 70"
 "Bross Mt","BROSS MT",US,3920.116N,10606.451W,14172ft,1, , ,,"TP, MTPk"
 "Brush","7v5",CO,4015.832N,10334.863W,4280ft,5,070,4300ft,122.8,"TP, 7V5, 7/25 22.8, RWW: 60"
