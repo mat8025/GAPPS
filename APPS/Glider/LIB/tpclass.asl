@@ -267,9 +267,13 @@ void SetPlace (Str val)
    void Print ()    
    {
      //<<"$Place $Idnt $Lat $Lon $Alt $rway $Radio $Ladeg $Longdeg\n"
+#if ASL
+<<" $Place  $Lat $Lon $Radio\n"
 
+#else
 cout << " " << Place <<" " << Idnt <<" " << Lat <<" " << Lon <<" " << Alt <<" " << rway <<" "
 << Radio <<" " << Ladeg <<" " << Longdeg << endl;
+#endif
    }
 //=========================//
 

@@ -800,10 +800,11 @@ int ok =0;
 
              if (wc == "M") { // replace
 printf("REPLACE TP via Map select\n");
-               insert_tp(Witp);
+                 replace_tp(Witp);
 
             }
 	    else {
+printf("REPLACE TP via Name select\n");	    
                   PickViaName(Witp);
             }
              
@@ -816,7 +817,7 @@ printf("REPLACE TP via Map select\n");
              else if (wc == "I") {
 	          wc=choice_menu("CTP.m")
 //printf("choose how? %s\n",vtoa(wc));		
-printf("INSERT TP \n");
+printf("INSERT TP $wc \n");
             if (wc == "M") {
                   insert_tp(Witp);
 		 }
