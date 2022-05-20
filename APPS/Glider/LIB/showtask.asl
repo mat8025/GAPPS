@@ -795,28 +795,18 @@ int ok =0;
              if (wc == "R") { // replace
 
 //<<"$wc  REPLACE\n";
-printf("REPLACE TP \n");
+//printf("REPLACE TP \n");
                wc=choice_menu("CTP.m");
 
              if (wc == "M") { // replace
-	    
-             wtp = PickaTP(Witp)
-             if (wtp >= 0) {
-                wcltpt = Wtp[wtp].Place;
-                sWo(tpwo[0],_WVALUE,wcltpt,_WREDRAW)
-             }
+printf("REPLACE TP via Map select\n");
+               insert_tp(Witp);
 
             }
 	    else {
-                Atarg = wc;
-                wtp=PickTP(wc,Witp);
-		if (wtp != -1) {
-                  wcltpt = Wtp[wtp].Place;
-                  sWo(tpwo[0],_WVALUE,wcltpt,_WREDRAW);
-                }
-	     sWo(tpwo[0], _WCXOR)
-          }
-
+                  PickViaName(Witp);
+            }
+             
              }
              else if (wc == "D") {
                 <<"delete and move lower TPs up!\n"
@@ -825,8 +815,9 @@ printf("REPLACE TP \n");
 
              else if (wc == "I") {
 	          wc=choice_menu("CTP.m")
-printf("choose how? %s\n",vtoa(wc));		
-               if (wc == M) {
+//printf("choose how? %s\n",vtoa(wc));		
+printf("INSERT TP \n");
+            if (wc == "M") {
                   insert_tp(Witp);
 		 }
 		 else {
