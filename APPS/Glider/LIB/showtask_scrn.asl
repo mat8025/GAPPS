@@ -16,8 +16,14 @@ cf(A)
 */
 
 
+int CR_init = 0;
+int CL_init = 0;
+
+int lc_gl= -1;
+int rc_gl = -1;
 
 
+   
   Graphic = CheckGwm();
 
 <<"%V $Graphic\n"
@@ -86,12 +92,12 @@ void updateLegs()
  // sWo(sawo,_WRESIZE, wbox (0.15,0.01,0.54,0.1),_WEO);
   sWo(sawo,_WRESIZE, rsz,_WEO);
 
-  sWo(sawo,_Wcolor,WHITE_,_Wstyle,"SVB");
+  sWo(sawo,_Wcolor,WHITE_,_WSTYLE,"SVB");
 
 
   vvwo= cWo(vp, WO_GRAPH_);
 
-  sWo(vvwo,_WName,"ALT",_Wcolor,WHITE_);
+  sWo(vvwo,_WNAME,"ALT",_WCOLOR,WHITE_);
 
 // printargs(vvwo,_WRESIZE, wbox(1,2,3,4,5),_WEO);
 
@@ -104,7 +110,7 @@ void updateLegs()
 
   
 
-  sWo(vvwo, _Wscales, wbox(0, 0, 100, 6000), _Wsavepixmap, _Wredraw, _Wdrawoff, _Wpixmapon);
+  sWo(vvwo, _WSCALES, wbox(0, 0, 100, 6000), _WSAVEPIXMAP, _WREDRAW, _WDRAWON, _WPIXMAPON);
 
   mapwo= cWo(vp,WO_GRAPH_);
   sWo(mapwo,_WRESIZE,wbox(0.30,0.26,0.95,0.95),_Wname,"MAP",_Wcolor,WHITE_);
@@ -183,4 +189,14 @@ void updateLegs()
   sWo(vptxt,_WCOLOR,WHITE_,_WSAVE,_WDRAWON,_WPIXMAPOFF);
 
 
-//<<" DONE SCREEN\n";
+//  CURSORS
+ // TBC cursor opt?
+  lc_gl   = cGl(vvwo);
+  sGl(lc_gl,_GLtype,XY_,_GLHUE,BLACK_,_GLltype,CURSOR_,_GLEO);
+
+  rc_gl   = cGl(vvwo);
+  sGl(rc_gl,_GLtype,XY_,_GLHUE,BLUE_,_GLltype,CURSOR_,_GLEO);
+
+
+
+<<" DONE SCREEN $lc_gl $rc_gl\n";

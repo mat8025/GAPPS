@@ -18,6 +18,9 @@
 ///
 //<<"including graphic_glide $_include\n"
 
+  float zoom_begin = 0;
+  float zoom_end =  200;
+
 
   void screen_print()
   {
@@ -222,6 +225,46 @@
 
   }
 //==================================================
+void drawTrace()
+{
+     if (Have_igc) {
+         sWo(mapwo,_WSCALES, wbox(LongW, LatS, LongE, LatN),_WEO );
+	 
+         //sWo(mapwo,_WCLEARPIXMAP);
+         sWo(vvwo,_WCLEARPIXMAP);
+
+
+         
+          //DrawMap(mapwo);
+	  
+  	 if (Ntpts > 0) {
+            sWo(vvwo, _WSCALES, wbox(0, Min_ele, Ntpts, Max_ele + 500),_WEO )
+              dGl(igc_tgl);
+	    sWo(vvwo,_WCLEARPIXMAP);
+	      dGl(igc_vgl);
+            sWo(mapwo,_WSHOWPIXMAP,_WCLIPBORDER);
+            sWo(vvwo,_WSHOWPIXMAP,_WCLIPBORDER);
+<<"%V $Ev_button $lc_gl $rc_gl  \n"
+  CR_init = 1;
+  CL_init = 1;
+
+if (lc_gl != -1) {
+	  sGl(lc_gl,_GLCURSOR,rbox(zoom_begin,0,zoom_begin,20000, CL_init),_GLHUE,GREEN_,_GLEO); // use rbox
+   dGl(lc_gl);
+}
+
+if (rc_gl != -1) {
+	  sGl(rc_gl,_GLCURSOR,rbox(zoom_end,0,zoom_end,20000, CR_init),_GLHUE,RED_,_GLEO);
+   dGl(rc_gl);
+}
+
+ <<"%V $zoom_begin $zoom_end\n"
+	 }
+	//sWo(mapwo,_WSHOWPIXMAP,_WCLIPBORDER);
+  CR_init = 0;
+  CL_init = 0;
+      }
+}
 
   void gg_gridLabel(int wid)
   {
@@ -1363,7 +1406,7 @@ int PickViaName(int wt)
   }
 
   else {
-
+  //sdb(2,"pline");
   for (i = 0 ; i < (Ntaskpts-1) ; i++ ) {
 
 
@@ -1384,19 +1427,19 @@ int PickViaName(int wt)
 
   lon2 = Wtp[index1].Longdeg;
 
- <<"%V $w $lat1 $lon1 $lat2 $lon2 $col\n"
+ //<<"%V $w $lat1 $lon1 $lat2 $lon2 $col\n"
 
   <<"%V $lon1  $lon2  \n"
   <<"%V $lat1  $lat2  \n"
 
   plotLine(w, lon1, lat1,lon2,lat2,col,_WEO);
-  
+
 
   }
 
   }
 //ans=query("see lines?");
-  sWo(w,_WSHOWPIXMAP,_WCLIPBORDER);
+ // sWo(w,_WSHOWPIXMAP,_WCLIPBORDER);
 //ans=query("see lines?");
   }
 //=============================================
@@ -1464,6 +1507,7 @@ int PickViaName(int wt)
 //DBG"$_proc %V $wo\n"
 // TBF include ?? code that we are running or  code that is calling?
 //<<"%V $_proc  $_include \n"
+
   int msl;
 
   float lat;
@@ -1473,6 +1517,8 @@ int PickViaName(int wt)
   Str mlab;
 
   int is_an_airport = 0;
+  int is_a_mtn = 0;
+  
   sWo(mapwo,_WSCALES,wbox(LongW,LatS,LongE,LatN),_WEO);
   <<"%V $LongW $LatS $LongE $LatN \n";
 
@@ -1497,22 +1543,28 @@ int PickViaName(int wt)
     ///  Wtp ref has to be compiled before readin ??  FIX
     /// 
 
-  for (k = 0 ; k < np ; k++) {
-       // is_an_airport = Wtp[k].is_airport;
+  for (k = 1 ; k <= np ; k++) {
+
+    is_an_airport = Wtp[k].is_airport;
+        is_a_mtn = Wtp[k].is_mtn;
 
   mlab = Wtp[k].Place;
-//DBG"%V $k $mlab\n"
 
-//<<"%V $k $mlab\n"
+
+//<<"%V $k $mlab  $is_an_airport \n"
+
 
   if (!is_an_airport) {
 
   mlab = slower(mlab);
 
   }
-//DBG"$k %V $is_an_airport  $mlab $(typeof(mlab))\n";
 
   msl = Wtp[k].Alt;
+
+//<<"$k %V $is_an_airport  $mlab $msl \n";
+
+
 
  // msl.pinfo();
   
@@ -1529,29 +1581,33 @@ int PickViaName(int wt)
 //<<"%V $k $mlab $msl $lat $longi $Wtp[k].Ladeg   \n"
 
   if ( msl > 7000) {
-
-  Text(mapwo,mlab,longi,lat,0,0,1,RED_);
+    if (is_an_airport || is_a_mtn) {
+       Text(mapwo,mlab,longi,lat,0,0,1,RED_);
 	    // <<"above 7K $msl $mlab $lat $longi\n"
-	     sWo(mapwo,_WSHOWPIXMAP,_WEO);
 
+     }
   }
 
   else {
 
   if ( msl > 5000) {
-
+  if (is_an_airport) {
   Text(mapwo,mlab,longi,lat,0,0,1,BLUE_);
 	       // <<"above 5K $msl $mlab $lat $longi\n"
+   }
+
+
 
   }
 
   else {
 	    //	 <<"below 5K $msl $mlab $lat $longi\n"
-
-  Text(mapwo,mlab,longi,lat,0,0,1,GREEN_);
-
+   if (is_an_airport) {
+     Text(mapwo,mlab,longi,lat,0,0,1,GREEN_);
+   }
   }
 
+//sWo(wo,_WSHOWPIXMAP,_WCLIPBORDER);
   }
 
   }
@@ -1591,9 +1647,9 @@ int PickViaName(int wt)
   
   lon2 = Wtp[index1].Longdeg;
 
- <<"%V $i $index $index1 $lat1  $lat2 $lon1 $lon2 \n"
- <<"%V $lon1  $lon2  \n"
-  <<"%V $lat1  $lat2  \n"
+ //<<"%V $i $index $index1 $lat1  $lat2 $lon1 $lon2 \n"
+ //<<"%V $lon1  $lon2  \n"
+ // <<"%V $lat1  $lat2  \n"
 
 
   if (kt <= 0) { 
@@ -1644,7 +1700,7 @@ int PickViaName(int wt)
   for (k= 0; k < Ntaskpts; k++) {
 
   tindex = Taskpts[k];
-<<"%V $k $tindex $Taskpts[k] \n";
+//<<"%V $k $tindex $Taskpts[k] \n";
 
   }
 

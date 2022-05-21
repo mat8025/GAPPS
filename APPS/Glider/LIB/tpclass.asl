@@ -77,6 +77,7 @@ class Turnpt
   float Ladeg;
   float Longdeg;
   int is_airport;
+  int is_mtn;
   int id;
   int match[2];
   Str smat; ;
@@ -199,6 +200,7 @@ Str val2;
 // <<"%V$Alt  \n"
 
      is_airport =0;
+     is_mtn =0;
 
      rway = wval[6];
 
@@ -208,10 +210,14 @@ Str val2;
          is_airport =1;
      }
 
+     if (rway == "8") {
+         is_mtn =1;
+     }
+
      rway = wval[7];
 
      if (rway != "") {
-         is_airport =1;
+       //  is_airport =1;
      }
 
 
@@ -248,7 +254,10 @@ Str val2;
 //cout  <<"Lon " << Lon <<" Longdeg "<< Longdeg  <<endl ; 
 #if ASL
 //<<"%V $Lon $Longdeg \n";
+//<<"%V $Place $is_airport \n"
 #endif
+
+
 
       }
 //=========================//

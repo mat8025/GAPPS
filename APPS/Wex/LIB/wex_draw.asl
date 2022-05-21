@@ -386,7 +386,6 @@ cout <<"Draw Screen\n";
  // sWo(tw_wo,_WMOVE,wpt(targetday,NextGoalWt),wtwo,_WREDRAW,_WEO); // ?? parent wo
 
   CR_init = 1;
-
   CL_init = 1;
  //sc_startday.pinfo();
    cout<<"Done drawScreens\n";

@@ -46,8 +46,7 @@
 
    float Margin = 0.05;
 
-   float erx;
-   float ery;
+
 
 
   Str Units = "KM";

@@ -23,6 +23,12 @@
 #define CPP 0
 
 
+#if ASL
+// the include  when cpp compiling will re-define ASL 0 and CPP 1
+#include "/home/mark/gasp-CARBON/include/compile.h"
+#endif
+
+
 
 Str Use_= "  view and select turnpts  create read tasks ";
 
@@ -68,35 +74,16 @@ int main_chk =1;
 int Maxtaskpts = 13;
 
 //======================================//
-void drawTrace()
-{
-     if (Have_igc) {
-         sWo(mapwo,_WSCALES, wbox(LongW, LatS, LongE, LatN),_WEO );
-	 
-         sWo(mapwo,_WCLEARPIXMAP);
-         sWo(vvwo,_WCLEARPIXMAP);
-
-         
-          DrawMap(mapwo);
-	  
-  	 if (Ntpts > 0) {
-            sWo(vvwo, _WSCALES, wbox(0, Min_ele, Ntpts, Max_ele + 500),_WEO )
-              dGl(igc_tgl);
-	    sWo(vvwo,_WCLEARPIXMAP);
-	      dGl(igc_vgl);
-            sWo(mapwo,_WSHOWPIXMAP,_WCLIPBORDER);
-            sWo(vvwo,_WSHOWPIXMAP,_WCLIPBORDER);
-	 }
-	sWo(mapwo,_WSHOWPIXMAP,_WCLIPBORDER);
-
-      }
-}
 
 //======================================//
 ///////////////////// SETUP GRAPHICS ///////////////////////////
 
 
 /////////////  Arrays : Globals //////////////
+
+        float symx = 0.0
+	float symy = 0.0;
+        float syme = 0.0
 
 LatS= 37.5;
 
@@ -123,7 +110,7 @@ Turnpt  Wtp[300]; //
 Tleg  Wleg[20];
 
 
-Record RX[300];
+Record RX[10];
 
 
 /// open turnpoint file lat,long 
@@ -143,7 +130,8 @@ else {
 
   if (tp_file == "") {
     tp_file = "DAT/turnptsSM.dat"  // open turnpoint file 
-   }
+   }q
+   
 }
 
 
@@ -172,12 +160,12 @@ else {
 
 <<"num of records $Nrecs  num cols $Ncols\n";
 
-
+/*
 for (i= 0; i <= 100 ; i++) {
 <<"$i $RX[i] \n"
 }
+*/
 
-!a
 WH=searchRecord(RX,"AngelFire",0,0)
 
 <<"AngelFire @ $WH \n"
@@ -631,6 +619,12 @@ Str place;
 
  Gevent gev;
 
+   float erx;
+   float ery;
+
+<<"%V $Ev_button\n"
+
+
 int dindex;
 int Witp = 0;
 int drawit = 0;
@@ -696,9 +690,10 @@ int ok =0;
     //eventWait();
     emsg =gev.eventWait();
     ekey = gev.getEventKey();
-    
-    WoName = gev.getEventWoName();
+    gev.geteventrxy( &erx,&ery);
 
+    WoName = gev.getEventWoName();
+    Ev_button = gev.getEventButton();
 <<"%V $ekey $WoName \n"
 
     //Text(vptxt," $_ekeyw   ",0,0.05,1)
@@ -862,21 +857,44 @@ printf("INSERT TP $wc \n");
          drawit = 0;
          dindex = rint(erx)
 
-<<" index $erx, alt $ery  $dindex $IGCELE[dindex] $IGCLAT[dindex] $IGCLONG[dindex] \n"
+<<"%V $erx, alt $ery  $dindex $IGCELE[dindex] $IGCLAT[dindex] $IGCLONG[dindex] \n"
          symx = IGCLONG[dindex]
 	 symy = IGCLAT[dindex]
-	 
-	 <<"$symx $symy $mapwo \n"
-	 
-       
-	 
-	 swo(mapwo,_WCLEAR,_WCLEARCLIP,BLUE_,_WCLEARPIXMAP);
+	 syme = IGCELE[dindex] *  3.280839;
+	 <<"%V $symx $symy $syme  \n"
+
+
+       if (Ev_button == 1) {
+	  sGl(lc_gl,_GLCURSOR,rbox(erx,0,erx,20000, CL_init),_GLEO);
+	  dGl(lc_gl);
+	  CL_init = 0;
+	   zoom_begin = erx;
+  
+
+	  // save begin time for zoomin
+       }
+
+       if (Ev_button == 3) {
+
+ //  sGl(lc_gl,_GLCURSOR,lcpx,0,lcpx,300, CL_init,_GLEO);
+	  sGl(rc_gl,_GLCURSOR,rbox(erx,0,erx,20000, CR_init),_GLEO);
+          dGl(rc_gl);
+	  	  CR_init = 0;
+          zoom_end = erx;
+          // save end time  for zoomin
+       }
+
+//	 swo(mapwo,_WCLEAR,_WCLEARCLIP,BLUE_,_WCLEARPIXMAP);
 	 
 	 plot(mapwo,_WSYMBOL,symx,symy, 11,2,RED_);
 
          plot(mapwo,_WCIRCLE,symx,symy, 0.01,GREEN_,1);
 	 
-	 swo(mapwo,_WSHOWPIXMAP);
+//	 swo(mapwo,_WSHOWPIXMAP);
+//	 swo(vvwo,_WSHOWPIXMAP);
+
+<<"%V $zoom_begin $zoom_end\n"
+	 
 	 
        }
        
@@ -965,10 +983,10 @@ printf("INSERT TP $wc \n");
       }
 
      sWi(vp,_WREDRAW,_WEO);
-    DrawMap(mapwo);
+  //  DrawMap(mapwo);
 
     drawTrace();
-    drawTask(mapwo,RED_);
+ //   drawTask(mapwo,RED_);
 }
 
 
