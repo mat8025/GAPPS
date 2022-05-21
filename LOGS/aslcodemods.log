@@ -1153,3 +1153,5 @@ proc_def_e.cpp                      2.68  05/13/2022 11:35:04  fix proc srcfile
 vmf_event.cpp                       1.23  05/14/2022 09:13:43  s->result STRV set
 navi_l.cpp                          1.20  05/16/2022 16:46:15  guard incorrect lat/long format
 wo_get_p.cpp                        1.81  05/20/2022 12:37:01  wogetvalue - type id
+po_p.cpp                            1.79  05/20/2022 22:37:30  DB
+tokcmf.cpp                          1.72  05/20/2022 22:39:03  switch to nowic for intial object array parse

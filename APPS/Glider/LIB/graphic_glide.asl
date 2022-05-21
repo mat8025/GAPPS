@@ -33,7 +33,7 @@
 
   DrawMap(mapwo);
 
-  drawTask(mapwo,"red");
+  drawTask(mapwo,RED_);
 
   laser_scr(vp);
 
@@ -217,7 +217,7 @@
   //set_wo_task(tw)
   //total = taskDist()
 
-  drawTask(mapwo,"red");
+  drawTask(mapwo,RED_);
  // tot_units = scat(total,Units)
 
   }
@@ -403,7 +403,7 @@ ans=query("bad ry\n");
   x0 = 0;
 
   DrawMap(w_num);
-
+   drawTask(w_num,BLACK_);
   }
 
   }
@@ -423,7 +423,7 @@ ans=query("bad ry\n");
 
   DrawMap(w_num);
 
-  drawTask(w_num,"black");
+  drawTask(w_num,BLACK_);
 //  sWo(w_num,_Wshowpixmap)
 
   }
@@ -449,7 +449,7 @@ ans=query("bad ry\n");
 
   DrawMap(w_num);
 
-  drawTask(w_num,"red");
+  drawTask(w_num,RED_);
 
   }
 //==================================================
@@ -479,7 +479,7 @@ ans=query("bad ry\n");
 
   DrawMap(w_num);
 
-  drawTask(w_num,"red");
+  drawTask(w_num,RED_);
 
   }
 //==================================================
@@ -489,7 +489,7 @@ ans=query("bad ry\n");
 
   DrawMap(tw);
 
-  drawTask(tw,"red");
+ // drawTask(tw,RED_);
   }
 //==================================================
 
@@ -542,7 +542,7 @@ ans=query("bad ry\n");
 
   DrawMap(w_num);
 
-  drawTask(w_num,"red");
+  drawTask(w_num,RED_);
 
   }
 //======================================//
@@ -568,7 +568,7 @@ ans=query("bad ry\n");
 
   DrawMap(w_num);
 
-  drawTask(w_num,"red");
+  drawTask(w_num,RED_);
 
   }
 //======================================//
@@ -579,7 +579,9 @@ ans=query("bad ry\n");
   
 
   DrawMap(mapwo);
-  }
+ drawTask(mapwo,GREEN_);
+
+}
 //======================================//
 
  void replace_tp(int wt)
@@ -633,7 +635,7 @@ ans=query("bad ry\n");
 /// click on tpwo
 //wt = Witp;
   Str tval;
-  
+   LastTP =Ntaskpts ;
   if (wt < LastTP ) {
 
   for (i = LastTP ; i > wt ; i--) {
@@ -688,8 +690,7 @@ ans=query("bad ry\n");
   }
 
   Ntaskpts++;
-/// pick a tp
-/// insert before
+
 
   }
 //======================================//
@@ -702,7 +703,7 @@ ans=query("bad ry\n");
   Str nval;
   Str tval;
 <<"$_proc  $wt\n";
-
+ LastTP =Ntaskpts ;
   if (wt < LastTP ) {
 
   for (i = LastTP ; i > wt ; i--) {
@@ -720,7 +721,8 @@ ans=query("bad ry\n");
 
   }
 
-  woSetValue (tpwo[wt],"XXX");
+  woSetValue (tpwo[wt],"?");
+  sWo(tpwo[wt],_WREDRAW);
 
   nval = " ";
 
@@ -737,7 +739,7 @@ ans=query("bad ry\n");
   <<"Found %V $wtp $nval $aplace\n"
 
   woSetValue (tpwo[wt],nval,0);
-
+  sWo(tpwo[wt],_WREDRAW);
   Task_update = 1;
 
   sWo(tpwos,_WREDRAW);
@@ -1082,7 +1084,7 @@ int PickViaName(int wt)
   magnify(w);
 
   DrawMap(w);
-
+   drawTask(mapwo,BLACK_);
   }
 
   else if (ur_c == "plot_igc") {
@@ -1117,7 +1119,7 @@ int PickViaName(int wt)
 
   DrawMap(mapwo);
 
-  drawTask(mapwo,"red");
+  drawTask(mapwo,RED_);
 
   }
 
@@ -1250,7 +1252,7 @@ int PickViaName(int wt)
 
   DrawMap(mapwo);
 
-  drawTask(mapwo,"blue");
+  drawTask(mapwo,BLUE_);
 
   return;
 
@@ -1264,7 +1266,7 @@ int PickViaName(int wt)
 
   DrawMap(mapwo);
 
-  drawTask(mapwo,"red");
+  drawTask(mapwo,RED_);
 
   return;
 
@@ -1302,7 +1304,7 @@ int PickViaName(int wt)
 
   sleep(0.2);
 
-  ntp = ClosestTP(_erx,_ery);
+  ntp = ClosestTP(erx,ery);
 
   MouseCursor("hand");
 
@@ -1328,14 +1330,18 @@ int PickViaName(int wt)
 
   Str TaskType = "MT";
 
-  void drawTask(int w,Str col)
+  void drawTask(int w,int col)
   {
-//<<"$_proc    $w $col\n"
-
+  <<"$_proc    $w $col\n"
+  float lat1;
+  float lat2;
+  float lon1;
+  float lon2;
+  int index;
   if ( Task_update) {
 
   TaskDist();
-  //  <<"$_proc  $TaskType $col $Nlegs \n"
+  <<"$TaskType $col $Nlegs \n"
 
   }
 
@@ -1343,34 +1349,55 @@ int PickViaName(int wt)
 //      tpl = Wtp[index].Place;
 //<<"%V$index $tpl \n"
 
+<<" %V $Ntaskpts \n";
+
   if ( (TaskType == "OAR")   || (TaskType == "SO")) {
 
   index = Taskpts[0];
 
   index1 = Taskpts[1];
+<<"OAR %V $index $index1\n"
 
-  plot(w,@line,Wtp[index].Longdeg,Wtp[index].Ladeg,Wtp[index1].Longdeg,Wtp[index1].Ladeg,col);
+  plotLine(w,Wtp[index].Longdeg,Wtp[index].Ladeg,Wtp[index1].Longdeg,Wtp[index1].Ladeg,col);
 
   }
 
   else {
 
   for (i = 0 ; i < (Ntaskpts-1) ; i++ ) {
-//   <<"$i %V $w, $Tasktp[i]->Longdeg $Tasktp[i]->Ladeg,$Tasktp[i+1]->Longdeg,$Tasktp[i+1]->Ladeg, $col \n "
+
+
+//<<"$i %V $w  $Tasktp[i].Longdeg $Tasktp[i].Ladeg $Tasktp[i+1].Longdeg $Tasktp[i+1].Ladeg $col \n "
 
   index = Taskpts[i];
 
   index1 = Taskpts[i+1];
-//<<"%V $index $index1\n"
+<<"MT %V $i $index $index1\n"
 
-  plot(w,_Wline,Wtp[index].Longdeg,Wtp[index].Ladeg,Wtp[index1].Longdeg,Wtp[index1].Ladeg,col);
+
+// plotLine(w,Wtp[index].Longdeg,Wtp[index].Ladeg,Wtp[index1].Longdeg,Wtp[index1].Ladeg,col);
+  lat1 = Wtp[index].Ladeg;
+
+  lon1 = Wtp[index].Longdeg;
+
+  lat2 = Wtp[index1].Ladeg;
+
+  lon2 = Wtp[index1].Longdeg;
+
+ <<"%V $w $lat1 $lon1 $lat2 $lon2 $col\n"
+
+  <<"%V $lon1  $lon2  \n"
+  <<"%V $lat1  $lat2  \n"
+
+  plotLine(w, lon1, lat1,lon2,lat2,col,_WEO);
+  
 
   }
 
   }
-
+//ans=query("see lines?");
   sWo(w,_WSHOWPIXMAP,_WCLIPBORDER);
-
+//ans=query("see lines?");
   }
 //=============================================
 
@@ -1541,13 +1568,33 @@ int PickViaName(int wt)
 <<"$_proc \n"
 
 <<"%V $Ntaskpts\n"
-
-
+  float lat1;
+  float lat2;
+  float lon1;
+  float lon2;
+  int index;
+  int index1;
+  
    int kt;
   for (i = 0 ; i < Ntaskpts ; i++) {
 
   kt= Taskpts[i];
-   <<"taskpt $i  $kt $Taskpts[i]   \n"
+  <<"taskpt $i  $kt $Taskpts[i]   \n"
+
+  index = Taskpts[i];
+  index1 = Taskpts[i+1];
+  lat1 = Wtp[index].Ladeg;
+  
+  lon1 = Wtp[index].Longdeg;
+
+  lat2 = Wtp[index1].Ladeg;
+  
+  lon2 = Wtp[index1].Longdeg;
+
+ <<"%V $i $index $index1 $lat1  $lat2 $lon1 $lon2 \n"
+ <<"%V $lon1  $lon2  \n"
+  <<"%V $lat1  $lat2  \n"
+
 
   if (kt <= 0) { 
      break;

@@ -123,7 +123,7 @@ Turnpt  Wtp[300]; //
 Tleg  Wleg[20];
 
 
-Record RX[10];
+Record RX[300];
 
 
 /// open turnpoint file lat,long 
@@ -172,12 +172,12 @@ else {
 
 <<"num of records $Nrecs  num cols $Ncols\n";
 
-/*
-for (i= 0; i <30 ; i++) {
+
+for (i= 0; i <= 100 ; i++) {
 <<"$i $RX[i] \n"
 }
-*/
 
+!a
 WH=searchRecord(RX,"AngelFire",0,0)
 
 <<"AngelFire @ $WH \n"
@@ -452,8 +452,9 @@ main_chk++;
 
 //ans=query("%V $Ntaskpts\n");
 
-//exit(-1);
-
+//
+    listTaskPts();
+    
 
 // home field
 // set a default task
@@ -661,13 +662,15 @@ Str wcltpt="XY";
 
   sWo(mapwo,_WSCALES,wbox( LongW, LatS, LongE, LatN),_WEO );
   sWo(TASK_wo,_WVALUE,TaskType,_WREDRAW);
-
+  
+  //sdb(2,"pline");
+  
   DrawMap(mapwo);
 //ans=query("see map?");
 
-  drawTask(mapwo,"green");
-  drawTrace();
 
+  drawTrace();
+  drawTask(mapwo,GREEN_);
 int ekey;
 Str WoName = "xyz";
 Str wc = "Salida";
@@ -815,7 +818,7 @@ printf("REPLACE TP via Name select\n");
              }
 
              else if (wc == "I") {
-	          wc=choice_menu("CTP.m")
+	          wc=choice_menu("ITP.m")
 //printf("choose how? %s\n",vtoa(wc));		
 printf("INSERT TP $wc \n");
             if (wc == "M") {
@@ -857,9 +860,9 @@ printf("INSERT TP $wc \n");
        else if (WoName == "ALT") {
 
          drawit = 0;
-         dindex = rint(_erx)
+         dindex = rint(erx)
 
-<<" index $_erx, alt $_ery  $dindex $IGCELE[dindex] $IGCLAT[dindex] $IGCLONG[dindex] \n"
+<<" index $erx, alt $ery  $dindex $IGCELE[dindex] $IGCLAT[dindex] $IGCLONG[dindex] \n"
          symx = IGCLONG[dindex]
 	 symy = IGCLAT[dindex]
 	 
@@ -881,7 +884,7 @@ printf("INSERT TP $wc \n");
 
                drawit = 0;
 
-               ntp = ClosestLand(_erx,_ery);
+               ntp = ClosestLand(erx,ery);
 
              if (ntp >= 0) {
 
@@ -891,7 +894,7 @@ printf("INSERT TP $wc \n");
               <<" found %V $ntp $nval \n"
                 Text(  vptxt," $ntp $nval   ",0,0.05,1)
                 msl = Wtp[ntp].Alt;
-                mkm = HowFar(_erx,_ery, Wtp[ntp].Longdeg, Wtp[ntp].Ladeg)
+                mkm = HowFar(erx,ery, Wtp[ntp].Longdeg, Wtp[ntp].Ladeg)
                 ght = (mkm * km_to_feet) / LoD;
                 sa = msl + ght + 2000;
           	sWo(sawo,_WVALUE,"$nval %5.1f $msl $mkm $sa",_WREDRAW)
@@ -928,7 +931,7 @@ printf("INSERT TP $wc \n");
         if (drawit || Task_update) {
 	      DrawMap(mapwo)
   	      drawTrace();
-              drawTask(mapwo,"green");
+              drawTask(mapwo,GREEN_);
         }
 
      if ( Task_update ) {
@@ -963,7 +966,10 @@ printf("INSERT TP $wc \n");
 
      sWi(vp,_WREDRAW,_WEO);
     DrawMap(mapwo);
-  }
+
+    drawTrace();
+    drawTask(mapwo,RED_);
+}
 
 
 exit_gs(1);
