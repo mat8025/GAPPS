@@ -1432,8 +1432,9 @@ int PickViaName(int wt)
   <<"%V $lon1  $lon2  \n"
   <<"%V $lat1  $lat2  \n"
 
-  plotLine(w, lon1, lat1,lon2,lat2,col,_WEO);
+  plotLine(w, lon1, lat1,lon2,lat2,col,_WFLUSH,_WEO);
 
+  gflush();
 
   }
 
@@ -1499,7 +1500,7 @@ int PickViaName(int wt)
   }
 //==================================================
 
-  int Ntp = 0;
+
 
   void DrawMap(int wo)
   {
@@ -1745,7 +1746,7 @@ int PickViaName(int wt)
  if ((index > 0)  && (index <= Ntp) ) {
   kmd = 0.0;
 
-<<"pass %V $i $index $Taskpts[k] \n";
+<<"pass %V $i $index $Taskpts[i] \n";
 
   tpl = Wtp[index].Place;
 

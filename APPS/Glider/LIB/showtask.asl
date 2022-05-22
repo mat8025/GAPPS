@@ -54,8 +54,8 @@ chkIn(_dblevel);
 #define DBG ~!
 
 
-uplegs = 0;  // needed?
-
+int uplegs = 0;  // needed?
+int  Ntp = 1;
 
 #include "conv.asl"
 
@@ -160,11 +160,11 @@ else {
 
 <<"num of records $Nrecs  num cols $Ncols\n";
 
-/*
+
 for (i= 0; i <= 100 ; i++) {
 <<"$i $RX[i] \n"
 }
-*/
+
 
 WH=searchRecord(RX,"AngelFire",0,0)
 
@@ -202,13 +202,9 @@ main_chk++;
   if (AFH == -1) {
     exit(-1," can't find turnpts file \n");
   }
-
-
-
-
  
 
-  Ntp = 0;
+
 
 
   if (!use_cup) {
@@ -419,6 +415,7 @@ main_chk++;
 
           Taskpts[Ntaskpts] = index;
 <<" $Ntaskpts found $targ  $index  $Taskpts[Ntaskpts]\n"
+
            Ntaskpts++;
 
            }
@@ -442,7 +439,7 @@ main_chk++;
 
 //
     listTaskPts();
-    
+
 
 // home field
 // set a default task
@@ -563,7 +560,7 @@ Str place;
 	
         alt = Wtp[k].Alt;  
       
-      <<"$i   $place  $tpwo[i]\n"
+      <<"$i $k  $place  $tpwo[i]\n"
 
 
         woSetValue(tpwo[i],place);
