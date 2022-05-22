@@ -38,8 +38,8 @@ int rc_gl = -1;
 
 #include "tbqrd"
 
-
-
+ int symsz = 2;
+ int wfr = 0;
 void updateLegs()
 {
 
@@ -113,7 +113,7 @@ void updateLegs()
   sWo(vvwo, _WSCALES, wbox(0, 0, 100, 6000), _WSAVEPIXMAP, _WREDRAW, _WDRAWON, _WPIXMAPON);
 
   mapwo= cWo(vp,WO_GRAPH_);
-  sWo(mapwo,_WRESIZE,wbox(0.30,0.26,0.95,0.95),_Wname,"MAP",_Wcolor,WHITE_);
+  sWo(mapwo,_WRESIZE,wbox(0.30,0.26,0.95,0.95),_WNAME,"MAP",_WCOLOR,WHITE_);
 
 <<"%V $mapwo $LongW $LatS \n"
 
@@ -199,4 +199,4 @@ void updateLegs()
 
 
 
-<<" DONE SCREEN $lc_gl $rc_gl\n";
+<<" DONE SCREEN %V $lc_gl $rc_gl $mapwo $vvwo  $sawo \n";

@@ -15,6 +15,7 @@
 ///
 ///
   int Ntpts = 0;
+  
   int Igcfn = -1;
   
   Str task_file = "XXX";

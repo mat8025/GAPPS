@@ -17,10 +17,10 @@
 ///  all the graphic interface  - xgs
 ///
 //<<"including graphic_glide $_include\n"
-
+  int Init = 1;
   float zoom_begin = 0;
   float zoom_end =  200;
-
+  float MSE[32];
 
   void screen_print()
   {
@@ -225,12 +225,13 @@
 
   }
 //==================================================
+
 void drawTrace()
 {
      if (Have_igc) {
          sWo(mapwo,_WSCALES, wbox(LongW, LatS, LongE, LatN),_WEO );
 	 
-         //sWo(mapwo,_WCLEARPIXMAP);
+        // sWo(mapwo,_WCLEARPIXMAP);
          sWo(vvwo,_WCLEARPIXMAP);
 
 
@@ -260,11 +261,48 @@ if (rc_gl != -1) {
 
  <<"%V $zoom_begin $zoom_end\n"
 	 }
-	//sWo(mapwo,_WSHOWPIXMAP,_WCLIPBORDER);
+	sWo(mapwo,_WSHOWPIXMAP,_WCLIPBORDER);
   CR_init = 0;
   CL_init = 0;
       }
 }
+
+//==================================================
+
+void drawAlt()
+{
+     if (Have_igc) {
+         
+         sWo(vvwo,_WCLEARPIXMAP);
+
+	  
+  	 if (Ntpts > 0) {
+            sWo(vvwo, _WSCALES, wbox(0, Min_ele, Ntpts, Max_ele + 500),_WEO )
+	    sWo(vvwo,_WCLEARPIXMAP);
+	      dGl(igc_vgl);
+            sWo(vvwo,_WSHOWPIXMAP,_WCLIPBORDER);
+<<"%V $Ev_button $lc_gl $rc_gl  \n"
+  CR_init = 1;
+  CL_init = 1;
+
+if (lc_gl != -1) {
+	  sGl(lc_gl,_GLCURSOR,rbox(zoom_begin,0,zoom_begin,20000, CL_init),_GLHUE,GREEN_,_GLEO); // use rbox
+   dGl(lc_gl);
+}
+
+if (rc_gl != -1) {
+	  sGl(rc_gl,_GLCURSOR,rbox(zoom_end,0,zoom_end,20000, CR_init),_GLHUE,RED_,_GLEO);
+   dGl(rc_gl);
+}
+
+ <<"%V $zoom_begin $zoom_end\n"
+	 }
+  CR_init = 0;
+  CL_init = 0;
+      }
+}
+
+//==================================================
 
   void gg_gridLabel(int wid)
   {
@@ -579,7 +617,7 @@ ans=query("bad ry\n");
 
   set_w_rs(w_num,rx,ry,rX,rY);
 
-  w_clip_clear(w_num);
+ w_clip_clear(w_num);
 
   ff=w_redraw_wo(w_num);
 
@@ -1127,7 +1165,7 @@ int PickViaName(int wt)
   magnify(w);
 
   DrawMap(w);
-   drawTask(mapwo,BLACK_);
+   drawTask (mapwo,BLACK_);
   }
 
   else if (ur_c == "plot_igc") {
@@ -1437,10 +1475,13 @@ int PickViaName(int wt)
   gflush();
 
   }
+  if (Init) {
+    MSE=getMouseEvent(); Init = 0;  // make this once only
+   }
 
   }
 //ans=query("see lines?");
- // sWo(w,_WSHOWPIXMAP,_WCLIPBORDER);
+ sWo(w,_WSHOWPIXMAP,_WCLIPBORDER);
 //ans=query("see lines?");
   }
 //=============================================
@@ -1525,7 +1566,7 @@ int PickViaName(int wt)
 
   sWo(mapwo,_WCLEARPIXMAP,_WCLIPBORDER,_WEO);
 
-  sWo(mapwo,_WDRAWON,_WSHOWPIXMAP,_WCLIPBORDER);
+ // sWo(mapwo,_WDRAWON,_WSHOWPIXMAP,_WCLIPBORDER);
 
   gg_gridLabel(mapwo);
 
@@ -1585,15 +1626,14 @@ int PickViaName(int wt)
     if (is_an_airport || is_a_mtn) {
        Text(mapwo,mlab,longi,lat,0,0,1,RED_);
 	    // <<"above 7K $msl $mlab $lat $longi\n"
-
      }
   }
 
   else {
 
   if ( msl > 5000) {
-  if (is_an_airport) {
-  Text(mapwo,mlab,longi,lat,0,0,1,BLUE_);
+    if (is_an_airport) {
+       Text(mapwo,mlab,longi,lat,0,0,1,BLUE_);
 	       // <<"above 5K $msl $mlab $lat $longi\n"
    }
 
@@ -1613,7 +1653,7 @@ int PickViaName(int wt)
 
   }
 
-  sWo(wo,_WSHOWPIXMAP,_WCLIPBORDER);
+  sWo(wo,_WSHOWPIXMAP,_WCLIPBORDER,_WSAVEPIXMAP,_WEO);
 
   gg_gridLabel(mapwo);
 

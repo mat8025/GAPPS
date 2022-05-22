@@ -136,35 +136,45 @@ Uac::glideTask(glideTask99,1241
   float agl,ght,pc_tot,alt;869,11636
 extern "C" int glider_task(1123,16623
 
-graphic_glide.asl,771
-  void screen_print(22,429
-  void read_task(47,721
-  void readTaskFile(116,1589
-  void write_task(186,2421
-  void set_task(214,2894
-  void grid_label(226,3101
-  void magnify(306,4076
-  void new_units(356,4653
-  void new_coors(363,4769
-  void zoom_to_task(408,5461
-  void zoom_up(429,5831
-  void zoom_in(452,6143
-  void  draw_the_task 482,6505
-  void zoom_out(491,6631
-  void zoom_rt(519,6945
-  void zoom_lt(545,7265
-  void reset_map(571,7591
-  void insert_tp(580,7685
-  void insert_name_tp(641,8536
-  void delete_tp(692,9248
-  void delete_alltps(752,10048
-  igc_file 769,10255
-  void plot_igc(771,10279
-  int SetWoT 811,11092
-  void setWoTask(813,11111
-  void chk_start_finish(864,11796
-  void task_menu(971,12949
-  void setup_legs(1083,14209
+graphic_glide.asl,963
+  float zoom_begin 21,428
+  float zoom_end 22,452
+  void screen_print(25,479
+  void read_task(50,770
+  void readTaskFile(119,1638
+  void write_task(189,2470
+  void set_task(217,2943
+void drawTrace(228,3148
+  CR_init 264,4057
+  CL_init 265,4072
+  void gg_gridLabel(269,4098
+  dx 309,4531
+  dy 311,4551
+  x_inc 314,4591
+  y_inc 316,4617
+  x_inc 319,4672
+  y_inc 321,4688
+  void magnify(353,5118
+  void new_units(403,5695
+  void new_coors(410,5811
+  void gg_zoomToTask(455,6529
+  void zoom_up(477,6923
+  void zoom_in(500,7234
+  void  draw_the_task 530,7595
+  void zoom_out(539,7722
+  void zoom_rt(567,8036
+  void zoom_lt(593,8355
+  void reset_map(619,8680
+ void replace_tp(630,8798
+  void delete_tp(819,11730
+  void delete_alltps(879,12530
+  igc_file 896,12737
+  void plot_igc(898,12761
+  int SetWoT 938,13574
+  void setWoTask(940,13593
+  void chk_start_finish(992,14276
+  void task_menu(1099,15429
+  void setup_legs(1212,16719
 
 ootask.asl,233
 Main_init 7,122
@@ -181,7 +191,7 @@ total 396,5305
 float avespd 507,7356
 dur 508,7377
 
-ootlib.asl,757
+ootlib.asl,758
   int Ntpts 17,339
   int Igcfn 18,356
   Str task_file 20,377
@@ -200,20 +210,20 @@ ootlib.asl,757
    float MidLat;44,688
    float MidLong;45,705
    float Margin 47,727
-  Str Units 49,752
-  Str lat 51,773
-  Str longit 53,791
-  float LegK 55,812
-  int n_legs 60,933
-  float computeGCD(76,1129
-  float ComputeTPD(98,1523
-  void processIGC(147,2292
-  Str nameMangle(271,4510
-  float totalK 302,4887
-  float getDeg 304,4908
-  void nearest 392,6172
-  void IGC_Read(406,6380
-  float ComputeTC(439,6875
+  Str Units 52,755
+  Str lat 54,776
+  Str longit 56,794
+  float LegK 58,815
+  int n_legs 63,936
+  float computeGCD(79,1132
+  float ComputeTPD(101,1526
+  void processIGC(150,2295
+  Str nameMangle(274,4513
+  float totalK 305,4890
+  float getDeg 307,4911
+  void nearest 395,6175
+  void IGC_Read(409,6383
+  float ComputeTC(442,6878
 
 showigc.asl,641
 Units 32,560
@@ -260,90 +270,96 @@ showigc_scrn.asl,101
   mapwo=20,697
    c=27,884
 
-showtask.asl,1580
+showtask.asl,1619
 #define ASL 20,488
 #define ASL_DB 21,502
 #define GT_DB 22,519
 #define CPP 23,537
-Str Use_=27,554
-#define DBG 48,831
-uplegs 51,848
-int WH[WH65,971
-int main_chk 67,988
-int Maxtaskpts 68,1005
-void drawTrace(71,1070
-LatS=101,1781
-LatN 103,1794
-LongW=105,1808
-LongE=107,1823
- MidLong 109,1838
- MidLat 110,1878
-float LoD 112,1915
-TaskType 114,1934
-int Nlegs 116,1954
-int Taskpts[Taskpts119,1971
-Turnpt  Wtp[Wtp121,1989
-Tleg  Wleg[Wleg123,2011
-Record RX;126,2029
-index 128,2041
-  Taskpts[Taskpts131,2077
-int use_cup 148,2182
-else 156,2251
-  int AFH 166,2418
-  Nrecs 189,2690
-  Ncols 190,2709
-  WH=195,2779
- svar Wval;223,3143
-  AFH 226,3157
-  Ntaskpts 237,3254
-  Ntp 238,3270
-int c1 246,3352
-long before;247,3364
-long after;248,3377
-int KAFH 250,3390
-int is_an_airport 333,4401
-        is_an_airport 342,4541
-Task_update 365,4859
-int gtp_wo[gtp_wo369,4903
-int ltp_wo[ltp_wo370,4919
-num_tpts 378,4982
-float R[R380,4999
-    Have_igc 383,5014
-float min_lat;389,5072
-float max_lat;390,5087
-float longW 391,5102
-Ntaskpts 393,5121
-long posn 397,5202
-Svar Tskval;398,5217
-Str targ;399,5230
-Str igc_fname 400,5240
-na 401,5262
-Nlegs 499,7077
-   for (k= 0; k < Ntaskpts;505,7138
-       index 506,7173
-      for (i = 0; i < Ntaskpts 525,7498
-         MSL 526,7538
-Str place;567,8173
-     c=611,8860
-    igc_tgl 619,9030
-    igc_vgl 622,9117
- Gevent gev;638,9425
-int dindex;640,9439
-int Witp 641,9451
-int drawit 642,9465
-msgv 643,9481
-float d_ll 645,9493
-Str wcltpt=647,9515
-  zoom_to_task(665,9827
-chkOut(941,15795
+Str Use_=33,689
+#define DBG 54,966
+int uplegs 57,983
+int  Ntp 58,1011
+int WH[WH71,1123
+int main_chk 73,1140
+int Maxtaskpts 74,1157
+        float symx 84,1381
+        float syme 86,1425
+LatN 90,1464
+LongW=92,1478
+LongE=94,1493
+ MidLong 96,1508
+ MidLat 97,1548
+float LoD 99,1585
+TaskType 101,1604
+int Nlegs 103,1624
+int Taskpts[Taskpts106,1641
+Turnpt  Wtp[Wtp108,1659
+Tleg  Wleg[Wleg110,1681
+Record RX[RX113,1699
+int use_cup 118,1751
+else 127,1821
+  int AFH 138,1993
+  Nrecs 158,2263
+  Ncols 159,2282
+WH=169,2402
+ svar Wval;196,2778
+  AFH 199,2792
+int c1 215,2958
+long before;216,2970
+long after;217,2983
+int KAFH 219,2996
+int is_an_airport 302,4007
+Task_update 334,4353
+int gtp_wo[gtp_wo338,4397
+int ltp_wo[ltp_wo339,4413
+char MS[MS344,4433
+char Word[Word345,4447
+char Long[Long346,4463
+num_tpts 347,4479
+float R[R349,4496
+    Have_igc 352,4511
+float min_lat;358,4569
+float max_lat;359,4584
+float longW 360,4599
+long posn 366,4686
+Svar Tskval;367,4701
+Str targ;368,4714
+Str igc_fname 369,4724
+na 370,4746
+ int ai 372,4773
+Nlegs 480,6640
+   for (k= 0; k < Ntaskpts;486,6735
+       index 487,6770
+      for (i = 0; i < Ntaskpts 506,7099
+         MSL 507,7139
+Str place;546,7640
+     c=590,8329
+    igc_tgl 598,8499
+    igc_vgl 601,8586
+ Gevent gev;617,8894
+   float erx;619,8908
+   float ery;620,8922
+int dindex;625,8959
+int Witp 626,8971
+int drawit 627,8985
+msgv 628,9001
+float d_ll 630,9013
+Str wcltpt=632,9035
+  zoom_to_task(652,9349
+chkOut(996,17005
 
-showtask_scrn.asl,110
-A=7,43
-void updateLegs(45,647
-  vp 69,1005
-  sWi(72,1027
-   tpwo[tpwo136,2374
-    legwo[legwo157,2685
+showtask_scrn.asl,213
+int CR_init 19,281
+int CL_init 20,298
+int lc_gl=22,316
+int rc_gl 23,331
+  Graphic 27,353
+ int symsz 41,500
+void updateLegs(43,517
+  vp 67,875
+  sWi(70,897
+   tpwo[tpwo134,2244
+    legwo[legwo155,2555
 
 test_igc.asl,73
 ignoreErrors(12,72
@@ -390,7 +406,7 @@ tp_file 18,122
            TP[itaskp]->Longdeg Longdeg126,2107
            TP[itaskp]->Ladeg Ladeg132,2229
 
-tpclass.asl,757
+tpclass.asl,779
 int Tleg_id 17,445
 class Tleg 22,506
   int tpA;28,535
@@ -417,23 +433,24 @@ class Turnpt 60,913
   float Ladeg;77,1126
   float Longdeg;78,1141
   int is_airport;79,1158
-  int id;80,1176
-  int match[match81,1186
-  Str smat;82,1202
-  void TPset 91,1339
- void TPCUPset 127,1920
-void SetPlace 256,3656
-  void GetPlace 262,3744
-   void Print 267,3828
- int GetTA(277,4106
-void Turnpt(287,4306
+  int is_mtn;80,1176
+  int id;81,1190
+  int match[match82,1200
+  Str smat;83,1216
+  void TPset 92,1353
+ void TPCUPset 128,1934
+void SetPlace 265,3773
+  void GetPlace 271,3861
+   void Print 276,3945
+ int GetTA(290,4276
+void Turnpt(300,4476
 
 utils.asl,125
   void  computeHTD(4,48
   void conv_lat 35,545
   void conv_lng(54,797
   void spin(78,1101
-  float compute_leg2(106,1350
+  float compute_leg2(107,1351
 
 VBcg.asl,69
 MW 2,1

@@ -55,7 +55,7 @@ chkIn(_dblevel);
 
 
 int uplegs = 0;  // needed?
-int  Ntp = 1;
+int  Ntp = 0;
 
 #include "conv.asl"
 
@@ -632,8 +632,7 @@ float d_ll = Margin;
 Str wcltpt="XY";
 
   DBG"%V $vvwo $Ntpts\n"
- // sWo(vvwo,@clear,@clearpixmap,@savepixmap,@clipborder);
- // sWo(vvwo, _Wscales, 0, 0, Ntpts, Max_ele +500);
+
 
   DBG"%V $LongW \n"
   DBG"%V $LongE \n"
@@ -681,7 +680,7 @@ int ok =0;
   while (1) {
  //   zoom_to_task(mapwo,1)
     ok = 0;
-    drawit = 1;
+    drawit = 0;
     Task_update =0
   
     //eventWait();
@@ -850,47 +849,59 @@ printf("INSERT TP $wc \n");
 		 
        }
        else if (WoName == "ALT") {
-
+       
+       	 wfr=sWo(mapwo,_WSHOWPIXMAP,_WEO); // should erase precious target position
+	 
          drawit = 0;
          dindex = rint(erx)
 
 <<"%V $erx, alt $ery  $dindex $IGCELE[dindex] $IGCLAT[dindex] $IGCLONG[dindex] \n"
-         symx = IGCLONG[dindex]
-	 symy = IGCLAT[dindex]
+         symx = IGCLONG[dindex];
+	 symy = IGCLAT[dindex];
+	 symem = IGCELE[dindex] ;
 	 syme = IGCELE[dindex] *  3.280839;
 	 <<"%V $symx $symy $syme  \n"
 
+          wfr =sWo(mapwo,_WPIXMAPOFF,_WDRAWON,_WEO); // just draw but not to pixamp
+       if (Ev_button == 1 || Ev_button == 4) {
 
-       if (Ev_button == 1) {
 	  sGl(lc_gl,_GLCURSOR,rbox(erx,0,erx,20000, CL_init),_GLEO);
 	  dGl(lc_gl);
 	  CL_init = 0;
 	   zoom_begin = erx;
-  
+       //  plotSymbol(mapwo,symx,symy,CROSS_,symsz,MAGENTA_,1,0,"copy");
+         plotSymbol(mapwo,symx,symy,CROSS_,symsz,MAGENTA_,1);
+
+           plotSymbol(vvwo,symx,symem,TRI_,symsz,BLUE_,1);
+	 //plot(mapwo,_WSYMBOL,symx,symy, 11,2,RED_);
+
+         //plot(mapwo,_WCIRCLE,symx,symy, 0.01,GREEN_,1);
 
 	  // save begin time for zoomin
-       }
 
-       if (Ev_button == 3) {
+         }
+
+       if (Ev_button == 3 || Ev_button == 5) {
 
  //  sGl(lc_gl,_GLCURSOR,lcpx,0,lcpx,300, CL_init,_GLEO);
 	  sGl(rc_gl,_GLCURSOR,rbox(erx,0,erx,20000, CR_init),_GLEO);
           dGl(rc_gl);
 	  	  CR_init = 0;
+          plotSymbol(mapwo,symx,symy,DIAMOND_,symsz,LILAC_,1,90,"xor");		  
+//	  plotSymbol(mapwo,symx,symy,DIAMOND_,symsz,LILAC_,1,90,"xor");
+	  
           zoom_end = erx;
+
           // save end time  for zoomin
        }
 
 //	 swo(mapwo,_WCLEAR,_WCLEARCLIP,BLUE_,_WCLEARPIXMAP);
 	 
-	 plot(mapwo,_WSYMBOL,symx,symy, 11,2,RED_);
+                    wfr = sWo(mapwo,_WPIXMAPON,_WEO);
+	 drawAlt();
 
-         plot(mapwo,_WCIRCLE,symx,symy, 0.01,GREEN_,1);
-	 
-//	 swo(mapwo,_WSHOWPIXMAP);
-//	 swo(vvwo,_WSHOWPIXMAP);
 
-<<"%V $zoom_begin $zoom_end\n"
+<<"%V $zoom_begin $zoom_end  $mapwo $vvwo \n"
 	 
 	 
        }
@@ -913,7 +924,7 @@ printf("INSERT TP $wc \n");
                 ght = (mkm * km_to_feet) / LoD;
                 sa = msl + ght + 2000;
           	sWo(sawo,_WVALUE,"$nval %5.1f $msl $mkm $sa",_WREDRAW)
-
+               // DrawMap(mapwo);
              }
 
         }
@@ -944,9 +955,9 @@ printf("INSERT TP $wc \n");
 
 
         if (drawit || Task_update) {
-	      DrawMap(mapwo)
-  	      drawTrace();
-              drawTask(mapwo,GREEN_);
+	     DrawMap(mapwo)
+  	     drawTrace();
+             drawTask(mapwo,GREEN_);
         }
 
      if ( Task_update ) {
@@ -975,15 +986,17 @@ printf("INSERT TP $wc \n");
          if (uplegs) {
            updateLegs();
          }
-      sWo(tpwos,_WREDRAW);
+       sWo(tpwos,_WREDRAW);
        sWo(legwos,_WREDRAW);		 
       }
 
-     sWi(vp,_WREDRAW,_WEO);
-  //  DrawMap(mapwo);
+   //  sWi(vp,_WREDRAW,_WEO);
 
-    drawTrace();
- //   drawTask(mapwo,RED_);
+    //DrawMap(mapwo);
+    //drawTrace();
+   // drawTask(mapwo,RED_);
+ 
+//	 sWo(mapwo,_WSHOWPIXMAP,_WEO);
 }
 
 
