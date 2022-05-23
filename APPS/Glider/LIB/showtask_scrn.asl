@@ -22,6 +22,7 @@ int CL_init = 0;
 int lc_gl= -1;
 int rc_gl = -1;
 
+int MaxLegs = 12;
 
    
   Graphic = CheckGwm();
@@ -100,8 +101,8 @@ int rc_gl = -1;
   sWo(mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN), _WSAVE, _WREDRAW, _WDRAWON, _WPIXMAPON,_WSAVEPIXMAP,_WEO);
 
   int LastTP = 12; 
-  int tpwo[13];
-  int legwo[13];
+  int tpwo[MaxLegs+1];
+  int legwo[MaxLegs+1];
   
 
   tpwo[0]=cWo(vp,WO_BV_);
@@ -109,7 +110,7 @@ int rc_gl = -1;
   sWo(tpwo[0],_WNAME,"_Start_",_WSTYLE,"SVR",_WDRAWON);
 
 
-  for (i= 1; i <=12 ; i++) {
+  for (i= 1; i <= MaxLegs ; i++) {
 
    tpwo[i] =cWo(vp,WO_BV_);
 
@@ -117,11 +118,11 @@ int rc_gl = -1;
 
   }
  
-  finish_wo = tpwo[2]
+  finish_wo = tpwo[2];
   
-  tpwos = tpwo[0:12];
+  tpwos = tpwo[0:MaxLegs];
 
-  MaxSelTps = 13;
+  MaxSelTps = MaxLegs;
   
  // <<"%V $tpwos\n"
   
@@ -131,12 +132,12 @@ int rc_gl = -1;
 
   legwo[0] = -1;
 
-  for (i= 0; i <=12 ; i++) {
+  for (i= 0; i < MaxLegs ; i++) {
     legwo[i] = cWo(vp,WO_BV_);
      sWo(legwo[i],_WNAME,"LEG_$(i+1) ",_WSTYLE,"SVR",_WDRAWON,_WCOLOR,BLUE_,_WFONTHUE,BLACK_,_WEO)
   }
 
-  legwos = legwo[0:12];
+  legwos = legwo[0:MaxLegs];
 
   wovtile(legwos, 0.15, 0.4, 0.29, 0.95)
 

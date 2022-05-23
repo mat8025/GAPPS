@@ -1,4 +1,4 @@
-title ReplaceViaMorK
+title ReplaceViaM-or-K
 type CHOICE
 item ReplaceViaName M_VALUE K
 help  replace via input of name

@@ -63,7 +63,7 @@
 
   int n_legs = 0;
 //float Leg[20];
-/ conversion routines
+// conversion routines
 
 float  km_to_feet = 3281.0;
 float   km_to_nm = 3281.0/6080.0;

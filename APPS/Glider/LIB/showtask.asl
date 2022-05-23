@@ -364,6 +364,7 @@ float longW =0.0;
 long posn = 0;
 Svar Tskval;
 Str targ;
+Str cval ="?";
 Str igc_fname ="xyz";
 na = argc()
  <<"na $na\n";
@@ -508,7 +509,7 @@ main_chk++;
 
 
 
- TaskDist();
+ taskDist();
 
 
 /**
@@ -635,7 +636,7 @@ Str wcltpt="XY";
   DBG"%V $LongW \n"
   DBG"%V $LongE \n"
 
-  TaskDist();
+  taskDist();
 
 
    if (uplegs) {
@@ -765,7 +766,6 @@ int ok =0;
               wc=choice_menu("STP.m")
             //   showTaskPts();	
             if (wc == "M") { // replace
-	    
              wtp = PickaTP(0)
              if (wtp >= 0) {
                 wcltpt = Wtp[wtp].Place;
@@ -798,6 +798,10 @@ int ok =0;
 	     
 	     gflush();
 
+            cval = getWoValue(wtpwo);
+  <<"%V $np <|$cval|>  \n"
+             if (cval != "") {
+
              wc = choice_menu("TP.m")
 <<"menu choice  name or action  %V $wc\n";
 
@@ -805,42 +809,45 @@ int ok =0;
 	       
              if (wc == "R") { // replace
 
-//<<"$wc  REPLACE\n";
-//printf("REPLACE TP \n");
+               printf("REPLACE TP \n");
                wc=choice_menu("CTP.m");
 
-             if (wc == "M") { // replace
-printf("REPLACE TP via Map select\n");
-                 replace_tp(Witp);
-
-            }
-	    else {
-printf("REPLACE TP via Name select\n");	    
-                  PickViaName(Witp);
-            }
-             
+                  if (wc == "M") { // replace
+                    printf("REPLACE TP via Map select\n");
+                     replace_tp(Witp);
+                   }
+	          else {
+                     printf("REPLACE TP via Name select\n");	    
+                     PickViaName(Witp);
+                  }
              }
              else if (wc == "D") {
-                <<"delete and move lower TPs up!\n"
-               delete_tp(Witp); // 
+                printf("delete and move lower TPs up %d !\n",Ntaskpts);
+                delete_tp(Witp); //
+	        Task_update =1;
+                <<"Done delete  $Ntaskpts!\n"		
              }
-
              else if (wc == "I") {
-	          wc=choice_menu("ITP.m")
+             printf("INSERT TP $wc \n");
+             wc=choice_menu("ITP.m")
 //printf("choose how? %s\n",vtoa(wc));		
-printf("INSERT TP $wc \n");
+
             if (wc == "M") {
                   insert_tp(Witp);
 		 }
 		 else {
                  insert_name_tp(Witp);
 		 }
-             }
-             else if (wc == "A")  {  // this is add
+              }
+	      Task_update =1;
+	     }
+             else if (Witp == Ntaskpts)  {
+	     <<"this is add to end of current task list\n"
 
-//                              wc=choice_menu("CTP.m")
-//printf("choose how? %s\n",wc.cptr());
-//printf("choose how? %s\n",vtoa(wc));		
+                   wc=choice_menu("ATP.m")
+
+//printf("choose how? %s\n",vtoa(wc));
+                if (wc == "A") {
 		 <<"getting name $wc\n"
 		  ok=PickViaName(Witp);
 		  if (ok) {
@@ -850,20 +857,18 @@ printf("INSERT TP $wc \n");
 		  DrawMap(mapwo);
              }
              else if (wc == "P")  {  // this is add
-
-
                   insert_tp(Witp);
                   Ntaskpts++;
 		  DrawMap(mapwo);
              }	     
-             
-             Task_update =1;
+                Task_update =1;
+          }
+	   
+
                  sWo(tpwos,_WREDRAW);
                  sWo(legwos,_WREDRAW,_WEO);		 
                 // sWo(wtpwo,_Wcxor);
                  showTaskPts();
-
-		 
        }
        else if (WoName == "ALT") {
        
@@ -981,7 +986,7 @@ printf("INSERT TP $wc \n");
 
 <<"main %V $_scope $_cmfnest $_proc $_pnest\n"
      
-      TaskDist();
+      taskDist();
 
       sWo(tdwo,_WVALUE,"$totalK km",_WUPDATE);
       Task_update = 0;
@@ -998,8 +1003,6 @@ printf("INSERT TP $wc \n");
 
       TaskStats();
           <<"main %V $_scope $_cmfnest $_proc $_pnest\n"
-
-
 
        updateLegs();
 

@@ -715,8 +715,10 @@ ans=query("bad ry\n");
   {
 /// click on tpwo
 //wt = Witp;
-  Str tval;
-   LastTP =Ntaskpts ;
+   Str tval;
+   Str nval;
+   int ntp;
+  LastTP =Ntaskpts ;
   if (wt < LastTP ) {
 
   for (i = LastTP ; i > wt ; i--) {
@@ -741,10 +743,10 @@ ans=query("bad ry\n");
   MouseCursor("hand", tpwo[9], 0.5, 0.5);
 
     emsg =gev.eventWait();
-    ekey = gev.getEventKey(
-  
-           gev.geteventrxy( &erx,&ery);
-  //eventWait();
+    ekey = gev.getEventKey();
+    gev.geteventrxy( &erx,&ery);
+
+    //eventWait();
 
   ntp = ClosestTP(erx,ery);
 //ans=query("%V$erx $ery $ntp\n");   
@@ -754,7 +756,7 @@ ans=query("bad ry\n");
   Wtp[ntp].Print();
 
   nval = Wtp[ntp].GetPlace();
-//<<" found %V $ntp $nval \n"
+<<" found %V $ntp $nval \n"
              //woSetValue (tpwo[wt],ntp,1)
 
   woSetValue (tpwo[wt],nval,0);
@@ -772,6 +774,7 @@ ans=query("bad ry\n");
 
   Ntaskpts++;
 
+<<"Found %V $wt $ntp <|$nval|> $Ntaskpts\n"
 
   }
 //======================================//
@@ -783,6 +786,7 @@ ans=query("bad ry\n");
 
   Str nval;
   Str tval;
+  int ntp;
 <<"$_proc  $wt\n";
  LastTP =Ntaskpts ;
   if (wt < LastTP ) {
@@ -811,19 +815,25 @@ ans=query("bad ry\n");
 
 <<"name sel:  <|$nval|> \n"
 
-  wtp= PickTP(nval,Witp);
+  ntp= PickTP(nval,Witp);
 
-  aplace = Wtp[wtp].GetPlace();
+  nval = Wtp[ntp].GetPlace();
 
-  nval = RX[wtp][0];
+ // nval = RX[wtp][0];
 
-  <<"Found %V $wtp $nval $aplace\n"
+
 
   woSetValue (tpwo[wt],nval,0);
   sWo(tpwo[wt],_WREDRAW);
+
   Task_update = 1;
 
   sWo(tpwos,_WREDRAW);
+  
+  Ntaskpts++;
+
+  <<"Found %V $wt $ntp <|$nval|> $Ntaskpts\n"
+
 
   }
 //======================================//
@@ -909,7 +919,12 @@ int PickViaName(int wt)
 
   sWo(tpwos,_WREDRAW);
 
+
+
   Ntaskpts--;
+
+  // have to recompute legs
+
 
   }
 //======================================//
@@ -1421,7 +1436,7 @@ int PickViaName(int wt)
   int index;
   if ( Task_update) {
 
-  TaskDist();
+  taskDist();
   <<"$TaskType $col $Nlegs \n"
 
   }
@@ -1723,11 +1738,11 @@ int PickViaName(int wt)
   }
 //====================================//
 
-  void TaskDist()
+  void taskDist()
   {
    // is there a start?
-//<<"$_proc  $Ntaskpts \n"
-//<<"in TaskDist  %V $_scope $_cmfnest $_proc $_pnest\n"	       
+   <<"$_proc  $Ntaskpts \n"
+//<<"in taskDist  %V $_scope $_cmfnest $_proc $_pnest\n"	       
 
   int tindex =0;
   float kmd = 0.0;
@@ -2081,8 +2096,10 @@ void updateLegs()
  Str val;
  float lfga;
  int lwo;
- 
-  for (i = 0; i < Ntaskpts ; i++) {
+ int nlegs = Ntaskpts-1;
+ <<"$_proc TP's $Ntaskpts Legs $nlegs\n"
+
+  for (i = 0; i < nlegs ; i++) {
 
     lwo = legwo[i];
     lfga =  Wleg[i].fga;
@@ -2091,13 +2108,16 @@ void updateLegs()
 //    val = "%6.0f$lfga"
       val = "%6.0f$lfga $dist";   
     <<"leg $i $lwo %6.1f $msl $dist  $lfga  \n"
-
   <<"leg $i  <|$val|> \n"
-
-
      woSetValue (lwo,val,0);
      sWo(lwo,_WREDRAW,_WEO);
   }
- 
+
+   for (i = nlegs; i < MaxLegs ; i++) {
+         lwo = legwo[i];
+     woSetValue (lwo," ",0);
+     sWo(lwo,_WREDRAW,_WEO);
+   }
+
 }
 //======================================//
