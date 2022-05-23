@@ -45,8 +45,6 @@ chkIn(_dblevel);
 
 #include "hv.asl"
 
-
-
  ignoreErrors(-1);
 //setMaxICerrors(-1) // ignore - overruns etc
 
@@ -57,7 +55,7 @@ chkIn(_dblevel);
 int uplegs = 0;  // needed?
 int  Ntp = 0;
 
-#include "conv.asl"
+//#include "conv.asl"
 
 #include "tpclass.asl"
 
@@ -676,7 +674,8 @@ int ok =0;
 <<"now list them \n";		 
                  listTaskPts();
 		 
-
+   updateLegs();
+   
   while (1) {
  //   zoom_to_task(mapwo,1)
     ok = 0;
@@ -703,21 +702,25 @@ int ok =0;
        if (ekey == 'Q') {
            LongW += d_ll
            LongE += d_ll
+	    drawit = 1;
        }
 
        if (ekey == 'S') {
            LongW -= d_ll
            LongE -= d_ll
+	    drawit = 1;
        }
 
        if (ekey == 'R') {
            LatN += d_ll
            LatS += d_ll
+	    drawit = 1;
        }
 
        if (ekey == 'T') {
-           LatN -= d_ll
-           LatS -= d_ll
+           LatN -= d_ll;
+           LatS -= d_ll;
+	    drawit = 1;
        }
 
 
@@ -727,6 +730,7 @@ int ok =0;
            LatS -= d_ll
            LongW += d_ll
            LongE -= d_ll
+	    drawit = 1;
        }
 
        if (ekey == 'x') {
@@ -735,11 +739,24 @@ int ok =0;
            LatS += (d_ll * 0.9)
            LongW -= (d_ll * 0.9)
            LongE += (d_ll * 0.9)
+	    drawit = 1;
        }
-              drawit = 1;
+
+              if (ekey == 'f') {
+                   dindex += 5;
+                   showPosn(dindex);
+
+
+                }
+               else if (ekey == 'r') {
+                   dindex -= 5;
+                   showPosn(dindex);
+              }
+
+         if (drawit) {
 <<"%V $LongW $LatS $LongE $LatN\n"
  sWo(mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN), _WEO);
-
+        }
       }
 
        else if (WoName == "_Start_") {
@@ -855,12 +872,12 @@ printf("INSERT TP $wc \n");
          drawit = 0;
          dindex = rint(erx)
 
-<<"%V $erx, alt $ery  $dindex $IGCELE[dindex] $IGCLAT[dindex] $IGCLONG[dindex] \n"
+<<"%V $erx, alt $ery  $dindex $IGCELE[dindex] $IGCLAT[dindex] $IGCLONG[dindex] \n";
          symx = IGCLONG[dindex];
 	 symy = IGCLAT[dindex];
 	 symem = IGCELE[dindex] ;
 	 syme = IGCELE[dindex] *  3.280839;
-	 <<"%V $symx $symy $syme  \n"
+	// <<"%V $symx $symy $syme  \n"
 
           wfr =sWo(mapwo,_WPIXMAPOFF,_WDRAWON,_WEO); // just draw but not to pixamp
        if (Ev_button == 1 || Ev_button == 4) {
@@ -872,7 +889,7 @@ printf("INSERT TP $wc \n");
        //  plotSymbol(mapwo,symx,symy,CROSS_,symsz,MAGENTA_,1,0,"copy");
          plotSymbol(mapwo,symx,symy,CROSS_,symsz,MAGENTA_,1);
 
-           plotSymbol(vvwo,symx,symem,TRI_,symsz,BLUE_,1);
+         //  plotSymbol(vvwo,symx,symem,TRI_,symsz,BLUE_,1);
 	 //plot(mapwo,_WSYMBOL,symx,symy, 11,2,RED_);
 
          //plot(mapwo,_WCIRCLE,symx,symy, 0.01,GREEN_,1);
@@ -902,7 +919,7 @@ printf("INSERT TP $wc \n");
 
 
 <<"%V $zoom_begin $zoom_end  $mapwo $vvwo \n"
-	 
+	 sWo(sawo,_WVALUE,"$symx $symy $syme ",_WREDRAW)
 	 
        }
        
@@ -983,9 +1000,9 @@ printf("INSERT TP $wc \n");
           <<"main %V $_scope $_cmfnest $_proc $_pnest\n"
 
 
-         if (uplegs) {
-           updateLegs();
-         }
+
+       updateLegs();
+
        sWo(tpwos,_WREDRAW);
        sWo(legwos,_WREDRAW);		 
       }

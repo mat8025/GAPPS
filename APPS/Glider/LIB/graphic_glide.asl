@@ -1476,7 +1476,8 @@ int PickViaName(int wt)
 
   }
   if (Init) {
-    MSE=getMouseEvent(); Init = 0;  // make this once only
+    //MSE=getMouseEvent();
+    Init = 0;  // make this once only
    }
 
   }
@@ -1841,6 +1842,7 @@ int PickViaName(int wt)
   Wleg[i].msl = msl;
 
   Wleg[i].Place = tpl;
+  
   j = i-1;
   if (i > 0) {
 
@@ -2049,3 +2051,53 @@ int PickViaName(int wt)
 
   }
 //==================================================
+void   showPosn(int pi)
+  {
+    	 wfr=sWo(mapwo,_WSHOWPIXMAP,_WEO);
+    wfr =sWo(mapwo,_WPIXMAPOFF,_WDRAWON,_WEO); // just draw but not to pixamp
+              <<"%V $pi $IGCELE[pi] $IGCLAT[pi] $IGCLONG[pi] \n";
+         symx = IGCLONG[pi];
+	 symy = IGCLAT[pi];
+	 symem = IGCELE[pi] ;
+	 syme = IGCELE[pi] *  3.280839;
+         plotSymbol(mapwo,symx,symy,CROSS_,symsz,MAGENTA_,1);
+
+          //sGl(lc_gl,_GLCURSOR,rbox(pi,0,pi,20000, CL_init),_GLEO);
+	  //dGl(lc_gl);
+	  //CL_init = 0;
+	  	   zoom_begin = pi;
+	  drawAlt();
+
+   wfr = sWo(mapwo,_WPIXMAPON,_WEO);
+	 sWo(sawo,_WVALUE,"$symx $symy $syme ",_WREDRAW);
+  }
+
+//==================================================
+
+
+void updateLegs()
+{
+
+ Str val;
+ float lfga;
+ int lwo;
+ 
+  for (i = 0; i < Ntaskpts ; i++) {
+
+    lwo = legwo[i];
+    lfga =  Wleg[i].fga;
+    msl =  Wleg[i].msl;
+    dist =  Wleg[i].dist;
+//    val = "%6.0f$lfga"
+      val = "%6.0f$lfga $dist";   
+    <<"leg $i $lwo %6.1f $msl $dist  $lfga  \n"
+
+  <<"leg $i  <|$val|> \n"
+
+
+     woSetValue (lwo,val,0);
+     sWo(lwo,_WREDRAW,_WEO);
+  }
+ 
+}
+//======================================//

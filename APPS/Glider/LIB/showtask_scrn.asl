@@ -40,27 +40,7 @@ int rc_gl = -1;
 
  int symsz = 2;
  int wfr = 0;
-void updateLegs()
-{
 
- str val;
- float lfga
-   for (i = 0; i < Ntaskpts ; i++) {
-
-    lwo = legwo[i+1];
-    lfga =  Wleg[i].fga;
-    msl =  Wleg[i].msl;
-     dist =  Wleg[i].dist;
-     val = "%6.0f$fga"
-     
-    <<"leg $i %6.1f $msl $dist  $lfga <|$val|> \n"
-
-     sWo(lwo,_Wvalue,val.cptr(),_WREDRAW);
-
-  }
- 
-}
-//======================================//
 
 
 
@@ -77,9 +57,9 @@ void updateLegs()
 
   tdwo= cWo(vp, WO_BV_);
 
-  sWo(tdwo,_Wresize_fr,0.01,0.01,0.14,0.1,_Wname,"TaskDistance",_WEO);
+  sWo(tdwo,_WRESIZE_fr,0.01,0.01,0.14,0.1,_Wname,"TaskDistance",_WEO);
   
-  sWo(tdwo,_Wcolor,WHITE_,_Wstyle,"SVB");
+  sWo(tdwo,_WCOLOR,WHITE_,_WSTYLE,"SVB");
 
   sawo= cWo(vp, WO_BV_);
 
@@ -151,21 +131,21 @@ void updateLegs()
 
   legwo[0] = -1;
 
-  for (i= 1; i <=12 ; i++) {
+  for (i= 0; i <=12 ; i++) {
     legwo[i] = cWo(vp,WO_BV_);
-     sWo(legwo[i],_WNAME,"_LEG${i}_",_WSTYLE,"SVR",_WDRAWON,_WCOLOR,BLUE_,_WFONTHUE,BLACK_,_WEO)
+     sWo(legwo[i],_WNAME,"LEG_$(i+1) ",_WSTYLE,"SVR",_WDRAWON,_WCOLOR,BLUE_,_WFONTHUE,BLACK_,_WEO)
   }
 
-  legwos = legwo[1:12];
+  legwos = legwo[0:12];
 
-  wovtile(legwos, 0.15, 0.4, 0.29, 0.90)
+  wovtile(legwos, 0.15, 0.4, 0.29, 0.95)
 
 
   titleVers();
   gflush();
   
   sWo(tpwos,_WCOLOR,ORANGE_,_WFONTHUE,BLACK_,_WFONT,F_TINY_,_WREDRAW,_WEO);
-  sWo(legwos,_WCOLOR,BLUE_,_WFONTHUE,WHITE_,_WFONT,F_TINY_,_WREDRAW,_WEO);
+  sWo(legwos,_WCOLOR,BLUE_,_WFONTHUE,BLUE_,_WFONT,F_TINY_,_WREDRAW,_WEO);
 
   TASK_wo=cWo(vp,WO_BV_);
   sWo(TASK_wo, _WRESIZE,wbox(0.05,0.25,0.15,0.34),_WEO);
