@@ -799,7 +799,8 @@ int ok =0;
 	     gflush();
 
             cval = getWoValue(wtpwo);
-  <<"%V $np <|$cval|>  \n"
+  <<"%V $Ntaskpts $np $Witp <|$cval|>  \n"
+
              if (cval != "") {
 
              wc = choice_menu("TP.m")
@@ -841,7 +842,7 @@ int ok =0;
               }
 	      Task_update =1;
 	     }
-             else if (Witp == Ntaskpts)  {
+             else if (Witp <= Ntaskpts)  {
 	     <<"this is add to end of current task list\n"
 
                    wc=choice_menu("ATP.m")
@@ -985,7 +986,8 @@ int ok =0;
      if ( Task_update ) {
 
 <<"main %V $_scope $_cmfnest $_proc $_pnest\n"
-     
+      checkWoTaskPts();
+      
       taskDist();
 
       sWo(tdwo,_WVALUE,"$totalK km",_WUPDATE);
@@ -1017,6 +1019,8 @@ int ok =0;
    // drawTask(mapwo,RED_);
  
 //	 sWo(mapwo,_WSHOWPIXMAP,_WEO);
+
+// checkWoTaskPts();
 }
 
 

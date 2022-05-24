@@ -895,7 +895,7 @@ int PickViaName(int wt)
 
   if (kt == 0) {
 
-  sWo (tpwo[j],_WVALUE," ",_WREDRAW);
+  woSetValue(tpwo[j],"" );
 
   break;
 
@@ -913,7 +913,7 @@ int PickViaName(int wt)
 
   Taskpts[j-1] = 0;
 
-  sWo (tpwo[j-1],_WVALUE," ",_WREDRAW);
+  woSetValue(tpwo[j-1],"");
 
   }
 
@@ -1716,6 +1716,46 @@ int PickViaName(int wt)
 
   }
 //====================================//
+
+ void checkWoTaskPts()
+ {
+   int ntp = 0;
+   int k;
+   int i;
+   int j;
+   int found = 0;
+   for (i=0; i < MaxLegs; i++) {
+        k = tpwo[i];
+	cval = getWoValue(k);
+	if (cval != "") {
+           ntp++;
+	   <<"$i $ntp <|$cval|>\n"
+	   found = 1;
+        }
+        else {
+           found = 0;
+	   for ( j= i; j < MaxLegs-1; j++) {
+             k = tpwo[j+1];
+             cval = getWoValue(k);
+	     if (cval != "") {
+	     <<"$j  <|$cval|>\n"
+             woSetValue(tpwo[j],cval);
+              found = 1;
+             }
+           }
+        }
+	if (!found) {
+            break;
+        }
+    }
+    
+    Ntaskpts = ntp;
+<<"%V $Ntaskpts found \n";
+
+ }
+//====================================//
+
+
 
   void showTaskPts()
   {
