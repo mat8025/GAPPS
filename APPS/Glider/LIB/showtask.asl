@@ -227,6 +227,7 @@ else {
 
 //<<"num of records $Nrecs  num cols $Ncols\n";
 
+
 /*
 for (i= 0; i <= 10 ; i++) {
 <<"$i $RX[i] \n"
@@ -300,7 +301,7 @@ while (1) {
     after = ftell(AFH);
 
 
-//<<"%V $AFH $Ntp $before $c1 $after\n"
+<<"%V $AFH $Ntp $before $c1 $after\n"
 
     if (use_cup) {
 
@@ -560,7 +561,10 @@ Svar targ_list = {"eldorado","casper","rangely","eldorado"};
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6226022 (readwords)
 
 Nlegs = Ntaskpts;
 
@@ -577,12 +581,13 @@ Nlegs = Ntaskpts;
 <<"//////////\n"
 
 
+
+
 //Taskpts.pinfo()
 
 
+
 //<<" Now print task\n"
-
-
 
 
 
