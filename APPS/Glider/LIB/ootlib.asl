@@ -14,6 +14,10 @@
 
 ///
 ///
+#ifndef OOTLIB_
+
+#define OOTLIB_ 1
+
   int Ntpts = 0;
   
   int Igcfn = -1;
@@ -37,17 +41,23 @@
    float Max_W = 105.0;
 //DBG"%V $nm_to_km $km_to_sm  \n"
 
-   float LongW;
-   float LongE;
-   float LatN;
-   float LatS;
 
-   float MidLat;
-   float MidLong;   
+  float LatS = 37.5;
+
+  float LatN = 42.0;
+
+  float LongW= 108.5;
+
+  float LongE= 104.8;
+
+
+   float MidLat = (LatN - LatS)/2.0 + LatS;
+
 
    float Margin = 0.05;
 
-
+   float MidLong = (LongW - LongE)/2.0 + LongE;
+ 
 
 
   Str Units = "KM";
@@ -70,6 +80,8 @@ float   km_to_nm = 3281.0/6080.0;
 float   km_to_sm = 3281.0/5280.0;
 float   nm_to_sm = 6080.0/5280.0;
 float   nm_to_km = 6080.0/3281.0;
+
+
 
 
 
@@ -107,11 +119,12 @@ float   nm_to_km = 6080.0/3281.0;
   }
 //==================================================
 
-
+#if 0
   float ComputeTPD(int j, int k)
   {
 //<<" $_proc %V $j $k \n"
-  int N;
+// needs Wtp as arg!! - but we use library version anyway
+int N;
   float km = 0.0;
   float km1,km2;
   float L1,L2,lo1,lo2,rL2,rL1,rlo1,rlo2,D;
@@ -153,7 +166,7 @@ float   nm_to_km = 6080.0/3281.0;
 
   }
 //====================================//
-
+#endif
 
 
 
@@ -449,19 +462,20 @@ float   nm_to_km = 6080.0/3281.0;
 //========================
 
 
-  float ComputeTC(int j, int k)
+  float ComputeTC(Turnpt wtp[],int j, int k)
   {
 
   float km = 0.0;
   float tc = 0.0;
   float L1,L2,lo1,lo2;
-  L1 = Wtp[j].Ladeg;
+  
+  L1 = wtp[j].Ladeg;
 
-  L2 = Wtp[k].Ladeg;
+  L2 = wtp[k].Ladeg;
 
-  lo1 = Wtp[j].Longdeg;
+  lo1 = wtp[j].Longdeg;
 
-  lo2 = Wtp[k].Longdeg;
+  lo2 = wtp[k].Longdeg;
 
 //  tc = TrueCourse(L1,lo1,L2,lo2);
  tc = TrueCourse(lo1,L1,lo2,L2);
@@ -471,4 +485,6 @@ float   nm_to_km = 6080.0/3281.0;
   }
 //===========================//
 
+
 ;//==============\_(^-^)_/==================//;
+#endif

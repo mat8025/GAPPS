@@ -19,15 +19,17 @@ cf(A)
 int CR_init = 0;
 int CL_init = 0;
 
+
 int lc_gl= -1;
 int rc_gl = -1;
-
+int Vp;
 int MaxLegs = 12;
-
+  Str TaskType = "MT";
    
   Graphic = CheckGwm();
 
-<<"%V $Graphic\n"
+
+ printf(" $Graphic\n");
 
 
 
@@ -37,7 +39,7 @@ int MaxLegs = 12;
 
 // create window and scales
 
-#include "tbqrd"
+#include "tbqrd.asl"
 
  int symsz = 2;
  int wfr = 0;
@@ -45,24 +47,24 @@ int MaxLegs = 12;
 
 
 
-  vp = cWi("vp");
+  Vp = cWi("Vp");
   
 
-  sWi(vp,_Wscales,wbox(-200,-200,200,200,0), _WDRAWON,_WPIXMAPON,_WSAVE,_WBHUE,WHITE_,_Wresize,0.1,0.01,0.9,0.95,0)
+  sWi(Vp,_Wscales,wbox(-200,-200,200,200,0), _WDRAWON,_WPIXMAPON,_WSAVE,_WBHUE,WHITE_,_Wresize,0.1,0.01,0.9,0.95,0)
   // but we don't draw to a window! = draw to Wob in a Window
 
-  sWi(vp,_Wclip,0.01,0.1,0.95,0.99);
+  sWi(Vp,_Wclip,0.01,0.1,0.95,0.99);
 
-  titleButtonsQRD(vp);
+  titleButtonsQRD(Vp);
 
 
-  tdwo= cWo(vp, WO_BV_);
+  int tdwo= cWo(Vp, WO_BV_);
 
   sWo(tdwo,_WRESIZE_fr,0.01,0.01,0.14,0.1,_Wname,"TaskDistance",_WEO);
   
   sWo(tdwo,_WCOLOR,WHITE_,_WSTYLE,"SVB");
 
-  sawo= cWo(vp, WO_BV_);
+  int sawo= cWo(Vp, WO_BV_);
 
   rsz= wbox(0.15,0.01,0.54,0.1);
 
@@ -76,7 +78,7 @@ int MaxLegs = 12;
   sWo(sawo,_Wcolor,WHITE_,_WSTYLE,"SVB");
 
 
-  vvwo= cWo(vp, WO_GRAPH_);
+  int vvwo= cWo(Vp, WO_GRAPH_);
 
   sWo(vvwo,_WNAME,"ALT",_WCOLOR,WHITE_);
 
@@ -93,7 +95,7 @@ int MaxLegs = 12;
 
   sWo(vvwo, _WSCALES, wbox(0, 0, 100, 6000), _WSAVEPIXMAP, _WREDRAW, _WDRAWON, _WPIXMAPON);
 
-  mapwo= cWo(vp,WO_GRAPH_);
+  int mapwo= cWo(Vp,WO_GRAPH_);
   sWo(mapwo,_WRESIZE,wbox(0.30,0.26,0.95,0.95),_WNAME,"MAP",_WCOLOR,WHITE_);
 
 <<"%V $mapwo $LongW $LatS \n"
@@ -105,14 +107,14 @@ int MaxLegs = 12;
   int legwo[MaxLegs+1];
   
 
-  tpwo[0]=cWo(vp,WO_BV_);
+  tpwo[0]=cWo(Vp,WO_BV_);
   
   sWo(tpwo[0],_WNAME,"_Start_",_WSTYLE,"SVR",_WDRAWON);
 
 
   for (i= 1; i <= MaxLegs ; i++) {
 
-   tpwo[i] =cWo(vp,WO_BV_);
+   tpwo[i] =cWo(Vp,WO_BV_);
 
    sWo(tpwo[i],_WNAME,"_TP${i}_",_WSTYLE,"SVR",_WDRAWON,_WCOLOR,BLUE_,_WFONTHUE,BLACK_,_WEO)
 
@@ -133,7 +135,7 @@ int MaxLegs = 12;
   legwo[0] = -1;
 
   for (i= 0; i < MaxLegs ; i++) {
-    legwo[i] = cWo(vp,WO_BV_);
+    legwo[i] = cWo(Vp,WO_BV_);
      sWo(legwo[i],_WNAME,"LEG_$(i+1) ",_WSTYLE,"SVR",_WDRAWON,_WCOLOR,BLUE_,_WFONTHUE,BLACK_,_WEO)
   }
 
@@ -148,7 +150,7 @@ int MaxLegs = 12;
   sWo(tpwos,_WCOLOR,ORANGE_,_WFONTHUE,BLACK_,_WFONT,F_TINY_,_WREDRAW,_WEO);
   sWo(legwos,_WCOLOR,BLUE_,_WFONTHUE,BLUE_,_WFONT,F_TINY_,_WREDRAW,_WEO);
 
-  TASK_wo=cWo(vp,WO_BV_);
+  int TASK_wo=cWo(Vp,WO_BV_);
   sWo(TASK_wo, _WRESIZE,wbox(0.05,0.25,0.15,0.34),_WEO);
   
 //<<"%V$TASK_wo\n"
@@ -156,7 +158,7 @@ int MaxLegs = 12;
   sWo(TASK_wo, _WHELP, "Set Task Type", _WNAME, "TaskType", _WFUNC,  "wo_menu",  _WMENU, "SO,TRI,OAR,W,MT",  _WVALUE, "TRI")
 
 
-  TASK_menu_wo=cWo(vp,WO_BV_);
+  int TASK_menu_wo=cWo(Vp,WO_BV_);
 
   sWo( TASK_menu_wo,_WRESIZE,wbox(0.05,0.12,0.15,0.24),_WEO);
 
@@ -165,7 +167,7 @@ int MaxLegs = 12;
 
   gflush()
   
-  vptxt= cWo(vp, WO_TEXT_);
+  int vptxt= cWo(Vp, WO_TEXT_);
   sWo(vptxt,_WRESIZE,wbox(0.55,0.01,0.95,0.1),_WNAME,"TXT", _WEO);
   sWo(vptxt,_WCOLOR,WHITE_,_WSAVE,_WDRAWON,_WPIXMAPOFF);
 
@@ -173,9 +175,11 @@ int MaxLegs = 12;
 //  CURSORS
  // TBC cursor opt?
   lc_gl   = cGl(vvwo);
+  
   sGl(lc_gl,_GLtype,XY_,_GLHUE,BLACK_,_GLltype,CURSOR_,_GLEO);
 
   rc_gl   = cGl(vvwo);
+  
   sGl(rc_gl,_GLtype,XY_,_GLHUE,BLUE_,_GLltype,CURSOR_,_GLEO);
 
 

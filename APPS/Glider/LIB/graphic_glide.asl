@@ -22,27 +22,148 @@
   float zoom_end =  200;
   float MSE[32];
 
+
+
+  void DrawMap()
+  {
+  
+//DBG"$_proc %V $wo\n"
+// TBF include ?? code that we are running or  code that is calling?
+//<<"%V $_proc  $_include \n"
+
+  int msl;
+
+  float lat;
+
+  float longi;
+
+  Str mlab;
+
+  int is_an_airport = 0;
+  int is_a_mtn = 0;
+  
+  sWo(mapwo,_WSCALES,wbox(LongW,LatS,LongE,LatN),_WEO);
+  <<"%V $LongW $LatS $LongE $LatN \n";
+
+  sWo(mapwo,_WCLEARPIXMAP,_WCLIPBORDER,_WEO);
+
+ // sWo(mapwo,_WDRAWON,_WSHOWPIXMAP,_WCLIPBORDER);
+
+  gg_gridLabel(mapwo);
+
+//DBG"$mlab $(typeof(mlab))\n";
+
+//<<"%V $mapwo $LongW $LatS $LongE $LatN  \n"
+
+  int np = Ntp;
+
+  if (np <10) {
+
+      np =10;
+
+  }
+    ///
+    ///  Wtp ref has to be compiled before readin ??  FIX
+    /// 
+
+  for (k = 1 ; k <= np ; k++) {
+
+    is_an_airport = Wtp[k].is_airport;
+        is_a_mtn = Wtp[k].is_mtn;
+
+  mlab = Wtp[k].Place;
+
+
+//<<"%V $k $mlab  $is_an_airport \n"
+
+
+  if (!is_an_airport) {
+
+  mlab = slower(mlab);
+
+  }
+
+  msl = Wtp[k].Alt;
+
+//<<"$k %V $is_an_airport  $mlab $msl \n";
+
+
+
+ // msl.pinfo();
+  
+ // <<"%V $k $msl  $Wtp[k].Alt \n"
+
+  lat = Wtp[k].Ladeg;
+
+//<<"%V $k $lat   $Wtp[k].Ladeg \n"
+
+  longi = Wtp[k].Longdeg;
+
+//<<"%V $k $longi  $Wtp[k].Longdeg \n"
+
+//<<"%V $k $mlab $msl $lat $longi $Wtp[k].Ladeg   \n"
+
+  if ( msl > 7000) {
+    if (is_an_airport || is_a_mtn) {
+       Text(mapwo,mlab,longi,lat,0,0,1,RED_);
+	    // <<"above 7K $msl $mlab $lat $longi\n"
+     }
+  }
+
+  else {
+
+  if ( msl > 5000) {
+    if (is_an_airport) {
+       Text(mapwo,mlab,longi,lat,0,0,1,BLUE_);
+	       // <<"above 5K $msl $mlab $lat $longi\n"
+   }
+
+
+
+  }
+
+  else {
+	    //	 <<"below 5K $msl $mlab $lat $longi\n"
+   if (is_an_airport) {
+     Text(mapwo,mlab,longi,lat,0,0,1,GREEN_);
+   }
+  }
+
+//sWo(wo,_WSHOWPIXMAP,_WCLIPBORDER);
+  }
+
+  }
+
+  sWo(wo,_WSHOWPIXMAP,_WCLIPBORDER,_WSAVEPIXMAP,_WEO);
+
+  gg_gridLabel(mapwo);
+
+  }
+//====================================================
+
+
   void screen_print()
   {
 // make it monochrome
+  int ff;
+  
+  ff=openLaser("st.ps");
 
-  ff=open_laser("st.ps");
+  screenToLaser(Vp);
 
-  scr_laser(vp);
+  //nc = get_colors();
 
-  nc = get_colors();
+  //set_colors(2);
 
-  set_colors(2);
+  DrawMap();
 
-  DrawMap(mapwo);
+  drawTask(RED_);
 
-  drawTask(mapwo,RED_);
+  laserToScreen(Vp);
 
-  laser_scr(vp);
+  closeLaser();
 
-  close_laser();
-
-  set_colors(nc);
+ // set_colors(nc);
 
   }
 //==================================================
@@ -51,7 +172,13 @@
   {
   int query = 1;
   Svar wval;
-
+  int k;
+  int ti;
+  int err;
+  
+  Str TT;
+  Str atpt;
+  
   if (query)
 
   task_file = navi_w("TASK_File","task file?",task_file,".tsk","TASKS");
@@ -72,17 +199,18 @@
 
   }
 
-  nwr = wval.ReadWords(TF);
+  nwr = wval.readWords(TF);
 
   TT = wval[0];
 
-  if ( !(TT == ""))  sWo(TASK_wo,_WVALUE,TT)
-
+  if ( !(TT == "")) {
+     woSetValue(TASK_wo,_TT);
+  }
   ti = 0;
 
   while (1) {
 
-  nwr = wval.ReadWords(TF);
+  nwr = wval.readWords(TF);
 
   atpt = wval[0];
 
@@ -138,7 +266,7 @@
 
   }
 
-  nwr = wval.ReadWords(TF);
+  nwr = wval.readWords(TF);
 
   TT = wval[0];
 
@@ -152,7 +280,7 @@
 
   while (1) {
 
-  nwr = wval.ReadWords(TF);
+  nwr = wval.readWords(TF);
 
   atpt = wval[0];
 
@@ -308,7 +436,8 @@ if (rc_gl != -1) {
   {
 
   ts = 0.01;
-# incr should set format
+
+//incr should set format
 
   float rx;
 
@@ -447,7 +576,7 @@ ans=query("bad ry\n");
 
   void new_coors(int w_num)
   {
-#  par_menu = "cfi/tcoors.m"
+//  par_menu = "cfi/tcoors.m"
 
   par_menu = "tcoors.m";
 
@@ -483,7 +612,7 @@ ans=query("bad ry\n");
 
   x0 = 0;
 
-  DrawMap(w_num);
+  DrawMap();
    drawTask(w_num,BLACK_);
   }
 
@@ -502,7 +631,7 @@ ans=query("bad ry\n");
 
   gflush();
 
-  DrawMap(w_num);
+  DrawMap();
 
   drawTask(w_num,BLACK_);
 //  sWo(w_num,_Wshowpixmap)
@@ -526,9 +655,9 @@ ans=query("bad ry\n");
   ff=set_w_rs(w_num,rx,ry,rX,rY);
 
   ff=w_clip_clear(w_num);
-#  ff=w_redraw_wo(w_num)
+  
 
-  DrawMap(w_num);
+  DrawMap();
 
   drawTask(w_num,RED_);
 
@@ -558,7 +687,7 @@ ans=query("bad ry\n");
 
   ff=w_redraw_wo(w_num);
 
-  DrawMap(w_num);
+  DrawMap();
 
   drawTask(w_num,RED_);
 
@@ -568,7 +697,7 @@ ans=query("bad ry\n");
   void  draw_the_task ()
   {
 
-  DrawMap(tw);
+  DrawMap();
 
  // drawTask(tw,RED_);
   }
@@ -621,7 +750,7 @@ ans=query("bad ry\n");
 
   ff=w_redraw_wo(w_num);
 
-  DrawMap(w_num);
+  DrawMap();
 
   drawTask(w_num,RED_);
 
@@ -647,7 +776,7 @@ ans=query("bad ry\n");
 
   ff=w_redraw_wo(w_num);
 
-  DrawMap(w_num);
+  DrawMap();
 
   drawTask(w_num,RED_);
 
@@ -659,7 +788,7 @@ ans=query("bad ry\n");
 
   
 
-  DrawMap(mapwo);
+  DrawMap();
  drawTask(mapwo,GREEN_);
 
 }
@@ -895,7 +1024,7 @@ int PickViaName(int wt)
 
   if (kt == 0) {
 
-  woSetValue(tpwo[j],"" );
+  sWo (tpwo[j],_WVALUE," ",_WREDRAW);
 
   break;
 
@@ -913,7 +1042,7 @@ int PickViaName(int wt)
 
   Taskpts[j-1] = 0;
 
-  woSetValue(tpwo[j-1],"");
+  sWo (tpwo[j-1],_WVALUE," ",_WREDRAW);
 
   }
 
@@ -931,7 +1060,8 @@ int PickViaName(int wt)
 
   void delete_alltps()
   {
-# get_tp
+
+//get_tp
 
   for (i = 0 ; i <Ntaskpts ; i++) {
 
@@ -1008,10 +1138,8 @@ int PickViaName(int wt)
 
   if (slen(tval) > 1) {
 
-  WH=searchRecord(RX,tval,0,0);
+  index=RX.findRecord(tval,0,0);
 	  //<<"%V $k $WH\n"
-
-  index = WH[0][0];
 
   if (index >=0) {
 
@@ -1179,7 +1307,7 @@ int PickViaName(int wt)
 
   magnify(w);
 
-  DrawMap(w);
+  DrawMap();
    drawTask (mapwo,BLACK_);
   }
 
@@ -1193,7 +1321,7 @@ int PickViaName(int wt)
 
   delete_alltps();
 
-  DrawMap(w);
+  DrawMap();
 
   }
 
@@ -1213,7 +1341,7 @@ int PickViaName(int wt)
 
   else if (ur_c == "set") {
 
-  DrawMap(mapwo);
+  DrawMap();
 
   drawTask(mapwo,RED_);
 
@@ -1346,7 +1474,7 @@ int PickViaName(int wt)
 
   total = taskDist();
 
-  DrawMap(mapwo);
+  DrawMap();
 
   drawTask(mapwo,BLUE_);
 
@@ -1360,7 +1488,7 @@ int PickViaName(int wt)
 
   total = taskDist();
 
-  DrawMap(mapwo);
+  DrawMap();
 
   drawTask(mapwo,RED_);
 
@@ -1424,7 +1552,7 @@ int PickViaName(int wt)
   }
 //=============================================//
 
-  Str TaskType = "MT";
+
 
   void drawTask(int w,int col)
   {
@@ -1512,19 +1640,16 @@ int PickViaName(int wt)
 /// 
 
   int ret = -1;
-<<" $_proc looking for <|$atarg|>  $Atarg  $wtp\n"
+//<<" $_proc looking for <|$atarg|>  $Atarg  $wtp\n"
 
 
-  WH=searchRecord(RX,atarg,0,0);
-
-<<"%V $WH[0][0]\n"
-
-  index = WH[0][0];
+  index=RX.findRecord(atarg,0,0);
 
   if (index >=0) {
 
   ttp = RX[index];
-<<" found  $index\n"
+
+  printf(" found  $index %d\n",index);
 //<<"$ttp \n"
 
   Taskpts[wtp] = index;
@@ -1558,123 +1683,6 @@ int PickViaName(int wt)
 //==================================================
 
 
-
-  void DrawMap(int wo)
-  {
-  
-//DBG"$_proc %V $wo\n"
-// TBF include ?? code that we are running or  code that is calling?
-//<<"%V $_proc  $_include \n"
-
-  int msl;
-
-  float lat;
-
-  float longi;
-
-  Str mlab;
-
-  int is_an_airport = 0;
-  int is_a_mtn = 0;
-  
-  sWo(mapwo,_WSCALES,wbox(LongW,LatS,LongE,LatN),_WEO);
-  <<"%V $LongW $LatS $LongE $LatN \n";
-
-  sWo(mapwo,_WCLEARPIXMAP,_WCLIPBORDER,_WEO);
-
- // sWo(mapwo,_WDRAWON,_WSHOWPIXMAP,_WCLIPBORDER);
-
-  gg_gridLabel(mapwo);
-
-//DBG"$mlab $(typeof(mlab))\n";
-
-//<<"%V $mapwo $LongW $LatS $LongE $LatN  \n"
-
-  int np = Ntp;
-
-  if (np <10) {
-
-      np =10;
-
-  }
-    ///
-    ///  Wtp ref has to be compiled before readin ??  FIX
-    /// 
-
-  for (k = 1 ; k <= np ; k++) {
-
-    is_an_airport = Wtp[k].is_airport;
-        is_a_mtn = Wtp[k].is_mtn;
-
-  mlab = Wtp[k].Place;
-
-
-//<<"%V $k $mlab  $is_an_airport \n"
-
-
-  if (!is_an_airport) {
-
-  mlab = slower(mlab);
-
-  }
-
-  msl = Wtp[k].Alt;
-
-//<<"$k %V $is_an_airport  $mlab $msl \n";
-
-
-
- // msl.pinfo();
-  
- // <<"%V $k $msl  $Wtp[k].Alt \n"
-
-  lat = Wtp[k].Ladeg;
-
-//<<"%V $k $lat   $Wtp[k].Ladeg \n"
-
-  longi = Wtp[k].Longdeg;
-
-//<<"%V $k $longi  $Wtp[k].Longdeg \n"
-
-//<<"%V $k $mlab $msl $lat $longi $Wtp[k].Ladeg   \n"
-
-  if ( msl > 7000) {
-    if (is_an_airport || is_a_mtn) {
-       Text(mapwo,mlab,longi,lat,0,0,1,RED_);
-	    // <<"above 7K $msl $mlab $lat $longi\n"
-     }
-  }
-
-  else {
-
-  if ( msl > 5000) {
-    if (is_an_airport) {
-       Text(mapwo,mlab,longi,lat,0,0,1,BLUE_);
-	       // <<"above 5K $msl $mlab $lat $longi\n"
-   }
-
-
-
-  }
-
-  else {
-	    //	 <<"below 5K $msl $mlab $lat $longi\n"
-   if (is_an_airport) {
-     Text(mapwo,mlab,longi,lat,0,0,1,GREEN_);
-   }
-  }
-
-//sWo(wo,_WSHOWPIXMAP,_WCLIPBORDER);
-  }
-
-  }
-
-  sWo(wo,_WSHOWPIXMAP,_WCLIPBORDER,_WSAVEPIXMAP,_WEO);
-
-  gg_gridLabel(mapwo);
-
-  }
-//====================================================
 
   void listTaskPts()
   {
@@ -1716,46 +1724,6 @@ int PickViaName(int wt)
 
   }
 //====================================//
-
- void checkWoTaskPts()
- {
-   int ntp = 0;
-   int k;
-   int i;
-   int j;
-   int found = 0;
-   for (i=0; i < MaxLegs; i++) {
-        k = tpwo[i];
-	cval = getWoValue(k);
-	if (cval != "") {
-           ntp++;
-	   <<"$i $ntp <|$cval|>\n"
-	   found = 1;
-        }
-        else {
-           found = 0;
-	   for ( j= i; j < MaxLegs-1; j++) {
-             k = tpwo[j+1];
-             cval = getWoValue(k);
-	     if (cval != "") {
-	     <<"$j  <|$cval|>\n"
-             woSetValue(tpwo[j],cval);
-              found = 1;
-             }
-           }
-        }
-	if (!found) {
-            break;
-        }
-    }
-    
-    Ntaskpts = ntp;
-<<"%V $Ntaskpts found \n";
-
- }
-//====================================//
-
-
 
   void showTaskPts()
   {

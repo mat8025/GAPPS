@@ -12,6 +12,9 @@
  */ 
 ;//----------------<v_&_v>-------------------------//;                                                                                                                                 
 
+#ifndef TPCLASS_
+
+#define TPCLASS_ 1
 
 
 int Tleg_id = 0;
@@ -323,3 +326,4 @@ void Turnpt()
 <<"%V $_include  DONE\n"
 #endif
 
+#endif

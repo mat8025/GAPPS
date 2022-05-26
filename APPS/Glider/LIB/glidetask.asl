@@ -14,7 +14,6 @@
 
 
 
-
 #define ASL 1
 #define ASL_DB 0
 #define GT_DB   0
@@ -66,24 +65,24 @@ Svar Task;
 
   float totalDur = 0.0;
 
-float TKM[20];
-  float L1,L2,lo1,lo2;
+  float TKM[20];
+  float L1;
+  float L2;
+  float lo1,lo2;
   double tkm;
   float tcd,rmsl,msl;
   int nl,li;
   Str ident;
 
-#include "conv.asl"
+//#include "conv.asl"
 
 #include "tpclass.asl"
 
-Turnpt  Wtp[50];
+Turnpt  GT_Wtp[50];
 
-Tleg  Wleg[20];
+Tleg  GT_Wleg[20];
 
 #include "ootlib.asl"
-
-
 
   int via_keyb = 0;
 
@@ -169,13 +168,13 @@ int  Main_init = 1;
 
 //  printf(" Cruise_speed %f ",Cruise_speed);
 
-  Wtp[1].Alt = 100.0;
+  GT_Wtp[1].Alt = 100.0;
 
-  Wtp[40].Alt = 5300.0;
+  GT_Wtp[40].Alt = 5300.0;
 
-//  <<"$Wtp[1].Alt\n";
+//  <<"$GT_Wtp[1].Alt\n";
 
-//  Wtp.pinfo() ;  // should identify Obj
+//  GT_Wtp.pinfo() ;  // should identify Obj
 
   Str tlon;
   Str tplace;
@@ -632,11 +631,11 @@ COUT(tlon)
 
 
   if (use_cup) {
-   Wtp[n_legs].TPCUPset(Wval);
+   GT_Wtp[n_legs].TPCUPset(Wval);
 
    }
   else {
-     Wtp[n_legs].TPset(Wval);
+     GT_Wtp[n_legs].TPset(Wval);
    }
 
  }
@@ -810,7 +809,7 @@ COUT(tlon)
 
 
 
-   Wtp[n_legs].TPCUPset(Wval);
+   GT_Wtp[n_legs].TPCUPset(Wval);
 
 
 
@@ -823,7 +822,7 @@ COUT(tlon)
 
    nwr = Wval.readWords(AFH);
 
-   Wtp[n_legs].TPset(Wval);
+   GT_Wtp[n_legs].TPset(Wval);
 
 #if ASL
      if (AFH != K_AFH) {
@@ -837,9 +836,9 @@ COUT(tlon)
 
   }
 
-  L1 = Wtp[nl].Ladeg;
+  L1 = GT_Wtp[nl].Ladeg;
  // printf("n_legs [%d] L1 %f\n",n_legs, L1);
-   //<<"$Wtp[n_legs].Place \n";
+   //<<"$GT_Wtp[n_legs].Place \n";
   //ans=query("??");
 }
     //      prompt("%v $more_legs next turn %-> ")
@@ -877,17 +876,17 @@ COUT(tlon)
   
   for (nl = 0; nl < n_legs ; nl++) {
 #if ASL_DB
-<<"$nl   $n_legs  $Wtp[nl].Place  $Wtp[nl+1].Place  $Wtp[nl].Ladeg  \n"
+<<"$nl   $n_legs  $GT_Wtp[nl].Place  $GT_Wtp[nl+1].Place  $GT_Wtp[nl].Ladeg  \n"
 // ans=query("??");
 #endif
-  L1 = Wtp[nl].Ladeg;
+  L1 = GT_Wtp[nl].Ladeg;
 
-  L2 = Wtp[nl+1].Ladeg;
+  L2 = GT_Wtp[nl+1].Ladeg;
        //DBG"%V $L1 $L2 \n"
 
-  lo1 = Wtp[nl].Longdeg;
+  lo1 = GT_Wtp[nl].Longdeg;
 
-  lo2 = Wtp[nl+1].Longdeg;
+  lo2 = GT_Wtp[nl+1].Longdeg;
        //DBG"%V $lo1 $lo2 \n"
       // tkm = ComputeTPD(nl, nl+1);
 
@@ -898,14 +897,29 @@ COUT(tlon)
 
   Leg[nl] = tkm;
 
-  Wleg[nl+1].dist = tkm;
+  GT_Wleg[nl+1].dist = tkm;
 
 //<<"%V $nl $tkm $Leg[nl] $TKM[nl]\n"
 
-  //DBG"%V $Wleg[nl].dist\n";
+  //DBG"%V $GT_Wleg[nl].dist\n";
        //Leg[nl] = ComputeTPD(nl, nl+1)
 
-  tcd =  ComputeTC(nl, nl+1);
+  tcd =  ComputeTC(GT_Wtp,nl, nl+1);
+COUT(tcd);
+ 
+  L1 = GT_Wtp[nl].Ladeg;
+
+  L2 = GT_Wtp[nl+1].Ladeg;
+
+  lo1 = GT_Wtp[nl].Longdeg;
+
+  lo2 = GT_Wtp[nl+1].Longdeg;
+
+//  tc = TrueCourse(L1,lo1,L2,lo2);
+ tcd = TrueCourse(lo1,L1,lo2,L2);
+
+COUT(tcd);
+
 
   TC[nl+1] = tcd;
 
@@ -950,9 +964,9 @@ COUT(tlon)
 
      pc_tot = the_leg/totalD * 100.0;
 
-     Wleg[nl].pc = pc_tot;
+     GT_Wleg[nl].pc = pc_tot;
 #if ASL_DB     
-//<<"%V $nl $the_leg $totalD $pc_tot  $Wleg[nl-1].pc  \n"
+//<<"%V $nl $the_leg $totalD $pc_tot  $GT_Wleg[nl-1].pc  \n"
 #endif
      }
 
@@ -960,12 +974,12 @@ COUT(tlon)
 
   nleg = the_leg * km_to_nm;
 
-  alt =  Wtp[nl].Alt;
+  alt =  GT_Wtp[nl].Alt;
 
   msl = alt;
-    //    <<" %I $msl $Wtp[nl].Alt \n"
+    //    <<" %I $msl $GT_Wtp[nl].Alt \n"
     //    <<" %I $nl $msl \n"
-    //    <<" %I $rmsl $Wtp[nl+1].Alt \n"
+    //    <<" %I $rmsl $GT_Wtp[nl+1].Alt \n"
     //<<" %I $LoD \n"
 
   ght = (Leg[nl] * km_to_feet) / LoD;
@@ -980,21 +994,21 @@ COUT(tlon)
 
   else {
 
-   rmsl =  Wtp[nl+1].Alt;
+   rmsl =  GT_Wtp[nl+1].Alt;
 
    agl = ght + 1200.0 + rmsl;
 
    }
 
-  Wtp[nl].fga = agl;
+  GT_Wtp[nl].fga = agl;
 
-  tpb = Wtp[nl].Place;
+  tpb = GT_Wtp[nl].Place;
 
-//<<"%V  $nl $Wtp[nl].Place   $Wtp[nl].fga\n"
-//cout  <<"nl "<< nl  <<"Wtp[nl].Place "<< Wtp[nl].Place  <<"Wtp[nl].fga "<< Wtp[nl].fga  <<endl ;
+//<<"%V  $nl $GT_Wtp[nl].Place   $GT_Wtp[nl].fga\n"
+//cout  <<"nl "<< nl  <<"GT_Wtp[nl].Place "<< GT_Wtp[nl].Place  <<"GT_Wtp[nl].fga "<< GT_Wtp[nl].fga  <<endl ;
 
 
-  ident = Wtp[nl].Idnt;
+  ident = GT_Wtp[nl].Idnt;
 
 //<<"%V $tpb $ident \n"
 
@@ -1050,36 +1064,36 @@ COUT(tlon)
   float tct;
   float dct;
   
- // <<"$li $Wleg[li]->dist  $Wleg[li]->pc_tot \n"
- //<<"$li ${tpb}${ws}${ident}${wsi} %9.3f${Wtp[li]->Lat} %11.3f${Wtp[li]->Lon}\s%10.0f${Wtp[li]->fga} ${Wtp[li]->Alt} %4.1f$Wleg[li]->pc ";
+ // <<"$li $GT_Wleg[li]->dist  $GT_Wleg[li]->pc_tot \n"
+ //<<"$li ${tpb}${ws}${ident}${wsi} %9.3f${GT_Wtp[li]->Lat} %11.3f${GT_Wtp[li]->Lon}\s%10.0f${GT_Wtp[li]->fga} ${GT_Wtp[li]->Alt} %4.1f$GT_Wleg[li]->pc ";
 
    tot_time += Dur[li];
 
 
 #if ASL
-// <<"$li ${tpb}${ws}${ident}${wsi} ${Wtp[li]->Lat} ${Wtp[li]->Lon}\s%11.0f${Wtp[li]->fga} ${Wtp[li]->Alt} %4.1f$Wleg[li]->pc_tot ";
+// <<"$li ${tpb}${ws}${ident}${wsi} ${GT_Wtp[li]->Lat} ${GT_Wtp[li]->Lon}\s%11.0f${GT_Wtp[li]->fga} ${GT_Wtp[li]->Alt} %4.1f$GT_Wleg[li]->pc_tot ";
 tct = TC[li];
 dct = Dur[li];
-<<"$li ${tpb}${ws}${ident}${wsi} ${Wtp[li]->Lat} ${Wtp[li]->Lon}\s%11.0f${Wtp[li]->fga} ${Wtp[li]->Alt} %4.1f$Wleg[li]->pc_tot ";
-<<"%6.2f $Wleg[li]->dist\t $TC[li]\t $Dur[li]\t $rtotal\t$tot_time ${Wtp[li]->Radio}\n";
+<<"$li ${tpb}${ws}${ident}${wsi} ${GT_Wtp[li]->Lat} ${GT_Wtp[li]->Lon}\s%11.0f${GT_Wtp[li]->fga} ${GT_Wtp[li]->Alt} %4.1f$GT_Wleg[li]->pc_tot ";
+<<"%6.2f $GT_Wleg[li]->dist\t $TC[li]\t $Dur[li]\t $rtotal\t$tot_time ${GT_Wtp[li]->Radio}\n";
 
 
-//<<"$Wleg[li]->dist\t$tct\t$dct\t$rtotal\t%6.2f${Wtp[li]->Radio}\n";
+//<<"$GT_Wleg[li]->dist\t$tct\t$dct\t$rtotal\t%6.2f${GT_Wtp[li]->Radio}\n";
 
 //  ans=query("??");
 #else
-// printf("%d %s  \t%s\t%s   %6.0fft   %6.0fft         \n",li,ident,Wtp[li].Lat,Wtp[li].Lon, Wtp[li].fga, Wtp[li].Alt);
-printf("%d %s%s%s%s%s %s  %6.0fft  %6.0fft ",li,Wtp[li].Place.cptr(),ws.cptr(),ident.cptr(),wsi.cptr(),Wtp[li].Lat.cptr(),Wtp[li].Lon.cptr(), Wtp[li].fga, Wtp[li].Alt);
+// printf("%d %s  \t%s\t%s   %6.0fft   %6.0fft         \n",li,ident,GT_Wtp[li].Lat,GT_Wtp[li].Lon, GT_Wtp[li].fga, GT_Wtp[li].Alt);
+printf("%d %s%s%s%s%s %s  %6.0fft  %6.0fft ",li,GT_Wtp[li].Place.cptr(),ws.cptr(),ident.cptr(),wsi.cptr(),GT_Wtp[li].Lat.cptr(),GT_Wtp[li].Lon.cptr(), GT_Wtp[li].fga, GT_Wtp[li].Alt);
 
-   printf("\t%6.2f%%",Wleg[li].pc); 
-    printf("\t%5.1f ",Wleg[li].dist);
+   printf("\t%6.2f%%",GT_Wleg[li].pc); 
+    printf("\t%5.1f ",GT_Wleg[li].dist);
   
-//cout  << "%5.1f$Wleg[li]->dist\t$rtotal\t$rtime\t%6.2f${Wtp[li]->Radio} " ; 
+//cout  << "%5.1f$GT_Wleg[li]->dist\t$rtotal\t$rtime\t%6.2f${GT_Wtp[li]->Radio} " ; 
   printf("\t%6.0f ",TC[li]);
 
   printf("\t%6.2f %6.2f %6.2f ",Dur[li],rtotal,tot_time);
 
-  printf("\t%s\n",Wtp[li].Radio.cptr())  ; 
+  printf("\t%s\n",GT_Wtp[li].Radio.cptr())  ; 
 #endif
 
   }

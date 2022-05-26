@@ -28,8 +28,17 @@
 #include "/home/mark/gasp-CARBON/include/compile.h"
 #endif
 
+#if CPP
+#include <iostream>
+#include <ostream>
+
+using namespace std;
+
+#endif
 
 
+
+#if ASL
 Str Use_= "  view and select turnpts  create read tasks ";
 
 #include "debug"
@@ -51,23 +60,23 @@ chkIn(_dblevel);
 //#define DBG <<
 #define DBG ~!
 
+#endif
 
 int uplegs = 0;  // needed?
-int  Ntp = 0;
+int  Ntp = 0; //
+
+// different behavior on earth versus neptune machines
+// local var not inited cpp and referenced with being set!!
 
 //#include "conv.asl"
 
 #include "tpclass.asl"
 
-#include "ootlib"
-
-#include "graphic_glide.asl"
+#include "ootlib.asl"
 
 
-
-
-int WH[100][2];
-
+//int WH[100][2];
+Mat  WH(INT_,100,2);  //rows expandable
 int main_chk =1;
 int Maxtaskpts = 13;
 
@@ -79,24 +88,14 @@ int Maxtaskpts = 13;
 
 /////////////  Arrays : Globals //////////////
 
-        float symx = 0.0
+        float symx = 0.0;
 	float symy = 0.0;
-        float syme = 0.0
+        float syme = 0.0;
 
-LatS= 37.5;
-
-LatN = 42.0;
-
-LongW= 108.5;
-
-LongE= 104.8;
-
- MidLong = (LongW - LongE)/2.0 + LongE;
- MidLat = (LatN - LatS)/2.0 + LatS;
-
+  
 float LoD = 35.0;
 
-TaskType = "TRI"; 
+
 
 int Nlegs = 3;
 
@@ -108,27 +107,56 @@ Turnpt  Wtp[300]; //
 Tleg  Wleg[20];
 
 
-Record RX[10];
+//Record RX[10];
+
+Record RX;
 
 
-/// open turnpoint file lat,long 
+/// open turnpoint file lat,long
 
+#if CPP
+
+void
+Uac::showTask(Svarg * sarg)  
+{
+
+int run_asl = runASL();
+ cout <<"CPP  ASL?  " << run_asl << endl;
+
+ Str a0  = sarg->getArgStr(0) ;
+
+//a0.pinfo();
+ Svar sa;
+
+cout << " paras are:  "  << a0.cptr(0) << endl;
+ sa.findWords(a0.cptr());
+
+cout << " The glider Task turnpts and  parameters are:  "  << sa << endl;
+
+cout << " para[0] is:  "  << sa.cptr(0) << endl;
+
+cout << " para[1] is:  "  << sa.cptr(1) << endl;
+
+//cout << " para[2] is:  "  << sa.cptr(2) << endl;
+#endif
+
+Str tp_file;
 int use_cup = 1;
-
+int Nrecs;
 
 
 if (use_cup) {
 
-    tp_file = "CUP/bbrief.cup"
+    tp_file = "CUP/bbrief.cup";
 
 }
 else {
 
-  tp_file = "DAT/turnptsA.dat"  // open turnpoint file TA airports
+  tp_file = "DAT/turnptsA.dat";  // open turnpoint file TA airports
 
   if (tp_file == "") {
-    tp_file = "DAT/turnptsSM.dat"  // open turnpoint file 
-   }q
+    tp_file = "DAT/turnptsSM.dat" ; // open turnpoint file 
+   }
    
 }
 
@@ -136,13 +164,16 @@ else {
   int AFH =  ofr(tp_file);
 
  if (AFH == -1) {
-  <<" can't open file   \n";
-    exit();
+  printf(" can't open file   \n");
+    exit(-1);
  }
 
 if (use_cup) {
 
-  Nrecs=RX.readRecord(AFH,_RDEL,44,_RLAST);  // no back ptr to Siv?
+   Nrecs=RX.readRecord(AFH,_RDEL,44,_RLAST);  // no back ptr to Siv?
+ 
+  // RX=readRecord(AFH,_RDEL,44,_RLAST);  // no back ptr to Siv?
+   
   //RF= readRecord(A,@del,',',@comment,"#");
   
 }
@@ -156,18 +187,23 @@ else {
   Nrecs = Caz(RX);
   Ncols = Caz(RX,1);
 
-<<"num of records $Nrecs  num cols $Ncols\n";
+//<<"num of records $Nrecs  num cols $Ncols\n";
 
-
-for (i= 0; i <= 100 ; i++) {
+/*
+for (i= 0; i <= 10 ; i++) {
 <<"$i $RX[i] \n"
 }
+*/
+
+//WH=searchRecord(RX,"AngelFire",0,0);
+
+  index= RX.findRecord("AngelFire",0,0);
+
+  printf("AngelFire @ %d\n",index);
 
 
-WH=searchRecord(RX,"AngelFire",0,0)
+//<<"AngelFire @ $WH \n"
 
-<<"AngelFire @ $WH \n"
-  WH.pinfo();
 
 
 /*
@@ -186,19 +222,20 @@ longv = RX[WH[0][0]][3]
 <<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
 */
 
-main_chk++;
 
 //ans=query("??");
 
 //================================//
- svar Wval;
+ Svar Wval;
+ Str Cfr;
 
-
-  AFH =ofr(tp_file)
+  AFH =ofr(tp_file);
   
 
   if (AFH == -1) {
-    exit(-1," can't find turnpts file \n");
+    printf(" can't find turnpts file \n");
+    exit(-1);
+    
   }
  
 
@@ -206,8 +243,8 @@ main_chk++;
 
 
   if (!use_cup) {
-         C=readline(AFH);
-	 C=readline(AFH);
+         Cfr=readLine(AFH);
+	 Cfr=readLine(AFH);
    }
 
 int c1 = 0;
@@ -215,12 +252,12 @@ long before;
 long after;
 
 int KAFH = AFH;
-
+int nwr;
 while (1) {
 
 
 
-   before = ftell(AFH);
+    before = ftell(AFH);
     c1 = fgetc(AFH,-1);
     after = ftell(AFH);
 
@@ -228,18 +265,18 @@ while (1) {
 //<<"%V $AFH $Ntp $before $c1 $after\n"
 
     if (use_cup) {
-    
 
-       nwr = Wval.ReadWords(AFH,0,',')
+       nwr = Wval.readWords(AFH,0,',')
 
-       //<<"%V $nwr  $AFH $Wval\n";
+       <<"%V $Ntp $nwr  $AFH $Wval\n";
 
-        main_chk++;
+
+
 
 	       
     }
     else {
-            nwr = Wval.ReadWords(AFH)
+            nwr = Wval.readWords(AFH)
     }
             if (nwr == -1) {
 	      break;
@@ -255,17 +292,15 @@ while (1) {
 
 
          Wtp[Ntp].TPCUPset(Wval);
-	 
 
-         main_chk++;
       }
       else {
          Wtp[Ntp].TPset(Wval);
       }
 
-
+<<"$Ntp $AFH  $Wval \n"
              Ntp++;
-//<<"$Ntp $AFH \n $Wval \n"
+
 
         }
       }
@@ -294,13 +329,13 @@ while (1) {
 
 // Nlegs = Ntp -1;
 //<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
-main_chk++;
+
 
 
 int is_an_airport = 0;
 
 
-main_chk++;
+
 
 
 /*
@@ -319,7 +354,7 @@ if (is_an_airport) {
    }
 */
 
-main_chk++;
+
 
 
 
@@ -371,7 +406,7 @@ na = argc()
  int ai =0;
 
 
-main_chk++;
+
 
 // while (AnotherArg()) {  // TBC 
 
@@ -403,12 +438,12 @@ main_chk++;
       }
           else {
 	  if (slen(targ) > 1) {
-          WH=searchRecord(RX,targ,0,0)
+          index=RX.findRecord(targ,0,0);
 	 // <<"%V $targ $WH\n"
-	  
-          index = WH[0][0]
+
           if (index >=0) {
-          ttp = RX[index];
+
+           ttp = RX[index];
 
 //<<"$ttp \n"
 
@@ -437,7 +472,7 @@ main_chk++;
 //ans=query("%V $Ntaskpts\n");
 
 //
-    listTaskPts();
+    
 
 
 // home field
@@ -456,10 +491,8 @@ svar targ_list = {"eldorado","casper","rangely","eldorado"}
 
        targ = targ_list[i]
        //<<"$i  <|$targ|> \n"
-          WH=searchRecord(RX,targ,0,0)
-	 // <<"$WH\n"
-	  
-          index = WH[0][0]
+         index=findRecord(targ,0,0);
+
           if (index >=0) {
           ttp = RX[index];
           //<<"$ttp \n"
@@ -472,13 +505,11 @@ svar targ_list = {"eldorado","casper","rangely","eldorado"}
 }
 //======================================//
 
-//<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
 
-main_chk++;
+
+
 
 Nlegs = Ntaskpts;
-                 listTaskPts();		 
-//<<"%V $Ntaskpts \n"
 
 //Taskpts.pinfo()
 
@@ -491,14 +522,14 @@ Nlegs = Ntaskpts;
 //             Wtp[k].Print()
 //    }
 <<"//////////\n"
-//<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
-main_chk++;
+
+
 //Taskpts.pinfo()
 
 
 <<" Now print task\n"
-//<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
-main_chk++;
+
+
 
 
 
@@ -509,10 +540,10 @@ main_chk++;
 
 
 
- taskDist();
 
 
-/**
+
+/*
 <<"after include  proc \n"
 
    for (k= 0; k < Ntaskpts; k++) {
@@ -522,10 +553,8 @@ main_chk++;
 */
 
 
-//<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
-main_chk++;
 
-<<"%V $Have_igc\n"
+printf(" Have_igc\n");
 
 
 
@@ -540,7 +569,9 @@ main_chk++;
        //      Wtp[3].Print()
 
 
-#include "showtask_scrn"
+#include "showtask_scrn.asl"
+
+#include "graphic_glide.asl"
 
 Str place;
 
@@ -559,7 +590,7 @@ Str place;
 	
         alt = Wtp[k].Alt;  
       
-      <<"$i $k  $place  $tpwo[i]\n"
+//      <<"$i $k  $place  $tpwo[i]\n"
 
 
         woSetValue(tpwo[i],place);
@@ -608,10 +639,13 @@ Str place;
     dGl(igc_vgl);  // plot the igc climb -- if supplied
    }
 
-# main
 
 
-#include  "gevent";
+#if CPP
+#include  "gevent.h";
+#else
+#include  "gevent.asl";
+#endif
 
  Gevent gev;
 
@@ -654,7 +688,7 @@ Str wcltpt="XY";
   
   //sdb(2,"pline");
   
-  DrawMap(mapwo);
+  DrawMap();
 //ans=query("see map?");
 
 
@@ -799,8 +833,7 @@ int ok =0;
 	     gflush();
 
             cval = getWoValue(wtpwo);
-  <<"%V $Ntaskpts $np $Witp <|$cval|>  \n"
-
+  <<"%V $np <|$cval|>  \n"
              if (cval != "") {
 
              wc = choice_menu("TP.m")
@@ -842,7 +875,7 @@ int ok =0;
               }
 	      Task_update =1;
 	     }
-             else if (Witp <= Ntaskpts)  {
+             else if (Witp == Ntaskpts)  {
 	     <<"this is add to end of current task list\n"
 
                    wc=choice_menu("ATP.m")
@@ -855,12 +888,12 @@ int ok =0;
                    <<"added TP\n"
 		    Ntaskpts++;
                   }
-		  DrawMap(mapwo);
+		  DrawMap();
              }
              else if (wc == "P")  {  // this is add
                   insert_tp(Witp);
                   Ntaskpts++;
-		  DrawMap(mapwo);
+		  DrawMap();
              }	     
                 Task_update =1;
           }
@@ -878,7 +911,7 @@ int ok =0;
          drawit = 0;
          dindex = rint(erx)
 
-<<"%V $erx, alt $ery  $dindex $IGCELE[dindex] $IGCLAT[dindex] $IGCLONG[dindex] \n";
+//<<"%V $erx, alt $ery  $dindex $IGCELE[dindex] $IGCLAT[dindex] $IGCLONG[dindex] \n";
          symx = IGCLONG[dindex];
 	 symy = IGCLAT[dindex];
 	 symem = IGCELE[dindex] ;
@@ -893,14 +926,7 @@ int ok =0;
 	  CL_init = 0;
 	   zoom_begin = erx;
        //  plotSymbol(mapwo,symx,symy,CROSS_,symsz,MAGENTA_,1,0,"copy");
-         plotSymbol(mapwo,symx,symy,CROSS_,symsz,MAGENTA_,1);
-
-         //  plotSymbol(vvwo,symx,symem,TRI_,symsz,BLUE_,1);
-	 //plot(mapwo,_WSYMBOL,symx,symy, 11,2,RED_);
-
-         //plot(mapwo,_WCIRCLE,symx,symy, 0.01,GREEN_,1);
-
-	  // save begin time for zoomin
+           plotSymbol(mapwo,symx,symy,CROSS_,symsz,MAGENTA_,1);
 
          }
 
@@ -911,10 +937,12 @@ int ok =0;
           dGl(rc_gl);
 	  	  CR_init = 0;
           plotSymbol(mapwo,symx,symy,DIAMOND_,symsz,LILAC_,1,90,"xor");		  
-//	  plotSymbol(mapwo,symx,symy,DIAMOND_,symsz,LILAC_,1,90,"xor");
 	  
           zoom_end = erx;
-
+           LatN = symy +0.7;
+           LatS = symy - 0.7;
+	   Task_update = 1;
+	   
           // save end time  for zoomin
        }
 
@@ -947,7 +975,7 @@ int ok =0;
                 ght = (mkm * km_to_feet) / LoD;
                 sa = msl + ght + 2000;
           	sWo(sawo,_WVALUE,"$nval %5.1f $msl $mkm $sa",_WREDRAW)
-               // DrawMap(mapwo);
+               // DrawMap();
              }
 
         }
@@ -978,16 +1006,15 @@ int ok =0;
 
 
         if (drawit || Task_update) {
-	     DrawMap(mapwo)
+	     DrawMap()
   	     drawTrace();
              drawTask(mapwo,GREEN_);
         }
 
      if ( Task_update ) {
 
-<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
-      checkWoTaskPts();
-      
+//<<"main %V $_scope $_cmfnest $_proc $_pnest\n"
+     
       taskDist();
 
       sWo(tdwo,_WVALUE,"$totalK km",_WUPDATE);
@@ -1000,11 +1027,11 @@ int ok =0;
 
 
 // scope  cmf_nest proc nest check ??
-          <<"main %V $_scope $_cmfnest $_proc $_pnest\n"
+ //         <<"main %V $_scope $_cmfnest $_proc $_pnest\n"
 
 
       TaskStats();
-          <<"main %V $_scope $_cmfnest $_proc $_pnest\n"
+//          <<"main %V $_scope $_cmfnest $_proc $_pnest\n"
 
        updateLegs();
 
@@ -1014,14 +1041,44 @@ int ok =0;
 
    //  sWi(vp,_WREDRAW,_WEO);
 
-    //DrawMap(mapwo);
+
     //drawTrace();
    // drawTask(mapwo,RED_);
  
 //	 sWo(mapwo,_WSHOWPIXMAP,_WEO);
-
-// checkWoTaskPts();
 }
+
+
+#if CPP
+}
+////////////////////////////////////////////////////////////////////////////////////////
+extern "C" int show_task(Svarg * sarg)  {
+
+ Str a0 = sarg->getArgStr(0) ;
+ Str ans;
+ a0.pinfo();
+
+Str Use_ ="compute task distance\n  e.g  showtask  gross laramie mtevans boulder  LD 40";
+
+
+ printf(" showTask app %s ",Use_.cptr() );
+ //cout << " paras are: "  << " a0 " <<  a0 << endl;
+
+    Uac *o_uac = new Uac;
+
+
+
+    o_uac->showTask(sarg);
+
+   //cout << "total D " << ::totalD    <<endl ;
+
+  }
+
+#endif
+
+
+
+
 
 
 exit_gs(1);

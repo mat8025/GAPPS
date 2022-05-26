@@ -288,7 +288,6 @@ Record RX;
    }
   }
 
-
    void computeGoalLine()
    {
  // <<"%V$StartWt $NextGoalWt\n"
