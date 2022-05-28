@@ -15,16 +15,15 @@
 ///////////////////// GLINES & SYMBOLS ///////////////////////////////
 //<<[_DB]"\n%(10,, ,\n)$DVEC \n"
 
-  pwt_gl = -1;
 
 
-COUT(pwt_gl)
+ COUT(pwt_gl)
 
   ext_gl  = cGl(extwo);
 
   sGl(ext_gl,_GLTXY,&DVEC,&EXTV,_GLHUE,GREEN_,_GLSYMLINE,TRI_,_GLEO);
 
-COUT(ext_gl)
+  COUT(ext_gl)
 
   int cardio_gl  = cGl(extwo);
 

@@ -14,9 +14,7 @@
 
 #include "uac.h"
 
-  int symsz =5;
-  Str mdy;
-  Vec<float> RS(25);
+ 
 
 
   void showTarget()
@@ -29,19 +27,19 @@
   //<<"%V $last_known_day $PWT $tday2 $StGoalWt \n";
   cout<<"showTarget()\n";
   
-  plotSymbol(wtwo,tday2,StGoalWt,TRI_,symsz,BLACK_,1);
+  plotSymbol(wtwo,tday2,StGoalWt,TRI_,Symsz,BLACK_,1);
 
   cout<<"plotSymbol\n";
 
-  plotSymbol(wtwo,gday,NextGoalWt,DIAMOND_,symsz,BLUE_);
+  plotSymbol(wtwo,gday,NextGoalWt,DIAMOND_,Symsz,BLUE_);
 
-  plotSymbol(wtwo,last_known_day,NextGoalWt,DIAMOND_,symsz,RED_,1);
+  plotSymbol(wtwo,last_known_day,NextGoalWt,DIAMOND_,Symsz,RED_,1);
 
-  plotSymbol(wtwo,last_known_day+2,PWT,DIAMOND_,symsz,GREEN_,1);
+  plotSymbol(wtwo,last_known_day+2,PWT,DIAMOND_,Symsz,GREEN_,1);
 
-  plotSymbol(wtwo,last_known_day+8,PWT7,DIAMOND_,symsz,LILAC_,1);
+  plotSymbol(wtwo,last_known_day+8,PWT7,DIAMOND_,Symsz,LILAC_,1);
 
-  plotSymbol(wtwo,last_known_day+15,PWT14,DIAMOND_,symsz,PINK_,1);
+  plotSymbol(wtwo,last_known_day+15,PWT14,DIAMOND_,Symsz,PINK_,1);
 
   hlng = (last_known_wt - NextGoalWt) / 0.43;
 
@@ -49,21 +47,21 @@
 
  // <<"%v $hlng\n";
 
-  plotSymbol(wtwo,last_known_day+hlng,NextGoalWt,STAR_,symsz, BLUE_);
+  plotSymbol(wtwo,last_known_day+hlng,NextGoalWt,STAR_,Symsz, BLUE_);
 
-  plotSymbol(wtwo,last_known_day+hlng,last_known_wt,CROSS_,symsz,GREEN_);
+  plotSymbol(wtwo,last_known_day+hlng,last_known_wt,CROSS_,Symsz,GREEN_);
  // <<"$_proc %v $hlng\n"
 
-  plotSymbol(wtwo,last_known_day+hlng,GoalWt,STAR_,symsz, RED_);
+  plotSymbol(wtwo,last_known_day+hlng,GoalWt,STAR_,Symsz, RED_);
 
-  plotSymbol(wtwo,last_known_day+hlng,last_known_wt,CROSS_,symsz,GREEN_);
+  plotSymbol(wtwo,last_known_day+hlng,last_known_wt,CROSS_,Symsz,GREEN_);
 
   }
 
 sWo(wtwo,_WSHOWPIXMAP,_WEO);
 
 cout<<"Done showTarget\n";
-  //plotSymbol(wtwo,targetday,GoalWt,STAR_,symsz, LILAC_);
+  //plotSymbol(wtwo,targetday,GoalWt,STAR_,Symsz, LILAC_);
 //  dGl(gw_gl);
 //sc_startday.pinfo();
 
@@ -232,7 +230,7 @@ cout<<"Done showTarget\n";
 
   sWo(extwo,_WAXNUM,AXIS_LEFT_,_WFLUSH);
 
-  sWo(wtwo,_WYSCALES,wpt(170,215),_WEO);
+  sWo(wtwo,_WYSCALES,wpt(160,220),_WEO);
 
     sWo(wtwo,_WAXNUM,AXIS_LEFT_,_WFLUSH);
   //sWo(extwo,_WAXNUM,2,0,sc_endday,20,10)
@@ -281,6 +279,9 @@ cout<<"DrawScreens\n";
 //<<"%V $sc_zstart $minWt $sc_zend $upperWt\n"
  // sWo(wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0,_WFLUSH);
 
+  COUT(sc_zstart);
+  COUT(sc_zend);
+  
   sWo(wedwos,_WXSCALES,wpt(sc_zstart,sc_zend),_WFLUSH);
   
 
@@ -305,18 +306,18 @@ cout <<"Draw Screen\n";
 
   sWo(calwo,_WFONT,F_SMALL_,_WEO);
       /// these need to be a separate wo to contain key  symbol and text
-     // plot(calwo,_Wkeysymbol,0.78 ,0.9,DIAMOND_,symsz,BLUE_,1);
+     // plot(calwo,_Wkeysymbol,0.78 ,0.9,DIAMOND_,Symsz,BLUE_,1);
 
       //Text(calwo,"Calories Burnt", 0.8,0.9,1)      
 
- // plotSymbol(calwo,_WKEYSYMBOL,wpt(0.78 ,0.8),DIAMOND_,symsz,RED_,1);
+ // plotSymbol(calwo,_WKEYSYMBOL,wpt(0.78 ,0.8),DIAMOND_,Symsz,RED_,1);
 
   sWo(calwo,_WTEXTR,"Calories Ate", wpt(0.8,0.82),1,0,BLACK_,_WEO);
-     // plot(calwo,_Wkeysymbol,0.78 ,0.7,TRI_,symsz,RED_,1,_Wfonthue,WHITE_);      
+     // plot(calwo,_Wkeysymbol,0.78 ,0.7,TRI_,Symsz,RED_,1,_Wfonthue,WHITE_);      
       //Text(calwo,"Carbs Ate", 0.8,0.72,1)
 
   sWo(extwo,_WFONT,F_SMALL_,_WEO);
-      //plot(extwo,_Wkeysymbol,0.78,0.7,TRI_,symsz,GREEN_,1);
+      //plot(extwo,_Wkeysymbol,0.78,0.7,TRI_,Symsz,GREEN_,1);
 
   sWo(extwo,"Exercise Time (mins)",wpt( 0.8,0.7),1,0,RED_,_WEO);
 
@@ -385,8 +386,8 @@ cout <<"Draw Screen\n";
 
  // sWo(tw_wo,_WMOVE,wpt(targetday,NextGoalWt),wtwo,_WREDRAW,_WEO); // ?? parent wo
 
-  CR_init = 1;
-  CL_init = 1;
+  Wex_CR_init = 1;
+  Wex_CL_init = 1;
  //sc_startday.pinfo();
    cout<<"Done drawScreens\n";
  }
@@ -469,54 +470,6 @@ cout <<"Draw Screen\n";
   }
 //////////////////////////////////////////////////////////////////////
 
-  void adjustQrt(int updown)
-  {
-// find mid-date 
-// adjust to a 90 day resolution
-// shift up/down by 30
-   int wedwos[] = { wtwo, calwo,  carbwo, extwo,-1  };
-   float rx,ry,rX,rY;
-
-   RS=wgetrscales(wtwo);
-// just plot at mid - the date
-
-  mid_date = (RS[3] - RS[1])/2 + RS[1];
-
-  jd= mid_date +Bday;
-
-  the_date = Julmdy(jd);
-
-  if (updown > 0) {
-
-  rx = mid_date -30;
-
-  rX = mid_date +60;
-
-  }
-
-  if (updown < 0) {
-
-  rx = mid_date -60;
-
-  rX = mid_date +30;
-
-  }
-
-  sc_startday = rx;
-
-  sc_endday = rX;
-
-  //sWo(wedwos,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
-
-  sWo(wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0,_WEO);
-
-  sWo(swo,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0,_WEO);
-
-  drawScreens();
-
-  }
-//========================================================
-
 
 
   void resize_screen()
@@ -547,13 +500,15 @@ cout <<"Draw Screen\n";
   COUT(mdy);
   
   //sWo(dtmwo,_WVALUE2 ,mdy,_WREDRAW );
-    woSetValue(dtmwo,mdy);
+  woSetValue(dtmwo,mdy);
 
-  wtm = 0.0;
-
+  wtm = WTVEC[dayv];
+  cbm = CALBURN[dayv];
+  xtm = EXTV[dayv];
+  
   woSetValue(wtmwo,wtm);
-    woSetValue(cbmwo,0.0);
-        woSetValue(xtmwo,0.0);
+  woSetValue(cbmwo,cbm);
+  woSetValue(xtmwo,xtm);
 
   sWo(wtmwo,_WREDRAW,_WEO);
   sWo(dtmwo,_WREDRAW,_WEO);

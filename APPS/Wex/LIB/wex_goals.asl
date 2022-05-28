@@ -20,13 +20,13 @@
 
 
    
-   Goals.Split("04/29/2022 05/31/2022 175");
+   Goals.Split("05/20/2022 07/30/2022 175");
 
 //<<"Setting goals $Goals\n"
 
    
    
-   Goals2.Split("04/29/2022 05/16/2022 194");
+   Goals2.Split("05/20/2022 06/30/2022 185");
 ////////////////////==============/////////////////
 
 
@@ -52,7 +52,8 @@ float   DX_MEW = GoalWt+5;  // max dx effort above
 	  
 //<<"%V $tjd $Jan1 $Sday $targetday  $tarxday; \n"
 
-
+   COUT(targetday)
+   
    int NextGoalWt = atoi(Goals[2]);
 
    long Sday2 = Julian(Goals2[0]) -Jan1 ; // start date

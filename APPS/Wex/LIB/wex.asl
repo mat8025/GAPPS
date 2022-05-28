@@ -35,6 +35,7 @@
 #include "gthread.h"
 #include "paraex.h"
 #include "scope.h"
+#include "swinwob.h"
 #include "debug.h"
 
 #include "uac.h"
@@ -67,9 +68,17 @@ class Svar;
 
 #include "tbqrd.asl"
 
+
+
  //float DVEC = vgen(FLOAT_,400,1,1);
 
-  // all vecs should become Vec
+ ///////////////////////////////// GLOBALS /////////////////////////////////
+ //////////////// put thme ahead of include asl modules //////////////
+ ///   all procs/funcs  should be after globals and before main
+ //
+
+
+
   Str ans="xyz";
   
   Vec<double> Vtst(10,10,1);
@@ -119,7 +128,7 @@ class Svar;
   Vec<float> FIBRCON(400);
 ////////////////////////////////////////////////////
 
-  int Nrecs;
+  int Wex_Nrecs;
   
   float Nsel_exemins = 0.0;
 
@@ -136,7 +145,7 @@ class Svar;
 
   float minWt = 150;
 
-  float upperWt = 225;
+  float upperWt = 235;  // this is way too much
 //StartWt = 205;
 // rates per min
 
@@ -144,7 +153,7 @@ class Svar;
 
  float   StartWt = 215;
 
-float   MinWt = 160;
+ float   MinWt = 160;
 
   Str today;
 
@@ -179,13 +188,13 @@ float   MinWt = 160;
 
 Svar GoalsC;
    
-//GoalsC.Split("01/01/2022 03/31/2022 175"); // does not work
+//GoalsC.Split("01/01/2022 03/31/2022 175"); // has to be in main 
 
   int NCCobs =0;
   int NCCrecs = 0;
 
-int CR_init = 0;
-int CL_init = 0;
+int Wex_CR_init = 0;
+int Wex_CL_init = 0;
 
 Record RX;
 
@@ -225,22 +234,35 @@ Record RX;
   long jd;
   Str the_date;
   float hlng;
-  
+
+  Str mdy;
+  Vec<float> RS(25);
+
+
+//////////////////// GLINES /////////////////
+  int calc_gl,calb_gl,carb_gl,fibre_gl,fat_gl,prot_gl,se_gl,bp_gl,pwt_gl,ext_gl, gw_gl,wt_gl,lc_gl,rc_gl;
+
+
+
+#include "wex_compute.asl"
+
+#include "wex_read.asl"
+
+
+
+
+
+
+
+
 //////////////////////  SCREEN ///////////////////////////
 #include "tbqrd.asl"
 
   int wScreen = 0;
 //////////////////////  WOS ///////////////////////////
 
-  int vp,vp1;
 
-  int wtwo,calwo,calcwo,carbwo,extwo;
-  int swo,tw_wo,zinwo,zoomwo;
-  int nobswo,xtwo,xbwo,xlbswo,dlbswo;
-  int dtmwo,obswo,cbmwo,xtmwo,sdwo,gdwo,gwtwo,wtmwo;
 
-//////////////////// GLINES /////////////////
-  int calc_gl,calb_gl,carb_gl,fibre_gl,fat_gl,prot_gl,se_gl,bp_gl,pwt_gl,ext_gl, gw_gl,wt_gl,lc_gl,rc_gl;
 
   int Symsz= 5;
 //=========================================
@@ -268,19 +290,15 @@ Record RX;
 
  Gevent gev;
 
-#include "wex_compute.asl"
 
-#include "wex_read.asl"
-
-#include "wex_draw.asl"
-
-#include "wex_callbacks.asl"
   int N = 1000;
-//float DVEC[200+];
-//  let's use 400 to contain the year [1] will be first day
-// [365] or [366] will be the end year
 
-   void Onwards()
+
+//  float DVEC[200+];
+//  let's use 400 to contain the year [1] will be first day
+//  [365] or [366] will be the end year
+
+ void Onwards()
   {
    ans= query("onwards n? ");
    if (ans == "n") {
@@ -350,11 +368,15 @@ Record RX;
 //==================================//
 
 
+  int vp,vp1;
+  int wtwo,calwo,calcwo,carbwo,extwo;
+  int swo,tw_wo,zinwo,zoomwo;
+  int nobswo,xtwo,xbwo,xlbswo,dlbswo;
+  int dtmwo,obswo,cbmwo,xtmwo,sdwo,gdwo,gwtwo,wtmwo;
 
 
-//#include "wex_screen.asl"
-
-//#include "wex_draw.asl"
+#include "wex_draw.asl"
+#include "wex_callbacks.asl"
 
  ///////////////////////////////////////////////////
   void Uac::Wex(Svarg * sarg)
@@ -370,6 +392,13 @@ Record RX;
 
 //    Svar Mo;
   // Mo scope  - wex_task
+
+
+
+
+
+
+
 
 /////////////////////////////////////////////////  SET GOALS  ////////////////////////////////////////
 ///
@@ -412,18 +441,21 @@ cout << " Jan1 " << Jan1 << " Yday " << Yday  << endl;
    Str stmp;
    Svar Goals;
    
-   Goals.Split("01/01/2022 03/31/2022 175");
+   Goals.Split("05/21/2022 07/31/2022 175");
 
 //<<"Setting goals $Goals\n"
 
    Svar Goals2;
    
-   Goals2.Split("03/21/2022 04/09/2022 194");
+   Goals2.Split("05/21/2022 06/30/2022 185");
 ////////////////////==============/////////////////
 
 // move these done 10 when reached -- until we are at desired operating weight!
 
 
+   COUT(Goals);
+
+//ans=query("Goals ?");
 
    long tjd =  Julian(Goals[0]) ;
    
@@ -458,6 +490,16 @@ COUT(gday);
 
 //   Onwards();
 
+  sc_startday = (jtoday - Jan1) -7;
+
+  if (sc_startday <0)
+     sc_startday =0;
+
+  sc_endday = targetday + 7;
+
+    sc_endday = sc_startday + 90;
+//   <<"%V$sc_startday $targetday $sc_endday \n"
+
 
 
 
@@ -477,6 +519,12 @@ COUT(gday);
      }
 
    kdays = k;
+
+#include "wex_screen.asl"
+
+#include "wex_glines.asl"
+
+
 /////////////////////////////////////////////////  READ RECORDS ////////////////////////////////////////
   int n = 0;
 
@@ -486,7 +534,7 @@ COUT(gday);
 
   Mo.Split ("JAN,FEB,MAR,APR ,MAY,JUN, JUL, AUG, SEP, OCT, NOV , DEC",44);
 
-  GoalsC.Split("01/01/2022 03/31/2022 175");
+  GoalsC.Split("05/01/2022 06/30/2022 175");
 
 
   maxday = Julian("04/09/2049") -Bday;
@@ -512,13 +560,13 @@ COUT(GoalsC);
 
 cout <<" readRecord \n";
 
-  Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST);  // no back ptr to Siv?
+  Wex_Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST);  // no back ptr to Siv?
 
   // reader in readRecord closes file
 
 //  RX.pinfo();
 
-COUT (Nrecs);
+COUT (Wex_Nrecs);
 
 
 
@@ -528,7 +576,7 @@ COUT (Nrecs);
 
   //<<[_DB]"$RX[Nrecs-2]\n";
 
-  rx= RX[Nrecs-1];
+  rx= RX[Wex_Nrecs-1];
 
 cout << "last rec " << rx << endl;
 
@@ -598,15 +646,7 @@ COUT (nrd) ;
 
 //   init_period = 32;
 
-  sc_startday = (jtoday - Jan1) -7;
 
-  if (sc_startday <0)
-     sc_startday =0;
-
-  sc_endday = targetday + 7;
-
-    sc_endday = sc_startday + 90;
-//   <<"%V$sc_startday $targetday $sc_endday \n"
 
   float gwt = NextGoalWt;
 
@@ -655,9 +695,7 @@ COUT(ae);
 //ans=query("proceed?");
 
 
-#include "wex_screen.asl"
 
-#include "wex_glines.asl"
 
 //ans=query("proceed?");
 
@@ -745,20 +783,12 @@ cout<<"Exit Wex\n";
 
   int k = 0;
 
-   Svar GoalsB;
+    Svar GoalsB;
    
-    GoalsB.Split("01/01/2022 03/31/2022 175");
+    GoalsB.Split("05/21/2022 07/31/2022 175");
 
 
 #include "wex_types.asl"
-
-
-
-
-
-
-
-
 
 
   Uac *o_uac = new Uac;
@@ -795,213 +825,3 @@ cout<<"Exit Wex\n";
 //
 
 ;//==============\_(^-^)_/==================//;
-
-/////////////////////  part 1 ////////////////////////////
-/*
-
-//<<"%V$nrd\n"
-////////////// PLOT GOAL LINE  ///////////////////////////////////////////
-//    sc_endday = lday + 10
-//    sc_endday = 75 * 365
-// 
-
-  init_period = 32;
-
-  long sc_startday = (jtoday - Jan1) -20;
-
-  if (sc_startday <0)
-
-  sc_startday =0;
-
-  long sc_endday = targetday + 10;
-//   <<"%V$sc_startday $targetday $sc_endday \n"
-
-  gwt = NextGoalWt;
-
-  computeGoalLine();
-////////////////////////////////////////////////////////////////////////
-
-  sw2 = 205;
-
-  gw2 = 170;
-
-  //cf(A);
-
-#include "wex_foodlog.asl"
-//////////////////   Predicted Wt   //////////////////////////////////
-// (cal_consumed - cal_burn) / 4000.0    is wt gain in lbs
-//  if no cal_burn registered for the day assume no exercise
-//  if no cal_consumed assume  typical day_burn + 200 
-//         first_k = ty_gsday
-      //   first_k = 220
-/////////////////////////////////////////////////////////////////////
-
-  AVE_EXTV = vsmooth(EXTV,7);
-//<<[_DB]" Done calcs !\n"
-//<<[_DB]"$Nxy_obs total exeburn %6.2f $tot_exeburn  cals  $(tot_exeburn/4000.0) lbs in $(tot_exetime/60.0) hrs\n"
-#include "wex_compute.asl";
-
-  PWT=predictWL();
-//////////////////// DISPLAY /////////////////////////////
-#include "graphic.asl"
-
-  msg ="x y z"     ; // event vars;
-
-  msgw =split(msg);
-//<<[_DB]"%V$msgw \n"
-
-
-  titleVers();
-
-//ans=query("proceed?")
-//sleep(0.1)
-//<<"%V $_eloop\n"
-///////////////////////// PLOT  ////////////////////////////////////////////
-//  
-
-
-
-
-  float Rinfo[30];
-//<<[_DB]"%(7,, ,\n)$CALBURN \n"
-//<<[_DB]"%(7,, ,\n)$CALCON \n"
-
-  int m_num = 0;
-
-  int button = 0;
-
-  Keyw = "";
-
-  lcpx = sc_startday;
-
-  rcpx = sc_endday;
-
-  sGl(lc_gl,_cursor,lcpx,0,lcpx,300);
-
-  sGl(rc_gl,_cursor,rcpx,0,rcpx,300);
-
-  ZIN();
-
-  woname = "";
-
-//  showTarget();
-
-  titleVers();
-
-  _DB=-1;
-
- // <<"%V $_eloop\n";
-    // drawScreens();
-//ans=query("proceed?")
-
-  resize_screen();
-
- //qq
-   sWo(tw_wo,_move,targetday,NextGoalWt,gwo,_redraw));
-
-  sWi(vp,_redraw);
-
-  drawScreens();
-//ans=query("%V$last_known_day")
-
-  getDay(last_known_day);
-
-  CR_init = 1; sGl(rc_gl,_cursor,last_known_day,0,last_known_day,300, CR_init); CR_init = 0;
-//mc=getMouseEvent();
-// _ekeyw.pinfo();
-//_ename.pinfo();
-
-  while (1) {
-
-  m_num++;
-//sleep(0.05)
-
-//   if (m_num == 1) {
-//      drawScreens();
-     // setCursors();
-//       }
-
-
-  msg =eventWait();
-//<<[2]"$m_num $msg  $_ename $_ewoname\n"
-//_ekeyw.pinfo();
-//_ename.pinfo();
-
-  if (_ename == "PRESS") {
-      // ans=iread(">>");
-
-//     if (_ewoname != "") {
-//<<"calling function via <|$_ewoname|> !\n"
-//        $_ewoname()
-//        }
-
-
-
-   }
-
-  if (_emsg == "EXIT") {
-
-   <<"leaving WEX !\n";
-
-   break;
-
-   }
-
-  if (_ewoname == "WTLB") {
-
-   WTLB();
-
-   }
-
-  else if (_ewoname == "RESIZE") {
-
-   drawScreens();
-
-   }
-
-  else if (_ewoname == "REDRAW") {
-
-   drawScreens();
-
-   }
-
-  else if (_ewoname == "StartDay") {
-
-   setGoals();
-
-   }
-
-  else if (_ewoname == "GoalDay") {
-
-   setGoals();
-
-   }
-
-  else if (_ewoname == "WtGoal") {
-
-   setGoals();
-
-   }
-
-  else if (_ewoname == "ZIN") {
-
-   ZIN();
-
-   }
-
-  else if (_ekeyw != "") {
-
-   <<"calling <|${_ekeyw}|>  $(typeof(_ekeyw))\n";
-
-   $_ekeyw();
-
-   }
-
-  <<[_DB]"%V$lcpx $rcpx \n";
-
-  WXY=WoGetPosition(tw_wo);
-//<<"$WXY \n"
-    //   place_curs( gwo,100,5,1,1)
-
-  }
-*/  

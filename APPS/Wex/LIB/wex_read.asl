@@ -13,8 +13,8 @@
 ;//----------------<v_&_v>-------------------------//;                                                                                                
 
   
-  void fillInObsVec()
-  {
+void fillInObsVec()
+{
 
 
 
@@ -68,7 +68,7 @@ COUT(mywt);
 
 //COUT(tex);
 
-  EXTV[iyd] = tex; 
+  EXTV[Yd] = tex; 
 
 //COUT(EXTV[iyd]);
 
@@ -83,7 +83,7 @@ COUT(mywt);
   BPVEC[Yd] =  atof(Col[j++]);
 // any extra activities ?
 
-  tex = EXTV[iyd];
+  tex = EXTV[Yd];
 
   float  exer_burn =   walk * w_rate;
 
@@ -99,7 +99,7 @@ COUT(mywt);
 
   exer_burn += wex * wex_rate;
 
-  EXEBURN[iyd] =  exer_burn;
+  EXEBURN[Yd] =  exer_burn;
 
   tot_exeburn += exer_burn;
 
@@ -129,12 +129,12 @@ COUT(mywt);
   
   int got_start = 0;
 
-COUT(Nrecs);
+COUT(Wex_Nrecs);
 
 // access of record row Rx(i)
 // access of record Col Rx(i,j)
 
-  while (tl < Nrecs) {
+  while (tl < Wex_Nrecs) {
 
 
   Col= RX(tl); 
@@ -177,14 +177,14 @@ COUT2(tl,day);
   tl++;
 //<<"%V $tl\n"
 
-  if (tl >= Nrecs) {
+  if (tl >= Wex_Nrecs) {
 
   break;
 
   }
 
   }
-//<<[_DB]"$Nrecs there were $tl $Nobs measurements \n"
+//<<[_DB]"$Wex_Nrecs there were $tl $Nobs measurements \n"
 
 cout << "Nobs " << Nobs << endl;
  COUT(Nobs) ;

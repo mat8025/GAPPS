@@ -12,10 +12,64 @@
  */ 
 ;//----------------<v_&_v>-------------------------//;                                                                                              
 
+ void drawScreens();
+ void showWL(long ws, long we);
+
+
+  void adjustQrt(int updown)
+  {
+// find mid-date 
+// adjust to a 90 day resolution
+// shift up/down by 30
+   int wedwos[] = { wtwo, calwo,  carbwo, extwo,-1  };
+   float rx,ry,rX,rY;
+
+   RS=wgetrscales(wtwo);
+// just plot at mid - the date
+
+  mid_date = (RS[3] - RS[1])/2 + RS[1];
+
+  jd= mid_date +Bday;
+
+  the_date = Julmdy(jd);
+
+  if (updown > 0) {
+
+  rx = mid_date -30;
+
+  rX = mid_date +60;
+
+  }
+
+  if (updown < 0) {
+
+  rx = mid_date -60;
+
+  rX = mid_date +30;
+
+  }
+
+  sc_startday = rx;
+
+  sc_endday = rX;
+
+  //sWo(wedwos,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
+
+  sWo(wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0,_WEO);
+
+  sWo(swo,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0,_WEO);
+
+  drawScreens();
+
+  }
+//========================================================
+
+
+
  void EXIT()
   {
-  cout << "exit ?\n";
-  exit_si();
+   cout << "exit ?\n";
+   exit_si();
     // exit_gs();
   }
 
@@ -24,18 +78,18 @@
   {
 //<<" In $_proc\n"
 
-  adjustQrt(-1);
+      adjustQrt(-1);
 
-     showWL(sc_zstart, sc_zend);
+       showWL(sc_zstart, sc_zend);
 
   }
 
   void QRTI()
   {
 
-  adjustQrt(1);
+    adjustQrt(1);
 
-  drawScreens();
+    drawScreens();
 
      showWL(sc_zstart, sc_zend);
 
@@ -120,17 +174,17 @@ COUT(button);
        if (Button == 1) {
          lcpx = Erx;
 //	<<"CURSOR %V $lcpx\n"
-         sGl(lc_gl,_GLCURSOR,rbox(lcpx,0,lcpx,300), CL_init,_GLEO);
-	 CL_init = 0;
-        getDay(lcpx);
-COUT(lcpx);
+         sGl(lc_gl,_GLCURSOR,rbox(lcpx,0,lcpx,300), Wex_CL_init,_GLEO);
+	 Wex_CL_init = 0;
+         getDay(lcpx);
+         COUT(lcpx);
         }
 
        if (Button == 3) {
          rcpx = Erx;
 
-         sGl(rc_gl,_GLCURSOR,rbox(rcpx,0,rcpx,310), CR_init,_GLEO);
-         CR_init = 0;
+         sGl(rc_gl,_GLCURSOR,rbox(rcpx,0,rcpx,310), Wex_CR_init,_GLEO);
+         Wex_CR_init = 0;
         // getDay(rcpx);
        }
 

@@ -12,10 +12,12 @@
  */ 
 ;//----------------<v_&_v>-------------------------//;                                                                                                 
 
-  ;
+ 
   
 //////////////////  WED SCREEN --- WINDOWS ////////////////
 //ans=query("graphic?\n")
+
+
 
 
   Str vptitle = "Wex";
@@ -37,11 +39,11 @@
 
    sWi(vp1,_WDRAWON,_WPIXMAPON,_WSAVE,_WBHUE,WHITE_,_WEO);
 
-  CL_init = 1;
+  Wex_CL_init = 1;
 
-  CR_init = 1;
+  Wex_CR_init = 1;
 
-cout<<"Wins done\n";
+  cout<<"Wins done\n";
 ////////////////  WOBS ///////////////
 
 
@@ -108,11 +110,13 @@ COUT(calwo);
 
   sWo(wedwos,_WBORDER,_WCLIPBORDER,BLACK_,_WDRAWON,_WPIXMAPON,_WCOLOR,BLUE_,_WREDRAW,_WEO);
 
-
+COUT(sc_end);
 
   sWo(extwo,_WSCALES,wbox(sc_startday,110,sc_end,250),_WEO);
 
 cout <<"SCALES " << sc_startday << " sc_end " <<sc_end << endl;
+
+//ans=query("Scales ?");
 
 //  sWo(extwo,_WSAVESCALES,0,_WEO);
 
@@ -156,7 +160,7 @@ cout<<"scales " << sc_startday << " sc_end " << sc_end << " bp_upper " << bp_upp
 
   //<<"SCALES %V$sc_startday $sc_endday $carb_upper\n";
 
-  sWo(wtwo,_WSCALES,wbox(sc_startday,155,sc_end,220),_WEO);
+  sWo(wtwo,_WSCALES,wbox(sc_startday,155,sc_end,250),_WEO);
 
 
   int allwo[] = {wtwo, calwo,  extwo , carbwo,swo,-1};

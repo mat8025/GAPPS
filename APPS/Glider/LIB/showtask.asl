@@ -34,6 +34,20 @@
 
 using namespace std;
 
+#include "si.h"
+#include "parse.h"
+#include "codeblock.h"
+#include "sproc.h"
+#include "sclass.h"
+#include "declare.h"
+#include "gthread.h"
+#include "paraex.h"
+#include "scope.h"
+#include "debug.h"
+
+#include "uac.h"
+
+
 #endif
 
 
@@ -95,7 +109,8 @@ int Maxtaskpts = 13;
   
 float LoD = 35.0;
 
-
+int r_index;
+int i;
 
 int Nlegs = 3;
 
@@ -139,6 +154,31 @@ cout << " para[1] is:  "  << sa.cptr(1) << endl;
 
 //cout << " para[2] is:  "  << sa.cptr(2) << endl;
 #endif
+
+ int na;
+ 
+#if ASL
+
+ Svar sa;
+
+// <<" na $_clargc \n"
+ na = _clargc;
+// <<" na $_clarg[1]  $_clarg[2] \n"
+
+ sa = _clarg;
+
+<<"args are $sa \n"
+<<"0 $sa[0] \n"
+
+<<"1 $sa[1] \n"
+
+<<"2 $sa[2] \n"
+
+<<"3 $sa[3] \n"
+
+!a
+#endif
+
 
 Str tp_file;
 int use_cup = 1;
@@ -184,8 +224,8 @@ else {
   cf(AFH);
 
 
-  Nrecs = Caz(RX);
-  Ncols = Caz(RX,1);
+//  Nrecs = Caz(RX);
+//  Ncols = Caz(RX,1);
 
 //<<"num of records $Nrecs  num cols $Ncols\n";
 
@@ -197,9 +237,9 @@ for (i= 0; i <= 10 ; i++) {
 
 //WH=searchRecord(RX,"AngelFire",0,0);
 
-  index= RX.findRecord("AngelFire",0,0);
+  r_index= RX.findRecord("AngelFire",0,0);
 
-  printf("AngelFire @ %d\n",index);
+  printf("AngelFire @ %d\n",r_index);
 
 
 //<<"AngelFire @ $WH \n"
@@ -207,15 +247,15 @@ for (i= 0; i <= 10 ; i++) {
 
 
 /*
-index = WH[0][0]
-<<"%V $index\n"
+r_index = WH[0][0]
+<<"%V $r_index\n"
 
-place = RX[index][0]
-lat = RX[index][2]
+place = RX[r_index][0]
+lat = RX[r_index][2]
 longv = RX[WH[0][0]][3]
 
-<<"$RX[index][0] \n"
-<<"$RX[index][2] \n"
+<<"$RX[r_index][0] \n"
+<<"$RX[r_index][2] \n"
 <<"%V $place $lat $longv\n"
 
 
@@ -258,7 +298,7 @@ while (1) {
 
 
     before = ftell(AFH);
-    c1 = fgetc(AFH,-1);
+    c1 = getNextC(AFH,-1);
     after = ftell(AFH);
 
 
@@ -266,9 +306,9 @@ while (1) {
 
     if (use_cup) {
 
-       nwr = Wval.readWords(AFH,0,',')
+       nwr = Wval.readWords(AFH,0,',');
 
-       <<"%V $Ntp $nwr  $AFH $Wval\n";
+       //<<"%V $Ntp $nwr  $AFH $Wval\n";
 
 
 
@@ -276,7 +316,7 @@ while (1) {
 	       
     }
     else {
-            nwr = Wval.readWords(AFH)
+            nwr = Wval.readWords(AFH);
     }
             if (nwr == -1) {
 	      break;
@@ -298,7 +338,7 @@ while (1) {
          Wtp[Ntp].TPset(Wval);
       }
 
-<<"$Ntp $AFH  $Wval \n"
+//<<"$Ntp $AFH  $Wval \n"
              Ntp++;
 
 
@@ -307,7 +347,7 @@ while (1) {
 
 
    if (AFH != KAFH) {
-<<"fix file handle $AFH != $KAFH\n";
+//<<"fix file handle $AFH != $KAFH\n";
     AFH = KAFH;
 
    }
@@ -316,7 +356,7 @@ while (1) {
        break;
 }
 
-<<" Read $Ntp turnpts \n"
+printf(" Read $Ntp %d turnpts \n",Ntp);
 
  if (Ntp < 3) {
   exit("BAD turnpts");
@@ -364,8 +404,9 @@ if (is_an_airport) {
 
 
 
-Task_update =1
-Units = "KM"
+int Task_update =1;
+
+//Units = "KM";
 
 int tp_wo[20];
 int gtp_wo[20];
@@ -377,12 +418,11 @@ int ltp_wo[20];
 char MS[240];
 char Word[128];
 char Long[128];
-num_tpts = 700;
+int num_tpts = 700;
 
 float R[10];
 
-
-    Have_igc = 0;
+int Have_igc = 0;
 
 
 
@@ -401,8 +441,17 @@ Svar Tskval;
 Str targ;
 Str cval ="?";
 Str igc_fname ="xyz";
-na = argc()
- <<"na $na\n";
+
+
+
+
+#if CPP
+  na = sa.getNarg();
+#else
+  na = _clargc;
+#endif
+ printf("na %d\n",na);
+
  int ai =0;
 
 
@@ -413,18 +462,20 @@ na = argc()
 
  while (1) {
 
-//<<"$ai $_clarg[ai]\n"
+<<"$ai $_clarg[ai]\n"
 
           ai++;
-          targ = getArgStr()
-//<<"%V $ai $targ \n"	  
+          //targ = sa.cptr(ai);
+	  targ = sa[ai];
+<<"%V $sa[ai]  $ai $targ \n"
+!a
 	  if (targ == "task") {
-            TaskType = GetArgStr();
+            TaskType = sa.cptr(ai);
 	    ai++;
 //	    <<"set %V $TaskType \n"
           }
       else if (targ == "igc") {
-           igc_fname = getArgStr();
+           igc_fname = sa.cptr(ac);
 	   ai++;
 	   
         Have_igc = 1;
@@ -436,25 +487,25 @@ na = argc()
        }
        
       }
-          else {
+       else {
 	  if (slen(targ) > 1) {
-          index=RX.findRecord(targ,0,0);
+          r_index=RX.findRecord(targ,0,0);
 	 // <<"%V $targ $WH\n"
 
-          if (index >=0) {
+          if (r_index >=0) {
 
-           ttp = RX[index];
+           ttp = RX[r_index];
 
 //<<"$ttp \n"
 
-          Taskpts[Ntaskpts] = index;
-<<" $Ntaskpts found $targ  $index  $Taskpts[Ntaskpts]\n"
+          Taskpts[Ntaskpts] = r_index;
+//<<" $Ntaskpts found $targ  $r_index  $Taskpts[Ntaskpts]\n"
 
            Ntaskpts++;
 
            }
           else {
-<<"Warning can't find $targ as a TP - skipping \n"
+printf("Warning can't find $targ as a TP - skipping \n");
 
            }
        }
@@ -479,9 +530,9 @@ na = argc()
 // set a default task
 if (Ntaskpts == -1) {
 
-svar targ_list = {"eldorado","casper","rangely","eldorado"}
+Svar targ_list = {"eldorado","casper","rangely","eldorado"};
     sz= Caz(targ_list);
-<<"$sz : $targ_list \n"
+//<<"$sz : $targ_list \n"
 
 //<<" $targ_list[1] \n"
         targ = targ_list[2]
@@ -491,14 +542,14 @@ svar targ_list = {"eldorado","casper","rangely","eldorado"}
 
        targ = targ_list[i]
        //<<"$i  <|$targ|> \n"
-         index=findRecord(targ,0,0);
+         r_index=findRecord(targ,0,0);
 
-          if (index >=0) {
-          ttp = RX[index];
+          if (r_index >=0) {
+          ttp = RX[r_index];
           //<<"$ttp \n"
-          Taskpts[Ntaskpts] = index;
+          Taskpts[Ntaskpts] = r_index;
 
-           <<"%V $index $Taskpts[Ntaskpts] \n";
+           //<<"%V $r_index $Taskpts[Ntaskpts] \n";
            Ntaskpts++;
           }
     }
@@ -514,8 +565,8 @@ Nlegs = Ntaskpts;
 //Taskpts.pinfo()
 
    for (k= 0; k < Ntaskpts; k++) {
-       index = Taskpts[k];
-<<"%V $k $index $Taskpts[k] \n";
+       r_index = Taskpts[k];
+//<<"%V $k $r_index $Taskpts[k] \n";
    }
 
 //   for (k= 1; k < 15; k++) {
@@ -527,7 +578,7 @@ Nlegs = Ntaskpts;
 //Taskpts.pinfo()
 
 
-<<" Now print task\n"
+//<<" Now print task\n"
 
 
 
@@ -535,7 +586,7 @@ Nlegs = Ntaskpts;
 
       for (i = 0; i < Ntaskpts ; i++) {
          MSL = Wleg[i].msl;
-       <<"Stat $i $MSL $Wleg[i].dist   $Wleg[i].fga\n"
+      // <<"Stat $i $MSL $Wleg[i].dist   $Wleg[i].fga\n"
       }
 
 
@@ -547,8 +598,8 @@ Nlegs = Ntaskpts;
 <<"after include  proc \n"
 
    for (k= 0; k < Ntaskpts; k++) {
-       index = Taskpts[k];
-<<"%V $k $index $Taskpts[k] \n";
+       r_index = Taskpts[k];
+<<"%V $k $r_index $Taskpts[k] \n";
    }
 */
 
@@ -612,9 +663,8 @@ Str place;
 
 
 
-    sWo(tpwos,_Wredraw);
-    sWo(tpwo[1],_Wredraw);
-    sWo(tpwo[2],_Wredraw);
+    sWo(tpwo,_Wredraw);
+
 
 
      c= "EXIT"
@@ -899,8 +949,8 @@ int ok =0;
           }
 	   
 
-                 sWo(tpwos,_WREDRAW);
-                 sWo(legwos,_WREDRAW,_WEO);		 
+                 sWo(tpwo,_WREDRAW);
+                 sWo(legwo,_WREDRAW,_WEO);		 
                 // sWo(wtpwo,_Wcxor);
                  showTaskPts();
        }
@@ -1035,8 +1085,8 @@ int ok =0;
 
        updateLegs();
 
-       sWo(tpwos,_WREDRAW);
-       sWo(legwos,_WREDRAW);		 
+       sWo(tpwo,_WREDRAW);
+       sWo(legwo,_WREDRAW);		 
       }
 
    //  sWi(vp,_WREDRAW,_WEO);
@@ -1049,9 +1099,16 @@ int ok =0;
 }
 
 
+
+exit_gs(1);
+chkOut();
+exit();
+
 #if CPP
 }
 ////////////////////////////////////////////////////////////////////////////////////////
+
+
 extern "C" int show_task(Svarg * sarg)  {
 
  Str a0 = sarg->getArgStr(0) ;
@@ -1079,11 +1136,6 @@ Str Use_ ="compute task distance\n  e.g  showtask  gross laramie mtevans boulder
 
 
 
-
-
-exit_gs(1);
-chkOut()
-exit();
 
 ///
 

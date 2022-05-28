@@ -15,6 +15,7 @@
 float xhrs = 0;
 float Ndiet_lbs = 0.0;
 float Nsel_calsinout = 0.0;
+
 void computeWL(long wlsday, long wleday)
 {
 /// use input of juldays

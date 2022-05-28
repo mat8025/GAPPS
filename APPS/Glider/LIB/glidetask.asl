@@ -134,11 +134,13 @@ cout << " para[1] is:  "  << sa.cptr(1) << endl;
 
 <<"args are $sa \n"
 
-<<" $sa[0] \n"
+<<"0 $sa[0] \n"
 
-<<" $sa[1] \n"
+<<"1 $sa[1] \n"
 
+<<"2 $sa[2] \n"
 
+!a
 
 
 #endif
