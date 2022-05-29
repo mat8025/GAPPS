@@ -30,6 +30,7 @@
 
 #if CPP
 #include <iostream>
+
 #include <ostream>
 
 using namespace std;
@@ -164,19 +165,16 @@ cout << " para[1] is:  "  << sa.cptr(1) << endl;
 // <<" na $_clargc \n"
  na = _clargc;
 // <<" na $_clarg[1]  $_clarg[2] \n"
-
+ Str wsa="mno";
  sa = _clarg;
 
 <<"args are $sa \n"
 <<"0 $sa[0] \n"
-
-<<"1 $sa[1] \n"
+ wsa = sa.cptr(1);
+<<"1 $sa[1] $wsa \n"
 
 <<"2 $sa[2] \n"
 
-<<"3 $sa[3] \n"
-
-!a
 #endif
 
 
@@ -441,6 +439,7 @@ Svar Tskval;
 Str targ;
 Str cval ="?";
 Str igc_fname ="xyz";
+Str igc_fname1 ="abc";
 
 
 
@@ -465,21 +464,24 @@ Str igc_fname ="xyz";
 <<"$ai $_clarg[ai]\n"
 
           ai++;
-          //targ = sa.cptr(ai);
-	  targ = sa[ai];
-<<"%V $sa[ai]  $ai $targ \n"
-!a
+          targ2 = sa.cptr(ai);
+	  targ = sa.cptr(ai);
+<<"%V $sa[ai]  $ai $targ $targ2\n"
+
 	  if (targ == "task") {
             TaskType = sa.cptr(ai);
 	    ai++;
 //	    <<"set %V $TaskType \n"
           }
       else if (targ == "igc") {
-           igc_fname = sa.cptr(ac);
+           ai++;
+           igc_fname = sa.cptr(ai);
+!a
+
 	   ai++;
 	   
         Have_igc = 1;
-  //      <<"IGC file $igc_fname \n"
+  <<"IGC file $igc_fname \n"
 
        if (issin(igc_fname,"igc")) {
         Have_igc = 1;

@@ -66,9 +66,9 @@ int dblevel = _dblevel;
 //filterFuncDebug(ALLOWALL_,"xxx");
 //filterFileDebug(ALLOWALL_,"yyy");
 
-  setmaxcodeerrors(-1); // just keep going;
+  setmaxcodeerrors(10); //  stop after 10
 
-  setmaxicerrors(-1);
+  setmaxicerrors(10);
 
   _DB =1;
 

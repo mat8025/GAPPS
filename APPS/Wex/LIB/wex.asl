@@ -66,7 +66,7 @@ class Svar;
 
 #include "wex_rates.asl"
 
-#include "tbqrd.asl"
+
 
 
 

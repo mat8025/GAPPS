@@ -13,13 +13,9 @@
 
 ///
 ///
-<|Use_=
-Demo  of declare 
-e.g.
-double yr0 = -1.5
-etc
+Str Use_="Demo  of declare e.g. double yr0 = -1.5";
 ///////////////////////
-|>
+
 
 
 #include "debug"

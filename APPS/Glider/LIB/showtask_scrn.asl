@@ -57,8 +57,9 @@ int Xgm;
 
   titleButtonsQRD(Vp);
 
+  int tdwo = -1;
 
-  int tdwo= cWo(Vp, WO_BV_);
+  tdwo = cWo(Vp, WO_BV_);
 
   sWo(tdwo,_WRESIZE_fr,0.01,0.01,0.14,0.1,_WNAME,"TaskDistance",_WEO);
   
