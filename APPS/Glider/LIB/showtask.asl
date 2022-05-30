@@ -561,10 +561,7 @@ Svar targ_list = {"eldorado","casper","rangely","eldorado"};
 
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 6226022 (readwords)
 
 Nlegs = Ntaskpts;
 

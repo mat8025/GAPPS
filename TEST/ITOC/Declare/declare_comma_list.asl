@@ -14,6 +14,62 @@ if (_dblevel >0) {
 // ignoreErrors();
  chkIn(_dblevel)
 
+
+int foo()
+{
+
+int j,k, m = 3;
+
+ <<"%V $j $k $m \n";
+
+ chkN(j,3);
+
+ chkN(k,3);
+
+  chkN(m,3);
+
+  return m;
+}
+
+int goo(int v)
+{
+<<" $_proc $v\n";
+int j,k, m = v;
+
+ <<"%V $j $k $m \n";
+
+ chkN(j,v);
+
+ chkN(k,v);
+
+  chkN(m,v);
+
+  return m;
+}
+
+
+ r=foo();
+ <<" %V $r\n"
+!a
+
+r=foo();
+!p r
+!a
+
+
+
+r=goo(6);
+!p r
+!a 
+
+
+
+r=goo(7);
+!p r
+!a 
+
+
+
  int i = 2;
  <<"%V $i \n";
 
@@ -58,5 +114,8 @@ if (_dblevel >0) {
  float sawo3= Cos(0.5,0.3);
 
 <<"%V $sawo3 \n"
+
+
+
 
  chkOut()
