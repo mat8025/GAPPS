@@ -21,17 +21,27 @@
 extern int tdwo,vvwo;
 extern int mapwo;
 extern int tpwo[];
+extern int legwo[];
 extern int TASK_wo;
+extern int sawo;
+extern int vptxt;
+extern int Witp;
 extern  int igc_tgl;
 extern  int igc_vgl;
 extern int Maxtaskpts;
 extern float erx,ery;
 
+
+extern Turnpt  Wtp[]; //
+extern Tleg  Wleg[];
+
+
 void drawTask(int w,int col);
 extern  void gg_gridLabel(int wid);
-void ClosestTP (float longx, float laty);
+int ClosestTP (float longx, float laty);
+int ClosestLand(float longx,float laty);
 int  PickTP(Str atarg,  int wtp);
-
+void taskDist();
 
   void zoomMap(int t1, int t2)
   {
@@ -262,7 +272,7 @@ int  PickTP(Str atarg,  int wtp);
 
   atpt = wval[0];
 
-  err = f_error(TF);
+  err = ferror(TF);
 //<<"$nwr <|$atpt|> $err\n"
 
   if ( nwr <= 0) {
@@ -295,7 +305,7 @@ int  PickTP(Str atarg,  int wtp);
   void readTaskFile(Str taskfile)
   {
   Svar wval;
-  int k,err,nwr;
+  int k,err,nwr,ti;
   int TF= ofr(taskfile);
   //<<"%V $taskfile  $TF $SetWoT \n";
 
@@ -332,7 +342,7 @@ int  PickTP(Str atarg,  int wtp);
 
   atpt = wval[0];
 
-  err = f_error(TF);
+  err = ferror(TF);
 //<<"$nwr <|$atpt|> $err\n"
 
   if ( nwr <= 0) {
@@ -377,11 +387,11 @@ int  PickTP(Str atarg,  int wtp);
 
   int WF=ofw(tsk_file);
 
-  w_file(WF,"type $val  %6.3f $totalK \n");
+  wfile(WF,"type $val  %6.3f $totalK \n");
 
   for (i = 0 ; i <  Ntaskpts; i++) {
 
-  w_file(WF,"$Wleg[i].Place  %6.0f $Wleg[i].msl  $Wleg[i].fga \n");
+  wfile(WF,"$Wleg[i].Place  %6.0f $Wleg[i].msl  $Wleg[i].fga \n");
 
   }
 
@@ -610,6 +620,8 @@ sWo(wid,_WAXNUM,AXIS_LEFT_,_WEO);
 /// click on tpwo
 //wt = Witp;
   Str tval;
+  int ntp;
+  Str nval;
   
     woSetValue (tpwo[wt],"XXX");
 
@@ -618,9 +630,9 @@ sWo(wid,_WAXNUM,AXIS_LEFT_,_WEO);
   mouseCursor("hand", tpwo[9], 0.5, 0.5);
 
     emsg =gev.eventWait();
-    ekey = gev.getEventKey(
+    ekey = gev.getEventKey();
   
-    gev.geteventrxy( &erx,&ery);
+    gev.getEventRxy( &erx,&ery);
   //eventWait();
 
   ntp = ClosestTP(erx,ery);
@@ -644,7 +656,7 @@ sWo(wid,_WAXNUM,AXIS_LEFT_,_WEO);
 
   mouseCursor("cross", tpwo[9], 0.5, 0.5);
 
-  sWo(tpwos,_WREDRAW);
+  sWo(tpwo,_WREDRAW);
 
   }
 
@@ -678,6 +690,7 @@ sWo(wid,_WAXNUM,AXIS_LEFT_,_WEO);
 
   }
 
+
   woSetValue (tpwo[wt],"XXX");
 
   sWo(tpwo[wt],_WREDRAW);
@@ -686,7 +699,7 @@ sWo(wid,_WAXNUM,AXIS_LEFT_,_WEO);
 
     emsg =gev.eventWait();
     ekey = gev.getEventKey();
-    gev.geteventrxy( &erx,&ery);
+    gev.getEventRxy( &erx,&ery);
 
     //eventWait();
 
@@ -710,7 +723,7 @@ sWo(wid,_WAXNUM,AXIS_LEFT_,_WEO);
 
   mouseCursor("cross", tpwo[9], 0.5, 0.5);
 
-  sWo(tpwos,_WREDRAW);
+  sWo(tpwo,_WREDRAW);
 
   }
 
@@ -729,6 +742,7 @@ sWo(wid,_WAXNUM,AXIS_LEFT_,_WEO);
   Str nval;
   Str tval;
   int ntp;
+  int kt;
 //<<"$_proc  $wt\n";
  LastTP =Ntaskpts ;
   if (wt < LastTP ) {
@@ -770,7 +784,7 @@ sWo(wid,_WAXNUM,AXIS_LEFT_,_WEO);
 
   Task_update = 1;
 
-  sWo(tpwos,_WREDRAW);
+  sWo(tpwo,_WREDRAW);
   
   Ntaskpts++;
 
@@ -797,7 +811,7 @@ int PickViaName(int wt)
   if (wtp >0) {
   aplace = Wtp[wtp].Place;
 
-  nval = RX[wtp][0];
+  nval = SRX.getRC(wtp,0);
 
 //  <<"Found %V $wt $wtp $nval $aplace\n"
   ok = 1;
@@ -810,9 +824,9 @@ int PickViaName(int wt)
   void delete_tp(int wt)
   {
 //int wt = Witp;
-
+  int i,j;
   int kt = 0;
-
+  Str plc;
   kt = Taskpts[wt];
 //              <<"$_proc delete $_ewoname $wt $Wtp[kt].Place \n"
               //<<"$_proc delete $_ewoname $wt $kt \n"
@@ -860,8 +874,7 @@ int PickViaName(int wt)
 
   }
 
-  sWo(tpwos,_WREDRAW);
-
+  sWo(tpwo,_WREDRAW);
 
 
   Ntaskpts--;
@@ -890,47 +903,8 @@ int PickViaName(int wt)
   }
 //======================================//
 
-  igc_file = "dd.igc";
-
-  void plot_igc(int w)
-  {
-  
-//DBG" RECODE \n";
-///  replace with
-///  A=ofr(igc_file)
-//   readIGG(A,latv,lngv,elev)
-///  drawGline (igc)
-///  cf(A)
-/*
-   a=ofr(igc_file)
-   if (a == -1) {
-     DBG" can't open IGC file \n"
-     return
-   }
-
-      while (1) {
-
-                         tword=r_file(a)
-//DBG"$tword \n"
-                         if (f_error(a) == 6) break
-
-			 if (sele(tword,0) == "B") {
-                          igclat = sele(tword,7,8)
-                          igclong = sele(tword,15,9)
-                          latnum = igc_dmsd(igclat)
-                          lngnum = igc_longd(igclong)
-#              DBG"$igclat $latnum $igclong $lngnum\n"
-                          plot_line(w,lngnum,latnum ,"blue")
-			 }
- 
-   }
- w_store(w); 
- cf(a);
-*/
 
 
-  }
-//==================================
 
   int SetWoT = 0;
 
@@ -989,7 +963,7 @@ int PickViaName(int wt)
   void chk_start_finish()
   {
 
-  lval = "";
+  Str lval = "";
 
   Str val= "OB";
   int mti;
@@ -1208,7 +1182,7 @@ int PickViaName(int wt)
 //<<"$_proc $itaskp\n"
 
   int ret = -1;
-
+  int ntp;
   float rx;
 
   float ry;
@@ -1223,15 +1197,15 @@ int PickViaName(int wt)
 
   sWi(vp,_Wtmsg,"Pick a TP for the task ");
 
-  eventWait();
+  
+  emsg =gev.eventWait();
 
-  gsync();
 
   sleep(0.2);
 
   ntp = ClosestTP(erx,ery);
 
-  mouseCursor("hand");
+  mouseCursor("hand",mapwo,0.5,0.5);
 
   if (ntp >= 0) {
 
@@ -1314,7 +1288,7 @@ int PickViaName(int wt)
 //  <<"%V $lon1  $lon2  \n"
 //  <<"%V $lat1  $lat2  \n"
 
-  plotLine(w, lon1, lat1,lon2,lat2,col,_WFLUSH,_WEO);
+  plotLine(w, lon1, lat1,lon2,lat2,col);
 
 
   }
@@ -1338,16 +1312,17 @@ int PickViaName(int wt)
   {
 ///
 /// 
-
+  Svar srp;
   int ret = -1;
+  int index;
 //<<" $_proc looking for <|$atarg|>  $Atarg  $wtp\n"
 
 
-  index=RX.findRecord(atarg,0,0);
+  index=SRX.findRecord(atarg,0,0);
 
   if (index >=0) {
 
-  ttp = RX[index];
+  srp = SRX.getRow(index);
 
   printf(" found  $index %d\n",index);
 //<<"$ttp \n"
@@ -1364,23 +1339,6 @@ int PickViaName(int wt)
 
   }
 //=============================================
-
-  void get_wcoors(int sw,  float rx,  float ry,float  rX,float  rY)
-  {
-  float rs[20];
-  ww= get_w_rscales(sw,&rs[0]);
-
-  rx= rs[0];
-
-  ry = rs[1];
-
-  rX= rs[2];
-
-  rY = rs[3];
-
-  return ww;
-  }
-//==================================================
 
 
 
@@ -1446,16 +1404,18 @@ int PickViaName(int wt)
   }
 //====================================//
 
+ // void taskDist(Turnpt wtp[])
   void taskDist()
   {
    // is there a start?
  //  <<"$_proc  $Ntaskpts \n"
 //<<"in taskDist  %V $_scope $_cmfnest $_proc $_pnest\n"	       
-
+  int index;
   int tindex =0;
   float kmd = 0.0;
   float ght;
   int j=0;
+  
   
   //Taskpts.pinfo();
 
@@ -1505,7 +1465,7 @@ int PickViaName(int wt)
 
   index = Taskpts[i];
  // <<"%V $i $index \n";
-  index.pinfo();
+ // index.pinfo();
   
  if ((index > 0)  && (index <= Ntp) ) {
   kmd = 0.0;
@@ -1629,17 +1589,18 @@ int PickViaName(int wt)
 
 
 
-  void ClosestTP (float longx, float laty)
+  int ClosestTP (float longx, float laty)
   {
 ///
   float dx,dy;
-  T=fineTime();
+  
+  //T=fineTime();
 
   float mintp = 30;
 
   int mkey = -1;
 
-  float ctp_lat;
+  float ctp_lat,longi;
 
   int k = 3;
 //DBG"%V $Wtp[0].Ladeg \n"
@@ -1678,7 +1639,7 @@ int PickViaName(int wt)
 
   }
 
-  dt=fineTimeSince(T);
+ // dt=fineTimeSince(T);
 //DBG"$_proc took $(dt/1000000.0) secs \n"
 
   return  mkey;
@@ -1686,7 +1647,7 @@ int PickViaName(int wt)
   }
 //=============================================
 
-  void ClosestLand(float longx,float laty)
+  int ClosestLand(float longx,float laty)
   {
   int k;
   float mintp = 18000;
@@ -1701,7 +1662,7 @@ int PickViaName(int wt)
   float msl;
   float mkm;
   float ght;
-  float sa;
+
 
   longa = longx;
 
@@ -1747,33 +1708,6 @@ int PickViaName(int wt)
 
   }
 //=============================================
-
-  int compute_leg(int leg)
-  {
-  float km;
-
-  if (leg < 0)
-     return 0;
-
-  int kk = leg + 1;
-	    // DBG" compute %V $leg $kk \n"
-
-  float L1 = LA[leg];
-
-  float L2 = LA[kk];
-	    // DBG" %V $L1 $L2 \n"
-
-  float lo1 = LO[leg];
-
-  float lo2 = LO[kk];
-	    //DBG" %V $lo1 $lo2 \n"
-
-  km = computeGCD(L1,L2,lo1,lo2);
-
-  return km;
-
-  }
-//==================================================
 void   showPosn(int pi)
   {
     	 wfr=sWo(mapwo,_WSHOWPIXMAP,_WEO);
@@ -1805,6 +1739,7 @@ void updateLegs()
  float lfga;
  int lwo;
  int nlegs = Ntaskpts-1;
+ float dist,msl;
 // <<"$_proc TP's $Ntaskpts Legs $nlegs\n"
 
   for (i = 0; i < nlegs ; i++) {

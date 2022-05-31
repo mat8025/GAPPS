@@ -44,6 +44,7 @@ using namespace std;
 #include "gthread.h"
 #include "paraex.h"
 #include "scope.h"
+#include "record.h"
 #include "debug.h"
 
 #include "uac.h"
@@ -90,12 +91,17 @@ int  Ntp = 0; //
 
 #include "ootlib.asl"
 
+
+Turnpt  Wtp[300]; //
+Tleg  Wleg[20];
+
 #include "graphic_glide.asl"
 
 //int WH[100][2];
 Mat  WH(INT_,100,2);  //rows expandable
 int main_chk =1;
 int Maxtaskpts = 13;
+
 
 //======================================//
 
@@ -423,7 +429,8 @@ printf("Warning can't find $targ as a TP - skipping \n");
 if (Ntaskpts == -1) {
 
 Svar targ_list = {"eldorado","casper","rangely","eldorado"};
-    int sz= Caz(targ_list);
+
+      int sz = targ_list.getSize();
 //<<"$sz : $targ_list \n"
 
 //<<" $targ_list[1] \n"
@@ -434,10 +441,10 @@ Svar targ_list = {"eldorado","casper","rangely","eldorado"};
 
        targ = targ_list[i];
        //<<"$i  <|$targ|> \n"
-         r_index=findRecord(targ,0,0);
+         r_index=SRX.findRecord(targ,0,0);
 
           if (r_index >=0) {
-          ttp = SRX[r_index];
+    //      ttp = SRX[r_index];
           //<<"$ttp \n"
           Taskpts[Ntaskpts] = r_index;
 
@@ -461,9 +468,15 @@ int k;
 //<<"%V $k $r_index $Taskpts[k] \n";
    }
 
-//   for (k= 1; k < 15; k++) {
-//             Wtp[k].Print()
-//    }
+  for (k= 1; k < 15; k++) {
+             Wtp[k].Print();
+	     cval =  Wtp[k].Place;
+	     
+    }
+
+ans = query("see wtp");
+
+
 //<<"//////////\n"
 
 
@@ -619,13 +632,7 @@ Str wcltpt="XY";
 
   drawTrace();
   drawTask(mapwo,GREEN_);
-int ekey;
-Str WoName = "xyz";
-Str wc = "Salida";
-int wtpwo;
-Str wway="P";
-int ok =0;
-int Ev_button = 0;
+
 
 //ans=query("listTask?");
 //<<"%V $Ntaskpts\n"
@@ -646,10 +653,11 @@ int Ev_button = 0;
     //eventWait();
     emsg =gev.eventWait();
     ekey = gev.getEventKey();
-    gev.geteventrxy( &erx,&ery);
+    gev.getEventRxy( &erx,&ery);
 
     WoName = gev.getEventWoName();
     Ev_button = gev.getEventButton();
+    Ev_keyw = gev.getEventKeyWord();
 //<<"%V $ekey $WoName \n"
 
     //Text(vptxt," $_ekeyw   ",0,0.05,1)
@@ -722,7 +730,7 @@ int Ev_button = 0;
 
        else if (WoName == "_Start_") {
              Task_update =1;
-             sWo(_ewoid, _WCXOR);
+           //  sWo(_ewoid, _WCXOR);
               wc=choiceMenu("STP.m");
             //   showTaskPts();	
             if (wc == "M") { // replace
@@ -740,7 +748,7 @@ int Ev_button = 0;
                   wcltpt = Wtp[wtp].Place;
                   sWo(tpwo[0],_WVALUE,wcltpt,_WREDRAW);
                 }
-	     sWo(tpwo[0], _WCXOR);
+	    // sWo(tpwo[0], _WCXOR);
           }
 	  
        }
@@ -852,7 +860,7 @@ int Ev_button = 0;
 	  dGl(lc_gl);
 	  CL_init = 0;
 	   zoom_begin = erx;
-       //  plotSymbol(mapwo,symx,symy,CROSS_,symsz,MAGENTA_,1,0,"copy");
+
            plotSymbol(mapwo,symx,symy,CROSS_,symsz,MAGENTA_,1);
 
 
@@ -864,8 +872,9 @@ int Ev_button = 0;
  //  sGl(lc_gl,_GLCURSOR,lcpx,0,lcpx,300, CL_init,_GLEO);
 	  sGl(rc_gl,_GLCURSOR,rbox(erx,0,erx,20000, CR_init),_GLEO);
           dGl(rc_gl);
-	  	  CR_init = 0;
-          plotSymbol(mapwo,symx,symy,DIAMOND_,symsz,LILAC_,1,90,"xor");		  
+	  CR_init = 0;
+	  
+          plotSymbol(mapwo,symx,symy,DIAMOND_,symsz,LILAC_,1,90);		  
 	  
            zoom_end = erx;
 	   
@@ -876,7 +885,7 @@ int Ev_button = 0;
 
 //	 swo(mapwo,_WCLEAR,_WCLEARCLIP,BLUE_,_WCLEARPIXMAP);
 	 
-                    wfr = sWo(mapwo,_WPIXMAPON,_WEO);
+         wfr = sWo(mapwo,_WPIXMAPON,_WEO);
 	 drawAlt();
 
 
@@ -934,9 +943,9 @@ int Ev_button = 0;
 
        }
        
-       else if ( _ekeyw == "Menu") {
+       else if (Ev_keyw == "Menu") {
           // <<" task type is $_ekeyw \n"
-           TaskType = _ekeyw;
+           TaskType = Ev_keyw;
            //<<" Set %V$TaskType \n"
        }
 
@@ -986,8 +995,8 @@ int Ev_button = 0;
 
 
 
-exit_gs(1);
-chkOut();
+exitGWM();
+
 exit(0);
 
 #if CPP
