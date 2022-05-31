@@ -271,7 +271,7 @@ void SetPlace (Str val)
    }
 //=========================//
 
-  void GetPlace ()   
+  Str GetPlace ()   
    {
        return Place; 
    }

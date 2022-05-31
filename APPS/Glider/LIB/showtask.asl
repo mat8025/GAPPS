@@ -62,7 +62,7 @@ Str Use_= "  view and select turnpts  create read tasks ";
 
 if (_dblevel >0) {
     debugON()
-    <<"$Use_\n"   
+   // <<"$Use_\n"   
 }
 
 chkIn(_dblevel);
@@ -84,11 +84,13 @@ int  Ntp = 0; //
 // local var not inited cpp and referenced with being set!!
 
 //#include "conv.asl"
+#include "showtask_globals.asl"
 
 #include "tpclass.asl"
 
 #include "ootlib.asl"
 
+#include "graphic_glide.asl"
 
 //int WH[100][2];
 Mat  WH(INT_,100,2);  //rows expandable
@@ -99,33 +101,6 @@ int Maxtaskpts = 13;
 
 //======================================//
 ///////////////////// SETUP GRAPHICS ///////////////////////////
-
-
-/////////////  Arrays : Globals //////////////
-
-        float symx = 0.0;
-	float symy = 0.0;
-        float syme = 0.0;
-
-  
-float LoD = 35.0;
-
-int r_index;
-int i;
-
-int Nlegs = 3;
-
-
-int Taskpts[20];
-
-Turnpt  Wtp[300]; //
-
-Tleg  Wleg[20];
-
-
-//Record RX[10];
-
-Record RX;
 
 
 /// open turnpoint file lat,long
@@ -208,9 +183,9 @@ else {
 
 if (use_cup) {
 
-   Nrecs=RX.readRecord(AFH,_RDEL,44,_RLAST);  // no back ptr to Siv?
+   Nrecs=SRX.readRecord(AFH,_RDEL,44,_RLAST);  // no back ptr to Siv?
  
-  // RX=readRecord(AFH,_RDEL,44,_RLAST);  // no back ptr to Siv?
+  // SRX=readRecord(AFH,_RDEL,44,_RLAST);  // no back ptr to Siv?
    
   //RF= readRecord(A,@del,',',@comment,"#");
   
@@ -222,21 +197,21 @@ else {
   cf(AFH);
 
 
-//  Nrecs = Caz(RX);
-//  Ncols = Caz(RX,1);
+//  Nrecs = Caz(SRX);
+//  Ncols = Caz(SRX,1);
 
 //<<"num of records $Nrecs  num cols $Ncols\n";
 
 
 /*
 for (i= 0; i <= 10 ; i++) {
-<<"$i $RX[i] \n"
+<<"$i $SRX[i] \n"
 }
 */
 
-//WH=searchRecord(RX,"AngelFire",0,0);
+//WH=searchRecord(SRX,"AngelFire",0,0);
 
-  r_index= RX.findRecord("AngelFire",0,0);
+  r_index= SRX.findRecord("AngelFire",0,0);
 
   printf("AngelFire @ %d\n",r_index);
 
@@ -245,21 +220,7 @@ for (i= 0; i <= 10 ; i++) {
 
 
 
-/*
-r_index = WH[0][0]
-<<"%V $r_index\n"
 
-place = RX[r_index][0]
-lat = RX[r_index][2]
-longv = RX[WH[0][0]][3]
-
-<<"$RX[r_index][0] \n"
-<<"$RX[r_index][2] \n"
-<<"%V $place $lat $longv\n"
-
-
-<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
-*/
 
 
 //ans=query("??");
@@ -301,7 +262,7 @@ while (1) {
     after = ftell(AFH);
 
 
-<<"%V $AFH $Ntp $before $c1 $after\n"
+//<<"%V $AFH $Ntp $before $c1 $after\n"
 
     if (use_cup) {
 
@@ -367,80 +328,8 @@ printf(" Read $Ntp %d turnpts \n",Ntp);
 //ans=query("? $main_chk");
 
 // Nlegs = Ntp -1;
-//<<"%V $main_chk $_scope $_cmfnest $_proc $_pnest\n"
 
 
-
-int is_an_airport = 0;
-
-
-
-
-
-/*
-    for (k = 1 ; k <=  5 ; k++) {
-
-        is_an_airport = Wtp[k].is_airport;
-if (is_an_airport) {
-        mlab = Wtp[k].Place;
-
-<<"TP $k $mlab  $is_an_airport\n"
-//       if (mlab == "Jamestown") {
-//         <<"SF\n"
-//       }
-}
-
-   }
-*/
-
-
-
-
-
-/////////////////// TASK DEF ////////////
-
-
-
-
-
-int Task_update =1;
-
-//Units = "KM";
-
-int tp_wo[20];
-int gtp_wo[20];
-int ltp_wo[20];
-
-
-
-
-char MS[240];
-char Word[128];
-char Long[128];
-int num_tpts = 700;
-
-float R[10];
-
-int Have_igc = 0;
-
-
-
-//  Read in a Task via command line
-
-float min_lat;
-float max_lat;
-float longW =0.0;
-
-
-
-//////////////// PARSE COMMAND LINE ARGS ///////////////////////
-
-long posn = 0;
-Svar Tskval;
-Str targ;
-Str cval ="?";
-Str igc_fname ="xyz";
-Str igc_fname1 ="abc";
 
 
 
@@ -462,27 +351,27 @@ Str igc_fname1 ="abc";
 
  while (1) {
 
-<<"$ai $_clarg[ai]\n"
+//<<"$ai $_clarg[ai]\n"
 
           ai++;
-          targ2 = sa.cptr(ai);
+
 	  targ = sa.cptr(ai);
-<<"%V $sa[ai]  $ai $targ $targ2\n"
+//<<"%V $sa[ai]  $ai $targ \n"
 
 	  if (targ == "task") {
             TaskType = sa.cptr(ai);
 	    ai++;
 //	    <<"set %V $TaskType \n"
           }
-      else if (targ == "igc") {
+          else if (targ == "igc") {
            ai++;
            igc_fname = sa.cptr(ai);
-!a
+
 
 	   ai++;
 	   
         Have_igc = 1;
-  <<"IGC file $igc_fname \n"
+//  <<"IGC file $igc_fname \n"
 
        if (issin(igc_fname,"igc")) {
         Have_igc = 1;
@@ -492,12 +381,12 @@ Str igc_fname1 ="abc";
       }
        else {
 	  if (slen(targ) > 1) {
-          r_index=RX.findRecord(targ,0,0);
+          r_index=SRX.findRecord(targ,0,0);
 	 // <<"%V $targ $WH\n"
 
           if (r_index >=0) {
 
-           ttp = RX[r_index];
+           ttp = SRX[r_index];
 
 //<<"$ttp \n"
 
@@ -534,21 +423,21 @@ printf("Warning can't find $targ as a TP - skipping \n");
 if (Ntaskpts == -1) {
 
 Svar targ_list = {"eldorado","casper","rangely","eldorado"};
-    sz= Caz(targ_list);
+    int sz= Caz(targ_list);
 //<<"$sz : $targ_list \n"
 
 //<<" $targ_list[1] \n"
-        targ = targ_list[2]
+        targ = targ_list[2];
 //<<" $targ \n"
 
     for (i= 0; i < sz; i++) {
 
-       targ = targ_list[i]
+       targ = targ_list[i];
        //<<"$i  <|$targ|> \n"
          r_index=findRecord(targ,0,0);
 
           if (r_index >=0) {
-          ttp = RX[r_index];
+          ttp = SRX[r_index];
           //<<"$ttp \n"
           Taskpts[Ntaskpts] = r_index;
 
@@ -566,7 +455,7 @@ Svar targ_list = {"eldorado","casper","rangely","eldorado"};
 Nlegs = Ntaskpts;
 
 //Taskpts.pinfo()
-
+int k;
    for (k= 0; k < Ntaskpts; k++) {
        r_index = Taskpts[k];
 //<<"%V $k $r_index $Taskpts[k] \n";
@@ -575,7 +464,7 @@ Nlegs = Ntaskpts;
 //   for (k= 1; k < 15; k++) {
 //             Wtp[k].Print()
 //    }
-<<"//////////\n"
+//<<"//////////\n"
 
 
 
@@ -592,21 +481,6 @@ Nlegs = Ntaskpts;
          MSL = Wleg[i].msl;
       // <<"Stat $i $MSL $Wleg[i].dist   $Wleg[i].fga\n"
       }
-
-
-
-
-
-
-/*
-<<"after include  proc \n"
-
-   for (k= 0; k < Ntaskpts; k++) {
-       r_index = Taskpts[k];
-<<"%V $k $r_index $Taskpts[k] \n";
-   }
-*/
-
 
 
 printf(" Have_igc\n");
@@ -626,7 +500,8 @@ printf(" Have_igc\n");
 
 #include "showtask_scrn.asl"
 
-#include "graphic_glide.asl"
+
+
 
 Str place;
 
@@ -655,23 +530,23 @@ Str place;
        // display alt?
 //	woSetValue(tpwo[i],alt,1)   
        if (i >= MaxSelTps) {
-         <<"$i > $MaxSelTps \n"
+//         <<"$i > $MaxSelTps \n"
           break;
         }
    }
 
-<<"%V $i $Ntaskpts \n"
+//<<"%V $i $Ntaskpts \n"
 
  }
 //======================================//
 
 
 
-    sWo(tpwo,_Wredraw);
+    sWo(tpwo,_WREDRAW);
 
 
 
-     c= "EXIT"
+     Str c= "EXIT";
 
      sWi(vp,_WREDRAW); // need a redraw proc for app
 
@@ -679,21 +554,22 @@ Str place;
     sWo(mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN),_WEO );
 
 //  set up the IGC track for plot
-    igc_tgl = cGl(mapwo);
+    int igc_tgl = cGl(mapwo);
     sGl(igc_tgl, _GLTXY,IGCLONG,IGCLAT,_GLHUE,BLUE_,_GLEO);
 
-    igc_vgl = cGl(vvwo);
+    int igc_vgl = cGl(vvwo);
     sGl(igc_vgl, _GLTY,IGCELE,_GLHUE,RED_,_GLEO);
 
 
 
    if (Ntpts > 0) {
     dGl(igc_tgl);  // plot the igc track -- if supplied
-    sWo(vvwo, _WSCALES, wbox(0, 0, Ntpts, Max_ele +500),_WEO)
+    sWo(vvwo, _WSCALES, wbox(0, 0, Ntpts, Max_ele +500),_WEO);
     dGl(igc_vgl);  // plot the igc climb -- if supplied
    }
 
-
+   sWo(ZOOM_wo,_WREDRAW);
+   sWo(vptxt,_WREDRAW);
 
 #if CPP
 #include  "gevent.h";
@@ -706,23 +582,18 @@ Str place;
    float erx;
    float ery;
 
-<<"%V $Ev_button\n"
+//<<"%V $Ev_button\n"
 
 
 int dindex;
 int Witp = 0;
 int drawit = 0;
-msgv = "";
+Str msgv = "";
 
 float d_ll = Margin;
 
 Str wcltpt="XY";
 
-  DBG"%V $vvwo $Ntpts\n"
-
-
-  DBG"%V $LongW \n"
-  DBG"%V $LongE \n"
 
   taskDist();
 
@@ -735,7 +606,7 @@ Str wcltpt="XY";
  
   drawTrace();
 
-  zoom_to_task(mapwo,1)
+//  zoom_to_task(mapwo,1)
 
   sWo(mapwo,_WSCALES,wbox( LongW, LatS, LongE, LatN),_WEO );
   sWo(TASK_wo,_WVALUE,TaskType,_WREDRAW);
@@ -754,13 +625,14 @@ Str wc = "Salida";
 int wtpwo;
 Str wway="P";
 int ok =0;
+int Ev_button = 0;
 
 //ans=query("listTask?");
-<<"%V $Ntaskpts\n"
+//<<"%V $Ntaskpts\n"
 
 
             showTaskPts();
-<<"now list them \n";		 
+
                  listTaskPts();
 		 
    updateLegs();
@@ -769,7 +641,7 @@ int ok =0;
  //   zoom_to_task(mapwo,1)
     ok = 0;
     drawit = 0;
-    Task_update =0
+    Task_update =0;
   
     //eventWait();
     emsg =gev.eventWait();
@@ -778,31 +650,31 @@ int ok =0;
 
     WoName = gev.getEventWoName();
     Ev_button = gev.getEventButton();
-<<"%V $ekey $WoName \n"
+//<<"%V $ekey $WoName \n"
 
     //Text(vptxt," $_ekeyw   ",0,0.05,1)
 
        if ( gev.getEventKey() >= 65) {
        
        d_ll = (LatN-LatS)/ 10.0 ;
-<<"%V $LongW $LatS $LongE $LatN   $d_ll\n"
+//<<"%V $LongW $LatS $LongE $LatN   $d_ll\n"
 
 
        if (ekey == 'Q') {
-           LongW += d_ll
-           LongE += d_ll
+           LongW += d_ll;
+           LongE += d_ll;
 	    drawit = 1;
        }
 
        if (ekey == 'S') {
-           LongW -= d_ll
-           LongE -= d_ll
+           LongW -= d_ll;
+           LongE -= d_ll;
 	    drawit = 1;
        }
 
        if (ekey == 'R') {
-           LatN += d_ll
-           LatS += d_ll
+           LatN += d_ll;
+           LatS += d_ll;
 	    drawit = 1;
        }
 
@@ -815,19 +687,19 @@ int ok =0;
 
        if (ekey == 'X') {
      //  <<"expand \n"
-           LatN += d_ll
-           LatS -= d_ll
-           LongW += d_ll
-           LongE -= d_ll
+           LatN += d_ll;
+           LatS -= d_ll;
+           LongW += d_ll;
+           LongE -= d_ll;
 	    drawit = 1;
        }
 
        if (ekey == 'x') {
-       <<"Zoom IN\n"
-           LatN -= (d_ll * 0.9)
-           LatS += (d_ll * 0.9)
-           LongW -= (d_ll * 0.9)
-           LongE += (d_ll * 0.9)
+    //   <<"Zoom IN\n"
+           LatN -= (d_ll * 0.9);
+           LatS += (d_ll * 0.9);
+           LongW -= (d_ll * 0.9);
+           LongE += (d_ll * 0.9);
 	    drawit = 1;
        }
 
@@ -843,21 +715,21 @@ int ok =0;
               }
 
          if (drawit) {
-<<"%V $LongW $LatS $LongE $LatN\n"
+//<<"%V $LongW $LatS $LongE $LatN\n"
  sWo(mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN), _WEO);
         }
       }
 
        else if (WoName == "_Start_") {
-             Task_update =1
-             sWo(_ewoid, _WCXOR)
-              wc=choice_menu("STP.m")
+             Task_update =1;
+             sWo(_ewoid, _WCXOR);
+              wc=choiceMenu("STP.m");
             //   showTaskPts();	
             if (wc == "M") { // replace
-             wtp = PickaTP(0)
+             wtp = PickaTP(0);
              if (wtp >= 0) {
                 wcltpt = Wtp[wtp].Place;
-                sWo(tpwo[0],_WVALUE,wcltpt,_WREDRAW)
+                sWo(tpwo[0],_WVALUE,wcltpt,_WREDRAW);
              }
 
             }
@@ -868,7 +740,7 @@ int ok =0;
                   wcltpt = Wtp[wtp].Place;
                   sWo(tpwo[0],_WVALUE,wcltpt,_WREDRAW);
                 }
-	     sWo(tpwo[0], _WCXOR)
+	     sWo(tpwo[0], _WCXOR);
           }
 	  
        }
@@ -876,29 +748,30 @@ int ok =0;
        else if (scmp(WoName,"_TP",3)) {
        
              Task_update =1;
-             np = spat(WoName,"_TP",1)
-             np = spat(np,"_",-1)
+	     
+             np = spat(WoName,"_TP",1);
+             np = spat(np,"_",-1);
 
               Witp = atoi(np);
-              wtpwo = tpwo[Witp]
+              wtpwo = tpwo[Witp];
 
             // sWo(wtpwo, _WCXOR);
 	     
 	     gflush();
 
             cval = getWoValue(wtpwo);
-  <<"%V $np <|$cval|>  \n"
+ // <<"%V $np <|$cval|>  \n"
              if (cval != "") {
 
-             wc = choice_menu("TP.m")
-<<"menu choice  name or action  %V $wc\n";
+             wc = choiceMenu("TP.m");
+//<<"menu choice  name or action  %V $wc\n";
 
            //  showTaskPts();
 	       
              if (wc == "R") { // replace
 
                printf("REPLACE TP \n");
-               wc=choice_menu("CTP.m");
+               wc=choiceMenu("CTP.m");
 
                   if (wc == "M") { // replace
                     printf("REPLACE TP via Map select\n");
@@ -913,11 +786,11 @@ int ok =0;
                 printf("delete and move lower TPs up %d !\n",Ntaskpts);
                 delete_tp(Witp); //
 	        Task_update =1;
-                <<"Done delete  $Ntaskpts!\n"		
+                //<<"Done delete  $Ntaskpts!\n"		
              }
              else if (wc == "I") {
              printf("INSERT TP $wc \n");
-             wc=choice_menu("ITP.m")
+             wc=choiceMenu("ITP.m");
 //printf("choose how? %s\n",vtoa(wc));		
 
             if (wc == "M") {
@@ -930,16 +803,16 @@ int ok =0;
 	      Task_update =1;
 	     }
              else if (Witp == Ntaskpts)  {
-	     <<"this is add to end of current task list\n"
+	     //<<"this is add to end of current task list\n"
 
-                   wc=choice_menu("ATP.m")
+                   wc=choiceMenu("ATP.m");
 
 //printf("choose how? %s\n",vtoa(wc));
                 if (wc == "A") {
-		 <<"getting name $wc\n"
+		 //<<"getting name $wc\n"
 		  ok=PickViaName(Witp);
 		  if (ok) {
-                   <<"added TP\n"
+                  // <<"added TP\n"
 		    Ntaskpts++;
                   }
 		  DrawMap();
@@ -963,7 +836,7 @@ int ok =0;
        	 wfr=sWo(mapwo,_WSHOWPIXMAP,_WEO); // should erase precious target position
 	 
          drawit = 0;
-         dindex = rint(erx)
+         dindex = rint(erx);
 
 //<<"%V $erx, alt $ery  $dindex $IGCELE[dindex] $IGCLAT[dindex] $IGCLONG[dindex] \n";
          symx = IGCLONG[dindex];
@@ -982,6 +855,8 @@ int ok =0;
        //  plotSymbol(mapwo,symx,symy,CROSS_,symsz,MAGENTA_,1,0,"copy");
            plotSymbol(mapwo,symx,symy,CROSS_,symsz,MAGENTA_,1);
 
+
+
          }
 
        if (Ev_button == 3 || Ev_button == 5) {
@@ -992,10 +867,9 @@ int ok =0;
 	  	  CR_init = 0;
           plotSymbol(mapwo,symx,symy,DIAMOND_,symsz,LILAC_,1,90,"xor");		  
 	  
-          zoom_end = erx;
-           LatN = symy +0.7;
-           LatS = symy - 0.7;
-	   Task_update = 1;
+           zoom_end = erx;
+	   
+	  // Task_update = 1;
 	   
           // save end time  for zoomin
        }
@@ -1006,11 +880,19 @@ int ok =0;
 	 drawAlt();
 
 
-<<"%V $zoom_begin $zoom_end  $mapwo $vvwo \n"
-	 sWo(sawo,_WVALUE,"$symx $symy $syme ",_WREDRAW)
+//<<"%V $zoom_begin $zoom_end  $mapwo $vvwo \n"
+	 sWo(sawo,_WVALUE,"$symx $symy $syme ",_WREDRAW);
 	 
        }
-       
+       else if (WoName == "ZOOM") {
+        // find LatN,LatS,LongW,LongE for the time range zoom_begin , zoom_end
+        // add margin
+	// set and update map
+	zoomMap(zoom_begin, zoom_end);
+	 
+        Task_update =1;
+
+       }
        else if (WoName == "MAP") {
 
                drawit = 0;
@@ -1019,16 +901,16 @@ int ok =0;
 
              if (ntp >= 0) {
 
-               Wtp[ntp].Print()
-               nval = Wtp[ntp].GetPlace()
+               Wtp[ntp].Print();
+               nval = Wtp[ntp].GetPlace();
 	       
-              <<" found %V $ntp $nval \n"
-                Text(  vptxt," $ntp $nval   ",0,0.05,1)
+            //  <<" found %V $ntp $nval \n"
+                Text(  vptxt," $ntp $nval   ",0,0.05,1);
                 msl = Wtp[ntp].Alt;
-                mkm = HowFar(erx,ery, Wtp[ntp].Longdeg, Wtp[ntp].Ladeg)
+                mkm = HowFar(erx,ery, Wtp[ntp].Longdeg, Wtp[ntp].Ladeg);
                 ght = (mkm * km_to_feet) / LoD;
                 sa = msl + ght + 2000;
-          	sWo(sawo,_WVALUE,"$nval %5.1f $msl $mkm $sa",_WREDRAW)
+          	sWo(sawo,_WVALUE,"$nval %5.1f $msl $mkm $sa",_WREDRAW);
                // DrawMap();
              }
 
@@ -1039,28 +921,28 @@ int ok =0;
              //task_menu(mapwo)
     //          read_task()
   task_file = "XXX";
-  task_file = navi_w("TASK_File","task file?",task_file,".tsk","TASKS")
-  <<"%V$task_file\n"
+  task_file = naviWindow("TASK_File","task file?",task_file,".tsk","TASKS");
+  //<<"%V$task_file\n"
   
              readTaskFile (task_file);
 	     
-<<"after readTaskFile (task_file) $SetWoT \n";
+//<<"after readTaskFile (task_file) $SetWoT \n";
 
-         setWoTask()
-<<"done  setWoTask() $SetWoT \n"
+         setWoTask();
+//<<"done  setWoTask() $SetWoT \n"
              Task_update =1;
 
        }
        
        else if ( _ekeyw == "Menu") {
-           <<" task type is $_ekeyw \n"
+          // <<" task type is $_ekeyw \n"
            TaskType = _ekeyw;
-           <<" Set %V$TaskType \n"
+           //<<" Set %V$TaskType \n"
        }
 
 
         if (drawit || Task_update) {
-	     DrawMap()
+	     DrawMap();
   	     drawTrace();
              drawTask(mapwo,GREEN_);
         }
@@ -1076,7 +958,7 @@ int ok =0;
 
       for (i = 0; i < Ntaskpts ; i++) {
          MSL = Wleg[i].msl;
-       <<"Stat $i $MSL $Wleg[i].dist   $Wleg[i].fga\n"
+       //<<"Stat $i $MSL $Wleg[i].dist   $Wleg[i].fga\n"
       }
 
 
@@ -1106,7 +988,7 @@ int ok =0;
 
 exit_gs(1);
 chkOut();
-exit();
+exit(0);
 
 #if CPP
 }

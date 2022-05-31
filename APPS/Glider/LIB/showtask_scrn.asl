@@ -16,20 +16,11 @@ cf(A)
 */
 
 
-int CR_init = 0;
-int CL_init = 0;
+ 
+int  Graphic = checkGWM();
 
 
-int lc_gl= -1;
-int rc_gl = -1;
-int Vp;
-int MaxLegs = 12;
-  Str TaskType = "MT";
-   
-int  Graphic = CheckGwm();
-
-
- printf(" $Graphic %d\n", Graphic);
+ printf(" Graphic %d\n", Graphic);
 
 int Xgm;
 
@@ -50,7 +41,7 @@ int Xgm;
   Vp = cWi("Vp");
   
 
-  sWi(Vp,_WSCALES,wbox(-200,-200,200,200,0), _WDRAWON,_WPIXMAPON,_WSAVE,_WBHUE,WHITE_,_Wresize,0.1,0.01,0.9,0.95,0)
+  sWi(Vp,_WSCALES,wbox(-200,-200,200,200,0), _WDRAWON,_WPIXMAPON,_WSAVE,_WBHUE,WHITE_,_WRESIZE,0.1,0.01,0.9,0.95,0);
   // but we don't draw to a window! = draw to Wob in a Window
 
   sWi(Vp,_WCLIP,0.01,0.1,0.95,0.99);
@@ -89,9 +80,6 @@ int Xgm;
 
  sWo(vvwo,_WRESIZE,wbox(0.2,0.11,0.95,0.25),_WEO);
 
-  <<"did wbox all float ?\n";
-
-
   
 
   sWo(vvwo, _WSCALES, wbox(0, 0, 100, 6000), _WSAVEPIXMAP, _WREDRAW, _WDRAWON, _WPIXMAPON);
@@ -103,11 +91,14 @@ int Xgm;
 
   sWo(mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN), _WSAVE, _WREDRAW, _WDRAWON, _WPIXMAPON,_WSAVEPIXMAP,_WEO);
 
-  int LastTP = 12; 
+  LastTP = 12; 
   int tpwo[MaxLegs+1];
-  tpwo = -1;
+
+  //tpwo = -1;
+  
   int legwo[MaxLegs+1];
-  legwo = -1;
+
+  //legwo = -1;
 
   tpwo[0]=cWo(Vp,WO_BV_);
   
@@ -167,22 +158,29 @@ int Xgm;
   sWo(TASK_menu_wo, _WHELP, "Set Task Type", _WNAME, "TaskMenu",_WEO);
 
 
+
+
   gflush();
   
   int vptxt= cWo(Vp, WO_TEXT_);
-  sWo(vptxt,_WRESIZE,wbox(0.55,0.01,0.95,0.1),_WNAME,"TXT", _WEO);
+  sWo(vptxt,_WRESIZE,wbox(0.55,0.01,0.85,0.1),_WNAME,"TXT", _WEO);
   sWo(vptxt,_WCOLOR,WHITE_,_WSAVE,_WDRAWON,_WPIXMAPOFF);
+
+
+
+  int ZOOM_wo=cWo(Vp,WO_BV_);
+  sWo(ZOOM_wo,  _WNAME, "ZOOM",_WRESIZE,wbox(0.86,0.04,0.95,0.1),_WCOLOR,RED_,_WEO);
 
 
 //  CURSORS
  // TBC cursor opt?
   lc_gl   = cGl(vvwo);
   
-  sGl(lc_gl,_GLtype,XY_,_GLHUE,BLACK_,_GLltype,CURSOR_,_GLEO);
+  sGl(lc_gl,_GLTYPE,XY_,_GLHUE,BLACK_,_GLLTYPE,CURSOR_,_GLEO);
 
   rc_gl   = cGl(vvwo);
   
-  sGl(rc_gl,_GLtype,XY_,_GLHUE,BLUE_,_GLltype,CURSOR_,_GLEO);
+  sGl(rc_gl,_GLTYPE,XY_,_GLHUE,BLUE_,_GLLTYPE,CURSOR_,_GLEO);
 
 
 

@@ -17,11 +17,58 @@
 ///  all the graphic interface  - xgs
 ///
 //<<"including graphic_glide $_include\n"
-  int Init = 1;
-  float zoom_begin = 0;
-  float zoom_end =  200;
-  float MSE[32];
 
+extern int tdwo,vvwo;
+extern int mapwo;
+extern int tpwo[];
+extern int TASK_wo;
+extern  int igc_tgl;
+extern  int igc_vgl;
+extern int Maxtaskpts;
+extern float erx,ery;
+
+void drawTask(int w,int col);
+extern  void gg_gridLabel(int wid);
+void ClosestTP (float longx, float laty);
+int  PickTP(Str atarg,  int wtp);
+
+
+  void zoomMap(int t1, int t2)
+  {
+  int t3,k;
+      if (t2 < t1) {
+       t3= t2;
+       t2 = t1;
+       t1 =t3;
+     }
+
+//<<"$_proc  $t1 $t1\n";
+//  find min,max for lat and long
+   float min_lat,max_lat = IGCLAT[t1];
+   float min_lng,max_lng = IGCLONG[t1];
+   float val;
+   int n =0;
+   for (k = t1; k <= t2; k++)
+   {
+       val = IGCLAT[k];
+       if (val > max_lat) max_lat = val;
+       if (val < min_lat) min_lat = val;
+
+       val = IGCLONG[k];
+       if (val > max_lng) max_lng = val;
+       if (val < min_lng) min_lng = val;       
+       n++;
+   }
+
+//<<"%V $n $min_lat $max_lat $min_lng $max_lng \n"
+
+   LongW = max_lng +0.1;
+   LongE = min_lng -0.1;
+   LatN = max_lat+0.1;
+   LatS = min_lat- 0.1;
+
+ }
+//=================
 
 
   void DrawMap()
@@ -32,7 +79,7 @@
 //<<"%V $_proc  $_include \n"
 
   int msl;
-
+  int k;
   float lat;
 
   float longi;
@@ -43,7 +90,7 @@
   int is_a_mtn = 0;
   
   sWo(mapwo,_WSCALES,wbox(LongW,LatS,LongE,LatN),_WEO);
-  <<"%V $LongW $LatS $LongE $LatN \n";
+  //<<"%V $LongW $LatS $LongE $LatN \n";
 
   sWo(mapwo,_WCLEARPIXMAP,_WCLIPBORDER,_WEO);
 
@@ -79,7 +126,7 @@
 
   if (!is_an_airport) {
 
-  mlab = slower(mlab);
+    mlab.Slower();
 
   }
 
@@ -134,7 +181,7 @@
 
   }
 
-  sWo(wo,_WSHOWPIXMAP,_WCLIPBORDER,_WSAVEPIXMAP,_WEO);
+  sWo(mapwo,_WSHOWPIXMAP,_WCLIPBORDER,_WSAVEPIXMAP,_WEO);
 
   gg_gridLabel(mapwo);
 
@@ -145,9 +192,9 @@
   void screen_print()
   {
 // make it monochrome
-  int ff;
+
   
-  ff=openLaser("st.ps");
+  openLaser("st.ps");
 
   screenToLaser(Vp);
 
@@ -157,7 +204,7 @@
 
   DrawMap();
 
-  drawTask(RED_);
+  drawTask(mapwo,RED_);
 
   laserToScreen(Vp);
 
@@ -175,13 +222,14 @@
   int k;
   int ti;
   int err;
-  
+  int nwr;
   Str TT;
   Str atpt;
+  Str task_file;
   
   if (query)
 
-  task_file = navi_w("TASK_File","task file?",task_file,".tsk","TASKS");
+  task_file = naviWindow("TASK_File","task file?",task_file,".tsk","TASKS");
 
   TF= ofr(task_file);
   //<<"$task_file  $TF \n";
@@ -190,7 +238,7 @@
 
   ti = 0;
 
-  seterrornum(0);
+  setErrorNum(0);
 
   for (k = 0 ; k < Maxtaskpts ; k++) {
 
@@ -204,7 +252,7 @@
   TT = wval[0];
 
   if ( !(TT == "")) {
-     woSetValue(TASK_wo,_TT);
+     woSetValue(TASK_wo,TT);
   }
   ti = 0;
 
@@ -236,7 +284,7 @@
 
   }
 
-  c_file(TF);
+  closeFile(TF);
 
   }
     //<<"DONE $_proc\n"
@@ -247,8 +295,8 @@
   void readTaskFile(Str taskfile)
   {
   Svar wval;
-
-  TF= ofr(taskfile);
+  int k,err,nwr;
+  int TF= ofr(taskfile);
   //<<"%V $taskfile  $TF $SetWoT \n";
 
   ans=query("$TF read $taskfile ? ");
@@ -257,7 +305,7 @@
 
   ti = 0;
 
-  seterrornum(0);
+  setErrorNum(0);
 
   for (k = 0 ; k < Maxtaskpts ; k++) {
 
@@ -268,7 +316,7 @@
 
   nwr = wval.readWords(TF);
 
-  TT = wval[0];
+  Str TT = wval[0];
 
   if ( !(TT == "")) {
 
@@ -277,7 +325,7 @@
   }
 
   ti = 0;
-
+  Str atpt;
   while (1) {
 
   nwr = wval.readWords(TF);
@@ -316,18 +364,18 @@
 
   void write_task()
   {
+  Str val;
+  Str tsk_file = "K_1.tsk";
 
-  tsk_file = "K_1.tsk";
+  tsk_file=queryWindow("DATA_FILE","write to file:",tsk_file);
 
-  tsk_file=query_w("DATA_FILE","write to file:",tsk_file);
-
-  if (tsk_file == "")       return
+  if (tsk_file == "")       return;
 
   val = getWoValue(TASK_wo);
 
   tsk_file = scat("TASKS/",tsk_file,".tsk");
 
-  WF=ofw(tsk_file);
+  int WF=ofw(tsk_file);
 
   w_file(WF,"type $val  %6.3f $totalK \n");
 
@@ -337,7 +385,7 @@
 
   }
 
-  c_file(WF);
+  cf(WF);
 
   }
 //==================================================
@@ -367,13 +415,13 @@ void drawTrace()
           //DrawMap(mapwo);
 	  
   	 if (Ntpts > 0) {
-            sWo(vvwo, _WSCALES, wbox(0, Min_ele, Ntpts, Max_ele + 500),_WEO )
+            sWo(vvwo, _WSCALES, wbox(0, Min_ele, Ntpts, Max_ele + 500),_WEO );
               dGl(igc_tgl);
 	    sWo(vvwo,_WCLEARPIXMAP);
 	      dGl(igc_vgl);
             sWo(mapwo,_WSHOWPIXMAP,_WCLIPBORDER);
             sWo(vvwo,_WSHOWPIXMAP,_WCLIPBORDER);
-<<"%V $Ev_button $lc_gl $rc_gl  \n"
+//<<"%V $Ev_button $lc_gl $rc_gl  \n"
   CR_init = 1;
   CL_init = 1;
 
@@ -387,7 +435,7 @@ if (rc_gl != -1) {
    dGl(rc_gl);
 }
 
- <<"%V $zoom_begin $zoom_end\n"
+ //<<"%V $zoom_begin $zoom_end\n"
 	 }
 	sWo(mapwo,_WSHOWPIXMAP,_WCLIPBORDER);
   CR_init = 0;
@@ -405,11 +453,11 @@ void drawAlt()
 
 	  
   	 if (Ntpts > 0) {
-            sWo(vvwo, _WSCALES, wbox(0, Min_ele, Ntpts, Max_ele + 500),_WEO )
+            sWo(vvwo, _WSCALES, wbox(0, Min_ele, Ntpts, Max_ele + 500),_WEO );
 	    sWo(vvwo,_WCLEARPIXMAP);
 	      dGl(igc_vgl);
             sWo(vvwo,_WSHOWPIXMAP,_WCLIPBORDER);
-<<"%V $Ev_button $lc_gl $rc_gl  \n"
+//<<"%V $Ev_button $lc_gl $rc_gl  \n"
   CR_init = 1;
   CL_init = 1;
 
@@ -423,7 +471,7 @@ if (rc_gl != -1) {
    dGl(rc_gl);
 }
 
- <<"%V $zoom_begin $zoom_end\n"
+// <<"%V $zoom_begin $zoom_end\n"
 	 }
   CR_init = 0;
   CL_init = 0;
@@ -435,8 +483,9 @@ if (rc_gl != -1) {
   void gg_gridLabel(int wid)
   {
 
-  ts = 0.01;
-
+  float ts = 0.01;
+  float dx,dy = 0.0;
+  float x_inc,y_inc = 0.1;
 //incr should set format
 
   float rx;
@@ -451,7 +500,7 @@ if (rc_gl != -1) {
 
   RS= wgetrscales(wid);
 
-<<"%V $wid $RS \n"
+//<<"%V $wid $RS \n"
 
   rx= RS[1];
 
@@ -461,17 +510,18 @@ if (rc_gl != -1) {
 
   rY= RS[4];
 
-<<"%V $rx $ry $rX $rY\n"
-if (ry == -1.0) {
-ans=query("bad ry\n");
-}
-  putMem("LongW","$rx",1);
+//<<"%V $rx $ry $rX $rY\n"
+  if (ry == -1.0) {
+   ans=query("bad ry\n");
+  }
+  
+  //putMem("LongW","$rx",1);
 
-  putMem("LongE","$rX",1);
+  //putMem("LongE","$rX",1);
 
-  putMem("LatS","$ry",1);
+  //putMem("LatS","$ry",1);
 
-  putMem("LatN","$rY",1);
+ // putMem("LatN","$rY",1);
 
   dx = (rX - rx );
 
@@ -492,144 +542,47 @@ ans=query("bad ry\n");
      // ticks(wid,1,rx,rX,x_inc,ts)
 
   if (x_inc >= 0.01) {
-
+#if ASL
   axnum(wid,1,rx,rX,2*x_inc,-1.5,"3.1f");
-
+#else  
+  sWo(wid,_WAXNUM,AXIS_BOTTOM_,_WEO);
+#endif
   }
 
   else {
-
+#if ASL
   axnum(wid,1,rx,rX,2*x_inc,-1.5,"3.1f");
-
+#else
+sWo(wid,_WAXNUM,AXIS_BOTTOM_,_WEO);
+#endif
   }
 
   }
 
   if ( y_inc != 0.0) {
       //ticks(wid,2,ry,rY,y_inc,ts)
-
+#if ASL
   axnum(wid,2,ry,rY,2*y_inc,-2.0,"2.1f");
-
-  }
+#else
+sWo(wid,_WAXNUM,AXIS_LEFT_,_WEO);
+#endif
+}
 
   sWo(wid,_WCLIPBORDER);
 
   }
 //==================================================
-
-  void magnify(int w_num)
-  {
-
-  ww= get_wcoors(w_num,&rx,&ry,&rX,&rY);
-
-  drx = (rX - rx)/4.0;
-
-  dry = (rY - ry)/4.0;
-
-  R[0] = rx +drx;
-
-  R[1] = ry +dry;
-
-  R[2] = rX -drx;
-
-  R[3] = rY -dry;
-
-  ff=show_curs(1,-1,-1,"resize");
-
-  aw=select_real(w_num,&R[0]);
-
-  ff=show_curs(1,-1,-1,"curs_font");
-
-  if (aw != -1) {
-
-  xr0 = R[0];
-
-  xr1 = R[2];
-
-  yr0 = R[1];
-
-  yr1 = R[3];
-
-  xr = xr1-xr0;
-
-  set_w_rs(w_num,xr0,yr0,xr1,yr1);
-
-  w_clip_clear(w_num);
-
-  ff=w_redraw_wo(w_num);
-
-  x0 = 0;
-
-  }
-
-  w_store(w_num);
-
-  }
-//==================================================
-
-  void new_units()
-  {
-
-  Units = choice_menu("Units.m");
-  }
-//==================================================
-
-  void new_coors(int w_num)
-  {
-//  par_menu = "cfi/tcoors.m"
-
-  par_menu = "tcoors.m";
-
-  ww= get_wcoors(w_num,&rx,&ry,&rX,&rY);
-
-  set_menu_value(par_menu,"x0",rx);
-
-  set_menu_value(par_menu,"x1",rX);
-
-  set_menu_value(par_menu,"y1",rY);
-
-  set_menu_value(par_menu,"y0",ry);
-
-  value = table_menu(par_menu);
-
-  if ( value == 1 ) {
-
-  xr0= get_menu_value(par_menu,"x0");
-
-  xr1= get_menu_value(par_menu,"x1");
-
-  yr1= get_menu_value(par_menu,"y1");
-
-  yr0= get_menu_value(par_menu,"y0");
-
-  xr = xr1-xr0;
-
-  ff=set_w_rs(w_num,xr0,yr0,xr1,yr1);
-
-  ff=w_clip_clear(w_num);
-
-  ff=w_redraw_wo(w_num);
-
-  x0 = 0;
-
-  DrawMap();
-   drawTask(w_num,BLACK_);
-  }
-
-  }
-//==================================================
-
   void gg_zoomToTask(int w_num, int draw)
   {
  // this needs to find rectangle - just bigger than task
   // found via computetaskdistance
-<<"$_proc   $w_num \n";
+//<<"$_proc   $w_num \n";
 
-  ff=sWo(w_num,_WSCALES,wbox(Max_W,Min_lat,Min_W,Max_lat),_WEO);
+  sWo(w_num,_WSCALES,wbox(Max_W,Min_lat,Min_W,Max_lat),_WEO);
 
   if (draw) {
 
-  gflush();
+
 
   DrawMap();
 
@@ -640,148 +593,6 @@ ans=query("bad ry\n");
 
   }
 //==================================================
-
-  void zoom_up(int w_num)
-  {
-
-  ww= get_wcoors(w_num,&rx,&ry,&rX,&rY);
-
-  dy = Fabs(ry-rY)/4;
-
-  ry += dy;
-
-  rY += dy;
-
-  ff=set_w_rs(w_num,rx,ry,rX,rY);
-
-  ff=w_clip_clear(w_num);
-  
-
-  DrawMap();
-
-  drawTask(w_num,RED_);
-
-  }
-//==================================================
-
-  void zoom_in(int w_num)
-  {
-
-  ww= get_wcoors(w_num,&rx,&ry,&rX,&rY);
-
-  dx = Fabs(rx-rX)/4;
-
-  dy = Fabs(ry-rY)/4;
-
-  rx -= dx;
-
-  rX += dx;
-
-  ry += dy;
-
-  rY -= dy;
-
-  ff=set_w_rs(w_num,rx,ry,rX,rY);
-
-  ff=w_clip_clear(w_num);
-
-  ff=w_redraw_wo(w_num);
-
-  DrawMap();
-
-  drawTask(w_num,RED_);
-
-  }
-//==================================================
-
-  void  draw_the_task ()
-  {
-
-  DrawMap();
-
- // drawTask(tw,RED_);
-  }
-//==================================================
-
-  void zoom_out(int w_num,int draw)
-  {
-
-  ww= get_wcoors(w_num,&rx,&ry,&rX,&rY);
-
-  dx = Fabs(rx-rX)/4;
-
-  dy = Fabs(ry-rY)/4;
-
-  rx += dx;
-
-  rX -= dx;
-
-  ry -= dy;
-
-  rY += dy;
-
-  ff=set_w_rs(w_num,rx,ry,rX,rY);
-
-  if (draw) {
-
-  draw_the_task();
-
-  }
-
-  }
-//==================================================
-
-  void zoom_rt(int w_num)
-  {
-
-  ww= get_wcoors(w_num,&rx,&ry,&rX,&rY);
-
-  dx = Fabs(rx-rX)/4;
-
-  dy = Fabs(ry-rY)/4;
-
-  rX -= dx;
-
-  rx -= dx;
-
-  set_w_rs(w_num,rx,ry,rX,rY);
-
- w_clip_clear(w_num);
-
-  ff=w_redraw_wo(w_num);
-
-  DrawMap();
-
-  drawTask(w_num,RED_);
-
-  }
-//======================================//
-
-  void zoom_lt(int w_num)
-  {
-
-  ww= get_wcoors(w_num,&rx,&ry,&rX,&rY);
-
-  dx = Fabs(rx-rX)/4;
-
-  dy = Fabs(ry-rY)/4;
-
-  rX += dx;
-
-  rx += dx;
-
-  ff=set_w_rs(w_num,rx,ry,rX,rY);
-
-  ff=w_clip_clear(w_num);
-
-  ff=w_redraw_wo(w_num);
-
-  DrawMap();
-
-  drawTask(w_num,RED_);
-
-  }
-//======================================//
 
   void reset_map()
   {
@@ -804,7 +615,7 @@ ans=query("bad ry\n");
 
   sWo(tpwo[wt],_WREDRAW);
 
-  MouseCursor("hand", tpwo[9], 0.5, 0.5);
+  mouseCursor("hand", tpwo[9], 0.5, 0.5);
 
     emsg =gev.eventWait();
     ekey = gev.getEventKey(
@@ -814,7 +625,7 @@ ans=query("bad ry\n");
 
   ntp = ClosestTP(erx,ery);
 //ans=query("%V$erx $ery $ntp\n");   
- <<"%V $erx $ery $ntp\n";
+// <<"%V $erx $ery $ntp\n";
 
   if (ntp >= 0) {
 
@@ -831,7 +642,7 @@ ans=query("bad ry\n");
 
   Task_update = 1;
 
-  MouseCursor("cross", tpwo[9], 0.5, 0.5);
+  mouseCursor("cross", tpwo[9], 0.5, 0.5);
 
   sWo(tpwos,_WREDRAW);
 
@@ -847,13 +658,15 @@ ans=query("bad ry\n");
    Str tval;
    Str nval;
    int ntp;
+   int kt,i;
   LastTP =Ntaskpts ;
+  
   if (wt < LastTP ) {
 
   for (i = LastTP ; i > wt ; i--) {
 
   tval = getWoValue(tpwo[i-1]);
-  <<"$i <|$tval|>  \n"
+//  <<"$i <|$tval|>  \n"
 
   woSetValue (tpwo[i],tval);
   sWo(tpwo[i],_WREDRAW);
@@ -869,7 +682,7 @@ ans=query("bad ry\n");
 
   sWo(tpwo[wt],_WREDRAW);
 
-  MouseCursor("hand", tpwo[9], 0.5, 0.5);
+  mouseCursor("hand", tpwo[9], 0.5, 0.5);
 
     emsg =gev.eventWait();
     ekey = gev.getEventKey();
@@ -879,13 +692,13 @@ ans=query("bad ry\n");
 
   ntp = ClosestTP(erx,ery);
 //ans=query("%V$erx $ery $ntp\n");   
- <<"%V $erx $ery $ntp\n";
+// <<"%V $erx $ery $ntp\n";
   if (ntp >= 0) {
 
   Wtp[ntp].Print();
 
   nval = Wtp[ntp].GetPlace();
-<<" found %V $ntp $nval \n"
+//<<" found %V $ntp $nval \n"
              //woSetValue (tpwo[wt],ntp,1)
 
   woSetValue (tpwo[wt],nval,0);
@@ -895,7 +708,7 @@ ans=query("bad ry\n");
 
   Task_update = 1;
 
-  MouseCursor("cross", tpwo[9], 0.5, 0.5);
+  mouseCursor("cross", tpwo[9], 0.5, 0.5);
 
   sWo(tpwos,_WREDRAW);
 
@@ -903,7 +716,7 @@ ans=query("bad ry\n");
 
   Ntaskpts++;
 
-<<"Found %V $wt $ntp <|$nval|> $Ntaskpts\n"
+//<<"Found %V $wt $ntp <|$nval|> $Ntaskpts\n"
 
   }
 //======================================//
@@ -916,14 +729,14 @@ ans=query("bad ry\n");
   Str nval;
   Str tval;
   int ntp;
-<<"$_proc  $wt\n";
+//<<"$_proc  $wt\n";
  LastTP =Ntaskpts ;
   if (wt < LastTP ) {
 
   for (i = LastTP ; i > wt ; i--) {
 
   tval = getWoValue(tpwo[i-1]);
-  <<"$i <|$tval|>  \n"
+//  <<"$i <|$tval|>  \n"
 
   woSetValue (tpwo[i],tval);
 
@@ -940,9 +753,9 @@ ans=query("bad ry\n");
 
   nval = " ";
 
-  nval=query_w("TurnPt","TP $Witp enter name:",nval);
+  nval=queryWindow("TurnPt","TP $Witp enter name:",nval);
 
-<<"name sel:  <|$nval|> \n"
+//<<"name sel:  <|$nval|> \n"
 
   ntp= PickTP(nval,Witp);
 
@@ -961,31 +774,32 @@ ans=query("bad ry\n");
   
   Ntaskpts++;
 
-  <<"Found %V $wt $ntp <|$nval|> $Ntaskpts\n"
+  //<<"Found %V $wt $ntp <|$nval|> $Ntaskpts\n"
 
 
   }
 //======================================//
 int PickViaName(int wt)
 {
-<<"$_proc $wt \n";
+//<<"$_proc $wt \n";
   int wtp;
   int ok = 0;
+  Str aplace;
   woSetValue (tpwo[wt],"XXX");
 
   Str nval = " ";
 
-  nval=query_w("TurnPt","TP $wt enter name:",nval);
+  nval=queryWindow("TurnPt","TP $wt enter name:",nval);
 
-<<"name sel:  <|$nval|> \n"
+//<<"name sel:  <|$nval|> \n"
 
   wtp= PickTP(nval,wt);
   if (wtp >0) {
-  aplace = Wtp[wtp].GetPlace();
+  aplace = Wtp[wtp].Place;
 
   nval = RX[wtp][0];
 
-  <<"Found %V $wt $wtp $nval $aplace\n"
+//  <<"Found %V $wt $wtp $nval $aplace\n"
   ok = 1;
   woSetValue (tpwo[wt],aplace,0);
   }
@@ -1065,7 +879,7 @@ int PickViaName(int wt)
 
   for (i = 0 ; i <Ntaskpts ; i++) {
 
-  ff=woSetValue (tpwo[i],"");
+  wfr=woSetValue (tpwo[i],"");
 
   woSetValue (ltpwo[i],"0",1);
 
@@ -1122,6 +936,8 @@ int PickViaName(int wt)
 
   void setWoTask()
   {
+  int k;
+#if ASL  
   SetWoT++;
 //<<"$_proc $SetWoT\n"
 
@@ -1166,7 +982,7 @@ int PickViaName(int wt)
 
   }
 //<<"DONE $phere $_proc\n"
-
+#endif
   }
 //============================
 
@@ -1175,12 +991,12 @@ int PickViaName(int wt)
 
   lval = "";
 
-  val= "OB";
-
+  Str val= "OB";
+  int mti;
   val = getWoValue(TASK_wo);
 //<<"$_proc <|$val|> \n"
 
-  put_mem("TT",val);
+ // put_mem("TT",val);
 
   if ((val == "TRI")) {
 
@@ -1210,7 +1026,7 @@ int PickViaName(int wt)
 
   }
 
-  if ((val == "SO") ) {
+  if (val == "SO") {
 
   val = getWoValue(tpwo[1]);
 
@@ -1276,7 +1092,7 @@ int PickViaName(int wt)
 
   }
 //============================
-
+#if 0
   void task_menu(int w)
   {
 //<<"$_proc   $w\n"
@@ -1303,13 +1119,6 @@ int PickViaName(int wt)
 
   }
 
-  else if (ur_c == "magnify") {
-
-  magnify(w);
-
-  DrawMap();
-   drawTask (mapwo,BLACK_);
-  }
 
   else if (ur_c == "plot_igc") {
 
@@ -1327,7 +1136,7 @@ int PickViaName(int wt)
 
   else if (ur_c == "coors") {
 
-  new_coors(w);
+  //new_coors(w);
 
   }
 
@@ -1377,7 +1186,7 @@ int PickViaName(int wt)
   }
 /*
     else if (ur_c == "get_finish") {
-    //  ff=w_show_curs(tw,1,"left_arrow")
+    //  wfr=w_show_curs(tw,1,"left_arrow")
       PickaTP()
       set_task()
     }
@@ -1389,115 +1198,7 @@ int PickViaName(int wt)
 
   }
 //=====================================//
-
-  void setup_legs()
-  {
-//<<"$_proc \n"
-
-  /{/*;
-
-  suk = 0;
-
-  print("setup_legs ",wox," ",woy," ",woX," ",woY);
-
-  tp_name = scat("PKTPT_",suk);
-
-  gtpwo[suk]=w_set_wo(tw,WBS,tp_name,1,wogx,woy,wogX,woY);
-
-  for (suk = 1 ; suk <= Ntp ; suk++) {
-
-  woY = woy - ysp;
-
-  woy = woY - ht;
-
-  tp_name = scat("TP:",suk);
-
-  tpwo[suk] = w_set_wo(tw,WBV,tp_name,1,wox,woy,woX,woY);
-
-  tp_name = scat("LEG_",suk);
-
-  ltpwo[suk]=w_set_wo(tw,WSV,tp_name,1,wolx,woy,wolX,woY);
-
-  tp_name = scat("PKTPT_",suk);
-
-  gtpwo[suk]=w_set_wo(tw,WBS,tp_name,1,wogx,woy,wogX,woY);
-
-  }
-
-  /}*/
-
-  }
-//=====================================//
-
-  void the_menu (Str c)
-  {
-//<<"$_proc \n"
-
-  if (c == "zoom_out") {
-
-  zoom_out(tw,1);
-
-  return;
-
-  }
-
-  if (c == "zoom_to_task") {
-
-  gg_zoomToTask(tw,1);
-
-  return;
-
-  }
-
-  if (c == "zoom_up") return  zoom_up(tw)
-
-  if (c == "zoom_in") return  zoom_in(tw)
-
-  if (c == "zoom_rt") return   zoom_rt(tw)
-
-  if (c == "zoom_lt") return zoom_lt(tw)
-
-  if (c == "TASK_MENU" ) {
-
-  return  task_menu(tw);
-
-  }
-
-  if (c == "REDRAW" ) return
-
-  if ( c == "TYPE" ) {
-
-  val="";
-           // l=sscan(&MS[5],&val)
-            //chk_start_finish()
-         //   set_wo_task(mapwo)
-
-  total = taskDist();
-
-  DrawMap();
-
-  drawTask(mapwo,BLUE_);
-
-  return;
-
-  }
-
-  if ( (c == "Start:") || (strcmp(c,"TP",2) ==1) || (c == "Finish:") ) {
-           // set_wo_task(tw)
-            //chk_start_finish()
-
-  total = taskDist();
-
-  DrawMap();
-
-  drawTask(mapwo,RED_);
-
-  return;
-
-  }
-
-  }
-//=====================
+#endif
 
   int PickaTP(int itaskp)
   {
@@ -1516,7 +1217,7 @@ int PickViaName(int wt)
 
   ry = MidLat;
 
-  MouseCursor("left", mapwo, rx, ry);  // TBC;
+  mouseCursor("left", mapwo, rx, ry);  // TBC;
 
   Text(vptxt,"Pick a TP for the task ",0,0.05,1);
 
@@ -1530,7 +1231,7 @@ int PickViaName(int wt)
 
   ntp = ClosestTP(erx,ery);
 
-  MouseCursor("hand");
+  mouseCursor("hand");
 
   if (ntp >= 0) {
 
@@ -1556,16 +1257,16 @@ int PickViaName(int wt)
 
   void drawTask(int w,int col)
   {
-  <<"$_proc    $w $col\n"
+ // <<"$_proc    $w $col\n"
   float lat1;
   float lat2;
   float lon1;
   float lon2;
-  int index;
+  int index,index1;
   if ( Task_update) {
 
   taskDist();
-  <<"$TaskType $col $Nlegs \n"
+ // <<"$TaskType $col $Nlegs \n"
 
   }
 
@@ -1573,14 +1274,14 @@ int PickViaName(int wt)
 //      tpl = Wtp[index].Place;
 //<<"%V$index $tpl \n"
 
-<<" %V $Ntaskpts \n";
+//<<" %V $Ntaskpts \n";
 
   if ( (TaskType == "OAR")   || (TaskType == "SO")) {
 
   index = Taskpts[0];
 
   index1 = Taskpts[1];
-<<"OAR %V $index $index1\n"
+//<<"OAR %V $index $index1\n"
 
   plotLine(w,Wtp[index].Longdeg,Wtp[index].Ladeg,Wtp[index1].Longdeg,Wtp[index1].Ladeg,col);
 
@@ -1596,7 +1297,7 @@ int PickViaName(int wt)
   index = Taskpts[i];
 
   index1 = Taskpts[i+1];
-<<"MT %V $i $index $index1\n"
+//<<"MT %V $i $index $index1\n"
 
 
 // plotLine(w,Wtp[index].Longdeg,Wtp[index].Ladeg,Wtp[index1].Longdeg,Wtp[index1].Ladeg,col);
@@ -1610,12 +1311,11 @@ int PickViaName(int wt)
 
  //<<"%V $w $lat1 $lon1 $lat2 $lon2 $col\n"
 
-  <<"%V $lon1  $lon2  \n"
-  <<"%V $lat1  $lat2  \n"
+//  <<"%V $lon1  $lon2  \n"
+//  <<"%V $lat1  $lat2  \n"
 
   plotLine(w, lon1, lat1,lon2,lat2,col,_WFLUSH,_WEO);
 
-  gflush();
 
   }
   if (Init) {
@@ -1656,7 +1356,7 @@ int PickViaName(int wt)
 
   ret =index;
   
-<<" found $atarg $index $wtp $ret $ttp\n"
+//<<" found $atarg $index $wtp $ret $ttp\n"
 
   }
 
@@ -1686,9 +1386,9 @@ int PickViaName(int wt)
 
   void listTaskPts()
   {
-<<"$_proc \n"
+//<<"$_proc \n"
 
-<<"%V $Ntaskpts\n"
+//<<"%V $Ntaskpts\n"
   float lat1;
   float lat2;
   float lon1;
@@ -1696,11 +1396,11 @@ int PickViaName(int wt)
   int index;
   int index1;
   
-   int kt;
+   int kt,i;
   for (i = 0 ; i < Ntaskpts ; i++) {
 
   kt= Taskpts[i];
-  <<"taskpt $i  $kt $Taskpts[i]   \n"
+ // <<"taskpt $i  $kt $Taskpts[i]   \n"
 
   index = Taskpts[i];
   index1 = Taskpts[i+1];
@@ -1727,16 +1427,16 @@ int PickViaName(int wt)
 
   void showTaskPts()
   {
-<<"$_proc \n"
+//<<"$_proc \n"
 
-<<"%V $Ntaskpts\n"
+//<<"%V $Ntaskpts\n"
 
 
    int kt;
   for (i = 0 ; i < Ntaskpts ; i++) {
 
   kt= Taskpts[i];
-   <<"taskpt $i  $kt $Taskpts[i]   \n"
+//   <<"taskpt $i  $kt $Taskpts[i]   \n"
 
   if (kt <= 0) { 
      break;
@@ -1749,7 +1449,7 @@ int PickViaName(int wt)
   void taskDist()
   {
    // is there a start?
-   <<"$_proc  $Ntaskpts \n"
+ //  <<"$_proc  $Ntaskpts \n"
 //<<"in taskDist  %V $_scope $_cmfnest $_proc $_pnest\n"	       
 
   int tindex =0;
@@ -1810,11 +1510,11 @@ int PickViaName(int wt)
  if ((index > 0)  && (index <= Ntp) ) {
   kmd = 0.0;
 
-<<"pass %V $i $index $Taskpts[i] \n";
+//<<"pass %V $i $index $Taskpts[i] \n";
 
   tpl = Wtp[index].Place;
 
-<<"%V  $tpl \n"
+//<<"%V  $tpl \n"
 
   la2 = Wtp[index].Ladeg;
 
@@ -1878,18 +1578,18 @@ int PickViaName(int wt)
   ght = (kmd * km_to_feet) / LoD;
 
   fga = ght + 1200.0 + msl;
-  <<"%V$i $ght $fga $msl\n"
+ // <<"%V$i $ght $fga $msl\n"
 
   Wleg[j].fga = fga;
 
     }
-   <<"%V $i $Min_lat $Max_lat\n" 
+ //  <<"%V $i $Min_lat $Max_lat\n" 
   }
 
   }
 
   Wleg[Ntaskpts].dist = 0.0;
-<<"%V $Min_lat $Min_W $Max_lat $Max_W \n"
+//<<"%V $Min_lat $Min_W $Max_lat $Max_W \n"
 //<<"%V $LongW $LatS $LongE $LatN   \n"
 
   if (adjust >=2) {
@@ -2078,7 +1778,7 @@ void   showPosn(int pi)
   {
     	 wfr=sWo(mapwo,_WSHOWPIXMAP,_WEO);
     wfr =sWo(mapwo,_WPIXMAPOFF,_WDRAWON,_WEO); // just draw but not to pixamp
-              <<"%V $pi $IGCELE[pi] $IGCLAT[pi] $IGCLONG[pi] \n";
+//              <<"%V $pi $IGCELE[pi] $IGCLAT[pi] $IGCLONG[pi] \n";
          symx = IGCLONG[pi];
 	 symy = IGCLAT[pi];
 	 symem = IGCELE[pi] ;
@@ -2105,7 +1805,7 @@ void updateLegs()
  float lfga;
  int lwo;
  int nlegs = Ntaskpts-1;
- <<"$_proc TP's $Ntaskpts Legs $nlegs\n"
+// <<"$_proc TP's $Ntaskpts Legs $nlegs\n"
 
   for (i = 0; i < nlegs ; i++) {
 
@@ -2115,8 +1815,8 @@ void updateLegs()
     dist =  Wleg[i].dist;
 //    val = "%6.0f$lfga"
       val = "%6.0f$lfga $dist";   
-    <<"leg $i $lwo %6.1f $msl $dist  $lfga  \n"
-  <<"leg $i  <|$val|> \n"
+ //   <<"leg $i $lwo %6.1f $msl $dist  $lfga  \n"
+//  <<"leg $i  <|$val|> \n"
      woSetValue (lwo,val,0);
      sWo(lwo,_WREDRAW,_WEO);
   }

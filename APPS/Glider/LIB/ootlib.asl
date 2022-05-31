@@ -98,6 +98,7 @@ float   nm_to_km = 6080.0/3281.0;
   Vec<float> IGCTIM(500);
 
 
+
   float computeGCD(float la1,float la2,float lo1,float lo2)
   {
 ///  input lat and long degrees - GCD in km
