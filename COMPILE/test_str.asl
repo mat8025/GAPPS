@@ -16,7 +16,6 @@
 ///  
 ///
 
-
 #define ASL 0
 #define CPP 1
 
@@ -24,6 +23,8 @@
 #if CPP
 Svar WM;
 
+#include "swinwob.h"
+#include "str.h"
 
 void
 Uac::strWorld(Svarg * sarg)  
@@ -110,6 +111,8 @@ cout << "abc[26]  " << abc[26] << endl;
 Str def = abc;
 
 char cval = 'T';
+
+
  COUT(abc)
 
  COUT(def)
@@ -219,6 +222,23 @@ Svar VS;
  cout  << "VS  "  << VS << endl ;
 
  cout  << "VS  "  << VS[1] << endl ;
+
+
+Str s1 = "Happy";
+
+Str s2 = " Hols";
+
+Str ws;
+
+ws = scat(s1,s2);
+
+COUT(ws)
+
+
+ws = scat((char *) "It's  ", "a ", "bright ", "blue ", "day");
+
+COUT(ws)
+
 chkOut();
   cout << "DONE str tests \n";
 }
