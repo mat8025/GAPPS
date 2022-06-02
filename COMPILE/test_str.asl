@@ -247,10 +247,17 @@ ws = scat((char *) "It's  ", "a ", "bright ", "blue ", "day", " and ", "I ", "th
 COUT(ws)
 
 ans=query(" Str multiple cat OK?");
-ws = scat(s1,s2,s3);
+
+ws = scat(s1,s2,s3, Str{" OK?"},  Str{" how many"}, Str{""});
 
 COUT(ws)
 
+ws = scat(s1,s2,s3, Str{" OK?"}, Str{" Really yes use anonymous objects"}, Str{" how many?"}, Str{""});
+
+COUT(ws)
+ws = scat(s1,s2,s3, Str{" OK?"}, Str{" Really yes use anonymous objects"});
+
+COUT(ws)
 chkOut();
   cout << "DONE str tests \n";
 }
