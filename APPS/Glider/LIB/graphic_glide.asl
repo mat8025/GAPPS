@@ -383,7 +383,7 @@ void taskDist();
 
   val = getWoValue(TASK_wo);
 
-  tsk_file = scat("TASKS/",tsk_file,".tsk");
+  tsk_file = scat("TASKS/",tsk_file.cptr(),".tsk");
 
   int WF=ofw(tsk_file);
 

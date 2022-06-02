@@ -124,11 +124,11 @@ char cval = 'T';
 
 COUT(def)
 
-ans=query("OK?");
+//ans=query("OK?");
 
 def = abc;
 COUT(def)
-ans=query("OK?");
+//ans=query("OK?");
 
 chkChar(def[4],'e');
 chkChar(def[6],'g');
@@ -143,7 +143,7 @@ COUT(def)
  chkChar(def[20],'X');
   chkChar(def[4],'X');
 
-ans=query("OK?");
+//ans=query("OK?");
 
 
 
@@ -160,14 +160,14 @@ abc(1,13,2) = xyz(1,13,2);
 
 cout << " abc = " << abc << endl;
 
-ans=query("OK?");
+//ans=query("OK?");
 
 
 abc = xyz;
 
 COUT(abc);
 
-ans=query("OK?");
+//ans=query("OK?");
 
 abc(1,15,2) = xyz(15,1,-2);
 
@@ -176,7 +176,7 @@ chkChar(abc[3],xyz[13]);
 
 COUT(abc)
 
-ans=query("OK?");
+//ans=query("OK?");
 
 Vec<int> index;
 
@@ -228,14 +228,26 @@ Str s1 = "Happy";
 
 Str s2 = " Hols";
 
+Str s3 = " in Costa Rica";
+
 Str ws;
+cout <<"trying scat \n";
 
 ws = scat(s1,s2);
+COUT(ws)
+ans=query("OK?");
+
+ws= scat("adelante"," ahora");
 
 COUT(ws)
 
 
-ws = scat((char *) "It's  ", "a ", "bright ", "blue ", "day");
+ws = scat((char *) "It's  ", "a ", "bright ", "blue ", "day", " and ", "I ", "thought I would come your way","");
+
+COUT(ws)
+
+ans=query(" Str multiple cat OK?");
+ws = scat(s1,s2,s3);
 
 COUT(ws)
 

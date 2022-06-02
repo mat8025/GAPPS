@@ -1,1 +1,1 @@
-asl -Du -s 'opendll("uac"); opendll("plot"); test_str(2); '
+asl -du -s 'opendll("uac"); opendll("plot"); test_str(2); '
