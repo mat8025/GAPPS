@@ -56,21 +56,21 @@ int Xgm;
   
   sWo(tdwo,_WCOLOR,WHITE_,_WSTYLE,"SVB");
 
-  int sawo= cWo(Vp, WO_BV_);
+  sawo= cWo(Vp, WO_BV_);
 
-  float rsz[5] = wbox(0.15,0.01,0.54,0.1);
+  //float rsz[5] = wbox(0.15,0.01,0.54,0.1);
 
   //<<"%V $rsz\n";
   //rsz.pinfo();
 
 
- // sWo(sawo,_WRESIZE, wbox (0.15,0.01,0.54,0.1),_WEO);
-  sWo(sawo,_WRESIZE, rsz,_WEO);
+ sWo(sawo,_WRESIZE, wbox (0.15,0.01,0.54,0.1),_WEO);
+  //sWo(sawo,_WRESIZE, rsz,_WEO);
 
   sWo(sawo,_WCOLOR,WHITE_,_WSTYLE,"SVB");
 
 
-  int vvwo= cWo(Vp, WO_GRAPH_);
+  vvwo= cWo(Vp, WO_GRAPH_);
 
   sWo(vvwo,_WNAME,"ALT",_WCOLOR,WHITE_);
 
@@ -84,7 +84,7 @@ int Xgm;
 
   sWo(vvwo, _WSCALES, wbox(0, 0, 100, 6000), _WSAVEPIXMAP, _WREDRAW, _WDRAWON, _WPIXMAPON);
 
-  int mapwo= cWo(Vp,WO_GRAPH_);
+  mapwo= cWo(Vp,WO_GRAPH_);
   sWo(mapwo,_WRESIZE,wbox(0.30,0.26,0.95,0.95),_WNAME,"MAP",_WCOLOR,WHITE_);
 
 //<<"%V $mapwo $LongW $LatS \n"
@@ -92,11 +92,11 @@ int Xgm;
   sWo(mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN), _WSAVE, _WREDRAW, _WDRAWON, _WPIXMAPON,_WSAVEPIXMAP,_WEO);
 
   LastTP = 12; 
-  int tpwo[MaxLegs+1];
+
 
   //tpwo = -1;
   
-  int legwo[MaxLegs+1];
+//  int legwo[MaxLegs+1];
 
   //legwo = -1;
 
@@ -143,7 +143,7 @@ int Xgm;
   sWo(tpwo,_WCOLOR,ORANGE_,_WFONTHUE,BLACK_,_WFONT,F_TINY_,_WREDRAW,_WEO);
   sWo(legwo,_WCOLOR,BLUE_,_WFONTHUE,BLUE_,_WFONT,F_TINY_,_WREDRAW,_WEO);
 
-  int TASK_wo=cWo(Vp,WO_BV_);
+  TASK_wo=cWo(Vp,WO_BV_);
   sWo(TASK_wo, _WRESIZE,wbox(0.05,0.25,0.15,0.34),_WEO);
   
 //<<"%V$TASK_wo\n"
@@ -151,7 +151,7 @@ int Xgm;
   sWo(TASK_wo, _WHELP, "Set Task Type", _WNAME, "TaskType", _WFUNC,  "wo_menu",  _WMENU, "SO,TRI,OAR,W,MT",  _WVALUE, "TRI");
 
 
-  int TASK_menu_wo=cWo(Vp,WO_BV_);
+  TASK_menu_wo=cWo(Vp,WO_BV_);
 
   sWo( TASK_menu_wo,_WRESIZE,wbox(0.05,0.12,0.15,0.24),_WEO);
 
@@ -162,13 +162,13 @@ int Xgm;
 
   gflush();
   
-  int vptxt= cWo(Vp, WO_TEXT_);
+  vptxt= cWo(Vp, WO_TEXT_);
   sWo(vptxt,_WRESIZE,wbox(0.55,0.01,0.85,0.1),_WNAME,"TXT", _WEO);
   sWo(vptxt,_WCOLOR,WHITE_,_WSAVE,_WDRAWON,_WPIXMAPOFF);
 
 
 
-  int ZOOM_wo=cWo(Vp,WO_BV_);
+  ZOOM_wo=cWo(Vp,WO_BV_);
   sWo(ZOOM_wo,  _WNAME, "ZOOM",_WRESIZE,wbox(0.86,0.04,0.95,0.1),_WCOLOR,RED_,_WEO);
 
 
@@ -176,11 +176,12 @@ int Xgm;
  // TBC cursor opt?
   lc_gl   = cGl(vvwo);
   
-  sGl(lc_gl,_GLTYPE,XY_,_GLHUE,BLACK_,_GLLTYPE,CURSOR_,_GLEO);
+//  sGl(lc_gl,_GLTYPE,XY_,_GLHUE,BLACK_,_GLLTYPE,CURSOR_,_GLEO);
+  sGl(lc_gl,_GLTYPE,XY_,_GLHUE,BLACK_,_GLEO);
 
   rc_gl   = cGl(vvwo);
   
-  sGl(rc_gl,_GLTYPE,XY_,_GLHUE,BLUE_,_GLLTYPE,CURSOR_,_GLEO);
+  sGl(rc_gl,_GLTYPE,XY_,_GLHUE,BLUE_,_GLEO);
 
 
 

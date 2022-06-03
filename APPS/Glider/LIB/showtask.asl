@@ -80,6 +80,8 @@ chkIn(_dblevel);
 
 int uplegs = 0;  // needed?
 int  Ntp = 0; //
+extern int legwo[];
+
 
 // different behavior on earth versus neptune machines
 // local var not inited cpp and referenced with being set!!
@@ -386,7 +388,7 @@ printf(" Read $Ntp %d turnpts \n",Ntp);
        
       }
        else {
-	  if (slen(targ) > 1) {
+	  if (targ.slen() > 1) {
           r_index=SRX.findRecord(targ,0,0);
 	 // <<"%V $targ $WH\n"
 
@@ -428,7 +430,15 @@ printf("Warning can't find $targ as a TP - skipping \n");
 // set a default task
 if (Ntaskpts == -1) {
 
-Svar targ_list = {"eldorado","casper","rangely","eldorado"};
+    //		    // dbt("WHELP %s\n",name);
+
+//Svar targ_list[] = {"eldorado","casper","rangely","eldorado"};
+
+  // Svar targ_list = {"eldorado","casper","rangely","eldorado"};
+
+     Svar targ_list;
+     targ_list.findCommaTokens("eldorado,casper,rangely,eldorado");
+
 
       int sz = targ_list.getSize();
 //<<"$sz : $targ_list \n"
@@ -491,8 +501,8 @@ ans = query("see wtp");
 
 
       for (i = 0; i < Ntaskpts ; i++) {
-         MSL = Wleg[i].msl;
-      // <<"Stat $i $MSL $Wleg[i].dist   $Wleg[i].fga\n"
+         ST_msl = Wleg[i].msl;
+      // <<"Stat $i $ST_msl $Wleg[i].dist   $Wleg[i].fga\n"
       }
 
 
@@ -567,10 +577,10 @@ Str place;
     sWo(mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN),_WEO );
 
 //  set up the IGC track for plot
-    int igc_tgl = cGl(mapwo);
+    igc_tgl = cGl(mapwo);
     sGl(igc_tgl, _GLTXY,IGCLONG,IGCLAT,_GLHUE,BLUE_,_GLEO);
 
-    int igc_vgl = cGl(vvwo);
+    igc_vgl = cGl(vvwo);
     sGl(igc_vgl, _GLTY,IGCELE,_GLHUE,RED_,_GLEO);
 
 
@@ -592,14 +602,13 @@ Str place;
 
  Gevent gev;
 
-   float erx;
-   float ery;
+
 
 //<<"%V $Ev_button\n"
 
 
 int dindex;
-int Witp = 0;
+
 int drawit = 0;
 Str msgv = "";
 
@@ -915,11 +924,11 @@ Str wcltpt="XY";
 	       
             //  <<" found %V $ntp $nval \n"
                 Text(  vptxt," $ntp $nval   ",0,0.05,1);
-                msl = Wtp[ntp].Alt;
+                ST_msl = Wtp[ntp].Alt;
                 mkm = HowFar(erx,ery, Wtp[ntp].Longdeg, Wtp[ntp].Ladeg);
                 ght = (mkm * km_to_feet) / LoD;
-                sa = msl + ght + 2000;
-          	sWo(sawo,_WVALUE,"$nval %5.1f $msl $mkm $sa",_WREDRAW);
+                sa = ST_msl + ght + 2000;
+          	sWo(sawo,_WVALUE,"$nval %5.1f $ST_msl $mkm $sa",_WREDRAW);
                // DrawMap();
              }
 
@@ -966,8 +975,8 @@ Str wcltpt="XY";
       Task_update = 0;
 
       for (i = 0; i < Ntaskpts ; i++) {
-         MSL = Wleg[i].msl;
-       //<<"Stat $i $MSL $Wleg[i].dist   $Wleg[i].fga\n"
+         ST_msl = Wleg[i].msl;
+       //<<"Stat $i $ST_msl $Wleg[i].dist   $Wleg[i].fga\n"
       }
 
 

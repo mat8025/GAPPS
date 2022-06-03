@@ -88,7 +88,7 @@ void taskDist();
 // TBF include ?? code that we are running or  code that is calling?
 //<<"%V $_proc  $_include \n"
 
-  int msl;
+  float msl;
   int k;
   float lat;
 
@@ -894,7 +894,7 @@ int PickViaName(int wt)
 
   wfr=woSetValue (tpwo[i],"");
 
-  woSetValue (ltpwo[i],"0",1);
+  woSetValue (legwo[i],"0",1);
 
   }
 
@@ -1180,7 +1180,7 @@ int PickViaName(int wt)
 // use current lat,long to place curs
 //
 //<<"$_proc $itaskp\n"
-
+  Str nval;
   int ret = -1;
   int ntp;
   float rx;
@@ -1195,7 +1195,7 @@ int PickViaName(int wt)
 
   Text(vptxt,"Pick a TP for the task ",0,0.05,1);
 
-  sWi(vp,_Wtmsg,"Pick a TP for the task ");
+  //sWi(vp,_WTMSG,"Pick a TP for the task ");
 
   
   emsg =gev.eventWait();
@@ -1592,7 +1592,7 @@ int PickViaName(int wt)
   int ClosestTP (float longx, float laty)
   {
 ///
-  float dx,dy;
+  float dx,dy,dxy;
   
   //T=fineTime();
 
