@@ -180,9 +180,10 @@ Str val2;
      Lat = wval[3]; // wayp
      
 //cout << "Lat " << Lat <<endl;
-
+//<<"%V $Lat \n"
      ccoor(Lat);
-     
+//<<"%V $Lat \n"     
+ 
      Lon = wval[4];
 
      ccoor(Lon);

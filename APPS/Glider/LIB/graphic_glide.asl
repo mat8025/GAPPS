@@ -17,11 +17,11 @@
 ///  all the graphic interface  - xgs
 ///
 //<<"including graphic_glide $_include\n"
-
+#if CPP
 extern int tdwo,vvwo;
 extern int mapwo;
-extern int tpwo[];
-extern int legwo[];
+//extern int tpwo[];
+//extern int legwo[];
 extern int TASK_wo;
 extern int sawo;
 extern int vptxt;
@@ -34,14 +34,16 @@ extern float erx,ery;
 
 extern Turnpt  Wtp[]; //
 extern Tleg  Wleg[];
-
+extern  void gg_gridLabel(int wid);
 
 void drawTask(int w,int col);
-extern  void gg_gridLabel(int wid);
+
 int ClosestTP (float longx, float laty);
 int ClosestLand(float longx,float laty);
 int  PickTP(Str atarg,  int wtp);
 void taskDist();
+#endif
+
 
   void zoomMap(int t1, int t2)
   {
@@ -136,7 +138,8 @@ void taskDist();
 
   if (!is_an_airport) {
 
-    mlab.Slower();
+     mlab.slower();  //TBF 5/3/22
+     
 
   }
 
@@ -1231,12 +1234,11 @@ int PickViaName(int wt)
 
   void drawTask(int w,int col)
   {
- // <<"$_proc    $w $col\n"
-  float lat1;
-  float lat2;
-  float lon1;
-  float lon2;
+  //<<"$_proc    $w $col\n"
+  float lat1, lat2;
+  float lon1, lon2;
   int index,index1;
+  int fast;
   if ( Task_update) {
 
   taskDist();
@@ -1263,6 +1265,8 @@ int PickViaName(int wt)
 
   else {
   //sdb(2,"pline");
+  fast=fastxic(1);
+  dbline(1);
   for (i = 0 ; i < (Ntaskpts-1) ; i++ ) {
 
 
@@ -1271,7 +1275,7 @@ int PickViaName(int wt)
   index = Taskpts[i];
 
   index1 = Taskpts[i+1];
-//<<"MT %V $i $index $index1\n"
+<<"MT %V $i $index $index1\n"
 
 
 // plotLine(w,Wtp[index].Longdeg,Wtp[index].Ladeg,Wtp[index1].Longdeg,Wtp[index1].Ladeg,col);
@@ -1283,12 +1287,11 @@ int PickViaName(int wt)
 
   lon2 = Wtp[index1].Longdeg;
 
- //<<"%V $w $lat1 $lon1 $lat2 $lon2 $col\n"
+ <<"%V $fast $w $lat1 $lon1  \n"
+ <<"%V $lat2 $lon2 \n"
 
-//  <<"%V $lon1  $lon2  \n"
-//  <<"%V $lat1  $lat2  \n"
-
-  plotLine(w, lon1, lat1,lon2,lat2,col);
+//  plotLine(w, lon1, lat1,lon2,lat2,col);
+  plotLine(w, lon1, lat1,lon2,lat2);
 
 
   }
@@ -1301,6 +1304,8 @@ int PickViaName(int wt)
 //ans=query("see lines?");
  sWo(w,_WSHOWPIXMAP,_WCLIPBORDER);
 //ans=query("see lines?");
+  fastxic(0);
+  dbline(0);
   }
 //=============================================
 
@@ -1464,7 +1469,7 @@ int PickViaName(int wt)
   for (i = 0; i < Ntaskpts ; i++) {
 
   index = Taskpts[i];
- // <<"%V $i $index \n";
+  <<"%V $i $index \n";
  // index.pinfo();
   
  if ((index > 0)  && (index <= Ntp) ) {
@@ -1529,10 +1534,10 @@ int PickViaName(int wt)
   j = i-1;
   if (i > 0) {
 
-//<<"%V $i  $kmd  $tpl $fga\n";
+<<"%V $i  $j $kmd  $tpl $fga\n";
 
   Wleg[j].dist = kmd;
-
+<<"%V $Wleg[j].dist \n"
   Wleg[j].Tow = tpl;
 
   ght = (kmd * km_to_feet) / LoD;

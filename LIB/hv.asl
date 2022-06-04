@@ -34,20 +34,20 @@
   }
   //======================
 
-str _ele = "1";
+Str _ele = "1";
 
-str hdr_script = "none";
-str hdr_vers = "1.1"
-str hdr_release = "CARBON";
-str hdr_author = "mt";
-str hdr_cdate = "1964"
-str hdr_date = "1964"
+Str hdr_script = "none";
+Str hdr_vers = "1.1"
+Str hdr_release = "CARBON";
+Str hdr_author = "mt";
+Str hdr_cdate = "1964"
+Str hdr_date = "1964"
 
    int hv_found =0;
       int hv_show =0;
 
 
-    str  rs = "comment ca va"
+    Str  rs = "comment ca va"
 
 // to work with xic code ?
 
@@ -222,7 +222,7 @@ if (hv_found) {
 }
 
 
-<<"Done hv\n"
+<<"Done hv $hdr_vers\n"
 ;//==============\_(^-^)_/==================//;
 
 /////////////////////////// DEV //////////////////////////
@@ -231,7 +231,7 @@ if (hv_found) {
    otherwise have globals
    delete any tmp? globals
 
-TBF  11/24/21  if (rs == "@script")  - this str comparison corrupts  memory
+TBF  11/24/21  if (rs == "@script")  - this Str comparison corrupts  memory
 
 */
 

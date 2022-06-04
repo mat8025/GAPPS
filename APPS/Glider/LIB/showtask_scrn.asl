@@ -32,11 +32,6 @@ int Xgm;
 
 #include "tbqrd.asl"
 
- int symsz = 2;
- int wfr = 0;
-
-
-
 
   Vp = cWi("Vp");
   

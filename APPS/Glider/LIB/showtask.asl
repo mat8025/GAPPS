@@ -70,7 +70,7 @@ chkIn(_dblevel);
 
 #include "hv.asl"
 
- ignoreErrors(-1);
+ ignoreErrors();
 //setMaxICerrors(-1) // ignore - overruns etc
 
 //#define DBG <<
@@ -80,7 +80,7 @@ chkIn(_dblevel);
 
 int uplegs = 0;  // needed?
 int  Ntp = 0; //
-extern int legwo[];
+
 
 
 // different behavior on earth versus neptune machines
@@ -484,7 +484,7 @@ int k;
 	     
     }
 
-ans = query("see wtp");
+//ans = query("see wtp");
 
 
 //<<"//////////\n"
@@ -571,7 +571,7 @@ Str place;
 
      Str c= "EXIT";
 
-     sWi(vp,_WREDRAW); // need a redraw proc for app
+     sWi(Vp,_WREDRAW); // need a redraw proc for app
 
 
     sWo(mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN),_WEO );
@@ -603,8 +603,6 @@ Str place;
  Gevent gev;
 
 
-
-//<<"%V $Ev_button\n"
 
 
 int dindex;
@@ -667,7 +665,15 @@ Str wcltpt="XY";
     WoName = gev.getEventWoName();
     Ev_button = gev.getEventButton();
     Ev_keyw = gev.getEventKeyWord();
-//<<"%V $ekey $WoName \n"
+#if ASL    
+<<"%V $Ev_keyw $ekey $WoName \n"
+
+#endif
+    if (Ev_keyw == "REDRAW" || WoName == "REDRAW") {
+
+       Task_update =1;
+!a       
+    }
 
     //Text(vptxt," $_ekeyw   ",0,0.05,1)
 
