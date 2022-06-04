@@ -26,6 +26,7 @@
 #if ASL
 // the include  when cpp compiling will re-define ASL 0 and CPP 1
 #include "/home/mark/gasp-CARBON/include/compile.h"
+#define PXS  <<
 #endif
 
 #if CPP
@@ -49,6 +50,7 @@ using namespace std;
 
 #include "uac.h"
 
+#define PXS  cout<<
 
 #endif
 
@@ -399,9 +401,13 @@ printf(" Read $Ntp %d turnpts \n",Ntp);
 //<<"$ttp \n"
 
           Taskpts[Ntaskpts] = r_index;
-//<<" $Ntaskpts found $targ  $r_index  $Taskpts[Ntaskpts]\n"
+
+PXS" $Ntaskpts found $targ  $r_index  $Taskpts[Ntaskpts]\n";
 
            Ntaskpts++;
+#if ASL_DB	   
+	   Taskpts.pinfo();
+#endif
 
            }
           else {
@@ -667,12 +673,11 @@ Str wcltpt="XY";
     Ev_keyw = gev.getEventKeyWord();
 #if ASL    
 <<"%V $Ev_keyw $ekey $WoName \n"
-
 #endif
     if (Ev_keyw == "REDRAW" || WoName == "REDRAW") {
 
        Task_update =1;
-!a       
+       
     }
 
     //Text(vptxt," $_ekeyw   ",0,0.05,1)

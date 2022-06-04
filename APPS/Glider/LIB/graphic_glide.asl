@@ -1234,11 +1234,32 @@ int PickViaName(int wt)
 
   void drawTask(int w,int col)
   {
-  //<<"$_proc    $w $col\n"
-  float lat1, lat2;
-  float lon1, lon2;
-  int index,index1;
+  
+  <<"$_proc    $w $col\n"
+
+
+  float lat1 = 0.0;
+  float lat2 = 1.0;
+  float lon1 = 2.0;
+  float lon2 = 3.0;
+  int index = -7;
+  int index1 = -8;
+  int idt = -2;
+  int j = -3;
+
+#if ASL_DB
+  idt.pinfo();
+  j.pinfo();
+  Taskpts.pinfo();
+  PXS"%V $idt $j\n";
+  PXS"MT %V  $index $index1\n";
+
+#endif  
+
+
+
   int fast;
+/*  
   if ( Task_update) {
 
   taskDist();
@@ -1262,23 +1283,44 @@ int PickViaName(int wt)
   plotLine(w,Wtp[index].Longdeg,Wtp[index].Ladeg,Wtp[index1].Longdeg,Wtp[index1].Ladeg,col);
 
   }
+*/
 
-  else {
+
+#if ASL
+fast=fastxic(0);
+  dbline(0);
+#endif
+
+#if ASL_DB
+  idt.pinfo();
+  j.pinfo();
+  Taskpts.pinfo();
+#endif  
+
   //sdb(2,"pline");
-  fast=fastxic(1);
-  dbline(1);
-  for (i = 0 ; i < (Ntaskpts-1) ; i++ ) {
 
+  for (idt = 0 ; idt < (Ntaskpts-1) ; idt++ ) {
 
+  j = idt +1;
+  PXS"%V $idt $j\n";
+#if ASL_DB
+  j.pinfo();
+  Taskpts.pinfo();
+
+#endif  
 //<<"$i %V $w  $Tasktp[i].Longdeg $Tasktp[i].Ladeg $Tasktp[i+1].Longdeg $Tasktp[i+1].Ladeg $col \n "
 
-  index = Taskpts[i];
+  index = Taskpts[idt];
 
-  index1 = Taskpts[i+1];
-<<"MT %V $i $index $index1\n"
+  index1 = Taskpts[idt+1];
+  //index1 = Taskpts[j];
+  
+PXS"MT %V $idt $index $index1\n";
 
+  
 
 // plotLine(w,Wtp[index].Longdeg,Wtp[index].Ladeg,Wtp[index1].Longdeg,Wtp[index1].Ladeg,col);
+
   lat1 = Wtp[index].Ladeg;
 
   lon1 = Wtp[index].Longdeg;
@@ -1287,26 +1329,42 @@ int PickViaName(int wt)
 
   lon2 = Wtp[index1].Longdeg;
 
- <<"%V $fast $w $lat1 $lon1  \n"
- <<"%V $lat2 $lon2 \n"
+  lat1.pinfo();
+  lat2.pinfo();  
+
+  lon1.pinfo();
+  lon2.pinfo();
+  
 
 //  plotLine(w, lon1, lat1,lon2,lat2,col);
-  plotLine(w, lon1, lat1,lon2,lat2);
+
+
+#if ASL_DB
+ <<"%V $fast $w   \n"
+<<"%V $lat1 $lon1  \n" 
+ <<"%V $lat2 $lon2 \n"
+#endif
+
+   plotLine(w, lon1, lat1,lon2,lat2);
 
 
   }
+  
   if (Init) {
     //MSE=getMouseEvent();
     Init = 0;  // make this once only
    }
 
-  }
-//ans=query("see lines?");
+  
+
  sWo(w,_WSHOWPIXMAP,_WCLIPBORDER);
 //ans=query("see lines?");
-  fastxic(0);
+#if ASL
+fastxic(0);
   dbline(0);
-  }
+//  sdb(1,"~pline");
+#endif
+}
 //=============================================
 
   Str Atarg="xxx";
@@ -1469,7 +1527,7 @@ int PickViaName(int wt)
   for (i = 0; i < Ntaskpts ; i++) {
 
   index = Taskpts[i];
-  <<"%V $i $index \n";
+ // <<"%V $i $index \n";
  // index.pinfo();
   
  if ((index > 0)  && (index <= Ntp) ) {
@@ -1534,19 +1592,21 @@ int PickViaName(int wt)
   j = i-1;
   if (i > 0) {
 
-<<"%V $i  $j $kmd  $tpl $fga\n";
-
+//<<"%V $i  $j $kmd  $tpl $fga\n";
+  dbline(1);
   Wleg[j].dist = kmd;
-<<"%V $Wleg[j].dist \n"
+//<<"%V $Wleg[j].dist \n"
   Wleg[j].Tow = tpl;
-
+  //ght.pinfo();
   ght = (kmd * km_to_feet) / LoD;
 
   fga = ght + 1200.0 + msl;
- // <<"%V$i $ght $fga $msl\n"
 
-  Wleg[j].fga = fga;
+//PXS"%V$i $ght $fga $msl\n"
 
+
+   Wleg[j].fga = fga;
+  dbline(0);
     }
  //  <<"%V $i $Min_lat $Max_lat\n" 
   }

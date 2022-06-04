@@ -82,7 +82,8 @@ class Turnpt
   int is_airport;
   int is_mtn;
   int id;
-  int match[2];
+  //int match[2];
+  int match;
   Str smat; ;
   
 //  int amat;
@@ -119,7 +120,7 @@ class Turnpt
 
      tptype = wval[7];
      
-     smat = spat (&tptype, "A",-1,-1,match);
+     //smat = spat (&tptype, "A",-1,-1,match);
 
      Ladeg =  coorToDeg(Lat); // wayp
      
