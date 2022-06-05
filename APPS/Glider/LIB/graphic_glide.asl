@@ -451,8 +451,11 @@ if (rc_gl != -1) {
  //<<"%V $zoom_begin $zoom_end\n"
 	 }
 	sWo(mapwo,_WSHOWPIXMAP,_WCLIPBORDER);
-  CR_init = 0;
-  CL_init = 0;
+	
+
+
+      CR_init = 0;
+      CL_init = 0;
       }
 }
 
@@ -1287,8 +1290,8 @@ int PickViaName(int wt)
 
 
 #if ASL
-fast=fastxic(0);
-  dbline(0);
+fast=fastxic(1);
+  dbline(1);
 #endif
 
 #if ASL_DB
