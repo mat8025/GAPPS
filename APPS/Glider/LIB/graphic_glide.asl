@@ -255,9 +255,9 @@ void taskDist();
 
   for (k = 0 ; k < Maxtaskpts ; k++) {
 
-  sWo(tpwo[k],_WVALUE,"");
+ // sWo(tpwo[k],_WVALUE,"");
           //sWo (ltpwo[k],_WVALUE,"0")
-
+                 woSetValue(tpwo[k],"0");
   }
 
   nwr = wval.readWords(TF);
@@ -322,9 +322,9 @@ void taskDist();
 
   for (k = 0 ; k < Maxtaskpts ; k++) {
 
-  sWo(tpwo[k],_WVALUE,"");
+  //sWo(tpwo[k],_WVALUE,"");
           //sWo (ltpwo[k],_WVALUE,"0")
-
+                 woSetValue(tpwo[k],"");
   }
 
   nwr = wval.readWords(TF);
@@ -333,8 +333,8 @@ void taskDist();
 
   if ( !(TT == "")) {
 
-  sWo(TASK_wo,_WVALUE,TT);
-
+  //sWo(TASK_wo,_WVALUE,TT);
+                 woSetValue(TASK_wo,TT);
   }
 
   ti = 0;
@@ -379,7 +379,7 @@ void taskDist();
   {
   Str val;
   Str tsk_file = "K_1.tsk";
-
+  int i;
   tsk_file=queryWindow("DATA_FILE","write to file:",tsk_file);
 
   if (tsk_file == "")       return;
@@ -748,7 +748,7 @@ sWo(wid,_WAXNUM,AXIS_LEFT_,_WEO);
   Str nval;
   Str tval;
   int ntp;
-  int kt;
+  int kt,i;
 //<<"$_proc  $wt\n";
  LastTP =Ntaskpts ;
   if (wt < LastTP ) {
@@ -858,8 +858,8 @@ int PickViaName(int wt)
 
   if (kt == 0) {
 
-  sWo (tpwo[j],_WVALUE," ",_WREDRAW);
-
+  //sWo (tpwo[j],_WVALUE," ",_WREDRAW);
+                 woSetValue(tpwo[j]," ");
   break;
 
   }
@@ -867,8 +867,8 @@ int PickViaName(int wt)
   plc = Wtp[kt].Place;
         // <<"del $i $kt  $plc \n"
 
-  sWo (tpwo[i],_WVALUE,plc);
-
+  //sWo (tpwo[i],_WVALUE,plc);
+                 woSetValue(tpwo[i],plc);
   j++;
 
   }
@@ -876,8 +876,8 @@ int PickViaName(int wt)
 
   Taskpts[j-1] = 0;
 
-  sWo (tpwo[j-1],_WVALUE," ",_WREDRAW);
-
+  //sWo (tpwo[j-1],_WVALUE," ",_WREDRAW);
+                 woSetValue(tpwo[j-1]," ");
   }
 
   sWo(tpwo,_WREDRAW);
@@ -893,7 +893,7 @@ int PickViaName(int wt)
 
   void delete_alltps()
   {
-
+   int i;
 //get_tp
 
   for (i = 0 ; i <Ntaskpts ; i++) {
@@ -916,7 +916,7 @@ int PickViaName(int wt)
 
   void setWoTask()
   {
-  int k;
+  int k,i;
 #if ASL  
   SetWoT++;
 //<<"$_proc $SetWoT\n"
@@ -1238,7 +1238,7 @@ int PickViaName(int wt)
   void drawTask(int w,int col)
   {
   
-  <<"$_proc    $w $col\n"
+  //<<"$_proc    $w $col\n"
 
 
   float lat1 = 0.0;
@@ -1332,11 +1332,11 @@ PXS"MT %V $idt $index $index1\n";
 
   lon2 = Wtp[index1].Longdeg;
 
-  lat1.pinfo();
-  lat2.pinfo();  
+  //lat1.pinfo();
+  //lat2.pinfo();  
 
-  lon1.pinfo();
-  lon2.pinfo();
+  //lon1.pinfo();
+  //lon2.pinfo();
   
 
 //  plotLine(w, lon1, lat1,lon2,lat2,col);
@@ -1455,8 +1455,8 @@ fastxic(0);
 
 //<<"%V $Ntaskpts\n"
 
-
-   int kt;
+ 
+   int kt,i;
   for (i = 0 ; i < Ntaskpts ; i++) {
 
   kt= Taskpts[i];
@@ -1520,7 +1520,7 @@ fastxic(0);
   int adjust = 0;
    // num of taskpts
 
-
+  int i;
 //<<"%V $Ntaskpts \n"
 
   
@@ -1596,7 +1596,7 @@ fastxic(0);
   if (i > 0) {
 
 //<<"%V $i  $j $kmd  $tpl $fga\n";
-  dbline(1);
+  //dbline(1);
   Wleg[j].dist = kmd;
 //<<"%V $Wleg[j].dist \n"
   Wleg[j].Tow = tpl;
@@ -1609,8 +1609,8 @@ fastxic(0);
 
 
    Wleg[j].fga = fga;
-  dbline(0);
-    }
+ // dbline(0);
+ }
  //  <<"%V $i $Min_lat $Max_lat\n" 
   }
 
@@ -1645,7 +1645,7 @@ fastxic(0);
  //<<"%V $_scope $_cmfnest $_proc $_pnest\n"
 
   float amsl = 0.0;
-
+  int i;
   for (i = 0; i < Ntaskpts ; i++) {
 
   amsl = Wleg[i].msl;
@@ -1809,7 +1809,7 @@ void updateLegs()
  int nlegs = Ntaskpts-1;
  float dist,msl;
 // <<"$_proc TP's $Ntaskpts Legs $nlegs\n"
-
+  int i;
   for (i = 0; i < nlegs ; i++) {
 
     lwo = legwo[i];

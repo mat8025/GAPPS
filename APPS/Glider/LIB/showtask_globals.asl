@@ -15,7 +15,7 @@ int mapwo,vptxt,sawo,vvwo,TASK_wo, TASK_menu_wo, ZOOM_wo;
 
    float erx;
    float ery;
-
+int tdwo = -1;
 
 int ntp;
 Str np,nval;
@@ -23,6 +23,9 @@ int ekey;
 float ght;
 
 float ST_msl;
+
+
+
 
 
 int MaxSelTps = 12;

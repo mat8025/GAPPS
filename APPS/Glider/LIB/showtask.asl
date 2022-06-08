@@ -192,7 +192,7 @@ else {
  }
 
 if (use_cup) {
-
+cout <<"SRX.readRecord\n";
    Nrecs=SRX.readRecord(AFH,_RDEL,44,_RLAST);  // no back ptr to Siv?
  
   // SRX=readRecord(AFH,_RDEL,44,_RLAST);  // no back ptr to Siv?
@@ -226,7 +226,6 @@ for (i= 0; i <= 10 ; i++) {
   printf("AngelFire @ %d\n",r_index);
 
 
-//<<"AngelFire @ $WH \n"
 
 
 
@@ -240,7 +239,10 @@ for (i= 0; i <= 10 ; i++) {
  Str Cfr;
 
   AFH =ofr(tp_file);
-  
+
+  VCOUT(tp_file, AFH);
+
+ans=query("??","goon",__LINE__,__FILE__);
 
   if (AFH == -1) {
     printf(" can't find turnpts file \n");
@@ -263,14 +265,21 @@ long after;
 
 int KAFH = AFH;
 int nwr;
+
+
 while (1) {
 
 
 
     before = ftell(AFH);
+    
     c1 = getNextC(AFH,-1);
+
     after = ftell(AFH);
 
+  VCOUT(Ntp,before,c1,after);
+
+printf(" $AFH %d $Ntp %d $before %d $c1 %c $after %d\n", AFH ,Ntp ,before ,c1 ,after);
 
 //<<"%V $AFH $Ntp $before $c1 $after\n"
 
@@ -280,7 +289,7 @@ while (1) {
 
        //<<"%V $Ntp $nwr  $AFH $Wval\n";
 
-
+printf("Ntp %d nwr %d  %s\n",Ntp,nwr,Wval.cptr(0));
 
 
 	       
@@ -452,7 +461,7 @@ if (Ntaskpts == -1) {
 //<<" $targ_list[1] \n"
         targ = targ_list[2];
 //<<" $targ \n"
-
+    int i;
     for (i= 0; i < sz; i++) {
 
        targ = targ_list[i];
@@ -505,7 +514,7 @@ int k;
 //<<" Now print task\n"
 
 
-
+      int i;
       for (i = 0; i < Ntaskpts ; i++) {
          ST_msl = Wleg[i].msl;
       // <<"Stat $i $ST_msl $Wleg[i].dist   $Wleg[i].fga\n"
@@ -535,7 +544,7 @@ printf(" Have_igc\n");
 Str place;
 
 
-
+ans=query("?1","hey",__LINE__);
 
 //===========================================//
  if (Ntaskpts > 1) {
@@ -554,7 +563,7 @@ Str place;
 
         woSetValue(tpwo[i],place);
        
-        sWo(tpwo[i],_WUPDATE,_WREDRAW);  
+        sWo(tpwo[i],_WUPDATE,_WREDRAW,_WEO);  
        // woSetValue(tpwo[i],k,1)
        // display alt?
 //	woSetValue(tpwo[i],alt,1)   
@@ -568,7 +577,7 @@ Str place;
 
  }
 //======================================//
-
+ans=query("?2","hey",__LINE__);
 
 
     sWo(tpwo,_WREDRAW);
@@ -582,12 +591,29 @@ Str place;
 
     sWo(mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN),_WEO );
 
+
+
 //  set up the IGC track for plot
     igc_tgl = cGl(mapwo);
-    sGl(igc_tgl, _GLTXY,IGCLONG,IGCLAT,_GLHUE,BLUE_,_GLEO);
+    IGCLONG.pinfo();
+
+
+
+   sGl(igc_tgl, _GLTXY , &IGCLONG, &IGCLAT,_GLEO);
+    
+
+
 
     igc_vgl = cGl(vvwo);
-    sGl(igc_vgl, _GLTY,IGCELE,_GLHUE,RED_,_GLEO);
+
+    VCOUT(_GLTXY, _GLTY);
+        VCOUT(igc_vgl, igc_tgl);
+    
+    sGl(igc_vgl, _GLTY , &IGCELE,_GLHUE, GREEN_, _GLEO);
+
+
+
+
 
 
 
@@ -597,8 +623,11 @@ Str place;
     dGl(igc_vgl);  // plot the igc climb -- if supplied
    }
 
-   sWo(ZOOM_wo,_WREDRAW);
-   sWo(vptxt,_WREDRAW);
+   sWo(ZOOM_wo,_WREDRAW,_WEO);
+   sWo(vptxt,_WREDRAW,_WEO);
+   
+
+
 
 #if CPP
 #include  "gevent.h";
@@ -628,14 +657,20 @@ Str wcltpt="XY";
     updateLegs();
    }
 
-  sWo(tdwo,_WVALUE,"$totalK km",_WUPDATE);
- 
+ // sWo(tdwo,_WVALUE,"$totalK km",_WUPDATE);
+  woSetValue(tdwo,totalK);
+
+
+ans=query("?5","hey",__LINE__);
+
   drawTrace();
 
 //  zoom_to_task(mapwo,1)
 
   sWo(mapwo,_WSCALES,wbox( LongW, LatS, LongE, LatN),_WEO );
-  sWo(TASK_wo,_WVALUE,TaskType,_WREDRAW);
+
+  woSetValue(TASK_wo,TaskType);
+  //sWo(TASK_wo,_WVALUE,TaskType,_WREDRAW);
   
   //sdb(2,"pline");
   
@@ -766,8 +801,9 @@ Str wcltpt="XY";
                 wtp=PickTP(wc,0);
 		if (wtp != -1) {
                   wcltpt = Wtp[wtp].Place;
-                  sWo(tpwo[0],_WVALUE,wcltpt,_WREDRAW);
-                }
+               //   sWo(tpwo[0],_WVALUE,wcltpt,_WREDRAW);
+                 woSetValue(tpwo[0],wcltpt);
+               }
 	    // sWo(tpwo[0], _WCXOR);
           }
 	  
@@ -984,7 +1020,7 @@ Str wcltpt="XY";
 
       sWo(tdwo,_WVALUE,"$totalK km",_WUPDATE);
       Task_update = 0;
-
+      int i;
       for (i = 0; i < Ntaskpts ; i++) {
          ST_msl = Wleg[i].msl;
        //<<"Stat $i $ST_msl $Wleg[i].dist   $Wleg[i].fga\n"

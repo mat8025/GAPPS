@@ -541,7 +541,7 @@ COUT(gday);
 // this is a new format -- allowing us to put comment labels on graphs
 //<<"%V $maxday \n"
 
-COUT(GoalsC);
+ COUT(GoalsC);
 
 //  Onwards();
 

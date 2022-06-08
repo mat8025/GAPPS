@@ -21,7 +21,7 @@ void fillInObsVec()
 float tex;
 int iyd = Yd;
 
-COUT2(Yd,iyd);
+ VCOUT(Yd,iyd);
 
   if (Yd >= 0) {
 
@@ -142,7 +142,7 @@ COUT(Wex_Nrecs);
 
   day = Col[0];
 
-COUT2(tl,day);
+ VCOUT(tl,day);
 
   jday = Julian(day);
 

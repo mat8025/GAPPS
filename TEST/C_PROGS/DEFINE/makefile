@@ -1,5 +1,5 @@
 
 
 
-define: define.c chem.h
-	g++ -o define define.c -lm
+define: define_macro.cpp
+	g++ -o define_macro define_macro.cpp -lm

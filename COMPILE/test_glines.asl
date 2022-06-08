@@ -79,7 +79,7 @@ COUT(ans);
 //Str prompt = "ASL/CPP?";
 //ans=query(prompt,ans);
 
-ans=query("ASL/CPP?",ans);
+
 
 if (ans == "q") {
     exit(-1);
@@ -108,13 +108,9 @@ if (ans == "q") {
 
 //   int vok= sWi(vp,WRESIZE,0.1,0.2,0.5,0.5,-1,WHUE,YELLOW_,WPIXMAPDRAWON,WDRAWON,WREDRAW);
 
-   int vok= sWi(vp,_WTITLE,"PLOT_OBJECTS",_WRESIZE,rsz,_WHUE,YELLOW_,_WBHUE,WHITE_,\
-                   _WPIXMAPON,_WDRAWON,_WCLEAR,_WREDRAW,_WEO);
+  int vok= sWi(vp,_WTITLE,"PLOT_OBJECTS",_WRESIZE,rsz,_WHUE,YELLOW_,_WBHUE,WHITE_, _WPIXMAPON,_WDRAWON,_WCLEAR,_WREDRAW,_WEO);
 
 //cout << "vok " << vok << endl;
-
-
-
 //ans=query("see window?");
 
       rsz[3] = 0.8;
@@ -324,7 +320,7 @@ COUT(xn_gl)
   sGl(xn_gl,_GLHUE,RED_,_GLEO);
   
    sWo(gwo,_WCLEARPIXMAP,_WCLIPBORDER,_WFLUSH);
- ans=query("listo?:");
+// ans=query("listo?:");
   int kk = 0;
 
   float lvec[5] = {0.1,0.1,15,f,RED_};

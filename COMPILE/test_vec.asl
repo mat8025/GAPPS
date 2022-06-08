@@ -54,9 +54,17 @@ cout << "V = " << V << endl;
 
 
 cout << " trying access " << endl;
-COUT(V[7]);
 
- int index = 6;
+int index = 6;
+
+   COUT(index)
+
+
+   COUT(V[7]);
+
+ 
+
+  
 // rms = V.getVal(index);
 
   rms = V[index]; // [] access
