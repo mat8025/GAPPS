@@ -57,7 +57,9 @@ Tleg()
 ostream& operator << ( ostream &strm, const  Tleg&x )
 {
 
-  strm << x.dist ;
+
+  strm << x.dist << " id " << x.id << " ";
+
     return strm ;
 }
 //[EF]==========================================//
@@ -65,8 +67,7 @@ ostream& operator << ( ostream &strm, const  Tleg&x )
 
 void print()
 {
-  cout << "empty function last \n ";
-
+    cout << "empty function last \n ";
 }
  
 // Variadic function Template that takes
@@ -79,6 +80,7 @@ void print(T var1, Types... var2)
  
     print(var2...);
 }
+<<<<<<< HEAD
  
 template <typename ...Args>
 int myfunc(Args & ... args)
@@ -87,6 +89,30 @@ int myfunc(Args & ... args)
   cout << "here " << Args[0] << endl;
   return 1;
 }
+=======
+
+void showargs()
+{
+    cout << " \n ";
+
+}
+template <typename T>
+void showargs(const T& value)
+{
+  cout << value << " \n ";
+
+}
+
+
+template <typename T, typename... Args>
+void showargs (const T& value, const Args&... args)
+{
+  cout << " " << value << ", ";
+  showargs (args...) ;
+}
+
+
+// pull out pairs 
 
 
 
@@ -94,11 +120,14 @@ int myfunc(Args & ... args)
 int main()
 {
   float f = 66.79;
-
   Tleg R;
   Tleg W;
 
-  R.dist = 7.0;
+  int k = 7;
+  Tleg R;
+  Tleg W;
+
+  R.dist = 67.0;
   R.show();
   W.dist = 14.0;
   
@@ -108,10 +137,6 @@ int main()
 
   print(1,R,&W,
           "I will print my args\n");
-
-  
-   myfunc(R,W);
-  
-
+  showargs(f,k,R,W);
    return 0;
 }

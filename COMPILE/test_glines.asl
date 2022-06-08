@@ -81,9 +81,6 @@ COUT(ans);
 
 
 
-if (ans == "q") {
-    exit(-1);
-}
 
 
     rainbow();
@@ -107,6 +104,7 @@ if (ans == "q") {
      int ws = 0; //which screen 0,7 -1 is current
 
 //   int vok= sWi(vp,WRESIZE,0.1,0.2,0.5,0.5,-1,WHUE,YELLOW_,WPIXMAPDRAWON,WDRAWON,WREDRAW);
+
 
   int vok= sWi(vp,_WTITLE,"PLOT_OBJECTS",_WRESIZE,rsz,_WHUE,YELLOW_,_WBHUE,WHITE_, _WPIXMAPON,_WDRAWON,_WCLEAR,_WREDRAW,_WEO);
 
@@ -283,8 +281,7 @@ COUT(xn_gl)
 //ans=query("see xz_gl");
 
 //  sWo(gwo,_WHUE,GREEN_,_WREFRESH,_WFLUSH);
-  
-  sWo(gwo,_WSHOWPIXMAP,_WFLUSH);
+    sWo(gwo,_WSHOWPIXMAP,_WFLUSH);
   
   double f = 0.5;
   float ff =f;
@@ -320,7 +317,11 @@ COUT(xn_gl)
   sGl(xn_gl,_GLHUE,RED_,_GLEO);
   
    sWo(gwo,_WCLEARPIXMAP,_WCLIPBORDER,_WFLUSH);
+<<<<<<< HEAD
 // ans=query("listo?:");
+=======
+ //ans=query("listo?:");
+>>>>>>> 0ad666d (variadic++)
   int kk = 0;
 
   float lvec[5] = {0.1,0.1,15,f,RED_};
