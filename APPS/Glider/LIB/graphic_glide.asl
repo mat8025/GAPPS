@@ -801,7 +801,7 @@ sWo(wid,_WAXNUM,AXIS_LEFT_,_WEO);
 //======================================//
 int PickViaName(int wt)
 {
-//<<"$_proc $wt \n";
+<<"$_proc $wt \n";
   int wtp;
   int ok = 0;
   Str aplace;
@@ -809,11 +809,12 @@ int PickViaName(int wt)
 
   Str nval = " ";
 
-  nval=queryWindow("TurnPt","TP $wt enter name:",nval);
+  nval= queryWindow("TurnPt","TP $wt enter name:",nval);
 
-//<<"name sel:  <|$nval|> \n"
+<<"name sel:  <|$nval|> $wt\n"
 
   wtp= PickTP(nval,wt);
+  
   if (wtp >0) {
   aplace = Wtp[wtp].Place;
 
@@ -1290,7 +1291,7 @@ int PickViaName(int wt)
 
 
 #if ASL
-fast=fastxic(1);
+fast=fastxic(0);
   dbline(1);
 #endif
 
@@ -1381,14 +1382,14 @@ fastxic(0);
   Svar srp;
   int ret = -1;
   int index;
-//<<" $_proc looking for <|$atarg|>  $Atarg  $wtp\n"
+<<" $_proc looking for <|$atarg|>  $Atarg  $wtp\n"
 
 
   index=SRX.findRecord(atarg,0,0);
-
+<<"$index \n"
   if (index >=0) {
 
-  srp = SRX.getRow(index);
+    srp = SRX.getRow(index);
 
   printf(" found  $index %d\n",index);
 //<<"$ttp \n"
@@ -1397,8 +1398,8 @@ fastxic(0);
 
   ret =index;
   
-//<<" found $atarg $index $wtp $ret $ttp\n"
-
+<<" found $atarg $index $wtp $ret $ttp\n"
+//ans=query("$_proc ?");
   }
 
   return ret;

@@ -126,8 +126,8 @@ int Xgm;
    
    sprintf(TPname,"_TP%d_",i);
 
-   //sWo(tpwo[i],_WNAME,"_TP${i}_",_WSTYLE,"SVR",_WDRAWON,_WCOLOR,BLUE_,_WFONTHUE,BLACK_,_WEO);
-   sWo(tpwo[i],_WNAME,TPname,_WSTYLE,WO_SVR,_WDRAWON,_WCOLOR,BLUE_,_WFONTHUE,BLACK_,_WEO);
+ //  sWo(tpwo[i],_WNAME,"_TP${i}_",_WSTYLE,"SVR",_WDRAWON,_WCOLOR,BLUE_,_WFONTHUE,BLACK_,_WEO);
+   sWo(tpwo[i],_WNAME,TPname,_WSTYLE,SVR_,_WDRAWON,_WCOLOR,BLUE_,_WFONTHUE,BLACK_,_WEO);
 
   }
  
@@ -139,19 +139,21 @@ int Xgm;
   
  // <<"%V $tpwos\n"
   
-  wovtile(tpwo, 0.02, 0.4, 0.14, 0.95,12);
+ // wovtile(tpwo, 0.02, 0.4, 0.14, 0.95,12);
+ wovtile(tpwo, 0.02, 0.4, 0.14, 0.95);
 
 
   legwo[0] = -1;
 
   for (i= 0; i < MaxLegs ; i++) {
      legwo[i] = cWo(Vp,WO_BV_);
-  sprintf(TPname,"LEG_%d_",i+1);
+  sprintf(TPname,"LEG_%d_",i+1);  // asl vers needs to supress DQ expansion
 
      sWo(legwo[i],_WNAME,TPname,_WSTYLE,SVR_,_WDRAWON,_WCOLOR,BLUE_,_WFONTHUE,BLACK_,_WEO);
   }
 
-  wovtile(legwo, 0.15, 0.4, 0.29, 0.95,12);
+ // wovtile(legwo, 0.15, 0.4, 0.29, 0.95,12);
+  wovtile(legwo, 0.15, 0.4, 0.29, 0.95);
 
   titleVers();
   gflush();

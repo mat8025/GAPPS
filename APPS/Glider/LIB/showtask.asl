@@ -105,7 +105,7 @@ Tleg  Wleg[20];
 Mat  WH(INT_,100,2);  //rows expandable
 int main_chk =1;
 int Maxtaskpts = 13;
-
+int i;
 
 //======================================//
 
@@ -242,7 +242,7 @@ for (i= 0; i <= 10 ; i++) {
 
   VCOUT(tp_file, AFH);
 
-ans=query("??","goon",__LINE__,__FILE__);
+//ans=query("??","goon",__LINE__,__FILE__);
 
   if (AFH == -1) {
     printf(" can't find turnpts file \n");
@@ -461,7 +461,7 @@ if (Ntaskpts == -1) {
 //<<" $targ_list[1] \n"
         targ = targ_list[2];
 //<<" $targ \n"
-    int i;
+
     for (i= 0; i < sz; i++) {
 
        targ = targ_list[i];
@@ -514,7 +514,7 @@ int k;
 //<<" Now print task\n"
 
 
-      int i;
+
       for (i = 0; i < Ntaskpts ; i++) {
          ST_msl = Wleg[i].msl;
       // <<"Stat $i $ST_msl $Wleg[i].dist   $Wleg[i].fga\n"
@@ -544,7 +544,7 @@ printf(" Have_igc\n");
 Str place;
 
 
-ans=query("?1","hey",__LINE__);
+//ans=query("?1","hey",__LINE__);
 
 //===========================================//
  if (Ntaskpts > 1) {
@@ -577,7 +577,7 @@ ans=query("?1","hey",__LINE__);
 
  }
 //======================================//
-ans=query("?2","hey",__LINE__);
+//ans=query("?2","hey",__LINE__);
 
 
     sWo(tpwo,_WREDRAW);
@@ -657,11 +657,11 @@ Str wcltpt="XY";
     updateLegs();
    }
 
- // sWo(tdwo,_WVALUE,"$totalK km",_WUPDATE);
+ 
   woSetValue(tdwo,totalK);
+ sWo(tdwo,_WVALUE,_WUPDATE);
 
 
-ans=query("?5","hey",__LINE__);
 
   drawTrace();
 
@@ -1020,7 +1020,7 @@ ans=query("?5","hey",__LINE__);
 
       sWo(tdwo,_WVALUE,"$totalK km",_WUPDATE);
       Task_update = 0;
-      int i;
+      //int i;
       for (i = 0; i < Ntaskpts ; i++) {
          ST_msl = Wleg[i].msl;
        //<<"Stat $i $ST_msl $Wleg[i].dist   $Wleg[i].fga\n"
