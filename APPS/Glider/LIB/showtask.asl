@@ -602,9 +602,9 @@ Str place;
     IGCLAT.pinfo();
 
  //  sGl(igc_tgl, _GLTYPE_XY , IGCLONG, IGCLAT,_GLEO);
-   sGl(igc_tgl, _GLTYPE_XY , IGCLONG, IGCLAT,_GLEO); // TBF tag args remove white space
+   sGl(igc_tgl, _GLTXY, IGCLONG, IGCLAT,_GLHUE,BLUE_,_GLEO); // TBF tag args remove white space
 
-ans=query("?2","_GLTXY",__LINE__);
+//ans=query("?2","_GLTXY",__LINE__);
 
 
 
@@ -616,7 +616,7 @@ ans=query("?2","_GLTXY",__LINE__);
     sGl(igc_vgl, _GLTY, IGCELE,_GLHUE, GREEN_, _GLEO);
 
 
-ans=query("?","_GLTY",__LINE__);
+//ans=query("?","_GLTY",__LINE__);
 
 
 
@@ -631,7 +631,7 @@ ans=query("?","_GLTY",__LINE__);
    sWo(ZOOM_wo,_WREDRAW,_WEO);
    sWo(vptxt,_WREDRAW,_WEO);
 
-ans=query("?3","see trace?",__LINE__);
+//ans=query("?3","see trace?",__LINE__);
 
 
 
@@ -820,9 +820,10 @@ Str wcltpt="XY";
              Task_update =1;
 	     
              np = spat(WoName,"_TP",1);
-             np = spat(np,"_",-1);
-
+           //  np = spat(np,"_",-1);
+np.pinfo();
               Witp = atoi(np);
+	      <<"%V $np $Witp \n"
               wtpwo = tpwo[Witp];
 
             // sWo(wtpwo, _WCXOR);
@@ -853,7 +854,7 @@ Str wcltpt="XY";
                   }
              }
              else if (wc == "D") {
-                printf("delete and move lower TPs up %d !\n",Ntaskpts);
+                printf("delete and move lower TPs up Witp %d nt %d !\n",Witp,Ntaskpts);
                 delete_tp(Witp); //
 	        Task_update =1;
                 //<<"Done delete  $Ntaskpts!\n"		

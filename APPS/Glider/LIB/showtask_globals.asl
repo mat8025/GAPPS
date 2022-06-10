@@ -18,7 +18,11 @@ int mapwo,vptxt,sawo,vvwo,TASK_wo, TASK_menu_wo, ZOOM_wo;
 int tdwo = -1;
 
 int ntp;
+
 Str np,nval;
+
+
+
 int ekey;
 float ght;
 

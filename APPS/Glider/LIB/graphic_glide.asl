@@ -802,7 +802,7 @@ sWo(wid,_WAXNUM,AXIS_LEFT_,_WEO);
 //======================================//
 int PickViaName(int wt)
 {
-<<"$_proc $wt \n";
+<<"$_proc  wt $wt \n";
   int wtp;
   int ok = 0;
   Str aplace;
@@ -831,19 +831,23 @@ int PickViaName(int wt)
 
   void delete_tp(int wt)
   {
-//int wt = Witp;
+
+<<"$_proc  wt $wt \n";
+
   int i,j;
   int kt = 0;
   Str plc;
   kt = Taskpts[wt];
+<<"$_proc %V $wt $kt $LastTP\n";  
 //              <<"$_proc delete $_ewoname $wt $Wtp[kt].Place \n"
-              //<<"$_proc delete $_ewoname $wt $kt \n"
+
+
 
   if (wt == LastTP) {
 
-  woSetValue (tpwo[LastTP],"");
+    woSetValue (tpwo[LastTP],"");
 
-  Taskpts[LastTP] = 0;
+    Taskpts[LastTP] = 0;
 
   }
 
@@ -867,19 +871,20 @@ int PickViaName(int wt)
   }
 
   plc = Wtp[kt].Place;
-        // <<"del $i $kt  $plc \n"
+  <<"del $i $kt  $plc \n"
 
   //sWo (tpwo[i],_WVALUE,plc);
                  woSetValue(tpwo[i],plc);
   j++;
 
   }
-		//<<"last was $j $plc\n"
+		<<"last was $j $plc\n"
 
   Taskpts[j-1] = 0;
 
   //sWo (tpwo[j-1],_WVALUE," ",_WREDRAW);
                  woSetValue(tpwo[j-1]," ");
+
   }
 
   sWo(tpwo,_WREDRAW);
