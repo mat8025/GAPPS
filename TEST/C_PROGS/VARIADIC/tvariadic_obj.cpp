@@ -80,22 +80,18 @@ void print(T var1, Types... var2)
  
     print(var2...);
 }
-<<<<<<< HEAD
- 
-template <typename ...Args>
-int myfunc(Args & ... args)
-{
-  cout << "here ref\n";
-  cout << "here " << Args[0] << endl;
-  return 1;
-}
-=======
 
+ 
+
+// no args
 void showargs()
 {
     cout << " \n ";
 
 }
+
+// 1 arg
+
 template <typename T>
 void showargs(const T& value)
 {
@@ -103,7 +99,7 @@ void showargs(const T& value)
 
 }
 
-
+// main function recurses until 1,0 arg
 template <typename T, typename... Args>
 void showargs (const T& value, const Args&... args)
 {
@@ -112,7 +108,11 @@ void showargs (const T& value, const Args&... args)
 }
 
 
-// pull out pairs 
+// develop  to pull out pairs  tag,value
+// restriction - have to be pairs (or check for tag - tag_args left
+//  redo glines cpp version so  supplied vectors are references (not ptrs, or values)
+
+
 
 
 
@@ -124,8 +124,6 @@ int main()
   Tleg W;
 
   int k = 7;
-  Tleg R;
-  Tleg W;
 
   R.dist = 67.0;
   R.show();

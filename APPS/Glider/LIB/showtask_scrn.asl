@@ -193,10 +193,10 @@ int Xgm;
   
 //  sGl(lc_gl,_GLTYPE,XY_,_GLHUE,BLACK_,_GLLTYPE,CURSOR_,_GLEO);
 
-  sGl(lc_gl,_GLTYPE,XY_,_GLHUE,BLACK_,_GLEO);
+  sGl(lc_gl,_GLTYPE,"XY" ,_GLHUE,BLACK_,_GLEO);
 
   rc_gl   = cGl(vvwo);
   
-  sGl(rc_gl,_GLTYPE,XY_,_GLHUE,BLUE_,_GLEO);
+  sGl(rc_gl,_GLTYPE,"XY",_GLHUE,BLUE_,_GLEO);
 
 //<<" DONE SCREEN %V $lc_gl $rc_gl $mapwo $vvwo  $sawo \n";

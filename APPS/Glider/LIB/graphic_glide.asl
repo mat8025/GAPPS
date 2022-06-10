@@ -418,13 +418,14 @@ void taskDist();
 void drawTrace()
 {
      if (Have_igc) {
+     
          sWo(mapwo,_WSCALES, wbox(LongW, LatS, LongE, LatN),_WEO );
 	 
         // sWo(mapwo,_WCLEARPIXMAP);
          sWo(vvwo,_WCLEARPIXMAP);
 
 
-         
+         <<"%V $Ntpts \n";
           //DrawMap(mapwo);
 	  
   	 if (Ntpts > 0) {

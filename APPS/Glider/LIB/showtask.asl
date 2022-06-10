@@ -27,6 +27,7 @@
 // the include  when cpp compiling will re-define ASL 0 and CPP 1
 #include "/home/mark/gasp-CARBON/include/compile.h"
 #define PXS  <<
+#define VCOUT //
 #endif
 
 #if CPP
@@ -591,16 +592,19 @@ Str place;
 
     sWo(mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN),_WEO );
 
-
+    if (Have_igc) {
 
 //  set up the IGC track for plot
     igc_tgl = cGl(mapwo);
+    
     IGCLONG.pinfo();
 
+    IGCLAT.pinfo();
 
+ //  sGl(igc_tgl, _GLTYPE_XY , IGCLONG, IGCLAT,_GLEO);
+   sGl(igc_tgl, _GLTYPE_XY , IGCLONG, IGCLAT,_GLEO); // TBF tag args remove white space
 
-   sGl(igc_tgl, _GLTXY , &IGCLONG, &IGCLAT,_GLEO);
-    
+ans=query("?2","_GLTXY",__LINE__);
 
 
 
@@ -609,10 +613,10 @@ Str place;
     VCOUT(_GLTXY, _GLTY);
         VCOUT(igc_vgl, igc_tgl);
     
-    sGl(igc_vgl, _GLTY , &IGCELE,_GLHUE, GREEN_, _GLEO);
+    sGl(igc_vgl, _GLTY, IGCELE,_GLHUE, GREEN_, _GLEO);
 
 
-
+ans=query("?","_GLTY",__LINE__);
 
 
 
@@ -623,9 +627,11 @@ Str place;
     dGl(igc_vgl);  // plot the igc climb -- if supplied
    }
 
+   }
    sWo(ZOOM_wo,_WREDRAW,_WEO);
    sWo(vptxt,_WREDRAW,_WEO);
-   
+
+ans=query("?3","see trace?",__LINE__);
 
 
 
