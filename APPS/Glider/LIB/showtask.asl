@@ -665,9 +665,7 @@ Str wcltpt="XY";
 
  
   woSetValue(tdwo,totalK);
- sWo(tdwo,_WVALUE,_WUPDATE);
-
-
+  sWo(tdwo,_WVALUE,"$totalK km",_WUPDATE);
 
   drawTrace();
 
@@ -697,7 +695,10 @@ Str wcltpt="XY";
                  listTaskPts();
 		 
    updateLegs();
-   
+
+    taskDist();
+ sWo(tdwo,_WUPDATE);
+
   while (1) {
  //   zoom_to_task(mapwo,1)
     ok = 0;
@@ -851,6 +852,8 @@ np.pinfo();
 	          else {
                      printf("REPLACE TP via Name select\n");	    
                      PickViaName(Witp);
+		     <<"DONE REPLACE via name\n"
+	     
                   }
              }
              else if (wc == "D") {

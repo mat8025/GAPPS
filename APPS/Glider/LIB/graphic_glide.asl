@@ -776,8 +776,8 @@ sWo(wid,_WAXNUM,AXIS_LEFT_,_WEO);
 
   nval=queryWindow("TurnPt","TP $Witp enter name:",nval);
 
-//<<"name sel:  <|$nval|> \n"
-
+  <<"name sel:  <|$nval|> \n"
+!a
   ntp= PickTP(nval,Witp);
 
   nval = Wtp[ntp].GetPlace();
@@ -800,10 +800,10 @@ sWo(wid,_WAXNUM,AXIS_LEFT_,_WEO);
 
   }
 //======================================//
-int PickViaName(int wt)
+void PickViaName(int wt)
 {
-<<"$_proc  wt $wt \n";
-  int wtp;
+<<"ENTER $_proc  wt $wt \n";
+  int wtp =0;
   int ok = 0;
   Str aplace;
   woSetValue (tpwo[wt],"XXX");
@@ -814,20 +814,24 @@ int PickViaName(int wt)
 
 <<"name sel:  <|$nval|> $wt\n"
 
+
+
   wtp= PickTP(nval,wt);
-  
+
   if (wtp >0) {
   aplace = Wtp[wtp].Place;
 
-  nval = SRX.getRC(wtp,0);
+  nval = SRX.getRC(wtp,0); // double check nval == aplace 
 
-//  <<"Found %V $wt $wtp $nval $aplace\n"
+  <<"Found %V $wt $wtp $nval $aplace\n"
   ok = 1;
   woSetValue (tpwo[wt],aplace,0);
   }
-  return ok;
-}
 
+ <<"Exit Done $_proc $ok \n";
+ 
+}
+//======================================
 
   void delete_tp(int wt)
   {
