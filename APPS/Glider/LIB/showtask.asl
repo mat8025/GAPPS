@@ -825,7 +825,7 @@ Str wcltpt="XY";
 	     
              np = spat(WoName,"_TP",1);
            //  np = spat(np,"_",-1);
-np.pinfo();
+//np.pinfo();
               Witp = atoi(np);
 	      <<"%V $np $Witp \n"
               wtpwo = tpwo[Witp];

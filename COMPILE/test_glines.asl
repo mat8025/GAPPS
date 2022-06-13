@@ -317,11 +317,7 @@ COUT(xn_gl)
   sGl(xn_gl,_GLHUE,RED_,_GLEO);
   
    sWo(gwo,_WCLEARPIXMAP,_WCLIPBORDER,_WFLUSH);
-<<<<<<< HEAD
-// ans=query("listo?:");
-=======
- //ans=query("listo?:");
->>>>>>> 0ad666d (variadic++)
+
   int kk = 0;
 
   float lvec[5] = {0.1,0.1,15,f,RED_};
