@@ -107,7 +107,7 @@ Mat  WH(INT_,100,2);  //rows expandable
 int main_chk =1;
 int Maxtaskpts = 13;
 int i;
-
+float safealt = 10000;
 //======================================//
 
 //======================================//
@@ -278,9 +278,9 @@ while (1) {
 
     after = ftell(AFH);
 
-  VCOUT(Ntp,before,c1,after);
+  //VCOUT(Ntp,before,c1,after);
 
-printf(" $AFH %d $Ntp %d $before %d $c1 %c $after %d\n", AFH ,Ntp ,before ,c1 ,after);
+//printf(" $AFH %d $Ntp %d $before %d $c1 %c $after %d\n", AFH ,Ntp ,before ,c1 ,after);
 
 //<<"%V $AFH $Ntp $before $c1 $after\n"
 
@@ -712,10 +712,13 @@ Str wcltpt="XY";
 
     WoName = gev.getEventWoName();
     Ev_button = gev.getEventButton();
-    Ev_keyw = gev.getEventKeyWord();
+
 #if ASL    
 <<"%V $Ev_keyw $ekey $WoName \n"
 #endif
+
+    //Ev_keyw = gev.getEventKeyWord();
+
     if (Ev_keyw == "REDRAW" || WoName == "REDRAW") {
 
        Task_update =1;
@@ -833,47 +836,48 @@ np.pinfo();
 
             cval = getWoValue(wtpwo);
  // <<"%V $np <|$cval|>  \n"
+ 
              if (cval != "") {
 
-             wc = choiceMenu("TP.m");
+             wc = choiceMenu("TPC.m");
 //<<"menu choice  name or action  %V $wc\n";
 
            //  showTaskPts();
 	       
-             if (wc == "R") { // replace
+              if (wc == "M") { // replace
 
                printf("REPLACE TP \n");
-               wc=choiceMenu("CTP.m");
+          //     wc=choiceMenu("CTP.m");
 
-                  if (wc == "M") { // replace
+               
                     printf("REPLACE TP via Map select\n");
                      replace_tp(Witp);
-                   }
-	          else {
+               
+               }
+	       else if (wc == "N") { // replace
                      printf("REPLACE TP via Name select\n");	    
                      PickViaName(Witp);
 		     <<"DONE REPLACE via name\n"
 	     
-                  }
-             }
-             else if (wc == "D") {
+               }
+            
+               else if (wc == "D") {
                 printf("delete and move lower TPs up Witp %d nt %d !\n",Witp,Ntaskpts);
                 delete_tp(Witp); //
 	        Task_update =1;
                 //<<"Done delete  $Ntaskpts!\n"		
-             }
-             else if (wc == "I") {
-             printf("INSERT TP $wc \n");
-             wc=choiceMenu("ITP.m");
-//printf("choose how? %s\n",vtoa(wc));		
-
-            if (wc == "M") {
-                  insert_tp(Witp);
-		 }
-		 else {
-                 insert_name_tp(Witp);
-		 }
               }
+              else if (wc == "P") {
+             printf("INSERT TP $wc \n");
+            // wc=choiceMenu("ITP.m");
+//printf("choose how? %s\n",vtoa(wc));		
+                  insert_tp(Witp);
+              }
+              else if (wc == "I") {
+	         printf("INSERT TP vian name \n");
+                 insert_name_tp(Witp);
+	       }
+              
 	      Task_update =1;
 	     }
              else if (Witp == Ntaskpts)  {
@@ -984,8 +988,12 @@ np.pinfo();
                 ST_msl = Wtp[ntp].Alt;
                 mkm = HowFar(erx,ery, Wtp[ntp].Longdeg, Wtp[ntp].Ladeg);
                 ght = (mkm * km_to_feet) / LoD;
-                sa = ST_msl + ght + 2000;
-          	sWo(sawo,_WVALUE,"$nval %5.1f $ST_msl $mkm $sa",_WREDRAW);
+		<<"%V $ght $mkm $km_to_feet  $LoD \n" 
+		
+                safealt = ST_msl + ght + 2000;
+
+
+          	sWo(sawo,_WVALUE,"$nval %5.1f $ST_msl $mkm $safealt",_WREDRAW);
                // DrawMap();
              }
 
