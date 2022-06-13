@@ -777,7 +777,7 @@ sWo(wid,_WAXNUM,AXIS_LEFT_,_WEO);
   nval=queryWindow("TurnPt","TP $Witp enter name:",nval);
 
   <<"name sel:  <|$nval|> \n"
-!a
+
   ntp= PickTP(nval,Witp);
 
   nval = Wtp[ntp].GetPlace();
@@ -802,17 +802,17 @@ sWo(wid,_WAXNUM,AXIS_LEFT_,_WEO);
 //======================================//
 void PickViaName(int wt)
 {
-<<"ENTER $_proc  wt $wt \n";
+//<<"ENTER $_proc  wt $wt \n";
   int wtp =0;
   int ok = 0;
   Str aplace;
-  woSetValue (tpwo[wt],"XXX");
+  woSetValue (tpwo[wt],"??X");
 
   Str nval = " ";
 
   nval= queryWindow("TurnPt","TP $wt enter name:",nval);
 
-<<"name sel:  <|$nval|> $wt\n"
+//<<"name sel:  <|$nval|> $wt\n"
 
 
 
