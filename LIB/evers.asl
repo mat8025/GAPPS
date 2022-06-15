@@ -2,10 +2,12 @@
 ///  evers - updates counter adds date/time appends msg 
 ///  
 
+<<" doing evers \n";
 
-msg = _clarg[1];
-<<" <|$msg|>\n"
-
+msg =  _clarg[1];
+<<[2]" <|$msg|>\n"
+xp =  _clarg[2];
+<<[2]" <|$xp|>\n"
 update = 1;
 create = 0;
 
@@ -14,7 +16,7 @@ A= -1;
 logf="elog"
 fs= fexist(logf);
 
-if (fs> 0) {
+if (fs > 0) {
 A=ofile(logf,"r+")
 }
 
@@ -50,9 +52,14 @@ if (slen(ln) > 3) {
 
 dt= date()
 <<"new $k $dt\n"
-
+<<"%V $update \n"
 if (update) {
 
-<<[A]"$k \t$dt $msg\n"
+<<[A]"$k \t$dt $msg $xp\n"
 }
+
+<<"Done \n"
+exit(0);
+
+
 

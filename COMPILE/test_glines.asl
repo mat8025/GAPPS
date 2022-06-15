@@ -40,6 +40,8 @@
 
  //opendll("plot");
 #include "vec.h"
+#include "gline.h"
+#include "glargs.h"
 #include "gevent.h"
 
 
@@ -252,15 +254,17 @@ COUT(Zvec)
   
   int xn_gl = cGl(gwo);
 
-COUT(xn_gl)
+
 
 //ans=query("see xn_gl?");
  Xvec.pinfo();
  Rnvec.pinfo();
  
 // make these ref args?
-  sGl(xn_gl,_GLTXY,&Xvec,&Rnvec,_GLHUE,RED_,_GLEO);
+  //sGl(xn_gl,_GLTXY,&Xvec,&Rnvec,_GLHUE,RED_,_GLEO);
 
+  sGlva(_GLID,xn_gl, _GLHUE, RED_, _GLXVEC, Xvec, _GLYVEC, Rnvec);
+VCOUT(xn_gl, RED_)
 //ans=query("set xn_gl");
 
   int xs_gl = cGl(gwo);
@@ -268,16 +272,18 @@ COUT(xn_gl)
   COUT(Xvec);
   COUT(Svec);
 
-  sGl(xs_gl,_GLTXY,&Xvec,&Svec,_GLHUE,BLUE_,_GLEO);
+ // sGl(xs_gl,_GLTXY,&Xvec,&Svec,_GLHUE,BLUE_,_GLEO);
 
+  sGlva(_GLID,xs_gl, _GLHUE, RED_, _GLXVEC, Xvec, _GLYVEC, Svec);
 
-
-
+VCOUT(xs_gl, _GLHUE)
 //ans=query("set xs_gl");
   int xz_gl = cGl(gwo);
 
-  sGl(xz_gl,_GLTXY,&Xvec,&Zvec,_GLHUE,YELLOW_,_GLEO);
+ // sGl(xz_gl,_GLTXY,&Xvec,&Zvec,_GLHUE,YELLOW_,_GLEO);
 
+sGlva(_GLID,xz_gl, _GLHUE, YELLOW_, _GLXVEC, Xvec, _GLYVEC, Zvec);
+VCOUT(xz_gl, _GLXVEC, _GLYVEC)
 //ans=query("see xz_gl");
 
 //  sWo(gwo,_WHUE,GREEN_,_WREFRESH,_WFLUSH);
@@ -312,7 +318,7 @@ COUT(xn_gl)
   int M = 200;
   
   int i = 0;
-  
+  int hue = 1;
   
   sGl(xn_gl,_GLHUE,RED_,_GLEO);
   
@@ -341,7 +347,7 @@ ans=query("check vecs");
         cout<<"wrong type " << Rnvec.getName()  << endl;
         Rnvec.pinfo();
         Rnvec.setType(FLOAT_);
-ans=query("check vecs");
+//ans=query("check vecs");
 }
 
 //
@@ -415,7 +421,8 @@ cout<<"Cvec wrong type !\n";
     //Tvec *= 0.5;
     //Svec = Sin(Xvec * f)
     
-    Zvec = Rnvec + (Cvec * 0.5);
+   // Zvec = Rnvec + (Cvec * 0.5);
+    Zvec = Cvec * 0.5;
    // Zvec = Rnvec + Tvec;
 
     if (Zvec.getType() != FLOAT_) {
@@ -439,11 +446,15 @@ ans=query("see Zvec");
     lvec[3]= f;
    sWo(gwo,_WLINE,lvec,_WFLUSH);
 	
-    sGl(xn_gl,_GLDRAW);  // DrawGline; 
+    sGlva(_GLID,xn_gl,_GLDRAW,BLUE_);  // DrawGline; 
     
-    sGl(xs_gl,_GLDRAW);  
-    
-    sGl(xz_gl,_GLDRAW);  
+     sGlva(_GLID,xs_gl,_GLDRAW, hue);  
+
+  if ((kk % 100) == 0) {  
+     if (++hue > 8) hue = 1;
+  }
+     sGlva(_GLID,xz_gl,_GLDRAW, MAGENTA_);  
+
 
 //ans=query("did DrawLINES");
 
@@ -469,7 +480,7 @@ ans=query("see Zvec");
 //  if (ans == "n") {
 //      break;
 //    }
-    if (kk++ > 1000)
+    if (kk++ > 2000)
        break;
    // xsleep(0.1);
 }

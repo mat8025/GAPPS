@@ -10,7 +10,14 @@
  *  @Copyright © RootMeanSquare 2022
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                              
+;//----------------<v_&_v>-------------------------//;
+
+  //ignoreErrors();
+
+  setmaxcodeerrors(-1); // just keep going;
+  setmaxicerrors(-1);
+
+
   
   Str Vers2ele(Str& vstr)
   {
@@ -28,15 +35,15 @@
   }
   //======================
   A=-1;
-  
+
   
   // if script found
   // then  read current vers and  bump number and update date
   // if no @vers line -- then prepend the vers header lines
   
   srcfile = _clarg[1];
-  
-  if (srcfile @= "") {
+  <<"$srcfile \n"
+  if (srcfile == "") {
   <<[2]"no script file entered\n"
     exit();
   }
@@ -67,7 +74,7 @@
   
   file= fexist(srcfile,ISFILE_,0);
   
-  //<<[2]" FILE $file \n"
+  <<[2]" FILE $file \n"
   
   dir= fexist(srcfile,ISDIR_,0);
   
@@ -145,9 +152,9 @@ Str old_comment ="yyy"
 
     T = readline(A);
    
-//<<[2]"$i line is $T \n"
+<<[2]"$i line is $T \n"
    if (i ==2) {
-old_comment =T;
+     old_comment =T;
    }
    where = ftell(A)
      L[0:-1:1] = "";
@@ -166,7 +173,7 @@ L.Split(T);
    }
     else if (scmp(L[1],"@cdate")) {
      cdate = "$L[2:-1:1]";
-<<"found cdate  $L\n"     
+//<<"found cdate  $L\n"     
 <<[2]"%V$cdate  $L[2]\n"     
    }
     else if (scmp(L[1],"@comment")) {
@@ -194,7 +201,6 @@ L.Split(T);
 <<[2]"@header end? line $i\n"
       break;
     }
-
 }
 
    where = ftell(A);

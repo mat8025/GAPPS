@@ -2,4 +2,4 @@
 
 echo "bash args" $*
 
-asl -d -s 'Svar z=_clarg[1:-1:1]; Str sa="$z"; <<"%V $sa\n"; opendll("uac"); test_glines(sa); exit(0); ' $*
+asl -d -s 'Svar z=_clarg[1:-1:1]; Str sa="$z"; <<"%V $sa\n"; opendll("plot") ; opendll("uac"); test_glines(sa); exit(0); ' $*
