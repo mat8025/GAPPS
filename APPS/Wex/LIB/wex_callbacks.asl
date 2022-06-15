@@ -174,7 +174,9 @@ COUT(button);
        if (Button == 1) {
          lcpx = Erx;
 //	<<"CURSOR %V $lcpx\n"
-         sGl(lc_gl,_GLCURSOR,rbox(lcpx,0,lcpx,300), Wex_CL_init,_GLEO);
+        // sGl(lc_gl,_GLCURSOR,rbox(lcpx,0,lcpx,300), Wex_CL_init,_GLEO);
+	 sGlva(_GLID,lc_gl,_GLCURSOR,rbox(lcpx,0,lcpx,300));
+	 
 	 Wex_CL_init = 0;
          getDay(lcpx);
          COUT(lcpx);
@@ -183,7 +185,9 @@ COUT(button);
        if (Button == 3) {
          rcpx = Erx;
 
-         sGl(rc_gl,_GLCURSOR,rbox(rcpx,0,rcpx,310), Wex_CR_init,_GLEO);
+         //sGl(rc_gl,_GLCURSOR,rbox(rcpx,0,rcpx,310), Wex_CR_init,_GLEO);
+	 sGlva(_GLID,rc_gl,_GLCURSOR,rbox(rcpx,0,rcpx,310));
+	 
          Wex_CR_init = 0;
         // getDay(rcpx);
        }
@@ -228,8 +232,10 @@ COUT(button);
 void setCursors()
 {
 //<<"$_proc : $_lcpx\n"
-        sGl(lc_gl,_GLCURSOR,rbox(lcpx,0,lcpx,300),_GLEO);
-        sGl(rc_gl,_GLCURSOR,rbox(rcpx,0,rcpx,300),_GLEO);
+        sGlva(_GLID,lc_gl,_GLCURSOR, rbox(lcpx,0,lcpx,300));
+
+        sGlva(_GLID,rc_gl,_GLCURSOR, rbox(rcpx,0,rcpx,300));
+	
 }
 
 

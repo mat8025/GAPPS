@@ -36,6 +36,9 @@
 #include "paraex.h"
 #include "scope.h"
 #include "swinwob.h"
+#include "gsi.h"
+#include "gline.h"
+#include "glargs.h"
 #include "debug.h"
 
 #include "uac.h"
