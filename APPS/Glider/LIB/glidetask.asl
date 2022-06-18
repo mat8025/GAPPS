@@ -15,7 +15,7 @@
 
 
 #define ASL 1
-#define ASL_DB 0
+
 #define GT_DB   0
 
 
@@ -28,14 +28,15 @@
 
 
 
-
-
 #if CPP
 #include <iostream>
 #include <ostream>
 
 using namespace std;
+#include "vargs.h"
 
+#define PXS  cout<<
+#define ASL_DB 0
 #endif
 
 ///////////////////////
@@ -46,7 +47,9 @@ using namespace std;
 int run_asl = runASL();
 <<" running as ASL \n";
 #include "debug"
-ignoreErrors(-1);
+ignoreErrors();
+
+#define ASL_DB 1
 #endif
 
 
@@ -59,7 +62,7 @@ float Cruise_speed;
 float TC[20];
 float Dur[20];
 
-Svar Task;
+  Svar Task;
 
   float totalD = 0;
 
@@ -68,9 +71,14 @@ Svar Task;
   float TKM[20];
   float L1;
   float L2;
-  float lo1,lo2;
+  //float lo1,lo2;
+  float lo1;
+  float lo2;
   double tkm;
-  float tcd,rmsl,msl;
+  double tkm2;
+  float tcd;
+  float rmsl;
+  float msl;
   int nl,li;
   Str ident;
 
@@ -85,7 +93,6 @@ Tleg  GT_Wleg[20];
 #include "ootlib.asl"
 
   int via_keyb = 0;
-
   int via_file = 0;
 
   int via_cl = 1;
@@ -99,21 +106,21 @@ Uac::glideTask(Svarg * sarg)
 {
 
 int run_asl = runASL();
- cout <<"CPP  ASL?  " << run_asl << endl;
+ //cout <<"CPP  ASL?  " << run_asl << endl;
 
  Str a0  = sarg->getArgStr(0) ;
 
 //a0.pinfo();
  Svar sa;
 
-cout << " paras are:  "  << a0.cptr(0) << endl;
+//cout << " paras are:  "  << a0.cptr(0) << endl;
  sa.findWords(a0.cptr());
 
 cout << " The glider Task turnpts and  parameters are:  "  << sa << endl;
 
-cout << " para[0] is:  "  << sa.cptr(0) << endl;
+//cout << " para[0] is:  "  << sa.cptr(0) << endl;
 
-cout << " para[1] is:  "  << sa.cptr(1) << endl;
+//cout << " para[1] is:  "  << sa.cptr(1) << endl;
 
 //cout << " para[2] is:  "  << sa.cptr(2) << endl;
 #endif
@@ -140,7 +147,7 @@ cout << " para[1] is:  "  << sa.cptr(1) << endl;
 
 <<"2 $sa[2] \n"
 
-!a
+
 
 
 #endif
@@ -606,10 +613,10 @@ CLTPT.cpy(targ,cltpt);
 	// <<"%V$msz \n"
 	// <<"%V$n_legs \n"
 
-COUT(Wval)
+//COUT(Wval)
   tplace = Wval[0];
 
-COUT(Wval[4])
+//COUT(Wval[4])
   if (use_cup) {
 
    tlon = Wval[4];
@@ -622,7 +629,7 @@ COUT(Wval[4])
 
    }
 
-COUT(tlon)
+//COUT(tlon)
 //<<"%V$tplace $tlon \n"
 
 #if ASL_DB
@@ -882,19 +889,33 @@ COUT(tlon)
 // ans=query("??");
 #endif
   L1 = GT_Wtp[nl].Ladeg;
-
-  L2 = GT_Wtp[nl+1].Ladeg;
+  ki = nl+1;
+  L2 = GT_Wtp[nl+1].Ladeg;  //  TBF icode
+  //L2 = GT_Wtp[ki].Ladeg;  //  TBF icode
        //DBG"%V $L1 $L2 \n"
 
   lo1 = GT_Wtp[nl].Longdeg;
 
-  lo2 = GT_Wtp[nl+1].Longdeg;
+  lo2 = GT_Wtp[(nl+1)].Longdeg; // TBF
+
+ // lo2 = GT_Wtp[ki].Longdeg; 
+  
        //DBG"%V $lo1 $lo2 \n"
       // tkm = ComputeTPD(nl, nl+1);
 
   tkm = HowFar(lo1 ,L1, lo2, L2);
-//cout << "L1 " << L1 << " lo1 " << lo1 << " L2 " << L2 << " lo2 " << lo2 << " tkm " << tkm << endl;      // DBG"%V $nl $tkm \n"
 
+ // tkm2 = HowFar( GT_Wtp[nl].Longdeg , GT_Wtp[nl].Ladeg, GT_Wtp[ki].Longdeg, GT_Wtp[ki].Ladeg);
+  tkm2 = HowFar( GT_Wtp[nl].Longdeg , GT_Wtp[nl].Ladeg, GT_Wtp[nl+1].Longdeg, GT_Wtp[nl+1].Ladeg);
+  
+//cout << "L1 " << L1 << " lo1 " << lo1 << " L2 " << L2 << " lo2 " << lo2 << " tkm " << tkm << endl;
+
+#if ASL_DB
+<<"%V $GT_Wtp[nl].Longdeg $GT_Wtp[nl].Ladeg $GT_Wtp[nl+1].Longdeg    $GT_Wtp[nl+1].Ladeg \n";
+<<"%V $lo1 $L1 $lo2, $L2 $lo2a \n";
+<<"%V $nl $tkm $tkm2\n"
+
+#endif
   TKM[nl] = tkm;
 
   Leg[nl] = tkm;
@@ -907,7 +928,7 @@ COUT(tlon)
        //Leg[nl] = ComputeTPD(nl, nl+1)
 
   tcd =  ComputeTC(GT_Wtp,nl, nl+1);
-COUT(tcd);
+//COUT(tcd);
  
   L1 = GT_Wtp[nl].Ladeg;
 
@@ -920,7 +941,7 @@ COUT(tcd);
 //  tc = TrueCourse(L1,lo1,L2,lo2);
  tcd = TrueCourse(lo1,L1,lo2,L2);
 
-COUT(tcd);
+//COUT(tcd);
 
 
   TC[nl+1] = tcd;
@@ -1140,7 +1161,7 @@ extern "C" int glider_task(Svarg * sarg)  {
 
  Str a0 = sarg->getArgStr(0) ;
  Str ans;
- a0.pinfo();
+// a0.pinfo();
 
 Str Use_ ="compute task distance\n  e.g  asl anytask.asl   gross laramie mtevans boulder  LD 40";
 

@@ -9,7 +9,7 @@ using namespace std;
 // To handle base case of below recursive
 // Variadic function Template
 
-void print()
+void printargs()
 {
     cout << "I am empty function and "
             "I am called at last.\n";
@@ -19,11 +19,11 @@ void print()
 // variable number of arguments and prints
 // all of them.
 template <typename T, typename... Types>
-void print(T var1, Types... var2)
+void printargs(T var1, Types... var2)
 {
-    cout << var1 << endl;
+    cout << var1 << " , ";
  
-    print(var2...);
+    printargs(var2...);
 }
  
 
@@ -33,7 +33,7 @@ void print(T var1, Types... var2)
 int main()
 {
   float f = 66.79;
-  print(1, 2, 3.14,f,
+  printargs(1, 2, 3.14,"f ",f,
           "I will print my args\n");
  
     return 0;

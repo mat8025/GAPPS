@@ -945,7 +945,7 @@ void PickViaName(int wt)
 
   if (slen(tval) > 1) {
 
-  index=RX.findRecord(tval,0,0);
+  index=RX.findRecord(tval,0,0,0);
 	  //<<"%V $k $WH\n"
 
   if (index >=0) {
@@ -1302,7 +1302,7 @@ void PickViaName(int wt)
 
 #if ASL
 fast=fastxic(0);
-  dbline(1);
+  dbline(0);
 #endif
 
 #if ASL_DB
@@ -1395,7 +1395,7 @@ fastxic(0);
 <<" $_proc looking for <|$atarg|>  $Atarg  $wtp\n"
 
 
-  index=SRX.findRecord(atarg,0,0);
+  index=SRX.findRecord(atarg,0,0,0);
 <<"$index \n"
   if (index >=0) {
 
@@ -1828,7 +1828,8 @@ void updateLegs()
     msl =  Wleg[i].msl;
     dist =  Wleg[i].dist;
 //    val = "%6.0f$lfga"
-      val = "%6.0f$lfga $dist";   
+      val = "%6.0f$lfga $dist ";
+      val = "%6.0f$dist $lfga ";   
  //   <<"leg $i $lwo %6.1f $msl $dist  $lfga  \n"
 //  <<"leg $i  <|$val|> \n"
      woSetValue (lwo,val,0);

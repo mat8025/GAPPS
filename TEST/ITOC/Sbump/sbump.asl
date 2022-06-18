@@ -1,23 +1,23 @@
-//%*********************************************** 
-//*  @script sbump.asl 
-//* 
-//*  @comment  
-//*  @release CARBON 
-//*  @vers 1.10 Ne Neon [asl 6.2.91 C-He-Pa]                               
-//*  @date Mon Nov 30 09:30:26 2020 
-//*  @cdate Sun Dec 23 09:22:34 2018 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2014,2021 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script sbump.asl                                                   
+ * 
+ *  @comment update the script date&vers                                
+ *  @release CARBON                                                     
+ *  @vers 1.13 Al Aluminium [asl 6.4.31 C-Be-Ga]                        
+ *  @date 06/17/2022 07:50:18                                           
+ *  @cdate Sun Dec 23 09:22:34 2018                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2022 -->                               
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                  
+
+                    
+
   
-<|Use_=
-update asl script version ;
-///////////////////////
-|>
+Str Use_ = "update asl script version" ;
 
 #include "debug"
-//#include "hv.asl"
 
 
 if (_dblevel >0) {
@@ -25,10 +25,10 @@ if (_dblevel >0) {
     <<"$Use_\n"   
 }
 
-ignoreErrors()
+ ignoreErrors();
 
 
-  void vers2ele(str vstr)
+  void vers2ele(Str& vstr)
   {
   //<<"%V $vstr\n"
    pmaj = atoi(spat(vstr,".",-1))
@@ -44,11 +44,22 @@ ignoreErrors()
    //return ele;
   }
   //======================
+
+  void padHdr(Str ln)
+  {
+    Str pad;
+    Str hl = ln;
+ //   <<[2]"$ln\n"
+    pad = nsc(70- slen(ln)," ")
+  //  <<[2]"$hl $pad\n"
+   <<[A]"$hl $pad\n"
+   }
+
   int A = -1;
 
-comment ="";
-release ="";
-cdate ="";
+Str comment ="";
+Str release ="xyz";
+Str cdate ="";
 
 
   
@@ -56,8 +67,13 @@ cdate ="";
   // then  read current vers and  bump number and update date
   // if no @vers line -- then prepend the vers header lines
   
-  srcfile = _clarg[1];
-  
+   Str srcfile = _clarg[1];
+
+   len = slen(srcfile);
+
+<<"$len $srcfile|\n"
+
+
   if (srcfile @= "") {
   <<[2]"no script file entered\n"
     exit();
@@ -74,9 +90,11 @@ cdate ="";
 
 pid=getpid()
 
- <<[2]"make a bakup ${srcfile}.${pid}.bak"
+<<[2]"make a bakup ${srcfile}.${pid}.bak \n"
 
 !!"cp $srcfile  ${srcfile}.${pid}.bak"
+
+
 
   set_vers = 0;
   na = argc();
@@ -132,13 +150,7 @@ Str cvers ="0.0";
   
   //<<[2]" $(nsc(5,\"\\n\"))\n"
 
-
-
-  release = "";
-
-
-
-
+  release = "abc";
 
 
   A=ofile(srcfile,"r+")
@@ -169,31 +181,31 @@ Svar L;
 
 L.pinfo()
 
-   for (j=0; j<12; j++) {
-     T = readline(A);
-     where = ftell(A)
-<<"$j $where line is $T \n"
-   }
 
-     found_vers =0;
+   found_vers =0;
 
-    fseek(A,0,0);
+   fseek(A,0,0);
 
 //   tsz = Caz(T)
    i = 0;
-   //for (i = 0; i < 12;i++) {
+   
    while (1) {
-   T = readline(A);
+
+    T = readline(A);
+    
    
 //<<[2]"$i line is $T \n"
+// L.clear()
+   L.vfree();
+
 
    where = ftell(A)
-   L = Split(T);
+   L.Split(T);
    sz = Caz(L);
-// <<"sz $(caz(L)) \n"
+<<[2] "sz $(caz(L)) \n"
 <<[2]"$i $sz $where  $L \n"
    if (sz >2) {
-<<[2]"L1 $L[1]\n"
+<<[2]"L1 $L[1]  $L[::]\n"
 
     if (scmp(L[1],"@vers")) {
      found_vers =1;
@@ -201,37 +213,78 @@ L.pinfo()
      <<[2]"$where $cvers $L[2]\n"
    }
     else if (scmp(L[1],"@cdate")) {
-     cdate = "$L[2:-1:1]";
+     cdate = "$L[2::]";
 <<"found cdate  $L\n"     
-<<[2]"%V$cdate  $L[2]\n"     
+<<[2]"cdate <|$cdate|>  $L[2]\n"     
    }
     else if (scmp(L[1],"@comment")) {
      comment = "$L[2::]";
    }
     else if (scmp(L[1],"@release")) {
-      release = "$L[2::]";
+      //release = "$L[2::]";
+      release = "$L[2]";
+<<[2]"release: <|$release|>  $L[2]\n"           
    }
     else if (scmp(L[1],"@author")) {
       author = "$L[2::]";
    }
    
    }
+   
    //found_where = where;
    i++;
-   if (i >14) {
+   if (i >16) {
 <<[2]"not an sheader\n"
-//    found_vers = 0;
-    break;
-   }
-   
-   if (scmp(L[0],";//-",4)) {
-<<[2]"header end? line $i\n"
+    found_vers = 0;
     break;
    }
 
-  }
+    if (scmp(L[0],"//****",6)) {
+
+      <<[2]"old header end? line $i\n"
+
+
+      break;
+    }
+
+
+
+    if (scmp(L[0],"*/",2)) {
+<<[2]"header end? line $i\n"
+    // check for new
+        T = readline(A);
+        L.Split(T);
+       if (scmp(L[0],";//-",4)) {
+      <<[2]" <|$T|>\n"       
+      <<[2]"new header end? line $i\n"
+       }
+       else {
+         // step back
+	 fseek(A,where,0);
+       }
+    break;
+    }
+
+}
  
-where = ftell(A);
+  where = ftell(A);
+
+<<[2]" end of current header is $where \n";
+
+B=ofw("body");
+
+  while (1) {
+         T = readline(A);
+	 <<[B]"$T";
+	 if (feof(A))
+	 break;
+  }
+
+  cf(B);
+  
+
+
+
  if (found_vers) {
  
   vers2ele(cvers)
@@ -278,6 +331,7 @@ where = ftell(A);
 
 
    vers=" @vers ${pmaj}.$pmin $min_ele $min_name [asl $(getversion())]"
+//   vers=" @vers ${pmaj}.$pmin $min_ele $(getversion())"
    vlen = slen(vers);
 
   
@@ -292,61 +346,41 @@ j= 0;
 
 
 
+cf(A);
 
+ A=ofw("hdr_tmp");
 
-  fseek(A,0,0)
+    fseek(A,0,0)
+
+// all lines shold be padded out to 70
+Str hl="xxx";
+
    <<[A]"/* \n"
-   <<[A]" *  @script $fname \n"
+   padHdr(" *  @script $fname ")
    <<[A]" * \n"
-   <<[A]" *  @comment $comment \n"
-   <<[A]" *  @release $release \n"   
-   <<[A]" * $vers \n"
-   <<[A]" *  @date $date          \n"
-   <<[A]" *  @cdate $cdate \n"      
-   <<[A]" *  @author $author \n"
-   <<[A]" *  @Copyright © RootMeanSquare  2010,$(date(8)) → \n"           
+   padHdr(" *  @comment $comment ");
+   padHdr(" *  @release $release ");
+   padHdr(" * $vers ");
+   padHdr(" *  @date $date ")
+   padHdr(" *  @cdate $cdate ")
+   padHdr(" *  @author $author ");
+   padHdr(" *  @Copyright © RootMeanSquare $(date(8)) -->");           
    <<[A]" * \n"
    <<[A]" */ \n"
-   <<[A]";//-----------------<v_&_v>--------------------------//;" ;
+   padHdr(";//----------------<v_&_v>-------------------------//;") ;
+   <<[A]"\n";
      here = ftell(A);
-     Pad = nsc(400-here," ")
-   <<[A]"$Pad\n";  
- 
+<<[2]"%V $where $here  \n"
+    if (where > here) {
+     Pad = nsc(where-here-2," ")
+    <<[A]"$Pad\n";  
+    }
     fflush(A);
   
  
 
 <<[2]"%V$where $here\n"
 
-/*
-   for (j=0; j<3; j++) {
-   T = readline(A);
-   
-
-   white_out =0;
-   where = ftell(A)
-//<<[2]"$j $where line is $T \n"
-//L = Split(T);
-  if (scmp(T,"//****",5)) {
-      white_out = 1;
-      <<"need to clean this line $T\n";
-      break;
-      }
-   }
-
-  if (white_out) {
-    fseek(A,here,0)
-    nsp = where - here;
-<<"%V $where $here $nsp\n"
-   nsp->pinfo()
-
-   for ( i=0; i<nsp-1; i++) {
-      <<[A]" ";
-   
-   }
-   
-   }
-*/
 
 cf(A);
 
@@ -359,8 +393,8 @@ log_it = 1;
 
 if (log_it) {
 // lets' log this change 
-//logfile= "~/gapps/LOGS/appmods.log"
-logfile= "LOGS/appmods.log"
+logfile= "~/gapps/LOGS/appmods.log"
+//logfile= "LOGS/appmods.log"
 A=ofile(logfile,"r+")
 fseek(A,0,2)
 
@@ -383,7 +417,7 @@ cf(A)
 
  // so bump minor if over 100 then bump maj and min to 1
  
-
+!!"cat hdr_tmp body > $srcfile"
 
 
 /*////////////////////////////////  TBD ///////////////////////////

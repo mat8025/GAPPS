@@ -1,16 +1,17 @@
 /* 
- *  @script shead.asl 
+ *  @script shead.asl                                                   
  * 
- *  @comment shead.asl 
- *  @release CARBON 
- *  @vers 1.9 F 6.3.94 C-Li-Pu 
- *  @date 03/10/2022 14:30:18          
- *  @cdate Sun Dec 23 09:23:42 2018 
- *  @author Mark Terry 23 09:23:42 2018 
- *  @Copyright © RootMeanSquare 2022
+ *  @comment shead.asl                                                  
+ *  @release CARBON                                                     
+ *  @vers 1.10 Ne Neon [asl 6.4.31 C-Be-Ga]                             
+ *  @date 06/17/2022 07:53:06                                           
+ *  @cdate Sun Dec 23 09:23:42 2018                                     
+ *  @author Mark Terry 23 09:23:42 2018                                 
+ *  @Copyright © RootMeanSquare 2022 -->                               
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                                                                      
+;//----------------<v_&_v>-------------------------//;                  
+
 
    
    Str vers2ele(Str& vstr)
@@ -200,7 +201,7 @@ if (found_vers) {
 
   }
    
-
+// allines should be padded out to 70
    A=ofw(newsrc);
 
    vers="@vers ${pmaj}.$pmin $min_ele $min_name [asl $(getversion())]"
@@ -218,7 +219,7 @@ if (found_vers) {
    <<[A]" *  @Copyright © RootMeanSquare $(date(GS_YEAR_))\n"           
    <<[A]" * \n"
    <<[A]" */ \n"
-   <<[A]";//-----------------<v_&_v>------------------------//\n"                          
+   <<[A]";//-----------------<v_&_v>------------------------//;\n"                          
 
 <<[A]"\n";
 

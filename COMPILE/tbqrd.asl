@@ -22,6 +22,9 @@
 //<<"including tbqrd.asl TBQRD $(TBQRD)\n"
 
 // assume just main window use
+#include "gline.h"
+#include "glargs.h"
+#include "woargs.h"
 
 int tbqrd_tv = 0;
 int tbqrd_msg = 0;
@@ -74,7 +77,9 @@ float clip[5] = {0,0,1,1};
 int i;
 // need cpp version to process array without for loop 03/14/22
 
- sWo(qrd,_WDRAWON,_WPIXMAPON,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45, _WCLIP,clip,_WREDRAW,_WFLUSH);
+ sWova(_WOID,tq,_WDRAW,ON_,_WPIXMAP,ON_,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45, _WCLIP,clip,_WREDRAW,ON_);
+
+sWo(qrd,_WDRAWON,_WPIXMAPON,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45, _WCLIP,clip,_WREDRAW,_WFLUSH);
 
 // sWo(tbqrd_tv,_redraw);
 // sWo(tbqrd_msg,_redraw);

@@ -1,16 +1,17 @@
 /* 
- *  @script test_glines.asl 
+ *  @script test_glines.asl                                             
  * 
- *  @comment test cpp interface to xgs directives 
- *  @release CARBON
- *  @vers 1.4 Be 6.4.10 C-Be-Ne 
- *  @date 04/21/2022 13:34:50          
- *  @cdate 01/16/2022 10:43:41
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare 2022
+ *  @comment test cpp interface to xgs directives                       
+ *  @release CARBON                                                     
+ *  @vers 1.5 B Boron [asl 6.4.31 C-Be-Ga]                              
+ *  @date 06/17/2022 07:56:17                                           
+ *  @cdate 01/16/2022 10:43:41                                          
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2022 -->                               
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;
+;//----------------<v_&_v>-------------------------//;                  
+
 
 
 
@@ -42,6 +43,8 @@
 #include "vec.h"
 #include "gline.h"
 #include "glargs.h"
+#include "winargs.h"
+#include "woargs.h"
 #include "gevent.h"
 
 
@@ -105,22 +108,22 @@ COUT(ans);
 
      int ws = 0; //which screen 0,7 -1 is current
 
-//   int vok= sWi(vp,WRESIZE,0.1,0.2,0.5,0.5,-1,WHUE,YELLOW_,WPIXMAPDRAWON,WDRAWON,WREDRAW);
 
-
-  int vok= sWi(vp,_WTITLE,"PLOT_OBJECTS",_WRESIZE,rsz,_WHUE,YELLOW_,_WBHUE,WHITE_, _WPIXMAPON,_WDRAWON,_WCLEAR,_WREDRAW,_WEO);
+     sWi(_WOID,vp,_WTITLE,"PLOT_OBJECTS",_WRESIZE,rsz,_WHUE,YELLOW_,_WBHUE,WHITE_, _WPIXMAP,ON_,_WDRAW,ON_,_WCLEAR,ON_,_WREDRAW,ON_);
 
 //cout << "vok " << vok << endl;
 //ans=query("see window?");
 
       rsz[3] = 0.8;
-      vok =sWi(vp,_WHUE,MAGENTA_,_WRESIZE,rsz,_WREDRAW,_WEO);
+      sWi(_WOID,vp,_WHUE,MAGENTA_,_WRESIZE,rsz,_WREDRAW,ON_);
 
+  titleButtonsQRD(vp);
+  
 
   int gwo= cWo(vp,WO_GRAPH_);
   float worsz[6] = {0.1,0.1,0.9,0.9,0.0};
   
-  sWo(gwo,_WRESIZE,worsz,_WFLUSH);
+  sWova(_WOID,gwo,_WRESIZE,worsz);
 
 
   double pi = 4.0 * atan(1.0); 
@@ -135,11 +138,10 @@ COUT(ans);
 
 
  // sWo(gwo,_scales, sx, sy, sX, sY,  _save,_redraw,_drawon,_pixmapon,_clipbhue,GREEN_,_EO);
-  sWo(gwo,_WSAVE,_WREDRAW,_WDRAWOFF,_WPIXMAPON,_WCLIPBHUE,GREEN_,_WFLUSH);
-  sWo(gwo,_WSCALES,vscale,_WFLUSH);
-  sWo(gwo,_WSAVEPIXMAP,_WFLUSH);
-    sWo(gwo,_WAXNUM,2,_WFLUSH);
-   sWo(gwo,_WAXNUM,1,_WFLUSH);
+  sWova(_WOID,gwo,_WSAVE,1,_WREDRAW,1,_WDRAW,0,_WPIXMAP,1,_WCLIPBHUE,GREEN_);
+
+
+  sWova(_WOID,gwo,_WSCALES,vscale,_WSAVEPIXMAP,1,_WAXNUM,2,_WAXNUM,1);
   
 
 
@@ -167,7 +169,7 @@ COUT(Xvec)
 
     COUT(Rnvec)
 
-//   ans=query("see Rnvec?");
+ //ans=query("see Rnvec?");
   
   
   Rnvec.addGrand(0); // fill with gaussian random numbers
@@ -263,7 +265,7 @@ COUT(Zvec)
 // make these ref args?
   //sGl(xn_gl,_GLTXY,&Xvec,&Rnvec,_GLHUE,RED_,_GLEO);
 
-  sGlva(_GLID,xn_gl, _GLHUE, RED_, _GLXVEC, Xvec, _GLYVEC, Rnvec);
+  sGl(_GLID,xn_gl, _GLHUE, RED_, _GLXVEC, Xvec, _GLYVEC, Rnvec);
 VCOUT(xn_gl, RED_)
 //ans=query("set xn_gl");
 
@@ -274,7 +276,7 @@ VCOUT(xn_gl, RED_)
 
  // sGl(xs_gl,_GLTXY,&Xvec,&Svec,_GLHUE,BLUE_,_GLEO);
 
-  sGlva(_GLID,xs_gl, _GLHUE, RED_, _GLXVEC, Xvec, _GLYVEC, Svec);
+  sGl(_GLID,xs_gl, _GLHUE, RED_, _GLXVEC, Xvec, _GLYVEC, Svec);
 
 VCOUT(xs_gl, _GLHUE)
 //ans=query("set xs_gl");
@@ -282,13 +284,13 @@ VCOUT(xs_gl, _GLHUE)
 
  // sGl(xz_gl,_GLTXY,&Xvec,&Zvec,_GLHUE,YELLOW_,_GLEO);
 
-sGlva(_GLID,xz_gl, _GLHUE, YELLOW_, _GLXVEC, Xvec, _GLYVEC, Zvec);
+sGl(_GLID,xz_gl, _GLHUE, YELLOW_, _GLXVEC, Xvec, _GLYVEC, Zvec);
 VCOUT(xz_gl, _GLXVEC, _GLYVEC)
 //ans=query("see xz_gl");
 
-//  sWo(gwo,_WHUE,GREEN_,_WREFRESH,_WFLUSH);
-    sWo(gwo,_WSHOWPIXMAP,_WFLUSH);
-  
+
+    sWova(_WOID,gwo,_WSHOWPIXMAP,1);
+//  ans=query("see sWova?");  
   double f = 0.5;
   float ff =f;
 
@@ -320,9 +322,9 @@ VCOUT(xz_gl, _GLXVEC, _GLYVEC)
   int i = 0;
   int hue = 1;
   
-  sGl(xn_gl,_GLHUE,RED_,_GLEO);
+  sGl(_GLID,xn_gl,_GLHUE,RED_);
   
-   sWo(gwo,_WCLEARPIXMAP,_WCLIPBORDER,_WFLUSH);
+   sWova(_WOID,gwo,_WCLEARPIXMAP,1,_WCLIPBORDER,BLACK_);
 
   int kk = 0;
 
@@ -437,28 +439,28 @@ ans=query("see Zvec");
 //cout << "Zvec " << Zvec << endl;
 
     
-   sWo(gwo,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_,_WFLUSH);
+   sWova(_WOID, gwo,_WCLEARPIXMAP,1,_WCLIPBORDER,BLACK_);
     
     //sWo(gwo,_line,0.1,0.1,3.0,2.0 ,RED_,_flush);
 
     //plot(gwo,_line,0.1,0.1,18.0,2 ,RED_);
     ff= f;
     lvec[3]= f;
-   sWo(gwo,_WLINE,lvec,_WFLUSH);
+   sWova(_WOID,gwo,_WLINE,lvec);
 	
-    sGlva(_GLID,xn_gl,_GLDRAW,BLUE_);  // DrawGline; 
+    sGl(_GLID,xn_gl,_GLDRAW,BLUE_);  // DrawGline; 
     
-     sGlva(_GLID,xs_gl,_GLDRAW, hue);  
+     sGl(_GLID,xs_gl,_GLDRAW, hue);  
 
   if ((kk % 100) == 0) {  
      if (++hue > 8) hue = 1;
   }
-     sGlva(_GLID,xz_gl,_GLDRAW, MAGENTA_);  
+     sGl(_GLID,xz_gl,_GLDRAW, MAGENTA_);  
 
 
 //ans=query("did DrawLINES");
 
-    sWo(gwo,_WSHOWPIXMAP,_WCLIPBORDER,ORANGE_,_WFLUSH);
+    sWova(_WOID,gwo,_WSHOWPIXMAP,1,_WCLIPBORDER,ORANGE_);
 
 //ans=query("see LINES");
 
@@ -486,9 +488,7 @@ ans=query("see Zvec");
 }
 
 
-   sWo(gwo,_WAXNUM,2,_WFLUSH);
-   sWo(gwo,_WAXNUM,1,_WFLUSH);
-   sWo(gwo,_WSHOWPIXMAP,_WFLUSH);  
+   sWova(_WOID,gwo,_WAXNUM,2,_WAXNUM,1,_WSHOWPIXMAP,1);  
 //ans=query("see window?");
 
 /// create a window obj

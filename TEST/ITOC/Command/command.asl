@@ -21,6 +21,9 @@ if (_dblevel >0) {
 }
 
 
+ ignoreErrors();
+
+
 chkIn(_dblevel)
 
 //  issue shell command
@@ -35,7 +38,7 @@ ret= !!" date > keep-the-date "
 
 !!" date "
 
-str  ws 
+Str  ws 
 vs = "a str"
 
 <<"%I $ws \n"
@@ -52,7 +55,8 @@ wd= !!"asl -cwl AAA_COMMAND.asl"
 
 <<"%V$wd \n"
 
-///ans=query("OK?")
+//ans=query("OK?");
+
 wd = !!" date "
 
 
@@ -133,5 +137,7 @@ CE=!!"date"
 
 
 chkOut()
+
+//exit(1)
 
 

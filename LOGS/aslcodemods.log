@@ -1161,3 +1161,10 @@ margincall.cpp                      2.37  05/21/2022 15:53:06  delete break !a v
 mc_xw.cpp                           1.51  05/22/2022 16:21:14  fillpoly
 secondpass.cpp                      2.35  05/28/2022 09:08:24  #ifndef
 firstpass.cpp                       2.36  05/28/2022 09:09:50  #ifndef
+utils_e.cpp                         2.62  06/17/2022 14:14:15  remove printf CPP
+glargs.h                            1.3  06/17/2022 14:16:34  init cpp version of sGl
+vargs.h                             1.2  06/17/2022 14:18:27  init cpp version of asl printargs
+tokcmf.cpp                          1.73  06/18/2022 08:24:36  buildclass - avoid array exp parse
+exp_e.cpp                           3.57  06/18/2022 08:26:01  NOWIC option
+vmf_record.cpp                      1.3  06/18/2022 16:15:52  fix added direction to search row
+vmf_record.cpp                      1.4  06/18/2022 16:17:54  tidy

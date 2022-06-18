@@ -326,10 +326,15 @@ cout <<"Draw Screen\n";
 
    // int allgls[] = {wt_gl2,wt_gl, wt_gl3,-1};
 
+   int gi=0;
 
-   sGl(allgls,_GLDRAW,_GLEO);
+  while (1) {
 
-
+  sGl(_GLID,allgls[gi],_GLDRAW,ON_);
+  gi++;
+  if (allgls[gi] < 0)
+      break;
+  }
    
  //  ans= query("see lines?\n");
       
@@ -374,9 +379,9 @@ cout <<"Draw Screen\n";
 
   drawMonths(swo);
 
-  sGl(bp_gl,_GLDRAW);   
+  sGl(_GLID,bp_gl,_GLDRAW);   
 
-  sWo(swo,_WSHOWPIXMAP,_WEO);
+  sWova(_WOID,swo,_WSHOWPIXMAP,1);
 
   //sWo(allwo,_WCLIPBORDER,GREEN_);
 
@@ -461,9 +466,9 @@ cout <<"Draw Screen\n";
 
   sWo(wedwos,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0,_WEO);
 
-  sWo(swo,_WXSCALES,wpt(rx,rX),_WEO);
+  sWova(_WOID,swo,_WXSCALES,wpt(rx,rX));
 
- sWo(wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0,_WFLUSH);
+  sWova(_WOID,wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0);
 
   drawScreens();
 
@@ -475,7 +480,7 @@ cout <<"Draw Screen\n";
   void resize_screen()
   {
 
-  sWi(vp,_WRESIZE,wbox(0.05,0.01,0.98,0.98),_WREDRAW);
+    sWi(_WOID,vp,_WRESIZE,wbox(0.05,0.01,0.98,0.98),_WREDRAW,ON_);
 
   }
 
@@ -515,7 +520,7 @@ cout <<"Draw Screen\n";
   sWo(xtmwo,_WREDRAW,_WEO);  
 
 
-sWo(dtmwo,_WSTRVALUE ,&mdy,_WREDRAW,_WEO );
+  sWova(_WOID,dtmwo,_WSTRVALUE ,mdy,_WREDRAW,1);
 
 #if 0
   sWo(wtmwo,_WVALUE,wtm,_WREDRAW,_WEO);

@@ -3,15 +3,15 @@
  * 
  *  @comment show/create glider task 
  *  @release CARBON 
- *  @vers 3.4 Be Beryllium [asl 6.3.45 C-Li-Rh] 
- *  @date 07/30/2021 09:02:34 
+ *  @vers 3.6 C  Carbon
+ *  @date 06/16/2022 16:49:17          
  *  @cdate 7/21/1997 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
+ *  @author Mark Terry
+ *  @Copyright © RootMeanSquare 2022
  * 
- *  \\-----------------<v_&_v>--------------------------//  
  */ 
-                                                                         
+;//----------------<v_&_v>-------------------------//;
+
 ///
 /// "$Id: showtask.asl,v 1.5 1997/07/21 15:01:08 mark Exp mark $"
 ///
@@ -79,6 +79,7 @@ chkIn(_dblevel);
 //#define DBG <<
 #define DBG ~!
 
+ openDll("uac");
 #endif
 
 int uplegs = 0;  // needed?
@@ -290,7 +291,7 @@ while (1) {
 
        //<<"%V $Ntp $nwr  $AFH $Wval\n";
 
-printf("Ntp %d nwr %d  %s\n",Ntp,nwr,Wval.cptr(0));
+//printf("Ntp %d nwr %d  %s\n",Ntp,nwr,Wval.cptr(0));
 
 
 	       
@@ -401,8 +402,9 @@ printf(" Read $Ntp %d turnpts \n",Ntp);
       }
        else {
 	  if (targ.slen() > 1) {
-          r_index=SRX.findRecord(targ,0,0);
-	 // <<"%V $targ $WH\n"
+          r_index=SRX.findRecord(targ,0,0,0);
+
+<<" <|$targ|> @row $r_index\n"
 
           if (r_index >=0) {
 
@@ -467,7 +469,7 @@ if (Ntaskpts == -1) {
 
        targ = targ_list[i];
        //<<"$i  <|$targ|> \n"
-         r_index=SRX.findRecord(targ,0,0);
+         r_index=SRX.findRecord(targ,0,0,0);
 
           if (r_index >=0) {
     //      ttp = SRX[r_index];
@@ -564,7 +566,7 @@ Str place;
 
         woSetValue(tpwo[i],place);
        
-        sWo(tpwo[i],_WUPDATE,_WREDRAW,_WEO);  
+        sWo(_WOID,tpwo[i],_WUPDATE,_WREDRAW);  
        // woSetValue(tpwo[i],k,1)
        // display alt?
 //	woSetValue(tpwo[i],alt,1)   
@@ -590,7 +592,7 @@ Str place;
      sWi(Vp,_WREDRAW); // need a redraw proc for app
 
 
-    sWo(mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN),_WEO );
+    sWo(_WOID,mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN));
 
     if (Have_igc) {
 
@@ -601,8 +603,8 @@ Str place;
 
     IGCLAT.pinfo();
 
- //  sGl(igc_tgl, _GLTYPE_XY , IGCLONG, IGCLAT,_GLEO);
-   sGl(igc_tgl, _GLTXY, IGCLONG, IGCLAT,_GLHUE,BLUE_,_GLEO); // TBF tag args remove white space
+
+   sGl(_GLID,igc_tgl, _GLTXY, IGCLONG, IGCLAT,_GLHUE,BLUE_); // TBF tag args remove white space
 
 //ans=query("?2","_GLTXY",__LINE__);
 
@@ -613,7 +615,7 @@ Str place;
     VCOUT(_GLTXY, _GLTY);
         VCOUT(igc_vgl, igc_tgl);
     
-    sGl(igc_vgl, _GLTY, IGCELE,_GLHUE, GREEN_, _GLEO);
+    sGl(_GLID,igc_vgl, _GLTY, IGCELE,_GLHUE, GREEN_);
 
 
 //ans=query("?","_GLTY",__LINE__);
@@ -623,13 +625,13 @@ Str place;
 
    if (Ntpts > 0) {
     dGl(igc_tgl);  // plot the igc track -- if supplied
-    sWo(vvwo, _WSCALES, wbox(0, 0, Ntpts, Max_ele +500),_WEO);
+    sWo(vvwo, _WSCALES, wbox(0, 0, Ntpts, Max_ele +500));
     dGl(igc_vgl);  // plot the igc climb -- if supplied
    }
 
    }
-   sWo(ZOOM_wo,_WREDRAW,_WEO);
-   sWo(vptxt,_WREDRAW,_WEO);
+   sWo(ZOOM_wo,_WREDRAW);
+   sWo(vptxt,_WREDRAW);
 
 //ans=query("?3","see trace?",__LINE__);
 
@@ -671,7 +673,7 @@ Str wcltpt="XY";
 
 //  zoom_to_task(mapwo,1)
 
-  sWo(mapwo,_WSCALES,wbox( LongW, LatS, LongE, LatN),_WEO );
+  sWo(mapwo,_WSCALES,wbox( LongW, LatS, LongE, LatN) );
 
   woSetValue(TASK_wo,TaskType);
   //sWo(TASK_wo,_WVALUE,TaskType,_WREDRAW);
@@ -905,13 +907,13 @@ Str wcltpt="XY";
 	   
 
                  sWo(tpwo,_WREDRAW);
-                 sWo(legwo,_WREDRAW,_WEO);		 
+                 sWo(legwo,_WREDRAW);		 
                 // sWo(wtpwo,_Wcxor);
                  showTaskPts();
        }
        else if (WoName == "ALT") {
        
-       	 wfr=sWo(mapwo,_WSHOWPIXMAP,_WEO); // should erase precious target position
+       	 wfr=sWo(mapwo,_WSHOWPIXMAP); // should erase precious target position
 	 
          drawit = 0;
          dindex = rint(erx);
@@ -923,10 +925,10 @@ Str wcltpt="XY";
 	 syme = IGCELE[dindex] *  3.280839;
 	// <<"%V $symx $symy $syme  \n"
 
-          wfr =sWo(mapwo,_WPIXMAPOFF,_WDRAWON,_WEO); // just draw but not to pixamp
+          wfr =sWo(mapwo,_WPIXMAPOFF,_WDRAWON); // just draw but not to pixamp
        if (Ev_button == 1 || Ev_button == 4) {
 
-	  sGl(lc_gl,_GLCURSOR,rbox(erx,0,erx,20000, CL_init),_GLEO);
+	  sGl(_GLID,lc_gl,_GLCURSOR,rbox(erx,0,erx,20000, CL_init));
 	  dGl(lc_gl);
 	  CL_init = 0;
 	   zoom_begin = erx;
@@ -939,8 +941,8 @@ Str wcltpt="XY";
 
        if (Ev_button == 3 || Ev_button == 5) {
 
- //  sGl(lc_gl,_GLCURSOR,lcpx,0,lcpx,300, CL_init,_GLEO);
-	  sGl(rc_gl,_GLCURSOR,rbox(erx,0,erx,20000, CR_init),_GLEO);
+
+	  sGl(_GLID,rc_gl,_GLCURSOR,rbox(erx,0,erx,20000, CR_init));
           dGl(rc_gl);
 	  CR_init = 0;
 	  
@@ -955,7 +957,7 @@ Str wcltpt="XY";
 
 //	 swo(mapwo,_WCLEAR,_WCLEARCLIP,BLUE_,_WCLEARPIXMAP);
 	 
-         wfr = sWo(mapwo,_WPIXMAPON,_WEO);
+         wfr = sWo(mapwo,_WPIXMAPON);
 	 drawAlt();
 
 
@@ -1036,7 +1038,7 @@ Str wcltpt="XY";
      
       taskDist();
 
-      sWo(tdwo,_WVALUE,"$totalK km",_WUPDATE);
+      sWo(_WOID,tdwo,_WVALUE,"$totalK km",_WUPDATE);
       Task_update = 0;
       //int i;
       for (i = 0; i < Ntaskpts ; i++) {
@@ -1058,13 +1060,13 @@ Str wcltpt="XY";
        sWo(legwo,_WREDRAW);		 
       }
 
-   //  sWi(vp,_WREDRAW,_WEO);
+   //  sWi(vp,_WREDRAW);
 
 
     //drawTrace();
    // drawTask(mapwo,RED_);
  
-//	 sWo(mapwo,_WSHOWPIXMAP,_WEO);
+//	 sWo(mapwo,_WSHOWPIXMAP);
 }
 
 

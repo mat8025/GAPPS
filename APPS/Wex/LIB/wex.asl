@@ -1,16 +1,17 @@
 /* 
- *  @script wex.asl 
+ *  @script wex.asl                                                     
  * 
- *  @comment  exercise/diet logger cpp vers
- *  @release CARBON 
- *  @vers 2.55 Cs 6.3.79 C-Li-Au 
- *  @date 02/03/2022 12:40:55          
- *  @cdate Fri Jan 1 08:00:00 2010 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare 2022
+ *  @comment exercise/diet logger cpp vers                              
+ *  @release CARBON                                                     
+ *  @vers 2.56 Ba Barium [asl 6.4.31 C-Be-Ga]                           
+ *  @date 06/17/2022 07:54:49                                           
+ *  @cdate Fri Jan 1 08:00:00 2010                                      
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2022 -->                               
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                        
+;//----------------<v_&_v>-------------------------//;                  
+
 
 ///
 /// exercise weight display
@@ -39,6 +40,7 @@
 #include "gsi.h"
 #include "gline.h"
 #include "glargs.h"
+#include "winargs.h"
 #include "debug.h"
 
 #include "uac.h"

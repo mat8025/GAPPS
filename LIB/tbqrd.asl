@@ -45,15 +45,18 @@ void  titleButtonsQRD(int v)
 <<[_DB]"SET %V $tbqrd_tv \n"
 //int qrd[] = {tr,tq,td};
  tbqrd_msg = cWo(v,_TBV,_name,"tbm",_value,"MSG",_style,SVO_,_resize,0.52,0,0.90,1,_flush);
-int qrd[3]
+int qrd[4];
 
 qrd[0]= tq;
 qrd[1]= tr;
 qrd[2]= td;
+qrd[3]= -1;
 
 <<[_DB]"%V $tr $tq $td\n"
 <<[_DB]"%V $qrd $(caz(qrd)) $(typeof(qrd))\n"
- sWo(qrd,_drawon,_pixmapon,_fonthue,RED_,_color,WHITE_,_symsize,45, _clip,0,0,1,1,_flush);
+
+sWo(qrd,_drawon,_pixmapon,_fonthue,RED_,_color,WHITE_,_symsize,45, _clip,0,0,1,1,_flush);
+ 
 // sWo(tbqrd_tv,_redraw);
 // sWo(tbqrd_msg,_redraw);
  

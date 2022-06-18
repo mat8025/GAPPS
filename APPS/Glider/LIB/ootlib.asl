@@ -114,7 +114,7 @@ float   nm_to_km = 6080.0/3281.0;
   D= acos (sin(rL1) * sin(rL2) + cos(rL1) * cos(rL2) * cos(rlo1-rlo2));
 
   km = LegK * D  * nm_to_km;
-
+  printargs ("km ",km);
   return km;
 
   }
@@ -469,6 +469,7 @@ int N;
   float km = 0.0;
   float tc = 0.0;
   float L1,L2,lo1,lo2;
+
   
   L1 = wtp[j].Ladeg;
 
@@ -477,9 +478,11 @@ int N;
   lo1 = wtp[j].Longdeg;
 
   lo2 = wtp[k].Longdeg;
-
 //  tc = TrueCourse(L1,lo1,L2,lo2);
- tc = TrueCourse(lo1,L1,lo2,L2);
+
+tc = TrueCourse(lo1,L1,lo2,L2);
+
+  //printargs(j, k ,L1 ,lo2 ,"tc=", tc);
 
   return tc;
 

@@ -43,6 +43,7 @@
   
   srcfile = _clarg[1];
   <<"$srcfile \n"
+
   if (srcfile == "") {
   <<[2]"no script file entered\n"
     exit();

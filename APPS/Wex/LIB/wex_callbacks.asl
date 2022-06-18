@@ -55,9 +55,9 @@
 
   //sWo(wedwos,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
 
-  sWo(wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0,_WEO);
+  sWova(_WOID,wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0);
 
-  sWo(swo,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0,_WEO);
+  sWova(_WOID,swo,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
 
   drawScreens();
 
@@ -175,7 +175,7 @@ COUT(button);
          lcpx = Erx;
 //	<<"CURSOR %V $lcpx\n"
         // sGl(lc_gl,_GLCURSOR,rbox(lcpx,0,lcpx,300), Wex_CL_init,_GLEO);
-	 sGlva(_GLID,lc_gl,_GLCURSOR,rbox(lcpx,0,lcpx,300));
+	 sGl(_GLID,lc_gl,_GLCURSOR,rbox(lcpx,0,lcpx,300));
 	 
 	 Wex_CL_init = 0;
          getDay(lcpx);
@@ -186,7 +186,7 @@ COUT(button);
          rcpx = Erx;
 
          //sGl(rc_gl,_GLCURSOR,rbox(rcpx,0,rcpx,310), Wex_CR_init,_GLEO);
-	 sGlva(_GLID,rc_gl,_GLCURSOR,rbox(rcpx,0,rcpx,310));
+	 sGl(_GLID,rc_gl,_GLCURSOR,rbox(rcpx,0,rcpx,310));
 	 
          Wex_CR_init = 0;
         // getDay(rcpx);
@@ -232,9 +232,9 @@ COUT(button);
 void setCursors()
 {
 //<<"$_proc : $_lcpx\n"
-        sGlva(_GLID,lc_gl,_GLCURSOR, rbox(lcpx,0,lcpx,300));
+        sGl(_GLID,lc_gl,_GLCURSOR, rbox(lcpx,0,lcpx,300));
 
-        sGlva(_GLID,rc_gl,_GLCURSOR, rbox(rcpx,0,rcpx,300));
+        sGl(_GLID,rc_gl,_GLCURSOR, rbox(rcpx,0,rcpx,300));
 	
 }
 
