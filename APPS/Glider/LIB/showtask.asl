@@ -48,6 +48,7 @@ using namespace std;
 #include "scope.h"
 #include "record.h"
 #include "debug.h"
+#include "winargs.h"
 
 #include "uac.h"
 
@@ -404,7 +405,7 @@ printf(" Read $Ntp %d turnpts \n",Ntp);
 	  if (targ.slen() > 1) {
           r_index=SRX.findRecord(targ,0,0,0);
 
-<<" <|$targ|> @row $r_index\n"
+//<<" <|$targ|> @row $r_index\n";
 
           if (r_index >=0) {
 
@@ -487,7 +488,7 @@ if (Ntaskpts == -1) {
 
 
 
-Nlegs = Ntaskpts;
+int Nlegs = Ntaskpts;
 
 //Taskpts.pinfo()
 int k;
@@ -589,7 +590,7 @@ Str place;
 
      Str c= "EXIT";
 
-     sWi(Vp,_WREDRAW); // need a redraw proc for app
+     sWi(_WOID,Vp,_WREDRAW,ON_); // need a redraw proc for app
 
 
     sWo(_WOID,mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN));
@@ -604,7 +605,7 @@ Str place;
     IGCLAT.pinfo();
 
 
-   sGl(_GLID,igc_tgl, _GLTXY, IGCLONG, IGCLAT,_GLHUE,BLUE_); // TBF tag args remove white space
+   sGl(_GLID,igc_tgl, _GLXVEC, IGCLONG, _GLYVEC,IGCLAT,_GLHUE,BLUE_); // TBF tag args remove white space
 
 //ans=query("?2","_GLTXY",__LINE__);
 
@@ -615,7 +616,7 @@ Str place;
     VCOUT(_GLTXY, _GLTY);
         VCOUT(igc_vgl, igc_tgl);
     
-    sGl(_GLID,igc_vgl, _GLTY, IGCELE,_GLHUE, GREEN_);
+    sGl(_GLID,igc_vgl, _GLYVEC, IGCELE,_GLHUE, GREEN_);
 
 
 //ans=query("?","_GLTY",__LINE__);
@@ -829,7 +830,7 @@ Str wcltpt="XY";
            //  np = spat(np,"_",-1);
 //np.pinfo();
               Witp = atoi(np);
-	      <<"%V $np $Witp \n"
+//	      <<"%V $np $Witp \n"
               wtpwo = tpwo[Witp];
 
             // sWo(wtpwo, _WCXOR);
@@ -859,7 +860,7 @@ Str wcltpt="XY";
 	       else if (wc == "N") { // replace
                      printf("REPLACE TP via Name select\n");	    
                      PickViaName(Witp);
-		     <<"DONE REPLACE via name\n"
+//		     <<"DONE REPLACE via name\n"
 	     
                }
             
@@ -990,7 +991,7 @@ Str wcltpt="XY";
                 ST_msl = Wtp[ntp].Alt;
                 mkm = HowFar(erx,ery, Wtp[ntp].Longdeg, Wtp[ntp].Ladeg);
                 ght = (mkm * km_to_feet) / LoD;
-		<<"%V $ght $mkm $km_to_feet  $LoD \n" 
+//		<<"%V $ght $mkm $km_to_feet  $LoD \n" 
 		
                 safealt = ST_msl + ght + 2000;
 

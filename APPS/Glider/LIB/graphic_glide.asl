@@ -425,7 +425,7 @@ void drawTrace()
          sWo(vvwo,_WCLEARPIXMAP);
 
 
-         <<"%V $Ntpts \n";
+         printargs(Ntpts);;
           //DrawMap(mapwo);
 	  
   	 if (Ntpts > 0) {
@@ -440,12 +440,12 @@ void drawTrace()
   CL_init = 1;
 
 if (lc_gl != -1) {
-	  sGl(lc_gl,_GLCURSOR,rbox(zoom_begin,0,zoom_begin,20000, CL_init),_GLHUE,GREEN_,_GLEO); // use rbox
+	  sGl(_GLID,lc_gl,_GLCURSOR,rbox(zoom_begin,0,zoom_begin,20000, CL_init),_GLHUE,GREEN_); // use rbox
    dGl(lc_gl);
 }
 
 if (rc_gl != -1) {
-	  sGl(rc_gl,_GLCURSOR,rbox(zoom_end,0,zoom_end,20000, CR_init),_GLHUE,RED_,_GLEO);
+	  sGl(_GLID,rc_gl,_GLCURSOR,rbox(zoom_end,0,zoom_end,20000, CR_init),_GLHUE,RED_);
    dGl(rc_gl);
 }
 
@@ -479,12 +479,12 @@ void drawAlt()
   CL_init = 1;
 
 if (lc_gl != -1) {
-	  sGl(lc_gl,_GLCURSOR,rbox(zoom_begin,0,zoom_begin,20000, CL_init),_GLHUE,GREEN_,_GLEO); // use rbox
+	  sGl(_GLID,lc_gl,_GLCURSOR,rbox(zoom_begin,0,zoom_begin,20000, CL_init),_GLHUE,GREEN_); // use rbox
    dGl(lc_gl);
 }
 
 if (rc_gl != -1) {
-	  sGl(rc_gl,_GLCURSOR,rbox(zoom_end,0,zoom_end,20000, CR_init),_GLHUE,RED_,_GLEO);
+	  sGl(_GLID,rc_gl,_GLCURSOR,rbox(zoom_end,0,zoom_end,20000, CR_init),_GLHUE,RED_);
    dGl(rc_gl);
 }
 
@@ -776,7 +776,7 @@ sWo(wid,_WAXNUM,AXIS_LEFT_,_WEO);
 
   nval=queryWindow("TurnPt","TP $Witp enter name:",nval);
 
-  <<"name sel:  <|$nval|> \n"
+ printargs("name sel: ",nval);
 
   ntp= PickTP(nval,Witp);
 
@@ -800,7 +800,7 @@ sWo(wid,_WAXNUM,AXIS_LEFT_,_WEO);
 
   }
 //======================================//
-void PickViaName(int wt)
+int PickViaName(int wt)
 {
 //<<"ENTER $_proc  wt $wt \n";
   int wtp =0;
@@ -823,26 +823,26 @@ void PickViaName(int wt)
 
   nval = SRX.getRC(wtp,0); // double check nval == aplace 
 
-  <<"Found %V $wt $wtp $nval $aplace\n"
+  printargs("Found ",wt,wtp,nval,aplace);
   ok = 1;
   woSetValue (tpwo[wt],aplace,0);
   }
 
- <<"Exit Done $_proc $ok \n";
- 
+ //<<"Exit Done $_proc $ok \n";
+   return ok;
 }
 //======================================
 
   void delete_tp(int wt)
   {
 
-<<"$_proc  wt $wt \n";
+//<<"$_proc  wt $wt \n";
 
   int i,j;
   int kt = 0;
   Str plc;
   kt = Taskpts[wt];
-<<"$_proc %V $wt $kt $LastTP\n";  
+//<<"$_proc %V $wt $kt $LastTP\n";  
 //              <<"$_proc delete $_ewoname $wt $Wtp[kt].Place \n"
 
 
@@ -875,14 +875,14 @@ void PickViaName(int wt)
   }
 
   plc = Wtp[kt].Place;
-  <<"del $i $kt  $plc \n"
+//  <<"del $i $kt  $plc \n"
 
   //sWo (tpwo[i],_WVALUE,plc);
                  woSetValue(tpwo[i],plc);
   j++;
 
   }
-		<<"last was $j $plc\n"
+//		<<"last was $j $plc\n"
 
   Taskpts[j-1] = 0;
 
@@ -1392,11 +1392,11 @@ fastxic(0);
   Svar srp;
   int ret = -1;
   int index;
-<<" $_proc looking for <|$atarg|>  $Atarg  $wtp\n"
+//<<" $_proc looking for <|$atarg|>  $Atarg  $wtp\n"
 
 
   index=SRX.findRecord(atarg,0,0,0);
-<<"$index \n"
+//<<"$index \n"
   if (index >=0) {
 
     srp = SRX.getRow(index);
@@ -1408,7 +1408,7 @@ fastxic(0);
 
   ret =index;
   
-<<" found $atarg $index $wtp $ret $ttp\n"
+//<<" found $atarg $index $wtp $ret $ttp\n"
 //ans=query("$_proc ?");
   }
 

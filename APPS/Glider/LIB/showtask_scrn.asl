@@ -43,7 +43,7 @@ int Xgm;
 
   //sWi(Vp,_WSCALES,wbox(-200,-200,200,200,0), _WDRAWON,_WPIXMAPON,_WSAVE,_WBHUE,WHITE_,_WRESIZE,0.1,0.01,0.9,0.95,0);
 
-  sWi(_WOID,Vp,_WSCALES,wbox(-200,-200,200,200,0), _WDRAWON,_WPIXMAPON,_WSAVE,_WBHUE,WHITE_,_WRESIZE,wbox(0.1,0.01,0.9,0.95,0));
+  sWi(_WOID,Vp,_WSCALES,wbox(-200,-200,200,200,0), _WDRAW, ON,_WPIXMAP,ON,_WSAVE,ON_,_WBHUE,WHITE_,_WRESIZE,wbox(0.1,0.01,0.9,0.95,0));
   // but we don't draw to a window! = draw to Wob in a Window
 
   sWi(_WOID,Vp,_WCLIP,wbox(0.01,0.1,0.95,0.99));
@@ -192,7 +192,7 @@ int Xgm;
   
 //  sGl(lc_gl,_GLTYPE,XY_,_GLHUE,BLACK_,_GLLTYPE,CURSOR_,_GLEO);
 
-  sGl(_GLID.lc_gl,_GLTYPE,"XY" ,_GLHUE,BLACK_);
+  sGl(_GLID,lc_gl,_GLTYPE,"XY" ,_GLHUE,BLACK_);
 
   rc_gl   = cGl(vvwo);
   
