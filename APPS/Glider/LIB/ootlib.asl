@@ -178,9 +178,9 @@ int N;
    Vec<double> sslat(12);
    Vec<double> ssele(12);   
 
-  printf("processIGC Igcfn %d\n",Igcfn);
+  pa("processIGC Igcfn   ",Igcfn);
   
-  Ntpts= readIGC(Igcfn,&IGCTIM,&IGCLAT,&IGCLONG, &IGCELE);
+  Ntpts= readIGC(Igcfn, IGCTIM, IGCLAT, IGCLONG, IGCELE);
   
 #if ASL
    <<"sz $Ntpts $(Caz(IGCLONG))   $(Caz(IGCLAT))\n"

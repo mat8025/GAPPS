@@ -100,16 +100,17 @@ void taskDist();
 
   int is_an_airport = 0;
   int is_a_mtn = 0;
-  
-  sWo(mapwo,_WSCALES,wbox(LongW,LatS,LongE,LatN),_WEO);
+ // ans=query("?","DrawMAP",__LINE__);
+  sWova(_WOID,mapwo,_WSCALES,wbox(LongW,LatS,LongE,LatN));
   //<<"%V $LongW $LatS $LongE $LatN \n";
 
-  sWo(mapwo,_WCLEARPIXMAP,_WCLIPBORDER,_WEO);
+  sWova(_WOID,mapwo,_WCLEARPIXMAP,ON_,_WCLIPBORDER,BLACK_);
 
  // sWo(mapwo,_WDRAWON,_WSHOWPIXMAP,_WCLIPBORDER);
-
+pa("mapwo ",mapwo);
   gg_gridLabel(mapwo);
-
+  
+//ans=query("?113","gg_gridLabel(mapwo); ",__LINE__);
 //DBG"$mlab $(typeof(mlab))\n";
 
 //<<"%V $mapwo $LongW $LatS $LongE $LatN  \n"
@@ -128,18 +129,19 @@ void taskDist();
   for (k = 1 ; k <= np ; k++) {
 
     is_an_airport = Wtp[k].is_airport;
-        is_a_mtn = Wtp[k].is_mtn;
+    is_a_mtn = Wtp[k].is_mtn;
 
-  mlab = Wtp[k].Place;
+    mlab = Wtp[k].Place;
 
-
+   pa(k,is_an_airport,mlab);
+   
+  // ans=query("?","DrawMAP",__LINE__);
 //<<"%V $k $mlab  $is_an_airport \n"
 
 
   if (!is_an_airport) {
 
      mlab.slower();  //TBF 5/3/22
-     
 
   }
 
@@ -159,45 +161,49 @@ void taskDist();
 
   longi = Wtp[k].Longdeg;
 
+  pa(k,msl,lat,longi, mlab);
+
 //<<"%V $k $longi  $Wtp[k].Longdeg \n"
 
 //<<"%V $k $mlab $msl $lat $longi $Wtp[k].Ladeg   \n"
 
   if ( msl > 7000) {
     if (is_an_airport || is_a_mtn) {
-       Text(mapwo,mlab,longi,lat,0,0,1,RED_);
+    
+       Text(mapwo, mlab.cptr(), longi, lat,0,0,1,RED_);
+ //ans=query("?","Text",__LINE__);
+
 	    // <<"above 7K $msl $mlab $lat $longi\n"
      }
   }
-
   else {
 
   if ( msl > 5000) {
     if (is_an_airport) {
-       Text(mapwo,mlab,longi,lat,0,0,1,BLUE_);
+       Text(mapwo,mlab.cptr(),longi,lat,0,0,1,BLUE_);
 	       // <<"above 5K $msl $mlab $lat $longi\n"
    }
-
-
-
   }
 
   else {
 	    //	 <<"below 5K $msl $mlab $lat $longi\n"
    if (is_an_airport) {
-     Text(mapwo,mlab,longi,lat,0,0,1,GREEN_);
+     Text(mapwo,mlab.cptr(),longi,lat,0,0,1,GREEN_);
    }
   }
 
-//sWo(wo,_WSHOWPIXMAP,_WCLIPBORDER);
   }
 
   }
 
-  sWo(mapwo,_WSHOWPIXMAP,_WCLIPBORDER,_WSAVEPIXMAP,_WEO);
+
+
+
+  sWova(_WOID,mapwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_,_WSAVEPIXMAP,ON_);
 
   gg_gridLabel(mapwo);
-
+  
+//ans=query("DONE","drawMAP",__LINE__);
   }
 //====================================================
 
@@ -419,41 +425,52 @@ void drawTrace()
 {
      if (Have_igc) {
      
-         sWo(mapwo,_WSCALES, wbox(LongW, LatS, LongE, LatN),_WEO );
+         sWova(_WOID,mapwo,_WSCALES, wbox(LongW, LatS, LongE, LatN) );
 	 
         // sWo(mapwo,_WCLEARPIXMAP);
-         sWo(vvwo,_WCLEARPIXMAP);
+         sWova(_WOID,vvwo,_WCLEARPIXMAP,ON_);
 
 
-         printargs(Ntpts);;
+         pa(Ntpts);;
           //DrawMap(mapwo);
 	  
   	 if (Ntpts > 0) {
-            sWo(vvwo, _WSCALES, wbox(0, Min_ele, Ntpts, Max_ele + 500),_WEO );
-              dGl(igc_tgl);
-	    sWo(vvwo,_WCLEARPIXMAP);
-	      dGl(igc_vgl);
-            sWo(mapwo,_WSHOWPIXMAP,_WCLIPBORDER);
-            sWo(vvwo,_WSHOWPIXMAP,_WCLIPBORDER);
+	 
+           // sWova(_WOID,vvwo, _WSCALES, wbox(0, Min_ele, Ntpts, Max_ele + 500));
+	    sWova(_WOID,vvwo, _WSCALES, wbox(0, Min_ele, Ntpts, 8000));
+	
+
+
+              //dGl(igc_tgl);
+	      
+	    sWova(_WOID,vvwo,_WCLEARPIXMAP,ON_);
+
+    sGl(_GLID,igc_tgl,_GLDRAW,BLUE_);  // DrawGline;
+
+    sGl(_GLID,igc_vgl,_GLDRAW,RED_);  // DrawGline;
+
+
+            sWova(_WOID,mapwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_);
+            sWova(_WOID,vvwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_);
 //<<"%V $Ev_button $lc_gl $rc_gl  \n"
   CR_init = 1;
   CL_init = 1;
 
 if (lc_gl != -1) {
 	  sGl(_GLID,lc_gl,_GLCURSOR,rbox(zoom_begin,0,zoom_begin,20000, CL_init),_GLHUE,GREEN_); // use rbox
-   dGl(lc_gl);
+ //  dGl(lc_gl);
 }
 
 if (rc_gl != -1) {
 	  sGl(_GLID,rc_gl,_GLCURSOR,rbox(zoom_end,0,zoom_end,20000, CR_init),_GLHUE,RED_);
-   dGl(rc_gl);
+ //  dGl(rc_gl);
 }
 
  //<<"%V $zoom_begin $zoom_end\n"
 	 }
-	sWo(mapwo,_WSHOWPIXMAP,_WCLIPBORDER);
+//	sWo(mapwo,_WSHOWPIXMAP,_WCLIPBORDER);
 	
-
+//ans=query("?","see trace?",__LINE__);
 
       CR_init = 0;
       CL_init = 0;
@@ -480,12 +497,12 @@ void drawAlt()
 
 if (lc_gl != -1) {
 	  sGl(_GLID,lc_gl,_GLCURSOR,rbox(zoom_begin,0,zoom_begin,20000, CL_init),_GLHUE,GREEN_); // use rbox
-   dGl(lc_gl);
+   //dGl(lc_gl);
 }
 
 if (rc_gl != -1) {
 	  sGl(_GLID,rc_gl,_GLCURSOR,rbox(zoom_end,0,zoom_end,20000, CR_init),_GLHUE,RED_);
-   dGl(rc_gl);
+   //dGl(rc_gl);
 }
 
 // <<"%V $zoom_begin $zoom_end\n"
@@ -505,33 +522,61 @@ if (rc_gl != -1) {
   float x_inc,y_inc = 0.1;
 //incr should set format
 
-  float rx;
+  float rx= 0.4;
 
-  float ry;
+  float ry= 0.5;
 
   float rX;
 
   float rY;
 
+  pa(rx,ry);
+
   sWo(wid,_WPENHUE,BLACK_);
+  
+//ans=query("?1","b4 wgetrscales",__LINE__);
+pa("wid ",wid,__LINE__);
+ST_RS[1] = 4.5;
+ST_RS[2] = 77.67;
 
-  RS= wgetrscales(wid);
+ST_RS[3] = 48.67;
+ST_RS[4] = 52.67;
+COUT(ST_RS);
+ST_RS.pinfo();
 
-//<<"%V $wid $RS \n"
+ 
+ 
+ ST_RS = wgetrscales(wid);
 
-  rx= RS[1];
+//ans=query("?2","after wgetrscales\n",__LINE__);
 
-  ry= RS[2];
+printf("does ST_RS still exist?\n");
+ST_RS.pinfo();
 
-  rX= RS[3];
 
-  rY= RS[4];
 
-//<<"%V $rx $ry $rX $rY\n"
+
+  rx= ST_RS[1];
+
+  ry= ST_RS[2];
+
+pa(rx,ry);
+
+  rX= ST_RS[3];
+
+  rY= ST_RS[4];
+
+pa(rx,ry,rX,rY);
+
+
   if (ry == -1.0) {
    ans=query("bad ry\n");
   }
-  
+
+   COUT(ST_RS);
+#if 0   
+//pa(wid,"RS ",ST_RS);
+
   //putMem("LongW","$rx",1);
 
   //putMem("LongE","$rX",1);
@@ -585,9 +630,12 @@ sWo(wid,_WAXNUM,AXIS_LEFT_,_WEO);
 #endif
 }
 
-  sWo(wid,_WCLIPBORDER);
+  
+#endif
 
-  }
+sWova(_WOID,wid,_WCLIPBORDER,RED_);
+pa("done gg");
+}
 //==================================================
   void gg_zoomToTask(int w_num, int draw)
   {
@@ -1532,20 +1580,21 @@ fastxic(0);
    // num of taskpts
 
   int i;
-//<<"%V $Ntaskpts \n"
 
-  
+pa(Ntaskpts);
+
+//  ans = query("see taskpts");
 
 
 
   for (i = 0; i < Ntaskpts ; i++) {
 
   index = Taskpts[i];
- // <<"%V $i $index \n";
- // index.pinfo();
+  pa(i, " index ", index);
   
  if ((index > 0)  && (index <= Ntp) ) {
-  kmd = 0.0;
+
+   kmd = 0.0;
 
 //<<"pass %V $i $index $Taskpts[i] \n";
 
@@ -1556,6 +1605,13 @@ fastxic(0);
   la2 = Wtp[index].Ladeg;
 
   msl = Wtp[index].Alt;
+
+
+pa(i, index, tpl, la2, msl);
+
+
+//ans = query("see taskpt");
+
 
   if (la2 > Max_lat) {
 
@@ -1596,6 +1652,8 @@ fastxic(0);
   adjust++;
 
   totalK += kmd;
+
+
 // add in the fga to reach this turnpt from previous
  //    Wleg.pinfo()
 
@@ -1621,7 +1679,7 @@ fastxic(0);
 
    Wleg[j].fga = fga;
  // dbline(0);
- }
+   }
  //  <<"%V $i $Min_lat $Max_lat\n" 
   }
 
@@ -1646,6 +1704,8 @@ fastxic(0);
 //<<"%V $LongW $LatS $LongE $LatN   \n"
 
   Task_update = 1;
+
+pa( "totalK ", totalK, " Coors ", LongW, LatS, LongE, LatN);
 //<<"DONE $_proc  $totalK \n"
 
   }

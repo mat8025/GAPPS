@@ -125,6 +125,7 @@ float R[10];
 
 int Have_igc = 0;
 
+Vec<float> ST_RS(50);
 
 
 //  Read in a Task via command line

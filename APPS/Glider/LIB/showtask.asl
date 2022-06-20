@@ -224,10 +224,11 @@ for (i= 0; i <= 10 ; i++) {
 
 //WH=searchRecord(SRX,"AngelFire",0,0);
 
-  r_index= SRX.findRecord("AngelFire",0,0);
+  r_index= SRX.findRecord("AngelFire",0,0,0);
 
   printf("AngelFire @ %d\n",r_index);
 
+//ans=query("?","angel",__LINE__);
 
 
 
@@ -361,14 +362,11 @@ printf(" Read $Ntp %d turnpts \n",Ntp);
 #else
   na = _clargc;
 #endif
+
+
  printf("na %d\n",na);
 
  int ai =0;
-
-
-
-
-// while (AnotherArg()) {  // TBC 
 
 
  while (1) {
@@ -378,6 +376,10 @@ printf(" Read $Ntp %d turnpts \n",Ntp);
           ai++;
 
 	  targ = sa.cptr(ai);
+
+   pa(ai, " targ ",targ);
+//ans=query("?","TP",__LINE__);
+
 //<<"%V $sa[ai]  $ai $targ \n"
 
 	  if (targ == "task") {
@@ -402,10 +404,15 @@ printf(" Read $Ntp %d turnpts \n",Ntp);
        
       }
        else {
+
+
+
+
 	  if (targ.slen() > 1) {
+	  
           r_index=SRX.findRecord(targ,0,0,0);
 
-//<<" <|$targ|> @row $r_index\n";
+pa("targ ",targ," @row ", r_index);
 
           if (r_index >=0) {
 
@@ -416,6 +423,9 @@ printf(" Read $Ntp %d turnpts \n",Ntp);
           Taskpts[Ntaskpts] = r_index;
 
 PXS" $Ntaskpts found $targ  $r_index  $Taskpts[Ntaskpts]\n";
+
+//ans=query("?","TP",__LINE__);
+
 
            Ntaskpts++;
 #if ASL_DB	   
@@ -525,15 +535,19 @@ int k;
       }
 
 
-printf(" Have_igc\n");
+
 
 
 
   if (Have_igc) {
-      Igcfn = ofr(igc_fname);
+pa(" Have_igc", igc_fname);
+
+Igcfn = ofr(igc_fname);
+
       if (Igcfn != -1) {
        processIGC();
       }
+      
   }
 
 
@@ -541,8 +555,6 @@ printf(" Have_igc\n");
 
 
 #include "showtask_scrn.asl"
-
-
 
 
 Str place;
@@ -567,7 +579,7 @@ Str place;
 
         woSetValue(tpwo[i],place);
        
-        sWo(_WOID,tpwo[i],_WUPDATE,_WREDRAW);  
+        sWova(_WOID,tpwo[i],_WREDRAW,ON_);  
        // woSetValue(tpwo[i],k,1)
        // display alt?
 //	woSetValue(tpwo[i],alt,1)   
@@ -586,14 +598,20 @@ Str place;
 
     sWo(tpwo,_WREDRAW);
 
+pa("Ntaskpts ", Ntaskpts);
 
+    taskDist(); // should extract Coors to show task -- or default
+
+pa( " Coors ", LongW, LatS, LongE, LatN);
 
      Str c= "EXIT";
 
      sWi(_WOID,Vp,_WREDRAW,ON_); // need a redraw proc for app
 
 
-    sWo(_WOID,mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN));
+    sWova(_WOID,mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN));
+
+
 
     if (Have_igc) {
 
@@ -601,38 +619,77 @@ Str place;
     igc_tgl = cGl(mapwo);
     
     IGCLONG.pinfo();
+            IGCLONG.minfo();
 
     IGCLAT.pinfo();
+        IGCLAT.minfo();
 
+//COUT(IGCLAT);
 
-   sGl(_GLID,igc_tgl, _GLXVEC, IGCLONG, _GLYVEC,IGCLAT,_GLHUE,BLUE_); // TBF tag args remove white space
+//ans=query("?","LAT",__LINE__);
 
-//ans=query("?2","_GLTXY",__LINE__);
+//COUT(IGCLONG);
 
+//ans=query("?","LONG",__LINE__);
 
+//COUT(IGCELE);
+
+//ans=query("?","ELE",__LINE__);
 
     igc_vgl = cGl(vvwo);
 
     VCOUT(_GLTXY, _GLTY);
         VCOUT(igc_vgl, igc_tgl);
     
-    sGl(_GLID,igc_vgl, _GLYVEC, IGCELE,_GLHUE, GREEN_);
+    sGl(_GLID,igc_vgl, _GLTY, IGCELE,_GLHUE, GREEN_);
+
+   sGl(_GLID,igc_tgl, _GLXVEC, IGCLONG, _GLYVEC, IGCLAT,_GLHUE,BLUE_); // TBF tag args remove white space
+
+  //sGl(_GLID,igc_tgl, _GLXVEC, IGCLONG, _GLHUE,BLUE_); // TBF tag args remove white space
+
+/// sGl(_GLID,igc_tgl,  _GLYVEC,IGCLAT,_GLHUE,RED_); // TBF tag args remove white space
+
+
+COUT(IGCELE);
+
+//ans=query("?","ELE",__LINE__);
+
+
+
+
+
+//ans=query("?2","_GLTXY",__LINE__);
+
+
+
 
 
 //ans=query("?","_GLTY",__LINE__);
 
-
-
-
    if (Ntpts > 0) {
-    dGl(igc_tgl);  // plot the igc track -- if supplied
-    sWo(vvwo, _WSCALES, wbox(0, 0, Ntpts, Max_ele +500));
-    dGl(igc_vgl);  // plot the igc climb -- if supplied
+   
+    //dGl(igc_tgl);  // plot the igc track -- if supplied
+	
+ //   sGl(_GLID,igc_tgl,_GLDRAW,BLUE_);  // DrawGline;
+
+    pa(Ntpts," mAx ele ", Max_ele);
+    
+    //sWova(_WOID,vvwo, _WSCALES, wbox(0, 0, Ntpts, Max_ele +500));
+    sWova(_WOID,vvwo, _WSCALES, wbox(0, 0, Ntpts, 5000));
+
+    sGl(_GLID,igc_vgl,_GLDRAW,RED_);  // DrawGline;
+
+  //  dGl(igc_vgl);  // plot the igc climb -- if supplied
+
+   sWova(_WOID,vvwo,_WSHOWPIXMAP,ON_);
+//ans=query("?","igc",__LINE__);
    }
 
+
+
    }
-   sWo(ZOOM_wo,_WREDRAW);
-   sWo(vptxt,_WREDRAW);
+   sWova(_WOID,ZOOM_wo,_WREDRAW,ON_);
+
 
 //ans=query("?3","see trace?",__LINE__);
 
@@ -659,9 +716,9 @@ float d_ll = Margin;
 Str wcltpt="XY";
 
 
-  taskDist();
 
 
+//ans=query("?3","see dist?",__LINE__);
    if (uplegs) {
     updateLegs();
    }
@@ -669,23 +726,31 @@ Str wcltpt="XY";
  
   woSetValue(tdwo,totalK);
   sWo(tdwo,_WVALUE,"$totalK km",_WUPDATE);
-
+//ans=query("?4","b4 trace?",__LINE__);
   drawTrace();
+
+//ans=query("?5","after trace?",__LINE__);
 
 //  zoom_to_task(mapwo,1)
 
-  sWo(mapwo,_WSCALES,wbox( LongW, LatS, LongE, LatN) );
+  sWova(_WOID,mapwo,_WSCALES,wbox( LongW, LatS, LongE, LatN) );
+
+//ans=query("?6"," ",__LINE__);
 
   woSetValue(TASK_wo,TaskType);
   //sWo(TASK_wo,_WVALUE,TaskType,_WREDRAW);
   
   //sdb(2,"pline");
-  
+
+//ans=query("?7","b4 map?",__LINE__);
+
   DrawMap();
-//ans=query("see map?");
+
+//ans=query("?8","after map?",__LINE__);
 
 
   drawTrace();
+  
   drawTask(mapwo,GREEN_);
 
 
@@ -930,7 +995,7 @@ Str wcltpt="XY";
        if (Ev_button == 1 || Ev_button == 4) {
 
 	  sGl(_GLID,lc_gl,_GLCURSOR,rbox(erx,0,erx,20000, CL_init));
-	  dGl(lc_gl);
+	 // dGl(lc_gl);
 	  CL_init = 0;
 	   zoom_begin = erx;
 
@@ -944,7 +1009,7 @@ Str wcltpt="XY";
 
 
 	  sGl(_GLID,rc_gl,_GLCURSOR,rbox(erx,0,erx,20000, CR_init));
-          dGl(rc_gl);
+          //dGl(rc_gl);
 	  CR_init = 0;
 	  
           plotSymbol(mapwo,symx,symy,DIAMOND_,symsz,LILAC_,1,90);		  
