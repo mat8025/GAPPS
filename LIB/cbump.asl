@@ -100,6 +100,11 @@
 
   release = "";
 
+  TR = Split(split(getversion()),".")
+
+  release = ptname(TR[1]);
+
+
   A=ofile(srcfile,"r+")
   //T=readfile(A);
  //<<[2]"opened for read/write? $A\n"
@@ -178,10 +183,10 @@ old_comment =T;
     else if (scmp(L[1],"@comment")) {
      comment = "$L[2::]";
    }
-    else if (scmp(L[1],"@release")) {
-      release = "$L[2::]";
-<<"release line <|$release|>\n"      
-   }
+ //   else if (scmp(L[1],"@release")) {
+ //     release = "$L[2::]";
+//<<"release line <|$release|>\n"      
+//   }
     else if (scmp(L[1],"@author")) {
       author = "$L[2::]";
    }

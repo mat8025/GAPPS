@@ -1,9 +1,24 @@
-///
-/// ALSM --- info
-///
+/* 
+ *  @script aslinfo.asl                                                 
+ * 
+ *  @comment find routine description in ASLMAN                         
+ *  @release Beryllium                                                  
+ *  @vers 1.14 Si Silicon [asl 6.4.34 C-Be-Se]                          
+ *  @date 06/20/2022 21:13:03                                           
+ *  @cdate Sun Dec 23 09:22:34 2018                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2022 -->                               
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                  
+
+
+Str Use_ = " info on asl functions";
+
+ignoreErrors();
 
 #define DBG ~!  
-//define  DBG <<
+//#define  DBG <<	
 //vdb = "$DBG";
 //<<" $vdb \n"
 
@@ -15,18 +30,35 @@ gssys= GetEnv("GS_SYS")
 int w = 0;
 
 
-proc pr_fun()
+void prest()
+{
+Str awd;
+                       while (1) {
+
+                            w=pcl_file(A,1);
+			    seekLine(A,-1);
+                            awd=rwl_file(A,1);
+			   // <<"$w $awd\n";
+                            if (awd @= ".EF") {
+                                   break;
+                            }
+                       }
+
+
+}
+
+void pr_fun()
 {
 
-DBG" $_proc %V$i\n"
+<<" $_proc %V$i\n"
                     if ( first ) {
                       f_i = i
                       first = 0
-DBG" $wd $f_i $first \n"
+//DBG" $wd $f_i $first \n"
                     }
                     else {
 
-DBG" $wd $i $f_i $first \n"
+//DBG" $wd $i $f_i $first \n"
 
                         if (i == -1) {
                           exit(-1)
@@ -67,7 +99,7 @@ DBG"%V $j $k \n"
                         while (1) {
 
                             w=pcl_file(A,1)
-DBG"%V $w $k\n"
+//DBG"%V $w $k\n"
                             if ( w >= (k-4) ) {
                               break
                             }
@@ -95,17 +127,18 @@ DBG"%V $w $k\n"
 
 
 
-str pat
-int k = 0
+Str pat = "find";
 
-long f_i = 0
+int k = 0;
 
-DBG"%I $f_i \n"
-DBG" $(typeof(f_i)) \n"
-DBG" $(sizeof(f_i)) \n"
+long f_i = 0;
+
+//DBG"%I $f_i \n"
+///DBG" $(typeof(f_i)) \n"
+//DBG" $(sizeof(f_i)) \n"
 
   
-  pat = GetArgStr()
+  pat = GetArgStr();
 
 <<"search for $pat \n"
 
@@ -141,7 +174,7 @@ int nfs = 0;
 
           first =1
 
-          i=search_file(A,"^APPENDIX",0)
+          i=search_file(A,"^APPENDIX",0);
 
 //pcl_file(A,1,1);
 
@@ -155,7 +188,7 @@ int nfs = 0;
 
               k=search_file(A,"^.BF",0)    // next function
 
-//pcl_file(A,1,3);
+//pcl_file(A,1,2);
 
               i = fseek(A,k,0)
 
@@ -170,9 +203,10 @@ DBG"%V$nfs search for $pat $k @ $i \n"
 
               i=search_file(A,pat,0,1,0)   // looking for pat in function name
 
-//pcl_file(A,1,3);
+//pcl_file(A,1,1);
 
 
+//ans=query("??","goon",__LINE__,__FILE__);
               if (i == -1) {
 
 //              <<" no more $pat \n"
@@ -195,24 +229,44 @@ DBG"%V$nfs search for $pat $k @ $i \n"
                 }
                 else {
 
-                // <<"Found %V $pat @ posn $i \n"
+              //  <<"Found %V $pat @ posn $i \n"
 
-                }
+               // pcl_file(A,1,5);
+                  }
 
               // seek no print
 
                 pcl_file(A,1,1);
 
-                wd=rwl_file(A,1)
+                wd=rwl_file(A,1);
+//<<"wd1 $wd\n";
 
-DBG"%V$wd \n"
+/*
+DBG"wd <|$wd|> \n"
+                wd=rwl_file(A,1);
+
+DBG"wd <|$wd|> \n"
+                wd=rwl_file(A,2);
+
+DBG"wd <|$wd|> \n"
+                wd=rwl_file(A,3);
+
+DBG"wd <|$wd|> \n"
+
+                wd=rwl_file(A,4);
+
+DBG"wd <|$wd|> \n"
+*/
 
                  first = 0
                  if ( wd @= ".(x" ) {
-                       pr_fun()
+                       //pr_fun()
+		       prest();
+		       exit(0);
                  }
                  if ( wd @= ".)x" ) {
-                       pr_fun()
+                       prest();
+		       exit(0);
                  }
 
               }
@@ -222,5 +276,6 @@ DBG"%V$wd \n"
             }
 
 
-exit(0,"DONE")
+exit(0);
+
 ///////////////////////////////////

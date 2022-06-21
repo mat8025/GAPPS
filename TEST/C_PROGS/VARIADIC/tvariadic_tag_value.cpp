@@ -168,58 +168,6 @@ void TsetGlid(int tag2, const T& value)
 
 
 
-// no args - final wrap up
-void showargs()
-{
-    cout << " !! END sGl\n ";
-
-}
-
-// 1 pair
-
-template <typename T, typename T2>
-void showargs(const T& tag, const T2& value)
-{
-    int wtag = (int) tag;
-  
- if (wtag > _GLID) {
-    printf("Wtag %d\n",wtag);
-
-      setGlid(wtag, value);
-  }
- else if (wtag == _GLID) {
-   //if (typeid(value) == typeid(int)) 
-            setGlid(wtag, value );
- }
-  
-  
-  cout << " Tag " << tag << " Value: " << value  << " END sGl tag_values\n ";
-  Cglid = 0; 
-}
-
-
-// main function recurses until 1 pair then no args
-template < typename T, typename T2 , typename... Args>
-void showargs (const T& tag, const T2& value, const Args&... args)
-{
-  int w_glid = 0;
-  cout <<" tag  " << tag << " value: " << value << " , ";
-  int wtag = (int) tag;
-  w_glid = Cglid;
-  if (wtag > _GLID) {
-    printf("wtag %d w_glid %d Cglid %d\n",wtag, w_glid, Cglid);
-    setGlid(wtag, value);
-  }
- else if (wtag == _GLID) {
-     setGlid(wtag, value );
-     cout << " value "  << Cglid << " Cglid set \n";
-   
- }
-  
-  
-  showargs ( args...) ;
-}
-
 
 // develop  to pull out pairs  tag,value
 // restriction - have to be pairs (or check for tag - tag_args left

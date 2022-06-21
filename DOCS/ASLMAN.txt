@@ -63,7 +63,7 @@
 .(l C
 ASL
 .sp
-A Scripting Language
+A Script Language
 .sp
 .i
 for use with the 
@@ -6544,11 +6544,11 @@ split()
 split
 .)x 
 .FD
-split(svar,{stringdel})
+A=split(string,{stringdel})
 splits a string into a list of sub-strings using a string delimiter (default white space)
 it returns svar array type - each element contains a sub-string
 e.g.
-A= split("once upon a time")
+Svar A= split("once upon a time")
 A[0] contains "once"
 A[1] contains "upon"
 ...

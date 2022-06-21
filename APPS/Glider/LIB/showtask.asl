@@ -1,16 +1,17 @@
 /* 
- *  @script showtask.asl 
+ *  @script showtask.asl                                                
  * 
- *  @comment show/create glider task 
- *  @release CARBON 
- *  @vers 3.6 C  Carbon
- *  @date 06/16/2022 16:49:17          
- *  @cdate 7/21/1997 
- *  @author Mark Terry
- *  @Copyright © RootMeanSquare 2022
+ *  @comment show/create glider task                                    
+ *  @release Beryllium                                                  
+ *  @vers 3.7 N Nitrogen [asl 6.4.34 C-Be-Se]                           
+ *  @date 06/20/2022 19:31:21                                           
+ *  @cdate 7/21/1997                                                    
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2022 -->                               
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;
+;//----------------<v_&_v>-------------------------//;                  
+
 
 ///
 /// "$Id: showtask.asl,v 1.5 1997/07/21 15:01:08 mark Exp mark $"

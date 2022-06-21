@@ -126,6 +126,8 @@ Str cvers ="0.0";
 
   author = "Mark Terry"
   fname = srcfile
+
+
   release = "CARBON"
   
   int pmaj = 1;
@@ -150,7 +152,10 @@ Str cvers ="0.0";
   
   //<<[2]" $(nsc(5,\"\\n\"))\n"
 
-  release = "abc";
+
+  TR = Split(split(getversion()),".")
+
+  release = ptname(TR[1]);
 
 
   A=ofile(srcfile,"r+")
@@ -220,11 +225,11 @@ L.pinfo()
     else if (scmp(L[1],"@comment")) {
      comment = "$L[2::]";
    }
-    else if (scmp(L[1],"@release")) {
+  //  else if (scmp(L[1],"@release")) {
       //release = "$L[2::]";
-      release = "$L[2]";
-<<[2]"release: <|$release|>  $L[2]\n"           
-   }
+  //    release = "$L[2]";
+//<<[2]"release: <|$release|>  $L[2]\n"           
+ //  }
     else if (scmp(L[1],"@author")) {
       author = "$L[2::]";
    }
@@ -336,8 +341,6 @@ B=ofw("body");
 
   
 //<<[2]"vlen $vlen <|$Pad|>\n"
-
-
 
 
 int nsp = 0;

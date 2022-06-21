@@ -1168,3 +1168,9 @@ tokcmf.cpp                          1.73  06/18/2022 08:24:36  buildclass - avoi
 exp_e.cpp                           3.57  06/18/2022 08:26:01  NOWIC option
 vmf_record.cpp                      1.3  06/18/2022 16:15:52  fix added direction to search row
 vmf_record.cpp                      1.4  06/18/2022 16:17:54  tidy
+gline_p.cpp                         1.80  06/20/2022 07:11:20  asl=>cpp
+win_p.cpp                           1.90  06/20/2022 09:17:18  release
+win_p.cpp                           1.91  06/20/2022 09:17:51  check release
+ds_storesvar.cpp                    1.87  06/20/2022 09:19:24  fix ele, empty array assign
+gline_p.cpp                         1.81  06/20/2022 09:21:00  fix vector resetMem
+navi_l.cpp                          1.21  06/20/2022 09:22:05  fix readIGC to Vec (resetMem)

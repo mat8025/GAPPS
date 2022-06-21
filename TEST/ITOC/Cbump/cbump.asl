@@ -100,6 +100,11 @@
 
   release = "";
 
+  TR = Split(split(getversion()),".")
+
+  release = ptname(TR[1]);
+
+
   A=ofile(srcfile,"r+")
   //T=readfile(A);
  //<<[2]"opened for read/write? $A\n"
@@ -158,7 +163,7 @@ old_comment =T;
     L[0:-1:1] = "";
 //<<"clear L $L\n"
 
-L.Split(T);
+   L.Split(T);
    sz = Caz(L);
 // <<"sz $(caz(L)) \n"
 //<<[2]"$i $sz $where  $L \n"
@@ -178,10 +183,10 @@ L.Split(T);
     else if (scmp(L[1],"@comment")) {
      comment = "$L[2::]";
    }
-    else if (scmp(L[1],"@release")) {
-      release = "$L[2::]";
-<<"release line <|$release|>\n"      
-   }
+ //   else if (scmp(L[1],"@release")) {
+ //     release = "$L[2::]";
+//<<"release line <|$release|>\n"      
+//   }
     else if (scmp(L[1],"@author")) {
       author = "$L[2::]";
    }
@@ -294,7 +299,7 @@ if (found_vers) {
 cf(A);
 
 
-// used for asl bump version -- no interaction!
+
 
 // lets' log this change 
 logfile= "~gapps/LOGS/aslcodemods.log"
