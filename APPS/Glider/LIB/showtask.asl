@@ -93,7 +93,7 @@ int  Ntp = 0; //
 // local var not inited cpp and referenced with being set!!
 
 //#include "conv.asl"
-#include "showtask_globals.asl"
+#include "globals_showtask.asl"
 
 #include "tpclass.asl"
 
@@ -103,7 +103,7 @@ int  Ntp = 0; //
 Turnpt  Wtp[300]; //
 Tleg  Wleg[20];
 
-#include "graphic_glide.asl"
+#include "draw_showtask.asl"
 
 //int WH[100][2];
 Mat  WH(INT_,100,2);  //rows expandable
@@ -555,7 +555,7 @@ Igcfn = ofr(igc_fname);
        //      Wtp[3].Print()
 
 
-#include "showtask_scrn.asl"
+#include "scrn_showtask.asl"
 
 
 Str place;
@@ -912,10 +912,14 @@ Str wcltpt="XY";
 //<<"menu choice  name or action  %V $wc\n";
 
            //  showTaskPts();
-	       
+
+pa("wc ", wc);
+//ans=query("?",wc,__LINE__);
+
               if (wc == "M") { // replace
 
                printf("REPLACE TP \n");
+	       
           //     wc=choiceMenu("CTP.m");
 
                
@@ -924,8 +928,10 @@ Str wcltpt="XY";
                
                }
 	       else if (wc == "N") { // replace
-                     printf("REPLACE TP via Name select\n");	    
-                     PickViaName(Witp);
+
+         printf("REPLACE TP via Name select\n");	    
+ans=query("?","Na",__LINE__);
+                 PickViaName(Witp);
 //		     <<"DONE REPLACE via name\n"
 	     
                }

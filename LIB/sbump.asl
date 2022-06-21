@@ -2,15 +2,16 @@
  *  @script sbump.asl                                                   
  * 
  *  @comment update the script date&vers                                
- *  @release CARBON                                                     
- *  @vers 1.13 Al Aluminium [asl 6.4.31 C-Be-Ga]                        
- *  @date 06/17/2022 07:50:18                                           
+ *  @release Beryllium                                                  
+ *  @vers 1.14 Si Silicon [asl 6.4.34 C-Be-Se]                          
+ *  @date 06/21/2022 07:03:49                                           
  *  @cdate Sun Dec 23 09:22:34 2018                                     
  *  @author Mark Terry                                                  
  *  @Copyright © RootMeanSquare 2022 -->                               
  * 
  */ 
 ;//----------------<v_&_v>-------------------------//;                  
+
 
                     
 

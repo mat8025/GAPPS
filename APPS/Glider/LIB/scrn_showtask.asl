@@ -1,3 +1,16 @@
+/* 
+ *  @script scrn_showtask.asl 
+ * 
+ *  @comment task-planner library 
+ *  @release CARBON 
+ *  @vers 4.3 Li 6.3.83 C-Li-Bi 
+ *  @date 02/16/2022 09:34:44          
+ *  @cdate 9/17/1997 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare 2022
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                     
 ///
 ///  Screen setup for showtask
 ///

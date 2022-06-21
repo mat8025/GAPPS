@@ -1,5 +1,5 @@
 /* 
- *  @script graphic_glide.asl 
+ *  @script draw_showtask.asl 
  * 
  *  @comment task-planner library 
  *  @release CARBON 
@@ -857,7 +857,7 @@ int PickViaName(int wt)
   woSetValue (tpwo[wt],"??X");
 
   Str nval = " ";
-
+//ans=query("?","QW",__LINE__);
   nval= queryWindow("TurnPt","TP $wt enter name:",nval);
 
 //<<"name sel:  <|$nval|> $wt\n"
@@ -865,6 +865,7 @@ int PickViaName(int wt)
 
 
   wtp= PickTP(nval,wt);
+//ans=query("?","QW",__LINE__);
 
   if (wtp >0) {
   aplace = Wtp[wtp].Place;
@@ -1888,18 +1889,19 @@ void updateLegs()
     msl =  Wleg[i].msl;
     dist =  Wleg[i].dist;
 //    val = "%6.0f$lfga"
-      val = "%6.0f$lfga $dist ";
-      val = "%6.0f$dist $lfga ";   
+   //   val = "%6.0f$lfga $dist ";
+      val = "%6.0f$dist $lfga ";
+      val.strPrintf(" %6.0f %6.0f ",dist,lfga);
  //   <<"leg $i $lwo %6.1f $msl $dist  $lfga  \n"
 //  <<"leg $i  <|$val|> \n"
      woSetValue (lwo,val,0);
-     sWo(lwo,_WREDRAW,_WEO);
+     sWova(_WOID,lwo,_WREDRAW,ON_);
   }
 
    for (i = nlegs; i < MaxLegs ; i++) {
          lwo = legwo[i];
-     woSetValue (lwo," ",0);
-     sWo(lwo,_WREDRAW,_WEO);
+     woSetValue (lwo,"XX ",0);
+     sWova(_WOID,lwo,_WREDRAW,ON_);
    }
 
 }
