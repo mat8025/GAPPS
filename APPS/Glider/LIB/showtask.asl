@@ -374,7 +374,7 @@ printf(" Read $Ntp %d turnpts \n",Ntp);
 
 //<<"$ai $_clarg[ai]\n"
 
-          ai++;
+          //ai++;
 
 	  targ = sa.cptr(ai);
 
@@ -443,8 +443,9 @@ printf("Warning can't find $targ as a TP - skipping \n");
 
 
           }
-	  
-      if (ai >= na) {
+
+       ai++;
+       if (ai >= na) {
                break;
       }
 }
@@ -726,7 +727,9 @@ Str wcltpt="XY";
 
  
   woSetValue(tdwo,totalK);
-  sWo(tdwo,_WVALUE,"$totalK km",_WUPDATE);
+  
+  sWova(_WOID,tdwo,_REDRAW,ON_);
+
 //ans=query("?4","b4 trace?",__LINE__);
   drawTrace();
 
@@ -759,7 +762,7 @@ Str wcltpt="XY";
 //<<"%V $Ntaskpts\n"
 
 
-            showTaskPts();
+                showTaskPts();
 
                  listTaskPts();
 		 
@@ -930,7 +933,7 @@ pa("wc ", wc);
 	       else if (wc == "N") { // replace
 
          printf("REPLACE TP via Name select\n");	    
-ans=query("?","Na",__LINE__);
+//ans=query("?","N",__LINE__);
                  PickViaName(Witp);
 //		     <<"DONE REPLACE via name\n"
 	     
@@ -1111,8 +1114,10 @@ ans=query("?","Na",__LINE__);
      
       taskDist();
 
-      sWo(_WOID,tdwo,_WVALUE,"$totalK km",_WUPDATE);
-      Task_update = 0;
+   //   woSetValue(tdwo,totalK);
+   //   sWova(_WOID,tdwo,_WUPDATE,ON_);
+
+     Task_update = 0;
       //int i;
       for (i = 0; i < Ntaskpts ; i++) {
          ST_msl = Wleg[i].msl;

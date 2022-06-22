@@ -818,7 +818,7 @@ pa("done gg");
   }
 
   woSetValue (tpwo[wt],"?");
-  sWo(tpwo[wt],_WREDRAW);
+  sWova(_WOID,tpwo[wt],_WREDRAW,ON_);
 
   nval = " ";
 
@@ -835,7 +835,7 @@ pa("done gg");
 
 
   woSetValue (tpwo[wt],nval,0);
-  sWo(tpwo[wt],_WREDRAW);
+  sWova(_WOID,tpwo[wt],_WREDRAW,ON_);
 
   Task_update = 1;
 
@@ -862,8 +862,6 @@ int PickViaName(int wt)
 
 //<<"name sel:  <|$nval|> $wt\n"
 
-
-
   wtp= PickTP(nval,wt);
 //ans=query("?","QW",__LINE__);
 
@@ -875,6 +873,7 @@ int PickViaName(int wt)
   printargs("Found ",wt,wtp,nval,aplace);
   ok = 1;
   woSetValue (tpwo[wt],aplace,0);
+  sWova(_WOID,tpwo[wt],_WREDRAW,ON_);
   }
 
  //<<"Exit Done $_proc $ok \n";
@@ -1709,6 +1708,8 @@ pa(i, index, tpl, la2, msl);
 pa( "totalK ", totalK, " Coors ", LongW, LatS, LongE, LatN);
 //<<"DONE $_proc  $totalK \n"
 
+      woSetValue(tdwo,totalK);
+      sWova(_WOID,tdwo,_WUPDATE,ON_);
   }
 //==============================//
 

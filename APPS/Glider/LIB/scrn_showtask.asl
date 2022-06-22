@@ -58,16 +58,16 @@ int Xgm;
 
   //sWi(Vp,_WSCALES,wbox(-200,-200,200,200,0), _WDRAWON,_WPIXMAPON,_WSAVE,_WBHUE,WHITE_,_WRESIZE,0.1,0.01,0.9,0.95,0);
 
-  sWi(_WOID,Vp,_WSCALES,wbox(-200,-200,200,200,0), _WDRAW, ON,_WPIXMAP,ON,_WSAVE,ON_,_WBHUE,WHITE_,_WRESIZE,wbox(0.1,0.01,0.9,0.95,0));
+  sWi(_WOID,Vp,_WSCALES,wbox(-200,-200,200,200,0), _WDRAW, ON,_WPIXMAP,ON,_WSAVE,ON_,_WBHUE,YELLOW_,_WRESIZE,wbox(0.1,0.01,0.9,0.95,0));
   // but we don't draw to a window! = draw to Wob in a Window
 
   sWi(_WOID,Vp,_WCLIP,wbox(0.01,0.1,0.95,0.99));
 
-
+  Text(Vp, "HEY", 0,5, 0.5);
 
   titleButtonsQRD(Vp);
 
-  
+    Text(Vp, "NOW", 0,5, 0.5,0);
 
 //ans=query("?2","goon",__LINE__,__FILE__);
 
@@ -77,7 +77,7 @@ int Xgm;
 
 //ans=query("?3","goon",__LINE__,__FILE__);
 
-  sWova(_WOID,tdwo,_WCOLOR,WHITE_,_WSTYLE,"SVB");
+  sWova(_WOID,tdwo,_WCOLOR,WHITE_,_WSTYLE,SVB_);
 
   sawo= cWo(Vp, WO_BV_);
   VCOUT(Vp,sawo);
@@ -131,7 +131,8 @@ int Xgm;
 
   tpwo[0]=cWo(Vp,WO_BV_);
   
-  sWova(_WOID,tpwo[0],_WNAME,"_Start_",_WSTYLE,"SVR",_WDRAW,ON_);
+  sWova(_WOID,tpwo[0],_WNAME,"_Start_",_WSTYLE,SVR_,_WDRAW,ON_);
+  
 
   tpwo[MaxLegs] =-1;
   for (i= 1; i < MaxLegs ; i++) {
@@ -141,8 +142,9 @@ int Xgm;
    sprintf(TPname,"_TP%d_",i);
 
  //  sWo(tpwo[i],_WNAME,"_TP${i}_",_WSTYLE,"SVR",_WDRAWON,_WCOLOR,BLUE_,_WFONTHUE,BLACK_);
-   sWova(_WOID,tpwo[i],_WNAME,TPname,_WSTYLE,"SVR",_WDRAW,ON_,_WCOLOR,BLUE_,_WFONTHUE,BLACK_);
-
+   sWova(_WOID,tpwo[i],_WNAME,TPname,_WSTYLE,SVR_,_WDRAW,ON_,_WCOLOR,BLUE_,_WFONTHUE,BLACK_);
+  
+   sWova(_WOID,tpwo[i],_WCOLOR,ORANGE_,_WFONTHUE,BLACK_,_WFONT,F_TINY_,_WREDRAW,ON_);
   }
  
   finish_wo = tpwo[2];
@@ -163,8 +165,9 @@ int Xgm;
      legwo[i] = cWo(Vp,WO_BV_);
   sprintf(TPname,"LEG_%d_",i+1);  // asl vers needs to supress DQ expansion
 
-     sWova(_WOID,legwo[i],_WNAME,TPname,_WSTYLE,"SVR",_WDRAW,ON_,_WCOLOR,BLUE_,_WFONTHUE,BLACK_);
-  }
+     sWova(_WOID,legwo[i],_WNAME,TPname,_WSTYLE,SVR_,_WDRAW,ON_,_WCOLOR,BLUE_,_WFONTHUE,BLACK_);
+     sWova(_WOID,legwo[i],_WCOLOR,BLUE_,_WFONTHUE,BLUE_,_WFONT,F_TINY_,_WREDRAW,ON_);
+}
 
  // wovtile(legwo, 0.15, 0.4, 0.29, 0.95,12);
   wovtile(legwo, 0.15, 0.4, 0.29, 0.95,-1);
@@ -172,8 +175,8 @@ int Xgm;
   titleVers();
   gflush();
   
-  sWo(_WOID,tpwo,_WCOLOR,ORANGE_,_WFONTHUE,BLACK_,_WFONT,F_TINY_,_WREDRAW);
-  sWo(_WOID,legwo,_WCOLOR,BLUE_,_WFONTHUE,BLUE_,_WFONT,F_TINY_,_WREDRAW);
+
+
 
   TASK_wo=cWo(Vp,WO_BV_);
   sWova(_WOID,TASK_wo, _WRESIZE,wbox(0.05,0.25,0.15,0.34));
@@ -215,4 +218,3 @@ int Xgm;
 
 //<<" DONE SCREEN %V $lc_gl $rc_gl $mapwo $vvwo  $sawo \n";
 
-//ans=query("DONE SCREEN");
