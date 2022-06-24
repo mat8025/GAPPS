@@ -21,6 +21,26 @@
 #define ASL 0
 #define CPP 1
 
+#if CPP
+#include "si.h"
+#include "parse.h"
+#include "codeblock.h"
+#include "sproc.h"
+#include "sclass.h"
+#include "declare.h"
+#include "gthread.h"
+#include "paraex.h"
+#include "scope.h"
+#include "record.h"
+#include "debug.h"
+#include "winargs.h"
+#include "vargs.h"
+
+#include "uac.h"
+#endif
+
+
+
 
  float Pi = 4.0 * atan(1.0);
 
@@ -28,10 +48,13 @@
  double greenv = 0.5;
  double bluev = 0.5;
 
-//#include "graphic"
 
-#include "gevent.h"
+
+
+//#include "gevent.h"
 #include "tbqrd.asl"
+
+
 
 void
 Uac::colorWorld(Svarg * sarg)  
@@ -47,46 +70,47 @@ Str wovalue ="xyz";
 Str namevalue ="xyz";
 
 Str ans;
-     openDll("image");
+     //openDll("image");
 
     rainbow();
     
     auto vp = cWi("Button");
-    // neead rsz[]
+    // nead rsz[]
 
 
-    sWi(vp,_WRESIZE,wbox(0.01,0.01,0.45,0.49,0),_WEO);
+    sWi(_WOID,vp,_WRESIZE,wbox(0.01,0.01,0.45,0.49,0));
 
   //  sWi(vp,_WRESIZE,{0.01,0.01,0.45,0.49,0},_WEO);
 
-   titleButtonsQRD(vp);
-
+ //  titleButtonsQRD(vp);
+ //ans=query("?","VP",__LINE__);
     float scales[] = {0,-0.2,1.5,1.5};
     float rclip[] = {0.2,0.2,0.9,0.9,0.0};
     
-    sWi(vp,_WPIXMAPON,_WDRAWON,_WSAVE,_WBHUE,WHITE_,_WLAST);
+    sWi(_WOID,vp,_WPIXMAP,ON_,_WDRAW,ON_,_WBHUE,WHITE_);
 
-    sWi(vp,_WSCALES,scales,_WEO);
+    sWi(_WOID,vp,_WSCALES,scales);
 
-   sWi(vp,_WCLIP,rclip,_WEO);
+   sWi(_WOID,vp,_WCLIP,rclip);
     
-    sWi(vp,_WCLIPBORDER,BLACK_,_WREDRAW,_WSAVE,_WLAST);
+    sWi(_WOID,vp,_WCLIPBORDER,BLACK_,_WREDRAW,ON_,_WSAVE,ON_);
+
 cout << "done vp" << endl;
     auto vp2 = cWi("Colors");
     
        
 
-  sWi(vp2,_WRESIZE,wbox(0.51,0.1,0.99,0.99,0) ,_WEO);
+  sWi(_WOID,vp2,_WRESIZE,wbox(0.51,0.1,0.99,0.99,0));
 
 
 
-    sWi(vp2,_WPIXMAPON,_WDRAWON,_WSAVE,_WBHUE,WHITE_,_WEO);
+    sWi(_WOID,vp2,_WPIXMAP,ON_,_WDRAW,ON_,_WSAVE,ON_,_WBHUE,WHITE_);
 
 cout << "done vp2" << endl;
 
     int txtwin = cWi("MC_INFO");
 
-    sWi(txtwin,_WRESIZE,wbox(0.01,0.51,0.49,0.99),_WEO);
+    sWi(_WOID,txtwin,_WRESIZE,wbox(0.01,0.51,0.49,0.99));
 
    float rs,bs,gs,rc,bc,gc;
   float rx = 0.2;
@@ -174,23 +198,27 @@ cout << "setting up awo " << endl;
         index++;
      }
 
-//<<"%v $awo \n"
+
+pa("done awo\n");
 
 
 
      worctile(awo,0.1,0.1,0.9,0.9,10,10);
-     
+
+pa("rctile\n",__LINE__);
+
      titleVers();
      
-     sWi(vp,_WREDRAW,_WLAST);
-     sWi(vp2,_WREDRAW,_WLAST);
+     sWi(_WOID,vp,_WREDRAW,ON_);
+
 
 
 
 //  now loop wait for message  and print
 
 int rgb_index = 32;
-Vec<float> WXY( 20);
+
+  Vec<float> WXY( 10);
 
 int nevent = 0;
 Str cname = "red";
@@ -201,29 +229,39 @@ int color_index;
 
  while (1) {
 
-   gev.eventWait();
+
+    Gemsg =gev.eventWait();
+    Gekey = gev.getEventKey();
+    pa("ekey ", Gekey);
+    gev.getEventRxy( &Gerx,&Gery);
+
+    pa("erx ", Gerx, Gery);
+
    //gev.eventRead();
    nevent++;
+
+   COUT(nevent);
 
 //   redv = atof( getWoValue(rwo))
 //   greenv = atof ( getWoValue(gwo))
 //   bluev =  atof (getWoValue(bwo))
 
 
-   WXY= woGetPosition(gwo,4);
+   WXY= woGetRxy(gwo,4);
 
   //<<"$_ename $_ewoid  $WXY \n"
-//cout << "WXY[2] " << WXY[2] << endl;
+
+  cout << "WXY[2] " << WXY[2] << endl;
 
 
 
- greenv = WXY[2];
+  greenv = WXY[2];
 
   cout << "greenv  " << greenv << endl;
 
 //  greenv = limitval(WXY[2],0.0,1.0);
 
- WXY= woGetPosition(rwo,4);
+ WXY= woGetRxy(rwo,4);
 
 
  WXY.pinfo();
@@ -234,7 +272,7 @@ cout << "redv  " << redv << endl;
 
   //redv = limitval(WXY[2],0.0,1.0);
 
-   WXY= woGetPosition(bwo);
+   WXY= woGetRxy(bwo,4);
    bluev = limitval(WXY[2],0.0,1.0);
    wovalue.strPrintf("%3.2f",redv);
    sWo(rwo,_WVALUE,wovalue.cptr(),_WUPDATE,_WEO);
@@ -306,18 +344,18 @@ cout << "color_index " << color_index << " color_name " << cname << endl;
 
   woval =woGetValue (rwo);
 
-cout << "rwo woval " << woval << endl;
+  cout << "rwo woval " << woval << endl;
 
   woval =woGetValue (gwo);
 
-cout << "gwo woval " << woval << endl;
+  cout << "gwo woval " << woval << endl;
 
 
   woval =woGetValue (bwo);
 
-cout << "bwo woval " << woval << endl;
+  cout << "bwo woval " << woval << endl;
 
-cout << "gev.ewoid " <<  gev.ewoid <<" gwo " << gwo << endl;   
+  cout << "gev.ewoid " <<  gev.ewoid <<" gwo " << gwo << endl;   
 
 //ans=query("?");
 //<<"bwo $woval \n"

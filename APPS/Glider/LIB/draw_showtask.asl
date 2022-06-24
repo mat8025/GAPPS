@@ -29,7 +29,7 @@ extern int Witp;
 extern  int igc_tgl;
 extern  int igc_vgl;
 extern int Maxtaskpts;
-extern float erx,ery;
+//extern float erx,ery;
 
 
 extern Turnpt  Wtp[]; //
@@ -684,13 +684,13 @@ pa("done gg");
 
   mouseCursor("hand", tpwo[9], 0.5, 0.5);
 
-    emsg =gev.eventWait();
-    ekey = gev.getEventKey();
+    Gemsg =gev.eventWait();
+    Gekey = gev.getEventKey();
   
-    gev.getEventRxy( &erx,&ery);
+    gev.getEventRxy( &Gerx,&Gery);
   //eventWait();
 
-  ntp = ClosestTP(erx,ery);
+  ntp = ClosestTP(Gerx,Gery);
 //ans=query("%V$erx $ery $ntp\n");   
 // <<"%V $erx $ery $ntp\n";
 
@@ -752,13 +752,13 @@ pa("done gg");
 
   mouseCursor("hand", tpwo[9], 0.5, 0.5);
 
-    emsg =gev.eventWait();
-    ekey = gev.getEventKey();
-    gev.getEventRxy( &erx,&ery);
+    Gemsg =gev.eventWait();
+    Gekey = gev.getEventKey();
+    gev.getEventRxy( &Gerx,&Gery);
 
     //eventWait();
 
-  ntp = ClosestTP(erx,ery);
+  ntp = ClosestTP(Gerx,Gery);
 //ans=query("%V$erx $ery $ntp\n");   
 // <<"%V $erx $ery $ntp\n";
   if (ntp >= 0) {
@@ -1263,12 +1263,12 @@ int PickViaName(int wt)
   //sWi(vp,_WTMSG,"Pick a TP for the task ");
 
   
-  emsg =gev.eventWait();
+  Gemsg =gev.eventWait();
 
 
   sleep(0.2);
 
-  ntp = ClosestTP(erx,ery);
+  ntp = ClosestTP(Gerx,Gery);
 
   mouseCursor("hand",mapwo,0.5,0.5);
 

@@ -144,7 +144,7 @@ int Xgm;
  //  sWo(tpwo[i],_WNAME,"_TP${i}_",_WSTYLE,"SVR",_WDRAWON,_WCOLOR,BLUE_,_WFONTHUE,BLACK_);
    sWova(_WOID,tpwo[i],_WNAME,TPname,_WSTYLE,SVR_,_WDRAW,ON_,_WCOLOR,BLUE_,_WFONTHUE,BLACK_);
   
-   sWova(_WOID,tpwo[i],_WCOLOR,ORANGE_,_WFONTHUE,BLACK_,_WFONT,F_TINY_,_WREDRAW,ON_);
+   sWova(_WOID,tpwo[i],_WCOLOR,ORANGE_,_WFONTHUE,BLACK_,_WFONT,F_TINY_);
   }
  
   finish_wo = tpwo[2];
@@ -166,7 +166,7 @@ int Xgm;
   sprintf(TPname,"LEG_%d_",i+1);  // asl vers needs to supress DQ expansion
 
      sWova(_WOID,legwo[i],_WNAME,TPname,_WSTYLE,SVR_,_WDRAW,ON_,_WCOLOR,BLUE_,_WFONTHUE,BLACK_);
-     sWova(_WOID,legwo[i],_WCOLOR,BLUE_,_WFONTHUE,BLUE_,_WFONT,F_TINY_,_WREDRAW,ON_);
+     sWova(_WOID,legwo[i],_WCOLOR,BLUE_,_WFONTHUE,BLUE_,_WFONT,F_TINY_);
 }
 
  // wovtile(legwo, 0.15, 0.4, 0.29, 0.95,12);

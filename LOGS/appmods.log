@@ -401,3 +401,4 @@ test_glines.asl          1.5	06/17/2022 07:56:17 sWova test
 showtask.asl             3.7	06/20/2022 19:31:21 cpp igc vec mods
 aslinfo.asl              1.14	06/20/2022 21:13:03 update
 sbump.asl                1.14	06/21/2022 07:03:49 cat head body
+showtask.asl             3.8	06/22/2022 08:56:24 SVR_

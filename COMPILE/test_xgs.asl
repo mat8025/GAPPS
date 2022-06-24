@@ -87,17 +87,17 @@ cout << "vp " << vp << endl;
 
 //   int vok= sWi(vp,_WRESIZE,0.1,0.2,0.5,0.5,-1,_WHUE,YELLOW_,_WPIXMAPDRAWON,_WDRAWON,_WREDRAW);
 
-   int vok= sWi(vp,_WTITLE,"PLOT_OBJECTS",_WRESIZE,rsz,_WHUE,YELLOW,_WBHUE,WHITE_,
+   sWi(vp,_WTITLE,"PLOT_OBJECTS",_WRESIZE,rsz,_WHUE,YELLOW,_WBHUE,WHITE_,
                    _WPIXMAPON,_WDRAWON,_WCLEAR,_WREDRAW,_WEO);
 
-cout << "vok " << vok << endl;
+
 
 
 
 //ans=query("see window?");
 
       rsz[3] = 0.8;
-      vok =sWi(vp,_WHUE,MAGENTA_,_WRESIZE,rsz,_WREDRAW,_WEO);
+      sWi(vp,_WHUE,MAGENTA_,_WRESIZE,rsz,_WREDRAW,_WEO);
 
 
 //ans=query("see window?");
@@ -119,7 +119,7 @@ wok = sWo(wo1,_WRESIZE,rsz,_WHUE,ORANGE_,_WBHUE,PINK_,_WCLIPBORDER,RED,_WCLEAR,_
 
 wok = sWo(wo1,_WLINE,wline,_WEO);
 //ans=query("see line?");
-    vok=  sWi(vp,_WHUE,BLACK_,_WRESIZE,rsz,_WREDRAW,_WEO);
+   sWi(vp,_WHUE,BLACK_,_WRESIZE,rsz,_WREDRAW,_WEO);
    wline[4] = RED_;
    wline[3] = 0.8;
    wok = sWo(wo1,_WLINE,wline,_WEO);

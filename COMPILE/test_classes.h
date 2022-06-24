@@ -8,6 +8,6 @@
 #include "test_class.asl"
 //
 #include "test_colors.asl"
-#include "test_xgs.asl"
+//#include "test_xgs.asl"
 #include "test_glines.asl"
 

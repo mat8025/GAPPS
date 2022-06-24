@@ -3,14 +3,15 @@
  * 
  *  @comment show/create glider task                                    
  *  @release Beryllium                                                  
- *  @vers 3.7 N Nitrogen [asl 6.4.34 C-Be-Se]                           
- *  @date 06/20/2022 19:31:21                                           
+ *  @vers 3.8 O Oxygen [asl 6.4.35 C-Be-Br]                             
+ *  @date 06/22/2022 08:56:24                                           
  *  @cdate 7/21/1997                                                    
  *  @author Mark Terry                                                  
  *  @Copyright © RootMeanSquare 2022 -->                               
  * 
  */ 
 ;//----------------<v_&_v>-------------------------//;                  
+
 
 
 ///
@@ -698,7 +699,7 @@ COUT(IGCELE);
 
 
 #if CPP
-#include  "gevent.h";
+//#include  "gevent.h";
 #else
 #include  "gevent.asl";
 #endif
@@ -728,7 +729,7 @@ Str wcltpt="XY";
  
   woSetValue(tdwo,totalK);
   
-  sWova(_WOID,tdwo,_REDRAW,ON_);
+  sWova(_WOID,tdwo,_WREDRAW,ON_);
 
 //ans=query("?4","b4 trace?",__LINE__);
   drawTrace();
@@ -778,15 +779,15 @@ Str wcltpt="XY";
     Task_update =0;
   
     //eventWait();
-    emsg =gev.eventWait();
-    ekey = gev.getEventKey();
-    gev.getEventRxy( &erx,&ery);
+    Gemsg =gev.eventWait();
+    Gekey = gev.getEventKey();
+    gev.getEventRxy( &Gerx,&Gery);
 
     WoName = gev.getEventWoName();
     Ev_button = gev.getEventButton();
 
 #if ASL    
-<<"%V $Ev_keyw $ekey $WoName \n"
+<<"%V $Ev_keyw $gekey $WoName \n"
 #endif
 
     //Ev_keyw = gev.getEventKeyWord();
@@ -797,7 +798,7 @@ Str wcltpt="XY";
        
     }
 
-    //Text(vptxt," $_ekeyw   ",0,0.05,1)
+    //Text(vptxt," $_gekeyw   ",0,0.05,1)
 
        if ( gev.getEventKey() >= 65) {
        
@@ -805,32 +806,32 @@ Str wcltpt="XY";
 //<<"%V $LongW $LatS $LongE $LatN   $d_ll\n"
 
 
-       if (ekey == 'Q') {
+       if (Gekey == 'Q') {
            LongW += d_ll;
            LongE += d_ll;
 	    drawit = 1;
        }
 
-       if (ekey == 'S') {
+       if (Gekey == 'S') {
            LongW -= d_ll;
            LongE -= d_ll;
 	    drawit = 1;
        }
 
-       if (ekey == 'R') {
+       if (Gekey == 'R') {
            LatN += d_ll;
            LatS += d_ll;
 	    drawit = 1;
        }
 
-       if (ekey == 'T') {
+       if (Gekey == 'T') {
            LatN -= d_ll;
            LatS -= d_ll;
 	    drawit = 1;
        }
 
 
-       if (ekey == 'X') {
+       if (Gekey == 'X') {
      //  <<"expand \n"
            LatN += d_ll;
            LatS -= d_ll;
@@ -839,7 +840,7 @@ Str wcltpt="XY";
 	    drawit = 1;
        }
 
-       if (ekey == 'x') {
+       if (Gekey == 'x') {
     //   <<"Zoom IN\n"
            LatN -= (d_ll * 0.9);
            LatS += (d_ll * 0.9);
@@ -848,13 +849,13 @@ Str wcltpt="XY";
 	    drawit = 1;
        }
 
-              if (ekey == 'f') {
+              if (Gekey == 'f') {
                    dindex += 5;
                    showPosn(dindex);
 
 
                 }
-               else if (ekey == 'r') {
+               else if (Gekey == 'r') {
                    dindex -= 5;
                    showPosn(dindex);
               }
@@ -992,7 +993,7 @@ pa("wc ", wc);
        	 wfr=sWo(mapwo,_WSHOWPIXMAP); // should erase precious target position
 	 
          drawit = 0;
-         dindex = rint(erx);
+         dindex = rint(Gerx);
 
 //<<"%V $erx, alt $ery  $dindex $IGCELE[dindex] $IGCLAT[dindex] $IGCLONG[dindex] \n";
          symx = IGCLONG[dindex];
@@ -1004,10 +1005,10 @@ pa("wc ", wc);
           wfr =sWo(mapwo,_WPIXMAPOFF,_WDRAWON); // just draw but not to pixamp
        if (Ev_button == 1 || Ev_button == 4) {
 
-	  sGl(_GLID,lc_gl,_GLCURSOR,rbox(erx,0,erx,20000, CL_init));
+	  sGl(_GLID,lc_gl,_GLCURSOR,rbox(Gerx,0,Gerx,20000, CL_init));
 	 // dGl(lc_gl);
 	  CL_init = 0;
-	   zoom_begin = erx;
+	   zoom_begin = Gerx;
 
            plotSymbol(mapwo,symx,symy,CROSS_,symsz,MAGENTA_,1);
 
@@ -1018,13 +1019,13 @@ pa("wc ", wc);
        if (Ev_button == 3 || Ev_button == 5) {
 
 
-	  sGl(_GLID,rc_gl,_GLCURSOR,rbox(erx,0,erx,20000, CR_init));
+	  sGl(_GLID,rc_gl,_GLCURSOR,rbox(Gerx,0,Gerx,20000, CR_init));
           //dGl(rc_gl);
 	  CR_init = 0;
 	  
           plotSymbol(mapwo,symx,symy,DIAMOND_,symsz,LILAC_,1,90);		  
 	  
-           zoom_end = erx;
+           zoom_end = Gerx;
 	   
 	  // Task_update = 1;
 	   
@@ -1054,7 +1055,7 @@ pa("wc ", wc);
 
                drawit = 0;
 
-               ntp = ClosestLand(erx,ery);
+               ntp = ClosestLand(Gerx,Gery);
 
              if (ntp >= 0) {
 
@@ -1064,7 +1065,7 @@ pa("wc ", wc);
             //  <<" found %V $ntp $nval \n"
                 Text(  vptxt," $ntp $nval   ",0,0.05,1);
                 ST_msl = Wtp[ntp].Alt;
-                mkm = HowFar(erx,ery, Wtp[ntp].Longdeg, Wtp[ntp].Ladeg);
+                mkm = HowFar(Gerx,Gery, Wtp[ntp].Longdeg, Wtp[ntp].Ladeg);
                 ght = (mkm * km_to_feet) / LoD;
 //		<<"%V $ght $mkm $km_to_feet  $LoD \n" 
 		
@@ -1096,7 +1097,7 @@ pa("wc ", wc);
        }
        
        else if (Ev_keyw == "Menu") {
-          // <<" task type is $_ekeyw \n"
+          // <<" task type is $_Gekeyw \n"
            TaskType = Ev_keyw;
            //<<" Set %V$TaskType \n"
        }
@@ -1140,7 +1141,7 @@ pa("wc ", wc);
 
    //  sWi(vp,_WREDRAW);
 
-
+ taskDist();
     //drawTrace();
    // drawTask(mapwo,RED_);
  
