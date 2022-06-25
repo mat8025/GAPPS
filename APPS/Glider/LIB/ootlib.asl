@@ -203,7 +203,9 @@ int N;
 
 //cout  <<" sslng " << sslng  << endl;
 
+  
   sslat= IGCLAT.stats();
+  sslat.pinfo();
 //<<"%V $sslt \n"
     ///
 
@@ -217,7 +219,8 @@ int N;
 //     }
 
   ssele= IGCELE.stats();
-//<<"%V $ssele \n"
+
+ //<<"%V $ssele \n"
 
   Min_ele = ssele[5];
 

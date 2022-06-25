@@ -70,7 +70,8 @@ Str wovalue ="xyz";
 Str namevalue ="xyz";
 
 Str ans;
-     //openDll("image");
+
+    openDll("plot");
 
     rainbow();
     
@@ -219,14 +220,30 @@ pa("rctile\n",__LINE__);
 int rgb_index = 32;
 
   Vec<float> WXY( 10);
+  Vec<int> WPOS( 16);
 
 int nevent = 0;
 Str cname = "red";
 
 int color_index;
+WPOS[0] =77;
+WPOS[1] = 84;
+ COUT(WPOS);
+
+ ans=query("?","WPOS 2b assign ",__LINE__);
+//pa ("WPOS ", WPOS, __LINE__);
 
 
 
+     WPOS= woGetPosition(gwo);
+
+ ans=query("?","WPOS done assign ",__LINE__);
+ COUT(WPOS);
+
+//pa ("WPOS ", WPOS);
+
+//   WXY= woGetRxy(gwo,4);
+//pa("getrx ", WXY);
  while (1) {
 
 
@@ -235,10 +252,11 @@ int color_index;
     pa("ekey ", Gekey);
     gev.getEventRxy( &Gerx,&Gery);
 
-    pa("erx ", Gerx, Gery);
+    pa("Gerx ", Gerx, Gery);
 
    //gev.eventRead();
    nevent++;
+
 
    COUT(nevent);
 
@@ -246,9 +264,16 @@ int color_index;
 //   greenv = atof ( getWoValue(gwo))
 //   bluev =  atof (getWoValue(bwo))
 
+     WPOS= woGetPosition(gwo);
+//pa ("WPOS ", WPOS);
 
-   WXY= woGetRxy(gwo,4);
+COUT(WPOS);
 
+WXY= woGetRxy(gwo,4);
+
+  COUT(WXY);
+
+//pa("getrx ", WXY);
   //<<"$_ename $_ewoid  $WXY \n"
 
   cout << "WXY[2] " << WXY[2] << endl;

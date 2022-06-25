@@ -22,10 +22,21 @@
 
 #define ASL 0
 #define CPP 1
+
+#include "vec.h"
+#include "uac.h"
+
+#include "gline.h"
+#include "glargs.h"
+#include "winargs.h"
+#include "woargs.h"
+#include "vargs.h"
+#include "gevent.h"
+
 void
 Uac::vecWorld(Svarg * sarg)  
 {
-   dbt("debug 1\n");
+   dbt("debug \n");
    Str ans= "xyz";
    cout << "hello simple Vec test  " << ans << endl;
    setDebug(2,"pline");
@@ -108,6 +119,14 @@ cout <<"vec  type sequence\n";
 
 
   Vec<float> R(20);
+
+   Vec<int>   I(10,0,1);
+   
+   Vec<long> L(20);
+
+   Vec<short> S(20);
+
+   Vec<double> D(20);
   
   X[3] =3.7;
   X[5] = 2.1;
@@ -142,6 +161,58 @@ cout<<"SOP G += 23.45;";
   G += 23.45; // self += op
 
 COUT(G);
+  I[5] = 66;
+
+  // pa(I , "\n");
+
+  COUT(I);
+  
+
+  L = I;
+
+   COUT(L);
+
+   L += 2;
+
+   COUT(L);
+
+ans=query("?","L = I",__LINE__);
+
+    I = L;
+
+  COUT(I);
+
+ans=query("?","I = L",__LINE__);
+
+
+   S = I;
+
+  COUT(S);
+
+ans=query("?","S = I",__LINE__);
+
+  S += 3;
+
+  I = S;
+
+  COUT(I);
+
+ans=query("?","I  = S",__LINE__);
+
+
+   D = F;
+
+COUT(D)
+
+ans=query("?","D = F",__LINE__);
+
+   D += 5.4;
+
+  F = D;
+
+COUT(F);
+
+ans=query("?","F = D",__LINE__);
 
 
 //ans= query("?? G *= 11.5;");
@@ -153,6 +224,10 @@ cout<<"SOP G *= 11.5;";
 COUT(G);
 
 //ans= query("?? G = F * 5.01;"); 
+
+  G = F ;
+
+COUT(G);
 
   G = F * 5.01;
   
@@ -437,13 +512,11 @@ cout << "Exit cpp testing Vec " << endl;
 
 //==============================//
 
-
-
  extern "C" int test_vec(Svarg * sarg)  {
 
     Uac *o_uac = new Uac;
 
-   // can use sargs to selec uac->method via name
+   // can use sargs to select uac->method via name
    // so just have to edit in new mathod to uac class definition
    // and recompile uac -- one line change !
    // plus include this script into 

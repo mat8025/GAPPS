@@ -206,15 +206,15 @@ int Xgm;
 
 //  CURSORS
  // TBC cursor opt?
-  lc_gl   = cGl(vvwo);
+  st_lc_gl   = cGl(vvwo);
   
 //  sGl(lc_gl,_GLTYPE,XY_,_GLHUE,BLACK_,_GLLTYPE,CURSOR_,_GLEO);
 
-  sGl(_GLID,lc_gl,_GLTYPE,"XY" ,_GLHUE,BLACK_);
+  sGl(_GLID,st_lc_gl,_GLTYPE,"XY" ,_GLHUE,BLACK_);
 
-  rc_gl   = cGl(vvwo);
+  st_rc_gl   = cGl(vvwo);
   
-  sGl(_GLID,rc_gl,_GLTYPE,"XY",_GLHUE,BLUE_);
+  sGl(_GLID,st_rc_gl,_GLTYPE,"XY",_GLHUE,BLUE_);
 
 //<<" DONE SCREEN %V $lc_gl $rc_gl $mapwo $vvwo  $sawo \n";
 

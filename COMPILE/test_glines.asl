@@ -398,6 +398,8 @@ cout<<"Tvec wrong type !\n";
 //cout << "Tvec " << Tvec << endl;
 
  //   Svec = Sin(Wvec);
+
+
     Svec = Wvec;
     Svec.Sin();
 
@@ -511,7 +513,7 @@ ans=query("see Zvec");
    // plus include this script into 
 
     o_uac->glineWorld(sarg);
-
+    return 1;
   }
 #endif  
 

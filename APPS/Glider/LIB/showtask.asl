@@ -94,12 +94,14 @@ int  Ntp = 0; //
 // local var not inited cpp and referenced with being set!!
 
 //#include "conv.asl"
-#include "globals_showtask.asl"
+
 
 #include "tpclass.asl"
 
 #include "ootlib.asl"
 
+
+#include "globals_showtask.asl"
 
 Turnpt  Wtp[300]; //
 Tleg  Wleg[20];
@@ -166,7 +168,7 @@ cout << " para[1] is:  "  << sa.cptr(1) << endl;
 <<"2 $sa[2] \n"
 
 #endif
-
+ openDll("plot");
 
 Str tp_file;
 int use_cup = 1;
@@ -1005,7 +1007,7 @@ pa("wc ", wc);
           wfr =sWo(mapwo,_WPIXMAPOFF,_WDRAWON); // just draw but not to pixamp
        if (Ev_button == 1 || Ev_button == 4) {
 
-	  sGl(_GLID,lc_gl,_GLCURSOR,rbox(Gerx,0,Gerx,20000, CL_init));
+	  sGl(_GLID,st_lc_gl,_GLCURSOR,rbox(Gerx,0,Gerx,20000, CL_init));
 	 // dGl(lc_gl);
 	  CL_init = 0;
 	   zoom_begin = Gerx;
@@ -1019,7 +1021,7 @@ pa("wc ", wc);
        if (Ev_button == 3 || Ev_button == 5) {
 
 
-	  sGl(_GLID,rc_gl,_GLCURSOR,rbox(Gerx,0,Gerx,20000, CR_init));
+	  sGl(_GLID,st_rc_gl,_GLCURSOR,rbox(Gerx,0,Gerx,20000, CR_init));
           //dGl(rc_gl);
 	  CR_init = 0;
 	  

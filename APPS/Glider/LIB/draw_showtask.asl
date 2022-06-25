@@ -17,32 +17,7 @@
 ///  all the graphic interface  - xgs
 ///
 //<<"including graphic_glide $_include\n"
-#if CPP
-extern int tdwo,vvwo;
-extern int mapwo;
-//extern int tpwo[];
-//extern int legwo[];
-extern int TASK_wo;
-extern int sawo;
-extern int vptxt;
-extern int Witp;
-extern  int igc_tgl;
-extern  int igc_vgl;
-extern int Maxtaskpts;
-//extern float erx,ery;
 
-
-extern Turnpt  Wtp[]; //
-extern Tleg  Wleg[];
-extern  void gg_gridLabel(int wid);
-
-void drawTask(int w,int col);
-
-int ClosestTP (float longx, float laty);
-int ClosestLand(float longx,float laty);
-int  PickTP(Str atarg,  int wtp);
-void taskDist();
-#endif
 
 
   void zoomMap(int t1, int t2)
@@ -245,12 +220,15 @@ pa("mapwo ",mapwo);
   Str TT;
   Str atpt;
   Str task_file;
+  int TF;
   
   if (query)
 
   task_file = naviWindow("TASK_File","task file?",task_file,".tsk","TASKS");
 
   TF= ofr(task_file);
+
+
   //<<"$task_file  $TF \n";
 
   if (TF != -1) {
@@ -456,13 +434,13 @@ void drawTrace()
   CR_init = 1;
   CL_init = 1;
 
-if (lc_gl != -1) {
-	  sGl(_GLID,lc_gl,_GLCURSOR,rbox(zoom_begin,0,zoom_begin,20000, CL_init),_GLHUE,GREEN_); // use rbox
+if (st_lc_gl != -1) {
+	  sGl(_GLID,st_lc_gl,_GLCURSOR,rbox(zoom_begin,0,zoom_begin,20000, CL_init),_GLHUE,GREEN_); // use rbox
  //  dGl(lc_gl);
 }
 
-if (rc_gl != -1) {
-	  sGl(_GLID,rc_gl,_GLCURSOR,rbox(zoom_end,0,zoom_end,20000, CR_init),_GLHUE,RED_);
+if (st_rc_gl != -1) {
+	  sGl(_GLID,st_rc_gl,_GLCURSOR,rbox(zoom_end,0,zoom_end,20000, CR_init),_GLHUE,RED_);
  //  dGl(rc_gl);
 }
 
@@ -495,13 +473,13 @@ void drawAlt()
   CR_init = 1;
   CL_init = 1;
 
-if (lc_gl != -1) {
-	  sGl(_GLID,lc_gl,_GLCURSOR,rbox(zoom_begin,0,zoom_begin,20000, CL_init),_GLHUE,GREEN_); // use rbox
+if (st_lc_gl != -1) {
+	  sGl(_GLID,st_lc_gl,_GLCURSOR,rbox(zoom_begin,0,zoom_begin,20000, CL_init),_GLHUE,GREEN_); // use rbox
    //dGl(lc_gl);
 }
 
-if (rc_gl != -1) {
-	  sGl(_GLID,rc_gl,_GLCURSOR,rbox(zoom_end,0,zoom_end,20000, CR_init),_GLHUE,RED_);
+if (st_rc_gl != -1) {
+	  sGl(_GLID,st_rc_gl,_GLCURSOR,rbox(zoom_end,0,zoom_end,20000, CR_init),_GLHUE,RED_);
    //dGl(rc_gl);
 }
 
@@ -1262,8 +1240,7 @@ int PickViaName(int wt)
 
   //sWi(vp,_WTMSG,"Pick a TP for the task ");
 
-  
-  Gemsg =gev.eventWait();
+    Gemsg =gev.eventWait();
 
 
   sleep(0.2);

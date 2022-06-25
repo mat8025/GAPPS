@@ -4,14 +4,42 @@
 // gevent.h  should have these ? - alternative to gevent.asl
 int Ev_button = 0;
 Str Ev_keyw = "nada";
+
+
+extern int tdwo,vvwo;
+extern int mapwo;
+//extern int tpwo[];
+//extern int legwo[];
+extern int TASK_wo;
+extern int sawo;
+extern int vptxt;
+extern int Witp;
+extern  int igc_tgl;
+extern  int igc_vgl;
+extern int Maxtaskpts;
+//extern float erx,ery;
+extern Gevent gev;
+
+extern Turnpt  Wtp[]; //
+extern Tleg  Wleg[];
+extern  void gg_gridLabel(int wid);
+
+void drawTask(int w,int col);
+
+int ClosestTP (float longx, float laty);
+int ClosestLand(float longx,float laty);
+int  PickTP(Str atarg,  int wtp);
+void taskDist();
+
 #endif
 
 int mapwo,vptxt,sawo,vvwo,TASK_wo, TASK_menu_wo, ZOOM_wo;
 
  int igc_tgl, igc_vgl;
 
-    
+//Str ans;
   int Witp = 0;
+
 
 
 int tdwo = -1;

@@ -1,4 +1,7 @@
 
 # debug stream -- to test_vec.idb ?
 
-asl -D -s  'opendll("uac"); opendll("plot"); test_vec(2); '
+#asl -d -s  'opendll("uac"); test_vec(2); '
+echo "bash args" $*
+
+asl -d -s 'Svar z=_clarg[1:-1:1]; Str sa="$z"; <<"%V $sa\n";  opendll("uac"); test_vec(sa); exit(-1); ' $*
