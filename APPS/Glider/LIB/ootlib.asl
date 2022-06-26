@@ -170,13 +170,15 @@ int N;
 #endif
 
 
-
   void processIGC()
   {
-
-   Vec<double> sslng(12);
-   Vec<double> sslat(12);
-   Vec<double> ssele(12);   
+   int i;
+   Vec<double> sslng(14);
+   
+   Vec<double> sslat(14);
+   
+   Vec<double> ssele(14);
+   
 
   pa("processIGC Igcfn   ",Igcfn);
   
@@ -189,25 +191,36 @@ int N;
 //<<"%(10,, ,\n) $IGCLONG[0:30] \n"
 //<<"%(10,, ,\n) $IGCLONG[k:Ntpts-1] \n"
 
-  sslng= IGCLONG.stats();
-
-/*
-     for (i=0; i < Ntpts; i += 5) {
+     for (i=0; i < 100; i += 5) {
      
-      <<"$i $IGCTIM[i] $IGCELE[i] $IGCLAT[i]  $IGCLONG[i] \n";
+     printf("i %f %f %f %f\n",i,IGCTIM[i] ,IGCELE[i] ,IGCLAT[i]  ,IGCLONG[i] );
      }
-*/
 
-  int i = 10;
- //     <<"$i $IGCTIM[i] $IGCELE[i] $IGCLAT[i]  $IGCLONG[i] \n";
+pa("stats 2do ");
 
-//cout  <<" sslng " << sslng  << endl;
+  sslng= stats( IGCLONG);
+      for (i=0; i < 12; i++) {
+ printf("i %d %f \n",i,sslng[i]);
+      }
 
-  
-  sslat= IGCLAT.stats();
-  sslat.pinfo();
-//<<"%V $sslt \n"
-    ///
+
+//ans=query("?","sslng",__LINE__);
+  sslat= stats( IGCLAT);
+     for (i=0; i < 12; i++) {
+ printf("i %d %f \n",i,sslat[i]);
+      }
+//ans=query("?","sslat",__LINE__);
+
+ ssele= stats( IGCELE);
+
+     for (i=0; i < 12; i++) {
+ printf("i %d %f \n",i,ssele[i]);
+      }
+
+//ans=query("?","ssele",__LINE__);
+
+
+
 
   int sstart = Ntpts /10;
 
@@ -218,7 +231,6 @@ int N;
 //      <<"$i $IGCTIM[i] $IGCELE[i] $IGCLAT[i]  $IGCLONG[i] \n";  // BUG FIXIT 9/20/21
 //     }
 
-  ssele= IGCELE.stats();
 
  //<<"%V $ssele \n"
 
@@ -226,6 +238,7 @@ int N;
 
   Max_ele = ssele[6];
 //<<" min ele $ssele[5] max $ssele[6] \n"
+
 
   float min_lng = sslng[5];
 
@@ -236,9 +249,10 @@ int N;
 
   float max_lat = sslat[6];
 
-#if ASL
-//<<"%V $min_lat $max_lat \n"
-#endif
+COUT(max_lat);
+
+
+
   LatS = min_lat -Margin;
 
   LatN = max_lat+Margin;
@@ -261,13 +275,14 @@ int N;
   float dlng = max_lng - min_lng;
 
   float da = dlat;
+  
   //DBG"%V $da $dlng $dlat \n"
 // TBF if corrupts following expression assignment
 
   if ( dlng > dlat )
   {
 
-  da = dlng;
+     da = dlng;
 	//DBG"da = dlng\n"
 
   }
@@ -286,14 +301,13 @@ int N;
   LongW = MidLong + da/2.0;
   //<<"%V $latWB $MidLat $da \n"
 
-  LongW = MidLong + da/2.0;
-  //<<"%V $longW $MidLong $da \n"
 
   LongE = MidLong - da/2.0;
-#if ASL  
-//  <<"%V $LongW \n"
-//  <<"%V $LongE \n"
-#endif
+  VCOUT(LongW,LongE);
+
+ pa(LongW,LongE);
+
+
   }
 //===============================//
 //<<"$_include %V$Ntp_id\n"

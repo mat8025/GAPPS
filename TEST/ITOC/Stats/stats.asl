@@ -21,6 +21,18 @@ F = vgen(FLOAT_,100,1,1)
   B=stdev(F)
 <<"%6.2f$B\n"
 
+
+  C=Stats(F)
+  C.pinfo();
+<<"%6.2f$C\n"
+
+RF= grand(1000,0);
+  C=Stats(RF)
+<<"%6.2f$C\n"
+!a
+<<"%(4,, ,\n)6.2f$F\n"
+
+
 <<" RUNNING STD DEV \n"
   R=runStats(F)
 <<"%6.2f$R\n"
@@ -32,7 +44,7 @@ F = vgen(FLOAT_,100,1,1)
 
 <<"%(4,, ,\n)6.2f$F\n"
 
-F->info(1)
+F.pinfo()
 
    S= Stats(F)
 

@@ -73,8 +73,17 @@ int index = 6;
 
    COUT(V[7]);
 
- 
+ Siv SV(INT_,1,10,-3,1);
+ SV.pinfo();
 
+  index = SV[2];
+/*  
+  SV[3] = 67;
+ COUT(index);
+ COUT(SV);
+*/
+
+ans=query("?","SV",__LINE__);
   
 // rms = V.getVal(index);
 
