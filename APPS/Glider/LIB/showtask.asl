@@ -56,6 +56,8 @@ using namespace std;
 
 #define PXS  cout<<
 
+#undef  ASL
+#define ASL 0
 #endif
 
 
@@ -416,7 +418,7 @@ printf(" Read $Ntp %d turnpts \n",Ntp);
 	  
           r_index=SRX.findRecord(targ,0,0,0);
 
-pa("targ ",targ," @row ", r_index);
+//pa("targ ",targ," @row ", r_index);
 
           if (r_index >=0) {
 
@@ -792,7 +794,19 @@ Str wcltpt="XY";
 <<"%V $Ev_keyw $gekey $WoName \n"
 #endif
 
-    //Ev_keyw = gev.getEventKeyWord();
+    Ev_keyw = gev.getEventKeyWord();
+
+  pa("pa Ev_keyw ", Ev_keyw);
+  
+  // printf("Ev_keyw <|%s|> ", Ev_keyw.cptr());
+
+
+
+  if (Ev_keyw == "EXIT_ASL" ) {
+         //ans=query("?","EXIT_ASL QUIT?",__LINE__);
+         break;
+   }
+
 
     if (Ev_keyw == "REDRAW" || WoName == "REDRAW") {
 
@@ -806,6 +820,11 @@ Str wcltpt="XY";
        
        d_ll = (LatN-LatS)/ 10.0 ;
 //<<"%V $LongW $LatS $LongE $LatN   $d_ll\n"
+        if (Gekey == 'q') {
+             ans=query("?","QUIT",__LINE__);
+
+           exit(-1);
+       }
 
 
        if (Gekey == 'Q') {

@@ -114,7 +114,7 @@ float   nm_to_km = 6080.0/3281.0;
   D= acos (sin(rL1) * sin(rL2) + cos(rL1) * cos(rL2) * cos(rlo1-rlo2));
 
   km = LegK * D  * nm_to_km;
-  printargs ("km ",km);
+ // printargs ("km ",km);
   return km;
 
   }
@@ -160,7 +160,7 @@ int N;
   km2 = HowFar(L1,lo1 ,L2, lo2);
 
   km = km2;
-    //km->info(1)
+
   //<<" %V   $LegK   $nm_to_km $km1 $km2\n" ;
 
   return km;
@@ -198,24 +198,33 @@ int N;
 
 pa("stats 2do ");
 
-  sslng= stats( IGCLONG);
-      for (i=0; i < 12; i++) {
- printf("i %d %f \n",i,sslng[i]);
-      }
+ // sslng= stats( IGCLONG);
+
+    sslng=  IGCLONG.stats();
+
+//      for (i=0; i < 12; i++) {
+//         printf("i %d %f \n",i,sslng[i]);
+//      }
 
 
 //ans=query("?","sslng",__LINE__);
-  sslat= stats( IGCLAT);
-     for (i=0; i < 12; i++) {
- printf("i %d %f \n",i,sslat[i]);
-      }
+
+//sslat= stats( IGCLAT); // works
+
+   sslat= IGCLAT.stats(); // also works
+
+//     for (i=0; i < 12; i++) {
+// printf("i %d %f \n",i,sslat[i]);
+//      }
 //ans=query("?","sslat",__LINE__);
 
- ssele= stats( IGCELE);
+ //ssele= stats( IGCELE);
 
-     for (i=0; i < 12; i++) {
- printf("i %d %f \n",i,ssele[i]);
-      }
+ssele= IGCELE.stats();
+
+//     for (i=0; i < 12; i++) {
+// printf("i %d %f \n",i,ssele[i]);
+//      }
 
 //ans=query("?","ssele",__LINE__);
 

@@ -31,11 +31,14 @@ int tbqrd_msg = 0;
 //<<[_DB]"FIRST %V $tbqrd_tv \n"
 
 
+
 void  titleButtonsQRD(int v)
 {
-
+ printf("USING LIB version !\n");
 //////////////////////////////// TITLE BUTTON QUIT RESIZE REDRAW ////////////////////////////////////////////////
- tq=cWo(v,WO_TB_,_name,"tbq",_value,"QUIT",_func,"window_term",_resize,0.97,0,0.99,1,_symbol,X_,_flush);
+ tq=cWo(v,WO_TB_)
+
+ sWo(tq,_name,"tbq",_value,"QUIT",_func,"window_term",_resize,0.97,0,0.99,1,_symbol,X_,_flush);
  
  tr=cWo(v,WO_TB_,_name,"tbr",_value,"RESIZE",_func,"window_resize",_resize,0.94,0,0.96,1,_symbol,CROSS_,_flush);
  

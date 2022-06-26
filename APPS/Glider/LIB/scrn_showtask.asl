@@ -47,6 +47,9 @@ int Xgm;
 
 #include "tbqrd.asl"
 
+//ans=query("?1","setup qrd",__LINE__);
+
+
 
   Vp = cWi("Vp");
 

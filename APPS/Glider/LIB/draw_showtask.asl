@@ -82,7 +82,7 @@
   sWova(_WOID,mapwo,_WCLEARPIXMAP,ON_,_WCLIPBORDER,BLACK_);
 
  // sWo(mapwo,_WDRAWON,_WSHOWPIXMAP,_WCLIPBORDER);
-pa("mapwo ",mapwo);
+//pa("mapwo ",mapwo);
   gg_gridLabel(mapwo);
   
 //ans=query("?113","gg_gridLabel(mapwo); ",__LINE__);
@@ -108,7 +108,7 @@ pa("mapwo ",mapwo);
 
     mlab = Wtp[k].Place;
 
-   pa(k,is_an_airport,mlab);
+   //pa(k,is_an_airport,mlab);
    
   // ans=query("?","DrawMAP",__LINE__);
 //<<"%V $k $mlab  $is_an_airport \n"
@@ -136,7 +136,7 @@ pa("mapwo ",mapwo);
 
   longi = Wtp[k].Longdeg;
 
-  pa(k,msl,lat,longi, mlab);
+  //pa(k,msl,lat,longi, mlab);
 
 //<<"%V $k $longi  $Wtp[k].Longdeg \n"
 
@@ -409,7 +409,7 @@ void drawTrace()
          sWova(_WOID,vvwo,_WCLEARPIXMAP,ON_);
 
 
-         pa(Ntpts);;
+         //pa(Ntpts);;
           //DrawMap(mapwo);
 	  
   	 if (Ntpts > 0) {
@@ -538,13 +538,13 @@ ST_RS.pinfo();
 
   ry= ST_RS[2];
 
-pa(rx,ry);
+//pa(rx,ry);
 
   rX= ST_RS[3];
 
   rY= ST_RS[4];
 
-pa(rx,ry,rX,rY);
+//pa(rx,ry,rX,rY);
 
 
   if (ry == -1.0) {
@@ -1286,7 +1286,7 @@ int PickViaName(int wt)
   int idt = -2;
   int j = -3;
 
-#if ASL_DB
+#if ASL
   idt.pinfo();
   j.pinfo();
   Taskpts.pinfo();
@@ -1341,7 +1341,7 @@ fast=fastxic(0);
   for (idt = 0 ; idt < (Ntaskpts-1) ; idt++ ) {
 
   j = idt +1;
-  PXS"%V $idt $j\n";
+
 #if ASL_DB
   j.pinfo();
   Taskpts.pinfo();
@@ -1354,7 +1354,7 @@ fast=fastxic(0);
   index1 = Taskpts[idt+1];
   //index1 = Taskpts[j];
   
-PXS"MT %V $idt $index $index1\n";
+//PXS"MT %V $idt $index $index1\n";
 
   
 
@@ -1426,7 +1426,7 @@ fastxic(0);
 
     srp = SRX.getRow(index);
 
-  printf(" found  $index %d\n",index);
+//  printf(" found  $index %d\n",index);
 //<<"$ttp \n"
 
   Taskpts[wtp] = index;
@@ -1567,7 +1567,7 @@ pa(Ntaskpts);
   for (i = 0; i < Ntaskpts ; i++) {
 
   index = Taskpts[i];
-  pa(i, " index ", index);
+//  pa(i, " index ", index);
   
  if ((index > 0)  && (index <= Ntp) ) {
 
@@ -1584,7 +1584,7 @@ pa(Ntaskpts);
   msl = Wtp[index].Alt;
 
 
-pa(i, index, tpl, la2, msl);
+//pa(i, index, tpl, la2, msl);
 
 
 //ans = query("see taskpt");
@@ -1682,7 +1682,7 @@ pa(i, index, tpl, la2, msl);
 
   Task_update = 1;
 
-pa( "totalK ", totalK, " Coors ", LongW, LatS, LongE, LatN);
+//pa( "totalK ", totalK, " Coors ", LongW, LatS, LongE, LatN);
 //<<"DONE $_proc  $totalK \n"
 
       woSetValue(tdwo,totalK);
