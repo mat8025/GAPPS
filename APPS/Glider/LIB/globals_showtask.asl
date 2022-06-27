@@ -166,7 +166,8 @@ int dMx;
 int dMy;
 
 char Gpos[64];
-
+float Dang;
+float Latval;
 //////////////// PARSE COMMAND LINE ARGS ///////////////////////
 
 long posn = 0;

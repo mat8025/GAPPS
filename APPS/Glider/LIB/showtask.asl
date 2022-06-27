@@ -615,6 +615,27 @@ pa( " Coors ", LongW, LatS, LongE, LatN);
 
      sWi(_WOID,Vp,_WREDRAW,ON_); // need a redraw proc for app
 
+ Mapcoors= woGetPosition (mapwo);
+
+  COUT(Mapcoors);
+
+//ans=query("?","Mapcoors",__LINE__);
+
+  dMx = Mapcoors[5];
+  dMy = Mapcoors[6];
+
+
+  // adjust the  X  & Y to be  same angluar scale
+  // fix the Y
+  Latval = LatN - LatS;
+  Dang = Latval / (dMy*1.0);
+  // adjust LongW
+  Latval = LongE + (dMx * Dang);
+
+  printf("dMx %d dMy %d LongW %f lat %f LongE %f\n",dMx,dMy,LongW,Latval,LongE);  
+  LongW = Latval;
+
+
 
     sWova(_WOID,mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN));
 
@@ -926,7 +947,7 @@ Str wcltpt="XY";
 
             // sWo(wtpwo, _WCXOR);
 	     
-	     gflush();
+
 
             cval = getWoValue(wtpwo);
  // <<"%V $np <|$cval|>  \n"
@@ -1084,7 +1105,9 @@ pa("wc ", wc);
                nval = Wtp[ntp].GetPlace();
 	       
             //  <<" found %V $ntp $nval \n"
-                Text(  vptxt," $ntp $nval   ",0,0.05,1);
+	         sprintf(Gpos,"%s %s",ntp,nval.cptr());
+                Text(  vptxt,Gpos,0,0.05,1);
+		
                 ST_msl = Wtp[ntp].Alt;
                 mkm = HowFar(Gerx,Gery, Wtp[ntp].Longdeg, Wtp[ntp].Ladeg);
                 ght = (mkm * km_to_feet) / LoD;
@@ -1093,7 +1116,10 @@ pa("wc ", wc);
                 safealt = ST_msl + ght + 2000;
 
 
-          	sWo(sawo,_WVALUE,"$nval %5.1f $ST_msl $mkm $safealt",_WREDRAW);
+	         sprintf(Gpos,"%s %f",nval.cptr(), safealt);
+          	//sWo(sawo,_WVALUE,"$nval %5.1f $ST_msl $mkm $safealt",_WREDRAW);
+		woSetValue(sawo,_WVALUE,Gpos);
+		
                // DrawMap();
              }
 
