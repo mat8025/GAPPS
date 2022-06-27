@@ -68,14 +68,37 @@
   float msl;
   int k;
   float lat;
-
   float longi;
+  float dang;
 
   Str mlab;
 
   int is_an_airport = 0;
   int is_a_mtn = 0;
- // ans=query("?","DrawMAP",__LINE__);
+
+
+  Mapcoors= woGetPosition (mapwo);
+
+  COUT(Mapcoors);
+
+//ans=query("?","Mapcoors",__LINE__);
+
+  dMx = Mapcoors[5];
+  dMy = Mapcoors[6];
+
+
+  // adjust the  X  & Y to be  same angluar scale
+  // fix the Y
+  lat = LatN - LatS;
+  dang = lat / (dMy*1.0);
+  // adjust LongW
+  lat = LongE + (dMx * dang);
+
+  printf("dMx %d dMy %d LongW %f lat %f LongE %f\n",dMx,dMy,LongW,lat,LongE);  
+  LongW = lat;
+
+   //ans=query("?","Adjust Map X,Y axis",__LINE__);
+
   sWova(_WOID,mapwo,_WSCALES,wbox(LongW,LatS,LongE,LatN));
   //<<"%V $LongW $LatS $LongE $LatN \n";
 
@@ -1828,8 +1851,10 @@ pa(Ntaskpts);
 //=============================================
 void   showPosn(int pi)
   {
+
+    
     	 wfr=sWo(mapwo,_WSHOWPIXMAP,_WEO);
-    wfr =sWo(mapwo,_WPIXMAPOFF,_WDRAWON,_WEO); // just draw but not to pixamp
+          wfr =sWo(mapwo,_WPIXMAPOFF,_WDRAWON,_WEO); // just draw but not to pixamp
 //              <<"%V $pi $IGCELE[pi] $IGCLAT[pi] $IGCLONG[pi] \n";
          symx = IGCLONG[pi];
 	 symy = IGCLAT[pi];
@@ -1843,8 +1868,10 @@ void   showPosn(int pi)
 	  	   zoom_begin = pi;
 	  drawAlt();
 
-   wfr = sWo(mapwo,_WPIXMAPON,_WEO);
-	 sWo(sawo,_WVALUE,"$symx $symy $syme ",_WREDRAW);
+         wfr = sWo(mapwo,_WPIXMAPON,_WEO);
+         sprintf(Gpos,"%f %f %f",symx,symy,syme);
+
+	 sWo(sawo,_WVALUE,Gpos,_WREDRAW);
   }
 
 //==================================================

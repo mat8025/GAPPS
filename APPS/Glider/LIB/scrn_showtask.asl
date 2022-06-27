@@ -61,10 +61,10 @@ int Xgm;
 
   //sWi(Vp,_WSCALES,wbox(-200,-200,200,200,0), _WDRAWON,_WPIXMAPON,_WSAVE,_WBHUE,WHITE_,_WRESIZE,0.1,0.01,0.9,0.95,0);
 
-  sWi(_WOID,Vp,_WSCALES,wbox(-200,-200,200,200,0), _WDRAW, ON,_WPIXMAP,ON,_WSAVE,ON_,_WBHUE,YELLOW_,_WRESIZE,wbox(0.1,0.01,0.9,0.95,0));
+  sWi(_WOID,Vp,_WSCALES,wbox(-200,-200,200,200,0), _WDRAW, ON,_WPIXMAP,ON,_WSAVE,ON_,_WBHUE,YELLOW_,_WRESIZE,wbox(0.1,0.01,0.9,0.99,0));
   // but we don't draw to a window! = draw to Wob in a Window
 
-  sWi(_WOID,Vp,_WCLIP,wbox(0.01,0.1,0.95,0.99));
+  sWi(_WOID,Vp,_WCLIP,wbox(0.01,0.01,0.95,0.99));
 
   Text(Vp, "HEY", 0,5, 0.5);
 
@@ -74,13 +74,7 @@ int Xgm;
 
 //ans=query("?2","goon",__LINE__,__FILE__);
 
-  tdwo = cWo(Vp, WO_BV_);
 
-  sWova(_WOID,tdwo,_WRESIZE,wbox(0.01,0.01,0.14,0.1,0),_WNAME,"TaskDistance");
-
-//ans=query("?3","goon",__LINE__,__FILE__);
-
-  sWova(_WOID,tdwo,_WCOLOR,WHITE_,_WSTYLE,SVB_);
 
   sawo= cWo(Vp, WO_BV_);
   VCOUT(Vp,sawo);
@@ -93,7 +87,7 @@ int Xgm;
   //rsz.pinfo();
 
 
- sWova(_WOID,sawo,_WRESIZE, wbox (0.15,0.01,0.54,0.1));
+ sWova(_WOID,sawo,_WRESIZE, wbox (0.15,0.01,0.3,0.1));
   //sWo(sawo,_WRESIZE, rsz);
 
   sWo(_WOID,sawo,_WCOLOR,WHITE_,_WSTYLE,"SVB");
@@ -107,7 +101,7 @@ int Xgm;
 
 
 
- sWova(_WOID,vvwo,_WRESIZE,wbox(0.2,0.11,0.95,0.25));
+ sWova(_WOID,vvwo,_WRESIZE,wbox(0.01,0.11,0.35,0.25));
 
   //ans=query("?5","goon",__LINE__,__FILE__);
 
@@ -115,7 +109,7 @@ int Xgm;
 
   mapwo= cWo(Vp,WO_GRAPH_);
 
-  sWova(_WOID,mapwo,_WRESIZE,wbox(0.30,0.26,0.95,0.95),_WNAME,"MAP",_WCOLOR,WHITE_);
+  sWova(_WOID,mapwo,_WRESIZE,wbox(0.34,0.01,0.99,0.99),_WNAME,"MAP",_WCOLOR,WHITE_);
 
 //<<"%V $mapwo $LongW $LatS \n"
 
@@ -159,7 +153,7 @@ int Xgm;
  // <<"%V $tpwos\n"
   
  // wovtile(tpwo, 0.02, 0.4, 0.14, 0.95,12);
- wovtile(tpwo, 0.02, 0.4, 0.14, 0.95,-1);
+ wovtile(tpwo, 0.02, 0.38, 0.14, 0.89,-1);
 
 
   legwo[0] = -1;
@@ -173,7 +167,7 @@ int Xgm;
 }
 
  // wovtile(legwo, 0.15, 0.4, 0.29, 0.95,12);
-  wovtile(legwo, 0.15, 0.4, 0.29, 0.95,-1);
+  wovtile(legwo, 0.15, 0.38, 0.29, 0.89,-1);
 
   titleVers();
   gflush();
@@ -182,29 +176,38 @@ int Xgm;
 
 
   TASK_wo=cWo(Vp,WO_BV_);
-  sWova(_WOID,TASK_wo, _WRESIZE,wbox(0.05,0.25,0.15,0.34));
+  sWova(_WOID,TASK_wo, _WRESIZE,wbox(0.01,0.25,0.10,0.34));
   
 //<<"%V$TASK_wo\n"
 
   sWova(_WOID,TASK_wo, _WHELP, "Set Task Type", _WNAME, "TaskType", _WFUNC,  "wo_menu",  _WMENU, "SO,TRI,OAR,W,MT",  _WVALUE, "TRI");
 
-  TASK_menu_wo=cWo(Vp,WO_BV_);
+  tdwo = cWo(Vp, WO_BV_);
 
-  sWova(_WOID, TASK_menu_wo,_WRESIZE,wbox(0.05,0.12,0.15,0.24));
+  sWova(_WOID,tdwo,_WRESIZE,wbox(0.11,0.25,0.21,0.34,0),_WNAME,"TaskDistance");
 
-  sWova(_WOID,TASK_menu_wo, _WHELP, "Set Task Type", _WNAME, "TaskMenu");
+//ans=query("?3","goon",__LINE__,__FILE__);
 
-  gflush();
+  sWova(_WOID,tdwo,_WCOLOR,WHITE_,_WSTYLE,SVB_);
+
+
+//  TASK_menu_wo=cWo(Vp,WO_BV_);
+
+//  sWova(_WOID, TASK_menu_wo,_WRESIZE,wbox(0.05,0.12,0.15,0.24));
+
+//  sWova(_WOID,TASK_menu_wo, _WHELP, "Set Task Type", _WNAME, "TaskMenu");
+
+ 
   
   vptxt= cWo(Vp, WO_TEXT_);
   
-  sWova(_WOID,vptxt,_WRESIZE,wbox(0.55,0.01,0.85,0.1),_WNAME,"TXT");
+  sWova(_WOID,vptxt,_WRESIZE,wbox(0.01,0.9,0.4,0.99),_WNAME,"TXT");
   sWova(_WOID,vptxt,_WCOLOR,WHITE_,_WSAVE,ON_,_WDRAW,ON_,_WPIXMAP,OFF_);
 
 
   ZOOM_wo=cWo(Vp,WO_BV_);
   
-  sWova(_WOID,ZOOM_wo,  _WNAME, "ZOOM",_WRESIZE,wbox(0.86,0.04,0.95,0.1),_WCOLOR,RED_);
+  sWova(_WOID,ZOOM_wo,  _WNAME, "ZOOM",_WRESIZE,wbox(0.22,0.25,0.32,0.34),_WCOLOR,RED_);
 
 
 //  CURSORS
@@ -218,6 +221,19 @@ int Xgm;
   st_rc_gl   = cGl(vvwo);
   
   sGl(_GLID,st_rc_gl,_GLTYPE,"XY",_GLHUE,BLUE_);
+
+
+    Mapcoors= woGetPosition (mapwo);
+
+  COUT(Mapcoors);
+
+//ans=query("?","Mapcoors",__LINE__);
+
+  dMx = Mapcoors[5];
+  dMy = Mapcoors[6];
+
+VCOUT(dMx,dMy);
+
 
 //<<" DONE SCREEN %V $lc_gl $rc_gl $mapwo $vvwo  $sawo \n";
 

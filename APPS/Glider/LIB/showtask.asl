@@ -27,7 +27,7 @@
 
 #if ASL
 // the include  when cpp compiling will re-define ASL 0 and CPP 1
-#include "/home/mark/gasp-CARBON/include/compile.h"
+#include "compile.h"
 #define PXS  <<
 #define VCOUT //
 #endif
@@ -657,7 +657,7 @@ pa( " Coors ", LongW, LatS, LongE, LatN);
 /// sGl(_GLID,igc_tgl,  _GLYVEC,IGCLAT,_GLHUE,RED_); // TBF tag args remove white space
 
 
-COUT(IGCELE);
+//COUT(IGCELE);
 
 //ans=query("?","ELE",__LINE__);
 

@@ -20,7 +20,7 @@
 
 #if ASL
 // the include  when cpp compiling will re-define ASL 0 and CPP 1
-#include "/home/mark/gasp-CARBON/include/compile.h"
+#include "compile.h"
 #endif
 
 

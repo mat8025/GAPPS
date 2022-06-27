@@ -4034,12 +4034,24 @@ returns version number
 .EF
 =============================================================
 .BF
-wogetclip()
+wogetposition, wogetclip()
 .(x
-wogetclip
+wogetclip,wogetposition
 .)x 
 .FD
-I=wogetclip(woid)
+I=wogetclip(woid) , I = wogetposition(woid)
+gets the clip values for a window object and returns them to an integer array
+I[0] is woid or -1 if woid invalid.
+then the clip region in screen coors is in
+Clip x,y,X,Y are I[1],I[2],I[3],I[4]
+deltaclipX I[5], deltaclipY I[6]
+the window object boundaries containing the clip area are in
+I[7],to I[10]
+and the parent window boundaries are in
+I[11] to I[13] 
+
+.EF
+=============================================================
 gets the clip values for a window object and returns them to an integer array
 I[0] is woid or -1 if woid invalid.
 then the clip region in screen coors is in

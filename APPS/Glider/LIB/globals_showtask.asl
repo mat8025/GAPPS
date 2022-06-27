@@ -153,7 +153,7 @@ float R[10];
 int Have_igc = 0;
 
 Vec<float> ST_RS(50);
-
+Vec<int> Mapcoors(30);
 
 //  Read in a Task via command line
 
@@ -162,6 +162,10 @@ float max_lat;
 float longW =0.0;
 float mkm;
 
+int dMx;
+int dMy;
+
+char Gpos[64];
 
 //////////////// PARSE COMMAND LINE ARGS ///////////////////////
 
