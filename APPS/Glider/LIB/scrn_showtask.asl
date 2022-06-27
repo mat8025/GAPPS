@@ -50,7 +50,6 @@ int Xgm;
 //ans=query("?1","setup qrd",__LINE__);
 
 
-
   Vp = cWi("Vp");
 
 // VCOUT(Xgm,"\n");
@@ -61,16 +60,21 @@ int Xgm;
 
   //sWi(Vp,_WSCALES,wbox(-200,-200,200,200,0), _WDRAWON,_WPIXMAPON,_WSAVE,_WBHUE,WHITE_,_WRESIZE,0.1,0.01,0.9,0.95,0);
 
-  sWi(_WOID,Vp,_WSCALES,wbox(-200,-200,200,200,0), _WDRAW, ON,_WPIXMAP,ON,_WSAVE,ON_,_WBHUE,YELLOW_,_WRESIZE,wbox(0.1,0.01,0.9,0.99,0));
+//  sWi(_WOID,Vp,_WSCALES,wbox(-200,-200,200,200,0), _WDRAW, ON,_WPIXMAP,ON_,_WSAVE,ON_,_WBHUE,YELLOW_,_WRESIZE,wbox(0.1,0.01,0.95,0.99,0));
+  sWi(_WOID,Vp,_WSCALES,wbox(-200,-201,200,201,0),_WRESIZE,wbox(0.1,0.01,0.99,0.99,0));
+  
+  sWi(_WOID,Vp,_WDRAW, ON,_WPIXMAP,ON_,_WSAVE,ON_,_WBHUE,YELLOW_);
   // but we don't draw to a window! = draw to Wob in a Window
 
-  sWi(_WOID,Vp,_WCLIP,wbox(0.01,0.01,0.95,0.99));
+sWi(_WOID,Vp,_WRESIZE,wbox(0.1,0.01,0.98,0.99,0));
 
-  Text(Vp, "HEY", 0,5, 0.5);
+  sWi(_WOID,Vp,_WCLIP,wbox(0.01,0.01,0.98,0.98));
+
+  //Text(Vp, "HEY", 0,5, 0.5);
 
   titleButtonsQRD(Vp);
 
-    Text(Vp, "NOW", 0,5, 0.5,0);
+  //  Text(Vp, "NOW", 0,5, 0.5,0);
 
 //ans=query("?2","goon",__LINE__,__FILE__);
 
@@ -84,7 +88,7 @@ int Xgm;
   //float rsz[5] = wbox(0.15,0.01,0.54,0.1);
 
   //<<"%V $rsz\n";
-  //rsz.pinfo();
+
 
 
  sWova(_WOID,sawo,_WRESIZE, wbox (0.15,0.01,0.3,0.1));

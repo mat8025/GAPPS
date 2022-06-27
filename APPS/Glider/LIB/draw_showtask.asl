@@ -543,7 +543,7 @@ ST_RS[2] = 77.67;
 ST_RS[3] = 48.67;
 ST_RS[4] = 52.67;
 COUT(ST_RS);
-ST_RS.pinfo();
+//ST_RS.pinfo();
 
  
  
@@ -552,7 +552,7 @@ ST_RS.pinfo();
 //ans=query("?2","after wgetrscales\n",__LINE__);
 
 printf("does ST_RS still exist?\n");
-ST_RS.pinfo();
+//ST_RS.pinfo();
 
 
 
@@ -1391,13 +1391,6 @@ fast=fastxic(0);
 
   lon2 = Wtp[index1].Longdeg;
 
-  //lat1.pinfo();
-  //lat2.pinfo();  
-
-  //lon1.pinfo();
-  //lon2.pinfo();
-  
-
 //  plotLine(w, lon1, lat1,lon2,lat2,col);
 
 
@@ -1795,7 +1788,7 @@ pa(Ntaskpts);
   int mkey = -1;
   int isairport = 0;
 
-  float sa;
+  float saf;
 
   float longa;
 
@@ -1803,7 +1796,7 @@ pa(Ntaskpts);
   float msl;
   float mkm;
   float ght;
-
+ pa(__LINE__,longx, laty);
 
   longa = longx;
 
@@ -1812,6 +1805,7 @@ pa(Ntaskpts);
   for (k = 0 ; k < Ntp ; k++) {
 
   isairport = Wtp[k].GetTA();
+  pa(k,   isairport );
 //DBG"$_proc %V $isairport \n"
 
   if (isairport) {
@@ -1821,16 +1815,20 @@ pa(Ntaskpts);
   mkm = HowFar(lata,longa, Wtp[k].Ladeg,Wtp[k].Longdeg);
 
   ght = (mkm * km_to_feet) / LoD;
+
+
 //FIX_PARSE_ERROR                sa = Wtp[k].Alt + ght + 2000
 
-  sa = msl + ght + 2000;
-//DBG" $k $mkm $ght $sa \n"
+  saf = msl + ght + 2000;
+  pa(mkm,ght,saf);
 
-  if (sa < mintp) {
+
+
+  if (saf < mintp) {
 
   mkey = k;
 
-  mintp = sa;
+  mintp = saf;
 
   }
 
@@ -1839,7 +1837,8 @@ pa(Ntaskpts);
   }
 
   if (mkey != -1) {
-//DBG" found $mkey \n"
+  
+  pa("found mkey" ,mkey);
 
   Wtp[mkey].Print();
 

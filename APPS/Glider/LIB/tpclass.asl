@@ -295,9 +295,8 @@ cout << " " << Place <<" " << Idnt <<" " << Lat <<" " << Lon <<" " << Alt <<" " 
  int GetTA()   
    {
       int amat[2];
-      spat (&tptype,"A",-1,-1,amat);
-//DBG"Turnpt  $amat\n"
-//DBG"%V $amat $(typeof(amat)) \n"
+      spat (tptype.cptr(),"A",-1,-1,amat);
+      pa("amat ",amat);
       return amat[0];
    }
 //=========================//

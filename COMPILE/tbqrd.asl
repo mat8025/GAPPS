@@ -88,8 +88,8 @@ sWo(qrd,_WDRAWON,_WPIXMAPON,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45, _WCLIP,c
 //============================//
 void titleComment(Str msg)
 {
-// <<"%V $msg \n"
- sWo(tbqrd_tv,_WVALUE,"$msg",_WCLEAR,_WREDRAW,_WLAST);
+ pa(msg);
+ sWo(tbqrd_tv,_WVALUE,msg.cptr(),_WCLEAR,_WREDRAW,_WLAST);
 
 }
 //============================//

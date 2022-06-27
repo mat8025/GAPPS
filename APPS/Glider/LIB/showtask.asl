@@ -646,11 +646,11 @@ pa( " Coors ", LongW, LatS, LongE, LatN);
 //  set up the IGC track for plot
     igc_tgl = cGl(mapwo);
     
-    IGCLONG.pinfo();
-            IGCLONG.minfo();
+   // IGCLONG.pinfo();
+   //         IGCLONG.minfo();
 
-    IGCLAT.pinfo();
-        IGCLAT.minfo();
+  //  IGCLAT.pinfo();
+    //    IGCLAT.minfo();
 
 //COUT(IGCLAT);
 
@@ -1094,6 +1094,7 @@ pa("wc ", wc);
 
        }
        else if (WoName == "MAP") {
+       pa("in map", Gerx, Gery);
 
                drawit = 0;
 
@@ -1103,9 +1104,9 @@ pa("wc ", wc);
 
                Wtp[ntp].Print();
                nval = Wtp[ntp].GetPlace();
-	       
+	       pa(ntp, nval);
             //  <<" found %V $ntp $nval \n"
-	         sprintf(Gpos,"%s %s",ntp,nval.cptr());
+	         sprintf(Gpos,"%d %s",ntp,nval.cptr());
                 Text(  vptxt,Gpos,0,0.05,1);
 		
                 ST_msl = Wtp[ntp].Alt;
