@@ -14,10 +14,8 @@
                                                                              
 //  
 
-<|Use_=
-Demo  of test the bitwise ops
-///////////////////////
-|>
+Str Use_= "Demo  of test the bitwise ops";
+
 
 
 #include "debug"
@@ -272,6 +270,149 @@ chkN(m,0x40)
 chkN(m,0,GT_)
 
 chkN(m,0,NEQ_)
+
+
+
+
+
+ulong j1= 1;
+ulong uk = 0;
+sz= sizeof(j1);
+
+//j1 = 1;
+
+//sz= sizeof(j1);
+
+uk = j1 << 8;
+
+<<"%V $sz $j1 $uk \n"
+
+i = 16;
+  uk = j1 << i;
+  <<"$i $uk\n"
+
+i = 32;
+  uk = j1 << i;
+  <<"$i $uk\n"
+
+
+i = 48;
+  uk = j1 << i;
+  <<"$i $uk\n"
+
+
+
+
+
+  for (i= 0; i< 64 ; i++) {
+  uk = j1 << i;
+  <<"$i $uk\n"
+  }
+
+  j1 = uk;
+
+<<"%V $j1 $uk \n"
+i = 0;
+ uk = bs(j1,i);
+<<"$i $uk \n"
+i = -1;
+ uk = bs(j1,i);
+<<"$i $uk \n"
+
+
+
+
+ uk = pow(2,63);
+
+
+<<"  pow(2,63)  $uk \n"
+
+
+<<"%V $j1 \n";
+
+
+
+<<"%V $j1 \n";
+  i = 0;
+  uk = j1 >> i;
+
+  <<"%V $i $uk  $j1\n"
+
+
+
+  i = 1;
+  uk = j1 >> i;
+
+  <<"%V $i $uk  $j1\n"
+
+
+  
+  i = 2;
+  uk = j1 >> i;
+
+  <<"$i $uk\n"
+
+
+
+
+  for (i= 0; i< 64 ; i++) {
+  uk = bs(j1,-i);
+  <<"$i $uk\n"
+  }
+
+
+
+
+
+
+for (i= 0; i< 64 ; i++) {
+  uk = j1 >> i;
+  <<"$i $uk\n"
+  }
+
+
+
+
+ i = 16;
+ uk = bs(j1,i);
+<<"$i $uk \n"
+
+
+ i = 34;
+ uk = bs(j1,i);
+<<"$i $uk \n"
+
+ i = 63;
+ uk = bs(j1,i);
+<<"$i $uk \n"
+
+
+ uk = pow(2,63);
+
+<<"$uk \n"
+ j1 = uk;
+ i = -4;
+ uk = bs(j1,i);
+<<"$i $j1 $uk \n"
+
+ ulong rec = 1;
+ int col = 5;
+ j1 = rec;
+
+<<"%V $j1 \n"
+
+  j1 = (rec << 32);
+<<"%V $j1 \n"
+  j1 += col;
+
+<<"%V $j1 \n"
+
+<<"%V $rec $col $j1\n"
+
+r2=  j1 >> 32;
+c2 = j1 & 0x00000000FFFFFFFF;
+
+<<"%V $r2 $c2 $j1\n"
 
 
 chkOut()

@@ -1174,3 +1174,7 @@ win_p.cpp                           1.91  06/20/2022 09:17:51  check release
 ds_storesvar.cpp                    1.87  06/20/2022 09:19:24  fix ele, empty array assign
 gline_p.cpp                         1.81  06/20/2022 09:21:00  fix vector resetMem
 navi_l.cpp                          1.21  06/20/2022 09:22:05  fix readIGC to Vec (resetMem)
+opera_bit.cpp                       1.43  07/03/2022 07:21:57  ulong bitops
+ds_getvarasstr.cpp                  2.67  07/03/2022 07:23:22  getAsLong revise
+ds_convert_store.cpp                2.2  07/03/2022 10:20:19  hex 64
+opera_promote.cpp                   1.54  07/03/2022 10:22:25  debug
