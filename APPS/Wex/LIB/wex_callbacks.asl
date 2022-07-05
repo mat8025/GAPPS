@@ -55,9 +55,9 @@
 
   //sWo(wedwos,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
 
-  sWova(_WOID,wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0);
+  sWo(_WOID,wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0);
 
-  sWova(_WOID,swo,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
+  sWo(_WOID,swo,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
 
   drawScreens();
 
@@ -223,7 +223,7 @@ COUT(button);
 
   drawScreens();
 
-  sWo(tw_wo,_WMOVETO,targetday,NextGoalWt,wtwo,_WREDRAW,_WEO);
+  sWo(_WOID,tw_wo,_WMOVETO,targetday,NextGoalWt,wtwo,_WREDRAW,1);
 */
   }
 

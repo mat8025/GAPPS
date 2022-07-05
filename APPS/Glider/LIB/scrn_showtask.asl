@@ -91,7 +91,7 @@ sWi(_WOID,Vp,_WRESIZE,wbox(0.1,0.01,0.98,0.99,0));
 
 
 
- sWova(_WOID,sawo,_WRESIZE, wbox (0.15,0.01,0.3,0.1));
+ sWo(_WOID,sawo,_WRESIZE, wbox (0.15,0.01,0.3,0.1));
   //sWo(sawo,_WRESIZE, rsz);
 
   sWo(_WOID,sawo,_WCOLOR,WHITE_,_WSTYLE,"SVB");
@@ -99,30 +99,30 @@ sWi(_WOID,Vp,_WRESIZE,wbox(0.1,0.01,0.98,0.99,0));
 
   vvwo= cWo(Vp, WO_GRAPH_);
 
-  sWova(_WOID,vvwo,_WNAME,"ALT",_WCOLOR,WHITE_);
+  sWo(_WOID,vvwo,_WNAME,"ALT",_WCOLOR,WHITE_);
 
 // printargs(vvwo,_WRESIZE, wbox(1,2,3,4,5));
 
 
 
- sWova(_WOID,vvwo,_WRESIZE,wbox(0.01,0.11,0.35,0.25));
+ sWo(_WOID,vvwo,_WRESIZE,wbox(0.01,0.11,0.35,0.25));
 
   //ans=query("?5","goon",__LINE__,__FILE__);
 
-  sWova(_WOID,vvwo, _WSCALES, wbox(0, 0, 100, 6000), _WSAVEPIXMAP,ON_, _WREDRAW,ON_, _WDRAW,ON_, _WPIXMAP,ON_);
+  sWo(_WOID,vvwo, _WSCALES, wbox(0, 0, 100, 6000), _WSAVEPIXMAP,ON_, _WREDRAW,ON_, _WDRAW,ON_, _WPIXMAP,ON_);
 
   mapwo= cWo(Vp,WO_GRAPH_);
 
-  sWova(_WOID,mapwo,_WRESIZE,wbox(0.34,0.01,0.99,0.99),_WNAME,"MAP",_WCOLOR,WHITE_);
+  sWo(_WOID,mapwo,_WRESIZE,wbox(0.34,0.01,0.99,0.99),_WNAME,"MAP",_WCOLOR,WHITE_);
 
 //<<"%V $mapwo $LongW $LatS \n"
 
-  sWova(_WOID,mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN), _WSAVE,ON_,  _WDRAW,ON_, _WPIXMAP,ON,_WSAVEPIXMAP,ON_);
+  sWo(_WOID,mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN), _WSAVE,ON_,  _WDRAW,ON_, _WPIXMAP,ON,_WSAVEPIXMAP,ON_);
 
   LastTP = 12; 
 
 
-  VCOUT(vvwo,mapwo);
+  //VCOUT(vvwo,mapwo);
  
   //tpwo = -1;
   
@@ -132,7 +132,7 @@ sWi(_WOID,Vp,_WRESIZE,wbox(0.1,0.01,0.98,0.99,0));
 
   tpwo[0]=cWo(Vp,WO_BV_);
   
-  sWova(_WOID,tpwo[0],_WNAME,"_Start_",_WSTYLE,SVR_,_WDRAW,ON_);
+  sWo(_WOID,tpwo[0],_WNAME,"_Start_",_WSTYLE,SVR_,_WDRAW,ON_);
   
 
   tpwo[MaxLegs] =-1;
@@ -143,9 +143,9 @@ sWi(_WOID,Vp,_WRESIZE,wbox(0.1,0.01,0.98,0.99,0));
    sprintf(TPname,"_TP%d_",i);
 
  //  sWo(tpwo[i],_WNAME,"_TP${i}_",_WSTYLE,"SVR",_WDRAWON,_WCOLOR,BLUE_,_WFONTHUE,BLACK_);
-   sWova(_WOID,tpwo[i],_WNAME,TPname,_WSTYLE,SVR_,_WDRAW,ON_,_WCOLOR,BLUE_,_WFONTHUE,BLACK_);
+   sWo(_WOID,tpwo[i],_WNAME,TPname,_WSTYLE,SVR_,_WDRAW,ON_,_WCOLOR,BLUE_,_WFONTHUE,BLACK_);
   
-   sWova(_WOID,tpwo[i],_WCOLOR,ORANGE_,_WFONTHUE,BLACK_,_WFONT,F_TINY_);
+   sWo(_WOID,tpwo[i],_WCOLOR,ORANGE_,_WFONTHUE,BLACK_,_WFONT,F_TINY_);
   }
  
   finish_wo = tpwo[2];
@@ -166,8 +166,8 @@ sWi(_WOID,Vp,_WRESIZE,wbox(0.1,0.01,0.98,0.99,0));
      legwo[i] = cWo(Vp,WO_BV_);
   sprintf(TPname,"LEG_%d_",i+1);  // asl vers needs to supress DQ expansion
 
-     sWova(_WOID,legwo[i],_WNAME,TPname,_WSTYLE,SVR_,_WDRAW,ON_,_WCOLOR,BLUE_,_WFONTHUE,BLACK_);
-     sWova(_WOID,legwo[i],_WCOLOR,BLUE_,_WFONTHUE,BLUE_,_WFONT,F_TINY_);
+     sWo(_WOID,legwo[i],_WNAME,TPname,_WSTYLE,SVR_,_WDRAW,ON_,_WCOLOR,BLUE_,_WFONTHUE,BLACK_);
+     sWo(_WOID,legwo[i],_WCOLOR,BLUE_,_WFONTHUE,BLUE_,_WFONT,F_TINY_);
 }
 
  // wovtile(legwo, 0.15, 0.4, 0.29, 0.95,12);
@@ -180,38 +180,38 @@ sWi(_WOID,Vp,_WRESIZE,wbox(0.1,0.01,0.98,0.99,0));
 
 
   TASK_wo=cWo(Vp,WO_BV_);
-  sWova(_WOID,TASK_wo, _WRESIZE,wbox(0.01,0.25,0.10,0.34));
+  sWo(_WOID,TASK_wo, _WRESIZE,wbox(0.01,0.25,0.10,0.34));
   
 //<<"%V$TASK_wo\n"
 
-  sWova(_WOID,TASK_wo, _WHELP, "Set Task Type", _WNAME, "TaskType", _WFUNC,  "wo_menu",  _WMENU, "SO,TRI,OAR,W,MT",  _WVALUE, "TRI");
+  sWo(_WOID,TASK_wo, _WHELP, "Set Task Type", _WNAME, "TaskType", _WFUNC,  "wo_menu",  _WMENU, "SO,TRI,OAR,W,MT",  _WVALUE, "TRI");
 
   tdwo = cWo(Vp, WO_BV_);
 
-  sWova(_WOID,tdwo,_WRESIZE,wbox(0.11,0.25,0.21,0.34,0),_WNAME,"TaskDistance");
+  sWo(_WOID,tdwo,_WRESIZE,wbox(0.11,0.25,0.21,0.34,0),_WNAME,"TaskDistance");
 
 //ans=query("?3","goon",__LINE__,__FILE__);
 
-  sWova(_WOID,tdwo,_WCOLOR,WHITE_,_WSTYLE,SVB_);
+  sWo(_WOID,tdwo,_WCOLOR,WHITE_,_WSTYLE,SVB_);
 
 
 //  TASK_menu_wo=cWo(Vp,WO_BV_);
 
-//  sWova(_WOID, TASK_menu_wo,_WRESIZE,wbox(0.05,0.12,0.15,0.24));
+//  sWo(_WOID, TASK_menu_wo,_WRESIZE,wbox(0.05,0.12,0.15,0.24));
 
-//  sWova(_WOID,TASK_menu_wo, _WHELP, "Set Task Type", _WNAME, "TaskMenu");
+//  sWo(_WOID,TASK_menu_wo, _WHELP, "Set Task Type", _WNAME, "TaskMenu");
 
  
   
   vptxt= cWo(Vp, WO_TEXT_);
   
-  sWova(_WOID,vptxt,_WRESIZE,wbox(0.01,0.9,0.4,0.99),_WNAME,"TXT");
-  sWova(_WOID,vptxt,_WCOLOR,WHITE_,_WSAVE,ON_,_WDRAW,ON_,_WPIXMAP,OFF_);
+  sWo(_WOID,vptxt,_WRESIZE,wbox(0.01,0.9,0.4,0.99),_WNAME,"TXT");
+  sWo(_WOID,vptxt,_WCOLOR,WHITE_,_WSAVE,ON_,_WDRAW,ON_,_WPIXMAP,OFF_);
 
 
   ZOOM_wo=cWo(Vp,WO_BV_);
   
-  sWova(_WOID,ZOOM_wo,  _WNAME, "ZOOM",_WRESIZE,wbox(0.22,0.25,0.32,0.34),_WCOLOR,RED_);
+  sWo(_WOID,ZOOM_wo,  _WNAME, "ZOOM",_WRESIZE,wbox(0.22,0.25,0.32,0.34),_WCOLOR,RED_);
 
 
 //  CURSORS

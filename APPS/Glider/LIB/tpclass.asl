@@ -296,7 +296,7 @@ cout << " " << Place <<" " << Idnt <<" " << Lat <<" " << Lon <<" " << Alt <<" " 
    {
       int amat[2];
       spat (tptype.cptr(),"A",-1,-1,amat);
-      pa("amat ",amat);
+    //  pa("amat ",amat);
       return amat[0];
    }
 //=========================//

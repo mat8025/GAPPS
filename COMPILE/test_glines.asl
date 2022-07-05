@@ -37,6 +37,9 @@
 
  int run_asl = runASL();
 
+
+#include "tbqrd.asl"
+
 #if CPP
 
  //opendll("plot");
@@ -123,7 +126,7 @@ COUT(ans);
   int gwo= cWo(vp,WO_GRAPH_);
   float worsz[6] = {0.1,0.1,0.9,0.9,0.0};
   
-  sWova(_WOID,gwo,_WRESIZE,worsz);
+  sWo(_WOID,gwo,_WRESIZE,worsz);
 
 
   double pi = 4.0 * atan(1.0); 
@@ -138,10 +141,10 @@ COUT(ans);
 
 
  // sWo(gwo,_scales, sx, sy, sX, sY,  _save,_redraw,_drawon,_pixmapon,_clipbhue,GREEN_,_EO);
-  sWova(_WOID,gwo,_WSAVE,1,_WREDRAW,1,_WDRAW,0,_WPIXMAP,1,_WCLIPBHUE,GREEN_);
+  sWo(_WOID,gwo,_WSAVE,1,_WREDRAW,1,_WDRAW,0,_WPIXMAP,1,_WCLIPBHUE,GREEN_);
 
 
-  sWova(_WOID,gwo,_WSCALES,vscale,_WSAVEPIXMAP,1,_WAXNUM,2,_WAXNUM,1);
+  sWo(_WOID,gwo,_WSCALES,vscale,_WSAVEPIXMAP,1,_WAXNUM,2,_WAXNUM,1);
   
 
 
@@ -289,8 +292,8 @@ VCOUT(xz_gl, _GLXVEC, _GLYVEC)
 //ans=query("see xz_gl");
 
 
-    sWova(_WOID,gwo,_WSHOWPIXMAP,1);
-//  ans=query("see sWova?");  
+    sWo(_WOID,gwo,_WSHOWPIXMAP,1);
+//  ans=query("see sWo?");  
   double f = 0.5;
   float ff =f;
 
@@ -324,7 +327,7 @@ VCOUT(xz_gl, _GLXVEC, _GLYVEC)
   
   sGl(_GLID,xn_gl,_GLHUE,RED_);
   
-   sWova(_WOID,gwo,_WCLEARPIXMAP,1,_WCLIPBORDER,BLACK_);
+   sWo(_WOID,gwo,_WCLEARPIXMAP,1,_WCLIPBORDER,BLACK_);
 
   int kk = 0;
 
@@ -441,14 +444,14 @@ ans=query("see Zvec");
 //cout << "Zvec " << Zvec << endl;
 
     
-   sWova(_WOID, gwo,_WCLEARPIXMAP,1,_WCLIPBORDER,BLACK_);
+   sWo(_WOID, gwo,_WCLEARPIXMAP,1,_WCLIPBORDER,BLACK_);
     
     //sWo(gwo,_line,0.1,0.1,3.0,2.0 ,RED_,_flush);
 
     //plot(gwo,_line,0.1,0.1,18.0,2 ,RED_);
     ff= f;
     lvec[3]= f;
-   sWova(_WOID,gwo,_WLINE,lvec);
+   sWo(_WOID,gwo,_WLINE,lvec);
 	
     sGl(_GLID,xn_gl,_GLDRAW,BLUE_);  // DrawGline; 
     
@@ -457,12 +460,13 @@ ans=query("see Zvec");
   if ((kk % 100) == 0) {  
      if (++hue > 8) hue = 1;
   }
+  
      sGl(_GLID,xz_gl,_GLDRAW, MAGENTA_);  
 
 
 //ans=query("did DrawLINES");
 
-    sWova(_WOID,gwo,_WSHOWPIXMAP,1,_WCLIPBORDER,ORANGE_);
+    sWo(_WOID,gwo,_WSHOWPIXMAP,1,_WCLIPBORDER,ORANGE_);
 
 //ans=query("see LINES");
 
@@ -490,7 +494,7 @@ ans=query("see Zvec");
 }
 
 
-   sWova(_WOID,gwo,_WAXNUM,2,_WAXNUM,1,_WSHOWPIXMAP,1);  
+   sWo(_WOID,gwo,_WAXNUM,2,_WAXNUM,1,_WSHOWPIXMAP,1);  
 //ans=query("see window?");
 
 /// create a window obj

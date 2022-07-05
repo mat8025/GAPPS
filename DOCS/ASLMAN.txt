@@ -5455,6 +5455,26 @@ You can supply an integer array with the indices of the record fields you want s
 
 
 .EF
+==========i======================================
+
+.BF
+findRecord()
+.(x
+findRecord(Str pat, int case_s, int wrd_match, int start_row, int start_col, int dir)
+.)x 
+.FD
+Record R
+
+wrec = R.findRecord(Str pat, int case_s, int wrd_match, int start_row, int start_col, int dir)
+
+findRecord is a method of Record class which searches for a pattern in the Record data
+case_s = 0  not case sensitive
+wrd_match = 1 exact match else  partial word(column) match
+start_row    - which row to start search
+start_col  - start each row search at specified col
+dir   if negative  search from start col to the start of row 
+
+.EF
 =============================================================
 
 .BF

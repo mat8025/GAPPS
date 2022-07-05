@@ -58,7 +58,7 @@
 
   }
 
-sWo(wtwo,_WSHOWPIXMAP,_WEO);
+sWo(_WOID,wtwo,_WSHOWPIXMAP,ON_);
 
 cout<<"Done showTarget\n";
   //plotSymbol(wtwo,targetday,GoalWt,STAR_,Symsz, LILAC_);
@@ -73,15 +73,15 @@ cout<<"Done showTarget\n";
   {
 //<<"$_proc %V $Nsel_exeburn $Nsel_lbs\n"
 
-  sWo(nobswo,_WVALUE,Nxy_obs,_WUPDATE,_WEO);
+  sWo(_WOID,nobswo,_WVALUE,Nxy_obs,_WUPDATE,ON_);
 
-  sWo(xtwo,_WVALUE,xhrs,_WREDRAW,_WEO);
+  sWo(_WOID,xtwo,_WVALUE,xhrs,_WREDRAW,ON_);
 
-  sWo(xbwo,_WVALUE,"%6.2f$Nsel_exeburn",_WREDRAW,_WEO);
+  sWo(_WOID,xbwo,_WVALUE,"%6.2f$Nsel_exeburn",_WREDRAW,ON_);
 
-  sWo(xlbswo,_WVALUE,"%4.1f$Nsel_lbs",_WUPDATE,_WEO);
+  sWo(_WOID,xlbswo,_WVALUE,"%4.1f$Nsel_lbs",_WUPDATE,ON_);
 
-  sWo(dlbswo,_WVALUE,"%4.1f$Ndiet_lbs",_WUPDATE,_WEO);
+  sWo(_WOID,dlbswo,_WVALUE,"%4.1f$Ndiet_lbs",_WUPDATE,ON_);
 
   }
 //========================================================
@@ -177,7 +177,7 @@ cout<<"Done showTarget\n";
 
   float wdate = RS[1];
 
-  sWo(wwo,_WFONT,"small",_WEO);
+  sWo(_WOID,wwo,_WFONT,"small");
  //  AxText(wwo, 1, the_date, wdate, 0.25, BLUE_);
 
   int draw_months =1;
@@ -210,6 +210,7 @@ cout<<"Done showTarget\n";
 
   void  drawGrids(int  ws )
   {
+    int i,j;
 // <<[_DB]" $ws \n"
 
   if (ws == 0) {
@@ -219,20 +220,20 @@ cout<<"Done showTarget\n";
   //sWo(extwo,_WFONT,"small",_WEO); // check font can accept a int or char *;
 
 
-  sWo(carbwo,_WAXNUM,AXIS_LEFT_,_WEO);
+  sWo(_WOID,carbwo,_WAXNUM,AXIS_LEFT_);
 
-  sWo(carbwo,_WYSCALES,wpt(0,carb_upper),_WSAVESCALES,0,_WEO);
+  sWo(_WOID,carbwo,_WYSCALES,wpt(0,carb_upper),_WSAVESCALES,0);
 
-  sWo(calwo,_WUSESCALES,0,_WAXNUM,  AXIS_LEFT_,_WEO);
+  sWo(_WOID,calwo,_WUSESCALES,0,_WAXNUM,  AXIS_LEFT_);
 //  sWo(carbwo,_WAXNUM,2);
 
-  sWo(extwo,_WYSCALES,wpt(0,upperWt),_WSAVESCALES,1,_WEO);
+  sWo(_WOID,extwo,_WYSCALES,wpt(0,upperWt),_WSAVESCALES,1);
 
-  sWo(extwo,_WAXNUM,AXIS_LEFT_,_WFLUSH);
+  sWo(_WOID,extwo,_WAXNUM,AXIS_LEFT_);
 
-  sWo(wtwo,_WYSCALES,wpt(160,220),_WEO);
+  sWo(_WOID,wtwo,_WYSCALES,wpt(160,220));
 
-    sWo(wtwo,_WAXNUM,AXIS_LEFT_,_WFLUSH);
+    sWo(_WOID,wtwo,_WAXNUM,AXIS_LEFT_);
   //sWo(extwo,_WAXNUM,2,0,sc_endday,20,10)
   //Text(wtwo, "Weight (lbs)",-4,0.7,4,-90)
 
@@ -257,15 +258,18 @@ cout<<"Done showTarget\n";
 
   }
   int allwo[] = {wtwo,swo, calwo,  extwo , carbwo,-1};
-
-    sWo(allwo,_WSHOWPIXMAP,_WSAVE,_WCLIPBORDER,-1,_WEO);
-
+    for (i = 0; i< 10; i++) {
+      if (allwo[i] <=0)
+         break;
+      sWo(_WOID,allwo[i],_WSHOWPIXMAP,ON_,_WSAVE,ON_,_WCLIPBORDER,BLACK_);
+    }
   }
 //---------------------------------------------------------------------------------
 #define ALL_LINES 1
 
   void drawScreens()
   {
+  int i,j;
 //<<" $_proc \n"
 //<<"%V $sc_startday  $sc_end \n"
 // sc_startday.pinfo()
@@ -281,12 +285,14 @@ cout<<"DrawScreens\n";
 
   COUT(sc_zstart);
   COUT(sc_zend);
+  for (i = 0; i< 10; i++) {
+      if (wedwos[i] <=0)
+         break;
+        sWo(_WOID,wedwos[i],_WXSCALES,wpt(sc_zstart,sc_zend));
+        sWo(_WOID,wedwos[i],_WCLEARCLIP,WHITE_,_WSAVE,ON_,_WCLEARPIXMAP,ON_,_WCLIPBORDER,BLACK_);
+  }
   
-  sWo(wedwos,_WXSCALES,wpt(sc_zstart,sc_zend),_WFLUSH);
-  
-
- sWo(wedwos,_WCLEARCLIP,WHITE_,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_,_WFLUSH);
-cout <<"Draw Screen\n";
+  cout <<"Draw Screen\n";
   drawGoals( wScreen);
 
   drawGrids( wScreen);
@@ -304,7 +310,7 @@ cout <<"Draw Screen\n";
       //dGl(cardio_gl);
       //dGl(strength_gl);
 
-  sWo(calwo,_WFONT,F_SMALL_,_WEO);
+  sWo(_WOID,calwo,_WFONT,F_SMALL_);
       /// these need to be a separate wo to contain key  symbol and text
      // plot(calwo,_Wkeysymbol,0.78 ,0.9,DIAMOND_,Symsz,BLUE_,1);
 
@@ -312,15 +318,21 @@ cout <<"Draw Screen\n";
 
  // plotSymbol(calwo,_WKEYSYMBOL,wpt(0.78 ,0.8),DIAMOND_,Symsz,RED_,1);
 
-  sWo(calwo,_WTEXTR,"Calories Ate", wpt(0.8,0.82),1,0,BLACK_,_WEO);
+//  sWo(_WOID,calwo,_WTEXTR,"Calories Ate", wpt(0.8,0.82),1,0,BLACK_);
+
+    Text(calwo,"Calories Ate", 0.8,0.82,1,0,BLACK_);
+
+
      // plot(calwo,_Wkeysymbol,0.78 ,0.7,TRI_,Symsz,RED_,1,_Wfonthue,WHITE_);      
       //Text(calwo,"Carbs Ate", 0.8,0.72,1)
 
-  sWo(extwo,_WFONT,F_SMALL_,_WEO);
+  sWo(_WOID,extwo,_WFONT,F_SMALL_);
       //plot(extwo,_Wkeysymbol,0.78,0.7,TRI_,Symsz,GREEN_,1);
 
-  sWo(extwo,"Exercise Time (mins)",wpt( 0.8,0.7),1,0,RED_,_WEO);
 
+
+//  sWo(_WOID,extwo,"Exercise Time (mins)",wpt( 0.8,0.7),1,0,RED_);
+   Text(extwo,"Exercise Time (mins)",0.8,0.7,1,0,RED_);
 
   int allgls[] = {wt_gl,  carb_gl,  fibre_gl,  fat_gl,  prot_gl,  calc_gl,  calb_gl,  wt_gl,ext_gl, -1};
 
@@ -347,7 +359,7 @@ cout <<"Draw Screen\n";
   int allwo[] = {wtwo,swo, calwo,  extwo , carbwo,-1};
  // int allwo[] = {gwo,-1};
    
-  sWo(allwo,_WCLIPBORDER,BLACK_,_WEO);
+  
    
    
   //drawMonths(wtwo);
@@ -362,11 +374,14 @@ cout <<"Draw Screen\n";
        //dGl(wt_gl)
        //dGl(wt_gl)
 
- showTarget();
+     showTarget();
 
- 
-  sWo(wedwos,_WSHOWPIXMAP,_WCLIPBORDER,BLACK_,_WEO);
-
+   for (i = 0; i< 10; i++) {
+      if (wedwos[i] <=0)
+         break;
+    sWo(_WOID,wedwos[i],_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_);
+   }
+   
   }
 
   if ( wScreen == 1) {
@@ -381,7 +396,7 @@ cout <<"Draw Screen\n";
 
   sGl(_GLID,bp_gl,_GLDRAW);   
 
-  sWova(_WOID,swo,_WSHOWPIXMAP,1);
+  sWo(_WOID,swo,_WSHOWPIXMAP,1);
 
   //sWo(allwo,_WCLIPBORDER,GREEN_);
 
@@ -389,7 +404,7 @@ cout <<"Draw Screen\n";
 
   //sWo(fewos,_WREDRAW);
 
- // sWo(tw_wo,_WMOVE,wpt(targetday,NextGoalWt),wtwo,_WREDRAW,_WEO); // ?? parent wo
+ // sWo(tw_wo,_WMOVE,wpt(targetday,NextGoalWt),wtwo,_WREDRAW); // ?? parent wo
 
   Wex_CR_init = 1;
   Wex_CL_init = 1;
@@ -417,7 +432,8 @@ cout <<"Draw Screen\n";
 // find current mid-year
 // decrement - and set rx,RX to jan 1, dec 31 of that year
 // then label 1/4 days
- int wedwos[] = { wtwo, calwo,  carbwo, extwo,-1  };
+  int i,j;
+  int wedwos[] = { wtwo, calwo,  carbwo, extwo,-1  };
   float rx,ry,rX,rY;
   RS=wgetrscales(wtwo);
 // just plot at mid - the date
@@ -463,12 +479,14 @@ cout <<"Draw Screen\n";
   sc_startday = rx;
 
   sc_endday = rX;
+  for (i = 0; i< 10; i++) {
+      if (wedwos[i] <=0)
+         break;
+  sWo(_WOID,wedwos[i],_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
+  }
+  sWo(_WOID,swo,_WXSCALES,wpt(rx,rX));
 
-  sWo(wedwos,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0,_WEO);
-
-  sWova(_WOID,swo,_WXSCALES,wpt(rx,rX));
-
-  sWova(_WOID,wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0);
+  sWo(_WOID,wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0);
 
   drawScreens();
 
@@ -515,42 +533,13 @@ cout <<"Draw Screen\n";
   woSetValue(cbmwo,cbm);
   woSetValue(xtmwo,xtm);
 
-  sWo(wtmwo,_WREDRAW,_WEO);
-  sWo(dtmwo,_WREDRAW,_WEO);
-  sWo(xtmwo,_WREDRAW,_WEO);  
+  sWo(_WOID,wtmwo,_WREDRAW,1);
+  sWo(_WOID,xtmwo,_WREDRAW,1);  
 
 
-  sWova(_WOID,dtmwo,_WSTRVALUE ,mdy,_WREDRAW,1);
+  sWo(_WOID,dtmwo,_WSTRVALUE ,mdy,_WREDRAW,1);
 
-#if 0
-  sWo(wtmwo,_WVALUE,wtm,_WREDRAW,_WEO);
 
-  sWo(cbmwo,_WVALUE,0,_WREDRAW,_WEO);
-
-  sWo(xtmwo,_WVALUE,0,_WREDRAW,_WEO);
-
-  sWo(obswo,_WVALUE,0,_WREDRAW,_WEO);
-
-  int i = dayv -1;
-
-  xtm = EXTV[i];
-
-  wtm  = WTVEC[i];
-
-  cbm  = CALBURN[i];
-
-  dt = dayv -Sday;
-   //<<"%V $dayv  $Sday $mdy\n"
-   //<<"FOUND $i %V $dayv $Sday $dt  $wtm $xtm $cbm\n"
-
-  sWo(obswo,_WVALUE,dt+1,_WREDRAW,_WEO);
-
-  sWo(xtmwo,_WVALUE,xtm,_WREDRAW,_WEO);
-
-  sWo(wtmwo,_WVALUE,wtm,_WREDRAW,_WEO);
-
-  sWo(cbmwo,_WVALUE,cbm,_WREDRAW,_WEO);
-#endif
 
   }
 //[EM]=================================//

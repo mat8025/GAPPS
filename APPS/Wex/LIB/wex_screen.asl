@@ -49,19 +49,19 @@
 
   wtwo=cWo(vp,WO_GRAPH);
 
-  sWova(_WOID,wtwo,_WNAME,"WTLB",_WVALUE,0,_WCLIPBORDER,YELLOW_); //   weight;
+  sWo(_WOID,wtwo,_WNAME,"WTLB",_WVALUE,0,_WCLIPBORDER,YELLOW_); //   weight;
 
   calwo=cWo(vp,WO_GRAPH);
 
-   sWova(_WOID,calwo,_WNAME,"CAL",_WVALUE,0,_WCLIPBORDER,BLACK_) ; // cals;
+   sWo(_WOID,calwo,_WNAME,"CAL",_WVALUE,0,_WCLIPBORDER,BLACK_) ; // cals;
 
   carbwo=cWo(vp,WO_GRAPH);
   
-  sWova(_WOID,carbwo,_WNAME,"CARB",_WVALUE,0,_WCLIPBORDER,BLACK_) ; // carbs;
+  sWo(_WOID,carbwo,_WNAME,"CARB",_WVALUE,0,_WCLIPBORDER,BLACK_) ; // carbs;
 
   extwo=cWo(vp,WO_GRAPH);
   
-  sWova(_WOID,extwo,_WNAME,"XT",_WVALUE,0,_WCLIPBORDER,BLACK_); // exercise time;
+  sWo(_WOID,extwo,_WNAME,"XT",_WVALUE,0,_WCLIPBORDER,BLACK_); // exercise time;
 
   int wedwos[] = { wtwo,calwo,  carbwo, extwo,-1  };
 //<<[_DB]"%V$wedwo \n"
@@ -92,7 +92,7 @@ cout <<"aftertitleButtons\n";
 COUT(sc_zstart);
  //  _WFONT arg wfont(char*) wfont(int) --- 
 
-  sWova(_WOID,calwo,_WCLIP,CXY,_WCOLOR,MAGENTA_,_WCLIPBHUE,WHITE_,_WBHUE,WHITE_,_WFONT,F_SMALL_);
+  sWo(_WOID,calwo,_WCLIP,CXY,_WCOLOR,MAGENTA_,_WCLIPBHUE,WHITE_,_WBHUE,WHITE_,_WFONT,F_SMALL_);
 
 COUT(calwo);
 
@@ -100,11 +100,11 @@ COUT(calwo);
 
 
  // sWo(carbwo,_WCLIP,CXY,_WCOLOR,WHITE_,_WCLIPBHUE,RED_,_WBHUE,RED_  ,_WFONT,F_SMALL_,_WFONTHUE,WHITE_,_WEO);
-  sWova(_WOID,carbwo,_WCLIP,CXY,_WCOLOR,WHITE_,_WCLIPBHUE,RED_,_WBHUE,RED_  ,_WFONT,F_SMALL_);
+  sWo(_WOID,carbwo,_WCLIP,CXY,_WCOLOR,WHITE_,_WCLIPBHUE,RED_,_WBHUE,RED_  ,_WFONT,F_SMALL_);
 
-  sWova(_WOID,extwo,_WCLIP,CXY,_WCOLOR,YELLOW_,_WCLIPBHUE,GREEN_,_WBHUE,ORANGE_,_WFONT,F_SMALL_);
+  sWo(_WOID,extwo,_WCLIP,CXY,_WCOLOR,YELLOW_,_WCLIPBHUE,GREEN_,_WBHUE,ORANGE_,_WFONT,F_SMALL_);
 
-  sWova(_WOID,wtwo,_WCLIP,CXY,_WCOLOR,ORANGE_,_WCLIPBHUE,RED_,_WBHUE,ORANGE_,_WFONT,F_SMALL_);
+  sWo(_WOID,wtwo,_WCLIP,CXY,_WCOLOR,ORANGE_,_WCLIPBHUE,RED_,_WBHUE,ORANGE_,_WFONT,F_SMALL_);
 
 //  sWo(wedwos,_WCLIP,CXY,_WCOLOR,RED_,_WCLIPBHUE,ORANGE_,_WBHUE,LILAC_,_WFONT, F_SMALL_,_WSAVE,_WSAVEPIXMAP,_WEO);
 
@@ -112,7 +112,7 @@ COUT(calwo);
 
 COUT(sc_end);
 
-  sWova(_WOID,extwo,_WSCALES,wbox(sc_startday,110,sc_end,250));
+  sWo(_WOID,extwo,_WSCALES,wbox(sc_startday,110,sc_end,250));
 
 cout <<"SCALES " << sc_startday << " sc_end " <<sc_end << endl;
 
@@ -120,7 +120,7 @@ cout <<"SCALES " << sc_startday << " sc_end " <<sc_end << endl;
 
 //  sWo(extwo,_WSAVESCALES,0,_WEO);
 
-  sWova(_WOID,calwo,_WSCALES,wbox(sc_startday,0,sc_end,CalsY1),_WSAVESCALES,0);
+  sWo(_WOID,calwo,_WSCALES,wbox(sc_startday,0,sc_end,CalsY1),_WSAVESCALES,0);
    //sWo(calwo,_WSCALES,sc_startday,0,sc_end,carb_upper,_WSAVESCALES,1)
     //sleep(0.1)
 COUT(calwo);
@@ -140,7 +140,7 @@ COUT(swo);
 ///  measurement
 
   tw_wo= cWo(wtwo,WO_BS);
-  sWova(_WOID,tw_wo,_WRESIZE,wbox(0.1,0.1,0.15,0.25,0),_WNAME,"TW",_WVALUE,"175");
+  sWo(_WOID,tw_wo,_WRESIZE,wbox(0.1,0.1,0.15,0.25,0),_WNAME,"TW",_WVALUE,"175");
 COUT(tw_wo);
 //  sWo(tw_wo,_WVHMOVE,ON,_WSYMBOL,STAR_,_WPIXMAPON,_WREDRAW,_WEO);
 //////////////////////////// SCALES //////////////////////////////////////////
@@ -151,16 +151,16 @@ COUT(tw_wo);
 
   float wt_upper = 220;
 
-  sWova(_WOID,swo,_WSCALES,wbox(sc_startday,110,sc_end,bp_upper));
+  sWo(_WOID,swo,_WSCALES,wbox(sc_startday,110,sc_end,bp_upper));
 
 cout<<"scales " << sc_startday << " sc_end " << sc_end << " bp_upper " << bp_upper << endl;
   //<<"SCALES %V$sc_startday $sc_endday $bp_upper\n";
 
-  sWova(_WOID,carbwo,_WSCALES,wbox(sc_startday,0,sc_end,carb_upper));
+  sWo(_WOID,carbwo,_WSCALES,wbox(sc_startday,0,sc_end,carb_upper));
 
   //<<"SCALES %V$sc_startday $sc_endday $carb_upper\n";
 
-  sWova(_WOID,wtwo,_WSCALES,wbox(sc_startday,155,sc_end,250));
+  sWo(_WOID,wtwo,_WSCALES,wbox(sc_startday,155,sc_end,250));
 
 
   int allwo[] = {wtwo, calwo,  extwo , carbwo,swo,-1};
@@ -173,10 +173,10 @@ cout<<"scales " << sc_startday << " sc_end " << sc_end << " bp_upper " << bp_upp
   //quitwo=cWo(vp,WO_BN,_WNAME,"QUIT",_WCOLOR,"red")
 
   zinwo=cWo(vp,WO_BN);
-  sWova(_WOID,zinwo,_WNAME,"ZIN",_WCOLOR,PINK_,_WHELP," zoom in on selected days ",_WREDRAW,1);
+  sWo(_WOID,zinwo,_WNAME,"ZIN",_WCOLOR,PINK_,_WHELP," zoom in on selected days ",_WREDRAW,1);
 
   zoomwo=cWo(vp,WO_BN);
-  sWova(_WOID,zoomwo,_WNAME,"ZOUT",_WCOLOR,BLUE_,_WREDRAW,_WEO);
+  sWo(_WOID,zoomwo,_WNAME,"ZOUT",_WCOLOR,BLUE_,_WREDRAW,ON_);
  // yrdecwo= cWo(vp,WO_BN,_WNAME,"YRD",_WCOLOR,"violetred",_WHELP," show previous Year  ")
 //  yrincwo= cWo(vp,WO_BN,_WNAME,"YRI",_WCOLOR,"purple",_WHELP," show next Year  ")
 //  qrtdwo=  cWo(vp,WO_BN,_WNAME,"QRTD",_WCOLOR,"violetred",_WHELP," show previous Qtr period ")
@@ -190,20 +190,20 @@ COUT(fewos);
 
   nobswo= cWo(vp,WO_BV);
   
-  sWova(_WOID,nobswo,_WNAME,"Nobs",_WCLIPBHUE,CYAN_,_WVALUE,0);
+  sWo(_WOID,nobswo,_WNAME,"Nobs",_WCLIPBHUE,CYAN_,_WVALUE,0);
 
   xtwo= cWo(vp,WO_BV);
-  sWova(_WOID,xtwo,  _WNAME,"xTime",_WCLIPBHUE,ORANGE_,_WVALUE,0);
+  sWo(_WOID,xtwo,  _WNAME,"xTime",_WCLIPBHUE,ORANGE_,_WVALUE,0);
 
   xbwo= cWo(vp,WO_BV);
-  sWova(_WOID,xbwo,_WNAME,"xBurn",_WCLIPBHUE,GREEN_     ,_WVALUE,0);
+  sWo(_WOID,xbwo,_WNAME,"xBurn",_WCLIPBHUE,GREEN_     ,_WVALUE,0);
 
   xlbswo= cWo(vp,WO_BV);
-  sWova(_WOID,xlbswo,_WNAME,"xLbs",_WCOLOR,BLUE_      ,_WVALUE,0);
+  sWo(_WOID,xlbswo,_WNAME,"xLbs",_WCOLOR,BLUE_      ,_WVALUE,0);
 
   dlbswo= cWo(vp,WO_BV);
 
- sWova(_WOID,dlbswo,_WNAME,"dLbs",_WCLIPBHUE,YELLOW_,_WVALUE,0);
+ sWo(_WOID,dlbswo,_WNAME,"dLbs",_WCLIPBHUE,YELLOW_,_WVALUE,0);
 
   int xwos[] = { nobswo, xtwo, xbwo, xlbswo, dlbswo ,-1};
 
@@ -212,43 +212,49 @@ COUT(fewos);
 
    //sWo(xwos,_WSTYLE,WO_SVB,_WREDRAW,_WEO);
 
-   sWova(_WOID,wtwo,_WSHOWPIXMAP,_WSAVE);
+   sWo(_WOID,wtwo,_WSHOWPIXMAP,ON_,_WSAVE,ON_);
 
  // sWo(calwo,_WSHOWPIXMAP,_WSAVE,_WEO);
   //sleep(0.1)
   // Measure WOBS
 
   dtmwo=cWo(vp,WO_BV);
-  sWova(_WOID,dtmwo,_WNAME,"DAY",_WCLIPBHUE,RED_,_WHELP," date on day ");
+  sWo(_WOID,dtmwo,_WNAME,"DAY",_WCLIPBHUE,RED_,_WHELP," date on day ");
 
   obswo=cWo(vp,WO_BV);
-  sWova(_WOID,obswo,_WNAME,"OBS",_WCLIPBHUE,YELLOW_,_WHELP," obs day ");
+  sWo(_WOID,obswo,_WNAME,"OBS",_WCLIPBHUE,YELLOW_,_WHELP," obs day ");
 
   wtmwo=cWo(vp,WO_BV);
-  sWova(_WOID,wtmwo,_WNAME,"WTM",_WCLIPBHUE,RED_,_WHELP," wt on day ");
+  sWo(_WOID,wtmwo,_WNAME,"WTM",_WCLIPBHUE,RED_,_WHELP," wt on day ");
 
   cbmwo=cWo(vp,WO_BV);
   
-  sWova(_WOID,cbmwo,_WNAME,"CBM",_WCLIPBHUE,CYAN_,_WFONTHUE,WHITE_,_WHELP," cals burnt on day ");
+  sWo(_WOID,cbmwo,_WNAME,"CBM",_WCLIPBHUE,CYAN_,_WFONTHUE,WHITE_,_WHELP," cals burnt on day ");
 
   xtmwo=cWo(vp,WO_BV);
-  sWova(_WOID,xtmwo,_WNAME,"EXT",_WCOLOR,BLUE_,_WHELP," xtime on day ");
+  sWo(_WOID,xtmwo,_WNAME,"EXT",_WCOLOR,BLUE_,_WHELP," xtime on day ");
 
   int mwos[] = { dtmwo, obswo, wtmwo, cbmwo, xtmwo,-1};
 
+  
   wovtile( mwos, 0.02,0.5,0.08,0.9);
 
-  sWo(mwos,_WSTYLE,WO_SVB,_WREDRAW,_WEO);
+  for (int i= 0; i< 10; i++) {
+   if (mwos[i] <0 ) break;
+   sWo(_WOID,mwos[i],_WSTYLE,WO_SVB,_WREDRAW,ON_);
+
+  }
+  
 //  Goal WOBS
 
   sdwo=cWo(vp,WO_BV);
-  sWova(_WOID,sdwo,_WNAME,"StartDay",_WCLIPBHUE,RED_,_WVALUE,"$Goals[0]",_WHELP,"   startday ");
+  sWo(_WOID,sdwo,_WNAME,"StartDay",_WCLIPBHUE,RED_,_WVALUE,"$Goals[0]",_WHELP,"   startday ");
 
   gdwo=cWo(vp,WO_BV);
-  sWova(_WOID,gdwo,_WNAME,"GoalDay",_WCLIPBHUE,ORANGE_,_WVALUE,"$Goals[1]",_WHELP," goalday ");
+  sWo(_WOID,gdwo,_WNAME,"GoalDay",_WCLIPBHUE,ORANGE_,_WVALUE,"$Goals[1]",_WHELP," goalday ");
 
   gwtwo=cWo(vp,WO_BV);
-  sWova(_WOID,gwtwo,_WNAME,"WtGoal",_WVALUE,"$Goals[2]",_WCLIPBHUE,BLUE_,_WFONTHUE,WHITE_,_WHELP," next goal wt ");
+  sWo(_WOID,gwtwo,_WNAME,"WtGoal",_WVALUE,"$Goals[2]",_WCLIPBHUE,BLUE_,_WFONTHUE,WHITE_,_WHELP," next goal wt ");
 
   int  goalwos[] = { sdwo, gdwo, gwtwo, -1};
 

@@ -466,12 +466,6 @@ printf("Warning can't find $targ as a TP - skipping \n");
 // set a default task
 if (Ntaskpts == -1) {
 
-    //		    // dbt("WHELP %s\n",name);
-
-//Svar targ_list[] = {"eldorado","casper","rangely","eldorado"};
-
-  // Svar targ_list = {"eldorado","casper","rangely","eldorado"};
-
      Svar targ_list;
      targ_list.findCommaTokens("eldorado,casper,rangely,eldorado");
 
@@ -519,21 +513,6 @@ int k;
 	     cval =  Wtp[k].Place;
 	     
     }
-
-//ans = query("see wtp");
-
-
-//<<"//////////\n"
-
-
-
-
-//Taskpts.pinfo()
-
-
-
-//<<" Now print task\n"
-
 
 
       for (i = 0; i < Ntaskpts ; i++) {
@@ -586,7 +565,7 @@ Str place;
 
         woSetValue(tpwo[i],place);
        
-        sWova(_WOID,tpwo[i],_WREDRAW,ON_);  
+        sWo(_WOID,tpwo[i],_WREDRAW,ON_);  
        // woSetValue(tpwo[i],k,1)
        // display alt?
 //	woSetValue(tpwo[i],alt,1)   
@@ -603,7 +582,7 @@ Str place;
 //ans=query("?2","hey",__LINE__);
 
 
-    sWo(tpwo,_WREDRAW);
+    //sWo(tpwo,_WREDRAW);
 
 pa("Ntaskpts ", Ntaskpts);
 
@@ -637,7 +616,7 @@ pa( " Coors ", LongW, LatS, LongE, LatN);
 
 
 
-    sWova(_WOID,mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN));
+    sWo(_WOID,mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN));
 
 
 
@@ -666,8 +645,8 @@ pa( " Coors ", LongW, LatS, LongE, LatN);
 
     igc_vgl = cGl(vvwo);
 
-    VCOUT(_GLTXY, _GLTY);
-        VCOUT(igc_vgl, igc_tgl);
+//    VCOUT(_GLTXY, _GLTY);
+//        VCOUT(igc_vgl, igc_tgl);
     
     sGl(_GLID,igc_vgl, _GLTY, IGCELE,_GLHUE, GREEN_);
 
@@ -702,21 +681,21 @@ pa( " Coors ", LongW, LatS, LongE, LatN);
 
     pa(Ntpts," mAx ele ", Max_ele);
     
-    //sWova(_WOID,vvwo, _WSCALES, wbox(0, 0, Ntpts, Max_ele +500));
-    sWova(_WOID,vvwo, _WSCALES, wbox(0, 0, Ntpts, 5000));
+    //sWo(_WOID,vvwo, _WSCALES, wbox(0, 0, Ntpts, Max_ele +500));
+    sWo(_WOID,vvwo, _WSCALES, wbox(0, 0, Ntpts, 5000));
 
     sGl(_GLID,igc_vgl,_GLDRAW,RED_);  // DrawGline;
 
   //  dGl(igc_vgl);  // plot the igc climb -- if supplied
 
-   sWova(_WOID,vvwo,_WSHOWPIXMAP,ON_);
+   sWo(_WOID,vvwo,_WSHOWPIXMAP,ON_);
 //ans=query("?","igc",__LINE__);
    }
 
 
 
    }
-   sWova(_WOID,ZOOM_wo,_WREDRAW,ON_);
+   sWo(_WOID,ZOOM_wo,_WREDRAW,ON_);
 
 
 //ans=query("?3","see trace?",__LINE__);
@@ -754,7 +733,7 @@ Str wcltpt="XY";
  
   woSetValue(tdwo,totalK);
   
-  sWova(_WOID,tdwo,_WREDRAW,ON_);
+  sWo(_WOID,tdwo,_WREDRAW,ON_);
 
 //ans=query("?4","b4 trace?",__LINE__);
   drawTrace();
@@ -763,7 +742,7 @@ Str wcltpt="XY";
 
 //  zoom_to_task(mapwo,1)
 
-  sWova(_WOID,mapwo,_WSCALES,wbox( LongW, LatS, LongE, LatN) );
+  sWo(_WOID,mapwo,_WSCALES,wbox( LongW, LatS, LongE, LatN) );
 
 //ans=query("?6"," ",__LINE__);
 
@@ -795,7 +774,7 @@ Str wcltpt="XY";
    updateLegs();
 
     taskDist();
- sWo(tdwo,_WUPDATE);
+ //sWo(tdwo,_WUPDATE);
 
   while (1) {
  //   zoom_to_task(mapwo,1)
@@ -817,7 +796,7 @@ Str wcltpt="XY";
 
     Ev_keyw = gev.getEventKeyWord();
 
-  pa("pa Ev_keyw ", Ev_keyw);
+    pa("pa Ev_keyw ", Ev_keyw);
   
   // printf("Ev_keyw <|%s|> ", Ev_keyw.cptr());
 
@@ -838,7 +817,12 @@ Str wcltpt="XY";
     //Text(vptxt," $_gekeyw   ",0,0.05,1)
 
        if ( gev.getEventKey() >= 65) {
-       
+
+
+       printf("IN  W %f E %f N %f S %f\n",LongW, LongE,LatN, LatS);
+
+//ans=query("1","hey",__LINE__);
+
        d_ll = (LatN-LatS)/ 10.0 ;
 //<<"%V $LongW $LatS $LongE $LatN   $d_ll\n"
         if (Gekey == 'q') {
@@ -851,24 +835,28 @@ Str wcltpt="XY";
        if (Gekey == 'Q') {
            LongW += d_ll;
            LongE += d_ll;
-	    drawit = 1;
+	   printf("Q  W %f E %f\n",LongW, LongE);
+	   drawit = 1;
        }
 
        if (Gekey == 'S') {
            LongW -= d_ll;
            LongE -= d_ll;
+	   printf("S  W %f E %f\n",LongW, LongE);	   
 	    drawit = 1;
        }
 
        if (Gekey == 'R') {
            LatN += d_ll;
            LatS += d_ll;
-	    drawit = 1;
+	   printf("R  N %f S %f\n",LatN, LatS);	   
+	   drawit = 1;
        }
 
        if (Gekey == 'T') {
            LatN -= d_ll;
            LatS -= d_ll;
+	   printf("T  N %f S %f\n",LatN, LatS);	   	   
 	    drawit = 1;
        }
 
@@ -879,6 +867,7 @@ Str wcltpt="XY";
            LatS -= d_ll;
            LongW += d_ll;
            LongE -= d_ll;
+	   printf("X  W %f E %f N %f S %f\n",LongW, LongE,LatN, LatS);	   	   
 	    drawit = 1;
        }
 
@@ -888,6 +877,7 @@ Str wcltpt="XY";
            LatS += (d_ll * 0.9);
            LongW -= (d_ll * 0.9);
            LongE += (d_ll * 0.9);
+	   printf("x  W %f E %f N %f S %f\n",LongW, LongE,LatN, LatS);	   	   	   
 	    drawit = 1;
        }
 
@@ -904,7 +894,9 @@ Str wcltpt="XY";
 
          if (drawit) {
 //<<"%V $LongW $LatS $LongE $LatN\n"
- sWo(mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN), _WEO);
+ printf("OUT W %f E %f N %f S %f\n",LongW, LongE,LatN, LatS);
+ sWo(_WOID,mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN));
+ 
         }
       }
 
@@ -917,7 +909,7 @@ Str wcltpt="XY";
              wtp = PickaTP(0);
              if (wtp >= 0) {
                 wcltpt = Wtp[wtp].Place;
-                sWo(tpwo[0],_WVALUE,wcltpt,_WREDRAW);
+                sWo(_WOID,tpwo[0],_WVALUE,wcltpt,_WREDRAW,ON_);
              }
 
             }
@@ -959,7 +951,7 @@ Str wcltpt="XY";
 
            //  showTaskPts();
 
-pa("wc ", wc);
+//pa("wc ", wc);
 //ans=query("?",wc,__LINE__);
 
               if (wc == "M") { // replace
@@ -1025,14 +1017,14 @@ pa("wc ", wc);
           }
 	   
 
-                 sWo(tpwo,_WREDRAW);
-                 sWo(legwo,_WREDRAW);		 
+                 //sWo(tpwo,_WREDRAW);
+                 //sWo(legwo,_WREDRAW);		 
                 // sWo(wtpwo,_Wcxor);
                  showTaskPts();
        }
        else if (WoName == "ALT") {
        
-       	 wfr=sWo(mapwo,_WSHOWPIXMAP); // should erase precious target position
+       	 sWo(_WOID,mapwo,_WSHOWPIXMAP,ON_); // should erase precious target position
 	 
          drawit = 0;
          dindex = rint(Gerx);
@@ -1044,7 +1036,7 @@ pa("wc ", wc);
 	 syme = IGCELE[dindex] *  3.280839;
 	// <<"%V $symx $symy $syme  \n"
 
-          wfr =sWo(mapwo,_WPIXMAPOFF,_WDRAWON); // just draw but not to pixamp
+          sWo(_WOID,mapwo,_WPIXMAP,OFF_,_WDRAW,ON_); // just draw but not to pixamp
        if (Ev_button == 1 || Ev_button == 4) {
 
 	  sGl(_GLID,st_lc_gl,_GLCURSOR,rbox(Gerx,0,Gerx,20000, CL_init));
@@ -1053,7 +1045,7 @@ pa("wc ", wc);
 	   zoom_begin = Gerx;
 
            plotSymbol(mapwo,symx,symy,CROSS_,symsz,MAGENTA_,1);
-
+           plotSymbol(mapwo,symrx,symry,DIAMOND_,symsz,LILAC_,1,90);		  
 
 
          }
@@ -1064,8 +1056,16 @@ pa("wc ", wc);
 	  sGl(_GLID,st_rc_gl,_GLCURSOR,rbox(Gerx,0,Gerx,20000, CR_init));
           //dGl(rc_gl);
 	  CR_init = 0;
-	  
-          plotSymbol(mapwo,symx,symy,DIAMOND_,symsz,LILAC_,1,90);		  
+
+
+         symrx = IGCLONG[dindex];
+	 symry = IGCLAT[dindex];
+	 
+	 symem = IGCELE[dindex] ;
+	 syme = IGCELE[dindex] *  3.280839;
+
+          plotSymbol(mapwo,symx,symy,CROSS_,symsz,MAGENTA_,1);
+          plotSymbol(mapwo,symrx,symry,DIAMOND_,symsz,LILAC_,1,90);		  
 	  
            zoom_end = Gerx;
 	   
@@ -1076,18 +1076,20 @@ pa("wc ", wc);
 
 //	 swo(mapwo,_WCLEAR,_WCLEARCLIP,BLUE_,_WCLEARPIXMAP);
 	 
-         wfr = sWo(mapwo,_WPIXMAPON);
+
 	 drawAlt();
 
 
 //<<"%V $zoom_begin $zoom_end  $mapwo $vvwo \n"
-	 sWo(sawo,_WVALUE,"$symx $symy $syme ",_WREDRAW);
+	 sWo(_WOID,sawo,_WVALUE,"$symx $symy $syme ",_WREDRAW,ON_);
 	 
        }
        else if (WoName == "ZOOM") {
         // find LatN,LatS,LongW,LongE for the time range zoom_begin , zoom_end
         // add margin
 	// set and update map
+
+        VCOUT(zoom_begin, zoom_end);
 	zoomMap(zoom_begin, zoom_end);
 	 
         Task_update =1;
@@ -1164,7 +1166,7 @@ pa("wc ", wc);
       taskDist();
 
    //   woSetValue(tdwo,totalK);
-   //   sWova(_WOID,tdwo,_WUPDATE,ON_);
+   //   sWo(_WOID,tdwo,_WUPDATE,ON_);
 
      Task_update = 0;
       //int i;
@@ -1183,8 +1185,8 @@ pa("wc ", wc);
 
        updateLegs();
 
-       sWo(tpwo,_WREDRAW);
-       sWo(legwo,_WREDRAW);		 
+       //sWo(tpwo,_WREDRAW);
+       //sWo(legwo,_WREDRAW);		 
       }
 
    //  sWi(vp,_WREDRAW);

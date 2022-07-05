@@ -133,24 +133,24 @@ cout << "done vp2" << endl;
   int rwo=cWo(vp);
 
  wovalue.strPrintf("%f",redv);
-  sWo(rwo,_WTYPE, WO_BV,_WNAME,"Red",_WRESIZE,wbox(rx,cby,rX,cbY),  _WVALUE,wovalue.cptr(),_WSTYLE,WO_SVB,_WEO);
+  sWo(_WOID,rwo,_WTYPE, WO_BV,_WNAME,"Red",_WRESIZE,wbox(rx,cby,rX,cbY),  _WVALUE,wovalue.cptr(),_WSTYLE,WO_SVB);
 
-  sWo(rwo,_WCOLOR,RED_,_WPENHUE,BLACK_,_WVMOVE,1,_WEO);
+  sWo(_WOID,rwo,_WCOLOR,RED_,_WPENHUE,BLACK_,_WVMOVE,1);
 
   auto gwo=cWo(vp);
 
 
   wovalue.strPrintf("%f",greenv);
-  sWo(gwo,_WTYPE, WO_BV,_WNAME,"Green",_WRESIZE,wbox(gx,cby,gX,cbY),  _WVALUE,wovalue.cptr(),_WEO);
+  sWo(_WOID,gwo,_WTYPE, WO_BV,_WNAME,"Green",_WRESIZE,wbox(gx,cby,gX,cbY),  _WVALUE,wovalue.cptr());
 
-  sWo(gwo,_WCOLOR,GREEN_,_WPENHUE,BLACK_,_WSTYLE,WO_SVB,_WSYMBOL,3,_WVMOVE,1,_WEO);
+  sWo(_WOID,gwo,_WCOLOR,GREEN_,_WPENHUE,BLACK_,_WSTYLE,WO_SVB,_WSYMBOL,3,_WVMOVE,1);
 
   auto bwo=cWo(vp);
 
   wovalue.strPrintf("%f",bluev);
-  sWo(bwo,_WTYPE, WO_BV,_WNAME,"Blue",_WRESIZE,wbox(bx,cby,bX,cbY),_WVALUE,wovalue.cptr(),_WVMOVE,1,_WEO);
+  sWo(_WOID,bwo,_WTYPE, WO_BV,_WNAME,"Blue",_WRESIZE,wbox(bx,cby,bX,cbY),_WVALUE,wovalue.cptr(),_WVMOVE,1);
 
-  sWo(bwo,_WCOLOR,BLUE_,_WSTYLE,WO_SVB,_WEO);
+  sWo(_WOID,bwo,_WCOLOR,BLUE_,_WSTYLE,WO_SVB);
 
 
   int rgbwo[] = { rwo, gwo, bwo };
@@ -169,14 +169,14 @@ cout << "done vp2" << endl;
 
  int two=cWo("TEXT");
  
- sWo(two,_WVALUE,"howdy",_WCOLOR,ORANGE_,_WEO);
+ sWo(_WOID,two,_WVALUE,"howdy",_WCOLOR,ORANGE_);
 
   cout << "howdy " << endl;
 
-  sWo(two,_WBORDER,BLACK_,_WDRAWON,_WCLIPBORDER,RED_,_WFONTHUE,BLACK_, _WREDRAW,_WPIXMAPOFF,_WDRAWON,_WLAST);
+  sWo(_WOID,two,_WBORDER,BLACK_,_WDRAW,ON_,_WCLIPBORDER,RED_,_WFONTHUE,BLACK_, _WREDRAW,ON_,_WPIXMAP,OFF_,_WDRAW,ON_);
  
    float scales2[5] = {-1,-1,1,1};
-  sWo(two,_WSCALES,scales2,_WEO);
+  sWo(_WOID,two,_WSCALES,scales2);
 
 int awo[100];
 int k = 0;
@@ -194,8 +194,8 @@ cout << "setting up awo " << endl;
       awo[k]=cWo(vp2,GRAPH_);
        wovalue.strPrintf("%d",k);
        namevalue.strPrintf("%d_col",k);
-       sWo(awo[k],_WDRAWON,_WCOLOR,index,_WVALUE,wovalue.cptr(),_WNAME,namevalue.cptr(),_WEO);
-       sWo(awo[k],_WBORDER,BLACK_,_WDRAWON,_WCLIPBORDER,YELLOW_,_WEO);
+       sWo(_WOID,awo[k],_WDRAW,ON_,_WCOLOR,index,_WVALUE,wovalue.cptr(),_WNAME,namevalue.cptr());
+       sWo(_WOID,awo[k],_WBORDER,BLACK_,_WDRAW,ON_,_WCLIPBORDER,YELLOW_);
         index++;
      }
 
@@ -300,11 +300,11 @@ cout << "redv  " << redv << endl;
    WXY= woGetRxy(bwo,4);
    bluev = limitval(WXY[2],0.0,1.0);
    wovalue.strPrintf("%3.2f",redv);
-   sWo(rwo,_WVALUE,wovalue.cptr(),_WUPDATE,_WEO);
+   sWo(_WOID,rwo,_WVALUE,wovalue.cptr(),_WUPDATE,ON_);
 
-   sWo(gwo,_WVALUE,wovalue.strPrintf("%3.2f",greenv),_WUPDATE,_WEO);
+   sWo(_WOID,gwo,_WVALUE,wovalue.strPrintf("%3.2f",greenv),_WUPDATE,ON_);
 
-   sWo(bwo,_WVALUE,wovalue.strPrintf("%3.2f",bluev),_WUPDATE,_WEO);
+   sWo(_WOID,bwo,_WVALUE,wovalue.strPrintf("%3.2f",bluev),_WUPDATE,ON_);
 
 cout << "greenv  " << greenv << endl;
 cout << "bluev  " << bluev << endl;
@@ -418,7 +418,7 @@ cout << "bluev  " << bluev << endl;
         setRGB(ki,bv,jv,bluev);
       }
 
-   sWo(awo[ak++],_WREDRAW,_WEO);
+   sWo(_WOID,awo[ak++],_WREDRAW,ON_);
 
 //  setRGB(ki,bv,jv,bluev);
       //<<"$ki $redv $bv $jv \n"
@@ -431,9 +431,9 @@ cout << "bluev  " << bluev << endl;
   
 
 
-   sWo(rwo,_WVALUE,wovalue.strPrintf("%3.2f",redv) ,_WEO);
-   sWo(bwo,_WVALUE, wovalue.strPrintf("%3.2f",bluev) ,_WEO);
-   sWo(gwo,_WVALUE, wovalue.strPrintf("%3.2f",greenv) ,_WEO);
+   sWo(_WOID,rwo,_WVALUE,wovalue.strPrintf("%3.2f",redv) );
+   sWo(_WOID,bwo,_WVALUE, wovalue.strPrintf("%3.2f",bluev) );
+   sWo(_WOID,gwo,_WVALUE, wovalue.strPrintf("%3.2f",greenv));
 
 
  wovalue.strPrintf(" Did you see this"); 
@@ -445,13 +445,13 @@ cout << "txt " << wovalue << endl;
 
    float tx = 0.1;
    float ty = 0.5;
-   sWo(two,_WCLEAR,_WTEXTR,wovalue.cptr(),&tx,&ty,0,0,RED_,_WREDRAW,_WEO);
+   //sWo(two,_WCLEAR,ON_,_WTEXTR,wovalue.cptr(),&tx,&ty,0,0,RED_,_WREDRAW,ON_);
 
    ty =0.6;
    
   wovalue.strPrintf("emsg <|%s|> cname <|%s|> red %f green %f blue %f",gev.emsg.cptr(),cname.cptr(), redv,greenv,bluev);
 
-  sWo(two,_WCLEAR,_WTEXTR,wovalue.cptr(),&tx,&ty,0,0,RED_,_WREDRAW,_WEO);
+  //sWo(_WOID,two,_WCLEAR,_WTEXTR,wovalue.cptr(),&tx,&ty,0,0,RED_,_WREDRAW,ON_);
 
 
    sleep(0.1);

@@ -20,7 +20,7 @@
 
 
 
-  void zoomMap(int t1, int t2)
+void zoomMap(int t1, int t2)
   {
   int t3,k;
       if (t2 < t1) {
@@ -29,12 +29,22 @@
        t1 =t3;
      }
 
-//<<"$_proc  $t1 $t1\n";
+printf(" zoomMap %d %d \n",t1,t2);
+
+//pa(t1 ,t2 );
+
+//ans=query("?","ZOOM_MAP",__LINE__);
 //  find min,max for lat and long
-   float min_lat,max_lat = IGCLAT[t1];
-   float min_lng,max_lng = IGCLONG[t1];
+
+   float max_lat = IGCLAT[t1];
+   float min_lat = max_lat;
+   float max_lng = IGCLONG[t1];
+   float min_lng = IGCLONG[t1];   
    float val;
    int n =0;
+
+
+
    for (k = t1; k <= t2; k++)
    {
        val = IGCLAT[k];
@@ -47,12 +57,20 @@
        n++;
    }
 
-//<<"%V $n $min_lat $max_lat $min_lng $max_lng \n"
+printf(" n %d min_lat %f max_lat %f min_lng %f max_lng %f\n",n,min_lat ,max_lat ,min_lng ,max_lng);
+
+//pa(n ,min_lat ,max_lat ,min_lng ,max_lng,"\n");
 
    LongW = max_lng +0.1;
    LongE = min_lng -0.1;
    LatN = max_lat+0.1;
    LatS = min_lat- 0.1;
+
+printf(" LongW %f LatS %f LongE %f LatN %f \n",LongW, LatS, LongE, LatN);
+
+ sWo(_WOID,mapwo,_WSCALES,wbox(LongW,LatS,LongE,LatN));
+
+
 
  }
 //=================
@@ -95,14 +113,14 @@
   lat = LongE + (dMx * dang);
 
   printf("dMx %d dMy %d LongW %f lat %f LongE %f\n",dMx,dMy,LongW,lat,LongE);  
-  LongW = lat;
+ // LongW = lat;
 
    //ans=query("?","Adjust Map X,Y axis",__LINE__);
 
-  sWova(_WOID,mapwo,_WSCALES,wbox(LongW,LatS,LongE,LatN));
+//  sWo(_WOID,mapwo,_WSCALES,wbox(LongW,LatS,LongE,LatN));
   //<<"%V $LongW $LatS $LongE $LatN \n";
 
-  sWova(_WOID,mapwo,_WCLEARPIXMAP,ON_,_WCLIPBORDER,BLACK_);
+  sWo(_WOID,mapwo,_WCLEARPIXMAP,ON_,_WCLIPBORDER,BLACK_);
 
  // sWo(mapwo,_WDRAWON,_WSHOWPIXMAP,_WCLIPBORDER);
 //pa("mapwo ",mapwo);
@@ -197,7 +215,7 @@
 
 
 
-  sWova(_WOID,mapwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_,_WSAVEPIXMAP,ON_);
+  sWo(_WOID,mapwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_,_WSAVEPIXMAP,ON_);
 
   gg_gridLabel(mapwo);
   
@@ -319,7 +337,7 @@
   int TF= ofr(taskfile);
   //<<"%V $taskfile  $TF $SetWoT \n";
 
-  ans=query("$TF read $taskfile ? ");
+  //ans=query("$TF read $taskfile ? ");
 
   if (TF != -1) {
 
@@ -426,10 +444,10 @@ void drawTrace()
 {
      if (Have_igc) {
      
-         sWova(_WOID,mapwo,_WSCALES, wbox(LongW, LatS, LongE, LatN) );
+         sWo(_WOID,mapwo,_WSCALES, wbox(LongW, LatS, LongE, LatN) );
 	 
         // sWo(mapwo,_WCLEARPIXMAP);
-         sWova(_WOID,vvwo,_WCLEARPIXMAP,ON_);
+         sWo(_WOID,vvwo,_WCLEARPIXMAP,ON_);
 
 
          //pa(Ntpts);;
@@ -437,22 +455,22 @@ void drawTrace()
 	  
   	 if (Ntpts > 0) {
 	 
-           // sWova(_WOID,vvwo, _WSCALES, wbox(0, Min_ele, Ntpts, Max_ele + 500));
-	    sWova(_WOID,vvwo, _WSCALES, wbox(0, Min_ele, Ntpts, 8000));
+           // sWo(_WOID,vvwo, _WSCALES, wbox(0, Min_ele, Ntpts, Max_ele + 500));
+	    sWo(_WOID,vvwo, _WSCALES, wbox(0, Min_ele, Ntpts, 8000));
 	
 
 
               //dGl(igc_tgl);
 	      
-	    sWova(_WOID,vvwo,_WCLEARPIXMAP,ON_);
+	    sWo(_WOID,vvwo,_WCLEARPIXMAP,ON_);
 
     sGl(_GLID,igc_tgl,_GLDRAW,BLUE_);  // DrawGline;
 
     sGl(_GLID,igc_vgl,_GLDRAW,RED_);  // DrawGline;
 
 
-            sWova(_WOID,mapwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_);
-            sWova(_WOID,vvwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_);
+            sWo(_WOID,mapwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_);
+            sWo(_WOID,vvwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_);
 //<<"%V $Ev_button $lc_gl $rc_gl  \n"
   CR_init = 1;
   CL_init = 1;
@@ -484,14 +502,14 @@ void drawAlt()
 {
      if (Have_igc) {
          
-         sWo(vvwo,_WCLEARPIXMAP);
+         sWo(_WOID,vvwo,_WCLEARPIXMAP,ON_);
 
 	  
   	 if (Ntpts > 0) {
-            sWo(vvwo, _WSCALES, wbox(0, Min_ele, Ntpts, Max_ele + 500),_WEO );
-	    sWo(vvwo,_WCLEARPIXMAP);
+            sWo(_WOID,vvwo, _WSCALES, wbox(0, Min_ele, Ntpts, Max_ele + 500));
+	    sWo(_WOID,vvwo,_WCLEARPIXMAP,ON_);
 	      dGl(igc_vgl);
-            sWo(vvwo,_WSHOWPIXMAP,_WCLIPBORDER);
+            sWo(_WOID,vvwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_);
 //<<"%V $Ev_button $lc_gl $rc_gl  \n"
   CR_init = 1;
   CL_init = 1;
@@ -533,7 +551,7 @@ if (st_rc_gl != -1) {
 
   pa(rx,ry);
 
-  sWo(wid,_WPENHUE,BLACK_);
+  sWo(_WOID,wid,_WPENHUE,BLACK_);
   
 //ans=query("?1","b4 wgetrscales",__LINE__);
 pa("wid ",wid,__LINE__);
@@ -542,7 +560,7 @@ ST_RS[2] = 77.67;
 
 ST_RS[3] = 48.67;
 ST_RS[4] = 52.67;
-COUT(ST_RS);
+//COUT(ST_RS);
 //ST_RS.pinfo();
 
  
@@ -551,7 +569,7 @@ COUT(ST_RS);
 
 //ans=query("?2","after wgetrscales\n",__LINE__);
 
-printf("does ST_RS still exist?\n");
+//printf("does ST_RS still exist?\n");
 //ST_RS.pinfo();
 
 
@@ -571,10 +589,10 @@ printf("does ST_RS still exist?\n");
 
 
   if (ry == -1.0) {
-   ans=query("bad ry\n");
+   //ans=query("bad ry\n");
   }
 
-   COUT(ST_RS);
+   //COUT(ST_RS);
 #if 0   
 //pa(wid,"RS ",ST_RS);
 
@@ -608,7 +626,7 @@ printf("does ST_RS still exist?\n");
 #if ASL
   axnum(wid,1,rx,rX,2*x_inc,-1.5,"3.1f");
 #else  
-  sWo(wid,_WAXNUM,AXIS_BOTTOM_,_WEO);
+  sWo(_WOID,wid,_WAXNUM,AXIS_BOTTOM_,_WEO);
 #endif
   }
 
@@ -616,7 +634,7 @@ printf("does ST_RS still exist?\n");
 #if ASL
   axnum(wid,1,rx,rX,2*x_inc,-1.5,"3.1f");
 #else
-sWo(wid,_WAXNUM,AXIS_BOTTOM_,_WEO);
+sWo(_WOID,wid,_WAXNUM,AXIS_BOTTOM_,_WEO);
 #endif
   }
 
@@ -627,14 +645,14 @@ sWo(wid,_WAXNUM,AXIS_BOTTOM_,_WEO);
 #if ASL
   axnum(wid,2,ry,rY,2*y_inc,-2.0,"2.1f");
 #else
-sWo(wid,_WAXNUM,AXIS_LEFT_,_WEO);
+sWo(_WOID,wid,_WAXNUM,AXIS_LEFT_,_WEO);
 #endif
 }
 
   
 #endif
 
-sWova(_WOID,wid,_WCLIPBORDER,RED_);
+sWo(_WOID,wid,_WCLIPBORDER,RED_);
 pa("done gg");
 }
 //==================================================
@@ -644,7 +662,7 @@ pa("done gg");
   // found via computetaskdistance
 //<<"$_proc   $w_num \n";
 
-  sWo(w_num,_WSCALES,wbox(Max_W,Min_lat,Min_W,Max_lat),_WEO);
+  sWo(_WOID,w_num,_WSCALES,wbox(Max_W,Min_lat,Min_W,Max_lat));
 
   if (draw) {
 
@@ -681,7 +699,7 @@ pa("done gg");
   
     woSetValue (tpwo[wt],"XXX");
 
-  sWo(tpwo[wt],_WREDRAW);
+  sWo(_WOID,tpwo[wt],_WREDRAW,ON_);
 
   mouseCursor("hand", tpwo[9], 0.5, 0.5);
 
@@ -712,7 +730,7 @@ pa("done gg");
 
   mouseCursor("cross", tpwo[9], 0.5, 0.5);
 
-  sWo(tpwo,_WREDRAW);
+  //sWo(tpwo,_WREDRAW);
 
   }
 
@@ -737,7 +755,7 @@ pa("done gg");
 //  <<"$i <|$tval|>  \n"
 
   woSetValue (tpwo[i],tval);
-  sWo(tpwo[i],_WREDRAW);
+  sWo(_WOID,tpwo[i],_WREDRAW,ON_);
   kt = Taskpts[i-1];
 
   Taskpts[i] = kt;
@@ -749,7 +767,7 @@ pa("done gg");
 
   woSetValue (tpwo[wt],"XXX");
 
-  sWo(tpwo[wt],_WREDRAW);
+  sWo(_WOID,tpwo[wt],_WREDRAW,ON_);
 
   mouseCursor("hand", tpwo[9], 0.5, 0.5);
 
@@ -779,7 +797,7 @@ pa("done gg");
 
   mouseCursor("cross", tpwo[9], 0.5, 0.5);
 
-  sWo(tpwo,_WREDRAW);
+  //sWo(tpwo,_WREDRAW);
 
   }
 
@@ -819,7 +837,7 @@ pa("done gg");
   }
 
   woSetValue (tpwo[wt],"?");
-  sWova(_WOID,tpwo[wt],_WREDRAW,ON_);
+  sWo(_WOID,tpwo[wt],_WREDRAW,ON_);
 
   nval = " ";
 
@@ -836,11 +854,11 @@ pa("done gg");
 
 
   woSetValue (tpwo[wt],nval,0);
-  sWova(_WOID,tpwo[wt],_WREDRAW,ON_);
+  sWo(_WOID,tpwo[wt],_WREDRAW,ON_);
 
   Task_update = 1;
 
-  sWo(tpwo,_WREDRAW);
+  //sWo(tpwo,_WREDRAW);
   
   Ntaskpts++;
 
@@ -874,7 +892,7 @@ int PickViaName(int wt)
   printargs("Found ",wt,wtp,nval,aplace);
   ok = 1;
   woSetValue (tpwo[wt],aplace,0);
-  sWova(_WOID,tpwo[wt],_WREDRAW,ON_);
+  sWo(_WOID,tpwo[wt],_WREDRAW,ON_);
   }
 
  //<<"Exit Done $_proc $ok \n";
@@ -940,7 +958,7 @@ int PickViaName(int wt)
 
   }
 
-  sWo(tpwo,_WREDRAW);
+  //sWo(tpwo,_WREDRAW);
 
 
   Ntaskpts--;
@@ -1412,7 +1430,7 @@ fast=fastxic(0);
 
   
 
- sWo(w,_WSHOWPIXMAP,_WCLIPBORDER);
+ sWo(_WOID,w,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_);
 //ans=query("see lines?");
 #if ASL
 fastxic(0);
@@ -1702,7 +1720,7 @@ pa(Ntaskpts);
 //<<"DONE $_proc  $totalK \n"
 
       woSetValue(tdwo,totalK);
-      sWova(_WOID,tdwo,_WUPDATE,ON_);
+      sWo(_WOID,tdwo,_WUPDATE,ON_);
   }
 //==============================//
 
@@ -1796,7 +1814,7 @@ pa(Ntaskpts);
   float msl;
   float mkm;
   float ght;
- pa(__LINE__,longx, laty);
+ //pa(__LINE__,longx, laty);
 
   longa = longx;
 
@@ -1805,7 +1823,7 @@ pa(Ntaskpts);
   for (k = 0 ; k < Ntp ; k++) {
 
   isairport = Wtp[k].GetTA();
-  pa(k,   isairport );
+  //pa(k,   isairport );
 //DBG"$_proc %V $isairport \n"
 
   if (isairport) {
@@ -1820,7 +1838,7 @@ pa(Ntaskpts);
 //FIX_PARSE_ERROR                sa = Wtp[k].Alt + ght + 2000
 
   saf = msl + ght + 2000;
-  pa(mkm,ght,saf);
+  //pa(mkm,ght,saf);
 
 
 
@@ -1838,7 +1856,7 @@ pa(Ntaskpts);
 
   if (mkey != -1) {
   
-  pa("found mkey" ,mkey);
+  //pa("found mkey" ,mkey);
 
   Wtp[mkey].Print();
 
@@ -1852,8 +1870,8 @@ void   showPosn(int pi)
   {
 
     
-    	 wfr=sWo(mapwo,_WSHOWPIXMAP,_WEO);
-          wfr =sWo(mapwo,_WPIXMAPOFF,_WDRAWON,_WEO); // just draw but not to pixamp
+    	 sWo(_WOID,mapwo,_WSHOWPIXMAP,ON_);
+         sWo(_WOID,mapwo,_WPIXMAP,OFF_,_WDRAW,ON_); // just draw but not to pixamp
 //              <<"%V $pi $IGCELE[pi] $IGCLAT[pi] $IGCLONG[pi] \n";
          symx = IGCLONG[pi];
 	 symy = IGCLAT[pi];
@@ -1867,10 +1885,10 @@ void   showPosn(int pi)
 	  	   zoom_begin = pi;
 	  drawAlt();
 
-         wfr = sWo(mapwo,_WPIXMAPON,_WEO);
+         sWo(_WOID,mapwo,_WPIXMAP,ON_);
          sprintf(Gpos,"%f %f %f",symx,symy,syme);
 
-	 sWo(sawo,_WVALUE,Gpos,_WREDRAW);
+	 sWo(_WOID,sawo,_WVALUE,Gpos,_WREDRAW,ON_);
   }
 
 //==================================================
@@ -1899,13 +1917,13 @@ void updateLegs()
  //   <<"leg $i $lwo %6.1f $msl $dist  $lfga  \n"
 //  <<"leg $i  <|$val|> \n"
      woSetValue (lwo,val,0);
-     sWova(_WOID,lwo,_WREDRAW,ON_);
+     sWo(_WOID,lwo,_WREDRAW,ON_);
   }
 
    for (i = nlegs; i < MaxLegs ; i++) {
          lwo = legwo[i];
      woSetValue (lwo,"XX ",0);
-     sWova(_WOID,lwo,_WREDRAW,ON_);
+     sWo(_WOID,lwo,_WREDRAW,ON_);
    }
 
 }

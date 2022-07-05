@@ -101,6 +101,9 @@ Str TaskType = "MT";
         float syme = 0.0;
         float symem = 0.0;	
 
+        float symrx = 0.0;
+	float symry = 0.0;
+
 Str ttp;
   
 float LoD = 35.0;
@@ -177,3 +180,4 @@ Str cval ="?";
 Str igc_fname ="xyz";
 Str igc_fname1 ="abc";
 //Str igc_file = "dd.igc";
+Str sans;

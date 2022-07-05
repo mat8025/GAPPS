@@ -40,30 +40,30 @@ void  titleButtonsQRD(int v)
 
 float rsz[5] = {0.97,0,0.99,1};
 
- sWo(tq,_WNAME,"tbq",_WVALUE,"QUIT",_WFUNC,"window_term",_WRESIZE,rsz,_WSYMBOL,X_,_WFLUSH);
+ sWo(_WOID,tq,_WNAME,"tbq",_WVALUE,"QUIT",_WFUNC,"window_term",_WRESIZE,rsz,_WSYMBOL,X_);
  
 int  tr=cWo(v,TBS_);
 rsz[0] = 0.94;
 rsz[2] = 0.96;
- sWo(tr,_WNAME,"tbr",_WVALUE,"RESIZE",_WFUNC,"window_resize",_WRESIZE,rsz,_WSYMBOL,CROSS_,_WFLUSH);
+ sWo(_WOID,tr,_WNAME,"tbr",_WVALUE,"RESIZE",_WFUNC,"window_resize",_WRESIZE,rsz,_WSYMBOL,CROSS_);
  
  int td=cWo(v,TBS_);
  rsz[0] = 0.91;
  rsz[2] = 0.93;
  
-sWo(td, _WNAME,"tbd",_WVALUE,"REDRAW",_WFUNC,"window_redraw",_WRESIZE,rsz,_WSYMBOL,DIAMOND_,_WFLUSH);
+sWo(_WOID,td, _WNAME,"tbd",_WVALUE,"REDRAW",_WFUNC,"window_redraw",_WRESIZE,rsz,_WSYMBOL,DIAMOND_);
 
 int  tbqrd_tv = cWo(v,TBV_);
 rsz[0] = 0.2;
 rsz[2] = 0.5;
-sWo(tbqrd_tv,_WNAME,"tbv",_WVALUE,"VERS",_WSTYLE,WO_SVO,_WRESIZE,rsz,_WFLUSH);
+sWo(_WOID,tbqrd_tv,_WNAME,"tbv",_WVALUE,"VERS",_WSTYLE,WO_SVO,_WRESIZE,rsz);
 
 //<<[_DB]"SET %V $tbqrd_tv \n"
 //int qrd[] = {tr,tq,td};
 int  tbqrd_msg = cWo(v,TBV_);
 rsz[0] = 0.52;
 rsz[2] = 0.80;
-sWo(tbqrd_msg,_WNAME,"tbm",_WVALUE,"MSG",_WSTYLE,WO_SVO,_WRESIZE,rsz,_WREDRAW,_WFLUSH);
+sWo(_WOID,tbqrd_msg,_WNAME,"tbm",_WVALUE,"MSG",_WSTYLE,WO_SVO,_WRESIZE,rsz,_WREDRAW,ON_);
 
 int qrd[3];
 
@@ -77,9 +77,11 @@ float clip[5] = {0,0,1,1};
 int i;
 // need cpp version to process array without for loop 03/14/22
 
- sWova(_WOID,tq,_WDRAW,ON_,_WPIXMAP,ON_,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45, _WCLIP,clip,_WREDRAW,ON_);
+ sWo(_WOID,tq,_WDRAW,ON_,_WPIXMAP,ON_,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45, _WCLIP,clip,_WREDRAW,ON_);
 
-sWo(qrd,_WDRAWON,_WPIXMAPON,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45, _WCLIP,clip,_WREDRAW,_WFLUSH);
+sWo(_WOID,tr,_WDRAW,ON_,_WPIXMAP,ON_,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45, _WCLIP,clip,_WREDRAW,ON_);
+
+sWo(_WOID,td,_WDRAW,ON_,_WPIXMAP,ON_,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45, _WCLIP,clip,_WREDRAW,ON_);
 
 // sWo(tbqrd_tv,_redraw);
 // sWo(tbqrd_msg,_redraw);
@@ -88,8 +90,8 @@ sWo(qrd,_WDRAWON,_WPIXMAPON,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45, _WCLIP,c
 //============================//
 void titleComment(Str msg)
 {
- pa(msg);
- sWo(tbqrd_tv,_WVALUE,msg.cptr(),_WCLEAR,_WREDRAW,_WLAST);
+// <<"%V $msg \n"
+ sWo(_WOID,tbqrd_tv,_WVALUE,msg.cptr(),_WCLEAR,ON_,_WREDRAW,ON_);
 
 }
 //============================//
@@ -108,14 +110,17 @@ void titleVers()
 void titleMessage(Str msg)
 {
  
- sWo(tbqrd_msg,_WVALUE,"$msg",_WCLEAR,_WREDRAW,_WLAST);
+ sWo(_WOID,tbqrd_msg,_WVALUE,msg.cptr(),_WCLEAR,ON_,_WREDRAW,ON_);
 }
 
 void titleMsg(Str msg)
 {
  
- sWo(tbqrd_msg,_WVALUE,"$msg",_WCLEAR,_WREDRAW,_WLAST);
+ sWo(_WOID,tbqrd_msg,_WVALUE,msg.cptr(),_WCLEAR,ON_,_WREDRAW,ON_);
 }
+
+
+
 
 #endif
 
