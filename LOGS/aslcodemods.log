@@ -1179,3 +1179,7 @@ ds_getvarasstr.cpp                  2.67  07/03/2022 07:23:22  getAsLong revise
 ds_convert_store.cpp                2.2  07/03/2022 10:20:19  hex 64
 opera_promote.cpp                   1.54  07/03/2022 10:22:25  debug
 woargs.h                            1.3  07/05/2022 08:33:29  WO_FONT
+screen_p.cpp                        1.82  07/06/2022 09:55:59  mouseCursor
+po_p.cpp                            1.80  07/06/2022 09:57:32  Cglid,Cwid,Cwoid
+tran.cpp                            1.93  07/06/2022 14:45:00  Transf class
+phoneme.cpp                         1.92  07/06/2022 14:45:33  Transf class

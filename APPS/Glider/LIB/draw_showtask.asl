@@ -667,7 +667,6 @@ pa("done gg");
   if (draw) {
 
 
-
   DrawMap();
 
   drawTask(w_num,BLACK_);
@@ -701,7 +700,7 @@ pa("done gg");
 
   sWo(_WOID,tpwo[wt],_WREDRAW,ON_);
 
-  mouseCursor("hand", tpwo[9], 0.5, 0.5);
+  mouseCursor(tpwo[9], "hand");
 
     Gemsg =gev.eventWait();
     Gekey = gev.getEventKey();
@@ -728,7 +727,7 @@ pa("done gg");
 
   Task_update = 1;
 
-  mouseCursor("cross", tpwo[9], 0.5, 0.5);
+  mouseCursor(tpwo[9],"cross");
 
   //sWo(tpwo,_WREDRAW);
 
@@ -769,7 +768,8 @@ pa("done gg");
 
   sWo(_WOID,tpwo[wt],_WREDRAW,ON_);
 
-  mouseCursor("hand", tpwo[9], 0.5, 0.5);
+ mouseCursor(tpwo[9],"hand");
+
 
     Gemsg =gev.eventWait();
     Gekey = gev.getEventKey();
@@ -795,7 +795,7 @@ pa("done gg");
 
   Task_update = 1;
 
-  mouseCursor("cross", tpwo[9], 0.5, 0.5);
+  mouseCursor(tpwo[9], "cross");
 
   //sWo(tpwo,_WREDRAW);
 
@@ -1275,7 +1275,7 @@ int PickViaName(int wt)
 
   ry = MidLat;
 
-  mouseCursor("left", mapwo, rx, ry);  // TBC;
+  mouseCursor(mapwo,"left", rx, ry);  // TBC;
 
   Text(vptxt,"Pick a TP for the task ",0,0.05,1);
 
@@ -1288,7 +1288,8 @@ int PickViaName(int wt)
 
   ntp = ClosestTP(Gerx,Gery);
 
-  mouseCursor("hand",mapwo,0.5,0.5);
+ mouseCursor(mapwo,"hand");
+
 
   if (ntp >= 0) {
 

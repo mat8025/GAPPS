@@ -81,7 +81,10 @@ sWi(_WOID,Vp,_WRESIZE,wbox(0.1,0.01,0.98,0.99,0));
 
 
   sawo= cWo(Vp, WO_BV_);
-  VCOUT(Vp,sawo);
+  
+
+
+//VCOUT(Vp,sawo);
   
 //ans=query("?4","goon",__LINE__,__FILE__);
 

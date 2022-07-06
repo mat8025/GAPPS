@@ -205,7 +205,8 @@ Str hdr_date = "1964"
 _ele_vers = hdr_vers;
 
 if (hv_show) {
-<<"%V $hdr_script\n"
+
+pa(hdr_script);
 
 <<"%V $hdr_vers\n"
 
@@ -222,7 +223,7 @@ if (hv_found) {
 }
 
 
-<<"Done hv $hdr_vers\n"
+printf("Done hv %s\n", hdr_vers.cptr());
 ;//==============\_(^-^)_/==================//;
 
 /////////////////////////// DEV //////////////////////////
@@ -237,17 +238,3 @@ TBF  11/24/21  if (rs == "@script")  - this Str comparison corrupts  memory
 
 //===***===//
 
-/*
-                 // if (!(rs == "@script")) 
-		  //if (!(rs == "script")) 
-		 //  if (!(rso == "script"))
-		 
-		   if (!(scmp(rso,"script"))) {
-
-                    <<"@ is $rs\n"
-                  
-                     // break;  // crash  ?? 
-                   }
-          //  val.pinfo()
-	   <<" que pasa?\n"
- */              

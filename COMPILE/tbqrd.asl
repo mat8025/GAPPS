@@ -29,6 +29,10 @@
 int tbqrd_tv = 0;
 int tbqrd_msg = 0;
 
+// tmp use these for woarrays
+int woi;
+int woj;
+
 //<<[_DB]"FIRST %V $tbqrd_tv \n"
 
 

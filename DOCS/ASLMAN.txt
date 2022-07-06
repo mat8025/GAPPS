@@ -8921,23 +8921,22 @@ exculsive or of part window image specified as real coors (e.g. white-black , bl
 .EF
 =============================================================
 .BF
-w_show_curs()
+mouseCursor()
 .(x
-wshowcurs
+mouseCursor()
 .)x 
 .FD
-w_show_curs(wid,on,"cursor_name",{px,py})
+mouseCursor(woid,["cursor_name", curs_id],{px,py})
 
-shows cursor image in  window. 
+shows cursor image in  window or windowobject. 
 Cursor images reside in the FONTS directory.
 (or in X window version are those supplied)
-The on parameter turns the mouse cursor on or off.
 If px and py are set as proportional to window area then
 mouse pointer is moved to new location within window.
-Thus
-w_show_curs(n,1,"left_arrow",0.5,0.5)
-turns on left_arrow cursor in window n at the
-middle of the window.
+name = "hand"
+name = "cross"
+
+or can use cursor_id ,  CROSS_, HAND_, ...
 
 .EF
 =============================================================

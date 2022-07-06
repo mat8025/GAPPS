@@ -1,41 +1,58 @@
-//%*********************************************** 
-//*  @script showvox.asl 
-//* 
-//*  @comment speech edit and label 
-//*  @release CARBON 
-//*  @vers 1.4 Be Beryllium                                                
-//*  @date Mon Feb 24 09:43:50 2020 
-//*  @cdate 1/1/2000 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script showvox.asl                                                 
+ * 
+ *  @comment speech edit and label                                      
+ *  @release Beryllium                                                  
+ *  @vers 1.5 B Boron [asl 6.4.41 C-Be-Nb]                              
+ *  @date 07/05/2022 16:19:28                                           
+ *  @cdate 1/1/2000                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2022 -->                               
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                  
+
 //
-//  revise of phn/upe labeller
+//  revision of phn/upe labeller
 //
 
-include "debug.asl";
+#define ASL 1
+#define ASL_DB 0
+#define GT_DB   0
+#define CPP 0
+
+
+#if ASL
+// the include  when cpp compiling will re-define ASL 0 and CPP 1
+//#include "compile.h"
+#define PXS  <<
+#define VCOUT //
+#endif
+
+
+#include "debug.asl";
   debugON();
-  setdebug(1,@keep,@~pline,@~trace);
-  FilterFileDebug(REJECT_,"~storetype_e");
-  FilterFuncDebug(REJECT_,"~ArraySpecs",);
+  
+//  setdebug(1,@keep,@~pline,@~trace);
+//  FilterFileDebug(REJECT_,"~storetype_e");
+//  FilterFuncDebug(REJECT_,"~ArraySpecs",);
 
 
-set_debug(-1)
-include "hv.asl"
+//set_debug(-1)
+#include "hv.asl"
 
 
 // version should be read from script header
 
-<<"$_clarg[0]   $vers\n";
-include "graphic"
+<<"$_clarg[0]   $hdr_vers\n";
+#include "graphic"
 
 
 //OpenDll("plot","audio","image","tran");
 OpenDll("audio","image","tran");
 
-mach = get_arch()
-myname = get_uname(1)
+mach = get_arch();
+myname = get_uname(1);
 
   //if (mach @= "sun") {
   //sun = 1
@@ -44,44 +61,44 @@ myname = get_uname(1)
   //sun = 0
   //}
 
-s_display=get_env_var("DISPLAY")
-display=spat(s_display,":0")
+Str s_display=get_env_var("DISPLAY");
+Str display=spat(s_display,":0");
 
-  si_pause(3)
-  mywid =getAslWid();
+  si_pause(3);
+  int mywid =getAslWid();
 //stitle = scat("UPET_V",the_version);
 
-  sWi(mywid,"UPET")
+  sWi(_WOID,mywid,_WNAME,"UPET");
 
 int Sf = 16000;
 float Sfreq = Sf; // default sampling frequency
 
 // defaults
 
-Fkgrey = 0
-ngl = 16
-Gindex = 8
-min_v = 20
-max_v= 80
-intpx = 1
-st_fr = 0
+int Fkgrey = 0;
+int ngl = 16;
+int Gindex = 8;
+int min_v = 20;
+int max_v= 80;
+int ntpx = 1;
+int st_fr = 0;
 
 
-include "vox_ws";
+#include "screen_vox"
 
-include "vox_procs";
+#include "procs_vox"
 
 //include "vox_menu";
 
-include "vox_compute";
+#include "compute_vox"
 
-include "vox_io";
+#include "io_vox"
 
 <<" after includes %V$two $lwo\n"
 
-include "vox_settings";
+#include "settings_vox"
 
-include "gevent"
+#include "gevent"
 
 //read_devices()
 // TBD
@@ -89,7 +106,7 @@ include "gevent"
   openAudio(); // open rec,play snd devices
   
 
-# get signal space
+// get signal space
 
 // TDB  ss= get_signal_space(320000) ; // signal space needed?
  ss = 320000;
@@ -104,22 +121,22 @@ sp2 = ss;
 Olds1 = 0;
 Olds2 = 0;
 
-Endtime = 1.0;
+float Endtime = 1.0;
 
-Z0 = 0.0;
-Z1 = 1.0;
+float Z0 = 0.0;
+float Z1 = 1.0;
 
 
-# get a set of labels
+// get a set of labels
 
-timit_w = getLabelSet(100)
+int timit_w = getLabelSet(100)
 
 <<"label_set for words %V $timit_w \n"
 
-timit_p = get_label_set(500)
+int timit_p = get_label_set(500)
 <<"label_set for phones %V$timit_p \n"
 
-timit_gp = get_label_set(500)
+int timit_gp = get_label_set(500)
 
 <<"label_set %V$timit_gp \n"
 
@@ -184,7 +201,7 @@ type = -1
 choice = 1
 time_stamp =0
 
-# if abort/interrupt jump here
+// if abort/interrupt jump here
 
 sw = tw
 
@@ -202,12 +219,12 @@ len = 0
 //iread()
 
 
-   get_data_files()
+   get_data_files();
 
 <<"%V$two $Nbufpts\n"
-   fs = getChannelPara(spp_file,"FS",1)
-   nvals = getChannelPara(spp_file,"NOB",1)
-   stp = getChannelPara(spp_file,"STP",1)
+   fs = getChannelPara(spp_file,"FS",1);
+   nvals = getChannelPara(spp_file,"NOB",1);
+   stp = getChannelPara(spp_file,"STP",1);
    sGl(ptgl,@XI,fs,@XO,0)
 
 
@@ -331,8 +348,8 @@ float t2 = t1 + 3.0;
   }
 
 
-<<" out of loop \n"
-exit()
+
+exit(-1)
 
 //exitgs();
 
