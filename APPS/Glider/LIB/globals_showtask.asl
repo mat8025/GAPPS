@@ -2,6 +2,10 @@
 
 #if CPP
 // gevent.h  should have these ? - alternative to gevent.asl
+
+float Gerx;
+float Gery;
+
 int Ev_button = 0;
 Str Ev_keyw = "nada";
 
@@ -46,7 +50,8 @@ int tdwo = -1;
 
 int ntp;
 
-Str np,nval;
+Str np;
+Str nval;
 
 
 
@@ -168,7 +173,7 @@ float mkm;
 int dMx;
 int dMy;
 
-char Gpos[64];
+char Gpos[512];
 float Dang;
 float Latval;
 //////////////// PARSE COMMAND LINE ARGS ///////////////////////

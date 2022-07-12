@@ -37,6 +37,7 @@ using namespace std;
 
 #define PXS  cout<<
 #define ASL_DB 0
+
 #endif
 
 ///////////////////////
@@ -51,7 +52,6 @@ ignoreErrors();
 
 #define ASL_DB 1
 #endif
-
 
 
 int TF; // task file FH

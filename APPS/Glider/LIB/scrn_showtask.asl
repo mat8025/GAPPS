@@ -61,12 +61,14 @@ int Xgm;
   //sWi(Vp,_WSCALES,wbox(-200,-200,200,200,0), _WDRAWON,_WPIXMAPON,_WSAVE,_WBHUE,WHITE_,_WRESIZE,0.1,0.01,0.9,0.95,0);
 
 //  sWi(_WOID,Vp,_WSCALES,wbox(-200,-200,200,200,0), _WDRAW, ON,_WPIXMAP,ON_,_WSAVE,ON_,_WBHUE,YELLOW_,_WRESIZE,wbox(0.1,0.01,0.95,0.99,0));
+
+
   sWi(_WOID,Vp,_WSCALES,wbox(-200,-201,200,201,0),_WRESIZE,wbox(0.1,0.01,0.99,0.99,0));
   
-  sWi(_WOID,Vp,_WDRAW, ON,_WPIXMAP,ON_,_WSAVE,ON_,_WBHUE,YELLOW_);
+  sWi(_WOID,Vp,_WDRAW, ON_,_WPIXMAP,ON_,_WSAVE,ON_,_WBHUE,YELLOW_);
   // but we don't draw to a window! = draw to Wob in a Window
 
-sWi(_WOID,Vp,_WRESIZE,wbox(0.1,0.01,0.98,0.99,0));
+  sWi(_WOID,Vp,_WRESIZE,wbox(0.1,0.01,0.98,0.99,0));
 
   sWi(_WOID,Vp,_WCLIP,wbox(0.01,0.01,0.98,0.98));
 
@@ -120,7 +122,7 @@ sWi(_WOID,Vp,_WRESIZE,wbox(0.1,0.01,0.98,0.99,0));
 
 //<<"%V $mapwo $LongW $LatS \n"
 
-  sWo(_WOID,mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN), _WSAVE,ON_,  _WDRAW,ON_, _WPIXMAP,ON,_WSAVEPIXMAP,ON_);
+  sWo(_WOID,mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN), _WSAVE,ON_,  _WDRAW,ON_, _WPIXMAP,ON_,_WSAVEPIXMAP,ON_);
 
   LastTP = 12; 
 
@@ -232,7 +234,7 @@ sWi(_WOID,Vp,_WRESIZE,wbox(0.1,0.01,0.98,0.99,0));
 
     Mapcoors= woGetPosition (mapwo);
 
-  COUT(Mapcoors);
+  VCOUT(Mapcoors);
 
 //ans=query("?","Mapcoors",__LINE__);
 
@@ -241,6 +243,7 @@ sWi(_WOID,Vp,_WRESIZE,wbox(0.1,0.01,0.98,0.99,0));
 
 VCOUT(dMx,dMy);
 
+//ans=query("?","screen OK?",__LINE__);
 
 //<<" DONE SCREEN %V $lc_gl $rc_gl $mapwo $vvwo  $sawo \n";
 

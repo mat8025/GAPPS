@@ -17,19 +17,33 @@
 ///
 /// "$Id: showtask.asl,v 1.5 1997/07/21 15:01:08 mark Exp mark $"
 ///
-
-
 #define ASL 1
+#define CPP 0
+
 #define ASL_DB 0
 #define GT_DB   0
-#define CPP 0
+
+#if ASL
+// the include  when cpp compiling will re-define ASL 0 and CPP 1
+#include "compile.asl"
+
+//  printf("ASL %d CPP %d\n",ASL,CPP);
+#endif
+
+
+#if CPP
+#error using CPP
+#endif
+
+
 
 
 #if ASL
 // the include  when cpp compiling will re-define ASL 0 and CPP 1
-#include "compile.h" // rework
+//#include "compile.h" // rework
 #define PXS  <<
 #define VCOUT //
+ignoreErrors();
 #endif
 
 #if CPP
@@ -85,7 +99,14 @@ chkIn(_dblevel);
 #define DBG ~!
 
  openDll("uac");
+
+float Gerx;
+float Gery;
+
+
 #endif
+
+
 
 int uplegs = 0;  // needed?
 int  Ntp = 0; //
@@ -173,7 +194,7 @@ cout << " para[1] is:  "  << sa.cptr(1) << endl;
  openDll("plot");
 
 Str tp_file;
-int use_cup = 1;
+int use_cup = 0;
 int Nrecs;
 
 
@@ -210,7 +231,9 @@ cout <<"SRX.readRecord\n";
   
 }
 else {
-// RF= readRecord(A);
+   Nrecs=SRX.readRecord(AFH,_RLAST);  // no back ptr to Siv?
+   pa("Nrecs ", Nrecs);
+   <<"    %V $Nrecs\n";
 }
 
   cf(AFH);
@@ -230,11 +253,21 @@ for (i= 0; i <= 10 ; i++) {
 
 //WH=searchRecord(SRX,"AngelFire",0,0);
 
+  r_index= SRX.findRecord("Laramie",0,0,0);
+
+  printf("Laramie @ %d\n",r_index);
+
+
+  r_index= SRX.findRecord("Salida",0,0,0);
+
+  printf("Salida @ %d\n",r_index);
+
+
   r_index= SRX.findRecord("AngelFire",0,0,0);
 
   printf("AngelFire @ %d\n",r_index);
 
-//ans=query("?","angel",__LINE__);
+ans=query("?","angel",__LINE__);
 
 
 
@@ -383,7 +416,7 @@ printf(" Read $Ntp %d turnpts \n",Ntp);
 
 	  targ = sa.cptr(ai);
 
-   pa(ai, " targ ",targ);
+//   pa(ai, " targ ",targ);
 //ans=query("?","TP",__LINE__);
 
 //<<"%V $sa[ai]  $ai $targ \n"
@@ -418,7 +451,7 @@ printf(" Read $Ntp %d turnpts \n",Ntp);
 	  
           r_index=SRX.findRecord(targ,0,0,0);
 
-//pa("targ ",targ," @row ", r_index);
+pa("targ ",targ," @row ", r_index);
 
           if (r_index >=0) {
 
@@ -499,7 +532,7 @@ if (Ntaskpts == -1) {
 
 
 
-int Nlegs = Ntaskpts;
+Nlegs = Ntaskpts;
 
 //Taskpts.pinfo()
 int k;
@@ -526,9 +559,11 @@ int k;
 
 
   if (Have_igc) {
-pa(" Have_igc", igc_fname);
+//pa(" Have_igc", igc_fname);
 
-Igcfn = ofr(igc_fname);
+<<" Have_igc $igc_fname \n";
+
+      Igcfn = ofr(igc_fname);
 
       if (Igcfn != -1) {
        processIGC();
@@ -596,7 +631,7 @@ pa( " Coors ", LongW, LatS, LongE, LatN);
 
  Mapcoors= woGetPosition (mapwo);
 
-  COUT(Mapcoors);
+  VCOUT(Mapcoors);
 
 //ans=query("?","Mapcoors",__LINE__);
 
@@ -704,11 +739,12 @@ pa( " Coors ", LongW, LatS, LongE, LatN);
 
 #if CPP
 //#include  "gevent.h";
+ Gevent Gev;
 #else
 #include  "gevent.asl";
 #endif
 
- Gevent gev;
+
 
 
 
@@ -775,7 +811,7 @@ Str wcltpt="XY";
 
     taskDist();
  //sWo(tdwo,_WUPDATE);
-
+ // sdb(2);
   while (1) {
  //   zoom_to_task(mapwo,1)
     ok = 0;
@@ -783,18 +819,19 @@ Str wcltpt="XY";
     Task_update =0;
   
     //eventWait();
-    Gemsg =gev.eventWait();
-    Gekey = gev.getEventKey();
-    gev.getEventRxy( &Gerx,&Gery);
+    Gemsg =Gev.eventWait();
+    Gekey = Gev.getEventKey();
+    
+   Gev.getEventRxy( &Gerx,&Gery);
 
-    WoName = gev.getEventWoName();
-    Ev_button = gev.getEventButton();
+    WoName = Gev.getEventWoName();
+    Ev_button = Gev.getEventButton();
 
 #if ASL    
 <<"%V $Ev_keyw $gekey $WoName \n"
 #endif
 
-    Ev_keyw = gev.getEventKeyWord();
+    Ev_keyw = Gev.getEventKeyWord();
 
     pa("pa Ev_keyw ", Ev_keyw);
   
@@ -816,7 +853,7 @@ Str wcltpt="XY";
 
     //Text(vptxt," $_gekeyw   ",0,0.05,1)
 
-       if ( gev.getEventKey() >= 65) {
+       if ( Gev.getEventKey() >= 65) {
 
 
        printf("IN  W %f E %f N %f S %f\n",LongW, LongE,LatN, LatS);
@@ -956,18 +993,18 @@ Str wcltpt="XY";
 
               if (wc == "M") { // replace
 
-               printf("REPLACE TP \n");
+               printf("REPLACE TP \n"); // show this in msg area
 	       
           //     wc=choiceMenu("CTP.m");
 
                
-                    printf("REPLACE TP via Map select\n");
+                    //printf("REPLACE TP via Map select\n");
                      replace_tp(Witp);
                
                }
 	       else if (wc == "N") { // replace
 
-         printf("REPLACE TP via Name select\n");	    
+         //printf("REPLACE TP via Name select\n");	    
 //ans=query("?","N",__LINE__);
                  PickViaName(Witp);
 //		     <<"DONE REPLACE via name\n"
@@ -1096,7 +1133,8 @@ Str wcltpt="XY";
 
        }
        else if (WoName == "MAP") {
-       pa("in map", Gerx, Gery);
+
+//pa("in map", Gerx, Gery);
 
                drawit = 0;
 
@@ -1107,8 +1145,10 @@ Str wcltpt="XY";
                Wtp[ntp].Print();
                nval = Wtp[ntp].GetPlace();
 	       pa(ntp, nval);
-            //  <<" found %V $ntp $nval \n"
-	         sprintf(Gpos,"%d %s",ntp,nval.cptr());
+            <<" found %V $ntp $nval \n"
+	        
+	//	 sprintf(Gpos,"%d %s",ntp,nval);
+		sprintf(Gpos,"%d %s",ntp,nval.cptr()); 
                 Text(  vptxt,Gpos,0,0.05,1);
 		
                 ST_msl = Wtp[ntp].Alt;

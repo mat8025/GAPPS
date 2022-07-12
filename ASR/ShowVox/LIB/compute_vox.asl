@@ -9,25 +9,25 @@
 
 /// files produced by fft,ceppt etc
 
-fir_prog = "afb"
+Str fir_prog = "afb"
 
-pt_file="tran.pt";
+Str pt_file="tran.pt";
 
-spp_file="tran.spp";
+Str spp_file="tran.spp";
 
-ph_file="tran.ph";
+Str ph_file="tran.ph";
 
-sg_file = "";
-rms_file = "";
+Str sg_file = "";
+Str rms_file = "";
 
 
 
-proc computePitch()
+void computePitch()
 {
 
-frlen = 44
-pow_thres = 65
-svar ok;
+int frlen = 44;
+int pow_thres = 65;
+Svar ok;
 <<"starting cepstum pitch extraction  $spp_file"
 
 <<"\n ceppt -i $vox_file -o ceppt.df -l $frlen -s 7 -n 512 -S 3 -p $pt_file -t 1.6 -b 60 -e 400 -P $pow_thres -A -z $ph_file -x $spp_file\n"
@@ -39,32 +39,32 @@ ok=!!"ceppt -i $vox_file -o ceppt.df -l $frlen -s 7 -n 512 -S 3 -p $pt_file -t 1
 }
 //=====================================================================
 
-proc do_pt (sw)
+void do_pt (int sw)
 {
 
 
-# smoothed pitch
+// smoothed pitch
 
 //setpen(sw,"blue",1)
 //set_w_rs(sw,1,0)
 //set_w_rs(sw,3,400)
-<<"plot pitch in $sw\n"
+pa("plot pitch in ", sw);
 
   // fs = getChannelPara(spp_file,"FS",1)
  //  nvals = getChannelPara(spp_file,"NOB",1)
  //  stp = getChannelPara(spp_file,"STP",1)
 
- //  sWo(fewo,@scales,twRx,0,twRX,300)
+ //  sWo(_WOID,fewo,@scales,twRx,0,twRX,300)
  
  //  sGl(ptgl,@XI,fs,@XO,0)
  
-// sWo(fewo,@scales,0,0,20,300);
- sWo(fewo,@scales,twRx,0,twRX,300)
+// sWo(_WOID,fewo,@scales,0,0,20,300);
+ sWo(_WOID,fewo,@scales,twRx,0,twRX,300)
  drawGline(ptgl)
 
   //plotChannel(sw,spp_file,1,1,0,5,2)
-<<"done pltchn\n"
-# raw pitch
+
+// raw pitch
 //setpen(sw,"red",1)
 //plot_chan(sw,spp_file,0,1,0,5,2);
 
@@ -73,12 +73,14 @@ proc do_pt (sw)
 }
 //==================================================================
 
-proc getNpixs( wwo)
+int getNpixs(int wwo)
 {
-   SGCL = wogetclip(wwo)
 
-   nxpixs = SGCL[3] -  SGCL[1]
-   nypixs = SGCL[4] -  SGCL[2]
+Vec<int> SGCL(30);
+   SGCL= woGetPosition (wwo);
+
+   int nxpixs = SGCL[3] -  SGCL[1];
+   int nypixs = SGCL[4] -  SGCL[2];
 
 <<"%V$SGCL \n"
 
@@ -114,40 +116,40 @@ int Zxthres = 10;
 int Wshift = Hwlen;
 
 
-proc makeSmoothingWindow()
+void makeSmoothingWindow()
 {
   Swin = Fgen(Wlen,0.0,0);
   Swindow(Swin,Wlen,"Hanning");
 //  <<"%V$Swin\n";
 }
 //===========================================
-/{
-proc showRmsZx(nfr)
+/*
+void showRmsZx(nfr)
 {
 
-//  sWo(fewo,@ClearPixMap,@clearclip,@scales,0,0,nfr,30);
+//  sWo(_WOID,fewo,@ClearPixMap,@clearclip,@scales,0,0,nfr,30);
 //  sGl(rmsgl,@scales,0,0,nfr,30,@ltype,"solid", @symbol,"diamond",@savescales,0,@usescales,0);
    
   drawGline(rmsgl);
 
-  sWo(fewo,@scales,0,0,nfr,1.5,@savescales,1,@usescales,1)
+  sWo(_WOID,fewo,@scales,0,0,nfr,1.5,@savescales,1,@usescales,1)
   sGl(zxgl,@scales,0,0,nfr,1.5,@ltype,"solid", @symbol,"diamond",@savescales,1,@usescales,1);
 
   drawGline(zxgl);
    
-  sWo(fewo,@showPixMap) ;    
-  sWo(fewo,@clipBorder,BLACK_);
+  sWo(_WOID,fewo,@showPixMap) ;    
+  sWo(_WOID,fewo,@clipBorder,BLACK_);
 }
-/}
+*/
 
-proc showRmsZx()
+void showRmsZx()
 {
 
-   sWo(fewo,@ClearPixMap,@clearclip,@scales,twRx,0,twRX,30);
+   sWo(_WOID,fewo,@ClearPixMap,@clearclip,@scales,twRx,0,twRX,30);
 
    drawGline(rmsgl);
 
-   sWo(fewo,@scales,twRx,0,twRX,1.5,@savescales,1,@usescales,1)
+   sWo(_WOID,fewo,@scales,twRx,0,twRX,1.5,@savescales,1,@usescales,1)
 
    drawGline(zxgl,@usescales,1);
 
@@ -157,7 +159,7 @@ proc showRmsZx()
 //===========================================
 
 float ZxRmsFS = 0.0;
-proc computeZxRms()
+void computeZxRms()
 {
 // do this for entire signal
   int spi = 0;
@@ -199,7 +201,7 @@ proc computeZxRms()
 //===========================================
 
 
-proc computeSpecandPlot(rtb, rtf)
+void computeSpecandPlot(int rtb, int rtf)
 {
 
 // YS is our float buffer containing the whole signal
@@ -243,7 +245,7 @@ proc computeSpecandPlot(rtb, rtf)
 //<<"%V $ysz  \n"
 //<<"$YS[0] $YS[ysz-1]\n"
    
-  //  sWo(fewo,@ClearPixMap,@clearClip);
+  //  sWo(_WOID,fewo,@ClearPixMap,@clearClip);
     
  while (spi < stend) {
 
@@ -328,7 +330,7 @@ proc computeSpecandPlot(rtb, rtf)
      plotPixRect(sgwo, pixstrip, Gindex, xp,1,2,-1)
      
      
-     //sWo(commwo,@clear,@textr," $tx $frames \n",0.1,0.5)
+     //sWo(_WOID,commwo,@clear,@textr," $tx $frames \n",0.1,0.5)
      //<<"plotpixrect $xp $pixstrip[0][0:20]\n";
     }
 
@@ -354,7 +356,7 @@ proc computeSpecandPlot(rtb, rtf)
 
 <<"compute and plot time took $dtsecs  frames $frames \n"
 
-// sWo(commwo,@clear,@clipborder,@textr,"compute & plot time took $dtsecs  frames $frames \n",0.1,0.5)
+// sWo(_WOID,commwo,@clear,@clipborder,@textr,"compute & plot time took $dtsecs  frames $frames \n",0.1,0.5)
 
 // displayComment("compute & plot time took $dtsecs  frames $frames \n");
    
@@ -364,7 +366,10 @@ proc computeSpecandPlot(rtb, rtf)
 
 //========================================
 
-winc = showInclude()
+winc = showInclude();
 <<"%V$winc\n"
+
+
 <<"Done include upe_compute.asl $(showInclude()) \n"
 
+//ans=query("?", "compute setup",__LINE__);

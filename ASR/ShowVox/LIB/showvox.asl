@@ -49,26 +49,27 @@
 
 
 //OpenDll("plot","audio","image","tran");
-OpenDll("audio","image","tran");
+OpenDll("audio");
+OpenDll("image");
+OpenDll("tran");
 
 mach = get_arch();
 myname = get_uname(1);
 
-  //if (mach @= "sun") {
-  //sun = 1
-  //}
-  //else {
-  //sun = 0
-  //}
 
 Str s_display=get_env_var("DISPLAY");
 Str display=spat(s_display,":0");
 
-  si_pause(3);
+  si_pause(1);
   int mywid =getAslWid();
 //stitle = scat("UPET_V",the_version);
 
+
+
+
   sWi(_WOID,mywid,_WNAME,"UPET");
+
+int do_audio = 0;
 
 int Sf = 16000;
 float Sfreq = Sf; // default sampling frequency
@@ -82,11 +83,16 @@ int min_v = 20;
 int max_v= 80;
 int ntpx = 1;
 int st_fr = 0;
-
+float Endtime = 1.0;
+float Z0 = 0.0;
+float Z1 = 1.0;
+float start_t = 0.0;
+float stop_t = Endtime;
 
 #include "screen_vox"
 
 #include "procs_vox"
+
 
 //include "vox_menu";
 
@@ -103,8 +109,9 @@ int st_fr = 0;
 //read_devices()
 // TBD
 
+ if (do_audio) {
   openAudio(); // open rec,play snd devices
-  
+  }
 
 // get signal space
 
@@ -121,25 +128,22 @@ sp2 = ss;
 Olds1 = 0;
 Olds2 = 0;
 
-float Endtime = 1.0;
 
-float Z0 = 0.0;
-float Z1 = 1.0;
 
 
 // get a set of labels
 
-int timit_w = getLabelSet(100)
+int timit_w = getLabelSet(100);
 
 <<"label_set for words %V $timit_w \n"
 
-int timit_p = get_label_set(500)
+int timit_p = getLabelSet(500);
 <<"label_set for phones %V$timit_p \n"
 
-int timit_gp = get_label_set(500)
+int timit_gp = get_label_set(500);
 
 <<"label_set %V$timit_gp \n"
-
+ans=query("?", "getLabelSet",__LINE__);
 
 tok_type = timit_gp;
 

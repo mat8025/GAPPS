@@ -97,7 +97,7 @@ printf(" LongW %f LatS %f LongE %f LatN %f \n",LongW, LatS, LongE, LatN);
 
   Mapcoors= woGetPosition (mapwo);
 
-  COUT(Mapcoors);
+  pa(Mapcoors);
 
 //ans=query("?","Mapcoors",__LINE__);
 
@@ -163,7 +163,7 @@ printf(" LongW %f LatS %f LongE %f LatN %f \n",LongW, LatS, LongE, LatN);
 
   msl = Wtp[k].Alt;
 
-//<<"$k %V $is_an_airport  $mlab $msl \n";
+
 
 
 
@@ -176,6 +176,8 @@ printf(" LongW %f LatS %f LongE %f LatN %f \n",LongW, LatS, LongE, LatN);
 //<<"%V $k $lat   $Wtp[k].Ladeg \n"
 
   longi = Wtp[k].Longdeg;
+
+<<"$k %V $is_an_airport  $mlab $msl $lat $longi \n";
 
   //pa(k,msl,lat,longi, mlab);
 
@@ -549,12 +551,12 @@ if (st_rc_gl != -1) {
 
   float rY;
 
-  pa(rx,ry);
+  //pa(rx,ry);
 
   sWo(_WOID,wid,_WPENHUE,BLACK_);
   
 //ans=query("?1","b4 wgetrscales",__LINE__);
-pa("wid ",wid,__LINE__);
+//pa("wid ",wid,__LINE__);
 ST_RS[1] = 4.5;
 ST_RS[2] = 77.67;
 
@@ -603,7 +605,7 @@ ST_RS[4] = 52.67;
   //putMem("LatS","$ry",1);
 
  // putMem("LatN","$rY",1);
-
+#endif
   dx = (rX - rx );
 
   dy = (rY - ry );
@@ -623,37 +625,42 @@ ST_RS[4] = 52.67;
      // ticks(wid,1,rx,rX,x_inc,ts)
 
   if (x_inc >= 0.01) {
-#if ASL
+//#if ASL
   axnum(wid,1,rx,rX,2*x_inc,-1.5,"3.1f");
-#else  
-  sWo(_WOID,wid,_WAXNUM,AXIS_BOTTOM_,_WEO);
-#endif
+//#else  
+//  sWo(_WOID,wid,_WAXNUM,AXIS_BOTTOM_,_WEO);
+//#endif
   }
 
   else {
-#if ASL
+//#if ASL
   axnum(wid,1,rx,rX,2*x_inc,-1.5,"3.1f");
-#else
-sWo(_WOID,wid,_WAXNUM,AXIS_BOTTOM_,_WEO);
-#endif
-  }
+//#else
+//sWo(_WOID,wid,_WAXNUM,AXIS_BOTTOM_,_WEO);
+//#endif
+
+
 
   }
 
   if ( y_inc != 0.0) {
       //ticks(wid,2,ry,rY,y_inc,ts)
-#if ASL
+//#if ASL
   axnum(wid,2,ry,rY,2*y_inc,-2.0,"2.1f");
-#else
-sWo(_WOID,wid,_WAXNUM,AXIS_LEFT_,_WEO);
-#endif
-}
+//#else
+//sWo(_WOID,wid,_WAXNUM,AXIS_LEFT_,_WEO);
+//#endif
+
+ }
 
   
-#endif
+
 
 sWo(_WOID,wid,_WCLIPBORDER,RED_);
-pa("done gg");
+
+   printf("done gg");
+
+  }
 }
 //==================================================
   void gg_zoomToTask(int w_num, int draw)
@@ -679,11 +686,10 @@ pa("done gg");
 
   void reset_map()
   {
-
   
 
   DrawMap();
- drawTask(mapwo,GREEN_);
+  drawTask(mapwo,GREEN_);
 
 }
 //======================================//
@@ -730,7 +736,9 @@ pa("done gg");
   mouseCursor(tpwo[9],"cross");
 
   //sWo(tpwo,_WREDRAW);
+ woSetValue (tpwo[wt],nval);
 
+  sWo(_WOID,tpwo[wt],_WREDRAW,ON_);
   }
 
 
@@ -1012,12 +1020,12 @@ int PickViaName(int wt)
 
   if (slen(tval) > 1) {
 
-  index=RX.findRecord(tval,0,0,0);
+  index=SRX.findRecord(tval,0,0,0);
 	  //<<"%V $k $WH\n"
 
   if (index >=0) {
 
-  ttp = RX[index];
+  ttp = SRX[index];
 	  //<<"<|$Ntaskpts|> $ttp \n" 
 //          Tasktp[Ntaskpts].TPset(RF[index])
 
@@ -1593,7 +1601,7 @@ fastxic(0);
 
   int i;
 
-pa(Ntaskpts);
+  pa(Ntaskpts);
 
 //  ans = query("see taskpts");
 
@@ -1913,8 +1921,12 @@ void updateLegs()
     dist =  Wleg[i].dist;
 //    val = "%6.0f$lfga"
    //   val = "%6.0f$lfga $dist ";
+#if CPP   
       val = "%6.0f$dist $lfga ";
       val.strPrintf(" %6.0f %6.0f ",dist,lfga);
+#else
+      val = "%6.0f$lfga $dist ";
+#endif
  //   <<"leg $i $lwo %6.1f $msl $dist  $lfga  \n"
 //  <<"leg $i  <|$val|> \n"
      woSetValue (lwo,val,0);

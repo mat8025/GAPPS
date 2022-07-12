@@ -15,84 +15,118 @@
 ///
 
 // TBF has to be a 'starter' line before any decs in include file?
-// keep following
-
-#ifndef TBQRD 2
-
+// keep for TBQRD 2
+#ifndef TBQRD
 #define TBQRD 2
 
-<<"including tbqrd.asl TBQRD $(TBQRD)\n"
+//<<"including tbqrd.asl TBQRD $(TBQRD)\n"
 
 // assume just main window use
+#if CPP
+#include "gline.h"
+#include "glargs.h"
+#include "woargs.h"
+#endif
 
 int tbqrd_tv = 0;
 int tbqrd_msg = 0;
 
-//<<[_DB]"FIRST %V $tbqrd_tv \n"
+// tmp use these for woarrays
+int woi;
+int woj;
 
+//<<[_DB]"FIRST %V $tbqrd_tv \n"
 
 
 void  titleButtonsQRD(int v)
 {
- printf("USING LIB version !\n");
+ printf("USING COMPILE version !\n");
 //////////////////////////////// TITLE BUTTON QUIT RESIZE REDRAW ////////////////////////////////////////////////
- tq=cWo(v,WO_TB_)
+ int tq=cWo(v,TBS_);
 
- sWo(tq,_name,"tbq",_value,"QUIT",_func,"window_term",_resize,0.97,0,0.99,1,_symbol,X_,_flush);
- 
- tr=cWo(v,WO_TB_,_name,"tbr",_value,"RESIZE",_func,"window_resize",_resize,0.94,0,0.96,1,_symbol,CROSS_,_flush);
- 
- td=cWo(v,WO_TB_,_name,"tbd",_value,"REDRAW",_func,"window_redraw",_resize,0.91,0,0.93,1,_symbol,DIAMOND_,_flush);
+float rsz[5] = {0.97,0,0.99,1};
 
- tbqrd_tv = cWo(v,_TBV,_name,"tbv",_value,"VERS",_style,SVO_,_resize,0.2,0,0.50,1,_flush);
-<<[_DB]"SET %V $tbqrd_tv \n"
+ sWo(_WOID,tq,_WNAME,"tbq",_WVALUE,"QUIT",_WFUNC,"window_term",_WRESIZE,rsz,_WSYMBOL,X_);
+ 
+int  tr=cWo(v,TBS_);
+rsz[0] = 0.94;
+rsz[2] = 0.96;
+ sWo(_WOID,tr,_WNAME,"tbr",_WVALUE,"RESIZE",_WFUNC,"window_resize",_WRESIZE,rsz,_WSYMBOL,CROSS_);
+ 
+ int td=cWo(v,TBS_);
+ rsz[0] = 0.91;
+ rsz[2] = 0.93;
+ 
+sWo(_WOID,td, _WNAME,"tbd",_WVALUE,"REDRAW",_WFUNC,"window_redraw",_WRESIZE,rsz,_WSYMBOL,DIAMOND_);
+
+int  tbqrd_tv = cWo(v,TBV_);
+rsz[0] = 0.2;
+rsz[2] = 0.5;
+sWo(_WOID,tbqrd_tv,_WNAME,"tbv",_WVALUE,"VERS",_WSTYLE,SVO_,_WRESIZE,rsz);
+
+//<<[_DB]"SET %V $tbqrd_tv \n"
 //int qrd[] = {tr,tq,td};
- tbqrd_msg = cWo(v,_TBV,_name,"tbm",_value,"MSG",_style,SVO_,_resize,0.52,0,0.90,1,_flush);
-int qrd[4];
+int  tbqrd_msg = cWo(v,TBV_);
+rsz[0] = 0.52;
+rsz[2] = 0.80;
+sWo(_WOID,tbqrd_msg,_WNAME,"tbm",_WVALUE,"MSG",_WSTYLE,SVO_,_WRESIZE,rsz,_WREDRAW,ON_);
+
+int qrd[3];
 
 qrd[0]= tq;
 qrd[1]= tr;
 qrd[2]= td;
-qrd[3]= -1;
 
-<<[_DB]"%V $tr $tq $td\n"
-<<[_DB]"%V $qrd $(caz(qrd)) $(typeof(qrd))\n"
+//<<[_DB]"%V $tr $tq $td\n"
+//<<[_DB]"%V $qrd $(caz(qrd)) $(typeof(qrd))\n"
+float clip[5] = {0,0,1,1};
+int i;
+// need cpp version to process array without for loop 03/14/22
 
-sWo(qrd,_drawon,_pixmapon,_fonthue,RED_,_color,WHITE_,_symsize,45, _clip,0,0,1,1,_flush);
- 
+ sWo(_WOID,tq,_WDRAW,ON_,_WPIXMAP,ON_,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45, _WCLIP,clip,_WREDRAW,ON_);
+
+sWo(_WOID,tr,_WDRAW,ON_,_WPIXMAP,ON_,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45, _WCLIP,clip,_WREDRAW,ON_);
+
+sWo(_WOID,td,_WDRAW,ON_,_WPIXMAP,ON_,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45, _WCLIP,clip,_WREDRAW,ON_);
+
 // sWo(tbqrd_tv,_redraw);
 // sWo(tbqrd_msg,_redraw);
  
 }
 //============================//
-void titleComment(str msg)
+void titleComment(Str msg)
 {
- <<"%V $msg \n"
- sWo(tbqrd_tv,_value,"$msg",_clear,_redraw);
+// <<"%V $msg \n"
+ sWo(_WOID,tbqrd_tv,_WVALUE,msg.cptr(),_WCLEAR,ON_,_WREDRAW,ON_);
 
 }
 //============================//
 void titleVers()
 {
-// str tit = "$_ele_vers $_ele";
- str tit = scriptVers();
- <<"script vers $tit\n"
+// Str tit = "$_ele_vers $_ele";
+ //Str tit = scriptVers();
+ Str tit = "xyz";
+ 
+ //<<"script vers $tit\n"
  titleComment(tit);
 }
 
 
 //============================//
-void titleMessage(str msg)
+void titleMessage(Str msg)
 {
- //<<"%V $msg \n"
- sWo(tbqrd_msg,_value,"$msg",_clear,_redraw);
+ 
+ sWo(_WOID,tbqrd_msg,_WVALUE,msg.cptr(),_WCLEAR,ON_,_WREDRAW,ON_);
 }
 
-void titleMsg(str msg)
+void titleMsg(Str msg)
 {
- //<<"%V $msg \n"
- sWo(tbqrd_msg,_value,"$msg",_clear,_redraw);
+ 
+ sWo(_WOID,tbqrd_msg,_WVALUE,msg.cptr(),_WCLEAR,ON_,_WREDRAW,ON_);
 }
+
+
+
 
 #endif
 

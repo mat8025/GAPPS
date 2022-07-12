@@ -23,14 +23,14 @@
 void eventDecode()
 {
    // can get all of these in one by using ref parameters
-   Ev_name = Ev.getEventType(Ev_id,Ev_type,Ev_woid,Ev_woaw,Ev_button,Ev_keyc,Ev_woproc,Ev_x,Ev_y,Ev_woval);
+   Ev_name = Gev.getEventType(Ev_id,Ev_type,Ev_woid,Ev_woaw,Ev_button,Ev_keyc,Ev_woproc,Ev_x,Ev_y,Ev_woval);
      
 //<<"$_proc %V $Ev_x $Ev_y  $Ev_woid\n"
 
-   Ev_woval = Ev.getEventWoValue();
+   Ev_woval = Gev.getEventWoValue();
   <<"%V $Ev_woval \n"       
 
-  //  Ev.geteventrxy(Ev_rx,Ev_ry);    
+  //  Gev.geteventrxy(Ev_rx,Ev_ry);    
 
 //<<"$_proc  %V Ev_rx  Ev_ry \n"
 
@@ -71,16 +71,16 @@ void eventDecode()
      }
     }
     
-     Ev_woname = Ev.getEventWoName();
-//     Ev_woproc = Ev.getEventWoProc();
+     Ev_woname = Gev.getEventWoName();
+//     Ev_woproc = Gev.getEventWoProc();
   
 //  Motion event -- will have 1 or more 'event' readings
 //  read these into array or rxy and erow-col
 
-  //  Ev.geteventxy(&Ev_x,&Ev_y);
+  //  Gev.geteventxy(&Ev_x,&Ev_y);
 
 
-    Ev.geteventrowcol(&Ev_row,&Ev_col);
+    Gev.geteventrowcol(&Ev_row,&Ev_col);
 
 //Ev_row.info(1); // DBG
 //Ev_col.info(1); // DBG
@@ -89,7 +89,7 @@ void eventDecode()
     }
 
    }
-   // Ev.geteventrxy(Ev_rx,Ev_ry);    
+   // Gev.geteventrxy(Ev_rx,Ev_ry);    
 
 //<<"$_proc  %V Ev_rx  Ev_ry \n"
 }
@@ -108,10 +108,10 @@ void eventWait()
     Ev_wovalue = "";
     Ev_msg = "";
 
-    Ev_msg = Ev.waitForMsg();
+    Ev_msg = Gev.waitForMsg();
 //<<"$_proc  %V $Ev_msg\n"
-     Ev.geteventrxy(Ev_rx,Ev_ry);    
-     Ev_woid=Ev.geteventwoid();
+     Gev.geteventrxy(Ev_rx,Ev_ry);    
+     Ev_woid=Gev.geteventwoid();
 
 <<"$_proc  %V $Ev_woid $Ev_rx $Ev_ry\n"     
 
@@ -130,7 +130,7 @@ void eventWait()
 void eventRead()
 {
     
-    Ev_msg = Ev.readMsg();
+    Ev_msg = Gev.readMsg();
     Ev_loop++;
     
   
@@ -140,7 +140,7 @@ void eventRead()
 
 
 
-Gevent Ev; // event type - can inspect for all event attributes
+Gevent Gev; // event type - can inspect for all event attributes
 
 
 int Ev_loop = 0;

@@ -1183,3 +1183,6 @@ screen_p.cpp                        1.82  07/06/2022 09:55:59  mouseCursor
 po_p.cpp                            1.80  07/06/2022 09:57:32  Cglid,Cwid,Cwoid
 tran.cpp                            1.93  07/06/2022 14:45:00  Transf class
 phoneme.cpp                         1.92  07/06/2022 14:45:33  Transf class
+args_l.cpp                          1.4  07/10/2022 17:58:44  pa - args to stdout single line
+prep.cpp                            2.60  07/11/2022 11:59:16  TBV_,TBS_
+print.cpp                           1.79  07/11/2022 18:48:52  option STR and CHAR revise

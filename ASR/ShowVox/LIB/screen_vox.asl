@@ -183,7 +183,7 @@ int exitwo =cWo(tw,WO_BN_);
  // titleVers();
   titleComment("ShowVox $hdr_vers")
 
-ans=query("?", "screen setup",__LINE__);
+//ans=query("?", "screen setup",__LINE__);
 
 
 ////////////////////////////////// GLINES for FEATURE TRACKS ///////////////////////////////////////
@@ -209,6 +209,6 @@ int rmsgl = cGl(fewo);
  sGl(_GLID,ptgl,_GLTY,PtTrk,_GLNAME,"PT",_GLSCALES,rbox(0,0,200,500), _GLSYMBOL,DIAMOND_,_GLSAVESCALES,0,_GLUSESCALES,0);
 
 
-ans=query("?", "gline setup",__LINE__);
+//ans=query("?", "gline setup",__LINE__);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////

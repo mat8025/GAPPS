@@ -180,7 +180,7 @@ int N;
    Vec<double> ssele(14);
    
 
-  pa("processIGC Igcfn   ",Igcfn);
+ // pa("processIGC Igcfn   ",Igcfn);
   
   Ntpts= readIGC(Igcfn, IGCTIM, IGCLAT, IGCLONG, IGCELE);
   
@@ -196,7 +196,7 @@ int N;
      printf("i %f %f %f %f\n",i,IGCTIM[i] ,IGCELE[i] ,IGCLAT[i]  ,IGCLONG[i] );
      }
 
-pa("stats 2do ");
+//pa("stats 2do ");
 
  // sslng= stats( IGCLONG);
 
@@ -258,7 +258,7 @@ ssele= IGCELE.stats();
 
   float max_lat = sslat[6];
 
-COUT(max_lat);
+  //COUT(max_lat);
 
 
 
@@ -314,7 +314,7 @@ COUT(max_lat);
   LongE = MidLong - da/2.0;
   VCOUT(LongW,LongE);
 
- pa(LongW,LongE);
+ //pa(LongW,LongE);
 
 
   }

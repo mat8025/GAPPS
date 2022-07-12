@@ -13,14 +13,16 @@
 ;//----------------<v_&_v>-------------------------//;                  
 
 
-
+ int run_asl = 0;
 
 #define ASL 1
 #define CPP 0
 
 #if ASL
 // the include  when cpp compiling will re-define ASL 0 and CPP 1
-#include "compile.h"
+#include "compile.asl"
+
+//  printf("ASL %d CPP %d\n",ASL,CPP);
 #endif
 
 
@@ -32,17 +34,21 @@
 
 #if ASL
 #define COUT //
+ run_asl = runASL();
+printf("run_asl %d\n",run_asl);
+
+printf("CPP %d\n",CPP);
+
 #endif
 //#define cdbp //
 
- int run_asl = runASL();
 
 
-#include "tbqrd.asl"
 
 #if CPP
 
  //opendll("plot");
+#include <stdio.h>
 #include "vec.h"
 #include "gline.h"
 #include "glargs.h"
@@ -73,6 +79,7 @@ Uac::glineWorld(Svarg * sarg)
 #endif
 
 /// launch xgs
+#include "tbqrd.asl"
 #include "graphic.asl"
 
 Gevent gev;
@@ -81,11 +88,11 @@ Str ans = "y";
 
 printf("run_asl %d\n",run_asl);
 
-ans.strPrintf("run_asl %d",run_asl);
-COUT(ans);
+//ans.strPrintf("run_asl %d",run_asl);
+//COUT(ans);
 
-//Str prompt = "ASL/CPP?";
-//ans=query(prompt,ans);
+Str prompt = "ASL/CPP?";
+ans=query(prompt,ans);
 
 
 

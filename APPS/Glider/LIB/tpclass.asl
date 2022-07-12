@@ -100,7 +100,9 @@ class Turnpt
 
 //      wval->info(1)
 //<<": $wval[0] 1: $wval[1] 2: $wval[2] 3: $wval[3] 4: $wval[4] \n"
-
+     is_airport =0;
+     is_mtn =0;
+     
      Place = wval[0]; // wayp 
 
      Idnt =  wval[1];
@@ -119,6 +121,13 @@ class Turnpt
      Radio = wval[6];
 
      tptype = wval[7];
+
+    if (tptype == "TA") {
+       is_airport = 1;
+    }
+    if (tptype == "TM") {
+       is_mtn = 1;
+    }
      
      //smat = spat (&tptype, "A",-1,-1,match);
 

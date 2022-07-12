@@ -20,8 +20,15 @@
 #include <iostream>
 #include <ostream>
 
-#define ASL 0
+
 #define CPP 1
+
+
+
+
+
+
+
 
 #include "vec.h"
 #include "uac.h"

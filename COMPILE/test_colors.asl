@@ -49,8 +49,6 @@
  double bluev = 0.5;
 
 
-
-
 //#include "gevent.h"
 #include "tbqrd.asl"
 

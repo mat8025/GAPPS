@@ -24,9 +24,7 @@
 
   int Mono = 1;
 
-  float start_t = 0.0;
 
-  float stop_t = Endtime;
 
 
    int set_cmap()
@@ -165,7 +163,7 @@
 
    Z1 = s2;
 
-   w_set_wo_value(sw,status_wo,s1);
+  // w_set_wo_value(sw,status_wo,s1); // msg in title msg area?
 
    play_the_signal(s1*Sf,s2*Sf);
 
@@ -380,16 +378,16 @@
   }
 //===============================================
 
-  void do_zoom (bt,et)
+  void do_zoom (float bt,float et)
   {
 
-  show_curs(1,-1,-1,"watch");
+  mouseCursor(SCREEN1_,WATCH_);
 
-  w_clip_clear(tw);
+  sWi(_WOID,tw,_WCLEAR,WHITE_);
 
-  o_print("time ",bt," ",et,"\n");
+  //o_print("time ",bt," ",et,"\n");
 
-  dz = (et-bt)/6;
+  float dz = (et-bt)/6;
 
   bt = bt -dz;
 
@@ -416,12 +414,12 @@
 
   show_sr(pw);
 
-  show_curs(1,-1,-1,"cross");
+  mouseCursor(SCREEN1_,MC_CROSS_);
 
   }
 //===============================================
 
-  void do_plot_track (sw)
+  void do_plot_track (int sw)
   {
 
   rx=get_w_rs(tw,0);
@@ -436,7 +434,7 @@
 
   isfp =f_exist(pt_file,0, 320);
 
-  w_clip_clear(spw);
+  //w_clip_clear(spw);
       //  setpen(spw,"blue",1)
 
   plot_chan(spw,pt_file,1,1,0,5,2);
@@ -576,17 +574,18 @@
   }
 //
 
-  void do_gettok (ttype)
+  void do_gettok (int ttype)
   {
-  tok = -1;
-  but = 0;
-  findtok = 1;
-  key = -1;
-  nn = 1;
-  retrys = 0;
+  
+  int tok = -1;
+  int but = 0;
+  int findtok = 1;
+  int key = -1;
+  int nn = 1;
+  int retrys = 0;
   char ckey;
-  woid = -1;
-  wnu = 0;
+  int woid = -1;
+  int wnu = 0;
 
   while ( findtok) {
 
@@ -687,7 +686,7 @@
   }
 //======================================
 
-  void do_delete (the_ttype)
+  void do_delete (int the_ttype)
   {
 		//w_show_curs(tw,1,"pirate",0.5,0.5)
 
@@ -701,7 +700,7 @@
 
   lab = get_label_name(the_ttype,tok);
 
-  w_set_wo_value(tw,status_wo,lab);
+//  w_set_wo_value(tw,status_wo,lab);
 
   op = decision_w("DELETE_LABEL",lab," yes ", " no ");
 
@@ -722,14 +721,15 @@
   }
 
   }
+  
+ mouseCursor(SCREEN1_,MC_CROSS_);
 
-  show_curs(1,-1,-1,"cross",7,7);
 	//	w_show_curs(tw,1,"spider",0.5,0.5)
 
   }
 //======================================
 
-  void do_rename (the_ttype)
+  void do_rename (int the_ttype)
   {
 
   mouseCursor(SCREEN1_,HAND_);
@@ -773,7 +773,7 @@
 
   }
 
-  w_set_wo_value(tw,status_wo,lab);
+//  w_set_wo_value(tw,status_wo,lab);
 
   e_nu_lab = "new_lab_:";
 
@@ -804,7 +804,7 @@
   }
 //===================================================
 
-  void play_token (the_ttype)
+  void play_token (int the_ttype)
   {
   play_tokens = 1;
   gwm_w_show_curs(tw,1,"hand",0.5,0.5);
@@ -908,16 +908,17 @@
   }
 //==============================================================
 
-  void show_token (the_ttype,tok)
+  void show_token (int the_ttype,int tok)
   {
-  if ( tok >= 0 ) {
+    if ( tok >= 0 ) {
 
-  start_t = get_label_start(the_ttype,tok);
+     start_t = get_label_start(the_ttype,tok);
 
-  stop_t = get_label_stop(the_ttype,tok);
+     stop_t = get_label_stop(the_ttype,tok);
 
-  w_real_xor(tw,start_t,-32000,stop_t,32000);
-  }
+    w_real_xor(tw,start_t,-32000,stop_t,32000);
+   }
+  
   }
 //==============================================================
 
@@ -1103,4 +1104,7 @@
   }
 //======================================================
 
+//ans=query("?", "procs setup",__LINE__);
+
+<<"procs setup done";
 ;//==============\_(^-^)_/==================//;
