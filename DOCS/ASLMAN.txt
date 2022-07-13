@@ -5804,7 +5804,7 @@ The image in the clip region of window wid is saved to file fname.
 .EF
 =============================================================
 .BF
-sel_win()
+selwin()
 .(x
 selwin
 .)x 
@@ -5819,7 +5819,7 @@ A=sel_win("A_Window")
 .EF
 =============================================================
 .BF
-sel_wid()
+selwid()
 .(x
 selwid
 .)x 
@@ -9351,7 +9351,7 @@ rover("growling","XY",-2)   returns "growlXYg"
 .BF
 sele()
 .(x
-sele
+sele,strele
 .)x 
 .FD
 sele(sv,index,nc);

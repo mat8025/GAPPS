@@ -43,10 +43,10 @@ printf("CPP %d\n",CPP);
 //#define cdbp //
 
 
-
+#include "tbqrd.asl"
 
 #if CPP
-
+//#error CPP
  //opendll("plot");
 #include <stdio.h>
 #include "vec.h"
@@ -57,16 +57,14 @@ printf("CPP %d\n",CPP);
 #include "gevent.h"
 
 
-
-
 void
 Uac::glineWorld(Svarg * sarg)  
 {
- cout <<"CPP   \n";
+ cout <<"CPP?   \n";
 
- cout <<"CPP  ASL?  " << run_asl << endl;
+ cout <<"CPP  " << CPP << " ASL?  " << run_asl << endl;
 
- cout << "hello testing gline ops " << endl;
+ cout << "Hello testing gline ops " << endl;
 
 
 #endif
@@ -79,7 +77,7 @@ Uac::glineWorld(Svarg * sarg)
 #endif
 
 /// launch xgs
-#include "tbqrd.asl"
+
 #include "graphic.asl"
 
 Gevent gev;

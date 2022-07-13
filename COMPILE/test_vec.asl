@@ -45,7 +45,7 @@ Uac::vecWorld(Svarg * sarg)
 {
    dbt("debug \n");
    Str ans= "xyz";
-   cout << "hello simple Vec test  " << ans << endl;
+   cout << "Hello simple Vec test  " << ans << endl;
    setDebug(2,"pline");
    dbt("debug in vecWorld\n");
 

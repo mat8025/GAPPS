@@ -127,7 +127,7 @@ int LastTP = 12;
 
 
 Record SRX;
-
+Svar Wval;
 
 int is_an_airport = 0;
 

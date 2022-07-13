@@ -203,13 +203,21 @@ Str val2;
      val = wval[5];
 
 //  <<"%V$val  \n"
-
+    // ft or m
+    if (sele(val,-1,2) == "ft") {
      val.scut(-2); 
+       Alt = atof(val);
+   }
+    else {
+       val.scut(-1);
+            Alt = atof(val);
+	    Alt *= 3.280839 ;
 
+    }
 // <<"%V$val  \n"
 
 
-     Alt = atof(val);
+
 //cout  <<"Alt "<< Alt  <<endl ; 
 // <<"%V$Alt  \n"
 

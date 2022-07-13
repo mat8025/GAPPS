@@ -32,9 +32,8 @@
 
 
 #if CPP
-#error using CPP
+#warning USING_CPP
 #endif
-
 
 
 
@@ -194,13 +193,14 @@ cout << " para[1] is:  "  << sa.cptr(1) << endl;
  openDll("plot");
 
 Str tp_file;
-int use_cup = 0;
+int use_cup = 1;
 int Nrecs;
 
 
 if (use_cup) {
 
-    tp_file = "CUP/bbrief.cup";
+   // tp_file = "CUP/bbrief.cup";
+    tp_file = "CUP/co_14ers.cup";
 
 }
 else {
@@ -233,7 +233,7 @@ cout <<"SRX.readRecord\n";
 else {
    Nrecs=SRX.readRecord(AFH,_RLAST);  // no back ptr to Siv?
    pa("Nrecs ", Nrecs);
-   <<"    %V $Nrecs\n";
+   
 }
 
   cf(AFH);
@@ -252,7 +252,7 @@ for (i= 0; i <= 10 ; i++) {
 */
 
 //WH=searchRecord(SRX,"AngelFire",0,0);
-
+/*
   r_index= SRX.findRecord("Laramie",0,0,0);
 
   printf("Laramie @ %d\n",r_index);
@@ -266,8 +266,39 @@ for (i= 0; i <= 10 ; i++) {
   r_index= SRX.findRecord("AngelFire",0,0,0);
 
   printf("AngelFire @ %d\n",r_index);
+*/  
 
-ans=query("?","angel",__LINE__);
+  r_index= SRX.findRecord("Evans",0,0,0);
+
+  printf("Evans @ %d\n",r_index);
+
+  r_index= SRX.findRecord("Pikes",0,0,0);
+  
+
+  printf("Pikes @ %d\n",r_index);
+
+  r_index= SRX.findRecord("Longs",0,0,0);
+
+  printf("Longs @ %d\n",r_index);
+
+ans=query("?","longs",__LINE__);
+
+
+
+
+
+  Wval= SRX.getRecord(0);
+
+//<<"0 $Wval\n"
+
+
+  Wval= SRX.getRecord(1);
+
+pa(Wval);
+
+  ans=query("?","row 1",__LINE__);
+
+
 
 
 
@@ -278,7 +309,7 @@ ans=query("?","angel",__LINE__);
 //ans=query("??");
 
 //================================//
- Svar Wval;
+
  Str Cfr;
 
   AFH =ofr(tp_file);
@@ -559,9 +590,10 @@ int k;
 
 
   if (Have_igc) {
-//pa(" Have_igc", igc_fname);
 
-<<" Have_igc $igc_fname \n";
+pa(" Have_igc", igc_fname);
+
+
 
       Igcfn = ofr(igc_fname);
 
@@ -631,7 +663,7 @@ pa( " Coors ", LongW, LatS, LongE, LatN);
 
  Mapcoors= woGetPosition (mapwo);
 
-  VCOUT(Mapcoors);
+ pa(Mapcoors);
 
 //ans=query("?","Mapcoors",__LINE__);
 
@@ -827,9 +859,9 @@ Str wcltpt="XY";
     WoName = Gev.getEventWoName();
     Ev_button = Gev.getEventButton();
 
-#if ASL    
-<<"%V $Ev_keyw $gekey $WoName \n"
-#endif
+
+pa(Ev_keyw,Gekey,WoName );
+
 
     Ev_keyw = Gev.getEventKeyWord();
 
@@ -1145,7 +1177,7 @@ Str wcltpt="XY";
                Wtp[ntp].Print();
                nval = Wtp[ntp].GetPlace();
 	       pa(ntp, nval);
-            <<" found %V $ntp $nval \n"
+            pa("found ", ntp ,nval);
 	        
 	//	 sprintf(Gpos,"%d %s",ntp,nval);
 		sprintf(Gpos,"%d %s",ntp,nval.cptr()); 
@@ -1248,6 +1280,7 @@ exit(0);
 }
 ////////////////////////////////////////////////////////////////////////////////////////
 
+//#error  show_task
 
 extern "C" int show_task(Svarg * sarg)  {
 
@@ -1255,7 +1288,7 @@ extern "C" int show_task(Svarg * sarg)  {
  Str ans;
  a0.pinfo();
 
-Str Use_ ="compute task distance\n  e.g  showtask  gross laramie mtevans boulder  LD 40";
+ Str Use_ ="compute task distance\n  e.g  showtask  gross laramie mtevans boulder  LD 40";
 
 
  printf(" showTask app %s ",Use_.cptr() );

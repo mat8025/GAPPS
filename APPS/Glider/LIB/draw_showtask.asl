@@ -79,7 +79,7 @@ printf(" LongW %f LatS %f LongE %f LatN %f \n",LongW, LatS, LongE, LatN);
   void DrawMap()
   {
   
-//DBG"$_proc %V $wo\n"
+// DBG"$_proc %V $wo\n"
 // TBF include ?? code that we are running or  code that is calling?
 //<<"%V $_proc  $_include \n"
 
@@ -177,7 +177,7 @@ printf(" LongW %f LatS %f LongE %f LatN %f \n",LongW, LatS, LongE, LatN);
 
   longi = Wtp[k].Longdeg;
 
-<<"$k %V $is_an_airport  $mlab $msl $lat $longi \n";
+pa(k ,is_an_airport  ,mlab, msl ,lat ,longi);
 
   //pa(k,msl,lat,longi, mlab);
 
@@ -185,19 +185,19 @@ printf(" LongW %f LatS %f LongE %f LatN %f \n",LongW, LatS, LongE, LatN);
 
 //<<"%V $k $mlab $msl $lat $longi $Wtp[k].Ladeg   \n"
 
-  if ( msl > 7000) {
-    if (is_an_airport || is_a_mtn) {
+  if ( msl > 1000) {
+    if (1||is_an_airport || is_a_mtn) {
     
        Text(mapwo, mlab.cptr(), longi, lat,0,0,1,RED_);
  //ans=query("?","Text",__LINE__);
 
-	    // <<"above 7K $msl $mlab $lat $longi\n"
+	    <<"above 7K $msl $mlab $lat $longi\n"
      }
   }
   else {
 
   if ( msl > 5000) {
-    if (is_an_airport) {
+    if (1||is_an_airport) {
        Text(mapwo,mlab.cptr(),longi,lat,0,0,1,BLUE_);
 	       // <<"above 5K $msl $mlab $lat $longi\n"
    }
@@ -625,19 +625,19 @@ ST_RS[4] = 52.67;
      // ticks(wid,1,rx,rX,x_inc,ts)
 
   if (x_inc >= 0.01) {
-//#if ASL
+#if ASL
   axnum(wid,1,rx,rX,2*x_inc,-1.5,"3.1f");
-//#else  
-//  sWo(_WOID,wid,_WAXNUM,AXIS_BOTTOM_,_WEO);
-//#endif
+#else  
+  sWo(_WOID,wid,_WAXNUM,AXIS_BOTTOM_,_WEO);
+#endif
   }
 
   else {
-//#if ASL
+#if ASL
   axnum(wid,1,rx,rX,2*x_inc,-1.5,"3.1f");
-//#else
-//sWo(_WOID,wid,_WAXNUM,AXIS_BOTTOM_,_WEO);
-//#endif
+#else
+sWo(_WOID,wid,_WAXNUM,AXIS_BOTTOM_,_WEO);
+#endif
 
 
 
@@ -645,11 +645,11 @@ ST_RS[4] = 52.67;
 
   if ( y_inc != 0.0) {
       //ticks(wid,2,ry,rY,y_inc,ts)
-//#if ASL
+#if ASL
   axnum(wid,2,ry,rY,2*y_inc,-2.0,"2.1f");
-//#else
-//sWo(_WOID,wid,_WAXNUM,AXIS_LEFT_,_WEO);
-//#endif
+#else
+  sWo(_WOID,wid,_WAXNUM,AXIS_LEFT_,_WEO);
+#endif
 
  }
 
@@ -1467,7 +1467,7 @@ fastxic(0);
 //<<"$index \n"
   if (index >=0) {
 
-    srp = SRX.getRow(index);
+    srp = SRX.getRecord(index);
 
 //  printf(" found  $index %d\n",index);
 //<<"$ttp \n"

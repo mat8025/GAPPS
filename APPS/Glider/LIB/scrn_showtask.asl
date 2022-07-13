@@ -234,7 +234,7 @@ int Xgm;
 
     Mapcoors= woGetPosition (mapwo);
 
-  VCOUT(Mapcoors);
+  pa(Mapcoors);
 
 //ans=query("?","Mapcoors",__LINE__);
 
