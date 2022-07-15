@@ -80,7 +80,10 @@ class Turnpt
   float Ladeg;
   float Longdeg;
   int is_airport;
+  int is_strip;
   int is_mtn;
+  int is_mtn_pass;
+  
   int id;
   //int match[2];
   int match;
@@ -102,6 +105,7 @@ class Turnpt
 //<<": $wval[0] 1: $wval[1] 2: $wval[2] 3: $wval[3] 4: $wval[4] \n"
      is_airport =0;
      is_mtn =0;
+     is_mtn_pass =0;     
      
      Place = wval[0]; // wayp 
 
@@ -122,11 +126,14 @@ class Turnpt
 
      tptype = wval[7];
 
-    if (tptype == "TA") {
+    if (tptype == "TPA") {
        is_airport = 1;
     }
-    if (tptype == "TM") {
+    if (tptype == "TPM") {
        is_mtn = 1;
+    }
+    if (tptype == "TPP") {
+       is_mtn_pass = 1;
     }
      
      //smat = spat (&tptype, "A",-1,-1,match);
@@ -147,16 +154,22 @@ Str val2;
 //<<"$_proc  $AFH \n";
 
 //<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
-//<<"$wval \n"
+ //  pa(wval);
 
      val = wval[0];
+
+cout << "val " << val << endl;
+
+
+//pa(wval); // crash ??
+
 
 //      val.pinfo();
 
       val.dewhite(); // TBF ? corrupting vars ?
 
 
-//cout << "val " << val << endl;
+
 
 
 //<<"%V $AFH\n"
@@ -173,7 +186,7 @@ Str val2;
 //cout << "val " << val << endl;
      Place = val; // wayp 
     
-//cout << "Place " << Place << endl;
+cout << "Place " << Place << endl;
 
      val =  wval[1];
 
@@ -202,8 +215,10 @@ Str val2;
   
      val = wval[5];
 
-//  <<"%V$val  \n"
+  pa(val);
     // ft or m
+
+//ans=query("?","sele",__LINE__);
     if (sele(val,-1,2) == "ft") {
      val.scut(-2); 
        Alt = atof(val);
@@ -217,13 +232,13 @@ Str val2;
 // <<"%V$val  \n"
 
 
-
 //cout  <<"Alt "<< Alt  <<endl ; 
-// <<"%V$Alt  \n"
+    pa(val,Alt);
 
      is_airport =0;
      is_mtn =0;
-
+     is_mtn_pass =0;     
+     is_strip = 0;
      rway = wval[6];
 
 //cout << "rway " << rway  << endl;
@@ -232,8 +247,16 @@ Str val2;
          is_airport =1;
      }
 
-     if (rway == "8") {
+     if (rway == "3") {
+         is_strip =1;
+     }
+
+     if (rway == "7") {
          is_mtn =1;
+     }
+
+     if (rway == "8") {
+         is_mtn_pass =1;
      }
 
      rway = wval[7];

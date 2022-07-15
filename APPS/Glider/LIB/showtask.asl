@@ -26,13 +26,15 @@
 #if ASL
 // the include  when cpp compiling will re-define ASL 0 and CPP 1
 #include "compile.asl"
-
+#define AST ans=query("?","ASL DB goon",__LINE__,__FILE__);
 //  printf("ASL %d CPP %d\n",ASL,CPP);
 #endif
 
 
 #if CPP
 #warning USING_CPP
+#define CDB ans=query("?","goon",__LINE__,__FILE__);
+#define CDBP(x) ans=query(x,"goon",__LINE__,__FILE__);
 #endif
 
 
@@ -125,7 +127,7 @@ int  Ntp = 0; //
 
 #include "globals_showtask.asl"
 
-Turnpt  Wtp[300]; //
+Turnpt  Wtp[500]; //
 Tleg  Wleg[20];
 
 #include "draw_showtask.asl"
@@ -199,8 +201,8 @@ int Nrecs;
 
 if (use_cup) {
 
-   // tp_file = "CUP/bbrief.cup";
-    tp_file = "CUP/co_14ers.cup";
+    tp_file = "CUP/bbrief.cup";
+   // tp_file = "CUP/co_14ers.cup";
 
 }
 else {
@@ -222,7 +224,7 @@ else {
  }
 
 if (use_cup) {
-cout <<"SRX.readRecord\n";
+//cout <<"SRX.readRecord\n";
    Nrecs=SRX.readRecord(AFH,_RDEL,44,_RLAST);  // no back ptr to Siv?
  
   // SRX=readRecord(AFH,_RDEL,44,_RLAST);  // no back ptr to Siv?
@@ -252,7 +254,7 @@ for (i= 0; i <= 10 ; i++) {
 */
 
 //WH=searchRecord(SRX,"AngelFire",0,0);
-/*
+
   r_index= SRX.findRecord("Laramie",0,0,0);
 
   printf("Laramie @ %d\n",r_index);
@@ -266,7 +268,7 @@ for (i= 0; i <= 10 ; i++) {
   r_index= SRX.findRecord("AngelFire",0,0,0);
 
   printf("AngelFire @ %d\n",r_index);
-*/  
+
 
   r_index= SRX.findRecord("Evans",0,0,0);
 
@@ -281,29 +283,25 @@ for (i= 0; i <= 10 ; i++) {
 
   printf("Longs @ %d\n",r_index);
 
-ans=query("?","longs",__LINE__);
+  r_index= SRX.findRecord("Yale",0,0,0);
+
+  printf("Yale @ %d\n",r_index);
 
 
 
+//ans=query("?","MTNS",__LINE__);
 
 
-  Wval= SRX.getRecord(0);
+
+//  Wval= SRX.getRecord(0);
 
 //<<"0 $Wval\n"
+//printf("SRX.getRecord(1);");
+//  Wval= SRX.getRecord(1);
 
+//  pa(Wval);
 
-  Wval= SRX.getRecord(1);
-
-pa(Wval);
-
-  ans=query("?","row 1",__LINE__);
-
-
-
-
-
-
-
+//  ans=query("?","row 1",__LINE__,__FILE__);
 
 
 //ans=query("??");
@@ -314,22 +312,19 @@ pa(Wval);
 
   AFH =ofr(tp_file);
 
-  VCOUT(tp_file, AFH);
+ // VCOUT(tp_file, AFH);
 
-//ans=query("??","goon",__LINE__,__FILE__);
+ // ans=query("??","goon",__LINE__,__FILE__);
 
   if (AFH == -1) {
     printf(" can't find turnpts file \n");
     exit(-1);
-    
   }
  
 
 
-
-
   if (!use_cup) {
-         Cfr=readLine(AFH);
+        Cfr=readLine(AFH);
 	 Cfr=readLine(AFH);
    }
 
@@ -349,7 +344,7 @@ while (1) {
     
     c1 = getNextC(AFH,-1);
 
-    after = ftell(AFH);
+   after = ftell(AFH);
 
   //VCOUT(Ntp,before,c1,after);
 
@@ -361,10 +356,10 @@ while (1) {
 
        nwr = Wval.readWords(AFH,0,',');
 
-       //<<"%V $Ntp $nwr  $AFH $Wval\n";
+      //printf("Ntp %d nwr %d  %s\n",Ntp,nwr,Wval.cptr(0));
 
-//printf("Ntp %d nwr %d  %s\n",Ntp,nwr,Wval.cptr(0));
 
+//ans=query("??","In While goon",__LINE__,__FILE__);
 
 	       
     }
@@ -409,7 +404,8 @@ while (1) {
        break;
 }
 
-printf(" Read $Ntp %d turnpts \n",Ntp);
+printf(" Read Ntp %d turnpts \n",Ntp);
+//ans=query("?","?",__LINE__);
 
  if (Ntp < 3) {
   exit("BAD turnpts");
@@ -418,7 +414,7 @@ printf(" Read $Ntp %d turnpts \n",Ntp);
 
 
 
-//ans=query("? $main_chk");
+
 
 // Nlegs = Ntp -1;
 
@@ -461,6 +457,11 @@ printf(" Read $Ntp %d turnpts \n",Ntp);
            ai++;
            igc_fname = sa.cptr(ai);
 
+   pa(igc_fname);
+
+AST
+
+ans=query("?","see trace $igc_fname",__LINE__);
 
 	   ai++;
 	   
@@ -482,7 +483,7 @@ printf(" Read $Ntp %d turnpts \n",Ntp);
 	  
           r_index=SRX.findRecord(targ,0,0,0);
 
-pa("targ ",targ," @row ", r_index);
+printf("targ %s @row %d ", targ.cptr(),r_index);
 
           if (r_index >=0) {
 
@@ -520,7 +521,6 @@ printf("Warning can't find $targ as a TP - skipping \n");
 }
 //======================================//
 
-//ans=query("%V $Ntaskpts\n");
 
 //
     
@@ -613,7 +613,7 @@ pa(" Have_igc", igc_fname);
 Str place;
 
 
-//ans=query("?1","hey",__LINE__);
+//CDBP("place")
 
 //===========================================//
  if (Ntaskpts > 1) {
@@ -646,16 +646,16 @@ Str place;
 
  }
 //======================================//
-//ans=query("?2","hey",__LINE__);
+
 
 
     //sWo(tpwo,_WREDRAW);
 
-pa("Ntaskpts ", Ntaskpts);
+//pa("Ntaskpts ", Ntaskpts);
 
     taskDist(); // should extract Coors to show task -- or default
 
-pa( " Coors ", LongW, LatS, LongE, LatN);
+//pa( " Coors ", LongW, LatS, LongE, LatN);
 
      Str c= "EXIT";
 
@@ -663,9 +663,9 @@ pa( " Coors ", LongW, LatS, LongE, LatN);
 
  Mapcoors= woGetPosition (mapwo);
 
- pa(Mapcoors);
+// pa(Mapcoors);
 
-//ans=query("?","Mapcoors",__LINE__);
+
 
   dMx = Mapcoors[5];
   dMy = Mapcoors[6];
@@ -746,7 +746,7 @@ pa( " Coors ", LongW, LatS, LongE, LatN);
 	
  //   sGl(_GLID,igc_tgl,_GLDRAW,BLUE_);  // DrawGline;
 
-    pa(Ntpts," mAx ele ", Max_ele);
+    //pa(Ntpts," mAx ele ", Max_ele);
     
     //sWo(_WOID,vvwo, _WSCALES, wbox(0, 0, Ntpts, Max_ele +500));
     sWo(_WOID,vvwo, _WSCALES, wbox(0, 0, Ntpts, 5000));
@@ -762,6 +762,10 @@ pa( " Coors ", LongW, LatS, LongE, LatN);
 
 
    }
+
+
+
+
    sWo(_WOID,ZOOM_wo,_WREDRAW,ON_);
 
 
@@ -793,7 +797,9 @@ Str wcltpt="XY";
 
 
 
-//ans=query("?3","see dist?",__LINE__);
+//CDBP("uplegs")
+
+
    if (uplegs) {
     updateLegs();
    }
@@ -803,10 +809,11 @@ Str wcltpt="XY";
   
   sWo(_WOID,tdwo,_WREDRAW,ON_);
 
-//ans=query("?4","b4 trace?",__LINE__);
+//CDBP("b4 trace")
+
   drawTrace();
 
-//ans=query("?5","after trace?",__LINE__);
+
 
 //  zoom_to_task(mapwo,1)
 
@@ -819,11 +826,11 @@ Str wcltpt="XY";
   
   //sdb(2,"pline");
 
-//ans=query("?7","b4 map?",__LINE__);
+//CDBP("b4 map")
 
   DrawMap();
 
-//ans=query("?8","after map?",__LINE__);
+
 
 
   drawTrace();

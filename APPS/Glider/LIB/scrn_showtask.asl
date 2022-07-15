@@ -47,7 +47,7 @@ int Xgm;
 
 #include "tbqrd.asl"
 
-//ans=query("?1","setup qrd",__LINE__);
+
 
 
   Vp = cWi("Vp");
@@ -56,7 +56,7 @@ int Xgm;
 
  VCOUT(Xgm,Vp);
   
-//ans=query("?1","goon",__LINE__,__FILE__);
+
 
   //sWi(Vp,_WSCALES,wbox(-200,-200,200,200,0), _WDRAWON,_WPIXMAPON,_WSAVE,_WBHUE,WHITE_,_WRESIZE,0.1,0.01,0.9,0.95,0);
 
@@ -78,7 +78,7 @@ int Xgm;
 
   //  Text(Vp, "NOW", 0,5, 0.5,0);
 
-//ans=query("?2","goon",__LINE__,__FILE__);
+
 
 
 
@@ -88,7 +88,7 @@ int Xgm;
 
 //VCOUT(Vp,sawo);
   
-//ans=query("?4","goon",__LINE__,__FILE__);
+
 
   //float rsz[5] = wbox(0.15,0.01,0.54,0.1);
 
@@ -112,7 +112,7 @@ int Xgm;
 
  sWo(_WOID,vvwo,_WRESIZE,wbox(0.01,0.11,0.35,0.25));
 
-  //ans=query("?5","goon",__LINE__,__FILE__);
+
 
   sWo(_WOID,vvwo, _WSCALES, wbox(0, 0, 100, 6000), _WSAVEPIXMAP,ON_, _WREDRAW,ON_, _WDRAW,ON_, _WPIXMAP,ON_);
 
@@ -195,7 +195,7 @@ int Xgm;
 
   sWo(_WOID,tdwo,_WRESIZE,wbox(0.11,0.25,0.21,0.34,0),_WNAME,"TaskDistance");
 
-//ans=query("?3","goon",__LINE__,__FILE__);
+
 
   sWo(_WOID,tdwo,_WCOLOR,WHITE_,_WSTYLE,SVB_);
 
@@ -214,6 +214,8 @@ int Xgm;
   sWo(_WOID,vptxt,_WCOLOR,WHITE_,_WSAVE,ON_,_WDRAW,ON_,_WPIXMAP,OFF_);
 
 
+
+
   ZOOM_wo=cWo(Vp,WO_BV_);
   
   sWo(_WOID,ZOOM_wo,  _WNAME, "ZOOM",_WRESIZE,wbox(0.22,0.25,0.32,0.34),_WCOLOR,RED_);
@@ -227,16 +229,21 @@ int Xgm;
 
   sGl(_GLID,st_lc_gl,_GLTYPE,"XY" ,_GLHUE,BLACK_);
 
+
+
   st_rc_gl   = cGl(vvwo);
   
   sGl(_GLID,st_rc_gl,_GLTYPE,"XY",_GLHUE,BLUE_);
 
 
+
     Mapcoors= woGetPosition (mapwo);
 
-  pa(Mapcoors);
 
-//ans=query("?","Mapcoors",__LINE__);
+
+//  pa(Mapcoors);
+
+
 
   dMx = Mapcoors[5];
   dMy = Mapcoors[6];

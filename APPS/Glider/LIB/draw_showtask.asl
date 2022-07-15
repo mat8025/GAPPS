@@ -92,12 +92,16 @@ printf(" LongW %f LatS %f LongE %f LatN %f \n",LongW, LatS, LongE, LatN);
   Str mlab;
 
   int is_an_airport = 0;
+    int is_a_strip = 0;
   int is_a_mtn = 0;
+  int is_a_mtn_pass = 0;  
 
 
   Mapcoors= woGetPosition (mapwo);
 
-  pa(Mapcoors);
+//CDBP("MapCoors")
+
+//  pa(Mapcoors);
 
 //ans=query("?","Mapcoors",__LINE__);
 
@@ -115,7 +119,7 @@ printf(" LongW %f LatS %f LongE %f LatN %f \n",LongW, LatS, LongE, LatN);
   printf("dMx %d dMy %d LongW %f lat %f LongE %f\n",dMx,dMy,LongW,lat,LongE);  
  // LongW = lat;
 
-   //ans=query("?","Adjust Map X,Y axis",__LINE__);
+//CDBP("Adjust Map X,Y axis")
 
 //  sWo(_WOID,mapwo,_WSCALES,wbox(LongW,LatS,LongE,LatN));
   //<<"%V $LongW $LatS $LongE $LatN \n";
@@ -146,6 +150,8 @@ printf(" LongW %f LatS %f LongE %f LatN %f \n",LongW, LatS, LongE, LatN);
 
     is_an_airport = Wtp[k].is_airport;
     is_a_mtn = Wtp[k].is_mtn;
+    is_a_strip = Wtp[k].is_strip;
+    is_a_mtn_pass = Wtp[k].is_mtn_pass;    
 
     mlab = Wtp[k].Place;
 
@@ -162,10 +168,6 @@ printf(" LongW %f LatS %f LongE %f LatN %f \n",LongW, LatS, LongE, LatN);
   }
 
   msl = Wtp[k].Alt;
-
-
-
-
 
  // msl.pinfo();
   
@@ -185,36 +187,27 @@ pa(k ,is_an_airport  ,mlab, msl ,lat ,longi);
 
 //<<"%V $k $mlab $msl $lat $longi $Wtp[k].Ladeg   \n"
 
-  if ( msl > 1000) {
-    if (1||is_an_airport || is_a_mtn) {
-    
-       Text(mapwo, mlab.cptr(), longi, lat,0,0,1,RED_);
- //ans=query("?","Text",__LINE__);
+   Maphue = RED_;
+       if (is_an_airport ) {
+          Maphue = GREEN_;
+       }
 
-	    <<"above 7K $msl $mlab $lat $longi\n"
+       if (is_a_strip ) {
+          Maphue = LILAC_;
+       }
+     if (is_a_mtn_pass) {
+            Maphue = BROWN_;
      }
-  }
-  else {
 
-  if ( msl > 5000) {
-    if (1||is_an_airport) {
-       Text(mapwo,mlab.cptr(),longi,lat,0,0,1,BLUE_);
-	       // <<"above 5K $msl $mlab $lat $longi\n"
-   }
-  }
+     if (is_a_mtn) {
+            Maphue = BLUE_;
+     }
 
-  else {
-	    //	 <<"below 5K $msl $mlab $lat $longi\n"
-   if (is_an_airport) {
-     Text(mapwo,mlab.cptr(),longi,lat,0,0,1,GREEN_);
-   }
-  }
+
+    
+       Text(mapwo, mlab.cptr(), longi, lat,0,0,1,Maphue);
 
   }
-
-  }
-
-
 
 
   sWo(_WOID,mapwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_,_WSAVEPIXMAP,ON_);
@@ -444,6 +437,7 @@ pa(k ,is_an_airport  ,mlab, msl ,lat ,longi);
 
 void drawTrace()
 {
+
      if (Have_igc) {
      
          sWo(_WOID,mapwo,_WSCALES, wbox(LongW, LatS, LongE, LatN) );

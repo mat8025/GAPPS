@@ -164,7 +164,7 @@ Vec<float> ST_RS(50);
 Vec<int> Mapcoors(30);
 
 //  Read in a Task via command line
-
+int Maphue = RED_;
 float min_lat;
 float max_lat;
 float longW =0.0;

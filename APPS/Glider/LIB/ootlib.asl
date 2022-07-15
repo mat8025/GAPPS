@@ -89,13 +89,13 @@ float   nm_to_km = 6080.0/3281.0;
 //============================================
 
 
-  Vec<float> IGCLONG(500);
+  Vec<float> IGCLONG(7000);
 
-  Vec<float> IGCLAT(500);
+  Vec<float> IGCLAT(7000);
 
-  Vec<float> IGCELE(500);
+  Vec<float> IGCELE(7000);
 
-  Vec<float> IGCTIM(500);
+  Vec<float> IGCTIM(7000);
 
 
 
@@ -173,15 +173,36 @@ int N;
   void processIGC()
   {
    int i;
+   
    Vec<double> sslng(14);
    
    Vec<double> sslat(14);
    
    Vec<double> ssele(14);
-   
 
- // pa("processIGC Igcfn   ",Igcfn);
-  
+   IGCTIM = 1.2;
+
+   IGCTIM.pinfo();
+
+
+//sdb(2)
+   IGCLAT = 3.4;
+  IGCLONG = 4.5;
+  IGCELE = 5.6;
+  IGCLAT[2] = 77.66;
+    IGCLONG[2] = 47.68;
+  IGCELE[4] = 12345.678;
+IGCELE.pinfo();
+//sdb(1)
+  pa("processIGC Igcfn   ",Igcfn);
+
+   //  for (i=0; i < 100; i++) {
+   //  <<"$i $IGCTIM[i] $IGCELE[i] $IGCLAT[i]  $IGCLONG[i] \n";
+     //printf("%d %f %f %f %f\n",i,IGCTIM[i] ,IGCELE[i] ,IGCLAT[i]  ,IGCLONG[i] );
+   //  }
+
+
+
   Ntpts= readIGC(Igcfn, IGCTIM, IGCLAT, IGCLONG, IGCELE);
   
 #if ASL
@@ -191,20 +212,22 @@ int N;
 //<<"%(10,, ,\n) $IGCLONG[0:30] \n"
 //<<"%(10,, ,\n) $IGCLONG[k:Ntpts-1] \n"
 
-     for (i=0; i < 100; i += 5) {
-     
-     printf("i %f %f %f %f\n",i,IGCTIM[i] ,IGCELE[i] ,IGCLAT[i]  ,IGCLONG[i] );
+     for (i=0; i < 100; i++) {
+     //<<"$i $IGCTIM[i] $IGCELE[i] $IGCLAT[i]  $IGCLONG[i] \n";
+     printf("%d %f %f %f %f\n",i,IGCTIM[i] ,IGCELE[i] ,IGCLAT[i]  ,IGCLONG[i] );
      }
+
+
+
 
 //pa("stats 2do ");
 
  // sslng= stats( IGCLONG);
 
     sslng=  IGCLONG.stats();
-
-//      for (i=0; i < 12; i++) {
-//         printf("i %d %f \n",i,sslng[i]);
-//      }
+     for (i=0; i < 12; i++) {
+        printf("i %d %f \n",i,sslng[i]);
+      }
 
 
 //ans=query("?","sslng",__LINE__);
@@ -213,18 +236,18 @@ int N;
 
    sslat= IGCLAT.stats(); // also works
 
-//     for (i=0; i < 12; i++) {
-// printf("i %d %f \n",i,sslat[i]);
-//      }
+     for (i=0; i < 12; i++) {
+ printf("i %d %f \n",i,sslat[i]);
+      }
 //ans=query("?","sslat",__LINE__);
 
  //ssele= stats( IGCELE);
 
 ssele= IGCELE.stats();
 
-//     for (i=0; i < 12; i++) {
-// printf("i %d %f \n",i,ssele[i]);
-//      }
+    for (i=0; i < 12; i++) {
+ printf("i %d %f \n",i,ssele[i]);
+    }
 
 //ans=query("?","ssele",__LINE__);
 
@@ -308,14 +331,14 @@ ssele= IGCELE.stats();
 
 
   LongW = MidLong + da/2.0;
-  //<<"%V $latWB $MidLat $da \n"
-
-
+  
+  
   LongE = MidLong - da/2.0;
   VCOUT(LongW,LongE);
 
  //pa(LongW,LongE);
-
+//CDBP("LongW")
+//AST
 
   }
 //===============================//
