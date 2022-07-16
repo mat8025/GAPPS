@@ -29,10 +29,6 @@
 
 #if ASL
 <<"ASL   $(ASL) CPP $(CPP)\n"
-#endif
-
-
-#if ASL
 #define COUT //
  run_asl = runASL();
 printf("run_asl %d\n",run_asl);
