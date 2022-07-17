@@ -4,4 +4,4 @@
 #asl -d -s  'opendll("uac"); test_vec(2); '
 echo "bash args" $*
 
-asl -d -s 'Svar z=_clarg[1:-1:1]; Str sa="$z"; <<"%V $sa\n";  opendll("uac"); test_vec(sa); exit(-1); ' $*
+asl -d -s 'Svar z=_clarg[1:-1:1]; Str sa="$z"; <<"%V $sa\n";  opendll("uac"); vec_test(sa); exit(-1); ' $*

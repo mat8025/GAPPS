@@ -1,5 +1,5 @@
 /* 
- *  @script test_str.asl  
+ *  @script str_test.asl  
  * 
  *  @comment test cpp compile include and sfunc 
  *  @release CARBON 
@@ -270,7 +270,7 @@ printf("str s = %s\n",s.cptr());
 }
 //==============================//
 
- extern "C" int test_str(Svarg * sarg)  {
+ extern "C" int str_test(Svarg * sarg)  {
 
     Uac *o_uac = new Uac;
 

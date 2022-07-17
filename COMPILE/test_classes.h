@@ -1,15 +1,15 @@
 //
 
-#include "test_vec.asl"
-#include "test_str.asl"
-#include "test_record.asl"
-#include "test_list.asl"
+#include "vec_test.asl"
+#include "str_test.asl"
+#include "record_test.asl"
+#include "list_test.asl"
 
-#include "test_class.asl"
+#include "class_test.asl"
 //
 
-//#include "test_colors.asl"
+#include "colors_test.asl"
 
-//#include "test_xgs.asl"
-#include "test_glines.asl"
+//#include "xgs_test.asl"
+#include "glines_test.asl"
 

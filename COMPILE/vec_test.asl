@@ -1,5 +1,5 @@
 /* 
- *  @script test_vec.asl  
+ *  @script vec_test.asl  
  * 
  *  @comment test cpp compile include and sfunc 
  *  @release CARBON 
@@ -109,7 +109,7 @@ ans=query("?","Vec D(20) ",__LINE__);
   Vec<double> V(10,10,1.50);
 
   V.pinfo(); // info about variable
-  ans=query("?","Vec V(10,10,1.50); ",__LINE__);
+  pa("?","Vec V(10,10,1.50); ",__LINE__);
 #if CPP
 cout << "V = " << V << endl;
 cout << " trying access " << endl;
@@ -120,6 +120,8 @@ int index = 6;
    COUT(index)
 
    COUT(V[7]);
+
+chkN(V[0],10);
 
 #if ASL
 
@@ -143,7 +145,7 @@ int index = 6;
  COUT(SV);
 */
 
-ans=query("?","SV $index",__LINE__);
+pa("?","SV $index",__LINE__);
   
 // rms = V.getVal(index);
 
@@ -183,11 +185,12 @@ printf("V[4]= 15  %f \n",V[4]);
 
 COUT(V[4]);
 
+ chkN(V[4],15);
 //ans= query("??V[4]");
 
 //cout <<"vec  type sequence\n";
 
- Vec<float> F(10,0,0.5); // vec  type sequence
+ Vec<float> F(10,6,0.5); // vec  type sequence
 
  Vec<float> G(10,7,0.5);
 
@@ -208,6 +211,40 @@ COUT(V[4]);
 
    Vec<short> S(20);
 
+ rms = F.rms();  // ASL parse?
+
+pa(rms );
+
+ pa(F);
+  G= F.rng(1,6,1);
+
+ pa(G);
+
+chkN(G[0],6.5);
+chkN(G[1],7);
+
+  G= F.rng(0,-1,2);
+
+
+  pa(G ); // working?
+
+
+  chkN(G[0],6);
+    chkN(G[1],7);
+    chkN(G[2],8);    
+
+ pa(G);
+
+   G = F;
+
+ pa(G);
+
+   G.srng(0,-1,2) = F.rng(1,-1,2);
+
+ pa("fill subset range 0,-1,2) ",G);
+
+
+
 
   
   X[3] =3.7;
@@ -220,25 +257,30 @@ COUT(V[4]);
 
  F[7]= 26.25;
  
- ans= query("?? G=  F;");
+ ans= query("?? G=  F;","?",__LINE__);
   
    G = F;
+
+ chkN(G[3],16.78);
 
  COUT(G);
 
  COUT(I);
 
-  ans= query("?? G=  F + I;");
+  ans= query("?? G=  F + I;",ans,__LINE__);
   
   G = F + I;
 
+
+  chkN(G[1], (F[1] + I[1]));
+  
  COUT(G);
 
- ans= query("OK? G=  F + I;");
+ ans= query("OK? G=  F + I;",ans,__LINE__);
 
  COUT(Z);
 
-  ans= query("?? G=  F + Z;");
+  ans= query("?? G=  F + Z;",ans,__LINE__);
   
   G = F +Z;
 
@@ -250,7 +292,7 @@ COUT(V[4]);
 
   G = F + 5.01;
 
-  ans= query("OK G=  F + 5.01;");
+  ans= query("OK G=  F + 5.01;",ans,__LINE__);
 
 
 //pa(F);
@@ -355,39 +397,51 @@ ans=query("?","D = F",__LINE__);
 
  COUT(G);
 
- ans= query("?? G *= 11.5;");
+ ans= query("?? G *= 11.5;",ans,__LINE__);
  
 
   G = F ;
 
 COUT(G);
 
- ans= query("??  F * 5.01;");
+ ans= query("??  F * 5.01;",ans,__LINE__);
  
   G = F * 5.01;
 
  COUT(G);
 
-ans= query("OK G = F * 5.01;"); 
+ans= query("OK G = F * 5.01;",ans,__LINE__);
 
 //cout<<"range set G = F(1,5,1);\n";
 
 COUT(F);
 
-
+F[1] = 92;
 
 #if ASL
   G = F[1:7:1];  // ASL parse?
 <<"%V $G\n";
 #endif
 
-ans= query("??  G = F.rng(1,7,1); ");
+pa("rms = F.rms; ",ans,__LINE__);
 
-  G = F.rng(1,7,1);  // ASL parse?
+  rms = F.rms();  // ASL parse?
+  
+pa("??  G = F.vrng(1,7,1); ",ans,__LINE__);
+
+
+G = F.rng();  // ASL parse?
+
+pa(G);
+
+G = F.rng(1,7,1);  // ASL parse?
 
  COUT(G);
 
-vecans= query("?? op range?");
+pa(G);
+
+
+vecans= query("OK op range?",ans,__LINE__);
 
  //cout <<"G[0] " << G[0] << endl;
  
@@ -401,16 +455,16 @@ COUT(H);
 
 //cout<<"?? H = F(1,7,1);\n";
 
-  H = F(1,7,1);
+  H = F.rng(1,7,1);
 
 COUT(H);
 
-  H(1,3,1) = F(3,1,-1);
+  H.rng(1,3,1) = F.rng(3,1,-1);
 
 COUT(F);
 COUT(H);
 
-ans= query("?? H(1,3,1) = F(3,1,-1);");
+ans= query("?? H(1,3,1) = F(3,1,-1);",ans,__LINE__);
 
 //cout<<" F[1] = 42; ele set \n";
 
@@ -662,7 +716,7 @@ cout <<" V range assign\n" << V << endl ;
 
 //==============================//
 
- extern "C" int test_vec(Svarg * sarg)  {
+ extern "C" int vec_test(Svarg * sarg)  {
 
     Uac *o_uac = new Uac;
 

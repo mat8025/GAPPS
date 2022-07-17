@@ -1186,3 +1186,9 @@ phoneme.cpp                         1.92  07/06/2022 14:45:33  Transf class
 args_l.cpp                          1.4  07/10/2022 17:58:44  pa - args to stdout single line
 prep.cpp                            2.60  07/11/2022 11:59:16  TBV_,TBS_
 print.cpp                           1.79  07/11/2022 18:48:52  option STR and CHAR revise
+vec.h                               1.8  07/16/2022 09:15:28  F.rng(b,e,s)
+sort_l.cpp                          1.13  07/16/2022 11:04:08  setUpResult
+vmf_limit.cpp                       1.12  07/16/2022 11:08:13  rng,srng
+siv.h                               2.7  07/16/2022 14:45:43  vec,storeSiv
+svarg_e.cpp                         2.35  07/16/2022 15:20:17  setUpResult
+args_l.cpp                          1.5  07/16/2022 15:36:57  pa(a,b,c)

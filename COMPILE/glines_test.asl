@@ -1,5 +1,5 @@
 /* 
- *  @script test_glines.asl                                             
+ *  @script glines_test.asl                                             
  * 
  *  @comment test cpp interface to xgs directives                       
  *  @release CARBON                                                     
@@ -508,7 +508,7 @@ ans=query("see Zvec");
 }
 //==============================//
 
- extern "C" int test_glines(Svarg * sarg)  {
+ extern "C" int glines_test(Svarg * sarg)  {
 
     Uac *o_uac = new Uac;
 

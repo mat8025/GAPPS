@@ -1,5 +1,5 @@
 /* 
- *  @script test_colors
+ *  @script colors_test
  * 
  *  @comment show color map cpp version 
  *  @release CARBON color map 
@@ -462,7 +462,7 @@ cout << "txt " << wovalue << endl;
 }
 //==============================//
 
-extern "C" int test_colors(Svarg * sarg)  {
+extern "C" int colors_test(Svarg * sarg)  {
 
     Uac *o_uac = new Uac;
 
