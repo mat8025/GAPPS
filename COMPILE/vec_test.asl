@@ -216,6 +216,7 @@ COUT(V[4]);
 pa(rms );
 
  pa(F);
+ 
   G= F.rng(1,6,1);
 
  pa(G);
@@ -239,7 +240,25 @@ chkN(G[1],7);
 
  pa(G);
 
-   G.srng(0,-1,2) = F.rng(1,-1,2);
+
+
+  
+
+ ///G[0:-1:1] = F.rng(1,-1,2);  // this is ASL syntax
+ // can't do an exact cpp operator version
+//  can do G(0,-1,2) for cpp
+//  but then require revise for asl - or translate/prep program
+//  can use vmf,cpp functions
+//  
+
+ G.srng(0,-1,2) = F.rng(1,-1,2);
+
+// for Matrix
+// instead of M[0:3;1][0:-1:1]
+// need M(rng(0,3,1), rng(0,1,1))
+
+//  3,4,5 D
+// has to be vargs 
 
  pa("fill subset range 0,-1,2) ",G);
 
