@@ -215,21 +215,25 @@ cout << "Place " << Place << endl;
   
      val = wval[5];
 
-  pa(val);
+    pa(val);
     // ft or m
 
 //ans=query("?","sele",__LINE__);
-    if (sele(val,-1,2) == "ft") {
-     val.scut(-2); 
-       Alt = atof(val);
+    val2 = sele(val,-1,-2);
+    if (val2 == "ft") {
+
+      val.scut(-2); 
+//<<"ft  $val\n";
+      Alt = atof(val);
    }
     else {
        val.scut(-1);
+//<<"m $val\n";       
             Alt = atof(val);
 	    Alt *= 3.280839 ;
 
     }
-// <<"%V$val  \n"
+ //<<"%V$val $val2 $Alt  \n"
 
 
 //cout  <<"Alt "<< Alt  <<endl ; 

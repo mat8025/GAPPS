@@ -23,7 +23,8 @@
 
 #if ASL
 // the include  when cpp compiling will re-define ASL 0 and CPP 1
-#include "compile.h"
+#include "compile.asl"
+#define GT_DB 1;
 #endif
 
 
@@ -98,6 +99,9 @@ Tleg  GT_Wleg[20];
   int via_cl = 1;
   int ok_to_compute = 1;
   long where ;
+
+
+
 
 #if CPP
 
@@ -209,7 +213,8 @@ int  Main_init = 1;
   if (use_cup) {
 
   AFH=ofr("CUP/bbrief.cup")  ; // open turnpoint file;
-   //printf( "opened CUP/bbrief.cup %d \n",AFH);
+  printf( "opened CUP/bbrief.cup %d \n",AFH);
+
   }
 
   else {
@@ -396,21 +401,28 @@ while (ac < na) {
 
 
 #if ASL
- CLTPT[cltpt] = targ;   // TBF 02/24/22
-  if (GT_DB) <<"%V $targ $sz $cltpt $CLTPT[cltpt] \n"
+
+  //CLTPT[cltpt] = targ;   // TBF 02/24/22
+
+  CLTPT.cpy(targ,cltpt);
+
+  <<"%V $targ $sz $cltpt $CLTPT[cltpt] \n"
+  <<"CLTPTs  $CLTPT\n"
+
+
 #else
-CLTPT.cpy(targ,cltpt);
+ CLTPT.cpy(targ,cltpt);
  if (GT_DB) cout  <<"cltpt "<< cltpt  <<" CLTPT[cltpt] "<< CLTPT[cltpt]  <<endl ; 
 #endif
 //cout  <<"cltpt "<< cltpt  <<" CLTPT[cltpt] "<< CLTPT[cltpt]  <<endl ; 
 
   cltpt++;
 
-  }
+   }
 
 // <<"%V $ac  $targ $sz \n"
 
-} // arg was valid
+ } // arg was valid
 
 }
 // look up lat/long
@@ -437,6 +449,7 @@ CLTPT.cpy(targ,cltpt);
 
 
 
+
 ////   do this to check routine    
     //<<"Start  $the_start \n"
 // first parse code bug on reading svar fields?
@@ -445,11 +458,7 @@ CLTPT.cpy(targ,cltpt);
  int k;
 #if GT_DB
   for (k= 0; k < cltpt; k++) {
-//#if ASL
-//<<"$k  $CLTPT[k] \n";
-//#else
-//  printf("k  %d    %d\n",k,CLTPT[k]); ; 
-//#endif
+/<<"$k  $CLTPT[k] \n";
 }
 #endif
 
@@ -459,10 +468,14 @@ CLTPT.cpy(targ,cltpt);
   i = -1;
  int got_start = 0;
  int K_AFH = AFH;
- 
-  while ( !got_start) {
+ cnttpt = 0;
 
-   // <<" %V $cnttpt $i    $via_keyb $via_cl\n";
+<<"CLTPTs  $CLTPT\n"
+
+
+while ( !got_start) {
+
+   <<" %V $cnttpt $i    $via_keyb $via_cl\n";
 
   fseek(AFH,0,0);
 
@@ -470,7 +483,7 @@ CLTPT.cpy(targ,cltpt);
 
   the_start = CLTPT[cnttpt];
 
-//<<"$the_start $cnttpt \n"
+<<"$the_start $cnttpt $CLTPT[cnttpt] \n"
 
   cnttpt++;
 
@@ -507,8 +520,8 @@ CLTPT.cpy(targ,cltpt);
       //the_start.pinfo();
       // <<"         \n";
       //<<" \n";
-
-  i=searchFile(AFH,the_start,0,1,0);
+<<"%V $the_start $AFH \n"
+  i=searchFile(AFH,the_start,0,1,0,0);
 
 //  <<[_DB]"$i\n";
 
@@ -521,7 +534,7 @@ CLTPT.cpy(targ,cltpt);
 
   try_start = nameMangle(the_start);
   
-  i=searchFile(AFH,try_start,0,1,0);
+  i=searchFile(AFH,try_start,0,1,0,0);
     if (i != -1) {
        the_start = try_start;
     }
@@ -556,7 +569,7 @@ CLTPT.cpy(targ,cltpt);
   got_start =1;
 }
 
-//  DBG"inputs  $the_start\n";
+<<"inputs  $the_start\n";
 // -------------------------------
 //<<"%V$input_lat_long  $i \n"
 
@@ -580,7 +593,6 @@ CLTPT.cpy(targ,cltpt);
   else {
 	  //<<"pcl \n"
 	    //w=pcl_file(A,0,1,0)
-
    }
 
   ki = seekLine(AFH,0);
@@ -671,7 +683,7 @@ CLTPT.cpy(targ,cltpt);
 
   nxttpt = CLTPT[cnttpt];
 
-//<<"%V  $nxttpt   $cnttpt $cltpt \n"
+<<"%V  $nxttpt   $cnttpt $cltpt \n"
 
 #if CPP
   if (GT_DB) cout << " nxttpt " << nxttpt << endl;

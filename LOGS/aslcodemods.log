@@ -1193,3 +1193,4 @@ siv.h                               2.7  07/16/2022 14:45:43  vec,storeSiv
 svarg_e.cpp                         2.35  07/16/2022 15:20:17  setUpResult
 args_l.cpp                          1.5  07/16/2022 15:36:57  pa(a,b,c)
 vmf_limit.cpp                       1.13  07/18/2022 20:44:27  srng return ptr to subscripted vector
+ssop.cpp                            1.96  07/20/2022 21:12:45  DB

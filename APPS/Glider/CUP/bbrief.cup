@@ -132,7 +132,7 @@
 "Julesberg","7V8",CO,4058.250N,10218.942W,3511ft,5,130,3700ft,122.9,"TP, 7V8, 13/31 22.9, RWW: 60"
 "KellyApk","CO15",CO,3913.358N,10438.510W,7050ft,5,170,3800ft,123.05,"Private, TP, CO15, 17/35 23.05, RWW: 24"
 "Kimball","IBM",WY,4111.283N,10340.643W,4926ft,5,100,6199ft,122.8,"TP, IBM, 10/28 22.8, RWW: 75"
-"Kenoshsa",KenP,US,3935.300N,10538.633W,9994 ft,8,,,,,"Boulder: 14.4k MSL  TPP Evans 14264",,
+"Kenoshsa",KenP,US,3935.300N,10538.633W,9994ft,8,,,,,"Boulder: 14.4k MSL  TPP  ",,
 "KitCarson","ITR",CO,3914.550N,10217.423W,4216ft,5,150,5201ft,122.8,"TP, ITR, 122.8, RWW: 75"
 "Kremmling","20V",CO,4003.220N,10622.140W,7411ft,5,090,5540ft,122.8,"TP, 20V, 122.8, 18.42 RWW: 75"
 "KugelStrong","03CO",CO,4012.750N,10444.667W,4950ft,5,130,4000ft,135.175,"Private, TP, 03CO, 13/31 40a, RWW: 30"
@@ -280,7 +280,7 @@
 "Ellingwood 14",ElgWdPt,US,3734.950N,10529.567W,4280.0m,7,,,,,"Ft. Garland: 11.5k MSL  Ellingwood Point 14042",,
 "Eolus 14",Eolus,US,3737.367N,10737.300W,4292.5m,7,,,,,"Animas (Durango): 14.7k MSL  TPM Eolus 14083",,
 "Eolus 14",NEolus,US,3737.517N,10737.250W,4279.1m,7,,,,,"Animas (Durango): 14.7k MSL TPM  North Eolus 14039",,
-"Evans 14",Evans,US,3935.300N,10538.633W,4347.7m,7,,,,,"Boulder: 14.4k MSL  TPM Evans 14264",,
+"Evans 14",Evans,US,3935.300N,10538.633W,4347.7m,7,,,,,"Boulder: 14.4k MSL  TPM MT Evans 14264",,
 "Grays Peak 14",Grays,US,3938.017N,10549.017W,4349.5m,7,,,,,"Boulder: 15.2k MSL Gray's Peak 14270",,
 "Handies Pk 14",Handies,US,3754.783N,10730.267W,4281.8m,7,,,,,"Montrose: 16.4k MSL TPM Handies Peak 14048",,
 "Harvard 14",Harvard,US,3855.467N,10619.233W,4395.2m,7,,,,,"Buena Vista: 13.4k MSL  TPM Harvard 14420",,
@@ -298,7 +298,7 @@
 "Missouri TPM 14",Misouri,US,3856.850N,10622.717W,4287.6m,7,,,,,"Buena Vista: 13.2k MSL  TPM Missouri Mountain 14067",,
 "North Maroon Pk 14",NMaroon,US,3904.567N,10659.233W,4271.5m,7,,,,,"Glenwood Springs: 14.3k MSL TPM North Maroon Peak 14014",,
 "Oxford 14",Oxford,US,3857.883N,10620.333W,4313.8m,7,,,,,"Buena Vista: 12.8k MSL  TPM Oxford 14153",,
-"PikesPk 14",Pikes,US,3850.450N,10502.533W,4300.7m,7,,,,,"Fremont Co: 12.7k MSL Perry Park TPM Pikes Peak 14110",,
+"PikesPk 14",Pikes,US,3850.450N,10502.533W,4301m,7,,,,,"Fremont Co: 12.7k MSL Perry Park TPM Pikes Peak 14110",,
 "Princeton 14",Prnctn,US,3844.950N,10614.550W,4327.2m,7,,,,,"Buena Vista: 11.1k MSL Salida  TPM Princeton 14197",,
 "Pyramid Pk 14",Pyramid,US,3904.283N,10657.017W,4272.7m,7,,,,,"Glenwood Springs: 14.6k MSL  TPM Pyramid Peak 14018",,
 "Quandary Peak 14",Qandary,US,3923.833N,10606.400W,4348.0m,7,,,,,"Leadville: 15.0k MSL  TPM Quandary Peak 14265",,
