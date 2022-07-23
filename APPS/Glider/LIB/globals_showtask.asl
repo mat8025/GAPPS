@@ -42,9 +42,7 @@ int mapwo,vptxt,sawo,vvwo,TASK_wo, TASK_menu_wo, ZOOM_wo;
  int igc_tgl, igc_vgl;
 
 //Str ans;
-  int Witp = 0;
-
-
+int Witp = 0;
 
 int tdwo = -1;
 

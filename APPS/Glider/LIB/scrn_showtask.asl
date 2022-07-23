@@ -45,7 +45,7 @@ int Xgm;
 
 // create window and scales
 
-#include "tbqrd.asl"
+//#include "tbqrd.asl"
 
 
 

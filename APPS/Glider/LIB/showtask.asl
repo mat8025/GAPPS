@@ -17,6 +17,12 @@
 ///
 /// "$Id: showtask.asl,v 1.5 1997/07/21 15:01:08 mark Exp mark $"
 ///
+
+// namespace GLD 
+
+Str ans;  
+
+
 #define ASL 1
 #define CPP 0
 
@@ -67,7 +73,11 @@ using namespace std;
 #include "debug.h"
 #include "winargs.h"
 
-#include "uac.h"
+#include "gline.h"
+#include "glargs.h"
+#include "woargs.h"
+
+#include "glide.h"
 
 #define PXS  cout<<
 
@@ -99,14 +109,13 @@ chkIn(_dblevel);
 //#define DBG <<
 #define DBG ~!
 
- openDll("uac");
+ openDll("glide");
 
 float Gerx;
 float Gery;
 
 
 #endif
-
 
 
 int uplegs = 0;  // needed?
@@ -126,6 +135,9 @@ int  Ntp = 0; //
 
 
 #include "globals_showtask.asl"
+
+#include "tbqrd.asl"
+
 
 Turnpt  Wtp[500]; //
 Tleg  Wleg[20];
@@ -149,7 +161,7 @@ float safealt = 10000;
 #if CPP
 
 void
-Uac::showTask(Svarg * sarg)  
+Glide::showTask(Svarg * sarg)  
 {
 
 int run_asl = runASL();
@@ -459,9 +471,9 @@ printf(" Read Ntp %d turnpts \n",Ntp);
 
    pa(igc_fname);
 
-AST
+//AST
 
-ans=query("?","see trace $igc_fname",__LINE__);
+//ans=query("?","see trace $igc_fname",__LINE__);
 
 	   ai++;
 	   
@@ -774,7 +786,6 @@ Str place;
 
 
 #if CPP
-//#include  "gevent.h";
  Gevent Gev;
 #else
 #include  "gevent.asl";
@@ -1301,11 +1312,9 @@ extern "C" int show_task(Svarg * sarg)  {
  printf(" showTask app %s ",Use_.cptr() );
  //cout << " paras are: "  << " a0 " <<  a0 << endl;
 
-    Uac *o_uac = new Uac;
+    Glide *o_glide = new Glide;
 
-
-
-    o_uac->showTask(sarg);
+    o_glide->showTask(sarg);
 
    //cout << "total D " << ::totalD    <<endl ;
 

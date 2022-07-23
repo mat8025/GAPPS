@@ -27,6 +27,33 @@
 //wherearewe=!!"pwd "
 //<<[_DB]"%V$wherearewe \n"
 
+#define ASL 1
+
+#define GT_DB   0
+
+
+#define CPP 0
+
+#if ASL
+// the include  when cpp compiling will re-define ASL 0 and CPP 1
+#include "compile.asl"
+
+#endif
+
+#if CPP
+#include <iostream>
+#include <ostream>
+
+using namespace std;
+#include "vargs.h"
+
+#define PXS  cout<<
+#define ASL_DB 0
+
+
+
+
+
 #include "si.h"
 #include "parse.h"
 #include "codeblock.h"
@@ -43,7 +70,7 @@
 #include "winargs.h"
 #include "debug.h"
 
-#include "uac.h"
+#include "wex.h"
 
 
 
@@ -52,7 +79,7 @@
 
 class Svar;
 
-  Svar Mo;
+
 
 #define WALK 1
 #define HIKE 2
@@ -67,7 +94,12 @@ class Svar;
 
 ////////////////////////////////////////  Globals //////////////////////////////
 
-
+#endif
+#if ASL
+#define cout //
+#define COUT //
+#endif
+  Svar Mo;
 
 #include "wex_rates.asl"
 
@@ -208,7 +240,7 @@ Record RX;
   float last_known_wt = 208.8;
 
   long last_known_day = 0;
-  long targetday;
+
 
   float tot_exeburn =0;
 
@@ -254,12 +286,6 @@ Record RX;
 #include "wex_read.asl"
 
 
-
-
-
-
-
-
 //////////////////////  SCREEN ///////////////////////////
 #include "tbqrd.asl"
 
@@ -289,11 +315,13 @@ Record RX;
 //    Svar Goals;
 //    Svar Goals2;
 //#include "wex_goals.asl"
-
+   // openDll("uac");
 ////////////////////////////////////////  routines //////////////////////////////
-#include "gevent.h"
-
- Gevent gev;
+#if CPP
+ Gevent Gev;
+#else
+#include  "gevent.asl";
+#endif
 
 
   int N = 1000;
@@ -383,13 +411,16 @@ Record RX;
 #include "wex_draw.asl"
 #include "wex_callbacks.asl"
 
+
+  
+#if CPP
  ///////////////////////////////////////////////////
-  void Uac::Wex(Svarg * sarg)
+  void Wex::wexTask(Svarg * sarg)
   {
-   #include "graphic.asl"
+ 
 
 // test Vec Global
-   setDebug(2,"pline");
+  // setDebug(2,"pline");
 
 //  Gevent gev; // this has be specific to this app
 
@@ -398,9 +429,7 @@ Record RX;
 //    Svar Mo;
   // Mo scope  - wex_task
 
-
-
-
+#endif
 
 
 
@@ -434,7 +463,7 @@ Record RX;
 
   Yday = jtoday -Jan1;
 
-cout << " Jan1 " << Jan1 << " Yday " << Yday  << endl;
+//cout << " Jan1 " << Jan1 << " Yday " << Yday  << endl;
 
 
 
@@ -446,13 +475,13 @@ cout << " Jan1 " << Jan1 << " Yday " << Yday  << endl;
    Str stmp;
    Svar Goals;
    
-   Goals.Split("05/21/2022 07/31/2022 175");
+   Goals.Split("07/01/2022 07/31/2022 175");
 
 //<<"Setting goals $Goals\n"
 
    Svar Goals2;
    
-   Goals2.Split("05/21/2022 06/30/2022 185");
+   Goals2.Split("07/15/2022 08/30/2022 185");
 ////////////////////==============/////////////////
 
 // move these done 10 when reached -- until we are at desired operating weight!
@@ -477,7 +506,7 @@ cout << " Jan1 " << Jan1 << " Yday " << Yday  << endl;
 	  
 //<<"%V $tjd $Jan1 $Sday $targetday  $tarxday; \n"
 
-   cout << " Jan1 " << Jan1 << endl;
+ //  cout << " Jan1 " << Jan1 << endl;
 
    NextGoalWt = atoi(Goals[2]);
 
@@ -517,13 +546,26 @@ COUT(gday);
 
    if ( k < 0) {
 
-     cout <<" time backwards !\n";
+     //cout <<" time backwards !\n";
 
      exit_si();
 
      }
 
    kdays = k;
+
+
+ int  Graphic = checkGWM();
+
+ printf(" Graphic %d\n", Graphic);
+
+ int Xgm;
+
+  if (!Graphic) {
+    Xgm = spawnGWM("WEX");
+  }
+
+
 
 #include "wex_screen.asl"
 
@@ -539,7 +581,7 @@ COUT(gday);
 
   Mo.Split ("JAN,FEB,MAR,APR ,MAY,JUN, JUL, AUG, SEP, OCT, NOV , DEC",44);
 
-  GoalsC.Split("05/01/2022 06/30/2022 175");
+  GoalsC.Split("07/21/2022 08/31/2022 175");
 
 
   maxday = Julian("04/09/2049") -Bday;
@@ -554,7 +596,7 @@ COUT(gday);
 
   if (A == -1) {
 
-  cout <<"FILE not found \n";
+  printf("FILE not found \n");
 
   exit_si();
 
@@ -563,7 +605,7 @@ COUT(gday);
 
   Svar rx;
 
-cout <<" readRecord \n";
+  printf(" readRecord \n)";
 
   Wex_Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST);  // no back ptr to Siv?
 
@@ -583,7 +625,7 @@ COUT (Wex_Nrecs);
 
   rx= RX[Wex_Nrecs-1];
 
-cout << "last rec " << rx << endl;
+//cout << "last rec " << rx << endl;
 
 //<<"$RX[Nrecs-1]\n"
 
@@ -700,6 +742,7 @@ COUT(ae);
 //ans=query("proceed?");
 
 
+// 
 
 
 //ans=query("proceed?");
@@ -726,36 +769,36 @@ int nevent = 0;
 
      while (1) {
 
-         emsg =gev.eventWait();
+         emsg =Gev.eventWait();
 	 COUT(emsg);
-	 emsg = gev.emsg;
+	 emsg = Gev.emsg;
 	 COUT(emsg);
          nevent++;
-	 Button= gev.ebutton;
-	 Erx = gev.erx;
+	 Button= Gev.ebutton;
+	 Erx = Gev.erx;
 	 
 	 COUT(Button);
 	 COUT(Erx);	 
 	 COUT(nevent);
-          COUT (gev.ewoname);
-      if (gev.ewoname == "WTLB") {
+          COUT (Gev.ewoname);
+      if (Gev.ewoname == "WTLB") {
 
                WTLB ();
        }
        
-       else if (gev.ewoname == "REDRAW") {
+       else if (Gev.ewoname == "REDRAW") {
              drawScreens();
        }
 
-       else if (gev.ewoname == "RESIZE") {
+       else if (Gev.ewoname == "RESIZE") {
              drawScreens();
        }
-       else if (gev.ewoname == "ZIN") {
+       else if (Gev.ewoname == "ZIN") {
         cout <<"trying zin ";
              ZIN();
        }
 
-       else if (gev.ewoname == "ZOUT") {
+       else if (Gev.ewoname == "ZOUT") {
         cout <<"trying zout ";
              ZOUT();
        }
@@ -772,7 +815,7 @@ int nevent = 0;
      }
 
 cout<<"Exit Wex\n";
-
+#if CPP
 }
 
 
@@ -790,22 +833,20 @@ cout<<"Exit Wex\n";
 
     Svar GoalsB;
    
-    GoalsB.Split("05/21/2022 07/31/2022 175");
-
+    GoalsB.Split("07/21/2022 08/31/2022 175");
+    
 
 #include "wex_types.asl"
 
 
-  Uac *o_uac = new Uac;
+  Wex *o_wex = new Wex;
 
-  o_uac->Wex(sarg);
+  o_wex->wexTask(sarg);
 
     exit(0);
   }
-
-
    
-
+#endif
 
 ///////////////////////////////// TBD /////////////////////////
 // date-day

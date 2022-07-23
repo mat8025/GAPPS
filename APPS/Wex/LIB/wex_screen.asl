@@ -173,6 +173,7 @@ cout<<"scales " << sc_startday << " sc_end " << sc_end << " bp_upper " << bp_upp
   //quitwo=cWo(vp,WO_BN,_WNAME,"QUIT",_WCOLOR,"red")
 
   zinwo=cWo(vp,WO_BN);
+  
   sWo(_WOID,zinwo,_WNAME,"ZIN",_WCOLOR,PINK_,_WHELP," zoom in on selected days ",_WREDRAW,1);
 
   zoomwo=cWo(vp,WO_BN);

@@ -22,11 +22,16 @@
 //<<"including tbqrd.asl TBQRD $(TBQRD)\n"
 
 // assume just main window use
+
+// glargs has to main scope 
 #if CPP
 #include "gline.h"
 #include "glargs.h"
 #include "woargs.h"
 #endif
+
+
+
 
 int tbqrd_tv = 0;
 int tbqrd_msg = 0;

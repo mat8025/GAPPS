@@ -12,7 +12,7 @@
  */ 
 ;//----------------<v_&_v>-------------------------//;                                                                                                
 
-#include "uac.h"
+//#include "uac.h"
 
  
 
@@ -25,11 +25,11 @@
 //  plot(gwo,_Wsymbol,gday-1,NextGoalWt, 3,1,GREEN_);
 
   //<<"%V $last_known_day $PWT $tday2 $StGoalWt \n";
-  cout<<"showTarget()\n";
+ // cout<<"showTarget()\n";
   
   plotSymbol(wtwo,tday2,StGoalWt,TRI_,Symsz,BLACK_,1);
 
-  cout<<"plotSymbol\n";
+  //cout<<"plotSymbol\n";
 
   plotSymbol(wtwo,gday,NextGoalWt,DIAMOND_,Symsz,BLUE_);
 
@@ -60,7 +60,7 @@
 
 sWo(_WOID,wtwo,_WSHOWPIXMAP,ON_);
 
-cout<<"Done showTarget\n";
+//cout<<"Done showTarget\n";
   //plotSymbol(wtwo,targetday,GoalWt,STAR_,Symsz, LILAC_);
 //  dGl(gw_gl);
 //sc_startday.pinfo();
@@ -277,7 +277,7 @@ cout<<"Done showTarget\n";
 //<<"RESET? %V $sc_startday  $sc_end \n"
  int wedwos[] = { wtwo, calwo,  carbwo, extwo,-1  };
   Str ans;
-cout<<"DrawScreens\n";
+//cout<<"DrawScreens\n";
 
   if ( wScreen == 0) {
 //<<"%V $sc_zstart $minWt $sc_zend $upperWt\n"
@@ -292,7 +292,7 @@ cout<<"DrawScreens\n";
         sWo(_WOID,wedwos[i],_WCLEARCLIP,WHITE_,_WSAVE,ON_,_WCLEARPIXMAP,ON_,_WCLIPBORDER,BLACK_);
   }
   
-  cout <<"Draw Screen\n";
+ // cout <<"Draw Screen\n";
   drawGoals( wScreen);
 
   drawGrids( wScreen);
@@ -409,7 +409,7 @@ cout<<"DrawScreens\n";
   Wex_CR_init = 1;
   Wex_CL_init = 1;
  //sc_startday.pinfo();
-   cout<<"Done drawScreens\n";
+  // cout<<"Done drawScreens\n";
  }
   
  
@@ -515,7 +515,7 @@ cout<<"DrawScreens\n";
 
   int dt;
 
-  cout <<" getDay\n";
+  //cout <<" getDay\n";
 
   m_day= dayv + Jan1 -1;  // ? OBO;
 

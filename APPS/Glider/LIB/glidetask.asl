@@ -24,7 +24,7 @@
 #if ASL
 // the include  when cpp compiling will re-define ASL 0 and CPP 1
 #include "compile.asl"
-#define GT_DB 1;
+
 #endif
 
 
@@ -45,6 +45,7 @@ using namespace std;
 //uint Turnpt::Ntp_id = 0;
 
 #if ASL
+#define GT_DB 1;
 #define COUT //
 int run_asl = runASL();
 <<" running as ASL \n";
@@ -106,7 +107,7 @@ Tleg  GT_Wleg[20];
 #if CPP
 
 void
-Uac::glideTask(Svarg * sarg)  
+Glide::glideTask(Svarg * sarg)  
 {
 
 int run_asl = runASL();
@@ -162,7 +163,7 @@ cout << " The glider Task turnpts and  parameters are:  "  << sa << endl;
 //cout << " para[3] is:  "  << sa.cptr(3) << endl;
 
 
-  ignoreErrors(); // put in uac.h ??
+  ignoreErrors(); // put in glide.h ??
 
 //  chkIn(1);  //  _dblevel ?
   
@@ -458,8 +459,8 @@ while (ac < na) {
  int k;
 #if GT_DB
   for (k= 0; k < cltpt; k++) {
-/<<"$k  $CLTPT[k] \n";
-}
+  <<"$k  $CLTPT[k] \n";
+  }
 #endif
 
 
@@ -470,12 +471,13 @@ while (ac < na) {
  int K_AFH = AFH;
  cnttpt = 0;
 
-<<"CLTPTs  $CLTPT\n"
+//<<"CLTPTs  $CLTPT\n"
 
 
 while ( !got_start) {
-
-   <<" %V $cnttpt $i    $via_keyb $via_cl\n";
+#if ASL
+<<" %V $cnttpt $i    $via_keyb $via_cl\n";
+#endif
 
   fseek(AFH,0,0);
 
@@ -483,7 +485,7 @@ while ( !got_start) {
 
   the_start = CLTPT[cnttpt];
 
-<<"$the_start $cnttpt $CLTPT[cnttpt] \n"
+//<<"$the_start $cnttpt $CLTPT[cnttpt] \n"
 
   cnttpt++;
 
@@ -520,8 +522,10 @@ while ( !got_start) {
       //the_start.pinfo();
       // <<"         \n";
       //<<" \n";
-<<"%V $the_start $AFH \n"
-  i=searchFile(AFH,the_start,0,1,0,0);
+
+//<<"%V $the_start $AFH \n"
+
+i=searchFile(AFH,the_start,0,1,0,0);
 
 //  <<[_DB]"$i\n";
 
@@ -569,7 +573,7 @@ while ( !got_start) {
   got_start =1;
 }
 
-<<"inputs  $the_start\n";
+ pa("start ", the_start);
 // -------------------------------
 //<<"%V$input_lat_long  $i \n"
 
@@ -683,7 +687,10 @@ while ( !got_start) {
 
   nxttpt = CLTPT[cnttpt];
 
+#if ASL
 <<"%V  $nxttpt   $cnttpt $cltpt \n"
+#endif
+
 
 #if CPP
   if (GT_DB) cout << " nxttpt " << nxttpt << endl;
@@ -1181,11 +1188,9 @@ Str Use_ ="compute task distance\n  e.g  asl anytask.asl   gross laramie mtevans
  printf(" glideTask app %s ",Use_.cptr() );
  //cout << " paras are: "  << " a0 " <<  a0 << endl;
 
-    Uac *o_uac = new Uac;
+    Glide *o_glide = new Glide;
 
-
-
-    o_uac->glideTask(sarg);
+    o_glide->glideTask(sarg);
 
    //cout << "total D " << ::totalD    <<endl ;
 
