@@ -194,7 +194,7 @@ int N;
   IGCELE[4] = 12345.678;
 IGCELE.pinfo();
 //sdb(1)
-  pa("processIGC Igcfn   ",Igcfn);
+  //pa("processIGC Igcfn   ",Igcfn);
 
    //  for (i=0; i < 100; i++) {
    //  <<"$i $IGCTIM[i] $IGCELE[i] $IGCLAT[i]  $IGCLONG[i] \n";
@@ -334,7 +334,7 @@ ssele= IGCELE.stats();
   
   
   LongE = MidLong - da/2.0;
-  VCOUT(LongW,LongE);
+  //VCOUT(LongW,LongE);
 
  //pa(LongW,LongE);
 //CDBP("LongW")

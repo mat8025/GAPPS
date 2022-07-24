@@ -19,7 +19,7 @@
 
 int Tleg_id = 0;
 #if ASL
-<<"%V $_include $Tleg_id\n"
+if (GT_DB) <<"%V $_include $Tleg_id\n"
 #endif
 
 class Tleg 
@@ -42,7 +42,7 @@ class Tleg
 #if ASL
  void Tleg()   //  use cons,destroy   -- have then set to NULL in CPP header
 #else
-Tleg()
+  Tleg()
 #endif
  {
  //<<"Starting cons \n"
@@ -158,7 +158,7 @@ Str val2;
 
      val = wval[0];
 
-cout << "val " << val << endl;
+//cout << "val " << val << endl;
 
 
 //pa(wval); // crash ??
@@ -186,7 +186,7 @@ cout << "val " << val << endl;
 //cout << "val " << val << endl;
      Place = val; // wayp 
     
-cout << "Place " << Place << endl;
+//cout << "Place " << Place << endl;
 
      val =  wval[1];
 
@@ -215,7 +215,7 @@ cout << "Place " << Place << endl;
   
      val = wval[5];
 
-    pa(val);
+    // pa(val);
     // ft or m
 
 //ans=query("?","sele",__LINE__);
@@ -237,7 +237,7 @@ cout << "Place " << Place << endl;
 
 
 //cout  <<"Alt "<< Alt  <<endl ; 
-    pa(val,Alt);
+//    pa(val,Alt);
 
      is_airport =0;
      is_mtn =0;
@@ -287,8 +287,7 @@ cout << "Place " << Place << endl;
 
      tptype = wval[10];
      
-    // spat (tptype,"A",-1,-1,&is_airport);
-
+// spat (tptype,"A",-1,-1,&is_airport);
 //<<"%V $lat \n";
 
      Ladeg =  coorToDeg(Lat,2); 
@@ -327,7 +326,6 @@ void SetPlace (Str val)
      //<<"$Place $Idnt $Lat $Lon $Alt $rway $Radio $Ladeg $Longdeg\n"
 #if ASL
 <<" $Place  $Lat $Lon $Radio\n"
-
 #else
 cout << " " << Place <<" " << Idnt <<" " << Lat <<" " << Lon <<" " << Alt <<" " << rway <<" "
 << Radio <<" " << Ladeg <<" " << Longdeg << endl;
@@ -368,7 +366,7 @@ void Turnpt()
 
 
 #if ASL
-<<"%V $_include  DONE\n"
+if (GT_DB) <<"%V $_include  DONE\n"
 #endif
 
 #endif

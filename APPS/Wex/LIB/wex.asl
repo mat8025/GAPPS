@@ -605,7 +605,7 @@ COUT(gday);
 
   Svar rx;
 
-  printf(" readRecord \n)";
+  printf(" readRecord \n");
 
   Wex_Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST);  // no back ptr to Siv?
 

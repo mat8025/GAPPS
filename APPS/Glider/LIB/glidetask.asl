@@ -45,14 +45,14 @@ using namespace std;
 //uint Turnpt::Ntp_id = 0;
 
 #if ASL
-#define GT_DB 1;
+#define GT_DB 0;
 #define COUT //
 int run_asl = runASL();
-<<" running as ASL \n";
+//<<" running as ASL \n";
 #include "debug"
 ignoreErrors();
 
-#define ASL_DB 1
+#define ASL_DB 0
 #endif
 
 
@@ -121,7 +121,7 @@ int run_asl = runASL();
 //cout << " paras are:  "  << a0.cptr(0) << endl;
  sa.findWords(a0.cptr());
 
-cout << " The glider Task turnpts and  parameters are:  "  << sa << endl;
+cout << "\n The glider Task turnpts and  parameters are:  "  << sa << endl;
 
 //cout << " para[0] is:  "  << sa.cptr(0) << endl;
 
@@ -144,13 +144,13 @@ cout << " The glider Task turnpts and  parameters are:  "  << sa << endl;
 
  sa = _clarg;
 
-<<"args are $sa \n"
+//<<"args are $sa \n"
 
-<<"0 $sa[0] \n"
+//<<"0 $sa[0] \n"
 
-<<"1 $sa[1] \n"
+//<<"1 $sa[1] \n"
 
-<<"2 $sa[2] \n"
+//<<"2 $sa[2] \n"
 
 
 
@@ -277,7 +277,7 @@ while (ac < na) {
 
   targ = sa.cptr(ac);
 
-<<"%V $ac $sa[ac] $targ\n"
+if (GT_DB) <<"%V $ac $sa[ac] $targ\n"
 
 #endif
 
@@ -407,8 +407,8 @@ while (ac < na) {
 
   CLTPT.cpy(targ,cltpt);
 
-  <<"%V $targ $sz $cltpt $CLTPT[cltpt] \n"
-  <<"CLTPTs  $CLTPT\n"
+ if (GT_DB)  <<"%V $targ $sz $cltpt $CLTPT[cltpt] \n"
+  if (GT_DB) <<"CLTPTs  $CLTPT\n"
 
 
 #else
@@ -476,7 +476,7 @@ while (ac < na) {
 
 while ( !got_start) {
 #if ASL
-<<" %V $cnttpt $i    $via_keyb $via_cl\n";
+ if (GT_DB) <<" %V $cnttpt $i    $via_keyb $via_cl\n";
 #endif
 
   fseek(AFH,0,0);
@@ -573,7 +573,7 @@ i=searchFile(AFH,the_start,0,1,0,0);
   got_start =1;
 }
 
- pa("start ", the_start);
+// pa("start ", the_start);
 // -------------------------------
 //<<"%V$input_lat_long  $i \n"
 
@@ -687,7 +687,7 @@ i=searchFile(AFH,the_start,0,1,0,0);
 
   nxttpt = CLTPT[cnttpt];
 
-#if ASL
+#if ASL_DB
 <<"%V  $nxttpt   $cnttpt $cltpt \n"
 #endif
 
@@ -1182,10 +1182,10 @@ extern "C" int glider_task(Svarg * sarg)  {
  Str ans;
 // a0.pinfo();
 
-Str Use_ ="compute task distance\n  e.g  asl anytask.asl   gross laramie mtevans boulder  LD 40";
+Str Use_ ="compute task distance\n  e.g.  asl glidetask   gross laramie evans boulder  LD 40";
 
 
- printf(" glideTask app %s ",Use_.cptr() );
+ printf(" glideTask app %s \n",Use_.cptr() );
  //cout << " paras are: "  << " a0 " <<  a0 << endl;
 
     Glide *o_glide = new Glide;
