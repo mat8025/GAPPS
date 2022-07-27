@@ -82,7 +82,7 @@ qrd[0]= tq;
 qrd[1]= tr;
 qrd[2]= td;
 
-//<<[_DB]"%V $tr $tq $td\n"
+//<<"%V $tr $tq $td\n"
 //<<[_DB]"%V $qrd $(caz(qrd)) $(typeof(qrd))\n"
 float clip[5] = {0,0,1,1};
 int i;

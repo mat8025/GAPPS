@@ -1,5 +1,4 @@
-echo "bash args" $*
+echo  $*
+asl -d -s 'Str prg = _clarg[1]; Svar z=_clarg[2:-1:1]; Str sa="$z"; opendll("glide"); <<"%V $prg "; ret = $prg (sa); exit(0); ' $*
 
-asl -d -s 'Svar z=_clarg[1:-1:1]; Str sa="$z"; opendll("glide"); show_task(sa); exit(0); ' $*
 
-#asl -d -s 'Svar z=_clarg[1:-1:1]; Str sa="$z"; <<"%V $sa\n"; opendll("uac"); test_glines(sa); exit(0); ' $*

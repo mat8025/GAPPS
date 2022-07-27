@@ -12,10 +12,6 @@
  */ 
 ;//----------------<v_&_v>-------------------------//;                                                                                                
 
-//#include "uac.h"
-
- 
-
 
   void showTarget()
   {
@@ -270,35 +266,46 @@ sWo(_WOID,wtwo,_WSHOWPIXMAP,ON_);
   void drawScreens()
   {
   int i,j;
+
+
 //<<" $_proc \n"
+
+
 //<<"%V $sc_startday  $sc_end \n"
 // sc_startday.pinfo()
  //sc_startday = (jtoday - Bday) - 20;
 //<<"RESET? %V $sc_startday  $sc_end \n"
- int wedwos[] = { wtwo, calwo,  carbwo, extwo,-1  };
-  Str ans;
-//cout<<"DrawScreens\n";
+
+
+int wedwos[] = { wtwo, calwo,  carbwo, extwo,-1  };
+
+//  Str ans;
+
+//<<"DrawScreens\n";
+
+
 
   if ( wScreen == 0) {
+
 //<<"%V $sc_zstart $minWt $sc_zend $upperWt\n"
  // sWo(wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0,_WFLUSH);
 
   COUT(sc_zstart);
   COUT(sc_zend);
-  for (i = 0; i< 10; i++) {
+
+for (i = 0; i< 10; i++) {
       if (wedwos[i] <=0)
          break;
-        sWo(_WOID,wedwos[i],_WXSCALES,wpt(sc_zstart,sc_zend));
+        sWo(_WOID,wedwos[i],_WXSCALES, wpt(sc_zstart,sc_zend));
+
         sWo(_WOID,wedwos[i],_WCLEARCLIP,WHITE_,_WSAVE,ON_,_WCLEARPIXMAP,ON_,_WCLIPBORDER,BLACK_);
   }
-  
- // cout <<"Draw Screen\n";
+
   drawGoals( wScreen);
 
   drawGrids( wScreen);
 
  //sWo(wtwo,_WCLEARCLIP,CYAN_,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_,_WFLUSH);
-
 // sWo(calwo,_WCLEARCLIP,YELLOW_,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_,_WFLUSH);
 // sWo(wtwo,_WSCALES,wbox(sc_startday,150,sc_end,220),_WFLUSH);
  
@@ -327,7 +334,8 @@ sWo(_WOID,wtwo,_WSHOWPIXMAP,ON_);
       //Text(calwo,"Carbs Ate", 0.8,0.72,1)
 
   sWo(_WOID,extwo,_WFONT,F_SMALL_);
-      //plot(extwo,_Wkeysymbol,0.78,0.7,TRI_,Symsz,GREEN_,1);
+
+//plot(extwo,_Wkeysymbol,0.78,0.7,TRI_,Symsz,GREEN_,1);
 
 
 

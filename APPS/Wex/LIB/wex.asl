@@ -65,8 +65,10 @@ using namespace std;
 #include "scope.h"
 #include "swinwob.h"
 #include "gsi.h"
+#include "record.h"
 #include "gline.h"
 #include "glargs.h"
+#include "gevent.h"
 #include "winargs.h"
 #include "debug.h"
 
@@ -95,13 +97,18 @@ class Svar;
 ////////////////////////////////////////  Globals //////////////////////////////
 
 #endif
+
+
 #if ASL
 #define cout //
 #define COUT //
+#define VCOUT //
 #endif
-  Svar Mo;
 
-#include "wex_rates.asl"
+
+ Svar Mo;
+
+#include "rates_wex.asl"
 
 
 
@@ -115,7 +122,7 @@ class Svar;
  //
 
 
-
+  int i = 0;
   Str ans="xyz";
   
   Vec<double> Vtst(10,10,1);
@@ -281,9 +288,9 @@ Record RX;
 
 
 
-#include "wex_compute.asl"
+#include "compute_wex.asl"
 
-#include "wex_read.asl"
+#include "read_wex.asl"
 
 
 //////////////////////  SCREEN ///////////////////////////
@@ -369,7 +376,7 @@ Record RX;
 // our goal line  wt loss per day!
 //<<[_DB]"%V $try_lpd $lpd \n"
 
-     for (int i= 0; i < ngday; i++) {
+     for (i= 0; i < ngday; i++) {
 //<<"$(ty_gsday+i) $lw \n"
 
        GVEC[i] = lw;
@@ -408,8 +415,9 @@ Record RX;
   int dtmwo,obswo,cbmwo,xtmwo,sdwo,gdwo,gwtwo,wtmwo;
 
 
-#include "wex_draw.asl"
-#include "wex_callbacks.asl"
+#include "draw_wex.asl"
+
+#include "callbacks_wex.asl"
 
 
   
@@ -422,7 +430,7 @@ Record RX;
 // test Vec Global
   // setDebug(2,"pline");
 
-//  Gevent gev; // this has be specific to this app
+
 
   cout << "Vtst "  << Vtst << endl;
 
@@ -567,9 +575,9 @@ COUT(gday);
 
 
 
-#include "wex_screen.asl"
+#include "screen_wex.asl"
 
-#include "wex_glines.asl"
+#include "glines_wex.asl"
 
 
 /////////////////////////////////////////////////  READ RECORDS ////////////////////////////////////////
@@ -613,7 +621,7 @@ COUT(gday);
 
 //  RX.pinfo();
 
-COUT (Wex_Nrecs);
+ COUT (Wex_Nrecs);
 
 
 
@@ -633,7 +641,7 @@ COUT (Wex_Nrecs);
 
 //  lastRX = RX[Nrecs-1];
 //  <<"%V$lastRX\n";
-//!a
+
 //lastRX->pinfo();
 //chkT(1)
     //WDVEC= vgen(_INT_,2*kdays,0,1);
@@ -662,7 +670,8 @@ COUT (Wex_Nrecs);
   //RCC->info(1);
 
   NCCrecs = RCC.getNrows();
-cout << "NCCrecs " << NCCrecs << endl;
+  
+  cout << "NCCrecs " << NCCrecs << endl;
 //ans = query("NCCrecs");
   //NCCrecs->info(1)
 
@@ -724,9 +733,14 @@ float ae = EXTV[15];
   ae = AVE_EXTV[15];
 
 // COUT(ae);
+
+   AVE_EXTV.pinfo();
+
+
    AVE_EXTV.Smooth(7);  // add Smooth (smooth_win_size)
 
    ae = AVE_EXTV[15];
+pa(ae);
 
 COUT(ae);
 
@@ -757,6 +771,9 @@ COUT(ae);
   
   drawScreens();
 
+
+
+
 //ans=query("proceed?");
   showTarget();
 
@@ -780,7 +797,9 @@ int nevent = 0;
 	 COUT(Button);
 	 COUT(Erx);	 
 	 COUT(nevent);
-          COUT (Gev.ewoname);
+         COUT (Gev.ewoname);
+
+
       if (Gev.ewoname == "WTLB") {
 
                WTLB ();
@@ -836,7 +855,7 @@ cout<<"Exit Wex\n";
     GoalsB.Split("07/21/2022 08/31/2022 175");
     
 
-#include "wex_types.asl"
+#include "types_wex.asl"
 
 
   Wex *o_wex = new Wex;

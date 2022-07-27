@@ -21,6 +21,8 @@
 #define ASL 0
 #define CPP 1
 
+#include "record.h"
+
   void
   Uac::recordWorld(Svarg * sarg)
   {

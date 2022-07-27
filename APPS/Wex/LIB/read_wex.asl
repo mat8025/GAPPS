@@ -137,12 +137,13 @@ COUT(Wex_Nrecs);
   while (tl < Wex_Nrecs) {
 
 
-  Col= RX(tl); 
- //<<"<$tl> $RX[tl]\n"
+  Col= RX.getRecord(tl); 
+pa(tl, Col);
+//<<"<$tl> $RX[tl]\n"
 
   day = Col[0];
 
- VCOUT(tl,day);
+  VCOUT(tl,day);
 
   jday = Julian(day);
 
@@ -184,10 +185,12 @@ COUT(Wex_Nrecs);
   }
 
   }
-//<<[_DB]"$Wex_Nrecs there were $tl $Nobs measurements \n"
+
+
+pa("Wex_Nrecs there were Nobs measurements ",Wex_Nrecs,Nobs);
 
 cout << "Nobs " << Nobs << endl;
- COUT(Nobs) ;
+
   return tl;
 
   }

@@ -12,9 +12,14 @@
  */ 
 ;//----------------<v_&_v>-------------------------//;                                                                                              
 
+/*
+#if CPP
+// needed ? -  asl will see this as replacement for drawScreens function
+// not as declaration of prototype existing elsewhere in the code
  void drawScreens();
  void showWL(long ws, long we);
-
+#endif
+*/
 
   void adjustQrt(int updown)
   {

@@ -1,16 +1,17 @@
 /* 
- *  @script iproc.asl 
+ *  @script iproc.asl                                                   
  * 
- *  @comment test indirect call pr proc () 
- *  @release CARBON 
- *  @vers 1.2 He Helium [asl 6.3.23 C-Li-V]                                 
- *  @date Thu Feb 18 12:06:13 2021 
- *  @cdate 1/1/2011 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
+ *  @comment test indirect call pr proc ()                              
+ *  @release Beryllium                                                  
+ *  @vers 1.3 Li Lithium [asl 6.4.51 C-Be-Sb]                           
+ *  @date 07/26/2022 20:33:43                                           
+ *  @cdate 1/1/2011                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2022 -->                               
  * 
- *  \\-----------------<v_&_v>--------------------------//  
  */ 
+;//----------------<v_&_v>-------------------------//;                  
+
 ///
 ///
 ///
@@ -29,7 +30,7 @@ just_once = 0;
 LD_libs = 0;
 //=======================//
 int goo_call = 0;
-proc goo(int m)
+Str goo(int m)
 {
 static int znt = 0;
 znt++;
@@ -53,7 +54,7 @@ just_once++ ;
 //=======================//
 
 int zoo_call = 0;
-proc zoo(int m)
+Str zoo(int m)
 {
 static int znt = 0;
 znt++;
@@ -70,7 +71,7 @@ if (znt > 10) {
 }
 //=======================//
 int hoo_call = 0;
-proc hoo(int m)
+Str hoo(int m)
 {
 static int znt = 0;
 znt++;
@@ -87,7 +88,7 @@ if (znt > 10) {
 //=======================//
 
 int moo_call = 0;
-proc moo(int m)
+Str moo(int m)
 {
 static int znt = 0;
 znt++;
@@ -98,7 +99,7 @@ moo_call++;
 //=======================//
 
 int roo_call = 0;
-proc roo(int m)
+Str roo(int m)
 {
 static int znt = 0;
 znt++;
@@ -169,7 +170,7 @@ chkN (just_once,1)
 N = 6;
 kp= 0;
 
-svar pnames = {"goo","zoo","moo","roo" }
+Svar pnames = {"goo","zoo","moo","roo" }
 
 <<"%V $pnames \n"
 

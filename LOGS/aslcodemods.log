@@ -1200,3 +1200,13 @@ glide.h                             1.33  07/23/2022 13:29:57  separate dll for 
 wex.cpp                             1.3  07/24/2022 08:46:15  cpp/asl information
 glide_table.cpp                     1.13  07/24/2022 08:54:30  info on running glidetask
 glide_table.cpp                     1.4  07/24/2022 09:22:14  tidy
+vmf_svar.cpp                        1.26  07/24/2022 11:54:00  fix csep default 44
+win_p.cpp                           1.89  07/26/2022 09:29:31  xscales/wpt
+wo_set_p.cpp                        1.91  07/26/2022 09:29:51  wxscales,wpt
+pan_e.cpp                           1.6  07/26/2022 13:26:17  breakout pan cons from siv.h
+pan_e.cpp                           1.2  07/26/2022 13:27:14  tidy
+siv.h                               2.8  07/26/2022 14:49:03  dobject ptrs
+array.h                             1.15  07/26/2022 15:32:37  aop new
+proc_checkfname_e.cpp               2.51  07/26/2022 20:06:14  redo indirect func/proc
+proc_checkfname_e.cpp               2.52  07/26/2022 20:07:47  debug_tidy
+proc_checkfname_e.cpp               2.53  07/26/2022 20:08:12  

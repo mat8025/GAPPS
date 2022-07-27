@@ -1300,7 +1300,7 @@ exit(0);
 
 //#error  show_task
 
-extern "C" int show_task(Svarg * sarg)  {
+extern "C" int showtask(Svarg * sarg)  {
 
  Str a0 = sarg->getArgStr(0) ;
  Str ans;
@@ -1309,7 +1309,7 @@ extern "C" int show_task(Svarg * sarg)  {
  Str Use_ ="compute task distance\n  e.g  showtask  gross laramie mtevans boulder  LD 40";
 
 
- printf(" showTask app %s ",Use_.cptr() );
+   printf(" showTask app %s ",Use_.cptr() );
  //cout << " paras are: "  << " a0 " <<  a0 << endl;
 
     Glide *o_glide = new Glide;
