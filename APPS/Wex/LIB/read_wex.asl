@@ -29,13 +29,14 @@ int iyd = Yd;
 
   float mywt = atof(Col[j++]);
 
-COUT(mywt);
+  COUT(mywt);
 
   if (mywt > 0.0) {  // we have an entry = not all days are logged
 
   WTVEC[Yd] = mywt;
-//<<"$k  mywt  $WTVEC[Nobs] \n"
-
+  
+<<"$k  mywt  $WTVEC[Nobs] \n"
+!a
   if (mywt > 0.0) {
 
   last_known_wt = mywt;
@@ -113,6 +114,8 @@ COUT(mywt);
 
   }
 
+ // printf("Nobs %d\n",Nobs);
+
   }
 //====================================================//
 
@@ -129,7 +132,7 @@ COUT(mywt);
   
   int got_start = 0;
 
-COUT(Wex_Nrecs);
+  printf("Wex_Nrecs \n",Wex_Nrecs);
 
 // access of record row Rx(i)
 // access of record Col Rx(i,j)
@@ -137,8 +140,9 @@ COUT(Wex_Nrecs);
   while (tl < Wex_Nrecs) {
 
 
-  Col= RX.getRecord(tl); 
-pa(tl, Col);
+  Col= RX.getRecord(tl);
+  
+  pa(tl, Col);
 //<<"<$tl> $RX[tl]\n"
 
   day = Col[0];
@@ -187,9 +191,9 @@ pa(tl, Col);
   }
 
 
-pa("Wex_Nrecs there were Nobs measurements ",Wex_Nrecs,Nobs);
+printf("Wex_Nrecs %d there were Nobs %d measurements ",Wex_Nrecs,Nobs);
 
-cout << "Nobs " << Nobs << endl;
+
 
   return tl;
 

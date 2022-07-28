@@ -111,8 +111,6 @@ chkIn(_dblevel);
 
  openDll("glide");
 
-float Gerx;
-float Gery;
 
 
 #endif
@@ -785,14 +783,8 @@ Str place;
 
 
 
-#if CPP
+
  Gevent Gev;
-#else
-#include  "gevent.asl";
-#endif
-
-
-
 
 
 
@@ -862,6 +854,8 @@ Str wcltpt="XY";
     taskDist();
  //sWo(tdwo,_WUPDATE);
  // sdb(2);
+
+
   while (1) {
  //   zoom_to_task(mapwo,1)
     ok = 0;
@@ -870,20 +864,26 @@ Str wcltpt="XY";
   
     //eventWait();
     Gemsg =Gev.eventWait();
+
+Gemsg.pinfo();
+
     Gekey = Gev.getEventKey();
-    
-   Gev.getEventRxy( &Gerx,&Gery);
+    Gev.getEventRxy( &Gerx,&Gery);
 
     WoName = Gev.getEventWoName();
-    Ev_button = Gev.getEventButton();
+WoName.pinfo();
 
 
-pa(Ev_keyw,Gekey,WoName );
+   Ev_button = Gev.getEventButton();
+
+   Ev_button.pinfo();
 
 
     Ev_keyw = Gev.getEventKeyWord();
 
-    pa("pa Ev_keyw ", Ev_keyw);
+    pa(Ev_button,Ev_keyw,Gekey,WoName,Gerx,Gery );
+
+
   
   // printf("Ev_keyw <|%s|> ", Ev_keyw.cptr());
 

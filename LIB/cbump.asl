@@ -27,8 +27,15 @@
    
   }
   //======================
-  A=-1;
-  
+ int  A=-1;
+
+
+ // ? read the entire file into an Svar
+ // write the new hdr into a new file
+ // skip/delete from the Svar the ol
+ // then append the Svar to the new
+ // make the old a bak
+ // mv the new to overwrite the original 
   
   // if script found
   // then  read current vers and  bump number and update date
@@ -74,7 +81,7 @@
   //<<[2]" DIR $dir \n"
   Author = "Mark Terry"
   fname = srcfile
-  release = "CARBON"
+  release = "Beryllium"
   pmaj = 1;
   pmin = 1;
   
@@ -82,8 +89,7 @@
   min_ele = ptsym(pmin);
   
   date = date(GS_MDYHMS_);
- 
- 
+  
   len = slen(fname);
   
   ind = (80-len)/2;
@@ -104,8 +110,24 @@
 
   release = ptname(TR[1]);
 
+  B= ofile(srcfile,"r")
+  Svar X;
+  X=readfile(B);
+  cf(B);
+  
+  fsz= X.getSize();
 
-  A=ofile(srcfile,"r+")
+<<"%V$fsz\n"
+
+<<"$X\n"
+
+
+  for (i= 20; i < 30; i++) {
+<<"$i $X[i]\n"
+  }
+
+!a
+  A=ofile(srcfile,"r");
   //T=readfile(A);
  //<<[2]"opened for read/write? $A\n"
   if (A == -1) {
@@ -154,7 +176,7 @@ Str old_comment ="yyy"
    
 //<<[2]"$i line is $T \n"
    if (i ==2) {
-old_comment =T;
+     old_comment =T;
    }
    where = ftell(A)
 
@@ -203,13 +225,15 @@ old_comment =T;
 
 
     if (spat(L[0],"///////<v_&_v>//") != "") {
-<<[2]"@header end? line $i\n"
+<<"@header end? line $i\n"
       break;
     }
 
 }
 
    where = ftell(A);
+
+   int end_ln = i;
 /*
 <<"oldc $old_comment\n"
    L.Split(old_comment);
@@ -271,6 +295,10 @@ if (found_vers) {
 
  fseek(A,0,0);
 
+  cf(A);
+
+A=ofile(srcfile,"w")
+
 
 <<[A]"/*//////////////////////////////////<**|**>///////////////////////////////////\n"
 <<[A]"//$insp $fname \n"
@@ -287,21 +315,51 @@ if (found_vers) {
 <<[A]"//  ( ^ ) \n"
 <<[A]"//    - \n"
 <<[A]"///////////////////////////////////<v_&_v>//////////////////////////////////*/ \n"
-<<[A]"\n"
+
 
 
   here = ftell(A);
-     Pad = nsc(where-here-2," ")
-   <<[A]"$Pad\n";  
+
+//Pad = nsc(where-here-2," ")
+//   <<[A]"$Pad\n";  
  
     fflush(A);
-  
+
+// which line is end of old hdr?
+//<<"%V $end_ln\n"
+
+
+ Y = X[end_ln:-1:1];
+
+ D=ofile("stem","w");
+ 
+//<<"$Y \n";
+  ysz= Y.getSize();
+
+<<"%V$ysz \n";
+   Y.write(D);
+ //wfile(D,Y);
+//  wfile(D,Y[2]);
+//    wfile(D,Y[10]);
+ cf(D);
+
+   Y.write(A);
+/*   
+  for (i= end_ln; i < fsz; i++) {
+//<<"$i $X[i]\n"
+   wfile(A,X[i]);
+  }
+*/
+
+  // wfile(A,"NEW END\n");
+   
 cf(A);
 
 
 
 
 // lets' log this change 
+
 logfile= "~gapps/LOGS/aslcodemods.log"
 A=ofile(logfile,"r+")
 fseek(A,0,2)

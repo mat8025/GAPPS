@@ -179,7 +179,7 @@ printf(" LongW %f LatS %f LongE %f LatN %f \n",LongW, LatS, LongE, LatN);
 
   longi = Wtp[k].Longdeg;
 
-pa(k ,is_an_airport  ,mlab, msl ,lat ,longi);
+  //pa(k ,is_an_airport  ,mlab, msl ,lat ,longi);
 
   //pa(k,msl,lat,longi, mlab);
 

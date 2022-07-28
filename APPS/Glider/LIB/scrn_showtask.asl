@@ -54,8 +54,7 @@ int Xgm;
 
 // VCOUT(Xgm,"\n");
 
- VCOUT(Xgm,Vp);
-  
+  VCOUT(Xgm,Vp);
 
 
   //sWi(Vp,_WSCALES,wbox(-200,-200,200,200,0), _WDRAWON,_WPIXMAPON,_WSAVE,_WBHUE,WHITE_,_WRESIZE,0.1,0.01,0.9,0.95,0);

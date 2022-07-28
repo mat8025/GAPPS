@@ -70,6 +70,7 @@ using namespace std;
 #include "glargs.h"
 #include "gevent.h"
 #include "winargs.h"
+#include "woargs.h"
 #include "debug.h"
 
 #include "wex.h"
@@ -317,18 +318,26 @@ Record RX;
   float lcpx = 0.0;
   float rcpx = 10.0;
 
+
+// use gevent.asl  - for these globals
   int Button;
-  float Erx;
+
+  int Gekey;
+  Str Gemsg;
+  Str WoName ="XYZ";
+  Str Ev_keyw;
+  float Gerx;
+  float Gery;
+
+
 //    Svar Goals;
 //    Svar Goals2;
 //#include "wex_goals.asl"
-   // openDll("uac");
+
+
 ////////////////////////////////////////  routines //////////////////////////////
-#if CPP
- Gevent Gev;
-#else
-#include  "gevent.asl";
-#endif
+
+
 
 
   int N = 1000;
@@ -562,6 +571,7 @@ COUT(gday);
 
    kdays = k;
 
+   openDll("plot");
 
  int  Graphic = checkGWM();
 
@@ -613,7 +623,7 @@ COUT(gday);
 
   Svar rx;
 
-  printf(" readRecord \n");
+  //printf(" readRecord \n");
 
   Wex_Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST);  // no back ptr to Siv?
 
@@ -621,9 +631,7 @@ COUT(gday);
 
 //  RX.pinfo();
 
- COUT (Wex_Nrecs);
-
-
+   pa (Wex_Nrecs);
 
 
   //<<"%V $Nrecs $RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n";
@@ -782,23 +790,34 @@ COUT(ae);
  
 cout<<"DONE PLOT\n";
 int nevent = 0;
-
+ Gevent Gev;
 
      while (1) {
 
-         emsg =Gev.eventWait();
-	 COUT(emsg);
-	 emsg = Gev.emsg;
-	 COUT(emsg);
-         nevent++;
-	 Button= Gev.ebutton;
-	 Erx = Gev.erx;
-	 
-	 COUT(Button);
-	 COUT(Erx);	 
-	 COUT(nevent);
-         COUT (Gev.ewoname);
 
+
+
+    Gemsg = Gev.eventWait();
+
+    Gemsg.pinfo();
+
+    Gekey = Gev.getEventKey();
+    
+    Gev.getEventRxy( &Gerx,&Gery);
+
+    WoName = Gev.getEventWoName();
+
+    WoName.pinfo();
+
+
+   Button = Gev.getEventButton();
+
+
+    Ev_keyw = Gev.getEventKeyWord();
+
+    pa(Button,Ev_keyw,Gekey,WoName,Gerx,Gery );
+
+         nevent++;
 
       if (Gev.ewoname == "WTLB") {
 
@@ -839,7 +858,7 @@ cout<<"Exit Wex\n";
 
 
 
-  extern "C" int wex_task(Svarg * sarg)  {
+  extern "C" int wextask(Svarg * sarg)  {
 
   Str a0 = sarg->getArgStr(0) ;
 

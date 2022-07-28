@@ -31,7 +31,7 @@ chkIn(_dblevel)
 //filterFileDebug(ALLOWALL_,"yyy");
 //filterFuncDebug(ALLOWALL_,"yyy");
 
-proc Foo(int a)
+void Foo(int a)
 {
   int k = 2
 <<" entered $_proc single arg %V$a $k $A\n"
@@ -44,7 +44,7 @@ proc Foo(int a)
 
 
 
-proc Foo(int a, int b)
+void Foo(int a, int b)
 {
 <<" $_proc 2 args $a $b\n"
   int x;
@@ -65,12 +65,31 @@ proc Foo(int a, int b)
 <<" Main \n"
 
 
-A =4;
+int A =4;
+
+A.pinfo();
+
+double yr0 = -1.5;
+
+yr0.pinfo();
+
+Gevent myev;
+
+myev.pinfo();
+
+
+!a
+   Ev_button = myev.getEventButton();
+
+Ev_button.pinfo();
+
+exit()
+
 
 Foo(A,5)
 
 
-A++
+A++;
 
 d=Foo(A,5)
 
@@ -143,7 +162,7 @@ float ytest = 1.234;
 //float Leg[10+]
 
 
-float Leg[12]
+float Leg[12];
 
 
 
@@ -168,7 +187,7 @@ Leg[8] = 8
 
 
 
-double yr0 = -1.5
+
 double yr1 = 1.5
 double xr0 = -1.5
 double xr1 = 1.5

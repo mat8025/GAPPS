@@ -25,9 +25,10 @@ void eventDecode()
    // can get all of these in one by using ref parameters
    Ev_name = Gev.getEventType(Ev_id,Ev_type,Ev_woid,Ev_woaw,Ev_button,Ev_keyc,Ev_woproc,Ev_x,Ev_y,Ev_woval);
      
-//<<"$_proc %V $Ev_x $Ev_y  $Ev_woid\n"
+<<"$_proc %V $Ev_x $Ev_y  $Ev_woid\n"
 
    Ev_woval = Gev.getEventWoValue();
+   
   <<"%V $Ev_woval \n"       
 
   //  Gev.geteventrxy(Ev_rx,Ev_ry);    
@@ -109,7 +110,7 @@ void eventWait()
     Ev_msg = "";
 
     Ev_msg = Gev.waitForMsg();
-//<<"$_proc  %V $Ev_msg\n"
+<<"$_proc  %V $Ev_msg\n"
      Gev.geteventrxy(Ev_rx,Ev_ry);    
      Ev_woid=Gev.geteventwoid();
 

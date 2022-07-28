@@ -171,30 +171,27 @@
 void WTLB()
 {
       // <<"$_proc setting cursors %V  $Ev_button \n"
-cout << "trying to draw cursor\n";
-COUT(Button);
 
-int button = gev.ebutton;
-COUT(button);
+
        if (Button == 1) {
-         lcpx = Erx;
+         lcpx = Gerx;
 //	<<"CURSOR %V $lcpx\n"
-        // sGl(lc_gl,_GLCURSOR,rbox(lcpx,0,lcpx,300), Wex_CL_init,_GLEO);
+print("left cursor @ %f\n",Gerx);      
 	 sGl(_GLID,lc_gl,_GLCURSOR,rbox(lcpx,0,lcpx,300));
 	 
 	 Wex_CL_init = 0;
          getDay(lcpx);
-         COUT(lcpx);
+
         }
 
        if (Button == 3) {
-         rcpx = Erx;
-
-         //sGl(rc_gl,_GLCURSOR,rbox(rcpx,0,rcpx,310), Wex_CR_init,_GLEO);
+         rcpx = Gerx;
+print("right cursor @ %f\n",Gerx);      
+      
 	 sGl(_GLID,rc_gl,_GLCURSOR,rbox(rcpx,0,rcpx,310));
 	 
          Wex_CR_init = 0;
-        // getDay(rcpx);
+
        }
 
 

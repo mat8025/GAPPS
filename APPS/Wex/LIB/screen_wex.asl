@@ -18,30 +18,29 @@
 //ans=query("graphic?\n")
 
 
-
+  
 
   Str vptitle = "Wex";
 
   vp =  cWi("Wex");
 
-  vp1 = cWi("XED");
-
-pa("$vp $vp1 ", vp, vp1);
-
    sWi(_WOID,vp,_WRESIZE,wbox(0.01,0.05,0.90,0.95,0)  );
+
+  sWi(_WOID,vp,_WCLIP,wbox(0.1,0.05,0.9,0.95),  _WREDRAW,ON_);
+
+  vp1 = cWi("XED");
 
   sWi(_WOID,vp1,_WRESIZE,wbox(0.01,0.05,0.90,0.95,1)  );
 
   sWi(_WOID,vp1,_WCLIP,wbox(0.1,0.05,0.85,0.95),  _WREDRAW,ON_);
 
-  sWi(_WOID,vp,_WCLIP,wbox(0.1,0.05,0.9,0.95),  _WREDRAW,ON_);
 
-
+pa("$vp $vp1 ", vp, vp1);
 cout<<"  titleButtonsQRD(vp);\n";
 
   titleButtonsQRD(vp);
 
-  int allwin[] = {vp,vp1};
+  int allwin[] = {vp,vp1,-1};
 
 
   sWi(_WOID,vp,_WDRAW,ON_,_WPIXMAP,ON_,_WSAVE,ON_,_WBHUE,WHITE_);
@@ -130,12 +129,12 @@ cout <<"SCALES " << sc_startday << " sc_end " <<sc_end << endl;
 
   sWo(_WOID,calwo,_WSCALES,wbox(sc_startday,0,sc_end,CalsY1),_WSAVESCALES,0);
    //sWo(calwo,_WSCALES,sc_startday,0,sc_end,carb_upper,_WSAVESCALES,1)
-    //sleep(0.1)
+
 COUT(calwo);
-COUT(vp1);
+
 
   swo= cWo(vp1,WO_GRAPH_);
-COUT(swo);
+
 
 //  sWo(swo,_WNAME,"BenchPress",_WCOLOR,WHITE_,_WEO);
 
@@ -184,10 +183,10 @@ COUT(swo);
 
   zinwo=cWo(vp,WO_BN_);
   
-  sWo(_WOID,zinwo,_WNAME,"ZIN",_WCOLOR,PINK_,_WHELP," zoom in on selected days ",_WREDRAW,1);
+  sWo(_WOID,zinwo,_WNAME,"ZIN",_WCOLOR,PINK_,_WHELP," zoom in on selected days ");
 
   zoomwo=cWo(vp,WO_BN_);
-  sWo(_WOID,zoomwo,_WNAME,"ZOUT",_WCOLOR,BLUE_,_WREDRAW,ON_);
+  sWo(_WOID,zoomwo,_WNAME,"ZOUT",_WCOLOR,BLUE_);
  // yrdecwo= cWo(vp,WO_BN,_WNAME,"YRD",_WCOLOR,"violetred",_WHELP," show previous Year  ")
 //  yrincwo= cWo(vp,WO_BN,_WNAME,"YRI",_WCOLOR,"purple",_WHELP," show next Year  ")
 //  qrtdwo=  cWo(vp,WO_BN,_WNAME,"QRTD",_WCOLOR,"violetred",_WHELP," show previous Qtr period ")
@@ -195,7 +194,8 @@ COUT(swo);
  // int fewos[] = {zinwo,zoomwo, yrdecwo, yrincwo, qrtdwo, qrtiwo }
 
   int fewos[] = {zinwo,zoomwo, -1 };
-COUT(fewos);
+
+  pa(fewos);
 
   wohtile( fewos, 0.03,0.01,0.43,0.07);
 
@@ -210,7 +210,7 @@ COUT(fewos);
   sWo(_WOID,xbwo,_WNAME,"xBurn",_WCLIPBHUE,GREEN_     ,_WVALUE,0);
 
   xlbswo= cWo(vp,WO_BV_);
-  sWo(_WOID,xlbswo,_WNAME,"xLbs",_WCOLOR,BLUE_      ,_WVALUE,0);
+  sWo(_WOID,xlbswo,_WNAME,"xLbs",_WCOLOR,BLUE_ );
 
   dlbswo= cWo(vp,WO_BV_);
 
@@ -218,9 +218,14 @@ COUT(fewos);
 
   int xwos[] = { nobswo, xtwo, xbwo, xlbswo, dlbswo ,-1};
 
-  wohtile( xwos, 0.45,0.01,0.83,0.07,5);
+  wohtile( xwos, 0.45,0.01,0.83,0.07);
 
+ for (i= 0; i< 10; i++) {
+   if (xwos[i] <0 ) break;
+   sWo(_WOID,xwos[i],_WSTYLE,WO_SVB_,_WREDRAW,ON_);
 
+  }
+  
    //sWo(xwos,_WSTYLE,WO_SVB,_WREDRAW,_WEO);
 
    sWo(_WOID,wtwo,_WSHOWPIXMAP,ON_,_WSAVE,ON_);

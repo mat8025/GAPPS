@@ -297,7 +297,7 @@ for (i = 0; i< 10; i++) {
       if (wedwos[i] <=0)
          break;
         sWo(_WOID,wedwos[i],_WXSCALES, wpt(sc_zstart,sc_zend));
-
+//printf("%d xscales %f %f\n",i,sc_zstart,sc_zend);
         sWo(_WOID,wedwos[i],_WCLEARCLIP,WHITE_,_WSAVE,ON_,_WCLEARPIXMAP,ON_,_WCLIPBORDER,BLACK_);
   }
 
@@ -352,6 +352,7 @@ for (i = 0; i< 10; i++) {
 
   sGl(_GLID,allgls[gi],_GLDRAW,ON_);
   gi++;
+  printf("dgl %d\n",gi);
   if (allgls[gi] < 0)
       break;
   }
@@ -389,7 +390,10 @@ for (i = 0; i< 10; i++) {
          break;
     sWo(_WOID,wedwos[i],_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_);
    }
-   
+
+
+ setWoValue(nobswo, Nobs);
+ sWo(_WOID,nobswo,_WREDRAW,ON_);
   }
 
   if ( wScreen == 1) {
@@ -402,9 +406,13 @@ for (i = 0; i< 10; i++) {
 
   drawMonths(swo);
 
-  sGl(_GLID,bp_gl,_GLDRAW);   
+  sGl(_GLID,bp_gl,_GLDRAW,ON_);   
 
   sWo(_WOID,swo,_WSHOWPIXMAP,1);
+
+
+
+  
 
   //sWo(allwo,_WCLIPBORDER,GREEN_);
 

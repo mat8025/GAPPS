@@ -1,0 +1,6 @@
+# rapp dll_name task_name  task_cline_arg1  task_cline_arg2 ...
+
+echo  $*
+asl  -s 'Str dll = _clarg[1] ; Str prg = _clarg[2]; Svar z=_clarg[3:-1:1]; Str sa="$z"; opendll("$dll");  ret = $prg (sa); exit(0); ' $*
+
+
