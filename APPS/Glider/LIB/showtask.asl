@@ -876,7 +876,7 @@ WoName.pinfo();
 
    Ev_button = Gev.getEventButton();
 
-   Ev_button.pinfo();
+   //Ev_button.pinfo();
 
 
     Ev_keyw = Gev.getEventKeyWord();

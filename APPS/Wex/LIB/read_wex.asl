@@ -29,14 +29,14 @@ int iyd = Yd;
 
   float mywt = atof(Col[j++]);
 
-  COUT(mywt);
+  //COUT(mywt);
 
   if (mywt > 0.0) {  // we have an entry = not all days are logged
 
   WTVEC[Yd] = mywt;
   
-<<"$k  mywt  $WTVEC[Nobs] \n"
-!a
+//<<"$k  mywt  $WTVEC[Nobs] \n"
+
   if (mywt > 0.0) {
 
   last_known_wt = mywt;
@@ -110,11 +110,12 @@ int iyd = Yd;
 
   Nobs++;
 
+// printf("Nobs %d  exer_burn %f\n",Nobs ,exer_burn);
   }
 
   }
 
- // printf("Nobs %d\n",Nobs);
+
 
   }
 //====================================================//
@@ -142,7 +143,7 @@ int iyd = Yd;
 
   Col= RX.getRecord(tl);
   
-  pa(tl, Col);
+//  pa(tl, Col);
 //<<"<$tl> $RX[tl]\n"
 
   day = Col[0];

@@ -2,9 +2,9 @@
  *  @script sbump.asl                                                   
  * 
  *  @comment update the script date&vers                                
- *  @release CARBON                                                     
- *  @vers 1.13 Al Aluminium [asl 6.4.31 C-Be-Ga]                        
- *  @date 06/17/2022 07:50:18                                           
+ *  @release Beryllium                                                  
+ *  @vers 1.14 Si Silicon [asl 6.4.34 C-Be-Se]                          
+ *  @date 06/21/2022 07:03:49                                           
  *  @cdate Sun Dec 23 09:22:34 2018                                     
  *  @author Mark Terry                                                  
  *  @Copyright © RootMeanSquare 2022 -->                               
@@ -12,7 +12,6 @@
  */ 
 ;//----------------<v_&_v>-------------------------//;                  
 
-                    
 
   
 Str Use_ = "update asl script version" ;
@@ -126,6 +125,8 @@ Str cvers ="0.0";
 
   author = "Mark Terry"
   fname = srcfile
+
+
   release = "CARBON"
   
   int pmaj = 1;
@@ -150,7 +151,10 @@ Str cvers ="0.0";
   
   //<<[2]" $(nsc(5,\"\\n\"))\n"
 
-  release = "abc";
+
+  TR = Split(split(getversion()),".")
+
+  release = ptname(TR[1]);
 
 
   A=ofile(srcfile,"r+")
@@ -220,11 +224,11 @@ L.pinfo()
     else if (scmp(L[1],"@comment")) {
      comment = "$L[2::]";
    }
-    else if (scmp(L[1],"@release")) {
+  //  else if (scmp(L[1],"@release")) {
       //release = "$L[2::]";
-      release = "$L[2]";
-<<[2]"release: <|$release|>  $L[2]\n"           
-   }
+  //    release = "$L[2]";
+//<<[2]"release: <|$release|>  $L[2]\n"           
+ //  }
     else if (scmp(L[1],"@author")) {
       author = "$L[2::]";
    }
@@ -336,8 +340,6 @@ B=ofw("body");
 
   
 //<<[2]"vlen $vlen <|$Pad|>\n"
-
-
 
 
 int nsp = 0;

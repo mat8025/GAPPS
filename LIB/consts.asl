@@ -128,19 +128,19 @@ proc units()
 // %e  formats in sci format   1.38e-23
 proc consts()
 {
-//<<"typically MKS  - note consts are preceeded by underscore e.g.speed of light  _c \n"
+<<"MKS  - note consts are preceeded by underscore \n"
 <<"%V$_PI \n"
 <<"%V$_E \n"
 <<"%V$_g  grav acceleration meters per sec per sec \n"
-<<"%Ve$_G Gravitational Constant 6.672 x 10E-11 Nm^2/Kg^2  \n"
-<<"%Ve$_c speed of light    m/s\n"
+<<"%V %e$_G Gravitational Constant 6.672 x 10E-11 Nm^2/Kg^2  \n"
+<<"%V %e$_c speed of light    m/s\n"
 <<"%V$_sos speed of sound (Air 0 deg C m/s) \n"
-<<"%Ve$_k Boltzman = 1.3807 * 10^-23 J/K \n"
-<<"%Ve$_h Planck = 6.626 * 10^-34 J-s \n"
-<<"%Ve$_eV Electron Volt 1.602 x 10^-19 J %Ve$_eV \n"
+<<"%V%e$_k Boltzman = 1.3807 * 10^-23 J/K \n"
+<<"%V%e$_h Planck = 6.626 * 10^-34 J-s \n"
+<<"%V%e$_eV Electron Volt 1.602 x 10^-19 J %Ve$_eV \n"
 <<"%V$_EarthRadius  meters \n"
-<<"%Ve$_EarthMass Kg\n"
-<<"%Ve$_Avogadro entities per mole\n"
+<<"%V%e$_EarthMass Kg\n"
+<<"%V%e$_Avogadro entities per mole\n"
 
 <<"\n"
 

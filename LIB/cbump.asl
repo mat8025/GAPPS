@@ -1,16 +1,17 @@
 /* 
- *  @script cbump.asl 
+ *  @script cbump.asl                                                   
  * 
- *  @comment  
- *  @release CARBON 
- *  @vers 1.9 F 6.3.79 C-Li-Au 
- *  @date 02/02/2022 12:55:03          
- *  @cdate Sun Dec 23 09:22:34 2018 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare 2022
+ *  @comment                                                            
+ *  @release Beryllium                                                  
+ *  @vers 1.10 Ne Neon [asl 6.4.52 C-Be-Te]                             
+ *  @date 07/28/2022 10:51:42                                           
+ *  @cdate Sun Dec 23 09:22:34 2018                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2022 -->                               
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                              
+;//----------------<v_&_v>-------------------------//;                  
+
   
   Str Vers2ele(Str& vstr)
   {
@@ -126,7 +127,7 @@
 <<"$i $X[i]\n"
   }
 
-!a
+
   A=ofile(srcfile,"r");
   //T=readfile(A);
  //<<[2]"opened for read/write? $A\n"

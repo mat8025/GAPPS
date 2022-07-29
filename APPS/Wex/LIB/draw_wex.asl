@@ -352,7 +352,9 @@ for (i = 0; i< 10; i++) {
 
   sGl(_GLID,allgls[gi],_GLDRAW,ON_);
   gi++;
-  printf("dgl %d\n",gi);
+  
+  adbprintf(-1,"dgl %d\n",gi);
+  
   if (allgls[gi] < 0)
       break;
   }
@@ -392,7 +394,8 @@ for (i = 0; i< 10; i++) {
    }
 
 
- setWoValue(nobswo, Nobs);
+ woSetValue(nobswo, Nobs);
+ 
  sWo(_WOID,nobswo,_WREDRAW,ON_);
   }
 

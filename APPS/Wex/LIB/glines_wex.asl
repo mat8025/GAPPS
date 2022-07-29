@@ -21,6 +21,7 @@
 
   ext_gl  = cGl(extwo);
 
+// set as XYVECTOR
 
  sGl(_GLID,ext_gl,_GLXVEC,DVEC,_GLYVEC,EXTV,_GLHUE,GREEN_,_GLSYMLINE,TRI_);
 
@@ -29,7 +30,7 @@
   int cardio_gl  = cGl(extwo);
 
 
-  sGl(_GLID,cardio_gl,_GLXVEC,DVEC,_GLYVEC,CARDIO,_GLHUE,BLUE_,_GLSYMLINE,DIAMOND_);
+  sGl(_GLID,cardio_gl,_GLXVEC, DVEC,_GLYVEC,CARDIO,_GLHUE,BLUE_,_GLSYMLINE,DIAMOND_);
 
 COUT(cardio_gl)
 
@@ -49,7 +50,7 @@ COUT(strength_gl)
   
 
 
-COUT(wt_gl)
+  pa(wt_gl);
 
 
   if ((wt_gl == -1)  || (ext_gl == -1)) {
@@ -182,7 +183,7 @@ COUT(prot_gl);
 
   lc_gl   = cGl(wtwo);
 
-  //sGl(_GLID,lc_gl,_GLTXY,_GLHUE,RED_,_GLCURSOR);
+  sGl(_GLID,lc_gl,_GLTYPE_CURS,ON_,_GLHUE,RED_);
 
   rc_gl   = cGl(wtwo);
   //sGl(_GLID,rc_gl,_GLTXY,_GLHUE,WHITE_,_GLCURSOR);

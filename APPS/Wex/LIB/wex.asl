@@ -819,25 +819,22 @@ int nevent = 0;
 
          nevent++;
 
-      if (Gev.ewoname == "WTLB") {
-
+      if (WoName == "WTLB") {
                WTLB ();
        }
        
-       else if (Gev.ewoname == "REDRAW") {
+       else if (WoName == "REDRAW") {
              drawScreens();
        }
 
-       else if (Gev.ewoname == "RESIZE") {
+       else if (WoName == "RESIZE") {
              drawScreens();
        }
-       else if (Gev.ewoname == "ZIN") {
-        cout <<"trying zin ";
+       else if (WoName == "ZIN") {
              ZIN();
        }
 
-       else if (Gev.ewoname == "ZOUT") {
-        cout <<"trying zout ";
+       else if (WoName == "ZOUT") {
              ZOUT();
        }
 
