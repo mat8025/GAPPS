@@ -225,7 +225,7 @@ nir=vread(AF,CPIX,3000,UCHAR_);
 nir=vread(AF,CPIX,3000,UCHAR_);
 <<"%V $nir - just 3?\n";
 <<"%V $CPIX[0:3000] \n";
-!a
+
 
 */
 
@@ -236,10 +236,10 @@ openDll("image");
 uint SPIX[];
 
 
- A= ofr("cmapi");
+ A= ofr("cmap");
 
  
- CM= readRecordToArray(A,_RTYPE,UINT_)
+ CM= readRecordToArray(A,_RTYPE,UINT_);
 
  sz= Caz(CM);
  cmb = Cab(CM)
@@ -346,7 +346,7 @@ for (i=0; i< nc; i++) {
     _WPOS = woGetPosition(picwo);
 
 <<"%V $_WPOS\n";
-   ans=query("?","_WPOS done assign ",__LINE__);
+   //ans=query("?","_WPOS done assign ",__LINE__);
 
    int ncols = 1000;
    int nrows = _WPOS[6] -2;
@@ -361,11 +361,11 @@ for (i=0; i< nc; i++) {
    ncols *= 2;
 
    nrows /= 2;
-   nrows *= 2;
+   nrows *= 4;
 
 
 <<"%V $nxpix $drows $nrows $dcols $npics $(ncols * npics)\n"
-!a
+
 
  if (!use_cpix) {
    PH[1] = ncols * npics;

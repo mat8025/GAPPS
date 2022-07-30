@@ -134,8 +134,8 @@ RV=msortCol(TV,1)
 
 
 for (i=0;i<nu;i++) {
-printf('%d  0x%.8x %d\n',i,RV[i][0],RV[i][1]);
-<<[B]"$i  0x%.8x $RV[i][0] %d $RV[i][1]\n"
+printf('%d %d 0x%.8x %d\n',i,RV[i][0],RV[i][0],RV[i][1]);
+<<[B]"$i  $RV[i][0] %.8x 0x$RV[i][0] %d $RV[i][1]\n"
 }
 
 

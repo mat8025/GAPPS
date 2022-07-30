@@ -5,7 +5,7 @@
 
 
 
-A= ofr("cmapi_den")     /// 
+A= ofr("cmap")     /// 
 //A= ofr("cmapi")
  
  //CM= readRecord(A,@type,UINT_) ; // old
@@ -16,8 +16,8 @@ A= ofr("cmapi_den")     ///
  <<"$cmb\n"
  
  nc = cmb[0] 
-
-  <<" $CM[::][::] \n"
+<<"$CM \n"
+//  <<" $CM[::][::] \n"
 
 
 
@@ -44,7 +44,7 @@ int drows = PH[2];
 int dcols = PH[1];
 
 <<"%V $npix $drows $dcols \n"
-
+!a
 CF= ofw(cmpfile)
 
 wdata(CF,PH)
@@ -55,19 +55,23 @@ uint SPIX[]
 
   for (j=0;j<drows;j++) {
     reType(SPIX,UINT_)
-    nir=  vread(AF,SPIX,dcols,UINT_)
+   // SPIX.pinfo();
+    nir=  vread(AF,SPIX,dcols,UINT_);
+//    <<"$nir $SPIX[0:10]\n"
     nec= vtrans(SPIX,CM)
+//    <<" $SPIX[1000:2000]\n"
+    //SPIX.pinfo();    
+    
 // we could use uchar and have 512 colors in cmap
    vcmpset(SPIX,">",256,0)
     
     CPIX =SPIX;
-
+//<<" $CPIX[1000:2000]\n"
 
 //    <<"$CPIX[0:1000:50]\n"
     niw=wdata(CF,CPIX)
-    if ( (j % 50) == 0) {
+    if ( (j % 500) == 0) {
  <<"[$j ] $CPIX[0:500:50]\n"
-
     }
    // <<"$j $(Caz(SPIX)) $(typeof(SPIX)) $niw\n"
 }
