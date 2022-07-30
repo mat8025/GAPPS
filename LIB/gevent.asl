@@ -16,25 +16,68 @@
 //
 //
 
+//<<"loading gevent.asl \n"
 
-<<"loading gevent.asl \n"
+
+Gevent Gev; // event type - can inspect for all event attributes
+
+Vec<int> _WPOS( 16);
+Vec<int> _MPOS( 16);
+
+int Ev_loop = 0;
+int _last_eid = -1;
+
+float Ev_rx = 0;
+float Ev_ry = 0;
+
+int Ev_x = -15;
+int Ev_y = 0;
+
+int Ev_type = 0;
+int Ev_row = -1;
+int Ev_col = -1;
+int Ev_button = 0;
+int Ev_id = 0;
+int Ev_keyc;
+int Ev_woid;
+int Ev_woaw;
+int Ev_wid;
+
+Svar Ev_msgwd;
+Svar Ev_words;
+
+Str Ev_name;
+
+Str Ev_keyw = "nada";
+Str Ev_keyw2 = "nada2"
+Str Ev_keyw3 = "nada3"
+
+Str Ev_msg = "";
+
+Str Ev_value = "abc";
+
+Str Ev_woname = "noname";
+
+Str Ev_woval = "yyy";
+
+Str Ev_woproc = "abc";
 
 
 void eventDecode()
 {
    // can get all of these in one by using ref parameters
+#if ASL   
    Ev_name = Gev.getEventType(Ev_id,Ev_type,Ev_woid,Ev_woaw,Ev_button,Ev_keyc,Ev_woproc,Ev_x,Ev_y,Ev_woval);
-     
-<<"$_proc %V $Ev_x $Ev_y  $Ev_woid\n"
+#else
+   Ev_name = Gev.getEventName();
+#endif     
+//<<"$_proc %V $Ev_x $Ev_y  $Ev_woid\n"
 
    Ev_woval = Gev.getEventWoValue();
    
-  <<"%V $Ev_woval \n"       
-
-  //  Gev.geteventrxy(Ev_rx,Ev_ry);    
-
-//<<"$_proc  %V Ev_rx  Ev_ry \n"
-
+//  <<"%V $Ev_woval \n"       
+    _MPOS[0] = -1;
+    
     Ev_wid = -1;
 
      if (checkTerm()) {
@@ -83,16 +126,16 @@ void eventDecode()
 
     Gev.geteventrowcol(&Ev_row,&Ev_col);
 
-//Ev_row.info(1); // DBG
-//Ev_col.info(1); // DBG
-//  Mouse window pos, screen pos?
+//  Mouse  pos, screen pos?
+// needed?
+     _MPOS[2] = Ev_button;
+     
+
 
     }
 
    }
-   // Gev.geteventrxy(Ev_rx,Ev_ry);    
 
-//<<"$_proc  %V Ev_rx  Ev_ry \n"
 }
 //==============================
 
@@ -110,11 +153,12 @@ void eventWait()
     Ev_msg = "";
 
     Ev_msg = Gev.waitForMsg();
-<<"$_proc  %V $Ev_msg\n"
-     Gev.geteventrxy(Ev_rx,Ev_ry);    
+//<<"$_proc  %V $Ev_msg\n"
+     Gev.getEventRxRy(Ev_rx,Ev_ry);
+     
      Ev_woid=Gev.geteventwoid();
 
-<<"$_proc  %V $Ev_woid $Ev_rx $Ev_ry\n"     
+//<<"$_proc  %V $Ev_woid $Ev_rx $Ev_ry\n"     
 
      eventDecode();
 /*     
@@ -133,61 +177,15 @@ void eventRead()
     
     Ev_msg = Gev.readMsg();
     Ev_loop++;
-    
-  
-      eventDecode();
+    eventDecode();
 }
 //==============================
 
-
-
-Gevent Gev; // event type - can inspect for all event attributes
-
-
-int Ev_loop = 0;
-int _last_eid = -1;
-
-float Ev_rx = 0;
-float Ev_ry = 0;
-
-
-
-int Ev_x = -15;
-int Ev_y = 0;
-
-int Ev_type = 0;
-int Ev_row = -1;
-int Ev_col = -1;
-int Ev_button = 0;
-int Ev_id = 0;
-int Ev_keyc;
-int Ev_woid;
-int Ev_woaw;
-int Ev_wid;
-
-svar Ev_msgwd;
-svar Ev_words;
-
-str Ev_name;
-
-Str Ev_keyw = "nada";
-Str Ev_keyw2 = "nada2"
-Str Ev_keyw3 = "nada3"
-
-str Ev_msg = "";
-
-str Ev_value = "abc";
-
-Str Ev_woname = "noname";
-
-str Ev_woval = "yyy";
-
-str Ev_woproc = "abc";
 
 //<<" %V $_include $Ev_msg\n"
 
 //Ev_keyw.pinfo()
 
-<<"Loaded gapps/LIB/gevent.asl\n"
+//<<"Loaded gapps/LIB/gevent.asl\n"
 
 //====================================

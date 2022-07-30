@@ -7627,6 +7627,19 @@ returns number of items read. This will be a short count or zero when the end of
 .EF
 =============================================================
 .BF
+vunique()
+.(x
+vunique
+.)x 
+.FD
+sorts through vector (just INT for now) and
+returns a  new vector of unique values.
+(should use int,long word size for compare for float,double types).
+
+
+.EF
+=============================================================
+.BF
 mread()
 .(x
 mread
