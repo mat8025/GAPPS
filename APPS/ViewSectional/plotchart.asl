@@ -1,16 +1,17 @@
 /* 
- *  @script plotchart.asl 
+ *  @script plotchart.asl                                               
  * 
- *  @comment show igc track on sectional 
- *  @release CARBON 
- *  @vers 1.3 Li Lithium [asl 6.3.94 C-Li-Pu]                               
- *  @date 03/10/2022 14:27:49 
- *  @cdate 09/20/2021 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare 2022
+ *  @comment show igc track on sectional                                
+ *  @release Beryllium                                                  
+ *  @vers 1.4 Be Beryllium [asl 6.4.54 C-Be-Xe]                         
+ *  @date 07/30/2022 09:34:59                                           
+ *  @cdate 09/20/2021                                                   
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2022 -->                               
  * 
  */ 
-;//-----------------<v_&_v>------------------------//
+;//----------------<v_&_v>-------------------------//;                  
+
 
 Str Use_= " Demo  of show igc track on sectional ";
 
@@ -31,6 +32,9 @@ Str Use_= " Demo  of show igc track on sectional ";
 
 #include "gevent.asl"
 #include "tbqrd.asl"
+
+
+fname = _clarg[1];
 
 int cval;
 uint CM[];  // cpp make dynamic?
@@ -184,15 +188,24 @@ Str igcfn = "spk.igc";
 //<<" $IGCLAT[midpt:m20:] \n"
 //<<" $IGCLONG[midpt:m20] \n"
 
+   cmp_name = "${fname}.cmp";
+
   if (use_cpix) {
      //AF= ofr("den103.cmp")
-     AF= ofr("chey97.cmp")
+     AF= ofr(cmp_name)
    }
  else {
    // AF= ofr("den103.dat")
-    AF= ofr("chey97.dat")
+    AF= ofr("${fname}.dat")
     CF= ofw("new.cmp")
   }
+
+  if (AF == -1) {
+   <<"error open $cmp_name\n";
+    exit();
+  }
+<<"$AF $cmp_name\n";
+
 
  //AF= ofr("chey97.dat")
 // 
@@ -236,7 +249,13 @@ openDll("image");
 uint SPIX[];
 
 
- A= ofr("cmap");
+
+map_name = "cmap_${fname}";
+
+<<"$fname $map_name \n"
+
+
+ A= ofr(map_name);
 
  
  CM= readRecordToArray(A,_RTYPE,UINT_);
@@ -361,7 +380,7 @@ for (i=0; i< nc; i++) {
    ncols *= 2;
 
    nrows /= 2;
-   nrows *= 4;
+   nrows *= 2;
 
 
 <<"%V $nxpix $drows $nrows $dcols $npics $(ncols * npics)\n"

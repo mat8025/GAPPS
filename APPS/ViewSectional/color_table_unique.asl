@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @script color-table.asl 
-//* 
-//*  @comment produce color table from hex values 
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen [asl 6.2.63 C-He-Eu]                               
-//*  @date Mon Aug  3 16:03:52 2020 
-//*  @cdate Mon Aug  3 16:03:52 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script color_table_unique.asl                                      
+ * 
+ *  @comment produce color table from hex values                        
+ *  @release Beryllium                                                  
+ *  @vers 1.2 He Helium [asl 6.4.54 C-Be-Xe]                            
+ *  @date 07/30/2022 09:34:24                                           
+ *  @cdate Mon Aug 3 16:03:52 2020                                      
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2022 -->                               
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                  
+
 
 myScript = getScript();
 

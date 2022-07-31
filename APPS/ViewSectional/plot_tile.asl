@@ -1,19 +1,63 @@
-//%*********************************************** 
-//*  @script plot-tile.asl 
-//* 
-//*  @comment demo rgb average of sectional digital map 
-//*  @release CARBON 
-//*  @vers 1.3 Li Lithium [asl 6.2.77 C-He-Ir]                               
-//*  @date Sat Oct 17 17:11:02 2020 
-//*  @cdate 10/01/2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
-myScript = getScript();
+/* 
+ *  @script plot_tile.asl                                               
+ * 
+ *  @comment demo rgb average of sectional digital map                  
+ *  @release Beryllium                                                  
+ *  @vers 1.4 Be Beryllium [asl 6.4.54 C-Be-Xe]                         
+ *  @date 07/30/2022 14:21:57                                           
+ *  @cdate 10/01/2020                                                   
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2022 -->                               
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                  
+
+
 ///
 ///
 ///
+
+///////////////////////////  USAGE  & EXPLANTION ////////////////////
+//
+/*
+
+  Given input sectional  
+  extract  tiles for  left, mid, right  for viewing window
+  a color map  computed from all the unique colors in the original
+  will be relatively small  256/512 colors
+
+  use this map  and for each tile for the first pass
+  code the tile into a another pic consisting of color map indices
+  using the color map
+
+
+  However if we average 3x3 or 5x5  to zoom out  each
+  new pixel averaged rgb value will probably not be represented in  
+  the color map prepared by examing all unique values 
+  in the orignal section
+
+  So  a routine is used  to get the nearest color
+   CMSPIX=rgbToColorIndex(AVESPIX,cmi,cmi+nc)
+
+  the CMSPIX  2d array consists of color map indices
+  and is archived 
+
+   as the view window is moved around the relevant
+
+   CMSPIX  pixel rectangle is displayed. 
+
+
+   the averaging via a 3x3 or 5x5 window 
+   may be replaced by a 2d FFT zoom in out method
+   for finer/smoother control
+
+*/
+//
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
 
 #include "debug"
 #include "hv"
@@ -143,9 +187,9 @@ nir=vread(AF3,PH,3,UINT_)
 
 
 
- A= ofr("cmapi-den")
+ A= ofr("cmap_den103")
  
- CM= readRecord(A,@type,UINT_)
+ CM= readRecord(A,_RTYPE,UINT_)
 
  cmb = Cab(CM)
  <<"$cmb\n"
@@ -157,14 +201,14 @@ nir=vread(AF3,PH,3,UINT_)
 
 #include "graphic"
 #include "gevent"
-include "tbqrd"
+#include "tbqrd"
 
 fullpic = 0;
 reduce = 1;
 
 // CMAP
 
-ngl = 256
+ ngl = 256
 
 cmi = 64
 cindex = cmi
@@ -182,64 +226,76 @@ for (i=0; i< nc; i++) {
 
 // want this to contain a 512X512 image -- so that plus borders and title
   
-  vp =  cWi(_title,"PIC_WINDOW",_resize,0.01,0.01,0.9,0.95,0,_eo)
+  vp =  cWi("PIC_WINDOW")
+
+  sWi(_WOID,vp,_WRESIZE,wbox(0.01,0.01,0.9,0.95,0));
 
  //vp =  cWi(_title,"PIC_WINDOW",_pixresize,50,50,1850,950,0)
 
 
 // again must be greater the 512x512 plus the borders
+  picwo=cWo(vp,WO_GRAPH_);
+
+ sWo(_WOID,picwo,_WNAME,"PIC",_WCOLOR,PINK_,_WRESIZE,wbox(40,20,1840,820,1));
+
+
+// set the clip to be 512x512 --- clipborder has to be on pixel outside of this!
+
+ sWo(_WOID,picwo,_WBORDER,BLACK_,_WDRAW,ON_,_WFONTHUE,RED_, _WREDRAW,ON_);
+
+ sWo(_WOID,picwo,_WPIXMAP,ON_,_WDRAW,ON_,_WSAVE,ON_,_WSAVEPIXMAP,ON_,_WREDRAW,ON_)
+
+
+ pic2wo=cWo(vp,WO_GRAPH_)
+
+  sWo(_WOID,pic2wo,_WNAME,"RPic",_WCOLOR,LILAC_,_WRESIZE,502,20,1002,820,1)
+
+// set the clip to be 512x512 --- clipborder has to be on pixel outside of this!
+
+sWo(_WOID,pic2wo,_WBORDER,BLACK_,_WDRAW,ON_,_WFONTHUE,RED_, _WREDRAW,ON_);
+
+ sWo(_WOID,pic2wo,_WPIXMAP,ON_,_WDRAW,ON_,_WSAVE,ON_,_WSAVEPIXMAP,ON_,_WREDRAW,ON_)
  
- picwo=cWo(vp,_GRAPH,_name,"Pic",_color,PINK_,_resize,2,20,502,820,1,_eo)
+
+ pic3wo=cWo(vp,_WOGRAPH)
+
+ sWo(_WOID,pic3wo_WNAME,"Pic3",_WCOLOR,TEAL_,_WRESIZE,1002,20,1502,820,1)
 
 // set the clip to be 512x512 --- clipborder has to be on pixel outside of this!
 
- sWo(picwo,_border,_drawon,_clipborder,_fonthue,RED_, _redraw)
+sWo(_WOID,pic3wo,_WBORDER,BLACK_,_WDRAW,ON_,_WFONTHUE,RED_, _WREDRAW,ON_);
 
- sWo(picwo,_pixmapon,_drawoff,_save,_savepixmap,_redraw)
+ sWo(_WOID,pic3wo,_WPIXMAP,ON_,_WDRAW,ON_,_WSAVE,ON_,_WSAVEPIXMAP,ON_,_WREDRAW,ON_)
 
- pic2wo=cWo(vp,_GRAPH,_name,"RPic",_color,LILAC_,_resize,502,20,1002,820,1,_eo)
 
-// set the clip to be 512x512 --- clipborder has to be on pixel outside of this!
-
- sWo(pic2wo,_border,_drawon,_clipborder,_fonthue,RED_, _redraw)
-
- sWo(pic2wo,_pixmapon,_drawoff,_save,_savepixmap,_redraw)
-
- pic3wo=cWo(vp,_GRAPH,_name,"Pic3",_color,TEAL_,_resize,1002,20,1502,820,1,_flush)
-
-// set the clip to be 512x512 --- clipborder has to be on pixel outside of this!
-
- sWo(pic3wo,_border,_drawon,_clipborder,_fonthue,RED_, _redraw)
-
- sWo(pic3wo,_pixmapon,_drawoff,_save,_savepixmap,_redraw)
  
 
    int ncols = npc;
    int nrows = npr;
  
    uint  nbw;
-   uchar Tile[]
+   uchar Tile[];
 
 
-   sWo(picwo,_clip,0,0,500,600,2,_eo)
-   sWo(pic2wo,_clip,0,0,500,600,2,_eo)
-   sWo(pic3wo,_clip,0,0,500,600,2,_eo)
+   sWo(_WOID,picwo,_WCLIP,wbox(0,0,500,600,2))
+   sWo(_WOID,pic2wo,_WCLIP,wbox(0,0,500,600,2))
+   sWo(_WOID,pic3wo,_WCLIP,wbox(0,0,500,600,2));
 
-  IC=WoGetClip(picwo)
+  IC = woGetPosition(picwo);
 <<"%V$IC\n"
-  IC2=WoGetClip(pic2wo)
+  IC2= woGetPosition(pic2wo);
 <<"%V$IC2\n"
 
    titleButtonsQRD(vp)
    titleVers();
    titleMsg("Sectional Tiles")
 
-   sWi(vp,_redraw)
+   sWi(vp,_WREDRAW)
    
 
-   sWo(picwo,_clearpixmap)
-   sWo(pic2wo,_clearpixmap)
-   sWo(pic3wo,_clearpixmap)
+   sWo(_WOID,picwo,_WCLEARPIXMAP,ON_)
+   sWo(_WOID,pic2wo,_WCLEARPIXMAP,ON_)
+   sWo(_WOID,pic3wo,_WCLEARPIXMAP,ON_)
 
    skip_row = 0;
    skip_col =0;
@@ -263,9 +319,9 @@ for (i=0; i< nc; i++) {
 <<"read $npixr\n"
 //   Redimn(CPIX,nrows,ncols)
    
-   RPIX = mrevRows(CPIX)
+ //  RPIX = mrevRows(CPIX)
   
-   PlotPixRect(picwo,RPIX,cmi)
+   PlotPixRect(picwo,CPIX,cmi)
 
 }
 else {
@@ -289,22 +345,22 @@ else {
    vcmpset(SPIX,">",256,0)
    TPIX = mrevRows(SPIX)
    Tile = TPIX;
-
-
-   sWo(picwo,_savepixmap,10,10,700,900)
+   sWo(_WOID,picwo,_savepixmap,10,10,700,900)
    PlotPixRect(picwo,Tile,cmi)
-   sWo(picwo,_showpixmap)
+   sWo(_WOID,picwo,_showpixmap)
   }
 
    if (reduce) {
-   AVESPIX = imrgbave(RSPIX,5)
+    AVESPIX = imrgbave(RSPIX,5)
 
 
    <<"AVESPIX $(Cab(SPIX)) $(Cab(AVESPIX)) $(typeof(AVESPIX)) \n"
-   // want fin to pick closest cmap to the rgb word
+   // want  to pick closest cmap to the rgb word
  //  nec= vtrans(AVESPIX,CM); // this matches rgb to map - if rgb is in CM table
+ 
     CMSPIX=rgbToColorIndex(AVESPIX,cmi,cmi+nc)
    //vcmpset(AVESPIX,">",256,0)
+
    nb= Cab(AVESPIX)
    <<"%V$nb\n"
    redimn(CMSPIX,nb[0],nb[1])
@@ -317,12 +373,15 @@ else {
 //<<"$R5Tile[2][0:10] \n"   
    <<" $(Cab(RPIX)) $(Cab(R5Tile)) $(typeof(R5Tile))\n"
    R5D= cab(R5Tile)
-    sWo(picwo,_savepixmap,0,0,1000,1000,_eo)
+
+   //sWo(_WOID,picwo,_savepixmap,0,0,1000,1000)
+   sWo(_WOID,picwo,_WSAVEPIXMAP,ON_)
+    
    T=fineTime()
    PlotPixRect(picwo,R5Tile,0)
    dt=fineTimeSince(T,1)
    <<" took $(dt/1000000.0) secs\n"
-    sWo(picwo,_showpixmap)
+    sWo(_WOID,picwo,_WSHOWPIXMAP,ON_)
 int TH[6]
 TH[0] = r
 TH[1] = cstart;
@@ -347,7 +406,11 @@ cf(B)
    redimn(CMSPIX,nb[0],nb[1])
    RPIX = mrevRows(CMSPIX)
    R5Tile = RPIX;
-      sWo(pic2wo,_savepixmap,1000,0,2000,810,_eo)
+
+     //sWo(_WOID,pic2wo,_savepixmap,1000,0,2000,810,_eo)
+      // check do we need to specify pix coors?
+    sWo(_WOID,pic2wo,_WSAVEPIXMAP,ON_)
+       
     PlotPixRect(pic2wo,R5Tile,0)
 
 B=ofw("tile2.cmp")
@@ -358,7 +421,7 @@ wdata(B,R5Tile)
 cf(B)
 
 
-sWo(pic2wo,_showpixmap)
+sWo(_WOID,pic2wo,_WSHOWPIXMAP,ON_)
    T=fineTime()
    PlotPixRect(picwo,R5Tile,0,1000,0)
    dt=fineTimeSince(T,1)
@@ -376,11 +439,12 @@ sWo(pic2wo,_showpixmap)
 
 
 
-    sWo(pic3wo,_savepixmap,1000,0,2000,810,_eo)
- // sWo(pic3wo,_savepixmap)
+    //sWo(_WOID,pic3wo,_savepixmap,1000,0,2000,810,_eo)
+      sWo(_WOID,pic3wo,_WSAVEPIXMAP,ON_)
+ // sWo(_WOID,pic3wo,_savepixmap)
     PlotPixRect(pic3wo,R5Tile,0)
- //   sWo(pic3wo,_showpixmap,_savepixmap,_save)
-    sWo(pic3wo,_showpixmap)
+ //   sWo(_WOID,pic3wo,_showpixmap,_savepixmap,_save)
+    sWo(_WOID,pic3wo,_WSHOWPIXMAP,ON_)
   //    PlotPixRect(pic2wo,R5Tile,0,1000,0)
     //  PlotPixRect(picwo,R5Tile,0,2000,0)
 B=ofw("tile3.cmp")
@@ -396,17 +460,18 @@ cf(B)
 
 
 
+   sWo(_WOID,pic3wo,_clearclip,_clip,0,10,600,550,2,_eo);
+   sWo(_WOID,pic2wo,_clearclip,_clip,0,10,600,550,2,_eo);
 
-   sWo(pic3wo,_clearclip,_clip,0,10,600,550,2,_eo);
-   sWo(pic2wo,_clearclip,_clip,0,10,600,550,2,_eo);
-
-      sWo(pic2wo,_showpixmap);
-      sWo(pic3wo,_showpixmap);
+   sWo(_WOID,pic2wo,_showpixmap);
+   sWo(_WOID,pic3wo,_showpixmap);
 
 
     updown = 200;
     rl = 200;
-  while (1) {
+
+
+    while (1) {
 
 
      eventWait();
@@ -416,34 +481,34 @@ cf(B)
      if (_ebutton == RIGHT_) {
      updown += 10
      rl += 10
-     sWo(picwo,_scrollclip,RIGHT_,rl,_eo)
-     sWo(pic2wo,_scrollclip,RIGHT_,updown,_eo)
-     sWo(pic3wo,_scrollclip,RIGHT_,updown,_eo)
+     sWo(_WOID,picwo,_scrollclip,RIGHT_,rl,_eo)
+     sWo(_WOID,pic2wo,_scrollclip,RIGHT_,updown,_eo)
+     sWo(_WOID,pic3wo,_scrollclip,RIGHT_,updown,_eo)
 
      }
      if (_ebutton == LEFT_) {
      updown -= 10;
      rl -= 10;
-     sWo(picwo,_scrollclip,RIGHT_,rl)
-     sWo(pic2wo,_scrollclip,RIGHT_,updown)
-     sWo(pic3wo,_scrollclip,RIGHT_,updown)
+     sWo(_WOID,picwo,_scrollclip,RIGHT_,rl)
+     sWo(_WOID,pic2wo,_scrollclip,RIGHT_,updown)
+     sWo(_WOID,pic3wo,_scrollclip,RIGHT_,updown)
 
      }
 
      if (_ebutton == UP_) {
      updown += 10;
      rl += 10;
-     sWo(picwo,_scrollclip,UP_,rl)
-     sWo(pic2wo,_scrollclip,UP_,updown)
-     sWo(pic3wo,_scrollclip,UP_,updown)
+     sWo(_WOID,picwo,_scrollclip,UP_,rl)
+     sWo(_WOID,pic2wo,_scrollclip,UP_,updown)
+     sWo(_WOID,pic3wo,_scrollclip,UP_,updown)
      }
 
      if (_ebutton == DOWN_) {
      updown -= 10;
      rl -= 10;
-     sWo(picwo,_scrollclip,UP_,rl)
-     sWo(pic2wo,_scrollclip,UP_,updown)
-     sWo(pic3wo,_scrollclip,UP_,updown)
+     sWo(_WOID,picwo,_scrollclip,UP_,rl)
+     sWo(_WOID,pic2wo,_scrollclip,UP_,updown)
+     sWo(_WOID,pic3wo,_scrollclip,UP_,updown)
      }     
 
 
@@ -452,14 +517,14 @@ cf(B)
 
 
 
-/////////////////////////////////// DEV /////////////////////////////
+///////////////////////////////////TODO & DEVELOP /////////////////////////////
+//
 /*  
 
    6 tiles   - > window pixmap
 
    view area  less than  map
    slide around the view area
-
 
    3x3  and 5x5   size's
 
@@ -469,9 +534,5 @@ cf(B)
 
    igc track plot(s)   
 
-
-
-
-
-
 */
+/////////////////////////////////////////////////////////////////////////////////////////////

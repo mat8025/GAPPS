@@ -1,12 +1,21 @@
-///
-///
-///
+/* 
+ *  @script     transuip2ucp.asl                             
+ * 
+ *  @comment use cmap to produce coded tiff file                     
+ *  @release Beryllium                                                  
+ *  @vers 1.2 He Helium [asl 6.4.54 C-Be-Xe]                            
+ *  @date 07/30/2022 09:34:24                                           
+ *  @cdate Mon Aug 3 16:03:52 2020                                      
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2022 -->                               
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                  
 
 
 
 
 A= ofr("cmap")     /// 
-//A= ofr("cmapi")
  
  //CM= readRecord(A,@type,UINT_) ; // old
 
