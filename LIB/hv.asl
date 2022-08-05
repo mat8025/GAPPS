@@ -25,25 +25,24 @@
 
 //<<[2]"$pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
    elestr = pt(pmin);
-   _ele =" ";
-   _ele = spat(elestr,",");
-//  <<"$ele $(typeof(_ele))\n";
-//  <<"$ele\n";
+   H_ele =" ";
+   H_ele = spat(elestr,",");
+
 
   }
   //======================
 
-Str _ele = "1";
+Str H_ele = "1";
 
-Str hdr_script = "none";
-Str hdr_vers = "1.1"
-Str hdr_release = "CARBON";
-Str hdr_author = "mt";
-Str hdr_cdate = "1964"
-Str hdr_date = "1964"
+Str Hdr_script = "none";
+Str Hdr_vers = "1.1"
+Str Hdr_release = "CARBON";
+Str Hdr_author = "mt";
+Str Hdr_cdate = "1964"
+Str Hdr_date = "1964"
 
    int hv_found =0;
-      int hv_show =0;
+   int hv_show =0;
 
 
     Str  rs = "comment ca va"
@@ -126,53 +125,53 @@ Str hdr_date = "1964"
 
                if (scmp(rs,"@script")) {
 
-                    hdr_script = L[2]
+                    Hdr_script = L[2];
                }
                 else if (scmp(rs,"@vers")) {
 
-                  hdr_vers = L[2]
+                  Hdr_vers = L[2];
                 }
                 else if (scmp(rs,"@author")) {
 
-                  hdr_author = scat(L[2],L[3])
+                  Hdr_author = scat(L[2],L[3])
                 }
                 else if (scmp(rs,"@release")) {
 
-                  hdr_release = L[2]
+                  Hdr_release = L[2];
                 }
                 else if (scmp(rs,"@cdate")) {
 
-                  hdr_cdate = L[2]
+                  Hdr_cdate = L[2];
                 }
                 else if (scmp(rs,"@date")) {
-                  hdr_date = scat(L[2],L[3],L[4]);
+                  Hdr_date = scat(L[2],L[3],L[4]);
                 }
 /*
                 if (rs == "@script") {
 
-                  hdr_script = L[2]
+                  Hdr_script = L[2]
                 }
 
 
                 else if (rs == "@vers") {
 
-                  hdr_vers = L[2]
+                  Hdr_vers = L[2]
                 }
                 else if (rs == "@author") {
 
-                  hdr_author = L[2]
+                  Hdr_author = L[2]
                 }
                 else if (rs == "@release") {
 
-                  hdr_release = L[2]
+                  Hdr_release = L[2]
                 }
                 else if (rs == "@cdate") {
 
-                  hdr_cdate = L[2]
+                  Hdr_cdate = L[2]
                 }
                 else if (rs == "@date") {
 <<"got date $L[2]\n"
-                  hdr_date = scat(L[2],L[3],[4]);
+                  Hdr_date = scat(L[2],L[3],[4]);
 		  
                 }								
 */
@@ -199,30 +198,33 @@ Str hdr_date = "1964"
 
    hdrv_func();
 
-  vers2ele(hdr_vers)
+<<"%V $Hdr_vers\n"
 
-_ele_vers = hdr_vers;
+  vers2ele(Hdr_vers)
+
+H_ele_vers = Hdr_vers;
 
 if (hv_show) {
 
-pa(hdr_script);
+pa(Hdr_script);
 
-<<"%V $hdr_vers\n"
+<<"%V $Hdr_vers\n"
 
-<<"%V $hdr_release\n"
+<<"%V $Hdr_release\n"
 
-<<"%V $hdr_author\n"
+<<"%V $Hdr_author\n"
 
-<<"%V $hdr_date\n"
+<<"%V $Hdr_date\n"
 
-<<"%V $hdr_cdate\n"
-}
-if (hv_found) {
- ScriptVers(hdr_vers);
+<<"%V $Hdr_cdate\n"
 }
 
+  if (hv_found) {
+    ScriptVers(Hdr_vers);
+ }
 
-printf("Done hv %s\n", hdr_vers.cptr());
+
+printf("Done hv %s\n", Hdr_vers.cptr());
 ;//==============\_(^-^)_/==================//;
 
 /////////////////////////// DEV //////////////////////////

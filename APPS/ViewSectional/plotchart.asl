@@ -13,7 +13,7 @@
 ;//----------------<v_&_v>-------------------------//;                  
 
 
-/////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
 //
 //
 //
@@ -31,12 +31,12 @@ Str Use_= " Demo  of show igc track on sectional ";
 
 
 
-#include "debug"
+#include "debug.asl"
 
   if (_dblevel >0) { 
    debugON() 
    <<"$Use_ \n" 
-} 
+  } 
 
    allowErrors(-1); 
 
@@ -48,10 +48,14 @@ Str Use_= " Demo  of show igc track on sectional ";
 #include "tbqrd.asl"
 
 
+#include "proc_chart.asl"
+
+
+
 fname = _clarg[1];
 
 int cval;
-uint CM[];  // cpp make dynamic?
+uint CM[0];  // cpp make dynamic?
 ///
 ///
 ///
@@ -76,265 +80,6 @@ float x0,y0,x1,y1;
   Vec<float> IGCELE(7000);
 
   Vec<float> IGCTIM(7000);
-
-
-int IGC_Read(Str& igc_file)
-{
-
-<<"%V $igc_file \n"
-
-  
-   Vec<double> sslng(14);
-   
-   Vec<double> sslat(14);
-   
-   Vec<double> ssele(14);
-
-
-   T=fineTime();
-
-   a=ofr(igc_file);
-
-  <<"%V $a\n";
-
-   if (a == -1) {
-     <<" can't open IGC file $igc_file\n";
-     return 0;
-   }
-
-    ntps =ReadIGC(a,IGCTIM,IGCLAT,IGCLONG,IGCELE);
-
-    IGCELE *= 3.280839 ;
-
-  //  IGCLONG = -1 * IGCLONG;
-<<"read $ntps from $igc_file \n"
-
-   dt=fineTimeSince(T);
-<<"$_proc took $(dt/1000000.0) secs \n"
-
-  for (i=0; i < 1000; i += 10) {
-     //<<"$i $IGCTIM[i] $IGCELE[i] $IGCLAT[i]  $IGCLONG[i] \n";
-     printf("%d %f %f %f %f\n",i,IGCTIM[i] ,IGCELE[i] ,IGCLAT[i]  ,IGCLONG[i] );
-     }
-     
-
-
-   sslng=  IGCLONG.stats();
-     for (i=0; i < 12; i++) {
-        printf("i %d %f \n",i,sslng[i]);
-      }
-
-   sslat= IGCLAT.stats(); // also works
-
-     for (i=0; i < 12; i++) {
- printf("i %d %f \n",i,sslat[i]);
-      }
-
-
-    cf(a);
-   return ntps;
-}
-//========================
-
-
-void East()
-{
-
-    sec_col = dcols -scols;
-    elng =  103.56;   // depends on lat - TBF
-    wlng = elng + dlng;
-
-  <<"at Eastern edge  %V $sec_col   $wlng $elng  $slat $nlat\n"
-}
-
-void goEast()
-{
-//sdb(2);
- int  new_col   = sec_col + scols/4;
-
- int  new_sec_col; 
-
- int dscols = scols/4;
- 
- new_sec_col =  sec_col + scols/4;
- //new_col = sec_col + dscols;
- 
-    if (new_col != new_sec_col) {
-
-<<"PARSE ERROR %V $new_col $new_sec_col\n"
-    }
- 
- if ((new_sec_col + scols) < dcols) {
-   sec_col = new_sec_col;
-   wlng -= dlng/4;
-   elng -= dlng/4;
-
-  }
-  else {
-  <<"at edge \n"
-    sec_col = dcols -scols;
-    elng =  103.56;   // depends on lat - TBF
-    wlng = elng + dlng;
-  }
-
-<<"Heading East %V $new_sec_col  $sec_col $wlng  $elng $dlng  $scols $dcols $dscols $new_col\n"
-}
-//========================
-void West()
-{
-      sec_col = sec_col_min; // west edge
-       wlng = 110.0;  // lat dependent TBF
-       elng = wlng + dlng;
-<<"At Western edge  $sec_col  $wlng  $elng  \n"
-}
-
-void goWest()
-{
-
- int dscols = scols/2;
-
-   sec_col -=  scols/2;
-
-   if (sec_col < sec_col_ min) {
-       sec_col = sec_col_min; // west edge
-       wlng = 110.0;  // lat dependent TBF
-       elng = wlng + dlng;
-       <<"at edge\n"
-  }
-  else {
-   wlng += dlng/2 ;
-   elng += dlng/2;
-   }
-<<"Heading West  $sec_col  $wlng  $elng  $dscols\n"
-}
-//========================
-
-void Top()
-{
-       sec_row = drows - srows;
-       nlat = 40.03;
-       slat = nlat - dlat;
-<<"At top North  $sec_row $slat  $nlat  $srows $drows \n"
-}
-//========================
-
-void goNorth()
-{
-
- int  new_sec_row =  sec_row + srows/4;
-  if ((new_sec_row + srows) < drows) {
-       sec_row = new_sec_row;
-          nlat += dlat/4;
-          slat += dlat/4;	  
-  }
-  else {
-       sec_row = drows - srows;
-       nlat = 40.03;
-       slat = nlat - dlat;
-  <<" at top \n";
-}
-<<"Heading North  $sec_row $slat  $nlat  $srows $drows \n"
-}
-//========================
-
-void Bottom()
-{
-
-           sec_row =sec_row_min;
-	   <<"at bottom\n"
-          slat = slat_min;	  
-          nlat = slat + dlat/4;
-}
-
-
-void goSouth()
-{
-<<"Heading South\n"
-
-       sec_row -= srows/4;
-       if (sec_row < sec_row_min) {
-           sec_row =sec_row_min;
-	   <<"at bottom\n"
-       }
-      else {
-          nlat -= dlat/4;
-          slat -= dlat/4;	  
-      }
-<<"$slat  $nlat\n"
-}
-//========================
-void zoomOut()
-{
-	 
-           skip_row++
-	if (skip_row >=5) {
-	   skip_row =5
-	   }
-        skip_col++;
-	if (skip_col >=5) {
-	   skip_col =5
-	   }
-
-   scols = (ncols * (skip_col+1))
-   srows = (nrows * (skip_row+1))   
-   dlat = srows / 2840.0;
-   dlng = scols /2100.0; 
-
-   titleComment("ZoomOut ");
-<<"Zoom OUT $skip_row $skip_col \n"
-
-     titleMessage("Zoom OUT $skip_row $skip_col ");
-// adjust  the lat,lng 
-}
-
-void zoomIn()
-{
-                skip_row--
-	if (skip_row < 0) {
-	   skip_row =0
-	   }
-        skip_col--
-	if (skip_col <0) {
-	   skip_col =0
-	   }
-
-   scols = (ncols * (skip_col+1))
-   srows = (nrows * (skip_row+1))   
-   dlat = srows / 2840.0;
-   dlng = scols /2100.0; 
-     <<"Zoom IN in $skip_row $skip_col \n"
-     titleMessage("Zoom IN $skip_row $skip_col ");
-
-
-
-}
-
-void centerPos()
-{
-
-	    
-   <<"Center on click position \n"
-   <<"%V $targ_col $targ_row  $sec_col $sec_row  $ncols $nrows\n"
-  
-            mid_col = sec_col + scols/2;
-	    mid_row = sec_row + srows/2;
-	    adj_col = mid_col - targ_col;
-	    adj_row = mid_row - targ_row;
-	    sec_col -= adj_col;
-	    sec_row -= adj_row;
-	    <<"%V $mid_col $mid_row $adj_col $adj_row $sec_col $sec_row\n"
-	    if (sec_col < 0 ) sec_col = 0;
-	    if (sec_row < 0) sec_row = 0;
-
-  	 <<"%V $targ_col $targ_row $sec_col $sec_row $skip_col $skip_row $srows $scols\n"
-
-
-
-
-
-
-
-}
 
 
 
@@ -371,13 +116,18 @@ Str igcfn = "spk.igc";
 
   int  midpt = Ntpts /2;
 
-<<" read igc $Ntpts \n"
+<<" read igc $Ntpts $midpt\n"
 
-<<" $IGCLONG[0:20] \n"
+//<<" $IGCLONG[0:20] \n"
 
-<<" $IGCLAT[0:20] \n"
+//<<" $IGCLAT[0:20] \n"
 
-<<" $IGCTIM[0:20] \n"
+//<<" $IGCTIM[0:20] \n"
+
+<<" SEE THIS?\n"
+
+
+
 
   m20 =(midpt+20);
 
@@ -425,14 +175,13 @@ int dcols = PH[1];
 
 uchar CPIX[0];  // make dynamic ? - cpp
 
+ openDll("image");
 
-openDll("image");
-
-uint SPIX[0];
-
+ uint SPIX[0];
 
 
-map_name = "cmap_${fname}";
+
+ map_name = "cmap_${fname}";
 
 <<"$fname $map_name \n"
 
@@ -447,21 +196,13 @@ map_name = "cmap_${fname}";
  
  <<"%V $sz $cmb\n"
 
-
-
  nc = cmb[0] ;
 
-  <<"CM $CM[::][::] \n"
+<<"CM $CM[::][::] \n"
 <<"\n"
-
 <<" $CM[4][::] \n"
 
-
-
 //CM.pinfo();
-
-
-
 
 
  rainbow();
@@ -477,42 +218,7 @@ map_name = "cmap_${fname}";
 
  set_gsmap(ngl,cmi);
 
-
-
-
-uint hexw = 0;
-float dr = 1.0/256.0;
-//dr *= 2;
-for (i=0; i< nc; i++) {
-
-   hexw= CM[i][1];
-
-   redc = ((hexw & 0x00ff0000) >> 16)
-   greenc = ((hexw & 0x0000ff00)   >> 8)
-   bluec = (hexw & 0x000000ff)
-
-  redv = redc * dr;
-  greenv = greenc *dr;
-  bluev = bluec *dr;
- if ((redv > 0.0) || (greenv > 0.0) || (bluev > 0.0)) {
- <<"$i $cindex $hexw $redc $greenc $bluec $redv $greenv $bluev\n"
-
-}
-
-//<<"$i $cindex $hexw \n"
-//   setRGB(cindex,hexw,0);
-
- // setRGB(cindex,redv,greenv,bluev);
-  setRGB(cindex,bluev,greenv,redv);
-
- //setRGB(cindex,greenv,bluev,redv);
-   
-    cindex++;
-  //redv += dr; greenv -= dr; bluev += dr/2.0;
-
-}
-
-
+ chartCmap( nc , cmi) ;
 
 /// import cmap for chart
 /// setup cmap
@@ -526,9 +232,12 @@ for (i=0; i< nc; i++) {
   
 
 //sdb(0);
+
+/// SCRN SETUP
+
      vp =  cWi("PIC_WINDOW");
 
-     sWi(_WOID,vp,_WRESIZE,wbox(0.01,0.01,0.9,0.95,0));
+     sWi(_WOID,vp,_WRESIZE,wbox(0.01,0.01,0.9,0.95,0),_WREDRAW,ON_);
 
 
 // again must be greater the 512x512 plus the borders
@@ -540,15 +249,16 @@ for (i=0; i< nc; i++) {
 
 // set the clip to be 512x512 --- clipborder has to be on pixel outside of this!
 
- sWo(_WOID,picwo,_WBORDER,BLACK_,_WDRAW,ON_,_WFONTHUE,RED_, _WREDRAW,ON_);
+   sWo(_WOID,picwo,_WBORDER,BLACK_,_WDRAW,ON_,_WFONTHUE,RED_, _WREDRAW,ON_);
 
  //sWo(_WOID,picwo,_WPIXMAP,ON_,_WDRAW,ON_,_WSAVE,ON_,_WSAVEPIXMAP,ON_,_WREDRAW,ON_)
- sWo(_WOID,picwo,_WPIXMAP,ON_,_WSAVE,ON_,_WSAVEPIXMAP,ON_,_WREDRAW,ON_)
+   sWo(_WOID,picwo,_WPIXMAP,ON_,_WSAVE,ON_,_WSAVEPIXMAP,ON_,_WREDRAW,ON_)
 
     _WPOS = woGetPosition(picwo);
 
 <<"%V $_WPOS\n";
-   //ans=query("?","_WPOS done assign ",__LINE__);
+
+//   ans=query("?","_WPOS done assign ",__LINE__);
 
    int ncols = 1000;
    int nrows = _WPOS[6] -2;
@@ -812,8 +522,8 @@ for (i=0; i< nc; i++) {
 
 <<"%V $npixr $nrows $ncols $drows $dcols $npixr $sec_row $sec_col  $skip_row $skip_col $srows $scols\n"
 
-  <<"plotting pixrect  $cmi\n"
-     sWo(_WOID,picwo,_WCLEARCLIP,ORANGE_);
+  //<<"plotting pixrect  $cmi\n"
+   //  sWo(_WOID,picwo,_WCLEARCLIP,ORANGE_);
      PlotPixRect(picwo,CPIX,cmi);
 
     }
@@ -886,7 +596,7 @@ for (i=0; i< nc; i++) {
 
 
 
-<<"out of section map\n"
+//<<"out of section map\n"
 
 
 ///////////////////////////////    DEV //////////////////////////////////////////////////

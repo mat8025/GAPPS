@@ -1283,3 +1283,7 @@ mc_xw.cpp                           1.52  08/04/2022 22:00:18  PenWidth
 fonts_w.cpp                         1.46  08/04/2022 22:02:10  PenWidth
 graph_w.cpp                         1.15  08/04/2022 22:04:24  setdash
 gline.h                             1.22  08/04/2022 22:18:42  line width
+include_e.cpp                       2.24  08/05/2022 09:17:34  IDBF
+ic_wcb.cpp                          1.67  08/05/2022 09:18:20  IDBF
+opera_bit.cpp                       1.44  08/05/2022 16:48:41  IDBF
+svarg_e.cpp                         2.36  08/05/2022 16:53:56  IDBF

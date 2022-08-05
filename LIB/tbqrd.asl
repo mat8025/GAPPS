@@ -97,7 +97,7 @@ sWo(_WOID,tr,_WDRAW,ON_,_WPIXMAP,ON_,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45,
 sWo(_WOID,td,_WDRAW,ON_,_WPIXMAP,ON_,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45, _WCLIP,clip,_WREDRAW,ON_);
 
 
-printf("%d _tbqrd_tv\n", _tbqrd_tv);
+  printf("%d _tbqrd_tv\n", TBqrd_tv);
 // sWo(tbqrd_tv,_redraw);
 // sWo(tbqrd_msg,_redraw);
  
@@ -105,7 +105,7 @@ printf("%d _tbqrd_tv\n", _tbqrd_tv);
 //============================//
 void titleComment(Str msg)
 {
-<<"titlecomment %V $msg \n"
+//<<"titlecomment %V $msg \n"
  sWo(_WOID,TBqrd_tv,_WVALUE,msg.cptr(),_WCLEAR,ON_,_WREDRAW,ON_);
 
 }
@@ -113,11 +113,11 @@ void titleComment(Str msg)
 void titleVers()
 {
 // Str tit = "$_ele_vers $_ele";
- Str tit = scriptVers();
+Str tit = scriptVers();
  //Str tit = "xyz";
  
- <<"script vers $tit\n"
- titleComment(tit);
+ //<<"script vers $tit\n"
+   titleComment(tit);
 }
 
 
