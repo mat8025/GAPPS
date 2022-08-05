@@ -62,16 +62,28 @@
 #include "debug"
 #include "hv"
 
-  scriptDBOFF();
+#define ASL 1
 
 setmaxcodeerrors(-1); // just keep going
 setmaxicerrors(-1);
 
 
-AF=ofr(_clarg[1]);  // color map file ?
+AF=ofr(_clarg[1]);  // dat file?
 
-r= atoi(_clarg[2])
-c= atoi(_clarg[3])
+r= atoi(_clarg[2]);
+c= atoi(_clarg[3]);
+int pave = 1;
+
+  pave = atoi(_clarg[4]);
+
+if (pave > 7)
+    pave = 7;
+
+
+<<"%V $pave \n" 
+
+
+
 
 showall =1;
 uint PH[3]
@@ -94,6 +106,7 @@ uint MI[PH[0]]
 
 nir=vread(AF,MI,wd*ht,UINT_)
 cf(AF)
+
 
 
 npc = 3000
@@ -200,7 +213,7 @@ nir=vread(AF3,PH,3,UINT_)
 
 
 #include "graphic"
-#include "gevent"
+#include "gevent.asl"
 #include "tbqrd"
 
 fullpic = 0;
@@ -214,10 +227,10 @@ cmi = 64
 cindex = cmi
 
 for (i=0; i< nc; i++) {
-   hexw= CM[i][1]
+   hexw= CM[i][1];
 //<<"$i $cindex $hexw \n"
-   setRGB(cindex,hexw,0)
-    cindex++
+   setRGB(cindex,hexw,0);
+    cindex++;
 }
 
 
@@ -257,9 +270,9 @@ sWo(_WOID,pic2wo,_WBORDER,BLACK_,_WDRAW,ON_,_WFONTHUE,RED_, _WREDRAW,ON_);
  sWo(_WOID,pic2wo,_WPIXMAP,ON_,_WDRAW,ON_,_WSAVE,ON_,_WSAVEPIXMAP,ON_,_WREDRAW,ON_)
  
 
- pic3wo=cWo(vp,_WOGRAPH)
+ pic3wo=cWo(vp,WO_GRAPH_)
 
- sWo(_WOID,pic3wo_WNAME,"Pic3",_WCOLOR,TEAL_,_WRESIZE,1002,20,1502,820,1)
+ sWo(_WOID,pic3wo,_WNAME,"Pic3",_WCOLOR,TEAL_,_WRESIZE,1002,20,1502,820,1)
 
 // set the clip to be 512x512 --- clipborder has to be on pixel outside of this!
 
@@ -283,14 +296,19 @@ sWo(_WOID,pic3wo,_WBORDER,BLACK_,_WDRAW,ON_,_WFONTHUE,RED_, _WREDRAW,ON_);
 
   IC = woGetPosition(picwo);
 <<"%V$IC\n"
+
   IC2= woGetPosition(pic2wo);
+  
 <<"%V$IC2\n"
 
-   titleButtonsQRD(vp)
-   titleVers();
-   titleMsg("Sectional Tiles")
 
-   sWi(vp,_WREDRAW)
+   titleButtonsQRD(vp);
+
+   titleVers();
+
+    titleMsg("Sectional Tiles");
+
+   sWi(vp,_WREDRAW,ON_);
    
 
    sWo(_WOID,picwo,_WCLEARPIXMAP,ON_)
@@ -312,6 +330,7 @@ sWo(_WOID,pic3wo,_WBORDER,BLACK_,_WDRAW,ON_,_WFONTHUE,RED_, _WREDRAW,ON_);
      npixr2 = mread(AF2,SPIX2,nrows,ncols,drows,dcols,sec_row,sec_col,skip_row,skip_col)
      npixr3 = mread(AF3,SPIX3,nrows,ncols,drows,dcols,sec_row,sec_col,skip_row,skip_col)     
      <<"%V $npixr  $npixr2 $nrows $ncols   $(nrows*ncols)\n"
+
 } 
 
 
@@ -340,118 +359,147 @@ else {
    Redimn(SPIX3,nrows,ncols)
    RSPIX3 = SPIX3
 
-  if (fullpic) {
+
+/*
+  if (fullpic || pave == 1) {
    nec= vtrans(SPIX,CM)
    vcmpset(SPIX,">",256,0)
-   TPIX = mrevRows(SPIX)
+   //TPIX = mrevRows(SPIX)
    Tile = TPIX;
    sWo(_WOID,picwo,_savepixmap,10,10,700,900)
    PlotPixRect(picwo,Tile,cmi)
    sWo(_WOID,picwo,_showpixmap)
   }
+*/
+  if (pave >= 1) {
 
-   if (reduce) {
-    AVESPIX = imrgbave(RSPIX,5)
 
+    if (pave == 1) {
+        AVESPIX = RSPIX;
+	}
+    else { 
+       AVESPIX = imrgbave(RSPIX,pave);
+    }
 
    <<"AVESPIX $(Cab(SPIX)) $(Cab(AVESPIX)) $(typeof(AVESPIX)) \n"
    // want  to pick closest cmap to the rgb word
  //  nec= vtrans(AVESPIX,CM); // this matches rgb to map - if rgb is in CM table
  
-    CMSPIX=rgbToColorIndex(AVESPIX,cmi,cmi+nc)
+    CMSPIX=rgbToColorIndex(AVESPIX,cmi,cmi+nc);
    //vcmpset(AVESPIX,">",256,0)
 
-   nb= Cab(AVESPIX)
+   nb= Cab(AVESPIX);
    <<"%V$nb\n"
-   redimn(CMSPIX,nb[0],nb[1])
+
+   redimn(CMSPIX,nb[0],nb[1]);
 //   <<"$CMSPIX[0][0:10] \n"
 //   <<"$CMSPIX[2][0:10] \n"
    //<<"$CMSPIX[125][0:10] \n"
-   RPIX = mrevRows(CMSPIX)
+  // RPIX = mrevRows(CMSPIX);
 //   <<"$RPIX[2][0:10] \n"
-   R5Tile = RPIX;
+   R5Tile = CMSPIX;
 //<<"$R5Tile[2][0:10] \n"   
-   <<" $(Cab(RPIX)) $(Cab(R5Tile)) $(typeof(R5Tile))\n"
-   R5D= cab(R5Tile)
+   <<" $(Cab(R5Tile)) $(typeof(R5Tile))\n"
+   R5D= cab(R5Tile);
 
    //sWo(_WOID,picwo,_savepixmap,0,0,1000,1000)
-   sWo(_WOID,picwo,_WSAVEPIXMAP,ON_)
+   sWo(_WOID,picwo,_WSAVEPIXMAP,ON_);
     
    T=fineTime()
-   PlotPixRect(picwo,R5Tile,0)
-   dt=fineTimeSince(T,1)
-   <<" took $(dt/1000000.0) secs\n"
-    sWo(_WOID,picwo,_WSHOWPIXMAP,ON_)
-int TH[6]
-TH[0] = r
+   PlotPixRect(picwo,R5Tile,0);
+   dt=fineTimeSince(T,1);
+   <<" took $(dt/1000000.0) secs\n";
+    sWo(_WOID,picwo,_WSHOWPIXMAP,ON_);
+    
+int TH[6];
+TH[0] = r;
 TH[1] = cstart;
-TH[2] = r + npr
-TH[3] = cstart + npc
-TH[4] = R5D[0]
-TH[5] = R5D[1]
+TH[2] = r + npr;
+TH[3] = cstart + npc;
+TH[4] = R5D[0];
+TH[5] = R5D[1];
 
-B=ofw("tile1.cmp")
-wdata(B,TH)
-wdata(B,R5Tile)
-cf(B)
+B=ofw("tile1.cmp");
+wdata(B,TH);
+wdata(B,R5Tile);
+cf(B);
 
 
 
    if (showall) {
-   AVESPIX = imrgbave(RSPIX2,5)
-   <<" $(Cab(SPIX)) $(Cab(AVESPIX)) $(typeof(AVESPIX)) \n"
 
-   CMSPIX=rgbToColorIndex(AVESPIX,cmi,cmi+nc)
-   nb= Cab(AVESPIX)
-   redimn(CMSPIX,nb[0],nb[1])
-   RPIX = mrevRows(CMSPIX)
-   R5Tile = RPIX;
+      if (pave == 1) {
+        AVESPIX = RSPIX2;
+	}
+    else {
+      AVESPIX = imrgbave(RSPIX2,pave);
+     }
+<<" $(Cab(SPIX)) $(Cab(AVESPIX)) $(typeof(AVESPIX)) \n"
+
+   CMSPIX=rgbToColorIndex(AVESPIX,cmi,cmi+nc);
+   nb= Cab(AVESPIX);
+   redimn(CMSPIX,nb[0],nb[1]);
+   //RPIX = mrevRows(CMSPIX);
+   R5Tile = CMSPIX;
 
      //sWo(_WOID,pic2wo,_savepixmap,1000,0,2000,810,_eo)
       // check do we need to specify pix coors?
-    sWo(_WOID,pic2wo,_WSAVEPIXMAP,ON_)
+      
+    sWo(_WOID,pic2wo,_WSAVEPIXMAP,ON_);
+    
        
     PlotPixRect(pic2wo,R5Tile,0)
 
-B=ofw("tile2.cmp")
-TH[1] += npc
-TH[3] += npc
-wdata(B,TH)
-wdata(B,R5Tile)
-cf(B)
 
 
-sWo(_WOID,pic2wo,_WSHOWPIXMAP,ON_)
-   T=fineTime()
-   PlotPixRect(picwo,R5Tile,0,1000,0)
-   dt=fineTimeSince(T,1)
-   <<" took $(dt/1000000.0) secs\n"
-   AVESPIX = imrgbave(RSPIX3,5)
-   <<" $(Cab(SPIX)) $(Cab(AVESPIX)) $(typeof(AVESPIX)) \n"
-   dt=fineTimeSince(T,1)
-   <<" took $(dt/1000000.0) secs\n"
-   CMSPIX=rgbToColorIndex(AVESPIX,cmi,cmi+nc)
-   nb= Cab(AVESPIX)
-   redimn(CMSPIX,nb[0],nb[1])
-   RPIX = mrevRows(CMSPIX)
-   R5Tile = RPIX;
+ B=ofw("tile2.cmp")
+ TH[1] += npc
+ TH[3] += npc
+ wdata(B,TH)
+ wdata(B,R5Tile)
+ cf(B)
+
+<<"write tile2.cmp";
+
+
+   sWo(_WOID,pic2wo,_WSHOWPIXMAP,ON_)
+   T=fineTime();
+   PlotPixRect(picwo,R5Tile,0,1000,0);
+   dt=fineTimeSince(T,1);
+   <<" took $(dt/1000000.0) secs\n";
+
+   if (pave == 1) {
+    AVESPIX = RSPIX3;
+    }
+   else {
+    AVESPIX = imrgbave(RSPIX3,pave);
+   }
+
+   <<" $(Cab(SPIX)) $(Cab(AVESPIX)) $(typeof(AVESPIX)) \n";
+   dt=fineTimeSince(T,1);
+   <<" took $(dt/1000000.0) secs\n";
+   CMSPIX=rgbToColorIndex(AVESPIX,cmi,cmi+nc);
+   nb= Cab(AVESPIX);
+   redimn(CMSPIX,nb[0],nb[1]);
+  // RPIX = mrevRows(CMSPIX);
+   R5Tile = CMSPIX;
 
 
 
 
     //sWo(_WOID,pic3wo,_savepixmap,1000,0,2000,810,_eo)
-      sWo(_WOID,pic3wo,_WSAVEPIXMAP,ON_)
+      sWo(_WOID,pic3wo,_WSAVEPIXMAP,ON_);
  // sWo(_WOID,pic3wo,_savepixmap)
-    PlotPixRect(pic3wo,R5Tile,0)
+    PlotPixRect(pic3wo,R5Tile,0);
  //   sWo(_WOID,pic3wo,_showpixmap,_savepixmap,_save)
     sWo(_WOID,pic3wo,_WSHOWPIXMAP,ON_)
   //    PlotPixRect(pic2wo,R5Tile,0,1000,0)
     //  PlotPixRect(picwo,R5Tile,0,2000,0)
 B=ofw("tile3.cmp")
-TH[1] += npc
-TH[3] += npc
-wdata(B,TH)
-wdata(B,R5Tile)
+TH[1] += npc;
+TH[3] += npc;
+wdata(B,TH);
+wdata(B,R5Tile);
 cf(B)
 
     }
@@ -460,11 +508,11 @@ cf(B)
 
 
 
-   sWo(_WOID,pic3wo,_clearclip,_clip,0,10,600,550,2,_eo);
-   sWo(_WOID,pic2wo,_clearclip,_clip,0,10,600,550,2,_eo);
+   sWo(_WOID,pic3wo,_WCLEARCLIP,ON_,_WCLIP,wbox(0,10,600,550,2));
+   sWo(_WOID,pic2wo,_WCLEARCLIP,ON_,_WCLIP,wbox(0,10,600,550,2));
 
-   sWo(_WOID,pic2wo,_showpixmap);
-   sWo(_WOID,pic3wo,_showpixmap);
+   sWo(_WOID,pic2wo,_WSHOWPIXMAP,ON_);
+   sWo(_WOID,pic3wo,_WSHOWPIXMAP,ON_);
 
 
     updown = 200;
@@ -475,41 +523,46 @@ cf(B)
 
 
      eventWait();
-     ME=getMouseState()
-//<<"%6.2f $ME[7] $ME[8] $ME[9] $ME[10]\n"
-//<<"%V$_ebutton\n"
-     if (_ebutton == RIGHT_) {
-     updown += 10
-     rl += 10
-     sWo(_WOID,picwo,_scrollclip,RIGHT_,rl,_eo)
-     sWo(_WOID,pic2wo,_scrollclip,RIGHT_,updown,_eo)
-     sWo(_WOID,pic3wo,_scrollclip,RIGHT_,updown,_eo)
+
+<<"trying SCROLLCLIP $Ev_button\n"
+
+     if (Ev_button == RIGHT_) {
+
+    updown += 10;
+     rl += 10;
+
+
+
+     sWo(_WOID,picwo,_WSCROLLCLIP,wpt(RIGHT_,rl));
+     sWo(_WOID,pic2wo,_WSCROLLCLIP,wpt(RIGHT_,updown));
+     sWo(_WOID,pic3wo,_WSCROLLCLIP,wpt(RIGHT_,updown));
+
 
      }
-     if (_ebutton == LEFT_) {
+     if (Ev_button == LEFT_) {
      updown -= 10;
      rl -= 10;
-     sWo(_WOID,picwo,_scrollclip,RIGHT_,rl)
-     sWo(_WOID,pic2wo,_scrollclip,RIGHT_,updown)
-     sWo(_WOID,pic3wo,_scrollclip,RIGHT_,updown)
+     sWo(_WOID,picwo,_WSCROLLCLIP,RIGHT_,rl)
+     sWo(_WOID,pic2wo,_WSCROLLCLIP,RIGHT_,updown)
+     sWo(_WOID,pic3wo,_WSCROLLCLIP,RIGHT_,updown)
 
      }
 
-     if (_ebutton == UP_) {
+     if (Ev_button == UP_) {
      updown += 10;
      rl += 10;
-     sWo(_WOID,picwo,_scrollclip,UP_,rl)
-     sWo(_WOID,pic2wo,_scrollclip,UP_,updown)
-     sWo(_WOID,pic3wo,_scrollclip,UP_,updown)
+     sWo(_WOID,picwo,_WSCROLLCLIP,UP_,rl)
+     sWo(_WOID,pic2wo,_WSCROLLCLIP,UP_,updown)
+     sWo(_WOID,pic3wo,_WSCROLLCLIP,UP_,updown)
      }
 
-     if (_ebutton == DOWN_) {
+     if (Ev_button == DOWN_) {
      updown -= 10;
      rl -= 10;
-     sWo(_WOID,picwo,_scrollclip,UP_,rl)
-     sWo(_WOID,pic2wo,_scrollclip,UP_,updown)
-     sWo(_WOID,pic3wo,_scrollclip,UP_,updown)
-     }     
+     sWo(_WOID,picwo,_WSCROLLCLIP,UP_,rl)
+     sWo(_WOID,pic2wo,_WSCROLLCLIP,UP_,updown)
+     sWo(_WOID,pic3wo,_WSCROLLCLIP,UP_,updown)
+     }
 
 
   }

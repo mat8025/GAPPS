@@ -11,7 +11,6 @@
 //* 
 //***********************************************%
 
-   ;//------------------------------//;
 //  parses header creates hdr_xxx vars from @ tags in header 
 //
 
@@ -20,14 +19,14 @@
   void vers2ele(Str& vstr)
   {
   //<<"%V $vstr\n"
-   pmaj = atoi(spat(vstr,".",-1))
+   pmaj = atoi(spat(vstr,".",-1));
 //   <<[2]"$pmaj $(typeof(pmaj)) $(ptsym(pmaj)) \n"  
-   pmin = atoi(spat(vstr,".",1))
+   pmin = atoi(spat(vstr,".",1));
 
 //<<[2]"$pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
    elestr = pt(pmin);
    _ele =" ";
-   _ele = spat(elestr,",")
+   _ele = spat(elestr,",");
 //  <<"$ele $(typeof(_ele))\n";
 //  <<"$ele\n";
 

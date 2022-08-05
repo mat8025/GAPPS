@@ -174,10 +174,11 @@ void WTLB()
 
 //pa("proc  setting cursors ", _proc, " Button", Button);
 
-       if (Button == 1) {
-         lcpx = Gerx;
-//	<<"CURSOR %V $lcpx\n"
-printf("left cursor @ %f\n",Gerx);      
+printf("\nEv_button %d    cursor @ Ev_rx %f\n",Ev_button,Ev_rx);      
+
+       if (Ev_button == 1) {
+         lcpx = Ev_rx;
+
 	 sGl(_GLID,lc_gl,_GLCURSOR,rbox(lcpx,0,lcpx,300));
 	 
 	 Wex_CL_init = 0;
@@ -185,9 +186,9 @@ printf("left cursor @ %f\n",Gerx);
 
         }
 
-       if (Button == 3) {
-         rcpx = Gerx;
-printf("right cursor @ %f\n",Gerx);      
+       if (Ev_button == 3) {
+         rcpx = Ev_rx;
+
       
 	 sGl(_GLID,rc_gl,_GLCURSOR,rbox(rcpx,0,rcpx,310));
 	 

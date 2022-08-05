@@ -353,7 +353,7 @@ for (i = 0; i< 10; i++) {
   sGl(_GLID,allgls[gi],_GLDRAW,ON_);
   gi++;
   
-  adbprintf(-1,"dgl %d\n",gi);
+  adbprintf(2,"dgl %d\n",gi);
   
   if (allgls[gi] < 0)
       break;

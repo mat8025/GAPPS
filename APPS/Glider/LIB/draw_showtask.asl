@@ -18,7 +18,13 @@
 ///
 //<<"including graphic_glide $_include\n"
 
+void checkAnswer(Str& val)
+{
+    if (val == "q") {
+        exit(-1);
+    }
 
+}
 
 void zoomMap(int t1, int t2)
   {
@@ -66,10 +72,11 @@ printf(" n %d min_lat %f max_lat %f min_lng %f max_lng %f\n",n,min_lat ,max_lat 
    LatN = max_lat+0.1;
    LatS = min_lat- 0.1;
 
-printf(" LongW %f LatS %f LongE %f LatN %f \n",LongW, LatS, LongE, LatN);
+ adbprintf(-1," LongW %f LatS %f LongE %f LatN %f \n",LongW, LatS, LongE, LatN);
 
  sWo(_WOID,mapwo,_WSCALES,wbox(LongW,LatS,LongE,LatN));
 
+adbprintf(-1,"ZOOM\n");
 
 
  }
@@ -95,7 +102,7 @@ printf(" LongW %f LatS %f LongE %f LatN %f \n",LongW, LatS, LongE, LatN);
     int is_a_strip = 0;
   int is_a_mtn = 0;
   int is_a_mtn_pass = 0;  
-
+adbprintf(-1,"DrawMap in\n");
 
   Mapcoors= woGetPosition (mapwo);
 
@@ -127,7 +134,9 @@ printf(" LongW %f LatS %f LongE %f LatN %f \n",LongW, LatS, LongE, LatN);
   sWo(_WOID,mapwo,_WCLEARPIXMAP,ON_,_WCLIPBORDER,BLACK_);
 
  // sWo(mapwo,_WDRAWON,_WSHOWPIXMAP,_WCLIPBORDER);
-//pa("mapwo ",mapwo);
+ 
+pa("mapwo ",mapwo);
+
   gg_gridLabel(mapwo);
   
 //ans=query("?113","gg_gridLabel(mapwo); ",__LINE__);
@@ -213,7 +222,8 @@ printf(" LongW %f LatS %f LongE %f LatN %f \n",LongW, LatS, LongE, LatN);
   sWo(_WOID,mapwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_,_WSAVEPIXMAP,ON_);
 
   gg_gridLabel(mapwo);
-  
+
+adbprintf(-1,"MAPWO\n");
 //ans=query("DONE","drawMAP",__LINE__);
   }
 //====================================================
@@ -439,10 +449,12 @@ void drawTrace()
 {
 
      if (Have_igc) {
-     
+
+
+       titleMessage("%V $LongW $LatS $LongE $Latn");
+
          sWo(_WOID,mapwo,_WSCALES, wbox(LongW, LatS, LongE, LatN) );
-	 
-        // sWo(mapwo,_WCLEARPIXMAP);
+
          sWo(_WOID,vvwo,_WCLEARPIXMAP,ON_);
 
 
@@ -451,12 +463,9 @@ void drawTrace()
 	  
   	 if (Ntpts > 0) {
 	 
-           // sWo(_WOID,vvwo, _WSCALES, wbox(0, Min_ele, Ntpts, Max_ele + 500));
+
 	    sWo(_WOID,vvwo, _WSCALES, wbox(0, Min_ele, Ntpts, 8000));
 	
-
-
-              //dGl(igc_tgl);
 	      
 	    sWo(_WOID,vvwo,_WCLEARPIXMAP,ON_);
 
@@ -472,7 +481,7 @@ void drawTrace()
   CL_init = 1;
 
 if (st_lc_gl != -1) {
-	  sGl(_GLID,st_lc_gl,_GLCURSOR,rbox(zoom_begin,0,zoom_begin,20000, CL_init),_GLHUE,GREEN_); // use rbox
+	  sGl(_GLID,st_lc_gl,_GLCURSOR,rbox(zoom_begin,0,zoom_begin,20000, CL_init),_GLHUE,GREEN_); 
  //  dGl(lc_gl);
 }
 
@@ -483,13 +492,20 @@ if (st_rc_gl != -1) {
 
  //<<"%V $zoom_begin $zoom_end\n"
 	 }
-//	sWo(mapwo,_WSHOWPIXMAP,_WCLIPBORDER);
-	
-//ans=query("?","see trace?",__LINE__);
+
+      adbprintf(-1,"see TRACE\n");
+
+//      ans=query("CPP"," see trace",__LINE__,__FILE__);
+//      checkAnswer(ans);
+      
+//      if (ans == "q") {
+//           exit(-1);
+//      }
 
       CR_init = 0;
       CL_init = 0;
       }
+
 }
 
 //==================================================
@@ -559,7 +575,7 @@ ST_RS[4] = 52.67;
 //COUT(ST_RS);
 //ST_RS.pinfo();
 
- 
+ adbprintf(-1,"gridlabel\n");
  
  ST_RS = wgetrscales(wid);
 
@@ -622,7 +638,7 @@ ST_RS[4] = 52.67;
 #if ASL
   axnum(wid,1,rx,rX,2*x_inc,-1.5,"3.1f");
 #else  
-  sWo(_WOID,wid,_WAXNUM,AXIS_BOTTOM_,_WEO);
+  sWo(_WOID,wid,_WAXNUM,AXIS_BOTTOM_);
 #endif
   }
 
@@ -630,7 +646,7 @@ ST_RS[4] = 52.67;
 #if ASL
   axnum(wid,1,rx,rX,2*x_inc,-1.5,"3.1f");
 #else
-sWo(_WOID,wid,_WAXNUM,AXIS_BOTTOM_,_WEO);
+sWo(_WOID,wid,_WAXNUM,AXIS_BOTTOM_);
 #endif
 
 
@@ -642,7 +658,7 @@ sWo(_WOID,wid,_WAXNUM,AXIS_BOTTOM_,_WEO);
 #if ASL
   axnum(wid,2,ry,rY,2*y_inc,-2.0,"2.1f");
 #else
-  sWo(_WOID,wid,_WAXNUM,AXIS_LEFT_,_WEO);
+  sWo(_WOID,wid,_WAXNUM,AXIS_LEFT_);
 #endif
 
  }
@@ -702,13 +718,11 @@ sWo(_WOID,wid,_WCLIPBORDER,RED_);
 
   mouseCursor(tpwo[9], "hand");
 
-    Gemsg =gev.eventWait();
-    Gekey = gev.getEventKey();
-  
-    gev.getEventRxy( &Gerx,&Gery);
+   eventWait();
+   
   //eventWait();
 
-  ntp = ClosestTP(Gerx,Gery);
+  ntp = ClosestTP(Ev_rx,Ev_ry);
 //ans=query("%V$erx $ery $ntp\n");   
 // <<"%V $erx $ery $ntp\n";
 
@@ -773,13 +787,12 @@ sWo(_WOID,wid,_WCLIPBORDER,RED_);
  mouseCursor(tpwo[9],"hand");
 
 
-    Gemsg =gev.eventWait();
-    Gekey = gev.getEventKey();
-    gev.getEventRxy( &Gerx,&Gery);
+    eventWait();
+    
 
     //eventWait();
 
-  ntp = ClosestTP(Gerx,Gery);
+  ntp = ClosestTP(Ev_rx,Ev_ry);
 //ans=query("%V$erx $ery $ntp\n");   
 // <<"%V $erx $ery $ntp\n";
   if (ntp >= 0) {
@@ -1283,12 +1296,12 @@ int PickViaName(int wt)
 
   //sWi(vp,_WTMSG,"Pick a TP for the task ");
 
-    Gemsg =gev.eventWait();
+  eventWait();
 
 
   sleep(0.2);
 
-  ntp = ClosestTP(Gerx,Gery);
+  ntp = ClosestTP(Ev_rx,Ev_ry);
 
  mouseCursor(mapwo,"hand");
 
@@ -1882,7 +1895,7 @@ void   showPosn(int pi)
 	 syme = IGCELE[pi] *  3.280839;
          plotSymbol(mapwo,symx,symy,CROSS_,symsz,MAGENTA_,1);
 
-          //sGl(lc_gl,_GLCURSOR,rbox(pi,0,pi,20000, CL_init),_GLEO);
+          //sGl(lc_gl,_GLCURSOR,rbox(pi,0,pi,20000, CL_init));
 	  //dGl(lc_gl);
 	  //CL_init = 0;
 	  	   zoom_begin = pi;
@@ -1935,3 +1948,4 @@ void updateLegs()
 
 }
 //======================================//
+

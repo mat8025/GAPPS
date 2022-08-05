@@ -1,0 +1,22 @@
+/////////////////////////// TODO ////////////////////////////////////////
+7/30/22
+================
+int V[]  means dynamic array
+int V[-100] means dynamic array initial size(guess) 100
+================
+getcolormap --- use Gcolor type - to store Color table in Siv
+??
+========================
+check _WCLIP,wbox(10,10,200,300,2)   works asl/cpp
+========================
+DSP fft 2D zoom in/out
+========================
+add in Radial basis  nets to ANN
+========================
+redo audio  modify aplay  ==> splay
+arecord
+==========================
+redo FFT DEMO
+========================
+revise ShowVox APP
+========================

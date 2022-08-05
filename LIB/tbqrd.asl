@@ -32,9 +32,10 @@
 
 
 
+// need to be global
+int TBqrd_tv = 0;
+int TBqrd_msg = 0;
 
-int tbqrd_tv = 0;
-int tbqrd_msg = 0;
 
 // tmp use these for woarrays
 int woi;
@@ -64,17 +65,18 @@ rsz[2] = 0.96;
  
 sWo(_WOID,td, _WNAME,"tbd",_WVALUE,"REDRAW",_WFUNC,"window_redraw",_WRESIZE,rsz,_WSYMBOL,DIAMOND_);
 
-int  tbqrd_tv = cWo(v,TBV_);
+  TBqrd_tv = cWo(v,TBV_);
 rsz[0] = 0.2;
-rsz[2] = 0.5;
-sWo(_WOID,tbqrd_tv,_WNAME,"tbv",_WVALUE,"VERS",_WSTYLE,SVO_,_WRESIZE,rsz);
+rsz[2] = 0.3;
+sWo(_WOID,TBqrd_tv,_WNAME,"tbv",_WVALUE,"VERS",_WSTYLE,SVO_,_WRESIZE,rsz);
 
 //<<[_DB]"SET %V $tbqrd_tv \n"
 //int qrd[] = {tr,tq,td};
-int  tbqrd_msg = cWo(v,TBV_);
-rsz[0] = 0.52;
+  TBqrd_msg = cWo(v,TBV_);
+rsz[0] = 0.32;
 rsz[2] = 0.80;
-sWo(_WOID,tbqrd_msg,_WNAME,"tbm",_WVALUE,"MSG",_WSTYLE,SVO_,_WRESIZE,rsz,_WREDRAW,ON_);
+
+sWo(_WOID,TBqrd_msg,_WNAME,"tbm",_WVALUE,"MSG",_WSTYLE,SVO_,_WRESIZE,rsz,_WREDRAW,ON_);
 
 int qrd[3];
 
@@ -94,6 +96,8 @@ sWo(_WOID,tr,_WDRAW,ON_,_WPIXMAP,ON_,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45,
 
 sWo(_WOID,td,_WDRAW,ON_,_WPIXMAP,ON_,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45, _WCLIP,clip,_WREDRAW,ON_);
 
+
+printf("%d _tbqrd_tv\n", _tbqrd_tv);
 // sWo(tbqrd_tv,_redraw);
 // sWo(tbqrd_msg,_redraw);
  
@@ -101,18 +105,18 @@ sWo(_WOID,td,_WDRAW,ON_,_WPIXMAP,ON_,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45,
 //============================//
 void titleComment(Str msg)
 {
-// <<"%V $msg \n"
- sWo(_WOID,tbqrd_tv,_WVALUE,msg.cptr(),_WCLEAR,ON_,_WREDRAW,ON_);
+<<"titlecomment %V $msg \n"
+ sWo(_WOID,TBqrd_tv,_WVALUE,msg.cptr(),_WCLEAR,ON_,_WREDRAW,ON_);
 
 }
 //============================//
 void titleVers()
 {
 // Str tit = "$_ele_vers $_ele";
- //Str tit = scriptVers();
- Str tit = "xyz";
+ Str tit = scriptVers();
+ //Str tit = "xyz";
  
- //<<"script vers $tit\n"
+ <<"script vers $tit\n"
  titleComment(tit);
 }
 
@@ -120,14 +124,21 @@ void titleVers()
 //============================//
 void titleMessage(Str msg)
 {
- 
- sWo(_WOID,tbqrd_msg,_WVALUE,msg.cptr(),_WCLEAR,ON_,_WREDRAW,ON_);
+ //<<"titleMessage $TBqrd_msg  $msg\n"
+ //sWo(_WOID,tbqrd_msg,_WVALUE,msg.cptr(),_WCLEAR,ON_,_WREDRAW,ON_);
+  woSetValue(TBqrd_msg, msg);
+ sWo(_WOID,TBqrd_msg,_WREDRAW,ON_);
 }
 
 void titleMsg(Str msg)
 {
- 
- sWo(_WOID,tbqrd_msg,_WVALUE,msg.cptr(),_WCLEAR,ON_,_WREDRAW,ON_);
+  //<<"titleMsg $_tbqrd_msg  $msg\n"
+// sWo(_WOID,tbqrd_msg,_WVALUE,msg.cptr(),_WCLEAR,ON_,_WREDRAW,ON_);
+  woSetValue(TBqrd_msg, msg);
+  
+  //sWo(_WOID,tbqrd_msg,_WVALUE,msg,_WCLEAR,ON_,_WREDRAW,ON_);
+  sWo(_WOID,TBqrd_msg,_WREDRAW,ON_);
+
 }
 
 

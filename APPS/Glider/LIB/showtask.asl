@@ -74,6 +74,7 @@ using namespace std;
 #include "winargs.h"
 
 #include "gline.h"
+#include "gevent.h"
 #include "glargs.h"
 #include "woargs.h"
 
@@ -134,6 +135,7 @@ int  Ntp = 0; //
 
 #include "globals_showtask.asl"
 
+#include "gevent.asl"
 #include "tbqrd.asl"
 
 
@@ -770,7 +772,6 @@ Str place;
    }
 
 
-
    }
 
 
@@ -781,11 +782,12 @@ Str place;
 
 //ans=query("?3","see trace?",__LINE__);
 
-
-
-
- Gevent Gev;
-
+//  gevent.asl  - sets up   events  via eventWait,Read
+//  all event attributes are  Ev_x, Ev_y, Ev_woname ...
+//  see gevent.asl
+//  for CPP they could be referenced as Gev.ex ,Gev.ey, Gev.ewoname , ...
+//  see gevent.h
+//
 
 
 int dindex;
@@ -831,6 +833,8 @@ Str wcltpt="XY";
 
 //CDBP("b4 map")
 
+
+adbprintf(-1,"DrawMap\n");
   DrawMap();
 
 
@@ -862,30 +866,8 @@ Str wcltpt="XY";
     drawit = 0;
     Task_update =0;
   
-    //eventWait();
-    Gemsg =Gev.eventWait();
 
-Gemsg.pinfo();
-
-    Gekey = Gev.getEventKey();
-    Gev.getEventRxy( &Gerx,&Gery);
-
-    WoName = Gev.getEventWoName();
-WoName.pinfo();
-
-
-   Ev_button = Gev.getEventButton();
-
-   //Ev_button.pinfo();
-
-
-    Ev_keyw = Gev.getEventKeyWord();
-
-    pa(Ev_button,Ev_keyw,Gekey,WoName,Gerx,Gery );
-
-
-  
-  // printf("Ev_keyw <|%s|> ", Ev_keyw.cptr());
+    eventWait();
 
 
 
@@ -895,7 +877,7 @@ WoName.pinfo();
    }
 
 
-    if (Ev_keyw == "REDRAW" || WoName == "REDRAW") {
+    if (Ev_keyw == "REDRAW" || Ev_woname == "REDRAW") {
 
        Task_update =1;
        
@@ -903,7 +885,7 @@ WoName.pinfo();
 
     //Text(vptxt," $_gekeyw   ",0,0.05,1)
 
-       if ( Gev.getEventKey() >= 65) {
+       if ( Ev_keyc >= 65) {
 
 
        printf("IN  W %f E %f N %f S %f\n",LongW, LongE,LatN, LatS);
@@ -912,35 +894,35 @@ WoName.pinfo();
 
        d_ll = (LatN-LatS)/ 10.0 ;
 //<<"%V $LongW $LatS $LongE $LatN   $d_ll\n"
-        if (Gekey == 'q') {
+        if (Ev_keyc == 'q') {
              ans=query("?","QUIT",__LINE__);
 
            exit(-1);
        }
 
 
-       if (Gekey == 'Q') {
+       if (Ev_keyc == 'Q') {
            LongW += d_ll;
            LongE += d_ll;
 	   printf("Q  W %f E %f\n",LongW, LongE);
 	   drawit = 1;
        }
 
-       if (Gekey == 'S') {
+       if (Ev_keyc == 'S') {
            LongW -= d_ll;
            LongE -= d_ll;
 	   printf("S  W %f E %f\n",LongW, LongE);	   
 	    drawit = 1;
        }
 
-       if (Gekey == 'R') {
+       if (Ev_keyc == 'R') {
            LatN += d_ll;
            LatS += d_ll;
 	   printf("R  N %f S %f\n",LatN, LatS);	   
 	   drawit = 1;
        }
 
-       if (Gekey == 'T') {
+       if (Ev_keyc == 'T') {
            LatN -= d_ll;
            LatS -= d_ll;
 	   printf("T  N %f S %f\n",LatN, LatS);	   	   
@@ -948,7 +930,7 @@ WoName.pinfo();
        }
 
 
-       if (Gekey == 'X') {
+       if (Ev_keyc == 'X') {
      //  <<"expand \n"
            LatN += d_ll;
            LatS -= d_ll;
@@ -958,7 +940,7 @@ WoName.pinfo();
 	    drawit = 1;
        }
 
-       if (Gekey == 'x') {
+       if (Ev_keyc == 'x') {
     //   <<"Zoom IN\n"
            LatN -= (d_ll * 0.9);
            LatS += (d_ll * 0.9);
@@ -968,13 +950,13 @@ WoName.pinfo();
 	    drawit = 1;
        }
 
-              if (Gekey == 'f') {
+              if (Ev_keyc == 'f') {
                    dindex += 5;
                    showPosn(dindex);
 
 
                 }
-               else if (Gekey == 'r') {
+               else if (Ev_keyc == 'r') {
                    dindex -= 5;
                    showPosn(dindex);
               }
@@ -987,7 +969,7 @@ WoName.pinfo();
         }
       }
 
-       else if (WoName == "_Start_") {
+       else if (Ev_woname == "_Start_") {
              Task_update =1;
            //  sWo(_ewoid, _WCXOR);
               wc=choiceMenu("STP.m");
@@ -1013,11 +995,11 @@ WoName.pinfo();
 	  
        }
 
-       else if (scmp(WoName,"_TP",3)) {
+       else if (scmp(Ev_woname,"_TP",3)) {
        
              Task_update =1;
 	     
-             np = spat(WoName,"_TP",1);
+             np = spat(Ev_woname,"_TP",1);
            //  np = spat(np,"_",-1);
 //np.pinfo();
               Witp = atoi(np);
@@ -1109,12 +1091,12 @@ WoName.pinfo();
                 // sWo(wtpwo,_Wcxor);
                  showTaskPts();
        }
-       else if (WoName == "ALT") {
+       else if (Ev_woname == "ALT") {
        
        	 sWo(_WOID,mapwo,_WSHOWPIXMAP,ON_); // should erase precious target position
 	 
          drawit = 0;
-         dindex = rint(Gerx);
+         dindex = rint(Ev_rx);
 
 //<<"%V $erx, alt $ery  $dindex $IGCELE[dindex] $IGCLAT[dindex] $IGCLONG[dindex] \n";
          symx = IGCLONG[dindex];
@@ -1126,10 +1108,10 @@ WoName.pinfo();
           sWo(_WOID,mapwo,_WPIXMAP,OFF_,_WDRAW,ON_); // just draw but not to pixamp
        if (Ev_button == 1 || Ev_button == 4) {
 
-	  sGl(_GLID,st_lc_gl,_GLCURSOR,rbox(Gerx,0,Gerx,20000, CL_init));
+	  sGl(_GLID,st_lc_gl,_GLCURSOR,rbox(Ev_rx,0,Ev_rx,20000, CL_init));
 	 // dGl(lc_gl);
 	  CL_init = 0;
-	   zoom_begin = Gerx;
+	   zoom_begin = Ev_rx;
 
            plotSymbol(mapwo,symx,symy,CROSS_,symsz,MAGENTA_,1);
            plotSymbol(mapwo,symrx,symry,DIAMOND_,symsz,LILAC_,1,90);		  
@@ -1140,7 +1122,7 @@ WoName.pinfo();
        if (Ev_button == 3 || Ev_button == 5) {
 
 
-	  sGl(_GLID,st_rc_gl,_GLCURSOR,rbox(Gerx,0,Gerx,20000, CR_init));
+	  sGl(_GLID,st_rc_gl,_GLCURSOR,rbox(Ev_rx,0,Ev_rx,20000, CR_init));
           //dGl(rc_gl);
 	  CR_init = 0;
 
@@ -1154,7 +1136,7 @@ WoName.pinfo();
           plotSymbol(mapwo,symx,symy,CROSS_,symsz,MAGENTA_,1);
           plotSymbol(mapwo,symrx,symry,DIAMOND_,symsz,LILAC_,1,90);		  
 	  
-           zoom_end = Gerx;
+           zoom_end = Ev_rx;
 	   
 	  // Task_update = 1;
 	   
@@ -1171,7 +1153,7 @@ WoName.pinfo();
 	 sWo(_WOID,sawo,_WVALUE,"$symx $symy $syme ",_WREDRAW,ON_);
 	 
        }
-       else if (WoName == "ZOOM") {
+       else if (Ev_woname == "ZOOM") {
         // find LatN,LatS,LongW,LongE for the time range zoom_begin , zoom_end
         // add margin
 	// set and update map
@@ -1182,13 +1164,13 @@ WoName.pinfo();
         Task_update =1;
 
        }
-       else if (WoName == "MAP") {
+       else if (Ev_woname == "MAP") {
 
-//pa("in map", Gerx, Gery);
+//pa("in map", Ev_rx, Ev_ry);
 
                drawit = 0;
 
-               ntp = ClosestLand(Gerx,Gery);
+               ntp = ClosestLand(Ev_rx,Ev_ry);
 
              if (ntp >= 0) {
 
@@ -1202,7 +1184,7 @@ WoName.pinfo();
                 Text(  vptxt,Gpos,0,0.05,1);
 		
                 ST_msl = Wtp[ntp].Alt;
-                mkm = HowFar(Gerx,Gery, Wtp[ntp].Longdeg, Wtp[ntp].Ladeg);
+                mkm = HowFar(Ev_rx,Ev_ry, Wtp[ntp].Longdeg, Wtp[ntp].Ladeg);
                 ght = (mkm * km_to_feet) / LoD;
 //		<<"%V $ght $mkm $km_to_feet  $LoD \n" 
 		
@@ -1218,7 +1200,7 @@ WoName.pinfo();
 
         }
 
-       else if (WoName == "TaskMenu") {
+       else if (Ev_woname == "TaskMenu") {
 
              //task_menu(mapwo)
     //          read_task()
@@ -1237,7 +1219,7 @@ WoName.pinfo();
        }
        
        else if (Ev_keyw == "Menu") {
-          // <<" task type is $_Gekeyw \n"
+          // <<" task type is $_Ev_keycw \n"
            TaskType = Ev_keyw;
            //<<" Set %V$TaskType \n"
        }

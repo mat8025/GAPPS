@@ -30,17 +30,6 @@ void taskDist();
 
 #endif
 
-#if ASL
-//  put these in a gevent.asl  
-float Gerx;
-float Gery;
-Str Gemsg;
-
-#endif
-
-int Ev_button = 0;
-Str Ev_keyw = "nada";
-
 
 int mapwo,vptxt,sawo,vvwo,TASK_wo, TASK_menu_wo, ZOOM_wo;
 

@@ -35,7 +35,7 @@ int  Graphic = checkGWM();
 
 
 
- printf(" Graphic %d\n", Graphic);
+// printf(" Graphic %d\n", Graphic);
 
 int Xgm;
 
@@ -125,6 +125,8 @@ int Xgm;
 
   LastTP = 12; 
 
+  adbprintf(-1,"lastTP %d\n",LastTP);
+
 
   //VCOUT(vvwo,mapwo);
  
@@ -178,7 +180,8 @@ int Xgm;
   wovtile(legwo, 0.15, 0.38, 0.29, 0.89,-1);
 
   titleVers();
-  gflush();
+  
+  adbprintf(-1,"titleVers %d\n",legwo);
   
 
 
@@ -191,6 +194,7 @@ int Xgm;
   sWo(_WOID,TASK_wo, _WHELP, "Set Task Type", _WNAME, "TaskType", _WFUNC,  "wo_menu",  _WMENU, "SO,TRI,OAR,W,MT",  _WVALUE, "TRI");
 
   tdwo = cWo(Vp, WO_BV_);
+
 
   sWo(_WOID,tdwo,_WRESIZE,wbox(0.11,0.25,0.21,0.34,0),_WNAME,"TaskDistance");
 
@@ -219,6 +223,7 @@ int Xgm;
   
   sWo(_WOID,ZOOM_wo,  _WNAME, "ZOOM",_WRESIZE,wbox(0.22,0.25,0.32,0.34),_WCOLOR,RED_);
 
+adbprintf(-1,"Zoom\n");
 
 //  CURSORS
  // TBC cursor opt?
@@ -253,3 +258,4 @@ VCOUT(dMx,dMy);
 
 //<<" DONE SCREEN %V $lc_gl $rc_gl $mapwo $vvwo  $sawo \n";
 
+adbprintf(-1,"DONE SCREEN\n");

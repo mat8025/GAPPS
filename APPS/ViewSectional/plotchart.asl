@@ -13,6 +13,18 @@
 ;//----------------<v_&_v>-------------------------//;                  
 
 
+/////////////////////////////////////////////////////////////////////////////////////
+//
+//
+//
+//
+//
+//
+//
+//
+///////////////////////////////////////////////////////////////////////////////////////
+
+
 Str Use_= " Demo  of show igc track on sectional ";
 
 #define ASL 1
@@ -31,6 +43,8 @@ Str Use_= " Demo  of show igc track on sectional ";
   chkIn(_dblevel)
 
 #include "gevent.asl"
+#include "graphic"
+#include "hv.asl"
 #include "tbqrd.asl"
 
 
@@ -49,6 +63,12 @@ float IGCTIM[];
 // check why we can't use SIV arrays?
 */
 
+float dy = 0.2;
+float dx = 0.2;
+float x0,y0,x1,y1;
+
+
+
  Vec<float> IGCLONG(7000);
 
   Vec<float> IGCLAT(7000);
@@ -62,6 +82,14 @@ int IGC_Read(Str& igc_file)
 {
 
 <<"%V $igc_file \n"
+
+  
+   Vec<double> sslng(14);
+   
+   Vec<double> sslat(14);
+   
+   Vec<double> ssele(14);
+
 
    T=fineTime();
 
@@ -83,84 +111,253 @@ int IGC_Read(Str& igc_file)
 
    dt=fineTimeSince(T);
 <<"$_proc took $(dt/1000000.0) secs \n"
+
+  for (i=0; i < 1000; i += 10) {
+     //<<"$i $IGCTIM[i] $IGCELE[i] $IGCLAT[i]  $IGCLONG[i] \n";
+     printf("%d %f %f %f %f\n",i,IGCTIM[i] ,IGCELE[i] ,IGCLAT[i]  ,IGCLONG[i] );
+     }
+     
+
+
+   sslng=  IGCLONG.stats();
+     for (i=0; i < 12; i++) {
+        printf("i %d %f \n",i,sslng[i]);
+      }
+
+   sslat= IGCLAT.stats(); // also works
+
+     for (i=0; i < 12; i++) {
+ printf("i %d %f \n",i,sslat[i]);
+      }
+
+
     cf(a);
    return ntps;
 }
 //========================
 
+
+void East()
+{
+
+    sec_col = dcols -scols;
+    elng =  103.56;   // depends on lat - TBF
+    wlng = elng + dlng;
+
+  <<"at Eastern edge  %V $sec_col   $wlng $elng  $slat $nlat\n"
+}
+
 void goEast()
 {
-<<"Heading East\n"
-   sec_col +=  scols/2;
-   wlng -= dlng/2
-   elng -= dlng/2
-<<"$wlng  $elng\n"
+//sdb(2);
+ int  new_col   = sec_col + scols/4;
 
+ int  new_sec_col; 
+
+ int dscols = scols/4;
+ 
+ new_sec_col =  sec_col + scols/4;
+ //new_col = sec_col + dscols;
+ 
+    if (new_col != new_sec_col) {
+
+<<"PARSE ERROR %V $new_col $new_sec_col\n"
+    }
+ 
+ if ((new_sec_col + scols) < dcols) {
+   sec_col = new_sec_col;
+   wlng -= dlng/4;
+   elng -= dlng/4;
+
+  }
+  else {
+  <<"at edge \n"
+    sec_col = dcols -scols;
+    elng =  103.56;   // depends on lat - TBF
+    wlng = elng + dlng;
+  }
+
+<<"Heading East %V $new_sec_col  $sec_col $wlng  $elng $dlng  $scols $dcols $dscols $new_col\n"
 }
 //========================
-
+void West()
+{
+      sec_col = sec_col_min; // west edge
+       wlng = 110.0;  // lat dependent TBF
+       elng = wlng + dlng;
+<<"At Western edge  $sec_col  $wlng  $elng  \n"
+}
 
 void goWest()
 {
-<<"Heading West\n"
-   sec_col -=  scols/2;
-   wlng += dlng/2
-   elng += dlng/2
-   if (sec_col <0) {
-       sec_col = 0; // west edge
 
+ int dscols = scols/2;
+
+   sec_col -=  scols/2;
+
+   if (sec_col < sec_col_ min) {
+       sec_col = sec_col_min; // west edge
+       wlng = 110.0;  // lat dependent TBF
+       elng = wlng + dlng;
+       <<"at edge\n"
   }
-<<"$wlng  $elng\n"
+  else {
+   wlng += dlng/2 ;
+   elng += dlng/2;
+   }
+<<"Heading West  $sec_col  $wlng  $elng  $dscols\n"
 }
 //========================
+
+void Top()
+{
+       sec_row = drows - srows;
+       nlat = 40.03;
+       slat = nlat - dlat;
+<<"At top North  $sec_row $slat  $nlat  $srows $drows \n"
+}
+//========================
+
 void goNorth()
 {
-<<"Heading North\n"
 
-       sec_row += srows/2;
-       if (sec_row > drows) {
-           sec_row = drows - srows;
-       }
-       else {
-          nlat += dlat/2;
-          slat += dlat/2;	  
-
-
-       }
-<<"$slat  $nlat\n"
+ int  new_sec_row =  sec_row + srows/4;
+  if ((new_sec_row + srows) < drows) {
+       sec_row = new_sec_row;
+          nlat += dlat/4;
+          slat += dlat/4;	  
+  }
+  else {
+       sec_row = drows - srows;
+       nlat = 40.03;
+       slat = nlat - dlat;
+  <<" at top \n";
+}
+<<"Heading North  $sec_row $slat  $nlat  $srows $drows \n"
 }
 //========================
+
+void Bottom()
+{
+
+           sec_row =sec_row_min;
+	   <<"at bottom\n"
+          slat = slat_min;	  
+          nlat = slat + dlat/4;
+}
+
 
 void goSouth()
 {
 <<"Heading South\n"
 
-       sec_row -= srows/2;
-       if (sec_row < 0) {
-           sec_row =0;
+       sec_row -= srows/4;
+       if (sec_row < sec_row_min) {
+           sec_row =sec_row_min;
+	   <<"at bottom\n"
        }
       else {
-          nlat -= dlat/2;
-          slat -= dlat/2;	  
+          nlat -= dlat/4;
+          slat -= dlat/4;	  
       }
 <<"$slat  $nlat\n"
 }
 //========================
+void zoomOut()
+{
+	 
+           skip_row++
+	if (skip_row >=5) {
+	   skip_row =5
+	   }
+        skip_col++;
+	if (skip_col >=5) {
+	   skip_col =5
+	   }
+
+   scols = (ncols * (skip_col+1))
+   srows = (nrows * (skip_row+1))   
+   dlat = srows / 2840.0;
+   dlng = scols /2100.0; 
+
+   titleComment("ZoomOut ");
+<<"Zoom OUT $skip_row $skip_col \n"
+
+     titleMessage("Zoom OUT $skip_row $skip_col ");
+// adjust  the lat,lng 
+}
+
+void zoomIn()
+{
+                skip_row--
+	if (skip_row < 0) {
+	   skip_row =0
+	   }
+        skip_col--
+	if (skip_col <0) {
+	   skip_col =0
+	   }
+
+   scols = (ncols * (skip_col+1))
+   srows = (nrows * (skip_row+1))   
+   dlat = srows / 2840.0;
+   dlng = scols /2100.0; 
+     <<"Zoom IN in $skip_row $skip_col \n"
+     titleMessage("Zoom IN $skip_row $skip_col ");
+
+
+
+}
+
+void centerPos()
+{
+
+	    
+   <<"Center on click position \n"
+   <<"%V $targ_col $targ_row  $sec_col $sec_row  $ncols $nrows\n"
+  
+            mid_col = sec_col + scols/2;
+	    mid_row = sec_row + srows/2;
+	    adj_col = mid_col - targ_col;
+	    adj_row = mid_row - targ_row;
+	    sec_col -= adj_col;
+	    sec_row -= adj_row;
+	    <<"%V $mid_col $mid_row $adj_col $adj_row $sec_col $sec_row\n"
+	    if (sec_col < 0 ) sec_col = 0;
+	    if (sec_row < 0) sec_row = 0;
+
+  	 <<"%V $targ_col $targ_row $sec_col $sec_row $skip_col $skip_row $srows $scols\n"
+
+
+
+
+
+
+
+}
+
+
+
   //sdb(1,_~pline,_~trace);
 
-
-int use_cpix = 1; // waht is this??
-
- sec_row =   0;
- sec_col =  0;
+int do_pix_stuff = 1;
+int use_cpix = 1; //   using a coded version of cmap indices (char) instead of rgb u32 values
+int do_trans = 0;
+    int naz= 0;
+    int kc = 0;
+    
+  sec_row =   0;
+  sec_col =  0;
 
 // igcfn = getArgStr();
 
    slat = 35.0;
    nlat = 42.0;
    wlng = 110.0;
-   elng =  105.0 ;
+   elng =  104.0 ;
 
+  x0 = wlng;
+   y0 = slat;
 
 Str igcfn = "spk.igc";
 
@@ -182,7 +379,8 @@ Str igcfn = "spk.igc";
 
 <<" $IGCTIM[0:20] \n"
 
-  m20 =(midpt+20)
+  m20 =(midpt+20);
+
 //<<" $IGCLAT[midpt:(midpt+20):] \n"
 
 //<<" $IGCLAT[midpt:m20:] \n"
@@ -191,19 +389,19 @@ Str igcfn = "spk.igc";
    cmp_name = "${fname}.cmp";
 
   if (use_cpix) {
-     //AF= ofr("den103.cmp")
-     AF= ofr(cmp_name)
+     AF= ofr(cmp_name) ; // den103.cmp")
    }
  else {
-   // AF= ofr("den103.dat")
-    AF= ofr("${fname}.dat")
-    CF= ofw("new.cmp")
+
+    AF= ofr("${fname}.dat") ;   // den103.dat rgb u32 values
+    CF= ofw("new.cmp") ;   // output the cmap index file  1/4 byte size of original
   }
 
   if (AF == -1) {
    <<"error open $cmp_name\n";
     exit();
   }
+  
 <<"$AF $cmp_name\n";
 
 
@@ -225,28 +423,12 @@ int dcols = PH[1];
 
 // hdr for tiff npix rows cols
 
-uchar CPIX[>10000];  // make dynamic ? - cpp
-
-/*
-nir=vread(AF,CPIX,3000,UCHAR_);
-<<"%V $nir - just 3?\n";
-<<"%V $CPIX[000:3000] \n";
-
-nir=vread(AF,CPIX,3000,UCHAR_);
-<<"%V $nir - just 3?\n";
-<<"%V $CPIX[2000:3000] \n";
-nir=vread(AF,CPIX,3000,UCHAR_);
-<<"%V $nir - just 3?\n";
-<<"%V $CPIX[0:3000] \n";
-
-
-*/
-
+uchar CPIX[0];  // make dynamic ? - cpp
 
 
 openDll("image");
 
-uint SPIX[];
+uint SPIX[0];
 
 
 
@@ -276,10 +458,10 @@ map_name = "cmap_${fname}";
 
 
 
-CM.pinfo();mo
+//CM.pinfo();
 
 
-#include "graphic"
+
 
 
  rainbow();
@@ -343,7 +525,7 @@ for (i=0; i< nc; i++) {
 // want this to contain a 512X512 image -- so that plus borders and title
   
 
-
+//sdb(0);
      vp =  cWi("PIC_WINDOW");
 
      sWi(_WOID,vp,_WRESIZE,wbox(0.01,0.01,0.9,0.95,0));
@@ -360,7 +542,8 @@ for (i=0; i< nc; i++) {
 
  sWo(_WOID,picwo,_WBORDER,BLACK_,_WDRAW,ON_,_WFONTHUE,RED_, _WREDRAW,ON_);
 
- sWo(_WOID,picwo,_WPIXMAP,ON_,_WDRAW,ON_,_WSAVE,ON_,_WSAVEPIXMAP,ON_,_WREDRAW,ON_)
+ //sWo(_WOID,picwo,_WPIXMAP,ON_,_WDRAW,ON_,_WSAVE,ON_,_WSAVEPIXMAP,ON_,_WREDRAW,ON_)
+ sWo(_WOID,picwo,_WPIXMAP,ON_,_WSAVE,ON_,_WSAVEPIXMAP,ON_,_WREDRAW,ON_)
 
     _WPOS = woGetPosition(picwo);
 
@@ -374,16 +557,20 @@ for (i=0; i< nc; i++) {
 
    npics = dcols/ nxpix;
    npics++;
-   ncols = dcols / npics
+   ncols = dcols / npics;
+
+   if (nxpix > 1200) {
+       ncols = 1200;
+   }
 
    ncols /= 2;
    ncols *= 2;
 
    nrows /= 2;
    nrows *= 2;
+   // assumes clip dx  is 1000 !
 
-
-<<"%V $nxpix $drows $nrows $dcols $npics $(ncols * npics)\n"
+  <<"%V $nxpix $npics $drows $nrows $ncols $dcols $npics $(ncols * npics)\n"
 
 
  if (!use_cpix) {
@@ -401,12 +588,14 @@ for (i=0; i< nc; i++) {
 
 
 
-   sWo(_WOID,picwo,_WCLIP,wbox(4,4,nrows,ncols,2));
+   sWo(_WOID,picwo,_WCLIP,wbox(10,10,ncols+10,nrows+10,2));
 
 
    titleButtonsQRD(vp);
 
    titleVers();
+
+
 
 
   sWo(_WOID,picwo,_WSCALES,rbox(wlng,slat,elng,nlat));
@@ -415,7 +604,7 @@ for (i=0; i< nc; i++) {
 
   int igc_tgl = cGl(picwo);
 
-  sGl(igc_tgl,_GLXVEC,IGCLONG,_GLYVEC,IGCLAT,_GLHUE,BLUE_);
+  sGl(igc_tgl,_GLXVEC,IGCLONG,_GLYVEC,IGCLAT,_GLHUE,YELLOW_,_GLWIDTH,2);
 
 
 
@@ -432,14 +621,15 @@ for (i=0; i< nc; i++) {
 <<"plotline2 \n"
 
    plot(picwo,_line,wlng,nlat,elng,slat,BLUE_)
-   
+    plotLine(picwo,wlng,slat+0.2,elng,nlat-0.2,RED_)
 
-   dGl(igc_tgl);
+   titleMessage("%V $wlng $slat $elng $nlat");
 
+   sGl(_GLID,igc_tgl,_GLDRAW,YELLOW_);  // DrawGline;
 
+ //  sWo(_WOID,picwo,_WSHOWPIXMAP,ON_);
 
-   sWo(_WOID,picwo,_WSHOWPIXMAP,ON_);
-
+//   dGl(igc_tgl);
  //query()
 
  // AF= ofr("chey97.dat")
@@ -452,16 +642,23 @@ for (i=0; i< nc; i++) {
   // sec_row = 640; // 35.5   - dec degrees
   // sec_col =  5700; // 109
 
-    sec_row = 633;
-    sec_col = 1500;
+   // where to start  lat,lng - center ?
 
-   skip_col = 3;
-   skip_row = 3;
+
+    sec_row = 633;
+    sec_row_min = 633;
+    sec_col = 1500;
+    sec_col_min = 1500;
+
+  // what is skip going to do to the image ?
+   skip_col = 2;  // was 3
+   skip_row = 2;
+
    scols = (ncols * (skip_col+1))
    srows = (nrows * (skip_row+1))   
-<<"%V $npix $drows $dcols \n"
+<<"%V $npix $drows $dcols $scols  $srows\n"
 
-   sWo(_WOID,picwo,_WCLIP,wbox(0,0,ncols,nrows,2));
+   sWo(_WOID,picwo,_WCLIP,wbox(10,10,ncols+10,nrows+10,2));
 
 <<"clip is: $_WPOS\n"
 
@@ -478,15 +675,20 @@ for (i=0; i< nc; i++) {
 
    plat = 2100;
    plng = 2100;
+
+
+///   chey or den ?
+
    
    //slat = 35.61
-
+   slat_min = 35.58;  // den lhc
    slat = 35.58;  // den lhc
   // slat = 36.0  // den lhc
    //slat = 40.0  //chy lhc
    nlat = slat + dlat;
    //wlng = 109.0
    wlng = 111.0;
+   
    wedge = 111.0;
    sedge = 35.58;
    
@@ -499,216 +701,21 @@ for (i=0; i< nc; i++) {
   //sdb(1,_~pline,_~trace);
   np = 1000;
 
-
+ int m_init = 1;
+ 
  while (1) {
-   
-
-
-
-   scols = ncols * (skip_col+1);
-   srows = nrows * (skip_row+1);
-
-   dlng = scols / 2100.0; // den - depends on lat - needs lat adjustment
-   dlat = srows / 2840.0; // den
-
-   sWo(_WOID,picwo,_WRHTSCALES,rbox(sec_col,sec_row,sec_col+scols,sec_row+srows));
-   
-   sWo(_WOID,picwo,_WLHBSCALES,rbox(wlng,slat,elng,nlat));   
-
-   if (replot) {
-
-       sWo(_WOID,picwo,_WCLEARPIXMAP,ON_);
-       
-   //sWo(picwo,_scales,sec_col,sec_row,sec_col+scols,sec_row+srows);
-
-       fseek(AF,12,0);
-
-// over eastern edge   
-   if ((sec_col + scols) > dcols) {
-        sec_col = dcols - scols -2;
-        sWo(_WOID,picwo,_WRHTSCALES,rbox(sec_col,sec_row,sec_col+scols,sec_row+srows));
-	// ? elng  -- depends on lat -  need this per deg lat
-	elng = wedge + dcols/2100.0; // den
-	wlng = sec_col/2100.0; // den
-	//
-   }
-// over northern edge   
-   if ((sec_row + srows) > drows) {
-
-        sec_row = drows - srows -2;
-	sWo(_WOID,picwo,_WRHTSCALES,rbox(sec_col,sec_row,sec_col+scols,sec_row+srows));
-	nlat = sedge + (sec_row+srows)/ 2840.0;
-        slat = nlat - (srows/ 2840.0);
-
-   }
-   
-   sWo(_WOID,picwo,_WCLEARPIXMAP,ON_);
-
-   if (do_sec) {
-   
-   if (use_cpix) {
-     //CPIX = 0;
-     cval = 32;
-     
-     npixr = mread(AF,CPIX,nrows,ncols,drows,dcols,sec_row,sec_col,skip_row,skip_col);
-     
-     <<"CPIX read $npixr  ? 0 error ? \n";
-
-
-    CPIX.pinfo();
- sz=Caz(CPIX);
- <<"$sz \n";
-
-    
-
-
-int naz= 0;
-    int kc = 0;
-/*    
-   for (i=0; i< 500; i++) {
-      for (j = 0; j < 100 ; j++) {
-      cval = CPIX[i][j];
-      if (cval > 0) {
-      naz++;
-        }
-<<"$i $j $naz $cval \n"
-     }
-    }
-
-<<"%V $naz\n"
-*/
-
- np2 = np +50;
-<<"%V $sz $npixr $np $np2 $CPIX[np] \n"
-<<"$CPIX[np:np2] \n"
-
- np = np2;
-    <<"$(Cab(CPIX))\n"
-   }
-   else {
-     npixr = mread(AF,SPIX,nrows,ncols,drows,dcols,sec_row,sec_col,skip_row,skip_col);
-     <<"read SPIX $npixr\n";
-
-   } 
-
-<<"%V $nrows $ncols $drows $dcols $npixr $sec_row $sec_col   \n"
-
-
- if ( use_cpix) {
-<<"read $npixr\n"
-//   Redimn(CPIX,nrows,ncols)
-   CPIX.pinfo();
-
-   RPIX = mrevRows(CPIX);   // this corrupts fix 03/11/22
+ 
+  if (m_init) {
+      m_init = 0;
+  }
+  else {
   
-   RPIX.pinfo();
+    eventWait();
+  <<"click the mouse %V $Ev_loop $Ev_button $Ev_rx $Ev_ry %c $Ev_keyc\n";
+  // print("click the mouse %d %d\n",Ev_loop, Ev_keyc);
 
-
-    for (j=0;j < 2; j++) {
-<<"<|$j|> $CPIX[j][0:1000:50]\n"    
-<<"<|$j|> $RPIX[j][0:1500:50]\n"
-  }
-
-//<<"$(Cab(RPIX))\n"
-<<"plotting pixrect  $cmi\n"
-
-    //PlotPixRect(picwo,RPIX,cmi);
-    
-    PlotPixRect(picwo,CPIX,cmi);
-
-  }
-
-   else {
-
-   Redimn(SPIX,nrows,ncols)
-   nec= vtrans(SPIX,CM)
-   vcmpset(SPIX,">",256,0)
-   //TPIX = mrevRows(SPIX)
-   TPIX = SPIX
-
-   Tile = TPIX;
-   //PlotPixRect(picwo,TPIX,cmi)
-   PlotPixRect(picwo,Tile,cmi);
-
-   //wdata(BF,TPIX)
-  // Tile = 234;
-  //    Tile[1] = 123;
-   nbw += wdata(CF,Tile)
-       for (j=0;j < 10; j++) {
-<<"$j $TPIX[j][0:200:]\n"       
-<<"$j $Tile[j][0:200:10]\n"
-   }
-// Redimn(Tile)
- <<"$(Cab(TPIX)) $(Typeof(TPIX))  \n"
- <<"$(Cab(Tile)) $(Typeof(Tile)) $nbw \n"
-
-
-  }
- }
-
-
-
-   sWo(_WOID,picwo,_WSHOWPIXMAP,ON_)
-
-   sWo(_WOID,picwo,_WDRAW,ON_)
-
-//   plot(picwo,_line,wlng,slat,elng,nlat,RED_)
-
-//   plot(picwo,_line,wlng,nlat,elng,slat,BLUE_)
-
-
-     dGl(igc_tgl);  // plot the igc track -- if supplied
-
-  
-    sWo(_WOID,picwo,_WSHOWPIXMAP,ON_);
-  }
-
-<<"%V $wlng $slat $elng $nlat \n"
-<<"where are we? %V $sec_col $sec_row \n"
-
-    
-    // while (1)
-    
-
-      eventWait();
-
-<<"click the mouse $Ev_loop\n";
-print("click the mouse %d\n",Ev_loop);
-
-
-
-       targ_col = Ev_x;
-       targ_row = Ev_y;
-       
-//       tlng = Ev_ry;
-//       tlat = Ev_rx;
-
-
-<<"%V $Ev_button  $Ev_x  $Ev_y\n"
-
-    
-
-
-/*
-      ans=query("where are we?")
-// ip lat,lng in dec-deg  - center map ??
-*/
-
-   //  titleMessage("$targ_col $targ_row %V $tlat $tlng")
-    
-    // sWo(picwo,_drawoff)
-
-
-
-
-   if (sec_row >= drows) {
-<<"%V $sec_row $drows \n"
-    break;
-
-   }
-<<"%V$Ev_button $Ev_keyc\n"
-      replot = 1;
-      if ( Ev_keyc == 'S') {
+    replot =1;
+    if ( Ev_keyc == 'S') {
          goEast()
      }
      else if ( Ev_keyc == 'Q') {
@@ -720,55 +727,162 @@ print("click the mouse %d\n",Ev_loop);
      else if (Ev_button == 5 || Ev_keyc == 'T') {
          goSouth()
      }
-     else if ( Ev_keyc == 'X') {
-
-                skip_row++
-	if (skip_row >=4) {
-	   skip_row =4
-	   }
-        skip_col++
-	if (skip_col >=4) {
-	   skip_col =4
-	   }
-	   
-<<"Zoom out $skip_row $skip_col \n"
-
+     else if ( Ev_keyc == 't') {
+         Top();
      }
+     else if ( Ev_keyc == 'e') {
+         East();
+     }
+     else if ( Ev_keyc == 'w') {
+         West();
+     }          
+     else if ( Ev_keyc == 'b') {
+         Bottom();
+     }          
      else if ( Ev_keyc == 'x') {
-                skip_row--
-	if (skip_row < 0) {
-	   skip_row =0
-	   }
-        skip_col--
-	if (skip_col <0) {
-	   skip_col =0
-	   }
-	   
-     <<"Zoom in $skip_row $skip_col \n"
-     
-     }               
+         zoomOut();
+     }
+     else if ( Ev_keyc == 'z') {
+           zoomIn();
+    }               
      else if (Ev_button == 2) {
-     <<"center on click position \n"
-         	    <<"%V $targ_col $targ_row  $sec_col $sec_row  $ncols $nrows\n"
-            mid_col = sec_col + scols/2;
-	    mid_row = sec_row + srows/2;
-	    adj_col = mid_col - targ_col;
-	    adj_row = mid_row - targ_row;
-	    sec_col -= adj_col;
-	    sec_row -= adj_row;
-	    <<"%V $mid_col $mid_row $adj_col $adj_row $sec_col $sec_row\n"
-	    if (sec_col < 0 ) sec_col = 0;
-	    if (sec_row < 0) sec_row = 0;
-
-  	 <<"%V $targ_col $targ_row $sec_col $sec_row $skip_col $skip_row $srows $scols\n"
-	 
+            centerPos();
      }
      else {
-             replot = 1;
-
+       replot = 0;
      }
-     	     <<"%V$replot \n";
- }
+<<"%V $replot \n";
+  }
+
+
+   scols = ncols * (skip_col+1);
+   srows = nrows * (skip_row+1);
+
+   dlng = scols / 2100.0; // den - depends on lat - needs lat adjustment
+   dlat = srows / 2840.0; // den
+
+  // sWo(_WOID,picwo,_WRHTSCALES,rbox(sec_col,sec_row,sec_col+scols,sec_row+srows));
+   
+   sWo(_WOID,picwo,_WLHBSCALES,rbox(wlng,slat,elng,nlat));   
+
+   if (replot) {
+
+       sWo(_WOID,picwo,_WCLEARPIXMAP,ON_);
+       
+   //sWo(picwo,_scales,sec_col,sec_row,sec_col+scols,sec_row+srows);
+
+       fseek(AF,12,0);
+
+/*
+// over eastern edge   
+   if ((sec_col + scols) > dcols) {
+        sec_col = dcols - scols -2;
+      //  sWo(_WOID,picwo,_WRHTSCALES,rbox(sec_col,sec_row,sec_col+scols,sec_row+srows));
+	// ? elng  -- depends on lat -  need this per deg lat
+	elng = wedge + dcols/2100.0; // den
+	wlng = sec_col/2100.0; // den
+	//
+   }
+// over northern edge   
+   if ((sec_row + srows) > drows) {
+
+        sec_row = drows - srows -2;
+//	sWo(_WOID,picwo,_WRHTSCALES,rbox(sec_col,sec_row,sec_col+scols,sec_row+srows));
+	nlat = sedge + (sec_row+srows)/ 2840.0;
+        slat = nlat - (srows/ 2840.0);
+
+   }
+*/
+
+   sWo(_WOID,picwo,_WCLEARPIXMAP,ON_);
+   
+   if (use_cpix) {
+     //CPIX = 0;
+     cval = 32;
+     
+     npixr = mread(AF,CPIX,nrows,ncols,drows,dcols,sec_row,sec_col,skip_row,skip_col);
+     
+    //CPIX.pinfo();
+     sz=Caz(CPIX);
+    <<"$sz \n";
+
+
+    <<"$(Cab(CPIX))\n"
+
+
+<<"%V $npixr $nrows $ncols $drows $dcols $npixr $sec_row $sec_col  $skip_row $skip_col $srows $scols\n"
+
+  <<"plotting pixrect  $cmi\n"
+     sWo(_WOID,picwo,_WCLEARCLIP,ORANGE_);
+     PlotPixRect(picwo,CPIX,cmi);
+
+    }
+ 
+  }
+
+
+
+
+// plot box?
+   //plot(picwo,_line,wlng,slat,elng,nlat,RED_)
+   
+       targ_col = Ev_x;
+       targ_row = Ev_y;
+       
+       tlat = Ev_ry;
+       tlng = Ev_rx;
+    
+
+<<"%V $wlng $slat $elng $nlat \n"
+<<"where are we? %V $sec_col $sec_row \n"
+
+
+<<"%V  POS $tlng  $tlat $Ev_x $Ev_y \n")
+
+
+
+
+   if (sec_row >= drows) {
+<<"%V $sec_row $drows \n"
+    break;
+
+   }
+   <<"%V$Ev_button $Ev_keyc\n"
+
+//  wlng = 107;
+//  elng = 103;
+//  slat = 36;
+//  nlat = 39;
+
+  if (replot) {
+   titleMessage("%V $wlng $slat $elng $nlat");
+    sWo(_WOID,picwo,_WDRAW,ON_,_WSCALES,rbox( wlng, slat, elng, nlat)); // updated scales
+
+    sGl(_GLID,igc_tgl,_GLDRAW, RED_);  // DrawGline;   // this has to retrieve updated scales
+    sWo(_WOID,picwo,_WCLIPBORDER, BLACK_,_WSHOWPIXMAP,ON_)  ;
+  }
+  else {
+    titleMessage("$targ_col $targ_row  $tlat $tlng ");
+  }
+//  sWo(_WOID,picwo,_WCLEARPIXMAP,ON_)
+
+  
+
+   //wlng.pinfo();
+   //elng.pinfo();
+   //slat.pinfo();
+   //nlat.pinfo();
+   //
+  // x0 += dx;
+  // y0  += dy;
+
+
+  
+
+
+
+
+}
 
 
 
@@ -777,7 +891,7 @@ print("click the mouse %d\n",Ev_loop);
 
 ///////////////////////////////    DEV //////////////////////////////////////////////////
 /*
-
+   // skip row/col  - crude zoom out of raster image
 
    [1]  prevent going over north / east edge    [ ]
 
@@ -793,3 +907,83 @@ print("click the mouse %d\n",Ev_loop);
 
 
 */
+
+////////////////////////////////////////////////////////////////////////////////
+
+/*    
+   for (i=0; i< 500; i++) {
+      for (j = 0; j < 100 ; j++) {
+      cval = CPIX[i][j];
+      if (cval > 0) {
+      naz++;
+        }
+<<"$i $j $naz $cval \n"
+     }
+    }
+
+<<"%V $naz\n"
+*/
+
+#if 0
+   else if (do_trans) {
+
+   Redimn(SPIX,nrows,ncols)
+   nec= vtrans(SPIX,CM)
+   vcmpset(SPIX,">",256,0)
+   //TPIX = mrevRows(SPIX)
+   TPIX = SPIX
+
+   Tile = TPIX;
+   //PlotPixRect(picwo,TPIX,cmi)
+   PlotPixRect(picwo,Tile,cmi);
+
+   //wdata(BF,TPIX)
+  // Tile = 234;
+  //    Tile[1] = 123;
+   nbw += wdata(CF,Tile);
+/*  
+       for (j=0;j < 10; j++) {
+<<"$j $TPIX[j][0:200:]\n"       
+<<"$j $Tile[j][0:200:10]\n"
+   }
+*/
+
+// Redimn(Tile)
+// <<"$(Cab(TPIX)) $(Typeof(TPIX))  \n"
+// <<"$(Cab(Tile)) $(Typeof(Tile)) $nbw \n"
+  }
+
+   else {
+     npixr = mread(AF,SPIX,nrows,ncols,drows,dcols,sec_row,sec_col,skip_row,skip_col);
+     <<"read SPIX $npixr\n";
+   } 
+
+
+#endif
+
+
+
+#if 0
+
+    np2 = np +50;
+  <<"%V $sz $npixr $np $np2 $CPIX[np] \n"
+//<<"$CPIX[np:np2] \n"
+   np = np2;
+
+
+//   Redimn(CPIX,nrows,ncols)
+   //CPIX.pinfo();
+
+   //RPIX = mrevRows(CPIX);   // this corrupts fix 03/11/22
+  
+   //RPIX.pinfo();
+
+/*
+    for (j=0;j < 2; j++) {
+<<"<|$j|> $CPIX[j][0:1000:50]\n"    
+<<"<|$j|> $RPIX[j][0:1500:50]\n"
+  }
+*/
+//<<"$(Cab(RPIX))\n"
+
+#endif

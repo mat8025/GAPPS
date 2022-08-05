@@ -10,13 +10,14 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-myScript = getScript();
+
+
 ///
 ///
 ///
 
-include "debug"
-include "hv"
+#include "debug"
+#include "hv"
 
 scriptDBOFF();
 
@@ -24,9 +25,9 @@ setmaxcodeerrors(-1); // just keep going
 setmaxicerrors(-1);
 
 
-AF=ofr(_clarg[1])
+AF=ofr(_clarg[1]);
 
-AF2=ofr(_clarg[2])
+AF2=ofr(_clarg[2]);
 
 
 uint TH[6]
@@ -79,7 +80,7 @@ cf(AF2)
 
 
 
- A= ofr("cmapi_den")
+ A= ofr("cmap_den103")
  
  CM= readRecord(A,_RTYPE,UINT_)
 

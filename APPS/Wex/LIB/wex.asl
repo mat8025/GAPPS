@@ -108,6 +108,13 @@ class Svar;
 
 
  Svar Mo;
+#include "hv.asl"
+#include "gevent.asl"
+
+// use gevent.asl  - for these globals
+/*
+  int Ev_button;
+*/
 
 #include "rates_wex.asl"
 
@@ -319,15 +326,6 @@ Record RX;
   float rcpx = 10.0;
 
 
-// use gevent.asl  - for these globals
-  int Button;
-
-  int Gekey;
-  Str Gemsg;
-  Str WoName ="XYZ";
-  Str Ev_keyw;
-  float Gerx;
-  float Gery;
 
 
 //    Svar Goals;
@@ -742,7 +740,7 @@ float ae = EXTV[15];
 
 // COUT(ae);
 
-   AVE_EXTV.pinfo();
+   //AVE_EXTV.pinfo();
 
 
    AVE_EXTV.Smooth(7);  // add Smooth (smooth_win_size)
@@ -790,51 +788,33 @@ COUT(ae);
  
 cout<<"DONE PLOT\n";
 int nevent = 0;
- Gevent Gev;
+// Gevent Gev;
 
      while (1) {
 
 
+    eventWait();
 
-
-    Gemsg = Gev.eventWait();
-
-    Gemsg.pinfo();
-
-    Gekey = Gev.getEventKey();
-    
-    Gev.getEventRxy( &Gerx,&Gery);
-
-    WoName = Gev.getEventWoName();
-
-    WoName.pinfo();
-
-
-   Button = Gev.getEventButton();
-
-
-    Ev_keyw = Gev.getEventKeyWord();
-
-    pa(Button,Ev_keyw,Gekey,WoName,Gerx,Gery );
+    printf("Ev_button %d Ev_keyw %s Ev_woname %s Ev_keyc %d\n", Ev_button,Ev_keyw,Ev_woname,Ev_keyc );
 
          nevent++;
 
-      if (WoName == "WTLB") {
+      if (Ev_woname == "WTLB") {
                WTLB ();
        }
        
-       else if (WoName == "REDRAW") {
+       else if (Ev_woname == "REDRAW") {
              drawScreens();
        }
 
-       else if (WoName == "RESIZE") {
+       else if (Ev_woname == "RESIZE") {
              drawScreens();
        }
-       else if (WoName == "ZIN") {
+       else if (Ev_woname == "ZIN") {
              ZIN();
        }
 
-       else if (WoName == "ZOUT") {
+       else if (Ev_woname == "ZOUT") {
              ZOUT();
        }
 
@@ -843,7 +823,7 @@ int nevent = 0;
  // if (Button == 1 || Button == 3) 
  //         WTLB();
 
-	 if (Button == 4)
+	 if (Ev_button == 4)
 	    break;
 	 if (nevent > 200)
 	   break;
@@ -855,7 +835,7 @@ cout<<"Exit Wex\n";
 
 
 
-  extern "C" int wextask(Svarg * sarg)  {
+  extern "C" int wex(Svarg * sarg)  {
 
   Str a0 = sarg->getArgStr(0) ;
 

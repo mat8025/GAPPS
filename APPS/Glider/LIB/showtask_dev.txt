@@ -1,0 +1,17 @@
+//////////////////////////// TODEV //////////////////////////
+
+ add in sectional map display toggle/
+
+ 3D ? display -  we did this once where is it?
+
+
+ map projection
+
+ add in some other TPTS  for  1000k 750 K triangles
+
+ easy change pts
+
+ rubber band to tpt
+
+ landout options on route -- (not part of task distance)
+ 

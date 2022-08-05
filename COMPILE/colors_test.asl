@@ -1,22 +1,20 @@
 /* 
- *  @script colors_test
+ *  @script colors_test.asl                                             
  * 
- *  @comment show color map cpp version 
- *  @release CARBON color map 
- *  @vers 1.6 C 6.3.94 C-Li-Pu 
- *  @date 03/12/2022 11:04:28          
- *  @cdate Sun Mar 22 11:05:34 2020 
- *  @author Mark Terry 22 11:05:34 2020 
- *  @Copyright © RootMeanSquare 2022
+ *  @comment show color map cpp version                                 
+ *  @release Beryllium                                                  
+ *  @vers 1.7 N Nitrogen [asl 6.4.56 C-Be-Ba]                           
+ *  @date 07/31/2022 14:08:35                                           
+ *  @cdate Sun Mar 22 11:05:34 2020                                     
+ *  @author Mark Terry 22 11:05:34 2020                                 
+ *  @Copyright © RootMeanSquare 2022 -->                               
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                                                                        
+;//----------------<v_&_v>-------------------------//;                  
 
 
-//#include "debug"
-//#include "hv.asl"
 
-//ignoreErrors();
+
 
 #define ASL 0
 #define CPP 1
@@ -35,7 +33,7 @@
 #include "debug.h"
 #include "winargs.h"
 #include "vargs.h"
-
+#include "gevent.h"
 #include "uac.h"
 #endif
 
@@ -49,7 +47,7 @@
  double bluev = 0.5;
 
 
-//#include "gevent.h"
+#include "gevent.asl"
 #include "tbqrd.asl"
 
 
@@ -61,7 +59,7 @@ Uac::colorWorld(Svarg * sarg)
 
 #include "graphic.asl"
 
-Gevent gev;
+
 
 Str woval ="xyz";
 Str wovalue ="xyz";
@@ -228,35 +226,28 @@ WPOS[0] =77;
 WPOS[1] = 84;
  COUT(WPOS);
 
- ans=query("?","WPOS 2b assign ",__LINE__);
+// ans=query("?","WPOS 2b assign ",__LINE__);
 //pa ("WPOS ", WPOS, __LINE__);
-
-
 
      WPOS= woGetPosition(gwo);
 
- ans=query("?","WPOS done assign ",__LINE__);
- COUT(WPOS);
+ //ans=query("?","WPOS done assign ",__LINE__);
+ 
 
 //pa ("WPOS ", WPOS);
 
-//   WXY= woGetRxy(gwo,4);
-//pa("getrx ", WXY);
- while (1) {
+int c_index ;
+
+while (1) {
 
 
-    Gemsg =gev.eventWait();
-    Gekey = gev.getEventKey();
-    pa("ekey ", Gekey);
-    gev.getEventRxy( &Gerx,&Gery);
-
-    pa("Gerx ", Gerx, Gery);
-
-   //gev.eventRead();
-   nevent++;
+    eventWait();
 
 
-   COUT(nevent);
+    nevent++;
+
+
+    COUT(nevent);
 
 //   redv = atof( getWoValue(rwo))
 //   greenv = atof ( getWoValue(gwo))
@@ -265,33 +256,33 @@ WPOS[1] = 84;
      WPOS= woGetPosition(gwo);
 //pa ("WPOS ", WPOS);
 
-COUT(WPOS);
+   //COUT(WPOS);
 
-WXY= woGetRxy(gwo,4);
+   WXY= woGetRxy(gwo,4);
 
-  COUT(WXY);
+ // COUT(WXY);
 
 //pa("getrx ", WXY);
   //<<"$_ename $_ewoid  $WXY \n"
 
-  cout << "WXY[2] " << WXY[2] << endl;
+  //cout << "WXY[2] " << WXY[2] << endl;
 
 
 
   greenv = WXY[2];
 
-  cout << "greenv  " << greenv << endl;
+  //cout << "greenv  " << greenv << endl;
 
 //  greenv = limitval(WXY[2],0.0,1.0);
 
  WXY= woGetRxy(rwo,4);
 
 
- WXY.pinfo();
+ //WXY.pinfo();
  
  redv = WXY[2];
 
-cout << "redv  " << redv << endl;
+//cout << "redv  " << redv << endl;
 
   //redv = limitval(WXY[2],0.0,1.0);
 
@@ -304,8 +295,8 @@ cout << "redv  " << redv << endl;
 
    sWo(_WOID,bwo,_WVALUE,wovalue.strPrintf("%3.2f",bluev),_WUPDATE,ON_);
 
-cout << "greenv  " << greenv << endl;
-cout << "bluev  " << bluev << endl;
+//cout << "greenv  " << greenv << endl;
+//cout << "bluev  " << bluev << endl;
 
 //ans=query("?");
 
@@ -313,14 +304,15 @@ cout << "bluev  " << bluev << endl;
 
       cname = getColorName(2) ; // image lib auto open??
 
-cout << "color_name " << cname << endl;
+//cout << "color_name " << cname << endl;
 
    color_index = getColorIndexFromRGB(redv,greenv,bluev,0,1024);
 
    cname = getColorName(color_index) ; // image lib auto open??
 
-cout << "color_index " << color_index << " color_name " << cname << endl;
-   int c_index = matrix_index;
+//cout << "color_index " << color_index << " color_name " << cname << endl;
+
+   c_index = matrix_index;
 
    setRGB(c_index++,redv,0,0);
    setRGB(c_index++,0,greenv,0);
@@ -367,18 +359,18 @@ cout << "color_index " << color_index << " color_name " << cname << endl;
 
   woval =woGetValue (rwo);
 
-  cout << "rwo woval " << woval << endl;
+ // cout << "rwo woval " << woval << endl;
 
   woval =woGetValue (gwo);
 
-  cout << "gwo woval " << woval << endl;
+  //cout << "gwo woval " << woval << endl;
 
 
   woval =woGetValue (bwo);
 
-  cout << "bwo woval " << woval << endl;
+  //cout << "bwo woval " << woval << endl;
 
-  cout << "gev.ewoid " <<  gev.ewoid <<" gwo " << gwo << endl;   
+
 
 //ans=query("?");
 //<<"bwo $woval \n"
@@ -406,13 +398,13 @@ cout << "bluev  " << bluev << endl;
 
       // setRGB(ki,redv,bv,jv);
     
-     if (gev.ewoid == rwo) {
+     if (Ev_woid == rwo) {
        setRGB(ki,redv,bv,jv);
      }
-      else if(gev.ewoid == gwo) {
+      else if(Ev_woid == gwo) {
        setRGB(ki,bv,greenv,jv);
       }
-      else if (gev.ewoid == bwo) {
+      else if (Ev_woid == bwo) {
         setRGB(ki,bv,jv,bluev);
       }
 
@@ -434,12 +426,12 @@ cout << "bluev  " << bluev << endl;
    sWo(_WOID,gwo,_WVALUE, wovalue.strPrintf("%3.2f",greenv));
 
 
- wovalue.strPrintf(" Did you see this"); 
+ //wovalue.strPrintf(" Did you see this"); 
 
 
    
 
-cout << "txt " << wovalue << endl;
+//cout << "txt " << wovalue << endl;
 
    float tx = 0.1;
    float ty = 0.5;
@@ -447,7 +439,7 @@ cout << "txt " << wovalue << endl;
 
    ty =0.6;
    
-  wovalue.strPrintf("emsg <|%s|> cname <|%s|> red %f green %f blue %f",gev.emsg.cptr(),cname.cptr(), redv,greenv,bluev);
+  //wovalue.strPrintf("emsg <|%s|> cname <|%s|> red %f green %f blue %f",gev.emsg.cptr(),cname.cptr(), redv,greenv,bluev);
 
   //sWo(_WOID,two,_WCLEAR,_WTEXTR,wovalue.cptr(),&tx,&ty,0,0,RED_,_WREDRAW,ON_);
 
