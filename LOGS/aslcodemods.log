@@ -1287,3 +1287,16 @@ include_e.cpp                       2.24  08/05/2022 09:17:34  IDBF
 ic_wcb.cpp                          1.67  08/05/2022 09:18:20  IDBF
 opera_bit.cpp                       1.44  08/05/2022 16:48:41  IDBF
 svarg_e.cpp                         2.36  08/05/2022 16:53:56  IDBF
+proc_checkfname_e.cpp               2.55  08/06/2022 08:28:15  MAT,VEC proc args
+proc_checkfname_e.cpp               2.55  08/06/2022 08:28:58  MAT proc args
+proc_def_e.cpp                      2.69  08/06/2022 08:52:12  VEC,MAT proc args
+sint_l.cpp                          1.21  08/06/2022 10:00:59  Cab use psiv
+pr_state.cpp                        1.32  08/07/2022 09:55:21  IDBF
+firstpass.cpp                       2.37  08/07/2022 10:07:35  IDBF
+secondpass.cpp                      2.36  08/07/2022 10:08:33  IDBF
+declare_e.cpp                       2.46  08/07/2022 10:56:38  xx
+declare_e.cpp                       2.47  08/07/2022 10:57:37  xyz
+declare_type_e.cpp                  2.45  08/07/2022 17:26:27  Mat declare
+declare_e.cpp                       2.33  08/07/2022 17:27:51  IDBF
+ic_wcb.cpp                          1.68  08/07/2022 17:29:10  include fix
+args_process_e.cpp                  2.43  08/07/2022 17:32:00  fix exprn arg 

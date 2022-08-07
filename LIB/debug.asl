@@ -10,10 +10,10 @@
  *  @Copyright © RootMeanSquare  2010,2022 → 
  * 
  */ 
-;//-----------------<v_&_v>--------------------------//;
+//-----------------<v_&_v>--------------------------//
 
 //<<"Including  debug \n"
-hold_dbl = _dblevel;
+int hold_dbl = _dblevel;
 int dblevel = _dblevel;
 
 //<<"%V$hold_dbl \n"
@@ -116,11 +116,15 @@ int dblevel = _dblevel;
 
   sdb(hold_dbl,_keep,_~trace);
 
-  if (_dblevel > 1) {
+
+  if (_dblevel > 0) {
+  
   //sdb(_dblevel,_keep,_trace)
-  //<<"keep and trace\n"
+    <<"%V $_dblevel\n"
 
   }
+  
+//////////
 //<<" %V $_include  $_dblevel DONE debug.asl\n"
 ///
 ///  while (1) {
@@ -132,4 +136,4 @@ int dblevel = _dblevel;
 // idb or xdb files
 // comments not in exe!!
 
-;//==============\_(^-^)_/==================//;
+//==============\_(^-^)_/==================//

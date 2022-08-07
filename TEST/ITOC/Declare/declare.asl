@@ -78,7 +78,7 @@ Gevent myev;
 myev.pinfo();
 
 
-!a
+
    Ev_button = myev.getEventButton();
 
 Ev_button.pinfo();
