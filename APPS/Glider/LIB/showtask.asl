@@ -12,6 +12,7 @@
  */ 
 ;//----------------<v_&_v>-------------------------//;                  
 
+Str showtask_vers = "3.8";
 
 
 ///
@@ -102,7 +103,7 @@ if (_dblevel >0) {
 
 chkIn(_dblevel);
 
-#include "hv.asl"
+//#include "hv.asl"
 
  ignoreErrors();
 //setMaxICerrors(-1) // ignore - overruns etc

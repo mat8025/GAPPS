@@ -44,10 +44,12 @@ void showArray(int R[])
  R.pinfo();
 
  sz= Caz(R);
+
+<<"%V $sz \n"
  
  cmb = Cab(R);
  
- <<"%V $sz $cmb\n"
+ <<"%V $cmb\n"
 
  int nc = cmb[0] ;
 
@@ -100,7 +102,7 @@ void showMat(Mat& R)
  int nc = cmb[0] ;
 
 // fix first pass asl wrong set i as 0
-   hexw= R[i][1];
+   hexw= R[i][2];
 
 <<"$i $R[i][1] $hexw \n"
 i++;
@@ -108,12 +110,13 @@ i++;
 <<"$i $R[i][1] $hexw \n"
 i++;
 
-   hexw= R[i][1];
+   //hexw= R.getEle(1,1);
+hexw= R[i][1];
 <<"$i $R[i][1] $hexw \n"
 
 //hexw= LCM[i][1];
 //<<"$i $LCM[i][1] $hexw \n"
-!a
+
 
 
 
@@ -121,7 +124,7 @@ i++;
 <<"mat R $R[::][::] \n"
 int val = R[1][1];
 <<"$val  $R[1][::] \n"
-!a
+
 }
 //==============================
 
@@ -136,7 +139,7 @@ showStr(S);
 
 
 
-!a
+
 
 int A[] = {7,3,4,-6,3,1};
 
@@ -147,11 +150,7 @@ int A[] = {7,3,4,-6,3,1};
 showArray(A);
 
 
-chkT(1)
 
- chkOut();
-
-exit();
 ////////////////////////////////
 
 
@@ -183,6 +182,12 @@ M.pinfo();
  showMat(M);
 
 
+chkT(1)
+
+ chkOut();
+
+exit();
+
       T= Mtrp(M);
 
       //M<-Transpose();
@@ -206,4 +211,15 @@ testargs(v);
  chkOut();
 
 
-///////////////////////////////
+///////////////////////////////TODO////////////////////////////
+/*
+
+  need getEle vmf for Vec,Mat,Mda   plus the cpp equivalent    M.getEle(3,4)   Mda.getEle(3,4,2)
+
+  fix for R[2][3]   - R is proc_arg_ref for Mat
+
+
+
+
+
+*/

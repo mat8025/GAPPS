@@ -15,16 +15,33 @@
 //
 
 //filterFileDebug(REJECT_,"array_");
+#if CPP
+#warning HV USING_CPP
+#include "cppi.h"
+#endif
+
+Str H_ele = "1";
+Str Hdr_script = "none";
+Str Hdr_vers = "1.1";
+Str Hdr_release = "CARBON";
+Str Hdr_author = "mt";
+Str Hdr_cdate = "1964";
+Str Hdr_date = "1964";
+
+   int hv_found =0;
+   int hv_show =0;
+
+   Str  rs = "comment ca va";
 
   void vers2ele(Str& vstr)
   {
   //<<"%V $vstr\n"
-   pmaj = atoi(spat(vstr,".",-1));
+   int pmaj = atoi(spat(vstr,".",-1));
 //   <<[2]"$pmaj $(typeof(pmaj)) $(ptsym(pmaj)) \n"  
-   pmin = atoi(spat(vstr,".",1));
+   int pmin = atoi(spat(vstr,".",1));
 
 //<<[2]"$pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
-   elestr = pt(pmin);
+   Str elestr = periodicName(pmin); // need CPP
    H_ele =" ";
    H_ele = spat(elestr,",");
 
@@ -32,20 +49,6 @@
   }
   //======================
 
-Str H_ele = "1";
-
-Str Hdr_script = "none";
-Str Hdr_vers = "1.1"
-Str Hdr_release = "CARBON";
-Str Hdr_author = "mt";
-Str Hdr_cdate = "1964"
-Str Hdr_date = "1964"
-
-   int hv_found =0;
-   int hv_show =0;
-
-
-    Str  rs = "comment ca va"
 
 // to work with xic code ?
 
@@ -56,12 +59,15 @@ Str Hdr_date = "1964"
      Str fl;
      int sz;
      int header_valid = 1;
-
+     int wln;
+     int vl;
+     
      for (wln = 1; wln <= 10; wln++) {
 
       fl = getcodeln(wln,0);
+      
   //fl = readLine(A);
-  vl = slen(fl)
+     vl = fl.slen();
 //<<"$vl $fl\n"
 
      if (header_valid  == 0) {
@@ -95,9 +101,7 @@ Str Hdr_date = "1964"
 
              if (scmp(rs,"@",1)) { // first @ should be @script 
 
-              // val = spat(fl,rs,1);
-
-
+// val = spat(fl,rs,1);
 //	       val.pinfo()
 
 
@@ -106,22 +110,17 @@ Str Hdr_date = "1964"
 //                   <<"$wln check $rs for @script \n";
 		   
                if (scmp(rs,"@script")) {
-	        //  if (!(rs == "@script")) 
-		  
-
-		//   rs.pinfo()
 //                <<"it is an asl script header!\n";
                     hv_found = 1;
                }
                else {
-                   <<"no header found!\n";
+                   printf("no header found!\n");
 		     header_valid = 0;
                }
              }
 
             //     rs.pinfo()
 //		 <<"$wln $rs  $L[1] $L[2] \n"
-
 
                if (scmp(rs,"@script")) {
 
@@ -146,35 +145,6 @@ Str Hdr_date = "1964"
                 else if (scmp(rs,"@date")) {
                   Hdr_date = scat(L[2],L[3],L[4]);
                 }
-/*
-                if (rs == "@script") {
-
-                  Hdr_script = L[2]
-                }
-
-
-                else if (rs == "@vers") {
-
-                  Hdr_vers = L[2]
-                }
-                else if (rs == "@author") {
-
-                  Hdr_author = L[2]
-                }
-                else if (rs == "@release") {
-
-                  Hdr_release = L[2]
-                }
-                else if (rs == "@cdate") {
-
-                  Hdr_cdate = L[2]
-                }
-                else if (rs == "@date") {
-<<"got date $L[2]\n"
-                  Hdr_date = scat(L[2],L[3],[4]);
-		  
-                }								
-*/
 
                  } // scmp
 
@@ -198,9 +168,9 @@ Str Hdr_date = "1964"
 
    hdrv_func();
 
-<<"%V $Hdr_vers\n"
+printf("Hdr_vers %s\n",Hdr_vers.cptr());
 
-  vers2ele(Hdr_vers)
+  vers2ele(Hdr_vers);
 
 H_ele_vers = Hdr_vers;
 
@@ -208,15 +178,14 @@ if (hv_show) {
 
 pa(Hdr_script);
 
+#if ASL
 <<"%V $Hdr_vers\n"
-
 <<"%V $Hdr_release\n"
-
 <<"%V $Hdr_author\n"
-
 <<"%V $Hdr_date\n"
-
 <<"%V $Hdr_cdate\n"
+#endif
+
 }
 
   if (hv_found) {

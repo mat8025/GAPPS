@@ -13,7 +13,7 @@
 ;//----------------<v_&_v>-------------------------//;                  
 
 
-
+Str colors_test_vers = "1.7";
 
 
 #define ASL 0
@@ -204,7 +204,7 @@ pa("done awo\n");
 
 pa("rctile\n",__LINE__);
 
-     titleVers();
+     titleVers(colors_test_vers);
      
      sWi(_WOID,vp,_WREDRAW,ON_);
 

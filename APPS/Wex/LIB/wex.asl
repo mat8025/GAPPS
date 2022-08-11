@@ -12,6 +12,8 @@
  */ 
 ;//----------------<v_&_v>-------------------------//;                  
 
+  Str Wex_Vers= "2.56";
+
 
 ///
 /// exercise weight display
@@ -26,6 +28,9 @@
 //chdir(wexdir)
 //wherearewe=!!"pwd "
 //<<[_DB]"%V$wherearewe \n"
+
+
+
 
 #define ASL 1
 
@@ -108,7 +113,7 @@ class Svar;
 
 
  Svar Mo;
-#include "hv.asl"
+//#include "hv.asl"
 #include "gevent.asl"
 
 // use gevent.asl  - for these globals

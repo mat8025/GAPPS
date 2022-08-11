@@ -179,7 +179,7 @@ int Xgm;
  // wovtile(legwo, 0.15, 0.4, 0.29, 0.95,12);
   wovtile(legwo, 0.15, 0.38, 0.29, 0.89,-1);
 
-  titleVers();
+  titleVers(showtask_vers);
   
   adbprintf(-1,"titleVers %d\n",legwo);
   

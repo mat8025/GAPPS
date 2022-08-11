@@ -31,7 +31,7 @@
 #endif
 
 
-
+//extern Str Hdr_vers;
 // need to be global
 int TBqrd_tv = 0;
 int TBqrd_msg = 0;
@@ -103,21 +103,22 @@ sWo(_WOID,td,_WDRAW,ON_,_WPIXMAP,ON_,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45,
  
 }
 //============================//
-void titleComment(Str msg)
+void titleComment(Str& msg)
 {
 //<<"titlecomment %V $msg \n"
  sWo(_WOID,TBqrd_tv,_WVALUE,msg.cptr(),_WCLEAR,ON_,_WREDRAW,ON_);
 
 }
 //============================//
-void titleVers()
+void titleVers(Str &vers)
 {
 // Str tit = "$_ele_vers $_ele";
-Str tit = scriptVers();
- //Str tit = "xyz";
- 
+//Str tit = scriptVers();
+// Str tit = "xyz";
  //<<"script vers $tit\n"
-   titleComment(tit);
+
+   titleComment(vers);
+
 }
 
 
