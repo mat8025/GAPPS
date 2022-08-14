@@ -3,6 +3,7 @@
 #include "str_test.asl"
 #include "vec_test.asl"
 #include "mat_test.asl"
+#include "mda_test.asl"
 #include "record_test.asl"
 #include "list_test.asl"
 
