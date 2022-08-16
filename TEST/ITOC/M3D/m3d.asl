@@ -48,6 +48,8 @@ Str Use_= "   Demo  of MD3";
 
    <<"%V$G\n";
 
+int V[N];
+
    V = vgen(INT_,N,0,1);
 
    V[0:3] = 68;

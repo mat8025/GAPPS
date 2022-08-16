@@ -1303,3 +1303,5 @@ args_process_e.cpp                  2.43  08/07/2022 17:32:00  fix exprn arg
 chem_l.cpp                          1.19  08/10/2022 11:48:17  CPPI
 matrix_ops.cpp                      1.5  08/10/2022 16:56:29  range operations
 mat.h                               2.6  08/10/2022 16:57:07  range operations
+ds_matrix.cpp                       1.87  08/15/2022 22:23:46  markindex replace old code for range subset
+parrayexpand.cpp                    2.75  08/15/2022 22:27:13  MDarray expand recursive expansion 
