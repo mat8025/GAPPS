@@ -1,0 +1,262 @@
+/* 
+ *  @script mda_test.asl  
+ * 
+ *  @comment test cpp compile include and sfunc 
+ *  @release CARBON 
+ *  @vers 1.1 He Helium [asl 6.3.73 C-Li-Ta]                                
+ *  @date 01/16/2022 10:43:41 
+ *  @cdate 08/12/2022
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare 2022
+ * 
+ */ 
+;//-----------------<v_&_v>------------------------//
+
+///
+///  
+///
+
+/// cpp debug ??
+int run_mda_asl = 0;
+Str mdaans="xxx";
+#define ASL 0
+#define CPP 1
+
+//printf("ASL %d CPP %d\n", ASL,CPP); // not CPP outside of main
+
+
+#if ASL
+// the include  when cpp compiling will re-define ASL 0 and CPP 1
+#include "compile.asl"
+#define AST mdaans=query("?","ASL DB goon",__LINE__,__FILE__);
+//  printf("ASL %d CPP %d\n",ASL,CPP);
+#endif
+
+
+
+
+
+
+#if ASL
+<<"ASL   $(ASL) CPP $(CPP)\n"
+printf("ASL %d CPP %d\n", ASL,CPP);
+#define COUT //
+ run_vec asl = runASL();
+printf("run_asl %d\n",run_vec_asl);
+
+printf("ASL %d CPP %d\n", ASL,CPP);
+
+#endif
+
+
+
+
+#if CPP
+#warning USING_CPP
+
+#define CDB ans=query("?","goon",__LINE__,__FILE__);
+#define CDBP(x) ans=query(x,"goon",__LINE__,__FILE__);
+
+#include <iostream>
+#include <ostream>
+
+#include "vec.h"
+#include "mat.h"
+#include "mda.h"
+#include "uac.h"
+
+#include "gline.h"
+#include "glargs.h"
+#include "winargs.h"
+#include "woargs.h"
+#include "vargs.h"
+#include "gevent.h"
+
+
+int showMda(Mda& T)
+{
+  double val ;
+
+   val = T.getEleD(dimns(1,1,1));
+
+   printf("showMda: val (1,1,1) %f\n",val);
+   COUT(T);
+
+
+}
+
+void
+Uac::mdaWorld(Svarg * sarg)  
+{
+   dbt("debug \n");
+   Str ans= "xyz";
+   cout << "Hello simple Mda test  " << ans << endl;
+   //setDebug(2,"pline");
+   dbt("debug in mdaWorld\n");
+
+#endif
+
+
+
+  Siv MS(INT_);
+
+  MS=14;
+
+  COUT(MS);
+
+ 
+
+ cout << "Siv MS " << MS << endl;
+  
+double rms;
+double val;
+double dval;
+   Vec<double> D(20);
+
+   D.pinfo();
+//ans=query("?","Vec D(20) ",__LINE__);
+
+
+   Mda MD(DOUBLE_, dimns(3,5,4,6));
+
+#if CPP
+cout << "MD = " << MD << endl;
+cout << " trying access " << endl;
+#endif
+
+int index = 6;
+
+   COUT(index)
+
+   COUT(MD);
+   
+   dval = 76.67;
+   
+   MD = dval;  // the whole array is set
+
+   COUT(MD);
+
+
+  val = MD.getEleD(dimns(3,4,3,5));
+
+  printf("val %f\n",val);
+
+  val = MD.getEleD(dimns(3,1,1,1));
+
+  printf("val %f\n",val);
+
+   chkF(val,dval);
+/*
+
+
+  // M[2][3] = 47;
+
+  val = MD.Dele(1,1);
+
+  chkF(val,dval);
+
+   MD(dvec(1,2,3)) = 77.88; // 
+
+
+
+   COUT(M);
+
+  val = M.Dele(1,2);
+
+
+  
+
+  chkF(val,77.88);
+
+ MD( rows(0,3,1), cols(1,3,2))  = 23.34;   // range setting  bes
+
+   COUT(M);
+
+  int rvec[3] = {1,4,1};
+    int cvec[3] = {0,4,-1};
+
+ M( rvec, cvec)  = 17.71;   // range setting  bes
+   COUT(M);
+
+ //M( (const int[]) {0,5,1}, (const int[]) {1,3,1})  = 46.64;
+
+//COUT(M);
+
+
+ printf("val %f\n",val);
+
+  val = M.Dele(2,3);
+
+ printf("val %f\n",val);
+
+  showMda(M);
+
+
+#if ASL
+
+<<"%V $index $V[7] \n";
+
+#endif
+
+
+
+
+
+
+ short jj = 9;
+
+
+ printf("[j] LH access \n");
+
+
+
+#if ASL
+<<"%V $jj $V[jj] \n";
+pa(jj, V[jj]);
+#else
+;
+#endif
+
+
+
+
+
+
+//  3,4,5 D
+// has to be vargs 
+
+*/
+
+
+chkOut();
+  dbt("Exit cpp testing Mda \n");
+
+#if CPP
+}
+
+//==============================//
+
+ extern "C" int mda_test(Svarg * sarg)  {
+
+    Uac *o_uac = new Uac;
+
+   // can use sargs to select uac->method via name
+   // so just have to edit in new method to uac class definition
+   // and recompile uac -- one line change !
+   // plus include this script into 
+
+    dbt("extern C mda_test\n");
+    o_uac->mdaWorld(sarg);
+        dbt("EXIT extern C mda_test\n");
+     return 1;
+  }
+
+#endif
+
+//================================//
+
+
+
+
+
+
