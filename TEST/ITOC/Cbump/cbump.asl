@@ -181,8 +181,9 @@ Str old_comment ="yyy"
    where = ftell(A)
 
    sz = Caz(L);
-//<<"Lsz $sz\n"
+<<"Lsz $sz\n"
     L[0:-1:1] = "";
+
 //<<"clear L $L\n"
 
    L.Split(T);
@@ -199,6 +200,7 @@ Str old_comment ="yyy"
    }
     else if (scmp(L[1],"@cdate")) {
      cdate = "$L[2:-1:1]";
+
 <<"found cdate  $L\n"     
 <<[2]"%V$cdate  $L[2]\n"     
    }
@@ -329,7 +331,9 @@ A=ofile(srcfile,"w")
 //<<"%V $end_ln\n"
 
 
- Y = X[end_ln:-1:1];
+// Y = X[end_ln:-1:1];
+
+ Y = X[end_ln:50:1];
 
  D=ofile("stem","w");
  

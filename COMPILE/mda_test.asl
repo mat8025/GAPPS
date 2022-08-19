@@ -18,7 +18,7 @@
 
 /// cpp debug ??
 int run_mda_asl = 0;
-Str mdaans="xxx";
+Str mda_ans="xxx";
 #define ASL 0
 #define CPP 1
 
@@ -116,7 +116,7 @@ double dval;
    D.pinfo();
 //ans=query("?","Vec D(20) ",__LINE__);
 
-
+cout << " declaring MD " << endl;
    Mda MD(DOUBLE_, dimns(3,5,4,6));
 
 #if CPP
@@ -129,9 +129,19 @@ int index = 6;
    COUT(index)
 
    COUT(MD);
-   
+
+
+
+
    dval = 76.67;
-   
+ printf("doing Bes range setup \n");
+   MD(Bes(0,1,1),Bes(0,1,1), Bes(0,3,1)) = dval *3;
+
+   MD.pinfo();
+   COUT(MD);
+
+mda_ans = query("Bes pass?","??",__LINE__);
+
    MD = dval;  // the whole array is set
 
    COUT(MD);
@@ -139,13 +149,32 @@ int index = 6;
 
   val = MD.getEleD(dimns(3,4,3,5));
 
-  printf("val %f\n",val);
+  dval = MD.eleD(4,3,5);
 
-  val = MD.getEleD(dimns(3,1,1,1));
+  printf("val %f dval %f \n",val, dval);
+
+
+
+  val = MD.eleD(1,1,1);
 
   printf("val %f\n",val);
 
    chkF(val,dval);
+
+   printf("try MD(1,1,1) = 47.74D; \n");
+   
+   MD(1,1,1) = 47.74;
+
+   dval = 54.45;
+   
+   MD(2,3,4) = dval;
+
+   MD(4,3,5) = dval*2;
+ COUT(MD);
+printf("1,1,1 to 87.78\n");
+     MD(1,1,1) = 87.78;
+   
+COUT(MD);
 /*
 
 
