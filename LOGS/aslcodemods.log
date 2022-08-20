@@ -1322,3 +1322,4 @@ ds_getvarasstr.cpp                  2.68  08/19/2022 08:46:01  DB
 ds_aop.cpp                          1.89  08/19/2022 08:47:58  revise aop subi
 si_mem.cpp                          1.86  08/19/2022 08:49:09  DB
 declare_e.cpp                       2.37  08/19/2022 08:52:13  gut
+mda_ops.cpp                         1.3  08/19/2022 22:08:26  range set

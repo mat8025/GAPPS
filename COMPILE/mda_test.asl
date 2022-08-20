@@ -135,7 +135,7 @@ int index = 6;
 
    dval = 76.67;
  printf("doing Bes range setup \n");
-   MD(Bes(0,1,1),Bes(0,1,1), Bes(0,3,1)) = dval *3;
+   MD(Bes(0,1,1),Bes(0,1,1), Bes(1,3,1)) = 777.0;
 
    MD.pinfo();
    COUT(MD);
