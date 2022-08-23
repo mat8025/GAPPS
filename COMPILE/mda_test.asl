@@ -119,23 +119,33 @@ double dval;
 cout << " declaring MD " << endl;
    Mda MD(DOUBLE_, dimns(3,5,4,6));
 
+//mda_ans = query(" declared OK ","??",__LINE__);
+
 #if CPP
 cout << "MD = " << MD << endl;
 cout << " trying access " << endl;
 #endif
 
 int index = 6;
-
+int sz = MD.getSize();
    COUT(index)
-
+   pa(sz, index);
    COUT(MD);
 
+   COUT("/////////////////////////////////");
 
+ printArray(1,MD,1,"%4f",-1);
 
+mda_ans = query("all 0","??",__LINE__);
+
+   MD = 0.0;
+   COUT(MD);
+
+mda_ans = query("all 0","??",__LINE__);
 
    dval = 76.67;
  printf("doing Bes range setup \n");
-   MD(Bes(0,1,1),Bes(0,1,1), Bes(1,3,1)) = 777.0;
+   MD(Bes(0,1,1),Bes(0,1,1), Bes(1,3,1)) = 777.880;
 
    MD.pinfo();
    COUT(MD);
@@ -175,6 +185,34 @@ printf("1,1,1 to 87.78\n");
      MD(1,1,1) = 87.78;
    
 COUT(MD);
+  COUT("/////////////////////////////////\n");
+ printArray(1,MD,1,"%4.2f",-1);
+
+  COUT("/////////////////////////////////\n");
+ printArray(1,MD,1,"%3.1f",-1);
+
+
+   Mda MDI(INT_, dimns(3,5,4,6));
+
+
+ //  MDI = MD;
+ pa("MDI");
+ printArray(1,MDI,1,"%d",-1);
+
+
+// try 4D
+
+  COUT("/////////////4D///////////////////\n");
+   Mda MD4I(INT_, dimns(4,3,3,3,3));
+
+       MD4I  = 55; // works
+
+     MD4I(Bes(0,1,1),Bes(0,1,1), Bes(0,1,1), Bes(0,2,2)) = 78; // OK?
+
+ printArray(1,MD4I,1,"%d");
+
+MD4I.pinfo();
+
 /*
 
 
