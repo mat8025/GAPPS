@@ -1,22 +1,24 @@
-//%*********************************************** 
-//*  @script splay.asl 
-//* 
-//*  @comment vox play 
-//*  @release CARBON 
-//*  @vers 1.5 B Boron                                                     
-//*  @date Mon Mar 25 11:07:35 2019 
-//*  @cdate 1/1/2000 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script splay.asl                                                   
+ * 
+ *  @comment vox play                                                   
+ *  @release Beryllium                                                  
+ *  @vers 1.6 C Carbon [asl 6.4.65 C-Be-Tb]                             
+ *  @date 08/27/2022 20:35:52                                           
+ *  @cdate 1/1/2000                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2022 -->                               
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                  
+
 // play vox or pcm files
 
 SetDebug(1);
 
-include "audio";
+#include "audio";
 
-proc usage()
+void usage()
 {
 
 <<" splay [OPTIONS] file \n"
@@ -27,12 +29,12 @@ proc usage()
 <<" -c number of chans 1 mono 2 stereo  3,4 \n"
 <<" -s start time seconds in file\n"
 
-    STOP("\n")
+    exit(-1);
 }
 // test play of vox and wav files
 
 
-nchans = 1;
+int nchans = 1;
 
 
 
@@ -48,9 +50,9 @@ float Sfactor = 1.0;
 
 Gain = 1.0;
 
-vlen = -1.0;
-fstart = 0.0;
-bstart = 0.0;
+float vlen = -1.0;
+float fstart = 0.0;
+float bstart = 0.0;
 
 
 
@@ -62,9 +64,9 @@ bstart = 0.0;
     usage()
 
   // OPTIONS
-  ka = 1
+  ka = 1;
 
-  fname = ""
+  Str fname = ""
 
     while (1) {
 
@@ -144,7 +146,7 @@ bstart = 0.0;
 <<"Error opening /dev/dsp?\n"
 <<" may need to load sound modules -- sudo modprobe snd-pcm-oss \n"
 <<" check with ls /dev/dsp*  and retry if /dev/dsp* is listed\n"
-   exit()
+   exit(-1)
   }
 
 // set dsp,mixer
@@ -172,15 +174,17 @@ bstart = 0.0;
   // just copy buffer back out so we can process it
   // we will add builtin processing later
 
- B = getSignalFromBuffer(sbn,0,npts)
+ B = getSignalFromBuffer(sbn,0,npts);
 
- svec = Stats(B)
+ svec = Stats(B);
 
 <<"mean %V6.4f$svec[1] min $svec[5] max $svec[6] \n"
 
- mm= minmax(B)
+ mm= minmax(B);
 
-<<"%(16,, ,\n)$B[0:20] \n"
+//<<" $B[0:20] \n"  ;  // TBF pexpnd arrayexpand??
+
+//<<"%(16,, ,\n)$B[0:20] \n"
 
 //<<"%(16,, ,\n)$B[16000:48000] \n"
 
@@ -225,15 +229,15 @@ bstart = 0.0;
 //  playBuffer(dspfd, sbn, 0, n, 1);
 // release devices
 
-   sleep(1)
+   sleep(1);
 
    getSoundParams(dspfd,mixfd);
 
 <<"%V $dspfd $mixfd \n"
 
-   fflush(1)
+   fflush(1);
 
-   closeAudio()
+   closeAudio();
 
 <<"%V $_df_errno \n"
 

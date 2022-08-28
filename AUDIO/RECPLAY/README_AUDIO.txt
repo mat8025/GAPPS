@@ -1,5 +1,14 @@
-   AUDIO interface
-   
+
+// update 8/27/22
+
+                AUDIO interface
+
+updated again 8/27/22
+
+kernel 5.19.4
+
+
+
 Scripts used to interact with /dev/dsp  back in linux 2.x days.
 How to update and resurrect the audio play and record features so we can create some
 programs to do audio compression, noise removal, speech and music recognition.
@@ -11,7 +20,8 @@ for the 3.x kernel
 
 Configure kernel for snd drives -- included oss (I think)
 produced
-Linux mars 3.9.1 #4 SMP PREEMPT Tue May 21 08:52:53 EDT 2013 x86_64 x86_64 x86_64 GNU/Linux
+Linux neptune.rootmeansquare.com 5.19.4 #2 SMP PREEMPT_DYNAMIC Thu Aug 25 18:16:12 MDT 2022 x86_64 x86_64 x86_64 GNU/Linux
+
 
 then needed to install snd-pcm-oss via mod probe
 sudo modprobe snd-pcm-oss
@@ -83,3 +93,10 @@ freq 16000 rparm 16000
 
  move recording play back to ALSA - whatever the modern sound controllers are using.
  
+
+
+  updated splay.asl audio.asl
+for newer  procedure calls  ( i.e cpp compatible)
+
+ have to check record  - mic gain mixer SF etc
+

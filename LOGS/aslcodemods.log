@@ -1328,3 +1328,7 @@ ds_matrix.cpp                       1.88  08/20/2022 14:32:01  DB
 mda_ops.cpp                         1.5  08/23/2022 08:49:15  mda = int
 parrayexpand.cpp                    2.76  08/23/2022 08:50:15  cpp interface
 mda.h                               1.2  08/23/2022 08:50:52  mad = int
+ds_convert.cpp                      1.86  08/24/2022 21:20:39  tvcopy
+mda_ops.cpp                         1.6  08/24/2022 21:22:07  Mda = Mda
+mda.h                               1.3  08/24/2022 21:23:07  Mda=Mda
+audio_funcs.cpp                     1.35  08/27/2022 20:07:42  DB

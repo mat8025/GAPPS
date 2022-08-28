@@ -292,9 +292,6 @@ int zoomwos[] = {zoomwo, zinwo, -1};
 sWo(_WOID,zoomwo,_WSTYLE,WO_SVB_,_WREDRAW,ON_);
 sWo(_WOID,zinwo,_WSTYLE,WO_SVB_,_WREDRAW,ON_);
 
-
- titleMessage(Wex_Vers);
-
 cout<<"Screen DONE\n";
 
  // titleVers();

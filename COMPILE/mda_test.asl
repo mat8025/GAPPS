@@ -195,11 +195,11 @@ COUT(MD);
    Mda MDI(INT_, dimns(3,5,4,6));
 
 
- //  MDI = MD;
+ MDI = MD;  // make this work!
  pa("MDI");
  printArray(1,MDI,1,"%d",-1);
 
-
+mda_ans = query("MDI = MD","??",__LINE__);
 // try 4D
 
   COUT("/////////////4D///////////////////\n");
