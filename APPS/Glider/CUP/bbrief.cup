@@ -153,7 +153,7 @@
 "Longmont","2V2",CO,4009.750N,10509.830W,5056ft,5,110,4800ft,122.975,"TP  VanceBrand , 2V2, 11/29 122.975,20.0 RWW: 75"
 "Lookout Mtn","LOOKTMTN",CO,4032.050N,10527.550W,10600ft,1,,,,"TP, MTPk"
 "Lyons","LYONS",US,4013.500N,10516.500W,6000ft,1,,,,"Turn Point, Town"
-"Lux Field",LuxField,US,3909.133N,10543.217W,9297ft,3,120,4698ft,,"TPX Private, TP"
+"Lux Field","Lux",CO,3909.133N,10543.217W,9297ft,3,120,4698ft,,"TPX Private, TP"
 "Lusk","LSK",WY,4245.228N,10424.273W,4964ft,5,100,5058ft,122.8,"TP, LSK, 10/28 51a, RWW: 75"
 "MackMesa","CO7",CO,3916.030N,10851.820W,4724ft,5,070,2600ft,122.900,"TP, C07, 122.9, RWW: 60"
 "Manila","40U",UT,4059.164N,10940.709W,6175ft,5,070,5300ft,122.8,"TP, 40U, 07/25 22.8, RWW: 60"
@@ -244,6 +244,7 @@
 "Tribune","5K2",KS,3827.251N,10144.777W,3619ft,5,170,5100ft,122.8,"TP, 5K2, 122.8, RWW: 45"
 "TwoBar?","WY59",WY,4155.982N,10505.099W,5110ft,3,170,4800ft,,"Private, TP, WY59, 17/35 48G, RWW: 50"
 "Vernal","VEL",UT,4026.470N,10930.600W,5274ft,5,160,6201ft,122.700,"TP, VEL, 07/25 , RWW: 150"
+"VirginaDale","Vir",CO,4057.00N,10520.00W,7001ft,1,,,,"TP,  stage coach stop"
 "Vowers","WY29",WY,4137.332N,10447.115W,5550ft,2,060,4000ft,,"Private, TP, WY29, 06/24 40G, RWW: 60"
 "WagonHnd??","WY27",US,4235.200N,10532.300W,5470ft,2,080,4100ft,,"Private, TP, WY27, 41T 60W, RWW: 60"
 "Walden","33V",CO,4044.990N,10616.280W,8149ft,5,030,5900ft,122.9,"TP, 33V, 03/21 22.9, 18.62 RWW: 75"
@@ -280,7 +281,7 @@
 "Ellingwood 14",ElgWdPt,US,3734.950N,10529.567W,4280.0m,7,,,,,"Ft. Garland: 11.5k MSL  Ellingwood Point 14042",,
 "Eolus 14",Eolus,US,3737.367N,10737.300W,4292.5m,7,,,,,"Animas (Durango): 14.7k MSL  TPM Eolus 14083",,
 "EolusNE 14",NEolus,US,3737.517N,10737.250W,4279.1m,7,,,,,"Animas (Durango): 14.7k MSL TPM  North Eolus 14039",,
-"Evans 14",Evans,US,3935.300N,10538.633W,4347.7m,7,,,,,"Boulder: 14.4k MSL  TPM MT Evans 14264",,
+"Evans 14",Evans,US,3935.300N,10538.633W,4347.7m,7,,,,,"Boulder: 14.4k MSL  TPM MtEvans 14264",,
 "Grays Pk 14",Grays,US,3938.017N,10549.017W,4349.5m,7,,,,,"Boulder: 15.2k MSL Gray's Peak 14270",,
 "Handies Pk 14",Handies,US,3754.783N,10730.267W,4281.8m,7,,,,,"Montrose: 16.4k MSL TPM Handies Peak 14048",,
 "Harvard 14",Harvard,US,3855.467N,10619.233W,4395.2m,7,,,,,"Buena Vista: 13.4k MSL  TPM Harvard 14420",,

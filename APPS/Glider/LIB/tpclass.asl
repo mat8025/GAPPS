@@ -16,10 +16,19 @@
 
 #define TPCLASS_ 1
 
+//<<" TPCLASS\n"
 
 int Tleg_id = 0;
 #if ASL
-if (GT_DB) <<"%V $_include $Tleg_id\n"
+
+<<"GT_DB $(GT_DB) \n"
+
+if (GT_DB) {
+<<"%V $_include $Tleg_id\n"
+}
+
+
+
 #endif
 
 class Tleg 

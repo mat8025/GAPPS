@@ -13,10 +13,9 @@
  */ 
    ;//----------------------//;
    
-<|Use_= 
-   Demo  of print format for vectors
-/////////////////////// 
-|>
+
+Str Use_ =  "Demo  of print format for vectors";
+
 
 #include "debug"
 
@@ -42,9 +41,29 @@ char c = 'A';
   printf("f %f d %lf \n",f,d);
 
 
+  IV= vgen (INT_,10,0,1);
 
-exit()
+  <<"$IV\n"
 
+
+    <<"$IV[0:-1:2]\n"
+
+   k = IV[3];
+
+<<"%V $k $IV[3]\n"
+
+   chkN(k,3);
+
+   k= IV[8];
+
+   chkN(k,8);
+
+   k = IV[-1];
+
+<<"%V $k $IV[-1]\n"
+
+
+/*
    A=ofw("pr.log");
 
    float F[];
@@ -102,6 +121,9 @@ exit()
    j++;
 
    <<"$F[i:j] \n";
+
+*/
+
 /*
 // FIXME
    float G[] = Igen(20,0,1)

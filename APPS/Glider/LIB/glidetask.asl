@@ -37,7 +37,9 @@ using namespace std;
 #include "vargs.h"
 
 #define PXS  cout<<
+
 #define ASL_DB 0
+#define CPP_DB 0
 
 #endif
 
@@ -45,14 +47,21 @@ using namespace std;
 //uint Turnpt::Ntp_id = 0;
 
 #if ASL
-#define GT_DB 0;
+
+#define CPP_DB 0
+
 #define COUT //
+
 int run_asl = runASL();
-//<<" running as ASL \n";
+<<" running as ASL \n";
 #include "debug"
+
 ignoreErrors();
 
+#undef  ASL_DB
 #define ASL_DB 0
+
+
 #endif
 
 
@@ -118,26 +127,25 @@ int run_asl = runASL();
 //a0.pinfo();
  Svar sa;
 
-//cout << " paras are:  "  << a0.cptr(0) << endl;
+ //cout << " paras are:  "  << a0.cptr(0) << endl;
  sa.findWords(a0.cptr());
 
 cout << "\n The glider Task turnpts and  parameters are:  "  << sa << endl;
 
-//cout << " para[0] is:  "  << sa.cptr(0) << endl;
+ //cout << " para[0] is:  "  << sa.cptr(0) << endl;
 
-//cout << " para[1] is:  "  << sa.cptr(1) << endl;
+ //cout << " para[1] is:  "  << sa.cptr(1) << endl;
 
-//cout << " para[2] is:  "  << sa.cptr(2) << endl;
+// cout << " para[2] is:  "  << sa.cptr(2) << endl;
 #endif
 
   int na;
 
 #if ASL
 
-
  Svar sa;
 
-// <<" na $_clargc \n"
+//<<" na $_clargc \n"
  na = _clargc;
 // <<" na $_clarg[1]  $_clarg[2] \n"
  
@@ -151,9 +159,6 @@ cout << "\n The glider Task turnpts and  parameters are:  "  << sa << endl;
 //<<"1 $sa[1] \n"
 
 //<<"2 $sa[2] \n"
-
-
-
 
 #endif
 
@@ -214,6 +219,7 @@ int  Main_init = 1;
   if (use_cup) {
 
   AFH=ofr("CUP/bbrief.cup")  ; // open turnpoint file;
+
   printf( "opened CUP/bbrief.cup %d \n",AFH);
 
   }
@@ -265,6 +271,8 @@ int  Main_init = 1;
 #if ASL
 ac =1;
 #endif
+
+
 
 while (ac < na) {
 
@@ -407,13 +415,13 @@ if (GT_DB) <<"%V $ac $sa[ac] $targ\n"
 
   CLTPT.cpy(targ,cltpt);
 
- if (GT_DB)  <<"%V $targ $sz $cltpt $CLTPT[cltpt] \n"
-  if (GT_DB) <<"CLTPTs  $CLTPT\n"
+ if (ASL_DB)  <<"%V $targ $sz $cltpt $CLTPT[cltpt] \n"
+  if (ASL_DB) <<"CLTPTs  $CLTPT\n"
 
 
 #else
  CLTPT.cpy(targ,cltpt);
- if (GT_DB) cout  <<"cltpt "<< cltpt  <<" CLTPT[cltpt] "<< CLTPT[cltpt]  <<endl ; 
+ if (CPP_DB) cout  <<"cltpt "<< cltpt  <<" CLTPT[cltpt] "<< CLTPT[cltpt]  <<endl ; 
 #endif
 //cout  <<"cltpt "<< cltpt  <<" CLTPT[cltpt] "<< CLTPT[cltpt]  <<endl ; 
 
@@ -457,7 +465,7 @@ if (GT_DB) <<"%V $ac $sa[ac] $targ\n"
 
 //  TBF asl does not handle nested #if 's
  int k;
-#if GT_DB
+#if ASL_DB
   for (k= 0; k < cltpt; k++) {
   <<"$k  $CLTPT[k] \n";
   }
@@ -475,8 +483,10 @@ if (GT_DB) <<"%V $ac $sa[ac] $targ\n"
 
 
 while ( !got_start) {
-#if ASL
- if (GT_DB) <<" %V $cnttpt $i    $via_keyb $via_cl\n";
+
+
+#if ASL_DB
+ <<" %V $cnttpt $i    $via_keyb $via_cl\n";
 #endif
 
   fseek(AFH,0,0);
@@ -484,8 +494,16 @@ while ( !got_start) {
   if (via_cl) {
 
   the_start = CLTPT[cnttpt];
+  
+#if ASL_DB
+  <<"$the_start $cnttpt $CLTPT[cnttpt] \n"
+#endif
 
-//<<"$the_start $cnttpt $CLTPT[cnttpt] \n"
+#if CPP_DB
+
+cout << the_start << "  " << cnttpt  << endl;
+
+#endif
 
   cnttpt++;
 
@@ -525,7 +543,7 @@ while ( !got_start) {
 
 //<<"%V $the_start $AFH \n"
 
-i=searchFile(AFH,the_start,0,1,0,0);
+  i=searchFile(AFH,the_start,0,1,0,0);
 
 //  <<[_DB]"$i\n";
 
@@ -549,7 +567,7 @@ i=searchFile(AFH,the_start,0,1,0,0);
 
   if (i == -1) {
 
- printf("the_start not found \n");;
+   printf("the_start not found \n");;
 
   //the_start.pinfo();
 
@@ -571,14 +589,19 @@ i=searchFile(AFH,the_start,0,1,0,0);
   }
 
   got_start =1;
-}
+}  // end while
+
 
 // pa("start ", the_start);
 // -------------------------------
 //<<"%V$input_lat_long  $i \n"
 
+
+
   int nwr;
   Str w;
+
+
   if (input_lat_long) {
 // <<" input place !\n"
 
@@ -665,6 +688,10 @@ i=searchFile(AFH,the_start,0,1,0,0);
 
  }
 
+
+//////////////////
+
+
    
 //  cout << "Next TP " << endl;
   
@@ -743,7 +770,7 @@ i=searchFile(AFH,the_start,0,1,0,0);
 
 
 
-//<<"%V $AFH   $nxttpt \n"
+//<<"%V $AFH  $K_AFH  $nxttpt \n"
 
   where = searchFile(AFH,nxttpt,0,1,0);
 
@@ -869,6 +896,10 @@ i=searchFile(AFH,the_start,0,1,0,0);
    //<<"$GT_Wtp[n_legs].Place \n";
   //ans=query("??");
 }
+
+
+
+
     //      prompt("%v $more_legs next turn %-> ")
 // compute legs
  //<<"compute \n"
@@ -894,10 +925,13 @@ i=searchFile(AFH,the_start,0,1,0,0);
 // in main --- no obj on stack?
   float nleg,wleg;
   float agl,ght,pc_tot,alt;
+
+ 
+
   if (ok_to_compute) {
    //computeHTD()
 
-  totalD = 0;
+    totalD = 0;
 
 
   
@@ -931,7 +965,7 @@ i=searchFile(AFH,the_start,0,1,0,0);
 
 #if ASL_DB
 <<"%V $GT_Wtp[nl].Longdeg $GT_Wtp[nl].Ladeg $GT_Wtp[nl+1].Longdeg    $GT_Wtp[nl+1].Ladeg \n";
-<<"%V $lo1 $L1 $lo2, $L2 $lo2a \n";
+
 <<"%V $nl $tkm $tkm2\n"
 
 #endif
@@ -977,7 +1011,10 @@ i=searchFile(AFH,the_start,0,1,0,0);
 #if ASL_DB
 <<"<$nl> $Leg[nl]  $tkm $tcd $Dur[nl] $TC[nl] $totalD $totalDur \n"
 #endif
+
   }
+
+
     //  <<" $total \n"
 
   rmsl = 0.0;

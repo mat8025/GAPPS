@@ -120,7 +120,8 @@ int dblevel = _dblevel;
   if (_dblevel > 0) {
   
   //sdb(_dblevel,_keep,_trace)
-    <<"%V $_dblevel\n"
+  
+   printf("_dblevel %d\n",_dblevel);
 
   }
   

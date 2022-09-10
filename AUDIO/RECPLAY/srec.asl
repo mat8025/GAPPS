@@ -11,20 +11,24 @@
 //* 
 //***********************************************%
 // test record of vox  files
-include "debug.asl";
+/*
+#include "debug.asl";
+
+
   debugON();
   setdebug(1,@keep,@~pline,@~trace);
   FilterFileDebug(REJECT_,"~storetype_e");
   FilterFuncDebug(REJECT_,"~ArraySpecs",);
+*/
+#include "audio";
 
-include "audio";
 
-proc usage()
+void usage()
 {
 
- <<"srec  [OPTIONS] file \n"
- <<" -f int  ---- freq default 16000 Hz \n"
- <<" -l real  ---- how long secs     \n"
+ <<"srec  [OPTIONS]  to_file [default rec.vox]\n"
+ <<" -f int   [sampling frequency      default 16000 Hz]\n"
+ <<" -l real  how long secs [default 5 secs] \n"
 
 }
 
@@ -32,19 +36,19 @@ proc usage()
 
 float Sfactor = 1.0;
 
-how_long = 5.0
+float how_long = 5.0;
 
-vox_file = "rec.vox"
+Str vox_file = "rec.vox";
 
   // parse OPTIONS
-  na = argc()
+  na = argc();
 <<"%V$na \n"
 
-  if (na <=1 )    usage()
+  if (na <=1 )    usage();
 
 // OPTIONS
-<<"%V$_clarg \n"
-ka = 0
+<<"%V$_clarg \n";
+ ka = 0;
 
       while (AnotherArg()) {
 
@@ -108,10 +112,10 @@ ka = 0
 
 exit()
 
-/{/*
+/*
 
-//   micgain not working ?? - clipping
+//   mic gain not working ?? - clipping
 
 
-/}*/
+*/
 
