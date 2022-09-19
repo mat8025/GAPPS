@@ -222,8 +222,6 @@ class Svar;
   Str Year;
 
   long Bday;  // birthday;
-
-  
   
   int lday;  // last day recorded in file;
 
@@ -243,7 +241,7 @@ class Svar;
 
   Str emsg;
 
-Svar GoalsC;
+  Svar GoalsC;
    
 //GoalsC.Split("01/01/2022 03/31/2022 175"); // has to be in main 
 
@@ -576,11 +574,11 @@ COUT(gday);
 
    openDll("plot");
 
- int  Graphic = checkGWM();
+  int Graphic = checkGWM();
 
- printf(" Graphic %d\n", Graphic);
+  printf(" Graphic %d\n", Graphic);
 
- int Xgm;
+  int Xgm;
 
   if (!Graphic) {
     Xgm = spawnGWM("WEX");

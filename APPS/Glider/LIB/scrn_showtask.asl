@@ -163,7 +163,8 @@ int Xgm;
  // <<"%V $tpwos\n"
   
  // wovtile(tpwo, 0.02, 0.4, 0.14, 0.95,12);
- wovtile(tpwo, 0.02, 0.38, 0.14, 0.89,-1);
+ //wovtile(tpwo, 0.02, 0.38, 0.14, 0.89,-1); // cpp nrows - but asl pady
+ wovtile(tpwo, 0.02, 0.38, 0.14, 0.89);
 
 
   legwo[0] = -1;
@@ -177,7 +178,7 @@ int Xgm;
 }
 
  // wovtile(legwo, 0.15, 0.4, 0.29, 0.95,12);
-  wovtile(legwo, 0.15, 0.38, 0.29, 0.89,-1);
+  wovtile(legwo, 0.15, 0.38, 0.29, 0.89);
 
   titleVers(showtask_vers);
   

@@ -272,15 +272,21 @@ COUT(swo);
   gwtwo=cWo(vp,WO_BV_);
   sWo(_WOID,gwtwo,_WNAME,"WtGoal",_WVALUE,"$Goals[2]",_WCLIPBHUE,BLUE_,_WFONTHUE,WHITE_,_WHELP," next goal wt ");
 
-  int  goalwos[] = { sdwo, gdwo, gwtwo, -1};
+  int  goalwos[5] = { sdwo, gdwo, gwtwo, -1};
 
-  wovtile( goalwos, 0.02,0.1,0.08,0.45);
+  wovtile( goalwos, 0.02,0.1,0.08,0.45, );
   i = 0;
+  int kgoals = 0;
   while (1) {
-   if (goalwos[i] < 0)
+  <<"%V $i $goalwos[i] \n";
+   if (goalwos[i] < 0) {
+   <<" break neg goalwo \n"
        break;
+       }
+       
     sWo(_WOID,goalwos[i],_WREDRAW,ON_);
     i++;
+
   }
 
 

@@ -1341,3 +1341,7 @@ scopesindex_e.cpp                   2.85  09/03/2022 22:30:31  IDB
 ds_storesvar.cpp                    1.88  09/04/2022 09:12:54  from range to new svar
 ds_storesiv.cpp                     1.88  09/04/2022 09:37:25  IDB
 ds_storestr.cpp                     1.83  09/04/2022 10:13:45  IDB
+navi_l.cpp                          1.22  09/10/2022 15:36:08  ddtodms,ddtodm
+ssop.cpp                            1.97  09/13/2022 18:25:34  sele cpp
+ds_convert.cpp                      1.87  09/19/2022 01:12:38  type consistent convert uint,int
+opera_compare.cpp                   1.46  09/19/2022 01:14:42  IDBF

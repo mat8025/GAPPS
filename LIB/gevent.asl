@@ -72,6 +72,7 @@ void eventDecode()
 #else
    Ev_name = Gev.getEventName();
    Ev_button = Gev.getEventButton(); // or Gev.ebutton
+   Ev_keyc = Gev.getEventKey();
 #endif     
 //<<"$_proc %V $Ev_x $Ev_y  $Ev_woid\n"
 

@@ -191,11 +191,11 @@ cout << " para[1] is:  "  << sa.cptr(1) << endl;
 
  Svar sa;
 
-// <<" na $_clargc \n"
+<<" na $_clargc \n"
  na = _clargc;
 // <<" na $_clarg[1]  $_clarg[2] \n"
  Str wsa="mno";
- sa = _clarg;
+ sa = _clarg[1:-1:1];
 
 <<"args are $sa \n"
 <<"0 $sa[0] \n"
@@ -203,6 +203,8 @@ cout << " para[1] is:  "  << sa.cptr(1) << endl;
 <<"1 $sa[1] $wsa \n"
 
 <<"2 $sa[2] \n"
+
+<<"3 $sa[3] \n"
 
 #endif
  openDll("plot");
@@ -870,7 +872,7 @@ adbprintf(-1,"DrawMap\n");
 
     eventWait();
 
-
+  printf("KEY %d\n",Ev_keyc);
 
   if (Ev_keyw == "EXIT_ASL" ) {
          //ans=query("?","EXIT_ASL QUIT?",__LINE__);
@@ -932,7 +934,7 @@ adbprintf(-1,"DrawMap\n");
 
 
        if (Ev_keyc == 'X') {
-     //  <<"expand \n"
+     printf("expand \n");
            LatN += d_ll;
            LatS -= d_ll;
            LongW += d_ll;
@@ -943,6 +945,7 @@ adbprintf(-1,"DrawMap\n");
 
        if (Ev_keyc == 'x') {
     //   <<"Zoom IN\n"
+         printf("Zoom \n");
            LatN -= (d_ll * 0.9);
            LatS += (d_ll * 0.9);
            LongW -= (d_ll * 0.9);
@@ -991,7 +994,9 @@ adbprintf(-1,"DrawMap\n");
                //   sWo(tpwo[0],_WVALUE,wcltpt,_WREDRAW);
                  woSetValue(tpwo[0],wcltpt);
                }
-	    // sWo(tpwo[0], _WCXOR);
+	     sWo(_WOID,mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN));
+              drawit = 1;
+              Task_update =1;
           }
 	  
        }
@@ -1019,10 +1024,6 @@ adbprintf(-1,"DrawMap\n");
              wc = choiceMenu("TPC.m");
 //<<"menu choice  name or action  %V $wc\n";
 
-           //  showTaskPts();
-
-//pa("wc ", wc);
-//ans=query("?",wc,__LINE__);
 
               if (wc == "M") { // replace
 
@@ -1085,11 +1086,7 @@ adbprintf(-1,"DrawMap\n");
              }	     
                 Task_update =1;
           }
-	   
 
-                 //sWo(tpwo,_WREDRAW);
-                 //sWo(legwo,_WREDRAW);		 
-                // sWo(wtpwo,_Wcxor);
                  showTaskPts();
        }
        else if (Ev_woname == "ALT") {
@@ -1226,7 +1223,7 @@ adbprintf(-1,"DrawMap\n");
        }
 
 
-        if (drawit || Task_update) {
+        if (drawit ) {
 	     DrawMap();
   	     drawTrace();
              drawTask(mapwo,GREEN_);
@@ -1238,8 +1235,6 @@ adbprintf(-1,"DrawMap\n");
      
       taskDist();
 
-   //   woSetValue(tdwo,totalK);
-   //   sWo(_WOID,tdwo,_WUPDATE,ON_);
 
      Task_update = 0;
       //int i;
@@ -1257,18 +1252,21 @@ adbprintf(-1,"DrawMap\n");
 //          <<"main %V $_scope $_cmfnest $_proc $_pnest\n"
 
        updateLegs();
+       
+             DrawMap();
+  	     drawTrace();
+             drawTask(mapwo,GREEN_);
 
-       //sWo(tpwo,_WREDRAW);
-       //sWo(legwo,_WREDRAW);		 
+       //sWi(_WOID,Vp,_WREDRAW,ON_); // need a redraw proc for app
+       
       }
 
-   //  sWi(vp,_WREDRAW);
+
+ 
 
  taskDist();
-    //drawTrace();
-   // drawTask(mapwo,RED_);
  
-//	 sWo(mapwo,_WSHOWPIXMAP);
+
 }
 
 

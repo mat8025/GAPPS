@@ -27,7 +27,7 @@
 
   //cout<<"plotSymbol\n";
 
-  plotSymbol(wtwo,gday,NextGoalWt,DIAMOND_,Symsz,BLUE_);
+  plotSymbol(wtwo,gday,NextGoalWt,DIAMOND_,Symsz,BLUE_, 1);
 
   plotSymbol(wtwo,last_known_day,NextGoalWt,DIAMOND_,Symsz,RED_,1);
 
@@ -271,7 +271,9 @@ sWo(_WOID,wtwo,_WSHOWPIXMAP,ON_);
 //<<" $_proc \n"
 
 
-//<<"%V $sc_startday  $sc_end \n"
+<<"%V $sc_startday  $sc_end \n"
+
+
 // sc_startday.pinfo()
  //sc_startday = (jtoday - Bday) - 20;
 //<<"RESET? %V $sc_startday  $sc_end \n"
@@ -287,15 +289,16 @@ int wedwos[] = { wtwo, calwo,  carbwo, extwo,-1  };
 
   if ( wScreen == 0) {
 
-//<<"%V $sc_zstart $minWt $sc_zend $upperWt\n"
+<<"%V $sc_zstart $minWt $sc_zend $upperWt\n"
  // sWo(wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0,_WFLUSH);
 
   COUT(sc_zstart);
   COUT(sc_zend);
 
 for (i = 0; i< 10; i++) {
-      if (wedwos[i] <=0)
+      if (wedwos[i] <=0) {
          break;
+	 }
         sWo(_WOID,wedwos[i],_WXSCALES, wpt(sc_zstart,sc_zend));
 //printf("%d xscales %f %f\n",i,sc_zstart,sc_zend);
         sWo(_WOID,wedwos[i],_WCLEARCLIP,WHITE_,_WSAVE,ON_,_WCLEARPIXMAP,ON_,_WCLIPBORDER,BLACK_);
@@ -350,14 +353,19 @@ for (i = 0; i< 10; i++) {
 
   while (1) {
 
+ <<"%V $gi $allgls[gi] \n"
+
+  if (allgls[gi] < 0)
+  <<"break on neg gi \n"
+    break;
+  }
+
   sGl(_GLID,allgls[gi],_GLDRAW,ON_);
   gi++;
   
-  adbprintf(2,"dgl %d\n",gi);
+ // adbprintf(2,"dgl %d\n",gi);
   
-  if (allgls[gi] < 0)
-      break;
-  }
+
    
  //  ans= query("see lines?\n");
       
@@ -388,9 +396,11 @@ for (i = 0; i< 10; i++) {
      showTarget();
 
    for (i = 0; i< 10; i++) {
-      if (wedwos[i] <=0)
+        if (wedwos[i] <=0) {
          break;
-    sWo(_WOID,wedwos[i],_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_);
+	 }
+
+      sWo(_WOID,wedwos[i],_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_);
    }
 
 
@@ -428,7 +438,7 @@ for (i = 0; i< 10; i++) {
   Wex_CR_init = 1;
   Wex_CL_init = 1;
  //sc_startday.pinfo();
-  // cout<<"Done drawScreens\n";
+  <<"Done drawScreens\n";
  }
   
  
