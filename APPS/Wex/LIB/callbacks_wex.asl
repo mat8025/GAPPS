@@ -174,19 +174,28 @@ void WTLB()
 
 //pa("proc  setting cursors ", _proc, " Button", Button);
 
-printf("\nEv_button %d    cursor @ Ev_rx %f\n",Ev_button,Ev_rx);      
-
+printf("\n Ev_button %d    cursor @ Ev_rx %f\n",Ev_button,Ev_rx);      
+ long wt_day = 0;
        if (Ev_button == 1) {
+
          lcpx = Ev_rx;
 
 	 sGl(_GLID,lc_gl,_GLCURSOR,rbox(lcpx,0,lcpx,300));
 	 
 	 Wex_CL_init = 0;
-         getDay(lcpx);
+	 wt_day = lcpx;
+
+ // wt_day.pinfo();
+  //lcpx.pinfo();
+
+//DBA"%V $wt_day $lcpx \n";
+
+         getDay(wt_day);
 
         }
 
        if (Ev_button == 3) {
+       
          rcpx = Ev_rx;
 
       

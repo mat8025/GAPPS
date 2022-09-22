@@ -271,7 +271,7 @@ sWo(_WOID,wtwo,_WSHOWPIXMAP,ON_);
 //<<" $_proc \n"
 
 
-<<"%V $sc_startday  $sc_end \n"
+DBA"%V $sc_startday  $sc_end \n";
 
 
 // sc_startday.pinfo()
@@ -279,7 +279,7 @@ sWo(_WOID,wtwo,_WSHOWPIXMAP,ON_);
 //<<"RESET? %V $sc_startday  $sc_end \n"
 
 
-int wedwos[] = { wtwo, calwo,  carbwo, extwo,-1  };
+int wedwos[10] = { wtwo, calwo,  carbwo, extwo,-1  };
 
 //  Str ans;
 
@@ -289,8 +289,9 @@ int wedwos[] = { wtwo, calwo,  carbwo, extwo,-1  };
 
   if ( wScreen == 0) {
 
-<<"%V $sc_zstart $minWt $sc_zend $upperWt\n"
- // sWo(wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0,_WFLUSH);
+DBA"%V $sc_zstart $minWt $sc_zend $upperWt\n";
+
+// sWo(wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0,_WFLUSH);
 
   COUT(sc_zstart);
   COUT(sc_zend);
@@ -349,27 +350,18 @@ for (i = 0; i< 10; i++) {
 
    // int allgls[] = {wt_gl2,wt_gl, wt_gl3,-1};
 
+//<<"%V $allgls\n"
+
    int gi=0;
 
-  while (1) {
+  while ( allgls[gi] > 0)  {
 
- <<"%V $gi $allgls[gi] \n"
-
-  if (allgls[gi] < 0)
-  <<"break on neg gi \n"
-    break;
-  }
+// <<"%V $gi $allgls[gi] \n"
 
   sGl(_GLID,allgls[gi],_GLDRAW,ON_);
+  
   gi++;
   
- // adbprintf(2,"dgl %d\n",gi);
-  
-
-   
- //  ans= query("see lines?\n");
-      
-
   }
 
 
@@ -423,10 +415,6 @@ for (i = 0; i< 10; i++) {
 
   sWo(_WOID,swo,_WSHOWPIXMAP,1);
 
-
-
-  
-
   //sWo(allwo,_WCLIPBORDER,GREEN_);
 
   }
@@ -438,9 +426,10 @@ for (i = 0; i< 10; i++) {
   Wex_CR_init = 1;
   Wex_CL_init = 1;
  //sc_startday.pinfo();
-  <<"Done drawScreens\n";
- }
+//  <<"Done drawScreens\n";
+  }
   
+ }
  
 //=================================================
 
@@ -530,6 +519,8 @@ for (i = 0; i< 10; i++) {
     sWi(_WOID,vp,_WRESIZE,wbox(0.05,0.01,0.98,0.98),_WREDRAW,ON_);
 
   }
+  
+ //[EP]/////////////////////////////////////////////// 
 
   void getDay(long dayv)
   {
@@ -549,6 +540,7 @@ for (i = 0; i< 10; i++) {
   m_day= dayv + Jan1 -1;  // ? OBO;
 
   mdy = Julmdy(m_day);
+
   COUT(mdy);
   
   //sWo(dtmwo,_WVALUE2 ,mdy,_WREDRAW );

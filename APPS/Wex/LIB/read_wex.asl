@@ -22,7 +22,7 @@ float tex;
 int iyd = Yd;
 
  VCOUT(Yd,iyd);
-
+//<<" %V $Yd \n"
   if (Yd >= 0) {
 
  int j = 1;
@@ -35,7 +35,7 @@ int iyd = Yd;
 
   WTVEC[Yd] = mywt;
   
-//<<"$k  mywt  $WTVEC[Nobs] \n"
+  DBA"mywt  $WTVEC[Nobs] \n";
 
   if (mywt > 0.0) {
 
@@ -110,7 +110,7 @@ int iyd = Yd;
 
   Nobs++;
 
-// printf("Nobs %d  exer_burn %f\n",Nobs ,exer_burn);
+//printf("Nobs %d  exer_burn %f\n",Nobs ,exer_burn);
   }
 
   }
@@ -148,6 +148,8 @@ int iyd = Yd;
 
   day = Col[0];
 
+//<<"%V $day \n"
+
   VCOUT(tl,day);
 
   jday = Julian(day);
@@ -162,6 +164,7 @@ int iyd = Yd;
   }
 
   Yd = jday - Jan1;
+  
 //<<"%V $jday  $Yd\n"
 
   lday = Yd;
@@ -229,16 +232,18 @@ printf("Wex_Nrecs %d there were Nobs %d measurements ",Wex_Nrecs,Nobs);
   
   while (tl < NCCrecs) {
   
-    //ccol = RCC[tl];
+
+//ccol = RCC[tl];
 //<<[_DB]"$RCC[tl]\n"
 //<<[_DB]"$tl  $NCCobs $NCCrecs\n"
-    //day = ccol[0];
+//day = ccol[0];
 //cout << "RCC tl " << tl << " " << RCC(tl) << endl;
-
 //COUT2(tl,RCC(tl)) ;
 
   day = RCC.getRC(tl,0);
+
   if (day != "") {
+
 //cout <<" day " << day << endl;
 
   jday = Julian(day);

@@ -43,6 +43,9 @@
 // the include  when cpp compiling will re-define ASL 0 and CPP 1
 #include "compile.asl"
 
+//#define DBA <<
+#define DBA ~!
+
 #endif
 
 #if CPP
@@ -55,7 +58,7 @@ using namespace std;
 #define PXS  cout<<
 #define ASL_DB 0
 
-
+#define DBA if (0) 
 
 
 
@@ -272,8 +275,6 @@ Record RX;
   long wday;
   long gday;
   long gsday;
-
-
   
   int NextGoalWt;
   int StGoalWt;
@@ -493,13 +494,13 @@ Record RX;
    Str stmp;
    Svar Goals;
    
-   Goals.Split("07/01/2022 07/31/2022 175");
+   Goals.Split("09/01/2022 10/20/2022 185");
 
 //<<"Setting goals $Goals\n"
 
    Svar Goals2;
    
-   Goals2.Split("07/15/2022 08/30/2022 185");
+   Goals2.Split("09/15/2022 10/30/2022 175");
 ////////////////////==============/////////////////
 
 // move these done 10 when reached -- until we are at desired operating weight!
@@ -547,7 +548,7 @@ COUT(gday);
   if (sc_startday <0)
      sc_startday =0;
 
-  sc_endday = targetday + 7;
+//  sc_endday = targetday + 7;
 
     sc_endday = sc_startday + 90;
 //   <<"%V$sc_startday $targetday $sc_endday \n"
@@ -600,7 +601,7 @@ COUT(gday);
 
   Mo.Split ("JAN,FEB,MAR,APR ,MAY,JUN, JUL, AUG, SEP, OCT, NOV , DEC",44);
 
-  GoalsC.Split("07/21/2022 08/31/2022 175");
+  GoalsC.Split("09/15/2022 10/31/2022 175");
 
 
   maxday = Julian("04/09/2049") -Bday;
@@ -624,7 +625,9 @@ COUT(gday);
 
   Svar rx;
 
-  //printf(" readRecord \n");
+  printf(" readRecord \n");
+
+DBA"readRecord \n" ;
 
   Wex_Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST);  // no back ptr to Siv?
 
@@ -635,12 +638,20 @@ COUT(gday);
    pa (Wex_Nrecs);
 
 
-  //<<"%V $Nrecs $RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n";
+  //<<"%V $Wex_Nrecs $RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n";
 
 
   //<<[_DB]"$RX[Nrecs-2]\n";
 
-  rx= RX[Wex_Nrecs-1];
+
+  int irx = Wex_Nrecs -10;
+  for (i = irx ; i < Wex_Nrecs; i++) {
+  rx= RX[i];
+
+//<<"$i  $rx \n"
+  }
+
+
 
 //cout << "last rec " << rx << endl;
 

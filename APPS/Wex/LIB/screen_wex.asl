@@ -195,7 +195,7 @@ COUT(swo);
 
   int fewos[] = {zinwo,zoomwo, -1 };
 
-  pa(fewos);
+  //pa(fewos);
 
   wohtile( fewos, 0.03,0.01,0.43,0.07);
 
@@ -274,13 +274,11 @@ COUT(swo);
 
   int  goalwos[5] = { sdwo, gdwo, gwtwo, -1};
 
-  wovtile( goalwos, 0.02,0.1,0.08,0.45, );
+  wovtile( goalwos, 0.02,0.1,0.08,0.45 );
   i = 0;
   int kgoals = 0;
   while (1) {
-  <<"%V $i $goalwos[i] \n";
    if (goalwos[i] < 0) {
-   <<" break neg goalwo \n"
        break;
        }
        
