@@ -58,7 +58,7 @@ using namespace std;
 #define PXS  cout<<
 #define ASL_DB 0
 
-#define DBA if (0) 
+#define DBA if (0)  
 
 
 
@@ -434,19 +434,11 @@ Record RX;
   
 #if CPP
  ///////////////////////////////////////////////////
-  void Wex::wexTask(Svarg * sarg)
+// the wex obj method - see wex.h
+void Wex::wexTask(Svarg * sarg)
   {
- 
 
-// test Vec Global
-  // setDebug(2,"pline");
-
-
-
-  cout << "Vtst "  << Vtst << endl;
-
-//    Svar Mo;
-  // Mo scope  - wex_task
+    cout << "Vtst "  << Vtst << endl;
 
 #endif
 
@@ -844,8 +836,9 @@ int nevent = 0;
      }
 
 cout<<"Exit Wex\n";
+
 #if CPP
-}
+}  // close of wex obj method
 
 
 
@@ -862,15 +855,15 @@ cout<<"Exit Wex\n";
 
     Svar GoalsB;
    
-    GoalsB.Split("07/21/2022 08/31/2022 175");
+    GoalsB.Split("09/21/2022 10/31/2022 175");
     
 
 #include "types_wex.asl"
 
 
-  Wex *o_wex = new Wex;
+  Wex *o_wex = new Wex;  // create the wex object
 
-  o_wex->wexTask(sarg);
+  o_wex->wexTask(sarg);  // run the main method
 
     exit(0);
   }
