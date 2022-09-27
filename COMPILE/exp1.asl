@@ -30,6 +30,9 @@
 // compile asl  will redifine CPP to 1 and ASL to 0
 #endif
 
+#if USE_ASL
+<<"Using ASL \n"
+#endif
 
 
 /////////////////  INCLUDES //////////////////////
@@ -93,6 +96,7 @@ cout << " The  Task parameters are:  "  << sa << endl;
 #endif
 
   int main_rtval = 0;
+  int i;
   printf("doing main method <|%s|> <|%s|>\n",sa.cptr(0), sa.cptr(1));
   printf("doing main method <|%s|> <|%s|>\n",sa[0], sa[1]);
 
@@ -101,7 +105,8 @@ cout << " The  Task parameters are:  "  << sa << endl;
 
 Str sv = sa.cptr(1);
 
-<<"%V $sv\n";
+//<<"%V $sv\n";
+
 sv.pinfo();
 
 
@@ -117,13 +122,13 @@ sv.pinfo();
    
 
 
-  <<"%V $k0 $k $k1 $k2\n"
+  //<<"%V $k0 $k $k1 $k2\n"
 
-   k1.pinfo();
+   //k1.pinfo();
 
-   k.pinfo();
+   //k.pinfo();
    
-   k2.pinfo();
+   //k2.pinfo();
 
   //long lval = 1234567;
   
@@ -131,7 +136,7 @@ sv.pinfo();
 
   printf(" k %ld k1 %ld %ld\n",k,k1,lval);
 
-  lval.pinfo();
+  //lval.pinfo();
   double dout;
 
   dout = dproc(lval);
@@ -144,6 +149,20 @@ sv.pinfo();
   dout = dproc(lval);
 
   pa(lval , dout);
+
+  for (i= 0; i < 7 ; i++) {
+     k= atol(sa.cptr(i));
+     lval = k;
+     dout = dproc(lval);
+     //<<"%V $i $k $lval $dout\n"
+     printf(" i %d k %d lval %d dout %f\n",i ,k ,lval ,dout);
+#if ASL
+    <<"$k $(pt(k)) \n";
+#else    
+    cout << k << " " << pt(k) << endl;
+#endif
+     pa(lval , dout);
+  }
 
   return main_rtval;
 }

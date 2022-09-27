@@ -8,5 +8,7 @@
 #define ASL 0
 #undef CPP
 #define CPP 1
+#else
+#define USE_ASL 1
 #endif
 
