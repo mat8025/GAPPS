@@ -19,11 +19,13 @@
 //  <<"$_proc $gday $NextGoalWt $last_known_day\n"
 //  plot(gwo,_Wsymbol,gday,NextGoalWt, TRI_,1, YELLOW_);
 //  plot(gwo,_Wsymbol,gday-1,NextGoalWt, 3,1,GREEN_);
+#if ASL
+  <<"%V $last_known_day $PWT $PWT7 $PWT14  $tday2 $FirstGoalWt \n";
+#endif
 
-  //<<"%V $last_known_day $PWT $tday2 $StGoalWt \n";
- // cout<<"showTarget()\n";
+// cout<<"showTarget()\n";
   
-  plotSymbol(wtwo,tday2,StGoalWt,TRI_,Symsz,BLACK_,1);
+  plotSymbol(wtwo,tday2,FirstGoalWt,TRI_,Symsz,BLACK_,1);
 
   //cout<<"plotSymbol\n";
 
@@ -54,7 +56,7 @@
 
   }
 
-sWo(_WOID,wtwo,_WSHOWPIXMAP,ON_);
+ sWo(_WOID,wtwo,_WSHOWPIXMAP,ON_);
 
 //cout<<"Done showTarget\n";
   //plotSymbol(wtwo,targetday,GoalWt,STAR_,Symsz, LILAC_);
@@ -63,7 +65,6 @@ sWo(_WOID,wtwo,_WSHOWPIXMAP,ON_);
 
   }
 //===========================
-
 
   void showCompute()
   {
@@ -90,7 +91,7 @@ sWo(_WOID,wtwo,_WSHOWPIXMAP,ON_);
 
   plotBox(wtwo,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_) ; 
 
-  plotBox(wtwo,sc_startday,DX_MEW,sc_end,DX_NEW, YELLOW_) ; 
+  plotBox(wtwo,sc_startday,DX_NEW,sc_end,DX_NEW, YELLOW_) ; 
 
   plotBox(wtwo,sc_startday,GoalWt-5,sc_end,GoalWt+5, LIGHTGREEN_) ; //
     //Plot(calwo,_WLINE,sc_startday,day_burn,sc_end,day_burn, GREEN_)
@@ -102,9 +103,10 @@ sWo(_WOID,wtwo,_WSHOWPIXMAP,ON_);
   plotLine(calwo,sc_startday,in_cal,sc_end,in_cal, RED_);
 
   plotLine(calwo,sc_startday,50,sc_end,50, GREEN_);
+  
     // use todays date and wt to the intermediate short-term goal
 
-  plotLine(wtwo,last_known_day,last_known_wt,tday2,StGoalWt, RED_) ;
+  plotLine(wtwo,last_known_day,last_known_wt,tday2,FirstGoalWt, RED_) ;
 
   }
 
@@ -146,7 +148,8 @@ sWo(_WOID,wtwo,_WSHOWPIXMAP,ON_);
   int wm = 0;
 
   float lty = 0;
-
+//  Str wday = "Mon";
+  
   float qfwd = 0.0;
 
   RS=wgetrscales(wwo);
@@ -163,13 +166,20 @@ sWo(_WOID,wtwo,_WSHOWPIXMAP,ON_);
 //  the_date = julmdy("$jd");
    the_date = Julmdy(jd);
 
- // <<[_DB]"%V$mid_date $jd $the_date \n";
+   // use mondays as the date tick
+#if ASL
+ <<"%V$mid_date $jd $the_date \n";
+#endif
+
    //AxText(wwo, 1, the_date, mid_date, -0.25, BLUE_)
 
   jd= RS[1] + Jan1;
 
   the_date = Julmdy(jd);
-//  AxText(wwo, 1, the_date, q1_date, -0.25, BLUE_);
+  
+  Str mday = spat(the_date, "/",-1,-1, match);
+  
+ // AxText(wwo, 1, mday, q1_date, -0.25, BLUE_);
 
   float wdate = RS[1];
 
@@ -178,6 +188,12 @@ sWo(_WOID,wtwo,_WSHOWPIXMAP,ON_);
 
   int draw_months =1;
 
+  int mon = (jd +1) % 7;
+
+  mon = 2 -mon;
+  jd -= mon;
+  wdate -= mon;
+  
   while (draw_months <= 12) {
 
   jd += 7;
@@ -186,16 +202,21 @@ sWo(_WOID,wtwo,_WSHOWPIXMAP,ON_);
 
   if (wdate >= RS[3]) {
 
-  break;
+     break;
 
   }
 
   the_date = Julmdy(jd);
 
-  Str mday = spat(the_date, (char *)"/",-1,-1, match);
+ //wday = Julday(jd);
+  
+ // Str mday = spat(the_date, (char *)"/",-1,-1, match);
+  mday = spat(the_date, "/",-1,-1, match);
 
-  axisLabel(wwo, 1, mday, wdate, 0.7, BLUE_);
- //  <<"%V $jd $wdate $RS[3] $the_date\n"
+ // axisLabel(wwo, 1, mday, wdate, 0.7, BLUE_);
+  AxText(wwo, 1, mday, wdate, -0.25, MAGENTA_);
+  
+//   <<"%V $jd $wdate $RS[3] $the_date $mday $wday\n"
 
   draw_months++;
 
@@ -289,7 +310,7 @@ int wedwos[10] = { wtwo, calwo,  carbwo, extwo,-1  };
 
   if ( wScreen == 0) {
 
-DBA"%V $sc_zstart $minWt $sc_zend $upperWt\n";
+//<<"%V $sc_zstart $minWt $sc_zend $upperWt\n";
 
 // sWo(wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0,_WFLUSH);
 
@@ -367,19 +388,17 @@ for (i = 0; i< 10; i++) {
 
 //ans=query("proceed?");
 
-  int allwo[] = {wtwo,swo, calwo,  extwo , carbwo,-1};
+  int allwo[] = {wtwo, swo, calwo,  extwo , carbwo,-1};
  // int allwo[] = {gwo,-1};
    
-  
    
-   
-  //drawMonths(wtwo);
+  drawMonths(wtwo);
 
-//  drawMonths(calwo);
+  drawMonths(calwo);
 
 //  drawMonths(carbwo);
 
-//  drawMonths(extwo);
+  drawMonths(extwo);
       //Text(extwo,"Exercise mins",-4,0.5,4,-90)
       //Text(wtwo,  "Weight (lbs)",0.8,0.8,1)
        //dGl(wt_gl)
@@ -539,16 +558,23 @@ for (i = 0; i< 10; i++) {
 
   m_day= dayv + Jan1 -1;  // ? OBO;
 
-  mdy = Julmdy(m_day);
+  Str mdy = Julmdy(m_day);
+#if ASL
+<<"%V $dayv $m_day $Jan1 $mdy \n"
+#endif
 
-  COUT(mdy);
+printf("m_day %d Jan1 %ld  mdy %s\n",m_day, Jan1, mdy);
+
+  //COUT(mdy);
   
   //sWo(dtmwo,_WVALUE2 ,mdy,_WREDRAW );
   woSetValue(dtmwo,mdy);
 
-  wtm = WTVEC[dayv];
-  cbm = CALBURN[dayv];
-  xtm = EXTV[dayv];
+// day of year is 0 or 1 for Jan1 ?
+  int dindex = dayv -1;
+  wtm = WTVEC[dindex];
+  cbm = CALBURN[dindex];
+  xtm = EXTV[dindex];
   
   woSetValue(wtmwo,wtm);
   woSetValue(cbmwo,cbm);

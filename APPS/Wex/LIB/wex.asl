@@ -12,7 +12,7 @@
  */ 
 ;//----------------<v_&_v>-------------------------//;                  
 
-  Str Wex_Vers= "2.56";
+  Str Wex_Vers= "2.57";
 
 
 ///
@@ -277,7 +277,7 @@ Record RX;
   long gsday;
   
   int NextGoalWt;
-  int StGoalWt;
+  int FirstGoalWt;
   float mid_date;
 
   float   DX_NEW = 200.0;  // never exceed
@@ -328,14 +328,6 @@ Record RX;
   long sc_startday;
   float lcpx = 0.0;
   float rcpx = 10.0;
-
-
-
-
-//    Svar Goals;
-//    Svar Goals2;
-//#include "wex_goals.asl"
-
 
 ////////////////////////////////////////  routines //////////////////////////////
 
@@ -486,16 +478,16 @@ void Wex::wexTask(Svarg * sarg)
    Str stmp;
    Svar Goals;
    
-   Goals.Split("09/01/2022 10/20/2022 185");
+   Goals.Split("09/10/2022 11/20/2022 195");
 
 //<<"Setting goals $Goals\n"
 
    Svar Goals2;
    
-   Goals2.Split("09/15/2022 10/30/2022 175");
+   Goals2.Split("09/15/2022 11/30/2022 195");
 ////////////////////==============/////////////////
 
-// move these done 10 when reached -- until we are at desired operating weight!
+// move these down 10 when reached -- until we are at desired operating weight!
 
 
    COUT(Goals);
@@ -525,7 +517,9 @@ void Wex::wexTask(Svarg * sarg)
 
    tday2 = Julian(Goals2[1]) -Jan1;
 
-   StGoalWt = atoi(Goals2[2]);
+   FirstGoalWt = atoi(Goals[2]);
+
+   NextGoalWt = atoi(Goals2[2]);
 
    gsday = Sday;
 
@@ -535,7 +529,7 @@ COUT(gday);
 
 //   Onwards();
 
-  sc_startday = (jtoday - Jan1) -7;
+  sc_startday = (jtoday - Jan1) -60;
 
   if (sc_startday <0)
      sc_startday =0;
@@ -593,7 +587,7 @@ COUT(gday);
 
   Mo.Split ("JAN,FEB,MAR,APR ,MAY,JUN, JUL, AUG, SEP, OCT, NOV , DEC",44);
 
-  GoalsC.Split("09/15/2022 10/31/2022 175");
+  GoalsC.Split("09/15/2022 11/30/2022 175");
 
 
   maxday = Julian("04/09/2049") -Bday;
@@ -636,7 +630,7 @@ DBA"readRecord \n" ;
   //<<[_DB]"$RX[Nrecs-2]\n";
 
 
-  int irx = Wex_Nrecs -10;
+  int irx = Wex_Nrecs -20;
   for (i = irx ; i < Wex_Nrecs; i++) {
   rx= RX[i];
 
@@ -752,56 +746,45 @@ float ae = EXTV[15];
    AVE_EXTV.Smooth(7);  // add Smooth (smooth_win_size)
 
    ae = AVE_EXTV[15];
-pa(ae);
 
-COUT(ae);
+   printf("ae %f\n",ae);
+
+
+   COUT(ae);
 
 //COUT(DVEC);
 
 
 //COUT(WTVEC);
 
-//ans=query("proceed?");
 
-//COUT(WDVEC);
-
-//ans=query("proceed?");
+  predictWL();
 
 
-// 
+// ans=query("proceed?");
 
 
-//ans=query("proceed?");
-
-  //showTarget();
-
-//cout<<"showTarget \n";
-
-//ans=query("proceed?");
   lcpx = sc_startday;
   rcpx = sc_endday;
   
   drawScreens();
 
-
-
-
-//ans=query("proceed?");
   showTarget();
 
 
- drawScreens();
+  drawScreens();
  
 cout<<"DONE PLOT\n";
+
+
 int nevent = 0;
-// Gevent Gev;
 
      while (1) {
 
 
     eventWait();
 
-    printf("Ev_button %d Ev_keyw %s Ev_woname %s Ev_keyc %d\n", Ev_button,Ev_keyw,Ev_woname,Ev_keyc );
+//    printf("Ev_button %d Ev_keyw %s Ev_woname %s Ev_keyc %d\n", Ev_button,Ev_keyw,Ev_woname,Ev_keyc );
 
          nevent++;
 

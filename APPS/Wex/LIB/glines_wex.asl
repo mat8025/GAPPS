@@ -126,14 +126,11 @@ COUT(se_gl)
 
   int wgl = 0;
   int ki = 0;
-  while (1) {
-       wgl = wedgl[ki];
-       ki++;
-       if (wgl != -1)
-        sGl(_GLID,wgl,_GLMISSING,missing_val);
-       else
-         break;
-   }
+  
+  while (wedgl[ki]> 0) {
+        sGl(_GLID,wedgl[ki],_GLMISSING,missing_val);
+        ki++;
+ }
 
   cout<<"set symbols \n";
 

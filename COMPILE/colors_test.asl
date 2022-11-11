@@ -16,6 +16,8 @@
 Str colors_test_vers = "1.7";
 
 
+//bad
+
 #define ASL 0
 #define CPP 1
 
@@ -235,7 +237,7 @@ WPOS[1] = 84;
  
 
 //pa ("WPOS ", WPOS);
-
+ float Pi = 4.0 * atan(1.0);
 int c_index ;
 
 while (1) {

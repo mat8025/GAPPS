@@ -174,7 +174,7 @@ void WTLB()
 
 //pa("proc  setting cursors ", _proc, " Button", Button);
 
-printf("\n Ev_button %d    cursor @ Ev_rx %f\n",Ev_button,Ev_rx);      
+//printf("\n Ev_button %d    cursor @ Ev_rx %f\n",Ev_button,Ev_rx);      
  long wt_day = 0;
        if (Ev_button == 1) {
 
@@ -183,8 +183,8 @@ printf("\n Ev_button %d    cursor @ Ev_rx %f\n",Ev_button,Ev_rx);
 	 sGl(_GLID,lc_gl,_GLCURSOR,rbox(lcpx,0,lcpx,300));
 	 
 	 Wex_CL_init = 0;
-	 wt_day = lcpx;
-
+	 wt_day = fround(lcpx,0);
+printf("\n day %f  %d\n",lcpx, wt_day);      
  // wt_day.pinfo();
   //lcpx.pinfo();
 

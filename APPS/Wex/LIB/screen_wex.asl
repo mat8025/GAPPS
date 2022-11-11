@@ -277,14 +277,9 @@ COUT(swo);
   wovtile( goalwos, 0.02,0.1,0.08,0.45 );
   i = 0;
   int kgoals = 0;
-  while (1) {
-   if (goalwos[i] < 0) {
-       break;
-       }
-       
-    sWo(_WOID,goalwos[i],_WREDRAW,ON_);
-    i++;
-
+   while (goalwos[i] >= 0)  {
+     sWo(_WOID,goalwos[i],_WREDRAW,ON_);
+      i++;
   }
 
 

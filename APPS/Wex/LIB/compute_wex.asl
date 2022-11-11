@@ -1,5 +1,5 @@
 /* 
- *  @script wex_compute.asl 
+ *  @script compute_wex.asl 
  * 
  *  @comment  
  *  @release CARBON 
@@ -100,9 +100,10 @@ int k = Yday-2; //
     PWT7 = yv[0] + (pwl[1] * 9);
     PWT14 = yv[0] + (pwl[1] * 16);
   }
-
-//<<"tomorrow's wt will be $pw +7 $PWT7  +14 PWT14\n"
-          return pw;
+#if ASL
+<<"tomorrow's wt will be $pw +7 $PWT7  +14 $PWT14\n"
+#endif
+  return pw;
 }
 
 //[EM]=================================//
