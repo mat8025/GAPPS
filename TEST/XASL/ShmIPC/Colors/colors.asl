@@ -78,15 +78,16 @@ sWi(_WOID,vp3,_WREDRAW,ON_);
   cbX = 0.5
 
 
-  bwo=cWo(bvp,WO_BS_);
+  bwo=cWo(bvp,WO_BS_,"BLUE");
 
-  sWo(_WOID,bwo,_WNAME,"Blue",_WVALUE,bluev,_WBHUE,BLUE_);
+ // sWo(_WOID,bwo,_WNAME,"Blue",_WVALUE,bluev,_WBHUE,BLUE_);
+  sWo(_WOID,bwo,_WVALUE,bluev,_WBHUE,BLUE_);
 
  // rwo=cWo(bvp,_BS,_name,"Red",_value,redv)
 
-    rwo=cWo(bvp,WO_BS_);
+    rwo=cWo(bvp,WO_BS_,"RED");
 
-    sWo(_WOID,rwo,_WNAME,"Red",_WVALUE,redv,_WHUE,RED_);
+    sWo(_WOID,rwo,_WVALUE,redv,_WHUE,RED_);
 
   //sWo(rwo,_color,r_index,_bhue,RED_)
   //sWo(rwo,_color,RED_,_bhue,r_index)    // bhue is main background fill hue --
@@ -96,9 +97,9 @@ sWi(_WOID,vp3,_WREDRAW,ON_);
 
 //  sWo(gwo,_color,GREEN_)
 
-  gwo=cWo(bvp,WO_BS_);
+  gwo=cWo(bvp,WO_BS_,"GREEN");
 
-  sWo(_WOID,gwo,_WNAME,"Green",_WVALUE,greenv,_WHUE,GREEN_);
+  sWo(_WOID,gwo,_WVALUE,greenv,_WHUE,GREEN_);
 
 
  // bwo=cWo(bvp,_BS,_bhue,BLUE_,_NAME,"Blue",_value,bluev)
@@ -376,9 +377,15 @@ bctx=0.4;
      sWo(_WOID,awo[1],_WTEXTHUE,BLACK_,_WTEXTR,"%6.2f Red $redv Blue $bluev  ",0.1,0.61,_WCLIPBORDER,RED_);
      sWo(_WOID,awo[1],_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f Red $redv Blue $bluev  ",0.1,0.21,_WCLIPBORDER,RED_);     
 
-sWo(_WOID,awo[2],_WBHUE,gb_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,gb_index,_WCLIPBORDER,RED_);	  
-     sWo(_WOID,awo[2],_WTEXTHUE,BLACK_,_WTEXTR,"%6.2f Green $greenv Blue $bluev  ",0.1,0.61,_WCLIPBORDER,RED_);
-     sWo(_WOID,awo[2],_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f Green $greenv Blue $bluev  ",0.1,0.21,_WCLIPBORDER,RED_);     
+     sWo(_WOID,awo[2],_WBHUE,gb_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,gb_index,_WCLIPBORDER,RED_);
+
+     // use Textr asl function to process the text parameters during the sWo call --  compatible with  cpp version
+     // which uses a Textr object and passes that via this pointer
+     //   so this still looks like and tag, value pair to both asl and cpp
+
+     sWo(_WOID,awo[2],_WTEXTR,Textr("%6.2f Green $greenv Blue $bluev  ",0.1,0.61,BLACK_),_WCLIPBORDER,RED_);
+     
+     sWo(_WOID,awo[2],_WTEXTR,Textr("%6.2f Green $greenv Blue $bluev  ",0.1,0.21, WHITE_),_WCLIPBORDER,RED_);     
 
    if (Ev_woid == qwo) {
        break

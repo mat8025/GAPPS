@@ -89,7 +89,7 @@ Textr TR;
     float scales[] = {0,-0.2,1.5,1.5};
     float rclip[] = {0.2,0.2,0.9,0.9,0.0};
     
-    sWi(_WOID,vp,_WPIXMAP,ON_,_WDRAW,ON_,_WBHUE,WHITE_);
+    sWi(_WOID,vp,_WPIXMAP,OFF_,_WDRAW,ON_,_WBHUE,WHITE_);
 
     sWi(_WOID,vp,_WSCALES,scales);
 
@@ -131,14 +131,14 @@ cout << "done vp2" << endl;
   float cbX = 0.9;
 
 
-  int rwo=cWo(vp);
+  int rwo=cWo(vp,WO_BV_);
 
  wovalue.strPrintf("%f",redv);
-  sWo(_WOID,rwo,_WTYPE, WO_BV_,_WNAME,"Red",_WRESIZE,wbox(rx,cby,rX,cbY),  _WVALUE,wovalue.cptr(),_WSTYLE,WO_SVB);
+  sWo(_WOID,rwo,_WTYPE, WO_BV_,_WNAME,"Red",_WRESIZE,wbox(rx,cby,rX,cbY),  _WVALUE,wovalue.cptr(),_WSTYLE,WO_SVB_);
 
   sWo(_WOID,rwo,_WBHUE,RED_,_WPENHUE,BLACK_,_WVMOVE,1);
 
-  auto gwo=cWo(vp);
+  auto gwo=cWo(vp,WO_BV_);
 
 
   wovalue.strPrintf("%f",greenv);
@@ -147,15 +147,15 @@ cout << "done vp2" << endl;
   
   sWo(_WOID,gwo,_WTYPE, WO_BV_,_WNAME,"Green",_WRESIZE,wbox(gx,cby,gX,cbY),  _WVALUE,wovalue.cptr());
 
-  sWo(_WOID,gwo,_WHUE,GREEN_,_WPENHUE,BLACK_,_WSTYLE,WO_SVB,_WSYMBOL,3,_WVMOVE,1);
+  sWo(_WOID,gwo,_WHUE,GREEN_,_WPENHUE,BLACK_,_WSTYLE,WO_SVB_,_WSYMBOL,3,_WVMOVE,1);
 
  // auto bwo=cWo(vp);
-  int bwo=cWo(vp);
+  int bwo=cWo(vp, WO_BV_);
 
   bluewovalue.strPrintf("%f",bluev);
-  sWo(_WOID,bwo,_WTYPE, WO_BV_,_WNAME,"Blue",_WRESIZE,wbox(bx,cby,bX,cbY),_WVALUE,wovalue.cptr(),_WVMOVE,1);
+  sWo(_WOID,bwo,_WTYPE, WO_BV_,_WNAME,"Blue",_WRESIZE,wbox(bx,cby,bX,cbY),_WVALUE,bluewovalue.cptr(),_WVMOVE,1);
 
-  sWo(_WOID,bwo,_WDRAW,ON_,_WBHUE,BLUE_,_WSTYLE,WO_SVB);
+  sWo(_WOID,bwo,_WDRAW,ON_,_WBHUE,LILAC_,_WSTYLE,WO_SVB_,_WREDRAW,ON);
 
 
   int rgbwo[] = { rwo, gwo, bwo };
@@ -453,13 +453,32 @@ cout << "bluev  " << bluev << endl;
    sWo(_WOID,bwo,_WVALUE, wovalue.strPrintf("%3.2f",bluev) );
 
 
-  sWo(_WOID,bwo,_WVALUE,bluewovalue.Get(),_WCLIPBHUE,BLUE_,_WCLEARCLIP,ON_,_WPENHUE,BLACK_,_WREDRAW,ON_);
+  sWo(_WOID,bwo,_WVALUE,bluewovalue.Get(),_WCLIPBHUE,BROWN_,_WCLEARCLIP,ON_,_WPENHUE,BLACK_,_WREDRAW,ON_);
   //ans=query("?");
    sWo(_WOID,gwo,_WVALUE, wovalue.strPrintf("%3.2f",greenv),_WREDRAW,ON_);
 
+  bluewovalue.strPrintf("Blue %6.2f",bluev);  
+  sWo(_WOID,bwo,_WTYPE, WO_BV_,_WNAME,"Blue",_WVALUE,bluewovalue.cptr());
 
+  sWo(_WOID,bwo,_WDRAW,ON_,_WBHUE,LILAC_,_WSTYLE,WO_SVB_,_WREDRAW,ON_);
 
+  //ans=query("?");
+  tx += 0.01;
 
+  if (tx > 0.7)
+   tx = 0.1;
+
+   bluewovalue.strPrintf("Blue tx %f",tx);  
+  sWo(_WOID,bwo,_WTYPE, WO_BV_,_WNAME,"Blue",_WVALUE,bluewovalue.cptr());
+
+  sWo(_WOID,bwo,_WDRAW,ON_,_WBHUE,LILAC_,_WSTYLE,WO_SVB_,_WREDRAW,ON_);
+  ty += 0.01;
+  if (ty > 0.7)
+   ty = 0.1;
+  
+  bluewovalue.strPrintf("Blue ty %f",ty);  
+ sWo(_WOID,bwo,_WDRAW,ON_,_WBHUE,WHITE_,_WCLIPBHUE,BROWN_,_WREDRAW,ON_);
+//ans=query("?");
 
 //   sWo(_WOID,gwo,_WVALUE, wovalue.strPrintf("%3.2f",greenv),_WVALUE, (const) asiv);
 
@@ -496,9 +515,9 @@ sWo(_WOID,rwo,_WCLEAR,ON_,_WTEXTR,  TR.setTextr(wovalue.cptr(),0.1,ty,0,0,trcol)
 //ans=query("?","TR& two ",__LINE__);
 
 
-sWo(_WOID,bwo,_WCLEAR,ON_,_WTEXTR,  TR.setTextr(bluewovalue.cptr(),0.1,ty,0,0,trcol) , _WBORDER, BLACK_);
+//sWo(_WOID,bwo,_WCLEAR,ON_,_WTEXTR,  TR.setTextr(bluewovalue.cptr(),0.1,ty,0,0,trcol) , _WBORDER, BLACK_);
 
-   ty =0.6;
+
    
   //wovalue.strPrintf("emsg <|%s|> cname <|%s|> red %f green %f blue %f",gev.emsg.cptr(),cname.cptr(), redv,greenv,bluev);
 
