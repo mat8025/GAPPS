@@ -9094,11 +9094,23 @@ setgline()
 setgline,sGl
 .)x 
 .FD
-SetGline(gl_handle,@xvec,XV,@yvec,YV)
-sGl(gl_handle,@xvec,XV,@yvec,YV)
-Current values can be changed by calling
-setgline(handle, [tag,value, ...]
-prior to a redraw using DrawGline(gl_handle)
+SetGline(_GLID,gl_id, _TAG, [VALUE,VECTOR,STRUCT], _TAG2,[VALUE,VECTOR,STRUCT]....);
+parameters are sets of tag,value pairs. The value can number, variable or vector, or struct,
+
+e.g. prior to drawing a gline the line parameters can be set
+the first two parameters set the ID for the line  _GLID, id
+the following pairs can used to set the vectors for x,y values
+line color, line symbols etc.
+
+the foloowing would set line color to red , the x vector and the y vector for the x,y values
+for each point and have a triangle symbol plotted at each point.
+  sGl(_GLID,wt_gl, _GLHUE, RED_, _GLXVEC, DVEC, _GLYVEC, WTVEC,_GLSYMLINE, TRI_);
+
+
+tag ,  value 
+
+
+
 
 
 

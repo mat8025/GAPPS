@@ -48,8 +48,6 @@ COUT(strength_gl)
 
   sGl(_GLID,wt_gl, _GLHUE, RED_, _GLXVEC, DVEC, _GLYVEC, WTVEC,_GLSYMLINE, TRI_);
   
-
-
   pa(wt_gl);
 
 
@@ -127,7 +125,7 @@ COUT(se_gl)
   int wgl = 0;
   int ki = 0;
   
-  while (wedgl[ki]> 0) {
+  while (wedgl[ki] > 0) {
         sGl(_GLID,wedgl[ki],_GLMISSING,missing_val);
         ki++;
  }
@@ -136,11 +134,11 @@ COUT(se_gl)
 
   sGl(_GLID,ext_gl,_GLSYMBOL,TRI_, _GLSYMFILL,ON_);
 
-COUT(ext_gl);
+  COUT(ext_gl);
 
   sGl(_GLID,cardio_gl,_GLSYMBOL,DIAMOND_);
 
-COUT(cardio_gl);
+  COUT(cardio_gl);
 
   sGl(_GLID,strength_gl,_GLSYMBOL, STAR5_);
 

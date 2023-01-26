@@ -3,14 +3,15 @@
  * 
  *  @comment speech edit and label                                      
  *  @release Beryllium                                                  
- *  @vers 1.5 B Boron [asl 6.4.41 C-Be-Nb]                              
- *  @date 07/05/2022 16:19:28                                           
+ *  @vers 1.6 C Carbon [asl 6.4.74 C-Be-W]                              
+ *  @date 12/02/2022 10:38:00                                           
  *  @cdate 1/1/2000                                                     
  *  @author Mark Terry                                                  
  *  @Copyright © RootMeanSquare 2022 -->                               
  * 
  */ 
 ;//----------------<v_&_v>-------------------------//;                  
+
 
 //
 //  revision of phn/upe labeller
@@ -44,7 +45,7 @@
 
 // version should be read from script header
 
-<<"$_clarg[0]   $hdr_vers\n";
+
 #include "graphic"
 
 
@@ -143,7 +144,7 @@ int timit_p = getLabelSet(500);
 int timit_gp = get_label_set(500);
 
 <<"label_set %V$timit_gp \n"
-ans=query("?", "getLabelSet",__LINE__);
+//ans=query("?", "getLabelSet",__LINE__);
 
 tok_type = timit_gp;
 
@@ -229,7 +230,8 @@ len = 0
    fs = getChannelPara(spp_file,"FS",1);
    nvals = getChannelPara(spp_file,"NOB",1);
    stp = getChannelPara(spp_file,"STP",1);
-   sGl(ptgl,@XI,fs,@XO,0)
+   
+   //  sGl(_GLID,ptgl,@XI,fs,@XO,0)
 
 
   sWo(buttonwos,@border,BLACK_,@redraw);

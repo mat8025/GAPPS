@@ -14,7 +14,6 @@
 
   Str Wex_Vers= "2.57";
 
-
 ///
 /// exercise weight display
 /// calories burned (wt at 180)
@@ -333,7 +332,6 @@ Record RX;
 
 
 
-
   int N = 1000;
 
 
@@ -445,9 +443,9 @@ void Wex::wexTask(Svarg * sarg)
 
 
   
-   yday = Julian("01/01/2022")   ; // this should be found from data file
+   yday = Julian("01/01/2023")   ; // this should be found from data file
 
-   eday = Julian("12/31/2022");
+   eday = Julian("12/31/2023");
 
   
   today = getDate(2);
@@ -462,7 +460,7 @@ void Wex::wexTask(Svarg * sarg)
 
   Bday = Julian("04/09/1949");
 
-  Jan1 = Julian("01/01/2022"); // Str adate ; adate.strPrintf("01/01/%s",Year.cptr()");
+  Jan1 = Julian("01/01/2023"); // Str adate ; adate.strPrintf("01/01/%s",Year.cptr()");
 
   Yday = jtoday -Jan1;
 
@@ -478,13 +476,13 @@ void Wex::wexTask(Svarg * sarg)
    Str stmp;
    Svar Goals;
    
-   Goals.Split("09/10/2022 11/20/2022 195");
+   Goals.Split("01/01/2023 01/31/2023 195");
 
 //<<"Setting goals $Goals\n"
 
    Svar Goals2;
    
-   Goals2.Split("09/15/2022 11/30/2022 195");
+   Goals2.Split("01/31/2023 03/31/2023 185");
 ////////////////////==============/////////////////
 
 // move these down 10 when reached -- until we are at desired operating weight!
@@ -598,7 +596,7 @@ COUT(gday);
 
 //  Onwards();
 
-  int A=ofr("~/gapps/DAT/wex2022.tsv");
+  int A=ofr("~/gapps/DAT/wex2023.tsv");
 
   if (A == -1) {
 
@@ -657,7 +655,7 @@ DBA"readRecord \n" ;
 ///////////// Cals & Carb Consumed ////////
 // so far not logged often 
 
-  int ACC=ofr("~/gapps/DAT/cc2022.tsv");
+  int ACC=ofr("~/gapps/DAT/cc2023.tsv");
 
   NCCrecs = 0;
 

@@ -8,6 +8,8 @@ updated again 8/27/22
 kernel 5.19.4
 
 
+N.B.  web browser may lock out /dev/snd
+
 
 Scripts used to interact with /dev/dsp  back in linux 2.x days.
 How to update and resurrect the audio play and record features so we can create some

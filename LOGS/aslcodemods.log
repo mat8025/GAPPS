@@ -1352,3 +1352,41 @@ args_process_e.cpp                  2.44  09/22/2022 21:25:06  vmf arg
 chem_l.cpp                          1.20  09/27/2022 09:52:34  cpp pt
 args_process_e.cpp                  2.45  09/27/2022 09:53:57  arg_type -7 signal vmf arg
 text_p.cpp                          1.79  11/17/2022 09:11:14  textr
+storetype_e.cpp                     2.69  11/19/2022 10:17:18  DB tidy
+args_e.cpp                          2.21  11/19/2022 10:21:06  DB tidy
+cmf_e.cpp                           2.70  11/19/2022 10:36:33  DB tidy
+svarg_e.cpp                         2.37  11/19/2022 10:37:55  DB tidy
+exp_e.cpp                           3.58  11/19/2022 10:40:24  DB tidy
+vmf_e.cpp                           3.54  11/19/2022 10:41:36  DB tidy
+while_e.cpp                         1.30  11/19/2022 10:42:23  DB tidy
+proc_checkfname_e.cpp               2.57  11/19/2022 10:43:29  DB tidy
+engine_e.cpp                        2.23  11/19/2022 10:44:32  DB tidy
+statex_e.cpp                        1.36  11/19/2022 10:47:12  DB tidy
+proc_e.cpp                          2.70  11/19/2022 11:02:11  DB tidy
+declare_fillarray_e.cpp             2.43  11/19/2022 11:10:24  DB tidy
+scope_findvar_e.cpp                 2.56  11/19/2022 11:16:02  DB tidy
+proc_sivs_e.cpp                     3.52  11/19/2022 11:20:03  DB tidy
+proc_call_e.cpp                     3.49  11/19/2022 11:24:52  DB tidy
+proc_return_e.cpp                   3.52  11/19/2022 11:29:40  DB tidy
+getvar_e.cpp                        2.47  11/19/2022 11:36:37  DB tidy
+command_e.cpp                       2.36  11/19/2022 14:27:03  DB
+varcon_e.cpp                        2.63  11/19/2022 14:29:05  DB
+proc_args_e.cpp                     3.51  11/19/2022 14:37:37  DB
+checkconstantexp.cpp                1.5  11/19/2022 14:40:33  DB
+createv_e.cpp                       1.6  11/19/2022 14:46:42  DB
+declare_list_e.cpp                  1.4  11/19/2022 14:49:51  DB
+enum_e.cpp                          2.41  11/19/2022 14:52:35  DB
+func_e.cpp                          3.52  11/19/2022 14:56:52  DB
+try_e.cpp                           1.7  11/19/2022 15:00:37  DB
+exp_lhs_e.cpp                       2.42  11/19/2022 15:03:51  DB
+scope_e.cpp                         2.79  11/19/2022 15:08:22  DB
+if_e.cpp                            2.29  11/19/2022 15:10:25  DB
+proc_setup_e.cpp                    2.53  11/19/2022 15:12:48  DB
+for_e.cpp                           2.28  11/19/2022 15:14:28  DB
+include_e.cpp                       2.25  11/19/2022 15:18:12  DB
+record_e.cpp                        1.6  11/19/2022 15:20:37  DB
+opera_main.cpp                      1.51  11/19/2022 15:25:46  DB
+opera_promote.cpp                   1.55  11/19/2022 15:28:02  DB
+opera_cathold.cpp                   1.44  11/19/2022 15:38:51  DB
+svar_alias.cpp                      1.49  11/29/2022 09:14:38  DB
+fior.cpp                            1.75  01/25/2023 16:52:04  dberror ==> fprint (stderr - let script log errors

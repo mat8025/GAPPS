@@ -24,7 +24,7 @@
 
   vp =  cWi("Wex");
 
-   sWi(_WOID,vp,_WRESIZE,wbox(0.01,0.05,0.90,0.95,0)  );
+  sWi(_WOID,vp,_WRESIZE,wbox(0.01,0.05,0.90,0.95,0)  );
 
   sWi(_WOID,vp,_WCLIP,wbox(0.1,0.05,0.9,0.95),  _WREDRAW,ON_);
 
