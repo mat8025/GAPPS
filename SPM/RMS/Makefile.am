@@ -1,16 +1,21 @@
-INCLUDES = -I$(top_srcdir)/include
+AM_CPPFLAGS = -I$(gasp_sys)/include 
 
-gasp_libs = $(top_builddir)/SI/df/libdf.a $(top_builddir)/SI/gspf/libgspf.a \
-	$(top_builddir)/SI/sp_lib/libsp.a
+gasp_libs = $(gasp_sys)/SI/df/libdf.a $(gasp_sys)/SI/gspf/libgspf.a \
+	$(gasp_sys)/SI/sp_lib/libsp.a
+
+
 
 LDADD = $(gasp_libs) -lm
 
-$(top_builddir)/SI/df/libdf.a:
-	$(MAKE) -C $(top_builddir)/SI/df
-$(top_builddir)/SI/gspf/libgspf.a:
-	$(MAKE) -C $(top_builddir)/SI/gspf
-$(top_builddir)/SI/sp_lib/libsp.a:
-	$(MAKE) -C $(top_builddir)/SI/sp_lib
+$(gasp_sys)/SI/df/libdf.a:
+	$(MAKE) -C $(gasp_sys)/SI/df
+$(gasp_sys)/SI/gspf/libgspf.a:
+	$(MAKE) -C $(gasp_sys)/SI/gspf
+$(gasp_sys)/SI/sp_lib/libsp.a:
+	$(MAKE) -C $(gasp_sys)/SI/sp_lib
 
 bin_PROGRAMS = rms_zx
 noinst_PROGRAMS = rms
+
+vars :
+	echo gasp_sys $(gasp_sys) 

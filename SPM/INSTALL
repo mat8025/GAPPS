@@ -1,0 +1,6 @@
+
+ use g++ to build
+
+ may need to be compiled using the makefile in the respective directory
+
+ updates --- if you add directories have to update the list of Makefiles in configure.ac
