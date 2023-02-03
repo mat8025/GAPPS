@@ -86,7 +86,7 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-bin_PROGRAMS = sg$(EXEEXT)
+bin_PROGRAMS = sgr$(EXEEXT)
 subdir = SG
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -99,10 +99,10 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-sg_SOURCES = sg.c
-sg_OBJECTS = sg.$(OBJEXT)
-sg_LDADD = $(LDADD)
-sg_DEPENDENCIES = $(gasp_libs)
+sgr_SOURCES = sgr.c
+sgr_OBJECTS = sgr.$(OBJEXT)
+sgr_LDADD = $(LDADD)
+sgr_DEPENDENCIES = $(gasp_libs)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -118,7 +118,7 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/sg.Po
+am__depfiles_remade = ./$(DEPDIR)/sgr.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -132,8 +132,7 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = sg.c
-DIST_SOURCES = sg.c
+DIST_SOURCES = sgr.c
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -259,11 +258,10 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-AM_CPPFLAGS = -I$(gasp_sys)/include 
-gasp_libs = $(gasp_sys)/SI/df/libdf.a $(gasp_sys)/SI/gspf/libgspf.a \
-	$(gasp_sys)/SI/sp_lib/libsp.a
-
+AM_CPPFLAGS = -I$(gasp_sys)/include -I../
+gasp_libs = $(gasp_sys)/SI/df/libdf_asl.a $(gasp_sys)/SI/dsp/libdsp_asl.a $(gasp_sys)/SI/svar/libsvar_asl.a  $(gasp_sys)/SI/gscom/libgscom_asl.a
 LDADD = $(gasp_libs) -lm
+SOURCES = sgr.cpp
 EXTRA_DIST = sg_va.c sgt.c
 all: all-am
 
@@ -341,9 +339,9 @@ uninstall-binPROGRAMS:
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
 
-sg$(EXEEXT): $(sg_OBJECTS) $(sg_DEPENDENCIES) $(EXTRA_sg_DEPENDENCIES) 
-	@rm -f sg$(EXEEXT)
-	$(AM_V_CCLD)$(LINK) $(sg_OBJECTS) $(sg_LDADD) $(LIBS)
+sgr$(EXEEXT): $(sgr_OBJECTS) $(sgr_DEPENDENCIES) $(EXTRA_sgr_DEPENDENCIES) 
+	@rm -f sgr$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(sgr_OBJECTS) $(sgr_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -351,7 +349,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sg.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sgr.Po@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -465,7 +463,6 @@ installdirs:
 	for dir in "$(DESTDIR)$(bindir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -500,7 +497,7 @@ clean: clean-am
 clean-am: clean-binPROGRAMS clean-generic mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/sg.Po
+		-rm -f ./$(DEPDIR)/sgr.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -546,7 +543,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/sg.Po
+		-rm -f ./$(DEPDIR)/sgr.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
@@ -589,6 +586,10 @@ $(gasp_sys)/SI/gspf/libgspf.a:
 	$(MAKE) -C $(gasp_sys)/SI/gspf
 $(gasp_sys)/SI/sp_lib/libsp.a:
 	$(MAKE) -C $(gasp_sys)/SI/sp_lib
+
+install : $(OBJECTS)
+	$(CC) -o  sgr -pg  -I$(gasp_sys)/include $(CFLAGS) $(LFLAGS) sgr.cpp $(LDADD) $(AM_CPPFLAGS)
+	/usr/bin/install sgr $(gasp_sys)/bin
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

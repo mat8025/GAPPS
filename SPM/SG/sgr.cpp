@@ -1,6 +1,23 @@
-static char     rcsid[] = "$Id: sg.c,v 1.1 2000/01/29 17:25:20 mark Exp mark $";
+/*//////////////////////////////////<**|**>///////////////////////////////////
+//                                     sgr.cpp 
+//		          
+//    @comment  computes fft for spectograph from vox file -update 
+//    @release   CARBON  
+//    @vers 1.4 Be Beryllium                                              
+//    @date Fri Feb  3 12:56:32 2023    
+//    @cdate 01/29/2000              
+//    @author: Mark Terry                                  
+//    @Copyright   RootMeanSquare - 1990,2023 --> 
+//  
+// ^. .^ 
+//  ( ' ) 
+//    - 
+///////////////////////////////////<v_&_v>//////////////////////////////////*/ 
+static char     gaspid[] = "sgr.cpp     @vers 1.4 Be Beryllium  Fri Feb  3 12:56:32 2023 Mark Terry ";
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>//
+static char     rcsid[] = "$Id: sgr.c,v 1.2 2000/01/29 17:25:20 mark Exp mark $";
 /********************************************************************************
-*	MULTI_CHANNEL	sg							 *
+*	MULTI_CHANNEL	sgr							 *
 *	spectrograph								 *
 *	serial version						 *
 *	Modified for pipelining  Dec 88						 *
@@ -33,9 +50,40 @@ float           In_buf[16 * 2048];
 float           Window[4096];
 float           Real[4096], Imag[4096];
 
-main(argc, argv)
-	int             argc;
-	char           *argv[];
+void show_version()
+{
+	char           *rcs;
+	rcs = &gaspid[0];
+	printf(" %s \n", rcs);
+}
+
+
+/* USAGE & HELP */
+
+void sho_use()
+{
+	fprintf(stderr,
+	"Usage: sgr [-b -n -l -s -w -O -f -p -D  -i in_file -o out_file] \n");
+
+	fprintf(stderr, "-b	effective bandwidth     Hz\n");
+	fprintf(stderr, "-n	fft_size [256]	max 4096  \n");
+	fprintf(stderr, "-l	frame_length    msecs  \n");
+	fprintf(stderr, "-s	frame_shift	    msecs  \n");
+	fprintf(stderr, "-w	win_length	sample_points  \n");
+	fprintf(stderr, "-O	win_shift	sample_points  \n");
+	fprintf(stderr, "-f	sampling frequency 	Hz  \n");
+	fprintf(stderr, "-p	pre_emphasis	 	%  \n");
+	fprintf(stderr, "-M	magnitude Spectrum else dB\n");
+
+
+	fprintf(stderr, "N.B. Header information (if present) will overide flag settings\n");
+	show_version();
+	exit(-1);
+}
+
+
+
+int  main (int argc, char *argv[], char *envp[])
 {
 	data_file       o_df, i_df;
 	channel         i_chn[2];
@@ -67,7 +115,7 @@ main(argc, argv)
 	int             i, j, n, k;
 	int             loop;
 
-	double          atof();
+
 
 
 	/* DEFAULT SETTINGS */
@@ -216,7 +264,7 @@ main(argc, argv)
 	if (debug > 0)
 		debug_spm(argv[0], debug, job_nu);
 
-	signal(SIGFPE, fpe_trap);
+	//	signal(SIGFPE, fpe_trap);
 
 
 	if (!i_flag_set)
@@ -230,17 +278,17 @@ main(argc, argv)
 	}
 
 	nc = 0;
-	num_chans = (int) i_df.f[N];
-	if ((int) i_df.f[N] > 1) {
-		dbprintf(1, "There are %d channels;\n", (int) i_df.f[N]);
-		i_chn[0].f[SKP] = i_df.f[N] - 1;
+	num_chans = (int) i_df.f[CN];
+	if ((int) i_df.f[CN] > 1) {
+		dbprintf(1, "There are %d channels;\n", (int) i_df.f[CN]);
+		i_chn[0].f[SKP] = i_df.f[CN] - 1;
 	}
-	length = i_df.f[STP] - i_df.f[STR];
+	length = i_df.f[DF_STP] - i_df.f[DF_STR];
 
 	gs_init_df(&o_df);
 
-	o_df.f[STR] = i_df.f[STR];
-	o_df.f[STP] = i_df.f[STP];
+	o_df.f[DF_STR] = i_df.f[DF_STR];
+	o_df.f[DF_STP] = i_df.f[DF_STP];
 
 	/* check poss that header points to a datafile */
 	/* sampling frequency */
@@ -252,19 +300,19 @@ main(argc, argv)
 	if (((int) i_chn[nc].f[SOD]) > 0)
 		fposn = (int) i_chn[nc].f[SOD];
 
-	nsamples = (int) i_chn[0].f[N];
+	nsamples = (int) i_chn[0].f[CN];
 
 	dbprintf(1, "n_samples %d\n", nsamples);
 
 	h_len = nsamples / sf;
 
 	if (h_len < length) {
-		o_df.f[STP] = h_len;
-		o_df.f[STR] = 0.0;
+		o_df.f[DF_STP] = h_len;
+		o_df.f[DF_STR] = 0.0;
 	}
 	if (length <= 0.0) {
 		length = h_len;
-		o_df.f[STP] = length;
+		o_df.f[DF_STP] = length;
 	}
 
 	/* else start reading where header ends */
@@ -332,7 +380,7 @@ main(argc, argv)
 
 	ebw = 1.5 * sf / (float) win_length;
 
-	dbprintf(1, "str %f stp %f sf %f \n", i_df.f[STR], o_df.f[STP], sf);
+	dbprintf(1, "str %f stp %f sf %f \n", i_df.f[DF_STR], o_df.f[DF_STP], sf);
 
 dbprintf(1, "win_length %d fft_size %d w shift %d \n", win_length, fft_size, win_shift);
 
@@ -346,9 +394,9 @@ dbprintf(1, "num chans%d \n", num_chans);
 
 	if (num_chans > 1.0 & start_channel == 0) {
 		do_all_chns = 1;
-		o_df.f[N] = num_chans;
+		o_df.f[CN] = num_chans;
 	} else
-		o_df.f[N] = 1.0;
+		o_df.f[CN] = 1.0;
 
 	if (!o_flag_set)
 		strcpy(out_file, "stdout");
@@ -366,7 +414,7 @@ dbprintf(1, "num chans%d \n", num_chans);
 	o_df.f[LL] = -20.0;
 	o_df.f[UL] = 90.0;
 
-	o_df.f[N] = (float) n_frames;
+	o_df.f[CN] = (float) n_frames;
 
 	gs_w_frm_head(&o_df);
 
@@ -383,7 +431,7 @@ dbprintf(1, "num chans%d \n", num_chans);
 
 	scale_factor = 1.0 / (1.0 * fft_size);
 
-	gs_window("Hanning", win_length, Window);
+	gs_window((char *) "Hanning", win_length, Window);
 
 	/* MAIN LOOP */
 
@@ -513,33 +561,4 @@ dbprintf(1, "write data loop %d %f %f %f %f\n",loop,Real[0],Real[1],Real[2],Real
 }
 
 
-/* USAGE & HELP */
 
-sho_use()
-{
-	fprintf(stderr,
-	"Usage: sg [-b -n -l -s -w -O -f -p -D  -i in_file -o out_file] \n");
-
-	fprintf(stderr, "-b	effective bandwidth     Hz\n");
-	fprintf(stderr, "-n	fft_size [256]	max 4096  \n");
-	fprintf(stderr, "-l	frame_length    msecs  \n");
-	fprintf(stderr, "-s	frame_shift	    msecs  \n");
-	fprintf(stderr, "-w	win_length	sample_points  \n");
-	fprintf(stderr, "-O	win_shift	sample_points  \n");
-	fprintf(stderr, "-f	sampling frequency 	Hz  \n");
-	fprintf(stderr, "-p	pre_emphasis	 	%  \n");
-	fprintf(stderr, "-M	magnitude Spectrum else dB\n");
-
-
-	fprintf(stderr, "N.B. Header information (if present) will overide flag settings\n");
-	show_version();
-	exit(-1);
-}
-
-
-show_version()
-{
-	char           *rcs;
-	rcs = &rcsid[0];
-	printf(" %s \n", rcs);
-}

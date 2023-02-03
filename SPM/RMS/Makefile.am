@@ -1,21 +1,22 @@
-AM_CPPFLAGS = -I$(gasp_sys)/include 
+AM_CPPFLAGS = -I$(gasp_sys)/include -I../
 
-gasp_libs = $(gasp_sys)/SI/df/libdf.a $(gasp_sys)/SI/gspf/libgspf.a \
-	$(gasp_sys)/SI/sp_lib/libsp.a
+gasp_libs = $(gasp_sys)/SI/df/libdf_asl.a 	$(gasp_sys)/SI/dsp/libdsp_asl.a $(gasp_sys)/SI/svar/libsvar_asl.a  $(gasp_sys)/SI/gscom/libgscom_asl.a
 
 
 
 LDADD = $(gasp_libs) -lm
 
-$(gasp_sys)/SI/df/libdf.a:
-	$(MAKE) -C $(gasp_sys)/SI/df
-$(gasp_sys)/SI/gspf/libgspf.a:
-	$(MAKE) -C $(gasp_sys)/SI/gspf
-$(gasp_sys)/SI/sp_lib/libsp.a:
-	$(MAKE) -C $(gasp_sys)/SI/sp_lib
 
-bin_PROGRAMS = rms_zx
-noinst_PROGRAMS = rms
+bin_PROGRAMS = rms_zx 
 
-vars :
-	echo gasp_sys $(gasp_sys) 
+SOURCES = rms_zx.cpp
+
+#AM_CFLAGS = -O -rdynamic
+
+#echo $(OBJECTS)
+# 
+# put exe in the gasp/bin not build/bin
+install : $(OBJECTS)
+#	$(CC) -o  rms_zx -pg $(CFLAGS) $(LFLAGS) $(OBJECTS) $(LDADD)
+	$(CC) -o  rms_zx -pg  -I$(gasp_sys)/include $(CFLAGS) $(LFLAGS) rms_zx.cpp $(LDADD) $(AM_CPPFLAGS)
+	/usr/bin/install rms_zx $(gasp_sys)/bin

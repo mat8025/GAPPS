@@ -1,33 +1,83 @@
-static char     rcsid[] = "$Id: rms_zx.c,v 1.1 2000/01/31 03:57:35 mark Exp mark $";
-/********************************************************************************
-*			RMS_ZX							 *
-
-
-	This program will take as input a vox file
-	 and compute a number of parameters useful for voicing decisions
-*										 *
-*	Modified for pipelining & ascii headers by M.T. Dec 88			 *
+/*//////////////////////////////////<**|**>///////////////////////////////////
+//                                   rms_zx.cpp 
+//		          
+//    @comment  computes rms and zx for vox file -update 
+//    @release   CARBON  
+//    @vers 1.5 B Boron                                                   
+//    @date Fri Feb  3 12:48:43 2023    
+//    @cdate 12/15/1988              
+//    @author: Mark Terry                                  
+//    @Copyright   RootMeanSquare - 1990,2023 --> 
+//  
+// ^. .^ 
+//  ( ' ) 
+//    - 
+///////////////////////////////////<v_&_v>//////////////////////////////////*/ 
+static char     gaspid[] = "rms_zx.cpp     @vers 1.5 B Boron  Fri Feb  3 12:48:43 2023 Mark Terry ";
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>//
+static char     rcsid[] = "$Id: rms_zx.c,v 1.2 2000/01/31 03:57:35 mark Exp mark $";
+/*********************************************************************************
+*			RMS_ZX							                    *
+*      This program will take as input a vox file                                       *
+*      and compute a number of parameters useful for voicing decisions  *
+*										                            *
+*	Modified for pipelining & ascii headers by M.T. Dec 88		    *
 *********************************************************************************/
 
-#include <gasp-conf.h>
+#include "gasp-conf.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #include "defs.h"
 #include "df.h"
 #include "sp.h"
+#include "debug.h"
 #include "trap.h"
 
 
 #define NCHANS 20
 
+
 int             debug = 0;
 float           In_buf[MAXWIN];
 
-main(argc, argv)
-	int             argc;
-	char           *argv[];
+void show_version()
 {
+  char           *rcs;
+	rcs = &gaspid[0];
+	printf(" %s \n", rcs);
+}
+
+
+void chk_argc(int i,int argc, char *argv[])
+{
+  if (i < argc -1)
+      return;
+  printf("arg missing after %s\n",argv[i]) ;
+  exit(-1);
+}
+
+
+void show_use()
+{
+	printf("Usage: rms_zx -l msec  -s msec -i infil -o outfile -d msec\n");
+	printf("-l msec window length [20]\n");
+        printf("-s msec window shift [10]\n");
+        printf("-t zx threshold [100]\n");
+        printf("-i infile\n");
+        printf("-o outfile\n");
+        printf("-d msec delta window msec[5]\n");
+	show_version();
+
+	exit(-1);
+}
+
+
+
+
+
+int  main (int argc, char *argv[], char *envp[])
+ {
 
 	data_file       o_df, i_df;
 	channel         i_chn[2];
@@ -62,7 +112,7 @@ main(argc, argv)
 	int             x, x1, xdiff;
         int zxdiff = 0;
 
-	double          r0, rms, sqrt();
+	double          r0, rms;
 
 
 	/* DEFAULT SETTINGS */
@@ -147,7 +197,7 @@ main(argc, argv)
 	}
 
 	if (debug == HELP || argc == 1)
-		sho_use();
+		show_use();
 
 
 	if (debug > 0)
@@ -160,7 +210,7 @@ main(argc, argv)
 		strcat(o_df.source, " ");
 	}
 
-		dbprintf(0,"%s \n", o_df.source);
+	dbprintf(0,"%s \n", o_df.source);
 
 	if (!i_flag_set)
 		strcpy(in_file, "stdin");
@@ -174,16 +224,16 @@ main(argc, argv)
 
 	nc = 0;
 
-	if ((int) i_df.f[N] > 1) {
+	if ((int) i_df.f[CN] > 1) {
 
-		dbprintf(1, "There are %d channels;\n", (int) i_df.f[N]);
+		fprintf(stderr, "There are %d channels;\n", (int) i_df.f[CN]);
 	}
 
-	length = i_df.f[STP] - i_df.f[STR];
+	length = i_df.f[DF_STP] - i_df.f[DF_STR];
 
-	dbprintf(0, "str %f stp %f\n", i_df.f[STR], i_df.f[STP]);
+       fprintf(stderr, "str %f stp %f\n", i_df.f[DF_STR], i_df.f[DF_STP]);
 
-	nsamples = (int) i_chn[0].f[N];
+	nsamples = (int) i_chn[0].f[NOB];
 
         sf = i_df.f[SF];
 
@@ -198,12 +248,12 @@ main(argc, argv)
 	h_len = nsamples / sf;
 
 	if (h_len < length) {
-		o_df.f[STP] = h_len;
-		o_df.f[STR] = 0.0;
+		o_df.f[DF_STP] = h_len;
+		o_df.f[DF_STR] = 0.0;
 	}
 	if (length <= 0.0) {
 		length = h_len;
-		o_df.f[STP] = length;
+		o_df.f[DF_STP] = length;
 	}
 
 	if (((int) i_chn[nc].f[SOD]) > 0)
@@ -217,15 +267,15 @@ main(argc, argv)
 	fs = sf;
 
 	gs_init_df(&o_df);
-	o_df.f[STR] = i_df.f[STR];
-	o_df.f[STP] = i_df.f[STP];
+	o_df.f[DF_STR] = i_df.f[DF_STR];
+	o_df.f[DF_STP] = i_df.f[DF_STP];
 
 
 	strcpy(o_df.name, "RMS_ZX");
 	strcpy(o_df.type, "CHANNEL");
 	strcpy(o_df.x_d, "Time");
 
-	o_df.f[N] = 4.0;
+	o_df.f[CN] = 4.0;
 
 	/* copy across some data from input to output headers */
 
@@ -260,11 +310,11 @@ main(argc, argv)
 
 	totpts = winpts + (nloops - 1) * win_shift;
 
-dbprintf(0,"totpts %d nloops %d\n",totpts , nloops);
+        printf("totpts %d nloops %d\n",totpts , nloops);
 
-	chn_0.f[N] = nloops;
+	chn_0.f[CN] = nloops;
 
-	chn_0.f[STP] = chn_0.f[STR] + (float) totpts / fs;
+	chn_0.f[DF_STP] = chn_0.f[DF_STR] + (float) totpts / fs;
 
 	/* write out headers */
 	/* write general header */
@@ -318,7 +368,7 @@ dbprintf(0,"totpts %d nloops %d\n",totpts , nloops);
 
 	gs_next_chn_head(&o_chn,&chn_0);
 
-        dbprintf(0,"N %d \n", (int) o_chn.f[N]);
+        dbprintf(0,"N %d \n", (int) o_chn.f[CN]);
 
 	posn = gs_pad_header(o_df.fp);
 
@@ -435,36 +485,3 @@ dbprintf(0,"totpts %d nloops %d\n",totpts , nloops);
 	}
 }
 
-
-sho_use()
-{
-	printf("Usage: rms_zx -l msec  -s msec -i infil -o outfile -d msec\n");
-	printf("-l msec window length [20]\n");
-        printf("-s msec window shift [10]\n");
-        printf("-t zx threshold [100]\n");
-        printf("-i infile\n");
-        printf("-o outfile\n");
-        printf("-d msec delta window msec[5]\n");
-	show_version();
-	exit(-1);
-}
-
-
-
-
-show_version()
-{
-	char           *rcs;
-	rcs = &rcsid[0];
-	printf(" %s \n", rcs);
-}
-
-
-chk_argc(i,argc,argv) 
-char           *argv[];
-{
-  if (i < argc -1)
-      return;
-  printf("arg missing after %s\n",argv[i]) ;
-  exit(-1);
-}

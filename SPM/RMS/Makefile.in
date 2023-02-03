@@ -87,7 +87,6 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 bin_PROGRAMS = rms_zx$(EXEEXT)
-noinst_PROGRAMS = rms$(EXEEXT)
 subdir = RMS
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -99,11 +98,7 @@ CONFIG_HEADER = $(top_builddir)/gasp-conf.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
-PROGRAMS = $(bin_PROGRAMS) $(noinst_PROGRAMS)
-rms_SOURCES = rms.c
-rms_OBJECTS = rms.$(OBJEXT)
-rms_LDADD = $(LDADD)
-rms_DEPENDENCIES = $(gasp_libs)
+PROGRAMS = $(bin_PROGRAMS)
 rms_zx_SOURCES = rms_zx.c
 rms_zx_OBJECTS = rms_zx.$(OBJEXT)
 rms_zx_LDADD = $(LDADD)
@@ -123,7 +118,7 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/rms.Po ./$(DEPDIR)/rms_zx.Po
+am__depfiles_remade = ./$(DEPDIR)/rms_zx.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -137,8 +132,7 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = rms.c rms_zx.c
-DIST_SOURCES = rms.c rms_zx.c
+DIST_SOURCES = rms_zx.c
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -264,11 +258,10 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-AM_CPPFLAGS = -I$(gasp_sys)/include 
-gasp_libs = $(gasp_sys)/SI/df/libdf.a $(gasp_sys)/SI/gspf/libgspf.a \
-	$(gasp_sys)/SI/sp_lib/libsp.a
-
+AM_CPPFLAGS = -I$(gasp_sys)/include -I../
+gasp_libs = $(gasp_sys)/SI/df/libdf_asl.a 	$(gasp_sys)/SI/dsp/libdsp_asl.a $(gasp_sys)/SI/svar/libsvar_asl.a  $(gasp_sys)/SI/gscom/libgscom_asl.a
 LDADD = $(gasp_libs) -lm
+SOURCES = rms_zx.cpp
 all: all-am
 
 .SUFFIXES:
@@ -345,13 +338,6 @@ uninstall-binPROGRAMS:
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
 
-clean-noinstPROGRAMS:
-	-test -z "$(noinst_PROGRAMS)" || rm -f $(noinst_PROGRAMS)
-
-rms$(EXEEXT): $(rms_OBJECTS) $(rms_DEPENDENCIES) $(EXTRA_rms_DEPENDENCIES) 
-	@rm -f rms$(EXEEXT)
-	$(AM_V_CCLD)$(LINK) $(rms_OBJECTS) $(rms_LDADD) $(LIBS)
-
 rms_zx$(EXEEXT): $(rms_zx_OBJECTS) $(rms_zx_DEPENDENCIES) $(EXTRA_rms_zx_DEPENDENCIES) 
 	@rm -f rms_zx$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(rms_zx_OBJECTS) $(rms_zx_LDADD) $(LIBS)
@@ -362,7 +348,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rms.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rms_zx.Po@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
@@ -477,7 +462,6 @@ installdirs:
 	for dir in "$(DESTDIR)$(bindir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -509,12 +493,10 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-am
 
-clean-am: clean-binPROGRAMS clean-generic clean-noinstPROGRAMS \
-	mostlyclean-am
+clean-am: clean-binPROGRAMS clean-generic mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/rms.Po
-	-rm -f ./$(DEPDIR)/rms_zx.Po
+		-rm -f ./$(DEPDIR)/rms_zx.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -560,8 +542,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/rms.Po
-	-rm -f ./$(DEPDIR)/rms_zx.Po
+		-rm -f ./$(DEPDIR)/rms_zx.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
@@ -582,31 +563,31 @@ uninstall-am: uninstall-binPROGRAMS
 .MAKE: install-am install-strip
 
 .PHONY: CTAGS GTAGS TAGS all all-am am--depfiles check check-am clean \
-	clean-binPROGRAMS clean-generic clean-noinstPROGRAMS \
-	cscopelist-am ctags ctags-am distclean distclean-compile \
-	distclean-generic distclean-tags distdir dvi dvi-am html \
-	html-am info info-am install install-am install-binPROGRAMS \
-	install-data install-data-am install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-info install-info-am install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic pdf pdf-am ps ps-am tags tags-am uninstall \
-	uninstall-am uninstall-binPROGRAMS
+	clean-binPROGRAMS clean-generic cscopelist-am ctags ctags-am \
+	distclean distclean-compile distclean-generic distclean-tags \
+	distdir dvi dvi-am html html-am info info-am install \
+	install-am install-binPROGRAMS install-data install-data-am \
+	install-dvi install-dvi-am install-exec install-exec-am \
+	install-html install-html-am install-info install-info-am \
+	install-man install-pdf install-pdf-am install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic pdf pdf-am \
+	ps ps-am tags tags-am uninstall uninstall-am \
+	uninstall-binPROGRAMS
 
 .PRECIOUS: Makefile
 
 
-$(gasp_sys)/SI/df/libdf.a:
-	$(MAKE) -C $(gasp_sys)/SI/df
-$(gasp_sys)/SI/gspf/libgspf.a:
-	$(MAKE) -C $(gasp_sys)/SI/gspf
-$(gasp_sys)/SI/sp_lib/libsp.a:
-	$(MAKE) -C $(gasp_sys)/SI/sp_lib
+#AM_CFLAGS = -O -rdynamic
 
-vars :
-	echo gasp_sys $(gasp_sys) 
+#echo $(OBJECTS)
+# 
+# put exe in the gasp/bin not build/bin
+install : $(OBJECTS)
+#	$(CC) -o  rms_zx -pg $(CFLAGS) $(LFLAGS) $(OBJECTS) $(LDADD)
+	$(CC) -o  rms_zx -pg  -I$(gasp_sys)/include $(CFLAGS) $(LFLAGS) rms_zx.cpp $(LDADD) $(AM_CPPFLAGS)
+	/usr/bin/install rms_zx $(gasp_sys)/bin
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

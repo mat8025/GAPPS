@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT(GAPPS,SPM)
 AM_INIT_AUTOMAKE[]
-AC_CONFIG_SRCDIR(RMS/rms.c)
+AC_CONFIG_SRCDIR(RMS/rms.cpp)
 
 dnl Arbitrary release number
 

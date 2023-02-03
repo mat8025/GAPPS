@@ -14,10 +14,11 @@
 //   - 
 ///////////////////////////////////<v_&_v>/////////////////////////////////*/ 
 
-// usage
-// chead  xxx.cpp comment  vers date(M/D/YYYY) > new.cpp
-// e.g. chead  xxx.cpp "does this" 1.1  date(1/1/2001) > new.cpp
-// mv new.cpp xxx.cpp
+// Usage
+// chead  xxx.cpp comment  vers M/D/YYYY  
+// e.g. chead  xxx.cpp "does this" 1.1  M/D/YYYY
+// will create new_xxx.cpp  leaves original version intact
+//
 //
 
 
@@ -36,7 +37,7 @@ Str vers2ele(Str& vstr)
  
 }
 //======================
-A=-1;
+A = -1;
 
 
 // if cprog found
@@ -52,7 +53,7 @@ srcfile->deWhite();
 
 <<"<|$srcfile|> \n"
 
-headfile = "${srcfile}_head"
+headfile = "new_${srcfile}"
 
 <<"<|$srcfile|> <|$headfile|> \n"
 
@@ -112,7 +113,9 @@ dir= fexist(srcfile,ISDIR_,0);
 //<<[2]" DIR $dir \n"
 Author = "Mark Terry"
 fname = srcfile
-release = "CARBON"
+
+release = "CARBON" ; // should get our current GASP release Version from /usr/local/GASP/RELEASE file first line
+// 
 maj = 1;
 min = 1;
 
@@ -178,7 +181,10 @@ else {
 <<[A]"//  ( ' ) \n"
 <<[A]"//    - \n"
 <<[A]"///////////////////////////////////<v_&_v>//////////////////////////////////*/ \n"
-<<[A]"\n"
+<<[A]"static char     gaspid[] = \"$fname $vers $date $Author \";\n";
+<<[A]"//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>//\n";
+
+
 tsz = Caz(T)
 //<<[2]"nlines ? $tsz\n"
 
@@ -196,7 +202,10 @@ first_inc =0;
  
 }
 
-//<<[2]"%V $first_inc \n"
+<<[2]"%V $first_inc \n"
+
+// but just tack on entire old file  -
+first_inc = 0;
 
 for (i = first_inc; i < tsz;i++) {
 <<[A]"$T[i]"
@@ -205,13 +214,15 @@ for (i = first_inc; i < tsz;i++) {
 cf(A);
 
 
-<<"mv $srcfile ${srcfile}.old\n"
-<<"mv $headfile $srcfile\n";
-<<"output to $headfile \n"
+
+
+// backup just in case
 !!"cp $srcfile ${srcfile}.old"
 
 //!!"mv $srcfile ${srcfile}.old"
 //!!"mv $headfile $srcfile";
+
+<<"the new cpp with the new header is in $headfile \n"
 
 
 
