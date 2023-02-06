@@ -60,7 +60,11 @@ echo gasp_sys $gasp_sys
 
 
 dnl SI then XGS 
-AC_OUTPUT([RMS/Makefile  SG/Makefile PITCH/Makefile Makefile ]  )
+AC_OUTPUT([RMS/Makefile  SG/Makefile PITCH/Makefile
+                         PITCH/GRPT/Makefile
+                         PITCH/QUASI/Makefile			 
+			 PITCH/CEPPT/Makefile
+			 Makefile ]  )
 
 
 dnl set up links prior to make

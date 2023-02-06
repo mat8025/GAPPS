@@ -37,4 +37,14 @@ typedef struct {
 } PTP; /* pitch tracker parameters */
 
 
+int q_cep(float in_buf[],float real[],float imag[],
+	  int fft_size,float scale_factor,int win_length,float window[],float *power,float sf);
 
+int q_pickpeaks(float pam[],float results[],float cep_thres,float inc_thres,
+		int n_peaks,int start_at,int finish_at);
+
+void q_pksort(float results[],int n_peaks);
+
+void q_adapt_wl(float window[],float new_pp,int *win_length,float sf,int old_wl);
+
+void q_pitch_track(float results[],float the_pitch[],float power,float pow_thres,float min_pow_thres,int n_peaks,float dt,float time);
