@@ -1,0 +1,6 @@
+ the asl interpreter now uses shared libraries
+ intermediate code produced by interpreter
+ and now can be compiled via C++
+
+this package is a set of C programs ---
+which probably will all be replaced by asl scripts -- which are compiled C++

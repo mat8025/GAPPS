@@ -156,8 +156,8 @@ CTAGS = ctags
 CSCOPE = cscope
 DIST_SUBDIRS = $(SUBDIRS)
 am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/gasp-conf.h.in \
-	AUTHORS COPYING ChangeLog INSTALL NEWS README acconfig.h \
-	compile depcomp install-sh missing
+	AUTHORS COPYING ChangeLog INSTALL NEWS README compile depcomp \
+	install-sh missing
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -348,7 +348,7 @@ gasp-conf.h: stamp-h1
 stamp-h1: $(srcdir)/gasp-conf.h.in $(top_builddir)/config.status
 	@rm -f stamp-h1
 	cd $(top_builddir) && $(SHELL) ./config.status gasp-conf.h
-$(srcdir)/gasp-conf.h.in:  $(am__configure_deps) $(top_srcdir)/acconfig.h
+$(srcdir)/gasp-conf.h.in:  $(am__configure_deps) 
 	($(am__cd) $(top_srcdir) && $(AUTOHEADER))
 	rm -f stamp-h1
 	touch $@
