@@ -113,8 +113,6 @@ chkIn(_dblevel);
 
  openDll("glide");
 
-
-
 #endif
 
 
@@ -1260,8 +1258,6 @@ adbprintf(-1,"DrawMap\n");
        //sWi(_WOID,Vp,_WREDRAW,ON_); // need a redraw proc for app
        
       }
-
-
  
 
  taskDist();

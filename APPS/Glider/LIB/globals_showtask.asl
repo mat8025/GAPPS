@@ -65,7 +65,6 @@ Str wway="P";
 int ok =0;
 
 
-
   int Init = 1;
   int zoom_begin = 0;
   int zoom_end =  200;

@@ -164,7 +164,7 @@ Str val2;
 
 //<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
  //  pa(wval);
-
+ //wval.pinfo();
      val = wval[0];
 
 //cout << "val " << val << endl;
@@ -173,7 +173,7 @@ Str val2;
 //pa(wval); // crash ??
 
 
-//      val.pinfo();
+//      val.aslpinfo();
 
       val.dewhite(); // TBF ? corrupting vars ?
 
@@ -287,7 +287,12 @@ Str val2;
 
      Radio = wval[9];
 
-//<<"Radio wval[9] $val  \n"
+     if (Radio == "") {
+          Radio = "    -    ";
+     } 
+
+
+//<<"Radio <|$Radio|> wval[9] $val  \n"
 //ans=query("??");
 
 

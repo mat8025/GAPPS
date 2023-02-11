@@ -12,7 +12,7 @@
  */ 
 ;//----------------<v_&_v>-------------------------//;                  
 
-  Str Wex_Vers= "2.57";
+  Str Wex_Vers= "2.58";
 
 ///
 /// exercise weight display

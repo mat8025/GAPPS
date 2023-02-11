@@ -1390,3 +1390,5 @@ opera_promote.cpp                   1.55  11/19/2022 15:28:02  DB
 opera_cathold.cpp                   1.44  11/19/2022 15:38:51  DB
 svar_alias.cpp                      1.49  11/29/2022 09:14:38  DB
 fior.cpp                            1.75  01/25/2023 16:52:04  dberror ==> fprint (stderr - let script log errors
+vmf_l.cpp                           1.69  02/08/2023 11:04:55  added checkinfo for denug asl vars
+vmf_l.cpp                           1.70  02/08/2023 11:24:45  Test

@@ -10,10 +10,36 @@
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-<|Use_=
-   Demo  of proc ref arg
-///////////////////////
-|>
+
+
+Str Use_ = "How to use ref args" ;
+
+
+
+/*
+// in C++  function prototype  desginates the args as ref
+// at the moment asl allows to call as value or ref via swap(a,b) or swap(&a,&b)
+// but now we want to compile into C++ 
+// so have to be to declare function 
+// as C++ i.e. swap(int &i, int &j) 
+//
+
+void swapnum(int &i, int &j) {
+  int temp = i;
+  i = j;
+  j = temp;
+}
+
+int main(void) {
+  int a = 10;
+  int b = 20;
+
+  swapnum(a, b);
+  printf("A is %d and B is %d\n", a, b);
+  return 0;
+}
+*/
+
 
 ///
 /// procrefarg
@@ -103,7 +129,7 @@
      }
 //=======================//
 
-   proc sumarg (float vf, float uf)
+   float sumarg (float vf, float uf)
    {
 
      <<"args float  %V  $vf $uf \n";
@@ -358,6 +384,10 @@
 //
 // xic version fails - fix
 //
+//
+
+
+
 //////////// TBD ////////////
 // BUG XIC version  -- won't find ref argument
 

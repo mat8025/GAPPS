@@ -582,8 +582,6 @@ printf("m_day %d Jan1 %ld  mdy %s\n",m_day, Jan1, mdy);
 
   sWo(_WOID,wtmwo,_WREDRAW,1);
   sWo(_WOID,xtmwo,_WREDRAW,1);  
-
-
   sWo(_WOID,dtmwo,_WSTRVALUE ,mdy,_WREDRAW,1);
 
 

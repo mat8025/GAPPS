@@ -1,28 +1,27 @@
 /* 
- *  @script glidetask.asl 
+ *  @script glidetask.asl                                               
  * 
- *  @comment task-planner cpp script 
- *  @release  
- *  @vers 4.7 N 6.3.83 C-Li-Bi 
- *  @date 02/14/2022 11:20:58          
- *  @cdate 9/17/1997 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare 2022
+ *  @comment task-planner cpp script                                    
+ *  @release Beryllium                                                  
+ *  @vers 4.8 O Oxygen [asl 6.4.76 C-Be-Os]                             
+ *  @date 02/07/2023 10:34:08                                           
+ *  @cdate 9/17/1997                                                    
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2023 -->                               
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;
+;//----------------<v_&_v>-------------------------//;                  
 
 
+char vers[6] ="4.9";
 
-#define ASL 1
-
+#define DB_IT    0
 #define GT_DB   0
-
-
+#define ASL 1
 #define CPP 0
 
 #if ASL
-// the include  when cpp compiling will re-define ASL 0 and CPP 1
+// this include  when cpp compiling will re-define ASL 0 and CPP 1
 #include "compile.asl"
 
 #endif
@@ -73,6 +72,7 @@ float Cruise_speed;
 float TC[20];
 float Dur[20];
 
+
   Svar Task;
 
   float totalD = 0;
@@ -80,6 +80,8 @@ float Dur[20];
   float totalDur = 0.0;
 
   float TKM[20];
+  float AGL[20];
+  
   float L1;
   float L2;
   //float lo1,lo2;
@@ -89,10 +91,13 @@ float Dur[20];
   double tkm2;
   float tcd;
   float rmsl;
+  float tmsl;
   float msl;
   int nl,li;
   Str ident;
-
+  int n_legs = 0;
+  int n_tp = 0;
+  int k_tp;
 //#include "conv.asl"
 
 #include "tpclass.asl"
@@ -114,78 +119,34 @@ Tleg  GT_Wleg[20];
 
 
 #if CPP
-
 void
 Glide::glideTask(Svarg * sarg)  
 {
-
-int run_asl = runASL();
- //cout <<"CPP  ASL?  " << run_asl << endl;
-
- Str a0  = sarg->getArgStr(0) ;
-
-//a0.pinfo();
+ int run_asl = runASL();
  Svar sa;
-
- //cout << " paras are:  "  << a0.cptr(0) << endl;
- sa.findWords(a0.cptr());
-
-cout << "\n The glider Task turnpts and  parameters are:  "  << sa << endl;
-
- //cout << " para[0] is:  "  << sa.cptr(0) << endl;
-
- //cout << " para[1] is:  "  << sa.cptr(1) << endl;
-
-// cout << " para[2] is:  "  << sa.cptr(2) << endl;
+ sa.findWords(sarg->getArgStr(0)) ;
+ printf("CPP vers %s\n",vers);
 #endif
 
   int na;
 
 #if ASL
-
  Svar sa;
-
-//<<" na $_clargc \n"
  na = _clargc;
-// <<" na $_clarg[1]  $_clarg[2] \n"
- 
-
  sa = _clarg;
-
-//<<"args are $sa \n"
-
-//<<"0 $sa[0] \n"
-
-//<<"1 $sa[1] \n"
-
-//<<"2 $sa[2] \n"
-
 #endif
-
-//cout << " ??? \n"  ;
-
-
-//cout << " para[3] is:  "  << sa.cptr(3) << endl;
-
 
   ignoreErrors(); // put in glide.h ??
 
-//  chkIn(1);  //  _dblevel ?
-  
-//setMaxICerrors(-1) // ignore - overruns etc
 
-int  Main_init = 1;
-
-//cout << " ??? & \n";
-//<<"%V $totalD\n"
-
+  int  Main_init = 1;
   float Leg[20];
 
   CSK = 70.0;
 
   Cruise_speed = (CSK * nm_to_km);
 
-//  printf(" Cruise_speed %f ",Cruise_speed);
+  printf(" Cruise_speed %f ",Cruise_speed);
 
   GT_Wtp[1].Alt = 100.0;
 
@@ -193,18 +154,17 @@ int  Main_init = 1;
 
 //  <<"$GT_Wtp[1].Alt\n";
 
-//  GT_Wtp.pinfo() ;  // should identify Obj
+//  GT_Wtp.aslpinfo() ;  // should identify Obj
 
   Str tlon;
   Str tplace;
-
   Svar CLTPT;
   Svar Wval;
   Svar Wval2;  
 
   Str tpb ="";
 
-  Units="KM";
+  Units= "KM";
   
 //<<" done defines \n"
 
@@ -220,14 +180,14 @@ int  Main_init = 1;
 
   AFH=ofr("CUP/bbrief.cup")  ; // open turnpoint file;
 
-  printf( "opened CUP/bbrief.cup %d \n",AFH);
+  printf( "opened CUP/bbrief.cup AFH %d \n",AFH);
 
   }
 
   else {
 
   AFH=ofr("DAT/turnptsA.dat")  ; // open turnpoint file;
-  //printf("opened  DAT/turnptsA.dat %d \n" ,AFH );
+  printf("opened  DAT/turnptsA.dat %d \n" ,AFH );
   }
 
   if (AFH == -1) {
@@ -246,13 +206,17 @@ int  Main_init = 1;
 //main
 
 
+    na = sa.getNarg(); // TBC no asl version??
+
+/*
 #if CPP
   na = sa.getNarg();
 #else
   na = _clargc;
 #endif  
+*/
 
-  if (GT_DB) printf(" na %d\n",na);
+printf(" na %d\n",na);
 
 
   int ac = 0;
@@ -278,23 +242,20 @@ while (ac < na) {
 
   istpt = 1;
 
-#if CPP
-  targ = sa.cptr(ac);
-#else
-  //targ = _clarg[ac];
 
   targ = sa.cptr(ac);
 
-if (GT_DB) <<"%V $ac $sa[ac] $targ\n"
-
-#endif
 
 #if GT_DB
  printf("ac %d targ %s\n",ac,targ);
+ targ.aslpinfo();
 #endif
-//cout <<"ac "<< ac <<" " << targ << endl;
 
-//  DBG"%V $ac $targ\n";
+/*
+ targ.aslpinfo();
+  ok= targ.aslcheckinfo("GLOBAL");
+ <<" $ok   targ is a GLOBAL \n";
+*/
 
   sz = targ.slen();
 
@@ -307,29 +268,50 @@ if (GT_DB) <<"%V $ac $sa[ac] $targ\n"
   if (targ == "LD") {
 
 
-  targ = sa.cptr(ac);
-
-
-
+    targ = sa.cptr(ac);
 
    // LoD= atof(sa.cptr(ac));
     LoD= atof(targ);
 
-//<<"parsing %V $LoD !n";
+//<<"parsing %V $LoD \n";
     ac++;
 
     istpt = 0;
-//LoD.pinfo();
-    if (GT_DB) printf("setting LD %f ",LoD);
 
+#if GT_DB
+     printf("setting LD %f ",LoD);
+     LoD.aslpinfo();
+#endif
+
+    }
+
+  if (targ == "units") {
+
+      //targ.aslpinfo();  // print variable status
+      // isthere = targ.checkVarInfo("SI_PROC_REF_ARG")  ;  // check variable status for this string
+
+     targ = sa.cptr(ac);
+
+  if (targ == "KM") {
+    Units = "KM";
+   }
+  else if (targ == "NM") {
+    Units = "NM";
   }
+   else if (targ == "SM") {
+    Units = "SM";
+    printf("setting Units to SM %d\n",Units);
+  }
+
+  ac++;
+    istpt = 0;
+  }
+
 
   if (targ == "CS") {
 
 
   targ = sa.cptr(ac);
-
-
 
   CSK = atof(targ);
 
@@ -410,22 +392,18 @@ if (GT_DB) <<"%V $ac $sa[ac] $targ\n"
 
 
 #if ASL
-
   //CLTPT[cltpt] = targ;   // TBF 02/24/22
+   CLTPT.cpy(targ,cltpt);
 
-  CLTPT.cpy(targ,cltpt);
-
- if (ASL_DB)  <<"%V $targ $sz $cltpt $CLTPT[cltpt] \n"
-  if (ASL_DB) <<"CLTPTs  $CLTPT\n"
-
-
+   if (ASL_DB)  <<"%V $targ $sz $cltpt $CLTPT[cltpt] \n"
+   if (ASL_DB) <<"CLTPTs  $CLTPT\n"
 #else
  CLTPT.cpy(targ,cltpt);
  if (CPP_DB) cout  <<"cltpt "<< cltpt  <<" CLTPT[cltpt] "<< CLTPT[cltpt]  <<endl ; 
 #endif
-//cout  <<"cltpt "<< cltpt  <<" CLTPT[cltpt] "<< CLTPT[cltpt]  <<endl ; 
 
-  cltpt++;
+
+   cltpt++;
 
    }
 
@@ -442,47 +420,26 @@ if (GT_DB) <<"%V $ac $sa[ac] $targ\n"
   Str nxttpt = "Laramie";
 
   float N = 0.0;
-
   int ki;
-
   int cnttpt = 0;
-// enter start
-
   int input_lat_long = 0;
-
   int i = -1;
 
 
-   if (GT_DB) printf("DONE ARGS  ac %d cltpt %d \n", ac,cltpt);
+   if (DB_IT) printf("DONE ARGS  ac %d cltpt %d \n", ac,cltpt);
 
 
-
-
-
-////   do this to check routine    
-    //<<"Start  $the_start \n"
-// first parse code bug on reading svar fields?
-
-//  TBF asl does not handle nested #if 's
- int k;
-#if ASL_DB
-  for (k= 0; k < cltpt; k++) {
-  <<"$k  $CLTPT[k] \n";
-  }
-#endif
 
 
 /////////////////////////////
 
   i = -1;
+ int k;
  int got_start = 0;
  int K_AFH = AFH;
  cnttpt = 0;
 
-//<<"CLTPTs  $CLTPT\n"
-
-
-while ( !got_start) {
+ while ( !got_start) {
 
 
 #if ASL_DB
@@ -501,7 +458,7 @@ while ( !got_start) {
 
 #if CPP_DB
 
-cout << the_start << "  " << cnttpt  << endl;
+    cout << the_start << "  " << cnttpt  << endl;
 
 #endif
 
@@ -513,18 +470,9 @@ cout << the_start << "  " << cnttpt  << endl;
 
    }
 
-//  else {
-//
-//  the_start = get_word(the_start);
-//
-//  }
-      // <<"Start  $the_start \n"
-	//    	prompt(" ? ")
 
   if (the_start == "done") {
-
      exit(0);
-
   }
 
   if (the_start == "input") {
@@ -536,22 +484,12 @@ cout << the_start << "  " << cnttpt  << endl;
   break;
 
   }
-     // <<"searching file for $the_start\n";
-      //the_start.pinfo();
-      // <<"         \n";
-      //<<" \n";
-
-//<<"%V $the_start $AFH \n"
 
   i=searchFile(AFH,the_start,0,1,0,0);
 
-//  <<[_DB]"$i\n";
-
-//<<"index found was $i \n"
+  printf("AFH %d i %d\n",AFH,i);
 
   if (i == -1) {
- // printf("the_start  %s not found \n", stoa(the_start));
-
   //printf("the_start  %s not found \n", the_start);
 
   try_start = nameMangle(the_start);
@@ -569,8 +507,7 @@ cout << the_start << "  " << cnttpt  << endl;
 
    printf("the_start not found \n");;
 
-  //the_start.pinfo();
-
+  //the_start.aslpinfo();
 
 //cout  <<" "<< the_start  << "not "  << "found "  <<endl ;
 //  printf("the_start  %s not found \n", stoa(the_start));
@@ -578,7 +515,6 @@ cout << the_start << "  " << cnttpt  << endl;
 
   if (!via_keyb) {
 		//testargs(1,0,"start not found");
-
    exit(-1);
 
    }
@@ -596,11 +532,8 @@ cout << the_start << "  " << cnttpt  << endl;
 // -------------------------------
 //<<"%V$input_lat_long  $i \n"
 
-
-
   int nwr;
   Str w;
-
 
   if (input_lat_long) {
 // <<" input place !\n"
@@ -630,46 +563,20 @@ cout << the_start << "  " << cnttpt  << endl;
 	  // need to step back a line
 
   if (use_cup) {
-
    nwr = Wval.readWords(AFH,0,',');
-
-
-   //cout <<" cup nwr " << nwr << endl;
-
-//<<"$Wval[0] $Wval[1] $Wval[3] $Wval[4] \n"	 
-
    }
-
   else {
-
    nwr = Wval.readWords(AFH);
-
    }
-      //    <<" %i $Wval \n"
 
-//  DBG"$nwr $Wval[0] $Wval[1] $Wval[2] $Wval[3] \n";
-	  //    msz = Wval.Caz()
-	// <<"%V$msz \n"
-	// <<"%V$n_legs \n"
-
-//COUT(Wval)
   tplace = Wval[0];
 
-//COUT(Wval[4])
   if (use_cup) {
-
    tlon = Wval[4];
-
    }
-
-  else {
-
-   tlon = Wval[3];
-
+   else {
+    tlon = Wval[3];
    }
-
-//COUT(tlon)
-//<<"%V$tplace $tlon \n"
 
 #if ASL_DB
 <<"$Wval[::]\n"	  
@@ -677,26 +584,21 @@ cout << the_start << "  " << cnttpt  << endl;
 #endif
 
 
-
+  n_tp++;
   if (use_cup) {
-   GT_Wtp[n_legs].TPCUPset(Wval);
-
+   //GT_Wtp.aslpinfo();
+     GT_Wtp[n_legs].TPCUPset(Wval);
    }
   else {
      GT_Wtp[n_legs].TPset(Wval);
    }
+   
+  AGL[n_legs] = GT_Wtp[n_legs].Alt;
 
  }
 
 
-//////////////////
-
-
-   
-//  cout << "Next TP " << endl;
-  
-//<<"next   $cnttpt \n"
-// NEXT TURN
+// NEXT TURN POINT
 
   int more_legs = 1;
 
@@ -723,7 +625,7 @@ cout << the_start << "  " << cnttpt  << endl;
   if (GT_DB) cout << " nxttpt " << nxttpt << endl;
 #endif
 
-//nxttpt.pinfo();
+//nxttpt.aslpinfo();
  
   cnttpt++;
 
@@ -741,18 +643,14 @@ cout << the_start << "  " << cnttpt  << endl;
 
 /*
   else {
-
   <<" get via a keyboard or file !! \n";
-
   nxttpt = get_word(nxttpt);
-
   }
 */
+
   if ((nxttpt == "done") || (nxttpt == "finish") || (nxttpt == "quit") ) {
 
- //cout << endl;
-  if (GT_DB) printf("done %s\n",nxttpt);
-  more_legs = 0;
+     more_legs = 0;
 
   }
 
@@ -866,8 +764,11 @@ cout << the_start << "  " << cnttpt  << endl;
 
    GT_Wtp[n_legs].TPCUPset(Wval);
 
+   //Wval.aslpinfo();
 
 
+   AGL[n_legs] = GT_Wtp[n_legs].Alt;
+//<<"%V $n_tp $n_legs   $GT_Wtp[n_legs].Alt   $AGL[n_legs] \n"
  //  cout  <<" "<< n_legs  <<" "<< Wval2[0]  <<" "<< Wval2[1]  <<" "<< Wval2[3]  <<" "<< Wval2[4]  <<endl ; 
  //  Wval2.vfree();
    
@@ -909,20 +810,14 @@ cout << the_start << "  " << cnttpt  << endl;
 //  <<"%V  $CSK knots $Cruise_speed kmh\n";
   //cout  <<"CSK "<< CSK  << "knots "  <<"Cruise_speed "<< Cruise_speed  << "kmh "  <<endl ;
 //  ans=query("show");
-  if (show_title) {
-    printf("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n");
 
-//  <<"Leg   TP      ID   LAT      LONGI      FGA     MSL   PC    $Units   RTOT   RTIM    Radio    TC \n";
-    printf("Leg   TP      ID   LAT      LONG      FGA    MSL   PC   Dist  Hdg   Dur RTOT   RTIM  Radio   \n") ; 
-  }
   
 // get totals
-
+// in main --- no obj on stack?
 
   float rtime = 0.0;
   float tot_time = 0.0;
   float rtotal = 0.0;
-// in main --- no obj on stack?
   float nleg,wleg;
   float agl,ght,pc_tot,alt;
 
@@ -933,14 +828,22 @@ cout << the_start << "  " << cnttpt  << endl;
 
     totalD = 0;
 
+  if (show_title) {
+  
+#if ASL
+  <<" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n";
+  <<"Leg TP\t\tID\tRadio\t\tMSL\tFGA\t Dist($Units)\t Hdg \tDur\tPC\tRunTotD\tTime\tLAT\t\tLONG \n";
+#endif
 
+  }
   
   
   for (nl = 0; nl < n_legs ; nl++) {
 #if ASL_DB
-<<"$nl   $n_legs  $GT_Wtp[nl].Place  $GT_Wtp[nl+1].Place  $GT_Wtp[nl].Ladeg  \n"
+<<"%V $nl   $n_legs  $GT_Wtp[nl].Place  $GT_Wtp[nl+1].Place  $GT_Wtp[nl].Alt $GT_Wtp[nl].Ladeg  \n"
 // ans=query("??");
 #endif
+
   L1 = GT_Wtp[nl].Ladeg;
   ki = nl+1;
   L2 = GT_Wtp[nl+1].Ladeg;  //  TBF icode
@@ -973,8 +876,19 @@ cout << the_start << "  " << cnttpt  << endl;
 
   Leg[nl] = tkm;
 
-  GT_Wleg[nl+1].dist = tkm;
+  GT_Wleg[nl].dist = tkm;
+  
+  if (Units == "NM") {
 
+  GT_Wleg[nl].dist = tkm * km_to_nm;
+  
+  }
+
+  else if (Units == "SM") {
+
+  GT_Wleg[nl].dist = tkm * km_to_sm;
+  
+  } 
 //<<"%V $nl $tkm $Leg[nl] $TKM[nl]\n"
 
   //DBG"%V $GT_Wleg[nl].dist\n";
@@ -997,14 +911,14 @@ cout << the_start << "  " << cnttpt  << endl;
 //COUT(tcd);
 
 
-  TC[nl+1] = tcd;
+  TC[nl] = tcd;
 
 //  Dur[nl+1] = Leg[nl]/ Cruise_speed;
 
-    Dur[nl+1] = tkm / Cruise_speed;
+    Dur[nl] = tkm / Cruise_speed;
  //<<"%V $Leg[nl] $tkm $Dur[nl+1] \n"
 
-  totalDur += Dur[nl+1];
+  totalDur += Dur[nl];
 
   totalD += tkm;
 
@@ -1014,8 +928,16 @@ cout << the_start << "  " << cnttpt  << endl;
 
   }
 
+  int wk = 0;
+  int tplen = tpb.slen();
 
-    //  <<" $total \n"
+  Str ws =  nsc((10-tplen)," ");
+
+  int idlen = ident.slen();
+
+  Str wsi= nsc((10-idlen)," ");
+  float tct;
+  float dct;
 
   rmsl = 0.0;
 
@@ -1023,11 +945,28 @@ cout << the_start << "  " << cnttpt  << endl;
 
   pc_tot = 0.0;
 
+#if ASL_DB    
+   for (k_tp = 0; k_tp < n_legs; k_tp++) {
+<<"%V $k_tp   $GT_Wtp[k_tp].Alt  $AGL[k_tp]   $GT_Wtp[1].Alt   $GT_Wtp[0].Alt $GT_Wtp[0].Ladeg  $GT_Wtp[1].Ladeg  $AGL[1]  \n"
+   }
+#endif
+
+  k_tp = 1;
+
+//<<"%V $k_tp   $GT_Wtp[k_tp].Alt  $AGL[k_tp] \n"
+
+  msl =  GT_Wtp[k_tp].Alt;
+
+  rmsl = AGL[k_tp];
+
+
+  rtotal = 0;
+  
   for (nl = 0; nl <= n_legs ; nl++) {
 
   if (nl == 0) {
 
-   the_leg =0;
+   the_leg = Leg[0];
 
    pc_tot = 0.0;
 
@@ -1044,9 +983,7 @@ cout << the_start << "  " << cnttpt  << endl;
      pc_tot = the_leg/totalD * 100.0;
 
      GT_Wleg[nl].pc = pc_tot;
-#if ASL_DB     
-//<<"%V $nl $the_leg $totalD $pc_tot  $GT_Wleg[nl-1].pc  \n"
-#endif
+
      }
 
    }
@@ -1056,14 +993,8 @@ cout << the_start << "  " << cnttpt  << endl;
   alt =  GT_Wtp[nl].Alt;
 
   msl = alt;
-    //    <<" %I $msl $GT_Wtp[nl].Alt \n"
-    //    <<" %I $nl $msl \n"
-    //    <<" %I $rmsl $GT_Wtp[nl+1].Alt \n"
-    //<<" %I $LoD \n"
 
   ght = (Leg[nl] * km_to_feet) / LoD;
-    //<<" $ght = ${Leg[nl]} * $km_to_feet / $LoD \n"
-    // <<"    $agl = $ght + 1200.0 + $rmsl \n"
 
   if (nl == n_legs) {
 
@@ -1072,10 +1003,10 @@ cout << the_start << "  " << cnttpt  << endl;
    }
 
   else {
-
-   rmsl =  GT_Wtp[nl+1].Alt;
-
+   wk = nl +1;
+   rmsl =  GT_Wtp[wk].Alt;
    agl = ght + 1200.0 + rmsl;
+   //<<"%V $nl $wk $agl = $ght + 1200.0 + $rmsl  $GT_Wtp[nl+1].Alt $GT_Wtp[1].Alt $AGL[nl] $AGL[nl+1]  \n";
 
    }
 
@@ -1089,17 +1020,7 @@ cout << the_start << "  " << cnttpt  << endl;
 
   ident = GT_Wtp[nl].Idnt;
 
-//<<"%V $tpb $ident \n"
-
-//cout  <<"tpb "<< tpb  <<" ident "<< ident  <<endl ; 
-
-
-
-
   li = nl;
-  
-
-  rtotal += the_leg;
 
   if (Units == "KM") {
 
@@ -1112,10 +1033,7 @@ cout << the_start << "  " << cnttpt  << endl;
    wleg = nleg ;
 
    }
- //   kiss = "^$tpb"
- //   ki=Fsearch(A,kiss,0,1,0,0,1)
- //   tpb = nameMangle(tpb);
- // <<"namemangle returns $tpb \n"
+
 
   if (li > 0) {
 
@@ -1129,33 +1047,33 @@ cout << the_start << "  " << cnttpt  << endl;
 
    wleg = 0.0;
 
-   rtotal = 0;
+  
 
    }
 
-  int tplen = tpb.slen();
-
-  Str ws =  nsc((12-tplen)," ");
-
-  int idlen = ident.slen();
-
-  Str wsi= nsc((10-idlen)," ");
-  float tct;
-  float dct;
+   rtotal += GT_Wleg[li].dist;
   
  // <<"$li $GT_Wleg[li]->dist  $GT_Wleg[li]->pc_tot \n"
  //<<"$li ${tpb}${ws}${ident}${wsi} %9.3f${GT_Wtp[li]->Lat} %11.3f${GT_Wtp[li]->Lon}\s%10.0f${GT_Wtp[li]->fga} ${GT_Wtp[li]->Alt} %4.1f$GT_Wleg[li]->pc ";
 
    tot_time += Dur[li];
 
+     pc_tot = GT_Wleg[li].dist/totalD * 100.0;
 
+     GT_Wleg[li].pc = pc_tot;
+     
 #if ASL
-// <<"$li ${tpb}${ws}${ident}${wsi} ${GT_Wtp[li]->Lat} ${GT_Wtp[li]->Lon}\s%11.0f${GT_Wtp[li]->fga} ${GT_Wtp[li]->Alt} %4.1f$GT_Wleg[li]->pc_tot ";
+
 tct = TC[li];
 dct = Dur[li];
-<<"$li ${tpb}${ws}${ident}${wsi} ${GT_Wtp[li]->Lat} ${GT_Wtp[li]->Lon}\s%11.0f${GT_Wtp[li]->fga} ${GT_Wtp[li]->Alt} %4.1f$GT_Wleg[li]->pc_tot ";
-<<"%6.2f $GT_Wleg[li]->dist\t $TC[li]\t $Dur[li]\t $rtotal\t$tot_time ${GT_Wtp[li]->Radio}\n";
-
+//<<"$li\t${tpb}${ws}${ident}${wsi} ";
+<<"$(li+1) ${tpb}\t${ident} ${GT_Wtp[li]->Radio} "; 
+<<"%11.0f${GT_Wtp[li]->Alt} ${GT_Wtp[li]->fga} ";
+<<"%6.2f $GT_Wleg[li]->dist\t %3.0f$TC[li]\t %4.2f$Dur[li] " 
+<<"%4.1f$GT_Wleg[li]->pc_tot ";
+<<"%6.2f$rtotal\t%4.2f$tot_time ";
+<<"${GT_Wtp[li]->Lat} ${GT_Wtp[li]->Lon}\s";
+<<"\n";
 
 //<<"$GT_Wleg[li]->dist\t$tct\t$dct\t$rtotal\t%6.2f${GT_Wtp[li]->Radio}\n";
 
@@ -1179,7 +1097,7 @@ printf("%d %s%s%s%s%s %s  %6.0fft  %6.0fft ",li,GT_Wtp[li].Place.cptr(),ws.cptr(
 
   if (show_dist) {
 #if ASL
-  <<"Total distance\t %8.2f $totalD km\t%8.2f $(totalD*km_to_sm) sm\t%6.2f  $(totalD*km_to_nm) nm    LOD %6.1f$LoD CS $CSK knots\n";
+  <<"\nTotal distance\t %8.2f $totalD km\t%8.2f $(totalD*km_to_sm) sm\t%6.2f  $(totalD*km_to_nm) nm    LOD %6.1f$LoD CS $CSK knots\n";
 
   <<" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n";
 #else
@@ -1187,16 +1105,8 @@ printf("%d %s%s%s%s%s %s  %6.0fft  %6.0fft ",li,GT_Wtp[li].Place.cptr(),ws.cptr(
 //ans=query("totalD ?");
 #endif
 
-//printf("totalD %f   totalDur %f\n",totalD,totalDur);
-
-//     cout << "total D "  << endl;
-  //   cout << ::totalD    <<endl ; 
-
      printf("totalD  %6.2f km to fly - %6.2f hrs - bon voyage!\n ", totalD, totalDur);
 
-     //cout.flush();
-
-//ans=query("totalD ?");
 }
 
   else {
@@ -1213,23 +1123,12 @@ printf("%d %s%s%s%s%s %s  %6.0fft  %6.0fft ",li,GT_Wtp[li].Place.cptr(),ws.cptr(
 #if CPP
 }
 ////////////////////////////////////////////////////////////////////////////////////////
-extern "C" int glider_task(Svarg * sarg)  {
-
- Str a0 = sarg->getArgStr(0) ;
- Str ans;
-// a0.pinfo();
-
-Str Use_ ="compute task distance\n  e.g.  asl glidetask   gross laramie evans boulder  LD 40";
-
-
- printf(" glideTask app %s \n",Use_.cptr() );
- //cout << " paras are: "  << " a0 " <<  a0 << endl;
+extern "C" int glidertask(Svarg * sarg)  {
 
     Glide *o_glide = new Glide;
 
     o_glide->glideTask(sarg);
-
-   //cout << "total D " << ::totalD    <<endl ;
+//   cout << "total D " << ::totalD    <<endl ;
 
   }
 
@@ -1237,7 +1136,6 @@ Str Use_ ="compute task distance\n  e.g.  asl glidetask   gross laramie evans bo
 
 
 
-//exit(0,"%6.1f$totalD km to fly -  $totalDur hrs")
 /*
   TBD ==============================
   namemangle return error

@@ -1,4 +1,7 @@
 
+
+
+
 #include "debug"
 
 
@@ -11,7 +14,7 @@ if (_dblevel >0) {
   
   chkIn(_dblevel)
   
-  proc goo()
+  void goo()
   {
   
   short c = 3;
@@ -26,22 +29,40 @@ if (_dblevel >0) {
   
   }
   
-  
+  int ok;
   int a = 1;
   
   a.pinfo()
-  
-  ai = a->info()
+
+  ok = a.checkinfo("INT");
+
+  if (ok) {
+<<" $a is an INT\n"
+
+  }
+
+  ok = a.checkinfo("FLOAT");
+
+  if (ok) {
+<<" $a is an FLOAT\n"
+
+  }
+
+
+
+  ai = a.info()
   
   
   <<"%V $a  $ai\n"
-  chkN(1,a)
+
+
+   chkN(1,a)
   
   float b = 2;
   
   b.pinfo()
   
-  bi = b->info()
+  bi = b.info()
   
   
   <<"%V $b  $bi\n"

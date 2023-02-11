@@ -72,7 +72,7 @@
   //  Main_init = 0
 //DBG" read in unit conversions \n"
 
-  int n_legs = 0;
+//  int n_legs = 0;
 //float Leg[20];
 // conversion routines
 
