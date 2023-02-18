@@ -1,32 +1,39 @@
-//%*********************************************** 
-//*  @script plot.asl 
-//* 
-//*  @comment show plottable objects 
-//*  @release CARBON 
-//*  @vers 1.3 Li Lithium                                                    
-//*  @date Sun Mar 22 15:55:33 2020 
-//*  @cdate Sun Mar 22 15:55:33 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script plot.asl                                                    
+ * 
+ *  @comment show plot objects                                     
+ *  @release Beryllium                                               
+ *  @vers 1.4 Be Beryllium [asl 6.4.76 C-Be-Os]                         
+ *  @date 02/17/2023 21:04:32                                           
+ *  @cdate Sun Mar 22 15:55:33 2020                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2023 -->                               
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                  
+
 //
 
 
-include "debug"
-include "hv.asl"
-include "graphic"
-include "gevent"
+#include "debug"
+#include "hv.asl"
+#include "graphic"
+
+#include "tbqrd.asl"
+#include "gevent"
 
 
     rainbow();
 
 
 
-    vp = cWi(@title,"PLOT_OBJECTS",@resize,0.05,0.01,0.99,0.95)
+    vp = cWi("PLOT_OBJECTS");
+  
     //SetGwindow(vp,@pixmapon,@drawon,@save,@bhue,"white")
 
-    sWi(vp,@pixmapon,@drawoff,@save,@bhue,YELLOW_,@redraw)
+    sWi(_WOID,vp,_WPIXMAP,ON_,_WRESIZE,wbox(0.05,0.01,0.99,0.95)));
+
+//@drawoff,@save,@bhue,YELLOW_,@redraw)
 
     cx = 0.1
     cX = 0.9
@@ -34,7 +41,7 @@ include "gevent"
     cY = 0.95
 
 
-ans=query("See window?");
+     //ans=query("See window?");
 
     // drawing area within window
     // drawing area object - wob -- needs script level class definition
@@ -42,9 +49,14 @@ ans=query("See window?");
 
     daname = "PLOT_SCREEN"
 
-    gwo= cWo(vp,@GRAPH,@resize,0.15,0.15,0.45,0.95,@name,"GLines",@color,"white")
+    //gwo= cWo(vp,@GRAPH,@resize,0.15,0.15,0.45,0.95,@name,"GLines",@color,"white")
+    gwo= cWo(vp,WO_GRAPH_);
 
-    sWo(gwo,@clip,cx,cy,cX,cY)
+
+
+//@name,"GLines",@color,"white")
+
+    sWo(_WOID,gwo,_WNAME, "Glines",_WRESIZE,wbox(0.15,0.15,0.45,0.95_, _WCLIP,wbox(cx,cy,cX,cY))
 
     // scales 
     sx = -3
@@ -52,15 +64,20 @@ ans=query("See window?");
     sy = -3
     sY = 3.0
 
-    g2wo= cWo(vp,@GRAPH,@resize,0.55,0.15,0.95,0.95,@name,"GLines",@color,"white")
+   // g2wo= cWo(vp,@GRAPH,@resize,0.55,0.15,0.95,0.95,@name,"GLines",@color,"white")
 
-    sWo(g2wo,@clip,cx,cy,cX,cY)
+    g2wo= cWo(vp,WO_GRAPH_)
+
+    sWo(_WOID,g2wo,_WRESIZE,wbox(0.55,0.15,0.95,0.95),_WNAME,"GLines",_WCOLOR,WHITE_)
+
+    sWo(_WOID,g2wo,_WCLIP,wbox(cx,cy,cX,cY));
 
     int gwos[] = {gwo,g2wo};
     //setgwob(gwo,@scales, sx, sy, sX, sY, @save,@redraw,@drawon,@pixmapon)
 
-    sWo(gwo,@scales, sx, sy, sX, sY,@save, @savepixmap,@redraw,@pixmapon,@drawon)
-    sWo(g2wo,@scales, sx, sy, sX, sY,@save, @savepixmap,@redraw,@pixmapon,@drawon)
+    sWo(_WOID,gwo,_WSCALES, wbox(sx, sy, sX, sY),_WPIXMAP,ON_,_WDRAW,ON_,_WREDRAW,ON_)
+
+   //sWo(g2wo,@scales, sx, sy, sX, sY,@save, @savepixmap,@redraw,@pixmapon,@drawon)
 
 
 /*
@@ -74,28 +91,30 @@ ans=query("See window?");
 
 
 
-    sWo(gwos,@savepixmap,@showpixmap)
-    titleVers()
-    titleButtonsQRD(vp);
-
+   // sWo(gwos,@savepixmap,@showpixmap)
+   //titleVers(Hdr_vers)
+   
+   titleButtonsQRD(vp);
+   
+<<"%V $Hdr_vers \n"
 //////////////////////////////////////////////////////////////////////////////////
 ang = 0.0
 
-proc redraw_po()
+void redraw_po()
 {
 
-    sWo(gwo,@drawon)
+    sWo(_WOID,gwo,_WDRAW,ON_)
 
-    sWo(gwos,@clearpixmap,@pixmapon,@savepixmap)
+   // sWo(gwos,@clearpixmap,@pixmapon,@savepixmap)
 
-    sWo(gwo,@clear,@border,BLUE_,@clipborder,RED_)
+    sWo(_WOID,gwo,_WCLEAR,ON_,_WBORDER,BLUE_,_WCLIPBORDER,RED_)
 
 
-    sWo(g2wo,@drawon)
+   // sWo(g2wo,@drawon)
 
-    sWo(g2wo,@clearpixmap,@pixmapon,@savepixmap)
+    //sWo(g2wo,@clearpixmap,@pixmapon,@savepixmap)
 
-    sWo(g2wo,@clear,@border,BLUE_,@clipborder,GREEN_)
+    //sWo(g2wo,@clear,@border,BLUE_,@clipborder,GREEN_)
 
     axnum(gwo,1)
     axnum(gwo,2)
@@ -106,7 +125,7 @@ proc redraw_po()
  
     axlabel(g2wo,1,"TIDE",0.7,3)
 
-    sWo(gwos,@drawon,@pixmapon)
+   // sWo(gwos,@drawon,@pixmapon)
 
     ticks(gwo,1)
     ticks(gwo,2)
@@ -127,7 +146,8 @@ proc redraw_po()
     plot(gwo,@polarline,0,0,2,ang,"blue");
 */
 
-    plot(gwo,@poly,PV,BLUE_,1);
+    plot(gwo,"POLY",PV,BLUE_,1);  // CPP version plot(wid, [LINE_,POLY_,...]
+                                                 // or plotLine, plotPoly, ...
 
    // plot(gwo,@polyreg,5,3);
 
@@ -148,10 +168,10 @@ proc redraw_po()
 
     plot(g2wo,@polarline,0,0,2,ang,"blue");
 */
-        plot(g2wo,@poly,PV2,MAGENTA_,1);
+        plot(g2wo,"POLY",PV2,MAGENTA_,1);
  //       plot(g2wo,@polyreg,6,1);
 
-/{
+/*
     ang += 5;
 
     plot(gwo,@circle,0,0,1)
@@ -173,10 +193,10 @@ proc redraw_po()
 
     plot(g2wo,@symbols,Spts,TRI_,2,RED_,1,10)
     plot(g2wo,@symbols,Spts,CIRCLE_,2,ORANGE_,1,10)
-/}
+*/
 
-    sWo(gwos,@showpixmap)
-    sWo(gwos,@border,BLUE_,@clipborder,RED_)
+    //sWo(gwos,@showpixmap)
+    //sWo(gwos,@border,BLUE_,@clipborder,RED_)
 
 
 }
@@ -194,7 +214,8 @@ float Dpts[128]
 
        sx = -3
        sy = -3
-       for (i =0 ; i < 128; i += 2) {
+
+  for (i =0 ; i < 128; i += 2) {
 
         Pts[i] = x
         Pts[i+1] = y

@@ -13,19 +13,19 @@
 ;//----------------<v_&_v>-------------------------//;                  
 
 
-char vers[6] ="4.9";
+char vers[6] ="5.1";
 
 #define DB_IT    0
 #define GT_DB   0
 #define ASL 1
 #define CPP 0
 
+
 #if ASL
 // this include  when cpp compiling will re-define ASL 0 and CPP 1
 #include "compile.asl"
 
 #endif
-
 
 
 #if CPP

@@ -46,7 +46,7 @@ int woj;
 
 void  titleButtonsQRD(int v)
 {
- printf("USING COMPILE version !\n");
+ //printf("USING COMPILE version !\n");
 //////////////////////////////// TITLE BUTTON QUIT RESIZE REDRAW ////////////////////////////////////////////////
  int tq=cWo(v,TBS_);
 

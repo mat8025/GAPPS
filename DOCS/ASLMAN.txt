@@ -553,7 +553,7 @@ The array size will be expanded is required (within the limits of available memo
 Vectors can also be declared via a generator function vgen.
 
 B= vgen(INT_,20)
-and the intial value plus increment can be also be specified
+and the initial value plus increment can be also be specified
 B= vgen(INT_,20,0,1)
 
 A= vgen(FLOAT_,100,0.0,0.25)
@@ -4895,7 +4895,7 @@ the start of the target is returned.
 If dir set to -1 search direction is reversed.
 If case_dep set to 0 the search is independent of upper or lower case.
 Default is case sensitive.
-if orgin set to zero - seeks to begining of the file before searching.
+if origin set to zero - seeks to begining of the file before searching.
 
 .EF
 =============================================================
@@ -8417,34 +8417,29 @@ otherwise the whole window area is used for drawing.
 The default is to center the title, set center to zero to position title at
 far left of title area.
 
-
 .EF
 =============================================================
 .BF
 CreateGwindow()
 .(x
-creategwindow,cWi
+cWi
 .)x 
 .FD
-wid=CreateGwindow("title","awindow","resize",x,y,X,Y,ws)
+wid=cWi("title")
 
- Creates a window sized fractionally sized relative to a screen (ws)
- (ws 0 screen0,1 screen1, ... -1 current screen) 
- returns an id (handle) to the windwow
+
+ returns an id (handle) to the window
 
 other aspects of the window can be subsequently altered by calls
-to SetGwindow e.g.
-setGwindow(wid,@hue,RED)  ---- change foreground color
-
-
-
+to sWi e.g.
+sWi(wid,@hue,RED)  ---- change foreground color
 
 .EF
 =============================================================
 .BF
 sWi()
 .(x
-setgwindow,setgw,sWi
+sWi
 .)x 
 .FD
 the arguments to sWi are of the form tag, and comma delimited list of
@@ -8485,7 +8480,6 @@ Showing the pixmap after graphics have completed allows for
 animation effects.
 
 
-
 .EF
 =============================================================
 .BF
@@ -8494,16 +8488,13 @@ sWo()
 sWo(woid) --- set a window object to values, atributes
 .)x 
 .FD
-sWo (woid, action, {value,...})
-sWo,setgwob (woid, action, {value,...})
-the arguments to setgwob are of the form tag,{value,,,} 
-where the tag is the action, which is followed by an optional list of values
-@tag,{value,...}
+sWo (_WOID, woid, [action, value,...])
 
-Some actions require no values:-
-@clearpixmap,
-@showpixmap,
-@savepixmap 
+the arguments to sWi are of the form tag,value 
+where the tag is the action, which is followed by an optional list of values
+
+tag,{value,...}
+
 
 are examples of action reguiring no value.
 
@@ -8514,7 +8505,8 @@ actions are basically the name of function call
 with a list following args (possibly of varying number)
 upto the next @ tag or end of the setgwob statement.
 e.g.
-sWo(wo_id,@drawon,@pixmapoff,@hue,BLACK_,@func,"ip_wo_value",@redraw,@scales,0.0,0.0,1.0,1.0)
+sWo(_WOID,wo_id,@drawon,@pixmapoff,@hue,BLACK_,@func,"ip_wo_value",@redraw,@scales,0.0,0.0,1.0,1.0)
+
 
 the window object referred to by wo_id has the attribute of @drawon
 @func is set to ip_wo_value -- so that a click in the window object 
@@ -8555,6 +8547,7 @@ sWo(hwo,@value,new_value,@update)
 
 redraw will redraw the entire object while update just refreshes the area showing its value.
 Tag Value(s) sets
+
 @scales, x,y,X,Y
 @xscales, x,X
 @yscales, y,Y
@@ -8601,7 +8594,7 @@ sWo(won,@CSV,"a,b,c,4,5", [2]);
 
 sets the value fields on an wo button state object so that on subsequent clicks the value
 returned cycles through the list.
-By default it will start at beginning, but the intial field can be set by optional argument.
+By default it will start at beginning, but the initial field can be set by optional argument.
 In the example above the value "c" would be the value obtained on the flrst click.
 
 
@@ -8610,7 +8603,7 @@ In the example above the value "c" would be the value obtained on the flrst clic
 .BF
 sWo()
 .(x 
-sWo(woid,@clear) --- clears draw area of window object
+sWo(_WOID,woid,_WCLEAR,ON_) --- clears draw area of window object
 .)x 
 .FD
 clears draw area of wobj
@@ -8845,7 +8838,8 @@ vpc - (woid, array,  cmapi, x, y, direction)
  plot a pixelstrip of points  where each color is the element value. Parameter cmapi is index into the 
  color map  -- array is type CHAR so each pixel is a color referenced by cmapi plus array value (256 colors) 
  The start pixel is at an initial coordinate x,y in clip window ( 0,0 is upper left hand corner of drawing area)
- The parameter direction determines whether vector is plotted up (1) ,down (-1),left->right (0) , right->left (2) from intial x,y location.
+ The parameter direction determines whether vector is plotted up (1) ,down (-1),left->right (0) , right->left (2)
+ from initial x,y location.
 
 
 

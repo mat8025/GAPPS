@@ -1,1 +1,14 @@
- ASL example applications
+SPM modules - to be used with GASP
+may be replaced by asl scripts which are compiled to C++
+
+
+
+aclocal
+autoconf
+automake
+autoheader
+
+./configure
+
+(sometimes may need to reissue these in different order)
+

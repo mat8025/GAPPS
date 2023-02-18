@@ -19,8 +19,7 @@ ignoreErrors();
 
 #define DBG ~!  
 //#define  DBG <<	
-//vdb = "$DBG";
-//<<" $vdb \n"
+
 
 gssys= GetEnv("GS_SYS")
 
@@ -29,16 +28,17 @@ gssys= GetEnv("GS_SYS")
 
 int w = 0;
 
+Svar Wd;
 
 void prest()
 {
 Str awd;
                        while (1) {
-
+                            <<"\t"; // format print a tab offset for the line
                             w=pcl_file(A,1);
 			    seekLine(A,-1);
                             awd=rwl_file(A,1);
-			   // <<"$w $awd\n";
+			   //<<"$w $awd\n";
                             if (awd @= ".EF") {
                                    break;
                             }
@@ -150,7 +150,7 @@ long f_i = 0;
     }
 
 //  <<"looking up $pat in manual \n"
-A= -1
+     int A= -1;
 
      A=ofr("~/gapps/DOCS/ASLMAN.txt")
 
@@ -163,37 +163,49 @@ A= -1
      }
 
 int nfs = 0;
+int w1 =0;
+int w2 =0;
+int last = -1;
 
-    while (1) {
+while (1) {
+
+         w1++;
+	          f_i=fseek(A,0,1)
+//<<"top %V $w1  $f_i\n";
 
          if ( pat == "q" ) {
           exit(-1)
          }
 
-          pat = scat("^*",pat)
+          pat = scat("^*",pat);
 
-          first =1
+          first =1;
 
           i=search_file(A,"^APPENDIX",0);
 
-//pcl_file(A,1,1);
+          //pcl_file(A,1,1);
 
-          last_i = -1
+          last_i = -1;
 
 
             while (2) {
+	    
+              w2++;
+              nfs++;
+	      	          f_i=fseek(A,0,1);
+//<<"top %V $w2 $f_i\n";
 
-              nfs++
+          //    k=searchFile(A,"^.BF",0,1,0,1);    // next function
+               k=searchFile(A,".BF",0,1,0,1);    // next function
 
 
-              k=search_file(A,"^.BF",0)    // next function
-
-//pcl_file(A,1,2);
+              pcl_file(A,1,2);
 
               i = fseek(A,k,0)
-
+//<<"%V $k $i $last_i  $A\n";
+//!a
                 if (i == last_i) {
-                  exit(-1)
+                  //exit(-1)
                 }
 
               last_i = i
@@ -201,7 +213,7 @@ int nfs = 0;
 DBG"%V$nfs search for $pat $k @ $i \n"
 
 
-              i=search_file(A,pat,0,1,0)   // looking for pat in function name
+              i=searchFile(A,pat,0,1,0);   // looking for pat in function name
 
 //pcl_file(A,1,1);
 
@@ -209,7 +221,7 @@ DBG"%V$nfs search for $pat $k @ $i \n"
 //ans=query("??","goon",__LINE__,__FILE__);
               if (i == -1) {
 
-//              <<" no more $pat \n"
+             <<" no more $pat \n"
 
                   npat = ssub(pat,"_","",0)
 
@@ -217,10 +229,10 @@ DBG"%V$nfs search for $pat $k @ $i \n"
 
                   i=search_file(A,npat,0,1,0)   // try looking for pat without underlines in function name
 
-//               <<"%V$npat $i\n"
+              //<<"%V$npat $i\n"
 
                   if (i == -1) {
-                   DBG" notfound exit \n"
+                   <<" notfound exit \n"
                          exit(-1)
                   }
 
@@ -229,50 +241,43 @@ DBG"%V$nfs search for $pat $k @ $i \n"
                 }
                 else {
 
-              //  <<"Found %V $pat @ posn $i \n"
+                //<<"Found %V $pat @ posn $i \n"
 
-               // pcl_file(A,1,5);
-                  }
+                }
 
               // seek no print
 
                 pcl_file(A,1,1);
 
                 wd=rwl_file(A,1);
-//<<"wd1 $wd\n";
 
-/*
-DBG"wd <|$wd|> \n"
-                wd=rwl_file(A,1);
+//<<"%V $wd $w2\n";
 
-DBG"wd <|$wd|> \n"
-                wd=rwl_file(A,2);
 
-DBG"wd <|$wd|> \n"
-                wd=rwl_file(A,3);
-
-DBG"wd <|$wd|> \n"
-
-                wd=rwl_file(A,4);
-
-DBG"wd <|$wd|> \n"
-*/
-
-                 first = 0
+                 first = 0;
+		 
                  if ( wd @= ".(x" ) {
                        //pr_fun()
 		       prest();
 		       exit(0);
                  }
+
+
                  if ( wd @= ".)x" ) {
                        prest();
-		       exit(0);
+		      exit(0);
                  }
+		 
+               wd=rwlFile(A,1);
 
+//<<" while 2  ? %V $w1 $w2 $wd\n";
+nwr=readwords(A,Wd,1);
+         i=fseek(A,0,1)
+
+//<<"nwr $nwr $i $Wd\n"
               }
 
-
-
+//<<" while 1 $w1\n";
             }
 
 
