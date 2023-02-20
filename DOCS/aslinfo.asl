@@ -3,14 +3,15 @@
  * 
  *  @comment find routine description in ASLMAN                         
  *  @release Beryllium                                                  
- *  @vers 1.14 Si Silicon [asl 6.4.34 C-Be-Se]                          
- *  @date 06/20/2022 21:13:03                                           
+ *  @vers 1.15 P Phosphorus [asl 6.4.76 C-Be-Os]                        
+ *  @date 02/19/2023 10:19:36                                           
  *  @cdate Sun Dec 23 09:22:34 2018                                     
  *  @author Mark Terry                                                  
- *  @Copyright © RootMeanSquare 2022 -->                               
+ *  @Copyright © RootMeanSquare 2023 -->                               
  * 
  */ 
 ;//----------------<v_&_v>-------------------------//;                  
+
 
 
 Str Use_ = " info on asl functions";
@@ -32,17 +33,39 @@ Svar Wd;
 
 void prest()
 {
-Str awd;
-                       while (1) {
-                            <<"\t"; // format print a tab offset for the line
-                            w=pcl_file(A,1);
-			    seekLine(A,-1);
+ Str awd;
+   int k=0;
+   long sl;
+   while (1) {
+                   if (k++ > 1000)
+		          break;
+
                             awd=rwl_file(A,1);
-			   //<<"$w $awd\n";
-                            if (awd @= ".EF") {
+			   //<<"<|$awd|>\n";
+                            if (awd == ".EF") {
+			    //<<"found EF break\n";
                                    break;
                             }
-                       }
+                            if (awd == ".BF") {
+			    //<<"found BF break\n";
+                                   break;
+                            }			    
+
+			    seekLine(A,-1);
+			    if (awd == ".FD" || awd == ".)x") {
+
+	
+			    //w=pcl_file(A,1);
+			    
+                            sl=seekLine(A,1);
+		    //<<"$k $sl $A\t";
+                            }
+			    else {
+                            <<" \t"; // format print a tab offset for the line
+                            w=pcl_file(A,1);
+			    }
+
+             }
 
 
 }
@@ -50,7 +73,7 @@ Str awd;
 void pr_fun()
 {
 
-<<" $_proc %V$i\n"
+//<<" $_proc %V$i\n"
                     if ( first ) {
                       f_i = i
                       first = 0
@@ -134,21 +157,13 @@ int k = 0;
 long f_i = 0;
 
 //DBG"%I $f_i \n"
-///DBG" $(typeof(f_i)) \n"
+//DBG" $(typeof(f_i)) \n"
 //DBG" $(sizeof(f_i)) \n"
 
   
   pat = GetArgStr();
 
-<<"search for $pat \n"
-
-    if ( pat @= "" ) {
- 
-      <<" function name:"
-      pat =i_read()
-     
-    }
-
+ //<<"\tsearch for $pat \n"
 //  <<"looking up $pat in manual \n"
      int A= -1;
 
@@ -162,16 +177,16 @@ long f_i = 0;
         exit(-1)
      }
 
-int nfs = 0;
+int Nfs = 0;
 int w1 =0;
 int w2 =0;
 int last = -1;
 
-while (1) {
 
-         w1++;
-	          f_i=fseek(A,0,1)
-//<<"top %V $w1  $f_i\n";
+
+
+	 f_i=fseek(A,0,1); 
+
 
          if ( pat == "q" ) {
           exit(-1)
@@ -183,32 +198,27 @@ while (1) {
 
           i=search_file(A,"^APPENDIX",0);
 
-          //pcl_file(A,1,1);
-
           last_i = -1;
 
 
-            while (2) {
+            while (1) {
 	    
               w2++;
-              nfs++;
+              Nfs++;
 	      	          f_i=fseek(A,0,1);
-//<<"top %V $w2 $f_i\n";
 
-          //    k=searchFile(A,"^.BF",0,1,0,1);    // next function
                k=searchFile(A,".BF",0,1,0,1);    // next function
 
 
-              pcl_file(A,1,2);
+//              pcl_file(A,1,2);
 
               i = fseek(A,k,0)
-//<<"%V $k $i $last_i  $A\n";
-//!a
+
                 if (i == last_i) {
-                  //exit(-1)
+                  exit(-1);
                 }
 
-              last_i = i
+              last_i = i;
 
 DBG"%V$nfs search for $pat $k @ $i \n"
 
@@ -218,10 +228,10 @@ DBG"%V$nfs search for $pat $k @ $i \n"
 //pcl_file(A,1,1);
 
 
-//ans=query("??","goon",__LINE__,__FILE__);
+
               if (i == -1) {
 
-             <<" no more $pat \n"
+             //<<" no more $pat \n"
 
                   npat = ssub(pat,"_","",0)
 
@@ -229,57 +239,40 @@ DBG"%V$nfs search for $pat $k @ $i \n"
 
                   i=search_file(A,npat,0,1,0)   // try looking for pat without underlines in function name
 
-              //<<"%V$npat $i\n"
-
                   if (i == -1) {
-                   <<" notfound exit \n"
-                         exit(-1)
+                   <<" $npat not found in DOC \n";
+                         exit(-1);
                   }
 
-                  pat = npat
-
-                }
-                else {
-
-                //<<"Found %V $pat @ posn $i \n"
+                  pat = npat;
 
                 }
 
-              // seek no print
-
-                pcl_file(A,1,1);
+                 <<"\t";  pclFile(A,1,1);
 
                 wd=rwl_file(A,1);
-
-//<<"%V $wd $w2\n";
 
 
                  first = 0;
 		 
-                 if ( wd @= ".(x" ) {
+                 if ( wd == ".(x" ) {
                        //pr_fun()
 		       prest();
 		       exit(0);
                  }
 
 
-                 if ( wd @= ".)x" ) {
+                 if ( wd == ".)x" ) {
                        prest();
 		      exit(0);
                  }
 		 
                wd=rwlFile(A,1);
 
-//<<" while 2  ? %V $w1 $w2 $wd\n";
-nwr=readwords(A,Wd,1);
-         i=fseek(A,0,1)
+                nwr=readwords(A,Wd,1);
+                i=fseek(A,0,1)
 
-//<<"nwr $nwr $i $Wd\n"
               }
-
-//<<" while 1 $w1\n";
-            }
-
 
 exit(0);
 

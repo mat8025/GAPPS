@@ -1397,11 +1397,10 @@ Cspline()
 Cspline
 .)x 
 .FD
-Cspline(X,Y,n,x,y,m)
- Fits cubic spline function to the n values in the X & Y array for the 
-m desired values in the x array. 
-Results in the y array. 
-
+Cspline(X,Y,n,xs,ys,m)
+ Fits a cubic spline function to the n values specified in the X and Y arrays for the 
+ m desired x values in the xs array. 
+ The spline fit results are placed in the ys array. 
 .EF
 =============================================================
 .BF
@@ -4879,8 +4878,7 @@ error return  -1
 .EF
 =============================================================
 .BF
-search_file
-fsearch
+searchile()
 .(x
 searchfile,fsearch
 .)x 
@@ -4900,7 +4898,7 @@ if origin set to zero - seeks to begining of the file before searching.
 .EF
 =============================================================
 .BF
-search_label()
+searchLabel()
 .(x
 searchlabel
 .)x 
@@ -8432,7 +8430,7 @@ wid=cWi("title")
 
 other aspects of the window can be subsequently altered by calls
 to sWi e.g.
-sWi(wid,@hue,RED)  ---- change foreground color
+sWi(_WOID,wid,_WHUE,RED_)  ---- change foreground color
 
 .EF
 =============================================================
@@ -8442,21 +8440,31 @@ sWi()
 sWi
 .)x 
 .FD
-the arguments to sWi are of the form tag, and comma delimited list of
-optional values @tag,{value1,value2,...}
-tags start with @ character e.g.
-@clearpixmap is an tag action reguiring no value
-setting the main window pen to a color requires a value argument
-sWi(wid,@clearpixmap,@penhue,"red")
+the arguments to sWi are of the form tag, value
+
+sWi(_WOID,wid,_WCLEARPIXMAP,ON_,_WPENHUE,RED)
+
+the value is typical an int or a known constant e.g. ON_,RED_,BLACK_, OFF_
+or a function returning a float pointer
+e.g.  wbox(0,0,10.5,20.5)
+so to set scales of a window
+sWi(_WOID,wid,_WSCALES,wbox(0,0,1,2))
+
+action,ON_    would perform the option
+action,OFF_   would either not perform the action or would switch the attribute off.
+
+
+
 the list of tag,values and actions is given below
 
 tag                 value(s)                action
-clear    				: clears entire area of window      
-clearclip                               : clears  the main drawing area of window      
+_WCLEAR,ON_    				: clears entire area of window      
+_WCLEARCLIP,ON_                               : clears  the main drawing area of window      
 clearpixmap                             : clears the pixmap
 move              x,y                   : sets  lower left of window position - to x,y screen pixel postion
-pixmapon                                : drawing operations to  the current pixmap
-pixmapoff                               : no drawing to  the current pixmap
+_WPIXMAP,ON_                                : drawing operations to  the current pixmap
+_WPIXMAP,OFF_                               : drawing operations to  the current pixmap
+
 
 resize           x,y,X,Y,ws             : sets size of window to x,y,X,Y  as fraction of screen (0 to 1.0) 
                                              which screen ws (0 to 15)
@@ -8485,27 +8493,24 @@ animation effects.
 .BF
 sWo()
 .(x 
-sWo(woid) --- set a window object to values, atributes
+sWo(_WOID,wo_id) --- set a window object's attributes
 .)x 
 .FD
-sWo (_WOID, woid, [action, value,...])
+sWo (_WOID, wo_id, [action, value,...])
 
 the arguments to sWi are of the form tag,value 
 where the tag is the action, which is followed by an optional list of values
 
 tag,{value,...}
+Actions will require values or parameters. 
 
-
-are examples of action reguiring no value.
-
-Other actions will require values or parameters. 
-actions are prefixed (or tagged) with an @ to distinguish from values which could be strings, 
 constants or variables.
 actions are basically the name of function call 
-with a list following args (possibly of varying number)
-upto the next @ tag or end of the setgwob statement.
+with a list following args 
+
 e.g.
-sWo(_WOID,wo_id,@drawon,@pixmapoff,@hue,BLACK_,@func,"ip_wo_value",@redraw,@scales,0.0,0.0,1.0,1.0)
+sWo(_WOID,wo_id,_WDRAW,ON_,_WPIXMAP,ON_,_WHUE,BLACK_,_WFUNC,"ip_wo_value",_WREDRAW,ON_);
+sWo(_WOID,wo_id,_WSCALES,wbox(0.0,0.0,1.0,1.0));
 
 
 the window object referred to by wo_id has the attribute of @drawon
@@ -8531,29 +8536,26 @@ a list of action, values follows -- if an action requires a value(s) - the value
 "type"  string {"BV","SYMBOL","MENU","GRAPH"}
 
 A window object can be resized to a window using the following
-sWo(wo_id,@resize, 0.5,0.2,0.7,0.9,[0,1,2,3])
-the tag @resize is followed by its args -- with resize an optional 5th argument that allows
+sWo(wo_id,_WRESIZE, wbox(0.5,0.2,0.7,0.9,[0,1,2,3]))
+the tag _WRESIZE is followed by its args -- with resize an optional 5th argument that allows
 the resize to be done as fractional size (0), 
 or pixel offset (1) of the parent window
 or relative to real scales (2) of the parent window
 or as grid position (3) of the parent window - default grid is 10x10
 
-sWo(wo_id,@resize, 0.5,0.2,0.7,0.9)
-The value of a gwob can be updated and redrawn via an instruction  like
+TBD  === update this discussion for new form of sWo
 
-sWo(hwo,@value,new_value,@redraw)
-or 
-sWo(hwo,@value,new_value,@update)
+_WREDRAW,ON_ will redraw the entire object while update just refreshes the area showing its value.
 
-redraw will redraw the entire object while update just refreshes the area showing its value.
 Tag Value(s) sets
 
-@scales, x,y,X,Y
-@xscales, x,X
-@yscales, y,Y
 
-@color, hue    ---- hue can be a index to color map or a defined color e.g. RED,YELLOW, GREEN or
-               ---- a name e.g. html color name like lilac - sinfo htmlcolors gives curren table
+_WCOLOR, hue
+
+---- hue can be a index to color map or a defined color e.g. RED_,YELLOW_, GREEN_
+or
+
+??---- a name e.g. html color name like lilac - sinfo htmlcolors gives curren table
 
 
 @textr, string,x,y, position, rotation, hue
@@ -8600,13 +8602,15 @@ In the example above the value "c" would be the value obtained on the flrst clic
 
 .EF
 =============================================================
+
+
 .BF
 sWo()
 .(x 
-sWo(_WOID,woid,_WCLEAR,ON_) --- clears draw area of window object
+sWo(_WOID,wo_id,_WCLEAR,ON_) --- clears draw area of window object
 .)x 
 .FD
-clears draw area of wobj
+clears draw area of window object wo_id
 
 .EF
 =============================================================

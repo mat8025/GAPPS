@@ -14,13 +14,18 @@
 
 //
 
+#define ASL 1
+#define CPP 0
+
+#define DBI   0
 
 #include "debug"
 #include "hv.asl"
 #include "graphic"
 
 #include "tbqrd.asl"
-#include "gevent"
+#include "gevent.asl"
+
 
 
     rainbow();
@@ -31,14 +36,14 @@
   
     //SetGwindow(vp,@pixmapon,@drawon,@save,@bhue,"white")
 
-    sWi(_WOID,vp,_WPIXMAP,ON_,_WRESIZE,wbox(0.05,0.01,0.99,0.95)));
+    sWi(_WOID,vp,_WPIXMAP,ON_,_WRESIZE,wbox(0.05,0.01,0.69,0.95)));
 
 //@drawoff,@save,@bhue,YELLOW_,@redraw)
 
     cx = 0.1
     cX = 0.9
     cy = 0.2
-    cY = 0.95
+    cY = 0.9
 
 
      //ans=query("See window?");
@@ -56,13 +61,13 @@
 
 //@name,"GLines",@color,"white")
 
-    sWo(_WOID,gwo,_WNAME, "Glines",_WRESIZE,wbox(0.15,0.15,0.45,0.95_, _WCLIP,wbox(cx,cy,cX,cY))
+    sWo(_WOID,gwo,_WNAME, "Glines",_WRESIZE,wbox(0.15,0.15,0.35,0.95_, _WCLIP,wbox(cx,cy,cX,cY),_WDRAW,ON_)
 
     // scales 
-    sx = -3
-    sX = 3.0
-    sy = -3
-    sY = 3.0
+    sx = -25;
+    sX = 25;
+    sy = -5;
+    sY = 40;
 
    // g2wo= cWo(vp,@GRAPH,@resize,0.55,0.15,0.95,0.95,@name,"GLines",@color,"white")
 
@@ -76,6 +81,7 @@
     //setgwob(gwo,@scales, sx, sy, sX, sY, @save,@redraw,@drawon,@pixmapon)
 
     sWo(_WOID,gwo,_WSCALES, wbox(sx, sy, sX, sY),_WPIXMAP,ON_,_WDRAW,ON_,_WREDRAW,ON_)
+    sWo(_WOID,g2wo,_WSCALES, wbox(sx, sy, sX, sY),_WPIXMAP,ON_,_WDRAW,ON_,_WREDRAW,ON_)
 
    //sWo(g2wo,@scales, sx, sy, sX, sY,@save, @savepixmap,@redraw,@pixmapon,@drawon)
 
@@ -130,11 +136,12 @@ void redraw_po()
     ticks(gwo,1)
     ticks(gwo,2)
 
+
+    plotLine(gwo,-2,-1,0,-1,ORANGE_)
+    //@lineto,0,1,RED_)
+
+   plot(gwo,"lineto",-2,1,"blue","lineto",-2,-1,RED_)
 /*
-    plot(gwo,@line,-2,-1,0,-1,ORANGE_,@lineto,0,1,RED_)
-
-   plot(gwo,@lineto,-2,1,"blue",@lineto,-2,-1,RED_)
-
     plot(gwo,@lineto,0,0,"blue",@lineto,-1,1,"red")
 
     plot(gwo,@box,-0.5,-0.9,1,0.8,LILAC_,1.0)
@@ -236,18 +243,57 @@ float Dpts[128]
 
 ///////////////////////////////// EVENT HANDLE ////////////////////////////////////////
 
-float PV[8]
+float PV[30]
 
 
          kv =0;
-         PV[kv++] = 0.
-	 PV[kv++] = -1.0
-         PV[kv++] = 0.0
-	 PV[kv++] = 2.0
-         PV[kv++] = 2.0
-	 PV[kv++] = 2.0
-         PV[kv++] = 2.0
-	 PV[kv++] = -1.0
+
+	 PV[kv++] = 0.
+	 PV[kv++] = 0.0
+
+ 	 PV[kv++] = -6.
+	 PV[kv++] = 0.0
+
+ 	 PV[kv++] = -9.
+	 PV[kv++] = 16.0
+
+	 PV[kv++] = -20
+	 PV[kv++] = 20.0
+
+         PV[kv++] = -21.5
+	 PV[kv++] = 20.
+	 
+         PV[kv++] = -21.5
+	 PV[kv++] = 24
+
+         PV[kv++] = -17.5
+	 PV[kv++] = 29
+
+         PV[kv++] = -7.5
+	 PV[kv++] = 36
+
+         PV[kv++] = 7.5
+	 PV[kv++] = 36
+
+         PV[kv++] = 17.5
+	 PV[kv++] = 29
+
+         PV[kv++] = 21.5
+	 PV[kv++] = 24
+
+         PV[kv++] = 21.5
+	 PV[kv++] = 20.
+
+	 PV[kv++] = 20
+	 PV[kv++] = 20.0
+
+ 	 PV[kv++] = 9.
+	 PV[kv++] = 16.0
+
+ 	 PV[kv++] = 6.
+	 PV[kv++] = 0.0
+	 
+
 
 float PV2[12]
 
@@ -273,6 +319,8 @@ float PV2[12]
 
    redraw_po();
 
+int nevent = 0;
+
   while (1) {
 
            eventWait();
@@ -282,48 +330,45 @@ float PV2[12]
 	  break;
          }
 
-     titleMsg("%V $_ekeyw  $_ebutton $_eloop")
+     
+  nevent++;
 
-  if (! (_ekeyw @= "NO_MSG")) {
+  if (! (Ev_keyw == "NO_MSG")) {
 
-           if (_ebutton == LEFT_) {
+           if (Ev_button == LEFT_) {
              panwo(gwos,"left",5)
             // panwo(g2wo,"left",5)	     
            }
-           else if (_ebutton == RIGHT_) {
+           else if (Ev_button == RIGHT_) {
              panwo(gwos,"right",5)
              //panwo(g2wo,"right",5)	     
 	     
            }
 
-           else if (_ebutton == 2) {
+           else if (Ev_button == 2) {
              zoomwo(gwos,"out",5)
            }
 
-           else if (_ebutton == 4) {
+           else if (Ev_button == 4) {
              zoomwo(gwo,"in",5)
              zoomwo(g2wo,"in",5)	     
            }
 
-           else if (_ebutton == 5) {
+           else if (Ev_button == 5) {
              zoomwo(gwos,"out",5)
            }
 
            
-
+/*
          if (_ekeyw @= "RESCALE") {
        <<"doing rescale !\n"
           RS = wgetrscales(gwo)
        <<"doing rescale ! $RS\n"
          }
+*/
 
 
-
-         if (_ekeyw @= "EXIT") {
-         <<"got SIG TERM to EXIT\n"
-         <<"cleanup?\n"	 
-	  break;
-         }
+       
 
          //PV *= 1.01;
          redraw_po();
