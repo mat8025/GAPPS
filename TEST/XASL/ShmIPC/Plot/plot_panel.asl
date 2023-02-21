@@ -56,9 +56,9 @@ float sx;
 
 //@drawoff,@save,@bhue,YELLOW_,@redraw)
 
-    cx = 0.01
+    cx = 0.0
     cX = 0.99
-    cy = 0.01
+    cy = 0.0
     cY = 0.99
 
 
@@ -98,15 +98,22 @@ float sx;
 
     airspeed_wo= cWo(gwo,WO_GRAPH_);
 
-    sWo(_WOID,airspeed_wo,_WNAME,"Airspeed",_WRESIZE,wbox(-5,35,-1,39,2),_WCOLOR,GREEN__,_WSAVEPIXMAP,ON_);
+    sWo(_WOID,airspeed_wo,_WNAME,"Airspeed",_WRESIZE,wbox(-8.0,31.5,-0.5,38.5,2),_WCOLOR,GREEN__,_WSAVEPIXMAP,ON_);
 
     sWo(_WOID,airspeed_wo,_WCLIP,wbox(cx,cy,cX,cY));
 
     alt_wo= cWo(gwo,WO_GRAPH_);
 
-    sWo(_WOID,alt_wo,_WNAME,"Altimeter",_WRESIZE,wbox(1,35,5,39,2),_WCOLOR,RED__,_WSAVEPIXMAP,ON_);
+    sWo(_WOID,alt_wo,_WNAME,"Altimeter",_WRESIZE,wbox(0.5,31.5,8,38,2),_WCOLOR,RED__,_WSAVEPIXMAP,ON_);
 
     sWo(_WOID,alt_wo,_WCLIP,wbox(cx,cy,cX,cY));
+
+
+    sage_wo= cWo(gwo,WO_GRAPH_);
+
+    sWo(_WOID,sage_wo,_WNAME,"Sage",_WRESIZE,wbox(10.5,25.5,18,32.5,2),_WCOLOR,PINK__,_WSAVEPIXMAP,ON_);
+
+    sWo(_WOID,sage_wo,_WCLIP,wbox(cx,cy,cX,cY));
 
 
 
@@ -119,7 +126,9 @@ float sx;
 
         sWo(_WOID,airspeed_wo,_WSCALES, wbox(-1.0, -1.0, 1.0, 1.0),_WPIXMAP,ON_,_WDRAW,ON_,_WREDRAW,ON_)
 
-        sWo(_WOID,alt_wo,_WSCALES, wbox(-1.0, -1.0, 1.0, 1.0),_WPIXMAP,ON_,_WDRAW,ON_,_WREDRAW,ON_)	
+        sWo(_WOID,alt_wo,_WSCALES, wbox(-1.0, -1.0, 1.0, 1.0),_WPIXMAP,ON_,_WDRAW,ON_,_WREDRAW,ON_)
+
+        sWo(_WOID,sage_wo,_WSCALES, wbox(-1.0, -1.0, 1.0, 1.0),_WPIXMAP,ON_,_WDRAW,ON_,_WREDRAW,ON_)	
 
 
 
@@ -135,7 +144,7 @@ float sx;
 
        sWi(_WOID,vp, _WREDRAW,ON_);
        sWo(_WOID,alt_wo,_WREDRAW,ON_)	;
-         sWo(_WOID,airspeed_wo,_WREDRAW,ON_)	;
+       sWo(_WOID,airspeed_wo,_WREDRAW,ON_)	;
 
 //////////////////////////////////////////////////////////////////////////////////
 ang = 0.0
@@ -181,30 +190,28 @@ void redraw_po()
 
     plot(gwo,"POLY",RCPV,GREEN_,1);  //
 
-    plotCircle(airspeed_wo,0,0,0.9,RED_,1)
+    plotCircle(gwo,-4.0,35,3.5,WHITE_,1) ; //  airspeed
+    plotCircle(airspeed_wo,0,0,1.0,RED_,1); // airspeed
 
-    plotCircle(alt_wo,0,0,0.9,BLUE_,1)
 
-    plotCircle(vario1_wo,0,0,0.9,YELLOW_,1)
+    plotCircle(gwo,4.0,35,3.5,BLACK_,1) ; // altimeter
+    plotCircle(alt_wo,0,0,1.0,BLUE_,1) ; //altimeter
+
+
+
+    plotCircle(vario1_wo,0,0,0.9,YELLOW_,1) ; // ilec vario
+
+    plotCircle(gwo,14.0,29,3.5,BLACK_,1) ; // Sage vario
+    plotCircle(sage_wo,0,0,1.0,PINK_,1) ; // Sage vario
+
+
+    
 
 
    // plot(gwo,@polyreg,5,3);
 
 
 
-/*
-    ang += 5;
-
-    plot(gwo,@circle,0,0,1)
-
-    plot(gwo,@ellipse,0,0,0.7,0.3)
-
-    plot(gwo,@triangle,0.1,0.1,0.2,0.9,0.4,0.5,"green",1)
-    plot(gwo,@symbols,Spts,INVTRI_,2,RED_,1,10)
-    plot(gwo,@symbols,Spts,CIRCLE_,2,ORANGE_,1,10)
-
-
-*/
 
     //sWo(gwos,@showpixmap)
     //sWo(gwos,@border,BLUE_,@clipborder,RED_)
