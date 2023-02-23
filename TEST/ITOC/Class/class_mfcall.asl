@@ -23,12 +23,14 @@
 
      }
 
+#define ASL 1
+
    chkIn (_dblevel);
 
-   real goo( real x)
+   double goo( double x)
    {
      a= 2* x;
-     <<"$_proc real %V $x $a\n";
+     <<"$_proc double %V $x $a\n";
      return a;
      }
 //======================================//
@@ -65,7 +67,7 @@
 
      float b;
 
-     void seta (real x)
+     void seta (double x)
      {
 
        a= x;
@@ -93,7 +95,7 @@
        }
 //==========================
 
-     float mul (double x,double y)
+     float amul (float x, float y)
      {
        <<"in DOUBLE $_proc $x $y\n";
        float z;
@@ -102,12 +104,12 @@
        }
 //==========================
 
-     real mul (real x,real y)
+     double mul (double x,double y)
      {
 
-       <<"in REAL $_proc $x $y\n";
+       <<"in DOUBLE $_proc $x $y\n";
 
-       real z;
+       double z;
 
        z = x*y;
 
@@ -116,7 +118,7 @@
        }
 //==========================
 
-     void set (real x, real y)
+     void set (double x, double y)
      {
 
        a= x;
@@ -259,7 +261,7 @@ if (fix_bug) {
      fans = acalc.mul(fw,fr);
 
      <<"$fans \n";
-
+!a
      chkR(fans,10.89);
 
      fans = acalc.mul(2.0,5.0);
@@ -268,13 +270,13 @@ if (fix_bug) {
 
      chkN(fans,10.0);
 
-     real r1 = 2.2;
+     double r1 = 2.2;
 
-     real r2 = 3.3;
+     double r2 = 3.3;
 
-     r1.pinfo();
+     r1.aslpinfo();
 
-     r2.pinfo();
+     r2.aslpinfo();
 
      fans = acalc.mul(r1,r2);
 
@@ -301,6 +303,191 @@ if (fix_bug) {
      ok=examine(acalc);
 
      <<"%V $ok\n";
+
+
+class Instrum 
+ {
+
+ public:
+  
+  
+  float mx;
+  float my;
+  float dia;
+  float ht;
+  float wd;
+  int type;
+  float px,py,pX,pY;
+  
+  int shape;
+  Str Name;
+  int wid;
+
+#if ASL
+ void Instrum()   //  use cons,destroy   -- have then set to NULL in CPP header
+#else
+  Instrum()
+#endif
+ {
+  shape = 1;  // 1 circle, 2 rectangle
+  dia = 3.0;
+
+  wd =1.0;
+  ht = 1.0;
+  Name = "XI";
+  wid = -1;
+
+  mx=0.0;
+  my=0.0;
+}
+
+  Str getName ()   
+   {
+       return Name; 
+   }
+
+ // void Set(int id, Str nm, int shp, float d, float x, float y)
+  void SetIns(int id, int shp, float d, float x, float y)
+  {
+  <<" In Set ! %V $id $shp $d $x $y \n";
+    //<<"Set    $shp     $ x $ y \n";
+    wid = id;
+  //  Name = nm;
+    shape = shp;
+    dia = d;
+    mx = x;
+    my = y;
+<<"%V $wid $Name $shape $dia $mx $my \n";
+  };
+
+  void SetShape(int shp)
+  {
+  <<" In $_proc ! %V $shp\n";
+     shape = shp;
+  };
+
+  void SetDia(float d)
+  {
+  <<" In $_proc ! %V $d\n";
+     dia = d;
+  };
+
+/*
+  double SetMid(double x, double y)
+  {
+  <<" In $_proc ! %V $x $y\n";
+     mx = x;
+     my = y;
+     return (mx * my);
+  };
+*/
+
+  float SetMid(float x, float y)
+  {
+  <<" In $_proc ! %V $x $y\n";
+     mx = x;
+     my = y;
+     return (mx * my);
+  };
+/*
+  float SetMid(double x, double y)
+  {
+  <<" In $_proc ! %V $x $y\n";
+     mx = x;
+     my = y;
+     return (mx * my);
+  };
+*/
+
+  
+  void Print()
+  {
+
+    <<"%V $wid $Name $shape $dia $mx $my \n";
+  }
+ 
+};   
+
+
+
+
+float sx;
+Str iname = "X?";
+float idia = 4.0;
+float imx = -15.1;
+float imy = 27.1;
+
+Svar Wval;
+
+
+Wval.split("XYZ,1,2,$imx,$imy",44);
+
+<<"$Wval \n";
+
+<<"$Wval[0] \n";
+<<"$Wval[2] \n";
+
+Svar Wval2;
+
+Wval2.split("ABC 1.3 2.4 $imx $imy");
+
+
+<<"$Wval2[0] \n";
+<<"$Wval2[2] \n";
+<<"$Wval2[3] \n";
+
+<<"$Wval2 \n"
+
+  Instrum  VB_ins[16];
+
+int vario1_wo = 42;
+
+float mr;
+float dr;
+
+    VB_ins[0].Name = "SN_Vario";
+    //VB_ins[0].shape = 1;
+    //VB_ins[0].mx = -15;
+    //VB_ins[0].my = 27;
+    
+    iname = "SN_Vario";
+    
+    VB_ins[0].SetIns(vario1_wo,1,idia, imx, imy); 
+
+    VB_ins[0].Print();
+
+    VB_ins[0].SetShape(3);
+    VB_ins[0].Print();
+
+    idia = 4.5;
+    VB_ins[0].SetDia(idia);
+    VB_ins[0].Print();
+
+    imx =17;
+    imy = 42;
+    dr = 42;
+    mr= imx *imy;
+    
+    r2=VB_ins[0].SetMid(imx, dr);
+    
+    VB_ins[0].Print();
+    <<"%V $mr $r2\n";
+      chkN(mr,r2);
+    
+
+        mr= imx * 30;
+	// 30.0 is a double needs to match arg
+    r2=VB_ins[0].SetMid(imx,30.0);
+    
+    VB_ins[0].Print();
+    <<"%V $mr $r2\n";
+          chkN(mr,r2);
+!a    
+
+
+
+
+
 
      chkOut();
 //////////////////////////////////////////////////

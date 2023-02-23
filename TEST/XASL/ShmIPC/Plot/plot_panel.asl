@@ -42,13 +42,133 @@ Str Use_= " Demo  of design instrument panel ";
 #include "tbqrd.asl"
 #include "gevent.asl"
 
+
+
+class Instrum 
+ {
+
+ public:
+  
+  
+  float mx;
+  float my;
+  float dia;
+  float ht;
+  float wd;
+  int type;
+  float px,py,pX,pY;
+  
+  int shape;
+  Str Name;
+  int wid;
+
+#if ASL
+ void Instrum()   //  use cons,destroy   -- have then set to NULL in CPP header
+#else
+  Instrum()
+#endif
+ {
+  shape = 1;  // 1 circle, 2 rectangle
+  dia = 3.0;
+
+  wd =1.0;
+  ht = 1.0;
+  Name = "XI";
+  wid = -1;
+
+  mx=0.0;
+  my=0.0;
+}
+
+  Str getName ()   
+   {
+       return Name; 
+   }
+
+ // void Set(int id, Str nm, int shp, float d, float x, float y)
+  void SetIns(int id, int shp, float d, float x, float y)
+  {
+  <<" In Set ! %V $id $shp $d $x $y \n";
+    //<<"Set    $shp     $ x $ y \n";
+    wid = id;
+  //  Name = nm;
+    shape = shp;
+    dia = d;
+    mx = x;
+    my = y;
+<<"%V $wid $Name $shape $dia $mx $my \n";
+  };
+
+  void SetShape(int shp)
+  {
+  <<" In $_proc ! %V $shp\n";
+     shape = shp;
+  };
+
+  void SetDia(float d)
+  {
+  <<" In $_proc ! %V $d\n";
+     dia = d;
+  };
+
+
+  void SetMid(float x, float y)
+  {
+  <<" In $_proc ! %V $x $y\n";
+     mx =x;
+     my = y;
+  };
+
+
+  
+  void Print()
+  {
+
+    <<"%V $wid $Name $shape $dia $mx $my \n";
+  }
+ 
+};   
+
+
+
+
 float sx;
+Str iname = "X?";
+float idia = 4.0;
+float imx = -15.1;
+float imy = 27.1;
+
+Svar Wval;
+
+
+Wval.split("XYZ,1,2,$imx,$imy",44);
+
+<<"$Wval \n";
+
+<<"$Wval[0] \n";
+<<"$Wval[2] \n";
+
+Svar Wval2;
+
+Wval2.split("ABC 1.3 2.4 $imx $imy");
+
+
+<<"$Wval2[0] \n";
+<<"$Wval2[2] \n";
+<<"$Wval2[3] \n";
+
+<<"$Wval2 \n"
+
+
 
     rainbow();
 
 
 
     vp = cWi("PLOT_OBJECTS");
+
+
+    Instrum  VB_ins[16];
   
     //SetGwindow(vp,@pixmapon,@drawon,@save,@bhue,"white")
 
@@ -87,15 +207,47 @@ float sx;
 
     sWo(_WOID,gwo,_WSCALES, wbox(sx, sy, sX, sY),_WPIXMAP,ON_,_WDRAW,ON_,_WREDRAW,ON_)
 
+    int vario1_wo= cWo(gwo,WO_BV_);
+
+    sWo(_WOID,vario1_wo,_WNAME,"SN_Vario",_WRESIZE,wbox(-15.0,27,-9.0,33,2),_WCOLOR,WHITE_,_WSAVEPIXMAP,ON_);
+
+    sWo(_WOID,vario1_wo,_WPENHUE,BLACK_,_WCLIP,wbox(cx,cy,cX,cY));
+
+    VB_ins[0].Name = "SN_Vario";
+    //VB_ins[0].shape = 1;
+    //VB_ins[0].mx = -15;
+    //VB_ins[0].my = 27;
+    
+    iname = "SN_Vario";
+    
+    VB_ins[0].SetIns(vario1_wo,1,idia, imx, imy); 
+
+    VB_ins[0].Print();
+!a
+    VB_ins[0].SetShape(3);
+    VB_ins[0].Print();
+!a
+    idia = 4.5;
+    VB_ins[0].SetDia(idia);
+    VB_ins[0].Print();
+!a
+    imx =17;
+    imy = 42;
+    VB_ins[0].SetMid(imx,imy);
+    VB_ins[0].Print();
+!a
+    VB_ins[0].SetMid(imx,30.0);
+    VB_ins[0].Print();
+!a    
 
 
-    vario1_wo= cWo(gwo,WO_GRAPH_);
 
-    sWo(_WOID,vario1_wo,,_WNAME,"Vario1",_WRESIZE,wbox(-8.0,23,-6.0,25,2),_WCOLOR,WHITE_,_WSAVEPIXMAP,ON_);
+    idia = 3.2;
+    VB_ins[0].SetIns(vario1_wo,1,idia, -15.0, 27.0);
+    VB_ins[0].Print();   
+    
 
-    sWo(_WOID,vario1_wo,_WCLIP,wbox(cx,cy,cX,cY));
-
-
+!a
     airspeed_wo= cWo(gwo,WO_GRAPH_);
 
     sWo(_WOID,airspeed_wo,_WNAME,"Airspeed",_WRESIZE,wbox(-8.0,31.5,-0.5,38.5,2),_WCOLOR,GREEN__,_WSAVEPIXMAP,ON_);
@@ -106,29 +258,55 @@ float sx;
 
     sWo(_WOID,alt_wo,_WNAME,"Altimeter",_WRESIZE,wbox(0.5,31.5,8,38,2),_WCOLOR,RED__,_WSAVEPIXMAP,ON_);
 
-    sWo(_WOID,alt_wo,_WCLIP,wbox(cx,cy,cX,cY));
-
 
     sage_wo= cWo(gwo,WO_GRAPH_);
 
     sWo(_WOID,sage_wo,_WNAME,"Sage",_WRESIZE,wbox(10.5,25.5,18,32.5,2),_WCOLOR,PINK__,_WSAVEPIXMAP,ON_);
 
-    sWo(_WOID,sage_wo,_WCLIP,wbox(cx,cy,cX,cY));
+
+    ilec_wo= cWo(gwo,WO_GRAPH_);
+
+    sWo(_WOID,ilec_wo,_WNAME,"IlecSN10",_WRESIZE,wbox(-7.7,21.3,-0.2,28.8,2),_WCOLOR,MAGENTA_,_WSAVEPIXMAP,ON_);
+
+
+    trig_wo= cWo(gwo,WO_GRAPH_);
+
+    sWo(_WOID,trig_wo,_WNAME,"Trig",_WRESIZE,wbox(-15.0,20.5,-9,26.5,2),_WCOLOR,MAGENTA_,_WSAVEPIXMAP,ON_);
+
+
+    radio_wo= cWo(gwo,WO_GRAPH_);
+
+    sWo(_WOID,radio_wo,_WNAME,"Trig",_WRESIZE,wbox(10.0,21,16,27,2),_WCOLOR,MAGENTA_,_WSAVEPIXMAP,ON_);
+
+
+    G_wo= cWo(gwo,WO_GRAPH_);
+
+    sWo(_WOID,G_wo,_WNAME,"G_m",_WRESIZE,wbox(-6,3.5,0,9.5,2),_WCOLOR,MAGENTA_,_WSAVEPIXMAP,ON_);
+
+    O2_wo= cWo(gwo,WO_GRAPH_);
+
+    sWo(_WOID,O2_wo,_WNAME,"O2",_WRESIZE,wbox(1,0.5,5,5,2),_WCOLOR,MAGENTA_,_WSAVEPIXMAP,ON_);
 
 
 
 
-    int gwos[] = {gwo,vario1_wo,alt_wo,airspeed_wo};
+    int gwos[] = {vario1_wo,alt_wo,airspeed_wo,sage_wo,ilec_wo,trig_wo, radio_wo,G_wo,O2_wo, -1};
     //setgwob(gwo,@scales, sx, sy, sX, sY, @save,@redraw,@drawon,@pixmapon)
 
-   
-        sWo(_WOID,vario1_wo,_WSCALES, wbox(-1.0, -1.0, 1.0, 1.0),_WPIXMAP,ON_,_WDRAW,ON_,_WREDRAW,ON_)
+    int wwo = 0;
+    int kwo = 0;
+     while (1) {
+        wwo = gwos[kwo++];
+	if (wwo == -1)
+	     break;
+        sWo(_WOID,wwo,_WSCALES, wbox(-1.0, -1.0, 1.0, 1.0),_WPIXMAP,ON_,_WDRAW,ON_,_WREDRAW,ON_)
+        sWo(_WOID,wwo,_WCLIP,wbox(cx,cy,cX,cY));
 
-        sWo(_WOID,airspeed_wo,_WSCALES, wbox(-1.0, -1.0, 1.0, 1.0),_WPIXMAP,ON_,_WDRAW,ON_,_WREDRAW,ON_)
 
-        sWo(_WOID,alt_wo,_WSCALES, wbox(-1.0, -1.0, 1.0, 1.0),_WPIXMAP,ON_,_WDRAW,ON_,_WREDRAW,ON_)
+     }
 
-        sWo(_WOID,sage_wo,_WSCALES, wbox(-1.0, -1.0, 1.0, 1.0),_WPIXMAP,ON_,_WDRAW,ON_,_WREDRAW,ON_)	
+
+        
 
 
 
@@ -158,9 +336,6 @@ void redraw_po()
 
     sWo(_WOID,gwo,_WCLEAR,ON_,_WBORDER,BLUE_,_WCLIPBORDER,RED_)
 
-
-
-
     axnum(gwo,1)
     axnum(gwo,2)
 
@@ -182,7 +357,7 @@ void redraw_po()
    plot(gwo,"lineto",-2,1,"blue","lineto",-2,-1,RED_)
 
 
-   plot(gwo,"POLY",PV,BROWN_,1);  // CPP version plot(wid, [LINE_,POLY_,...]
+   plot(gwo,"POLY",PV,BLACK_,1);  // CPP version plot(wid, [LINE_,POLY_,...]
                                                  // or plotLine, plotPoly, ...
 
 
@@ -190,30 +365,47 @@ void redraw_po()
 
     plot(gwo,"POLY",RCPV,GREEN_,1);  //
 
-    plotCircle(gwo,-4.0,35,3.5,WHITE_,1) ; //  airspeed
+    // use instrument object
+    // and plot array of objects
+
+    //plotCircle(gwo,-4.0,35,3.5,WHITE_,1) ; //  airspeed
     plotCircle(airspeed_wo,0,0,1.0,RED_,1); // airspeed
+    plotText(airspeed_wo,"AirSpd",-0.9,0,BLACK_,0)
 
+    //plotCircle(gwo,4.0,35,3.5,BLACK_,1) ; // altimeter
+    plotCircle(alt_wo,0,0,1.0,RED_,1) ; //altimeter
+    plotText(alt_wo,"Alt",-0.9,0,BLACK_,0)
 
-    plotCircle(gwo,4.0,35,3.5,BLACK_,1) ; // altimeter
-    plotCircle(alt_wo,0,0,1.0,BLUE_,1) ; //altimeter
-
-
-
+    //plotCircle(gwo,-12.0,30,3.0,WHITE_,1) ; // ilec vario
     plotCircle(vario1_wo,0,0,0.9,YELLOW_,1) ; // ilec vario
+    //sWo(_WOID,vario1_wo,_WREDRAW,ON_);
+    plotText(vario1_wo,"IlecVario",-0.9,0,BLACK_,0) ; // ilec vario
 
-    plotCircle(gwo,14.0,29,3.5,BLACK_,1) ; // Sage vario
+    //plotCircle(gwo,14.0,29,3.5,BLACK_,1) ; // Sage vario
+
     plotCircle(sage_wo,0,0,1.0,PINK_,1) ; // Sage vario
+    plotText(sage_wo,"Sage",-0.9,0,BLUE_,0) ; // ilec vario
+  
+   // plotCircle(gwo,-4,25,3.7,WHITE_,1) ; // ilec SN10
+    plotCircle(ilec_wo,0,0,1.0,WHITE_,1) ; // ilec SN10
+    plotText(ilec_wo,"SN10",-0.9,0,BROWN_,0) ; // ilec vario -font rotation works position does not TBF
+
+    //plotCircle(gwo,-12,23.5,3.0,WHITE_,1) ; // Trig
+    plotCircle(trig_wo,0,0,1.0,WHITE_,1) ; // 
+    plotText(trig_wo,"Trig",-0.9,0,BROWN_,0) ; 
+
+   // plotCircle(gwo,13,24,3.0,WHITE_,1) ; // radio --
+    plotCircle(radio_wo,0,0,1.0,WHITE_,1) ; 
+    plotText(radio_wo,"Radio",-0.9,0,BROWN_,0) ;
+
+    plotCircle(G_wo,0,0,1.0,WHITE_,1) ; // G_m     -8, 6.5 
+    plotText(G_wo,"G_m",-0.9,0,BROWN_,0) ;
+
+    plotCircle(O2_wo,0,0,1.0,YELLOW_,1) ; // 02     3, 2.5 
+    plotText(O2_wo,"O2",-0.9,0,BLACK_,0) ;
 
 
-    
 
-
-   // plot(gwo,@polyreg,5,3);
-
-
-
-
-    //sWo(gwos,@showpixmap)
     //sWo(gwos,@border,BLUE_,@clipborder,RED_)
 
 

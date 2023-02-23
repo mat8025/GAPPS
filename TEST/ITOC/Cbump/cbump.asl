@@ -32,7 +32,7 @@
 
  // ? read the entire file into an Svar
  // write the new hdr into a new file
- // skip/delete from the Svar the ol
+ // skip/delete from the Svar the old
  // then append the Svar to the new
  // make the old a bak
  // mv the new to overwrite the original 
@@ -126,7 +126,7 @@
 <<"$i $X[i]\n"
   }
 
-!a
+
   A=ofile(srcfile,"r");
   //T=readfile(A);
  //<<[2]"opened for read/write? $A\n"
@@ -330,10 +330,7 @@ A=ofile(srcfile,"w")
 // which line is end of old hdr?
 //<<"%V $end_ln\n"
 
-
-// Y = X[end_ln:-1:1];
-
- Y = X[end_ln:50:1];
+ Y = X[end_ln:-1:1];
 
  D=ofile("stem","w");
  
@@ -341,6 +338,7 @@ A=ofile(srcfile,"w")
   ysz= Y.getSize();
 
 <<"%V$ysz \n";
+
    Y.write(D);
  //wfile(D,Y);
 //  wfile(D,Y[2]);

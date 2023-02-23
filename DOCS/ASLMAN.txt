@@ -6401,7 +6401,7 @@ If difference set to 1 - return is as C routine strcmp.
 If n is zero all the string is compared, else the first n characters.
 if n less than zero the tails are compared for n elements.
 Use VMF variation if S is a array of strings and you want the operation to be applied to all elements 
-rv=S->scmp("and")
+rv=S.scmp("and")
 would return into a integer vector rv the results of a scmp operation on all elements (strings) of the
 svar vector. 
 (see strcmp)
@@ -9578,12 +9578,43 @@ addentry
 vals= ST->addentry(index,val0,val1,...)
 Adds a row of vals into the table. If index is -1 adds values to the end.
 the number of values added shoud be the same as number of fields in the table.
-Cab be used to overwrite existing row ( not to add past existing size - except for adding to end)
+Can be used to overwrite existing row ( not to add past existing size - except for adding to end)
+.EF
+=============================================================
+.BF
+aslpinfo()
+.(x
+aslpinfo
+.)x 
+.FD
+V.aslpinfo()
 
+the VMF function  V.aslpinfo()
+would print out the attributes of an asl variable
+S=V.aslpinfo(1)
+would return the attributes of an asl variable as a string.
+functions  aslxxx should be a NOP for C++ compile.
+
+ pinfo(V)
+ S=pinfo(V,1)
+ 
 .EF
 =============================================================
 
-
+.BF
+aslcheckinfo()
+.(x
+aslcheckinfo
+.)x 
+.FD
+V.aslcheckinfo(s)
+the VMF function  V.checkinfo(s)
+would check for the presence of string s in the attribute description of
+asl variable V.
+Used for debugging.
+ 
+.EF
+=============================================================
 
 .BF
 shiftL()
@@ -9591,11 +9622,11 @@ shiftL()
 shiftL
 .)x 
 .FD
-I->shiftL(newval,[nplaces],[vecsize])
+I.shiftL(newval,[nplaces],[vecsize])
 
-An  VMF operation to shift elements of an vector one place to the left and replace the last element with
+An VMF operation to shift elements of an vector one place to the left and replace the last element with
 a  new val. Can be repeated nplaces. If vector size is specified as less than actual size the element can 
-be inserted at the specified 'end'. (same for shiftR) 
+be inserted at the specified 'end'. (see shiftR) 
 
 
 .EF
@@ -9612,9 +9643,6 @@ F->shiftR(newval)
 An  VMF operation to shift elements of an vector(float,double,int,short,char) one place to the right
 and replace the first element with
 a  new val. 
-
-
-
  
 .EF
 =============================================================
@@ -9624,7 +9652,7 @@ cut()
 cut
 .)x 
 .FD
-I->cut(V)
+I.cut(V)
 
 An  VMF operation to remove selected elements of an vector. 
 I->cut(V) the cut function that uses the vector V to indicate which elements of I to 'cut'.
@@ -9632,11 +9660,6 @@ I->cut(V) the cut function that uses the vector V to indicate which elements of 
 I[3:7]->cut() --- the subscripted range of I is cut from the vector.
 The cut operation can be applied to most types,  Float, Double, Int ...
 .EF 
-      
-
-
-
-.EF
 =============================================================
 .BF
 limit()

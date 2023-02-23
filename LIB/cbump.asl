@@ -11,7 +11,6 @@
  * 
  */ 
 ;//----------------<v_&_v>-------------------------//;                  
-
   
   Str Vers2ele(Str& vstr)
   {
@@ -33,7 +32,7 @@
 
  // ? read the entire file into an Svar
  // write the new hdr into a new file
- // skip/delete from the Svar the ol
+ // skip/delete from the Svar the old
  // then append the Svar to the new
  // make the old a bak
  // mv the new to overwrite the original 
