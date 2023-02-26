@@ -22,7 +22,7 @@
 "Blake","BLAKE",US,3847.100N,10803.800W,5150ft,5,030,5600ft,122.8,"TP, 1V9, 03/21 22.8, RWW: 75"
 "Blanca","BLANCA",US,3724.667N,10533.101W,7720ft,2,030,6150ft,122.900,"TP, 05V, 03/21 122.9, RWW: 52"
 "Bogner","1SD6",SD,4306.615N,10313.812W,3500ft,2,170,1800ft,,"Private, TP, 1SD6, 17/35 18T, RWW: 200"
-"Boulder","1V5",CO,4002.366N,10513.549W,5288ft,5,080,4100ft,122.720,"Start Finish Point, TP, 1V5, 08/26 122.72 , 18.82 RWW: 75"
+"Boulder","1V5",CO,4002.366N,10513.549W,5288ft,5,080,4100ft,122.725,"Start Finish Point, TP, 1V5, 08/26 122.725 , 18.82 RWW: 75"
 "Bosler","bos",WY,4134.646N,10541.698W,7500ft,1,,,,"TP, town Amil's ranch" 
 "BowenFms","CO98",US,3932.999N,10502.032W,5449ft,2,000,1800ft,,"Private, TP, CO98, Grass, RWW: 50"
 "Breckenridg?","BRCKNRDG",CO,3930.607N,10603.032W,9383ft,3,,,,"TP, 16/34 61D?"
@@ -109,7 +109,7 @@
 "GreeleyWld","GXY",CO,4026.137N,10437.927W,4697ft,5,160,10000ft,122.8,"TP, GXY, 9/27 16/34 22.8, RWW: 100"
 "Greenhorn?","CO22",CO,3757.584N,10447.032W,5800ft,2,080,3900ft,122.8,"Private, TP, CO22, 08/26 22.8, RWW: 35"
 "GrntAirp","GCF",NE,4052.171N,10143.972W,3422ft,5,150,4800ft,122.8,"TP, GGF, 15/33 22.8, RWW: 60"
-"GrosRes","grs",US,3957.000N,10521.000W,7500ft,1,,,,"TP, Gross Res"
+"GrossRes","gres",US,3957.000N,10521.000W,7500ft,1,,,,"TP, Gross Res"
 "GTRGrnRvrntr","48U",UT,4127.481N,10929.425W,7182ft,2,040,5800ft,122.900,"TP, 48U, 04/22 22.9, RWW: 150"
 "Gunnison","GUC",CO,3832.037N,10655.982W,7678ft,5,060,9400ft,122.700,"TP, GUC, 06/24 22.7a, RWW: 150"
 "HagermnPass","HGRMNPASS",CO,3916.000N,10629.000W,12000ft,8,,,,"TP, MT Pass"
@@ -320,6 +320,7 @@
 "Windom Pk14",Windom,US,3737.283N,10735.517W,4292.2m,7,,,,,"Animas (Durango): 14.7k MSL TPM Windom Pk 14082",,
 "Yale 14",Yale,US,3850.650N,10618.817W,4326.9m,7,,,,,"Buena Vista: 11.6k MSL  TPM Yale 14196",,
 #  53 58 neighbouring peaks have to have a 300' saddle between them  54 peaks is consensus? 
-# version 3 10/09/21
+# version 4 02/23/23
+
 
 

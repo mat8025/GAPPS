@@ -154,7 +154,8 @@ class Turnpt
       }
 //=========================//
 
- void TPCUPset (Svar& wval)
+// void TPCUPset (Svar& wval)
+ void TPCUPset (Svar wval)
  {
 
 Str val;

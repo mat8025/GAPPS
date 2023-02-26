@@ -1405,3 +1405,4 @@ winwo_w.cpp                         1.49  02/21/2023 21:16:43  WOINWO
 wo_posnsz_w.cpp                     1.55  02/21/2023 21:18:26  WOINWO
 interact_w.cpp                      1.22  02/21/2023 21:20:30  WOMOD
 oo_cmf.cpp                          2.44  02/22/2023 17:10:25  promot/demote double float args
+fileop.cpp                          1.82  02/23/2023 11:02:08  serch ops allow bytes and origin

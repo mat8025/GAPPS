@@ -15,6 +15,17 @@
 ///
 ///
 ///
+
+///
+///   try Class DLL for cpp compile
+///   
+
+///
+///  need to sort out procrefargs
+///
+
+
+
 #include "debug"
 
    if (_dblevel >0) {
@@ -95,7 +106,7 @@
        }
 //==========================
 
-     float amul (float x, float y)
+     float mul (float x, float y)
      {
        <<"in DOUBLE $_proc $x $y\n";
        float z;
@@ -103,6 +114,18 @@
        return z;
        }
 //==========================
+
+     void swap (float& x, float &y)
+     {
+        <<"in  $_proc $x $y\n";
+        float tmp;
+	tmp =x;
+	x =y;
+	y = tmp;
+	   <<"out  $_proc $x $y\n";
+
+
+     }
 
      double mul (double x,double y)
      {
@@ -256,19 +279,43 @@ if (fix_bug) {
 
      float fw = 3.3;
 
-     float fr = 3.3;
+     float fr = 2.4;
+<<"%V $fw $fr \n";
 
      fans = acalc.mul(fw,fr);
 
      <<"$fans \n";
+
+ fans = acalc.swap(fw,fr);
+
+     chkR(fans,7.92);
+
+<<"%V $fw $fr \n";
 !a
-     chkR(fans,10.89);
 
      fans = acalc.mul(2.0,5.0);
 
      <<"$fans \n";
 
      chkN(fans,10.0);
+
+
+
+     fans = acalc.mul(2,5);
+
+     <<"$fans \n";
+
+     chkN(fans,10.0);
+
+
+     fans = acalc.mul(2.0,5);
+
+     <<"$fans \n";
+
+     chkN(fans,10.0);
+
+
+
 
      double r1 = 2.2;
 
@@ -341,18 +388,24 @@ class Instrum
   my=0.0;
 }
 
+  void setName( Str nm)
+   {
+     <<" In $_proc  $nm\n";
+     Name = nm;
+   };
+
   Str getName ()   
    {
        return Name; 
    }
 
  // void Set(int id, Str nm, int shp, float d, float x, float y)
-  void SetIns(int id, int shp, float d, float x, float y)
+  void SetIns(int id, Str nm,int shp, float d, float x, float y)
   {
   <<" In Set ! %V $id $shp $d $x $y \n";
     //<<"Set    $shp     $ x $ y \n";
     wid = id;
-  //  Name = nm;
+    Name = nm;
     shape = shp;
     dia = d;
     mx = x;
@@ -450,9 +503,9 @@ float dr;
     //VB_ins[0].mx = -15;
     //VB_ins[0].my = 27;
     
-    iname = "SN_Vario";
+    iname = "Airspeed";
     
-    VB_ins[0].SetIns(vario1_wo,1,idia, imx, imy); 
+    VB_ins[0].SetIns(vario1_wo,iname,1,idia, imx, imy); 
 
     VB_ins[0].Print();
 
@@ -482,9 +535,15 @@ float dr;
     VB_ins[0].Print();
     <<"%V $mr $r2\n";
           chkN(mr,r2);
-!a    
 
+ iname = "Altimeter";
+  VB_ins[0].setName(iname);
 
+  VB_ins[0].Print();
+
+  VB_ins[0].setName("Sage");
+
+  VB_ins[0].Print();
 
 
 

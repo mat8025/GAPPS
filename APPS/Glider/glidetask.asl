@@ -206,15 +206,15 @@ Glide::glideTask(Svarg * sarg)
 //main
 
 
-    na = sa.getNarg(); // TBC no asl version??
+    //na = sa.getNarg(); // TBC no asl version??
 
-/*
+
 #if CPP
   na = sa.getNarg();
 #else
   na = _clargc;
 #endif  
-*/
+
 
 printf(" na %d\n",na);
 
@@ -490,7 +490,7 @@ while (ac < na) {
   printf("AFH %d i %d\n",AFH,i);
 
   if (i == -1) {
-  //printf("the_start  %s not found \n", the_start);
+   printf("the_start  %s not found \n", the_start);
 
   try_start = nameMangle(the_start);
   
@@ -668,11 +668,11 @@ while (ac < na) {
 
 
 
-//<<"%V $AFH  $K_AFH  $nxttpt \n"
+//<<"$AFH  $K_AFH  <|$nxttpt|> \n"
 
-  where = searchFile(AFH,nxttpt,0,1,0);
+  where = searchFile(AFH,nxttpt,0,1,0,0);
 
-//<<"%V $AFH\n"
+//<<"%V $AFH $where \n"
 
 //cout <<"Found? " << nxttpt << " @ " << where <<endl;
 
@@ -680,7 +680,7 @@ while (ac < na) {
 
         try_start = nameMangle(nxttpt);
 
-      where = searchFile(AFH,try_start,0,1,0);
+      where = searchFile(AFH,try_start,0,1,0,0);
       
        if (AFH != K_AFH) {
         printf("ERROR AFH %d\n",AFH);

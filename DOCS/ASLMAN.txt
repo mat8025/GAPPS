@@ -4883,8 +4883,8 @@ searchile()
 searchfile,fsearch
 .)x 
 .FD
-searchFile(fpt,string,{end,dir,case_dep,origin})
-fsearch(fpt,string,{end,dir,case_dep,origin})
+searchFile(fpt,string,{end,dir,case_dep,seek_bytes,seek_origin})
+fsearch(fpt,string,{end,dir,case_dep,seek_bytes,seek_origin})
 
 searches the file pointed to by fpt for the target string,
 returns the file position (long bytes) after the search or -1 if target not found. 
@@ -4893,7 +4893,9 @@ the start of the target is returned.
 If dir set to -1 search direction is reversed.
 If case_dep set to 0 the search is independent of upper or lower case.
 Default is case sensitive.
-if origin set to zero - seeks to begining of the file before searching.
+if seek_origin set to zero - seek seek_bytes from begining of the file before searching.
+if seek_origin set to 1 - seek seek_bytes from current position of the file before searching.
+if seek_origin set to 2 - seek seek_bytes (should be negative) from end of the file before searching.
 
 .EF
 =============================================================

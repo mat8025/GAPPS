@@ -168,7 +168,7 @@ Str Hdr_date = "1964";
 
    hdrv_func();
 
-printf("Hdr_vers %s\n",Hdr_vers.cptr());
+//printf("Hdr_vers %s\n",Hdr_vers.cptr());
 
   vers2ele(Hdr_vers);
 

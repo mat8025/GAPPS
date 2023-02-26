@@ -86,12 +86,12 @@ class Instrum
    }
 
  // void Set(int id, Str nm, int shp, float d, float x, float y)
-  void SetIns(int id, int shp, float d, float x, float y)
+  void SetIns(int id, Str nm, int shp, float d, float x, float y)
   {
-  <<" In Set ! %V $id $shp $d $x $y \n";
+  <<" In $_proc ! %V $id $shp $d $x $y \n";
     //<<"Set    $shp     $ x $ y \n";
     wid = id;
-  //  Name = nm;
+    Name = nm;
     shape = shp;
     dia = d;
     mx = x;
@@ -220,49 +220,58 @@ Wval2.split("ABC 1.3 2.4 $imx $imy");
     
     iname = "SN_Vario";
     
-    VB_ins[0].SetIns(vario1_wo,1,idia, imx, imy); 
 
-    VB_ins[0].Print();
-!a
+/*
     VB_ins[0].SetShape(3);
     VB_ins[0].Print();
-!a
+
     idia = 4.5;
     VB_ins[0].SetDia(idia);
     VB_ins[0].Print();
-!a
+
     imx =17;
     imy = 42;
     VB_ins[0].SetMid(imx,imy);
     VB_ins[0].Print();
-!a
+
     VB_ins[0].SetMid(imx,30.0);
     VB_ins[0].Print();
-!a    
+*/
 
-
-
-    idia = 3.2;
-    VB_ins[0].SetIns(vario1_wo,1,idia, -15.0, 27.0);
+    VB_ins[0].SetIns(vario1_wo,iname,1,3.0, -15.0, 27.0);
     VB_ins[0].Print();   
     
 
-!a
+
     airspeed_wo= cWo(gwo,WO_GRAPH_);
 
     sWo(_WOID,airspeed_wo,_WNAME,"Airspeed",_WRESIZE,wbox(-8.0,31.5,-0.5,38.5,2),_WCOLOR,GREEN__,_WSAVEPIXMAP,ON_);
 
     sWo(_WOID,airspeed_wo,_WCLIP,wbox(cx,cy,cX,cY));
 
+    iname = "Airspeed";
+    VB_ins[1].SetIns(airspeed_wo,iname,1,3.5, -4.0, 35.0);
+    VB_ins[1].Print();   
+
+
+
     alt_wo= cWo(gwo,WO_GRAPH_);
 
     sWo(_WOID,alt_wo,_WNAME,"Altimeter",_WRESIZE,wbox(0.5,31.5,8,38,2),_WCOLOR,RED__,_WSAVEPIXMAP,ON_);
+
+    VB_ins[2].SetIns(alt_wo,"Altimeter",1,3.5, 4.0, 35.0);
+    VB_ins[2].Print();   
+
 
 
     sage_wo= cWo(gwo,WO_GRAPH_);
 
     sWo(_WOID,sage_wo,_WNAME,"Sage",_WRESIZE,wbox(10.5,25.5,18,32.5,2),_WCOLOR,PINK__,_WSAVEPIXMAP,ON_);
 
+    VB_ins[3].SetIns(sage_wo,"Sage",1,3.5, 14.0, 29.0);
+    VB_ins[3].Print();   
+
+!a
 
     ilec_wo= cWo(gwo,WO_GRAPH_);
 
