@@ -64,7 +64,7 @@ int b = 4;
 
   aslpinfo(a);
   
-!a
+
  chkN(a,5);
 
  chkN(b,4);
@@ -165,8 +165,6 @@ int b = 4;
 //=======================//
 
 
-
-
    int swapnum (int& v, int& u)
    {
 
@@ -178,12 +176,15 @@ int b = 4;
 
 
      int z = -1;
-
+     z.aslpinfo();
   
-     z = v;
+     z = v;  // this should get the value of what v refers to
      z.aslpinfo();
 
      v =u;
+
+     v.aslpinfo();
+     
      u= z;
      
 <<"%V $z $v $u \n"
@@ -246,8 +247,7 @@ int c = a;
 <<"returns  $c\n";
 
  chkN(c,11);
- chkOut();
- exit(-1);
+
   
 
 float x =5.2;
@@ -266,7 +266,7 @@ float z = -9;
 
   z= sumarg(y,a);
 
- chkN(z,9.2);
+ chkN(z,10.2);
 
 
 
@@ -289,18 +289,33 @@ float z = -9;
 
 
 
- 
-  z= sumarg(a,y);
+<<" should choose float version sumarg(a,y) \n"
 
- chkN(z,8.2);
+ 
+  z= sumarg(a,y); 
+
+
+
+ chkN(z,18.2);
+
+
+   c= a;
+<<"%V $a $b $c \n"
 
   swapnum (a,b);
 
-<<"%V $a $b \n"
+<<"%V $a $b $c \n"
+
    chkN(b,c);
 
+<<"%V $x $y  \n"
 
-  swapnum (&a,&b);
+  swapnum (x,y);
+
+<<"%V $x $y  \n"
+
+   chkN(x,12.2);
+  //swapptrs (&a,&b);
 
 
    chkOut();
