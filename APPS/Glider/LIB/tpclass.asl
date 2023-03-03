@@ -154,8 +154,8 @@ class Turnpt
       }
 //=========================//
 
-// void TPCUPset (Svar& wval)
- void TPCUPset (Svar wval)
+ void TPCUPset (Svar& wval)
+// void TPCUPset (Svar wval)
  {
 
 Str val;
@@ -165,9 +165,13 @@ Str val2;
 
 //<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
  //  pa(wval);
- //wval.pinfo();
+ /*
+    wval.aslpinfo();
      val = wval[0];
+<<"%V $val\n"
 
+    val.aslpinfo();
+*/
 //cout << "val " << val << endl;
 
 
@@ -230,6 +234,8 @@ Str val2;
 
 //ans=query("?","sele",__LINE__);
     val2 = sele(val,-1,-2);
+
+//<<"%V $val2\n"
     if (val2 == "ft") {
 
       val.scut(-2); 

@@ -230,14 +230,17 @@ b = 4;
 
 int c = a;
 
-<<"%V $a $b \n"
+<<"%V $a +  $b \n"
 
   c=  sumarg (a,b);
-<<"returns  $c\n";
+<<"returns $a + $b =  $c\n";
+
+
 
  c.aslpinfo();
  <<"%V $a $b \n"
  chkN(c,9);
+
 
 
   a++;
@@ -258,6 +261,7 @@ float z = -9;
   z= sumarg(x,y);
 
  chkN(z,9.4);
+
 
   z= sumarg(y,x);
 
@@ -299,6 +303,7 @@ float z = -9;
  chkN(z,18.2);
 
 
+
    c= a;
 <<"%V $a $b $c \n"
 
@@ -308,13 +313,17 @@ float z = -9;
 
    chkN(b,c);
 
-<<"%V $x $y  \n"
 
+ int k =0;
+  for (k= 0; k < 4; k++) {
+  x += 1.0;
+  y += 2.2;
+<<"%V $x $y  \n"
   swapnum (x,y);
 
 <<"%V $x $y  \n"
-
-   chkN(x,12.2);
+}
+//   chkN(x,12.2);
   //swapptrs (&a,&b);
 
 

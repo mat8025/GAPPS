@@ -836,7 +836,8 @@ while (ac < na) {
 #endif
 
   }
-  
+
+ int nl1=0;
   
   for (nl = 0; nl < n_legs ; nl++) {
 #if ASL_DB
@@ -894,7 +895,13 @@ while (ac < na) {
   //DBG"%V $GT_Wleg[nl].dist\n";
        //Leg[nl] = ComputeTPD(nl, nl+1)
 
-  tcd =  ComputeTC(GT_Wtp,nl, nl+1);
+ // tcd =  ComputeTC(GT_Wtp,nl, nl+1); // this should work
+// nl +=2;// DEBUG remove
+  nl1 = nl+1; 
+  
+  tcd =  ComputeTC(GT_Wtp,nl, nl1);  // this should work
+  nl1 = nl+1; 
+  
 //COUT(tcd);
  
   L1 = GT_Wtp[nl].Ladeg;

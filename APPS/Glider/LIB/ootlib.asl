@@ -516,6 +516,8 @@ ssele= IGCELE.stats();
   float ComputeTC(Turnpt wtp[],int j, int k)
   {
 
+  <<"$_proc %V $j $k\n";
+
   float km = 0.0;
   float tc = 0.0;
   float L1,L2,lo1,lo2;
@@ -524,6 +526,8 @@ ssele= IGCELE.stats();
   L1 = wtp[j].Ladeg;
 
   L2 = wtp[k].Ladeg;
+
+<<"%V $L1 $L2 \n";
 
   lo1 = wtp[j].Longdeg;
 
