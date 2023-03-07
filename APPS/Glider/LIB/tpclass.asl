@@ -21,7 +21,7 @@
 int Tleg_id = 0;
 #if ASL
 
-<<"GT_DB $(GT_DB) \n"
+//<<"GT_DB $(GT_DB) \n"
 
 if (GT_DB) {
 <<"%V $_include $Tleg_id\n"
@@ -158,23 +158,29 @@ class Turnpt
 // void TPCUPset (Svar wval)
  {
 
+//<<"IN $_proc \n"
 Str val;
+
 Str val2;
 
-//<<"$_proc  $AFH \n";
+ //  <<"%V $Alt\n";
+
 
 //<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
  //  pa(wval);
- /*
-    wval.aslpinfo();
+//  aslpinfo(wval);
+  int na = Caz(wval);
+//  <<"%V $na \n"
+//<<" $wval \n"
+
+//<<"TP  $wval[0] \n"
+
      val = wval[0];
-<<"%V $val\n"
+     
+//<<"%V $val\n"
 
-    val.aslpinfo();
-*/
+
 //cout << "val " << val << endl;
-
-
 //pa(wval); // crash ??
 
 
@@ -182,24 +188,24 @@ Str val2;
 
       val.dewhite(); // TBF ? corrupting vars ?
 
-
-
-
-
 //<<"%V $AFH\n"
 
     val.scut(1);
 //cout << "val " << val << endl;
 
-//<<"post-scut 1 %V $AFH\n"
+//<<"post-scut 1 $val\n"
 
      val.scut(-1);
 
-//<<"post-scut -1 %V $AFH\n"
+//<<"post-scut -1  $val\n"
 
 //cout << "val " << val << endl;
      Place = val; // wayp 
-    
+
+//<<"%V $place \n";
+
+
+
 //cout << "Place " << Place << endl;
 
      val =  wval[1];
@@ -377,6 +383,7 @@ void Turnpt()
       Place=" ";
       Ladeg = 0.0;
       Longdeg = 0.0;
+      Alt = -1.5;
     //<<"CONS $id $Ntp_id\n"
    }
 //=========================//

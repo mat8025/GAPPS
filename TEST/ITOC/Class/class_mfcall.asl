@@ -38,24 +38,149 @@
 
    chkIn (_dblevel);
 
-   double goo( double x)
+   ok = 1;
+   
+   int showVec(int vect[], int j, int k)
    {
-     a= 2* x;
-     <<"$_proc double %V $x $a\n";
-     return a;
+     // <<"IN $_proc args $j $k  $_pargv[1] \n";
+     <<"IN $_proc args $j $k   \n";
+
+      aslpinfo(j)
+      aslpinfo(vect)
+
+      m = vect[j];
+      n = vect[k];
+
+<<"%V $m $n\n"
+
+     aslpinfo(m);
+     return n;
+   }
+
+
+     Veci = vgen(INT_,10,0,1);
+
+aslpinfo(Veci)
+
+  <<"$Veci \n"
+  
+int ji = 3;
+int ki = 5;
+int q = -3;
+
+     q=showVec(Veci,ji,ki);
+
+aslpinfo(q);
+
+    ok =chkN(q,5);
+  if (!ok) {
+    <<"test fail \n"
+!a
+  }
+     q=showVec(Veci,ji+1,ki+1);
+
+aslpinfo(q);
+
+    ok=chkN(q,6);
+  if (!ok) {
+    <<"test fail \n"
+!a
+  }
+ for (ki= 3; ki < 8; ki++) {
+
+       q=showVec(Veci,ji,ki);
+           chkN(q,ki);
+ }
+
+
+
+
+     
+
+
+
+   float goo(float x)
+   {
+
+     <<"$_proc float arg $x \n";
+
+      aslpinfo(x);
+      
+      a= 2* x;
+
+     aslpinfo(a);
+
+
+      return a;
      }
 //======================================//
 
 
+   double goo(double x)
+   {
 
-    gr=goo(sin(0.707));
+     <<"$_proc double arg $x \n";
 
-     <<"%V$gr\n";
+      aslpinfo(x);
+      
+      a= 2* x;
+
+     aslpinfo(a);
 
 
+      return a;
+     }
+//======================================//
+
+float x = 0.707;
+
+    gr=goo(x);
+
+     <<"%V $gr\n";
+
+   aslpinfo(gr);
 
 
  chkT(gr > 0.0)
+
+    gr=goo(sin(0.707));
+
+     <<"%V $gr\n";
+
+   aslpinfo(gr);
+
+
+ chkT(gr > 0.0)
+
+
+
+
+double y = 1.707;
+
+    gr=goo(y);
+
+     <<"%V $gr\n";
+
+   aslpinfo(gr);
+
+
+ chkT(gr > 0.0)
+
+
+
+
+
+    gr=goo(0.707);
+
+     <<"%V $gr\n";
+
+   aslpinfo(gr);
+
+
+
+
+
+
 
 
 
@@ -115,7 +240,7 @@
        }
 //==========================
 
-     void swap (float& x, float &y)
+     void swap (float& x, float& y)
      {
         <<"in  $_proc $x $y\n";
         float tmp;
@@ -185,30 +310,34 @@
 
   };
 
-fix_bug = 1;
+
 
      x = sin(0.8);
 
 <<"%V $x \n"
 
 
-
-
-
      gr=goo(3.14);
 
-     <<"%V$gr\n";
 
-    x = 0.8;
+
+     x = 0.8;
      gr=goo(sin(x));
 
      <<"%V$gr\n";
 
-if (fix_bug) {
-    gr=goo(sin(0.8));
+    gr2=goo(sin(0.8));
 
-     <<"%V$gr\n";
-}
+
+     <<"%V$gr gr2\n";
+
+
+     ok=chkN(gr,gr2);
+  if (!ok) {
+    <<"test fail \n"
+!a
+  }
+
 
 
      Scalc acalc;
@@ -218,6 +347,10 @@ if (fix_bug) {
      int d =4;
 
      double w = 3.3;
+
+
+     acalc.seta(w);
+
 
      acalc.seta(sin(0.8));
 
@@ -230,6 +363,9 @@ if (fix_bug) {
      <<" $wr\n";
 
      chkR (wr, sin(0.8)); // TBF
+
+
+
 
  //  chkR (wr, sin(w));
 
@@ -245,10 +381,12 @@ if (fix_bug) {
      chkR (wr, w);
 
      w= Sin(0.7);
-
+    aslpinfo(w);
      acalc.seta(w);
 
      <<" $acalc.a\n";
+
+
 
      wr = acalc.geta();
 
@@ -261,8 +399,11 @@ if (fix_bug) {
 
      ans = acalc.mul(c,d);
 
-     chkN(ans,8);
-
+     ok=chkN(ans,8);
+  if (!ok) {
+    <<"test fail \n"
+!a
+  }
      <<"$ans \n";
 
      w = 2.2;
@@ -273,8 +414,11 @@ if (fix_bug) {
 
      <<"$fans \n";
 
-     chkN(fans,7.26);
-
+     ok=chkN(fans,7.26);
+  if (!ok) {
+    <<"test fail \n"
+!a
+  }
      <<" $(infoof(acalc))\n";
 
      float fw = 3.3;
@@ -291,35 +435,49 @@ if (fix_bug) {
      chkR(fans,7.92);
 
 <<"%V $fw $fr \n";
-!a
+
 
      fans = acalc.mul(2.0,5.0);
 
      <<"$fans \n";
 
-     chkN(fans,10.0);
-
+     ok=chkN(fans,10.0);
+  if (!ok) {
+    <<"test fail \n"
+!a
+  }
 
 
      fans = acalc.mul(2,5);
 
      <<"$fans \n";
 
-     chkN(fans,10.0);
-
+     ok=chkN(fans,10.0);
+  if (!ok) {
+    <<"test fail \n"
+!a
+  }
 
      fans = acalc.mul(2.0,5);
 
      <<"$fans \n";
 
-     chkN(fans,10.0);
-
+     ok=chkN(fans,10.0);
+  if (!ok) {
+    <<"test fail \n"
+!a
+  }
 
 
 
      double r1 = 2.2;
 
      double r2 = 3.3;
+     double r3;
+
+   for (i=0; i < 4; i++) {
+     r3 = r1 * r2;
+
 
      r1.aslpinfo();
 
@@ -327,9 +485,19 @@ if (fix_bug) {
 
      fans = acalc.mul(r1,r2);
 
-     <<"$fans \n";
+     <<"[$i] $fans \n";
 
-     chkR(fans,7.26);
+     chkR(fans,r3);
+     r1++;
+     r2++;
+     
+  }
+
+
+
+
+
+
 
      int ag = 47;
 
@@ -462,7 +630,27 @@ class Instrum
 };   
 
 
+float ShowMxy(Instrum wins[],int j, int k)
+  {
 
+  <<"$_proc  $j $k\n";
+  aslpinfo(j);
+
+  aslpinfo(wins);
+
+
+  float x = -1;
+  float y = -1;
+  aslpinfo(x);
+  
+  x = wins[j].mx;
+aslpinfo(x);
+  y = wins[k].my;
+
+<<"%V $x $y \n";
+   <<" $VB_ins[j].mx   $VB_ins[k].my\n";
+  return y;
+}
 
 float sx;
 Str iname = "X?";
@@ -505,9 +693,21 @@ float dr;
     
     iname = "Airspeed";
     
-    VB_ins[0].SetIns(vario1_wo,iname,1,idia, imx, imy); 
+    VB_ins[0].SetIns(vario1_wo,iname,1,idia, imx, imy);
+    vario1_wo++; imx += 1; imy += 2;
+    VB_ins[1].SetIns(vario1_wo,"ins1",1,idia, imx, imy);
+    vario1_wo++; imx += 1; imy += 2;
+    VB_ins[2].SetIns(vario1_wo,"ins2",1,idia, imx, imy);
+    vario1_wo++; imx += 1; imy += 2;
+    VB_ins[3].SetIns(vario1_wo,"ins3",1,idia, imx, imy);
+    vario1_wo++; imx += 1; imy += 2;
+    VB_ins[4].SetIns(vario1_wo,"ins4",1,idia, imx, imy);     
+    vario1_wo++; imx += 1; imy += 2;
+    VB_ins[5].SetIns(vario1_wo,"ins5",1,idia, imx, imy);     
 
     VB_ins[0].Print();
+
+    VB_ins[1].Print();
 
     VB_ins[0].SetShape(3);
     VB_ins[0].Print();
@@ -525,8 +725,8 @@ float dr;
     
     VB_ins[0].Print();
     <<"%V $mr $r2\n";
-      chkN(mr,r2);
-    
+      ok=chkN(mr,r2);
+
 
         mr= imx * 30;
 	// 30.0 is a double needs to match arg
@@ -534,9 +734,14 @@ float dr;
     
     VB_ins[0].Print();
     <<"%V $mr $r2\n";
-          chkN(mr,r2);
 
- iname = "Altimeter";
+ok = chkN(mr,r2);
+<<"%V $ok \n"
+
+
+
+
+iname = "Altimeter";
   VB_ins[0].setName(iname);
 
   VB_ins[0].Print();
@@ -545,10 +750,81 @@ float dr;
 
   VB_ins[0].Print();
 
+   int j1 = 1;
+   int k1 = 2;
+
+   <<" $VB_ins[1].mx   $VB_ins[1].my\n";
+
+float gmx;
+
+    gmx = VB_ins[j1].mx;
+
+
+aslpinfo(gmx);
+
+
+
+     gmx = ShowMxy(VB_ins,j1, k1);
+<<"%V $gmx\n"
+//aslpinfo(gmx);
+     ok = chkN(gmx,-1.0,GT_)
+<<"%V $ok \n"
+  if (!ok) {
+    <<"test fail \n"
+!a
+  }
+
+
+
+
+
+     j1++;
+     k1++;
+
+     gmx= ShowMxy(VB_ins,j1, k1);
+<<"%V $gmx\n"
+
+
+   ok = chkN(gmx,-1.0,GT_)
+
+<<"%V $ok \n"
+  if (!ok) {
+    <<"test fail \n"
+!a
+  }
+
+
+//aslpinfo(gmx);
+
+    gmx = ShowMxy(VB_ins,j1+1, k1+1);
+<<"%V $gmx\n"
+//aslpinfo(gmx);
+
+ ok = chkN(gmx,-1.0,GT_)
+
+<<"%V $ok \n"
+  if (!ok) {
+    <<"test fail \n"
+!a
+  }
+
+    gmx = ShowMxy(VB_ins,j1+2, k1+2);
+<<"%V $gmx\n"
+//aslpinfo(gmx);
+
+ ok = chkN(gmx,-1.0,GT_)
+
+<<"%V $ok \n"
+  if (!ok) {
+    <<"test fail \n"
+!a
+  }
 
 
 
      chkOut();
+
+exit(-1);
 //////////////////////////////////////////////////
 
      svar S;

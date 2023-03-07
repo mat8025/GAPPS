@@ -52,7 +52,7 @@ using namespace std;
 #define COUT //
 
 int run_asl = runASL();
-<<" running as ASL \n";
+//<<" running as ASL \n";
 #include "debug"
 
 ignoreErrors();
@@ -98,6 +98,14 @@ float Dur[20];
   int n_legs = 0;
   int n_tp = 0;
   int k_tp;
+
+  Str the_start = "Longmont";
+  Str try_place = "xxx";
+  Str try_start = "xxx";
+  Str nxttpt = "Laramie";
+
+//<<"%V $nxttpt \n"
+
 //#include "conv.asl"
 
 #include "tpclass.asl"
@@ -216,7 +224,7 @@ Glide::glideTask(Svarg * sarg)
 #endif  
 
 
-printf(" na %d\n",na);
+//printf(" na %d\n",na);
 
 
   int ac = 0;
@@ -334,7 +342,7 @@ while (ac < na) {
   Str byfile = sa.cptr(ac);
 
   ac++;
-	//     <<" opening taskfile $byfile \n"
+	//<<" opening taskfile $byfile \n"
 
   TF = ofr(byfile);
 
@@ -393,10 +401,15 @@ while (ac < na) {
 
 #if ASL
   //CLTPT[cltpt] = targ;   // TBF 02/24/22
+
+//<<"%V $targ $cltpt \n"
+
    CLTPT.cpy(targ,cltpt);
 
-   if (ASL_DB)  <<"%V $targ $sz $cltpt $CLTPT[cltpt] \n"
-   if (ASL_DB) <<"CLTPTs  $CLTPT\n"
+   if (ASL_DB)  {
+    <<"%V $targ $sz $cltpt $CLTPT[cltpt] \n"
+    <<"CLTPTs  $CLTPT\n"
+    }
 #else
  CLTPT.cpy(targ,cltpt);
  if (CPP_DB) cout  <<"cltpt "<< cltpt  <<" CLTPT[cltpt] "<< CLTPT[cltpt]  <<endl ; 
@@ -414,10 +427,7 @@ while (ac < na) {
 }
 // look up lat/long
 
-  Str the_start= "Longmont";
-  Str try_place = "xxx";
-  Str try_start = "xxx";
-  Str nxttpt = "Laramie";
+
 
   float N = 0.0;
   int ki;
@@ -487,7 +497,7 @@ while (ac < na) {
 
   i=searchFile(AFH,the_start,0,1,0,0);
 
-  printf("AFH %d i %d\n",AFH,i);
+  //printf("AFH %d i %d\n",AFH,i);
 
   if (i == -1) {
    printf("the_start  %s not found \n", the_start);
@@ -564,6 +574,8 @@ while (ac < na) {
 
   if (use_cup) {
    nwr = Wval.readWords(AFH,0,',');
+//<<"read $nwr words \n"
+//<<" $Wval[0]  $Wval[1]  $Wval[2]\n"   
    }
   else {
    nwr = Wval.readWords(AFH);
@@ -579,15 +591,22 @@ while (ac < na) {
    }
 
 #if ASL_DB
-<<"$Wval[::]\n"	  
-<<" start ? $n_legs \n";
+<<"%V $nwr \n"
+<<"$Wval\n"
+<<"$Wval[0] $Wval[1] $Wval[2] $Wval[3]\n"	  
+<<"start ? %V $n_legs \n";
 #endif
 
 
   n_tp++;
   if (use_cup) {
-   //GT_Wtp.aslpinfo();
-     GT_Wtp[n_legs].TPCUPset(Wval);
+
+//<<"start %V $n_legs   \n"
+
+     GT_Wtp[0].TPCUPset(Wval);
+
+//<<"%V $GT_Wtp[n_legs].Ladeg \n"
+
    }
   else {
      GT_Wtp[n_legs].TPset(Wval);
@@ -615,6 +634,7 @@ while (ac < na) {
   if (via_cl) {
 
   nxttpt = CLTPT[cnttpt];
+
 
 #if ASL_DB
 <<"%V  $nxttpt   $cnttpt $cltpt \n"
@@ -745,7 +765,8 @@ while (ac < na) {
  //  nwr = Wval.readWords(AFH,0,',');
  
    nwr = Wval.readWords(AFH,0,',');
-
+//<<"read $nwr words \n"
+//<<" $Wval[0]  $Wval[1]  $Wval[2]\n"
 
 
 
@@ -763,7 +784,7 @@ while (ac < na) {
 
 
    GT_Wtp[n_legs].TPCUPset(Wval);
-
+//<<"%V $n_legs  $GT_Wtp[n_legs].Place $GT_Wtp[n_legs].Ladeg \n"
    //Wval.aslpinfo();
 
 
@@ -777,6 +798,9 @@ while (ac < na) {
   else {
 
    nwr = Wval.readWords(AFH);
+
+//<<"read $nwr words \n"
+//<<" $Wval[0]  $Wval[1]  $Wval[2]\n"
 
    GT_Wtp[n_legs].TPset(Wval);
 
@@ -868,7 +892,7 @@ while (ac < na) {
 //cout << "L1 " << L1 << " lo1 " << lo1 << " L2 " << L2 << " lo2 " << lo2 << " tkm " << tkm << endl;
 
 #if ASL_DB
-<<"%V $GT_Wtp[nl].Longdeg $GT_Wtp[nl].Ladeg $GT_Wtp[nl+1].Longdeg    $GT_Wtp[nl+1].Ladeg \n";
+<<"%V  $GT_Wtp[nl].Place $GT_Wtp[nl].Alt $GT_Wtp[nl].Longdeg $GT_Wtp[nl].Ladeg  $GT_Wtp[nl+1].Place $GT_Wtp[nl+1].Longdeg    $GT_Wtp[nl+1].Ladeg \n";
 
 <<"%V $nl $tkm $tkm2\n"
 
@@ -894,14 +918,13 @@ while (ac < na) {
 
   //DBG"%V $GT_Wleg[nl].dist\n";
        //Leg[nl] = ComputeTPD(nl, nl+1)
+ nl1 = nl + 1;
 
- // tcd =  ComputeTC(GT_Wtp,nl, nl+1); // this should work
-// nl +=2;// DEBUG remove
-  nl1 = nl+1; 
-  
-  tcd =  ComputeTC(GT_Wtp,nl, nl1);  // this should work
-  nl1 = nl+1; 
-  
+
+  //tcd =  ComputeTC(GT_Wtp,nl, nl1); // this should work
+//<<" $nl  $(nl+1) \n"
+  tcd =  ComputeTC(GT_Wtp,nl, nl+1); // this should work
+
 //COUT(tcd);
  
   L1 = GT_Wtp[nl].Ladeg;
@@ -911,6 +934,8 @@ while (ac < na) {
   lo1 = GT_Wtp[nl].Longdeg;
 
   lo2 = GT_Wtp[nl+1].Longdeg;
+
+//<<"%V $L1 $L2 $lo1  $lo2 \n"
 
 //  tc = TrueCourse(L1,lo1,L2,lo2);
  tcd = TrueCourse(lo1,L1,lo2,L2);

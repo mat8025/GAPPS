@@ -10676,9 +10676,16 @@ checkNumber()
 checkNumber,chkN
 .)x 
 .FD
-checkNum(a,b,[operator])
-tests for equality between a and b (default).
-Operators allows GT_,LT_,GTE_,LTE_,NEQ_,EQ_.  
+checkNum(a,b,[operator],[precision])
+tests for equality (EQ_) between a and b  at floating precision of 6 places.
+Operators allows NEQ_, EQ_,GT_,GTE_,LT_,LTE_   (0,1,2,3,4,5)
+
+e.g
+chkN(x,0.479426,EQ_,4);
+would test x == 0.479426  to a precision of 4 decimal places.
+
+
+
 .EF
 ==================================================
 .BF
