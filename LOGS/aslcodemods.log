@@ -1406,3 +1406,22 @@ wo_posnsz_w.cpp                     1.55  02/21/2023 21:18:26  WOINWO
 interact_w.cpp                      1.22  02/21/2023 21:20:30  WOMOD
 oo_cmf.cpp                          2.44  02/22/2023 17:10:25  promot/demote double float args
 fileop.cpp                          1.82  02/23/2023 11:02:08  serch ops allow bytes and origin
+ds_storestr.cpp                     1.84  03/07/2023 18:18:29  Store((char*))
+proc_def_e.cpp                      2.70  03/07/2023 18:19:35  mangle revise
+sint_l.cpp                          1.22  03/07/2023 18:20:57  aslpinfo - first sivp after svarg
+svarg_e.cpp                         2.38  03/07/2023 18:23:22  getArgSivP
+proc_checkfname_e.cpp               2.58  03/07/2023 18:26:20  mangle revise
+oo_cmf.cpp                          2.45  03/07/2023 18:27:47  mangle revise
+scopesindex_e.cpp                   2.86  03/07/2023 18:32:00  PTR arg check
+tokcmf.cpp                          1.74  03/07/2023 18:35:05  PTR check
+ic_pushsivele.cpp                   1.69  03/07/2023 18:41:41  PTR arg DB tidy
+args_process_e.cpp                  2.46  03/07/2023 18:43:26  Vid revise
+proc_args_e.cpp                     3.52  03/07/2023 18:44:52  Vid revise mangle revise
+engine_e.cpp                        2.24  03/07/2023 18:45:40  xic file locate
+ds_storesvar.cpp                    1.89  03/07/2023 18:48:24  DBT
+vmf_e.cpp                           3.55  03/07/2023 18:50:36  VID arg mods
+args_e.cpp                          2.22  03/07/2023 18:51:26  VID arg revise
+statex_e.cpp                        1.37  03/07/2023 18:54:52  DB statement print
+args_parse_e.cpp                    2.20  03/07/2023 18:59:51  DB tidy
+proc_call_e.cpp                     3.50  03/07/2023 19:00:34  Vid arg mods
+filesearch.cpp                      1.6  03/07/2023 19:02:52  revise search options for seeking in file

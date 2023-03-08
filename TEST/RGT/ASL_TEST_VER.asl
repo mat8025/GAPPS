@@ -69,9 +69,9 @@ wasl = "asl"
 
 hdir = getdir();
 
-wd=chdir(hdir)
+wd= chdir(hdir)
 wdir = getdIr()
-//<<"%V $wd $hdir $wdir\n"
+<<"%V $wd $hdir $wdir\n"
 
 //ans=query("where are we")
 
@@ -83,9 +83,13 @@ S.cat("types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc, svar,record,ivar,lis
 svar Opts[] = Split(S,",");
 
 
-//<<[2]"$Opts \n"
+<<"%V $Opts \n"
 
 
+
+
+
+ 
 
 
 //<<"$Testdir\n"
@@ -148,6 +152,7 @@ CFLAGS = "-cwl"
 ntest = 0
 
 
+ 
 int do_all = 1;
 int do_level2 = 0;
 int do_query = 0;
@@ -217,12 +222,14 @@ int do_tests = 0;
   pdir=updir()
   chdir("ITOC")
   Testdir = getdir()
-//<<[2]"Test Dir is $Testdir\n"
+<<"Test Dir is $Testdir\n"
 
 
 
- CrashList = ( "",  )  // empty list
- CrashList.LiDelete(0)
+ CrashList = ( "xxx",  )  // empty list
+ 
+ CrashList.LiDelete(0) ; // make empty
+
  FailedList = ( "fail",  )  // empty list --- bug first item null? 
  FailedList.LiDelete(0)
  
@@ -231,12 +238,16 @@ int do_tests = 0;
 
   nargs = ArgC()
 
-//<<[2]"%V$nargs\n"
+<<"%V$nargs\n"
+
+
 
   if (nargs > 1) {
     do_all = 0
    //<<[2]" selecting tests \n"
   }
+
+<<"%V $do_all \n"
 
   i = 1;
 
@@ -281,7 +292,7 @@ int do_tests = 0;
       exit();
   }
 
-//<<[2]"%V $do_all $do_bops $do_mops \n"
+<<[2]"%V $do_all $do_bops $do_mops \n"
 
 
 //================
@@ -347,7 +358,7 @@ if ((do_include || do_all ) && (do_include != -1)) {
   //RunDirTests("Include","include")
   outcome("INCLUDE")
 }
-
+!a
 //================================//
 
   if ((do_bops || do_all) && (do_bops != -1)) {
@@ -746,7 +757,7 @@ if ((do_all || do_array ) && (do_array != -1)) {
 
  if ((do_all || do_dynv ) && (do_dynv != -1)) {
     inflsz = caz(FailedList)
-    hdg("DYNAMIC_V")
+    //hdg("DYNAMIC_V")
 
     RunDirTests("Dynv","dynv");
   outcome("DYNV")
@@ -970,7 +981,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
  if ((do_all || do_sfunc ) && (do_sfunc != -1)) {
     inflsz = caz(FailedList)
-    hdg("S-FUNCTIONS")
+    //hdg("S-FUNCTIONS")
 
     RunSFtests("Fio,Sscan,Scpy,Fscanf,Bscan,Cut,Cmp,Sel,Shift,Median,Findval,Lip");
     

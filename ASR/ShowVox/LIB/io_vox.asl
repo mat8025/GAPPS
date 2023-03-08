@@ -57,7 +57,7 @@ float tX;
 
 
 
-proc read_the_signal()
+void read_the_signal()
 {
 <<"%V$sig_file \n"
               Nbufpts = readsignal(Sbn, sig_file)
@@ -66,7 +66,7 @@ proc read_the_signal()
 }
 //============================
 
-proc new_file()
+int new_file()
 {
 	go_on=get_the_file ()
             if (go_on) {
@@ -90,7 +90,7 @@ proc new_file()
 //====================================================
 
 
-proc update_files()
+void update_files()
 {
 	    if (Transcribe_type @= "UPE") {
 		write_timit_labels(timit_gp,upe_file,timit_file)
@@ -118,7 +118,7 @@ proc write_tokens()
 
 
 
-proc get_data_files()
+void get_data_files()
 {
 sg_file = scat(timit_file,".sg")
 rms_file = scat(timit_file,".rms")
@@ -132,7 +132,7 @@ Gain = 1.0
 int mixfd = -1
 int dspfd = -1
 
-proc openAudio()
+void openAudio()
 {
 
 // get open dsp

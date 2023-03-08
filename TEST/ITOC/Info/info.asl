@@ -34,7 +34,7 @@ if (_dblevel >0) {
   
   a.pinfo()
 
-  ok = a.checkinfo("INT");
+  ok = a.checkinfo("INT"); // check for this str in the info
 
   if (ok) {
 <<" $a is an INT\n"

@@ -80,12 +80,14 @@ void runModule (int wmod)
 
 padtit =nsc(15,"/")
 
-void hdg(str atit)
+void hdg(Str atit)
 {
+<<"IN $_proc   $atit \n"
+
    //atit.pinfo()
 
   int len = slen(atit)
-//<<"%V $len\n"
+<<"%V $len\n"
 
 
   int rlen = 20- len;
