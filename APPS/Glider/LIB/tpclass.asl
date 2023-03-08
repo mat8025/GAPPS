@@ -165,11 +165,11 @@ Str val2;
 
  //  <<"%V $Alt\n";
 
-
 //<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
  //  pa(wval);
 //  aslpinfo(wval);
   int na = Caz(wval);
+
 //  <<"%V $na \n"
 //<<" $wval \n"
 
