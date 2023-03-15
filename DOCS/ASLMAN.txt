@@ -1880,7 +1880,7 @@ the first x,y is a dark move to and then a line is drawn to the next x,y pair an
 .BF
 Circle()
 .(x
-@Circle
+Circle
 .)x 
 .FD
 plot({wid},@circle,x,y,r,{hue},{fill})

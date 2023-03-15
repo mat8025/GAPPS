@@ -18,14 +18,14 @@ Str Use_ = " info on asl functions";
 
 ignoreErrors();
 
-#define DBG ~!  
-//#define  DBG <<	
+//#define DBG ~!  
+#define  DBG <<	
 
 
 gssys= GetEnv("GS_SYS")
 
-//<<" ENV $gssys \n"
-//<<" looking for manual in $gssys\n"
+<<" ENV $gssys \n"
+<<" looking for manual in $gssys\n"
 
 int w = 0;
 
@@ -35,29 +35,37 @@ void prest()
 {
  Str awd;
    int k=0;
+   int kb = -1;
+   int kf = 1;   
    long sl;
-   while (1) {
-                   if (k++ > 1000)
-		          break;
 
+     while (1) {
+                   if (k++ > 1000) {
+		          break;
+                   }
                             awd=rwl_file(A,1);
-			   //<<"<|$awd|>\n";
-                            if (awd == ".EF") {
-			    //<<"found EF break\n";
+			  // <<"<|$awd|>\n";
+
+                     //awd.aslpinfo();
+			  
+                          if (awd == ".EF") {
+			   // <<"found EF break\n";
                                    break;
                             }
-                            if (awd == ".BF") {
-			    //<<"found BF break\n";
+
+                      if (awd == ".BF") {
+			  //  <<"found BF break\n";
                                    break;
                             }			    
 
-			    seekLine(A,-1);
+			    //seekline(A,-1);
+			    seekline(A, kb);
 			    if (awd == ".FD" || awd == ".)x") {
 
 	
 			    //w=pcl_file(A,1);
 			    
-                            sl=seekLine(A,1);
+                            sl=seekLine(A,kf);
 		    //<<"$k $sl $A\t";
                             }
 			    else {
@@ -164,7 +172,7 @@ long f_i = 0;
   pat = GetArgStr();
 
  //<<"\tsearch for $pat \n"
-//  <<"looking up $pat in manual \n"
+  <<"looking up $pat in manual \n"
      int A= -1;
 
      A=ofr("~/gapps/DOCS/ASLMAN.txt")
@@ -220,10 +228,11 @@ int last = -1;
 
               last_i = i;
 
-DBG"%V$nfs search for $pat $k @ $i \n"
+  DBG"%V$Nfs search for $pat $k @ $i \n"
 
 
               i=searchFile(A,pat,0,1,0);   // looking for pat in function name
+<<"%V $i\n"
 
 //pcl_file(A,1,1);
 
@@ -252,11 +261,13 @@ DBG"%V$nfs search for $pat $k @ $i \n"
 
                 wd=rwl_file(A,1);
 
+<<"wd is <|$wd|> \n"
 
                  first = 0;
 		 
                  if ( wd == ".(x" ) {
                        //pr_fun()
+		       <<" do prest \n"
 		       prest();
 		       exit(0);
                  }
@@ -268,6 +279,12 @@ DBG"%V$nfs search for $pat $k @ $i \n"
                  }
 		 
                wd=rwlFile(A,1);
+<<"wd is $wd \n"
+
+                 if ( wd == ".)x" ) {
+                       prest();
+		      exit(0);
+                 }
 
                 nwr=readwords(A,Wd,1);
                 i=fseek(A,0,1)

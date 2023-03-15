@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @script ASL_TEST_VER.asl 
-//* 
-//*  @comment asl test modules 
-//*  @release CARBON 
-//*  @vers 1.63 Eu Europium [asl 6.2.51 C-He-Sb]                           
-//*  @date Sun May 24 09:28:05 2020
-//*  @cdate 1/1/2005 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script ASL_TEST_VER.asl                                            
+ * 
+ *  @comment asl test modules                                           
+ *  @release Beryllium                                                  
+ *  @vers 1.64 Gd Gadolinium [asl 6.4.80 C-Be-Hg]                       
+ *  @date 03/12/2023 12:15:34                                           
+ *  @cdate 1/1/2005                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2023 -->                               
+ * 
+ */ 
+;//----------------<v_&_v>-------------------------//;                  
+
 
 //
 // test asl first and second stage (xic)
@@ -77,10 +79,10 @@ wdir = getdIr()
 
 
 str S = "all,array,matrix,bugs,bops,vops,sops,fops,class, declare,include,exp,if,logic,for,do,paraex,proc,switch,"
-S.cat("types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc, svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help");
+S.cat("types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc,svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help");
 
 
-svar Opts[] = Split(S,",");
+Svar Opts[] = Split(S,",");
 
 
 <<"%V $Opts \n"
@@ -276,7 +278,7 @@ int do_tests = 0;
       $do_arg = 1;
      }
      
-//<<[2]" $i $wt $do_arg \n"
+<<[2]" $i $wt $do_arg \n"
 
      i++;
 
@@ -358,7 +360,7 @@ if ((do_include || do_all ) && (do_include != -1)) {
   //RunDirTests("Include","include")
   outcome("INCLUDE")
 }
-!a
+
 //================================//
 
   if ((do_bops || do_all) && (do_bops != -1)) {
@@ -904,8 +906,10 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
    if ((do_all || do_svar ) && (do_svar != -1)) {
 
     inflsz = caz(FailedList)
+
     RunDirTests("Svar","svar");
-    RunDirTests("Hash","hash,svar_table,svar_hash")
+
+    RunDirTests("Hash","hash,svar_table,svar_hash");
 
     outcome("SVAR")
     }
@@ -1173,7 +1177,13 @@ chdir(cwd)
 
 ut=utime()
 
-A=ofw("Tresults/score_$ut")
+  //ut.aslpinfo();
+  
+
+// mkdir -p Tresults
+
+A=ofw("Tresults/score_$ut");
+
 <<[A]"$ut $(date(1)) Modules $n_modules Tests $rt_tests  Pass $rt_pass  Score %6.2f$pcc Fail %d$flsz Crash $lsz it $i_time xt $x_time vers $(get_version())\n"
 cf(A)
 
@@ -1191,10 +1201,15 @@ wdir = getdIr()
 !!"cp current_score Scores/score_$(date(2,'-')) "
 
 dtms= FineTimeSince(TM);
-secs = dtms/1000000.0
+float secs = dtms/1000000.0
 
 if (!do_module) {
-<<"script vers $hdr_vers took %6.3f$secs secs %d %V $i_time $x_time\n"
+
+//<<"script vers $hdr_vers took %6.3f$secs secs %d %V $i_time $x_time\n"
+
+<<"script vers $Hdr_vers took %6.3f$secs secs\n"
+
+<<"%6.3f$secs secs %d %V $i_time $x_time\n"
 
 today=getDate(1);
 <<"used $wasl for tests \n"

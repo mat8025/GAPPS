@@ -15,10 +15,8 @@
 /// test record type
 /// each record is an Svar
 ///
-<|Use_=
-  Demo  of Record class ;
-///////////////////////
-|>
+Str Use_= "Demo  of Record class \n";
+
 
 #include "debug"
 
@@ -42,13 +40,13 @@
 
   <<"$sz  $(csz(ra)) \n";
 
-  ra.pinfo();
+  ra.aslpinfo();
 
   sz= csz(&ra);
 
   <<"$sz  $(csz(&ra)) \n";
 
-  Record R[10];
+  Record R[20];
 
   Nrecs = Caz(R);
 
@@ -56,16 +54,18 @@
 
   <<"num of records $Nrecs  num cols $Ncols\n";
 
-  R.pinfo();
+  R.aslpinfo();
 // ',' parsed as CHAR
 // split intreprets via s->makeStrFromArg ()
 // single character string  e.g. as ","
 
   S = Split("80,1,2,3,40,5,6,7,8,9",',');
 
-  S.pinfo();
+  S.aslpinfo();
 
   <<"$S\n";
+
+  <<"%V $S[4]\n"
 
   R[0] = S;
 // R[0] = Split("80,1,2,3,40,5,6,7,8,9",','); 
@@ -74,13 +74,21 @@
 
   <<"%V $R[0][3] \n";
 
+//Str val = "opq";
+
   val = R[0][4];
+
+  val.aslpinfo();
 
   <<"%V$val \n";
 
   chkStr(val,40);
 
-  R[1] = Split("82,5,4,3,40,5,6,7,8,9",',');
+//  chkOut(); exit(-1);
+  
+
+
+  R[1] = Split("81,5,4,3,40,5,6,7,8,9",',');
 
   <<"%V $R[1][3] \n";
 
@@ -96,25 +104,51 @@
 
   <<"num of records $Nrecs  num cols $Ncols\n";
 
-  R[2] = Split("83,7,6,5,40,5,6,7,8,9",',');
+  R.aslpinfo();
+
+  <<"2  $R[2]\n"
+
+
+  <<"21 $R[21]\n"
+
+  R.aslpinfo();
+!a
+
+  R[21] = Split("21,77,4,3,40,5,6,7,8,9",',');
+
+  <<"21 $R[21]\n"
+
+  chkOut(); exit(-1);
+
+
+
+
+  R[2] = Split("82,7,6,5,40,5,6,7,8,9",',');
 
   <<" $R[2] \n";
 
-  R[3] = Split("84,8,7,6,40,5,6,7,8,9",',');
+  R[3] = Split("83,8,7,6,40,5,6,7,8,9",',');
 
   <<" $R[3] \n";
 
-  R[4] = Split("85,9,8,7,40,5,6,7,8,47",',');
+  R[4] = Split("84,9,8,7,40,5,6,7,8,47",',');
 
-  R[5] = Split("49,9,8,77,47,5,6,7,80,95",',');
-
-  R[6] = Split("87,9,8,7,40,5,6,7,8,79",',');
-
-  R.pinfo();
+<<" $R[4] \n";
+  R[5] = Split("85,9,8,77,47,5,6,7,80,95",',');
+<<" $R[5] \n";
+  R[6] = Split("86,9,8,7,40,5,6,7,8,79",',');
+<<" $R[6] \n";
+  R.aslpinfo();
 
   <<" $R[4] \n";
 
-  <<" $R[::] \n";
+ for(i=0;i< 20; i++) {
+<<"[$i] $R[i] \n"
+//  does not show empty records - repeats last non-empty
+}
+
+
+  <<" $R[::] \n"; // does not show record table
 
   R[7] = R[1];
 
@@ -127,17 +161,17 @@
 
   wsv=Split("80,1,2,3,79,5,6,7,8,9", ",");
 !pwsv
-!iwsv
 
-  R.pinfo();
+
+  R.aslpinfo();
 
   lastRX = R[Nrecs-1];
 
   <<"%V $lastRX\n";
 
   rval = R[0][4];
-!prval
-!irval
+//!prval
+//!irval
 
   <<"%V$R[0]\n";
 
@@ -146,9 +180,9 @@
   <<"%V$R[0][4]\n";
 /*
   int ival = atoi(R[0][2]);
-  ival.pinfo()
+  ival.aslpinfo()
   sz  = csz(ival)
-  sz.pinfo()
+  sz.aslpinfo()
   <<"ival <|$ival|>  bounds $(Cab(ival)) sz   $(csz(ival))\n"
   chkN(sz,0)
   chkN(ival,2)
@@ -160,7 +194,7 @@
 
   <<"R7 $R[7]\n";
 
-  R.pinfo();
+  R.aslpinfo();
 
   <<"%V$R[1]\n";
 
@@ -180,7 +214,7 @@
 
   <<"%V$ival \n";
 
-  ival.pinfo();
+  ival.aslpinfo();
 
   chkN(ival,fval);
 
@@ -220,7 +254,7 @@
 
   irval = atoi(rval);
 
-  irval.pinfo();
+  irval.aslpinfo();
 
   ival = atoi(R[2][2]);
 
@@ -232,9 +266,9 @@
 
   <<"ival $ival  bounds $(Cab(ival)) sz   $(csz(ival))\n";
 
-  sz.pinfo();
+  sz.aslpinfo();
 
-  ivs=ival.pinfo();
+  ivs=ival.aslpinfo();
 
   <<"$ivs\n";
 
@@ -255,28 +289,62 @@
   chkN(ival,ptan("Zr"));
 
   <<" $R[::] \n";
+  Nrecs = Caz(R);
 
+  Ncols = Caz(R,1);
+
+  <<"num of records $Nrecs  num cols $Ncols\n";
+
+for(i=0;i< 20; i++) {
+<<"[$i] $R[i] \n"
+//  does not show empty records - repeats last non-empty
+}
   deleteRows(R,2,4);
+  <<"delete rows 2 thru 4 \n";
+    Nrecs = Caz(R);
+
+  Ncols = Caz(R,1);
+
+  <<"num of records $Nrecs  num cols $Ncols\n";
+  R.aslpinfo();
+
+
+
+ for(i=0;i< 20; i++) {
+<<"[$i] $R[i] \n"
+//  does not show empty records - repeats last non-empty
+}
 
   <<" $R[::] \n";
 
   deleteRows(R,1,-1);
 
   <<" $R[::] \n";
+   R.aslpinfo();
 
-  recinfo = info(R);
+
+   recinfo = info(R);
 
   <<"$recinfo \n";
+  <<" $R[0] \n";
+<<" can it dynamic expand ?\n";
 
-  R[1] = Split("82,5,4,3,40,5,6,7,8,29",",");
 
-  R[2] = Split("83,7,6,5,40,5,6,7,8,30",",");
+  R[1] = Split("81,5,4,3,40,5,6,7,8,29",",");
+  <<" $R[1] \n";
+R.aslpinfo();
 
-  R[3] = Split("84,8,7,6,40,5,6,7,8,31",",");
 
-  R[4] = Split("85,9,8,7,40,5,6,7,8,32",",");
 
-  R[6] = Split("87,9,8,7,40,5,6,7,8,33",",");
+
+
+  R[2] = Split("82,7,6,5,40,5,6,7,8,30",",");
+
+  R[3] = Split("83,8,7,6,40,5,6,7,8,31",",");
+
+  R[4] = Split("84,9,8,7,40,5,6,7,8,32",",");
+
+  R[6] = Split("86,9,8,7,40,5,6,7,8,33",",");
 
   <<" $R[::] \n";
 
@@ -288,11 +356,20 @@
 
   <<" $R[::] \n";
 
-  R[1] = Split("82,5,4,3,40,5,6,7,Sn,50",",");
+  R.aslpinfo();
 
-  R[2] = Split("83,7,6,5,40,5,6,7,Sb,51",",");
+  R[11] = Split("91,5,4,3,40,5,6,7,Sn,50",",");
+ R.aslpinfo();
 
-  R[3] = Split("84,8,7,6,40,5,6,7,Te,52",",");
+  R[12] = Split("92,7,6,5,40,5,6,7,Sb,51",",");
+
+<<"$R[2] \n";
+
+  R[14] = Split("93,7,6,5,40,5,6,7,Sb,51",",");
+  <<" $R[::] \n";
+
+
+  R[15] = Split("95,8,7,6,40,5,6,7,Te,52",",");
 
   R[7] = Split("84,8,7,6,40,5,6,7,I,53",",");
 
@@ -302,7 +379,7 @@
 
   <<"$recinfo \n";
 
-  R.pinfo();
+  R.aslpinfo();
 //////////////////////////////////////////
 
   R[1] = Split("10,12,23,34,45,56,67,78,89,90",",");
@@ -317,7 +394,7 @@
 
   <<"ival $ival  bounds $(Cab(ival))    $(csz(ival))  $sz\n";
 
-  ival.pinfo();
+  ival.aslpinfo();
 
   chkN(sz,0);
 
@@ -460,7 +537,7 @@
 
   <<"inrecord[3] we have:- $R[3] \n";
 
-  R.pinfo();
+  R.aslpinfo();
 
   sr1 = R[3][2];
 
@@ -500,7 +577,7 @@
 
   sr3 = R[3][2];
 
-  sr3.pinfo();
+  sr3.aslpinfo();
 
   <<"%V $sr3\n";
 

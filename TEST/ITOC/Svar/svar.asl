@@ -12,9 +12,8 @@
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
                                                                      
-<|Use_=
-   Demo svar type use
-|>
+Str Use_= "Demo svar type use";
+
 
 #include "debug"
 
@@ -33,28 +32,29 @@
 chkT(1)
 
 
-   svar E[] = { "the first ten elements are:", "H", "He", "Li", "Be" ,"B" ,"C", "N", "O", "F", "Ne"  };
+   Svar E[] = { "the first ten elements are:", "H", "He", "Li", "Be" ,"B" ,"C", "N", "O", "F", "Ne"  };
 
    <<"$E\n";
 
    <<"$E[1] \n";
 
-   E.pinfo();
+   E.aslpinfo();
 
 Siv F(SVAR_);
 
    F  = split ("uno dos tres" );
 
-   F.pinfo();
+   F.aslpinfo();
    
 Siv Q(INT_,67);
 
-   Q.pinfo();
+   Q.aslpinfo();
 
   
-Siv Ivec(INT_,10,0,1,2);
+//Siv Ivec(INT_,10,0,1,2);
+Siv Ivec(INT_,1,10,0,1);
 
-   Ivec.pinfo();
+   Ivec.aslpinfo();
 
 
 
@@ -72,7 +72,7 @@ Siv Ivec(INT_,10,0,1,2);
 
    chkStr(S1[0], "una larga noche");
 
-   S1.pinfo();
+   S1.aslpinfo();
 
    <<" $(typeof(S)) $(Caz(S)) \n";
 
@@ -114,7 +114,7 @@ Siv Ivec(INT_,10,0,1,2);
 
    <<"$T\n";
 
-   T.pinfo();
+   T.aslpinfo();
 
    sz=T.Caz();
 
@@ -124,7 +124,7 @@ Siv Ivec(INT_,10,0,1,2);
 
    <<"$R\n";
 
-   R.pinfo();
+   R.aslpinfo();
 
    sz=R.Caz();
 
@@ -140,15 +140,15 @@ Siv Ivec(INT_,10,0,1,2);
 
    RS= Split("$IV");
 
-   RS.pinfo();
+   RS.aslpinfo();
 
    <<"RS: $RS\n";
 
-   S.pinfo();
+   S.aslpinfo();
 
    S= Split("$IV");
 
-   S.pinfo();
+   S.aslpinfo();
 
    <<"$S\n";
 
@@ -193,7 +193,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
    <<"T: $T\n";
 
-   T.pinfo();
+   T.aslpinfo();
 
 <<" $T[1] $T[2] $T[3] \n"
 
@@ -216,7 +216,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
    R= Split("47 79 80 81 82 83 84 85 86 87");
 
-   R.pinfo();
+   R.aslpinfo();
 
    <<"$R\n";
 
@@ -226,7 +226,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
    <<"$S[1]  $S[2] \n";
 
-   S.pinfo();
+   S.aslpinfo();
 
    chkStr(S[1],"47");
 
@@ -362,7 +362,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
    <<"twelveth month $Mol[11]\n";
 
-   Mol.pinfo();
+   Mol.aslpinfo();
 
    le12 = Mol[11];
 
@@ -441,13 +441,13 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
   T= itoa(IV) ; // does not deliver svar array;
 
-  T.pinfo();
+  T.aslpinfo();
 
   <<"$T\n";
 
   M=Split("$IV");
 
-  M.pinfo();
+  M.aslpinfo();
 
   <<"$M \n";
 
@@ -457,14 +457,14 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
   <<"$IV2\n";
 
-  IV2.pinfo();
+  IV2.aslpinfo();
 //R= M[3::]   // TBF xic does not use default for range end
 
   R= M[3:-1:];
 
   <<"$R \n";
 
-  R.pinfo();
+  R.aslpinfo();
 
   <<"%V$R\n";
 
@@ -475,7 +475,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
   IV3= atoi(R);
 
-  IV3.pinfo();
+  IV3.aslpinfo();
 
   <<"%V $IV3\n";
 
@@ -570,19 +570,24 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
   chkN(IV3[2], 2);
 
-  IV3.pinfo();
+  IV3.aslpinfo();
 //IV3= atoi(M[3::])
 
    IV3[0] = 99;
 <<"$M[4:-2]\n"
 
   IV3= atoi(M[3:-1:]);
-  <<"%V $M\n"
-<<"%V$M[3:-1]\n"
+
+<<"%V $M\n"
+
+<<"M[] == $M\n"
+
+
+<<"%V$M[3:-2]\n"
 
 <<"%V $IV3\n";
 
-  IV3.pinfo();
+  IV3.aslpinfo();
 
   iv3 = IV3[0];
   
@@ -604,7 +609,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
   {
 //<<" $SV\n"
 
-  SV.pinfo();
+  SV.aslpinfo();
 
   static int k = 1;
 
@@ -652,13 +657,13 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
   S = Split("how did we get here");
 
-  S.pinfo();
+  S.aslpinfo();
 
   pSv(S);
 
   TS2 = Split("again how is this happening");
 
-  TS2.pinfo();
+  TS2.aslpinfo();
 
   pSv(TS2);
 //===========
@@ -768,7 +773,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
   }
 //=================================
   P=split("Jamestwn    	jmt	40,07.00,N	105,24.00,W	8470	0/0	_	T ");
-  P.pinfo()
+  P.aslpinfo()
   pSv(P)
   Turnpt  Tp;
   Tp->Set(P);
@@ -780,7 +785,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
   chkStage("Proc");
 //==============================//
 
-  svar Opts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,",",");
+  Svar Opts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,",",");
 
   <<"$Opts \n";
 

@@ -78,7 +78,7 @@ int a = 34;
 
 <<"%V $a $b \n"
    chkN(b,112);
-!a
+
 
  Str abc = "abcdefghi"
 
@@ -88,7 +88,7 @@ int a = 34;
  rov = nameMangle(abc,1);
 
 <<"%V $rov\n";
-!a
+
 
 
 chkStr(rov,"bcdfgh");

@@ -19,7 +19,7 @@ int Nspassed =0;
 int last_npass = 0
 int last_ncrash = 0
 
-void outcome (str title)
+void outcome (Str title)
 {
    Nsuites++;
    outflsz = caz(FailedList)
@@ -82,12 +82,12 @@ padtit =nsc(15,"/")
 
 void hdg(Str atit)
 {
-<<"IN $_proc   $atit \n"
+//<<"IN $_proc   $atit \n"
 
-   //atit.pinfo()
+   //atit.aslpinfo()
 
   int len = slen(atit)
-<<"%V $len\n"
+//<<"%V $len\n"
 
 
   int rlen = 20- len;
@@ -121,7 +121,7 @@ void Help()
 //==========================//
 
 
-void changeDir(str td)
+void changeDir(Str td)
 {
   //<<" $_proc $td\n"
   chdir(td)
@@ -129,13 +129,13 @@ void changeDir(str td)
 }
 //===============================
 
-void Run2Test(str td)
+void Run2Test(Str td)
 {
 
 //<<" $_proc $td $Testdir\n"
 
- // td.pinfo()
-
+  //td.aslpinfo()
+//!a
   chdir(Testdir)
 
   hdg(td);
@@ -152,18 +152,23 @@ void Run2Test(str td)
 //===============================
 
 //Str pgname;
-void RunDirTests(str Td, str Tl )
+void RunDirTests(Str Td, Str Tl )
 {
 
 //<<"$_proc $Td  <|$Tl|> \n"
 
-str pgname = "xx";
-str pgxname = "xy";
+Str pgname = "xx";
+Str pgxname = "xy";
 
+
+  //pgname.aslpinfo();
+  
 //Tl.info(1)
 
 //ri=Tl.info()
+
       chdir(Testdir)
+
       chdir(Td)
       Curr_dir = getDir();
   
@@ -178,13 +183,13 @@ str pgxname = "xy";
       
       for (i=0 ; i < np; i++) {
 
-//<<"$i  <|$Tp[i]|>\n"
+
 
          //if (!(Tp[i] @= "")) 
 
 	    pgname = Tp[i];
 
-
+//<<"$i  <|$Tp[i]|>  $pgname\n"
 
             nl = slen(pgname);
 
@@ -198,7 +203,9 @@ str pgxname = "xy";
 	 //   pgname.pinfo()
 
          //do_carts(pgname);
-	  cart(pgname);
+   //pgname.aslpinfo();
+
+   cart(pgname);
 
 	// do_carts(Tp[i] );
 	
@@ -213,7 +220,7 @@ str pgxname = "xy";
 
 
 
-void RunSFtests(str Td)
+void RunSFtests(Str Td)
 {
 // list of dirs  Fabs,Cut,Cmp ...
 // goto dir then run cart(fabs) or cart(cmp)
@@ -242,7 +249,7 @@ void RunSFtests(str Td)
 
 /////////////////////////////
 
-int scoreTest(str itname)
+int scoreTest(Str itname)
 {
 
 //<<"$_proc <|$itname|>  \n"
@@ -253,18 +260,18 @@ int scoreTest(str itname)
 
  int ntests2;
  int npass2;
- str tname;
+ Str tname;
 
-//   itname.pinfo();
+   //itname.aslpinfo();
 
  //  tname = itname;
 
-//   tname.pinfo();
+   //tname.aslpinfo();
 
         RT=ofr(itname);
        
 //<<"fh $RT \n"
-//!a
+
     //RT.pinfo()
 
 
@@ -365,10 +372,10 @@ else {
 
 int cbh = 0
 
-void doxictest(str prog)
+void doxictest(Str prog)
 {
 //<<"IN $_proc $prog \n"
-str prg;
+Str prg;
 
  if (f_exist("${prog}") != -1) {
 
@@ -409,11 +416,11 @@ str prg;
 //===============================
 
 
-void doxictest(str prog, str a1)
+void doxictest(Str prog, Str a1)
 {
 
 //<<"IN $_proc  $prog  $a1 \n"
-str prg;
+Str prg;
  if (f_exist("${prog}") != -1) {
 
 
@@ -461,8 +468,8 @@ void cart_xic(Str prg)
 
 //aprg.pinfo()
 int wscore;
-str  xwt_prog;
-str lprg = "xxxxxxxxxxxxxxxxx";
+Str  xwt_prog;
+Str lprg = "xxxxxxxxxxxxxxxxx";
 
 lprg = prg;
 
@@ -489,7 +496,7 @@ if (!scmp(lprg,prg)) {
       if ( foundit ) {
   
    //<<"found xic file $prg\n"
-      str tim = time() ;  //   TBC -- needs to reinstated
+      Str tim = time() ;  //   TBC -- needs to reinstated
      
    // wt_prog = "$tim "
 
@@ -571,7 +578,7 @@ int wscore;
    // wt_prog = "$tim "
 
      xwt_prog = "$tim ./${aprg}:$a1"
-//str aa = a1
+//Str aa = a1
 
      // doxictest("./$aprg", "$a1")
 
@@ -604,7 +611,7 @@ if (!do_module) {
 //================================//
 
 
-void cart (str prg)
+void cart (Str prg)
 {
 
 //<<"$_proc <|$prg|> \n"
@@ -612,7 +619,7 @@ void cart (str prg)
   //aprg.pinfo()
   int wscore;
   int wlen;
-//  str prg; // TBF  not copied!!
+//  Str prg; // TBF  not copied!!
 
 
   //prg = aprg; // TBF  not copied!! ///
@@ -621,14 +628,14 @@ void cart (str prg)
  // prg.pinfo()
 //<<"$_proc  prg <|$prg|> ==   aprg <|$aprg|>  arg copied correctly?  \n"
 
-  str wstr ="";
+  Str wStr ="";
  //  in_pargc = _pargc;
 //  aprg.pinfo();
 //  prg.pinfo();
   
   xwt_prog = "xxx";
 
-  str tim = time();
+  Str tim = time();
   
 //  aprg.info(1)
 
@@ -718,21 +725,24 @@ void cart (str prg)
 void cart (Str prg,  Str pa1)
 {
 
-//<<"$_proc  $aprg $a1\n"
+//<<"$_proc  $prg $pa1\n"
   int wlen;
   int wscore;
   //str tim;
 //   <<"%V $_pstack \n"
 //   aprg.pinfo()
-//   pa1.pinfo()
 
-   str aprg;
-   str a1;
+//pa1.aslpinfo()
+
+   Str aprg;
+   Str a1;
 //   prg = aprg;
   
  //  prg->pinfo()
 
    a1= pa1;
+
+
 //   a1.pinfo()
 
    in_pargc = _pargc;
@@ -813,13 +823,13 @@ void cart (Str prg,  Str pa1)
 
 // str as arg should have local copy -- not treat as vec
 
-void do_carts (str aprg)
+void do_carts (Str aprg)
 {
 //  <<"%V$_proc  <|$aprg>\n"
 //  aprg.pinfo()
 
 //!!"pwd"
-//str bprg = "XYZF";  // TBF fails
+//Str bprg = "XYZF";  // TBF fails
 //bprg.pinfo()
 //bprg[2] = "A"; // FAIL sticky offset ele
 //bprg.pinfo()
@@ -830,7 +840,7 @@ void do_carts (str aprg)
 //bprg.pinfo()
 
 //
-str wprg = "xx";
+Str wprg = "xx";
 //wprg.pinfo()
 wprg = aprg;
 

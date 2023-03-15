@@ -234,7 +234,7 @@
 
    fva2= testargs(F);
 
-   fva2.pinfo();
+   fva2.aslpinfo();
 //<<"%(1,,,\n)$fva2 \n"   // TBF
 
    jal = 2;
@@ -283,7 +283,7 @@
      int p =z;
      int i;
 
-     i.pinfo();
+     i.aslpinfo();
 
      ans ="c";
      for (i=0; i< 4; i++) {
@@ -317,7 +317,7 @@
 
    a = 1;
 
-   a.pinfo();
+   a.aslpinfo();
 //ans=query("a?")
 
    chkR (a,1);
@@ -340,15 +340,15 @@
 
    <<"%V $a $b $c \n";
 
-   a.pinfo();
+   a.aslpinfo();
 //ans=query("a?")
 //Noo(1,2,3);
 
-   a.pinfo();
+//   a.aslpinfo();
 
-   b.pinfo();
+//   b.aslpinfo();
 
-   c.pinfo();
+//   c.aslpinfo();
 
    Noo(a,b,c);
 /*
@@ -372,15 +372,28 @@
 
    pan pnum = 123456789.98765432100;
 
-   <<"%V$pnum \n";
+   <<"%V $pnum \n";
 
-   testArgs(pnum,  123456789);
+chkR (pnum,  123456789.987, 1);
+
+
+chkR (pnum,  123456789.987, 1);
+
+
+chkR (pnum,  123456789.987654, 2);
+
+chkR (pnum,  123456789.987654321, 3);
+
+chkR (pnum,  123456789.98765432100, 3);
+
+
+testArgs(pnum,  123456789);
 
    testArgs(pnum,  123.456);
 
    testArgs(pnum,  123456789.98765432100);
 
-   chkR (pnum,  123456789.98765432100, 5);
+   
 
    //chkStage("pan");
 

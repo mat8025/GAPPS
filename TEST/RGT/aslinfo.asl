@@ -1,16 +1,20 @@
-# ALSM --- info
+//
+// ALSM --- info
+//
+// 
+
 
 envDebug();
 
 gssys= GetEnv("GS_SYS")
 
-//<<" ENV $gssys \n"
-//<<" looking for manual in $gssys\n"
+<<" ENV $gssys \n"
+<<" looking for manual in $gssys\n"
 
-//#define DBG <<
-#define DBG ~!
+#define DBG <<
+//#define DBG ~!
 
-proc pr_fun()
+void pr_fun()
 {
 DBG" $_proc %V$i\n"
 int ret = 1;
@@ -90,7 +94,7 @@ DBG"%V $j $k \n"
 
 
 
-str pat
+Str pat
 int k = 0;
 
 long f_i = 0;
@@ -102,8 +106,8 @@ long f_i = 0;
   
   pat = GetArgStr()
 
-DBG"search for $pat \n"
-
+<<"search for $pat \n"
+!a
     if ( pat @= "" ) {
       DBG" function name:"
       pat =i_read()
