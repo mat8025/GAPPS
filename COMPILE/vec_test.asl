@@ -13,7 +13,7 @@
 ;//-----------------<v_&_v>------------------------//
 
 ///
-///  cinclude  ---  chain of include asl - cpp compile OK?
+///  include  ---  chain of include asl - cpp compile OK?
 ///
 
 /// cpp debug ??
@@ -54,8 +54,8 @@ printf("ASL %d CPP %d\n", ASL,CPP);
 #if CPP
 #warning USING_CPP
 
-#define CDB ans=query("?","goon",__LINE__,__FILE__);
-#define CDBP(x) ans=query(x,"goon",__LINE__,__FILE__);
+#define CDB ans=query("?","go on",__LINE__,__FILE__);
+#define CDBP(x) ans=query(x,"go on",__LINE__,__FILE__);
 
 #include <iostream>
 #include <ostream>
@@ -82,24 +82,30 @@ Uac::vecWorld(Svarg * sarg)
 #endif
 
 
-
   Siv M(INT_);
 
   M=14;
 
-  COUT(M);
+//  pra(M);
 
- //pa(M);
+ ans=query("?",lastStatement(),__LINE__);
+
+ //pra(M);
 
 //cout << "Siv M " << M << endl;
   
 double rms;
 double val;
 
-   Vec<double> D(20);
+//  pra(lastStatement(3),__LINE__);
 
-   D.pinfo();
-ans=query("?","Vec D(20) ",__LINE__);
+ Vec<double> D(20);
+
+//pra(D,"@ ",__LINE__);
+
+D.pinfo();
+
+//ans=query("?",lastStatement(),__LINE__);
 
 // need Vec<DOUBLE> V (10,10,1)   // so that compiler knows type of vector
          // at moment it is hidden and need to access via V(4) instead of V[4]
@@ -109,7 +115,9 @@ ans=query("?","Vec D(20) ",__LINE__);
   Vec<double> V(10,10,1.50);
 
   V.pinfo(); // info about variable
-  pa("?","Vec V(10,10,1.50); ",__LINE__);
+
+//pra("?",lastStatement(),__LINE__);
+
 #if CPP
 cout << "V = " << V << endl;
 cout << " trying access " << endl;
@@ -117,9 +125,10 @@ cout << " trying access " << endl;
 
 int index = 6;
 
-   COUT(index)
+ printf("? is this in the DLL\n");
+  // pra(index,__LINE__);
 
-   COUT(V[7]);
+  // pra(V[7]);
 
 chkN(V[0],10);
 
@@ -141,27 +150,27 @@ chkN(V[0],10);
 
 /*  
   SV[3] = 67;
- COUT(index);
- COUT(SV);
+ pra(index);
+ pra(SV);
 */
 
-pa("?","SV $index",__LINE__);
+pra("?","SV $index",__LINE__);
   
 // rms = V.getVal(index);
 
   rms = V[index]; // [] access
 
 
-//pa( " rms =V[6] ",rms);
+//pra( " rms =V[6] ",rms);
 
-//COUT(V(index));
+//pra(V(index));
 
 // will only work for Vec type double
  V[4] = 37; // [] LH access
 
 //cout << "V[4]= 37 " << V[4] << endl;
 
-COUT(V[4]);
+//pra(V[4],__LINE__);
 
  short jj = 9;
 
@@ -172,27 +181,36 @@ COUT(V[4]);
 
 #if ASL
 <<"%V $jj $V[jj] \n";
-pa(jj, V[jj]);
+pra(jj, V[jj]);
 #else
  cout << "V(9)= 98 " << V[9] << endl;
 
-COUT(V[9]);
+pra(V[9]);
 #endif
 
+printf(" V[4] = 15 \n");
  V[4] = 15;
 
 printf("V[4]= 15  %f \n",V[4]);
 
-COUT(V[4]);
+//pra(V[4]);
 
- chkN(V[4],15);
-//ans= query("??V[4]");
+ //chkN(V[4],15);
 
-//cout <<"vec  type sequence\n";
+// ans= query("??V[4]");
+
+  printf("vec  type sequence\n");
 
  Vec<float> F(10,6,0.5); // vec  type sequence
 
- Vec<float> G(10,7,0.5);
+ //pra(F);
+
+ Vec<float>  G(10,7,0.5);
+
+
+cout << " print g " << G << endl;
+ CDBP(" G?");
+//pra("G ?", G); // won't work for templated Vec - use print char* ?
 
  Vec<float> Z(10,20,2.5);
 
@@ -205,7 +223,7 @@ COUT(V[4]);
 
   Vec<float> R(20);
 
-   Vec<int>   I(10,0,1);
+   Vec<int>  I(10);
    
    Vec<long> L(20);
 
@@ -213,35 +231,33 @@ COUT(V[4]);
 
  rms = F.rms();  // ASL parse?
 
-pa(rms );
+ // pra(rms );
 
- pa(F);
+// pra(F);
  
   G= F.rng(1,6,1);
 
- pa(G);
+// pra(G);
 
-chkN(G[0],6.5);
-chkN(G[1],7);
+ chkN(G[0],6.5);
+
+  chkN(G[1],7);
 
   G= F.rng(0,-1,2);
 
-
-  pa(G ); // working?
+  cout << G << endl;
+  //pra(G ); // working?
 
 
   chkN(G[0],6);
     chkN(G[1],7);
     chkN(G[2],8);    
-
- pa(G);
+printf("test G[] \n");
+ //pra(G);
 
    G = F;
 
- pa(G);
-
-
-
+ //pra(G);
   
 
  ///G[0:-1:1] = F.rng(1,-1,2);  // this is ASL syntax
@@ -249,64 +265,65 @@ chkN(G[1],7);
 //  can do G(0,-1,2) for cpp
 //  but then require revise for asl - or translate/prep program
 //  can use vmf,cpp functions
-//  
+//   srng  - set the range of vec to RHS
+//   rng  -  get the range values of vec
 
  G.srng(0,-1,2) = F.rng(1,-1,2);
 
 // for Matrix
-// instead of M[0:3;1][0:-1:1]
+// instead of M[0:3:1][0:-1:1]
 // need M(rng(0,3,1), rng(0,1,1))
 
 //  3,4,5 D
 // has to be vargs 
 
- pa("fill subset range 0,-1,2) ",G);
+ //pra("fill subset range 0,-1,2) ",G);
 
 
 
 
   
-  X[3] =3.7;
+  X[3] = 3.7;
   X[5] = 2.1;
 
 
- COUT(F);
+ //pra(F);
 
  F[3]=16.78;
 
  F[7]= 26.25;
  
- ans= query("?? G=  F;","?",__LINE__);
+ //ans= query("?? G=  F;","?",__LINE__);
   
    G = F;
 
  chkN(G[3],16.78);
 
- COUT(G);
+ //pra(G);
 
- COUT(I);
+ //pra(I);
 
-  ans= query("?? G=  F + I;",ans,__LINE__);
+  //ans= query("?? G=  F + I;",ans,__LINE__);
   
   G = F + I;
 
 
   chkN(G[1], (F[1] + I[1]));
   
- COUT(G);
+ //pra(G);
 
  ans= query("OK? G=  F + I;",ans,__LINE__);
 
- COUT(Z);
+ //pra(Z);
 
-  ans= query("?? G=  F + Z;",ans,__LINE__);
+  //ans= query("?? G=  F + Z;",ans,__LINE__);
   
   G = F +Z;
 
 
- COUT(G);
+ //pra(G);
 
-  ans= query("OK?");
+  //ans= query("OK?");
   
 
   G = F + 5.01;
@@ -314,19 +331,19 @@ chkN(G[1],7);
   ans= query("OK G=  F + 5.01;",ans,__LINE__);
 
 
-//pa(F);
+//pra(F);
 
- COUT(F);
+// pra(F);
 
- COUT(G);
+ //pra(G);
 
-//ans= query("?? G = 45.67 "); 
+ans= query("?? G = 45.67 "); 
 
 //cout<<" // vec set to value \n";
 
   G= 45.57; 
 
-COUT(G);
+//pra(G);
 
 //ans= query("?? G = F ");
 
@@ -334,28 +351,28 @@ COUT(G);
 
   G = F ;  // vec copy
   
-COUT(G);
+//pra(G);
 
 //ans= query("?? G += 23.45;");
 //cout<<"SOP G += 23.45;";
 
 G += 23.45; // self += op
 
-COUT(G);
+//pra(G);
   I[5] = 66;
 
-  // pa(I , "\n");
+  // pra(I , "\n");
 
-  COUT(I);
+  //pra(I);
   
 
   L = I;
 
-   COUT(L);
+  // pra(L);
 
    L += 2;
 
-   COUT(L);
+  // pra(L);
 
 ans=query("?","L = I",__LINE__);
 
@@ -368,99 +385,98 @@ ans=query("?","L = I",__LINE__);
 
     I = L;
 
-  COUT(I);
+  //pra(I);
 
 ans=query("?","I $I = L $L",__LINE__);
 
 
    S = I;
 
-  COUT(S);
+  //pra(S);
 
-ans=query("?","S $S = I $I",__LINE__);
+//ans=query("?","S $S = I $I",__LINE__);
 
   S += 3;
 
   I = S;
 
-  COUT(I);
+//  pra(I);
 
-ans=query("?","I  = S",__LINE__);
+//ans=query("?","I  = S",__LINE__);
 
-COUT(D)
+ //pra(D);
 
    D = F;
 
-COUT(D)
+ //pra(D);
 
 ans=query("?","D = F",__LINE__);
 
 
-  COUT(D);
+//  pra(D);
 
   D += 5.4;
 
-  COUT(D);
+ // pra(D);
 
-  ans=query("?","D += 5.4",__LINE__);
+ ans=query("?","D += 5.4",__LINE__);
 
 
 
 //cout<<"SOP G *= 11.5;";
 
+
   G *= 11.5;
 
+// pra(G);
 
-
-
-
- COUT(G);
-
- ans= query("?? G *= 11.5;",ans,__LINE__);
+ //ans= query("?? G *= 11.5;",__LINE__);
  
 
   G = F ;
 
-COUT(G);
+// pra(G);
 
- ans= query("??  F * 5.01;",ans,__LINE__);
+ //ans= query("??  F * 5.01;",ans,__LINE__);
  
   G = F * 5.01;
 
- COUT(G);
+// pra(G);
 
-ans= query("OK G = F * 5.01;",ans,__LINE__);
+//ans= query("OK G = F * 5.01;",ans,__LINE__);
 
 //cout<<"range set G = F(1,5,1);\n";
 
-COUT(F);
+ //pra(F);
 
-F[1] = 92;
+ F[1] = 92;
 
 #if ASL
   G = F[1:7:1];  // ASL parse?
 <<"%V $G\n";
 #endif
 
-pa("rms = F.rms; ",ans,__LINE__);
+ //pra("rms = F.rms; ",ans,__LINE__);
 
   rms = F.rms();  // ASL parse?
   
-pa("??  G = F.vrng(1,7,1); ",ans,__LINE__);
+ //pra("??  G = F.vrng(1,7,1); ",__LINE__);
 
 
 G = F.rng();  // ASL parse?
 
-pa(G);
+//pra(G);
 
 G = F.rng(1,7,1);  // ASL parse?
 
- COUT(G);
+//pra("print out G?\n", G); // can't get this to work - template version?
 
-pa(G);
+//pra(G);
 
+ cout << "F: " <<  F<< endl; 
+ cout << "G: " << G << endl; 
 
-vecans= query("OK op range?",ans,__LINE__);
+//vecans= query("OK op range?",ans,__LINE__);
 
  //cout <<"G[0] " << G[0] << endl;
  
@@ -470,85 +486,92 @@ vecans= query("OK op range?",ans,__LINE__);
 
 //ans= query("?? G[0] = F[1]");
 
-COUT(H);
+ //pra(H);
 
 //cout<<"?? H = F(1,7,1);\n";
 
   H = F.rng(1,7,1);
 
-COUT(H);
+ //pra(H);
 
-  H.rng(1,3,1) = F.rng(3,1,-1);
+  H.srng(1,3,1) = F.rng(3,1,-1);
 
-COUT(F);
-COUT(H);
 
-ans= query("?? H(1,3,1) = F(3,1,-1);",ans,__LINE__);
+ //pra(F);
+ //pra(H);
+
+//ans= query("?? H.srng(1,3,1) = F.rng(3,1,-1);",__LINE__);
 
 //cout<<" F[1] = 42; ele set \n";
 
-F[1] = 42;
+ F[1] = 42;
 
   chkN(F[1],42);
   
-COUT(F);
+ //pra(F);
 
 //ans= query("?? F(1,6,1) = 48.0");
 //cout<<"vec range set F(1,6,1) = 48.0";
-  F(1,6,1) = 48.0;
+  F.srng(1,6,1) = 48.0;
 
-chkF(F[1],48.0);
- COUT(F);
+ chkF(F[1],48.0);
+
+ //pra(F);
 
 //cout<<"?? F(2,7,1) = 56.3;";
 
-  F(2,7,1) = 56.3;
+  F.srng(2,7,1) = 56.3;
 
 chkF(F[3],56.3);
 
-COUT(F);
+  //pra(F);
 
 //cout<<"?? rms = 35;";
 
  rms = F(1,7,1).rms();
 
-COUT(rms);
+//pra(rms);
 
 float f = F[6];
-long rng = 2;
+long rindex = 2;
 
-COUT(f);
+//pra(f);
 
 //cout<<"?? F(rng)";
-      F[rng] = 35;
+      F[rindex] = 35;
 
-COUT(F);
+ //pra(F);
 
 //cout<<"?? f=F[4] = 35;";
 
-f= F[4];
+ f= F[4];
 
-COUT(f);
+ //pra(f);
 
-   F[rng] = 35;
+ F[rindex] = 35;
    
-COUT(F);
+ //pra(F);
 
-COUT(X);
+ //pra(X);
 
-COUT(Y);
+ //pra(Y);
 
-R= Lfit(X,Y,-1);
+ R= Lfit(X,Y,-1);
 
-COUT(R);
+  //pra(R);
  //Vec<Str> S(10);
 
 
-/*
-
- Vec U(DOUBLE,10,-1,-2);
+ Vec<double> U(10,-1,-2);
 
   U.pinfo();
+
+  //pra(U);
+
+
+
+
+/*
 
 cout << "U = " << U << endl;
 
@@ -725,9 +748,9 @@ cout <<" V range assign\n" << V << endl ;
 
   cout << "Siv R " << R << endl;
 */
-  chkOut();
-  dbt("Exit cpp testing Vec \n");
 
+chkOut();
+  dbt("Exit cpp testing Vec \n");
   dbt("done debug vecworlds\n");
 
 #if CPP

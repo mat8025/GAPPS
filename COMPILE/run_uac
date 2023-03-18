@@ -1,0 +1,5 @@
+#run_uac
+#===================
+echo  $*
+asl -d -s 'Str dll = "uac" ; Str prg = _clarg[1]; Svar z=_clarg[2:-1:1]; Str sa="$z"; opendll("$dll"); <<"%V $prg "; ret = $prg (sa); exit(0); ' $*
+#============================

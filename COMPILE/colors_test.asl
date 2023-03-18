@@ -208,13 +208,13 @@ cout << "setting up awo " << endl;
      }
 
 
-pa("done awo\n");
+pra("done awo\n");
 
 
 
      worctile(awo,0.1,0.1,0.9,0.9,10,10);
 
-pa("rctile\n",__LINE__);
+pra("rctile\n",__LINE__);
 
      titleVers(colors_test_vers);
      
@@ -239,14 +239,14 @@ WPOS[1] = 84;
  COUT(WPOS);
 
 // ans=query("?","WPOS 2b assign ",__LINE__);
-//pa ("WPOS ", WPOS, __LINE__);
+//pra ("WPOS ", WPOS, __LINE__);
 
      WPOS= woGetPosition(gwo);
 
  //ans=query("?","WPOS done assign ",__LINE__);
  
 //ans=query("?","RWO value?  ",__LINE__);
-//pa ("WPOS ", WPOS);
+//pra ("WPOS ", WPOS);
  float Pi = 4.0 * atan(1.0);
 int c_index ;
 
@@ -273,7 +273,7 @@ while (1) {
 //   bluev =  atof (getWoValue(bwo))
 
      WPOS= woGetPosition(gwo);
-//pa ("WPOS ", WPOS);
+//pra ("WPOS ", WPOS);
 
    //COUT(WPOS);
 
@@ -281,7 +281,7 @@ while (1) {
 
  // COUT(WXY);
 
-//pa("getrx ", WXY);
+//pra("getrx ", WXY);
   //<<"$_ename $_ewoid  $WXY \n"
 
   //cout << "WXY[2] " << WXY[2] << endl;

@@ -32,10 +32,8 @@ The function returns a new vector (float, double) with the transformed values.
 /////
 */
 
-<|Use_=
-Demo  of vector range [start:stop:stride]  selection
-///////////////////////
-|>
+Str Use_ = "Demo  of vector range [start:stop:stride]  selection\n";
+
 
 
 
@@ -56,10 +54,13 @@ if (_dblevel >0) {
 
 chkIn(_dblevel)
 
- I = Vgen(INT_,30,-10,1)
+// I = Vgen(INT_,30,-10,1)
+
+
+Vec<int> I(30,-10,1);
 
 <<"$I \n"
-
+!a
 chkR(I[0],-10)
 chkR(I[29],19)
 
@@ -70,22 +71,22 @@ chkR(I[29],19)
 chkR(R[0],100)
 chkR(R[29],500)
 
-<<"I[0:10:1]   $I[0:10:1]   \n"
+<<"I.rng(0,30,2)   $I.rng(0,30,2)   \n"
+!a
+ I.pinfo();
 
-I<-pinfo()
+SI = I.rng(0,12,1);
 
-SI = I[0:10:1]
-
-SI<-pinfo()
+SI.pinfo()
 
 <<"%V $SI\n"
-
+!a
 chkN(SI[0],-10)
 chkN(SI[10],0)
 
 
 
-SI = I[0:10:2]
+SI = I.rng(0,10,2)
 <<"$I \n"
 <<"   $SI\n"
 
@@ -94,9 +95,9 @@ chkN(SI[5],0)
 
 
 
-SI = I[0:-1:2]
+SI = I.rng(0,-1,2);
 
-<<"I[0:-1:2]   $SI\n"
+<<"I.rng(0,-1,2)   $SI\n"
 sz=Caz(SI)
 chkN(sz,15)
 
@@ -104,9 +105,10 @@ chkN(SI[0],-10)
 chkN(SI[14],18)
 
 
-SI = I[10:20:1]
 
-<<"I[10:20:1]   $SI\n"
+SI = I.rng(10,20,1)
+
+<<"$(lastStatement(3))   $SI\n"
 sz=Caz(SI)
 <<"%V $sz\n"
 chkN(sz,11)
@@ -114,11 +116,13 @@ chkN(sz,11)
 chkN(SI[0],0)
 chkN(SI[10],10)
 
-SI = I[20:10:-1]
+
+
+SI = I.rng(20,10,-1)
 
 
 
-<<"I[20:10:-1]   $SI\n"
+<<"I.rng(20,10,-1)   $SI\n"
 <<"%V$I[20]\n"
 <<"%V$I[10]\n"
 
@@ -126,17 +130,22 @@ sz=Caz(SI)
 <<"%V $sz\n"
 chkN(sz,11)
 
-
+lastStatement(9);
 
 // should do a circular buffer
- I = Vgen(INT_,30,0,1)
+ Vec <int> I2(30,0,1);
 
-<<"%V$I \n"
 
-SI= I[20:10:1] ;
 
-<<"I[20:10:1]   $SI\n"
+
+<<"%V$I2 \n"
+
+SI= I.rng(20,10,1) ;
+
+<<" $SI\n"
+
 <<"%V$I[20]\n"
+
 <<"%V$I[10]\n"
 
 
@@ -149,19 +158,24 @@ chkN(SI[20],10)
 
 
 
-<<"%V$I[20:10:1] \n"
+<<"%V $I.rng(20,10,1) \n"
 // TBF print out not working
 
 
-SI= I[::] ;   // all
+SI= I ;   // all
+
 sz=Caz(SI)
 <<"%V $sz\n"
+
 <<"%V$SI\n"
-<<"%V$I[::]\n"
+<<"%V$I\n"
 
 chkN(sz,30)
 chkN(SI[0],0)
 chkN(SI[29],29)
+
+
+chkOut(); exit(-1);
 
 //  start from 2
 
@@ -204,8 +218,7 @@ chkN(sz,15)
 chkN(SI[0],0)
 chkN(SI[-1],28)
 
-//chkOut()
-//exit()
+chkOut() ; exit()
 
 SI= I[1::2] ;   // start 1 skip very other
 <<"%V$SI\n"

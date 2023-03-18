@@ -16,7 +16,7 @@
 
                                   
 
-#include <gasp-conf.h>
+
 #include  <stdio.h>
 #include  <fcntl.h>
 #include  <math.h>

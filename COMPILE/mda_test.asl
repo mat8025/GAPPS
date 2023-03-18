@@ -19,8 +19,8 @@
 /// cpp debug ??
 int run_mda_asl = 0;
 Str mda_ans="xxx";
-#define ASL 0
-#define CPP 1
+#define ASL 1
+#define CPP 0
 
 //printf("ASL %d CPP %d\n", ASL,CPP); // not CPP outside of main
 
@@ -129,7 +129,7 @@ cout << " trying access " << endl;
 int index = 6;
 int sz = MD.getSize();
    COUT(index)
-   pa(sz, index);
+   pra(sz, index);
    COUT(MD);
 
    COUT("/////////////////////////////////");
@@ -180,7 +180,12 @@ mda_ans = query("Bes pass?","??",__LINE__);
    MD(2,3,4) = dval;
 
    MD(4,3,5) = dval*2;
- COUT(MD);
+
+   val = MD.eleD(4,3,5); // RHS version 
+
+   chkN(val,dval*2);
+
+COUT(MD);
 printf("1,1,1 to 87.78\n");
      MD(1,1,1) = 87.78;
    
@@ -196,7 +201,7 @@ COUT(MD);
 
 
  MDI = MD;  // make this work!
- pa("MDI");
+ pra("MDI");
  printArray(1,MDI,1,"%d",-1);
 
 mda_ans = query("MDI = MD","??",__LINE__);
@@ -212,6 +217,8 @@ mda_ans = query("MDI = MD","??",__LINE__);
  printArray(1,MD4I,1,"%d");
 
 MD4I.pinfo();
+
+
 
 /*
 
@@ -279,7 +286,7 @@ MD4I.pinfo();
 
 #if ASL
 <<"%V $jj $V[jj] \n";
-pa(jj, V[jj]);
+pra(jj, V[jj]);
 #else
 ;
 #endif

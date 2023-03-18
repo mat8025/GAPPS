@@ -155,7 +155,6 @@ class Turnpt
 //=========================//
 
  void TPCUPset (Svar& wval)
-// void TPCUPset (Svar wval)
  {
 
 //<<"IN $_proc \n"
@@ -168,9 +167,6 @@ Str val2;
 //<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
  //  pa(wval);
 //  aslpinfo(wval);
-  int na = Caz(wval);
-
-//  <<"%V $na \n"
 //<<" $wval \n"
 
 //<<"TP  $wval[0] \n"

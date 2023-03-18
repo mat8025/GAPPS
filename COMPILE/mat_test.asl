@@ -19,8 +19,8 @@
 /// cpp debug ??
 int run_mat_asl = 0;
 Str matans="xxx";
-#define ASL 0
-#define CPP 1
+#define ASL 1
+#define CPP 0
 
 //printf("ASL %d CPP %d\n", ASL,CPP); // not CPP outside of main
 
@@ -28,7 +28,7 @@ Str matans="xxx";
 #if ASL
 // the include  when cpp compiling will re-define ASL 0 and CPP 1
 #include "compile.asl"
-#define AST matans=query("?","ASL DB goon",__LINE__,__FILE__);
+#define AST matans=query("?","ASL DB go on",__LINE__,__FILE__);
 //  printf("ASL %d CPP %d\n",ASL,CPP);
 #endif
 
@@ -54,8 +54,8 @@ printf("ASL %d CPP %d\n", ASL,CPP);
 #if CPP
 #warning USING_CPP
 
-#define CDB ans=query("?","goon",__LINE__,__FILE__);
-#define CDBP(x) ans=query(x,"goon",__LINE__,__FILE__);
+#define CDB ans=query("?","go on?",__LINE__,__FILE__);
+#define CDBP(x) ans=query(x,"go on?",__LINE__,__FILE__);
 
 #include <iostream>
 #include <ostream>
@@ -88,11 +88,11 @@ void
 Uac::matWorld(Svarg * sarg)  
 {
    dbt("debug \n");
-   Str ans= "xyz";
+   Str ans= "hey xyz";
    cout << "Hello simple Mat test  " << ans << endl;
    //setDebug(2,"pline");
    dbt("debug in matWorld\n");
-
+   CDBP("Que");
 #endif
 
 
@@ -103,10 +103,12 @@ Uac::matWorld(Svarg * sarg)
 
   COUT(MS);
 
- //pa(M);
+ pra(MS);
 
-//cout << "Siv M " << M << endl;
-  
+cout << "Siv MS " << MS << endl;
+  CDB;
+
+
 double rms;
 double val;
 double dval;
@@ -115,7 +117,7 @@ double dval;
    D.pinfo();
 //ans=query("?","Vec D(20) ",__LINE__);
 
-
+   CDB;
    Mat M(DOUBLE_,5,4);
 
 #if CPP
@@ -160,12 +162,15 @@ int index = 6;
 
  M( rvec, cvec)  = 17.71;   // range setting  bes
    COUT(M);
+   ans = "M(rvec,cvec)";
+   CDBP("M(rvec,cvec)");
 
  //M( (const int[]) {0,5,1}, (const int[]) {1,3,1})  = 46.64;
 
 //COUT(M);
 
-
+ pra("print M?\n",M);
+ CDBP("pra(M) ?");
  printf("val %f\n",val);
 
   val = M.Dele(2,3);
@@ -194,14 +199,14 @@ int index = 6;
 
 
 
-pa("?","SV $index",__LINE__);
+pra("?","SV $index",__LINE__);
   
 // rms = V.getVal(index);
 
  // rms = V[index]; // [] access
 
 
-//pa( " rms =V[6] ",rms);
+//pra( " rms =V[6] ",rms);
 
 //COUT(V(index));
 
@@ -221,7 +226,7 @@ pa("?","SV $index",__LINE__);
 
 #if ASL
 <<"%V $jj $V[jj] \n";
-pa(jj, V[jj]);
+pra(jj, V[jj]);
 #else
  //cout << "V(9)= 98 " << V[9] << endl;
 
@@ -249,7 +254,7 @@ pa(jj, V[jj]);
 //  3,4,5 D
 // has to be vargs 
 
-// pa("fill subset range 0,-1,2) ",G);
+// pra("fill subset range 0,-1,2) ",G);
 
 chkOut();
   dbt("Exit cpp testing Mat \n");

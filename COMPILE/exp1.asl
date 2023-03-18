@@ -50,7 +50,7 @@ double dproc(double arg)
    double in = arg;
    in += 7;
 
-   pa(in, arg);
+   pra(in, arg);
 
    return in;
 }
@@ -141,14 +141,14 @@ sv.pinfo();
 
   dout = dproc(lval);
 
-  pa(lval , dout);
+  pra(lval , dout);
 
   lval = k1;
 
 
   dout = dproc(lval);
 
-  pa(lval , dout);
+  pra(lval , dout);
 
   for (i= 0; i < 7 ; i++) {
      k= atol(sa.cptr(i));
@@ -161,7 +161,7 @@ sv.pinfo();
 #else    
     cout << k << " " << pt(k) << endl;
 #endif
-     pa(lval , dout);
+     pra(lval , dout);
   }
 
   return main_rtval;
@@ -196,7 +196,7 @@ sv.pinfo();
 cout << " paras are:  "  << a0.cptr(0) << endl;
  sa.findWords(a0.cptr());
 
-cout << " The glider Task turnpts and  parameters are:  "  << sa << endl;
+cout << " The   parameters for this module are:  "  << sa << endl;
 
 cout << " para[0] is:  "  << sa.cptr(0) << endl;
 
