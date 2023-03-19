@@ -78,7 +78,7 @@ Uac::vecWorld(Svarg * sarg)
    cout << "Hello simple Vec test  " << ans << endl;
    //setDebug(2,"pline");
    dbt("debug in vecWorld\n");
-
+   RUN_ASL = 0;
 #endif
 
 
@@ -205,8 +205,9 @@ printf("V[4]= 15  %f \n",V[4]);
 
  //pra(F);
 
- Vec<float>  G(10,7,0.5);
+ Vec<float>  G(10,0,0.5);
 
+cout << " print V " << V << endl;
 
 cout << " print g " << G << endl;
  CDBP(" G?");
@@ -234,14 +235,25 @@ cout << " print g " << G << endl;
  // pra(rms );
 
 // pra(F);
+ cout << " print F " << F << endl;
+ CDBP(" F?");
  
-  G= F.rng(1,6,1);
+  G = F.rng(1,6,2);
+  chkN(G[0],6);
+    chkN(G[1],7);
+  cout << " print g " << G << endl;
+ CDBP(" G?");
+ 
+  COUT(F);
+  COUT(G);
 
+  CDBP("G ?");
+  CDB;
 // pra(G);
 
- chkN(G[0],6.5);
+  chkN(G[0],6.5);
 
-  chkN(G[1],7);
+  chkN(G[1],7.5);
 
   G= F.rng(0,-1,2);
 
@@ -280,8 +292,6 @@ printf("test G[] \n");
  //pra("fill subset range 0,-1,2) ",G);
 
 
-
-
   
   X[3] = 3.7;
   X[5] = 2.1;
@@ -303,7 +313,7 @@ printf("test G[] \n");
 
  //pra(I);
 
-  //ans= query("?? G=  F + I;",ans,__LINE__);
+  ans= query("?? G=  F + I;",ans,__LINE__);
   
   G = F + I;
 
