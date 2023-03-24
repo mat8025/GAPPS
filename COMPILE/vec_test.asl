@@ -40,12 +40,13 @@ Str vecans="xxx";
 #if ASL
 <<"ASL   $(ASL) CPP $(CPP)\n"
 printf("ASL %d CPP %d\n", ASL,CPP);
+#define cout //
 #define COUT //
  run_vec asl = runASL();
 printf("run_asl %d\n",run_vec_asl);
 
 printf("ASL %d CPP %d\n", ASL,CPP);
-
+#define CDB ans=query("go on");
 #endif
 
 
@@ -53,9 +54,11 @@ printf("ASL %d CPP %d\n", ASL,CPP);
 
 #if CPP
 #warning USING_CPP
-
-#define CDB ans=query("?","go on",__LINE__,__FILE__);
 #define CDBP(x) ans=query(x,"go on",__LINE__,__FILE__);
+#define CDB ans=query("?","go on",__LINE__,__FILE__);
+
+
+#define  CHKNE(x,y)  chkN(x,y,EQU_, __LINE__);
 
 #include <iostream>
 #include <ostream>
@@ -88,7 +91,7 @@ Uac::vecWorld(Svarg * sarg)
 
 //  pra(M);
 
- ans=query("?",lastStatement(),__LINE__);
+// ans=query("?",lastStatement(),__LINE__);
 
  //pra(M);
 
@@ -130,16 +133,15 @@ int index = 6;
 
   // pra(V[7]);
 
-chkN(V[0],10);
+CHKNE(V[0],10.0)
+
+
 
 #if ASL
 
 <<"%V $index $V[7] \n";
 
 #endif
-
-
-
 
 
  Siv SV(INT_,1,10,-3,1);
@@ -210,8 +212,102 @@ printf("V[4]= 15  %f \n",V[4]);
 cout << " print V " << V << endl;
 
 cout << " print g " << G << endl;
- CDBP(" G?");
+// CDBP(" G?");
 //pra("G ?", G); // won't work for templated Vec - use print char* ?
+
+ CHKNE(G[1],0.5)
+
+
+ rms = F.rms();  // ASL parse?
+ CDB;
+ 
+ // pra(rms );
+
+// pra(F);
+  cout << " print F " << F << endl;
+
+
+
+ 
+  cout << " print g 0,0.5,1.0 ... " << G << endl;
+
+  CDBP(" G= F.rng(1,6,2)")
+
+  G = F.rng(1,6,2);
+  
+  cout << " print g 6.5 7.5 8.5 ... " << G << endl;
+
+
+  CDBP("G ?");
+  CHKNE(G[0],6.5)
+  CHKNE(G[1],7.5)
+
+
+ // CDBP(" G?");
+ 
+  COUT(F);
+  COUT(G);
+
+ // CDBP("G ?");
+
+// pra(G);
+
+  CHKNE(G[0],6.5)
+  CHKNE(G[1],7.5)
+
+  cout <<"G:  " << G << endl;
+  
+  G = F.rng(0,-1,2);
+  
+  cout <<"F: " << F << endl;
+  cout <<"G: 6 7 8 ... " << G << endl;
+
+//pra(G ); // working?
+
+
+    CHKNE(G[0],6.0)
+    
+    CHKNE(G[1],7.0)
+    
+    CHKNE(G[2],8.0)
+printf("test G[] %f %f %f\n",G[0],G[1],G[2]);
+printf("test F[] %f %f %f\n",F[0],F[1],F[2]);
+ //CDBP(" G?");
+
+ //pra(G);
+
+   G = F;
+
+ //pra(G);
+  
+
+ ///G[0:-1:1] = F.rng(1,-1,2);  // this is ASL syntax
+ // can't do an exact cpp operator version
+//  can do G(0,-1,2) for cpp
+//  but then require revise for asl - or translate/prep program
+//  can use vmf,cpp functions
+//   srng  - set the range of vec to RHS
+//   rng  -  get the range values of vec
+
+ G.srng(0,-1,2) = F.rng(1,-1,2);
+  cout <<"F: " << F << endl;
+  cout <<"G:  " << G << endl;
+
+ printf("test F[] %f %f %f\n",F[0],F[1],F[2]);
+ printf("test G[] %f %f %f\n",G[0],G[1],G[2]);  
+
+ CHKNE(G[0],F[1]);
+// CDBP(" G?");
+
+// for Matrix
+// instead of M[0:3:1][0:-1:1]
+// need M(rng(0,3,1), rng(0,1,1))
+
+//  3,4,5 D
+// has to be vargs 
+
+ cout << "fill subset range 0,-1,2) " << G << endl;
+
 
  Vec<float> Z(10,20,2.5);
 
@@ -229,69 +325,6 @@ cout << " print g " << G << endl;
    Vec<long> L(20);
 
    Vec<short> S(20);
-
- rms = F.rms();  // ASL parse?
-
- // pra(rms );
-
-// pra(F);
- cout << " print F " << F << endl;
- CDBP(" F?");
- 
-  G = F.rng(1,6,2);
-  chkN(G[0],6);
-    chkN(G[1],7);
-  cout << " print g " << G << endl;
- CDBP(" G?");
- 
-  COUT(F);
-  COUT(G);
-
-  CDBP("G ?");
-  CDB;
-// pra(G);
-
-  chkN(G[0],6.5);
-
-  chkN(G[1],7.5);
-
-  G= F.rng(0,-1,2);
-
-  cout << G << endl;
-  //pra(G ); // working?
-
-
-  chkN(G[0],6);
-    chkN(G[1],7);
-    chkN(G[2],8);    
-printf("test G[] \n");
- //pra(G);
-
-   G = F;
-
- //pra(G);
-  
-
- ///G[0:-1:1] = F.rng(1,-1,2);  // this is ASL syntax
- // can't do an exact cpp operator version
-//  can do G(0,-1,2) for cpp
-//  but then require revise for asl - or translate/prep program
-//  can use vmf,cpp functions
-//   srng  - set the range of vec to RHS
-//   rng  -  get the range values of vec
-
- G.srng(0,-1,2) = F.rng(1,-1,2);
-
-// for Matrix
-// instead of M[0:3:1][0:-1:1]
-// need M(rng(0,3,1), rng(0,1,1))
-
-//  3,4,5 D
-// has to be vargs 
-
- //pra("fill subset range 0,-1,2) ",G);
-
-
   
   X[3] = 3.7;
   X[5] = 2.1;
@@ -304,25 +337,27 @@ printf("test G[] \n");
  F[7]= 26.25;
  
  //ans= query("?? G=  F;","?",__LINE__);
-  
-   G = F;
 
- chkN(G[3],16.78);
+ cout <<"F:  " << F << endl;  
+   G = F;
+ cout <<"G:  " << G << endl;
+ CDBP("G=F")
+ CHKNE(G[3],16.78);
 
  //pra(G);
 
  //pra(I);
 
-  ans= query("?? G=  F + I;",ans,__LINE__);
+//  ans= query("?? G=  F + I;",ans,__LINE__);
   
   G = F + I;
-
-
-  chkN(G[1], (F[1] + I[1]));
+ cout <<"I:  " << I << endl;
+ cout <<"G: F + I " << G << endl;
+  CHKNE(G[1], (F[1] + I[1]));
   
  //pra(G);
 
- ans= query("OK? G=  F + I;",ans,__LINE__);
+// ans= query("OK? G=  F + I;",ans,__LINE__);
 
  //pra(Z);
 
@@ -338,7 +373,7 @@ printf("test G[] \n");
 
   G = F + 5.01;
 
-  ans= query("OK G=  F + 5.01;",ans,__LINE__);
+//  ans= query("OK G=  F + 5.01;",ans,__LINE__);
 
 
 //pra(F);
@@ -347,7 +382,7 @@ printf("test G[] \n");
 
  //pra(G);
 
-ans= query("?? G = 45.67 "); 
+//ans= query("?? G = 45.67 "); 
 
 //cout<<" // vec set to value \n";
 
@@ -360,14 +395,14 @@ ans= query("?? G = 45.67 ");
 //cout<<"G = F vec copy \n"; 
 
   G = F ;  // vec copy
-  
+   cout <<"G: = F " << G << endl;
 //pra(G);
 
 //ans= query("?? G += 23.45;");
 //cout<<"SOP G += 23.45;";
 
 G += 23.45; // self += op
-
+  cout <<"G: += 23.45 " << G << endl;
 //pra(G);
   I[5] = 66;
 
@@ -384,7 +419,7 @@ G += 23.45; // self += op
 
   // pra(L);
 
-ans=query("?","L = I",__LINE__);
+//ans=query("?","L = I",__LINE__);
 
 #if ASL
 <<"%V $L\n";
@@ -397,7 +432,7 @@ ans=query("?","L = I",__LINE__);
 
   //pra(I);
 
-ans=query("?","I $I = L $L",__LINE__);
+//ans=query("?","I $I = L $L",__LINE__);
 
 
    S = I;
@@ -420,7 +455,7 @@ ans=query("?","I $I = L $L",__LINE__);
 
  //pra(D);
 
-ans=query("?","D = F",__LINE__);
+//ans=query("?","D = F",__LINE__);
 
 
 //  pra(D);
@@ -429,7 +464,7 @@ ans=query("?","D = F",__LINE__);
 
  // pra(D);
 
- ans=query("?","D += 5.4",__LINE__);
+// ans=query("?","D += 5.4",__LINE__);
 
 
 
@@ -492,7 +527,7 @@ G = F.rng(1,7,1);  // ASL parse?
  
  //cout <<"F[1] " << F[1] << endl;
 
-  chkF(G[0],F[1]);
+  CHKNE(G[0],F[1]);
 
 //ans= query("?? G[0] = F[1]");
 
@@ -516,7 +551,7 @@ G = F.rng(1,7,1);  // ASL parse?
 
  F[1] = 42;
 
-  chkN(F[1],42);
+  CHKNE(F[1],42.0);
   
  //pra(F);
 
@@ -530,17 +565,30 @@ G = F.rng(1,7,1);  // ASL parse?
 
 //cout<<"?? F(2,7,1) = 56.3;";
 
-  F.srng(2,7,1) = 56.3;
+  F.srng(2,5,1) = 56.3;
 
 chkF(F[3],56.3);
 
+  F[6] = -13.4;
   //pra(F);
 
 //cout<<"?? rms = 35;";
 
- rms = F(1,7,1).rms();
+// rms = F(1,7,1).rms();
+  F.srng(0,-1,1);
+  
+  rms = rms(F);
+pra(rms);
 
-//pra(rms);
+  //rms = Rms(F(1,7,1));
+
+  F.srng(2,5,1);
+pra(rms);
+
+  rms = rms(F);
+pra(rms);
+
+ CDB
 
 float f = F[6];
 long rindex = 2;
