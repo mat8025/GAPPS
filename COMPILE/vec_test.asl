@@ -47,6 +47,8 @@ printf("run_asl %d\n",run_vec_asl);
 
 printf("ASL %d CPP %d\n", ASL,CPP);
 #define CDB ans=query("go on");
+//#define CDBP (x) ans=query(x,"go on"); // asl not working
+#define CDBP //
 #endif
 
 
@@ -131,7 +133,7 @@ int index = 6;
  printf("? is this in the DLL\n");
   // pra(index,__LINE__);
 
-  // pra(V[7]);
+  pra(V[7]);
 
 CHKNE(V[0],10.0)
 
@@ -220,7 +222,7 @@ cout << " print g " << G << endl;
 
  rms = F.rms();  // ASL parse?
  CDB;
- 
+
  // pra(rms );
 
 // pra(F);
@@ -500,20 +502,27 @@ G += 23.45; // self += op
   G = F[1:7:1];  // ASL parse?
 <<"%V $G\n";
 #endif
-
+   F[2] = 111.7;
+   F[4] = -77.0;
  //pra("rms = F.rms; ",ans,__LINE__);
-
+   F.srng(0,-1,1);
   rms = F.rms();  // ASL parse?
-  
+<<" F.srng(0,-1,1)  $rms \n"
+
+F.srng(1,-1,2);
+  rms = F.rms();  // ASL parse?
+<<" F.srng(1,-1,2)  $rms \n"
+!a  
  //pra("??  G = F.vrng(1,7,1); ",__LINE__);
 
 
 G = F.rng();  // ASL parse?
 
+
 //pra(G);
 
 G = F.rng(1,7,1);  // ASL parse?
-
+!a
 //pra("print out G?\n", G); // can't get this to work - template version?
 
 //pra(G);
@@ -575,9 +584,9 @@ chkF(F[3],56.3);
 //cout<<"?? rms = 35;";
 
 // rms = F(1,7,1).rms();
-  F.srng(0,-1,1);
+  F.srng(0,-1,2);
   
-  rms = rms(F);
+  rms = F.rms();
 pra(rms);
 
   //rms = Rms(F(1,7,1));
@@ -585,8 +594,8 @@ pra(rms);
   F.srng(2,5,1);
 pra(rms);
 
-  rms = rms(F);
-pra(rms);
+ rms = F.rms();
+//pra(rms);
 
  CDB
 

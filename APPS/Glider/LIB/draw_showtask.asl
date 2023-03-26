@@ -37,7 +37,7 @@ void zoomMap(int t1, int t2)
 
 printf(" zoomMap %d %d \n",t1,t2);
 
-//pa(t1 ,t2 );
+//pra(t1 ,t2 );
 
 //ans=query("?","ZOOM_MAP",__LINE__);
 //  find min,max for lat and long
@@ -65,7 +65,7 @@ printf(" zoomMap %d %d \n",t1,t2);
 
 printf(" n %d min_lat %f max_lat %f min_lng %f max_lng %f\n",n,min_lat ,max_lat ,min_lng ,max_lng);
 
-//pa(n ,min_lat ,max_lat ,min_lng ,max_lng,"\n");
+//pra(n ,min_lat ,max_lat ,min_lng ,max_lng,"\n");
 
    LongW = max_lng +0.1;
    LongE = min_lng -0.1;
@@ -108,7 +108,7 @@ adbprintf(-1,"DrawMap in\n");
 
 //CDBP("MapCoors")
 
-//  pa(Mapcoors);
+//  pra(Mapcoors);
 
 //ans=query("?","Mapcoors",__LINE__);
 
@@ -135,7 +135,7 @@ adbprintf(-1,"DrawMap in\n");
 
  // sWo(mapwo,_WDRAWON,_WSHOWPIXMAP,_WCLIPBORDER);
  
-pa("mapwo ",mapwo);
+pra("mapwo ",mapwo);
 
   gg_gridLabel(mapwo);
   
@@ -164,7 +164,7 @@ pa("mapwo ",mapwo);
 
     mlab = Wtp[k].Place;
 
-   //pa(k,is_an_airport,mlab);
+   //pra(k,is_an_airport,mlab);
    
   // ans=query("?","DrawMAP",__LINE__);
 //<<"%V $k $mlab  $is_an_airport \n"
@@ -188,9 +188,9 @@ pa("mapwo ",mapwo);
 
   longi = Wtp[k].Longdeg;
 
-  //pa(k ,is_an_airport  ,mlab, msl ,lat ,longi);
+  //pra(k ,is_an_airport  ,mlab, msl ,lat ,longi);
 
-  //pa(k,msl,lat,longi, mlab);
+  //pra(k,msl,lat,longi, mlab);
 
 //<<"%V $k $longi  $Wtp[k].Longdeg \n"
 
@@ -458,7 +458,7 @@ void drawTrace()
          sWo(_WOID,vvwo,_WCLEARPIXMAP,ON_);
 
 
-         //pa(Ntpts);;
+         //pra(Ntpts);;
           //DrawMap(mapwo);
 	  
   	 if (Ntpts > 0) {
@@ -561,12 +561,12 @@ if (st_rc_gl != -1) {
 
   float rY;
 
-  //pa(rx,ry);
+  //pra(rx,ry);
 
   sWo(_WOID,wid,_WPENHUE,BLACK_);
   
 //ans=query("?1","b4 wgetrscales",__LINE__);
-//pa("wid ",wid,__LINE__);
+//pra("wid ",wid,__LINE__);
 ST_RS[1] = 4.5;
 ST_RS[2] = 77.67;
 
@@ -591,13 +591,13 @@ ST_RS[4] = 52.67;
 
   ry= ST_RS[2];
 
-//pa(rx,ry);
+//pra(rx,ry);
 
   rX= ST_RS[3];
 
   rY= ST_RS[4];
 
-//pa(rx,ry,rX,rY);
+//pra(rx,ry,rX,rY);
 
 
   if (ry == -1.0) {
@@ -606,7 +606,7 @@ ST_RS[4] = 52.67;
 
    //COUT(ST_RS);
 #if 0   
-//pa(wid,"RS ",ST_RS);
+//pra(wid,"RS ",ST_RS);
 
   //putMem("LongW","$rx",1);
 
@@ -1608,7 +1608,7 @@ fastxic(0);
 
   int i;
 
-  pa(Ntaskpts);
+  pra(Ntaskpts);
 
 //  ans = query("see taskpts");
 
@@ -1617,7 +1617,7 @@ fastxic(0);
   for (i = 0; i < Ntaskpts ; i++) {
 
   index = Taskpts[i];
-//  pa(i, " index ", index);
+//  pra(i, " index ", index);
   
  if ((index > 0)  && (index <= Ntp) ) {
 
@@ -1634,7 +1634,7 @@ fastxic(0);
   msl = Wtp[index].Alt;
 
 
-//pa(i, index, tpl, la2, msl);
+//pra(i, index, tpl, la2, msl);
 
 
 //ans = query("see taskpt");
@@ -1732,7 +1732,7 @@ fastxic(0);
 
   Task_update = 1;
 
-//pa( "totalK ", totalK, " Coors ", LongW, LatS, LongE, LatN);
+//pra( "totalK ", totalK, " Coors ", LongW, LatS, LongE, LatN);
 //<<"DONE $_proc  $totalK \n"
 
       woSetValue(tdwo,totalK);
@@ -1830,7 +1830,7 @@ fastxic(0);
   float msl;
   float mkm;
   float ght;
- //pa(__LINE__,longx, laty);
+ //pra(__LINE__,longx, laty);
 
   longa = longx;
 
@@ -1839,7 +1839,7 @@ fastxic(0);
   for (k = 0 ; k < Ntp ; k++) {
 
   isairport = Wtp[k].GetTA();
-  //pa(k,   isairport );
+  //pra(k,   isairport );
 //DBG"$_proc %V $isairport \n"
 
   if (isairport) {
@@ -1854,7 +1854,7 @@ fastxic(0);
 //FIX_PARSE_ERROR                sa = Wtp[k].Alt + ght + 2000
 
   saf = msl + ght + 2000;
-  //pa(mkm,ght,saf);
+  //pra(mkm,ght,saf);
 
 
 
@@ -1872,7 +1872,7 @@ fastxic(0);
 
   if (mkey != -1) {
   
-  //pa("found mkey" ,mkey);
+  //pra("found mkey" ,mkey);
 
   Wtp[mkey].Print();
 

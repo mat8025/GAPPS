@@ -1426,3 +1426,6 @@ args_parse_e.cpp                    2.20  03/07/2023 18:59:51  DB tidy
 proc_call_e.cpp                     3.50  03/07/2023 19:00:34  Vid arg mods
 filesearch.cpp                      1.6  03/07/2023 19:02:52  revise search options for seeking in file
 asl.cpp                             4.81  03/12/2023 04:27:15  list revision
+ds_arraycopy.cpp                    2.73  03/26/2023 09:53:24  Vec mods
+ds_sivrange.cpp                     2.3  03/26/2023 09:54:12  Vec mods
+stat_m.cpp                          1.97  03/26/2023 09:55:19  vec mods

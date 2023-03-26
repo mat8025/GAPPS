@@ -247,7 +247,7 @@ if (use_cup) {
 }
 else {
    Nrecs=SRX.readRecord(AFH,_RLAST);  // no back ptr to Siv?
-   pa("Nrecs ", Nrecs);
+   pra("Nrecs ", Nrecs);
    
 }
 
@@ -312,7 +312,7 @@ for (i= 0; i <= 10 ; i++) {
 //printf("SRX.getRecord(1);");
 //  Wval= SRX.getRecord(1);
 
-//  pa(Wval);
+//  pra(Wval);
 
 //  ans=query("?","row 1",__LINE__,__FILE__);
 
@@ -456,7 +456,7 @@ printf(" Read Ntp %d turnpts \n",Ntp);
 
 	  targ = sa.cptr(ai);
 
-//   pa(ai, " targ ",targ);
+//   pra(ai, " targ ",targ);
 //ans=query("?","TP",__LINE__);
 
 //<<"%V $sa[ai]  $ai $targ \n"
@@ -470,7 +470,7 @@ printf(" Read Ntp %d turnpts \n",Ntp);
            ai++;
            igc_fname = sa.cptr(ai);
 
-   pa(igc_fname);
+   pra(igc_fname);
 
 //AST
 
@@ -604,7 +604,7 @@ int k;
 
   if (Have_igc) {
 
-pa(" Have_igc", igc_fname);
+pra(" Have_igc", igc_fname);
 
 
 
@@ -664,11 +664,11 @@ Str place;
 
     //sWo(tpwo,_WREDRAW);
 
-//pa("Ntaskpts ", Ntaskpts);
+//pra("Ntaskpts ", Ntaskpts);
 
     taskDist(); // should extract Coors to show task -- or default
 
-//pa( " Coors ", LongW, LatS, LongE, LatN);
+//pra( " Coors ", LongW, LatS, LongE, LatN);
 
      Str c= "EXIT";
 
@@ -676,7 +676,7 @@ Str place;
 
  Mapcoors= woGetPosition (mapwo);
 
-// pa(Mapcoors);
+// pra(Mapcoors);
 
 
 
@@ -759,7 +759,7 @@ Str place;
 	
  //   sGl(_GLID,igc_tgl,_GLDRAW,BLUE_);  // DrawGline;
 
-    //pa(Ntpts," mAx ele ", Max_ele);
+    //pra(Ntpts," mAx ele ", Max_ele);
     
     //sWo(_WOID,vvwo, _WSCALES, wbox(0, 0, Ntpts, Max_ele +500));
     sWo(_WOID,vvwo, _WSCALES, wbox(0, 0, Ntpts, 5000));
@@ -1162,7 +1162,7 @@ adbprintf(-1,"DrawMap\n");
        }
        else if (Ev_woname == "MAP") {
 
-//pa("in map", Ev_rx, Ev_ry);
+//pra("in map", Ev_rx, Ev_ry);
 
                drawit = 0;
 
@@ -1172,8 +1172,8 @@ adbprintf(-1,"DrawMap\n");
 
                Wtp[ntp].Print();
                nval = Wtp[ntp].GetPlace();
-	       pa(ntp, nval);
-            pa("found ", ntp ,nval);
+//	       pra(ntp, nval);
+//            pra("found ", ntp ,nval);
 	        
 	//	 sprintf(Gpos,"%d %s",ntp,nval);
 		sprintf(Gpos,"%d %s",ntp,nval.cptr()); 
