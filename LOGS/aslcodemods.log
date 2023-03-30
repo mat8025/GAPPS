@@ -1429,3 +1429,7 @@ asl.cpp                             4.81  03/12/2023 04:27:15  list revision
 ds_arraycopy.cpp                    2.73  03/26/2023 09:53:24  Vec mods
 ds_sivrange.cpp                     2.3  03/26/2023 09:54:12  Vec mods
 stat_m.cpp                          1.97  03/26/2023 09:55:19  vec mods
+args_l.cpp                          1.6  03/29/2023 10:27:56  cprintf cpp 
+tokvmf.cpp                          1.3  03/30/2023 14:14:52  sq,dq str process
+svar_utils.cpp                      1.58  03/30/2023 15:27:54  strcsubstr
+ic_pic.cpp                          1.63  03/30/2023 15:29:13  CAT_STR \n

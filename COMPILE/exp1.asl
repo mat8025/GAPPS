@@ -182,6 +182,10 @@ sv.pinfo();
 
  extern "C" int exp1(Svarg * sarg)  {
 
+
+Str Use_= " Demo  of test cprintf  ";
+
+
     Str a0 = sarg->getArgStr(0) ;
  
     Uac *o_uac = new Uac;

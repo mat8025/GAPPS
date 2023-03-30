@@ -521,7 +521,7 @@ ESL=';//==============\_(^-^)_/==================//;';
    fflush();
 
   if (do_query) {
-   ans=query("pp correct?");
+   ans=query("pp correct? [n,q,c]");
    
     if (ans == "n") {
          break;

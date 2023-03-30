@@ -81,7 +81,7 @@ float Dur[20];
 
   float TKM[20];
   float AGL[20];
-  
+  char  Hey[10] = "hey hey";
   float L1;
   float L2;
   //float lo1,lo2;
@@ -854,10 +854,10 @@ while (ac < na) {
 
   if (show_title) {
   
-#if ASL
-  <<" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n";
-  <<"Leg TP\t\tID\tRadio\t\tMSL\tFGA\t Dist($Units)\t Hdg \tDur\tPC\tRunTotD\tTime\tLAT\t\tLONG \n";
-#endif
+
+  printf(" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n");
+ printf("Leg TP     ID    RADIO     AMSL            HDG         Dist    FGA          Dur      RunTotD RunTime  PC LAT LONG \n");
+
 
   }
 
@@ -1094,36 +1094,42 @@ while (ac < na) {
 
      GT_Wleg[li].pc = pc_tot;
      
+
+// printf("%d %-5s  \t%s\t%s   %6.0fft   %6.0fft         \n",li,ident,GT_Wtp[li].Lat,GT_Wtp[li].Lon, GT_Wtp[li].fga, GT_Wtp[li].Alt);
+  //
 #if ASL
-
-tct = TC[li];
-dct = Dur[li];
-//<<"$li\t${tpb}${ws}${ident}${wsi} ";
-<<"$(li+1) ${tpb}\t${ident} ${GT_Wtp[li]->Radio} "; 
-<<"%11.0f${GT_Wtp[li]->Alt} ${GT_Wtp[li]->fga} ";
-<<"%6.2f $GT_Wleg[li]->dist\t %3.0f$TC[li]\t %4.2f$Dur[li] " 
-<<"%4.1f$GT_Wleg[li]->pc_tot ";
-<<"%6.2f$rtotal\t%4.2f$tot_time ";
-<<"${GT_Wtp[li]->Lat} ${GT_Wtp[li]->Lon}\s";
-<<"\n";
-
-//<<"$GT_Wleg[li]->dist\t$tct\t$dct\t$rtotal\t%6.2f${GT_Wtp[li]->Radio}\n";
-
-//  ans=query("??");
+  printf("%d %-10s %-5s %-8s %6.0ff",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Radio,GT_Wtp[li].Alt);
 #else
-// printf("%d %s  \t%s\t%s   %6.0fft   %6.0fft         \n",li,ident,GT_Wtp[li].Lat,GT_Wtp[li].Lon, GT_Wtp[li].fga, GT_Wtp[li].Alt);
-printf("%d %s%s%s%s%s %s  %6.0fft  %6.0fft ",li,GT_Wtp[li].Place.cptr(),ws.cptr(),ident.cptr(),wsi.cptr(),GT_Wtp[li].Lat.cptr(),GT_Wtp[li].Lon.cptr(), GT_Wtp[li].fga, GT_Wtp[li].Alt);
+ //printf("%d %-10s %-5s %-8s",li,GT_Wtp[li].Place.cptr(),ident.cptr(),GT_Wtp[li].Radio.cptr())  ;
+ 
+ //cprintf("%d  %-10S %-5S %-8S ",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Radio)  ;
+cprintf("%d  %-10S %-5S %-8S  %6.0fft  ",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Radio,GT_Wtp[li].Alt);
 
-   printf("\t%6.2f%%",GT_Wleg[li].pc); 
-    printf("\t%5.1f ",GT_Wleg[li].dist);
+#endif
+
+  
+  //printf("%6.0ff  ", GT_Wtp[li].Alt);
+  printf("\t%6.0fd ",TC[li]);
+  printf("\t%5.1f ",GT_Wleg[li].dist);
+  printf("%6.0fft ",GT_Wtp[li].fga);
+
+
   
 //cout  << "%5.1f$GT_Wleg[li]->dist\t$rtotal\t$rtime\t%6.2f${GT_Wtp[li]->Radio} " ; 
-  printf("\t%6.0f ",TC[li]);
 
-  printf("\t%6.2f %6.2f %6.2f ",Dur[li],rtotal,tot_time);
+  printf("\t%6.2f",Dur[li]);
 
-  printf("\t%s\n",GT_Wtp[li].Radio.cptr())  ; 
-#endif
+  printf("\t%6.2f %6.2f ",rtotal,tot_time);
+  printf("\t%6.2f%% ",GT_Wleg[li].pc); 
+#if ASL
+  printf("%s %s \n",GT_Wtp[li].Lat,GT_Wtp[li].Lon);
+#else
+  printf("%s %s \n",GT_Wtp[li].Lat.cptr(),GT_Wtp[li].Lon.cptr());
+  //printf("%s %s \n",GT_Wtp[li].Lat,GT_Wtp[li].Lon);
+#endif  
+
+
+
 
   }
 

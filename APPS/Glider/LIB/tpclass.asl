@@ -61,7 +61,10 @@ class Tleg
   msl = 0.0;
  // <<"Done cons $dist $pc\n"
  }
- 
+ Str getPlace ()   
+   {
+       return Place; 
+   }
 };   // need ;
 
 
