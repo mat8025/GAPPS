@@ -2,7 +2,7 @@
 ///
 ///
 
-proc getArmN (char  cna[])
+Pan getArmN (char  cna[])
 {
 Pan psum = 0;
 //<<"%V $cna[::] \n"
@@ -21,12 +21,16 @@ Pan psum = 0;
 //=========================
 
 
-str Ns = _clarg[1];
+Str Ns = _clarg[1];
 
-N = atop(Ns)
+Pan N = atop(Ns)
+Pan ret;
 
 
- np = slen(Ns);
+ int np = slen(Ns);
+
+<<"%V $N $np $Ns\n";
+
 
 char cnum[np+1];
 
@@ -49,9 +53,10 @@ if (cnum[0] @= '-' ) {
 
 Pan pw[10];
 
+
 <<" $np powers 0 to 9\n"
       for (i=0; i < 10 ;i++) {
-            pw[i] = i^np ;
+            pw[i] = i^^np ;
 	    <<"<$i>$pw[i] \n"
       }
 
@@ -71,8 +76,9 @@ else {
 }
 
 
-  Pan pk = N
+  Pan pk = N;
 
-  ret=isarmstrong (Ns,10);
+ // ret=isarmstrong (Ns,10);
 
-<<"$ret  %d $ret  $pk\n"
+//<<"$ret    $pk\n"
+
