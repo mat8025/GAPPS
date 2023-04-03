@@ -25,53 +25,19 @@
 #include "compile.asl"
 #endif
 
-
 #if ASL
-#define cout //
-#define COUT //
-//int run_vec asl = runASL();
-#define CDB ans=query("go on");
-//#define CDBP (x) ans=query(x,"go on"); // asl not working
-#define CDBP //
-#include "debug.asl";
-
-if (_dblevel >0) {
-   debugON()
-}
-   chkIn(_dblevel); 
+#include "rgt_asl.h"
 #endif
 
-
 #if CPP
-#warning USING_CPP
-#define CDBP(x) ans=query(x,"go on",__LINE__,__FILE__);
-#define CDB ans=query("?","go on",__LINE__,__FILE__);
-#define chkEQ(x,y)  chkN(x,y,EQU_, __LINE__);
-#define BXOR_ ^
-#include <iostream>
-#include <ostream>
-
-#include "vec.h"
-#include "uac.h"
-#include "gline.h"
-#include "glargs.h"
-//  IF USING  graphics
-#include "winargs.h"
-#include "woargs.h"
-#include "vargs.h"
-#include "gevent.h"
-
+#include "rgt_cpp.h"
 
 int Rgt::bitwise(Svarg * sarg)  
 {
-  Str ans = "?";
-  printf("bitwise\n");
-  cout << " bitwise test  " << ans << endl;
   RUN_ASL = 0;
-
 #endif
- ////////////////////////////////////// COMMON  CODE  ASL/CPP compatible  /////////////////////
 
+ ////////////////////////////////////// COMMON  CODE  ASL/CPP compatible  /////////////////////
 
 
   int  j = 5;
@@ -79,17 +45,27 @@ int Rgt::bitwise(Svarg * sarg)
   int  k = 1;
 
   int m = j & k;
-
+  double d = 1234.567;
   chkEQ(m,1);
 
-  <<"%V $j & $k BAND  $m \n";
+  
+  cprintf("  j %d &  k %d BAND   m %d \n",j,k,m);  //   <<"%V $j & $k BAND  $m \n";
+
+   QANS; printf("%s\n",Qans);
+   m = 77;
+  cprintf("  j %d &  k %d BAND   m %d  d %f\n",j,k,m,d);  //   <<"%V $j & $k BAND  $m \n";  
   
 
+
+  QANS; printf("%s\n",Qans);
+  
   k = 2;
 
   m = j & k;
 
-  <<"%V $j & $k BAND  $m \n";
+  exit(-1);
+  
+  cprintf("  j %d &  k %d BAND   m %d \n",j,k,m);  //   <<"%V $j & $k BAND  $m \n";  
 
   chkEQ(m,0);
 
@@ -97,13 +73,15 @@ int Rgt::bitwise(Svarg * sarg)
 
   m = j & k;
 
-  <<"%V $j & $k BAND  $m \n";
+  
+  cprintf("  j %d &  k %d BAND   m %d \n",j,k,m);  //   <<"%V $j & $k BAND  $m \n";  
 
   chkEQ(m,4);
 
   m = ( j | k );
 
-  <<"$j | $k BOR  $m \n";
+  
+  cprintf("%d | %d BOR  %d \n",j,k,m);  //   <<"$j | $k BOR  $m \n";  
 
   chkEQ(m,5);
 
@@ -111,7 +89,8 @@ int Rgt::bitwise(Svarg * sarg)
 
   m = ( j | k );
 
-  //<<"%V $j | $k BOR  $m \n";
+  
+  cprintf("  j %d |  k %d BOR   m %d \n",j,k,m);  //   <<"%V $j | $k BOR  $m \n";  
 
   chkEQ(m,7);
 
@@ -119,13 +98,15 @@ int Rgt::bitwise(Svarg * sarg)
 
   m = ( j ^ k );
 
-  //<<"$j ^ $k BXOR_  $m\n";
+  
+  cprintf("%d ^ %d BXOR_  %d\n",j,k,m);  //   <<"$j ^ $k BXOR_  $m\n";  
 
   chkEQ(m,1);
 
   m = ( j ^ k );
 
-  //<<"$j BXOR_ $k  $m\n";
+  
+  cprintf("%d BXOR_ %d  %d\n",j,k,m);  //   <<"$j BXOR_ $k  $m\n";  
 
   chkEQ(m,1);
 
@@ -133,7 +114,8 @@ int Rgt::bitwise(Svarg * sarg)
 
   m = ( j ^ k );
 
-  //<<"$j ^ $k XOR  $m\n";
+  
+  cprintf("%d ^ %d XOR  %d\n",j,k,m);  //   <<"$j ^ $k XOR  $m\n";  
 
   chkEQ(m,4);
 
@@ -142,33 +124,42 @@ int Rgt::bitwise(Svarg * sarg)
 
   m = ~j;
 
-  //<<"\n $m   ~$j  \n";
+  
+  cprintf("\n m%d   j~%d  \n",m,j);  //   <<"\n $m   ~$j  \n";  
 
-  //<<"%x\t$j\n\t$m\n";
+  
+  cprintf("\tj%d\n\tm%d\n",j,m);  //   <<"%x\t$j\n\t$m\n";  
 //ans= i_read("4")
 
   m = ~k;
 
-  //<<"\n    ~k  \n";
+  
+  cprintf("\n    ~k  \n");  //   <<"\n    ~k  \n";  
 
-  //<<"%x\t$k\n\t$m\n";
+  
+  cprintf("\t%d\n\t%d\n",k,m);  //   <<"%x\t$k\n\t$m\n";  
 
-  //<<"%o\t$k\n\t$m\n";
+  
+  cprintf("\t%d\n\t%d\n",k,m);  //   <<"%o\t$k\n\t$m\n";  
 //ans= i_read("5")
 
   m =  j << 1;
 
   chkEQ(m,2);
 
-  //<<"\n  j << 1  \n";
+  
+  cprintf("\n  j << 1  \n");  //   <<"\n  j << 1  \n";  
 
-  //<<"\n%x\t$j\n\t$m\n";
+  
+  cprintf("\n\t%d\n\t%d\n",j,m);  //   <<"\n%x\t$j\n\t$m\n";  
 
   m =  j << 4;
 
-  //<<"\n  j << 4  \n";
+  
+  cprintf("\n  j << 4  \n");  //   <<"\n  j << 4  \n";  
 
-  //<<"\n%d\t$j\n\t$m\n";
+  
+  cprintf("\n\t%d\n\t%d\n",j,m);  //   <<"\n%d\t$j\n\t$m\n";  
 //ans= i_read("6")
 
   j = 32;
@@ -177,9 +168,11 @@ int Rgt::bitwise(Svarg * sarg)
 
   chkEQ(m,2);
 
-  //<<"\n  $j >> 4  = m \n";
+  
+  cprintf("\n  %d >> 4  = m \n",j);  //   <<"\n  $j >> 4  = m \n";  
 
-  //<<"\n%d\t$j\n\t$m\n";
+  
+  cprintf("\n\t%d\n\t%d\n",j,m);  //   <<"\n%d\t$j\n\t$m\n";  
 //ans= i_read("7")
 
   uchar  jc = 5;
@@ -190,13 +183,15 @@ int Rgt::bitwise(Svarg * sarg)
 
   chkEQ(m,1);
 
-  //<<"%V $jc & $kc BAND  $m \n";
+  
+  cprintf("  jc  &  kc  BAND   m %d \n",jc,kc,m);  //   <<"%V $jc & $kc BAND  $m \n";  
 
   kc = 2;
 
   m = jc & kc;
 
-  //<<"%V $jc & $kc BAND  $m \n";
+  
+  cprintf("  jc  &  kc  BAND   m %d \n",jc,kc,m);  //   <<"%V $jc & $kc BAND  $m \n";  
 
   chkEQ(m,0);
 
@@ -204,13 +199,15 @@ int Rgt::bitwise(Svarg * sarg)
 
   m = jc & kc;
 
-  //<<"%V $jc & $kc BAND  $m \n";
+  
+  cprintf("  jc  &  kc  BAND   m %d \n",jc,kc,m);  //   <<"%V $jc & $kc BAND  $m \n";  
 
   chkEQ(m,4);
 
   m = ( jc | kc );
 
-  //<<"$jc | $kc BOR  $m \n";
+  
+  cprintf(" |  BOR  %d \n",jc,kc,m);  //   <<"$jc | $kc BOR  $m \n";  
 
   chkEQ(m,5);
 
@@ -218,7 +215,8 @@ int Rgt::bitwise(Svarg * sarg)
 
   m = ( jc | kc );
 
-  //<<"%V $jc | $kc BOR  $m \n";
+  
+  cprintf("  jc  |  kc  BOR   m %d \n",jc,kc,m);  //   <<"%V $jc | $kc BOR  $m \n";  
 
   chkEQ(m,7);
 
@@ -226,13 +224,15 @@ int Rgt::bitwise(Svarg * sarg)
 
   m = ( jc ^ kc );
 
-  //<<"$jc ^ $kc BXOR_  $m\n";
+  
+  cprintf(" ^  BXOR_  %d\n",jc,kc,m);  //   <<"$jc ^ $kc BXOR_  $m\n";  
 
   chkEQ(m,1);
 
-  m = ( jc BXOR_ kc );
+  m = ( jc ^ kc );
 
-  //<<"$jc BXOR_ $kc  $m\n";
+  
+  cprintf(" BXOR_   %d\n",jc,kc,m);  //   <<"$jc BXOR_ $kc  $m\n";  
 
   chkEQ(m,1);
 
@@ -240,7 +240,8 @@ int Rgt::bitwise(Svarg * sarg)
 
   m = ( jc ^ kc );
 
-  //<<"$jc ^ $kc XOR  $m\n";
+  
+  cprintf(" ^  XOR  %d\n",jc,kc,m);  //   <<"$jc ^ $kc XOR  $m\n";  
 
   chkEQ(m,4);
 
@@ -249,33 +250,42 @@ int Rgt::bitwise(Svarg * sarg)
 
   m = ~jc;
 
-  //<<"\n $m   ~$jc  \n";
+  
+  cprintf("\n %d   ~  \n",m,jc);  //   <<"\n $m   ~$jc  \n";  
 
-  //<<"%x\t$jc\n\t$m\n";
+  
+  cprintf("\t\n\t%d\n",jc,m);  //   <<"%x\t$jc\n\t$m\n";  
 //ans= i_read("4")
 
   m = ~kc;
 
-  //<<"\n    ~kc  \n";
+  
+  cprintf("\n    ~kc  \n");  //   <<"\n    ~kc  \n";  
 
-  //<<"%x\t$kc\n\t$m\n";
+  
+  cprintf("\t\n\t%d\n",kc,m);  //   <<"%x\t$kc\n\t$m\n";  
 
-  //<<"%o\t$kc\n\t$m\n";
+  
+  cprintf("\t\n\t%d\n",kc,m);  //   <<"%o\t$kc\n\t$m\n";  
 //ans= i_read("5")
 
   m =  jc << 1;
 
   chkEQ(m,2);
 
-  //<<"\n  jc << 1  \n";
+  
+  cprintf("\n  jc << 1  \n");  //   <<"\n  jc << 1  \n";  
 
-  //<<"\n%x\t$jc\n\t$m\n";
+  
+  cprintf("\n\t\n\t%d\n",jc,m);  //   <<"\n%x\t$jc\n\t$m\n";  
 
   m =  jc << 4;
 
-  //<<"\n  jc << 4  \n";
+  
+  cprintf("\n  jc << 4  \n");  //   <<"\n  jc << 4  \n";  
 
-  //<<"\n%d\t$jc\n\t$m\n";
+  
+  cprintf("\n\t\n\t%d\n",jc,m);  //   <<"\n%d\t$jc\n\t$m\n";  
 //ans= i_read("6")
 
   jc = 32;
@@ -284,9 +294,11 @@ int Rgt::bitwise(Svarg * sarg)
 
   chkEQ(m,2);
 
-  //<<"\n  $jc >> 4  = m \n";
+  
+  cprintf("\n   >> 4  = m \n",jc);  //   <<"\n  $jc >> 4  = m \n";  
 
-  //<<"\n%d\t$jc\n\t$m\n";
+  
+  cprintf("\n\t\n\t%d\n",jc,m);  //   <<"\n%d\t$jc\n\t$m\n";  
 //ans= i_read("7")
 
   uchar h = 0x40;
@@ -295,7 +307,8 @@ int Rgt::bitwise(Svarg * sarg)
 
   m = h & p;
 
-  //<<"%V %X $h & $p BAND  $m \n";
+  
+  cprintf("   h  &  p  BAND   m %d \n",h,p,m);  //   <<"%V %X $h & $p BAND  $m \n";  
 
   chkEQ(m,0x40);
 
@@ -313,81 +326,96 @@ int Rgt::bitwise(Svarg * sarg)
 
   uk = j1 << 8;
 
-  //<<"%V $sz $j1 $uk \n";
+  
+  cprintf("  sz %d  j1 %ld  uk %ld \n",sz,j1,uk);  //   <<"%V $sz $j1 $uk \n";  
 
   int i = 16;
 
   uk = j1 << i;
 
-  //<<"$i $uk\n";
+  
+  cprintf("%d %ld\n",i,uk);  //   <<"$i $uk\n";  
 
   i = 32;
 
   uk = j1 << i;
 
-  //<<"$i $uk\n";
+  
+  cprintf("%d %ld\n",i,uk);  //   <<"$i $uk\n";  
 
   i = 48;
 
   uk = j1 << i;
 
-  //<<"$i $uk\n";
+  
+  cprintf("%d %ld\n",i,uk);  //   <<"$i $uk\n";  
 
   for (i= 0; i< 64 ; i++) {
 
   uk = j1 << i;
 
-  //<<"$i $uk\n";
+  
+  cprintf("%d %ld\n",i,uk);  //   <<"$i $uk\n";  
 
   }
 
   j1 = uk;
 
-  //<<"%V $j1 $uk \n";
+  
+  cprintf("  j1 %ld  uk %ld \n",j1,uk);  //   <<"%V $j1 $uk \n";  
 
   i = 0;
 
   uk = bshift(j1,i);
 
-  //<<"$i $uk \n";
+  
+  cprintf("%d %ld \n",i,uk);  //   <<"$i $uk \n";  
 
   i = -1;
 
   uk = bshift(j1,i);
 
-  //<<"$i $uk \n";
+  
+  cprintf("%d %ld \n",i,uk);  //   <<"$i $uk \n";  
 
   uk = pow(2,63);
 
-  //<<"  pow(2,63)  $uk \n";
+  
+  cprintf("  pow(2,63)  %ld \n",uk);  //   <<"  pow(2,63)  $uk \n";  
 
-  //<<"%V $j1 \n";
+  
+  cprintf("  j1 %ld \n",j1);  //   <<"%V $j1 \n";  
 
-  //<<"%V $j1 \n";
+  
+  cprintf("  j1 %ld \n",j1);  //   <<"%V $j1 \n";  
 
   i = 0;
 
   uk = j1 >> i;
 
-  //<<"%V $i $uk  $j1\n";
+  
+  cprintf("  i %d  uk %ld   j1 %ld\n",i,uk,j1);  //   <<"%V $i $uk  $j1\n";  
 
   i = 1;
 
   uk = j1 >> i;
 
-  //<<"%V $i $uk  $j1\n";
+  
+  cprintf("  i %d  uk %ld   j1 %ld\n",i,uk,j1);  //   <<"%V $i $uk  $j1\n";  
 
   i = 2;
 
   uk = j1 >> i;
 
-  //<<"$i $uk\n";
+  
+  cprintf("%d %ld\n",i,uk);  //   <<"$i $uk\n";  
 
   for (i= 0; i< 64 ; i++) {
 
   uk = bshift(j1,-i);
 
-  //<<"$i $uk\n";
+  
+  cprintf("%d %ld\n",i,uk);  //   <<"$i $uk\n";  
 
   }
 
@@ -395,7 +423,8 @@ int Rgt::bitwise(Svarg * sarg)
 
   uk = j1 >> i;
 
-  //<<"$i $uk\n";
+  
+  cprintf("%d %ld\n",i,uk);  //   <<"$i $uk\n";  
 
   }
 
@@ -403,23 +432,27 @@ int Rgt::bitwise(Svarg * sarg)
 
   uk = bshift(j1,i);
 
-  //<<"$i $uk \n";
+  
+  cprintf("%d %ld \n",i,uk);  //   <<"$i $uk \n";  
 
   i = 34;
 
   uk = bshift(j1,i);
 
-  //<<"$i $uk \n";
+  
+  cprintf("%d %ld \n",i,uk);  //   <<"$i $uk \n";  
 
   i = 63;
 
   uk = bshift(j1,i);
 
-  //<<"$i $uk \n";
+  
+  cprintf("%d %ld \n",i,uk);  //   <<"$i $uk \n";  
 
   uk = pow(2,63);
 
-  //<<"$uk \n";
+  
+  cprintf("%ld \n",uk);  //   <<"$uk \n";  
 
   j1 = uk;
 
@@ -427,7 +460,8 @@ int Rgt::bitwise(Svarg * sarg)
 
   uk = bshift(j1,i);
 
-  //<<"$i $j1 $uk \n";
+  
+  cprintf("%d %ld %ld \n",i,j1,uk);  //   <<"$i $j1 $uk \n";  
 
   ulong rec = 1;
 
@@ -435,23 +469,28 @@ int Rgt::bitwise(Svarg * sarg)
 
   j1 = rec;
 
-  //<<"%V $j1 \n";
+  
+  cprintf("  j1 %ld \n",j1);  //   <<"%V $j1 \n";  
 
   j1 = (rec << 32);
 
-  //<<"%V $j1 \n";
+  
+  cprintf("  j1 %ld \n",j1);  //   <<"%V $j1 \n";  
 
   j1 += col;
 
-  //<<"%V $j1 \n";
+  
+  cprintf("  j1 %ld \n",j1);  //   <<"%V $j1 \n";  
 
-  //<<"%V $rec $col $j1\n";
+  
+  cprintf("  rec %ld  col %d  j1 %ld\n",rec,col,j1);  //   <<"%V $rec $col $j1\n";  
 
   int r2=  j1 >> 32;
 
   int c2 = j1 & 0x00000000FFFFFFFF;
 
-  //<<"%V $r2 $c2 $j1\n";
+  
+  cprintf("  r2 %d  c2 %d  j1 %ld\n",r2,c2,j1);  //   <<"%V $r2 $c2 $j1\n";  
 
   chkOut();
 
@@ -459,42 +498,25 @@ int Rgt::bitwise(Svarg * sarg)
 
 
 #if CPP
-}
-
+  }
 //==============================//
-
  extern "C" int bitwise(Svarg * sarg)  {
 
    Rgt *o_rgt = new Rgt;
 
    Str a0 = sarg->getArgStr(0) ;
-
-   printf("calling rgt method for bitwise\n");
-
-   cout << " cmd line  parameter is: "  << " a0 " <<  a0 << endl;
-
-  Svar sa;
-
-   cout << " paras are:  "  << a0.cptr(0) << endl;
+   Svar sa;
    sa.findWords(a0.cptr());
-
-   cout << " The cmd  args for this module are:  "  << sa << endl;
-
-   // can use sargs to select rgt->method via name
-   // so just have to edit in new mathod to rgt class definition
-   // and recompile rgt -- one line change !
-   // plus include this script into 
-
-
-     o_rgt->bitwise(sarg);
-
-     return 1;
+   int ret =  o_rgt->bitwise(sarg);
+   return ret;
   }
-
 #endif
 
 
 /////////////////////////////////// TBD /////////////////////
+
+
+
 /*
 
 1. Add more

@@ -59,7 +59,13 @@ int dblevel = _dblevel;
 
   _dblevel = 1;
 
+
+
   }
+
+ 
+
+
 //<<"%V $_DB ALLOWALL debug from files and funcs\n"
 //<<"use filterFuncDebug() filterFileDebug() to control\n"
 //sdb(dblevel,_keep,_~pline,_trace)
@@ -70,7 +76,11 @@ int dblevel = _dblevel;
 
   setmaxicerrors(-1);
 
-  _DB =1;
+//  _DB =2;
+
+
+   _DB=ofw("${_script}.err");
+  <<[_DB]"Script is $_script\n";
 
   }
 //==========================
@@ -117,7 +127,7 @@ int dblevel = _dblevel;
   sdb(hold_dbl,_keep,_~trace);
 
 
-  if (_dblevel > 0) {
+  if (_dblevel > 1) {
   
   //sdb(_dblevel,_keep,_trace)
   

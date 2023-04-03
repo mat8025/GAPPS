@@ -31,7 +31,7 @@
    //======================
    
    A= -1;
-   
+   int BERR=ofw("err_shead");  // error file err	
    // if script found
    // then  read current vers and  bump number and update date
    // if no @vers line -- then prepend the vers header lines
@@ -39,24 +39,24 @@
    Str srcfile = _clarg[1];
    
    if (srcfile == "") {
-   <<[2]"no script file entered\n"
+   <<[BERR]"no script file entered\n"
      exit();
    }
    
    sz= fexist(srcfile,RW_,0);
    
-   //<<[2]" RW sz $sz \n"
+   <<[BERR]" RW sz $sz \n"
 
-   int mat[2];
-   p=spat(srcfile,".asl",0,1,mat)
+   int mas[2];
+   p=spat(srcfile,".asl",0,1,mas)
    is_asl_script = 0;
-   if (mat[0] ) {
+   if (mas[0] ) {
       is_asl_script = 1;
    }
    create_template =0;
 
    if (sz == -1) {
-   <<[2]"can't find script file $srcfile\n"
+   <<[BERR]"can't find script file $srcfile\n"
    ans=query("create minimal template y/n ?")
    if (ans != "y") {
          exit()
@@ -79,7 +79,7 @@
    date = date(GS_MDYHMS_);
    cdate = date(GS_MDYHMS_);
    na = argc();
-   <<"%V $na $cdate \n"
+   <<[BERR]"%V $na $cdate \n"
    comment ="";
    comment2 ="";
    
@@ -108,7 +108,7 @@
    
    dir= fexist(srcfile,ISDIR_,0);
    
-   //<<[2]" DIR $dir \n"
+   <<[BERR]" DIR $dir \n"
    author = "Mark Terry"
    fname = srcfile
    release = "CARBON"
@@ -129,7 +129,7 @@
    len = slen(fname);
    
    ind = (80-len)/2;
-   //<<[2]"$(date()) $(date(8)) \n"
+   <<[BERR]"$(date()) $(date(8)) \n"
    //<<[2]" $len $ind\n"
    insp = nsc((60-len)/2," ")
    len= slen(insp)
@@ -143,7 +143,7 @@ Svar T;
    A=ofr(srcfile);
    T=readfile(A);
    tsz= Caz(T);
-<<"$tsz $T[0] \n"
+//<<[2]"$tsz $T[0] \n"
 
 //for (i = 0 ; i < tsz; i++)
 //{
@@ -159,15 +159,17 @@ Svar T;
    found_vers =0;
 Str R;
 Svar L;
+
    for (i = 0; i < 5;i++) {
-   R = readline(A);
+    R = readline(A);
+   <<[BERR]"$i $R\n"   
    where = ftell(A)
    L = Split(R);
    if (scmp(L[1],"@vers")) {
      found_vers =1;
      release = L[2];    
      cvers = L[3];
-     <<[2]"$where $R\n"
+     <<[BERR]"$where $R\n"
      break;
    }
    found_where = where;
@@ -194,7 +196,7 @@ if (found_vers) {
 //  Str newsrc=srcfile;
   newsrc=srcfile;
 <<"$newsrc \n"
-  newsrc.pinfo();
+  //newsrc.pinfo();
    if (!create_template) {
    
       newsrc=scat("hd_",srcfile)
@@ -258,5 +260,5 @@ fflush(A)
 <<"output to $newsrc\n"
    
 //!!"mv $newsrc $srcfile"
-
+cf(BERR);
 /////

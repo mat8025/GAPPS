@@ -14,7 +14,7 @@
 
 //Use_= " Demo  of test  ";
 
-//  script and func stem   
+
 
 ///
 ///
@@ -31,53 +31,18 @@
 
 
 #if ASL
-#define cout //
-#define COUT //
-//int run_vec asl = runASL();
-#define CDB ans=query("go on");
-//#define CDBP (x) ans=query(x,"go on"); // asl not working
-#define CDBP //
-#include "debug.asl";
-
-if (_dblevel >0) {
-   debugON()
-   <<"$Use_\n"
-}
-   chkIn(_dblevel); 
+#include "rgt_asl.h"
 #endif
 
 
 #if CPP
-#warning USING_CPP
-#define CDBP(x) ans=query(x,"go on",__LINE__,__FILE__);
-#define CDB ans=query("?","go on",__LINE__,__FILE__);
-#define chkEQ(x,y)  chkN(x,y,EQU_, __LINE__);
 
-#include <iostream>
-#include <ostream>
+#include "rgt_cpp.h"
 
-#include "vec.h"
-#include "uac.h"
-#include "gline.h"
-#include "glargs.h"
-//  IF USING  graphics
-#include "winargs.h"
-#include "woargs.h"
-#include "vargs.h"
-#include "gevent.h"
-
-///xxx
 int Rgt::logic_test(Svarg * sarg)  
 {
-  Str ans = "?";
-  printf("hey logic\n");
-  cout << " logic test  " << ans << endl;
   RUN_ASL = 0;
-
 #endif
-
-
-
 
 
 int a = 1;
@@ -179,31 +144,12 @@ cprintf(" NOT (a %d > 0 ) \n",a);
 //==============================//
 
  extern "C" int logic_test(Svarg * sarg)  {
-
    Rgt *o_rgt = new Rgt;
-
    Str a0 = sarg->getArgStr(0) ;
-
-   printf("calling rgt method for logic\n");
-
-   cout << " cmd line  parameter is: "  << " a0 " <<  a0 << endl;
-
-  Svar sa;
-
-   cout << " paras are:  "  << a0.cptr(0) << endl;
+   Svar sa;
    sa.findWords(a0.cptr());
-
-   cout << " The cmd  args for this module are:  "  << sa << endl;
-
-   // can use sargs to select rgt->method via name
-   // so just have to edit in new mathod to rgt class definition
-   // and recompile rgt -- one line change !
-   // plus include this script into 
-
-
-     o_rgt->logic_test(sarg);
-
-     return 1;
+   int ret =  o_rgt->logic_test(sarg);
+   return ret;
   }
 
 #endif

@@ -169,7 +169,9 @@ ESL=';//==============\_(^-^)_/==================//;';
   
   int empty_line_cnt = 0;
   is_empty_line = 0;
-  
+  int conline = 0;
+  int foldline = 0;
+  int ll_fold = 0;
   while (1) {
     
     is_comment = 0;
@@ -182,7 +184,9 @@ ESL=';//==============\_(^-^)_/==================//;';
     needs_semi_colon = 0;
     is_margin_call = 0;    
     L = readline(A,-1,1);
-    if (ferror(A) == EOF_ERROR_) {
+    conline = 0;
+    foldline = 0;
+     if (ferror(A) == EOF_ERROR_) {
 
      <<"end @ $L\n"
         break;
@@ -303,16 +307,29 @@ ESL=';//==============\_(^-^)_/==================//;';
     if (ind >=0) {
       nsv = sele(NL,ind,1); 
       lastc= nsv[0];
-      //<<[2]"last char? $ln  $lastc $sl $ind %s $lastc \n";
+      <<[2]"last char? $ln  $lastc $sl $ind %s $lastc \n";
       }
 
+<<"testing lastc $lastc   \\ \n";       
+
+      if (lastc == '\\') {
+           foldline = 1;
+<<"found fold line $foldline \\ \n";       	   
+       }
+
+      if (lastc == 92) {
+           foldline = 1;
+<<"found fold line $foldline 92 \n";       	   
+       }
+
+  
     s1 = ";{}/\\" ;
     
 //k = sstr(s1,c,1)
     
     iv = sstr(";{}/\\",lastc,1); 
     
- //<<[2]"$L $sl %c $lastc $iv[0] \n"
+ <<[2]"$L $sl %c $lastc $iv[0] \n"
 
     if (slen(NL) >0) {
       NL=eatWhiteEnds(NL);
@@ -384,7 +401,7 @@ ESL=';//==============\_(^-^)_/==================//;';
     
     
     len = slen(NL);
-    conline = 0;
+
 
 
     if (len > 500) {
@@ -396,14 +413,14 @@ ESL=';//==============\_(^-^)_/==================//;';
     if (ind >= 0) {
       nsv = sele(NL,ind,1); 
       lastc= nsv[0];
-      //<<[2]"last char? $ln  $lastc $sl $ind %s $lastc \n";
+      <<[2]"last char? $ln  $lastc $sl $ind %s $lastc \n";
       }
 
 
 
 
     if (is_empty_line && (empty_line_cnt > 1)) {
-      //<<[2]"%V $empty_line_cnt\n"; 
+      <<[2]"%V $empty_line_cnt\n"; 
       }
     else  if ( !is_comment && !is_proc && !is_if  \
                  && (sl > 0) ) {
@@ -420,8 +437,8 @@ ESL=';//==============\_(^-^)_/==================//;';
         }
        }
 
-	//<<[2]"%c $lastc %d $lastc \n"
-	if (lastc != 59 && lastc != 123 ) {
+	<<[2]"%c $lastc %d $lastc \n"
+	if (lastc != 59 && lastc != 123 && lastc != 92 && !ll_fold) {
 	   needs_semi_colon = 1;
 	 
 
@@ -434,13 +451,17 @@ ESL=';//==============\_(^-^)_/==================//;';
              needs_semi_colon = 1;
           }
         }
+	<<" %v $needs_semi_colon\n";
        }
 
      if (is_case || in_comment_blk || in_txt_blk) {
              needs_semi_colon = 0;
        }
 
-       
+       if (lastc == 92) {
+<<"found foldline \\ \n";       
+           foldline = 1;
+       }
      
        
       //<<[2]" needs ; ? $needs_semi_colon <|$lastc|>\n";
@@ -450,7 +471,7 @@ ESL=';//==============\_(^-^)_/==================//;';
 
 
 
-//<<[2]"%V $nw $conline $is_empty_line $is_comment $in_comment_blk $empty_line_cnt $last_ltype\n";
+<<[2]"%V $nw $conline $foldline $ll_fold  $is_empty_line $is_comment $in_comment_blk $empty_line_cnt $last_ltype\n";
 
       if (conline) {
         <<[B]"${tws}$NL1		\\\n"; 
@@ -485,10 +506,15 @@ ESL=';//==============\_(^-^)_/==================//;';
 
      //<<[2]"asis: $NL\n"
 	       
-      if ((empty_line_cnt < 1)  && !in_comment_blk  && !in_txt_blk  && (last_ltype != PROCCALL)) {
-<<"adding empty line for spacing \n";      
+      if ((empty_line_cnt < 1)  && !in_comment_blk  \
+      && !in_txt_blk  \
+      && !foldline  \
+      && !ll_fold \
+      && (last_ltype != PROCCALL)) {
+<<"adding empty line for spacing  %V $foldline $ll_fold \n";      
              <<[B]"\n"; 
-       }
+
+      }
 
          
 
@@ -502,8 +528,10 @@ ESL=';//==============\_(^-^)_/==================//;';
          }
       }
 
-
-
+       ll_fold = 0;
+    if (foldline) {
+       ll_fold = 1;
+    }
 
     if (needs_semi_colon) {
    <<"\033[1;34m out:${tws}${NL};\n \033[0m";

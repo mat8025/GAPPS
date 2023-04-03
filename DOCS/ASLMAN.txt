@@ -1315,9 +1315,21 @@ Sort
 .FD
 Sort(A)
 Performs a sort of an array vector, default is to use quicksort
-A->Sort() - performs an inplace sort (low to high)  of vector
-Use A->reverse() to then obtain results in high to low order.
+A.Sort() - performs an inplace sort (low to high)  of vector
+Use A.reverse() to then obtain results in high to low order.
 Sort(A)
+.EF
+=============================================================
+.BF
+Procedures()
+.(x
+Procedures
+.)x 
+.FD
+S=Procedures()
+ returns a list of procedures to Svar variable S, with a short description 
+S= procedures() ; S->sort(); <<"%(1,,,\n)$S\n"
+would give an alphbetically sorted list.
 .EF
 =============================================================
 .BF
@@ -3922,8 +3934,6 @@ ds= julmdy(jd)
 would return the date for the julian day
 
 (see also getday(),gethour(),julian(),...)
-
-
 .EF
 =============================================================
 .BF
@@ -4878,7 +4888,7 @@ error return  -1
 .EF
 =============================================================
 .BF
-searchile()
+searchFile()
 .(x
 searchfile,fsearch
 .)x 
@@ -8420,7 +8430,7 @@ far left of title area.
 .EF
 =============================================================
 .BF
-CreateGwindow()
+createGwindow()
 .(x
 cWi
 .)x 
@@ -10282,6 +10292,19 @@ would give an alphbetically sorted list.
 .EF
 =============================================================
 .BF
+Procedures()
+.(x
+Procedures
+.)x 
+.FD
+S=Procedures()
+ returns a list of procedures to Svar variable S, with a short description 
+S= procedures() ; S->sort(); <<"%(1,,,\n)$S\n"
+would give an alphbetically sorted list.
+.EF
+=============================================================
+
+.BF
 cos()
 .(x
 cos
@@ -10752,7 +10775,7 @@ pr(val,[fh])
 prints value  -default to stdout  else to stream pointted to with file handle (see ofw).
 .EF
 ==================================================
-BF
+.BF
 setkeyval
 .(x
 setkeyval
@@ -10762,7 +10785,7 @@ setKeyVal(str,str)
 setKeyVal(keystr,valstr)  store key value pair (into inbuilt hash table) returns -1 on fail;
 .EF
 ==================================================
-BF
+.BF
 getkeyval
 .(x
 getkeyval
@@ -10772,7 +10795,67 @@ getKeyVal(keystr) returns value from key,value pair from inbuilt hash table.
  null function
 .EF
 ==================================================
+.BF
+x??
+.(x
+x??
+.)x 
+.FD
+x??(n)
+ null function
+.EF
+==================================================
 BF
+x??
+.(x
+x??
+.)x 
+.FD
+x??(n)
+ null function
+.EF
+==================================================
+.BF
+x??
+.(x
+x??
+.)x 
+.FD
+x??(n)
+ null function
+.EF
+==================================================
+.BF
+x??
+.(x
+x??
+.)x 
+.FD
+x??(n)
+ null function
+.EF
+==================================================
+.BF
+x??
+.(x
+x??
+.)x 
+.FD
+x??(n)
+ null function
+.EF
+==================================================
+BF
+x??
+.(x
+x??
+.)x 
+.FD
+x??(n)
+ null function
+.EF
+==================================================
+.BF
 x??
 .(x
 x??
@@ -10802,7 +10885,7 @@ x??(n)
  null function
 .EF
 ==================================================
-BF
+.BF
 x??
 .(x
 x??
@@ -10812,137 +10895,8 @@ x??(n)
  null function
 .EF
 ==================================================
-BF
-x??
-.(x
-x??
-.)x 
-.FD
-x??(n)
- null function
-.EF
-==================================================
-BF
-x??
-.(x
-x??
-.)x 
-.FD
-x??(n)
- null function
-.EF
-==================================================
-BF
-x??
-.(x
-x??
-.)x 
-.FD
-x??(n)
- null function
-.EF
-==================================================
-BF
-x??
-.(x
-x??
-.)x 
-.FD
-x??(n)
- null function
-.EF
-==================================================
-BF
-x??
-.(x
-x??
-.)x 
-.FD
-x??(n)
- null function
-.EF
-==================================================
-BF
-x??
-.(x
-x??
-.)x 
-.FD
-x??(n)
- null function
-.EF
-==================================================
-BF
-x??
-.(x
-x??
-.)x 
-.FD
-x??(n)
- null function
-.EF
-==================================================
-BF
-x??
-.(x
-x??
-.)x 
-.FD
-x??(n)
- null function
-.EF
-==================================================
-BF
-x??
-.(x
-x??
-.)x 
-.FD
-x??(n)
- null function
-.EF
-==================================================
-BF
-x??
-.(x
-x??
-.)x 
-.FD
-x??(n)
- null function
-.EF
-==================================================
-BF
-x??
-.(x
-x??
-.)x 
-.FD
-x??(n)
- null function
-.EF
-==================================================
-BF
-x??
-.(x
-x??
-.)x 
-.FD
-x??(n)
- null function
-.EF
-==================================================
-BF
-x??
-.(x
-x??
-.)x 
-.FD
-x??(n)
- null function
-.EF
-==================================================
-BF
+
+.BF
 x??
 .(x
 x??
@@ -10954,7 +10908,7 @@ x??(n)
 ==================================================
 
 #  Types
-BF
+.BF
 svar
 .(x
 Svar,svar
@@ -10968,7 +10922,7 @@ E[3] contains the string Li.
 
 .EF
 ==================================================
-BF
+.BF
 str
 .(x
 Str,str
@@ -10984,7 +10938,7 @@ S= scat(S," made even longer")
 .EF
 ==================================================
 # SpreadSheet Functions
-BF
+.BF
 sWo(won,@setrowscols)
 .(x
 sWo(won,@setrowscols)
@@ -10995,7 +10949,7 @@ sWo(sswo,@setrowscols,Nrows,Ncols)
 for the SpreadSheet sswo set the number of rows and cols.
 .EF
 ==================================================
-BF
+.BF
 sWo(won,@selectrowscols)
 .(x
 sWo(won,@selectrowscols)
@@ -11007,7 +10961,7 @@ Can be used to select non-consectutive regions for display.
 
 .EF
 ==================================================
-BF
+.BF
 sWo(won,@setcolsize)
 .(x
 sWo(won,@setcolsize)
@@ -11019,11 +10973,13 @@ allows columns or rows to be set to different unit sizes.
 i.e. in multiples of unit size.
 also sWo(won,@setrowsize)
 
-
-
-
+.EF
+==================================================
 
 ==================================================
+# interface Functions
+
+
 
 .BF
 

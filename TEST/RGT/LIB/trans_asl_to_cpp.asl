@@ -33,7 +33,8 @@ cprintf(" j %d & k %d  BAND m %d \n", j,k,m );
 
 */
 
-A=ofr("asl_pr.txt");
+//A=ofr("asl_pr.txt");
+A=ofr("~/lic");
 
 Str ln;
 
@@ -45,11 +46,12 @@ int iv[256];
 int done=0;
 Str ws;
 Svar wst;
+Svar lnpars;
 //  spat(w1,w2,{posn,dir, [match[2]}) 
 int na =0;
 int ncd=0;
-<<"\"a,b);\n";
-
+//<<"\"a,b);\n";
+int start_cpr = 0;
 
 while (!done) {
 
@@ -57,14 +59,25 @@ while (!done) {
 
 
 
-  if (ferror(A) == EOF_ERROR_) break;
+  if (ferror(A) == EOF_ERROR_) {
+    done = 1;
+    break;
+   } 
 
-  <<"$ln";
   iv= sstr(ln,"PRSTDOUT");
   if (iv[0] != -1) {
+   
+   lnpars=split(ln);
+   rwd=spat(lnpars[1],"#L",1);
+   //<<"$lnpars[1] : ";
+   <<"$rwd : ";
+   start_cpr = 1;
    cptxt="cprintf(\"";
+   args="";
   }
 // chk for PRSTDOUT 
+   if (start_cpr) {
+  //<<"$ln";
     iv= sstr(ln,"CAT_STR");
     if (iv[0] != -1) {
      rwd=spat(ln,"<|",1);
@@ -89,6 +102,9 @@ while (!done) {
      else if (scmp(wst[1],"FLOAT")) {
         cptxt.cat('%f');
 	}
+     else if (scmp(wst[1],"ULONG")) {
+        cptxt.cat('%ld');
+	}	
      else if (scmp(wst[1],"STRV")) { 
         cptxt.cat('%S');
 	}
@@ -98,21 +114,24 @@ while (!done) {
     
     iv= sstr(ln,"ENDIC");
      if (iv[0] != -1) {
-      done = 1;
-     // <<"trying ENDIC \n";
+
+     //done = 1;
+     start_cpr = 0;
+      //<<"trying ENDIC \n";
       cptxt.cat( '"' );  // works
     // cptxt.cat( "\");" );  //  works
 
       //ws=scat(cptxt,'");');
       //cptxt = ws;
+         if (na > 0) {
+             cptxt.cat(args);  //  works
+          }
+            cptxt.cat( ");" ); 
+           <<"$cptxt \n"      
       }
-    
+    }
   
 }
- if (na > 0) {
-      cptxt.cat(args);  //  works
- }
-cptxt.cat( ");" ); 
-<<"$cptxt \n"
+
 
 
