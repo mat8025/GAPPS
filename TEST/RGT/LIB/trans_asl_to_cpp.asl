@@ -5,30 +5,47 @@
 
 /*
 
+###S50 #L8 #P? #C<|T 17|> {PRSTDOUT} <<"%V $j $k $m $d\n";
 
-###S62 #L19 #P? {PRSTDOUT} <<"%V $j & $k BAND  $m \n";
+1 8 1	[ 42] CAT_STR : <| |>
+1 8 2	[ 42] CAT_STR : <| j |>
+1 8 3	[ 12] PUSH_SIVP : j INT 213 -1 0
+1 8 4	[ 41] CAT_SIV : j  0
+1 8 5	[ 42] CAT_STR : <| |>
+1 8 6	[ 42] CAT_STR : <| k |>
+1 8 7	[ 12] PUSH_SIVP : k INT 215 -1 0
+1 8 8	[ 41] CAT_SIV : k  0
+1 8 9	[ 42] CAT_STR : <| |>
+1 8 10	[ 42] CAT_STR : <| m |>
+1 8 11	[ 12] PUSH_SIVP : m INT 219 -1 0
+1 8 12	[ 41] CAT_SIV : m  0
+1 8 13	[ 42] CAT_STR : <| |>
+1 8 14	[ 42] CAT_STR : <| d |>
+1 8 15	[ 12] PUSH_SIVP : d DOUBLE 201 -1 0
+1 8 16	[ 41] CAT_SIV : d  0
+1 8 17	[ 42] CAT_STR : <|\n|>
+1 8 18	[ 43] PRT_OUT : ã 
+1 8 19	[  7] ENDIC :  ENDIC
 
-0 19 1	[ 42] CAT_STR : <| |>
-0 19 2	[ 42] CAT_STR : <| j |>
-0 19 3	[ 12] PUSH_SIVP : j INT 213 -1 0
-0 19 4	[ 41] CAT_SIV : j  0
-0 19 5	[ 42] CAT_STR : <| & |>
-0 19 6	[ 42] CAT_STR : <| k |>
-0 19 7	[ 12] PUSH_SIVP : k INT 215 -1 0
-0 19 8	[ 41] CAT_SIV : k  0
-0 19 9	[ 42] CAT_STR : <| BAND  |>
-0 19 10	[ 42] CAT_STR : <| m |>
-0 19 11	[ 12] PUSH_SIVP : m INT 219 -1 0
-0 19 12	[ 41] CAT_SIV : m  0
-0 19 13	[ 42] CAT_STR : <|\n|>
-0 19 14	[ 43] PRT_OUT :  
-0 19 15	[  7] ENDIC :  ENDIC
 
 
 translate 
 <<"%V $j & $k BAND  $m \n";
 to 
 cprintf(" j %d & k %d  BAND m %d \n", j,k,m );
+
+
+###S364 #L326 #P? #C<|T 1252 |> {PRSTDOUT} <<"ca1 <|$fname|> is NULL\n";
+
+1 326 1	[ 42] CAT_STR : <|ca1 <||>
+1 326 2	[ 42] CAT_STR : <||>
+1 326 3	[ 12] PUSH_SIVP : fname STRV 1554 -1 0
+1 326 4	[ 41] CAT_SIV : fname  0
+1 326 5	[ 42] CAT_STR : <||> is NULL\n|>
+1 326 6	[ 43] PRT_OUT :  
+1 326 7	[  7] ENDIC :  ENDIC
+
+#
 
 
 */
@@ -69,8 +86,9 @@ while (!done) {
    iv = sstr(ln,"#C<|T");
    if (iv[0] != -1) {
    lnpars=split(ln);
-   rwd=spat(lnpars[1],"#L",1);
-   //<<"$lnpars[1] : ";
+   rwd = lnpars[4];
+   //rwd=spat(lnpars[4]," |",-1);
+  // <<"<|$lnpars[4]|> ";
    <<"$rwd : ";
    start_cpr = 1;
    cptxt="cprintf(\"";
@@ -83,7 +101,7 @@ while (!done) {
     iv= sstr(ln,"CAT_STR");
     if (iv[0] != -1) {
      rwd=spat(ln,"<|",1);
-     wd= spat(rwd,"|>")
+     wd= spat(rwd,"|>",-1,-1)
      cptxt.cat(wd);
     }
      iv= sstr(ln,"PUSH_SIVP");

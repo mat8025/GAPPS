@@ -54,8 +54,8 @@ Str ltag = "xyz";
   // parse and reformat to
   // cprintf(" a %d\n",a);  // <<"%V $a\n";
 // can we run AslState (ln) ?
-//  if (stype != EMPTY_ && stype != COMMENT_ && stype != ELSE_ && stype != IF_ ) {
-  if (stype == PRSTDOUT_ || stype == DECLARE_ ) {
+// if (stype != EMPTY_ && stype != COMMENT_ && stype != ELSE_ && stype != IF_ ) {
+  if (stype == PRSTDOUT_ || stype == DECLARE_ || stype == EXPRESSION_T_ || stype == ASSIGNMENT_) {
     ltag="$wl";
 <<"evaluate $ltag <|$ln|> ?";  
     aslState (ln, "T $wl "); // parse and execute -- xic ??
