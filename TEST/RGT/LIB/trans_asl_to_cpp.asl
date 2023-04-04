@@ -66,7 +66,8 @@ while (!done) {
 
   iv= sstr(ln,"PRSTDOUT");
   if (iv[0] != -1) {
-   
+   iv = sstr(ln,"#C<|T");
+   if (iv[0] != -1) {
    lnpars=split(ln);
    rwd=spat(lnpars[1],"#L",1);
    //<<"$lnpars[1] : ";
@@ -74,6 +75,7 @@ while (!done) {
    start_cpr = 1;
    cptxt="cprintf(\"";
    args="";
+   }
   }
 // chk for PRSTDOUT 
    if (start_cpr) {
@@ -102,6 +104,9 @@ while (!done) {
      else if (scmp(wst[1],"FLOAT")) {
         cptxt.cat('%f');
 	}
+     else if (scmp(wst[1],"DOUBLE")) {
+        cptxt.cat('%f');
+	}	
      else if (scmp(wst[1],"ULONG")) {
         cptxt.cat('%ld');
 	}	

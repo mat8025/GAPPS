@@ -30,7 +30,8 @@ int wl = 1;
 
 Str st="xyz";
 
-
+int stype;
+Str ltag = "xyz";
   while (!done) {
 
 
@@ -45,18 +46,23 @@ Str st="xyz";
 
    // read a line -- find statement type
   st = checkState(ln);
-
-<<"$wl $st $ln ";
+  stype = checkStateType(ln);
+<<"$wl $stype $st <|$ln|> ";
    // if declare - then find datatype for that variable
   //  int a= 77;
   // when see  asl print   e.g.  <<"%V $a\n";
   // parse and reformat to
   // cprintf(" a %d\n",a);  // <<"%V $a\n";
 // can we run AslState (ln) ?
-  if (st != "EMPTY" && st != "ELSE") {
-<<"evaluate <|$ln|> ?\n";  
-    AslState (ln);
- }
+//  if (stype != EMPTY_ && stype != COMMENT_ && stype != ELSE_ && stype != IF_ ) {
+  if (stype == PRSTDOUT_ || stype == DECLARE_ ) {
+    ltag="$wl";
+<<"evaluate $ltag <|$ln|> ?";  
+    aslState (ln, "T $wl "); // parse and execute -- xic ??
+
+    //aslState (ln, ltag); // parse and execute -- xic ??
+
+}
 
 //<<"$wl $st  \n"
 
@@ -68,6 +74,10 @@ wl++;
   }
 
 S=variables();
+// this gives us variables and types
+// first run through
+
+// then convert expand DQ's
 
 
 

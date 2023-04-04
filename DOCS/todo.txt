@@ -1,0 +1,29 @@
+////
+///    Major TODO items
+/// 
+ 1. asl2cpp  -- use to parse out asl specific statments and convert to cpp if possible
+
+ 2. auto add cpp stubs  so that application DLL can be built
+
+ 3.  add in makefiles so that alternative make to autoconf is possible
+
+ 4. cprintf printf   --- %x %X %o    update
+
+ 5. produce RGT DLL   for all major tests - to prove cpp version will work
+
+ 6. cons, destruct  syntax - currently uses void
+
+ 7. ANN  add radial basis nets
+
+ 8. finish mDA type
+
+ 9. eclipse IDE version
+
+ 10. run stable version alongside developing version
+
+ 11. Showvox
+
+ 12. retry audio play record
+
+ 13. HMM
+

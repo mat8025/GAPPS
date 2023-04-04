@@ -10287,7 +10287,7 @@ Functions
 .FD
 S=functions()
  returns a list of functions to Svar variable S, with a short description of the function
-S= functions() ; S->sort(); <<"%(1,,,\n)$S\n"
+S= functions() ; S.sort(); <<"%(1,,,\n)$S\n"
 would give an alphbetically sorted list.
 .EF
 =============================================================

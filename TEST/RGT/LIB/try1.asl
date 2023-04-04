@@ -4,15 +4,15 @@
 
 
 
-  int  j = 5;
+  int  j = 57;
 
-  int  k = 1;
+  int  k = 11;
 
   int m = j & k;
   double d = 1234.567;
 
 
-  if (j == 5) {
+  if (j == 57) {
 
 <<"%V $j $k $m $d\n";
 
