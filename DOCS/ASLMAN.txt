@@ -6164,6 +6164,18 @@ sets the last error to be n.
 .EF
 =============================================================
 .BF
+setferror()
+.(x
+setferror
+.)x 
+.FD
+setFerror(fh, [errornum=0])
+sets or clears  the file handle error     EOF_ERROR
+
+.EF
+=============================================================
+
+.BF
 lasterror(), errorNum()
 .(x
 lasterror

@@ -174,7 +174,7 @@ Str old_comment ="yyy"
 
     T = readline(A);
    
-//<<[2]"$i line is $T \n"
+<<[2]"$i line is $T \n"
    if (i ==2) {
      old_comment =T;
    }
@@ -227,13 +227,18 @@ Str old_comment ="yyy"
 
 
     if (spat(L[0],"///////<v_&_v>//") != "") {
-<<"@header end? line $i\n"
+
+<<"@header end? line $i so break\n"
+
+<<"breaking \n";
       break;
     }
 
 }
 
    where = ftell(A);
+
+<<"%V $found_vers $where \n"
 
    int end_ln = i;
 /*
