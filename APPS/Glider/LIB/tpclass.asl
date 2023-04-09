@@ -42,11 +42,11 @@ class Tleg
   
   float dist;
   float pc;
-  float fga;
+  float tfga;
   float msl;
 
   Str Tow;
-  Str Place;
+  Str Tplace;
 
 #if ASL
  void Tleg()   //  use cons,destroy   -- have then set to NULL in CPP header
@@ -57,13 +57,13 @@ class Tleg
  //<<"Starting cons \n"
   dist = 0.0;
   pc = 0.0;
-  fga =0;
+  tfga =0;
   msl = 0.0;
  // <<"Done cons $dist $pc\n"
  }
  Str getPlace ()   
    {
-       return Place; 
+       return Tplace; 
    }
 };   // need ;
 

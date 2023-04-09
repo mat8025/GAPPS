@@ -101,7 +101,10 @@ int err=0;
 	}	
      else if (scmp(wst[1],"ULONG")) {
         cptxt.cat('%ld');
-	}	
+	}
+     else if (scmp(wst[1],"LONG")) {
+        cptxt.cat('%ld');
+	}		
      else if (scmp(wst[1],"STRV")) { 
         cptxt.cat('%S');
 	}
@@ -133,7 +136,7 @@ int err=0;
 
 //EP=======================================//
 
-
+/// the tic file should be 
 
 Str asl_file =  _clarg[1];
 
@@ -177,15 +180,19 @@ Str ltag = "xyz";
   st = checkState(ln);
   stype = checkStateType(ln);
  
-//<<"$wl $stype $st <|$ln|> ";
+<<"$wl $stype $st <|$ln|> \n";
    // if declare - then find datatype for that variable
   //  int a= 77;
   // when see  asl print   e.g.  <<"%V $a\n";
   // parse and reformat to
   // cprintf(" a %d\n",a);  // <<"%V $a\n";
 // can we run AslState (ln) ?
-// if (stype != EMPTY_ && stype != COMMENT_ && stype != ELSE_ && stype != IF_ ) {
-  if (checkAssignType(stype) ) {
+
+// extract prog args and declare them
+
+// end of proc delete them
+
+  if (checkAssignType(stype) || stype == FUNCTION_) {
     ltag="$wl";
 //<<"evaluate $ltag <|$ln|> ?";  
     aslState (ln, "A $wl "); // parse and execute -- xic ??
@@ -201,9 +208,9 @@ Str ltag = "xyz";
     seekLine(CF,-1);
 
     transToCpp();
-!a
-}
 
+}
+!a
 <<[OF]"$wl $ln  \n"
 
  // write each line (transformed) to new 'cpp compatible' file
@@ -225,3 +232,38 @@ S=variables();
 cf(OF);
 
 exit(0);
+
+
+/////////////////////////////////////////////////
+/*
+
+  main vars OK
+  use preprocess tic file from asl -dT  xxx.asl
+  then xxx.tic is a list of statements and var names and types
+
+  use this  to to do the cpp preprocess translation
+  for proc arg vars
+  need to keep a list of the proc arg names, types
+
+  and the in proc / main context
+  as the asl2cpp  thread proceeds
+
+
+
+
+
+
+   problem of conlines ---  do we need to just remove for cpp
+   and keep original  or use margin call -
+   or mark up via 
+   !c  -- move to /*!c*/
+   
+   so that asl can use the margincall for con lines ?
+
+
+
+
+
+
+
+*/

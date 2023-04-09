@@ -1484,3 +1484,9 @@ ic_pic.cpp                          1.64  04/05/2023 21:04:06  tic
 sint_l.cpp                          1.23  04/05/2023 21:05:22  query debug
 prep.cpp                            2.62  04/05/2023 21:06:19  SYNTAX defs
 parset_e.cpp                        2.88  04/05/2023 21:07:55  contxt
+utils_e.cpp                         2.64  04/06/2023 08:58:24  satype
+statex_e.cpp                        1.38  04/06/2023 09:23:26  DB - conline?
+ic_wcb.cpp                          1.69  04/07/2023 16:22:44  PP proc_def statement
+secondpass.cpp                      2.37  04/07/2023 16:25:07  new PP for cpp compatibility
+while_e.cpp                         1.31  04/08/2023 17:23:45  CODE_WHILE_START
+proc_def_e.cpp                      2.71  04/08/2023 17:24:43  CODE_END/START

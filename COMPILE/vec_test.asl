@@ -507,13 +507,13 @@ G += 23.45; // self += op
  //pra("rms = F.rms; ",ans,__LINE__);
    F.srng(0,-1,1);
   rms = F.rms();  // ASL parse?
-//<<" F.srng(0,-1,1)  $rms \n"
- printf(" F.srng(0,-1,1)  rms \n",rms);
+  
+<<" F.srng(0,-1,1)  $rms \n"
 
 F.srng(1,-1,2);
   rms = F.rms();  // ASL parse?
-printf(" F.srng(1,-1,2)  rms \n",rms);
-
+<<" F.srng(1,-1,2)  $rms \n"
+!a  
  //pra("??  G = F.vrng(1,7,1); ",__LINE__);
 
 
@@ -523,7 +523,7 @@ G = F.rng();  // ASL parse?
 //pra(G);
 
 G = F.rng(1,7,1);  // ASL parse?
-
+!a
 //pra("print out G?\n", G); // can't get this to work - template version?
 
 //pra(G);
@@ -843,9 +843,6 @@ chkOut();
   }
 
 #endif
-
-
-
 
 //================================//
 
