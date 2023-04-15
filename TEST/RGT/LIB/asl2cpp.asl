@@ -39,17 +39,17 @@ Str tln;
 int kl = 0;
 int err=0;
  //setErrorNum(NO_ERROR_);
-  setFerror(CF,0);
- err=ferror(CF);
+  setFerror(TF,0);
+ err=ferror(TF);
 // <<"%V$done   $err\n"
 
  while (!done) {
   kl++;
-  tln = readline(CF);
+  tln = readline(TF);
 //<<"$kl tln <|$tln|> "
-// err=ferror(CF);
+// err=ferror(TF);
 // <<"%V$kl   $err\n"
-  if (ferror(CF) == EOF_ERROR_) {
+  if (ferror(TF) == EOF_ERROR_) {
   //<<" got EOF_ERROR_  line $kl\n"
     done = 1;
     break;
@@ -137,18 +137,30 @@ int err=0;
 //EP=======================================//
 
 /// the tic file should be 
+int TF = -1;
 
 Str asl_file =  _clarg[1];
 
   A=ofr(asl_file);
-  CF=ofr("asl2cpp.tic");
+
+<<"%V $A  $asl_file\n"
+
+!a
+
+
+  TF=ofr("asl2cpp.tic");
+
+<<"%V $TF\n"
+  
   OF=ofw("${asl_file}.tic")
+
+<<"%V $OF\n"
   
 if (A == -1)
      exit(-1);
 
 
- if (CF == -1) {
+ if (TF == -1) {
    <<" can't find tic file\n";
   exit(-1);
      }
@@ -160,6 +172,7 @@ Str st="xyz";
 
 int stype;
 Str ltag = "xyz";
+
   while (!done) {
 
 
@@ -193,24 +206,35 @@ Str ltag = "xyz";
 // end of proc delete them
 
   if (checkAssignType(stype) || stype == FUNCTION_) {
+  
     ltag="$wl";
-//<<"evaluate $ltag <|$ln|> ?";  
-    aslState (ln, "A $wl "); // parse and execute -- xic ??
-    //aslState (ln, ltag); // parse and execute -- xic ??
-}
+
+   aslState (ln, "A $wl "); // parse and assign -- xic ??
+S=variables();
+//aslState (ln, ltag); // parse and execute -- xic ??
+   }
+
+
+    setferror(TF,0);
+
 
   if (stype == PRSTDOUT_  ) {
     ltag="$wl";
 //<<"cprintf == <|$ln|> ?\n";  
-    aslState (ln, "T $wl "); // parse and execute -- xic ??
-    setFerror(CF,0);
 
-    seekLine(CF,-1);
+    aslState (ln, "T $wl "); // parse and execute -- xic ??
+
+S=variables();
+    // bug variables lost or just fh 
+//<<"%V $OF  $TF $done $wl\n"
+  
+
+    seekLine(TF,-1);
 
     transToCpp();
-
-}
 !a
+   }
+
 <<[OF]"$wl $ln  \n"
 
  // write each line (transformed) to new 'cpp compatible' file
@@ -250,7 +274,8 @@ exit(0);
 
 
 
-
+asl -dcwlUT asl2cpp proc_cpp.asl
+flags needed to start translation
 
 
    problem of conlines ---  do we need to just remove for cpp
