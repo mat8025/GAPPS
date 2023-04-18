@@ -1493,3 +1493,6 @@ proc_def_e.cpp                      2.71  04/08/2023 17:24:43  CODE_END/START
 utils_e.cpp                         2.65  04/13/2023 08:06:59)  getVarTypeFmt
 paramexpand.cpp                     2.76  04/13/2023 08:36:36)  cprintf
 cw_l.cpp                            1.74  04/13/2023 15:29:17)  variable cnt
+sstr.cpp                            1.9  04/15/2023 17:36:35)  findC
+ic_wcb.cpp                          1.70  04/15/2023 17:37:36)  trans to cpp ctxt
+paramexpand.cpp                     2.77  04/15/2023 17:39:02)  cprintf translation

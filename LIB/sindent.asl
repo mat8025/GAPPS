@@ -410,6 +410,7 @@ ESL=';//==============\_(^-^)_/==================//;';
      
     sl = Slen(NL);
     ind = sl -1;
+    
     if (ind >= 0) {
       nsv = sele(NL,ind,1); 
       lastc= nsv[0];
@@ -438,6 +439,7 @@ ESL=';//==============\_(^-^)_/==================//;';
        }
 
 	<<[2]"%c $lastc %d $lastc \n"
+	
 	if (lastc != 59 && lastc != 123 && lastc != 92 && !ll_fold) {
 	   needs_semi_colon = 1;
 	 
