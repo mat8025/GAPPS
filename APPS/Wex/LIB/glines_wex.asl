@@ -120,8 +120,6 @@ COUT(se_gl)
   double missing_val = 0.0;
   //sGl(wedgl,_GLMISSING,&missing_val,_GLEO);
 
-
-
   int wgl = 0;
   int ki = 0;
   

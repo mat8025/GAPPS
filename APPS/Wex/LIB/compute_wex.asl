@@ -16,6 +16,71 @@ float xhrs = 0;
 float Ndiet_lbs = 0.0;
 float Nsel_calsinout = 0.0;
 
+   void computeGoalLine()
+   {
+   
+ <<"%V$StartWt $NextGoalWt\n"
+     int sz;
+     long ngday = gday - gsday;
+
+     GVEC[0] = StartWt;  // start  Wt
+
+     GVEC[1] = NextGoalWt;
+
+     long ty_gsday = gsday;
+
+     float gwt =  NextGoalWt;
+
+     GVEC[ngday-1] = gwt;  // goal wt
+
+     WDVEC[ngday-1] = gsday+ngday;
+
+     int k =0;
+//  lpd = 1.75/7.0      // 1.75 lb a  week
+
+     float lpd = 4.0/7.0;      // 4 lb a  week
+
+     float try_lpd = (StartWt - NextGoalWt) / (1.0 * ngday);
+
+     float lw = StartWt;
+
+// our goal line  wt loss per day!
+//<<[_DB]"%V $try_lpd $lpd \n"
+
+     for (i= 0; i < ngday; i++) {
+//<<"$(ty_gsday+i) $lw \n"
+
+       GVEC[i] = lw;
+
+       WDVEC[i] = gsday+i;
+
+       lw -= try_lpd;
+
+       if (lw < MinWt)
+
+       lw = MinWt;
+
+       }
+///  revised goal line
+
+   //  sz = Caz(GVEC);
+
+ //    <<[_DB]" days $sz to lose $(StartWt-gwt) \n";
+
+ //    sz = Caz(WDVEC);
+
+ //    <<[_DB]"$sz\n";
+
+ //    <<[_DB]"%6.1f%(7,, ,\n)$WDVEC\n";
+
+ //    <<[_DB]"%6.1f%(7,, ,\n)$GVEC\n";
+//ans=query("done computeGoalLine()?");
+
+      //<<" exit computeGoalLine()\n";
+     }
+     
+//==================================//
+
 void computeWL(long wlsday, long wleday)
 {
 /// use input of juldays
@@ -23,7 +88,8 @@ void computeWL(long wlsday, long wleday)
 // read the number of cals burnt during exercise
 // compute the number of lbs burnt
 
-int i;
+   int i;
+
    float ccals,bcals;
    Nsel_exemins = 0;
    Nsel_exeburn = 0.0;
@@ -64,9 +130,11 @@ int i;
 
 }
 //=========================
+
 float PWT7 = 0.0;
 float PWT14 = 0.0;
 float PWT = 0.0; // tomorrow
+
 
 float predictWL()
 {
@@ -103,6 +171,7 @@ int k = Yday-2; //
 #if ASL
 <<"tomorrow's wt will be $pw +7 $PWT7  +14 $PWT14\n"
 #endif
+
   return pw;
 }
 

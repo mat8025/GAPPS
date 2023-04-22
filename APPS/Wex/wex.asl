@@ -347,67 +347,6 @@ Record RX;
    }
   }
 
-   void computeGoalLine()
-   {
- // <<"%V$StartWt $NextGoalWt\n"
-     int sz;
-     long ngday = gday - gsday;
-
-     GVEC[0] = StartWt;  // start  Wt
-
-     GVEC[1] = NextGoalWt;
-
-     long ty_gsday = gsday;
-
-     float gwt =  NextGoalWt;
-
-     GVEC[ngday-1] = gwt;  // goal wt
-
-     WDVEC[ngday-1] = gsday+ngday;
-
-     int k =0;
-//  lpd = 1.75/7.0      // 1.75 lb a  week
-
-     float lpd = 4.0/7.0;      // 4 lb a  week
-
-     float try_lpd = (StartWt - NextGoalWt) / (1.0 * ngday);
-
-     float lw = StartWt;
-
-// our goal line  wt loss per day!
-//<<[_DB]"%V $try_lpd $lpd \n"
-
-     for (i= 0; i < ngday; i++) {
-//<<"$(ty_gsday+i) $lw \n"
-
-       GVEC[i] = lw;
-
-       WDVEC[i] = gsday+i;
-
-       lw -= try_lpd;
-
-       if (lw < MinWt)
-
-       lw = MinWt;
-
-       }
-///  revised goal line
-
-   //  sz = Caz(GVEC);
-
- //    <<[_DB]" days $sz to lose $(StartWt-gwt) \n";
-
- //    sz = Caz(WDVEC);
-
- //    <<[_DB]"$sz\n";
-
- //    <<[_DB]"%6.1f%(7,, ,\n)$WDVEC\n";
-
- //    <<[_DB]"%6.1f%(7,, ,\n)$GVEC\n";
-
-     }
-//==================================//
-
 
   int vp,vp1;
   int wtwo,calwo,calcwo,carbwo,extwo;
@@ -476,13 +415,13 @@ void Wex::wexTask(Svarg * sarg)
    Str stmp;
    Svar Goals;
    
-   Goals.Split("01/01/2023 01/31/2023 195");
+   Goals.Split("04/01/2023 06/30/2023 175");
 
 //<<"Setting goals $Goals\n"
 
    Svar Goals2;
    
-   Goals2.Split("01/31/2023 03/31/2023 185");
+   Goals2.Split("04/20/2023 05/31/2023 185");
 ////////////////////==============/////////////////
 
 // move these down 10 when reached -- until we are at desired operating weight!
@@ -527,14 +466,14 @@ COUT(gday);
 
 //   Onwards();
 
-  sc_startday = (jtoday - Jan1) -60;
+  sc_startday = (jtoday - Jan1) -10;
 
   if (sc_startday <0)
      sc_startday =0;
 
 //  sc_endday = targetday + 7;
 
-    sc_endday = sc_startday + 90;
+    sc_endday = sc_startday + 30;
 //   <<"%V$sc_startday $targetday $sc_endday \n"
 
 
@@ -579,13 +518,9 @@ COUT(gday);
 /////////////////////////////////////////////////  READ RECORDS ////////////////////////////////////////
   int n = 0;
 
-
-
-
-
   Mo.Split ("JAN,FEB,MAR,APR ,MAY,JUN, JUL, AUG, SEP, OCT, NOV , DEC",44);
 
-  GoalsC.Split("09/15/2022 11/30/2022 175");
+  GoalsC.Split("04/15/2023 08/31/2023 175");
 
 
   maxday = Julian("04/09/2049") -Bday;
@@ -609,13 +544,11 @@ COUT(gday);
 
   Svar rx;
 
-  printf(" readRecord \n");
-
-DBA"readRecord \n" ;
-
   Wex_Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST);  // no back ptr to Siv?
 
-  // reader in readRecord closes file
+  printf(" readRecord %d\n", Wex_Nrecs);
+
+// reader in readRecord closes file
 
 //  RX.pinfo();
 
@@ -627,15 +560,13 @@ DBA"readRecord \n" ;
 
   //<<[_DB]"$RX[Nrecs-2]\n";
 
-
   int irx = Wex_Nrecs -20;
   for (i = irx ; i < Wex_Nrecs; i++) {
-  rx= RX[i];
-
-//<<"$i  $rx \n"
+       rx= RX[i];
+<<"$i  $rx \n"
   }
 
-
+   //ans=query(" readRecord proceed?");
 
 //cout << "last rec " << rx << endl;
 
@@ -689,17 +620,23 @@ DBA"readRecord \n" ;
  // <<[_DB]"; /////////\n";
 
   }
-  
+
+
+
+
 ////////////////// READ CEX DATA ///////////////////
 
     int nrd= readCCData();
 
+<<"exit  readCCData() $nrd \n"
+
  COUT (nrd) ;
 
 
+<<" do readData \n";
 
     nrd= readData();
-
+<<" exit do readData $nrd\n";
 
 COUT (nrd) ;
   /////////////////////  part 1 ////////////////////////////
@@ -709,9 +646,13 @@ COUT (nrd) ;
 
 
   float gwt = NextGoalWt;
+// ans=query("computeGoalLine()?");
 
-  computeGoalLine();
+   computeGoalLine();
+  
 ////////////////////////////////////////////////////////////////////////
+
+ //ans=query("do predict?");
 
   float sw2 = 205;
 
@@ -759,7 +700,7 @@ float ae = EXTV[15];
   predictWL();
 
 
-// ans=query("proceed?");
+// ans=query("after predict proceed?");
 
 
   lcpx = sc_startday;
@@ -775,7 +716,10 @@ float ae = EXTV[15];
 cout<<"DONE PLOT\n";
 
 
+
 int nevent = 0;
+
+// ans=query(" screen interact proceed?");
 
      while (1) {
 

@@ -231,7 +231,7 @@ printf("\n day %f  %d\n",lcpx, wt_day);
 
   //<<"%V$wtv $NextGoalWt $ssday $sgday $lsday $targetday\n";
 
-  computeGoalLine();
+  //computeGoalLine();
  //  sGl(gw_gl,@TXY,WDVEC,GVEC,@color,RED_)
 
   drawScreens();

@@ -16,8 +16,6 @@
 void fillInObsVec()
 {
 
-
-
 float tex;
 int iyd = Yd;
 
@@ -133,11 +131,11 @@ int iyd = Yd;
   
   int got_start = 0;
 
-  printf("Wex_Nrecs \n",Wex_Nrecs);
+  //printf("Wex_Nrecs \n",Wex_Nrecs);
 
 // access of record row Rx(i)
 // access of record Col Rx(i,j)
-
+  int max_n =3;
   while (tl < Wex_Nrecs) {
 
 
@@ -184,20 +182,19 @@ int iyd = Yd;
   fillInObsVec();
 
   tl++;
-//<<"%V $tl\n"
+
+//<<"%V $tl   $Wex_Nrecs\n"
 
   if (tl >= Wex_Nrecs) {
 
-  break;
+     break;
 
   }
 
   }
 
 
-printf("Wex_Nrecs %d there were Nobs %d measurements ",Wex_Nrecs,Nobs);
-
-
+    printf("Wex_Nrecs %d there were Nobs %d measurements ",Wex_Nrecs,Nobs);
 
   return tl;
 
@@ -227,9 +224,11 @@ printf("Wex_Nrecs %d there were Nobs %d measurements ",Wex_Nrecs,Nobs);
   {
 
   int tl = 0;
+  
   long jday;
   Str day;
-  
+  int jn = 5;
+    <<"%V $tl $NCCrecs \n"
   while (tl < NCCrecs) {
   
 
@@ -278,15 +277,23 @@ printf("Wex_Nrecs %d there were Nobs %d measurements ",Wex_Nrecs,Nobs);
 
   NCCobs++;
   }
+//
   tl++;
 
+  //<<"%V $tl $NCCrecs \n"
   if (tl >= NCCrecs) {
 
-  break;
+    break;
 
   }
-  
+
+
+
+ // ans=query("readCC proceed?");
+
   }
+
+
    return tl;
   }
 //=======================================//

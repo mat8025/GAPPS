@@ -28,6 +28,8 @@
 
   sWi(_WOID,vp,_WCLIP,wbox(0.1,0.05,0.9,0.95),  _WREDRAW,ON_);
 
+
+
   vp1 = cWi("XED");
 
   sWi(_WOID,vp1,_WRESIZE,wbox(0.01,0.05,0.90,0.95,1)  );
@@ -95,7 +97,7 @@ cout <<"aftertitleButtons\n";
 
   sc_zstart = sc_startday;
 
-//  <<"%V $sc_startday $sc_endday $sc_end \n";
+<<"%V $sc_startday $sc_endday $sc_end \n";
 COUT(sc_zstart);
  //  _WFONT arg wfont(char*) wfont(int) --- 
 
