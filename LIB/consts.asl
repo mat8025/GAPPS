@@ -98,7 +98,7 @@ const float _slug2lb = 32.2
 const float _lightyr = 9.46e15
 
 
-proc units()
+void units()
 {
 <<"%V$_inch2cm \n"
 <<"%V$_ft2m \n"
@@ -126,7 +126,7 @@ proc units()
 }
 
 // %e  formats in sci format   1.38e-23
-proc consts()
+void consts()
 {
 <<"MKS  - note consts are preceeded by underscore \n"
 <<"%V$_PI \n"
@@ -150,16 +150,15 @@ proc consts()
 //<<"loaded consts and units conversion scalars \n"
 //<<" units() -- prints out conversions\n"
 //<<" consts() -- prints out known constants\n"
-
-
-proc ll2dd (the_ang)
+/*
+double ll2dd (Str the_ang)
 {
       //<<"in CMF GetDeg $the_ang\n"
       //<<"input args is $the_ang \n"
 
     the_dir="" ;
 
-    float la
+    double la;
 
      //  <<" $the_ang  \n"
 	
@@ -208,5 +207,5 @@ proc ll2dd (the_ang)
       
     return (la)
 }
-
+*/
 //======================================================

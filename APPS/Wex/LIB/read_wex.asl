@@ -19,7 +19,7 @@ void fillInObsVec()
 float tex;
 int iyd = Yd;
 
- VCOUT(Yd,iyd);
+ //VCOUT(Yd,iyd);
 //<<" %V $Yd \n"
   if (Yd >= 0) {
 
@@ -33,7 +33,7 @@ int iyd = Yd;
 
   WTVEC[Yd] = mywt;
   
-  DBA"mywt  $WTVEC[Nobs] \n";
+  //DBA"mywt  $WTVEC[Nobs] \n";
 
   if (mywt > 0.0) {
 
@@ -65,6 +65,7 @@ int iyd = Yd;
 
    tex = ( walk + hike + run + cycle + swim + yardwrk + wex);
 
+//<<"$tex \n"
 //COUT(tex);
 
   EXTV[Yd] = tex; 
@@ -101,6 +102,8 @@ int iyd = Yd;
   EXEBURN[Yd] =  exer_burn;
 
   tot_exeburn += exer_burn;
+
+//<<"$Yd $tot_exburn \n"
 
    float wrk_sleep  = (sleep_burn + (16 * 60 - tex) * office_rate )  ;
 
@@ -148,7 +151,7 @@ int iyd = Yd;
 
 //<<"%V $day \n"
 
-  VCOUT(tl,day);
+//  VCOUT(tl,day);
 
   jday = Julian(day);
 
@@ -228,7 +231,7 @@ int iyd = Yd;
   long jday;
   Str day;
   int jn = 5;
-    <<"%V $tl $NCCrecs \n"
+    //<<"%V $tl $NCCrecs \n"
   while (tl < NCCrecs) {
   
 

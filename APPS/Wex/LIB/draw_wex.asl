@@ -19,9 +19,9 @@
 //  <<"$_proc $gday $NextGoalWt $last_known_day\n"
 //  plot(gwo,_Wsymbol,gday,NextGoalWt, TRI_,1, YELLOW_);
 //  plot(gwo,_Wsymbol,gday-1,NextGoalWt, 3,1,GREEN_);
-#if ASL
-  <<"%V $last_known_day $PWT $PWT7 $PWT14  $tday2 $FirstGoalWt \n";
-#endif
+
+  //<<"%V $last_known_day $PWT $PWT7 $PWT14  $tday2 $FirstGoalWt \n";
+
 
 // cout<<"showTarget()\n";
   
@@ -167,9 +167,7 @@
    the_date = Julmdy(jd);
 
    // use mondays as the date tick
-#if ASL
- <<"%V$mid_date $jd $the_date \n";
-#endif
+
 
    //AxText(wwo, 1, the_date, mid_date, -0.25, BLUE_)
 
@@ -367,7 +365,7 @@ for (i = 0; i< 10; i++) {
 //  sWo(_WOID,extwo,"Exercise Time (mins)",wpt( 0.8,0.7),1,0,RED_);
    Text(extwo,"Exercise Time (mins)",0.8,0.7,1,0,RED_);
 
-  int allgls[] = {wt_gl,  carb_gl,  fibre_gl,  fat_gl,  prot_gl,  calc_gl,  calb_gl,  wt_gl,ext_gl, -1};
+  int allgls[] = { wt_gl,  ext_gl, carb_gl,  fibre_gl,  fat_gl,  prot_gl,  calc_gl,  calb_gl,   -1};
 
    // int allgls[] = {wt_gl2,wt_gl, wt_gl3,-1};
 
@@ -375,14 +373,20 @@ for (i = 0; i< 10; i++) {
 
    int gi=0;
 
-  while ( allgls[gi] > 0)  {
+  //while ( allgls[gi] >= 0)  {    // ?? bug
 
-// <<"%V $gi $allgls[gi] \n"
+  while ( 1) {
+
+ //<<"%V $gi $allgls[gi] \n"
 
   sGl(_GLID,allgls[gi],_GLDRAW,ON_);
   
   gi++;
-  
+
+    if (allgls[gi] < 0)  {
+             break;
+    }
+
   }
 
 
@@ -559,11 +563,11 @@ for (i = 0; i< 10; i++) {
   m_day= dayv + Jan1 -1;  // ? OBO;
 
   Str mdy = Julmdy(m_day);
-#if ASL
-<<"%V $dayv $m_day $Jan1 $mdy \n"
-#endif
 
-printf("m_day %d Jan1 %ld  mdy %s\n",m_day, Jan1, mdy);
+//<<"%V $dayv $m_day $Jan1 $mdy \n"
+
+
+//printf("m_day %d Jan1 %ld  mdy %s\n",m_day, Jan1, mdy);
 
   //COUT(mdy);
   

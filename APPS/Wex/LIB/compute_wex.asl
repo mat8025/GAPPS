@@ -19,7 +19,7 @@ float Nsel_calsinout = 0.0;
    void computeGoalLine()
    {
    
- <<"%V$StartWt $NextGoalWt\n"
+ //<<"%V$StartWt $NextGoalWt\n"
      int sz;
      long ngday = gday - gsday;
 
@@ -168,9 +168,9 @@ int k = Yday-2; //
     PWT7 = yv[0] + (pwl[1] * 9);
     PWT14 = yv[0] + (pwl[1] * 16);
   }
-#if ASL
+
 <<"tomorrow's wt will be $pw +7 $PWT7  +14 $PWT14\n"
-#endif
+
 
   return pw;
 }

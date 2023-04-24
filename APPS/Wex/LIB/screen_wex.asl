@@ -71,7 +71,7 @@ cout<<"  titleButtonsQRD(vp);\n";
 
   extwo=cWo(vp,WO_GRAPH_);
   
-  sWo(_WOID,extwo,_WNAME,"XT",_WVALUE,0,_WCLIPBORDER,BLACK_); // exercise time;
+  sWo(_WOID,extwo,_WNAME,"XT",_WVALUE,0,_WCLIPBORDER,RED_); // exercise time;
 
   int wedwos[] = { wtwo,calwo,  carbwo, extwo,-1  };
 //<<[_DB]"%V$wedwo \n"
@@ -121,7 +121,7 @@ COUT(calwo);
 
 COUT(sc_end);
 
-  sWo(_WOID,extwo,_WSCALES,wbox(sc_startday,110,sc_end,250));
+  sWo(_WOID,extwo,_WSCALES,wbox(sc_startday,10,sc_end,300),_WSAVESCALES,0);
 
 cout <<"SCALES " << sc_startday << " sc_end " <<sc_end << endl;
 

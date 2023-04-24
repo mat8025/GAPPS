@@ -1496,3 +1496,6 @@ cw_l.cpp                            1.74  04/13/2023 15:29:17)  variable cnt
 sstr.cpp                            1.9  04/15/2023 17:36:35)  findC
 ic_wcb.cpp                          1.70  04/15/2023 17:37:36)  trans to cpp ctxt
 paramexpand.cpp                     2.77  04/15/2023 17:39:02)  cprintf translation
+vsh.cpp                             1.9  04/23/2023 12:37:19)  vsh sarg reset
+ic_wcb.cpp                          1.71  04/23/2023 12:38:21)  else_if {
+preprocess.cpp                      1.6  04/23/2023 12:39:16)  auto declare 

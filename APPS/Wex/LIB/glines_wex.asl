@@ -19,11 +19,13 @@
 
  COUT(pwt_gl)
 
-  ext_gl  = cGl(extwo);
+  ext_gl  = cGl(extwo); // extwo
 
 // set as XYVECTOR
 
- sGl(_GLID,ext_gl,_GLXVEC,DVEC,_GLYVEC,EXTV,_GLHUE,GREEN_,_GLSYMLINE,TRI_);
+ sGl(_GLID,ext_gl,_GLXVEC,DVEC,_GLYVEC,EXTV,_GLHUE,BLACK_,_GLSYMLINE, DIAMOND_);
+
+<<"%V $ext_gl \n"
 
   COUT(ext_gl)
 
@@ -44,6 +46,8 @@ COUT(strength_gl)
  // sGl(ext_gl,_GLSYMSIZE,3,_GLSYMHUE,GREEN_);
 
   wt_gl = cGl(wtwo);
+
+
 
 
   sGl(_GLID,wt_gl, _GLHUE, RED_, _GLXVEC, DVEC, _GLYVEC, WTVEC,_GLSYMLINE, TRI_);
@@ -110,7 +114,7 @@ COUT(carb_gl)
 
 COUT(se_gl)
 
-  int allgl[] = {bp_gl,ext_gl, se_gl, calb_gl, calc_gl, carb_gl, cardio_gl, wt_gl, strength_gl,-1};  // remove gw_gl
+  int allgl[] = {bp_gl, ext_gl, se_gl, calb_gl, calc_gl, carb_gl, cardio_gl, wt_gl, strength_gl,-1};  // remove gw_gl
 
   int wedgl[] = { ext_gl, calb_gl, se_gl, calc_gl, carb_gl, fibre_gl,fat_gl,prot_gl, cardio_gl, wt_gl, strength_gl,-1};
 
@@ -130,7 +134,9 @@ COUT(se_gl)
 
   cout<<"set symbols \n";
 
-  sGl(_GLID,ext_gl,_GLSYMBOL,TRI_, _GLSYMFILL,ON_);
+  //sGl(_GLID,ext_gl,_GLSYMBOL,TRI_, _GLSYMSIZE, Symsz,_GLSYMFILL,ON_);
+
+sGl(_GLID,ext_gl,_GLSYMBOL, DIAMOND_, _GLSYMSIZE, Symsz, _GLSYMHUE,RED_);
 
   COUT(ext_gl);
 

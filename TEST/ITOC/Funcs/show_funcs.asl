@@ -6,7 +6,7 @@
 
 S=functions();
 
- S->sort();
+ S.sort();
 
 A=ofw("funcs_list.csv")
 <<[A]"%(1,,,\n)$S\n"

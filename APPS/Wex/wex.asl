@@ -446,7 +446,7 @@ void Wex::wexTask(Svarg * sarg)
 	  
 //<<"%V $tjd $Jan1 $Sday $targetday  $tarxday; \n"
 
- //  cout << " Jan1 " << Jan1 << endl;
+
 
    NextGoalWt = atoi(Goals[2]);
 
@@ -546,7 +546,7 @@ COUT(gday);
 
   Wex_Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST);  // no back ptr to Siv?
 
-  printf(" readRecord %d\n", Wex_Nrecs);
+  //printf(" readRecord %d\n", Wex_Nrecs);
 
 // reader in readRecord closes file
 
@@ -563,12 +563,12 @@ COUT(gday);
   int irx = Wex_Nrecs -20;
   for (i = irx ; i < Wex_Nrecs; i++) {
        rx= RX[i];
-<<"$i  $rx \n"
+//<<"$i  $rx \n"
   }
 
    //ans=query(" readRecord proceed?");
 
-//cout << "last rec " << rx << endl;
+
 
 //<<"$RX[Nrecs-1]\n"
 
@@ -606,7 +606,7 @@ COUT(gday);
 
   NCCrecs = RCC.getNrows();
   
-  cout << "NCCrecs " << NCCrecs << endl;
+  //cout << "NCCrecs " << NCCrecs << endl;
 //ans = query("NCCrecs");
   //NCCrecs->info(1)
 
@@ -628,15 +628,15 @@ COUT(gday);
 
     int nrd= readCCData();
 
-<<"exit  readCCData() $nrd \n"
+//<<"exit  readCCData() $nrd \n"
 
  COUT (nrd) ;
 
 
-<<" do readData \n";
+//<<" do readData \n";
 
     nrd= readData();
-<<" exit do readData $nrd\n";
+
 
 COUT (nrd) ;
   /////////////////////  part 1 ////////////////////////////
@@ -658,7 +658,7 @@ COUT (nrd) ;
 
   float gw2 = 170;
 
-  COUT(gw2);
+  //COUT(gw2);
 
 
 //////////////////   Predicted Wt   //////////////////////////////////
@@ -686,21 +686,16 @@ float ae = EXTV[15];
 
    ae = AVE_EXTV[15];
 
-   printf("ae %f\n",ae);
-
-
-   COUT(ae);
-
+   //printf("ae %f\n",ae);
+//   COUT(ae);
 //COUT(DVEC);
-
-
 //COUT(WTVEC);
 
 
   predictWL();
 
 
-// ans=query("after predict proceed?");
+ //ans=query("after predict proceed?");
 
 
   lcpx = sc_startday;
@@ -712,21 +707,23 @@ float ae = EXTV[15];
 
 
   drawScreens();
- 
+
+
+//<<" %(1,,,\n) $EXTV \n"
 cout<<"DONE PLOT\n";
 
 
 
 int nevent = 0;
 
-// ans=query(" screen interact proceed?");
+ //ans=query(" screen interact proceed?");
 
      while (1) {
 
 
     eventWait();
 
-//    printf("Ev_button %d Ev_keyw %s Ev_woname %s Ev_keyc %d\n", Ev_button,Ev_keyw,Ev_woname,Ev_keyc );
+    printf("Ev_button %d Ev_keyw %s Ev_woname %s Ev_keyc %d\n", Ev_button,Ev_keyw,Ev_woname,Ev_keyc );
 
          nevent++;
 
@@ -750,14 +747,13 @@ int nevent = 0;
        }
 
 
-
  // if (Button == 1 || Button == 3) 
  //         WTLB();
 
-	 if (Ev_button == 4)
-	    break;
-	 if (nevent > 200)
+
+	 if (nevent > 2000) {
 	   break;
+	   }
      }
 
 cout<<"Exit Wex\n";
