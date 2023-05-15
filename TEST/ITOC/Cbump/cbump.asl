@@ -11,18 +11,31 @@
  * 
  */ 
 ;//----------------<v_&_v>-------------------------//;                              
-  
-  Str Vers2ele(Str& vstr)
+
+
+
+
+//  Str Vers2ele(Str& vstr)  4/29/23  ref proc arg broke
+//  arg passing type name !
+
+ Str Vers2ele(Str& vstr)  
   {
   
    pmaj = atoi(spat(vstr,"."))
    pmin = atoi(spat(vstr,".",1))
-  <<[2]"%V $pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
+
+
+
+  <<" $pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
+
+
+
    elestr = pt(pmin);
-   str ele =" ";
+   Str ele =" ";
    ele = spat(elestr,",")
   //<<"$ele $(typeof(ele))\n";
-  //<<"$ele";
+
+
    return ele;
    
   }
@@ -150,12 +163,10 @@ T.pinfo();
 
 Str Pad;
 
-
-
 Svar L;
 
  L.pinfo()
- pinfo(L)
+
 
 
 
@@ -182,7 +193,8 @@ Str old_comment ="yyy"
 
    sz = Caz(L);
 <<"Lsz $sz\n"
-    L[0:-1:1] = "";
+
+ //   L[0:-1:1] = ""; // this is Svar clear fields
 
 //<<"clear L $L\n"
 

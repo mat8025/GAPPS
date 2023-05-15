@@ -82,11 +82,6 @@ float   km_to_sm = 3281.0/5280.0;
 float   nm_to_sm = 6080.0/5280.0;
 float   nm_to_km = 6080.0/3281.0;
 
-
-
-
-
-
 //============================================
 
 
@@ -98,12 +93,15 @@ float   nm_to_km = 6080.0/3281.0;
 
   Vec<float> IGCTIM(7000);
 
+// DBG <<"%V $Igcfn \n"
+
 
 
   float computeGCD(float la1,float la2,float lo1,float lo2)
   {
 ///  input lat and long degrees - GCD in km
-  float rL1,rL2,rlo1,rlo2,D,km;
+  //float rL1,rL2,rlo1,rlo2,D,km;
+  
   rL1 = d2r(la1);
 
   rL2 = d2r(la2);
@@ -120,55 +118,6 @@ float   nm_to_km = 6080.0/3281.0;
 
   }
 //==================================================
-
-#if 0
-  float ComputeTPD(int j, int k)
-  {
-//<<" $_proc %V $j $k \n"
-// needs Wtp as arg!! - but we use library version anyway
-int N;
-  float km = 0.0;
-  float km1,km2;
-  float L1,L2,lo1,lo2,rL2,rL1,rlo1,rlo2,D;
-  L1 = Wtp[j].Ladeg;
-
-  L2 = Wtp[k].Ladeg;
-   //DBG"%V $L1 $L2 \n"
-
-  lo1 = Wtp[j].Longdeg;
-
-  lo2 = Wtp[k].Longdeg;
-   //DBG"%V $lo1 $lo2 \n"
-
-  rL2 = d2r(L2);
-
-  rL1 = d2r(L1);
-   //DBG" %V $rL1 $rL2 \n"
-
-  rlo1 = d2r(lo1);
-
-  rlo2 = d2r(lo2);
-    //DBG" %V $rlo1 $rlo2 \n"
-
-  D= acos (sin(rL1) * sin(rL2) + cos(rL1) * cos(rL2) * cos(rlo1-rlo2));
-    //DBG"%V $D\n"
-
-  N = LegK * D;
-
-  km1 = N * nm_to_km;
-   // km2 = Gcd(L1,lo1 , L2, lo2 );
-
-  km2 = HowFar(L1,lo1 ,L2, lo2);
-
-  km = km2;
-
-  //<<" %V   $LegK   $nm_to_km $km1 $km2\n" ;
-
-  return km;
-
-  }
-//====================================//
-#endif
 
 
   void processIGC()
@@ -191,9 +140,9 @@ int N;
   IGCLONG = 4.5;
   IGCELE = 5.6;
   IGCLAT[2] = 77.66;
-    IGCLONG[2] = 47.68;
+  IGCLONG[2] = 47.68;
   IGCELE[4] = 12345.678;
-IGCELE.pinfo();
+  IGCELE.pinfo();
 //sdb(1)
   //pa("processIGC Igcfn   ",Igcfn);
 
@@ -206,9 +155,9 @@ IGCELE.pinfo();
 
   Ntpts= readIGC(Igcfn, IGCTIM, IGCLAT, IGCLONG, IGCELE);
   
-#if ASL
+
    <<"sz $Ntpts $(Caz(IGCLONG))   $(Caz(IGCLAT))\n"
-#endif
+
   
 //<<"%(10,, ,\n) $IGCLONG[0:30] \n"
 //<<"%(10,, ,\n) $IGCLONG[k:Ntpts-1] \n"
@@ -425,45 +374,7 @@ ssele= IGCELE.stats();
 
   }
 //===============================//
-/*
-  void get_word(Str defword)
-  {
 
-  Svar h;
-    //    DBG" %V $defword $via_keyb $via_cl \n"
-
-  if (via_keyb) {
-	// DBG"via keybd \n"
-	// DBG"$defword "
-
-  h = irs(Stat);
-
-  if ( h > 1) {
-
-  sscan(Stat,&h);
-
-  }
-
-  else {
-
-  h = defword;
-
-  }
-
-  }
-
-  if (via_file) {
-
-     h.readFile(TF);
-
-  }
-      //          DBG" $_cproc exit with $h \n"
-
-  return h;
-
-  }
-//==================================================
-*/
 
 
   void nearest (int tp)
@@ -474,12 +385,7 @@ ssele= IGCELE.stats();
 
   }
 //====================//
-/*
-  float IGCLONG[];
-  float IGCLAT[];
-  float IGCELE[];
-  float IGCTIM[];
-*/
+
   void IGC_Read(Str igc_file)
   {
 //DBG"%V $igc_file \n"
@@ -494,8 +400,12 @@ ssele= IGCELE.stats();
   return 0;
 
   }
-  int ntps =0;
- ntps = readIGC(fh,&IGCTIM,&IGCLAT,&IGCLONG,&IGCELE); // vec siv base
+
+ int ntps =0;
+
+//ntps = readIGC(fh,&IGCTIM,&IGCLAT,&IGCLONG,&IGCELE); // vec siv base
+
+  ntps = readIGC(fh,IGCTIM,IGCLAT,IGCLONG,IGCELE); // vec siv base
 
   IGCELE *= 3.280839 ;
   
@@ -513,11 +423,12 @@ ssele= IGCELE.stats();
 //========================
 
 
-  float ComputeTC(Turnpt wtp[],int j, int k)
+  //float ComputeTC(Turnpt wtp[],int j, int k)
+  float ComputeTC(Turnpt wtp,int j, int k)
   {
 
   //<<"$_proc %V $j $k\n";
-
+  wtp.pinfo();
   float km = 0.0;
   float tc = 0.0;
   float L1,L2,lo1,lo2;

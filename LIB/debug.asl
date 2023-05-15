@@ -13,8 +13,14 @@
 //-----------------<v_&_v>--------------------------//
 
 //<<"Including  debug \n"
+  filterFuncDebug(REJECTALL_,"proc");
+
+  filterFileDebug(REJECTALL_,"yyy");
+
 int hold_dbl = _dblevel;
 int dblevel = _dblevel;
+
+
 
 //<<"%V$hold_dbl \n"
 
@@ -42,6 +48,7 @@ int dblevel = _dblevel;
 //sdb(1,@keep);
 // if there are errors keep  idb,xdb file in .GASP/WORK/Debug
 // will be overwritten by scripts  unless unique/local options used
+
 
   void DummyP()
   {

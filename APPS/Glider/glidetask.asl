@@ -10,13 +10,19 @@
  *  @Copyright © RootMeanSquare 2023 -->                               
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                  
+//----------------<v_&_v>-------------------------//                  
 
 
 char vers[6] ="5.1";
 
+
+#include "debug"
+ //filterFileDebug(REJECT_,"pr_state.cpp","declare_e.cpp");
+filterFileDebug(ALLOW_,"pr_state.cpp","declare_e.cpp");
+ filterFuncDebug(REJECT_,"si_declare_type", "checkExpression","checkStatement","writeASC");
+ filterFuncDebug(REJECT_,"advanceStatement");
 #define DB_IT    0
-#define GT_DB   0
+#define GT_DB   1
 #define ASL 1
 #define CPP 0
 
@@ -53,12 +59,21 @@ using namespace std;
 
 int run_asl = runASL();
 //<<" running as ASL \n";
-#include "debug"
+
+ // debugON();
 
 ignoreErrors();
 
+
+// filterFileDebug(REJECT_,"declare_e.cpp","scope_e","pr_state.cpp");
+
+
+
+
+
+
 #undef  ASL_DB
-#define ASL_DB 0
+#define ASL_DB 1
 
 
 #endif
@@ -104,6 +119,7 @@ float Dur[20];
   Str try_start = "xxx";
   Str nxttpt = "Laramie";
 
+
 //<<"%V $nxttpt \n"
 
 //#include "conv.asl"
@@ -116,13 +132,15 @@ Tleg  GT_Wleg[20];
 
 #include "ootlib.asl"
 
+/// are all globals in preprocessing stage known here
+
   int via_keyb = 0;
   int via_file = 0;
 
   int via_cl = 1;
   int ok_to_compute = 1;
   long where ;
-
+/////////////////////////////////////
 
 
 
@@ -145,7 +163,7 @@ Glide::glideTask(Svarg * sarg)
 #endif
 
   ignoreErrors(); // put in glide.h ??
-
+  Str ans;
 
   int  Main_init = 1;
   float Leg[20];
@@ -154,7 +172,7 @@ Glide::glideTask(Svarg * sarg)
 
   Cruise_speed = (CSK * nm_to_km);
 
-  printf(" Cruise_speed %f ",Cruise_speed);
+  printf(" Cruise speed %f \n",Cruise_speed);
 
   GT_Wtp[1].Alt = 100.0;
 
@@ -162,7 +180,9 @@ Glide::glideTask(Svarg * sarg)
 
 //  <<"$GT_Wtp[1].Alt\n";
 
-//  GT_Wtp.aslpinfo() ;  // should identify Obj
+//  GT_Wtp.pinfo() ;  // should identify Obj
+
+//ans =query("??");
 
   Str tlon;
   Str tplace;
@@ -224,7 +244,7 @@ Glide::glideTask(Svarg * sarg)
 #endif  
 
 
-//printf(" na %d\n",na);
+printf(" na %d\n",na);
 
 
   int ac = 0;
@@ -237,7 +257,7 @@ Glide::glideTask(Svarg * sarg)
   int sz;
   
   Str targ;
-  Str ans;
+
 
   //<<" %V $LoD \n";
 #if ASL
@@ -256,11 +276,11 @@ while (ac < na) {
 
 #if GT_DB
  printf("ac %d targ %s\n",ac,targ);
- targ.aslpinfo();
+ targ.pinfo();
 #endif
 
 /*
- targ.aslpinfo();
+ targ.pinfo();
   ok= targ.aslcheckinfo("GLOBAL");
  <<" $ok   targ is a GLOBAL \n";
 */
@@ -288,14 +308,14 @@ while (ac < na) {
 
 #if GT_DB
      printf("setting LD %f ",LoD);
-     LoD.aslpinfo();
+     LoD.pinfo();
 #endif
 
     }
 
   if (targ == "units") {
 
-      //targ.aslpinfo();  // print variable status
+      //targ.pinfo();  // print variable status
       // isthere = targ.checkVarInfo("SI_PROC_REF_ARG")  ;  // check variable status for this string
 
      targ = sa.cptr(ac);
@@ -436,7 +456,7 @@ while (ac < na) {
   int i = -1;
 
 
-   if (DB_IT) printf("DONE ARGS  ac %d cltpt %d \n", ac,cltpt);
+   if (GT_DB) printf("DONE ARGS  ac %d cltpt %d \n", ac,cltpt);
 
 
 
@@ -517,7 +537,7 @@ while (ac < na) {
 
    printf("the_start not found \n");;
 
-  //the_start.aslpinfo();
+  //the_start.pinfo();
 
 //cout  <<" "<< the_start  << "not "  << "found "  <<endl ;
 //  printf("the_start  %s not found \n", stoa(the_start));
@@ -574,8 +594,9 @@ while (ac < na) {
 
   if (use_cup) {
    nwr = Wval.readWords(AFH,0,',');
-//<<"read $nwr words \n"
-//<<" $Wval[0]  $Wval[1]  $Wval[2]\n"   
+
+<<"read $nwr words \n"
+<<" $Wval[0] : $Wval[1] : $Wval[2]\n"   
    }
   else {
    nwr = Wval.readWords(AFH);
@@ -601,7 +622,7 @@ while (ac < na) {
   n_tp++;
   if (use_cup) {
 
-//<<"start %V $n_legs   \n"
+//<<"start %V $n_legs  $Wval \n"
 
      GT_Wtp[0].TPCUPset(Wval);
 
@@ -645,7 +666,7 @@ while (ac < na) {
   if (GT_DB) cout << " nxttpt " << nxttpt << endl;
 #endif
 
-//nxttpt.aslpinfo();
+//nxttpt.pinfo();
  
   cnttpt++;
 
@@ -703,7 +724,7 @@ while (ac < na) {
       where = searchFile(AFH,try_start,0,1,0,0);
       
        if (AFH != K_AFH) {
-        printf("ERROR AFH %d\n",AFH);
+        printf(" ferr AFH %d\n",AFH);
 	}
     }
 
@@ -765,8 +786,10 @@ while (ac < na) {
  //  nwr = Wval.readWords(AFH,0,',');
  
    nwr = Wval.readWords(AFH,0,',');
-//<<"read $nwr words \n"
-//<<" $Wval[0]  $Wval[1]  $Wval[2]\n"
+
+  <<"read $nwr words \n"
+
+ <<" $Wval[2]  $Wval[1]  $Wval[3]\n"
 
 
 
@@ -785,7 +808,7 @@ while (ac < na) {
 
    GT_Wtp[n_legs].TPCUPset(Wval);
 //<<"%V $n_legs  $GT_Wtp[n_legs].Place $GT_Wtp[n_legs].Ladeg \n"
-   //Wval.aslpinfo();
+   //Wval.pinfo();
 
 
    AGL[n_legs] = GT_Wtp[n_legs].Alt;
@@ -806,7 +829,7 @@ while (ac < na) {
 
 #if ASL
      if (AFH != K_AFH) {
-       <<"ERROR %V $AFH\n"
+       <<" ferr %V $AFH\n"
      }
 #endif
 
@@ -1109,7 +1132,7 @@ cprintf("%d  %-10S %-5S %-8S  %6.0fft  ",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Ra
 
   
   //printf("%6.0ff  ", GT_Wtp[li].Alt);
-  printf("\t%6.0fd ",TC[li]);
+  printf("\t%6.0f ",TC[li]);
   printf("\t%5.1f ",GT_Wleg[li].dist);
   printf("%6.0fft ",GT_Wtp[li].fga);
 

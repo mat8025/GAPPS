@@ -10,7 +10,7 @@
  *  @Copyright © RootMeanSquare 2022
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                                                                                                                                 
+//----------------<v_&_v>-------------------------//                                                                                                                                 
 
 #ifndef TPCLASS_
 
@@ -48,11 +48,9 @@ class Tleg
   Str Tow;
   Str Tplace;
 
-#if ASL
- void Tleg()   //  use cons,destroy   -- have then set to NULL in CPP header
-#else
-  Tleg()
-#endif
+//  use cmf for cons,destruct
+//  preprocess to asc will remove cmf
+ cmf Tleg()   
  {
  //<<"Starting cons \n"
   dist = 0.0;
@@ -61,10 +59,16 @@ class Tleg
   msl = 0.0;
  // <<"Done cons $dist $pc\n"
  }
+ 
  Str getPlace ()   
    {
        return Tplace; 
    }
+
+ cmf ~Tleg()   
+ {
+    <<"destructing Tleg \n";
+ }
 };   // need ;
 
 
@@ -157,15 +161,18 @@ class Turnpt
       }
 //=========================//
 
- void TPCUPset (Svar& wval)
+
+
+//void TPCUPset (Svar& wval)
+void TPCUPset (Svar wval)
  {
 
 //<<"IN $_proc \n"
 Str val;
 
 Str val2;
-
- //  <<"%V $Alt\n";
+   //  wval.pinfo();
+ //<<"%V $Alt\n";
 
 //<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
  //  pa(wval);
@@ -234,10 +241,13 @@ Str val2;
   
      val = wval[5];
 
+//<<" %V $val \n";
+
     // pa(val);
     // ft or m
 
 //ans=query("?","sele",__LINE__);
+
     val2 = sele(val,-1,-2);
 
 //<<"%V $val2\n"
@@ -326,11 +336,9 @@ Str val2;
      Longdeg = coorToDeg(Lon,2);
 
 //cout  <<"Lon " << Lon <<" Longdeg "<< Longdeg  <<endl ; 
-#if ASL
+
 //<<"%V $Lon $Longdeg \n";
 //<<"%V $Place $is_airport \n"
-#endif
-
 
 
       }
@@ -350,12 +358,9 @@ void SetPlace (Str val)
    void Print ()    
    {
      //<<"$Place $Idnt $Lat $Lon $Alt $rway $Radio $Ladeg $Longdeg\n"
-#if ASL
-<<" $Place  $Lat $Lon $Radio\n"
-#else
-cout << " " << Place <<" " << Idnt <<" " << Lat <<" " << Lon <<" " << Alt <<" " << rway <<" "
-<< Radio <<" " << Ladeg <<" " << Longdeg << endl;
-#endif
+
+     <<" $Place  $Lat $Lon $Radio\n"
+
    }
 //=========================//
 
@@ -368,11 +373,8 @@ cout << " " << Place <<" " << Idnt <<" " << Lat <<" " << Lon <<" " << Alt <<" " 
       return amat[0];
    }
 //=========================//
-#if ASL
-void Turnpt()
-#else
- Turnpt()
-#endif
+
+cmf Turnpt()
  {
 
 
@@ -389,11 +391,5 @@ void Turnpt()
 
 };
 //======================================//
-
-
-
-#if ASL
-if (GT_DB) <<"%V $_include  DONE\n"
-#endif
 
 #endif

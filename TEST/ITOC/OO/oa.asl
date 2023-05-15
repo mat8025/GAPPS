@@ -18,6 +18,7 @@ Str Use_="   demo some OO syntax/ops";
 
 #include "debug"
 
+/*
    if (_dblevel >0) {
 
      debugON();
@@ -25,6 +26,7 @@ Str Use_="   demo some OO syntax/ops";
      <<"$Use_\n";
 
      }
+*/
 
    allowErrors(-1);
 
@@ -33,8 +35,17 @@ Str Use_="   demo some OO syntax/ops";
    //debugON();
 
    int x = 5;
-
+   int li = 0;
+   float TC[3];
    int Bid =0;
+
+   printf("x is %d\n",x);
+
+   printf("\t%6.0f ",TC[li]); 
+
+
+
+
 
    void checkRooms(int i, int k)
    {
@@ -65,15 +76,25 @@ Str Use_="   demo some OO syntax/ops";
 
    //================;
 
+
+
    nr = pfloors(7);
 
    <<"%V $nr\n";
 
-   nr = pfloors(8);
+   chkN(nr,8);
+
+   nr =pfloors(8);
 
    <<"%V $nr\n";
 
+    chkN(nr,9);
    //=====================;
+
+
+
+
+//   Define a class 
 
    class Building {
 
@@ -107,7 +128,6 @@ Str Use_="   demo some OO syntax/ops";
      //========================;
 
      void setFloors(int val)
-
      {
 
        floors = val;
@@ -148,7 +168,7 @@ Str Use_="   demo some OO syntax/ops";
 
      //======================================//;
 
-     cmf Building()
+  cmf   Building()
 
      {
 
@@ -172,13 +192,38 @@ Str Use_="   demo some OO syntax/ops";
 
        }
 
+    cmf   ~Building()
+         {
+          <<"destructing \n";
+         }
+
      }
 
    ////////////////////////////////////
 
    Building C[10];
 
-   <<" done object array  declare ! \n";
+   <<"\n DONE object array  declare ! \n";
+
+  <<" Print  C1 !\n"
+
+
+   C[1].Print();
+
+
+ 
+
+   b1rooms = C[1].getRooms();
+
+   <<"%V $b1rooms on C[1] \n";
+
+
+   chkN (b1rooms,5);
+
+   chkOut(1);
+
+
+
 
    b6 = 6;
 
@@ -198,18 +243,23 @@ Str Use_="   demo some OO syntax/ops";
 
    checkRooms(0,9);
 
+
+
    Building A;
 
 
    nrooms = A.getRooms();
 
 <<"A has $nrooms rooms \n";
-
+   A.pinfo();
 
    a_rooms = A.rooms;
 
    a_rooms.pinfo();
-   
+
+
+
+
    <<"A has $a_rooms rooms \n";
 
    Building B;
@@ -250,13 +300,19 @@ Str Use_="   demo some OO syntax/ops";
 
    chkN (Dfloors,7);
 
+   D.Print();
+   
+
    C[1].Print();
 
    b1rooms = C[1].getRooms();
 
-   <<"%V $b1rooms \n";
+   <<"%V $b1rooms on C[1] \n";
 
    chkN (b1rooms,5);
+
+
+
 
    C[2].Print();
 
@@ -274,9 +330,13 @@ Str Use_="   demo some OO syntax/ops";
 
    b0rooms = C[0].getRooms();
 
-   <<"%V $b0rooms \n";
+   <<"%V $b0rooms  for C[0]\n";
 
    chkN (b0rooms,4);
+
+
+
+/////////////////  DBUG ////////////
 
    b2rooms = C[2].getRooms();
 
@@ -299,6 +359,8 @@ Str Use_="   demo some OO syntax/ops";
    <<"%V $b6rooms \n";
 
    chkN (b6rooms,10);
+
+
 
    C[2].setFloors(15);
 

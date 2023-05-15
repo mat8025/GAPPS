@@ -1,16 +1,16 @@
-g++ -x c++ -fpermissive  -rdynamic -o if_cpp if_cpp.asc  -I/home/mark/gasp-CARBON/include -ldl  -L/home/mark/gasp-CARBON/lib -lvec_asl -lmat_asl -lfop_asl -lnum_asl -lstr_asl -lrecord_asl -lspil_asl -ltest_asl -lmath_asl -ldf_asl -lds_asl -lsvar_asl -llist_asl -ldsp_asl -lpan_asl -lgscom_asl -lwcom_asl -lm -ldl -lpthread 
-In file included from if_cpp.asc:9:
+g++ -x c++ -fpermissive  -rdynamic -o tleg tleg.asc  -I/home/mark/gasp-CARBON/include -ldl  -L/home/mark/gasp-CARBON/lib -lvec_asl -lmat_asl -lfop_asl -lnum_asl -lstr_asl -lrecord_asl -lspil_asl -ltest_asl -lmath_asl -ldf_asl -lds_asl -lsvar_asl -llist_asl -ldsp_asl -lpan_asl -lgscom_asl -lwcom_asl -lm -ldl -lpthread
+In file included from tleg.asc:25:
 cpp_head.h:9:2: warning: #warning USING_CPP [-Wcpp]
     9 | #warning USING_CPP
       |  ^~~~~~~
 In file included from /home/mark/gasp-CARBON/include/uac.h:37,
                  from cpp_head.h:18,
-                 from if_cpp.asc:9:
+                 from tleg.asc:25:
 /home/mark/gasp-CARBON/include/cppi.h:23:2: warning: #warning INCLUDING CPPI.H [-Wcpp]
    23 | #warning INCLUDING CPPI.H
       |  ^~~~~~~
 In file included from cpp_head.h:17,
-                 from if_cpp.asc:9:
+                 from tleg.asc:25:
 /home/mark/gasp-CARBON/include/vec.h: In member function ‘const long int Vec<T>::getRange()’:
 /home/mark/gasp-CARBON/include/vec.h:250:45: warning: ISO C++ forbids declaration of ‘type name’ with no type [-fpermissive]
   250 |   const long getRange() { const long rng = (const) vrng.range;  return rng;};
@@ -31,12 +31,12 @@ In file included from /home/mark/gasp-CARBON/include/siv.h:25,
                  from /home/mark/gasp-CARBON/include/pf.h:41,
                  from /home/mark/gasp-CARBON/include/vec.h:46,
                  from cpp_head.h:17,
-                 from if_cpp.asc:9:
+                 from tleg.asc:25:
 /home/mark/gasp-CARBON/include/vec.h:1250:34: warning: there are no arguments to ‘optype’ that depend on a template parameter, so a declaration of ‘optype’ must be available [-fpermissive]
  1250 |   IDBF("sop op %d %s sz %d\n",op,optype(op),sz);//
       |                                  ^~~~~~
 In file included from cpp_head.h:17,
-                 from if_cpp.asc:9:
+                 from tleg.asc:25:
 /home/mark/gasp-CARBON/include/vec.h: At global scope:
 /home/mark/gasp-CARBON/include/vec.h:1690:1: warning: redeclaration of ‘void Vec<T>::addGrand(int)’ may not have default arguments [-fpermissive]
  1690 | Vec<T>::addGrand(int seed = 0)
@@ -52,521 +52,43 @@ In file included from cpp_head.h:17,
 /home/mark/gasp-CARBON/include/vec.h:1851:80: warning: ISO C++ forbids declaration of ‘type name’ with no type [-fpermissive]
  1851 |         cdbp("this = const v this range %d v_range %d  RALL %d\n",getRange(), (const) v.vrng.range,RALL) ;
       |                                                                                ^~~~~
-if_cpp.asc: In function ‘void woo(Str)’:
-if_cpp.asc:25:16: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-   25 |   Str the_dir ="W";
-      |                ^~~
-if_cpp.asc:32:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-   32 |   cprintf("East is East \n");
-      |           ^~~~~~~~~~~~~~~~~
-if_cpp.asc:40:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-   40 |   cprintf("South is South \n");
-      |           ^~~~~~~~~~~~~~~~~~~
-if_cpp.asc:48:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-   48 |   cprintf("West is West \n");
-      |           ^~~~~~~~~~~~~~~~~
-if_cpp.asc:56:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-   56 |   cprintf("North is Cold \n");
+tleg.asc: In constructor ‘Tleg::Tleg()’:
+tleg.asc:58:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   58 |   cprintf("Starting cons \n");
       |           ^~~~~~~~~~~~~~~~~~
-if_cpp.asc:62:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-   62 |   cprintf("  c_dir %s  the_dir %s  la %d \n",c_dir,the_dir,la);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:64:10: warning: return-statement with a value, in function returning ‘void’ [-fpermissive]
-   64 |   return la;
-      |          ^~
-if_cpp.asc: In function ‘int main(int, char**)’:
-if_cpp.asc:74:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-   74 |   cprintf(" We used cpp_head.h \n ");
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:82:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-   82 |   cprintf("fold 0   i %d  j %d\n",i,j);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:92:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-   92 |   cprintf(" %d == 2 \n",i);
-      |           ^~~~~~~~~~~~~
-if_cpp.asc:100:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  100 |   cprintf(" %d > 2 \n",i);
-      |           ^~~~~~~~~~~~
-if_cpp.asc:110:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  110 |   cprintf(" %d < 2 \n",i);
-      |           ^~~~~~~~~~~~
-if_cpp.asc:114:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  114 |   cprintf("  j %d\n",j);
-      |           ^~~~~~~~~~
-if_cpp.asc:130:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  130 |   cprintf(" %d == 2 \n",i);
-      |           ^~~~~~~~~~~~~
-if_cpp.asc:138:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  138 |   cprintf(" %d > 2 \n",i);
-      |           ^~~~~~~~~~~~
-if_cpp.asc:147:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  147 |   cprintf(" %d < 2 \n",i);
-      |           ^~~~~~~~~~~~
-if_cpp.asc:161:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  161 |   cprintf("the if %d == 2 \n",i);
-      |           ^~~~~~~~~~~~~~~~~~~
-if_cpp.asc:170:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  170 |   cprintf("the-else-if %d > 2 \n",i);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:179:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  179 |   cprintf("the else %d < 2 \n",i);
-      |           ^~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:185:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  185 |   cprintf("  j %d\n",j);
-      |           ^~~~~~~~~~
-if_cpp.asc:192:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  192 |   cprintf(" supplied arg is [ % ] testing for <,=, or > than 1\n",N);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:223:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  223 |   cprintf("  a %d > 0 ? \t:  lt %d  eq %d  gt %d \n",a,lt,eq,gt);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:231:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  231 |   cprintf(" test eqv to \n");
-      |           ^~~~~~~~~~~~~~~~~
-if_cpp.asc:245:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  245 |   cprintf("  a % == 0 ? \t:  lt %  eq %  gt % \n",a,lt,eq,gt);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:263:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  263 |   cprintf("  a % < 0 ? \t:  lt %  eq %  gt % \n",a,lt,eq,gt);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:271:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  271 |   cprintf(" \n");
-      |           ^~~~~
-if_cpp.asc:284:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  284 |   cprintf("  a % ? 0 \t:  lt %  eq %  gt % \n",a,lt,eq,gt);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:293:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  293 |   cprintf("  a % ? 0 \t:  lt %  eq %  gt % \n",a,lt,eq,gt);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:302:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  302 |   cprintf("  a % ? 0 \t:  lt %  eq %  gt % \n",a,lt,eq,gt);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:312:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  312 |   cprintf(" first in while \n");
-      |           ^~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:320:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  320 |   cprintf(" before first if in while \n");
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:328:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  328 |   cprintf(" after first if in while \n");
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:344:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  344 |   cprintf("  a % ? 0 \t:  lt %  eq %  gt % \n",a,lt,eq,gt);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:348:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  348 |   cprintf(" last st in while \n");
+tleg.asc:65:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   65 |   cprintf("Done cons %f %f %f\n",dist,pc,msl);
       |           ^~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:354:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  354 |   cprintf(" \n");
-      |           ^~~~~
-if_cpp.asc:373:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  373 |   cprintf(" missed ? \n");
-      |           ^~~~~~~~~~~~~~
-if_cpp.asc:375:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  375 |   cprintf("  a % ? 0 \t:  lt %  eq %  gt % \n",a,lt,eq,gt);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:410:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  410 |   cprintf(" %f \n",ICAO_SA[0][0]);
-      |           ^~~~~~~~
-if_cpp.asc:414:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  414 |   cprintf(" %f \n",ICAO_SA[0][3]);
-      |           ^~~~~~~~
-if_cpp.asc:418:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  418 |   cprintf("  ICAO<87><float>{|>> } _SA[2][3] %f \n",ICAO_SA[2][3]);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:432:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  432 |   cprintf(" %f \n",ICAO_SA[i][k]);
-      |           ^~~~~~~~
-if_cpp.asc:434:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  434 |   cprintf(" %f \n",ICAO_SA[k][i]);
-      |           ^~~~~~~~
-if_cpp.asc:445:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  445 |   cprintf("  y % \n",y);
-      |           ^~~~~~~~~~
-if_cpp.asc:449:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  449 |   cprintf("%f  should be 4 !\n",ICAO_SA[k][i]);
-      |           ^~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:451:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  451 |   cprintf("%f\n",ICAO_SA);
-      |           ^~~~~~
-if_cpp.asc:457:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  457 |   cprintf("%f\n",ICAO_SA);
-      |           ^~~~~~
-if_cpp.asc:459:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  459 |   cprintf(" ICAO_SA[k][i] %f  should be 5 !\n",ICAO_SA[k][i]);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:463:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  463 |   cprintf("%f  should be 6 !\n",ICAO_SA[k][i]);
-      |           ^~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:465:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  465 |   cprintf("%f\n",ICAO_SA);
-      |           ^~~~~~
-if_cpp.asc:471:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  471 |   cprintf("%f\n",ICAO_SA);
-      |           ^~~~~~
-if_cpp.asc:477:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  477 |   cprintf("%f\n",ICAO_SA);
-      |           ^~~~~~
-if_cpp.asc:483:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  483 |   cprintf("  ICAO<87><float>{  87 ICAO_SA 2216 FLOAT SIV_V sz(40,160) nds(2,[10][4]) off(0,8,0,0)(VOK|ARRAY|ELE|GLOBAL|)  (AOP_SET|)  |0.0000 0.0000 0.0000 0.0000 |>> } _SA[k][i] %f><float>{  87 ICAO_SA 2216 FLOAT\n" ,ICAO_SA[k][i]);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:493:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  493 |   cprintf("  ICAO<87><float> \
-      |           ^~~~~~~~~~~~~~~~~~~~
-  494 |     87 ICAO",ICAO_SA[i][k]);
-      |     ~~~~~~~~
-if_cpp.asc:498:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  498 |   cprintf(" ; ///////////// \n");
-      |           ^~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:504:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  504 |   cprintf(" %d %d \n",i,k);
-      |           ^~~~~~~~~~~
-if_cpp.asc:508:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  508 |   cprintf("  ICAO_SA[i][k] %f \n",ICAO_SA[i][k]);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:510:3: error: ‘z’ was not declared in this scope
-  510 |   z = i * 2;
-      |   ^
-if_cpp.asc:514:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  514 |   cprintf("  y % \n",y);
-      |           ^~~~~~~~~~
-if_cpp.asc:523:10: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  523 |  cprintf("  ICAO<87><float>{ \
-      |          ^~~~~~~~~~~~~~~~~~~~~
-  524 |  87 ICAO_SA 2216 FLOAT SIV_V sz(40,160) nds(2,[10][4]) off(0,8,0,0)(VOK|ARRAY|ELE|GLOBAL|) \
-      |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  525 |  (AOP_SET|) \
-      |  ~~~~~~~~~~~~
-  526 |  |0.0000 0.0000 0.0000 0.0000 \
-      |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  527 | 0.0000 0.0000 0.0000 0.0000 \
-      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  528 | 0.0000 0.0000 0.0000 0.0000 \
-      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  529 | 0.0000 0.0000 0.0000 0.0000 \
-      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  530 | 0.0000 0.0000 0.0000 0.0000 \
-      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  531 | 0.0000 0.0000 0.0000 0.0000 \
-      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  532 | 0.0000 0.0000 0.0000 0.0000 \
-      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  533 | 0.0000 0.0000 0.0000 0.0000 \
-      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  534 | 0.0000 0.0000 0.0000 0.0000 \
-      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  535 | 0.0000 0.0000 0.0000 0.0000 \
-      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  536 | |>> } _SA[k][i] %f><float>{\
-      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  537 |  87 ICAO_SA 2216 FLOAT \n",ICAO_SA[k][i]);
-      |  ~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:541:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  541 |   cprintf("  ICAO<87><float>{ \
-      |           ^~~~~~~~~~~~~~~~~~~~~
-  542 |  87 ICAO_SA 2216 FLOAT SIV_V sz(40,160) nds(2,[10][4]) off(0,2,0,0)(VOK|ARRAY|ELE|GLOBAL|) \
-      |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  543 |  (AOP_SET|) \
-      |  ~~~~~~~~~~~~
-  544 |  |0.0000 0.0000 0.0000 0.0000 \
-      |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  545 |   87 ICAO",ICAO_SA[i][k]);
-      |   ~~~~~~~~ 
-if_cpp.asc:547:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  547 |   cprintf(" ; ///////////// \n");
-      |           ^~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:550:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  550 |   cprintf(" %f \n",ICAO_SA);
-      |           ^~~~~~~~
-if_cpp.asc:552:3: error: ‘chkStage’ was not declared in this scope; did you mean ‘chkStr’?
-  552 |   chkStage("if 1");
-      |   ^~~~~~~~
-      |   chkStr
-if_cpp.asc:557:3: error: ‘d’ was not declared in this scope
-  557 |   d = pow(2,8) -5;
-      |   ^
-if_cpp.asc:563:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  563 |   cprintf(" k5 %u \n",k5);
-      |           ^~~~~~~~~~~
-if_cpp.asc:567:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  567 |   cprintf(" j5 %u \n",j5);
-      |           ^~~~~~~~~~~
-if_cpp.asc:571:7: error: call of overloaded ‘chkN(u_int&, u_int)’ is ambiguous
-  571 |   chkN(ts_secs,(j5-4));
-      |   ~~~~^~~~~~~~~~~~~~~~
-In file included from /home/mark/gasp-CARBON/include/uac.h:27,
-                 from cpp_head.h:18,
-                 from if_cpp.asc:9:
-/home/mark/gasp-CARBON/include/test_l.h:109:5: note: candidate: ‘int chkN(int, int, int, int)’
-  109 | int chkN(int k1, int k2, int op = GS_EQ, int wat = -1);
-      |     ^~~~
-/home/mark/gasp-CARBON/include/test_l.h:112:5: note: candidate: ‘int chkN(double, double, int, int)’
-  112 | int chkN(double k1, double k2, int op = GS_EQ, int wat = -1);
-      |     ^~~~
-/home/mark/gasp-CARBON/include/test_l.h:113:5: note: candidate: ‘int chkN(double, int, int, int)’
-  113 | int chkN(double k1, int k2, int op = GS_EQ, int wat = -1);
-      |     ^~~~
-/home/mark/gasp-CARBON/include/test_l.h:114:5: note: candidate: ‘int chkN(float, int, int, int)’
-  114 | int chkN(float k1, int k2, int op = GS_EQ, int wat = -1);
-      |     ^~~~
-/home/mark/gasp-CARBON/include/test_l.h:115:5: note: candidate: ‘int chkN(float, float, int, int)’
-  115 | int chkN(float k1, float k2, int op = GS_EQ, int wat = -1);
-      |     ^~~~
-if_cpp.asc:575:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  575 |   cprintf("  ts_secs %u   last_ts_secs %u \n",ts_secs,last_ts_secs);
+tleg.asc: In destructor ‘Tleg::~Tleg()’:
+tleg.asc:71:17: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   71 |         cprintf("destructing Tleg \n");
+      |                 ^~~~~~~~~~~~~~~~~~~~~
+tleg.asc: In member function ‘void Turnpt::TPCUPset(Svar&)’:
+tleg.asc:257:23: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  257 |               Radio = "    -    ";
+      |                       ^~~~~~~~~~~
+tleg.asc: In member function ‘void Turnpt::Print()’:
+tleg.asc:291:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  291 |   cprintf(" %S  %S %S %S\n",Place,Lat,Lon,Radio);
+      |           ^~~~~~~~~~~~~~~~~
+tleg.asc: In member function ‘int Turnpt::GetTA()’:
+tleg.asc:300:24: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  300 |           spat (tptype,"A",-1,-1,amat);
+      |                        ^~~
+tleg.asc: In constructor ‘Turnpt::Turnpt()’:
+tleg.asc:308:18: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  308 |          cprintf("Starting Turnpt cons \n");
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~
+tleg.asc:316:17: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  316 |           Place=" ";
+      |                 ^~~
+tleg.asc: In function ‘int main(int, char**)’:
+tleg.asc:334:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  334 |   cprintf(" defined Tleg class - what now \n");
       |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:577:7: error: call of overloaded ‘chkN(u_int&, u_int&)’ is ambiguous
-  577 |   chkN(last_ts_secs,j5);
-      |   ~~~~^~~~~~~~~~~~~~~~~
-In file included from /home/mark/gasp-CARBON/include/uac.h:27,
-                 from cpp_head.h:18,
-                 from if_cpp.asc:9:
-/home/mark/gasp-CARBON/include/test_l.h:109:5: note: candidate: ‘int chkN(int, int, int, int)’
-  109 | int chkN(int k1, int k2, int op = GS_EQ, int wat = -1);
-      |     ^~~~
-/home/mark/gasp-CARBON/include/test_l.h:112:5: note: candidate: ‘int chkN(double, double, int, int)’
-  112 | int chkN(double k1, double k2, int op = GS_EQ, int wat = -1);
-      |     ^~~~
-/home/mark/gasp-CARBON/include/test_l.h:113:5: note: candidate: ‘int chkN(double, int, int, int)’
-  113 | int chkN(double k1, int k2, int op = GS_EQ, int wat = -1);
-      |     ^~~~
-/home/mark/gasp-CARBON/include/test_l.h:114:5: note: candidate: ‘int chkN(float, int, int, int)’
-  114 | int chkN(float k1, int k2, int op = GS_EQ, int wat = -1);
-      |     ^~~~
-/home/mark/gasp-CARBON/include/test_l.h:115:5: note: candidate: ‘int chkN(float, float, int, int)’
-  115 | int chkN(float k1, float k2, int op = GS_EQ, int wat = -1);
-      |     ^~~~
-if_cpp.asc:581:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  581 |   cprintf("  n %d \n",n);
-      |           ^~~~~~~~~~~
-if_cpp.asc:589:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  589 |   cprintf("  ts_secs %u ==  last_ts_secs %u \n",ts_secs,last_ts_secs);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:597:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  597 |   cprintf("  i %d  ts_secs %u \n",i,ts_secs);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:617:3: error: ‘do_all’ was not declared in this scope
-  617 |   do_all = 1;
-      |   ^~~~~~
-if_cpp.asc:619:3: error: ‘do_bops’ was not declared in this scope
-  619 |   do_bops = 1;
-      |   ^~~~~~~
-if_cpp.asc:779:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  779 |   cprintf(" %  testing for <,=, or > than 1\n",N);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:783:3: error: ‘jlt’ was not declared in this scope; did you mean ‘lt’?
-  783 |   jlt =0;
-      |   ^~~
-      |   lt
-if_cpp.asc:785:3: error: ‘jeq’ was not declared in this scope; did you mean ‘eq’?
-  785 |   jeq = 0;
-      |   ^~~
-      |   eq
-if_cpp.asc:787:3: error: ‘jgt’ was not declared in this scope; did you mean ‘gt’?
-  787 |   jgt = 0;
-      |   ^~~
-      |   gt
-if_cpp.asc:791:3: error: ‘M’ was not declared in this scope
-  791 |   M = N + 3;
-      |   ^
-if_cpp.asc:802:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  802 |   cprintf("% > %d \n",N,j);
-      |           ^~~~~~~~~~~
-if_cpp.asc:815:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  815 |   cprintf("% == %d \n",N,j);
+tleg.asc:348:14: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  348 |   A.SetPlace("Boulder");
+      |              ^~~~~~~~~
+tleg.asc:352:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  352 |   cprintf("  wp %S \n",wp);
       |           ^~~~~~~~~~~~
-if_cpp.asc:821:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  821 |   cprintf("  j %d ==  N %d do we see this else if line ?\n",j,N);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:828:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  828 |   cprintf("% < %d \n",N,j);
-      |           ^~~~~~~~~~~
-if_cpp.asc:847:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  847 |   cprintf(" N<=j \n");
-      |           ^~~~~~~~~~
-if_cpp.asc:875:3: error: ‘b’ was not declared in this scope
-  875 |   b=1;
-      |   ^
-if_cpp.asc:877:3: error: ‘c’ was not declared in this scope
-  877 |   c=1;
-      |   ^
-if_cpp.asc:959:3: error: ‘is_comment’ was not declared in this scope
-  959 |   is_comment =0;
-      |   ^~~~~~~~~~
-if_cpp.asc:961:3: error: ‘is_proc’ was not declared in this scope; did you mean ‘is_pmpc’?
-  961 |   is_proc =0;
-      |   ^~~~~~~
-      |   is_pmpc
-if_cpp.asc:963:3: error: ‘is_if’ was not declared in this scope; did you mean ‘is_in’?
-  963 |   is_if  =0;
-      |   ^~~~~
-      |   is_in
-if_cpp.asc:965:3: error: ‘cs’ was not declared in this scope; did you mean ‘cos’?
-  965 |   cs ="ABCDefg";
-      |   ^~
-      |   cos
-if_cpp.asc:967:3: error: ‘sl’ was not declared in this scope; did you mean ‘sGl’?
-  967 |   sl = slen(cs);
-      |   ^~
-      |   sGl
-if_cpp.asc:967:8: error: ‘slen’ was not declared in this scope; did you mean ‘wcslen’?
-  967 |   sl = slen(cs);
-      |        ^~~~
-      |        wcslen
-if_cpp.asc:969:3: error: ‘ts’ was not declared in this scope; did you mean ‘tms’?
-  969 |   ts=sstr(";/{}\\",cs,1);
-      |   ^~
-      |   tms
-if_cpp.asc:969:6: error: ‘sstr’ was not declared in this scope
-  969 |   ts=sstr(";/{}\\",cs,1);
-      |      ^~~~
-if_cpp.asc:975:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  975 |   cprintf("Pass exp test\n");
-      |           ^~~~~~~~~~~~~~~~~
-if_cpp.asc:984:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  984 |   cprintf("Fail exp test\n");
-      |           ^~~~~~~~~~~~~~~~~
-if_cpp.asc:994:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  994 |   cprintf("Pass exp && exp test\n");
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1001:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1001 |   cprintf("Fail exp && exp test\n");
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1011:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1011 |   cprintf("Pass not && exp && exp test\n");
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1018:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1018 |   cprintf("Fail not && exp && exp test\n");
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1028:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1028 |   cprintf("Pass not && exp && exp test\n");
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1037:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1037 |   cprintf("Fail not && exp && exp test\n");
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1054:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1054 |   cprintf("Fail not && not &&  exp && exp test\n");
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1058:3: error: ‘vv’ was not declared in this scope
- 1058 |   vv = sstr(";/{}\\",cs,1);
-      |   ^~
-if_cpp.asc:1086:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1086 |   cprintf("fold 5 not correct!\n");
-      |           ^~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1106:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1106 |   cprintf("fold 6 not correct!\n");
-      |           ^~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1122:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1122 |   cprintf("fold 7 not correct!  WS after fold control?\n");
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1140:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1140 |   cprintf("fold 8 not correct!  WS after fold control?\n");
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1148:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1148 |   k = woo("E");
-      |           ^~~
-if_cpp.asc:1148:10: error: void value not ignored as it ought to be
- 1148 |   k = woo("E");
-      |       ~~~^~~~~
-if_cpp.asc:1150:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1150 |   cprintf("%d\n",k);
-      |           ^~~~~~
-if_cpp.asc:1154:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1154 |   k = woo("S");
-      |           ^~~
-if_cpp.asc:1154:10: error: void value not ignored as it ought to be
- 1154 |   k = woo("S");
-      |       ~~~^~~~~
-if_cpp.asc:1158:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1158 |   cprintf("%d\n",k);
-      |           ^~~~~~
-if_cpp.asc:1160:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1160 |   k = woo("W");
-      |           ^~~
-if_cpp.asc:1160:10: error: void value not ignored as it ought to be
- 1160 |   k = woo("W");
-      |       ~~~^~~~~
-if_cpp.asc:1164:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1164 |   k = woo("N");
-      |           ^~~
-if_cpp.asc:1164:10: error: void value not ignored as it ought to be
- 1164 |   k = woo("N");
-      |       ~~~^~~~~
-if_cpp.asc:1168:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1168 |   cprintf("%d\n",k);
-      |           ^~~~~~
-if_cpp.asc:1176:13: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1176 |   Str fname="afile";
-      |             ^~~~~~~
-if_cpp.asc:1178:11: error: ‘_clarg’ was not declared in this scope; did you mean ‘CLarg’?
- 1178 |   fname = _clarg[1];
-      |           ^~~~~~
-      |           CLarg
-if_cpp.asc:1180:3: error: ‘sv’ was not declared in this scope
- 1180 |   sv = "";
-      |   ^~
-if_cpp.asc:1182:11: error: unable to find string literal operator ‘operator""UNSET’ with ‘const char [15]’, ‘long unsigned int’ arguments
- 1182 |   cprintf("sv %)  <|%|> \n"UNSET,sv);
-      |           ^~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1184:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1184 |   cprintf("ca1 <|%s|>\n",fname);
-      |           ^~~~~~~~~~~~~~
-if_cpp.asc:1188:11: error: unable to find string literal operator ‘operator""INT’ with ‘const char [13]’, ‘long unsigned int’ arguments
- 1188 |   cprintf("%)   tf %d \n"INT,tf);
-      |           ^~~~~~~~~~~~~~~~~~
-if_cpp.asc:1194:11: error: unable to find string literal operator ‘operator""INT’ with ‘const char [14]’, ‘long unsigned int’ arguments
- 1194 |   cprintf("%)   ntf %d \n"INT,ntf);
-      |           ^~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1196:3: error: ‘stf’ was not declared in this scope; did you mean ‘ntf’?
- 1196 |   stf= scmp(fname,"");
-      |   ^~~
-      |   ntf
-if_cpp.asc:1196:19: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1196 |   stf= scmp(fname,"");
-      |                   ^~
-if_cpp.asc:1198:11: error: unable to find string literal operator ‘operator""UNSET’ with ‘const char [13]’, ‘long unsigned int’ arguments
- 1198 |   cprintf("%)   stf % \n"UNSET,stf);
-      |           ^~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1204:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1204 |   cprintf("ans != 0   ans %d\n",ans);
-      |           ^~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1211:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1211 |   cprintf(" correct %d == 0\n",ans);
-      |           ^~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1219:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1219 |   cprintf("correct ans == 0 !ans   ans %d\n",ans);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1228:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1228 |   cprintf("incorrect  %d != 0\n",ans);
-      |           ^~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1234:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1234 |   cprintf("correct ans == 0 !ans   ans %d\n",ans);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1241:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1241 |   cprintf(" %d != 0\n",ans);
-      |           ^~~~~~~~~~~~
-if_cpp.asc:1247:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1247 |   cprintf("correct !(ans == 1)   ans %d\n",ans);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1256:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1256 |   cprintf(" %d != 0\n",ans);
-      |           ^~~~~~~~~~~~
-if_cpp.asc:1262:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1262 |   cprintf("ca1 <|%s|> is NULL\n",fname);
-      |           ^~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1268:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1268 |   cprintf("ca1 <|%s|> has value1\n",fname);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1275:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1275 |   cprintf("ca1 <|%s|> is NULL\n",fname);
-      |           ^~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1281:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1281 |   cprintf("ca1 <|%s|> has value2\n",fname);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1288:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1288 |   cprintf("ca1 <|%s|> is NULL\n",fname);
-      |           ^~~~~~~~~~~~~~~~~~~~~~
-if_cpp.asc:1306:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1306 |   cprintf(" end of this script   j %d  k %d  cmain %d \n",j,k,cmain);
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-make: *** [makefile:36: if_cpp] Error 1

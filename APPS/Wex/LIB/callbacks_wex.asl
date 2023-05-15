@@ -176,6 +176,7 @@ void WTLB()
 
 //printf("\n Ev_button %d    cursor @ Ev_rx %f\n",Ev_button,Ev_rx);      
  long wt_day = 0;
+ 
        if (Ev_button == 1) {
 
          lcpx = Ev_rx;
@@ -184,6 +185,7 @@ void WTLB()
 	 
 	 Wex_CL_init = 0;
 	 wt_day = fround(lcpx,0);
+	 
 printf("\n day %f  %d\n",lcpx, wt_day);      
  // wt_day.pinfo();
   //lcpx.pinfo();

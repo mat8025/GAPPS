@@ -576,14 +576,22 @@ for (i = 0; i< 10; i++) {
 
 // day of year is 0 or 1 for Jan1 ?
   int dindex = dayv -1;
+
+<<"%V $dindex \n"
+
   wtm = WTVEC[dindex];
   cbm = CALBURN[dindex];
   xtm = EXTV[dindex];
-  
+
+<<" woSetValue( $wtmwo, $wtm); \n"
+
+<<" woSetValue( $cbmwo, $cbm); \n"
+
   woSetValue(wtmwo,wtm);
   woSetValue(cbmwo,cbm);
   woSetValue(xtmwo,xtm);
 
+  sWo(_WOID,cbmwo,_WREDRAW,1);
   sWo(_WOID,wtmwo,_WREDRAW,1);
   sWo(_WOID,xtmwo,_WREDRAW,1);  
   sWo(_WOID,dtmwo,_WSTRVALUE ,mdy,_WREDRAW,1);

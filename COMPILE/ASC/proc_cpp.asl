@@ -58,7 +58,8 @@ int  addem(int a, int b)
   
   float d = 3.142  // ;
 
-  
+<<"%V $i $j $k \n";
+
   if ( i  && j) {
 
   <<"fold 0 %V $i $j\n";
@@ -67,9 +68,11 @@ int  addem(int a, int b)
 
   }
 
+<<" PI is approx %V $d $k\n"
+  j.pinfo();
   chkN(j,2);
 
-<<" PI is approx %V $d $k\n"
+
 
 
   <<"Can we see %V $i $j $d\n";

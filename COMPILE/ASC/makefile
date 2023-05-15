@@ -36,7 +36,16 @@ if_cpp: if_cpp.asc
 	g++ -x c++ -fpermissive  -rdynamic -o if_cpp if_cpp.asc  -I$(gasp_sys)/include -ldl  $(LDADD)
 
 scut: scut.asc
-	g++ -x c++ -fpermissive  -rdynamic -o scut scut.asc  -I$(gasp_sys)/include -ldl  $(LDADD) 
+	g++ -x c++ -fpermissive  -rdynamic -o scut scut.asc  -I$(gasp_sys)/include -ldl  $(LDADD)
+
+scmp: scmp.asc
+	g++ -x c++ -fpermissive  -rdynamic -o scmp scmp.asc  -I$(gasp_sys)/include -ldl  $(LDADD)
+
+scmp2: scmp2.asl
+	g++ -x c++ -fpermissive  -rdynamic -o scmp2 scmp2.asl  -I$(gasp_sys)/include -ldl  $(LDADD) 
+
+tleg: tleg.asc
+	g++ -x c++ -fpermissive  -rdynamic -o tleg tleg.asc  -I$(gasp_sys)/include -ldl  $(LDADD)
 
 
 #	-ldbug_asl \

@@ -237,29 +237,36 @@ COUT(swo);
   // Measure WOBS
 
   dtmwo=cWo(vp,WO_BV_);
-  sWo(_WOID,dtmwo,_WNAME,"DAY",_WCLIPBHUE,RED_,_WHELP," date on day ");
+  sWo(_WOID,dtmwo,_WNAME,"DAY",_WCLIPBHUE,RED_,_WHELP," date on day ",_WVALUE,1,_WSTYLE,SVB_);
 
-  obswo=cWo(vp,WO_BV_);
-  sWo(_WOID,obswo,_WNAME,"OBS",_WCLIPBHUE,YELLOW_,_WHELP," obs day ");
+
+
+ // obswo=cWo(vp,WO_BV_);
+//  sWo(_WOID,obswo,_WNAME,"OBS",_WCLIPBHUE,YELLOW_,_WHELP," obs day ");
 
   wtmwo=cWo(vp,WO_BV_);
-  sWo(_WOID,wtmwo,_WNAME,"WTM",_WCLIPBHUE,RED_,_WHELP," wt on day ");
+  sWo(_WOID,wtmwo,_WNAME,"WTM",_WCLIPBHUE,RED_,_WHELP," wt on day ",_WSTYLE,SVB_);
 
   cbmwo=cWo(vp,WO_BV_);
   
-  sWo(_WOID,cbmwo,_WNAME,"CBM",_WCLIPBHUE,CYAN_,_WFONTHUE,WHITE_,_WHELP," cals burnt on day ");
+  sWo(_WOID,cbmwo,_WNAME,"CBM",_WCLIPBHUE,CYAN_,_WFONTHUE,BLACK_,_WHELP," cals burnt on day ",_WSTYLE,SVB_);
 
   xtmwo=cWo(vp,WO_BV_);
   sWo(_WOID,xtmwo,_WNAME,"EXT",_WCOLOR,BLUE_,_WHELP," xtime on day ");
 
-  int mwos[] = { dtmwo, obswo, wtmwo, cbmwo, xtmwo,-1};
+  int mwos[] = { dtmwo, wtmwo, cbmwo, xtmwo,-1};
 
   
-  wovtile( mwos, 0.02,0.5,0.08,0.9);
+  wovtile( mwos, 0.01,0.5,0.085,0.9);
 
   for (i= 0; i< 10; i++) {
-   if (mwos[i] <0 ) break;
-   sWo(_WOID,mwos[i],_WSTYLE,WO_SVB_,_WREDRAW,ON_);
+   if (mwos[i] <0 ) {
+   break;
+   }
+   
+   //sWo(_WOID,mwos[i],_WSTYLE,WO_SVB_,_WREDRAW,ON_);
+
+    sWo(_WOID,mwos[i],_WSTYLE,SVB_,_WREDRAW,ON_);
 
   }
   
