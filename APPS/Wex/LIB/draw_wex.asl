@@ -68,7 +68,9 @@
 
   void showCompute()
   {
-//<<"$_proc %V $Nsel_exeburn $Nsel_lbs\n"
+
+
+<<" SHOW_COMPUTE %V $Nsel_exeburn $Nsel_lbs  $xhrs \n"
 
   sWo(_WOID,nobswo,_WVALUE,Nxy_obs,_WUPDATE,ON_);
 
@@ -76,7 +78,8 @@
 
   sWo(_WOID,xbwo,_WVALUE,"%6.2f$Nsel_exeburn",_WREDRAW,ON_);
 
-  sWo(_WOID,xlbswo,_WVALUE,"%4.1f$Nsel_lbs",_WUPDATE,ON_);
+  //sWo(_WOID,xlbswo,_WVALUE,"%4.1f$Nsel_lbs",_WUPDATE,ON_);
+  sWo(_WOID,xlbswo,_WVALUE,Nsel_lbs,_WUPDATE,ON_);
 
   sWo(_WOID,dlbswo,_WVALUE,"%4.1f$Ndiet_lbs",_WUPDATE,ON_);
 
@@ -89,14 +92,14 @@
   if (ws == 0) {
    // Plot(wtwo,_WBOX,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_) ; // never go above
 
-  plotBox(wtwo,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_) ; 
+  plotBox(wtwo,sc_zstart,DX_NEW,sc_zend,DX_NEW+20, RED_, FILL_) ; 
 
-  plotBox(wtwo,sc_startday,DX_NEW,sc_end,DX_NEW, YELLOW_) ; 
+  plotBox(wtwo,sc_zstart,DX_MEW,sc_zend,DX_NEW, ORANGE_, FILL_) ; 
 
-  plotBox(wtwo,sc_startday,GoalWt-5,sc_end,GoalWt+5, LIGHTGREEN_) ; //
+  plotBox(wtwo,sc_zstart,GoalWt-5,sc_zend,GoalWt+5, LIGHTGREEN_,FILL_) ; //
     //Plot(calwo,_WLINE,sc_startday,day_burn,sc_end,day_burn, GREEN_)
 
-  plotLine(calwo,sc_startday,day_burn,sc_end,day_burn, GREEN_);
+  plotLine(calwo,sc_zstart,day_burn,sc_zend,day_burn, GREEN_);
 
   plotLine(calwo,sc_startday,out_cal,sc_end,out_cal, BLUE_);
 
@@ -321,7 +324,7 @@ for (i = 0; i< 10; i++) {
 	 }
         sWo(_WOID,wedwos[i],_WXSCALES, wpt(sc_zstart,sc_zend));
 //printf("%d xscales %f %f\n",i,sc_zstart,sc_zend);
-        sWo(_WOID,wedwos[i],_WCLEARCLIP,WHITE_,_WSAVE,ON_,_WCLEARPIXMAP,ON_,_WCLIPBORDER,BLACK_);
+        sWo(_WOID,wedwos[i],_WCLEARCLIP,WHITE_,_WSAVE,ON_,_WCLEARPIXMAP,ON_,_WCLIPBORDER,BLACK_,_WCLEARPIXMAP,ON_);
   }
 
   drawGoals( wScreen);
@@ -367,14 +370,36 @@ for (i = 0; i< 10; i++) {
 
   int allgls[] = { wt_gl,  ext_gl, carb_gl,  fibre_gl,  fat_gl,  prot_gl,  calc_gl,  calb_gl,   -1};
 
+  int foodgls[] = { carb_gl, fibre_gl,fat_gl, prot_gl, -1 };
+
+  int calgls[] = { cacl_gl, calb_gl, -1 };
+
+  
    // int allgls[] = {wt_gl2,wt_gl, wt_gl3,-1};
 
 //<<"%V $allgls\n"
+
+
+  sGl(_GLID,wt_gl,_GLDRAW,ON_);
+
+  sGl(_GLID,ext_gl,_GLDRAW,ON_);
+
+  sGl(_GLID,calb_gl,_GLDRAW,ON_);
+
+  sGl(_GLID,carb_gl,_GLDRAW,ON_);
+
+  sGl(_GLID,calc_gl,_GLDRAW,ON_);
+
+  sGl(_GLID,prot_gl,_GLDRAW,ON_);
+
+  sGl(_GLID,fat_gl,_GLDRAW,ON_);
+
 
    int gi=0;
 
   //while ( allgls[gi] >= 0)  {    // ?? bug
 
+  if (do_all_gls) {
   while ( 1) {
 
  //<<"%V $gi $allgls[gi] \n"
@@ -388,6 +413,9 @@ for (i = 0; i< 10; i++) {
     }
 
   }
+ }
+
+
 
 
 //ans=query("proceed?");
@@ -582,14 +610,23 @@ for (i = 0; i< 10; i++) {
   wtm = WTVEC[dindex];
   cbm = CALBURN[dindex];
   xtm = EXTV[dindex];
+//<<"%V $xtm \n"
+  xtm = fround(xtm,1);
+//<<"round %V $xtm \n"  
+  
+//<<" woSetValue( $wtmwo, $wtm); \n"
 
-<<" woSetValue( $wtmwo, $wtm); \n"
+//<<" woSetValue( $cbmwo, $cbm); \n"
 
-<<" woSetValue( $cbmwo, $cbm); \n"
+// ? set the wo up to display float  rather than string
+  //  have XGS round the float ?
 
-  woSetValue(wtmwo,wtm);
-  woSetValue(cbmwo,cbm);
-  woSetValue(xtmwo,xtm);
+
+  woSetValue(wtmwo,"%6.1f$wtm");
+  
+  woSetValue(cbmwo,"%6.1f$cbm");
+
+  woSetValue(xtmwo,"%6.1f$xtm");
 
   sWo(_WOID,cbmwo,_WREDRAW,1);
   sWo(_WOID,wtmwo,_WREDRAW,1);

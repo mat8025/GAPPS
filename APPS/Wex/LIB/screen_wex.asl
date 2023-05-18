@@ -59,7 +59,7 @@ cout<<"  titleButtonsQRD(vp);\n";
 
   wtwo=cWo(vp,WO_GRAPH_);
 
-  sWo(_WOID,wtwo,_WNAME,"WTLB",_WVALUE,0,_WCLIPBORDER,YELLOW_); //   weight;
+  sWo(_WOID,wtwo,_WNAME,"WTLB",_WVALUE,0,_WCLIPBORDER,YELLOW_,_WPIXMAP,ON_); //   weight;
 
   calwo=cWo(vp,WO_GRAPH_);
 
@@ -203,7 +203,7 @@ COUT(swo);
 
   nobswo= cWo(vp,WO_BV_);
   
-  sWo(_WOID,nobswo,_WNAME,"Nobs",_WCLIPBHUE,CYAN_,_WVALUE,0);
+  sWo(_WOID,nobswo,_WNAME,"Nobs",_WCLIPBHUE,CYAN_,_WVALUE,0,_WSTYLE,SVB_);
 
   xtwo= cWo(vp,WO_BV_);
   sWo(_WOID,xtwo,  _WNAME,"xTime",_WCLIPBHUE,ORANGE_,_WVALUE,0);
@@ -223,8 +223,12 @@ COUT(swo);
   wohtile( xwos, 0.45,0.01,0.83,0.07);
 
  for (i= 0; i< 10; i++) {
-   if (xwos[i] <0 ) break;
-   sWo(_WOID,xwos[i],_WSTYLE,WO_SVB_,_WREDRAW,ON_);
+
+     if (xwos[i] <0 ){
+      break;
+     }
+//   <<"$i SVB for $xwos[i] \n"
+     sWo(_WOID,xwos[i],_WSTYLE,WO_SVB_,_WREDRAW,ON_);
 
   }
   
@@ -252,7 +256,7 @@ COUT(swo);
   sWo(_WOID,cbmwo,_WNAME,"CBM",_WCLIPBHUE,CYAN_,_WFONTHUE,BLACK_,_WHELP," cals burnt on day ",_WSTYLE,SVB_);
 
   xtmwo=cWo(vp,WO_BV_);
-  sWo(_WOID,xtmwo,_WNAME,"EXT",_WCOLOR,BLUE_,_WHELP," xtime on day ");
+  sWo(_WOID,xtmwo,_WNAME,"ExTim(m)",_WCOLOR,BLUE_,_WHELP," xtime on day ");
 
   int mwos[] = { dtmwo, wtmwo, cbmwo, xtmwo,-1};
 
@@ -271,7 +275,7 @@ COUT(swo);
   }
   
 //  Goal WOBS
-
+/*
   sdwo=cWo(vp,WO_BV_);
   sWo(_WOID,sdwo,_WNAME,"StartDay",_WCLIPBHUE,RED_,_WVALUE,"$Goals[0]",_WHELP,"   startday ");
 
@@ -290,7 +294,7 @@ COUT(swo);
      sWo(_WOID,goalwos[i],_WREDRAW,ON_);
       i++;
   }
-
+*/
 
   //sWo(goalwos,_WSTYLE,WO_SVB,_WREDRAW,_WEO);
 int zoomwos[] = {zoomwo, zinwo, -1};

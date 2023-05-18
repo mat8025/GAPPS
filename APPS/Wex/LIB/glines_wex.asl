@@ -10,7 +10,7 @@
  *  @Copyright © RootMeanSquare 2022
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                                                                                              
+//----------------<v_&_v>-------------------------//                                                                                              
 
 ///////////////////// GLINES & SYMBOLS ///////////////////////////////
 //<<[_DB]"\n%(10,, ,\n)$DVEC \n"
@@ -127,9 +127,15 @@ COUT(se_gl)
   int wgl = 0;
   int ki = 0;
   
-  while (wedgl[ki] > 0) {
+  //while (wedgl[ki] > 0) {
+
+  while (1) {
+  
         sGl(_GLID,wedgl[ki],_GLMISSING,missing_val);
         ki++;
+	if (wedgl[ki] <0) {
+         break;
+        }
  }
 
   cout<<"set symbols \n";
@@ -182,11 +188,13 @@ COUT(prot_gl);
 
   lc_gl   = cGl(wtwo);
 
-  sGl(_GLID,lc_gl,_GLTYPE_CURS,ON_,_GLHUE,RED_);
+  sGl(_GLID,lc_gl,_GLTYPE_CURS, ON_,_GLHUE,RED_,_GLDRAW,ON_);
 
   rc_gl   = cGl(wtwo);
-  //sGl(_GLID,rc_gl,_GLTXY,_GLHUE,WHITE_,_GLCURSOR);
+
+  sGl(_GLID,rc_gl,_GLTYPE_CURS, ON_,_GLHUE,BLUE_,_GLDRAW,ON_);
 
 
 cout<<"glines setup\n";
-;//==============\_(^-^)_/==================//;
+
+//==============\_(^-^)_/==================//

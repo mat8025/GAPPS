@@ -167,9 +167,11 @@ int k = Yday-2; //
     pw = yv[0] + (pwl[1] *3);
     PWT7 = yv[0] + (pwl[1] * 9);
     PWT14 = yv[0] + (pwl[1] * 16);
+    PWT30 = yv[0] + (pwl[1] * 30);
+    
   }
 
-<<"tomorrow's wt will be $pw +7 $PWT7  +14 $PWT14\n"
+<<"\n Tomorrow's wt will be $pw +week $PWT7  + month $PWT30\n"
 
 
   return pw;

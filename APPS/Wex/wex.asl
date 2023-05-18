@@ -250,8 +250,8 @@ class Svar;
   int NCCobs =0;
   int NCCrecs = 0;
 
-int Wex_CR_init = 0;
-int Wex_CL_init = 0;
+int Wex_CR_init = 1;
+int Wex_CL_init = 1;
 
 Record RX;
 
@@ -289,7 +289,7 @@ Record RX;
   long jd;
   Str the_date;
   float hlng;
-
+  int do_all_gls =0;
   Str mdy;
   Vec<float> RS(25);
 
@@ -317,7 +317,7 @@ Record RX;
 //=========================================
   float CalsY1 = 5000.0;
 
-  float carb_upper = 250;
+  float carb_upper = 200;
 
   int sc_end ;
 

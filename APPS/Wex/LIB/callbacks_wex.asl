@@ -17,7 +17,7 @@
 // needed ? -  asl will see this as replacement for drawScreens function
 // not as declaration of prototype existing elsewhere in the code
  void drawScreens();
- void showWL(long ws, long we);
+ void showWL(long ws, long we); // CPP
 #endif
 */
 
@@ -138,7 +138,7 @@
 
    drawScreens();
 
- // showWL(sc_zstart, sc_zend);
+   showWL(sc_zstart, sc_zend);
 
   }
 //--------------------------------------------------
@@ -164,7 +164,7 @@
 
   drawScreens();
 
- // showWL(sc_zstart, sc_zend);
+   showWL(sc_zstart, sc_zend);
 
   }
 //---------------------------------------------
@@ -181,7 +181,7 @@ void WTLB()
 
          lcpx = Ev_rx;
 
-	 sGl(_GLID,lc_gl,_GLCURSOR,rbox(lcpx,0,lcpx,300));
+	 sGl(_GLID,lc_gl,_GLHUE,RED_,_GLCURSOR,rbox(lcpx,0,lcpx,300,Wex_CL_init),_GLDRAW,ON_);
 	 
 	 Wex_CL_init = 0;
 	 wt_day = fround(lcpx,0);
@@ -201,7 +201,7 @@ printf("\n day %f  %d\n",lcpx, wt_day);
          rcpx = Ev_rx;
 
       
-	 sGl(_GLID,rc_gl,_GLCURSOR,rbox(rcpx,0,rcpx,310));
+	 sGl(_GLID,rc_gl,_GLHUE,BLUE_,_GLCURSOR,rbox(rcpx,0,rcpx,310,Wex_CR_init),_GLDRAW,ON_);
 	 
          Wex_CR_init = 0;
 
