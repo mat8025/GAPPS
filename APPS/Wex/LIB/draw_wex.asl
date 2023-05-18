@@ -372,9 +372,9 @@ for (i = 0; i< 10; i++) {
 
   int foodgls[] = { carb_gl, fibre_gl,fat_gl, prot_gl, -1 };
 
-  int calgls[] = { cacl_gl, calb_gl, -1 };
+  int calgls[] = { calb_gl, calc_gl, -1 };
 
-  
+    <<"%V $calc_gl $calb_gl $calgls  \n"
    // int allgls[] = {wt_gl2,wt_gl, wt_gl3,-1};
 
 //<<"%V $allgls\n"
@@ -413,7 +413,10 @@ for (i = 0; i< 10; i++) {
     }
 
   }
+
+
  }
+
 
 
 
@@ -450,7 +453,18 @@ for (i = 0; i< 10; i++) {
  woSetValue(nobswo, Nobs);
  
  sWo(_WOID,nobswo,_WREDRAW,ON_);
-  }
+   <<"KEYS?\n"
+    sWo(_WOID,calwo,_WSCALES,wbox(0.0,0.0,1.0,1.0))
+    sWo(_WOID,calwo,_WKEYGLINE,calgls);
+    sWo(_WOID,calwo,_WSCALES,wbox(sc_zstart,0,sc_zend,CalsY1),_WSAVESCALES,0);
+
+    sWo(_WOID,carbwo,_WSCALES,wbox(0.0,0.0,1.0,1.0))
+    sWo(_WOID,carbwo,_WKEYGLINE,foodgls);
+    sWo(_WOID,carbwo,_WSCALES,wbox(sc_zstart,0,sc_zend,carb_upper),_WSAVESCALES,0);
+
+
+
+}
 
   if ( wScreen == 1) {
 
@@ -467,6 +481,8 @@ for (i = 0; i< 10; i++) {
   sWo(_WOID,swo,_WSHOWPIXMAP,1);
 
   //sWo(allwo,_WCLIPBORDER,GREEN_);
+
+
 
   }
 
