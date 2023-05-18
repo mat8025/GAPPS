@@ -65,10 +65,10 @@ rsz[2] = 0.96;
  
 sWo(_WOID,td, _WNAME,"tbd",_WVALUE,"REDRAW",_WFUNC,"window_redraw",_WRESIZE,rsz,_WSYMBOL,DIAMOND_);
 
-  TBqrd_tv = cWo(v,TBV_);
-rsz[0] = 0.2;
-rsz[2] = 0.3;
-sWo(_WOID,TBqrd_tv,_WNAME,"tbv",_WVALUE,"VERS",_WSTYLE,SVO_,_WRESIZE,rsz);
+//  TBqrd_tv = cWo(v,TBV_);
+//rsz[0] = 0.2;
+//rsz[2] = 0.3;
+//sWo(_WOID,TBqrd_tv,_WNAME,"tbv",_WVALUE,"VERS",_WSTYLE,SVO_,_WRESIZE,rsz);
 
 //<<[_DB]"SET %V $tbqrd_tv \n"
 //int qrd[] = {tr,tq,td};
@@ -106,7 +106,7 @@ sWo(_WOID,td,_WDRAW,ON_,_WPIXMAP,ON_,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45,
 void titleComment(Str& msg)
 {
 //<<"titlecomment %V $msg \n"
- sWo(_WOID,TBqrd_tv,_WVALUE,msg.cptr(),_WCLEAR,ON_,_WREDRAW,ON_);
+ sWo(_WOID,TBqrd_tv,_WVALUE,msg.cptr(),_WCLEAR,ON_,_WCLEARCLIP,ON_,_WREDRAW,ON_);
 
 }
 //============================//
@@ -126,7 +126,7 @@ void titleVers(Str &vers)
 void titleMessage(Str msg)
 {
  //<<"titleMessage $TBqrd_msg  $msg\n"
- //sWo(_WOID,tbqrd_msg,_WVALUE,msg.cptr(),_WCLEAR,ON_,_WREDRAW,ON_);
+ sWo(_WOID,TBqrd_msg,_WCLEAR,ON_,_WCLEARCLIP,ON_,_WREDRAW,ON_);
   woSetValue(TBqrd_msg, msg);
  sWo(_WOID,TBqrd_msg,_WREDRAW,ON_);
 }

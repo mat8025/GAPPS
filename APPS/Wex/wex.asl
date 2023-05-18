@@ -12,7 +12,7 @@
  */ 
 ;//----------------<v_&_v>-------------------------//;                  
 
-  Str Wex_Vers= "2.58";
+  Str Wex_Vers= "2.60  ";
 
 ///
 /// exercise weight display
@@ -415,13 +415,13 @@ void Wex::wexTask(Svarg * sarg)
    Str stmp;
    Svar Goals;
    
-   Goals.Split("04/01/2023 06/30/2023 175");
+   Goals.Split("05/14/2023 06/30/2023 175");
 
 //<<"Setting goals $Goals\n"
 
    Svar Goals2;
    
-   Goals2.Split("04/20/2023 05/31/2023 185");
+   Goals2.Split("05/15/2023 05/31/2023 185");
 ////////////////////==============/////////////////
 
 // move these down 10 when reached -- until we are at desired operating weight!

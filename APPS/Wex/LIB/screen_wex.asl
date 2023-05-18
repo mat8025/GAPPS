@@ -20,9 +20,9 @@
 
   
 
-  Str vptitle = "Wex";
+  Str vptitle = "Wex V$Wex_Vers";
 
-  vp =  cWi("Wex");
+  vp =  cWi(vptitle);
 
   sWi(_WOID,vp,_WRESIZE,wbox(0.01,0.05,0.90,0.95,0)  );
 
@@ -73,7 +73,7 @@ cout<<"  titleButtonsQRD(vp);\n";
   
   sWo(_WOID,extwo,_WNAME,"XT",_WVALUE,0,_WCLIPBORDER,RED_); // exercise time;
 
-  int wedwos[] = { wtwo,calwo,  carbwo, extwo,-1  };
+  int wedwos[] = { wtwo, calwo,  carbwo, extwo,-1  };
 //<<[_DB]"%V$wedwo \n"
 
 cout<<" vtile before set clip!\n";
@@ -167,7 +167,7 @@ COUT(swo);
   cout<<"scales " << sc_startday << " sc_end " << sc_end << " bp_upper " << bp_upper << endl;
   //<<"SCALES %V$sc_startday $sc_endday $bp_upper\n";
 
-  sWo(_WOID,carbwo,_WSCALES,wbox(sc_startday,0,sc_end,carb_upper));
+  sWo(_WOID,carbwo,_WSCALES,wbox(sc_startday,-5,sc_end,carb_upper));
 
   //<<"SCALES %V$sc_startday $sc_endday $carb_upper\n";
 
@@ -272,8 +272,37 @@ COUT(swo);
 
     sWo(_WOID,mwos[i],_WSTYLE,SVB_,_WREDRAW,ON_);
 
+
+
   }
-  
+
+
+    keypos = wogetposition (carbwo);
+
+   <<"%V $keypos \n";
+
+    keyposr = wogetrxy (carbwo,0);
+
+   <<"%V $keyposr \n";
+    krx= keyposr[1];
+    kry= keyposr[2];
+   <<"%V $keyposr \n";    
+    
+//  KEYS
+    keywo=cWo(vp,WO_BV_);
+        kcarbx = keyposr[3] - 0.1;
+    sWo(_WOID,keywo,_WRESIZE,wbox(kcarbx+0.02,kry+0.01,kcarbx+0.1,keyposr[4]-0.05),_WCLIPBORDER,ON_,_WREDRAW,ON_);
+
+    keyposr = wogetrxy (calwo,0);
+    krx= keyposr[1];
+    kry= keyposr[2];
+   <<"%V $keyposr \n";    
+    keycalwo=cWo(vp,WO_BV_);
+    kcalx = keyposr[3] - 0.2;
+    sWo(_WOID,keycalwo,_WRESIZE,wbox(kcalx+0.02,kry+0.01,kcalx+0.1,keyposr[4]-0.05),_WCLIPBORDER,ON_,_WREDRAW,ON_);
+
+
+
 //  Goal WOBS
 /*
   sdwo=cWo(vp,WO_BV_);

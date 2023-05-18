@@ -103,7 +103,7 @@ int iyd = Yd;
 
   tot_exeburn += exer_burn;
 
-//<<"$Yd $tot_exburn \n"
+
 
    float wrk_sleep  = (sleep_burn + (16 * 60 - tex) * office_rate )  ;
 
@@ -144,12 +144,11 @@ int iyd = Yd;
 
   Col= RX.getRecord(tl);
   
-//  pa(tl, Col);
-//<<"<$tl> $RX[tl]\n"
+
 
   day = Col[0];
 
-//<<"%V $day \n"
+
 
 //  VCOUT(tl,day);
 
@@ -234,13 +233,6 @@ int iyd = Yd;
     //<<"%V $tl $NCCrecs \n"
   while (tl < NCCrecs) {
   
-
-//ccol = RCC[tl];
-//<<[_DB]"$RCC[tl]\n"
-//<<[_DB]"$tl  $NCCobs $NCCrecs\n"
-//day = ccol[0];
-//cout << "RCC tl " << tl << " " << RCC(tl) << endl;
-//COUT2(tl,RCC(tl)) ;
 
   day = RCC.getRC(tl,0);
 

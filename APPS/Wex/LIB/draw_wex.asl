@@ -240,7 +240,7 @@
 
   sWo(_WOID,carbwo,_WAXNUM,AXIS_LEFT_);
 
-  sWo(_WOID,carbwo,_WYSCALES,wpt(0,carb_upper),_WSAVESCALES,0);
+  sWo(_WOID,carbwo,_WYSCALES,wpt(-5,carb_upper),_WSAVESCALES,0);
 
   sWo(_WOID,calwo,_WUSESCALES,0,_WAXNUM,  AXIS_LEFT_);
 //  sWo(carbwo,_WAXNUM,2);
@@ -453,16 +453,20 @@ for (i = 0; i< 10; i++) {
  woSetValue(nobswo, Nobs);
  
  sWo(_WOID,nobswo,_WREDRAW,ON_);
-   <<"KEYS?\n"
-    sWo(_WOID,calwo,_WSCALES,wbox(0.0,0.0,1.0,1.0))
-    sWo(_WOID,calwo,_WKEYGLINE,calgls);
-    sWo(_WOID,calwo,_WSCALES,wbox(sc_zstart,0,sc_zend,CalsY1),_WSAVESCALES,0);
-
-    sWo(_WOID,carbwo,_WSCALES,wbox(0.0,0.0,1.0,1.0))
-    sWo(_WOID,carbwo,_WKEYGLINE,foodgls);
-    sWo(_WOID,carbwo,_WSCALES,wbox(sc_zstart,0,sc_zend,carb_upper),_WSAVESCALES,0);
+  // <<"KEYS?\n"
 
 
+    sWo(_WOID,keywo,_WSCALES,wbox(0.0,0.0,1.0,1.0))
+    sWo(_WOID,keywo,_WCLIPBORDER,ON_,_WREDRAW,ON_,_WKEYGLINE,foodgls);
+
+
+    sWo(_WOID,keycalwo,_WSCALES,wbox(0.0,0.0,1.0,1.0))
+    sWo(_WOID,keycalwo,_WCLIPBORDER,ON_,_WREDRAW,ON_,_WKEYGLINE,calgls);
+
+
+
+ //sWo(_WOID,tbqrd_tv,_WCLEAR,ON_,_WCLEARCLIP,ON_,_WREDRAW,ON_);
+ //textr(TBqrd_tv,Wex_Vers)
 
 }
 
@@ -548,7 +552,7 @@ for (i = 0; i< 10; i++) {
   yrd--;
 
   }
-//  <<"%V  $yrd \n"
+//<<"%V  $yrd \n"
 
   long st_jday = Julian("01/01/$yrd");
 
@@ -621,7 +625,7 @@ for (i = 0; i< 10; i++) {
 // day of year is 0 or 1 for Jan1 ?
   int dindex = dayv -1;
 
-<<"%V $dindex \n"
+//<<"%V $dindex \n"
 
   wtm = WTVEC[dindex];
   cbm = CALBURN[dindex];

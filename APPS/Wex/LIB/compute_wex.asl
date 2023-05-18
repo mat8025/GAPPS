@@ -100,13 +100,13 @@ void computeWL(long wlsday, long wleday)
    Nsel_lbs = 0.0;
    int sday;
    int eday;
-<<" %V $wlsday $wleday  $Nobs\n"
+
   
    // convert to index
    sday = wlsday;
    eday = wleday;
 
-<<" %V $sday $eday  $Nobs\n"
+//<<" %V $sday $eday  $Nobs\n"
    Ndiet_lbs = 0.0;
 
    for (i = sday; i <= eday ; i++) {
@@ -125,8 +125,8 @@ void computeWL(long wlsday, long wleday)
 	
         Nsel_calsinout +=  (ccals - bcals);
 
-<<"$i Exeburn $Nsel_exeburn Mins $Nsel_exemins   \n"
-<<"$i CIO $Nxy_obs $Nsel_calsinout in $ccals out $bcals \n"
+//<<"$i Exeburn $Nsel_exeburn Mins $Nsel_exemins   \n"
+//<<"$i CIO $Nxy_obs $Nsel_calsinout in $ccals out $bcals \n"
       if (i > 370)    {
        break;
       }
@@ -137,7 +137,7 @@ void computeWL(long wlsday, long wleday)
 
    xhrs = (Nsel_exemins/60.0);
 
-<<"%V$Nxy_obs %6.2f $Nsel_exemins $(Nsel_exemins/60.0) $Nsel_exeburn $Nsel_calsinout $Nsel_lbs $xhrs\n"
+//<<"%V$Nxy_obs %6.2f $Nsel_exemins $(Nsel_exemins/60.0) $Nsel_exeburn $Nsel_calsinout $Nsel_lbs $xhrs\n"
 
 }
 //=========================
@@ -183,6 +183,7 @@ int k = Yday-2; //
   }
 
 <<"\n Tomorrow's wt will be $pw +week $PWT7  + month $PWT30\n"
+   titleMessage("Tomorrow's wt %6.1f $pw next week $PWT7                        ");
 
 
   return pw;

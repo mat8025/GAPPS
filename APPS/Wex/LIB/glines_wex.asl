@@ -25,7 +25,7 @@
 
  sGl(_GLID,ext_gl,_GLXVEC,DVEC,_GLYVEC,EXTV,_GLHUE,BLACK_,_GLSYMLINE, DIAMOND_);
 
-<<"%V $ext_gl \n"
+//<<"%V $ext_gl \n"
 
   COUT(ext_gl)
 
@@ -138,7 +138,7 @@ COUT(se_gl)
         }
  }
 
-  cout<<"set symbols \n";
+  //cout<<"set symbols \n";
 
   //sGl(_GLID,ext_gl,_GLSYMBOL,TRI_, _GLSYMSIZE, Symsz,_GLSYMFILL,ON_);
 
@@ -195,6 +195,6 @@ COUT(prot_gl);
   sGl(_GLID,rc_gl,_GLTYPE_CURS, ON_,_GLHUE,BLUE_,_GLDRAW,ON_);
 
 
-cout<<"glines setup\n";
+//cout<<"glines setup\n";
 
 //==============\_(^-^)_/==================//
