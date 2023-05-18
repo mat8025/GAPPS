@@ -70,18 +70,18 @@
   {
 
 
-<<" SHOW_COMPUTE %V $Nsel_exeburn $Nsel_lbs  $xhrs \n"
+<<" SHOW_COMPUTE %V $Nxy_obs $Nsel_exeburn $Nsel_lbs  $xhrs \n"
 
-  sWo(_WOID,nobswo,_WVALUE,Nxy_obs,_WUPDATE,ON_);
+  sWo(_WOID,nobswo,_WVALUE,"%d $Nxy_obs",_WUPDATE,ON_);
 
-  sWo(_WOID,xtwo,_WVALUE,xhrs,_WREDRAW,ON_);
+  sWo(_WOID,xtwo,_WVALUE,"%6.2f $xhrs",_WREDRAW,ON_);
 
-  sWo(_WOID,xbwo,_WVALUE,"%6.2f$Nsel_exeburn",_WREDRAW,ON_);
+  sWo(_WOID,xbwo,_WVALUE,"%6.2f $Nsel_exeburn",_WREDRAW,ON_);
 
   //sWo(_WOID,xlbswo,_WVALUE,"%4.1f$Nsel_lbs",_WUPDATE,ON_);
-  sWo(_WOID,xlbswo,_WVALUE,Nsel_lbs,_WUPDATE,ON_);
+  sWo(_WOID,xlbswo,_WVALUE,"%4.1f $Nsel_lbs",_WUPDATE,ON_);
 
-  sWo(_WOID,dlbswo,_WVALUE,"%4.1f$Ndiet_lbs",_WUPDATE,ON_);
+  sWo(_WOID,dlbswo,_WVALUE,"%4.1f $Ndiet_lbs",_WUPDATE,ON_);
 
   }
 //========================================================
