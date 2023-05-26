@@ -106,6 +106,8 @@
   plotLine(calwo,sc_startday,in_cal,sc_end,in_cal, RED_);
 
   plotLine(calwo,sc_startday,50,sc_end,50, GREEN_);
+
+    plotLine(carbwo,sc_startday,30,sc_end,30, RED_);
   
     // use todays date and wt to the intermediate short-term goal
 
@@ -253,7 +255,7 @@
 
     sWo(_WOID,wtwo,_WAXNUM,AXIS_LEFT_);
   //sWo(extwo,_WAXNUM,2,0,sc_endday,20,10)
-  //Text(wtwo, "Weight (lbs)",-4,0.7,4,-90)
+  Text(wtwo, "Weight (lbs)",0.1,1.0,RED_,0,0,2);
 
  // axisLabel(wtwo,AXIS_BOTTOM_,"Weight (lbs)",0.5,1.7);
 
@@ -263,7 +265,7 @@
  // axisLabel(extwo,AXIS_LEFT_,"Mins",0.1,4.0); // TBF;
 
  // axisLabel(carbwo,AXIS_LEFT_,"Carbs",0.1,4);
-  //Text(calwo,"Cals In/Out",-4,0.7,4,-90);
+ 
 
   }
 
@@ -324,7 +326,7 @@ for (i = 0; i< 10; i++) {
 	 }
         sWo(_WOID,wedwos[i],_WXSCALES, wpt(sc_zstart,sc_zend));
 //printf("%d xscales %f %f\n",i,sc_zstart,sc_zend);
-        sWo(_WOID,wedwos[i],_WCLEARCLIP,WHITE_,_WSAVE,ON_,_WCLEARPIXMAP,ON_,_WCLIPBORDER,BLACK_,_WCLEARPIXMAP,ON_);
+        sWo(_WOID,wedwos[i],_WCLEARCLIP,WHITE_,_WSAVE,ON_,_WCLEARPIXMAP,ON_,_WCLIPBORDER,BLACK_,_WREDRAW,ON_,_WSAVEPIXMAP,ON_);
   }
 
   drawGoals( wScreen);
@@ -398,7 +400,7 @@ for (i = 0; i< 10; i++) {
    int gi=0;
 
   //while ( allgls[gi] >= 0)  {    // ?? bug
-
+ do_all_gls = 1;
   if (do_all_gls) {
   while ( 1) {
 
@@ -413,6 +415,14 @@ for (i = 0; i< 10; i++) {
     }
 
   }
+  for (i = 0; i< 10; i++) {
+        if (wedwos[i] <=0) {
+         break;
+	 }
+
+     sWo(_WOID,wedwos[i],_WCLIPBORDER,BLACK_,_WPIXMAP,ON_,_WSAVEPIXMAP,ON_);
+     // sWo(_WOID,wedwos[i],_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_);
+   }
 
 
  }
@@ -431,7 +441,7 @@ for (i = 0; i< 10; i++) {
 
   drawMonths(calwo);
 
-//  drawMonths(carbwo);
+  drawMonths(carbwo);
 
   drawMonths(extwo);
       //Text(extwo,"Exercise mins",-4,0.5,4,-90)
@@ -446,7 +456,9 @@ for (i = 0; i< 10; i++) {
          break;
 	 }
 
-      sWo(_WOID,wedwos[i],_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_);
+     // sWo(_WOID,wedwos[i],_WCLIPBORDER,BLACK_,_WPIXMAP,ON_,_WREDRAW,ON_,_WSAVEPIXMAP,ON_);
+     // sWo(_WOID,wedwos[i],_WCLIPBORDER,BLACK_,_WREDRAW,ON_);
+     // sWo(_WOID,wedwos[i],_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_);
    }
 
 
@@ -455,15 +467,38 @@ for (i = 0; i< 10; i++) {
  sWo(_WOID,nobswo,_WREDRAW,ON_);
   // <<"KEYS?\n"
 
+////////////////////////////////////////// KEYS /////////////////////////////////////
+  keypos = wogetposition (keycalwo);
+   <<"keycalwo $keypos \n";
+    sWo(_WOID,keycalwo,_WHMOVE,ON_);
+    sWo(_WOID,keywo,_WHMOVE,ON_);
+//    womove(keycalwo,PANLEFT_,10);  // move left
+//keypos = wogetposition (keycalwo);
 
+   <<"movewo keycalwo $keypos \n";
+     //womove(keycalwo,PANLEFT_,10);
+    sWo(_WOID,calwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_)
+    sWo(_WOID,keycalwo,_WSCALES,wbox(0.0,0.0,1.0,1.0))
+    sWo(_WOID,keycalwo,_WCLIPBORDER,ON_,_WREDRAW,ON_,_WKEYGLINE,calgls);
+    sWo(_WOID,carbwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_)
+
+  //womove(keywo,PANLEFT_,10);
+sWo(_WOID,carbwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_)
     sWo(_WOID,keywo,_WSCALES,wbox(0.0,0.0,1.0,1.0))
     sWo(_WOID,keywo,_WCLIPBORDER,ON_,_WREDRAW,ON_,_WKEYGLINE,foodgls);
 
+  keypos = wogetposition (keywo);
 
-    sWo(_WOID,keycalwo,_WSCALES,wbox(0.0,0.0,1.0,1.0))
-    sWo(_WOID,keycalwo,_WCLIPBORDER,ON_,_WREDRAW,ON_,_WKEYGLINE,calgls);
+   <<"keycarbwo $keypos \n";
 
 
+Text(calwo,"CALS In/Out",0.2,0.90);
+
+//Textr(calwo,"Cals In/Out",155,1500);
+
+Text(carbwo,"FOOD (g) ",0.1,0.89);
+
+//Textr(carbwo,"Food",140,50);
 
  //sWo(_WOID,tbqrd_tv,_WCLEAR,ON_,_WCLEARCLIP,ON_,_WREDRAW,ON_);
  //textr(TBqrd_tv,Wex_Vers)
@@ -604,6 +639,8 @@ for (i = 0; i< 10; i++) {
 
   float wtm;
 
+  float carb;
+
   int dt;
 
   //cout <<" getDay\n";
@@ -630,6 +667,7 @@ for (i = 0; i< 10; i++) {
   wtm = WTVEC[dindex];
   cbm = CALBURN[dindex];
   xtm = EXTV[dindex];
+  carb= CARBSCON[dindex];
 //<<"%V $xtm \n"
   xtm = fround(xtm,1);
 //<<"round %V $xtm \n"  
@@ -646,11 +684,15 @@ for (i = 0; i< 10; i++) {
   
   woSetValue(cbmwo,"%6.1f$cbm");
 
+  woSetValue(carbewo,"%6.1f$carb");
+
   woSetValue(xtmwo,"%6.1f$xtm");
 
   sWo(_WOID,cbmwo,_WREDRAW,1);
   sWo(_WOID,wtmwo,_WREDRAW,1);
-  sWo(_WOID,xtmwo,_WREDRAW,1);  
+  sWo(_WOID,xtmwo,_WREDRAW,1);
+  sWo(_WOID,carbewo,_WREDRAW,1);
+  
   sWo(_WOID,dtmwo,_WSTRVALUE ,mdy,_WREDRAW,1);
 
 

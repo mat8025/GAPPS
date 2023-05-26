@@ -18,11 +18,12 @@ char vers[6] ="5.1";
 
 #include "debug"
  //filterFileDebug(REJECT_,"pr_state.cpp","declare_e.cpp");
-filterFileDebug(ALLOW_,"pr_state.cpp","declare_e.cpp");
- filterFuncDebug(REJECT_,"si_declare_type", "checkExpression","checkStatement","writeASC");
- filterFuncDebug(REJECT_,"advanceStatement");
+///filterFileDebug(ALLOW_,"pr_state.cpp","declare_e.cpp");
+ //filterFuncDebug(REJECT_,"si_declare_type", "checkExpression","checkStatement","writeASC");
+// filterFuncDebug(REJECT_,"advanceStatement");
+ 
 #define DB_IT    0
-#define GT_DB   1
+#define GT_DB   0
 #define ASL 1
 #define CPP 0
 
@@ -73,7 +74,7 @@ ignoreErrors();
 
 
 #undef  ASL_DB
-#define ASL_DB 1
+#define ASL_DB 0
 
 
 #endif
@@ -593,10 +594,15 @@ while (ac < na) {
 	  // need to step back a line
 
   if (use_cup) {
-   nwr = Wval.readWords(AFH,0,',');
+  //  nwr = Wval.readWords(AFH,0,44);
 
-<<"read $nwr words \n"
-<<" $Wval[0] : $Wval[1] : $Wval[2]\n"   
+    nwr = Wval.readWords(AFH,0,',');
+
+//<<" CUP read of  $nwr words \n"
+//<<" $Wval[0] \n"
+//<<"$Wval[1] : \n"   
+//<<" $Wval[2]\n"
+
    }
   else {
    nwr = Wval.readWords(AFH);
@@ -785,11 +791,11 @@ while (ac < na) {
 
  //  nwr = Wval.readWords(AFH,0,',');
  
-   nwr = Wval.readWords(AFH,0,',');
+   nwr = Wval.readWords(AFH,0,44);
 
-  <<"read $nwr words \n"
+//  <<"CUP READ $nwr words \n"
 
- <<" $Wval[2]  $Wval[1]  $Wval[3]\n"
+// <<" $Wval[2]  $Wval[1]  $Wval[3]\n"
 
 
 

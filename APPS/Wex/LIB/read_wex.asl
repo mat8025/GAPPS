@@ -248,12 +248,18 @@ int iyd = Yd;
 
   float cals = atof(RCC.getRC(tl,6));
 
+
+
   CALSCON[Yd] = cals;
 
   float ccals =  CALSCON[Yd];
 //<<"calscon $Yd   $CALSCON[Yd]  cals <|$cals|>  ccals $ccals \n"
 
   float carbs = atof(RCC.getRC(tl,3));
+
+<<"%V $carbs\n"
+
+
 
   CARBSCON[Yd] = carbs;
 

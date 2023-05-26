@@ -175,11 +175,6 @@ Str val2;
  //<<"%V $Alt\n";
 
 //<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
- //  pa(wval);
-//  aslpinfo(wval);
-//<<" $wval \n"
-
-//<<"TP  $wval[0] \n"
 
      val = wval[0];
      

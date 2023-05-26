@@ -10,7 +10,7 @@
  *  @Copyright © RootMeanSquare 2022
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                                                                                                 
+//----------------<v_&_v>-------------------------//                                                                                                
 
  
   
@@ -26,7 +26,7 @@
 
   sWi(_WOID,vp,_WRESIZE,wbox(0.01,0.05,0.90,0.95,0)  );
 
-  sWi(_WOID,vp,_WCLIP,wbox(0.1,0.05,0.9,0.95),  _WREDRAW,ON_);
+  sWi(_WOID,vp,_WCLIP,wbox(0.1,0.05,0.9,0.95),_WPIXMAP,ON_,  _WREDRAW,ON_,_WSAVE,ON_,_WSAVEPIXMAP,ON_);
 
 
 
@@ -63,15 +63,15 @@ cout<<"  titleButtonsQRD(vp);\n";
 
   calwo=cWo(vp,WO_GRAPH_);
 
-   sWo(_WOID,calwo,_WNAME,"CAL",_WVALUE,0,_WCLIPBORDER,BLACK_) ; // cals;
+   sWo(_WOID,calwo,_WNAME,"CAL",_WVALUE,0,_WCLIPBORDER,BLACK_,_WPIXMAP,ON_,_WDRAW,ON_) ; // cals;
 
   carbwo=cWo(vp,WO_GRAPH_);
   
-  sWo(_WOID,carbwo,_WNAME,"CARB",_WVALUE,0,_WCLIPBORDER,BLACK_) ; // carbs;
+  sWo(_WOID,carbwo,_WNAME,"CARB",_WVALUE,0,_WCLIPBORDER,BLACK_,_WPIXMAP,ON_) ; // carbs;
 
   extwo=cWo(vp,WO_GRAPH_);
   
-  sWo(_WOID,extwo,_WNAME,"XT",_WVALUE,0,_WCLIPBORDER,RED_); // exercise time;
+  sWo(_WOID,extwo,_WNAME,"XT",_WVALUE,0,_WCLIPBORDER,RED_,_WPIXMAP,ON_); // exercise time;
 
   int wedwos[] = { wtwo, calwo,  carbwo, extwo,-1  };
 //<<[_DB]"%V$wedwo \n"
@@ -80,6 +80,10 @@ cout<<" vtile before set clip!\n";
 
   wovtile(wedwos,0.1,0.08,0.99,0.99)   ; // vertically tile the drawing areas into the main window;
     //cx = 0.05 ; cX = 0.95 ; cy = 0.2 ; cY = 0.97;
+
+
+
+
 
   float CXY[4] = { 0.05 ,0.2,0.95 ,0.97};
 //<<"%V$CXY\n"
@@ -101,19 +105,15 @@ cout <<"aftertitleButtons\n";
 COUT(sc_zstart);
  //  _WFONT arg wfont(char*) wfont(int) --- 
 
-  sWo(_WOID,calwo,_WCLIP,CXY,_WCOLOR,MAGENTA_,_WCLIPBHUE,WHITE_,_WBHUE,WHITE_,_WFONT,F_SMALL_);
-
-COUT(calwo);
-
-
+  sWo(_WOID,carbwo,_WCLIP,CXY,_WCOLOR,WHITE_,_WCLIPBHUE,WHITE_,_WBHUE,WHITE_,_WFONT,F_SMALL_,_WREDRAW,ON_,_WSAVEPIXMAP,ON_);
 
 
  // sWo(carbwo,_WCLIP,CXY,_WCOLOR,WHITE_,_WCLIPBHUE,RED_,_WBHUE,RED_  ,_WFONT,F_SMALL_,_WFONTHUE,WHITE_,_WEO);
-  sWo(_WOID,carbwo,_WCLIP,CXY,_WCOLOR,WHITE_,_WCLIPBHUE,RED_,_WBHUE,RED_  ,_WFONT,F_SMALL_);
+  sWo(_WOID,calwo,_WCLIP,CXY,_WCOLOR,WHITE_,_WCLIPBHUE,WHITE_,_WBHUE,WHITE_  ,_WFONT,F_SMALL_,_WREDRAW,ON_,_WSAVEPIXMAP,ON_);
 
-  sWo(_WOID,extwo,_WCLIP,CXY,_WCOLOR,YELLOW_,_WCLIPBHUE,GREEN_,_WBHUE,ORANGE_,_WFONT,F_SMALL_);
+  sWo(_WOID,extwo,_WCLIP,CXY,_WCOLOR,YELLOW_,_WCLIPBHUE,GREEN_,_WBHUE,YELLOW_,_WFONT,F_SMALL_,_WREDRAW,ON_,_WSAVEPIXMAP,ON_);
 
-  sWo(_WOID,wtwo,_WCLIP,CXY,_WCOLOR,ORANGE_,_WCLIPBHUE,RED_,_WBHUE,ORANGE_,_WFONT,F_SMALL_);
+  sWo(_WOID,wtwo,_WCLIP,CXY,_WCOLOR,ORANGE_,_WCLIPBHUE,WHITE_,_WBHUE,WHITE_,_WFONT,F_SMALL_,_WREDRAW,ON_,_WSAVEPIXMAP,ON_);
 
 //  sWo(wedwos,_WCLIP,CXY,_WCOLOR,RED_,_WCLIPBHUE,ORANGE_,_WBHUE,LILAC_,_WFONT, F_SMALL_,_WSAVE,_WSAVEPIXMAP,_WEO);
 
@@ -158,7 +158,6 @@ COUT(swo);
 //<<[_DB]" Days $k \n"
 
   float bp_upper = 400.0;
-
 
   float wt_upper = 220;
 
@@ -255,13 +254,21 @@ COUT(swo);
   
   sWo(_WOID,cbmwo,_WNAME,"CBM",_WCLIPBHUE,CYAN_,_WFONTHUE,BLACK_,_WHELP," cals burnt on day ",_WSTYLE,SVB_);
 
+
+  carbewo=cWo(vp,WO_BV_);
+  
+  sWo(_WOID,carbewo,_WNAME,"CARB",_WCLIPBHUE,CYAN_,_WFONTHUE,BLACK_,_WHELP," carbs eaten on day ",_WSTYLE,SVB_);
+
+
+
+
   xtmwo=cWo(vp,WO_BV_);
   sWo(_WOID,xtmwo,_WNAME,"ExTim(m)",_WCOLOR,BLUE_,_WHELP," xtime on day ");
 
-  int mwos[] = { dtmwo, wtmwo, cbmwo, xtmwo,-1};
+  int mwos[] = { dtmwo, wtmwo, cbmwo, xtmwo, carbewo, -1};
 
   
-  wovtile( mwos, 0.01,0.5,0.085,0.9);
+  wovtile( mwos, 0.01,0.4,0.085,0.9);
 
   for (i= 0; i< 10; i++) {
    if (mwos[i] <0 ) {
@@ -277,9 +284,26 @@ COUT(swo);
   }
 
 
-    keypos = wogetposition (carbwo);
 
-   <<"%V $keypos \n";
+/////////////////////////////////////////////  KEYS ///////////////////////////////////////////
+  //  keypos = wogetposition (carbwo);
+ //  <<"%V $keypos \n";
+
+
+
+
+    keyposr = wogetrxy (calwo,0);
+    krx= keyposr[1];
+    kry= keyposr[2];
+   <<"%V $keyposr \n";
+   
+    keycalwo=cWo(vp,WO_BV_);
+    kcalx = keyposr[3] - 0.1;
+    sWo(_WOID,keycalwo,_WNAME,"KeyCals",_WCLIP,CXY,_WSTYLE,SVO_,_WRESIZE,wbox(kcalx+0.02,kry+0.01,kcalx+0.09,keyposr[4]-0.05,0),_WCLIPBORDER,ON_,_WREDRAW,ON_);
+
+  //  sWo(_WOID,keycalwo,_WRESIZE,wbox(kcalx+0.03,kry+0.01,kcalx+0.11,keyposr[4]-0.05,0),_WPIXMAP,ON_,_WREDRAW,ON_);
+
+
 
     keyposr = wogetrxy (carbwo,0);
 
@@ -288,18 +312,11 @@ COUT(swo);
     kry= keyposr[2];
    <<"%V $keyposr \n";    
     
-//  KEYS
-    keywo=cWo(vp,WO_BV_);
-        kcarbx = keyposr[3] - 0.1;
-    sWo(_WOID,keywo,_WRESIZE,wbox(kcarbx+0.02,kry+0.01,kcarbx+0.1,keyposr[4]-0.05),_WCLIPBORDER,ON_,_WREDRAW,ON_);
 
-    keyposr = wogetrxy (calwo,0);
-    krx= keyposr[1];
-    kry= keyposr[2];
-   <<"%V $keyposr \n";    
-    keycalwo=cWo(vp,WO_BV_);
-    kcalx = keyposr[3] - 0.2;
-    sWo(_WOID,keycalwo,_WRESIZE,wbox(kcalx+0.02,kry+0.01,kcalx+0.1,keyposr[4]-0.05),_WCLIPBORDER,ON_,_WREDRAW,ON_);
+    keywo=cWo(vp,WO_BV_);
+    kcarbx = keyposr[3] - 0.11;
+    sWo(_WOID,keywo,_WNAME,"KeyFood",_WSTYLE,SVO_,_WRESIZE,wbox(kcarbx+0.02,kry+0.01,kcarbx+0.09,keyposr[4]-0.05,0),_WCLIPBORDER,ON_,_WREDRAW,ON_);
+
 
 
 

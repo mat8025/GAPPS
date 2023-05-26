@@ -171,12 +171,15 @@ class Svar;
 
   Vec<float> CALBURN(400);
 
+  Vec<float> CALSCON(400);
+
+
   Vec<float> CARDIO(400);
 
   Vec<float> STRENGTH(400);
 // cals,carbs consumed & when
 
-  Vec<float> CALSCON(400);
+
 
   Vec<float> CARBSCON(400);
 
@@ -717,7 +720,7 @@ cout<<"DONE PLOT\n";
 int nevent = 0;
 
  //ans=query(" screen interact proceed?");
-
+drawScreens();
      while (1) {
 
 

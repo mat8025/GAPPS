@@ -132,7 +132,7 @@ float   nm_to_km = 6080.0/3281.0;
 
    IGCTIM = 1.2;
 
-   IGCTIM.pinfo();
+   //IGCTIM.pinfo();
 
 
 //sdb(2)
@@ -428,7 +428,7 @@ ssele= IGCELE.stats();
   {
 
   //<<"$_proc %V $j $k\n";
-  wtp.pinfo();
+  //wtp.pinfo();
   float km = 0.0;
   float tc = 0.0;
   float L1,L2,lo1,lo2;
