@@ -1,94 +1,3109 @@
-g++ -x c++ -fpermissive  -rdynamic -o tleg tleg.asc  -I/home/mark/gasp-CARBON/include -ldl  -L/home/mark/gasp-CARBON/lib -lvec_asl -lmat_asl -lfop_asl -lnum_asl -lstr_asl -lrecord_asl -lspil_asl -ltest_asl -lmath_asl -ldf_asl -lds_asl -lsvar_asl -llist_asl -ldsp_asl -lpan_asl -lgscom_asl -lwcom_asl -lm -ldl -lpthread
-In file included from tleg.asc:25:
-cpp_head.h:9:2: warning: #warning USING_CPP [-Wcpp]
-    9 | #warning USING_CPP
-      |  ^~~~~~~
-In file included from /home/mark/gasp-CARBON/include/uac.h:37,
-                 from cpp_head.h:18,
-                 from tleg.asc:25:
-/home/mark/gasp-CARBON/include/cppi.h:23:2: warning: #warning INCLUDING CPPI.H [-Wcpp]
-   23 | #warning INCLUDING CPPI.H
-      |  ^~~~~~~
-In file included from cpp_head.h:17,
-                 from tleg.asc:25:
-/home/mark/gasp-CARBON/include/vec.h: In member function ‘const long int Vec<T>::getRange()’:
-/home/mark/gasp-CARBON/include/vec.h:250:45: warning: ISO C++ forbids declaration of ‘type name’ with no type [-fpermissive]
-  250 |   const long getRange() { const long rng = (const) vrng.range;  return rng;};
-      |                                             ^~~~~
-/home/mark/gasp-CARBON/include/vec.h: At global scope:
-/home/mark/gasp-CARBON/include/vec.h:423:11: warning: redeclaration of ‘Vec<T>& Vec<T>::rng(int, int, int)’ may not have default arguments [-fpermissive]
-  423 | Vec<T>&   Vec<T>::rng(int beg=0, int end=-1, int stride=1)
-      |           ^~~~~~
-/home/mark/gasp-CARBON/include/vec.h:439:11: warning: redeclaration of ‘Vec<T>& Vec<T>::srng(int, int, int)’ may not have default arguments [-fpermissive]
-  439 | Vec<T>&   Vec<T>::srng(int beg=0, int end=-1, int stride=1)
-      |           ^~~~~~
-/home/mark/gasp-CARBON/include/vec.h: In function ‘void vec_sop(X*, Y, int, int)’:
-/home/mark/gasp-CARBON/include/vec.h:1248:34: warning: there are no arguments to ‘optype’ that depend on a template parameter, so a declaration of ‘optype’ must be available [-fpermissive]
- 1248 |   cdbp("sop op %d %s sz %d\n",op,optype(op),sz);//
-      |                                  ^~~~~~
-In file included from /home/mark/gasp-CARBON/include/siv.h:25,
-                 from /home/mark/gasp-CARBON/include/sitypes.h:6,
-                 from /home/mark/gasp-CARBON/include/pf.h:41,
-                 from /home/mark/gasp-CARBON/include/vec.h:46,
-                 from cpp_head.h:17,
-                 from tleg.asc:25:
-/home/mark/gasp-CARBON/include/vec.h:1250:34: warning: there are no arguments to ‘optype’ that depend on a template parameter, so a declaration of ‘optype’ must be available [-fpermissive]
- 1250 |   IDBF("sop op %d %s sz %d\n",op,optype(op),sz);//
-      |                                  ^~~~~~
-In file included from cpp_head.h:17,
-                 from tleg.asc:25:
-/home/mark/gasp-CARBON/include/vec.h: At global scope:
-/home/mark/gasp-CARBON/include/vec.h:1690:1: warning: redeclaration of ‘void Vec<T>::addGrand(int)’ may not have default arguments [-fpermissive]
- 1690 | Vec<T>::addGrand(int seed = 0)
-      | ^~~~~~
-/home/mark/gasp-CARBON/include/vec.h: In member function ‘void Vec<T>::addGrand(int)’:
-/home/mark/gasp-CARBON/include/vec.h:1696:24: warning: there are no arguments to ‘get_time_seed’ that depend on a template parameter, so a declaration of ‘get_time_seed’ must be available [-fpermissive]
- 1696 |                 seed = get_time_seed ();
-      |                        ^~~~~~~~~~~~~
-/home/mark/gasp-CARBON/include/vec.h:1711:15: warning: there are no arguments to ‘grand’ that depend on a template parameter, so a declaration of ‘grand’ must be available [-fpermissive]
- 1711 |         val = grand (&idum);
-      |               ^~~~~
-/home/mark/gasp-CARBON/include/vec.h: In member function ‘Vec<T>& Vec<T>::operator=(const Vec<double>&)’:
-/home/mark/gasp-CARBON/include/vec.h:1851:80: warning: ISO C++ forbids declaration of ‘type name’ with no type [-fpermissive]
- 1851 |         cdbp("this = const v this range %d v_range %d  RALL %d\n",getRange(), (const) v.vrng.range,RALL) ;
-      |                                                                                ^~~~~
-tleg.asc: In constructor ‘Tleg::Tleg()’:
-tleg.asc:58:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-   58 |   cprintf("Starting cons \n");
-      |           ^~~~~~~~~~~~~~~~~~
-tleg.asc:65:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-   65 |   cprintf("Done cons %f %f %f\n",dist,pc,msl);
-      |           ^~~~~~~~~~~~~~~~~~~~~~
-tleg.asc: In destructor ‘Tleg::~Tleg()’:
-tleg.asc:71:17: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-   71 |         cprintf("destructing Tleg \n");
-      |                 ^~~~~~~~~~~~~~~~~~~~~
-tleg.asc: In member function ‘void Turnpt::TPCUPset(Svar&)’:
-tleg.asc:257:23: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  257 |               Radio = "    -    ";
-      |                       ^~~~~~~~~~~
-tleg.asc: In member function ‘void Turnpt::Print()’:
-tleg.asc:291:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  291 |   cprintf(" %S  %S %S %S\n",Place,Lat,Lon,Radio);
-      |           ^~~~~~~~~~~~~~~~~
-tleg.asc: In member function ‘int Turnpt::GetTA()’:
-tleg.asc:300:24: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  300 |           spat (tptype,"A",-1,-1,amat);
-      |                        ^~~
-tleg.asc: In constructor ‘Turnpt::Turnpt()’:
-tleg.asc:308:18: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  308 |          cprintf("Starting Turnpt cons \n");
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~
-tleg.asc:316:17: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  316 |           Place=" ";
-      |                 ^~~
-tleg.asc: In function ‘int main(int, char**)’:
-tleg.asc:334:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  334 |   cprintf(" defined Tleg class - what now \n");
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-tleg.asc:348:14: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  348 |   A.SetPlace("Boulder");
-      |              ^~~~~~~~~
-tleg.asc:352:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  352 |   cprintf("  wp %S \n",wp);
-      |           ^~~~~~~~~~~~
+(continue) (r,q): (continue) (r,q): (continue) (r,q): (continue) (r,q): (continue) (r,q): (continue) (r,q):    [2]->Sexp exp_e.cpp#2  
+    [3]->getExp exp_e.cpp#3  
+     [4]->checkConstantExp checkconstantexp.cpp#4  
+     [4]<-checkConstantExp -> getExp exp_e.cpp#3 
+     [4]->getLHS exp_lhs_e.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->doVariable rdp_token.cpp#6  
+        [7]->Variable rdp_token.cpp#7  
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->var_sindex scopesindex_e.cpp#10  
+            [11]->var_main scopesindex_e.cpp#11  
+            [11]<-var_main -> var_sindex scopesindex_e.cpp#10 
+           [10]<-var_sindex -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->var_sindex scopesindex_e.cpp#10  
+            [11]->var_main scopesindex_e.cpp#11  
+             [12]->var_sindex_create createv_e.cpp#12  
+             [12]<-var_sindex_create -> var_main scopesindex_e.cpp#11 
+            [11]<-var_main -> var_sindex scopesindex_e.cpp#10 
+           [10]<-var_sindex -> varIndex scopesindex_e.cpp#9 
+           [10]->SetArraySpecsOff array_parse.cpp#10  
+           [10]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+        [7]<-Variable -> doVariable rdp_token.cpp#6 
+       [6]<-doVariable -> Get tokget.cpp#5 
+      [5]<-Get -> getLHS exp_lhs_e.cpp#4 
+     [4]<-getLHS -> getExp exp_e.cpp#3 
+     [4]->l_1 rdp_l1.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->Delimiter tokdelim.cpp#6  
+        [7]->GetDelimiter tokdelim.cpp#7  
+        [7]<-GetDelimiter -> Delimiter tokdelim.cpp#6 
+       [6]<-Delimiter -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->Get tokget.cpp#5  
+       [6]->ParamExpand rdp_token.cpp#6  
+        [7]->paramExpand paramexpand.cpp#7  
+paramexpand.cpp paramExpand: @489 "this is a string" 
+    paramExpand @531 :	after recover "this is a string" 
+paramexpand.cpp paramExpand: @908 cpp_out: <|cprintf("this is a string");|> 
+        [7]<-paramExpand -> ParamExpand rdp_token.cpp#6 
+       [6]<-ParamExpand -> Get tokget.cpp#5 
+       [6]->DoubleQuote tokquote.cpp#6  
+       [6]<-DoubleQuote -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->l_2 rdp_l2.cpp#5  
+       [6]->l_3 rdp_l3.cpp#6  
+        [7]->l_4 rdp_l4.cpp#7  
+         [8]->l_5 rdp_l5.cpp#8  
+          [9]->l_6 rdp_l6.cpp#9  
+           [10]->primitive primitive.cpp#10  
+            [11]->Get tokget.cpp#11  
+             [12]->Delimiter tokdelim.cpp#12  
+              [13]->GetDelimiter tokdelim.cpp#13  
+              [13]<-GetDelimiter -> Delimiter tokdelim.cpp#12 
+             [12]<-Delimiter -> Get tokget.cpp#11 
+            [11]<-Get -> primitive primitive.cpp#10 
+           [10]<-primitive -> l_6 rdp_l6.cpp#9 
+          [9]<-l_6 -> l_5 rdp_l5.cpp#8 
+         [8]<-l_5 -> l_4 rdp_l4.cpp#7 
+        [7]<-l_4 -> l_3 rdp_l3.cpp#6 
+       [6]<-l_3 -> l_2 rdp_l2.cpp#5 
+      [5]<-l_2 -> l_1 rdp_l1.cpp#4 
+     [4]<-l_1 -> getExp exp_e.cpp#3 
+     [4]->l1_store rdp_store.cpp#4  
+      [5]->store_var storetype_e.cpp#5  
+       [6]->storeCopyVar storetype_e.cpp#6  
+       [6]<-storeCopyVar -> store_var storetype_e.cpp#5 
+      [5]<-store_var -> l1_store rdp_store.cpp#4 
+     [4]<-l1_store -> getExp exp_e.cpp#3 
+    [3]<-getExp -> Sexp exp_e.cpp#2 
+   [2]<-Sexp -> preProcess preprocess.cpp#1 
+   [2]->checkProcFunc proc_checkfname_e.cpp#2  
+   [2]<-checkProcFunc -> preProcess preprocess.cpp#1 
+(continue) (r,q):    [2]->paramExpand paramexpand.cpp#2  
+paramexpand.cpp paramExpand: @489 "%V $sv \n" 
+    paramExpand @615 :	found  % %V $sv \n"
+    paramExpand @625 :	return FMT i 2     $sv \n" FMT<%> 
+    paramExpand @756 :	splice_in <sv> 
+    paramExpand @787 :	"  sv 
+    [3]->ExpandVar paramexpand.cpp#3  
+    ExpandVar @67 :	vp <|sv|>
+     [4]->varIndex scopesindex_e.cpp#4  
+      [5]->var_sindex scopesindex_e.cpp#5  
+       [6]->var_main scopesindex_e.cpp#6  
+       [6]<-var_main -> var_sindex scopesindex_e.cpp#5 
+      [5]<-var_sindex -> varIndex scopesindex_e.cpp#4 
+      [5]->SetArraySpecsOff array_parse.cpp#5  
+      [5]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#4 
+     [4]<-varIndex -> ExpandVar paramexpand.cpp#3 
+    ExpandVar @110 :	set dyn OFF 
+ 91 sv 394 STRV STR_V sz(16,129) nds(1,[-]) off(0,0,0,0)(VOK|ARRAY|DYNAMIC|GLOBAL|) 
+ (AOP_SET|)  |this is a string|>> [0m
+    ExpandVar @179 :	sivp 
+ 91 sv 394 STRV STR_V sz(16,129) nds(1,[-]) off(0,0,0,0)(VOK|ARRAY|DYNAMIC|GLOBAL|) 
+ (AOP_SET|)  |this is a string|>> [0m
+    [3]<-ExpandVar -> paramExpand paramexpand.cpp#2 
+    paramExpand @825 :	arg name is  sv  sv
+    paramExpand @865 :	cfmt is S
+paramexpand.cpp paramExpand: @908 cpp_out: <|cprintf("  sv %S \n",sv);|> 
+   [2]<-paramExpand -> preProcess preprocess.cpp#1 
+  sv this is a string \n(continue) (r,q):    [2]->Sexp exp_e.cpp#2  
+    [3]->getExp exp_e.cpp#3  
+     [4]->checkConstantExp checkconstantexp.cpp#4  
+     [4]<-checkConstantExp -> getExp exp_e.cpp#3 
+     [4]->getLHS exp_lhs_e.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->doVariable rdp_token.cpp#6  
+        [7]->Variable rdp_token.cpp#7  
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->var_sindex scopesindex_e.cpp#10  
+            [11]->var_main scopesindex_e.cpp#11  
+            [11]<-var_main -> var_sindex scopesindex_e.cpp#10 
+           [10]<-var_sindex -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->var_sindex scopesindex_e.cpp#10  
+            [11]->var_main scopesindex_e.cpp#11  
+             [12]->var_sindex_create createv_e.cpp#12  
+             [12]<-var_sindex_create -> var_main scopesindex_e.cpp#11 
+            [11]<-var_main -> var_sindex scopesindex_e.cpp#10 
+           [10]<-var_sindex -> varIndex scopesindex_e.cpp#9 
+           [10]->SetArraySpecsOff array_parse.cpp#10  
+           [10]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+        [7]<-Variable -> doVariable rdp_token.cpp#6 
+       [6]<-doVariable -> Get tokget.cpp#5 
+      [5]<-Get -> getLHS exp_lhs_e.cpp#4 
+     [4]<-getLHS -> getExp exp_e.cpp#3 
+     [4]->l_1 rdp_l1.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->Delimiter tokdelim.cpp#6  
+        [7]->GetDelimiter tokdelim.cpp#7  
+        [7]<-GetDelimiter -> Delimiter tokdelim.cpp#6 
+       [6]<-Delimiter -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->Get tokget.cpp#5  
+       [6]->Func tokfunc.cpp#6  
+        [7]->checkProcFunc proc_checkfname_e.cpp#7  
+         [8]->checkProcName proc_e.cpp#8  
+         [8]<-checkProcName -> checkProcFunc proc_checkfname_e.cpp#7 
+_CMFOBJSTK  Empty
+        [7]<-checkProcFunc -> Func tokfunc.cpp#6 
+        [7]->Sfunc func_e.cpp#7  
+         [8]->process_args args_process_e.cpp#8  
+          [9]->process_args_type args_process_e.cpp#9  
+          [9]<-process_args_type -> process_args args_process_e.cpp#8 
+          [9]->process_args_exprn args_process_e.cpp#9  
+           [10]->getExp exp_e.cpp#10  
+            [11]->checkConstantExp checkconstantexp.cpp#11  
+            [11]<-checkConstantExp -> getExp exp_e.cpp#10 
+            [11]->Get tokget.cpp#11  
+             [12]->ParamExpand rdp_token.cpp#12  
+              [13]->paramExpand paramexpand.cpp#13  
+paramexpand.cpp paramExpand: @489 "This is an svar array of strings" 
+    paramExpand @531 :	after recover "This is an svar array of strings" 
+paramexpand.cpp paramExpand: @908 cpp_out: <|cprintf("This is an svar array of strings");|> 
+              [13]<-paramExpand -> ParamExpand rdp_token.cpp#12 
+             [12]<-ParamExpand -> Get tokget.cpp#11 
+             [12]->DoubleQuote tokquote.cpp#12  
+             [12]<-DoubleQuote -> Get tokget.cpp#11 
+            [11]<-Get -> getExp exp_e.cpp#10 
+            [11]->store_var storetype_e.cpp#11  
+             [12]->storeCopyVar storetype_e.cpp#12  
+             [12]<-storeCopyVar -> store_var storetype_e.cpp#11 
+            [11]<-store_var -> getExp exp_e.cpp#10 
+           [10]<-getExp -> process_args_exprn args_process_e.cpp#9 
+          [9]<-process_args_exprn -> process_args args_process_e.cpp#8 
+         [8]<-process_args -> Sfunc func_e.cpp#7 
+PREPROCESSING NO CALL to split  but need to lookup and set return type!
+        [7]<-Sfunc -> Func tokfunc.cpp#6 
+       [6]<-Func -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->l_2 rdp_l2.cpp#5  
+       [6]->l_3 rdp_l3.cpp#6  
+        [7]->l_4 rdp_l4.cpp#7  
+         [8]->l_5 rdp_l5.cpp#8  
+          [9]->l_6 rdp_l6.cpp#9  
+           [10]->primitive primitive.cpp#10  
+            [11]->Get tokget.cpp#11  
+             [12]->Delimiter tokdelim.cpp#12  
+              [13]->GetDelimiter tokdelim.cpp#13  
+              [13]<-GetDelimiter -> Delimiter tokdelim.cpp#12 
+             [12]<-Delimiter -> Get tokget.cpp#11 
+            [11]<-Get -> primitive primitive.cpp#10 
+           [10]<-primitive -> l_6 rdp_l6.cpp#9 
+          [9]<-l_6 -> l_5 rdp_l5.cpp#8 
+         [8]<-l_5 -> l_4 rdp_l4.cpp#7 
+        [7]<-l_4 -> l_3 rdp_l3.cpp#6 
+       [6]<-l_3 -> l_2 rdp_l2.cpp#5 
+      [5]<-l_2 -> l_1 rdp_l1.cpp#4 
+     [4]<-l_1 -> getExp exp_e.cpp#3 
+     [4]->l1_store rdp_store.cpp#4  
+     [4]<-l1_store -> getExp exp_e.cpp#3 
+    [3]<-getExp -> Sexp exp_e.cpp#2 
+   [2]<-Sexp -> preProcess preprocess.cpp#1 
+   [2]->checkProcFunc proc_checkfname_e.cpp#2  
+    [3]->checkProcName proc_e.cpp#3  
+    [3]<-checkProcName -> checkProcFunc proc_checkfname_e.cpp#2 
+_CMFOBJSTK  Empty
+   [2]<-checkProcFunc -> preProcess preprocess.cpp#1 
+   [2]->Sexp exp_e.cpp#2  
+    [3]->getExp exp_e.cpp#3  
+     [4]->checkConstantExp checkconstantexp.cpp#4  
+     [4]<-checkConstantExp -> getExp exp_e.cpp#3 
+     [4]->getLHS exp_lhs_e.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->doVariable rdp_token.cpp#6  
+        [7]->Variable rdp_token.cpp#7  
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->var_sindex scopesindex_e.cpp#10  
+            [11]->var_main scopesindex_e.cpp#11  
+            [11]<-var_main -> var_sindex scopesindex_e.cpp#10 
+           [10]<-var_sindex -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->var_sindex scopesindex_e.cpp#10  
+            [11]->var_main scopesindex_e.cpp#11  
+             [12]->var_sindex_create createv_e.cpp#12  
+             [12]<-var_sindex_create -> var_main scopesindex_e.cpp#11 
+            [11]<-var_main -> var_sindex scopesindex_e.cpp#10 
+           [10]<-var_sindex -> varIndex scopesindex_e.cpp#9 
+           [10]->SetArraySpecsOff array_parse.cpp#10  
+           [10]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+        [7]<-Variable -> doVariable rdp_token.cpp#6 
+       [6]<-doVariable -> Get tokget.cpp#5 
+      [5]<-Get -> getLHS exp_lhs_e.cpp#4 
+     [4]<-getLHS -> getExp exp_e.cpp#3 
+     [4]->l_1 rdp_l1.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->Delimiter tokdelim.cpp#6  
+        [7]->GetDelimiter tokdelim.cpp#7  
+        [7]<-GetDelimiter -> Delimiter tokdelim.cpp#6 
+       [6]<-Delimiter -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->Get tokget.cpp#5  
+       [6]->Func tokfunc.cpp#6  
+        [7]->checkProcFunc proc_checkfname_e.cpp#7  
+         [8]->checkProcName proc_e.cpp#8  
+         [8]<-checkProcName -> checkProcFunc proc_checkfname_e.cpp#7 
+_CMFOBJSTK  Empty
+        [7]<-checkProcFunc -> Func tokfunc.cpp#6 
+        [7]->Sfunc func_e.cpp#7  
+         [8]->process_args args_process_e.cpp#8  
+          [9]->process_args_type args_process_e.cpp#9  
+          [9]<-process_args_type -> process_args args_process_e.cpp#8 
+          [9]->process_args_exprn args_process_e.cpp#9  
+           [10]->getExp exp_e.cpp#10  
+            [11]->checkConstantExp checkconstantexp.cpp#11  
+            [11]<-checkConstantExp -> getExp exp_e.cpp#10 
+            [11]->Get tokget.cpp#11  
+             [12]->ParamExpand rdp_token.cpp#12  
+              [13]->paramExpand paramexpand.cpp#13  
+paramexpand.cpp paramExpand: @489 "This is an svar array of strings" 
+    paramExpand @531 :	after recover "This is an svar array of strings" 
+paramexpand.cpp paramExpand: @908 cpp_out: <|cprintf("This is an svar array of strings");|> 
+              [13]<-paramExpand -> ParamExpand rdp_token.cpp#12 
+             [12]<-ParamExpand -> Get tokget.cpp#11 
+             [12]->DoubleQuote tokquote.cpp#12  
+             [12]<-DoubleQuote -> Get tokget.cpp#11 
+            [11]<-Get -> getExp exp_e.cpp#10 
+            [11]->store_var storetype_e.cpp#11  
+             [12]->storeCopyVar storetype_e.cpp#12  
+             [12]<-storeCopyVar -> store_var storetype_e.cpp#11 
+            [11]<-store_var -> getExp exp_e.cpp#10 
+           [10]<-getExp -> process_args_exprn args_process_e.cpp#9 
+          [9]<-process_args_exprn -> process_args args_process_e.cpp#8 
+         [8]<-process_args -> Sfunc func_e.cpp#7 
+PREPROCESSING NO CALL to split  but need to lookup and set return type!
+        [7]<-Sfunc -> Func tokfunc.cpp#6 
+       [6]<-Func -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->l_2 rdp_l2.cpp#5  
+       [6]->l_3 rdp_l3.cpp#6  
+        [7]->l_4 rdp_l4.cpp#7  
+         [8]->l_5 rdp_l5.cpp#8  
+          [9]->l_6 rdp_l6.cpp#9  
+           [10]->primitive primitive.cpp#10  
+            [11]->Get tokget.cpp#11  
+             [12]->Delimiter tokdelim.cpp#12  
+              [13]->GetDelimiter tokdelim.cpp#13  
+              [13]<-GetDelimiter -> Delimiter tokdelim.cpp#12 
+             [12]<-Delimiter -> Get tokget.cpp#11 
+            [11]<-Get -> primitive primitive.cpp#10 
+           [10]<-primitive -> l_6 rdp_l6.cpp#9 
+          [9]<-l_6 -> l_5 rdp_l5.cpp#8 
+         [8]<-l_5 -> l_4 rdp_l4.cpp#7 
+        [7]<-l_4 -> l_3 rdp_l3.cpp#6 
+       [6]<-l_3 -> l_2 rdp_l2.cpp#5 
+      [5]<-l_2 -> l_1 rdp_l1.cpp#4 
+     [4]<-l_1 -> getExp exp_e.cpp#3 
+     [4]->l1_store rdp_store.cpp#4  
+     [4]<-l1_store -> getExp exp_e.cpp#3 
+    [3]<-getExp -> Sexp exp_e.cpp#2 
+   [2]<-Sexp -> preProcess preprocess.cpp#1 
+(continue) (r,q):    [2]->paramExpand paramexpand.cpp#2  
+paramexpand.cpp paramExpand: @489 "%V $Sv\n" 
+    paramExpand @615 :	found  % %V $Sv\n"
+    paramExpand @625 :	return FMT i 2     $Sv\n" FMT<%> 
+    paramExpand @756 :	splice_in <Sv> 
+    paramExpand @787 :	"  Sv 
+    [3]->ExpandVar paramexpand.cpp#3  
+    ExpandVar @67 :	vp <|Sv|>
+     [4]->varIndex scopesindex_e.cpp#4  
+      [5]->var_sindex scopesindex_e.cpp#5  
+       [6]->var_main scopesindex_e.cpp#6  
+       [6]<-var_main -> var_sindex scopesindex_e.cpp#5 
+      [5]<-var_sindex -> varIndex scopesindex_e.cpp#4 
+      [5]->SetArraySpecsOff array_parse.cpp#5  
+      [5]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#4 
+     [4]<-varIndex -> ExpandVar paramexpand.cpp#3 
+    ExpandVar @179 :	sivp 
+ 101 Sv 401 SVAR SIV_V sz(7,64) nds(1,[7]) off(0,0,0,0) rcols(-2,-2)(VOK|ARRAY|GLOBAL|) 
+ (DOB_SVAR|AOP_SET|)  |This: :is: :an: :svar: :array: :of: :strings: :|>> [0m
+    [3]<-ExpandVar -> paramExpand paramexpand.cpp#2 
+    paramExpand @825 :	arg name is  Sv  Sv
+    paramExpand @865 :	cfmt is A
+paramexpand.cpp paramExpand: @908 cpp_out: <|cprintf("  Sv %A\n",&Sv);|> 
+   [2]<-paramExpand -> preProcess preprocess.cpp#1 
+  Sv This is an svar array of strings\n(continue) (r,q):    [2]->Sexp exp_e.cpp#2  
+    [3]->getExp exp_e.cpp#3  
+     [4]->checkConstantExp checkconstantexp.cpp#4  
+     [4]<-checkConstantExp -> getExp exp_e.cpp#3 
+     [4]->getLHS exp_lhs_e.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->doVariable rdp_token.cpp#6  
+        [7]->Variable rdp_token.cpp#7  
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->var_sindex scopesindex_e.cpp#10  
+            [11]->var_main scopesindex_e.cpp#11  
+            [11]<-var_main -> var_sindex scopesindex_e.cpp#10 
+           [10]<-var_sindex -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->var_sindex scopesindex_e.cpp#10  
+            [11]->var_main scopesindex_e.cpp#11  
+             [12]->var_sindex_create createv_e.cpp#12  
+             [12]<-var_sindex_create -> var_main scopesindex_e.cpp#11 
+            [11]<-var_main -> var_sindex scopesindex_e.cpp#10 
+           [10]<-var_sindex -> varIndex scopesindex_e.cpp#9 
+           [10]->SetArraySpecsOff array_parse.cpp#10  
+           [10]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+        [7]<-Variable -> doVariable rdp_token.cpp#6 
+       [6]<-doVariable -> Get tokget.cpp#5 
+      [5]<-Get -> getLHS exp_lhs_e.cpp#4 
+     [4]<-getLHS -> getExp exp_e.cpp#3 
+     [4]->l_1 rdp_l1.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->Delimiter tokdelim.cpp#6  
+        [7]->GetDelimiter tokdelim.cpp#7  
+        [7]<-GetDelimiter -> Delimiter tokdelim.cpp#6 
+       [6]<-Delimiter -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->Get tokget.cpp#5  
+       [6]->Func tokfunc.cpp#6  
+        [7]->checkProcFunc proc_checkfname_e.cpp#7  
+         [8]->checkProcName proc_e.cpp#8  
+         [8]<-checkProcName -> checkProcFunc proc_checkfname_e.cpp#7 
+_CMFOBJSTK  Empty
+        [7]<-checkProcFunc -> Func tokfunc.cpp#6 
+        [7]->Sfunc func_e.cpp#7  
+    get_args @616 :	caught 1
+PREPROCESSING NO CALL to functions but need to lookup and set return type!
+        [7]<-Sfunc -> Func tokfunc.cpp#6 
+       [6]<-Func -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->l_2 rdp_l2.cpp#5  
+       [6]->l_3 rdp_l3.cpp#6  
+        [7]->l_4 rdp_l4.cpp#7  
+         [8]->l_5 rdp_l5.cpp#8  
+          [9]->l_6 rdp_l6.cpp#9  
+           [10]->primitive primitive.cpp#10  
+            [11]->Get tokget.cpp#11  
+             [12]->Delimiter tokdelim.cpp#12  
+              [13]->GetDelimiter tokdelim.cpp#13  
+              [13]<-GetDelimiter -> Delimiter tokdelim.cpp#12 
+             [12]<-Delimiter -> Get tokget.cpp#11 
+            [11]<-Get -> primitive primitive.cpp#10 
+           [10]<-primitive -> l_6 rdp_l6.cpp#9 
+          [9]<-l_6 -> l_5 rdp_l5.cpp#8 
+         [8]<-l_5 -> l_4 rdp_l4.cpp#7 
+        [7]<-l_4 -> l_3 rdp_l3.cpp#6 
+       [6]<-l_3 -> l_2 rdp_l2.cpp#5 
+      [5]<-l_2 -> l_1 rdp_l1.cpp#4 
+     [4]<-l_1 -> getExp exp_e.cpp#3 
+     [4]->l1_store rdp_store.cpp#4  
+     [4]<-l1_store -> getExp exp_e.cpp#3 
+    [3]<-getExp -> Sexp exp_e.cpp#2 
+   [2]<-Sexp -> preProcess preprocess.cpp#1 
+   [2]->checkProcFunc proc_checkfname_e.cpp#2  
+    [3]->checkProcName proc_e.cpp#3  
+    [3]<-checkProcName -> checkProcFunc proc_checkfname_e.cpp#2 
+_CMFOBJSTK  Empty
+   [2]<-checkProcFunc -> preProcess preprocess.cpp#1 
+   [2]->Sexp exp_e.cpp#2  
+    [3]->getExp exp_e.cpp#3  
+     [4]->checkConstantExp checkconstantexp.cpp#4  
+     [4]<-checkConstantExp -> getExp exp_e.cpp#3 
+     [4]->getLHS exp_lhs_e.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->doVariable rdp_token.cpp#6  
+        [7]->Variable rdp_token.cpp#7  
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->var_sindex scopesindex_e.cpp#10  
+            [11]->var_main scopesindex_e.cpp#11  
+            [11]<-var_main -> var_sindex scopesindex_e.cpp#10 
+           [10]<-var_sindex -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->var_sindex scopesindex_e.cpp#10  
+            [11]->var_main scopesindex_e.cpp#11  
+             [12]->var_sindex_create createv_e.cpp#12  
+             [12]<-var_sindex_create -> var_main scopesindex_e.cpp#11 
+            [11]<-var_main -> var_sindex scopesindex_e.cpp#10 
+           [10]<-var_sindex -> varIndex scopesindex_e.cpp#9 
+           [10]->SetArraySpecsOff array_parse.cpp#10  
+           [10]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+        [7]<-Variable -> doVariable rdp_token.cpp#6 
+       [6]<-doVariable -> Get tokget.cpp#5 
+      [5]<-Get -> getLHS exp_lhs_e.cpp#4 
+     [4]<-getLHS -> getExp exp_e.cpp#3 
+     [4]->l_1 rdp_l1.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->Delimiter tokdelim.cpp#6  
+        [7]->GetDelimiter tokdelim.cpp#7  
+        [7]<-GetDelimiter -> Delimiter tokdelim.cpp#6 
+       [6]<-Delimiter -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->Get tokget.cpp#5  
+       [6]->Func tokfunc.cpp#6  
+        [7]->checkProcFunc proc_checkfname_e.cpp#7  
+         [8]->checkProcName proc_e.cpp#8  
+         [8]<-checkProcName -> checkProcFunc proc_checkfname_e.cpp#7 
+_CMFOBJSTK  Empty
+        [7]<-checkProcFunc -> Func tokfunc.cpp#6 
+        [7]->Sfunc func_e.cpp#7  
+    get_args @616 :	caught 1
+PREPROCESSING NO CALL to functions but need to lookup and set return type!
+        [7]<-Sfunc -> Func tokfunc.cpp#6 
+       [6]<-Func -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->l_2 rdp_l2.cpp#5  
+       [6]->l_3 rdp_l3.cpp#6  
+        [7]->l_4 rdp_l4.cpp#7  
+         [8]->l_5 rdp_l5.cpp#8  
+          [9]->l_6 rdp_l6.cpp#9  
+           [10]->primitive primitive.cpp#10  
+            [11]->Get tokget.cpp#11  
+             [12]->Delimiter tokdelim.cpp#12  
+              [13]->GetDelimiter tokdelim.cpp#13  
+              [13]<-GetDelimiter -> Delimiter tokdelim.cpp#12 
+             [12]<-Delimiter -> Get tokget.cpp#11 
+            [11]<-Get -> primitive primitive.cpp#10 
+           [10]<-primitive -> l_6 rdp_l6.cpp#9 
+          [9]<-l_6 -> l_5 rdp_l5.cpp#8 
+         [8]<-l_5 -> l_4 rdp_l4.cpp#7 
+        [7]<-l_4 -> l_3 rdp_l3.cpp#6 
+       [6]<-l_3 -> l_2 rdp_l2.cpp#5 
+      [5]<-l_2 -> l_1 rdp_l1.cpp#4 
+     [4]<-l_1 -> getExp exp_e.cpp#3 
+     [4]->l1_store rdp_store.cpp#4  
+     [4]<-l1_store -> getExp exp_e.cpp#3 
+    [3]<-getExp -> Sexp exp_e.cpp#2 
+   [2]<-Sexp -> preProcess preprocess.cpp#1 
+(continue) (r,q): (continue) (r,q):    [2]->paramExpand paramexpand.cpp#2  
+paramexpand.cpp paramExpand: @489 "%(1, , ,\n)$S[0:50:5]\n" 
+    paramExpand @615 :	found  % %(1, , ,\n)$S[0:50:5]\n"
+    paramExpand @625 :	return FMT i 2 $  $S[0:50:5]\n" FMT<%> 
+    paramExpand @787 :	"
+    [3]->ExpandVar paramexpand.cpp#3  
+    ExpandVar @67 :	vp <|S[0:50:5]|>
+     [4]->varIndex scopesindex_e.cpp#4  
+      [5]->VarArrayIndex array_parse.cpp#5  
+       [6]->var_sindex scopesindex_e.cpp#6  
+        [7]->var_main scopesindex_e.cpp#7  
+        [7]<-var_main -> var_sindex scopesindex_e.cpp#6 
+       [6]<-var_sindex -> VarArrayIndex array_parse.cpp#5 
+       [6]->varArraySpec array_parse.cpp#6  
+        [7]->initArraySpecs array_parse.cpp#7  
+        [7]<-initArraySpecs -> varArraySpec array_parse.cpp#6 
+        [7]->ComputeArraySubScript array_subset.cpp#7  
+         [8]->checkArraySubScript array_subset.cpp#8  
+         [8]<-checkArraySubScript -> ComputeArraySubScript array_subset.cpp#7 
+         [8]->parse_range array_range.cpp#8  
+         [8]<-parse_range -> ComputeArraySubScript array_subset.cpp#7 
+        [7]<-ComputeArraySubScript -> varArraySpec array_parse.cpp#6 
+       [6]<-varArraySpec -> VarArrayIndex array_parse.cpp#5 
+      [5]<-VarArrayIndex -> varIndex scopesindex_e.cpp#4 
+     [4]<-varIndex -> ExpandVar paramexpand.cpp#3 
+    ExpandVar @179 :	sivp 
+ 83 S 167 SVAR SIV_V sz(713,64) nds(1,[713]) off(0,0,0,0) rcols(-2,-2)(VOK|ARRAY|SUBI|SUBSC|SUBSC_RANGE|GLOBAL|) 
+ (DOB_SVAR|AOP_SET|)  | writegwmsock (gsocket_l)  writegwmsock      : : computepi (mop_m)    : : solvequad (mop_m)    : : bankangle (navi_l)   bankangle for 2 min turn for tas(knots) [ min_per_360 ]: : getndbs (sint_l)  returns number of DB statements executed : : memcopy (sint_l)   : : vbitrev (vop_m)   vbitrev (vec, size) bitreverse a vector: : checkerror (sint_l)   : : mrevcols (matrix)  reverse col order : : slist (cw_l)   state list: :|>> [0m
+    [3]<-ExpandVar -> paramExpand paramexpand.cpp#2 
+    paramExpand @825 :	arg name is  S[0:50:5]
+    paramExpand @865 :	cfmt is A
+paramexpand.cpp paramExpand: @908 cpp_out: <|cprintf("%A\n",&S[0:50:5]);|> 
+   [2]<-paramExpand -> preProcess preprocess.cpp#1 
+ \n(continue) (r,q):    [2]->Sexp exp_e.cpp#2  
+    [3]->getExp exp_e.cpp#3  
+     [4]->checkConstantExp checkconstantexp.cpp#4  
+     [4]<-checkConstantExp -> getExp exp_e.cpp#3 
+     [4]->getLHS exp_lhs_e.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->doVariable rdp_token.cpp#6  
+        [7]->Variable rdp_token.cpp#7  
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->var_sindex scopesindex_e.cpp#10  
+            [11]->var_main scopesindex_e.cpp#11  
+            [11]<-var_main -> var_sindex scopesindex_e.cpp#10 
+           [10]<-var_sindex -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->var_sindex scopesindex_e.cpp#10  
+            [11]->var_main scopesindex_e.cpp#11  
+             [12]->var_sindex_create createv_e.cpp#12  
+             [12]<-var_sindex_create -> var_main scopesindex_e.cpp#11 
+            [11]<-var_main -> var_sindex scopesindex_e.cpp#10 
+           [10]<-var_sindex -> varIndex scopesindex_e.cpp#9 
+           [10]->SetArraySpecsOff array_parse.cpp#10  
+           [10]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+        [7]<-Variable -> doVariable rdp_token.cpp#6 
+       [6]<-doVariable -> Get tokget.cpp#5 
+      [5]<-Get -> getLHS exp_lhs_e.cpp#4 
+     [4]<-getLHS -> getExp exp_e.cpp#3 
+     [4]->l_1 rdp_l1.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->Delimiter tokdelim.cpp#6  
+        [7]->GetDelimiter tokdelim.cpp#7  
+        [7]<-GetDelimiter -> Delimiter tokdelim.cpp#6 
+       [6]<-Delimiter -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->Get tokget.cpp#5  
+       [6]->buildArrayExp tokarray.cpp#6  
+       [6]<-buildArrayExp -> Get tokget.cpp#5 
+       [6]->doVariable rdp_token.cpp#6  
+        [7]->Variable rdp_token.cpp#7  
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->VarArrayIndex array_parse.cpp#10  
+            [11]->var_sindex scopesindex_e.cpp#11  
+             [12]->var_main scopesindex_e.cpp#12  
+             [12]<-var_main -> var_sindex scopesindex_e.cpp#11 
+            [11]<-var_sindex -> VarArrayIndex array_parse.cpp#10 
+            [11]->varArraySpec array_parse.cpp#11  
+             [12]->initArraySpecs array_parse.cpp#12  
+             [12]<-initArraySpecs -> varArraySpec array_parse.cpp#11 
+             [12]->ComputeArraySubScript array_subset.cpp#12  
+              [13]->checkArraySubScript array_subset.cpp#13  
+              [13]<-checkArraySubScript -> ComputeArraySubScript array_subset.cpp#12 
+              [13]->parse_range array_range.cpp#13  
+              [13]<-parse_range -> ComputeArraySubScript array_subset.cpp#12 
+             [12]<-ComputeArraySubScript -> varArraySpec array_parse.cpp#11 
+            [11]<-varArraySpec -> VarArrayIndex array_parse.cpp#10 
+           [10]<-VarArrayIndex -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+
+ds_arraycopy.cpp VectorSubScriptCopy: @373 WARNING size increase needed ? 21 > 1
+    VectorSubScriptCopy @376 :	increased size to 1
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+        [7]<-Variable -> doVariable rdp_token.cpp#6 
+       [6]<-doVariable -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->l_2 rdp_l2.cpp#5  
+       [6]->l_3 rdp_l3.cpp#6  
+        [7]->l_4 rdp_l4.cpp#7  
+         [8]->l_5 rdp_l5.cpp#8  
+          [9]->l_6 rdp_l6.cpp#9  
+           [10]->primitive primitive.cpp#10  
+            [11]->Get tokget.cpp#11  
+             [12]->Delimiter tokdelim.cpp#12  
+              [13]->GetDelimiter tokdelim.cpp#13  
+              [13]<-GetDelimiter -> Delimiter tokdelim.cpp#12 
+             [12]<-Delimiter -> Get tokget.cpp#11 
+            [11]<-Get -> primitive primitive.cpp#10 
+           [10]<-primitive -> l_6 rdp_l6.cpp#9 
+          [9]<-l_6 -> l_5 rdp_l5.cpp#8 
+         [8]<-l_5 -> l_4 rdp_l4.cpp#7 
+        [7]<-l_4 -> l_3 rdp_l3.cpp#6 
+       [6]<-l_3 -> l_2 rdp_l2.cpp#5 
+      [5]<-l_2 -> l_1 rdp_l1.cpp#4 
+     [4]<-l_1 -> getExp exp_e.cpp#3 
+     [4]->l1_store rdp_store.cpp#4  
+     [4]<-l1_store -> getExp exp_e.cpp#3 
+    [3]<-getExp -> Sexp exp_e.cpp#2 
+   [2]<-Sexp -> preProcess preprocess.cpp#1 
+   [2]->checkProcFunc proc_checkfname_e.cpp#2  
+   [2]<-checkProcFunc -> preProcess preprocess.cpp#1 
+(continue) (r,q): (continue) (r,q):    [2]->paramExpand paramexpand.cpp#2  
+paramexpand.cpp paramExpand: @489 "Svar range op \n" 
+paramexpand.cpp paramExpand: @908 cpp_out: <|cprintf("Svar range op \n");|> 
+   [2]<-paramExpand -> preProcess preprocess.cpp#1 
+Svar range op \n(continue) (r,q):    [2]->paramExpand paramexpand.cpp#2  
+paramexpand.cpp paramExpand: @489 "%(1, , ,\n)$F\n" 
+    paramExpand @615 :	found  % %(1, , ,\n)$F\n"
+    paramExpand @625 :	return FMT i 2 $  $F\n" FMT<%> 
+    paramExpand @787 :	"
+    [3]->ExpandVar paramexpand.cpp#3  
+    ExpandVar @67 :	vp <|F|>
+     [4]->varIndex scopesindex_e.cpp#4  
+      [5]->var_sindex scopesindex_e.cpp#5  
+       [6]->var_main scopesindex_e.cpp#6  
+       [6]<-var_main -> var_sindex scopesindex_e.cpp#5 
+      [5]<-var_sindex -> varIndex scopesindex_e.cpp#4 
+      [5]->SetArraySpecsOff array_parse.cpp#5  
+      [5]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#4 
+     [4]<-varIndex -> ExpandVar paramexpand.cpp#3 
+    ExpandVar @110 :	set dyn OFF 
+ 94 F 141 SVAR SIV_V sz(21,64) nds(1,[21]) off(0,0,0,0) rcols(-2,-2)(VOK|ARRAY|GLOBAL|) 
+ (DOB_SVAR|AOP_SET|)  | pwd (fileop)  returns the current directory: : ndb (amod)  : : sdb (amod)  setdebug(level,{action}) level -1 nodebug, 0 default,                1 high action "pline" prints current line: : vga (gen_l)  generates double array from list or ags  dvec= vga(4.0,-1.0,371, ...: : setdebug (amod)  setdebug(level,{action}) level -1 nodebug, 0 default,                1 high action "pline" prints current line: : rcfile (fileop)  rc_file     : : caz (sint_l)  returns  size if scalar  0 if scalar : : deletesw (wcom_msg)   delete sw    : : ans (fileop)  answer([n])  returns last nth (default 0) answer to query   : : fft (dsp_main)   fft takes real, imag arrays output in place : :|>> [0m
+    ExpandVar @179 :	sivp 
+ 94 F 141 SVAR SIV_V sz(21,64) nds(1,[21]) off(0,0,0,0) rcols(-2,-2)(VOK|ARRAY|DYNAMIC|GLOBAL|) 
+ (DOB_SVAR|AOP_SET|)  | pwd (fileop)  returns the current directory: : ndb (amod)  : : sdb (amod)  setdebug(level,{action}) level -1 nodebug, 0 default,                1 high action "pline" prints current line: : vga (gen_l)  generates double array from list or ags  dvec= vga(4.0,-1.0,371, ...: : setdebug (amod)  setdebug(level,{action}) level -1 nodebug, 0 default,                1 high action "pline" prints current line: : rcfile (fileop)  rc_file     : : caz (sint_l)  returns  size if scalar  0 if scalar : : deletesw (wcom_msg)   delete sw    : : ans (fileop)  answer([n])  returns last nth (default 0) answer to query   : : fft (dsp_main)   fft takes real, imag arrays output in place : :|>> [0m
+    [3]<-ExpandVar -> paramExpand paramexpand.cpp#2 
+    paramExpand @825 :	arg name is  F
+    paramExpand @865 :	cfmt is A
+paramexpand.cpp paramExpand: @908 cpp_out: <|cprintf("%A\n",&F);|> 
+   [2]<-paramExpand -> preProcess preprocess.cpp#1 
+  diagonal (matrix)  use vector as leading diagonal of a square matrix other elements are zero\n(continue) (r,q):    [2]->paramExpand paramexpand.cpp#2  
+paramexpand.cpp paramExpand: @489 "Svar range op \n" 
+paramexpand.cpp paramExpand: @908 cpp_out: <|cprintf("Svar range op \n");|> 
+   [2]<-paramExpand -> preProcess preprocess.cpp#1 
+Svar range op \n(continue) (r,q):    [2]->paramExpand paramexpand.cpp#2  
+paramexpand.cpp paramExpand: @489 " $F\n" 
+    paramExpand @787 :	" 
+    [3]->ExpandVar paramexpand.cpp#3  
+    ExpandVar @67 :	vp <|F|>
+     [4]->varIndex scopesindex_e.cpp#4  
+      [5]->var_sindex scopesindex_e.cpp#5  
+       [6]->var_main scopesindex_e.cpp#6  
+       [6]<-var_main -> var_sindex scopesindex_e.cpp#5 
+      [5]<-var_sindex -> varIndex scopesindex_e.cpp#4 
+      [5]->SetArraySpecsOff array_parse.cpp#5  
+      [5]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#4 
+     [4]<-varIndex -> ExpandVar paramexpand.cpp#3 
+    ExpandVar @110 :	set dyn OFF 
+ 94 F 141 SVAR SIV_V sz(21,64) nds(1,[21]) off(0,0,0,0) rcols(-2,-2)(VOK|ARRAY|GLOBAL|) 
+ (DOB_SVAR|AOP_SET|)  | pwd (fileop)  returns the current directory: : ndb (amod)  : : sdb (amod)  setdebug(level,{action}) level -1 nodebug, 0 default,                1 high action "pline" prints current line: : vga (gen_l)  generates double array from list or ags  dvec= vga(4.0,-1.0,371, ...: : setdebug (amod)  setdebug(level,{action}) level -1 nodebug, 0 default,                1 high action "pline" prints current line: : rcfile (fileop)  rc_file     : : caz (sint_l)  returns  size if scalar  0 if scalar : : deletesw (wcom_msg)   delete sw    : : ans (fileop)  answer([n])  returns last nth (default 0) answer to query   : : fft (dsp_main)   fft takes real, imag arrays output in place : :|>> [0m
+    ExpandVar @179 :	sivp 
+ 94 F 141 SVAR SIV_V sz(21,64) nds(1,[21]) off(0,0,0,0) rcols(-2,-2)(VOK|ARRAY|DYNAMIC|GLOBAL|) 
+ (DOB_SVAR|AOP_SET|)  | pwd (fileop)  returns the current directory: : ndb (amod)  : : sdb (amod)  setdebug(level,{action}) level -1 nodebug, 0 default,                1 high action "pline" prints current line: : vga (gen_l)  generates double array from list or ags  dvec= vga(4.0,-1.0,371, ...: : setdebug (amod)  setdebug(level,{action}) level -1 nodebug, 0 default,                1 high action "pline" prints current line: : rcfile (fileop)  rc_file     : : caz (sint_l)  returns  size if scalar  0 if scalar : : deletesw (wcom_msg)   delete sw    : : ans (fileop)  answer([n])  returns last nth (default 0) answer to query   : : fft (dsp_main)   fft takes real, imag arrays output in place : :|>> [0m
+    [3]<-ExpandVar -> paramExpand paramexpand.cpp#2 
+    paramExpand @825 :	arg name is   F
+    paramExpand @865 :	cfmt is A
+paramexpand.cpp paramExpand: @908 cpp_out: <|cprintf(" %A\n",&F);|> 
+   [2]<-paramExpand -> preProcess preprocess.cpp#1 
+  pwd (fileop)  returns the current directory  ndb (amod)    sdb (amod)  setdebug(level,{action}) level -1 nodebug, 0 default,                1 high action "pline" prints current line  vga (gen_l)  generates double array from list or ags  dvec= vga(4.0,-1.0,371, ...  setdebug (amod)  setdebug(level,{action}) level -1 nodebug, 0 default,                1 high action "pline" prints current line  rcfile (fileop)  rc_file       caz (sint_l)  returns  size if scalar  0 if scalar   deletesw (wcom_msg)   delete sw      ans (fileop)  answer([n])  returns last nth (default 0) answer to query     fft (dsp_main)   fft takes real, imag arrays output in place   checkmem (ssop)   checkmem       d2r (top_m)  degrees to radians  spatrgx (ssop)    spat    search for regex pattern in string return index into string      rms (stat_m)   rms  computes rootmeansquare of vector  getmachinearch (sint_l)  returns machine arch  dec2bin (num_l)  decimal to binary   typeof (timedate_l)  typeof - returns the type of the argument  as a string FLOAT,INT,...  gflush (wcom_msg)   gflush      scompare (ssop)  scompare(haystack_str,compare_str, ignore_case)                             :- returns number float indicating comparison strength - absolute match 100 all characters in same order                              - no characters in common 0   frange (gen_l)  generates array with values linearly spaced frange(N,startval,endval)  diagonal (matrix)  use vector as leading diagonal of a square matrix other elements are zero\n(continue) (r,q):    [2]->paramExpand paramexpand.cpp#2  
+paramexpand.cpp paramExpand: @489 "%(1, , ,\n)$F\n" 
+    paramExpand @615 :	found  % %(1, , ,\n)$F\n"
+    paramExpand @625 :	return FMT i 2 $  $F\n" FMT<%> 
+    paramExpand @787 :	"
+    [3]->ExpandVar paramexpand.cpp#3  
+    ExpandVar @67 :	vp <|F|>
+     [4]->varIndex scopesindex_e.cpp#4  
+      [5]->var_sindex scopesindex_e.cpp#5  
+       [6]->var_main scopesindex_e.cpp#6  
+       [6]<-var_main -> var_sindex scopesindex_e.cpp#5 
+      [5]<-var_sindex -> varIndex scopesindex_e.cpp#4 
+      [5]->SetArraySpecsOff array_parse.cpp#5  
+      [5]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#4 
+     [4]<-varIndex -> ExpandVar paramexpand.cpp#3 
+    ExpandVar @110 :	set dyn OFF 
+ 94 F 141 SVAR SIV_V sz(21,64) nds(1,[21]) off(0,0,0,0) rcols(-2,-2)(VOK|ARRAY|GLOBAL|) 
+ (DOB_SVAR|AOP_SET|)  | pwd (fileop)  returns the current directory: : ndb (amod)  : : sdb (amod)  setdebug(level,{action}) level -1 nodebug, 0 default,                1 high action "pline" prints current line: : vga (gen_l)  generates double array from list or ags  dvec= vga(4.0,-1.0,371, ...: : setdebug (amod)  setdebug(level,{action}) level -1 nodebug, 0 default,                1 high action "pline" prints current line: : rcfile (fileop)  rc_file     : : caz (sint_l)  returns  size if scalar  0 if scalar : : deletesw (wcom_msg)   delete sw    : : ans (fileop)  answer([n])  returns last nth (default 0) answer to query   : : fft (dsp_main)   fft takes real, imag arrays output in place : :|>> [0m
+    ExpandVar @179 :	sivp 
+ 94 F 141 SVAR SIV_V sz(21,64) nds(1,[21]) off(0,0,0,0) rcols(-2,-2)(VOK|ARRAY|DYNAMIC|GLOBAL|) 
+ (DOB_SVAR|AOP_SET|)  | pwd (fileop)  returns the current directory: : ndb (amod)  : : sdb (amod)  setdebug(level,{action}) level -1 nodebug, 0 default,                1 high action "pline" prints current line: : vga (gen_l)  generates double array from list or ags  dvec= vga(4.0,-1.0,371, ...: : setdebug (amod)  setdebug(level,{action}) level -1 nodebug, 0 default,                1 high action "pline" prints current line: : rcfile (fileop)  rc_file     : : caz (sint_l)  returns  size if scalar  0 if scalar : : deletesw (wcom_msg)   delete sw    : : ans (fileop)  answer([n])  returns last nth (default 0) answer to query   : : fft (dsp_main)   fft takes real, imag arrays output in place : :|>> [0m
+    [3]<-ExpandVar -> paramExpand paramexpand.cpp#2 
+    paramExpand @825 :	arg name is  F
+    paramExpand @865 :	cfmt is A
+paramexpand.cpp paramExpand: @908 cpp_out: <|cprintf("%A\n",&F);|> 
+   [2]<-paramExpand -> preProcess preprocess.cpp#1 
+  diagonal (matrix)  use vector as leading diagonal of a square matrix other elements are zero\n(continue) (r,q):    [2]->paramExpand paramexpand.cpp#2  
+paramexpand.cpp paramExpand: @489 "//////////////////////////\n" 
+paramexpand.cpp paramExpand: @908 cpp_out: <|cprintf("//////////////////////////\n");|> 
+   [2]<-paramExpand -> preProcess preprocess.cpp#1 
+//////////////////////////\n(continue) (r,q):    [2]->Sexp exp_e.cpp#2  
+    [3]->getExp exp_e.cpp#3  
+     [4]->checkConstantExp checkconstantexp.cpp#4  
+     [4]<-checkConstantExp -> getExp exp_e.cpp#3 
+     [4]->getLHS exp_lhs_e.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->doVariable rdp_token.cpp#6  
+        [7]->Variable rdp_token.cpp#7  
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->var_sindex scopesindex_e.cpp#10  
+            [11]->var_main scopesindex_e.cpp#11  
+            [11]<-var_main -> var_sindex scopesindex_e.cpp#10 
+           [10]<-var_sindex -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->var_sindex scopesindex_e.cpp#10  
+            [11]->var_main scopesindex_e.cpp#11  
+             [12]->var_sindex_create createv_e.cpp#12  
+             [12]<-var_sindex_create -> var_main scopesindex_e.cpp#11 
+            [11]<-var_main -> var_sindex scopesindex_e.cpp#10 
+           [10]<-var_sindex -> varIndex scopesindex_e.cpp#9 
+           [10]->SetArraySpecsOff array_parse.cpp#10  
+           [10]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+        [7]<-Variable -> doVariable rdp_token.cpp#6 
+       [6]<-doVariable -> Get tokget.cpp#5 
+      [5]<-Get -> getLHS exp_lhs_e.cpp#4 
+     [4]<-getLHS -> getExp exp_e.cpp#3 
+     [4]->l_1 rdp_l1.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->Delimiter tokdelim.cpp#6  
+        [7]->GetDelimiter tokdelim.cpp#7  
+        [7]<-GetDelimiter -> Delimiter tokdelim.cpp#6 
+       [6]<-Delimiter -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->Get tokget.cpp#5  
+       [6]->Number toknum.cpp#6  
+       [6]<-Number -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->l_2 rdp_l2.cpp#5  
+       [6]->l_3 rdp_l3.cpp#6  
+        [7]->l_4 rdp_l4.cpp#7  
+         [8]->l_5 rdp_l5.cpp#8  
+          [9]->l_6 rdp_l6.cpp#9  
+           [10]->primitive primitive.cpp#10  
+            [11]->Get tokget.cpp#11  
+             [12]->Delimiter tokdelim.cpp#12  
+              [13]->GetDelimiter tokdelim.cpp#13  
+              [13]<-GetDelimiter -> Delimiter tokdelim.cpp#12 
+             [12]<-Delimiter -> Get tokget.cpp#11 
+            [11]<-Get -> primitive primitive.cpp#10 
+           [10]<-primitive -> l_6 rdp_l6.cpp#9 
+          [9]<-l_6 -> l_5 rdp_l5.cpp#8 
+         [8]<-l_5 -> l_4 rdp_l4.cpp#7 
+        [7]<-l_4 -> l_3 rdp_l3.cpp#6 
+       [6]<-l_3 -> l_2 rdp_l2.cpp#5 
+      [5]<-l_2 -> l_1 rdp_l1.cpp#4 
+     [4]<-l_1 -> getExp exp_e.cpp#3 
+     [4]->l1_store rdp_store.cpp#4  
+     [4]<-l1_store -> getExp exp_e.cpp#3 
+    [3]<-getExp -> Sexp exp_e.cpp#2 
+   [2]<-Sexp -> preProcess preprocess.cpp#1 
+   [2]->checkProcFunc proc_checkfname_e.cpp#2  
+   [2]<-checkProcFunc -> preProcess preprocess.cpp#1 
+(continue) (r,q):    [2]->Sexp exp_e.cpp#2  
+    [3]->getExp exp_e.cpp#3  
+     [4]->checkConstantExp checkconstantexp.cpp#4  
+     [4]<-checkConstantExp -> getExp exp_e.cpp#3 
+     [4]->getLHS exp_lhs_e.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->doVariable rdp_token.cpp#6  
+        [7]->Variable rdp_token.cpp#7  
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->var_sindex scopesindex_e.cpp#10  
+            [11]->var_main scopesindex_e.cpp#11  
+            [11]<-var_main -> var_sindex scopesindex_e.cpp#10 
+           [10]<-var_sindex -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->var_sindex scopesindex_e.cpp#10  
+            [11]->var_main scopesindex_e.cpp#11  
+             [12]->var_sindex_create createv_e.cpp#12  
+             [12]<-var_sindex_create -> var_main scopesindex_e.cpp#11 
+            [11]<-var_main -> var_sindex scopesindex_e.cpp#10 
+           [10]<-var_sindex -> varIndex scopesindex_e.cpp#9 
+           [10]->SetArraySpecsOff array_parse.cpp#10  
+           [10]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+        [7]<-Variable -> doVariable rdp_token.cpp#6 
+       [6]<-doVariable -> Get tokget.cpp#5 
+      [5]<-Get -> getLHS exp_lhs_e.cpp#4 
+     [4]<-getLHS -> getExp exp_e.cpp#3 
+     [4]->l_1 rdp_l1.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->Delimiter tokdelim.cpp#6  
+        [7]->GetDelimiter tokdelim.cpp#7  
+        [7]<-GetDelimiter -> Delimiter tokdelim.cpp#6 
+       [6]<-Delimiter -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->Get tokget.cpp#5  
+       [6]->Func tokfunc.cpp#6  
+        [7]->checkProcFunc proc_checkfname_e.cpp#7  
+         [8]->checkProcName proc_e.cpp#8  
+         [8]<-checkProcName -> checkProcFunc proc_checkfname_e.cpp#7 
+_CMFOBJSTK  Empty
+        [7]<-checkProcFunc -> Func tokfunc.cpp#6 
+        [7]->Sfunc func_e.cpp#7  
+         [8]->process_args args_process_e.cpp#8  
+          [9]->process_args_type args_process_e.cpp#9  
+           [10]->find_siv scope_findvar_e.cpp#10  
+            [11]->varIndex scopesindex_e.cpp#11  
+             [12]->var_sindex scopesindex_e.cpp#12  
+              [13]->var_main scopesindex_e.cpp#13  
+              [13]<-var_main -> var_sindex scopesindex_e.cpp#12 
+             [12]<-var_sindex -> varIndex scopesindex_e.cpp#11 
+             [12]->SetArraySpecsOff array_parse.cpp#12  
+             [12]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#11 
+            [11]<-varIndex -> find_siv scope_findvar_e.cpp#10 
+           [10]<-find_siv -> process_args_type args_process_e.cpp#9 
+          [9]<-process_args_type -> process_args args_process_e.cpp#8 
+          [9]->process_args_siv args_process_e.cpp#9  
+          [9]<-process_args_siv -> process_args args_process_e.cpp#8 
+         [8]<-process_args -> Sfunc func_e.cpp#7 
+PREPROCESSING NO CALL to atan but need to lookup and set return type!
+        [7]<-Sfunc -> Func tokfunc.cpp#6 
+       [6]<-Func -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->l_2 rdp_l2.cpp#5  
+       [6]->l_3 rdp_l3.cpp#6  
+        [7]->l_4 rdp_l4.cpp#7  
+         [8]->l_5 rdp_l5.cpp#8  
+          [9]->l_6 rdp_l6.cpp#9  
+           [10]->primitive primitive.cpp#10  
+            [11]->Get tokget.cpp#11  
+             [12]->Delimiter tokdelim.cpp#12  
+              [13]->GetDelimiter tokdelim.cpp#13  
+              [13]<-GetDelimiter -> Delimiter tokdelim.cpp#12 
+             [12]<-Delimiter -> Get tokget.cpp#11 
+            [11]<-Get -> primitive primitive.cpp#10 
+           [10]<-primitive -> l_6 rdp_l6.cpp#9 
+          [9]<-l_6 -> l_5 rdp_l5.cpp#8 
+         [8]<-l_5 -> l_4 rdp_l4.cpp#7 
+        [7]<-l_4 -> l_3 rdp_l3.cpp#6 
+       [6]<-l_3 -> l_2 rdp_l2.cpp#5 
+      [5]<-l_2 -> l_1 rdp_l1.cpp#4 
+     [4]<-l_1 -> getExp exp_e.cpp#3 
+     [4]->l1_store rdp_store.cpp#4  
+     [4]<-l1_store -> getExp exp_e.cpp#3 
+    [3]<-getExp -> Sexp exp_e.cpp#2 
+   [2]<-Sexp -> preProcess preprocess.cpp#1 
+   [2]->checkProcFunc proc_checkfname_e.cpp#2  
+    [3]->checkProcName proc_e.cpp#3  
+    [3]<-checkProcName -> checkProcFunc proc_checkfname_e.cpp#2 
+_CMFOBJSTK  Empty
+   [2]<-checkProcFunc -> preProcess preprocess.cpp#1 
+   [2]->Sexp exp_e.cpp#2  
+    [3]->getExp exp_e.cpp#3  
+     [4]->checkConstantExp checkconstantexp.cpp#4  
+     [4]<-checkConstantExp -> getExp exp_e.cpp#3 
+     [4]->getLHS exp_lhs_e.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->doVariable rdp_token.cpp#6  
+        [7]->Variable rdp_token.cpp#7  
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->var_sindex scopesindex_e.cpp#10  
+            [11]->var_main scopesindex_e.cpp#11  
+            [11]<-var_main -> var_sindex scopesindex_e.cpp#10 
+           [10]<-var_sindex -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->var_sindex scopesindex_e.cpp#10  
+            [11]->var_main scopesindex_e.cpp#11  
+             [12]->var_sindex_create createv_e.cpp#12  
+             [12]<-var_sindex_create -> var_main scopesindex_e.cpp#11 
+            [11]<-var_main -> var_sindex scopesindex_e.cpp#10 
+           [10]<-var_sindex -> varIndex scopesindex_e.cpp#9 
+           [10]->SetArraySpecsOff array_parse.cpp#10  
+           [10]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+        [7]<-Variable -> doVariable rdp_token.cpp#6 
+       [6]<-doVariable -> Get tokget.cpp#5 
+      [5]<-Get -> getLHS exp_lhs_e.cpp#4 
+     [4]<-getLHS -> getExp exp_e.cpp#3 
+     [4]->l_1 rdp_l1.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->Delimiter tokdelim.cpp#6  
+        [7]->GetDelimiter tokdelim.cpp#7  
+        [7]<-GetDelimiter -> Delimiter tokdelim.cpp#6 
+       [6]<-Delimiter -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->Get tokget.cpp#5  
+       [6]->Func tokfunc.cpp#6  
+        [7]->checkProcFunc proc_checkfname_e.cpp#7  
+         [8]->checkProcName proc_e.cpp#8  
+         [8]<-checkProcName -> checkProcFunc proc_checkfname_e.cpp#7 
+_CMFOBJSTK  Empty
+        [7]<-checkProcFunc -> Func tokfunc.cpp#6 
+        [7]->Sfunc func_e.cpp#7  
+         [8]->process_args args_process_e.cpp#8  
+          [9]->process_args_type args_process_e.cpp#9  
+           [10]->find_siv scope_findvar_e.cpp#10  
+            [11]->varIndex scopesindex_e.cpp#11  
+             [12]->var_sindex scopesindex_e.cpp#12  
+              [13]->var_main scopesindex_e.cpp#13  
+              [13]<-var_main -> var_sindex scopesindex_e.cpp#12 
+             [12]<-var_sindex -> varIndex scopesindex_e.cpp#11 
+             [12]->SetArraySpecsOff array_parse.cpp#12  
+             [12]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#11 
+            [11]<-varIndex -> find_siv scope_findvar_e.cpp#10 
+           [10]<-find_siv -> process_args_type args_process_e.cpp#9 
+          [9]<-process_args_type -> process_args args_process_e.cpp#8 
+          [9]->process_args_siv args_process_e.cpp#9  
+          [9]<-process_args_siv -> process_args args_process_e.cpp#8 
+         [8]<-process_args -> Sfunc func_e.cpp#7 
+PREPROCESSING NO CALL to atan but need to lookup and set return type!
+        [7]<-Sfunc -> Func tokfunc.cpp#6 
+       [6]<-Func -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->l_2 rdp_l2.cpp#5  
+       [6]->l_3 rdp_l3.cpp#6  
+        [7]->l_4 rdp_l4.cpp#7  
+         [8]->l_5 rdp_l5.cpp#8  
+          [9]->l_6 rdp_l6.cpp#9  
+           [10]->primitive primitive.cpp#10  
+            [11]->Get tokget.cpp#11  
+             [12]->Delimiter tokdelim.cpp#12  
+              [13]->GetDelimiter tokdelim.cpp#13  
+              [13]<-GetDelimiter -> Delimiter tokdelim.cpp#12 
+             [12]<-Delimiter -> Get tokget.cpp#11 
+            [11]<-Get -> primitive primitive.cpp#10 
+           [10]<-primitive -> l_6 rdp_l6.cpp#9 
+          [9]<-l_6 -> l_5 rdp_l5.cpp#8 
+         [8]<-l_5 -> l_4 rdp_l4.cpp#7 
+        [7]<-l_4 -> l_3 rdp_l3.cpp#6 
+       [6]<-l_3 -> l_2 rdp_l2.cpp#5 
+      [5]<-l_2 -> l_1 rdp_l1.cpp#4 
+     [4]<-l_1 -> getExp exp_e.cpp#3 
+     [4]->l1_store rdp_store.cpp#4  
+     [4]<-l1_store -> getExp exp_e.cpp#3 
+    [3]<-getExp -> Sexp exp_e.cpp#2 
+   [2]<-Sexp -> preProcess preprocess.cpp#1 
+(continue) (r,q):    [2]->Sexp exp_e.cpp#2  
+    [3]->getExp exp_e.cpp#3  
+     [4]->checkConstantExp checkconstantexp.cpp#4  
+     [4]<-checkConstantExp -> getExp exp_e.cpp#3 
+     [4]->getLHS exp_lhs_e.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->doVariable rdp_token.cpp#6  
+        [7]->Variable rdp_token.cpp#7  
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->var_sindex scopesindex_e.cpp#10  
+            [11]->var_main scopesindex_e.cpp#11  
+            [11]<-var_main -> var_sindex scopesindex_e.cpp#10 
+           [10]<-var_sindex -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->var_sindex scopesindex_e.cpp#10  
+            [11]->var_main scopesindex_e.cpp#11  
+             [12]->var_sindex_create createv_e.cpp#12  
+             [12]<-var_sindex_create -> var_main scopesindex_e.cpp#11 
+            [11]<-var_main -> var_sindex scopesindex_e.cpp#10 
+           [10]<-var_sindex -> varIndex scopesindex_e.cpp#9 
+           [10]->SetArraySpecsOff array_parse.cpp#10  
+           [10]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+        [7]<-Variable -> doVariable rdp_token.cpp#6 
+       [6]<-doVariable -> Get tokget.cpp#5 
+      [5]<-Get -> getLHS exp_lhs_e.cpp#4 
+     [4]<-getLHS -> getExp exp_e.cpp#3 
+     [4]->l_1 rdp_l1.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->Delimiter tokdelim.cpp#6  
+        [7]->GetDelimiter tokdelim.cpp#7  
+        [7]<-GetDelimiter -> Delimiter tokdelim.cpp#6 
+       [6]<-Delimiter -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->Get tokget.cpp#5  
+       [6]->Func tokfunc.cpp#6  
+        [7]->checkProcFunc proc_checkfname_e.cpp#7  
+         [8]->checkProcName proc_e.cpp#8  
+         [8]<-checkProcName -> checkProcFunc proc_checkfname_e.cpp#7 
+_CMFOBJSTK  Empty
+        [7]<-checkProcFunc -> Func tokfunc.cpp#6 
+        [7]->Sfunc func_e.cpp#7  
+         [8]->process_args args_process_e.cpp#8  
+          [9]->process_args_type args_process_e.cpp#9  
+          [9]<-process_args_type -> process_args args_process_e.cpp#8 
+          [9]->process_args_exprn args_process_e.cpp#9  
+           [10]->getExp exp_e.cpp#10  
+            [11]->checkConstantExp checkconstantexp.cpp#11  
+            [11]<-checkConstantExp -> getExp exp_e.cpp#10 
+            [11]->Get tokget.cpp#11  
+             [12]->Number toknum.cpp#12  
+             [12]<-Number -> Get tokget.cpp#11 
+            [11]<-Get -> getExp exp_e.cpp#10 
+            [11]->l_1 rdp_l1.cpp#11  
+             [12]->l_2 rdp_l2.cpp#12  
+              [13]->l_3 rdp_l3.cpp#13  
+               [14]->l_4 rdp_l4.cpp#14  
+                [15]->l_5 rdp_l5.cpp#15  
+                 [16]->l_6 rdp_l6.cpp#16  
+                  [17]->primitive primitive.cpp#17  
+                   [18]->Get tokget.cpp#18  
+                    [19]->Delimiter tokdelim.cpp#19  
+                     [20]->GetDelimiter tokdelim.cpp#20  
+                     [20]<-GetDelimiter -> Delimiter tokdelim.cpp#19 
+                    [19]<-Delimiter -> Get tokget.cpp#18 
+                   [18]<-Get -> primitive primitive.cpp#17 
+                  [17]<-primitive -> l_6 rdp_l6.cpp#16 
+                 [16]<-l_6 -> l_5 rdp_l5.cpp#15 
+                [15]<-l_5 -> l_4 rdp_l4.cpp#14 
+               [14]<-l_4 -> l_3 rdp_l3.cpp#13 
+               [14]->Get tokget.cpp#14  
+                [15]->doVariable rdp_token.cpp#15  
+                 [16]->Variable rdp_token.cpp#16  
+                  [17]->FindVar parset_e.cpp#17  
+                   [18]->varIndex scopesindex_e.cpp#18  
+                    [19]->var_sindex scopesindex_e.cpp#19  
+                     [20]->var_main scopesindex_e.cpp#20  
+                     [20]<-var_main -> var_sindex scopesindex_e.cpp#19 
+                    [19]<-var_sindex -> varIndex scopesindex_e.cpp#18 
+                    [19]->SetArraySpecsOff array_parse.cpp#19  
+                    [19]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#18 
+                   [18]<-varIndex -> FindVar parset_e.cpp#17 
+                  [17]<-FindVar -> Variable rdp_token.cpp#16 
+                  [17]->store_var storetype_e.cpp#17  
+                   [18]->storeCopyVar storetype_e.cpp#18  
+                   [18]<-storeCopyVar -> store_var storetype_e.cpp#17 
+                  [17]<-store_var -> Variable rdp_token.cpp#16 
+                 [16]<-Variable -> doVariable rdp_token.cpp#15 
+                [15]<-doVariable -> Get tokget.cpp#14 
+               [14]<-Get -> l_3 rdp_l3.cpp#13 
+               [14]->l_4 rdp_l4.cpp#14  
+                [15]->l_5 rdp_l5.cpp#15  
+                 [16]->l_6 rdp_l6.cpp#16  
+                  [17]->primitive primitive.cpp#17  
+                   [18]->Get tokget.cpp#18  
+                    [19]->Delimiter tokdelim.cpp#19  
+                     [20]->GetDelimiter tokdelim.cpp#20  
+                     [20]<-GetDelimiter -> Delimiter tokdelim.cpp#19 
+                    [19]<-Delimiter -> Get tokget.cpp#18 
+                   [18]<-Get -> primitive primitive.cpp#17 
+                  [17]<-primitive -> l_6 rdp_l6.cpp#16 
+                 [16]<-l_6 -> l_5 rdp_l5.cpp#15 
+                [15]<-l_5 -> l_4 rdp_l4.cpp#14 
+               [14]<-l_4 -> l_3 rdp_l3.cpp#13 
+              [13]<-l_3 -> l_2 rdp_l2.cpp#12 
+             [12]<-l_2 -> l_1 rdp_l1.cpp#11 
+            [11]<-l_1 -> getExp exp_e.cpp#10 
+            [11]->store_var storetype_e.cpp#11  
+             [12]->storeCopyVar storetype_e.cpp#12  
+             [12]<-storeCopyVar -> store_var storetype_e.cpp#11 
+            [11]<-store_var -> getExp exp_e.cpp#10 
+           [10]<-getExp -> process_args_exprn args_process_e.cpp#9 
+          [9]<-process_args_exprn -> process_args args_process_e.cpp#8 
+         [8]<-process_args -> Sfunc func_e.cpp#7 
+PREPROCESSING NO CALL to sin but need to lookup and set return type!
+        [7]<-Sfunc -> Func tokfunc.cpp#6 
+       [6]<-Func -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->l_2 rdp_l2.cpp#5  
+       [6]->l_3 rdp_l3.cpp#6  
+        [7]->l_4 rdp_l4.cpp#7  
+         [8]->l_5 rdp_l5.cpp#8  
+          [9]->l_6 rdp_l6.cpp#9  
+           [10]->primitive primitive.cpp#10  
+            [11]->Get tokget.cpp#11  
+             [12]->Delimiter tokdelim.cpp#12  
+              [13]->GetDelimiter tokdelim.cpp#13  
+              [13]<-GetDelimiter -> Delimiter tokdelim.cpp#12 
+             [12]<-Delimiter -> Get tokget.cpp#11 
+            [11]<-Get -> primitive primitive.cpp#10 
+           [10]<-primitive -> l_6 rdp_l6.cpp#9 
+          [9]<-l_6 -> l_5 rdp_l5.cpp#8 
+         [8]<-l_5 -> l_4 rdp_l4.cpp#7 
+        [7]<-l_4 -> l_3 rdp_l3.cpp#6 
+       [6]<-l_3 -> l_2 rdp_l2.cpp#5 
+      [5]<-l_2 -> l_1 rdp_l1.cpp#4 
+     [4]<-l_1 -> getExp exp_e.cpp#3 
+     [4]->l1_store rdp_store.cpp#4  
+     [4]<-l1_store -> getExp exp_e.cpp#3 
+    [3]<-getExp -> Sexp exp_e.cpp#2 
+   [2]<-Sexp -> preProcess preprocess.cpp#1 
+   [2]->checkProcFunc proc_checkfname_e.cpp#2  
+    [3]->checkProcName proc_e.cpp#3  
+    [3]<-checkProcName -> checkProcFunc proc_checkfname_e.cpp#2 
+_CMFOBJSTK  Empty
+   [2]<-checkProcFunc -> preProcess preprocess.cpp#1 
+   [2]->Sexp exp_e.cpp#2  
+    [3]->getExp exp_e.cpp#3  
+     [4]->checkConstantExp checkconstantexp.cpp#4  
+     [4]<-checkConstantExp -> getExp exp_e.cpp#3 
+     [4]->getLHS exp_lhs_e.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->doVariable rdp_token.cpp#6  
+        [7]->Variable rdp_token.cpp#7  
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->var_sindex scopesindex_e.cpp#10  
+            [11]->var_main scopesindex_e.cpp#11  
+            [11]<-var_main -> var_sindex scopesindex_e.cpp#10 
+           [10]<-var_sindex -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->var_sindex scopesindex_e.cpp#10  
+            [11]->var_main scopesindex_e.cpp#11  
+             [12]->var_sindex_create createv_e.cpp#12  
+             [12]<-var_sindex_create -> var_main scopesindex_e.cpp#11 
+            [11]<-var_main -> var_sindex scopesindex_e.cpp#10 
+           [10]<-var_sindex -> varIndex scopesindex_e.cpp#9 
+           [10]->SetArraySpecsOff array_parse.cpp#10  
+           [10]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+        [7]<-Variable -> doVariable rdp_token.cpp#6 
+       [6]<-doVariable -> Get tokget.cpp#5 
+      [5]<-Get -> getLHS exp_lhs_e.cpp#4 
+     [4]<-getLHS -> getExp exp_e.cpp#3 
+     [4]->l_1 rdp_l1.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->Delimiter tokdelim.cpp#6  
+        [7]->GetDelimiter tokdelim.cpp#7  
+        [7]<-GetDelimiter -> Delimiter tokdelim.cpp#6 
+       [6]<-Delimiter -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->Get tokget.cpp#5  
+       [6]->Func tokfunc.cpp#6  
+        [7]->checkProcFunc proc_checkfname_e.cpp#7  
+         [8]->checkProcName proc_e.cpp#8  
+         [8]<-checkProcName -> checkProcFunc proc_checkfname_e.cpp#7 
+_CMFOBJSTK  Empty
+        [7]<-checkProcFunc -> Func tokfunc.cpp#6 
+        [7]->Sfunc func_e.cpp#7  
+         [8]->process_args args_process_e.cpp#8  
+          [9]->process_args_type args_process_e.cpp#9  
+          [9]<-process_args_type -> process_args args_process_e.cpp#8 
+          [9]->process_args_exprn args_process_e.cpp#9  
+           [10]->getExp exp_e.cpp#10  
+            [11]->checkConstantExp checkconstantexp.cpp#11  
+            [11]<-checkConstantExp -> getExp exp_e.cpp#10 
+            [11]->Get tokget.cpp#11  
+             [12]->Number toknum.cpp#12  
+             [12]<-Number -> Get tokget.cpp#11 
+            [11]<-Get -> getExp exp_e.cpp#10 
+            [11]->l_1 rdp_l1.cpp#11  
+             [12]->l_2 rdp_l2.cpp#12  
+              [13]->l_3 rdp_l3.cpp#13  
+               [14]->l_4 rdp_l4.cpp#14  
+                [15]->l_5 rdp_l5.cpp#15  
+                 [16]->l_6 rdp_l6.cpp#16  
+                  [17]->primitive primitive.cpp#17  
+                   [18]->Get tokget.cpp#18  
+                    [19]->Delimiter tokdelim.cpp#19  
+                     [20]->GetDelimiter tokdelim.cpp#20  
+                     [20]<-GetDelimiter -> Delimiter tokdelim.cpp#19 
+                    [19]<-Delimiter -> Get tokget.cpp#18 
+                   [18]<-Get -> primitive primitive.cpp#17 
+                  [17]<-primitive -> l_6 rdp_l6.cpp#16 
+                 [16]<-l_6 -> l_5 rdp_l5.cpp#15 
+                [15]<-l_5 -> l_4 rdp_l4.cpp#14 
+               [14]<-l_4 -> l_3 rdp_l3.cpp#13 
+               [14]->Get tokget.cpp#14  
+                [15]->doVariable rdp_token.cpp#15  
+                 [16]->Variable rdp_token.cpp#16  
+                  [17]->FindVar parset_e.cpp#17  
+                   [18]->varIndex scopesindex_e.cpp#18  
+                    [19]->var_sindex scopesindex_e.cpp#19  
+                     [20]->var_main scopesindex_e.cpp#20  
+                     [20]<-var_main -> var_sindex scopesindex_e.cpp#19 
+                    [19]<-var_sindex -> varIndex scopesindex_e.cpp#18 
+                    [19]->SetArraySpecsOff array_parse.cpp#19  
+                    [19]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#18 
+                   [18]<-varIndex -> FindVar parset_e.cpp#17 
+                  [17]<-FindVar -> Variable rdp_token.cpp#16 
+                  [17]->store_var storetype_e.cpp#17  
+                   [18]->storeCopyVar storetype_e.cpp#18  
+                   [18]<-storeCopyVar -> store_var storetype_e.cpp#17 
+                  [17]<-store_var -> Variable rdp_token.cpp#16 
+                 [16]<-Variable -> doVariable rdp_token.cpp#15 
+                [15]<-doVariable -> Get tokget.cpp#14 
+               [14]<-Get -> l_3 rdp_l3.cpp#13 
+               [14]->l_4 rdp_l4.cpp#14  
+                [15]->l_5 rdp_l5.cpp#15  
+                 [16]->l_6 rdp_l6.cpp#16  
+                  [17]->primitive primitive.cpp#17  
+                   [18]->Get tokget.cpp#18  
+                    [19]->Delimiter tokdelim.cpp#19  
+                     [20]->GetDelimiter tokdelim.cpp#20  
+                     [20]<-GetDelimiter -> Delimiter tokdelim.cpp#19 
+                    [19]<-Delimiter -> Get tokget.cpp#18 
+                   [18]<-Get -> primitive primitive.cpp#17 
+                  [17]<-primitive -> l_6 rdp_l6.cpp#16 
+                 [16]<-l_6 -> l_5 rdp_l5.cpp#15 
+                [15]<-l_5 -> l_4 rdp_l4.cpp#14 
+               [14]<-l_4 -> l_3 rdp_l3.cpp#13 
+              [13]<-l_3 -> l_2 rdp_l2.cpp#12 
+             [12]<-l_2 -> l_1 rdp_l1.cpp#11 
+            [11]<-l_1 -> getExp exp_e.cpp#10 
+            [11]->store_var storetype_e.cpp#11  
+             [12]->storeCopyVar storetype_e.cpp#12  
+             [12]<-storeCopyVar -> store_var storetype_e.cpp#11 
+            [11]<-store_var -> getExp exp_e.cpp#10 
+           [10]<-getExp -> process_args_exprn args_process_e.cpp#9 
+          [9]<-process_args_exprn -> process_args args_process_e.cpp#8 
+         [8]<-process_args -> Sfunc func_e.cpp#7 
+PREPROCESSING NO CALL to sin but need to lookup and set return type!
+        [7]<-Sfunc -> Func tokfunc.cpp#6 
+       [6]<-Func -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->l_2 rdp_l2.cpp#5  
+       [6]->l_3 rdp_l3.cpp#6  
+        [7]->l_4 rdp_l4.cpp#7  
+         [8]->l_5 rdp_l5.cpp#8  
+          [9]->l_6 rdp_l6.cpp#9  
+           [10]->primitive primitive.cpp#10  
+            [11]->Get tokget.cpp#11  
+             [12]->Delimiter tokdelim.cpp#12  
+              [13]->GetDelimiter tokdelim.cpp#13  
+              [13]<-GetDelimiter -> Delimiter tokdelim.cpp#12 
+             [12]<-Delimiter -> Get tokget.cpp#11 
+            [11]<-Get -> primitive primitive.cpp#10 
+           [10]<-primitive -> l_6 rdp_l6.cpp#9 
+          [9]<-l_6 -> l_5 rdp_l5.cpp#8 
+         [8]<-l_5 -> l_4 rdp_l4.cpp#7 
+        [7]<-l_4 -> l_3 rdp_l3.cpp#6 
+       [6]<-l_3 -> l_2 rdp_l2.cpp#5 
+      [5]<-l_2 -> l_1 rdp_l1.cpp#4 
+     [4]<-l_1 -> getExp exp_e.cpp#3 
+     [4]->l1_store rdp_store.cpp#4  
+     [4]<-l1_store -> getExp exp_e.cpp#3 
+    [3]<-getExp -> Sexp exp_e.cpp#2 
+   [2]<-Sexp -> preProcess preprocess.cpp#1 
+(continue) (r,q):    [2]->paramExpand paramexpand.cpp#2  
+paramexpand.cpp paramExpand: @489 "%V $x $p $y \n" 
+    paramExpand @615 :	found  % %V $x $p $y \n"
+    paramExpand @625 :	return FMT i 2     $x $p $y \n" FMT<%> 
+    paramExpand @756 :	splice_in <x> 
+    paramExpand @787 :	"  x 
+    [3]->ExpandVar paramexpand.cpp#3  
+    ExpandVar @67 :	vp <|x|>
+     [4]->varIndex scopesindex_e.cpp#4  
+      [5]->var_sindex scopesindex_e.cpp#5  
+       [6]->var_main scopesindex_e.cpp#6  
+       [6]<-var_main -> var_sindex scopesindex_e.cpp#5 
+      [5]<-var_sindex -> varIndex scopesindex_e.cpp#4 
+      [5]->SetArraySpecsOff array_parse.cpp#5  
+      [5]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#4 
+     [4]<-varIndex -> ExpandVar paramexpand.cpp#3 
+    ExpandVar @179 :	sivp 
+ 99 x 241 DOUBLE SIV_V sz(1,64) off(0,0,0,0)(VOK|GLOBAL|) ()  |1.500000|>> [0m
+    [3]<-ExpandVar -> paramExpand paramexpand.cpp#2 
+    paramExpand @825 :	arg name is  x  x
+    paramExpand @865 :	cfmt is f
+    paramExpand @756 :	splice_in <p> 
+    paramExpand @787 :	"  x 1.500000  p 
+    [3]->ExpandVar paramexpand.cpp#3  
+    ExpandVar @67 :	vp <|p|>
+     [4]->varIndex scopesindex_e.cpp#4  
+      [5]->var_sindex scopesindex_e.cpp#5  
+       [6]->var_main scopesindex_e.cpp#6  
+       [6]<-var_main -> var_sindex scopesindex_e.cpp#5 
+      [5]<-var_sindex -> varIndex scopesindex_e.cpp#4 
+      [5]->SetArraySpecsOff array_parse.cpp#5  
+      [5]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#4 
+     [4]<-varIndex -> ExpandVar paramexpand.cpp#3 
+    ExpandVar @179 :	sivp 
+ 85 p 225 DOUBLE SIV_V sz(1,64) off(0,0,0,0)(VOK|GLOBAL|) ()  |-0.279415|>> [0m
+    [3]<-ExpandVar -> paramExpand paramexpand.cpp#2 
+    paramExpand @825 :	arg name is  p  p
+    paramExpand @865 :	cfmt is f
+    paramExpand @756 :	splice_in <y> 
+    paramExpand @787 :	"  x 1.500000  p -0.279415  y 
+    [3]->ExpandVar paramexpand.cpp#3  
+    ExpandVar @67 :	vp <|y|>
+     [4]->varIndex scopesindex_e.cpp#4  
+      [5]->var_sindex scopesindex_e.cpp#5  
+       [6]->var_main scopesindex_e.cpp#6  
+       [6]<-var_main -> var_sindex scopesindex_e.cpp#5 
+      [5]<-var_sindex -> varIndex scopesindex_e.cpp#4 
+      [5]->SetArraySpecsOff array_parse.cpp#5  
+      [5]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#4 
+     [4]<-varIndex -> ExpandVar paramexpand.cpp#3 
+    ExpandVar @179 :	sivp 
+ 86 y 243 DOUBLE SIV_V sz(1,64) off(0,0,0,0)(VOK|GLOBAL|) ()  |0.982794|>> [0m
+    [3]<-ExpandVar -> paramExpand paramexpand.cpp#2 
+    paramExpand @825 :	arg name is  y  y
+    paramExpand @865 :	cfmt is f
+paramexpand.cpp paramExpand: @908 cpp_out: <|cprintf("  x %f  p %f  y %f \n",x,p,y);|> 
+   [2]<-paramExpand -> preProcess preprocess.cpp#1 
+  x 1.500000  p -0.279415  y 0.982794 \n(continue) (r,q):    [2]->Sexp exp_e.cpp#2  
+    [3]->getExp exp_e.cpp#3  
+     [4]->checkConstantExp checkconstantexp.cpp#4  
+     [4]<-checkConstantExp -> getExp exp_e.cpp#3 
+     [4]->getLHS exp_lhs_e.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->doVariable rdp_token.cpp#6  
+        [7]->Variable rdp_token.cpp#7  
+         [8]->FindVar parset_e.cpp#8  
+          [9]->varIndex scopesindex_e.cpp#9  
+           [10]->var_sindex scopesindex_e.cpp#10  
+            [11]->var_main scopesindex_e.cpp#11  
+            [11]<-var_main -> var_sindex scopesindex_e.cpp#10 
+           [10]<-var_sindex -> varIndex scopesindex_e.cpp#9 
+           [10]->SetArraySpecsOff array_parse.cpp#10  
+           [10]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#9 
+          [9]<-varIndex -> FindVar parset_e.cpp#8 
+         [8]<-FindVar -> Variable rdp_token.cpp#7 
+        [7]<-Variable -> doVariable rdp_token.cpp#6 
+       [6]<-doVariable -> Get tokget.cpp#5 
+      [5]<-Get -> getLHS exp_lhs_e.cpp#4 
+     [4]<-getLHS -> getExp exp_e.cpp#3 
+     [4]->l_1 rdp_l1.cpp#4  
+      [5]->Get tokget.cpp#5  
+       [6]->Delimiter tokdelim.cpp#6  
+        [7]->GetDelimiter tokdelim.cpp#7  
+        [7]<-GetDelimiter -> Delimiter tokdelim.cpp#6 
+       [6]<-Delimiter -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->Get tokget.cpp#5  
+       [6]->Func tokfunc.cpp#6  
+        [7]->checkProcFunc proc_checkfname_e.cpp#7  
+         [8]->checkProcName proc_e.cpp#8  
+         [8]<-checkProcName -> checkProcFunc proc_checkfname_e.cpp#7 
+_CMFOBJSTK  Empty
+        [7]<-checkProcFunc -> Func tokfunc.cpp#6 
+        [7]->Sfunc func_e.cpp#7  
+         [8]->process_args args_process_e.cpp#8  
+          [9]->process_args_type args_process_e.cpp#9  
+           [10]->find_siv scope_findvar_e.cpp#10  
+            [11]->varIndex scopesindex_e.cpp#11  
+             [12]->var_sindex scopesindex_e.cpp#12  
+              [13]->var_main scopesindex_e.cpp#13  
+              [13]<-var_main -> var_sindex scopesindex_e.cpp#12 
+             [12]<-var_sindex -> varIndex scopesindex_e.cpp#11 
+             [12]->SetArraySpecsOff array_parse.cpp#12  
+             [12]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#11 
+            [11]<-varIndex -> find_siv scope_findvar_e.cpp#10 
+           [10]<-find_siv -> process_args_type args_process_e.cpp#9 
+          [9]<-process_args_type -> process_args args_process_e.cpp#8 
+          [9]->process_args_array_name args_process_e.cpp#9  
+          [9]<-process_args_array_name -> process_args args_process_e.cpp#8 
+          [9]->process_args_type args_process_e.cpp#9  
+          [9]<-process_args_type -> process_args args_process_e.cpp#8 
+          [9]->process_args_exprn args_process_e.cpp#9  
+           [10]->getExp exp_e.cpp#10  
+            [11]->checkConstantExp checkconstantexp.cpp#11  
+            [11]<-checkConstantExp -> getExp exp_e.cpp#10 
+            [11]->Get tokget.cpp#11  
+             [12]->ParamExpand rdp_token.cpp#12  
+              [13]->paramExpand paramexpand.cpp#13  
+paramexpand.cpp paramExpand: @489 " atan (" 
+    paramExpand @531 :	after recover " atan (" 
+paramexpand.cpp paramExpand: @908 cpp_out: <|cprintf(" atan (");|> 
+              [13]<-paramExpand -> ParamExpand rdp_token.cpp#12 
+             [12]<-ParamExpand -> Get tokget.cpp#11 
+             [12]->DoubleQuote tokquote.cpp#12  
+             [12]<-DoubleQuote -> Get tokget.cpp#11 
+            [11]<-Get -> getExp exp_e.cpp#10 
+            [11]->store_var storetype_e.cpp#11  
+             [12]->storeCopyVar storetype_e.cpp#12  
+             [12]<-storeCopyVar -> store_var storetype_e.cpp#11 
+            [11]<-store_var -> getExp exp_e.cpp#10 
+           [10]<-getExp -> process_args_exprn args_process_e.cpp#9 
+          [9]<-process_args_exprn -> process_args args_process_e.cpp#8 
+         [8]<-process_args -> Sfunc func_e.cpp#7 
+PREPROCESSING NO CALL to search but need to lookup and set return type!
+        [7]<-Sfunc -> Func tokfunc.cpp#6 
+       [6]<-Func -> Get tokget.cpp#5 
+      [5]<-Get -> l_1 rdp_l1.cpp#4 
+      [5]->l_2 rdp_l2.cpp#5  
+       [6]->l_3 rdp_l3.cpp#6  
+        [7]->l_4 rdp_l4.cpp#7  
+         [8]->l_5 rdp_l5.cpp#8  
+          [9]->l_6 rdp_l6.cpp#9  
+           [10]->primitive primitive.cpp#10  
+            [11]->Get tokget.cpp#11  
+             [12]->Delimiter tokdelim.cpp#12  
+              [13]->GetDelimiter tokdelim.cpp#13  
+              [13]<-GetDelimiter -> Delimiter tokdelim.cpp#12 
+             [12]<-Delimiter -> Get tokget.cpp#11 
+            [11]<-Get -> primitive primitive.cpp#10 
+           [10]<-primitive -> l_6 rdp_l6.cpp#9 
+          [9]<-l_6 -> l_5 rdp_l5.cpp#8 
+         [8]<-l_5 -> l_4 rdp_l4.cpp#7 
+        [7]<-l_4 -> l_3 rdp_l3.cpp#6 
+       [6]<-l_3 -> l_2 rdp_l2.cpp#5 
+      [5]<-l_2 -> l_1 rdp_l1.cpp#4 
+     [4]<-l_1 -> getExp exp_e.cpp#3 
+     [4]->l1_store rdp_store.cpp#4  
+     [4]<-l1_store -> getExp exp_e.cpp#3 
+    [3]<-getExp -> Sexp exp_e.cpp#2 
+   [2]<-Sexp -> preProcess preprocess.cpp#1 
+(continue) (r,q):    [2]->paramExpand paramexpand.cpp#2  
+paramexpand.cpp paramExpand: @489 "%(1, , ,\n)$F\n" 
+    paramExpand @615 :	found  % %(1, , ,\n)$F\n"
+    paramExpand @625 :	return FMT i 2 $  $F\n" FMT<%> 
+    paramExpand @787 :	"
+    [3]->ExpandVar paramexpand.cpp#3  
+    ExpandVar @67 :	vp <|F|>
+     [4]->varIndex scopesindex_e.cpp#4  
+      [5]->var_sindex scopesindex_e.cpp#5  
+       [6]->var_main scopesindex_e.cpp#6  
+       [6]<-var_main -> var_sindex scopesindex_e.cpp#5 
+      [5]<-var_sindex -> varIndex scopesindex_e.cpp#4 
+      [5]->SetArraySpecsOff array_parse.cpp#5  
+      [5]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#4 
+     [4]<-varIndex -> ExpandVar paramexpand.cpp#3 
+    ExpandVar @179 :	sivp 
+ 94 F 141 SVAR SIV_V sz(21,64) nds(1,[21]) off(0,0,0,0) rcols(-2,-2)(VOK|ARRAY|GLOBAL|) 
+ (DOB_SVAR|AOP_SET|)  | atan (top_m)  double atan(double x)  function that is the value whose tan is x radians.: : ndb (amod)  : : sdb (amod)  setdebug(level,{action}) level -1 nodebug, 0 default,                1 high action "pline" prints current line: : vga (gen_l)  generates double array from list or ags  dvec= vga(4.0,-1.0,371, ...: : setdebug (amod)  setdebug(level,{action}) level -1 nodebug, 0 default,                1 high action "pline" prints current line: : rcfile (fileop)  rc_file     : : caz (sint_l)  returns  size if scalar  0 if scalar : : deletesw (wcom_msg)   delete sw    : : ans (fileop)  answer([n])  returns last nth (default 0) answer to query   : : fft (dsp_main)   fft takes real, imag arrays output in place : :|>> [0m
+    [3]<-ExpandVar -> paramExpand paramexpand.cpp#2 
+    paramExpand @825 :	arg name is  F
+    paramExpand @865 :	cfmt is A
+paramexpand.cpp paramExpand: @908 cpp_out: <|cprintf("%A\n",&F);|> 
+   [2]<-paramExpand -> preProcess preprocess.cpp#1 
+  diagonal (matrix)  use vector as leading diagonal of a square matrix other elements are zero\n(continue) (r,q): [141] 1 
+ 94 F 141 SVAR SIV_V sz(21,64) nds(1,[21]) off(0,0,0,0) rcols(-2,-2)(VOK|ARRAY|GLOBAL|) 
+ (DOB_SVAR|AOP_SET|)  | atan (top_m)  double atan(double x)  function that is the value whose tan is x radians.: : ndb (amod)  : : sdb (amod)  setdebug(level,{action}) level -1 nodebug, 0 default,                1 high action "pline" prints current line: : vga (gen_l)  generates double array from list or ags  dvec= vga(4.0,-1.0,371, ...: : setdebug (amod)  setdebug(level,{action}) level -1 nodebug, 0 default,                1 high action "pline" prints current line: : rcfile (fileop)  rc_file     : : caz (sint_l)  returns  size if scalar  0 if scalar : : deletesw (wcom_msg)   delete sw    : : ans (fileop)  answer([n])  returns last nth (default 0) answer to query   : : fft (dsp_main)   fft takes real, imag arrays output in place : :|>> [0m
+[167] 2 
+ 83 S 167 SVAR SIV_V sz(713,64) nds(1,[713]) off(0,0,0,0) rcols(-2,-2)(VOK|ARRAY|GLOBAL|) 
+ (DOB_SVAR|AOP_SET|)  | writegwmsock (gsocket_l)  writegwmsock      : : computepi (mop_m)    : : solvequad (mop_m)    : : bankangle (navi_l)   bankangle for 2 min turn for tas(knots) [ min_per_360 ]: : getndbs (sint_l)  returns number of DB statements executed : : memcopy (sint_l)   : : vbitrev (vop_m)   vbitrev (vec, size) bitreverse a vector: : checkerror (sint_l)   : : mrevcols (matrix)  reverse col order : : slist (cw_l)   state list: :|>> [0m
+[225] 3 
+ 85 p 225 DOUBLE SIV_V sz(1,64) off(0,0,0,0)(VOK|GLOBAL|) ()  |-0.279415|>> [0m
+[241] 4 
+ 99 x 241 DOUBLE SIV_V sz(1,64) off(0,0,0,0)(VOK|GLOBAL|) ()  |1.500000|>> [0m
+[243] 5 
+ 86 y 243 DOUBLE SIV_V sz(1,64) off(0,0,0,0)(VOK|GLOBAL|) ()  |0.982794|>> [0m
+[394] 6 
+ 91 sv 394 STRV STR_V sz(16,129) nds(1,[-]) off(0,0,0,0)(VOK|ARRAY|DYNAMIC|GLOBAL|) 
+ (AOP_SET|)  |this is a string|>> [0m
+[401] 7 
+ 101 Sv 401 SVAR SIV_V sz(7,64) nds(1,[7]) off(0,0,0,0) rcols(-2,-2)(VOK|ARRAY|GLOBAL|) 
+ (DOB_SVAR|AOP_SET|)  |This: :is: :an: :svar: :array: :of: :strings: :|>> [0m
+[1828] 8 
+ 95 doubley 1828 DOUBLE SIV_V sz(1,64) off(0,0,0,0)(VOK|GLOBAL|) ()  |0.982794|>> [0m
+[1837] 9 
+ 107 doublep 1837 DOUBLE SIV_V sz(1,64) off(0,0,0,0)(VOK|GLOBAL|) ()  |-0.279415|>> [0m
+[2447] 10 
+ 88 SvarS 2447 SVAR SIV_V sz(713,64) nds(1,[713]) off(0,0,0,0) rcols(-2,-2)(VOK|ARRAY|GLOBAL|) 
+ (DOB_SVAR|AOP_SET|)  | writegwmsock (gsocket_l)  writegwmsock      : : computepi (mop_m)    : : solvequad (mop_m)    : : bankangle (navi_l)   bankangle for 2 min turn for tas(knots) [ min_per_360 ]: : getndbs (sint_l)  returns number of DB statements executed : : memcopy (sint_l)   : : vbitrev (vop_m)   vbitrev (vec, size) bitreverse a vector: : checkerror (sint_l)   : : mrevcols (matrix)  reverse col order : : slist (cw_l)   state list: :|>> [0m
+[2648] 11 
+ 90 SvarSv 2648 SVAR SIV_V sz(7,64) nds(1,[7]) off(0,0,0,0) rcols(-2,-2)(VOK|ARRAY|GLOBAL|) 
+ (DOB_SVAR|AOP_SET|)  |This: :is: :an: :svar: :array: :of: :strings: :|>> [0m
+11 vars active 
+
+ ====== PPASL==>CPP ===============
+ PreProcessing DONE statements  CPP compatible
+
+  [1]<-preProcess -> secondPassIC secondpass.cpp#0 
+0 vars active 
+ [0]<-secondPassIC 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S1 #L5 #define ASL 1   
+[1;34m[5] #define ASL 1  
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+
+=================================================
+###S1 #L5 #P0 svar.asl {DEFINE} #define ASL 1  
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S2 #L6 #define CPP 0   
+[1;34m[6] #define CPP 0  
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+
+=================================================
+###S2 #L6 #P0 svar.asl {DEFINE} #define CPP 0  
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S3 #L7 #define USE_GRAPHICS 0 
+[1;34m[7] #define USE_GRAPHICS 0
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+
+=================================================
+###S3 #L7 #P0 svar.asl {DEFINE} #define USE_GRAPHICS 0
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S4 #L30 ignoreErrors(); 
+[1;34m[30]   ignoreErrors();
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+    [3]->CheckClass stateparse_e.cpp#3  
+    [3]<-CheckClass -> checkStatement stateparse_e.cpp#2 
+    [3]->checkProcFunc proc_checkfname_e.cpp#3  
+     [4]->checkProcName proc_e.cpp#4  
+     [4]<-checkProcName -> checkProcFunc proc_checkfname_e.cpp#3 
+_CMFOBJSTK  Empty
+    [3]<-checkProcFunc -> checkStatement stateparse_e.cpp#2 
+
+=================================================
+###S4 #L30 #P0 svar.asl {FUNCTION} ignoreErrors();
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+    [3]->Sfunc func_e.cpp#3  
+    get_args @616 :	caught 1
+asl ignoring Errors 
+    [3]<-Sfunc -> x_state statex_e.cpp#2 
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S5 #L32 Table_init(); 
+[1;34m[32]   Table_init();
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+    [3]->CheckClass stateparse_e.cpp#3  
+    [3]<-CheckClass -> checkStatement stateparse_e.cpp#2 
+    [3]->checkProcFunc proc_checkfname_e.cpp#3  
+     [4]->checkProcName proc_e.cpp#4  
+     [4]<-checkProcName -> checkProcFunc proc_checkfname_e.cpp#3 
+_CMFOBJSTK  Empty
+dll_e.cpp AutoOpenDll: @104 Ndbs 910 PlotLib 24 creategwindow exegwmfunc
+    get_args @616 :	caught 1
+     [4]->checkCMFargs oo_cmf.cpp#4  
+      [5]->varIndex scopesindex_e.cpp#5  
+       [6]->var_sindex scopesindex_e.cpp#6  
+        [7]->var_main scopesindex_e.cpp#7  
+        [7]<-var_main -> var_sindex scopesindex_e.cpp#6 
+       [6]<-var_sindex -> varIndex scopesindex_e.cpp#5 
+      [5]<-varIndex -> checkCMFargs oo_cmf.cpp#4 
+     [4]<-checkCMFargs -> checkProcFunc proc_checkfname_e.cpp#3 
+    [3]<-checkProcFunc -> checkStatement stateparse_e.cpp#2 
+
+stateparse_e.cpp checkStatement: @620 WARNING caught 89 PROC NOT FOUND  Table_init();
+
+=================================================
+###S5 #L32 #P0 svar.asl {PFCALL} Table_init();
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+statex_e.cpp p_state: @128 !ok skip Table_init();
+   [2]->x_state statex_e.cpp#2  
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S6 #L33 Str sv = "this is a string"; 
+[1;34m[33]   sv = "this is a string"
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+
+=================================================
+###S6 #L33 #P0 svar.asl {DECLARE} Str sv = "this is a string";
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+    [3]->Sdeclare declare_e.cpp#3  
+     [4]->Vdeclare declare_e.cpp#4  
+      [5]->VdeclareType declare_e.cpp#5  
+       [6]->varIndex scopesindex_e.cpp#6  
+        [7]->var_sindex scopesindex_e.cpp#7  
+         [8]->var_main scopesindex_e.cpp#8  
+          [9]->var_sindex_create createv_e.cpp#9  
+          [9]<-var_sindex_create -> var_main scopesindex_e.cpp#8 
+         [8]<-var_main -> var_sindex scopesindex_e.cpp#7 
+        [7]<-var_sindex -> varIndex scopesindex_e.cpp#6 
+        [7]->SetArraySpecsOff array_parse.cpp#7  
+        [7]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#6 
+       [6]<-varIndex -> VdeclareType declare_e.cpp#5 
+       [6]->getExp exp_e.cpp#6  
+        [7]->checkConstantExp checkconstantexp.cpp#7  
+        [7]<-checkConstantExp -> getExp exp_e.cpp#6 
+        [7]->Get tokget.cpp#7  
+         [8]->ParamExpand rdp_token.cpp#8  
+          [9]->paramExpand paramexpand.cpp#9  
+paramexpand.cpp paramExpand: @489 "this is a string" 
+    paramExpand @531 :	after recover "this is a string" 
+    paramExpand @884 :	WIC_CAT_STR  <|this is a string|> 
+    paramExpand @932 :	WIC_PUSH_CAT 3 
+          [9]<-paramExpand -> ParamExpand rdp_token.cpp#8 
+         [8]<-ParamExpand -> Get tokget.cpp#7 
+         [8]->DoubleQuote tokquote.cpp#8  
+         [8]<-DoubleQuote -> Get tokget.cpp#7 
+        [7]<-Get -> getExp exp_e.cpp#6 
+        [7]->store_var storetype_e.cpp#7  
+         [8]->storeCopyVar storetype_e.cpp#8  
+         [8]<-storeCopyVar -> store_var storetype_e.cpp#7 
+        [7]<-store_var -> getExp exp_e.cpp#6 
+       [6]<-getExp -> VdeclareType declare_e.cpp#5 
+       [6]->declare_type declare_type_e.cpp#6  
+        [7]->ArrayInitList declare_array_e.cpp#7  
+        [7]<-ArrayInitList -> declare_type declare_type_e.cpp#6 
+        [7]->ArraySpecs declare_array_e.cpp#7  
+        [7]<-ArraySpecs -> declare_type declare_type_e.cpp#6 
+       [6]<-declare_type -> VdeclareType declare_e.cpp#5 
+       [6]->storeCopyVar storetype_e.cpp#6  
+       [6]<-storeCopyVar -> VdeclareType declare_e.cpp#5 
+      [5]<-VdeclareType -> Vdeclare declare_e.cpp#4 
+     [4]<-Vdeclare -> Sdeclare declare_e.cpp#3 
+    [3]<-Sdeclare -> x_state statex_e.cpp#2 
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S7 #L35 <<"%V $sv \n"   
+[1;34m[35] <<"%V $sv \n"  
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+
+=================================================
+###S7 #L35 #P0 svar.asl {PRSTDOUT} <<"%V $sv \n"  
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+    [3]->paramExpand paramexpand.cpp#3  
+paramexpand.cpp paramExpand: @489 "%V $sv \n" 
+    paramExpand @531 :	after recover "%V $sv 
+" 
+    paramExpand @615 :	found  % %V $sv 
+"
+    paramExpand @625 :	return FMT i 2     $sv 
+" FMT<%> 
+    paramExpand @649 :	WIC_CAT_STR  <| |> 
+    paramExpand @756 :	splice_in <sv> 
+    paramExpand @787 :	"  sv 
+    paramExpand @800 :	WIC_CAT_STR  <| sv |> 
+     [4]->ExpandVar paramexpand.cpp#4  
+    ExpandVar @67 :	vp <|sv|>
+      [5]->varIndex scopesindex_e.cpp#5  
+       [6]->var_sindex scopesindex_e.cpp#6  
+        [7]->var_main scopesindex_e.cpp#7  
+        [7]<-var_main -> var_sindex scopesindex_e.cpp#6 
+       [6]<-var_sindex -> varIndex scopesindex_e.cpp#5 
+       [6]->SetArraySpecsOff array_parse.cpp#6  
+       [6]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#5 
+      [5]<-varIndex -> ExpandVar paramexpand.cpp#4 
+    ExpandVar @110 :	set dyn OFF 
+ 102 sv 394 STRV STR_V sz(16,257) off(0,0,0,0)(VOK|ARRAY|DYNAMIC|GLOBAL|) (AOP_SET|)  |this is a string|>> [0m
+    ExpandVar @121 :	WIC_PUSH_SIVP  sv  SSC NO
+    ExpandVar @179 :	sivp 
+ 102 sv 394 STRV STR_V sz(16,257) off(0,0,0,0)(VOK|ARRAY|DYNAMIC|GLOBAL|) (AOP_SET|)  |this is a string|>> [0m
+     [4]<-ExpandVar -> paramExpand paramexpand.cpp#3 
+    paramExpand @884 :	WIC_CAT_STR  <| 
+|> 
+    [3]<-paramExpand -> x_state statex_e.cpp#2 
+  sv this is a string 
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S8 #L38 Svar Sv = split ("This is an svar array of strings") 
+[1;34m[38]   Sv = split ("This is an svar array of strings")
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+
+=================================================
+###S8 #L38 #P0 svar.asl {DECLARE} Svar Sv = split ("This is an svar array of strings")
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+    [3]->Sdeclare declare_e.cpp#3  
+     [4]->Vdeclare declare_e.cpp#4  
+      [5]->VdeclareType declare_e.cpp#5  
+       [6]->varIndex scopesindex_e.cpp#6  
+        [7]->var_sindex scopesindex_e.cpp#7  
+         [8]->var_main scopesindex_e.cpp#8  
+          [9]->var_sindex_create createv_e.cpp#9  
+          [9]<-var_sindex_create -> var_main scopesindex_e.cpp#8 
+         [8]<-var_main -> var_sindex scopesindex_e.cpp#7 
+        [7]<-var_sindex -> varIndex scopesindex_e.cpp#6 
+        [7]->SetArraySpecsOff array_parse.cpp#7  
+        [7]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#6 
+       [6]<-varIndex -> VdeclareType declare_e.cpp#5 
+       [6]->getExp exp_e.cpp#6  
+        [7]->checkConstantExp checkconstantexp.cpp#7  
+        [7]<-checkConstantExp -> getExp exp_e.cpp#6 
+        [7]->Get tokget.cpp#7  
+         [8]->Func tokfunc.cpp#8  
+          [9]->checkProcFunc proc_checkfname_e.cpp#9  
+           [10]->checkProcName proc_e.cpp#10  
+           [10]<-checkProcName -> checkProcFunc proc_checkfname_e.cpp#9 
+_CMFOBJSTK  Empty
+          [9]<-checkProcFunc -> Func tokfunc.cpp#8 
+          [9]->Sfunc func_e.cpp#9  
+           [10]->process_args args_process_e.cpp#10  
+            [11]->process_args_type args_process_e.cpp#11  
+            [11]<-process_args_type -> process_args args_process_e.cpp#10 
+            [11]->process_args_exprn args_process_e.cpp#11  
+             [12]->getExp exp_e.cpp#12  
+              [13]->checkConstantExp checkconstantexp.cpp#13  
+              [13]<-checkConstantExp -> getExp exp_e.cpp#12 
+              [13]->Get tokget.cpp#13  
+               [14]->ParamExpand rdp_token.cpp#14  
+                [15]->paramExpand paramexpand.cpp#15  
+paramexpand.cpp paramExpand: @489 "This is an svar array of strings" 
+    paramExpand @531 :	after recover "This is an svar array of strings" 
+    paramExpand @884 :	WIC_CAT_STR  <|This is an svar array of strings|> 
+    paramExpand @932 :	WIC_PUSH_CAT 3 
+                [15]<-paramExpand -> ParamExpand rdp_token.cpp#14 
+               [14]<-ParamExpand -> Get tokget.cpp#13 
+               [14]->DoubleQuote tokquote.cpp#14  
+               [14]<-DoubleQuote -> Get tokget.cpp#13 
+              [13]<-Get -> getExp exp_e.cpp#12 
+              [13]->store_var storetype_e.cpp#13  
+               [14]->storeCopyVar storetype_e.cpp#14  
+               [14]<-storeCopyVar -> store_var storetype_e.cpp#13 
+              [13]<-store_var -> getExp exp_e.cpp#12 
+             [12]<-getExp -> process_args_exprn args_process_e.cpp#11 
+            [11]<-process_args_exprn -> process_args args_process_e.cpp#10 
+           [10]<-process_args -> Sfunc func_e.cpp#9 
+          [9]<-Sfunc -> Func tokfunc.cpp#8 
+         [8]<-Func -> Get tokget.cpp#7 
+        [7]<-Get -> getExp exp_e.cpp#6 
+        [7]->store_var storetype_e.cpp#7  
+         [8]->storeCopyVar storetype_e.cpp#8  
+
+storetype_e.cpp storeCopyVar: @363 WARNING VAR_STORE_CONVERSION
+         [8]<-storeCopyVar -> store_var storetype_e.cpp#7 
+        [7]<-store_var -> getExp exp_e.cpp#6 
+       [6]<-getExp -> VdeclareType declare_e.cpp#5 
+       [6]->declare_type declare_type_e.cpp#6  
+        [7]->ArrayInitList declare_array_e.cpp#7  
+        [7]<-ArrayInitList -> declare_type declare_type_e.cpp#6 
+        [7]->ArraySpecs declare_array_e.cpp#7  
+        [7]<-ArraySpecs -> declare_type declare_type_e.cpp#6 
+       [6]<-declare_type -> VdeclareType declare_e.cpp#5 
+      [5]<-VdeclareType -> Vdeclare declare_e.cpp#4 
+     [4]<-Vdeclare -> Sdeclare declare_e.cpp#3 
+    [3]<-Sdeclare -> x_state statex_e.cpp#2 
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S9 #L41 <<"%V $Sv\n"  
+[1;34m[41]   <<"%V $Sv\n" 
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+
+=================================================
+###S9 #L41 #P0 svar.asl {PRSTDOUT} <<"%V $Sv\n" 
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+    [3]->paramExpand paramexpand.cpp#3  
+paramexpand.cpp paramExpand: @489 "%V $Sv\n" 
+    paramExpand @531 :	after recover "%V $Sv
+" 
+    paramExpand @615 :	found  % %V $Sv
+"
+    paramExpand @625 :	return FMT i 2     $Sv
+" FMT<%> 
+    paramExpand @649 :	WIC_CAT_STR  <| |> 
+    paramExpand @756 :	splice_in <Sv> 
+    paramExpand @787 :	"  Sv 
+    paramExpand @800 :	WIC_CAT_STR  <| Sv |> 
+     [4]->ExpandVar paramexpand.cpp#4  
+    ExpandVar @67 :	vp <|Sv|>
+      [5]->varIndex scopesindex_e.cpp#5  
+       [6]->var_sindex scopesindex_e.cpp#6  
+        [7]->var_main scopesindex_e.cpp#7  
+        [7]<-var_main -> var_sindex scopesindex_e.cpp#6 
+       [6]<-var_sindex -> varIndex scopesindex_e.cpp#5 
+       [6]->SetArraySpecsOff array_parse.cpp#6  
+       [6]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#5 
+      [5]<-varIndex -> ExpandVar paramexpand.cpp#4 
+    ExpandVar @121 :	WIC_PUSH_SIVP  Sv  SSC NO
+    ExpandVar @179 :	sivp 
+ 104 Sv 401 SVAR SIV_V sz(7,64) nds(1,[7]) off(0,0,0,0) rcols(0,0)(VOK|ARRAY|GLOBAL|) 
+ (DOB_SVAR|AOP_SET|)  |This: :is: :an: :svar: :array: :of: :strings: :|>> [0m
+     [4]<-ExpandVar -> paramExpand paramexpand.cpp#3 
+    paramExpand @884 :	WIC_CAT_STR  <|
+|> 
+    [3]<-paramExpand -> x_state statex_e.cpp#2 
+  Sv This is an svar array of strings
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S10 #L43 Svar S= functions() ; 
+[1;34m[43]   S= functions() ;
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+
+=================================================
+###S10 #L43 #P0 svar.asl {DECLARE} Svar S= functions() ;
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+    [3]->Sdeclare declare_e.cpp#3  
+     [4]->Vdeclare declare_e.cpp#4  
+      [5]->VdeclareType declare_e.cpp#5  
+       [6]->varIndex scopesindex_e.cpp#6  
+        [7]->var_sindex scopesindex_e.cpp#7  
+         [8]->var_main scopesindex_e.cpp#8  
+          [9]->var_sindex_create createv_e.cpp#9  
+          [9]<-var_sindex_create -> var_main scopesindex_e.cpp#8 
+         [8]<-var_main -> var_sindex scopesindex_e.cpp#7 
+        [7]<-var_sindex -> varIndex scopesindex_e.cpp#6 
+        [7]->SetArraySpecsOff array_parse.cpp#7  
+        [7]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#6 
+       [6]<-varIndex -> VdeclareType declare_e.cpp#5 
+       [6]->getExp exp_e.cpp#6  
+        [7]->checkConstantExp checkconstantexp.cpp#7  
+        [7]<-checkConstantExp -> getExp exp_e.cpp#6 
+        [7]->Get tokget.cpp#7  
+         [8]->Func tokfunc.cpp#8  
+          [9]->checkProcFunc proc_checkfname_e.cpp#9  
+           [10]->checkProcName proc_e.cpp#10  
+           [10]<-checkProcName -> checkProcFunc proc_checkfname_e.cpp#9 
+_CMFOBJSTK  Empty
+          [9]<-checkProcFunc -> Func tokfunc.cpp#8 
+          [9]->Sfunc func_e.cpp#9  
+    get_args @616 :	caught 1
+          [9]<-Sfunc -> Func tokfunc.cpp#8 
+         [8]<-Func -> Get tokget.cpp#7 
+        [7]<-Get -> getExp exp_e.cpp#6 
+        [7]->l_1 rdp_l1.cpp#7  
+         [8]->l_2 rdp_l2.cpp#8  
+          [9]->l_3 rdp_l3.cpp#9  
+           [10]->l_4 rdp_l4.cpp#10  
+            [11]->l_5 rdp_l5.cpp#11  
+             [12]->l_6 rdp_l6.cpp#12  
+              [13]->primitive primitive.cpp#13  
+               [14]->Get tokget.cpp#14  
+                [15]->Delimiter tokdelim.cpp#15  
+                 [16]->GetDelimiter tokdelim.cpp#16  
+                 [16]<-GetDelimiter -> Delimiter tokdelim.cpp#15 
+                [15]<-Delimiter -> Get tokget.cpp#14 
+               [14]<-Get -> primitive primitive.cpp#13 
+              [13]<-primitive -> l_6 rdp_l6.cpp#12 
+             [12]<-l_6 -> l_5 rdp_l5.cpp#11 
+            [11]<-l_5 -> l_4 rdp_l4.cpp#10 
+           [10]<-l_4 -> l_3 rdp_l3.cpp#9 
+          [9]<-l_3 -> l_2 rdp_l2.cpp#8 
+         [8]<-l_2 -> l_1 rdp_l1.cpp#7 
+        [7]<-l_1 -> getExp exp_e.cpp#6 
+        [7]->store_var storetype_e.cpp#7  
+         [8]->storeCopyVar storetype_e.cpp#8  
+
+storetype_e.cpp storeCopyVar: @363 WARNING VAR_STORE_CONVERSION
+         [8]<-storeCopyVar -> store_var storetype_e.cpp#7 
+        [7]<-store_var -> getExp exp_e.cpp#6 
+       [6]<-getExp -> VdeclareType declare_e.cpp#5 
+       [6]->declare_type declare_type_e.cpp#6  
+        [7]->ArrayInitList declare_array_e.cpp#7  
+        [7]<-ArrayInitList -> declare_type declare_type_e.cpp#6 
+        [7]->ArraySpecs declare_array_e.cpp#7  
+        [7]<-ArraySpecs -> declare_type declare_type_e.cpp#6 
+       [6]<-declare_type -> VdeclareType declare_e.cpp#5 
+      [5]<-VdeclareType -> Vdeclare declare_e.cpp#4 
+     [4]<-Vdeclare -> Sdeclare declare_e.cpp#3 
+    [3]<-Sdeclare -> x_state statex_e.cpp#2 
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S11 #L45 S.sort(); 
+[1;34m[45]   S.sort();    
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+    [3]->CheckClass stateparse_e.cpp#3  
+    [3]<-CheckClass -> checkStatement stateparse_e.cpp#2 
+    [3]->checkProcFunc proc_checkfname_e.cpp#3  
+     [4]->varIndex scopesindex_e.cpp#4  
+      [5]->var_sindex scopesindex_e.cpp#5  
+       [6]->var_main scopesindex_e.cpp#6  
+       [6]<-var_main -> var_sindex scopesindex_e.cpp#5 
+      [5]<-var_sindex -> varIndex scopesindex_e.cpp#4 
+      [5]->SetArraySpecsOff array_parse.cpp#5  
+      [5]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#4 
+     [4]<-varIndex -> checkProcFunc proc_checkfname_e.cpp#3 
+     [4]->varIndex scopesindex_e.cpp#4  
+      [5]->var_sindex scopesindex_e.cpp#5  
+       [6]->var_main scopesindex_e.cpp#6  
+       [6]<-var_main -> var_sindex scopesindex_e.cpp#5 
+      [5]<-var_sindex -> varIndex scopesindex_e.cpp#4 
+      [5]->SetArraySpecsOff array_parse.cpp#5  
+      [5]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#4 
+     [4]<-varIndex -> checkProcFunc proc_checkfname_e.cpp#3 
+sort
+    [3]<-checkProcFunc -> checkStatement stateparse_e.cpp#2 
+
+=================================================
+###S11 #L45 #P0 svar.asl {VMF} S.sort();
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+    [3]->Sexp exp_e.cpp#3  
+     [4]->getExp exp_e.cpp#4  
+      [5]->checkConstantExp checkconstantexp.cpp#5  
+      [5]<-checkConstantExp -> getExp exp_e.cpp#4 
+      [5]->Get tokget.cpp#5  
+       [6]->buildClassMemberExp tokcmf.cpp#6  
+        [7]->varIndex scopesindex_e.cpp#7  
+         [8]->var_sindex scopesindex_e.cpp#8  
+          [9]->var_main scopesindex_e.cpp#9  
+          [9]<-var_main -> var_sindex scopesindex_e.cpp#8 
+         [8]<-var_sindex -> varIndex scopesindex_e.cpp#7 
+         [8]->SetArraySpecsOff array_parse.cpp#8  
+         [8]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#7 
+        [7]<-varIndex -> buildClassMemberExp tokcmf.cpp#6 
+       [6]<-buildClassMemberExp -> Get tokget.cpp#5 
+       [6]->buildVMFExp tokvmf.cpp#6  
+       [6]<-buildVMFExp -> Get tokget.cpp#5 
+       [6]->Func tokfunc.cpp#6  
+        [7]->checkProcFunc proc_checkfname_e.cpp#7  
+         [8]->varIndex scopesindex_e.cpp#8  
+          [9]->var_sindex scopesindex_e.cpp#9  
+           [10]->var_main scopesindex_e.cpp#10  
+           [10]<-var_main -> var_sindex scopesindex_e.cpp#9 
+          [9]<-var_sindex -> varIndex scopesindex_e.cpp#8 
+          [9]->SetArraySpecsOff array_parse.cpp#9  
+          [9]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#8 
+         [8]<-varIndex -> checkProcFunc proc_checkfname_e.cpp#7 
+         [8]->varIndex scopesindex_e.cpp#8  
+          [9]->var_sindex scopesindex_e.cpp#9  
+           [10]->var_main scopesindex_e.cpp#10  
+           [10]<-var_main -> var_sindex scopesindex_e.cpp#9 
+          [9]<-var_sindex -> varIndex scopesindex_e.cpp#8 
+          [9]->SetArraySpecsOff array_parse.cpp#9  
+          [9]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#8 
+         [8]<-varIndex -> checkProcFunc proc_checkfname_e.cpp#7 
+sort
+        [7]<-checkProcFunc -> Func tokfunc.cpp#6 
+    get_args @616 :	caught 1
+sort
+       [6]<-Func -> Get tokget.cpp#5 
+      [5]<-Get -> getExp exp_e.cpp#4 
+      [5]->store_var storetype_e.cpp#5  
+       [6]->storeCopyVar storetype_e.cpp#6  
+       [6]<-storeCopyVar -> store_var storetype_e.cpp#5 
+      [5]<-store_var -> getExp exp_e.cpp#4 
+     [4]<-getExp -> Sexp exp_e.cpp#3 
+    [3]<-Sexp -> x_state statex_e.cpp#2 
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S12 #L47 <<"%(1, , ,\n)$S[0:50:5]\n" 
+[1;34m[47]  <<"%(1, , ,\n)$S[0:50:5]\n"
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+
+=================================================
+###S12 #L47 #P0 svar.asl {PRSTDOUT} <<"%(1, , ,\n)$S[0:50:5]\n"
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+    [3]->paramExpand paramexpand.cpp#3  
+paramexpand.cpp paramExpand: @489 "%(1, , ,\n)$S[0:50:5]\n" 
+    paramExpand @531 :	after recover "%(1, , ,
+)$S[0:50:5]
+" 
+    paramExpand @615 :	found  % %(1, , ,
+)$S[0:50:5]
+"
+    paramExpand @625 :	return FMT i 2 $  $S[0:50:5]
+" FMT<%> 
+    paramExpand @649 :	WIC_CAT_STR  <||> 
+    paramExpand @787 :	"
+    paramExpand @800 :	WIC_CAT_STR  <||> 
+     [4]->ExpandVar paramexpand.cpp#4  
+    ExpandVar @67 :	vp <|S[0:50:5]|>
+      [5]->varIndex scopesindex_e.cpp#5  
+       [6]->VarArrayIndex array_parse.cpp#6  
+        [7]->var_sindex scopesindex_e.cpp#7  
+         [8]->var_main scopesindex_e.cpp#8  
+         [8]<-var_main -> var_sindex scopesindex_e.cpp#7 
+        [7]<-var_sindex -> VarArrayIndex array_parse.cpp#6 
+        [7]->varArraySpec array_parse.cpp#7  
+         [8]->initArraySpecs array_parse.cpp#8  
+         [8]<-initArraySpecs -> varArraySpec array_parse.cpp#7 
+         [8]->ComputeArraySubScript array_subset.cpp#8  
+          [9]->checkArraySubScript array_subset.cpp#9  
+          [9]<-checkArraySubScript -> ComputeArraySubScript array_subset.cpp#8 
+
+array_subset.cpp ComputeArraySubScript: @629 WARNING  bad bounds!
+         [8]<-ComputeArraySubScript -> varArraySpec array_parse.cpp#7 
+         [8]->updateArrayBounds array_parse.cpp#8  
+         [8]<-updateArrayBounds -> varArraySpec array_parse.cpp#7 
+        [7]<-varArraySpec -> VarArrayIndex array_parse.cpp#6 
+       [6]<-VarArrayIndex -> varIndex scopesindex_e.cpp#5 
+      [5]<-varIndex -> ExpandVar paramexpand.cpp#4 
+    ExpandVar @179 :	sivp 
+ 82 S 167 SVAR SIV_V sz(713,64) nds(1,[713]) off(0,0,0,0) rcols(0,0)(VOK|ARRAY|ELE|GLOBAL|) 
+ (DOB_SVAR|AOP_SET|)  |: : abs (top_m)  returns absolute value of a variable value : : acos (top_m)  acos function   that is the value whose cosine is x.: : acosh (top_m)  acosh function   that is the value whose cosh is x.: : adbprintf (print)  adprintf(level,fmt,...) for this debug level : : allowerrors (amod)  : : anotherarg (sint_l)   : : ans (fileop)  answer([n])  returns last nth (default 0) answer to query   : : argc (sint_l)   : : asin (top_m)  arc sin function   that is the value whose sine is x.: :|>> [0m
+     [4]<-ExpandVar -> paramExpand paramexpand.cpp#3 
+    paramExpand @884 :	WIC_CAT_STR  <|
+|> 
+    [3]<-paramExpand -> x_state statex_e.cpp#2 
+
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S13 #L51 Svar F= S[100:200:5]; 
+[1;34m[51]    F= S[100:200:5];  // range for cpp ?
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+
+=================================================
+###S13 #L51 #P0 svar.asl {DECLARE} Svar F= S[100:200:5];
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+    [3]->Sdeclare declare_e.cpp#3  
+     [4]->Vdeclare declare_e.cpp#4  
+      [5]->VdeclareType declare_e.cpp#5  
+       [6]->varIndex scopesindex_e.cpp#6  
+        [7]->var_sindex scopesindex_e.cpp#7  
+         [8]->var_main scopesindex_e.cpp#8  
+          [9]->var_sindex_create createv_e.cpp#9  
+          [9]<-var_sindex_create -> var_main scopesindex_e.cpp#8 
+         [8]<-var_main -> var_sindex scopesindex_e.cpp#7 
+        [7]<-var_sindex -> varIndex scopesindex_e.cpp#6 
+        [7]->SetArraySpecsOff array_parse.cpp#7  
+        [7]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#6 
+       [6]<-varIndex -> VdeclareType declare_e.cpp#5 
+       [6]->getExp exp_e.cpp#6  
+        [7]->checkConstantExp checkconstantexp.cpp#7  
+        [7]<-checkConstantExp -> getExp exp_e.cpp#6 
+        [7]->Get tokget.cpp#7  
+         [8]->buildArrayExp tokarray.cpp#8  
+         [8]<-buildArrayExp -> Get tokget.cpp#7 
+         [8]->doVariable rdp_token.cpp#8  
+          [9]->Variable rdp_token.cpp#9  
+           [10]->FindVar parset_e.cpp#10  
+            [11]->varIndex scopesindex_e.cpp#11  
+             [12]->VarArrayIndex array_parse.cpp#12  
+              [13]->var_sindex scopesindex_e.cpp#13  
+               [14]->var_main scopesindex_e.cpp#14  
+               [14]<-var_main -> var_sindex scopesindex_e.cpp#13 
+              [13]<-var_sindex -> VarArrayIndex array_parse.cpp#12 
+              [13]->varArraySpec array_parse.cpp#13  
+               [14]->initArraySpecs array_parse.cpp#14  
+               [14]<-initArraySpecs -> varArraySpec array_parse.cpp#13 
+               [14]->ComputeArraySubScript array_subset.cpp#14  
+                [15]->checkArraySubScript array_subset.cpp#15  
+                [15]<-checkArraySubScript -> ComputeArraySubScript array_subset.cpp#14 
+                [15]->parse_range array_range.cpp#15  
+                [15]<-parse_range -> ComputeArraySubScript array_subset.cpp#14 
+               [14]<-ComputeArraySubScript -> varArraySpec array_parse.cpp#13 
+              [13]<-varArraySpec -> VarArrayIndex array_parse.cpp#12 
+             [12]<-VarArrayIndex -> varIndex scopesindex_e.cpp#11 
+            [11]<-varIndex -> FindVar parset_e.cpp#10 
+
+ds_arraycopy.cpp VectorSubScriptCopy: @373 WARNING size increase needed ? 21 > 1
+    VectorSubScriptCopy @376 :	increased size to 1
+           [10]<-FindVar -> Variable rdp_token.cpp#9 
+          [9]<-Variable -> doVariable rdp_token.cpp#8 
+         [8]<-doVariable -> Get tokget.cpp#7 
+        [7]<-Get -> getExp exp_e.cpp#6 
+        [7]->store_var storetype_e.cpp#7  
+         [8]->storeCopyVar storetype_e.cpp#8  
+         [8]<-storeCopyVar -> store_var storetype_e.cpp#7 
+        [7]<-store_var -> getExp exp_e.cpp#6 
+       [6]<-getExp -> VdeclareType declare_e.cpp#5 
+       [6]->declare_type declare_type_e.cpp#6  
+        [7]->ArrayInitList declare_array_e.cpp#7  
+        [7]<-ArrayInitList -> declare_type declare_type_e.cpp#6 
+        [7]->ArraySpecs declare_array_e.cpp#7  
+        [7]<-ArraySpecs -> declare_type declare_type_e.cpp#6 
+       [6]<-declare_type -> VdeclareType declare_e.cpp#5 
+      [5]<-VdeclareType -> Vdeclare declare_e.cpp#4 
+     [4]<-Vdeclare -> Sdeclare declare_e.cpp#3 
+    [3]<-Sdeclare -> x_state statex_e.cpp#2 
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S14 #L51 // range for cpp ? 
+  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+
+=================================================
+###S14 #L51 #P0 svar.asl {COMMENT} // range for cpp ?
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S15 #L56 <<"Svar range op \n" 
+[1;34m[56]  <<"Svar range op \n"
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+
+=================================================
+###S15 #L56 #P0 svar.asl {PRSTDOUT} <<"Svar range op \n"
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+    [3]->paramExpand paramexpand.cpp#3  
+paramexpand.cpp paramExpand: @489 "Svar range op \n" 
+    paramExpand @531 :	after recover "Svar range op 
+" 
+    paramExpand @884 :	WIC_CAT_STR  <|Svar range op 
+|> 
+    [3]<-paramExpand -> x_state statex_e.cpp#2 
+Svar range op 
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S16 #L57 <<"%(1, , ,\n)$F\n" 
+[1;34m[57]  <<"%(1, , ,\n)$F\n"
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+
+=================================================
+###S16 #L57 #P0 svar.asl {PRSTDOUT} <<"%(1, , ,\n)$F\n"
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+    [3]->paramExpand paramexpand.cpp#3  
+paramexpand.cpp paramExpand: @489 "%(1, , ,\n)$F\n" 
+    paramExpand @531 :	after recover "%(1, , ,
+)$F
+" 
+    paramExpand @615 :	found  % %(1, , ,
+)$F
+"
+    paramExpand @625 :	return FMT i 2 $  $F
+" FMT<%> 
+    paramExpand @649 :	WIC_CAT_STR  <||> 
+    paramExpand @787 :	"
+    paramExpand @800 :	WIC_CAT_STR  <||> 
+     [4]->ExpandVar paramexpand.cpp#4  
+    ExpandVar @67 :	vp <|F|>
+      [5]->varIndex scopesindex_e.cpp#5  
+       [6]->var_sindex scopesindex_e.cpp#6  
+        [7]->var_main scopesindex_e.cpp#7  
+        [7]<-var_main -> var_sindex scopesindex_e.cpp#6 
+       [6]<-var_sindex -> varIndex scopesindex_e.cpp#5 
+       [6]->SetArraySpecsOff array_parse.cpp#6  
+       [6]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#5 
+      [5]<-varIndex -> ExpandVar paramexpand.cpp#4 
+    ExpandVar @121 :	WIC_PUSH_SIVP  F  SSC NO
+    ExpandVar @179 :	sivp 
+ 87 F 141 SVAR SIV_V sz(21,64) nds(1,[21]) off(0,0,0,0) rcols(0,0)(VOK|ARRAY|GLOBAL|) 
+ (DOB_SVAR|AOP_SET|)  | computepi (mop_m)    : : cprintf (print)  int cprintf(fmt, arg1,arg2,..) printf like C equivalent : : cspline (stat_m)  cspline : : cyclerow (matrix)   cycle matrix rows by  a step : : dbfseek (amod)  : : debugenv (amod)  debugEnv() -- check for env var GS_DEBUG and uses that to set debug level: : decfradix (mop_m)    : : deleterows (rdrec)   deleteRows : : diagonal (matrix)  use vector as leading diagonal of a square matrix other elements are zero: : dround (mop_m)   dround(x,n) : :|>> [0m
+     [4]<-ExpandVar -> paramExpand paramexpand.cpp#3 
+    paramExpand @884 :	WIC_CAT_STR  <|
+|> 
+    [3]<-paramExpand -> x_state statex_e.cpp#2 
+  ftoa (num_l)  float to ascii
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S17 #L61 <<"Svar range op \n" 
+[1;34m[61]  <<"Svar range op \n"
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+
+=================================================
+###S17 #L61 #P0 svar.asl {PRSTDOUT} <<"Svar range op \n"
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+    [3]->paramExpand paramexpand.cpp#3  
+paramexpand.cpp paramExpand: @489 "Svar range op \n" 
+    paramExpand @531 :	after recover "Svar range op 
+" 
+    paramExpand @884 :	WIC_CAT_STR  <|Svar range op 
+|> 
+    [3]<-paramExpand -> x_state statex_e.cpp#2 
+Svar range op 
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S18 #L62 <<" $F\n" // ==> cprintf("%A\n",&F); 
+[1;34m[62]  <<" $F\n" // ==> cprintf("%A\n",&F);
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+
+=================================================
+###S18 #L62 #P0 svar.asl {PRSTDOUT} <<" $F\n" // ==> cprintf("%A\n",&F);
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+    [3]->paramExpand paramexpand.cpp#3  
+paramexpand.cpp paramExpand: @489 " $F\n" 
+    paramExpand @531 :	after recover " $F
+" 
+    paramExpand @649 :	WIC_CAT_STR  <| |> 
+    paramExpand @787 :	" 
+    paramExpand @800 :	WIC_CAT_STR  <||> 
+     [4]->ExpandVar paramexpand.cpp#4  
+    ExpandVar @67 :	vp <|F|>
+      [5]->varIndex scopesindex_e.cpp#5  
+       [6]->var_sindex scopesindex_e.cpp#6  
+        [7]->var_main scopesindex_e.cpp#7  
+        [7]<-var_main -> var_sindex scopesindex_e.cpp#6 
+       [6]<-var_sindex -> varIndex scopesindex_e.cpp#5 
+       [6]->SetArraySpecsOff array_parse.cpp#6  
+       [6]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#5 
+      [5]<-varIndex -> ExpandVar paramexpand.cpp#4 
+    ExpandVar @121 :	WIC_PUSH_SIVP  F  SSC NO
+    ExpandVar @179 :	sivp 
+ 87 F 141 SVAR SIV_V sz(21,64) nds(1,[21]) off(0,0,0,0) rcols(0,0)(VOK|ARRAY|GLOBAL|) 
+ (DOB_SVAR|AOP_SET|)  | computepi (mop_m)    : : cprintf (print)  int cprintf(fmt, arg1,arg2,..) printf like C equivalent : : cspline (stat_m)  cspline : : cyclerow (matrix)   cycle matrix rows by  a step : : dbfseek (amod)  : : debugenv (amod)  debugEnv() -- check for env var GS_DEBUG and uses that to set debug level: : decfradix (mop_m)    : : deleterows (rdrec)   deleteRows : : diagonal (matrix)  use vector as leading diagonal of a square matrix other elements are zero: : dround (mop_m)   dround(x,n) : :|>> [0m
+     [4]<-ExpandVar -> paramExpand paramexpand.cpp#3 
+    paramExpand @884 :	WIC_CAT_STR  <|
+|> 
+    [3]<-paramExpand -> x_state statex_e.cpp#2 
+  computepi (mop_m)      cprintf (print)  int cprintf(fmt, arg1,arg2,..) printf like C equivalent   cspline (stat_m)  cspline   cyclerow (matrix)   cycle matrix rows by  a step   dbfseek (amod)    debugenv (amod)  debugEnv() -- check for env var GS_DEBUG and uses that to set debug level  decfradix (mop_m)      deleterows (rdrec)   deleteRows   diagonal (matrix)  use vector as leading diagonal of a square matrix other elements are zero  dround (mop_m)   dround(x,n)   envdebug (amod)  debugEnv() -- check for env var GS_DEBUG and uses that to set debug level  examine (timedate_l)   examine - prints out Sclass datatable     exityn (fileop)  confirm exit y/n       ferror (fileop)  f_error       fftdit (dsp_main)   fft takes real, imag arrays output in place   fillvec (aop_l)  fills a vector fillvec (Nvalues, start_value, increment)   findproc (vmf_l)   findfunc(str) finds index for script function  if it exists - returns 0 on fail  fitconv (navi_l)   convert fit file to tsv format file   fputv (fileop)  fputv       fscanv (fileop)  fscanv       ftoa (num_l)  float to ascii
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S19 #L63 <<"%(1, , ,\n)$F\n" 
+[1;34m[63]  <<"%(1, , ,\n)$F\n"
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+
+=================================================
+###S19 #L63 #P0 svar.asl {PRSTDOUT} <<"%(1, , ,\n)$F\n"
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+    [3]->paramExpand paramexpand.cpp#3  
+paramexpand.cpp paramExpand: @489 "%(1, , ,\n)$F\n" 
+    paramExpand @531 :	after recover "%(1, , ,
+)$F
+" 
+    paramExpand @615 :	found  % %(1, , ,
+)$F
+"
+    paramExpand @625 :	return FMT i 2 $  $F
+" FMT<%> 
+    paramExpand @649 :	WIC_CAT_STR  <||> 
+    paramExpand @787 :	"
+    paramExpand @800 :	WIC_CAT_STR  <||> 
+     [4]->ExpandVar paramexpand.cpp#4  
+    ExpandVar @67 :	vp <|F|>
+      [5]->varIndex scopesindex_e.cpp#5  
+       [6]->var_sindex scopesindex_e.cpp#6  
+        [7]->var_main scopesindex_e.cpp#7  
+        [7]<-var_main -> var_sindex scopesindex_e.cpp#6 
+       [6]<-var_sindex -> varIndex scopesindex_e.cpp#5 
+       [6]->SetArraySpecsOff array_parse.cpp#6  
+       [6]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#5 
+      [5]<-varIndex -> ExpandVar paramexpand.cpp#4 
+    ExpandVar @121 :	WIC_PUSH_SIVP  F  SSC NO
+    ExpandVar @179 :	sivp 
+ 87 F 141 SVAR SIV_V sz(21,64) nds(1,[21]) off(0,0,0,0) rcols(0,0)(VOK|ARRAY|GLOBAL|) 
+ (DOB_SVAR|AOP_SET|)  | computepi (mop_m)    : : cprintf (print)  int cprintf(fmt, arg1,arg2,..) printf like C equivalent : : cspline (stat_m)  cspline : : cyclerow (matrix)   cycle matrix rows by  a step : : dbfseek (amod)  : : debugenv (amod)  debugEnv() -- check for env var GS_DEBUG and uses that to set debug level: : decfradix (mop_m)    : : deleterows (rdrec)   deleteRows : : diagonal (matrix)  use vector as leading diagonal of a square matrix other elements are zero: : dround (mop_m)   dround(x,n) : :|>> [0m
+     [4]<-ExpandVar -> paramExpand paramexpand.cpp#3 
+    paramExpand @884 :	WIC_CAT_STR  <|
+|> 
+    [3]<-paramExpand -> x_state statex_e.cpp#2 
+  ftoa (num_l)  float to ascii
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S20 #L65 <<"//////////////////////////\n" 
+[1;34m[65] <<"//////////////////////////\n"
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+
+=================================================
+###S20 #L65 #P0 svar.asl {PRSTDOUT} <<"//////////////////////////\n"
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+    [3]->paramExpand paramexpand.cpp#3  
+paramexpand.cpp paramExpand: @489 "//////////////////////////\n" 
+    paramExpand @531 :	after recover "//////////////////////////
+" 
+    paramExpand @884 :	WIC_CAT_STR  <|//////////////////////////
+|> 
+    [3]<-paramExpand -> x_state statex_e.cpp#2 
+//////////////////////////
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S21 #L71 double x= 1.5; 
+[1;34m[71]     x= 1.5     
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+
+=================================================
+###S21 #L71 #P0 svar.asl {DECLARE} double x= 1.5;
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+    [3]->Sdeclare declare_e.cpp#3  
+     [4]->Vdeclare declare_e.cpp#4  
+      [5]->VdeclareType declare_e.cpp#5  
+       [6]->varIndex scopesindex_e.cpp#6  
+        [7]->var_sindex scopesindex_e.cpp#7  
+         [8]->var_main scopesindex_e.cpp#8  
+          [9]->var_sindex_create createv_e.cpp#9  
+          [9]<-var_sindex_create -> var_main scopesindex_e.cpp#8 
+         [8]<-var_main -> var_sindex scopesindex_e.cpp#7 
+        [7]<-var_sindex -> varIndex scopesindex_e.cpp#6 
+        [7]->SetArraySpecsOff array_parse.cpp#7  
+        [7]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#6 
+       [6]<-varIndex -> VdeclareType declare_e.cpp#5 
+       [6]->getExp exp_e.cpp#6  
+        [7]->checkConstantExp checkconstantexp.cpp#7  
+         [8]->Number toknum.cpp#8  
+         [8]<-Number -> checkConstantExp checkconstantexp.cpp#7 
+         [8]->store_var storetype_e.cpp#8  
+          [9]->storeCopyVar storetype_e.cpp#9  
+          [9]<-storeCopyVar -> store_var storetype_e.cpp#8 
+         [8]<-store_var -> checkConstantExp checkconstantexp.cpp#7 
+        [7]<-checkConstantExp -> getExp exp_e.cpp#6 
+       [6]<-getExp -> VdeclareType declare_e.cpp#5 
+       [6]->declare_type declare_type_e.cpp#6  
+        [7]->ArrayInitList declare_array_e.cpp#7  
+        [7]<-ArrayInitList -> declare_type declare_type_e.cpp#6 
+        [7]->ArraySpecs declare_array_e.cpp#7  
+        [7]<-ArraySpecs -> declare_type declare_type_e.cpp#6 
+       [6]<-declare_type -> VdeclareType declare_e.cpp#5 
+       [6]->storeCopyVar storetype_e.cpp#6  
+       [6]<-storeCopyVar -> VdeclareType declare_e.cpp#5 
+      [5]<-VdeclareType -> Vdeclare declare_e.cpp#4 
+     [4]<-Vdeclare -> Sdeclare declare_e.cpp#3 
+    [3]<-Sdeclare -> x_state statex_e.cpp#2 
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S22 #L73 double y = atan(x) 
+[1;34m[73]     y = atan(x)
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+
+=================================================
+###S22 #L73 #P0 svar.asl {DECLARE} double y = atan(x)
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+    [3]->Sdeclare declare_e.cpp#3  
+     [4]->Vdeclare declare_e.cpp#4  
+      [5]->VdeclareType declare_e.cpp#5  
+       [6]->varIndex scopesindex_e.cpp#6  
+        [7]->var_sindex scopesindex_e.cpp#7  
+         [8]->var_main scopesindex_e.cpp#8  
+          [9]->var_sindex_create createv_e.cpp#9  
+          [9]<-var_sindex_create -> var_main scopesindex_e.cpp#8 
+         [8]<-var_main -> var_sindex scopesindex_e.cpp#7 
+        [7]<-var_sindex -> varIndex scopesindex_e.cpp#6 
+        [7]->SetArraySpecsOff array_parse.cpp#7  
+        [7]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#6 
+       [6]<-varIndex -> VdeclareType declare_e.cpp#5 
+       [6]->getExp exp_e.cpp#6  
+        [7]->checkConstantExp checkconstantexp.cpp#7  
+        [7]<-checkConstantExp -> getExp exp_e.cpp#6 
+        [7]->Get tokget.cpp#7  
+         [8]->Func tokfunc.cpp#8  
+          [9]->checkProcFunc proc_checkfname_e.cpp#9  
+           [10]->checkProcName proc_e.cpp#10  
+           [10]<-checkProcName -> checkProcFunc proc_checkfname_e.cpp#9 
+_CMFOBJSTK  Empty
+          [9]<-checkProcFunc -> Func tokfunc.cpp#8 
+          [9]->Sfunc func_e.cpp#9  
+           [10]->process_args args_process_e.cpp#10  
+            [11]->process_args_type args_process_e.cpp#11  
+             [12]->find_siv scope_findvar_e.cpp#12  
+              [13]->varIndex scopesindex_e.cpp#13  
+               [14]->var_sindex scopesindex_e.cpp#14  
+                [15]->var_main scopesindex_e.cpp#15  
+                [15]<-var_main -> var_sindex scopesindex_e.cpp#14 
+               [14]<-var_sindex -> varIndex scopesindex_e.cpp#13 
+               [14]->SetArraySpecsOff array_parse.cpp#14  
+               [14]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#13 
+              [13]<-varIndex -> find_siv scope_findvar_e.cpp#12 
+             [12]<-find_siv -> process_args_type args_process_e.cpp#11 
+            [11]<-process_args_type -> process_args args_process_e.cpp#10 
+            [11]->process_args_siv args_process_e.cpp#11  
+            [11]<-process_args_siv -> process_args args_process_e.cpp#10 
+           [10]<-process_args -> Sfunc func_e.cpp#9 
+          [9]<-Sfunc -> Func tokfunc.cpp#8 
+         [8]<-Func -> Get tokget.cpp#7 
+        [7]<-Get -> getExp exp_e.cpp#6 
+        [7]->store_var storetype_e.cpp#7  
+         [8]->storeCopyVar storetype_e.cpp#8  
+         [8]<-storeCopyVar -> store_var storetype_e.cpp#7 
+        [7]<-store_var -> getExp exp_e.cpp#6 
+       [6]<-getExp -> VdeclareType declare_e.cpp#5 
+       [6]->declare_type declare_type_e.cpp#6  
+        [7]->ArrayInitList declare_array_e.cpp#7  
+        [7]<-ArrayInitList -> declare_type declare_type_e.cpp#6 
+        [7]->ArraySpecs declare_array_e.cpp#7  
+        [7]<-ArraySpecs -> declare_type declare_type_e.cpp#6 
+       [6]<-declare_type -> VdeclareType declare_e.cpp#5 
+       [6]->storeCopyVar storetype_e.cpp#6  
+       [6]<-storeCopyVar -> VdeclareType declare_e.cpp#5 
+      [5]<-VdeclareType -> Vdeclare declare_e.cpp#4 
+     [4]<-Vdeclare -> Sdeclare declare_e.cpp#3 
+    [3]<-Sdeclare -> x_state statex_e.cpp#2 
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S23 #L75 double p = sin(4* x) 
+[1;34m[75]     p = sin(4* x)
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+
+=================================================
+###S23 #L75 #P0 svar.asl {DECLARE} double p = sin(4* x)
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+    [3]->Sdeclare declare_e.cpp#3  
+     [4]->Vdeclare declare_e.cpp#4  
+      [5]->VdeclareType declare_e.cpp#5  
+       [6]->varIndex scopesindex_e.cpp#6  
+        [7]->var_sindex scopesindex_e.cpp#7  
+         [8]->var_main scopesindex_e.cpp#8  
+          [9]->var_sindex_create createv_e.cpp#9  
+          [9]<-var_sindex_create -> var_main scopesindex_e.cpp#8 
+         [8]<-var_main -> var_sindex scopesindex_e.cpp#7 
+        [7]<-var_sindex -> varIndex scopesindex_e.cpp#6 
+        [7]->SetArraySpecsOff array_parse.cpp#7  
+        [7]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#6 
+       [6]<-varIndex -> VdeclareType declare_e.cpp#5 
+       [6]->getExp exp_e.cpp#6  
+        [7]->checkConstantExp checkconstantexp.cpp#7  
+        [7]<-checkConstantExp -> getExp exp_e.cpp#6 
+        [7]->Get tokget.cpp#7  
+         [8]->Func tokfunc.cpp#8  
+          [9]->checkProcFunc proc_checkfname_e.cpp#9  
+           [10]->checkProcName proc_e.cpp#10  
+           [10]<-checkProcName -> checkProcFunc proc_checkfname_e.cpp#9 
+_CMFOBJSTK  Empty
+          [9]<-checkProcFunc -> Func tokfunc.cpp#8 
+          [9]->Sfunc func_e.cpp#9  
+           [10]->process_args args_process_e.cpp#10  
+            [11]->process_args_type args_process_e.cpp#11  
+            [11]<-process_args_type -> process_args args_process_e.cpp#10 
+            [11]->process_args_exprn args_process_e.cpp#11  
+             [12]->getExp exp_e.cpp#12  
+              [13]->checkConstantExp checkconstantexp.cpp#13  
+              [13]<-checkConstantExp -> getExp exp_e.cpp#12 
+              [13]->Get tokget.cpp#13  
+               [14]->Number toknum.cpp#14  
+               [14]<-Number -> Get tokget.cpp#13 
+              [13]<-Get -> getExp exp_e.cpp#12 
+              [13]->l_1 rdp_l1.cpp#13  
+               [14]->l_2 rdp_l2.cpp#14  
+                [15]->l_3 rdp_l3.cpp#15  
+                 [16]->l_4 rdp_l4.cpp#16  
+                  [17]->l_5 rdp_l5.cpp#17  
+                   [18]->l_6 rdp_l6.cpp#18  
+                    [19]->primitive primitive.cpp#19  
+                     [20]->Get tokget.cpp#20  
+                      [21]->Delimiter tokdelim.cpp#21  
+                       [22]->GetDelimiter tokdelim.cpp#22  
+                       [22]<-GetDelimiter -> Delimiter tokdelim.cpp#21 
+                      [21]<-Delimiter -> Get tokget.cpp#20 
+                     [20]<-Get -> primitive primitive.cpp#19 
+                    [19]<-primitive -> l_6 rdp_l6.cpp#18 
+                   [18]<-l_6 -> l_5 rdp_l5.cpp#17 
+                  [17]<-l_5 -> l_4 rdp_l4.cpp#16 
+                 [16]<-l_4 -> l_3 rdp_l3.cpp#15 
+                 [16]->Get tokget.cpp#16  
+                  [17]->doVariable rdp_token.cpp#17  
+                   [18]->Variable rdp_token.cpp#18  
+                    [19]->FindVar parset_e.cpp#19  
+                     [20]->varIndex scopesindex_e.cpp#20  
+                      [21]->var_sindex scopesindex_e.cpp#21  
+                       [22]->var_main scopesindex_e.cpp#22  
+                       [22]<-var_main -> var_sindex scopesindex_e.cpp#21 
+                      [21]<-var_sindex -> varIndex scopesindex_e.cpp#20 
+                      [21]->SetArraySpecsOff array_parse.cpp#21  
+                      [21]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#20 
+                     [20]<-varIndex -> FindVar parset_e.cpp#19 
+                    [19]<-FindVar -> Variable rdp_token.cpp#18 
+                    [19]->store_var storetype_e.cpp#19  
+                     [20]->storeCopyVar storetype_e.cpp#20  
+                     [20]<-storeCopyVar -> store_var storetype_e.cpp#19 
+                    [19]<-store_var -> Variable rdp_token.cpp#18 
+                   [18]<-Variable -> doVariable rdp_token.cpp#17 
+                  [17]<-doVariable -> Get tokget.cpp#16 
+                 [16]<-Get -> l_3 rdp_l3.cpp#15 
+                 [16]->l_4 rdp_l4.cpp#16  
+                  [17]->l_5 rdp_l5.cpp#17  
+                   [18]->l_6 rdp_l6.cpp#18  
+                    [19]->primitive primitive.cpp#19  
+                     [20]->Get tokget.cpp#20  
+                      [21]->Delimiter tokdelim.cpp#21  
+                       [22]->GetDelimiter tokdelim.cpp#22  
+                       [22]<-GetDelimiter -> Delimiter tokdelim.cpp#21 
+                      [21]<-Delimiter -> Get tokget.cpp#20 
+                     [20]<-Get -> primitive primitive.cpp#19 
+                    [19]<-primitive -> l_6 rdp_l6.cpp#18 
+                   [18]<-l_6 -> l_5 rdp_l5.cpp#17 
+                  [17]<-l_5 -> l_4 rdp_l4.cpp#16 
+                 [16]<-l_4 -> l_3 rdp_l3.cpp#15 
+                [15]<-l_3 -> l_2 rdp_l2.cpp#14 
+               [14]<-l_2 -> l_1 rdp_l1.cpp#13 
+              [13]<-l_1 -> getExp exp_e.cpp#12 
+              [13]->store_var storetype_e.cpp#13  
+               [14]->storeCopyVar storetype_e.cpp#14  
+               [14]<-storeCopyVar -> store_var storetype_e.cpp#13 
+              [13]<-store_var -> getExp exp_e.cpp#12 
+             [12]<-getExp -> process_args_exprn args_process_e.cpp#11 
+            [11]<-process_args_exprn -> process_args args_process_e.cpp#10 
+           [10]<-process_args -> Sfunc func_e.cpp#9 
+          [9]<-Sfunc -> Func tokfunc.cpp#8 
+         [8]<-Func -> Get tokget.cpp#7 
+        [7]<-Get -> getExp exp_e.cpp#6 
+        [7]->store_var storetype_e.cpp#7  
+         [8]->storeCopyVar storetype_e.cpp#8  
+         [8]<-storeCopyVar -> store_var storetype_e.cpp#7 
+        [7]<-store_var -> getExp exp_e.cpp#6 
+       [6]<-getExp -> VdeclareType declare_e.cpp#5 
+       [6]->declare_type declare_type_e.cpp#6  
+        [7]->ArrayInitList declare_array_e.cpp#7  
+        [7]<-ArrayInitList -> declare_type declare_type_e.cpp#6 
+        [7]->ArraySpecs declare_array_e.cpp#7  
+        [7]<-ArraySpecs -> declare_type declare_type_e.cpp#6 
+       [6]<-declare_type -> VdeclareType declare_e.cpp#5 
+       [6]->storeCopyVar storetype_e.cpp#6  
+       [6]<-storeCopyVar -> VdeclareType declare_e.cpp#5 
+      [5]<-VdeclareType -> Vdeclare declare_e.cpp#4 
+     [4]<-Vdeclare -> Sdeclare declare_e.cpp#3 
+    [3]<-Sdeclare -> x_state statex_e.cpp#2 
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S24 #L77 <<"%V $x $p $y \n" 
+[1;34m[77]          <<"%V $x $p $y \n"
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+
+=================================================
+###S24 #L77 #P0 svar.asl {PRSTDOUT} <<"%V $x $p $y \n"
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+    [3]->paramExpand paramexpand.cpp#3  
+paramexpand.cpp paramExpand: @489 "%V $x $p $y \n" 
+    paramExpand @531 :	after recover "%V $x $p $y 
+" 
+    paramExpand @615 :	found  % %V $x $p $y 
+"
+    paramExpand @625 :	return FMT i 2     $x $p $y 
+" FMT<%> 
+    paramExpand @649 :	WIC_CAT_STR  <| |> 
+    paramExpand @756 :	splice_in <x> 
+    paramExpand @787 :	"  x 
+    paramExpand @800 :	WIC_CAT_STR  <| x |> 
+     [4]->ExpandVar paramexpand.cpp#4  
+    ExpandVar @67 :	vp <|x|>
+      [5]->varIndex scopesindex_e.cpp#5  
+       [6]->var_sindex scopesindex_e.cpp#6  
+        [7]->var_main scopesindex_e.cpp#7  
+        [7]<-var_main -> var_sindex scopesindex_e.cpp#6 
+       [6]<-var_sindex -> varIndex scopesindex_e.cpp#5 
+       [6]->SetArraySpecsOff array_parse.cpp#6  
+       [6]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#5 
+      [5]<-varIndex -> ExpandVar paramexpand.cpp#4 
+    ExpandVar @121 :	WIC_PUSH_SIVP  x  SSC NO
+    ExpandVar @179 :	sivp 
+ 109 x 241 DOUBLE SIV_V sz(1,64) off(0,0,0,0)(VOK|GLOBAL|) ()  |1.500000|>> [0m
+     [4]<-ExpandVar -> paramExpand paramexpand.cpp#3 
+    paramExpand @649 :	WIC_CAT_STR  <| |> 
+    paramExpand @756 :	splice_in <p> 
+    paramExpand @787 :	"  x 1.500000  p 
+    paramExpand @800 :	WIC_CAT_STR  <| p |> 
+     [4]->ExpandVar paramexpand.cpp#4  
+    ExpandVar @67 :	vp <|p|>
+      [5]->varIndex scopesindex_e.cpp#5  
+       [6]->var_sindex scopesindex_e.cpp#6  
+        [7]->var_main scopesindex_e.cpp#7  
+        [7]<-var_main -> var_sindex scopesindex_e.cpp#6 
+       [6]<-var_sindex -> varIndex scopesindex_e.cpp#5 
+       [6]->SetArraySpecsOff array_parse.cpp#6  
+       [6]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#5 
+      [5]<-varIndex -> ExpandVar paramexpand.cpp#4 
+    ExpandVar @121 :	WIC_PUSH_SIVP  p  SSC NO
+    ExpandVar @179 :	sivp 
+ 112 p 225 DOUBLE SIV_V sz(1,64) off(0,0,0,0)(VOK|GLOBAL|) ()  |-0.279415|>> [0m
+     [4]<-ExpandVar -> paramExpand paramexpand.cpp#3 
+    paramExpand @649 :	WIC_CAT_STR  <| |> 
+    paramExpand @756 :	splice_in <y> 
+    paramExpand @787 :	"  x 1.500000  p -0.279415  y 
+    paramExpand @800 :	WIC_CAT_STR  <| y |> 
+     [4]->ExpandVar paramexpand.cpp#4  
+    ExpandVar @67 :	vp <|y|>
+      [5]->varIndex scopesindex_e.cpp#5  
+       [6]->var_sindex scopesindex_e.cpp#6  
+        [7]->var_main scopesindex_e.cpp#7  
+        [7]<-var_main -> var_sindex scopesindex_e.cpp#6 
+       [6]<-var_sindex -> varIndex scopesindex_e.cpp#5 
+       [6]->SetArraySpecsOff array_parse.cpp#6  
+       [6]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#5 
+      [5]<-varIndex -> ExpandVar paramexpand.cpp#4 
+    ExpandVar @121 :	WIC_PUSH_SIVP  y  SSC NO
+    ExpandVar @179 :	sivp 
+ 97 y 243 DOUBLE SIV_V sz(1,64) off(0,0,0,0)(VOK|GLOBAL|) ()  |0.982794|>> [0m
+     [4]<-ExpandVar -> paramExpand paramexpand.cpp#3 
+    paramExpand @884 :	WIC_CAT_STR  <| 
+|> 
+    [3]<-paramExpand -> x_state statex_e.cpp#2 
+  x 1.500000  p -0.279415  y 0.982794 
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S25 #L83 F= search(S," atan ("); 
+[1;34m[83]  F= search(S," atan (");
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+    [3]->CheckClass stateparse_e.cpp#3  
+    [3]<-CheckClass -> checkStatement stateparse_e.cpp#2 
+
+=================================================
+###S25 #L83 #P0 svar.asl {EXPRESSION_T} F= search(S," atan (");
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+    [3]->Sexp exp_e.cpp#3  
+     [4]->getExp exp_e.cpp#4  
+      [5]->checkConstantExp checkconstantexp.cpp#5  
+      [5]<-checkConstantExp -> getExp exp_e.cpp#4 
+      [5]->getLHS exp_lhs_e.cpp#5  
+       [6]->Get tokget.cpp#6  
+        [7]->doVariable rdp_token.cpp#7  
+         [8]->Variable rdp_token.cpp#8  
+          [9]->FindVar parset_e.cpp#9  
+           [10]->varIndex scopesindex_e.cpp#10  
+            [11]->var_sindex scopesindex_e.cpp#11  
+             [12]->var_main scopesindex_e.cpp#12  
+             [12]<-var_main -> var_sindex scopesindex_e.cpp#11 
+            [11]<-var_sindex -> varIndex scopesindex_e.cpp#10 
+            [11]->SetArraySpecsOff array_parse.cpp#11  
+            [11]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#10 
+           [10]<-varIndex -> FindVar parset_e.cpp#9 
+          [9]<-FindVar -> Variable rdp_token.cpp#8 
+         [8]<-Variable -> doVariable rdp_token.cpp#7 
+        [7]<-doVariable -> Get tokget.cpp#6 
+       [6]<-Get -> getLHS exp_lhs_e.cpp#5 
+      [5]<-getLHS -> getExp exp_e.cpp#4 
+      [5]->l_1 rdp_l1.cpp#5  
+       [6]->Get tokget.cpp#6  
+        [7]->Delimiter tokdelim.cpp#7  
+         [8]->GetDelimiter tokdelim.cpp#8  
+         [8]<-GetDelimiter -> Delimiter tokdelim.cpp#7 
+        [7]<-Delimiter -> Get tokget.cpp#6 
+       [6]<-Get -> l_1 rdp_l1.cpp#5 
+       [6]->Get tokget.cpp#6  
+        [7]->Func tokfunc.cpp#7  
+         [8]->checkProcFunc proc_checkfname_e.cpp#8  
+          [9]->checkProcName proc_e.cpp#9  
+          [9]<-checkProcName -> checkProcFunc proc_checkfname_e.cpp#8 
+_CMFOBJSTK  Empty
+         [8]<-checkProcFunc -> Func tokfunc.cpp#7 
+         [8]->Sfunc func_e.cpp#8  
+          [9]->process_args args_process_e.cpp#9  
+           [10]->process_args_type args_process_e.cpp#10  
+            [11]->find_siv scope_findvar_e.cpp#11  
+             [12]->varIndex scopesindex_e.cpp#12  
+              [13]->var_sindex scopesindex_e.cpp#13  
+               [14]->var_main scopesindex_e.cpp#14  
+               [14]<-var_main -> var_sindex scopesindex_e.cpp#13 
+              [13]<-var_sindex -> varIndex scopesindex_e.cpp#12 
+              [13]->SetArraySpecsOff array_parse.cpp#13  
+              [13]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#12 
+             [12]<-varIndex -> find_siv scope_findvar_e.cpp#11 
+            [11]<-find_siv -> process_args_type args_process_e.cpp#10 
+           [10]<-process_args_type -> process_args args_process_e.cpp#9 
+           [10]->process_args_array_name args_process_e.cpp#10  
+           [10]<-process_args_array_name -> process_args args_process_e.cpp#9 
+           [10]->process_args_type args_process_e.cpp#10  
+           [10]<-process_args_type -> process_args args_process_e.cpp#9 
+           [10]->process_args_exprn args_process_e.cpp#10  
+            [11]->getExp exp_e.cpp#11  
+             [12]->checkConstantExp checkconstantexp.cpp#12  
+             [12]<-checkConstantExp -> getExp exp_e.cpp#11 
+             [12]->Get tokget.cpp#12  
+              [13]->ParamExpand rdp_token.cpp#13  
+               [14]->paramExpand paramexpand.cpp#14  
+paramexpand.cpp paramExpand: @489 " atan (" 
+    paramExpand @531 :	after recover " atan (" 
+    paramExpand @884 :	WIC_CAT_STR  <| atan (|> 
+    paramExpand @932 :	WIC_PUSH_CAT 3 
+               [14]<-paramExpand -> ParamExpand rdp_token.cpp#13 
+              [13]<-ParamExpand -> Get tokget.cpp#12 
+              [13]->DoubleQuote tokquote.cpp#13  
+              [13]<-DoubleQuote -> Get tokget.cpp#12 
+             [12]<-Get -> getExp exp_e.cpp#11 
+             [12]->store_var storetype_e.cpp#12  
+              [13]->storeCopyVar storetype_e.cpp#13  
+              [13]<-storeCopyVar -> store_var storetype_e.cpp#12 
+             [12]<-store_var -> getExp exp_e.cpp#11 
+            [11]<-getExp -> process_args_exprn args_process_e.cpp#10 
+           [10]<-process_args_exprn -> process_args args_process_e.cpp#9 
+          [9]<-process_args -> Sfunc func_e.cpp#8 
+         [8]<-Sfunc -> Func tokfunc.cpp#7 
+        [7]<-Func -> Get tokget.cpp#6 
+       [6]<-Get -> l_1 rdp_l1.cpp#5 
+       [6]->l_2 rdp_l2.cpp#6  
+        [7]->l_3 rdp_l3.cpp#7  
+         [8]->l_4 rdp_l4.cpp#8  
+          [9]->l_5 rdp_l5.cpp#9  
+           [10]->l_6 rdp_l6.cpp#10  
+            [11]->primitive primitive.cpp#11  
+             [12]->Get tokget.cpp#12  
+              [13]->Delimiter tokdelim.cpp#13  
+               [14]->GetDelimiter tokdelim.cpp#14  
+               [14]<-GetDelimiter -> Delimiter tokdelim.cpp#13 
+              [13]<-Delimiter -> Get tokget.cpp#12 
+             [12]<-Get -> primitive primitive.cpp#11 
+            [11]<-primitive -> l_6 rdp_l6.cpp#10 
+           [10]<-l_6 -> l_5 rdp_l5.cpp#9 
+          [9]<-l_5 -> l_4 rdp_l4.cpp#8 
+         [8]<-l_4 -> l_3 rdp_l3.cpp#7 
+        [7]<-l_3 -> l_2 rdp_l2.cpp#6 
+       [6]<-l_2 -> l_1 rdp_l1.cpp#5 
+      [5]<-l_1 -> getExp exp_e.cpp#4 
+      [5]->l1_store rdp_store.cpp#5  
+      [5]<-l1_store -> getExp exp_e.cpp#4 
+     [4]<-getExp -> Sexp exp_e.cpp#3 
+    [3]<-Sexp -> x_state statex_e.cpp#2 
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S26 #L84 <<"%(1, , ,\n)$F\n" 
+[1;34m[84]  <<"%(1, , ,\n)$F\n"
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+
+=================================================
+###S26 #L84 #P0 svar.asl {PRSTDOUT} <<"%(1, , ,\n)$F\n"
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+    [3]->paramExpand paramexpand.cpp#3  
+paramexpand.cpp paramExpand: @489 "%(1, , ,\n)$F\n" 
+    paramExpand @531 :	after recover "%(1, , ,
+)$F
+" 
+    paramExpand @615 :	found  % %(1, , ,
+)$F
+"
+    paramExpand @625 :	return FMT i 2 $  $F
+" FMT<%> 
+    paramExpand @649 :	WIC_CAT_STR  <||> 
+    paramExpand @787 :	"
+    paramExpand @800 :	WIC_CAT_STR  <||> 
+     [4]->ExpandVar paramexpand.cpp#4  
+    ExpandVar @67 :	vp <|F|>
+      [5]->varIndex scopesindex_e.cpp#5  
+       [6]->var_sindex scopesindex_e.cpp#6  
+        [7]->var_main scopesindex_e.cpp#7  
+        [7]<-var_main -> var_sindex scopesindex_e.cpp#6 
+       [6]<-var_sindex -> varIndex scopesindex_e.cpp#5 
+       [6]->SetArraySpecsOff array_parse.cpp#6  
+       [6]<-SetArraySpecsOff -> varIndex scopesindex_e.cpp#5 
+      [5]<-varIndex -> ExpandVar paramexpand.cpp#4 
+    ExpandVar @121 :	WIC_PUSH_SIVP  F  SSC NO
+    ExpandVar @179 :	sivp 
+ 87 F 141 SVAR SIV_V sz(21,64) nds(1,[21]) off(0,0,0,0) rcols(0,0)(VOK|ARRAY|GLOBAL|) 
+ (DOB_SVAR|AOP_SET|)  | atan (top_m)  double atan(double x)  function that is the value whose tan is x radians.: : cprintf (print)  int cprintf(fmt, arg1,arg2,..) printf like C equivalent : : cspline (stat_m)  cspline : : cyclerow (matrix)   cycle matrix rows by  a step : : dbfseek (amod)  : : debugenv (amod)  debugEnv() -- check for env var GS_DEBUG and uses that to set debug level: : decfradix (mop_m)    : : deleterows (rdrec)   deleteRows : : diagonal (matrix)  use vector as leading diagonal of a square matrix other elements are zero: : dround (mop_m)   dround(x,n) : :|>> [0m
+     [4]<-ExpandVar -> paramExpand paramexpand.cpp#3 
+    paramExpand @884 :	WIC_CAT_STR  <|
+|> 
+    [3]<-paramExpand -> x_state statex_e.cpp#2 
+  ftoa (num_l)  float to ascii
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+    script @369 :	EXIT_SI 0
+ [0]->do_statement statex_e.cpp#0  
+
+>>>S27 #L109 codeend(); 
+[1;34m[109] codeend();
+[0m  [1]->p_state statex_e.cpp#1  
+   [2]->checkStatement stateparse_e.cpp#2  
+    [3]->CheckClass stateparse_e.cpp#3  
+    [3]<-CheckClass -> checkStatement stateparse_e.cpp#2 
+    [3]->checkProcFunc proc_checkfname_e.cpp#3  
+     [4]->checkProcName proc_e.cpp#4  
+     [4]<-checkProcName -> checkProcFunc proc_checkfname_e.cpp#3 
+_CMFOBJSTK  Empty
+    [3]<-checkProcFunc -> checkStatement stateparse_e.cpp#2 
+
+=================================================
+###S27 #L109 #P0 svar.asl {FUNCTION} codeend();
+==================================================
+   [2]<-checkStatement -> p_state statex_e.cpp#1 
+   [2]->x_state statex_e.cpp#2  
+    [3]->Sfunc func_e.cpp#3  
+    get_args @616 :	caught 1
+    [3]<-Sfunc -> x_state statex_e.cpp#2 
+   [2]<-x_state -> p_state statex_e.cpp#1 
+   [2]->Close ic_state.cpp#2  
+    [3]->Pic ic_pic.cpp#3  
+    [3]<-Pic -> Close ic_state.cpp#2 
+   [2]<-Close -> p_state statex_e.cpp#1 
+  [1]<-p_state -> do_statement statex_e.cpp#0 
+ [0]<-do_statement 
+ [0]->advanceStatement stateparse_e.cpp#0  
+  [1]->moveToNextSt stateparse_e.cpp#1  
+no more statements !! EXIT_SI 1
+  [1]<-moveToNextSt -> advanceStatement stateparse_e.cpp#0 
+ [0]<-advanceStatement 
+throw  on EXIT_SI!
+    script @459 :	engine throws -8
+ [0]->writeExe ic_wcb.cpp#0  
+  [1]->writeCB ic_wcb.cpp#1  
+  [1]<-writeCB -> writeExe ic_wcb.cpp#0 
+done WriteExe !! 
+ [0]<-writeExe 
+exefname svar.asc
+done WriteAsc !! 
+debug_file is /home/mark/.GASP/WORK/Debug/idb num_errors 0  invalidSiv 0 2 0 exit status 7 took 17582 msecs

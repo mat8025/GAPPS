@@ -1515,3 +1515,6 @@ scopesindex_e.cpp                   2.87  05/11/2023 20:36:07)  declare context
 sclass.h                            2.3  05/14/2023 09:11:00)  getClassSiv
 gline_p.cpp                         1.85  05/17/2023 08:47:16)  draw on/off
 args_process_e.cpp                  2.47  05/26/2023 14:19:27)  sclass arg
+svar_init.cpp                       1.65  06/15/2023 10:19:37)  revise valloc
+svar.h                              2.5  06/15/2023 21:20:20)  operator()
+str.h                               1.6  06/16/2023 10:48:55)  strCsub

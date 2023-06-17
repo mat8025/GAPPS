@@ -1,0 +1,40 @@
+
+
+
+#include "debug"
+
+   if (_dblevel >0) {
+
+     debugON();
+
+     }
+
+   chkIn(_dblevel);
+
+  V= vgen(INT_,10,0,1);
+
+  T= vgen(FLOAT_,10,0,1);
+
+  V.pinfo();
+
+   V.pinfo();
+
+  chkN (T[1],1);
+
+  <<"$T\n";
+
+
+
+  R = T[1:8:2]
+
+  R.pinfo();
+  <<"$R\n";
+
+
+  chkOut();
+  
+
+
+
+
+////////////////////////////////////
