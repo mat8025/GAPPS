@@ -19,21 +19,41 @@
 
    chkIn(_dblevel);
 
-   ShoppingList = ("xxx",  )  ; // empty list --- bug first item null?;
+   sdb(1,"step")
+    // empty list --- bug first item null?;
+   ShoppingList = ("xxx","abc","exp_e"  )  ;
+
+   ShoppingList.pinfo();
+
 
    <<" $ShoppingList \n";
+
+
+
 
    flsz = caz(ShoppingList);
 
    <<"Shopping list size $flsz \n";
 
-   ShoppingList.LiDelete(0);
+   ShoppingList.Insert(LIEND_,"list_ops");
+
+   ShoppingList.Insert(LIBEG_,"vmf_list");
 
    <<" $ShoppingList \n";
+   
 
-   flsz = caz(ShoppingList);
+  // ShoppingList.LiDelete(0);
+  
+//   flsz = caz(ShoppingList);
+
+
 
    <<"Shopping list size $flsz \n";
+
+  ShoppingList.deleteSli("list_ops",LIBEG_,1);
+  
+    <<" $ShoppingList \n";
+
   //tname = "debe esforzarse más"
 
    tname = "debe esforzarse mas";
@@ -48,6 +68,7 @@
 
    ShoppingList.Insert(tname);
 
+
    flsz = caz(ShoppingList);
 
    <<"Shopping list size $flsz \n";
@@ -57,6 +78,8 @@
    <<"preval  <|$preval|>\n";
 
    <<" $ShoppingList \n";
+
+   ShoppingList.Insert("declare_e");
 
    tname = "Camino a cinco kilometros al dia";
 

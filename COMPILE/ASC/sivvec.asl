@@ -41,12 +41,36 @@ int main( int argc, char *argv[] ) { // main start
 #endif
 
   //Vec<double> Vtst(10,10,1);
+   sdb(1,"step");
+   Siv T(FLOAT_,10,0,1);
 
-     Siv V (INT_,10,0,1);
+   T.pinfo();
 
+   Siv V(INT_,10,0,1);
+   
+   V.pinfo();
+
+   sr = iread("?")
+
+   Siv R = T[1:8:2];
+
+   R.pinfo();
+
+   R = T[1:7:1];
+
+   R.pinfo();
+
+
+//   Mda MD(DOUBLE_, dimns(3,5,4,6));
+
+//   MD.pinfo();
+   
+/*   
+
+   
    Siv T (FLOAT_,10,0,1);//T= fgen(10,0,1);
 
-  V.pinfo();
+
 
    T.pinfo();
 
@@ -56,7 +80,7 @@ int main( int argc, char *argv[] ) { // main start
 
 
 
-  Siv R = T[1:8:2]
+  
 
   R.pinfo();
   <<"$R\n";
@@ -68,8 +92,8 @@ int main( int argc, char *argv[] ) { // main start
 
   chkOut();
   
-
-
+*/
+ <<"$('PBLACK_')  this is black print \n"
 #if CPP              
   //////////////////////////////////
   exit(-1);

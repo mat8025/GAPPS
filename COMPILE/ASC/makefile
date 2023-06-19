@@ -55,7 +55,7 @@ cprintf: cprintf.asc
 	g++ -x c++ -fpermissive  -rdynamic -o cprintf cprintf.asc  -I$(gasp_sys)/include -ldl  $(LDADD)
 
 svar: svar.asc
-	g++ -x c++ -fpermissive  -rdynamic -o svar svar.asc  -I$(gasp_sys)/include -ldl  $(LDADD)
+	g++ -g -x c++ -fpermissive  -rdynamic -o svar svar.asc  -I$(gasp_sys)/include -ldl  $(LDADD)
 
 sivvec: sivvec.asc
 	g++ -g -x c++   -fpermissive  -rdynamic -o sivvec sivvec.asc  -I$(gasp_sys)/include -ldl  $(LDADD)

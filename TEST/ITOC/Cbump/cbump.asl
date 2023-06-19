@@ -119,8 +119,11 @@
 
   release = "";
 
+
   TR = Split(split(getversion()),".")
 
+  TR.pinfo();
+  
   release = ptname(TR[1]);
 
   B= ofile(srcfile,"r")
@@ -152,13 +155,14 @@
   //<<"%(1,,,)$T\n"
   
 Str comment ="xxx";
+
 long where;
 
-where.pinfo()
+
 
 
 Str T;
-
+//  sdb(1,"step");
 T.pinfo();
 
 Str Pad;
