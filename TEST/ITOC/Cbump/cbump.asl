@@ -42,6 +42,15 @@
   //======================
  int  A=-1;
 
+  Str cvers = "xyz";
+  cvers.pinfo();
+  cvers = getversion()
+
+<<"%V $cvers \n"
+a=iread("???")
+
+
+exit(-1);
 
  // ? read the entire file into an Svar
  // write the new hdr into a new file

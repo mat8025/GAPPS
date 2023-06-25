@@ -17,14 +17,14 @@
   setmaxcodeerrors(-1); // just keep going;
   setmaxicerrors(-1);
 
-<<" trying vbump !\n"
+<<[2]" trying vbump !\n"
   
   Str Vers2ele(Str& vstr)
   {
   
    pmaj = atoi(spat(vstr,"."))
    pmin = atoi(spat(vstr,".",1))
-  <<[2]"%V $pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
+  <<[2]"%V $pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin)) \n"
    elestr = pt(pmin);
    str ele =" ";
    ele = spat(elestr,",")
@@ -34,7 +34,7 @@
    
   }
   //======================
-  A=-1;
+  A= -1;
 
   
   // if script found
@@ -42,7 +42,7 @@
   // if no @vers line -- then prepend the vers header lines
   
   srcfile = _clarg[1];
-  <<"$srcfile \n"
+  <<[2]"$srcfile \n"
 
   if (srcfile == "") {
   <<[2]"no script file entered\n"
@@ -51,7 +51,7 @@
   
   sz= fexist(srcfile,RW_,0);
   
-  //<<[2]" RW sz $sz \n"
+  <<[2]" RW sz $sz \n"
 
   !!"cp $srcfile ${srcfile}.bak"
 
@@ -82,7 +82,7 @@
   //<<[2]" DIR $dir \n"
   Author = "Mark Terry"
   fname = srcfile
-  release = "CARBON"
+  release = "BORON"
   pmaj = 1;
   pmin = 1;
   
@@ -106,13 +106,13 @@
   //<<[2]" $(nsc(5,\"\\n\"))\n"
 
 
-  release = "";
+ 
 
   A=ofile(srcfile,"r+")
   //T=readfile(A);
  //<<[2]"opened for read/write? $A\n"
   if (A == -1) {
-<<"bad file ?\n"
+<<[2]"bad file ?\n"
    exit()
   }
   //<<"nlines ? $tsz\n"
@@ -122,25 +122,16 @@
 Str comment ="xxx";
 long where;
 
-where.pinfo()
 
 Str T;
 
-T.pinfo()
 
 Str Pad;
 
-
-
 Svar L;
-
-L.pinfo()
-
 
 
   found_vers =0;
-
-
 
   fseek(A,0,0);
 
@@ -153,24 +144,25 @@ Str old_comment ="yyy"
 
     T = readline(A);
    
-<<[2]"$i line is $T \n"
+//<<[2]"$i line is $T \n"
    if (i ==2) {
      old_comment =T;
    }
    where = ftell(A)
      L[0:-1:1] = "";
-L.Split(T);
+     L.Split(T);
    sz = Caz(L);
 
 // <<"sz $(caz(L)) \n"
-<<[2]"$i $sz $where  $L \n"
+//<<[2]"$i $sz $where  $L \n"
    if (sz >2) {
-<<[2]"L1 $L[1]\n"
+//<<[2]"L1 $L[1]\n"
 
     if (scmp(L[1],"@vers")) {
      found_vers =1;
      cvers = L[2];
-     <<[2]"$where $cvers $L[2]\n"
+     <<[2]"VERS $where $cvers $L[2]\n"
+     //q=iread("?")
    }
     else if (scmp(L[1],"@cdate")) {
      cdate = "$L[2:-1:1]";
@@ -205,16 +197,18 @@ L.Split(T);
 }
 
    where = ftell(A);
+
 do_old = 0;
+
 if (do_old) {
-<<"oldc $old_comment\n"
+<<[2]"oldc $old_comment\n"
    L.Split(old_comment);
    sz = Caz(L);
-<<"$sz $L[0]  $L[1] $L[2]\n"
+<<[2]"$sz $L[0]  $L[1] $L[2]\n"
    if (L[1] != "") {
 
     comment = "$L[1::]";
-<<"update comment $L[1] $comment\n"
+<<[2]"update comment $L[1] $comment\n"
    }
 }
 
@@ -224,6 +218,7 @@ if (found_vers) {
 // nele = 7;
 
 <<[2]"found_vers $cvers \n"
+
  }
  else {
  <<[2]" does not have vers number in header\n";
@@ -242,9 +237,9 @@ if (found_vers) {
        pmin =1;
        pmaj++;
    }
-   <<[2]"bumped to $pmaj $pmin\n"
+   <<[2]"bumped to major $pmaj minor $pmin\n"
    if (pmaj > 100) {
- <<" need a new major release current \n"
+ <<[2]" need a new major release current \n"
    exit();
    }
  }
@@ -255,11 +250,13 @@ if (found_vers) {
   min_name = ptname(pmin);
 
 
+   avers = getversion();
 
- <<[2]"///  @vers $release ${pmaj}.$pmin ${maj_ele}.$min_ele $min_name    \n"
+<<[2]"getversion  $avers\n"
 
+ <<[2]"///  @vers $release ${pmaj}.$pmin ${maj_ele}.$min_ele $min_name $avers   \n"
 
-   vers=" @vers ${pmaj}.$pmin $min_ele $min_name $(getversion())"
+   vers=" @vers ${pmaj}.$pmin $min_ele  $avers "
    vlen = slen(vers);
 
 
@@ -295,7 +292,5 @@ if (found_vers) {
 cf(A);
 
 
-// used for asl bump version -- no interaction!
-
-exit()
+exit(0)
 

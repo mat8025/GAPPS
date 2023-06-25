@@ -30,6 +30,9 @@ int main( int argc, char *argv[] ) { // main start
   ignoreErrors();
 
   Table_init();
+
+  Svar R;
+  
   sv = "this is a string"
 
 <<"%V $sv \n"

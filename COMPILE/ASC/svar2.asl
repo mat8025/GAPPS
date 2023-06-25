@@ -22,6 +22,7 @@
 
 int main( int argc, char *argv[] ) { // main start
 ///
+  Table_init();
 #endif               
  
                
@@ -29,11 +30,17 @@ int main( int argc, char *argv[] ) { // main start
 
   ignoreErrors();
 
-  Table_init();
+
+
+  Svar R;
+
   sv = "this is a string"
 
 <<"%V $sv \n"
 
+  Svar Sv;
+
+   // BUG not adding \n
 
   Sv = split ("This is an svar array of strings")
 
@@ -43,17 +50,18 @@ int main( int argc, char *argv[] ) { // main start
   S= functions() ;
                
 
- <<"%(1, , ,\n)$S[0:50:5]\n"
- sr=iread("sort op ");
+// <<"%(1, , ,\n)$S[0:50:5]\n"
+
  //<<" $S\n"
 
+/*
    F= S[100:200:10];  // range for cpp ?
 
 // does  F= S(100,200,5)  work in asl ?
 
  <<"%(1, , ,\n)$F\n"
 
-  sr=iread("Svar range op ");
+  
 
   G= S(10,100,4);  // range for cpp ?
 
@@ -62,7 +70,7 @@ int main( int argc, char *argv[] ) { // main start
 
  <<"Svar range op (10:100:4)\n"
  <<" $G\n"
- sr=iread("Svar range op (,,) ");
+ //sr=iread("Svar range op (,,) ");
 
  // ==> cprintf("%A\n",&F);
 
@@ -72,7 +80,7 @@ int main( int argc, char *argv[] ) { // main start
 
 //  cprintf("%S\n",S);
                
-              
+*/              
                
     x= 1.5
                
@@ -82,14 +90,12 @@ int main( int argc, char *argv[] ) { // main start
                
          <<"%V $x $p $y \n"
 
-
-
  // S.pinfo()   // pinfo for svar - rather than Siv pinfo
-
+/*
  F= search(S," atan (");
  <<"%(1, , ,\n)$F\n"
                
-/*               
+               
  F= search(S," sin (");
  <<"%(1, , ,\n)$F\n"
                

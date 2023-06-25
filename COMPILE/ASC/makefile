@@ -19,6 +19,7 @@ LDADD = -L$(gasp_sys)/lib  \
 	-lds_asl \
 	-lsvar_asl \
 	-llist_asl \
+	-lgslists_asl \
 	-ldsp_asl \
 	-lpan_asl \
 	-lgscom_asl \
@@ -54,8 +55,16 @@ navi: navi.asc
 cprintf: cprintf.asc
 	g++ -x c++ -fpermissive  -rdynamic -o cprintf cprintf.asc  -I$(gasp_sys)/include -ldl  $(LDADD)
 
+
+str: str.asc
+	g++ -g -x c++ -fpermissive  -rdynamic -o str str.asc  -I$(gasp_sys)/include -ldl  $(LDADD)
+
 svar: svar.asc
 	g++ -g -x c++ -fpermissive  -rdynamic -o svar svar.asc  -I$(gasp_sys)/include -ldl  $(LDADD)
+
+
+svar2: svar2.asc
+	g++ -g -x c++ -fpermissive  -rdynamic -o svar2 svar2.asc  -I$(gasp_sys)/include -ldl  $(LDADD)
 
 sivvec: sivvec.asc
 	g++ -g -x c++   -fpermissive  -rdynamic -o sivvec sivvec.asc  -I$(gasp_sys)/include -ldl  $(LDADD)

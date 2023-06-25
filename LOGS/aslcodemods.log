@@ -1522,3 +1522,9 @@ dbug.cpp                            1.50  06/17/2023 10:26:11)  added cstep to s
 vmf_l.cpp                           1.83  06/19/2023 10:20:45)  xyz
 vmf_l.cpp                           1.84  06/19/2023 10:21:36)  abc
 gs_lists.cpp                        1.72  06/19/2023 10:23:25)  delete via char match
+list_ops.cpp                        1.3  06/19/2023 14:21:49)  use GS_list methods
+dbug.cpp                            1.51  06/20/2023 12:35:39)  using Lists
+gs_debug.cpp                        1.67  06/20/2023 12:36:28)  using Lists
+prep.cpp                            2.63  06/20/2023 16:02:18)  print colors
+declare_e.cpp                       2.34  06/22/2023 07:56:54)  MDA type
+preprocess.cpp                      1.8  06/24/2023 20:30:03)  include
