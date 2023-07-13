@@ -14,7 +14,7 @@
     s_inc3 = "str created in inc3";
 
 
-<<"DONE inc3 \n"
+
 
 ///
 /// << inc3.asl

@@ -721,6 +721,7 @@ int nevent = 0;
 
  //ans=query(" screen interact proceed?");
 drawScreens();
+
      while (1) {
 
 

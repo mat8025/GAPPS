@@ -28,9 +28,8 @@
 #include "inc3.asl"
 
 
-<<" after nested inc3 \n"
+// after nested inc3 \n"
 
-<<" Done inc2.asl \n"
 
 ///
 /// end  inc2.asl

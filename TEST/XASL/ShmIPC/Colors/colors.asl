@@ -287,7 +287,7 @@ bctx=0.4;
    sWo(_WOID,bwo,_WBHUE,b_index,_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f Blue $bluev ",0.1,0.21,_WCLIPBORDER,RED_);
 
 
-   if (Ev_woid == nxtcolwo) {
+   if (_GEV_woid == nxtcolwo) {
 <<"just next $cindex \n"
     cindex++
     rgb = getRGB(cindex)
@@ -387,7 +387,7 @@ bctx=0.4;
      
      sWo(_WOID,awo[2],_WTEXTR,Textr("%6.2f Green $greenv Blue $bluev  ",0.1,0.21, WHITE_),_WCLIPBORDER,RED_);     
 
-   if (Ev_woid == qwo) {
+   if (_GEV_woid == qwo) {
        break
    }
   }

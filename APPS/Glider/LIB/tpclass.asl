@@ -43,6 +43,7 @@ class Tleg
   float dist;
   float pc;
   float tfga;
+  //  msl is part of class should not clash with global msl
   float msl;
 
   Str Tow;

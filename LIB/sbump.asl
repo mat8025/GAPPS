@@ -10,7 +10,7 @@
  *  @Copyright © RootMeanSquare 2022 -->                               
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                  
+//----------------<v_&_v>-------------------------//;                  
 
 
                     
@@ -122,7 +122,6 @@ Str cvers ="0.0";
 
  <<[2]"error $srcfile is DIR! \n"
 }
-
 
 
   author = "Mark Terry"
@@ -275,20 +274,26 @@ L.pinfo()
  
   where = ftell(A);
 
-<<[2]" end of current header is $where \n";
+<<" end of current header is $where \n";
 
 B=ofw("body");
 
+int kl = 1;
   while (1) {
          T = readline(A);
-	 <<[B]"$T";
-	 if (feof(A))
-	 break;
+
+         <<[B]"$T";
+	 <<"$T"
+//ans=query("? $kl  ")	 
+	 if (feof(A)) {
+	     break;
+	 }
+	 kl++;
   }
 
   cf(B);
   
-
+<<"wrote $kl lines to body\n"
 
 
  if (found_vers) {
@@ -371,7 +376,6 @@ Str hl="xxx";
    padHdr(" *  @Copyright © RootMeanSquare $(date(8)) -->");           
    <<[A]" * \n"
    <<[A]" */ \n"
-   padHdr(";//----------------<v_&_v>-------------------------//;") ;
    <<[A]"\n";
      here = ftell(A);
 <<[2]"%V $where $here  \n"

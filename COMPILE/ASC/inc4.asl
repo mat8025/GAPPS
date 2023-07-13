@@ -24,10 +24,6 @@
  s_inc4 = "str created in inc4"
  
 
-
-
-
-
 ///
 /// end  inc4.asl
 ///

@@ -1,16 +1,18 @@
 /* 
- *  @script pline.asl 
+ *  @script pline.asl                                                   
  * 
- *  @comment test graph 
- *  @release CARBON 
- *  @vers 1.2 He Helium [asl 6.4.8 C-Be-O]                                  
- *  @date 04/13/2022 08:55:07 
- *  @cdate 04/13/2022 08:55:07 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare 2022
+ *  @comment test graph                                                 
+ *  @release Beryllium                                                  
+ *  @vers 1.6 C Carbon [asl ]                                           
+ *  @date 07/12/2023 13:46:21                                           
+ *  @cdate 04/13/2022 08:55:07                                          
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare  -->                                   
  * 
  */ 
-;//-----------------<v_&_v>------------------------//
+
+//----------------<v_&_v>-------------------------//                    
+
 
 
   Str Use_= " Demo  of test graph ";
@@ -30,17 +32,29 @@
   chkIn(_dblevel);
 
   chkT(1);
-/// 
-#include "graphic"
-#include "hv.asl"
+///
+
+#define ASL 1
+
+Graphic = checkGWM()
+
+  if (!Graphic) {
+    Xgm_pid = spawnGWM()
+<<"xgs pid ? $Xgm_pid \n"
+  }
+
+
+//#include "graphic"
+//#include "hv.asl"
 #include "gevent"
 //pi = 4.0 * atan(1.0)
 // PLINE DEMO 
 /////////////////////////////  SCREEN --- WOB ////////////////////////////////////////////////////////////
 
-  vp = cWi("title","XYPLOT",_resize,0.05,0.01,0.99,0.95,0);
+  vp = cWi("XYPLOT")
+  
 
-  sWi(vp,_pixmapff,_drawon,_save,_bhue,WHITE_);
+  sWi(_WOID,vp,_Wdraw,ON_,_Wsave,ON_,_Wbhue,WHITE_,_WRESIZE,wbox(0.05,0.01,0.99,0.5,0));
 
   cx = 0.1;
 
@@ -50,37 +64,53 @@
 
   cY = 0.95;
 
-  gwo=cWo(vp,"GRAPH",_resize,0.15,0.1,0.95,0.95,_name,"LP",_color,"white");
+  gwo=cWo(vp,WO_GRAPH_)
 
-  sWo(gwo,_wclip,cx,cy,cX,cY,_wflush);
+  sWo(_WOID,gwo,_WRESIZE,wbox(0.15,0.1,0.95,0.95),_Wname,"LP",_Wcolor,WHITE_);
 
-  sWo(gwo,_wscales,0,-1.2,4,1.2, _save,_drawon,_pixmapoff,_wflush);
+  sWo(_WOID,gwo,_Wclip,wbox(cx,cy,cX,cY));
 
-  sWo(gwo,_wrhtscales,-4,-2.2,4,2.2);
+  sWo(_WOID,gwo,_Wscales,wbox(0,0,1,1), _Wsave,ON_,_Wdraw,ON_);
 
-  titleButtonsQRD(vp);
+  //sWo(_WOID,gwo,_Wrhtscales,wbox(-4,-2.2,4,2.2));
+
+  //titleButtonsQRD(vp);
+  
 ////////////////////////////// PLINE ////////////////////////////////////////
 
   void Pline()
   {
 
-  sWo(gwo,_wusescales,0,_whue,RED_,_wline,0,0,1,1,GREEN_,_WEO);
 
-  sWo(gwo,_whue,"red",_wline,0.2,0,1,0.9,ORANGE_,_WEO);
 
-  sWo(gwo,_wclipborder,BLACK_,_wline,0,1,1,0,BLUE_,_WEO);
+  sWo(_WOID,gwo,_WUSESCALES,0,_WHUE,RED_,_WLINE,0,0,1,1,GREEN_,_WREDRAW,ON_);
 
-  plot(gwo,_wline,0,0.5,1,0.5,BLUE_,_WEO);
+  sWo(_WOID,gwo,_WHUE,RED_,_WLINE,wbox(0.2,0.5,1,0.9,ORANGE_));
 
-  plot(gwo,_wsymbol,0.5,0.5,"star5",_WEO);
+  sWo(_WOID,gwo,_WCLIPBORDER,BLACK_,_WLINE,wbox(0.2,0.2,0.4,0.4,GREEN_));
 
-  plot(gwo,_wcircle,0.5,0.5,0.5,GREEN_,_WEO);
+  sWo(_WOID,gwo,_WCLIPBORDER,BLACK_,_WBOX,wbox(0.31,0.2,0.5,0.4,BLUE_));
 
-  plot(gwo,_wbox,0.5,0.5,0.7,0.7,BLACK_,_WEO);
+  //plot(gwo,"line",0,0.5,1,0.7,BLUE_);
+  plotLine(gwo,0.2,0.5,0.9,0.7,RED_);
+
+  plotLine(gwo,0,0.5,1,0.7,YELLOW_);
+
+//  plot(gwo,"box",0.2,0.2,0.4,0.5,YELLOW_,0); // PS crash
+
+  //plotCircle(gwo,0.5,0.5,0.1,YELLOW_,0); // PS crash
+
+ // plot(gwo,"circle",0.5,0.5,0.2,BLUE_);
+
+ // plot(gwo,_wsymbol,0.5,0.5,"star5");
+
+ // plot(gwo,_wcircle,0.5,0.5,0.5,GREEN_);
+
+  //plot(gwo,"line",0.5,0.5,0.7,0.7,BLACK_);
   //plotgw(vp,_symbol,0.5,0.5,"triangle",_WEO);
-  //sWo(gwo,_showpixmap,_WEO);
+  //sWo(_WOID,gwo,_showpixmap,_WEO);
 
-  sWo(gwo,_usescales,1,_clipborder,BLUE_,_border,BLACK_,_WEO);
+  sWo(_WOID,gwo,_WUSESCALES,1,_WCLIPBORDER,BLUE_,_WBORDER,BLACK_);
 
   x = 0.2;
 
@@ -101,7 +131,7 @@
   last_y = y
   }
 */
-//  sWo(gwo,_showpixmap)
+//  sWo(_WOID,gwo,_showpixmap)
 
 
   axnum(gwo,1);
@@ -113,7 +143,7 @@
   axnum(gwo,4);
 
 
-//  sWo(gwo,_gridhue,BLUE_)
+//  sWo(_WOID,gwo,_gridhue,BLUE_)
 //  grid(gwo)
 
   }
@@ -123,7 +153,7 @@
 
   do_laser = 1;
 
-  ans=query("replot to postscript?","n");
+  ans=query("replot to postscript?","y");
 
   if (ans != "y") {
 
@@ -136,7 +166,7 @@
 
   OpenLaser("pline.ps",1) ; //landscape 1 0 portrait;
 
-  ScrLaser(vp);
+  ScreenToLaser(vp);
 // ScrLaser(gwo)  //  not required the window scrlaser operates on all wobs
 
   Pline();

@@ -20,11 +20,11 @@
 //#include "debug"
 //  debugON();
 
-ignoreErrors();
+  ignoreErrors();
 
- filterFileDebug(REJECT_,"pr_state.cpp","declare_e.cpp","scopesindex_e.cpp","scope_e");
+// filterFileDebug(REJECT_,"pr_state.cpp","declare_e.cpp","scopesindex_e.cpp","scope_e");
 
- filterFuncDebug(REJECT_,"checkScopeSiv","si_declare_type", "checkExpression","writeASC");
+// filterFuncDebug(REJECT_,"checkScopeSiv","si_declare_type", "checkExpression","writeASC");
 
 
 
@@ -34,16 +34,16 @@ class Tleg
  public:
 
   
-  int tpA;
-  int tpB;
+  int tpA
+  int tpB
   
-  float dist;
-  float pc;
-  float tfga;
-  float msl;
+  float dist
+  float pc
+  float tfga
+  float msl
 
-  Str Tow;
-  Str Tplace;
+  Str Tow
+  Str Tplace
 
 
  Str GetPlace ()   
@@ -273,13 +273,13 @@ Str val2;
 //  preprocess not releasing proc arg - error var arlready declared! 
 void SetPlace (Str pval)   
    {
-      pval.pinfo()
+      //pval.pinfo()
        Place = pval;
        splace = pval; // bug no indent
        splace.pinfo();
       // val2.pinfo(); // CMF should produce non-fatal error FIX
        val3.pinfo();   // CMF should produce non-fatal error FIX
-       pval.info();
+       //pval.info();
        
    }
 //=========================//
@@ -327,7 +327,7 @@ void SetAlt (float pval)
    }
 //=========================//
 
-cmf  Turnpt()
+  Turnpt()
  {
 
 
@@ -392,7 +392,7 @@ cmf  Turnpt()
   
 //===========================//
 
-  setDebug(1,"step","trace","pdb",0)
+//  setDebug(1,"step","trace","pdb",0)
 
 <<" Stepping? \n"
 
@@ -413,7 +413,7 @@ cmf  Turnpt()
 
  //val2.pinfo();
 
-// wp = T.GetPlace();
+// wp = T.GetPlace(); // does not autocreate Str - using store cmf table for Tleg
   wp = T.GetPlace();
 
 <<"%V $wp \n";
@@ -462,7 +462,9 @@ Str the_finish = "boulder";
 
 
   i=searchFile(AFH,the_start,0,1,0,0);
+  
   seekLine(AFH,CURRENTLINE_)
+  
 <<" %V $the_start $i\n"
   nwr = Wval.readWords(AFH,0,',');
 <<"$nwr  $Wval \n"
@@ -485,7 +487,9 @@ GT_Wtp[1].TPCUPset(Wval);
 
  nwr = Wval.readWords(AFH,0,',');
 <<"$nwr  $Wval \n"
+
 <<"  $Wval[1]  :  $Wval[3] \n"
+
 GT_Wtp[2].TPCUPset(Wval);
 
 
