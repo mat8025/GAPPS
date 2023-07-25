@@ -10,7 +10,7 @@
  *  @Copyright © RootMeanSquare 2022 -->                               
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                  
+//----------------<v_&_v>-------------------------//;                  
 
 ///
 ///
@@ -20,7 +20,7 @@
 
 
 if (_dblevel >0) {
-   debugON()
+  debugON()
 }
 
 
@@ -58,8 +58,9 @@ Str zoo(int m)
 {
 static int znt = 0;
 znt++;
-<<"IN zoo $_proc $znt $m\n"
 
+<<"IN zoo $_proc  $m\n"
+<<"$znt \n"
   zoo_call++;
 
 if (znt > 10) {
@@ -103,6 +104,7 @@ Str roo(int m)
 {
 static int znt = 0;
 znt++;
+
 <<"IN $_proc $znt\n"
 roo_call++;
   return "$_proc"
@@ -113,11 +115,39 @@ roo_call++;
 
 //include "iproc_libs.asl"
 
+float rf = 3.45;
 
 
-   goo(80);
+  frs="xx";
 
-<<" after direct call of goo $goo_call\n"
+
+<<"%V $frs  $rf\n" ;   
+
+ chkN(rf,3.45)
+
+ rf = sin(0.7) ; // fix broke direct func call ?
+ 
+ chkN(rf,sin(0.7))
+<<"%V $frs  $rf\n" ;   // 
+
+tof = typeof(rf)
+
+<<" %V $tof\n"
+
+<<"$(typeof(rf)) \n" ;   // fix broke indirect func call
+
+<<"%V $(typeof(frs))  $frs\n" ;   // fix broke indirect func call
+
+
+
+
+
+
+
+
+   zoo(80);
+
+<<" after direct call of zoo $zoo_call\n"
 
 
 // = iread("?")
@@ -125,26 +155,38 @@ roo_call++;
 cbname = "goo"
 
 <<"indirect call of $cbname\n"
-  $cbname(5);  
-  <<"after indirect call of $cbname  %v $goo_call\n"
-
-  frs="xx";
-
-chkN(goo_call,2)
 
 
 
 
+frs = $cbname(5);  
+
+<<"after indirect call of $cbname  %V $goo_call $frs\n"
 
 
-cbname = "zoo"
+
+chkN(goo_call,1)
+
+
+
+
+
+
+
+
+  cbname = "zoo"
 
 <<"indirect call of $cbname\n"
-  frs=$cbname(4);  
-  <<"%V $(typeof(frs))  $frs\n"
+  frs =  $cbname(4);
+  
+<<"%V $(typeof(frs))  $frs\n" ;   // fix broke indirect func call
+
+
+
+
 <<"@exit %V $just_once should be 1\n"
 
-chkN(zoo_call,1)
+chkN(zoo_call,2)
 
 chkN (just_once,1)
 
@@ -155,33 +197,77 @@ chkN (just_once,1)
 
    fri = zoo(80);
 
-<<"%V $(typeof(fri))  $fri\n"
+//<<"%V $(typeof(fri))  $fri\n"
 
 
 
-<<"%V $(typeof(frs))  $frs\n"
+//<<"%V $(typeof(frs))  $frs\n"
 
   frs= zoo(2);
 
-<<"%V $(typeof(frs))  $frs\n"
+//<<"%V $(typeof(frs))  $frs\n"
 
-
+Str wp = "xyz"
 
 N = 6;
 kp= 0;
 
-Svar pnames = {"goo","zoo","moo","roo" }
+kp= 7;
+
+for (i=0; i< 3; i++) {
+
+<<"$i before DIRECT call of zoo $zoo_call\n"
+      wp= zoo(kp);
+      kp++;
+
+<<"$kp after DIRECT call of $wp  zoo $zoo_call\n"
+
+}
+
+
+Svar pnames = {"moo","zoo","roo","goo", "" }
 
 <<"%V $pnames \n"
 
 <<"%V $pnames[1] \n"
 
+<<"trying asl callproc zoo 7\n"
+
+    wp =  runproc("zoo",7)
+<<"done asl callproc zoo  $wp  $zoo_call\n"
+
+    wp =  runproc("moo",kp)
+<<"done asl callproc moo  $wp  $moo_call\n"
+
+ans=query("called moo?");
+
+
+for (i=0; i< 3; i++) {
+
+   wp =  runproc("roo",kp)
+<<"done asl callproc roo  $wp  $roo_call\n"
+   ans=query("called roo?");
+}
+
+<<" test that WIC is now on again \n"
+
+for (i=0; i< 4; i++) {
+   kp++;
+<<" %V $i $kp\n"
+}
+
+ wp =  runproc("hoo",kp)
+
+ wp =  runproc("goo",kp)
+chkOut()
+
+exit(-1)
 
 
 
 for (i=0; i< 4; i++) {
        cbname = pnames[i]
-<<"trying indirect call of $cbname\n"
+<<"trying indirect call of $cbname  $i\n"
        wp= $cbname(i);
 <<"$kp done indirect call of $wp %V $goo_call $zoo_call $moo_call\n"
 
@@ -193,8 +279,7 @@ for (i=0; i< 4; i++) {
 
 
 
-kp= 0;
-svar pnames2 = {"goo","hoo","zoo","moo" }
+svar pnames2 = {"moo","hoo","zoo","goo" }
 
 for (i=0; i< 4; i++) {
        cbname = pnames2[i]

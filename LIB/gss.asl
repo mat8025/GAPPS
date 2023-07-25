@@ -36,15 +36,118 @@ int Ncols = 10;
 
 str cvalue ="xx";
 
+void SORT()
+{
+
+  static int sortdir = 1;
+  sortcol = swapcol_a;
+  startrow = 1;
+  alphasort = 0; // 0 auto alpha or number 1 alpha   2 number
+  <<"Sorting rows using col $sortcol start @ $startrow\n"
+  
+  sortRows(R,sortcol,alphasort,sortdir,startrow)
+  sortdir *= -1;
+
+     sWo(_WOID,cellwo,_Wcellval,R);
+     sWo(_WOID,cellwo,_Wredraw,ON_);
+}
+//======================
+void PGDWN()
+{
+   /// need to unselect all
+   <<"in PGDWN() $_proc \n"
+
+
+  Npgs =   rows/Page_rows;
+
+  if ((Npgs * Page_rows) < rows) {
+       Npgs++;
+  }
+
+  if (Curr_row < 0) {
+      Curr_row = 0;
+  }
+  
+<<"%V$cellwo $Curr_row $Page_rows $rows $cols $Npgs\n"
+
+  if ((Curr_row + Page_rows) >= (rows-1)) {
+        Curr_row = (rows - Page_rows -1);
+   }
+
+
+  sWo(_WOID,cellwo,_Wselectrows,Curr_row,Curr_row+Page_rows,0);
+
+
+   Curr_row += Page_rows/2;
+   // need to select
+
+  if ((Curr_row + Page_rows) >= (rows-1)) {
+        Curr_row = (rows - Page_rows -1);
+   }
+
+<<"%V$Curr_row $Page_rows $rows \n"
+    if (Curr_row < 0) {
+        Curr_row = 0;
+    }
+    
+   sWo(_WOID,cellwo,_Wselectrows,0,0,1);
+   sWo(_WOID,cellwo,_Wselectrows,Curr_row,Curr_row+Page_rows,1);
+
+  // setRowColSizes();
+   
+   paintRows();
+   Curr_page++;
+   
+   if (Curr_page > Npgs) {
+     Curr_page = Npgs;
+   }
+   
+   sWo(_WOID,pgnwo,_Wvalue,Curr_page,_Wupdate,ON_);
+     
+   sWo(_WOID,cellwo,_Wredraw,ON_);
+   
+}
+//====================
+
+void READ()
+{
+
+<<"reading $fname\n"
+
+//ans=query("READ $fname ?");
+
+       // isok =sWo(cellwo,_Wsheetread,fname,2)
+            A= ofr(fname)
+
+            R= readRecord(A,_del,Delc) ; // tag?
+	    
+           cf(A)
+           sz = Caz(R);
+<<"num of records $sz\n"
+<<"num of records $sz\n"
+//      do display update elsewhere
+//     sWo(cellwo,_Wcellval,R);
+//	  sWo(cellwo,_Wredraw,ON_);
+
+}
+//======================
+
 //////////////////////   these records needed and used for any GSS /////////////////////
 
 Record R[>15];
+
+// need CPP version cons  Record R(15,+)   ??
+
+
+   R.pinfo();
 
 Rn = 5;
 
 Record DF[>3];
 
-proc getCellValue(int r, int c)
+   DF.pinfo();
+
+void getCellValue(int r, int c)
 {
  
      if (r >0 && c >= 0 ) {
@@ -55,14 +158,14 @@ proc getCellValue(int r, int c)
              ADDTASK()
            }
            newcvalue = queryw("NewValue","xxx",cvalue,_ex,_ey);
-           sWo(cellwo,@cellval,r,c,newcvalue);
+           sWo(_WOID,cellwo,_Wcellval,r,c,newcvalue);
            R[r][c] = newcvalue;
      }
 }
 //=====================
 
 GMTvalue = "0:00";
-proc getLastGMTValue(int r, int c)
+void getLastGMTValue(int r, int c)
 {
  
      if (r >0 && c >= 0 ) {
@@ -70,73 +173,73 @@ proc getLastGMTValue(int r, int c)
            cvalue = GMTvalue;
 // <<" %V $cvalue \n";
            newcvalue = queryw("NewValue","GMT? ",cvalue,_ex,_ey);
-           sWo(cellwo,@cellval,r,c,newcvalue);
+           sWo(_WOID,cellwo,_Wcellval,r,c,newcvalue);
            R[r][c] = newcvalue;
 	   GMTvalue = newcvalue;
      }
 }
 //=====================
 
-proc setPriority(int wr,int wc)
+void setPriority(int wr,int wc)
 {
    Mans = popamenu("Priority.m")
 	
         if (!(Mans @= "NULL_CHOICE")) {
-           sWo(cellwo,@cellval,wr,wc,Mans);
+           sWo(_WOID,cellwo,_Wcellval,wr,wc,Mans);
            R[wr][wc] = Mans;
         }
 }
 //===============================//
-proc setUpdate(int wr,int wc)
+void setUpdate(int wr,int wc)
 {
    
 	 Mans = date(2);
-           sWo(cellwo,@cellval,wr,wc,Mans);
+           sWo(_WOID,cellwo,_Wcellval,wr,wc,Mans);
            R[wr][wc] = Mans;
         
 }
 //===============================//
 
 
-proc setDifficulty(int wr,int wc)
+void setDifficulty(int wr,int wc)
 {
    Mans = popamenu("Difficulty.m")
 	
         if (!(Mans @= "NULL_CHOICE")) {
-           sWo(cellwo,@cellval,wr,wc,Mans);
+           sWo(_WOID,cellwo,_Wcellval,wr,wc,Mans);
            R[wr][wc] = Mans;
         }
 }
 //===============================//
-proc HowLong(int wr,int wc)
+void HowLong(int wr,int wc)
 {
  <<"gss $_proc\n" 
    lMans = popamenu("Howlong.m")
 	
         if (!(lMans @= "NULL_CHOICE")) {
 	<<"%V $wr $wc\n"
-           sWo(cellwo,@cellval,wr,wc,lMans);
+           sWo(_WOID,cellwo,_Wcellval,wr,wc,lMans);
            R[wr][wc] = lMans;
         }
 }
 //===============================//
 
-proc pickTaskCol (int wcol)
+void pickTaskCol (int wcol)
 {	       
-         sWo(cellwo,@cellbhue,0,swapcol_a,0,cols,YELLOW_);         	 	 
+         sWo(_WOID,cellwo,_Wcellbhue,0,swapcol_a,0,cols,YELLOW_);         	 	 
 
          swapcol_b = swapcol_a;
          swapcol_a = wcol;
 	 wcol->info(1);
 	 swapcol_a->info(1);
 <<[_DB]"%V $wcol $swapcol_a $swapcol_b\n";
-         sWo(cellwo,@cellbhue,0,swapcol_a,CYAN_);         	 
+         sWo(_WOID,cellwo,_Wcellbhue,0,swapcol_a,CYAN_);         	 
 
 }
 //===========================================//
 
 
-proc SAVE()
+void SAVE()
 {
 <<"IN $_proc saving sheet %V $fname  $Ncols \n";
 	 
@@ -148,7 +251,7 @@ proc SAVE()
 <<"<$i> $val $R[i]\n"
             }
 
-            nrw=writeRecord(B,R,@del,Delc,@ncols,Ncols);
+            nrw=writeRecord(B,R,_Rdel,Delc,@ncols,Ncols);
 <<[_DB]"%V $B $nrw  $Ncols \n"
             cf(B);
 	    }
@@ -157,60 +260,29 @@ proc SAVE()
 }
 //======================
 
-proc READ()
-{
-<<[_DB]"reading $fname\n"
-       // isok =sWo(cellwo,@sheetread,fname,2)
-            A= ofr(fname)
-            R= readRecord(A,@del,Delc)
-           cf(A)
-           sz = Caz(R);
-<<"num of records $sz\n"
-<<[_DB]"num of records $sz\n"
-//      do display update elsewhere
-//     sWo(cellwo,@cellval,R);
-//	  sWo(cellwo,@redraw);
 
-           return 
-}
-//======================
-proc SORT()
-{
 
-  static int sortdir = 1;
-  sortcol = swapcol_a;
-  startrow = 1;
-  alphasort = 0; // 0 auto alpha or number 1 alpha   2 number
-
-  
-  sortRows(R,sortcol,alphasort,sortdir,startrow)
-  sortdir *= -1;
-
-     sWo(cellwo,@cellval,R);
-     sWo(cellwo,@redraw);
-}
-//======================
-proc SWOPROWS()
+void SWOPROWS()
 {
 
 //<<[_DB]"in $_proc\n"
 <<[_DB]"swap rows $swaprow_a and $swaprow_b\n"
-         //sWo(cellwo,@swaprows,swaprow_a,swaprow_b);
+         //sWo(_WOID,cellwo,@swaprows,swaprow_a,swaprow_b);
 //	SwapRows(R,swaprow_a,swaprow_b);
 	R->SwapRows(swaprow_a,swaprow_b);	  // code vmf
-        sWo(cellwo,@cellval,R);
-	sWo(cellwo,@redraw);
+        sWo(_WOID,cellwo,_Wcellval,R);
+	sWo(_WOID,cellwo,_Wredraw,ON_);
 	return ;
 }
 //======================
 
-proc SWOPCOLS()
+void SWOPCOLS()
 {     
 <<[_DB]"swap cols $swapcol_a and $swapcol_b\n"
-       //  sWo(cellwo,@swapcols,swapcol_a,swapcol_b);
+       //  sWo(_WOID,cellwo,@swapcols,swapcol_a,swapcol_b);
 	SwapCols(R,swapcol_a,swapcol_b);
-        sWo(cellwo,@cellval,R);
-	sWo(cellwo,@redraw);
+        sWo(_WOID,cellwo,_Wcellval,R);
+	sWo(_WOID,cellwo,_Wredraw,ON_);
 	    return ;
 }
 //======================
@@ -218,7 +290,7 @@ proc SWOPCOLS()
 
 int drows[10];
 
-proc DELROWS()
+void DELROWS()
 {
 <<[_DB]"in $_proc\n"
 //int drows[]; // TBF
@@ -263,16 +335,16 @@ int n2d = 0;
         }
    
 
-        sWo(cellwo,@cellval,nsz,0,sz,cols,"");
-        sWo(cellwo,@cellval,R);
-	sWo(cellwo,@redraw);
+        sWo(_WOID,cellwo,_Wcellval,nsz,0,sz,cols,"");
+        sWo(_WOID,cellwo,_Wcellval,R);
+	sWo(_WOID,cellwo,_Wredraw,ON_);
 	}
      }
      	    return ;
 }
 //======================
 
-proc DELCOL(int wc)
+void DELCOL(int wc)
 {
 <<" $_proc $wc\n"
 
@@ -280,7 +352,7 @@ proc DELCOL(int wc)
 }
 //======================
 
-proc AddTask(int  wt)
+void AddTask(int  wt)
 {
 ///
 /// wt is the index to DF list of tasks
@@ -305,7 +377,7 @@ proc AddTask(int  wt)
     for (i=1; i < Nrows; i++) {
      wval = R[i][0];
      <<"empty? $i <$wval>\n"
-     if (wval @= "") {
+     if (wval == "") {
         er = i;
 	break;
      }
@@ -326,7 +398,7 @@ proc AddTask(int  wt)
     
     <<"%V selectrows $Curr_row $Page_rows $cols $Rn\n"
 
-    sWo(cellwo,@selectrows,Curr_row,Curr_row+Page_rows,0);
+    sWo(_WOID,cellwo,_Wselectrows,Curr_row,Curr_row+Page_rows,0);
   
     Curr_row = rows- Page_rows +1;
     if (Curr_row < 0) {
@@ -353,14 +425,14 @@ proc AddTask(int  wt)
     // 1...nt  will be favorite/maintenance tasks
     // has to be written over to display version
 
-    sWo(cellwo,@cellval,R);
+    sWo(_WOID,cellwo,_Wcellval,R);
     // increase rows/colls
 
-    sWo(cellwo,@selectrows,Curr_row,rows-1,1);
+    sWo(_WOID,cellwo,_Wselectrows,tuple(Curr_row,rows-1,1,ON_));
     
     paintRows();
     
-    sWo(cellwo,@redraw);
+    sWo(_WOID,cellwo,_Wredraw,ON_);
 
     sz = Caz(R);
 
@@ -368,7 +440,7 @@ proc AddTask(int  wt)
 }
 //===============================//
 
-proc ADDROW()
+void ADDROW()
 {
 <<[_DB]" ADDROW $_proc\n"
 /// should go to last page
@@ -379,74 +451,19 @@ proc ADDROW()
 //====================================
 
 
-proc PGDWN()
-{
-   /// need to unselect all
 
-
-  Npgs =   rows/Page_rows;
-
-  if ((Npgs * Page_rows) < rows) {
-       Npgs++;
-  }
-
-  if (Curr_row < 0) {
-      Curr_row = 0;
-  }
-  
-<<"%V$cellwo $Curr_row $Page_rows $rows $cols $Npgs\n"
-
-  if ((Curr_row + Page_rows) >= (rows-1)) {
-        Curr_row = (rows - Page_rows -1);
-   }
-
-
-  sWo(cellwo,@selectrows,Curr_row,Curr_row+Page_rows,0);
-
-
-   Curr_row += Page_rows/2;
-   // need to select
-
-  if ((Curr_row + Page_rows) >= (rows-1)) {
-        Curr_row = (rows - Page_rows -1);
-   }
-
-<<"%V$Curr_row $Page_rows $rows \n"
-    if (Curr_row < 0) {
-        Curr_row = 0;
-    }
-    
-   sWo(cellwo,@selectrows,0,0,1);
-   sWo(cellwo,@selectrows,Curr_row,Curr_row+Page_rows,1);
-
-  // setRowColSizes();
-   
-   paintRows();
-   Curr_page++;
-   
-   if (Curr_page > Npgs) {
-     Curr_page = Npgs;
-   }
-   
-   sWo(pgnwo,@value,Curr_page,@update);
-     
-   sWo(cellwo,@redraw);
-   
-}
-//====================
-
-proc PGUP()
+void PGUP()
 {
 /// rework for fixed pages -- of size?
 
    Npgs =   rows/Page_rows;
    <<"%V $cellwo  $Npgs $rows $cols $Page_rows $Curr_row \n"
 
-   //setdebug(1,@trace);
+   //setdebug(1,_Wtrace);
    if (current_row <0) {
        current_rwo = 0;
    }
-   sWo(cellwo,@selectrows,Curr_row,Curr_row+Page_rows,0);
+   sWo(_WOID,cellwo,_Wselectrows,tuple(Curr_row,Curr_row+Page_rows,0));
 
    Curr_row -= Page_rows/2;
 
@@ -454,21 +471,21 @@ proc PGUP()
        Curr_row = 0;
    }
    
-   sWo(cellwo,@selectrows,0,0,,1);
-   sWo(cellwo,@selectrows,Curr_row,Curr_row+Page_rows,1);
+   sWo(_WOID,cellwo,_Wselectrows,0,0,1);
+   sWo(_WOID,cellwo,_Wselectrows,tuple(Curr_row,Curr_row+Page_rows,1));
   // setRowColSizes();
    paintRows();
-  sWo(cellwo,@redraw);
+  sWo(_WOID,cellwo,_Wredraw,ON_);
   Curr_page--;
   if (Curr_page <1) {
       Curr_page =1;
   }
-  sWo(pgnwo,@value,Curr_page,@update);
+  sWo(_WOID,pgnwo,_Wvalue,Curr_page,_Wupdate);
   return ;
 }
 //====================
 
-proc clearTags()
+void clearTags()
 {
 <<[_DB]" $_proc\n"
 //    R[::][7] = ""; // TBF
@@ -480,14 +497,14 @@ proc clearTags()
       R[i][tags_col] = " ";
    }
    
-   //writeRecord(1,R,@del,Delc);
-   sWo(cellwo,@cellval,R);
-   sWo(cellwo,@redraw);
+   //writeRecord(1,R,_Wdel,Delc);
+   sWo(_WOID,cellwo,_Wcellval,R);
+   sWo(_WOID,cellwo,_Wredraw,ON_);
    }
    return ;
 }
 //============================
-proc lastPGN ()
+void lastPGN ()
 {
 
   Npgs =   rows/Page_rows;
@@ -496,14 +513,14 @@ proc lastPGN ()
 }
 //============================
 
-proc scrollPGN (int pn)
+void scrollPGN (int pn)
 {
 
     if (Curr_row < 0) {
         Curr_row = 0;
     }
 
-  sWo(cellwo,@selectrows,Curr_row,Curr_row+Page_rows,0); // unset current
+  sWo(_WOID,cellwo,_Wselectrows,tuple(Curr_row,Curr_row+Page_rows,0)); // unset current
 
   Npgs =   rows/Page_rows;
 
@@ -527,16 +544,18 @@ proc scrollPGN (int pn)
 
 <<[_DB]"%V$Curr_row $Page_rows $rows \n"
 
-   sWo(cellwo,@selectrows,0,2,0,1);
-   sWo(cellwo,@selectrows,Curr_row,Curr_row+Page_rows,1);
+   //sWo(_WOID,cellwo,_Wselectrows,0,2,0,1);
+   
+   sWo(_WOID,cellwo,_Wselectrows,tuple(Curr_row,Curr_row+Page_rows,1));
+   
    paintRows();
    Curr_page = wpg;
-   sWo(cellwo,@redraw);
-   sWo(pgnwo,@value,wpg,@update);
+   sWo(_WOID,cellwo,_Wredraw,ON_);
+   sWo(_WOID,pgnwo,_Wvalue,wpg,_Wupdate,ON_);
 
 }
 //=======================================================
-proc PGN()
+void PGN()
 {
    // need to unselect all
 
@@ -566,7 +585,7 @@ proc PGN()
 }
 //====================
 
-proc paintRows()
+void paintRows()
 {
 
     endprow = Curr_row + Page_rows 
@@ -579,8 +598,8 @@ proc paintRows()
     // do a row at a time
     
   <<"%V $rows $cols $Curr_row $endprow \n"
-//      sWo(cellwo,@cellbhue,Curr_row,ALL_,LILAC_);
-//      sWo(cellwo,@cellbhue,Curr_row+1,ALL_,LILAC_);
+//      sWo(_WOID,cellwo,_Wcellbhue,Curr_row,ALL_,LILAC_);
+//      sWo(_WOID,cellwo,_Wcellbhue,Curr_row+1,ALL_,LILAC_);
     
 //int i;
 
@@ -591,18 +610,20 @@ proc paintRows()
    for (i = Curr_row; i < endprow ; i++) {
    //<<[_DB]"<$i> $(typeof(i))\n"
 	  if ((i%2)) {
-	       sWo(cellwo,@cellbhue,i,ALL_,CYAN_);
+	       //sWo(_WOID,cellwo,_Wcellbhue, tuple(i,ALL_,CYAN_));
+	       	   //    sWo(_WOID,cellwo,_Wresize, tuple(0.12,0.1,0.9,0.95));
+	       sWo(_WOID,cellwo,_Wcellbhue, tuple( i,ALL_,CYAN_));
 	     }
 	  else {
-               sWo(cellwo,@cellbhue,i,ALL_,LILAC_);
+               sWo(_WOID,cellwo,_Wcellbhue,i,ALL_,LILAC_);
           }
    }
 
-  sWo(cellwo,@cellbhue,endprow,ALL_,YELLOW_);
+  sWo(_WOID,cellwo,_Wcellbhue,tuple(endprow,ALL_,YELLOW_));
 
 }
 //=============================
-proc gotoLastPage()
+void gotoLastPage()
 {
 
  int jj = 0;
@@ -633,7 +654,7 @@ proc gotoLastPage()
 
 //================================
 
-proc HOO()
+void HOO()
 {
 
 <<[_DB]"IN $_proc record $rows \n"

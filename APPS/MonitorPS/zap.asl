@@ -1,70 +1,123 @@
+/* 
+ *  @script zap.asl 
+ * 
+ *  @comment interactively kills pids 
+ *  @release CARBON 
+ *  @vers 1.4 Be Beryllium [asl ]                                           
+ *  @date 07/13/2023 08:36:17 
+ *  @cdate 07/13/2023 08:36:17 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare 
+ * 
+ */ 
+//-----------------<v_&_v>------------------------//
+
+Str Use_= " Demo  of interactively kills pids ";
+
+
+#include "debug" 
+  if (_dblevel >0) { 
+   debugON() 
+   <<"$Use_ \n" 
+} 
+
+   allowErrors(-1); 
+
+  chkIn(_dblevel)
+
+  chkT(1);
+
+
 
 // interactively kill named programs
 
-setDebug(1,@keep,@filter,0)
+
+
+
 
 zapp= _clarg[1];
+
+allowErrors(-1)
 
 <<"zapping $zapp \n"
 
 yn = "y"
 
+int match[4];
+int smatch[4];
+
   svar A;
   
-A =!!"ps -auwx"
-  
+!!"ps -auwx > pslist"
+
+  A=readFile("pslist")
+
  nl = Caz(A);
 
-<<"$nl processes\n"  
-<<"%(1,,,\n)$A\n"
+<<"$nl processes\n"
+
+//<<"%(1,,,\n)$A\n"
 
 int pid = -1
 
 mypid=getAslPid()
 
-  <<"%V $mypid $_clarg[1]  $_clarg[2] \n"
+  <<"%V $mypid $_clarg[1]  <|$_clarg[2]|> \n"
 
   nl = Caz(A);
 
-//<<"ps $nl lines - which are $zapp ? \n"
+<<"ps $nl lines - which are $zapp ? \n"
   //<<"$A[0] $A[1]\n"
   //<<"%(,,\n,,)$A[0:5] \n"
 
-match = 0;
+  Str pat;
+  match = 0;
 
   for (i = 0; i < nl ; i++) {
 
     C=Split(A[i]);
     lsz = Caz(C);
-    //   <<" ${C[1]} \n"
+//   <<"%(1, , , ,\n) $C \n"
+ //  <<" ${C[10]} \n"   
 
-    spat(C[10],zapp,1,1,&match);
+    pat=spat(C[10],zapp,0,1,match);
+	if (pat != "") {    
+<<"$i  <|$pat|>  $match \n"
+        }
+/*
     smatch = 0;
-      // <<" $lsz ${C[5]} \n"
-      if ( ! (C[5] @= "")) {
+ //     <<" $lsz ${C[5]} \n"
+      if ( ! (C[10] == "")) {
 	//      <<" ${C[*]} \n"
-        spat(C[5],zapp,1,1,&smatch);
+        pat = spat(C[5],zapp,1,1,smatch);
+	if (pat != "") {
+<<"$i  %V <|$pat|>  $smatch \n"
+       }
       }
- if(match || smatch) {
-    pid = C[1];
+*/
+
+ if(match[0] ==1 ) {
+    pid = atoi(C[1]);
     if (pid != mypid) {
-      <<" found process $C[1] id $C[0] \n";
-      <<" %(1, , ,,)${C[::]} \n";
+      <<" found process $zapp $pid $C[1] id $C[0] $C[10]\n";
+      <<"$C \n";
 
       // yn=ttyin(" Kill [n/y]?");
 
-      //yn=iread(" Kill [n/y]?");
+      yn=iread(" Kill $pid [n/y]?");
 
-      //  if (yn @= "y") { // line has \n ?
+       if (yn @= "y") { // line has \n ?
     <<"Killing $pid \n";
-    !!"kill -9 $pid ";
-    // }
+         !!"kill -9 $pid ";
+         !!"rm pslist" ;
+       }
    }
  }
 }
 
 
 
-
-
-exit()
+///
+  chkOut();
+  exit();
+;///--------(^-^)--------///

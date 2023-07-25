@@ -110,7 +110,8 @@ void titleComment(Str& msg)
 
 }
 //============================//
-void titleVers(Str &vers)
+//void titleVers(Str &vers)
+void titleVers(Str vers)
 {
 // Str tit = "$_ele_vers $_ele";
 //Str tit = scriptVers();

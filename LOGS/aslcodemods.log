@@ -1530,3 +1530,9 @@ declare_e.cpp                       2.34  06/22/2023 07:56:54)  MDA type
 preprocess.cpp                      1.8  06/24/2023 20:30:03)  include
 prep.cpp                            2.64  06/26/2023 07:00:41)  Trans check preProcess
 declare_array_e.cpp                 1.8  07/10/2023 07:22:28)  PP
+laser_w.cpp                         1.22    PS_Circle
+wo_mods.cpp                         1.6    move all functions here that modify wob
+wo.h                                1.32    wocp,wosp
+dori_w.cpp                          1.13    GWM_CLOSE
+interact_w.cpp                      1.23    RIGHT_BUTTON modify
+proc_checkfname_e.cpp               2.59  07/24/2023 21:46:22  check for vmf/cmf dot before SF

@@ -1,15 +1,16 @@
-//%*********************************************** 
-//*  @script caz.asl 
-//* 
-//*  @comment test Caz func 
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                 
-//*  @date Tue Mar 12 07:50:33 2019 
-//*  @cdate Tue Mar 12 07:50:33 2019 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%///
+/*
+ *  @script caz.asl 
+ *  
+ *  @comment test Caz func 
+ *  @release CARBON 
+ *  @vers 1.1 H Hydrogen                                                 
+ *  @date Tue Mar 12 07:50:33 2019 
+ *  @cdate Tue Mar 12 07:50:33 2019 
+ *  @author Mark Terry 
+ *  @Copyright  RootMeanSquare  2010,2019 --> 
+ * 
+*/
+//----------------<v_&_v>-------------------------//           
 
 /*
 Caz,Csz ~ check size, check array size
@@ -27,11 +28,8 @@ assuming A has at least 10 elements.
 
 */
 
-<|Use_=
-Demo  of Caz SF
+Str Use_= "Demo  of Caz SF"
 
-///////////////////////
-|>
                                                                
 
 #include "debug"
@@ -49,25 +47,27 @@ DC[4] = 4
 
 int d;
 
-d = 79;
+ d = 79;
 
 <<" $d scalar $(Sizeof(d))\n"
 
-asz= Csz(&d)
+// asz= Csz(&d)
+
+ asz =  Csz(d)
 
 <<"array size of d $d $(typeof(d))  is: $asz \n"
 
-nd = Cnd(&d)
+nd = Cnd(d)
 <<"number of dimensions are: $nd \n"
 chkN(nd,0)
 
-ab = Cab(&d)
+ab = Cab(d)
 <<"bounds are: $ab \n"
 chkN(ab[0],0)
 
 
 chkN(asz,0)
-DC->info(1)
+DC.pinfo()
 asz= Csz(DC)
 //<<"%V$asz\n"
 //DC->info(1)
@@ -79,7 +79,7 @@ nd = Cnd(DC)
 chkN(nd,1)
 
 ab = Cab(DC)
-ab->info(1)
+ab.pinfo()
 <<"bounds are: $ab \n"
 
 chkN(ab[0],5)
@@ -159,7 +159,7 @@ ab = Cab(B)
 <<"%V $d \n"
 
 
-  B->redimn(2,3)
+  B.redimn(2,3)
 
 
 asz= Csz(B)
@@ -169,7 +169,7 @@ chkN(asz,6);
 nd2 = Cnd(B)
 
 <<"number of dimensions are: $nd2 \n"
-nd2->info(1)
+nd2.pinfo()
 chkN(nd2,2)
 ab = Cab(B)
 

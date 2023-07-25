@@ -54,7 +54,7 @@ Graphic = checkGWM()
   vp = cWi("XYPLOT")
   
 
-  sWi(_WOID,vp,_Wdraw,ON_,_Wsave,ON_,_Wbhue,WHITE_,_WRESIZE,wbox(0.05,0.01,0.99,0.5,0));
+  sWi(_WOID,vp,_Wdraw,ON_,_Wsave,ON_,_Wbhue,WHITE_,_WRESIZE,wbox(0.05,0.01,0.9,0.85,0));
 
   cx = 0.1;
 
@@ -66,12 +66,21 @@ Graphic = checkGWM()
 
   gwo=cWo(vp,WO_GRAPH_)
 
-  sWo(_WOID,gwo,_WRESIZE,wbox(0.15,0.1,0.95,0.95),_Wname,"LP",_Wcolor,WHITE_);
+  sWo(_WOID,gwo,_Wresize,wbox(0.15,0.1,0.5,0.5),_Wname,"LP",_Wcolor,WHITE_);
 
   sWo(_WOID,gwo,_Wclip,wbox(cx,cy,cX,cY));
 
   sWo(_WOID,gwo,_Wscales,wbox(0,0,1,1), _Wsave,ON_,_Wdraw,ON_);
 
+
+  lwo=cWo(vp,WO_BV_)
+
+  sWo(_WOID,lwo,_Wresize,wbox(0.10,0.8,0.30,0.9),_Wname,"LABEL",_Wcolor,BLUE_);
+
+  sWo(_WOID,lwo,_Wclip,wbox(cx,cy,cX,cY),_WVALUE,"Radio INOP",_Wstyle,SVO_);
+
+  sWo(_WOID,lwo,_Wscales,wbox(0,0,1,1), _Wsave,ON_,_Wdraw,ON_);
+   sWo(_WOID,lwo,_WBORDER,BLUE_, _Wclipborder,RED_)
   //sWo(_WOID,gwo,_Wrhtscales,wbox(-4,-2.2,4,2.2));
 
   //titleButtonsQRD(vp);
@@ -85,16 +94,19 @@ Graphic = checkGWM()
 
   sWo(_WOID,gwo,_WUSESCALES,0,_WHUE,RED_,_WLINE,0,0,1,1,GREEN_,_WREDRAW,ON_);
 
-  sWo(_WOID,gwo,_WHUE,RED_,_WLINE,wbox(0.2,0.5,1,0.9,ORANGE_));
+ // sWo(_WOID,gwo,_WHUE,RED_,_WLINE,wbox(0.2,0.5,1,0.9,ORANGE_));
 
-  sWo(_WOID,gwo,_WCLIPBORDER,BLACK_,_WLINE,wbox(0.2,0.2,0.4,0.4,GREEN_));
+ // sWo(_WOID,gwo,_WCLIPBORDER,BLACK_,_WLINE,wbox(0.2,0.2,0.4,0.4,GREEN_));
 
-  sWo(_WOID,gwo,_WCLIPBORDER,BLACK_,_WBOX,wbox(0.31,0.2,0.5,0.4,BLUE_));
+  sWo(_WOID,gwo,_WCLIPBORDER,BLACK_,_WBOX,wbox(0.1,0.8,0.4,0.9,BLUE_));
 
   //plot(gwo,"line",0,0.5,1,0.7,BLUE_);
   plotLine(gwo,0.2,0.5,0.9,0.7,RED_);
 
   plotLine(gwo,0,0.5,1,0.7,YELLOW_);
+
+  textr(gwo, "INOP transponder",0.12,0.85, RED_);
+   // textr(lwo, "INOP radio",0.12,0.85, GREEN_);
 
 //  plot(gwo,"box",0.2,0.2,0.4,0.5,YELLOW_,0); // PS crash
 
@@ -143,7 +155,7 @@ Graphic = checkGWM()
   axnum(gwo,4);
 
 
-//  sWo(_WOID,gwo,_gridhue,BLUE_)
+   sWo(_WOID,lwo,_Wredraw,ON_)
 //  grid(gwo)
 
   }
@@ -152,6 +164,7 @@ Graphic = checkGWM()
  // test  postscript print
 
   do_laser = 1;
+
 
   ans=query("replot to postscript?","y");
 
@@ -169,13 +182,26 @@ Graphic = checkGWM()
   ScreenToLaser(vp);
 // ScrLaser(gwo)  //  not required the window scrlaser operates on all wobs
 
-  Pline();
+ // Pline();
+  // 
+   //sWo(_WOID,gwo,_Wredraw,ON_)   
+   sWi(_WOID,vp,_Wredraw,ON_)
+
+  // sWo(_WOID,lwo,_Wredraw,ON_)
 
   CloseLaser();
 
-  <<" did we produce a postscript ?\n";
+  ans=query("return to screen view","y");
+  
+  LaserToScreen(vp);
+ }
 
-  }
+  <<" did we produce a postscript ?\n";
+    // sWi(_WOID,vp,_Wredraw,ON_)
+//   sWo(_WOID,lwo,_Wredraw,ON_)
+  // sWo(_WOID,gwo,_Wredraw,ON_)   
+
+  ans= query(" did we produce a postscript ?\n");
 //
 
 ;//==============\_(^-^)_/==================//;
