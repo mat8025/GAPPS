@@ -12,8 +12,7 @@
 // M and T created as new records
 // or M and T become vectors or arrays - if typed as such
 
-setDebug(1,@~trace,@keep,@filter,0)
-checkMemory(1);
+
 
 IV= vgen(INT_,12,0,1)
 

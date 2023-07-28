@@ -289,17 +289,20 @@ COUT(swo);
   //  keypos = wogetposition (carbwo);
  //  <<"%V $keypos \n";
 
-
+float keyposr[10];
 
 
     keyposr = wogetrxy (calwo,0);
     krx= keyposr[1];
     kry= keyposr[2];
-   <<"%V $keyposr \n";
+  
    
     keycalwo=cWo(vp,WO_BV_);
     kcalx = keyposr[3] - 0.1;
-    sWo(_WOID,keycalwo,_WNAME,"KeyCals",_WCLIP,CXY,_WSTYLE,SVO_,_WRESIZE,wbox(kcalx+0.02,kry+0.01,kcalx+0.09,keyposr[4]-0.05,0),_WCLIPBORDER,ON_,_WREDRAW,ON_);
+    kcalY= keyposr[4]-0.05;
+   sWo(_WOID,keycalwo,_WNAME,"KeyCals",_WCLIP,CXY,_WSTYLE,SVO_)
+
+   sWo(_WOID,keycalwo,_WRESIZE,wbox(kcalx+0.02,kry+0.01,kcalx+0.09,kcalY,0),_WCLIPBORDER,ON_,_WREDRAW,ON_);
 
   //  sWo(_WOID,keycalwo,_WRESIZE,wbox(kcalx+0.03,kry+0.01,kcalx+0.11,keyposr[4]-0.05,0),_WPIXMAP,ON_,_WREDRAW,ON_);
 
@@ -307,15 +310,20 @@ COUT(swo);
 
     keyposr = wogetrxy (carbwo,0);
 
-   <<"%V $keyposr \n";
+    keyposr.pinfo();
+    
+  
+
+
+
     krx= keyposr[1];
     kry= keyposr[2];
-   <<"%V $keyposr \n";    
+  
     
 
     keywo=cWo(vp,WO_BV_);
     kcarbx = keyposr[3] - 0.11;
-    sWo(_WOID,keywo,_WNAME,"KeyFood",_WSTYLE,SVO_,_WRESIZE,wbox(kcarbx+0.02,kry+0.01,kcarbx+0.09,keyposr[4]-0.05,0),_WCLIPBORDER,ON_,_WREDRAW,ON_);
+    sWo(_WOID,keywo,_WNAME,"KeyFood",_WSTYLE,SVO_,_WRESIZE,wbox(kcarbx+0.02,kry+0.01,kcarbx+0.09,kcalY,0),_WCLIPBORDER,ON_,_WREDRAW,ON_);
 
 
 
@@ -357,4 +365,6 @@ cout<<"Screen DONE\n";
 //======================================//
 //<<[_DB]"$_include \n"
 
-;//==============\_(^-^)_/==================//;
+//==============\_(^-^)_/==================//
+
+

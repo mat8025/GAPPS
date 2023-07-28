@@ -10,7 +10,7 @@
  *  @Copyright © RootMeanSquare 2022
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                                                                                                
+//----------------<v_&_v>-------------------------//                                                                                                
 
 
   void showTarget()
@@ -671,10 +671,7 @@ Text(carbwo,"FOOD (g) ",0.1,0.89);
 //<<"%V $xtm \n"
   xtm = fround(xtm,1);
 //<<"round %V $xtm \n"  
-  
-//<<" woSetValue( $wtmwo, $wtm); \n"
 
-//<<" woSetValue( $cbmwo, $cbm); \n"
 
 // ? set the wo up to display float  rather than string
   //  have XGS round the float ?
@@ -701,4 +698,4 @@ Text(carbwo,"FOOD (g) ",0.1,0.89);
 //[EM]=================================//
 
 
-;//==============\_(^-^)_/==================//;
+//==============\_(^-^)_/==================//

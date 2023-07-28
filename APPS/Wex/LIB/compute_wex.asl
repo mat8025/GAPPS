@@ -141,9 +141,10 @@ void computeWL(long wlsday, long wleday)
 
 }
 //=========================
-
+float PWT1 = 0.0;
 float PWT7 = 0.0;
 float PWT14 = 0.0;
+float PWT30 = 0.0;
 float PWT = 0.0; // tomorrow
 
 
@@ -176,6 +177,7 @@ int k = Yday-2; //
    // next day prediction
 
     pw = yv[0] + (pwl[1] *3);
+    PWT1 = pw;
     PWT7 = yv[0] + (pwl[1] * 9);
     PWT14 = yv[0] + (pwl[1] * 16);
     PWT30 = yv[0] + (pwl[1] * 30);
@@ -183,7 +185,8 @@ int k = Yday-2; //
   }
 
 <<"\n Tomorrow's wt will be $pw +week $PWT7  + month $PWT30\n"
-   titleMessage("Tomorrow's wt %6.1f $pw next week $PWT7                        ");
+
+
 
 
   return pw;

@@ -1536,3 +1536,6 @@ wo.h                                1.32    wocp,wosp
 dori_w.cpp                          1.13    GWM_CLOSE
 interact_w.cpp                      1.23    RIGHT_BUTTON modify
 proc_checkfname_e.cpp               2.59  07/24/2023 21:46:22  check for vmf/cmf dot before SF
+declare_e.cpp                       2.35  07/25/2023 16:44:44  int v = foo(a,b) - declared type used 
+proc_checkfname_e.cpp               2.60  07/27/2023 06:44:33  use PFVC struct
+ic_pic.cpp                          1.65  07/27/2023 22:58:02  add include src file after line number

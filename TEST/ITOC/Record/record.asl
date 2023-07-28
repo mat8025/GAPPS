@@ -28,7 +28,7 @@ Str Use_= "Demo  of Record class \n";
 
   }
 
-  filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
+//  filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
 
   chkIn(_dblevel);
 
@@ -38,13 +38,15 @@ Str Use_= "Demo  of Record class \n";
 
   sz= csz(ra);
 
-  <<"$sz  $(csz(ra)) \n";
+  <<"%V $sz  $(csz(ra)) \n";
 
-  ra.aslpinfo();
+  ra.pinfo();
 
-  sz= csz(&ra);
+//  sz= csz(&ra);
 
-  <<"$sz  $(csz(&ra)) \n";
+  sz= csz(ra);  // csz should treat arg as reference - scalar should return 1
+
+  //<<"$sz  $(csz(&ra)) \n";
 
   Record R[20];
 
@@ -61,7 +63,7 @@ Str Use_= "Demo  of Record class \n";
 
   S = Split("80,1,2,3,40,5,6,7,8,9",',');
 
-  S.aslpinfo();
+  S.pinfo();
 
   <<"$S\n";
 
@@ -78,7 +80,7 @@ Str Use_= "Demo  of Record class \n";
 
   val = R[0][4];
 
-  val.aslpinfo();
+  val.pinfo();
 
   <<"%V$val \n";
 
@@ -104,21 +106,23 @@ Str Use_= "Demo  of Record class \n";
 
   <<"num of records $Nrecs  num cols $Ncols\n";
 
-  R.aslpinfo();
+  R.pinfo();
 
   <<"2  $R[2]\n"
 
 
   <<"21 $R[21]\n"
 
-  R.aslpinfo();
-!a
+  R.pinfo();
+
 
   R[21] = Split("21,77,4,3,40,5,6,7,8,9",',');
 
   <<"21 $R[21]\n"
 
-  chkOut(); exit(-1);
+  chkOut();
+
+exit(-1);
 
 
 

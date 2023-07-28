@@ -10,7 +10,7 @@
  *  @Copyright © RootMeanSquare 2022 -->                               
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                  
+//----------------<v_&_v>-------------------------//;                  
 
   Str Wex_Vers= "2.60  ";
 
@@ -116,12 +116,7 @@ class Svar;
 
  Svar Mo;
 //#include "hv.asl"
-#include "gevent.asl"
 
-// use gevent.asl  - for these globals
-/*
-  int Ev_button;
-*/
 
 #include "rates_wex.asl"
 
@@ -248,7 +243,7 @@ class Svar;
 
   Svar GoalsC;
    
-//GoalsC.Split("01/01/2022 03/31/2022 175"); // has to be in main 
+
 
   int NCCobs =0;
   int NCCrecs = 0;
@@ -308,6 +303,13 @@ Record RX;
 
 
 //////////////////////  SCREEN ///////////////////////////
+#include "gevent.asl"
+
+// use gevent.asl  - for these globals
+/*
+   _GEV_button;
+*/
+
 #include "tbqrd.asl"
 
   int wScreen = 0;
@@ -341,14 +343,6 @@ Record RX;
 //  float DVEC[200+];
 //  let's use 400 to contain the year [1] will be first day
 //  [365] or [366] will be the end year
-
- void Onwards()
-  {
-   ans= query("onwards n? ");
-   if (ans == "n") {
-    exit (-1);
-   }
-  }
 
 
   int vp,vp1;
@@ -418,13 +412,13 @@ void Wex::wexTask(Svarg * sarg)
    Str stmp;
    Svar Goals;
    
-   Goals.Split("05/14/2023 06/30/2023 175");
+   Goals.Split("07/21/2023 09/30/2023 175");
 
 //<<"Setting goals $Goals\n"
 
    Svar Goals2;
    
-   Goals2.Split("05/15/2023 05/31/2023 185");
+   Goals2.Split("07/21/2023 08/31/2023 185");
 ////////////////////==============/////////////////
 
 // move these down 10 when reached -- until we are at desired operating weight!
@@ -499,25 +493,6 @@ COUT(gday);
 
    kdays = k;
 
-   openDll("plot");
-
-  int Graphic = checkGWM();
-
-  printf(" Graphic %d\n", Graphic);
-
-  int Xgm;
-
-  if (!Graphic) {
-    Xgm = spawnGWM("WEX");
-  }
-
-
-
-#include "screen_wex.asl"
-
-#include "glines_wex.asl"
-
-
 /////////////////////////////////////////////////  READ RECORDS ////////////////////////////////////////
   int n = 0;
 
@@ -530,7 +505,7 @@ COUT(gday);
 // this is a new format -- allowing us to put comment labels on graphs
 //<<"%V $maxday \n"
 
- COUT(GoalsC);
+  <<" $GoalsC \n"
 
 //  Onwards();
 
@@ -549,47 +524,35 @@ COUT(gday);
 
   Wex_Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST);  // no back ptr to Siv?
 
-  //printf(" readRecord %d\n", Wex_Nrecs);
+//  <<" readRecord  $Wex_Nrecs\n";
 
 // reader in readRecord closes file
 
 //  RX.pinfo();
 
-   pa (Wex_Nrecs);
+//   pa (Wex_Nrecs);
 
 
   //<<"%V $Wex_Nrecs $RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n";
 
 
   //<<[_DB]"$RX[Nrecs-2]\n";
-
-  int irx = Wex_Nrecs -20;
+/*
+  int irx = Wex_Nrecs -30;
   for (i = irx ; i < Wex_Nrecs; i++) {
        rx= RX[i];
-//<<"$i  $rx \n"
+       <<"$i  $rx \n"
   }
-
-   //ans=query(" readRecord proceed?");
-
-
-
-//<<"$RX[Nrecs-1]\n"
-
-//  <<[_DB]"$rx\n";
-
-//  lastRX = RX[Nrecs-1];
-//  <<"%V$lastRX\n";
-
-//lastRX->pinfo();
-//chkT(1)
-    //WDVEC= vgen(_INT_,2*kdays,0,1);
-
+*/
+ //  ans=query(" readRecord proceed?");
   
   k = 0;
 ///////////// Cals & Carb Consumed ////////
 // so far not logged often 
 
   int ACC=ofr("~/gapps/DAT/cc2023.tsv");
+
+<<"%V $ACC\n"
 
   NCCrecs = 0;
 
@@ -631,18 +594,19 @@ COUT(gday);
 
     int nrd= readCCData();
 
+
+
 //<<"exit  readCCData() $nrd \n"
 
- COUT (nrd) ;
-
-
-//<<" do readData \n";
+//   <<" CC $nrd\n" ;
 
     nrd= readData();
 
 
-COUT (nrd) ;
+ //   <<" $nrd \n"
   /////////////////////  part 1 ////////////////////////////
+
+//ans=query("after readData proceed?");
 
 //   init_period = 32;
 
@@ -651,7 +615,7 @@ COUT (nrd) ;
   float gwt = NextGoalWt;
 // ans=query("computeGoalLine()?");
 
-   computeGoalLine();
+
   
 ////////////////////////////////////////////////////////////////////////
 
@@ -689,17 +653,39 @@ float ae = EXTV[15];
 
    ae = AVE_EXTV[15];
 
-   //printf("ae %f\n",ae);
-//   COUT(ae);
-//COUT(DVEC);
-//COUT(WTVEC);
-
 
   predictWL();
 
+/*
+ ans=query("after predict proceed with Graphics?");
 
- //ans=query("after predict proceed?");
+ if (ans != "y") {
+    exit()
+ }
+*/
+   openDll("plot");
 
+  int Graphic = checkGWM();
+
+  Graphic.pinfo();
+
+  int Xgm;
+
+  if (!Graphic) {
+    Xgm = spawnGWM("WEX");
+    Graphic = checkGWM();
+  }
+
+
+  printf("Have Graphic %d now\n", Graphic);
+
+
+#include "screen_wex.asl"
+
+#include "glines_wex.asl"
+
+   computeGoalLine();
+ 
 
   lcpx = sc_startday;
   rcpx = sc_endday;
@@ -712,9 +698,9 @@ float ae = EXTV[15];
   drawScreens();
 
 
-//<<" %(1,,,\n) $EXTV \n"
-cout<<"DONE PLOT\n";
+//  <<" %(1,,,\n) $EXTV \n"
 
+ titleMessage("Tomorrow's wt will be $PWT1 +week $PWT7  + month $PWT30")
 
 
 int nevent = 0;
@@ -722,31 +708,32 @@ int nevent = 0;
  //ans=query(" screen interact proceed?");
 drawScreens();
 
+
      while (1) {
 
 
     eventWait();
 
-    printf("Ev_button %d Ev_keyw %s Ev_woname %s Ev_keyc %d\n", Ev_button,Ev_keyw,Ev_woname,Ev_keyc );
+   // printf("_GEV_button %d _GEV_keyw %s _GEV_woname %s _GEV_keyc %d\n", _GEV_button,_GEV_keyw,_GEV_woname,_GEV_keyc );
 
          nevent++;
 
-      if (Ev_woname == "WTLB") {
+      if (_GEV_woname == "WTLB") {
                WTLB ();
        }
        
-       else if (Ev_woname == "REDRAW") {
+       else if (_GEV_woname == "REDRAW") {
              drawScreens();
        }
 
-       else if (Ev_woname == "RESIZE") {
+       else if (_GEV_woname == "RESIZE") {
              drawScreens();
        }
-       else if (Ev_woname == "ZIN") {
+       else if (_GEV_woname == "ZIN") {
              ZIN();
        }
 
-       else if (Ev_woname == "ZOUT") {
+       else if (_GEV_woname == "ZOUT") {
              ZOUT();
        }
 
@@ -780,7 +767,7 @@ cout<<"Exit Wex\n";
 
     Svar GoalsB;
    
-    GoalsB.Split("09/21/2022 10/31/2022 175");
+    GoalsB.Split("07/21/2023 09/30/2022 175");
     
 
 #include "types_wex.asl"

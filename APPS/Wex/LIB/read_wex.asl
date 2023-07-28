@@ -10,7 +10,7 @@
  *  @Copyright © RootMeanSquare 2022
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                                                                                                
+//----------------<v_&_v>-------------------------//                                                                                                
 
   
 void fillInObsVec()
@@ -18,22 +18,27 @@ void fillInObsVec()
 
 float tex;
 int iyd = Yd;
-
+ float wrk_sleep  ;
  //VCOUT(Yd,iyd);
-//<<" %V $Yd \n"
-  if (Yd >= 0) {
+  //<<" $_proc $Yd\n"
+
+
+
+if (Yd >= 0) {
 
  int j = 1;
+  //wt = Col[j]
+  
+  mywt = atof(Col[j++]);
+  
 
-  float mywt = atof(Col[j++]);
-
-  //COUT(mywt);
+  //<<" %V $wt $mywt \n"
 
   if (mywt > 0.0) {  // we have an entry = not all days are logged
 
   WTVEC[Yd] = mywt;
   
-  //DBA"mywt  $WTVEC[Nobs] \n";
+  //<<"mywt $Yd  $WTVEC[Yd] \n";
 
   if (mywt > 0.0) {
 
@@ -65,7 +70,7 @@ int iyd = Yd;
 
    tex = ( walk + hike + run + cycle + swim + yardwrk + wex);
 
-//<<"$tex \n"
+ // <<"%V $tex \n"
 //COUT(tex);
 
   EXTV[Yd] = tex; 
@@ -105,13 +110,15 @@ int iyd = Yd;
 
 
 
-   float wrk_sleep  = (sleep_burn + (16 * 60 - tex) * office_rate )  ;
+  // float wrk_sleep  = (sleep_burn + (16 * 60 - tex) * office_rate )  ;
+
+   wrk_sleep  = (sleep_burn + (16 * 60 - tex) * office_rate )  ;
 
   CALBURN[Yd] =  wrk_sleep + exer_burn ;
 
   Nobs++;
 
-//printf("Nobs %d  exer_burn %f\n",Nobs ,exer_burn);
+   //printf("Nobs %d  exer_burn %f\n",Nobs ,exer_burn);
   }
 
   }
@@ -129,16 +136,18 @@ int iyd = Yd;
   int tl = 0;
   long jday;
   Str day;
+  Str mywt;
  // RX->info(1)
   long sday;
   
   int got_start = 0;
 
-  //printf("Wex_Nrecs \n",Wex_Nrecs);
+  <<"get data from record Wex_Nrecs \n";
 
 // access of record row Rx(i)
 // access of record Col Rx(i,j)
   int max_n =3;
+  
   while (tl < Wex_Nrecs) {
 
 
@@ -147,7 +156,7 @@ int iyd = Yd;
 
 
   day = Col[0];
-
+  mywt = Col[1];
 
 
 //  VCOUT(tl,day);
@@ -185,7 +194,7 @@ int iyd = Yd;
 
   tl++;
 
-//<<"%V $tl   $Wex_Nrecs\n"
+//<<"%V $tl  $day $mywt $Wex_Nrecs\n"
 
   if (tl >= Wex_Nrecs) {
 
@@ -196,7 +205,7 @@ int iyd = Yd;
   }
 
 
-    printf("Wex_Nrecs %d there were Nobs %d measurements ",Wex_Nrecs,Nobs);
+  printf("Wex_Nrecs %d there were Nobs %d measurements ",Wex_Nrecs,Nobs);
 
   return tl;
 
@@ -257,7 +266,7 @@ int iyd = Yd;
 
   float carbs = atof(RCC.getRC(tl,3));
 
-<<"%V $carbs\n"
+//<<"$day $carbs\n"
 
 
 
@@ -299,4 +308,4 @@ int iyd = Yd;
   }
 //=======================================//
 
-  ;//==============\_(^-^)_/==================//;
+//==============\_(^-^)_/==================//
