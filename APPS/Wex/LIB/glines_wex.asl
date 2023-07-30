@@ -17,7 +17,7 @@
 
 
 
- COUT(pwt_gl)
+// COUT(pwt_gl)
 
   ext_gl  = cGl(extwo); // extwo
 

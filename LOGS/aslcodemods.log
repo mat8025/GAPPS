@@ -1539,3 +1539,4 @@ proc_checkfname_e.cpp               2.59  07/24/2023 21:46:22  check for vmf/cmf
 declare_e.cpp                       2.35  07/25/2023 16:44:44  int v = foo(a,b) - declared type used 
 proc_checkfname_e.cpp               2.60  07/27/2023 06:44:33  use PFVC struct
 ic_pic.cpp                          1.65  07/27/2023 22:58:02  add include src file after line number
+declare_e.cpp                       2.36  07/27/2023 23:58:13  WIC for declareViaFunc

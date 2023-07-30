@@ -21,7 +21,7 @@ int iyd = Yd;
  float wrk_sleep  ;
  //VCOUT(Yd,iyd);
   //<<" $_proc $Yd\n"
-
+ float mywt;
 
 
 if (Yd >= 0) {

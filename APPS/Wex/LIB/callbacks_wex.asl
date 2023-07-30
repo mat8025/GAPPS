@@ -10,7 +10,7 @@
  *  @Copyright © RootMeanSquare 2022
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                                                                                              
+//----------------<v_&_v>-------------------------//;                                                                                              
 
 /*
 #if CPP
@@ -73,7 +73,7 @@
 
  void EXIT()
   {
-   cout << "exit ?\n";
+   << "exit ?\n";
    exit_si();
     // exit_gs();
   }
@@ -174,31 +174,32 @@ void WTLB()
 
 //pa("proc  setting cursors ", _proc, " Button", Button);
 
-//printf("\n Ev_button %d    cursor @ Ev_rx %f\n",Ev_button,Ev_rx);      
+printf("\n GEV__button %d    cursor @ GEV__rx %f\n",GEV__button,GEV__rx);      
  long wt_day = 0;
  
-       if (Ev_button == 1) {
+       if (GEV__button == 1) {
 
-         lcpx = Ev_rx;
+         lcpx = GEV__rx;
 
 	 sGl(_GLID,lc_gl,_GLHUE,RED_,_GLCURSOR,rbox(lcpx,0,lcpx,300,Wex_CL_init),_GLDRAW,ON_);
 	 
 	 Wex_CL_init = 0;
+	 
 	 wt_day = fround(lcpx,0);
 	 
-printf("\n day %f  %d\n",lcpx, wt_day);      
- // wt_day.pinfo();
+
+  wt_day.pinfo();
   //lcpx.pinfo();
 
-//DBA"%V $wt_day $lcpx \n";
+<<"%V $wt_day $lcpx \n";
 
          getDay(wt_day);
 
         }
 
-       if (Ev_button == 3) {
+       if (GEV__button == 3) {
        
-         rcpx = Ev_rx;
+         rcpx = GEV__rx;
 
       
 	 sGl(_GLID,rc_gl,_GLHUE,BLUE_,_GLCURSOR,rbox(rcpx,0,rcpx,310,Wex_CR_init),_GLDRAW,ON_);
@@ -246,7 +247,7 @@ printf("\n day %f  %d\n",lcpx, wt_day);
 
 void setCursors()
 {
-//<<"$_proc : $_lcpx\n"
+<<"$_proc : $_lcpx\n"
         sGl(_GLID,lc_gl,_GLCURSOR, rbox(lcpx,0,lcpx,300));
 
         sGl(_GLID,rc_gl,_GLCURSOR, rbox(rcpx,0,rcpx,300));
@@ -286,4 +287,4 @@ void setCursors()
 */
 ///////////////////////////////////////////////////////////////////////////////////////
 
-;//==============\_(^-^)_/==================//;
+//==============\_(^-^)_/==================//

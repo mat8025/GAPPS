@@ -712,28 +712,28 @@ drawScreens();
      while (1) {
 
 
-    eventWait();
+       eventWait();
 
-   // printf("_GEV_button %d _GEV_keyw %s _GEV_woname %s _GEV_keyc %d\n", _GEV_button,_GEV_keyw,_GEV_woname,_GEV_keyc );
+    printf("GEV__button %d GEV__keyw %s GEV__woname %s GEV__keyc %d\n", GEV__button,GEV__keyw,GEV__woname,GEV__keyc );
 
          nevent++;
 
-      if (_GEV_woname == "WTLB") {
+      if (GEV__woname == "WTLB") {
                WTLB ();
        }
        
-       else if (_GEV_woname == "REDRAW") {
+       else if (GEV__woname == "REDRAW") {
              drawScreens();
        }
 
-       else if (_GEV_woname == "RESIZE") {
+       else if (GEV__woname == "RESIZE") {
              drawScreens();
        }
-       else if (_GEV_woname == "ZIN") {
+       else if (GEV__woname == "ZIN") {
              ZIN();
        }
 
-       else if (_GEV_woname == "ZOUT") {
+       else if (GEV__woname == "ZOUT") {
              ZOUT();
        }
 

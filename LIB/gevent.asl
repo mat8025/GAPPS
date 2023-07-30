@@ -2,15 +2,16 @@
  *  @script gevent.asl                                                  
  * 
  *  @comment                                                            
- *  @release Beryllium                                                  
- *  @vers 1.5 B Boron [asl 6.4.55 C-Be-Cs]                              
- *  @date 07/31/2022 07:59:31                                           
+ *  @release Oxygen                                                     
+ *  @vers 1.6 C Carbon [asl 5.8 : B O]                                  
+ *  @date 07/29/2023 16:19:39                                           
  *  @cdate Tue Jan 1 10:36:56 2019                                      
  *  @author Mark Terry                                                  
- *  @Copyright © RootMeanSquare 2022 -->                               
+ *  @Copyright © RootMeanSquare 2023 -->                               
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                  
+
+//----------------<v_&_v>-------------------------//                  
 
 ///
 /// wait and catch mouse/key window events
@@ -24,51 +25,51 @@ Gevent Gev; // event type - can inspect for all event attributes
 
 Gev.pinfo();
 
-Vec<int> _WPOS( 16);
-Vec<int> _MPOS( 16);
+Vec<int> WPOS__( 16);
+Vec<int> MPOS__( 16);
 
-///  Should all these  be prefix _Ev_xxx ?
+///  use prefix  GEV__    _GEV seen as tag arg by ASL
 
 
 int _last_eid = -1;
 int ewsz = 0;
 
-int _GEV_loop = 0;
+int GEV__loop = 0;
 
-float _GEV_rx = 0;
-float _GEV_ry = 0;
+float GEV__rx = -1.234;
+float GEV__ry = -1.2345;
 
-int _GEV_x = -15;
-int _GEV_y = 0;
+int GEV__x = -15;
+int GEV__y = 0;
 
-int _GEV_type = 0;
-int _GEV_row = -1;
-int _GEV_col = -1;
-int _GEV_button = 0;
-int _GEV_id = 0;
-int _GEV_keyc;
-int _GEV_woid;
-int _GEV_woaw;
-int _GEV_wid;
+int GEV__type = 0;
+int GEV__row = -1;
+int GEV__col = -1;
+int GEV__button = 0;
+int GEV__id = 0;
+int GEV__keyc;
+int GEV__woid;
+int GEV__woaw;
+int GEV__wid;
 
-Svar _GEV_msgwd;
-Svar _GEV_words;
+Svar GEV__msgwd;
+Svar GEV__words;
 
-Str _GEV_name;
+Str GEV__name;
 
-Str _GEV_keyw = "nada";
-Str _GEV_keyw2 = "nada2";
-Str _GEV_keyw3 = "nada3";
+Str GEV__keyw = "nada";
+Str GEV__keyw2 = "nada2";
+Str GEV__keyw3 = "nada3";
 
-Str _GEV_msg = "";
+Str GEV__msg = "";
 
-Str _GEV_value = "abc";
+Str GEV__value = "abc";
 
-Str _GEV_woname = "noname";
+Str GEV__woname = "noname";
 
-Str _GEV_woval = "yyy";
+Str GEV__woval = "yyy";
 
-Str _GEV_woproc = "abc";
+Str GEV__woproc = "abc";
 
 
 
@@ -91,80 +92,80 @@ void eventDecode()
 <<"%V $abut $Gev.ebutton \n"
 */
 
-#if ASL_GEV
+#if ASLGEV_
 
-  _GEV_name = Gev.getEventType(_GEV_id,_GEV_type,_GEV_woid,_GEV_woaw,_GEV_button,_GEV_keyc,_GEV_woproc,_GEV_x,_GEV_y,_GEV_woval);
+  GEV__name = Gev.getEventType(GEV__id,GEV__type,GEV__woid,GEV__woaw,GEV__button,GEV__keyc,GEV__woproc,GEV__x,GEV__y,GEV__woval);
    
-   <<"%V $_GEV_button $_GEV_keyc\n"
+   <<"%V $GEV__button $GEV__keyc\n"
 #else
-   _GEV_name = Gev.getEventName();
+   GEV__name = Gev.getEventName();
    
-   _GEV_button = Gev.getEventButton(); // or Gev.ebutton
-<<"getting %V $_GEV_button\n"
+   GEV__button = Gev.getEventButton(); // or Gev.ebutton
+<<"getting %V $GEV__button\n"
 
-   _GEV_keyc = Gev.getEventKey();
+   GEV__keyc = Gev.getEventKey();
 
 #endif     
-//<<"$_proc %V $_GEV_x $_GEV_y  $_GEV_woid\n"
+//<<"$_proc %V $GEV__x $GEV__y  $GEV__woid\n"
 
-   _GEV_woval = Gev.getEventWoValue();
+   GEV__woval = Gev.getEventWoValue();
    
-//  <<"%V $_GEV_woval \n"       
-    _MPOS[0] = -1;
+//  <<"%V $GEV__woval \n"       
+    MPOS__[0] = -1;
     
-    _GEV_wid = -1;
+    GEV__wid = -1;
 
      if (checkTerm()) {
-       _GEV_keyw =  "EXIT_ON_WIN_INTRP";
+       GEV__keyw =  "EXIT_ON_WIN_INTRP";
     }
     else {
-//  <<"$_proc %V $_GEV_msg \n"
-    if (_GEV_msg != "") {
+//  <<"$_proc %V $GEV__msg \n"
+    if (GEV__msg != "") {
      // split the msg into separate words
-     _GEV_words.Split(_GEV_msg); 
+     GEV__words.Split(GEV__msg); 
 
-    ewsz=_GEV_words.getSize();
-//<<"%V $ewsz $_GEV_words\n"
-    //pa(_GEV_msg, _GEV_words);
+    ewsz=GEV__words.getSize();
+//<<"%V $ewsz $GEV__words\n"
+    //pa(GEV__msg, GEV__words);
     if (ewsz >= 1) {
-    _GEV_keyw = _GEV_words[0];   // TBC
+    GEV__keyw = GEV__words[0];   // TBC
 
-//<<"%V $_GEV_value $_GEV_msg  $_GEV_keyw \n"
-     _GEV_value =   spat(_GEV_msg,_GEV_keyw,1);
-//<<"%V $_GEV_value \n"   
-     _GEV_value.eatWhiteEnds();
-//<<"%V $_GEV_value \n"
+//<<"%V $GEV__value $GEV__msg  $GEV__keyw \n"
+     GEV__value =   spat(GEV__msg,GEV__keyw,1);
+//<<"%V $GEV__value \n"   
+     GEV__value.eatWhiteEnds();
+//<<"%V $GEV__value \n"
 
   if (ewsz >= 2) {
-    _GEV_keyw2 = _GEV_words[1];
+    GEV__keyw2 = GEV__words[1];
      if (ewsz >= 3) 
-    _GEV_keyw3 = _GEV_words[2];
+    GEV__keyw3 = GEV__words[2];
     }
 
 
-//<<"proc $_GEV_woproc \n"
-     if (_GEV_woid < 32767) {
-         _GEV_wid = _GEV_woid;
+//<<"proc $GEV__woproc \n"
+     if (GEV__woid < 32767) {
+         GEV__wid = GEV__woid;
        }
        else {
-           _GEV_wid = (_GEV_woid & 0xFFFF0000) >> 16 ;  
+           GEV__wid = (GEV__woid & 0xFFFF0000) >> 16 ;  
      }
     }
     
-     _GEV_woname = Gev.getEventWoName();
-//     _GEV_woproc = Gev.getEventWoProc();
+     GEV__woname = Gev.getEventWoName();
+//     GEV__woproc = Gev.getEventWoProc();
   
 //  Motion event -- will have 1 or more 'event' readings
 //  read these into array or rxy and erow-col
 
-  //  Gev.geteventxy(&_GEV_x,&_GEV_y);
+  //  Gev.geteventxy(&GEV__x,&GEV__y);
 
 
-    Gev.getEventRowCol(_GEV_row,_GEV_col);
+    Gev.getEventRowCol(GEV__row,GEV__col);
 
 //  Mouse  pos, screen pos?
 // needed?
-     _MPOS[2] = _GEV_button;
+     MPOS__[2] = GEV__button;
 
     }
 
@@ -177,26 +178,31 @@ void eventWait()
 {
     int ret = 1;
 
-    _GEV_loop++;
-    _GEV_keyc = 0;
-    _GEV_woid = -1;
-    _GEV_row = -1;
-    _GEV_col = -1;    
-    _GEV_woname = "";
-    _GEV_woval = "";
-    _GEV_msg = "";
-    _GEV_keyw = "";
-     _GEV_msg = Gev.eventWait();
-//<<"$_proc  %V $_GEV_msg\n"
-     Gev.getEventRxRy(_GEV_rx,_GEV_ry);
+    GEV__loop++;
+    GEV__keyc = 0;
+    GEV__woid = -1;
+    GEV__row = -1;
+    GEV__col = -1;    
+    GEV__woname = "";
+    GEV__woval = "";
+    GEV__msg = "";
+    GEV__keyw = "";
+     GEV__msg = Gev.eventWait();
+//<<"$_proc  %V $GEV__msg\n"
+    // Gev.getEventRxRy(&GEV__rx,GEV__ry); // crash
+    GEV__rx = -0.004;
+    GEV__ry = -0.005;
+    
+     Gev.getEventRxRy(GEV__rx,GEV__ry); //  SF func should process as a reference arg
      
-     _GEV_woid=Gev.getEventWoid();
+     
+     GEV__woid=Gev.getEventWoid();
 
-//<<"$_proc  %V $_GEV_woid $_GEV_rx $_GEV_ry\n"     
+<<"$_proc  %V $GEV__woid $GEV__rx $GEV__ry\n"     
 
      eventDecode();
 /*     
-     if (_GEV_keyw == "EXIT_ON_WIN_INTRP") {
+     if (GEV__keyw == "EXIT_ON_WIN_INTRP") {
      
        ret = 0;
         <<"exit on WIN_INTRP ? $ret\n"
@@ -208,8 +214,8 @@ void eventWait()
 
 void eventRead()
 {
-    _GEV_msg = Gev.eventRead();
-    _GEV_loop++;
+    GEV__msg = Gev.eventRead();
+    GEV__loop++;
     eventDecode();
 }
 //==============================
@@ -225,6 +231,6 @@ int bt;
   return bt;
 }
 
-//<<" %V $_include $_GEV_msg\n"
+//<<" %V $_include $GEV__msg\n"
 
 //====================================

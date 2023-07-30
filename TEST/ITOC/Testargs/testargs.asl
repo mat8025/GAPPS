@@ -1,10 +1,37 @@
-///
-///
-///
+/* 
+ *  @script testargs.asl                                                
+ * 
+ *  @comment test arg processing                                        
+ *  @release Oxygen                                                     
+ *  @vers 1.4 Be Beryllium [asl 5.8 : B O]                              
+ *  @date 07/29/2023 16:22:59                                           
+ *  @cdate 07/29/2023 13:44:48                                          
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2023 -->                               
+ * 
+ */ 
 
-//setDebug(1,"pline","trace","~step")
+//-----------------<v_&_v>------------------------//
 
-#include "debug"
+Str Use_= " Demo  of test arg processing ";
+
+
+#include "debug" 
+
+  if (_dblevel >0) { 
+   debugON() 
+   <<"$Use_ \n" 
+} 
+
+   allowErrors(-1); // set number of errors allowed -1 keep going 
+
+  chkIn(_dblevel) ;
+
+  chkT(1);
+
+///
+///
+///
 
 float getRC(float v, int np)
 {
@@ -15,8 +42,81 @@ float getRC(float v, int np)
 
 }
 
+int goo(int m, int q)
+{
 
-int k = 1;
+<<"$_proc   $m $q\n"
+//  q.pinfo()
+  int n = m + q;
+<<"%V $n\n"
+  return n;
+  
+}
+
+int foo ()
+{
+
+  int k = km;
+  int r = om;
+ // int d;
+//  k = 4;
+    d=goo(k,r)   ; // autodeclare - bad icode
+//  int d=goo(k,r)
+
+<<" %V $d  $k $r\n"
+
+  return d;
+}
+
+
+int km = 4;
+int om = 7;
+float rx = 2.3;
+
+float ry = -4.5;
+
+Str s = "my string";
+
+int j = 7;
+
+
+
+   p =foo();
+
+km = 14;
+om = 17;
+
+   z = foo();
+
+<<"%V $p $z \n"
+
+exit()
+
+
+
+A = testargs(1,km,rx,ry,s,76)
+
+<<"%(1, , ,,\n)$A\n"
+
+
+Gevent G;
+
+
+   G.geteventRxRy(rx,ry)
+
+<<"%V $rx $ry\n"
+
+
+//   G.geteventRxRy(&rx,&ry) // warn to ignore & rx,ry treated as ref parameters
+   
+
+//<<"%V $rx $ry\n"
+
+
+
+exit();
+
+
 
 V=vgen(INT_,10,0,1)
 
@@ -180,3 +280,11 @@ E= testargs("$(caz(C))");
 
 E= testargs("$(typeof(C))");
 <<"%(1, , ,,\n)$E\n"
+
+///
+
+ chkOut();
+
+  exit();
+
+///----------(^-^)----------\\\

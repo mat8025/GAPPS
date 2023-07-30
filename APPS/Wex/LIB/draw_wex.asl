@@ -376,7 +376,7 @@ for (i = 0; i< 10; i++) {
 
   int calgls[] = { calb_gl, calc_gl, -1 };
 
-    <<"%V $calc_gl $calb_gl $calgls  \n"
+   // <<"%V $calc_gl $calb_gl $calgls  \n"
    // int allgls[] = {wt_gl2,wt_gl, wt_gl3,-1};
 
 //<<"%V $allgls\n"
@@ -469,7 +469,7 @@ for (i = 0; i< 10; i++) {
 
 ////////////////////////////////////////// KEYS /////////////////////////////////////
   keypos = wogetposition (keycalwo);
-   <<"keycalwo $keypos \n";
+//   <<"keycalwo $keypos \n";
     sWo(_WOID,keycalwo,_WHMOVE,ON_);
     sWo(_WOID,keywo,_WHMOVE,ON_);
 //    womove(keycalwo,PANLEFT_,10);  // move left
@@ -489,7 +489,7 @@ sWo(_WOID,carbwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_)
 
   keypos = wogetposition (keywo);
 
-   <<"keycarbwo $keypos \n";
+   //<<"keycarbwo $keypos \n";
 
 
 Text(calwo,"CALS In/Out",0.2,0.90);
@@ -643,18 +643,15 @@ Text(carbwo,"FOOD (g) ",0.1,0.89);
 
   int dt;
 
-  //cout <<" getDay\n";
+
 
   m_day= dayv + Jan1 -1;  // ? OBO;
 
   Str mdy = Julmdy(m_day);
 
-//<<"%V $dayv $m_day $Jan1 $mdy \n"
+<<"%V $dayv $m_day $Jan1 $mdy \n"
 
 
-//printf("m_day %d Jan1 %ld  mdy %s\n",m_day, Jan1, mdy);
-
-  //COUT(mdy);
   
   //sWo(dtmwo,_WVALUE2 ,mdy,_WREDRAW );
   woSetValue(dtmwo,mdy);

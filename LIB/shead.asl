@@ -232,15 +232,15 @@ if (is_asl_script) {
 <<[A]"Str Use_= \" Demo  of $comment \";";
 <<[A]"\n"
 
-<<[A]"\n\n#include \"debug\" \n"
+<<[A]"\n\n#include \"debug\" \n\n"
 
 <<[A]"  if (_dblevel >0) { \n"
 <<[A]"   debugON() \n"
 <<[A]"   <<\"\$Use_ \\n\" \n"
 <<[A]"} \n\n"
-<<[A]"   allowErrors(-1); \n\n"
+<<[A]"   allowErrors(-1); // set number of errors allowed -1 keep going \n\n"
 
-<<[A]"  chkIn(_dblevel)\n\n"
+<<[A]"  chkIn(_dblevel) ;\n\n"
 <<[A]"  chkT(1);\n\n"
 
 
@@ -254,7 +254,7 @@ fflush(A)
 //   <<[2]"$ln\n"
    }
 //<<[A]"$T[i]"  // bug
-   <<[A]"///\n chkOut();\n  exit();\n;///--------(^-^)--------///\n"
+   <<[A]"\n\n///\n\n chkOut();\n\n  exit();\n\n///----------(^-^)----------\\\\\\\n"
 
    fflush(A)
    cf(A)
