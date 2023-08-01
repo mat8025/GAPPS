@@ -193,7 +193,8 @@ printf("\n GEV__button %d    cursor @ GEV__rx %f\n",GEV__button,GEV__rx);
 
 <<"%V $wt_day $lcpx \n";
 
-         getDay(wt_day);
+        // mday =getDay(wt_day);
+	getDay(wt_day);
 
         }
 

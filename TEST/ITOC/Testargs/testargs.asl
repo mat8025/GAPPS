@@ -33,6 +33,16 @@ Str Use_= " Demo  of test arg processing ";
 ///
 ///
 
+
+
+#include "consts"
+
+<<"Loading $E_ !\n"
+
+E_.pinfo()
+
+
+
 float getRC(float v, int np)
 {
 
@@ -53,17 +63,38 @@ int goo(int m, int q)
   
 }
 
+int roo(int m, int q)
+{
+
+<<"$_proc   $m $q\n"
+//  q.pinfo()
+  int n = m + q;
+<<"%V $n\n"
+    return n;
+}
+
 int foo ()
 {
 
   int k = km;
   int r = om;
- // int d;
+ int d;
 //  k = 4;
-    d=goo(k,r)   ; // autodeclare - bad icode
+//    d=goo(k,r)   ; // autodeclare - bad icode
 //  int d=goo(k,r)
 
-<<" %V $d  $k $r\n"
+<<" %V   $k $r\n"
+   k++;
+
+   roo(k,r)
+
+   r++;
+
+   d=roo(k,r)
+<<"%V $d\n"
+
+
+
 
   return d;
 }

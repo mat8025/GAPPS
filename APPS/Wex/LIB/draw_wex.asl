@@ -468,6 +468,7 @@ for (i = 0; i< 10; i++) {
   // <<"KEYS?\n"
 
 ////////////////////////////////////////// KEYS /////////////////////////////////////
+float keypos[10]
   keypos = wogetposition (keycalwo);
 //   <<"keycalwo $keypos \n";
     sWo(_WOID,keycalwo,_WHMOVE,ON_);
@@ -483,7 +484,7 @@ for (i = 0; i< 10; i++) {
     sWo(_WOID,carbwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_)
 
   //womove(keywo,PANLEFT_,10);
-sWo(_WOID,carbwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_)
+    sWo(_WOID,carbwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_)
     sWo(_WOID,keywo,_WSCALES,wbox(0.0,0.0,1.0,1.0))
     sWo(_WOID,keywo,_WCLIPBORDER,ON_,_WREDRAW,ON_,_WKEYGLINE,foodgls);
 
@@ -629,8 +630,13 @@ Text(carbwo,"FOOD (g) ",0.1,0.89);
  //[EP]/////////////////////////////////////////////// 
 
   void getDay(long dayv)
+//  long getDay(long dayv)
   {
 
+<<" $_proc   $dayv \n"
+
+  dayv.pinfo();
+  
   long m_day;  // int ?;
 
   float cbm;
@@ -648,8 +654,9 @@ Text(carbwo,"FOOD (g) ",0.1,0.89);
   m_day= dayv + Jan1 -1;  // ? OBO;
 
   Str mdy = Julmdy(m_day);
-
-<<"%V $dayv $m_day $Jan1 $mdy \n"
+ int dindex = dayv -1;
+ 
+<<"%V $dayv $m_day $Jan1 $mdy $dindex\n"
 
 
   
@@ -657,7 +664,7 @@ Text(carbwo,"FOOD (g) ",0.1,0.89);
   woSetValue(dtmwo,mdy);
 
 // day of year is 0 or 1 for Jan1 ?
-  int dindex = dayv -1;
+ 
 
 //<<"%V $dindex \n"
 
@@ -690,7 +697,8 @@ Text(carbwo,"FOOD (g) ",0.1,0.89);
   sWo(_WOID,dtmwo,_WSTRVALUE ,mdy,_WREDRAW,1);
 
 
-
+  //  return m_day;
+    
   }
 //[EM]=================================//
 
