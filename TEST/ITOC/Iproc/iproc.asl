@@ -63,7 +63,7 @@ znt++;
 <<"$znt \n"
   zoo_call++;
 
-if (znt > 10) {
+if (znt > 100) {
   <<" repeat call $znt \n"
   exit();
 }
@@ -111,6 +111,42 @@ roo_call++;
 }
 //=======================//
 
+int noo_call = 0;
+Str noo()
+{
+static int znt = 0;
+znt++;
+
+<<"IN $_proc $znt\n"
+noo_call++;
+  return "$_proc"
+}
+//=======================//
+int too_call = 0;
+Str too(int m, int n)
+{
+static int znt = 0;
+znt++;
+
+<<"IN $_proc $m $n  $znt\n"
+too_call++;
+  return "$_proc"
+}
+//=======================//
+
+
+int woo_call = 0;
+Str woo(int m, int n, int o)
+{
+static int znt = 0;
+znt++;
+
+<<"IN $_proc $m $n $o $znt\n"
+woo_call++;
+  return "$_proc"
+}
+//=======================//
+
 
 
 //include "iproc_libs.asl"
@@ -152,6 +188,8 @@ tof = typeof(rf)
 
 // = iread("?")
 
+
+/*
 cbname = "goo"
 
 <<"indirect call of $cbname\n"
@@ -190,7 +228,7 @@ chkN(zoo_call,2)
 
 chkN (just_once,1)
 
-
+*/
 
 
 
@@ -212,9 +250,9 @@ Str wp = "xyz"
 N = 6;
 kp= 0;
 
-kp= 7;
+kp= 1;
 
-for (i=0; i< 3; i++) {
+for (i=0; i< 6; i++) {
 
 <<"$i before DIRECT call of zoo $zoo_call\n"
       wp= zoo(kp);
@@ -250,6 +288,35 @@ for (i=0; i< 3; i++) {
 }
 
 <<" test that WIC is now on again \n"
+
+
+for (i=0; i< 3; i++) {
+<<"trying asl callproc noo no args\n"
+   wp =  runproc("noo")
+<<"done asl callproc noo  $wp  $noo_call\n"
+   ans=query("called noo?");
+}
+
+
+
+
+for (i=0; i< 3; i++) {
+<<"trying asl callproc too 2 args\n"
+   wp =  runproc("too",kp, 22)
+<<"done asl callproc too  $wp  $too_call\n"
+   ans=query("called too?");
+}
+
+
+for (i=0; i< 30; i++) {
+<<"trying asl callproc woo 3 args\n"
+   wp =  runproc("woo",kp, 2, 3)
+<<"done asl callproc woo  $wp  $woo_call\n"
+  // ans=query("called woo?");
+}
+
+
+
 
 for (i=0; i< 4; i++) {
    kp++;

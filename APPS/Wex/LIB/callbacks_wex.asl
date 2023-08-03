@@ -69,7 +69,11 @@
   }
 //========================================================
 
-
+int ExTim (int wb)
+{
+<<"$_proc $wb\n"
+     return 1
+}
 
  void EXIT()
   {
@@ -127,7 +131,7 @@
   }
 //===================================
 
-  void ZIN()
+  int ZIN(int wb)
   {
 
   //<<" In $_proc  $lcpx  $rcpx\n";
@@ -139,11 +143,11 @@
    drawScreens();
 
    showWL(sc_zstart, sc_zend);
-
+   return 1;
   }
 //--------------------------------------------------
 
-  void ZOUT()
+  int ZOUT(int wb)
   {
 
   sc_zstart -= 10;
@@ -165,10 +169,10 @@
   drawScreens();
 
    showWL(sc_zstart, sc_zend);
-
+   return 1;
   }
 //---------------------------------------------
-void WTLB()
+int WTLB(int wb)
 {
 
 
@@ -209,6 +213,7 @@ printf("\n GEV__button %d    cursor @ GEV__rx %f\n",GEV__button,GEV__rx);
 
        }
 
+    return 1;
 
 
 }
@@ -243,6 +248,7 @@ printf("\n GEV__button %d    cursor @ GEV__rx %f\n",GEV__button,GEV__rx);
   sWo(_WOID,tw_wo,_WMOVETO,targetday,NextGoalWt,wtwo,_WREDRAW,1);
 */
   }
+
 
 
 

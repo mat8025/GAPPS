@@ -263,7 +263,7 @@ COUT(swo);
 
 
   xtmwo=cWo(vp,WO_BV_);
-  sWo(_WOID,xtmwo,_WNAME,"ExTim(m)",_WCOLOR,BLUE_,_WHELP," xtime on day ");
+  sWo(_WOID,xtmwo,_WNAME,"ExTim",_WCOLOR,BLUE_,_WHELP," xtime on day ");
 
   int mwos[] = { dtmwo, wtmwo, cbmwo, xtmwo, carbewo, -1};
 

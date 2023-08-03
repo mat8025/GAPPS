@@ -707,34 +707,33 @@ int nevent = 0;
 
  //ans=query(" screen interact proceed?");
 drawScreens();
-
+int rcb = 0;
 
      while (1) {
 
 
        eventWait();
 
-    printf("GEV__button %d GEV__keyw %s GEV__woname %s GEV__keyc %d\n", GEV__button,GEV__keyw,GEV__woname,GEV__keyc );
+    <<"%V $GEV__button $GEV__keyw $GEV__woname $GEV__keyc \n"
 
          nevent++;
 
-      if (GEV__woname == "WTLB") {
-               WTLB ();
-       }
+
+
+
+  
        
-       else if (GEV__woname == "REDRAW") {
+      if (GEV__woname == "REDRAW") {
              drawScreens();
        }
 
        else if (GEV__woname == "RESIZE") {
              drawScreens();
        }
-       else if (GEV__woname == "ZIN") {
-             ZIN();
-       }
-
-       else if (GEV__woname == "ZOUT") {
-             ZOUT();
+       else {
+         <<"trying $GEV__woname $GEV__button \n"
+            rcb=runproc(GEV__woname,GEV__button)
+            // ZIN(); ZOUT , WTLB
        }
 
 
