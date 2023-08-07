@@ -1,0 +1,6 @@
+cat $1 > $1.bak
+cat $1 | sed  s/'ASL 1'/'ASL 0'/  |  sed  s/'CPP 0'/'CPP 1'/ > roo
+cat roo > $1
+rm roo
+
+
