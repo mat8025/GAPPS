@@ -1,35 +1,15 @@
 ///
 ///   create an asc file (cpp compatible) from asl script
 ///
-
-
-
-#define _CPP_ 0
-// asl  -T  flag to produce cpp compilable code 
-//  the script xyz.asl  is converted to xyz.asc  and that file can be compled with cpp
-//  the translation flips the _CPP_ define to 1  in the resulting asc file
-//  the make_asc  script  will compile  asc code
-//  e.g. make_asc  xyz.asc
-
-//  just using asl  interpreter skips over _CPP_ sections in the asl script
-//  and defines _ASL_ and _TRANS_ to 1
-//
-
-#if _CPP_
-#include <iostream>
-#include <ostream>
-
-using namespace std;
-#include "vargs.h"
-#include "cpp_head.h" 
-#define PXS  cout<<
-
-
-
-#define _ASL_ 0
-#define _TRANS_ 1
-#endif
-
+#define ASL 1
+#define CPP 0
+#define USE_GRAPHICS 0
+               
+                            
+//#include "debug.asl"
+#if CPP
+#include "cpp_head.h"                       
+#endif               
 
 ///////////////  GLOBALS //////////////////
 
@@ -53,7 +33,7 @@ int Veci[ASZ]
 
 ////////////////////////////////////////////////
 
-#if _CPP_
+#if CPP
 
 int main( int argc, char *argv[] ) { // main start
 ///
@@ -67,9 +47,6 @@ int i
 
 int j
 
-   m = 92
-   r = 3.142
-   
  for (j=0; j < 6; j++) {
     a= 1;
     b= 0;
@@ -90,7 +67,7 @@ int j
 
 <<"%V $Inc1_val \n"
 
-#if _CPP_              
+#if CPP              
   //////////////////////////////////
   exit(-1);
  }  /// end of C++ main   

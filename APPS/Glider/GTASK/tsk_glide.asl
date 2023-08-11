@@ -13,24 +13,25 @@
 //----------------<v_&_v>-------------------------//                  
 
 
-char vers[6] ="1.2";
+char vers[6] ="1.3";
 
 
 //#include "debug"
- 
-#define DB_IT    0
-#define GT_DB   0
-#define ASL 1
-#define CPP 0
+
+#define _CPP_ 0
+
+//  use asl  -T   to produce cpp compilable code 
+//  the script xyz.asl  is converted to xyz.asc  and that file can be compled with cpp
+//  the translation flips the _CPP_ define to 1  in the resulting asc file
+//  the make_asc  script  will compile  asc code
+//  e.g. make_asc  xyz.asc
+
+//  just using asl  interpreter skips over _CPP_ sections in the asl script
+//  and defines _ASL_ and _TRANS_ to 1
+//
 
 
-#if ASL
-// this include  when cpp compiling will re-define ASL 0 and CPP 1
-//#include "compile.asl"
-#endif
-
-
-#if CPP
+#if _CPP_
 #include <iostream>
 #include <ostream>
 
@@ -40,37 +41,19 @@ using namespace std;
 #define PXS  cout<<
 
 #define ASL_DB 0
-#define CPP_DB 0
-
+#define CPP_DB 1
+#define _ASL_ 0
+#define _TRANS_ 1
 #endif
+
+
+
 
 ///////////////////////
 //uint Turnpt::Ntp_id = 0;
 
-#if ASL
-
-#define CPP_DB 0
-
-#define COUT //
-
-int run_asl = runASL()  // BUG in cpp translate
-//<<" running as ASL \n";
-
- // debugON();
-
-ignoreErrors();
-
-
-// filterFileDebug(REJECT_,"declare_e.cpp","scope_e","pr_state.cpp");
-
-#undef  ASL_DB
-#define ASL_DB 0
-
-
-#endif
 
 #include "tsk_globals.asl"
-
 
 #include "tsk_tpclass.asl"
 
@@ -94,7 +77,7 @@ ignoreErrors();
 
 
 
-#if CPP
+#if _CPP_
 int main( int argc, char *argv[] ) { // main start
  printf("CPP vers %s\n",vers);
 #endif
@@ -103,11 +86,19 @@ int main( int argc, char *argv[] ) { // main start
 
  Svar sa;
 
-#if ASL
-
+#if _ASL_
  na = _clargc;
  sa = _clarg;
 #endif
+
+#if _CPP_
+    for (int i= 0; i < argc ; i++) {
+      sa.cpy(argv[i],i);
+    }
+#endif
+
+
+
 
   ignoreErrors(); // put in glide.h ??
   Str ans;
@@ -121,7 +112,7 @@ int main( int argc, char *argv[] ) { // main start
 
   printf(" Cruise speed %f \n",Cruise_speed);
 
-#if ASL
+#if _ASL_
   GT_Wtp[1].Alt = 100.0;
 
   GT_Wtp[40].Alt = 5300.0;
@@ -192,7 +183,7 @@ int main( int argc, char *argv[] ) { // main start
     //na = sa.getNarg(); // TBC no asl version??
 
 
-#if CPP
+#if _CPP_
   na = sa.getNarg();
 #else
   na = _clargc;
@@ -215,9 +206,9 @@ printf(" na %d\n",na);
 
 
   //<<" %V $LoD \n";
-#if ASL
+// TBF auto_dec to int ?
 ac =1;
-#endif
+
 
 
 
@@ -374,7 +365,7 @@ while (ac < na) {
 
 
 
-#if ASL
+#if _ASL_
   //CLTPT[cltpt] = targ;   // TBF 02/24/22
 
 //<<"%V $targ $cltpt \n"
@@ -475,7 +466,7 @@ while (ac < na) {
   //printf("AFH %d i %d\n",AFH,i);
 
   if (i == -1) {
-   printf("the_start  %s not found \n", the_start);
+   cprintf("the_start  %S not found \n", the_start);
 
   try_start = nameMangle(the_start);
   
@@ -622,7 +613,7 @@ while (ac < na) {
 #endif
 
 
-#if CPP
+#if _CPP_
   if (GT_DB) cout << " nxttpt " << nxttpt << endl;
 #endif
 
@@ -651,7 +642,7 @@ while (ac < na) {
 
   else {
 
-#if CPP
+#if _CPP_
  if (GT_DB) cout <<"looking for " << nxttpt << endl;
 #else
  //<<"AFH $AFH looking for $nxttpt \n";
@@ -685,12 +676,12 @@ while (ac < na) {
 
   if (where  == -1) {
 
-   printf("not found! %s ",nxttpt);
+   cprintf("not found! %S ",nxttpt);
 
    ok_to_compute = 0;
 
    if (!via_keyb) {
-        printf ("nxttpt not found %s",nxttpt);
+        cprintf ("nxttpt not found %S",nxttpt);
      exit(-1);
 
      }
@@ -698,7 +689,7 @@ while (ac < na) {
    }
    else {
 //<<"%V $AFH\n"
-    if (GT_DB) printf ("n_legs %d where %d found %s ",n_legs, where,nxttpt);
+    if (GT_DB) cprintf ("n_legs %d where %d found %S ",n_legs, where,nxttpt);
     
    }
 
@@ -711,7 +702,7 @@ while (ac < na) {
 
   n_legs++;
 
-  if (GT_DB) printf("n_legs %d where %d AFH %d\n",n_legs,where , AFH);
+  if (GT_DB) cprintf("n_legs %d where %d AFH %d\n",n_legs,where , AFH);
 
 //cout << " n_legs "<< n_legs <<" @ " << where << endl;
 
@@ -738,8 +729,10 @@ while (ac < na) {
   if (use_cup) {
 
  //  nwr = Wval.readWords(AFH,0,',');
- 
+   cprintf(" readWords \n");
    nwr = Wval.readWords(AFH,0,44);
+
+
 
 //  <<"CUP READ $nwr words \n"
 
@@ -748,7 +741,7 @@ while (ac < na) {
 
 
   //  cout <<" next  nwr " << nwr << endl;
-#if CPP
+#if _CPP_
   if (GT_DB) COUT(Wval);
 #endif
 
@@ -759,6 +752,7 @@ while (ac < na) {
 #endif
 
 
+   cprintf("TPCUPset using Wval \n");
 
    GT_Wtp[n_legs].TPCUPset(Wval);
 //<<"%V $n_legs  $GT_Wtp[n_legs].Place $GT_Wtp[n_legs].Ladeg \n"
@@ -781,7 +775,7 @@ while (ac < na) {
 
    GT_Wtp[n_legs].TPset(Wval);
 
-#if ASL
+#if _ASL_
      if (AFH != K_AFH) {
        <<" ferr %V $AFH\n"
      }
@@ -1074,7 +1068,7 @@ while (ac < na) {
 
 // printf("%d %-5s  \t%s\t%s   %6.0fft   %6.0fft         \n",li,ident,GT_Wtp[li].Lat,GT_Wtp[li].Lon, GT_Wtp[li].fga, GT_Wtp[li].Alt);
   //
-#if ASL
+#if _ASL_
   printf("%d %-10s %-5s %-8s %6.0ff",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Radio,GT_Wtp[li].Alt);
 #else
  //printf("%d %-10s %-5s %-8s",li,GT_Wtp[li].Place.cptr(),ident.cptr(),GT_Wtp[li].Radio.cptr())  ;
@@ -1098,7 +1092,7 @@ cprintf("%d  %-10S %-5S %-8S  %6.0fft  ",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Ra
 
   printf("\t%6.2f %6.2f ",rtotal,tot_time);
   printf("\t%6.2f%% ",GT_Wleg[li].pc); 
-#if ASL
+#if _ASL_
   printf("%s %s \n",GT_Wtp[li].Lat,GT_Wtp[li].Lon);
 #else
   printf("%s %s \n",GT_Wtp[li].Lat.cptr(),GT_Wtp[li].Lon.cptr());
@@ -1111,7 +1105,7 @@ cprintf("%d  %-10S %-5S %-8S  %6.0fft  ",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Ra
   }
 
   if (show_dist) {
-#if ASL
+#if _ASL_
   <<"\nTotal distance\t %8.2f $totalD km\t%8.2f $(totalD*km_to_sm) sm\t%6.2f  $(totalD*km_to_nm) nm    LOD %6.1f$LoD CS $CSK knots\n";
 
   <<" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n";
@@ -1137,9 +1131,9 @@ cprintf("%d  %-10S %-5S %-8S  %6.0fft  ",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Ra
 //  <<"%6.1f $totalD km to fly -  $totalDur hrs - bon voyage!\n";
 
 
-#if CPP
+#if _CPP_
 ////////////////////////////////////////////////////////////////////////////////////////
-  printf("CPP end of main\n");
+  printf("_CPP_ end of main\n");
   exit(-1);
  }  /// end of C++ main   
 #endif

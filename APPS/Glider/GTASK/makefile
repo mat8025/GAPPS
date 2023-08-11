@@ -26,10 +26,11 @@ LDADD = -L$(gasp_sys)/lib  \
 	-lwcom_asl \
 	-lm -ldl -lpthread
 
+test_define: test_define.asc
+	g++ -g -x c++   -fpermissive  -rdynamic -o test_define test_define.asc  -I$(gasp_sys)/include -ldl  $(LDADD)
 
-
-tskglide: tskglide.asc
-	g++ -g -x c++   -fpermissive  -rdynamic -o tskglide tskglide.asc  -I$(gasp_sys)/include -ldl  $(LDADD)
+tsk_glide: tsk_glide.asc
+	g++ -g -x c++   -fpermissive  -rdynamic -o tsk_glide tsk_glide.asc  -I$(gasp_sys)/include -ldl  $(LDADD)
 
 #	-ldbug_asl \
 #	-lspe_asl \

@@ -19,7 +19,7 @@
 //<<" TPCLASS\n"
 
 int Tleg_id = 0;
-#if ASL
+#if _ASL_
 
 //<<"GT_DB $(GT_DB) \n"
 
@@ -164,8 +164,8 @@ class Turnpt
 
 
 
-//void TPCUPset (Svar& wval)
-void TPCUPset (Svar wval)
+void TPCUPset (Svar& wval)
+//void TPCUPset (Svar wval)
  {
 
 //<<"IN $_proc \n"

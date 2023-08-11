@@ -10,7 +10,7 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-myScript = getScript();
+
 ///
 ///
 ///
@@ -19,26 +19,64 @@ myScript = getScript();
 
 #include "debug";
 
-sdb(_dblevel,@trace)
+//sdb(_dblevel,@trace)
 
 if (_dblevel >0) {
    debugON()
 }
-openDll("plot")
+
+//openDll("plot")
+
+ myScript = getScript();
+
+ myScript.pinfo()
+
+<<"%V $myScript \n"
+
+
+ int na;
+
+ Svar sa;
+
+
+
+ na = _clargc;
+ <<"%V $_clargc \n"
+ 
+ sa = _clarg;
+
+<<"sa $sa[0] $sa[1] \n"
+
 char c = '?';
+
+<<"%v $c\n"
 
 float f = atan(1.0) *4;
 
-F=vgen(INT_,5,20,1)
+ f.pinfo();
+ 
+
+ F=vgen(INT_,5,20,1)
+
+<<"%V $F \n"
+
+ pinfo(F)
+
 D = vgen(FLOAT_,20,10,1)
 
-D->redimn(2,5,2)
+ pinfo(D)
+
+D.redimn(2,5,2)
+
+ pinfo(D)
 
 //svar help="Ayudame ahora"
-svar help
+ Svar help
 
 help[0] = "Ayudame ahora";
 help[1] = "que esta pasando?";
+
+ pinfo(help)
 
 //Pan P = exp(1.0); // TBF
 
@@ -49,7 +87,7 @@ P = &R;
 
  k = 0
  
- A = testargs(k++,help,47,f,"hey",1.2,1,',',"*",c,F,D,R,P,@hue,"red",&F[2])
+ A = testargs(k++,help,47,f,"hey",1.2,1,',',"*",c,F,D,R,P,_Whue,"red",&F[2])
 
 // A = testargs(k++,help,47,f,"hey",1.2,1,',',"*",c,F,D,@hue,"red",&F[2])
 

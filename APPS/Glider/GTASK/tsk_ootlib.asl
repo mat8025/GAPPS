@@ -10,7 +10,7 @@
  *  @Copyright © RootMeanSquare 2022
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                      
+//----------------<v_&_v>-------------------------//                      
 
 ///
 ///
@@ -19,7 +19,7 @@
 
 #define OOTLIB_ 1
 
-  int Ntpts = 0
+//  int Ntpts = 0
   
   int Igcfn = -1
   
@@ -29,7 +29,7 @@
 
   int Ntaskpts = 0;
 
-   Min_lat = 90.0;
+   Min_lat = 90.0;  // TBF sould auto_dec to double?
 
    Max_lat = 0.0;
 
@@ -76,11 +76,7 @@
 //float Leg[20];
 // conversion routines
 
-float  km_to_feet = 3281.0;
-float   km_to_nm = 3281.0/6080.0;
-float   km_to_sm = 3281.0/5280.0;
-float   nm_to_sm = 6080.0/5280.0;
-float   nm_to_km = 6080.0/3281.0;
+
 
 //============================================
 
@@ -155,7 +151,7 @@ float   nm_to_km = 6080.0/3281.0;
 
   Ntpts= readIGC(Igcfn, IGCTIM, IGCLAT, IGCLONG, IGCELE);
   
-
+// TBF ?  not translating ?
    <<"sz $Ntpts $(Caz(IGCLONG))   $(Caz(IGCLAT))\n"
 
   
@@ -423,8 +419,8 @@ ssele= IGCELE.stats();
 //========================
 
 
-  //float ComputeTC(Turnpt wtp[],int j, int k)
-  float ComputeTC(Turnpt wtp,int j, int k)
+  float ComputeTC(Turnpt wtp[],int j, int k)
+  //float ComputeTC(Turnpt wtp,int j, int k)
   {
 
   //<<"$_proc %V $j $k\n";

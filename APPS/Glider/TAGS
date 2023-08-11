@@ -1,84 +1,6576 @@
 
-glidetask.asl,1884
-char vers[vers16,674
-#define DB_IT 24,968
-#define GT_DB 25,987
-#define ASL 26,1005
-#define CPP 27,1019
-using namespace std;41,1191
-#define PXS 44,1232
-#define ASL_DB 46,1253
-#define CPP_DB 47,1270
-#define CPP_DB 56,1357
-#define COUT 58,1375
-int run_asl 60,1392
-#undef  ASL_DB75,1553
-#define ASL_DB 76,1568
-int TF;82,1596
-int AFH=83,1620
-float CSK;84,1633
-float Cruise_speed;85,1644
-float TC[TC87,1665
-float Dur[Dur88,1679
-  Svar Task;91,1696
-  float totalD 93,1710
-  float totalDur 95,1731
-  float TKM[TKM97,1756
-  float AGL[AGL98,1773
-  char  Hey[Hey99,1790
-  float L1;100,1819
-  float L2;101,1831
-  float lo1;103,1862
-  float lo2;104,1875
-  double tkm;105,1888
-  double tkm2;106,1902
-  float tcd;107,1917
-  float rmsl;108,1930
-  float tmsl;109,1944
-  float msl;110,1958
-  int nl,111,1971
-  int nl,li;111,1971
-  Str ident;112,1984
-  int n_legs 113,1997
-  int n_tp 114,2015
-  int k_tp;115,2031
-  Str the_start 117,2044
-  Str try_place 118,2074
-  Str try_start 119,2099
-  Str nxttpt 120,2124
-Turnpt  GT_Wtp[GT_Wtp129,2220
-Tleg  GT_Wleg[GT_Wleg131,2241
-  int via_keyb 137,2339
-  int via_file 138,2359
-  int via_cl 140,2380
-  int ok_to_compute 141,2398
-  long where 142,2423
-Glide::glideTask(glideTask149,2492
-  float N 452,6195
-  int ki;453,6212
-  int cnttpt 454,6222
-  int input_lat_long 455,6240
-  int i 456,6266
-  i 466,6381
- int k;467,6391
- int got_start 468,6399
- int K_AFH 469,6419
- cnttpt 470,6437
-  int nwr;565,7662
-  Str w;566,7673
-  int more_legs 643,8656
-  ok_to_compute 645,8678
-  float the_leg;648,8708
-  float rtime 865,11896
-  float tot_time 866,11917
-  float rtotal 867,11941
-  float nleg,868,11963
-  float nleg,wleg;868,11963
-  float agl,869,11982
-  float agl,ght,869,11982
-  float agl,ght,pc_tot,869,11982
-  float agl,ght,pc_tot,alt;869,11982
-extern "C" int glidertask(1187,18199
+/home/mark/gasp-CARBON/SI/ann/ann_f.cpp,2955
+#define CDB_ANN_F 29,756
+static char Vers[Vers31,781
+#define FCLINK(37,1001
+Ann *ann_ptr2 ann_ptr249,1264
+avers 54,1302
+checknet 64,1482
+Ann::getnet getnet88,1794
+Ann::freenet freenet164,3011
+Ann::setnetarch setnetarch212,3701
+Ann::setnettarget setnettarget351,6242
+Ann::setnetctarget setnetctarget413,7273
+pat_tr_tst_net 503,8868
+Ann::trainnetpat trainnetpat601,10923
+Ann::testnetpat testnetpat609,11059
+Ann::printnet printnet617,11194
+t_net 625,11327
+Ann::trainnet trainnet867,16585
+Ann::testnet testnet878,16738
+balance_tars 895,17155
+trortstfnet 973,18810
+Ann::trainfnet trainfnet1160,23004
+Ann::testfnet testfnet1168,23131
+Ann::wirenodes wirenodes1176,23257
+alter_conn 1294,25726
+Ann::clampconn clampconn1319,26253
+Ann::turnonconn turnonconn1327,26385
+Ann::pruneconn pruneconn1335,26515
+Ann::setconn setconn1343,26645
+Ann::addnode addnode1401,27713
+Ann::setnetinframes setnetinframes1643,33247
+Ann::setnetthresholds setnetthresholds1660,33595
+Ann::setstreambinary setstreambinary1683,34161
+Ann::setshufflepats setshufflepats1701,34500
+Ann::setnetcw setnetcw1718,34835
+Ann::setnetdebug setnetdebug1740,35227
+Ann::setnettype setnettype1767,35619
+Ann::setnetwls setnetwls1793,36107
+Ann::setnetretrys setnetretrys1808,36421
+Ann::setnetpats setnetpats1828,36880
+Ann::setnodewts setnodewts1845,37206
+Ann::getnetinframes getnetinframes1912,38749
+Ann::getnettype getnettype1925,39002
+Ann::getnetpats getnetpats1944,39435
+Ann::getnodewts getnodewts1955,39642
+Ann::getnodenc getnodenc2012,40900
+Ann::getnetnodes getnetnodes2034,41343
+Ann::getnodeslayer getnodeslayer2048,41580
+Ann::getnetnc getnetnc2067,41921
+Ann::getnetid getnetid2080,42171
+Ann::getnetarch getnetarch2092,42410
+Ann::getnetss getnetss2128,43157
+Ann::setnetss setnetss2148,43528
+Ann::setnetdbsweeps setnetdbsweeps2160,43764
+Ann::getnetsweeps getnetsweeps2172,44012
+Ann::getdbsweeps getdbsweeps2183,44224
+Ann::getnetfpasses getnetfpasses2194,44436
+Ann::getnetincat getnetincat2205,44650
+Ann::getnettheta getnettheta2219,44951
+Ann::getneteta getneteta2231,45199
+Ann::getnetalpha getnetalpha2243,45443
+Ann::getnetact getnetact2257,45746
+Ann::getmuxot getmuxot2285,46370
+Ann::setnetact setnetact2402,48831
+Ann::setnetlearn setnetlearn2439,49692
+Ann::setnetalpha setnetalpha2466,50218
+Ann::setnettheta setnettheta2483,50483
+Ann::setneteta setneteta2496,50754
+Ann::setnetnodes setnetnodes2513,51057
+Ann::setnetconn setnetconn2529,51360
+Ann::randnetwts randnetwts2546,51662
+Ann::setnetwts setnetwts2582,52271
+Ann::savenet savenet2608,52724
+Ann::printnetstate printnetstate2631,53129
+Ann::writenetwts writenetwts2655,53536
+Ann::writenet writenet2663,53652
+Ann::readnet readnet2685,54072
+Ann::readnetwts readnetwts2720,54873
+ann_net_init 2756,55587
+Ann::aNet aNet2853,59903
+ann_ele 2862,60038
+Ann::annversion annversion2871,60161
+ann_init 2882,60360
+
+/home/mark/gasp-CARBON/SI/ann/ann_main.cpp,1709
+char ann_version[ann_version19,588
+float False_alarm 21,618
+float Hit_thres 22,644
+float On_thres 23,668
+float Off_thres 24,690
+int NDB 26,714
+int HDB 27,727
+int N_net_index 29,741
+Net *ANPTR[ANPTR31,763
+set_ann_cw 42,1033
+test_ann_cw 48,1138
+limit_input 58,1297
+float Actlimit 70,1517
+limit_act 73,1573
+limit_wt 85,1762
+limit_bias 102,1997
+double const Act_a 116,2214
+double const Act_b 117,2243
+Net::Net Net119,2276
+Net::~Net ~Net124,2312
+init_net 130,2365
+Net::fill_in_nid fill_in_nid158,2863
+Net::updateNid updateNid179,3309
+set_ncw 240,4532
+get_layer_node 249,4712
+set_layer_node 255,4803
+Net::set_layer_nn set_layer_nn261,4896
+#define CDB_ANNREAD 278,5327
+read_saved_state 281,5354
+write_saved_state 459,9220
+print_saved_state 517,10346
+write_net_file 580,11822
+read_net_file 682,14050
+calloc_nodes 933,19490
+alloc_layers 977,20368
+compute_conn 1014,20998
+count_conn 1042,21529
+get_rand_wt 1057,21834
+random_wts 1081,22212
+setwts 1130,23246
+init_nodes 1153,23790
+init_conn 1174,24182
+alloc_conn 1275,26558
+add_conn 1313,27292
+realloc_conn 1410,29742
+activation 1456,30813
+diff_activation 1504,31722
+run_net 1534,32178
+find_active_conn 1621,34000
+find_conn 1647,34574
+find_layer_cell 1700,35733
+find_node 1722,36166
+hidden_error 1733,36379
+net_firing 1835,39116
+pr_net_act_bias 1854,39498
+pr_net_act_bias_cwts 1870,39865
+get_output 1919,41178
+check_hitfa 1948,41677
+output_error 1987,42717
+net_sweep 2147,46233
+limit_target 2181,46997
+ann_parse_range 2201,47311
+parse_node_exp 2252,48087
+copy_node 2332,49503
+dbp_net 2340,49665
+ann_shuffle 2356,49988
+n_stream 2371,50240
+n_cat 2385,50545
+chk_net 2397,50798
+chk_netp 2417,51059
+
+/home/mark/gasp-CARBON/SI/ann/plot_ann.cpp,284
+show_wt 38,870
+show_node 58,1272
+show_targ 111,2352
+pr_output 172,3476
+print_tar 201,4056
+print_input 215,4293
+print_out_net 230,4515
+get_plot_box_xy 271,5396
+get_plot_line_xy 304,6028
+w_plot_net 324,6572
+wb_hue 600,12187
+act_hue 625,12615
+Ann::plotnet plotnet647,13031
+
+/home/mark/gasp-CARBON/SI/array/array_expand.cpp,41
+Siv::DynamicExpand DynamicExpand20,611
+
+/home/mark/gasp-CARBON/SI/array/array_parse.cpp,539
+Parset::checkArrayRef checkArrayRef20,606
+Siv::ArraySSFilter ArraySSFilter93,2049
+Parset::varArraySubScript varArraySubScript141,3031
+Parset::VarArrayIndex VarArrayIndex169,3656
+Parset::updateArrayBounds updateArrayBounds462,10137
+Parset::initArraySpecs initArraySpecs568,12592
+Parset::checkMDarray checkMDarray639,14275
+Parset::checkArrayOffset checkArrayOffset801,18216
+Parset::varArraySpec varArraySpec860,19743
+Parset::GetArrayElement GetArrayElement1224,28126
+Parset::SetArraySpecsOff SetArraySpecsOff1454,32788
+
+/home/mark/gasp-CARBON/SI/array/array_range.cpp,222
+parse_range 22,674
+EvalRange 432,10082
+Parset::RangeFunctionArray RangeFunctionArray572,12746
+Parset::RangeIntArray RangeIntArray610,13469
+RangeCondition 635,14067
+Range::Set Set693,15482
+check_sub_ele 724,16002
+
+/home/mark/gasp-CARBON/SI/array/array_store.cpp,63
+arrayTransfer 20,600
+Siv::TransferArray TransferArray38,878
+
+/home/mark/gasp-CARBON/SI/array/array_subset.cpp,344
+Parset::parse_list parse_list25,781
+CheckSubScriptSeps 156,3640
+Parset::checkArraySubScript checkArraySubScript217,4554
+Parset::checkSubScriptByArray checkSubScriptByArray285,5879
+Parset::GetSubScriptValue GetSubScriptValue388,7711
+Siv::ComputeArraySubScript ComputeArraySubScript451,8900
+Parset::listToIndex listToIndex1015,21652
+
+/home/mark/gasp-CARBON/SI/array/array_utils.cpp,215
+int DBARRAY 19,580
+#define DEFAULT_NBOUNDS 21,598
+#define PAD_SUBI 22,624
+char array_vers[array_vers24,644
+array_info 26,678
+chk_expr 34,803
+satoi 102,1927
+arrayToUnsetVar 112,2084
+scalarSetArray 161,2965
+
+/home/mark/gasp-CARBON/SI/array/mda_ops.cpp,519
+dimns 20,587
+Mda::Mda Mda43,1042
+Mda::Mda Mda69,1477
+Mda::~Mda ~Mda105,2231
+Mda::getEleD getEleD115,2326
+Mda::getEleL getEleL164,3719
+t_mdaout 217,5147
+Mda & Mda::operator = operator =234,5533
+Mda & Mda::operator = operator =325,7366
+Mda & Mda::operator ()(operator ()417,9317
+mdacopy 468,10393
+Mda & Mda::operator = operator =475,10480
+Mda & Mda::operator = operator =513,11290
+ostream & operator << operator <<519,11386
+Mda & Mda::operator ()(operator ()566,12405
+Mda::eleD eleD625,13640
+
+/home/mark/gasp-CARBON/SI/audiolab/audio_draw.cpp,264
+#define IN_MAX_MIN_OUT 19,593
+#define MAX_MIN 20,618
+#define ALL_PTS 21,636
+int DEBUG_SIG_DRAW 32,859
+gs_ta 35,888
+#define VMC_BUFSZ 309,5375
+mcs_dsply 312,5400
+view_mcs 448,8181
+#define OSBUFSZ 651,12049
+osc_multi_cs 654,12075
+view_multi_cs 1051,19496
+
+/home/mark/gasp-CARBON/SI/audiolab/audio_fe.cpp,21
+Audsf::zc zc22,618
+
+/home/mark/gasp-CARBON/SI/audiolab/audio_funcs.cpp,2698
+#define MOUSE_SELECT 19,558
+#define SELECT_TIMES 20,581
+#define SELECT_SAMPLES 21,604
+static int Sig_ed 26,678
+static int redraw;27,701
+static int Sel_and_play 28,720
+int go_hack;31,769
+int Max_da 33,783
+int Min_da 34,803
+int Mix_para 36,825
+int Mic_amp 37,848
+int N_audio_channels 39,871
+unary_op_sr 44,945
+swab_buf 51,1032
+timetodp 59,1163
+update_wid_file 67,1311
+store_sr 97,1911
+store_pp 130,2510
+gs_hack_phase 155,2899
+gs_swab_buf 171,3215
+gs_hack_reverse 186,3535
+gs_hack_unary_op 209,3993
+gs_add_sbuf 239,4680
+gs_clip_sbuf 258,4991
+sr_fv 288,5498
+fv_sr 336,6339
+savebuf 364,6873
+addbuf 385,7295
+mixbuf 404,7640
+Audsf::mixfile mixfile477,8890
+Audsf::setsr setsr511,9545
+Audsf::setsrtimes setsrtimes557,10451
+Audsf::setwbufnu setwbufnu580,10857
+Audsf::getwbufnu getwbufnu595,11151
+Audsf::savesr savesr610,11429
+Audsf::exitsiged exitsiged626,11702
+Audsf::clearbuf clearbuf636,11868
+Audsf::updatebuf updatebuf656,12224
+Audsf::addsignal addsignal673,12508
+Audsf::srv srv721,13376
+Audsf::vsr vsr754,13995
+Audsf::viewmcsignal viewmcsignal780,14478
+Audsf::oscsignal oscsignal837,15655
+Audsf::drawaudio drawaudio884,16624
+zoomsignal 1051,20087
+Audsf::zoomin zoomin1097,20873
+Audsf::zoomout zoomout1106,21022
+Audsf::drawsignalt drawsignalt1115,21173
+Audsf::getsignalspace getsignalspace1145,21773
+Audsf::scrollsignal scrollsignal1166,22214
+int Da_res 1209,22953
+char Da_name[Da_name1211,22971
+char Daclk_name[Daclk_name1212,22995
+char Ad_name[Ad_name1213,23022
+char Adclk_name[Adclk_name1214,23046
+Audsf::readdevices readdevices1217,23078
+Audsf::phon60 phon601250,23973
+Audsf::dcfilter dcfilter1263,24209
+static int interactive_mode 1313,25240
+static double interactive_gap_seconds 1314,25273
+gate_buffer 1317,25324
+scale_buffer 1327,25525
+set_sound_parms 1338,25740
+get_sound_parms 1475,28583
+restore_sound_parms 1551,30286
+Audsf::dspopen dspopen1576,30762
+Audsf::mixeropen mixeropen1586,30965
+interactive_message 1604,31276
+Audsf::setsoundparams setsoundparams1618,31626
+Audsf::getsoundparams getsoundparams1655,32295
+Audsf::restoresoundparams restoresoundparams1674,32736
+Audsf::getsignalfrombuffer getsignalfrombuffer1687,33040
+Audsf::getsignalstats getsignalstats1735,34166
+snd_pcm_t *ALSA_handle;ALSA_handle1775,35175
+Audsf::sndopen sndopen1778,35204
+snd_pcm_hw_params_t *ALSA_params;ALSA_params1801,35635
+Audsf::sndallochwparams sndallochwparams1804,35674
+Audsf::sndwrthwparams sndwrthwparams1838,36551
+Audsf::sndsetchannels sndsetchannels1850,36778
+Audsf::sndsetframes sndsetframes1868,37102
+Audsf::sndsetsrate sndsetsrate1885,37499
+Audsf::sndclose sndclose1900,37825
+
+/home/mark/gasp-CARBON/SI/audiolab/audio_io.cpp,1884
+int DEBUG_ED 19,588
+int DEBUG_IO 20,606
+#define MAXSBUFS 22,625
+int Nsbufs 26,667
+int SigbID 27,683
+Sigb *SIGBPTR[SIGBPTR29,700
+get_sigb 32,733
+Sigb::Sigb Sigb43,942
+Sigb::~Sigb ~Sigb62,1249
+Sigb::getSize getSize74,1395
+Sigb::getType getType84,1510
+Sigb::setType setType94,1626
+create_sigb 104,1748
+Sigb::read read143,2349
+Sigb::bufp bufp155,2603
+Sigb::bufp bufp207,3581
+check_sfsb_paras 243,4176
+#define MAX12DA 286,5184
+#define MAX16DA 287,5207
+dptotime 290,5238
+t_to_s 298,5387
+ds_to_t 306,5535
+union io_buf313,5674
+  int i;315,5689
+  short sio[sio316,5698
+  float fio[fio317,5726
+Iob;319,5747
+int DF_csb 321,5753
+clear_sb 324,5776
+clear_sb_end 334,5921
+read_sb 347,6142
+write_sb 379,6691
+gs_swop_sb 387,6831
+gs_scale_vox 412,7293
+channel C_head;425,7566
+channel C_chn[C_chn426,7582
+rd_ascii_head 429,7605
+checkAudioType 548,10391
+checkAudioType 584,11160
+rmi_signal 600,11425
+rd_vox 867,17506
+gs_auto_scale 1172,23029
+gs_chk_ss 1245,24367
+write_ta 1273,24945
+check_sf_paras 1368,27064
+init_sb 1412,28114
+check_file 1429,28429
+set_begin_end 1449,28735
+sb_rp_update 1481,29431
+set_win_ta_scales 1510,29907
+Audsf::getsigbid getsigbid1520,30092
+Audsf::writesignal writesignal1541,30467
+Audsf::readsignalarray readsignalarray1633,32170
+Audsf::writebuffer writebuffer1823,36360
+Audsf::writemcsignal writemcsignal1873,37279
+Audsf::setbyteorder setbyteorder1939,38579
+Audsf::mixsignal mixsignal1951,38797
+Audsf::readsignal readsignal1959,38946
+Audsf::createsignalbuffer createsignalbuffer1967,39099
+Audsf::deletesignalbuffer deletesignalbuffer1979,39312
+Audsf::getsigbfreq getsigbfreq2001,39763
+Audsf::getsigbend getsigbend2017,40103
+Audh::Audh Audh2032,40421
+Audc::Audc Audc2050,40743
+Audsf::waudheader waudheader2064,40941
+Audh::print print2115,42012
+Audsf::raudheader raudheader2128,42216
+
+/home/mark/gasp-CARBON/SI/audiolab/audio_ops.cpp,1236
+#define MOUSE_SELECT 19,590
+#define SELECT_TIMES 20,613
+#define SELECT_SAMPLES 21,636
+short *Sbuf Sbuf26,725
+static long int cbufsize 28,746
+static long int selbufsize 29,776
+static long int ebufsize;30,808
+static int Select_method 31,834
+char cpb_name[cpb_name32,864
+int Maxpts 34,893
+init_audio 37,917
+rp_t_s 50,1150
+gs_rms_sbuf 58,1250
+gs_gate 78,1532
+make_cpb_name 115,2135
+check_wid 122,2304
+gs_agc 133,2487
+gs_reverb 219,3752
+join_gate 298,4962
+gs_cclip_sbuf 342,5729
+gs_mul_sbuf 362,6097
+gs_pre_sbuf 381,6408
+Audsf::copysr copysr391,6631
+Audsf::cutsr cutsr421,7247
+Audsf::paste paste471,8381
+Audsf::mix mix496,8866
+Audsf::getsr getsr535,9651
+Audsf::getsrt getsrt562,10212
+Audsf::getsf getsf591,10810
+Audsf::alsplice alsplice605,11077
+Audsf::reverb reverb670,12589
+Audsf::agc agc721,13574
+Audsf::invertsr invertsr774,14611
+Audsf::reversesr reversesr791,14926
+Audsf::mulsignal mulsignal809,15240
+Audsf::presignal presignal857,16073
+Audsf::clipsignal clipsignal902,16931
+Audsf::swabsr swabsr942,17642
+Audsf::gatesr gatesr959,17917
+Audsf::rmssr rmssr996,18615
+Audsf::cclipsr cclipsr1020,19088
+Audsf::findpeaks findpeaks1043,19576
+Audsf::findpitch findpitch1084,20440
+
+/home/mark/gasp-CARBON/SI/audiolab/audio_pitch.cpp,19
+choose_one 27,763
+
+/home/mark/gasp-CARBON/SI/audiolab/audio_play.cpp,134
+play_buffer 20,561
+play_sound 69,1549
+play_file 174,4332
+Audsf::playfile playfile192,4741
+Audsf::playbuffer playbuffer275,6568
+
+/home/mark/gasp-CARBON/SI/audiolab/audio_rec.cpp,1013
+vshiftl 20,595
+set_record_parms 34,833
+record_sound 178,3528
+enum ringbufdefs217,4345
+{ RBSZ 218,4362
+{ RBSZ = 0, RBNB,218,4362
+{ RBSZ = 0, RBNB, RBREC,218,4362
+{ RBSZ = 0, RBNB, RBREC, RBCNT,218,4362
+{ RBSZ = 0, RBNB, RBREC, RBCNT, RBCW,218,4362
+{ RBSZ = 0, RBNB, RBREC, RBCNT, RBCW, RBERR,218,4362
+{ RBSZ = 0, RBNB, RBREC, RBCNT, RBCW, RBERR, RBPR,218,4362
+{ RBSZ = 0, RBNB, RBREC, RBCNT, RBCW, RBERR, RBPR, RBPRCNT,218,4362
+{ RBSZ = 0, RBNB, RBREC, RBCNT, RBCW, RBERR, RBPR, RBPRCNT, RBOP 218,4362
+#define RECBLKBYTESZ 220,4431
+record_sound_cycbuff 222,4460
+record_file 376,7362
+Audsf::recordaudiobuffer recordaudiobuffer390,7741
+Audsf::recordfile recordfile469,9087
+Audsf::setrecordparams setrecordparams572,11084
+Audsf::recordbuffer recordbuffer613,11899
+enum ringbufops676,13328
+{ RBCOPY 677,13344
+{ RBCOPY = 0, RBFIR,677,13344
+{ RBCOPY = 0, RBFIR, RBIIR,677,13344
+{ RBCOPY = 0, RBFIR, RBIIR, RBCONV 677,13344
+RingBufferSp 680,13387
+Audsf::ringbuffersp ringbuffersp884,17569
+
+/home/mark/gasp-CARBON/SI/audiolab/audio_table.cpp,42
+audiosf_init 30,767
+audio_init 139,6632
+
+/home/mark/gasp-CARBON/SI/dbug/dbug.cpp,2327
+  Svar *Gr;Gr47,1121
+  char Debug_file[Debug_file57,1240
+  int DBPROC_ENTRY 59,1267
+  int DBPROC_ARGS 60,1290
+  int DBARG;62,1317
+  int DBEXP;63,1330
+  int DBVAR;64,1343
+  int DBOPERA;65,1356
+  int DB_show_result_values 67,1374
+  int UseDB 89,1771
+  int DB_Info 90,1788
+  char dbug_vers 92,1840
+  void dbug_info(93,1870
+int Break_st_id 99,1936
+#define NBRKLINES 101,1959
+int Break_lines[Break_lines102,1981
+int Nbl;103,2032
+  int debug_file_rename(105,2051
+  Dbgsf::filterDebug filterDebug134,2683
+  Dbgsf::filterFileDebug filterFileDebug174,3552
+int setDebug(217,4447
+  Dbgsf::setDebug setDebug239,5044
+  Dbgsf::resetDebug resetDebug434,10778
+  Dbgsf::debugEnv debugEnv450,11044
+  set_pcw 465,11382
+  int   getVersion 498,12165
+  getscript 529,12933
+  ferror_msg 541,13108
+  df_error_msg 564,13606
+  error_g_return 587,14051
+  dbfuncwarning 596,14237
+  gwmerror 629,14822
+  pserror 645,15174
+  Dbgsf::lastError lastError660,15466
+  Dbgsf::ErrNo ErrNo668,15611
+  Dbgsf::ErrName ErrName674,15748
+  Dbgsf::getNumOfErrors getNumOfErrors695,16193
+  Dbgsf::setErrorNum setErrorNum707,16437
+  setErrorNum 726,16769
+  set_max_ic_errors 740,17067
+ int   allowErrors 748,17253
+  allowerrors 757,17437
+  ignoreerrors 768,17672
+  Dbgsf::set_maxcodeerrors set_maxcodeerrors778,17857
+  void   ignoreErrors(785,18053
+  Dbgsf::lastErrorName lastErrorName797,18185
+  get_si_error_func 815,18488
+  Dbgsf::lastErrorLine lastErrorLine822,18638
+  get_last_call 829,18789
+  void   dbliberror 835,18929
+  set_name_debug 863,19534
+  set_ndl 888,19991
+  set_all_db 1008,22802
+  void si_pcl(1030,23276
+  Parset::StringPCW StringPCW1047,23683
+  Parset::db_read db_read1071,24198
+  Dbgsf::Defines Defines1589,36997
+  Dbgsf::Functions Functions1609,37451
+  Dbgsf::vFunctions vFunctions1631,37909
+  Dbgsf::Procedures Procedures1653,38423
+  Dbgsf::Variables Variables1700,39423
+  Dbgsf::Vinfo Vinfo1799,42747
+  stop 1819,43191
+  nop 1838,43534
+  dbfseek 1845,43664
+  DBtag::ErrPrintf ErrPrintf1858,43935
+  void  debug_show_siv(1884,44469
+  showSivValue 1894,44666
+  Nid(1903,44834
+int db_breakpt(1922,45229
+Svar Pnest;1982,46301
+int Pio 1985,46315
+GetPnest 1988,46333
+Pinest 1995,46423
+int Fmtor 2004,46583
+Ponest 2007,46603
+  Dbgsf::init init2043,47253
+
+/home/mark/gasp-CARBON/SI/df/asl_sig.cpp,701
+int EXIT_CC 39,939
+int EXIT_PIPE 40,956
+int CHILD_SIG 41,975
+int MaxCC 42,994
+int QUIT_SIG 43,1009
+int CTRL_C 44,1027
+int CTRL_Z 45,1043
+int PIPE_BRK 49,1160
+int USE_ASL 50,1178
+int BAD_COMS 51,1195
+int GS_PID;52,1213
+int TERM_SIG 54,1226
+char **CL_arg;CL_arg56,1245
+char **ENVP;ENVP57,1260
+int CL_argc;59,1274
+int CL_warg 60,1287
+char Progname[Progname62,1305
+checkComs 65,1330
+copy_args 73,1428
+pr_cl_args 122,2449
+get_CL_arg 135,2636
+gs_onintr 146,2838
+gs_onsegv 161,3201
+gs_onquit 179,3524
+gs_onterm 189,3714
+gs_onsusp 202,3946
+gs_onfpe 212,4146
+int ChildStatus 231,4505
+gs_onchild 234,4533
+gs_onpipe 249,4822
+onfpe 265,5162
+gs_onusr2 275,5343
+set_asl 284,5499
+
+/home/mark/gasp-CARBON/SI/df/buf.cpp,33
+s_to_t 23,632
+write_buf 29,712
+
+/home/mark/gasp-CARBON/SI/df/datafile.cpp,2286
+int df_errno 32,1023
+char GASP_VER[GASP_VER36,1073
+char VOX_VER[VOX_VER38,1103
+int GS_EOF 40,1132
+int FPE 42,1149
+#define MEM_LINE 50,1253
+char GS_PATH[GS_PATH52,1283
+char GS_HOME[GS_HOME53,1310
+char HOME[HOME54,1380
+show_gasp_version 57,1423
+get_afname 63,1491
+get_wrds 75,1701
+gs_wrt_lab 97,2212
+gs_read_lab 117,2749
+gs_check_header 156,3612
+check_eh 204,4467
+gs_chk_data_file_type 213,4654
+gs_copy_head 323,7244
+gs_read_frame_header 368,8013
+gs_read_frame 468,10533
+  union Data_buff472,10637
+    double d[d474,10659
+    float f[f475,10685
+    char c[c476,10710
+    unsigned char uc[uc477,10734
+    short int si[si478,10768
+gs_open_frame 565,12738
+gs_seek_frame 592,13239
+gs_sr_frame 619,13861
+get_data_size 645,14374
+gs_open_frame_file 670,15120
+gs_read_chn 784,17653
+gs_rd_chn_buf 819,18301
+    double d[d824,18374
+    float f[f825,18400
+    int i[i826,18425
+    short si[si827,18448
+    char c[c828,18474
+    unsigned char uc[uc829,18498
+gs_read_chn 996,22445
+gs_rd_chn_buf 1031,23023
+    float f[f1036,23089
+    int i[i1037,23114
+    char c[c1038,23137
+    unsigned char uc[uc1039,23161
+    short int si[si1040,23195
+gs_open_chn 1167,25980
+gs_seek_chn 1203,26756
+gs_copy_chn 1242,27621
+gs_close_df 1258,28028
+gs_close_chn 1272,28262
+gs_close_frame 1279,28383
+gs_read_channel_head 1286,28501
+gs_o_df_head 1411,31279
+gs_w_chn_head 1452,32445
+gs_next_chn_head 1484,33344
+gs_start_header 1516,34296
+#define GS_PADHDSZ 1523,34445
+gs_pad_header 1525,34471
+gs_c_df_head 1574,35307
+gs_w_frm_head 1583,35505
+gs_write_frame 1623,36804
+gs_wrt_sf 1649,37312
+gs_init_df 1724,39456
+gs_init_frame 1738,39747
+read_no_header 1747,39902
+read_m_chn 1783,40801
+    float f[f1790,40982
+    char c[c1791,41007
+    unsigned char uc[uc1792,41031
+    short int si[si1793,41065
+gs_chn_ip_buf 1852,42411
+job_done 1895,43388
+read_df_head 1920,43919
+make_dfile_name 2010,45734
+check_df_indirect 2032,46266
+read_sf_head 2045,46492
+m_chn_ip_buf 2257,50924
+gs_delta_frame 2300,51966
+gsWriteSigHd 2328,52512
+gsWriteChanHd 2361,53272
+gs_usleep 2384,53981
+wc_wait 2392,54124
+  struct timespec22438,55139
+    time_t tv_sec;2440,55162
+    long tv_nsec;2441,55196
+wc_pause 2463,55575
+df_exist 2471,55680
+
+/home/mark/gasp-CARBON/SI/df/df_date.cpp,36
+dd_date 20,601
+gs_get_date 31,794
+
+/home/mark/gasp-CARBON/SI/df/dfxy.cpp,242
+int EXIT_SI 19,578
+gs_o_xy_head 26,672
+struct stat stbf;35,867
+fsize 38,891
+set_ds_defaults 84,1623
+set_frame_header_defaults 115,2279
+gs_o_sf_head 142,2867
+setup_chan_hd 178,3849
+setup_chan_paras 212,4674
+find_indirect_df 261,5833
+
+/home/mark/gasp-CARBON/SI/df/sp_swab.cpp,175
+sswab 20,590
+sp_v_sswab 36,858
+swab_32word 55,1150
+swab_long 84,1676
+swab_int 113,2367
+sp_v_iswab 126,2561
+sp_v_lswab 142,2769
+sp_v_swab 155,2951
+sp_v_dswab 169,3159
+
+/home/mark/gasp-CARBON/SI/ds/dobject_e.cpp,254
+Siv::getPan getPan20,565
+Siv::getPan getPan29,658
+Siv::setPan setPan38,759
+Siv::getEvent getEvent45,846
+Siv::getEvent getEvent51,904
+Siv::getLHSubSize getLHSubSize57,962
+Siv::getSubSize getSubSize67,1065
+Siv::getpBounds getpBounds80,1230
+
+/home/mark/gasp-CARBON/SI/ds/ds_aop.cpp,319
+Aop::~Aop ~Aop19,559
+Aop::rangeToSubi rangeToSubi57,1050
+Siv::makeAop makeAop89,1672
+Aop::setUpSubi setUpSubi124,2348
+Aop::clearSubi clearSubi221,4587
+Aop::freeSubi freeSubi275,5378
+Aop::markSubiDimn markSubiDimn330,6307
+Aop::getSubiDimn getSubiDimn350,6603
+Aop::invertSubiDimn invertSubiDimn372,6873
+
+/home/mark/gasp-CARBON/SI/ds/ds_arraycopy.cpp,427
+Siv::ArraySubScriptCopy ArraySubScriptCopy20,568
+Siv::VectorSubScriptCopy VectorSubScriptCopy231,4951
+Siv::copyPsivArray copyPsivArray479,10049
+Siv::copyPtrValue copyPtrValue496,10335
+asl_return_code Siv::ArrayCopy ArrayCopy555,11588
+Siv::CopyConvertFrom CopyConvertFrom762,15614
+Siv::SubScriptCopyConvert SubScriptCopyConvert808,16589
+Siv::ArrayCopyToRecord ArrayCopyToRecord996,20314
+arrayConvert 1106,22264
+
+/home/mark/gasp-CARBON/SI/ds/ds_arraysetup.cpp,173
+sarray 20,613
+asl_return_code Siv::SetArray SetArray38,934
+Siv::SetUpArray SetUpArray145,3043
+Siv::SetUpArray SetUpArray177,3603
+Siv::printArray printArray185,3741
+
+/home/mark/gasp-CARBON/SI/ds/ds_convert.cpp,275
+int DBFONVERT 19,560
+tconvert 22,615
+tvcopy 31,804
+TypeConvert 40,901
+Siv::setVal setVal502,9756
+Siv::setVal setVal550,10637
+Siv::Convert Convert613,11640
+Siv::MemOffSet MemOffSet886,16463
+Siv::checkScalar checkScalar911,16878
+Siv::isScalar isScalar929,17141
+
+/home/mark/gasp-CARBON/SI/ds/ds_convert_get.cpp,617
+Siv::getVal getVal20,597
+Siv::getVal getVal71,1701
+Siv::getVal getVal104,2329
+Siv::getVal getVal136,2956
+Siv::getVal getVal148,3156
+Siv::getVal getVal160,3356
+Siv::getVal getVal173,3556
+Siv::getVal getVal210,4258
+Siv::getValueIndex getValueIndex226,4485
+Siv::getVal getVal290,5485
+Siv::getVal getVal327,6257
+Siv::getVal getVal340,6457
+Siv::getVal getVal383,7310
+Siv::getIntVal getIntVal444,8356
+Siv::getShortVal getShortVal464,8718
+Siv::getCharVal getCharVal484,9093
+Siv::getFloatVal getFloatVal504,9462
+Siv::getDoubleVal getDoubleVal521,9810
+Siv::getLongVal getLongVal539,10154
+
+/home/mark/gasp-CARBON/SI/ds/ds_convert_store.cpp,209
+parse_number_str 20,588
+Siv::setStoreVal setStoreVal158,3257
+Siv::StoreVal StoreVal169,3458
+Siv::StoreVal StoreVal285,5521
+Siv::storeValInEle storeValInEle480,9665
+Siv::concatSiv concatSiv557,11295
+
+/home/mark/gasp-CARBON/SI/ds/ds_getvarasstr.cpp,348
+Svar::getArrayAsStr getArrayAsStr24,654
+Svar::getVarAsStr getVarAsStr71,1549
+Svar::getVarAsStr getVarAsStr710,14832
+Svar::getVarAsStr getVarAsStr721,15011
+Siv::getAsStr getAsStr732,15206
+Svar::returnVarAsStr returnVarAsStr872,17768
+get_double_svar 884,17980
+Siv::getAsLong getAsLong932,18699
+Siv::getAsDouble getAsDouble1078,21576
+
+/home/mark/gasp-CARBON/SI/ds/ds_matrix.cpp,160
+Siv::MDFindSubDimn MDFindSubDimn20,557
+Siv::markIndex markIndex238,4548
+Siv::rangeToSubSet rangeToSubSet301,5810
+Siv::MDFindSubSet MDFindSubSet332,6437
+
+/home/mark/gasp-CARBON/SI/ds/ds_mdarray_sss.cpp,122
+sss 20,636
+Siv::SubScriptStore SubScriptStore113,2560
+lhsss 202,4263
+Siv::LHSubScriptStore LHSubScriptStore312,6585
+
+/home/mark/gasp-CARBON/SI/ds/ds_records.cpp,59
+Siv::setRcol setRcol22,670
+Siv::getRcol getRcol41,1038
+
+/home/mark/gasp-CARBON/SI/ds/ds_recordstore.cpp,124
+long storeCopyRecord_count;19,563
+asl_return_code Siv::copyRecordToSvar copyRecordToSvar21,592
+storeCopyRecord 130,2730
+
+/home/mark/gasp-CARBON/SI/ds/ds_scalar.cpp,102
+asl_return_code Siv::CopyScalar CopyScalar19,555
+asl_return_code Siv::CopyScalar CopyScalar26,704
+
+/home/mark/gasp-CARBON/SI/ds/ds_sivarray.cpp,1868
+Siv::isArray isArray20,576
+Siv::checkWholeArrayRef checkWholeArrayRef32,768
+Siv::isArray isArray46,986
+Siv::checkArrayEle checkArrayEle57,1130
+asl_return_code Siv::CopyArray CopyArray74,1492
+Siv::InitArray InitArray140,2749
+Siv::setArrayNDB setArrayNDB191,3579
+Siv::SetUpSubi SetUpSubi218,4065
+Siv::ClearSubi ClearSubi291,5461
+Siv::dynamicExpand dynamicExpand334,6122
+Siv::VectorResize VectorResize401,7517
+Siv::isVectorType isVectorType426,8052
+Siv::TransferSvar TransferSvar455,8451
+Siv::GetRowsCols GetRowsCols511,9671
+Siv::getVectorSize getVectorSize538,10098
+Siv::getND getND573,10665
+Siv::setND setND581,10844
+Siv::checkSize checkSize594,11048
+Siv::checkSize checkSize618,11394
+Siv::checkSize checkSize641,11767
+Siv::checkDynamicSize checkDynamicSize685,12509
+Siv::setArrayEle setArrayEle703,12892
+Siv::ResetDimn ResetDimn741,13684
+Siv::IsColVector IsColVector755,13888
+Siv::IsRowVector IsRowVector769,14128
+Siv::CheckSubDimn CheckSubDimn783,14369
+Siv::isArrayIntType isArrayIntType804,14774
+Siv::isNumberType isNumberType823,15101
+Siv::isIntNumberType isIntNumberType846,15489
+Siv::isNumberArray isNumberArray863,15775
+Siv::Degenerate Degenerate876,15931
+Siv::CopySubScriptBounds CopySubScriptBounds909,16444
+Siv::SubScriptUsingArray SubScriptUsingArray964,17475
+Siv::SubScriptDimViaArray SubScriptDimViaArray1059,19363
+Siv::freeSubi freeSubi1196,21944
+Siv::freeAop freeAop1212,22183
+CheckStoreType 1306,23835
+store_pan 1335,24401
+store_double 1347,24618
+store_float 1359,24887
+store_cmplx 1372,25084
+store_dcmplx 1387,25323
+store_int 1402,25567
+store_uint 1413,25783
+store_long 1424,25973
+store_ulong 1436,26229
+store_short 1447,26422
+store_ushort 1457,26613
+store_char 1467,26807
+store_uchar 1479,26997
+store_svar 1490,27221
+store_svar 1531,28022
+store_vtype 1538,28155
+
+/home/mark/gasp-CARBON/SI/ds/ds_sivbounds.cpp,456
+Siv::initBounds initBounds20,563
+Siv::setBounds setBounds62,1340
+Siv::incrBounds incrBounds100,2157
+Siv::decrBounds decrBounds133,2843
+Siv::initBounds initBounds168,3587
+Siv::ReallocBounds ReallocBounds209,4312
+Siv::getBounds getBounds307,5974
+Siv::getInnerStep getInnerStep324,6250
+Siv::CheckBounds CheckBounds346,6599
+Siv::CopyBounds CopyBounds429,7901
+Siv::checkVectorBounds checkVectorBounds526,9523
+Siv::Redimn Redimn595,10922
+
+/home/mark/gasp-CARBON/SI/ds/ds_siv.cpp,2468
+int DBSIV 20,603
+uint InvalidSiv 21,618
+Siv *Last_siv_made Last_siv_made25,671
+Siv::Siv Siv27,699
+Siv::setAW setAW55,1185
+Siv::setCW setCW69,1414
+Siv::Siv Siv87,1785
+Siv::Siv Siv204,4016
+Siv::Siv Siv216,4201
+Siv::isIntType isIntType252,4760
+Siv::getPOffSet getPOffSet268,5041
+Siv::getOffSet getOffSet306,5647
+Siv::getFromOffSet getFromOffSet322,5924
+Siv::getLhOffSet getLhOffSet340,6228
+Siv::setName setName365,6624
+Siv::setName setName374,6758
+Siv::isCharType isCharType384,6922
+Siv::isStrType isStrType392,7155
+Siv::setOffSet setOffSet400,7296
+Siv::Valid Valid408,7403
+Siv::Sizeof Sizeof420,7622
+Siv::setType setType446,8113
+Siv::setSize setSize462,8355
+Siv::setPOffSet setPOffSet495,8833
+Siv::getSize getSize505,8981
+Siv::ExpandVec ExpandVec548,9738
+Siv::checkOffSet checkOffSet574,10240
+Siv::checkFromOffSet checkFromOffSet721,13380
+Siv::unsetArray unsetArray844,15704
+Siv::checkListSvarSize checkListSvarSize858,15912
+Siv::Makeitso Makeitso878,16221
+Siv::Dtype Dtype899,16565
+asl_return_code Siv::Copy Copy906,16660
+Siv::ValidOffSet ValidOffSet1018,18598
+Siv::ValidFromOffSet ValidFromOffSet1074,19405
+Siv::MakeRHSubSet MakeRHSubSet1128,20204
+Siv::MakeLHSubSet MakeLHSubSet1161,20919
+Siv::CheckSvarBounds CheckSvarBounds1187,21366
+Siv::checkIsStr checkIsStr1221,22006
+Siv::IsCmplx IsCmplx1238,22335
+Siv::setPTR setPTR1251,22526
+Siv::getBuffer getBuffer1274,22923
+Siv::getMyObjName getMyObjName1323,23801
+Siv::setMyObj setMyObj1340,24128
+findRefOrPtr 1353,24336
+Siv::setToScalar setToScalar1382,24851
+Siv::getLHsize getLHsize1405,25259
+isSivValid 1420,25538
+Siv::isValid isValid1430,25685
+Siv::getReal getReal1463,26223
+Siv::getImag getImag1492,26641
+Siv::svptrOFF svptrOFF1521,27065
+Siv::setScalar setScalar1529,27217
+Siv::setScalar setScalar1547,27618
+Siv::setScalar setScalar1565,27934
+Siv::setScalar setScalar1580,28237
+Siv::setScalar setScalar1596,28544
+Siv::setScalar setScalar1612,28868
+Siv::MemberAccess MemberAccess1684,30046
+Siv::setPsiv setPsiv1703,30365
+Siv::getDOBtype getDOBtype1722,30707
+Siv::setCI setCI1746,31127
+Siv::Deref Deref1756,31233
+Siv::extractEle extractEle1777,31674
+Siv::freePan freePan1813,32571
+shuffle 1852,33388
+Siv::Shuffle Shuffle1868,33630
+asl_return_code Siv::storeArray storeArray1925,34494
+Siv::reType reType1994,35675
+Siv::Cast Cast2020,36165
+init_var_value 2063,37120
+vm_type 2089,37727
+
+/home/mark/gasp-CARBON/SI/ds/ds_sivdel.cpp,328
+int RecycleID[RecycleID19,593
+int NSivdels 20,615
+uint32_t TotSivDels 21,633
+Siv::~Siv ~Siv23,659
+Siv::deleteSvar deleteSvar62,1479
+Siv::deleteRecord deleteRecord89,1990
+Siv::DeleteEvent DeleteEvent131,2862
+Siv::deleteSclass deleteSclass156,3327
+Siv::freeSiv freeSiv182,3804
+Siv::freeBounds freeBounds244,4866
+
+/home/mark/gasp-CARBON/SI/ds/ds_sivevent.cpp,31
+Siv::setEvent setEvent20,597
+
+/home/mark/gasp-CARBON/SI/ds/ds_sivflags.cpp,320
+Svar Sivinfo;19,599
+Svar Lsivinfo;20,613
+char Flgtxt[Flgtxt22,629
+char AWFlgtxt[AWFlgtxt23,647
+Svar Infosv;24,667
+testFlag 27,685
+Siv::showCW showCW35,775
+Siv::showAW showAW151,3398
+getInfo 236,5508
+Siv::infoV infoV250,5731
+Siv::info info261,5893
+Siv::linfo linfo619,13562
+Siv::pinfo pinfo657,14599
+
+/home/mark/gasp-CARBON/SI/ds/ds_sivlist.cpp,221
+Siv::newList newList23,664
+Siv::deleteList deleteList69,1652
+Siv::getListSize getListSize91,2008
+asl_error_codes Siv::storeList storeList102,2181
+addListItem 197,4256
+delListItem 231,4972
+delListSitem 244,5235
+
+/home/mark/gasp-CARBON/SI/ds/ds_sivmem.cpp,798
+#define REALLOC_RECORD 19,552
+#define REALLOC_SCLASS 20,577
+#define REALLOC_EVENT 21,602
+#define MPAD 23,627
+int MemTune 28,689
+int Memtunesize 29,706
+Siv::ReallocMem ReallocMem32,733
+Siv::ReallocMem ReallocMem481,9750
+Siv::ReallocEvent ReallocEvent489,9908
+Siv::checkFreeSivMem checkFreeSivMem505,10201
+Siv::FreeMem FreeMem532,10895
+Siv::ZeroTheMem ZeroTheMem676,13860
+Siv::attachRecord attachRecord692,14140
+Siv::FreeMoveMem FreeMoveMem734,15102
+Siv::MoveMem MoveMem767,15778
+Siv::ResetVar ResetVar781,16024
+Siv::SetUpArrayMemory SetUpArrayMemory833,17076
+Siv::Memi Memi871,17712
+Siv::Memp Memp891,18025
+Siv::MempFromOffSet MempFromOffSet908,18276
+Siv::MempLhOffSet MempLhOffSet922,18511
+Siv::MemIndex MemIndex936,18744
+Siv::freeSivMem freeSivMem963,19170
+
+/home/mark/gasp-CARBON/SI/ds/ds_sivnew.cpp,207
+int NActiveSivs 22,657
+uint32_t TotSivNew 23,678
+  Siv::SivID 26,712
+  PeakVars 29,740
+Siv::init init32,761
+Siv::NewSvar NewSvar131,2844
+Siv::newStr newStr177,3685
+Siv::newEvent newEvent205,4242
+
+/home/mark/gasp-CARBON/SI/ds/ds_sivoperator.cpp,768
+Siv::operator [] operator []23,699
+Siv & Siv::operator [](operator []63,1297
+Siv::operator [] operator []100,1813
+Siv & Siv::operator = operator =112,2007
+Siv & Siv::operator = operator =125,2179
+Siv & Siv::operator = operator =136,2355
+Siv & Siv::operator = operator =148,2532
+Siv & Siv::operator = operator =159,2662
+Siv & Siv::operator = operator =172,2832
+Siv & Siv::operator = operator =290,4929
+Siv::operator () operator ()403,6931
+					   Siv & Siv::operator ()(operator ()420,7336
+					   Siv & Siv::operator ()(operator ()430,7592
+					   ostream & operator << operator <<447,8137
+					   istream & operator >> operator >>492,9136
+					   Siv Siv::operator ^ operator ^510,9595
+					   Siv Siv::operator * operator *524,9934
+
+/home/mark/gasp-CARBON/SI/ds/ds_sivptr.cpp,197
+Siv::findPtrSiv findPtrSiv20,595
+Siv::findPsiv findPsiv99,2235
+Siv::findFsiv findFsiv107,2332
+Siv::getPtype getPtype180,3589
+Siv::checkPsize checkPsize196,3835
+Siv::Pmemp Pmemp214,4113
+
+/home/mark/gasp-CARBON/SI/ds/ds_sivrange.cpp,400
+Siv::checkValidBounds checkValidBounds20,571
+Siv::computeOffSet computeOffSet84,1638
+Siv::EvalRange EvalRange106,2115
+Siv::VrangeToSubSet VrangeToSubSet451,10613
+Siv::VrangeToLHSubSet VrangeToLHSubSet511,11824
+Range::Compute Compute570,13095
+Range::getStart getStart692,15592
+Range::getStride getStride720,16011
+Range::getEnd getEnd734,16245
+Siv::RangeExtend RangeExtend760,16621
+
+/home/mark/gasp-CARBON/SI/ds/ds_storearray.cpp,124
+storeEleIntoArray 20,542
+asl_return_code Siv::storeIntoArray storeIntoArray38,891
+Siv::checkResize checkResize236,4836
+
+/home/mark/gasp-CARBON/SI/ds/ds_storenumber.cpp,257
+store_vtype 20,622
+store_vtype 27,751
+store_vtype 34,878
+store_vtype 41,1001
+store_vtype 48,1128
+Siv::storeNumber storeNumber56,1254
+Siv::storeNumber storeNumber199,3833
+Siv::storeNumber storeNumber325,6000
+Siv::storeNumber storeNumber454,8198
+
+/home/mark/gasp-CARBON/SI/ds/ds_storerecord.cpp,124
+asl_return_code Siv::storeIntoRecord storeIntoRecord19,619
+asl_return_code Siv::storeIntoRecord storeIntoRecord131,2705
+
+/home/mark/gasp-CARBON/SI/ds/ds_storesiv.cpp,915
+dctype 20,559
+dctype 26,599
+dctype 32,641
+dctype 38,685
+dctype 44,727
+dctype 50,773
+dctype 56,815
+dctype 62,863
+dctype 68,907
+tstore 74,975
+Siv::Store Store118,1895
+Siv::Store Store131,2180
+Siv::Store Store155,2636
+Siv::Store Store177,2998
+Siv::Store Store188,3159
+Siv::Store Store209,3506
+Siv::Store Store229,3843
+Siv::Store Store251,4223
+Siv::Store Store271,4584
+Siv::Store Store288,4931
+Siv::Store Store308,5293
+Siv::Store Store332,5687
+Siv::Store Store347,5886
+Siv::Store Store362,6144
+Siv::Store Store384,6530
+asl_return_code Siv::storeStringToChar storeStringToChar405,6919
+asl_error_codes Siv::storePtrSiv storePtrSiv512,8910
+asl_error_codes Siv::transPtrSiv transPtrSiv600,10935
+asl_return_code Siv::storeSiv storeSiv693,12720
+asl_return_code Siv::storeToInternalVar storeToInternalVar1144,21862
+asl_return_code Siv::storeNumToNum storeNumToNum1206,23157
+
+/home/mark/gasp-CARBON/SI/ds/ds_storestr.cpp,266
+Siv::storeStrValue storeStrValue20,561
+store_value 409,7741
+store_sq_value 416,7929
+asl_return_code Siv::storeStringToStrv storeStringToStrv423,8117
+asl_return_code Siv::storeString storeString463,8834
+asl_return_code Siv::storeString storeString723,13526
+
+/home/mark/gasp-CARBON/SI/ds/ds_storesvar.cpp,266
+asl_return_code Siv::storeSvar storeSvar19,560
+asl_error_codes Siv::storeSvar storeSvar284,6012
+Siv::storeSvar storeSvar339,6859
+asl_error_codes Siv::storeStrvToSvar storeStrvToSvar456,9303
+asl_error_codes Siv::storeStringToSvar storeStringToSvar535,10925
+
+/home/mark/gasp-CARBON/SI/ds/ds_storevar.cpp,365
+int Maxvars 20,617
+static int DB_err;21,640
+hatoi 24,664
+hatol 44,980
+IsVarNameChar 67,1328
+atype_to_ascii 100,1757
+atype_to_sivar 139,2554
+Siv::storeConvert storeConvert201,3845
+Siv::ConvertFromAscii ConvertFromAscii364,6415
+asl_error_codes Siv::storePtrIntoUnset storePtrIntoUnset412,7366
+asl_error_codes Siv::storeIntoUnset storeIntoUnset485,8946
+
+/home/mark/gasp-CARBON/SI/ds/ds_transfer.cpp,112
+Siv::transferMemFrom transferMemFrom20,597
+Siv::detachMem detachMem37,884
+Siv::attachMem attachMem79,1433
+
+/home/mark/gasp-CARBON/SI/ds/ds_transfersvar.cpp,74
+Siv::attachSvar attachSvar20,609
+Siv::transferSvar transferSvar28,724
+
+/home/mark/gasp-CARBON/SI/ds/ds_types.cpp,289
+isOK 20,592
+number_type 30,736
+string_type 51,1150
+stype 60,1350
+chkInitType 169,4022
+svtype 190,4563
+ttype 208,4878
+highest_type 231,5242
+sizeof_type 312,6452
+declare_type_len 353,7160
+whichType 397,7777
+GetType 418,8194
+dtype 581,11936
+lorh 640,13179
+dtype2name 649,13305
+
+/home/mark/gasp-CARBON/SI/ds/ds_vector_sss.cpp,224
+vsss 20,630
+Siv::VectorSubScriptStore VectorSubScriptStore115,2563
+lhvsss 207,4350
+Siv::LHVectorSubScriptStore LHVectorSubScriptStore299,6374
+Siv::VSetSubSet VSetSubSet392,8203
+Siv::CopySubSetV CopySubSetV460,9390
+
+/home/mark/gasp-CARBON/SI/dsp/dsp_main.cpp,804
+rad2deg 20,595
+deg2rad 28,712
+vreverse 36,848
+Dspsf::iirfilter iirfilter52,1076
+Dspsf::biln biln120,2448
+Dspsf::fblt fblt173,3328
+Dspsf::cgain cgain231,4359
+Dspsf::firl firl269,5002
+Dspsf::fft fft293,5530
+Dspsf::fft_dit fft_dit348,6775
+Dspsf::cfft cfft403,8020
+Dspsf::spec spec432,8507
+char const *swindow_txtswindow_txt493,9981
+Dspsf::swindow swindow498,10115
+Dspsf::powspec powspec571,11308
+Dspsf::magspec magspec621,12346
+Dspsf::fftdecode fftdecode669,13430
+Dspsf::impulsereject impulsereject743,14837
+Dspsf::cconvolve cconvolve775,15328
+Dspsf::lconvolve lconvolve832,16257
+Dspsf::dconvolve dconvolve980,18835
+tdotp 1179,23055
+Dspsf::dotp dotp1191,23229
+filterskirt 1263,25007
+spikes 1299,25709
+Dspsf::hsieve hsieve1342,26635
+Dspsf::init init1403,27870
+
+/home/mark/gasp-CARBON/SI/dsp/sp_audio.cpp,318
+RollOver 26,801
+Hz_Bark 35,954
+Bark_Hz 46,1155
+dB_to_power 55,1318
+power_to_dB 64,1495
+float phon[phon76,1677
+am_phon60 121,2196
+#define DCIORDER 147,2684
+#define IM 148,2703
+float dcb[dcb150,2729
+float dca[dca151,2776
+float dcx[dcx152,2819
+float dcy[dcy153,2845
+dcfilt 156,2878
+zx_detect 211,3574
+
+/home/mark/gasp-CARBON/SI/dsp/sp_fft.cpp,161
+vecFBitRevT 22,664
+vecFBitRev 47,1073
+vecFBitRev 54,1187
+gsFFT_T 64,1352
+gsFFT 141,2567
+gsFFT 148,2718
+gs_fftT 160,3060
+gs_fft 241,4525
+gs_fft 248,4677
+
+/home/mark/gasp-CARBON/SI/dsp/sp_filt.cpp,590
+#define ORDER5	22,654
+#define ORDER4	23,674
+complex_abs 39,1245
+complex_div 47,1380
+			 void complex_exp 95,2721
+			 pow_ci 104,2980
+			 long pow_ii 115,3276
+			 double pow_ri 130,3550
+			 pow_zi 152,3927
+			 void r_cnjg 183,4565
+			 double r_mod 188,4698
+			 double r_sign 202,5024
+			 z_div 211,5228
+					      double spbfct 281,7150
+					      double pow_ri 301,7618
+					      spgain 340,8932
+					      sp_filter 409,11078
+					      spbiln 466,12790
+					      spfblt 573,16063
+					      spfirl 744,20758
+					      spfltr 811,22493
+					      spwndo 862,23946
+
+/home/mark/gasp-CARBON/SI/dsp/sp_lib.cpp,1385
+gs_srand 28,679
+gs_rand 35,776
+gs_windowT 43,892
+gs_window 111,2542
+gs_window 118,2681
+bessel0 126,2822
+compute_fft_size 152,3295
+sp_system 170,3630
+gs_bwf_type 183,3864
+gs_dB_abs 236,5240
+gs_reflect_array 250,5486
+gs_order_coef 264,5716
+frame i_fr,280,6066
+frame i_fr, o_co;280,6066
+gs_d_filters 283,6089
+gs_d_bw_filters 400,8788
+sp_filter_skirt 468,10416
+fpe_trap 511,11496
+sp_c_spline 522,11673
+sp_c_spline 645,14349
+sp_solve_quad 768,17054
+sp_specT 787,17527
+sp_spec 908,20048
+sp_spec 915,20200
+mag_specT 924,20428
+mag_spec 1022,22330
+mag_spec 1029,22490
+#define IA 1037,22669
+#define IM 1038,22687
+#define AM 1039,22709
+#define IQ 1040,22729
+#define IR 1041,22747
+#define NTAB 1042,22763
+#define NDIV 1043,22779
+#define RNMX 1045,22831
+ran1 1052,22974
+static long Idum 1090,23671
+frand 1093,23701
+frand 1102,23807
+gdevi 1114,23965
+g_rand 1143,24480
+grand 1150,24554
+gs_u_noise 1156,24607
+gs_g_noise 1166,24714
+cos_gate_on 1181,24934
+cos_gate_off 1195,25199
+parabolic_ip 1210,25519
+durbin 1269,26848
+auto_corr 1314,27628
+autoc_regr_refl 1342,28116
+comp_to_char 1387,29058
+v_comp_char 1415,29529
+is_pmpc 1443,29910
+sp_peak_pick 1458,30217
+sp_sac 1527,32137
+fo_detect 1546,32443
+SpecPeakSort 1578,33056
+HarmonicSieve 1613,33650
+sp_fnv 1733,36004
+sp_dfnv 1774,36572
+sp_lip 1815,37111
+sp_lip 1890,38203
+gs_cfft 1948,38935
+
+/home/mark/gasp-CARBON/SI/dsp/sp_stat.cpp,103
+sp_lfit 28,815
+sp_D_lfit 104,2205
+sp_lsfit 178,3612
+sp_rpc 210,4088
+gammln 260,5046
+gcf 285,5550
+
+/home/mark/gasp-CARBON/SI/dsp/sp_vv.cpp,1656
+sp_vv_sc 27,870
+sp_vv_ic 39,1089
+sp_vv_cc 52,1305
+sp_vs_m 65,1523
+sp_vv_c 83,1856
+sp_vscale 115,2682
+sp_vv_gt 142,3039
+sp_vv_d 156,3260
+sp_vv_id 180,3656
+sp_vv_a 204,4048
+sp_vv_s 221,4389
+sp_vv_ia 238,4730
+sp_vv_is 255,5066
+sp_v_sqrt 272,5402
+sp_v_exp 282,5569
+sp_v_pow 292,5734
+sp_v_cos 302,5942
+sp_v_cosh 312,6107
+sp_v_acos 322,6274
+sp_v_asin 333,6442
+sp_v_atan 343,6609
+sp_v_atan2 353,6776
+sp_v_d2r 363,6962
+sp_v_r2d 374,7135
+sp_v_tan 387,7334
+sp_v_tanh 397,7499
+sp_v_sin 407,7666
+sp_v_sinh 417,7831
+sp_v_log 428,7999
+sp_v_log10 438,8164
+sp_fsgn 449,8333
+sp_v_uwp 459,8456
+sp_v_set 487,8924
+sp_iv_set 501,9200
+sp_sv_set 516,9422
+sp_cv_set 534,9707
+sp_ishuff 555,10082
+sp_sshuff 574,10378
+sp_fshuff 594,10684
+sp_irand 614,10999
+sp_frand 636,11346
+getIncr 649,11547
+sp_get_incr 703,12307
+sp_vv_rotate 712,12423
+sp_v_b8b16 735,12933
+test_brk_num 752,13160
+sp_vstats 792,13821
+sp_stats_bn 883,15537
+sp_stats 891,15771
+sp_type_stats 899,15935
+sp_vv_comp 944,17074
+sp_vv_dcomp 995,17884
+sp_vv_icomp 1047,18700
+sp_vv_con_fs 1099,19510
+sp_rave 1114,19778
+sp_visort 1170,20755
+sp_vsort 1202,21269
+sp_msort 1233,21762
+sp_misort 1261,22255
+sp_vv_cclip 1289,22750
+sp_vv_rect 1326,23361
+trif 1340,23583
+squaref 1383,24170
+sawf 1418,24612
+sp_hist 1479,25604
+sp_dhist 1514,26154
+sp_txc 1552,26799
+sp_v_thres 1603,27628
+sp_v_rms 1629,28067
+sp_v_sum 1649,28389
+sp_vv_smooth 1664,28592
+sp_vv_dsmooth 1704,29194
+sp_vv_quad 1744,29801
+findMaxMin 1753,30010
+findMaxMin 1775,30355
+findMaxMin 1798,30703
+findMaxMin 1819,31044
+get_maxmin 1841,31390
+ImpulseReject 1873,31849
+SpikeDetect 1967,34203
+
+/home/mark/gasp-CARBON/SI/dsp/sp_wave.cpp,170
+Wavesf::saw saw20,589
+Wavesf::square square110,2349
+Wavesf::pulse pulse166,3337
+#define MAX_TONES 260,5225
+Wavesf::tone tone262,5250
+Wavesf::init init332,6608
+
+/home/mark/gasp-CARBON/SI/fop/fileop.cpp,2875
+Svar Aline;19,543
+int Aline_cnt 21,556
+Svar gline;23,576
+int DBFOP 28,659
+close_fps 31,680
+get_new_fp 47,923
+chk_fnum 63,1163
+siferror 76,1408
+Fopsf::get_alias get_alias88,1608
+Fopsf::set_alias set_alias107,1932
+gsopenfile 130,2353
+ofiler 175,3045
+ofilew 182,3125
+ofilea 189,3205
+cfile 197,3284
+ofr 206,3399
+Fopsf::ofr ofr227,3742
+Fopsf::ofw ofw251,4280
+ofw 273,4780
+ofa 288,5080
+Fopsf::ofa ofa304,5381
+Fopsf::o_file o_file327,5882
+Fopsf::file_status file_status346,6314
+Fopsf::ftest ftest553,10918
+Fopsf::ftype ftype641,12606
+TimeConvert 702,13860
+Fopsf::time2date time2date731,14473
+Fopsf::closeFile closeFile771,15028
+closeFile 797,15588
+cf 808,15723
+Fopsf::close_fd close_fd816,15822
+Fopsf::f_flush f_flush834,16118
+Fopsf::f_getc f_getc853,16389
+getNextC 905,17174
+rwords 942,17657
+Fopsf::rdwords rdwords1011,18958
+Fopsf::cnt_words cnt_words1048,19559
+Fopsf::wc_file wc_file1125,20741
+Fopsf::i_read i_read1189,21813
+iread 1224,22406
+Fopsf::query query1239,22608
+query 1305,23874
+query 1347,24706
+query 1357,24867
+Fopsf::answer answer1367,25018
+Fopsf::exityn exityn1389,25329
+Fopsf::gethtmlcolors gethtmlcolors1428,26016
+Fopsf::readMatrix readMatrix1455,26792
+Fopsf::rwl_file rwl_file1564,28623
+Fopsf::pcl_file pcl_file1683,30563
+Fopsf::gcl_file gcl_file1804,32543
+Fopsf::w_file w_file1896,34073
+wctofh 1936,34700
+wfile 1953,34969
+Fopsf::w_record w_record1978,35420
+set_feof 2026,36238
+#define MAXVRBUF 2031,36293
+Fopsf::vread vread2034,36320
+Fopsf::mread mread2444,43952
+Fopsf::seekFile seekFile2728,49762
+fseek 2759,50406
+ftell 2771,50622
+Fopsf::f_tell f_tell2782,50788
+Fopsf::seekLine seekLine2796,51044
+Fopsf::searchFile searchFile2845,51889
+Fopsf::rtcf rtcf3122,57322
+Fopsf::ch_dir ch_dir3215,58864
+Fopsf::getDir getDir3247,59388
+Fopsf::exit_asl exit_asl3260,59631
+Fopsf::code_end code_end3285,60076
+fstatus 3301,60432
+Fopsf::f_error f_error3313,60611
+ferror 3335,60946
+Fopsf::checkEof checkEof3354,61203
+Fopsf::setFerror setFerror3378,61560
+con_stop 3401,61921
+Fopsf::get_winfo get_winfo3408,61995
+Fopsf::clone clone3439,62624
+fscanv 3449,62787
+Fopsf::fscanv fscanv3538,64908
+Fopsf::fputv fputv3869,70350
+Fopsf::f_read f_read3885,70674
+Fopsf::m_fread m_fread3935,71631
+Fopsf::f_write f_write3989,72738
+Fopsf::writeline writeline4040,73816
+Fopsf::f_exist f_exist4071,74321
+Fopsf::shexpand shexpand4100,74864
+Fopsf::checkmemory checkmemory4133,75439
+Fopsf::setmemoption setmemoption4158,75836
+Fopsf::getbyteorder getbyteorder4168,76008
+Fopsf::memused memused4180,76212
+Fopsf::dumpmemtable dumpmemtable4203,76832
+Fopsf::setprintindent setprintindent4214,77039
+Fopsf::setprintgwm setprintgwm4223,77207
+Fopsf::showstatements showstatements4234,77408
+Fopsf::checkgwm checkgwm4249,77780
+Fopsf::init init4262,77959
+
+/home/mark/gasp-CARBON/SI/fop/filesearch.cpp,56
+searchFile 20,580
+seekLine 241,4429
+pclFile 272,4956
+
+/home/mark/gasp-CARBON/SI/fop/fior.cpp,442
+readLine 24,586
+Fopsf::line_read line_read32,651
+Fopsf::readFile readFile118,2165
+Fopsf::rwd_file rwd_file194,3468
+Fopsf::rc_file rc_file275,4868
+#define MAXFRLEN 479,8549
+readframe 481,8576
+read_frame_file 544,9761
+read_alien_frame_file 561,10152
+read_vec_df 592,10789
+readchanneltimes 706,13132
+readchannel 777,14583
+read_channel_file 838,15707
+rdata 905,16821
+rascii 1026,18951
+rmat 1339,24896
+si_fior_init 1416,26636
+
+/home/mark/gasp-CARBON/SI/fop/fiow.cpp,431
+wrtframehead 24,627
+wrtchanhead 106,2435
+checkfiletype 206,4361
+getsod 228,4750
+geteoh 250,5177
+getdfhdsize 269,5535
+getdfpara 332,6517
+getframepara 376,7276
+getchannelpara 444,8968
+get_frame_header 534,11261
+get_channel_count 548,11533
+wrtconvdata 564,11809
+wcdata 689,14720
+wdata 717,15134
+findc 727,15249
+rescape 744,15492
+wmat 813,16846
+getnodename 881,18468
+getmachinename 890,18622
+si_fiow_init 902,18807
+
+/home/mark/gasp-CARBON/SI/fop/gtty_l.cpp,667
+#define MAXSDEVS 21,626
+int Nsdevs 23,648
+uint SdevID 24,664
+Sdev *SDEVPTR[SDEVPTR26,687
+Sdev::Sdev Sdev31,810
+Sdev::Open Open42,946
+Sdev::OpenJS OpenJS69,1452
+symbolic_speed 92,2027
+Sdev::Read Read140,2912
+Sdev::ReadJS ReadJS175,3699
+Sdev::ReadLine ReadLine238,5034
+Sdev::Write Write279,5779
+Sdev::Close Close299,6130
+get_sdevp 309,6303
+create_sdev 319,6467
+sdevopen 355,7006
+#define XCASE 380,7483
+sdevset 384,7517
+sdevget 548,11704
+sdevclose 561,11903
+sdevread 579,12158
+sdevreadjs 623,12840
+sdevwrite 666,13556
+#define NEWLINE 713,14236
+#define CR 714,14255
+sdevreadline 717,14274
+sdevreadbuf 753,15005
+si_gtty_init 807,15912
+
+/home/mark/gasp-CARBON/SI/fop/job_l.cpp,166
+mk_cs 20,585
+command 42,996
+gs_job 60,1321
+rd_menu 78,1703
+get_menu_value 110,2313
+get_menu_index 127,2752
+set_menu_value 143,3145
+toggle_menu_value 159,3567
+
+/home/mark/gasp-CARBON/SI/fop/junk.cpp,431
+wrtframehead 24,627
+wrtchanhead 106,2435
+checkfiletype 206,4361
+getsod 228,4750
+geteoh 250,5177
+getdfhdsize 269,5535
+getdfpara 332,6517
+getframepara 376,7276
+getchannelpara 444,8968
+get_frame_header 534,11261
+get_channel_count 548,11533
+wrtconvdata 564,11809
+wcdata 689,14720
+wdata 717,15134
+findc 727,15249
+rescape 744,15492
+wmat 813,16846
+getnodename 881,18468
+getmachinename 890,18622
+si_fiow_init 902,18807
+
+/home/mark/gasp-CARBON/SI/fop/pop.cpp,138
+FILE *Psp[Psp19,575
+init_psp 22,601
+get_new_psp 32,747
+chk_pnum 48,972
+Fopsf::p_open p_open60,1186
+Fopsf::p_close p_close98,1995
+
+/home/mark/gasp-CARBON/SI/fop/print.cpp,144
+sprint 20,548
+sop_print 346,7041
+aout 439,9415
+aout 454,9568
+print 471,9776
+adbprintf 647,12571
+fprint 663,12807
+si_prop_init 846,15602
+
+/home/mark/gasp-CARBON/SI/GM/asl_bak.cpp,762
+ char Host_name[Host_name35,815
+ int spawnX 36,836
+ char Script_name[Script_name38,855
+ char out_name[out_name39,879
+ char err_name[err_name40,900
+ char tst_name[tst_name41,921
+ char oln_name[oln_name42,942
+ char Hist_file[Hist_file44,965
+ int Run_one_liner 68,1477
+ char Rol_name[Rol_name69,1501
+Rol(72,1527
+ show_use 114,2436
+ int Asl_port 169,5022
+ char Asl_host_address[Asl_host_address171,5046
+ init_hist_file 174,5096
+ close_hist_file 202,5656
+ setupXGS 230,6430
+ asl 306,7783
+ sig_init 351,8586
+ fd_set Rasl;384,9476
+ char PRG_stem[PRG_stem388,9515
+ byeBye 397,9605
+ uint32_t Asl_options 409,9873
+ int Use_vsh 410,9900
+ single_flags 412,9924
+ Proc *proc_table[proc_table530,11907
+ main 537,11993
+exit_asl(1173,26074
+
+/home/mark/gasp-CARBON/SI/GM/asl.cpp,762
+ char Host_name[Host_name38,831
+ int spawnX 39,852
+ char Script_name[Script_name41,871
+ char out_name[out_name42,895
+ char err_name[err_name43,916
+ char tst_name[tst_name44,937
+ char oln_name[oln_name45,958
+ char Hist_file[Hist_file47,981
+ int Run_one_liner 71,1493
+ char Rol_name[Rol_name72,1517
+Rol(75,1543
+ show_use 117,2452
+ int Asl_port 172,5038
+ char Asl_host_address[Asl_host_address174,5062
+ init_hist_file 177,5112
+ close_hist_file 205,5672
+ setupXGS 233,6446
+ asl 309,7799
+ sig_init 354,8602
+ fd_set Rasl;387,9492
+ char PRG_stem[PRG_stem391,9531
+ byeBye 400,9621
+ uint32_t Asl_options 412,9889
+ int Use_vsh 413,9916
+ single_flags 415,9940
+ Proc *proc_table[proc_table536,11973
+ main 543,12059
+exit_asl(1179,26177
+
+/home/mark/gasp-CARBON/SI/GM/bfilter.cpp,26
+ int  buildFilter 18,486
+
+/home/mark/gasp-CARBON/SI/GM/build_date.cpp,51
+int build_number 1,0
+char build_dt[build_dt2,27
+
+/home/mark/gasp-CARBON/SI/GM/build_version.cpp,35
+char asl_version[asl_version2,17
+
+/home/mark/gasp-CARBON/SI/GM/newversion.cpp,82
+show_version 45,1008
+check_versions 63,1401
+MC_wait 100,1979
+MC_wait 111,2170
+
+/home/mark/gasp-CARBON/SI/GM/old_version.cpp,82
+show_version 45,1008
+check_versions 63,1401
+MC_wait 100,1979
+MC_wait 111,2170
+
+/home/mark/gasp-CARBON/SI/GM/table_l.cpp,970
+Table_init 36,948
+typedef Singleton < Asf > AsfS;76,1832
+typedef Singleton < Dspsf > DspsfS;77,1864
+typedef Singleton < Fopsf > FopsfS;78,1900
+typedef Singleton < Gensf > GensfS;80,1972
+typedef Singleton < Sopsf > SopsfS;82,2009
+typedef Singleton < Tsf > TsfS;83,2045
+typedef Singleton < Vopsf > VopsfS;84,2077
+typedef Singleton < Aopsf > AopsfS;85,2113
+typedef Singleton < Sigsf > SigsfS;86,2149
+typedef Singleton < Wcomsf > WcomsfS;87,2185
+typedef Singleton < Wavesf > WavesfS;89,2224
+typedef Singleton < Statsf > StatsfS;91,2300
+typedef Singleton < Matsf > MatsfS;92,2338
+typedef Singleton < Mopsf > MopsfS;93,2374
+typedef Singleton < Numsf > NumsfS;94,2410
+typedef Singleton < Navsf > NavsfS;95,2446
+typedef Singleton < Todsf > TodsfS;96,2482
+typedef Singleton < Recsf > RecsfS;97,2518
+typedef Singleton < Mtxsf > MtxsfS;100,2592
+typedef Singleton < Semsf > SemsfS;101,2628
+typedef Singleton < Thrdsf > ThrdsfS;102,2664
+si_table_init 120,3028
+
+/home/mark/gasp-CARBON/SI/GM/version2.cpp,81
+show_version 44,1008
+check_versions 62,1401
+MC_wait 99,1979
+MC_wait 110,2170
+
+/home/mark/gasp-CARBON/SI/GM/version_bak.cpp,81
+show_version 40,1030
+check_versions 59,1456
+MC_wait 96,2034
+MC_wait 107,2225
+
+/home/mark/gasp-CARBON/SI/GM/version.cpp,82
+show_version 45,1008
+check_versions 63,1401
+MC_wait 100,1979
+MC_wait 111,2170
+
+/home/mark/gasp-CARBON/SI/GM/vers_old.cpp,80
+show_version 34,749
+check_versions 53,1230
+MC_wait 90,1808
+MC_wait 101,1999
+
+/home/mark/gasp-CARBON/SI/gscom/colors.cpp,632
+Color C_map[C_map26,722
+rgbtohex 29,756
+setColorIndex 59,1177
+#define MAXHTMLCOLORS 100,2063
+HTMLcolor HTML_ColorTable[HTML_ColorTable102,2090
+addHTMLColor 105,2137
+initHTML_ColorTable 135,2884
+fillHTML_ColorTable 147,3128
+useHTMLcolor 305,11131
+addHTMLsubSet 340,11967
+setUpCmap 364,12578
+get_hue_num 448,14809
+get_color_num 460,15042
+get_HTMLcolor_num 480,15429
+get_color_name 500,15820
+get_rgb 516,16157
+get_color_index 537,16467
+getColorIndexFromRGB 568,17152
+#define  RGB_CBN 577,17408
+uint32_t RGB_CB[RGB_CB578,17428
+RGBToColorIndex 582,17524
+int CC[CC678,19621
+setupCC 681,19639
+setline 749,20747
+
+/home/mark/gasp-CARBON/SI/gscom/com_menu.cpp,1027
+int DEBUG_MENU;22,635
+Menu_item::Menu_item Menu_item24,652
+Menu_item::SetPvalue SetPvalue37,851
+Menu_item::GetPvalue GetPvalue47,1065
+Menu_item::SetLabel SetLabel55,1204
+Menu_item::GetLabel GetLabel64,1405
+Menu_item::SetToken SetToken72,1516
+Menu_item::GetToken GetToken80,1686
+Menu_item::SetFlag SetFlag87,1796
+Menu_item::GetFlag GetFlag95,1963
+Menu_item::setHelp setHelp102,2011
+Menu_item::GetHelp GetHelp109,2118
+GS_Menu::GS_Menu GS_Menu117,2226
+GS_Menu::~GS_Menu ~GS_Menu135,2595
+GS_Menu::Read Read151,2860
+GS_Menu::ColumnReorder ColumnReorder364,6929
+char pv_value[pv_value391,7487
+get_menu_pv 394,7524
+GetMenuLabel 423,8235
+get_mindex 439,8589
+set_menu_pv 457,8920
+get_m_wrd 481,9361
+GS_Menu::getMenuWords getMenuWords535,10123
+get_tcw 558,10589
+GS_Menu::Write Write607,11791
+GS_Menu::GetTCWstr GetTCWstr667,13057
+toggle_menu_item 726,14132
+check_menuname 752,14665
+Svar FMsvar;776,15077
+gs_find_menu 779,15095
+gs_copy_menu_user_menu 893,17298
+BuildChoiceMenu 916,17740
+
+/home/mark/gasp-CARBON/SI/gscom/com_shm.cpp,701
+#define CDB_SHM 30,1097
+get_asl_wid 33,1124
+Shdmem::SetGadd SetGadd41,1239
+Shdmem::SetASLi SetASLi48,1354
+Shdmem::GetASLi GetASLi57,1544
+Shdmem::SetGWMi SetGWMi65,1678
+Shdmem::GetGWMi GetGWMi75,1869
+Shdmem::IncGWMc IncGWMc84,2004
+Shdmem::GetGWMc GetGWMc93,2134
+Shdmem::IncASLc IncASLc102,2269
+Shdmem::GetASLc GetASLc111,2399
+Shdmem::GetGadd GetGadd121,2572
+Shdmem::SetUpSHM SetUpSHM132,2732
+Shdmem::TestCW TestCW152,3042
+Shdmem::setCW setCW162,3220
+Shdmem::CanIwriteGI CanIwriteGI172,3414
+Shdmem::MemLeft MemLeft223,4774
+Shdmem::AtMemEnd AtMemEnd251,5306
+Shdmem::WriteGI WriteGI313,6664
+Shdmem::WriteGI WriteGI376,8270
+Shdmem::WaitTillGIOK WaitTillGIOK431,9666
+
+/home/mark/gasp-CARBON/SI/gscom/com_spmi.cpp,121
+int Use_JCD 22,638
+int Sam_report 23,679
+gs_system 28,726
+gs_bg_system 106,2297
+Msg::CheckValid CheckValid161,3527
+
+/home/mark/gasp-CARBON/SI/gscom/gscom.cpp,542
+int fpstatus[fpstatus19,560
+int WIN_RESET;20,584
+int N_gsw 25,647
+win_intrp 29,706
+win_init 39,915
+open_tty 50,1124
+setblock 62,1290
+setup_tty 74,1509
+close_tty 95,1854
+const char *SymbolLibNames[SymbolLibNames104,2002
+symbolShapeToNumber 130,2421
+symbolNumberToShape 161,2992
+msg_name 179,3372
+ev_name 261,4995
+gwm_code 288,5471
+decode_wo_type 709,14731
+diffMsec 823,17618
+chk_fnum 840,18084
+siferror 854,18330
+findBeginningOfLine 864,18522
+back_up_a_line 925,19282
+Svar gscom_gline;1021,20780
+skip_lines 1023,20802
+
+/home/mark/gasp-CARBON/SI/gscom/gs_debug.cpp,1433
+int DB_xic_bp 21,602
+uint Ndbs 23,622
+FILE *Fpt[Fpt27,682
+int Last_error 29,704
+int Last_errno 30,724
+int Fhout 32,767
+int Fhtst 33,782
+int Fherr 34,797
+int Send_to_gwm 36,813
+int Use_gwm 37,834
+int Use_pid 38,851
+int DBaction 39,868
+int DB2stderr 40,886
+FILE *Jf Jf42,906
+FILE *Jf2 Jf243,923
+int Debug_filter 45,944
+int Sp_debug 46,966
+int DB_warn 47,984
+int DBscope 49,1002
+int DBdoubleline 50,1019
+int F_debug 51,1041
+  DBtag::Dbtag_hold 54,1063
+  DBtag::Dbtag_level 56,1092
+  LastLineNum 58,1122
+  N_cerror 60,1145
+  LastLine[LastLine62,1166
+  LastInclude[LastInclude64,1189
+  ContextLastLine[ContextLastLine66,1214
+  DBprint 79,1361
+  WarningsToStdErr 83,1435
+Svar Dberr;88,1602
+  FILTER_DB 91,1631
+  FILTER_FILE_DB 93,1661
+  PP_db_action 96,1697
+debugON 99,1723
+debugOFF 108,1835
+setExit 117,1950
+dbff 130,2178
+dbcheck 288,5622
+dbp 310,6039
+dbpexit 368,7101
+dbps 431,8080
+ds 450,8413
+ds_ 467,8720
+where_ps 484,9022
+dbpl 516,9441
+init_debug 544,9847
+dbprintf 561,10266
+adbprintf 589,10782
+DBPrintf 606,11038
+DBtagPrintf 627,11449
+errprintf 664,12169
+hdrprintf 675,12350
+debug_spm 724,13464
+check_debug_level 752,13999
+CloseDBug 764,14238
+dberror 775,14372
+dberror 818,15376
+codeError 864,16554
+dbwarning 926,17935
+dbassert 958,18533
+DBtag::Printf Printf980,19081
+GetNcerrors 1017,19780
+asl_error_msg 1025,19885
+whatError 1146,22392
+errorReturn 1153,22544
+
+/home/mark/gasp-CARBON/SI/gscom/gs_fonts.cpp,189
+GS_FontStruct FontTable[FontTable20,617
+FontNameToNumber 23,658
+initGS_Fonts 48,1227
+GS_FontStruct::GS_FontStruct GS_FontStruct58,1444
+GS_FontStruct::setFontName setFontName68,1647
+
+/home/mark/gasp-CARBON/SI/gscom/si_mem.cpp,1019
+long TotalSivMem 30,842
+int ExitAsl 32,865
+#define WANTMEMTRACE 34,883
+#define   DO_MEM_CHECK 40,952
+int DoMemoryCheck 42,1086
+uint Nmops 46,1186
+int Nma 47,1202
+#define MAXNMB 49,1216
+int GMemId 51,1239
+Gmem MT[MT53,1256
+int Maxnmb 55,1274
+int MT_ERROR 57,1296
+ulong TotalAllocated 59,1315
+ulong TotalFreeded 60,1341
+isadel 63,1370
+Range::Reset Reset73,1521
+getTotalAllocated 87,1864
+getTotalFreeded 93,1921
+updateTotalSivMem 101,2035
+#define Nmsz 113,2275
+Gmem::Gmem Gmem114,2291
+Gmem::AddName AddName128,2619
+CountMemAlloc 136,2750
+CountMemBlocks 151,2970
+CheckMem 168,3207
+DumpMemTable 189,3602
+FindPtrInMT 224,4308
+CheckPtrInMT 248,4612
+GetMTindex 281,5250
+smalloc 298,5543
+smalloc_id 306,5679
+scalloc 345,6372
+addmemptr 353,6516
+scalloc_id 392,7228
+srealloc 428,7910
+saddmemptr 436,8066
+sreallocvp_id 444,8221
+srealloc_id 458,8510
+int Dofree 547,10473
+sfree 550,10494
+sfree 559,10562
+CheckOverlap 633,11984
+CountMemOps 681,12801
+MemTrace 689,12904
+cfree 710,13200
+
+/home/mark/gasp-CARBON/SI/gscom/tty.cpp,72
+setcbreak 22,620
+unsetcbreak 28,660
+setecho 34,704
+unsetecho 40,740
+
+/home/mark/gasp-CARBON/SI/gslists/gs_lists.cpp,1233
+GS_Litem::GS_Litem GS_Litem21,582
+GS_Litem::~GS_Litem ~GS_Litem33,837
+GS_List::GS_List GS_List48,1132
+GS_List::GS_List GS_List54,1184
+GS_List::~GS_List ~GS_List62,1287
+GS_List::init init73,1430
+GS_List::isValid isValid94,1674
+GS_List::Delete Delete103,1802
+GS_Litem::addValue addValue125,2075
+GS_Litem::getValue getValue173,3284
+GS_Litem::getValue getValue199,3768
+GS_Litem::swapNeighbour swapNeighbour217,4083
+GS_Litem::swapLitem swapLitem236,4362
+GS_Litem::addLitem addLitem273,4902
+GS_List::addList addList300,5349
+GS_List::addItem addItem311,5501
+GS_List::delItem delItem416,7433
+GS_List::delItem delItem488,8512
+GS_List::Copy Copy581,10295
+GS_List::getNthItem getNthItem614,10811
+GS_List::Copy Copy646,11300
+GS_List::Reverse Reverse689,11999
+GS_List::Sort Sort734,12959
+GS_List::Shuffle Shuffle852,14826
+GS_List::findTokens findTokens911,15993
+GS_List::getListItemStr getListItemStr960,16655
+GS_List::getNextListItemStr getNextListItemStr989,17074
+GS_List::getNextListItemStr getNextListItemStr1034,17731
+GS_List::getPrevListItemStr getPrevListItemStr1077,18376
+GS_List::getPrevListItemStr getPrevListItemStr1120,19007
+GS_List::getListItemVp getListItemVp1163,19688
+
+/home/mark/gasp-CARBON/SI/icode/ic_buildvec.cpp,34
+Parset::buildvec buildvec20,598
+
+/home/mark/gasp-CARBON/SI/icode/ic_call.cpp,285
+Parset::callf callf20,590
+Parset::callvmf callvmf144,3387
+Parset::callcmf callcmf350,7627
+Parset::callmycmf callmycmf498,11302
+Parset::SfuncXic SfuncXic543,12314
+Parset::callproc callproc780,17242
+Parset::calliproc calliproc805,17711
+Parset::SprocXic SprocXic846,18491
+
+/home/mark/gasp-CARBON/SI/icode/ic_cat.cpp,144
+printIci 20,584
+Parset::pushCat pushCat35,911
+Parset::catSiv catSiv50,1294
+Parset::cattid cattid169,4316
+Parset::catStr catStr193,4859
+
+/home/mark/gasp-CARBON/SI/icode/ic_create.cpp,188
+Parset::createv createv20,597
+Parset::create_vec create_vec119,2597
+Parset::create_mat create_mat227,4985
+Parset::create_mda create_mda315,6509
+Parset::createpv createpv403,8021
+
+/home/mark/gasp-CARBON/SI/icode/ic_getsiv.cpp,174
+Icode::getSivp getSivp23,692
+Parset::getMbrSivp getMbrSivp244,5546
+Icode::getObjMemberSivp getObjMemberSivp319,7161
+Parset::getSivpViaNameID getSivpViaNameID327,7370
+
+/home/mark/gasp-CARBON/SI/icode/ic_line.cpp,302
+#define NSPL 19,585
+Linec::Linec Linec21,601
+Linec::~Linec ~Linec36,798
+Linec::Init Init47,952
+Linec::AddStatement AddStatement86,1803
+Linec::GetStatement GetStatement119,2421
+Linec::GetStatement GetStatement144,2890
+char Linec_tline[Linec_tline177,3541
+Linec::getLine getLine180,3595
+
+/home/mark/gasp-CARBON/SI/icode/ic_oo.cpp,30
+Parset::aclass aclass20,595
+
+/home/mark/gasp-CARBON/SI/icode/ic_opera.cpp,216
+#define USE_SPECIFIC_OPERA 19,588
+Parset::opera_ic_multiply opera_ic_multiply22,623
+Parset::opera_ic opera_ic126,2611
+Parset::opera_ic_ptr opera_ic_ptr440,9053
+Parset::opera_poinc_ic opera_poinc_ic510,10333
+
+/home/mark/gasp-CARBON/SI/icode/ic_ops.cpp,643
+#define FORCE_DOUBLE 19,583
+int Num_ic_errors 21,656
+uint Sid 43,1269
+int ICerrc 44,1283
+int AlwaysInterp 45,1299
+int EXECW 46,1321
+int Memid 48,1337
+getICerrors 51,1357
+logICerror 59,1459
+Icode::getName getName69,1578
+Icode::storeSiv storeSiv80,1715
+Ici::storeSiv storeSiv135,2985
+storeSiv 206,4732
+Icode::ReferSiv ReferSiv217,4970
+opcodetype 243,5399
+Svar Iceval;359,7325
+debug_icode_siv 361,7352
+Parset::subielesiv subielesiv402,8495
+Parset::makerhsubset_siv makerhsubset_siv467,9835
+Parset::subivecsiv subivecsiv492,10309
+Parset::popobjele popobjele524,11029
+Parset::findv findv567,11961
+CheckWic 606,12814
+
+/home/mark/gasp-CARBON/SI/icode/ic_parse.cpp,367
+Parset::shcom shcom20,592
+Parset::loadrn loadrn145,3305
+Parset::PopSivOffStack PopSivOffStack171,3788
+Parset::TopSivOnStack TopSivOnStack193,4161
+Parset::loadrs loadrs211,4422
+Parset::set_error set_error229,4902
+Parset::referv referv243,5235
+#undef  DBR249,5337
+#define DBR 250,5349
+Parset::procdef procdef279,5984
+Parset::redimnv redimnv288,6099
+
+/home/mark/gasp-CARBON/SI/icode/ic_pic.cpp,27
+Statement::Pic Pic20,543
+
+/home/mark/gasp-CARBON/SI/icode/ic_pop.cpp,240
+icstack::Top Top20,589
+icstack::checkStkV checkStkV35,821
+icstack::PopStk PopStk50,1064
+icstack::Pop Pop70,1375
+icstack::PopR PopR191,3910
+icstack::PopW PopW226,4507
+icstack::PopO PopO349,7450
+icstack::Rotate Rotate440,9606
+
+/home/mark/gasp-CARBON/SI/icode/ic_print.cpp,539
+FILE *Pf Pf20,577
+FILE *Tf Tf21,594
+Parset::prtout prtout24,665
+Parset::prtExp prtExp73,1804
+Statement::info info164,3712
+Svar sprintPst;210,4942
+Parset::pex pex212,5020
+Parset::init_pic init_pic250,5743
+Parset::init_tic init_tic300,6596
+Parset::prtfh prtfh350,7479
+icstack::popStrStackVal popStrStackVal382,8095
+Parset::getStackStr getStackStr398,8361
+Parset::getStackInt getStackInt435,9014
+Parset::getStackDouble getStackDouble462,9469
+Parset::prtmrow prtmrow489,9924
+Parset::prtlitstr prtlitstr550,11118
+
+/home/mark/gasp-CARBON/SI/icode/ic_push.cpp,588
+Parset::pushn pushn20,590
+Parset::pushp pushp58,1303
+Parset::pushTag pushTag67,1467
+Parset::PushSivOnStack PushSivOnStack79,1756
+Parset::pushStr pushStr117,2402
+Parset::pushcmv pushcmv135,2804
+icstack::Push Push145,2958
+icstack::CopyPush CopyPush153,3098
+icstack::PushTV PushTV223,4599
+icstack::pushStr pushStr301,6361
+icstack::pushT pushT344,7275
+icstack::pushEleLoc pushEleLoc362,7749
+icstack::pushRecEleLoc pushRecEleLoc413,9028
+icstack::Push Push457,10255
+icstack::pushUL pushUL512,11387
+icstack::pushP pushP520,11539
+icstack::pushIR pushIR547,12253
+
+/home/mark/gasp-CARBON/SI/icode/ic_pushobj.cpp,151
+Parset::pushobj pushobj20,622
+Parset::pushobjele pushobjele62,1565
+#define EIF 215,5378
+#define SIF 216,5392
+Parset::pushmbrp pushmbrp218,5411
+
+/home/mark/gasp-CARBON/SI/icode/ic_pushrec.cpp,170
+Parset::pushrecele pushrecele20,583
+Parset::pushlhrecele pushlhrecele252,5799
+Parset::pushrhrecele pushrhrecele259,5929
+Parset::pushwsrecele pushwsrecele267,6060
+
+/home/mark/gasp-CARBON/SI/icode/ic_pushref.cpp,111
+Parset::pushref pushref20,600
+Parset::pushrefarg pushrefarg95,2338
+Parset::pushvalarg pushvalarg176,4484
+
+/home/mark/gasp-CARBON/SI/icode/ic_pushsiv.cpp,134
+Parset::pushvmf pushvmf20,599
+Parset::pushsivp pushsivp26,655
+Parset::pushsiv pushsiv36,767
+Parset::pushisiv pushisiv166,4269
+
+/home/mark/gasp-CARBON/SI/icode/ic_pushsivele.cpp,254
+Parset::getIciSivp getIciSivp22,597
+Parset::pushsivele pushsivele118,3073
+Parset::setsivele setsivele493,11452
+Parset::pushlsivele pushlsivele501,11578
+Parset::pushSivEleLoc pushSivEleLoc660,15370
+Parset::pushsivoffset pushsivoffset910,21365
+
+/home/mark/gasp-CARBON/SI/icode/ic_range.cpp,42
+Parset::evalrangesiv evalrangesiv20,593
+
+/home/mark/gasp-CARBON/SI/icode/ic_rcb.cpp,198
+Parset::setUpCodeBlock setUpCodeBlock21,639
+Parset::setUpLstacks setUpLstacks67,1570
+checkReadBuf 185,4764
+frdcs 206,5225
+CodeBlock::readCB readCB226,5629
+Parset::readExe readExe541,12407
+
+/home/mark/gasp-CARBON/SI/icode/ic_stack.cpp,383
+#define USE_SIV_SSV 19,587
+icstack::ClearStack ClearStack29,841
+icstack::~icstack ~icstack55,1353
+icstack::InitSSV InitSSV72,1734
+icstack::Reset Reset90,1964
+icstack::Overflow Overflow108,2201
+icstack::Underflow Underflow118,2347
+icstack::GetSSV GetSSV128,2526
+icstack::decrStk decrStk314,6714
+icstack::Examine Examine333,7055
+icstack::clearSSV clearSSV364,7732
+
+/home/mark/gasp-CARBON/SI/icode/ic_state.cpp,533
+int No_IC 19,588
+Statement::SetType SetType23,628
+Statement::AddTxt AddTxt253,5434
+Statement::CopyTxt CopyTxt306,6346
+Statement::updateTxt updateTxt319,6682
+Statement::setCtxt setCtxt341,7049
+Statement::GetIVS GetIVS361,7371
+Statement::Init Init385,7769
+Statement::checkIX checkIX444,8844
+Statement::PushN PushN469,9198
+Statement::NextIC NextIC542,11313
+Statement::checkNextIC checkNextIC554,11641
+Statement::ResetIC ResetIC573,12095
+Statement::Close Close583,12243
+Statement::storeICN storeICN650,13585
+
+/home/mark/gasp-CARBON/SI/icode/ic_store.cpp,268
+Parset::storer_ptr storer_ptr20,579
+Parset::storer_iv storer_iv83,2050
+void::Parset::storeResToLHArrayEle storeResToLHArrayEle162,3962
+Parset::store_r_to_array store_r_to_array246,6033
+Parset::storer_to_w storer_to_w375,8904
+Parset::storer storer536,13457
+
+/home/mark/gasp-CARBON/SI/icode/ic_store_rtosiv.cpp,58
+asl_return_code Parset::store_rtosiv store_rtosiv19,583
+
+/home/mark/gasp-CARBON/SI/icode/ic_vfill.cpp,60
+Parset::vfill vfill20,592
+Parset::vfillr vfillr259,5461
+
+/home/mark/gasp-CARBON/SI/icode/ic_wcb.cpp,176
+Statement **St_table St_table28,766
+fwtcs 38,998
+CheckSrcFile 59,1423
+CodeBlock::writeCB writeCB109,2225
+Parset::writeExe writeExe399,9617
+IciSiv::info info630,15219
+
+/home/mark/gasp-CARBON/SI/icode/ic_wic.cpp,258
+int ICI_SIZE 19,583
+pthread_mutex_t IC_mutex;22,650
+pthread_mutex_t XIC_mutex;23,676
+init_IC_mutex 29,821
+Statement::WIC WIC38,984
+Statement::WIC WIC46,1168
+Statement::WIC WIC59,1457
+Statement::WIC WIC73,1821
+Statement::WriteIC WriteIC118,2837
+
+/home/mark/gasp-CARBON/SI/icode/ic_xic.cpp,97
+uint Nfastx 19,568
+int Last_opr 21,586
+#define CDB_XIC_TIME 23,606
+Statement::Xic Xic26,634
+
+/home/mark/gasp-CARBON/SI/imagelab/i_color.cpp,367
+Imgsf::getColorName getColorName20,549
+Imgsf::getColorIndexFromRGB getColorIndexFromRGB35,900
+Imgsf::rgbToColorIndex rgbToColorIndex65,1480
+Imgsf::getColorIndexFromName getColorIndexFromName100,2361
+Imgsf::getRGBfromHTMLname getRGBfromHTMLname115,2634
+Imgsf::getrgb getrgb148,3305
+Imgsf::getrgbhex getrgbhex164,3629
+Imgsf::getrgbdec getrgbdec203,4334
+
+/home/mark/gasp-CARBON/SI/imagelab/i_contour.cpp,1126
+#define ION 22,705
+#define IOFF 23,747
+#define ONM1 24,764
+#define ICENTROID 25,779
+#define MAX_ICONTOUR 27,842
+#define MAX_XCONTOUR 28,901
+#define DISPLAY_FLAG_DFLT 29,959
+#define CENTROID_COLOR 31,1029
+#define ICONTOUR 33,1066
+#define ICONTOUR_L1 34,1120
+#define ICONTOUR_L2 35,1144
+#define ICONTOUR_L3 36,1168
+  int x;40,1210
+  int y;41,1219
+  int iDirn;42,1245
+  int curve;43,1287
+} CNTR;44,1324
+square_img 47,1338
+nextcntr 66,1987
+Imgsf::icontour icontour141,3675
+CNTR_LEV C3way;375,9672
+check_start_contour 378,9700
+#define DBP_INSIDE_CNTR 440,11084
+check_inside_contour 443,11115
+nextMLcntr 517,12401
+Imgsf::icontours icontours633,15036
+polygFit 868,20653
+Imgsf::polygfit polygfit992,22785
+isContour 1020,23491
+int Ring[Ring1055,24334
+isRingContour 1061,24519
+isRingGContour 1071,24699
+nextXMLcntr 1089,25070
+removeCntrPoints 1197,27761
+compressDirnCntr 1265,29121
+compressSmoothCntr 1301,29844
+compressPolygCntr 1353,30839
+xtractContours 1464,32688
+Imgsf::xcontours xcontours1807,40576
+Imgsf::setcontour setcontour1943,43833
+Imgsf::getcontourxyz getcontourxyz1987,44814
+
+/home/mark/gasp-CARBON/SI/imagelab/i_draw.cpp,437
+int Bitblt 20,600
+int DBIMAGE 21,616
+#define MAXSBPIXS 23,634
+#define MAXPIXS 24,658
+#define MAXIMAGE 25,681
+char *Pix_strip;Pix_strip27,705
+float *Pel;Pel28,722
+float *Old_pel;Old_pel29,734
+float *Ip_fract;Ip_fract30,750
+int *Ipj;Ipj31,767
+char Pixval[Pixval33,778
+float pwr_val[pwr_val34,800
+err_diffuse 37,830
+computePwrVal 72,1474
+vecZoom 101,2015
+getGreyLevel 147,2790
+greyLevel 188,3445
+dispImage 280,5141
+
+/home/mark/gasp-CARBON/SI/imagelab/i_funcs.cpp,376
+#define MAXPIXS 19,550
+#define  MAXIMAGE 20,571
+Imgsf::dimage dimage23,600
+Imgsf::getcolorindexfromname getcolorindexfromname84,1775
+point 99,2033
+laplace 113,2175
+bilaplace 127,2312
+sobel 141,2454
+Imgsf::imop imop157,2652
+Imgsf::imave imave270,4831
+sumRGBX 450,9310
+Imgsf::imrgbave imrgbave493,10242
+Imgsf::impngrgb impngrgb755,15632
+image_init 784,16151
+
+/home/mark/gasp-CARBON/SI/imagelab/i_png.cpp,57
+encode_image 7,65
+color_type_str 65,1760
+main 84,2207
+
+/home/mark/gasp-CARBON/SI/list/list_ops.cpp,1114
+List::List List22,661
+List::List List30,764
+List::~List ~List39,878
+List::list_init list_init50,1015
+List::isValid isValid58,1177
+List::Delete Delete67,1312
+List::addList addList76,1406
+List::addItem addItem87,1552
+List::delItem delItem101,1898
+List::delItem delItem111,2135
+List::delItem delItem121,2305
+List::Copy Copy131,2499
+List::getNthItem getNthItem140,2640
+List::Copy Copy148,2754
+List::Reverse Reverse158,2942
+List::Sort Sort168,3039
+List::Shuffle Shuffle178,3152
+List::findTokens findTokens187,3305
+List::getListItemStr getListItemStr194,3439
+List::getNextListItemStr getNextListItemStr202,3571
+List::getNextListItemStr getNextListItemStr212,3696
+List::getPrevListItemStr getPrevListItemStr224,3894
+List::getPrevListItemStr getPrevListItemStr236,4095
+List::insert insert244,4213
+List::insert insert256,4368
+List::insert insert268,4564
+List::insert insert281,4767
+List::insert insert304,5275
+List::getListItemVp getListItemVp338,6067
+List::getLitem getLitem347,6197
+ostream & operator << operator <<381,6995
+GS_List::delItem delItem396,7316
+
+/home/mark/gasp-CARBON/SI/math/chaos_m.cpp,53
+mandel 29,798
+lifeanddeath 127,2206
+life 256,4145
+
+/home/mark/gasp-CARBON/SI/math/mop_fround.cpp,94
+t_round 20,630
+Mopsf::fround fround93,1542
+Mopsf::dround dround170,3249
+fround 219,3835
+
+/home/mark/gasp-CARBON/SI/math/mop_m.cpp,381
+thres 22,602
+rotate 31,695
+peaks 66,1329
+Mopsf::solvequad solvequad162,3382
+hztobark 194,3910
+barktohz 211,4178
+powertodb 226,4407
+dbtopower 242,4689
+computepi 255,4944
+Mopsf::decradix decradix295,5574
+Mopsf::decfradix decfradix359,6830
+Mopsf::checksum checksum463,8937
+Mopsf::Limitval Limitval554,11160
+mfoo 602,12074
+oof 623,12432
+Mopsf::init init642,12765
+
+/home/mark/gasp-CARBON/SI/math/mop_rand.cpp,84
+Mopsf::rfgen rfgen20,613
+Mopsf::Grand Grand69,1505
+Mopsf::urand urand144,2697
+
+/home/mark/gasp-CARBON/SI/math/stat_m.cpp,888
+Statsf::lip lip21,569
+Statsf::mlip mlip102,2214
+Statsf::mfnv mfnv293,6164
+Statsf::msmooth msmooth460,9692
+Statsf::mcolsmooth mcolsmooth575,12023
+Statsf::hist hist729,15388
+Statsf::cspline cspline844,17927
+Statsf::mcspline mcspline902,19102
+Statsf::lfit lfit1020,21477
+Lfit 1117,23227
+Lfit 1175,24346
+Statsf::lsfit lsfit1229,25289
+Statsf::sdm sdm1294,26543
+Statsf::rpc rpc1341,27435
+Statsf::paraip paraip1409,28586
+polycof 1476,29795
+Statsf::polyncof polyncof1520,30477
+polyGen 1559,31228
+Statsf::polygen polygen1577,31579
+Rms 1612,32155
+Statsf::rms rms1774,35475
+Stats 1797,35881
+Statsf::stats stats1907,38306
+Statsf::mean mean1927,38611
+Statsf::runstats runstats2021,40410
+Statsf::getrunstats getrunstats2055,40973
+Statsf::runningstats runningstats2075,41346
+Statsf::stdev stdev2131,42291
+stats 2286,45168
+Statsf::init init2317,45696
+
+/home/mark/gasp-CARBON/SI/math/top_m.cpp,2088
+enum Tranf23,626
+  TRANSIN 25,639
+  TRANCOS,26,654
+  TRANLOG,27,665
+  TRANLOG2,28,676
+  TRANLOG10,29,688
+  TRANTAN,30,701
+  TRANSINH,31,712
+  TRANCOSH,32,724
+  TRANACOS,33,736
+  TRANASIN,34,748
+  TRANATAN,35,760
+  TRANTANH,36,772
+  TRANACOSH,37,784
+  TRANASINH,38,797
+  TRANATANH,39,810
+  TRANSQRT,40,823
+  TRANEXP,41,835
+  TRANABS,42,846
+  TRANFABS,43,857
+  TRANCEIL,44,869
+  TRANFLOOR,45,881
+  TRANTRUNC,46,894
+  TRANROUND,47,907
+  TRANRINT,48,920
+  TRANSQR,49,932
+  TRANCBRT,50,943
+  TRANATAN2,51,955
+#define LARGE_F 64,1161
+#define SMALL_F 65,1188
+char Scale[Scale72,1313
+init_scale 83,1472
+sqr 90,1589
+sin_asl 98,1704
+fadd 109,1855
+cmplx_tranf 118,1989
+pnpoly 142,2360
+poly_centroid 187,3392
+Tsf::setscale setscale218,4096
+Tsf::setap setap234,4367
+#define CDB_AP_TOP 258,4767
+AP_tranf 261,4793
+tranf 335,6018
+Tsf::Cos Cos530,9527
+Tsf::Sine Sine540,9685
+Tsf::Tan Tan551,9845
+Tsf::Log Log560,9992
+Tsf::Log2 Log2567,10096
+Tsf::Log10 Log10576,10253
+Tsf::Sinh Sinh584,10412
+Tsf::Cosh Cosh592,10526
+Tsf::Tanh Tanh601,10641
+Tsf::Acos Acos608,10754
+Tsf::Acosh Acosh615,10867
+Tsf::Asin Asin622,10982
+Tsf::Asinh Asinh629,11095
+Tsf::Atan Atan636,11210
+Tsf::Atanh Atanh643,11323
+Tsf::Atan2 Atan2650,11438
+Tsf::Fabs Fabs657,11553
+Tsf::Cabs Cabs665,11672
+Tsf::Abs Abs673,11792
+Tsf::Ceil Ceil690,12062
+Tsf::Floor Floor698,12176
+Tsf::Rint Rint706,12292
+Tsf::Round Round721,12487
+Tsf::Trunc Trunc755,13159
+Tsf::r2d r2d767,13435
+Tsf::d2r d2r817,14509
+Tsf::ptinpoly ptinpoly868,15568
+Tsf::centroid centroid905,16221
+Tsf::Fmod Fmod954,17179
+Tsf::Pow Pow967,17457
+Tsf::Cpow Cpow1033,18655
+Tsf::Sqrt Sqrt1096,19840
+Tsf::Sqrt Sqrt1175,21425
+Tsf::Sqr Sqr1182,21538
+Tsf::Cbrt Cbrt1190,21650
+Tsf::Exp Exp1198,21764
+Tsf::randseed randseed1206,21876
+Tsf::Rand Rand1230,22222
+vpow 1349,24303
+Tsf::fillEllipse fillEllipse1389,25146
+Tsf::fillCircle fillCircle1544,28309
+Tsf::getRadialVals getRadialVals1644,30273
+Tsf::init init1779,33310
+init_tranf 1854,37384
+math_init 1925,40076
+
+/home/mark/gasp-CARBON/SI/math/vop_copy.cpp,69
+#define F2S 19,592
+tp_vv_copy 22,633
+Vopsf::vvcopy vvcopy56,1488
+
+/home/mark/gasp-CARBON/SI/math/vop_m.cpp,1565
+reverse 24,673
+comp 40,921
+comp_s 74,1424
+comp_ee 108,1913
+comp_es 144,2713
+Vopsf::vsmooth vsmooth180,3443
+vuwp 297,5481
+vswab 328,6058
+Vopsf::minmax minmax378,6778
+vscale 427,7878
+Vopsf::vzoom vzoom499,9295
+Vopsf::vexpand vexpand626,11866
+Vopsf::vrange vrange667,12680
+findlocalpeak 774,14770
+Vopsf::vvtally vvtally810,15313
+vgate 846,15922
+  float component;951,18240
+  float order;952,18323
+  float tfrq;953,18338
+  float frq;954,18374
+  float mean;955,18387
+  float ht;956,18401
+  float ratio;957,18413
+  float pwd;958,18428
+  float attrib;959,18441
+} Pkele;960,18527
+class Vibpeak962,18537
+  int npks;966,18562
+  int nspts;967,18574
+  int skirt_wd;968,18587
+  float f0;969,18603
+  float f0m;970,18615
+  float nyq;971,18628
+  float mean;972,18641
+  float ht;973,18655
+  float fund_ht;974,18667
+  float ratio;975,18684
+  float *spec;spec976,18699
+  Pkele *htable;htable977,18714
+  float df;978,18731
+  float peakfrq;979,18743
+Vibpeak::Vibpeak Vibpeak987,18931
+Vibpeak::findPeak findPeak1005,19238
+vpeak 1125,21427
+bitrevval 1241,23688
+Vopsf::bitrev bitrev1271,24104
+bitRevVec 1282,24304
+Vopsf::vbitrev vbitrev1307,24674
+vSwop 1341,25302
+Vopsf::vswop vswop1354,25453
+Vopsf::vvcomp vvcomp1401,26270
+const char *cmp_desc cmp_desc1495,28257
+Vopsf::cmp cmp1504,28638
+const char *sel_desc sel_desc1646,31507
+Vopsf::sel sel1654,31866
+t_sel 1791,34465
+Vopsf::selvi selvi1803,34691
+Vopsf::vrotate vrotate1874,36135
+Vopsf::eletoarrayspec eletoarrayspec1890,36368
+Vopsf::init init1985,38337
+
+/home/mark/gasp-CARBON/SI/math/vop_unique_m.cpp,81
+Vopsf::vunique vunique20,600
+t_vtrans 110,2137
+Vopsf::vtrans vtrans135,2521
+
+/home/mark/gasp-CARBON/SI/mat/matrix.cpp,860
+Matsf::mdimn mdimn25,648
+Matsf::mrevcols mrevcols111,2313
+Matsf::mrevrows mrevrows194,3886
+Matsf::reflectdiagonal reflectdiagonal272,5330
+Matsf::cyclerow cyclerow300,5896
+Matsf::cyclecol cyclecol361,7412
+deletecol 437,9076
+deleterow 444,9120
+swaprow 450,9163
+swapcol 456,9204
+Matsf::mtrp mtrp465,9299
+Matsf::mdiag mdiag542,10905
+Matsf::mdet mdet597,12161
+Matsf::minv minv684,13929
+Matsf::mprt mprt828,16851
+Matsf::cmpsetv cmpsetv907,18210
+Matsf::rowzoom rowzoom994,19830
+Matsf::colzoom colzoom1116,22431
+setRows 1371,28439
+setCols 1390,28829
+exchangeCols 1407,29247
+Matsf::exchangecols exchangecols1437,29947
+exchangeRows 1491,31144
+Matsf::exchangerows exchangerows1531,32109
+sum 1584,33210
+Uac::submat submat1594,33491
+Matsf::submat submat1622,34023
+Matsf::rowelim rowelim1713,35876
+Matsf::init init1734,36260
+
+/home/mark/gasp-CARBON/SI/mat/matrix_mcd.cpp,320
+#define SQR(21,686
+ludcmp 29,897
+lubksb 156,3409
+ldmatinv 195,4158
+lddet 256,5109
+svbksb 285,5643
+pythag 320,6224
+svdcmp 345,6580
+svdvar 571,11010
+#define TOL 595,11500
+svdfit 598,11525
+fpoly 642,12584
+fleg 655,12760
+four1 678,13131
+realfft 741,14590
+twofft 794,15927
+convlv 843,16882
+savgol 901,18373
+
+/home/mark/gasp-CARBON/SI/mat/matrix_ops.cpp,699
+rbes 20,601
+rows 32,753
+cbes 39,817
+cols 51,969
+Mat::Mat Mat57,1027
+Mat::Mat Mat84,1491
+Mat::~Mat ~Mat108,1928
+mat_add 116,2041
+mat_mul 156,2816
+Mat::operator+= operator+=334,7109
+Mat & Mat::operator ()(operator ()352,7452
+Mat & Mat::operator ()(operator ()365,7690
+Mat & Mat::operator = operator =390,8240
+template < typename T > Mat & Mat::operator = operator =443,9248
+Mat & Mat::operator = operator =526,11548
+Mat::operator == operator ==568,12706
+Mat::operator () operator ()610,13779
+Mat::Dele Dele649,14580
+Mat::Lele Lele696,15603
+t_mout 743,16628
+ostream & operator << operator <<757,16962
+Mat::Transpose Transpose785,17640
+Mat::setRow setRow833,18363
+
+/home/mark/gasp-CARBON/SI/mat/matrix_zoom.cpp,27
+Matsf::mzoom mzoom20,653
+
+/home/mark/gasp-CARBON/SI/matrix/matrix.cpp,860
+Matsf::mdimn mdimn25,648
+Matsf::mrevcols mrevcols111,2313
+Matsf::mrevrows mrevrows194,3886
+Matsf::reflectdiagonal reflectdiagonal272,5330
+Matsf::cyclerow cyclerow300,5896
+Matsf::cyclecol cyclecol361,7412
+deletecol 437,9076
+deleterow 444,9120
+swaprow 450,9163
+swapcol 456,9204
+Matsf::mtrp mtrp465,9299
+Matsf::mdiag mdiag542,10905
+Matsf::mdet mdet597,12161
+Matsf::minv minv684,13929
+Matsf::mprt mprt828,16851
+Matsf::cmpsetv cmpsetv907,18210
+Matsf::rowzoom rowzoom994,19830
+Matsf::colzoom colzoom1116,22431
+setRows 1371,28439
+setCols 1390,28829
+exchangeCols 1407,29247
+Matsf::exchangecols exchangecols1437,29947
+exchangeRows 1491,31144
+Matsf::exchangerows exchangerows1531,32109
+sum 1584,33210
+Uac::submat submat1594,33491
+Matsf::submat submat1622,34023
+Matsf::rowelim rowelim1713,35876
+Matsf::init init1734,36260
+
+/home/mark/gasp-CARBON/SI/matrix/matrix_mcd.cpp,320
+#define SQR(21,686
+ludcmp 29,897
+lubksb 156,3409
+ldmatinv 195,4158
+lddet 256,5109
+svbksb 285,5643
+pythag 320,6224
+svdcmp 345,6580
+svdvar 571,11010
+#define TOL 595,11500
+svdfit 598,11525
+fpoly 642,12584
+fleg 655,12760
+four1 678,13131
+realfft 741,14590
+twofft 794,15927
+convlv 843,16882
+savgol 901,18373
+
+/home/mark/gasp-CARBON/SI/matrix/matrix_ops.cpp,699
+rbes 20,601
+rows 32,753
+cbes 39,817
+cols 51,969
+Mat::Mat Mat57,1027
+Mat::Mat Mat84,1491
+Mat::~Mat ~Mat108,1928
+mat_add 116,2041
+mat_mul 156,2816
+Mat::operator+= operator+=334,7109
+Mat & Mat::operator ()(operator ()352,7452
+Mat & Mat::operator ()(operator ()365,7690
+Mat & Mat::operator = operator =390,8240
+template < typename T > Mat & Mat::operator = operator =443,9248
+Mat & Mat::operator = operator =526,11548
+Mat::operator == operator ==568,12706
+Mat::operator () operator ()610,13779
+Mat::Dele Dele649,14580
+Mat::Lele Lele696,15603
+t_mout 743,16628
+ostream & operator << operator <<757,16962
+Mat::Transpose Transpose785,17640
+Mat::setRow setRow833,18363
+
+/home/mark/gasp-CARBON/SI/matrix/matrix_zoom.cpp,27
+Matsf::mzoom mzoom20,653
+
+/home/mark/gasp-CARBON/SI/num/gen_l.cpp,528
+vvgen 22,667
+vgen 62,1329
+rangegen 129,2410
+Gensf::frange frange170,3053
+Gensf::drange drange180,3273
+Gensf::Vgen Vgen189,3417
+Gensf::Mgen Mgen203,3683
+Gensf::fgen fgen236,4326
+Gensf::dgen dgen242,4385
+Gensf::igen igen248,4445
+Gensf::cgen cgen254,4502
+fgen 262,4620
+igen 284,5040
+Gensf::Tgen Tgen306,5474
+Gensf::VVgen VVgen388,6681
+sgen 485,8797
+Gensf::Sgen Sgen524,9377
+Vfill 635,11153
+Gensf::vfill vfill671,11835
+Gensf::pgen pgen805,14454
+Gensf::vga vga936,16550
+Gensf::init init989,17475
+
+/home/mark/gasp-CARBON/SI/num/num_l.cpp,657
+Numsf::Range Range23,646
+Numsf::dec2bin dec2bin50,1237
+Numsf::dec2oct dec2oct106,2034
+Numsf::dec2hex dec2hex127,2369
+base_dec 144,2678
+Numsf::Atof Atof217,4173
+Numsf::Atoi Atoi310,5717
+Numsf::Atou Atou378,7023
+Numsf::Atol Atol437,8096
+Numsf::Atop Atop516,9493
+Numsf::oct2dec oct2dec570,10514
+Numsf::hex2dec hex2dec578,10629
+Numsf::bin2dec bin2dec584,10692
+itoa 599,10932
+Numsf::Itoa Itoa633,11606
+Numsf::Ftoa Ftoa650,11873
+Numsf::Dtoa Dtoa661,12067
+Numsf::Isdigit Isdigit673,12300
+Numsf::Isalpha Isalpha686,12506
+Numsf::Isspace Isspace698,12682
+Numsf::getnumfrommem getnumfrommem710,12858
+Numsf::init init756,13564
+
+/home/mark/gasp-CARBON/SI/oo/oo_class.cpp,635
+#define MEMBER_NAME 19,583
+int Class_access 21,606
+static int Ncid 23,636
+Sclass **Class_table Class_table25,658
+uint32_t Sclass::SclassID 32,766
+init_sclass 35,852
+Parset::Sclass_destr Sclass_destr51,1180
+Siv::makeClass makeClass61,1379
+Sclass::Copy Copy158,3439
+Parset::Sclass_cons Sclass_cons403,9425
+Parset::Scmf Scmf640,14332
+Sclass::FindCdef FindCdef668,14829
+ObjectAssign 682,15006
+ObjectAssign 690,15153
+ObjectCopy 758,16775
+var_class_index 784,17398
+Parset::SclassStatement SclassStatement921,20345
+Parset::checkCMFvar checkCMFvar1094,24039
+Siv::getClass getClass1154,25505
+class_hash 1169,25770
+
+/home/mark/gasp-CARBON/SI/oo/oo_class_dec.cpp,112
+Parset::Sclass_dec Sclass_dec22,635
+Parset::Sclass_dec Sclass_dec245,5634
+Sclass::Declare Declare338,7769
+
+/home/mark/gasp-CARBON/SI/oo/oo_class_def.cpp,93
+#define SET_DEF_OBJ 20,611
+Parset::Sclass_def Sclass_def23,641
+checkSclassName 581,13249
+
+/home/mark/gasp-CARBON/SI/oo/oo_class_mbr.cpp,235
+Sclass::getMemberSiv getMemberSiv20,567
+Sclass::getMemberSlotSiv getMemberSlotSiv173,3365
+var_get_class_member 261,5094
+Parset::varCmfIndex varCmfIndex692,15695
+Parset::getObjMbr getObjMbr880,19639
+getObjMemberSivp 917,20382
+
+/home/mark/gasp-CARBON/SI/oo/oo_cmf.cpp,225
+getSubStr 22,612
+Sclass::manglePromote manglePromote41,874
+Sclass::findCmf findCmf263,6776
+Parset::checkCMFargs checkCMFargs395,9546
+Parset::checkCMF checkCMF552,12897
+Statement::checkCmfFunc checkCmfFunc629,14843
+
+/home/mark/gasp-CARBON/SI/oo/oo_declare_class.cpp,34
+Parset::Cdeclare Cdeclare20,625
+
+/home/mark/gasp-CARBON/SI/oo/oo_stack.cpp,201
+Parset::getObjOffCMFStack getObjOffCMFStack20,557
+Parset::showCMFStack showCMFStack35,817
+Parset::popObjOffCMFStack popObjOffCMFStack51,1208
+Parset::pushObjOnCMFStack pushObjOnCMFStack126,2451
+
+/home/mark/gasp-CARBON/SI/opera/opera_ap.cpp,29
+Opera::Apmath Apmath25,744
+
+/home/mark/gasp-CARBON/SI/opera/opera_bit.cpp,29
+Opera::BitOps BitOps21,578
+
+/home/mark/gasp-CARBON/SI/opera/opera_cathold.cpp,66
+cathold_to_result 22,616
+opera_matcolcathold_to_result 256,6207
+
+/home/mark/gasp-CARBON/SI/opera/opera_cmplx.cpp,160
+CmplxRptr 27,921
+cmplx_add 49,1248
+dcmplx_add 75,1932
+cmplx_minus 96,2475
+dcmplx_mul 110,2765
+cmplx_mul 140,3608
+dcmplx_div 180,4618
+cmplx_div 225,5562
+
+/home/mark/gasp-CARBON/SI/opera/opera_compare.cpp,108
+#define DCOMPARE 19,565
+scale_dcompare 22,603
+scale_compare 36,815
+Opera::CompareVal CompareVal62,1322
+
+/home/mark/gasp-CARBON/SI/opera/opera_copy.cpp,87
+Opera::copyResult copyResult20,597
+opera_copy_fconvert 35,881
+copy_convert 58,1378
+
+/home/mark/gasp-CARBON/SI/opera/opera_debug.cpp,27
+Opera::Debug Debug22,646
+
+/home/mark/gasp-CARBON/SI/opera/opera_logic.cpp,33
+Opera::LogicOps LogicOps20,548
+
+/home/mark/gasp-CARBON/SI/opera/opera_main.cpp,539
+int Opr_error 25,680
+unaryop 30,767
+unaryordinc_op 36,867
+opdinc 43,1032
+op_predinc 49,1106
+opequal 55,1182
+hold_to_result 68,1498
+Opera::Setup Setup80,1816
+Opera::resolveResult resolveResult151,3086
+Parset::opera_f opera_f205,4113
+Opera::Decr Decr348,7095
+Opera::Incr Incr358,7217
+Opera::Equ Equ371,7387
+Opera::Mod Mod382,7508
+Opera::PowQ PowQ430,8164
+Opera::setLho setLho536,10040
+Opera::setRho setRho580,10810
+Opera::resolveHold resolveHold665,12183
+Opera::Cmath Cmath705,12861
+Opera::Mul Mul1055,20093
+
+/home/mark/gasp-CARBON/SI/opera/opera_mat.cpp,133
+mvrop 28,737
+cmcvrop 66,1473
+mvcop 126,2472
+mv_rop 160,3064
+mv_cop 229,4657
+mv_op 287,5886
+t_matmul 344,7521
+matmul 368,7968
+
+/home/mark/gasp-CARBON/SI/opera/opera_opeq.cpp,326
+top 24,696
+do_sv_op 62,1191
+t_op 73,1498
+do_vs_op 176,4041
+div_vs 248,5738
+pow_vs 283,6525
+sub_sv 297,6750
+Opera::showOps showOps335,7567
+Opera::Mulq Mulq350,7948
+Opera::Divq Divq485,10699
+Opera::Minus Minus576,12335
+Opera::Minuseq Minuseq662,13803
+Opera::Pluseq Pluseq750,15311
+Opera::Plus Plus841,17031
+
+/home/mark/gasp-CARBON/SI/opera/opera_promote.cpp,139
+Opera::Promote Promote20,565
+opera_promote 85,1892
+copy_promote 146,3067
+Opera::copyPromote copyPromote161,3262
+SivPromote 171,3405
+
+/home/mark/gasp-CARBON/SI/opera/opera_store.cpp,138
+TypeInt 20,599
+Opera::checkIntStore checkIntStore35,956
+Opera::doIntStore doIntStore92,2168
+Opera::doRealStore doRealStore177,4192
+
+/home/mark/gasp-CARBON/SI/opera/opera_str.cpp,29
+Opera::StrOps StrOps20,594
+
+/home/mark/gasp-CARBON/SI/opera/opera_unary.cpp,170
+Siv::minus minus24,740
+Siv::plus plus67,1331
+Siv::notOp notOp76,1454
+Siv::b1comp b1comp105,1983
+Siv::incr incr120,2196
+Siv::decr decr162,2853
+unary 198,3360
+
+/home/mark/gasp-CARBON/SI/opera/opera_vs.cpp,95
+div_sv 24,728
+add_vs 179,4067
+mod_vs 221,4895
+mul_vs 232,5091
+Opera::PowSV PowSV288,6261
+
+/home/mark/gasp-CARBON/SI/opera/opera_vv.cpp,163
+cmplx_vvop 23,688
+vvop 85,1647
+vv_op 117,2186
+Opera::multiplyVecs multiplyVecs436,9353
+mul_vv 445,9488
+div_vv 480,10304
+add_vv 510,10860
+sub_vv 541,11436
+
+/home/mark/gasp-CARBON/SI/pan/mp_funcs.cpp,359
+dfour1 22,644
+drealft 82,1944
+mpadd 135,3289
+mpsub 151,3678
+mpsad 169,4044
+mpsmu 190,4412
+mpsdv 208,4768
+mpneg 226,5132
+mpmov 240,5389
+mplsh 250,5558
+mprsh 267,5801
+#define RX 281,6003
+mpmul 284,6026
+#define BI 357,7372
+mpinv 360,7401
+#define MACC 429,8754
+mpdiv 432,8775
+mpsqrt 466,9554
+mp2dfr 541,10936
+mppi 561,11536
+cmalloc 667,13597
+
+/home/mark/gasp-CARBON/SI/pan/pan_addsub.cpp,77
+pan_add 20,607
+ap256sub 291,5352
+#define MFREE(352,6349
+pan_sub 355,6409
+
+/home/mark/gasp-CARBON/SI/pan/pan_cmp.cpp,243
+ap_cmp 20,588
+Pan::Cmp Cmp29,760
+Pan::Cmp Cmp37,881
+Pan::isIntegerGt0 isIntegerGt0188,3920
+Pan::isGT isGT202,4136
+Pan::isLT isLT285,5613
+Pan::isIntegerLt0 isIntegerLt0362,7014
+Pan::Equiv Equiv377,7293
+Pan::Equiv Equiv407,7763
+
+/home/mark/gasp-CARBON/SI/pan/pan_copy.cpp,184
+Siv::copyPan copyPan20,600
+Siv::panSubSizeCopy panSubSizeCopy68,1399
+Siv::panSubScriptCopy panSubScriptCopy112,2078
+pan_copy 160,2857
+Pan::Copy Copy241,4687
+pan2pan 323,6095
+
+/home/mark/gasp-CARBON/SI/pan/pan_funcs.cpp,478
+aprsh 22,642
+aplsh 35,859
+apcopy 43,983
+db_radint 53,1160
+apnp 67,1388
+apns 79,1572
+ap10add 95,1852
+ap10sub 137,2650
+apnls 234,4227
+ApPow 248,4460
+ApSqrt 268,4772
+ap_sdiv 318,5620
+pan_recip 328,5772
+dmalloc 344,6031
+ap_eqv 358,6306
+ap_neqv 382,6716
+Pan::setExpZero setExpZero404,7072
+setexpnzero 627,11832
+Pan::setFractZero setFractZero635,11951
+Pan::setIntOne setIntOne706,13376
+setmantissa 751,14389
+Pan::Decr Decr789,15128
+Pan::Incr Incr847,16073
+
+/home/mark/gasp-CARBON/SI/pan/pan_math.cpp,504
+int DBAP 19,586
+int APDIVSHIFT 20,600
+ap_error 32,882
+Pan::isInteger isInteger41,1055
+remove_tzs 57,1300
+r256_dec 101,2067
+aproundup 174,3480
+check_pan 230,4296
+ap10neg 242,4502
+ap_sqrt 264,4904
+ApAtan 286,5368
+ApExp 445,8685
+ApLog 585,11180
+ApSin 733,14022
+#define RXX 833,15769
+Pan::Roundup Roundup836,15789
+Pan::zeroPad zeroPad966,18096
+Pan::Trunc Trunc1001,18787
+Pan::getAsStr getAsStr1026,19251
+Siv::getPanumAsStr getPanumAsStr1103,20760
+mop 1123,21083
+apsqrt 1368,25545
+
+/home/mark/gasp-CARBON/SI/pan/pan_mem.cpp,470
+Pan::Pan Pan19,585
+Pan::~Pan ~Pan31,761
+Siv::DeletePan DeletePan39,869
+set_pan 49,1025
+free_pan_fin 65,1302
+free_pan 83,1620
+Pan::checkIlen checkIlen94,1781
+pan_move 119,2211
+Pan::moveFree moveFree125,2311
+pan_init 168,3045
+Pan::Init Init176,3156
+pan_dec 215,3857
+free_pan_fin 226,4039
+Siv::newPan newPan243,4350
+Siv::newPan newPan284,5108
+Siv::reallocPan reallocPan317,5829
+Siv::resizePan resizePan388,7276
+Siv::attachPan attachPan430,8037
+
+/home/mark/gasp-CARBON/SI/pan/pan_muldiv.cpp,51
+ap_smul 20,604
+pan_mul 78,1747
+pan_div 202,4364
+
+/home/mark/gasp-CARBON/SI/pan/pan_radix.cpp,193
+Svar SR_var;19,591
+Pan::setRadix setRadix21,627
+sradix 179,3991
+dec_radix_n 187,4119
+decint_sradix 233,4977
+decf_radix_n 372,7410
+decfrac_sradix 413,8169
+Pan::Decimal Decimal492,9711
+
+/home/mark/gasp-CARBON/SI/pan/pan_set.cpp,135
+Svar SPan_var;19,596
+Pan::Set Set23,636
+Pan::Set Set269,5463
+Pan::Set Set285,5752
+Pan::Set Set299,5968
+Pan::Set Set312,6171
+
+/home/mark/gasp-CARBON/SI/pan/pan_store.cpp,207
+Siv::Store Store20,610
+Siv::storeAsPan storeAsPan40,944
+Siv::storeAsPan storeAsPan95,1929
+Siv::storeAsPan storeAsPan147,2827
+Siv::storeAsPan storeAsPan200,3762
+Siv::storeAsPan storeAsPan254,4588
+
+/home/mark/gasp-CARBON/SI/parse/args_parse_e.cpp,19
+parse_args 22,625
+
+/home/mark/gasp-CARBON/SI/parse/hop_e.cpp,106
+JustCheck 26,732
+#define VH_SHORT_NAME 34,905
+var_hash 37,934
+proc_hash 237,5388
+si_fw_hash 330,7229
+
+/home/mark/gasp-CARBON/SI/parse/parse_table.cpp,245
+typedef Singleton < Dbgsf > DbgsfS;40,999
+typedef Singleton < Mtxsf > MtxsfS;41,1035
+typedef Singleton < Semsf > SemsfS;42,1071
+typedef Singleton < Thrdsf > ThrdsfS;43,1107
+typedef Singleton < Clsf > ClsfS;44,1145
+parse_table_init 47,1185
+
+/home/mark/gasp-CARBON/SI/parse/parutils.cpp,308
+check_sclass_type 20,572
+FindFunction 43,1039
+Parset::var_ptr var_ptr70,1503
+Parset::pa_indargval pa_indargval127,2362
+find_or_make_var 199,3749
+do_script 230,4560
+get_args 243,4802
+getnfastx 561,9913
+fastxic 569,10066
+xcompile 585,10386
+runasl 599,10658
+checkQans 627,11298
+init_fw 713,13394
+
+/home/mark/gasp-CARBON/SI/pexpnd/paramexpand.cpp,319
+int Matprint 25,705
+int Printout 26,723
+Siv::expandSclass expandSclass29,747
+ExpandVar 41,990
+Parset::loadVarStr loadVarStr180,4266
+Parset::paramExpress paramExpress231,5119
+SpliceInType 384,8303
+Parset::paramExpand paramExpand398,8668
+Parset::literalString literalString861,18401
+pa_getstrexp 955,20045
+
+/home/mark/gasp-CARBON/SI/pexpnd/paramexplist.cpp,35
+Siv::expandList expandList20,617
+
+/home/mark/gasp-CARBON/SI/pexpnd/paramexprecord.cpp,39
+Siv::expandRecord expandRecord20,617
+
+/home/mark/gasp-CARBON/SI/pexpnd/paramexpsvar.cpp,70
+Siv::expandSvar expandSvar20,606
+Siv::expandStr expandStr145,3192
+
+/home/mark/gasp-CARBON/SI/pexpnd/pararow.cpp,444
+Rowprepost::Rowprepost Rowprepost23,731
+Rowprepost::loadRowPrePostFix loadRowPrePostFix39,1011
+Rowprepost::setPre setPre64,1498
+Rowprepost::newRow newRow77,1706
+Rowprepost::endRow endRow100,2306
+Rowprepost::reset reset116,2607
+Rowprepost::matRow matRow132,2878
+Rowprepost::arraySep arraySep142,3026
+Rowprepost::checkVectorRow checkVectorRow150,3146
+loadLiteralStr 166,3437
+Parset::checkVectorPrint checkVectorPrint211,4236
+
+/home/mark/gasp-CARBON/SI/pexpnd/parrayexpand.cpp,350
+getNextEle 20,592
+Siv::expandArray expandArray86,1950
+Siv::expand3DArray expand3DArray371,7986
+Siv::expandInner3DArray expandInner3DArray514,10940
+Siv::expandMDArray expandMDArray568,12340
+Siv::expandVec expandVec677,15062
+printVec 891,19352
+printMat 901,19556
+printInner3DArray 910,19704
+printMDArray 962,21083
+printArray 1061,23491
+
+/home/mark/gasp-CARBON/SI/pexpnd/pfmtexpand.cpp,146
+#define ROOMTOEXPAND 19,604
+isCharPartofVarID 22,634
+isCharPartofFmt 62,1161
+pe_format 73,1361
+paramSetupFmt 179,4122
+checkPexpFmt 340,7178
+
+/home/mark/gasp-CARBON/SI/plot/3D_p.cpp,876
+float VP_max 19,578
+int CullFace 23,652
+float YONDER_dist 25,671
+float HITHER_dist 27,760
+float TP_view_dist 28,839
+turna 31,874
+a2l 45,1070
+cd_a2l 67,1368
+a2r 80,1582
+ta2polar 89,1732
+rta2polar 99,1907
+find_angle 110,2090
+isPtInFront 166,3047
+isPtAheadAz 220,4386
+in_port 228,4581
+plotRegion 254,5063
+addOrb 278,5664
+plotNregions 304,6220
+addMOrb 315,6487
+addTileOrb 347,7108
+plotNMregions 381,7866
+plotTiles 394,8185
+Object::ecTranslate ecTranslate404,8495
+Object::ecRotate ecRotate428,9083
+Object::ecRotateZ ecRotateZ573,12006
+Object::ecProject ecProject714,14865
+Object::plotRegions plotRegions795,16359
+Gmatrix::Plot Plot1009,20684
+Observer::setAzimElevRads setAzimElevRads1241,25485
+plot3D 1250,25705
+TDpsf::plot3d plot3d1387,28578
+TDpsf::geteye geteye1430,29502
+TDpsf::cullface cullface1467,30152
+TDpsf::init init1482,30443
+
+/home/mark/gasp-CARBON/SI/plot/colors_p.cpp,525
+rainbow 20,596
+Scrnsf::rainbow rainbow26,640
+Scrnsf::setgsmap setgsmap37,801
+Scrnsf::rotatemap rotatemap51,1112
+setRGB 68,1451
+setRGB 86,1778
+Scrnsf::setrgb setrgb111,2310
+Scrnsf::setrgbindexfromname setrgbindexfromname222,4629
+Scrnsf::setrgbfromindex setrgbfromindex235,4935
+Scrnsf::setrgbsection setrgbsection259,5605
+Scrnsf::cpyrgbsection cpyrgbsection291,6387
+Scrnsf::getrgbindexfromname getrgbindexfromname324,7146
+Scrnsf::setcolormap setcolormap337,7452
+Scrnsf::getcolormap getcolormap359,7857
+
+/home/mark/gasp-CARBON/SI/plot/df_p.cpp,571
+int DBPLOT 23,629
+#define MAXDF 24,645
+#define USER_SET 25,662
+frame dft[dft27,682
+gs_d_frame 48,1407
+Dfpsf::dframe dframe117,2849
+Dfpsf::getframen getframen149,3438
+gs_get_frame 177,4124
+scale_frame_window 215,4866
+get_frame_mm 223,5125
+compute_curr_chn_index 269,5790
+gs_get_frame_df 277,5969
+init_dfs 298,6352
+get_new_df 310,6514
+chk_dfnum 329,6780
+Dfpsf::openframefile openframefile339,6922
+Dfpsf::getframedf getframedf366,7435
+Dfpsf::closeframefile closeframefile394,7944
+Dfpsf::getchanvalue getchanvalue412,8282
+Dfpsf::init init453,9104
+
+/home/mark/gasp-CARBON/SI/plot/gline_p.cpp,1097
+int Nglines 19,552
+uint GlineID 20,569
+Gline *GLINEPTR[GLINEPTR24,631
+Gline::Gline Gline30,816
+Gline::~Gline ~Gline83,1613
+Gline::setName setName114,2098
+Gline::ClearType ClearType127,2339
+Gline::SetVec SetVec138,2554
+Gline::SetVec SetVec246,5057
+get_gline 348,7164
+create_gline 358,7339
+Gline::drawCursor drawCursor399,7949
+Gline::drawXY drawXY409,8146
+Gline::drawXY drawXY527,11233
+Gline::Draw Draw719,14951
+Gline::drawBlind drawBlind1092,23943
+Gline::Label Label1122,24441
+Gline::setGline setGline1142,24883
+cGl 1738,36679
+Glnsf::creategline creategline1772,37215
+Glnsf::drawgline drawgline1812,38004
+dGl 1864,39189
+Glnsf::labelgline labelgline1888,39554
+Glnsf::labelglines labelglines1908,40014
+Glnsf::setgline setgline1946,40826
+DrawWidGlines 2022,42347
+Glnsf::redrawglines redrawglines2052,42826
+Glnsf::deletegline deletegline2097,43655
+Glnsf::glinegetvalues glinegetvalues2120,44099
+struct pwt gl_table[gl_table2162,44922
+gl_hash 2167,44994
+init_gl 2208,45881
+findGLOption 2259,47274
+Glnsf::init init2292,47749
+setGLhue 2311,48310
+
+/home/mark/gasp-CARBON/SI/plot/grid_p.cpp,1071
+int Grdsz 21,606
+Section Wgrid_0;23,625
+Section *Wgrid Wgrid24,642
+#define WGNSTEP 26,670
+#define WGNR2 27,690
+#define WGN 28,707
+short *WDEM;WDEM30,726
+Grid *Gridobp[Gridobp32,740
+int Grid_sz 34,767
+#define SPIL_LIB_X 36,786
+Section::Section Section38,868
+MakeWGrid 68,1262
+longlat2xygrid 118,2022
+Grdsf::lnglat2xygrid lnglat2xygrid158,2823
+Grdsf::readdem readdem190,3379
+Grdsf::readbil readbil256,4524
+Grdsf::setwgrid setwgrid348,6285
+GetDemEleRC 390,7208
+GetDemEleXY 406,7577
+Grdsf::getwgrid getwgrid495,9360
+wgrid_index 521,9851
+wgrid2latlong 582,11350
+SetLong30s 591,11659
+compass_polar 599,11813
+polar_compass 611,11994
+Grdsf::getelev getelev630,12276
+Grdsf::getwgs getwgs712,13645
+lla2ecc 810,15408
+Grdsf::lla2wgs lla2wgs831,15788
+Grdsf::paralleltrack paralleltrack921,17357
+Grdsf::gettrack gettrack1008,19170
+Grdsf::readtrack readtrack1092,21144
+Grdsf::readaerialtrack readaerialtrack1193,22862
+Grdsf::readairport readairport1282,24506
+Grdsf::readturnpoint readturnpoint1360,25744
+Grdsf::init init1410,26581
+
+/home/mark/gasp-CARBON/SI/plot/mod_wo_p.cpp,30
+mwotype 31,878
+cWo 116,3130
+
+/home/mark/gasp-CARBON/SI/plot/object_p.cpp,2484
+Object *Ob[Ob19,588
+int OD[OD21,610
+int Maxobjs 23,628
+int Nobjs 24,651
+  Object::ObjectID 27,671
+  Eyeobp 30,705
+SortFurthest 33,728
+  Oline[Oline86,1372
+InitObjs 89,1397
+setUpEye 98,1525
+setEyeOrient 135,2210
+getEyeWndg 156,2681
+Object::DeleteRegions DeleteRegions166,2831
+Object::AddRegion AddRegion187,3123
+Object::SetType SetType213,3526
+Object::SetName SetName223,3690
+Object::SetX SetX231,3806
+Object::SetRotX SetRotX240,3951
+Object::SetY SetY248,4066
+Object::SetRotY SetRotY256,4178
+Object::SetRotZ SetRotZ265,4313
+Object::SetZ SetZ274,4468
+Object::SetScale SetScale282,4580
+Object::SetXScale SetXScale293,4774
+Object::SetYScale SetYScale303,4934
+Object::Distance Distance313,5095
+Object::SetZScale SetZScale329,5333
+Object::setVert setVert339,5492
+Object::PositionToGrid PositionToGrid358,5753
+Object::AllocVerts AllocVerts380,6409
+RegionObj::AllocVpts AllocVpts408,6814
+RegionObj::indexToVert indexToVert427,7129
+RegionObj::getVert getVert440,7331
+RegionObj::GetPoint GetPoint455,7541
+RegionObj::SetRunWay SetRunWay478,7988
+RegionObj::SetTP SetTP521,8599
+RegionObj::STS STS551,9010
+Object::MoveR MoveR599,10034
+Object::moveToRegPt moveToRegPt609,10170
+Object::RotateZ RotateZ649,10688
+Object::RotateX RotateX694,11514
+Object::RotateY RotateY732,12195
+Object::Rotate Rotate767,12807
+Object::MoveA MoveA796,13265
+Object::MoveRegA MoveRegA806,13399
+Object::copyRegPts copyRegPts844,13998
+Object::InView InView898,14847
+RegionObj::Median Median948,15742
+wxycdir 980,16146
+wzycdir 1007,16734
+clkwise 1035,17323
+quadSlope 1056,17641
+clkwz 1097,18127
+checkRegionWinding 1134,18618
+RegionObj::findWndg findWndg1198,19991
+RegionObj::FaceFront FaceFront1243,21092
+Object::ReScale ReScale1286,22108
+Object::CG CG1309,22582
+Object::Clone Clone1339,23014
+FindObject 1416,24092
+createobj 1439,24454
+SetupObj 1488,25129
+SetupRegions 1547,26481
+CreateScene 1675,29508
+Objsf::createscene createscene1862,32857
+Objsf::moveobject moveobject1917,33643
+Objsf::moveobjecttoregpt moveobjecttoregpt1945,34094
+Objsf::makeobject makeobject1967,34450
+Objsf::makecbar makecbar2075,36326
+Objsf::rotateobject rotateobject2178,38383
+#define OUL 2224,39001
+#define OUHL 2225,39017
+Cube::Make Make2228,39046
+Pyramid::Make Make2357,41610
+Grid::Make Make2456,43403
+#define M_LAYER 2540,44616
+#define M_SLICE 2541,44634
+Gmatrix::Make Make2544,44658
+Objsf::init init2691,46820
+
+/home/mark/gasp-CARBON/SI/plot/old-gevent.cpp,41
+Gevent::Gevent Gevent5,26
+ginit 11,56
+
+/home/mark/gasp-CARBON/SI/plot/po_p.cpp,1838
+int DEBUG_GSPLOT 24,619
+enum Pop_types32,808
+  POP_LINE,34,825
+  POP_LINES,35,837
+  POP_LINETO,36,850
+  POP_POINT,37,864
+  POP_POINTS,38,877
+  POP_SYMBOL,39,891
+  POP_SYMBOLS,40,905
+  POP_WOSYMBOL,41,920
+  POP_ELLIPSE,42,936
+  POP_CIRCLE,43,951
+  POP_TRIANGLE,44,965
+  POP_BOX,45,981
+  POP_POLARLINE,46,992
+  POP_POLYREG,47,1009
+  POP_POLY,48,1024
+  POP_TEXT,49,1036
+  POP_RADIALPOINTS,50,1048
+  POP_CONTOUR,51,1068
+  POP_ARROW,52,1083
+  POP_PIXRECT,53,1096
+  POP_KEYSYMBOL,54,1111
+  POP_WBOX,55,1128
+struct pwt pop_table[pop_table58,1144
+pop_hash 61,1179
+findPopOption 95,1749
+init_pop_table 108,1988
+plot_point 143,2951
+plot_line 235,4539
+plot_lines 332,6297
+plot_lineto 446,8506
+plot_box 523,9979
+plot_wbox 609,11656
+plot_arrow 677,12796
+plot_contour 737,13712
+realXY_clipPoints 895,16642
+Popsf::gsync gsync914,17127
+Popsf::vvdraw vvdraw925,17295
+vpr_xy 959,17899
+Popsf::vprx vprx994,18518
+Popsf::vpry vpry1010,18970
+Popsf::vpc vpc1024,19316
+Popsf::plotpixrect plotpixrect1064,20493
+Popsf::vsymbol vsymbol1165,22402
+Popsf::vdraw vdraw1216,23464
+Popsf::vfillrect vfillrect1322,25421
+Popsf::setgc setgc1392,26616
+plothvline 1414,27079
+Popsf::plothline plothline1474,28200
+Popsf::plotvline plotvline1481,28315
+plot_symbol 1489,28431
+plot_symbols 1588,30355
+plot_radialpoints 1694,32229
+plot_circle 1731,33054
+Popsf::plot plot1764,33691
+Popsf::popamenu popamenu2170,41583
+choiceMenu 2218,42523
+Popsf::yesornomenu yesornomenu2271,43542
+Popsf::plotcircle plotcircle2302,44180
+Popsf::plotline plotline2316,44389
+Popsf::plotbox plotbox2329,44595
+Popsf::plotsymbol plotsymbol2341,44762
+Popsf::exegwmfunc exegwmfunc2356,44987
+Popsf::init init2391,45756
+plotLine 2438,47779
+plotBox 2468,48238
+plotSymbol 2494,48649
+axisLabel 2521,49159
+AxText 2547,49602
+
+/home/mark/gasp-CARBON/SI/plot/screen_p.cpp,919
+select_real_lbox 20,555
+Scrnsf::selectreal selectreal72,1628
+Scrnsf::selectline selectline80,1758
+Scrnsf::loadfont loadfont88,1888
+openLaser 105,2220
+closeLaser 113,2318
+Scrnsf::openlaser openlaser121,2388
+Scrnsf::closelaser closelaser140,2794
+gmse 151,3012
+Scrnsf::getmousestate getmousestate190,3753
+Scrnsf::getmouseevent getmouseevent198,3891
+Scrnsf::selectbox selectbox206,4029
+Scrnsf::movebox movebox238,4635
+Scrnsf::srs srs257,5041
+Scrnsf::switchscreen switchscreen286,5588
+screenToLaser 296,5825
+laserToScreen 306,5984
+Scrnsf::screentolaser screentolaser316,6143
+Scrnsf::lasertoscreen lasertoscreen359,6921
+Scrnsf::mousecursor mousecursor402,7699
+mouseCursor 447,8430
+mouseCursor 460,8647
+Scrnsf::getaslwid getaslwid473,8874
+exitGWM 483,9025
+Scrnsf::exitgs exitgs500,9288
+Scrnsf::scrnbox scrnbox512,9472
+Scrnsf::scrnline scrnline533,9877
+Scrnsf::init init554,10252
+
+/home/mark/gasp-CARBON/SI/plot/ss_p.cpp,295
+turn 49,1610
+gs_set_array 60,1820
+gs_ramp_array 71,2092
+gs_addc_array 87,2499
+gs_mulc_array 97,2694
+gs_set_flr 107,2893
+gs_flip_array 118,3105
+gs_cmp_array_gt 128,3303
+float max_ht[max_ht147,3665
+gs_3D 150,3690
+gs_rotate_lin 188,4635
+sscape 204,4962
+Popsf::plotss plotss523,11941
+
+/home/mark/gasp-CARBON/SI/plot/terrain_p.cpp,1683
+#define FLAT_EARTH 19,590
+#define WNDG_ALWAYS 20,611
+float Targ_lat 22,637
+float Targ_lng 23,661
+float min_dlat 25,688
+float min_dlng 26,710
+TerrainRender 29,737
+Tcell::GetTerrainHue GetTerrainHue45,1046
+Tcell::SetNcols SetNcols69,1453
+Tcell::SetTerrainVertex SetTerrainVertex92,2116
+Tcell::UpdateTerrainVertexRight UpdateTerrainVertexRight148,3683
+Tcell::UpdateTerrainVertexLeft UpdateTerrainVertexLeft178,4201
+Tcell::UpdateTerrainVertexDown UpdateTerrainVertexDown208,4626
+Tcell::IncreaseTerrainRes IncreaseTerrainRes227,4885
+Tcell::AdjustTerrainRes AdjustTerrainRes258,5350
+Tcell::SetShift SetShift300,6162
+Tcell::SetDiag SetDiag314,6421
+Tcell::InitCorners InitCorners322,6580
+Tcell::DecrementViewDistance DecrementViewDistance342,6982
+Tcell::Tcell Tcell353,7283
+Tcell::~Tcell ~Tcell384,7783
+getSectorAngle 409,8158
+Tcell::checkSectors checkSectors429,8468
+Tcell::SetUP SetUP472,9323
+Tcell::InitCell InitCell536,10661
+Tcell::SetLHC SetLHC554,10975
+Tcell::AdjustLHC AdjustLHC572,11267
+Tcell::ResetEdge ResetEdge593,11674
+Tcell::AdjustLHS AdjustLHS668,13138
+Tcell::RowDone RowDone684,13488
+Tcell::Done Done717,14005
+Tcell::UpdateQuads UpdateQuads734,14278
+Tcell::PlotQuads PlotQuads806,15479
+Tcell::CheckPlotQuads CheckPlotQuads828,15876
+Tcell::AddTile AddTile838,16025
+checkTargetLocation 859,16388
+Gterrain::Make Make890,16960
+Gterrain::UpDate UpDate1094,21858
+Gterrain::Plot Plot1102,21941
+Tcell::PlotTiles PlotTiles1564,31564
+getTerrainHrz 1647,33003
+getNearestCardinal 1662,33265
+showTerrainPolyFill 1680,33593
+Ttile::Ttile Ttile2022,42312
+Ttile::~Ttile ~Ttile2037,42535
+get_surface_num 2045,42619
+
+/home/mark/gasp-CARBON/SI/plot/text_p.cpp,218
+Textr::setTextr setTextr24,596
+Text 39,861
+Text 47,1111
+plotText 73,1836
+Popsf::text text84,2048
+Popsf::textr textr137,3357
+axis_label 191,4844
+Popsf::axtext axtext271,6251
+Popsf::axlabel axlabel281,6450
+
+/home/mark/gasp-CARBON/SI/plot/win_p.cpp,1896
+int Last_wid 27,781
+int Last_woid 28,800
+SetGwindow 31,825
+Winpsf::creategwindow creategwindow396,8388
+Winpsf::wgetcoors wgetcoors464,9870
+Winpsf::wgetoverlap wgetoverlap494,10457
+Winpsf::naviwindow naviwindow527,11150
+naviWindow 624,13028
+Winpsf::querywindow querywindow723,14898
+queryWindow 819,16688
+Winpsf::decisionwindow decisionwindow901,18141
+Winpsf::setgwindow setgwindow1011,20208
+Winpsf::wgetrscales wgetrscales1065,21296
+wgetrscales 1097,21820
+Winpsf::wrotatept wrotatept1127,22329
+Winpsf::selectclip selectclip1157,22913
+int Last_wnu 1194,23614
+w_wop 1197,23638
+Winpsf::wdelete wdelete1241,24502
+Winpsf::winit winit1249,24628
+Winpsf::wreset wreset1257,24750
+Winpsf::wxor wxor1265,24874
+Winpsf::wsetrs wsetrs1282,25202
+Winpsf::wrctile wrctile1350,26531
+wrctile 1447,28514
+Winpsf::ticks ticks1525,30007
+Winpsf::axis axis1624,31466
+Winpsf::axnum axnum1658,32159
+Winpsf::wpt wpt1772,34179
+Winpsf::wbox wbox1802,34672
+Winpsf::tuple tuple1838,35255
+Winpsf::grid grid1897,36276
+typedef Singleton < Wopsf > WopsfS;1953,37417
+typedef Singleton < Popsf > PopsfS;1954,37453
+typedef Singleton < Winpsf > WinpsfS;1955,37489
+typedef Singleton < Glnsf > GlnsfS;1956,37527
+typedef Singleton < Objsf > ObjsfS;1957,37563
+typedef Singleton < Grdsf > GrdsfS;1958,37599
+typedef Singleton < Scrnsf > ScrnsfS;1959,37635
+typedef Singleton < Dfpsf > DfpsfS;1960,37673
+typedef Singleton < TDpsf > TDpsfS;1961,37709
+init_plot 1964,37750
+struct pwt pwin_table[pwin_table1989,38296
+pwin_hash 1994,38371
+init_win 2047,39287
+findWinOption 2097,40911
+Winpsf::init init2127,41569
+plot_init 2166,43359
+vbox 2195,44080
+wbox 2207,44202
+tuple 2222,44431
+wpt 2257,45183
+cWi 2272,45354
+f 2467,49521
+break;2477,49766
+option 2481,49799
+break;2482,49814
+option 2485,49845
+break;2486,49860
+option 2488,49876
+break;2489,49891
+sWi 2503,50018
+
+/home/mark/gasp-CARBON/SI/plot/wo_get_p.cpp,515
+Wopsf::wogettype wogettype21,566
+Wopsf::wogettext wogettext60,1270
+convertWoValue 105,1965
+Wopsf::wogetvalue wogetvalue148,2829
+Wopsf::wogetcellvalue wogetcellvalue263,4975
+Wopsf::wossgetvalues wossgetvalues305,5752
+Wopsf::wogetnumber wogetnumber382,7576
+Wopsf::wogetonoff wogetonoff451,9025
+Wopsf::wogethelp wogethelp481,9554
+Wopsf::wogetposition wogetposition515,10151
+woGetPosition 544,10682
+Wopsf::wogetrxy wogetrxy562,11003
+woGetRxy 603,11808
+woGetValue 635,12479
+getWoValue 688,13582
+
+/home/mark/gasp-CARBON/SI/plot/wo_p.cpp,283
+Wopsf::creategwob creategwob22,585
+getRect 110,2565
+getRect 127,2931
+Wopsf::worxor worxor143,3235
+Wopsf::woputstr woputstr167,3750
+Wopsf::wosetrotate wosetrotate194,4274
+Wopsf::wosetxoyo wosetxoyo211,4645
+Wopsf::deletegwob deletegwob226,5033
+Wopsf::init init243,5297
+
+/home/mark/gasp-CARBON/SI/plot/world_p.cpp,38
+plotWorld 21,595
+plotworld 342,6786
+
+/home/mark/gasp-CARBON/SI/plot/wo_sethue_p.cpp,19
+woHueFuncs 20,600
+
+/home/mark/gasp-CARBON/SI/plot/wo_set_p.cpp,698
+extern "C" int Gwo_set_ele 21,591
+#define _AXNUM 26,662
+struct pwt pwob_table[pwob_table34,855
+init_wo_table 39,931
+Wopsf::wosettext wosettext179,5656
+wokeygline 201,6110
+set_symbol 258,7408
+findWinWobOption 292,8297
+SetWO 376,9783
+Wopsf::woset woset1482,33988
+Str & makeStr 1542,35157
+Str & makeStr 1550,35255
+woSetValue 1560,35409
+woSetValue 1571,35622
+woSetValue 1585,35882
+woSetValue 1601,36147
+woSetValue 1617,36376
+Wopsf::wosetvalue wosetvalue1633,36607
+zoompan 1692,37783
+Wopsf::panwo panwo1784,39494
+movewo 1827,40279
+Wopsf::womove womove1893,41368
+Wopsf::zoomwo zoomwo1937,42167
+Wopsf::wosetrs wosetrs1975,42785
+pw_hash 2025,43574
+findWoOption 2080,44495
+
+/home/mark/gasp-CARBON/SI/plot/wo_sheet_p.cpp,21
+woSheetFuncs 20,598
+
+/home/mark/gasp-CARBON/SI/plot/wo_tile_p.cpp,154
+Wopsf::wovtile wovtile20,555
+Wopsf::wohtile wohtile116,2209
+Wopsf::worctile worctile194,3671
+worctile 284,5425
+wohtile 362,7058
+wovtile 437,8335
+
+/home/mark/gasp-CARBON/SI/prep/firstpass.cpp,186
+int NfpassErrors 19,590
+Parset::firstPassFor firstPassFor24,655
+Parset::firstPassIC firstPassIC122,2536
+Parset::readSrcFile readSrcFile438,9181
+Parset::readSrc readSrc598,12538
+
+/home/mark/gasp-CARBON/SI/prep/margincall.cpp,38
+Parset::marginCall marginCall20,575
+
+/home/mark/gasp-CARBON/SI/prep/prep.cpp,188
+lineType 23,616
+listPP 51,1280
+init_pp 73,1691
+Parset::addDefine addDefine579,17123
+Parset::preProcessSt preProcessSt631,18344
+addPP 867,24005
+sortPP 892,24549
+prepStr 902,24688
+
+/home/mark/gasp-CARBON/SI/prep/preprocess.cpp,367
+FILE Ifp[Ifp21,631
+int Ifpcnt 23,646
+checkVecRangeSpec 26,667
+deleteVariables 44,982
+ststack Cbstack;70,1434
+ststack Cb_ascstack;71,1451
+#define DO_PPC 73,1473
+CPP_needSemiColon 76,1568
+add_declare_type 125,2450
+add_semicolon 179,3593
+CodeBlock::preProcess preProcess239,4842
+CodeBlock::writeASC writeASC890,21155
+Parset::writeAsc writeAsc1107,25685
+
+/home/mark/gasp-CARBON/SI/prep/pr_state.cpp,1079
+Statement::Statement 23,661
+mk_alias 57,1222
+dbprol 72,1505
+Statement::IsExpr IsExpr95,1830
+Statement::checkContext checkContext108,2067
+Statement::checkAccess checkAccess201,3293
+Statement::checkDeclare checkDeclare220,3685
+Statement::checkEmpty checkEmpty253,4247
+validStStart 267,4422
+Statement::checkMask checkMask287,4848
+Statement::checkComment checkComment305,5090
+Statement::checkBrkPt checkBrkPt393,7064
+Statement::checkLabel checkLabel462,8341
+Statement::checkExpression checkExpression551,10017
+Statement::checkListDeclare checkListDeclare663,12137
+Statement::checkArrayDeclare checkArrayDeclare733,13584
+Statement::checkCodeBlock checkCodeBlock809,15079
+Statement::checkProcDeclare checkProcDeclare831,15465
+Statement::checkKeyWord checkKeyWord920,17286
+Statement::checkPFCall checkPFCall1024,19138
+Statement::checkExprC checkExprC1110,20514
+Statement::checkNullorNonStatement checkNullorNonStatement1264,23090
+Statement::checkStreamPrint checkStreamPrint1335,24396
+Statement::checkShellCommand checkShellCommand1348,24677
+
+/home/mark/gasp-CARBON/SI/prep/secondpass.cpp,65
+#define DOLINE 19,583
+Parset::secondPassIC secondPassIC22,605
+
+/home/mark/gasp-CARBON/SI/rdp/primitive.cpp,142
+Token::primitive_store_var primitive_store_var20,595
+Token::primitive_decode primitive_decode56,1449
+Token::primitive primitive322,6654
+
+/home/mark/gasp-CARBON/SI/rdp/rdp_l1.cpp,68
+Token::l_1 l_124,612
+Token::l1_store_svar l1_store_svar218,4434
+
+/home/mark/gasp-CARBON/SI/rdp/rdp_l2.cpp,23
+Token::l_2 l_224,613
+
+/home/mark/gasp-CARBON/SI/rdp/rdp_l3.cpp,74
+check_comparator 23,577
+check_precedence 31,733
+Token::l_3 l_348,1113
+
+/home/mark/gasp-CARBON/SI/rdp/rdp_l4.cpp,23
+Token::l_4 l_420,588
+
+/home/mark/gasp-CARBON/SI/rdp/rdp_l5.cpp,23
+Token::l_5 l_520,588
+
+/home/mark/gasp-CARBON/SI/rdp/rdp_l6.cpp,23
+Token::l_6 l_623,611
+
+/home/mark/gasp-CARBON/SI/rdp/rdp_main.cpp,372
+static int Tokerr;23,651
+Siv *Last_siv;Last_siv25,671
+char rdp_vers[rdp_vers27,687
+rdp_info 29,719
+level_error_ret 37,831
+check_ma 46,987
+Siv::l1_check_siv l1_check_siv88,1714
+l1_get_siv 116,2359
+Parset::l1_opera l1_opera215,4308
+apres_store 282,5605
+multi_assign 306,6128
+Token::putBackTok putBackTok388,7672
+Token::moreStatement moreStatement414,8268
+
+/home/mark/gasp-CARBON/SI/rdp/rdp_store.cpp,62
+#define DO_SCALAR_SC 23,649
+Token::l1_store l1_store26,678
+
+/home/mark/gasp-CARBON/SI/rdp/rdp_token.cpp,1129
+Token::getCurrentToken getCurrentToken20,558
+Token::getPostToken getPostToken32,748
+Token::copyPost copyPost42,883
+Token::clearToken clearToken54,1067
+Token::hold hold73,1384
+Token::putback putback90,1650
+Token::getCurrentTokField getCurrentTokField106,1920
+Token::EatWhite EatWhite120,2101
+Token::ParamExpand ParamExpand177,2913
+Token::literalString literalString238,4289
+Token::PostIncDec PostIncDec272,4965
+Token::Transfer Transfer380,6948
+Token::VarVal VarVal453,8603
+Token::getVarAsStr getVarAsStr469,8831
+Token::getVarAsTok getVarAsTok483,9048
+Token::strPrintf strPrintf497,9262
+Token::BuildListExp BuildListExp507,9445
+Token::PreVariable PreVariable556,10408
+Token::PostVariable PostVariable587,11030
+Token::IndirectVar IndirectVar626,11932
+Token::Variable Variable712,13720
+#define NO_COMPILE 1141,24085
+Token::isOperator isOperator1144,24112
+Token::doVariable doVariable1157,24396
+Token::is_startoflist is_startoflist1221,25865
+Token::lookForFoV lookForFoV1234,26116
+Token::lookForArrayoMfoPost lookForArrayoMfoPost1267,26820
+Token::store_vtok store_vtok1308,27425
+
+/home/mark/gasp-CARBON/SI/rdp/tokarray.cpp,43
+Token::buildArrayExp buildArrayExp20,593
+
+/home/mark/gasp-CARBON/SI/rdp/tokcmd.cpp,88
+Token::BuildCommand BuildCommand20,536
+Token::checkCommandOp checkCommandOp104,1871
+
+/home/mark/gasp-CARBON/SI/rdp/tokcmf.cpp,55
+Token::buildClassMemberExp buildClassMemberExp20,550
+
+/home/mark/gasp-CARBON/SI/rdp/tokdelim.cpp,97
+isDelimOp 20,556
+Token::GetDelimiter GetDelimiter45,1161
+Token::Delimiter Delimiter126,2778
+
+/home/mark/gasp-CARBON/SI/rdp/tokfunc.cpp,183
+Token::BuildFunc BuildFunc20,540
+Token::copyFunc copyFunc138,2612
+Token::CheckAlphaFunction CheckAlphaFunction151,2826
+Token::Func Func178,3258
+Token::doFunc doFunc422,8708
+
+/home/mark/gasp-CARBON/SI/rdp/tokget.cpp,23
+Token::Get Get20,588
+
+/home/mark/gasp-CARBON/SI/rdp/toknum.cpp,58
+Token::Number Number23,676
+Token::isNum isNum139,3862
+
+/home/mark/gasp-CARBON/SI/rdp/tokquote.cpp,80
+Token::SingleQuote SingleQuote20,541
+Token::DoubleQuote DoubleQuote127,2632
+
+/home/mark/gasp-CARBON/SI/rdp/tokvmf.cpp,39
+Token::buildVMFExp buildVMFExp20,548
+
+/home/mark/gasp-CARBON/SI/record/rdrec.cpp,2094
+enum rrtag19,544
+  RR_FN,21,557
+  RR_FH,22,566
+  RR_TYPE,23,575
+  RR_IPTYPE,24,586
+  RR_COL,25,599
+  RR_COND,26,609
+  RR_RANGE,27,620
+  RR_BETWEEN,28,632
+  RR_STR,29,646
+  RR_DEL,30,656
+  RR_SEL,31,666
+  RR_NCOLS,32,676
+  RR_COMMENT,33,688
+  RR_SKIPRECORDS,34,702
+  RR_NRECORDS,35,720
+  RR_SKIPLINES,36,735
+  RR_DATECONVERT,37,751
+  RR_TIMECONVERT,38,769
+  RR_LAST,39,787
+  RR_NTAGS,40,798
+GetTruthCon 46,887
+DateConvert 89,1553
+Recsf::dateconvert dateconvert128,2560
+Recsf::dayconvert dayconvert139,2807
+TimeConvert 152,3106
+Recsf::timeconvert timeconvert193,3874
+#define MAXTCV 210,4190
+#define MAX_RR 215,4354
+struct rrt rr_table[rr_table216,4383
+rr_hash 219,4417
+init_rr 253,4985
+findRROption 290,5937
+RecordReader::RecordReader RecordReader322,6347
+RecordReader::~RecordReader ~RecordReader386,7782
+RecordReader::ratof ratof413,8214
+RecordReader::openFile openFile454,8774
+RecordReader::setOptions setOptions502,9548
+RecordReader::skipLines skipLines910,17021
+RecordReader::findNcols findNcols963,17924
+RecordReader::setUpDataRow setUpDataRow1091,20615
+RecordReader::readLine readLine1140,21419
+RecordReader::testRow testRow1219,23047
+RecordReader::skipRow skipRow1284,24384
+RecordReader::Convert Convert1299,24622
+RecordReader::Store Store1402,26765
+RecordReader::OutPut OutPut1543,29814
+RecordReader::OutPut OutPut1643,32316
+RecordReader::OutPut OutPut1743,34676
+RecordReader::closeFile closeFile1755,34818
+RecordReader::checkRead checkRead1769,35041
+RecordReader::checkComment checkComment1779,35190
+RecordReader::Read Read1797,35467
+Recsf::readrecord readrecord1892,37136
+Recsf::sortRows sortRows1997,39193
+Recsf::swapRows swapRows2039,39975
+Recsf::deleteRows deleteRows2071,40449
+Recsf::insertRows insertRows2142,41749
+Recsf::deleteCols deleteCols2186,42512
+Recsf::swapCols swapCols2221,43030
+Recsf::search search2255,43544
+Record::searchRecordCols searchRecordCols2420,46721
+Record::findRecord findRecord2436,47090
+Record::readRecord readRecord2473,47962
+Recsf::init init2536,48843
+
+/home/mark/gasp-CARBON/SI/record/rec_ops.cpp,863
+Record::~Record ~Record23,564
+asl_return_code Record::set set41,872
+asl_return_code Siv::newRecord newRecord89,1744
+asl_return_code Siv::reallocRecord reallocRecord159,2991
+asl_return_code Record::realloc realloc191,3574
+Record::swapRows swapRows283,5208
+Record::deleteRows deleteRows315,5791
+Record::insertRows insertRows391,7300
+Record::deleteVecOfRows deleteVecOfRows487,9231
+Record::deleteCols deleteCols563,10543
+Svar Rectmp;583,10780
+Record::swapCols swapCols586,10811
+Record::getNcols getNcols626,11533
+ostream & operator << operator <<638,11805
+Record::operator [] operator []673,12501
+Record & Record::operator = operator =684,12661
+Record::getRC getRC713,13169
+Record::getRow getRow730,13485
+Record & Record::operator ()(operator ()743,13699
+Record::sortCols sortCols751,13778
+Record::sortRows sortRows764,14047
+
+/home/mark/gasp-CARBON/SI/record/wrtrec.cpp,39
+Recsf::writerecord writerecord26,807
+
+/home/mark/gasp-CARBON/SI/spe/args_process_e.cpp,431
+argType 22,652
+svargType 43,1049
+make_ascii_arg 58,1305
+decode_ec 96,2340
+process_args_ls 131,2905
+process_args_tag 217,5163
+process_args_list 249,6015
+whereami 279,6819
+process_args_siv 292,7049
+process_args_ptr 342,8706
+process_args_array_name 415,11114
+process_args_obj 463,12657
+process_args_exprn 512,13969
+setUpPtrArg 576,15583
+process_args_type 632,17096
+process_args_svptr 840,23234
+process_args 913,25478
+
+/home/mark/gasp-CARBON/SI/spe/checkconstantexp.cpp,50
+Parset::checkConstantExp checkConstantExp20,561
+
+/home/mark/gasp-CARBON/SI/spe/cmf_e.cpp,34
+Parset::DoneScmf DoneScmf20,557
+
+/home/mark/gasp-CARBON/SI/spe/command_e.cpp,34
+Parset::Scommand Scommand20,573
+
+/home/mark/gasp-CARBON/SI/spe/createv_e.cpp,52
+Parset::var_sindex_create var_sindex_create21,588
+
+/home/mark/gasp-CARBON/SI/spe/declare_array_e.cpp,84
+Parset::ArraySpecs ArraySpecs21,650
+Parset::ArrayInitList ArrayInitList236,4839
+
+/home/mark/gasp-CARBON/SI/spe/declare_e.cpp,508
+vars_in_use 24,698
+cnt_char_list 47,1028
+CheckCD_Vars 79,1562
+pruneName 153,2953
+charQlist 176,3285
+fillArray 281,5312
+fillStr 288,5534
+fillChar 302,5780
+get_rows 322,6148
+Parset::fillObject fillObject361,6867
+Parset::declareViaCons declareViaCons391,7577
+Parset::declareViaFunc declareViaFunc729,15396
+Parset::Vdeclare Vdeclare816,16755
+Parset::VdeclareType VdeclareType1143,23894
+Parset::Sdeclare Sdeclare1567,33103
+si_declare_type 1594,33664
+Statement::icStoreR icStoreR1619,34146
+
+/home/mark/gasp-CARBON/SI/spe/declare_fillarray_e.cpp,171
+int Default_array_size 19,575
+fill_cmplx_array 22,639
+checkListType 31,818
+Siv::fillArray fillArray103,1850
+fillSvar 932,20341
+Siv::SeriesFill SeriesFill968,21048
+
+/home/mark/gasp-CARBON/SI/spe/declare_list_e.cpp,36
+checkList 26,644
+fillList 48,1029
+
+/home/mark/gasp-CARBON/SI/spe/declare_static_e.cpp,99
+enum DS19,619
+  DD 21,629
+  DT,22,639
+  DN,23,645
+  DV,24,651
+Parset::Sstatic Sstatic28,665
+
+/home/mark/gasp-CARBON/SI/spe/declare_type_e.cpp,145
+Siv::declareSet declareSet20,570
+Parset::DeclareSet DeclareSet300,6045
+declare_convert 311,6226
+Parset::declare_type declare_type371,7987
+
+/home/mark/gasp-CARBON/SI/spe/dll_e.cpp,242
+int Use_Dlls 19,580
+int MathLib 20,598
+int PlotLib 21,615
+int StatLib 22,632
+int AudioLib 23,649
+int ImageLib 24,667
+int AnnLib 25,685
+int UacLib 26,701
+const char *PlotLibFS[PlotLibFS37,941
+plot_funcs 61,1369
+AutoOpenDll 72,1574
+
+/home/mark/gasp-CARBON/SI/spe/do_e.cpp,54
+Parset::Sdo Sdo20,581
+Parset::SdoSM SdoSM116,2727
+
+/home/mark/gasp-CARBON/SI/spe/engine_e.cpp,187
+CodeBlock *CurrentCodeBlock CurrentCodeBlock20,582
+FILE *sfp sfp24,641
+CheckForMemErrors 32,739
+script 50,1061
+si_get_line 516,11676
+chk_brace 531,11881
+chk_brace_posn 542,12098
+
+/home/mark/gasp-CARBON/SI/spe/enum_e.cpp,29
+Parset::Senum Senum52,1471
+
+/home/mark/gasp-CARBON/SI/spe/exp_e.cpp,709
+int parsedepth 23,633
+int DBIC 24,653
+char err_message[err_message28,691
+CheckDel 31,724
+MoreStatement 65,1257
+debug_parser 102,1912
+Parset::Sexp Sexp119,2442
+Parset::Sexp Sexp185,3747
+enum Expstate261,5295
+{ EXP_SUCCESS,262,5309
+{ EXP_SUCCESS, EXP_MA,262,5309
+{ EXP_SUCCESS, EXP_MA, EXP_NOT_PARSED,262,5309
+{ EXP_SUCCESS, EXP_MA, EXP_NOT_PARSED, EXP_NOT_VALID,262,5309
+{ EXP_SUCCESS, EXP_MA, EXP_NOT_PARSED, EXP_NOT_VALID, EXP_IS_COMMENT,262,5309
+  EXP_NOT_PRESENT,263,5379
+  EXP_NOT_PRESENT, EXP_FAIL263,5379
+Parset::getExp getExp267,5415
+Parset::getLocalExp getLocalExp893,20952
+ExprnAdvance 916,21401
+Parset::GetExpToStr GetExpToStr937,21907
+Parset::EvalExpr EvalExpr963,22363
+
+/home/mark/gasp-CARBON/SI/spe/exp_lhs_e.cpp,52
+checkAssign 21,585
+Parset::getLHS getLHS109,2134
+
+/home/mark/gasp-CARBON/SI/spe/findbtw_e.cpp,58
+ExpType 22,651
+Parset::findStateLen findStateLen29,761
+
+/home/mark/gasp-CARBON/SI/spe/for_e.cpp,76
+int DBFOR 19,550
+Parset::Sfor Sfor22,570
+Parset::SforSM SforSM153,3961
+
+/home/mark/gasp-CARBON/SI/spe/func_e.cpp,330
+struct si_fw fw_table[fw_table26,764
+CheckGwmFunc 34,1056
+get_function 50,1404
+checkAslFunc 75,1816
+FuncTimeExit 95,2180
+call_func 104,2372
+Parset::GetFuncArgs GetFuncArgs345,8135
+Parset::Sfunc Sfunc401,9377
+xstate 620,13761
+call_sfunc 656,14377
+Parset::call_xic_func call_xic_func788,17148
+gwm_function 841,18384
+
+/home/mark/gasp-CARBON/SI/spe/getcode.cpp,122
+reload_src 24,668
+load_src 36,838
+Sinsf::getcodeln getcodeln52,1106
+Sinsf::getnumofincludes getnumofincludes95,1945
+
+/home/mark/gasp-CARBON/SI/spe/hash_e.cpp,211
+Siv::newHash newHash20,589
+struct swt sop_table[sop_table32,781
+sop_hash 41,1105
+gethashindex 104,2255
+setkeyval 115,2465
+getkeyval 135,2825
+findfunc 153,3164
+findproc 167,3418
+asl_hash_init 184,3721
+
+/home/mark/gasp-CARBON/SI/spe/if_e.cpp,171
+Lstack::findIfEnd findIfEnd22,631
+Parset::Sif Sif140,2694
+Parset::SifSM SifSM356,7388
+Parset::CodeBlockSif CodeBlockSif438,9029
+Parset::DoneSif DoneSif503,10714
+
+/home/mark/gasp-CARBON/SI/spe/include_e.cpp,811
+int DBINC 21,587
+#define MAXNCONLINES 23,603
+int Ncbincludes 25,628
+#define NIF 29,681
+Parset::getCodeBlockFromID getCodeBlockFromID34,759
+int Inc_deep 50,1024
+Parset::Sinclude Sinclude52,1046
+Parset::Rinclude Rinclude207,4218
+Parset::Xinclude Xinclude273,5801
+Parset::SincludeSM SincludeSM335,6875
+Parset::doneInclude doneInclude407,8210
+CodeBlock::init init463,9249
+CodeBlock::CodeBlock CodeBlock488,9630
+Parset::initInclude initInclude495,9727
+Parset::GetCodeBlock GetCodeBlock522,10277
+Parset::findStatement findStatement606,11764
+Parset::XcodeBlock XcodeBlock624,12118
+Parset::reloadSrcModules reloadSrcModules689,13420
+reload_src_modules 730,14330
+reload_src_module 738,14452
+Parset::reloadSrcModule reloadSrcModule747,14589
+count_c 790,15407
+findScriptFile 802,15599
+
+/home/mark/gasp-CARBON/SI/spe/ops_e.cpp,225
+isEquateOP 20,593
+IsPreOP 29,778
+IsCmpOP 38,969
+IsOPRorDEL 46,1112
+IsStrOPR 54,1237
+is_assignment 62,1368
+getOP 73,1641
+isComparisonOP 228,4143
+GetNextOp 236,4300
+opr_is_binary 314,5440
+check_for_logic_op 345,6000
+
+/home/mark/gasp-CARBON/SI/spe/print_e.cpp,60
+Parset::Sprint Sprint24,654
+Parset::Sread Sread200,3974
+
+/home/mark/gasp-CARBON/SI/spe/proc_args_e.cpp,208
+Parset::ProcArgs ProcArgs20,584
+Parset::ProcArgs ProcArgs29,716
+vid_sap 534,13465
+vid_mod 554,13809
+vid_code 569,14045
+is_num_arg 635,15470
+vid_cat 643,15554
+Parset::nameMangle nameMangle653,15755
+
+/home/mark/gasp-CARBON/SI/spe/proc_call_e.cpp,202
+set_call_array 20,578
+Proc::checkCallvProcv checkCallvProcv134,3731
+#define CP_ANAME 461,11854
+Parset::callSFProc callSFProc464,11878
+Parset::callProc callProc560,14055
+DecodeVarName 775,20013
+
+/home/mark/gasp-CARBON/SI/spe/proc_checkfname_e.cpp,270
+#define NEW_CHECKPROCFUNC 17,548
+CheckCommandOp 24,642
+Statement::checkVmfFunc checkVmfFunc43,1039
+Parset::varLookUpPF varLookUpPF100,2310
+push_obj_to_stack 180,4009
+find_a_SF 202,4582
+processProcFunc 231,5212
+Statement::checkProcFunc checkProcFunc1013,23008
+
+/home/mark/gasp-CARBON/SI/spe/proc_def_e.cpp,168
+v_type 20,592
+vid_arg 33,786
+vid_test_arg 44,1050
+Parset::procMangle procMangle101,2315
+Parset::proc_def proc_def269,6974
+Parset::Sproc_def Sproc_def595,15708
+
+/home/mark/gasp-CARBON/SI/spe/proc_e.cpp,775
+int Last_call_line 19,555
+int LastProcSlot 20,579
+int LastCall 24,636
+ProcTimeEntry 33,819
+ProcTimeExit 40,943
+Parset::syncCO syncCO57,1352
+GetProc 135,3036
+getProcViaName 146,3202
+Proc::Proc Proc185,4109
+Proc::~Proc ~Proc207,4492
+Parset::procNameExpand procNameExpand221,4750
+Parset::checkProcName checkProcName244,5143
+Parset::Pndec Pndec360,7398
+Parset::Pninc Pninc373,7598
+GetPindex 382,7715
+Parset::Sproc Sproc430,8903
+Parset::DoProc DoProc475,9756
+Parset::incrPsvn incrPsvn601,12787
+Parset::decrPsvn decrPsvn612,12951
+Parset::DoneSproc DoneSproc625,13153
+Parset::SprocSM SprocSM850,18188
+realloc_pa 985,20772
+DecodeProcName 1048,22053
+Parset::StackSproc StackSproc1085,22809
+Svarg * Parset::PopStackSproc PopStackSproc1165,24446
+
+/home/mark/gasp-CARBON/SI/spe/proc_return_e.cpp,78
+Parset::isVarProcLocal isVarProcLocal20,569
+Parset::Sreturn Sreturn34,834
+
+/home/mark/gasp-CARBON/SI/spe/proc_setup_e.cpp,38
+Parset::SetUpSproc SetUpSproc20,571
+
+/home/mark/gasp-CARBON/SI/spe/proc_sivs_e.cpp,342
+Proc::getSivs getSivs20,573
+Proc::delSivs delSivs69,1607
+Proc::findSiv findSiv95,2186
+Proc::getLSiv getLSiv282,5647
+Psiv::DeleteSivTable DeleteSivTable355,7163
+Psiv::SetUpSivTable SetUpSivTable382,7708
+Psiv::CopySivTable CopySivTable411,8177
+Psiv::IncrSivTable IncrSivTable448,8874
+Psiv::AddSivToTable AddSivToTable478,9408
+
+/home/mark/gasp-CARBON/SI/spe/scope_e.cpp,342
+Parset::showPstack showPstack27,726
+isaVarNameChar 41,1017
+Parset::addScope addScope53,1257
+Parset::delScope delScope110,2512
+Parset::checkScopeSiv checkScopeSiv138,3111
+FindCLArg 255,5454
+CheckFindCreateSiv 278,5936
+GetPtrToVar 302,6430
+Parset::InMainScope InMainScope351,7523
+Parset::indirect_varptr indirect_varptr391,8286
+
+/home/mark/gasp-CARBON/SI/spe/scope_findvar_e.cpp,84
+find_siv 22,606
+checkFindArraySiv 79,1933
+Parset::FindVarWIC FindVarWIC180,4328
+
+/home/mark/gasp-CARBON/SI/spe/scope_internal_e.cpp,301
+SetUpInternalVars 43,1258
+isInternalName 140,3330
+Siv::isInternal isInternal169,4057
+Parset::internal_siv internal_siv179,4174
+Parset::internal_siv internal_siv293,7046
+Parset::setCmfnest setCmfnest380,8460
+Parset::incrCmfnest incrCmfnest389,8567
+Parset::decrCmfnest decrCmfnest398,8669
+
+/home/mark/gasp-CARBON/SI/spe/scopesindex_e.cpp,157
+Parset::checkProcVars checkProcVars24,638
+Parset::var_main var_main294,6894
+Parset::var_sindex var_sindex422,9686
+Parset::varIndex varIndex889,21117
+
+/home/mark/gasp-CARBON/SI/spe/sint_l.cpp,1471
+setUpInternalConsts 27,690
+Sinsf::vrealloc vrealloc51,1211
+Sinsf::Cab Cab84,1705
+Sinsf::Csz Csz143,2872
+Sinsf::varinfo varinfo274,5402
+Sinsf::pinfo pinfo326,6277
+Sinsf::checkinfo checkinfo387,7461
+Sinsf::vtoa vtoa414,8019
+Sinsf::getnd getnd437,8379
+Sinsf::Casubsz Casubsz462,8765
+Sinsf::Cfr Cfr491,9446
+Sinsf::showscope showscope509,9743
+Sinsf::listcode listcode524,9986
+Sinsf::runproc runproc572,10856
+Sinsf::showinclude showinclude741,14318
+Sinsf::panilength panilength753,14553
+Sinsf::panflength panflength771,14877
+Sinsf::checkerror checkerror789,15201
+Sinsf::MemOption MemOption812,15649
+Sinsf::memaddr memaddr829,15922
+Sinsf::memvalue memvalue856,16467
+Sinsf::memfill memfill899,17159
+Sinsf::memcopy memcopy922,17492
+Sinsf::showstack showstack946,17868
+Sinsf::getenvvar getenvvar971,18371
+Sinsf::isaNumber isaNumber998,18773
+Sinsf::isaType isaType1012,19071
+Sinsf::getargc getargc1029,19400
+getargc 1035,19473
+Sinsf::getmsecs getmsecs1043,19564
+int XIC_status 1052,19741
+Sinsf::getSymbolName getSymbolName1056,19819
+Sinsf::getarch getarch1072,20096
+Sinsf::getaslpid getaslpid1082,20284
+Sinsf::setmaxnd setmaxnd1092,20469
+Sinsf::setmaxsvarsz setmaxsvarsz1107,20712
+Sinsf::getndbs getndbs1122,20948
+Sinsf::getnes getnes1130,21088
+Sinsf::dbline dbline1139,21235
+char Svers[Svers1157,21558
+Sinsf::scriptVers scriptVers1160,21580
+cast 1182,21941
+retype 1247,23110
+si_sint_init 1276,23532
+
+/home/mark/gasp-CARBON/SI/spe/stateparse_e.cpp,443
+b_state 22,637
+Parset::advanceStatement advanceStatement36,903
+Parset::SkipComment SkipComment94,1910
+Parset::moveToNextSt moveToNextSt173,3102
+Parset::StateLen StateLen208,3781
+Parset::CheckDebug CheckDebug247,4536
+Parset::CheckClass CheckClass259,4716
+Parset::checkStacks checkStacks307,5678
+Parset::checkStatement checkStatement347,6537
+Parset::advanceWS advanceWS616,12265
+Parset::DebugInteract DebugInteract643,12684
+
+/home/mark/gasp-CARBON/SI/spe/statex_e.cpp,138
+Parset::p_state p_state20,564
+Parset::x_state x_state184,4082
+int Showstatement 496,9111
+Parset::do_statement do_statement499,9156
+
+/home/mark/gasp-CARBON/SI/spe/storetype_e.cpp,387
+resetUnset 20,565
+checkND 32,799
+redirectSiv 45,1088
+checkRecordCopy 87,1963
+checkSvarStore 96,2189
+checkStrvStore 104,2354
+Parset::storeCopyVar storeCopyVar111,2490
+store_var 325,6958
+copy_var 337,7243
+proc_ref_arg_to_proc_var 344,7412
+Parset::storeScalar storeScalar366,7786
+Siv::StoreStackv StoreStackv378,7980
+asl_return_code Parset::storeScalar storeScalar461,9244
+
+/home/mark/gasp-CARBON/SI/spe/switch_e.cpp,359
+#define GSDB(19,592
+Scasetable::addCase addCase24,667
+Scasetable::addDefaultCase addDefaultCase46,1205
+Scasetable::checkCN checkCN64,1549
+sw_sqs 93,2050
+Parset::Sswitch Sswitch133,2568
+Parset::SelectCase SelectCase320,6449
+Parset::doneSwitch doneSwitch348,6909
+Parset::ProcessSwitch ProcessSwitch355,6956
+Parset::SswitchSM SswitchSM363,7017
+
+/home/mark/gasp-CARBON/SI/spe/try_e.cpp,392
+Parset::Stry Stry20,567
+Parset::doTryState doTryState171,4263
+Parset::tryProcess tryProcess204,4708
+Parset::tryDone tryDone276,6135
+Parset::tryExit tryExit340,7522
+Parset::StrySM StrySM373,8236
+Parset::Sthrow Sthrow432,9090
+Parset::Scatch Scatch502,10573
+Parset::catchProcess catchProcess635,13843
+Parset::ScatchSM ScatchSM700,14892
+Parset::catchDone catchDone756,15957
+
+/home/mark/gasp-CARBON/SI/spe/txtbox_e.cpp,32
+Parset::Stxtbox Stxtbox20,601
+
+/home/mark/gasp-CARBON/SI/spe/varcon_e.cpp,840
+int VCID 19,557
+Varcon::Varcon Varcon25,756
+Varcon::Init Init38,1002
+Varcon::Varcon Varcon69,1483
+Varcon::~Varcon ~Varcon78,1597
+Varcon::isArrayEle isArrayEle84,1662
+Varcon::Find Find92,1826
+Varcon::setWele setWele102,2022
+Varcon::setCW setCW113,2241
+Varcon::setUpArrayExp setUpArrayExp122,2404
+Varcon::getArrayExp getArrayExp132,2602
+Varcon::findExpBetween findExpBetween140,2731
+Varcon::checkProcArgArray checkProcArgArray278,5145
+Varcon::findArrayExp findArrayExp287,5285
+Varcon::copyArraySpec copyArraySpec326,6038
+Varcon::checkArray checkArray345,6481
+Varcon::checkMakeArray checkMakeArray372,7009
+Varcon::arrayCalloc arrayCalloc413,7976
+char VCflgtxt[VCflgtxt575,11226
+Varcon::showFlags showFlags577,11253
+Varcon::showInit showInit638,12545
+Svar VCinfo;648,12789
+Varcon::info info650,12809
+
+/home/mark/gasp-CARBON/SI/spe/vmf_e.cpp,111
+checkBI_VMF 20,555
+Parset::checkVMF checkVMF53,1194
+Parset::Svmf Svmf153,3605
+Parset::Svmf Svmf470,9639
+
+/home/mark/gasp-CARBON/SI/spe/while_e.cpp,671
+Parset::PushSt PushSt25,693
+Parset::PopSt PopSt76,1959
+Parset::checkLoop checkLoop130,3015
+Parset::SM SM233,5550
+Parset::DoStatements DoStatements339,7245
+Parset::ExpResult ExpResult406,8628
+Parset::ExpResult ExpResult443,9437
+Parset::Swhile Swhile520,10943
+Parset::ResetLoop ResetLoop614,13194
+Parset::BreakLoop BreakLoop633,13597
+ReturnType 684,14879
+BreakType 694,15104
+BreakContinue 703,15291
+BreakReturn 711,15430
+Parset::CheckDoState CheckDoState720,15569
+Parset::ProcessLoop ProcessLoop763,16363
+Parset::doneLoop doneLoop838,17556
+Parset::SwhileSM SwhileSM895,18619
+findLoopEnd 964,19880
+Statement::findIfEnd findIfEnd1103,22551
+
+/home/mark/gasp-CARBON/SI/spil/alias_l.cpp,741
+Parset *CurrentParset CurrentParset19,591
+int N_si_alias 22,654
+struct sifunc_addr Si_Table[Si_Table24,675
+struct si_alias si_alias_table[si_alias_table26,717
+char Wmodule[Wmodule28,760
+setWmodule 32,794
+check_si_alias 57,1282
+make_si_alias 78,1724
+sfd_alias 100,2316
+sfalias 178,3813
+sfGetDesc 188,3981
+Alisf::whatis whatis214,4409
+Alisf::bshift bshift245,4953
+bshift 267,5302
+Alisf::Sizeof Sizeof282,5499
+Alisf::Typeof Typeof347,7382
+Alisf::panSize panSize382,8263
+Alisf::checkType checkType395,8522
+Alisf::infoOf infoOf430,9043
+Alisf::statusOf statusOf456,9624
+Alisf::Dimnof Dimnof494,10367
+Alisf::IDof IDof516,10773
+Alisf::tid tid528,10997
+Alisf::examine examine541,11250
+si_alias_init 587,12267
+
+/home/mark/gasp-CARBON/SI/spil/aop_l.cpp,863
+int Qn 21,678
+T_vave 26,781
+splice 37,1020
+splice 64,1385
+Aopsf::vsplice vsplice131,2511
+zipper 197,3871
+zipper 226,4304
+Aopsf::vzipper vzipper294,5431
+t_vreverse 354,6418
+Aopsf::vreverse vreverse368,6659
+Aopsf::minmaxi minmaxi431,7734
+Aopsf::maxvalcoli maxvalcoli542,9496
+Aopsf::getcol getcol642,11300
+getRow 729,12856
+Aopsf::varoffsets varoffsets798,14038
+Aopsf::getrow getrow821,14443
+Aopsf::minvalcoli minvalcoli928,16299
+flipDim 1028,18103
+Aopsf::flipdim flipdim1136,20169
+t_sum 1190,21301
+sum_inner 1204,21498
+sum_outer 1223,21855
+w_sum 1246,22284
+Sum 1634,28847
+Aopsf::sum sum1752,31159
+Aopsf::colsum colsum1798,31875
+Aopsf::colave colave1837,32375
+Aopsf::colstats colstats1921,33939
+Aopsf::rowsum rowsum2017,35834
+Aopsf::fillvec fillvec2051,36314
+Aopsf::mapvec mapvec2088,36962
+Aopsf::init init2138,37800
+
+/home/mark/gasp-CARBON/SI/spil/args_l.cpp,683
+int Kst 21,608
+int CurrentArg 22,621
+#define WRTBACK 24,659
+Str Qans;30,820
+Uac::cpp2asl cpp2asl34,850
+cpp2asl 226,5394
+gettestargs 421,9992
+Sinsf::pra pra612,15088
+Sinsf::printargs printargs781,19338
+Sinsf::fprintfargs fprintfargs792,19555
+Sinsf::testargs testargs814,19968
+Sinsf::getargF getargF833,20317
+Sinsf::getargD getargD857,20645
+Sinsf::getargI getargI879,20994
+Sinsf::getargN getargN906,21429
+Sinsf::isargNumber isargNumber937,22032
+Sinsf::anotherarg anotherarg962,22539
+Sinsf::getargstr getargstr976,22762
+Sinsf::setargindex setargindex1001,23231
+Sinsf::lastStatement lastStatement1023,23538
+lastStatement 1040,23843
+cprintf 1051,24005
+
+/home/mark/gasp-CARBON/SI/spil/chem_l.cpp,344
+Element Elements[Elements19,553
+Element::setElement setElement22,582
+init_periodic_table 39,950
+periodicName 166,9280
+periodicSymbol 191,9657
+periodicWt 216,10038
+getEle 237,10366
+ptan 297,11397
+periodicNumber 308,11549
+pt 330,11860
+periodicTable 346,12141
+periodicNumber 383,12823
+periodicName 390,12889
+si_chem_init 401,13170
+
+/home/mark/gasp-CARBON/SI/spil/dll_l.cpp,675
+si_func_hash 30,780
+class libhandle144,3125
+  char name[name147,3151
+  void *handle;handle148,3169
+libhandle::libhandle libhandle154,3279
+libhandle::~libhandle ~libhandle162,3396
+#define NDYNLIBS 172,3597
+libhandle GLibtable[GLibtable173,3617
+dll_close 178,3687
+void *Gwo_setv;Gwo_setv219,4499
+DllOpen 222,4531
+openDll 487,10515
+dll_open 501,10734
+si_dll_init 536,11330
+int ele 563,12091
+annf3_address 567,12160
+the_faddr 578,12585
+address 588,13018
+pf 592,13115
+ele 593,13148
+pf 599,13225
+ele 600,13283
+pf 604,13352
+ele 605,13401
+void *mfaddress mfaddress609,13470
+pf 610,13522
+ele 611,13557
+address 614,13621
+cf 618,13721
+ele 622,13893
+
+/home/mark/gasp-CARBON/SI/spil/fit_l.cpp,1308
+FILE *AF AF22,668
+FILE *BF BF23,685
+char CV[CV24,702
+int f_num 25,716
+int normal 26,732
+int cmpts 27,748
+int defin 28,763
+int Data 29,778
+int devdata 30,792
+int tot_br 32,810
+int lmt 34,827
+int LMTS[LMTS36,842
+long where;38,861
+double scdeg 45,953
+float lat;49,1013
+float lon;50,1024
+float alt 52,1036
+float spd 54,1052
+float dist 55,1067
+uchar bpm 56,1083
+uint32_t ht;57,1098
+char hsz;58,1111
+char protover;59,1121
+ushort profver;61,1137
+short ws2;64,1166
+int wi;65,1177
+int wt;66,1185
+uint tim;67,1193
+int pos;68,1203
+uchar wc;69,1212
+short SV[SV71,1223
+char EV[EV72,1239
+int IV[IV74,1255
+int TV[TV75,1269
+int svn 77,1284
+int wvn 78,1297
+int tvn 79,1310
+int evn 80,1323
+int ivn 81,1336
+uint dfdt;83,1350
+int datasz;85,1362
+char C[C87,1375
+char CD[CD88,1386
+short CRC;90,1402
+uchar rserv;92,1414
+uchar arch;93,1427
+short gmn;94,1439
+uchar nf;95,1450
+uchar nfdd 96,1460
+uchar dfd[dfd98,1477
+uchar vec_uc[vec_uc100,1496
+uchar devfd[devfd102,1532
+uchar DEFS[DEFS104,1553
+int DEFS_NF[DEFS_NF106,1576
+int fit_hdr 112,1641
+fit_init 116,1690
+rd_hdr 125,1808
+rd_hdb 162,2560
+storeLMT 221,3584
+rd_def 248,4032
+rd_dfds 274,4534
+rd_devfds 327,5260
+int vecd[vecd375,6056
+int cat;376,6071
+rd_data 379,6085
+Navsf::fitconv fitconv574,9534
+
+/home/mark/gasp-CARBON/SI/spil/free_e.cpp,87
+int DBFREE 19,593
+free_si_vars 22,615
+free_script_vars 78,1783
+free_si_var 97,2081
+
+/home/mark/gasp-CARBON/SI/spil/getvar_e.cpp,471
+#define MAXDOUBLECHAR 21,620
+check_var_slot 24,659
+get_varp 37,891
+getSivVal 48,1065
+getSivVal 58,1245
+getSivVal 67,1382
+getSivVal 75,1517
+getSivVal 83,1654
+getSivVal 92,1799
+Siv::getSivVal getSivVal100,1925
+get_int_svar 113,2101
+Siv::getCharP getCharP127,2293
+get_var_value 248,4653
+compute_var_address 269,5048
+Siv::getAsInt getAsInt363,6995
+Siv::getAsChar getAsChar526,10272
+get_var_int 536,10407
+get_var_uint 548,10603
+remove_trailws 562,10860
+
+/home/mark/gasp-CARBON/SI/spil/gevent.cpp,302
+float Gerx;37,841
+float Gery;38,853
+int Gekey;39,865
+Str Gemsg;40,876
+Gevent gev;41,887
+Gevent::Gevent Gevent43,900
+Gevent::~Gevent ~Gevent52,1000
+Gevent::ginit ginit61,1099
+Gevent::eventDecode eventDecode91,1468
+Gevent::eventWait eventWait174,3150
+Gevent::eventRead eventRead206,3618
+
+/home/mark/gasp-CARBON/SI/spil/gsocket_l.cpp,1143
+GS_port Asl_pipeport;19,597
+GS_port *Asl_pp Asl_pp20,619
+#define MAXGSOCKS 22,653
+int Ngsocks 24,676
+uint GsockID 25,693
+Gsock *GSOCKPTR[GSOCKPTR27,717
+Gsock::Gsock Gsock29,746
+Gsock::Create Create45,1011
+Gsock::Bind Bind99,2457
+Gsock::Accept Accept116,2734
+Gsock::Listen Listen143,3188
+Gsock::Close Close161,3525
+Gsock::Connect Connect177,3797
+Gsock::Read Read196,4089
+Gsock::Write Write235,4870
+Gsock::SendTo SendTo250,5202
+Gsock::Recv Recv269,5502
+Gsock::Recvfrom Recvfrom338,6806
+get_gsock 355,7140
+create_gsock 364,7305
+Gsocksf::gsockcreate gsockcreate400,7856
+Gsocksf::gsocklisten gsocklisten473,9216
+Gsocksf::gsockbind gsockbind496,9621
+Gsocksf::gsockaccept gsockaccept517,9922
+Gsocksf::gsockconnect gsockconnect540,10274
+Gsocksf::gsockclose gsockclose560,10604
+Gsocksf::gsockread gsockread592,11193
+Gsocksf::gsockrecv gsockrecv634,12017
+Gsocksf::gsockrecvfrom gsockrecvfrom673,12618
+Gsocksf::gsockwrite gsockwrite707,13156
+Gsocksf::gsocksendto gsocksendto746,13864
+Gsocksf::writegwmsock writegwmsock801,14725
+Gsocksf::readgwmsock readgwmsock821,15128
+si_sock_init 839,15435
+
+/home/mark/gasp-CARBON/SI/spil/init_e.cpp,221
+Siv **c_vars c_vars19,584
+void *C_vars[C_vars21,606
+Timer *Asl_timer;Asl_timer27,712
+init_timer 30,736
+init_si 36,784
+init_vars 64,1181
+Proc *proc_table[proc_table96,1849
+init_procs 99,1882
+init_fps 113,2091
+
+/home/mark/gasp-CARBON/SI/spil/navi_l.cpp,933
+TrueCourse 28,952
+HowFarAcos 59,1689
+HowFarHaversine 89,2456
+HowFarVincenty 124,3323
+HowFar 165,4357
+GetLatLongFromTcOpaD 179,4689
+GetLatLongFromRadialOpaD 238,5976
+Navsf::latlongfromtcopad latlongfromtcopad287,7360
+Navsf::latlongfromradialopad latlongfromradialopad321,8025
+Navsf::howfar howfar359,8814
+howfar 407,9941
+Navsf::truecourse truecourse450,10959
+Navsf::getdistance getdistance469,11305
+Navsf::bankangle bankangle477,11410
+Navsf::turnradius turnradius512,12034
+igc_time 530,12431
+igc_latdmsd 552,12782
+igc_lngdmsd 595,13507
+readIGCP 638,14275
+readIGC 801,18500
+Navsf::readIGC readIGC960,22359
+coorToDeg 1019,23789
+ccoor 1130,25729
+Navsf::ccoor ccoor1174,26613
+ccoor 1194,26954
+Navsf::coorToDeg coorToDeg1209,27183
+Navsf::ddtodms ddtodms1256,27962
+Navsf::ddtodm ddtodm1301,28572
+Navsf::dmstodd dmstodd1340,29070
+dmstodd 1389,29839
+dmstodd 1434,30507
+Navsf::init init1440,30563
+
+/home/mark/gasp-CARBON/SI/spil/perm_l.cpp,365
+class Perm21,620
+  int nit;25,642
+  int pn;26,653
+  int npr;27,663
+  int rav[rav28,674
+  int av[av29,714
+  int nl;30,729
+  uint *iv;iv31,739
+  uint *ivp;ivp32,751
+  void inc 36,784
+  void pcnt 40,818
+  int getCnt 44,852
+Perm::Perm 51,903
+shiftRight 78,1238
+shiftLeft 88,1384
+permR 98,1527
+pascal 152,2437
+perm 160,2519
+asl_perm_init 211,3501
+
+/home/mark/gasp-CARBON/SI/spil/rtop_l.cpp,281
+pthread_mutex_t AI_mutex;18,591
+Todsf::finetime finetime21,622
+Todsf::finetimesince finetimesince34,861
+xsleep 68,1486
+Todsf::si_pause si_pause80,1722
+Todsf::nano_sleep nano_sleep105,2228
+  struct timespec2107,2260
+    time_t tv_sec;109,2283
+    long tv_nsec;110,2317
+
+/home/mark/gasp-CARBON/SI/spil/sclass_l.cpp,144
+Sclass::~Sclass ~Sclass24,605
+Sclass **Class_table Class_table49,1023
+int MaxClasses 50,1052
+Scdm::~Scdm ~Scdm53,1083
+findClass 63,1257
+
+/home/mark/gasp-CARBON/SI/spil/sdebug.cpp,387
+int DB_fmt_lines 34,834
+Svar DB_val;35,856
+#define SFUNC_ERROR_NUMBER_INDEX 37,870
+sfuncErrorMsg 40,922
+serror 65,1400
+sferror 155,3852
+terror 164,4098
+terror 176,4295
+eng_error 186,4491
+terror 193,4608
+why_terror 201,4788
+where_serror 211,4962
+incrNerror 221,5130
+get_serror 231,5290
+set_serror 238,5396
+erif 255,5771
+setmaxcodeerrors 285,6342
+setmaxicerrors 293,6414
+
+/home/mark/gasp-CARBON/SI/spil/signal_e.cpp,739
+SIGHAND Shand[Shand27,708
+int Asl_jump 51,1854
+long int Jmp_posn;52,1872
+int Jmp_Line;53,1891
+char *Jmp_ptr;Jmp_ptr55,1906
+int DefaultINTRPaction 57,1922
+init_signals 60,1955
+CheckINTRPaction 76,2230
+asl_jump 87,2391
+Sigsf::setjump setjump123,2991
+DoSigh 146,3454
+spe_onintr 164,3817
+spe_ontstp 177,4187
+spe_onquit 186,4410
+spe_onhup 195,4555
+spe_onfpe 203,4695
+spe_onsegv 212,4836
+spe_onusr1 224,5092
+spe_onusr2 231,5184
+int SigQue[SigQue238,5304
+spe_onRT 243,5346
+spe_onRT 251,5412
+Sigsf::sighandler sighandler266,5844
+Sigsf::sendsig sendsig436,9191
+Sigsf::getsig getsig462,9680
+checkTerm 479,9949
+Sigsf::checkterm checkterm486,10056
+Sigsf::checkreset checkreset494,10197
+Sigsf::init init507,10443
+
+/home/mark/gasp-CARBON/SI/spil/sort_l.cpp,436
+quicksortT 20,581
+quicksort2 58,1182
+quicksort_index 107,2075
+QuickSort 146,2727
+quicksorti 190,3520
+Sortsf::quicksort quicksort226,4304
+bubbleT 259,4921
+BubbleSort 280,5215
+Sortsf::bubble bubble323,5925
+Sortsf::sort sort356,6550
+Sortsf::isort isort482,8842
+Sortsf::msortrow msortrow519,9486
+Sortsf::msortcol msortcol597,11201
+Sortsf::median median679,13029
+Sortsf::search search795,14964
+si_sort_init 858,16256
+
+/home/mark/gasp-CARBON/SI/spil/spawn_l.cpp,751
+float SpawnWait 20,625
+int ASL_argc 22,649
+Pip *ASL_pip;ASL_pip23,667
+int make_pipe_coms 25,682
+MakePipeComs 30,751
+Xspawn 71,1810
+ValidPIP 302,6753
+SpawnAsl 311,6909
+spawnasl 508,11294
+readchild 547,12006
+readmother 621,13308
+writetopip 693,14825
+writemother 723,15370
+writechild 742,15820
+writepipmsg 758,16167
+writechildmsg 805,17022
+writemothermsg 826,17378
+SendPipMsg 845,17730
+ReadPipMother 862,18027
+readpipmsg 896,18810
+readchildmsg 986,20556
+readmothermsg 1000,20871
+int Npips 1015,21246
+Pip *PIPPTR[PIPPTR1017,21262
+get_pip 1020,21291
+create_pip 1039,21634
+getpipindex 1074,22135
+getpippid 1092,22442
+closeasl 1106,22698
+spawnGWM 1147,23795
+spawngwm 1176,24285
+checkGWM 1194,24581
+si_spawn_init 1202,24694
+
+/home/mark/gasp-CARBON/SI/spil/svarg_l.cpp,2943
+int SVARGID 21,596
+Svarg::Svarg Svarg23,614
+Svarg::~Svarg ~Svarg43,949
+Svarg::clearArgs clearArgs73,1609
+init_svarg 91,1918
+free_svarg 169,3861
+CheckSvarg 189,4253
+checkSvarg 200,4441
+Svarg::Store Store211,4630
+Svarg::Store Store220,4778
+Svarg::Store Store229,4925
+Svarg::Store Store238,5076
+Svarg::Store Store247,5233
+Svarg::Store Store256,5380
+Svarg::argsLeft argsLeft265,5524
+Svarg::chkProcRecur chkProcRecur274,5670
+int Newarg 285,5855
+Svarg::newSivArg newSivArg288,5876
+Svarg::deleteSivArg deleteSivArg349,6829
+Svarg::setUpResultVec setUpResultVec376,7369
+Svarg::setUpResult2DArray setUpResult2DArray404,7921
+Svarg::setUpResultSvar setUpResultSvar453,8799
+Svarg::setUpResultStrv setUpResultStrv470,9062
+Svarg::setArgP setArgP484,9265
+Svarg::getArgI getArgI497,9464
+Svarg::getArgV getArgV510,9666
+Svarg::getArgV getArgV523,9888
+Svarg::getArgV getArgV536,10112
+Svarg::getArgV getArgV549,10337
+Svarg::getArgV getArgV562,10560
+Svarg::getArgV getArgV575,10783
+Svarg::getArgI getArgI589,11008
+Svarg::getArgL getArgL603,11253
+Svarg::getArgL getArgL614,11469
+Svarg::setArgI setArgI625,11637
+Svarg::getArgS getArgS637,11831
+Svarg::optionalArg optionalArg648,12007
+Svarg::optionalArg optionalArg660,12229
+Svarg::getArgF getArgF671,12413
+Svarg::getArgD getArgD723,13187
+Svarg::getArgSiv getArgSiv734,13347
+Svarg::getArgSivP getArgSivP783,14566
+Svarg::getArrayArg getArrayArg819,15333
+Svarg::getArgSivCopyConvert getArgSivCopyConvert901,17512
+Svarg::makeResultPan makeResultPan926,18146
+Svarg::makeResultPanVec makeResultPanVec961,18794
+Svarg::isArgArray isArgArray1008,19716
+Svarg::isArgNumber isArgNumber1025,20107
+Svarg::isArgNumber isArgNumber1036,20276
+Svarg::checkArgSize checkArgSize1048,20480
+Svarg::checkArgArray checkArgArray1062,20750
+Svarg::anotherArgVal anotherArgVal1087,21104
+Svarg::getArgHue getArgHue1100,21321
+Svarg::getArgGLType getArgGLType1118,21623
+Svarg::getArgFont getArgFont1152,22305
+Svarg::getArgLtype getArgLtype1171,22615
+Svarg::getArgDir getArgDir1200,23232
+get_gc_num 1239,24162
+Svarg::getArgGC getArgGC1255,24414
+Svarg::advanceArg advanceArg1276,24763
+Svarg::checkArgStr checkArgStr1289,24966
+Svarg::checkArgTag checkArgTag1318,25475
+Svarg::tagArgsLeft tagArgsLeft1332,25690
+Svarg::checkArgPtr checkArgPtr1368,26482
+Svarg::isNextArgType isNextArgType1383,26713
+Svarg::checkArgType checkArgType1395,26926
+Svarg::checkArgCW checkArgCW1412,27286
+Svarg::checkArgType checkArgType1424,27485
+Svarg::checkArgCount checkArgCount1437,27738
+Svarg::checkGwmArgCount checkGwmArgCount1449,27998
+Svarg::setCproc setCproc1469,28396
+checkInputSiv 1480,28564
+checkInputSivCW 1491,28758
+Svarg::initScalarArg initScalarArg1511,29139
+Svarg::addArg addArg1533,29701
+Svarg::addArg addArg1554,30019
+Svarg::addArg addArg1575,30283
+Svarg::addArg addArg1581,30315
+Svarg::addArg addArg1587,30352
+
+/home/mark/gasp-CARBON/SI/spil/svargs_l.cpp,731
+#define PXARG 19,588
+char Arg_err_msg[Arg_err_msg25,704
+protect_quotes 29,736
+Parset::setPCW setPCW50,1129
+Svarg::getArgStr getArgStr60,1405
+Svarg::getArgStr getArgStr74,1630
+Svarg::optionalArg optionalArg88,1847
+Svarg::makeStrFromArg makeStrFromArg99,2034
+Svarg::makeStrFromArg makeStrFromArg112,2238
+Svarg::makeStrFromArrayArg makeStrFromArrayArg124,2469
+Svarg::makeIntFromArg makeIntFromArg145,2966
+Svarg::getArgTrue getArgTrue186,3805
+Svarg::getArgC getArgC240,4963
+getLOpt 253,5134
+getDOpt 270,5539
+getOpt 288,5950
+getFOpt 297,6081
+getIOpt 306,6218
+getPOpt 315,6353
+getCOpt 331,6700
+getOptDef 350,6960
+getStrOpt 363,7176
+getStrFromOpt 488,10037
+getOptHue 508,10488
+ArgCopyConvert 530,10903
+
+/home/mark/gasp-CARBON/SI/spil/timedate_l.cpp,543
+Todsf::gettime gettime20,566
+Todsf::tim tim29,738
+Todsf::zulutime zulutime47,1022
+Todsf::localtim localtim64,1311
+Todsf::getdate getdate96,1770
+#define IGREG 131,2360
+julianday 134,2435
+const char *Days[Days167,2934
+const char *Mons[Mons172,3042
+juliandayofweek 177,3199
+Todsf::julian julian185,3335
+Todsf::juldayofweek juldayofweek297,5272
+julianToMDY 329,5885
+Todsf::julmdy julmdy398,7115
+Todsf::month month432,7856
+Todsf::init init452,8136
+Julian 484,9298
+Julian 580,10794
+getDate 588,10905
+Julmdy 604,11128
+
+/home/mark/gasp-CARBON/SI/spil/utils_e.cpp,2153
+int Cglid 19,569
+int Cwoid 20,585
+int Cwid 21,601
+int MaxND 23,617
+int RUN_ASL 24,636
+int PrintToGwm 31,782
+int Printindent 32,802
+int debug 34,824
+int _dblevel 35,840
+Str _Use 37,873
+int St_xic_error 39,890
+int N_error 40,912
+int Last_err_line 42,952
+int Max_IC_errors 43,975
+int MaxErrorsAllowed 44,999
+Svar Prefix_code;46,1027
+int Use_AP 49,1078
+int Parp 50,1094
+int Parp10 51,1140
+int Iradix 52,1187
+int Oradix 53,1205
+char Last_func[Last_func55,1223
+uint32_t Asl_options 57,1245
+int Line_num 58,1271
+ulong Kes 60,1290
+char C_script[C_script67,1474
+t_limit 74,1586
+limit_siv 88,1822
+Parset::getVarName getVarName154,2984
+Parset::sob sob180,3449
+int strip_outer_bracks 298,5559
+strip_outer_del 421,7980
+CheckPat 438,8288
+WinInit 465,8715
+GetRP 475,8856
+UpdateSwob 616,11553
+incr_char_reg 652,12178
+isaNumberType 722,13267
+Svar Readansgline;739,13606
+readAns 741,13632
+isaArrayType 758,13952
+isaPrintCntrl 769,14124
+d2r 782,14319
+r2d 788,14375
+chkTrue 794,14432
+limitval 804,14577
+limitval 816,14790
+limitval 829,15005
+rbox 842,15218
+int runASL 855,15453
+#undef ASL857,15469
+#define ASL 858,15480
+#undef CPP859,15494
+#define CPP 860,15505
+#undef TRANS862,15520
+#define TRANS 863,15533
+userExit 872,15671
+satype 887,15874
+getVarTypeFmt 902,16117
+checkVariables 957,16903
+checkListInit 981,17285
+checkVarName 995,17488
+CheckCMFname 1011,17695
+linelen 1021,17901
+checkEmptyOrComment 1040,18138
+findExpBTW 1065,18499
+findMatchDel 1167,20057
+FindMatchBracket 1284,22419
+find_match_dquote 1305,22768
+find_match_squote 1355,23401
+findkeyword 1393,23854
+FindKeyWordLen 1419,24422
+find_match_brack 1560,27115
+setAslOption 1567,27261
+expecting 1575,27399
+getCOND 1613,28079
+CheckPassCond 1667,28746
+condtype 1692,29319
+shuffle 1720,29746
+rotateT 1739,30093
+rotate 1769,30520
+check_declare_type 1833,31584
+chk_dtype 1884,32440
+#define MINPTRADDR 1893,32594
+isPtrValid 1896,32648
+functions 1908,32800
+split 1937,33506
+split 1949,33661
+ignoreErrors 1958,33793
+optype 1966,33892
+void pinfo(2113,36232
+void pinfo(2121,36376
+void pinfo(2130,36511
+void pinfo(2139,36645
+
+/home/mark/gasp-CARBON/SI/spil/wop_l.cpp,373
+int ASL_OUT,19,590
+int ASL_OUT, ASL_fdin;19,590
+int Use_shm 20,613
+int WIN_MSG;21,630
+Shdmem Shm;25,670
+Swob *wtp;wtp41,1369
+int Nwin 43,1381
+SendFuncGWM 46,1400
+WinDelete 71,2085
+WinUpdate 97,2531
+SelectSR 122,3206
+gs_get_script_fname 135,3508
+get_script_dir 150,3746
+setUpSHM_IPC 169,4164
+setUpIPC 275,6211
+checkPlotThread 359,8236
+si_wop_init 377,8502
+
+/home/mark/gasp-CARBON/SI/str/spack.cpp,123
+pb 20,604
+isSameLetter 61,1274
+Sopsf::packb packb74,1445
+Sopsf::unpackb unpackb221,4881
+Sopsf::packv packv468,9129
+
+/home/mark/gasp-CARBON/SI/str/spat.cpp,172
+Spat 20,537
+Sopsf::spat spat153,4118
+Sopsf::spatrgx spatrgx161,4225
+Sopsf::regex regex169,4335
+spat 221,5246
+spat 246,5687
+spat 255,5877
+Str::spat spat266,6090
+
+/home/mark/gasp-CARBON/SI/str/sscan.cpp,85
+Sopsf::sscan sscan20,587
+Sopsf::fscan fscan186,3678
+Sopsf::bscan bscan347,6672
+
+/home/mark/gasp-CARBON/SI/str/ssop.cpp,1982
+int DBSOP 23,626
+int Send_dbp 24,641
+#define NVALUELEN 26,660
+exit_si 29,696
+Sopsf::scpy scpy40,861
+Sopsf::slen slen189,3552
+Sopsf::sob sob220,4124
+Sopsf::strchr strchr252,4771
+Sopsf::scnt scnt314,5655
+Sopsf::svowrm svowrm349,6159
+Str::svowrm svowrm386,6764
+Sopsf::cvow cvow408,7119
+Sopsf::srev srev434,7561
+Sopsf::dewhite dewhite455,7932
+Sopsf::eatwhiteends eatwhiteends475,8351
+Sopsf::is_a_digit is_a_digit497,8686
+scat 514,8933
+scat 533,9368
+strcat 553,9814
+scat 580,10233
+scat 608,10695
+Uac::strmcat strmcat653,11657
+scut 672,11967
+slen 701,12431
+Sopsf::scat scat709,12495
+Sopsf::nsc nsc759,13438
+nsc 814,14392
+Sopsf::sncat sncat829,14555
+Sopsf::Shuffle Shuffle867,15119
+Sopsf::issin issin884,15354
+issin 922,15977
+issin 954,16456
+Sopsf::split split960,16521
+Sopsf::splitp splitp1026,17744
+Sopsf::stran stran1065,18554
+Sopsf::sele sele1137,20084
+Sopsf::scut scut1255,22442
+Sopsf::prune prune1350,23969
+Sopsf::rover rover1417,25011
+Sopsf::pickc pickc1492,26207
+Sopsf::getincr getincr1534,26818
+Sopsf::checkmem checkmem1549,27091
+Sopsf::getmem getmem1566,27463
+Sopsf::putmem putmem1594,27964
+#define BELL 1629,28604
+Sopsf::bell bell1634,28656
+static int SendGWM 1656,28989
+Sopsf::get_gs_HOME get_gs_HOME1659,29018
+Sopsf::yieldprocess yieldprocess1667,29153
+Sopsf::scin scin1676,29295
+cmpstr 1718,29986
+Sopsf::scmp scmp1761,30715
+scmp 1803,31430
+Sopsf::Strcmp Strcmp1832,31842
+Sopsf::Strcasecmp Strcasecmp1869,32356
+Sopsf::sstr sstr1909,32967
+Sopsf::scompare scompare2024,35136
+Sopsf::get_uname get_uname2081,36047
+Sopsf::supper supper2095,36324
+Sopsf::slower slower2129,36836
+Sopsf::sfind sfind2159,37344
+Sopsf::sswab sswab2200,38166
+Sopsf::yorn yorn2272,39202
+Sopsf::torf torf2293,39558
+Sopsf::pr pr2315,39922
+Sopsf::maxOf maxOf2343,40397
+Sopsf::minOf minOf2417,41737
+Sopsf::sfoo sfoo2491,43083
+callSop 2520,43702
+Sopsf::init init2539,44059
+sele 2655,50293
+
+/home/mark/gasp-CARBON/SI/str/sstr.cpp,1401
+Str::sinit sinit22,639
+Str::Str Str38,1026
+Str::Str Str47,1169
+Str::Str Str63,1405
+Str::Str Str72,1542
+Str::~Str ~Str100,2251
+Str & Str::operator = operator =112,2458
+Str & Str::operator = operator =135,3059
+Str & Str::operator = operator =175,3985
+Str & Str::operator = operator =216,4853
+Str & Str::operator = operator =240,5357
+Str::operator  const operator  const257,5673
+operator + operator +265,5829
+Str::operator += operator +=281,6184
+Str::operator += operator +=301,6571
+Str::operator == operator ==316,6898
+Str::operator == operator ==326,7075
+Str::operator != operator !=335,7236
+ostream & operator << operator <<345,7443
+istream & operator >> operator >>355,7679
+Str::operator [] operator []369,7923
+Str::operator [] operator []381,8135
+Str::toUpper toUpper397,8396
+Str::toLower toLower404,8506
+Str::cat cat411,8615
+Str::cset cset427,8909
+Str::cpy cpy449,9297
+Str::ncpy ncpy471,9631
+Str::scpy scpy493,9948
+Str::splice splice513,10268
+Str::trim trim550,10976
+Str::dewhite dewhite560,11136
+Str::scut scut570,11274
+Str::scut scut606,11864
+Str::strCsub strCsub622,12158
+Str::strSub strSub673,12890
+Str::getLine getLine688,13238
+Str::strPrintf strPrintf703,13531
+rangeStrCopy 783,15062
+Str::eatWhiteEnds eatWhiteEnds818,15948
+Str::getC getC880,16760
+Str::findC findC898,17007
+uint32_t Uac::slen slen933,17508
+
+/home/mark/gasp-CARBON/SI/str/ssub.cpp,73
+Ssub 20,580
+Sopsf::ssub ssub184,3806
+Sopsf::ssubrgx ssubrgx191,3862
+
+/home/mark/gasp-CARBON/SI/svar/flsvar.cpp,188
+FLsvar::cpy cpy20,607
+FLsvar::cset cset35,875
+FLsvar::cpy cpy49,1136
+FLsvar::ncpy ncpy62,1404
+FLsvar::cat cat118,2292
+FLsvar::sscan sscan149,2794
+FLsvar::clear clear199,3621
+
+/home/mark/gasp-CARBON/SI/svar/svar_alias.cpp,176
+int Nalias;19,570
+int DBALIAS;20,582
+struct gs_alias Alias[Alias24,643
+gs_set_file 27,681
+gs_hash 107,2121
+alias_out 157,2980
+alias_print 188,3571
+init_alias 205,3913
+
+/home/mark/gasp-CARBON/SI/svar/svar_cat.cpp,143
+Svar::ncat ncat20,608
+Svar::ncat ncat45,1133
+Svar::cat cat54,1282
+Svar::cat cat93,1980
+Svar::cat cat101,2095
+Svar::cat cat109,2218
+
+/home/mark/gasp-CARBON/SI/svar/svar_cpy.cpp,281
+Svar::ncpy ncpy20,602
+Svar::ncpy ncpy96,1871
+Svar::cpy cpy105,2020
+Svar::cpy cpy189,3732
+Svar::cpy cpy197,3862
+Svar::cpy cpy205,4011
+Svar::cpy cpy213,4166
+Svar::cpy cpy221,4305
+Svar::cpysubset cpysubset235,4567
+Svar::copy copy267,5218
+Svar::copy copy318,5988
+
+/home/mark/gasp-CARBON/SI/svar/svar_find.cpp,512
+Svar::findStr findStr20,577
+Svar::findC findC67,1491
+Svar::findExpBetween findExpBetween111,2421
+Svar::findWsTokens findWsTokens196,3674
+Svar::findWsTokens findWsTokens276,4978
+Svar::findWords findWords289,5268
+Svar::split split301,5567
+Svar::split split311,5755
+Svar::findCommaTokens findCommaTokens330,6131
+Svar::findTokens findTokens337,6287
+Svar::findStrTokens findStrTokens495,8998
+Svar::findMatch findMatch591,10651
+Svar::findVal findVal675,11835
+Svar::findPat findPat727,12664
+
+/home/mark/gasp-CARBON/SI/svar/svar_hash.cpp,365
+Svar::keyValue keyValue20,560
+Svar::keyValue keyValue62,1242
+Svar::getKeyValueIndex getKeyValueIndex101,1970
+Svar::keyValue keyValue125,2396
+Svar::keyLookUp keyLookUp159,2972
+Svar::hashKeyLookUp hashKeyLookUp196,3643
+Svar::searchKey searchKey291,5699
+Svar::keySort keySort386,7738
+Key::get get395,7849
+Svar::setNfieldsKey setNfieldsKey588,10818
+
+/home/mark/gasp-CARBON/SI/svar/svar_init.cpp,653
+int Exit_status 19,561
+int DBSVAR;21,583
+uint SvarID 35,1003
+int Npcal 36,1020
+char SVES[SVES38,1036
+Svar::Svar Svar40,1060
+Svar::Svar Svar59,1322
+Svar::Svar Svar80,1614
+Svar::Svar Svar96,1885
+Svar::~Svar ~Svar117,2186
+int Maxsvarsz 126,2349
+Svar::init init128,2380
+Svar::vfree vfree194,3942
+Svar::resize resize285,5525
+Svar::initTable initTable313,5988
+Svar::vrealloc vrealloc376,7272
+Svar::valloc valloc465,8882
+Svar::efree efree523,9911
+Svar::clear clear557,10368
+Svar::cptr cptr607,11245
+Svar::cptr cptr617,11384
+Svar::getCptr getCptr635,11648
+Svar::getWord getWord649,11883
+Svar::setType setType688,12708
+
+/home/mark/gasp-CARBON/SI/svar/svar_ltm.cpp,297
+make_dir 20,609
+char DTMP[DTMP41,963
+char GS_SYS[GS_SYS45,1002
+char GS_APPS[GS_APPS46,1028
+char GS_MENUS[GS_MENUS47,1055
+char GS_HIST[GS_HIST48,1083
+#define LTM_MEM_LINE 50,1111
+gsMemWrt 61,1269
+gsMemRead 189,3408
+get_gs_home 240,4330
+get_gs_work 395,8025
+make_work_name 408,8206
+
+/home/mark/gasp-CARBON/SI/svar/svar_opera.cpp,347
+Svar & Svar::operator = operator =22,682
+Svar & Svar::operator = operator =34,849
+Svar & Svar::operator = operator =48,1158
+Svar & Svar::operator = operator =59,1372
+Svar::operator [] operator []77,1609
+ostream & operator << operator <<92,1861
+istream & operator >> operator >>104,2132
+Svar & Svar::operator ()(operator ()116,2370
+
+/home/mark/gasp-CARBON/SI/svar/svar_ops.cpp,1155
+trim_str 23,647
+Dewhite 85,1704
+Svar::sscan sscan111,2142
+Svar::sscan sscan184,3333
+Svar::sscan sscan260,4664
+Svar::sscan sscan268,4791
+Svar::sscan sscan276,4937
+Svar::cset cset284,5090
+Svar::cset cset326,5939
+Svar::pastesubset pastesubset336,6145
+Svar::paste paste366,6728
+Svar::paste paste400,7437
+Svar::splice splice408,7589
+Svar::splice splice477,8977
+Svar::dewhite dewhite485,9131
+Svar::reverseField reverseField505,9477
+Svar::slower slower535,9937
+Svar::supper supper553,10226
+Svar::eatWhiteEnds eatWhiteEnds571,10515
+Svar::dewhite dewhite637,11494
+Svar::white white645,11606
+Svar::clear clear678,12223
+Svar::white white716,12814
+Svar::vstrlen vstrlen724,12954
+Svar::vstrlen vstrlen732,13071
+Svar::slen slen745,13272
+Svar::setsubset setsubset753,13388
+Svar::lhsetsubset lhsetsubset782,13812
+Svar::parseTokens parseTokens811,14253
+Svar::SelTokens SelTokens878,15314
+Svar::shuffle shuffle947,16369
+isNameDel 970,16735
+Svar::cval cval1009,17643
+Svar::cCmp cCmp1033,18085
+Svar::cCmp cCmp1047,18348
+Svar::reverse reverse1059,18563
+Svar::join join1083,18924
+Svar::cut cut1111,19360
+
+/home/mark/gasp-CARBON/SI/svar/svar_pf.cpp,2332
+char FuncName[FuncName19,540
+uint StartSecs 26,675
+#define PATH_MAX 38,840
+char Floatsz 41,870
+char Cmplxsz 42,901
+char Dcmplxsz 43,936
+char Intsz 44,973
+char Doublesz 45,1000
+char Shortsz 46,1033
+char Charsz 47,1064
+char Longsz 48,1093
+char LongDoublesz 49,1122
+char S64sz 50,1164
+int Malloc_error 51,1197
+char GS_WORK[GS_WORK55,1245
+int I_BO 57,1270
+int M_BO 58,1298
+Timer::Timer Timer62,1410
+Timer::getMsecs getMsecs73,1658
+Timer::startTimer startTimer96,2144
+Timer::stopTimer stopTimer107,2360
+ccnt 123,2708
+yes_or_no 139,2939
+yorn 149,3083
+yorn 158,3221
+GS_StrLeftShift 168,3362
+remove_quotes 182,3579
+AdvancePastWhite 195,3805
+NextWhite 209,3986
+NextNonWhite 224,4175
+carev 237,4363
+checkstrnval 258,4629
+GetUtime 272,4844
+GetPtime 282,4964
+two_dig 293,5106
+gs_change_case 305,5296
+gs_tolower 348,5937
+gs_toupper 355,6074
+copy_struct 363,6212
+copyStruct 375,6465
+gs_fill_bits 386,6672
+gs_x_bits 419,7083
+isdel 450,7483
+iswhite 462,7650
+recover_space 470,7763
+recover_tab 545,8737
+recover_lc 609,9695
+recover_bquote 736,11832
+recover_lfeed 788,12661
+GS_ReplaceChar 837,13463
+GS_CopyTillDel 859,13777
+get_node_name 894,14375
+get_machine_name 923,14800
+GetCWD 936,15032
+gs_fclose 978,15772
+gs_close 988,15920
+f_stat 1001,16130
+finetime 1134,18754
+finetimesince 1143,18895
+set_byte_order 1166,19354
+check_byte_order 1175,19463
+get_byte_order 1185,19588
+    uint32_t i;1206,20293
+    char c[c1207,20309
+get_machine_arch 1228,20675
+df_stat 1274,21318
+get_stem 1301,21824
+getWordsFromLine 1334,22258
+Svar::getWords getWords1344,22428
+get_words 1518,25469
+find_crlf 1677,28172
+gs_strcsub 1717,28674
+checkscpy 1736,28930
+checksscan 1767,29457
+min_of 1810,30225
+max_of 1820,30354
+strccnt 1830,30486
+strrev 1873,31142
+get_time_seed 1881,31247
+CheckShmComm 1895,31453
+DegRad 1904,31579
+FineTime 1936,32124
+FineTimeSince 1951,32362
+FineTimeSince 1976,32849
+RemoveUnderLines 2007,33406
+read_nbytes 2027,33710
+write_nbytes 2058,34124
+ClearCvec 2087,34519
+swapbytes 2098,34659
+checkNumberType 2108,34858
+StrNCopy 2123,35114
+U_strlen 2136,35375
+strmatch 2148,35541
+setCW 2160,35711
+testCW 2168,35843
+TestAllCW 2177,35989
+strLen 2184,36089
+strLen 2195,36246
+strCmp 2205,36408
+strNcmp 2216,36584
+strNcpy 2226,36778
+quadrant 2243,37004
+
+/home/mark/gasp-CARBON/SI/svar/svar_read.cpp,246
+Svar::fsgets fsgets20,549
+Svar::readFile readFile75,1905
+Svar::readFile readFile85,2081
+Svar::writeFile writeFile146,3081
+Svar::readWsTokens readWsTokens175,3598
+Svar::readTokens readTokens193,3913
+Svar::readWords readWords210,4236
+
+/home/mark/gasp-CARBON/SI/svar/svar_regex.cpp,256
+#define MAXPATS 19,617
+doRegex 21,641
+substr 152,3224
+gs_strpatloc 183,3701
+strpat 237,4466
+str_tok 339,6370
+gs_strsub 440,8030
+gs_strsubrgx 551,9822
+gs_str_sub 941,17896
+gs_strrgx 954,18176
+Svar::trim trim984,18717
+Svar::scut scut1010,19236
+
+/home/mark/gasp-CARBON/SI/svar/svar_sort.cpp,97
+Svar::swapRow swapRow20,595
+Svar::sort sort42,1053
+Svar::valueNumSort valueNumSort145,2949
+
+/home/mark/gasp-CARBON/SI/svar/svar_str.cpp,396
+Svar::strPrintf strPrintf20,603
+Svar::strCompare strCompare109,2432
+Svar::strCmp strCmp189,3921
+Svar::strCaseCmp strCaseCmp213,4478
+Svar::strnCmp strnCmp237,4947
+Svar::strMatch strMatch263,5422
+Svar::strCaseMatch strCaseMatch271,5581
+Svar::strSub strSub279,5748
+Svar::getStr getStr420,8014
+Svar::getLitemAsStr getLitemAsStr441,8334
+Svar::getLitemAsStr getLitemAsStr471,8921
+
+/home/mark/gasp-CARBON/SI/svar/svar_utils.cpp,508
+isdelim 19,580
+strcreplace 35,938
+strcsubstr 55,1199
+cinstr 85,1714
+is_hex_str 103,1933
+is_conv_char 121,2232
+is_octal_str 142,2573
+isa_number_str 196,3361
+checkBSchar 283,4688
+isa_charconstant 323,5311
+is_efmt_number 373,6010
+is_number_str 404,6659
+eat_white_tail 435,7375
+eat_white_head 454,7746
+eatWhiteSpace 475,8127
+removeWhiteEnd 494,8482
+is_in 510,8737
+is_in_str 527,8970
+isVarName 548,9248
+getEscChar 590,9860
+error_detect 648,10926
+error_detect 667,11340
+getElement 683,11695
+
+/home/mark/gasp-CARBON/SI/test/test_l.cpp,1341
+int Report_error 19,559
+  TestL::pass 27,722
+  TestL::lpass 29,745
+  TestL::fail 31,769
+  TestL::lfail 33,792
+  TestL::fcnt 35,816
+  TestL::stage 37,839
+  TestL::interact 39,863
+  TestL::ntests 41,890
+  TestL::lntests 43,915
+  TestL::msecs 45,941
+  TestL::pcc 47,967
+  TestTimer;50,994
+  TS[TS53,1014
+  testInput[testInput56,1029
+TestL::printTest printTest59,1053
+TestL::printStage printStage112,2519
+TestL::checkFail checkFail161,3578
+TestL::tally tally245,5506
+TestL::checkTests checkTests260,5797
+chkIn 269,5912
+TestL::checkIn checkIn282,6043
+TestL::checkTrue checkTrue297,6281
+chkT 343,7077
+TestL::checkFalse checkFalse358,7197
+chkStr 390,7585
+chkStr 419,8050
+chkStr 425,8151
+chkStr 432,8268
+TestL::checkStr checkStr441,8433
+TestL::checkVector checkVector547,10117
+chkN 673,12602
+chkF 709,13213
+chkN 754,14101
+chkN 761,14189
+chkN 768,14283
+chkN 774,14368
+chkChar 780,14460
+TestL::checkChar checkChar810,14825
+TestL::checkNum checkNum848,15296
+TestL::checkFNum checkFNum1083,19938
+TestL::checkProgress checkProgress1289,23790
+checkOut 1312,24275
+chkOut 1323,24428
+TestL::checkOut checkOut1330,24529
+TestL::checkStage checkStage1343,24840
+TestL::checkComment checkComment1366,25270
+TestL::condComment condComment1385,25616
+get_script 1407,26098
+si_test_init 1418,26267
+
+/home/mark/gasp-CARBON/SI/threads/mutex_t.cpp,792
+Gmutex *GMUTEXPTR[GMUTEXPTR21,684
+uint GmutexID 23,717
+int Ngmutexs 24,736
+int Nactivemutexs 25,754
+Gmutex::Gmutex Gmutex27,778
+Gmutex::Init Init36,898
+Gmutex::Destroy Destroy43,993
+Gmutex::Lock Lock53,1114
+Gmutex::TryLock TryLock68,1355
+Gmutex::UnLock UnLock86,1630
+Gmutex::setPrioCeiling setPrioCeiling102,1878
+Gmutex::getPrioCeiling getPrioCeiling112,2059
+create_gmutex 127,2393
+getGmutexFromId 185,3475
+Mtxsf::gtcreatemutex gtcreatemutex198,3752
+Mtxsf::gtdestroymutex gtdestroymutex216,4089
+Mtxsf::gtlockmutex gtlockmutex236,4449
+Mtxsf::gtunlockmutex gtunlockmutex259,4946
+Mtxsf::gttrylockmutex gttrylockmutex287,5518
+Mtxsf::gtmutexsetpriority gtmutexsetpriority308,5860
+Mtxsf::gtmutexgetpriority gtmutexgetpriority330,6248
+Mtxsf::init init352,6664
+
+/home/mark/gasp-CARBON/SI/threads/parset_t.cpp,972
+  Parset::PTID 34,957
+int _dbl 35,982
+Parset::Parset Parset36,996
+Parset::~Parset ~Parset160,3704
+Parset::LineCompiled LineCompiled171,3863
+Parset::GetNextLine GetNextLine181,4035
+Parset::GetStartOfThisSt GetStartOfThisSt225,4703
+Parset::fcallg_in fcallg_in281,5657
+Parset::fcallg_out fcallg_out384,8050
+Parset::fcallgPrint fcallgPrint503,10847
+Parset::dberror dberror514,11055
+islogicfw 569,12230
+isendquote 587,12567
+isendfunc 595,12670
+sivar_parse_range 610,13062
+Parset::setObptr setObptr738,15766
+Parset::lfill lfill777,16337
+Svar *SV_Pool[SV_Pool856,18009
+initSVpool 859,18041
+getPoolSvar 882,18471
+releasePoolSvar 921,19372
+Parset::clearCounts clearCounts932,19569
+Parset::clearStack clearStack941,19685
+Parset::GetExpNumber GetExpNumber947,19740
+Parset::FindVarPreDinc FindVarPreDinc984,20372
+Parset::FindVar FindVar1032,21471
+Parset::checkGlobalVar checkGlobalVar1390,30280
+Parset::getVarValue getVarValue1455,31627
+
+/home/mark/gasp-CARBON/SI/threads/record_t.cpp,44
+Parset::varRecordSpec varRecordSpec20,558
+
+/home/mark/gasp-CARBON/SI/threads/semaphore_t.cpp,550
+Gsem *GSEMPTR[GSEMPTR19,593
+uint GsemID 21,620
+int Ngsems 22,637
+int Nactivesems 23,653
+Gsem::Gsem Gsem25,675
+Gsem::Init Init36,795
+Gsem::Post Post46,960
+Gsem::Wait Wait57,1116
+Gsem::tryWait tryWait67,1265
+Gsem::Destroy Destroy77,1420
+getGsemFromId 88,1550
+create_gsem 101,1817
+Semsf::createsem createsem161,2842
+Semsf::sem_post sem_post173,3043
+Semsf::semwait semwait191,3331
+Semsf::sem_trywait sem_trywait209,3676
+Semsf::sem_getval sem_getval226,3937
+Semsf::sem_destroy sem_destroy243,4196
+Semsf::init init261,4534
+
+/home/mark/gasp-CARBON/SI/threads/thread_t.cpp,1022
+#define CDB_THREAD_DEEP 24,662
+int Ngthreads 30,754
+int Nactivethreads 31,773
+int GthreadID 32,797
+Gthread *GTHREADPTR[GTHREADPTR36,873
+Gthread::Gthread Gthread38,909
+get_gthread 52,1136
+GetGthreadFromId 61,1314
+create_gthread 74,1596
+typedef struct gthread_tag130,2635
+  int index;132,2664
+  int hs;133,2677
+  char message[message134,2687
+} gthread_t;135,2707
+Parset::SetUpThread SetUpThread138,2726
+CreateGPThread 147,2792
+CreateThread 337,7546
+int last_tid 394,8861
+DoGthread 397,8888
+DeleteThread 516,11662
+init_AI_mutex 526,11798
+Thrdsf::gthreadcreate gthreadcreate533,11916
+Thrdsf::gthreadgetid gthreadgetid559,12397
+Thrdsf::gthreadhowmany gthreadhowmany567,12563
+Thrdsf::gthreadexit gthreadexit596,13109
+Thrdsf::gthreadwait gthreadwait642,13972
+Thrdsf::gthreadsetflag gthreadsetflag668,14491
+Thrdsf::gthreadsetpriority gthreadsetpriority696,15037
+Thrdsf::gthreadgetpriority gthreadgetpriority755,16388
+Thrdsf::gthreadkill gthreadkill783,16955
+Thrdsf::init init813,17456
+
+/home/mark/gasp-CARBON/SI/tran/phoneme.cpp,410
+label_item MrpaTable[MrpaTable32,784
+label_item ProsidyTable[ProsidyTable58,1565
+upe_hd_value 82,2415
+get_phon_index 125,3030
+do_upe_e2n 138,3248
+upe_value 172,3793
+get_phon 224,4589
+Transf::phonemeindex phonemeindex235,4727
+Transf::getphoneme getphoneme250,4981
+Transf::upee2n upee2n265,5228
+Transf::upees upees288,5610
+Transf::upeeshead upeeshead327,6276
+Transf::upeescs upeescs366,6951
+
+/home/mark/gasp-CARBON/SI/tran/tran.cpp,2104
+int DEBUG_TRAN 34,832
+#define MAXLABLEN 36,853
+#define ED_SF 37,874
+  char lab[lab41,914
+  char con[con42,937
+  float start;43,960
+  float stop;44,975
+  long int bsample;45,989
+  long int esample;46,1009
+  float sf;47,1029
+  int num;48,1041
+  int code;49,1052
+  int index;50,1064
+LABEL;52,1079
+#define MAX_N_LAB_SETS 54,1087
+LABEL *LP;LP55,1113
+LABEL *LPTR[LPTR56,1124
+int C_label_index 58,1154
+chk_lab_set 61,1182
+realloc_label_set 71,1320
+copy_label 96,1807
+swop_label 112,2165
+put_label 124,2356
+order_tokens 148,2937
+chk_label_type 261,5005
+Transf::paintlabelfile paintlabelfile310,5962
+Transf::placelabel placelabel376,7176
+Transf::getlabelcount getlabelcount424,8083
+Transf::addlabel addlabel442,8434
+Transf::setlabeltimes setlabeltimes527,10052
+paintlabcon 570,10942
+Transf::paintlabels paintlabels736,14531
+Transf::paintlabcon paintlabcon743,14648
+Transf::readlabels readlabels751,14766
+Transf::readtimitlabels readtimitlabels836,16295
+Transf::writelabels writelabels941,18421
+Transf::adjustlabeltimes adjustlabeltimes981,19148
+Transf::writetimitlabels writetimitlabels1034,20098
+Transf::searchlabeltime searchlabeltime1127,21800
+Transf::searchlabel searchlabel1248,24171
+Transf::countlabels countlabels1299,25017
+Transf::renamelabel renamelabel1348,25843
+Transf::renamecon renamecon1369,26290
+Transf::editlabels editlabels1391,26772
+Transf::editlabelcon editlabelcon1449,28129
+Transf::deletelabel deletelabel1505,29319
+Transf::deletecon deletecon1529,29773
+Transf::getlabeldur getlabeldur1549,30131
+Transf::getlabelstart getlabelstart1571,30566
+Transf::getlabelbsample getlabelbsample1594,30987
+Transf::getlabelesample getlabelesample1615,31376
+Transf::getlabelstop getlabelstop1639,31791
+Transf::getlabelname getlabelname1660,32211
+Transf::getlabelpars getlabelpars1680,32644
+Transf::getlabelcon getlabelcon1712,33366
+Transf::getlabelset getlabelset1739,33857
+Transf::resetlabelset resetlabelset1778,34655
+Transf::deletelabelset deletelabelset1793,34958
+Transf::sortlabelset sortlabelset1809,35265
+
+/home/mark/gasp-CARBON/SI/tran/tran_table.cpp,108
+typedef Singleton < Transf > TransfS;26,719
+init_tran 29,762
+tran_init 37,887
+Transf::init init58,1253
+
+/home/mark/gasp-CARBON/SI/vec/vec_ops.cpp,277
+Range::PrintCW PrintCW21,618
+Rng 58,1505
+Dcr 102,2453
+Range::codeRange codeRange136,3101
+Range::decodeRange decodeRange148,3281
+adjustNegOffset 159,3465
+circular_address 186,3945
+Range::validate validate234,4783
+rngType 274,5576
+whatType 291,5787
+regex 324,6343
+
+/home/mark/gasp-CARBON/SI/vmf/vmf_cut.cpp,35
+cutT 22,706
+Vmf::cut cut97,2034
+
+/home/mark/gasp-CARBON/SI/vmf/vmf_event.cpp,1103
+Vmf::setevent setevent38,1273
+Vmf::geteventid geteventid52,1488
+Vmf::geteventbutton geteventbutton69,1838
+Vmf::geteventetype geteventetype98,2419
+Vmf::geteventtype geteventtype119,2864
+Vmf::geteventkey geteventkey207,4907
+Vmf::geteventkeyw geteventkeyw229,5349
+Vmf::geteventwoname geteventwoname245,5701
+Vmf::geteventname geteventname274,6400
+Vmf::geteventwoproc geteventwoproc304,7107
+Vmf::geteventwoaw geteventwoaw332,7668
+Vmf::geteventwoivalue geteventwoivalue351,8036
+Vmf::geteventwovalue geteventwovalue361,8279
+Vmf::geteventwoid geteventwoid385,8749
+Vmf::geteventwid geteventwid408,9247
+Vmf::geteventrinfo geteventrinfo456,10201
+Vmf::geteventrxry geteventrxry479,10683
+Vmf::geteventxy geteventxy528,11469
+Vmf::geteventrowcol geteventrowcol563,12157
+Vmf::waitformsg waitformsg598,12888
+Vmf::eventwait eventwait619,13258
+Vmf::eventread eventread628,13391
+Vmf::readmsg readmsg638,13522
+Vmf::checkkeyw checkkeyw652,13810
+Vmf::seteventbutton seteventbutton673,14245
+Vmf::geteventaddrs geteventaddrs694,14679
+Vmf::geteventpars geteventpars739,15881
+
+/home/mark/gasp-CARBON/SI/vmf/vmf_l.cpp,2210
+vfree 27,709
+vdelete 35,850
+resize 48,1106
+Vmf::readwords readwords57,1245
+Vmf::write write103,2135
+Vmf::vfree vfree143,2917
+Vmf::type_of type_of164,3307
+Vmf::vdelete vdelete176,3490
+Vmf::getword getword218,4391
+Vmf::gfv gfv246,5176
+Vmf::redimn redimn318,6988
+redimn 417,9051
+Vmf::resize resize431,9250
+Vmf::getsubstr getsubstr524,11164
+Vmf::scmp scmp579,12092
+Vmf::caz caz637,13040
+Vmf::convert convert669,13712
+shiftl 707,14402
+shiftl 716,14554
+ShiftL 726,14734
+ShiftL 759,15342
+Vmf::shiftl shiftl797,15983
+shiftr 869,17168
+shiftr 878,17317
+ShiftR 889,17495
+ShiftR 922,18103
+Vmf::shiftr shiftr960,18744
+Vmf::abs abs1024,19734
+getcmplx 1071,20518
+Vmf::getreal getreal1119,21441
+Vmf::getimag getimag1134,21719
+Vmf::mag mag1149,22041
+Vmf::phase phase1235,23503
+Vmf::sort sort1337,25241
+Vmf::bubbleSort bubbleSort1370,25888
+Siv::Sort Sort1386,26253
+Vmf::shuffle shuffle1407,26601
+Vmf::join join1432,27012
+Vmf::objid objid1443,27179
+Vmf::info info1459,27536
+Vmf::pinfo pinfo1497,28251
+Vmf::aslcheckinfo aslcheckinfo1532,28849
+Vmf::varid varid1553,29296
+Vmf::offsets offsets1569,29578
+Vmf::retype retype1592,30008
+Vmf::cast cast1604,30233
+Vmf::gettype gettype1617,30455
+Vmf::getsize getsize1629,30685
+Vmf::isvector isvector1641,30976
+Vmf::isdynamic isdynamic1655,31260
+Vmf::sortNum sortNum1668,31508
+Vmf::setNfieldsKey setNfieldsKey1697,32147
+findval 1734,32868
+Vmf::findVal findVal1828,34126
+findVal 2030,37718
+Vmf::EnumNameFromValue EnumNameFromValue2042,37884
+Vmf::EnumValueFromName EnumValueFromName2083,38536
+Vmf::EnumIndexFromValue EnumIndexFromValue2117,39143
+Vmf::EnumNameFromIndex EnumNameFromIndex2157,39777
+Vmf::EnumValueFromIndex EnumValueFromIndex2192,40403
+Vmf::flipdim flipdim2216,41002
+asl_vmf_init 2250,41657
+Vmf::getcontourx getcontourx2264,41946
+Vmf::setcontourx setcontourx2279,42298
+Vmf::getcontoury getcontoury2294,42647
+Vmf::setcontoury setcontoury2308,42957
+Vmf::getcontourdcv getcontourdcv2321,43263
+Vmf::readwstokens readwstokens2344,43872
+Vmf::swaprows swaprows2370,44429
+Vmf::cyclerow cyclerow2391,44741
+Vmf::cyclecol cyclecol2461,46209
+Vmf::fl fl2545,47741
+
+/home/mark/gasp-CARBON/SI/vmf/vmf_limit.cpp,71
+Vmf::limit limit23,647
+t_smooth 75,1569
+Vmf::smooth smooth93,1869
+
+/home/mark/gasp-CARBON/SI/vmf/vmf_list.cpp,209
+Vmf::insert insert22,588
+Vmf::getlitem getlitem83,1826
+Vmf::getnextlitem getnextlitem130,2742
+Vmf::getprevlitem getprevlitem151,3159
+Vmf::deleteli deleteli175,3627
+Vmf::deletesli deletesli195,3941
+
+/home/mark/gasp-CARBON/SI/vmf/vmf_mem_l.cpp,40
+Vmf::mscan mscan20,603
+mscan 71,1362
+
+/home/mark/gasp-CARBON/SI/vmf/vmf_rand.cpp,219
+addgrand 20,635
+AddGrand 31,844
+Vmf::addgrand addgrand74,1709
+setrand 103,2399
+setMemToRand 115,2607
+Setrand 147,3222
+Vmf::rand rand200,4260
+Vmf::cos cos230,4875
+Vmf::sin sin262,5576
+Vmf::tan tan295,6323
+
+/home/mark/gasp-CARBON/SI/vmf/vmf_range.cpp,45
+Vmf::rng rng21,667
+Vmf::srng srng74,1914
+
+/home/mark/gasp-CARBON/SI/vmf/vmf_record.cpp,166
+Vmf::readrecord readrecord21,670
+Vmf::findrecord findrecord77,1523
+Vmf::getrecord getrecord170,3364
+Vmf::getnrows getnrows192,3860
+Vmf::getrc getrc205,4092
+
+/home/mark/gasp-CARBON/SI/vmf/vmf_reverse.cpp,75
+reverse 20,633
+Siv::Reverse Reverse35,860
+Vmf::reverse reverse94,1800
+
+/home/mark/gasp-CARBON/SI/vmf/vmf_rotate.cpp,27
+Vmf::rotate rotate20,609
+
+/home/mark/gasp-CARBON/SI/vmf/vmf_set.cpp,270
+Vmf::setv setv20,637
+set_cmplx 388,6933
+set_cmplx_real 491,9109
+set_cmplx_imag 497,9199
+set_dcmplx 504,9341
+set_dcmplx_real 576,10867
+set_dcmplx_imag 583,11011
+Vmf::setreal setreal590,11155
+Vmf::setimag setimag633,12011
+Vmf::setdynamic setdynamic660,12595
+
+/home/mark/gasp-CARBON/SI/vmf/vmf_stats.cpp,46
+Vmf::stats stats22,636
+Vmf::rms rms32,742
+
+/home/mark/gasp-CARBON/SI/vmf/vmf_str.cpp,140
+Vmf::splice splice20,565
+Vmf::paste paste70,1623
+Vmf::cpy cpy113,2438
+Vmf::cat cat155,3080
+Vmf::eatwhiteends eatwhiteends193,3722
+
+/home/mark/gasp-CARBON/SI/vmf/vmf_svar.cpp,518
+Trim 36,1108
+Vmf::trim trim89,2132
+Vmf::prune prune98,2287
+Vmf::dewhite dewhite106,2412
+Vmf::slower slower156,3340
+Vmf::supper supper206,4191
+Vmf::substitute substitute256,5042
+Vmf::scut scut328,6470
+Vmf::slen slen396,7825
+Vmf::cptr cptr431,8602
+Vmf::lookup lookup471,9326
+Vmf::addkeyval addkeyval553,11016
+Vmf::addentry addentry619,12252
+Vmf::getentry getentry685,13425
+Vmf::keysort keysort736,14403
+Vmf::table table769,15041
+Vmf::split split821,16070
+Vmf::trimstr trimstr898,17855
+
+/home/mark/gasp-CARBON/SI/vmf/vmf_table.cpp,206
+typedef Singleton < Vmf > VmfS;20,594
+struct sifunc_addr Si_Table[Si_Table22,649
+struct vmfunc_addr VMF_Table[VMF_Table24,691
+vmfTable 29,795
+VMF_Table_init 44,1220
+Parset::findVMF findVMF220,9410
+
+/home/mark/gasp-CARBON/SI/vsh/cw_l.cpp,899
+char **Codeline Codeline28,650
+int Clnum 30,675
+#define RDL_LIB_SO 34,731
+#define HIS_LIB_SO 35,767
+#define LAST_RDL_VERS 36,803
+#define LAST_HIS_VERS 37,845
+typedef char *(*rln)rln39,888
+check_stype 42,924
+Clsf::i_read_str i_read_str171,3542
+Clsf::Slist Slist388,8095
+Clsf::Sread Sread426,8764
+Clsf::Srun Srun498,9965
+Clsf::Sdel Sdel535,10569
+char LCfile[LCfile559,11046
+Clsf::AslState AslState562,11069
+Clsf::CheckState CheckState755,14822
+Clsf::checkStateType checkStateType787,15555
+Clsf::checkAssignType checkAssignType805,15877
+Clsf::init init824,16246
+Linec CWline;849,17158
+Statement CWst;850,17172
+Statement *HoldSt,HoldSt851,17188
+Statement *HoldSt, *CWstptr;CWstptr851,17188
+CWstptr 854,17265
+CWstptr->linec linec855,17282
+s->parset->St St856,17308
+CWstptr->wptr wptr860,17463
+s->parset->stptr stptr895,18119
+s->parset->lnum lnum897,18189
+
+/home/mark/gasp-CARBON/SI/vsh/vsh.cpp,144
+int PrintLastResult 21,630
+Parset::UpdateLastResult UpdateLastResult25,691
+make_vsh_arg 57,1544
+#define LOAD_CONSTS 102,2553
+vsh 105,2580
+
+/home/mark/gasp-CARBON/SI/wcom/wcom_gs_sw.cpp,900
+#define ssz4 19,593
+free_msg 39,1156
+Msg::Write Write51,1400
+Msg::Set Set171,4356
+GS_VCLT 216,5263
+GS_VRFR 233,5621
+GS_VSVL 253,6001
+GS_VSLT 270,6382
+GS_VSYP 287,6754
+GS_VRMLT 301,7110
+GS_VSXYP 325,7514
+GS_VS 350,7965
+GS_VSPX 366,8250
+GS_VSPY 374,8409
+GS_BVSPY 382,8568
+GS_BVSCPY 454,9693
+GS_BVSCPX 529,10900
+GS_vrpx 598,11992
+GS_vrpxyc 621,12477
+GS_vpxyc 653,12993
+GS_vpc 681,13460
+GS_vydraw 728,14413
+GS_VXYRLT 753,14806
+GS_regBundle 772,15139
+GS_gridBundle 797,15596
+GS_tileBundle 822,16064
+GS_vxylt 848,16573
+GS_VCC 866,16897
+GS_VRSYM 897,17461
+GS_VCCX 941,18204
+GS_VCCY 949,18385
+GS_line 957,18566
+GS_box 966,18820
+GS_tri 974,18977
+GS_ellipse 982,19135
+GS_xor 991,19371
+GS_struct 999,19530
+GS_axnum 1013,19822
+GS_rpoly 1057,20583
+  Msg mp;1084,21128
+  mp.nb nb1086,21139
+  mp.n n1087,21178
+  float *fp fp1092,21249
+  for (int i = 0; i 1097,21332
+
+/home/mark/gasp-CARBON/SI/wcom/wcom_msg.cpp,876
+pthread_mutex_t SRS_mutex;21,649
+int DBWCOM 23,677
+int Asl_flush 24,693
+int level 25,713
+char Mbucket[Mbucket27,729
+int Msz 28,749
+float GS_pause 29,773
+GS_port *Asl_pp;Asl_pp31,798
+com_pause 38,938
+write_m 47,1064
+win_receive_msg 64,1354
+win_read_msg 173,3636
+AslCheckCom 291,5805
+delete_messages 412,7969
+gm_inquire_wexist 451,8746
+gs_signal_wait 459,8847
+gs_msg_wait 510,9627
+check_level 641,12126
+win_send_msg 669,12544
+SendReceiveStruct 698,13177
+sockSendReceiveStruct 1031,20564
+MessageGet 1233,24939
+Wcomsf::MessageWait MessageWait1318,26813
+Asl_event Aev;1359,27604
+Asl_event::checkMsg checkMsg1362,27624
+Asl_event::getAslEvent getAslEvent1374,27874
+Wcomsf::MessageRead MessageRead1569,32542
+Wcomsf::g_flush g_flush1577,32663
+Wcomsf::deletemessages deletemessages1587,32832
+init_SRS_mutex 1597,33088
+Wcomsf::init init1606,33210
+
+/home/mark/gasp-CARBON/SI/wcom/wcom_sendfunc.cpp,153
+int nu_f 19,600
+char Mesg[Mesg21,615
+char sf_return[sf_return28,825
+asl_gwm_hs 31,851
+send_asl_error 139,2917
+sendFunc 208,4193
+gflush 392,7514
+
+/home/mark/gasp-CARBON/SI/wcom/wcom_sock.cpp,109
+#define ASL_PORT 21,611
+init_socks 24,639
+asl_sock_connect 31,738
+Wgm::writeMsgSock writeMsgSock77,1787
+
+/home/mark/gasp-CARBON/SI/wcom/wcom_sw.cpp,221
+char f_return[f_return19,585
+GetWclip 28,985
+WSetScale 38,1180
+Wcomsf::getAslWid getAslWid54,1499
+SendExitGWM 62,1637
+Wcomsf::delete_sw delete_sw77,1921
+CopyCharBuf 91,2185
+Wcomsf::sig_pause sig_pause102,2365
+
+/home/mark/gasp-CARBON/SI/wcom/wcom_wgm.cpp,1209
+#define ssz4 19,553
+int DEBUG_SHM 21,587
+int Msg_num 23,607
+pthread_mutex_t COM_mutex;34,872
+init_COM_mutex 39,1013
+Wgm::Wgm Wgm47,1130
+Wgm::~Wgm ~Wgm63,1480
+Wgm::setMsg setMsg78,1785
+Wgm::setMsgPara setMsgPara142,3084
+Wgm::setMsgParaSz setMsgParaSz184,4037
+Wgm::writeMsgBuf writeMsgBuf232,5072
+Wgm::setHue setHue344,7731
+Wgm::sendGWMpara sendGWMpara361,8022
+Wgm::sendGWMpara sendGWMpara375,8318
+Wgm::setWRS setWRS390,8630
+Wgm::setWRYS setWRYS410,9031
+Wgm::setWRXS setWRXS417,9156
+Wgm::sendYvec sendYvec424,9281
+Wgm::sendYvec sendYvec448,9717
+Wgm::sendYvec sendYvec460,9931
+Wgm::vecDraw vecDraw474,10202
+Wgm::vecDraw vecDraw516,11022
+Wgm::vecDraw vecDraw524,11134
+Wgm::vecDraw vecDraw532,11244
+Wgm::sendYvec sendYvec541,11407
+Wgm::vecDraw vecDraw570,11929
+Wgm::vecDraw vecDraw613,12627
+Wgm::vecDraw vecDraw651,13305
+Wgm::vecRLT vecRLT688,13901
+Wgm::drawXY drawXY766,15261
+Wgm::vecXYRLT vecXYRLT820,16233
+Wgm::woValue woValue841,16736
+Wgm::woPoint woPoint874,17516
+Wgm::sendObj sendObj895,18009
+Wgm::woBox woBox910,18305
+Wgm::woWbox woWbox923,18588
+Wgm::woSymbol woSymbol934,18797
+Wgm::woArrow woArrow970,19523
+Wgm::ticks ticks998,20097
+
+/home/mark/gasp-CARBON/SI/wcom/x_sw.cpp,2249
+GS_SW2F 20,584
+GS_wrotate 41,940
+GS_wsetxoyo 49,1098
+GS_SWRXS 57,1261
+GS_SWRYS 64,1413
+GS_WPOINT 71,1565
+GS_WCPOINT 78,1719
+Wgm::woLine woLine99,2105
+GS_HVLINE 126,2760
+GS_WMOVE 145,3112
+GS_WSETPEN 163,3424
+GS_WSETPENPOS 174,3631
+GS_WWAIT 189,3960
+GS_rainbow 201,4151
+GS_gc 212,4323
+GS_closelaser 223,4496
+GS_scrlaser 234,4674
+GS_laserscr 245,4857
+GS_switchscreen 256,5040
+GS_gsmap 268,5230
+GS_rotatemap 280,5417
+GS_SWIDS 292,5614
+GS_SWIDRP 314,6019
+GS_MouseCursor 338,6395
+Wgm::setFvec setFvec372,7025
+Wgm::setIvec setIvec382,7204
+Wgm::winText winText394,7410
+Wgm::winClipText winClipText448,8542
+Wgm::winText winText456,8731
+GS_WCC 465,8934
+GS_WOP 480,9201
+Wgm::setWOP setWOP499,9506
+Wgm::setWOP setWOP526,10051
+Wgm::setWOP setWOP539,10366
+Wgm::setWOP setWOP560,10844
+Wgm::setWOP setWOP581,11330
+Wgm::setWOP setWOP606,11935
+Wgm::setWOP setWOP649,12923
+Wgm::setWRS setWRS683,13723
+Wgm::setWclip setWclip691,13945
+GS_SWOP 700,14115
+GS_SWRS 726,14594
+GS_SWOML 737,14836
+GS_WOTEXT 745,15025
+GS_MSG 774,15423
+GS_WOPRINT 805,15826
+GS_WODELETE 829,16256
+GS_WTITLE 844,16501
+GS_WFNAME 865,16895
+GS_WTMSG 885,17283
+GS_SRGB 905,17669
+Wgm::setWOTxtField setWOTxtField926,18022
+GS_SWOCSV 954,18717
+Wgm::setWpnum setWpnum973,19218
+Wgm::setWoAttr setWoAttr987,19529
+gs_sheetrowcol 1004,19951
+gs_sheetrowcols 1043,20664
+GS_WOSHEETROW 1105,21924
+GS_WOSHEETCOL 1112,22125
+GS_wocellval 1119,22326
+GS_wocellvals 1127,22526
+GS_wocelldraw 1134,22700
+GS_WOSHEETDISPCOL 1154,23053
+GS_wocellhue 1173,23467
+GS_wosheetswaprows 1190,23774
+GS_wosheetswapcols 1206,24057
+GS_wocellbhue 1222,24340
+GS_wocellsbhue 1239,24649
+GS_wosheetmod 1259,25014
+GS_wosetsheetrowscols 1273,25309
+GS_wosetsheetrowsize 1290,25611
+GS_wosetsheetcolsize 1308,25925
+GS_woselectsheetrowscols 1327,26240
+GS_WOMOVE 1350,26647
+GS_WoCursor 1370,27072
+GS_woxor 1404,27848
+GS_woscroll 1416,28048
+GS_woscrollclip 1433,28389
+Wgm::sendGWMcmd sendGWMcmd1451,28752
+Wgm::sendCmdSvec sendCmdSvec1464,28981
+GS_wscroll 1481,29401
+GS_wpush 1492,29596
+GS_wpop 1503,29773
+GS_openlaser 1515,29949
+GS_wopoint 1538,30458
+GS_woline 1559,30846
+GS_radialpts 1580,31207
+GS_ScrnLine 1609,31825
+GS_ScrnBox 1630,32228
 
 LIB/anytask.asl,987
 Str Use_=15,327
@@ -322,12 +6814,12 @@ float   nm_to_sm 82,1218
 float   nm_to_km 83,1252
   float computeGCD(100,1476
   void processIGC(123,1900
-  Str nameMangle(297,4789
-  float totalK 328,5166
-  float getDeg 330,5187
-  void nearest 380,6033
-  void IGC_Read(389,6163
-  float ComputeTC(427,6775
+  Str nameMangle(297,4791
+  float totalK 328,5168
+  float getDeg 330,5189
+  void nearest 380,6035
+  void IGC_Read(389,6165
+  float ComputeTC(427,6777
 
 LIB/scrn_showtask.asl,669
 char TPname[TPname31,617
@@ -450,7 +6942,7 @@ tp_file 18,122
            TP[itaskp]->Longdeg Longdeg126,2107
            TP[itaskp]->Ladeg Ladeg132,2229
 
-LIB/tpclass.asl,899
+LIB/tpclass.asl,901
 #define TPCLASS_ 17,459
 int Tleg_id 21,497
 class Tleg 34,602
@@ -459,40 +6951,40 @@ class Tleg 34,602
   float dist;43,656
   float pc;44,670
   float tfga;45,682
-  float msl;46,696
-  Str Tow;48,710
-  Str Tplace;49,721
- cmf Tleg(53,804
- Str getPlace 63,931
- cmf ~Tleg(68,985
-int Ntp_id 76,1054
-class Turnpt 79,1095
-  Str Lat;84,1145
-  Str Lon;85,1156
-  Str Place;86,1167
-  Str Idnt;88,1183
-  Str rway;89,1195
-  Str tptype;90,1207
-  Str Cltpt;92,1224
-  Str Radio;93,1237
-  float Alt;94,1250
-  float fga;95,1263
-  float Ladeg;96,1308
-  float Longdeg;97,1323
-  int is_airport;98,1340
-  int is_strip;99,1358
-  int is_mtn;100,1374
-  int is_mtn_pass;101,1388
-  int id;103,1410
-  int match;105,1438
-  Str smat;106,1451
-  void TPset 115,1588
-void TPCUPset 167,2435
-void SetPlace 347,4962
-  Str GetPlace 353,5050
-   void Print 358,5133
- int GetTA(368,5305
-cmf Turnpt(377,5472
+  float msl;47,756
+  Str Tow;49,770
+  Str Tplace;50,781
+ cmf Tleg(54,864
+ Str getPlace 64,991
+ cmf ~Tleg(69,1045
+int Ntp_id 77,1114
+class Turnpt 80,1155
+  Str Lat;85,1205
+  Str Lon;86,1216
+  Str Place;87,1227
+  Str Idnt;89,1243
+  Str rway;90,1255
+  Str tptype;91,1267
+  Str Cltpt;93,1284
+  Str Radio;94,1297
+  float Alt;95,1310
+  float fga;96,1323
+  float Ladeg;97,1368
+  float Longdeg;98,1383
+  int is_airport;99,1400
+  int is_strip;100,1418
+  int is_mtn;101,1434
+  int is_mtn_pass;102,1448
+  int id;104,1470
+  int match;106,1498
+  Str smat;107,1511
+  void TPset 116,1648
+void TPCUPset 168,2495
+void SetPlace 343,4948
+  Str GetPlace 349,5036
+   void Print 354,5119
+ int GetTA(364,5291
+cmf Turnpt(373,5458
 
 LIB/utils.asl,125
   void  computeHTD(4,48
@@ -508,3 +7000,5 @@ y 11,54
 x 12,89
 empty_cg 16,130
 pilot_cg 24,207
+
+/home/mark/gasp-CARBON/SI/spe/cast_e.cpp,0
