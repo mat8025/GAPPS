@@ -1548,3 +1548,8 @@ sint_l.cpp                          1.24  08/03/2023 16:34:46  runproc
 args_process_e.cpp                  2.48  08/08/2023 14:57:38  ptr arg
 engine_e.cpp                        2.26  08/10/2023 10:45:46  _ASL_,_CPP_,_TRANS_
 prep.cpp                            2.65  08/10/2023 10:47:32  addDefine
+preprocess.cpp                      1.9  08/11/2023 08:12:11  auto dec
+preprocess.cpp                      1.10  08/11/2023 08:13:11  auto_dec
+svar_str.cpp                        1.65  08/11/2023 09:10:20  null terminate fix
+prep.cpp                            2.66  08/11/2023 09:11:14  define sub
+svar_read.cpp                       1.62  08/11/2023 15:06:15  fsgets windex alloc check

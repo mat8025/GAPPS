@@ -13,10 +13,14 @@
 //----------------<v_&_v>-------------------------//                  
 
 
-char vers[6] ="1.3";
+  char vers[6] ="1.4"
 
 
 //#include "debug"
+// TBF 8/11/23  GTDB ==> DB ??
+#define GT_DB 1
+
+
 
 #define _CPP_ 0
 
@@ -81,6 +85,11 @@ using namespace std;
 int main( int argc, char *argv[] ) { // main start
  printf("CPP vers %s\n",vers);
 #endif
+
+
+  run_asl = runASL()
+
+<<"%V $run_asl \n"
 
   int na;
 
@@ -147,7 +156,7 @@ int main( int argc, char *argv[] ) { // main start
 
   if (use_cup) {
 
-   <<"Using CUP file bbrief.cup \n"
+   if (GT_DB) <<"Using CUP file bbrief.cup \n"
 
   AFH=ofr("../CUP/bbrief.cup")  ; // open turnpoint file;
 
@@ -729,7 +738,7 @@ while (ac < na) {
   if (use_cup) {
 
  //  nwr = Wval.readWords(AFH,0,',');
-   cprintf(" readWords \n");
+
    nwr = Wval.readWords(AFH,0,44);
 
 
@@ -752,7 +761,8 @@ while (ac < na) {
 #endif
 
 
-   cprintf("TPCUPset using Wval \n");
+   if (GT_DB) cprintf("TPCUPset using Wval \n");
+
 
    GT_Wtp[n_legs].TPCUPset(Wval);
 //<<"%V $n_legs  $GT_Wtp[n_legs].Place $GT_Wtp[n_legs].Ladeg \n"
