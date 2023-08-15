@@ -20,7 +20,7 @@
 
 const double E_ = exp(1.0);
 
-<<"Loading $E_ !\n"
+
 
 
 const double G_ = 6.672e-11
@@ -67,7 +67,7 @@ const double Avogadro_ = 6.022140e23
 
 # unit conversion
 
-# use underscore as prefix character avoid user name conflict
+# use underscore as postfix character avoid user name conflict
 
 const float inch2cm_ = 2.54
 const float ft2m_ = 12*2.54/100.0
@@ -101,6 +101,7 @@ const float  atm2Nm2_ = 1.01e5
 const float  atm2lbft2_ = 2116.0
 const float  slug2lb_ = 32.2
 const float  lightyr_ = 9.46e15
+const float LegK_ =  0.5 * (7915.6 * 0.86838);
 
 
 void units()

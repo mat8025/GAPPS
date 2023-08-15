@@ -12,7 +12,7 @@
  */ 
 //----------------<v_&_v>-------------------------//;                  
 
-  Str Wex_Vers= "2.60  ";
+  Str Wex_Vers= "2.61  ";
 
 ///
 /// exercise weight display
@@ -28,66 +28,23 @@
 //wherearewe=!!"pwd "
 //<<[_DB]"%V$wherearewe \n"
 
-
-
-
-#define ASL 1
-
 #define GT_DB   0
 
+#define _CPP_ 0
 
-#define CPP 0
-
-#if ASL
-// the include  when cpp compiling will re-define ASL 0 and CPP 1
-#include "compile.asl"
-
-//#define DBA <<
-#define DBA ~!
-
-#endif
-
-#if CPP
+#if _CPP_
 #include <iostream>
 #include <ostream>
 
 using namespace std;
 #include "vargs.h"
-
+#include "cpp_head.h" 
+#include "consts.h"
 #define PXS  cout<<
-#define ASL_DB 0
+#define _ASL_ 0
 
-#define DBA if (0)  
+#endif
 
-
-
-#include "si.h"
-#include "parse.h"
-#include "codeblock.h"
-#include "sproc.h"
-#include "sclass.h"
-#include "declare.h"
-#include "gthread.h"
-#include "paraex.h"
-#include "scope.h"
-#include "swinwob.h"
-#include "gsi.h"
-#include "record.h"
-#include "gline.h"
-#include "glargs.h"
-#include "gevent.h"
-#include "winargs.h"
-#include "woargs.h"
-#include "debug.h"
-
-#include "wex.h"
-
-
-
-#include <iostream>
-#include <ostream>
-
-class Svar;
 
 
 
@@ -104,10 +61,7 @@ class Svar;
 
 ////////////////////////////////////////  Globals //////////////////////////////
 
-#endif
-
-
-#if ASL
+#if_ ASL_
 #define cout //
 #define COUT //
 #define VCOUT //
@@ -303,12 +257,9 @@ Record RX;
 
 
 //////////////////////  SCREEN ///////////////////////////
-#include "gevent.asl"
+//#include "gevent.asl"
+// use Gevent asl variable and vmf (member methods)  == cpp compatible
 
-// use gevent.asl  - for these globals
-/*
-   _GEV_button;
-*/
 
 #include "tbqrd.asl"
 
@@ -358,16 +309,6 @@ Record RX;
 
 
   
-#if CPP
- ///////////////////////////////////////////////////
-// the wex obj method - see wex.h
-void Wex::wexTask(Svarg * sarg)
-  {
-
-    cout << "Vtst "  << Vtst << endl;
-
-#endif
-
 
 
 
@@ -424,7 +365,7 @@ void Wex::wexTask(Svarg * sarg)
 // move these down 10 when reached -- until we are at desired operating weight!
 
 
-   COUT(Goals);
+   //COUT(Goals);
 
 //ans=query("Goals ?");
 
@@ -672,9 +613,23 @@ float ae = EXTV[15];
   int Xgm;
 
   if (!Graphic) {
+#if _TRANS_  
+     <<" no Graphics while TRANS  $_TRANS_ \n"
+#endif
+
+#if _ASL_
     Xgm = spawnGWM("WEX");
     Graphic = checkGWM();
-  }
+#endif
+
+#if _CPP_
+    Xgm = spawnGWM("WEX");
+    Graphic = checkGWM();
+#endif
+
+
+
+}
 
 
   printf("Have Graphic %d now\n", Graphic);
@@ -709,18 +664,18 @@ int nevent = 0;
 drawScreens();
 int rcb = 0;
 
-     while (1) {
+     Graphic = checkGWM();
+
+      
+
+     while (Graphic) {
 
 
        eventWait();
 
-    <<"%V $GEV__button $GEV__keyw $GEV__woname $GEV__keyc \n"
+
 
          nevent++;
-
-
-
-
   
        
       if (GEV__woname == "REDRAW") {
@@ -746,39 +701,10 @@ int rcb = 0;
 	   }
      }
 
-cout<<"Exit Wex\n";
-
-#if CPP
-}  // close of wex obj method
 
 
-
-  extern "C" int wex(Svarg * sarg)  {
-
-  Str a0 = sarg->getArgStr(0) ;
-
-  Str Use_ ="plot Wex data";
-
-
-  //<<[_DB]"%V $Nsel_exemins $Nsel_exeburn  $(typeof(Nsel_exemins))\n";
-
-  int k = 0;
-
-    Svar GoalsB;
-   
-    GoalsB.Split("07/21/2023 09/30/2022 175");
-    
-
-#include "types_wex.asl"
-
-
-  Wex *o_wex = new Wex;  // create the wex object
-
-  o_wex->wexTask(sarg);  // run the main method
-
-    exit(0);
-  }
-   
+#if _CPP_
+}  
 #endif
 
 ///////////////////////////////// TBD /////////////////////////

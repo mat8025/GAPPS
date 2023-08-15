@@ -30,7 +30,7 @@
 
   int Ntaskpts = 0
 
-   Min_lat = 90.0  // TBF sould auto_dec to double?
+   Min_lat = 90.0  // TBF should auto_dec to double?
 
    Max_lat = 0.0
 
@@ -97,8 +97,9 @@
   float computeGCD(float la1,float la2,float lo1,float lo2)
   {
 ///  input lat and long degrees - GCD in km
-  //float rL1,rL2,rlo1,rlo2,D,km
-  
+  float rL1,rL2,rlo1,rlo2,D,km
+  // TBF 8/12/23  -- ieadlly all rL1,...  should auto_dec
+
   rL1 = d2r(la1)
 
   rL2 = d2r(la2)
@@ -153,7 +154,7 @@
   Ntpts= readIGC(Igcfn, IGCTIM, IGCLAT, IGCLONG, IGCELE)
   
 // TBF ?  not translating ?
-   <<"sz $Ntpts $(Caz(IGCLONG))   $(Caz(IGCLAT))\n"
+  // <<"sz $Ntpts $(Caz(IGCLONG))   $(Caz(IGCLAT))\n"
 
   
 //<<"%(10,, ,\n) $IGCLONG[0:30] \n"
@@ -236,7 +237,8 @@ ssele= IGCELE.stats()
 
   LatN = max_lat+Margin
 
-  MidLat = (LatN - LatS)/2.0 + LatS
+  MidLat = (LatN - LatS)/2.0 + LatS   // TBF no ;
+  
   //<<"%V $MidLat \n"
 
   float dlat = max_lat - min_lat

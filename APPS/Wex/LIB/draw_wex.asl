@@ -72,16 +72,16 @@
 
 <<" SHOW_COMPUTE %V $Nxy_obs $Nsel_exeburn $Nsel_lbs  $xhrs \n"
 
-  sWo(_WOID,nobswo,_WVALUE,"%d $Nxy_obs",_WUPDATE,ON_);
+  sWo(_WOID,nobswo,_WVALUE,"%d $Nxy_obs",_WUPDATE,ON_)
 
-  sWo(_WOID,xtwo,_WVALUE,"%6.2f $xhrs",_WREDRAW,ON_);
+  sWo(_WOID,xtwo,_WVALUE,"%6.2f $xhrs",_WREDRAW,ON_)
 
-  sWo(_WOID,xbwo,_WVALUE,"%6.2f $Nsel_exeburn",_WREDRAW,ON_);
+  sWo(_WOID,xbwo,_WVALUE,"%6.2f $Nsel_exeburn",_WREDRAW,ON_)
 
-  //sWo(_WOID,xlbswo,_WVALUE,"%4.1f$Nsel_lbs",_WUPDATE,ON_);
-  sWo(_WOID,xlbswo,_WVALUE,"%4.1f $Nsel_lbs",_WUPDATE,ON_);
+  //sWo(_WOID,xlbswo,_WVALUE,"%4.1f$Nsel_lbs",_WUPDATE,ON_)
+  sWo(_WOID,xlbswo,_WVALUE,"%4.1f $Nsel_lbs",_WUPDATE,ON_)
 
-  sWo(_WOID,dlbswo,_WVALUE,"%4.1f $Ndiet_lbs",_WUPDATE,ON_);
+  sWo(_WOID,dlbswo,_WVALUE,"%4.1f $Ndiet_lbs",_WUPDATE,ON_)
 
   }
 //========================================================
@@ -90,36 +90,36 @@
   {
 
   if (ws == 0) {
-   // Plot(wtwo,_WBOX,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_) ; // never go above
+   // Plot(wtwo,_WBOX,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_)  // never go above
 
-  plotBox(wtwo,sc_zstart,DX_NEW,sc_zend,DX_NEW+20, RED_, FILL_) ; 
+  plotBox(wtwo,sc_zstart,DX_NEW,sc_zend,DX_NEW+20, RED_, FILL_)  
 
-  plotBox(wtwo,sc_zstart,DX_MEW,sc_zend,DX_NEW, ORANGE_, FILL_) ; 
+  plotBox(wtwo,sc_zstart,DX_MEW,sc_zend,DX_NEW, ORANGE_, FILL_)  
 
-  plotBox(wtwo,sc_zstart,GoalWt-5,sc_zend,GoalWt+5, LIGHTGREEN_,FILL_) ; //
+  plotBox(wtwo,sc_zstart,GoalWt-5,sc_zend,GoalWt+5, LIGHTGREEN_,FILL_)  //
     //Plot(calwo,_WLINE,sc_startday,day_burn,sc_end,day_burn, GREEN_)
 
-  plotLine(calwo,sc_zstart,day_burn,sc_zend,day_burn, GREEN_);
+  plotLine(calwo,sc_zstart,day_burn,sc_zend,day_burn, GREEN_)
 
-  plotLine(calwo,sc_startday,out_cal,sc_end,out_cal, BLUE_);
+  plotLine(calwo,sc_startday,out_cal,sc_end,out_cal, BLUE_)
 
-  plotLine(calwo,sc_startday,in_cal,sc_end,in_cal, RED_);
+  plotLine(calwo,sc_startday,in_cal,sc_end,in_cal, RED_)
 
-  plotLine(calwo,sc_startday,50,sc_end,50, GREEN_);
+  plotLine(calwo,sc_startday,50,sc_end,50, GREEN_)
 
-    plotLine(carbwo,sc_startday,30,sc_end,30, RED_);
+    plotLine(carbwo,sc_startday,30,sc_end,30, RED_)
   
     // use todays date and wt to the intermediate short-term goal
 
-  plotLine(wtwo,last_known_day,last_known_wt,tday2,FirstGoalWt, RED_) ;
+  plotLine(wtwo,last_known_day,last_known_wt,tday2,FirstGoalWt, RED_) 
 
   }
 
   if (ws == 1) {
 
-  //<<[_DB]"$ws $swo $kdays \n";
+  //<<[_DB]"$ws $swo $kdays \n"
 
-  plotLine(swo,0,150,kdays-10,250, BLUE_);
+  plotLine(swo,0,150,kdays-10,250, BLUE_)
 
   }
 
@@ -141,87 +141,87 @@
   //
   // Equinoxes Dec 21, March 21, June 21, Sep 21 -
   // winter ,vernal, midsummer, fall
-  int match[2];
-  int sd;
+  int match[2]
+  int sd
 
-  int k;
+  int k
 
-  int yd;
+  int yd
 
-  int wd;
+  int wd
 
-  int wm = 0;
+  int wm = 0
 
-  float lty = 0;
-//  Str wday = "Mon";
+  float lty = 0
+//  Str wday = "Mon"
   
-  float qfwd = 0.0;
+  float qfwd = 0.0
 
-  RS=wgetrscales(wwo);
+  RS=wgetrscales(wwo)
 // just plot at mid - the date
 
-  mid_date = (RS[3] - RS[1])/2 + RS[1];
+  mid_date = (RS[3] - RS[1])/2 + RS[1]
 
-  float q1_date = (RS[3] - RS[1])/4 + RS[1];
+  float q1_date = (RS[3] - RS[1])/4 + RS[1]
 
-  float q3_date = 3*(RS[3] - RS[1])/4 + RS[1];
+  float q3_date = 3*(RS[3] - RS[1])/4 + RS[1]
 
-  long jd= mid_date +Bday;
+  long jd= mid_date +Bday
 
-//  the_date = julmdy("$jd");
-   the_date = Julmdy(jd);
+//  the_date = julmdy("$jd")
+   the_date = Julmdy(jd)
 
    // use mondays as the date tick
 
 
    //AxText(wwo, 1, the_date, mid_date, -0.25, BLUE_)
 
-  jd= RS[1] + Jan1;
+  jd= RS[1] + Jan1
 
-  the_date = Julmdy(jd);
+  the_date = Julmdy(jd)
   
-  Str mday = spat(the_date, "/",-1,-1, match);
+  Str mday = spat(the_date, "/",-1,-1, match)
   
- // AxText(wwo, 1, mday, q1_date, -0.25, BLUE_);
+ // AxText(wwo, 1, mday, q1_date, -0.25, BLUE_)
 
-  float wdate = RS[1];
+  float wdate = RS[1]
 
-  sWo(_WOID,wwo,_WFONT,"small");
- //  AxText(wwo, 1, the_date, wdate, 0.25, BLUE_);
+  sWo(_WOID,wwo,_WFONT,"small")
+ //  AxText(wwo, 1, the_date, wdate, 0.25, BLUE_)
 
-  int draw_months =1;
+  int draw_months =1
 
-  int mon = (jd +1) % 7;
+  int mon = (jd +1) % 7
 
-  mon = 2 -mon;
-  jd -= mon;
-  wdate -= mon;
+  mon = 2 -mon
+  jd -= mon
+  wdate -= mon
   
   while (draw_months <= 12) {
 
-  jd += 7;
+  jd += 7
 
-  wdate += 7;
+  wdate += 7
 
   if (wdate >= RS[3]) {
 
-     break;
+     break
 
   }
 
-  the_date = Julmdy(jd);
+  the_date = Julmdy(jd)
 
- //wday = Julday(jd);
+ //wday = Julday(jd)
   
- // Str mday = spat(the_date, (char *)"/",-1,-1, match);
-  mday = spat(the_date, "/",-1,-1, match);
+ // Str mday = spat(the_date, (char *)"/",-1,-1, match)
+  mday = spat(the_date, "/",-1,-1, match)
 
- // axisLabel(wwo, 1, mday, wdate, 0.7, BLUE_);
-  AxText(wwo, 1, mday, wdate, -0.25, MAGENTA_);
+ // axisLabel(wwo, 1, mday, wdate, 0.7, BLUE_)
+  AxText(wwo, 1, mday, wdate, -0.25, MAGENTA_)
   
 //   <<"%V $jd $wdate $RS[3] $the_date $mday $wday\n"
 
-  draw_months++;
+  draw_months++
 
   }
 
@@ -230,58 +230,58 @@
 
   void  drawGrids(int  ws )
   {
-    int i,j;
+    int i,j
 // <<[_DB]" $ws \n"
 
   if (ws == 0) {
 
-  //sWo({extwo,calwo,wtwo},_WFONT,"small");
+  //sWo({extwo,calwo,wtwo},_WFONT,"small")
 
-  //sWo(extwo,_WFONT,"small",_WEO); // check font can accept a int or char *;
+  //sWo(extwo,_WFONT,"small",_WEO) // check font can accept a int or char *
 
 
-  sWo(_WOID,carbwo,_WAXNUM,AXIS_LEFT_);
+  sWo(_WOID,carbwo,_WAXNUM,AXIS_LEFT_)
 
-  sWo(_WOID,carbwo,_WYSCALES,wpt(-5,carb_upper),_WSAVESCALES,0);
+  sWo(_WOID,carbwo,_WYSCALES,wpt(-5,carb_upper),_WSAVESCALES,0)
 
-  sWo(_WOID,calwo,_WUSESCALES,0,_WAXNUM,  AXIS_LEFT_);
-//  sWo(carbwo,_WAXNUM,2);
+  sWo(_WOID,calwo,_WUSESCALES,0,_WAXNUM,  AXIS_LEFT_)
+//  sWo(carbwo,_WAXNUM,2)
 
-  sWo(_WOID,extwo,_WYSCALES,wpt(0,upperWt),_WSAVESCALES,1);
+  sWo(_WOID,extwo,_WYSCALES,wpt(0,upperWt),_WSAVESCALES,1)
 
-  sWo(_WOID,extwo,_WAXNUM,AXIS_LEFT_);
+  sWo(_WOID,extwo,_WAXNUM,AXIS_LEFT_)
 
-  sWo(_WOID,wtwo,_WYSCALES,wpt(160,220));
+  sWo(_WOID,wtwo,_WYSCALES,wpt(160,220))
 
-    sWo(_WOID,wtwo,_WAXNUM,AXIS_LEFT_);
+    sWo(_WOID,wtwo,_WAXNUM,AXIS_LEFT_)
   //sWo(extwo,_WAXNUM,2,0,sc_endday,20,10)
-  Text(wtwo, "Weight (lbs)",0.1,1.0,RED_,0,0,2);
+  Text(wtwo, "Weight (lbs)",0.1,1.0,RED_,0,0,2)
 
- // axisLabel(wtwo,AXIS_BOTTOM_,"Weight (lbs)",0.5,1.7);
+ // axisLabel(wtwo,AXIS_BOTTOM_,"Weight (lbs)",0.5,1.7)
 
- // axisLabel(calwo,AXIS_BOTTOM_,"Calories",0.5,1.7);
-   //axisLabel(extwo,AXIS_LEFT_,"Exercise Time (mins)",0.1,0.7); // TBF
+ // axisLabel(calwo,AXIS_BOTTOM_,"Calories",0.5,1.7)
+   //axisLabel(extwo,AXIS_LEFT_,"Exercise Time (mins)",0.1,0.7) // TBF
 
- // axisLabel(extwo,AXIS_LEFT_,"Mins",0.1,4.0); // TBF;
+ // axisLabel(extwo,AXIS_LEFT_,"Mins",0.1,4.0) // TBF
 
- // axisLabel(carbwo,AXIS_LEFT_,"Carbs",0.1,4);
+ // axisLabel(carbwo,AXIS_LEFT_,"Carbs",0.1,4)
  
 
   }
 
   else {
 
-  //axnum(swo,2);
+  //axnum(swo,2)
   //sWo(swo,_WAXNUM,2,150,bp_upper,50,10)
 
-  //sWo(xwo,_WCLIPBORDER,BLACK_,_WSAVE,_WEO);
+  //sWo(xwo,_WCLIPBORDER,BLACK_,_WSAVE,_WEO)
 
   }
-  int allwo[] = {wtwo,swo, calwo,  extwo , carbwo,-1};
+  int allwo[] = {wtwo,swo, calwo,  extwo , carbwo,-1}
     for (i = 0; i< 10; i++) {
       if (allwo[i] <=0)
          break;
-      sWo(_WOID,allwo[i],_WSHOWPIXMAP,ON_,_WSAVE,ON_,_WCLIPBORDER,BLACK_);
+      sWo(_WOID,allwo[i],_WSHOWPIXMAP,ON_,_WSAVE,ON_,_WCLIPBORDER,BLACK_)
     }
   }
 //---------------------------------------------------------------------------------

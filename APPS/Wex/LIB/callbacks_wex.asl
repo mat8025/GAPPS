@@ -1,5 +1,5 @@
 /* 
- *  @script wex_callbacks.asl 
+ *  @script callbacks_wex.asl 
  * 
  *  @comment  
  *  @release CARBON 

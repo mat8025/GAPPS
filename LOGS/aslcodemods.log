@@ -1553,3 +1553,27 @@ preprocess.cpp                      1.10  08/11/2023 08:13:11  auto_dec
 svar_str.cpp                        1.65  08/11/2023 09:10:20  null terminate fix
 prep.cpp                            2.66  08/11/2023 09:11:14  define sub
 svar_read.cpp                       1.62  08/11/2023 15:06:15  fsgets windex alloc check
+dbug.cpp                            1.52  08/11/2023 22:55:38  dbug_accept_named_func,file
+gs_debug.cpp                        1.68  08/12/2023 07:09:05  revise dbug filter
+ds_types.cpp                        1.91  08/12/2023 07:11:02  UNDEF
+firstpass.cpp                       2.38  08/12/2023 07:14:06  tidy
+pr_state.cpp                        1.33  08/12/2023 07:18:07  IDBF
+func_e.cpp                          3.53  08/12/2023 07:19:35  PP
+statex_e.cpp                        1.39  08/12/2023 07:20:50  UNDEF
+parutils.cpp                        1.2  08/12/2023 07:21:54  UNDEF
+parset_t.cpp                        2.89  08/12/2023 07:25:06  IDBF
+parse_args.cpp                      2.21  08/12/2023 07:33:04  mv args_parse parse_args
+sidefs.h                            2.1  08/12/2023 07:37:16  UNDEF
+utils_e.cpp                         2.66  08/12/2023 12:24:04  checkVariables sort
+declare_e.cpp                       2.37  08/12/2023 22:45:21  comma del list declare fix
+preprocess.cpp                      1.11  08/13/2023 09:11:29  use func in PP to get return type for declare
+pfmtexpand.cpp                      1.35  08/13/2023 09:27:06  FIELD 
+findbtw_e.cpp                       2.45  08/13/2023 09:28:09  SVAR FIELD
+preprocess.cpp                      1.12  08/13/2023 09:29:43  SVAR FIELD SPEC
+func_e.cpp                          3.54  08/13/2023 09:32:52  PP allow SF eval
+svar_str.cpp                        1.66  08/13/2023 09:36:49  strSub target
+svar_str.cpp                        1.67  08/13/2023 09:40:09  SVAR_FIELD
+svar_str.cpp                        1.68  08/13/2023 10:37:38  SVAR FIELD
+ds_storesiv.cpp                     1.89  08/13/2023 10:38:31  Store char* str
+num_l.cpp                           2.91  08/13/2023 10:40:04  itoa store
+dbug.cpp                            1.53  08/13/2023 10:42:43  SVAR_FIELD

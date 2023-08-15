@@ -427,7 +427,7 @@ Turnpt A
 
 
 
- A.pinfo()
+  A.pinfo()
 
   A.SetRadio(rad)
 

@@ -263,7 +263,7 @@ while (ac < na) {
 
 #if GT_DB
      printf("setting LD %f ",LoD);
-     LoD.pinfo();
+     pinfo(LoD);
 #endif
 
     }
@@ -385,7 +385,9 @@ while (ac < na) {
     <<"%V $targ $sz $cltpt $CLTPT[cltpt] \n"
     <<"CLTPTs  $CLTPT\n"
     }
-#else
+#endif
+
+#if _CPP_
  CLTPT.cpy(targ,cltpt);
  if (CPP_DB) cout  <<"cltpt "<< cltpt  <<" CLTPT[cltpt] "<< CLTPT[cltpt]  <<endl ; 
 #endif
@@ -882,7 +884,7 @@ while (ac < na) {
 
   Leg[nl] = tkm;
 
-  GT_Wleg[nl].dist = tkm;
+  GT_Wleg[nl].dist = tkm;  // TBF should not try to auto_dec
   
   if (Units == "NM") {
 
@@ -1023,7 +1025,7 @@ while (ac < na) {
 
    }
 
-  GT_Wtp[nl].fga = agl;
+  GT_Wtp[nl].fga = agl; // no auto_dec
 
   tpb = GT_Wtp[nl].Place;
 

@@ -1,5 +1,5 @@
 /* 
- *  @script wex_glines.asl 
+ *  @script glines_wex.asl 
  * 
  *  @comment  
  *  @release CARBON 
@@ -19,29 +19,29 @@
 
 // COUT(pwt_gl)
 
-  ext_gl  = cGl(extwo); // extwo
+  ext_gl  = cGl(extwo) 
 
 // set as XYVECTOR
 
- sGl(_GLID,ext_gl,_GLXVEC,DVEC,_GLYVEC,EXTV,_GLHUE,BLACK_,_GLSYMLINE, DIAMOND_);
+ sGl(_GLID,ext_gl,_GLXVEC,DVEC,_GLYVEC,EXTV,_GLHUE,BLACK_,_GLSYMLINE, DIAMOND_)
 
 //<<"%V $ext_gl \n"
 
-  COUT(ext_gl)
+//  COUT(ext_gl)
 
-  int cardio_gl  = cGl(extwo);
+  int cardio_gl  = cGl(extwo)
 
 
   sGl(_GLID,cardio_gl,_GLXVEC, DVEC,_GLYVEC,CARDIO,_GLHUE,BLUE_,_GLSYMLINE,DIAMOND_);
 
-COUT(cardio_gl)
+//COUT(cardio_gl)
 
   int strength_gl  = cGl(extwo);
 
 
   sGl(_GLID,strength_gl,_GLXVEC,DVEC,_GLYVEC,STRENGTH,_GLHUE,RED_,_GLSYMLINE,STAR5_);
 
-COUT(strength_gl)
+//COUT(strength_gl)
 
  // sGl(ext_gl,_GLSYMSIZE,3,_GLSYMHUE,GREEN_);
 
@@ -56,8 +56,9 @@ COUT(strength_gl)
 
 
   if ((wt_gl == -1)  || (ext_gl == -1)) {
-
-  exit(-1);
+#if _ASL_ 
+   exit(-1);
+#endif
 
   }
 
@@ -66,7 +67,7 @@ COUT(strength_gl)
 //  sGl(gw_gl,_GLTXY,&DVEC,&GVEC,_GLHUE,GREEN_,_GLEO);
 // gw_gl   = cGl(wtwo,_GLTXY,WDVEC,GVEC,_GLHUE,RED_)
 gw_gl = -1;
-COUT(gw_gl)
+//COUT(gw_gl)
 
   bp_gl   = cGl(swo);
 
@@ -83,7 +84,7 @@ COUT(gw_gl)
   sGl(_GLID,calb_gl,_GLXVEC,DVEC,_GLYVEC,CALBURN,_GLHUE,RED_,_GLSYMBOL,DIAMOND_,_GLSYMHUE, RED_);
 // calc_gl = cGl(calwo,_GLTXY,DFVEC,CALCON,_GLHUE,RED_,_GLSYMBOL,"triangle",_GLSYMHUE, BLUE_,GLEO);
 
-COUT(calb_gl)
+//COUT(calb_gl)
 
   calc_gl = cGl(calwo);
 
@@ -93,7 +94,7 @@ COUT(calb_gl)
 
   sGl(_GLID,carb_gl,_GLXVEC,DVEC,_GLYVEC,CARBSCON,_GLHUE,BLUE_,_GLSYMBOL,TRI_,_GLSYMHUE, BROWN_);
 
-COUT(carb_gl)
+//COUT(carb_gl)
 
   fibre_gl = cGl(carbwo);
 
@@ -112,7 +113,8 @@ COUT(carb_gl)
 
   sGl(_GLID,se_gl,_GLXVEC,DVEC,_GLYVEC,SEVEC,_GLHUE,GREEN_,_GLSYMBOL,DIAMOND_);
 
-COUT(se_gl)
+
+// TRANS OK ?
 
   int allgl[] = {bp_gl, ext_gl, se_gl, calb_gl, calc_gl, carb_gl, cardio_gl, wt_gl, strength_gl,-1};  // remove gw_gl
 
@@ -144,20 +146,17 @@ COUT(se_gl)
 
 sGl(_GLID,ext_gl,_GLSYMBOL, DIAMOND_, _GLSYMSIZE, Symsz, _GLSYMHUE,RED_);
 
-  COUT(ext_gl);
+  
 
   sGl(_GLID,cardio_gl,_GLSYMBOL,DIAMOND_);
 
-  COUT(cardio_gl);
+  
 
   sGl(_GLID,strength_gl,_GLSYMBOL, STAR5_);
 
   sGl(_GLID,wt_gl,_GLSYMBOL,TRI_,_GLSYMSIZE, Symsz, _GLSYMHUE,BLUE_);
 
-  COUT(strength_gl);
-
- 
-
+  
 
 
 
@@ -180,7 +179,7 @@ COUT(carb_gl);
 
   sGl(_GLID,prot_gl,_GLSYMBOL,TRI_,_GLSYMHUE,RED_,_GLNAME,"prot");
 
-COUT(prot_gl);
+
 
   sGl(_GLID,bp_gl,_GLSYMBOL,ITRI_);
 //  CURSORS

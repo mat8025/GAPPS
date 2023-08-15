@@ -69,7 +69,7 @@ class Tleg
 
  cmf ~Tleg()   
  {
-    <<"destructing Tleg \n"
+    //<<"destructing Tleg \n"
  }
 };   // need ;
 
@@ -319,3 +319,7 @@ cmf Turnpt()
 //======================================//
 
 #endif
+
+
+
+//==============\_(^-^)_/===EOS==============//

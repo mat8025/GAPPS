@@ -21,9 +21,9 @@
 //<<"loading gevent.asl \n"
 
 
-Gevent Gev; // event type - can inspect for all event attributes
+  Gevent Gev; // event type - can inspect for all event attributes
 
-Gev.pinfo();
+  Gev.pinfo();
 
 Vec<int> WPOS__( 16);
 Vec<int> MPOS__( 16);

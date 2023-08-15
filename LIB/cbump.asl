@@ -2,15 +2,16 @@
  *  @script cbump.asl                                                   
  * 
  *  @comment                                                            
- *  @release Beryllium                                                  
- *  @vers 1.10 Ne Neon [asl 6.4.52 C-Be-Te]                             
- *  @date 07/28/2022 10:51:42                                           
+ *  @release Sulfur                                                     
+ *  @vers 1.11 Na Sodium [asl 5.16 : B S]                               
+ *  @date 08/13/2023 10:43:54                                           
  *  @cdate Sun Dec 23 09:22:34 2018                                     
  *  @author Mark Terry                                                  
- *  @Copyright © RootMeanSquare 2022 -->                               
+ *  @Copyright © RootMeanSquare 2023 -->                               
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                  
+
+                                                                       
   
   Str Vers2ele(Str& vstr)
   {
@@ -105,10 +106,22 @@
 
 
   release = "";
-
+  release.pinfo()
   TR = Split(split(getversion()),".")
 
-  release = ptname(TR[1]);
+<<"%V $TR[0]  $TR[1]\n"
+  k= ptan(ptname(TR[0]))
+ //k.pinfo()
+//<<"%V $k \n"
+ // release = itoa(k)
+ 
+//<<"%V $release \n"
+ release.pinfo()
+  release = scat(itoa(ptan(ptname(TR[0]))),".",itoa(ptan(ptname(TR[1])))," ",ptname(TR[0]),"_",ptname(TR[1]));
+
+<<"%V $release \n"
+
+
 
   B= ofile(srcfile,"r")
   Svar X;
@@ -287,7 +300,7 @@ if (found_vers) {
  <<[2]"///  @vers $release ${pmaj}.$pmin ${maj_ele}.$min_ele $min_name    \n"
 
 
-   vers=" @vers ${pmaj}.$pmin $min_ele $min_name $(getversion())"
+   vers=" @vers ${pmaj}.$pmin $min_ele $min_name "
    vlen = slen(vers);
 
 
