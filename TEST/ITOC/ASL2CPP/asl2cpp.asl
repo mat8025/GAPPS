@@ -58,7 +58,21 @@ const float  nm2km_ = 1.852
 
 #include "inc1.asl"
 
+void setScreen()
+{
+  bX = 0.4
+ yht = 0.2
+ ypad = 0.05
 
+ bY = 0.95
+ by = bY - yht
+
+ bY = by - ypad // FIX no semi
+   by = bY - yht
+ 
+
+<<" %V $bY $by $ypad \n"
+}
 
 #define ASZ 10
 int N = 12
@@ -133,7 +147,6 @@ float MidLat
    
 <<"%V $k ==>$release\n"
 
-exit(-1)
 
 
    m = 92

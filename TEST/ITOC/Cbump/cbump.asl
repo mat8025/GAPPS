@@ -1,56 +1,35 @@
 /* 
- *  @script cbump.asl 
+ *  @script cbump.asl                                                   
  * 
- *  @comment  
- *  @release CARBON 
- *  @vers 1.9 F 6.3.79 C-Li-Au 
- *  @date 02/02/2022 12:55:03          
- *  @cdate Sun Dec 23 09:22:34 2018 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare 2022
+ *  @comment                                                            
+ *  @release Sulfur                                                     
+ *  @vers 1.11 Na Sodium [asl 5.16 : B S]                               
+ *  @date 08/13/2023 10:43:54                                           
+ *  @cdate Sun Dec 23 09:22:34 2018                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2023 -->                               
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                              
 
-
-
-
-//  Str Vers2ele(Str& vstr)  4/29/23  ref proc arg broke
-//  arg passing type name !
-
- Str Vers2ele(Str& vstr)  
+                                                                       
+  
+  Str Vers2ele(Str& vstr)
   {
   
    pmaj = atoi(spat(vstr,"."))
    pmin = atoi(spat(vstr,".",1))
-
-
-
-  <<" $pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
-
-
-
+  <<[2]"%V $pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
    elestr = pt(pmin);
-   Str ele =" ";
+   str ele =" ";
    ele = spat(elestr,",")
   //<<"$ele $(typeof(ele))\n";
-
-
+  //<<"$ele";
    return ele;
    
   }
   //======================
  int  A=-1;
 
-  Str cvers = "xyz";
-  cvers.pinfo();
-  cvers = getversion()
-
-<<"%V $cvers \n"
-a=iread("???")
-
-
-exit(-1);
 
  // ? read the entire file into an Svar
  // write the new hdr into a new file
@@ -127,13 +106,22 @@ exit(-1);
 
 
   release = "";
-
-
+  release.pinfo()
   TR = Split(split(getversion()),".")
 
-  TR.pinfo();
-  
-  release = ptname(TR[1]);
+<<"%V $TR[0]  $TR[1]\n"
+  k= ptan(ptname(TR[0]))
+ //k.pinfo()
+//<<"%V $k \n"
+ // release = itoa(k)
+ 
+//<<"%V $release \n"
+ release.pinfo()
+  release = scat(itoa(ptan(ptname(TR[0]))),".",itoa(ptan(ptname(TR[1])))," ",ptname(TR[0]),"_",ptname(TR[1]));
+
+<<"%V $release \n"
+
+
 
   B= ofile(srcfile,"r")
   Svar X;
@@ -164,22 +152,23 @@ exit(-1);
   //<<"%(1,,,)$T\n"
   
 Str comment ="xxx";
-
 long where;
 
-
+where.pinfo()
 
 
 Str T;
-//  sdb(1,"step");
+
 T.pinfo();
 
 Str Pad;
 
+
+
 Svar L;
 
  L.pinfo()
-
+ pinfo(L)
 
 
 
@@ -198,17 +187,15 @@ Str old_comment ="yyy"
 
     T = readline(A);
    
-<<[2]"$i line is $T \n"
+//<<[2]"$i line is $T \n"
    if (i ==2) {
      old_comment =T;
    }
    where = ftell(A)
 
    sz = Caz(L);
-<<"Lsz $sz\n"
-
- //   L[0:-1:1] = ""; // this is Svar clear fields
-
+//<<"Lsz $sz\n"
+    L[0:-1:1] = "";
 //<<"clear L $L\n"
 
    L.Split(T);
@@ -225,7 +212,6 @@ Str old_comment ="yyy"
    }
     else if (scmp(L[1],"@cdate")) {
      cdate = "$L[2:-1:1]";
-
 <<"found cdate  $L\n"     
 <<[2]"%V$cdate  $L[2]\n"     
    }
@@ -252,18 +238,13 @@ Str old_comment ="yyy"
 
 
     if (spat(L[0],"///////<v_&_v>//") != "") {
-
-<<"@header end? line $i so break\n"
-
-<<"breaking \n";
+<<"@header end? line $i\n"
       break;
     }
 
 }
 
    where = ftell(A);
-
-<<"%V $found_vers $where \n"
 
    int end_ln = i;
 /*
@@ -319,7 +300,7 @@ if (found_vers) {
  <<[2]"///  @vers $release ${pmaj}.$pmin ${maj_ele}.$min_ele $min_name    \n"
 
 
-   vers=" @vers ${pmaj}.$pmin $min_ele $min_name $(getversion())"
+   vers=" @vers ${pmaj}.$pmin $min_ele $min_name "
    vlen = slen(vers);
 
 
@@ -360,6 +341,7 @@ A=ofile(srcfile,"w")
 // which line is end of old hdr?
 //<<"%V $end_ln\n"
 
+
  Y = X[end_ln:-1:1];
 
  D=ofile("stem","w");
@@ -368,7 +350,6 @@ A=ofile(srcfile,"w")
   ysz= Y.getSize();
 
 <<"%V$ysz \n";
-
    Y.write(D);
  //wfile(D,Y);
 //  wfile(D,Y[2]);

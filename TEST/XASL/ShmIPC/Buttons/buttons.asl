@@ -14,7 +14,7 @@
 
 
 
-Str Use_= "  test the buttons";
+
 
 #define _CPP_ 0
 
@@ -24,21 +24,33 @@ Str Use_= "  test the buttons";
 
 using namespace std;
 #include "vargs.h"
-#include "cpp_head.h" 
+#include "utils.h"
+#include "vec.h"
+//#include "uac.h"
+#include "cppi.h"
 #include "consts.h"
 #define PXS  cout<<
+
+// GRAPHICS
+#include "gline.h"
+#include "glargs.h"
+#include "winargs.h"
+#include "woargs.h"
+#include "gevent.h"
+
+
+
+
+
 #endif
 
+Str Use_= "  test the buttons";
 
-Graphic = checkGWM()
+//Graphic = checkGWM()
 
-#if _ASL_
-  if (!Graphic) {
-    Xgm_pid = spawnGWM()
-<<"xgs pid ? $Xgm_pid \n"
-  }
-  Graphic = checkGWM()
-#endif
+int Graphic = 0;
+Str woname;
+
 
 
 #include "tbqrd.asl"
@@ -48,133 +60,32 @@ Graphic = checkGWM()
 
 
 
-void processKeys()
-{
-
-int key
-
-      key = Gev.getEventKey()
-      
-<<" key $key \n"
-
-       switch (key) {
-
-       case 'R':
-       {
-       sWo(_WOID,symwo,_WMOVE,wpt(0,2),_WREDRAW)
-       sWo(_WOID,two,_WTEXTR,"R RMOVE 2 ",0.1,0.2)
-       }
-       break;
-
-       case 'T':
-       {
-       sWo(_WOID,symwo,_WMOVE,wpt(0,-2),_WREDRAW)
-       sWo(_WOID,two,_WTEXTR,"T RMOVE -2 ",0.1,0.2)
-       }
-       break;
-
-       case 'Q':
-       {
-       sWo(_WOID,symwo,_WMOVE,wpt(-2,0),_WREDRAW)
-       sWo(_WOID,two,_WTEXTR,"Q RMOVE -2 ",0.1,0.2)
-       }
-       break;
-
-       case 'S':
-       {
-       sWo(_WOID,symwo,_WMOVE,wpt(2,0,)_WREDRAW)
-       sWo(_WOID,two,_WTEXTR,"S RMOVE 2 ",0.1,0.2)
-       }
-       break;
-
-       case 'h':
-       {
-       sWo(_WOID,symwo,_WHIDE,ON_)
-       setgwindow(vp2,_WREDRAW)
-       }
-       break;
-
-       case 's':
-       {
-       sWo(_WOID,symwo,_WSHOW,ON_)
-       setgwindow(vp2,_WREDRAW)
-       }
-       break;
-
-      }
-}
-//---------------------------------------------------------------------
-
-
-
-void do_sketch()
-{
-   sWo(_WOID,bsketchwo,_WCLEAR,ON_,_WPLOTLINE,wbox(0.1,0.1,0.8,yp,RED_))
-   sWo(_WOID,bsketchwo,_WPLOTLINE,wbox(0.1,yp,0.8,0.1,BLUE_))
-   axnum(bsketchwo,1)
-   axnum(bsketchwo,2)
-
-   sWo(_WOID,grwo,_WCLEARCLIP,ON_,_WCLIPBORDER,ON_,_WPLOTLINE,wbox(xp,0.1,0.5,0.5,GREEN_))
-   sWo(_WOID,grwo,_WPLOTLINE,wbox(xp,0.5,0.5,0.1,BLACK_))
-
-   xp += 0.05
-   yp += 0.05
-
-   zp = xp + yp
-
-   if (xp > 0.7) { 
-       xp = 0.1
-   }
-
-   if (yp > 0.9) {
-      yp = 0.1
-   }
- } 
-//-------------------------------------------------------
-
-int FRUIT(int val)
-{
-
-  <<"want a fruit? $val\n"
-
-}
-
-
-int BOATS(int val)
-{
-  if (val == 1)   <<"want to sail a boat? $val\n"
-
-   if (val == 3)   <<"want to buy a boat? $val\n"
-
-}
-
-
-
-
-
-int  QUIT(int val)
-{
- //exitgs();
- <<"$val kill xgs now exit!\n";
-  exit(-1)
-
-}
-
-void tb_q()
-{
-<<"expecting sig1 signal\n";
-}
+  
 
 
 #if _CPP_
 
 int main( int argc, char *argv[] ) { // main start
+        cpp_init();
+init_debug ("cpp_debug.txt", 1, "1.7");
+       int our_pid = getpid();
+       printf("our pid %d\n",our_pid);
 ///
 #endif               
 
 
-    rsig=checkTerm();
-    <<"%V$rsig \n";
+  if (!Graphic) {
+    Xgm_pid = spawnGWM("Buttons")
+<<"xgs pid ? $Xgm_pid \n"
+  }
+       printf("our pid %d\n",our_pid);
+  Graphic = checkGWM()
+
+<<"%V $Graphic \n"
+
+
+//    rsig=checkTerm();   // TBF
+//    <<"%V$rsig \n";
 
 
 ////////////////////////////////////
@@ -182,16 +93,22 @@ int main( int argc, char *argv[] ) { // main start
 
 // TBF Gev; name instead of Gev  Gevent Gev; // event type - can inspect for all event attributes
 
-  Gevent Gev
+  
+  Gevent Gev ;
 
   Gev.pinfo();
 
+  setScreen()
 
 //#include "gevent.asl"
 // our Gevent variable - holds last message
                             // could use another or an array to compare events
 
 //sWi( allwins ,_WREDRAW,ON_)
+int b
+
+   int fhue =1;
+   int bhue = 3;
 
    while (Graphic) {
 
@@ -207,21 +124,26 @@ int main( int argc, char *argv[] ) { // main start
       break;
       }
 */
-      sWo(_WOID,two,_WTEXTHUE,BLACK_,_WCLEAR,ON_)
+    //  sWo(_WOID,two,_WTEXTHUE,BLACK_,_WCLEAR,ON_)
 
      
 
       b= Gev.getEventButton();
      
       woname = Gev.getEventName();
-      Textr(two, "$b ",-0.9,0.5);
+     // Textr(two, "$b ",-0.9,0.5);  // TBF no cpp
 
-       Textr(two, " $woname $b ",-0.9,0);
-
-
-      processKeys()
+     //  Textr(two, " $woname $b ",-0.9,0);
 
 
+     // processKeys(Gev.getEventKey())
+      sWo(_WOID,lwo,_WFHUE,fhue,_WCLIPBHUE,bhue,_WREDRAW,ON_)
+
+      fhue += 1
+      bhue +=2
+      if (fhue > 10)  fhue = 1;
+      if (bhue > 10)  bhue = 1;
+      
 /*
      if (GEV__name == "PRESS") {
 

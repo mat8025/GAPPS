@@ -161,7 +161,7 @@ void eventWait()
      
      GEV__woid=Gev.getEventWoid();
 
-<<" %V $GEV__button $GEV_keyw $GEV__woid $GEV__rx $GEV__ry\n"     
+<<" %V $GEV__button $GEV__keyw $GEV__woid $GEV__rx $GEV__ry\n"     
 
      eventDecode();
 /*     

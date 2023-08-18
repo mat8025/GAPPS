@@ -295,7 +295,7 @@
 //<<" $_proc \n"
 
 
-DBA"%V $sc_startday  $sc_end \n";
+<<"%V $sc_startday  $sc_end \n";
 
 
 // sc_startday.pinfo()
