@@ -68,8 +68,7 @@ Str woname;
 int main( int argc, char *argv[] ) { // main start
         cpp_init();
 init_debug ("cpp_debug.txt", 1, "1.7");
-       int our_pid = getpid();
-       printf("our pid %d\n",our_pid);
+
 ///
 #endif               
 
@@ -78,7 +77,10 @@ init_debug ("cpp_debug.txt", 1, "1.7");
     Xgm_pid = spawnGWM("Buttons")
 <<"xgs pid ? $Xgm_pid \n"
   }
+
+       int our_pid = getpid();
        printf("our pid %d\n",our_pid);
+
   Graphic = checkGWM()
 
 <<"%V $Graphic \n"
@@ -137,12 +139,14 @@ int b
 
 
      // processKeys(Gev.getEventKey())
-      sWo(_WOID,lwo,_WFHUE,fhue,_WCLIPBHUE,bhue,_WREDRAW,ON_)
+      sWo(_WOID,lwo,_WBORDER, bhue+1,_WFHUE,fhue,_WCLIPBHUE,bhue,_WREDRAW,ON_)
 
       fhue += 1
       bhue +=2
-      if (fhue > 10)  fhue = 1;
-      if (bhue > 10)  bhue = 1;
+      if (fhue > 30)  fhue = 1
+      
+      if (bhue > 30)
+          bhue = 1
       
 /*
      if (GEV__name == "PRESS") {
