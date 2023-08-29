@@ -354,9 +354,9 @@ while (ac < na) {
 
   if (targ == "tasklist") {
 
-  show_dist = 0;
+  show_dist = 0
 
-  show_title = 0;
+  show_title = 0
 
   istpt = 0;
 
@@ -406,7 +406,7 @@ while (ac < na) {
 
 
 
-  float N = 0.0;
+  float N = 0.0
   int ki;
   int cnttpt = 0;
   int input_lat_long = 0;
@@ -533,7 +533,7 @@ while (ac < na) {
 
   if (via_keyb) {
 
-   w=pclFile(AFH);
+   w=pclFile(AFH)
 
    }
 

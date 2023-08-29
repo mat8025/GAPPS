@@ -655,7 +655,7 @@ float ae = EXTV[15];
 
 //  <<" %(1,,,\n) $EXTV \n"
 
- titleMessage("Tomorrow's wt will be $PWT1 +week $PWT7  + month $PWT30")
+ titleMessage("Tomorrow's wt will be %6.2f $PWT1 +week $PWT7  + month $PWT30")
 
 
 int nevent = 0;

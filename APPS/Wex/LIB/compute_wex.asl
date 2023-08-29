@@ -150,12 +150,12 @@ float PWT = 0.0; // tomorrow
 
 float predictWL()
 {
-float pw;
-Vec<float> pwl(10);
+double pw;
+Vec<double> pwl(10);
 pwl[0] = 0.0;
 pwl[1] = 1.0;
-float xv[5];
-float yv[5];
+double xv[5];
+double yv[5];
 int i;
 int k = Yday-2; // 
 
@@ -176,15 +176,20 @@ int k = Yday-2; //
 //   <<"pwl $pwl \n"
    // next day prediction
 
-    pw = yv[0] + (pwl[1] *3);
+    pw1 = yv[0] + (pwl[1] *3);
+
+    pw = fround((yv[0] + (pwl[1] *3)),2);
+
+
     PWT1 = pw;
-    PWT7 = yv[0] + (pwl[1] * 9);
+    PWT7 = (yv[0] + (pwl[1] * 9));
     PWT14 = yv[0] + (pwl[1] * 16);
-    PWT30 = yv[0] + (pwl[1] * 30);
-    
+    PWT30 =  yv[0] + (pwl[1] * 30);
+
+
   }
 
-<<"\n Tomorrow's wt will be $pw +week $PWT7  + month $PWT30\n"
+<<"\n Tomorrow's wt will be %6.2f $pw +week $PWT7  + month $PWT30\n"
 
 
 

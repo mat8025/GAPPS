@@ -1580,3 +1580,15 @@ dbug.cpp                            1.53  08/13/2023 10:42:43  SVAR_FIELD
 swinwob.h                           1.3  08/17/2023 09:38:50  get_gs_home
 pr_state.cpp                        1.34  08/17/2023 10:46:56  EXP
 interact_w.cpp                      1.24  08/18/2023 12:31:29  activate wob check
+gevent.h                            1.4  08/19/2023 12:54:46  getEventMsg
+df.h                                1.78  08/19/2023 19:09:42  TEXTR 
+parse_hop.cpp                       0.1  08/20/2023 11:56:10  TEXTR
+parse_hop.cpp                       1.53  08/20/2023 11:57:26  tidy
+textr.h                             1.2  08/20/2023 11:58:37  set type
+createv_e.cpp                       1.7  08/20/2023 11:59:29  TEXTR
+wo_set_p.cpp                        1.95  08/20/2023 12:00:41  WTEXTR
+tokget.cpp                          1.76    hook up pt_result
+str.h                               1.7    remove sivp ptr
+func_e.cpp                          3.55    lookUpSFunc
+svar_find.cpp                       1.68    findVal,findPat
+svar.h                              2.6    findVal,findPat

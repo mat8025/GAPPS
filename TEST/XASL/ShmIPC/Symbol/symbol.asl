@@ -11,66 +11,137 @@
 //* 
 //***********************************************%
 
-include "debug.asl"
-include "hv.asl"
-include "graphic"
-include "gevent"
 
-//debugON()
+#define _CPP_ 0
 
+#if _CPP_
+#include <iostream>
+#include <ostream>
 
+using namespace std;
+#include "color.h"
+#include "tagdefs.h"
+#include "vargs.h"
+#include "utils.h"
+#include "vec.h"
+#include  "textr.h"
+//#include "uac.h"
+#include "cppi.h"
+#include "consts.h"
+#define PXS  cout<<
 
+// GRAPHICS
+#include "gline.h"
+#include "glargs.h"
+#include "winargs.h"
+#include "woargs.h"
+#include "event.h"
+#include "gevent.h"
 
-   vp = cWi(@title,"SYMBOL",@resize,0.0,0.0,0.9,0.9,0);
-
-   sWi(vp,@pixmapon,@drawon,@bhue,WHITE_,@save,@savepixmap);
-
-   titleButtonsQRD(vp);
-   titleVers();
-   
-    msgwo=cWo(vp,@text,@name,"COOR",@VALUE,"0.0 0.0",@color,WHITE_,@resize,0.35,0.81,0.9,0.99)
-
-    sWo(msgwo,@border,@drawon,@clipborder,@fonthue,RED_, @pixmapoff,@redraw,@save)
-
-    rwo=cWo(vp,@symbol,@resize,0.0,0.0,0.3,0.3,@name,"RED",@value,1.0,@clip,0.01,0.01,0.99,0.99)
-
-    sWo(rwo,@color,"red",@penhue,"black",@symbol,"diamond")
-
-    sWo(rwo,@drawoff,@pixmapon,@redraw,@save,@savepixmap)
-
-
-    gwo=cWo(vp,@symbol, @resize,0.5,0.1,0.9,0.6,@name,"green",@value,1.0)
-
- //sWo(gwo,@color,GREEN_,@penhue,"black",@symbol,"diamond")
-    sWo(gwo,@color,GREEN_,@penhue,BLACK_,@symbol,"diamond")
-
-    sWo(gwo,@drawon,@pixmapoff,@redraw,@save,@savepixmap)
+#endif
 
 
+Str Use_= "  test the symbols"
+
+int Graphic = 0;
+Str woname;
+
+Str vers ="1.10"
 
 
+#include "tbqrd.asl"
 
-sym_size = 7;
+#include "screen_symbol.asl"
 
-// message info
-symbol_name = "diamond"
-int ang = 0
-int symbol_num = 0;
+#if _CPP_
+
+int main( int argc, char *argv[] ) { // main start
+        cpp_init();
+init_debug ("symbol.dbg", 1, "1.1");
+
+///
+#endif               
+
+
 uint n_msg = 0;
 
 
-     while (1) {
+ Gevent Gev ;
 
-      eventWait();
+  Gev.pinfo();
+
+
+
+
+ if (!Graphic) {
+    Xgm_pid = spawnGWM("Symbols")
+<<"xgs pid ? $Xgm_pid \n"
+  }
+
+     int our_pid = getpid();
+       printf("our pid %d\n",our_pid);
+
+  Graphic = checkGWM()
+
+<<"%V $Graphic \n"
+
+ int k =0;
+
+    ang = 0
+    symbol_num = 0;
+    sym_size = 5;
+Str symbol_name = "diamond"
+
+
+ setScreen()
+ Str evname;
+ n_msg = 0
+ float MFV[32]
+ int etype
+ int ebutton;
+ int txt_hue = 1;
+ Str ans;
+ 
+  Textr tr 
+  tr.pinfo();
+
+
+
+ 
+ Str ins = "A very long piece of string can get tangled up really easily"
+
+  tr.setTextr(ins, 0.2,0.3, txt_hue)
+
+       ans = tr.getTxt();
+
+ <<" %V $ans \n"
+ins = "%V $symbol_num $symbol_name $ang  $sym_size"
+
+  tr.setTextr(ins, 0.4, 0.5, RED_, 1, 0);
+     
+       ans = tr.getTxt();
+
+ <<" %V $ans \n"
+tr.pinfo();
+
+
+
+   while (Graphic) {
+
+      Gev.eventWait();
+
       n_msg++
+      evname = Gev.getEventName()
+      etype = Gev.getEventType()
+      ebutton = Gev.getEventButton()       
 
-//<<"%V$_ewoname  $_ekeyw $_etype\n";
+   <<"%V$evname $etype $ebutton\n";
+
+       
+   if ( etype == PRESS_   && ebutton != 2) {
 
 
-   if (_etype  == PRESS_) {
-
-
-       sWo(msgwo,@clear,@clipborder,BLUE_,@textr,_emsg,0.0,0.7)
+       //sWo(_WOID, msgwo,_WCLEAR,ON_,_WTEXTR,_emsg,wpt(0.1,0.7))
 
          
      if (symbol_num > 20) {
@@ -81,30 +152,38 @@ uint n_msg = 0;
          symbol_num = 0;
      }
 
-     if (_ebutton == 3) {
-        ang += 10;
+     if (ebutton == 3) {
+        ang += 5;
         if (ang > 360) {
             ang = 0;
         }
      }
-     else if (_ebutton == 2) {
+     else if (ebutton == 2) {
        symbol_num--
        //symbol_name = "diamond"
      }
-     else if (_ebutton == 4) {
+     else if (ebutton == 4) {
        sym_size-- ;
      }
-     else if (_ebutton == 5) {
+     else if (ebutton == 5) {
        sym_size++ ;
      }
-     else if (_ebutton == 1) {
+     else if (ebutton == 1) {
        symbol_num++;
        if (sym_size > 99) {
            sym_size = 1;
        }
 
-       symbol_name = getSymbolName(symbol_num);
-       titleMsg("$symbol_name");
+<<"%V $symbol_num\n"
+  //     MFV= getMouseEvent()
+
+//<<" %V $MFV \n"
+
+
+       symbol_name = getSymbolName(symbol_num);  // need cpp vers
+<<"%V $symbol_name\n"
+
+      // titleMsg("$symbol_name");
      if (symbol_num > 20) {
          symbol_num = 1;
      }
@@ -113,17 +192,49 @@ uint n_msg = 0;
 
      }
      
+     for (k= 0; k < 360; k+= 45) {
+     sWo(_WOID,rwo,_WDRAW,OFF_,_WCLEARPIXMAP,ON_,_WBORDER, MAGENTA_)
+     sWo(_WOID,rwo,_WSYMBOL,symbol_num,_WSYMSIZE,sym_size,_WSYMANG,ang,_WREDRAW,ON_)
+     sWo(_WOID,rwo,_WSHOWPIXMAP,ON_)
 
-     sWo(rwo,@drawoff,@clearpixmap)
-     sWo(rwo,@color,"yellow",@penhue,"black",@symbolshape,symbol_num,@symsize,sym_size,@symang,ang,@redraw)
-     sWo(rwo,@showpixmap)
+     sWo(_WOID,gwo,_WDRAW,OFF_,_WCLEARPIXMAP,ON_,_WBORDER,LILAC_)
+     //sWo(_WOID,gwo,_WDRAW,ON_,_WCLEAR,ON_)
+      sWo(_WOID,gwo,_WSYMBOL,symbol_num+1,_WSYMSIZE,sym_size,_WSYMANG,ang,_WREDRAW,ON_)
+      sWo(_WOID,gwo,_WSHOWPIXMAP,ON_)
+// TBF need TextR class
+       ang += 45
+       if (ang > 360) ang = 0
 
-     sWo(gwo,@drawoff,@clearpixmap,@pixmapoff)
-     sWo(gwo,@drawon,@clear)
-     sWo(gwo,@color,"magenta",@penhue,"brown",@symbolshape,symbol_num+1,@symsize,sym_size,@symang,ang,@redraw)
-    // sWo(gwo,@showpixmap)
+<<" Setting textr obj with  %V $symbol_num $symbol_name $ang  $sym_size\n"
+       ans = "%V $symbol_num $symbol_name $ang  $sym_size"
+       tr.setTextr(ans, 0.05,0.3, txt_hue)
+       ans = tr.getTxt();
 
-     sWo(msgwo,@textr,"%V$symbol_num $symbol_name $ang  $sym_size",0.0,0.1)
+
+ <<" %V $ans \n"
+         tr.pinfo()
+	 ans = tr.getTxt();
+
+
+ <<" %V $ans \n"
+        sWo(_WOID,msgwo,_WCLEARCLIP,PINK_,_WTEXTR, &tr)
+	
+	txt_hue++ 
+	
+	if (txt_hue > 16) txt_hue = 0
+
 
      }
+     }
 }
+
+
+//exit_gs(0);
+exit(0); 
+#if _CPP_              
+  //////////////////////////////////
+  exit(-1);
+ }  /// end of C++ main   
+#endif               
+
+ 

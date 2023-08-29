@@ -437,3 +437,4 @@ consts.asl               1.2	08/01/2023 08:03:27 change to name_ from _name
 tsk_ootlib.asl           4.6	08/11/2023 15:59:39 tidy - for cpp trans
 tsk_tpclass.asl          1.6	08/11/2023 16:35:59 tidy
 cbump.asl                1.11	08/13/2023 10:43:54 vers number
+bops.asl                 1.10	08/28/2023 07:09:12 cpp

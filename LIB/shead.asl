@@ -29,7 +29,8 @@
     
    }
    //======================
-   
+
+   int new_main = 0;
    A= -1;
    int BERR=ofw("err_shead");  // error file err	
    // if script found
@@ -227,8 +228,9 @@ if (found_vers) {
 
 
 
-
+ if ( new_main ) {
 if (is_asl_script) {
+
 <<[A]"Str Use_= \" Demo  of $comment \";";
 <<[A]"\n"
 
@@ -246,6 +248,7 @@ if (is_asl_script) {
 
 fflush(A)
 }
+}
 //<<"now tack on file %V $tsz\n"
    for (i = 0; i < tsz; i++) {
     ln = T[i];
@@ -254,8 +257,9 @@ fflush(A)
 //   <<[2]"$ln\n"
    }
 //<<[A]"$T[i]"  // bug
+ if (new_main) {
    <<[A]"\n\n///\n\n chkOut();\n\n  exit();\n\n///----------(^-^)----------\\\\\\\n"
-
+}
    fflush(A)
    cf(A)
 

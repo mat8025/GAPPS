@@ -94,7 +94,7 @@
 
 
 
-  float computeGCD(float la1,float la2,float lo1,float lo2)
+  float computeGCD(float la1,float la2,float lon1,float lon2)
   {
 ///  input lat and long degrees - GCD in km
   float rL1,rL2,rlo1,rlo2,D,km
@@ -104,9 +104,9 @@
 
   rL2 = d2r(la2)
 
-  rlo1 = d2r(lo1)
+  rlo1 = d2r(lon1)
 
-  rlo2 = d2r(lo2)
+  rlo2 = d2r(lon2)
 
   D= acos (sin(rL1) * sin(rL2) + cos(rL1) * cos(rL2) * cos(rlo1-rlo2))
 
@@ -429,8 +429,8 @@ ssele= IGCELE.stats()
   //wtp.pinfo()
   float km = 0.0
   float tc = 0.0
-  float L1,L2,lo1,lo2
-
+  float L1,L2,clo1,clo2
+// TBF 08/28/23 translate should ignore redefine? or  delete proc vars at proc end
   
   L1 = wtp[j].Ladeg  // auto dec from definition  of Turnpt not coded
 
@@ -438,14 +438,14 @@ ssele= IGCELE.stats()
 
 //<<"%V $L1 $L2 \n"
 
-  lo1 = wtp[j].Longdeg
+  clo1 = wtp[j].Longdeg
 
-  lo2 = wtp[k].Longdeg
+  clo2 = wtp[k].Longdeg
 
 //<<"%V $lo1 $lo2 \n"
 //  tc = TrueCourse(L1,lo1,L2,lo2)
 
-  tc = TrueCourse(lo1,L1,lo2,L2)
+  tc = TrueCourse(clo1,L1,clo2,L2)
 
   //printargs(j, k ,L1 ,lo2 ,"tc=", tc)
 //<<"%V $tc\n"
