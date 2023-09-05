@@ -46,12 +46,16 @@ Str Use_= "  test the symbols"
 int Graphic = 0;
 Str woname;
 
-Str vers ="1.10"
+Str myvers ="1.10"
 
 
 #include "tbqrd.asl"
 
+#include "globals_symbol.asl"
+
 #include "screen_symbol.asl"
+
+
 
 #if _CPP_
 
@@ -63,14 +67,19 @@ init_debug ("symbol.dbg", 1, "1.1");
 #endif               
 
 
-uint n_msg = 0;
+
 
 
  Gevent Gev ;
 
   Gev.pinfo();
 
+  Textr tr 
 
+ 
+   Str ins = "A very long piece of string can get tangled up really easily"
+
+   tr.setTextr(ins, 0.2,0.3, txt_hue)
 
 
  if (!Graphic) {
@@ -84,45 +93,22 @@ uint n_msg = 0;
   Graphic = checkGWM()
 
 <<"%V $Graphic \n"
-
- int k =0;
-
-    ang = 0
-    symbol_num = 0;
-    sym_size = 5;
-Str symbol_name = "diamond"
-
-
- setScreen()
- Str evname;
- n_msg = 0
- float MFV[32]
- int etype
- int ebutton;
- int txt_hue = 1;
- Str ans;
+    setScreen()
  
-  Textr tr 
-  tr.pinfo();
 
+     tr.setTextr(ins, 0.2,0.3, txt_hue) ;
+    
+//tr.pinfo();
 
-
- 
- Str ins = "A very long piece of string can get tangled up really easily"
-
-  tr.setTextr(ins, 0.2,0.3, txt_hue)
-
-       ans = tr.getTxt();
-
- <<" %V $ans \n"
-ins = "%V $symbol_num $symbol_name $ang  $sym_size"
+    <<" %V $ans \n"
+    ins = "%V $symbol_num $symbol_name $ang  $sym_size"
 
   tr.setTextr(ins, 0.4, 0.5, RED_, 1, 0);
      
        ans = tr.getTxt();
 
  <<" %V $ans \n"
-tr.pinfo();
+    tr.pinfo();
 
 
 
@@ -205,8 +191,18 @@ tr.pinfo();
        ang += 45
        if (ang > 360) ang = 0
 
-<<" Setting textr obj with  %V $symbol_num $symbol_name $ang  $sym_size\n"
-       ans = "%V $symbol_num $symbol_name $ang  $sym_size"
+//<<" Setting textr obj with  %V $symbol_num $symbol_name $ang  $sym_size\n"
+
+        // this needs to paramexpand
+       // ans = "%V $symbol_num $symbol_name $ang  $sym_size"
+
+      ans = vex(<<"%V  $symbol_num  $symbol_name  $ang  $sym_size") ;
+
+ <<"vex  %V $ans \n"
+
+    //ans = <<"%V $symbol_num $symbol_name $ang  $sym_size"
+
+
        tr.setTextr(ans, 0.05,0.3, txt_hue)
        ans = tr.getTxt();
 
@@ -237,4 +233,4 @@ exit(0);
  }  /// end of C++ main   
 #endif               
 
- 
+ //==============\_(^-^)_/==================//

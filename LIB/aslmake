@@ -29,8 +29,10 @@ LDADD = -L$(gasp_sys)/lib  \
 	-lpan_asl \
 	-lgscom_asl \
 	-lwcom_asl \
+        -lplot_asl	\
 	-lm -ldl -lpthread
 
 
 out:
-	g++ -x c++ -fpermissive  -rdynamic -o $(TAR) $(TAR).asc  -I$(gasp_sys)/include -ldl  $(LDADD)
+	g++ -x c++  -pg -fpermissive  -rdynamic -o $(TAR) $(TAR).asc  -I$(gasp_sys)/include -ldl  $(LDADD) 
+

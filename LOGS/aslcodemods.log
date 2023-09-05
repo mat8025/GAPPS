@@ -1592,3 +1592,6 @@ str.h                               1.7    remove sivp ptr
 func_e.cpp                          3.55    lookUpSFunc
 svar_find.cpp                       1.68    findVal,findPat
 svar.h                              2.6    findVal,findPat
+cprintf_l.cpp                       1.2    use Svar os for char* return
+preprocess.cpp                      1.13    ASC write
+record.h                            1.25    pulic Siv

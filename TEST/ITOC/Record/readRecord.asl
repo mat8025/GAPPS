@@ -25,7 +25,7 @@ if (_dblevel >0) {
 
 
 chkIn(_dblevel);
-
+setdebug(1) ; // -1 to turn off
 
 Record RX;
 
@@ -48,10 +48,12 @@ ans=query(" file Open proceed?");
   exit_si();
 
   }
-// chec
+// check
 
-
- Wex_Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST);  // no back ptr to Siv?
+<<"doing readRecord ?\n"
+//RX.pinfo()
+setdebug(1)
+ Wex_Nrecs= RX.readRecord(A,_RDEL,-1,_RLAST);  
 
 
 <<"%V $Wex_Nrecs\n"
