@@ -15,7 +15,7 @@
 //
 
 //filterFileDebug(REJECT_,"array_");
-#if CPP
+#if _CPP_
 #warning HV USING_CPP
 #include "cppi.h"
 #endif
@@ -29,7 +29,7 @@ Str Hdr_cdate = "1964";
 Str Hdr_date = "1964";
 
    int hv_found =0;
-   int hv_show =0;
+   int hv_show =1;
 
    Str  rs = "comment ca va";
 
@@ -176,15 +176,15 @@ H_ele_vers = Hdr_vers;
 
 if (hv_show) {
 
-pa(Hdr_script);
+//pa(Hdr_script);
 
-#if ASL
+
 <<"%V $Hdr_vers\n"
 <<"%V $Hdr_release\n"
 <<"%V $Hdr_author\n"
 <<"%V $Hdr_date\n"
 <<"%V $Hdr_cdate\n"
-#endif
+
 
 }
 

@@ -1,5 +1,5 @@
 //%*********************************************** 
-//*  @script symbol.asl 
+//*  @script symbols.asl 
 //* 
 //*  @comment show symbols
 //*  @release CARBON 
@@ -11,49 +11,31 @@
 //* 
 //***********************************************%
 
-
 #define _CPP_ 0
-
 #if _CPP_
-#include <iostream>
-#include <ostream>
+#include "cpp_head.h" 
+	Str myvers = MYFILE;
+#endif
 
-using namespace std;
-#include "color.h"
-#include "tagdefs.h"
-#include "vargs.h"
-#include "utils.h"
-#include "vec.h"
-#include  "textr.h"
-//#include "uac.h"
-#include "cppi.h"
-#include "consts.h"
-#define PXS  cout<<
-
-// GRAPHICS
-#include "gline.h"
-#include "glargs.h"
-#include "winargs.h"
-#include "woargs.h"
-#include "event.h"
-#include "gevent.h"
-
+#if _ASL_
+#include "hv.asl"
+myvers =Hdr_vers
 #endif
 
 
-Str Use_= "  test the symbols"
+Use_= "  test the symbols"
 
-int Graphic = 0;
-Str woname;
-
-Str myvers ="1.10"
+Graphic = 0
+woname = "xyz"
 
 
 #include "tbqrd.asl"
 
-#include "globals_symbol.asl"
 
-#include "screen_symbol.asl"
+
+#include "globals_symbols.asl"
+
+#include "screen_symbols.asl"
 
 
 
@@ -61,7 +43,8 @@ Str myvers ="1.10"
 
 int main( int argc, char *argv[] ) { // main start
         cpp_init();
-init_debug ("symbol.dbg", 1, "1.1");
+        init_debug ("symbols.dbg", 1, "1.2");
+        cprintf("%s\n",MYFILE);
 
 ///
 #endif               
@@ -121,7 +104,7 @@ init_debug ("symbol.dbg", 1, "1.1");
       etype = Gev.getEventType()
       ebutton = Gev.getEventButton()       
 
-   <<"%V$evname $etype $ebutton\n";
+  // <<"%V$evname $etype $ebutton\n";
 
        
    if ( etype == PRESS_   && ebutton != 2) {
@@ -160,14 +143,14 @@ init_debug ("symbol.dbg", 1, "1.1");
            sym_size = 1;
        }
 
-<<"%V $symbol_num\n"
+//<<"%V $symbol_num\n"
   //     MFV= getMouseEvent()
 
 //<<" %V $MFV \n"
 
 
        symbol_name = getSymbolName(symbol_num);  // need cpp vers
-<<"%V $symbol_name\n"
+//<<"%V $symbol_name\n"
 
       // titleMsg("$symbol_name");
      if (symbol_num > 20) {
@@ -198,7 +181,7 @@ init_debug ("symbol.dbg", 1, "1.1");
 
       ans = vex(<<"%V  $symbol_num  $symbol_name  $ang  $sym_size") ;
 
- <<"vex  %V $ans \n"
+// <<"vex  %V $ans \n"
 
     //ans = <<"%V $symbol_num $symbol_name $ang  $sym_size"
 
@@ -207,12 +190,12 @@ init_debug ("symbol.dbg", 1, "1.1");
        ans = tr.getTxt();
 
 
- <<" %V $ans \n"
-         tr.pinfo()
+ //<<" %V $ans \n"
+       //  tr.pinfo()
 	 ans = tr.getTxt();
 
 
- <<" %V $ans \n"
+ //<<" %V $ans \n"
         sWo(_WOID,msgwo,_WCLEARCLIP,PINK_,_WTEXTR, &tr)
 	
 	txt_hue++ 
@@ -229,7 +212,7 @@ init_debug ("symbol.dbg", 1, "1.1");
 exit(0); 
 #if _CPP_              
   //////////////////////////////////
-  exit(-1);
+  exit(0);
  }  /// end of C++ main   
 #endif               
 

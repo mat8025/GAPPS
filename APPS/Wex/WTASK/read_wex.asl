@@ -17,13 +17,11 @@ void fillInObsVec()
 {
 
 
-//  float tex
-//  int iyd = Yd 
- // float wrk_sleep   
+  float tex
+  float mywt 
 
-  //<<" $_proc $Yd\n"
- //float mywt 
-
+ float wrk_sleep
+ double walk, hike, run ;
 
 if (Yd >= 0) {
 
@@ -115,11 +113,13 @@ if (Yd >= 0) {
 
    wrk_sleep  = (sleep_burn + (16 * 60 - tex) * office_rate )   
 
+  //ans = query(" %V $wrk_sleep $exer_burn $walk $cycle ok ");
+
   CALBURN[Yd] =  wrk_sleep + exer_burn  
 
   Nobs++ 
 
-   //printf("Nobs %d  exer_burn %f\n",Nobs ,exer_burn) 
+  <<"%V $Nobs  $exer_burn \n" 
   }
 
   }
@@ -143,7 +143,7 @@ if (Yd >= 0) {
   
   int got_start = 0 
 
-  <<"get data from record Wex_Nrecs \n" 
+  <<"get data from record %V $Wex_Nrecs \n" 
 
 // access of record row Rx(i)
 // access of record Col Rx(i,j)
@@ -159,6 +159,7 @@ if (Yd >= 0) {
   day = Col[0] 
   mywt = Col[1] 
 
+<<" $day $mywt \n"
 
 
 
@@ -175,23 +176,24 @@ if (Yd >= 0) {
 
   Yd = jday - Jan1 
   
-//<<"%V $jday  $Yd\n"
+ <<"%V $jday  $Yd\n"
 
   lday = Yd 
 
   if (Yd < 0) {
 
-  <<" $Yd neg offset ! \n" 
+  <<"$tl  $Yd neg offset ! \n" 
 
   }
-
-
+  else {
+    fillInObsVec() 
+  }
 //<<[_DB]" what day $k\n"
    // will need separate day vector for the food carb/protein/fat/calorie totals
    // -( we count/estimate those) 
    // variables are plotted against dates (juldays - birthday)
 
-  fillInObsVec() 
+
 
   tl++ 
 

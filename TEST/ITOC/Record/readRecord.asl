@@ -10,7 +10,10 @@
  *  @Copyright © RootMeanSquare 2022
  * 
  */ 
+#define  ASL_SCRIPT 1   // first statement of main script
 //----------------<v_&_v>-------------------------//;   
+
+
 
 
 
@@ -22,10 +25,15 @@ if (_dblevel >0) {
 }
 
 
-
+Str myName_ =" readRecord.asl - test record class"
 
 chkIn(_dblevel);
-setdebug(1) ; // -1 to turn off
+
+
+
+<<"$myName_ \n"
+
+setdebug(-1) ; // -1 to turn off
 
 Record RX;
 
@@ -38,7 +46,7 @@ int B=ofr("wex2023.tsv");
 
 <<"%V $A\n"
 
-ans=query(" file Open proceed?");
+//ans=query(" file Open proceed?");
 
 
   if (A == -1) {
@@ -50,24 +58,40 @@ ans=query(" file Open proceed?");
   }
 // check
 
-<<"doing readRecord ?\n"
+
 //RX.pinfo()
 setdebug(1)
+
+ k = 5
+
+   while ( k) {
+
+<<"%V $k \n"
+    k--
+   }
+   
+
  Wex_Nrecs= RX.readRecord(A,_RDEL,-1,_RLAST);  
 
 
 <<"%V $Wex_Nrecs\n"
 
+//ans=query(" readRecord proceed?");
+
 Svar rx;   // autodeclare
 
- int irx = Wex_Nrecs -20;
+exit(0)
 
-  for (i = 0; i < 10; i++) {
-       rx= RX[i];
-<<"$i  $rx \n"
+/*
+  for (i = 0; i < Wex_Nrecs ; i++) {
+
+   rx= RX[i];
+
+<<"$i  $rx[0] $rx[1] $rx[2]\n"
+
   }
+*/
 
-ans=query(" readRecord proceed?");
 
 
 exit(0);

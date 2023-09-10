@@ -34,5 +34,5 @@ LDADD = -L$(gasp_sys)/lib  \
 
 
 out:
-	g++ -x c++  -pg -fpermissive  -rdynamic -o $(TAR) $(TAR).asc  -I$(gasp_sys)/include -ldl  $(LDADD) 
+	g++ -x c++  -pg -fpermissive  -rdynamic -o $(TAR) $(TAR).asc  -DMYFILE=\"$(TAR).asc\" -I$(gasp_sys)/include -ldl  $(LDADD) 
 

@@ -1595,3 +1595,50 @@ svar.h                              2.6    findVal,findPat
 cprintf_l.cpp                       1.2    use Svar os for char* return
 preprocess.cpp                      1.13    ASC write
 record.h                            1.25    pulic Siv
+ds_recordstore.cpp                  1.86    record Siv
+rec_ops.cpp                         1.94    record Siv
+rdrec.cpp                           1.86    record Siv
+fileop.cpp                          1.83    countWords
+vmf_record.cpp                      1.5    record Siv
+alias_l.cpp                         1.11    sfd_alias
+aop_l.cpp                           1.24    sfd_alias
+args_l.cpp                          1.7    vex
+ds_getvarasstr.cpp                  2.69    record Siv
+ds_arraycopy.cpp                    2.74    record Siv
+ds_sivdel.cpp                       1.97    record Siv
+cprintf_l.cpp                       1.3    char * return
+ds_sivmem.cpp                       1.99    record Siv
+ic_parse.cpp                        1.60    record Siv
+ic_pushsivele.cpp                   1.70    record Siv
+ic_pushrec.cpp                      1.11    record Siv
+getsvarg_l.cpp                      2.23    jarg
+tokfunc.cpp                         1.77    record Siv
+array_store.cpp                     2.80    record Siv
+record_t.cpp                        1.7    record Siv
+proc_sivs_e.cpp                     3.54    SAC
+declare_type_e.cpp                  2.46    record Siv
+varcon_e.cpp                        2.64    record Siv
+declare_array_e.cpp                 1.9    record Siv
+svar_cpy.cpp                        1.67    incr by 10 if need another field
+ic_xic.cpp                          1.79    result store
+engine_e.cpp                        2.27    first St - writeASC
+cppi.h                              1.34    record.h
+debug.h                             2.2    RUN_ASL
+siv.h                               2.9    record now inherits from siv
+str.h                               1.8    = (const char*)
+vec.h                               1.10    woGetRxy - rename
+winargs.h                           1.3    tidy
+woargs.h                            1.5    wokeygline
+wotypes.h                           2.3    WKEYGLINE added
+declare_e.cpp                       2.38    record Siv
+exp_e.cpp                           3.59    PP exp fail guard
+exp_lhs_e.cpp                       2.43    DBG tidy
+func_e.cpp                          3.56    return eval for PP
+init_l.cpp                          1.4    init_e ==> init_l
+proc_e.cpp                          2.71    top null guard
+createv_e.cpp                       1.8    SAC
+ds_scalar.cpp                       2.76    id check > 0
+ds_sivnew.cpp                       1.96    remove dobject.record
+ds_transfer.cpp                     1.92    attachRecord - broke
+spil_args.cpp                       1.8    reacord SIV
+spil_wop.cpp                        1.18    Asl_timer dbp

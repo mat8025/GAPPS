@@ -310,7 +310,9 @@ float keyposr[10];
     
     kcalx = keyposr[3] - 0.1;
     kcalY= keyposr[4]-0.05;
-    
+
+   <<"keyposr[]  $keyposr[1] $keyposr[2] $keyposr[3] $keyposr[4] \n"
+
    sWo(_WOID,keycalwo,_WNAME,"KeyCals",_WCLIP,CXY,_WSTYLE,SVO_)
 
  //<<"%V  $(kcalx +0.02) $(kry +0.01) $(kcalx +0.09) $kcalY \n"
@@ -325,7 +327,9 @@ float keyposr[10];
     woGetRxy (carbwo,keyposr); // posn on screen ??
 
 
-    <<" %V $keyposr \n"
+ <<"keyposr[]  $keyposr[1] $keyposr[2] $keyposr[3] $keyposr[4] \n"
+
+  
     
     //keyposr.pinfo();
     
@@ -340,13 +344,15 @@ float keyposr[10];
 
     keywo=cWo(vp,WO_BV_);
     
-    kcarbx = keyposr[3] - 0.1;
+     kcarbx = keyposr[3] - 0.1;
      kcarbY= keyposr[4]-0.05;
+   
 
    // <<"%V  $(kcarbx +0.02) $(kry +0.01) $(kcarbx +0.09) $kcarbY \n"
       sWo(_WOID,keywo,_WNAME,"KeyFood",_WCLIP,CXY,_WSTYLE,SVO_)
 
-   sWo(_WOID,keywo,_WRESIZE,wbox(kcarbx+0.02,kry+0.01,kcarbx+0.09,kcarbY,0),_WCLIPBORDER,LILAC_,_WREDRAW,ON_);
+   //sWo(_WOID,keywo,_WRESIZE,wbox(kcarbx+0.02,kry+0.01,kcarbx+0.09,kcarbY,0),_WCLIPBORDER,LILAC_,_WREDRAW,ON_);
+   sWo(_WOID,keywo,_WRESIZE,wbox(kcarbx+0.02,kry+0.01,kcarbx+0.09,kcarbY),_WCLIPBORDER,LILAC_,_WREDRAW,ON_);
 
 
 

@@ -325,7 +325,7 @@ int wedwos[] = { wtwo, calwo,  carbwo, extwo,-1  }
 
 
 for (i = 0; i< 5; i++) {
-<<"wedwos[ $i ] $wedwos[i]\n"
+//<<"wedwos[ $i ] $wedwos[i]\n"
       if (wedwos[i] <=0) {
          break;
 	 }
@@ -381,32 +381,14 @@ sWo(_WOID,wedwos[i],_WXSCALES, wpt(sc_zstart,sc_zend));
 
   int foodgls[] = { carb_gl, fiber_gl,fat_gl, prot_gl, -1 }
 
-  int calgls[] = { calb_gl, calc_gl, -1 }
+  int calgls[] = { calb_gl, calc_gl, -1,-2 }
 
    // <<"%V $calc_gl $calb_gl $calgls  \n"
    // int allgls[] = {wt_gl2,wt_gl, wt_gl3,-1};
 
-//<<"%V $allgls\n"
-
-
-  sGl(_GLID,wt_gl,_GLDRAW,ON_)
-
-  sGl(_GLID,ext_gl,_GLDRAW,ON_)
-
-  sGl(_GLID,calb_gl,_GLDRAW,ON_)
-
-  sGl(_GLID,carb_gl,_GLDRAW,ON_)
-
-  sGl(_GLID,calc_gl,_GLDRAW,ON_)
-
-  sGl(_GLID,prot_gl,_GLDRAW,ON_)
-
-  sGl(_GLID,fat_gl,_GLDRAW,ON_)
-
-
    int gi=0
 
-  //while ( allgls[gi] >= 0)  {    // ?? bug
+
  do_all_gls = 1;
 
   if (do_all_gls) {
@@ -415,7 +397,7 @@ sWo(_WOID,wedwos[i],_WXSCALES, wpt(sc_zstart,sc_zend));
  //<<"%V $gi $allgls[gi] \n"
 
   sGl(_GLID,allgls[gi],_GLDRAW,ON_)
-  
+//ans=query(<<" gi $gi ?");  
   gi++
 
     if (allgls[gi] < 0)  {
@@ -428,7 +410,7 @@ sWo(_WOID,wedwos[i],_WXSCALES, wpt(sc_zstart,sc_zend));
 
 
   for (i = 0; i< 5; i++) {
-<<"wedwos[ $i ] $wedwos[i]\n"
+//<<"wedwos[ $i ] $wedwos[i]\n"
    if (wedwos[i] <=0) {
          break;
 	 }
@@ -485,44 +467,38 @@ int keypos[10]
 
 //  keypos = woGetPosition (keycalwo)
 
-//  woGetPosition (keycalwo,keypos)
+    woGetPosition (keycalwo,keypos)
 
 //   <<"keycalwo $keypos \n";
-    sWo(_WOID,keycalwo,_WHMOVE,ON_)
-    sWo(_WOID,keywo,_WHMOVE,ON_)
+    //sWo(_WOID,keycalwo,_WHMOVE,ON_)
+    //sWo(_WOID,keywo,_WHMOVE,ON_)
 //    womove(keycalwo,PANLEFT_,10);  // move left
 //keypos = wogetposition (keycalwo);
 
-   <<"movewo keycalwo $keypos \n";
+  // <<"movewo keycalwo $keypos \n";
      //womove(keycalwo,PANLEFT_,10);
+
     sWo(_WOID,calwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_)
+
     sWo(_WOID,keycalwo,_WSCALES,wbox(0.0,0.0,1.0,1.0))
     sWo(_WOID,keycalwo,_WCLIPBORDER,ON_,_WREDRAW,ON_,_WKEYGLINE,calgls)
+    
     sWo(_WOID,carbwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_)
 
   //womove(keywo,PANLEFT_,10);
     sWo(_WOID,carbwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_)
-    sWo(_WOID,keywo,_WSCALES,wbox(0.0,0.0,1.0,1.0))
-    sWo(_WOID,keywo,_WCLIPBORDER,ON_,_WREDRAW,ON_,_WKEYGLINE,foodgls)
+
+   woGetPosition (keywo,keypos)
+
+   sWo(_WOID,keywo,_WSCALES,wbox(0.0,0.0,1.0,1.0))
+   sWo(_WOID,keywo,_WCLIPBORDER,ON_,_WREDRAW,ON_,_WKEYGLINE,foodgls)
 
   //keypos = woGetPosition (keywo)
-   //woGetPosition (keywo,keypos)
-   //<<"keycarbwo $keypos \n";
 
 
-//Text(calwo,"CALS In/Out",0.2,0.90)
+//<<"keycarbwo $keypos \n";
 
-//Textr(calwo,"Cals In/Out",155,1500);
-
-//Text(carbwo,"FOOD (g) ",0.1,0.89)
-
-//Textr(carbwo,"Food",140,50);
-
- //sWo(_WOID,tbqrd_tv,_WCLEAR,ON_,_WCLEARCLIP,ON_,_WREDRAW,ON_);
- //textr(TBqrd_tv,Wex_Vers)
-
-//Text(extwo,"EXERCISE (mins) ",0.2,0.89)
-
+<<"DONE draw \n"
 
 }
 
@@ -640,7 +616,7 @@ int keypos[10]
   sc_endday = rX
   for (i = 0; i< 5; i++) {
 
-<<"wedwos[ $i ] $wedwos[i]\n"
+//<<"wedwos[ $i ] $wedwos[i]\n"
    if (wedwos[i] <=0) {
          break;
     }
@@ -746,7 +722,15 @@ int keypos[10]
 */
 // pex 
 
-Text(extwo,vex(" Exercise time %6.1f $xtm   "),0.1,0.87)
+<<"Exercise time %6.1f $xtm   \n"
+
+cffp =vex(" %6.2f CARB $carb FIBER $fiber FAT $fat PROT $prot (g) ")
+
+<<"$cffp\n"
+
+ Text(extwo,vex(" Exercise time %6.1f $xtm   "),0.1,0.87)
+
+//Text(extwo, vex(" Exercise time  $xtm   ") ,0.1,0.87)
 
 // vex to translate to   to cpp version vex("Ex time %f",xtm)
 

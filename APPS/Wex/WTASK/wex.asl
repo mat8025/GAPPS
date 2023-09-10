@@ -9,8 +9,17 @@
  *  @author Mark Terry                                                  
  *  @Copyright © RootMeanSquare 2022 -->                               
  * 
- */ 
-//----------------<v_&_v>-------------------------//;                  
+ */
+//----------------<v_&_v>-------------------------//;
+#define _CPP_ 0
+#if _CPP_
+#include "cpp_head.h" 
+#endif
+#if _ASL_
+#include "hv.asl"
+#endif
+
+myvers = "2.56"
 
 
 
@@ -29,32 +38,6 @@
 //<<[_DB]"%V$wherearewe \n"
 
 #define GT_DB   0
-
-#define _CPP_ 0
-
-#if _CPP_
-#include <iostream>
-#include <ostream>
-
-using namespace std;
-#include "vargs.h"
-#include "cpp_head.h" 
-#include "consts.h"
-
-// GRAPHICS
-#include "gline.h"
-#include "glargs.h"
-#include "winargs.h"
-#include "woargs.h"
-#include "event.h"
-#include "gevent.h"
-
-
-#define PXS  cout<<
-#define _ASL_ 0
-
-#endif
-
 
 
 
@@ -329,11 +312,14 @@ Record RX;
 
 int main( int argc, char *argv[] ) { // main start
 ///
+  cpp_init();
+init_debug ("wex.dbg", 1, "2.1");
+
 #endif
 
+   ignoreErrors();
 
-
-
+  Graphic = checkGWM();
 
 
 
@@ -503,9 +489,16 @@ int main( int argc, char *argv[] ) { // main start
 
   Svar rx;
 
-  Wex_Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST);  // no back ptr to Siv?
+  Wex_Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST); 
 
-//  <<" readRecord  $Wex_Nrecs\n";
+<<" readRecord  $Wex_Nrecs\n";
+
+//ans=query("read RX??");
+
+if (ans == "q") {
+
+  exitASL(-1)
+}
 
 // reader in readRecord closes file
 
@@ -638,10 +631,10 @@ float ae = EXTV[15];
   predictWL();
 
 
-  ne=allowMoreErrors(20);
+  ne=allowMoreErrors(50);
   <<"errors so far $ne \n"
 
-  int Graphic = checkGWM();
+
 
   
 
@@ -669,33 +662,19 @@ float ae = EXTV[15];
 
   printf("Have Graphic %d now\n", Graphic);
 
-
-
-
-#include "glines_wex.asl"
-
- ne=allowMoreErrors(20);
-  <<"errors so far $ne \n"
-
-
-
- ne=allowMoreErrors(20);
-  <<"errors so far $ne \n"
-
-
-
+     setScreen()
+     
  ne=allowMoreErrors(20);
   <<"errors so far $ne \n"
 
  //ans=query("errors $ne after predict proceed with screen?");
 
- 
 
 
 
 
- ne=allowMoreErrors(20);
-  <<"errors so far $ne \n"
+#include "glines_wex.asl"
+
 
 
    computeGoalLine();
@@ -721,8 +700,8 @@ float ae = EXTV[15];
 
  titleMessage("Tomorrow's wt will be %6.2f $PWT1 +week $PWT7  + month $PWT30")
 
-  ne=allowMoreErrors(100);
-  <<"errors so far $ne \n"
+//  ne=allowMoreErrors(100);
+//  <<"errors so far $ne \n"
   
 int nevent = 0
 
@@ -733,23 +712,19 @@ int nevent = 0
 
 int rcb = 0
 
-     Graphic = checkGWM();
+     
 
-     setScreen()
+
 
      drawScreens()
 
 
-
-
-
+// trans is giving  while long (Graphic)   // TBF 09/06/2023
 
      while (Graphic) {
 
 
-       eventWait();
-
-
+        eventWait();
 
          nevent++;
 
@@ -764,7 +739,13 @@ int rcb = 0
        }
        else if (GEV__woname == "WTLB") {
             WTLB(GEV__button) 
-       }       
+       }
+       else if (GEV__woname == "ZIN") {
+            ZIN(GEV__button) 
+       }
+       else if (GEV__woname == "ZOUT") {
+            ZOUT(GEV__button) 
+       }                     
        else {
          <<"trying $GEV__woname $GEV__button \n"
             //rcb=runproc(GEV__woname,GEV__button)
@@ -780,6 +761,9 @@ int rcb = 0
 	 if (nevent > 2000) {
 	   break;
 	   }
+	   
+  ne=allowMoreErrors(20);
+  <<"errors so far $ne \n"	   
 }
 
 

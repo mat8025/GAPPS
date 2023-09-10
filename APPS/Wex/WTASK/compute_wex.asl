@@ -23,7 +23,7 @@ float Nsel_calsinout = 0.0;
  //<<"%V$StartWt $NextGoalWt\n"
      int sz;
      long ngday = gday - gsday;
-<<"%V $ngday  $gday - $gsday \n"
+//<<"%V $ngday  $gday - $gsday \n"
 
      GVEC[0] = StartWt;  // start  Wt
 
@@ -53,7 +53,7 @@ float Nsel_calsinout = 0.0;
 //<<"$(ty_gsday+i) $lw \n"
 
        GVEC[i] = lw;
-<<"%V $i $ngday $lw \n"
+//<<"%V $i $ngday $lw \n"
        WDVEC[i] = gsday+i;
 
        lw -= try_lpd;

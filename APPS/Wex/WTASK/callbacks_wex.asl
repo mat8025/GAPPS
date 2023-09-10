@@ -134,8 +134,8 @@ int ExTim (int wb)
   int ZIN(int wb)
   {
 
-  //<<" In $_proc  $lcpx  $rcpx\n";
-  //cout <<"In ZIN " << lcpx  << endl;
+  <<" ZIN  $lcpx  $rcpx \n";
+
    sc_zstart = lcpx;
 
    sc_zend = rcpx;
@@ -143,6 +143,7 @@ int ExTim (int wb)
    drawScreens();
   
    showWL(sc_zstart, sc_zend);
+
    return 1;
   }
 //--------------------------------------------------
@@ -153,6 +154,8 @@ int ExTim (int wb)
   sc_zstart -= 10;
 
   sc_zend  += 10;
+  
+ <<" ZOUT  $sc_zstart  $sc_zend\n";
 
   if (sc_zstart < sc_startday) {
 
@@ -175,10 +178,9 @@ int ExTim (int wb)
 int WTLB(int wb)
 {
 
+<<"WTLB $wb \n"
 
-//pa("proc  setting cursors ", _proc, " Button", Button);
 
-//printf("\n GEV__button %d    cursor @ GEV__rx %f\n",GEV__button,GEV__rx);      
  long wt_day = 0;
  
        if (GEV__button == 1) {

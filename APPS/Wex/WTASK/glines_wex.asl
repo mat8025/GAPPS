@@ -34,7 +34,7 @@
 
   sGl(_GLID,cardio_gl,_GLXVEC, DVEC,_GLYVEC,CARDIO,_GLHUE,BLUE_,_GLSYMLINE,DIAMOND_);
 
-
+//ans=query("cardio_gl ?");
 
   int strength_gl  = cGl(extwo);
 
@@ -183,6 +183,7 @@
 
   sGl(_GLID,prot_gl,_GLSYMBOL,TRI_,_GLSYMHUE,RED_,_GLNAME,"prot");
 
+//ans=query("sGl prot ?");
 
 
   sGl(_GLID,bp_gl,_GLSYMBOL,ITRI_);

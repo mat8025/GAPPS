@@ -74,6 +74,19 @@
 
    chkR(b,12.0);
 
+    a = 1;
+    while (a < 10) {
+
+        c=Foo(2,a);
+<<"%V $a $c\n"
+        a++;
+!a
+<<" next iteration $a\n"
+    }
+
+
+
+
    b.pinfo();
 
    <<"%v $b \n";
