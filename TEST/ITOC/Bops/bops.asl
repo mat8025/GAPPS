@@ -35,19 +35,7 @@
 //
 
 #if _CPP_
-#include <iostream>
-#include <ostream>
-
-using namespace std;
-#include "vargs.h"
 #include "cpp_head.h" 
-#include "consts.h"
-#define PXS  cout<<
-
-#include "vec.h"
-
-#define _ASL_ 0
-#define _TRANS_ 0
 #endif
 
 
@@ -154,12 +142,12 @@ Str ans = " weird "
 
 <<"%V $ans "
 
-  ans = query(" argc $argc continue? :[y/n]") ;
-printf("ans %s\n",ans.cptr());
+//  ans = query(" argc $argc continue? :[y/n]") ;
+//printf("ans %s\n",ans.cptr());
   if (ans != "y")   {
 
 <<"%V $ans != y\n"
-  exit(-1) ;
+ // exit(-1) ;
 
 }
 <<"%V $ans \n"
@@ -174,7 +162,7 @@ printf("ans %s\n",ans.cptr());
 
 <<"%V $dv $ds $dt $adt \n"
   
-  ans = query(" cos/sin/tan   continue? :[y/n]") ;
+//  ans = query(" cos/sin/tan   continue? :[y/n]") ;
 
   int ab = 2 + 3 
 
@@ -534,7 +522,7 @@ printf("ans %s\n",ans.cptr());
   chkN(fv[2],77) 
   chkN(fv[0],-32) 
   
-  chkOut(1)
+  chkOut()
   
 #if _CPP_              
   //////////////////////////////////

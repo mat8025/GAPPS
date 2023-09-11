@@ -377,8 +377,16 @@ logfile= "~gapps/LOGS/aslcodemods.log"
 A=ofile(logfile,"r+")
 fseek(A,0,2)
 
-ans=iread("asl code-what modification?:")
-<<"$ans\n"
+
+ mans = memRead("cbump")
+ ans=iread("asl code-what modification? $mans :")
+ <<"$ans\n"
+ if (ans != "") {
+  memWrt("cbump",ans,1)
+}
+else {
+ ans = mans
+}
 len = slen(srcfile)
 nsp = 32-len
 ws=nsc(nsp," ")

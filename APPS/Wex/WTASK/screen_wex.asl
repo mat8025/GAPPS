@@ -309,7 +309,7 @@ float keyposr[10];
     keycalwo = cWo(vp,WO_BV_);
     
     kcalx = keyposr[3] - 0.1;
-    kcalY= keyposr[4]-0.05;
+    kcalY= keyposr[4] - 0.05;
 
    <<"keyposr[]  $keyposr[1] $keyposr[2] $keyposr[3] $keyposr[4] \n"
 

@@ -736,11 +736,15 @@ cffp =vex(" %6.2f CARB $carb FIBER $fiber FAT $fat PROT $prot (g) ")
 
 Text(carbwo,vex(" %6.2f CARB $carb FIBER $fiber FAT $fat PROT $prot (g) "),0.1,0.89)
 
+Text(carbwo," %6.2f CARB $carb FIBER $fiber FAT $fat PROT $prot (g) ",0.4,0.89)
+
 Text(calwo,vex(" CALS IN $calsin OUT $calsout "),0.1,0.89)
 
 Text(wtwo,vex(" $mdy Weight  %6.1f  $wtm lbs   "),0.1,0.89)
 
+<<"$mdy Weight  %6.1f  $wtm lbs   \n"
 
+Text(wtwo," $mdy Weight  %6.1f  $wtm lbs   ",0.3,0.89)
 
   //  return m_day;
     
