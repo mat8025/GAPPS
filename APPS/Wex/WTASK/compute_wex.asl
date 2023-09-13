@@ -85,12 +85,15 @@ float Nsel_calsinout = 0.0;
      
 //==================================//
 
-void computeWL(long wlsday, long wleday)
+//void computeWL(long wlsday, long wleday)
+void computeWL(int wlsday, int wleday)
 {
 /// use input of juldays
 /// find the number of exe hours
 // read the number of cals burnt during exercise
 // compute the number of lbs burnt
+
+<<" computeWL $wlsday $wleday \n"
 
    int i;
 
@@ -110,7 +113,7 @@ void computeWL(long wlsday, long wleday)
    sday = wlsday;
    eday = wleday;
 
-//<<" %V $sday $eday  $Nobs\n"
+<<" %V $sday $eday  $Nobs\n"
    Ndiet_lbs = 0.0;
 
    for (i = sday; i <= eday ; i++) {
@@ -141,7 +144,7 @@ void computeWL(long wlsday, long wleday)
 
    xhrs = (Nsel_exemins/60.0);
 
-//<<"%V$Nxy_obs %6.2f $Nsel_exemins $(Nsel_exemins/60.0) $Nsel_exeburn $Nsel_calsinout $Nsel_lbs $xhrs\n"
+<<"%V$Nxy_obs %6.2f $Nsel_exemins $(Nsel_exemins/60.0) $Nsel_exeburn $Ndiet_lbs $Nsel_lbs $xhrs\n"
 
 }
 //=========================

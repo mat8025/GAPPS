@@ -101,16 +101,20 @@ if (index > 1000)
 }
 
 
-str W1 = "many a time"
+ W1 = "I am going to go flying and then go for  a bike ride"
 
 
 len = slen(W1)
+char enc;
+char ac
+
 
 for (j = 0; j < len; j++) {
 
-k= atoi(sele(s2,j,1))
-ac= sele(W,j,1))
-<<"$j $k  $ac  %d $ac\n"
+k= atoi(sele(pi_str,j+68,1))
+ac= sele(W1,j,1))
+enc = ac+k
+<<"$j $k %c $ac   $enc\n"
 
 }
 

@@ -149,7 +149,7 @@ myvers = "2.56"
 
   minWt = 150.0;
 
-  upperWt = 235.0;  // this is way too much
+  upperWt = 220.0;  // this is way way too much
 //StartWt = 205;
 // rates per min
 
@@ -272,7 +272,7 @@ Record RX;
   int sc_zend ;   // for zooming;
 
   int sc_zstart;
-  int  sc_startday;
+  int sc_startday;
   float lcpx = 0.0;
   float rcpx = 10.0;
 
@@ -373,13 +373,13 @@ init_debug ("wex.dbg", 1, "2.1");
    Str stmp;
    Svar Goals;
    
-   Goals.split("09/01/2023 09/30/2023 185");
+   Goals.split("08/12/2023 09/30/2023 185");
 
 //<<"Setting goals $Goals\n"
 
    Svar Goals2;
    
-   Goals2.split("09/01/2023 09/15/2023 175");
+   Goals2.split("08/12/2023 09/15/2023 175");
 ////////////////////==============/////////////////
 
 // move these down 10 when reached -- until we are at desired operating weight!
@@ -430,14 +430,14 @@ init_debug ("wex.dbg", 1, "2.1");
 
 //   Onwards();
 
-  sc_startday = (jtoday - Jan1) -10;
+  sc_startday = (jtoday - Jan1) -30;
 
   if (sc_startday <0)
      sc_startday =0;
 
 //  sc_endday = targetday + 7;
 
-    sc_endday = sc_startday + 30;
+    sc_endday = sc_startday + 40;
 //   <<"%V$sc_startday $targetday $sc_endday \n"
 
 

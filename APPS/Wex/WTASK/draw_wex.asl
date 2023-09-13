@@ -70,7 +70,7 @@
   {
 
 
-<<" SHOW_COMPUTE %V $Nxy_obs $Nsel_exeburn $Nsel_lbs  $xhrs \n"
+<<"  %V $Nxy_obs $Nsel_exeburn $Nsel_lbs $Ndiet_lbs $xhrs \n"
 
   //sWo(_WOID,nobswo,_WVALUE,"%d $Nxy_obs",_WUPDATE,ON_) ;// need pex
 
@@ -549,11 +549,20 @@ int keypos[10]
  }
  
 //=================================================
+void showWL(int ws, int we)
+  {
+//<<"$_proc $ws $we\n"
+<<"showWL int $ws $we\n"
+  computeWL( ws, we)
 
+  showCompute()
+
+  }
+//====
   void showWL(long ws, long we)
   {
 //<<"$_proc $ws $we\n"
-
+<<"showWL long  $ws $we\n"
   computeWL( ws, we)
 
   showCompute()
