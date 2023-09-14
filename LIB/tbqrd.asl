@@ -73,7 +73,7 @@ sWo(_WOID,td, _WNAME,"tbd",_WVALUE,"REDRAW",_WFUNC,"window_redraw",_WRESIZE,rsz,
 //<<[_DB]"SET %V $tbqrd_tv \n"
 //int qrd[] = {tr,tq,td};
   TBqrd_msg = cWo(v,TBV_);
-rsz[0] = 0.32;
+rsz[0] = 0.22;
 rsz[2] = 0.80;
 
 sWo(_WOID,TBqrd_msg,_WNAME,"tbm",_WVALUE,"MSG",_WSTYLE,SVO_,_WRESIZE,rsz,_WREDRAW,ON_);

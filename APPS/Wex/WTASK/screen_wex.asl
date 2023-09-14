@@ -23,7 +23,7 @@ void setScreen()
 
   vp =  cWi (vptitle);
 
-<<"%V $vptitle $vp \n"
+//<<"%V $vptitle $vp \n"
 
 
   sWi(_WOID,vp,_WRESIZE,wbox(0.01,0.05,0.90,0.95,0)  );
@@ -69,19 +69,19 @@ void setScreen()
    sWo(_WOID,calwo,_WNAME,"CAL",_WVALUE,0,_WCLIPBORDER,BLACK_,_WPIXMAP,ON_,_WDRAW,ON_) ; // cals;
 
   carbwo= cWo(vp,WO_GRAPH_);
-  <<"%V $carbwo \n"
+  //<<"%V $carbwo \n"
   sWo(_WOID,carbwo,_WNAME,"CARB",_WVALUE,0,_WCLIPBORDER,BLACK_,_WPIXMAP,ON_) ; // carbs;
 
   extwo= cWo(vp,WO_GRAPH_);
 
-<<"%V $extwo \n"
+//<<"%V $extwo \n"
 
   sWo(_WOID,extwo,_WNAME,"XT",_WVALUE,0,_WCLIPBORDER,RED_); // exercise time;
 
   int wedwos[] = { wtwo, calwo,  carbwo, extwo,  -1  };
 //<<[_DB]"%V$wedwo \n"
 
-  <<" vtile before set clip!\n";
+  //<<" vtile before set clip!\n";
 
   wovtile(wedwos,0.1,0.08,0.99,0.99)   ; // vertically tile the drawing areas into the main window;
     //cx = 0.05 ; cX = 0.95 ; cy = 0.2 ; cY = 0.97;
@@ -106,7 +106,7 @@ void setScreen()
 
   sc_zstart = sc_startday;
 
-<<"%V $sc_startday $sc_endday $sc_end \n";
+//<<"%V $sc_startday $sc_endday $sc_end \n";
 
  //  _WFONT arg wfont(char*) wfont(int) --- 
 
@@ -311,7 +311,7 @@ float keyposr[10];
     kcalx = keyposr[3] - 0.1;
     kcalY= keyposr[4] - 0.05;
 
-   <<"keyposr[]  $keyposr[1] $keyposr[2] $keyposr[3] $keyposr[4] \n"
+   //<<"keyposr[]  $keyposr[1] $keyposr[2] $keyposr[3] $keyposr[4] \n"
 
    sWo(_WOID,keycalwo,_WNAME,"KeyCals",_WCLIP,CXY,_WSTYLE,SVO_)
 
@@ -327,7 +327,7 @@ float keyposr[10];
     woGetRxy (carbwo,keyposr); // posn on screen ??
 
 
- <<"keyposr[]  $keyposr[1] $keyposr[2] $keyposr[3] $keyposr[4] \n"
+ //<<"keyposr[]  $keyposr[1] $keyposr[2] $keyposr[3] $keyposr[4] \n"
 
   
     

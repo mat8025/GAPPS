@@ -91,6 +91,8 @@
   void drawGoals(int ws)
   {
 
+//<<"drawGoals $ws\n"
+
   if (ws == 0) {
    // Plot(wtwo,_WBOX,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_)  // never go above
 
@@ -102,7 +104,7 @@
     //Plot(calwo,_WLINE,sc_startday,day_burn,sc_end,day_burn, GREEN_)
 
   plotLine(calwo,sc_zstart,day_burn,sc_zend,day_burn, GREEN_)
-
+//<<"plotLine calwo $sc_zstart $day_burn \n"
   plotLine(calwo,sc_startday,out_cal,sc_end,out_cal, BLUE_)
 
   plotLine(calwo,sc_startday,in_cal,sc_end,in_cal, RED_)
@@ -114,7 +116,7 @@
     // use todays date and wt to the intermediate short-term goal
 
   plotLine(wtwo,last_known_day,last_known_wt,tday2,FirstGoalWt, RED_) 
-
+//<<"plotLine $wtwo $last_known_day $last_known_wt $tday2 \n"
   }
 
   if (ws == 1) {
@@ -124,7 +126,7 @@
   plotLine(swo,0,150,kdays-10,250, BLUE_)
 
   }
-
+//<<"Done drawGoals \n"
   }
 //---------------------------------------------------------
 
@@ -236,7 +238,8 @@ int match[2]
   void  drawGrids(int  ws )
   {
     int i,j
-// <<[_DB]" $ws \n"
+
+//<<"drawGrids ws  $ws \n"
 
   if (ws == 0) {
 
@@ -259,6 +262,8 @@ int match[2]
   sWo(_WOID,wtwo,_WYSCALES,wpt(160,220))
 
     sWo(_WOID,wtwo,_WAXNUM,AXIS_LEFT_)
+
+
   //sWo(extwo,_WAXNUM,2,0,sc_endday,20,10)
   //Text(wtwo, "Weight (lbs)",0.1,1.0,RED_,0,0,2)
 
@@ -282,13 +287,21 @@ int match[2]
   //sWo(xwo,_WCLIPBORDER,BLACK_,_WSAVE,_WEO)
 
   }
+  
   int allwo[] = {wtwo,swo, calwo,  extwo , carbwo,-1}
+  //<<" $allwo \n"
+  
     for (i = 0; i< 10; i++) {
-      if (allwo[i] <=0)
+    //  <<" $i $allwo[i]\n"
+     if (allwo[i] <=0) {
          break;
+      }
+      
       sWo(_WOID,allwo[i],_WSHOWPIXMAP,ON_,_WSAVE,ON_,_WCLIPBORDER,BLACK_)
+
     }
-  }
+//<<"Done drawgrids\n"
+}
 //---------------------------------------------------------------------------------
 #define ALL_LINES 1
 
@@ -312,7 +325,9 @@ int wedwos[] = { wtwo, calwo,  carbwo, extwo,-1  }
 
 //  Str ans;
 
-//<<"DrawScreens\n";
+//<<" $wedwos\n";
+
+//<<" $wedwos[2]\n";
 
 
 
@@ -324,17 +339,19 @@ int wedwos[] = { wtwo, calwo,  carbwo, extwo,-1  }
 
 
 
-for (i = 0; i< 5; i++) {
-//<<"wedwos[ $i ] $wedwos[i]\n"
+       for (i = 0; i< 5; i++) {
+
       if (wedwos[i] <=0) {
          break;
 	 }
 
-sWo(_WOID,wedwos[i],_WXSCALES, wpt(sc_zstart,sc_zend));
+       sWo(_WOID,wedwos[i],_WXSCALES, wpt(sc_zstart,sc_zend));
 
-//printf("%d xscales %f %f\n",i,sc_zstart,sc_zend);
+
         sWo(_WOID,wedwos[i],_WCLEARCLIP,WHITE_,_WSAVE,ON_,_WCLEARPIXMAP,ON_,_WCLIPBORDER,BLACK_,_WREDRAW,ON_,_WSAVEPIXMAP,ON_);
-  }
+
+//<<"wedwos[ $i ] $wedwos[i]\n"
+}
 
   drawGoals( wScreen);
 
@@ -346,7 +363,7 @@ sWo(_WOID,wedwos[i],_WXSCALES, wpt(sc_zstart,sc_zend));
  
   if (ALL_LINES) {
 
- // <<[_DB]" draw lines \n";
+ //<<" draw all lines \n";
 
   //dGl(exgls);
       //dGl(cardio_gl);
@@ -392,9 +409,10 @@ sWo(_WOID,wedwos[i],_WXSCALES, wpt(sc_zstart,sc_zend));
  do_all_gls = 1;
 
   if (do_all_gls) {
+  
   while ( 1) {
 
- //<<"%V $gi $allgls[gi] \n"
+   //<<"%V $gi $allgls[gi] \n"
 
   sGl(_GLID,allgls[gi],_GLDRAW,ON_)
 //ans=query(<<" gi $gi ?");  
@@ -403,6 +421,7 @@ sWo(_WOID,wedwos[i],_WXSCALES, wpt(sc_zstart,sc_zend));
     if (allgls[gi] < 0)  {
              break;
     }
+    
    if (gi > 7) {
      break;
    }
@@ -469,14 +488,6 @@ int keypos[10]
 
     woGetPosition (keycalwo,keypos)
 
-//   <<"keycalwo $keypos \n";
-    //sWo(_WOID,keycalwo,_WHMOVE,ON_)
-    //sWo(_WOID,keywo,_WHMOVE,ON_)
-//    womove(keycalwo,PANLEFT_,10);  // move left
-//keypos = wogetposition (keycalwo);
-
-  // <<"movewo keycalwo $keypos \n";
-     //womove(keycalwo,PANLEFT_,10);
 
     sWo(_WOID,calwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_)
 
@@ -496,7 +507,7 @@ int keypos[10]
   //keypos = woGetPosition (keywo)
 
 
-//<<"keycarbwo $keypos \n";
+//<<" $keypos \n";
 
 <<"DONE draw \n"
 
@@ -552,7 +563,7 @@ int keypos[10]
 void showWL(int ws, int we)
   {
 //<<"$_proc $ws $we\n"
-<<"showWL int $ws $we\n"
+//<<"showWL int $ws $we\n"
   computeWL( ws, we)
 
   showCompute()
@@ -561,8 +572,9 @@ void showWL(int ws, int we)
 //====
   void showWL(long ws, long we)
   {
-//<<"$_proc $ws $we\n"
-<<"showWL long  $ws $we\n"
+
+//<<"showWL long  $ws $we\n"
+
   computeWL( ws, we)
 
   showCompute()
@@ -733,21 +745,21 @@ void showWL(int ws, int we)
 
 <<"Exercise time %6.1f $xtm   \n"
 
-cffp =vex(" %6.2f CARB $carb FIBER $fiber FAT $fat PROT $prot (g) ")
+//cffp =vex(" %6.2f CARB $carb FIBER $fiber FAT $fat PROT $prot (g) ")
 
-<<"$cffp\n"
+//<<"$cffp\n"
 
- Text(extwo,vex(" Exercise time %6.1f $xtm   "),0.1,0.87)
+ Text(extwo,vex("Exercise time %6.1f $xtm   "),0.1,0.87)
 
 //Text(extwo, vex(" Exercise time  $xtm   ") ,0.1,0.87)
 
 // vex to translate to   to cpp version vex("Ex time %f",xtm)
 
-Text(carbwo,vex(" %6.2f CARB $carb FIBER $fiber FAT $fat PROT $prot (g) "),0.1,0.89)
+//Text(carbwo,vex(" %6.2f CARB $carb FIBER $fiber FAT $fat PROT $prot (g) "),0.1,0.89)
 
 Text(carbwo," %6.2f CARB $carb FIBER $fiber FAT $fat PROT $prot (g) ",0.4,0.89)
 
-Text(calwo,vex(" CALS IN $calsin OUT $calsout "),0.1,0.89)
+//Text(calwo,vex("CALS IN $calsin OUT $calsout "),0.1,0.89)
 
 Text(wtwo,vex(" $mdy Weight  %6.1f  $wtm lbs   "),0.1,0.89)
 

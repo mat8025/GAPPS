@@ -140,16 +140,11 @@ int ExTim (int wb)
 
    sc_zend = rcpx;
 
-sc_zstart.pinfo();
+///sc_zstart.pinfo();
    
 <<"trying computeWL ?  $sc_zstart \n"
 
-   showWL(sc_zstart, sc_zend);
-   
-   computeWL( sc_zstart, sc_zend);
 
-  showCompute()
-   drawScreens();
   
 
 
@@ -159,6 +154,8 @@ sc_zstart.pinfo();
 
   int ZOUT(int wb)
   {
+
+ <<" ZOUT  $sc_zstart  $sc_zend\n";
 
   sc_zstart -= 10;
 
@@ -178,9 +175,8 @@ sc_zstart.pinfo();
 
   }
 
-  drawScreens();
-  
-   showWL(sc_zstart, sc_zend);
+ // drawScreens();
+ //  showWL(sc_zstart, sc_zend);
    return 1;
   }
 //---------------------------------------------

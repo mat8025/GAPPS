@@ -1,4 +1,5 @@
 #! /bin/bash
 echo $1 $GS_SRC/GW
 grep $1 $GS_SRC/GW/*/*.cpp
+grep $1 $GS_SRC/include/*.h
 

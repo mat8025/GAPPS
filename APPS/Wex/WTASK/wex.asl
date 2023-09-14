@@ -631,8 +631,8 @@ float ae = EXTV[15];
   predictWL();
 
 
-  ne=allowMoreErrors(50);
-  <<"errors so far $ne \n"
+//  ne=allowMoreErrors(50);
+//  <<"errors so far $ne \n"
 
 
 
@@ -642,7 +642,7 @@ float ae = EXTV[15];
 
   if (!Graphic) {
 #if _TRANS_  
-     <<" no Graphics while TRANS  $_TRANS_ \n"
+     <<" no Graphics while TRANS   \n"
 #endif
 
 #if _ASL_
@@ -714,7 +714,7 @@ int rcb = 0
 
      
 
-
+update_screens =0
 
      drawScreens()
 
@@ -723,7 +723,7 @@ int rcb = 0
 
      while (Graphic) {
 
-
+       update_screens =0
         eventWait();
 
          nevent++;
@@ -741,10 +741,12 @@ int rcb = 0
             WTLB(GEV__button) 
        }
        else if (GEV__woname == "ZIN") {
-            ZIN(GEV__button) 
+            ZIN(GEV__button)
+	    update_screens =1	    
        }
        else if (GEV__woname == "ZOUT") {
-            ZOUT(GEV__button) 
+            ZOUT(GEV__button)
+	    update_screens =1
        }                     
        else {
          <<"trying $GEV__woname $GEV__button \n"
@@ -756,8 +758,14 @@ int rcb = 0
 
  // if (Button == 1 || Button == 3) 
  //         WTLB();
+   if (update_screens) {
+   showWL(sc_zstart, sc_zend);
+   
+   computeWL( sc_zstart, sc_zend);
 
-
+   showCompute()
+   drawScreens();
+  }
 	 if (nevent > 2000) {
 	   break;
 	   }

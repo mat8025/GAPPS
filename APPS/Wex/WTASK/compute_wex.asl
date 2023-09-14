@@ -144,7 +144,21 @@ void computeWL(int wlsday, int wleday)
 
    xhrs = (Nsel_exemins/60.0);
 
-<<"%V$Nxy_obs %6.2f $Nsel_exemins $(Nsel_exemins/60.0) $Nsel_exeburn $Ndiet_lbs $Nsel_lbs $xhrs\n"
+//<<"%V $Nxy_obs %6.2f $Nsel_exemins $(Nsel_exemins/60.0) $Nsel_exeburn $Ndiet_lbs $Nsel_lbs $xhrs\n"
+
+<<"%V $Nxy_obs \n"
+
+//<<"  $Ndiet_lbs \n"
+
+//<<" %V  $Nsel_exemins \n"
+
+
+
+//<<" %V $xhrs \n"
+
+//<<"  $(Nsel_exemins/60.0) \n"
+
+
 
 }
 //=========================
@@ -157,6 +171,7 @@ float PWT = 0.0; // tomorrow
 
 float predictWL()
 {
+
 double pw;
 Vec<double> pwl(10);
 pwl[0] = 0.0;
@@ -185,7 +200,11 @@ int k = Yday-2; //
 
     pw1 = yv[0] + (pwl[1] *3);
 
-    pw = fround((yv[0] + (pwl[1] *3)),2);
+//    pw = fround((yv[0] + (pwl[1] *3)),2);
+
+     pw = (yv[0] + (pwl[1] *3));
+
+
 
 
     PWT1 = pw;
