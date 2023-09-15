@@ -766,6 +766,7 @@ Text(wtwo,vex(" $mdy Weight  %6.1f  $wtm lbs   "),0.1,0.89)
 
 Text(wtwo,vex("$mdy Weight  %6.1f  $wtm lbs   "),0.3,0.89)
 
+titleMessage(cp,vex("$mdy Weight  %6.1f  $wtm lbs   "))
   //  return m_day;
     
   }

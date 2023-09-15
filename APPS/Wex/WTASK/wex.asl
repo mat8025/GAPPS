@@ -628,9 +628,7 @@ float ae = EXTV[15];
 
    ae = AVE_EXTV[15];
 
-
-  predictWL();
-
+  
 
 //  ne=allowMoreErrors(50);
 //  <<"errors so far $ne \n"
@@ -677,13 +675,13 @@ float ae = EXTV[15];
 #include "glines_wex.asl"
 
 
-
+  predictWL();
+  
    computeGoalLine();
  
 
   lcpx = sc_startday
-  rcpx = sc_endday
-// ans=query("errors $ne  proceed with Graphics?");
+  rcpx = sc_endday // ans=query("errors $ne  proceed with Graphics?");
 
 
   drawScreens()
@@ -699,7 +697,7 @@ float ae = EXTV[15];
 
 //  <<" %(1,,,\n) $EXTV \n"
 
- titleMessage("Tomorrow's wt will be %6.2f $PWT1 +week $PWT7  + month $PWT30")
+ titleMessage(vp,"Tomorrow's wt will be %6.2f $PWT1 +week $PWT7  + month $PWT30")
 
 //  ne=allowMoreErrors(100);
 //  <<"errors so far $ne \n"
@@ -773,7 +771,7 @@ showWL(sc_zstart, sc_zend);
    
    computeWL( sc_zstart, sc_zend);
 <<"Tomorrow's wt will be %6.2f $PWT1 +week $PWT7  + month $PWT30"
-   titleMessage("Tomorrow's wt will be %6.2f $PWT1 +week $PWT7  + month $PWT30")
+   titleMessage(vp,"Tomorrow's wt will be %6.2f $PWT1 +week $PWT7  + month $PWT30")
 
    showCompute()
    drawScreens();

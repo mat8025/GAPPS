@@ -1733,3 +1733,20 @@ wo_posnsz_w.cpp                     1.56    return check
 wo_w.cpp                            1.65    return check 
 mc_xw.cpp                           1.54    return check 
 spe_args_process.cpp                2.50    arg chk for DQ - vex fix
+spe_while.cpp                       1.32    fix missing loop end 
+spe_while.cpp                       1.32    fix missing loop end  
+w_axis.cpp                          1.4    rename w_xxx
+w_clip.cpp                          1.3    rename w_xxx 
+w_clock.cpp                         1.5    rename w_xxx 
+w_colors.cpp                        1.6    rename w_xxx 
+w_console.cpp                       1.6    rename w_xxx 
+w_cursor.cpp                        1.9    rename w_xxx 
+w_decision.cpp                      1.11    rename w_xxx 
+w_delete.cpp                        1.13    rename w_xxx 
+w_edit.cpp                          1.31    rename w_xxx 
+w_env.cpp                           1.43    rename w_xxx 
+w_error.cpp                         1.12    rename w_xxx 
+w_event.cpp                         1.16    rename w_xxx 
+w_fonts.cpp                         1.48    rename w_xxx 
+w_msg.cpp                           1.27    fix win message
+w_create.cpp                        1.7    wo_vis type for wom

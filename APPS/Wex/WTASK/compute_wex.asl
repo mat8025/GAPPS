@@ -179,30 +179,30 @@ pwl[1] = 1.0;
 double xv[5];
 double yv[5];
 int i;
-int k = Yday-2; // 
+int k = Yday-5; // 
 
-//<<"$Yday $k\n"
+<<"  predictWL %V $Yday $k\n"
 
   if (Yday > 5) {
-    for (i =0; i < 3; i++) {   
+    for (i =0; i < 5; i++) {   
        xv[i] =  i;
        yv[i] =  WTVEC[k];
 
- //     <<"$i $k  $WTVEC[k] $xv[i] $yv[i]\n"; // TBF
+     <<"$i $k  $WTVEC[k] $xv[i] $yv[i]\n"; // TBF
        k++;
    }
-//   <<"%V $xv\n"
-//   <<"%V $yv\n"
+   <<"%V $xv\n"
+   <<"%V $yv\n"
    
-   pwl = Lfit(xv,yv,3);
-//   <<"pwl $pwl \n"
+   pwl = Lfit(xv,yv,5);
+  <<"pwl $pwl \n"
    // next day prediction
 
     pw1 = yv[0] + (pwl[1] *3);
 
-//    pw = fround((yv[0] + (pwl[1] *3)),2);
-
-     pw = (yv[0] + (pwl[1] *3));
+  //  pw = fround((yv[0] + (pwl[1] *3)),2);  // TBF 09/15/23  fround broke
+     pw = pw1 
+//     pw = (yv[0] + (pwl[1] *3));
 
 
 
@@ -212,6 +212,12 @@ int k = Yday-2; //
     PWT14 = yv[0] + (pwl[1] * 16);
     PWT30 =  yv[0] + (pwl[1] * 30);
 
+<<"\n Tomorrow's wt will be %6.2f $pw +week $PWT7  + month $PWT30\n"
+
+//ans = query("predict ?? ");
+//if (ans == "q") {
+//exit(-1)
+//}
 
   }
 
