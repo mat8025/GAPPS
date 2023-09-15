@@ -15,11 +15,12 @@
 #if _CPP_
 #include "cpp_head.h" 
 #endif
+
 #if _ASL_
 #include "hv.asl"
 #endif
 
-myvers = "2.56"
+myvers = "2.5"
 
 
 
@@ -491,7 +492,7 @@ init_debug ("wex.dbg", 1, "2.1");
 
   Wex_Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST); 
 
-<<" readRecord  $Wex_Nrecs\n";
+//<<" readRecord  $Wex_Nrecs\n";
 
 //ans=query("read RX??");
 
@@ -526,7 +527,7 @@ if (ans == "q") {
 
   int ACC=ofr("/home/mark/gapps/DAT/cc2023.tsv");
 
-<<"%V $ACC\n"
+//<<"%V $ACC\n"
 
   NCCrecs = 0;
 
@@ -665,7 +666,7 @@ float ae = EXTV[15];
      setScreen()
      
  ne=allowMoreErrors(20);
-  <<"errors so far $ne \n"
+//  <<"errors so far $ne \n"
 
  //ans=query("errors $ne after predict proceed with screen?");
 
@@ -721,6 +722,15 @@ update_screens =0
 
 // trans is giving  while long (Graphic)   // TBF 09/06/2023
 
+ ZOUT(3)
+showWL(sc_zstart, sc_zend);
+   
+   computeWL( sc_zstart, sc_zend);
+
+   showCompute()
+
+     drawScreens()
+
      while (Graphic) {
 
        update_screens =0
@@ -762,6 +772,8 @@ update_screens =0
    showWL(sc_zstart, sc_zend);
    
    computeWL( sc_zstart, sc_zend);
+<<"Tomorrow's wt will be %6.2f $PWT1 +week $PWT7  + month $PWT30"
+   titleMessage("Tomorrow's wt will be %6.2f $PWT1 +week $PWT7  + month $PWT30")
 
    showCompute()
    drawScreens();
@@ -770,8 +782,8 @@ update_screens =0
 	   break;
 	   }
 	   
-  ne=allowMoreErrors(20);
-  <<"errors so far $ne \n"	   
+  //ne=allowMoreErrors(20);
+  //<<"errors so far $ne \n"	   
 }
 
 

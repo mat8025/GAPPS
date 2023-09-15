@@ -1732,3 +1732,4 @@ wo_mods.cpp                         1.7    return check
 wo_posnsz_w.cpp                     1.56    return check 
 wo_w.cpp                            1.65    return check 
 mc_xw.cpp                           1.54    return check 
+spe_args_process.cpp                2.50    arg chk for DQ - vex fix

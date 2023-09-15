@@ -38,11 +38,12 @@ void setScreen()
 
   sWi(_WOID,vp1,  _WREDRAW,ON_);
 
+titleButtonsQRD(vp);
+//titleButtonsQRD(vp1);
 
 
 
-
-  titleButtonsQRD(vp);
+ // titleButtonsQRD(vp);
 
   int allwin[] = {vp,vp1,-1};
 

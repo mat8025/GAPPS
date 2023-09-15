@@ -43,6 +43,7 @@ int woj;
 
 //<<[_DB]"FIRST %V $tbqrd_tv \n"
 
+float rsz[5] = {0.97,0,0.99,1};
 
 void  titleButtonsQRD(int v)
 {
@@ -50,7 +51,7 @@ void  titleButtonsQRD(int v)
 //////////////////////////////// TITLE BUTTON QUIT RESIZE REDRAW ////////////////////////////////////////////////
  int tq=cWo(v,TBS_);
 
-float rsz[5] = {0.97,0,0.99,1};
+
 
  sWo(_WOID,tq,_WNAME,"tbq",_WVALUE,"QUIT",_WFUNC,"window_term",_WRESIZE,rsz,_WSYMBOL,X_);
  
@@ -72,11 +73,13 @@ sWo(_WOID,td, _WNAME,"tbd",_WVALUE,"REDRAW",_WFUNC,"window_redraw",_WRESIZE,rsz,
 
 //<<[_DB]"SET %V $tbqrd_tv \n"
 //int qrd[] = {tr,tq,td};
-  TBqrd_msg = cWo(v,TBV_);
-rsz[0] = 0.22;
-rsz[2] = 0.80;
+  //TBqrd_msg = cWo(v,TBV_);
 
-sWo(_WOID,TBqrd_msg,_WNAME,"tbm",_WVALUE,"MSG",_WSTYLE,SVO_,_WRESIZE,rsz,_WREDRAW,ON_);
+
+rsz[0] = 0.42;
+rsz[2] = 0.90;
+
+//sWo(_WOID,TBqrd_msg,_WNAME,"tbm",_WVALUE,"MSG",_WSTYLE,SVO_,_WRESIZE,wbox(0.12,0,0.8,1.0,0),_WREDRAW,ON_);
 
 int qrd[3];
 
@@ -123,23 +126,29 @@ void titleVers(Str vers)
 }
 
 
+
 //============================//
-void titleMessage(Str msg)
+void titleMessage(int wid, Str msg)
 {
- //<<"titleMessage $TBqrd_msg  $msg\n"
- sWo(_WOID,TBqrd_msg,_WCLEAR,ON_,_WCLEARCLIP,ON_,_WREDRAW,ON_);
-  woSetValue(TBqrd_msg, msg);
- sWo(_WOID,TBqrd_msg,_WREDRAW,ON_);
+
+// for which window ??
+ <<"titleMessage   $msg\n"
+
+
+ //sWo(_WOID,TBqrd_msg,_WNAME,"tbm",_WVALUE,"MSG",_WSTYLE,SVO_,_WRESIZE,wbox(0.1,0,0.8,1.0,0),_WREDRAW,ON_);
+ //sWi(_WOID,wid,_WCLEAR,ON_,_WCLEARCLIP,ON_,_WREDRAW,ON_);
+ // woSetValue(TBqrd_msg, msg);
+ sWi(_WOID,wid,_WMSG,"$msg",_WREDRAW,ON_);
 }
 
-void titleMsg(Str msg)
+void titleMsg(int wid,Str msg)
 {
   //<<"titleMsg $_tbqrd_msg  $msg\n"
 // sWo(_WOID,tbqrd_msg,_WVALUE,msg.cptr(),_WCLEAR,ON_,_WREDRAW,ON_);
-  woSetValue(TBqrd_msg, msg);
+ // woSetValue(TBqrd_msg, msg);
   
   //sWo(_WOID,tbqrd_msg,_WVALUE,msg,_WCLEAR,ON_,_WREDRAW,ON_);
-  sWo(_WOID,TBqrd_msg,_WREDRAW,ON_);
+  sWi(_WOID,wid,_WMSG,"$msg");
 
 }
 

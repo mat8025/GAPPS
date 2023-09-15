@@ -10,7 +10,7 @@
  *  @Copyright © RootMeanSquare 2022
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                                                                                 
+//----------------<v_&_v>-------------------------//                                                                                 
 
 float xhrs = 0;
 float Ndiet_lbs = 0.0;
@@ -19,7 +19,7 @@ float Nsel_calsinout = 0.0;
    void computeGoalLine()
    {
 
-<<" computeGoalLine()\n"
+//<<" computeGoalLine()\n"
  //<<"%V$StartWt $NextGoalWt\n"
      int sz;
      long ngday = gday - gsday;
@@ -80,7 +80,7 @@ float Nsel_calsinout = 0.0;
  //    <<[_DB]"%6.1f%(7,, ,\n)$GVEC\n";
 //ans=query("done computeGoalLine()?");
 
-      <<" exit computeGoalLine()\n";
+      //<<" exit computeGoalLine()\n";
      }
      
 //==================================//
@@ -93,7 +93,7 @@ void computeWL(int wlsday, int wleday)
 // read the number of cals burnt during exercise
 // compute the number of lbs burnt
 
-<<" computeWL $wlsday $wleday \n"
+//<<" computeWL $wlsday $wleday \n"
 
    int i;
 
@@ -113,7 +113,7 @@ void computeWL(int wlsday, int wleday)
    sday = wlsday;
    eday = wleday;
 
-<<" %V $sday $eday  $Nobs\n"
+//<<" %V $sday $eday  $Nobs\n"
    Ndiet_lbs = 0.0;
 
    for (i = sday; i <= eday ; i++) {

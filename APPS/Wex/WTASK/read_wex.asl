@@ -119,7 +119,7 @@ if (Yd >= 0) {
 
   Nobs++ 
 
-  <<"%V $Nobs  $exer_burn \n" 
+//  <<"%V $Nobs  $exer_burn \n" 
   }
 
   }
@@ -143,7 +143,7 @@ if (Yd >= 0) {
   
   int got_start = 0 
 
-  <<"get data from record %V $Wex_Nrecs \n" 
+//  <<"get data from record %V $Wex_Nrecs \n" 
 
 // access of record row Rx(i)
 // access of record Col Rx(i,j)
@@ -159,7 +159,7 @@ if (Yd >= 0) {
   day = Col[0] 
   mywt = Col[1] 
 
-<<" $day $mywt \n"
+//<<" $day $mywt \n"
 
 
 
@@ -176,13 +176,13 @@ if (Yd >= 0) {
 
   Yd = jday - Jan1 
   
- <<"%V $jday  $Yd\n"
+// <<"%V $jday  $Yd\n"
 
   lday = Yd 
 
   if (Yd < 0) {
 
-  <<"$tl  $Yd neg offset ! \n" 
+//  <<"$tl  $Yd neg offset ! \n" 
 
   }
   else {
@@ -289,7 +289,7 @@ if (Yd >= 0) {
 
   FIBRCON[Yd] = fiber
   
-<<"%V $day $cals $carbs $fat $prot $fiber\n"
+//<<"%V $day $cals $carbs $fat $prot $fiber\n"
 
   NCCobs++ 
   }

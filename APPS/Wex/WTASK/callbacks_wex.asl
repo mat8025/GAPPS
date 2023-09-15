@@ -155,13 +155,13 @@ int ExTim (int wb)
   int ZOUT(int wb)
   {
 
- <<" ZOUT  $sc_zstart  $sc_zend\n";
+ //<<" ZOUT  $sc_zstart  $sc_zend\n";
 
   sc_zstart -= 10;
 
   sc_zend  += 10;
   
- <<" ZOUT  $sc_zstart  $sc_zend\n";
+ //<<" ZOUT  $sc_zstart  $sc_zend\n";
 
   if (sc_zstart < sc_startday) {
 
@@ -183,7 +183,7 @@ int ExTim (int wb)
 int WTLB(int wb)
 {
 
-<<"WTLB $wb \n"
+////<<"WTLB $wb \n"
 
 
  long wt_day = 0;

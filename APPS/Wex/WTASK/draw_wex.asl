@@ -313,7 +313,7 @@ int match[2]
 //<<" $_proc \n"
 
 
-<<"%V $sc_startday  $sc_end \n";
+//<<"%V $sc_startday  $sc_end \n";
 
 
 // sc_startday.pinfo()
@@ -509,7 +509,7 @@ int keypos[10]
 
 //<<" $keypos \n";
 
-<<"DONE draw \n"
+//<<"DONE draw \n"
 
 }
 
@@ -697,7 +697,7 @@ void showWL(int ws, int we)
   Str mdy = Julmdy(m_day)
  int dindex = dayv -1
  
-<<"%V $dayv $m_day $Jan1 $mdy $dindex\n"
+//<<"%V $dayv $m_day $Jan1 $mdy $dindex\n"
 
   int calsin =  CALSCON[dindex]
   int calsout =  CALBURN[dindex]  
@@ -743,29 +743,28 @@ void showWL(int ws, int we)
 */
 // pex 
 
-<<"Exercise time %6.1f $xtm   \n"
+//<<"Exercise time %6.1f $xtm   \n"
 
 //cffp =vex(" %6.2f CARB $carb FIBER $fiber FAT $fat PROT $prot (g) ")
 
 //<<"$cffp\n"
 
+/////////////////////////////// VEX ///////////////////////////////////////////////////
+// vex to translate to   to cpp version vex("Ex time %f",xtm)
+// ves asl returns expanded string
+
  Text(extwo,vex("Exercise time %6.1f $xtm   "),0.1,0.87)
 
-//Text(extwo, vex(" Exercise time  $xtm   ") ,0.1,0.87)
 
-// vex to translate to   to cpp version vex("Ex time %f",xtm)
+Text(carbwo,vex(" %6.2f CARB $carb FIBER $fiber FAT $fat PROT $prot (g) "),0.1,0.89)
 
-//Text(carbwo,vex(" %6.2f CARB $carb FIBER $fiber FAT $fat PROT $prot (g) "),0.1,0.89)
-
-Text(carbwo," %6.2f CARB $carb FIBER $fiber FAT $fat PROT $prot (g) ",0.4,0.89)
-
-//Text(calwo,vex("CALS IN $calsin OUT $calsout "),0.1,0.89)
+Text(calwo,vex("CALS IN $calsin OUT $calsout "),0.1,0.89)
 
 Text(wtwo,vex(" $mdy Weight  %6.1f  $wtm lbs   "),0.1,0.89)
 
-<<"$mdy Weight  %6.1f  $wtm lbs   \n"
+//<<"$mdy Weight  %6.1f  $wtm lbs   \n"
 
-Text(wtwo," $mdy Weight  %6.1f  $wtm lbs   ",0.3,0.89)
+Text(wtwo,vex("$mdy Weight  %6.1f  $wtm lbs   "),0.3,0.89)
 
   //  return m_day;
     

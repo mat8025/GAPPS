@@ -93,6 +93,8 @@ int main( int argc, char *argv[] ) { // main start
  <<" %V $ans \n"
     tr.pinfo();
 
+//titleButtonsQRD(vp);
+    titleMessage(vp,"watch the symbols")
 
 
    while (Graphic) {
@@ -152,7 +154,7 @@ int main( int argc, char *argv[] ) { // main start
        symbol_name = getSymbolName(symbol_num);  // need cpp vers
 //<<"%V $symbol_name\n"
 
-      // titleMsg("$symbol_name");
+      titleMessage(vp,"$symbol_name");
      if (symbol_num > 20) {
          symbol_num = 1;
      }
