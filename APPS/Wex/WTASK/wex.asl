@@ -762,7 +762,8 @@ showWL(sc_zstart, sc_zend);
             
 // ZIN(); ZOUT , WTLB
        }
- 
+
+   titleMessage(vp, " $GEV__rx $GEV__ry ")
 
  // if (Button == 1 || Button == 3) 
  //         WTLB();
@@ -775,6 +776,7 @@ showWL(sc_zstart, sc_zend);
 
    showCompute()
    drawScreens();
+
   }
 	 if (nevent > 2000) {
 	   break;

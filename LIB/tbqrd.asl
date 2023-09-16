@@ -138,7 +138,7 @@ void titleMessage(int wid, Str msg)
  //sWo(_WOID,TBqrd_msg,_WNAME,"tbm",_WVALUE,"MSG",_WSTYLE,SVO_,_WRESIZE,wbox(0.1,0,0.8,1.0,0),_WREDRAW,ON_);
  //sWi(_WOID,wid,_WCLEAR,ON_,_WCLEARCLIP,ON_,_WREDRAW,ON_);
  // woSetValue(TBqrd_msg, msg);
- sWi(_WOID,wid,_WMSG,"$msg",_WREDRAW,ON_);
+ sWi(_WOID,wid,_WMSG,"$msg");
 }
 
 void titleMsg(int wid,Str msg)

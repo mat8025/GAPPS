@@ -199,6 +199,8 @@ int WTLB(int wb)
 	 wt_day = fround(lcpx,0);
 	 
 
+
+
 //  wt_day.pinfo();
   //lcpx.pinfo();
 
@@ -219,7 +221,7 @@ int WTLB(int wb)
          Wex_CR_init = 0;
 
        }
-
+ //drawScreens();
     return 1;
 
 
