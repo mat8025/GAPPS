@@ -15,7 +15,7 @@
 float xhrs = 0;
 float Ndiet_lbs = 0.0;
 float Nsel_calsinout = 0.0;
-
+float Ave_carbs = 0.0;
    void computeGoalLine()
    {
 
@@ -101,6 +101,7 @@ void computeWL(int wlsday, int wleday)
    Nsel_exemins = 0;
    Nsel_exeburn = 0.0;
    Nsel_calsinout = 0.0;
+   n_obs = 0;
 
    Nxy_obs = 0;
 
@@ -115,6 +116,7 @@ void computeWL(int wlsday, int wleday)
 
 //<<" %V $sday $eday  $Nobs\n"
    Ndiet_lbs = 0.0;
+   Ave_carbs = 0.0;
 
    for (i = sday; i <= eday ; i++) {
 
@@ -122,14 +124,14 @@ void computeWL(int wlsday, int wleday)
 
         Nxy_obs++;
         }
-	
+	n_obs++;
         Nsel_exeburn += EXEBURN[i]; // assuming this is zero for non-recorded
         Nsel_exemins += EXTV[i];
 
         ccals = CALSCON[i];
 
         bcals = CALBURN[i];
-	
+	Ave_carbs += CARBSCON[i];
         Nsel_calsinout +=  (ccals - bcals);
 
 //<<"$i Exeburn $Nsel_exeburn Mins $Nsel_exemins   \n"
@@ -141,12 +143,13 @@ void computeWL(int wlsday, int wleday)
 
    Nsel_lbs = Nsel_exeburn/ 4000.0;
    Ndiet_lbs = Nsel_calsinout/ 4000.0;   
-
+   Ave_carbs =  Ave_carbs / (1.0*n_obs);
+   
    xhrs = (Nsel_exemins/60.0);
 
 //<<"%V $Nxy_obs %6.2f $Nsel_exemins $(Nsel_exemins/60.0) $Nsel_exeburn $Ndiet_lbs $Nsel_lbs $xhrs\n"
 
-<<"%V $Nxy_obs \n"
+<<"%V $Nxy_obs $Ave_carbs\n"
 
 //<<"  $Ndiet_lbs \n"
 

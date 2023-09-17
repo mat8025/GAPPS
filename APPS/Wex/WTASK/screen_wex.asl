@@ -221,7 +221,11 @@ titleButtonsQRD(vp);
 
   sWo(_WOID,dlbswo,_WNAME,"dLbs",_WCLIPBHUE,YELLOW_,_WVALUE,0);
 
-  int xwos[] = { nobswo, xtwo, xbwo, xlbswo, dlbswo ,-1}
+  avecarbwo= cWo(vp,WO_BV_);
+
+  sWo(_WOID,avecarbwo,_WNAME,"AveCarb",_WCLIPBHUE,YELLOW_,_WVALUE,0);
+
+  int xwos[] = { nobswo, xtwo, xbwo, xlbswo, dlbswo , avecarbwo, -1}
 //   xwos[] = { nobswo, xtwo, xbwo, xlbswo, dlbswo ,-1}
 
   wohtile( xwos, 0.45,0.01,0.83,0.07);

@@ -290,7 +290,7 @@ Record RX;
   int vp,vp1;
   int wtwo,calwo,calcwo,carbwo,extwo;
   int swo,tw_wo,zinwo,zoomwo;
-  int nobswo,xtwo,xbwo,xlbswo,dlbswo;
+  int nobswo,xtwo,xbwo,xlbswo,dlbswo, avecarbwo;
   int dtmwo,obswo,cbmwo,xtmwo,sdwo,gdwo,gwtwo,wtmwo;
   int keywo, keycalwo;
 

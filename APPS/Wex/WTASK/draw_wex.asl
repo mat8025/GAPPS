@@ -70,7 +70,7 @@
   {
 
 
-<<"  %V $Nxy_obs $Nsel_exeburn $Nsel_lbs $Ndiet_lbs $xhrs \n"
+<<"  %V $Nxy_obs $Nsel_exeburn $Nsel_lbs $Ndiet_lbs $xhrs $Ave_carbs\n"
 
   //sWo(_WOID,nobswo,_WVALUE,"%d $Nxy_obs",_WUPDATE,ON_) ;// need pex
 
@@ -84,6 +84,8 @@
   sWo(_WOID,xlbswo,_WVALUE,Nsel_lbs,_WUPDATE,ON_)
 
   sWo(_WOID,dlbswo,_WVALUE,Ndiet_lbs,_WUPDATE,ON_)
+
+  sWo(_WOID,avecarbwo,_WVALUE,Ave_carbs,_WUPDATE,ON_)
 
   }
 //========================================================
@@ -542,7 +544,7 @@ int keypos[10]
   sWo(_WOID,zoomwo,_WSTYLE,WO_SVB_,_WREDRAW,ON_);
   sWo(_WOID,zinwo,_WSTYLE,WO_SVB_,_WREDRAW,ON_);
 
- int xwos[] = { nobswo, xtwo, xbwo, xlbswo, dlbswo ,-1};
+ int xwos[] = { nobswo, xtwo, xbwo, xlbswo, dlbswo , avecarbwo, -1};
  for (i= 0; i< 10; i++) {
 
      if (xwos[i] <0 ){

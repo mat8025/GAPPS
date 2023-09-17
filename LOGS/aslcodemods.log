@@ -1750,3 +1750,11 @@ w_event.cpp                         1.16    rename w_xxx
 w_fonts.cpp                         1.48    rename w_xxx 
 w_msg.cpp                           1.27    fix win message
 w_create.cpp                        1.7    wo_vis type for wom
+p_win.cpp                           1.93    strCpy
+p_wo_set.cpp                        1.96    strCpy 
+p_wo_get.cpp                        1.83    strCpy 
+spe_proc_args.cpp                   3.53    strCpy 
+spe_func.cpp                        3.57    strCpy 
+svar_env.cpp                        1.4    strCpy 
+fop_ops.cpp                         1.84    strCpy 
+fop_ops.cpp                         1.85    strCpy 
