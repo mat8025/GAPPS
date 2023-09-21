@@ -87,9 +87,9 @@ int main( int argc, char *argv[] ) { // main start
 #endif
 
 
-  run_asl = runASL()
+//  run_asl = runASL()
 
-<<"%V $run_asl \n"
+//<<"%V $run_asl \n"
 
   int na;
 

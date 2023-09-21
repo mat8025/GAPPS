@@ -374,13 +374,13 @@ init_debug ("wex.dbg", 1, "2.1");
    Str stmp;
    Svar Goals;
    
-   Goals.split("08/12/2023 09/30/2023 185");
+   Goals.split("08/20/2023 09/30/2023 185");
 
 //<<"Setting goals $Goals\n"
 
    Svar Goals2;
    
-   Goals2.split("08/12/2023 09/15/2023 175");
+   Goals2.split("09/15/2023 10/15/2023 175");
 ////////////////////==============/////////////////
 
 // move these down 10 when reached -- until we are at desired operating weight!

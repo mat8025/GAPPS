@@ -39,12 +39,17 @@ p2= 2 ^31;
 double scdeg = 180.0/ (2 ^31);
 
 <<"%V $p2 %e $scdeg\n"
- fitconv(AF,BF);
+
+DF = -1
+DF= ofw("fit_debug")
+<<"debug $DF to file fit_debug\n"
+
+   fitconv(AF,BF,DF);
 
 
 
-dt=FineTimeSince(TL)
-secs = dt/1000000.0
+ dt=FineTimeSince(TL)
+ secs = dt/1000000.0
 
 
 <<"took %V$secs\n"

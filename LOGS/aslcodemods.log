@@ -1758,3 +1758,8 @@ spe_func.cpp                        3.57    strCpy
 svar_env.cpp                        1.4    strCpy 
 fop_ops.cpp                         1.84    strCpy 
 fop_ops.cpp                         1.85    strCpy 
+sstr.cpp                            1.10    strCpy 
+vmf_e.cpp                           3.56    strCpy 
+spil_utils.cpp                      2.68    findExpBTW receiving field
+vec.h                               1.11     vec T,W = , vec = (char*)
+mat.h                               2.7    range mods

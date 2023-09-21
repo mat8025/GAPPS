@@ -1,4 +1,10 @@
 
+#
+# makefile for compiling asc file using GASP libs
+#
+#  asc file is produced from asl file using asl -dwT to process asl script file
+#
+
 gasp_sys = /home/mark/gasp-CARBON
 
 TAR = "vops"
@@ -12,7 +18,7 @@ LFLAGS =  -fPIC -DPIC -Wall  -I../../libs -I$(gasp_sys)/include -I/usr/include  
 
 LDADD = -L$(gasp_sys)/lib  \
 	-lvec_asl \
-	-lmat_asl \
+	-lmatrix_asl \
 	-lfop_asl \
 	-lnum_asl \
 	-lstr_asl \
@@ -34,5 +40,5 @@ LDADD = -L$(gasp_sys)/lib  \
 
 
 out:
-	g++ -x c++  -pg -fpermissive  -rdynamic -o $(TAR) $(TAR).asc  -DMYFILE=\"$(TAR).asc\" -I$(gasp_sys)/include -ldl  $(LDADD) 
+	g++ -x c++  -g -fpermissive  -rdynamic -o $(TAR) $(TAR).asc  -DMYFILE=\"$(TAR).asc\" -I$(gasp_sys)/include -ldl  $(LDADD) 
 

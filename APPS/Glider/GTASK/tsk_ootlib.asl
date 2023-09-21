@@ -82,13 +82,17 @@
 //============================================
 
 
-  Vec<float> IGCLONG(7000)
 
-  Vec<float> IGCLAT(7000)
+  float IGCLONG [7000]
 
-  Vec<float> IGCELE(7000)
+  float IGCLAT [7000]
 
-  Vec<float> IGCTIM(7000)
+  float IGCELE [7000]
+
+  float IGCTIM [7000]
+
+
+
 
 // DBG <<"%V $Igcfn \n"
 

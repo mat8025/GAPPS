@@ -15,9 +15,9 @@ myScript = getScript();
 //    show run, bike and hike tracks,speed, bpm
 //
 
-include "debug"
-include "hv"
-include "consts"
+#include "debug"
+#include "hv"
+#include "consts"
 //filterFileDebug(ALLOWALL_,"ic_","gline");
 //filterFuncDebug(ALLOWALL_,"proc","");
 
@@ -538,7 +538,7 @@ int tim;
 ///
 
 //////////////////////////// TBD ///////////////////////////////////////////
-/{/*
+/*
 
 
  BUGS:  
@@ -553,7 +553,7 @@ int tim;
 
 4. Show date at start of track -DONE
 
-/}*/
+*/
 
 
 
