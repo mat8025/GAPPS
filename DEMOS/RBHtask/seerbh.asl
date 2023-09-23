@@ -76,7 +76,7 @@ proc showMeasures (int index)
   }
 
 ///  Read data to 2D float array
-R=readRecord(A,@type,FLOAT_,@pickcond,">",1,0,pickcond,">",2,0)
+  R=readRecord(A,@type,FLOAT_,@pickcond,">",1,0,pickcond,">",2,0)
 
 
 sz = Caz(R);

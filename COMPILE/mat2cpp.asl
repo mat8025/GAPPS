@@ -87,7 +87,7 @@ double rms;
 double val;
 double dval;
 
-  int D[20];
+  double D[20];
 
    D.pinfo();
 //ans=query("?","Vec D(20) ",__LINE__);
@@ -154,7 +154,7 @@ int index = 6;
     int rvec[3] = {1,4,1};
     int cvec[3] = {0,4,-1};
 
-<<"cevc  rvec \n"
+<<"cvec  rvec \n"
     cvec.pinfo()
     
     rvec.pinfo()
@@ -183,6 +183,20 @@ int index = 6;
 #endif
 
 
+   D = M[0:-1][1] ;  // ==> D = M(rows(0,-1,1), cols(1))
+
+
+<<"%V $D\n"
+               
+     D.pinfo()          
+
+   D = M[0:-1][2]
+
+
+<<"%V $D\n"
+               
+     D.pinfo()          
+             
 
 
 

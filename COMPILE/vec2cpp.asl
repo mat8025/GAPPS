@@ -55,7 +55,7 @@ Str vecans="xxx";
 
 int main( int argc, char *argv[] ) { 
         cpp_init();
-        init_debug ("symbols.dbg", 1, "1.2");
+        init_debug ("vec.dbg", 1, "1.2");
         cprintf("%s\n",MYFILE);
 
 #endif               
