@@ -23,7 +23,7 @@
 
 #if _ASL_
 #include "hv.asl"
-myvers =Hdr_vers
+ myvers =Hdr_vers
 #define cout //
 #define COUT //
 #define CDB ans=query("go on");

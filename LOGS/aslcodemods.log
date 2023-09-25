@@ -1763,3 +1763,7 @@ vmf_e.cpp                           3.56    strCpy
 spil_utils.cpp                      2.68    findExpBTW receiving field
 vec.h                               1.11     vec T,W = , vec = (char*)
 mat.h                               2.7    range mods
+vmf_record.cpp                      1.6    mod for read to matrix,2d array
+rec_rd.cpp                          1.88    mod for read to matrix
+rec_ops.cpp                         1.95    [A
+parrayexpand.cpp                    2.77    add space(delimiter) between elements
