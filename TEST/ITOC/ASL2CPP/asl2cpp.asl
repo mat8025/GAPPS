@@ -22,7 +22,7 @@
 using namespace std;
 #include "vargs.h"
 #include "cpp_head.h" 
-#include "consts.h"
+
 #define PXS  cout<<
 
 
@@ -55,7 +55,7 @@ const float  nm2km_ = 1.852
 #define WX 1
 
 ///////////////  GLOBALS //////////////////
-
+// TBF trans adds ;
 #include "inc1.asl"
 
 void setScreen()
@@ -131,7 +131,8 @@ int j
 float MidLat
 
 
-  <<" $(getVersion()) \n"
+//  TBF bad trans
+//  <<" $(getVersion()) \n"
 
    release = "";
 
@@ -147,7 +148,17 @@ float MidLat
    
 <<"%V $k ==>$release\n"
 
+  int IV[10]
 
+
+  tjd = IV[3]
+
+  int xwos[] =  { 1,2,3, -1}
+
+// TBF - vec, mat print
+//<<"%V $xwos\n"
+
+  // xwos.pinfo()
 
    m = 92
    r = 3.142
@@ -166,8 +177,8 @@ float MidLat
    <<"%V $t $b $a\n"
     }
 
-<<"$Veci \n"
-
+//<<"$Veci \n"
+   Veci.pinfo()
   <<" $Veci[j] \n"
 //  ans=query(">")
   }

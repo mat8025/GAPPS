@@ -189,7 +189,7 @@ int match[2]
 
   the_date = Julmdy(jd)
   
-  Str mday = spat(the_date, "/",-1,-1, match)
+  Str mday = spat(the_date, "/",-1,-1)
   
  // AxText(wwo, 1, mday, q1_date, -0.25, BLUE_)
 
@@ -223,7 +223,7 @@ int match[2]
  //wday = Julday(jd)
   
  // Str mday = spat(the_date, (char *)"/",-1,-1, match)
-  mday = spat(the_date, "/",-1,-1, match)
+  mday = spat(the_date, "/",-1,-1)
 
  // axisLabel(wwo, 1, mday, wdate, 0.7, BLUE_)
   AxText(wwo, 1, mday, wdate, -0.25, MAGENTA_)
@@ -323,8 +323,8 @@ int match[2]
 //<<"RESET? %V $sc_startday  $sc_end \n"
 
 
-int wedwos[] = { wtwo, calwo,  carbwo, extwo,-1  }
-
+ int wedwos[] = { wtwo, calwo,  carbwo, extwo,-1  }
+// ==>  Vec<int> wedwos ( { wtwo, calwo,  carbwo, extwo,-1  })  ;
 //  Str ans;
 
 //<<" $wedwos\n";
@@ -768,7 +768,7 @@ Text(wtwo,vex(" $mdy Weight  %6.1f  $wtm lbs   "),0.1,0.89)
 
 Text(wtwo,vex("$mdy Weight  %6.1f  $wtm lbs   "),0.3,0.89)
 
-titleMessage(cp,vex("$mdy Weight  %6.1f  $wtm lbs   "))
+titleMessage(vp,vex("$mdy Weight  %6.1f  $wtm lbs   "))
   //  return m_day;
     
   }

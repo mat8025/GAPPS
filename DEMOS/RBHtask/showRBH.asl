@@ -590,16 +590,16 @@ int tim;
 		 lat = _ery;
 		 lon = _erx;
 
-          sWo(_WOID,mapwo, _Wscales, LongW, LatS, LongE, LatN ) ; // TBD put lon in W > neg form
-          sWo(_WOID,mapwo,_Wclearpixmap);
+          sWo(_WOID,mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN) ) ; // TBD put lon in W > neg form
+          sWo(_WOID,mapwo,_WCLEARPIXMAP, ON_);
 	  dGl(igc_tgl);
-          sWo(_WOID,mapwo,_Wshowpixmap);
+          sWo(_WOID,mapwo,_WSHOWPIXMAP,ON_);
 
-         sWo(_WOID,mapwo,_Wsave,_Wsavepixmap);	
-         sWo(_WOID,latwo,_Wvalue,lat,_Wupdate);
-	 sWo(_WOID,lonwo,_Wvalue,lon,_Wupdate);
+         sWo(_WOID,mapwo,_WSAVE,_WSAVEPIXMAP,ON_);	
+         sWo(_WOID,latwo,_WVALUE,lat,_WUPDATE,ON_);	
+	 sWo(_WOID,lonwo,_WVALUE,lon,_WUPDATE,ON_);	
 	 //<<"%V$mapwo \n"
-         sWo(_WOID,bikewo,_Wmove,lon,lat,mapwo,_Wredraw); // lon is neg ?
+         sWo(_WOID,bikewo,_WMOVE,wpt(lon,lat,mapwo),_WREDRAW,ON_);	 // lon is neg ?
         }
 
       }
@@ -613,7 +613,7 @@ int tim;
          lon = Lon[Kindex];	 
 //<<"$_eloop got R $Kindex $(typeof(Kindex)) $lat $lon\n"
           sWo(_WOID,mapwo,_Wshowpixmap);
-         sWo(_WOID,bikewo,_Wmove,lon,lat,mapwo,_Wredraw);
+         sWo(_WOID,bikewo,_Wmove,wpt(lon,lat,mapwo),_Wredraw);
          showMeasures (Kindex);
 	 mindex = Kindex;
 <<"%V $mindex $(typeof(mindex)) $Kindex \n"	 	 
@@ -625,8 +625,8 @@ int tim;
          lat = Lat[Kindex];
          lon = Lon[Kindex];	 
 //<<"$_eloop got S $Kindex $lat $lon\n"
-          sWo(_WOID,mapwo,_Wshowpixmap);
-          sWo(_WOID,bikewo,_Wmove,lon,lat,mapwo,_Wredraw);
+          sWo(_WOID,mapwo,_WSHOWPIXMAP,ON_);
+          sWo(_WOID,bikewo,_WMOVE,wpt(lon,lat,mapwo),_WREDRAW,ON);
          showMeasures (Kindex);
 
 	//  sGl(pos_gl,_Wcursor,Kindex,0,Kindex,20); 
@@ -638,8 +638,8 @@ int tim;
          lat = Lat[Kindex];
          lon = Lon[Kindex];	 
 //<<"$_eloop got Q $Kindex $lat $lon\n"
-          sWo(_WOID,mapwo,_Wshowpixmap);
-          sWo(_WOID,bikewo,_Wmove,lon,lat,mapwo,_Wredraw);
+          sWo(_WOID,mapwo,_WSHOWPIXMAP,ON_);
+          sWo(_WOID,bikewo,_WMOVE,wpt(lon,lat,mapwo),_WREDRAW,ON);
          showMeasures (Kindex);
 	 mindex = Kindex;
 	 // sGl(pos_gl,_Wcursor,Kindex,0,Kindex,20); 	 
@@ -652,34 +652,34 @@ int tim;
          lat = Lat[Kindex];
          lon = Lon[Kindex];	 
 //<<"$_eloop got T $Kindex $lat $lon\n"
-         sWo(_WOID,mapwo,_Wshowpixmap);
-         sWo(_WOID,bikewo,_Wmove,lon,lat,mapwo,_Wredraw); 
+         sWo(_WOID,mapwo,_WSHOWPIXMAP,ON);
+         sWo(_WOID,bikewo,_WMOVE,wpt(lon,lat,mapwo_,_WREDRAW,ON);
          showMeasures (Kindex);
     }
    }
 
      if (_ekeyw @= "REDRAW") {
 
-     sWo(_WOID,mapwo,_Wclearpixmap);
+     sWo(_WOID,mapwo,_WCLEARPIXMAP,ON_);
 
      dGl(igc_tgl);  // plot the igc track -- if supplied
 
-     sWo(_WOID,mapwo,_Wsave,_Wshowpixmap,_Wsavepixmap);
+     sWo(_WOID,mapwo,_WSAVE,ON_,_WSHOWPIXMAP,ON_,_WSAVEPIXMAP,ON_);
      
-     sWo(_WOID,vvwo, _Wscales, 0, min_ele, Npts, (max_ele+50) )
+     sWo(_WOID,vvwo, _WSCALES, wbox(0, min_ele, Npts, (max_ele+50)) )
      
      dGl(elev_gl);  // plot the igc climb -- if supplied
 
-     sWo(_WOID,vvwo, _Wscales, 0, 40, Npts, 200 )
+     sWo(_WOID,vvwo, _WSCALES, wbox(0, 40, Npts, 200 ))
 
      dGl(bpm_gl);
 
 
-     sWo(_WOID,vvwo, _Wscales, 0, 0, Npts, top_speed )
+     sWo(_WOID,vvwo, _WSCALES, wbox(0, 0, Npts, top_speed ))
 
      dGl(spd_gl);  
 
-     sGl(pos_gl,_Wcursor,Kindex,0,Kindex,20,1); // this inits the cursor	 
+     sGl(pos_gl,_GLCURSOR,rbox(Kindex,0,Kindex,20,1)); // TBC this inits the cursor	 
 
      }
 

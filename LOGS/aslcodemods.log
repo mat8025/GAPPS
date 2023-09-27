@@ -1767,3 +1767,11 @@ vmf_record.cpp                      1.6    mod for read to matrix,2d array
 rec_rd.cpp                          1.88    mod for read to matrix
 rec_ops.cpp                         1.95    [A
 parrayexpand.cpp                    2.77    add space(delimiter) between elements
+prep_preprocess.cpp                 1.15    Vec<type> name = {1,2,3} trans
+num_conv.cpp                        2.92    cpp itoa
+p_wo_get.cpp                        1.84    vec cpp woGetRxy
+p_wo_get.cpp                        1.84    vec cpp woGetRxy 
+svar_find.cpp                       1.69    findExBetween returns 0 if no exp
+p_wo_tile.cpp                       1.88    vec versions of tile
+p_wo_set.cpp                        1.97    tidy
+stat_m.cpp                          1.98    vec version of Lfit

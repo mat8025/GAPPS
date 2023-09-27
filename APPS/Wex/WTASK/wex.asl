@@ -488,7 +488,7 @@ init_debug ("wex.dbg", 1, "2.1");
   }
 // check period
 
-  Svar rx;
+//  Svar rx;
 
   Wex_Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST); 
 
