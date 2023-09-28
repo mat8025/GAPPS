@@ -194,11 +194,16 @@ int k = Yday-5; //
      <<"$i $k  $WTVEC[k] $xv[i] $yv[i]\n"; // TBF
        k++;
    }
-   <<"%V $xv\n"
-   <<"%V $yv\n"
+   
+   //<<"%V $xv\n"
+   //<<"%V $yv\n"
+   // trans to vprintf
    
    pwl = Lfit(xv,yv,5);
-  <<"pwl $pwl \n"
+
+//<<"pwl $pwl \n"
+ //   pwl.vprintf();
+    
    // next day prediction
 
     pw1 = yv[0] + (pwl[1] *3);

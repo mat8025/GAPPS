@@ -53,18 +53,18 @@ void  titleButtonsQRD(int v)
 
 
 
- sWo(_WOID,tq,_WNAME,"tbq",_WVALUE,"QUIT",_WFUNC,"window_term",_WRESIZE,rsz,_WSYMBOL,X_);
+ sWo(_WOID,tq,_WNAME,"tbq",_WVALUE,"QUIT",_WFUNC,"window_term",_WRESIZE,wbox(rsz),_WSYMBOL,X_);
  
 int  tr=cWo(v,TBS_);
 rsz[0] = 0.94;
 rsz[2] = 0.96;
- sWo(_WOID,tr,_WNAME,"tbr",_WVALUE,"RESIZE",_WFUNC,"window_resize",_WRESIZE,rsz,_WSYMBOL,CROSS_);
+ sWo(_WOID,tr,_WNAME,"tbr",_WVALUE,"RESIZE",_WFUNC,"window_resize",_WRESIZE,wbox(rsz),_WSYMBOL,CROSS_);
  
  int td=cWo(v,TBS_);
  rsz[0] = 0.91;
  rsz[2] = 0.93;
  
-sWo(_WOID,td, _WNAME,"tbd",_WVALUE,"REDRAW",_WFUNC,"window_redraw",_WRESIZE,rsz,_WSYMBOL,DIAMOND_);
+sWo(_WOID,td, _WNAME,"tbd",_WVALUE,"REDRAW",_WFUNC,"window_redraw",_WRESIZE,wbox(rsz),_WSYMBOL,DIAMOND_);
 
 //  TBqrd_tv = cWo(v,TBV_);
 //rsz[0] = 0.2;
@@ -93,14 +93,14 @@ float clip[5] = {0,0,1,1};
 int i;
 // need cpp version to process array without for loop 03/14/22
 
- sWo(_WOID,tq,_WDRAW,ON_,_WPIXMAP,ON_,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45, _WCLIP,clip,_WREDRAW,ON_);
+ sWo(_WOID,tq,_WDRAW,ON_,_WPIXMAP,ON_,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45, _WCLIP,wbox(clip),_WREDRAW,ON_);
 
-sWo(_WOID,tr,_WDRAW,ON_,_WPIXMAP,ON_,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45, _WCLIP,clip,_WREDRAW,ON_);
+sWo(_WOID,tr,_WDRAW,ON_,_WPIXMAP,ON_,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45, _WCLIP,wbox(clip),_WREDRAW,ON_);
 
-sWo(_WOID,td,_WDRAW,ON_,_WPIXMAP,ON_,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45, _WCLIP,clip,_WREDRAW,ON_);
+sWo(_WOID,td,_WDRAW,ON_,_WPIXMAP,ON_,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45, _WCLIP,wbox(clip),_WREDRAW,ON_);
 
 
-  printf("%d _tbqrd_tv\n", TBqrd_tv);
+//  printf("%d _tbqrd_tv\n", TBqrd_tv);
 // sWo(tbqrd_tv,_redraw);
 // sWo(tbqrd_msg,_redraw);
  
@@ -132,7 +132,7 @@ void titleMessage(int wid, Str msg)
 {
 
 // for which window ??
- <<"titleMessage   $msg\n"
+// <<"titleMessage   $msg\n"
 
 
  //sWo(_WOID,TBqrd_msg,_WNAME,"tbm",_WVALUE,"MSG",_WSTYLE,SVO_,_WRESIZE,wbox(0.1,0,0.8,1.0,0),_WREDRAW,ON_);

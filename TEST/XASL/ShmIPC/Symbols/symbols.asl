@@ -83,14 +83,14 @@ int main( int argc, char *argv[] ) { // main start
     
 //tr.pinfo();
 
-    <<" %V $ans \n"
+  //  <<" %V $ans \n"
     ins = "%V $symbol_num $symbol_name $ang  $sym_size"
 
   tr.setTextr(ins, 0.4, 0.5, RED_, 1, 0);
      
        ans = tr.getTxt();
 
- <<" %V $ans \n"
+ //<<" %V $ans \n"
     tr.pinfo();
 
 //titleButtonsQRD(vp);

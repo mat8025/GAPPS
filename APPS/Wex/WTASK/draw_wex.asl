@@ -347,13 +347,12 @@ int match[2]
          break;
 	 }
 
-       sWo(_WOID,wedwos[i],_WXSCALES, wpt(sc_zstart,sc_zend));
+     sWo(_WOID,wedwos[i],_WXSCALES, wpt(sc_zstart,sc_zend));
 
-
-        sWo(_WOID,wedwos[i],_WCLEARCLIP,WHITE_,_WSAVE,ON_,_WCLEARPIXMAP,ON_,_WCLIPBORDER,BLACK_,_WREDRAW,ON_,_WSAVEPIXMAP,ON_);
+     sWo(_WOID,wedwos[i],_WCLEARCLIP,WHITE_,_WSAVE,ON_,_WCLEARPIXMAP,ON_,_WCLIPBORDER,BLACK_,_WREDRAW,ON_,_WSAVEPIXMAP,ON_);
 
 //<<"wedwos[ $i ] $wedwos[i]\n"
-}
+   }
 
   drawGoals( wScreen);
 
@@ -484,7 +483,9 @@ int match[2]
   // <<"KEYS?\n"
 
 ////////////////////////////////////////// KEYS /////////////////////////////////////
-int keypos[10]
+  if ( do_the_keys ) {
+
+   int keypos[10]
 
 //  keypos = woGetPosition (keycalwo)
 
@@ -494,7 +495,8 @@ int keypos[10]
     sWo(_WOID,calwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_)
 
     sWo(_WOID,keycalwo,_WSCALES,wbox(0.0,0.0,1.0,1.0))
-    sWo(_WOID,keycalwo,_WCLIPBORDER,ON_,_WREDRAW,ON_,_WKEYGLINE,calgls)
+
+    sWo(_WOID,keycalwo,_WCLIPBORDER,ON_,_WREDRAW,ON_,_WKEYGLINE,wbox(calgls))
     
     sWo(_WOID,carbwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_)
 
@@ -504,13 +506,11 @@ int keypos[10]
    woGetPosition (keywo,keypos)
 
    sWo(_WOID,keywo,_WSCALES,wbox(0.0,0.0,1.0,1.0))
-   sWo(_WOID,keywo,_WCLIPBORDER,ON_,_WREDRAW,ON_,_WKEYGLINE,foodgls)
+   sWo(_WOID,keywo,_WCLIPBORDER,ON_,_WREDRAW,ON_,_WKEYGLINE,wbox(foodgls))
 
   //keypos = woGetPosition (keywo)
-
-
-//<<" $keypos \n";
-
+  //<<" $keypos \n";
+ }
 //<<"DONE draw \n"
 
 }
@@ -530,8 +530,6 @@ int keypos[10]
   sWo(_WOID,swo,_WSHOWPIXMAP,1)
 
   //sWo(allwo,_WCLIPBORDER,GREEN_);
-
-
 
   }
 

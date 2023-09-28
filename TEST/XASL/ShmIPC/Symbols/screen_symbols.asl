@@ -9,9 +9,14 @@ void setScreen()
 
    vp = cWi("SYMBOLS")
 
+   float CXY[] = {0.01,0.01,0.99,0.99,0}
+
+      float RSXY[] = {0.1,0.1,0.3,0.3,0}
+
+
    sWi(_WOID,vp,_WPIXMAP,ON_,_WDRAW,ON_,_WSAVE,ON_,_WBHUE,WHITE_,_WRESIZE,wbox(0.35,0.1,0.9,0.80))
 
-
+    
    
     msgwo=cWo(vp,WO_TEXT_)
 
@@ -23,7 +28,10 @@ void setScreen()
 
     rwo=cWo(vp,WO_SYM_)
 
-    sWo(_WOID,rwo,_WRESIZE,wbox(0.1,0.1,0.3,0.3),_WNAME,"RED",_WVALUE,1.0,_WCLIP,wbox(0.01,0.01,0.99,0.99))
+<<"%V $rwo \n"
+
+    //sWo(_WOID,rwo,_WRESIZE,wbox(RSXY),_WNAME,"RED",_WVALUE,1.0,_WCLIP,wbox(CXY),_WREDRAW,ON_)
+    sWo(_WOID,rwo,_WRESIZE,RSXY,_WNAME,"RED",_WVALUE,1.0,_WCLIP,CXY,_WREDRAW,ON_)
 
     sWo(_WOID,rwo,_WSYMBOL,DIAMOND_)
 

@@ -300,10 +300,11 @@ Record RX;
 #include "compute_wex.asl"
 #include "rates_wex.asl"
 #include "read_wex.asl"
+#include "screen_wex.asl"
 #include "draw_wex.asl"
 #include "callbacks_wex.asl"
 
-#include "screen_wex.asl"
+
 
 
 
@@ -539,7 +540,7 @@ if (ans == "q") {
 
   else {
 
-  int nrc =RCC.readRecord(ACC,_RDEL,-1);  
+  int nrc =RCC.readRecord(ACC,_RDEL,-1,_RLAST);   // must have _RLAST to signal finish of args
 
 
  // cf(ACC);

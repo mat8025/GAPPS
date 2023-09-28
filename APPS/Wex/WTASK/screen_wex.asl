@@ -12,7 +12,7 @@
  */ 
 //----------------<v_&_v>-------------------------//                                                                                                
 
- 
+  do_the_keys = 1
   
 //////////////////  WED SCREEN --- WINDOWS ////////////////
 //ans=query("graphic?\n")
@@ -91,7 +91,7 @@ titleButtonsQRD(vp);
 
 
 
-  float CXY[4] = { 0.05 ,0.2,0.95 ,0.97};
+  float CXY[] = { 0.05 ,0.2,0.95 ,0.97,0.0};
 //<<"%V$CXY\n"
 
   
@@ -114,14 +114,14 @@ titleButtonsQRD(vp);
   sWo(_WOID,carbwo,_WCLIP,CXY,_WCOLOR,WHITE_,_WCLIPBHUE,WHITE_,_WBHUE,WHITE_,_WFONT,F_SMALL_,_WREDRAW,ON_,_WSAVEPIXMAP,ON_);
 
 
- // sWo(carbwo,_WCLIP,CXY,_WCOLOR,WHITE_,_WCLIPBHUE,RED_,_WBHUE,RED_  ,_WFONT,F_SMALL_,_WFONTHUE,WHITE_,_WEO);
+ // sWo(carbwo,_WCLIP,wbox(CXY),_WCOLOR,WHITE_,_WCLIPBHUE,RED_,_WBHUE,RED_  ,_WFONT,F_SMALL_,_WFONTHUE,WHITE_,_WEO);
   sWo(_WOID,calwo,_WCLIP,CXY,_WCOLOR,WHITE_,_WCLIPBHUE,WHITE_,_WBHUE,WHITE_  ,_WFONT,F_SMALL_,_WREDRAW,ON_,_WSAVEPIXMAP,ON_);
 
   sWo(_WOID,extwo,_WCLIP,CXY,_WCOLOR,YELLOW_,_WCLIPBHUE,GREEN_,_WBHUE,PINK_,_WFONT,F_SMALL_,_WREDRAW,ON_,_WSAVEPIXMAP,ON_);
 
   sWo(_WOID,wtwo,_WCLIP,CXY,_WCOLOR,ORANGE_,_WCLIPBHUE,WHITE_,_WBHUE,WHITE_,_WFONT,F_SMALL_,_WREDRAW,ON_,_WSAVEPIXMAP,ON_);
 
-//  sWo(wedwos,_WCLIP,CXY,_WCOLOR,RED_,_WCLIPBHUE,ORANGE_,_WBHUE,LILAC_,_WFONT, F_SMALL_,_WSAVE,_WSAVEPIXMAP,_WEO);
+//  sWo(wedwos,_WCLIP,wbox(CXY),_WCOLOR,RED_,_WCLIPBHUE,ORANGE_,_WBHUE,LILAC_,_WFONT, F_SMALL_,_WSAVE,_WSAVEPIXMAP,_WEO);
 
 
 
@@ -149,7 +149,7 @@ titleButtonsQRD(vp);
 
 //  wovtile(swos,0.01,0.05,0.97,0.97)   ; // vertically tile the drawing areas into the main window;
 
-//  sWo(swos[0],_WCLIP,CXY,_WCOLOR,WHITE_,_WCLIPBORDER,BLACK_,_WEO);
+//  sWo(swos[0],_WCLIP,wbox(CXY),_WCOLOR,WHITE_,_WCLIPBORDER,BLACK_,_WEO);
 ///  measurement
 
   tw_wo= cWo(wtwo,WO_BS_);
@@ -298,6 +298,8 @@ titleButtonsQRD(vp);
   //  keypos = wogetposition (carbwo);
  //  <<"%V $keypos \n";
 
+
+
 float keyposr[10];
 
 
@@ -309,16 +311,18 @@ float keyposr[10];
     krx = keyposr[1];
     kry = keyposr[2];
   
-    kYZX = cos(0.4)
-    
+    //kYZX = cos(0.4)
+
+    if (do_the_keys) {
+
     keycalwo = cWo(vp,WO_BV_);
     
     kcalx = keyposr[3] - 0.1;
     kcalY= keyposr[4] - 0.05;
 
-   //<<"keyposr[]  $keyposr[1] $keyposr[2] $keyposr[3] $keyposr[4] \n"
+   <<"keyposr[]  $keyposr[1] $keyposr[2] $keyposr[3] $keyposr[4] \n"
 
-   sWo(_WOID,keycalwo,_WNAME,"KeyCals",_WCLIP,CXY,_WSTYLE,SVO_)
+   sWo(_WOID,keycalwo,_WNAME,"KeyCals",_WCLIP,wbox(CXY),_WSTYLE,SVO_)
 
  //<<"%V  $(kcalx +0.02) $(kry +0.01) $(kcalx +0.09) $kcalY \n"
     
@@ -347,20 +351,20 @@ float keyposr[10];
   
     
 
-    keywo=cWo(vp,WO_BV_);
+     keywo=cWo(vp,WO_BV_);
     
      kcarbx = keyposr[3] - 0.1;
      kcarbY= keyposr[4]-0.05;
    
 
    // <<"%V  $(kcarbx +0.02) $(kry +0.01) $(kcarbx +0.09) $kcarbY \n"
-      sWo(_WOID,keywo,_WNAME,"KeyFood",_WCLIP,CXY,_WSTYLE,SVO_)
+   sWo(_WOID,keywo,_WNAME,"KeyFood",_WCLIP,CXY,_WSTYLE,SVO_)
 
-   //sWo(_WOID,keywo,_WRESIZE,wbox(kcarbx+0.02,kry+0.01,kcarbx+0.09,kcarbY,0),_WCLIPBORDER,LILAC_,_WREDRAW,ON_);
+
    sWo(_WOID,keywo,_WRESIZE,wbox(kcarbx+0.02,kry+0.01,kcarbx+0.09,kcarbY),_WCLIPBORDER,LILAC_,_WREDRAW,ON_);
 
 
-
+   }
 
 //  Goal WOBS
 /*

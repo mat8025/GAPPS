@@ -1775,3 +1775,6 @@ svar_find.cpp                       1.69    findExBetween returns 0 if no exp
 p_wo_tile.cpp                       1.88    vec versions of tile
 p_wo_set.cpp                        1.97    tidy
 stat_m.cpp                          1.98    vec version of Lfit
+rec_rd.cpp                          1.89    more options for cpp version of readRecord
+spil_svarg.cpp                      2.39    checkArgArray returns type if array
+woargs.h                            1.6    T2 logic switch decoded

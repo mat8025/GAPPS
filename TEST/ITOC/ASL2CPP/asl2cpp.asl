@@ -150,8 +150,22 @@ float MidLat
 
   int IV[10]
 
-
   tjd = IV[3]
+
+
+  Siv SV[] = { 1,2,3,4,5}
+
+//  SV[3] = 787;
+
+  SV.pinfo()
+
+  int wid = 7;
+
+  sWo(_WOID,wid, _WCLIP, SV)
+  
+
+
+
 
   int xwos[] =  { 1,2,3, -1}
 
