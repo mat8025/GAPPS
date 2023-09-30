@@ -141,7 +141,7 @@
 	if (ki > 11) {
           break;
        }
-       <<"%V $ki $wedgl[ki] \n"
+     //  <<"%V $ki $wedgl[ki] \n"
  }
 
 

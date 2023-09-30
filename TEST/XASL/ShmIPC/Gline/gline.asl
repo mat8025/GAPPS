@@ -19,6 +19,7 @@
   debugON();
 
 
+
   pi = 4.0 * atan(1.0); 
 
 
@@ -272,6 +273,6 @@ quit=query("quit");
 
 
 //exitgs();
-quit=query("quit");
+ quit=query("quit");
 
 exit();

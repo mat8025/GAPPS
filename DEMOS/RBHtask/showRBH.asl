@@ -1,5 +1,5 @@
 //%*********************************************** 
-//*  @script rbh.asl 
+//*  @script showRBH.asl
 //* 
 //*  @comment run, bike, hike - track,speed, hbeat 
 //*  @release CARBON 
@@ -34,12 +34,16 @@ myvers =Hdr_vers
 <<"ASL   $(_ASL_) CPP $(_CPP_)\n"
 printf("_ASL_ %d _CPP_ %d\n", _ASL_,_CPP_);
 #define CDBP //
+#define  ASLGEV_ 1
+
+#include "consts.asl"
 #endif         
                
                
                
 #if _CPP_      
 #warning USING_CPP
+#define  ASLGEV_ 0
 #define CDBP(x) ans=query(x,"go on",__LINE__,__FILE__);
 #define CDB ans=query("?","go on",__LINE__,__FILE__);
 #define  CHKNISEQ(x,y)  chkN(x,y,EQU_, __LINE__);
@@ -50,7 +54,7 @@ printf("_ASL_ %d _CPP_ %d\n", _ASL_,_CPP_);
 
 
 #include "debug.asl"
-#include "consts.asl"
+
 
 
 
@@ -73,6 +77,10 @@ printf("_ASL_ %d _CPP_ %d\n", _ASL_,_CPP_);
 
  LongE= -102.8;
 
+
+<<"%V $LatS $LatN  $LongW $LongE \n"
+
+
  MidLat = (LatN - LatS)/2.0 + LatS;
  MidLong = (LongW - LongE)/2.0 + LongE;
 
@@ -88,7 +96,7 @@ num_tpts = 700
 void showMeasures (int index)
 {
         // tim = Tim[index] -Tim[0]
-	 tim = Tim[index] -ztim
+	 tim = Tim[index] - ztim
          lat = Lat[index];
          lon = Lon[index];	 
          elev = Elev[index];
@@ -107,14 +115,14 @@ void showMeasures (int index)
 	 tim_str = "${mins}:$secs"
 
 
-         sWo(_WOID,timwo,@value,tim_str,@update)
-         sWo(_WOID,distwo,@value,dist,@update)
-         sWo(_WOID,bpmwo,@value,bpm,@update)
-	 sWo(_WOID,spdwo,@value,spd,@update)
-	 sWo(_WOID,elevwo,@value,elev,@update)
-	 sWo(_WOID,latwo,@value,lat,@update)
-	 sWo(_WOID,lonwo,@value,lon,@update);
-	 sGl(pos_gl,@cursor,index,0,index,20); // this does a draw	 
+         sWo(_WOID,timwo,_WVALUE,tim_str,_WUPDATE,ON_)
+         sWo(_WOID,distwo,_WCLEAR,ON_,_WVALUE,dist,_WUPDATE,ON_,_WREDRAW,ON_)
+         sWo(_WOID,bpmwo,_WCLEAR,ON_,_WVALUE,bpm,_WUPDATE,ON_)
+	 sWo(_WOID,spdwo,_WCLEAR,ON_,_WVALUE,spd,_WUPDATE,ON_)
+	 sWo(_WOID,elevwo,_WCLEAR,ON_,_WVALUE,elev,_WUPDATE,ON_)
+	 sWo(_WOID,latwo,_WCLEAR,ON_,_WVALUE,lat,_WUPDATE,ON_)
+	 sWo(_WOID,lonwo,_WCLEAR,ON_,_WVALUE,lon,_WUPDATE,ON_)
+	 sGl(pos_gl,_WCURSOR,rbox(index,0,index,20)); // this does a draw	 
 
 }
 //========================//
@@ -180,22 +188,28 @@ int main( int argc, char *argv[] ) {
 
 
 
-<<"$R[0]\n"
-<<"$R[1]\n"
-<<"$R[2]\n"
+<<"%V $R[0][::]\n"
 
-<<"$sz\n"
 
-<<"$R[2][1]\n"
-<<"$R[2][2]\n"
-<<"$R[2][3]\n"
+<<"%V $R[1][::]\n"
+
+<<"%V $sz\n"
+
+
+
+<<"%V $R[2][1]\n"
+<<"%V $R[2][2]\n"
+<<"%V $R[2][3]\n"
 <<"///\n"
-<<"$R[0:9] \n"
+<<"$R[0:9][0] \n"
 
 <<"$(Caz(R)) $(Cab(R))\n"
 
 <<"$R[1:9][1] \n"
- long Tim[]
+
+long Tim[]
+
+
 
  Tim = R[::][0] 
 
@@ -206,10 +220,36 @@ int main( int argc, char *argv[] ) {
 <<[C]"%(1,,,\n) $Tim \n"
    cf(C)
 
+  ztim = R[1][0]
+
+ztim.pinfo()
+<<"%V $ztim \n"
 
 
 ztim = Tim[0]
 <<"zero Tim $Tim[0]\n"
+
+
+float Secs[]
+float Lat[]
+float Lon[]
+float Dist[]
+float Spd[]
+float Elev[]
+float Bpmp[]
+
+
+  Secs = Tim - ztim
+
+
+  C=ofw("rbh_secs")
+<<[C]"%(1,,,\n) $Secs \n"
+   cf(C)
+
+  Secs.pinfo()
+
+
+
 // what is date
 
  sdate= time2date(ztim+tc)
@@ -262,13 +302,24 @@ ztim = Tim[0]
 
 <<"Elev $Elev[0:9]\n"
 // convert to feet
- Elev *= _m2ft;
- 
+ Elev *= m2ft_;
+
+  C=ofw("rbh_elev")
+<<[C]"%(1,,,\n) $Elev \n"
+   cf(C)
+
+
+
  Bpm = R[::][6] 
 
- Bpm->redimn()
+ Bpm.redimn()
 
 <<"Bpm $Bpm[0:9]\n"
+
+  C=ofw("rbh_bpm")
+<<[C]"%(1,,,\n) $Bpm \n"
+   cf(C)
+
 
   Npts = Caz(Lon);
 <<"%V $Npts\n"  
@@ -298,39 +349,40 @@ Units = "M"
 // create window and scale
 #include "tbqrd.asl"
  
-//  mapvp = cWi(@title,"Map",@resize,0.1,0.45,0.9,0.95,0)
+
 
     mapvp = cWi("MAP_RBH")
 
-   sWi(_WOID,vp,_WPIXMAP,ON_,_WDRAW,ON_,_WSAVE,ON_,_WBHUE,WHITE_,_WRESIZE,wbox(0.35,0.1,0.9,0.80))
+   sWi(_WOID,mapvp,_WPIXMAP,ON_,_WDRAW,ON_,_WSAVE,ON_,_WBHUE,WHITE_,_WRESIZE,wbox(0.1,0.4,0.95,0.95))
 
+<<"%V $LatS $LatN  $LongW $LongE \n"
 
-  sWi(_WOID,mapvp,_WSCALES,wbox(LongW, LatS, LongE, LatN), _WPIXMAP,ON_,_WBHUE,WHITE_);
- // but we dont draw to a window!
+   sWi(_WOID,mapvp,_WSCALES, wbox(LongW, LatS, LongE, LatN), _WPIXMAP,ON_,_WBHUE,WHITE_);
+  
+ // but we don't draw to a window!
  
  // sWi(mapvp,@clip,0.01,0.1,0.95,0.99);
 
  // bikewo= cWo(mapvp,@BN,@name,"b",@color,WHITE_,@resize_fr,0.55,0.5,0.57,0.57);
 
-    bikewo = cWo(mapvp,WO_BUTTON_NAME)
+    bikewo = cWo(mapvp,WO_BN_)
 
-  sWo(_WOID,bikewo,_WANME,"b", _WHVMOVE,ON_,_WDRAW,ON_, _WPIXMAP,ON,_WREDRAW,ON)
+  sWo(_WOID,bikewo,_WNAME,"B", _WRESIZE,rbox(0.55,0.5,0.57,0.53),_WHVMOVE,ON_,_WDRAW,ON_, _WPIXMAP,ON_,_WREDRAW,ON_)
 
-  //mapwo= cWo(mapvp,@GRAPH,@resize_fr,0.2,0.1,0.95,0.95,@name,"MAP",@bhue,MAGENTA_);
 
   mapwo= cWo(mapvp,WO_GRAPH_)
   
   sWo(_WOID,mapwo,_WRESIZE,wbox(0.2,0.1,0.95,0.95),_WNAME,"MAP_RBH",_WBHUE,MAGENTA_);
 
 
-  sWo(_WOID,mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN),  _WPIXMAP,ON_);
+  sWo(_WOID,mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN),  _WPIXMAP,ON_,_WREDRAW,ON_);
 
 
 
      //latwo= cWo(mapvp,@BV,@name,"LAT",@color,WHITE_,@style,"SVB");
      latwo= cWo(mapvp,WO_BV_)
 
-     sWo(_WOID,latwo,_WNAME,"LAT",_WCOLOR,WHITE_,_WSTYLE,SVB_);
+     sWo(_WOID,latwo,_WNAME,"LAT",_WCOLOR,WHITE_,_WSTYLE,SVB_,_WDRAW,ON_)
 
    //  lonwo= cWo(mapvp,@BV,@name,"LON",@color,WHITE_,@style,SVB_);
 
@@ -338,7 +390,7 @@ Units = "M"
 
      sWo(_WOID,lonwo,_WNAME,"LON",_WCOLOR,WHITE_,_WSTYLE,SVB_);
 
-     int mapwos[] = {latwo,lonwo };
+     int mapwos[] = {latwo,lonwo,-1 };
 
     wovtile(mapwos,0.05,0.3,0.15,0.9,0.01);
 
@@ -348,12 +400,12 @@ Units = "M"
 
 ///  MEASURES
 
+    titleButtonsQRD(mapvp);
 
-  //vp = cWi(@title,"Measures",@resize,0.1,0.01,0.9,0.44,0,@color,LILAC_,@bhue,TEAL_)
 
     vp= cWi("Measures")
 
-    sWi(_WOID, vp,_WRESIZE,wbox(0.1,0.01,0.9,0.44),_WCOLOR,LILAC_,_WBHUE,TEAL_)
+    sWi(_WOID, vp,_WRESIZE,wbox(0.1,0.01,0.95,0.38),_WCOLOR,LILAC_,_WBHUE,TEAL_)
 
 
  // txtwo= cWo(vp,@TEXT,@resize_fr,0.55,0.80,0.95,99,@name,"TXT",@color,WHITE_,@save,@drawon,@pixmapoff);
@@ -361,22 +413,21 @@ Units = "M"
   txtwo= cWo(vp,WO_TEXT_)
 
 
-   sWo(_WOID,txtwo,_WRESIZE,wbox(0.55,0.80,0.95,99),_WNAME,"TXT",_WCOLOR,WHITE_,_WSAVE,ON_,\
-   _WDRAW,ON_);
+   sWo(_WOID,txtwo,_WRESIZE,wbox(0.55,0.80,0.95,99),_WNAME,"TXT",_WCOLOR,WHITE_,_WSAVE,ON_,   _WDRAW,ON_);
 
   vvwo= cWo(vp,WO_GRAPH_)
 
    sWo(_WOID,vvwo, _WRESIZE,wbox(0.2,0.11,0.95,0.79),_WNAME,"MEASURES",_WCOLOR,ORANGE_);
 
 
-   sWo(_WOID,vvwo, _WSCALES, wbox(0, 0, 86400, 6000), WREDRAW,ON_ );
+   sWo(_WOID,vvwo, _WSCALES, wbox(0, 0, 86400, 6000),_WREDRAW,ON_ );
 
-    titleButtonsQRD(vp);
+
 
 
      timwo= cWo(vp,WO_BV_)
      
-     sWo(_WOID,timwo,_WNAME,"TIME",_WCOLOR,WHITE_,_WSTYLE,SVB_);
+     sWo(_WOID,timwo,_WNAME,"TIME",_WCOLOR,WHITE_,_WSTYLE,SVB_,_WDRAW,OFF_,_WPIXMAP,ON);
 
      bpmwo= cWo(vp,WO_BV_)
      
@@ -384,7 +435,7 @@ Units = "M"
 
      elevwo= cWo(vp,WO_BV_)
      
-     sWo(_WOID,elevwo,_WNAME,"ELEV",_WCOLOR,RED_,_WSTYLE,SVB_);
+     sWo(_WOID,elevwo,_WNAME,"ELEV",_WCOLOR,RED_,_WDRAW,ON_,_WSTYLE,SVB_);
 
      spdwo= cWo(vp,WO_BV_)
 
@@ -392,18 +443,19 @@ Units = "M"
 
      distwo= cWo(vp,WO_BV_)
 
-     sWo(_WOID,distwo,_WNAME,"DIST",_WCOLOR,WHITE_,_WSTYLE,SVB_);
+     sWo(_WOID,distwo,_WNAME,"DIST",_WCOLOR,WHITE_,_WSTYLE,SVB_,_WREDRAW,ON_);
 
 
 
-     int measwos[] = {timwo,distwo,elevwo,bpmwo,spdwo };
+     int measwos[] = {timwo,distwo,elevwo,bpmwo,spdwo,-1 };
 
 
     wovtile(measwos,0.05,0.1,0.15,0.9,0.01);
 
 
 
-   titleMessage(sdate)
+   titleMessage(mapvp,sdate)
+  
 
 
    c= "EXIT"
@@ -457,43 +509,71 @@ Units = "M"
 //  set up the IGC track for plot
 
     igc_tgl = cGl(mapwo)
-    //@TXY,Lon,Lat,@color,BLUE_);
+
+<<"%V $igc_tgl\n"
+
+    sGL(_GLID,igc_tgl,_GLXVEC,Lon,_GLYVEC,Lat,_GLCOLOR,BLUE_);
 
     elev_gl = cGl(vvwo)
-    //@TY,Elev,@color,RED_);
+<<"%V $elev_gl\n"
+    sGL(_GLID,elev_gl,_GLXVEC,Secs,_GLYVEC,Elev,_GLCOLOR,RED_);
+
+
 
     bpm_gl = cGl(vvwo)
+<<"%V $bpm_gl\n"
+
+
+     sGL(_GLID,bpm_gl,_GLXVEC,Secs,_GLYVEC,Bpm,_GLCOLOR,GREEN_);
+
     //@TY,Bpm,@color,GREEN_);
 
     spd_gl = cGl(vvwo)
+
+    sGL(_GLID,spd_gl,_GLXVEC,Secs,_GLYVEC,Spd,_GLCOLOR,BLUE_);
+
     //@TY,Spd,@color,BLUE_);
     // curs @x vertical line  and/or curs @ y horizontal
-    pos_gl   = cGl(vvwo)
+
+     pos_gl   = cGl(vvwo)
+    
     //@type,"CURSOR",@color,"orange",@ltype,"cursor")
     
   //  sGl(pos_gl,@cursor,0,0,0,6000,1)
-<<"%V$pos_gl \n"
-   if (Npts > 0) {
+<<"%V $Npts $pos_gl $top_speed\n"
 
-     sWo(_WOID,mapwo,_Wclearpixmap);
+
+  if (Npts > 0) {
+
+     //sWo(_WOID,mapwo,_WCLEARPIXMAP,ON_);
+//<<"%V $igc_tgl\n"
+
+igc_tgl.pinfo()
 
      dGl(igc_tgl);  // plot the igc track -- if supplied
 
-     sWo(_WOID,mapwo,_Wsave,_Wshowpixmap,_Wsavepixmap);
+    // sWo(_WOID,mapwo,_WSAVE,ON_,_WSHOWPIXMAP,ON_,_WSAVEPIXMAP,ON_);
      
-     sWo(_WOID,vvwo, _Wscales, 0, min_ele, Npts, (max_ele+50) )
-     
+   //  sWo(_WOID,vvwo, _WSCALES, rbox(0, min_ele, Npts, (max_ele+50)) )
+     sWo(_WOID,vvwo, _WSCALES, 0, min_ele, Npts, (max_ele+50) )
+     <<"%V $min_ele $max_ele \n"
      dGl(elev_gl);  // plot the igc climb -- if supplied
-
-     sWo(_WOID,vvwo, _Wscales, 0, 40, Npts, 200 )
+//<<"%V $elev_gl\n"
+//     sWo(_WOID,vvwo, _WSCALES,rbox( 0.0, 40, Npts, 200) )
+     sWo(_WOID,vvwo, _WSCALES, 0.0, 40, Npts, 200 )
 
      dGl(bpm_gl);
+//<<"%V $bpm_gl\n"
+   //  sWo(_WOID,vvwo, _WSCALES, rbox(0.0, 0, Npts, top_speed) )
 
-     sWo(_WOID,vvwo, _Wscales, 0, 0, Npts, top_speed )
+<<"%V $Npts $top_speed \n"
+
+  sWo(_WOID,vvwo, _WSCALES, 0.0, 0, Npts, top_speed )
 
      dGl(spd_gl);  
 
    }
+
 
 
 
@@ -514,7 +594,7 @@ float mrx;
 float mry;
 str wcltpt="XY";
 
-include  "gevent";
+#include  "gevent.asl"
 
 int mindex = 0;
 int Kindex = 0;
@@ -523,58 +603,64 @@ int tim;
 
      sWi(mapvp,_Wscales,LongW, LatS, LongE, LatN)
 
-     sWo(_WOID,mapwo,_Wclearpixmap);
+     sWo(_WOID,mapwo,_WCLEARPIXMAP,ON_);
 
      dGl(igc_tgl);  // plot the igc track -- if supplied
 
-     sWo(_WOID,mapwo,_Wsave,_Wshowpixmap,_Wsavepixmap);
+     sWo(_WOID,mapwo,_WSAVE,ON_,_WSAVEPIXMAP,ON_);
 
     while (1) {
 
 
-       eventWait();
-
-<<"main $_emsg %V $_ekeyw $_ewoid $_etype $_ekeyc %c $_ekeyc \n"
-<<"%V $_ex $_ey $_erx $_ery \n"
-<<"%V $_ewoid $vvwo \n"
 
 
-	         sWo(_WOID,txtwo,_Wclear); //
+     eventWait();
 
-		 text(txtwo,"$_emsg  $_ekeyc ",0.2,0.7);
+      n_msg++
+
+	         sWo(_WOID,txtwo,_WCLEAR,1); //
+
+		 //text(txtwo,"$_emsg  $_ekeyc ",0.2,0.7);
 
 
 //<<"%V $mindex $(typeof(mindex)) $Kindex \n"	 	 	 
+<<"%V $GEV_type $GEV_woid $GEV_keyc  $GEV_keyw\n"
 
-     if (_etype == PRESS_) {
-       if (_ewoid == vvwo) {
-<<"doing vv $_ewoid \n"
-         mindex = trunc(_erx) 
-<<"%V $_erx  $_ery $mindex $(typeof(mindex)) \n"
-         swo(txtwo,_Wclear)
+     if (GEV_type == PRESS_) {
+     
+       if (GEV_woid == vvwo) {
+<<"doing vv $ewoid \n"
+         mindex = trunc(GEV_rx) 
+<<"%V $GEV_rx  $GEV_ry $mindex $(typeof(mindex)) \n"
+         swo(txtwo,_WCLEAR,1)
          showMeasures (mindex);
          Kindex = mindex;
 //<<"%V $mindex $(typeof(mindex)) $Kindex \n"	 
        //  dGl(igc_tgl);
-	 sWo(_WOID,bikewo,_Wmove,lon,lat,mapwo,_Wredraw);
-	// sWo(_WOID,vvwo,_Wclearpixmap);
+          lat = Lat[Kindex];
+         lon = Lon[Kindex];	 
 
-        sWo(_WOID,vvwo, _Wscales, 0, min_ele, Npts, (max_ele+50) )
+
+	 sWo(_WOID,bikewo,_WMOVE,lon,lat,mapwo,_WREDRAW,ON_);
+	 sWo(_WOID,vvwo,_WCLEARPIXMAP,1);
+
+        sWo(_WOID,vvwo, _WSCALES, rbox(0, min_ele, Npts, (max_ele+50)))
+
      
         dGl(elev_gl);  // plot the igc climb -- if supplied
 
-        sWo(_WOID,vvwo, _Wscales, 0, 40, Npts, 200 )
+        sWo(_WOID,vvwo, _WSCALES,  rbox(0, 40, Npts, 200))
 
         dGl(bpm_gl);
 
 
-         sWo(_WOID,vvwo, _Wscales, 0, 0, Npts, top_speed )
+         sWo(_WOID,vvwo, _WSCALES, rbox(0, 0, Npts, top_speed))
 
          dGl(spd_gl);  
 
         // sWo(_WOID,vvwo,_Wshowpixmap);
-	 <<"draw cursor @ $_erx \n"
-         sGl(pos_gl,_Wcursor,_erx,0,_erx,20); // this does a draw
+	 <<"draw cursor @ $GEV_rx \n"
+         sGl(pos_gl,_WCURSOR,rbox(GEV_rx,0,GEV_rx,20)); // this does a draw
 
       
 
@@ -583,99 +669,109 @@ int tim;
          
         }
 
-        if (_ewoid == mapwo) {
-	         swo(txtwo,_Wclear)
+        if (GEV_woid == mapwo) {
+	<<"doing mapwo \n"
+	         swo(txtwo,_WCLEAR,1)
 
-                 text(txtwo,"$_erx $_ery  ",0.5,0.4)
-		 lat = _ery;
-		 lon = _erx;
+                 text(txtwo,"$GEV_rx $GEV_ry  ",0.5,0.4)
+		 lat = GEV_ry;
+		 lon = GEV_rx;
 
           sWo(_WOID,mapwo, _WSCALES, wbox(LongW, LatS, LongE, LatN) ) ; // TBD put lon in W > neg form
           sWo(_WOID,mapwo,_WCLEARPIXMAP, ON_);
 	  dGl(igc_tgl);
-          sWo(_WOID,mapwo,_WSHOWPIXMAP,ON_);
+        //  sWo(_WOID,mapwo,_WSHOWPIXMAP,ON_);
 
-         sWo(_WOID,mapwo,_WSAVE,_WSAVEPIXMAP,ON_);	
-         sWo(_WOID,latwo,_WVALUE,lat,_WUPDATE,ON_);	
+         sWo(_WOID,mapwo,_WSAVE,ON,_WSAVEPIXMAP,ON_);	
+         sWo(_WOID,latwo, _WVALUE,lat,_WUPDATE,ON_);	
 	 sWo(_WOID,lonwo,_WVALUE,lon,_WUPDATE,ON_);	
 	 //<<"%V$mapwo \n"
-         sWo(_WOID,bikewo,_WMOVE,wpt(lon,lat,mapwo),_WREDRAW,ON_);	 // lon is neg ?
+         sWo(_WOID,bikewo,_WMOVE,lon,lat,mapwo,_WREDRAW,ON_);	 // lon is neg ?
         }
 
       }
 
 
-    if (_etype == KEYPRESS_) {
-	if (_ekeyc == 'R') {
-
+    if (GEV_type == KEYPRESS_) {
+    <<"Have keypress \n"
+	if (GEV_keyc == 'R') {
+    <<"Have keyc R\n"
          Kindex = Kindex + 5;
          lat = Lat[Kindex];
          lon = Lon[Kindex];	 
-//<<"$_eloop got R $Kindex $(typeof(Kindex)) $lat $lon\n"
-          sWo(_WOID,mapwo,_Wshowpixmap);
-         sWo(_WOID,bikewo,_Wmove,wpt(lon,lat,mapwo),_Wredraw);
+
+     //    sWo(_WOID,mapwo,_WSHOWPIXMAP,ON_);
+       //  sWo(_WOID,bikewo,_WMOVE,wpt(lon,lat,mapwo),_WREDRAW,ON_);
+         sWo(_WOID,bikewo,_WMOVE,lon,lat,mapwo,_WREDRAW,ON_);
          showMeasures (Kindex);
 	 mindex = Kindex;
 <<"%V $mindex $(typeof(mindex)) $Kindex \n"	 	 
         }
 
-	else if (_ekeyc == 'S') {
+	else if (  GEV_keyc == 'S') {
 
          Kindex -= 5;
          lat = Lat[Kindex];
          lon = Lon[Kindex];	 
-//<<"$_eloop got S $Kindex $lat $lon\n"
-          sWo(_WOID,mapwo,_WSHOWPIXMAP,ON_);
-          sWo(_WOID,bikewo,_WMOVE,wpt(lon,lat,mapwo),_WREDRAW,ON);
+
+<<" S $Kindex $lat $lon\n"
+          //sWo(_WOID,mapwo,_WSHOWPIXMAP,ON_);
+	  
+          sWo(_WOID,bikewo,_WMOVE,lon,lat,mapwo,_WREDRAW,ON_);
+	  
          showMeasures (Kindex);
 
 	//  sGl(pos_gl,_Wcursor,Kindex,0,Kindex,20); 
         }
 
-	else if (_ekeyc == 'Q') {
+	else if   (GEV_keyc== 'Q') {
 
          Kindex += 10;
          lat = Lat[Kindex];
          lon = Lon[Kindex];	 
-//<<"$_eloop got Q $Kindex $lat $lon\n"
-          sWo(_WOID,mapwo,_WSHOWPIXMAP,ON_);
-          sWo(_WOID,bikewo,_WMOVE,wpt(lon,lat,mapwo),_WREDRAW,ON);
+<<" got Q $Kindex $lat $lon\n"
+          //sWo(_WOID,mapwo,_WSHOWPIXMAP,ON_);
+          sWo(_WOID,bikewo,_WMOVE,lon,lat,mapwo,_WREDRAW,ON_);
          showMeasures (Kindex);
 	 mindex = Kindex;
 	 // sGl(pos_gl,_Wcursor,Kindex,0,Kindex,20); 	 
 <<"%V $mindex $(typeof(mindex)) $Kindex \n"	 	 	 
         }
 
-	else if (_ekeyc == 'T') {
+	else if (  GEV_keyc == 'T') {
 
          Kindex -= 10;
          lat = Lat[Kindex];
          lon = Lon[Kindex];	 
 //<<"$_eloop got T $Kindex $lat $lon\n"
-         sWo(_WOID,mapwo,_WSHOWPIXMAP,ON);
-         sWo(_WOID,bikewo,_WMOVE,wpt(lon,lat,mapwo_,_WREDRAW,ON);
+         //sWo(_WOID,mapwo,_WSHOWPIXMAP,ON_);
+         sWo(_WOID,bikewo,_WMOVE,lon,lat,mapwo,_WREDRAW,ON_);
          showMeasures (Kindex);
     }
    }
 
-     if (_ekeyw @= "REDRAW") {
-
+     if (GEV_keyw == "REDRAW") {
+<<"doing redraw \n"
      sWo(_WOID,mapwo,_WCLEARPIXMAP,ON_);
 
      dGl(igc_tgl);  // plot the igc track -- if supplied
 
-     sWo(_WOID,mapwo,_WSAVE,ON_,_WSHOWPIXMAP,ON_,_WSAVEPIXMAP,ON_);
+   //  sWo(_WOID,mapwo,_WSAVE,ON_,_WSHOWPIXMAP,ON_,_WSAVEPIXMAP,ON_);
      
-     sWo(_WOID,vvwo, _WSCALES, wbox(0, min_ele, Npts, (max_ele+50)) )
+  //   sWo(_WOID,vvwo, _WSCALES, wbox(0, min_ele, Npts, (max_ele+50)) )
+     sWo(_WOID,vvwo, _WSCALES, rbox(0, min_ele, Npts, (max_ele+50)) )
      
      dGl(elev_gl);  // plot the igc climb -- if supplied
 
-     sWo(_WOID,vvwo, _WSCALES, wbox(0, 40, Npts, 200 ))
+     sWo(_WOID,vvwo, _WSCALES, rbox(0, 40, Npts, 200 ))
 
      dGl(bpm_gl);
 
 
-     sWo(_WOID,vvwo, _WSCALES, wbox(0, 0, Npts, top_speed ))
+     sWo(_WOID,vvwo, _WSCALES, rbox(0, 0, Npts, top_speed ))
+
+
+     sWo(_WOID,vvwo, _WSCALES, rbox(0, 0, Npts, top_speed ))
 
      dGl(spd_gl);  
 

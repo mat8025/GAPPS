@@ -304,6 +304,8 @@ float keyposr[10];
 
 
 //    keyposr = woGetRxy (calwo,0);
+
+
      woGetRxy (calwo,keyposr);
 
 //<<" %V $keyposr \n"
@@ -311,18 +313,20 @@ float keyposr[10];
     krx = keyposr[1];
     kry = keyposr[2];
   
-    //kYZX = cos(0.4)
+
 
     if (do_the_keys) {
 
     keycalwo = cWo(vp,WO_BV_);
     
-    kcalx = keyposr[3] - 0.1;
+    kcalx = keyposr[3] - 0.22;
     kcalY= keyposr[4] - 0.05;
 
-   <<"keyposr[]  $keyposr[1] $keyposr[2] $keyposr[3] $keyposr[4] \n"
+<<"%V $krx $kry $kcalx $kcalY \n"
 
-   sWo(_WOID,keycalwo,_WNAME,"KeyCals",_WCLIP,wbox(CXY),_WSTYLE,SVO_)
+   <<"keyposr[]   $keyposr[0] $keyposr[1] $keyposr[2] $keyposr[3] $keyposr[4] \n"
+
+   sWo(_WOID,keycalwo,_WNAME,"KeyCals",_WCLIP,CXY,_WSTYLE,SVO_)
 
  //<<"%V  $(kcalx +0.02) $(kry +0.01) $(kcalx +0.09) $kcalY \n"
     
@@ -348,14 +352,14 @@ float keyposr[10];
 
     krx= keyposr[1];
     kry= keyposr[2];
-  
-    
 
      keywo=cWo(vp,WO_BV_);
     
-     kcarbx = keyposr[3] - 0.1;
-     kcarbY= keyposr[4]-0.05;
-   
+     kcarbx = keyposr[3] - 0.22;
+     kcarbY= keyposr[4] -0.05;
+
+<<"%V $krx $kry $kcarbx $kcarbY \n"
+
 
    // <<"%V  $(kcarbx +0.02) $(kry +0.01) $(kcarbx +0.09) $kcarbY \n"
    sWo(_WOID,keywo,_WNAME,"KeyFood",_WCLIP,CXY,_WSTYLE,SVO_)
@@ -367,43 +371,18 @@ float keyposr[10];
    }
 
 //  Goal WOBS
-/*
-  sdwo=cWo(vp,WO_BV_);
-  sWo(_WOID,sdwo,_WNAME,"StartDay",_WCLIPBHUE,RED_,_WVALUE,"$Goals[0]",_WHELP,"   startday ");
 
-  gdwo=cWo(vp,WO_BV_);
-  sWo(_WOID,gdwo,_WNAME,"GoalDay",_WCLIPBHUE,ORANGE_,_WVALUE,"$Goals[1]",_WHELP," goalday ");
+ int zoomwos[] = {zoomwo, zinwo, -1};
 
-  gwtwo=cWo(vp,WO_BV_);
-  sWo(_WOID,gwtwo,_WNAME,"WtGoal",_WVALUE,"$Goals[2]",_WCLIPBHUE,BLUE_,_WFONTHUE,WHITE_,_WHELP," next goal wt ");
 
-  int  goalwos[5] = { sdwo, gdwo, gwtwo, -1};
 
-  wovtile( goalwos, 0.02,0.1,0.08,0.45 );
-  i = 0;
-  int kgoals = 0;
-   while (goalwos[i] >= 0)  {
-     sWo(_WOID,goalwos[i],_WREDRAW,ON_);
-      i++;
-  }
-*/
-
-  //sWo(goalwos,_WSTYLE,WO_SVB,_WREDRAW,_WEO);
-int zoomwos[] = {zoomwo, zinwo, -1};
-
-// sWo(zoomwos,_WSTYLE,WO_SVB,_WREDRAW,_WEO);
-
-sWo(_WOID,zoomwo,_WSTYLE,WO_SVB_,_WREDRAW,ON_);
-sWo(_WOID,zinwo,_WSTYLE,WO_SVB_,_WREDRAW,ON_);
+  sWo(_WOID,zoomwo,_WSTYLE,WO_SVB_,_WREDRAW,ON_);
+  sWo(_WOID,zinwo,_WSTYLE,WO_SVB_,_WREDRAW,ON_);
 
  <<"Screen DONE\n";
  }
 
- // titleVers();
-//sleep(0.1)
-//======================================//
-//<<[_DB]"$_include \n"
-
+ 
 //==============\_(^-^)_/==================//
 
 
