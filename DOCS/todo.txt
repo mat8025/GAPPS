@@ -16,13 +16,13 @@
 
  7. ANN  add radial basis nets
 
- 8. finish mDA type
+ 8. finish MAD type
 
  9. eclipse IDE version
 
  10. run stable version alongside developing version
 
- 11. Showvox
+ 11. ShowVox
 
  12. retry audio play record
 

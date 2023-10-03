@@ -182,7 +182,7 @@ pwl[1] = 1.0;
 double xv[5];
 double yv[5];
 int i;
-int k = Yday-5; // 
+int k = Yday-4; // 
 
 <<"  predictWL %V $Yday $k\n"
 

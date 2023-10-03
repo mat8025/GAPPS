@@ -1779,3 +1779,5 @@ rec_rd.cpp                          1.89    more options for cpp version of read
 spil_svarg.cpp                      2.39    checkArgArray returns type if array
 woargs.h                            1.6    T2 logic switch decoded
 spe_args_process.cpp                2.51    bug nested arg fixed
+svar.h                              2.8    getArrayAsStr
+ds_getvarasstr.cpp                  2.70    limit for getArrayAsStr per dim

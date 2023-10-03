@@ -10,14 +10,14 @@
  *  @Copyright © RootMeanSquare 2022 -->                               
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                  
+//----------------<v_&_v>-------------------------//                 
 
 
 
 
-A= ofr("cmap")     /// 
+ A= ofr("cmap")     /// 
  
- //CM= readRecord(A,@type,UINT_) ; // old
+
 
  CM= readRecord(A,_RTYPE,UINT_)
 
@@ -53,7 +53,7 @@ int drows = PH[2];
 int dcols = PH[1];
 
 <<"%V $npix $drows $dcols \n"
-!a
+
 CF= ofw(cmpfile)
 
 wdata(CF,PH)

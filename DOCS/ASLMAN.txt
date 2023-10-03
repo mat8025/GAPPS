@@ -7686,25 +7686,29 @@ returns a  new vector of unique values.
 .EF
 =============================================================
 .BF
-mread()
+matread()
 .(x
-mread
+matread
 .)x 
 .FD
-nir=mread(A,M,nrows,ncols,frows,fcols,{start_frow=0},{start_fcol=0},(skip_frow=0})
-reads matrix of nrows,ncols  from file A organized as frows,fcols.
+nir=matread(A,M,nrows,ncols,{frows=0},{fcols=0},{start_frow=0},{start_fcol=0},(skip_frow=0})
+reads matrix of nrows,ncols  from file A binary file
+if frows and fcols are set treat the file as organized by frows,fcols.
 Optionally index in by start_frow,  and each index into each row by start_fcol.
-After reading row optionaly skip  by skip_frow.
+After reading row optionally skip by skip_frow.
 The assumed file data type is the type of receiving matrix.
 
 
 e.g.
-uint M[]
-nir=mread(A,M,512,512,4096,1024, 100, 50)
-Treat the data file as 4096 rows and 1024 cols of uints.
+int M[]
+nir=matread(A,M,512,512,4096,1024, 100, 50)
+Treat the data file as 4096 rows and 1024 cols of ints.
 Index to 100th row in file -- index to col 50 in each row.
-Read 512 rows of 512 cols.
+Read 512 rows of 512 cols - where each row in indexed to start_fcol
 returns number of items read.
+
+This allows a submatrix to be extracted from a larger matrix.
+
 This will be a short count or zero when the end of file is reached.
 
 

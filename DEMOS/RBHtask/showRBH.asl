@@ -158,6 +158,16 @@ int main( int argc, char *argv[] ) {
     <<" can't find turnpts file \n"
      exit();
   }
+
+  vec_type = getArgStr()
+<<"%V $vec_type \n"
+  do_float_vecs = 0
+
+  if (vec_type == "float") {
+     do_float_vecs = 1 
+  }
+  
+
   
   Mat R(DOUBLE_,200,10);
 
@@ -229,6 +239,7 @@ ztim.pinfo()
 ztim = Tim[0]
 <<"zero Tim $Tim[0]\n"
 
+ if (do_float_vecs) {
 
 float Secs[]
 float Lat[]
@@ -237,7 +248,18 @@ float Dist[]
 float Spd[]
 float Elev[]
 float Bpmp[]
+}
+else {
 
+double Secs[]
+double Lat[]
+double Lon[]
+double Dist[]
+double Spd[]
+double Elev[]
+double Bpmp[]
+
+}
 
   Secs = Tim - ztim
 
@@ -349,7 +371,6 @@ Units = "M"
 // create window and scale
 #include "tbqrd.asl"
  
-
 
     mapvp = cWi("MAP_RBH")
 

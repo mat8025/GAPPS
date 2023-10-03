@@ -27,7 +27,7 @@
 
 Str Use_= " Demo  of show igc track on sectional ";
 
-#define ASL 1
+#define _ASL_ 1
 
 
 
@@ -42,20 +42,17 @@ Str Use_= " Demo  of show igc track on sectional ";
 
   chkIn(_dblevel)
 
-#include "gevent.asl"
-#include "graphic"
-#include "hv.asl"
-#include "tbqrd.asl"
 
 
-#include "proc_chart.asl"
+
+#include "chart_procs.asl"
 
 
 
 fname = _clarg[1];
 
 int cval;
-uint CM[0];  // cpp make dynamic?
+
 ///
 ///
 ///
@@ -69,11 +66,14 @@ float IGCTIM[];
 
 float dy = 0.2;
 float dx = 0.2;
+
+
+
 float x0,y0,x1,y1;
 
 
 
- Vec<float> IGCLONG(7000);
+  Vec<float> IGCLONG(7000);
 
   Vec<float> IGCLAT(7000);
 
@@ -85,14 +85,19 @@ float x0,y0,x1,y1;
 
   //sdb(1,_~pline,_~trace);
 
-int do_pix_stuff = 1;
-int use_cpix = 1; //   using a coded version of cmap indices (char) instead of rgb u32 values
-int do_trans = 0;
+     do_pix_stuff = 1;
+      use_cpix = 1;
+//   using a coded version of cmap indices (char) instead of rgb u32 values
+    do_trans = 0;
     int naz= 0;
     int kc = 0;
     
   sec_row =   0;
   sec_col =  0;
+
+Str igcfn = "spk.igc";
+
+<<"%V $igcfn \n"
 
 // igcfn = getArgStr();
 
@@ -101,22 +106,29 @@ int do_trans = 0;
    wlng = 110.0;
    elng =  104.0 ;
 
-  x0 = wlng;
+   x0 = wlng;
    y0 = slat;
 
-Str igcfn = "spk.igc";
-
-<<"%V $igcfn \n"
-
-// igcfn.pinfo();
 
 
 
-  Ntpts= IGC_Read(igcfn);
+    igcfn.pinfo();
+
+
+    Ntpts= IGC_Read(igcfn);
+
+
 
   int  midpt = Ntpts /2;
 
 <<" read igc $Ntpts $midpt\n"
+
+   if (Ntpts == 0) {
+<<"Bad read exit\n"
+     exit(-1)
+   }
+
+
 
 //<<" $IGCLONG[0:20] \n"
 
@@ -127,6 +139,8 @@ Str igcfn = "spk.igc";
 <<" SEE THIS?\n"
 
 
+#include "hv.asl"
+#include "tbqrd.asl"
 
 
   m20 =(midpt+20);
@@ -139,6 +153,7 @@ Str igcfn = "spk.igc";
    cmp_name = "${fname}.cmp";
 
   if (use_cpix) {
+      
      AF= ofr(cmp_name) ; // den103.cmp")
    }
  else {
@@ -149,11 +164,10 @@ Str igcfn = "spk.igc";
 
   if (AF == -1) {
    <<"error open $cmp_name\n";
-    exit();
+    exit(-1);
   }
   
 <<"$AF $cmp_name\n";
-
 
  //AF= ofr("chey97.dat")
 // 
@@ -173,9 +187,9 @@ int dcols = PH[1];
 
 // hdr for tiff npix rows cols
 
-uchar CPIX[0];  // make dynamic ? - cpp
+uchar CPIX[];  // make dynamic ? - cpp
 
- openDll("image");
+// openDll("image");
 
  uint SPIX[0];
 
@@ -188,38 +202,50 @@ uchar CPIX[0];  // make dynamic ? - cpp
 
  A= ofr(map_name);
 
- 
- CM= readRecordToArray(A,_RTYPE,UINT_);
+  Mat CM(UINT_,200,10)
+  
+  CM.readRecord(A,_RTYPE,UINT_);
 
  sz= Caz(CM);
  cmb = Cab(CM)
  
- <<"%V $sz $cmb\n"
 
+
+ CM.pinfo()
+ 
  nc = cmb[0] ;
 
-<<"CM $CM[::][::] \n"
-<<"\n"
-<<" $CM[4][::] \n"
-
-//CM.pinfo();
+ <<"%V $sz $cmb $nc\n"
 
 
- rainbow();
-// CMAP
+<<"CM $CM[1:10][::] \n"
 
- int ngl = 256;
- int cmi = 64  ; // above our basic colors
+#include "graphic"
+
+
+   rainbow();
+  // CMAP
+
+ ngl = 256;
+ //cmi = 64  ; // above our basic colors
+
+cmi = 16  ; // above our basic colors
+
+<<"%V $ngl $cmi \n"
+
 
 //cmi = 6;
 
  int cindex = cmi;
 
 
- set_gsmap(ngl,cmi);
+  setGSmap(ngl,cmi);
 
- chartCmap( nc , cmi) ;
 
+
+//   chartCmap(CM, nc , cmi) ;
+  chartCmap(nc , cmi) ; // need to be in graphic coms section
+!a
 /// import cmap for chart
 /// setup cmap
 
@@ -234,6 +260,15 @@ uchar CPIX[0];  // make dynamic ? - cpp
 //sdb(0);
 
 /// SCRN SETUP
+#include "gevent.asl"
+
+
+
+  
+
+
+
+int wpos[10]
 
      vp =  cWi("PIC_WINDOW");
 
@@ -245,6 +280,7 @@ uchar CPIX[0];  // make dynamic ? - cpp
 // picwo=cWo(vp,_GRAPH,_name,"Pic",_color,PINK_,_resize,40,20,1840,820,1,_flush)
 
    picwo=cWo(vp,WO_GRAPH_);
+   
    sWo(_WOID,picwo,_WNAME,"PIC",_WCOLOR,PINK_,_WRESIZE,wbox(40,20,1840,820,1));
 
 // set the clip to be 512x512 --- clipborder has to be on pixel outside of this!
@@ -254,16 +290,16 @@ uchar CPIX[0];  // make dynamic ? - cpp
  //sWo(_WOID,picwo,_WPIXMAP,ON_,_WDRAW,ON_,_WSAVE,ON_,_WSAVEPIXMAP,ON_,_WREDRAW,ON_)
    sWo(_WOID,picwo,_WPIXMAP,ON_,_WSAVE,ON_,_WSAVEPIXMAP,ON_,_WREDRAW,ON_)
 
-    _WPOS = woGetPosition(picwo);
 
-<<"%V $_WPOS\n";
+    wwo=woGetPosition(picwo, wpos);
 
-//   ans=query("?","_WPOS done assign ",__LINE__);
+<<"%V $wwo $wpos\n";
+
 
    int ncols = 1000;
-   int nrows = _WPOS[6] -2;
+   int nrows = wpos[6] -2;
  
-   nxpix=   _WPOS[5] -2;
+   nxpix=   wpos[5] -2;
 
    npics = dcols/ nxpix;
    npics++;
@@ -331,9 +367,10 @@ uchar CPIX[0];  // make dynamic ? - cpp
 <<"plotline2 \n"
 
    plot(picwo,_line,wlng,nlat,elng,slat,BLUE_)
-    plotLine(picwo,wlng,slat+0.2,elng,nlat-0.2,RED_)
 
-   titleMessage("%V $wlng $slat $elng $nlat");
+   plotLine(picwo,wlng,slat+0.2,elng,nlat-0.2,RED_)
+
+   titleMessage(vp,"%V $wlng $slat $elng $nlat");
 
    sGl(_GLID,igc_tgl,_GLDRAW,YELLOW_);  // DrawGline;
 
@@ -370,7 +407,7 @@ uchar CPIX[0];  // make dynamic ? - cpp
 
    sWo(_WOID,picwo,_WCLIP,wbox(10,10,ncols+10,nrows+10,2));
 
-<<"clip is: $_WPOS\n"
+<<"clip is: $wpos\n"
 
    // one deg lat  is apprx 2620 rows
    
@@ -412,7 +449,7 @@ uchar CPIX[0];  // make dynamic ? - cpp
   np = 1000;
 
  int m_init = 1;
- 
+ <<" @ loop \n"
  while (1) {
  
   if (m_init) {
@@ -421,41 +458,41 @@ uchar CPIX[0];  // make dynamic ? - cpp
   else {
   
     eventWait();
-  <<"click the mouse %V $Ev_loop $Ev_button $Ev_rx $Ev_ry %c $Ev_keyc\n";
-  // print("click the mouse %d %d\n",Ev_loop, Ev_keyc);
+  <<"click the mouse %V $GEV_loop $GEV_button $GEV_rx $GEV_ry %c $GEV_keyc\n";
+  // print("click the mouse %d %d\n",GEV_loop, GEV_keyc);
 
     replot =1;
-    if ( Ev_keyc == 'S') {
+    if ( GEV_keyc == 'S') {
          goEast()
      }
-     else if ( Ev_keyc == 'Q') {
+     else if ( GEV_keyc == 'Q') {
          goWest()
      }
-     else if (Ev_button == 4 || Ev_keyc == 'R') {
+     else if (GEV_button == 4 || GEV_keyc == 'R') {
          goNorth()
      }
-     else if (Ev_button == 5 || Ev_keyc == 'T') {
+     else if (GEV_button == 5 || GEV_keyc == 'T') {
          goSouth()
      }
-     else if ( Ev_keyc == 't') {
+     else if ( GEV_keyc == 't') {
          Top();
      }
-     else if ( Ev_keyc == 'e') {
+     else if ( GEV_keyc == 'e') {
          East();
      }
-     else if ( Ev_keyc == 'w') {
+     else if ( GEV_keyc == 'w') {
          West();
      }          
-     else if ( Ev_keyc == 'b') {
+     else if ( GEV_keyc == 'b') {
          Bottom();
      }          
-     else if ( Ev_keyc == 'x') {
+     else if ( GEV_keyc == 'x') {
          zoomOut();
      }
-     else if ( Ev_keyc == 'z') {
+     else if ( GEV_keyc == 'z') {
            zoomIn();
     }               
-     else if (Ev_button == 2) {
+     else if (GEV_button == 2) {
             centerPos();
      }
      else {
@@ -507,24 +544,35 @@ uchar CPIX[0];  // make dynamic ? - cpp
    sWo(_WOID,picwo,_WCLEARPIXMAP,ON_);
    
    if (use_cpix) {
-     //CPIX = 0;
+
      cval = 32;
      
-     npixr = mread(AF,CPIX,nrows,ncols,drows,dcols,sec_row,sec_col,skip_row,skip_col);
+     npixr = matread(AF,CPIX,nrows,ncols,drows,dcols,sec_row,sec_col,skip_row,skip_col);
      
-    //CPIX.pinfo();
-     sz=Caz(CPIX);
-    <<"$sz \n";
 
 
-    <<"$(Cab(CPIX))\n"
-
+<<" %d $CPIX[1:10][1:5:] \n"
+/*
+ for (i = 0; i < 50 ; i++) {
+   for(j= 0; j < 100; j++) {
+     
+     val = CPIX[i][j]
+     if (val <200) { 
+     <<"$val "
+     }
+    }
+     <<"\n" 
+}
+*/
+  //   CPIX.pinfo();
 
 <<"%V $npixr $nrows $ncols $drows $dcols $npixr $sec_row $sec_col  $skip_row $skip_col $srows $scols\n"
 
-  //<<"plotting pixrect  $cmi\n"
-   //  sWo(_WOID,picwo,_WCLEARCLIP,ORANGE_);
-     PlotPixRect(picwo,CPIX,cmi);
+<<"plotting pixrect  $cmi\n"
+
+//  sWo(_WOID,picwo,_WCLEARCLIP,ORANGE_);
+
+      PlotPixRect(picwo,CPIX,cmi);
 
     }
  
@@ -536,18 +584,18 @@ uchar CPIX[0];  // make dynamic ? - cpp
 // plot box?
    //plot(picwo,_line,wlng,slat,elng,nlat,RED_)
    
-       targ_col = Ev_x;
-       targ_row = Ev_y;
+       targ_col = GEV_x;
+       targ_row = GEV_y;
        
-       tlat = Ev_ry;
-       tlng = Ev_rx;
+       tlat = GEV_ry;
+       tlng = GEV_rx;
     
 
 <<"%V $wlng $slat $elng $nlat \n"
 <<"where are we? %V $sec_col $sec_row \n"
 
 
-<<"%V  POS $tlng  $tlat $Ev_x $Ev_y \n")
+<<"%V  POS $tlng  $tlat $GEV_x $GEV_y \n")
 
 
 
@@ -557,7 +605,7 @@ uchar CPIX[0];  // make dynamic ? - cpp
     break;
 
    }
-   <<"%V$Ev_button $Ev_keyc\n"
+   <<"%V$GEV_button $GEV_keyc\n"
 
 //  wlng = 107;
 //  elng = 103;
@@ -565,7 +613,7 @@ uchar CPIX[0];  // make dynamic ? - cpp
 //  nlat = 39;
 
   if (replot) {
-   titleMessage("%V $wlng $slat $elng $nlat");
+   titleMessage(vp,"%V $wlng $slat $elng $nlat");
     sWo(_WOID,picwo,_WDRAW,ON_,_WSCALES,rbox( wlng, slat, elng, nlat)); // updated scales
 
     sGl(_GLID,igc_tgl,_GLDRAW, RED_);  // DrawGline;   // this has to retrieve updated scales
@@ -664,7 +712,7 @@ uchar CPIX[0];  // make dynamic ? - cpp
   }
 
    else {
-     npixr = mread(AF,SPIX,nrows,ncols,drows,dcols,sec_row,sec_col,skip_row,skip_col);
+     npixr = matread(AF,SPIX,nrows,ncols,drows,dcols,sec_row,sec_col,skip_row,skip_col);
      <<"read SPIX $npixr\n";
    } 
 
