@@ -1781,3 +1781,6 @@ woargs.h                            1.6    T2 logic switch decoded
 spe_args_process.cpp                2.51    bug nested arg fixed
 svar.h                              2.8    getArrayAsStr
 ds_getvarasstr.cpp                  2.70    limit for getArrayAsStr per dim
+ds_getvarasstr.cpp                  2.71    int or float print
+ssop.cpp                            1.98    isIntType
+siv.h                               2.10    remove isIntNumberType
