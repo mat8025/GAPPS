@@ -225,7 +225,7 @@ Record RX;
   int FirstGoalWt;
   float mid_date;
 
-  float   DX_NEW = 200.0;  // never exceed
+  float   DX_NEW = 190.0;  // never exceed
 
   float   DX_MEW = GoalWt+5;  // max dx effort above
 
