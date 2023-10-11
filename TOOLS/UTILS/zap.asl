@@ -1,18 +1,57 @@
+/* 
+ *  @script zap.asl 
+ * 
+ *  @comment interactively kill named processes 
+ *  @release CARBON 
+ *  @vers 1.3 Li Lithium [asl ]                                             
+ *  @date 10/11/2023 16:17:58 
+ *  @cdate 1/1/2007 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare 
+ * 
+ */ 
+//-----------------<v_&_v>------------------------//
 
-// interactively kill named programs
 
-//setDebug(1,@keep,@filter,0)
+// TBF 10/11/23 bug   @= strcmp  but == opera eqv does not also do strcmp
+// if LHS and RHS are strings
 
-zapp= _clarg[1];
 
-<<"zapping $zapp \n"
+  na = argc()
 
-yn = "y"
+<<" $na $_clarg\n"
+  ask = 0;
+  ans  = "y"
 
-  svar A;
+<<"arg 0 $_clarg[0]\n"
+<<"arg 1 $_clarg[1]\n"
+<<"arg 2 $_clarg[2]\n"
+
   
-A = !!"ps -auwx"
-  
+  if (_clarg[1] @= "-i" ) {
+    ask = 1;
+   zapp= _clarg[2];
+   ans  = "n"
+   }
+  else {
+    zapp= _clarg[1];
+  }
+
+
+  <<"zapping $zapp \n"
+
+   
+
+  Svar A;
+
+
+
+
+
+!!"ps -auwx > ps_list_tmp"
+
+ A = readFile("ps_list_tmp")
+ // A.readFile("ps_list_tmp") // should also work TBD 10/11/23
  nl = Caz(A);
 
 <<"$nl processes\n"  
@@ -55,10 +94,21 @@ match = 0;
 
       //yn=iread(" Kill [n/y]?");
 
-      //  if (yn @= "y") { // line has \n ?
+  if (ask) { 
+     ans = query(" kill ? [y,n,q] ${C[::]} ")
+   }
+   
+     if (ans == "q") {
+         exit(-1)
+     }
+
+
+     if (ans @= "y") { // line has \n ?
     <<"Killing $pid \n";
     !!"kill -9 $pid ";
-    // }
+     }
+
+
    }
  }
 }
@@ -67,4 +117,4 @@ match = 0;
 
 
 
-exit()
+exit(-1)
