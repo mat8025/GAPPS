@@ -1,7 +1,7 @@
 
 // interactively kill named programs
 
-setDebug(1,@keep,@filter,0)
+//setDebug(1,@keep,@filter,0)
 
 zapp= _clarg[1];
 
@@ -11,12 +11,12 @@ yn = "y"
 
   svar A;
   
-A =!!"ps -auwx"
+A = !!"ps -auwx"
   
  nl = Caz(A);
 
 <<"$nl processes\n"  
-<<"%(1,,,\n)$A\n"
+//<<"%(1,,,\n)$A\n"
 
 int pid = -1
 
@@ -46,9 +46,9 @@ match = 0;
         spat(C[5],zapp,1,1,&smatch);
       }
  if(match || smatch) {
-    pid = C[1];
+    pid = atoi(C[1]);
     if (pid != mypid) {
-      <<" found process $C[1] id $C[0] \n";
+      <<" found process $pid $C[1] id $C[0] \n";
       <<" %(1, , ,,)${C[::]} \n";
 
       // yn=ttyin(" Kill [n/y]?");
