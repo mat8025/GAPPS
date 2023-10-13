@@ -50,8 +50,8 @@
 
 !!"ps -auwx > ps_list_tmp"
 
- A = readFile("ps_list_tmp")
- // A.readFile("ps_list_tmp") // should also work TBD 10/11/23
+// A = readFile("ps_list_tmp")
+  A.readFile("ps_list_tmp") // should also work TBD 10/11/23
  nl = Caz(A);
 
 <<"$nl processes\n"  

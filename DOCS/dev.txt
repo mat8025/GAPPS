@@ -1,0 +1,45 @@
+//   Development    ASL
+
+#////////////////////////////////////////////////////////////////////////////////////////////////////
+09/11/23  [1]  memWrt,memRead,memSearch
+    revise memory storage retrieval
+    simple clear file fixed tag,value lengths ?
+    or use  Record cols  tag,value,date
+    fix overwrite
+    sort on tags
+#\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+#
+#////////////////////////////////////////////////////////////////////////////////////////////////////
+09/11/23  [2]  udb user input
+ print to stderr warning,error message for wrong/missing input
+ color red ?
+ reference to script line for asl
+ c++ version src line available 
+ done
+ 
+#////////////////////////////////////////////////////////////////////////////////////////////////////
+09/11/23  [3]  revise showVox
+  audio revise
+
+#\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+#
+#////////////////////////////////////////////////////////////////////////////////////////////////////
+09/16/23 [4]   titleMessage
+windows by default have title wo and msg wo
+asl can write to msg wo via
+titleMessage(wid, " a message")
+for short one line messages goes to wo value
+now active
+
+history
+
+cmd ?? use to issue cmd
+#\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+#
+#////////////////////////////////////////////////////////////////////////////////////////////////////
+09/16/23 [5]   Console
+ start up a shell window ?
+  vsh in GWM
+  audio input / output
+
+#////////////////////////////////////////////////////////////////////////////////////////////////////

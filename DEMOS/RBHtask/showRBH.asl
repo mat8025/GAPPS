@@ -473,9 +473,7 @@ Units = "M"
 
     wovtile(measwos,0.05,0.1,0.15,0.9,0.01);
 
-
-
-   titleMessage(mapvp,sdate)
+    titleMessage(mapvp,sdate)
   
 
 
@@ -533,11 +531,11 @@ Units = "M"
 
 <<"%V $igc_tgl\n"
 
-    sGL(_GLID,igc_tgl,_GLXVEC,Lon,_GLYVEC,Lat,_GLCOLOR,BLUE_);
+    sGl(_GLID,igc_tgl,_GLXVEC,Lon,_GLYVEC,Lat,_GLCOLOR,BLUE_);
 
     elev_gl = cGl(vvwo)
 <<"%V $elev_gl\n"
-    sGL(_GLID,elev_gl,_GLXVEC,Secs,_GLYVEC,Elev,_GLCOLOR,RED_);
+    sGl(_GLID,elev_gl,_GLXVEC,Secs,_GLYVEC,Elev,_GLCOLOR,RED_);
 
 
 
@@ -545,13 +543,13 @@ Units = "M"
 <<"%V $bpm_gl\n"
 
 
-     sGL(_GLID,bpm_gl,_GLXVEC,Secs,_GLYVEC,Bpm,_GLCOLOR,GREEN_);
+     sGl(_GLID,bpm_gl,_GLXVEC,Secs,_GLYVEC,Bpm,_GLCOLOR,GREEN_);
 
     //@TY,Bpm,@color,GREEN_);
 
     spd_gl = cGl(vvwo)
 
-    sGL(_GLID,spd_gl,_GLXVEC,Secs,_GLYVEC,Spd,_GLCOLOR,BLUE_);
+    sGl(_GLID,spd_gl,_GLXVEC,Secs,_GLYVEC,Spd,_GLCOLOR,BLUE_);
 
     //@TY,Spd,@color,BLUE_);
     // curs @x vertical line  and/or curs @ y horizontal
@@ -631,9 +629,6 @@ int tim;
      sWo(_WOID,mapwo,_WSAVE,ON_,_WSAVEPIXMAP,ON_);
 
     while (1) {
-
-
-
 
      eventWait();
 
