@@ -2,53 +2,102 @@
 ///
 ///
 
+   chkIn(_dblevel);
 
+   chkT(1);
 
- nd = 6;
+   nd = 10;
 
-int index[nd];
+   int index[nd];
 
-     index.pinfo()
+   index = 0;
 
+   index.pinfo();
 
-     a = index[0]
-<<" %V $a\n"
-index.pinfo()
+   <<"%V $index \n";
 
- index[0] = 787;
+   a = index[0];
 
-       a = index[0]
-<<" %V $a\n"
+   <<" %V $a\n";
 
-index.pinfo()
+   chkN(a,0);
 
+   index.pinfo();
+
+   index[0] = 787;
+
+   a = index[0];
+
+   <<" %V $a\n";
+
+   chkN(a,787);
+
+   <<"%V $index \n";
+
+   index.pinfo();
     // index[0] += 1;
 
-   index[0] = 1689;
+   index[1] = 1689;
 
-<<"after += \n"
+   <<"%V $index \n";
 
-index.pinfo()
+   chkN(index[1],1689);
 
+   index.pinfo();
 
-       a = index[0]
-<<" %V $a\n"
+   a = index[0];
 
-index.pinfo()
+   <<" %V $a\n";
+
+   index.pinfo();
+
+   a = index[0];
 
    index[0] += 2;
 
-index.pinfo()
+   <<"after += \n";
 
-          b = index[0]
-<<" %V $b\n"
+   chkN(index[0],a+2);
 
-index.pinfo()
+   <<"%V $index \n";
 
+   index.pinfo();
+
+   <<"%V $index \n";
+
+   a = index[3];
+
+   index[3] += 3;
+
+   chkN(index[3],a+3);
+
+   <<"%V $index \n";
+
+   a = index[4];
+
+   index[4] += 2;
+
+   chkN(index[4],a+2);
+
+   chkN(index[5],0);
+
+   chkN(index[9],0);
+
+   <<"%V $index \n";
+
+   index.pinfo();
+
+   b = index[0];
+
+   <<" %V $b\n";
+
+   index.pinfo();
+
+   <<"%V $index \n";
+
+   chkOut("ArrayELE OK?");
 ///
 ///
 ///
 
-
-
-
+//==============\_(^-^)_/==================//

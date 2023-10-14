@@ -1,17 +1,18 @@
 /* 
- *  @script sindent.asl 
+ *  @script sindent.asl                                                 
  * 
- *  @comment format asl scripts 
- *  @release CARBON 
- *  @vers 1.22 Ti 6.3.83 C-Li-Bi 
- *  @date 02/16/2022 09:49:43          
- *  @cdate 1/1/2015 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare 2022
+ *  @comment format asl scripts                                         
+ *  @release Nickel                                                     
+ *  @vers 1.23 V Vanadium [asl ]                                        
+ *  @date 10/14/2023 07:08:14                                           
+ *  @cdate 1/1/2015                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare  -->                                   
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                                
-                                                              
+
+//----------------<v_&_v>-------------------------//                               
+
 
 
   
@@ -42,12 +43,12 @@ void Conline()
 
 // TBF - will split  "xxx..." but should leave
 
-      <<[2]"SPLIT $NL \n"; 
+      <<[EO]"SPLIT $NL \n"; 
       //index =sstr(NL,",",1);
       
 // use ,
       iv = sstr(NL,",",1,1);
-      <<[2]"found? $iv\n"; 
+      <<[EO]"found? $iv\n"; 
       index = iv[0];
       if (index == -1) {
         index = -1;
@@ -66,7 +67,7 @@ void Conline()
       if (index == -1) {
       // but space not quoted !
         iv = sstr(NL," ",1,1);
-        <<[2]"found? $iv\n"; 
+        <<[EO]"found? $iv\n"; 
         index = iv[0];
         if (index == -1) {
           index = -1;
@@ -83,11 +84,11 @@ void Conline()
         }
       
       if (index != -1) {
-        <<[2]"SPLIT  %v $index\n";
+        <<[EO]"SPLIT  %v $index\n";
         scpy(NL1,NL,index);
-        <<[2]"%V $NL1 \n"; 
+        <<[EO]"%V $NL1 \n"; 
         scpy(NL2,sele(NL,index,len-index));
-        <<[2]"%V $NL2 \n"; 
+        <<[EO]"%V $NL2 \n"; 
         conline =1;
         }
 }
@@ -96,22 +97,24 @@ void Conline()
 int sposn[300];
 int ltype = 0;
 int last_ltype = 0;
-int mat =0;
+
 int cr =0;
 
 
-   do_query = 1;
+   do_query = 0;
+   
+   EO = -1  ; // error output to NULL
    
 // use an indent of 2 spaces - for all non-comment lines
 
 //<<"? $_clarg[1]\n"
 
-ESL=';//==============\_(^-^)_/==================//;';
+ESL='//==============\_(^-^)_/==================//';
 
 
   fname = _clarg[1];
 
-<<[2]"$fname \n"
+<<[EO]"$fname \n"
 
 
 
@@ -188,7 +191,7 @@ ESL=';//==============\_(^-^)_/==================//;';
     foldline = 0;
      if (ferror(A) == EOF_ERROR_) {
 
-     <<"end @ $L\n"
+     <<[EO]"end @ $L\n"
         break;
         }
 
@@ -213,9 +216,9 @@ ESL=';//==============\_(^-^)_/==================//;';
 
     NL = L;
     
-<<"in: \033[1;32m $NL  \033[0m\n" ;
+<<[EO]"in: \033[1;32m $NL  \033[0m\n" ;
 
-//<<[2]"in: $NL   \n" ;
+//<<[EO]"in: $NL   \n" ;
 
 //ans=query("2pp")
   
@@ -226,29 +229,29 @@ ESL=';//==============\_(^-^)_/==================//;';
     if (sl >= 1) {
          is_empty_line = 0;   
       scpy(nsv,eatWhiteEnds(NL));
-      //<<[2]"check comment $nsv[0] $nsv[1] \n"; 
+      //<<[EO]"check comment $nsv[0] $nsv[1] \n"; 
 
        is_define = scmp(nsv,"#define",7);
        is_include = scmp(nsv,"#include",8);
        is_case = scmp(nsv,"case",4);
 
-//<<[2]"%s $nsv %v %d $is_define $is_include $is_case\n"
-//<<[2]"nsv[0],[1]  $nsv[0]  $nsv[1]\n"
+//<<[EO]"%s $nsv %v %d $is_define $is_include $is_case\n"
+//<<[EO]"nsv[0],[1]  $nsv[0]  $nsv[1]\n"
 
       if ((nsv[0] == '/') && (nsv[1] == '/')) {
         is_comment = 1;
-        //<<[2]"comment $NL\n"; 
+        //<<[EO]"comment $NL\n"; 
         }
       else if ((nsv[0] == '/') && (nsv[1] == '*')) {
         is_comment = 1;
 	in_comment_blk = 1;
-        //<<[2]"comment $NL\n"; 
+        //<<[EO]"comment $NL\n"; 
         }
       else if ((nsv[0] == '*') && (nsv[1] == '/')) {
         is_comment = 1;
 	in_comment_blk = 0
 	  empty_line_cnt = -1;
-        //<<[2]"end commentblk $empty_line_cnt $NL\n"; 
+        //<<[EO]"end commentblk $empty_line_cnt $NL\n"; 
         }
 
       else if (scmp(nsv,";//---",6)) {
@@ -257,27 +260,27 @@ ESL=';//==============\_(^-^)_/==================//;';
       else if ((nsv[0] == '<') && (nsv[1] == '|')) {
         is_comment = 1;
 	in_txt_blk = 1
-        //<<[2]"txt blk startcomment $NL\n"; 
+        //<<[EO]"txt blk startcomment $NL\n"; 
         }
       else if ((nsv[0] == '|') && (nsv[1] == '>')) {
         is_comment = 1;
 	in_txt_blk = 0;
         empty_line_cnt = -1;
-        <<[2]"txt blk $empty_line_cnt endcomment $NL\n"; 
+        <<[EO]"txt blk $empty_line_cnt endcomment $NL\n"; 
         }		
       else if (nsv[0] == '#') {
         is_comment = 1;
-        //<<[2]"comment $NL\n"; 
+        //<<[EO]"comment $NL\n"; 
         }
        else if (nsv[0] == '!'  && (scin("apweitz",nsv[1]))) {
         is_margin_call = 1;
         is_comment = 1; // treat as	
-        //<<[2]"margin call $NL\n"; 
+        //<<[EO]"margin call $NL\n"; 
         }	
       else {
         ws = dewhite(NL); 
         if (slen(ws) == 0) {
-          //<<[2]"empty? $sl  $L\n"; 
+          //<<[EO]"empty? $sl  $L\n"; 
           is_empty_line = 1;
           }
         }
@@ -294,7 +297,7 @@ ESL=';//==============\_(^-^)_/==================//;';
       if (!in_txt_blk) {
         empty_line_cnt++;
 	}
-      //<<[2]"%V $empty_line_cnt\n"; 
+      //<<[EO]"%V $empty_line_cnt\n"; 
       ltype = EMPTYLN;
     }
 
@@ -307,19 +310,19 @@ ESL=';//==============\_(^-^)_/==================//;';
     if (ind >=0) {
       nsv = sele(NL,ind,1); 
       lastc= nsv[0];
-      <<[2]"last char? $ln  $lastc $sl $ind %s $lastc \n";
+      <<[EO]"last char? $ln  $lastc $sl $ind %s $lastc \n";
       }
 
-<<"testing lastc $lastc   \\ \n";       
+<<[EO]"testing lastc $lastc   \\ \n";       
 
       if (lastc == '\\') {
            foldline = 1;
-<<"found fold line $foldline \\ \n";       	   
+<<[EO]"found fold line $foldline \\ \n";       	   
        }
 
       if (lastc == 92) {
            foldline = 1;
-<<"found fold line $foldline 92 \n";       	   
+<<[EO]"found fold line $foldline 92 \n";       	   
        }
 
   
@@ -329,7 +332,7 @@ ESL=';//==============\_(^-^)_/==================//;';
     
     iv = sstr(";{}/\\",lastc,1); 
     
- <<[2]"$L $sl %c $lastc $iv[0] \n"
+ <<[EO]"$L $sl %c $lastc $iv[0] \n"
 
     if (slen(NL) >0) {
       NL=eatWhiteEnds(NL);
@@ -355,7 +358,7 @@ ESL=';//==============\_(^-^)_/==================//;';
       is_equ = scin(NL,"=[]",1);
 
       }
-    //<<[2]"<|$L|> <|$NL|> %V $nw $is_cbs $is_cbe \n"; 
+    //<<[EO]"<|$L|> <|$NL|> %V $nw $is_cbs $is_cbe \n"; 
     
     is_proc = scmp(NL,"proc",4,0);
     if (is_proc) {
@@ -389,14 +392,14 @@ ESL=';//==============\_(^-^)_/==================//;';
     tws = nsc(nw," ");
     if (is_cbs) {
       nw += 2;
-  //<<[2]"PROC %v$nw \n"
-      //<<[2]"CBS %v$nw \n"; 
+  //<<[EO]"PROC %v$nw \n"
+      //<<[EO]"CBS %v$nw \n"; 
       }
     
     if (is_cbe) {
       
       nw -= 2;
-      //<<[2]"CBE %v$nw \n"; 
+      //<<[EO]"CBE %v$nw \n"; 
       }
     
     
@@ -414,14 +417,14 @@ ESL=';//==============\_(^-^)_/==================//;';
     if (ind >= 0) {
       nsv = sele(NL,ind,1); 
       lastc= nsv[0];
-      <<[2]"last char? $ln  $lastc $sl $ind %s $lastc \n";
+      <<[EO]"last char? $ln  $lastc $sl $ind %s $lastc \n";
       }
 
 
 
 
     if (is_empty_line && (empty_line_cnt > 1)) {
-      <<[2]"%V $empty_line_cnt\n"; 
+      <<[EO]"%V $empty_line_cnt\n"; 
       }
     else  if ( !is_comment && !is_proc && !is_if  \
                  && (sl > 0) ) {
@@ -438,22 +441,22 @@ ESL=';//==============\_(^-^)_/==================//;';
         }
        }
 
-	<<[2]"%c $lastc %d $lastc \n"
+	<<[EO]"%c $lastc %d $lastc \n"
 	
 	if (lastc != 59 && lastc != 123 && lastc != 92 && !ll_fold) {
 	   needs_semi_colon = 1;
 	 
 
          iv =sstr(";:/{}\\",lastc,1);
-//<<[2]"$iv\n"
+//<<[EO]"$iv\n"
           if (iv[0] != -1) {
             needs_semi_colon = 0;
           if (is_equ) {
-         //<<[2]" declare St $NL needs ; \n";
+         //<<[EO]" declare St $NL needs ; \n";
              needs_semi_colon = 1;
           }
         }
-	<<" %v $needs_semi_colon\n";
+	<<[EO]" %v $needs_semi_colon\n";
        }
 
      if (is_case || in_comment_blk || in_txt_blk) {
@@ -466,39 +469,39 @@ ESL=';//==============\_(^-^)_/==================//;';
        }
      
        
-      //<<[2]" needs ; ? $needs_semi_colon <|$lastc|>\n";
-      //<<[2]" needs ; $NL\n";
+      //<<[EO]" needs ; ? $needs_semi_colon <|$lastc|>\n";
+      //<<[EO]" needs ; $NL\n";
       
       }
 
 
 
-<<[2]"%V $nw $conline $foldline $ll_fold  $is_empty_line $is_comment $in_comment_blk $empty_line_cnt $last_ltype\n";
+<<[EO]"%V $nw $conline $foldline $ll_fold  $is_empty_line $is_comment $in_comment_blk $empty_line_cnt $last_ltype\n";
 
       if (conline) {
         <<[B]"${tws}$NL1		\\\n"; 
         <<[B]"$tws  \t\t$NL2; \n"; 
         }
       else if ((is_empty_line) && (empty_line_cnt < 1) && !in_comment_blk  && !in_txt_blk ) {
-        //<<[2]"adding empty line! $empty_line_cnt\n"
+        //<<[EO]"adding empty line! $empty_line_cnt\n"
         <<[B]"\n"; 
         }
 /*
       else if (is_trailing_comment) {
-         <<[2]"trailing comment\n"
+         <<[EO]"trailing comment\n"
          <<[B]"${tws}$NL \n"; 
         }
 */	
       else if (is_define || is_include) {
-               //<<[2]"define/include\n"
+               //<<[EO]"define/include\n"
       <<[B]"$NL\n"; 
       }      
       else if (is_comment || in_comment_blk ) {
-               //<<[2]"comment\n"
+               //<<[EO]"comment\n"
                <<[B]"$L\n"; 
       }
       else if (needs_semi_colon) {
-                     //<<[2]"add ; \n"
+                     //<<[EO]"add ; \n"
       if (empty_line_cnt == 0) {
              <<[B]"\n"; 
        }
@@ -506,14 +509,14 @@ ESL=';//==============\_(^-^)_/==================//;';
       }
       else {
 
-     //<<[2]"asis: $NL\n"
+     //<<[EO]"asis: $NL\n"
 	       
       if ((empty_line_cnt < 1)  && !in_comment_blk  \
       && !in_txt_blk  \
       && !foldline  \
       && !ll_fold \
       && (last_ltype != PROCCALL)) {
-<<"adding empty line for spacing  %V $foldline $ll_fold \n";      
+<<[EO]"adding empty line for spacing  %V $foldline $ll_fold \n";      
              <<[B]"\n"; 
 
       }
@@ -521,7 +524,7 @@ ESL=';//==============\_(^-^)_/==================//;';
          
 
          if (!is_empty_line || in_txt_blk) {
-             <<"${tws}$NL\n";
+             <<[EO]"${tws}$NL\n";
           <<[B]"${tws}$NL\n";
 	 }
 	 else {
@@ -536,10 +539,10 @@ ESL=';//==============\_(^-^)_/==================//;';
     }
 
     if (needs_semi_colon) {
-   <<"\033[1;34m out:${tws}${NL};\n \033[0m";
+   <<[EO]"\033[1;34m out:${tws}${NL};\n \033[0m";
    }
    else {
-   <<"\033[1;34m out:${tws}$NL  \033[0m\n";
+   <<[EO]"\033[1;34m out:${tws}$NL  \033[0m\n";
    }
 
   //<<"${tws}$NL\n"; 
@@ -547,7 +550,7 @@ ESL=';//==============\_(^-^)_/==================//;';
   //<<[B]"${tws}$NL\n";
   
   tws = nsc(nw,"x");
- // <<[2]"%V$nw $tws\n";
+ // <<[EO]"%V$nw $tws\n";
    fflush();
 
   if (do_query) {
@@ -573,7 +576,9 @@ if (LL != ESL) {
   <<[B]"\n$ESL\n";
   }
   cf(B);
-  
+
+<<[2]" output in $ofname\n"
+
 //==================================//
 /*--------------  TBDFC ------------------------------
 

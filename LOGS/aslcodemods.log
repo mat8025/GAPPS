@@ -1784,3 +1784,8 @@ ds_getvarasstr.cpp                  2.70    limit for getArrayAsStr per dim
 ds_getvarasstr.cpp                  2.71    int or float print
 ssop.cpp                            1.98    isIntType
 siv.h                               2.10    remove isIntNumberType
+spe_scopesindex.cpp                 2.88    reserved keyword error msg
+array_subset.cpp                    2.81    check for array range compute
+array_parse.cpp                     2.81    idbl ++
+ds_convert_store.cpp                2.3    check ReallocMem needed for array setStoreVal
+test_l.cpp                          1.54    color test result
