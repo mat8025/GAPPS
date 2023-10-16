@@ -2,6 +2,11 @@
 ///
 ///
 
+#include "debug.asl"
+
+
+
+
    chkIn(_dblevel);
 
    chkT(1);
@@ -16,13 +21,35 @@
 
    <<"%V $index \n";
 
+    index[7] += 1;
+    
+<<"%V $index \n";
+
+<<"%V $index[0] $index[1] $index[2] $index[7] $index[9] \n";
+
+askit(1)
+
    a = index[0];
 
    <<" %V $a\n";
 
    chkN(a,0);
 
+
+   a = index[7];
+
+   <<" %V $a\n";
+
+   chkN(a,1);
+
+   index[8] += 2
+
    index.pinfo();
+
+   <<"%V $index \n";
+
+   chkN(index[8],2);
+
 
    index[0] = 787;
 

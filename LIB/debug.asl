@@ -20,7 +20,7 @@
 int hold_dbl = _dblevel;
 int dblevel = _dblevel;
 
-
+Str Use_ = scat(" running ",getScript()," :")
 
 //<<"%V$hold_dbl \n"
 
@@ -48,7 +48,18 @@ int dblevel = _dblevel;
 //sdb(1,@keep);
 // if there are errors keep  idb,xdb file in .GASP/WORK/Debug
 // will be overwritten by scripts  unless unique/local options used
+void askit(int ask)
+{
+Str ans;
+	  if (ask) {
+       ans = query("ok? : [y,n,q]")
+       if (ans @= "q") {
+            exit(-1)
+        }
 
+       }
+}
+//[EP]==========================
 
   void DummyP()
   {
@@ -70,7 +81,7 @@ int dblevel = _dblevel;
 
   }
 
- 
+ //[EP]==========================
 
 
 //<<"%V $_DB ALLOWALL debug from files and funcs\n"

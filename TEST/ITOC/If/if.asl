@@ -12,10 +12,10 @@
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
                                                                                               
-<|Use_=
-Demo  of if command
-///////////////////////
-|>
+
+  Use_= "Demo  of if command"
+
+
 
 
 #include "debug"
@@ -107,11 +107,11 @@ prog = GetScript()
 <<" ${prog} \n"
 <<" ${prog}: \n"
 
-#{
+/*
 
   Test If variations
 
-#}
+*/
 
 
 
@@ -874,9 +874,10 @@ ts=sstr(";/{}\\",cs,1)
 <<"%V$vv $cs  sstr test correct\n" 
   }
 
-  vv->pinfo()
+  vv.pinfo()
 <<"%V $(!is_comment) && $(!is_proc) && $(!is_if)  && $(sl > 0)   $vv[0]\n"
 // if ( !is_comment && !is_proc && !is_if  && (sl > 0)   && (sstr(";/{}\\",cs,1) == -1) ) {
+
  if ( !is_comment && !is_proc && !is_if  && (sl > 0)   && (  vv[0] == -1) ) {
      
     chkT(1)
@@ -1119,3 +1120,6 @@ chkStage("chk null")
 
 
 chkOut()
+
+
+
