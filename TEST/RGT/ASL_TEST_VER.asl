@@ -22,14 +22,16 @@
 
 
 
-#include "debug"
-
-#include "hv"
+#include "debug.asl"
 
 
 if (_dblevel > 0) {
    debugON()
 }
+
+
+#include "hv.asl"
+
 
 int inflsz = 0;
 int outflsz = 0;
@@ -37,7 +39,7 @@ int outflsz = 0;
 
 setmaxcodeerrors(-1); // just keep going
 setmaxicerrors(-1);
-ignoreErrors()
+ ignoreErrors()
  allowErrors(-1)
  
 #define PGREEN '\033[1;32m'
@@ -52,6 +54,10 @@ wasl = "asl"
 
 
 //<<"using $wasl for testing \n"
+
+!!"asl -v"
+
+!!"mkdir -p Scores"
 
 
 
@@ -73,7 +79,7 @@ hdir = getdir();
 
 wd= chdir(hdir)
 wdir = getdIr()
-<<"%V $wd $hdir $wdir\n"
+<<[_DBH]"%V $wd $hdir $wdir\n"
 
 //ans=query("where are we")
 
@@ -85,7 +91,7 @@ S.cat("types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc,svar,record,ivar,list
 Svar Opts[] = Split(S,",");
 
 
-<<"%V $Opts \n"
+<<[_DBH]"%V $Opts \n"
 
 
 
@@ -102,8 +108,9 @@ today=getDate(1);
 
 chdir(hdir)
 cwd=getdir()
-//<<"%V $cwd\n"
+
 //Opf=ofw("Scores/score_$(date(2,'-'))")
+
 Opf=ofw("current_score")
 
 
@@ -224,7 +231,7 @@ int do_tests = 0;
   pdir=updir()
   chdir("ITOC")
   Testdir = getdir()
-<<"Test Dir is $Testdir\n"
+<<[_DBH]"Test Dir is $Testdir\n"
 
 
 
@@ -240,7 +247,7 @@ int do_tests = 0;
 
   nargs = ArgC()
 
-<<"%V$nargs\n"
+<<[_DBH]"%V$nargs\n"
 
 
 
@@ -249,7 +256,7 @@ int do_tests = 0;
    //<<[2]" selecting tests \n"
   }
 
-<<"%V $do_all \n"
+<<[_DBH]"%V $do_all \n"
 
   i = 1;
 
@@ -257,7 +264,7 @@ int do_tests = 0;
 
 
       wt = _argv[i]
-//    <<"$i $wt \n"  
+
     if (wt @= "") {
       break
     }
@@ -294,12 +301,12 @@ int do_tests = 0;
       exit();
   }
 
-<<[2]"%V $do_all $do_bops $do_mops \n"
+<<[_DBH]"%V $do_all $do_bops $do_mops \n"
 
 
 //================
 
-//<<"%V $do_all \n"
+
 
 if (do_release) {
   wasl = "aslx"
@@ -368,9 +375,10 @@ if ((do_include || do_all ) && (do_include != -1)) {
     inflsz = caz(FailedList)
 
     RunDirTests("Bops","bops,fvmeq,fsc1,mainvar,snew");
+    
 
 
-    RunDirTests("Assign","assign");
+   RunDirTests("Assign","assign");
 
     Run2Test("Bops")
 
@@ -649,7 +657,7 @@ if ((do_all  || do_declare ) && (do_declare != -1))  {
 
 
 
-//<<" checkSwitch $do_switch\n"
+
 
 
 
@@ -1037,7 +1045,7 @@ bflist="$BFS"
 
    bug_list = ssub(bflist,".asl"," ,",0)
    bug_list = scut(ssub(bug_list," ","",0),-1)
-//<<"$bug_list\n"
+<<[_DBH]"$bug_list\n"
 
       RunDirTests("BUGFIX",bug_list)
       outcome("BUGFIX")
@@ -1061,11 +1069,10 @@ bflist="$BFS"
 
 //<<"$(typeof(tslist)) $tslist\n"
 
-<<" $tslist\n"
+<<[_DBH]" $tslist\n"
 
  //  test_list = ssub(tslist,".asl",",",0)
    test_list = ssub(tslist,".asl",",",0)
-   <<"$test_list\n"
    test_list = scut(ssub(test_list," ","",0),-1)
    
 //<<"%V $test_list\n"
@@ -1097,7 +1104,7 @@ if ((do_all || do_threads )) {
 
   if (flsz >= 1) {
 
-<<"\n\t\t\t$flsz modules  failed! \n"
+
 <<[Opf]"\n$flsz modules  failed! \n"
 <<[Tlogf]"\n$flsz modules  failed! \n"
 
@@ -1180,16 +1187,17 @@ ut=utime()
   //ut.aslpinfo();
   
 
-// mkdir -p Tresults
+!!"mkdir -p Tresults"
 
 A=ofw("Tresults/score_$ut");
-
-<<[A]"$ut $(date(1)) Modules $n_modules Tests $rt_tests  Pass $rt_pass  Score %6.2f$pcc Fail %d$flsz Crash $lsz it $i_time xt $x_time vers $(get_version())\n"
+cdate = date(1)
+vers = getVersion()
+<<[A]"$ut $cdate Modules $n_modules Tests $rt_tests  Pass $rt_pass  Score %6.2f$pcc Fail %d$flsz Crash $lsz it $i_time xt $x_time vers $vers \n"
 cf(A)
 
 
 
-//!!"cp Scores/score_$(date(2,'-')) current_score"
+
 
 wd=chdir(hdir)
 wdir = getdIr()
@@ -1198,7 +1206,9 @@ wdir = getdIr()
 //ans=query("where are we")
 //!!"ls "
 
-!!"cp current_score Scores/score_$(date(2,'-')) "
+ cdate = date(2,'-')
+
+!!"cp current_score Scores/score_${cdate} "
 
 dtms= FineTimeSince(TM);
 float secs = dtms/1000000.0
@@ -1234,7 +1244,7 @@ exit(0)
 //// TBD///
 /*
 
-how to not do test item
+select/reject  test of item
 
 */
 

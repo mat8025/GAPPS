@@ -940,7 +940,7 @@ chkStage("if - fold")
 ///
 ///
 
-proc woo(str c_dir)
+void woo(str c_dir)
 {
 int la = 1
 

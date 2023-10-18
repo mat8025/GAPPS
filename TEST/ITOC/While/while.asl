@@ -14,23 +14,23 @@
                                                                    
 //
 ///
-<|Use_ =
-   test while syntax
-|>
 
-#include "debug"
+
+#include "debug.asl"
 
    if (_dblevel >0) {
 
-     debugON();
+       debugON();
 
-     <<"$Use_\n";
 
      }
 
-
+<<"test while syntax\n"
 
    chkIn(_dblevel);
+
+
+
 
    int k = 0;
 
@@ -47,8 +47,7 @@ k.pinfo()
 
 
 
-   proc Foo()
-
+   int Foo()
    {
 
      int fi =0;
@@ -77,8 +76,7 @@ k.pinfo()
      }
 //======================================//
 
-   proc readData2()
-
+   int readData2()
    {
 
      int tl = 0;
@@ -105,8 +103,7 @@ k.pinfo()
      }
 //==============================================//
 
-   int readData();
-
+   int readData() 
    {
 
      int tl = 0;
@@ -117,9 +114,9 @@ k.pinfo()
        tl++;
 
        if (tl < Nrecs) {
-
-         <<"$tl $(Nrecs-tl) to go \n";
-
+          tl2go = Nrecs-tl
+        // <<"$tl $(Nrecs-tl) to go \n";  // TBF 10/17/23
+ <<"$tl $tl2go to go \n";
          }
 
        <<"EOWHILE $tl $Nrecs\n";
@@ -313,15 +310,13 @@ k.pinfo()
 
        k++;
 
-       if ( k > N )
-
-       {
+       if ( k > N )  {
 
          <<" attempting continue to end of loop -skipping code lines\n";
 
          <<" ! $k > $N \n";
 
-         continue;
+         continue ;
 
          <<" should not see this !\n";
 

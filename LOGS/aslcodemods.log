@@ -1790,3 +1790,4 @@ array_parse.cpp                     2.81    idbl ++
 ds_convert_store.cpp                2.3    check ReallocMem needed for array setStoreVal
 test_l.cpp                          1.54    color test result
 vmf_l.cpp                           1.71    pinfo what
+spe_if.cpp                          2.31    continue check

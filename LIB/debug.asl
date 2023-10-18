@@ -20,6 +20,9 @@
 int hold_dbl = _dblevel;
 int dblevel = _dblevel;
 
+  int _DBH = -1; // dbg FH set -1 for nop --set to 2 for error output;
+
+ 
 Str Use_ = scat(" running ",getScript()," :")
 
 //<<"%V$hold_dbl \n"
@@ -35,7 +38,7 @@ Str Use_ = scat(" running ",getScript()," :")
 //dblevel = -1;
 
 // working variables
-  int _DB = -1; // dbg FH set to nop --set to 2 for error output;
+
 //_IV = vgen(INT_,10,0,1)
 //_DV = vgen(DOUBLE_,10,0,1)
 //Str _S = "abcde";
@@ -43,8 +46,8 @@ Str Use_ = scat(" running ",getScript()," :")
 //Pan _P ;
 //_P= 4.0*atan(1.0);
 //!p _P
-//dbid = IDof("_DB");
-//<<"%V dbid _DB\n"
+//dbid = IDof("_DBH");
+//<<"%V dbid _DBH\n"
 //sdb(1,@keep);
 // if there are errors keep  idb,xdb file in .GASP/WORK/Debug
 // will be overwritten by scripts  unless unique/local options used
@@ -73,18 +76,16 @@ Str ans;
   void debugON()
   {
 
-  if (dblevel < 1) {
+   <<" $Use_ DEBUG is ON\n"
 
-  _dblevel = 1;
+    if (dblevel < 1) {
+      _dblevel = 1;
+    }
 
-
-
-  }
-
- //[EP]==========================
+ 
 
 
-//<<"%V $_DB ALLOWALL debug from files and funcs\n"
+//<<"%V $_DBH ALLOWALL debug from files and funcs\n"
 //<<"use filterFuncDebug() filterFileDebug() to control\n"
 //sdb(dblevel,_keep,_~pline,_trace)
 //filterFuncDebug(ALLOWALL_,"xxx");
@@ -94,11 +95,11 @@ Str ans;
 
   setmaxicerrors(-1);
 
-//  _DB =2;
+//  _DBH =2;
 
 
-   _DB=ofw("${_script}.err");
-  <<[_DB]"Script is $_script\n";
+   _DBH=ofw("${_script}.err");
+  <<[_DBH]"Script is $_script\n";
 
   }
 //==========================
@@ -114,7 +115,7 @@ Str ans;
 
   _dblevel = 0;
 
-  _DB=-1;
+  _DBH= -1;
 
   }
 //==========================

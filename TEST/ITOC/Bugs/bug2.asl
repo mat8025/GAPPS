@@ -5,7 +5,7 @@
 
 // bug2
 // print  <<"  $(exp)  \n"   broke
-// the exp is evaluated but the result is not printed
+//the exp is evaluated but the result is not printed
 
 #include "debug"
 
@@ -18,6 +18,14 @@ if (_dblevel >0) {
 chkIn(_dblevel)
 
   echoLines()
+
+ cdate = date(2,'-')
+
+<<"current_score Scores/score_${cdate} \n"
+
+<<" current_score Scores/score_$(date(2,'-')) \n"
+
+<<" the \$(func())  exp is evaluated but the result is not printed into output str \n "
 
 // this is a comment
 

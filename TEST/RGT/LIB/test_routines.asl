@@ -11,7 +11,7 @@
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
-;//----------------------//
+
 
 int Nsuites =0;
 int Nspassed =0;
@@ -154,7 +154,7 @@ void Run2Test(Str td)
 //Str pgname;
 void RunDirTests(Str Td, Str Tl )
 {
-
+int _DBH = -1
 //<<"$_proc $Td  <|$Tl|> \n"
 
 Str pgname = "xx";
@@ -199,17 +199,12 @@ Str pgxname = "xy";
 //<<"[$i]  $nl <|$Tp[i]|>  == <|$pgname|> ==  <|$pgxname|> \n"
 
          if (nl > 0) {
-	     //<<"%V$pgname \n"
-	 //   pgname.pinfo()
 
-         //do_carts(pgname);
-   //pgname.aslpinfo();
+<<[_DBH]"%V $pgname \n"
 
-   cart(pgname);
+          cart(pgname);
 
-	// do_carts(Tp[i] );
-	
-          //cart_xic (pgxname);
+<<[_DBH]"%V $pgname xic \n"
 	  cart_xic (pgname);
 
          }
@@ -251,15 +246,16 @@ void RunSFtests(Str Td)
 
 int scoreTest(Str itname)
 {
+// dbh = -1 no debug , 2 stderr print 
+int _DBH = -1
 
-//<<"$_proc <|$itname|>  \n"
+<<[_DBH]"$_proc <|$itname|>  \n"
 
  int scored = 0;
  int ntests;
  int npass;
 
- int ntests2;
- int npass2;
+
  Str tname;
 
    //itname.aslpinfo();
@@ -270,7 +266,7 @@ int scoreTest(Str itname)
 
         RT=ofr(itname);
        
-//<<"fh $RT \n"
+<<[_DBH]"%V fh $RT \n"
 
     //RT.pinfo()
 
@@ -278,11 +274,11 @@ int scoreTest(Str itname)
       if (RT != -1) {
 
        
-//      <<"RT SCORING  $RT  \n"
+<<[_DBH]"RT SCORING  $RT  \n"
 
           posn = fseek(RT,0,2)
 
-//   <<" @ $posn\n";
+<<[_DBH]" @ $posn\n";
 
 
           posn =seekLine(RT,-1);
@@ -291,24 +287,18 @@ int scoreTest(Str itname)
           rtl = readline(RT)
 //<<"%V<$rtl>\n"	  
           rtwords = Split(rtl);
-//<<"%V $rtwords \n"
-
-          ntests2 = atoi(rtwords[4]); // TBF returns vec size 2??
-          npass2 =  atoi(rtwords[6]);
-
-          rtw4 = rtwords[4];
-	  rtw6 = rtwords[6];
-
-//<<"%V $rtw4 $rtw6\n"
-
-          ntests = atoi(rtw4);
-	  npass = atoi(rtw6);
 	  
- //<<"%V $rtwords[4] $rtwords[6]\n"
+<<[_DBH]"%V $rtwords \n"
+
+          ntests = atoi(rtwords[2]); // TBF returns vec size 2??
+          npass =  atoi(rtwords[4]);
+
+	  
+<<[_DBH]"%V $rtwords[2] $rtwords[4]\n"
 
 
-// <<"%V $ntests $npass\n"
-// <<"%V $ntests2 $npass2\n"
+<<[_DBH]"%V $ntests $npass\n"
+
           if (ntests > 0) {
           pcc = npass/(ntests*1.0) *100
           }
@@ -317,7 +307,7 @@ int scoreTest(Str itname)
           }
           rt_tests += ntests;
           rt_pass += npass;
-	  took = rtwords[12];
+	  took = rtwords[10];
 	  tmsecs =atoi(took);
 	  wextn = scut(itname,-4);
 	 // <<"$tname $wextn \n"
@@ -331,12 +321,12 @@ int scoreTest(Str itname)
           }
  if (!do_module) {	  
 if (pcc < 100  && pcc > 90){
-// <<"\033[1;31m DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% \033[0m took $took msecs\n"
+
  <<"$(PRED_)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\%$(POFF_) took $took msecs\n"
 }
 else if (pcc < 90 ){
-// <<"\033[1;31m DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% \033[0m took $took msecs\n"
- <<"$(PDKRED_)DONE tests $(POFF_)$ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs\n"
+
+ <<"$(PRED_)DONE tests $(POFF_)$ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs\n"
 }
 else {
  <<"DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs\n"
@@ -361,7 +351,7 @@ else {
 
 
     if (RT >  0) {
-//    <<"closing RT fh $RT\n";
+<<[_DBH]"closing RT fh $RT\n";
           cf(RT);
     }
      
@@ -386,7 +376,7 @@ Str prg;
 //     !!"nohup $prog  | tee --append $ictout "
 
         if (do_query) {
-<<"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx $prog  \n  "
+<<"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx ${prog}.xic  \n  "
          ans = query("$prog run it?")
 	 if (ans @="q") {
           exit()
@@ -399,7 +389,7 @@ Str prg;
 
 //<<" run xic $wasl\n";
 
-      !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -x $prog   > /dev/null "
+      !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -x ${prog}.xic   > /dev/null "
 
 //      !!"ls -l *";
       
@@ -465,6 +455,7 @@ Str prg;
 void cart_xic(Str prg)
 {
 
+int _DBH = -1
 
 //aprg.pinfo()
 int wscore;
@@ -481,26 +472,25 @@ if (!scmp(lprg,prg)) {
 
 }
 
+     prgx = "${prg}.xic"
 
+<<[_DBH]"looking for xic file <|$prgx|>  \n"
 
-//<<"looking for xic file <|$prg|>  \n"
+     foundit = fexist(prgx) ;
 
-     foundit = fexist(prg) ;
+     //prg.pinfo();
 
-//prg.pinfo();
+<<[_DBH]"looking for xic file <|$prgx|>  found? $foundit \n"
 
-//<<"looking for xic file <|$prg|>  found? $foundit \n"
-
-
-//  if (fexist(prg) != -1) {
       if ( foundit ) {
   
-   //<<"found xic file $prg\n"
+
       Str tim = time() ;  //   TBC -- needs to reinstated
      
    // wt_prog = "$tim "
 
       xwt_prog = "$tim ./${prg}: "
+
 //      xwt_prog = "$tim x ${prg}: "
 //<<"%V $xwt_prog \n"
 //  <<"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -dx $prg  \n  "
@@ -517,19 +507,16 @@ if (!scmp(lprg,prg)) {
 //     !!"nohup $prg  | tee --append $ictout "
 
         if (do_query) {
-<<"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -dx $prg  \n  "
+<<"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -dx ${prg}.xic  \n  "
          ans = query("$prg run it?")
 	 if (ans @="q") {
           exit()
          }
          }
 
-//<<" run xic $wasl <|$prg|>\n";
+<<[_DBH]" run xic $wasl <|${prg}.xic|>\n";
 
-    !!"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -x $prg   > /dev/null "
-//      !!"$wasl -o ${prg}.xout  -t ${prg}.xtst -x $prg  > xjunk "
-
-//      !!"ls -l *";
+    !!"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -x ${prg}.xic   > /dev/null "
       
 // what happens if prg crashes !!
 
@@ -547,7 +534,7 @@ if (!scmp(lprg,prg)) {
          wlen = slen(xwt_prog)
          padit =nsc(40-wlen," ")
 	 if (!do_module) {
-         <<"${xwt_prog}$padit" // print time prog arg
+         <<[_DBH]"${xwt_prog}$padit" // print time prog arg
 	 <<[Opf]"${xwt_prog}$padit"
          }
 	 //<<"%V $tst_file \n"
@@ -781,7 +768,7 @@ void cart (Str prg,  Str pa1)
     //  <<"%V $tst_file\n"
       if (f_exist(tst_file) > 0) {
           // should test if DONE
-       //!!"grep DONE ${aprg}.tst"
+       !!"grep DONE ${aprg}.tst"
            
 	   
            wscore= scoreTest(tst_file)

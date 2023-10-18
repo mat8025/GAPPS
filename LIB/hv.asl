@@ -29,7 +29,7 @@ Str Hdr_cdate = "1964";
 Str Hdr_date = "1964";
 
    int hv_found =0;
-   int hv_show =1;
+   int hv_show = 0;
 
    Str  rs = "comment ca va";
 
@@ -173,6 +173,10 @@ Str Hdr_date = "1964";
   vers2ele(Hdr_vers);
 
 H_ele_vers = Hdr_vers;
+
+ if (_DBH != -1) {
+      hv_show = 1
+ }
 
 if (hv_show) {
 
