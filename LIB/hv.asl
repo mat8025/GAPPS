@@ -14,6 +14,8 @@
 //  parses header creates hdr_xxx vars from @ tags in header 
 //
 
+// ?? cpp version -- would needto read script file ??
+
 //filterFileDebug(REJECT_,"array_");
 #if _CPP_
 #warning HV USING_CPP
@@ -27,6 +29,7 @@ Str Hdr_release = "CARBON";
 Str Hdr_author = "mt";
 Str Hdr_cdate = "1964";
 Str Hdr_date = "1964";
+Str Hdr_comment = "?";
 
    int hv_found =0;
    int hv_show = 0;
@@ -66,9 +69,9 @@ Str Hdr_date = "1964";
 
       fl = getcodeln(wln,0);
       
-  //fl = readLine(A);
+
      vl = fl.slen();
-//<<"$vl $fl\n"
+//    <<"$vl $fl\n"
 
      if (header_valid  == 0) {
            break;
@@ -79,7 +82,8 @@ Str Hdr_date = "1964";
 
 //       <<"$wln <|$fl|>\n";
 
-
+         L.resize(1);
+	 
          L=split(fl);
 
          sz=Caz(L);
@@ -126,6 +130,12 @@ Str Hdr_date = "1964";
 
                     Hdr_script = L[2];
                }
+	       else if (scmp(rs,"@comment")) {
+                                           
+                  Hdr_comment = "$L[2:-1]"
+
+
+                }
                 else if (scmp(rs,"@vers")) {
 
                   Hdr_vers = L[2];

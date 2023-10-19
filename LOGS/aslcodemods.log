@@ -1791,3 +1791,7 @@ ds_convert_store.cpp                2.3    check ReallocMem needed for array set
 test_l.cpp                          1.54    color test result
 vmf_l.cpp                           1.71    pinfo what
 spe_if.cpp                          2.31    continue check
+ic_xic.cpp                          1.80    keep pt_result updated
+spe_getcode.cpp                     1.2    getcodeln copies till \n
+ic_wic.cpp                          1.72    upsize initial ICBLKSZ
+ds_sivarray.cpp                     2.77    allow promote of RHS/LHS parse variables

@@ -10,15 +10,12 @@
  *  @Copyright © RootMeanSquare 2023 -->                               
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                  
+//----------------<v_&_v>-------------------------//;                  
 
 
 //
 // test asl first and second stage (xic)
 //
-
-
-//<<"TESTING\n"
 
 
 
@@ -84,7 +81,7 @@ wdir = getdIr()
 //ans=query("where are we")
 
 
-str S = "all,array,matrix,bugs,bops,vops,sops,fops,class, declare,include,exp,if,logic,for,do,paraex,proc,switch,"
+str S = "all,array,matrix,bugs,bops,vops,sops,fops,class, declare,include,exp,if,logic,for,do,paraex,proc,switch,try"
 S.cat("types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc,svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help");
 
 
@@ -268,6 +265,7 @@ int do_tests = 0;
     if (wt @= "") {
       break
     }
+    
      if (wt @= "bops") {
         do_bops = 1  
      }
@@ -288,10 +286,10 @@ int do_tests = 0;
 <<[2]" $i $wt $do_arg \n"
 
      i++;
-
-    if (i >= nargs)
+    // TBF {} needed
+    if (i >= nargs) {
           break;     
-
+    }
   }
 
 
@@ -1158,8 +1156,14 @@ if (lsz >= 1) {
    
 }
 
+
+
+
 if (!do_module) {
 <<"\n----------------------------------------------------------------------------\n"
+if (Nsuites == 0) {
+ Nsuites = 1
+}
 <<"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$flsz Crash $lsz vers $(get_version())\n"
 <<"TestSuites: $Nsuites passed $Nspassed  %6.2f $(Nspassed/(Nsuites*1.0) *100.0)%%\n"  
 <<[Opf]"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$flsz Crash $lsz $(get_version())\n"

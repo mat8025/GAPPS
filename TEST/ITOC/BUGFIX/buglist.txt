@@ -169,7 +169,7 @@ fix:
  
 tbd: 
 //==========================
-#num 104 10/17/23  5.30 FIXED
+#num 104 10/17/23  5.30 7 FIXED
 descr:
    continue statement broke
 
@@ -177,6 +177,29 @@ fix:
    CodeBlockSif   fix to check for CONTINUE 
 tbd: check work in nested loops
 //==========================
+#num 105 10/17/23  5.30 7 PENDING
+descr:
+ print  <<"  $(exp)  \n"   broke
+ the exp in the print is evaluated but the result is not printed
+
+fix: 
+
+tbd: check complex $(exp) in procs 
+//==========================
+#num 106 10/17/23  5.30 7 PENDING
+descr:
+if (k > 10) break ;   --- needs  {}  check ITOC while
+
+fix: 
+
+tbd: check nested loops
+//==========================
+
+
+
+
+
+
 ////////////////////// LEAVE LAST TEMPLATE /////////////////
 //==========================
 #num xx/x/x vers sevlev state 

@@ -17,19 +17,13 @@
 
 #include "debug"
 
-<|Use_=
-  demo trythrowcatch
-|>
-
-
 
 
 if (_dblevel >0) {
    debugON()
-   <<"$Use_\n"    
 }
 
-allowErrors(-1) ; // keep going
+ allowErrors(-1) ; // keep going
 
  chkIn(_dblevel); 
 
@@ -43,7 +37,7 @@ na = argc();
 
 <<"wn <|$wn|> \n"
 
-!i wn
+
 
 if (_clarg[1] == NULL_) {
  <<" null  arg1\n"
@@ -62,13 +56,17 @@ if (_clarg[1] != "") {
 }
 
 <<"%V $tval $na $_clarg[0] $_clarg[1]  \n"
+
+  askit(1)
+
 no_throws =0;
 caught = 0;
 
  tval.pinfo()
 
 
- try {
+ try
+ {
 
   <<" estoy intentando  \n"
   <<"in try %V $tval\n"
@@ -95,10 +93,10 @@ caught = 0;
   
  }
 
- catch(int ball)
-  {
-ball.pinfo();
-<<" caught $ball\n"
+  catch(int ball) {
+  
+  ball.pinfo();
+  <<" caught $ball\n"
 
 
     chkN(ball,tval);
@@ -140,13 +138,13 @@ int test_try_throw_catch(int val)
 
    
 
-        if (val == 47)
-	{
+        if (val == 47)  {
+	
            throw 47;
         }
 
-       if (val == 77)
-       {
+       if (val == 77) {
+       
        <<"should be throwing $val\n"
            throw 77;
        }
@@ -234,4 +232,5 @@ chkN(rball,-1)
 
 
 chkOut()
+
 exit()

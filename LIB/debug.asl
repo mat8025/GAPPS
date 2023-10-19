@@ -22,8 +22,9 @@ int dblevel = _dblevel;
 
   int _DBH = -1; // dbg FH set -1 for nop --set to 2 for error output;
 
- 
-Str Use_ = scat(" running ",getScript()," :")
+
+Str _My_script = getScript()
+Str _Usage = " ... "
 
 //<<"%V$hold_dbl \n"
 
@@ -76,7 +77,7 @@ Str ans;
   void debugON()
   {
 
-   <<" $Use_ DEBUG is ON\n"
+   <<" debugging $_My_script \n"
 
     if (dblevel < 1) {
       _dblevel = 1;
@@ -131,14 +132,14 @@ Str ans;
   void setNICerrors( int n)
   {
 
-  setmaxICerrors(n);
+     setmaxICerrors(n);
   }
 //==========================
 
-  void showUse()
+  void showUse(Str useage)
   {
-
-  <<"$Use_\n";
+    _Useage = useage;
+    <<"asl $_My_script $_Useage\n";
   }
 
   _dblevel = hold_dbl;

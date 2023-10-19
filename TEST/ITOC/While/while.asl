@@ -1,7 +1,7 @@
 /* 
  *  @script while.asl 
  * 
- *  @comment test While syntax 
+ *  @comment tests While syntax 
  *  @release CARBON 
  *  @vers 1.6 C Carbon [asl 6.3.58 C-Li-Ce] 
  *  @date 11/09/2021 14:47:53          
@@ -17,19 +17,19 @@
 
 
 #include "debug.asl"
+#include "hv.asl"
 
    if (_dblevel >0) {
 
        debugON();
-
-
      }
 
-<<"test while syntax\n"
+
+   <<"$Hdr_comment\n"
 
    chkIn(_dblevel);
 
-
+   askit(0)
 
 
    int k = 0;
@@ -274,14 +274,19 @@ k.pinfo()
 
        m++;
 
-       <<" $k $m \n";
-       if ( k > 10)
-           break;
+       <<"%V $k $m \n";
+       // TBF  if (k > 10) break ;   --- needs  {} 10/18/23
+        if ( k > 10)  {
+            break;
+	 }
+	   
        }
+     
+     <<" DONE $k $N \n";
 
      chkN (k,N);
 
-     <<" DONE $k $N \n";
+
 
      chkStage("2");
 
@@ -385,3 +390,7 @@ k.pinfo()
      chkN(k,N);
 
      chkOut();
+
+/////////////////////////////////////////////////////////////////////
+
+///    TBF single line if 
