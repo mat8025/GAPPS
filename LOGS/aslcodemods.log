@@ -1796,3 +1796,5 @@ spe_getcode.cpp                     1.2    getcodeln copies till \n
 ic_wic.cpp                          1.72    upsize initial ICBLKSZ
 ds_sivarray.cpp                     2.77    allow promote of RHS/LHS parse variables
 prep_secondpass.cpp                 2.38    N_STATE so checkKeyWord
+spe_statex.cpp                      1.40    throw result
+spe_storetype.cpp                   2.70    allow store to PARSEV/RDPHOLD ID -1

@@ -57,7 +57,7 @@ if (_clarg[1] != "") {
 
 <<"%V $tval $na $_clarg[0] $_clarg[1]  \n"
 
-  askit(0)
+  askit(1)
 
 no_throws =0;
 caught = 0;
@@ -78,7 +78,7 @@ int test_try_throw_catch(int val)
 
   int cball = -1;
 
-  <<"in $_proc $val  $(pt(val))  $cball\n";
+  <<"in $_proc $val    $cball\n";
     just_one_try = 0;
     no_throws =0;
     
@@ -126,8 +126,8 @@ int test_try_throw_catch(int val)
 //
 //    val = 47;   // TBF  does not  cause a  syntax error
 
-   catch ( int ball)
-    {
+   catch ( int ball) {
+    
 
        cball = ball;
 <<"caught $ball   $cball\n";       
@@ -135,7 +135,8 @@ int test_try_throw_catch(int val)
 //ans=query("next\n")
     }
     
-  <<"Out $_proc $no_throws $val  $(pt(val))  $cball\n";
+  //<<"Out $_proc $no_throws $val  $(pt(val))  $cball\n";
+  <<"TryOut $_proc $no_throws $val    $cball\n";
 
     return cball;
 }
@@ -149,14 +150,14 @@ val = 47;
 
 rball=test_try_throw_catch(tval)
 
-<<" after first try - throw in proc $rball\n"
+<<" after first try using $tval  - throw in $rball\n"
 
-!a
+  askit(1)
 
 chkN(rball,tval);
 
 
-rball=test_try_throw_catch(76)
+  rball=test_try_throw_catch(76)
 
 <<" after second try in proc $rball\n"
 //ans=query("next\n")

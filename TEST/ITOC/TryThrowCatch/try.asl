@@ -29,7 +29,7 @@ if (_dblevel >0) {
 
 int tval = 7;
 
-  showUse (" [num]   numbers 7,14,30 are caught - any other number is not")
+  showUse (" [num]   numbers 7,14,>=30 are caught - any other number is not")
 
  na = argc();
 
@@ -66,8 +66,6 @@ caught = 0;
 
  tval.pinfo()
 
-
-  //try {
   try {
  
 
@@ -103,7 +101,7 @@ caught = 0;
 
 
     chkN(ball,tval);
-    no_throws = 0;
+       no_throws = 0;
     caught = 1;
   }
 
@@ -117,7 +115,10 @@ caught = 0;
 <<" %V there were no throws $no_throws $tval was not caught \n"
   chkN(no_throws,1)
  }
- 
 
+  if (tval == 7 && caught)
+     chkT(1)
+
+  chkOut()
 
 /////////////////////////////////////
