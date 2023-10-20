@@ -186,11 +186,14 @@ fix:
 
 tbd: check complex $(exp) in procs 
 //==========================
-#num 106 10/17/23  5.30 7 PENDING
+#num 106 10/17/23  5.30 7 FIXED  10/19/23  spe_if.cpp
 descr:
 if (k > 10) break ;   --- needs  {}  check ITOC while
 
-fix: 
+fix:
+  10/19/23
+  spe_if.cpp
+  got state after last st in if section 
 
 tbd: check nested loops
 //==========================

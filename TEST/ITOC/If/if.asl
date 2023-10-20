@@ -13,7 +13,7 @@
  */ 
                                                                                               
 
-  Use_= "Demo  of if command"
+
 
 
 

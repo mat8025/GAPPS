@@ -57,64 +57,13 @@ if (_clarg[1] != "") {
 
 <<"%V $tval $na $_clarg[0] $_clarg[1]  \n"
 
-  askit(1)
+  askit(0)
 
 no_throws =0;
 caught = 0;
 
- tval.pinfo()
+ //tval.pinfo()
 
-
- try
- {
-
-  <<" estoy intentando  \n"
-  <<"in try %V $tval\n"
-  
-  if (tval == 7) {
-<<" preparing to throw $tval\n"
-     throw 7;
-  }
-
-  if (tval == 14) {
-  <<" preparing to throw $tval\n"
-     throw 14;
-   }
-
-  if (tval > 30) {
-  <<" $tval > 30 preparing to throw $tval\n"
-     tval.pinfo()
-     throw tval;
-   }
-
-    no_throws = 1;
-      
-<<" %V $no_throws in try block \n"
-  
- }
-
-  catch(int ball) {
-  
-  ball.pinfo();
-  <<" caught $ball\n"
-
-
-    chkN(ball,tval);
-    no_throws = 0;
-    caught = 1;
-  }
-
-
-
- if (caught) {
-   chkN(no_throws,0)
-   
- }
- else {
-<<" %V there were no throws$no_throws  \n"
-  chkN(no_throws,1)
- }
- 
 
 
 
@@ -132,9 +81,9 @@ int test_try_throw_catch(int val)
   <<"in $_proc $val  $(pt(val))  $cball\n";
     just_one_try = 0;
     no_throws =0;
-    try
-    {
-       <<"in proc try $val\n";
+    
+    try     {
+      
 
    
 
@@ -151,10 +100,17 @@ int test_try_throw_catch(int val)
       
         if (val == 79)
 	{
-       <<"should be throwing $val\n"	
+       <<"should be throwing 79 $val\n"	
            throw 79;
         }
 	
+	if (val == 80)
+	{
+       <<"should be throwing 80 $val\n"	
+           throw 80;
+        }
+	
+
 	<<"try no throw of $val $cball\n";
 
         just_one_try++;
@@ -174,7 +130,7 @@ int test_try_throw_catch(int val)
     {
 
        cball = ball;
-<<"caught $(pt(ball))  $cball\n";       
+<<"caught $ball   $cball\n";       
 
 //ans=query("next\n")
     }
@@ -191,10 +147,13 @@ int just_one_try = 0;
 val = 47;
 
 
-rball=test_try_throw_catch(val)
+rball=test_try_throw_catch(tval)
 
-<<" after first try in proc $rball\n"
-chkN(rball,val);
+<<" after first try - throw in proc $rball\n"
+
+!a
+
+chkN(rball,tval);
 
 
 rball=test_try_throw_catch(76)

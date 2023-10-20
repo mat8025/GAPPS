@@ -77,7 +77,7 @@ Str ans;
   void debugON()
   {
 
-   <<" debugging $_My_script \n"
+   <<" debugging $_My_script \n\n"
 
     if (dblevel < 1) {
       _dblevel = 1;

@@ -52,6 +52,10 @@ Str Hdr_comment = "?";
   }
   //======================
 
+void   showComment()
+{
+   <<"$Hdr_script $Hdr_comment \n"
+}
 
 // to work with xic code ?
 

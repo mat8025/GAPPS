@@ -276,9 +276,12 @@ k.pinfo()
 
        <<"%V $k $m \n";
        // TBF  if (k > 10) break ;   --- needs  {} 10/18/23
-        if ( k > 10)  {
-            break;
-	 }
+
+   if (k > 10) break ;  
+
+       // if ( k > 10)  {
+       //     break;
+      //	 }
 	   
        }
      

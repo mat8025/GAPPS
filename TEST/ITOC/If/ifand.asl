@@ -12,10 +12,7 @@
 //* 
 //***********************************************%
    
-<|Use_=
-Demo  of if and/or
-///////////////////////
-|>
+
 
 
 #include "debug.asl";
@@ -24,7 +21,7 @@ Demo  of if and/or
 
 if (_dblevel >0) {
    debugON()
-   <<"$Use_\n"
+
 }
 
    
@@ -44,7 +41,7 @@ if (_dblevel >0) {
   vv = sstr(";/{}\\",cs,1)
   <<"%V$vv \n"
 
-  vv->pinfo()
+  vv.pinfo()
 
   if ( vv[0] == -1)  {
     chkT(1)
@@ -218,4 +215,7 @@ if ( a && b && c  ) {
 chkT(1)
 }
 
-chkOut()
+ chkOut()
+
+
+///////////////////////////
