@@ -12,10 +12,12 @@
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
 
-   <<"Running $_script\n";
-#include "debug"
+
+#include "debug.asl"
 
    chkIn(_dblevel);
+
+
 #define C3 3
 
    Foo = 1;

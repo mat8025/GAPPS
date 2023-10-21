@@ -35,7 +35,7 @@
   the size of the Veci is increased to 13 plus;
 */
 
-#include "debug"
+#include "debug.asl"
 
   if (_dblevel >0) {
 
@@ -45,7 +45,8 @@
 
   chkIn(_dblevel);
 
-  int Veci[>10];
+  int Veci[];  // TBC 10/20/23
+  Veci.setDynamic(1,10)
 
   Veci[3] = 79;
 
@@ -59,12 +60,12 @@
 
   Veci.pinfo();
 
-  chkT (sz>=13);
+  chkT (sz >= 13);
 
   int J[];
-
+  
   J.pinfo();
-
+  J.setDynamic(1,10)
   <<"$(Cab(J)) \n";
 
   <<"$J \n";
@@ -72,7 +73,8 @@
   J[0:20].Set(10,1);
 
   <<"$J \n";
-
+ // askit(1)
+  
   sum = J[1] + J[2] + J[3];
 
   <<"  %V$sum = $J[1] + $J[2] + $J[3]  \n";
@@ -81,7 +83,7 @@
 
   <<"  %V$sum = $J[1] + $J[2] + $J[3] + $J[4] \n";
 
-  int I[>20];
+  int I[20];
 
   I.Set(0);
 

@@ -22,12 +22,14 @@
 
 if (_dblevel >0) {
    debugON()
-   <<"$Use_\n"
 }
 
 
 chkIn(_dblevel)
 
+  setmaxcodeerrors(1); // 
+
+  setmaxicerrors(1);
 
 i = 0;
 j = 2;
@@ -398,12 +400,12 @@ chkN(ICAO_SA[i][k], (i *2))
 
   for (i = 1; i < 10; i++) {
 
-<<" $i $k \n"
+<<"%V $i $k \n"
 
     ICAO_SA[i][k] = i * 2;
 
-<<"%v $ICAO_SA[i][k] \n"
-
+<<" $ICAO_SA[i][k] \n"
+askit(0)
     z = i * 2;
 
     y = ICAO_SA[i][k];

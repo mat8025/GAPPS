@@ -1059,7 +1059,7 @@ The dynamic version allows run time increase when needed.
 The array can be also be resized by the resize function with the orignal contents
 of the initial section preserved (e.g. a realloc).
 
-V->setdynamic([onoff]) --- would set dynamic property ON/OFF
+V.setdynamic([onoff]) --- would set dynamic property ON/OFF
 for resize, redimn operations dynamic property allows/forbids operation.
 It is always possible to setdynamic porperty on for arrays.
 (see isdynamic, setdynamic)
@@ -1071,7 +1071,7 @@ isdynamic
 isdynamic
 .)x 
 .FD
-V->isdynamic()
+V.isdynamic()
 tests if vector is dynamic
 
 .EF
@@ -1082,8 +1082,10 @@ setdynamic
 setdynamic
 .)x 
 .FD
-V->setdynamic([onoff])
-if V is a vector sets dynamic (size) on or off - default no argument V is set to dynamic.
+V.setdynamic(onoff, [size])
+if V is a vector sets dynamic property i.e. size can be exapnded or reduced on or - default no argument V is set to dynamic.
+if size is set above zero - then the vector is resized - original contents are preserved if expanded
+or truncated if reduced.
 (see also  isdynamic, resize)
 .EF
 =============================================================

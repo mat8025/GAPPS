@@ -184,9 +184,6 @@ Str pgxname = "xy";
       for (i=0 ; i < np; i++) {
 
 
-
-         //if (!(Tp[i] @= "")) 
-
 	    pgname = Tp[i];
 
 //<<"$i  <|$Tp[i]|>  $pgname\n"
@@ -200,12 +197,13 @@ Str pgxname = "xy";
 
          if (nl > 0) {
 
-<<[_DBH]"%V $pgname \n"
+        <<[_DBH]"%V $pgname \n"
 
           cart(pgname);
 
 <<[_DBH]"%V $pgname xic \n"
-	  cart_xic (pgname);
+
+        cart_xic (pgname);
 
          }
       
@@ -329,7 +327,8 @@ else if (pcc < 90 ){
  <<"$(PRED_)DONE tests $(POFF_)$ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs\n"
 }
 else {
- <<"DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs\n"
+// <<"$(PGREEN_)\tDONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs $(POFF_)\n"
+ <<"\tDONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs \n"
 }
 
 <<[Opf]"DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\%\n"
@@ -514,7 +513,7 @@ if (!scmp(lprg,prg)) {
          }
          }
 
-<<[_DBH]" run xic $wasl <|${prg}.xic|>\n";
+//<<" run xic $wasl <|${prg}.xic|>\n";
 
     !!"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -x ${prg}.xic   > /dev/null "
       
@@ -534,10 +533,10 @@ if (!scmp(lprg,prg)) {
          wlen = slen(xwt_prog)
          padit =nsc(40-wlen," ")
 	 if (!do_module) {
-         <<[_DBH]"${xwt_prog}$padit" // print time prog arg
+         <<"${xwt_prog}$padit" // print time prog arg
 	 <<[Opf]"${xwt_prog}$padit"
          }
-	 //<<"%V $tst_file \n"
+	 //<<"$tst_file "
          wscore = scoreTest(tst_file)
       }
      else {
@@ -606,10 +605,6 @@ void cart (Str prg)
   //aprg.pinfo()
   int wscore;
   int wlen;
-//  Str prg; // TBF  not copied!!
-
-
-  //prg = aprg; // TBF  not copied!! ///
 
  // aprg.pinfo()
  // prg.pinfo()
@@ -736,7 +731,7 @@ void cart (Str prg,  Str pa1)
   
    xwt_prog = "xxx";
 
-   str tim = time();
+   Str tim = time();
 
  
   !!"rm -f $prg  ${prg}.tst  last_test*"
@@ -757,7 +752,7 @@ void cart (Str prg,  Str pa1)
 	 
     !!"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst  $CFLAGS ${prg}.asl  $a1  > /dev/null"
 
-     wt_prog = "$(time()) ${prg}:$a1 "
+     wt_prog = "$tim ${prg}:$a1 "
      wlen = slen(wt_prog)
      padit =nsc(40-wlen," ")
      if (!do_module)  {

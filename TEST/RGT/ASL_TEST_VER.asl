@@ -283,7 +283,7 @@ int do_tests = 0;
       $do_arg = 1;
      }
      
-<<[2]" $i $wt $do_arg \n"
+<<[_DBH]" $i $wt $do_arg \n"
 
      i++;
     // TBF {} needed
@@ -552,6 +552,7 @@ outcome("TRY")
      
 
        RunDirTests("Switch","switch")
+
        outcome("SWITCH")
    }
 

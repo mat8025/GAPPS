@@ -12,16 +12,13 @@
 //***********************************************%
    
                                                                                               
-<|Use_=
-Demo  of include - nest
-///////////////////////
-|>
+
 
 #include "debug"
 
 if (_dblevel >0) {
    debugON()
-   <<"$Use_\n"
+
 }
 
 allowErrors();
@@ -91,10 +88,24 @@ allowErrors();
    chkN(h,47.0/79); 
    
    dd= Doo(4,5); 
-   <<"$dd\n"; 
-   
-   chkOut(); 
-   
+   <<"%V $dd\n"; 
+
+
+
+   chkOut();
+
+  nerrors=allowMoreErrors(1);
+  icerrors = getICerrors();
+  
+  <<"%V $nerrors $icerrors\n"
+
+
+
+
+
+
+///////////////////////////////
+  
 
    
 

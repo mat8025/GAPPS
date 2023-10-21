@@ -11,27 +11,21 @@
 //* 
 //***********************************************%
 
-<|Use_=
-   Demo  of vector ops
-   e.g.
+
    
-   V= vgen(FLOAT_,10,0,1);
+//   V= vgen(FLOAT_,10,0,1);
 // add 1.0 to all elements of vector V and assign to T
-   T = V + 1.0;
-   etc
-///////////////////////
-|>
+
+!!" asl ~/gapps/DOCS/aslinfo.asl  vgen"
 
 #include "debug"
 
    if (_dblevel >0) {
 
      debugON();
-
-     <<"$Use_\n";
-
      }
 
+askit(1)
    chkIn(_dblevel);
 
    V= vgen(FLOAT_,10,0,1);
@@ -298,12 +292,12 @@
 
    S= V[7:9] + V[2:4];
 
-   <<"$S\n";
+   <<"S: $S\n";
 
    V[0:2] =  V[7:9] + V[2:4];
 
-   <<"$V\n";
-
+   <<"%V $V\n";
+askit(1)
    chkN (V[0],S[0]);
 
    chkN (V[1],S[1]);
