@@ -1235,11 +1235,11 @@ today=getDate(1);
  }
 sipause(1)
 if (pcc < 100.0) {
-<<"$pcc fixes needed!! \n"
+<<"%6.2f $pcc \% fixes needed!! \n"
 <<"\n$lsz modules   crashed! \n"
 }
 else {
-<<"$pcc Success Hooray! \n"
+<<"$pcc % Success Hooray! \n"
 }
 
 }

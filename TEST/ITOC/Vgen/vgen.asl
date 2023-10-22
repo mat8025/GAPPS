@@ -16,27 +16,24 @@
 
 ///
 
-<|Use_=
- demo vgen
-|>
-
-
 
 #include "debug.asl"
 
 if (_dblevel >0) {
    debugON()
-   <<"$Use_\n"      
+
 }
 
  allowErrors(-1)
 
  chkIn(_dblevel)
-
+ ask =0
 
  veca = vgen(INT_,10,0,1)
 
 <<"$veca \n"
+
+veca.pinfo()
 
   chkN(veca[1],1)
   chkN(veca[9],9)
@@ -44,8 +41,9 @@ if (_dblevel >0) {
   for (i= 0; i <3 ; i++) {
 
         veci= vgen(INT_,10+i,i,1)
-  chkN(veci[1],1+i)
-veci->info(1)
+      chkN(veci[1],1+i)
+   veci.pinfo()
+askit(ask)
   }
   
 <<" $(typeof(veci))  $(Caz(veci)) \n"
@@ -63,11 +61,13 @@ starti = 5;
         vecf= vgen(FLOAT_,10,0,incr)
 
 <<" $vecf \n"
-
+       vecf.pinfo();
+       
+askit(ask)
         vecp= vgen(PAN_,10,1.0,incr)
 
-vecp->info(1)
-
+       vecp.info()
+askit(1)
 <<"$vecp \n"
 
 <<"$vecp[2]  $vecp[3]\n"
@@ -82,7 +82,7 @@ vecp->info(1)
 
         starti =i+1;
    vecp2= vgen(PAN_,10,starti,incr)
-vecp2->info(1)
+vecp2.info()
 <<"$i vecp2 $vecp2[i] $vecp2[1+i] $vecp2[3+i] \n"
 <<"$i $vecp2   \n"
 
@@ -112,7 +112,7 @@ vecp2->info(1)
 
         vecd= vgen(DOUBLE_,10+i,i,1)
   chkR(vecd[1],1+i)
-vecd->info(1)
+vecd.info()
   }
 <<" $(typeof(vecd))  $(Caz(vecd)) \n"
 <<"$vecd \n"

@@ -18,6 +18,7 @@
 
 !!" asl ~/gapps/DOCS/aslinfo.asl  vgen"
 
+
 #include "debug"
 
    if (_dblevel >0) {
@@ -25,7 +26,7 @@
      debugON();
      }
 
-askit(1)
+askit(0)
    chkIn(_dblevel);
 
    V= vgen(FLOAT_,10,0,1);
@@ -293,16 +294,19 @@ askit(1)
    S= V[7:9] + V[2:4];
 
    <<"S: $S\n";
-
-   V[0:2] =  V[7:9] + V[2:4];
-
    <<"%V $V\n";
-askit(1)
+   V[0:2:1] =  V[7:9:1]+ V[2:4:1] ;
+
+<<"        check lh range sub correct  V[0] == (V[7]+V[2]\n"
+
+<<"%V $V\n";
+askit(0)
    chkN (V[0],S[0]);
 
    chkN (V[1],S[1]);
 
    chkN (V[2],S[2]);
+askit(0)   
 
    R=vvcomp(S,V,3);
 

@@ -1,6 +1,6 @@
 module    score    (-3 crash, -2 stall, -1 partial, <100% some tests fail, 100% all tests pass)
 
-array	-1
+array	98.28 
 matrix	-1
 bugs	-1
 bops	100

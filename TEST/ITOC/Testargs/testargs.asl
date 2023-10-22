@@ -13,14 +13,14 @@
 
 //-----------------<v_&_v>------------------------//
 
-Str Use_= " Demo  of test arg processing ";
+
 
 
 #include "debug" 
 
   if (_dblevel >0) { 
    debugON() 
-   <<"$Use_ \n" 
+
 } 
 
    allowErrors(-1); // set number of errors allowed -1 keep going 
@@ -111,23 +111,46 @@ Str s = "my string";
 int j = 7;
 
 
+ chkIn()
 
-   p =foo();
 
 km = 14;
 om = 17;
+
+
+A = testargs(1,km,rx,ry,s,76,3*17)
+A.pinfo()
+sz= Csz(A)
+
+<<"%V $sz\n"
+
+
+<<"%(1,->, ,<-,\n)$A\n"
+
+
+
+askit(1)
+
+ chkT(1)
+
+chkOut()
+
+exit()
+
+   p =foo();
 
    z = foo();
 
 <<"%V $p $z \n"
 
-exit()
 
 
 
-A = testargs(1,km,rx,ry,s,76)
 
-<<"%(1, , ,,\n)$A\n"
+
+
+
+
 
 
 Gevent G;

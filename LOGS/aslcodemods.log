@@ -1800,3 +1800,5 @@ spe_statex.cpp                      1.40    throw result
 spe_storetype.cpp                   2.70    allow store to PARSEV/RDPHOLD ID -1
 spe_exp.cpp                         3.61    check/validate input result
 vmf_set.cpp                         1.11    setdynamic extra parameter sets new size
+ds_aop.cpp                          1.90    reset range in clearsubi lh&rh
+ic_range.cpp                        1.64    review 
