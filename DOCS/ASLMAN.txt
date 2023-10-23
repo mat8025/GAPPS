@@ -6606,10 +6606,12 @@ splits a string into a list of sub-strings using a string delimiter (default whi
 it returns svar array type - each element contains a sub-string
 e.g.
 Svar A= split("once upon a time")
-A[0] contains "once"
-A[1] contains "upon"
+A[1] contains "once"
+A[2] contains "upon"
+A[3] contains "q"
 ...
 
+A[0] contins the original string
 
 .EF
 =============================================================

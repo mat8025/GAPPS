@@ -13,9 +13,9 @@
 
 ///
 ///
-<|Use_=
-S string but should be able to be accessed like a dynamic char array
-|>
+
+<<"S string but should be able to be accessed like a dynamic char array\n"
+
 
 
 

@@ -1,11 +1,11 @@
-module    score    (-3 crash, -2 stall, -1 partial, <100% some tests fail, 100% all tests pass)
+module    score    (-3 crash, -2 stall, -1 partial, <100% some tests fail, 100% success)
 
 array	98.28 
 matrix	-1
 bugs	-1
 bops	100
-vops		-1
-sops		-1
+vops		100
+sops		100
 fops		-1
 class	-2
 declare	-1
@@ -24,7 +24,7 @@ func		-2
 command  50
 lhsubsc     -1
 dynv		100
-mops	-1
+mops	69.47
 scope	100
 oo		-1
 sfunc        -1

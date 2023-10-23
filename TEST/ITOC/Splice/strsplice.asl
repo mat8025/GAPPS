@@ -14,6 +14,16 @@
                                                                              
 ////
 
+
+
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+}
+
+
+
 chkIn(_dblevel)
 
 //str S;
@@ -23,16 +33,16 @@ chkIn(_dblevel)
   S= " a  word";
   <<"$S\n"
 
-  S->Splice("missing",3)
+  S.Splice("missing",3)
 
 <<"$S\n"
 
-  S->Splice("Begin",0)
+  S.Splice("Begin",0)
 
 <<"$S\n"
   len = slen(S)
 
-  S->Splice(" End",len)
+  S.Splice(" End",len)
 
 <<"$S\n"
 
@@ -46,3 +56,5 @@ chkStr(Wd[4],"End")
 chkStr(Wd[0],"Begin")
 
 chkOut()
+
+//////////////////////<END>\\\\\\\\\\\\\\\\\\\\\

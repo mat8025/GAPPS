@@ -10,7 +10,7 @@
  *  @Copyright © RootMeanSquare 2022
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                                                                
+//----------------<v_&_v>-------------------------//                                                                
    
 
    
@@ -20,8 +20,11 @@
      }
    
    chkIn(_dblevel);
-   ask =1
-   
+   ask =0
+
+filterFileDebug(REJECT_,"spe_storetype","spe_args_process");
+filterFuncDebug(REJECT_,"ArraySpecs","getExp","process_args");
+
 //int A[][] = { 3,1,2, 2,1,3 }
   
   
@@ -139,6 +142,7 @@ double R[4][4] = {  1,2.5,3,4, \
  R.pinfo()
 
  <<"$R\n"
+ 
  askit(ask)
 
  J = Identity;
@@ -151,9 +155,11 @@ T.pinfo();
 
   Z= R * R
 
-
+ 
+ 
 Z.pinfo();
 
+ askit(ask)
 
   Z= I2 * J
 
@@ -189,15 +195,17 @@ double P[4] = {a,b,c,d,};
 
 P.redimn(2,2);
 P.pinfo()
+
 <<"$P \n"
 
  e = a*d - b*c;
 
+<<"%V $e \n";
 
 
  d= Mdet(P)
 
-<<"%V $e $d\n";
+<<"%V $d\n";
 
 
   chkOut();

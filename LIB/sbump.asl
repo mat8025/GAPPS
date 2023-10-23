@@ -16,17 +16,18 @@
                     
 
   
-Str Use_ = "update asl script version" ;
+
 
 #include "debug"
 
 
 if (_dblevel >0) {
   debugON()
-    <<"$Use_\n"   
 }
 
- ignoreErrors();
+<<"update asl script version \n" ;
+
+ignoreErrors();
 
 
   void vers2ele(Str& vstr)

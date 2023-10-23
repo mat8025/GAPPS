@@ -1,36 +1,34 @@
 /* 
- *  @script scmp.asl 
+ *  @script scmp_syntax.asl                                             
  * 
- *  @comment  
- *  @release CARBON 
- *  @vers 1.1 H Hydrogen [asl 6.3.46 C-Li-Pd]                               
- *  @date 08/10/2021 08:14:03 
- *  @cdate 08/10/2021 08:14:03 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
+ *  @comment                                                            
+ *  @release Arsenic                                                    
+ *  @vers 1.2 He Helium [asl ]                                          
+ *  @date 10/22/2023 13:50:54                                           
+ *  @cdate 08/10/2021 08:14:03                                          
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare  -->                                   
  * 
- *  \\-----------------<v_&_v>--------------------------//  
  */ 
-;//
 
-<|Use_=
-  check str compare syntax     s == "string" ;  s != "abc";
-|>
+
+
 
 #include "debug"
 
 if (_dblevel >0) {
    debugON()
-   <<"$Use_\n"   
 }
 
+
+<<"  check str compare syntax     s == "string" ;  s != "abc" \n"
 
 chkIn(_dblevel)
 
 
-float f = 3;
+f = 3.0
 
-k = f->gettype()
+  k = f.gettype()
 
 
 <<" $k \n"
@@ -156,3 +154,6 @@ Svar emsg = ""
 
 
 chkOut()
+
+
+//////////////////////<END>\\\\\\\\\\\\\\\\\\\\\

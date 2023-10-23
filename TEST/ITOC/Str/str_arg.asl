@@ -12,11 +12,7 @@
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
 
-   ;//
-<|Use_=
-   Demo  of str args command
-///////////////////////
-|>
+
 
 #include "debug"
 
@@ -24,13 +20,13 @@
 
      debugON();
 
-     <<"$Use_\n";
+
 
      }
 
    chkIn(_dblevel);
 
-   str woo(str a1)
+   Str woo(Str a1)
    {
 
      <<"$_proc $a1\n";
@@ -58,7 +54,10 @@
 
      return a4;
 
-     }
+  }
+
+
+///////////////////////////////////
 
    a="hey";
 
@@ -102,7 +101,7 @@ str fphrase = "pour le faire"
 
    <<"$a7\n";
 
-fphrase = "para que puede"
+  fphrase = "para que puede"
 
    a8=woo(fphrase);
 

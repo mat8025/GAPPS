@@ -11,10 +11,7 @@
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
-<|Use_=
-Demo  of str-ops;
-///////////////////////
-|>
+
                                                               
 
 #include "debug"
@@ -277,7 +274,7 @@ chkStage("SSUB")
 
 //========  @script ssubrgx.asl  ==============
 
-/{
+
 /*
 ssubrgx(w1,w2,w3,{dir})
  
@@ -288,7 +285,7 @@ if w3 set to "" (i.e. NULL)  delete operation (deletes occurence of w2).
 if dir > 1 then that many substitutions are performed 
 from the left if possible.
 */
-/}
+
 
 
 
@@ -533,3 +530,7 @@ chkStage("scmp @=")
 
 
 chkOut()
+
+
+
+/////////////////////////////////

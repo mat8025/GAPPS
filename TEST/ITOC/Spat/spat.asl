@@ -1,16 +1,17 @@
 /* 
- *  @script spat.asl 
+ *  @script spat.asl                                                    
  * 
- *  @comment test Spat func 
- *  @release CARBON 
- *  @vers 1.4 Be 6.3.83 C-Li-Bi 
- *  @date 02/16/2022 10:08:43          
- *  @cdate Tue Mar 12 07:50:33 2019 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare 2022
+ *  @comment test Spat func                                             
+ *  @release Arsenic                                                    
+ *  @vers 1.5 B Boron [asl ]                                            
+ *  @date 10/22/2023 21:39:05                                           
+ *  @cdate Tue Mar 12 07:50:33 2019                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare  -->                                   
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                                                                                                   
+
+//----------------<v_&_v>-------------------------//                                                                                                   
 
 /*
 
@@ -46,121 +47,103 @@ if first entry in pma is [-1,-1] then the pattern was not found.
 
 #include "debug"
 
-if (_dblevel >0) {
-   debugON()
-}
+  if (_dblevel >0) {
 
+  debugON();
 
-chkIn(_dblevel)
+  }
 
-int match[2];
+  chkIn(_dblevel);
 
-fname = "mt_20100422_112017.txt"
+  int match[2];
 
-fname.pinfo()
+  fname = "mt_20100422_112017.txt";
 
+  fname.pinfo();
 
-ss = "."
+  ss = ".";
 
-posn = -1 ;
-dir = 1;
+  posn = -1 ;
 
+  dir = 1;
 
-fstem = spat(fname,ss,posn,dir,match)
+  fstem = spat(fname,ss,posn,dir,match);
 
-fstem.pinfo()
+  fstem.pinfo();
 
+  cc = slen(fname);
 
+  stem_len = slen(fstem);
 
+  <<"%V$fname $cc $stem_len $ss $fstem\n";
 
-cc = slen(fname)
+  chkStr(fstem,"mt_20100422_112017");
 
+  posn = 0 ; dir = 1;
 
-stem_len = slen(fstem)
-!p stem_len
+  fstem = spat(fname,ss,posn,dir,match);
 
-<<"%V$fname $cc $stem_len $ss $fstem\n"
+  <<"%V $posn $dir  $fstem $match\n";
 
+  chkStr(fstem,".txt");
 
+  posn = 1 ; dir = 1;
 
-chkStr(fstem,"mt_20100422_112017");
+  fstem = spat(fname,ss,posn,dir,match);
 
-posn = 0 ; dir = 1
+  <<"%V $posn $dir  $fstem $match\n";
 
-fstem = spat(fname,ss,posn,dir,match)
+  chkStr(fstem,"txt");
 
-<<"%V $posn $dir  $fstem $match\n"
+  fname = "mad_about you baby - just mad!";
 
-chkStr(fstem,".txt")
+  ss="mad";
 
-posn = 1 ; dir = 1;
+  posn = 1 ; dir = 1;
 
-fstem = spat(fname,ss,posn,dir,match)
+  fstem = spat(fname,ss,posn,dir,match);
 
-<<"%V $posn $dir  $fstem $match\n"
+  <<"%V $posn  $dir : $fstem $match\n";
 
-chkStr(fstem,"txt")
+  posn = 1 ; dir = -1;
 
+  fstem = spat(fname,ss,posn,dir,match);
 
-fname = "mad_about you baby - just mad!"
+  <<"%V $posn  $dir : $fstem $match \n";
 
-ss="mad"
+  posn = 1 ; dir = -1;
 
-posn = 1 ; dir = 1;
+  fstem = spat(fname,ss,posn,dir,match);
 
-fstem = spat(fname,ss,posn,dir,match)
+  <<"%V $posn  $dir : $fstem \n";
 
-<<"%V $posn  $dir : $fstem $match\n"
+  rem = spat("whatremains","rem",posn,dir,match);
 
+  <<"%V $rem $match \n";
 
-posn = 1 ; dir = -1;
+  rem = spat("whatremains","at",0,dir,match);
 
-fstem = spat(fname,ss,posn,dir,match)
-
-<<"%V $posn  $dir : $fstem $match \n"
-
-
-posn = 1 ; dir = -1;
-
-fstem = spat(fname,ss,posn,dir,match)
-
-
-<<"%V $posn  $dir : $fstem \n"
-
-
-rem = spat("whatremains","rem",posn,dir,match)
-
-<<"%V $rem $match \n"
-
-rem = spat("whatremains","at",0,dir,match)
-
-<<"%V $rem $match \n"
-
-
+  <<"%V $rem $match \n";
 //////////////////////// spatrgx
 
-fname = "mt_20100422_112017.txt"
+  fname = "mt_20100422_112017.txt";
 
-ss = "\\."
+  ss = "\\.";
 
-fstem = SpatRgx(fname,ss,-1,1,match)
+  fstem = SpatRgx(fname,ss,-1,1,match);
 
-cc = slen(fname)
-stem_len = slen(fstem)
+  cc = slen(fname);
 
-<<"%V$fname $cc $stem_len $ss $fstem $match \n"
+  stem_len = slen(fstem);
 
-chkN(match[0],1);
+  <<"%V$fname $cc $stem_len $ss $fstem $match \n";
 
-chkStr(fstem,"mt_20100422_112017");
+  chkN(match[0],1);
 
+  chkStr(fstem,"mt_20100422_112017");
 ///////////////
 
-
-
-chkOut();
-
-
+  chkOut();
 /*
  TBD - test each option
  position , direction, global 
@@ -169,3 +152,5 @@ chkOut();
 
 
 */
+
+//==============\_(^-^)_/==================//
