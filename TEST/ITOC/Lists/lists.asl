@@ -33,7 +33,7 @@
    
     List LS(STRV_);
 
- LS.pinfo()
+    LS.pinfo()
 
     LS.insert( LIEND_,"restart", "math", "modules")
 
@@ -69,9 +69,9 @@
 
 <<"%V $li1 \n";
 
-chkStr(li1,"minimal");
+ chkStr(li1,"minimal");
 
-chkStr(li,"list");
+ chkStr(li,"list");
 
 
 
@@ -135,7 +135,7 @@ chkStr(li,"list");
 
 
 
-  fw = L1.getLitem(9);  // fails;
+  fw = L1.getLitem(9);  // 
 
   fw.pinfo();
 
@@ -143,11 +143,11 @@ chkStr(li,"list");
 
 
 
-  fw = L1[9];  // can we access list as an array ?
+  //fw = L1[9];  // can we access list as an array ?
 
-  <<"$fw\n";
+  //<<"$fw\n";
 
-  chkStr(fw,"yellow");
+  //chkStr(fw,"yellow");
 
   fw= L1.getLitem(0);
 
@@ -161,7 +161,7 @@ chkStr(li,"list");
 
   <<"%V$l1sz\n";
 
-  fw = L1[l1sz-1];
+  fw = L1.getLitem(-1) ; // get last item
 
   <<"%V$fw $(typeof(fw))\n";
 
@@ -181,15 +181,17 @@ chkStr(li,"list");
   List L2(STRV_);
   L2.insert(LIEND_,"The", "colors", "of" ,"the", "rainbow", "are", "red", "orange", "yellow", "green", "blue" ,"indigo", "violet" );
 
-  <<"L2 = $L2 \n";
+  <<"L2 = $L2 \n";q
+   List L3(STRV_);
 
-  L1 = L2;
+  L3 = L2;  // copy list - has to be declared first? --- not working TBF 10/23/23
+  L3.pinfo()
+  
+  <<"%V  $L3 \n";
 
-  <<"L1 = $L1 \n";
 
 
-
-  fw = L1[0];
+  fw = L3.getLitem(0)
 
   <<"%V$fw $(typeof(fw))\n";
 
