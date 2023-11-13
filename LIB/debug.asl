@@ -110,9 +110,9 @@ Str ans;
 
   setdebug(-1,_~pline,_~step,_~trace,_~showresults,1);
 
-  filterFuncDebug(REJECTALL_,"proc");
+  filterFuncDebug(REJECT_ALL_,"proc");
 
-  filterFileDebug(REJECTALL_,"yyy");
+  filterFileDebug(REJECT_ALL_,"yyy");
 
   _dblevel = 0;
 

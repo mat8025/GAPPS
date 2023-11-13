@@ -131,7 +131,7 @@
   ww= L1[1];
 
   <<"$ww\n";
-// str fw
+ Str fw
 
 
 
@@ -181,10 +181,13 @@
   List L2(STRV_);
   L2.insert(LIEND_,"The", "colors", "of" ,"the", "rainbow", "are", "red", "orange", "yellow", "green", "blue" ,"indigo", "violet" );
 
-  <<"L2 = $L2 \n";q
+  <<"L2 = $L2 \n";
    List L3(STRV_);
 
   L3 = L2;  // copy list - has to be declared first? --- not working TBF 10/23/23
+
+  L2.pinfo()
+  
   L3.pinfo()
   
   <<"%V  $L3 \n";
@@ -196,15 +199,30 @@
   <<"%V$fw $(typeof(fw))\n";
 
   chkStr(fw,"The");
+
+  fw = L3.getLitem(4)
+
+  <<"%V$fw $(typeof(fw))\n";
+
+  chkStr(fw,"rainbow");
+
+
+
+//////////////////////
+
 // FIXED!! -- FIXME not overwriting
 
   <<"L2.L1 = $L1 \n";
 
-  <<"%(,= , ,)Vs${L1} \n";
+  <<"%(,= , ,)s${L1} \n";
+
+  L1.pinfo()
 
   L1.reverse();
 
+  L1.pinfo()
 
+  askit(1)
 
   <<"%(,= , ,)Vs${L1} \n";
  //n=L1.Shuffle(100)
@@ -233,7 +251,10 @@
 
 
 
-  fw = L[0];
+ // fw = L[0];
+
+  fw = L.getLitem(0)
+
 
   <<"%V$fw $(typeof(fw))\n";
 
@@ -243,10 +264,12 @@
 
 // OK here
 
-  fw = L[0];
+  fw = L.getLitem(0)
 
 
-
+ <<"%V$fw $(typeof(fw))\n";
+   L.pinfo()
+<<" $L \n"
 
   chkStr(fw,"list");
 
@@ -264,9 +287,11 @@
 
   <<"%v\s$L[1:-3] \n";
 
-  <<"%V$L \n";
+  <<"% V$L \n";
 
 //chkOut(); // bad here
+
+// L3 = L.getList(1:7) ?  1:7:2
 
   L3 = L[1:7];
 
@@ -317,7 +342,7 @@
 
   chkStr(fw,"first");
 
- chkOut();
+
 
   L3 = L[1:-2];
 
@@ -344,10 +369,28 @@
 
   chkN(m,11);
 
+  L.pinfo()
+
+  n=L.Sort(-1);
+
+  <<"%v $n swops \n"
+
+  L.pinfo()
+
+
   n=L.Sort();
 
+  <<"%v $n swops \n"
+
+  L.pinfo()
+
+
+
   <<"%v$L \n";
-  chkOut() ;  // ?? xtst empty
+
+  askit(1)
+
+//  chkOut() ;  // ?? xtst empty
   <<"L is a $(typeof(L)) \n";
 //iread(";>")
 
