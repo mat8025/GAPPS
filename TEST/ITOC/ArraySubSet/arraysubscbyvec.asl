@@ -10,100 +10,98 @@
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-
 <|Use_=
-Demo  of subs of a vec by svec;
-svec supplies a list of indices of vec
-this constructs a subset of the vec ( repeats of an index - count as one)
-indices out side of vec are ignored
+   Demo  of subs of a vec by svec;
+   svec supplies a list of indices of vec
+   this constructs a subset of the vec ( repeats of an index - count as one)
+   indices out side of vec are ignored
 ///////////////////////
 |>
 
-
-
-
 #include "debug.asl";
 
-if (_dblevel >0) {
-   debugON()
-   <<"$Use_\n"   
-}
- 
+   if (_dblevel >0) {
 
+     debugON();
+   //<<"$Use_\n"   
 
+     }
 
-//filterFileDebug(ALLOWALL_,"yyy");
+   <<"$Use_ \n";
+
+   filterFileDebug(ALLOW_,"spe_declare","spe_declare_array");
 //FilterFileDebug(REJECT_,"storetype_e");
 // FilterFuncDebug(REJECT_,"~ArraySpecs",);
-  
 
-
-chkIn(_dblevel)
-
+   chkIn(_dblevel);
 // test array indexing
 
+   N = 20;
 
+   YV = Igen(N,21,1);
 
-N = 20
+   <<"%v $YV \n";
 
+   vi = 5;
 
- YV = Igen(N,21,1)
+   int P[10];
 
-<<"%v $YV \n"
+   P[1] = 1;
 
+   P[2] = 3;
 
+   P[3] = 8;
 
+   P[8] = 7;
 
- vi = 5
+   P[9] = 9;
 
+   YV[0] = 74;
 
-int P[10]
+   <<"%v $P \n";
 
-  P[1] = 1
-  P[2] = 3
-  P[3] = 8
-  P[8] = 7
-  P[9] = 9  
+   NV = YV @+ P;
 
-YV[0] = 74
-<<"%v $P \n"
+   sz = Caz(NV);
 
-NV = YV @+ P
+   <<"%v $sz \n";
 
-sz = Caz(NV)
+   <<"%v $NV \n";
 
-<<"%v $sz \n"
+   <<" $YV \n";
 
-<<"%v $NV \n"
+   <<" $NV[2] \n";
 
-<<" $YV \n"
+   <<" $NV[22] \n";
 
-<<" $NV[2] \n"
+   <<"%V $YV \n";
 
-<<" $NV[22] \n"
-<<"%V $YV \n"
+   S = YV[{P,10}];
 
- S = YV[{P,10}]
- I = vgen(INT_,20,0,1)
-<<"%V $I\n"
-<<" %v $P \n"
-<<" %v $S \n"
+   I = vgen(INT_,20,0,1);
 
- chkN(S[0],74)
+   <<"%V $I\n";
 
- chkN(S[1],22)
- chkN(S[2],24)
-  chkN(S[3],28)
-    chkN(S[4],29)
+   <<" %v $P \n";
 
+   <<" %v $S \n";
 
- sz=Caz(S)
+   chkN(S[0],74);
 
-<<"%v $sz\n"
+   chkN(S[1],22);
 
- chkN(sz,7)
- 
- chkOut()
-exit()
+   chkN(S[2],24);
 
+   chkN(S[3],28);
 
+   chkN(S[4],29);
+
+   sz=Caz(S);
+
+   <<"%v $sz\n";
+
+   chkN(sz,7);
+
+   chkOut();
+
+   exit();

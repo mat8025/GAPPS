@@ -1803,3 +1803,9 @@ vmf_set.cpp                         1.11    setdynamic extra parameter sets new 
 ds_aop.cpp                          1.90    reset range in clearsubi lh&rh
 ic_range.cpp                        1.64    review 
 list.h                              1.8    operators
+ds_sivlist.cpp                      1.69    storeIntoList
+array_parse.cpp                     2.82    KEEP_SIV_SPECS
+parset_t.cpp                        2.90    findVar
+rdp_token.cpp                                    1.77    findVar (vptr)
+rdp_token.cpp                                    1.77    findVar (vptr) 
+rdp_token.cpp                       1.78    findVar (vptr) 

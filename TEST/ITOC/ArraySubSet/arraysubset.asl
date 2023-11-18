@@ -19,15 +19,9 @@
 
 // have to use [{2,3,5}]  - OK?
 
-<|Use_=
-Demo  of vector set via list 
-S = YV[P]
-or
-S = YV[{2,3,5}}
 
-where P is vec
-///////////////////////
-|>
+
+
 
 
 
@@ -35,6 +29,9 @@ where P is vec
 
 
 #include "debug"
+
+
+
 
 if (_dblevel >0) {
    debugON()
@@ -46,8 +43,10 @@ chkIn(_dblevel)
   FilterFileDebug(REJECT_,"~storetype_e");
   FilterFuncDebug(REJECT_,"~ArraySpecs",);
 */  
-  
-  
+
+ showUsage("Demo  of vector set via list" )
+
+
   B = vgen(INT_,10,0,1); 
   
   <<"$B\n"; 

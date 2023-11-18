@@ -136,10 +136,10 @@ Str ans;
   }
 //==========================
 
-  void showUse(Str useage)
+  void showUsage(Str usage)
   {
-    _Useage = useage;
-    <<"asl $_My_script $_Useage\n";
+    _Usage = usage;
+    <<"asl $_My_script    \n\t$_Usage\n";
   }
 
   _dblevel = hold_dbl;
