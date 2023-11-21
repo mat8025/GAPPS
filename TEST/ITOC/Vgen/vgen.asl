@@ -11,132 +11,154 @@
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
-                                                                           
-
 
 ///
-
-
 #include "debug.asl"
 
-if (_dblevel >0) {
-   debugON()
+  if (_dblevel >0) {
 
-}
+  debugON();
 
- allowErrors(-1)
+  }
 
- chkIn(_dblevel)
- ask =0
+  allowErrors(-1);
 
- veca = vgen(INT_,10,0,1)
+  chkIn(_dblevel);
 
-<<"$veca \n"
+  ask =0;
+  fileDB(ALLOW_,"ds_sivbounds","num_gen","spe_storetype","rdp_store","array_store","spe_exp")
 
-veca.pinfo()
+  veca = vgen(INT_,10,0,1);
 
-  chkN(veca[1],1)
-  chkN(veca[9],9)
+  <<"$veca \n";
+
+  veca.pinfo();
+
+  chkN(veca[1],1);
+
+
+
+  chkN(veca[9],9);
 
   for (i= 0; i <3 ; i++) {
 
-        veci= vgen(INT_,10+i,i,1)
-      chkN(veci[1],1+i)
-   veci.pinfo()
-askit(ask)
+  veci= vgen(INT_,10+i,i,1);
+
+  chkN(veci[1],1+i);
+
+  veci.pinfo();
+
+  askit(ask);
+
   }
-  
-<<" $(typeof(veci))  $(Caz(veci)) \n"
-<<"$veci \n"
 
+  <<" $(typeof(veci))  $(Caz(veci)) \n";
 
+  <<"$veci \n";
 //pan incr;
-incr = 1.5;
+
+  incr = 1.5;
 //pan starti;
 
+  starti = 5;
 
+  vecf= vgen(FLOAT_,10,0,incr);
 
-starti = 5;
+  <<" $vecf \n";
 
-        vecf= vgen(FLOAT_,10,0,incr)
+  vecf.pinfo();
 
-<<" $vecf \n"
-       vecf.pinfo();
-       
-askit(ask)
-        vecp= vgen(PAN_,10,1.0,incr)
+  askit(ask);
+  fileDB(ALLOW_,"ds_sivbounds")
 
-       vecp.info()
-askit(1)
-<<"$vecp \n"
+  vecp= vgen(PAN_,10,1.0,incr);
 
-<<"$vecp[2]  $vecp[3]\n"
-<<"vecp $vecp[0] $vecp[1] $vecp[3] \n"
+  vecp.info();
 
-   vecp2= vgen(PAN_,10,0,1)
+  askit(ask);
 
-<<"%p $vecp2 \n"
+  <<"$vecp \n";
 
+  <<"$vecp[2]  $vecp[3]\n";
+
+  <<"vecp $vecp[0] $vecp[1] $vecp[3] \n";
+
+  vecp2= vgen(PAN_,10,0,1);
+
+  <<"%p $vecp2 \n";
 
   for (i= 0; i <3 ; i++) {
 
-        starti =i+1;
-   vecp2= vgen(PAN_,10,starti,incr)
-vecp2.info()
-<<"$i vecp2 $vecp2[i] $vecp2[1+i] $vecp2[3+i] \n"
-<<"$i $vecp2   \n"
+  starti =i+1;
 
+  vecp2= vgen(PAN_,10,starti,incr);
 
+  vecp2.info();
+
+  <<"$i vecp2 $vecp2[i] $vecp2[1+i] $vecp2[3+i] \n";
+
+  <<"$i $vecp2   \n";
 // chkR(vecp[1],1+i)
 
-
-
   }
 
-<<"$vecp[0:9:]\n"
-<<"done Pgen \n"
-<<" $(typeof(vecp))  $(Caz(vecp)) \n"
+  <<"$vecp[0:9:]\n";
 
+  <<"done Pgen \n";
 
+  <<" $(typeof(vecp))  $(Caz(vecp)) \n";
 
   for (i= 0; i <3 ; i++) {
 
-        vecf= vgen(FLOAT_,10+i,i,1)
-  chkR(vecf[1],1+i)
+  vecf= vgen(FLOAT_,10+i,i,1);
+
+  chkR(vecf[1],1+i);
 //ans=query("->")
+
   }
-<<" $(typeof(vecf))  $(Caz(vecf)) \n"
-<<"$vecf \n"
+
+  <<" $(typeof(vecf))  $(Caz(vecf)) \n";
+
+  <<"$vecf \n";
 
   for (i= 0; i <3 ; i++) {
 
-        vecd= vgen(DOUBLE_,10+i,i,1)
-  chkR(vecd[1],1+i)
-vecd.info()
+  vecd= vgen(DOUBLE_,10+i,i,1);
+
+  chkR(vecd[1],1+i);
+
+  vecd.info();
+
   }
-<<" $(typeof(vecd))  $(Caz(vecd)) \n"
-<<"$vecd \n"
+
+  <<" $(typeof(vecd))  $(Caz(vecd)) \n";
+
+  <<"$vecd \n";
 
   for (i= 0; i <3 ; i++) {
 
-        vecs= vgen(SHORT_,10+i,i,1)
-  chkN(vecs[1],1+i)
+  vecs= vgen(SHORT_,10+i,i,1);
+
+  chkN(vecs[1],1+i);
 
   }
-<<" $(typeof(vecs))  $(Caz(vecs)) \n"
-<<"$vecs \n"
+
+  <<" $(typeof(vecs))  $(Caz(vecs)) \n";
+
+  <<"$vecs \n";
 
   for (i= 0; i <3 ; i++) {
 
-        vecc= vgen(CHAR_,10+i,i,1)
-  chkN(vecc[1],1+i)
+  vecc= vgen(CHAR_,10+i,i,1);
+
+  chkN(vecc[1],1+i);
 
   }
-<<" $(typeof(vecc))  $(Caz(vecc)) \n"
-<<"$vecc \n"
 
+  <<" $(typeof(vecc))  $(Caz(vecc)) \n";
 
-chkOut()
+  <<"$vecc \n";
 
+  chkOut();
 
-exit()
+  exit();

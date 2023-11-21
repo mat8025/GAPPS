@@ -1809,3 +1809,8 @@ parset_t.cpp                        2.90    findVar
 rdp_token.cpp                                    1.77    findVar (vptr)
 rdp_token.cpp                                    1.77    findVar (vptr) 
 rdp_token.cpp                       1.78    findVar (vptr) 
+opera_cathold.cpp                   1.45    isaPtr
+opera_main.cpp                      1.52    isaPtr 
+ds_sivptr.cpp                       1.92    isaPtr 
+siv.h                               2.11    isaPtr 
+num_gen.cpp                         2.85    setBounds

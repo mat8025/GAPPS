@@ -10,53 +10,77 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
-myScript = getScript();
+//myScript = getScript();
 //
 ///
 //  test vec cat expand ops
+#include "debug"
 
-chkIn(_dblevel)
+   if (_dblevel >0) {
 
-int M[]
-int N[]
-int P[]
+     debugON();
+
+     }
+
+   chkIn(_dblevel);
+
+   showUsage("test vec cat expand ops" );
+
+   int M[];
+
+   int N[];
+
+   int P[];
+
+   N= igen(20,0,1);
+
+   <<"%V $N \n";
+
+   P= N;
+
+   <<"%V $P \n";
+
+   P[10] = 80;
+
+   P[30] = 47;
+
+   <<"%V $P \n";
+   
+
+   P.pinfo();
+
+   chkN(P[30],47);
+
+   P[25] = 79;
+
+   chkN(P[25],79);
+
+   <<"$P \n";
+
+   M= igen(10,0,-1);
+
+   <<"$M \n";
+
+    fileDB(ALLOW_,"opera_cathold","opera_main","ds_arraycopy");
 
 
-  N= igen(20,0,1)
+   V = M @+ P   ; //  c++ V = M ; V.join(P) ? ? V= M & P  ?;
+                      //  for vecs & is join ?
 
-<<"$N \n"
+   <<"$V \n";
 
- P= N
-
-<<"$P \n"
-
-  P[10] = 80
+   V.pinfo();
 
 
- P[30] = 47
-  //P[31] = 93
-P->info(1)
-   chkN(P[30],47)
-  P[25] = 79
-   chkN(P[25],79)
+   chkN(V[1],-1);
 
-<<"$P \n"
+   chkN(V[11],1);
 
-  M= igen(10,0,-1)
+   chkN(V[39],0);
 
-<<"$M \n"
+   chkN(V[40],47);
 
-  V = M @+ P
+   chkN(V[35],79);
 
-<<"$V \n"
-V->info(1)
-
- chkN(V[1],-1)
- chkN(V[11],1)
- chkN(V[39],0)
- chkN(V[40],47)
- chkN(V[35],79)
-
- chkOut()
-
+   chkOut();
 ///////////////////////////////
