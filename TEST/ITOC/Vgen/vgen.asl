@@ -1,16 +1,16 @@
 /* 
- *  @script vgen.asl 
+ *  @script vgen.asl                                                    
  * 
- *  @comment test vgen 
- *  @release CARBON 
- *  @vers 1.2 He Helium [asl 6.3.28 C-Li-Ni] 
- *  @date 02/28/2021 08:17:21 
- *  @cdate Fri Apr 26 06:56:03 2019 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
+ *  @comment test vgen                                                  
+ *  @release Ruthenium                                                  
+ *  @vers 1.3 Li Lithium [asl ]                                         
+ *  @date 11/23/2023 05:43:15                                           
+ *  @cdate Fri Apr 26 06:56:03 2019                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare  -->                                   
  * 
- *  \\-----------------<v_&_v>--------------------------//  
  */ 
+
 
 ///
 #include "debug.asl"
@@ -26,7 +26,7 @@
   chkIn(_dblevel);
 
   ask =0;
-  fileDB(ALLOW_,"ds_sivbounds","num_gen","spe_storetype","rdp_store","array_store","spe_exp")
+  fileDB(ALLOW_,"ds_sivbounds","num_gen","spe_storetype","rdp_store","array_transfer","spe_exp","~pan_copy","ds_storesiv")
 
   veca = vgen(INT_,10,0,1);
 

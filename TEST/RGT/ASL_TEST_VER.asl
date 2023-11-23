@@ -690,6 +690,7 @@ outcome("EXP")
 
 outcome("PARAEX")
 
+
  }
 
 
@@ -712,7 +713,7 @@ if ((do_all || do_array ) && (do_array != -1)) {
 
    RunDirTests("Array","ae,array_cmp,array_ele")
 
-   RunDirTests("Array","dynarray,lhe,vec_cat,array_sr,mdele,vsp")
+   RunDirTests("Array","dynarray,lhe,vec_cat,array_sr,md_ele,vsp")
 
    RunDirTests("ArrayRange","arrayrange,array_subsrange,lhrange")
 
@@ -736,8 +737,6 @@ if ((do_all || do_array ) && (do_array != -1)) {
   //do_carts("sgen")
 
    RunDirTests("VVgen","vvgen")
-
-  
 
   outcome("ARRAY")
 

@@ -14,10 +14,9 @@
                                                                           
 
 
-<|Use_=
-Demo  of MD ele/range selection
-///////////////////////
-|>
+
+
+
 
 
 
@@ -26,12 +25,15 @@ Demo  of MD ele/range selection
 
 if (_dblevel >0) {
    debugON()
-     <<"$Use_\n"
+     
 }
+
+showUsage("Demo  of MD ele/range selection")
 
 
  chkIn (_dblevel)
 
+ ask =0
  int HT[10][10]
 
  HT[0][0] = 0
@@ -91,12 +93,22 @@ jt = 0;
 
 DT = HT
 
-DT->pinfo()
+DT.pinfo()
 <<"$DT \n"
 
-HT->pinfo()
+HT.pinfo()
 
+  cele=  HT[1][7]
+
+<<"%V$cele \n"
+ fileDB(ALLOW_,"spe_exp,rdp_store,array_parse,array_transfer,paramexpand,parrayexpand,ds_sivbounds")
+//CT= HT
+//CT.pinfo()
+
+askit(ask)
 CT = HT[1:8:][1:7:]    ;  // TBF not selecting 2D vec correctly
+CT.pinfo()
+askit(ask)
 
 //<<"HT $(Caz(HT)) $(Cab(HT)) \n"
 //<<"CT $(Caz(CT)) $(Cab(CT)) \n"
@@ -104,7 +116,7 @@ CT = HT[1:8:][1:7:]    ;  // TBF not selecting 2D vec correctly
 <<"$CT \n"
 
 
-CT->pinfo()
+CT.pinfo()
 
 sz=Caz(CT)
 

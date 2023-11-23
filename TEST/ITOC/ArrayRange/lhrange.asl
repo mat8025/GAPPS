@@ -14,10 +14,10 @@
                                                                 
 
 
-<|Use_=
-   Demo  of lhrange assignment
+
+
 ///////////////////////
-|>
+
 
 
 #include "debug.asl"
@@ -28,8 +28,8 @@
 
      }
      
-//filterFileDebug(ALLOWALL_,"yyy");
-//filterFuncDebug(REJECT_,"~ArraySpecs");
+
+  showUsage("Demo  of lhrange assignment")
 
    chkIn(_dblevel);
 
@@ -90,7 +90,8 @@
    <<" $RHV[1:5:1] \n";
 
     <<" $RHV[7:11] \n";
-
+   fileDB(ALLOW_,"opera_main","ds_arraycopy","rdp_l2","rdp_l5","rdp_l6","rdp_store","tokget","primitive");
+      fileDB(ALLOW_,"rdp_l3","rdp_l4","rdp_l5","rdp_store","rdp_token");
 
      TSN = RHV[1:5:1] + RHV[7:11:1];
 

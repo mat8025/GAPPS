@@ -30,9 +30,6 @@
 
 #include "debug"
 
-
-
-
 if (_dblevel >0) {
    debugON()
 }
