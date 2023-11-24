@@ -1,7 +1,7 @@
 module    score    (-3 crash, -2 stall, -1 partial, <100% some tests fail, 100% success)
 
 array	98.28 
-matrix	-1
+matrix	100
 bugs	-1
 bops	100
 vops		100
@@ -28,7 +28,7 @@ mops	69.47
 scope	100
 oo		-1
 sfunc        -1
-svar	        -1
+svar	        100
 record	0
 ivar          -2
 lists         -2

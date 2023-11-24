@@ -39,7 +39,6 @@
    returns array V - containing the sum of the columns of a 2D array.
    dimensions [1][n_of_cols]
    V.redimn() - would redimension to vector
-   
 ///////////////////////
 |>
 
@@ -49,14 +48,16 @@
 
      debugON();
 
-     <<"$Use_\n";
+
 
      }
 
    chkIn(_dblevel);
 
+     <<"$Use_\n";
 
-   int A[>10];
+
+   int A[];
 
    int B[] = {16, 3, 2, 13, 5, 10, 11, 8, 9, 6, 7, 12, 4 ,15, 14, 1};
 

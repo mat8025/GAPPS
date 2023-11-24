@@ -1814,3 +1814,4 @@ opera_main.cpp                      1.52    isaPtr
 ds_sivptr.cpp                       1.92    isaPtr 
 siv.h                               2.11    isaPtr 
 num_gen.cpp                         2.85    setBounds
+opera_opeq.cpp                      1.54    hold ptr isaPtr()

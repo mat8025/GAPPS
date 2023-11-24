@@ -81,11 +81,14 @@ wdir = getdIr()
 //ans=query("where are we")
 
 
-str S = "all,array,matrix,bugs,bops,vops,sops,fops,class, declare,include,exp,if,logic,for,do,paraex,proc,switch,try"
-S.cat("types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc,svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help");
+//str S = "all,array,matrix,bugs,bops,vops,sops,fops,class, declare,include,exp,if,logic,for,do,paraex,proc,switch,try"
+//S.cat("types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc,svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help");
+
+str S = "all array bops bugs class command declare do dynv exp fops for func help if include ivar lhsubsc lists logic"
+S.cat("matrix mops oo pan paraex proc ptrs record redimn resize scope sfunc sops stat svar switch threads try types unary vops while");
 
 
-Svar Opts[] = Split(S,",");
+Svar Opts[] = Split(S);
 
 
 <<[_DBH]"%V $Opts \n"
@@ -101,7 +104,7 @@ Svar Opts[] = Split(S,",");
 TM= FineTime();
 
 today=getDate(1);
-//<<"$today $(get_version())\n"
+<<"$today $(get_version())\n"
 
 chdir(hdir)
 cwd=getdir()
@@ -213,6 +216,8 @@ int do_svar = 0;
 int do_record = 0;
 int do_ivar = 0;
 int do_lists = 0;
+int do_resize = 0;
+int do_redimn = 0;
 int do_stat = 0;
 int do_threads = 0;
 int do_pan = 0;
@@ -636,7 +641,8 @@ outcome("STR")
 if ((do_all  || do_declare ) && (do_declare != -1))  {
 
     inflsz = caz(FailedList)
-   RunDirTests("Declare","declare,decc,decchar,decpan,decvec");
+    RunDirTests("Declare","declare,decc,decchar,decpan,decvec");
+   
     outcome("DECLARE")
 
 
@@ -645,9 +651,7 @@ if ((do_all  || do_declare ) && (do_declare != -1))  {
  //  cart ("consts_test")
 
 
-   RunDirTests("Resize","resize")
 
-   RunDirTests("Redimn","redimn")
 
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -655,8 +659,20 @@ if ((do_all  || do_declare ) && (do_declare != -1))  {
     }
 
 
+if ((do_all  || do_resize ) && (do_resize != -1))  {
+
+   RunDirTests("Resize","resize")
+   outcome("RESIZE")
+
+}
 
 
+if ((do_all  || do_redimn ) && (do_redimn != -1))  {
+
+
+   RunDirTests("Redimn","redimn")
+   outcome("REDIMN")
+}
 
 
 

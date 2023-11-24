@@ -20,10 +20,10 @@
      }
    
    chkIn(_dblevel);
+   
    ask =0
 
-filterFileDebug(REJECT_,"spe_storetype","spe_args_process");
-filterFuncDebug(REJECT_,"ArraySpecs","getExp","process_args");
+
 
 //int A[][] = { 3,1,2, 2,1,3 }
   
@@ -32,6 +32,7 @@ filterFuncDebug(REJECT_,"ArraySpecs","getExp","process_args");
   
   A.redimn(2,3);
   
+  <<"A:\n "
   <<"%(3,, ,\n)$A\n\n";
   askit(ask)
   
@@ -39,13 +40,18 @@ filterFuncDebug(REJECT_,"ArraySpecs","getExp","process_args");
   
   B.redimn(3,2);
   
+  <<"B:\n"
   <<"%(2,, ,\n)$B\n\n";
   
-  
+    fileDB(ALLOW_,"opera_main,opera_mat")
   C = A * B;
   
   
   <<"%(2,, ,\n)$C\n";
+
+
+<<"C[0][0] =  $C[0][0]\n"
+
     askit(ask)
   
   ok=chkN(C[0][0],10);

@@ -444,3 +444,5 @@ spat.asl                 1.5	10/22/2023 21:39:05 tidy
 splice.asl               1.3	10/22/2023 21:42:43 tidy
 split.asl                1.2	10/22/2023 21:53:50 split original string in first field of Svar
 vgen.asl                 1.3	11/23/2023 05:43:15 fileDB
+wex.asl                  2.57	11/23/2023 20:27:31 cpp_prep
+declare.asl              1.2	11/23/2023 20:51:11 Gevent - ds_sivnew icode

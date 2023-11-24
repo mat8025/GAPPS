@@ -6611,7 +6611,7 @@ A[2] contains "upon"
 A[3] contains "q"
 ...
 
-A[0] contins the original string
+A[0] contains the original string
 
 .EF
 =============================================================

@@ -13,77 +13,95 @@
  */ 
 ;//----------------------//;
 
-
-
-
-
 <|Use_=
-Demo  of declare char type
-
+  Demo  of declare char type
+  
 ///////////////////////
 |>
 
-
 #include "debug"
 
-if (_dblevel >0) {
-   debugON()
-   <<"$Use_\n"
-}
+  if (_dblevel >0) {
 
+  debugON();
 
+  <<"$Use_\n";
 
-chkIn(_dblevel)
+  }
 
-int iv[] = { 0,1,2,3,4,5,6,7,8,9, }
+ ask =1
+  chkIn(_dblevel);
 
-iv->info(1)
-<<" $iv \n"
+  int iv[] = { 0,1,2,3,4,5,6,7,8,9, };
 
-for (i=0;i<10;i++) {
-chkN(iv[i],i)
-}
+  iv->info(1);
 
+  <<" $iv \n";
 
-char cv[] = { 'F','G','H','I','J','K','L','M','N','O' }
+  for (i=0;i<10;i++) {
 
-<<"$(vinfo(cv))\n"
-<<"$cv \n"
-<<"%c $cv \n"
-chkN(cv[0],'F')
+  chkN(iv[i],i);
 
-chkN(cv[4],'J')
+  }
 
-chkN(cv[9],'O')
+  char cv[] = { 'F','G','H','I','J','K','L','M','N','O' };
 
+  <<"$(vinfo(cv))\n";
 
+  <<"$cv \n";
 
-char cv2[] = { 'FGHIJKLMNO' }
+  <<"%c $cv \n";
 
+  chkN(cv[0],'F');
 
+  chkN(cv[4],'J');
 
+  chkN(cv[9],'O');
 
+  char cv2[] = { 'FGHIJKLMNO' };
 
-<<"$(vinfo(cv2))\n"
-<<"$cv2 \n"
-<<"%c $cv2 \n"
-chkN(cv2[0],'F')
+  cv2.pinfo()
 
-chkN(cv2[4],'J')
-chkN(cv2[5],'K')
+  <<"$cv2 \n";
 
-chkN(cv2[9],'O')
+  <<"%c $cv2 \n";
 
+  <<" $cv2[0] \n"
+  <<"%v %c $cv2[0] \n"  
+ //   <<"%vc $cv2[1] \n"
+ fileDB(ALLOW_,"paramexpand,parrayexpand")
+    <<"%v $cv2[2] \n"
+    ce= cv2[1]
+<<"G? %v %c $cv2[1] $ce \n"    
 
-char dv[] = { 'F', 71, 72, 73, 'O', '0', 76, 77,78,79, }
+    <<"%V $cv2[2] \n"
 
-chkN(dv[0],'F')
-chkN(dv[1],71)
+  askit(ask)
 
-chkN(dv[9],79)
+  chkN(ce,'G');
 
-<<"$(vinfo(dv))\n"
-<<"$dv \n"
-<<"%c $dv \n"
+  chkN(cv2[0],'F');
 
-chkOut()
+  chkN(cv2[4],'J');
+
+  chkN(cv2[5],'K');
+
+  chkN(cv2[9],'O');
+
+  char dv[] = { 'F', 71, 72, 73, 'O', '0', 76, 77,78,79, };
+
+  chkN(dv[0],'F');
+
+  chkN(dv[1],71);
+
+  chkN(dv[9],79);
+
+  <<"$(vinfo(dv))\n";
+
+  <<"$dv \n";
+
+  <<"%c $dv \n";
+
+  chkOut();
+
+//==============\_(^-^)_/==================//

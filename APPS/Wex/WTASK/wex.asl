@@ -2,14 +2,15 @@
  *  @script wex.asl                                                     
  * 
  *  @comment exercise/diet logger cpp vers                              
- *  @release CARBON                                                     
- *  @vers 2.56 Ba Barium [asl 6.4.31 C-Be-Ga]                           
- *  @date 06/17/2022 07:54:49                                           
+ *  @release Rhodium                                                    
+ *  @vers 2.57 La Lanthanum [asl ]                                      
+ *  @date 11/23/2023 20:27:31                                           
  *  @cdate Fri Jan 1 08:00:00 2010                                      
  *  @author Mark Terry                                                  
- *  @Copyright © RootMeanSquare 2022 -->                               
+ *  @Copyright © RootMeanSquare  -->                                   
  * 
- */
+ */ 
+
 //----------------<v_&_v>-------------------------//;
 #define _CPP_ 0
 #if _CPP_
@@ -478,7 +479,7 @@ init_debug ("wex.dbg", 1, "2.1");
 
 //  Onwards();
 
-  int A=ofr("/home/mark/gapps/DAT/wex2023.tsv");
+  int A=ofr("~/gapps/DAT/wex2023.tsv");
 
   if (A == -1) {
 
@@ -526,7 +527,7 @@ if (ans == "q") {
 ///////////// Cals & Carb Consumed ////////
 // so far not logged often 
 
-  int ACC=ofr("/home/mark/gapps/DAT/cc2023.tsv");
+  int ACC=ofr("~/gapps/DAT/cc2023.tsv");
 
 //<<"%V $ACC\n"
 

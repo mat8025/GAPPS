@@ -10,63 +10,79 @@
 //* 
 //***********************************************%
 
-chkIn()
 
-M = vgen(INT_,20,0,1)
+#include "debug"
 
-<<"$M\n\n"
-chkN(M[3],3)
+   if (_dblevel >0) {
 
-M->redimn(5,4)
+     debugON();
 
-<<"$M\n"
-sz=Caz(M)
-chkN(sz,20)
+     }
 
-<<"%V$sz \n"
+   chkIn(_dblevel);
 
-bnds=Cab(M)
+   M = vgen(INT_,20,0,1);
 
-<<"%V$bnds \n\n"
-chkN(bnds[0],5)
-chkN(bnds[1],4)
+   <<"$M\n\n";
 
-chkN(M[0][0],0)
+   chkN(M[3],3);
 
-T= mrevrows(M)
+   M.redimn(5,4);
 
-<<"$T\n"
+   <<"$M\n";
 
-chkN(T[0][0],16)
+   sz=Caz(M);
 
+   chkN(sz,20);
 
-S= msortcol(T,2)
+   <<"%V$sz \n";
 
-<<"$S\n"
+   bnds=Cab(M);
 
-chkN(S[0][0],0)
-chkN(S[4][0],16)
+   <<"%V$bnds \n\n";
 
-R= mrevcols(M)
+   chkN(bnds[0],5);
 
-<<"$R\n"
+   chkN(bnds[1],4);
 
-chkN(R[0][0],3)
-chkN(R[0][3],0)
+   chkN(M[0][0],0);
 
-R= mxrows(M,1,2)
+   T= mrevrows(M);
 
-chkN(R[1][0],8)
-chkN(R[2][0],4)
+   <<"$T\n";
 
-<<"$R\n"
+   chkN(T[0][0],16);
 
-S= msortcol(S,2)
+   S= msortcol(T,2);
 
-<<"$S\n"
+   <<"$S\n";
 
-chkN(S[1][0],4)
-chkN(S[2][0],8)
+   chkN(S[0][0],0);
 
+   chkN(S[4][0],16);
 
-chkOut()
+   R= mrevcols(M);
+
+   <<"$R\n";
+
+   chkN(R[0][0],3);
+
+   chkN(R[0][3],0);
+
+   R= mxrows(M,1,2);
+
+   chkN(R[1][0],8);
+
+   chkN(R[2][0],4);
+
+   <<"$R\n";
+
+   S= msortcol(S,2);
+
+   <<"$S\n";
+
+   chkN(S[1][0],4);
+
+   chkN(S[2][0],8);
+
+   chkOut();
