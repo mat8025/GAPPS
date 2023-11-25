@@ -24,7 +24,7 @@
 #define EMPTYLN 5
 
 int match[2];
-
+seen_ESL = 0;
    allowErrors(-1) ;  // keep going
 
 void doTrailingComment()
@@ -569,14 +569,20 @@ ESL='//==============\_(^-^)_/==================//';
   }
   
     last_ltype = ltype;
+
+ if (LL == ESL) {
+       seen_ESL = 1;
   }
+
+}
 
 <<"LL: <|$LL|>\n"
 
 //  ESL.pinfo()
 //  LL.pinfo()
 //fileDB(ALLOW_,"rdp_l2,rdp_l3,opera_main,")
- if (LL != ESL) {
+ if (LL != ESL || !seen_ESL) {
+  <<"adding closing ESL \n"
   <<[B]"\n$ESL\n";
   }
 
@@ -590,5 +596,5 @@ cf(B);
 /// TBF  bug split of long lines
 /// TBF  bug - puts ; end of if without a brace
 /// TBD #define should start @ col 0
-
+    TBF sindent xic  fails  11/25/23 
 */

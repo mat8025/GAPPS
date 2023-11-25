@@ -1,73 +1,84 @@
-//%*********************************************** 
-//*  @script fops.asl 
-//* 
-//*  @comment test readfile function 
-//*  @release CARBON 
-//*  @vers 1.4 Be Beryllium [asl 6.2.68 C-He-Er]                             
-//*  @date Sun Aug 30 14:52:48 2020 
-//*  @cdate 1/1/2005 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
-myScript = getScript();
-///   readfile
+/* 
+ *  @script fops.asl                                                    
+ * 
+ *  @comment test readfile function                                     
+ *  @release Rhodium                                                    
+ *  @vers 1.5 B Boron [asl ]                                            
+ *  @date 11/25/2023 07:59:27                                           
+ *  @cdate 1/1/2005                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare  -->                                   
+ * 
+ */ 
 
-#include "debug"
+#include "debug.asl"
 
-if (_dblevel >0) {
-   debugON()
-}
+   if (_dblevel >0) {
 
+     debugON();
 
-chkIn(_dblevel)
+     }
 
+   showUsage(" test readfile function ");
+
+   chkIn(_dblevel);
 //sdb(1,@step)
 
- A = ofr("fops.asl")
+   A = ofr("fops.asl");
 
+   S=readfile(A);
 
-  S=readfile(A)
+   <<"$S\n";
 
-<<"$S\n"
+   cf(A);
 
-  cf(A)
+   sz = Caz(S);
 
- sz = Caz(S);
+   <<"%V$sz \n";
 
-<<"%V$sz \n"
+   A = ofr("fops.asl");
 
- A = ofr("fops.asl")
- k = 0;
- while (1) {
+   k = 0;
 
-  res =readline(A)
-  err = f_error(A)
+   while (1) {
 
-  if (f_error(A) == EOF_ERROR_) {
-    <<"\n@ EOF\n"
+     res =readline(A);
+
+     err = f_error(A);
+
+     if (f_error(A) == EOF_ERROR_) {
+
+       <<"\n@ EOF\n";
+
        break;
-	   }
-  len = slen(res)	   
-  <<"$k $len :: $res";	   
-  k++;
-   if (k > (sz+10))
-    break;
- }
 
+       }
 
-chkT((err>0));
+     len = slen(res);
 
-<<"%V$k\n"
-chkT((k<(sz+10)));
+     <<"$k $len :: $res";
 
-chkN(err,6)
+     k++;
 
-chkOut()
+     if (k > (sz+10))
 
+     break;
 
+     }
+
+   chkT((err>0));
+
+   <<"%V$k\n";
+
+   chkT((k<(sz+10)));
+
+   chkN(err,6);
+
+   chkOut();
 /*
 
 TBD - needs more file IO tests
 
 */
+
+//==============\_(^-^)_/==================//

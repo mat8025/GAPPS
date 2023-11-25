@@ -10,24 +10,20 @@
   *  @Copyright © RootMeanSquare  2010,2021 →
   *
   *  \\-----------------<v_&_v>--------------------------; //
- */ 
+ */
 
 
-  ;//----------------------//;
-<|Use_= 
-  Demo  of test file handle
-/////////////////////// 
-|>
-
-#include "debug"
+#include "debug.asl"
 
   if (_dblevel >0) {
 
   debugON();
 
-  <<"$Use_ \n";
-
   }
+
+  showUsage("   Demo  of test file handle ");
+
+  ask =0;
 
   allowErrors(-1);
 
@@ -46,6 +42,8 @@
 
   svar W;
 
+  W.pinfo()
+  
   W[0] = "hey";
 
   W[1] = "mark";
@@ -73,13 +71,36 @@
 
   !!"cat log";
 
+  
+
   B=ofr("log");
 
+  wcv = countWords(B)
+
+<<"$wcv \n"
+
+  Svar S;
+
+  S.pinfo()
+ // fileDB(ALLOW_,"rdp_store,rdp_l1,ds_sivarray,ds_arraycopy,ds_storesvar")
   S=readfile(B);
 
+  S.pinfo()
+  
   <<"S[0]$S[0]\n";
 
   <<"%V$S[1]\n";
+
+  LL = S[-7]
+  
+  LL.pinfo()
+
+  LL = S[-1]
+  
+  LL.pinfo()
+
+
+
 
   <<"%V$S[-1]\n";
 

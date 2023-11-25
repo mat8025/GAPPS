@@ -1815,3 +1815,29 @@ ds_sivptr.cpp                       1.92    isaPtr
 siv.h                               2.11    isaPtr 
 num_gen.cpp                         2.85    setBounds
 opera_opeq.cpp                      1.54    hold ptr isaPtr()
+spe_include.cpp                     2.26    rm DBINC
+svar_init.cpp                       1.66    rm DBXXX
+ic_call.cpp                         1.60    opendll via func_name
+spe_func.cpp                        3.58    opendll via func_name 
+parse.h                             2.7    SfuncXic opendll method
+svar_cpy.cpp                        1.68    realloc by 1
+ic_wic.cpp                          1.73    DBWIC
+opera_mat.cpp                       1.52    use isaPtr for resolve,hold
+parrayexpand.cpp                    2.78    use froffset for array ele
+ds_storesvar.cpp                    1.90    getValue()->realloc before copy
+ds_transfer.cpp                     1.93    renamed
+spe_declare.cpp                     2.39    vec dynamic size option
+spe_exp.cpp                         3.62    rm pool,setVtype,list
+spe_declare_array.cpp               1.10    rm pool
+array_transfer.cpp                  2.81    renamed
+array_parse.cpp                     2.83    rm pool
+ds_arraycopy.cpp                    2.75    asl_return_code
+ds_sivnew.cpp                       1.97    event
+ds_sivrange.cpp                     2.4    IDBF
+ds_storesiv.cpp                     1.90    IDBF 
+gs_debug.cpp                        1.69    dbff logic
+gs_lists.cpp                        1.73    STRV check
+ic_create.cpp                       1.59    create_vec dynamic option
+ic_ops.cpp                          1.59    IDBF
+rdp_store.cpp                       2.7    IDBF 
+rdp_token.cpp                       1.79    IDBF,findVar check

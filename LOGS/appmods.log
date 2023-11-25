@@ -446,3 +446,11 @@ split.asl                1.2	10/22/2023 21:53:50 split original string in first 
 vgen.asl                 1.3	11/23/2023 05:43:15 fileDB
 wex.asl                  2.57	11/23/2023 20:27:31 cpp_prep
 declare.asl              1.2	11/23/2023 20:51:11 Gevent - ds_sivnew icode
+decc.asl                 1.4	11/24/2023 09:28:59 tidy
+resize.asl               1.3	11/24/2023 09:40:25 tidy
+resize.asl               1.4	11/24/2023 09:42:16 tidy2
+resize.asl               1.5	11/24/2023 09:42:53 tidy4
+resize.asl               1.6	11/24/2023 09:43:37 tidy6
+resize.asl               1.7	11/24/2023 09:44:46 t8
+resize.asl               1.8	11/24/2023 09:45:47 t10
+fops.asl                 1.5	11/25/2023 07:59:27 PP

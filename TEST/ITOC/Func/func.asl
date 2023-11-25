@@ -12,175 +12,174 @@
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
 
-
 #include "debug";
 
-   if (_dblevel >0) {
+  if (_dblevel >0) {
 
-     debugON();
+  debugON();
 
-     }
+  }
 ///
 ///
 ///
 
-   chkIn(_dblevel);
+  chkIn(_dblevel);
 
-   double goo(double a)
-   {
+  double goo(double a)
+  {
 
-     float tmp;
+  float tmp;
 
-     tmp = a/2.0;
+  tmp = a/2.0;
 
-     return tmp;
+  return tmp;
 
-     }
+  }
 //=====================
 
-   gen N = "a1";
+  gen N = "a1";
 
-   gen M = "a2";
+  gen M = "a2";
 
-   if (argc() > 1) {
+  if (argc() > 1) {
 
-     N = _clarg[1];
+  N = _clarg[1];
 
-     }
+  }
 
-   if (argc() > 2) {
+  if (argc() > 2) {
 
-     M = _clarg[2];
+  M = _clarg[2];
 
-     }
+  }
 
-   <<"$N $M\n";
+  <<"$N $M\n";
 
-   <<" $_clarg[0:-1] \n";
+  <<" $_clarg[0:-1] \n";
 
-   sa=testargs(N,M);
+  sa=testargs(N,M);
 
-   <<" $sa $N $M\n";
+  <<" $sa $N $M\n";
 
-   int k = 0;
+  int k = 0;
 
-   kt = typeof(k);
+  kt = typeof(k);
 
-   <<"%V $k $kt \n";
+  <<"%V $k $kt \n";
 
-   ut = utime();
+  ut = utime();
 
-   <<"%V $ut \n";
+  <<"%V $ut \n";
 
-   y = 1.0;
+  y = 1.0;
 
-   m = 2;
+  m = 2;
 
-   d = 45.0;
+  d = 45.0;
 
-   r = deg2rad(d);
+  r = deg2rad(d);
 
-   <<"%V $r \n";
+  <<"%V $r \n";
 
-   x= Sin(r);
+  x= Sin(r);
 
-   <<"Sin $r = $x   \n";
+  <<"Sin $r = $x   \n";
 
-   x= Sin(deg2rad(d));
+  x= Sin(deg2rad(d));
 
-   <<"Sin $d degs = $x   \n";
+  <<"Sin $d degs = $x   \n";
 
-   y= Cos(deg2rad(d));
+  y= Cos(deg2rad(d));
 
-   <<"Cos $d degs = $y   \n";
+  <<"Cos $d degs = $y   \n";
 
-   z = Sin(deg2rad(d)) * Cos(deg2rad(d));
+  z = Sin(deg2rad(d)) * Cos(deg2rad(d));
 
-   <<" Sin $d * Cos $d  = $z\n";
+  <<" Sin $d * Cos $d  = $z\n";
 
-   float w = x * y;
+  float w = x * y;
 
-   <<" $x * $y = $w \n";
+  <<" $x * $y = $w \n";
   //     chkN(w,z)
 
-   z = Cos(Sin(deg2rad(d))) * Sin(Cos(deg2rad(d)));
+  z = Cos(Sin(deg2rad(d))) * Sin(Cos(deg2rad(d)));
 
-   <<" $z \n";
+  <<" $z \n";
 
-   w = Cos(x) * Sin(y);
+  w = Cos(x) * Sin(y);
 
-   <<" $w \n";
+  <<" $w \n";
 
-   chkR(w,z,4);
+  chkR(w,z,4);
 // FIXME
 
-   z = Sin(Cos(Sin(deg2rad(d)))) * Cos(Sin(Cos(deg2rad(d))));
+  z = Sin(Cos(Sin(deg2rad(d)))) * Cos(Sin(Cos(deg2rad(d))));
 
-   <<" $z \n";
+  <<" $z \n";
 
-   w = Sin(Cos(x)) * Cos(Sin(y));
+  w = Sin(Cos(x)) * Cos(Sin(y));
 
-   <<" $w \n";
+  <<" $w \n";
 
-   chkR(w,z,3);
+  chkR(w,z,3);
 
-   t = goo(x);
+  t = goo(x);
 
-   <<"$x $t \n";
+  <<"$x $t \n";
 
-   t = goo(Cos(x));
+  t = goo(Cos(x));
 
-   <<"$x $t \n";
+  <<"$x $t \n";
 
-   k = 0;
+  k = 0;
 
-   while (k <= 10) {
+  while (k <= 10) {
 
-     x= Sin(deg2rad(k));
+  x= Sin(deg2rad(k));
 
-     <<"$k  $x\n";
+  <<"$k  $x\n";
 
-     k++;
+  k++;
 
-     }
+  }
 
-   prog= GetScript();
+  prog= GetScript();
 
-   y=Sin(1.0);
+  y=Sin(1.0);
 
-   <<" $y \n";
+  <<" $y \n";
 
-   y=Cos(0);
+  y=Cos(0);
 
-   <<"cos $y \n";
+  <<"cos $y \n";
 
-   chkN(y,1.0);
+  chkN(y,1.0);
 
-   pi = 4.0 * atan(1.0);
+  pi = 4.0 * atan(1.0);
 
-   <<"%v $pi \n";
+  <<"%v $pi \n";
 
-   y = Sin(pi/2.0);
+  y = Sin(pi/2.0);
 
-   <<" sin pi/2 $y \n";
+  <<" sin pi/2 $y \n";
 
-   chkN(Fround(y,2),1.0);
+  chkN(Fround(y,2),1.0);
 
-   pir =Fround(pi,5);
+  pir =Fround(pi,5);
 
-   if ( Fround(pi,5) == 3.14159) {
+  if ( Fround(pi,5) == 3.14159) {
 
-     <<" $pir == 3.14159 \n";
+  <<" $pir == 3.14159 \n";
 
-     }
+  }
 
-   else {
+  else {
 
-     <<" $pir != 3.14159 \n";
+  <<" $pir != 3.14159 \n";
 
-     }
+  }
 
-   chkN(Fround(pir,5),3.14159);
+  chkN(Fround(pir,5),3.14159);
 /////////////////////////////////////////
 //%*********************************************** 
 //*  @script func1.asl 
@@ -197,69 +196,69 @@
 // foota returns arg values into double array
 // dv = testargs(1,2)
 
-   <<"func test depends on testargs - which may change!\n";
+  <<"func test depends on testargs - which may change!\n";
 
-   jal = 0;
+  jal = 0;
 
-   j = 4;
+  j = 4;
 
-   fva= testargs(1,2*3,4+1,j*2);
+  fva= testargs(1,2*3,4+1,j*2);
 
-   <<"%(1,,,\n)$fva \n";
+  <<"%(1,,,\n)$fva \n";
 
-   jal = 6;
+  jal = 6;
 
-   fvs = fva[jal];
+  fvs = fva[jal];
 
-   <<"%V $fvs\n";
+  <<"%V $fvs\n";
 
-   chkStr(fvs,"6");
+  chkStr(fvs,"6");
 
-   jal++;
+  jal++;
 
-   jal += (2 * 10);
+  jal += (2 * 10);
 
-   int A[];
+  int A[];
 
-   A=igen(5,0,1);
+  A=igen(5,0,1);
 
-   jal += 9;
+  jal += 9;
 
-   dv= testargs(A,1,2,3);
+  dv= testargs(A,1,2,3);
 //<<"%(1,,\s,\n)$dv \n" // TBF
 
-   F = vgen(FLOAT_,6,0,1);
+  F = vgen(FLOAT_,6,0,1);
 
-   <<"$F\n";
+  <<"$F\n";
 
-   fva2= testargs(F);
+  fva2= testargs(F);
 
-   fva2.aslpinfo();
+  fva2.aslpinfo();
 //<<"%(1,,,\n)$fva2 \n"   // TBF
 
-   jal = 2;
+  jal = 2;
 
-   fvs = fva2[jal];
+  fvs = fva2[jal];
 
-   col = split(fvs);
+  col = split(fvs);
 
-   <<"%V$jal \n";
+  <<"%V$jal \n";
 
-   <<"$fvs\n";
+  <<"$fvs\n";
 
-   <<"$col\n";
+  <<"$col\n";
 
-   chkStr(col[1],"0.000000");
+  chkStr(col[1],"0.000000");
 
-   jal = 3;
+  jal = 3;
 
-   fvs = fva2[jal];
+  fvs = fva2[jal];
 
-   col = split(fvs);
+  col = split(fvs);
 
-   <<"%V $col \n";
+  <<"%V $col \n";
 
-   chkStr(col[1],"1.000000");
+  chkStr(col[1],"1.000000");
 ///////////////////////////////
 //%*********************************************** 
 //*  @script funcargs.asl 
@@ -274,83 +273,85 @@
 //* 
 //***********************************************%
 
-   void Noo(int x,int y,int z)
-   {
+  void Noo(int x,int y,int z)
+  {
 
-     <<"%V $x $y $z\n";
-     int m =x;
-     int n =y;
-     int p =z;
-     int i;
+  <<"%V $x $y $z\n";
 
-     i.aslpinfo();
+  int m =x;
 
-     ans ="c";
-     for (i=0; i< 4; i++) {
+  int n =y;
 
-       SV2=testargs(-1,m,n,p,1,2,3);
+  int p =z;
+
+  int i;
+
+  i.aslpinfo();
+
+  ans ="c";
+
+  for (i=0; i< 4; i++) {
+
+  SV2=testargs(-1,m,n,p,1,2,3);
 // <<"%V$SV2 \n"
 
-       <<"%V $m $n $p\n";
+  <<"%V $m $n $p\n";
 
-       m++;
+  m++;
 
-       n++;
+  n++;
 
-       <<"%V $i $m $n $p\n";
+  <<"%V $i $m $n $p\n";
 //ans=query("proc");
  // if (ans @="q")    break;
 //  p++;
     //if (m >20)
    // m = 20;
 
-       }
+  }
 
-     }
+  }
 //======================//
 
-   int A2[5];
+  int A2[5];
 
-   A2= igen(5,0,1);
+  A2= igen(5,0,1);
 
-   B = A2 * 2;
+  B = A2 * 2;
 
-   a = 1;
+  a = 1;
 
-   a.aslpinfo();
+  a.aslpinfo();
 //ans=query("a?")
 
-   chkR (a,1);
+  chkR (a,1);
 
-   int b = 79;
+  int b = 79;
 
-   int c = 47;
+  int c = 47;
 
-   <<"%V $a $b $c \n";
+  <<"%V $a $b $c \n";
 
-   SV=testargs(1,a,b,c);
+  SV=testargs(1,a,b,c);
 
-   <<"%V$SV[0] $SV[1] $SV[2]\n";
+  <<"%V$SV[0] $SV[1] $SV[2]\n";
 
-   SV=testargs(1,&a,&b,&c);
+  SV=testargs(1,&a,&b,&c);
 
-   <<"%V$SV\n";
+  <<"%V$SV\n";
 //SV=testargs(1,c,a,b)
 //<<"%V$SV\n"
 
-   <<"%V $a $b $c \n";
+  <<"%V $a $b $c \n";
 
-   a.aslpinfo();
+  a.aslpinfo();
 //ans=query("a?")
 //Noo(1,2,3);
-
 //   a.aslpinfo();
-
 //   b.aslpinfo();
-
 //   c.aslpinfo();
 
-   Noo(a,b,c);
+  Noo(a,b,c);
 /*
    testargs(1,@head,"big",@tail,"tiny",1,2,3,A)
    SV=testargs(-1,@head,"big",@tail,"tiny",1,2,3,A)
@@ -363,40 +364,33 @@
 */
 
 
-   SV=testargs(1,c,a,b);
+  SV=testargs(1,c,a,b);
 
-   <<"%V$SV\n";
+  <<"%V$SV\n";
 ////////////////////////////
-
    //chkStage("funcargs");
 
-   pan pnum = 123456789.98765432100;
+  pan pnum = 123456789.98765432100;
 
-   <<"%V $pnum \n";
+  <<"%V $pnum \n";
 
-chkR (pnum,  123456789.987, 1);
+  chkR (pnum,  123456789.987, 1);
 
+  chkR (pnum,  123456789.987, 1);
 
-chkR (pnum,  123456789.987, 1);
+  chkR (pnum,  123456789.987654, 2);
 
+  chkR (pnum,  123456789.987654321, 3);
 
-chkR (pnum,  123456789.987654, 2);
+  chkR (pnum,  123456789.98765432100, 3);
 
-chkR (pnum,  123456789.987654321, 3);
+  testArgs(pnum,  123456789);
 
-chkR (pnum,  123456789.98765432100, 3);
+  testArgs(pnum,  123.456);
 
-
-testArgs(pnum,  123456789);
-
-   testArgs(pnum,  123.456);
-
-   testArgs(pnum,  123456789.98765432100);
-
-   
-
+  testArgs(pnum,  123456789.98765432100);
    //chkStage("pan");
 
-   chkOut ();
+  chkOut ();
 
-//===***===//
+//==============\_(^-^)_/==================//

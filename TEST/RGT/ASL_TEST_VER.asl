@@ -206,6 +206,7 @@ int do_exp = 0;
 int do_paraex = 0;
 int do_types = 0;
 int do_func = 0;
+int do_iproc = 0;
 int do_command = 0;
 int do_lhsubsc = 0;
 int do_dynv = 0;
@@ -627,10 +628,11 @@ outcome("STR")
   RunDirTests("Fops","fops")
   RunDirTests("Fh","fh")  
 
-    outcome("FOPS")
+
   // need to do  script arg1 agr2 ...
   RunDirTests("Fexist","fexist")
 
+    outcome("FOPS")
 
 
 
@@ -808,13 +810,14 @@ if ((do_all || do_func ) && (do_func != -1)) {
   RunDirTests("Func","func,repeat_func_call")
 
   //do_carts("func", 3)
-  cart("func","3")
-    cart_xic("func","4")
+  
+ //   cart("func","3")
+ //   cart_xic("func","4")
 
 
   RunDirTests("Args","args")
 
-  RunDirTests("Iproc","iproc")
+
 
  // RunDirTests("Func","func")  
 
@@ -827,6 +830,17 @@ if ((do_all || do_func ) && (do_func != -1)) {
 
   outcome("FUNC")
 }
+
+
+if ((do_all || do_iproc ) && (do_iproc != -1)) {
+    inflsz = caz(FailedList)
+
+  RunDirTests("Iproc","iproc")
+
+ outcome("IPROC")
+
+}
+
 
 /////////////////////////////////////////
 

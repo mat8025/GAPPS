@@ -1,226 +1,251 @@
 /* 
- *  @script resize.asl 
+ *  @script resize.asl                                                  
  * 
- *  @comment test resize ops 
- *  @release CARBON 
- *  @vers 1.2 He Helium [asl 6.3.63 C-Li-Eu] 
- *  @date 11/28/2021 07:09:32          
- *  @cdate Fri Apr 17 14:18:41 2020 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
+ *  @comment test resize ops                                            
+ *  @release Rhodium                                                    
+ *  @vers 1.8 O Oxygen [asl ]                                           
+ *  @date 11/24/2023 09:45:47                                           
+ *  @cdate Fri Apr 17 14:18:41 2020                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare  -->                                   
  * 
- *  \\-----------------<v_&_v>--------------------------//  
  */ 
 
 
 
+
 #include "debug.asl"
-//debugON()
-//setdebug(1,@keep,@pline)
-filterFileDebug(REJECT_,"args","tok")
+// fileDB(REJECT_,"args","tok")   // default everything is rejected
+// use ALLOW_ to see debug from file xyz
 
-   chkIn(_dblevel);
+  if (_dblevel >0) {
 
-   svar Wans;
-//   Wans[0] = "stuff to do";
+  debugON();
 
-   Wans = "stuff to do";
+  }
 
-   <<"sz $(Caz(Wans)) $Wans\n";
+  showUsage(" test resize ops ");
 
-   W=testargs(1,Wans);
+  ask =0;
 
-   <<"%(1,,,\n)$W\n";
+  chkIn(_dblevel);
 
-   Wans[3] = "more stuff to do";
+  Svar Wans;
 
-   <<"sz $(Caz(Wans)) $Wans\n";
+  Wans = "stuff to do";
 
-   S=testargs(1,Wans);
+  <<"sz $(Caz(Wans)) $Wans\n";
 
-   <<"%(1,,,\n)$S\n";
+  W=testargs(1,Wans);
 
-   Wans.resize(12);
+  <<"%(1,,,\n)$W\n";
 
-   Wans.pinfo();
+  Wans[3] = "more stuff to do";
 
-   sz= Caz(Wans);
+  <<"sz $(Caz(Wans)) $Wans\n";
 
-   <<"sz $(Caz(Wans)) $Wans\n";
+  S=testargs(1,Wans);
 
-   chkN(sz,12);
+  <<"%(1,,,\n)$S\n";
 
-   Wans[9] = "keeps going";
+  Wans.resize(12);
 
-   <<"sz $(Caz(Wans)) $Wans\n";
+  Wans.pinfo();
 
-   Wans.pinfo();
+  sz= Caz(Wans);
 
-   M=testargs(1,Wans);
+  <<"sz $(Caz(Wans)) $Wans\n";
 
-   <<"%(1,,,\n)$M\n";
+  chkN(sz,12);
 
-   Wans.resize(5);
+  Wans[9] = "keeps going";
 
-   <<"sz $(Caz(Wans)) $Wans\n";
+  <<"sz $(Caz(Wans)) $Wans\n";
 
-   sz= Caz(Wans);
+  Wans.pinfo();
 
-   chkN(sz,5);
+  M=testargs(1,Wans);
 
-   Wans.pinfo();
+  <<"%(1,,,\n)$M\n";
 
-   R=testargs(1,Wans);
+  Wans.resize(5);
 
-   <<"%(1,,,\n)$R\n";
+  <<"sz $(Caz(Wans)) $Wans\n";
 
-   <<"%V $(Typeof(Wans)) $Wans\n";
+  sz= Caz(Wans);
 
-   Wans.pinfo();
+  chkN(sz,5);
 
-   delete(Wans);
+  Wans.pinfo();
+
+  R=testargs(1,Wans);
+
+  <<"%(1,,,\n)$R\n";
+
+  <<"%V $(Typeof(Wans)) $Wans\n";
+
+  Wans.pinfo();
+
+  delete(Wans);
 //Wans.pinfo()
 
-   Wans = "stuff to do";
+  Wans = "stuff to do";
 
-   <<"sz $(Caz(Wans)) $Wans\n";
+  <<"sz $(Caz(Wans)) $Wans\n";
 
-   W=testargs(Wans);
+  W=testargs(Wans);
 
-   <<"%(1,,,\n)$W\n";
+  <<"%(1,,,\n)$W\n";
 //ans = iread();
 
-   Wans[3] = "more stuff to do";
+  Wans[3] = "more stuff to do";
 
-   <<"sz $(Caz(Wans)) $Wans\n";
+  <<"sz $(Caz(Wans)) $Wans\n";
 
-   S=testargs(Wans);
+  S=testargs(Wans);
 
-   <<"%(1,,,\n)$S\n";
+  <<"%(1,,,\n)$S\n";
 //ans = iread();
 
-   Wans.resize(10);
+  Wans.resize(10);
 
-   <<"sz $(Caz(Wans)) $Wans\n";
+  <<"sz $(Caz(Wans)) $Wans\n";
 
-   Wans[9] = "keeps going";
+  Wans[9] = "keeps going";
 
-   <<"sz $(Caz(Wans)) $Wans\n";
+  <<"sz $(Caz(Wans)) $Wans\n";
 
-   delete(W);
+  delete(W);
 
-   W=testargs(Wans);
+  W=testargs(Wans);
 
-   <<"%(1,,,\n)$W\n";
+  <<"%(1,,,\n)$W\n";
 //ans = iread();
 
-   Wans.resize(5);
+  Wans.resize(5);
 
-   <<"sz $(Caz(Wans)) $Wans\n";
+  <<"sz $(Caz(Wans)) $Wans\n";
 
-   R=testargs(Wans);
+  R=testargs(Wans);
 
-   <<"%(1,,,\n)$R\n";
+  <<"%(1,,,\n)$R\n";
 
-   <<"%V $(Typeof(Wans)) $Wans\n";
+  <<"%V $(Typeof(Wans)) $Wans\n";
 
-   <<"resize svar to sz 1 \n";
+  <<"resize Svar to sz 1 \n";
 
-   Wans.resize(1);
+  Wans.resize(1);
 
-   <<"sz $(Caz(Wans)) $Wans\n";
+  <<"sz $(Caz(Wans)) $Wans\n";
 
-   <<"check args \n";
+  <<"check args \n";
 
-   R1=testargs(Wans);
+  R1=testargs(Wans);
 
-   <<"%(1,,,\n)$R1\n";
+  <<"%(1,,,\n)$R1\n";
 //ans = iread();
 
-   delete(Wans);
+  delete(Wans);
 
-   Wans="again";
+  Wans="again";
 
-   L=testargs(Wans);
+  L=testargs(Wans);
 
-   <<"%(1,,,\n)$L\n";
+  <<"%(1,,,\n)$L\n";
 
-   <<"%V $(Typeof(Wans)) $Wans\n";
+  <<"%V $(Typeof(Wans)) $Wans\n";
 //chkStage("svar");
 
-   int V[>20];
+  // cpp version
+  // V = vgen(INT_,10,0,1, [dynamic])
+  
 
-V.pinfo()
-!z
-   V[10] = 47;
-   V[11] = 77;
-   V[19] = -1
-   chkN(V[0],0);
+  int V[10];
+  
+  V.setDynamic(1,20)  ; // 
 
-   chkN(V[10],47);
+  V.pinfo();
 
-   chkN(V[19],-1);
+  V[10] = 47;
 
-   <<"$V\n";
+  V[11] = 77;
+
+  V[19] = -1;
+
+  chkN(V[0],0);
+
+  chkN(V[10],47);
+
+  chkN(V[19],-1);
+
+  <<"$V\n";
 //V.resize(30)
 
-V.pinfo()
+  V.pinfo();
 
-   resize(V,30);
+  resize(V,30);
 
-V.pinfo()
-!z
+  V.pinfo();
 
-   V[20] = 80;
+  V[20] = 80;
 
-   chkN(V[20],80);
+  chkN(V[20],80);
 
-   chkN(V[29],0);
+  chkN(V[29],0);
 
-   <<"$V\n";
+  <<"$V\n";
 //  should give error --- not dynamic
-V.pinfo()
 
-   V[30] = 79;
+  V.pinfo();
 
-V.pinfo()
-!z
-   chkN(V[30],79);
+  V[30] = 79;
 
-   <<"$V\n";
+  V.pinfo();
 
-   TR=testargs(1,V);
+  chkN(V[30],79);
 
-   resize(V,40);
+  <<"$V\n";
 
-   V[35] = 80;
+  TR=testargs(1,V);
 
-   chkN(V[35],80);
+  resize(V,40);
 
-   <<"%(1,,,\n)$TR\n";
+  V[35] = 80;
 
-   resize(V,6,6);
+  chkN(V[35],80);
 
-   V[0][3] = 79;
+  <<"%(1,,,\n)$TR\n";
 
-   chkN(V[0][3],79);
+  resize(V,6,6);
 
-   <<"$V\n";
+  V[0][3] = 79;
 
-   TR=testargs(1,V);
+  chkN(V[0][3],79);
 
-   <<"%(1,,,\n)$TR\n";
+  <<"$V\n";
 
-   Delete(V);
+  TR=testargs(1,V);
 
-   float V = 4*atan(1.0);
+  <<"%(1,,,\n)$TR\n";
 
-   <<"%V $(Caz(V)) $V\n";
+  Delete(V);
 
-   TR2=testargs(1,V);
+  float V2 = 4*atan(1.0);
 
-   <<"%(1,,,\n)$TR2\n";
+  <<"%V $(Caz(V2)) $V2\n";
+  ndb("DBWIC")
+  TR2=testargs(1,V2);
 
-   chkOut();
+  <<"%(1,,,\n)$TR2\n";
+ 
+   Vec V3(INT_,12,0,1,0)
 
-//===***===//
+<<"%V $V3\n"
+
+   V3.pinfo()
+
+
+  chkOut();
+
+//==============\_(^-^)_/==================//
+

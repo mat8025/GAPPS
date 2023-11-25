@@ -277,14 +277,14 @@ Svar pnames = {"moo","zoo","roo","goo", "" }
     wp =  runproc("moo",kp)
 <<"done asl callproc moo  $wp  $moo_call\n"
 
-ans=query("called moo?");
+//ans=query("called moo?");
 
 
 for (i=0; i< 3; i++) {
 
    wp =  runproc("roo",kp)
 <<"done asl callproc roo  $wp  $roo_call\n"
-   ans=query("called roo?");
+   //ans=query("called roo?");
 }
 
 <<" test that WIC is now on again \n"
@@ -294,7 +294,7 @@ for (i=0; i< 3; i++) {
 <<"trying asl callproc noo no args\n"
    wp =  runproc("noo")
 <<"done asl callproc noo  $wp  $noo_call\n"
-   ans=query("called noo?");
+   //ans=query("called noo?");
 }
 
 
@@ -304,7 +304,7 @@ for (i=0; i< 3; i++) {
 <<"trying asl callproc too 2 args\n"
    wp =  runproc("too",kp, 22)
 <<"done asl callproc too  $wp  $too_call\n"
-   ans=query("called too?");
+   //ans=query("called too?");
 }
 
 

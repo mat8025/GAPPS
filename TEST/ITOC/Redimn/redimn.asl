@@ -15,62 +15,68 @@
 ///
 ///  redimn
 ///
+#include "debug.asl"
 
+  if (_dblevel >0) {
 
-//  always use debug.asl to init
-//setdebug(0,"~step")
+  debugON();
 
-#include "debug"
+  }
 
-debugOFF()
+  showUsage(" test redimn func ");
 
-chkIn(_dblevel);
+  ask =0;
 
-int V[20];
+  chkIn(_dblevel);
 
+  int V[20];
 
- V[10] = 47;
+  V[10] = 47;
 
-chkN(V[0],0)
-chkN(V[10],47)
-chkN(V[19],0)
+  chkN(V[0],0);
 
-<<" vector \n"
-<<"$V\n"
+  chkN(V[10],47);
 
-  V->redimn(10,2);
-<<" 2D array 10,2 \n"
-<<"$V\n"
+  chkN(V[19],0);
 
+  <<" vector \n";
 
-  V->redimn(5,4);
-<<" 2D array 5,4 \n"
-<<"$V\n"
+  <<"$V\n";
 
+  V.redimn(10,2);
 
+  <<" 2D array 10,2 \n";
 
-<<" vector \n"
-V->redimn();
-<<"$V\n"
+  <<"$V\n";
 
+  V.redimn(5,4);
 
-M = V;
+  <<" 2D array 5,4 \n";
 
- redimn(M,4,5);
+  <<"$V\n";
 
-<<" 2D array 4,5 \n"
-<<"$M\n"
+  <<" vector \n";
 
- redimn(M);
+  V.redimn();
 
-<<" vec \n"
-<<"$M\n"
+  <<"$V\n";
 
+  M = V;
 
+  redimn(M,4,5);
 
-chkN(M[10],47)
+  <<" 2D array 4,5 \n";
 
+  <<"$M\n";
 
+  redimn(M);
 
-chkOut();
+  <<" vec \n";
 
+  <<"$M\n";
+
+  chkN(M[10],47);
+
+  chkOut();
+
+//==============\_(^-^)_/==================//
