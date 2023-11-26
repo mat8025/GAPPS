@@ -2,193 +2,228 @@
  *  @script iproc.asl                                                   
  * 
  *  @comment test indirect call pr proc ()                              
- *  @release Beryllium                                                  
- *  @vers 1.3 Li Lithium [asl 6.4.51 C-Be-Sb]                           
- *  @date 07/26/2022 20:33:43                                           
+ *  @release Palladium                                                  
+ *  @vers 1.4 Be Beryllium [asl ]                                       
+ *  @date 11/25/2023 21:33:33                                           
  *  @cdate 1/1/2011                                                     
  *  @author Mark Terry                                                  
- *  @Copyright © RootMeanSquare 2022 -->                               
+ *  @Copyright © RootMeanSquare  -->                                   
  * 
  */ 
+
 //----------------<v_&_v>-------------------------//;                  
 
 ///
 ///
 ///
-
 #include "debug"
 
+  if (_dblevel >0) {
 
-if (_dblevel >0) {
-  debugON()
-}
+  debugON();
 
+  }
 
- chkIn (_dblevel)
- 
-just_once = 0;
-LD_libs = 0;
+  chkIn (_dblevel);
+
+  just_once = 0;
+
+  LD_libs = 0;
 //=======================//
-int goo_call = 0;
-Str goo(int m)
-{
-static int znt = 0;
-znt++;
-<<"IN goo $_proc $znt $m\n"
 
- goo_call++;
-if (znt > 3) {
-  <<" repeat call $znt \n"
+  int goo_call = 0;
+
+  Str goo(int m)
+  {
+  static int znt = 0;
+  znt++;
+
+  <<"IN goo $_proc $znt $m\n";
+
+  goo_call++;
+
+  if (znt > 3) {
+
+  <<" repeat call $znt \n";
   //exit();
-}
+
+  }
+
   k = m+ znt;
-<<"OUT $_proc $k $znt $m\n"  
+
+  <<"OUT $_proc $k $znt $m\n";
   //return k;
   //return;
-  return "$_proc"
-}
-//=======================//
-just_once++ ;
-<<"after  define goo() $just_once but not after Call\n"
 
+  return "$_proc";
+
+  }
 //=======================//
 
-int zoo_call = 0;
-Str zoo(int m)
-{
-static int znt = 0;
-znt++;
+  just_once++ ;
 
-<<"IN zoo $_proc  $m\n"
-<<"$znt \n"
+  <<"after  define goo() $just_once but not after Call\n";
+//=======================//
+
+  int zoo_call = 0;
+
+  Str zoo(int m)
+  {
+  static int znt = 0;
+  znt++;
+
+  <<"IN zoo $_proc  $m\n";
+
+  <<"$znt \n";
+
   zoo_call++;
 
-if (znt > 100) {
-  <<" repeat call $znt \n"
+  if (znt > 100) {
+
+  <<" repeat call $znt \n";
+
   exit();
-}
-  k = m+ znt;
-  return "zoo"
-}
-//=======================//
-int hoo_call = 0;
-Str hoo(int m)
-{
-static int znt = 0;
-znt++;
-<<"IN hoo $_proc $znt $m\n"
 
-hoo_call++;
-if (znt > 10) {
-  <<" repeat call $znt \n"
+  }
+
+  k = m+ znt;
+
+  return "zoo";
+
+  }
+//=======================//
+
+  int hoo_call = 0;
+
+  Str hoo(int m)
+  {
+  static int znt = 0;
+  znt++;
+
+  <<"IN hoo $_proc $znt $m\n";
+
+  hoo_call++;
+
+  if (znt > 10) {
+
+  <<" repeat call $znt \n";
+
   exit();
-}
+
+  }
+
   k = m+ znt;
-  return "hoo"
-}
+
+  return "hoo";
+
+  }
 //=======================//
 
-int moo_call = 0;
-Str moo(int m)
-{
-static int znt = 0;
-znt++;
-<<"IN moo $_proc $znt\n"
-moo_call++;
-  return "$_proc"
-}
+  int moo_call = 0;
+
+  Str moo(int m)
+  {
+  static int znt = 0;
+  znt++;
+
+  <<"IN moo $_proc $znt\n";
+  moo_call++;
+
+  return "$_proc";
+  }
 //=======================//
 
-int roo_call = 0;
-Str roo(int m)
-{
-static int znt = 0;
-znt++;
+  int roo_call = 0;
 
-<<"IN $_proc $znt\n"
-roo_call++;
-  return "$_proc"
-}
+  Str roo(int m)
+  {
+  static int znt = 0;
+  znt++;
+
+  <<"IN $_proc $znt\n";
+
+  roo_call++;
+
+  return "$_proc";
+
+  }
 //=======================//
 
-int noo_call = 0;
-Str noo()
-{
-static int znt = 0;
-znt++;
+  int noo_call = 0;
 
-<<"IN $_proc $znt\n"
-noo_call++;
-  return "$_proc"
-}
-//=======================//
-int too_call = 0;
-Str too(int m, int n)
-{
-static int znt = 0;
-znt++;
+  Str noo()
+  {
+  static int znt = 0;
+  znt++;
 
-<<"IN $_proc $m $n  $znt\n"
-too_call++;
-  return "$_proc"
-}
+  <<"IN $_proc $znt\n";
+
+  noo_call++;
+
+  return "$_proc";
+
+  }
 //=======================//
 
+  int too_call = 0;
 
-int woo_call = 0;
-Str woo(int m, int n, int o)
-{
-static int znt = 0;
-znt++;
+  Str too(int m, int n)
+  {
+  static int znt = 0;
+  znt++;
 
-<<"IN $_proc $m $n $o $znt\n"
-woo_call++;
-  return "$_proc"
-}
+  <<"IN $_proc $m $n  $znt\n";
+
+  too_call++;
+
+  return "$_proc";
+
+  }
 //=======================//
 
+  int woo_call = 0;
 
+  Str woo(int m, int n, int o)
+  {
+  static int znt = 0;
+  znt++;
 
+  <<"IN $_proc $m $n $o $znt\n";
+
+  woo_call++;
+
+  return "$_proc";
+
+  }
+//=======================//
 //include "iproc_libs.asl"
 
-float rf = 3.45;
-
+  float rf = 3.45;
 
   frs="xx";
 
+  <<"%V $frs  $rf\n" ;
 
-<<"%V $frs  $rf\n" ;   
+  chkN(rf,3.45);
 
- chkN(rf,3.45)
+  rf = sin(0.7) ; // fix broke direct func call ?;
 
- rf = sin(0.7) ; // fix broke direct func call ?
- 
- chkN(rf,sin(0.7))
-<<"%V $frs  $rf\n" ;   // 
+  chkN(rf,sin(0.7));
 
-tof = typeof(rf)
+  <<"%V $frs  $rf\n" ;   //
 
-<<" %V $tof\n"
+  tof = typeof(rf);
 
-<<"$(typeof(rf)) \n" ;   // fix broke indirect func call
+  <<" %V $tof\n";
 
-<<"%V $(typeof(frs))  $frs\n" ;   // fix broke indirect func call
+  <<"$(typeof(rf)) \n" ;   // fix broke indirect func call;
 
+  <<"%V $(typeof(frs))  $frs\n" ;   // fix broke indirect func call;
 
+  zoo(80);
 
-
-
-
-
-
-   zoo(80);
-
-<<" after direct call of zoo $zoo_call\n"
-
-
+  <<" after direct call of zoo $zoo_call\n";
 // = iread("?")
-
-
 /*
 cbname = "goo"
 
@@ -231,168 +266,179 @@ chkN (just_once,1)
 */
 
 
-
-
-   fri = zoo(80);
-
+  fri = zoo(80);
 //<<"%V $(typeof(fri))  $fri\n"
-
-
-
 //<<"%V $(typeof(frs))  $frs\n"
 
   frs= zoo(2);
-
 //<<"%V $(typeof(frs))  $frs\n"
 
-Str wp = "xyz"
+  Str wp = "abc";
 
-N = 6;
-kp= 0;
+  N = 6;
 
-kp= 1;
+  kp= 0;
 
-for (i=0; i< 6; i++) {
+  kp= 1;
 
-<<"$i before DIRECT call of zoo $zoo_call\n"
-      wp= zoo(kp);
-      kp++;
+  for (i=0; i< 6; i++) {
 
-<<"$kp after DIRECT call of $wp  zoo $zoo_call\n"
+  <<"$i before DIRECT call of zoo $zoo_call\n";
 
-}
+  wp= zoo(kp);
 
+  kp++;
 
-Svar pnames = {"moo","zoo","roo","goo", "" }
+  <<"$kp after DIRECT call of $wp  zoo $zoo_call\n";
 
-<<"%V $pnames \n"
+  }
 
-<<"%V $pnames[1] \n"
+  Svar pnames = {"moo","zoo","roo","goo", "" };
 
-<<"trying asl callproc zoo 7\n"
+  <<"%V $pnames \n";
 
-    wp =  runproc("zoo",7)
-<<"done asl callproc zoo  $wp  $zoo_call\n"
+  <<"%V $pnames[1] \n";
 
-    wp =  runproc("moo",kp)
-<<"done asl callproc moo  $wp  $moo_call\n"
+  fileDB(ALLOW_,"ic_call,ds_storesiv,ds_storevar,spe_func,spe_sint,spe_proc_checkfname");
 
+  <<"trying asl callproc zoo 7\n";
+
+  wp =  runproc("zoo",7);
+
+  <<"done asl callproc zoo  $wp  $zoo_call\n";
+//askit(1)
+
+  wp =  runproc("moo",kp);
+
+  <<"done asl callproc moo  $wp  $moo_call\n";
 //ans=query("called moo?");
 
+  for (i=0; i< 3; i++) {
 
-for (i=0; i< 3; i++) {
+  wp =  runproc("roo",kp);
 
-   wp =  runproc("roo",kp)
-<<"done asl callproc roo  $wp  $roo_call\n"
+  <<"done asl callproc roo  $wp  $roo_call\n";
    //ans=query("called roo?");
-}
 
-<<" test that WIC is now on again \n"
+  }
 
+  <<" test that WIC is now on again \n";
 
-for (i=0; i< 3; i++) {
-<<"trying asl callproc noo no args\n"
-   wp =  runproc("noo")
-<<"done asl callproc noo  $wp  $noo_call\n"
+  for (i=0; i< 3; i++) {
+
+  <<"trying asl callproc noo no args\n";
+
+  wp =  runproc("noo");
+
+  <<"done asl callproc noo  $wp  $noo_call\n";
    //ans=query("called noo?");
-}
 
+  }
 
+  for (i=0; i< 3; i++) {
 
+  <<"trying asl callproc too 2 args\n";
 
-for (i=0; i< 3; i++) {
-<<"trying asl callproc too 2 args\n"
-   wp =  runproc("too",kp, 22)
-<<"done asl callproc too  $wp  $too_call\n"
+  wp =  runproc("too",kp, 22);
+
+  <<"done asl callproc too  $wp  $too_call\n";
    //ans=query("called too?");
-}
 
+  }
 
-for (i=0; i< 30; i++) {
-<<"trying asl callproc woo 3 args\n"
-   wp =  runproc("woo",kp, 2, 3)
-<<"done asl callproc woo  $wp  $woo_call\n"
+  for (i=0; i< 30; i++) {
+
+  <<"trying asl callproc woo 3 args\n";
+
+  wp =  runproc("woo",kp, 2, 3);
+
+  <<"done asl callproc woo  $wp  $woo_call\n";
   // ans=query("called woo?");
-}
 
+  }
 
+  for (i=0; i< 4; i++) {
 
+  kp++;
 
-for (i=0; i< 4; i++) {
-   kp++;
-<<" %V $i $kp\n"
-}
+  <<" %V $i $kp\n";
 
- wp =  runproc("hoo",kp)
+  }
 
- wp =  runproc("goo",kp)
-chkOut()
+  wp =  runproc("hoo",kp);
 
-exit(-1)
+  wp =  runproc("goo",kp);
 
+  chkOut();
 
+  exit(-1);
 
-for (i=0; i< 4; i++) {
-       cbname = pnames[i]
-<<"trying indirect call of $cbname  $i\n"
-       wp= $cbname(i);
-<<"$kp done indirect call of $wp %V $goo_call $zoo_call $moo_call\n"
+  for (i=0; i< 4; i++) {
 
-}
+  cbname = pnames[i];
 
+  <<"trying indirect call of $cbname  $i\n";
 
+  wp= $cbname(i);
 
+  <<"$kp done indirect call of $wp %V $goo_call $zoo_call $moo_call\n";
 
+  }
 
+  Svar pnames2 = {"moo","hoo","zoo","goo" };
 
+  for (i=0; i< 4; i++) {
 
-svar pnames2 = {"moo","hoo","zoo","goo" }
+  cbname = pnames2[i];
 
-for (i=0; i< 4; i++) {
-       cbname = pnames2[i]
-<<"trying indirect call of $cbname\n"
-       wp= $cbname(kp);
-<<"$kp done indirect call of $wp %V $goo_call $zoo_call $moo_call\n"
-      kp++;
+  <<"trying indirect call of $cbname\n";
 
-}
+  wp= $cbname(kp);
 
+  <<"$kp done indirect call of $wp %V $goo_call $zoo_call $moo_call\n";
 
-y = sin(0.7)
+  kp++;
 
+  }
 
- fname="_sin" ; // use _name to have asl lookup name as SFunction
+  y = sin(0.7);
+
+  fname="_sin" ; // use _name to have asl lookup name as SFunction;
                         // no leading _   then asl  will look up Proc
-			
 
-z=$fname(0.7)
+  z=$fname(0.7);
 
-<<"%V $y $z\n"
+  <<"%V $y $z\n";
 
-chkR(z,y)
+  chkR(z,y);
 
-chkOut();
+  chkOut();
 
-exit();
-
-
-
+  exit();
 
   while (1) {
 
-       cbname = iread("what to call?:")
-<<"trying indirect call of $cbname\n"
-       wp= $cbname(kp);
-<<"$kp done indirect call of $wp \n"
+  cbname = iread("what to call?:");
+
+  <<"trying indirect call of $cbname\n";
+
+  wp= $cbname(kp);
+
+  <<"$kp done indirect call of $wp \n";
+
   kp++;
+
   if (kp > N) {
-   <<" exit ? loop $kp > $N - segamos adelante!\n"
-    break;
+
+  <<" exit ? loop $kp > $N - segamos adelante!\n";
+
+  break;
+
   }
-  
+
   }
 
+  exit();
 
-exit()
 
-////////////////////EOS\\\\\\\\\\\\\\\
+//==============\_(^-^)_/==================//

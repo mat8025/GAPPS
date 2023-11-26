@@ -80,7 +80,7 @@
         c=Foo(2,a);
 <<"%V $a $c\n"
         a++;
-!a
+
 <<" next iteration $a\n"
     }
 
@@ -509,10 +509,10 @@
   d = foo2(in);
 
   <<"ret will be  $d\n";
-!iin
+
 
   real rin = in;
-!irin
+
 
   e = foo3(rin);
 
@@ -523,19 +523,19 @@
   <<"ret will be  $e\n";
 
   c = foo2(in);
-!p c   
+  
 
   c = foo2(in) * 6;
 
   <<"$c foo2(in) * 6\n";
 
   chkN(c,120);
-!p c
+
 
   c = 6 * foo2(in);
 
   <<"$c  6 * foo2(in)\n";
-!p c
+  c.pinfo()
 
   chkN(c,120);
 
