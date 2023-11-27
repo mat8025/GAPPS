@@ -114,10 +114,10 @@
 
    chkStr(ws,"hey hey");
 
-   Str vers2ele(str vstr)
+   Str vers2ele(Str vstr)
    {
 
-     <<"$_proc   <|$vstr|>\n";
+     <<"$_proc   <| $vstr |>\n";
 
      vstr.pinfo();
 
@@ -371,7 +371,7 @@
    void goo(ptr a)
    {
 
-     <<"$_proc $a\n";
+     <<"$_proc $a \n";
 
      a.pinfo();
      $a += 1;
@@ -572,6 +572,9 @@
   x =1;
 
   xp = &x;
+
+  xp.pinfo()
+  askit(1)
 
   goo(xp);
 
