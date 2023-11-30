@@ -1,6 +1,6 @@
 
 ///
-/// procrefarg
+/// procptrarg
 #include "debug"
 
    allowErrors(-1) ; // keep going;
@@ -14,14 +14,15 @@
 
    chkIn(_dblevel);
 
- showUsage("How to use ref args") ;
+ showUsage("How to use ptr args") ;
 
 
 
-   int sumarg (int& v, int& u)
+   int sumarg (int* v, int* u)
    {
 
-
+/// this should be doing ptr syntax ?
+///   z = $v + $u
 
      <<"ptr args int %V  $v $u \n";
 
@@ -92,9 +93,8 @@ int n = 2;
 
    <<"should be calling summarg int args vers with  ref args\n";
 
- /// TBF  p = sumarg(&n,&m); // should give error call ptr for proc ref
-  fileDB(ALLOW_,"spe_proc")
-    p = sumarg(n,m);
+   p = sumarg(&n,&m);
+
    <<"returned %V $n $m $p \n";
 
    chkN(p,5);
@@ -107,4 +107,3 @@ int n = 2;
     chkOut()
 
    exit()
-

@@ -27,7 +27,7 @@
   <<"$Use_\n";
 
   }
-
+  ask =0
   chkIn(_dblevel);
 /*
    real Foo(real x,real  y)
@@ -397,12 +397,14 @@
   <<"$_proc $a \n";
 
   a.pinfo();
-
+  fileDB(ALLOW_,"opera_")
   $a += 1;
   // this should increment what a is pointing to a should
  // be as before
 
   a.pinfo();
+
+askit(ask)
 // does'nt really return anything
 // return on own crash TBF crash
 
@@ -548,7 +550,7 @@
   in.pinfo()
   
   e = foo3(in);
-  askit(1)
+  askit(0)
   <<"ret will be  $e\n";
 
   c = foo2(in);

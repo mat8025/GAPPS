@@ -711,16 +711,16 @@ The function v_realloc may be used to reduce/increase the size of an array.
 POINTERS
 .fi
  A string variable can be used to 'point' to another variable by using $ symbol as
-a derefence operator.
+a dereference operator.
 e.g.
 //  use $ as variable pointer operator
 int a_3 = 66
 
-vn = "a_3"
+ vn = "a_3"
 
-k = $vn
+ k = $vn
 
-$vn = 77
+ $vn = 77
 
 <<"%V$vn $k $a_3 \n"
 // output is :-
@@ -772,7 +772,7 @@ for (i = 0; i < 15; i++) {
 
 
  p = &X[2]
- q = $p // dereference of pointer p
+ q = $p ; // dereference of pointer p
 
  the value of q would be 2  (since at this point X[2] = 2.0).
 
