@@ -317,18 +317,23 @@ int _DBH = -1
 	    i_time += tmsecs;
 	    //<<"%V $i_time\n"
           }
- if (!do_module) {	  
-if (pcc < 100  && pcc > 90){
-
- <<"$(PRED_)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\%$(POFF_) took $took msecs\n"
+ if (!do_module) {
+  blue= PGREEN ;
+//<<"%V $pcc\n"
+if ((pcc < 100)  && (pcc >= 90)) {
+ <<"\t$(PBLUE)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs $(POFF_)\n"
 }
-else if (pcc < 90 ){
+else if ((pcc < 90) && (pcc >= 70) ){
 
- <<"$(PRED_)DONE tests $(POFF_)$ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs\n"
+<<"\t$(PPURPLE)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs \033[0m \n"
+}
+else if (pcc < 70) {
+
+<<"\t$(PRED)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs \033[0m \n"
 }
 else {
-// <<"$(PGREEN_)\tDONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs $(POFF_)\n"
- <<"\tDONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs \n"
+<<"$(PGREEN_)\tDONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs $(POFF_)\n"
+ //<<"\t$(blue) DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs \n"
 }
 
 <<[Opf]"DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\%\n"

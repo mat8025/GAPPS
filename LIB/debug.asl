@@ -54,14 +54,9 @@ Str _Usage = " ... "
 // will be overwritten by scripts  unless unique/local options used
 void askit(int ask)
 {
-Str ans;
-	  if (ask) {
-       ans = query("ok? : [y,n,q]")
-       if (ans @= "q") {
-            exit(-1)
-        }
 
-       }
+  <<"use ans=ask(prompt,action)\n");
+
 }
 //[EP]==========================
 

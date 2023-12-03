@@ -260,7 +260,9 @@ Str old_comment ="yyy"
 */
 
 if (found_vers) {
- 
+
+ fileDB(ALLOW_,"spe_proc,spe_args")
+
   Vers2ele(cvers)
 // nele = 7;
 

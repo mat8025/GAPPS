@@ -51,17 +51,22 @@ int main(void) {
 
      debugON();
 
-     <<"$Use_\n";
+ 
 
      }
 
    chkIn(_dblevel);
-
- showUsage("How to use ref args") ;
+  ask =1
+ showUsage("How to use ref,pr,val args") ;
  fileDB(REJECT_ALL_,"xyz")
+
+
 /*
    proc sumarg (ptr v, ptr u)
    {
+
+    // code here would have to comply with the type pointed to
+    //
      <<"args in %V  $v $u \n"
      float z;
      v->info(1)
@@ -85,6 +90,54 @@ int main(void) {
 //=======================//
 */
 
+
+ fileDB(ALLOW_,"spe_proc")
+
+   int sumarg (int vi, int ui)
+   {
+
+     <<"val args int %V  $vi $ui \n";
+
+     vi.pinfo();
+
+     ui.pinfo();
+
+
+     int zi;
+
+     zi.pinfo();
+
+     zi = vi + ui;
+
+     zi.pinfo();
+
+     vi.pinfo();
+
+     ui.pinfo();
+
+     <<"%V$vi + $ui = $zi\n";
+
+//   v++;
+
+     vi = vi +1;
+
+     <<" changing first arg to %V$vi\n";
+
+     vi.pinfo();
+
+     ui = ui * 2;
+
+     <<" changing second arg to %V$ui \n";
+
+     ui.pinfo();
+
+     <<"args out %V$vi $ui $zi\n";
+
+
+     return zi;
+
+     }
+//=======================//
 
    int sumarg (int* v, int* u)
    {
@@ -135,10 +188,10 @@ int main(void) {
      }
 //=======================//
 
-   int sumarg (int& v, int& u)
+   float sumarg_rf (float& v, float& u)
    {
 
-     <<"ref args int %V  $v $u \n";
+     <<"ref args float %V  $v $u \n";
 
      v.pinfo();
 
@@ -181,57 +234,11 @@ int main(void) {
      }
 //=======================//
 
-   int sumarg (int vi, int ui)
-   {
-
-     <<"val args int %V  $vi $ui \n";
-
-     vi.pinfo();
-
-     ui.pinfo();
-
-
-     int zi;
-
-     zi.pinfo();
-
-     zi = vi + ui;
-
-     zi.pinfo();
-
-     vi.pinfo();
-
-     ui.pinfo();
-
-     <<"%V$vi + $ui = $zi\n";
-
-//   v++;
-
-     vi = vi +1;
-
-     <<" changing first arg to %V$vi\n";
-
-     vi.pinfo();
-
-     ui = ui * 2;
-
-     <<" changing second arg to %V$ui \n";
-
-     ui.pinfo();
-
-     <<"args out %V$vi $u $zi\n";
-
-
-     return zi;
-
-     }
-//=======================//
-
 
    float sumarg (float vf, float uf)
    {
 
-     <<"args float  %V  $vf $uf \n";
+     <<"val args float  %V  $vf $uf \n";
      float z;
      z = vf + uf;
 
@@ -254,6 +261,76 @@ int main(void) {
      }
 //=======================//
 
+
+ fileDB(ALLOW_,"spe_proc,parse_hop,oo_cmf")
+
+
+   p = 0;
+
+
+   <<"should be calling summarg int args vers with  val args\n";
+
+   int o = 4;
+
+   int q = 7;
+
+   o.pinfo()
+   q.pinfo()
+
+   p = sumarg(o,q);
+
+
+
+   chkN(o,4);
+
+   chkN(q,7);
+
+
+
+   chkN(p,11);
+
+   askit(ask)
+ 
+   float x = 13.3;
+
+   float y = 26.7;
+
+   chkR(x,13.3,3);
+
+   chkR(y,26.7,3);
+
+   <<"should be calling summarg float args vers with float val args\n";
+
+   r= sumarg(x,y);
+
+
+<<"%V $x $y $r \n"
+
+
+   askit(ask)
+
+
+
+   <<"should be calling sumarg  double args vers with  ref args\n";
+   double dx = x;
+   double dy = y;
+
+   <<"b4 call %V $dx $dy $r \n";
+
+   r = sumarg_rf(x,y);
+
+   <<"returned %V $dx $dy $r \n";
+
+
+askit(ask)
+
+
+   n = 2;
+
+   m = 3;
+
+
+<<"should be calling sumarg int args vers with  ptr args\n";
    int n = 2;
 
    int m = 3;
@@ -271,56 +348,37 @@ int main(void) {
    n--;
 
    <<"%V$n \n";
-
-   p = 0;
-
    <<"IN %V $n $m $p \n";
+   int k = 0;
 
-   <<"should be calling summarg int args vers with  ref args\n";
+   <<"pre %V $n $m \n";
 
-   p = sumarg(&n,&m);
+   k = sumarg(&n,&m);
 
-   <<"returned %V $n $m $p \n";
+   <<"post %V $n $m $k\n";
 
-   chkN(p,5);
+   <<"%V proc returns $k \n";
 
    chkN(n,3);
 
    chkN(m,6);
 
+   <<"%V $k\n";
+//  chkN(k,5)
 
-   
-
-   
-
-   <<"should be calling summarg int args vers with  val args\n";
-
-   <<"IN %V $n $m $p \n";
+   chkN(5,k);
 
 
-   int o = 4;
 
-   int q = 7;
 
-   fileDB(ALLOW_,"spe_proc")
+askit(ask)
 
-   p = sumarg(o,q);
 
-   <<"returned %V $n $m $p \n";
 
-   chkN(o,4);
 
-   chkN(q,7);
+    x = 13.3;
 
-   chkOut()
-
-   exit()
-
-   chkN(p,11);
-
-   float x = 13.3;
-
-   float y = 26.7;
+    y = 26.7;
 
    chkR(x,13.3,3);
 
@@ -338,28 +396,7 @@ int main(void) {
 
    <<"Scalar args \n";
 
-   n = 2;
 
-   m = 3;
-
-   <<"calling %V $n $m \n";
-
-   int k = 0;
-
-   k = sumarg(&n,&m);
-
-   <<"post %V $n $m $k\n";
-
-   <<"%V proc returns $k \n";
-
-   chkN(n,3);
-
-   chkN(m,6);
-
-   <<"%V $k\n";
-//  chkN(k,5)
-
-   chkN(5,k);
 //
 
    n = 7;

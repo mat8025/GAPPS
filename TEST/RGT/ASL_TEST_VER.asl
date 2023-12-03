@@ -41,6 +41,9 @@ setmaxicerrors(-1);
  
 #define PGREEN '\033[1;32m'
 #define PRED '\033[1;31m'
+#define PBLUE '\033[1;34m'
+#define PYELLOW '\033[1;33m'
+#define PPURPLE '\033[1;45m'
 #define PBLACK '\033[1;39m'
 #define POFF  '\033[0m'
 
