@@ -33,37 +33,52 @@ of the size of the generated array.
 
 #include "debug"
 
-if (_dblevel >0) {
-   debugON()
-}
-  
-chkIn(_dblevel)
+   if (_dblevel >0) {
+
+     debugON();
+
+     }
+   chkIn(_dblevel);
+   
+prompt = "go_on? : [y,n,q]"
+action = 0 ;
+
+// 1 ask  and return input 0 don't ask just continue 
+//cntrl D will reurn option to quit p
 
 
-int v[2] = {2,-1}
-<<"$v \n"
+   fileDB(ALLOW_,"spe_declare,spe_func")
+   
+   int v[2] = {2,-1};
 
-I = sgen(INT_,10,v)
+   <<"$v \n";
+   
+ ans=ask(prompt,action)
+ 
+   I = sgen(INT_,10,v);
 
-<<"$I\n"
+   <<"$I\n";
 
+   chkN(I[0],2);
 
-chkN(I[0],2)
-chkN(I[1],1)
+   chkN(I[1],1);
 
+   int vi[2] = {0,1};
 
-int vi[2] = {0,1}
+   int vs[2] = {1,2};
 
-int vs[2] = {1,2}
+   J = vvgen(INT_,10,vi,vs);
 
+   <<"$J\n";
 
-J = vvgen(INT_,10,vi,vs)
+   J.pinfo()
+   
+   chkN(J[2],1);
 
-<<"$J\n"
+   chkN(J[3],3);
 
-chkN(J[2],1)
-chkN(J[3],3)
+   chkOut();
 
+<<" did this get here?\n"
 
-chkOut()
-
+//==============\_(^-^)_/==================//

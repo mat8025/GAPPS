@@ -1865,3 +1865,22 @@ opera_promote.cpp                   1.56  12/02/2023 21:27:12  use isaPtr for re
 spe_proc_checkfname.cpp             2.63  12/02/2023 21:36:30  special case for info func,  vid_sap,type,mod init
 gs_debug.cpp                        1.71  12/02/2023 21:38:57  dbff revise
 test_l.cpp                          1.55  12/02/2023 21:44:15  color code pass/fail
+svar_pf.cpp                         1.67  12/03/2023 07:38:38  IDBL ==> IDBF
+svar_ops.cpp                        1.66  12/03/2023 07:40:13  IDBL ==> IDBF 
+ds_getvarasstr.cpp                  2.72  12/03/2023 07:45:21  IDBL ==> IDBF 
+ds_siv.cpp                          2.76  12/03/2023 07:47:29  LIST_V
+ds_sivarray.cpp                     2.78  12/03/2023 07:50:15  IDBL -> IDBF
+ds_sivbounds.cpp                    2.51  12/03/2023 07:53:59  clear bounds IDBL -> IDBF
+ds_sivptr.cpp                       1.93  12/03/2023 07:57:49  isaPtr()
+spe_declare.cpp                     2.40  12/03/2023 08:02:36  NOWIC sections when eval 
+spe_proc.cpp                        2.73  12/03/2023 08:04:31  IBDL -> IDBF so we can apply filter debug
+spe_proc_def.cpp                    2.72  12/03/2023 08:07:04  svar pool removed IBDL -> IDBF so we can apply filter debug  
+spe_proc_setup.cpp                  2.54  12/03/2023 08:08:34  IBDL -> IDBF so we can apply filter debug
+spe_sint.cpp                        1.25  12/03/2023 08:11:50  return for runproc
+spe_stateparse.cpp                  2.61  12/03/2023 08:13:34  IDBL->IDBF
+spil_aop.cpp                        1.25  12/03/2023 08:15:52  Mul of vector elements TBD
+vmf_l.cpp                           1.73  12/03/2023 08:18:36  read/write => vmf_fop  LIST_V
+ic_call.cpp                         1.61  12/03/2023 08:24:31  use func name to check for DLL SfuncXic (func_index, na, fname, result);
+parse.h                             2.8  12/03/2023 08:28:13  KEEP_SIV_SPECS  BIT25 
+spil_utils.cpp                      2.69  12/03/2023 14:08:40  warn on allow_more_errors if already set to ignore errors
+spe_exp.cpp                         3.63  12/03/2023 14:47:02  Sexp - ignore return

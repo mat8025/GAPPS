@@ -32,7 +32,7 @@ if (_dblevel > 0) {
 
 int inflsz = 0;
 int outflsz = 0;
-
+int Report_pass = 1;
 
 setmaxcodeerrors(-1); // just keep going
 setmaxicerrors(-1);
@@ -80,6 +80,7 @@ hdir = getdir();
 wd= chdir(hdir)
 wdir = getdIr()
 <<[_DBH]"%V $wd $hdir $wdir\n"
+
 
 //ans=query("where are we")
 
@@ -274,6 +275,11 @@ int do_tests = 0;
     if (wt @= "") {
       break
     }
+
+      if (wt @= "-fix") {
+        Report_pass = 0  
+     }
+    
     
      if (wt @= "bops") {
         do_bops = 1  
@@ -1271,7 +1277,7 @@ if (pcc < 100.0) {
 <<"\n$lsz modules   crashed! \n"
 }
 else {
-<<"$pcc % Success Hooray! \n"
+<<"$pcc % Success nothing to fix Hooray! \n"
 }
 
 }

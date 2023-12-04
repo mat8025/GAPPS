@@ -11,194 +11,181 @@
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
-                                                                       
+
 ///
 ///
 ///
 #include "debug"
 
-   if (_dblevel >0) {
+  if (_dblevel >0) {
 
-     debugON();
+  debugON();
 
-     }
+  }
 
-   allowErrors(-1) ;  // keep going;
+  allowErrors(-1) ;  // keep going;
 
-   chkIn(_dblevel);
+  chkIn(_dblevel);
 
-   int n1 = 3;
+  int n1 = 3;
 
-   <<"%V$n1\n";
+  <<"%V$n1\n";
 
-   chkN (n1,3);
+  chkN (n1,3);
 
-   n1++;
+  n1++;
 
-   <<"%V$n1\n";
+  <<"%V$n1\n";
 
-   chkN (n1,4);
+  chkN (n1,4);
 
-   ++n1;
+  ++n1;
 
-   <<"%V$n1\n";
+  <<"%V$n1\n";
 
-   chkN (n1,5);
+  chkN (n1,5);
 
-   int moo(int a)
-   {
+  int moo(int a)
+  {
 
-     <<" $_proc $a \n";
+  <<" $_proc $a \n";
 
-     a.pinfo();
+  a.pinfo();
 
-     return a;
+  return a;
 
-     }
+  }
 
-   <<"moo(float) ?\n";
+  <<"moo(float) ?\n";
 
-   float moo(float x)
-   {
+  float moo(float x)
+  {
 
-     <<" $_proc $x \n";
+  <<" $_proc $x \n";
 
-     x.pinfo();
+  x.pinfo();
 
-     return x;
+  return x;
 
-     }
+  }
 
-   <<"moo(short,char) ?\n";
+  <<"moo(short,char) ?\n";
 
-   char  moo(short s, char c)
-   {
+  char  moo(short s, char c)
+  {
 
-     <<" $_proc $s $c\n";
+  <<" $_proc $s $c\n";
 
-     s.pinfo();
+  s.pinfo();
 
-     c.pinfo();
+  c.pinfo();
 
-     d= s + c;
+  d= s + c;
 
-     return d;
+  return d;
 
-     }
+  }
 
-   <<"moo(pan , pan) ?\n";
+  <<"moo(pan , pan) ?\n";
 
-   pan moo (pan m, pan n)
-   {
+  pan moo (pan m, pan n)
+  {
 
-     pan    d;
+  pan    d;
 
-     d = m + n;
+  d = m + n;
 
-     <<" $_proc %V $m $n $d \n";
+  <<" $_proc %V $m $n $d \n";
 
-     return d;
+  return d;
 
-     }
+  }
 //===============
 
-   <<"moo(double, int ) ?\n";
+  <<"moo(double, int ) ?\n";
 
-   double moo (double m, double n)
-   {
+  double moo (double m, double n)
+  {
 
-     double d;
+  double d;
 
-     d = m + n;
+  d = m + n;
 
-     <<" $_proc %V $m $n $d \n";
+  <<" $_proc %V $m $n $d \n";
 
-     return d;
+  return d;
 
-     }
+  }
 //===============
 
-   int j = 52;
+  int j = 52;
 
-   <<"call moo int\n";
+  <<"call moo int\n";
 
-   k= moo(j);
+  k= moo(j);
 
-   chkN (k,52);
+  chkN (k,52);
 
-   float y = 2.1;
+  float y = 2.1;
 
-   <<"call moo float\n";
+  <<"call moo float\n";
 
-   z= moo(y);
+  z= moo(y);
 
-   chkN (z,2.1);
+  chkN (z,2.1);
 
-   short s1 = 67;
+  short s1 = 67;
 
-   char c1 = 33;
+  char c1 = 33;
 
-   <<"call moo short,char\n";
+  <<"call moo short,char\n";
 
-   s2 = moo(s1,c1);
+  s2 = moo(s1,c1);
 
-   chkN (s2,100);
+  chkN (s2,100);
 
-   pan p  = 3.4;
+  pan p  = 3.4;
 
-   pan q = 1.2;
+  pan q = 1.2;
 
-   <<" call  moo (pan , pan) \n";
+  <<" call  moo (pan , pan) \n";
 
-   d4 = moo(p,q);
+  d4 = moo(p,q);
 
-   d4.pinfo();
+  d4.pinfo();
 
-   <<"%V$d4\n";
+  <<"%V$d4\n";
 
-   ans = "mark";
+  ans = "mark";
 
-   <<"Que pasa $ans ?\n";
+  <<"Que pasa $ans ?\n";
 
-   double g = 3.4;
+  double g = 3.4;
 
-   double h = 8;
+  double h = 8;
 
-   <<" call  moo (double , double) \n";
+  <<" call  moo (double , double) \n";
 
-   d3 = moo(g,h);
+  d3 = moo(g,h);
 
-   chkN (d3,11.4);
+  chkN (d3,11.4);
 
-   g = 77;
+  g = 77;
 
-   h = 23.0;
+  h = 23.0;
 
-   d3 = moo(h,g);
+  d3 = moo(h,g);
 //<<"%V$d3\n"
 
-   d3.pinfo();
+  d3.pinfo();
 
-   chkN (d3,100);
+  chkN (d3,100);
 
-   a  = sin(0.5);
+  a  = sin(0.5);
 
-   <<"%v$a \n";
+  <<"%v$a \n";
 
-   chkOut();
+  chkOut();
 
-   while (1) {
 
-     <<"Que pasa $ans ?\n";
-
-     ans= i_read("??");
-
-     if (ans == "quit") {
-
-       break;
-
-       }
-
-     }
-
-//===***===//
+//==============\_(^-^)_/==================//

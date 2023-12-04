@@ -242,18 +242,22 @@ void RunSFtests(Str Td)
 
 /////////////////////////////
 
-int scoreTest(Str itname)
+int scoreTest(Str itname, Str wt_prog)
 {
 // dbh = -1 no debug , 2 stderr print 
 int _DBH = -1
+
+//<<"$_proc <|$itname|>  <|$wt_prog|> \n"
 
 <<[_DBH]"$_proc <|$itname|>  \n"
 
  int scored = 0;
  int ntests;
  int npass;
-
-
+ 
+//  wt_prog.pinfo()
+// ans=ask("second str arg?",1)
+ 
  Str tname;
 
    //itname.aslpinfo();
@@ -317,23 +321,36 @@ int _DBH = -1
 	    i_time += tmsecs;
 	    //<<"%V $i_time\n"
           }
+	  
  if (!do_module) {
+
+         wlen = slen(wt_prog)
+         padit =nsc(40-wlen," ")
+
+  if (pcc <100.0 || Report_pass) {
+         <<"${wt_prog}$padit" // print time prog arg
+	 <<[Opf]"${wt_prog}$padit"
+    }
+
   blue= PGREEN ;
 //<<"%V $pcc\n"
 if ((pcc < 100)  && (pcc >= 90)) {
- <<"\t$(PBLUE)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs $(POFF_)\n"
+ <<"\t$(PBLUE)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs $(POFF_)\n\n"
 }
 else if ((pcc < 90) && (pcc >= 70) ){
 
-<<"\t$(PPURPLE)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs \033[0m \n"
+<<"\t$(PPURPLE)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs \033[0m \n\n"
 }
 else if (pcc < 70) {
 
-<<"\t$(PRED)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs \033[0m \n"
+<<"\t$(PRED)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs \033[0m \n\n"
+
 }
 else {
+ if (Report_pass) {
 <<"$(PGREEN_)\tDONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs $(POFF_)\n"
  //<<"\t$(blue) DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs \n"
+ }
 }
 
 <<[Opf]"DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\%\n"
@@ -348,7 +365,7 @@ else {
           if (pcc != 100.0) {
 	  //<<"${Curr_dir} inserting $tname into failed list \n"
             FailedList.Insert("${Curr_dir}/${itname}")
-	    <<"${Curr_dir}/${itname}\n"
+	  //  <<"${Curr_dir}/${itname}\n"
 	  //<<[Tff]"${Curr_dir}/${tname}\n"  
           }
      }
@@ -535,14 +552,17 @@ if (!scmp(lprg,prg)) {
 
 
       if (f_exist(tst_file) > 0) {
-         wlen = slen(xwt_prog)
+
+/*
+        wlen = slen(xwt_prog)
          padit =nsc(40-wlen," ")
 	 if (!do_module) {
          <<"${xwt_prog}$padit" // print time prog arg
 	 <<[Opf]"${xwt_prog}$padit"
          }
 	 //<<"$tst_file "
-         wscore = scoreTest(tst_file)
+*/	 
+         wscore = scoreTest(tst_file,xwt_prog)
       }
      else {
 
@@ -581,14 +601,16 @@ int wscore;
 
 
       if (f_exist(tst_file) > 0) {
-         wlen = slen(xwt_prog)
+/*
+wlen = slen(xwt_prog)
          padit =nsc(40-wlen," ")
 if (!do_module) {
         <<"${xwt_prog}$padit"      // print time prog arg
 
         <<[Opf]"${xwt_prog}$padit"
 }
-         wscore = scoreTest(tst_file)
+*/
+         wscore = scoreTest(tst_file,xwt_prog)
       }
      else {
 
@@ -672,6 +694,7 @@ void cart (Str prg)
       if (f_exist(tst_file) > 0) {
 
          wt_prog = "$(time()) ${wstr}: "
+/*
          wlen = slen(wt_prog)
          padit =nsc(40-wlen," ")
 	 if (!do_module) {
@@ -679,7 +702,8 @@ void cart (Str prg)
 
          <<[Opf]"${wt_prog}$padit"	 
          }
-         wscore = scoreTest(tst_file)
+*/	 
+         wscore = scoreTest(tst_file, wt_prog)
 	//<<"%V $wscore\n"
       }
      else {
@@ -758,12 +782,14 @@ void cart (Str prg,  Str pa1)
     !!"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst  $CFLAGS ${prg}.asl  $a1  > /dev/null"
 
      wt_prog = "$tim ${prg}:$a1 "
+     /*
      wlen = slen(wt_prog)
      padit =nsc(40-wlen," ")
      if (!do_module)  {
       <<"${wt_prog}$padit"
       <<[Opf]"${wt_prog}$padit"
       }
+*/
       tst_file = "${prg}.tst";
     //  <<"%V $tst_file\n"
       if (f_exist(tst_file) > 0) {
@@ -771,7 +797,7 @@ void cart (Str prg,  Str pa1)
        !!"grep DONE ${aprg}.tst"
            
 	   
-           wscore= scoreTest(tst_file)
+           wscore= scoreTest(tst_file, wt_prog)
       }
      else {
 

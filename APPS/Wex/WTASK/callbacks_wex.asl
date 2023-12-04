@@ -21,15 +21,18 @@
 #endif
 */
 
+
   void adjustQrt(int updown)
   {
 // find mid-date 
 // adjust to a 90 day resolution
 // shift up/down by 30
-   int wedwos[] = { wtwo, calwo,  carbwo, extwo,-1  };
-   float rx,ry,rX,rY;
 
-   RS=wgetrscales(wtwo);
+  int wedwos[] = { wtwo, calwo,  carbwo, extwo,-1  };
+
+  float rx,ry,rX,rY;
+
+  RS=wgetrscales(wtwo);
 // just plot at mid - the date
 
   mid_date = (RS[3] - RS[1])/2 + RS[1];
@@ -57,7 +60,6 @@
   sc_startday = rx;
 
   sc_endday = rX;
-
   //sWo(wedwos,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
 
   sWo(_WOID,wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0);
@@ -69,38 +71,40 @@
   }
 //========================================================
 
-int ExTim (int wb)
-{
-<<"ExTim $wb\n"
-     return 1
-}
-
- void EXIT()
+  int ExTim (int wb)
   {
-   <<"exit ?\n";
-   exitASL(0);
-    // exit_gs();
+
+  <<"ExTim $wb\n";
+
+  return 1;
   }
 
+  void EXIT()
+  {
+  <<"exit ?\n";
+  exitASL(0);
+    // exit_gs();
+
+  }
 
   void QRTD()
   {
 //<<" In $_proc\n"
 
-      adjustQrt(-1);
+  adjustQrt(-1);
 
-       showWL(sc_zstart, sc_zend);
+  showWL(sc_zstart, sc_zend);
 
   }
 
   void QRTI()
   {
 
-    adjustQrt(1);
+  adjustQrt(1);
 
-    drawScreens();
+  drawScreens();
 
-     showWL(sc_zstart, sc_zend);
+  showWL(sc_zstart, sc_zend);
 
   }
 //////////////////////////////////////////////////////////////////////////////////
@@ -108,11 +112,12 @@ int ExTim (int wb)
   void YRD()
   {
 
-    adjustYear(-1);
+  adjustYear(-1);
 
   drawScreens();
 
-     showWL(sc_zstart, sc_zend);
+  showWL(sc_zstart, sc_zend);
+
   }
 //--------------------------------------------------
 
@@ -120,6 +125,7 @@ int ExTim (int wb)
   {
 
   adjustYear(1);
+
   }
 //--------------------------------------------------
 
@@ -136,31 +142,25 @@ int ExTim (int wb)
 
   <<" ZIN  $lcpx  $rcpx \n";
 
-   sc_zstart = lcpx;
+  sc_zstart = lcpx;
 
-   sc_zend = rcpx;
-
+  sc_zend = rcpx;
 ///sc_zstart.pinfo();
-   
-<<"trying computeWL ?  $sc_zstart \n"
 
+  <<"trying computeWL ?  $sc_zstart \n";
 
-  
+  return 1;
 
-
-   return 1;
   }
 //--------------------------------------------------
 
   int ZOUT(int wb)
   {
-
  //<<" ZOUT  $sc_zstart  $sc_zend\n";
 
   sc_zstart -= 10;
 
   sc_zend  += 10;
-  
  //<<" ZOUT  $sc_zstart  $sc_zend\n";
 
   if (sc_zstart < sc_startday) {
@@ -174,60 +174,54 @@ int ExTim (int wb)
   sc_zend =  sc_end;
 
   }
-
  // drawScreens();
  //  showWL(sc_zstart, sc_zend);
-   return 1;
+
+  return 1;
+
   }
 //---------------------------------------------
-int WTLB(int wb)
-{
 
+  int WTLB(int wb)
+  {
 ////<<"WTLB $wb \n"
 
+  long wt_day = 0;
 
- long wt_day = 0;
- 
-       if (GEV__button == 1) {
+  if (GEV__button == 1) {
 
-         lcpx = GEV__rx;
+  lcpx = GEV__rx;
 
-	 sGl(_GLID,lc_gl,_GLHUE,RED_,_GLCURSOR,rbox(lcpx,0,lcpx,300,Wex_CL_init),_GLDRAW,ON_);
-	 
-	 Wex_CL_init = 0;
-	 
-	 wt_day = fround(lcpx,0);
-	 
+  sGl(_GLID,lc_gl,_GLHUE,RED_,_GLCURSOR,rbox(lcpx,0,lcpx,300,Wex_CL_init),_GLDRAW,ON_);
 
+  Wex_CL_init = 0;
 
-
+  wt_day = fround(lcpx,0);
 //  wt_day.pinfo();
   //lcpx.pinfo();
 
-<<"%V $wt_day $lcpx \n";
-
+  <<"%V $wt_day $lcpx \n";
         // mday =getDay(wt_day);
-	getDay(wt_day);
 
-        }
+  getDay(wt_day);
 
-       if (GEV__button == 3) {
-       
-         rcpx = GEV__rx;
+  }
 
-      
-	 sGl(_GLID,rc_gl,_GLHUE,BLUE_,_GLCURSOR,rbox(rcpx,0,rcpx,310,Wex_CR_init),_GLDRAW,ON_);
-	 
-         Wex_CR_init = 0;
+  if (GEV__button == 3) {
 
-       }
+  rcpx = GEV__rx;
+
+  sGl(_GLID,rc_gl,_GLHUE,BLUE_,_GLCURSOR,rbox(rcpx,0,rcpx,310,Wex_CR_init),_GLDRAW,ON_);
+
+  Wex_CR_init = 0;
+
+  }
  //drawScreens();
-    return 1;
 
+  return 1;
 
-}
+  }
 //=========================================
-
 ///    WONAME PROCS ///
 
   void setGoals()
@@ -256,35 +250,29 @@ int WTLB(int wb)
 
   sWo(_WOID,tw_wo,_WMOVETO,targetday,NextGoalWt,wtwo,_WREDRAW,1);
 */
+
   }
 
-
-
-
-void setCursors()
-{
+  void setCursors()
+  {
 //<<"$_proc : $_lcpx\n"
-        sGl(_GLID,lc_gl,_GLCURSOR, rbox(lcpx,0,lcpx,300));
 
-        sGl(_GLID,rc_gl,_GLCURSOR, rbox(rcpx,0,rcpx,300));
-	
-}
+  sGl(_GLID,lc_gl,_GLCURSOR, rbox(lcpx,0,lcpx,300));
 
+  sGl(_GLID,rc_gl,_GLCURSOR, rbox(rcpx,0,rcpx,300));
 
-
+  }
 ////////////////////////KEYW CALLBACKS///////////////////////////////////////
 
-
-
- void REDRAW()
+  void REDRAW()
   {
-   drawScreens();
+  drawScreens();
   }
 //-------------------------------------------
 
   void RESIZE()
   {
-   drawScreens();
+  drawScreens();
   }
 //-------------------------------------------
 /*

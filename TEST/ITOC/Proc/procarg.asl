@@ -11,203 +11,232 @@
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
-                                                                        
+
 <|Use_=
-Demo  of proc arc scalar;
+  Demo  of proc arc scalar;
 ///////////////////////
 |>
 
-
 #include "debug.asl"
 
+  if (_dblevel >0) {
 
-if (_dblevel >0) {
-   debugON()
-      <<"$Use_\n"   
-}
+  debugON();
 
+  <<"$Use_\n";
 
-chkIn(_dblevel)
+  }
 
-int sumarg(int a, int b)
-{
-<<" sumarg int vers\n"
-   c = a+ b
+  chkIn(_dblevel);
 
-  <<" %V$a + $b = $c \n"
+  int sumarg(int a, int b)
+  {
 
-  return c
-}
+  <<" sumarg int vers\n";
 
+  c = a+ b;
 
-real sumarg(real a, real b)
-{
-   c = a+ b
+  <<" %V$a + $b = $c \n";
 
-  <<" %V$a + $b = $c \n"
+  return c;
 
-  return c
-}
+  }
 
-proc ReadPulseFile(str pfname)
-{
-<<" %i $pfname \n"
- len =0
- len = slen(pfname)
+  real sumarg(real a, real b)
+  {
 
-<<"%I $pfname $len\n"
+  c = a+ b;
 
-<<" $_proc $pfname \n"
+  <<" %V$a + $b = $c \n";
 
- return len
-}
+  return c;
 
+  }
 
+  int ReadPulseFile(Str pfname)
+  {
 
-proc soo (svar vstr)
-{
+  <<" %i $pfname \n";
 
-<<"$_proc $vstr \n"
-<<"$vstr[0] $vstr[1] \n"
- mstr = split(vstr)
+  len =0;
 
-  s = mstr[0]
-  m = mstr[1]
+  len = slen(pfname);
+
+  <<"%I $pfname $len\n";
+
+  <<" $_proc $pfname \n";
+
+  return len;
+
+  }
+
+  void soo (Svar vstr)
+  {
+
+  <<"$_proc $vstr \n";
+  arginfo = vstr.info()
+  <<"$arginfo \n"
+  vstr.pinfo()
+  
+  <<"$vstr[0] $vstr[1] \n";
+
+  mstr = split(vstr);
+
+  s = mstr[0];
+
+  m = mstr[1];
 //   s = vstr[0]
 //   m = vstr[1]
 
-<<"%V$s $m\n"
-}
+  <<"%V$s $m\n";
+
+  }
 //------------------------------
+// TBF call Str or Svar ?
+  void soos (Str vstr)
+  {
 
+  <<"$_proc $vstr \n";
+  vstr.pinfo()
+  <<"$vstr[0] $vstr[1] \n";
 
-proc soo (str vstr)
-{
+  mStr = split(vstr);
 
-<<"$_proc $vstr \n"
-<<"$vstr[0] $vstr[1] \n"
- mstr = split(vstr)
+  s = mstr[0];
 
-  s = mstr[0]
-  m = mstr[1]
+  m = mstr[1];
 //   s = vstr[0]
 //   m = vstr[1]
 
-<<"%V$s $m\n"
-}
+  <<"%V$s $m\n";
+
+  }
 //------------------------------
 
-proc Foo(str vstr)
-{
-<<" $_proc $vstr \n"
-  mstr = split(vstr)
-  s = mstr[0]
-  m = mstr[1]
-<<"  $s $m\n"
-}
+  void Foo(Str vstr)
+  {
+
+  <<" $_proc $vstr \n";
+
+  mstr = split(vstr);
+
+  s = mstr[0];
+
+  m = mstr[1];
+
+  <<"  $s $m\n";
+  }
 //------------------------------
 
-x = 3
- y = 7
- z= sumarg( x,y)
+  x = 3;
 
-<<" $x + $y = $z \n"
+  y = 7;
 
-chkN(z,10)
-chkOut()
+  z= sumarg( x,y);
 
+  <<" $x + $y = $z \n";
 
- I = Igen(10,0,1)
+  chkN(z,10);
 
+  chkOut();
 
-I->info(1)
+  I = Igen(10,0,1);
 
-<<"$I \n"
+  I.pinfo();
 
- tot =   sumarg(I[1],I[2])
+  <<"$I \n";
 
-<<"%V$tot \n"
+  tot =   sumarg(I[1],I[2]);
 
-  chkN(tot,3)
+  <<"%V$tot \n";
 
+  chkN(tot,3);
 
+  fname= "procarg.asl";
+//  fileDB(ALLOW_,"paramexp")
+  <<" %V$fname \n";
 
- 
+  k=ReadPulseFile(fname);
 
-fname= "procarg.asl"
-<<" %V$fname \n"
-
-k=ReadPulseFile(fname)
-
-<<" %v$k \n"
-
-
-
+  <<" %v$k \n";
 //ttyin()
 
- sen = Split("the message was gobbledegook")
+  sen = Split("the message was gobbledegook");
 
-<<"$sen \n"
+  <<"$sen \n";
 
-<<"sen $(typeof(sen)) \n"
-
+  <<"sen $(typeof(sen)) \n";
 //FIX <<" %i $sen \n"
-<<"$sen \n"
-<<"$sen[0] \n"
 
-psa = "the"
+  <<"$sen \n";
 
-ssa = sen[0]
+  <<"$sen[0] \n";
 
-<<"ssa $(typeof(ssa)) $ssa \n"
+  psa = "the";
 
-  ok = chkStr(ssa,psa)
+  ssa = sen[0];
 
-<<"test 1 $ok\n"
+  <<"ssa $(typeof(ssa)) $ssa \n";
 
-   ok =chkStr(sen[0],psa)
+  ok = chkStr(ssa,psa);
 
-<<"test 2 $ok\n"
+  <<"test 1 $ok\n";
 
-   ok = chkStr(sen[0],"the")
+  ok =chkStr(sen[0],psa);
 
-<<"test 3 $ok\n"
+  <<"test 2 $ok\n";
 
-   ok = chkStr(sen[3],"gobbledegook")
+  ok = chkStr(sen[0],"the");
 
-<<"test 4 $ok\n"
-<<"craash  $sen\n"
+  <<"test 3 $ok\n";
 
+  ok = chkStr(sen[3],"gobbledegook");
 
+  <<"test 4 $ok\n";
 
+  <<"craash  $sen\n";
 
+  A=ofr("procarg.asl");
 
-   A=ofr("procarg.asl")
+  if (A == -1) {
 
-   if (A == -1) {
-     A=ofr("procarg.asl")
-   }
+  A=ofr("procarg.asl");
 
-   k = 0;
+  }
 
- while (k < 100) {
-   nwr = sen->ReadWords(A)
-   if (nwr > 0) {
-<<"$nwr $k $sen[0] $sen[1] $sen[2] $sen[3]\n"
+  k = 0;
+
+  while (k < 100) {
+
+  nwr = sen->ReadWords(A);
+
+  if (nwr > 0) {
+
+  <<"$nwr $k $sen[0] $sen[1] $sen[2] $sen[3]\n";
   //  sen->split()
-    soo(sen)
+
+  soo(sen);
 //  Foo(sen)
-   }
-   
-  k++
-  
- }
 
-   soo("Once upon a time")
+  }
+
+  k++;
+
+  }
+
+  soos("Once upon a time");
+
+  <<" done loop %i $k \n";
+
+ Svar st = "Twice upon a time"
+
+soo(st);
 
 
-<<" done loop %i $k \n"
+soo("Thrice upon a time");
 
-    chkOut()
+  <<" done loop %i $k \n";
 
+  chkOut();
 
+//==============\_(^-^)_/==================//

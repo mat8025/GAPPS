@@ -36,7 +36,7 @@ Pgreen = "\033[1;32m"
 Poff  = "\033[0m"
 
 prompt = "go_on? : [y,n,q]"
-action = 1 ;  // 1 ask  and return input 0 don't ask just continue  cntrl D will reurn option to quit program
+action = 0 ;  // 1 ask  and return input 0 don't ask just continue  cntrl D will reurn option to quit program
 
 
 <<"  \033[1;32m this is GREEN  \033[0m \n"

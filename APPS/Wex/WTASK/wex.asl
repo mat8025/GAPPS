@@ -19,6 +19,7 @@
 
 #if _ASL_
 #include "hv.asl"
+   ignoreErrors();
 #endif
 
 myvers = "2.5"
@@ -665,7 +666,7 @@ float ae = EXTV[15];
 
      setScreen()
      
- ne=allowMoreErrors(20);
+    // ne=allowMoreErrors(20);
 //  <<"errors so far $ne \n"
 
  //ans=query("errors $ne after predict proceed with screen?");
@@ -784,8 +785,8 @@ showWL(sc_zstart, sc_zend);
 	   break;
 	   }
 	   
-  //ne=allowMoreErrors(20);
-  //<<"errors so far $ne \n"	   
+  ne=allowMoreErrors(20);
+  <<"errors so far $ne \n"	   
 }
 
 
