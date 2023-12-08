@@ -20,11 +20,13 @@
 |>
 
 #include "debug"
-//#include "hv.asl"
+
 
    <<"%V $_dblevel\n";
+    allowDB("spe_func,spe_proc,rdp_store,ds_store,array_parse")
+        allowDB("array_parse,spe_scope,ic_")
 
-   if (_dblevel >0) {
+   if (_dblevel > 0) {
 
      debugON();
 
@@ -35,7 +37,9 @@
    ignoreErrors();
 
    chkIn(_dblevel);
+   
 /////////////////////  simple scalar ///////////////////
+DB_action = 0;
 
    int doo(int a,int b)
    {
@@ -70,14 +74,12 @@
    {
 
      <<"$_proc IN $vect \n";
-//Z->info(1)
-//<<"pa_arg2 %V$k\n"
 
      vect.pinfo();
 
      vect[1] = 47;
 
-     <<"add 47 $vect \n";
+     <<"add 74 $vect \n";
 
      vect[2] = 79;
 
@@ -102,20 +104,28 @@ vect.pinfo();
    {
 
      <<"$_proc IN $vect \n";
-//Z->info(1)
-//<<"pa_arg2 %V$k\n"
 
      vect.pinfo();
 
-     vect[1] = 47;
+     <<" U: $U \n";
+
+     vect[1] = 74;
 
      <<"add Ag vect: $vect \n";
 
      <<"add Ag U: $U \n";
 
+
+
+
      vect[2] = 79;
 
      <<"add Au vect: $vect \n";
+
+     <<"add Ag U: $U \n";
+
+
+//ans=ask(DB_prompt,DB_action)
 
      vect[3] = 80;
 
@@ -173,7 +183,7 @@ vect.pinfo();
 
    Z = Vgen(INT_,10,0,1);
 
-   wt= Z->typeof();
+   wt= Z.typeof();
 
    <<"$wt $(typeof(Z))\n";
 
@@ -188,7 +198,7 @@ vect.pinfo();
    <<"%V $Z\n";
 
    Z.pinfo();
-//Z[0] = 37
+
 
    y = voo(&Z);
 
@@ -220,19 +230,24 @@ vect.pinfo();
 
    y = voo2(&U[3]);
 
-   <<"after $U\n";
+   <<"after call voo2 $U\n";
+
+ans=ask(DB_prompt,DB_action)
 
    uv= U[4];
 
    <<"%V $uv $U[4]\n";
 
-   chkN(U[4],47);
+   chkN(U[4],74);
 
    chkN(U[7],78);
 
    chkN(U[8],50);
 
+//ans=ask(DB_prompt,DB_action)
+
    voo2(W);
+   
 
 //Y = foo(&Z,3)  // FIXED -------- Y is now created correctly with the return vector 
  // FIXED ?-------- Y is now created correctly with the return vector 
@@ -241,12 +256,8 @@ vect.pinfo();
 
    <<"W $W\n";
 
-   U= voo(W);
 
-   <<"%V$U\n";
-//ptr pv = &W
-
-   ptr pv ;
+   Ptr pv ;
 
    pv.pinfo();
 
@@ -255,19 +266,41 @@ vect.pinfo();
    pv.pinfo();
 
    <<"pv $pv\n";
+        allowDB("array_parse,spe_args,ic_")
+  T= voo(pv)
+
+   <<"%V$T\n";
+
+//ans=ask(DB_prompt,DB_action)
+
+
+   U= voo(W);
+
+   <<"%V$U\n";
+//ptr pv = &W
 
 
   U= voo(&W[2])
 
+
+ans=ask(DB_prompt,DB_action)
+
+    U= voo(&W[3])
+
+ans=ask(DB_prompt,DB_action)
+
   pv.pinfo()
 
-  T= voo(pv)
+
+
+
+
 
 
 // TBD FIX it does not compute the offset
 // - so proc operates on the third element in
 
-   <<"%V$T\n";
+
 
 
    if (Y[1] == 47) {
@@ -284,4 +317,4 @@ vect.pinfo();
 
 
 chkOut()
-//===***===//
+

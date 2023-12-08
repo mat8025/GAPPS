@@ -1884,3 +1884,13 @@ ic_call.cpp                         1.61  12/03/2023 08:24:31  use func name to 
 parse.h                             2.8  12/03/2023 08:28:13  KEEP_SIV_SPECS  BIT25 
 spil_utils.cpp                      2.69  12/03/2023 14:08:40  warn on allow_more_errors if already set to ignore errors
 spe_exp.cpp                         3.63  12/03/2023 14:47:02  Sexp - ignore return
+array_parse.cpp                     1.2  12/04/2023 12:42:05  aop check/make initArraySpecs
+vmf_l.cpp                           1.33  12/04/2023 22:42:01  
+vmf_l.cpp                           1.34  12/04/2023 22:42:40  test
+array_parse.cpp                     2.84  12/04/2023 22:44:39  check/make aop initArraySpecs
+vmf_l.cpp                           1.35  12/06/2023 19:58:53  testagain
+spe_proc_def.cpp                    2.73  12/06/2023 20:00:05  rework vid sap s,v,p,o,r
+spe_proc_args.cpp                   3.55  12/06/2023 20:00:37  rework vid sap s
+opera_store.cpp                     1.56  12/07/2023 12:39:26  type int for char
+opera_opeq.cpp                      1.55  12/07/2023 12:40:05  TDB
+opera_opeq.cpp                      1.55  12/07/2023 12:41:03  TDB 

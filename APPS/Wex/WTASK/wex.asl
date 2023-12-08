@@ -135,6 +135,9 @@ myvers = "2.5"
   Vec<float> FIBRCON(400);
 ////////////////////////////////////////////////////
 
+
+
+//allowDB("spe_declare")
   int Wex_Nrecs;
   
   float Nsel_exemins = 0.0;
@@ -142,7 +145,6 @@ myvers = "2.5"
   float Nsel_exeburn = 0.0;
 
   float Nsel_lbs = 0.0;
-
 
   //<<[_DB]"$Mo \n";
 

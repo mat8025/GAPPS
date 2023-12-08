@@ -40,8 +40,7 @@ of the size of the generated array.
      }
    chkIn(_dblevel);
    
-prompt = "go_on? : [y,n,q]"
-action = 0 ;
+
 
 // 1 ask  and return input 0 don't ask just continue 
 //cntrl D will reurn option to quit p
@@ -50,10 +49,11 @@ action = 0 ;
    fileDB(ALLOW_,"spe_declare,spe_func")
    
    int v[2] = {2,-1};
+   
 
    <<"$v \n";
-   
- ans=ask(prompt,action)
+ action =0
+ ans=ask(DB_prompt,action)
  
    I = sgen(INT_,10,v);
 

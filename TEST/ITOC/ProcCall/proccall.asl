@@ -26,7 +26,9 @@
   allowErrors(-1) ;  // keep going;
 
   chkIn(_dblevel);
-
+  
+   if (_dblevel < 1) DB_action = 0;
+   
   int n1 = 3;
 
   <<"%V$n1\n";
@@ -75,13 +77,13 @@
   {
 
   <<" $_proc $s $c\n";
-
+  char d;
   s.pinfo();
 
   c.pinfo();
-
+//  allowDB("opera_")
   d= s + c;
-
+  d.pinfo()
   return d;
 
   }
@@ -141,6 +143,8 @@
   <<"call moo short,char\n";
 
   s2 = moo(s1,c1);
+
+ s2.pinfo()
 
   chkN (s2,100);
 

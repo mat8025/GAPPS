@@ -4,26 +4,27 @@
 #include "debug"
 
    allowErrors(-1) ; // keep going;
-
-   if (_dblevel >0) {
-
-     debugON();
-
-
-     }
+   
+if (_dblevel > 0) {
+  debugON()
+}
 
    chkIn(_dblevel);
 
    showUsage("How to use ref args") ;
+   DB_action = 0;
 
 
+ans=ask(DB_prompt,DB_action)
+//   if (_dblevel <= 1) {
 
+//  }
+
+<<"%V $DB_action \n"
    int sumarg (int& v, int& u)
    {
 
-
-
-     <<"ptr args int %V  $v $u \n";
+     <<"ref args int %V  $v $u \n";
 
      v.pinfo();
 
@@ -42,19 +43,19 @@
 
      u.pinfo();
 
-     <<"%V$v + $u = $z\n";
+     <<"%V $z = $v + $u \n";
 
 //   v++;
 
      v = v +1;
 
-     <<" changing first arg to %V$v\n";
+     <<" changing first arg to %V $v\n";
 
      v.pinfo();
 
      u = u * 2;
 
-     <<" changing second arg to %V$u \n";
+     <<" changing second arg to %V $u \n";
 
      u.pinfo();
 
@@ -92,16 +93,26 @@ int n = 2;
 
    <<"should be calling summarg int args vers with  ref args\n";
 
+
  /// TBF  p = sumarg(&n,&m); // should give error call ptr for proc ref
-  fileDB(ALLOW_,"spe_proc")
-    p = sumarg(n,m);
+  allowDB("spe_proc,ic_")
+
+  p = sumarg(n,m);
+  
    <<"returned %V $n $m $p \n";
+  ans=ask(DB_prompt,DB_action)
+
 
    chkN(p,5);
 
    chkN(n,3);
 
    chkN(m,6);
+
+p = sumarg(n,m);
+
+chkN(n,4);
+  chkN(m,12);
 
 
     chkOut()

@@ -12,10 +12,9 @@
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
 
-<|Use_=
-  Demo  of proc arc scalar;
-///////////////////////
-|>
+
+ 
+
 
 #include "debug.asl"
 
@@ -23,12 +22,14 @@
 
   debugON();
 
-  <<"$Use_\n";
+
 
   }
 
+  showUsage("Demo  of proc arg scalar")
+  
   chkIn(_dblevel);
-
+  fileDB(ALLOW_,"spe_proc,spe_args")
   int sumarg(int a, int b)
   {
 
@@ -70,45 +71,41 @@
 
   }
 
-  void soo (Svar vstr)
+  void soo (Svar vsv)
   {
 
-  <<"$_proc $vstr \n";
-  arginfo = vstr.info()
+  <<"$_proc $vssv \n";
+  arginfo = vsv.info()
   <<"$arginfo \n"
-  vstr.pinfo()
-  
-  <<"$vstr[0] $vstr[1] \n";
+  vsv.pinfo()
+  <<"arg should be a Svar! \n"
+  <<"$vsv[0] $vsv[1] \n";
 
-  mstr = split(vstr);
+  mstr = split(vsv);
 
   s = mstr[0];
 
   m = mstr[1];
-//   s = vstr[0]
-//   m = vstr[1]
 
-  <<"%V$s $m\n";
+  <<"%V $s $m\n";
 
   }
 //------------------------------
 // TBF call Str or Svar ?
-  void soos (Str vstr)
+  void soo (Str vstr)
   {
 
-  <<"$_proc $vstr \n";
+  <<"%V $_proc $vstr \n";
   vstr.pinfo()
-  <<"$vstr[0] $vstr[1] \n";
 
-  mStr = split(vstr);
+   <<"arg should be a Str! \n"
 
-  s = mstr[0];
+   <<"$vstr[0] $vstr[1] \n";
 
-  m = mstr[1];
-//   s = vstr[0]
-//   m = vstr[1]
-
-  <<"%V$s $m\n";
+   ms = vstr
+   
+   ms.pinfo()
+  <<"%V $ms\n";
 
   }
 //------------------------------
@@ -194,7 +191,7 @@
 
   <<"test 4 $ok\n";
 
-  <<"craash  $sen\n";
+  <<"crash  $sen\n";
 
   A=ofr("procarg.asl");
 
@@ -224,18 +221,26 @@
 
   }
 
-  soos("Once upon a time");
+ <<" done loop %V $k \n";
 
-  <<" done loop %i $k \n";
-
- Svar st = "Twice upon a time"
-
-soo(st);
+  soo("Once upon a time");
+  
+ db_action =0
 
 
-soo("Thrice upon a time");
+ ans=ask(DB_prompt,db_action)
+ 
+  Svar st = "Twice upon a time"
 
-  <<" done loop %i $k \n";
+  soo(st);
+
+ ans=ask(DB_prompt,db_action)
+
+  soo("Thrice upon a time");
+
+ ans=ask(DB_prompt,db_action)
+
+
 
   chkOut();
 

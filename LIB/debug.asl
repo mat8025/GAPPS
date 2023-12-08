@@ -22,7 +22,7 @@ int dblevel = _dblevel;
 
   int _DBH = -1; // dbg FH set -1 for nop --set to 2 for error output;
 
-
+<<"%V $dblevel  $_dblevel\n"
 Str _My_script = getScript()
 Str _Usage = " ... "
 
@@ -52,12 +52,11 @@ Str _Usage = " ... "
 //sdb(1,@keep);
 // if there are errors keep  idb,xdb file in .GASP/WORK/Debug
 // will be overwritten by scripts  unless unique/local options used
-void askit(int ask)
-{
 
-  <<"use ans=ask(prompt,action)\n");
+DB_prompt = "go_on? : [y,n,q]"
+DB_action = 1 ;
 
-}
+
 //[EP]==========================
 
   void DummyP()
@@ -72,10 +71,10 @@ void askit(int ask)
   void debugON()
   {
 
-   <<" debugging $_My_script \n\n"
+   <<" Debugging $_My_script %V $dblevel  $_dblevel\n"
 
-    if (dblevel < 1) {
-      _dblevel = 1;
+    if (_dblevel < 1) {
+      _dblevel = 0;
     }
 
  
@@ -128,8 +127,7 @@ void askit(int ask)
   {
 
      setmaxICerrors(n);
-  }
-//==========================
+  } //==========================
 
   void showUsage(Str usage)
   {
@@ -137,9 +135,9 @@ void askit(int ask)
     <<"asl $_My_script    \n\t$_Usage\n";
   }
 
-  _dblevel = hold_dbl;
+  //_dblevel = hold_dbl;
 
-  sdb(hold_dbl,_keep,_~trace);
+  //sdb(hold_dbl,_keep,_~trace);
 
 
   if (_dblevel > 1) {
@@ -149,7 +147,10 @@ void askit(int ask)
    printf("_dblevel %d\n",_dblevel);
 
   }
-  
+
+
+printf("_dblevel %d\n",_dblevel);
+
 //////////
 //<<" %V $_include  $_dblevel DONE debug.asl\n"
 ///

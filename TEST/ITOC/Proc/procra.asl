@@ -21,50 +21,61 @@ if (_dblevel >0) {
 chkIn(_dblevel)
 
 //void Refarg (int& v)
-
-
-void Refarg (int v)
+showUsage("Demo  of proc ref arg")
+ fileDB(ALLOW_,"spe_proc,spe_args")
+ 
+void Roo (int& v)
 {
-<<"IN %V  $v $n \n"
-   v->info(1)
+<<"IN %V $_proc  $v $n \n"
+   v.pinfo()
+
+<<" should be a ref int arg   -- v\n"      
+
   // v++; // fail
       v = v + 1; // ok
-    //v = v + 5; // ok
+
   <<"  %V $v  $n\n"   
    //  v *= 2; // fail
      v =  v * 2; // fail
 <<"  %V $v $n\n"        
 //     v++;  // TBF --- ref arg incr
    v = v +1;
+
 <<"OUT  %V $v  $n\n"   
+
 }
 //=====================
 
-void RefargP (ptr v)
+void Roo (int* v)
 {
-<<"IN %V  $v $n \n"
-   v->info(1)
+<<"%V $_proc  $v $n \n"
+      v.pinfo()
+<<" should be a ptr arg   -- &v does v point thru call var?\n"      
   // v++; // fail
-      v = v + 1; // ok
+      $v = $v + 1; // ok
     //v = v + 5; // ok
   <<"  %V $v  $n\n"   
    //  v *= 2; // fail
-     v =  v * 2; // fail
+     $v =  $v * 3; // fail
 <<"  %V $v $n\n"        
     // v++;
-   v = v +1;     
-  <<"OUT  %V $v  $n\n"   
+   $v = $v +1;     
+  <<"OUT  %V $v  \n"   
 }
 //=====================
+
+ db_action =0
+
 
 int n = 3;
 
 <<"%V pre $n  \n"
 
- Refarg(n);
+ Roo(n);
 
+ans=ask(DB_prompt,db_action)
 
- chkN(n,3)
+ chkN(n,9)
 
 <<"%V post value call $n  \n"
 
@@ -74,27 +85,34 @@ int n = 3;
 
 <<"%V pre $n  \n"
 
-  Refarg(&n);
+  Roo(&n);
 
 <<"%V post reference $n  \n"
-//  n->info(1)
-  p = &n
+ans=ask(DB_prompt,db_action)
 
-  p->info(1)
+  n.pinfo()
+
+chkN(n,13)
+
+p = &n
+
+  p.info()
 
   q = $p;
 
-  q->info(1)
+  q.pinfo()
 
 <<"%V  post $n  \n"
 
 //n->info(1)
 
+chkN(q,n)
 
-chkN(n,9)
 chkOut()
 
 exit();
+
+
 
 
 

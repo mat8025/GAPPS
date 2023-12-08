@@ -12,7 +12,7 @@
  */ 
 //----------------<v_&_v>-------------------------//                 
 
-
+allowDB("spe_proc")
    
    Str vers2ele(Str& vstr)
    {
@@ -30,7 +30,7 @@
    }
    //======================
 
-   int new_main = 0;
+   int new_main = 1;
    A= -1;
    int BERR=ofw("err_shead");  // error file err	
    // if script found
@@ -191,7 +191,7 @@ if (found_vers) {
    cf(A);
    
  
- !!"cp $srcfile old-$srcfile"  
+ !!"cp $srcfile old-$srcfile"  ; // 
    
    //ns = spat(srcfile,".asl",-1)
 //  Str newsrc=srcfile;
@@ -222,17 +222,19 @@ if (found_vers) {
    <<[A]" *  @Copyright © RootMeanSquare $(date(GS_YEAR_))\n"           
    <<[A]" * \n"
    <<[A]" */ \n"
-   <<[A]"//-----------------<v_&_v>------------------------//\n"                          
+   <<[A]"//-----------------<V_&_V>------------------------//\n"                          
 
 <<[A]"\n";
 
-
+ESL='//==============\_(^-^)_/==================//';
 
  if ( new_main ) {
 if (is_asl_script) {
 
 <<[A]"Str Use_= \" Demo  of $comment \";";
 <<[A]"\n"
+
+<<[A]"\n#define _CPP_ 0\n"
 
 <<[A]"\n\n#include \"debug\" \n\n"
 
@@ -244,9 +246,20 @@ if (is_asl_script) {
 
 <<[A]"  chkIn(_dblevel) ;\n\n"
 <<[A]"  chkT(1);\n\n"
+<<[A]" \n\n\n"
 
+
+<<[A]"// goes after procs\n"
+<<[A]"#if _CPP_\n"
+
+<<[A]"int main( int argc, char *argv[] ) { // main start \n"
+///
+<<[A]"#endif       \n"        
 
 fflush(A)
+
+
+
 }
 }
 //<<"now tack on file %V $tsz\n"
@@ -257,8 +270,18 @@ fflush(A)
 //   <<[2]"$ln\n"
    }
 //<<[A]"$T[i]"  // bug
- if (new_main) {
-   <<[A]"\n\n///\n\n chkOut();\n\n  exit();\n\n///----------(^-^)----------\\\\\\\n"
+<<" a new main \n"
+if (new_main) {
+
+
+<<[A]"\n\n#if _CPP_           \n"   
+  //////////////////////////////////
+<<[A]"  exit(-1); \n"
+<<[A]"  }  /// end of C++ main \n"
+<<[A]"#endif     \n"       
+
+
+   <<[A]"\n\n///\n\n chkOut();\n\n  exit();\n\n$ESL\n"
 }
    fflush(A)
    cf(A)

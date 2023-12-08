@@ -1266,6 +1266,7 @@ if (!do_module) {
 
 today=getDate(1);
 <<"used $wasl for tests \n"
+
 !!"$wasl -v"
 <<"$today tested $(get_version())\n"
  if (lsz >0) {
