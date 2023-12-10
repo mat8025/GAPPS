@@ -13,6 +13,7 @@ fops		100
 for		100
 func		-2
 if		100
+iproc          -1
 include      -1
 ivar          -2
 lhsubsc     -1

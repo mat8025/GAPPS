@@ -738,7 +738,7 @@ if ((do_all || do_array ) && (do_array != -1)) {
 
   RunDirTests("ArraySubSet","arraysubset,array_subvec,array_subsref,arraysubscbyvec,array_ele_incr,vdec")
 
-   RunDirTests("Array","ae,array_cmp,array_ele")
+   RunDirTests("Array","ae,arraycmp,arrayele")
 
    RunDirTests("Array","dynarray,lhe,vec_cat,array_sr,md_ele,vsp")
 
@@ -875,14 +875,15 @@ if ((do_all || do_unary ) && (do_unary != -1)) {
    if ((do_all || do_command ) && (do_command != -1)) {
     inflsz = caz(FailedList)
      RunDirTests("Command","command,command_parse")
-  outcome("COMMAND")
+     outcome("COMMAND")
     }
 
 
 /////////////////////////////////////////
 if ((do_all || do_proc ) && (do_proc != -1)) {
   inflsz = caz(FailedList)
-  RunDirTests("Proc","proc,procdeclare,procret,procarg,procsv0");
+  
+  RunDirTests("Proc","procdeclare,proc,procret,procarg,procsv0");
 
   RunDirTests("Proc","procrefarg,procra,procrefstrarg,proc_loc_main_var,proc_var_define,procnest_args");
   
@@ -939,10 +940,12 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
    inflsz = caz(FailedList)
 
     RunDirTests("Mops","mops")
-     
-    RunDirTests("Cmplx","cmplx")
 
     RunDirTests("Rand","rand")
+
+    RunDirTests("Cmplx","cmplx")
+
+
 
     outcome("MOPS")
     }

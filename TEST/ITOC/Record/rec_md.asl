@@ -11,142 +11,140 @@
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
-                                                                      
 
 <|Use_=
-   Demo  of Record class MD ;
+  Demo  of Record class MD ;
 ///////////////////////
 |>
 
 #include "debug"
 
-   if (_dblevel >0) {
+  if (_dblevel >0) {
 
-     debugON();
+  debugON();
 
-     <<"$Use_\n";
+  <<"$Use_\n";
 
-     }
+  }
 
-   chkIn(_dblevel);
+  chkIn(_dblevel);
 
-   int MD[5][10];
+  int MD[5][10];
 
-   chkN("init Array zero ",MD[0][1],0);
+  chkN("init Array zero ",MD[0][1],0);
 
-   chkN("init Array zero ",MD[0][-1],0);
+  chkN("init Array zero ",MD[0][-1],0);
 
-   MD[0][1] = 79;
-    mda =  MD[0][1];
-<<"%V $MD[0][1] $mda \n"
+  MD[0][1] = 79;
 
+  mda =  MD[0][1];
 
-   chkN("Set element",MD[0][1],79);
+  <<"%V $MD[0][1] $mda \n";
 
-   MD[0][0:8:1] = 77;
+  chkN("Set element",MD[0][1],79);
 
-<<"$MD[0][::]\n"
+  MD[0][0:8:1] = 77;
 
-   chkN("set subset of elements",MD[0][8],77);
+  <<"$MD[0][::]\n";
 
-   MD[1][::] = 80;
+  chkN("set subset of elements",MD[0][8],77);
 
-   chkN("set default range",MD[1][1],80);
+  MD[1][::] = 80;
 
-   <<"$MD\n";
+  chkN("set default range",MD[1][1],80);
 
-   MD[0][5:9:1] = 54;
+  <<"$MD\n";
 
-   chkN("set subset of eles",MD[0][5],54);
+  MD[0][5:9:1] = 54;
 
-   MD[1][3:8:1] = 28;
+  chkN("set subset of eles",MD[0][5],54);
 
-   chkN("set subset of eles",MD[1][6],28);
+  MD[1][3:8:1] = 28;
 
-   MD[1][3:8:] = 27;
+  chkN("set subset of eles",MD[1][6],28);
 
-   chkN("set subset of eles-default step",MD[1][6],27);
+  MD[1][3:8:] = 27;
 
-   <<"$MD\n";
+  chkN("set subset of eles-default step",MD[1][6],27);
 
-   MD[2:4:1][4:9:1] = 77;
+  <<"$MD\n";
 
-   <<"$MD\n";
+  MD[2:4:1][4:9:1] = 77;
 
-   chkN("set subset of eles",MD[3][6],77);
+  <<"$MD\n";
 
-   MD[2:4:1][4:9:] = 78;
+  chkN("set subset of eles",MD[3][6],77);
 
-   chkN("set subset of eles-default stride",MD[3][9],78);
+  MD[2:4:1][4:9:] = 78;
 
-   MD[2:4][0:3] = 85;
+  chkN("set subset of eles-default stride",MD[3][9],78);
 
-   MD[0:3][0] = -34;
+  MD[2:4][0:3] = 85;
 
-   Record RSV[>3];
+  MD[0:3][0] = -34;
 
-MD.pinfo()
+  Record RSV[>3];
 
-   RSV= MD;
-   
-!pRSV
+  MD.pinfo();
 
-   RSV.pinfo();
+  RSV= MD;
 
-   <<"%V $RSV\n";
+  RSV.pinfo();
 
-str sval ;
+  <<"%V $RSV\n";
 
-   sval = RSV[2][4];
+  Str sval ;
 
-sval.pinfo()
+  sval = RSV[2][4];
+
+  sval.pinfo();
 
   <<"%V<|$sval|>\n";
 
- chkStr(sval,"78.000000");
- 
-   val = RSV[2][4];
+  chkStr(sval,"78.000000");
 
-val.pinfo()
+  val = RSV[2][4];
 
-   <<"%V<|$val|>\n";
+  val.pinfo();
 
-   chkStr(val,"78.000000");
+  <<"%V<|$val|>\n";
 
-   val = RSV[2][1];
+  chkStr(val,"78.000000");
 
-   <<"$val\n";
+  val = RSV[2][1];
 
-   chkStr(val,"85.000000");
+  <<"$val\n";
 
-   chkStr(RSV[2][1],"85.000000");
+  chkStr(val,"85.000000");
 
-   SM= MD[0:2][1:5:];
-!pSM
+  chkStr(RSV[2][1],"85.000000");
 
-   RSV= MD[0:2][1:5:];
+  SM= MD[0:2][1:5:];
 
-   <<"after subscript RHS\n";
+  RSV= MD[0:2][1:5:];
 
-   RSV.pinfo();
+  <<"after subscript RHS\n";
 
-   <<"$RSV\n";
+  RSV.pinfo();
 
-   V=vgen(FLOAT_,10,0,1);
+  <<"$RSV\n";
 
-   <<"$V\n";
+  V=vgen(FLOAT_,10,0,1);
 
-   Record RV[>3];
+  <<"$V\n";
 
-   RV =V;
+  Record RV[>3];
 
-   RV.pinfo();
+  RV =V;
 
-   <<"$RV\n";
+  RV.pinfo();
 
-   chkOut();
+  <<"$RV\n";
+
+  chkOut();
 /*
    Should be able to specify a subset of a MD array for operations
 */
 
-//===***===//
+
+//==============\_(^-^)_/==================//

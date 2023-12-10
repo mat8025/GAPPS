@@ -12,7 +12,6 @@
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
 
-
    
 <|Use_=
    Demo  of args  ;
@@ -260,13 +259,13 @@ ans=ask(DB_prompt,DB_action)
    Ptr pv ;
 
    pv.pinfo();
-
+// allowDB("array_parse,spe_exp,spe_args,spe_declare,spe_scope,ic_")
    pv = &W[2];
 
    pv.pinfo();
 
    <<"pv $pv\n";
-        allowDB("array_parse,spe_args,ic_")
+       
   T= voo(pv)
 
    <<"%V$T\n";

@@ -1894,3 +1894,5 @@ spe_proc_args.cpp                   3.55  12/06/2023 20:00:37  rework vid sap s
 opera_store.cpp                     1.56  12/07/2023 12:39:26  type int for char
 opera_opeq.cpp                      1.55  12/07/2023 12:40:05  TDB
 opera_opeq.cpp                      1.55  12/07/2023 12:41:03  TDB 
+spe_exp.cpp                         3.64  12/08/2023 21:14:43  clear RHS SW,AW setttings before eval of RHS\
+rdp_token.cpp                       1.80  12/08/2023 21:36:36  ptr to array ele - RHS store val

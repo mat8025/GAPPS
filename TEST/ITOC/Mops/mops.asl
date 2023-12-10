@@ -11,120 +11,115 @@
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
-                                                                            
 
 ///    Mops -- test some SF mops
-
 <|Use_=
-Demo  of math ops
+  Demo  of math ops
 ///////////////////////
 |>
 
-
 #include "debug"
 
-if (_dblevel >0) {
-   debugON()
-   <<"$Use_\n"
-}
+  if (_dblevel >0) {
 
-filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
-filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e","ds_storesiv");
-filterFuncDebug(REJECT_,"vrealloc","init","VarArrayIndex");
+  debugON();
 
+  <<"$Use_\n";
 
-chkIn(_dblevel)
+  }
+  DB_action =0
 
-int a = 14;
-int b = 16;
-short xyv[20];
+   PI = 4.0 * atan(1.0)
 
-xyv->info(1)
+  chkIn(_dblevel);
 
-chkN (xyv[0],0)
+  int a = 14;
 
+  int b = 16;
 
-xyv->info(1)
+  short xyv[20];
 
+  xyv.pinfo();
 
-xyv[{2,4,7,a}] = 36;
-xyv->info(1)
+  chkN (xyv[0],0);
 
-<<"$xyv\n"
+  xyv.pinfo()
+allowDB("array_,ds_store,spe_exp")
+  xyv[{2,4,7,a}] = 36;
 
-chkN(xyv[2],36);
-chkN(xyv[14],36);
-chkN(xyv[0],0);
+  xyv.pinfo()
 
-chkOut()
+  <<"$xyv\n";
 
-xyv[{2,4,7,b}] = 77;
+  chkN(xyv[2],36);
 
+  chkN(xyv[14],36);
 
-<<"$xyv\n"
+  chkN(xyv[0],0);
 
-chkN(xyv[2],77);
+  xyv[{2,4,7,b}] = 77;
 
-chkOut()
+  <<"$xyv\n";
 
+  chkN(xyv[2],77);
 
-
-B=vgen(INT_,20,0,1)
-
+  B=vgen(INT_,20,0,1);
 //X=vgen(INT_,10,0,1)
-chkN (B[0],0)
-chkN (B[19],19)
-// X[{0,2,4,6}] = 77;
-//B[0,2,4,a] = 77;
 
- B[{2,4,a}] = 77;
-<<"%V$B\n"
+  chkN (B[0],0);
 
-chkN(B[2],77)
-chkN (B[0],0)
+  chkN (B[19],19);
 
+  B[{2,4,a}] = 77;
 
+  <<"%V$B\n";
+ans=ask(DB_prompt,DB_action)
+  if (ans == "q") {
+    exit(-1)
+  }
+  
+  chkN(B[2],77);
 
-
-//int B[20];
-
-<<"%V$B\n"
-
-
-//chkN (B[4],4)
-
-B[0] =0;
-<<"%V$B\n"
-B[{2, 4,7,a}] = 36;
-
-<<"%V$B\n"
-chkN (B[0],0)
-
-B[{2,4 ,7,a,}] = 37;
-
-<<"%V$B\n"
-
-chkN (B[0],0)
-chkN (B[4],37)
-
-<<"%V$B\n"
-!a
+  chkN (B[0],0);
 
 
+  <<"%V$B\n";
 
 
-chkOut()
+  B[0] =0;
+
+  <<"%V$B\n";
+
+  B[{2, 4,7,a}] = 36;
+
+  B.pinfo()
+  <<"%V$B\n";
+
+  chkN (B[0],0);
+
+<<"%V $a\n"
+
+  B[{2,4 ,7,a}] = 37;
+
+  <<"%V$B\n";
+B.pinfo()
+  chkN (B[0],0);
+
+  chkN (B[4],37);
+
+  <<"%V$B\n";
+ans=ask(DB_prompt,DB_action)
+  if (ans == "q") {
+    exit(-1)
+  }
 
 
 
- xyv[{2,4,7,a}] = 77;
+  xyv[{2,4,7,a}] = 77;
 
-chkN(xyv[2],77);
+  chkN(xyv[2],77);
 
- xyv[{2,4,7,a}] = 79;
-!a 
-
-
+  xyv[{2,4,7,a}] = 79;
 /*
 
 <<"%v $(Caz(xyv)) \n"
@@ -148,200 +143,223 @@ testargs(" TRY HARDER $xyv[2] ")
 
 */
 
-xyz[{2,4,7,a}] = 79;
+  int  xyz[20];
+// allow auto create ? fill to highest number ?
+  xyz[{2,4,7,a}] = 79;
 
+  chkN(xyv[2],79);
 
+  xyz.pinfo()
 
-chkN(xyv[2],79)
+  sz = Caz(xyv);
 
-chkOut()
+<<"%V $sz\n"
+ans=ask(DB_prompt,DB_action)
+  if (ans == "q") {
+    exit(-1)
+  }
+  chkN(sz,20);
 
-//FIX chkN(Caz(xyv),8)
+  chkN(Caz(xyv),20);
 
- sz = Caz(xyv)
+  short zx[4];
 
-  chkN(sz,12)
+  zx[0] = 1;
 
+  zx[1] = 2;
 
-  chkN(Caz(xyv),12)
+  zx[2] = 3;
 
+  zx[3] = 4;
 
-short zx[4]
+  zxs = 50;
 
- zx[0] = 1
- zx[1] = 2
- zx[2] = 3
- zx[3] = 4
+  pi = 0;
 
+  xyv[pi++] = 700;
 
+  xyv[pi++] = zx[3]*zxs;
 
- zxs = 50
+  xyv[pi++] = 699;
 
-   pi = 0
-   xyv[pi++] = 700
-   xyv[pi++] = zx[3]*zxs
-   xyv[pi++] = 699
-   xyv[pi++] = zx[2]*zxs
-   xyv[pi++] = 698
-   xyv[pi++] = zx[1]*zxs
-   xyv[pi++] = 697
-   xyv[pi++] = zx[0]*zxs
+  xyv[pi++] = zx[2]*zxs;
 
-<<" %v $pi \n"
+  xyv[pi++] = 698;
 
+  xyv[pi++] = zx[1]*zxs;
 
+  xyv[pi++] = 697;
 
+  xyv[pi++] = zx[0]*zxs;
 
-<<" $xyv[0] \n"
+  <<" %v $pi \n";
 
-<<" $xyv \n"
+  <<" $xyv[0] \n";
 
-<<" $xyv[::] \n"
+  <<" $xyv \n";
 
-<<"%V $xyv[::] \n"
+  <<" $xyv[::] \n";
 
-<<"%v $(Caz(xyv)) \n"
+  <<"%V $xyv[::] \n";
 
-
+  <<"%v $(Caz(xyv)) \n";
  //  xyv[0,2,4,6] = 77
-   xyv[{0,2,4,6}] = 77
 
+  xyv[{0,2,4,6}] = 77;
 
-<<"%V $xyv[::] \n"
-chkN(xyv[2],77)
+  <<"%V $xyv[::] \n";
 
-chkOut()
+  chkN(xyv[2],77);
 
-   
+  chkOut();
 
+  chkN(xyv[6],77);
 
-   chkN(xyv[6],77)
+  <<"%v $xyv[::] \n";
 
-<<"%v $xyv[::] \n"
+  xyv[0,2,4,6] = Igen(4,69,1);
 
-   xyv[0,2,4,6] = Igen(4,69,1)
+  <<"%v $xyv[::] \n";
 
-<<"%v $xyv[::] \n"
-
-
-   chkN(xyv[2],70)
-
-
+  chkN(xyv[2],70);
 //<<"%v $xyv[6] \n"
 
-   chkN(xyv[6],72)
+  chkN(xyv[6],72);
 
-<<" $xyv \n"
-   zx[0] =23
+  <<" $xyv \n";
 
-<<" %v $zx \n"
-<<"%v $xyv[*] \n"
+  zx[0] =23;
 
-   xyv[1,3,5,7] =  zx
+  <<" %v $zx \n";
 
-<<"%v $xyv[::] \n"
+  <<"%v $xyv[*] \n";
 
+  xyv[1,3,5,7] =  zx;
 
+  <<"%v $xyv[::] \n";
 
-<<" $xyv[0] \n"
-<<"%V :: $xyv[0] \n"
+  <<" $xyv[0] \n";
 
-    zx[3] = 66
+  <<"%V :: $xyv[0] \n";
 
-<<"%v $zx \n"
+  zx[3] = 66;
 
- for (j = 1; j < 4 ; j++) {
+  <<"%v $zx \n";
 
-    zx =  zx * 2
-    
-<<"%v $zx \n"
+  for (j = 1; j < 4 ; j++) {
+
+  zx =  zx * 2;
+
+  <<"%v $zx \n";
 //   xyv[1,3,5,7] =  zx * zxs * j
 
-   xyv[1,3,5,7] =  zx 
+  xyv[1,3,5,7] =  zx;
 
+  <<"%V $j :: $xyv[0] \n";
 
-<<"%V $j :: $xyv[0] \n"
+  <<"%V $j :: $xyv \n";
 
-<<"%V $j :: $xyv \n"
+  }
 
- }
+  <<"%v $(Caz(xyv)) \n";
 
-<<"%v $(Caz(xyv)) \n"
+  chkStage("xyassign");
 
-chkStage("xyassign")
-N = 27
+  N = 27;
 
-a = cbrt(N)
+  a = cbrt(N);
 
-<<"cube root of $N  is $a\n"
-chkR(a,3.0)
-N = 729
+  <<"cube root of $N  is $a\n";
 
-a = cbrt(N)
+  chkR(a,3.0);
 
-<<"cube root of $N  is $a\n"
-chkR(a,9.0)
+  N = 729;
 
-chkStage("cbrt")
+  a = cbrt(N);
 
+  <<"cube root of $N  is $a\n";
 
+  chkR(a,9.0);
+
+  chkStage("cbrt");
 //============= Atof ===========//
-p = _PI
+
+  p = PI;
 
   i = 47;
-    <<"%I $i    \n"
 
-
+  <<"%I $i    \n";
 
   f= 1.2;
-  sz = Caz(&f);
-  <<"%V $f  $sz  \n"
-
-
-  f = atof("3.141593")
 
   sz = Caz(&f);
-  <<"%V $f  $sz  \n"
 
- chkN(sz,0)
+  <<"%V $f  $sz  \n";
 
+  f = atof("3.141593");
 
+  sz = Caz(&f);
 
-A= Split("$_PI 1634 8208 9473")
+  <<"%V $f  $sz  \n";
 
-<<"%V $A \n"
+  chkN(sz,0);
 
-F=Atof(A)
- sz = Caz(F);
- bd = Cab(F);
- <<"%V $F  $sz $bd\n"
-chkN(sz,4)
+  <<"%V $PI \n"
 
-G = Atof(A[1])
- sz = Caz(&G);
- bd = Cab(&G);
-<<"%V $G $sz $bd \n"
-chkN(sz,0)
+  A= Split("$PI 1634 8208 9473");
 
-I = Atoi(A[2])
- sz = Caz(&I);
- bd = Cab(&I);
-<<"%V $I $sz $bd \n"
-
-chkN(sz,0)
-
-chkStage("atof")
-
-hs = dec2hex(47806)
-<<"$hs\n"
-chkStr(hs,"BABE")
-
-i= hex2dec("babe")
+  <<"%V $A \n";
+  A.pinfo()
 
 
-chkN(i,47806)
+  F=Atof(A);
+ans=ask(DB_prompt,DB_action)
+  if (ans == "q") {
+    exit(-1)
+  }
+ 
+  sz = Caz(F);
 
+  bd = Cab(F);
 
-chkStage("dec2hex")
+  <<"%V $F  $sz $bd\n";
 
-chkOut()
+  chkN(sz,4);
+
+  G = Atof(A[1]);
+
+  sz = Caz(&G);
+
+  bd = Cab(&G);
+
+  <<"%V $G $sz $bd \n";
+
+  chkN(sz,0);
+
+  I = Atoi(A[2]);
+
+  sz = Caz(&I);
+
+  bd = Cab(&I);
+
+  <<"%V $I $sz $bd \n";
+
+  chkN(sz,0);
+
+  chkStage("atof");
+
+  hs = dec2hex(47806);
+
+  <<"$hs\n";
+
+  chkStr(hs,"BABE");
+
+  i= hex2dec("babe");
+
+  chkN(i,47806);
+
+  chkStage("dec2hex");
+
+  chkOut();
+
+//==============\_(^-^)_/==================//

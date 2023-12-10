@@ -11,86 +11,84 @@
 //* 
 //***********************************************%
 
+#include "debug.asl"
 
-#include "debug.asl";
+   if (_dblevel >0) {
 
+     debugON();
 
-if (_dblevel >0) {
-   debugON()
-}
+     }
 
+   chkIn(_dblevel);
 
-chkIn(_dblevel); 
+   Record R[>2] ;
 
-Record R[>2] ;
-   
-   
    void recspecs()
    {
-     cb = Cab(R); 
-     sz= Caz(R); 
-     <<"%V$sz $cb\n"; 
-     R.pinfo(); 
-     }
-   
-   recspecs(); 
-   
-   R[0] = Split("Ich gehe jeden Tag"); 
-   
-   recspecs(); 
-   
-   <<"$R\n"; 
+   cb = Cab(R);
+   sz= Caz(R);
+   <<"%V$sz $cb\n";
+   R.pinfo();
+   }
 
-    chkStr(R[0][3],"Tag")
-    
-    R[1] = Split("Je marche tous les jours")
+  recspecs();
 
-    recspecs(); 
+  R[0] = Split("Ich gehe jeden Tag");
 
-   <<"$R\n"
+  recspecs();
 
-   <<"%V $R[1][2] \n"
+  <<"$R\n";
 
-    chkStr(R[1][2],"tous")
+  chkStr(R[0][3],"Tag");
 
+  R[1] = Split("Je marche tous les jours");
 
+  recspecs();
 
-   R[2] = Split("Camino todos los dias")
+  <<"$R\n";
 
-    recspecs(); 
+  <<"%V $R[1][2] \n";
 
-   <<"$R\n"
-   
-    chkStr(R[2][1],"todos")
+  chkStr(R[1][2],"tous");
 
+  R[2] = Split("Camino todos los dias");
 
-   R[3] = Split("Gym five days a week")
+  recspecs();
 
-    recspecs(); 
+  <<"$R\n";
 
-   <<"$R\n"
+  chkStr(R[2][1],"todos");
 
-   chkStr(R[3][0],"Gym")
-   
+  R[3] = Split("Gym five days a week");
 
+  recspecs();
 
-   R[15] = Split("Necesito correr más")
+  <<"$R\n";
 
-    recspecs();
+  chkStr(R[3][0],"Gym");
 
-<<"$R\n"
+  R[15] = Split("Necesito correr más");
 
-Ncols = 10;
-Delc = 44;
+  recspecs();
 
-     B=ofw("junk.rec")
+  <<"$R\n";
 
-   <<"$R\n"
-     nrw=writeRecord(B,R,@del,Delc,@ncols,Ncols);
+  Ncols = 10;
 
+  Delc = 44;
 
-   cf(B)
-   chkStage(); 
-   chkProgress("How Good"); 
-   chkOut(); 
-   
+  B=ofw("junk.rec");
+
+  <<"$R\n";
+
+  nrw=writeRecord(B,R,@del,Delc,@ncols,Ncols);
+
+  cf(B);
+
+  chkStage();
+
+  chkProgress("How Good");
+
+  chkOut();
+
+//==============\_(^-^)_/==================//

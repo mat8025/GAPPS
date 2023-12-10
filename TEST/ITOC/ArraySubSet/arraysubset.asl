@@ -10,7 +10,6 @@
 //*  @Copyright  RootMeanSquare  2010,2019 --> 
 //* 
 //***********************************************%
-
 /*
 
  // bug2fix should clear subi/subset each statement
@@ -18,73 +17,63 @@
 */
 
 // have to use [{2,3,5}]  - OK?
-
-
-
-
-
-
-
-
-
-
 #include "debug"
 
-if (_dblevel >0) {
-   debugON()
-}
+   if (_dblevel >0) {
 
-chkIn(_dblevel)
+     debugON();
 
-/*
-  FilterFileDebug(REJECT_,"~storetype_e");
-  FilterFuncDebug(REJECT_,"~ArraySpecs",);
-*/  
+     }
 
- showUsage("Demo  of vector set via list" )
+   chkIn(_dblevel);
+   DB_action = 0
+   showUsage("Demo  of vector set via list" );
 
+   B = vgen(INT_,10,0,1);
 
-  B = vgen(INT_,10,0,1); 
+   <<"$B\n";
+allowDB("array_,ds_store,spe_exp")
+
+   B[{3,5,6}] = 96;
+
+   <<"$B\n";
+
+ans=ask(DB_prompt,DB_action)
+  if (ans == "q") {
+    exit(-1)
+  }
   
-  <<"$B\n"; 
-  
-  B[{3,5,6}] = 96;
+   chkN(B[3],96);
 
-  <<"$B\n"; 
+   chkN(B[5],96);
 
+   chkN(B[6],96);
 
-  chkN(B[3],96); 
-  chkN(B[5],96); 
-  chkN(B[6],96); 
+   A=  B[{3,5,6}];
 
-   A=  B[{3,5,6}]
-
-<<"%V$A\n"
-
+   <<"%V$A\n";
  // should clear subi/subset each statement
-  
-  B[{2,7,9}] = 79;
-  
-  <<"$B\n";
-  
 
+   B[{2,7,9}] = 79;
 
-  chkN(B[2],79);
-  chkN(B[7],79);
-  chkN(B[9],79);
+   <<"$B\n";
 
+   chkN(B[2],79);
 
-  chkN(B[3],96); 
-  chkN(B[5],96); 
-  chkN(B[6],96); 
+   chkN(B[7],79);
 
+   chkN(B[9],79);
 
+   chkN(B[3],96);
 
-  <<"$B\n"; 
-  
-  
-  chkN(B[1],1); 
-  
-  chkOut();
-  
-//======================================//
+   chkN(B[5],96);
+
+   chkN(B[6],96);
+
+   <<"$B\n";
+
+   chkN(B[1],1);
+
+   chkOut();
+
+//==============\_(^-^)_/==================//

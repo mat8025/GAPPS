@@ -74,7 +74,7 @@
   void soo (Svar vsv)
   {
 
-  <<"$_proc $vssv \n";
+  <<"$_proc $vsv \n";
   arginfo = vsv.info()
   <<"$arginfo \n"
   vsv.pinfo()

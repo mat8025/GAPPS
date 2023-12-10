@@ -186,7 +186,7 @@ Str pgxname = "xy";
 
 	    pgname = Tp[i];
 
-//<<"$i  <|$Tp[i]|>  $pgname\n"
+//<<"[$i]  <|$Tp[i]|>  $pgname\n"
 
             nl = slen(pgname);
 
@@ -204,7 +204,7 @@ Str pgxname = "xy";
 <<[_DBH]"%V $pgname xic \n"
 
         cart_xic (pgname);
-
+//ans=ask(DB_prompt,2        )
          }
       
       }
@@ -655,7 +655,7 @@ void cart (Str prg)
 
    jpid  =0
       
-      //aprg.info(1)
+      aprg.pinfo()
 
 
            if (do_query) {
@@ -676,7 +676,7 @@ void cart (Str prg)
            }
    
 
-//  <<"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst $CFLAGS ${prg}.asl > /dev/null   2>&1";
+//    <<"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst $CFLAGS ${prg}.asl > /dev/null   2>&1";
 
 //!!"pwd"
 //!!"ls -l *";
@@ -688,10 +688,14 @@ void cart (Str prg)
 //<<"%V$wstr \n"
 
       tst_file = "${prg}.tst";
-      //<<"%V $tst_file\n"
-      //tst_file.pinfo()
+      //  <<"%V $tst_file\n"
 
-      if (f_exist(tst_file) > 0) {
+  //tst_file.pinfo()
+  kt =f_exist(tst_file);
+ // <<"%V $kt\n"
+
+  //    if (f_exist(tst_file) > 0) {  // TBF asl ERROR 12/8/23
+      if ( kt > 0) {
 
          wt_prog = "$(time()) ${wstr}: "
 /*

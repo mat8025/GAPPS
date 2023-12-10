@@ -26,8 +26,10 @@
      <<"$Use_\n";
 
      }
-   allowErrors(-1) ; ; // keep going 
-
+   allowErrors(-1) ;  // keep going 
+  allowDB("spe_func,spe_proc,rdp_store,ds_store,array_parse")
+        allowDB("array_parse,spe_scope,ic_")
+   DB_action = 0;
    chkIn(_dblevel);
 
    int voo(int vect[])
@@ -37,7 +39,7 @@
      <<"IN $vect \n" ;  ; // debug version alters poffset??; 
 //Z<-pinfo() // TBC
 //<<"pa_arg2 %V$k\n"
-!t poffset correct?;
+//!t poffset correct?;
 
      vect[1] = 47;
 
@@ -86,35 +88,37 @@
      }
 //[EP]=================
 
-   int Roo(int ivec[])
+   Ptr Roo(int ivec[])
    {
 
      ivec.pinfo();
-  //   Z<-pinfo();      
+
 
      <<"IN $_proc %V $ivec \n";
 
-     ivec[1] = 47;
+     ivec[1] = 74;
 
-     ivec[2] = 79;
+     ivec[2] = 97;
 
-     ivec[3] = 80;
+     ivec[3] = 88;
 
-     ivec[4] = 7;
+     ivec[4] = 17;
 
      ivec.pinfo();
 
      <<"OUT %V $ivec \n";
 
-     rvec = ivec;
+      // could return a ptr to the amended array
+      // which is passed in
+      Ptr rp;
+      rp.pinfo()
+      rp = &ivec[0]
+//     rvec = ivec;
+     rp.pinfo();
+//     <<"OUT %V $rvec \n";
 
-     rvec.pinfo();
-
-     <<"OUT %V $rvec \n";
-!z
-
-     return rvec;
-
+       return rp;
+       
      }
 ////////////  Array name ////////////////////////////////////////
 
@@ -123,7 +127,7 @@
    W= Z;
 
    W.pinfo();
-!z
+
 
    <<"init $Z\n";
 //   Z[0] = 36; 
@@ -163,22 +167,26 @@
    Z = W;
 
    <<"B4 calling  Roo $W\n";
+   Ptr Y;
 
    Y=Roo(&W[3]);
 
-   <<"%V$W\n";
+   <<"%V $W\n";
 
    <<"Y: $Y \n";
-!z
+
+ans=ask(DB_prompt,DB_action)
 
    chkStage("PO correct?");
 
    <<"$Y[1] $Y[2] $Y[3]\n";
 
+   Y.pinfo()
+/*
    y1= Y[1];
 
    <<"%V $y1\n";
-
+ans=ask(DB_prompt,DB_action)
    chkN(Y[1],47);
 
    chkN(Y[2],79);
@@ -186,7 +194,18 @@
    chkN(Y[3],80);
 
    chkN(Y[4],7);
+   
 //   chkStage("return ivec correct?")
-
+*/
    chkOut();
-//===***===//
+
+
+
+/*
+   TBD 
+   ptr == > ptr ==> vec 
+   deref 
+   use to copy section of the vec
+
+
+*/

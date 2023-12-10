@@ -20,7 +20,7 @@
 
      }
 
-//   filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar","array_parse","array_subset");
+    DB_action = 1;
 
    chkIn (_dblevel);
 
@@ -53,7 +53,7 @@
    <<"%V$Real1\n";
 
    <<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
-//exit()
+
 
    j= 5;
 
@@ -98,7 +98,7 @@
      val = rl[kp2];
      
 <<"%V$val $rl\n";
-//!a
+
      t3 = rl[8];
 
      return t3;
@@ -113,11 +113,11 @@
 
      <<"In $_proc   $rl\n";
 
-     <<"PROC %V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
+ <<"PROC %V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
 
      rl.pinfo();
 
-     <<"PROC after pinfo %V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
+     <<"PROC after pinfo %V  $_scope $_cmfnest $_proc $_pnest\n";
  //SA = SA + 1;
 
      SA++;
@@ -130,18 +130,14 @@
      t1 = rl[2];
 
      t1.pinfo();
-//ans=query();
-  //rl.pinfo()
-//  <<"%6.2f%V$t1\n";
-//<<"%6.2f$rl \n"
+
 
      t1 = rl[4];
+
 //  <<"%6.2f%V$t1\n";
 
      <<"$(Caz(t1))\n";
-  //rl.pinfo()
-//  chkR (t1, 4.0);
-//query()
+
 
      int k = 5;
 
@@ -155,14 +151,33 @@
 
      j2 = 6;
 
+     rl.pinfo()
+
+     t3 = rl[j1] ;
+
+     <<"%V %6.2f $t3  \n";
+     chkR (t3, 4);
+
+     t3 = rl[j2] ;
+
+     <<"%V $j2 %6.2f $t3  \n";
+
+     chkR (t3, 6);
+
+
+
+ allowDB("opera_,array_parse,rdp_,ds_store")
+
      t3 = rl[j1] - rl[j2];
 
      <<"%V %6.2f $t3  \n";
 
+//ans=ask(DB_prompt,DB_action)
+
      <<"$(Caz(t3))\n";
 
      chkR (t3, -2);
-//<<"$rl[j1]\n";
+
 
      t4 = rl[j1 + 1];
 
@@ -240,7 +255,7 @@
      chkR (jj, -2);
 
      <<"%V $rl\n";
-!p rl
+
 
      <<"%V $j1  $rl[j1] \n";
 
@@ -287,7 +302,7 @@
 
      <<"$rl\n";
 
-     <<"PROC_OUT %V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
+//     <<"PROC_OUT %V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
 
      return t3;
 
@@ -298,11 +313,11 @@
 
    Real2 = vgen (FLOAT_, 10, 0, 1);
 
-   <<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
+ //  <<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
 
    val = array_sub (Real2);
 
-   <<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
+ //  <<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
 
    <<"%V$Real2\n";
 
@@ -333,13 +348,15 @@
 
    <<"%V$Real1\n";
 
-   <<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
+//   <<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
+
+   <<"%V  $_scope $_cmfnest $_proc $_pnest\n";
 
    Real3 = vgen (FLOAT_, 10, 0, 1);
 
    val = array_sub (Real3);
 
-   <<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
+ //  <<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
 //chkStage()
 ////////////////////
 //double Real[10];
@@ -352,7 +369,7 @@
 
    val = array_sub (Real);
 
-   <<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
+//   <<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
 
    val = Real[3];
 
@@ -433,20 +450,20 @@
 
    <<"%6.2f$Real \n";
 
-   <<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
+   <<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";   // TBF ++
 
    Real[k] = Real[j1] - Real[j2];
 
    diff = Real[j1] - Real[j2];
 
    <<"%V $k $j1 $j2 $diff $Real[k] $Real[j1] $Real[j2]\n";
-!p diff
+//ans=ask(DB_prompt,DB_action)
 
    <<"ele[${k}] %6.2f $Real[k] \n";
-//!a
+
    Real.pinfo();
 
-   <<"MAIN %V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
+   <<"MAIN %V  $_scope $_cmfnest $_proc $_pnest\n";
 
 
 
@@ -482,7 +499,7 @@
 
    val = array_sub (Real2);
 
-   <<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
+   <<"%V  $_scope $_cmfnest $_proc $_pnest\n";
 
    <<"$val \n";
 
@@ -595,4 +612,4 @@
 
    chkOut ();
 
-//===***===//
+

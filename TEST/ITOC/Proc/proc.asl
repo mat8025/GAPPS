@@ -222,7 +222,7 @@
 
   <<"$x $t \n";
 
-  chkOut();
+
 
   N = _clargs[1];
 
@@ -280,8 +280,10 @@
 
   }
 
-  <<" DONE $k $N \n";
+//  <<" DONE $k $N \n";
 
+  chkOut();
+  
   exit();
 ////  TODO/FIX /////////////
 // does not move to statement after proc call

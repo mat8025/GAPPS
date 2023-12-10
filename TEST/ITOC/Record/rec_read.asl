@@ -1,171 +1,205 @@
-//%*********************************************** 
-//*  @script readrecord.asl 
-//* 
-//*  @comment test read file into record 
-//*  @release CARBON 
-//*  @vers 1.2 He Helium [asl 6.2.49 C-He-In]                                
-//*  @date Tue May 19 16:36:25 2020 
-//*  @cdate 1/1/2018 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
-myScript = getScript();
+/* 
+ *  @script rec_read.asl                                       
+ * 
+ *  @comment test read file into record                                 
+ *  @release Lanthanum                                                  
+ *  @vers 1.3 Li Lithium [asl 5.57 : B La]                              
+ *  @date 12/09/2023 19:02:54                                           
+ *  @cdate 1/1/2018                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2023 -->                               
+ * 
+ */ 
+
+
+   myScript = getScript();
 ///
 ///
 ///
 
+   chkIn(_dblevel);
+
+   ftfile = "favfoods.csv";
+
+   A=  ofr("favfoods.csv");
 
 
-chkIn(_dblevel)
+   allowDB("array_,rec_,ds_,spe_exp,ic_,para");
 
-ftfile = "favfoods.csv"
+   DB_action = 1;
 
-A=  ofr("favfoods.csv");
+   Record RF;
 
-   RF= readRecord(A,@del,',');
+   RF.readRecord(A,_RDEL,',');
 
- if (A == -1) {
-  <<" can't open file   \n";
-    exit();
- }
+   if (A == -1) {
 
-cf(A);
+     <<" can't open file   \n";
 
+     exit();
 
-recinfo = info(RF);
-<<"$recinfo \n"
+     }
 
+   cf(A);
 
-  Nrecs = Caz(RF);
-  Ncols = Caz(RF,1);
+   recinfo = info(RF);
 
-<<"num of records $Nrecs  num cols $Ncols\n";
+   <<"$recinfo \n";
 
+   RF.pinfo();
 
+   Nrecs = Caz(RF);
 
-<<" $RF[::] \n"
+   Ncols = Caz(RF,1);
 
+   <<"num of records $Nrecs  num cols $Ncols\n";
 
+   ans=ask(DB_prompt,DB_action);
+
+   <<" $RF[::] \n";
+
+   ans=ask(DB_prompt,DB_action);
 
    for (i= 0; i < 3; i++) {
-       nc = Caz(RF,i);
-<<"<$i> $nc $RF[i] \n";
-    }
 
-<<" $RF[6] \n"
-<<" $RF[7] \n"
-<<" $RF[Nrecs-1] \n"
+     nc = Caz(RF,i);
 
-<<" $RF[Nrecs-2] \n"
+     <<"<$i> $nc $RF[i] \n";
 
+     }
+
+   <<" $RF[6] \n";
+
+   <<" $RF[7] \n";
+
+   <<" $RF[Nrecs-1] \n";
+
+   <<" $RF[Nrecs-2] \n";
 
    for (i= 2; i < 10; i++) {
-    rval = RF[i];
-<<"$rval \n  $RF[i] \n";
-    }
 
+     rval = RF[i];
 
-<<" $RF[::] \n"
+     <<"$rval \n  $RF[i] \n";
 
-<<"before delete \n"
-recinfo = info(RF);
-<<"$recinfo \n"
-<<" $(info(RF)) \n"
-  Nrecs = Caz(RF);
-<<"num of records $Nrecs \n";  
-  Ncols = Caz(RF,1);
-<<"num of cols $Ncols\n";
+     }
 
-  deleteRows(RF,1,-1)
-<<"after delete \n"
-<<" $(info(RF)) \n"
-  Nrecs = Caz(RF);
-<<"new num of records $Nrecs \n";  
-  Ncols = Caz(RF,1);
+   <<" $RF[::] \n";
 
-<<"new num of cols $Ncols\n";
+   <<"before delete \n";
 
+   recinfo = info(RF);
 
-<<" $(info(RF)) \n"
+   <<"$recinfo \n";
 
+   <<" $(info(RF)) \n";
+
+   Nrecs = Caz(RF);
+
+   <<"num of records $Nrecs \n";
+
+   Ncols = Caz(RF,1);
+
+   <<"num of cols $Ncols\n";
+
+   deleteRows(RF,1,-1);
+
+   <<"after delete \n";
+
+   <<" $(info(RF)) \n";
+
+   Nrecs = Caz(RF);
+
+   <<"new num of records $Nrecs \n";
+
+   Ncols = Caz(RF,1);
+
+   <<"new num of cols $Ncols\n";
+
+   <<" $(info(RF)) \n";
 //yes=iread("next?")
 
-<<" $RF[::] \n"
+   <<" $RF[::] \n";
 
-
-
+   ans=ask(DB_prompt,DB_action);
    //delete(RF)  ; // realloc of RF does not work for xic
-A=  ofr("favfoods.csv");
-   RF= readRecord(A,@del,',')
+
+   A=  ofr("favfoods.csv");
+
+   RF.readRecord(A,_RDEL,',');
+
    cf(A);
 
-  Nrecs = Caz(RF);
-<<"new num of records $Nrecs \n";
+   Nrecs = Caz(RF);
 
-  Ncols = Caz(RF,1);
+   <<"new num of records $Nrecs \n";
 
-<<"new num of cols $Ncols\n";
+   Ncols = Caz(RF,1);
 
-
+   <<"new num of cols $Ncols\n";
 
    for (i= 0; i < 3; i++) {
-       nc = Caz(RF,i);
-<<"<$i> $nc $RF[i] \n";
-    }
 
+     nc = Caz(RF,i);
 
-<<" $RF[::] \n"
+     <<"<$i> $nc $RF[i] \n";
 
+     }
 
+   <<" $RF[::] \n";
 
+   ans=ask(DB_prompt,DB_action);
 
+   chkT((nc >0));
 
+   int Testpick[5][2];
 
-chkT((nc >0))
-
-int Testpick[5][2];
-
-
-     testargs(1,Testpick);
-
-
+   testargs(1,Testpick);
 //ans=iread()
 
+   A=  ofr(ftfile);
 
-A=  ofr(ftfile);
+   A.pinfo();
 
- if (A == -1) {
-  <<" can't open food table $ftfile \n";
-    exit();
- }
+   if (A == -1) {
 
-   RF2= readRecord(A,@del,',')
+     <<" can't open food table $ftfile \n";
+
+     exit();
+
+     }
+
+   Record RF2;
+
+   RF2.readRecord(A,_RDEL,',');
+
    cf(A);
 
-  Nrecs = Caz(RF2);
-  Ncols = Caz(RF2,1);
+   Nrecs = Caz(RF2);
 
-<<"num of records $Nrecs  num cols $Ncols\n";
+   Ncols = Caz(RF2,1);
 
+   <<"num of records $Nrecs  num cols $Ncols\n";
 
-       FL = RF2[2];
+   FL = RF2[2];
 
-<<" $RF2[2] \n";
-<<" $FL \n";
-/{
+   <<" $RF2[2] \n";
+
+   <<" $FL \n";
+/*
    for (i= 0; i < 3; i++) {
        nc = Caz(RF2,i);
        FL = RF2[i];
 <<"<$i>  $RF2[i] \n";
 <<"<$i>  $FL \n";
     }
-/}
-chkT((nc >0))
+*/
 
 
-<<"///////////"
-/{/*
+   chkT((nc >0));
+
+   <<"; ///////////";
+/*
 for (j = 1; j<=10;j++) {
 
   vname = "RT$j";
@@ -180,7 +214,7 @@ for (j = 1; j<=10;j++) {
 
 }
 
-/}*/
+*/
 
 /*
 Record RT[2][10];
@@ -193,5 +227,6 @@ RT[1][0] = RF[1];
 */
 
 
+   chkOut();
 
-chkOut()
+//==============\_(^-^)_/==================//

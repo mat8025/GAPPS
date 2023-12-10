@@ -9,15 +9,16 @@
  *  @author Mark Terry 
  *  @Copyright © RootMeanSquare 2022
  * 
+ *  \\-----------------<v_&_v>--------------------------//  
  */ 
-;//----------------<v_&_v>-------------------------//;   
+
+
 ///Record
 /// test record type
 /// each record is an Svar
 ///
-Str Use_= "Demo  of Record class \n";
 
-
+  Str Use_= "Demo  of Record class \n";
 #include "debug"
 
   if (_dblevel >0) {
@@ -28,8 +29,8 @@ Str Use_= "Demo  of Record class \n";
 
   }
 
-//  filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
-
+fileDB(ALLOW_,"rec_,spe_scope,spe_varcon,spe_create,spe_exp,spe_declare,array_")
+  
   chkIn(_dblevel);
 
   chkT(1);
@@ -41,11 +42,9 @@ Str Use_= "Demo  of Record class \n";
   <<"%V $sz  $(csz(ra)) \n";
 
   ra.pinfo();
-
 //  sz= csz(&ra);
 
-  sz= csz(ra);  // csz should treat arg as reference - scalar should return 1
-
+  sz= csz(ra);  // csz should treat arg as reference - scalar should return 1;
   //<<"$sz  $(csz(&ra)) \n";
 
   Record R[20];
@@ -66,8 +65,9 @@ Str Use_= "Demo  of Record class \n";
   S.pinfo();
 
   <<"$S\n";
+  ans=ask(DB_prompt,db_action)
 
-  <<"%V $S[4]\n"
+  <<"%V $S[4]\n";
 
   R[0] = S;
 // R[0] = Split("80,1,2,3,40,5,6,7,8,9",','); 
@@ -75,7 +75,6 @@ Str Use_= "Demo  of Record class \n";
   <<"%V $R[0] \n";
 
   <<"%V $R[0][3] \n";
-
 //Str val = "opq";
 
   val = R[0][4];
@@ -85,10 +84,7 @@ Str Use_= "Demo  of Record class \n";
   <<"%V$val \n";
 
   chkStr(val,40);
-
 //  chkOut(); exit(-1);
-  
-
 
   R[1] = Split("81,5,4,3,40,5,6,7,8,9",',');
 
@@ -108,24 +104,19 @@ Str Use_= "Demo  of Record class \n";
 
   R.pinfo();
 
-  <<"2  $R[2]\n"
+  <<"2  $R[2]\n";
 
-
-  <<"21 $R[21]\n"
+  <<"21 $R[21]\n";
 
   R.pinfo();
 
-
   R[21] = Split("21,77,4,3,40,5,6,7,8,9",',');
 
-  <<"21 $R[21]\n"
+  <<"21 $R[21]\n";
 
   chkOut();
 
-exit(-1);
-
-
-
+  exit(-1);
 
   R[2] = Split("82,7,6,5,40,5,6,7,8,9",',');
 
@@ -137,22 +128,28 @@ exit(-1);
 
   R[4] = Split("84,9,8,7,40,5,6,7,8,47",',');
 
-<<" $R[4] \n";
+  <<" $R[4] \n";
+
   R[5] = Split("85,9,8,77,47,5,6,7,80,95",',');
-<<" $R[5] \n";
+
+  <<" $R[5] \n";
+
   R[6] = Split("86,9,8,7,40,5,6,7,8,79",',');
-<<" $R[6] \n";
+
+  <<" $R[6] \n";
+
   R.aslpinfo();
 
   <<" $R[4] \n";
 
- for(i=0;i< 20; i++) {
-<<"[$i] $R[i] \n"
+  for(i=0;i< 20; i++) {
+
+  <<"[$i] $R[i] \n";
 //  does not show empty records - repeats last non-empty
-}
 
+  }
 
-  <<" $R[::] \n"; // does not show record table
+  <<" $R[::] \n"; // does not show record table;
 
   R[7] = R[1];
 
@@ -165,7 +162,6 @@ exit(-1);
 
   wsv=Split("80,1,2,3,79,5,6,7,8,9", ",");
 !pwsv
-
 
   R.aslpinfo();
 
@@ -293,54 +289,60 @@ exit(-1);
   chkN(ival,ptan("Zr"));
 
   <<" $R[::] \n";
+
   Nrecs = Caz(R);
 
   Ncols = Caz(R,1);
 
   <<"num of records $Nrecs  num cols $Ncols\n";
 
-for(i=0;i< 20; i++) {
-<<"[$i] $R[i] \n"
+  for(i=0;i< 20; i++) {
+
+  <<"[$i] $R[i] \n";
 //  does not show empty records - repeats last non-empty
-}
+
+  }
+
   deleteRows(R,2,4);
+
   <<"delete rows 2 thru 4 \n";
-    Nrecs = Caz(R);
+
+  Nrecs = Caz(R);
 
   Ncols = Caz(R,1);
 
   <<"num of records $Nrecs  num cols $Ncols\n";
+
   R.aslpinfo();
 
+  for(i=0;i< 20; i++) {
 
-
- for(i=0;i< 20; i++) {
-<<"[$i] $R[i] \n"
+  <<"[$i] $R[i] \n";
 //  does not show empty records - repeats last non-empty
-}
+
+  }
 
   <<" $R[::] \n";
 
   deleteRows(R,1,-1);
 
   <<" $R[::] \n";
-   R.aslpinfo();
 
+  R.aslpinfo();
 
-   recinfo = info(R);
+  recinfo = info(R);
 
   <<"$recinfo \n";
-  <<" $R[0] \n";
-<<" can it dynamic expand ?\n";
 
+  <<" $R[0] \n";
+
+  <<" can it dynamic expand ?\n";
 
   R[1] = Split("81,5,4,3,40,5,6,7,8,29",",");
+
   <<" $R[1] \n";
-R.aslpinfo();
 
-
-
-
+  R.aslpinfo();
 
   R[2] = Split("82,7,6,5,40,5,6,7,8,30",",");
 
@@ -363,15 +365,16 @@ R.aslpinfo();
   R.aslpinfo();
 
   R[11] = Split("91,5,4,3,40,5,6,7,Sn,50",",");
- R.aslpinfo();
+
+  R.aslpinfo();
 
   R[12] = Split("92,7,6,5,40,5,6,7,Sb,51",",");
 
-<<"$R[2] \n";
+  <<"$R[2] \n";
 
   R[14] = Split("93,7,6,5,40,5,6,7,Sb,51",",");
-  <<" $R[::] \n";
 
+  <<" $R[::] \n";
 
   R[15] = Split("95,8,7,6,40,5,6,7,Te,52",",");
 
@@ -460,7 +463,7 @@ R.aslpinfo();
 
   I[1] = 4;
 
-  svar SV[10];
+  Svar SV[10];
 
   sz= Caz(SV);
 
@@ -473,11 +476,11 @@ R.aslpinfo();
 
   <<"R %V$sz\n";
 
-  str sr0;
+  Str sr0;
 
-  str fr0;
+  Str fr0;
 
-  str sr1;
+  Str sr1;
 //record R[]; // TBF
 /*
 // how many cols ??
@@ -835,4 +838,4 @@ R.aslpinfo();
 // smart print of record
 // indexing R[i][k]    where k is field (of the svar)
 
-;//==============\_(^-^)_/==================//;
+//==============\_(^-^)_/==================//
