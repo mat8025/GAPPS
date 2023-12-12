@@ -266,7 +266,7 @@ int do_tests = 0;
 <<[_DBH]"%V $do_all \n"
 
   i = 1;
-
+//allowDB("spe_exp,ic_,para");
     while (1) {
 
 
@@ -435,7 +435,7 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
    if ((do_all || do_class )  && (do_class != -1)) {
     inflsz = caz(FailedList)
-        RunDirTests("Class","classbops,class_mfcall,class2,classvar");
+        RunDirTests("Class","classbops,classmfcall,class2,classvar");
        outcome("CLASS")
     }
 

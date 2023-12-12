@@ -17,10 +17,7 @@ char vers[6] ="5.1";
 
 
 #include "debug"
- //filterFileDebug(REJECT_,"pr_state.cpp","declare_e.cpp");
-///filterFileDebug(ALLOW_,"pr_state.cpp","declare_e.cpp");
- //filterFuncDebug(REJECT_,"si_declare_type", "checkExpression","checkStatement","writeASC");
-// filterFuncDebug(REJECT_,"advanceStatement");
+
  
 #define DB_IT    0
 #define GT_DB   0

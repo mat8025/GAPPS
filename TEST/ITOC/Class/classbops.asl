@@ -32,10 +32,10 @@ chkIn(_dblevel);
 #include "abc"
 
 
-
+   DB_action = 2
 
 //////////////////////////////////////////////////////
-proc goo( real x)
+void goo( real x)
 {
   a= x;
 <<"$_proc %V $x $a\n";
@@ -46,6 +46,7 @@ goo(1.2)
 
 goo(sin(0.7))
 
+ //  ans=ask(DB_prompt,DB_action);
 /// must have a CONS -- else crash in xic??
 
 class Point
@@ -59,12 +60,12 @@ class Point
 //============================//
 
 
-   float setx(real m) 
-     {
+     float setx(real m) {
+     
       x = m;
       <<"$_proc $m $x  \n"; 
       return x;
-      };
+      }
 
 
     void set (real m, real n) 
@@ -73,68 +74,82 @@ class Point
        x = m;
        y = n;
    <<"%V $m $n \n" 
-      };
+      }
 
-    void set (float m,float n) 
-    {
+
+
+
+    void set (float m,float n) {
+    
   <<"$_proc set via float %V $m $n  \n";
        x = m;
        y = n;
    <<"%V $m $n \n" 
-      };
+      }
 
-    void set (double m, double n) 
-    {
+    void set (double m, double n) {
+    
   <<"$_proc set via double %V $m $n  \n";
   
        x = m;
        y = n;
        
    <<"%V $x $y \n" 
-      };
+      }
 
 
-    void set (int m, int n) 
-    {
+    void set (int m, int n) {
+    
        x = m;
        y = n;
       <<"set via ints %V $m $n $x $y \n";
       };
  
-    cmf Getx() 
-     {
+    float Getx() {
       <<"$_proc getting $x $_cobj \n"; 
         v=y.isVector()
     <<"%v$v\n"
         dv= DV.isVector()
-<<"%v$dv\n"	
+<<"%v$dv\n"
+      dv.pinfo()
+      z = x;
+      z.pinfo()
+      <<"%V $z  $x\n"
+      x.pinfo()
       return x;
-      };
+      }
     
-    cmf Gety()
+    float Gety()
      {
       <<"getting $y  $_cobj  \n"; 
       return y;
-      };
+      }
 
-    double  mul(real a) {
+    double  mul(real a)
+    {
       double tmp;
       tmp = (a * x);
     <<"$_proc %V $a $tmp $x\n";         
       return tmp; 
-      };
+      }
 
-    float  mul(int mi) {
+    float  mul(int mi)
+    {
       float tmp;
       tmp = (mi * x); 
       return tmp; 
-      };
+      }
     
-    void Print() {
-      <<"%V $x,$y %i $x,$y\n"; 
+    void Print()
+      {
+//         <<"%V $x , $y %i $x,$y\n";
+          <<"%V $x , $y \n";
+	  y.pinfo()
+	  x.pinfo()
       }
 
-     void info() {
+     void info()
+     {
       <<"$_proc %V $x,$y\n";
        v=y<-isVector()
    <<"%v$v\n"	
@@ -143,104 +158,113 @@ class Point
       }
       
 
-   cmf Point()
+   void Point()
    {
     // same name as class is the constructor
 
      y=2;
      x=4;
 <<"cons $_proc  %V $x $y \n"
-
-
-   };
+   }
 
 }
 
-
+//   ans=ask(DB_prompt,DB_action);
 
 ////////////////////////////////////////////
-  
+  allowDB("ic_,oo_,spe_proc,spe_state,spe_cmf,spe_scope")
+
+// ans=ask(DB_prompt,DB_action);
+ 
   Point A;
 
-double x1;
+  rx=   A.Getx();
 
+ <<"%V <|$rx|>\n"
+ans=ask(DB_prompt,DB_action);
 
+  A.pinfo()
+   
+  double x1;
 
   x1.pinfo();
 
 
+  A.x = 3.4
 
+  x1= A.x;
 
-  A->x = 3.4
-
-  x1= A->x;
-
+ ans=ask(DB_prompt,DB_action);
 
 <<"$x1\n"
 
   chkR(x1,3.4)
 
-
-   A.pinfo()
-
-
-<<"should call cmf  A->info() \n"
    A.pinfo()
 
 
 
+  A.x = 4.0
 
-   A->x = 4.0
- 
+
+
+  chkR(rx,4.0);
+
   Point B;
 
   Point C;
 
   Point D;
 
-  rx= D->Getx();
+  rx= D.Getx();
 
+  rx.pinfo()
+  
 <<"%V $rx\n"
+
+  chkR(rx,4.0);
+
+//ans=ask(DB_prompt,DB_action);
 
 real r1 = 2.3;
 real r2 = 4.5;
 
 
-  rx=   A->Getx();
-
- <<"%V <|$rx|>\n"
-
-  chkR(rx,4.0);
-
  <<"%V <|$r1|>\n"
 
-  A->setx(r1);
-
-  rx=   A->Getx();
+  rx=   A.Getx();
   
  <<"%V <|$rx|>\n"
+
+    chkR(rx,4.0);
+
+//ans=ask(DB_prompt,DB_action);
+
+
+  A.setx(r1);
+
+  rx=   A.Getx();
 
   chkR(r1,rx)
 
+  ans=ask(DB_prompt,DB_action);
 
-
-
- my = A->mul(r2 ); 
+  my = A.mul(r2 ); 
   
-  <<"%V$my $A->x  \n";
+  <<"%V$my $A.x  \n";
 
+ans=ask(DB_prompt,DB_action);
 
-
-  my = A->mul( Sin(-0.9) ); 
+  my = A.mul( Sin(-0.9) ); 
   
-  <<"%V$my $A->x  \n";
+  <<"%V$my $A.x  \n";
 
   r2 = Sin(0.7)
 
 
- my = A->mul(r2 ); 
+ my = A.mul(r2 ); 
   
-  <<"%V$my $A->x  \n";
+  <<"%V$my $A.x  \n";
 
 
 
@@ -248,17 +272,17 @@ real r2 = 4.5;
   r2 = Sin(-0.9)
 
 
- my = A->mul(r2 ); 
+ my = A.mul(r2 ); 
   
-  <<"%V$my $A->x  \n";
+  <<"%V$my $A.x  \n";
 
-  my = A->mul( Sin(-0.8) ); 
+  my = A.mul( Sin(-0.8) ); 
   
-  <<"%V$my $A->x  \n";
+  <<"%V$my $A.x  \n";
 
 
-  A->set(2.2,0.123);
-  rx=   A->Getx();
+  A.set(2.2,0.123);
+  rx=   A.Getx();
 
 <<"%V $rx\n"
   chkR(rx,2.2)
@@ -266,107 +290,107 @@ real r2 = 4.5;
 
 
 
-  B->set(4,2);
-  rx=   B->Getx();
+  B.set(4,2);
+  rx=   B.Getx();
   <<"%V $rx\n"
 
 
 
-  B->set(2.2,0.123);
+  B.set(2.2,0.123);
 
-  B->Print();
+  B.Print();
 
-<<"%V $B->x $B->y \n"; 
+<<"%V $B.x $B.y \n"; 
 
 
 
 
   
   
-  <<"%V $A->x $A->y \n"; 
+  <<"%V $A.x $A.y \n"; 
   
-  <<" A->Print() \n"; 
+  <<" A.Print() \n"; 
 
-  A->Print(); 
+  A.Print(); 
 
-  A->set(0.15, 0.2);
+  A.set(0.15, 0.2);
 
-  //ax= A[0]->x ; // treat  as array ? error if not - do not crash warn
+  //ax= A[0].x ; // treat  as array ? error if not - do not crash warn
   
 
-//<<"%V $ax $A[0]->x \n"
+//<<"%V $ax $A[0].x \n"
 
-  ax= A->x
+  ax= A.x
 
-<<"%V $ax $A->x \n"
+<<"%V $ax $A.x \n"
 
-  ok=chkR(A->x,0.15,5);
-
-
+  ok=chkR(A.x,0.15,5);
 
 
 
- // ok=chkR(A[0]->y,0.2,5); 
 
-  ok=chkR(A->x,0.15,5);
+
+ // ok=chkR(A[0].y,0.2,5); 
+
+  ok=chkR(A.x,0.15,5);
   
-  <<" B->Print() \n"; 
-  B->Print(); 
-  
-  
-  <<"%V $B->x $B->y \n"; 
+  <<" B.Print() \n"; 
+  B.Print(); 
   
   
-  ok=chkR(B->x,2.2,5);
+  <<"%V $B.x $B.y \n"; 
   
-  ok=chkR(B->y,0.123,5); 
   
-  C->set(1.1,0.2); 
+  ok=chkR(B.x,2.2,5);
+  
+  ok=chkR(B.y,0.123,5); 
+  
+  C.set(1.1,0.2); 
 
-  C->Print();
+  C.Print();
   
-  cy = C->Gety()
+  cy = C.Gety()
 
-  <<"%V $C->x $C->y $cy\n"; 
+  <<"%V $C.x $C.y $cy\n"; 
 
 chkR(cy,0.2);
 
 
-  wx = A->Getx();
+  wx = A.Getx();
   
   ok=chkR(wx,0.15,5); 
   
-  A->set(47, 79);
+  A.set(47, 79);
   
-  A->Print(); 
+  A.Print(); 
   
-  B->set(83, 65);
-  A->Print(); 
-  B->Print(); 
+  B.set(83, 65);
+  A.Print(); 
+  B.Print(); 
   
-  D->x = B->x;
+  D.x = B.x;
   
-  chkN(D->x,83); 
+  chkN(D.x,83); 
   
-  D->Print(); 
+  D.Print(); 
   
-  D->y = A->y;
+  D.y = A.y;
   
-  chkN(D->y,79); 
-  
-  
-  D->Print(); 
+  chkN(D.y,79); 
   
   
-  chkN(D->y,A->y); 
+  D.Print(); 
+  
+  
+  chkN(D.y,A.y); 
   
   
   <<" 1/////////////////\n"; 
   
   <<"%V$ok x  $wx 0.15\n"; 
   
-  wy = A->Gety(); 
-  <<"%V $wy $A->Gety()\n"; 
+  wy = A.Gety(); 
+  <<"%V $wy $A.Gety()\n"; 
   
   
   ok=chkR(wy,79,5); 
@@ -375,56 +399,56 @@ chkR(cy,0.2);
   <<" 2/////////////////\n"; 
   
   
-  A->Print();
-  B->Print();
+  A.Print();
+  B.Print();
   
-  ax = A->Getx();
+  ax = A.Getx();
   <<"A %V $ax \n";
   
   chkR(ax,47,5);
-  ay = A->Gety();
+  ay = A.Gety();
   <<"A %V $ay \n"; 
 
   chkR(ay,79,5); 
   
-  A->Print();
+  A.Print();
   
-   axy = A->Getx() + A->Gety();
+   axy = A.Getx() + A.Gety();
 
 <<"%V $axy $ax $ay\n"
 
-   axy = A->Gety() + A->Getx();
+   axy = A.Gety() + A.Getx();
    axy2 = ax + ay;
    axy3 = ax + ay;   
 <<"%V $axy $axy2 $axy3 $ax $ay\n"
 
   chkR(axy,(ax+ay),5);
 
-  bx = B->Getx();
+  bx = B.Getx();
 
   chkR(bx,83,5); 
 
-  by = B->Gety();
+  by = B.Gety();
   
   chkR(by,65,5); 
 
-  bxy = B->Getx() + B->Gety();
+  bxy = B.Getx() + B.Gety();
 
 <<"%V $bxy $bx $by\n"
 
-  axy = A->Getx() + A->Gety();
+  axy = A.Getx() + A.Gety();
 
 <<"%V $axy $ax $ay\n"
   
   chkR(axy,(ax+ay),5); 
 
 
-  bxy = B->Getx() + B->Gety(); 
+  bxy = B.Getx() + B.Gety(); 
   chkR(bxy,(bx+by),5);
   
-  z2 = A->x + B->y; 
+  z2 = A.x + B.y; 
   
-  z = A->Getx() + B->Gety(); 
+  z = A.Getx() + B.Gety(); 
   
   <<"%V $ax $ay $axy $bx $by  $bxy $z2 $z\n"; 
   
@@ -435,24 +459,24 @@ chkR(cy,0.2);
   
   <<"%V $z $wx $wy \n"; 
   
-  z = A->Getx() * A->Gety(); 
+  z = A.Getx() * A.Gety(); 
   
   <<"%V $z $wx $wy \n"; 
   
-  my = B->y; 
-  cy = C->y;
-  <<"%V $B->y  $my $cy $C->y\n"; 
+  my = B.y; 
+  cy = C.y;
+  <<"%V $B.y  $my $cy $C.y\n"; 
   
-  my = B->y - C->y;
+  my = B.y - C.y;
 
- <<"%V$ok $B->y - $C->y =  $my \n"; 
+ <<"%V$ok $B.y - $C.y =  $my \n"; 
 
   ok=chkR(my,(65-0.2),4); 
  
 
-  my = ((B->y - C->y)/2.0) + C->y; 
+  my = ((B.y - C.y)/2.0) + C.y; 
   
-  <<"%V $B->y $C->y  $my \n"; 
+  <<"%V $B.y $C.y  $my \n"; 
   
   ok=chkR(my,32.6,4); 
   <<"%V$ok $my 1.1\n"; 
@@ -470,18 +494,18 @@ chkR(cy,0.2);
   
 //  <<"$(nsc(20,'\'))\n"
   
-    v= B->y/2.0;
+    v= B.y/2.0;
   for (i = 0; i < 4 ; i++) {
     
   
-    my = B->y/2.0 ; 
-  <<"%V $i $B->y    $my $v \n"; 
+    my = B.y/2.0 ; 
+  <<"%V $i $B.y    $my $v \n"; 
     
     ok=chkR(my,v,5); 
     chkProgress(" for $i"); 
     <<"%V$ok $i $my $v\n"; 
-    B->y += 0.2; 
-    v  =  B->y/2.0;
+    B.y += 0.2; 
+    v  =  B.y/2.0;
 
     }
   
@@ -494,112 +518,112 @@ chkR(cy,0.2);
 
 
 
-  v = B->Gety(); 
+  v = B.Gety(); 
   <<" $v\n"; 
-  v1 = C->y;
+  v1 = C.y;
   <<" $v1\n"; 
-  v -= C->y; 
+  v -= C.y; 
   
   <<" $v\n"; 
   
   chkProgress();
     
-  chkProgress("  v -= C->y ");
+  chkProgress("  v -= C.y ");
   
   
-  my = B->Gety() - C->y; 
+  my = B.Gety() - C.y; 
   <<"%V$ok $my $v\n"; 
   ok=chkR(my,v,5); 
   
-  v = A->Getx(); 
+  v = A.Getx(); 
   v *= 2; 
-  my = A->mul(2); 
+  my = A.mul(2); 
   
-  <<" %V $A->x $my $v \n"; 
+  <<" %V $A.x $my $v \n"; 
   
   chkN(my,v); 
   
-  u = B->Getx(); 
+  u = B.Getx(); 
   u *= 3; 
-  my = B->mul(3); 
+  my = B.mul(3); 
   
-  <<" %V $B->x $my $u \n"; 
+  <<" %V $B.x $my $u \n"; 
   
   chkR(my,u,6); 
   
   float w = v + u; 
   
-  my = A->mul(2) + B->mul(3); 
+  my = A.mul(2) + B.mul(3); 
   
   <<" %V $w $my $v $u \n"; 
   
   chkR(my,w,6); 
   
   
-  <<" %V $A->x $B->x \n"; 
+  <<" %V $A.x $B.x \n"; 
+ans=ask(DB_prompt,DB_action);  
+  my = A.mul( B.x );   // TBF 12/11/23 obj.arg
   
-  my = A->mul(B->x); 
-  
-  <<" %V $my $A->x $B->x \n"; 
+  <<" %V $my $A.x $B.x \n"; 
 
 
-  val = A->x * B->x;
+  val = A.x * B.x;
   <<"%V $val\n"
 
   chkR(my,3901,6); 
   
-  my = A->mul(B->y) + B->mul(A->x); 
+  my = A.mul(B.y) + B.mul(A.x); 
 
-  mya = A->mul(B->y);
-  myb = B->mul(A->x);
-<<"$B->x $B->y $A->x $A->y\n"
-  my2 = A->x * B->y   + B->x * A->x;
+  mya = A.mul(B.y);
+  myb = B.mul(A.x);
+<<"$B.x $B.y $A.x $A.y\n"
+  my2 = A.x * B.y   + B.x * A.x;
   
 <<"%V $my $mya $myb  $my2 $(mya * myb)\n"
   
   ok=chkR(my,my2,3); 
-  <<"%V$ok  $my == 0.6 $A->x $B->x \n"; 
+  <<"%V$ok  $my == 0.6 $A.x $B.x \n"; 
   my = Sin(0.5); 
   
   <<"Sin  %V $my \n"; 
   
-  v = my * A->x; 
+  v = my * A.x; 
   
-  my = A->mul( Sin(0.5) ); 
+  my = A.mul( Sin(0.5) ); 
   
   
-  <<"%V$my $A->x  $v \n"; 
+  <<"%V$my $A.x  $v \n"; 
   
   chkR(my,v,5); 
   
   
-//FIXME   my = A->mul( Sin(0.5) )
-//<<" %V $my $A->x  \n"
+//FIXME   my = A.mul( Sin(0.5) )
+//<<" %V $my $A.x  \n"
   
   
-  my = A->mul( Sin(0.7) ); 
+  my = A.mul( Sin(0.7) ); 
   
   
-  <<"%V$my $A->x  \n"; 
+  <<"%V$my $A.x  \n"; 
 
 
 
 
-  r1 = B->Getx()
+  r1 = B.Getx()
 
 <<"%V$r1\n"; 
 
-  my = A->mul( r1); 
+  my = A.mul( r1); 
 
-  my3 = A->mul( B->Getx() ); 
+  my3 = A.mul( B.Getx() ); 
 
-<<" %V $my $my3 $A->x $B->x \n"; 
+<<" %V $my $my3 $A.x $B.x \n"; 
 
 
 
-  my2 = A->x    * B->Getx()
+  my2 = A.x    * B.Getx()
 
-<<" %V $my $my2 $A->x $B->x \n"; 
+<<" %V $my $my2 $A.x $B.x \n"; 
 
   
   
@@ -612,12 +636,12 @@ chkR(cy,0.2);
 /// TBD ///////////
 /// still have to chk this  gives correct answer  for
 ///
-//  A->x     - done
-//  A->Getx() - done
-//  A->mul(z) - done
-//  A->Getx() + B->Getx() + ...
-//  A->add( B->Gety(), C->Gety())  ...
-//  A->x->z ....
+//  A.x     - done
+//  A.Getx() - done
+//  A.mul(z) - done
+//  A.Getx() + B.Getx() + ...
+//  A.add( B.Gety(), C.Gety())  ...
+//  A.x.z ....
 //  ...
 */  
   

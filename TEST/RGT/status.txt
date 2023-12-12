@@ -16,7 +16,7 @@ if		100
 iproc          -1
 include      -1
 ivar          -2
-lhsubsc     -1
+lhsubsc     100
 lists         -2
 logic		100
 matrix	100
