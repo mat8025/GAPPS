@@ -140,12 +140,14 @@ class Point
       return tmp; 
       }
     
-    void Print()
+    //void Print()
+    float Print()
       {
 //         <<"%V $x , $y %i $x,$y\n";
           <<"%V $x , $y \n";
 	  y.pinfo()
 	  x.pinfo()
+	  return y;
       }
 
      void info()
@@ -181,7 +183,7 @@ class Point
   rx=   A.Getx();
 
  <<"%V <|$rx|>\n"
-ans=ask(DB_prompt,DB_action);
+
 
   A.pinfo()
    
@@ -194,7 +196,7 @@ ans=ask(DB_prompt,DB_action);
 
   x1= A.x;
 
- ans=ask(DB_prompt,DB_action);
+
 
 <<"$x1\n"
 
@@ -247,13 +249,13 @@ real r2 = 4.5;
 
   chkR(r1,rx)
 
-  ans=ask(DB_prompt,DB_action);
+//ans=ask(DB_prompt,DB_action,5);
 
   my = A.mul(r2 ); 
   
   <<"%V$my $A.x  \n";
 
-ans=ask(DB_prompt,DB_action);
+
 
   my = A.mul( Sin(-0.9) ); 
   
@@ -282,36 +284,32 @@ ans=ask(DB_prompt,DB_action);
 
 
   A.set(2.2,0.123);
+
   rx=   A.Getx();
 
 <<"%V $rx\n"
   chkR(rx,2.2)
   
-
+//  ans=ask(DB_prompt,DB_action,5);
 
 
   B.set(4,2);
   rx=   B.Getx();
   <<"%V $rx\n"
 
-
-
   B.set(2.2,0.123);
 
   B.Print();
 
 <<"%V $B.x $B.y \n"; 
-
-
-
-
-  
   
   <<"%V $A.x $A.y \n"; 
   
   <<" A.Print() \n"; 
 
   A.Print(); 
+ 
+  //ans=ask(DB_prompt,DB_action,5);
 
   A.set(0.15, 0.2);
 
@@ -325,9 +323,6 @@ ans=ask(DB_prompt,DB_action);
 <<"%V $ax $A.x \n"
 
   ok=chkR(A.x,0.15,5);
-
-
-
 
 
  // ok=chkR(A[0].y,0.2,5); 
@@ -561,22 +556,28 @@ chkR(cy,0.2);
   
   
   <<" %V $A.x $B.x \n"; 
-ans=ask(DB_prompt,DB_action);  
-  my = A.mul( B.x );   // TBF 12/11/23 obj.arg
+//ans=ask(DB_prompt,DB_action,5);
+
+  my = A.mul ( B.x );   // TBF 12/11/23 obj.arg
   
   <<" %V $my $A.x $B.x \n"; 
 
 
   val = A.x * B.x;
   <<"%V $val\n"
-
+//ans=ask(DB_prompt,DB_action,5);  
   chkR(my,3901,6); 
   
   my = A.mul(B.y) + B.mul(A.x); 
 
   mya = A.mul(B.y);
+  mya.pinfo()
+  
   myb = B.mul(A.x);
+  myb.pinfo()
 <<"$B.x $B.y $A.x $A.y\n"
+
+
   my2 = A.x * B.y   + B.x * A.x;
   
 <<"%V $my $mya $myb  $my2 $(mya * myb)\n"
@@ -607,7 +608,7 @@ ans=ask(DB_prompt,DB_action);
   <<"%V$my $A.x  \n"; 
 
 
-
+//ans=ask(DB_prompt,DB_action,5);  
 
   r1 = B.Getx()
 
@@ -615,17 +616,21 @@ ans=ask(DB_prompt,DB_action);
 
   my = A.mul( r1); 
 
-  my3 = A.mul( B.Getx() ); 
 
-<<" %V $my $my3 $A.x $B.x \n"; 
 
 
 
   my2 = A.x    * B.Getx()
 
 <<" %V $my $my2 $A.x $B.x \n"; 
+cmf_arg =0
+if (cmf_arg) {
+  DBaction(DBSTEP_,ON_)
 
-  
+  my3 = A.mul( B.Getx() ); 
+}
+
+<<" %V $my $my3 $A.x $B.x \n";   
   
   chkR(my,my2,3); 
   

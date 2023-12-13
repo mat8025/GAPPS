@@ -6858,11 +6858,6 @@ menu is ON then the debug stream goes to journal file in the GS
 directory.
 (see name_debug)
 
-
-
-
-
-
 .EF
 =============================================================
 .BF
@@ -6880,6 +6875,39 @@ and REJECTALL_
 
 .EF
 =============================================================
+.BF
+allowDB
+.(x
+allowDB
+.)x 
+.FD
+allowDB("ic_,oo_,spe_proc,spe_state,spe_cmf,spe_scope")
+
+Would pass debug statements from internal code modules with those comma delimited prefix to debug stream.
+The args can be full module names or a prefix so that all code modules with that prefix are output.
+.EF
+=============================================================
+.BF
+showcode
+.(x
+showcode
+.)x 
+.FD
+showcode([nlines_post],[nlines_pre])
+  shows (prints) src code lines either side of current statement - default 5 lines after current statement
+.EF
+=============================================================
+.BF
+showscope
+.(x
+showscope
+.)x 
+.FD
+showscope()
+  shows (prints) the current scope --  use for debug of procedures 
+.EF
+=============================================================
+
 .BF
 filterFileDebug
 .(x
