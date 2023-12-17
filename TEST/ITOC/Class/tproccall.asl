@@ -17,7 +17,7 @@ allowDB("ic_,oo_,spe_proc,spe_state,spe_args,spe_cmf,spe_scope,tok_func")
 void zoo ( double a) {
 
 <<"IN $_proc  $a\n"
-  //a.pinfo()
+  a.pinfo()
   poo()
 }
 
