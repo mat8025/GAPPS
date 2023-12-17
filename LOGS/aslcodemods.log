@@ -1896,3 +1896,22 @@ opera_opeq.cpp                      1.55  12/07/2023 12:40:05  TDB
 opera_opeq.cpp                      1.55  12/07/2023 12:41:03  TDB 
 spe_exp.cpp                         3.64  12/08/2023 21:14:43  clear RHS SW,AW setttings before eval of RHS\
 rdp_token.cpp                       1.80  12/08/2023 21:36:36  ptr to array ele - RHS store val
+vmf_l.cpp                           0.1  12/13/2023 09:14:41  tt
+vmf_l.cpp                           0.1  12/14/2023 00:29:47  
+vmf_l.cpp                           0.1  12/14/2023 00:35:14  
+vmf_l.cpp                           1.2  12/14/2023 11:46:19  test new processS
+vmf_l.cpp                           1.2  12/14/2023 11:49:51  
+vmf_l.cpp                           1.36  12/14/2023 13:46:14  weird
+vmf_l.cpp                           1.37  12/14/2023 13:48:03  wxx
+vmf_l.cpp                           1.38  12/14/2023 13:50:39  wxx
+vmf_l.cpp                           1.39  12/14/2023 13:54:40  r
+vmf_l.cpp                           0.1  12/15/2023 01:18:39  try_more
+vmf_l.cpp                           0.1  12/16/2023 07:19:31  
+vmf_l.cpp                           0.1  12/16/2023 07:20:18  who_knows
+vmf_l.cpp                           0.1  12/16/2023 07:21:41  t33
+vmf_l.cpp                           0.1  12/16/2023 13:27:04  
+vmf_l.cpp                           0.1  12/16/2023 13:29:14  q
+vmf_l.cpp                           0.1  12/16/2023 13:29:53  fd
+vmf_l.cpp                           0.1  12/16/2023 13:32:26  t56
+vmf_l.cpp                           0.1  12/16/2023 13:36:31  q
+vmf_l.cpp                           0.1  12/16/2023 13:38:34  q

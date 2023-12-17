@@ -16,7 +16,7 @@
 Demo  of class ops
 /////////////////////// 
 |>
-
+//DBaction((DBSTEP_),ON_)
 #include "debug";
 
 if (_dblevel >0) {
@@ -35,18 +35,26 @@ chkIn(_dblevel);
    DB_action = 2
 
 //////////////////////////////////////////////////////
-void goo( real x)
+real goo( real x)
 {
-  a= x;
+  a= x * 2;
 <<"$_proc %V $x $a\n";
+  return a
 }
 //==================//
 
-goo(1.2)
+b=goo(1.2)
+<<" goo $b\n"
+b=goo(sin(0.7))
 
-goo(sin(0.7))
 
- //  ans=ask(DB_prompt,DB_action);
+
+<<" goo $b\n"
+
+   b=goo(77.6)
+<<"goo $b\n"
+
+//ans=ask(DB_prompt,DB_action);
 /// must have a CONS -- else crash in xic??
 
 class Point
@@ -61,7 +69,7 @@ class Point
 
 
      float setx(real m) {
-     
+      m.pinfo()
       x = m;
       <<"$_proc $m $x  \n"; 
       return x;
@@ -106,16 +114,18 @@ class Point
       };
  
     float Getx() {
-      <<"$_proc getting $x $_cobj \n"; 
-        v=y.isVector()
-    <<"%v$v\n"
-        dv= DV.isVector()
-<<"%v$dv\n"
-      dv.pinfo()
+      <<"$_proc getting $x $_cobj \n";
+      
+  //      v=y.isVector()
+ //   <<"%v$v\n"
+  //      dv= DV.isVector()
+//<<"%v$dv\n"
+      //dv.pinfo()
       z = x;
-      z.pinfo()
+      //z.pinfo()
       <<"%V $z  $x\n"
-      x.pinfo()
+      //x.pinfo()
+      
       return x;
       }
     
@@ -179,6 +189,12 @@ class Point
 // ans=ask(DB_prompt,DB_action);
  
   Point A;
+
+  rx  =  Sin(d2r(90)) 
+
+ chkR(rx,1.0)
+ 
+
 
   rx=   A.Getx();
 
@@ -248,7 +264,7 @@ real r2 = 4.5;
   rx=   A.Getx();
 
   chkR(r1,rx)
-
+<<"%V $r1  $rx \n"
 //ans=ask(DB_prompt,DB_action,5);
 
   my = A.mul(r2 ); 
@@ -622,21 +638,54 @@ chkR(cy,0.2);
 
   my2 = A.x    * B.Getx()
 
-<<" %V $my $my2 $A.x $B.x \n"; 
-cmf_arg =0
-if (cmf_arg) {
-  DBaction(DBSTEP_,ON_)
+<<" %V $my $my2 $A.x $B.x \n";
 
-  my3 = A.mul( B.Getx() ); 
+   b=goo(77.6)
+<<"goo $b\n"
+//ans=ask(DB_prompt,DB_action,5);
+
+cmf_arg =1
+if (cmf_arg) {
+
+// wdb=DBaction((DBSTEP_| DBSTRACE_),ON_)
+// <<" %x $wdb\n"
+   my3 = B.Getx() ;
+
+   my3 = A.mul( my3 ); 
+
+chkR(my3,my2,3); 
+
+  my3 = A.mul( B.Getx() ); // TBF -- svarg arg bad  after nesting ?
+
+
+
+<<" %V $my $my2 $my3 $A.x $B.x \n";   
+  
+  chkR(my,my2,3);
+
+  chkR(my3,my2,3); 
+
 }
 
-<<" %V $my $my3 $A.x $B.x \n";   
-  
-  chkR(my,my2,3); 
-  
+
+
+//DBaction((DBSTEP_| DBSTRACE_),ON_)
+
+   b=goo(65.6)
+
+<<"goo $b\n"
+//ans=ask(DB_prompt,DB_action,5);
+
+<<"checking out \n":
+
   chkOut(); 
 
-  
+
+
+//  exit(-1)
+
+
+
 /*  
 /// TBD ///////////
 /// still have to chk this  gives correct answer  for

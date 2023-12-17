@@ -11,29 +11,37 @@
  * 
  */ 
 
+allowDB("ic_,oo_,spe_proc,spe_state,spe_args,spe_cmf,spe_scope,tok_func")
+
+#include "debug";
+
+if (_dblevel >0) {
+   debugON()
+
+}
+
+allowErrors(-1) ; // keep going
+
+
                                                                        
   
- //Str Vers2ele(Str& vstr)
- allowDB("spe_")
-//DBaction((DBSTEP_,ON_)  
-
- Str Vers2ele(Str vstr)
+  Str Vers2ele(Str& vstr)
   {
-   <<"%V $vstr\n"
-   vstr.pinfo()
+  
    pmaj = atoi(spat(vstr,"."))
    pmin = atoi(spat(vstr,".",1))
-  <<"%V $pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
+  <<[2]"%V $pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
+ ans=ask(DB_prompt,DB_action); 
    elestr = pt(pmin);
    str ele =" ";
    ele = spat(elestr,",")
-  <<"$ele $(typeof(ele))\n";
-  <<"$ele";
+  //<<"$ele $(typeof(ele))\n";
+  //<<"$ele";
    return ele;
    
   }
   //======================
- int  A=-1;
+ int  A= -1;
 
 
  // ? read the entire file into an Svar
@@ -75,8 +83,7 @@
   // should be maj.min e.g 1.1 ,6.1, ... limits 1 to 100  
   }
   
-   allowDB("ic_,oo_,spe_proc,spe_state,spe_args,spe_cmf,spe_scope,tok_func")
-
+  
   
   
   file= fexist(srcfile,ISFILE_,0);
@@ -127,7 +134,7 @@
 
 <<"%V $release \n"
 
-
+ans=ask(DB_prompt,DB_action);
 
   B= ofile(srcfile,"r")
   Svar X;
@@ -174,8 +181,7 @@ Str Pad;
 Svar L;
 
  L.pinfo()
- 
-// pinfo(L)
+ pinfo(L)
 
 
 
@@ -266,37 +272,23 @@ Str old_comment ="yyy"
    }
 */
 
-allowDB("spe_,tok_func")
-<<"%V $cvers \n"
-cvers.pinfo()
-//if (found_vers) {
+if (found_vers) {
  
-  //DBaction(DBSTEP_,ON_)
-  //DBaction(DBSTRACE_,ON_)  
   Vers2ele(cvers)
 // nele = 7;
 
 <<[2]"found_vers $cvers \n"
-// }
-
-/*
+ }
  else {
  <<[2]" does not have vers number in header\n";
  exit();
  }
-*/
 
-/*
  if (set_vers) {
  // set to _clarg[2] - if correct format
-<<"doing set_vers \n"
- vers2ele(new_vers)
+  vers2ele(new_vers)
  }
  else {
-*/
-
-
-<<"%V $pmin pmaj \n"
 
     pmin++;
    
@@ -304,14 +296,15 @@ cvers.pinfo()
        pmin =1;
        pmaj++;
    }
+   <<[2]"bumped to $pmaj $pmin\n"
+ans=ask(DB_prompt,DB_action);
 
- <<"bumped to $pmaj $pmin\n"
-   
+
    if (pmaj > 100) {
  <<" need a new major release current \n"
    exit();
    }
-// }
+ }
  
   date = date(GS_MDYHMS_);
   maj_ele = ptsym(pmaj);
@@ -320,7 +313,7 @@ cvers.pinfo()
 
 
 
- <<"///  @vers $release ${pmaj}.$pmin ${maj_ele}.$min_ele $min_name    \n"
+ <<[2]"///  @vers $release ${pmaj}.$pmin ${maj_ele}.$min_ele $min_name    \n"
 
 
    vers=" @vers ${pmaj}.$pmin $min_ele $min_name "
@@ -333,7 +326,9 @@ cvers.pinfo()
 
   cf(A);
 
-A=ofile(srcfile,"w")
+
+
+A=ofile("junk.cpp","w")
 
 
 <<[A]"/*//////////////////////////////////<**|**>///////////////////////////////////\n"
@@ -351,8 +346,6 @@ A=ofile(srcfile,"w")
 <<[A]"//  ( ^ ) \n"
 <<[A]"//    - \n"
 <<[A]"///////////////////////////////////<v_&_v>//////////////////////////////////*/ \n"
-
-
 
   here = ftell(A);
 
@@ -395,19 +388,27 @@ cf(A);
 
 
 // lets' log this change 
-
+/*
 logfile= "~gapps/LOGS/aslcodemods.log"
 A=ofile(logfile,"r+")
 fseek(A,0,2)
 
-ans=iread("asl code-what modification?:")
-<<"$ans\n"
+
+ mans = memRead("cbump")
+ ans=iread("asl code-what modification? $mans :")
+ <<"$ans\n"
+ if (ans != "") {
+  memWrt("cbump",ans,1)
+}
+else {
+ ans = mans
+}
 len = slen(srcfile)
 nsp = 32-len
 ws=nsc(nsp," ")
 <<[A]"$srcfile $ws  ${pmaj}.$pmin  $(date(16))  $ans\n"
 cf(A)
-
+*/
 
 exit()
 
