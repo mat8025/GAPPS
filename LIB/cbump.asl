@@ -261,7 +261,7 @@ Str old_comment ="yyy"
 
 if (found_vers) {
  
-  Vers2ele(cvers)
+  the_ele =Vers2ele(cvers)
 // nele = 7;
 
 <<[2]"found_vers $cvers \n"
@@ -273,7 +273,7 @@ if (found_vers) {
 
  if (set_vers) {
  // set to _clarg[2] - if correct format
-  vers2ele(new_vers)
+  the_ele =vers2ele(new_vers)
  }
  else {
 

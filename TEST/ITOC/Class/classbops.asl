@@ -34,6 +34,15 @@ chkIn(_dblevel);
 
    DB_action = 2
 
+
+  allowDB("ic_,oo_,spe_proc,spe_state,spe_cmf,spe_scope")
+  double x1;
+ wdb=DBaction((DBSTEP_| DBSTRACE_),ON_)
+  x1.pinfo();
+
+
+
+
 //////////////////////////////////////////////////////
 real goo( real x)
 {
@@ -78,9 +87,10 @@ class Point
 
     void set (real m, real n) 
     {
-  <<"$_proc set via real %V $m $n  \n";
+  <<"IN $_proc set via real %V $m $n  \n";
        x = m;
        y = n;
+       y.pinfo()
    <<"%V $m $n \n" 
       }
 
@@ -184,7 +194,7 @@ class Point
 //   ans=ask(DB_prompt,DB_action);
 
 ////////////////////////////////////////////
-  allowDB("ic_,oo_,spe_proc,spe_state,spe_cmf,spe_scope")
+
 
 // ans=ask(DB_prompt,DB_action);
  
@@ -203,9 +213,6 @@ class Point
 
   A.pinfo()
    
-  double x1;
-
-  x1.pinfo();
 
 
   A.x = 3.4
@@ -284,9 +291,6 @@ real r2 = 4.5;
   
   <<"%V$my $A.x  \n";
 
-
-
-
   r2 = Sin(-0.9)
 
 
@@ -297,7 +301,9 @@ real r2 = 4.5;
   my = A.mul( Sin(-0.8) ); 
   
   <<"%V$my $A.x  \n";
+ 
 
+ wdb=DBaction((DBSTEP_| DBSTRACE_),ON_)
 
   A.set(2.2,0.123);
 

@@ -1,10 +1,10 @@
 /*//////////////////////////////////<**|**>///////////////////////////////////
-//                           vmf_l.cpp 
+//                           vmf_l.asl 
 //		          
 //    @comment  var 
-//    @release   5.54 Boron_Xeon  
-//    @vers 1.35 Br Bromine  
-//    @date 12/06/2023 19:58:45    
+//    @release   5.59 Boron_Praseodymium  
+//    @vers 1.37 Rb Rubidium  
+//    @date 12/18/2023 09:49:44    
 //    @cdate @cdate 11:04:40 Thulium 6.4.76 C-Be-Os    
 //    @author: Mark Terry                                  
 //    @Copyright   RootMeanSquare - 1990,2023 --> 

@@ -1915,3 +1915,27 @@ vmf_l.cpp                           0.1  12/16/2023 13:29:53  fd
 vmf_l.cpp                           0.1  12/16/2023 13:32:26  t56
 vmf_l.cpp                           0.1  12/16/2023 13:36:31  q
 vmf_l.cpp                           0.1  12/16/2023 13:38:34  q
+vmf_l.asl                           1.36  12/18/2023 09:48:03  test cbump
+vmf_l.asl                           1.37  12/18/2023 09:49:49  test cbump 
+spe_proc_process.cpp                2.64  12/18/2023 09:51:29  revising VMF,CMF arg processing
+spe_proc_checkfname.cpp             2.64  12/18/2023 09:52:13  revising VMF
+test_l.cpp                          1.56  12/18/2023 11:02:38  colorization
+spe_vmf.cpp                         3.57  12/18/2023 11:04:39   decrPsvn ();
+spe_stateparse.cpp                  2.62  12/18/2023 11:05:53  PFCALL work out VMF,CMF
+ic_call.cpp                         1.62  12/18/2023 11:10:52  TDB
+ic_getsiv.cpp                       1.58  12/18/2023 11:14:21  TDB 
+ic_opera.cpp                        1.59  12/18/2023 11:16:14  TDB 
+ic_parse.cpp                        1.61  12/18/2023 11:18:19  TDB 
+ic_pop.cpp                          1.63  12/18/2023 11:19:46  TDB 
+ic_pushobj.cpp                      1.4  12/18/2023 11:21:06  TDB 
+ic_pushrec.cpp                      1.12  12/18/2023 11:23:01  TDB 
+ic_pushref.cpp                      1.7  12/18/2023 11:25:03  TDB 
+ic_pushsiv.cpp                      1.68  12/18/2023 11:27:10  TDB 
+ic_pushsivele.cpp                   1.71  12/18/2023 11:30:49  TDB 
+ic_rcb.cpp                          1.67  12/18/2023 11:34:11  TDB 
+ic_stack.cpp                        1.71  12/18/2023 11:36:45  revise SV types SV_RECORD
+ic_store.cpp                        1.79  12/18/2023 11:38:49  TDB
+ic_vfill.cpp                        1.63  12/18/2023 11:40:23  TDB 
+ic_wcb.cpp                          1.72  12/18/2023 11:42:34  TDB 
+ic_wic.cpp                          1.74  12/18/2023 11:44:04  TDB 
+ic_xic.cpp                          1.81  12/18/2023 11:47:03  TDB 

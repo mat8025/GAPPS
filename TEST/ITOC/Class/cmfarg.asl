@@ -44,16 +44,6 @@ float roo( float ya) {
   return (ya +2);
 }
 
-/*
-float hoo( float ya) {
-  z= ya +17;
- <<"$_proc getting $y $ya $z $_cobj \n";
-  z.pinfo()
-  ya.pinfo()
-return z;
-}
-*/
-
  
 
   hy = 33.77
@@ -66,9 +56,9 @@ return z;
   hz= hoo ( hy)
 
  <<"%V $hy $hz \n"
-
+// ans=ask(DB_prompt,DB_action);
 //wdb=DBaction((DBSTEP_|DBSTRACE_),ON_)
-wdb=DBaction((DBSTEP_),ON_)
+
 
   chkR(hz, 50.77)
 
@@ -81,8 +71,13 @@ wdb=DBaction((DBSTEP_),ON_)
 
 
  goo (hz2)
+//wdb=DBaction((DBSTEP_),ON_)
+ hz= hoo ( hy)
 
- ans=ask(DB_prompt,DB_action);
+ <<"%V $hy $hz \n"
+ 
+
+// ans=ask(DB_prompt,DB_action);
 
 
 
@@ -112,7 +107,8 @@ class Point
        return x;
   }
   
-   double  mul(real a) {
+ //  double  Pmul(real a) {
+   double  Pmul(float a) {
       double tmp;
       tmp = (a * x);
     <<"$_proc %V $a $x $tmp $x\n";         
@@ -138,9 +134,10 @@ void Point()
   Point A;
   Point B;
 
-allowDB("oo_,spe_proc,spe_vmf,tok_func,ic_")
+//allowDB("oo_,spe_proc,spe_vmf,tok_func,ic_")
 //DBaction((DBSTEP_| DBSTRACE_),ON_)
-DBaction((DBSTEP_),ON_)
+//DBaction((DBSTEP_),ON_)
+
  rx=   A.Getx();
 
 
@@ -149,7 +146,10 @@ DBaction((DBSTEP_),ON_)
 
  chkR(rx,3)
 
-ans=ask(DB_prompt,DB_action);
+ans=ask("Strace ? [y,n]",DB_action);
+if (ans == "y") {
+ DBaction((DBSTEP_| DBSTRACE_),ON_)
+}
 
   A.Setx( hoo( rx) );
 
@@ -159,9 +159,9 @@ ans=ask(DB_prompt,DB_action);
  <<"%V $ry \n"
  chkR(ry,20)
 
-ans=ask(DB_prompt,DB_action);
+//ans=ask(DB_prompt,DB_action);
 
-   ry = B.mul( rx) ;
+   ry = B.Pmul( rx) ;
 
 
  <<"%V $ry \n"
@@ -178,7 +178,7 @@ ans=ask(DB_prompt,DB_action);
 //DBaction((DBSTEP_| DBSTRACE_),ON_)
 //DBaction((DBSTEP_),ON_)
 
-  A.Setx( B.mul( rx) );
+  A.Setx( B.Pmul( rx) );
 
    rxy = rx * brx
 
