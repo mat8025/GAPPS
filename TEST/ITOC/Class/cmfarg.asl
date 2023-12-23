@@ -19,7 +19,7 @@ chkIn(_dblevel);
 
 float hoo( float ya) {
   z= ya +17;
- <<"$_proc getting $y $ya $z $_cobj \n";
+ <<"$_proc getting $ya $z  \n";
   z.pinfo()
   ya.pinfo()
 return z;
@@ -52,12 +52,12 @@ float roo( float ya) {
 
 
 <<" do we see this ??\n"
-
+wdb=DBaction((DBSTEP_|DBSTRACE_),ON_)
   hz= hoo ( hy)
 
  <<"%V $hy $hz \n"
 // ans=ask(DB_prompt,DB_action);
-//wdb=DBaction((DBSTEP_|DBSTRACE_),ON_)
+
 
 
   chkR(hz, 50.77)

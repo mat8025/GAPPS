@@ -38,6 +38,8 @@
 
    chkIn (_dblevel);
 
+   allowErrors(-1)
+
    ok = 1;
    
    int showVec(int vect[], int j, int k)
@@ -45,22 +47,27 @@
      // <<"IN $_proc args $j $k  $_pargv[1] \n";
      <<"IN $_proc args $j $k   \n";
 
-      aslpinfo(j)
-      aslpinfo(vect)
+      k.pinfo()
+      vect.pinfo()
 
       m = vect[j];
       n = vect[k];
 
 <<"%V $m $n\n"
 
-     aslpinfo(m);
+     m.pinfo();
      return n;
    }
+
+///////////////////////////////////////////////////////////////////
+ans ="y"
+DBaction((DBSTEP_),ON_)
+ allowDB("ic_,oo_,spe_proc,spe_state,spe_cmf")
 
 
      Veci = vgen(INT_,10,0,1);
 
-aslpinfo(Veci)
+     pinfo(Veci)
 
   <<"$Veci \n"
   
@@ -70,21 +77,21 @@ int q = -3;
 
      q=showVec(Veci,ji,ki);
 
-aslpinfo(q);
+     pinfo(q);
 
     ok =chkN(q,5);
   if (!ok) {
     <<"test fail \n"
-!a
+
   }
      q=showVec(Veci,ji+1,ki+1);
 
-aslpinfo(q);
+pinfo(q);
 
     ok=chkN(q,6);
   if (!ok) {
     <<"test fail \n"
-!a
+
   }
  for (ki= 3; ki < 8; ki++) {
 
@@ -93,22 +100,16 @@ aslpinfo(q);
  }
 
 
-
-
-     
-
-
-
    float goo(float x)
    {
 
      <<"$_proc float arg $x \n";
 
-      aslpinfo(x);
+      pinfo(x);
       
       a= 2* x;
 
-     aslpinfo(a);
+     pinfo(a);
 
 
       return a;
@@ -121,11 +122,11 @@ aslpinfo(q);
 
      <<"$_proc double arg $x \n";
 
-      aslpinfo(x);
+      pinfo(x);
       
       a= 2* x;
 
-     aslpinfo(a);
+     pinfo(a);
 
 
       return a;
@@ -138,7 +139,7 @@ float x = 0.707;
 
      <<"%V $gr\n";
 
-   aslpinfo(gr);
+   pinfo(gr);
 
 
  chkT(gr > 0.0)
@@ -147,7 +148,7 @@ float x = 0.707;
 
      <<"%V $gr\n";
 
-   aslpinfo(gr);
+   pinfo(gr);
 
 
  chkT(gr > 0.0)
@@ -161,7 +162,7 @@ double y = 1.707;
 
      <<"%V $gr\n";
 
-   aslpinfo(gr);
+   pinfo(gr);
 
 
  chkT(gr > 0.0)
@@ -174,13 +175,7 @@ double y = 1.707;
 
      <<"%V $gr\n";
 
-   aslpinfo(gr);
-
-
-
-
-
-
+    gr.pinfo();
 
 
 
@@ -247,9 +242,7 @@ double y = 1.707;
 	tmp =x;
 	x =y;
 	y = tmp;
-	   <<"out  $_proc $x $y\n";
-
-
+	<<"out  $_proc $x $y\n";
      }
 
      double mul (double x,double y)
@@ -297,7 +290,7 @@ double y = 1.707;
        }
 //===============================//
 
-     cmf Scalc()
+     void Scalc()
      {
 
        <<"constructing Scalc \n";
@@ -335,7 +328,7 @@ double y = 1.707;
      ok=chkN(gr,gr2);
   if (!ok) {
     <<"test fail \n"
-!a
+
   }
 
 
@@ -347,10 +340,21 @@ double y = 1.707;
      int d =4;
 
      double w = 3.3;
+ans=ask("1 step  debug? [y,n]",0);
+if (ans == "y") {
+DBaction((DBSTEP_),ON_)
+ allowDB("ic_,oo_,spe_")
+}
+
 
 
      acalc.seta(w);
 
+     wr = acalc.geta();
+
+     chkR (wr, w); 
+
+    y = sin(0.8)
 
      acalc.seta(sin(0.8));
 
@@ -360,9 +364,9 @@ double y = 1.707;
 
      <<" $acalc.a\n";
 
-     <<" $wr\n";
+     <<" $wr $y\n";
 
-     chkR (wr, sin(0.8)); // TBF
+     chkR (wr, y); // TBF
 
 
 
@@ -381,7 +385,7 @@ double y = 1.707;
      chkR (wr, w);
 
      w= Sin(0.7);
-    aslpinfo(w);
+     w.pinfo()
      acalc.seta(w);
 
      <<" $acalc.a\n";
@@ -396,15 +400,13 @@ double y = 1.707;
 //<<" $acalc.x\n"  // should give error
 
      <<"%V $acalc.x  $w\n";
+ans=ask("2 acalc.mul  [y,n]",0);
+DBaction((DBSTEP_,DBSTRACE_),ON_)
+     z = acalc.mul(c,d);
 
-     ans = acalc.mul(c,d);
+     ok=chkN(z,8);
 
-     ok=chkN(ans,8);
-  if (!ok) {
-    <<"test fail \n"
-!a
-  }
-     <<"$ans \n";
+<<"$z \n";
 
      w = 2.2;
 
@@ -415,10 +417,7 @@ double y = 1.707;
      <<"$fans \n";
 
      ok=chkN(fans,7.26);
-  if (!ok) {
-    <<"test fail \n"
-!a
-  }
+
      <<" $(infoof(acalc))\n";
 
      float fw = 3.3;
@@ -430,22 +429,29 @@ double y = 1.707;
 
      <<"$fans \n";
 
- fans = acalc.swap(fw,fr);
-
      chkR(fans,7.92);
+
 
 <<"%V $fw $fr \n";
 
+
+
+
+
+     acalc.swap(fw,fr);
+
+<<"%V $fw $fr \n";
+
+     chkN(fw,2.4)
+     
+//ans=ask(" $fw == 2.4 ? [y,n]",1);
 
      fans = acalc.mul(2.0,5.0);
 
      <<"$fans \n";
 
      ok=chkN(fans,10.0);
-  if (!ok) {
-    <<"test fail \n"
-!a
-  }
+
 
 
      fans = acalc.mul(2,5);
@@ -453,21 +459,13 @@ double y = 1.707;
      <<"$fans \n";
 
      ok=chkN(fans,10.0);
-  if (!ok) {
-    <<"test fail \n"
-!a
-  }
+
 
      fans = acalc.mul(2.0,5);
 
      <<"$fans \n";
 
      ok=chkN(fans,10.0);
-  if (!ok) {
-    <<"test fail \n"
-!a
-  }
-
 
 
      double r1 = 2.2;
@@ -475,19 +473,26 @@ double y = 1.707;
      double r2 = 3.3;
      double r3;
 
+ans=ask("3step  debug? [y,n]",0);
+if (ans == "y") {
+  
+  allowDB("ic_,oo_,spe_proc,spe_state,spe_cmf")
+DBaction((DBSTEP_|DBSTRACE_),ON_)
+}
+
    for (i=0; i < 4; i++) {
      r3 = r1 * r2;
 
 
-     r1.aslpinfo();
+     r1.pinfo();
 
-     r2.aslpinfo();
+     r2.pinfo();
 
      fans = acalc.mul(r1,r2);
 
-     <<"[$i] $fans \n";
+     <<"[$i] $fans $r3\n";
 
-     chkR(fans,r3);
+     chkR(fans,r3,3);
      r1++;
      r2++;
      
@@ -511,9 +516,8 @@ double y = 1.707;
 
      <<"$FV \n";
 
-     ok=examine(FV);
+     pinfo(FV);
 
-     <<"%V $ok\n";
 
      ok=examine(acalc);
 
@@ -538,11 +542,8 @@ class Instrum
   Str Name;
   int wid;
 
-#if ASL
- void Instrum()   //  use cons,destroy   -- have then set to NULL in CPP header
-#else
-  Instrum()
-#endif
+
+ void Instrum()   //  use cons,destroy   -- have then set to NULL in CPP he
  {
   shape = 1;  // 1 circle, 2 rectangle
   dia = 3.0;
@@ -554,7 +555,7 @@ class Instrum
 
   mx=0.0;
   my=0.0;
-}
+  }
 
   void setName( Str nm)
    {
@@ -621,11 +622,11 @@ class Instrum
 */
 
   
-  void Print()
-  {
+  int Print() {
 
     <<"%V $wid $Name $shape $dia $mx $my \n";
-  }
+     return 1;
+   }
  
 };   
 
@@ -634,17 +635,17 @@ float ShowMxy(Instrum wins[],int j, int k)
   {
 
   <<"$_proc  $j $k\n";
-  aslpinfo(j);
+  pinfo(j);
 
-  aslpinfo(wins);
+  pinfo(wins);
 
 
   float x = -1;
   float y = -1;
-  aslpinfo(x);
+  x.pinfo();
   
   x = wins[j].mx;
-aslpinfo(x);
+
   y = wins[k].my;
 
 <<"%V $x $y \n";
@@ -695,19 +696,32 @@ float dr;
     
     VB_ins[0].SetIns(vario1_wo,iname,1,idia, imx, imy);
     vario1_wo++; imx += 1; imy += 2;
+    
     VB_ins[1].SetIns(vario1_wo,"ins1",1,idia, imx, imy);
     vario1_wo++; imx += 1; imy += 2;
+    
     VB_ins[2].SetIns(vario1_wo,"ins2",1,idia, imx, imy);
     vario1_wo++; imx += 1; imy += 2;
+    
     VB_ins[3].SetIns(vario1_wo,"ins3",1,idia, imx, imy);
     vario1_wo++; imx += 1; imy += 2;
+    
     VB_ins[4].SetIns(vario1_wo,"ins4",1,idia, imx, imy);     
     vario1_wo++; imx += 1; imy += 2;
+    
     VB_ins[5].SetIns(vario1_wo,"ins5",1,idia, imx, imy);     
 
     VB_ins[0].Print();
+ans=ask("4 VB_ins",DB_action);
+DBaction((DBSTEP_,DBSTRACE_),ON_)
 
-    VB_ins[1].Print();
+     VB_ins[1].Print();
+ans=ask(DB_prompt,DB_action);
+
+    
+    VB_ins[2].Print();
+ans=ask(DB_prompt,DB_action);
+
 
     VB_ins[0].SetShape(3);
     VB_ins[0].Print();
@@ -760,23 +774,16 @@ float gmx;
     gmx = VB_ins[j1].mx;
 
 
-aslpinfo(gmx);
+     gmx.pinfo();
 
 
 
      gmx = ShowMxy(VB_ins,j1, k1);
 <<"%V $gmx\n"
-//aslpinfo(gmx);
+
      ok = chkN(gmx,-1.0,GT_)
+
 <<"%V $ok \n"
-  if (!ok) {
-    <<"test fail \n"
-!a
-  }
-
-
-
-
 
      j1++;
      k1++;
@@ -788,38 +795,27 @@ aslpinfo(gmx);
    ok = chkN(gmx,-1.0,GT_)
 
 <<"%V $ok \n"
-  if (!ok) {
-    <<"test fail \n"
-!a
-  }
 
 
-//aslpinfo(gmx);
+
+//pinfo(gmx);
 
     gmx = ShowMxy(VB_ins,j1+1, k1+1);
 <<"%V $gmx\n"
-//aslpinfo(gmx);
+//pinfo(gmx);
 
  ok = chkN(gmx,-1.0,GT_)
 
 <<"%V $ok \n"
-  if (!ok) {
-    <<"test fail \n"
-!a
-  }
+
 
     gmx = ShowMxy(VB_ins,j1+2, k1+2);
 <<"%V $gmx\n"
-//aslpinfo(gmx);
+//pinfo(gmx);
 
  ok = chkN(gmx,-1.0,GT_)
 
 <<"%V $ok \n"
-  if (!ok) {
-    <<"test fail \n"
-!a
-  }
-
 
 
      chkOut();

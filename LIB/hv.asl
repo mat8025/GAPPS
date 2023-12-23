@@ -36,7 +36,7 @@ Str Hdr_comment = "?";
 
    Str  rs = "comment ca va";
 
-  void vers2ele(Str& vstr)
+  int vers2ele(Str& vstr)
   {
   //<<"%V $vstr\n"
    int pmaj = atoi(spat(vstr,".",-1));
@@ -48,7 +48,7 @@ Str Hdr_comment = "?";
    H_ele =" ";
    H_ele = spat(elestr,",");
 
-
+   return pmin;
   }
   //======================
 
@@ -184,7 +184,7 @@ void   showComment()
 
 //printf("Hdr_vers %s\n",Hdr_vers.cptr());
 
-  vers2ele(Hdr_vers);
+  the_ele =vers2ele(Hdr_vers);
 
 H_ele_vers = Hdr_vers;
 
