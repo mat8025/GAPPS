@@ -687,8 +687,8 @@ void showWL(int ws, int we)
   int dt
 
 
- // m_day= dayv + Jan1 -1  // ? OBO;
-  m_day= dayv + Jan1 ;  // 
+  m_day= dayv + Jan1 -1  // ? OBO;
+ // m_day= dayv + Jan1 ;  // 
 
   Str mdy = Julmdy(m_day)
   int dindex = dayv -1

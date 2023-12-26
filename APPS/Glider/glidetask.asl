@@ -15,6 +15,7 @@
 
 char vers[6] ="5.1";
 
+vers.pinfo();
 
 #include "debug"
 
@@ -76,7 +77,7 @@ ignoreErrors();
 
 #endif
 
-//DBaction((DBSTEP_),ON_)
+
 
 
 
@@ -168,6 +169,8 @@ Glide::glideTask(Svarg * sarg)
 
   allowErrors(-1)
 
+//DBaction((DBSTEP_),ON_)
+
   Str ans;
 
   int  Main_init = 1;
@@ -175,9 +178,11 @@ Glide::glideTask(Svarg * sarg)
 
   CSK = 70.0;
 
+
   Cruise_speed = (CSK * nm_to_km);
 
-  printf(" Cruise speed %f \n",Cruise_speed);
+  //printf(" Cruise speed %f \n",Cruise_speed);
+  <<" %V $Cruise_speed  \n";
 
   GT_Wtp[1].Alt = 100.0;
 
@@ -1131,7 +1136,7 @@ while (ac < na) {
 // printf("%d %-5s  \t%s\t%s   %6.0fft   %6.0fft         \n",li,ident,GT_Wtp[li].Lat,GT_Wtp[li].Lon, GT_Wtp[li].fga, GT_Wtp[li].Alt);
   //
 #if ASL
-  printf("%d %-10s %-5s %-8s %6.0f ft",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Radio,GT_Wtp[li].Alt);
+  printf("%d %-10s %-5s %-8s %6.0fft",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Radio,GT_Wtp[li].Alt);
 #else
  //printf("%d %-10s %-5s %-8s",li,GT_Wtp[li].Place.cptr(),ident.cptr(),GT_Wtp[li].Radio.cptr())  ;
  
@@ -1153,10 +1158,10 @@ cprintf("%d  %-10S %-5S %-8S  %6.0fft  ",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Ra
   printf("\t%6.2f",Dur[li]);
 
   printf("\t%6.2f %6.2f ",rtotal,tot_time);
-  printf("\t%6.2f %% ",GT_Wleg[li].pc); 
+  printf("\t%6.2f%% ",GT_Wleg[li].pc); 
 #if ASL
- // printf("%s %s \n",GT_Wtp[li].Lat,GT_Wtp[li].Lon);
- <<"\n"
+  printf("%s %s \n",GT_Wtp[li].Lat,GT_Wtp[li].Lon);
+
 #else
   printf("%s %s \n",GT_Wtp[li].Lat.cptr(),GT_Wtp[li].Lon.cptr());
   //printf("%s %s \n",GT_Wtp[li].Lat,GT_Wtp[li].Lon);

@@ -143,13 +143,13 @@ void fillInObsVec()
   
   int got_start = 0 
 
-  <<"get data from record %V $Wex_Nrecs \n" 
-ans=ask(" $_proc $Wex_Nrecs $tl proceed? : ",1);
+//  <<"get data from record %V $Wex_Nrecs \n" 
+//ans=ask(" $_proc $Wex_Nrecs $tl proceed? : ",1);
 // access of record row Rx(i)
 // access of record Col Rx(i,j)
   int max_n =3 
-allowDB("ds_,rdp,vsh,spe")
-DBaction((DBSTEP_,DBSTRACE_),ON_)
+//allowDB("ds_,rdp,vsh,spe")
+//DBaction((DBSTEP_,DBSTRACE_),ON_)
 
   while (tl < Wex_Nrecs) {
 
@@ -157,15 +157,11 @@ DBaction((DBSTEP_,DBSTRACE_),ON_)
 
   Col = RX.getRecord(tl) 
 
-<<" DON'T break out ?\n"
-
-  Col.pinfo()
-
 
   day = Col[0] 
   mywt = Col[1] 
 
-<<" $day $mywt \n"
+//<<" $day $mywt \n"
 
 
 
@@ -203,7 +199,7 @@ DBaction((DBSTEP_,DBSTRACE_),ON_)
 
   tl++ 
 
-<<"%V $tl  $day $mywt $Wex_Nrecs\n"
+//<<"%V $tl  $day $mywt $Wex_Nrecs\n"
 
 
 //ans=ask(" $_proc $tl proceed? : ",1);
