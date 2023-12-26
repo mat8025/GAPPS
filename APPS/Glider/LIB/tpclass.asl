@@ -172,9 +172,9 @@ void TPCUPset (Svar wval)
 Str val;
 
 Str val2;
-   //  wval.pinfo();
+//    wval.pinfo();
  //<<"%V $Alt\n";
-
+int lastc = -1;
 //<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
 
      val = wval[0];
@@ -189,32 +189,30 @@ Str val2;
 //      val.aslpinfo();
 
       val.dewhite(); // TBF ? corrupting vars ?
-
+  //    <<"%V $val\n"
 //<<"%V $AFH\n"
+//DBaction((DBSTEP_),ON_)
+//allowDB("ic_,oo_,spe_,rdp_,pexpnd,tok,array")
 
-    val.scut(1);
-//cout << "val " << val << endl;
+     val.scut(1);
 
-//<<"post-scut 1 $val\n"
+  //    <<"%V $val\n"
 
-     val.scut(-1);
 
-//<<"post-scut -1  $val\n"
+     //val.scut(-1);
+     val.scut(lastc);
 
-//cout << "val " << val << endl;
+  //    <<"%V $val\n"
+
      Place = val; // wayp 
 
 //<<"%V $place \n";
 
-
-
-//cout << "Place " << Place << endl;
-
      val =  wval[1];
 
-    val.scut(1);
+     val.scut(lastc);
      
-     val.scut(-1);
+     val.scut(1);
 
      Idnt = val;
 //<<"%V $AFH\n"
@@ -233,7 +231,7 @@ Str val2;
 
      ccoor(Lon);
 
- //<<"%V$Lon  \n"
+// <<"%V$Lon  \n"
   
      val = wval[5];
 
@@ -337,7 +335,9 @@ Str val2;
 //<<"%V $Place $is_airport \n"
 
 
-      }
+ }
+
+
 //=========================//
 
 void SetPlace (Str val)   

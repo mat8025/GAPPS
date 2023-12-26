@@ -39,7 +39,7 @@
    chkIn (_dblevel);
 
    allowErrors(-1)
-
+echolines(0)
    ok = 1;
    
    int showVec(int vect[], int j, int k)
@@ -61,8 +61,8 @@
 
 ///////////////////////////////////////////////////////////////////
 ans ="y"
-DBaction((DBSTEP_),ON_)
- allowDB("ic_,oo_,spe_proc,spe_state,spe_cmf")
+//DBaction((DBSTEP_),ON_)
+ allowDB("ic_,oo_,spe_proc,spe_state,spe_cmf,rdp")
 
 
      Veci = vgen(INT_,10,0,1);
@@ -340,9 +340,11 @@ double y = 1.707;
      int d =4;
 
      double w = 3.3;
+
 ans=ask("1 step  debug? [y,n]",0);
+
 if (ans == "y") {
-DBaction((DBSTEP_),ON_)
+ DBaction((DBSTEP_),ON_)
  allowDB("ic_,oo_,spe_")
 }
 
@@ -400,9 +402,12 @@ DBaction((DBSTEP_),ON_)
 //<<" $acalc.x\n"  // should give error
 
      <<"%V $acalc.x  $w\n";
+
 ans=ask("2 acalc.mul  [y,n]",0);
+if (ans == "y") {
 DBaction((DBSTEP_,DBSTRACE_),ON_)
-     z = acalc.mul(c,d);
+}
+z = acalc.mul(c,d);
 
      ok=chkN(z,8);
 
@@ -712,15 +717,16 @@ float dr;
     VB_ins[5].SetIns(vario1_wo,"ins5",1,idia, imx, imy);     
 
     VB_ins[0].Print();
-ans=ask("4 VB_ins",DB_action);
-DBaction((DBSTEP_,DBSTRACE_),ON_)
+
+//ans=ask("4 VB_ins",DB_action);
+//DBaction((DBSTEP_,DBSTRACE_),ON_)
 
      VB_ins[1].Print();
-ans=ask(DB_prompt,DB_action);
+//ans=ask(DB_prompt,DB_action);
 
     
     VB_ins[2].Print();
-ans=ask(DB_prompt,DB_action);
+//ans=ask(DB_prompt,DB_action);
 
 
     VB_ins[0].SetShape(3);

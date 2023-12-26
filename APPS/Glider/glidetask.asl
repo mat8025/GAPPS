@@ -61,7 +61,7 @@ int run_asl = runASL();
  // debugON();
 
 ignoreErrors();
-
+ echolines(0)
 
 // filterFileDebug(REJECT_,"declare_e.cpp","scope_e","pr_state.cpp");
 
@@ -75,6 +75,9 @@ ignoreErrors();
 
 
 #endif
+
+//DBaction((DBSTEP_),ON_)
+
 
 
 int TF; // task file FH
@@ -158,9 +161,13 @@ Glide::glideTask(Svarg * sarg)
  Svar sa;
  na = _clargc;
  sa = _clarg;
+
 #endif
 
   ignoreErrors(); // put in glide.h ??
+
+  allowErrors(-1)
+
   Str ans;
 
   int  Main_init = 1;
@@ -191,7 +198,7 @@ Glide::glideTask(Svarg * sarg)
   Str tpb ="";
 
   Units= "KM";
-  
+   echolines(0)
 //<<" done defines \n"
 
 // dynamic variables no need to declare and set to default
@@ -201,7 +208,7 @@ Glide::glideTask(Svarg * sarg)
 //  int nerror = 0;
 
   int use_cup = 1;
-
+ //allowDB("ic_,oo_,spe_,rdp_,pexpnd,tok,array")
   if (use_cup) {
 
   AFH=ofr("CUP/bbrief.cup")  ; // open turnpoint file;
@@ -1124,7 +1131,7 @@ while (ac < na) {
 // printf("%d %-5s  \t%s\t%s   %6.0fft   %6.0fft         \n",li,ident,GT_Wtp[li].Lat,GT_Wtp[li].Lon, GT_Wtp[li].fga, GT_Wtp[li].Alt);
   //
 #if ASL
-  printf("%d %-10s %-5s %-8s %6.0ff",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Radio,GT_Wtp[li].Alt);
+  printf("%d %-10s %-5s %-8s %6.0f ft",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Radio,GT_Wtp[li].Alt);
 #else
  //printf("%d %-10s %-5s %-8s",li,GT_Wtp[li].Place.cptr(),ident.cptr(),GT_Wtp[li].Radio.cptr())  ;
  
@@ -1146,9 +1153,10 @@ cprintf("%d  %-10S %-5S %-8S  %6.0fft  ",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Ra
   printf("\t%6.2f",Dur[li]);
 
   printf("\t%6.2f %6.2f ",rtotal,tot_time);
-  printf("\t%6.2f%% ",GT_Wleg[li].pc); 
+  printf("\t%6.2f %% ",GT_Wleg[li].pc); 
 #if ASL
-  printf("%s %s \n",GT_Wtp[li].Lat,GT_Wtp[li].Lon);
+ // printf("%s %s \n",GT_Wtp[li].Lat,GT_Wtp[li].Lon);
+ <<"\n"
 #else
   printf("%s %s \n",GT_Wtp[li].Lat.cptr(),GT_Wtp[li].Lon.cptr());
   //printf("%s %s \n",GT_Wtp[li].Lat,GT_Wtp[li].Lon);

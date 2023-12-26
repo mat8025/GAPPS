@@ -35,9 +35,9 @@ chkIn(_dblevel);
    DB_action = 2
 
 
-  allowDB("ic_,oo_,spe_proc,spe_state,spe_cmf,spe_scope")
+//  allowDB("ic_,oo_,spe_proc,spe_state,spe_cmf,spe_scope")
   double x1;
- wdb=DBaction((DBSTEP_| DBSTRACE_),ON_)
+// wdb=DBaction((DBSTEP_| DBSTRACE_),ON_)
   x1.pinfo();
 
 
@@ -303,7 +303,7 @@ real r2 = 4.5;
   <<"%V$my $A.x  \n";
  
 
- wdb=DBaction((DBSTEP_| DBSTRACE_),ON_)
+ //wdb=DBaction((DBSTEP_| DBSTRACE_),ON_)
 
   A.set(2.2,0.123);
 

@@ -1947,3 +1947,5 @@ spe_proc.cpp                        2.74  12/21/2023 08:22:28  proc check DB
 rdp_token.cpp                       1.81  12/21/2023 08:45:40  TDB
 array_parse.cpp                     2.85  12/22/2023 23:29:26  OBJ_ELE PTR
 ic_pushobj.cpp                      1.5  12/22/2023 23:30:53  TDB
+spe_proc_process.cpp                2.65  12/23/2023 10:29:33  check SVAR,STR for vmf path
+spe_proc_args.cpp                   3.56  12/25/2023 09:18:02  mangle fix

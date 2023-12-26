@@ -344,8 +344,8 @@ init_debug ("wex.dbg", 1, "2.1");
 ///
 //  SET     START DATE      END DATE  TARGET WEIGHT
 
-
-  
+   echolines(0)
+   DBaction(DBSTEPONERROR_,ON_)
    yday = Julian("01/01/2023")   ; // this should be found from data file
 
    eday = Julian("12/31/2023");
@@ -494,10 +494,11 @@ init_debug ("wex.dbg", 1, "2.1");
 // check period
 
 //  Svar rx;
+//allowDB("ic_,oo_,spe_,rdp_,pexpnd,tok,array,ds_")
+//DBaction((DBSTEP_,DBSTRACE_),ON_)
+  Wex_Nrecs = RX.readRecord(A,_RDEL,-1,_RLAST); 
 
-  Wex_Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST); 
-
-//<<" readRecord  $Wex_Nrecs\n";
+<<" readRecord  $Wex_Nrecs\n";
 
 //ans=query("read RX??");
 
