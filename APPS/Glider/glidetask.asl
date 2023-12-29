@@ -15,7 +15,7 @@
 
 char vers[6] ="5.1";
 
-vers.pinfo();
+
 
 #include "debug"
 
@@ -254,7 +254,7 @@ Glide::glideTask(Svarg * sarg)
 #endif  
 
 
-printf(" na %d\n",na);
+//printf(" na %d\n",na);
 
 
   int ac = 0;

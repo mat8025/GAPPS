@@ -16,7 +16,7 @@
 Demo  of class ops
 /////////////////////// 
 |>
-//DBaction((DBSTEP_),ON_)
+
 #include "debug";
 
 if (_dblevel >0) {
@@ -148,6 +148,7 @@ class Point
     double  mul(real a)
     {
       double tmp;
+      x.pinfo()
       tmp = (a * x);
     <<"$_proc %V $a $tmp $x\n";         
       return tmp; 
@@ -204,7 +205,6 @@ class Point
 
  chkR(rx,1.0)
  
-
 
   rx=   A.Getx();
 
@@ -265,6 +265,11 @@ real r2 = 4.5;
 
 //ans=ask(DB_prompt,DB_action);
 
+wdb=  DBaction((DBSTEP_|DBSTRACE_),ON_)q
+ <<"$wdb \n"
+
+allowDB("spe_proc,spe_state,spe_vmf,oo_")
+   r1.pinfo()
 
   A.setx(r1);
 
@@ -272,12 +277,20 @@ real r2 = 4.5;
 
   chkR(r1,rx)
 <<"%V $r1  $rx \n"
-//ans=ask(DB_prompt,DB_action,5);
 
-  my = A.mul(r2 ); 
+
+
+  r2.pinfo()
+
+
+  my = A.mul(r2 );
+
+  ra = rx * r2 
   
-  <<"%V$my $A.x  \n";
+  <<"%V $my $A.x $ra \n";
 
+  chkN(my,ra)
+  
 
 
   my = A.mul( Sin(-0.9) ); 
@@ -303,7 +316,7 @@ real r2 = 4.5;
   <<"%V$my $A.x  \n";
  
 
- //wdb=DBaction((DBSTEP_| DBSTRACE_),ON_)
+
 
   A.set(2.2,0.123);
 

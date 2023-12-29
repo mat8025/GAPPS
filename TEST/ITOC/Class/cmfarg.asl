@@ -151,6 +151,9 @@ if (ans == "y") {
  DBaction((DBSTEP_| DBSTRACE_),ON_)
 }
 
+  A.Setx( rx );
+
+
   A.Setx( hoo( rx) );
 
   ry=   A.Getx();
