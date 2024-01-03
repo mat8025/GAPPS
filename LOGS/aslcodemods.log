@@ -1949,3 +1949,9 @@ array_parse.cpp                     2.85  12/22/2023 23:29:26  OBJ_ELE PTR
 ic_pushobj.cpp                      1.5  12/22/2023 23:30:53  TDB
 spe_proc_process.cpp                2.65  12/23/2023 10:29:33  check SVAR,STR for vmf path
 spe_proc_args.cpp                   3.56  12/25/2023 09:18:02  mangle fix
+vsh_cw.cpp                          1.77  12/31/2023 11:26:42  DBSIN allow DBTEP thru SF function
+oo_class_mbr.cpp                    2.42  01/01/2024 20:28:16  fix varGetClassMemeb
+oo_class.cpp                        2.25  01/02/2024 14:00:46  oo parset member funsc
+plot_wo_set.cpp                     1.98  01/03/2024 13:00:10  textr processing
+plot_text.cpp                       1.81  01/03/2024 13:01:42  textr processing 
+wcom_sw.cpp                         1.94  01/03/2024 13:03:10  win_text font number

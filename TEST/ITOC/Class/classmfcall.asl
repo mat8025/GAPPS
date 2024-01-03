@@ -62,7 +62,7 @@ echolines(0)
 ///////////////////////////////////////////////////////////////////
 ans ="y"
 //DBaction((DBSTEP_),ON_)
- allowDB("ic_,oo_,spe_proc,spe_state,spe_cmf,rdp")
+// allowDB("ic_,oo_,spe_proc,spe_state,spe_cmf,rdp")
 
 
      Veci = vgen(INT_,10,0,1);

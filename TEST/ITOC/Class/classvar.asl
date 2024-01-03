@@ -22,9 +22,9 @@
 
    chkIn(_dblevel);
 
-allowDB("ic_,oo_,spe_exp,spe_proc,spe_state,spe_cmf,spe_scope,ds_sivbounds")
+//allowDB("ic_,oo_,spe_exp,spe_proc,spe_state,spe_cmf,spe_scope,ds_sivbounds")
 
-   wdb=DBaction((DBSTEP_),ON_) ;
+//   wdb=DBaction((DBSTEP_),ON_) ;
 
    int V = 4 ;  // global;
 

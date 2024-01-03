@@ -200,8 +200,8 @@ float mr;
 float dr;
 
 ans ="y"
-DBaction((DBSTEP_),ON_)
- allowDB("ic_,oo_,spe_,rdp_,pexpnd,tok,array")
+//DBaction((DBSTEP_),ON_)
+// allowDB("ic_,oo_,spe_,rdp_,pexpnd,tok,array")
 
 
     VB_ins[0].Name = "SN_Vario";
@@ -228,8 +228,8 @@ DBaction((DBSTEP_),ON_)
     
     VB_ins[5].SetIns(vario1_wo,"ins5",1,idia, imx, imy);     
 
-ans=ask("4 VB_ins",DB_action);
-DBaction((DBSTEP_,DBSTRACE_),ON_)
+//ans=ask("4 VB_ins",DB_action);
+//DBaction((DBSTEP_,DBSTRACE_),ON_)
 
 
      VB_ins[0].Print();
@@ -238,7 +238,7 @@ DBaction((DBSTEP_,DBSTRACE_),ON_)
 <<" exit cmf xic to here !!\n"
     
     VB_ins[2].Print();
-ans=ask(DB_prompt,DB_action);
+//ans=ask(DB_prompt,DB_action);
 
 
     VB_ins[0].SetShape(3);

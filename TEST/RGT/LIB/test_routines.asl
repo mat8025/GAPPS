@@ -155,7 +155,7 @@ void Run2Test(Str td)
 void RunDirTests(Str Td, Str Tl )
 {
 int _DBH = -1
-<<"$_proc $Td  <|$Tl|> \n"
+//<<"$_proc $Td  <|$Tl|> \n"
 
 Str pgname = "xx";
 Str pgxname = "xy";

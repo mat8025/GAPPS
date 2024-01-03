@@ -3,7 +3,6 @@
 ///
 
 
-
 #include "debug";
 
 if (_dblevel >0) {
@@ -15,14 +14,12 @@ allowErrors(-1) ; // keep going
 
 chkIn(_dblevel);
 
-
-
 float hoo( float ya) {
-  z= ya +17;
- <<"$_proc getting $ya $z  \n";
-  z.pinfo()
+<<"$_proc getting $ya   \n";
   ya.pinfo()
-return z;
+  z= ya +17;
+  z.pinfo()
+  return z;
 }
 
 
@@ -34,7 +31,7 @@ float goo( float ya) {
   return (ya +1);
 }
 
-allowDB("ic_,oo_,spe_proc,spe_state,spe_args,spe_cmf,spe_scope,tok_func")
+
 
 float roo( float ya) {
 
@@ -146,21 +143,24 @@ void Point()
 
  chkR(rx,3)
 
-ans=ask("Strace ? [y,n]",DB_action);
-if (ans == "y") {
- DBaction((DBSTEP_| DBSTRACE_),ON_)
-}
+//ans=ask("Strace ? [y,n]",DB_action);
+//if (ans == "y") {
+// DBaction((DBSTEP_| DBSTRACE_),ON_)
+//}
 
   A.Setx( rx );
 
+  hz = hoo(rx)
 
+allowDB("oo_,spe_proc,spe_args,spe_cmf,tok_func")
+DBaction((DBSTEP_| DBSTRACE_),ON_)
   A.Setx( hoo( rx) );
 
   ry=   A.Getx();
 
-
- <<"%V $ry \n"
- chkR(ry,20)
+ <<"%V $hz $ry \n"
+ 
+ chkR(ry,hz)
 
 //ans=ask(DB_prompt,DB_action);
 

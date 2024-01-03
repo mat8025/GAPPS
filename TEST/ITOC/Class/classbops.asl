@@ -265,10 +265,10 @@ real r2 = 4.5;
 
 //ans=ask(DB_prompt,DB_action);
 
-wdb=  DBaction((DBSTEP_|DBSTRACE_),ON_)q
- <<"$wdb \n"
+//wdb=  DBaction((DBSTEP_|DBSTRACE_|DBALLOW_ALL_),ON_)
+ //<<"$wdb \n"
 
-allowDB("spe_proc,spe_state,spe_vmf,oo_")
+//allowDB("spe_proc,spe_state,spe_vmf,oo_")
    r1.pinfo()
 
   A.setx(r1);

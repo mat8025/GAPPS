@@ -1,16 +1,17 @@
 /* 
- *  @script ASLMAN.txt                                                  
- * 
+ *  @script ASLMAN.txt                                              
+ *
  *  @comment docs for ASL commands and usage                            
- *  @release Beryllium                                                  
- *  @vers 2.7 N Nitrogen [asl 6.4.54 C-Be-Xe]                           
- *  @date 07/30/2022 14:25:28                                           
- *  @cdate 1/1/2001 11:18:09 Boron [asl 6.3.61 C-Li-Pm]                 
- *  @author Mark Terry Boron [asl 6.3.61 C-Li-Pm]                       
- *  @Copyright © RootMeanSquare 2022 -->                               
+ *  @release Holmium                                                    
+ *  @vers 2.8 O Oxygen [asl 5.67 : B Ho]                                
+ *  @date 12/31/2023 11:49:28                                           
+ *  @cdate 1/1/2001 11:18:09                  
+ *  @author Mark Terry                        
+ *  @Copyright © RootMeanSquare 2023 -->                               
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                  
+                     
+//----------------<v_&_v>-------------------------//                
 
           
 
@@ -1429,15 +1430,18 @@ _clarg[1]
 
  internal args have a '_' preceeding the name to distinguish from user script variables.
 
+  _clargc is an internal variable set to the number of command line arguments.   
   na = Caz(_clarg) 
   na is the number of command line arguments,   
   na = argc() --- also gives number of command line args
+  
 
   wa = _clarg[1]
   or
   wa = _argv[1]
 
   wa contains the first argument.
+  The script name is the zeroth argument   i.e. _clarg[0]
 <<"$_clarg \n"
   will print the list of command line args
   use atoi(), atof() to make numeric conversions where appropriate 

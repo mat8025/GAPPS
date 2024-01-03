@@ -1,10 +1,49 @@
+/* 
+ *  @script colors.asl 
+ * 
+ *  @comment test color selection 
+ *  @release CARBON 
+ *  @vers 1.5 B Boron [asl 5.70 : B Yb]                                     
+ *  @date 01/03/2024 11:14:06 
+ *  @cdate Sun Mar 22 11:05:34 2020 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare 2024
+ * 
+ */ 
+//-----------------<V_&_V>------------------------//
+
+Str Use_= " Demo  of test color selection ";
+
+#define _CPP_ 0
+
+
+#include "debug" 
+
+  if (_dblevel >0) { 
+   debugON() 
+   <<"$Use_ \n" 
+} 
+
+   allowErrors(-1); // set number of errors allowed -1 keep going 
+
+  chkIn(_dblevel) ;
+
+  chkT(1);
+
+ 
+
+
+// goes after procs
+#if _CPP_
+int main( int argc, char *argv[] ) { // main start 
+#endif       
 //
 // Show some colors
 //
 
-#include "debug"
 
-#define ASL 1
+
+#define _ASL_ 1
 
 Graphic = checkGWM()
 
@@ -261,7 +300,19 @@ Str cname = "red";
 
 bctx=0.4;
    wctx =0.6
+
+Textr txr;
+  txr.setTextr("%6.2f Green $greenv Blue $bluev  ",0.1,0.61,BLACK_,0)
    
+  txr.info()
+
+txw = txr.getTxt()
+  
+
+<<"%V $txw\n"
+
+
+
    while (1) {
 
     eventWait()
@@ -369,13 +420,17 @@ bctx=0.4;
 
           sWo(_WOID,awo[0],_WBHUE,rg_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,rg_index,_WCLIPBORDER,RED_);
 
-     sWo(_WOID,awo[0],_WTEXTHUE,BLACK_,_WTEXTR,"%6.2f Red $redv Green $greenv  ",0.1,0.61,_WCLIPBORDER,RED_);
-     sWo(_WOID,awo[0],_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f Red $redv Green $greenv  ",0.1,0.21,_WCLIPBORDER,RED_);     
+     sWo(_WOID,awo[0],_WTEXTHUE,BLACK_,_WTEXTR,"%d Red $redv Green $greenv  ",0.1,0.61,_WCLIPBORDER,RED_);
+     sWo(_WOID,awo[0],_WTEXTHUE,WHITE_,_WTEXTR,"%d Red $redv Green $greenv  ",0.1,0.21,_WCLIPBORDER,RED_);     
 
 
           sWo(_WOID,awo[1],_WBHUE,rb_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,rb_index,_WCLIPBORDER,RED_);
-     sWo(_WOID,awo[1],_WTEXTHUE,BLACK_,_WTEXTR,"%6.2f Red $redv Blue $bluev  ",0.1,0.61,_WCLIPBORDER,RED_);
-     sWo(_WOID,awo[1],_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f Red $redv Blue $bluev  ",0.1,0.21,_WCLIPBORDER,RED_);     
+
+
+     sWo(_WOID,awo[1],_WTEXTHUE,BLACK_,_WTEXTR, Textr(" Red $redv Blue $bluev  ",0.1,0.61),_WCLIPBORDER,RED_);
+
+
+     sWo(_WOID,awo[1],_WTEXTHUE,WHITE_,_WTEXTR,Textr("%d Red $redv Blue $bluev  ",0.1,0.21),_WCLIPBORDER,RED_);     
 
      sWo(_WOID,awo[2],_WBHUE,gb_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,gb_index,_WCLIPBORDER,RED_);
 
@@ -383,7 +438,7 @@ bctx=0.4;
      // which uses a Textr object and passes that via this pointer
      //   so this still looks like and tag, value pair to both asl and cpp
 
-     sWo(_WOID,awo[2],_WTEXTR,Textr("%6.2f Green $greenv Blue $bluev  ",0.1,0.61,BLACK_),_WCLIPBORDER,RED_);
+     sWo(_WOID,awo[2],_WTEXTR,txr,_WCLIPBORDER,RED_);
      
      sWo(_WOID,awo[2],_WTEXTR,Textr("%6.2f Green $greenv Blue $bluev  ",0.1,0.21, WHITE_),_WCLIPBORDER,RED_);     
 
@@ -399,3 +454,17 @@ bctx=0.4;
 
 
 ;
+
+#if _CPP_           
+  exit(-1); 
+  }  /// end of C++ main 
+#endif     
+
+
+///
+
+ chkOut();
+
+  exit();
+
+//==============\_(^-^)_/==================//

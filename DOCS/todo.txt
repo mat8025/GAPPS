@@ -2,7 +2,7 @@
 ///    Major TODO items
 ///
 
- 1. asl2cpp  -- use to parse out asl specific statments and convert to cpp if possible
+ 1. asl2cpp  -- use to parse out asl specific statements and convert to cpp if possible
 
  2. auto add cpp stubs  so that application DLL can be built
 
@@ -18,7 +18,7 @@
 
  8. finish MAD type
 
- 9. eclipse IDE version
+ 9. eclipse IDE version ?  xdebug
 
  10. run stable version alongside developing version
 
@@ -27,4 +27,11 @@
  12. retry audio play record
 
  13. HMM
+
+ 14. Revise spread-sheet record TODO sheets  
+
+
+  
+
+
 
