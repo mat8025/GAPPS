@@ -109,6 +109,22 @@
 
 <<"%V $ans \n"
 
+
+Arec R;
+
+  ans = "Est-ce exact?"
+  
+  wans =R.Set(ans,4)
+allowDB("oo_,spe_,tok_func,ic_")
+wdb=DBaction((DBSTEP_),ON_)
+  gans = R.Get(4)
+
+ <<"%V $ans $wans $gans\n"
+ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
+
+
+
+
  Arec AI[5];
 
  ans = "le plus tôt possible"
@@ -119,23 +135,14 @@
 
  <<"%V $ans $wans $gans\n"
 
-  ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
+//  ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
 
 
 
 
 
 
-  Arec R;
-
-  ans = "Est-ce exact?"
   
-  wans =R.Set(ans,4)
-
-  gans = R.Get(4)
-
- <<"%V $ans $wans $gans\n"
-
   ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
 
   Arec FI[5];
@@ -182,8 +189,7 @@
 
   chkStr(r01,"did");
 
-allowDB("oo_,spe_,tok_func,ic_")
-wdb=DBaction((DBSTEP_),ON_)
+
 
   r02 = FI[0].Get(2);
 

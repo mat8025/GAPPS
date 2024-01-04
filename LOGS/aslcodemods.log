@@ -1955,3 +1955,5 @@ oo_class.cpp                        2.25  01/02/2024 14:00:46  oo parset member 
 plot_wo_set.cpp                     1.98  01/03/2024 13:00:10  textr processing
 plot_text.cpp                       1.81  01/03/2024 13:01:42  textr processing 
 wcom_sw.cpp                         1.94  01/03/2024 13:03:10  win_text font number
+oo_class_mbr.cpp                    2.43  01/03/2024 22:44:26  fix no WIC in arraycheck
+prep_defines.cpp                    2.69  01/03/2024 22:46:09  allow lower case on_,off_., rotate fonts

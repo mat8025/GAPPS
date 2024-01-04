@@ -192,6 +192,7 @@ sWi(_WOID,vp3,_WREDRAW,ON_);
 
 //  sWo(rgbwo,_CSV,"0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,\
 //           0.65,0.7,0.75,0.8,0.85,0.9,0.95,1.0", 20,_REDRAW)
+
      cvals= "0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1.0"
 
 i=0;
@@ -318,15 +319,13 @@ txw = txr.getTxt()
     eventWait()
 
     rval   = wogetValue(rwo);
-<<"%V$rval\n"
+
 
      redv   = atof( wogetValue(rwo))
-<<"%V$rval  $redv\n"
-
      greenv = atof ( wogetValue(gwo))
      bluev  =  atof ( wogetValue(bwo))
 
-<<" $redv $bluev $greenv \n"
+<<"%V $redv $bluev $greenv \n"
 
    sWo(_WOID,rwo,_WBHUE,r_index,_WCLEARCLIP,r_index,_WCLIPBORDER,RED_);
    sWo(_WOID,rwo,_WBHUE,r_index,_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f Red $redv ",0.1,0.21,_WCLIPBORDER,RED_);
@@ -366,7 +365,7 @@ txw = txr.getTxt()
 
   // sWo(rgbwo,_redraw)
   // TBC ?
-   sWo(_WOID,two,_WCLEAR,ON_,_WTEXTR," %V  $redv $greenv $bluev",0,0.5); 
+   sWo(_WOID,two,_WCLEAR,ON_,_WTEXTR," %V %6.2f $redv $greenv $bluev",0,0.5); 
 
    //sWo(awo,_bhue,cindex,_clear,_clipborder,_redraw)  // clears repaints
    //sWo(awo,_clearclip,_redraw)  // clears repaints
@@ -420,15 +419,14 @@ txw = txr.getTxt()
 
           sWo(_WOID,awo[0],_WBHUE,rg_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,rg_index,_WCLIPBORDER,RED_);
 
-     sWo(_WOID,awo[0],_WTEXTHUE,BLACK_,_WTEXTR,"%d Red $redv Green $greenv  ",0.1,0.61,_WCLIPBORDER,RED_);
-     sWo(_WOID,awo[0],_WTEXTHUE,WHITE_,_WTEXTR,"%d Red $redv Green $greenv  ",0.1,0.21,_WCLIPBORDER,RED_);     
+     sWo(_WOID,awo[0],_WTEXTHUE,BLACK_,_WTEXTR,"%6.1f Red $redv Green $greenv  ",0.1,0.61,_WCLIPBORDER,RED_);
+     sWo(_WOID,awo[0],_WTEXTHUE,WHITE_,_WTEXTR,"%6.1f Red $redv Green $greenv  ",0.1,0.21,_WCLIPBORDER,RED_);     
 
 
           sWo(_WOID,awo[1],_WBHUE,rb_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,rb_index,_WCLIPBORDER,RED_);
 
 
      sWo(_WOID,awo[1],_WTEXTHUE,BLACK_,_WTEXTR, Textr(" Red $redv Blue $bluev  ",0.1,0.61),_WCLIPBORDER,RED_);
-
 
      sWo(_WOID,awo[1],_WTEXTHUE,WHITE_,_WTEXTR,Textr("%d Red $redv Blue $bluev  ",0.1,0.21),_WCLIPBORDER,RED_);     
 

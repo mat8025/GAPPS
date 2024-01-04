@@ -53,18 +53,18 @@ void  titleButtonsQRD(int v)
 
 
 
- sWo(_WOID,tq,_WNAME,"tbq",_WVALUE,"QUIT",_WFUNC,"window_term",_WRESIZE,wbox(rsz),_WSYMBOL,X_);
+ sWo(_woid,tq,_wname,"tbq",_wvalue,"QUIT",_wfunc,"window_term",_wresize,wbox(rsz),_wsymbol,X_);
  
 int  tr=cWo(v,TBS_);
 rsz[0] = 0.94;
 rsz[2] = 0.96;
- sWo(_WOID,tr,_WNAME,"tbr",_WVALUE,"RESIZE",_WFUNC,"window_resize",_WRESIZE,wbox(rsz),_WSYMBOL,CROSS_);
+ sWo(_woid,tr,_wname,"tbr",_wvalue,"RESIZE",_wfunc,"window_resize",_wresize,wbox(rsz),_wsymbol,CROSS_);
  
  int td=cWo(v,TBS_);
  rsz[0] = 0.91;
  rsz[2] = 0.93;
  
-sWo(_WOID,td, _WNAME,"tbd",_WVALUE,"REDRAW",_WFUNC,"window_redraw",_WRESIZE,wbox(rsz),_WSYMBOL,DIAMOND_);
+sWo(_woid,td, _wname,"tbd",_wvalue,"REDRAW",_wfunc,"window_redraw",_wresize,wbox(rsz),_wsymbol,DIAMOND_);
 
 //  TBqrd_tv = cWo(v,TBV_);
 //rsz[0] = 0.2;
