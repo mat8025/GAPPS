@@ -365,7 +365,7 @@ txw = txr.getTxt()
 
   // sWo(rgbwo,_redraw)
   // TBC ?
-   sWo(_WOID,two,_WCLEAR,ON_,_WTEXTR," %V %6.2f $redv $greenv $bluev",0,0.5); 
+   sWo(_WOID,two,_WCLEAR,ON_,_wtextr," RGB %V %6.2f $redv $greenv $bluev",0,0.5); 
 
    //sWo(awo,_bhue,cindex,_clear,_clipborder,_redraw)  // clears repaints
    //sWo(awo,_clearclip,_redraw)  // clears repaints
@@ -376,7 +376,7 @@ txw = txr.getTxt()
    cname = getColorName(cindex);
    <<"%V $cname $cindex \n"
 
-   sWo(_WOID,two,_WTEXTR,"%V $cname $cindex ",0,0.4,_WCLIPBORDER,RED_);
+   sWo(_WOID,two,_wtextr,"CN %V $cname $cindex ",0,0.4,_WCLIPBORDER,RED_);
 
    sWo(_WOID,htwo[0],_WTEXTHUE,BLACK_,_WTEXTR,"$cname",bctx,0.52,_WCLIPBORDER,RED_);
    sWo(_WOID,htwo[0],_WTEXTHUE,WHITE_,_WTEXTR,"$cname",wctx,0.5,_WCLIPBORDER,RED_);
@@ -405,8 +405,8 @@ txw = txr.getTxt()
    sWo(_WOID,htwo[2],_WBHUE,scindex,_WTEXTHUE,BLACK_,_WCLEARCLIP,scindex,_WCLIPBORDER,RED_);
 
 
-   sWo(_WOID,htwo[2],_WTEXTHUE,BLACK_,_WTEXTR,"$scname ",bctx,0.51,_WCLIPBORDER,RED_);
-   sWo(_WOID,htwo[2],_WTEXTHUE,WHITE_,_WTEXTR,"$scname ",wctx,0.5,_WCLIPBORDER,RED_);
+   sWo(_WOID,htwo[2],_WTEXTHUE,BLACK_,_WTEXTR,"$scname ",bctx,0.51,_wclipborder,RED_);
+   sWo(_WOID,htwo[2],_WTEXTHUE,WHITE_,_WTEXTR,"$scname ",wctx,0.5,_wclipborder,RED_);
 
    //cname = getColorName(windex)
 
@@ -415,7 +415,7 @@ txw = txr.getTxt()
    sWo(_WOID,htwo[3],_WBHUE,rgb_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,rgb_index,_WCLIPBORDER,RED_);
    
      sWo(_WOID,awo[3],_WBHUE,rgb_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,rgb_index,_WTEXTR,"%6.2f Red $redv Green $greenv Blue $bluev ",0.1,0.61,_WCLIPBORDER,RED_);
-     sWo(_WOID,awo[3],_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f Red $redv Green $greenv Blue $bluev ",0.1,0.21,_WCLIPBORDER,RED_);     
+     sWo(_WOID,awo[3],_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f ReD $redv Green $greenv Blue $bluev ",0.1,0.21,_WCLIPBORDER,RED_);     
 
           sWo(_WOID,awo[0],_WBHUE,rg_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,rg_index,_WCLIPBORDER,RED_);
 
@@ -426,9 +426,9 @@ txw = txr.getTxt()
           sWo(_WOID,awo[1],_WBHUE,rb_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,rb_index,_WCLIPBORDER,RED_);
 
 
-     sWo(_WOID,awo[1],_WTEXTHUE,BLACK_,_WTEXTR, Textr(" Red $redv Blue $bluev  ",0.1,0.61),_WCLIPBORDER,RED_);
+     sWo(_WOID,awo[1],_WTEXTHUE,BLACK_,_WTEXTR, " REd $redv Blue $bluev  ",0.1,0.61,_WCLIPBORDER,RED_);
 
-     sWo(_WOID,awo[1],_WTEXTHUE,WHITE_,_WTEXTR,Textr("%d Red $redv Blue $bluev  ",0.1,0.21),_WCLIPBORDER,RED_);     
+     sWo(_WOID,awo[1],_WTEXTHUE,WHITE_,_WTEXTR,"%d Red $redv BlUe $bluev  ",0.1,0.21,_WCLIPBORDER,RED_);     
 
      sWo(_WOID,awo[2],_WBHUE,gb_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,gb_index,_WCLIPBORDER,RED_);
 
@@ -438,7 +438,7 @@ txw = txr.getTxt()
 
      sWo(_WOID,awo[2],_WTEXTR,txr,_WCLIPBORDER,RED_);
      
-     sWo(_WOID,awo[2],_WTEXTR,Textr("%6.2f Green $greenv Blue $bluev  ",0.1,0.21, WHITE_),_WCLIPBORDER,RED_);     
+     sWo(_WOID,awo[2],_WTEXTR,"%6.2f GreeN $greenv Blue $bluev  ",0.1,0.21, WHITE_,_WCLIPBORDER,RED_);     
 
    if (_GEV_woid == qwo) {
        break

@@ -106,8 +106,10 @@ sWo(_WOID,td,_WDRAW,ON_,_WPIXMAP,ON_,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45,
  
 }
 //============================//
-void titleComment(Str& msg)
+//void titleComment(Str& msg)
+void titleComment(Str msg)
 {
+  msg.pinfo()
 //<<"titlecomment %V $msg \n"
  sWo(_WOID,TBqrd_tv,_WVALUE,msg.cptr(),_WCLEAR,ON_,_WCLEARCLIP,ON_,_WREDRAW,ON_);
 

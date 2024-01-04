@@ -80,7 +80,7 @@ int txtwin;
 
 
 // wpt
- sWi(_woid,txtwin,_wsetgrid,wpt(20,20));
+ //sWi(_woid,txtwin,_wsetgrid,wpt(20,20));
  // setting a grid on parent window for positioning
  // wpt is an SF which returns A siv float vector of three floats
  // wpt(n,m,[o=1])
@@ -94,7 +94,7 @@ int txtwin;
 
 // two=cWo(txtwin,"TEXT",_Wname,"TextR",_WVALUE,"howdy",_Wcolor,ORANGE_,_Wresize,0.1,0.7,0.5,0.9)
  sWo(_woid,two,_wborder,on_,_wdraw,on_,_wclipborder,RED_,_wfonthue,BLACK_,_wpixmap,OFF_)
- sWo(_woid,two,_wscales,wbox(0,0,1,1),_wredraw,on_);
+ sWo(_woid,two,_wscales,wbox(0,0,1.0,1.0),_wredraw,on_);
  sWo(_woid,two,_whelp," Mouse & Key Info ")
 
 
@@ -111,7 +111,7 @@ int txtwin;
  sWo(_woid,stwo,_wborder,BLACK_,_wdraw,on_,_wclipborder,BLUE_,_wfonthue,BLACK_ )
  
  sWo(_woid,stwo,_wscales,wbox(0,0,1,1))
- sWo(_woid,stwo,_wfont,F_SMALL_)
+ sWo(_woid,stwo,_wfont,F_MEDIUM_)
  
  sWo(_WOID,stwo,_Whelp," Mouse & Key Info ",_wredraw,ON_);
 
@@ -123,10 +123,10 @@ int txtwin;
 
 
  bigwo=cWo(txtwin,WO_TEXT_)
- sWo(_woid,bigwo,_wname,"bigtext",_wvalue,"big font?",_wcolor,ORANGE_,_wresize,wbox(9,13,18,19,3)))
+ sWo(_woid,bigwo,_wname,"bigtext",_wvalue,"big font?",_wcolor,GREEN_,_wresize,wbox(9,13,18,19,3)))
  sWo(_woid,bigwo,_wborder,BLACK_,_wdraw,on_,_wclipborder,RED_,_wfonthue,BLACK_ ,_wpixmap,off_,_wdraw,on_,_wsave,on_)
  sWo(_woid,bigwo,_wbhue,WHITE_,_wscales,wbox(0,0,1,1))
- sWo(_woid,bigwo,_wfont,F_BIG_)
+// sWo(_woid,bigwo,_wfont,F_BIG_)
 
 
  ipwo= cWo(txtwin,WO_TEXT_)
@@ -163,7 +163,7 @@ sWo(_woid,ipwo,_wfont,F_MEDIUM_)
  sWo(_woid,lvwo,_wborder,RED_,_wdraw,ON_,_wclipborder,RED_,_wfonthue,BLACK_ ,_wdraw,ON_,_wsave,ON_)
  sWo(_woid,lvwo,_wscales,wbox(0,0,1,1))
  
- sWo(_woid,lvwo,_wfont,F_ROTATE_)
+// sWo(_woid,lvwo,_wfont,F_ROTATE_)
 
  rvwo=cWo(txtwin,WO_TEXT_)
 
@@ -173,7 +173,7 @@ sWo(_woid,ipwo,_wfont,F_MEDIUM_)
 
  sWo(_WOID,rvwo,_wscales,wbox(0,0,1,1))
  
- sWo(_WOID,rvwo,_wfont,F_ROTATE90_)
+// sWo(_WOID,rvwo,_wfont,F_ROTATE90_)
 
 
 
@@ -194,7 +194,7 @@ sWo(_woid,ipwo,_wfont,F_MEDIUM_)
 
   sWo(_WOID,txwos,_WREDRAW,ON_);
  
-  titleVers();
+  //titleVers();
  
 //////////////////////////////////////////////////
 
@@ -225,7 +225,7 @@ while (1) {
    if (do_txt_stuff) {
 
 
-    sWo(_woid,two,_wtextr,Textr("$GEV_msg",0.1,0.8))
+    sWo(_woid,two,_wtextr,"$GEV_msg",0.1,0.8)
 
     sWo(_woid,stwo,_wprint,"$GEV_msg\n") ;
     
@@ -246,14 +246,17 @@ while (1) {
       <<"ipwo_txt: $txt \n"
 
 
-      sWo(_WOID,lvwo,_wfont,F_ROTATE90_,_wtextr,Textr("$deftxt",0.3,0.1,0,-90,RED_));
-      sWo(_WOID,rvwo,_wfont,F_ROTATE_,_wtextr,Textr("$deftxt",0.5,0.9,0,90,BLUE_));
+   //  sWo(_WOID,lvwo,_wfont,F_ROTATE90_,_wtextr,"$deftxt",0.3,0.1,0,-90,RED_);
+     sWo(_WOID,lvwo,_wfont,F_ROTATE90_,_wtextr,"$deftxt",0.3,0.1,0,-90,BLACK_);
+      sWo(_WOID,rvwo,_wfont,F_ROTATE_,_wtextr,"$txt",0.5,0.9,0,90,BLUE_);
 
-      sWo(_WOID,bigwo,_wfont,F_BIG_,_wtextr,Textr("$deftxt",0.0,0.6,0,0,BLACK_();
-      sWo(_WOID,bigwo,_wfont,F_MEDIUM_,_wtextr,Textr("$txt",0.0,0.4,0,0,MAGENTA_));
-      sWo(_WOID,bigwo,_wfont,F_SMALL_,_wtextr,Textr("$txt",0.0,0.5,0,0,BLACK_));
+     // sWo(_WOID,bigwo,_wfont,F_BIG_,_wtextr,Textr("$deftxt",0.0,0.6,0,0,BLACK_);
+      sWo(_WOID,bigwo,_wfont,F_BIG_,_wtextr,"$deftxt",0.0,0.6,0,0,BLACK_);
+      sWo(_WOID,bigwo,_wtextr,"$deftxt",0.0,0.6,0,0,BLACK_);
+     sWo(_WOID,bigwo,_wfont,F_MEDIUM_,_wtextr,"$txt",0.0,0.4,0,0,MAGENTA_);
+      sWo(_WOID,bigwo,_wfont,F_SMALL_,_wtextr,"$txt",0.0,0.5,0,0,BLACK_);
 
-      sWo(_WOID,lvwo,_Wfont,F_SMALL_,_Wprint,"$txt");            
+      sWo(_WOID,lvwo,_Wfont,F_SMALL_,_wprint,"$txt");            
 
       mnum++;
       //sWo(_WOID,ipwo,_Wvalue,"");

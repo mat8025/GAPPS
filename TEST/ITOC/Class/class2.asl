@@ -84,6 +84,22 @@
 //===========================//
 
 
+  Str bike ="bike harder"
+
+
+   <<"$bike \n"
+
+
+   lyons = bike.cptr()
+
+
+<<"%V $lyons \n"
+
+ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
+
+
+
+
   Svar loc;
 
   loc[2] = "hey buddy"
