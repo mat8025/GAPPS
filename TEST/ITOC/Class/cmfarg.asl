@@ -49,7 +49,7 @@ float roo( float ya) {
 
 
 <<" do we see this ??\n"
-wdb=DBaction((DBSTEP_|DBSTRACE_),ON_)
+//wdb=DBaction((DBSTEP_|DBSTRACE_),ON_)
   hz= hoo ( hy)
 
  <<"%V $hy $hz \n"
@@ -123,10 +123,6 @@ void Point()
    }
 
 }
-
-
-
-
  
   Point A;
   Point B;
@@ -137,9 +133,7 @@ void Point()
 
  rx=   A.Getx();
 
-
  <<"%V $rx \n"
-
 
  chkR(rx,3)
 
@@ -148,11 +142,17 @@ void Point()
 // DBaction((DBSTEP_| DBSTRACE_),ON_)
 //}
 
-  A.Setx( rx );
+allowDB("oo_,spe_proc,spe_args,spe_cmf,tok_func")
+DBaction((DBSTEP_),ON_)
+  dx = A.Setx( rx );
+
+<<"%V $dx \n"
+
+ans=ask(DB_prompt,DB_action);
 
   hz = hoo(rx)
 
-allowDB("oo_,spe_proc,spe_args,spe_cmf,tok_func")
+
 DBaction((DBSTEP_| DBSTRACE_),ON_)
   A.Setx( hoo( rx) );
 

@@ -49,9 +49,8 @@
 
   int id;
 
-  Str Get( int wf)
-  {
-  Str val;
+  Str Get( int wf) {
+   Str val;
   val = srec[wf];
   
   <<"$val \n"
@@ -61,10 +60,13 @@
   return val;
   };
 
-  Str Set(str val, int wf)
-  {
+  Str Set(Str val, int wf) {
+ 
   srec[wf] = val;
-  return srec[wf];
+  rval =  srec[wf];
+//  return srec[wf];
+
+     return rval;
   };
 // currently need cmf keyword for constructor
 
@@ -95,7 +97,7 @@
 
 <<"%V $lyons \n"
 
-ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
+//ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
 
 
 
@@ -129,14 +131,25 @@ ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
 Arec R;
 
   ans = "Est-ce exact?"
+  ans.pinfo()
+//allowDB("oo_,spe_proc,tok_func,ic_")
+//wdb=DBaction((DBSTEP_),ON_)
+
+  Str tans = "OK";
+
+  // error msg should say prototype and call args don't match can't promote/demote or ambiguous
+
+
+  R.Set(tans,5)
+
+  wans =R.Set(tans,4)
   
-  wans =R.Set(ans,4)
-allowDB("oo_,spe_,tok_func,ic_")
-wdb=DBaction((DBSTEP_),ON_)
+
+
   gans = R.Get(4)
 
  <<"%V $ans $wans $gans\n"
-ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
+//ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
 
 
 
@@ -159,7 +172,7 @@ ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
 
 
   
-  ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
+  //ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
 
   Arec FI[5];
 
@@ -171,7 +184,7 @@ ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
 
  <<"%V $ans $wans $gans\n"
 
-  ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
+  //ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
 
 
 
@@ -388,9 +401,7 @@ ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
 
   chkStr(what,"Do what I say");
 
-  class Turnpt;
-
-  {
+  class Turnpt {
 
   public:
 
@@ -428,7 +439,9 @@ ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
 
   }
 
-  Turnpt  Wtp[50];
+allowDB("oo_,spe_,tok_func,ic_")
+
+  Turnpt  Wtp[5];
 
   Svar SV;
 
