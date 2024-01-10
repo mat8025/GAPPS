@@ -17,23 +17,23 @@ char vers[6] ="5.1";
 
 
 
-#include "debug"
+#include "debug.asl"
 
  
 #define DB_IT    0
 #define GT_DB   0
-#define ASL 1
-#define CPP 0
+#define __ASL__ 1
+#define __CPP__ 0
 
 
-#if ASL
-// this include  when cpp compiling will re-define ASL 0 and CPP 1
+#if __ASL__
+// this include  when cpp compiling will re-define __ASL__ 0 and __CPP__ 1
 #include "compile.asl"
 
 #endif
 
 
-#if CPP
+#if __CPP__
 #include <iostream>
 #include <ostream>
 
@@ -42,7 +42,7 @@ using namespace std;
 
 #define PXS  cout<<
 
-#define ASL_DB 0
+#define __ASL___DB 0
 #define CPP_DB 0
 
 #endif
@@ -50,7 +50,7 @@ using namespace std;
 ///////////////////////
 //uint Turnpt::Ntp_id = 0;
 
-#if ASL
+#if __ASL__
 
 #define CPP_DB 0
 
@@ -59,7 +59,7 @@ using namespace std;
 int run_asl = runASL();
 //<<" running as ASL \n";
 
- // debugON();
+  //debugON();
 
 ignoreErrors();
  echolines(0)
@@ -146,7 +146,7 @@ Tleg  GT_Wleg[20];
 
 
 
-#if CPP
+#if __CPP__
 void
 Glide::glideTask(Svarg * sarg)  
 {
@@ -158,7 +158,7 @@ Glide::glideTask(Svarg * sarg)
 
   int na;
 
-#if ASL
+#if __ASL__
  Svar sa;
  na = _clargc;
  sa = _clarg;
@@ -247,7 +247,7 @@ Glide::glideTask(Svarg * sarg)
     //na = sa.getNarg(); // TBC no asl version??
 
 
-#if CPP
+#if __CPP__
   na = sa.getNarg();
 #else
   na = _clargc;
@@ -270,7 +270,7 @@ Glide::glideTask(Svarg * sarg)
 
 
   //<<" %V $LoD \n";
-#if ASL
+#if __ASL__
 ac =1;
 #endif
 
@@ -429,7 +429,7 @@ while (ac < na) {
 
 
 
-#if ASL
+#if __ASL__
   //CLTPT[cltpt] = targ;   // TBF 02/24/22
 
 //<<"%V $targ $cltpt \n"
@@ -677,7 +677,7 @@ while (ac < na) {
 #endif
 
 
-#if CPP
+#if __CPP__
   if (GT_DB) cout << " nxttpt " << nxttpt << endl;
 #endif
 
@@ -712,7 +712,7 @@ while (ac < na) {
 
   else {
 
-#if CPP
+#if __CPP__
  if (GT_DB) cout <<"looking for " << nxttpt << endl;
 #else
  //<<"AFH $AFH looking for $nxttpt \n";
@@ -809,7 +809,7 @@ while (ac < na) {
 
 
   //  cout <<" next  nwr " << nwr << endl;
-#if CPP
+#if __CPP__
   if (GT_DB) COUT(Wval);
 #endif
 
@@ -842,7 +842,7 @@ while (ac < na) {
 
    GT_Wtp[n_legs].TPset(Wval);
 
-#if ASL
+#if __ASL__
      if (AFH != K_AFH) {
        <<" ferr %V $AFH\n"
      }
@@ -1135,7 +1135,7 @@ while (ac < na) {
 
 // printf("%d %-5s  \t%s\t%s   %6.0fft   %6.0fft         \n",li,ident,GT_Wtp[li].Lat,GT_Wtp[li].Lon, GT_Wtp[li].fga, GT_Wtp[li].Alt);
   //
-#if ASL
+#if __ASL__
   printf("%d %-10s %-5s %-8s %6.0fft",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Radio,GT_Wtp[li].Alt);
 #else
  //printf("%d %-10s %-5s %-8s",li,GT_Wtp[li].Place.cptr(),ident.cptr(),GT_Wtp[li].Radio.cptr())  ;
@@ -1159,7 +1159,7 @@ cprintf("%d  %-10S %-5S %-8S  %6.0fft  ",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Ra
 
   printf("\t%6.2f %6.2f ",rtotal,tot_time);
   printf("\t%6.2f%% ",GT_Wleg[li].pc); 
-#if ASL
+#if __ASL__
   printf("%s %s \n",GT_Wtp[li].Lat,GT_Wtp[li].Lon);
 
 #else
@@ -1173,7 +1173,7 @@ cprintf("%d  %-10S %-5S %-8S  %6.0fft  ",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Ra
   }
 
   if (show_dist) {
-#if ASL
+#if __ASL__
   <<"\nTotal distance\t %8.2f $totalD km\t%8.2f $(totalD*km_to_sm) sm\t%6.2f  $(totalD*km_to_nm) nm    LOD %6.1f$LoD CS $CSK knots\n";
 
   <<" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n";
@@ -1197,7 +1197,7 @@ cprintf("%d  %-10S %-5S %-8S  %6.0fft  ",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Ra
 //  <<"%6.1f $totalD km to fly -  $totalDur hrs - bon voyage!\n";
 
 
-#if CPP
+#if __CPP__
 }
 ////////////////////////////////////////////////////////////////////////////////////////
 extern "C" int glidertask(Svarg * sarg)  {
@@ -1220,3 +1220,5 @@ extern "C" int glidertask(Svarg * sarg)  {
 */
 
 //==============\_(^-^)_/==================//
+
+LocalWords:  asl

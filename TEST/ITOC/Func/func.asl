@@ -16,7 +16,7 @@
 
   if (_dblevel >0) {
 
-  debugON();
+  //debugON();
 
   }
 ///
@@ -24,7 +24,7 @@
 ///
 
   chkIn(_dblevel);
-
+DB_action = 0
   double goo(double a)
   {
 
@@ -36,6 +36,113 @@
 
   }
 //=====================
+
+float where( Str la , int mode)
+{
+<<"$_proc $la  $mode \n"
+   fla =  coorToDeg(la,2*1); 
+
+  return fla;
+}
+
+#include "add_class.asl"
+
+
+
+
+
+
+
+
+
+//allowDB("ic_,oo_,spe_,rdp_,pexpnd,tok,array")
+
+  float Ladeg;
+  float Longdeg;
+
+  Lat = "4009.750N"
+
+
+  Ladeg =  coorToDeg(Lat,2*1); 
+ 
+
+<<"%V $Ladeg\n"
+
+   Lat = "4109.750N"
+
+  Ladeg =  where( Lat ,2)
+
+<<"%V $Ladeg\n"
+
+   Lat = "4209.750N"
+
+  Ladeg =  where( Lat,2 )
+
+<<"%V $Ladeg\n"
+
+  Add Z[5];
+
+
+Lat = "4509.750N"
+
+ Ladeg =  Z[1].where( Lat,3 )
+
+ <<"%V $Ladeg\n"
+
+ chkN(Ladeg,45.162498)
+
+
+Lat = "4609.750N"
+
+ Ladeg =  Z[2].where( Lat,3 )
+
+ <<"%V $Ladeg\n"
+
+ chkN(Ladeg,46.162498)
+
+
+
+
+
+
+
+
+
+  Add T;
+
+  s= T.sum(4,5);
+
+  chkN(s,9);
+
+  <<"%V $s $(typeof(s)) \n";
+
+Lat = "4309.750N"
+
+ Ladeg =  T.where( Lat ,2)
+
+ <<"%V $Ladeg\n"
+
+Lat = "4409.750N"
+
+ Ladeg =  T.where( Lat,3 )
+
+ <<"%V $Ladeg\n"
+
+ chkN(Ladeg,44.162498)
+
+
+
+
+
+
+
+
+
+  chkOut()
+  exit(1);
+
+
+
 
   gen N = "a1";
 

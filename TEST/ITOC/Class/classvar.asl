@@ -22,9 +22,11 @@
 
    chkIn(_dblevel);
 
-//allowDB("ic_,oo_,spe_exp,spe_proc,spe_state,spe_cmf,spe_scope,ds_sivbounds")
+//  allowDB("ic_,oo_,spe_exp,spe_proc,spe_state,spe_cmf,spe_scope,ds_sivbounds")
 
-//   wdb=DBaction((DBSTEP_),ON_) ;
+//  wdb=DBaction((DBSTEP_),ON_) ;
+
+ int Fruit_id = 0;
 
    int V = 4 ;  // global;
 
@@ -51,7 +53,7 @@
 #  variable list
 
      public:
-
+     int id;
      int x ;
 
      int V ;
@@ -81,11 +83,13 @@
        }
 
      int get_x() {
-
+        
        <<" $_proc returning  $x \n";
-
-       return x;
+       x.pinfo();
+       return x ;
        }
+
+
 
      void set_V (int val) {
 
@@ -114,11 +118,11 @@
 
      cmf fruit()
      {
-
+      id = Fruit_id++
      <<" doing fruit constructor for  $_cobj \n";
 
      <<"%V $_pstack \n";
-     x = 5;
+     x = 5 + id;
 
      V = 33; // should set class V not global V;
 
@@ -139,21 +143,52 @@
   <<"pre_obj_dec %v $V \n";
 
   fruit apple;
+
+  <<"%V $apple.x  \n";
+  <<"%V $apple.V  \n";
+
+  //apple.pinfo();
+
+   pinfo(apple)
+   V.pinfo()
+   apple.pinfo()
+   
+mx = apple.get_x()
+  <<" %V $mx \n"
+
+  chkN(mx,5)
+//ask(" %V  $__FILE__ $__FUNC__ $__LINE__ $_proc $_scope $_include $_script [y,n,q]",DB_action);
+  fruit T;
+  
+  mx = T.get_x()
+
+  <<"T %V $mx \n"
+
+fruit R;
+  
+  mx = R.get_x()
+
+  <<"R %V $mx \n"
+
+
+//ask(" %V  $__FILE__ $__FUNC__ $__LINE__ $_proc $_scope $_include $_script [y,n,q]",DB_action);
+
+
 //<<"post_obj_dec %V $V $apple.V  $(apple.get_V())\n"
 
   <<"post_obj_dec %V $V \n";
 
   <<"$V\n";
 
-  <<"%V $apple.V  \n";
 
-  apple.pinfo();
 
-  mx = apple.get_x();
 
-  <<" %V mx \n"
 
-  chkN(mx,5)
+
+
+
+
+
 
   apple.set_V(47);
 
@@ -181,9 +216,9 @@
 
   mx = cherry.get_x();
 
-  <<" %V mx \n"
+  <<" %V $mx \n"
 
-  chkN(mx,5)
+  chkN(mx,8)
 
 
   <<" %v $apple.V \n";
@@ -271,6 +306,15 @@
   chkN(V,9);
 
   <<" %V $V $apple.V  $cherry.V \n";
+
+  fruit orange;
+
+  mx = orange.get_x();
+
+  <<" %V $mx \n"
+
+  chkN(mx,9)
+
 
   chkOut();
 

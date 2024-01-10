@@ -14,7 +14,7 @@
                                                                        
   
  //Str Vers2ele(Str& vstr)
- allowDB("spe_")
+// allowDB("spe_")
 //DBaction((DBSTEP_,ON_)  
 
  Str Vers2ele(Str vstr)
@@ -75,7 +75,7 @@
   // should be maj.min e.g 1.1 ,6.1, ... limits 1 to 100  
   }
   
-   allowDB("ic_,oo_,spe_proc,spe_state,spe_args,spe_cmf,spe_scope,tok_func")
+//   allowDB("ic_,oo_,spe_proc,spe_state,spe_args,spe_cmf,spe_scope,tok_func")
 
   
   
@@ -266,7 +266,7 @@ Str old_comment ="yyy"
    }
 */
 
-allowDB("spe_,tok_func")
+//allowDB("spe_,tok_func")
 <<"%V $cvers \n"
 cvers.pinfo()
 //if (found_vers) {

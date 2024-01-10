@@ -1950,11 +1950,20 @@ ic_pushobj.cpp                      1.5  12/22/2023 23:30:53  TDB
 spe_proc_process.cpp                2.65  12/23/2023 10:29:33  check SVAR,STR for vmf path
 spe_proc_args.cpp                   3.56  12/25/2023 09:18:02  mangle fix
 vsh_cw.cpp                          1.77  12/31/2023 11:26:42  DBSIN allow DBTEP thru SF function
-oo_class_mbr.cpp                    2.42  01/01/2024 20:28:16  fix varGetClassMemeb
-oo_class.cpp                        2.25  01/02/2024 14:00:46  oo parset member funsc
+oo_class_mbr.cpp                    2.42  01/01/2024 20:28:16  fix varGetClassMember
+oo_class.cpp                        2.25  01/02/2024 14:00:46  oo parset member func
 plot_wo_set.cpp                     1.98  01/03/2024 13:00:10  textr processing
 plot_text.cpp                       1.81  01/03/2024 13:01:42  textr processing 
 wcom_sw.cpp                         1.94  01/03/2024 13:03:10  win_text font number
 oo_class_mbr.cpp                    2.43  01/03/2024 22:44:26  fix no WIC in arraycheck
-prep_defines.cpp                    2.69  01/03/2024 22:46:09  allow lower case on_,off_., rotate fonts
-gwm_interact.cpp                    1.26  01/06/2024 21:21:48  disable mid button wo modify
+prep_defines.cpp                    2.69  01/03/2024 22:46:09  allow lower case on_,off_, rotate fonts
+gwm_interact.cpp                    1.26  01/06/2024 21:21:48  disable mid button wo modify
+vmf_l.cpp                           0.2  01/07/2024 19:23:51  try33
+vmf_l.cpp                           0.3  01/07/2024 19:25:31  try34
+vmf_l.cpp                           0.4  01/07/2024 19:26:12  try35
+vmf_l.cpp                           2.5  01/07/2024 19:26:54  try36
+ds_convert_get.cpp                  1.100  01/07/2024 19:27:50  getAsInt
+ds_convert_get.cpp                  2.1  01/07/2024 19:29:11  getVal *i
+ic_call.cpp                         1.63  01/08/2024 12:05:31  StoreStack clear siv before store
+spe_storetype.cpp                   2.71  01/08/2024 12:08:27  mv StoreStack to icall
+spe_proc_checkfname.cpp             2.65  01/08/2024 21:24:31  special case pinfo vmf

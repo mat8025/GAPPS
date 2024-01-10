@@ -177,6 +177,7 @@ Str val2;
 int lastc = -1;
 //<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
 
+<<"%V $wval\n"
      val = wval[0];
      
 //<<"%V $val\n"
@@ -223,7 +224,7 @@ int lastc = -1;
      Lat = wval[3]; // wayp
      
 //cout << "Lat " << Lat <<endl;
-//<<"%V $Lat \n"
+<<"%V $Lat \n"
      ccoor(Lat);
 //<<"%V $Lat \n"     
  
@@ -318,12 +319,14 @@ int lastc = -1;
      tptype = wval[10];
      
 // spat (tptype,"A",-1,-1,&is_airport);
-//<<"%V $lat \n";
+<<"%V $Lat \n";
+//allowDB("ic,spe_,rdp")
 
      Ladeg =  coorToDeg(Lat,2); 
  
  
-//<<"%V $Lat $Ladeg \n";
+<<"%V $Lat $Ladeg \n";
+//ans=ask("¿Es eso correcto?  [y,n,q]",1);
 
  //cout  <<"Lat " << Lat <<" Ladeg "<< Ladeg  <<endl ; 
 

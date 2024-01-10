@@ -30,7 +30,7 @@
 
   <<"$Usage_\n";
 
-  int Rec_id = 0;
+DB_action = 0;
 
  Str pset(str val, int wf)
   {
@@ -39,52 +39,9 @@
   }
 
 ///////////////////////////////////////
-  class Arec {
+#include "arec.asl"
 
-  public:
-
-  Svar srec;
-
-  int a;
-
-  int id;
-
-  Str Get( int wf) {
-   Str val;
-  val = srec[wf];
-  
-  <<"$val \n"
-
-  pinfo(val);
-
-  return val;
-  };
-
-  Str Set(Str val, int wf) {
- 
-  srec[wf] = val;
-  rval =  srec[wf];
-//  return srec[wf];
-
-     return rval;
-  };
-// currently need cmf keyword for constructor
-
-  void Arec ()
-  {
-
-  id=Rec_id++;
-
-  a = 1;
-      //id = Rec_id;
-
-  <<"constructing  %V $id  $Rec_id\n";
-
-  };
-
-  }
-//===========================//
-
+#include "add_class.asl"
 
   Str bike ="bike harder"
 
@@ -111,7 +68,8 @@
 <<"%V $ans \n"
 
   pinfo(ans)
-
+//ask("¿Es eso correcto?  [y,n,q]",DB_action);
+//allowDB("oo_,ic,spe_,tok_func,ic_")
   wi = 7;
 
 
@@ -137,11 +95,13 @@ Arec R;
 
   Str tans = "OK";
 
+  pinfo(tans)
+  
   // error msg should say prototype and call args don't match can't promote/demote or ambiguous
 
 
   R.Set(tans,5)
-
+  //allowDB("oo_,ic,spe_,tok_func,ic_")
   wans =R.Set(tans,4)
   
 
@@ -151,8 +111,21 @@ Arec R;
  <<"%V $ans $wans $gans\n"
 //ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
 
+  ga= R.get_a()
+
+<<"R a %V $ga\n"
 
 
+
+
+
+Arec T;
+
+  ga= T.get_a()
+
+<<"T a %V $ga\n"
+
+ask(" %V  $__FILE__ $__FUNC__ $__LINE__ $_proc $_scope $_include $_script [y,n,q]",DB_action);
 
  Arec AI[5];
 
@@ -201,6 +174,8 @@ Arec R;
   FI[0].srec = Split("how did we get here");
 
   <<"$FI[0].srec[2] \n";
+  
+//ask("¿Es eso correcto?  [y,n,q]",DB_action);
 
   <<"$FI[0].srec[0:2:1] \n";
 
@@ -254,90 +229,32 @@ Arec R;
 
   chkStr(r12,"with");
 
+//ask("¿Es eso correcto? <|$r10|> <|$r11|> $r12 [y,n,q]",DB_action);
+
+
+//allowDB("array,spe,rdp,ic")
+
   ans=FI[3].Set("Yes",2);
+
+//ask("¿Es eso correcto?  after set 2 <|$ans|> [y,n,q]",DB_action);
 
   r32 = FI[3].Get(2);
 
-  <<"%V $r32 $ans\n";
+//ask("¿Es eso correcto?  after get 2 <|$ans|> [y,n,q]",DB_action);
+
+  <<"%V <|$r32|> $ans\n";
 
   chkStr(r32,"Yes");
+
+
 
   r12 = FI[1].Get(2);
 
   chkStr(r12,"with");
 ////////////////////////
 
-  int Obid = 0;
+ 
 
-  class Add {
-
-  public:
-
-  float x ;
-
-  float y;
-
-  int id;
-
-  cmf Add()
-  {
-  id = Obid++;
-
-  <<"CONS $_cobj %V $id\n";
-
-  x = 0;
-
-  y = 0;
-
-  }
-
-  real sum (real a,real b)
-  {
-  t = a +b;
-  return t;
-  }
-
-  int sum (int a,int b)
-  {
-  t = a +b;
-  return t;
-  }
-
-  int diff (int a,int b)
-  {
-//  int t;
-
-  t = a -b;
-
-  return t;
-
-  }
-
-  Str say()
-  {
-
-  <<"$_proc hey there I exist\n";
-
-  isay="hey hey";
-
-  return ("hey hey");
-   //return isay;
-
-  }
-
-  Str isay()
-  {
-
-  <<"$_proc hey there I exist\n";
-
-  isay="Do what I say";
-
-  return isay;
-
-  }
-
-  }
-//int s;
 
   Add  tc;   //FIX;
 
@@ -352,6 +269,8 @@ Arec R;
   <<"%V $r $(typeof(r)) \n";
 
   chkN(r,9.8);
+
+///  !a  !b  margin calls do we want them?
 
   Add  mc;
 
@@ -439,7 +358,7 @@ Arec R;
 
   }
 
-allowDB("oo_,spe_,tok_func,ic_")
+//allowDB("oo_,ic,spe_,tok_func,ic_")
 
   Turnpt  Wtp[5];
 

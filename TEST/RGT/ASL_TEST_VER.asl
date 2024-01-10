@@ -445,7 +445,7 @@ if ((do_include || do_all ) && (do_include != -1)) {
     inflsz = caz(FailedList)
 
     //RunDirTests("OO","oa2,rpS,rp2,wintersect,oa,class_array,simple_class");
-    RunDirTests("OO","oa2,rpS,rp2,oa,class_array,simple_class");
+    RunDirTests("OO","oa,rpS,rp2,oa2,class_array,simple_class");
 
     RunDirTests("Obcopy","obcopy,obprocarg");
 

@@ -13,9 +13,6 @@
 //-----------------<v_&_v>--------------------------//
 
 //<<"Including  debug \n"
- // filterFuncDebug(REJECTALL_,"proc");
-
- // filterFileDebug(REJECTALL_,"yyy");
 
 int hold_dbl = _dblevel;
 int dblevel = _dblevel;
@@ -83,8 +80,8 @@ DB_action = 1 ;
 //<<"%V $_DBH ALLOWALL debug from files and funcs\n"
 //<<"use filterFuncDebug() filterFileDebug() to control\n"
 //sdb(dblevel,_keep,_~pline,_trace)
-//filterFuncDebug(ALLOWALL_,"xxx");
-//filterFileDebug(ALLOWALL_,"yyy");
+filterFuncDebug(ALLOWALL_,"xxx");
+filterFileDebug(ALLOWALL_,"yyy");
 
   setmaxcodeerrors(-1); //  unlimited
 
