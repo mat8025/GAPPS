@@ -24,7 +24,7 @@ class Arec {
   <<"$val \n"
 
   pinfo(val);
-ask("%V $__FILE__   $__FUNC__  $__LINE__ $_scope $_include $_script [y,n,q]",DB_action);
+//ask("%V $__FILE__   $__FUNC__  $__LINE__ $_scope $_include $_script [y,n,q]",DB_action);
   return val;
   };
 

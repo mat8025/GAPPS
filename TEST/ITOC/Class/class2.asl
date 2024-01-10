@@ -125,7 +125,7 @@ Arec T;
 
 <<"T a %V $ga\n"
 
-ask(" %V  $__FILE__ $__FUNC__ $__LINE__ $_proc $_scope $_include $_script [y,n,q]",DB_action);
+//ask(" %V  $__FILE__ $__FUNC__ $__LINE__ $_proc $_scope $_include $_script [y,n,q]",DB_action);
 
  Arec AI[5];
 

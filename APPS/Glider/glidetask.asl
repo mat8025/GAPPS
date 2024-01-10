@@ -608,9 +608,6 @@ while (ac < na) {
     nwr = Wval.readWords(AFH,0,',');
 
 //<<" CUP read of  $nwr words \n"
-//<<" $Wval[0] \n"
-//<<"$Wval[1] : \n"   
-//<<" $Wval[2]\n"
 
    }
   else {
@@ -804,7 +801,7 @@ while (ac < na) {
 
 //  <<"CUP READ $nwr words \n"
 
-// <<" $Wval[2]  $Wval[1]  $Wval[3]\n"
+
 
 
 
