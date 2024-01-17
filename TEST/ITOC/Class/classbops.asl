@@ -29,13 +29,13 @@ allowErrors(-1) ; // keep going
 chkIn(_dblevel);
 
 
-#include "abc"
+#include "abc.asl"
 
 
-   DB_action = 2
+   DB_action = 1
 
 
-//  allowDB("ic_,oo_,spe_proc,spe_state,spe_cmf,spe_scope")
+
   double x1;
 // wdb=DBaction((DBSTEP_| DBSTRACE_),ON_)
   x1.pinfo();
@@ -52,8 +52,15 @@ real goo( real x)
 }
 //==================//
 
+//allowDB("spe_proc,spe_state,spe_vmf,oo_")
+
 b=goo(1.2)
 <<" goo $b\n"
+
+chkN(b,2.4)
+
+
+
 b=goo(sin(0.7))
 
 
@@ -77,7 +84,7 @@ class Point
 //============================//
 
 
-     float setx(real m) {
+     float setx (real m) {
       m.pinfo()
       x = m;
       <<"$_proc $m $x  \n"; 
@@ -85,7 +92,7 @@ class Point
       }
 
 
-    void set (real m, real n) 
+    void setr (real m, real n) 
     {
   <<"IN $_proc set via real %V $m $n  \n";
        x = m;
@@ -93,9 +100,6 @@ class Point
        y.pinfo()
    <<"%V $m $n \n" 
       }
-
-
-
 
     void set (float m,float n) {
     
@@ -125,16 +129,16 @@ class Point
  
     float Getx() {
       <<"$_proc getting $x $_cobj \n";
-      
-  //      v=y.isVector()
- //   <<"%v$v\n"
-  //      dv= DV.isVector()
-//<<"%v$dv\n"
-      //dv.pinfo()
-      z = x;
-      //z.pinfo()
-      <<"%V $z  $x\n"
-      //x.pinfo()
+
+//      v=y.isVector()
+//   <<"%v$v\n"
+//      dv= DV.isVector()
+//   <<"%v$dv\n"
+//     dv.pinfo()
+//      z = x;
+//      z.pinfo()
+//     <<"%V $z  $x\n"
+//x.pinfo()
       
       return x;
       }
@@ -174,7 +178,9 @@ class Point
      void info()
      {
       <<"$_proc %V $x,$y\n";
-       v=y<-isVector()
+ //      v= y<-isVector()
+
+v= y.isVector()
    <<"%v$v\n"	
       y.pinfo()
       x.pinfo()
@@ -209,31 +215,52 @@ class Point
   rx=   A.Getx();
 
  <<"%V <|$rx|>\n"
-
+  chkN(rx,4.0)
 
   A.pinfo()
-   
-
 
   A.x = 3.4
 
   x1= A.x;
 
-
-
 <<"$x1\n"
 
   chkR(x1,3.4)
 
+  rx=   A.Getx();
+ <<"%V <|$rx|>\n"
+  chkN(rx,3.4)
+
    A.pinfo()
 
 
+   
+//allowDB("spe_proc,spe_state,spe_vmf,oo_")
+   A.setx(77.34)
 
-  A.x = 4.0
+   A.pinfo()
+
+   rx=   A.Getx();
+
+ <<"%V <|$rx|>\n"
 
 
 
-  chkR(rx,4.0);
+   chkR(rx,77.34,4);
+
+
+   A.x = 4.0
+
+   rx=   A.Getx();
+
+ <<"%V <|$rx|>\n"
+
+
+
+   chkR(rx,4.0);
+
+
+
 
   Point B;
 
@@ -268,8 +295,8 @@ real r2 = 4.5;
 //wdb=  DBaction((DBSTEP_|DBSTRACE_|DBALLOW_ALL_),ON_)
  //<<"$wdb \n"
 
-//allowDB("spe_proc,spe_state,spe_vmf,oo_")
-   r1.pinfo()
+
+  r1.pinfo()
 
   A.setx(r1);
 
@@ -314,18 +341,30 @@ real r2 = 4.5;
   my = A.mul( Sin(-0.8) ); 
   
   <<"%V$my $A.x  \n";
- 
 
 
 
-  A.set(2.2,0.123);
 
-  rx=   A.Getx();
+//allowDB("spe_proc,spe_state,spe_vmf,oo_")
+//wdb=  DBaction((DBSTEP_),ON_)
+//<<"$wdb \n"
 
+  A.setr(2.2,0.123);
+
+  rx= A.Getx();
 <<"%V $rx\n"
   chkR(rx,2.2)
+
+  A.setr(0.15, 0.2);
+  rx= A.Getx();
+<<"%V $rx\n"
+  chkR(rx,0.15)
   
+  ok=chkR(A.x,0.15,5);
+  chkR(A.x,0.15,5);
+
 //  ans=ask(DB_prompt,DB_action,5);
+
 
 
   B.set(4,2);
@@ -346,18 +385,16 @@ real r2 = 4.5;
  
   //ans=ask(DB_prompt,DB_action,5);
 
-  A.set(0.15, 0.2);
-
-  //ax= A[0].x ; // treat  as array ? error if not - do not crash warn
   
-
+  
+//ax= A[0].x ; // treat  as array ? error if not - do not crash warn
 //<<"%V $ax $A[0].x \n"
 
   ax= A.x
 
 <<"%V $ax $A.x \n"
 
-  ok=chkR(A.x,0.15,5);
+
 
 
  // ok=chkR(A[0].y,0.2,5); 
@@ -389,7 +426,9 @@ chkR(cy,0.2);
   wx = A.Getx();
   
   ok=chkR(wx,0.15,5); 
-  
+
+
+
   A.set(47, 79);
   
   A.Print(); 

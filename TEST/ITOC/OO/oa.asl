@@ -50,13 +50,13 @@ Str Use_="   demo some OO syntax/ops";
    void checkRooms(int i, int k)
    {
 
-     irm = C[i]->rooms;
+     irm = C[i].rooms;
 
-     iid =   C[i]->id;
+     iid =   C[i].id;
 
-     krm = C[k]->rooms;
+     krm = C[k].rooms;
 
-     kid =  C[k]->id;
+     kid =  C[k].id;
 
      <<"%V $i $irm $iid $k $krm $kid\n";
 
@@ -136,7 +136,7 @@ Str Use_="   demo some OO syntax/ops";
 
        area = floors * 200;
 
-       //   my->print();
+       //   my.print();
 
        }
 

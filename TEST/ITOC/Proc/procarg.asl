@@ -22,14 +22,15 @@
 
   debugON();
 
-
-
   }
 
   showUsage("Demo  of proc arg scalar")
   
   chkIn(_dblevel);
-  fileDB(ALLOW_,"spe_proc,spe_args")
+
+ db_action = 1;
+
+//  fileDB(ALLOW_,"spe_proc,spe_args")
   int sumarg(int a, int b)
   {
 
@@ -75,30 +76,35 @@
   {
 
   <<"$_proc $vsv \n";
-  arginfo = vsv.info()
-  <<"$arginfo \n"
   vsv.pinfo()
+
+//  arginfo = vsv.info()
+//  <<"$arginfo \n"
+
   <<"arg should be a Svar! \n"
-  <<"$vsv[0] $vsv[1] \n";
+  <<"%V $vsv[0] $vsv[1] \n";
+//  Svar mstr;
+  //mstr = split(vsv);
+  //mstr.pinfo()
 
-  mstr = split(vsv);
+  s = vsv[0];
 
-  s = mstr[0];
+  m = vsv[1];
 
-  m = mstr[1];
+  <<"%V <|$s|> <|$m|> \n";
+ans=ask(" $s[0] $m[1] OK?:",0)
 
-  <<"%V $s $m\n";
-
-  }
+}
 //------------------------------
 // TBF call Str or Svar ?
   void soo (Str vstr)
   {
 
   <<"%V $_proc $vstr \n";
-  vstr.pinfo()
 
-   <<"arg should be a Str! \n"
+   vstr.pinfo()
+
+   <<"arg to  soo (Str) should be a Str! ptr to str? \n"
 
    <<"$vstr[0] $vstr[1] \n";
 
@@ -106,7 +112,7 @@
    
    ms.pinfo()
   <<"%V $ms\n";
-
+ans=ask(" $vstr OK?:",0)
   }
 //------------------------------
 
@@ -114,7 +120,7 @@
   {
 
   <<" $_proc $vstr \n";
-
+  vstr.pinfo()
   mstr = split(vstr);
 
   s = mstr[0];
@@ -135,7 +141,7 @@
 
   chkN(z,10);
 
-  chkOut();
+  //chkOut();
 
   I = Igen(10,0,1);
 
@@ -203,19 +209,31 @@
 
   k = 0;
 
-  while (k < 100) {
 
-  nwr = sen->ReadWords(A);
+
+  <<"%V $db_action $A\n"
+  
+ ans=ask(DB_prompt,db_action)
+// break on ReadWords ERROR?
+while (k < 4) {
+
+  nwr = sen.ReadWords(A);
+ans=ask("$k $nwr OK?:",1)
+
 
   if (nwr > 0) {
 
   <<"$nwr $k $sen[0] $sen[1] $sen[2] $sen[3]\n";
   //  sen->split()
 
+ ans=ask("$k $sen[0] $sen[1] OK?:",1)
+
   soo(sen);
 //  Foo(sen)
 
   }
+
+
 
   k++;
 
@@ -223,12 +241,17 @@
 
  <<" done loop %V $k \n";
 
-  soo("Once upon a time");
-  
- db_action =0
 
+
+  ast = "Once upon a time"
+  ast.pinfo()
+
+ans=ask("$k  OK?:",1)
+  
+  soo("Once upon a time");
 
  ans=ask(DB_prompt,db_action)
+
  
   Svar st = "Twice upon a time"
 
@@ -236,12 +259,13 @@
 
  ans=ask(DB_prompt,db_action)
 
-  soo("Thrice upon a time");
+ soo("Thrice upon a time");
 
  ans=ask(DB_prompt,db_action)
-
-
-
+wdb=  DBaction((DBSTEP_),ON_)
+<<"$wdb \n"
+soo("Thrice upon a time");
+soo("il etait une fois");
   chkOut();
 
 //==============\_(^-^)_/==================//

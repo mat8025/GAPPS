@@ -1,1148 +1,635 @@
-/* 
+/*
  *  @script oa2.asl  
  * 
- *  @comment test object array 
- *  @release CARBON 
- *  @vers 1.3 Li Lithium [asl 6.3.66 C-Li-Dy] 
- *  @date 12/12/2021 09:23:54          
- *  @cdate Tue Apr 28 19:55:01 2020 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
+ *  @comment test object array                                          
+ *  @release Osmium                                                     
+ *  @vers 1.4 Be Beryllium [asl 5.76 : B Os]                            
+ *  @date 01/12/2024 05:00:26                                           
+ *  @cdate Tue Apr 28 19:55:01 2020                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
  * 
  */ 
-;//-----------------<v_&_v>--------------------------//;                                                        
 
-
-
-
-
-
-
-
-
-
-
-
-
+//-----------------<v_&_v>--------------------------//                        
 
                        ///////////////////////////////////////////////////////////////
-
-
 <|Use_=
   demo some OO syntax/ops
 |>
 
+int DBA = 1; // set to zero for no ask
+
 
 #include "debug"
 
+  if (_dblevel >0) {
 
-if (_dblevel >0) {
-   debugON()
-    <<"$Use_\n"   
+  debugON();
 
-}
+  <<"$Use_\n";
 
-allowErrors(-1)
+  }
 
-   
+  allowErrors(-1);
 
+  chkIn(_dblevel);
 
-chkIn(_dblevel)
+  int i = 0;
+//<<" $(i.info()) \n"  // TBF recurses 
 
-int i = 0;
+  i.pinfo();
 
+  chkN(i,0);
 
+  <<"$i \n";
 
-//<<" $(i->info()) \n"  // TBF recurses 
+  iv2 = i.pinfo();
 
- i.pinfo()
+  <<"$iv2 \n";
 
-chkN(i,0);
+  
 
-<<"$i \n"
+  IV = vgen(INT_,10,0,1);
 
- iv2 = i.pinfo();
+  iv2 = IV.info();
 
-<<"$iv2 \n"
-
-<<" i $i $(IDof(&i)) \n"
-
-IV = vgen(INT_,10,0,1);
-
- iv2 = IV.info();
-
-<<"$iv2 \n"
+  <<"$iv2 \n";
 
   IV[5] = 47;
 
- iv2 = IV.pinfo();
+  iv2 = IV.pinfo();
 
-<<"$iv2 \n"
+  <<"$iv2 \n";
 
- ivec = IV.isvector();
+  ivec = IV.isvector();
 
- <<"%v $ivec\n"
-
+  <<"%v $ivec\n";
 //<<"is IV vec?  $(IV.isvector()) \n" // TBF vmf in paramexp print fails!!
 
+  vid = i.varid();
+//FIXME <<" $vid $(i.vid())\n"
 
-vid = i.varid()
+  <<" $vid \n";
 
-//FIXME <<" $vid $(i->vid())\n"
-<<" $vid \n"
+  float F[10];
 
-float F[10]
-
-chkT(1)
-
+  chkT(1);
 ////////////////////////////////////////////////////////////
 
-proc Pset( svar s)
-{
-<<"proc $_proc   $s \n"  
-      s.pinfo()
-   <<"$s[1] : $s[2]\n"
-      val = s[1]
-      <<"%V $val\n"
-      val1 = SV[1]
-      <<"%V $val1\n"
-      return val;
-}
+  void Pset( Svar s)
+  {
 
+  <<"proc $_proc   $s \n";
 
+  s.pinfo();
 
+  <<"$s[1] : $s[2]\n";
+
+  val = s[1];
+
+  <<"%V $val\n";
+
+  val1 = SV[1];
+
+  <<"%V $val1\n";
+  return val;
+  }
 ///////////////////////////////////////////////////////////
-int Act_ocnt = 0;
+SVS = split("estoy bien y tu");
 
-class Act {
+  <<"$SVS[0] $SVS[1]\n"
 
- public:
+  val = SVS[0];
 
- int otype;
- int mins; 
- int t;
- int id;
- svar svtype;
- str stype;
- int a_day;
- //===================//
- int Set(int k)
- {
-     <<"Act_Set INT  $_cobj k $k\n" 
-     <<"%V$otype\n"
-     otype = k;
-     //otype->info(1);
-     otype.pinfo();
-     return otype;
- }
- 
- svar Set(svar sa)
- {
-     <<"Act Set SVAR $_cobj \n"
-      sa.pinfo()
-      svtype = sa;
-   <<"$sa[1] : $sa[2]\n"
-      val = sa[1]
-      <<"%V $val\n"
-      //val1 = SV[1]
-      cval1 = SV[1]
-      <<"%V $cval1\n"
+  <<"$val\n";
 
-     <<"stype  $sa $svtype\n"
-     return svtype;
- }
+wdb=  DBaction((DBSTEP_),ON_)
+<<"$wdb \n"
 
- Str Set(str sr)
- {
-     <<"Act Set  STR $_cobj <|$sr|> \n" 
-
-      stype = sr; // fail?
-      
-      sr.pinfo()
-      stype.pinfo()      
-     <<"sr  <|$sr|> stype <|$stype|>\n"
-!z     
-     return stype;
- }
-
- int Get()
- {
- <<"$_proc  Get %V $otype\n"
-     otype.pinfo()
-
-   return otype;
- }
- 
- int GetWD()
- {
- <<"$_proc  GetWD\n"
+sv = Pset(SVS);
 
 
-   a_day.pinfo()
-<<"getting  $a_day\n"
-   return a_day;
- }
-
- cmf Act() 
- {
-// FIXME   <<"cons of Act $_cobj $(_cobj->obid())  $(IDof(&_cobj))\n" 
-//   co = _cobj->offset()
-
-   id= Act_ocnt++ ;
- 
-   otype = 1;
-
-   mins = 10;
-
-   t = 0;
-   a_day = Act_ocnt;
-   a_day.pinfo()
- //<<"Act cons of $_cobj $id $Act_ocnt %V $a_day $mins $otype\n"
-
- }
-
-}
-//================================
-
-Act a;
-
-    a.pinfo()
-    a->otype = 2;
-<<"%V$a->otype \n"
-    a->otype = 3;
-<<"%V$a->otype \n"
-
-    at=a->Set(7);
-
-<<"%V $at $a->otype \n"
-
-  chkN(at,7)
+//////////////////////////////
+#include "act.asl"
 
 
-   
+int obid = -1;
+allowDB("spe,oo")
+  Act a;
 
- int od = 33;
+  a.pinfo();
 
-    at=a->Set(od);
-    
-<<"%V $at $a->otype \n"
+//allowDB("spe_proc,spe_vmf")
+//wdb=  DBaction((DBSTEP_),ON_)
+//<<"$wdb \n"
 
-  chkN(at,33)
+  obid = a.ObjID();
+  
+//ans=ask("%V $obid $__LINE__  ynq [y]\n",DBA);
+
+  // obid can not be known -- it increases for every Sclass new op
+  od=a.GetWD();
+
+  <<"%V $od\n";
 
 
- obid = a.ObjID();
-
- <<"%V $obid  \n"
-
-
-
- od=a->GetWD()
-
-<<"%V $od\n"
+  chkN(od,1);
 
 
 
 
-  chkN(od,1)
+ Act FA;
 
+  od=FA.GetWD();
+  obid = FA.ObjID();
+//ans=ask("%V $obid $__LINE__  ynq [y]\n",DBA);
+
+  chkStage(" Simple ObjID");
+
+
+ Act G;
+
+  od=G.GetWD();
+  obid = G.ObjID();
+//ans=ask("%V $obid $__LINE__  ynq [y]\n",DBA);
+
+
+
+
+
+  a.otype = 2;
+
+  <<"%V$a.otype \n";
+
+  a.otype = 3;
+
+  <<"%V$a.otype \n";
+  int v7 = 7
+
+  at=a.Set(v7);
+
+  <<"%V $at $a.otype \n";
+
+  chkN(at,7);
+
+  od = 33;
+
+  at=a.Set(od);
+
+  <<"%V $at $a.otype \n";
+
+  chkN(at,33);
+
+  a.pinfo()
+
+
+
+  chkStage(" Simple Obj reference");
+
+
+
+  Act X[7];
+
+  <<"%V $Act_ocnt \n";
+
+  X.pinfo();
+
+  od=X[2].GetWD();
+
+  <<"X[2] %V $od\n";
+
+  chkN(od,6);
+ans=ask("%V $obid $__LINE__  ynq [y]\n",DBA);
+  od=X[3].GetWD();
+
+  <<"X[3] %V $od\n";
+
+  chkN(od,7);
+
+  X.pinfo();
+
+  m2 = 2;
+
+  od = 34;
+
+  at = X[m2].Set(od);
+
+  chkN(at,od);
 //chkOut()
 
-chkStage(" Simple Obj reference")
+  chkStage("Array Obj reference");
 
- Act X[7];
+  Str S = "hey how are you";
 
- <<"%V $Act_ocnt \n"
+  rstr =  X[m2].Set(S);
 
- X.pinfo()
+  <<"rstr <|$rstr|> $S\n";
 
-od=X[2]->GetWD()
+  rstr.pinfo();
 
-<<"X[2] %V $od\n"
-chkN(od,4)
-
-
-
-od=X[3]->GetWD()
-
-<<"X[3] %V $od\n"
-chkN(od,5)
-
-X.pinfo()
-
-
-
-m2 = 2
-od = 34;
-at = X[m2]->Set(od)
-
-chkN(at,od)
-
-//chkOut()
-
-chkStage("Array Obj reference")
-
-str S = "hey how are you"
-
- rstr =  X[m2]->Set(S)
-
-<<"rstr <|$rstr|> $S\n"
-
-rstr.pinfo()
-
-!z
-chkStr(rstr,S);
-
-
+  chkStr(rstr,S);
 //chkOut();
-
-
 //svar SV;
+//allowDB("spe_,pexpnd")
+wdb=  DBaction((DBSTEP_),ON_)
+<<"$wdb \n"
+  SV = split("estoy bien y tu");
 
-SV = split("estoy bien y tu")
+  <<"$SV[0] $SV[1] $SV[2] $SV[3] \n";
 
-<<"$SV[0] $SV[1] $SV[2] $SV[3] \n"
+  val = SV[0];
 
-val = SV[0]
-<<"$val\n"
+  <<"$val\n";
 
-val = SV[1]
-<<"$val\n"
+  val = SV[1];
 
-val = SV[3]
-<<"$val\n"
+  <<"$val\n";
 
-svar SV2
-SV2="estoy bien y tu"
+  val = SV[3];
 
-SV2.split()
+  <<"$val\n";
 
-<<"$SV2[0]  $SV2[3] \n"
+  Svar SV2;
 
-val2 = SV2[0]
-<<"$val2\n"
+  SV2="estoy bien y tu";
 
-val2 = SV2[1]
-<<"$val2\n"
+  SV2.split();
 
-val2 = SV2[3]
-<<"$val2\n"
+  <<"$SV2[0]  $SV2[3] \n";
 
- sv = Pset(SV)
+  val2 = SV2[0];
 
-<<"%V $sv \n"
+  <<"$val2\n";
 
- sv =  a->Set(SV)
+  val2 = SV2[1];
 
-<<"%V $sv \n"
+  <<"$val2\n";
 
+  val2 = SV2[3];
 
+  <<"$val2\n";
+//ans=ask("%V $val2 $__LINE__  ynq [y]\n",DBA);
+//wdb=  DBaction((DBSTEP_),ON_)
+//<<"$wdb \n"
 
- X[m2]->Set(SV)
 
-<<"%V $X[m2]->stype \n"
 
+  sv = Pset(SV);
 
+  <<"%V $sv \n";
 
-  obid = X[1].ObjID(); // TBF fails crashes ?
+  sv =  a.Set(SV);
 
-<<"X[1] $obid \n"
+  <<"%V $sv \n";
 
+  X[m2].Set(SV);
 
-  obid = X[0].ObjID(); // TBF fails crashes ?
+  <<"%V $X[m2].stype \n";
 
-<<"X[0] $obid \n"
- X.pinfo()
+  obid = X[1].ObjID(); // TBF fails crashes ?;
 
-chkStage(" Svar Mbr reference")
+  <<"X[1] $obid \n";
 
- Act B;
- Act C;
+  obid = X[0].ObjID(); // TBF fails crashes ?;
 
- <<" B $(IDof(&B)) \n"
+  <<"X[0] $obid \n";
 
-  obid = B.ObjID()
- 
+  X.pinfo();
 
- vid = B.varid()
+  chkStage(" Svar Mbr reference");
 
+  Act B;
 
+  Act C;
 
+  //<<" B $(IDof(&B)) \n";
 
-// <<"%V$obid $(b->vid\(\))\n"
+  obid = B.ObjID();
 
-<<"%V$obid $vid\n"
-int bs = 5;
+  vid = B.varid();
+// <<"%V$obid $(b.vid\(\))\n"
 
-  B->Set(bs)
+  <<"%V$obid $vid\n";
 
-  br= B->Get()
+  int bs = 5;
 
-<<"$br $bs\n"
+  B.Set(bs);
 
-chkN(br,bs)
+  br= B.Get();
 
+  <<"$br $bs\n";
 
-B->Set(71)
+  chkN(br,bs);
 
-br= B->Get()
+  B.Set(71);
 
-<<"$br \n"
+  br= B.Get();
 
-chkN(br,71)
+  <<"$br \n";
 
+  chkN(br,71);
 
- B->otype = 7
+  B.otype = 7;
 
-<<"%V$B->otype \n"
+  <<"%V$B.otype \n";
 
- obid = C.ObjID()
+  obid = C.ObjID();
 
+  <<"%V$obid \n";
 
+  xobid = X[2].objid();
 
-<<"%V$obid \n"
+  <<"%V$xobid \n";
 
+  yrt = X[3].Set(7);
 
+  yt = X[3].otype;
 
- xobid = X[2].objid();
+  <<"type %V$yrt $yt\n";
 
- <<"%V$xobid \n"
+  X[3].otype = 66;
 
- yrt = X[3]->Set(7)
+  yt = X[3].otype;
 
- yt = X[3]->otype;
+  chkN(yt,66);
 
-<<"type %V$yrt $yt\n"
+  <<"type %V$yrt $yt\n";
 
-  X[3]->otype = 66
+  yrt2 = X[2].Set(8);
 
- yt = X[3]->otype;
+  yt2 = X[2].otype;
 
- chkN(yt,66);
+  <<"type %V$yrt $yt $yrt2 $yt2\n";
 
-<<"type %V$yrt $yt\n"
-
-
- yrt2 = X[2]->Set(8)
- yt2 = X[2]->otype
-
-<<"type %V$yrt $yt $yrt2 $yt2\n"
-
-chkStage(" Simple Get/Set")
-
-
+  chkStage(" Simple Get/Set");
 /*
 //  cmf to run over subscript of object array !!
- X[0:2]->Set(4)
- yt = X[1]->type
+ X[0:2].Set(4)
+ yt = X[1].type
 <<"type $yt \n"
 */
 
 
-<<"\n//////////////// Direct Set-Get /////////////////\n"
- pass = 1
+  <<"\n; //////////////// Direct Set-Get /////////////////\n";
 
- X[0].otype = 50
- X[1].otype = 79
- X[2].otype = 47
- X[3].otype = 80;
+  pass = 1;
 
- 
- yt = X[2].otype
+  X[0].otype = 50;
 
-<<"47? type for 2 $yt $(typeof(yt)) \n"
+  X[1].otype = 79;
 
- chkN(yt,47);
-  X.pinfo()
+  X[2].otype = 47;
 
+  X[3].otype = 80;
 
- yt = X[3].otype;
+  yt = X[2].otype;
 
-<<"80? type for X[3] $yt \n"
+  <<"47? type for 2 $yt $(typeof(yt)) \n";
 
- chkN(yt,80);
-  
- yt = X[0].otype
+  chkN(yt,47);
 
-<<"type for 0 $yt \n"
+  X.pinfo();
 
- chkN(yt,50);
+  yt = X[3].otype;
 
+  <<"80? type for X[3] $yt \n";
 
- yt = X[1].otype
-<<"type for 1 $yt = 79 ?\n"
+  chkN(yt,80);
 
- chkN(yt,79) ;
+  yt = X[0].otype;
 
+  <<"type for 0 $yt \n";
 
+  chkN(yt,50);
 
- yt = X[2].otype
-<<"otype for 2 $yt = 47 ?\n"
+  yt = X[1].otype;
 
- chkN(yt,47) 
+  <<"type for 1 $yt = 79 ?\n";
 
- i = 3
- X[i].otype = 90
- yt = X[i].otype
+  chkN(yt,79) ;
 
-<<"otype for $i $yt = 90 ?\n"
+  yt = X[2].otype;
 
- chkN(yt,90)
+  <<"otype for 2 $yt = 47 ?\n";
 
+  chkN(yt,47);
 
+  i = 3;
+
+  X[i].otype = 90;
+
+  yt = X[i].otype;
+
+  <<"otype for $i $yt = 90 ?\n";
+
+  chkN(yt,90);
 // numberstring
 //  num_type = num-str   - allow with warning?
 // val = 50
 //!p val
 
+  ival = 50;
 
- ival = 50;
- 
- i = 2
- X[i].otype = ival
- yt = X[i].otype
+  i = 2;
 
-  chkN(yt,ival)
+  X[i].otype = ival;
 
-<<"otype for $i $yt = $val ?\n"
+  yt = X[i].otype;
 
- for (i = 0; i < 4; i++) {
-  X[i].otype = ival
-  yt = X[i].otype
+  chkN(yt,ival);
 
-<<"otype for $i $yt = $val ?\n"
+  <<"otype for $i $yt = $val ?\n";
+
+  for (i = 0; i < 4; i++) {
+
+  X[i].otype = ival;
+
+  yt = X[i].otype;
+
+  <<"otype for $i $yt = $val ?\n";
 
   if (yt != ival) {
-  pass = 0
-  }
 
-  ival++
- }
-
-
- <<" $yt $(typeof(yt)) \n"
-
-<<"PASS? $pass \n"
-
- chkStage(" Array Direct Get/Set")
-
-
-<<"\n//////////////// cmf Set-Get /////////////////\n"
-
-
- pass = 1
-
- m = 4
- m2 =3
- X.pinfo()
-
- yst =  X[2].Set(m)
-
- <<"%V $yst\n"
- 
-!i yst
-
- 
- yst =  X[3].Set(m2)
- 
-!i yst
-
- 
-
- yst =  X[m2].Set(m2)
-
-<<"%V $yst\n"
-
-
-
- i = 2
-
- yt  =  X[i].otype
-
- ygt =  X[i].Get()
-
-<<"2 otype %V $yst $yt $ygt\n"
-
-
-  chkN(yst,3)
-
- j = 66;
- for (i = 0; i < 4; i++) {
-
-   yst =  X[i].Set(j)
-   yt = X[i].otype
-   ygt =  X[i].Get()
-<<"otype for $i $yst $yt $ygt $j\n"
-   if (yt != ygt) { 
-      pass = 0
-   }
-   chkN(ygt,j);
-   j++;
-
- }
-
- j = 7;
- i = 4
- yst =  X[i].Set(j)
- yt  =  X[i].otype
- ygt =  X[i].Get()
-
- if (yt != 7) {
-    pass = 0
- }
-
-<<"3 otype %V$yst $yt $ygt\n"
-
-pass1= chkN(yst,7)
-
-
-<<"$yst $(typeof(yst)) \n"
-
-<<" PASS? $pass $pass1\n"
-
-i = 3
-yst =  X[i].Set(8)
- yt  =  X[i].otype
- ygt =  X[i].Get()
-
- if (yt != 8) {
-    pass = 0
- }
-
-<<"3 type %V$yst $yt $ygt\n"
-
-pass1= chkN(yst,8)
-
-
-<<"$yst $(typeof(yst)) \n"
-
-<<" PASS? $pass $pass1\n"
-
-
-
-for (i = 5; i >= 0; i--) {
-
-   yt = X[i].otype
-   ygt =  X[i].Get()
-<<"type for $i  $yt $ygt \n"
-
-}
-
-
-
- X[0].otype = 2;
-
- yt = X[0].otype;
-
- <<"%V$yt  $X[0].otype \n"
-
-  chkN(yt,2)
-
- X[2].otype = 28
-
- yt2 =  X[2].otype
-
- <<"%V$yt2  $X[2].otype \n"
-
-  chkN(yt2,28)
-
-    X[1].otype = 79
-
-    yt1 =  X[1].otype
-
- <<"%V$yt1  $X[1].otype \n"
-
-  chkN(yt1,79)
-
-  yt = X[0].otype
- 
-  <<"%V$yt  $X[0].otype \n"
-
-   chkN(yt,2)
-
-   yt = X[1].otype
-   <<"%V  $yt  $X[1].otype \n"
-   yt = X[2].otype
-   <<"%V  $yt  $X[2].otype \n"
-
-   chkN(yt,28)
-
- for ( i = 0; i < 4; i++) { 
-   yt = X[i].otype
-   <<"%V $i $yt  $X[i].otype \n"
- }
-
-   yt = X[1].otype
-   <<"%V  $yt  $X[1].otype \n"
-
-
-
-
-//////////////////////   do this in separate test module ////////////
-
-
-<<"/////////////////// Nested Class /////////////\n"
-
-int dil_ocnt = 0;
-
-<<"%V $dil_ocnt \n"
-
-class Dil {
-
- public:
- 
-
- int w_min;
- int w_sec;
- int w_day; 
-
- Act B;
- /// now an array 
-
- Act A[10] ;
-// FIXME each cons of A tacks on anotherstatement ??
-//
-
-
- //Act A[10];
- cmf Get()
- {
- <<"$_proc  \n"
-   w_day.pinfo()
-<<"getting w_day $w_day\n"
-   return w_day;
- }
-
- cmf Dil() 
- {
-   dil_ocnt++ 
-   w_day = dil_ocnt;
-  <<"cons of Dil $_cobj $w_day $dil_ocnt\n"
-    w_day.pinfo()
-}
-
-}
-//=========================//
-
-
-
-
-<<" after class def Dil \n"
-
-<<" attempting Dil E \n"
-
-
- Dil E 
-
-
- //E.pinfo()
- <<"$_scope\n"
-<<"scope $(showscope())\n"
-<<"stack $(showstack())\n"
-<<"%V $dil_ocnt \n"
-
-
-
- od =E.Get();
-<<"E.w_day $od  $E.w_day\n"
- od.pinfo()
-
-//E.w_day.pinfo();  // broke
-
-chkN(od,1)
-
-
-
-
-Dil H[2];
-
-<<" after class def Dil H[2] \n"
-<<"%V $dil_ocnt \n"
-
-H.pinfo()
-
-od = H[1].Get();
-
-<<"%V $od\n"
-
- chkN(od,3)
-
-
-
-//  FIXME ---- not going to first following statement in E has nested class!!
-
-
-
-
-
- x  = 52 * 2000
- y =   2 * 2
-<<" %V $y $x\n"
-
-
-
-
-syt = 80 //
-
-
-//int gyt
-<<"nested class setting direct reference %V $syt \n"
-
-   E.B.t = syt;
-
-<<"%V $E.B.t \n"
-
-   tys = E.B.t;
-
-<<"%V $syt  $tys \n"
-
-
- chkN(syt,tys);
-
-//chkOut()
-
-
-
-
-
- gyt = E.B.t;
-
-<<" $gyt $(typeof(gyt)) \n"
-
-
-  chkN(gyt,80)
-
-<<"nested class getting direct reference %V $gyt \n"
-
-syt = 60; //
-
-<<"nested class setting direct reference %V $syt \n"
-
- E.B.t = syt
-
- gyt = E.B.t
-
-<<"nested class getting direct reference %V $gyt \n"
-
-k = 3;
-   chkN(gyt,60)
-
-// dot ref should work for nested class
-
- E.A[0].t = 28;
-
-
- t1 = E.A[0].t;
-
-<<"$t1\n"
-<<"%V $E.A[0].t \n"
-
-
-
- E.A[1].t = 92;
-
- E.A[k].t = 72;
-
- t1 = E.A[k].t;
-
-<<"%V $k $t1\n"
-<<"%V $E.A[0].t \n"
-
-chkN(t1,72);
-
-
-
- yt0 = E.A[0].t
-
-<<"%V $yt0 \n"
-
-
-
- yt1 = E.A[1].t;
-
-<<"%V $yt1 \n"
-
- yt3 = E.A[3].t
-
-<<"%V $yt3 \n"
-
-chkN(yt3,72);
-
-
-
-
-
- E.A[1].t = 29;
- E.A[2].t = 92;
- E.A[3].t = 75;
-
- yt0 = E.A[0].t
-
-<<"%V $E.A[0].t \n"
-
-<<"%V $yt0 \n"
-
-
- chkN(yt0,28);
-
-
-
- yt1 = E.A[1].t
-
-<<"%V $yt1 \n"
-
- chkN(yt1,29)
-
-//chkOut()
-
- yt2 = E.A[2].t
-
-<<"%V $yt2 \n"
-
- chkN(yt2,92)
-
-
-
-
-// FIX crash -- xic generation?
-
- yt3 = E.A[3].t
-
-<<"%V $yt3 \n"
-
- chkN(yt3,75)
-
- //checkProgress()
-// exit()
-
-  j = 2
-
- yt = E.A[j].t
-
-<<" [${j}] $yt \n"
-
-<<"\n"
-
-
- chkN(yt,92)
-
-
-
-
- for (j = 0; j < 4 ; j++) {
-
-    yt = E.A[j].t
-    <<" [${j}] $yt \n"
- }
-
-<<"\n"
-
-
-yt = E.A[3].t;
-
-chkN(yt,75);
-
-
-
-
-
- for (j = 0; j < 10 ; j++) {
-
-    E.A[j].t = 50 + j;
-
-}
-
-<<"\n"
-
-
-
-
- for (j = 0; j < 10 ; j++) {
-
-    yt = E.A[j].t;
-    <<" [${j}] $yt \n"
- }
-
- chkN(yt,59)
-
-
-
-//iread()
-
-yt2 = E.A[2].t
-
-<<"%V $yt2 \n"
-
-yt1 = E.A[1].t
-
-<<"%V $yt1 \n"
-
-j = 3
- yt3 = E.A[j].t
-
-<<"%V $yt3 \n"
-
- yt3 = E.A[3].t
-
-<<"bug? %V $yt3 \n"
-
-
-
- yt4 = E.A[4].t
-
-<<"?%V $yt4 \n"
-
-
- yt8 = E.A[8].t
-
-<<"%V $yt8 \n"
- chkN(yt8,58)
-
-
-
-///  Needs XIC FIX
-<<"///////////////G[i]->A[j]->otype////////////////////////////\n"
-
-
-//////////////////////////////////////////////////////////////////
-
-xov = 20
-Dil G[10]
-
-<<"FIRST $(xov--) \n"
-
- chkN(xov,19)
-
-
- G[0]->A[0]->t = 60
- G[1]->A[1]->t = 18
- G[2]->A[2]->t = 33
-
-   yt0 = G[0]->A[0]->t
-
-<<"%V $yt0 \n"
-
-  chkN(yt0,60)
-
-
-
-   yt1 = G[1]->A[1]->t
-
-<<"%V$yt1 \n"
-
-   chkN(yt1,18)
-
-   yt2 = G[2]->A[2]->t
-
-<<"%V$yt2 \n"
-
-   chkN(yt2,33)
-
-//chkOut() 
- i = 0 ; j = 1;
-
-  G[i]->A[j]->t = 53
-
-  yt = G[i]->A[j]->t 
-
-<<"%V$yt \n"
-
-
-  chkN(yt,53)
-
-  k = 7
-
-      yt = G[i]->A[j]->t 
-<<"[${i}] [$j ] %V $k $yt \n"
-      k++
-
-
-
-
-  for (i = 0; i < 3 ; i++) {
-
-   for (j = 0; j < 4 ; j++) {
-
-      G[i]->A[j]->t = k
-
-      yt = G[i]->A[j]->t 
-<<" [${i}] [${j}] %V $k $yt \n"
-      k++
-
-   }
+  pass = 0;
 
   }
 
-<<"\n"
-chkOut()
-
-
-  k = 7
-  for (i = 0; i < 3 ; i++) {
-
-   for (j = 0; j < 4 ; j++) {
-
-      yt = G[i]->A[j]->t 
-      <<" $i $j $yt \n"
-       chkN(yt,k)
-       k++
-   }
+  ival++;
 
   }
 
+  <<" $yt $(typeof(yt)) \n";
+
+  <<"PASS? $pass \n";
+
+  chkStage(" Array Direct Get/Set");
+
+  <<"\n; //////////////// cmf Set-Get /////////////////\n";
+
+  pass = 1;
+
+  m = 4;
+
+  m2 =3;
+
+  X.pinfo();
+
+  yst =  X[2].Set(m);
+
+  <<"%V $yst\n";
 
 
+  yst =  X[3].Set(m2);
 
 
+  yst =  X[m2].Set(m2);
 
-ndiy = 10;
+  <<"%V $yst\n";
 
+  i = 2;
 
-Dil Yod[ndiy]
+  yt  =  X[i].otype;
 
+  ygt =  X[i].Get();
 
+  <<"2 otype %V $yst $yt $ygt\n";
 
-<<"///////////  VMF /////////////////////\n"
+  chkN(yst,3);
 
- obid = X[0]->obid()
+  j = 66;
 
- <<"%V X[0] $obid \n"
+  for (i = 0; i < 4; i++) {
 
+  yst =  X[i].Set(j);
 
+  yt = X[i].otype;
 
+  ygt =  X[i].Get();
 
- obid = X[1]->obid()
- <<"%V 1 $obid \n"
+  <<"otype for $i $yst $yt $ygt $j\n";
 
- obid = X[3]->obid()
- <<"%V 3 $obid \n"
+  if (yt != ygt) {
 
- i = 2
+  pass = 0;
 
- obid = X[i]->obid()
- <<"%V $i $obid \n"
+  }
 
+  chkN(ygt,j);
 
- yrt = X[0]->Set(7)
-<<"otype for 0 $yrt \n"
- yrt = X[2]->Set(4)
-<<"otype for 2 $yrt \n"
- yrt = X[3]->Set(5)
-<<"otype for 3 $yrt \n"
+  j++;
 
- yrt = X[1]->Set(6)
-<<"otype for 1 $yrt \n"
+  }
 
+  j = 7;
 
+  i = 4;
 
-Dil D[3]
+  yst =  X[i].Set(j);
 
-<<" done dec of D \n"
+  yt  =  X[i].otype;
 
-chkOut();
+  ygt =  X[i].Get();
 
-exit()
+  if (yt != 7) {
 
+  pass = 0;
 
+  }
+
+  <<"3 otype %V$yst $yt $ygt\n";
+
+  pass1= chkN(yst,7);
+
+  <<"$yst $(typeof(yst)) \n";
+
+  <<" PASS? $pass $pass1\n";
+
+  i = 3;
+
+  yst =  X[i].Set(8);
+
+  yt  =  X[i].otype;
+
+  ygt =  X[i].Get();
+
+  if (yt != 8) {
+
+  pass = 0;
+
+  }
+
+  <<"3 type %V$yst $yt $ygt\n";
+
+  pass1= chkN(yst,8);
+
+  <<"$yst $(typeof(yst)) \n";
+
+  <<" PASS? $pass $pass1\n";
+
+  for (i = 5; i >= 0; i--) {
+
+  yt = X[i].otype;
+
+  ygt =  X[i].Get();
+
+  <<"type for $i  $yt $ygt \n";
+
+  }
+
+  X[0].otype = 2;
+
+  yt = X[0].otype;
+
+  <<"%V$yt  $X[0].otype \n";
+
+  chkN(yt,2);
+
+  X[2].otype = 28;
+
+  yt2 =  X[2].otype;
+
+  <<"%V$yt2  $X[2].otype \n";
+
+  chkN(yt2,28);
+
+  X[1].otype = 79;
+
+  yt1 =  X[1].otype;
+
+  <<"%V$yt1  $X[1].otype \n";
+
+  chkN(yt1,79);
+
+  yt = X[0].otype;
+
+  <<"%V$yt  $X[0].otype \n";
+
+  chkN(yt,2);
+
+  yt = X[1].otype;
+
+  <<"%V  $yt  $X[1].otype \n";
+
+  yt = X[2].otype;
+
+  <<"%V  $yt  $X[2].otype \n";
+
+  chkN(yt,28);
+
+  for ( i = 0; i < 4; i++) {
+
+  yt = X[i].otype;
+
+  <<"%V $i $yt  $X[i].otype \n";
+
+  }
+
+  yt = X[1].otype;
+
+  <<"%V  $yt  $X[1].otype \n";
+  chkOut()
+  exit(1)
 
 //////////////////////////  TBD //////////////////////////////////////
 /*
@@ -1171,3 +658,5 @@ FIX  --- nested class
 
 */
 //////////////////////////////////////////////////////////////////////
+
+//==============\_(^-^)_/==================//
