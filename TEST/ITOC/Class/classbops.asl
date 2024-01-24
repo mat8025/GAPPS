@@ -17,11 +17,12 @@ Demo  of class ops
 /////////////////////// 
 |>
 
+   <<"$Use_ \n" 
+
 #include "debug";
 
-if (_dblevel >0) {
+if (_dblevel > 0) {
    debugON()
-   <<"$Use_ \n" 
 }
 
 allowErrors(-1) ; // keep going
@@ -52,25 +53,46 @@ real goo( real x)
 }
 //==================//
 
-//allowDB("spe_proc,spe_state,spe_vmf,oo_")
+//allowDB("spe_,ds_,oo_")
 
 b=goo(1.2)
 <<" goo $b\n"
 
 chkN(b,2.4)
 
-
+chkStage("proc var")
 
 b=goo(sin(0.7))
-
-
 
 <<" goo $b\n"
 
    b=goo(77.6)
 <<"goo $b\n"
 
-//ans=ask(DB_prompt,DB_action);
+  int hoo (int h, int m)
+  {
+   htmp = h * m
+   return htmp
+
+  }
+
+  kr = hoo (4, 3)
+
+  <<"%V $kr\n"
+
+  kr = hoo (8, 2)
+
+  <<"%V $kr\n"
+
+  kr = hoo(kr, kr)
+
+  <<"%V $kr\n"
+
+
+
+
+
+ans=ask(DB_prompt,DB_action);
 /// must have a CONS -- else crash in xic??
 
 class Point
@@ -128,7 +150,8 @@ class Point
       };
  
     float Getx() {
-      <<"$_proc getting $x $_cobj \n";
+
+    <<"$_proc getting $x $_cobj \n";
 
 //      v=y.isVector()
 //   <<"%v$v\n"
@@ -138,7 +161,7 @@ class Point
 //      z = x;
 //      z.pinfo()
 //     <<"%V $z  $x\n"
-//x.pinfo()
+       x.pinfo()
       
       return x;
       }
@@ -160,9 +183,10 @@ class Point
 
     float  mul(int mi)
     {
-      float tmp;
-      tmp = (mi * x); 
-      return tmp; 
+      float tmpf;
+      tmpf  = mi * x;
+    <<"$_proc %V $mi $x  $tmpf \n";               
+      return tmpf; 
       }
     
     //void Print()
@@ -190,7 +214,6 @@ v= y.isVector()
    void Point()
    {
     // same name as class is the constructor
-
      y=2;
      x=4;
 <<"cons $_proc  %V $x $y \n"
@@ -198,24 +221,35 @@ v= y.isVector()
 
 }
 
-//   ans=ask(DB_prompt,DB_action);
+
 
 ////////////////////////////////////////////
 
 
-// ans=ask(DB_prompt,DB_action);
- 
+// 
+
+wdb=  DBaction((DBSTEP_),ON_)
+
   Point A;
 
   rx  =  Sin(d2r(90)) 
 
- chkR(rx,1.0)
+  chkR(rx,1.0)
  
+
+
 
   rx=   A.Getx();
 
  <<"%V <|$rx|>\n"
   chkN(rx,4.0)
+
+ans=ask(DB_prompt,DB_action);
+
+chkStage("class print OK?")
+
+
+
 
   A.pinfo()
 
@@ -603,7 +637,10 @@ chkR(cy,0.2);
   my = B.Gety() - C.y; 
   <<"%V$ok $my $v\n"; 
   ok=chkR(my,v,5); 
-  
+
+allowDB("spe_,ds_,oo_,rdp,opera")
+wdb=DBaction((DBSTEP_| DBSTRACE_),ON_)
+
   v = A.Getx(); 
   v *= 2; 
   my = A.mul(2); 
@@ -611,13 +648,20 @@ chkR(cy,0.2);
   <<" %V $A.x $my $v \n"; 
   
   chkN(my,v); 
-  
+
+
+
   u = B.Getx(); 
+<<"%V $u \n"
   u *= 3; 
+<<"%V $u \n"
+
   my = B.mul(3); 
   
-  <<" %V $B.x $my $u \n"; 
-  
+  <<"%V $B.x $my $u \n"; 
+
+
+
   chkR(my,u,6); 
   
   float w = v + u; 

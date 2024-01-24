@@ -1968,3 +1968,8 @@ ic_call.cpp                         1.63  01/08/2024 12:05:31  StoreStack clear 
 spe_storetype.cpp                   2.71  01/08/2024 12:08:27  mv StoreStack to icall
 spe_proc_checkfname.cpp             2.65  01/08/2024 21:24:31  special case pinfo vmf
 oo_cmf.cpp                          2.47  01/13/2024 04:19:21  lpfvc in findcmf
+ic_getsiv.cpp                       1.59  01/17/2024 19:42:18  use cpargv for getting proc argv via name
+ic_getsiv.cpp                       1.59  01/17/2024 19:43:13  use cpargv for getting proc argv via name 
+oo_class.cpp                        2.26  01/17/2024 19:46:34  getCMFvar options
+spe_scopesindex.cpp                 2.89  01/17/2024 19:52:35  order of var find/check ops
+spil_chem.cpp                       1.22  01/21/2024 23:13:27  ptSym

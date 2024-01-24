@@ -39,20 +39,37 @@
 
   }
 
+
+  int SetO(int k)
+  {
+
+  <<"Act_Set INT  $_cobj k $k\n";
+
+  <<"%V$otype\n";
+  otype = k;
+     //otype.info(1);
+
+  otype.pinfo();
+
+  return otype;
+
+  }
+
+
   Svar Set(Svar sa)
   {
 
   <<"Act Set SVAR $_cobj \n";
-  allowDB("svar,spe,array,pexpnd,oo");
+  //allowDB("svar,spe,array,pexpnd,oo");
   
   sa.pinfo();
- ans= ask("svar??",DBA);
+ ans= ask("svar??",db_ask);
 
 svtype = sa;
 
   <<"$sa[1] : $sa[2]\n";
 
-  ans= ask("svar??",DBA);
+  ans= ask("svar??",db_ask);
 
   val = sa[1];
 
@@ -114,7 +131,7 @@ svtype = sa;
   {
 // FIXME   <<"cons of Act $_cobj $(_cobj.obid())  $(IDof(&_cobj))\n" 
 //   co = _cobj.offset()
-allowDB("spe,oo")
+//allowDB("spe,oo")
   id= Act_ocnt++ ;
 
 <<"%V $id\n"

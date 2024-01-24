@@ -1,16 +1,17 @@
-//%*********************************************** 
-//*  @script sh.asl 
-//* 
-//*  @comment test inheritance 
-//*  @release CARBON 
-//*  @vers 1.2 He Helium [asl 6.2.48 C-He-Cd]                                
-//*  @date Tue May 19 07:46:56 2020 
-//*  @cdate 1/1/2003 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
-;
+/* 
+ *  @script sih.asl                                                     
+ * 
+ *  @comment test inheritance                                           
+ *  @release Platinum                                                   
+ *  @vers 1.3 Li Lithium [asl 5.78 : B Pt]                              
+ *  @date 01/21/2024 07:33:18                                           
+ *  @cdate 1/1/2003                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
+ * 
+ */ 
+
+
 
 
 
@@ -158,7 +159,7 @@ class room : house {
 
    nr = 0
 
-   nr = b->getrooms()
+   nr = b.getrooms()
 
 <<" %v $nr \n"
 
@@ -166,13 +167,13 @@ class room : house {
 
 <<"reset rooms to $mr \n"
 
-   b->setrooms(mr)
+   b.setrooms(mr)
 
-   nr = b->getrooms()
+   nr = b.getrooms()
 
 <<"%v $nr \n"
-   b->setfloors(6)
-   b->print()
+   b.setfloors(6)
+   b.print()
 
 <<"make a house \n"
 
@@ -183,60 +184,60 @@ class room : house {
 h.pinfo()
 
 
-   h->print()
+   h.print()
 
 
 
-   nr = h->getrooms()
+   nr = h.getrooms()
 
 <<"%v $nr \n"
 
 
-   h->setrooms(5)
+   h.setrooms(5)
 
-   h->setfloors(3)
+   h.setfloors(3)
 
-   h->print()
-
-
+   h.print()
 
 
-   b->print()
 
 
-   h->setrooms(7)
-   h->setfloors(12)
+   b.print()
 
 
-   h->print()
+   h.setrooms(7)
+   h.setfloors(12)
 
-   hf = h->floors
+
+   h.print()
+
+   hf = h.floors
 
 <<"%v $hf \n"
 
-   hr = h->rooms
+   hr = h.rooms
 
 <<"%v $hr \n"
 
 
-   hr = h->getrooms()
+   hr = h.getrooms()
 
 <<"%v $hr \n"
 
 
-   nr = h->getrooms()
+   nr = h.getrooms()
 
 <<" %v $nr \n"
 
-   h->setrooms(18)
+   h.setrooms(18)
 
-   nr = h->getrooms()
+   nr = h.getrooms()
 
 <<" %v $nr \n"
 
-   h->setbaths(20)
+   h.setbaths(20)
 
-   nbaths = h->getbaths()
+   nbaths = h.getbaths()
 
 <<" %v $nbaths \n"
 
@@ -246,14 +247,14 @@ h.pinfo()
 
 <<" after house c dec !! \n"
 
-   c->print()   
+   c.print()   
 
 
 <<" make house d \n"
 
    house d
 
-   d->print()   
+   d.print()   
 
 
    room r
@@ -262,7 +263,7 @@ h.pinfo()
 
    int nf
 
-   nf = r->getfloors()
+   nf = r.getfloors()
 
   chkN(2,nf)
 
@@ -274,24 +275,24 @@ h.pinfo()
 
 <<" now set %v $rnf building member from room object \n"
 
-   r->setfloors(rnf)
+   r.setfloors(rnf)
 
 // can reach back to grandparent !! ok
 // parent constructor is called
 
-   nf = r->getfloors()
+   nf = r.getfloors()
 
 <<" %I $nf \n"
 
   chkN(nf,10)
 
-   r->print()
+   r.print()
 
-   r->setbaths(3)
+   r.setbaths(3)
 
-   nb = r->getbaths()
+   nb = r.getbaths()
 
-   r->print()
+   r.print()
 
 <<" baths $nb \n"
 

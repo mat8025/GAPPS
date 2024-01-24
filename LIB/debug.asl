@@ -68,7 +68,7 @@ DB_action = 1 ;
   void debugON()
   {
 
-   <<" Debugging $_My_script %V $dblevel  $_dblevel\n"
+   <<" Debugging $_My_script %V $dblevel  $_dblevel - just a simple debug?\n"
 
     if (_dblevel < 1) {
       _dblevel = 0;
@@ -80,8 +80,8 @@ DB_action = 1 ;
 //<<"%V $_DBH ALLOWALL debug from files and funcs\n"
 //<<"use filterFuncDebug() filterFileDebug() to control\n"
 //sdb(dblevel,_keep,_~pline,_trace)
-filterFuncDebug(ALLOWALL_,"xxx");
-filterFileDebug(ALLOWALL_,"yyy");
+//filterFuncDebug(ALLOWALL_,"xxx");
+//filterFileDebug(ALLOWALL_,"yyy");
 
   setmaxcodeerrors(-1); //  unlimited
 

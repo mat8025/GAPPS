@@ -28,7 +28,8 @@
   
   chkIn(_dblevel);
 
- db_action = 1;
+  db_ask = 0;
+  db_step = 0;  
 
 //  fileDB(ALLOW_,"spe_proc,spe_args")
   int sumarg(int a, int b)
@@ -92,7 +93,7 @@
   m = vsv[1];
 
   <<"%V <|$s|> <|$m|> \n";
-ans=ask(" $s[0] $m[1] OK?:",0)
+ans=ask(" $s[0] $m[1] OK?:",db_ask)
 
 }
 //------------------------------
@@ -112,7 +113,7 @@ ans=ask(" $s[0] $m[1] OK?:",0)
    
    ms.pinfo()
   <<"%V $ms\n";
-ans=ask(" $vstr OK?:",0)
+ans=ask(" $vstr OK?:",db_ask)
   }
 //------------------------------
 
@@ -213,12 +214,12 @@ ans=ask(" $vstr OK?:",0)
 
   <<"%V $db_action $A\n"
   
- ans=ask(DB_prompt,db_action)
+ ans=ask(DB_prompt,db_ask)
 // break on ReadWords ERROR?
 while (k < 4) {
 
   nwr = sen.ReadWords(A);
-ans=ask("$k $nwr OK?:",1)
+ans=ask("$k $nwr OK?:",db_ask)
 
 
   if (nwr > 0) {
@@ -226,7 +227,7 @@ ans=ask("$k $nwr OK?:",1)
   <<"$nwr $k $sen[0] $sen[1] $sen[2] $sen[3]\n";
   //  sen->split()
 
- ans=ask("$k $sen[0] $sen[1] OK?:",1)
+ ans=ask("$k $sen[0] $sen[1] OK?:",db_ask)
 
   soo(sen);
 //  Foo(sen)
@@ -246,26 +247,29 @@ ans=ask("$k $nwr OK?:",1)
   ast = "Once upon a time"
   ast.pinfo()
 
-ans=ask("$k  OK?:",1)
+ans=ask("$k  OK?:",db_ask)
   
   soo("Once upon a time");
 
- ans=ask(DB_prompt,db_action)
+ ans=ask(DB_prompt,db_ask)
 
  
   Svar st = "Twice upon a time"
 
   soo(st);
 
- ans=ask(DB_prompt,db_action)
+ ans=ask(DB_prompt,db_ask)
 
  soo("Thrice upon a time");
 
- ans=ask(DB_prompt,db_action)
-wdb=  DBaction((DBSTEP_),ON_)
+ ans=ask(DB_prompt,db_ask)
+wdb=  DBaction((DBSTEP_),db_step)
 <<"$wdb \n"
 soo("Thrice upon a time");
 soo("il etait une fois");
+
+
   chkOut();
 
+  exit(-1)
 //==============\_(^-^)_/==================//

@@ -18,7 +18,7 @@ Str Use_="   demo some OO syntax/ops";
 
 #include "debug"
 
-/*
+
    if (_dblevel >0) {
 
      debugON();
@@ -26,13 +26,15 @@ Str Use_="   demo some OO syntax/ops";
      <<"$Use_\n";
 
      }
-*/
+
 
    allowErrors(-1);
 
    chkIn (_dblevel);
 
    //debugON();
+int db_action = 0;
+int db_step = 0;
 
    int x = 5;
    int li = 0;
@@ -92,13 +94,17 @@ Str Use_="   demo some OO syntax/ops";
    //=====================;
 
 
+ ans=ask(DB_prompt,db_action)
+wdb=  DBaction((DBSTEP_),db_step)
+<<"$wdb \n"
 
+//allowDB("spe,ic,rdp,oo")
 
 //   Define a class 
 
    class Building {
 
-     int rooms;
+     int rooms; // public class member
 
      int floors;
 
@@ -141,17 +147,17 @@ Str Use_="   demo some OO syntax/ops";
        }
 
      int getFloors()
-
      {
 
-       int rnf = 0; // TBF crash;
 
-       <<" $_proc  $_cobj [${id}]$rooms $floors $area \n";
+       ans=ask(" int rnf = 0 ?" ,db_action)
+      int rnf = 0; // TBF crash;
+
+       <<" $_proc  $_cobj [${id}]$rooms $floors $area $rnf\n";
 
        rnf = floors;
 
-       <<"$rnf \n";
-
+       ans=ask("%V $rnf = $floors ?" ,db_action)
        //return rnf;
        // TBF 9/3/21 returning local -- deleted does not remain on stack for assignment?;
 

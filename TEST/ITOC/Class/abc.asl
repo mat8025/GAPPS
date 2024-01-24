@@ -1,7 +1,8 @@
 ///
 ///
-;
-<<"just a simple thing to fix?\n"
+
+
+<<" $__FILE__ just a simple thing to fix?\n"
 
 
 

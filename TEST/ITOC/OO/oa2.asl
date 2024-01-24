@@ -18,8 +18,17 @@
   demo some OO syntax/ops
 |>
 
-int DBA = 1; // set to zero for no ask
+int db_ask = -17; // set to zero for no ask
 
+ if (db_ask < 0) {
+     <<"Setting %V $db_ask  ==>0\n"
+   db_ask = 0;
+
+ }
+
+int db_step = 0; // set to zero for no step
+
+ans=ask("%V $db_ask $__LINE__  ynq [y]\n",1);
 
 #include "debug"
 
@@ -90,9 +99,9 @@ int DBA = 1; // set to zero for no ask
 
   <<"%V $val\n";
 
-  val1 = SV[1];
+//  val1 = SV[1];
 
-  <<"%V $val1\n";
+//  <<"%V $val1\n";
   return val;
   }
 ///////////////////////////////////////////////////////////
@@ -104,7 +113,7 @@ SVS = split("estoy bien y tu");
 
   <<"$val\n";
 
-wdb=  DBaction((DBSTEP_),ON_)
+wdb=  DBaction((DBSTEP_),db_step)
 <<"$wdb \n"
 
 sv = Pset(SVS);
@@ -115,7 +124,7 @@ sv = Pset(SVS);
 
 
 int obid = -1;
-allowDB("spe,oo")
+//allowDB("spe,oo")
   Act a;
 
   a.pinfo();
@@ -126,7 +135,7 @@ allowDB("spe,oo")
 
   obid = a.ObjID();
   
-//ans=ask("%V $obid $__LINE__  ynq [y]\n",DBA);
+//
 
   // obid can not be known -- it increases for every Sclass new op
   od=a.GetWD();
@@ -143,7 +152,7 @@ allowDB("spe,oo")
 
   od=FA.GetWD();
   obid = FA.ObjID();
-//ans=ask("%V $obid $__LINE__  ynq [y]\n",DBA);
+//ans=ask("%V $obid $__LINE__  ynq [y]\n",db_ask);
 
   chkStage(" Simple ObjID");
 
@@ -152,7 +161,7 @@ allowDB("spe,oo")
 
   od=G.GetWD();
   obid = G.ObjID();
-//ans=ask("%V $obid $__LINE__  ynq [y]\n",DBA);
+//ans=ask("%V $obid $__LINE__  ynq [y]\n",db_ask);
 
 
 
@@ -200,7 +209,7 @@ allowDB("spe,oo")
   <<"X[2] %V $od\n";
 
   chkN(od,6);
-ans=ask("%V $obid $__LINE__  ynq [y]\n",DBA);
+ans=ask("%V $obid $__LINE__  ynq [y]\n",db_ask);
   od=X[3].GetWD();
 
   <<"X[3] %V $od\n";
@@ -232,7 +241,7 @@ ans=ask("%V $obid $__LINE__  ynq [y]\n",DBA);
 //chkOut();
 //svar SV;
 //allowDB("spe_,pexpnd")
-wdb=  DBaction((DBSTEP_),ON_)
+wdb=  DBaction((DBSTEP_),db_step)
 <<"$wdb \n"
   SV = split("estoy bien y tu");
 
@@ -269,8 +278,8 @@ wdb=  DBaction((DBSTEP_),ON_)
   val2 = SV2[3];
 
   <<"$val2\n";
-//ans=ask("%V $val2 $__LINE__  ynq [y]\n",DBA);
-//wdb=  DBaction((DBSTEP_),ON_)
+//ans=ask("%V $val2 $__LINE__  ynq [y]\n",db_ask);
+//wdb=  DBaction((DBSTEP_),db_step)
 //<<"$wdb \n"
 
 
@@ -282,11 +291,17 @@ wdb=  DBaction((DBSTEP_),ON_)
   sv =  a.Set(SV);
 
   <<"%V $sv \n";
+  
+
+wdb=  DBaction((DBSTEP_),db_step)
+<<"$wdb \n"
 
   X[m2].Set(SV);
 
+  X[m2].info()
+  
   <<"%V $X[m2].stype \n";
-
+ans=ask("%V $obid $__LINE__  ynq [y]\n",db_ask);
   obid = X[1].ObjID(); // TBF fails crashes ?;
 
   <<"X[1] $obid \n";
@@ -497,24 +512,28 @@ wdb=  DBaction((DBSTEP_),ON_)
 
   chkN(yst,3);
 
-  j = 66;
+  j = 0;
+
+//allowDB("spe_,oo")
+wdb=  DBaction((DBSTEP_),db_step)
+<<"$wdb \n"
 
   for (i = 0; i < 4; i++) {
 
-  yst =  X[i].Set(j);
+    yst =  X[i].SetO(j);
 
-  yt = X[i].otype;
+    yt = X[i].otype;
 
-  ygt =  X[i].Get();
+    ygt =  X[i].Get();
 
-  <<"otype for $i $yst $yt $ygt $j\n";
+  <<"otype for %V $i $yst $yt $ygt $j\n";
 
   if (yt != ygt) {
 
   pass = 0;
 
   }
-
+ans=ask("%V $otype $yt $ygt $__LINE__  ynq [y]\n", db_ask);
   chkN(ygt,j);
 
   j++;
@@ -525,7 +544,7 @@ wdb=  DBaction((DBSTEP_),ON_)
 
   i = 4;
 
-  yst =  X[i].Set(j);
+  yst =  X[i].SetO(j);
 
   yt  =  X[i].otype;
 
