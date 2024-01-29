@@ -80,17 +80,22 @@ allowErrors(-1) ; // keep going
 
 
 Str pre;
+Str mid;
 Str end;
 int len;
-A=ofw("pt_dict")
+A=ofw("pt_dict_3ele")
 wcnt=0
-  for (i = 90; i <=100; i++) {
+  for (i = 1; i <=100; i++) {
       pre = ptsym(i)
 <<"////////////////////\n$i   $pre \n\\\\\\\\\\\\\\\n"
 
+   for (m = 1; m <= 100 ; m++) {
+       mid =  ptsym(m)
+
    for (j = 1; j <= 100 ; j++) {
        end =  ptsym(j)
-    word = scat(pre,end);
+
+    word = scat(pre,mid,end);
     len = slen(word)
     ccnt = ccon(word);
     cvow = cvow(word);
@@ -100,16 +105,19 @@ wcnt=0
     
    // !!"grep  --regex ^$ptword\$ /usr/share/dict/words > ${wcnt}_word_check"
     !!"grep  --regex ^$ptword\$ /usr/share/dict/words > word_check" 
-   // 
+   //
+   <<"\r$i $m $j  "
+    fflush(1)
     sz= fexist("word_check",0)
     if (sz > 2 && (ccnt < len)) {
-    <<"$wcnt $i $j $len $ccnt $cvow <|$word|> \n"
+    <<"\r$wcnt $i $m $j $len $ccnt $cvow <|$word|> \n"
     
-    <<[A]"$ptword $i $j  \n"    
+    <<[A]"$ptword $i $m $j  \n"    
 //!!" head -1 word_check"
-   //  ans=ask(" $(slower(word))  $sz  ynq [y]\n",1)
+     //ans=ask(" $(slower(word))  $sz  ynq [y]\n",1)
      wcnt++
     
+    }
     }
    }
 //   if (wcnt > 1000)      break

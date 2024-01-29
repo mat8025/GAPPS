@@ -110,6 +110,7 @@ wdb=  DBaction((DBSTEP_),db_step)
  <<"%V $res $asr $bsr $csr \n"
 
   chkN(res,(bsr+csr))
+  
 ans=ask("%V $db_ask $__LINE__  ynq [y]\n",1);
 
  chkStage ("get plus")
