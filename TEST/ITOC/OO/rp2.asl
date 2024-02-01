@@ -1,15 +1,16 @@
-//%*********************************************** 
-//*  @script rp2.asl 
-//* 
-//*  @comment test class member access 
-//*  @release CARBON 
-//*  @vers 1.2 He Helium                                                  
-//*  @date Sun Mar  3 12:41:16 2019 
-//*  @cdate 1/1/2003 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script rp2.asl                                                     
+ * 
+ *  @comment test class member access                                   
+ *  @release Boron                                                      
+ *  @vers 1.3 Li Lithium [asl 5.80 : B Hg]                              
+ *  @date 01/31/2024 15:58:42                                           
+ *  @cdate 1/1/2003                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
+ * 
+ */ 
+
 
 
 <|Use_=
@@ -43,14 +44,14 @@ int db_step = 1; // set to zero for no step
     int area; 
     int number;
     
-    Cmf setRooms(int val)
+    int setRooms(int val)
     {
       rooms = val;
      <<" $_proc  $_cobj set rooms  $val $rooms  for house $number  \n"; 
       return rooms; 
      }
     
-    Cmf setfloors(int val) 
+    int setfloors(int val) 
     {
       if (floors > 0) {
         floors = val; 
@@ -59,19 +60,19 @@ int db_step = 1; // set to zero for no step
       return area; 
       }
     
-    Cmf getRooms()
+    int getRooms()
     {
       <<"$_proc %V  $_cobj $rooms for house  $number \n"
          return rooms;
     }
     
-    Cmf print() 
+    void print() 
     {
       <<" $_cobj has %V $floors and  $rooms $area\n"; 
-      }
+    }
     
     
-    Cmf house() 
+    void house() 
     {
       floors = 2; 
       rooms = 4; 
@@ -115,7 +116,7 @@ ans=ask("%V $db_ask $__LINE__  ynq [y]\n",1);
 
  chkStage ("get plus")
 
-exit(-1)
+
 
     house C[10];
 
@@ -287,7 +288,7 @@ am1 = a - 1;
   chkN(y,(am1r+ar));
 
 <<"house  $(a+1) has $y rooms \n"; 
-!z
+
 
 
  chkN(y,20);
@@ -487,3 +488,5 @@ x=C[a1].setRooms(C[am1].getRooms() + C[a].setRooms(C[am2].getRooms())) ;
   <<" obj 2 has  $z rooms \n"; 
   
   chkOut()
+
+exit(-1)

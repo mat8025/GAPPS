@@ -1973,3 +1973,11 @@ ic_getsiv.cpp                       1.59  01/17/2024 19:43:13  use cpargv for ge
 oo_class.cpp                        2.26  01/17/2024 19:46:34  getCMFvar options
 spe_scopesindex.cpp                 2.89  01/17/2024 19:52:35  order of var find/check ops
 spil_chem.cpp                       1.22  01/21/2024 23:13:27  ptSym
+ds_sivflags.cpp                     1.95  01/29/2024 23:29:19  lhr
+array_parse.cpp                     2.86  01/30/2024 00:29:40  LHS PCW_LHS
+vmf_str.cpp                         1.4  01/30/2024 00:40:49  range cpy
+vmf_l.cpp                           2.6  01/30/2024 08:08:15  cbump revise1
+array_subset.cpp                    2.82  01/30/2024 11:51:30  VMF mods
+vmf_l.cpp                           1.74  01/30/2024 11:52:36  cpy mods
+vsh_cw.cpp                          1.78  01/30/2024 22:51:02  !q for quit program
+oo_class_mbr.cpp                    2.44  01/30/2024 22:53:20  varGetClassMember  just check global 

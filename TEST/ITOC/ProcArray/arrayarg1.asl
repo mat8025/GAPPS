@@ -22,8 +22,8 @@
 
 
    <<"%V $_dblevel\n";
-    allowDB("spe_func,spe_proc,rdp_store,ds_store,array_parse")
-        allowDB("array_parse,spe_scope,ic_")
+
+
 
    if (_dblevel > 0) {
 
@@ -38,7 +38,7 @@
    chkIn(_dblevel);
    
 /////////////////////  simple scalar ///////////////////
-DB_action = 0;
+  db_ask = 0;
 
    int doo(int a,int b)
    {
@@ -107,14 +107,14 @@ vect.pinfo();
      vect.pinfo();
 
      <<" U: $U \n";
-
+     <<"%V $vect[0] \n"
+     <<"%V $vect[1] \n"
+     
      vect[1] = 74;
 
      <<"add Ag vect: $vect \n";
 
      <<"add Ag U: $U \n";
-
-
 
 
      vect[2] = 79;
@@ -124,7 +124,7 @@ vect.pinfo();
      <<"add Ag U: $U \n";
 
 
-//ans=ask(DB_prompt,DB_action)
+//ans=ask(DB_prompt,db_ask)
 
      vect[3] = 80;
 
@@ -224,14 +224,18 @@ vect.pinfo();
    W = U;
 
    <<"pre proc call $U\n";
+
  // TBD FIX it does not compute the offset - so proc operates on the third element in
-   <<"; //////////////////////////////////\nB4 $U\n" 
+   <<"; //////////////////////////////////\nB4 $U\n"
+   
+//  allowDB("spe_func,spe_proc,rdp_store,ds_store,array_parse")
+//  DBaction((DBSTEP_),ON_)
 
    y = voo2(&U[3]);
 
    <<"after call voo2 $U\n";
 
-ans=ask(DB_prompt,DB_action)
+ans=ask(DB_prompt, db_ask)
 
    uv= U[4];
 
@@ -243,7 +247,7 @@ ans=ask(DB_prompt,DB_action)
 
    chkN(U[8],50);
 
-//ans=ask(DB_prompt,DB_action)
+//ans=ask(DB_prompt,db_ask)
 
    voo2(W);
    
@@ -270,7 +274,7 @@ ans=ask(DB_prompt,DB_action)
 
    <<"%V$T\n";
 
-//ans=ask(DB_prompt,DB_action)
+//ans=ask(DB_prompt,db_ask)
 
 
    U= voo(W);
@@ -282,11 +286,11 @@ ans=ask(DB_prompt,DB_action)
   U= voo(&W[2])
 
 
-ans=ask(DB_prompt,DB_action)
+ans=ask(DB_prompt,db_ask)
 
     U= voo(&W[3])
 
-ans=ask(DB_prompt,DB_action)
+ans=ask(DB_prompt,db_ask)
 
   pv.pinfo()
 

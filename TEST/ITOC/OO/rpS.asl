@@ -1,15 +1,16 @@
-//%*********************************************** 
-//*  @script rpS.asl 
-//* 
-//*  @comment test class member set/access 
-//*  @release CARBON 
-//*  @vers 1.3 Li Lithium [asl 6.2.48 C-He-Cd]                             
-//*  @date Tue May 19 07:41:22 2020 
-//*  @cdate 1/1/2003 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script rpS.asl                                                     
+ * 
+ *  @comment test class member set/access                               
+ *  @release Boron                                                      
+ *  @vers 1.4 Be Beryllium [asl 5.80 : B Hg]                            
+ *  @date 01/31/2024 15:52:16                                           
+ *  @cdate 1/1/2003                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
+ * 
+ */ 
+
   
 
 #include "debug"
@@ -21,7 +22,13 @@ if (_dblevel >0) {
 
 
 chkIn(_dblevel); 
-  
+
+int db_ask = 1; // set to zero for no ask
+int db_step = 1; // set to zero for no step
+
+
+
+
   Nhouses = 0;
 
 
@@ -37,7 +44,7 @@ Class house {
     int area; 
     int number;
     
-    cmf setrooms(int val) {
+    int setrooms(int val) {
       <<" $_proc  $_cobj $val \n"; 
       rooms = val;
     
@@ -45,7 +52,7 @@ Class house {
       return rooms; 
      }
     
-    cmf setfloors(int val){
+    int setfloors(int val){
       if (floors > 0) {
         floors = val; 
         area = floors * 200; 
@@ -53,28 +60,28 @@ Class house {
       return area; 
       }
 
-    cmf getrooms() {
+    int getrooms() {
          <<"getrooms $_cobj $rooms for house  $number \n"
          return rooms;
     }
 
-    cmf getarea() {
+    int getarea() {
          area = floors * 200;
          <<"getarea $_cobj $area for house  $number \n"
          return area;
     }
 
-    cmf getfloors() {
+    int getfloors() {
          <<"getfloors $_cobj $floors for house  $number \n"
          return floors;
     }
     
-    cmf print() {
+    void print() {
       <<" $_cobj has %V $floors and  $rooms $area\n"; 
       }
     
     
-    cmf house()  {
+    void house()  {
       floors = 2; 
       rooms = 4; 
       area = -1;
@@ -89,7 +96,7 @@ Class house {
   //===============================//
 
 // crash unless type of rmchk specified -- want to work anyway -- default gen type
-proc  checkRooms( int rmchk)
+int  checkRooms( int rmchk)
   {
      crooms = rmchk +1;
 
@@ -100,27 +107,27 @@ proc  checkRooms( int rmchk)
 
    house AA;
 
-   AAr= AA->getrooms() ;
+   AAr= AA.getrooms() ;
   <<"%V $AAr \n"
    chkN(AAr,4);
 
 
-   AAr=AA->setrooms(7) ;
+   AAr=AA.setrooms(7) ;
  <<"%V $AAr \n"
    chkN(AAr,7);
 
-   AAr= AA->getrooms() ;
+   AAr= AA.getrooms() ;
   <<"%V $AAr \n"
    chkN(AAr,7);
 
     house AS;
 
 
-   ASr= AS->getrooms() ;
+   ASr= AS.getrooms() ;
 
   <<"%V $ASr \n"
 
-  ASf= AS->getfloors() ;
+  ASf= AS.getfloors() ;
 
   <<"%V $ASf \n"
 
@@ -128,7 +135,7 @@ proc  checkRooms( int rmchk)
 
     house BS;
 
-   BSr= BS->getrooms() ;
+   BSr= BS.getrooms() ;
   <<"%V $BSr \n"
 
 chkN(BSr,4);
@@ -137,92 +144,115 @@ chkN(BSr,4);
     house CS;
     house DS;    
 
-  DSr= DS->getrooms() ;
+  DSr= DS.getrooms() ;
   <<"%V $DSr \n"
  chkN(DSr,4); 
 
-  ASr= AS->getrooms() ;
+  ASr= AS.getrooms() ;
   <<"%V $ASr \n"
 
  chkN(ASr,4);
 
 
-   BSr= BS->setrooms(8) ;
+   BSr= BS.setrooms(8) ;
   <<"%V $BSr \n"
 
  chkN(BSr,8); 
 
-   CSr= CS->setrooms(9) ;
+   CSr= CS.setrooms(9) ;
   <<"%V $CSr \n"
 
  chkN(CSr,9); 
 
-CSr= CS->getrooms() ;
+CSr= CS.getrooms() ;
   
 <<"%V $CSr \n"
 
  chkN(CSr,9); 
 
-   DSr= DS->setrooms(10) ;
+   DSr= DS.setrooms(10) ;
   <<"%V $DSr \n"
 
  chkN(DSr,10); 
 
-  DSr= DS->getrooms() ;
+  DSr= DS.getrooms() ;
   <<"%V $DSr \n"
 
  chkN(DSr,10); 
   
 
 //////////////////////////////////////////////////////////////
-   ASr= AS->getrooms() ;
+   ASr= AS.getrooms() ;
   <<"%V $ASr \n"
 
-   BSr= BS->getrooms() ;
+   BSr= BS.getrooms() ;
   <<"%V $BSr \n"
 
   res = BSr + ASr;
+
+
 <<"%V $res\n"
 
+allowDB("spe_exp,opera")
+   CSr1= CS.setrooms(4 +2) ;
 
-  CSr= CS->setrooms(AS->getrooms()) ;
+   chkN( CSr1,6)
 
-   DSr= DS->getrooms() ;
+     CSr2=  CS.setrooms( AS.getrooms() +2 ) ;
 
-<<"%V $ASr $BSr  $CSr $DSr \n"
+   chkN( CSr2,6)
 
-   x= DS->setrooms(BS->getrooms() + CS->setrooms(AS->getrooms())) ;
+   CSr3= CS.setrooms(  3+ AS.getrooms()  +2);
 
-<<"%V $x  should be $res ?\n"
+   chkN( CSr3,9)
+   
+   DSr= DS.getrooms() ;
 
-   ASr= AS->getrooms() ;
+<<"%V $ASr $BSr  $CSr $DSr  \n"
 
-   BSr= BS->getrooms() ;
-
-   CSr= CS->getrooms() ;
-
-   DSr= DS->getrooms() ;
-
-<<"%V $ASr $BSr  $CSr $DSr\n"
-
-  chkN(x,res); 
+   ans=ask(DB_prompt,db_ask);
 
 
+  x1= DS.setrooms(BS.getrooms() + AS.getrooms()) ;
+
+<<"%V $ASr $BSr    $x1 \n"
+
+   x2= DS.setrooms(BS.getrooms() + CS.setrooms(AS.getrooms())) ;
+
+<<"%V $ASr $BSr    $x1 $x2 \n"
+
+<<"%V $x2  should be $res ?\n"
+
+   ASr= AS.getrooms() ;
+
+   BSr= BS.getrooms() ;
+
+   CSr= CS.getrooms() ;
+
+   DSr= DS.getrooms() ;
+
+<<"%V $ASr $BSr  $CSr $DSr $x2 $res\n"
+
+  chkN(x2,res); 
+
+  chkOut()
+
+  exit(-1)
    
   <<"%V $DSr $res\n"
 
    chkN(DSr,res); 
 
 
-  // y=DS->setrooms(BS->getrooms() + CS->setrooms(checkRooms(AS->getrooms()))) ;
+  // y=DS.setrooms(BS.getrooms() + CS.setrooms(checkRooms(AS.getrooms()))) ;
 
-y1=AS->getrooms();
-y2= CS->setrooms(AS->getrooms());
-y3 = BS->getrooms();
-y4 = DS->setrooms(y3+y2);
+y1=AS.getrooms();
+y2= CS.setrooms(AS.getrooms());
+y3 = BS.getrooms();
+y4 = DS.setrooms(y3+y2);
 
 
-y=DS->setrooms(BS->getrooms() + CS->setrooms(AS->getrooms())) ;
+y=DS.setrooms(BS.getrooms() + CS.setrooms(AS.getrooms())) ;
 
 <<"%V $y $y1 $y2 $y3 $y4 \n"
 
@@ -230,20 +260,20 @@ y=DS->setrooms(BS->getrooms() + CS->setrooms(AS->getrooms())) ;
    chkN(y,y4); 
 
 
-   ASr= AS->getrooms() ;
+   ASr= AS.getrooms() ;
   <<"%V $ASr \n"
 
-   res2= BS->getrooms() ;
+   res2= BS.getrooms() ;
 
 <<"%V $BSr $res2 \n"
 
    chkN(BSr,res2);
    
 
-   CSr= CS->getrooms() ;
+   CSr= CS.getrooms() ;
 
 <<"%V $CSr \n"
-   Asr=AS->setrooms(CS->getrooms()) ;
+   Asr=AS.setrooms(CS.getrooms()) ;
 
   chkN(CSr,ASr);
 

@@ -1,3 +1,42 @@
+/* 
+ *  @script chem_words.asl 
+ * 
+ *  @comment words that can be spelled using PT 
+ *  @release CARBON 
+ *  @vers 1.1 H Hydrogen [asl 5.79 : B Au]                                  
+ *  @date 01/29/2024 15:31:48 
+ *  @cdate 1/27/24 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare 2024
+ * 
+ */ 
+//-----------------<V_&_V>------------------------//
+
+Str Use_= " Demo  of words that can be spelled using PT ";
+
+#define _CPP_ 0
+
+
+#include "debug" 
+
+  if (_dblevel >0) { 
+   debugON() 
+   <<"$Use_ \n" 
+} 
+
+   allowErrors(-1); // set number of errors allowed -1 keep going 
+
+  chkIn(_dblevel) ;
+
+  chkT(1);
+
+ 
+
+
+// goes after procs
+#if _CPP_
+int main( int argc, char *argv[] ) { // main start 
+#endif       
 ///
 ///
 ///
@@ -59,16 +98,6 @@ From The Collaborative International Dictionary of English v.0.48 [gcide]:
         [1913 Webster]
   */
 
-#include "debug"
-
-if (_dblevel >0) {
-   debugON()
-   
-}
-
-allowErrors(-1) ; // keep going
-
-
     !!"grep  --regex ^hotel\$ /usr/share/dict/words >word_check" 
 
  !!" head -10 word_check"
@@ -117,3 +146,17 @@ wcnt=0
 
 
 cf(A)
+
+#if _CPP_           
+  exit(-1); 
+  }  /// end of C++ main 
+#endif     
+
+
+///
+
+ chkOut();
+
+  exit();
+
+//==============\_(^-^)_/==================//

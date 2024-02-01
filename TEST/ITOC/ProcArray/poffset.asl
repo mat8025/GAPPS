@@ -1,15 +1,16 @@
-//%*********************************************** 
-//*  @script poffset.asl 
-//* 
-//*  @comment check ptr offset code 
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen [asl 6.2.63 C-He-Eu]                               
-//*  @date Sat Aug  8 14:05:52 2020 
-//*  @cdate Sat Aug  8 14:05:52 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script poffset.asl                                                 
+ * 
+ *  @comment check ptr offset code                                      
+ *  @release Boron                                                      
+ *  @vers 1.2 He Helium [asl 5.79 : B Au]                               
+ *  @date 01/31/2024 07:56:45                                           
+ *  @cdate Sat Aug 8 14:05:52 2020                                      
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
+ * 
+ */ 
+
 ///
 ///
 ///
@@ -27,19 +28,20 @@
 
      }
    allowErrors(-1) ;  // keep going 
-  allowDB("spe_func,spe_proc,rdp_store,ds_store,array_parse")
-        allowDB("array_parse,spe_scope,ic_")
-   DB_action = 0;
+
+
+
+   db_ask = 0;
    chkIn(_dblevel);
 
    int voo(int vect[])
    {
 
      vect.pinfo();
-     <<"IN $vect \n" ;  ; // debug version alters poffset??; 
-//Z<-pinfo() // TBC
-//<<"pa_arg2 %V$k\n"
-//!t poffset correct?;
+
+     <<"IN $vect \n" ;  // debug version alters poffset??;
+
+
 
      vect[1] = 47;
 
@@ -49,7 +51,7 @@
 
      <<"add Au $vect \n";
 
-     vect<-pinfo();
+     vect.pinfo();
 
      vect[3] = 80;
 
@@ -61,6 +63,9 @@
 
      vect.pinfo();
 
+     <<"global $W \n";
+      W.pinfo()
+      
      <<"OUT $vect \n";
 
      return z;
@@ -124,12 +129,50 @@
 
    Z = Vgen(INT_,10,0,1);
 
-   W= Z;
+  //allowDB("spe_,rdp_,ds_store,array_,ic_")
 
-   W.pinfo();
+//  wdb=DBaction((DBSTEP_| DBSTRACE_),ON_)
+//<<"$wdb\n"
+
+   W = Z;
+
+   Z.pinfo()
+   
+  
 
 
    <<"init $Z\n";
+
+   <<"%V $W\n";
+
+    
+   W.pinfo();
+
+
+   voo(&W[3]);
+
+   W.pinfo();
+
+   <<"%V $W\n";
+
+ans=ask(DB_prompt,db_ask)
+
+
+   chkN(W[4],47);
+
+   chkN(W[5],79);
+
+   chkN(W[6],80);
+
+
+
+
+   chkStage(" &W[3] OK? ");
+
+
+  // exit(-1);
+
+
 //   Z[0] = 36; 
 //   Z[1] = 53; 
 //   Z[9] = 28; 
@@ -152,21 +195,10 @@
 
      }
 
-   <<"%V$W\n";
-
-   voo(&W[3]);
-
-   <<"%V$W\n";
-
-   chkN(W[4],47);
-
-   chkN(W[5],79);
-
-   chkN(W[6],80);
-
    Z = W;
 
    <<"B4 calling  Roo $W\n";
+   
    Ptr Y;
 
    Y=Roo(&W[3]);
@@ -175,7 +207,7 @@
 
    <<"Y: $Y \n";
 
-ans=ask(DB_prompt,DB_action)
+
 
    chkStage("PO correct?");
 
@@ -186,7 +218,7 @@ ans=ask(DB_prompt,DB_action)
    y1= Y[1];
 
    <<"%V $y1\n";
-ans=ask(DB_prompt,DB_action)
+ans=ask(DB_prompt,db_ask)
    chkN(Y[1],47);
 
    chkN(Y[2],79);

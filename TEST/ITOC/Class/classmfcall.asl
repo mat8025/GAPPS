@@ -1,16 +1,16 @@
 /* 
- *  @script class_mfcall.asl 
+ *  @script classmfcall.asl                                             
  * 
- *  @comment show mf call 
- *  @release CARBON 
- *  @vers 1.3 Li 6.3.87 C-Li-Fr 
- *  @date 02/23/2022 10:51:05          
- *  @cdate Tue Mar 31 20:10:28 2020 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare 2022
+ *  @comment show mf call                                               
+ *  @release Boron                                                      
+ *  @vers 1.4 Be Beryllium [asl 5.79 : B Au]                            
+ *  @date 01/29/2024 15:24:43                                           
+ *  @cdate Tue Mar 31 20:10:28 2020                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                                 
+
 
 ///
 ///
@@ -34,7 +34,7 @@
 
      }
 
-#define ASL 1
+#define _ASL_ 1
 
    chkIn (_dblevel);
 
@@ -63,6 +63,8 @@ echolines(0)
 ans ="y"
 //DBaction((DBSTEP_),ON_)
 // allowDB("ic_,oo_,spe_proc,spe_state,spe_cmf,rdp")
+
+db_ask = 0;
 
 
      Veci = vgen(INT_,10,0,1);
@@ -200,10 +202,11 @@ double y = 1.707;
 
      void seta (double x)
      {
-
+       //xd.pinfo()
+       x.pinfo()
        a= x;
 
-       <<"$_proc %V $x $a\n";
+       <<"$_proc  double arg %V   $x $a\n";
            //   myprint ();
        }
 //==========================
@@ -340,15 +343,19 @@ double y = 1.707;
      int d =4;
 
      double w = 3.3;
-
-ans=ask("1 step  debug? [y,n]",0);
-
-if (ans == "y") {
- DBaction((DBSTEP_),ON_)
- allowDB("ic_,oo_,spe_")
+     
+<<"%V $ans\n"
+ans = ask("1 step  debug? [yes,no]",db_ask);
+ans.pinfo()
+<<"%V $ans\n"
+if (ans == "yes") {
+ wdb=DBaction((DBSTEP_),ON_)
+<<"%V$wdb\n"
+allowDB("ic_,oo_,spe_")
 }
 
 
+w.pinfo()
 
      acalc.seta(w);
 
@@ -403,9 +410,9 @@ if (ans == "y") {
 
      <<"%V $acalc.x  $w\n";
 
-ans=ask("2 acalc.mul  [y,n]",0);
+ans=ask("2 acalc.mul  [y,n]",db_ask);
 if (ans == "y") {
-DBaction((DBSTEP_,DBSTRACE_),ON_)
+DBaction((DBSTEP_|DBSTRACE_),ON_)
 }
 z = acalc.mul(c,d);
 
@@ -478,7 +485,7 @@ z = acalc.mul(c,d);
      double r2 = 3.3;
      double r3;
 
-ans=ask("3step  debug? [y,n]",0);
+ans=ask("3step  debug? [y,n]",db_ask);
 if (ans == "y") {
   
   allowDB("ic_,oo_,spe_proc,spe_state,spe_cmf")
@@ -718,15 +725,15 @@ float dr;
 
     VB_ins[0].Print();
 
-//ans=ask("4 VB_ins",DB_action);
-//DBaction((DBSTEP_,DBSTRACE_),ON_)
+//ans=ask("4 VB_ins", db_ask);
+//DBaction((DBSTEP_|DBSTRACE_),ON_)
 
      VB_ins[1].Print();
-//ans=ask(DB_prompt,DB_action);
+//ans=ask(DB_prompt,db_ask);
 
     
     VB_ins[2].Print();
-//ans=ask(DB_prompt,DB_action);
+//ans=ask(DB_prompt,db_ask);
 
 
     VB_ins[0].SetShape(3);

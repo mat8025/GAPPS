@@ -26,8 +26,7 @@
  }
 
 
-//filterFileDebug(REJECT_,"scope","args","rdp","exp");		
-//filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
+
 
    chkIn(_dblevel);
 
@@ -163,7 +162,7 @@ int do_minus_range =1;
 
    D[11] = 11;
 
-
+allowDB("spe,array,ds,rdp,vec")
    D= B[-1:0:-1];
 
    <<"reverse opr\n";
@@ -171,7 +170,7 @@ int do_minus_range =1;
    <<"%V$D\n";
 
    <<"%V$B[-1:0:-1]\n";
-
+exit(-1)
    chkN (D[0],9);
 
    chkN (D[4],5);

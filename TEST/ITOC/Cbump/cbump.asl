@@ -1,7 +1,7 @@
 /* 
  *  @script cbump.asl                                                   
  * 
- *  @comment                                                            
+ *  @comment  update vers of C files                                                   
  *  @release Sulfur                                                     
  *  @vers 1.11 Na Sodium [asl 5.16 : B S]                               
  *  @date 08/13/2023 10:43:54                                           
@@ -17,10 +17,12 @@
 // allowDB("spe_")
 //DBaction((DBSTEP_,ON_)  
 
+int DBH = -1
+
  Str Vers2ele(Str vstr)
   {
    <<"%V $vstr\n"
-   vstr.pinfo()
+  // vstr.pinfo()
    pmaj = atoi(spat(vstr,"."))
    pmin = atoi(spat(vstr,".",1))
   <<"%V $pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
@@ -50,18 +52,18 @@
   srcfile = _clarg[1];
   
   if (srcfile @= "") {
-  <<[2]"no script file entered\n"
+  <<[DBH]"no script file entered\n"
     exit();
   }
   
   sz= fexist(srcfile,RW_,0);
   
-  //<<[2]" RW sz $sz \n"
+  //<<[DBH]" RW sz $sz \n"
 
   !!"cp $srcfile ${srcfile}.bak"
 
   if (sz == -1) {
-  <<[2]"can't find script file $srcfile\n"
+  <<[DBH]"can't find script file $srcfile\n"
     exit();
   }
   
@@ -71,7 +73,7 @@
   if (na > 2) {
    set_vers = 1;
    new_vers = _clarg[2];
-   <<[2]"%V $new_vers\n"
+   <<[DBH]"%V $new_vers\n"
   // should be maj.min e.g 1.1 ,6.1, ... limits 1 to 100  
   }
   
@@ -81,14 +83,17 @@
   
   file= fexist(srcfile,ISFILE_,0);
   
-  //<<[2]" FILE $file \n"
+  //<<[DBH]" FILE $file \n"
   
   dir= fexist(srcfile,ISDIR_,0);
   
-  //<<[2]" DIR $dir \n"
+  //<<[DBH]" DIR $dir \n"
   Author = "Mark Terry"
   fname = srcfile
-  release = "Beryllium"
+
+  // get this from asl -v
+  release = "BORON"
+
   pmaj = 1;
   pmin = 1;
   
@@ -100,29 +105,30 @@
   len = slen(fname);
   
   ind = (80-len)/2;
-  //<<[2]"$(date()) $(date(8)) \n"
-  //<<[2]" $len $ind\n"
+  //<<[DBH]"$(date()) $(date(8)) \n"
+  //<<[DBH]" $len $ind\n"
   insp = nsc((60-len)/2," ")
   len= slen(insp)
-  //<<[2]"$len <|$insp|> \n"
+  //<<[DBH]"$len <|$insp|> \n"
   sp="\n"
-  //<<[2]" $(nsc(5,sp))\n"
+  //<<[DBH]" $(nsc(5,sp))\n"
   
-  //<<[2]" $(nsc(5,\"\\n\"))\n"
+  //<<[DBH]" $(nsc(5,\"\\n\"))\n"
 
 
   release = "";
-  release.pinfo()
+  //release.pinfo()
   TR = Split(split(getversion()),".")
 
-<<"%V $TR[0]  $TR[1]\n"
+<<[DBH]"%V $TR[0]  $TR[1]\n"
   k= ptan(ptname(TR[0]))
  //k.pinfo()
 //<<"%V $k \n"
  // release = itoa(k)
  
 //<<"%V $release \n"
- release.pinfo()
+ //release.pinfo();
+ 
   release = scat(itoa(ptan(ptname(TR[0]))),".",itoa(ptan(ptname(TR[1])))," ",ptname(TR[0]),"_",ptname(TR[1]));
 
 <<"%V $release \n"
@@ -136,19 +142,19 @@
   
   fsz= X.getSize();
 
-<<"%V$fsz\n"
+//<<"%V$fsz\n"
 
-<<"$X\n"
+//<<"$X\n"
 
 
-  for (i= 20; i < 30; i++) {
-<<"$i $X[i]\n"
-  }
+//  for (i= 20; i < 30; i++) {
+//<<"$i $X[i]\n"
+//  }
 
 
   A=ofile(srcfile,"r");
   //T=readfile(A);
- //<<[2]"opened for read/write? $A\n"
+ //<<[DBH]"opened for read/write? $A\n"
   if (A == -1) {
 <<"bad file ?\n"
    exit()
@@ -160,12 +166,12 @@
 Str comment ="xxx";
 long where;
 
-where.pinfo()
+//where.pinfo()
 
 
 Str T;
 
-T.pinfo();
+//T.pinfo();
 
 Str Pad;
 
@@ -173,7 +179,7 @@ Str Pad;
 
 Svar L;
 
- L.pinfo()
+// L.pinfo()
  
 // pinfo(L)
 
@@ -194,7 +200,7 @@ Str old_comment ="yyy"
 
     T = readline(A);
    
-//<<[2]"$i line is $T \n"
+//<<[DBH]"$i line is $T \n"
    if (i ==2) {
      old_comment =T;
    }
@@ -208,19 +214,21 @@ Str old_comment ="yyy"
    L.Split(T);
    sz = Caz(L);
 // <<"sz $(caz(L)) \n"
-//<<[2]"$i $sz $where  $L \n"
+//<<[DBH]"$i $sz $where  $L \n"
    if (sz >2) {
-<<[2]"L1 $L[1]\n"
+<<[DBH]"L1 $L[1]\n"
 
     if (scmp(L[1],"@vers")) {
      found_vers =1;
      cvers = L[2];
-     <<[2]"$where $cvers $L[2]\n"
+     <<[DBH]"$where $cvers $L[2]\n"
    }
     else if (scmp(L[1],"@cdate")) {
      cdate = "$L[2:-1:1]";
-<<"found cdate  $L\n"     
-<<[2]"%V$cdate  $L[2]\n"     
+     
+<<[DBH]"cdate  <|$cdate|>  $L[2]\n"
+<<[DBH]"cdate             <|$L|>   \n"
+
    }
     else if (scmp(L[1],"@comment")) {
      comment = "$L[2::]";
@@ -238,20 +246,22 @@ Str old_comment ="yyy"
    //found_where = where;
    i++;
    if (i >17) {
-<<[2]"not an C header\n"
+<<[DBH]"not an C header\n"
     found_vers = 0;
     break;
    }
 
 
     if (spat(L[0],"///////<v_&_v>//") != "") {
-<<"@header end? line $i\n"
+<<[DBH]"@header end? line $i\n"
       break;
     }
 
 }
 
    where = ftell(A);
+
+
 
    int end_ln = i;
 /*
@@ -268,20 +278,22 @@ Str old_comment ="yyy"
 
 //allowDB("spe_,tok_func")
 <<"%V $cvers \n"
-cvers.pinfo()
+//cvers.pinfo()
 //if (found_vers) {
  
   //DBaction(DBSTEP_,ON_)
   //DBaction(DBSTRACE_,ON_)  
-  Vers2ele(cvers)
+
+   Vers2ele(cvers)
+
 // nele = 7;
 
-<<[2]"found_vers $cvers \n"
+<<[DBH]"found_vers $cvers \n"
 // }
 
 /*
  else {
- <<[2]" does not have vers number in header\n";
+ <<[DBH]" does not have vers number in header\n";
  exit();
  }
 */
@@ -311,7 +323,7 @@ cvers.pinfo()
  <<" need a new major release current \n"
    exit();
    }
-// }
+
  
   date = date(GS_MDYHMS_);
   maj_ele = ptsym(pmaj);
@@ -327,7 +339,7 @@ cvers.pinfo()
    vlen = slen(vers);
 
 
-<<[2]"vlen $vlen <|$Pad|>\n"
+<<[DBH]"vlen $vlen <|$Pad|>\n"
 
  fseek(A,0,0);
 
@@ -372,7 +384,7 @@ A=ofile(srcfile,"w")
 //<<"$Y \n";
   ysz= Y.getSize();
 
-<<"%V$ysz \n";
+<<[DBH]"%V$ysz \n";
    Y.write(D);
  //wfile(D,Y);
 //  wfile(D,Y[2]);

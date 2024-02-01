@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @script classvar.asl 
-//* 
-//*  @comment test OO get/set 
-//*  @release CARBON 
-//*  @vers 1.2 He Helium [asl 6.2.48 C-He-Cd]                                
-//*  @date Tue May 19 08:25:16 2020 
-//*  @cdate 1/1/2003 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script classvar.asl                                                
+ * 
+ *  @comment test OO get/set                                            
+ *  @release Boron                                                      
+ *  @vers 1.4 Be Beryllium [asl 5.79 : B Au]                            
+ *  @date 01/29/2024 15:17:31                                           
+ *  @cdate 1/1/2003                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
+ * 
+ */ 
+
+
 #include "debug";
 
    if (_dblevel >0) {
@@ -57,6 +59,8 @@
      int x ;
 
      int V ;
+     Str color;
+     
 #  method list
 
      void Print () {
@@ -120,7 +124,7 @@
      {
       id = Fruit_id++
      <<" doing fruit constructor for  $_cobj \n";
-
+      color = "white";
      <<"%V $_pstack \n";
      x = 5 + id;
 

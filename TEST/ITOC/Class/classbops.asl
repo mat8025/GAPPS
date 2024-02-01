@@ -1,16 +1,16 @@
 /* 
- *  @script classbops.asl 
+ *  @script classbops.asl                                               
  * 
- *  @comment test class basic ops 
- *  @release CARBON 
- *  @vers 1.2 He Helium [asl 6.3.29 C-Li-Cu] 
- *  @date 03/08/2021 11:24:33 
- *  @cdate Tue Mar 12 07:50:33 2019 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
+ *  @comment test class basic ops                                       
+ *  @release Boron                                                      
+ *  @vers 1.3 Li Lithium [asl 5.79 : B Au]                              
+ *  @date 01/29/2024 15:23:14                                           
+ *  @cdate Tue Mar 12 07:50:33 2019                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
  * 
- *  \\-----------------<v_&_v>--------------------------//  
  */ 
+
 
 <|Use_= 
 Demo  of class ops
@@ -33,7 +33,7 @@ chkIn(_dblevel);
 #include "abc.asl"
 
 
-   DB_action = 1
+   DB_action = 0
 
 
 
@@ -228,7 +228,7 @@ v= y.isVector()
 
 // 
 
-wdb=  DBaction((DBSTEP_),ON_)
+//wdb=  DBaction((DBSTEP_),ON_)
 
   Point A;
 
@@ -638,8 +638,8 @@ chkR(cy,0.2);
   <<"%V$ok $my $v\n"; 
   ok=chkR(my,v,5); 
 
-allowDB("spe_,ds_,oo_,rdp,opera")
-wdb=DBaction((DBSTEP_| DBSTRACE_),ON_)
+//allowDB("spe_,ds_,oo_,rdp,opera")
+//wdb=DBaction((DBSTEP_| DBSTRACE_),ON_)
 
   v = A.Getx(); 
   v *= 2; 

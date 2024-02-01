@@ -28,7 +28,7 @@ int db_ask = -17; // set to zero for no ask
 
 int db_step = 0; // set to zero for no step
 
-ans=ask("%V $db_ask $__LINE__  ynq [y]\n",1);
+//ans=ask("%V $db_ask $__LINE__  ynq [y]\n",1);
 
 #include "debug"
 
