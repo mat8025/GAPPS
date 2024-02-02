@@ -17,7 +17,7 @@
 int hold_dbl = _dblevel;
 int dblevel = _dblevel;
 
-  int _DBH = -1; // dbg FH set -1 for nop --set to 2 for error output;
+int _DBH = -1; // dbg FH set -1 for nop --set to 2 for error output;
 
 <<"%V $dblevel  $_dblevel\n"
 Str _My_script = getScript()
@@ -50,9 +50,12 @@ Str _Usage = " ... "
 // if there are errors keep  idb,xdb file in .GASP/WORK/Debug
 // will be overwritten by scripts  unless unique/local options used
 
-DB_prompt = "go_on? : [y,n,q]"
-DB_action = 1 ;
+DB_prompt = "go_on? : [y,n,!q]"
 
+int DB_action = 1;
+int DB_ask = 0;
+int DB_allow = 0;
+int DB_step = 0;
 
 //[EP]==========================
 
@@ -74,14 +77,6 @@ DB_action = 1 ;
       _dblevel = 0;
     }
 
- 
-
-
-//<<"%V $_DBH ALLOWALL debug from files and funcs\n"
-//<<"use filterFuncDebug() filterFileDebug() to control\n"
-//sdb(dblevel,_keep,_~pline,_trace)
-//filterFuncDebug(ALLOWALL_,"xxx");
-//filterFileDebug(ALLOWALL_,"yyy");
 
   setmaxcodeerrors(-1); //  unlimited
 

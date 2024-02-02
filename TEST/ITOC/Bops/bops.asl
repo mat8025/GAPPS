@@ -79,8 +79,10 @@
 
   for (i=0; i<argc; i++) {
     argv[i] =  _clarg[i]
+    <<"$i $_clarg[i] \n"
   }
 
+//ans=ask("?? $argc",1)
  allowErrors(-1)
 
  chkIn(_dblevel)

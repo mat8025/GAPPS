@@ -15,15 +15,20 @@
 ///  subrange vector assign
 ///
 
-   chkIn(_dblevel);
+#include "debug"
+
+   if (_dblevel >0) {
+
+     debugON();
+
+     }
+
+    DB_action = 1;
+
+   chkIn (_dblevel);
 
 
 
-   int L[24];
-
-
-
-  L.pinfo()
 
 
 void Hey(int V[])
@@ -44,18 +49,26 @@ void Hey(int V[])
 }
 //==========================
 
+if (_dblevel) {
+ allowDB("spe,opera_,array_parse,rdp_,ds,ic_")
+}
 
-//==========================
+
+
+   int L[24];
+
+
+   L.pinfo()
 
    I = Vgen(INT_,40,0);
 
-   pinfo(I);
+   I.pinfo()
 
    
 
    I[5:8] = 10;
 
-   pinfo(I);
+   I.pinfo()
 
    chkR(I[0],0);
 

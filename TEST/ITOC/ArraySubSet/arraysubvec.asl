@@ -1,16 +1,16 @@
 /* 
- *  @script array_subvec.asl 
+ *  @script arraysubvec.asl                                             
  * 
- *  @comment test array range subscript via vector 
- *  @release CARBON 
- *  @vers 1.3 Li Lithium [asl 6.3.60 C-Li-Nd] 
- *  @date 11/19/2021 07:55:53          
- *  @cdate 1/1/2010 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
+ *  @comment test array range subscript via vector                      
+ *  @release Boron                                                      
+ *  @vers 1.4 Be Beryllium [asl 5.80 : B Hg]                            
+ *  @date 02/02/2024 06:52:36                                           
+ *  @cdate 1/1/2010                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
  * 
- *  \\-----------------<v_&_v>--------------------------//  
  */ 
+
 
 
 <|Use_=
@@ -20,10 +20,7 @@
 ///////////////////////
 |>
 
- // filterFileDebug(REJECT_,"array_parse","~store","args_");
-//  filterFileDebug(REJECT_,"array_parse");
- // filterFileDebug(ALLOW_,"array_parse");
-  filterFileDebug(REJECT_,"array_parse");
+
 #include "debug"
 
    if (_dblevel >0) {
@@ -36,10 +33,39 @@
 
 
 
-
-
    chkIn(_dblevel);
 // test array indexing
+  if (_dblevel > 1) {
+   allowDB("spe,opera_,array_parse,rdp_,ds,ic_")
+ }
+
+   int P[5];
+
+    P.pinfo()
+
+    sz= P.Caz();
+
+<<"%V $sz\n"
+
+   ans=ask(DB_prompt,0)
+
+    chkN(sz,5)
+
+int PMD[4][3]
+
+    sz= PMD.Caz();
+
+<<"%V $sz\n"
+chkN(sz,12)
+
+   ans=ask(DB_prompt,0)
+   
+    chkStage("int P[5 OK? ") ;  // parameter to exit , pause ?
+
+    
+    
+
+
 
    N = 20;
 
@@ -51,7 +77,7 @@
 
    <<"%V$vi\n";
 
-   int P[5];
+
 
    P[0] = 1;
 
@@ -65,18 +91,19 @@
 
    <<"%V$P\n";
 
+
+
    int G[]={P,12,13};
 
    sz= G.Caz();
 
-<<"%V$sz\n"
-
+   <<"%V$sz\n"
 
   <<"%V$G\n";
 
    chkN(sz,7)
 
-  int R[]={12};
+  int R[3]={12};
 
   <<"%V$R\n";
 
@@ -123,7 +150,10 @@
   chkN(S[4],YV[10]);
 
   chkN(S[5],YV[12]);
-  
+
+
+
+
 // even better
 // try recurse
 /*

@@ -31,7 +31,7 @@ class Simple {
  int sa;
  str pn;
 
- cmf Print()
+ void Print()
   {
     <<"$sa\n"
    pn = pt(sa)
@@ -39,20 +39,20 @@ class Simple {
   }
 
 
- cmf Set (int val)
+ void Set (int val)
   {
      sa = val;
 
   }
 
- cmf Get ()
+ int Get ()
   {
-     //sa->info(1);
-     sa<-pinfo();
+     
+     sa.pinfo();
      return sa;
   }
 
- cmf Getlocalpv ()
+ int Getlocalpv ()
   {
      int new_sa;
      new_sa = sa+1;
@@ -60,15 +60,13 @@ class Simple {
      return new_sa;
   }
 
-  cmf Simple()
-
+  void Simple()
   {
     
     sa = 19;
     <<"%V$sa\n"
     pn = pt(sa)
    <<"$pn"
-    
   }
 
 }
@@ -78,93 +76,82 @@ class Simple {
  Simple S;
 
 
- S->Set(67)
+ S.Set(67)
 
- S->Print();
+ S.Print();
 
- val = S->Get();
+ val = S.Get();
 
  chkN(val,67);
- 
-!p val
 
+ S.Set(71)
 
-
- S->Set(71)
-
- S->Print();
+ S.Print();
 
 mval = 63;
 
 
- S->Set(mval)
+ S.Set(mval)
 
- S->Print();
+ S.Print();
 
-nval = S->Get()
+nval = S.Get()
 
-!i nval
+//!i nval
 
 
 Simple oa[5];
 
 mval = 37;
 
- oa[1]->Set(mval)
+ oa[1].Set(mval)
 
-nval = oa[1]->Get()
+nval = oa[1].Get()
 
-!i nval
+  nval.pinfo()
 
 mval = 79
- oa[3]->Set(mval)
+ oa[3].Set(mval)
 
-nval = oa[3]->Get()
+nval = oa[3].Get()
 
-!i nval
+ nval.pinfo()
 
 
 mval = 82
 wo = 4;
- oa[wo]->Set(mval)
+ oa[wo].Set(mval)
 
-nval = oa[wo]->Get()
+nval = oa[wo].Get()
 
-!p wo
-!i nval
 
-nval = oa[wo]->Getlocalpv()
+nval = oa[wo].Getlocalpv()
 
-!p wo
-!i nval
+
 
 mval = 33
 wo = 2;
- oa[wo]->Set(mval)
 
-nval = oa[wo]->Get()
+oa[wo].Set(mval)
 
-!p wo
-!i nval
+nval = oa[wo].Get()
 
-nval = oa[wo]->Getlocalpv()
 
-!p wo
-!i nval
+nval = oa[wo].Getlocalpv()
+
 
 mval = 33
 wo = 3;
 
- oa[wo]->Set(34)
+ oa[wo].Set(34)
 
-nval = oa[wo]->Get()
+nval = oa[wo].Get()
 
-!p wo
-!i nval
 
-nval = oa[wo]->Getlocalpv()
+nval = oa[wo].Getlocalpv()
 
-!i nval
+nval.pinfo()
 
 
 chkOut()
+

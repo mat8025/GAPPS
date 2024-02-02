@@ -46,6 +46,7 @@ void outcome (Str title)
 Ks = 0
 void snooze(int ksn)
 {
+<<" %V $ksn \n"
 Ks = 0
   for (ks = 0; ks < ksn; ks++) {
     Ks++
@@ -335,11 +336,11 @@ int _DBH = -1
   blue= PGREEN ;
 //<<"%V $pcc\n"
 if ((pcc < 100)  && (pcc >= 90)) {
- <<"\t$(PBLUE)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs $(POFF_)\n\n"
+ <<"\t$(PGREEN)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs $(POFF_)\n\n"
 }
 else if ((pcc < 90) && (pcc >= 70) ){
 
-<<"\t$(PPURPLE)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs \033[0m \n\n"
+<<"\t$(PBLUE)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs \033[0m \n\n"
 }
 else if (pcc < 70) {
 

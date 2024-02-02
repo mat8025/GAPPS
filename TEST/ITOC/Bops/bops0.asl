@@ -15,6 +15,7 @@
 
 
 #define _CPP_ 0
+#define _ASL_ 1
 
 #if _CPP_
 #include "cpp_head.h" 
@@ -40,7 +41,7 @@ Str Use_= " Demo  of basic ops ";
   if (_dblevel >0) { 
    debugON() 
    <<"$Use_ \n" 
-} 
+  } 
 
    allowErrors(-1); // set number of errors allowed -1 keep going 
 
@@ -48,7 +49,7 @@ Str Use_= " Demo  of basic ops ";
 
   chkT(1);
 
-  allowDB("spe,opera")
+  allowDB("spe,opera,ds,rdp")
  #endif
 
 

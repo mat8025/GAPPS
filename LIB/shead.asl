@@ -12,7 +12,7 @@
  */ 
 //----------------<v_&_v>-------------------------//                 
 
-allowDB("spe_proc")
+allowDB("spe")
    
    Str vers2ele(Str& vstr)
    {
@@ -235,6 +235,7 @@ if (is_asl_script) {
 <<[A]"\n"
 
 <<[A]"\n#define _CPP_ 0\n"
+<<[A]"\n#define _ASL_ 1\n"
 
 <<[A]"\n\n#include \"debug\" \n\n"
 

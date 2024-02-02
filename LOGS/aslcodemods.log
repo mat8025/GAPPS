@@ -1981,3 +1981,5 @@ array_subset.cpp                    2.82  01/30/2024 11:51:30  VMF mods
 vmf_l.cpp                           1.74  01/30/2024 11:52:36  cpy mods
 vsh_cw.cpp                          1.78  01/30/2024 22:51:02  !q for quit program
 oo_class_mbr.cpp                    2.44  01/30/2024 22:53:20  varGetClassMember  just check global 
+ds_sivarray.cpp                     2.79  02/02/2024 00:19:43  setArrayNDB
+spe_scopesindex.cpp                 2.90  02/02/2024 00:20:56  svar offset expand check bounds correct

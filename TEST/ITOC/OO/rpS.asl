@@ -235,16 +235,16 @@ allowDB("spe_exp,opera")
 
   chkN(x2,res); 
 
-  chkOut()
+  chkStage("cmf + scalar OK?")
 
-  exit(-1)
+
    
   <<"%V $DSr $res\n"
 
    chkN(DSr,res); 
 
 
-  // y=DS.setrooms(BS.getrooms() + CS.setrooms(checkRooms(AS.getrooms()))) ;
+
 
 y1=AS.getrooms();
 y2= CS.setrooms(AS.getrooms());
@@ -252,9 +252,13 @@ y3 = BS.getrooms();
 y4 = DS.setrooms(y3+y2);
 
 
+
+
+y5 =DS.setrooms(BS.getrooms() + CS.setrooms(checkRooms(AS.getrooms()))) ;
+
 y=DS.setrooms(BS.getrooms() + CS.setrooms(AS.getrooms())) ;
 
-<<"%V $y $y1 $y2 $y3 $y4 \n"
+<<"%V $y $y1 $y2 $y3 $y4 $y5\n"
 
 
    chkN(y,y4); 

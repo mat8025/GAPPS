@@ -1,24 +1,18 @@
 /* 
- *  @script mdele.asl 
+ *  @script mdele.asl                                                   
  * 
- *  @comment test multi dimn ele access 
- *  @release CARBON 
- *  @vers 1.16 S Sulfur [asl 6.3.50 C-Li-Sn] 
- *  @date 08/29/2021 06:37:58 
- *  @cdate 1/1/2001 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
+ *  @comment test multi dimn ele access                                 
+ *  @release Boron                                                      
+ *  @vers 1.17 Cl Chlorine [asl 5.80 : B Hg]                            
+ *  @date 02/02/2024 11:55:29                                           
+ *  @cdate 1/1/2001                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
  * 
- *  \\-----------------<v_&_v>--------------------------//  
  */ 
-                                                                          
 
 
-
-
-
-
-
+Str Use_ = "Demo  of MD ele/range selection"
 
 
 #include "debug"
@@ -28,21 +22,79 @@ if (_dblevel >0) {
      
 }
 
-showUsage("Demo  of MD ele/range selection")
+
+// test array indexing
+  if (_dblevel > 1) {
+  allowDB("spe,opera_,array_parse,rdp_,ds,ic_")
+ }
 
 
+ allowErrors(-1);
  chkIn (_dblevel)
 
- ask =0
+
  int HT[10][10]
 
+ HT.pinfo()
+
+<<" $HT \n"
+
+ HT[3][1] = 89
+
+//<<" $HT \n"
+
+
+ HT.pinfo()
+
  HT[0][0] = 0
- HT[0][5] = 5
+
+ HT[0][2] = 2 
+ HT[0][3] = 3
+
+ HT[1][2] = 12
+ HT[2][2] = 13 
+
+<<" $HT \n"
+
+ HT.pinfo()
+
+ ele = HT[3][1]
+ <<"%V $ele \n"
+ 
+  chkN(ele,89)
+
+  //chkOut(1)
+
+
+/////////////////////////////////////////////////////////////////////////
+
+
  HT[0][7] = 7
+ HT[1][1] = 11
+ HT[1][2] = 12 
+
+// TBF 02/02/24 indexing corrupts  bounds ND  
+
+ HT.pinfo()
+
+<<"%V $HT \n"
+ans=ask(DB_prompt,0)
+
 
  HT[1][1] = 10
  HT[1][5] = 15
  HT[1][7] = 17
+
+ ele = HT[1][7]
+ chkN(ele,17)
+
+ ele = HT[0][0]
+ chkN(ele,0)
+
+
+
+ // chkOut(1)
+  
 
 val = 21;
   for (k = 1; k <=7; k++) {
@@ -101,14 +153,17 @@ HT.pinfo()
   cele=  HT[1][7]
 
 <<"%V$cele \n"
- fileDB(ALLOW_,"spe_exp,rdp_store,array_parse,array_transfer,paramexpand,parrayexpand,ds_sivbounds")
+ //allowDB("spe_exp,rdp_store,array_parse,array_transfer,paramexpand,parrayexpand,ds_sivbounds")
+ 
 //CT= HT
 //CT.pinfo()
 
-askit(ask)
-CT = HT[1:8:][1:7:]    ;  // TBF not selecting 2D vec correctly
-CT.pinfo()
-askit(ask)
+
+ CT = HT[1:8:][1:7:]    ;  // TBF not selecting 2D vec correctly
+
+ CT.pinfo()
+
+ ans=ask(DB_prompt,0)
 
 //<<"HT $(Caz(HT)) $(Cab(HT)) \n"
 //<<"CT $(Caz(CT)) $(Cab(CT)) \n"

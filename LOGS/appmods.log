@@ -467,3 +467,5 @@ classmfcall.asl          1.4	01/29/2024 15:24:43 test revise OO
 poffset.asl              1.2	01/31/2024 07:56:45 ask
 rpS.asl                  1.4	01/31/2024 15:52:16 DB
 rp2.asl                  1.3	01/31/2024 15:58:42 Cmf type
+arraysubvec.asl          1.4	02/02/2024 06:52:36 DB
+mdele.asl                1.17	02/02/2024 11:55:29 DB updae

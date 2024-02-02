@@ -736,11 +736,13 @@ if ((do_all || do_array ) && (do_array != -1)) {
 
    RunDirTests("VVcopy","range_copy,vvcopy")
 
-   RunDirTests("ArraySubSet","arraysubset,array_subvec,array_subsref,arraysubscbyvec,array_ele_incr,vdec")
+   RunDirTests("ArraySubSet","arraysubset,arraysubvec")
+
+  RunDirTests("ArraySubSet","array_subsref,arraysubscbyvec,array_ele_incr,vdec")
 
    RunDirTests("Array","ae,arraycmp,arrayele")
 
-   RunDirTests("Array","dynarray,lhe,vec_cat,array_sr,md_ele,vsp")
+   RunDirTests("Array","dynarray,lhe,vec_cat,array_sr,mdele,vsp")
 
    RunDirTests("ArrayRange","arrayrange,array_subsrange,lhrange")
 

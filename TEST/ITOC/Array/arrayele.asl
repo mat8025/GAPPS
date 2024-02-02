@@ -20,9 +20,11 @@
 
      }
 
-    DB_action = 1;
+
 
    chkIn (_dblevel);
+
+
 
    int main_chk = 0;
 
@@ -125,6 +127,8 @@
      float t1;
 
      float t2;
+     float t3;
+     
 //  <<"%V$rl \n";
      int jj = 0;
      t1 = rl[2];
@@ -137,8 +141,9 @@
 //  <<"%6.2f%V$t1\n";
 
      <<"$(Caz(t1))\n";
-
-
+if (DB_allow) {
+ allowDB("spe,opera_,array_parse,rdp_,ds")
+}
      int k = 5;
 
      t2 = rl[k];
@@ -152,9 +157,12 @@
      j2 = 6;
 
      rl.pinfo()
-
+     j1.pinfo()
+     
      t3 = rl[j1] ;
 
+     t3.pinfo()
+     <<"%V $j1   \n";
      <<"%V %6.2f $t3  \n";
      chkR (t3, 4);
 
@@ -164,15 +172,14 @@
 
      chkR (t3, 6);
 
+ans=ask(DB_prompt,DB_ask)
 
-
- allowDB("opera_,array_parse,rdp_,ds_store")
 
      t3 = rl[j1] - rl[j2];
 
      <<"%V %6.2f $t3  \n";
 
-//ans=ask(DB_prompt,DB_action)
+//
 
      <<"$(Caz(t3))\n";
 
@@ -536,7 +543,7 @@
      }
 //----------------------------
 
-   proc fooey(float rl[])
+   void fooey(float rl[])
    {
 
      <<"%I$rl   $(Caz(rl))\n";
@@ -583,6 +590,7 @@
      <<"$rl\n";
 
      }
+     //EP////////////////////////////////////////////
 
    Re = fgen(10,10,1);
 
