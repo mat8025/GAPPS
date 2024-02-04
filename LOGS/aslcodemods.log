@@ -1983,3 +1983,8 @@ vsh_cw.cpp                          1.78  01/30/2024 22:51:02  !q for quit progr
 oo_class_mbr.cpp                    2.44  01/30/2024 22:53:20  varGetClassMember  just check global 
 ds_sivarray.cpp                     2.79  02/02/2024 00:19:43  setArrayNDB
 spe_scopesindex.cpp                 2.90  02/02/2024 00:20:56  svar offset expand check bounds correct
+str_sop.cpp                         1.99  02/02/2024 17:27:48  rework dewhite
+str_sop.cpp                         1.99  02/02/2024 17:28:41  rework dewhite
+rdp_tokget.cpp                      1.77  02/03/2024 12:28:37  tokresult sanity checks
+rdp_l6.cpp                          1.67  02/03/2024 12:29:04  tokresult sanity checks
+spe_args_process.cpp                2.53  02/03/2024 23:37:01  CHAR vid_sap  set as V_SCALAR

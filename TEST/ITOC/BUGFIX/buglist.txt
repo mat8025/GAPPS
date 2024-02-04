@@ -197,6 +197,18 @@ fix:
 
 tbd: check nested loops
 //==========================
+#num 107 02/03/24  5.80 6 PENDING
+descr:
+if ((do_all || do_lists ) && (do_lists != -1)) { }
+generates error msg
+ERROR ln 28 Bad tokresult  @ if ((do_all || do_lists ) && (do_lists != -1)) {
+
+fix:
+rdp_tokget - was checking tokresult before set from l6
+
+
+tbd: rdp parser needs revision for sanity checks
+//==========================
 
 
 

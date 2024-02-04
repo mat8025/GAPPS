@@ -1,16 +1,16 @@
 /* 
- *  @script obprocarg.asl 
+ *  @script obprocarg.asl                                               
  * 
- *  @comment test obj proc arg 
- *  @release CARBON 
- *  @vers 1.3 Li Lithium [asl 6.3.61 C-Li-Pm] 
- *  @date 11/20/2021 10:52:27          
- *  @cdate 1/1/2003 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
+ *  @comment test obj proc arg                                          
+ *  @release Boron                                                      
+ *  @vers 1.4 Be Beryllium [asl 5.81 : B Tl]                            
+ *  @date 02/04/2024 00:08:46                                           
+ *  @cdate 1/1/2003                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
  * 
- *  \\-----------------<v_&_v>--------------------------//  
  */ 
+
                                                                 
 
 <|Use_=
@@ -143,42 +143,42 @@
 
      <<" $_proc $_cobj \n";
 
-     <<"fruit thine name is $oba->name \n";
+     <<"fruit thine name is $oba.name \n";
 
      <<" after oba name \n";
      int k = 47;
      float d = exp(1);
      <<"$k $d\n";
 
-     oba->print();
+     oba.print();
 
-     oba->isEdible(1);
+     oba.isEdible(1);
 /*
-     ans = iread (" is $oba->name edible ? y/n:");
+     ans = iread (" is $oba.name edible ? y/n:");
      if (ans @="y") {
-       oba->isEdible(1);
+       oba.isEdible(1);
        }
      else {
-       oba->isEdible(0);
+       oba.isEdible(0);
        }
 */ 
 
-     oba->print();
+     oba.print();
 
-     obc = oba->color;
+     obc = oba.color;
      
      //locfruit = &oba;  // locfruit is a ptr to passed in fruit;
      // sclass proc args are always ptrs to objs 
 //   BUG - ptr to ptr assignment 11/22/21
 
-     oba.info()
+     oba.pinfo()
 
      locfruit = &oba;  // means locfruit is a ptr to passed in fruit;
      // locfruit = oba ; // should be the same 
-     locfruit.info()
+     locfruit.pinfo()
 
-     locfruit->print();
-     locc = locfruit->color;
+     locfruit.print();
+     locc = locfruit.color;
 
 <<"%V$obc $locc\n"
     chkStr(obc,locc);
@@ -192,7 +192,7 @@
    proc objcopy(fruit oba,  fruit obb)
    {
 
-     <<" copying $obb->color to $oba->color \n";
+     <<" copying $obb.color to $oba.color \n";
 
      int k = 47;
 
@@ -200,11 +200,11 @@
 
      <<"$k $d\n";
 
-     oba->x = obb->x;
+     oba.x = obb.x;
 
-     oba->y = obb->y;  // y is private - should object;
+     oba.y = obb.y;  // y is private - should object;
 
-     oba->color = obb->color;
+     oba.color = obb.color;
 
      }
 ///
@@ -220,26 +220,26 @@
 
    <<" after object declaration !\n";
 
-   apple->print();
+   apple.print();
 
    <<"$(examine(apple))\n";
 # set some object memebers
 
    <<" doing class member assign \n";
 
-   apple->x = 8;
+   apple.x = 8;
 
-   <<" %V  $apple->x \n";
+   <<" %V  $apple.x \n";
 
-   apple->set_y(5);
+   apple.set_y(5);
 
-   apple->color = "green";
+   apple.color = "green";
 
-   apple->name = "Apple";
+   apple.name = "Apple";
 
-   <<" %v $apple->color \n";
+   <<" %v $apple.color \n";
 
-   apple->print();
+   apple.print();
 
 <<" eat via ref arg \n"
 
@@ -252,19 +252,19 @@
 
    <<" after object declaration of $cherry !\n";
 
-   <<"%V $cherry->color \n";
+   <<"%V $cherry.color \n";
 
-   cherry->x = 77;
+   cherry.x = 77;
 
-   cherry->color = "black";
+   cherry.color = "black";
 
-   cherry->isEdible(1);
+   cherry.isEdible(1);
 
-   cherry->x = 76;
+   cherry.x = 76;
 
-   cherry->name = "Cherry";
+   cherry.name = "Cherry";
 
-   cherry->print();
+   cherry.print();
 /////////////////////////////////////////
 
    fruit orange;
@@ -273,50 +273,50 @@
 
    <<"$(examine(orange))\n";
 
-   orange->set_y(7);
- // orange->set_color("orange")
+   orange.set_y(7);
+ // orange.set_color("orange")
 
-   orange->color = "orange";
+   orange.color = "orange";
 
-   orange->name = "Orange";
+   orange.name = "Orange";
 
-   <<" %v $orange->color \n";
+   <<" %v $orange.color \n";
 
-   orange->isEdible(1);
+   orange.isEdible(1);
 
-   orange->print();
+   orange.print();
 
-   <<" %V$orange->color \n";
+   <<" %V$orange.color \n";
 
-   <<" %V$apple->color \n";
+   <<" %V$apple.color \n";
 
-   <<" %V $cherry->color \n";
+   <<" %V $cherry.color \n";
 
-   <<" %V $apple->color \n";
+   <<" %V $apple.color \n";
 
-   apple->color = "blue";
+   apple.color = "blue";
 
-   <<"%V$apple->color \n";
+   <<"%V$apple.color \n";
 
-   <<" setting $cherry->color  to $apple->color \n";
+   <<" setting $cherry.color  to $apple.color \n";
 
-   cherry->color = apple->color;
+   cherry.color = apple.color;
 
-   <<"%V$cherry->color \n";
+   <<"%V$cherry.color \n";
 
-   chkStr(cherry->color,"blue");
+   chkStr(cherry.color,"blue");
 
-   <<"fruit thine name is $apple->name \n";
+   <<"fruit thine name is $apple.name \n";
 
    <<" obj now copy orange apple \n";
 
-   apple->color = "green";
+   apple.color = "green";
 
-   orange->color = "orange";
+   orange.color = "orange";
 
-   apple->print();
+   apple.print();
 
-   orange->print();
+   orange.print();
 // use ref - objs   are not treated like arrays ??
 
    <<"$(examine(apple))\n";
@@ -335,56 +335,56 @@
    eat(&apple);
 //  objcopy( orange, apple)
 
-   apple->print();
+   apple.print();
 
-   orange->print();
+   orange.print();
 
    eat(orange);
 
-   chkStr(orange->color,"green");
+   chkStr(orange.color,"green");
 
-   chkStr(apple->color,"green");
+   chkStr(apple.color,"green");
 
-   chkStr(apple->color,orange->color);
+   chkStr(apple.color,orange.color);
 
-   orange->color = "orange";
+   orange.color = "orange";
 
-   orange->print();
+   orange.print();
 
-   apple->color = orange->color;
+   apple.color = orange.color;
 
-   chkStr(apple->color,"orange");
+   chkStr(apple.color,"orange");
 
-   apple->color = "blue";
+   apple.color = "blue";
 
-   chkStr(apple->color,"blue");
+   chkStr(apple.color,"blue");
 
-   apple->print();
+   apple.print();
 
-   apple->color = "red";
+   apple.color = "red";
 
-   cherry->color = "black";
+   cherry.color = "black";
 
-   <<" %V $apple->color \n";
+   <<" %V $apple.color \n";
 
-   <<" %I $apple->color \n";
-//<<" %I$orange->color \n"
-//<<" %I$cherry->color \n"
+   <<" %I $apple.color \n";
+//<<" %I$orange.color \n"
+//<<" %I$cherry.color \n"
 
-   apple->print();
+   apple.print();
 
-   cherry->print();
+   cherry.print();
 
-   apple->color = "green";
-//<<" %I$apple->color \n"
+   apple.color = "green";
+//<<" %I$apple.color \n"
 
    eat(&cherry);
 
-   apple->print();
+   apple.print();
 
-   cherry->print();
+   cherry.print();
 
-   orange->print();
+   orange.print();
 
    chkOut();
 /*

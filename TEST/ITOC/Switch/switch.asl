@@ -445,9 +445,13 @@
 
    char ca = ':';
 
+//allowDB("spe,ds,oo_")
+
    rn = foo(ca);
 
    <<"%V$rn\n";
+
+
 
    pf=chkN(rn,':');
 
@@ -511,6 +515,10 @@
    rn = foo(c);
 
    <<"%V$rn \n";
+
+
+//wdb=DBaction((DBSTEP_| DBSTRACE_),ON_)
+
 
    rn = foo(':');
 

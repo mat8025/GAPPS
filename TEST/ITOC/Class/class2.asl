@@ -32,6 +32,7 @@
   <<"$Usage_\n";
 
 DB_action = 0;
+int db_step = 0; // set to zero for no step
 
  Str pset(str val, int wf)
   {
@@ -55,7 +56,7 @@ DB_action = 0;
 
 <<"%V $lyons \n"
 
-//ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
+ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
 
 
 
@@ -321,6 +322,11 @@ Arec T;
 
   chkStr(what,"Do what I say");
 
+
+//////////////////////////////////////////////////
+wdb=  DBaction((DBSTEP_),db_step)
+<<"$wdb \n"
+
   class Turnpt {
 
   public:
@@ -333,19 +339,24 @@ Arec T;
 
   void Tset (Svar wval)
   {
-//wval<-pinfo()
+
+    wval.pinfo()
 //<<"%V $wval[::]\n"
-//<<"0 <|$wval[0]|>\n"
-//<<"1 <|$wval[1]|>\n"
-//<<"2 <|$wval[2]|>\n"
+// TBF 2/2/24  only refers to first field
+
+<<"0 <|$wval[0]|>\n"
+<<"1 <|$wval[1]|>\n"
+<<"2 <|$wval[2]|>\n"
 
   Str val;
 
   <<"cmf %V $_scope $_cmfnest $_proc $_pnest\n";
 
   val = dewhite(wval[0]);
-//val.info(1)
-//<<"%V$val  \n"
+
+  val.pinfo()
+
+  <<"%V $val  \n"
 
   val = scut(val,1);
 
@@ -367,7 +378,16 @@ Arec T;
 
   SV = split("one day at 40.09 105.09 dude");
 
-  <<"%V$SV\n";
+  <<"%V$SV \n";
+  sz= SV.Caz();
+
+<<"%V $sz\n"
+
+  <<"%V $SV[1] \n"
+  <<"%V $SV[2] \n"
+  
+
+  //allowDB("spe,opera_,array,rdp_,ds,ic,oo")
 
   Wtp[1].Tset(SV);
 

@@ -39,7 +39,7 @@
    chkIn (_dblevel);
 
    allowErrors(-1)
-echolines(0)
+   echolines(0)
    ok = 1;
    
    int showVec(int vect[], int j, int k)
@@ -411,9 +411,9 @@ w.pinfo()
      <<"%V $acalc.x  $w\n";
 
 ans=ask("2 acalc.mul  [y,n]",db_ask);
-if (ans == "y") {
-DBaction((DBSTEP_|DBSTRACE_),ON_)
-}
+ if (ans == "y") {
+   DBaction((DBSTEP_|DBSTRACE_),ON_)
+ }
 z = acalc.mul(c,d);
 
      ok=chkN(z,8);
@@ -642,14 +642,16 @@ class Instrum
  
 };   
 
+int Showmxy_cnt = 0;
 
 float ShowMxy(Instrum wins[],int j, int k)
-  {
+{
 
-  <<"$_proc  $j $k\n";
-  pinfo(j);
+Showmxy_cnt++;
+  <<"$_proc  $j $k $Showmxy_cnt\n";
+  j.pinfo()
 
-  pinfo(wins);
+  wins.pinfo();
 
 
   float x = -1;
@@ -657,12 +659,14 @@ float ShowMxy(Instrum wins[],int j, int k)
   x.pinfo();
   
   x = wins[j].mx;
-
+   <<"%V $x  \n";
   y = wins[k].my;
 
-<<"%V $x $y \n";
+   <<"%V $x  \n";
+   
    <<" $VB_ins[j].mx   $VB_ins[k].my\n";
-  return y;
+
+return y;
 }
 
 float sx;
@@ -790,6 +794,13 @@ float gmx;
      gmx.pinfo();
 
 
+ans=ask("ShowMxy  debug? [y,n]",0);
+if (ans == "y") {
+  wdb=  DBaction((DBSTEP_),ON_)
+  <<"$wdb \n"  
+allowDB("ic_,oo_,spe_proc,spe,array")
+//DBaction((DBSTEP_|DBSTRACE_),ON_)
+}
 
      gmx = ShowMxy(VB_ins,j1, k1);
 <<"%V $gmx\n"
@@ -800,8 +811,12 @@ float gmx;
 
      j1++;
      k1++;
+     
+
+
 
      gmx= ShowMxy(VB_ins,j1, k1);
+     
 <<"%V $gmx\n"
 
 
@@ -811,11 +826,12 @@ float gmx;
 
 
 
-//pinfo(gmx);
-
     gmx = ShowMxy(VB_ins,j1+1, k1+1);
+
+    gmx.pinfo();
+
 <<"%V $gmx\n"
-//pinfo(gmx);
+
 
  ok = chkN(gmx,-1.0,GT_)
 
@@ -831,9 +847,9 @@ float gmx;
 <<"%V $ok \n"
 
 
-     chkOut();
+     chkOut(1);
 
-exit(-1);
+
 //////////////////////////////////////////////////
 
      svar S;

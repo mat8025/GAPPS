@@ -23,7 +23,7 @@ if (_dblevel >0) {
 
 chkIn(_dblevel); 
 
-int db_ask = 1; // set to zero for no ask
+int db_ask = 0; // set to zero for no ask
 int db_step = 1; // set to zero for no step
 
 

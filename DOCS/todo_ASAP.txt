@@ -1,0 +1,32 @@
+////
+///    TODO items - immediate
+///
+
+#  Num   Description   Date_IN   Status   Date_DONE
+
+ 1.  sbump fix    12/32/23 - DONE 2/3/24
+
+ 2.  dbp  break file,line Svar table 12/32/23
+
+ 3. bakgapps   baksi  DONE 2/3/24  
+
+ 4. bakgw 2/3/24
+
+ 5. chkOut(1)  CPP version  2/3/24
+
+ 6. auto_dec  CPP translate asl -T   c= 2  ==>  int c= 2;   2/3/24
+
+ 7.  try  broke  2/3/24
+
+ 8.  ASL_TEST_VER  pass%    2/3/24
+
+ 9.  switch  broke  2/3/24
+
+ 10.  PUSH_OBJELE  when siv is a PTR to an OBJ  2/3/24  TBC
+
+
+
+
+
+
+
