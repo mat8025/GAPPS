@@ -12,7 +12,7 @@
  */ 
 
 
-
+#define _ASL_ 1
 
 #define _CPP_ 0
 
@@ -45,7 +45,7 @@
 #if _TRANS_
 
   Svar argv
-  
+//  allowDB("spe,rdp")
   argc = argc()  ;  // want this to be evaluated  in translation
                           // but  not to be compiled  by cpp
 			  // or interpreted by asl
@@ -74,13 +74,10 @@
 
 <<"%V $argc \n"
 
-//ans=query(" argc $argc continue? :[y/n]") ;   if (ans != "y")    exit(-1) ;
+//ans=query(" argc $argc continue? :[y/n]") ;
+//f (ans != "y")    exit(-1) ;
 //<<"%V $ans \n"
 
-  for (i=0; i<argc; i++) {
-    argv[i] =  _clarg[i]
-    <<"$i $_clarg[i] \n"
-  }
 
 //ans=ask("?? $argc",1)
  allowErrors(-1)
@@ -119,6 +116,7 @@ int main( int argc, char *argv[] ) { // main start
 
   i = 0 
 
+//ans = ask(" $i [yes,no]",1);
 
   if (argc >= 1) {
 
@@ -133,7 +131,8 @@ int main( int argc, char *argv[] ) { // main start
      break 
 
      }
- // <<"%V $i\n"
+  <<"%V $i\n"
+//  ans = ask(" $i [yes,no]",1);
 
    }
 
@@ -165,7 +164,7 @@ Str ans = " weird "
 <<"%V $dv $ds $dt $adt \n"
   
 //  ans = query(" cos/sin/tan   continue? :[y/n]") ;
-
+//allowDB("spe,rdp")
   int ab = 2 + 3 
 
   <<"%V$ab\n" 
@@ -497,13 +496,17 @@ Str ans = " weird "
 
 //  Vec<double> fv(10)
 
+//allowDB("spe,rdp")
+//DBaction((DBSTEP_),ON_)
   float fv[10]
 
-  for (i=0;i<10;i++)
+  for (i=0;i<10;i++) {
      fv[i] = i
-
+<<"$i $fv[i] \n"
+  //  ans = ask(" $fv[i] [yes,no]",1);
+  }
 //  fv.pinfo() 
-
+//DBaction((DBSTEP_),OFF_)
   <<"$fv \n" 
 
   fv[0] = -32 

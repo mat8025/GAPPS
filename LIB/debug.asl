@@ -66,7 +66,7 @@ int DB_step = 0;
   <<" $_proc called if invalid proc name\n";
 
   }
-//==========================
+//[EP]==========================
 
   void debugON()
   {
@@ -82,16 +82,22 @@ int DB_step = 0;
 
   setmaxicerrors(-1);
 
-//  _DBH =2;
+   _DBH =2;
 
-
-   _DBH=ofw("${_script}.err");
-  <<[_DBH]"Script is $_script\n";
+ <<[_DBH]"Script is $_script\n";
 
   }
-//==========================
 
-  void debugOFF()
+//[EP]==========================
+void errorFile()
+{
+   _DBH=ofw("${_script}.err");
+  <<[_DBH]"Script is $_script\n";
+}
+
+//[EP]==========================
+
+void debugOFF()
   {
 
   setdebug(-1,_~pline,_~step,_~trace,_~showresults,1);

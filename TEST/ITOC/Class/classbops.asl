@@ -36,7 +36,6 @@ chkIn(_dblevel);
    DB_action = 0
 
 
-
   double x1;
 // wdb=DBaction((DBSTEP_| DBSTRACE_),ON_)
   x1.pinfo();
@@ -780,17 +779,13 @@ chkR(my3,my2,3);
 
 <<"checking out \n":
 
-  chkOut(); 
-
-
-
-//  exit(-1)
+  chkOut(1); 
 
 
 
 /*  
 /// TBD ///////////
-/// still have to chk this  gives correct answer  for
+/// still have to check this  gives correct answer  for
 ///
 //  A.x     - done
 //  A.Getx() - done

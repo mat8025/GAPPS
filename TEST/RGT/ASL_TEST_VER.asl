@@ -1040,7 +1040,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
     RunSFtests("Fio,Sscan,Scpy,Fscanf,Bscan,Cut,Cmp,Sel,Shift,Median,Findval,Lip");
     
 
-   RunSFtests("Pow,Minof,Maxof,Ftest,Convert,Return,Dec2,Pincdec,Rowzoom");
+   RunSFtests("Ltm,Pow,Minof,Maxof,Ftest,Convert,Return,Dec2,Pincdec,Rowzoom");
 
    RunSFtests("Quicksort,Readfile,Skeyval,ReadRecord,Icall");
 

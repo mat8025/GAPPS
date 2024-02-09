@@ -58,7 +58,7 @@
 /////////////////////
 #  method list
 
-     cmf print () {
+     void print () {
  //<<" %V $id $color $x\n $y\n $z\n edible $(Yorn(edible))  \n"
 //    str yt;
 
@@ -69,7 +69,7 @@
 
        }
 
-     cmf set_y (int val) {
+     void set_y (int val) {
 
        <<" setting y to $val \n";
 
@@ -77,15 +77,15 @@
 
        }
 
-     cmf get_x() {
+     int get_x() {
 
        <<" $_proc returning  $x \n";
 
-       return y;
+       return x;
 
        }
 
-     cmf get_y() {
+     int get_y() {
 
        <<" $_proc returning  $y \n";
 
@@ -93,20 +93,20 @@
 
        }
 
-     cmf set_color (int val) {
+     void set_color (int val) {
 
        color = val;
 
        }
 
-     cmf isEdible (int e) {
+     void isEdible (int e) {
 
        edible = e;
 
        }
 // constructor
 
-     cmf fruit()  {
+     void fruit()  {
 
        <<" doing constructor for %v $_cobj \n";
 
@@ -138,7 +138,7 @@
    <<" after class definition !\n";
  /////
 
-   proc eat( fruit oba)
+   void eat(fruit oba)
    {
 
      <<" $_proc $_cobj \n";
@@ -189,7 +189,7 @@
      }
 //////////////
 
-   proc objcopy(fruit oba,  fruit obb)
+   void objcopy(fruit oba,  fruit obb)
    {
 
      <<" copying $obb.color to $oba.color \n";
@@ -243,7 +243,7 @@
 
 <<" eat via ref arg \n"
 
-   eat(&apple);
+  // eat(&apple);  // default is class as proc arg is a ptr 
 
 
    eat(apple);
@@ -330,9 +330,9 @@
     eat(orange);
 
 
-   objcopy( &orange, &apple);
+   objcopy( orange, apple);
 
-   eat(&apple);
+   //eat(&apple);
 //  objcopy( orange, apple)
 
    apple.print();
@@ -386,13 +386,21 @@
 
    orange.print();
 
-   chkOut();
+   chkOut(1);
+
+
+
+
+//==============\_(^-^)_/==================//
+
+/////////////////  
 /*
-   TBD:
+  TBD:
    cmf key word -- should be redundant inside of class
    need to be able to do
    int getX();
    for both proc and cmf
 */
+///
 
-//===***===//
+

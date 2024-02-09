@@ -3360,15 +3360,15 @@ returns -1 if fails
 .EF
 =============================================================
 .BF
-CheckMem()
+LtmCheck()
 .(x
-CheckMem
+LtmMem
 .)x 
 .FD
-CheckMem(tag)
+LtmMem(tag)
 checks for tag in LTM memory and returns 1 if found
 else 0
-(see GetMem)
+
 
 .EF
 =============================================================
@@ -3434,15 +3434,15 @@ else the string NULL
 .EF
 =============================================================
 .BF
-getMem()
+LtmRead()
 .(x
-getMem
+LtmRead
 .)x 
 .FD
-getMem(tag)
+LtmRead(tag)
 checks for tag in memory and returns its value if found
 else the string NULL
-(see PutMem)
+(see LtmWrt)
 
 .EF
 =============================================================
@@ -4478,16 +4478,14 @@ Pulse(A,pwidth,{polarity, delay})
 .EF
 =============================================================
 .BF
-putMem()
+LtmWrt()
 .(x
-putMem
+LtmWrt
 .)x 
 .FD
-putMem(tag,value,[overwrite = 0])
+LtmWrt(tag,value,[overwrite = 0])
 checks for tag in memory and replaces its value if found and overwrite is set (default notset)
 or if not found enters a new tag-value pair.
-
-
 
 .EF
 =============================================================

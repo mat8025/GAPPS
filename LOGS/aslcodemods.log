@@ -1988,3 +1988,7 @@ str_sop.cpp                         1.99  02/02/2024 17:28:41  rework dewhite
 rdp_tokget.cpp                      1.77  02/03/2024 12:28:37  tokresult sanity checks
 rdp_l6.cpp                          1.67  02/03/2024 12:29:04  tokresult sanity checks
 spe_args_process.cpp                2.53  02/03/2024 23:37:01  CHAR vid_sap  set as V_SCALAR
+str_sop.cpp                         1.100  02/04/2024 07:05:11  Ltm read,wrt
+spe_scope_findvar.cpp               2.57  02/04/2024 07:07:25  remove dead code
+test_l.cpp                          1.59  02/08/2024 14:24:56  report args when fail
+ic_call.cpp                         1.64  02/09/2024 07:32:04  check CMFStack prior,post call

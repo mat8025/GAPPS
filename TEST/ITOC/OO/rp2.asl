@@ -3,13 +3,14 @@
  * 
  *  @comment test class member access                                   
  *  @release Boron                                                      
- *  @vers 1.3 Li Lithium [asl 5.80 : B Hg]                              
- *  @date 01/31/2024 15:58:42                                           
+ *  @vers 1.4 Be Beryllium [asl 5.83 : B Bi]                            
+ *  @date 02/09/2024 06:16:17                                           
  *  @cdate 1/1/2003                                                     
  *  @author Mark Terry                                                  
  *  @Copyright © RootMeanSquare 2024 -->                               
  * 
  */ 
+
 
 
 
@@ -30,8 +31,9 @@ allowErrors(-1) ; // keep going
 
   chkIn(_dblevel); 
   
-int db_ask = 1; // set to zero for no ask
-int db_step = 1; // set to zero for no step
+int db_ask = 0; // set to zero for no ask
+int db_step = 0; // set to zero for no step
+int db_allow = 0; // set to zero for internal debug print
 
 
 
@@ -83,38 +85,10 @@ int db_step = 1; // set to zero for no step
       }
     
     }
-  
-  <<" after our class definition \n"; 
-    house AS;
-    house BS;
-    house CS;
-    house DS;    
 
 
-   asr=  AS.getRooms();
 
-  chkN(asr,4)
-
-  bsr=  BS.getRooms();
-  res = CS.setRooms(5)
-  csr = CS.getRooms();
-
-  res =AS.setRooms(bsr + csr)
-
-  chkN(res,(bsr+csr))
-ans=ask("%V $res $__LINE__  ynq [y]\n",1);
-wdb=  DBaction((DBSTEP_),db_step)
-<<"$wdb \n"
-
-  res =AS.setRooms( BS.getRooms() + CS.getRooms() )
-
- <<"%V $res $asr $bsr $csr \n"
-
-  chkN(res,(bsr+csr))
-  
-ans=ask("%V $db_ask $__LINE__  ynq [y]\n",1);
-
- chkStage ("get plus")
+  <<" after our class definition \n";
 
 
 
@@ -124,7 +98,29 @@ ans=ask("%V $db_ask $__LINE__  ynq [y]\n",1);
 
    C[2].print();
 
-//exit()
+
+
+ //ans=ask("%V $__LINE__  ynq [y]\n",1);
+
+ DBaction((DBSTEP_),db_step)
+
+
+  c2r = C[2].getRooms(); 
+  
+  <<"house 2 has $c2r rooms \n"; 
+  chkN(c2r,4)
+
+  C[3].setRooms(15); 
+  
+  y = C[3].getRooms(); 
+  
+  <<"house 3 has $y rooms \n";
+
+  chkN(y,15)
+
+
+
+  chkStage("get set rooms")
 
 
 
@@ -150,26 +146,8 @@ ans=ask("%V $db_ask $__LINE__  ynq [y]\n",1);
     iread(); 
    */
   <<"sz $(Caz(C)) \n"; 
-  
 
 
-
-  
-  
-  c2r = C[2].getRooms(); 
-  
-  <<"house 2 has $c2r rooms \n"; 
-  chkN(c2r,4)
-
-
-
-
-
-  C[3]->setRooms(15); 
-  
-  y = C[3]->getRooms(); 
-  
-  <<"house 3 has $y rooms \n"; 
   
   a = 4; 
   
@@ -200,7 +178,7 @@ ans=ask("%V $db_ask $__LINE__  ynq [y]\n",1);
   
   <<"house $a -1 has $y rooms \n"; 
   
-chkStage()
+  chkStage("[a-1] ")
 
 
 
@@ -238,6 +216,11 @@ chkStage()
 
  C[a].setRooms(13);
 
+//ans=ask(" allowDB(array,spe_proc,ic)  $__LINE__  ynq [y]\n",1);
+
+if (db_allow) {
+ allowDB("array,spe_proc,ic")
+}
 
   am1r =C[a-1].getRooms();
 
@@ -251,81 +234,159 @@ chkStage()
 
 <<"%V $a $z $z2\n"
 
-!z
-
-
-
-
-
-z3 = C[2].getRooms() + C[3].getRooms() ;
-  b= a-1
-  z4 = C[b].getRooms() + C[a].getRooms() ;
-<<"%V $a $z $z3 $z4\n"
-
-z2 = ar + am1r;
 
   chkN(z,z2)
 
+ //ans=ask("%V $z $z2  $__LINE__  ynq [y]\n",1);
 
-ap1 = a +1;
-am1 = a - 1;
+
+  c2r =  C[2].getRooms()
+  c3r =  C[3].getRooms()   
+
+  z3 = C[2].getRooms() + C[3].getRooms() ;
+
+
+ chkN(z3,c2r+c3r)
+
+  chkStage(" C[2].getRooms() + C[3].getRooms()")
+
+ //ans=ask("%V  $c2r $c3r $z3 $__LINE__  ynq [y]\n",1);
+    
+
+  b= a-1
   
+  z4 = C[b].getRooms() + C[a].getRooms() ;
+
+
+
+
+  ap1 = a +1;
+
+
+  am1 = a - 1;
+
+<<"%V $ap1 $am1 \n"
+
   z3 = C[2].getRooms() + C[3].getRooms() ;
   
-  y= C[a+1].setRooms(C[a-1].getRooms() + C[a].getRooms()) ;
+  am1r = C[am1].getRooms() ;
+ // y= C[ap1].setRooms(C[am1].getRooms() + C[a].getRooms()) ;
 
-  y2= C[ap1].setRooms(C[am1].getRooms() + C[a].getRooms()) ;
+  ar = C[a].getRooms() ;
 
+
+
+  y= C[ap1].setRooms(C[a].getRooms() + C[am1].getRooms()) ;
+
+
+  w =  C[ap1].getRooms() ;
+
+  chkN(y,w)
+
+  ans=ask("%V  $y $w $am1r + $ar  ynq [y]\n",1);
   
-  y3=C[a+1].setRooms(C[2].getRooms() + C[3].getRooms()) ;
+
+  //chkOut(1)
+  
+
+
+  am1c = C[a-1].getRooms() ;
+
+  c3r= C[3].getRooms() ;
+
+  ar = C[a].getRooms()) ;
+
+ //ans=ask("%V  $am1r + $am1c $c3r $ar ynq [y]\n",1);
+ 
+  chkN(am1r,am1c)
 
 
 
-<<"%V $y $y2 $y3 $z $z2 $z3 $am1r $ar\n"
 
-  chkN(y2,(am1r+ar));
+
+  chkN(y,(am1r+ar));
+
+
+  ans=ask("%V  $y $am1r + $ar  ynq [y]\n",1);
+
+  y2 = C[a+1].setRooms(C[2].getRooms() + C[3].getRooms()) ;
+
+  y3 = C[a+1].setRooms(C[a-1].getRooms() + C[a].getRooms()) ;  
+
+<<"%V $y $y2 $y3  $z $z2 $z3 $am1r $ar $a\n"
+
+   ans=ask("%V $y $y2 $y3 $am1r + $ar  ynq [y]\n",db_ask);
+
+  chkN(y,y2)
+
+  chkN(y2,y3)
+
 
   chkN(y,(am1r+ar));
 
 <<"house  $(a+1) has $y rooms \n"; 
 
 
+  chkN(y,20);
+  
 
- chkN(y,20);
 
+  chkStage(" two cmf args")
+
+//  chkOut(1)
+  
+
+/////////////////
 
   y=C[a].setRooms(C[a-2].getRooms())
 
+  car = C[a].getRooms()
+
+  chkN(car,y)
+
+<<" $car $y \n"
 
 
 
   a1r= C[1].getRooms() ;
-  <<"%V $a1r \n"
+
+<<"%V $a1r \n"
+
+ans=ask("%V  $a1r   yn!q [y]\n",1);
 
 
-
-   a2r= C[2].setRooms(11) ;
-  <<"%V $a2r \n"
+   w2r= C[2].setRooms(11) ;
 
    a2r= C[2].getRooms() ;
-  <<"%V $a2r \n"
+
+
+ans=ask("%V  $w2r $a2r   yn!q [y]\n",1);
+
 
   a4r=C[4].getRooms() ;
 
 <<"%V $a4r\n"
 
-  a4r=C[4].setRooms( C[2].getRooms()  ) ; //XIC wrong
+  a4sr=C[4].setRooms( C[2].getRooms()  ) ; //XIC wrong
   
 //a4r=C[4].setRooms( a2r ) ; 
-<<"%V $a4r\n"
+
+<<"%V $a4sr\n"
 
   a4r=C[4].getRooms() ;
+  c2r = C[2].getRooms()
+  chkN(a4r,a4sr)
 
-<<"%V $a2r $a4r\n"
- chkN(a4r,a2r);
 
+  ans=ask("%V  $a2r $a4sr $a4r $c2r $__LINE__  ynq [y]\n",db_ask);
+
+  chkN(a4r,a2r);
+
+ allowDB("array,spe_proc,ic")
 
   d2r = D[2].getRooms()  ) ; 
+
+  w2r = C[2].getRooms()
 
   a5r=C[5].setRooms( D[2].getRooms() + C[2].getRooms() ) ; 
 
@@ -334,26 +395,44 @@ am1 = a - 1;
 
   c1r = C[1].getRooms()
   c2r = C[2].getRooms()
-  cr = C[2].getRooms() + C[1].getRooms() ;
 
+  chkN(w2r,c2r)
+  
+ans=ask("%V   $c2r $w2r  ynq [y]\n",1);
 
+  chkOut(1)
+  
+
+  car = C[2].getRooms() + C[1].getRooms() ;
+
+  w2 = c1r + c2r
 
   res=C[5].setRooms( C[2].getRooms() + C[1].getRooms() ) ;
 
 // fails since it sets C[1] instead pf C[4]   - xic works
-
+   c5r = C[5].getRooms()
+  
+ans=ask("%V  $res $c5r $w2 $car ynq [y]\n",1);
 //res=C[4].setRooms( c1r + c2r ) ;
 
-  c5r = C[5].getRooms()
 
-<<"%V $res $c2r $c1r $c5r $cr \n"
- chkN(res,33);
- chkN(c5r,33); 
+
+<<"%V $res $c2r $c1r $c5r  $w2 $car \n"
+ chkN(res,w2);
+ chkN(c5r,w2);
+
+
+  ans=ask("%V  $res $c5r $w2  ynq [y]\n",1);
+
+
+  chkOut(1)
 
 
   a1r= C[1].getRooms() ;
   a2r= C[2].getRooms() ;
+  
   a3r= C[3].getRooms() ;
+  
   a6r= C[6].getRooms() ;
   
   <<"%V $a1r $a2r $a3r $a6r\n"
@@ -367,8 +446,11 @@ am1 = a - 1;
   <<"%V $a1r $a2r $a3r $a6r $res\n"
 
   chkN(res,33);
-  chkN(a3r,11); 
-  chkN(a6r,33); 
+  
+  chkN(a3r,22);
+  
+  chkN(a6r,33);
+  
 
 
 
@@ -385,6 +467,36 @@ am1 = a - 1;
   chkN(a6r,33); 
 
 
+
+
+    house AS;
+    house BS;
+    house CS;
+    house DS;    
+
+
+   asr=  AS.getRooms();
+
+  chkN(asr,4)
+
+  bsr=  BS.getRooms();
+  res = CS.setRooms(5)
+  csr = CS.getRooms();
+
+  res =AS.setRooms(bsr + csr)
+
+  chkN(res,(bsr+csr))
+
+
+  res =AS.setRooms( BS.getRooms() + CS.getRooms() )
+
+ <<"%V $res $asr $bsr $csr \n"
+
+  chkN(res,(bsr+csr))
+  
+//ans=ask("%V $db_ask $__LINE__  ynq [y]\n",1);
+
+ chkStage ("get plus")
 
 
    Ar= AS.setRooms(a1r))) ;
@@ -461,11 +573,6 @@ x=C[a1].setRooms(C[am1].getRooms() + C[a].setRooms(C[am2].getRooms())) ;
     
     }
   
-  chkOut();
-
-
-
-  exit(); 
   
   
   C[1].setRooms(8); 
@@ -486,7 +593,14 @@ x=C[a1].setRooms(C[am1].getRooms() + C[a].setRooms(C[am2].getRooms())) ;
   z= C[2].getRooms(); 
   
   <<" obj 2 has  $z rooms \n"; 
-  
-  chkOut()
 
-exit(-1)
+  chkStage("OK?");
+
+  chkOut(1)
+
+
+
+
+
+
+

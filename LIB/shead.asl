@@ -12,8 +12,20 @@
  */ 
 //----------------<v_&_v>-------------------------//                 
 
-allowDB("spe")
-   
+  // allowDB("spe")
+#include "debug";
+
+if (_dblevel > 0) {
+   debugON()
+}
+
+allowErrors(-1) ; // keep going
+
+chkIn(_dblevel);
+
+<<"%V $_DBH \n"
+
+
    Str vers2ele(Str& vstr)
    {
    
@@ -179,7 +191,7 @@ Svar L;
 if (found_vers) {
 
 <<"Already has a header $srcfile - exiting!\n"
- exit();
+ exit(-1);
 
 }
 
@@ -263,12 +275,23 @@ fflush(A)
 
 }
 }
-//<<"now tack on file %V $tsz\n"
+
+<<[_DBH]"now tack on file %V $tsz\n"
+
+ans=ask(DB_prompt,1);
+
+   int klines = 0;
    for (i = 0; i < tsz; i++) {
     ln = T[i];
   // <<"$i $ln\n"
    <<[A]"$ln"
-//   <<[2]"$ln\n"
+
+     klines++;
+  <<[_DBH]"[${klines}] $ln\n"
+     if (_DBH > 0 && (klines > 1000)) {
+<<[_DBH]" db break $klines \n"
+     }
+     
    }
 //<<[A]"$T[i]"  // bug
 <<" a new main \n"

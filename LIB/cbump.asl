@@ -17,7 +17,7 @@
 // allowDB("spe_")
 //DBaction((DBSTEP_,ON_)  
 
-int DBH = -1
+
 
  Str Vers2ele(Str vstr)
   {
@@ -411,15 +411,26 @@ cf(A);
 logfile= "~gapps/LOGS/aslcodemods.log"
 A=ofile(logfile,"r+")
 fseek(A,0,2)
+// Use LTM
 
-ans=iread("asl code-what modification?:")
-<<"$ans\n"
+ mans = ltmRead("cbump")
+ ans=iread("asl code-what modification? $mans :")
+ <<"$ans\n"
+ if (ans != "") {
+  ltmWrt("cbump",ans,1)
+}
+else {
+ ans = mans
+}
+
+
 len = slen(srcfile)
 nsp = 32-len
 ws=nsc(nsp," ")
 <<[A]"$srcfile $ws  ${pmaj}.$pmin  $(date(16))  $ans\n"
+
 cf(A)
 
 
-exit()
+exit(1)
 

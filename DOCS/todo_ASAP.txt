@@ -24,6 +24,7 @@
 
  10.  PUSH_OBJELE  when siv is a PTR to an OBJ  2/3/24  TBC
 
+ 11.  Ltm    option to set the current ltm file and/or to add as last option for Ltm,read,wrt,check 
 
 
 

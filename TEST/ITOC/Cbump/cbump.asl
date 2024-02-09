@@ -17,7 +17,7 @@
 // allowDB("spe_")
 //DBaction((DBSTEP_,ON_)  
 
-DBH = 2
+int DBH = -1
 
  Str Vers2ele(Str vstr)
   {
@@ -48,22 +48,9 @@ DBH = 2
   // if script found
   // then  read current vers and  bump number and update date
   // if no @vers line -- then prepend the vers header lines
-  Svar argv
-
-
-  _clarg.pinfo()
-
-  argc = argc()  ;
-
- //for (i=0; i<argc; i++) {
- //   argv[i] =  _clarg[i]
- //   <<"$i $_clarg[i] \n"
- // }
-
+  
   srcfile = _clarg[1];
-
-//ans=ask("?? $argc",1)
-
+  
   if (srcfile @= "") {
   <<[DBH]"no script file entered\n"
     exit();
@@ -425,8 +412,19 @@ logfile= "~gapps/LOGS/aslcodemods.log"
 A=ofile(logfile,"r+")
 fseek(A,0,2)
 
-ans=iread("asl code-what modification?:")
-<<"$ans\n"
+// Use LTM
+
+ mans = ltmRead("cbump")
+ ans=iread("asl code-what modification? $mans :")
+ <<"$ans\n"
+ if (ans != "") {
+  ltmWrt("cbump",ans,1)
+}
+else {
+ ans = mans
+}
+
+
 len = slen(srcfile)
 nsp = 32-len
 ws=nsc(nsp," ")
