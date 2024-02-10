@@ -193,7 +193,7 @@ CSr= CS.getrooms() ;
 
 <<"%V $res\n"
 
-allowDB("spe_exp,opera")
+
    CSr1= CS.setrooms(4 +2) ;
 
    chkN( CSr1,6)
@@ -210,18 +210,25 @@ allowDB("spe_exp,opera")
 
 <<"%V $ASr $BSr  $CSr $DSr  \n"
 
-   ans=ask(DB_prompt,db_ask);
+   ans=ask("debug",db_ask);
 
+if (ans == "y") {
+   allowDB("spe,opera,ic")
+}
 
   x1= DS.setrooms(BS.getrooms() + AS.getrooms()) ;
 
 <<"%V $ASr $BSr    $x1 \n"
 
-   x2= DS.setrooms(BS.getrooms() + CS.setrooms(AS.getrooms())) ;
+   x2 = -1
+   
+   x2 = DS.setrooms(BS.getrooms() + CS.setrooms(AS.getrooms()) ) ;
 
 <<"%V $ASr $BSr    $x1 $x2 \n"
 
 <<"%V $x2  should be $res ?\n"
+
+ans=ask("%V $x2  should be $res ?",db_ask);
 
    ASr= AS.getrooms() ;
 
@@ -235,7 +242,7 @@ allowDB("spe_exp,opera")
 
   chkN(x2,res); 
 
-  chkStage("cmf + scalar OK?")
+  chkStage("%V  $x2 $res cmf + scalar OK?")
 
 
    
@@ -284,5 +291,6 @@ y=DS.setrooms(BS.getrooms() + CS.setrooms(AS.getrooms())) ;
 
 
 
-  chkOut(); 
+  chkOut(1);
+  
 

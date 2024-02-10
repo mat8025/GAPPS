@@ -31,7 +31,7 @@ allowErrors(-1) ; // keep going
 
   chkIn(_dblevel); 
   
-int db_ask = 0; // set to zero for no ask
+int db_ask = 1; // set to zero for no ask
 int db_step = 0; // set to zero for no step
 int db_allow = 0; // set to zero for internal debug print
 
@@ -152,9 +152,13 @@ int db_allow = 0; // set to zero for internal debug print
   a = 4; 
   
   C[a].setRooms(17); 
-    
+
+
+
   y = C[a].getRooms(); 
-  
+
+ ans=ask("%V $y  $__LINE__  ynq [y]\n",1);
+
   <<"house $a has $y rooms \n"; 
   
   x=C[a+1].setRooms(19); 
@@ -237,7 +241,8 @@ if (db_allow) {
 
   chkN(z,z2)
 
- //ans=ask("%V $z $z2  $__LINE__  ynq [y]\n",1);
+ ans=ask("%V $z $z2  $__LINE__  ynq [y]\n",1);
+
 
 
   c2r =  C[2].getRooms()
@@ -283,7 +288,7 @@ if (db_allow) {
 
   chkN(y,w)
 
-  ans=ask("%V  $y $w $am1r + $ar  ynq [y]\n",1);
+  ans=ask("%V  $y $w $am1r + $ar  ynq [y]\n",db_ask);
   
 
   //chkOut(1)
@@ -307,7 +312,7 @@ if (db_allow) {
   chkN(y,(am1r+ar));
 
 
-  ans=ask("%V  $y $am1r + $ar  ynq [y]\n",1);
+  ans=ask("%V  $y $am1r + $ar  ynq [y]\n",db_ask)
 
   y2 = C[a+1].setRooms(C[2].getRooms() + C[3].getRooms()) ;
 
@@ -352,7 +357,7 @@ if (db_allow) {
 
 <<"%V $a1r \n"
 
-ans=ask("%V  $a1r   yn!q [y]\n",1);
+ans=ask("%V  $a1r   yn!q [y]\n",db_ask)
 
 
    w2r= C[2].setRooms(11) ;
@@ -360,7 +365,7 @@ ans=ask("%V  $a1r   yn!q [y]\n",1);
    a2r= C[2].getRooms() ;
 
 
-ans=ask("%V  $w2r $a2r   yn!q [y]\n",1);
+ans=ask("%V  $w2r $a2r   yn!q [y]\n",db_ask)
 
 
   a4r=C[4].getRooms() ;
@@ -381,9 +386,9 @@ ans=ask("%V  $w2r $a2r   yn!q [y]\n",1);
   ans=ask("%V  $a2r $a4sr $a4r $c2r $__LINE__  ynq [y]\n",db_ask);
 
   chkN(a4r,a2r);
-
+if (db_allow) {
  allowDB("array,spe_proc,ic")
-
+}
   d2r = D[2].getRooms()  ) ; 
 
   w2r = C[2].getRooms()
@@ -398,9 +403,9 @@ ans=ask("%V  $w2r $a2r   yn!q [y]\n",1);
 
   chkN(w2r,c2r)
   
-ans=ask("%V   $c2r $w2r  ynq [y]\n",1);
+ans=ask("%V   $c2r $w2r  ynq [y]\n",db_ask)
 
-  chkOut(1)
+  //chkOut(1)
   
 
   car = C[2].getRooms() + C[1].getRooms() ;
@@ -412,7 +417,7 @@ ans=ask("%V   $c2r $w2r  ynq [y]\n",1);
 // fails since it sets C[1] instead pf C[4]   - xic works
    c5r = C[5].getRooms()
   
-ans=ask("%V  $res $c5r $w2 $car ynq [y]\n",1);
+ans=ask("%V  $res $c5r $w2 $car ynq [y]\n",db_ask);
 //res=C[4].setRooms( c1r + c2r ) ;
 
 
@@ -422,10 +427,10 @@ ans=ask("%V  $res $c5r $w2 $car ynq [y]\n",1);
  chkN(c5r,w2);
 
 
-  ans=ask("%V  $res $c5r $w2  ynq [y]\n",1);
+  ans=ask("%V  $res $c5r $w2  ynq [y]\n",db_ask);
 
 
-  chkOut(1)
+  //chkOut(1)
 
 
   a1r= C[1].getRooms() ;
@@ -597,6 +602,9 @@ x=C[a1].setRooms(C[am1].getRooms() + C[a].setRooms(C[am2].getRooms())) ;
   chkStage("OK?");
 
   chkOut(1)
+
+
+////
 
 
 

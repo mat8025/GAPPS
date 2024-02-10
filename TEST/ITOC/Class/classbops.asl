@@ -28,7 +28,7 @@ if (_dblevel > 0) {
 allowErrors(-1) ; // keep going
 
 chkIn(_dblevel);
-
+int db_ask = 0
 
 #include "abc.asl"
 
@@ -475,15 +475,43 @@ chkR(cy,0.2);
   chkN(D.x,83); 
   
   D.Print(); 
+  //allowDB("spe,oo,ic,opera")
   
+  A_y = 77.0;
+  D_y = 66.0;
+
+  D_y = A_y;
+
   D.y = A.y;
-  
+
+  chkN(D_y,77); 
+
+
+ans=ask("%V  $D_y  == $A_y   ? ",db_ask);
+
+
+
+
+<<"%V $D.y   $A.y  \n"
+
   chkN(D.y,79); 
-  
-  
+
+ans=ask("%V  $D.y  ==  $A.y   ? ",db_ask);
+
+    D.y = A.y + 1;
+
+  chkN(D.y,80); 
+
+//ans=ask("%V $D.y   $(A.y+1)    ",db_ask); // TBF 2/10/24
+
+ans=ask(" $D.y   $(A.y+1)    ",db_ask);
+
   D.Print(); 
   
-  
+ 
+
+
+
   chkN(D.y,A.y); 
   
   
@@ -491,8 +519,9 @@ chkR(cy,0.2);
   
   <<"%V$ok x  $wx 0.15\n"; 
   
-  wy = A.Gety(); 
-  <<"%V $wy $A.Gety()\n"; 
+  wy = A.Gety();
+  
+  <<"%V $wy $A.Gety()\n"; // TBF  2/10/24 cmf in <<" "  does not work
   
   
   ok=chkR(wy,79,5); 
@@ -597,22 +626,30 @@ chkR(cy,0.2);
 //  <<"$(nsc(20,'\'))\n"
   
     v= B.y/2.0;
+    pre_by = B.y
+<<"%V $B.y \n"
+    B.y += 0.5; 
+    post_by = B.y
+<<"%V $B.y \n"
+   v  =  B.y/2.0;
+ans=ask("%V $pre_by $B.y $post_by $v ",db_ask);
+
+///
   for (i = 0; i < 4 ; i++) {
     
   
     my = B.y/2.0 ; 
   <<"%V $i $B.y    $my $v \n"; 
     
-    ok=chkR(my,v,5); 
-    chkProgress(" for $i"); 
-    <<"%V$ok $i $my $v\n"; 
+    ok=chkF(my,v,5); 
+    <<"%V$ok $i $my $v $B.y\n"; 
     B.y += 0.2; 
     v  =  B.y/2.0;
-
+     ans=ask("%V $i $my $B.y $v",db_ask);
     }
   
 //<<"$(nsc(20,'/'))\n"
-  
+
   
   chkN(i,4); 
   

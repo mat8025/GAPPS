@@ -1992,3 +1992,4 @@ str_sop.cpp                         1.100  02/04/2024 07:05:11  Ltm read,wrt
 spe_scope_findvar.cpp               2.57  02/04/2024 07:07:25  remove dead code
 test_l.cpp                          1.59  02/08/2024 14:24:56  report args when fail
 ic_call.cpp                         1.64  02/09/2024 07:32:04  check CMFStack prior,post call
+opera_main.cpp                      1.53  02/09/2024 18:07:34  WIC check
