@@ -1,16 +1,17 @@
 /* 
- *  @script array_ele.asl 
+ *  @script arrayele.asl                                                
  * 
- *  @comment test array vec and ele use 
- *  @release CARBON 
- *  @vers 1.42 6.3.76 C-Li-Os 
- *  @date 01/25/2022 09:58:17          
- *  @cdate 1/1/2007 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare 2022
+ *  @comment test array vec and ele use                                 
+ *  @release Boron                                                      
+ *  @vers 1.43 Tc Technetium [asl 5.85 : B At]                          
+ *  @date 03/10/2024 10:44:17                                           
+ *  @cdate 1/1/2007                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                                  
+
+//----------------<v_&_v>-------------------------//                                  
 
 #include "debug"
 
@@ -21,10 +22,13 @@
      }
 
 
+int db_allow = 0; // set to zero for internal debug print
 
    chkIn (_dblevel);
 
-
+if (db_allow) {
+ allowDB("spe,opera_,array_parse,parse,rdp_,ds,pex")
+}
 
    int main_chk = 0;
 
@@ -79,7 +83,7 @@
      rl.pinfo();
      
 <<"%V %6.2f $rl\n";
-
+      //allowDB("array,spe,parse,ic")
      rl[kp] = 67;
      rl.pinfo();
 <<"%V %6.2f $rl\n";
@@ -91,8 +95,11 @@
      val = rl[1];
      chkR (rl[1],77);
      rl.pinfo();
-<<"%V $val %6.2f $rl\n";
-     val = rl[3];
+
+ <<"%V $kp $val %6.2f $rl\n";
+
+    val = rl[3];
+     
      chkR (rl[3],67);
 
 <<"%V $val $rl\n";
@@ -119,6 +126,8 @@
 
      rl.pinfo();
 
+//ans=ask("rl ?",1)
+
      <<"PROC after pinfo %V  $_scope $_cmfnest $_proc $_pnest\n";
  //SA = SA + 1;
 
@@ -141,9 +150,7 @@
 //  <<"%6.2f%V$t1\n";
 
      <<"$(Caz(t1))\n";
-if (DB_allow) {
- allowDB("spe,opera_,array_parse,rdp_,ds")
-}
+
      int k = 5;
 
      t2 = rl[k];
@@ -172,43 +179,49 @@ if (DB_allow) {
 
      chkR (t3, 6);
 
-ans=ask(DB_prompt,DB_ask)
+
 
 
      t3 = rl[j1] - rl[j2];
 
      <<"%V %6.2f $t3  \n";
 
-//
-
      <<"$(Caz(t3))\n";
 
      chkR (t3, -2);
-
 
      t4 = rl[j1 + 1];
 
      <<"%V $t4  \n";
 
      <<"$(Caz(t4))\n";
- // chkR (t4, 5);
-
-     <<"%V $k $j1 $j2 \n";
-//<<"%6.2f$rl \n";
-
-     kp = 3;
-
-     <<"%V $rl[j1]    $rl[j2] \n";
-//query()
 
      <<"rl $rl \n";
+     <<"%V $k $j1 $j2 \n";
+     <<"%6.2f$rl \n";
+     kp = 3;
+    <<"%V $rl[j1] \n";     
+
+    <<"%V $rl[j2] \n";
+ Real2.pinfo();
+
+  if (db_allow) {
+      allowDB("array,spe,parse,ic,pex")
+  }
+
+<<"%V $rl[j1]    $rl[j2] \n";
+ Real2.pinfo();
+
+
+//ans=ask(" $rl[j2]  ",1)
+
 
      rj1 = rl[j1];
 
      rj1.pinfo();
 
      <<"%V $SA\n";
-//ans=query();
+
 
      <<"%V $rj1\n";
 
@@ -227,13 +240,32 @@ ans=ask(DB_prompt,DB_ask)
      chkR (wrl, -2);
 
 
+
+
+ Real2.pinfo();
+
+//ans=ask("Real2?",1)
+    <<"%V $kp  $j2 $j1 \n";
+
+     <<"rl $rl \n";
+
      rl[kp] = rl[j1] - rl[j2];
 
-     <<"%V $kp  $j1 $j2 \n";
+     <<"rl $rl \n";
+     <<"$rl[kp] -2\n";
+     <<"%V $rl[kp] 3 -2\n";
+     <<"%V $rl[j1]  4 \n";
+     <<"%V $rl[j2]  6 \n";
+      <<"%V $rl[4]  $rl[6] \n";
 
      <<"%V $rl[kp] $rl[j1]  $rl[j2] \n";
 
      <<"rl $rl \n";
+
+
+
+
+
 //<<"%6.2f$rl \n";
 //  <<"%V $rl[kp] \n";
 
@@ -322,6 +354,8 @@ ans=ask(DB_prompt,DB_ask)
 
  //  <<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
 
+
+
    val = array_sub (Real2);
 
  //  <<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
@@ -331,17 +365,27 @@ ans=ask(DB_prompt,DB_ask)
    val = array_asg (Real1);
 
    <<"%V $val\n";
-   //ans= query("first use")
+
+ans=ask("2 $val ?",0)
+
+
+
+
 
    <<"%V$Real1\n";
 
    val = array_asg (Real2);
+
+
+ans=ask("2 $val ?",0)
 
    //ans= query("xic")
 
    <<"%V $val\n";
 
    <<"%V$Real2\n";
+
+
 
    float mt1;
 
@@ -502,7 +546,12 @@ ans=ask(DB_prompt,DB_ask)
 
    Real2 = fgen (10, 0, 1);
 
-   <<"%V$Real\n";
+   <<"%V$Real2\n";
+
+   Real2.pinfo()
+
+
+//ans=ask("real2?",1)
 
    val = array_sub (Real2);
 
@@ -512,7 +561,7 @@ ans=ask(DB_prompt,DB_ask)
 
    N=10;
 
-   proc Foo(float rl[])
+   void Foo(float rl[])
    {
      int j1;
      j1 =2;
@@ -534,7 +583,7 @@ ans=ask(DB_prompt,DB_ask)
 
        rxp = rl[j1];
 
-       <<" %V$j1 $rxp  $(cab(rxp))\n";
+       <<" %V $j1 $rxp  $(cab(rxp))\n";
 
        j1++;
 

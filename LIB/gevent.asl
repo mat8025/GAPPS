@@ -20,7 +20,6 @@
 
 //<<"loading gevent.asl \n"
 
-
   Gevent Gev; // event type - can inspect for all event attributes
 
   Gev.pinfo();

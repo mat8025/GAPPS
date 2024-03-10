@@ -31,14 +31,14 @@ allowErrors(-1) ; // keep going
 
   chkIn(_dblevel); 
   
-int db_ask = 1; // set to zero for no ask
+int db_ask = 0; // set to zero for no ask
 int db_step = 0; // set to zero for no step
 int db_allow = 0; // set to zero for internal debug print
 
 
 
   Nhouses = 0;
-  
+
   Class house {
     
     int rooms; 
@@ -104,7 +104,9 @@ int db_allow = 0; // set to zero for internal debug print
 
  DBaction((DBSTEP_),db_step)
 
-
+  if (db_allow) {
+ allowDB("array,spe_proc,parse,ic,oo")
+}
   c2r = C[2].getRooms(); 
   
   <<"house 2 has $c2r rooms \n"; 
@@ -117,6 +119,7 @@ int db_allow = 0; // set to zero for internal debug print
   <<"house 3 has $y rooms \n";
 
   chkN(y,15)
+
 
 
 
@@ -153,14 +156,26 @@ int db_allow = 0; // set to zero for internal debug print
   
   C[a].setRooms(17); 
 
-
+ <<"house $a set  to 17 rooms \n"; 
 
   y = C[a].getRooms(); 
 
- ans=ask("%V $y  $__LINE__  ynq [y]\n",1);
+ ans=ask("%V $y  $a $__LINE__  ynq [y]\n",1);
 
   <<"house $a has $y rooms \n"; 
-  
+
+   x=C[4].setRooms(29); 
+
+  y = C[4].getRooms(); 
+
+ chkN(y,x);
+
+  y = C[a].getRooms(); 
+
+
+
+ans=ask("%V $y  $__LINE__  ynq [y]\n",1);
+
   x=C[a+1].setRooms(19); 
     
   y = C[a+1].getRooms(); 
@@ -220,12 +235,10 @@ int db_allow = 0; // set to zero for internal debug print
 
  C[a].setRooms(13);
 
-//ans=ask(" allowDB(array,spe_proc,ic)  $__LINE__  ynq [y]\n",1);
-
-if (db_allow) {
- allowDB("array,spe_proc,ic")
+ans=ask(" allowDB(array,spe_proc,ic)  $__LINE__  ynq [y]\n",1);
+if (ans == "y") {
+ allowDB("array,spe_proc,parse,ic,oo")
 }
-
   am1r =C[a-1].getRooms();
 
   ar =C[a].getRooms();
@@ -243,7 +256,7 @@ if (db_allow) {
 
  ans=ask("%V $z $z2  $__LINE__  ynq [y]\n",1);
 
-
+//chkOut(1)
 
   c2r =  C[2].getRooms()
   c3r =  C[3].getRooms()   
@@ -386,12 +399,18 @@ ans=ask("%V  $w2r $a2r   yn!q [y]\n",db_ask)
   ans=ask("%V  $a2r $a4sr $a4r $c2r $__LINE__  ynq [y]\n",db_ask);
 
   chkN(a4r,a2r);
+  
 if (db_allow) {
  allowDB("array,spe_proc,ic")
 }
-  d2r = D[2].getRooms()  ) ; 
+
+// allowDB("array,spe_proc,ic")
+
+  d2r = D[2].getRooms()  ; 
 
   w2r = C[2].getRooms()
+
+  c5rb= C[5].getRooms()
 
   a5r=C[5].setRooms( D[2].getRooms() + C[2].getRooms() ) ; 
 
@@ -400,12 +419,16 @@ if (db_allow) {
 
   c1r = C[1].getRooms()
   c2r = C[2].getRooms()
+  c5r= C[5].getRooms()
+  d2rb = D[2].getRooms()  ;
+  
+ans=ask("%V  $d2r $d2rb $w2r $a5r $c2r $c5rb $c5r  ynq [y]\n",1)
 
   chkN(w2r,c2r)
   
 ans=ask("%V   $c2r $w2r  ynq [y]\n",db_ask)
 
-  //chkOut(1)
+//chkOut(1)
   
 
   car = C[2].getRooms() + C[1].getRooms() ;

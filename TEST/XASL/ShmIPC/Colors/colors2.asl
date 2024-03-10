@@ -1,19 +1,19 @@
 /* 
- *  @script colors2.asl 
+ *  @script colors2.asl                                                 
  * 
- *  @comment show color map 
- *  @release CARBON color map 
- *  @vers 1.6 C 6.3.94 C-Li-Pu 
- *  @date 03/12/2022 11:04:28          
- *  @cdate Sun Mar 22 11:05:34 2020 
- *  @author Mark Terry 22 11:05:34 2020 
- *  @Copyright © RootMeanSquare 2022
+ *  @comment show color map                                             
+ *  @release Boron                                                      
+ *  @vers 1.7 N Nitrogen [asl 5.85 : B At]                              
+ *  @date 03/10/2024 20:03:14                                           
+ *  @cdate Sun Mar 22 11:05:34 2020                                     
+ *  @author Mark Terry 22 11:05:34 2020                                 
+ *  @Copyright © RootMeanSquare 2024 -->                               
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                                                                        
 
 
-#include "debug"
+
+#include "debug.asl"
 #include "hv.asl"
 
 ignoreErrors();
@@ -27,29 +27,31 @@ Pi = 4.0 * atan(1.0)
 #include "graphic"
 
 #include "gevent"
-//#include "tbqrd"
+#include "tbqrd"
 
 
 
     rainbow()
     
-    vp = cWi(_title,"Button")
-    sWi(vp,_resize,0.01,0.01,0.45,0.49,0,_eo)
+    vp = cWi("Button")
+    
+    sWi(_WOID,vp,_WRESIZE,wbox(0.01,0.01,0.45,0.49,0))
 
    titleButtonsQRD(vp);
 
 
-    sWi(vp,_pixmapon,_drawon,_save,_bhue,WHITE_)
-    sWi(vp,"scales",0,-0.2,1.5,1.5,_eo)
-    sWi(vp,"clip",0.2,0.2,0.9,0.9,_eo)
-    sWi(vp,_clipborder,BLACK_,_redraw,_save)
+    sWi(_WOID,vp,_WPIXMAP,ON_,_WSAVE,ON_,_WBHUE,WHITE_)
+    sWi(_WOID,vp,_WSCALES,wbox(0,-0.2,1.5,1.5))
+    sWi(_WOID,vp,_WCLIP,wbox(0.2,0.2,0.9,0.9))
+    sWi(_WOID,vp,_WCLIPBORDER,BLACK_,_WREDRAW,ON_)
 
-    vp2 = cWi(_title,"Colors");
-    sWi(vp2,"resize",0.51,0.1,0.99,0.99,0,_eo)
-    sWi(vp2,_pixmapon,_drawon,_save,_bhue,"white")
+    vp2 = cWi("Colors");
+    sWi(_WOID,vp2,_WRESIZE,wbox(0.51,0.1,0.99,0.99,0))
+    sWi(_WOID,vp2,_WBHUE,WHITE_)
 
 
-    txtwin = cWi("title","MC_INFO","resize",0.01,0.51,0.49,0.99,0,_eo)
+    txtwin = cWi("MC_INFO")
+    sWi(_WOID,txtwin,_WRESIZE,wbox(0.01,0.51,0.49,0.99,0))
 
 
   rx = 0.2
@@ -68,36 +70,41 @@ Pi = 4.0 * atan(1.0)
   cbX = 0.6
 
 
-  rwo=cWo(vp,"BV",_WNAME,"Red",_WVALUE,"$redv",_WSTYLE,"SVB")
+  rwo=cWo(vp,WO_BV_)
+  sWo(_WOID,rwo,_WNAME,"Red",_WVALUE,"$redv",_WSTYLE,"SVB")
 
-  sWo(rwo,_WCOLOR,RED_,_WPENHUE,"black",_WVMOVE,1,_eo)
+  sWo(_WOID,rwo,_WCOLOR,RED_,_WPENHUE,"black",_WVMOVE,1)
 
-  gwo=cWo(vp,"BV",_WNAME,"Green"_resize,gx,cby,gX,cbY,_NAME,"Green",_VALUE,"$greenv",_eo)
+  gwo=cWo(vp,WO_BV_)
+  sWo(_WOID,gwo,_WNAME,"Green"_WRESIZE,wbox(gx,cby,gX,cbY),_WNAME,"Green",_WVALUE,"$greenv",_WVMOVE,1)
 
-  sWo(gwo,_color,GREEN_,_WPENHUE,"black",_WSTYLE,"SVB",_symbol,"tri",_eo)
+  sWo(_WOID,gwo,_WCOLOR,GREEN_,_WPENHUE,BLACK_,_WSTYLE,SVB_,_WSYMBOL,"tri")
 
-  bwo=cWo(vp,"BV",_WNAME,"Blue",_resize,bx,cby,bX,cbY,_NAME,"Blue",_VALUE,bluev,_eo)
+  bwo=cWo(vp,WO_BV_)
 
-  sWo(bwo,_color,BLUE_,_WPENHUE,"black",_WSTYLE,"SVB",_eo)
+  sWo(_WOID,bwo,_WNAME,"Blue",_WRESIZE,wbox(bx,cby,bX,cbY),_WNAME,"Blue",_WVALUE,bluev,_WVMOVE,1)
+
+  sWo(_WOID,bwo,_WCOLOR,BLUE_,_WPENHUE,BLACK_,_WSTYLE,SVB_)
 
 
   int rgbwo[] = { rwo, gwo, bwo };
 
   wo_htile( rgbwo, cbx,cby,cbX,cbY,0.02)
   //sWo( rgbwo, _vmove,1, "setmsg",1 )
-  sWo( rgbwo, _vmove,1,_eo)
+//  sWo( rgbwo, _vmove,1)
 
  // use title quit button
  // qwo=cWo(vp,"BV",_name,"QUIT?",_VALUE,"QUIT",_color,"orange",_resize,0.8,0.1,0.95,0.2,_eo)
  // sWo(qwo,_BORDER,_DRAWON,_CLIPBORDER,_FONTHUE,"black", _redraw)
 
-  sWi(vp,"woredrawall")
+  sWi(_WOID,vp,"woredrawall")
 
- two=cWo(txtwin,"TEXT",_WNAME,"Text",_VALUE,"howdy",_color,"orange",_WRESIZE_fr,0.1,0.1,0.9,0.9,_eo)
+ two=cWo(txtwin,WO_TEXT_)
+ sWo(_WOID,two,_WNAME,"Text",_WVALUE,"howdy",_WCOLOR,ORANGE_,_WRESIZE,wbox(0.1,0.1,0.9,0.9))
 
- sWo(two,_WBORDER,_WDRAWON,_WCLIPBORDER,RED_,_WFONTHUE,BLACK_, _WREDRAW,_WPIXMAPON,_WDRAWON)
+ sWo(_WOID,two,_WBORDER,ON_,_WDRAW,ON_,_WCLIPBORDER,RED_,_WFONTHUE,BLACK_)
 
- sWo(two,_Wscales,-1,-1,1,1,_eo)
+ sWo(_WOID,two,_WSCALES,wbox(-1,-1,1,1))
 
 int awo[100];
 k = 0
@@ -105,33 +112,36 @@ k = 0
 
      matrix_index = 64
      index = matrix_index;
-set_gsmap(100, matrix_index);
+
+     set_gsmap(100, matrix_index);
+
     for (k = 0; k < 100; k++) { 
    
      // awo[k]=cWo(vp2,GRAPH_,_name,"${k}_col",_eo)
     //  awo[k]=cWo(vp2,GRAPH_);
       awo[k]=cWo(vp2,GRAPH_);
    
-      sWo(awo[k],_type,GRAPH_,_WDRAWON,_WCOLOR,index,_WVALUE,k,_WNAME,"${k}_col",_eo)
-       index++
+      sWo(_WOID,awo[k],_WDRAW,ON_,_WCOLOR,index,_WVALUE,k,_WNAME,"${k}_col")
+      sWo(_WOID,awo[k],_WBORDER,ON_,_WCLIPBORDER,ON_);
+      index++
      }
 
 //<<"%v $awo \n"
 
-     sWo(awo,_WBORDER,_WDRAWON,_WCLIPBORDER);
+     
 
      worctile(awo,0.1,0.1,0.9,0.9,10,10);
      titleVers()
-     sWi(vp,_redraw)
-     sWi(vp2,_redraw)
+     sWi(_WOID,vp,_WREDRAW,ON_)
+     sWi(_WOID,vp2,_WREDRAW,ON_)
 
 
-
+ans=ask("Screen OK?",1)
 //  now loop wait for message  and print
 
 int rgb_index = 32
-float WXY[]
-
+int WXY[10]
+float RWXY[10]
 
    while (1) {
 
@@ -142,20 +152,22 @@ float WXY[]
 //   bluev =  atof (getWoValue(bwo))
 
 
-   WXY= WoGetPosition(gwo)
+    WoGetPosition(gwo,WXY)
 
-  <<"$_ename $_ewoid  $WXY \n"
+  <<"$GEV_name $GEV_woid  $WXY \n"
 
   greenv = limitval(WXY[2],0,1)
-  WXY= wogetposition(rwo)
+
+  wogetposition(rwo,WXY)
+
   redv = limitval(WXY[2],0,1)
 
-   WXY= wogetposition(bwo)
+   wogetposition(bwo,WXY)
    bluev = limitval(WXY[2],0,1)
 
-   sWo(rwo,_value,"%3.2f$redv",_update,_eo)
-   sWo(gwo,_value,"%3.2f$greenv",_update)
-   sWo(bwo,_value,"%3.2f$bluev",_update)
+   sWo(_WOID,rwo,_WVALUE,redv,_WUPDATE,ON_)
+   sWo(_WOID,gwo,_WVALUE,greenv,_WUPDATE,ON_)
+   sWo(_WOID,bwo,_WVALUE,bluev,_WUPDATE,ON_)
 
    setRGB(rgb_index,redv,greenv,bluev)
 
@@ -207,7 +219,7 @@ float WXY[]
    bv = 0.0
    bdv = 1.0/7.0
 
- <<"%V $_ewoid  $rwo $gwo $bwo \n";
+ <<"%V $GEV_woid  $rwo $gwo $bwo \n";
 
   woval =wogetvalue (rwo);
 
@@ -227,13 +239,13 @@ woval =wogetvalue (bwo);
 
     
     
-     if (_ewoid == rwo) {
+     if (GEV_woid == rwo) {
        setRGB(ki,redv,bv,jv)
      }
-      else if(_ewoid == gwo) {
+      else if(GEV_woid == gwo) {
        setRGB(ki,bv,greenv,jv)
       }
-      else if (_ewoid == bwo) {
+      else if (GEV_woid == bwo) {
         setRGB(ki,bv,jv,bluev)
       }
 
@@ -246,13 +258,13 @@ woval =wogetvalue (bwo);
    }
 
   
-   sWo(awo,_redraw)
 
-   sWo(rwo,_VALUE,redv,_eo)
-   sWo(bwo,_VALUE,bluev,_eo)
-   sWo(gwo,_VALUE,greenv,_eo)
 
-   sWo(two,_clear,_texthue,"black",_textr,"$_emsg\n $cname\n%V$_ebutton \n %V3.2f$redv $greenv $bluev",-0.9,0,_eo)
+   sWo(_WOID,rwo,_WVALUE,redv)
+   sWo(_WOID,bwo,_WVALUE,bluev)
+   sWo(_WOID,gwo,_WVALUE,greenv)
+
+   //sWo(_WOID,two,_wclear,_texthue,"black",_textr,"$_emsg\n $cname\n%V$_ebutton \n %V3.2f$redv $greenv $bluev",-0.9,0,_eo)
 
   
    sleep(0.05)

@@ -1,15 +1,16 @@
 /* 
- *  @script colors.asl 
+ *  @script colors.asl                                                  
  * 
- *  @comment test color selection 
- *  @release CARBON 
- *  @vers 1.5 B Boron [asl 5.70 : B Yb]                                     
- *  @date 01/03/2024 11:14:06 
- *  @cdate Sun Mar 22 11:05:34 2020 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare 2024
+ *  @comment test color selection                                       
+ *  @release Boron                                                      
+ *  @vers 1.6 C Carbon [asl 5.85 : B At]                                
+ *  @date 03/10/2024 10:32:29                                           
+ *  @cdate Sun Mar 22 11:05:34 2020                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
  * 
  */ 
+
 //-----------------<V_&_V>------------------------//
 
 Str Use_= " Demo  of test color selection ";
@@ -66,7 +67,12 @@ int b_index = index++
  redv = 0.5;
  greenv = 0.45;
  bluev = 0.75;
+
+ redv.pinfo()
+ greenv.pinfo()
+ bluev.pinfo()
  
+
 #include "tbqrd"
 
   //  bvp = cWi("title","Button",_pixmapon,_drawon,"save",_bhue,WHITE_)
@@ -162,12 +168,9 @@ sWi(_WOID,vp3,_WREDRAW,ON_);
   }
 
 
-   redv   = atof( wogetValue(rwo));
-   greenv = atof ( wogetValue(gwo))
-   bluev  =  atof ( wogetValue(bwo))
 
-<<"%V $redv $greenv $bluev \n"
 
+ 
 //  qwo=cWo(bvp,_BN,_name,"QUIT?",_VALUE,"QUIT",_color,"orange",_resize_fr,bx,by,bX,bY,_eo)
 
     qwo=cWo(bvp,WO_BN_);
@@ -263,29 +266,41 @@ int htwo[4]
   wo_vtile(htwo,0.1,0.1,0.9,0.9)
 
 
+
+ redv = 0.52;
+ greenv = 0.63;
+ bluev = 0.74;
+
+  redv.pinfo();
+  
+<<"%V $redv $greenv $bluev \n"
+
+  sWo(_WOID,rwo,_WVALUE,redv)
+  sWo(_WOID,bwo,_WVALUE,bluev)
+    sWo(_WOID,gwo,_WVALUE,greenv)
+  
+      rwoval = wogetValue(rwo)
+      gwoval = wogetValue(gwo)
+      bwoval = wogetValue(bwo)      
+
+
+
    redv   = atof( wogetValue(rwo));
    greenv = atof ( wogetValue(gwo))
    bluev  =  atof ( wogetValue(bwo))
 
 <<"%V $redv $greenv $bluev \n"
+ rwoval.pinfo()
+<<"%V $rwoval $gwoval $bwoval \n"
+ ans = ask("$redv $rwoval ",1)
 
- redv = 0.5;
- greenv = 0.5;
- bluev = 0.5;
 
-<<"%V $redv $greenv $bluev \n"
-  i= 0;
+i= 0;
   while (rgbwo[i] > 0) {
     sWo(_WOID,rgbwo[i++],_WVALUE,0.4,_WREDRAW,ON_);
 //    i++;
   }
   
-   redv   = atof( wogetValue(rwo));
-   greenv = atof ( wogetValue(gwo))
-   bluev  =  atof ( wogetValue(bwo))
-
-<<"%V $redv $greenv $bluev \n"
-
 
 
 //ask=query("where are we?");
@@ -321,12 +336,6 @@ txw = txr.getTxt()
     rval   = wogetValue(rwo);
 
 
-     redv   = atof( wogetValue(rwo))
-     greenv = atof ( wogetValue(gwo))
-     bluev  =  atof ( wogetValue(bwo))
-
-<<"%V $redv $bluev $greenv \n"
-
    sWo(_WOID,rwo,_WBHUE,r_index,_WCLEARCLIP,r_index,_WCLIPBORDER,RED_);
    sWo(_WOID,rwo,_WBHUE,r_index,_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f Red $redv ",0.1,0.21,_WCLIPBORDER,RED_);
 
@@ -337,7 +346,7 @@ txw = txr.getTxt()
    sWo(_WOID,bwo,_WBHUE,b_index,_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f Blue $bluev ",0.1,0.21,_WCLIPBORDER,RED_);
 
 
-   if (_GEV_woid == nxtcolwo) {
+   if (GEV_woid == nxtcolwo) {
 <<"just next $cindex \n"
     cindex++
     rgb = getRGB(cindex)
@@ -363,6 +372,16 @@ txw = txr.getTxt()
    
    }
 
+  sWo(_WOID,rwo,_WVALUE,redv)
+  sWo(_WOID,bwo,_WVALUE,bluev)
+    sWo(_WOID,gwo,_WVALUE,-4.5)
+  
+      rwoval = wogetValue(rwo)
+      gwoval = wogetValue(gwo)
+      bwoval = wogetValue(bwo)      
+ rwoval.pinfo()
+ 
+<<"%V $rwoval $gwoval $bwoval \n"
   // sWo(rgbwo,_redraw)
   // TBC ?
    sWo(_WOID,two,_WCLEAR,ON_,_wtextr," RGB %V %6.2f $redv $greenv $bluev",0,0.5); 
@@ -440,9 +459,14 @@ txw = txr.getTxt()
      
      sWo(_WOID,awo[2],_WTEXTR,"%6.2f GreeN $greenv Blue $bluev  ",0.1,0.21, WHITE_,_WCLIPBORDER,RED_);     
 
-   if (_GEV_woid == qwo) {
+    <<"%V $GEV_woid  $qwo \n"
+
+   if (GEV_woid == qwo) {
        break
    }
+
+
+
   }
 
 
@@ -451,7 +475,7 @@ txw = txr.getTxt()
 
 
 
-;
+
 
 #if _CPP_           
   exit(-1); 

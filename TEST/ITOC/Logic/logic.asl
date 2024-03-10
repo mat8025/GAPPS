@@ -31,9 +31,42 @@ if (_dblevel >0) {
    
    
    int a = 1;
-   int b = 2;
+   int b = 1;
+
+<<"%V $a $b \n"
+
+   if (a == b) {
+
+   chkT(1)
    
-   proc Goo()
+
+   }
+
+   if (a != b) {
+
+    chkT(0)
+
+   }
+
+b = 2;
+
+   if (a == b) {
+
+   chkT(0)
+   
+
+   }
+
+   if (a != b) {
+
+    chkT(1)
+
+   }
+
+   
+chkOut(1)
+
+   int Goo()
    {
      
      plop = 0; 
@@ -56,7 +89,7 @@ if (_dblevel >0) {
    
 //==========================//
    
-   proc Goo2()
+   int Goo2()
    {
      plop = 0;
      
@@ -77,7 +110,8 @@ if (_dblevel >0) {
      
      return plop; 
    }
-//==========================//
+   
+//EP==========================//
    
    
    lop = 0; 
@@ -329,6 +363,6 @@ if (_dblevel >0) {
 #}
    
    
-   chkOut(); 
+   chkOut(1); 
    
    
