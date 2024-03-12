@@ -120,7 +120,7 @@ k = 0
      // awo[k]=cWo(vp2,GRAPH_,_name,"${k}_col",_eo)
     //  awo[k]=cWo(vp2,GRAPH_);
       awo[k]=cWo(vp2,GRAPH_);
-   
+    //  <<"grid $k $index\n"
       sWo(_WOID,awo[k],_WDRAW,ON_,_WCOLOR,index,_WVALUE,k,_WNAME,"${k}_col")
       sWo(_WOID,awo[k],_WBORDER,ON_,_WCLIPBORDER,ON_);
       index++
@@ -136,12 +136,12 @@ k = 0
      sWi(_WOID,vp2,_WREDRAW,ON_)
 
 
-ans=ask("Screen OK?",1)
+ans=ask("Screen OK?",0)
 //  now loop wait for message  and print
 
 int rgb_index = 32
-int WXY[10]
-float RWXY[10]
+float WXY[10]
+
 
    while (1) {
 
@@ -152,18 +152,20 @@ float RWXY[10]
 //   bluev =  atof (getWoValue(bwo))
 
 
-    WoGetPosition(gwo,WXY)
+    WoGetRXY(gwo,WXY)
 
-  <<"$GEV_name $GEV_woid  $WXY \n"
+  <<" $WXY \n"
 
   greenv = limitval(WXY[2],0,1)
 
-  wogetposition(rwo,WXY)
+  wogetrxy(rwo,WXY)
 
   redv = limitval(WXY[2],0,1)
 
-   wogetposition(bwo,WXY)
+   wogetrxy(bwo,WXY)
    bluev = limitval(WXY[2],0,1)
+
+<<"%V $redv $greenv $bluev \n"
 
    sWo(_WOID,rwo,_WVALUE,redv,_WUPDATE,ON_)
    sWo(_WOID,gwo,_WVALUE,greenv,_WUPDATE,ON_)
@@ -234,10 +236,6 @@ woval =wogetvalue (bwo);
    for (rj = 0; rj < 8 ; rj++) {
    jv = 0.0
    for (j = 0; j < 10 ; j++) {
-// _ewoname _= "Red"
-       //setRGB(ki,redv,bv,jv)
-
-    
     
      if (GEV_woid == rwo) {
        setRGB(ki,redv,bv,jv)
@@ -257,8 +255,10 @@ woval =wogetvalue (bwo);
    bv += bdv
    }
 
+  for(j =0;j < 100; j++) {
+   sWo(_WOID, awo[j], _WREDRAW,ON_)
   
-
+   }
 
    sWo(_WOID,rwo,_WVALUE,redv)
    sWo(_WOID,bwo,_WVALUE,bluev)

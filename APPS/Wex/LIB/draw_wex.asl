@@ -468,6 +468,7 @@ for (i = 0; i< 10; i++) {
   // <<"KEYS?\n"
 
 ////////////////////////////////////////// KEYS /////////////////////////////////////
+ if (do_keys) {
 float keypos[10]
   keypos = wogetposition (keycalwo);
 //   <<"keycalwo $keypos \n";
@@ -491,7 +492,7 @@ float keypos[10]
   keypos = wogetposition (keywo);
 
    //<<"keycarbwo $keypos \n";
-
+}
 
 Text(calwo,"CALS In/Out",0.2,0.90);
 

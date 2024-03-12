@@ -136,6 +136,7 @@ int ExTim (int wb)
 
   //<<" In $_proc  $lcpx  $rcpx\n";
   //cout <<"In ZIN " << lcpx  << endl;
+  <<"In ZIN  $GEV_woname  $GEV_button     cursor @ $GEV_rx \n"      
    sc_zstart = lcpx;
 
    sc_zend = rcpx;
@@ -178,12 +179,12 @@ int WTLB(int wb)
 
 //pa("proc  setting cursors ", _proc, " Button", Button);
 
-printf("\n GEV__button %d    cursor @ GEV__rx %f\n",GEV__button,GEV__rx);      
+  <<"In WTLB  $GEV_woname  $GEV_button     cursor @ $GEV_rx \n"      
  long wt_day = 0;
  
-       if (GEV__button == 1) {
+       if (GEV_button == 1) {
 
-         lcpx = GEV__rx;
+         lcpx = GEV_rx;
 
 	 sGl(_GLID,lc_gl,_GLHUE,RED_,_GLCURSOR,rbox(lcpx,0,lcpx,300,Wex_CL_init),_GLDRAW,ON_);
 	 
@@ -202,9 +203,9 @@ printf("\n GEV__button %d    cursor @ GEV__rx %f\n",GEV__button,GEV__rx);
 
         }
 
-       if (GEV__button == 3) {
+       if (GEV_button == 3) {
        
-         rcpx = GEV__rx;
+         rcpx = GEV_rx;
 
       
 	 sGl(_GLID,rc_gl,_GLHUE,BLUE_,_GLCURSOR,rbox(rcpx,0,rcpx,310,Wex_CR_init),_GLDRAW,ON_);

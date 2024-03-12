@@ -12,7 +12,7 @@
  */ 
 //----------------<v_&_v>-------------------------//;                  
 
-  Str Wex_Vers= "2.61  ";
+  Str Wex_Vers= "2.62  ";
 
 ///
 /// exercise weight display
@@ -29,7 +29,7 @@
 //<<[_DB]"%V$wherearewe \n"
 
 #define GT_DB   0
-
+#define _ASL_ 1
 #define _CPP_ 0
 
 #if _CPP_
@@ -61,7 +61,7 @@ using namespace std;
 
 ////////////////////////////////////////  Globals //////////////////////////////
 
-#if_ ASL_
+#if _ASL_
 #define cout //
 #define COUT //
 #define VCOUT //
@@ -162,7 +162,7 @@ using namespace std;
 
  float   GoalWt = 175;  // ideal -- flying weight
 
- float   StartWt = 215;
+ float   StartWt = 206;
 
  float   MinWt = 160;
 
@@ -320,9 +320,9 @@ Record RX;
 
 
   
-   yday = Julian("01/01/2023")   ; // this should be found from data file
+   yday = Julian("01/01/2024")   ; // this should be found from data file
 
-   eday = Julian("12/31/2023");
+   eday = Julian("12/31/2024");
 
   
   today = getDate(2);
@@ -337,7 +337,7 @@ Record RX;
 
   Bday = Julian("04/09/1949");
 
-  Jan1 = Julian("01/01/2023"); // Str adate ; adate.strPrintf("01/01/%s",Year.cptr()");
+  Jan1 = Julian("01/01/2024"); // Str adate ; adate.strPrintf("01/01/%s",Year.cptr()");
 
   Yday = jtoday -Jan1;
 
@@ -353,13 +353,13 @@ Record RX;
    Str stmp;
    Svar Goals;
    
-   Goals.Split("07/21/2023 09/30/2023 175");
+   Goals.Split("02/17/2024 04/09/2024 175");
 
 //<<"Setting goals $Goals\n"
 
    Svar Goals2;
    
-   Goals2.Split("07/21/2023 08/31/2023 185");
+   Goals2.Split("02/17/2024 03/31/2024 185");
 ////////////////////==============/////////////////
 
 // move these down 10 when reached -- until we are at desired operating weight!
@@ -400,11 +400,11 @@ Record RX;
 
    gday =  targetday;    // next goal day;
 
-COUT(gday);
+//COUT(gday);
 
 //   Onwards();
 
-  sc_startday = (jtoday - Jan1) -10;
+  sc_startday = (jtoday - Jan1) -20;
 
   if (sc_startday <0)
      sc_startday =0;
@@ -439,7 +439,7 @@ COUT(gday);
 
   Mo.Split ("JAN,FEB,MAR,APR ,MAY,JUN, JUL, AUG, SEP, OCT, NOV , DEC",44);
 
-  GoalsC.Split("04/15/2023 08/31/2023 175");
+  GoalsC.Split("02/17/2024 04/09/2024 175");
 
 
   maxday = Julian("04/09/2049") -Bday;
@@ -450,7 +450,7 @@ COUT(gday);
 
 //  Onwards();
 
-  int A=ofr("~/gapps/DAT/wex2023.tsv");
+  int A=ofr("~/gapps/DAT/wex2024.tsv");
 
   if (A == -1) {
 
@@ -491,7 +491,7 @@ COUT(gday);
 ///////////// Cals & Carb Consumed ////////
 // so far not logged often 
 
-  int ACC=ofr("~/gapps/DAT/cc2023.tsv");
+  int ACC=ofr("~/gapps/DAT/cc2024.tsv");
 
 <<"%V $ACC\n"
 
@@ -533,7 +533,9 @@ COUT(gday);
 
 ////////////////// READ CEX DATA ///////////////////
 
-    int nrd= readCCData();
+    nrd= readData();
+
+     nrd= readCCData();
 
 
 
@@ -541,7 +543,7 @@ COUT(gday);
 
 //   <<" CC $nrd\n" ;
 
-    nrd= readData();
+
 
 
  //   <<" $nrd \n"
@@ -613,9 +615,7 @@ float ae = EXTV[15];
   int Xgm;
 
   if (!Graphic) {
-#if _TRANS_  
-     <<" no Graphics while TRANS  $_TRANS_ \n"
-#endif
+
 
 #if _ASL_
     Xgm = spawnGWM("WEX");
@@ -654,8 +654,10 @@ float ae = EXTV[15];
 
 
 //  <<" %(1,,,\n) $EXTV \n"
+ Str tit_msg = "Tomorrow's wt will be %6.2f $PWT1 +week $PWT7  + month $PWT30"
+ //titleMessage("Tomorrow's wt will be %6.2f $PWT1 +week $PWT7  + month $PWT30")
 
- titleMessage("Tomorrow's wt will be %6.2f $PWT1 +week $PWT7  + month $PWT30")
+titleMessage(vp,tit_msg)
 
 
 int nevent = 0;
@@ -678,16 +680,24 @@ int rcb = 0;
          nevent++;
   
        
-      if (GEV__woname == "REDRAW") {
+      if (GEV_woname == "REDRAW") {
              drawScreens();
        }
 
-       else if (GEV__woname == "RESIZE") {
+       else if (GEV_woname == "RESIZE") {
              drawScreens();
        }
-       else {
-         <<"trying $GEV__woname $GEV__button \n"
-            rcb=runproc(GEV__woname,GEV__button)
+      else if (GEV_woname == "XZIN") {
+              ZIN(GEV_button)
+       }       
+       else if (GEV_button == 1)       {
+         <<"trying $GEV_woname $GEV_button \n"
+
+           rcb= $GEV_woname(GEV_button)
+
+
+            //rcb=runproc(GEV_woname,GEV_button)
+
             // ZIN(); ZOUT , WTLB
        }
 

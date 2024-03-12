@@ -19,8 +19,7 @@ void fillInObsVec()
 float tex;
 int iyd = Yd;
  float wrk_sleep  ;
- //VCOUT(Yd,iyd);
-  //<<" $_proc $Yd\n"
+
  float mywt;
 
 
@@ -32,7 +31,7 @@ if (Yd >= 0) {
   mywt = atof(Col[j++]);
   
 
-  //<<" %V $wt $mywt \n"
+  <<" %V $mywt \n"
 
   if (mywt > 0.0) {  // we have an entry = not all days are logged
 
@@ -70,7 +69,7 @@ if (Yd >= 0) {
 
    tex = ( walk + hike + run + cycle + swim + yardwrk + wex);
 
- // <<"%V $tex \n"
+  <<"%V $tex \n"
 //COUT(tex);
 
   EXTV[Yd] = tex; 
@@ -174,7 +173,7 @@ if (Yd >= 0) {
 
   Yd = jday - Jan1;
   
-//<<"%V $jday  $Yd\n"
+<<"%V $jday  $Yd\n"
 
   lday = Yd;
 
@@ -194,7 +193,7 @@ if (Yd >= 0) {
 
   tl++;
 
-//<<"%V $tl  $day $mywt $Wex_Nrecs\n"
+  <<"%V $tl  $day $mywt $Wex_Nrecs\n"
 
   if (tl >= Wex_Nrecs) {
 
@@ -204,7 +203,7 @@ if (Yd >= 0) {
 
   }
 
-
+ ans=ask("readDATA proceed?",0);
   printf("Wex_Nrecs %d there were Nobs %d measurements ",Wex_Nrecs,Nobs);
 
   return tl;
@@ -239,7 +238,7 @@ if (Yd >= 0) {
   long jday;
   Str day;
   int jn = 5;
-    //<<"%V $tl $NCCrecs \n"
+  <<"%V $tl $NCCrecs \n"
   while (tl < NCCrecs) {
   
 
@@ -266,7 +265,7 @@ if (Yd >= 0) {
 
   float carbs = atof(RCC.getRC(tl,3));
 
-//<<"$day $carbs\n"
+<<"$day $carbs\n"
 
 
 
@@ -283,7 +282,7 @@ if (Yd >= 0) {
   float fiber = atof(RCC.getRC(tl,4));
 
   FIBRCON[Yd] = fiber;
-//<<"%V $day $cals $carbs $fat $prot $fiber\n"
+<<"%V $day $cals $carbs $fat $prot $fiber\n"
 
   NCCobs++;
   }
@@ -299,7 +298,7 @@ if (Yd >= 0) {
 
 
 
- // ans=query("readCC proceed?");
+ ans=ask("readCC proceed?",0);
 
   }
 

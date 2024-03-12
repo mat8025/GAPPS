@@ -1,19 +1,24 @@
-//%*********************************************** 
-//*  @script color_wheel.asl 
-//* 
-//*  @comment show color map via a wheel 
-//*  @release CARBON 
-//*  @vers 1.4 Be Beryllium                                                
-//*  @date Sun Mar 22 11:08:30 2020 
-//*  @cdate Sun Mar 22 11:05:34 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script color_wheel.asl                                             
+ * 
+ *  @comment show color map via a wheel                                 
+ *  @release Boron                                                      
+ *  @vers 1.6 C Carbon [asl 5.86 : B Rn]                                
+ *  @date 03/11/2024 00:45:39                                           
+ *  @cdate Sun Mar 22 11:05:34 2020                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
+ * 
+ */ 
+
+
 
 
 #include "debug"
 #include "hv.asl"
+
+
+
 
 openDll("image")
 
@@ -21,7 +26,9 @@ ignoreErrors();
 
 Pi = 4.0 * atan(1.0)
 
-
+#include "graphic"
+#include "gevent"
+#include "tbqrd"
 //////////////////////////////////////////
 
    Np = 10;
@@ -44,7 +51,7 @@ Pi = 4.0 * atan(1.0)
      dar= d2r(ang)
 
 
-    <<"$ang $dar \n"
+//    <<"$ang $dar \n"
 
     int k = 0;
     int i;
@@ -52,7 +59,7 @@ Pi = 4.0 * atan(1.0)
      ang2 = ang;
 
   for (j= 0; j < 12; j++) {
-<<"///////////// Outer //////\n"
+//<<"///////////// Outer //////\n"
      k= 0;
       ang = ang2;
      for (i = 0; i < Np; i++) {
@@ -60,7 +67,7 @@ Pi = 4.0 * atan(1.0)
             dar= d2r(ang)
             x= outer_rad * sin(dar);
 	    y= outer_rad * cos(dar);
-    <<"$i $k $ang $x $y \n"
+    //<<"$i $k $ang $x $y \n"
             PV[j][k++] = x;
 	    PV[j][k++] = y;
             ang += da
@@ -68,14 +75,14 @@ Pi = 4.0 * atan(1.0)
 
           ang2 = ang ;
 
-<<"///////////// Inner //////\n"
+//<<"///////////// Inner //////\n"
            ang -= da
      for ( i = 0; i < Np; i++) {
 
             dar= d2r(ang)
             x= inner_rad * sin(dar);
 	    y= inner_rad * cos(dar);
-    <<"$i $k $ang $x $y \n"
+  //  <<"$i $k $ang $x $y \n"
             PV[j][k++] = x;
 	    PV[j][k++] = y;
             ang -= da
@@ -145,14 +152,15 @@ HT=getRGBfromHTMLname("azure")
 int CC[12]
 kc= 0;
 ci = getcolorindexfromname("yellow")
-<<"yellow $ci \n"
-CC[kc++] = ci
 
+CC[kc++] = ci
+<<"yellow $ci $CC[0]\n"
 
 cname = "yelloworange";
 ci = getcolorindexfromname(cname)
 <<"$cname $ci \n"
 CC[kc++] = ci
+<<"yelloworange $ci $CC[1]\n"
 cname = "orange";
 ci = getcolorindexfromname(cname)
 <<"$cname $ci \n"
@@ -204,18 +212,21 @@ CC[kc++] = ci
 <<"$CC\n"
 
 
+ ans=ask("CC?",0)
+
+
  rainbow();
 
-#include "graphic"
-#include "gevent"
 
 
 // how to draw wheel  with twelve sections ?
- vp = cWi(_title,"COLOR_WHEEL",_resize,0.05,0.01,0.5,0.9,0,_eo);
+ vp = cWi("COLOR_WHEEL")
+ sWi(_WOID,vp,_WRESIZE,wbox(0.05,0.01,0.5,0.9,0);
   
-  sWi(vp,_pixmapon,_drawon,_save,_savepixmap,_bhue,WHITE_);
+  sWi(_WOID,vp,_WPIXMAP,ON_,_WSAVEPIXMAP,ON,_WBHUE,WHITE_);
   
   titleButtonsQRD(vp);
+  
   titleVers();
 
   cx = 0.1;
@@ -229,9 +240,11 @@ CC[kc++] = ci
   
   daname = "WHEEL";
   
-  gwo= cWo(vp,_GRAPH,_name,"GL",_color,WHITE_);
+  gwo= cWo(vp,_GRAPH)
+
+
   
-  sWo(gwo,_clip,cx,cy,cX,cY, _drawon, _resize,0.05,0.1,0.99,0.95,_eo);
+  sWo(_WOID,gwo,_WCLIP,wbox(cx,cy,cX,cY), _WDRAW,ON_, _WRESIZE,wbox(0.05,0.1,0.99,0.95),   _WNAME,"GL",_WCOLOR,WHITE_);
 
  // scales 
     sx = -3
@@ -239,49 +252,54 @@ CC[kc++] = ci
     sy = -3
     sY = 3.0
 
-  sWo(gwo,_scales, sx, sy, sX, sY,_save, _savepixmap,_redraw,_pixmapon,_drawon)
+  sWo(_WOID,gwo,_WSCALES, wbox(sx, sy, sX, sY),_WSAVE,ON_ ,_WSAVEPIXMAP,ON_,_WREDRAW,ON_,_WPIXMAP,ON_)
 
-  sWi(vp,_redraw)
+  sWi(_WOID,vp,_WREDRAW,1)
 
-
+  ans=ask("Screen OK",0)
+  
   int kp = 0;
   int col = 1000;
   int co = 0;
+  int eloop = 0;
   while (1) {
 
 
-          sWo(gwo,_drawon)
+          //sWo(gwo,_drawon)
 
-          sWo(gwo,_clearpixmap,_pixmapon,_savepixmap)
+          sWo(_WOID,gwo,_WCLEARPIXMAP,ON_,_WPIXMAP,1,_WSAVEPIXMAP,1)
 
-          sWo(gwo,_clear,_border,BLUE_,_clipborder,RED_,_eo)
+          sWo(_WOID,gwo,_WCLEAR,1,_WBORDER,BLUE_,_WCLIPBORDER,RED_)
 
-          plot(gwo,_circle,0,0,2,YELLOW_,0)
+          plot(gwo,_WCIRCLE,0,0,2,YELLOW_,0)
 
-          plot(gwo,_circle,0,0,2.5, RED_,0)
+          plot(gwo,_WCIRCLE,0,0,2.5, RED_,0)
 
-          plot(gwo,_box,-0.5,-0.5,0.5,0.5,LILAC_,1.0)
+          plot(gwo,_WBOX,-0.5,-0.5,0.5,0.5,LILAC_,1.0)
 
 	  for (kp = 0; kp < 12; kp++) {
 
           PX = PV[kp][::]
-	  co = ((kp + _eloop) % 12)
+	  co = ((kp + eloop) % 12)
           col = CC[co]	  
-          plot(gwo,_poly,PX,col,1);
-
+          plot(gwo,_WPOLY,PX,col,1);
+        // <<"%V $kp $co $eloop $col\n"
+//	 <<" $PX\n"
          }
-         <<"%V $col\n"
+
 
 
 
        //  sWi(vp,_redraw);
-         sWo(gwo, _showpixmap)
+         sWo(_WOID,gwo, _WSHOWPIXMAP,1)
 
          eventWait();
 
-         titleMsg("%V $_ekeyw  $_ebutton $_eloop")
+         eloop++;
+	 
+      //   titleMsg("%V $GEV_keyw  $GEV_button $eloop")
 
   }
 
 
-exit()
+exit_gs()
