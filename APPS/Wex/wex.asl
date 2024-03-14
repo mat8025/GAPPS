@@ -12,7 +12,7 @@
  */ 
 //----------------<v_&_v>-------------------------//;                  
 
-  Str Wex_Vers= "2.62  ";
+  Str Wex_Vers= "2.63  ";
 
 ///
 /// exercise weight display
@@ -690,7 +690,7 @@ int rcb = 0;
       else if (GEV_woname == "XZIN") {
               ZIN(GEV_button)
        }       
-       else if (GEV_button == 1)       {
+       else if (GEV_button > 0)       {
          <<"trying $GEV_woname $GEV_button \n"
 
            rcb= $GEV_woname(GEV_button)

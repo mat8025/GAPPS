@@ -1,5 +1,5 @@
 /* 
- *  @script iproc.asl                                                   
+ *  @script iproc2.asl                                                   
  * 
  *  @comment test indirect call pr proc ()                              
  *  @release Palladium                                                  

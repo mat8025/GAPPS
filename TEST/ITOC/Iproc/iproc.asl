@@ -1,3 +1,18 @@
+/* 
+ *  @script iproc.asl                                                   
+ * 
+ *  @comment test indirect call pr proc ()                              
+ *  @release Boron                                                      
+ *  @vers 1.5 B Boron [asl 5.87 : B Fr]                                 
+ *  @date 03/14/2024 07:31:49                                           
+ *  @cdate 1/1/2011                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
+ * 
+ */ 
+
+
+//----------------<v_&_v>-------------------------//;                  
 
 #include "debug"
 
@@ -28,6 +43,24 @@
  int Bear (int k)
   {
     w= k * 9;
+
+    return w;
+   }
+
+  //EP=====================//
+
+
+ int Owl (int k, int m)
+  {
+    w= k * m;
+
+    return w;
+   }
+
+
+ float Crow (float k, float m)
+  {
+   float  w= k / m;
 
     return w;
    }
@@ -110,6 +143,31 @@ K= 5
  <<"[$i] after Indirect call of $cbname returns $wc \n";
 
    }
+
+
+   wc = Owl( 93,7)
+
+<<" Owl  says $wc \n"
+
+  cbname = "Owl"
+
+   wc = $cbname(5,14);  
+
+<<" Owl  says 5 * 14 = $wc \n"
+
+   x = 6; y = 7;
+
+   wc = $cbname(x,y);  
+
+<<" Owl  says $x * $y = $wc \n"
+
+
+  cbname = "Crow"
+
+   wcf = $cbname(x,y);  
+
+<<" Crow says $x / $y = $wcf \n"
+
 
 
    chkOut(1)

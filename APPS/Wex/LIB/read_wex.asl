@@ -69,7 +69,7 @@ if (Yd >= 0) {
 
    tex = ( walk + hike + run + cycle + swim + yardwrk + wex);
 
-  <<"%V $tex \n"
+//  <<"%V $tex \n"
 //COUT(tex);
 
   EXTV[Yd] = tex; 
@@ -141,7 +141,7 @@ if (Yd >= 0) {
   
   int got_start = 0;
 
-  <<"get data from record Wex_Nrecs \n";
+//  <<"get data from record Wex_Nrecs \n";
 
 // access of record row Rx(i)
 // access of record Col Rx(i,j)
@@ -173,7 +173,7 @@ if (Yd >= 0) {
 
   Yd = jday - Jan1;
   
-<<"%V $jday  $Yd\n"
+//<<"%V $jday  $Yd\n"
 
   lday = Yd;
 

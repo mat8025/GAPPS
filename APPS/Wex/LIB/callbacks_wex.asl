@@ -136,7 +136,7 @@ int ExTim (int wb)
 
   //<<" In $_proc  $lcpx  $rcpx\n";
   //cout <<"In ZIN " << lcpx  << endl;
-  <<"In ZIN  $GEV_woname  $GEV_button     cursor @ $GEV_rx \n"      
+  <<"In ZIN  $GEV_woname  $GEV_button   $wb  cursor @ $lcpx \n"      
    sc_zstart = lcpx;
 
    sc_zend = rcpx;
@@ -150,7 +150,7 @@ int ExTim (int wb)
 
   int ZOUT(int wb)
   {
-
+ <<"In ZOUT  $GEV_woname  $GEV_button  $wb   cursor @ $lcpx \n"      
   sc_zstart -= 10;
 
   sc_zend  += 10;
