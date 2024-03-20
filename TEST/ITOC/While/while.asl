@@ -12,7 +12,7 @@
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
                                                                    
-//
+///
 ///
 
 
@@ -28,6 +28,8 @@
    <<"$Hdr_comment\n"
 
    chkIn(_dblevel);
+
+db_allow = 1
 
    askit(0)
 
@@ -267,21 +269,18 @@ k.pinfo()
 
      k = 0;
 
-     N = 5;
+     N = 3;
 
-
+//allowDB("while,ic",db_allow)
      while ( ++k < N) {
 
        m++;
 
        <<"%V $k $m \n";
+       
        // TBF  if (k > 10) break ;   --- needs  {} 10/18/23
 
-   if (k > 10) break ;  
-
-       // if ( k > 10)  {
-       //     break;
-      //	 }
+       if (k >= 4) break ;  
 	   
        }
      
@@ -289,6 +288,7 @@ k.pinfo()
 
      chkN (k,N);
 
+//chkOut(1)
 
 
      chkStage("2");

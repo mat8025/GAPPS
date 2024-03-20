@@ -72,23 +72,45 @@
 
    <<" $NV[22] \n";
 
-   <<" $YV \n";
+   <<"%V $YV \n";
 
-   YV = YV @+ PV;
+   <<"%V $PV \n";
 
-   <<" $YV \n";
+//   YV = YV @+ PV;
 
-   S = YV[PV];
+ //   YV.join(PV)
+
+   ysz= Caz(YV)
+   <<"%V $ysz \n"
+
+   vvcat(YV,PV)
+    
+   <<"%V $YV \n";
+   <<"%V $PV \n";   
+
+ans = ask("YV cat PV ?\n")
+
+
+
 
    <<" %v $PV \n";
 
+   S = YV[PV];
+
    <<" %v $S \n";
+   <<" %v $PV \n";
+
 
    chkN(NV[1],YV[1]);
 
    chkN(NV[2],YV[2]);
 
-   chkN(NV[21],P[1]);
+<<"%V $PV\n"
+<<"%V $NV\n"
+
+   chkN(NV[21],PV[1]);
+
+<<"%V $NV[21]   $PV[1] \n"
 
    chkOut();
 

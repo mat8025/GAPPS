@@ -84,7 +84,7 @@ int DB_step = 0;
 
    _DBH =2;
 
- <<[_DBH]"Script is $_script\n";
+ //<<[_DBH]"Script is $_script\n";
 
   }
 

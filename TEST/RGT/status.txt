@@ -1,46 +1,47 @@
-module    score    (-3 crash, -2 stall, -1 partial, <100% some tests fail, 100% success)
+module    status    (-3 crash, -2 stall, -1 partial, <100% some tests fail, 100% success) score %  num_test
 
-array	98.28 
-bops	100
-bugs	-1
-class	100
-command  50
-declare	100
-do		100
-dynv		100
-exp           100
-fops		100
-for		100
-func		100
-if		100
-iproc          -1
-include      -1
-ivar          -2
-lhsubsc     100
+array	-1    98.28 
+bops	1      100
+bugs	-1    77.27
+class	-1    96.46
+command  -1    50.0
+declare	 1     100
+do		1	100
+dynv		1	100
+exp           1	100  18
+fops		1    100   16
+for		1    100 20
+func		1    100 18
+if		1    100  146
+iproc         1	100 3
+include      1	100 8
+ivar          -3      0    1
+lhsubsc     1 	100 52
 lists         -2
-logic		100
-matrix	100
-mops	90.79
-oo		-1
-pan	       100
-paraex      -1
+logic		1	100	44
+matrix	1	100  112
+mops	-1	90.79  152
+oo		-2
+pan	       1	100 28
+paraex      1  100 6
 proc		100
-ptrs	       0
-record	0
-redimn	100
-resize	100
-scope	100
-sfunc        88.65
-sops		100
-stat	       100
-svar	        100
-switch	100
+ptrs	        -1  89.3 118
+record	-1
+redimn	1 100	8
+resize	1 100	20
+scope	1 100	12
+sfunc        -1 88.65   691
+sops		1 100	229
+stat	       -1    54	12
+svar	        -3
+switch	1	100 46
 threads     -1
-try		-2
-types	85.71
-unary       100
-vops		100
-while       100
+try		-3
+types	-3
+unary       1	100 18
+vops		-1   96 164
+while        1	100   46
 
 
-///    TBD - modules should also have cpp versions - but many functions need cpp vairants and/or translation
+
+///    TBD - modules should also have cpp versions - but many functions need cpp variants and/or translation

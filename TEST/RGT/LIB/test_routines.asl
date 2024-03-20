@@ -335,16 +335,16 @@ int _DBH = -1
 
   blue= PGREEN ;
 //<<"%V $pcc\n"
-if ((pcc < 100)  && (pcc >= 90)) {
- <<"\t$(PGREEN)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs $(POFF_)\n\n"
+if ((pcc < 100) && (pcc >90) ) {
+ <<"\t$(PWCOLOR_)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs $(POFF_)\n\n"
 }
-else if ((pcc < 90) && (pcc >= 70) ){
+else if ((pcc < 100) && (pcc >= 70) ){
 
 <<"\t$(PBLUE)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs \033[0m \n\n"
 }
 else if (pcc < 70) {
 
-<<"\t$(PRED)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs \033[0m \n\n"
+<<"\t$(PRED_)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs \033[0m \n\n"
 
 }
 else {
@@ -656,7 +656,7 @@ void cart (Str prg)
 
    jpid  =0
       
-      aprg.pinfo()
+   //   aprg.pinfo()
 
 
            if (do_query) {

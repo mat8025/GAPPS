@@ -29,8 +29,9 @@ Str Use_= "Demo svar type use";
  //  sdb(1,"soe")
    chkIn(_dblevel);
    
-chkT(1)
-
+   chkT(1)
+   
+ //allowDB("spe_,ic",1)
 
    Svar E[] = { "the first ten elements are:", "H", "He", "Li", "Be" ,"B" ,"C", "N", "O", "F", "Ne"  };
 
@@ -38,25 +39,26 @@ chkT(1)
 
    <<"$E[1] \n";
 
-   E.aslpinfo();
+   E.pinfo();
 
-Siv F(SVAR_);
+   ans=ask("Svar array filled OK",1)
+
+
+   Siv F(SVAR_);
 
    F  = split ("uno dos tres" );
 
-   F.aslpinfo();
+   F.pinfo();
    
-Siv Q(INT_,67);
+   Siv Q(INT_,67);
 
-   Q.aslpinfo();
-
+   Q.pinfo();
   
 //Siv Ivec(INT_,10,0,1,2);
-Siv Ivec(INT_,1,10,0,1);
+    Siv Ivec(INT_,1,10,0,1);
+    
 
-   Ivec.aslpinfo();
-
-
+   Ivec.pinfo();
 
    chkStr(E[1],"H");
 
@@ -72,7 +74,7 @@ Siv Ivec(INT_,1,10,0,1);
 
    chkStr(S1[0], "una larga noche");
 
-   S1.aslpinfo();
+   S1.pinfo();
 
    <<" $(typeof(S)) $(Caz(S)) \n";
 
@@ -82,9 +84,16 @@ Siv Ivec(INT_,1,10,0,1);
 
    <<"%V $S[2] \n";
 
-   svar E3[] = { "third row elements are:", "Na", "Mg", "Al", "Si" ,"P" ,"S", "Cl", "Ar" };
+   //Svar E3[] = { "third row elements are:", "Na", "Mg", "Al", "Si" ,"P" ,"S", "Cl", "Ar" };
+   Svar E3 = { "third row elements are:", "Na", "Mg", "Al", "Si" ,"P" ,"S", "Cl", "Ar" };
 
-   <<"$E[3:6] \n";
+   E3.pinfo()
+   
+   ans=ask("Svar array filled OK",1)
+
+<<"$E[3:6] \n";
+
+
 
    W= E[3:7];
 
@@ -114,7 +123,7 @@ Siv Ivec(INT_,1,10,0,1);
 
    <<"$T\n";
 
-   T.aslpinfo();
+   T.pinfo();
 
    sz=T.Caz();
 
@@ -124,7 +133,7 @@ Siv Ivec(INT_,1,10,0,1);
 
    <<"$R\n";
 
-   R.aslpinfo();
+   R.pinfo();
 
    sz=R.Caz();
 
@@ -140,15 +149,15 @@ Siv Ivec(INT_,1,10,0,1);
 
    RS= Split("$IV");
 
-   RS.aslpinfo();
+   RS.pinfo();
 
    <<"RS: $RS\n";
 
-   S.aslpinfo();
+   S.pinfo();
 
    S= Split("$IV");
 
-   S.aslpinfo();
+   S.pinfo();
 
    <<"$S\n";
 
@@ -193,7 +202,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
    <<"T: $T\n";
 
-   T.aslpinfo();
+   T.pinfo();
 
 <<" $T[1] $T[2] $T[3] \n"
 
@@ -216,7 +225,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
    R= Split("47 79 80 81 82 83 84 85 86 87");
 
-   R.aslpinfo();
+   R.pinfo();
 
    <<"$R\n";
 
@@ -226,7 +235,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
    <<"$S[1]  $S[2] \n";
 
-   S.aslpinfo();
+   S.pinfo();
 
    chkStr(S[1],"47");
 
@@ -362,7 +371,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
    <<"twelveth month $Mol[11]\n";
 
-   Mol.aslpinfo();
+   Mol.pinfo();
 
    le12 = Mol[11];
 
@@ -441,13 +450,13 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
   T= itoa(IV) ; // does not deliver svar array;
 
-  T.aslpinfo();
+  T.pinfo();
 
   <<"$T\n";
 
   M=Split("$IV");
 
-  M.aslpinfo();
+  M.pinfo();
 
   <<"$M \n";
 
@@ -457,14 +466,16 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
   <<"$IV2\n";
 
-  IV2.aslpinfo();
+  IV2.pinfo();
 //R= M[3::]   // TBF xic does not use default for range end
+
+ ans= ask(" IV2 type ?",0)
 
   R= M[3:-1:];
 
   <<"$R \n";
 
-  R.aslpinfo();
+  R.pinfo();
 
   <<"%V$R\n";
 
@@ -475,7 +486,12 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
   IV3= atoi(R);
 
-  IV3.aslpinfo();
+
+
+
+  IV3.pinfo();
+
+  ans=ask("IV3 int?",1)
 
   <<"%V $IV3\n";
 
@@ -492,8 +508,10 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
   chkN(IV3[0],6);
 
   <<"%V $IV3\n";
+  
 //M[3::] = atoi(IV3)
-//M[0] = 47  // error int --> string
+
+  M[0] = itoa(47)    // error int --> string
 
   M[0] = "47";
 
@@ -538,7 +556,11 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
   IV3[3:12:1] = IV4[0:9:];
 
+
   <<"%V $IV3\n";
+
+  IV3.pinfo();
+  ans=ask("IV3 int?",1)  
 
   chkN(IV3[0],6);
 
@@ -560,44 +582,91 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
   <<"M $M \n";
 
-  IV3= atoi(M);
+  //IV3= atoi(M);
+// allowDB("spe_,rdp,ds,ic",1)
+  IV3= M;   // should give error !! - now does 3/16/24
 
   <<"$IV3\n";
 
+  IV3.pinfo()
+
+  kt = pinfo(IV3,TYPE_INFO_)
+  <<" %V $kt\n"
+
+ chkStr(kt,"INT")
+
+
+
+  ans=ask("IV3=M   int? $kt error",1)
+
+  kt = pinfo(IV3,OFFS_INFO_)
+  <<" %V $kt\n"
+
+
+
+  
   chkN(IV3[0], 47);
 
   chkN(IV3[1], 1);
 
   chkN(IV3[2], 2);
 
-  IV3.aslpinfo();
+  IV3.pinfo();
 //IV3= atoi(M[3::])
 
    IV3[0] = 99;
 <<"$M[4:-2]\n"
 
-  IV3= atoi(M[3:-1:]);
+  IVA3= atoi(M[3:-1:]);
+
+
+// should be an error
+  //IV3= M[3:-1:];
+
+ IV3= atoi(M[3:-1:]); // TBF does not do the range specified
+
 
 <<"%V $M\n"
 
 <<"M[] == $M\n"
 
 
-<<"%V$M[3:-2]\n"
+<<"%V$M[3:-1]\n"
 
 <<"%V $IV3\n";
 
-  IV3.aslpinfo();
+<<"%V $IVA3\n";
+
+  
 
   iv3 = IV3[0];
-  
-  chkN(IV3[0], 79);
+
+  iv4 = IV3[4];
+
+ iv3.pinfo()
+
+   IV3.pinfo();
+   
+   IV3[2].pinfo()
+
+  <<" %V $iv3  $iv4 $IV3[0]\n"
+
+//  chkN(atoi(IV3[0]), 79);
+
+chkStr(IV3[0], "79");
+
+  //chkN(IV3[0],79); // TBF 3/15/24  strv v number should still work but warn atol compare
+
+
+  IV3.pinfo()
 
   if (IV3[0] == 79) {
 
   <<"OK $IV[0:-1:2] \n";
 
   }
+
+  //chkOut(1)
 
   chkStage("declare");
 /////////////////////////  svar proc ///////////////////////////
@@ -609,7 +678,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
   {
 //<<" $SV\n"
 
-  SV.aslpinfo();
+  SV.pinfo();
 
   static int k = 1;
 
@@ -657,13 +726,13 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
   S = Split("how did we get here");
 
-  S.aslpinfo();
+  S.pinfo();
 
   pSv(S);
 
   TS2 = Split("again how is this happening");
 
-  TS2.aslpinfo();
+  TS2.pinfo();
 
   pSv(TS2);
 //===========
@@ -773,7 +842,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
   }
 //=================================
   P=split("Jamestwn    	jmt	40,07.00,N	105,24.00,W	8470	0/0	_	T ");
-  P.aslpinfo()
+  P.pinfo()
   pSv(P)
   Turnpt  Tp;
   Tp->Set(P);
@@ -793,7 +862,9 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
   chkStr("matrix",Opts[2]);
 
-  str Sr ="all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex,proc,switch,types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc,svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help";
+  //str Sr ="all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex,proc,switch,types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc,svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help";
+
+Str Sr ="all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex,proc,switch,types,func";
 
   len = slen(Sr);
 
@@ -805,11 +876,12 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
   <<"%V %(5,, ,\n)$Mopts[::] \n";
 
+//allowDB("spe_,rdp,ds,svar,ic",1)
   chkStr("all",Mopts[0]);
 
   chkStr("matrix",Mopts[2]);
 
-  svar Sopts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex,",",");
+  Svar Sopts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex",",");
 
   <<"%V $Sopts \n";
 
@@ -817,11 +889,33 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
   chkStr("class",Sopts[8]);
 
-  svar Popts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex,proc,switch,types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc,svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help",",");
+  Svar Popts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex,proc,switch,types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc,svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help",",");
+
+//
+
+ //allowDB("spe_,pex,ds,ic,split",1)
+
+// Svar Popts = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex,proc,switch,types,func,command",",");
+
+
+   Popts.pinfo()
+   
 
   <<"%V $Popts \n";
 
+ <<"%V $Popts[1] $Popts[4]\n"
+
+  <<" $Popts[6]  $Popts[7]\n"] 
+
+    <<" $Popts[8:12]  \n"] 
+
   chkStr("array",Popts[1]);
+
+  Ropts = Popts[13:21]
+
+  Ropts.pinfo()
+
+  <<"%V $Ropts \n";
 
   chkStage("Split");
 

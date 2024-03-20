@@ -40,9 +40,13 @@
      debugON();
 
      <<"$Use_\n";
-}
+ }
 
-   chkIn(_dblevel);
+//   chkIn(_dblevel);
+
+     db_allow = 0;
+
+     chkIn(1);
 
 B= vgen(INT_,100,0,1);
 
@@ -76,7 +80,7 @@ B= vgen(INT_,100,0,1);
 
    r = ( B[1] == 1);
 
-!p r;
+   chkT(1)
 
    vvcopy(B,A);
 
@@ -88,17 +92,34 @@ B= vgen(INT_,100,0,1);
 
    <<"B: $B\n";
 
+   B[3] = 7;
+   A[0] = 14
+   A[1] = 17
+
+  <<"B: $B\n";
+  if (db_allow) {
+   allowDB("spe,rdp,array,ic")
+ }
    vvcopy(&B[3],A,5);
 
    B.pinfo();
 
-   <<"B: $B\n";
 
+   <<"B: $B\n";
+   
+   <<"A: $A\n"
+   
    <<"%V $B[3]  $A[0] \n";
+      <<"%V $B[4]  $A[1] \n";
 
    chkN(B[3],A[0]);
+   chkN(B[4],A[1]);   
 //    do the same with vec ops
 
+
+
+
+////////////////////////////////////////////////////////////
    B = C;
 
    <<"C $C\n";
@@ -262,7 +283,8 @@ B= vgen(INT_,100,0,1);
    <<"$nc \n";
 
    <<"$A\n";
-A.pinfo()
+   A.pinfo()
+   
    C= A[1:5:1];
    <<"$C\n";
 
@@ -285,26 +307,31 @@ A.pinfo()
    C= BM[20:29:1];
 
    B.pinfo();
+
+
+
 //k= B[0]
 //!p k
 
    <<"%V$B\n";
+   
 //chkN(B[1],1)
 /*
    chkN(B[99],99)
    <<"%V$B\n"
 */
 
+
    <<"$C\n";
 
    chkN(C[0],20);
 
    <<"%V$A\n";
-   BM.pinfo()
+   BM.pinfo();
 
    <<"%V$B\n";
 // TBF BUG BM has PROC_ARG_REF set ??
-   BM.pinfo()
+   BM.pinfo();
 
    nc=vvcopy(A,BM,20,ALWAYS_,0,1,1,0,20);
 
@@ -316,7 +343,7 @@ A.pinfo()
 
    chkN(A[0],20);
 
-   chkOut();
+
 
    <<"//////////////////////\n";
 
@@ -372,7 +399,8 @@ A.pinfo()
 
    <<"B: $B\n";
 
-   I = Seli(A,GT_,3);
+ //  I = Seli(A,GT_,3);
+     I = Sel(A,GT_,3);
 
    <<"I: $I \n";
 
@@ -383,3 +411,5 @@ A.pinfo()
    T = A[I];
 
    <<"T $I\n";
+ chkT(1)
+ chkOut()

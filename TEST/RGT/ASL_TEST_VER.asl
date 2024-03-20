@@ -88,8 +88,10 @@ wdir = getdIr()
 //str S = "all,array,matrix,bugs,bops,vops,sops,fops,class, declare,include,exp,if,logic,for,do,paraex,proc,switch,try"
 //S.cat("types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc,svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help");
 
-str S = "all array bops bugs class command declare do dynv exp fops for func help if include ivar lhsubsc lists logic"
-S.cat("matrix mops oo pan paraex proc ptrs record redimn resize scope sfunc sops stat svar switch threads try types unary vops while");
+str S = "all array bops bugs class command declare do dynv exp fops "
+S.cat("for func help if include ivar lhsubsc lists logic")
+S.cat("matrix mops oo pan paraex proc ptrs record redimn resize ")
+S.cat ("scope sfunc sops stat svar switch threads try types unary vops while");
 
 
 Svar Opts[] = Split(S);

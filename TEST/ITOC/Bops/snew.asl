@@ -15,7 +15,7 @@
 
 #include "debug"
 
-  //   setdebug(1,@pline,@~trace,@keep); 
+  
      
      chkIn(_dblevel); 
      
@@ -246,7 +246,7 @@
      
      int sum = 0;
      double mi = 1;
-     N = 1000;
+     N = 10;
   
      for (k = 0; k < N; k++) {
        

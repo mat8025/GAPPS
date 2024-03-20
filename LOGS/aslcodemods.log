@@ -1993,3 +1993,7 @@ spe_scope_findvar.cpp               2.57  02/04/2024 07:07:25  remove dead code
 test_l.cpp                          1.59  02/08/2024 14:24:56  report args when fail
 ic_call.cpp                         1.64  02/09/2024 07:32:04  check CMFStack prior,post call
 opera_main.cpp                      1.53  02/09/2024 18:07:34  WIC check
+rdp_store.cpp                       2.8  03/16/2024 12:51:49  svar->number error
+rdp_l1.cpp                          1.64  03/16/2024 12:54:28  svar_store ==>rdp_store
+ic_opera.cpp                        1.60  03/18/2024 08:47:08  preop
+spe_scope_findvar.cpp               2.57  03/19/2024 10:05:16  use parset->pvc
