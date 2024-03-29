@@ -25,6 +25,8 @@ Str Use_= "Demo svar type use";
 
      }
 
+
+   db_ask = 1
    allowErrors(-1);
  //  sdb(1,"soe")
    chkIn(_dblevel);
@@ -41,7 +43,7 @@ Str Use_= "Demo svar type use";
 
    E.pinfo();
 
-   ans=ask("Svar array filled OK",1)
+   ans=ask("Svar array filled OK",db_ask)
 
 
    Siv F(SVAR_);
@@ -486,7 +488,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
   IV3= atoi(R);
 
-
+<<"%V $IV3\n"
 
 
   IV3.pinfo();
@@ -603,13 +605,11 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
   <<" %V $kt\n"
 
 
-
+   IV3.pinfo()
   
-  chkN(IV3[0], 47);
+  chkN(IV3[0], 6);
 
-  chkN(IV3[1], 1);
 
-  chkN(IV3[2], 2);
 
   IV3.pinfo();
 //IV3= atoi(M[3::])

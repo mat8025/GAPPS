@@ -16,12 +16,6 @@
 
 #include "debug.asl";
 
-/*
-debugON();
-  setdebug(1,@keep,@pline,@trace);
-  FilterFileDebug(REJECT_,"~storetype_e");
-  FilterFuncDebug(REJECT_,"~ArraySpecs",);
-*/
 
 chkIn(_dblevel)
 
@@ -34,7 +28,26 @@ uchar C[] = { 0xCA , 0xFE, 0xBA, 0xBE, 0xFA, 0xCE, 0xBE, 0xAD , 0xDE,0xAD, 0xC0,
 
 <<"%x $C \n"
 
-C->Info(1)
+C.pinfo()
+
+ allowDB("spe,rdp,ds",0)
+uchar c0 =0xAF
+
+<<"%V %x $c0  $(0xCA)\n"
+
+
+ c0 = 0xCA;
+
+<<"%V $c0\n"
+
+<<"%V %x $c0  $(0xCA)\n"
+
+chkN(c0,0xCA)
+
+uint  k = 0xcafe
+
+<<"%V $k  %x $k\n"
+
 
 
 
@@ -65,7 +78,7 @@ D = C
 <<" $(typeof(D)) \n"
 <<"D[]  $D \n"
 <<"D[]  %x $D \n"
-D->info(1)
+D.pinfo()
 
   swab(D)
 
@@ -77,28 +90,59 @@ E=D
    retype(E,CHAR_)
 <<" $(typeof(E)) \n"
 <<"E[]  %x $E \n"
-E->Info(1)
+E.pinfo()
 
 uchar U[] ;
 U = E;
-U->Info(1)
+U.pinfo()
 <<"U[]  %x $U \n"
 
-uchar c0;
+
 uchar c1 = 0xFE;
-c0 = 0xCA;
+uchar c2;
+<<" $(0xCA)  $(0x1) $(0xFE) \n"
+
+
+
+
 //c1 = 0xBE;
-<<"%x $c0 $c1\n"
 
-bscan(U,0,&c0,&c1)
 
-<<"%x $c0 $c1\n"
-c0->info(1)
-c1->info(1)
 
-chkN(c0,0xFE)
-chkN(c1,0xCA)
 
-chkOut()
+bscan(U,0,&c0,&c1,&c2)
+
+<<"%x $c0 $c1 $c2\n"
+
+<<"%V $c0\n"
+
+<<"%V %x $c0\n"
+
+
+c0.pinfo()
+c1.pinfo()
+
+
+chkN(c1,0xBA)
+chkN(c0,0xBE)
+
+ushort s1
+ushort s2
+
+
+bscan(U,0,&s1,&s2)
+
+<<"%x $s1 $s2\n"
+
+
+bscan(U,1,&s1,&s2)
+
+<<"%x $s1 $s2\n"
+
+chkN(s1,0xbeba)
+
+
+
+chkOut(1)
 
 exit()

@@ -22,13 +22,11 @@
      }
 
 
-int db_allow = 0; // set to zero for internal debug print
-
+int db_allow = 0; // set to 1 for internal debug print
+int db_ask = 1
    chkIn (_dblevel);
 
-if (db_allow) {
- allowDB("spe,opera_,array_parse,parse,rdp_,ds,pex")
-}
+
 
    int main_chk = 0;
 
@@ -126,7 +124,7 @@ if (db_allow) {
 
      rl.pinfo();
 
-//ans=ask("rl ?",1)
+ans=ask("rl ?", db_ask)
 
      <<"PROC after pinfo %V  $_scope $_cmfnest $_proc $_pnest\n";
  //SA = SA + 1;
@@ -140,12 +138,18 @@ if (db_allow) {
      
 //  <<"%V$rl \n";
      int jj = 0;
+     
      t1 = rl[2];
 
      t1.pinfo();
-
+if (db_allow) {
+ allowDB("spe,opera_,array_parse,parse,rdp_,ds,ic,pex")
+}
 
      t1 = rl[4];
+
+     rl.pinfo()
+ans=ask("rl ?",db_ask)     
 
 //  <<"%6.2f%V$t1\n";
 
@@ -158,6 +162,11 @@ if (db_allow) {
      <<"%V$t2\n";
 
      <<"$(Caz(t2))\n";
+
+     rl.pinfo()
+
+ans=ask("rl ?", db_ask)
+
 
      j1 = 4;
 
@@ -179,14 +188,41 @@ if (db_allow) {
 
      chkR (t3, 6);
 
+     rl.pinfo()
+
+    <<"%V $j1 $j2 \n"
+
+     rl4 = rl[j1]
+     rl.pinfo()
+<<"%V $rl4  \n"     
+     rl6 = rl[j2]
+     rl.pinfo()
+
+<<"%V $rl4 $rl6 \n"
+
+      <<"%V $rl[j1] \n"
+     rl.pinfo()
+      <<"%V $rl[j2] \n"
+     rl.pinfo()
+ chkN(rl4,4)
+ chkN(rl6,6)
 
 
+ rl.pinfo()
+
+ans=ask("%V $rl ?",db_ask)
 
      t3 = rl[j1] - rl[j2];
-
+rl.pinfo()
+    <<"%V $rl[j1] \n"
+rl.pinfo()
+      <<"%V $rl[j2] \n"
+ rl.pinfo()     
      <<"%V %6.2f $t3  \n";
 
      <<"$(Caz(t3))\n";
+
+ans=ask("%V $rl[j1]  $rl[j2]",db_ask)
 
      chkR (t3, -2);
 

@@ -37,9 +37,9 @@ svar	        -3
 switch	1	100 46
 threads     -1
 try		-3
-types	-3
+types	1	100  142
 unary       1	100 18
-vops		-1   96 164
+vops		1   100 164
 while        1	100   46
 
 

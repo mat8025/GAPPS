@@ -28,7 +28,11 @@
 
    chkIn(_dblevel);
 
-   proc Foo(int a,int b)
+   db_ask = 0;
+   db_allow = 0;
+
+
+   int Foo(int a,int b)
    {
 
      <<"%V$a $b\n";
@@ -211,16 +215,39 @@
 
    m = 2;
 
+
+
+   n = k + m;
+
+chkN(n,5);
+
+
+
+
+    chkN(k,3);
+    chkN(m,2);    
+
+   n = k++ ;
+   
+    chkN(n,3);
+    chkN(k,4);
+
+     n = k++ + m;
+
+   <<"%V $n $k $m \n";
+
+   chkN(n,6);
+ allowDB("spe_exp,opera,rdp",db_allow)
    n = k++ + m++;
 
    <<"%V $n $k $m \n";
 
-    chkN(n,5);
+    chkN(n,7);
 
-    chkN(k,4);
+    chkN(k,6);
     chkN(m,3);    
 
-
+//chkOut(1)
 
    k = 2;
 
@@ -274,12 +301,31 @@ chkN(m,1);
 
    chkN(AV[1],1);
 
-   AV++;
+  
 
-   <<"%V$AV\n";
+     AV.pinfo()
+    
+
+     AV++;   // TBF not incr array
+
+
+   AV.pinfo()
+
+ans=ask("AV correct?",db_ask)
+
+
 
    chkN(AV[1],2);
-//setdebug(1,"trace")
+
+    ++AV
+
+   AV.pinfo()
+
+  chkN(AV[1],3);
+
+
+ans=ask("AV correct?",db_ask)
+
 
    BV = ++AV ; // this should increment all elements in the vector;
 
@@ -289,25 +335,44 @@ chkN(m,1);
 
    <<"%V $BV\n";
 
-   chkN(BV[1],3);
+   chkN(BV[1],4);
 
    <<"%V $BV\n";
 
    <<"%V $AV\n";
 
+ans=ask("AV == BV correct?",db_ask)
+
+
    BV= 67;
 
-   <<"$BV\n";
+   BV.pinfo()
+   
 
    chkN(BV[1],67);
+   
 
-   BV = AV++ ; // this should increment all elements in the vector;
+   BV = AV
 
-   <<"after  $AV ++\n";
+   BV.pinfo()
 
-   chkN(AV[1],4);
+ allowDB("spe_,opera,rdp",db_allow)
 
-   chkN(BV[1],3);
+   BV = AV++ ; // should increment all elements in the vector after assignment
+                      // BV should be preincr 
+
+
+   <<"after  AV ++\n";
+
+   AV.pinfo()
+
+   BV.pinfo()
+
+ans=ask("AV == BV correct?",db_ask)
+
+   chkN(AV[1],5);
+
+   chkN(BV[1],4);
 
    <<"%V $AV\n";
 
@@ -315,6 +380,4 @@ chkN(m,1);
 
    <<"%V $BV[2]\n";
 
-   chkOut();
-
-   exit();
+   chkOut(1);

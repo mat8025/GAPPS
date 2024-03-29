@@ -478,3 +478,6 @@ colors2.asl              1.7	03/10/2024 20:03:14 tidy
 color_wheel.asl          1.5	03/11/2024 00:45:01 update new syntax
 color_wheel.asl          1.6	03/11/2024 00:45:39 tidy
 iproc.asl                1.5	03/14/2024 07:31:49 callip xic mod
+arrayjoin.asl            1.3	03/23/2024 10:01:54 add vvcart
+cast-vec.asl             1.3	03/23/2024 14:35:01 int+ float to inot
+vector.asl               1.3	03/23/2024 22:36:43 DB ask

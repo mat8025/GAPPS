@@ -15,8 +15,6 @@
 
 <|Use_=
    Demo  of scalar ? vector ops
-   
-   
 ///////////////////////
 |>
 
@@ -29,15 +27,16 @@
      <<"$Use_\n";
 
      }
-/*
-   debugON();
-   setdebug(1,@keep,@pline,@trace);
-   FilterFileDebug(REJECT_,"storetype_e","ds_storevar","ds_sivmem");
-   FilterFuncDebug(REJECT_,"~ArraySpecs",);
- */
 
+  //_dblevel=1
+
+   db_ask = 0;
+  
+  _dblevel.pinfo()
 
    chkIn(_dblevel);
+
+//ans = ask(" dbl $_dblevel  $k $j $g",1)
 
    allowErrors(-1) ; // keep going;
 
@@ -129,18 +128,23 @@
 //Vec V(INT_,sz,255) ; // TBF 11/04/21  doesn't process var arg??
 // needs full spec of args
 //Vec V(INT_,sz,255,0) ;  // TBF
-
+<<"%V $sz\n"
   Vec V(INT_,sz,255,0);
+
+  V.pinfo()
 
   V -= U;
 
-  pinfo(V);
+  V.pinfo()
+
+ans = ask("  V -= U ?",db_ask)
+
 
   chkN(V[0],255);
 
   chkN(V[1],254);
 
-  pinfo(U);
+  U.pinfo()
 
   sz = Caz(U);
 
@@ -176,6 +180,8 @@
 
   chkN(U[1],1);
 
-  chkOut();
+  chkOut(1);
 
-//===***===//
+
+//==============\_(^-^)_/==================//';
+

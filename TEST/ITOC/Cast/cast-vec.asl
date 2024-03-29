@@ -1,16 +1,16 @@
 /* 
- *  @script cast-vec.asl 
+ *  @script cast-vec.asl                                                
  * 
- *  @comment Test Cast of vector 
- *  @release CARBON 
- *  @vers 1.2 He Helium [asl 6.3.16 C-Li-S]                                 
- *  @date Fri Feb  5 08:21:34 2021 
- *  @cdate 1/1/2007 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
+ *  @comment Test Cast of vector                                        
+ *  @release Boron                                                      
+ *  @vers 1.3 Li Lithium [asl 5.92 : B Ur]                              
+ *  @date 03/23/2024 14:35:01                                           
+ *  @cdate 1/1/2007                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
  * 
- *  \\-----------------<v_&_v>--------------------------//  
  */ 
+
 
 
 
@@ -31,7 +31,7 @@ float f = 3.1
 <<"%V $a $(typeof(a)) \n"
 
 
-chkN(a,4.1)
+chkN(a,4)
 
 
 VI = dgen(10,0,1)
@@ -94,7 +94,7 @@ VI = igen(10,0,1)
 
   }
 
-b->info(1)
+   b.pinfo()
 
 <<"%V $b $(typeof(b)) \n"
 //chkStage("??")

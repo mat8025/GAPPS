@@ -1,16 +1,16 @@
 /* 
- *  @script arrayjoin.asl 
+ *  @script arrayjoin.asl                                               
  * 
- *  @comment test array join 
- *  @release CARBON 
- *  @vers 1.2 He Helium [asl 6.3.60 C-Li-Nd] 
- *  @date 11/19/2021 11:53:51          
- *  @cdate Fri May 1 07:35:20 2020 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
+ *  @comment test array join                                            
+ *  @release Boron                                                      
+ *  @vers 1.3 Li Lithium [asl 5.91 : B Pa]                              
+ *  @date 03/23/2024 10:01:54                                           
+ *  @cdate Fri May 1 07:35:20 2020                                      
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
  * 
- *  \\-----------------<v_&_v>--------------------------//  
  */ 
+
                                                                        
 #include "debug"
 
@@ -64,7 +64,7 @@
 
    chkN(sz,30);
 
-   chkOut();
+
 
    <<" $YV \n";
 
@@ -88,10 +88,10 @@
    <<"%V $YV \n";
    <<"%V $PV \n";   
 
-ans = ask("YV cat PV ?\n")
+ans = ask("YV cat PV ?\n",0)
 
 
-
+     allowDB("array,ic",0)
 
    <<" %v $PV \n";
 
@@ -112,6 +112,7 @@ ans = ask("YV cat PV ?\n")
 
 <<"%V $NV[21]   $PV[1] \n"
 
-   chkOut();
+   chkOut(1);
 
-//===***===//
+
+//==============\_(^-^)_/==================//';

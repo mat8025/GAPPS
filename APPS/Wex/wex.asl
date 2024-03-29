@@ -711,7 +711,7 @@ int rcb = 0;
 	   }
      }
 
-
+  exit(0)
 
 #if _CPP_
 }  

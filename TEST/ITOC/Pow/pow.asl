@@ -33,20 +33,51 @@ chkIn(_dblevel);
 
 
 vp = 2 * 4.2
-!p vp
+
+vp.pinfo()
 
 vp = pow(2,(4.2))
 
+vp.pinfo()
+
  v = 2^^4.2
- 
- v2 = 2.0^^(4.2)
+
+v.pinfo()
+
+ v2 = 2^^(4.2)
+
+v2.pinfo()
+
+
  v3 = 2.0^^4.2
 
+v3.pinfo()
 
-v4= pow(4.2,4.2)
-<<"$vp $v $v2 $v3 $v4\n"
+v4= pow(2,4.2)
+
+v5 = 2.0^^4.1
+
+f= 4.1
+
+v6 = 2.0^^f
+
+f= 4.2
+
+v7 = 2.0^^f
+
+v8 = pow(2.0,f)
+
+v9 = exp(2)
+
+v10 = exp(f)
+
+v11 = pow(exp(1.0),f)
+<<"%V $vp $v $v2 $v3 $v4 $v5 $v6 $v7 $v8 $v9 $v10 $v11\n"
 
  chkR(v,vp)
+
+
+asn=ask("^^ works as pow?",1)
 
 
  chkR(v2,vp)
@@ -59,9 +90,9 @@ vp = pow(2,(4.2*2.1))
 
 <<"$vp $v \n"
 
- chkR(v,vp)
+ chkF(v,vp)
 
-
+chkStage("^^ == Pow ?")
 
 
 //setdebug(1)

@@ -1,15 +1,16 @@
-//%*********************************************** 
-//*  @script vector.asl 
-//* 
-//*  @comment test vector ops 
-//*  @release CARBON 
-//*  @vers 1.2 He Helium [asl 6.2.57 C-He-La]                              
-//*  @date Tue Jun  9 20:28:45 2020 
-//*  @cdate Thu Apr 16 23:13:22 2020 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script vector.asl                                                  
+ * 
+ *  @comment test vector ops                                            
+ *  @release Boron                                                      
+ *  @vers 1.3 Li Lithium [asl 5.92 : B Ur]                              
+ *  @date 03/23/2024 22:36:43                                           
+ *  @cdate Thu Apr 16 23:13:22 2020                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
+ * 
+ */ 
+
 
 
    
@@ -88,7 +89,7 @@ askit(0)
 
    chkStage("vop");
 
-   proc foo()
+   void foo()
    {
 
      <<"in $_proc Y: $Y\n";
@@ -138,6 +139,8 @@ askit(0)
 
    chkN (Y[2],4);
 
+   <<"T: $T\n";
+allowDB("spe,array,opera,ds",0)
    Y =  Y * T;
 
    <<"Y: $Y\n";
@@ -145,6 +148,8 @@ askit(0)
    chkN (Y[2],8);
 
    <<"$Y\n";
+
+
 
    foo();
 

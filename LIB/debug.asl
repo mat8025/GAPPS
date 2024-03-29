@@ -19,7 +19,7 @@ int dblevel = _dblevel;
 
 int _DBH = -1; // dbg FH set -1 for nop --set to 2 for error output;
 
-<<"%V $dblevel  $_dblevel\n"
+<<"%V   $_dblevel\n"
 Str _My_script = getScript()
 Str _Usage = " ... "
 
@@ -71,7 +71,7 @@ int DB_step = 0;
   void debugON()
   {
 
-   <<" Debugging $_My_script %V $dblevel  $_dblevel - just a simple debug?\n"
+   <<" Debugging $_My_script %V   $_dblevel - just a simple debug?\n"
 
     if (_dblevel < 1) {
       _dblevel = 0;

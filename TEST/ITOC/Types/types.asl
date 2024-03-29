@@ -11,65 +11,61 @@
  * 
  */ 
 ;//----------------<v_&_v>-------------------------//;                          
-                                                                         
+
 <|Use_=
-Demo  of asl types
+  Demo  of asl types
 ///////////////////////
 |>
 
-
 #include "debug.asl"
 
+  if (_dblevel >0) {
 
+  debugON();
 
-if (_dblevel >0) {
-   debugON()
-   <<"$Use_\n"
-}
+  <<"$Use_\n";
 
+  }
 
-chkIn(_dblevel)
-chkT(1)
+  chkIn(_dblevel);
 
-Siv q = 1;
+  chkT(1);
 
-q.pinfo()
+  Siv q = 1;
 
-q= 54.67;
+  q.pinfo();
 
-q.pinfo()
+  q= 54.67;
 
-<<"%V $q\n"
+  q.pinfo();
 
- print(' q %f \n',q);
+  <<"%V $q\n";
 
+  print(' q %f \n',q);
 
-chkOut()
+  chkOut();
 
+  double DV[10];
 
-double DV[10]
+  DV[2] = 47;
 
-DV[2] = 47
+  <<" $DV \n";
 
-<<" $DV \n"
+  chkR(DV[2],47,6);
 
-chkR(DV[2],47,6)
+  double d =3;
 
-double d =3
+  <<"$(typeof(d)) $d \n";
 
-<<"$(typeof(d)) $d \n"
+  chkR(d,3);
 
-chkR(d,3)
+  DVG = vgen(DOUBLE_,10,0,1);
 
-DVG = vgen(DOUBLE_,10,0,1)
+  <<" $DVG \n";
 
-<<" $DVG \n"
+  chkR(DVG[2],2,6);
 
-chkR(DVG[2],2,6)
-
-
-chkStage("double")
-
+  chkStage("double");
 //%*********************************************** 
 //*  @script float.asl 
 //* 
@@ -83,32 +79,27 @@ chkStage("double")
 //* 
 //***********************************************%
 
+  float FV[10];
 
-float FV[10]
+  FV[2] = 47;
 
-FV[2] = 47
+  <<" $FV \n";
 
-<<" $FV \n"
+  chkR(FV[2],47,6);
 
-chkR(FV[2],47,6)
+  float f =3;
 
-float f =3
+  <<"$(typeof(f)) $f \n";
 
-<<"$(typeof(f)) $f \n"
+  chkR(f,3);
 
-chkR(f,3)
+  FVG = vgen(FLOAT_,10,0,1);
 
-FVG = vgen(FLOAT_,10,0,1)
+  <<" $FVG \n";
 
-<<" $FVG \n"
+  chkR(FVG[2],2,6);
 
-chkR(FVG[2],2,6)
-
-
-chkStage("float")
-
-
-
+  chkStage("float");
 //%*********************************************** 
 //*  @script char.asl 
 //* 
@@ -122,287 +113,300 @@ chkStage("float")
 //* 
 //***********************************************%
 
+  char CV[20];
 
+  CV[0] = 14;
 
+  CV[1] = 15;
 
-char CV[20];
+  CV[2] = 47;
 
-CV[0] = 14
-CV[1] = 15
+  CV[3] = 79;
 
-CV[2] = 47
-CV[3] = 79
-CV[4] = 80
+  CV[4] = 80;
 
+  CV[5] = 'A';
 
-CV[5] = 'A';
+  <<"CV[] = $CV \n";
 
-<<"CV[] = $CV \n"
-<<" $CV[1] \n"
-<<" $CV[2] \n"
+  <<" $CV[1] \n";
 
-chkN(CV[0],14)
-chkN(CV[1],15)
-chkN(CV[2],47)
+  <<" $CV[2] \n";
 
-cv0 = CV[0];
-cv1 = CV[1];
+  chkN(CV[0],14);
 
-<<"%V $cv0 $cv1 \n"
+  chkN(CV[1],15);
 
+  chkN(CV[2],47);
 
-chkN(cv0,14)
-chkN(cv1,15);
+  cv0 = CV[0];
 
-char CMD[3][5];
+  cv1 = CV[1];
 
-CMD[0][0] = 81
-CMD[0][1] = 82
-CMD[0][2] = 78
-CMD[0][3] = 79
-CMD[0][4] = 80
+  <<"%V $cv0 $cv1 \n";
 
+  chkN(cv0,14);
 
-CMD[1][0] = 97
-CMD[1][1] = 98
-CMD[1][2] = 99
-CMD[1][3] = 100
-CMD[1][4] = 101
+  chkN(cv1,15);
 
-sz = Caz(CMD);
-bd = Cab(CMD);
+  char CMD[3][5];
 
-<<"%V$sz $bd\n";
-cv0 = CMD[0][0];
+  CMD[0][0] = 81;
 
-chkN(cv0,81);
+  CMD[0][1] = 82;
 
-chkN(CMD[0][1],82);
+  CMD[0][2] = 78;
 
+  CMD[0][3] = 79;
 
-<<"CMD[] :\n";
-<<"$CMD \n"
-CMD[2][4] = 13
-CMD[2][3] = 28
-CMD[2][2] = 12
-CMD[2][1] = 6
-CMD[2][0] = 17
+  CMD[0][4] = 80;
 
+  CMD[1][0] = 97;
 
-<<"$CMD \n"
+  CMD[1][1] = 98;
 
-B = CMD[2][1:4:];
+  CMD[1][2] = 99;
+
+  CMD[1][3] = 100;
+
+  CMD[1][4] = 101;
+
+  sz = Caz(CMD);
+
+  bd = Cab(CMD);
+
+  <<"%V$sz $bd\n";
+
+  cv0 = CMD[0][0];
+
+  chkN(cv0,81);
+
+  chkN(CMD[0][1],82);
+
+  <<"CMD[] :\n";
+
+  <<"$CMD \n";
+
+  CMD[2][4] = 13;
+
+  CMD[2][3] = 28;
+
+  CMD[2][2] = 12;
+
+  CMD[2][1] = 6;
+
+  CMD[2][0] = 17;
+
+  <<"$CMD \n";
+
+  B = CMD[2][1:4:];
 // B will be @D  [1][4]
-B->Redimn()
 
-<<"%V$B \n"
-<<"$(typeof(B)) $(Cab(B)) $(Cnd(B))\n"
+  B.Redimn();
 
-cv0 = B[0];
-<<"%V$cv0\n";
+  <<"%V$B \n";
 
-cv1 = B[1];
-<<"%V$cv1\n";
+  <<"$(typeof(B)) $(Cab(B)) $(Cnd(B))\n";
 
-cv2 = B[2];
-<<"%V$cv2\n";
+  cv0 = B[0];
 
+  <<"%V$cv0\n";
 
-chkN(B[1],12);
+  cv1 = B[1];
 
-D = CMD[2][1:3:]; // D is 2D 
+  <<"%V$cv1\n";
 
-<<"%V$D \n"
-<<"$(typeof(D)) $(Cab(D)) \n"
+  cv2 = B[2];
 
-!iD
+  <<"%V$cv2\n";
 
-chkN(D[0][0],6);
+  chkN(B[1],12);
 
+  D = CMD[2][1:3:]; // D is 2D;
 
-E = CMD[0:2][1:3:];
+  <<"%V$D \n";
 
-<<" $E \n"
-<<"$(typeof(E)) $(Cab(E)) \n"
+  <<"$(typeof(D)) $(Cab(D)) \n";
 
+  chkN(D[0][0],6);
 
+  E = CMD[0:2][1:3:];
 
-str s = "hey";
+  <<" $E \n";
 
-<<"$s \n"
+  <<"$(typeof(E)) $(Cab(E)) \n";
 
-s= CMD[0][::];
+  Str s = "hey";
 
-<<"$s \n"
+  <<"%V $s \n";
 
+  s= CMD[0][::];
+
+  <<"%V $s \n";
+
+//ans = ask(" CMD[0][::] ?",1)
+
+  <<"%V %c $CMD[0][::] \n";
 
  //scpy(s,"$CMD[0][::]");
+//allowDB("str",1)
+  nc=scpy(s,CMD[0][::]);
 
-nc=scpy(s,CMD[0][::]);
+//ans = ask(" $nc  $s ",1)
 
-<<"$nc :: $s \n"
+  <<"$nc :: $s \n";
 
-<<"$(typeof(s)) $(Cab(s)) \n"
+  <<"$(typeof(s)) $(Cab(s)) \n";
 
+  nc=scpy(s,CMD[0:1][::]);
 
-nc=scpy(s,CMD[0:1][::]);
+  <<"$nc :: $s \n";
 
-<<"$nc :: $s \n"
-
-<<"$(typeof(s)) $(Cab(s)) \n"
-
-
+  <<"$(typeof(s)) $(Cab(s)) \n";
 //////////////////////////////
 
+  uchar UV[10];
 
+  UV[2] = 47;
 
-uchar UV[10]
+  UV[3] = 79;
 
-UV[2] = 47
-UV[3] = 79
-UV[4] = 80
-UV[5] = 'A'
+  UV[4] = 80;
 
-<<" $UV \n"
-<<" $UV[2] \n"
+  UV[5] = 'A';
 
+  <<" $UV \n";
 
-chkN(UV[2],47)
+  <<" $UV[2] \n";
 
-chkN(UV[5],'A')
+  chkN(UV[2],47);
 
-chkStage("char")
+  chkN(UV[5],'A');
 
+  chkStage("char");
 
+  uchar us =3;
 
+  <<"$(typeof(us)) $us \n";
 
+  <<"$us = 3 \n";
 
-uchar us =3
+  chkN(us,3);
 
-<<"$(typeof(us)) $us \n"
-<<"$us = 3 \n"
-chkN(us,3)
+  UVG = vgen(CHAR_,10,0,1);
 
-UVG = vgen(CHAR_,10,0,1)
+  <<"UVG  $UVG \n";
 
-<<"UVG  $UVG \n"
+  chkN(UVG[2],2);
 
-chkN(UVG[2],2)
+  chkStage("char");
 
+  uint UI[10];
 
+  UI[2] = 47;
 
+  <<" $UI \n";
 
-chkStage("char")
+  ulong ul =3;
 
+  <<"$(typeof(ul)) $ul \n";
 
-uint UI[10]
+  chkN(ul,3);
 
-UI[2] = 47
+  ulong UL[10];
 
-<<" $UI \n"
+  UL[2] = 79;
 
-ulong ul =3
+  chkN(UL[2],79);
 
-<<"$(typeof(ul)) $ul \n"
+  <<" $UL \n";
 
-chkN(ul,3)
+  UV = vgen(LONG_,10,0,1);
 
+  <<" $UV \n";
 
-ulong UL[10]
+  chkN(UV[2],2);
 
-UL[2] = 79
-
-chkN(UL[2],79)
-
-<<" $UL \n"
-
-
-
-UV = vgen(LONG_,10,0,1)
-
-<<" $UV \n"
-
-chkN(UV[2],2)
-
-chkStage("long")
-
+  chkStage("long");
 /////////////////////////////////////////
 
-setap(30)
+  setap(30);
 
-pan a = 1.234567801012340001234567; 
-pan b = -0.98765400000001; 
-pan c = 1.234567801012340001234567;
+  pan a = 1.234567801012340001234567;
 
-<<"$a $(typeof(a)) \n"
+  pan b = -0.98765400000001;
 
-<<"$b $(typeof(b)) \n"
+  pan c = 1.234567801012340001234567;
 
-<<"$c $(typeof(c)) \n"
+  <<"$a $(typeof(a)) \n";
 
-chkR(a,c,6)
-chkR(b,-0.987654000001,4)
+  <<"$b $(typeof(b)) \n";
 
-chkR(a,1.234567801012340001234567,6)
+  <<"$c $(typeof(c)) \n";
 
-chkR(a,1.234567801012340001234567,2)
+  chkR(a,c,6);
 
-chkR(b,-0.987654000001,2)
+  chkR(b,-0.987654000001,4);
 
+  chkR(a,1.234567801012340001234567,6);
 
+  chkR(a,1.234567801012340001234567,2);
 
-pan P[50]
+  chkR(b,-0.987654000001,2);
 
-<<"%V$P\n"
-P<-pinfo()
+  pan P[50];
 
- P[20] = 787.0
- 
- P[30] = 429.0
+  <<"%V$P\n";
 
-<<"$P[20]\n"
-<<"$P[30]\n"
-<<"$P[31]\n"
+  P<-pinfo();
 
+  P[20] = 787.0;
+   ;
 
-<<"%V$P\n"
+  P[30] = 429.0;
 
-p20 = P[20]
+  <<"$P[20]\n";
 
-<<"%V$p20\n"
+  <<"$P[30]\n";
 
-chkR(p20,787.0,5)
+  <<"$P[31]\n";
 
-chkR(P[20],787.0,5)
+  <<"%V$P\n";
 
-chkR(P[30],429.0,5)
+  p20 = P[20];
 
-chkStage("Pan")
+  <<"%V$p20\n";
 
+  chkR(p20,787.0,5);
+
+  chkR(P[20],787.0,5);
+
+  chkR(P[30],429.0,5);
+
+  chkStage("Pan");
 /////////////////////////////////
 
-ushort US[10];
+  ushort US[10];
 
-US[2] = 47
+  US[2] = 47;
 
-<<" $US \n"
+  <<" $US \n";
 
-chkN(US[2],47)
+  chkN(US[2],47);
 
-ushort usi =3
+  ushort usi =3;
 
-<<"$(typeof(usi)) $usi \n"
+  <<"$(typeof(usi)) $usi \n";
 
-chkN(usi,3)
+  chkN(usi,3);
 
-UVG = vgen(SHORT_,10,0,1)
+  UVG = vgen(SHORT_,10,0,1);
 
-<<" $UVG \n"
+  <<" $UVG \n";
 
-chkN(UVG[2],2)
+  chkN(UVG[2],2);
 
-chkStage("short")
-
+  chkStage("short");
 //%*********************************************** 
 //*  @script real.asl 
 //* 
@@ -416,156 +420,132 @@ chkStage("short")
 //* 
 //***********************************************%
 
+  float rf = 7.2;
 
+  <<"$(typeof(rf)) $rf \n";
 
-float rf = 7.2
+  real r = 3.14259;
 
-<<"$(typeof(rf)) $rf \n"
+  <<"$(typeof(r)) $r \n";
 
-real r = 3.14259
+  r->info(1);
 
-<<"$(typeof(r)) $r \n"
+  rf = r;
 
-r->info(1)
+  <<"$(typeof(rf)) $rf \n";
 
+  double rd = r;
 
+  <<"$(typeof(rd)) $rd \n";
 
-rf = r;
+  chkR(rd,3.14259);
 
-<<"$(typeof(rf)) $rf \n"
+  chkR(r,3.14259);
 
+  real RV[10];
 
-double rd = r;
+  RV[2] = 47;
 
-<<"$(typeof(rd)) $rd \n"
+  <<" $RV \n";
 
-chkR(rd,3.14259)
+  chkR(RV[2],47,6);
 
+  chkR(d,3);
 
-chkR(r,3.14259)
+  RVG = vgen(REAL_,10,0,1);
 
+  <<" $RVG \n";
 
+  chkR(RVG[2],2,6);
 
-real RV[10]
+  chkStage("real");
 
-RV[2] = 47
+  Str sa= "-1";
 
-<<" $RV \n"
+  i=  atoi(sa);
 
-chkR(RV[2],47,6)
+  chkN(i,-1);
 
+  <<"$sa int $i $(typeof(i))\n";
 
+  f=  atof(sa);
 
-chkR(d,3)
+  chkN(f,-1);
 
-RVG = vgen(REAL_,10,0,1)
+  <<"$sa float $f $(typeof(f))\n";
 
-<<" $RVG \n"
+  long L = 47;
 
-chkR(RVG[2],2,6)
+  <<"long $L $(typeof(L))\n";
 
-chkStage("real")
+  l=  atol("12");
 
+  chkN(l,12);
 
+  <<"long $l $(typeof(l))\n";
 
-str sa= "-1"
+  s12="12";
 
-i=  atoi(sa);
-chkN(i,-1)
-<<"$sa int $i $(typeof(i))\n"
+  l=  atol(s12);
 
-f=  atof(sa);
-chkN(f,-1)
-<<"$sa float $f $(typeof(f))\n"
-long L = 47
-<<"long $L $(typeof(L))\n"
+  <<"long $l $(typeof(l))\n";
 
+  chkN(l,12);
 
+  <<"%V $sa $(typeof(sa))\n";
 
-l=  atol("12");
-chkN(l,12)
+  l=  atol(sa);
 
-<<"long $l $(typeof(l))\n"
-s12="12"
-l=  atol(s12);
+  <<"%V long $l $(typeof(l))\n";
 
-<<"long $l $(typeof(l))\n"
+  chkN(l,-1);
 
-chkN(l,12)
+  l=  atol("-2");
 
-<<"%V $sa $(typeof(sa))\n"
+  <<"%V long $l $(typeof(l))\n";
 
-l=  atol(sa);
+  chkN(l,-2);
 
+  l =  2^^32;
 
-<<"%V long $l $(typeof(l))\n"
+  <<"$l $(typeof(l))\n";
 
-chkN(l,-1)
+  u=  atou(sa);
 
-l=  atol("-2");
+  <<"$u $(typeof(u))\n";
 
+  <<"%V $l\n";
 
+  ul = l   ;
 
-<<"%V long $l $(typeof(l))\n"
+  <<"%V $l $ul\n";
 
-chkN(l,-2)
+  ul = l -1;
 
+  <<"$s $(typeof(ul))  $(typeof(ul))  \n";
 
+  <<"$ul $u  $(l-1)\n";
 
+  chkN(u,ul);
 
-l =  2^^32 
-<<"$l $(typeof(l))\n"
+  chkStage("atou,l,f");
 
-u=  atou(sa);
+  sa ="-1.0";
 
-<<"$u $(typeof(u))\n"
+  p=  atop(sa);
 
-<<"%V $l\n"
+  <<"$sa $p $(typeof(p))\n";
 
-ul = l   ;
+  chkR(p,-1.0,5);
 
-<<"%V $l $ul\n"
+  p=  atop(2.345);
 
+  <<"$sa $p $(typeof(p))\n";
 
-ul = l -1;
+  chkR(p,2.345,5);
 
+  chkStage("atoi");
 
+  chkOut();
 
-!pu
-!pul
-
-!iu
-!iul
-
-
-<<"$s $(typeof(ul))  $(typeof(ul))  \n"
-<<"$ul $u  $(l-1)\n"
-
-
-chkN(u,ul)
-
-
-
-chkStage("atou,l,f")
-
-sa ="-1.0"
-
-p=  atop(sa);
-
-<<"$sa $p $(typeof(p))\n"
-chkR(p,-1.0,5)
-
-p=  atop(2.345);
-
-<<"$sa $p $(typeof(p))\n"
-chkR(p,2.345,5)
-
-
-chkStage("atoi")
-
-
-
-
-
-chkOut()
-
+//==============\_(^-^)_/==================//
