@@ -14,11 +14,15 @@
 #include "debug"
 
 
-debugOFF()
+if (_dblevel >0)    debugON()
 
 chkIn(_dblevel)
 
+ db_allow = 0 ; // set to 1 for internal debug print;
 
+   db_ask = 0;
+
+allowDB("opera_,spe_,str_,array_parse,parse,rdp_,pex",db_allow);
 
 na = argc()
 
@@ -29,13 +33,15 @@ if (na >= 1) {
 }
 
 
-F =vgen(FLOAT_,10,0,1)
+ F =vgen(FLOAT_,10,0,1)
 
+ F.pinfo()
 <<"%V $F \n"
 
 
 chkR(F[1],1.0,6)
 chkR(F[9],9.0,6)
+
 
 
 <<" vec -= 1.5 \n"

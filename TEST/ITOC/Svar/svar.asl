@@ -24,9 +24,15 @@ Str Use_= "Demo svar type use";
      <<"$Use_\n";
 
      }
+     
+ db_allow = 0 ; // set to 1 for internal debug print;
+
+ db_ask = 0;
+
+allowDB("opera_,spe_,svar,str_,array_parse,parse,rdp_,pex",db_allow);
 
 
-   db_ask = 1
+
    allowErrors(-1);
  //  sdb(1,"soe")
    chkIn(_dblevel);
@@ -44,6 +50,62 @@ Str Use_= "Demo svar type use";
    E.pinfo();
 
    ans=ask("Svar array filled OK",db_ask)
+
+   W= E[3:7];
+
+   <<"$(typeof(W)) \n";
+
+   <<"$W\n";
+
+   <<"$W[1]\n";
+
+   W.pinfo()
+
+ ans=ask(" $W  OK",db_ask)
+
+   chkStr(W[1],"Be");
+
+   
+   
+
+   W[3:4] = E[7:8];
+
+   <<"%V$W \n";
+
+   T= E[1:9];
+
+   <<"$T\n";
+
+   sz=T.Caz();
+
+   <<"$sz\n";
+
+   chkN(sz,9);
+
+   T= E[4:9];
+
+   <<"$T\n";
+
+   T.pinfo();
+
+   sz=T.Caz();
+
+   <<"$sz\n";
+
+   R= E[4:9];
+
+   <<"$R\n";
+
+   R.pinfo();
+
+   sz=R.Caz();
+
+   <<"$sz\n";
+
+   chkN(sz,6);
+
+
+
 
 
    Siv F(SVAR_);
@@ -91,57 +153,29 @@ Str Use_= "Demo svar type use";
 
    E3.pinfo()
    
-   ans=ask("Svar array filled OK",1)
+   ans=ask("Svar array filled OK",db_ask)
 
-<<"$E[3:6] \n";
+<<"$E3[3:6] \n";
+
+
+   Svar E4 = { "fourth row elements are:", "K", "Ca", "Sc", "Ti" ,"V" ,"Cr", "Mn", "Fe" , "Co", "Ni", "Cu", "Zn"};
+
+   Svar ea = { "Ge","Ge","As","Se","Br","Kr"};
+
+   ea.pinfo();
+   
+   E4.pinfo()
+
+   E4.cat(ea)
+
+   E4.pinfo()
+   
+   ans=ask("Svar array filled OK",db_ask)
+
+<<"$E3[3:6] \n";
 
 
 
-   W= E[3:7];
-
-   <<"$(typeof(W)) \n";
-
-   <<"$W\n";
-
-   <<"$W[1]\n";
-
-   chkStr(W[1],"Be");
-
-   W[3:4] = E[7:8];
-
-   <<"%V$W \n";
-
-   T= E[1:9];
-
-   <<"$T\n";
-
-   sz=T.Caz();
-
-   <<"$sz\n";
-
-   chkN(sz,9);
-
-   T= E[4:9];
-
-   <<"$T\n";
-
-   T.pinfo();
-
-   sz=T.Caz();
-
-   <<"$sz\n";
-
-   R= E[4:9];
-
-   <<"$R\n";
-
-   R.pinfo();
-
-   sz=R.Caz();
-
-   <<"$sz\n";
-
-   chkN(sz,6);
 
    chkStage("svar array ele");
 
@@ -493,7 +527,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
   IV3.pinfo();
 
-  ans=ask("IV3 int?",1)
+  ans=ask("IV3 int?",db_ask)
 
   <<"%V $IV3\n";
 
@@ -562,7 +596,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
   <<"%V $IV3\n";
 
   IV3.pinfo();
-  ans=ask("IV3 int?",1)  
+  ans=ask("IV3 int?",db_ask)  
 
   chkN(IV3[0],6);
 
@@ -599,7 +633,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
 
 
-  ans=ask("IV3=M   int? $kt error",1)
+  ans=ask("IV3=M   int? $kt error",db_ask)
 
   kt = pinfo(IV3,OFFS_INFO_)
   <<" %V $kt\n"
@@ -622,9 +656,12 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
 // should be an error
   //IV3= M[3:-1:];
-
+allowDB("opera_,spe_,svar,str_,array_parse,parse,rdp_,pex",1);
  IV3= atoi(M[3:-1:]); // TBF does not do the range specified
+   M.pinfo()
+   IV3.pinfo();
 
+chkN(IV3[0], 79);
 
 <<"%V $M\n"
 
@@ -645,7 +682,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
  iv3.pinfo()
 
-   IV3.pinfo();
+
    
    IV3[2].pinfo()
 
@@ -653,7 +690,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
 //  chkN(atoi(IV3[0]), 79);
 
-chkStr(IV3[0], "79");
+
 
   //chkN(IV3[0],79); // TBF 3/15/24  strv v number should still work but warn atol compare
 

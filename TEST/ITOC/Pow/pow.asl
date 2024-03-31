@@ -31,22 +31,34 @@ if (_dblevel >0) {
 
 chkIn(_dblevel);
 
+db_allow = 0; // set to 1 for internal debug print
+db_ask = 0
+
+allowDB("opera_,array_parse,parse,rdp_,pex",db_allow)
 
 vp = 2 * 4.2
 
 vp.pinfo()
 
-vp = pow(2,(4.2))
+vp = pow(2,4.2)
 
 vp.pinfo()
 
  v = 2^^4.2
 
-v.pinfo()
+  chkF(v,vp)
 
- v2 = 2^^(4.2)
+  chkF(v,18.379174)
+  
+  v.pinfo()
 
-v2.pinfo()
+  v2 = 2^^(4.2)
+
+  v2.pinfo()
+
+  chkF(v2,18.379174)
+
+ // chkOut(1)
 
 
  v3 = 2.0^^4.2
@@ -77,7 +89,7 @@ v11 = pow(exp(1.0),f)
  chkR(v,vp)
 
 
-asn=ask("^^ works as pow?",1)
+asn=ask("^^ works as pow?",db_ask)
 
 
  chkR(v2,vp)
@@ -107,7 +119,6 @@ a= 1.0;
 vp = pow(2.0,(1.0/12))
 
 <<"$v $vp\n"
-
 
 
  v = 2^^(11.0/12)

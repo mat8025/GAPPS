@@ -85,6 +85,11 @@
  chkIn(_dblevel)
 
  chkT(1) 
+  db_allow = 0; // set to 1 for internal debug print;
+
+   db_ask = 0;
+
+   allowDB("opera_,spe_,str_,array_parse,parse,rdp_,pex",db_allow);
 
 #endif
 
@@ -96,8 +101,8 @@ int addem (int m, int n)
 
   int p = 0;
 
-  p = m +n
-
+  p = m + n
+<<"%V $p  $m $n \n"
   return p
 }
 
@@ -171,7 +176,11 @@ Str ans = " weird "
 
   chkN(ab,5) 
 
-   int c = 7;
+   int c = 74;
+
+   d = 7 + 8
+
+  chkN(d,15) 
 
    c =    addem (7, 9)
 
@@ -185,7 +194,8 @@ Str ans = " weird "
 
   chkN(d,36) 
 
-
+//  chkOut(1)
+  
   int n1 = 1 
 
   <<"%V $n1 \n" 

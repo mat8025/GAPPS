@@ -1,6 +1,6 @@
 module    status    (-3 crash, -2 stall, -1 partial, <100% some tests fail, 100% success) score %  num_test
 
-array	-1    98.28 
+array	1      100 
 bops	1      100
 bugs	-1    77.27
 class	-1    96.46
@@ -33,7 +33,7 @@ scope	1 100	12
 sfunc        -1 88.65   691
 sops		1 100	229
 stat	       -1    54	12
-svar	        -3
+svar	        1    100   146
 switch	1	100 46
 threads     -1
 try		-3

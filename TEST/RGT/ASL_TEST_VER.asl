@@ -619,7 +619,7 @@ outcome("VECTOR")
 outcome("STR")
    //hdg("Strops");
    
-   RunDirTests("Strops","scmp_syntax");
+   RunDirTests("Strops","strops,scmp_syntax");
 
  //  hdg("Splice");
    RunDirTests("Splice","splice,strsplice");
@@ -740,7 +740,7 @@ if ((do_all || do_array ) && (do_array != -1)) {
 
    RunDirTests("ArraySubSet","arraysubset,arraysubvec")
 
-  RunDirTests("ArraySubSet","array_subsref,arraysubscbyvec,array_ele_incr,vdec")
+   RunDirTests("ArraySubSet","array_subsref,arraysubscbyvec,array_ele_incr,vdec")
 
    RunDirTests("Array","ae,arraycmp,arrayele")
 

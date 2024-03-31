@@ -11,68 +11,97 @@
 //* 
 //***********************************************%
 
+#include "debug"
 
-chkIn(_dblevel)
+   if (_dblevel >0) {
 
-int ok = 0
-int ntest = 0
-int bad = 0
+     debugON();
+     //<<"$Use_\n";
 
+     }
 
-a = 1
-b = 2
-c = 3
+   chkIn(_dblevel);
 
-B=ofw("junk")
-C=ofw("junk2")
+   <<"%V $dblevel";
 
-int M[] = {0,1,2,3,4}
+   db_allow = _dblevel; // set to 1 for internal debug print;
 
-M->info(1)
+   db_ask = 0;
 
-<<"%i $M\n";
-<<"%V $M\n"
+   allowDB("opera_,spe_args,str_,array_parse,parse,rdp_,pex",db_allow);
 
+   int ok = 0;
 
- for (i= 0; i < 5; i++) {
-   a++; b++; c++;
- <<[B]"$i %V $a $b $c  \n"
+   int ntest = 0;
 
- <<"$i %V $a $b $c  \n"
- <<[C]"$i $M  \n"
- <<"$i $M  \n"
-   M =  M * 2
+   int bad = 0;
 
- }
+   a = 1;
 
-cf(C)
-cf(B)
+   b = 2;
 
-B=ofr("junk")
+   c = 3;
 
-W=readfile(B)
+   B=ofw("junk");
 
+   C=ofw("junk2");
 
+   int M[] = {0,1,2,3,4};
 
-<<"$W\n"
-C=ofr("junk2")
-T=readfile(C)
+   M.pinfo();
 
-<<"$T\n"
+   <<"%V $M\n";
+
+   for (i= 0; i < 5; i++) {
+
+     a++; b++; c++;
+
+     <<[B]"$i %V $a $b $c  \n";
+
+     <<"$i %V $a $b $c  \n";
+
+     //<<[C]"$i $M[0:4]  ";  // TBF 3/30/24 adds a \n
+      <<[C]"$i $M[0] $M[1] $M[2] \n"; 
+ <<"$i $M[0] $M[1] $M[2] $M[3]\n"; 
+   //  <<"$i $M  \n";
+
+     M =  M * 2;
+
+     }
+
+   cf(C);
+
+   cf(B);
+
+   B=ofr("junk");
+
+   W=readfile(B);
+
+   <<"$W\n";
+
+   C=ofr("junk2");
+
+   T=readfile(C);
+
+   <<"$T\n";
 // now read back and check
 
-<<"$W[0]\n"
+   <<"$W[0]\n";
 
-<<"$T[0]\n"
+   <<"$T[0]\n";
 
-L=Split(T[0])
+   L=Split(T[0]);
 
-<<"$L[0] $L[1] $L[2]\n"
+   <<"$L[0] $L[1] $L[2]\n";
 
-chkStr(L[2],"1")
+   L.pinfo()
+   
+   chkStr(L[2],"1");
 
-L=Split(W[0])
+   L=Split(W[0]);
 
-chkStr(L[1],"a")
+   chkStr(L[1],"a");
 
-chkOut()
+   chkOut(1);
+
+//==============\_(^-^)_/==================//

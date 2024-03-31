@@ -23,7 +23,7 @@
 
 
 int db_allow = 0; // set to 1 for internal debug print
-int db_ask = 1
+int db_ask = 0
    chkIn (_dblevel);
 
 

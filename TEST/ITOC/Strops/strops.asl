@@ -1,10 +1,35 @@
+///
+///
+///
 
 
-astr = "Mark Terry"
+#include "debug"
 
-<<"%v $astr \n"
+   if (_dblevel >0) {
 
-svar name[] = { "Mark Terry", "use standard libraries!" }
+     debugON();
+
+   
+
+     }
+
+   chkIn(_dblevel);
+
+   db_ask = 0;
+   db_allow = 1;
+
+
+allowDB("opera_,str,array_parse,parse,rdp_,pex",db_allow)
+
+
+
+astr = "Cheese and Pickle"
+
+<<"%V $astr \n"
+
+chkStr(astr, "Cheese and Pickle")
+
+Svar name[] = { "Mark Terry", "use standard libraries!" }
 
 <<" $(typeof(name)) $name \n"
 
@@ -15,9 +40,11 @@ svar name[] = { "Mark Terry", "use standard libraries!" }
 <<"%v $name[1] \n"
 
 
- subname = sele(name[0],3,5)
+ subname = sele(name[0],3,5) ;  // index 3 get 5 chars
 
-<<"%I  $subname \n"
+<<"%V $subname \n"
+
+ chkStr(subname,"k Ter")
 
  subname = sele(name[1],3,5)
 
@@ -72,7 +99,7 @@ svar name[] = { "Mark Terry", "use standard libraries!" }
 <<"%v $subname0 \n"
 
 
- mkname = name[0]->GetSubStr(3,5) @+ name[1]->GetSubStr(3,5)
+ mkname = name[0].GetSubStr(3,5) @+ name[1].GetSubStr(3,5)
 
 
 <<"addition vi @+ operator: %v $mkname \n"
@@ -88,19 +115,19 @@ svar name[] = { "Mark Terry", "use standard libraries!" }
 // SPLICE
 
 
- name[0]->Splice("splice this",3)
+ name[0].Splice("splice this",3)
 
 
 <<" $name[0] \n"
 
- name[0]->Splice("and this at end__",-1)
+ name[0].Splice("and this at end__",-1)
 
 <<"Splice: $name[0] \n"
 
 //  PASTE
 
 
- name[0]->Paste("paste this ON",3)
+ name[0].Paste("paste this ON",3)
 
 
 <<"Paste: $name[0] \n"
@@ -109,22 +136,23 @@ svar name[] = { "Mark Terry", "use standard libraries!" }
 
 // STRCAT
 
- name[2]->Cat("this ", " is ", "the ", "place ","to be")
+ name[2].Cat("this ", " is ", "the ", "place ","to be")
 
 <<"Cat:  $name[2] \n"
 
 
- name[8]->Cpy("into record 8 ")
+ name[8].Cpy("into record 8 ")
 
 <<"Cpy:  $name[8] \n"
 
 // SUBSTITUTE
 
 
-name[0]->Substitute("paste this ON","Substitute my truth with lies")
+name[0].Substitute("paste this ON"," Substitute my truth with lies ") 
  
 <<"Substitute: $name[0] \n"
 
+chkOut(1)
 
 
 /////////////////////

@@ -36,9 +36,18 @@
 
      }
 
-   filterFileDebug(REJECT_,"exp","tok","~ds_storestr.cpp");
+ 
 
    chkIn(_dblevel);
+
+<<"%V $dblevel"
+
+db_allow = _dblevel; // set to 1 for internal debug print
+db_ask = 0
+
+allowDB("opera_,spe_args,str_,array_parse,parse,rdp_,pex",db_allow)
+
+
 
    int ki = 3;
 
@@ -60,7 +69,7 @@
 
    <<"%v$sz\n";
 
-   <<"%I $M\n";
+   <<"%V $M\n";
 
    fname = "scpy.asl";
 
@@ -74,7 +83,11 @@
 
      }
 
-   int IV[] = vgen(INT_,10,22,1);
+//   int IV[] = vgen(INT_,10,22,1);  // TBF 3/30/24
+
+    IV = vgen(INT_,10,22,1);
+
+
 
    <<"IV: $IV \n";
 
@@ -126,23 +139,38 @@
 
    chkStr(M,"hola que tal");
 
-   _S ="io sto bene";
+ //  _S ="io sto bene";  // TBF  ? _S will be treated as a TAG ARG in func call
+                                  //  _varname not allowed is an internal var
+				  //  or tag arg uses - user supplied value ??
+				  
+   S ="io sto bene";
 
-   <<"S= $_S\n";
-//!i _S
+   <<"S= $S\n";
 
-   chkStr(_S,"io sto bene");
+   S.pinfo()
+
+
+   chkStr(S,"io sto bene");
 //scpy(&S,"hola que tal");// crash
 
-   scpy(_S,"hola que tal");//
 
-   <<"S= $_S\n";
+ans = ask(" $S ?",db_ask)
 
-   _S.pinfo();
+   chkStr("io sto bene","io sto bene");
 
-   chkStr(_S,"hola que tal");
 
-   <<"%I $_S\n";
+
+
+
+   scpy(S,"hola que tal");//
+
+   <<"S= $S\n";
+
+   S.pinfo();
+
+   chkStr(S,"hola que tal");
+
+   S.pinfo()
 
    <<"%d $M\n";
 
@@ -178,6 +206,8 @@
 
    <<"R %s $R\n";
 
+   M.pinfo()
+   
    scpy(&R[2],&M[3],10);
 
    R.pinfo();
@@ -238,6 +268,6 @@
 
    <<"%d $num[1]  $M[20] \n";
 
-   chkOut();
+   chkOut(1);
 
 //===***===//

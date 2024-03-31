@@ -29,10 +29,6 @@ if (_dblevel >0) {
    <<"$Use_\n"   
 }
 
-filterFileDebug(REJECT_,"scope","args","ds_store","tok");
-//filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e","ds_storesiv");
-filterFuncDebug(REJECT_,"store","vrealloc","init");
-
 
 chkIn(_dblevel)
 
