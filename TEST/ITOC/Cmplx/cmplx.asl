@@ -118,7 +118,7 @@
 
   g.pinfo()
 
-  allowDB("spe_proc,vmf",db_allow);
+  allowDB("spe_,vmf,array,ic",db_allow);
 
   a.set(3.5,-0.5);
 
@@ -133,11 +133,11 @@
   g.pinfo()
 
   <<"%V $g[2]\n"
-  
+  chkOut(1)
 
 
 
-  A={1,7,8,9,} ;   // OK;
+  A={11,17,18,19,} ;   // OK;
 
   sum = Sum(A);
 
@@ -147,7 +147,7 @@
 
   <<"%V$sum \n";
 
-  chkN(sum,25);
+  chkN(sum,(11+17+18+19));
 
   sum = Sum({1,2,3,4});
 
@@ -162,19 +162,11 @@
   int I2[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 
   <<"$I2\n";
-/*
-  g.SetReal(77);
-<<"%V$sz $g\n"
-  g.SetImag(-21);
-<<"%V$sz $g\n"
-*/
-
-
-
   
 
   A[]= {11,12,13,14,15,16};
 
+   g.pinfo()
 
   B= A * -1;
 
@@ -183,10 +175,18 @@
   g[1:6:1].SetImag(B);
 //g[1:6:1].SetReal({1,2,3,4,5,6})  // FIX anon array as arg?
 
+
+   A.pinfo()
+
+   B.pinfo()
+   
+
    g.pinfo()
 
 
+ans = ask("Set CMPLX ARRAY correct?",1)
 
+  g[1:2].SetImag({6.1,6.2});
 
   g[1:6:1].SetImag({6.1,6.2,6.3,6.4,6.5,6.6});
 
@@ -214,17 +214,26 @@
 
   <<"%V$g\n";
 
-  g[1:6:1].SetReal({1.2,2,3,4,5,6});
+  <<" DO we do 219?\n"
 
-  <<"%V$g\n";
+  g[1:6:1].SetReal({11.22,12.23,13,14,15,16});
+
+  g[1:6:1].SetImag({-21.22,-22.23,-13,-14,-15,-16});
+
+  g.pinfo()
 
   gr = g.getReal();
 
-  <<"%V $gr\n";
+  gr.pinfo()
+
 
   <<"%V $gr[1]\n";
 
-  chkR(gr[1],1.2);
+  chkR(gr[1],11.22);
+
+  <<"%V $gr[2]\n";
+
+  chkR(gr[2],12.23);
 
 
   chkOut(1)
