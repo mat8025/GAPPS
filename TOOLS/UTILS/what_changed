@@ -1,0 +1,12 @@
+# diff any  file from within current directory - SI tree
+
+z=`pwd`
+echo $z
+echo $z | sed sQgasp-CARBONQBAK/gasp-CARBONQ
+w=`echo $z | sed sQgasp-CARBONQBAK/gasp-CARBONQ`
+echo $w
+for y in $*
+do
+echo diff $y $w/$y
+diff $y $w/$y | wc
+done

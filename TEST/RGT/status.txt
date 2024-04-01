@@ -24,7 +24,7 @@ mops	-1	90.79  152
 oo		-2
 pan	       1	100 28
 paraex      1  100 6
-proc		100
+proc		1 100 250
 ptrs	        -1  89.3 118
 record	-1
 redimn	1 100	8

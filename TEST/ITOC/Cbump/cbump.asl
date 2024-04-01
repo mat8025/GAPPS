@@ -151,6 +151,19 @@ int DBH = -1
 //<<"$i $X[i]\n"
 //  }
 
+ mans = ltmRead("cbump")
+
+<<"reading last mod message $mans\n"
+
+
+ ans=iread("asl code-what is the modification? $mans :")
+
+<<"$ans\n"
+
+if (ans == "q") {
+  <<"abandon!"
+  exit(-1);
+}
 
   A=ofile(srcfile,"r");
   //T=readfile(A);
@@ -412,11 +425,10 @@ logfile= "~gapps/LOGS/aslcodemods.log"
 A=ofile(logfile,"r+")
 fseek(A,0,2)
 
-// Use LTM
+// Use LTM MEM
 
- mans = ltmRead("cbump")
- ans=iread("asl code-what modification? $mans :")
- <<"$ans\n"
+
+
  if (ans != "") {
   ltmWrt("cbump",ans,1)
 }

@@ -10,21 +10,24 @@
  *  @Copyright © RootMeanSquare 2022 -->                               
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;                  
+//----------------<v_&_v>-------------------------//;                  
 
+
+                    
 
   
-Str Use_ = "update asl script version" ;
+
 
 #include "debug"
 
 
 if (_dblevel >0) {
   debugON()
-    <<"$Use_\n"   
 }
 
- ignoreErrors();
+<<"update asl script version \n" ;
+
+  ignoreErrors();
 
 
   void vers2ele(Str& vstr)
@@ -44,15 +47,18 @@ if (_dblevel >0) {
   }
   //======================
 
-  void padHdr(Str ln)
+  Str padHdr(Str ln)
   {
     Str pad;
     Str hl = ln;
+    Str el;
  //   <<[2]"$ln\n"
     pad = nsc(70- slen(ln)," ")
   //  <<[2]"$hl $pad\n"
-   <<[A]"$hl $pad\n"
-   }
+   //<<[A]"$hl $pad\n"
+    el = "$hl $pad"
+    return el;
+ }
 
   int A = -1;
 
@@ -84,14 +90,14 @@ Str cdate ="";
   
   if (sz == -1) {
   <<[2]"can't find script file $srcfile\n";
-    exit();
+    exit(-1);
   }
 
 pid=getpid()
 
 <<[2]"make a bakup ${srcfile}.${pid}.bak \n"
 
-!!"cp $srcfile  ${srcfile}.${pid}.bak"
+  !!"cp $srcfile  ${srcfile}.${pid}.bak"
 
 
 
@@ -122,12 +128,12 @@ Str cvers ="0.0";
 }
 
 
-
   author = "Mark Terry"
   fname = srcfile
 
 
-  release = "CARBON"
+
+  
   
   int pmaj = 1;
   
@@ -152,9 +158,16 @@ Str cvers ="0.0";
   //<<[2]" $(nsc(5,\"\\n\"))\n"
 
 
+
+
   TR = Split(split(getversion()),".")
 
-  release = ptname(TR[1]);
+
+
+  release = ptname(TR[0]);
+
+
+
 
 
   A=ofile(srcfile,"r+")
@@ -273,20 +286,26 @@ L.pinfo()
  
   where = ftell(A);
 
-<<[2]" end of current header is $where \n";
+<<" end of current header is $where \n";
 
 B=ofw("body");
 
+int kl = 1;
   while (1) {
          T = readline(A);
-	 <<[B]"$T";
-	 if (feof(A))
-	 break;
+
+         <<[B]"$T";
+	 <<"$T"
+//ans=query("? $kl  ")	 
+	 if (feof(A)) {
+	     break;
+	 }
+	 kl++;
   }
 
   cf(B);
   
-
+<<"wrote $kl lines to body\n"
 
 
  if (found_vers) {
@@ -356,20 +375,28 @@ cf(A);
 
 // all lines shold be padded out to 70
 Str hl="xxx";
+   padHdr(" *  @script $fname ")
 
    <<[A]"/* \n"
-   padHdr(" *  @script $fname ")
+   hl=padHdr(" *  @script $fname ")
+   <<[A]"$hl\n"
    <<[A]" * \n"
-   padHdr(" *  @comment $comment ");
-   padHdr(" *  @release $release ");
-   padHdr(" * $vers ");
-   padHdr(" *  @date $date ")
-   padHdr(" *  @cdate $cdate ")
-   padHdr(" *  @author $author ");
-   padHdr(" *  @Copyright © RootMeanSquare $(date(8)) -->");           
+   hl=padHdr(" *  @comment $comment ");
+   <<[A]"$hl\n"
+   hl=padHdr(" *  @release $release ");
+   <<[A]"$hl\n"
+   hl=padHdr(" * $vers ");
+   <<[A]"$hl\n"
+   hl=padHdr(" *  @date $date ")
+   <<[A]"$hl\n"
+   hl=padHdr(" *  @cdate $cdate ")
+   <<[A]"$hl\n"
+   hl=padHdr(" *  @author $author ");
+   <<[A]"$hl\n"
+   hl=padHdr(" *  @Copyright © RootMeanSquare $(date(8)) -->");           
+   <<[A]"$hl\n"
    <<[A]" * \n"
    <<[A]" */ \n"
-   padHdr(";//----------------<v_&_v>-------------------------//;") ;
    <<[A]"\n";
      here = ftell(A);
 <<[2]"%V $where $here  \n"

@@ -11,155 +11,157 @@
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
- 
 
-                                                                      
 <|Use_=
-Demo  of cmplx array set
-
+  Demo  of cmplx array set
+  
 ///////////////////////
 |>
-                                                               
 
 #include "debug"
 
+  if (_dblevel >0) {
 
-if (_dblevel >0) {
-   debugON()
-   <<"$Use_\n"   
-}
+  debugON();
 
+  <<"$Use_\n";
 
-chkIn(_dblevel)
+  }
 
+  chkIn(_dblevel);
 
-int k = 371:
+  db_allow = 1 ; // set to 1 for internal debug print;
 
-<<"$k \n"
-
-chkN(k,371)
+  db_ask = 0;
 
 
 
+  int k = 371;
 
-int I[10] = {0,1,2,3,4,5,6,7,8,9};
+  <<"$k \n";
 
-!pI
+  chkN(k,371);
 
-AVI = vgen(INT_,10,0,1)
+  int I[10] = {0,1,2,3,4,5,6,7,8,9};
 
-<<"%V$AVI\n"
+  AVI = vgen(INT_,10,0,1);
 
-int A[] = {1,2,3,4}
-  sz = Caz(A)
-  <<"%V $sz $A\n"
+  AVI.pinfo();
+
+  int A[] = {1,2,3,4};
+
+  sz = Caz(A);
+
+  <<"%V $sz $A\n";
 
   sum = Sum(A);
-<<"%V$sum \n"
- chkN(sum,10)
 
+  <<"%V$sum \n";
 
+  chkN(sum,10);
 //A[77] = X;  // test will create error X not defined at this point
 
+  sum = Sum({1,2,3,4,5,6,7,8,9,10});
 
+  sum.pinfo();
 
-sum = Sum({1,2,3,4,5,6,7,8,9,10});  
+  chkN(sum,55);
 
-<<"%V$sum \n"
-//!p sum
+  cmplx a;
 
-
-chkN(sum,55)
-
-
-
+  cmplx b;
 
 
 
+  a.set(2.5,0.5);
 
-cmplx a;
-cmplx b;
+  a.pinfo();
 
+  x= a.getReal();
+  x.pinfo()
 
-a.set(2.5,0.5)
+  y= a.getImag();
 
+  y.pinfo()
 
-a.pinfo()
+  <<"%V $x $y \n";
 
-x= a.getReal();
+  chkR (a.getReal(),2.5);
 
-y= a.getImag();
+  <<"%V $a  $x  $y\n";
 
-<<"%V $x $y \n"
+  a.setReal(3.5);
 
+  <<"%V $a\n";
 
+  a.setImag(-4.7);
 
-chkR (a.getReal(),2.5);
+  <<"%V $a\n";
 
+  x= a.getReal();
 
+  y= a.getImag();
 
+  <<"%V $a  $x  $y\n";
 
-<<"%V $a  $x  $y\n"
+  chkR (x,3.5);
 
-a.setReal(3.5)
-
-<<"%V $a\n"
-
-a.setImag(-4.7)
-
-<<"%V $a\n"
-
-x= a.getReal();
-y= a.getImag();
-<<"%V $a  $x  $y\n"
-
-chkR (x,3.5)
-chkR (y,-4.7)
-
-a.pinfo()
+  chkR (y,-4.7);
 
 
-cmplx g[16] = {1,2,3,4,5,6,7,8,9,10};
+ 
+  a.pinfo();
 
-sz = Caz(g)
+  cmplx g[16] = {1,2,3,4,5,6,7,8,9,10};
 
-!ig
-!pg
+  sz = Caz(g);
+
+  g.pinfo()
+
+  allowDB("spe_proc,vmf",db_allow);
+
+  a.set(3.5,-0.5);
+
+  a.pinfo()
+
+  g[0].set(80,15);
+
+  g.pinfo()
+  
+  g[2].Set(79.0,-0.6);
+
+  g.pinfo()
+
+  <<"%V $g[2]\n"
+  
 
 
 
+  A={1,7,8,9,} ;   // OK;
 
- A={1,7,8,9,} ;   // OK
   sum = Sum(A);
 
-<<"%V$A \n"
-A.pinfo()
+  <<"%V$A \n";
 
-<<"%V$sum \n"
+  A.pinfo();
 
-chkN(sum,25)
+  <<"%V$sum \n";
 
+  chkN(sum,25);
 
-sum = Sum({1,2,3,4});
+  sum = Sum({1,2,3,4});
 
+  sz = Caz({1,2,3});
 
-sz = Caz({1,2,3});
+  <<"%V $sz\n";
 
-<<"%V $sz\n"
+  float F[10] = {0,1,2,3,4,5,6,7,8,9};
 
+  <<"$F\n";
 
+  int I2[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 
-
-float F[10] = {0,1,2,3,4,5,6,7,8,9};
-
-<<"$F\n"
-
-int I2[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
-
-<<"$I2\n"
-
-
-
+  <<"$I2\n";
 /*
   g.SetReal(77);
 <<"%V$sz $g\n"
@@ -167,533 +169,522 @@ int I2[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 <<"%V$sz $g\n"
 */
 
-g[0].Set(80,15);
-<<"$g\n"
 
-A[]= {11,12,13,14,15,16};
-!pA
-B= A * -1;
 
-g[1:6:1].SetReal(A)
-g[1:6:1].SetImag(B)
+  
 
+  A[]= {11,12,13,14,15,16};
+
+
+  B= A * -1;
+
+  g[1:6:1].SetReal(A);
+
+  g[1:6:1].SetImag(B);
 //g[1:6:1].SetReal({1,2,3,4,5,6})  // FIX anon array as arg?
 
-<<"$g\n"
+   g.pinfo()
 
 
-g[1:6:1].SetImag({6.1,6.2,6.3,6.4,6.5,6.6})
 
-sz = Caz(g)
-<<"%V$sz $g\n"
 
-g[1:6:1].SetReal({1,2,3,4,5,6})
+  g[1:6:1].SetImag({6.1,6.2,6.3,6.4,6.5,6.6});
 
-<<"$g\n"
+  sz = Caz(g);
 
+  <<"%V$sz $g\n";
 
+  g[1:6:1].SetReal({1,2,3,4,5,6});
 
-float rv[10];
+  <<"$g\n";
 
-rv[0] = 19;
-rv[1] = 20;
-rv[2] = 21;
-rv[3] = 268;
-rv[4] = 166;
-rv[5] = 68;
+  float rv[10];
 
-<<"%V$g\n"
+  rv[0] = 19;
 
-  g[1:6:1].SetReal({1.2,2,3,4,5,6})
+  rv[1] = 20;
 
-<<"%V$g\n"
-gr = g.getReal()
+  rv[2] = 21;
 
-<<"%V $gr\n"
+  rv[3] = 268;
 
-<<"%V $gr[1]\n"
+  rv[4] = 166;
 
-  chkR(gr[1],1.2)
+  rv[5] = 68;
 
+  <<"%V$g\n";
 
+  g[1:6:1].SetReal({1.2,2,3,4,5,6});
 
+  <<"%V$g\n";
 
+  gr = g.getReal();
 
-for (i= 2; i < 6; i++) {
-<<"%V$i  $gr[i]\n"
-  chkR(gr[i],i)
+  <<"%V $gr\n";
 
-}
+  <<"%V $gr[1]\n";
 
+  chkR(gr[1],1.2);
 
 
-g[1:6:1].SetImag({7,8,9,10,11,12})
+  chkOut(1)
 
-<<"$g\n"
 
-gi = g.getImag()
+  for (i= 2; i < 6; i++) {
 
-gi.pinfo()
+  <<"%V$i  $gr[i]\n";
 
-<<"%V $gi \n"
+  chkR(gr[i],i);
 
+  }
 
-for (i= 1; i <= 6; i++) {
-  chkN(gi[i],6+i)
-}
+  g[1:6:1].SetImag({7,8,9,10,11,12});
 
+  <<"$g\n";
 
-g[1:6:1].SetImag({-1.0,-2.0,-3.0,-4,-5,-6.2})
+  gi = g.getImag();
 
-<<"$g\n"
+  gi.pinfo();
 
+  <<"%V $gi \n";
 
-g[1:6:1].SetReal(rv)
+  for (i= 1; i <= 6; i++) {
 
-<<"$g\n"
+  chkN(gi[i],6+i);
 
-g[1:6:1].SetImag(rv)
+  }
 
-<<"$g\n"
+  g[1:6:1].SetImag({-1.0,-2.0,-3.0,-4,-5,-6.2});
 
+  <<"$g\n";
 
+  g[1:6:1].SetReal(rv);
 
-  a.set(2.5,0.5)
+  <<"$g\n";
 
-  mag = a.Mag()
-  ph = a.Phase()
-  re = a.getReal()
-  im = a.getImag()
+  g[1:6:1].SetImag(rv);
 
-<<"%V$mag $ph $re $im\n"
+  <<"$g\n";
 
-<<"%V$a $b\n"
+  a.set(2.5,0.5);
 
+  mag = a.Mag();
 
-  b.Set(0.5,-1.0)
+  ph = a.Phase();
 
-  c = a + b
+  re = a.getReal();
 
-<<"%V$a + $b $c \n"
+  im = a.getImag();
 
-  c = a - b
+  <<"%V$mag $ph $re $im\n";
 
-<<"%V$a - $b $c \n"  
+  <<"%V$a $b\n";
 
-  c = a * b
+  b.Set(0.5,-1.0);
 
-<<"%V$a * $b $c \n"
+  c = a + b;
 
-    d = a / b;
+  <<"%V$a + $b $c \n";
 
-<<"%V$a /  $b $d \n"
+  c = a - b;
 
-  e = d * b
+  <<"%V$a - $b $c \n";
 
-<<"%V$d *  $b  = $e \n"
+  c = a * b;
 
+  <<"%V$a * $b $c \n";
 
-    dcmplx  r;
-    dcmplx  t;
-    dcmplx  rt;
+  d = a / b;
 
-  r.Set(2.5,0.5)
+  <<"%V$a /  $b $d \n";
 
-  rmag = r.Mag()
-  rph = r.Phase()
-  rre = r.getReal()
-  rim = r.getImag()
+  e = d * b;
 
-<<"%V$rmag $rph $rre $rim\n"
-<<"$(typeof(r))\n"
+  <<"%V$d *  $b  = $e \n";
 
-  t.Set(-3.512345,0.767345)
+  dcmplx  r;
 
-  rmag = t.Mag()
-  rph = t.Phase()
-  rre = t.getReal()
-  rim = t.getImag()
+  dcmplx  t;
 
-<<"%V$rmag $rph $rre $rim\n"
-<<"$(typeof(t))\n"
+  dcmplx  rt;
 
+  r.Set(2.5,0.5);
 
-   rt = t + a
+  rmag = r.Mag();
 
-<<"%V$t +  $a  = $rt \n"
+  rph = r.Phase();
 
-   rt = t * a
+  rre = r.getReal();
 
-<<"%V$t *  $a  = $rt \n"
+  rim = r.getImag();
 
-   rt = a * t
+  <<"%V$rmag $rph $rre $rim\n";
 
-<<"%V$a *  $t  = $rt \n"          
+  <<"$(typeof(r))\n";
 
-    
-  rt = t + r
+  t.Set(-3.512345,0.767345);
 
-<<"%V$t +  $r  = $rt \n"  
-  
-  
-  
-  rmag = rt.Mag()
-  rph = rt.Phase()
-  rre = rt.getReal()
-  rim = rt.getImag()
+  rmag = t.Mag();
 
-<<"PLUS %V$rmag $rph $rre $rim\n"
-<<"$(typeof(rt))\n"
+  rph = t.Phase();
 
+  rre = t.getReal();
 
+  rim = t.getImag();
 
-  
-  rt = t * r
+  <<"%V$rmag $rph $rre $rim\n";
 
-  rmag = rt.Mag()
-  rph = rt.Phase()
-  rre = rt.getReal()
-  rim = rt.getImag()
+  <<"$(typeof(t))\n";
 
-<<"MUL %V$rmag $rph $rre $rim\n"
+  rt = t + a;
 
-<<"$(typeof(rt))\n"
+  <<"%V$t +  $a  = $rt \n";
 
-<<"%V$t *  $r  = $rt \n"  
-  
+  rt = t * a;
 
-  rt = t / r
+  <<"%V$t *  $a  = $rt \n";
 
-  rmag = rt.Mag()
-  rph = rt.Phase()
-  rre = rt.getReal()
-  rim = rt.getImag()
+  rt = a * t;
 
-    <<"DIV %V$rmag $rph $rre $rim\n"
+  <<"%V$a *  $t  = $rt \n";
 
-<<"$(typeof(rt))\n"
+  rt = t + r;
 
-<<"%V$t /  $r  = $rt \n"  
-  
-    chkN(1,1)
+  <<"%V$t +  $r  = $rt \n";
 
-    float fv[4] = {1,2,3,4};
+  rmag = rt.Mag();
 
-<<"$fv\n"
+  rph = rt.Phase();
 
+  rre = rt.getReal();
 
-  g[3].Set(47,79)
+  rim = rt.getImag();
 
-  <<"%V$sz $g\n"
+  <<"PLUS %V$rmag $rph $rre $rim\n";
 
-  g[4].setReal(80)
+  <<"$(typeof(rt))\n";
 
-  g[5].setImag(85)
-  
-<<"%V $g\n"
-  
-  g.SetReal(rv)
+  rt = t * r;
 
-  
-<<"%V $g\n"
+  rmag = rt.Mag();
 
+  rph = rt.Phase();
 
+  rre = rt.getReal();
 
-  g[6].SetReal(1001)
+  rim = rt.getImag();
 
-     <<"%V $g\n"
+  <<"MUL %V$rmag $rph $rre $rim\n";
 
+  <<"$(typeof(rt))\n";
 
+  <<"%V$t *  $r  = $rt \n";
 
-       <<"%V $g\n"
-       
+  rt = t / r;
+
+  rmag = rt.Mag();
+
+  rph = rt.Phase();
+
+  rre = rt.getReal();
+
+  rim = rt.getImag();
+
+  <<"DIV %V$rmag $rph $rre $rim\n";
+
+  <<"$(typeof(rt))\n";
+
+  <<"%V$t /  $r  = $rt \n";
+
+  chkN(1,1);
+
+  float fv[4] = {1,2,3,4};
+
+  <<"$fv\n";
+
+  g[3].Set(47,79);
+
+  <<"%V$sz $g\n";
+
+  g[4].setReal(80);
+
+  g[5].setImag(85);
+
+  <<"%V $g\n";
+
+  g.SetReal(rv);
+
+  <<"%V $g\n";
+
+  g[6].SetReal(1001);
+
+  <<"%V $g\n";
+
+  <<"%V $g\n";
+
   g[2:12:2].SetReal(rv);
 
-     <<"%V $g\n"
+  <<"%V $g\n";
 
   g[0:12:2].SetImag(rv);
 
-     <<"%V $g\n"
+  <<"%V $g\n";
 
-     g[6:12:].SetReal({4,5,6});
+  g[6:12:].SetReal({4,5,6});
 
-     <<"%V $g\n"
+  <<"%V $g\n";
 
+  g[0:2].SetReal({1,2,3});
 
-     g[0:2].SetReal({1,2,3});
+  <<"%V $g\n";
 
-     <<"%V $g\n"     
-     
-g[0].Set(1,2);
-<<"$g\n"
+  g[0].Set(1,2);
 
+  <<"$g\n";
 
-g[1].Set(3,4);
+  g[1].Set(3,4);
 
-<<"$g\n"
+  <<"$g\n";
 
+  g.Set(1,2,3,4);
 
-g.Set(1,2,3,4);
+  <<"$g\n";
 
-<<"$g\n"
+  cmplx f;
 
-    cmplx f;
+  f.set(1,2);
 
-f.set(1,2);
-
-<<"%V$f \n"
-
-     
+  <<"%V$f \n";
   //cmplx h = {1,2};
 
+  <<"%V$F \n";
 
-<<"%V$F \n"
-F = vgen (CMPLX_,10,1,1)
+  F = vgen (CMPLX_,10,1,1);
 
+  G = vgen (CMPLX_,10,1,-1);
 
-G = vgen (CMPLX_,10,1,-1)
-
-
-<<"%V$G \n"
-
-
-
+  <<"%V$G \n";
   // FIXIT
   //F[0:-1] = 3
 
-<<"%V$F \n"
-
+  <<"%V$F \n";
   // cmplx G[10]
 
+  Z = F * G;
 
+  <<"%V$Z \n";
 
+  G.setReal(vgen(FLOAT_,10,1,3));
 
-   Z = F * G
+  G.setImag(vgen(FLOAT_,10,1,-4));
 
-<<"%V$Z \n"
+  <<"%V$G \n";
 
-  G.setReal(vgen(FLOAT_,10,1,3))
-  G.setImag(vgen(FLOAT_,10,1,-4))
+  R=G.getReal();
 
-<<"%V$G \n"
+  <<"%V$R \n";
 
-  R=G.getReal()
-<<"%V$R \n"
+  I=G.getReal();
 
-  I=G.getReal()
-<<"%V$I \n"
+  <<"%V$I \n";
 
-  
-  Mg=G.Mag()
-<<"%V$Mg \n"
+  Mg=G.Mag();
 
-  Ph=G.Phase()
-<<"%V$Ph \n"
+  <<"%V$Mg \n";
 
+  Ph=G.Phase();
 
-N = 11
+  <<"%V$Ph \n";
 
-cmplx AV[N]
+  N = 11;
 
+  cmplx AV[N];
 
-AV.pinfo()
-<<"%v $AV[0:10] \n"
+  AV.pinfo();
 
-<<"$(typeof(AV)) $(Caz(AV)) \n"
+  <<"%v $AV[0:10] \n";
 
+  <<"$(typeof(AV)) $(Caz(AV)) \n";
 // FIX IC redundant ele/push_sivele
 
-   AV[2].Setreal (0.3)  // just real ele
+  AV[2].Setreal (0.3)  ; // just real ele;
 
-   AV[3].SetImag (0.4)  // just imag ele
+  AV[3].SetImag (0.4)  ; // just imag ele;
 
-<<"%v $AV \n"
+  <<"%v $AV \n";
 
-AV.pinfo()
+  AV.pinfo();
 
-   R=AV.getReal() // real part
-R.pinfo()
-<<"%v $R \n"
+  R=AV.getReal() ; // real part;
 
+  R.pinfo();
 
-   AV[4].Set(0.55,0.69)
+  <<"%v $R \n";
 
-<<"%v $AV[*] \n"
+  AV[4].Set(0.55,0.69);
 
-   I=AV.GetImag() // imag part
+  <<"%v $AV[*] \n";
 
-<<"%v $I \n"
+  I=AV.GetImag() ; // imag part;
 
+  <<"%v $I \n";
 
+  val = 0.1;
 
+  for (j = 1; j < 10; j++) {
 
-    val = 0.1
+  AV[j].SetReal(val)  ; // just real ele;
 
-    for (j = 1; j < 10; j++) {
+  AV[12].SetReal(val);
 
-     AV[j].SetReal(val)  // just real ele
+  R=AV.getReal() ; // real part;
 
-     AV[12].SetReal(val)
+  <<"%v $R \n";
 
-     R=AV.getReal() // real part
+  val += 0.1;
 
-   
-     <<"%v $R \n"
+  }
 
-    val += 0.1
+  AV.Setreal(Sin(Fgen(N,0,0.1)));
 
-   }
+  R = AV.SetR(Cos(Fgen(N,0,0.1)));
 
+  R.pinfo();
 
-   AV.Setreal(Sin(Fgen(N,0,0.1)))
+  <<" $(Caz(R)) \n";
 
+  T= R[0:10];
 
-   R = AV.SetR(Cos(Fgen(N,0,0.1)))
-R.pinfo();
-<<" $(Caz(R)) \n"
+  <<"$T \n";
 
-   T= R[0:10];
+  <<"\n%v $R[0:10] \n";
 
-<<"$T \n"
+  R = AV.setR(Sin(Fgen(N,0,0.1)));
 
-  <<"\n%v $R[0:10] \n"
+  <<" $(Caz(R)) \n";
 
+  <<"\n%v $R[0:10] \n";
 
-   R = AV.setR(Sin(Fgen(N,0,0.1)))
+  AV.SetI(4.0)      ; // imag vector set to zero;
 
-<<" $(Caz(R)) \n"
+  I= AV.getImag()     ; // get imag part;
 
+  <<" $(Caz(I)) \n";
 
-  <<"\n%v $R[0:10] \n"
-
-   AV.SetI(4.0)      // imag vector set to zero
-
-   I= AV.getImag()     // get imag part
-
-<<" $(Caz(I)) \n"
-  <<"%v $I[0:10] \n"
-
+  <<"%v $I[0:10] \n";
 //<<"%v $(AV.getImag()) \n" ;   // TBF 11/29/21 bad
 
+  <<"\n %v $AV[0:10] \n";
 
-<<"\n %v $AV[0:10] \n"
-
-chkOut()
-
+  chkOut();
 //  TBF 12/03/21 --- crash ahead!!
 
-   B = AV
+  B = AV;
 
-<<"\n %v $B[0:10] \n"
+  <<"\n %v $B[0:10] \n";
 
-   C = AV + B
+  C = AV + B;
 
-<<"\n %v $C[0:10] \n"
+  <<"\n %v $C[0:10] \n";
 
-   C = AV - B
+  C = AV - B;
 
-<<"\n %v $C[0:10] \n"
+  <<"\n %v $C[0:10] \n";
 
-   C = AV * B
+  C = AV * B;
 
-<<"\n %v $C[0:10] \n"
+  <<"\n %v $C[0:10] \n";
 
-   C = AV / B
+  C = AV / B;
 
-<<"\n %v $C[0:10] \n"
+  <<"\n %v $C[0:10] \n";
 
+  AV[3].set(0.3,42.0);
 
-   AV[3].set(0.3,42.0)  
+  <<"\n %v $AV[0:10] \n";
 
-<<"\n %v $AV[0:10] \n"
+  AV[3].set(0.3,42.0);
 
+  <<"\n %v $AV[0:10] \n";
 
-   AV[3].set(0.3,42.0)  
+  AV[9].set(0.3,42.0);
 
-<<"\n %v $AV[0:10] \n"
-
-
-   AV[9].set(0.3,42.0)  
-
-<<"\n %v $AV[0:10] \n"
-
-
-
-
-
-
+  <<"\n %v $AV[0:10] \n";
 //  a = {1.0,0.5}
 //  b = (0.5,-1.0}
 
+  r= a.Set(1.0,0.5);
 
+  <<" %v $r \n";
 
-  r= a.Set(1.0,0.5)
+  b.Set(0.5,-1.0);
 
-<<" %v $r \n"
-  b.Set(0.5,-1.0)
+  <<"%v $(typeof(a)) \n";
 
-<<"%v $(typeof(a)) \n"
-<<"%v $(typeof(b)) \n"
+  <<"%v $(typeof(b)) \n";
 
-  c= a + b
+  c= a + b;
 
-<<"%v $(typeof(c)) \n"
+  <<"%v $(typeof(c)) \n";
 
-<<"%V $a $b $c \n"
+  <<"%V $a $b $c \n";
 
-<<" complex type - ops \n"
+  <<" complex type - ops \n";
 
+  AV[2].setI (-0.5)  ; // just imag ele;
 
+  AV[3].Set(0.3,0.4);
 
-   AV[2].setI (-0.5)  // just imag ele
+  AV[0:20:2].SetImag(5.0)      ; // imag subscripted part of vector set to zero;
 
-   AV[3].Set(0.3,0.4) 
+  float V[12];
 
+  <<"$V\n";
 
-   AV[0:20:2].SetImag(5.0)      // imag subscripted part of vector set to zero
+  j = 0;
 
+  V[j] = 3;
 
+  <<" $V[0:10] \n";
 
-float V[12];
+  for (j = 1; j < 3; j++) {
 
-<<"$V\n"
+  V[j] = j;
 
+  <<" $V[0:10] \n";
 
-j = 0
-    V[j] = 3
+  }
 
-<<" $V[0:10] \n"
+  dcmplx DCV[>10];
 
-    for (j = 1; j < 3; j++) {
-    V[j] = j
+  DVR=vgen(DOUBLE_,10,0,0.25);
 
-<<" $V[0:10] \n"
-    }
+  DVI=vgen(DOUBLE_,10,-10,0.25);
 
-dcmplx DCV[>10]
+  <<"$DVR\n";
 
+  <<"$DVI\n";
 
-DVR=vgen(DOUBLE_,10,0,0.25)
-DVI=vgen(DOUBLE_,10,-10,0.25)
+  DCV.setReal(DVR);
 
-<<"$DVR\n"
-<<"$DVI\n"
+  DCV.setImag(DVI);
 
-DCV.setReal(DVR)
-DCV.setImag(DVI)
+  <<"$DCV\n";
 
+  DVGR=DCV.getReal();
 
-<<"$DCV\n"
+  <<"$DVGR\n";
 
-DVGR=DCV.getReal()
+  dv= 0.0;
 
-<<"$DVGR\n"
-dv= 0.0
+  for(i=0;i<10;i++) {
 
-for(i=0;i<10;i++) {
+  chkR (DVGR[i],dv);
 
-chkR (DVGR[i],dv);
-dv += 0.25
-}
+  dv += 0.25;
 
-chkOut()
+  }
+
+  chkOut(1);
+
+//==============\_(^-^)_/==================//

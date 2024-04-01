@@ -28,15 +28,13 @@
 
   }
   ask =0
-  chkIn(_dblevel);
-/*
-   real Foo(real x,real  y)
-   {
-     <<"in real Foo\n"
-     z = x * y
-     return z;
-     }
-*/
+
+ chkIn(_dblevel);
+ db_allow = 0 ; // set to 1 for internal debug print;
+
+ db_ask = 0;
+
+allowDB("opera_,spe_,svar,str_,array_parse,parse,rdp_,pex",db_allow);
 
 
   float Foo(float x,float  y)
@@ -397,14 +395,14 @@
   <<"$_proc $a \n";
 
   a.pinfo();
-  fileDB(ALLOW_,"opera_")
+//  fileDB(ALLOW_,"opera_")
   $a += 1;
   // this should increment what a is pointing to a should
  // be as before
 
   a.pinfo();
 
-askit(ask)
+
 // does'nt really return anything
 // return on own crash TBF crash
 
@@ -494,11 +492,25 @@ askit(ask)
 
   chkN(c,1);
 
-  c = foo1(in) * 2;
+  x= sin(0.5)
+
+  <<"%v $x\n"
+allowDB("opera_,spe_,svar,str_,array_parse,parse,rdp_,pex",0);
+  y = sin(0.5) * 2
+  
+<<"%V $x $y\n"
+
+
+
+c = foo1(in) * 2;
 
   <<" $in $c \n";
 
+ans = ask("%V $x $y ",0)
+
   chkN(c,2);
+
+  //chkOut(1)
 
   in = 1;
 
@@ -638,6 +650,6 @@ askit(ask)
  //  mr= roo(&ixm)
 //<<"%V $ixm $mr\n"
 
-  chkOut();
+  chkOut(1);
 
 //==============\_(^-^)_/==================//

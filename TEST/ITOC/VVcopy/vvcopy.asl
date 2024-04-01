@@ -1,293 +1,285 @@
-//%*********************************************** 
-//*  @script vvcopy.asl 
-//* 
-//*  @comment test vvcopy SF 
-//*  @release CARBON 
-//*  @vers 1.2 He Helium [asl 6.2.100 C-He-Fm]                               
-//*  @date Sat Dec 26 23:33:26 2020 
-//*  @cdate 1/1/2005 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script vvcopy.asl                                                  
+ * 
+ *  @comment test vvcopy SF                                             
+ *  @release Boron                                                      
+ *  @vers 1.4 Be Beryllium [asl 5.95 : B Am]                            
+ *  @date 04/01/2024 13:08:18                                           
+ *  @cdate 1/1/2005                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
+ * 
+ */ 
+
+
 <|Use_ =
-   vvcopy(A,B,n,{condition,cond_value},{stepA,stepB},{offsetA,offsetB})
-   copies n locations of array B to corresponding locations in array A.
-   s1 and s2 are step sizes default is 1.
-   Also the copy can be conditional
-   (condition set to GT_,LT_,GTE_,LTE_,EQ_,NEQ_,ALWAYS_)
-   or (condition set to ">","<",">=","<=","!=")
-   for a comparison of array value and cond_value,
-   for the copy operation
-   to take place, i.e. the array data can be filtered via a condition.
-   Additionally the steps and offsets into the arrays can be set
-   e.g.
-   vvcopy(A,B,n,GTE_,0,1,2,5,6);
-   where the access starts at element 6 of B and steps by two.
-   the first successful compare (number GTE to 0)  goes into element 5 of vector A.		\
-     		 goes into element 5 of vector A.; 
-   and the next into element 6, ...
-   There is an internal check to prevent accessing or writing beyond
-   the arrays, but the success of the operation requires programming
-   inspection with respect to array size.
-   Returns number of values copied into array A.
+  vvcopy(A,B,n,{condition,cond_value},{stepA,stepB},{offsetA,offsetB})
+  copies n locations of array B to corresponding locations in array A.
+  s1 and s2 are step sizes default is 1.
+  Also the copy can be conditional
+  (condition set to GT_,LT_,GTE_,LTE_,EQ_,NEQ_,ALWAYS_)
+  or (condition set to ">","<",">=","<=","!=")
+  for a comparison of array value and cond_value,
+  for the copy operation
+  to take place, i.e. the array data can be filtered via a condition.
+  Additionally the steps and offsets into the arrays can be set
+  e.g.
+  vvcopy(A,B,n,GTE_,0,1,2,5,6);
+  where the access starts at element 6 of B and steps by two.
+  the first successful compare (number GTE to 0)  goes into element 5 of vector A.		\
+  goes into element 5 of vector A.;
+  and the next into element 6, ...
+  There is an internal check to prevent accessing or writing beyond
+  the arrays, but the success of the operation requires programming
+  inspection with respect to array size.
+  Returns number of values copied into array A.
 |>
 
 #include "debug"
 
-   if (_dblevel >0) {
+  if (_dblevel >0) {
 
-     debugON();
+  debugON();
 
-     <<"$Use_\n";
- }
+  <<"$Use_\n";
 
+  }
 //   chkIn(_dblevel);
 
-     db_allow = 0;
+  db_allow = 0;
 
-     chkIn(1);
+  chkIn(1);
 
-B= vgen(INT_,100,0,1);
+  B= vgen(INT_,100,0,1);
 
-   chkN(B[0],0);
+  chkN(B[0],0);
 
-   chkN(B[99],99);
+  chkN(B[99],99);
 
-   <<"%V$B\n";
+  <<"%V$B\n";
 
-   C= B[10:19:1];
+  C= B[10:19:1];
 
+  N= 10;
 
+  A= vgen(INT_,N,0,-1);
 
+  B= vgen(INT_,N,0,1);
 
+  C=B;
 
-   N= 10;
-
-   A= vgen(INT_,N,0,-1);
-
-   B= vgen(INT_,N,0,1);
-
-   C=B;
-
-   <<"A: $A\n";
-
-   <<"B: $B\n";
-
-   <<"C: $C\n";
-
-   <<"$A[1] $B[1]\n";
-
-   r = ( B[1] == 1);
-
-   chkT(1)
-
-   vvcopy(B,A);
-
-   <<"B: $B\n";
-
-   chkN(B[1],A[1]);
-
-   B=C;
-
-   <<"B: $B\n";
-
-   B[3] = 7;
-   A[0] = 14
-   A[1] = 17
+  <<"A: $A\n";
 
   <<"B: $B\n";
+
+  <<"C: $C\n";
+
+  <<"$A[1] $B[1]\n";
+
+  r = ( B[1] == 1);
+
+  chkT(1);
+
+  vvcopy(B,A);
+
+  <<"B: $B\n";
+
+  chkN(B[1],A[1]);
+
+  B=C;
+
+  <<"B: $B\n";
+
+  B[3] = 7;
+
+  A[0] = 14;
+
+  A[1] = 17;
+
+  <<"B: $B\n";
+
   if (db_allow) {
-   allowDB("spe,rdp,array,ic")
- }
-   vvcopy(&B[3],A,5);
 
-   B.pinfo();
+  allowDB("spe,rdp,array,ic");
 
+  }
 
-   <<"B: $B\n";
-   
-   <<"A: $A\n"
-   
-   <<"%V $B[3]  $A[0] \n";
-      <<"%V $B[4]  $A[1] \n";
+  vvcopy(&B[3],A,5);
 
-   chkN(B[3],A[0]);
-   chkN(B[4],A[1]);   
+  B.pinfo();
+
+  <<"B: $B\n";
+
+  <<"A: $A\n";
+
+  <<"%V $B[3]  $A[0] \n";
+
+  <<"%V $B[4]  $A[1] \n";
+
+  chkN(B[3],A[0]);
+
+  chkN(B[4],A[1]);
 //    do the same with vec ops
-
-
-
-
 ////////////////////////////////////////////////////////////
-   B = C;
 
-   <<"C $C\n";
+  B = C;
 
-   <<"B $B\n";
+  <<"C $C\n";
 
-   <<"A $A\n";
+  <<"B $B\n";
 
-   B[4:8:] = A[1:5];
+  <<"A $A\n";
 
-   <<"$B\n";
+  B[4:8:] = A[1:5];
 
-   int ki = 2;
+  <<"$B\n";
 
-   B=C;
+  int ki = 2;
 
-   vvcopy(&B[ki],A,5);
+  B=C;
 
-   <<"B: $B\n";
+  vvcopy(&B[ki],A,5);
 
-   chkN(B[ki],A[0]);
+  <<"B: $B\n";
 
-   B=C;
+  chkN(B[ki],A[0]);
 
-   ki = 4;
+  B=C;
 
-   vvcopy(&B[ki],A,5);
+  ki = 4;
 
-   <<"B: $B\n";
+  vvcopy(&B[ki],A,5);
 
-   chkN(B[ki],A[0]);
+  <<"B: $B\n";
 
-   int kia = 3;
+  chkN(B[ki],A[0]);
 
-   ki = 2;
+  int kia = 3;
 
-   B=C;
+  ki = 2;
 
-   <<"%V $ki $kia\n";
+  B=C;
 
-   vvcopy(&B[ki],&A[kia],4);
+  <<"%V $ki $kia\n";
 
-   <<"B: $B\n";
+  vvcopy(&B[ki],&A[kia],4);
 
-   A.pinfo();
+  <<"B: $B\n";
 
-   B.pinfo();
+  A.pinfo();
 
-   <<"A: $A\n";
+  B.pinfo();
 
-   <<"B: $B\n";
+  <<"A: $A\n";
 
-   <<"%V $ki $kia\n";
+  <<"B: $B\n";
 
-   <<"%V $B[ki] $A[kia] \n";
+  <<"%V $ki $kia\n";
 
-   chkN(B[ki],A[kia]);
+  <<"%V $B[ki] $A[kia] \n";
 
+  chkN(B[ki],A[kia]);
 
+  bval = B[ki];
 
-   bval = B[ki];
+  aval = A[kia];
 
-   aval = A[kia];
+  <<"%V $bval $aval\n";
 
-   <<"%V $bval $aval\n";
+  A.pinfo();
 
-   A.pinfo();
+  chkN(bval,aval);
 
-   chkN(bval,aval);
+  A = 0;
 
-   A = 0;
+  chkN(A[3],0);
 
-   chkN(A[3],0);
+  <<"A: should be 0 $A\n";
 
-   <<"A: should be 0 $A\n";
+  A = B;
 
-   A = B;
+  <<"B: $B\n";
 
-   <<"B: $B\n";
+  <<"A: $A\n";
 
-   <<"A: $A\n";
+  chkN(A[3],B[3]);
 
-   chkN(A[3],B[3]);
+  A[0:-1:] = 0;
 
-   A[0:-1:] = 0;
+  <<"A: should be 0 $A\n";
 
-   <<"A: should be 0 $A\n";
+  chkN(A[3],0);
 
-   chkN(A[3],0);
+  A.pinfo();
 
-   A.pinfo();
+  A[3]=79;
 
-   A[3]=79;
+  B[3]=47;
 
-   B[3]=47;
+  <<"A: $A\n";
 
-   <<"A: $A\n";
+  <<"B: $B\n";
 
-   <<"B: $B\n";
+  n = N;
 
-   n = N;
+  nc=vvcopy(A,B,n);
 
-   nc=vvcopy(A,B,n);
+  <<"$nc ALL\n";
 
-   <<"$nc ALL\n";
+  <<"A: $A\n";
 
-   <<"A: $A\n";
+  <<"B: $B\n";
 
-   <<"B: $B\n";
+  A.pinfo();
 
-   A.pinfo();
+  BL= vgen(INT_,100,0,1);
 
-   BL= vgen(INT_,100,0,1);
+  chkN(BL[0],0);
 
-   chkN(BL[0],0);
+  chkN(BL[99],99);
 
-   chkN(BL[99],99);
+  <<"%V$B\n";
 
-   <<"%V$B\n";
+  C= BL[10:19:1];
 
-   C= BL[10:19:1];
+  R=vvcomp(A,B,n);
 
+  <<"vvcomp %V$R\n";
 
+  A.pinfo();
 
+  chkN(A[3],47);
 
+  BM= vgen(INT_,100,0,1);
 
+  chkN(BM[0],0);
 
-   R=vvcomp(A,B,n);
+  chkN(BM[99],99);
 
-   <<"vvcomp %V$R\n";
-
-   A.pinfo();
-
-   chkN(A[3],47);
-
-
-
-
-
-   BM= vgen(INT_,100,0,1);
-
-   chkN(BM[0],0);
-
-   chkN(BM[99],99);
-
-   <<"%V$BM\n";
+  <<"%V$BM\n";
 
   for (i = 0; i < 3; i++) {
 
-   C= BM[i:19:1];
-<<"$C \n"
+  C= BM[i:19:1];
 
-}
+  <<"$C \n";
 
+  }
 //   nc=vvcopy(A,B,20,ALWAYS_,0,1,1,0,10);
 
-<<"$B\n"
+  <<"$B\n";
 
-   nc=vvcopy(A,BM,20);
+  nc=vvcopy(A,BM,20);
 
-   <<"$nc \n";
+  <<"$nc \n";
 
-   <<"$A\n";
-   A.pinfo()
-   
-   C= A[1:5:1];
-   <<"$C\n";
+  <<"$A\n";
 
+  A.pinfo();
+
+  C= A[1:5:1];
+
+  <<"$C\n";
 /*
    chkN(B[0],0)
    chkN(B[99],99)
@@ -295,26 +287,22 @@ B= vgen(INT_,100,0,1);
 */
 
 
-   B.pinfo()
+  B.pinfo();
 
-   C= BM[10:19:1];
+  C= BM[10:19:1];
 
-   <<"$C\n";
+  <<"$C\n";
 
-   chkN(C[0],10);
+  chkN(C[0],10);
 //sdb(2)
 
-   C= BM[20:29:1];
+  C= BM[20:29:1];
 
-   B.pinfo();
-
-
-
+  B.pinfo();
 //k= B[0]
 //!p k
 
-   <<"%V$B\n";
-   
+  <<"%V$B\n";
 //chkN(B[1],1)
 /*
    chkN(B[99],99)
@@ -322,94 +310,100 @@ B= vgen(INT_,100,0,1);
 */
 
 
-   <<"$C\n";
+  <<"$C\n";
 
-   chkN(C[0],20);
+  chkN(C[0],20);
 
-   <<"%V$A\n";
-   BM.pinfo();
+  <<"%V$A\n";
 
-   <<"%V$B\n";
+  BM.pinfo();
+
+  <<"%V$B\n";
 // TBF BUG BM has PROC_ARG_REF set ??
-   BM.pinfo();
 
-   nc=vvcopy(A,BM,20,ALWAYS_,0,1,1,0,20);
+  BM.pinfo();
 
-   <<"$nc \n";
-   <<"%V$BM\n";
-   <<"%V$A\n";
+  nc=vvcopy(A,BM,20,ALWAYS_,0,1,1,0,20);
 
-<<"%V$A[0] $A[1]\n"
+  <<"$nc \n";
 
-   chkN(A[0],20);
+  <<"%V$BM\n";
 
+  <<"%V$A\n";
 
+  <<"%V$A[0] $A[1]\n";
 
-   <<"//////////////////////\n";
+  chkN(A[0],20);
 
-   B= 0;
+  <<"; //////////////////////\n";
 
-   nc=vvcopy(A,B,n,GTE_,7);
+  B= 0;
 
-   <<"$nc GT \n";
+  nc=vvcopy(A,B,n,GTE_,7);
 
-   <<"A: $A\n";
+  <<"$nc GT \n";
 
-   <<"B: $B\n";
+  <<"A: $A\n";
 
-   <<"//////////////////////\n";
+  <<"B: $B\n";
 
-   B= 0;
+  <<"; //////////////////////\n";
 
-   <<"B: $B\n";
+  B= 0;
 
-   nc=vvcopy(A,B,n,LT_,4);
+  <<"B: $B\n";
 
-   <<"$nc LT \n";
+  nc=vvcopy(A,B,n,LT_,4);
 
-   <<"A: $A\n";
+  <<"$nc LT \n";
 
-   <<"B: $B\n";
+  <<"A: $A\n";
 
-   <<"//////////////////////\n";
+  <<"B: $B\n";
 
-   B= 0;
+  <<"; //////////////////////\n";
 
-   <<"B: $B\n";
+  B= 0;
 
-   nc=vvcopy(&A[2],&B[0],n,LT_,4);
+  <<"B: $B\n";
 
-   <<"$nc LT \n";
+  nc=vvcopy(&A[2],&B[0],n,LT_,4);
 
-   <<"A: $A\n";
+  <<"$nc LT \n";
 
-   <<"B: $B\n";
+  <<"A: $A\n";
 
-   <<"//////////////////////\n";
+  <<"B: $B\n";
 
-   B= 0;
+  <<"; //////////////////////\n";
 
-   <<"B: $B\n";
+  B= 0;
 
-   nc=vvcopy(&A[2],&B[3],n,LT_,4);
+  <<"B: $B\n";
 
-   <<"$nc LT \n";
+  nc=vvcopy(&A[2],&B[3],n,LT_,4);
 
-   <<"A: $A\n";
+  <<"$nc LT \n";
 
-   <<"B: $B\n";
+  <<"A: $A\n";
 
+  <<"B: $B\n";
  //  I = Seli(A,GT_,3);
-     I = Sel(A,GT_,3);
 
-   <<"I: $I \n";
+  I = Sel(A,GT_,3);
 
-   V = Sel(A,I);
+  <<"I: $I \n";
 
-   <<"V $V\n";
+  V = Sel(A,I);
 
-   T = A[I];
+  <<"V $V\n";
 
-   <<"T $I\n";
- chkT(1)
- chkOut()
+  T = A[I];
+
+  <<"T $I\n";
+
+  chkT(1);
+
+  chkOut(1);
+
+//==============\_(^-^)_/==================//

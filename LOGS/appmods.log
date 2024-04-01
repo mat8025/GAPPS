@@ -482,3 +482,10 @@ arrayjoin.asl            1.3	03/23/2024 10:01:54 add vvcart
 cast-vec.asl             1.3	03/23/2024 14:35:01 int+ float to inot
 vector.asl               1.3	03/23/2024 22:36:43 DB ask
 fio.asl                  1.3	03/30/2024 16:52:10 tidy
+svar.asl                 1.6	04/01/2024 12:51:42 TRY1
+svar.asl                 1.7	04/01/2024 12:55:08 TRY2
+svar.asl                 1.8	04/01/2024 12:56:00 try3
+xor.asl                  1.3	04/01/2024 13:00:26 TR5
+xor.asl                  1.3	04/01/2024 13:03:14 tidy
+vvcopy.asl               1.3	04/01/2024 13:06:19 tdiidy
+vvcopy.asl               1.4	04/01/2024 13:08:18 sindented

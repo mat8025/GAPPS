@@ -2004,3 +2004,21 @@ test_l.cpp                          1.60  03/23/2024 10:15:09  linenumber at chk
 spe_declare.cpp                     2.41  03/23/2024 12:27:21  vec declare
 str_sop.cpp                         1.100  03/23/2024 14:25:22  update scpy,eatwhiteends
 opera_vv.cpp                        1.58  03/23/2024 22:29:38  check hold ptr memp()
+siv.h                               2.12  04/01/2024 10:31:50  getComplxVal
+ds_convert_get.cpp                  2.2  04/01/2024 10:53:12  getCmplxVal
+ds_getvarasstr.cpp                  2.73  04/01/2024 10:53:53  getCmplxVal
+ds_sivflags.cpp                     1.96  04/01/2024 10:54:25  getCmplxVal
+array_parse.cpp                     2.87  04/01/2024 11:29:44  WIC logic
+rdp_l1.cpp                          1.65  04/01/2024 11:40:06  revise
+rdp_variable.cpp                    1.82  04/01/2024 11:40:54  revise
+rdp_primitive.cpp                   1.66  04/01/2024 11:41:40  revise tokres
+rdp_l3.cpp                          1.67  04/01/2024 11:42:09  revise
+rdp_l4.cpp                          1.67  04/01/2024 11:42:34  revise
+rdp_l2.cpp                          1.63  04/01/2024 11:43:06  revise
+rdp_l5.cpp                          1.66  04/01/2024 11:43:24  revise
+rdp_l6.cpp                          1.68  04/01/2024 11:44:01  revise
+rdp_tokquote.cpp                    1.81  04/01/2024 12:22:01  revise rdp for tokres
+rdp_tokquote.cpp                    1.81  04/01/2024 12:23:26  revise rdp for tokres 
+rdp_tokfunc.cpp                     1.78  04/01/2024 12:24:19  revise rdp for tokres 
+spil_getsvarg.cpp                   2.24  04/01/2024 12:39:06  catf,catsvar
+spil_args.cpp                       1.10  04/01/2024 12:39:56  catf

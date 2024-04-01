@@ -1,0 +1,12 @@
+# bakup any gapps file from within current directory
+
+z=`pwd`
+echo $z
+#echo $z | sed sNgappsNBAK/gappsN
+w=`echo $z | sed sNgappsNBAK/gappsN`
+echo $w
+for y in $*
+do
+echo cp $y $w
+cp $y $w
+done
