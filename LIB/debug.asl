@@ -137,7 +137,7 @@ void debugOFF()
 
   //sdb(hold_dbl,_keep,_~trace);
 
-
+/*
   if (_dblevel > 1) {
   
   //sdb(_dblevel,_keep,_trace)
@@ -145,7 +145,7 @@ void debugOFF()
    printf("_dblevel %d\n",_dblevel);
 
   }
-
+*/
 
 printf("_dblevel %d\n",_dblevel);
 

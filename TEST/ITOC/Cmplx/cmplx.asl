@@ -71,7 +71,7 @@
 
   cmplx b;
 
-
+  cmplx c;
 
   a.set(2.5,0.5);
 
@@ -124,10 +124,21 @@
 
   a.pinfo()
 
+//  chkOut(1);
+
+
   g[0].set(80,15);
 
   g.pinfo()
-  
+
+  c = g[0];
+
+  c.pinfo()
+
+  x= c.getReal();
+
+  chkR (x,80);
+
   g[2].Set(79.0,-0.6);
 
   g.pinfo()
