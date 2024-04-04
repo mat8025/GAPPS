@@ -65,7 +65,7 @@
 
   len = slen(pfname);
 
-  <<"%I $pfname $len\n";
+  <<"$pfname $len\n";
 
   <<" $_proc $pfname \n";
 
@@ -156,13 +156,14 @@ ans=ask(" $vstr OK?:",db_ask)
 
   chkN(tot,3);
 
-  fname= "procarg.asl";
+ // fname= "procarg.asl";
+  fname= "in_junk";
 //  fileDB(ALLOW_,"paramexp")
   <<" %V$fname \n";
 
   k=ReadPulseFile(fname);
 
-  <<" %v$k \n";
+  <<" $k \n";
 //ttyin()
 
   sen = Split("the message was gobbledegook");
@@ -200,7 +201,7 @@ ans=ask(" $vstr OK?:",db_ask)
 
   <<"crash  $sen\n";
 
-  A=ofr("procarg.asl");
+  A=ofr("in_junk");
 
   if (A == -1) {
 
@@ -210,16 +211,31 @@ ans=ask(" $vstr OK?:",db_ask)
 
   k = 0;
 
+while (k < 4) {
+k++
+ <<"%V $k\n"
+}
 
 
-  <<"%V $db_action $A\n"
+  <<"%V  $A\n"
   
  ans=ask(DB_prompt,db_ask)
 // break on ReadWords ERROR?
-while (k < 4) {
+
+
+Svar SV = {"1","2","3"}
+
+<<" $SV[1]\n"
+
+ ans=ask("$k $SV OK?:",db_ask)
+
+k = 0
+
+db_ask = 1
+while (k < 10) {
 
   nwr = sen.ReadWords(A);
-ans=ask("$k $nwr OK?:",db_ask)
+ ans=ask("$k $nwr OK?:",1)
 
 
   if (nwr > 0) {
@@ -227,9 +243,10 @@ ans=ask("$k $nwr OK?:",db_ask)
   <<"$nwr $k $sen[0] $sen[1] $sen[2] $sen[3]\n";
   //  sen->split()
 
- ans=ask("$k $sen[0] $sen[1] OK?:",db_ask)
+    ans=ask("$k $sen[0] $sen[1] OK?:",db_ask)
 
-  soo(sen);
+  //  soo(sen);
+   
 //  Foo(sen)
 
   }
@@ -237,11 +254,10 @@ ans=ask("$k $nwr OK?:",db_ask)
 
 
   k++;
-
+  <<"%V $k\n"
   }
 
  <<" done loop %V $k \n";
-
 
 
   ast = "Once upon a time"

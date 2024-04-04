@@ -495,13 +495,13 @@ allowDB("opera_,spe_,svar,str_,array_parse,parse,rdp_,pex",db_allow);
   x= sin(0.5)
 
   <<"%v $x\n"
-allowDB("opera_,spe_,svar,str_,array_parse,parse,rdp_,pex",0);
+
   y = sin(0.5) * 2
   
 <<"%V $x $y\n"
 
 
-
+allowDB("opera_,spe_,svar,str_,array_parse,parse,rdp_,pex",db_allow);
 c = foo1(in) * 2;
 
   <<" $in $c \n";
