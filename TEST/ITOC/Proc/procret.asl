@@ -135,7 +135,7 @@ allowDB("opera_,spe_,svar,str_,array_parse,parse,rdp_,pex",db_allow);
   Str vers2ele(Str vstr)
   {
 
-  <<"$_proc   <| $vStr |>\n";
+  <<"$_proc   <| $vstr |>\n";
 
   vstr.pinfo();
 

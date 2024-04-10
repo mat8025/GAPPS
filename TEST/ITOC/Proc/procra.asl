@@ -13,16 +13,21 @@
 
 #include "debug";
 
-if (_dblevel >0) {
+if (_dblevel > 0) {
   debugON()
 }
 
 
 chkIn(_dblevel)
+ db_allow = 0;
+   db_ask = 0
+
+   if (_dblevel == 1) db_allow = 1
 
 //void Refarg (int& v)
 showUsage("Demo  of proc ref arg")
- fileDB(ALLOW_,"spe_proc,spe_args")
+// fileDB(ALLOW_,"spe_proc,spe_args")
+ allowDB("spe_statex,spe_proc,",db_allow)
  
 void Roo (int& v)
 {
@@ -94,7 +99,7 @@ ans=ask(DB_prompt,db_action)
 
 chkN(n,13)
 
-p = &n
+  p = &n
 
   p.info()
 
@@ -104,13 +109,12 @@ p = &n
 
 <<"%V  post $n  \n"
 
-//n->info(1)
 
 chkN(q,n)
 
-chkOut()
+chkOut(1)
 
-exit();
+exit(-1);
 
 
 

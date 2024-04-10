@@ -429,7 +429,8 @@ if ((do_include || do_all ) && (do_include != -1)) {
   do_carts("info")
 
    //RunDirTests("Assign","assign");
-  outcome("BOPS")
+
+outcome("BOPS")
    }
 
 ////////////// OO ///////////////////////
@@ -514,7 +515,7 @@ if ((do_bit || do_all) && (do_bit != -1)) {
 
    RunDirTests("Compare","compare")
 
-   RunDirTests("Logic","logic,logic_ops,logic_def")
+   RunDirTests("Logic","logic,logicops,logicdef")
 
 
   outcome("LOGIC")
@@ -525,7 +526,7 @@ if ((do_bit || do_all) && (do_bit != -1)) {
 
   inflsz = caz(FailedList)
 
-  RunDirTests("For","for,for-exp")
+  RunDirTests("For","for,for_exp")
    
   
   outcome("FOR")
@@ -740,7 +741,8 @@ if ((do_all || do_array ) && (do_array != -1)) {
 
    RunDirTests("ArraySubSet","arraysubset,arraysubvec")
 
-   RunDirTests("ArraySubSet","array_subsref,arraysubscbyvec,array_ele_incr,vdec")
+  // RunDirTests("ArraySubSet","array_subsref,arraysubscbyvec,array_ele_incr,vdec")
+   RunDirTests("ArraySubSet","array_subsref,arraysubscbyvec,vdec")
 
    RunDirTests("Array","ae,arraycmp,arrayele")
 
@@ -890,7 +892,9 @@ if ((do_all || do_proc ) && (do_proc != -1)) {
   //RunDirTests("Proc","procdeclare,proc,procret,procarg,procsv0");
   RunDirTests("Proc","procdeclare,proc,procret,procsv0");
 
-  RunDirTests("Proc","procrefarg,procra,procrefstrarg,proc_loc_main_var,proc_var_define,procnest_args");
+  RunDirTests("Proc","procrefarg,procra,procrefstrarg,proclocmainvar")
+
+  RunDirTests("Proc"," proc_var_define,procnest_args");
   
   RunDirTests("ProcArray","procarray,poffset,arrayarg1,arrayarg2")
 

@@ -3765,21 +3765,7 @@ e.g. sun,i386, mc6000
 
 .EF
 =============================================================
-.BF
-getdir()
-.(x
-getdir
-.)x 
-.FD
-getdir(&text[0])
- Will place in test the current working directory.
-return number of characters
-can be used as cwd=getdir()
-where with null argument will return cwd 
 
-
-.EF
-=============================================================
 .BF
 getsf()
 .(x
@@ -10620,7 +10606,21 @@ r2d(rads)
 .EF
 ================================================
 .BF
-pt() ~ periodic table
+ptan() 
+.(x
+ptan
+.)x 
+.FD
+ptan(val)
+  returns periodic table entry if given a number, or if given an element name
+  e.g.
+ ptan("silver") returns 47.
+ ptan("Au") returns 79.
+.EF
+=============================================================
+
+.BF
+pt(), ~ periodic table
 .(x
 pt
 .)x 
@@ -10633,8 +10633,11 @@ pt(val)
  pt("silver") returns
  Silver,Ag,47,107.868202
  ptan("silver") returns 47.
+ ptan("Au") returns 79.
 .EF
 =============================================================
+
+
 .BF
 fexist()
 .(x

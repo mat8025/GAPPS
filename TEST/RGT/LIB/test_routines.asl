@@ -19,8 +19,9 @@ int Nspassed =0;
 int last_npass = 0
 int last_ncrash = 0
 
-void outcome (Str title)
+int outcome (Str title)
 {
+  <<" $title \n"
    Nsuites++;
    outflsz = caz(FailedList)
 //     <<"%V $inflsz $outflsz \n"
@@ -38,8 +39,11 @@ void outcome (Str title)
    //<<"%V$inflsz  $outflsz \n"
 <<"$(PRED_)/////////////////// $title FAIL $(outflsz-inflsz) /////CRASH $(rt_crash-last_ncrash)///$(POFF_)/////////\n"
    }
+   
    last_npass = rt_pass;
    last_ncrash = rt_crash;
+   <<"out: $rt_pass $rt_crash \n"
+    return rt_pass
 }
 
 //////////////////////////////
@@ -153,6 +157,7 @@ void Run2Test(Str td)
 //===============================
 
 //Str pgname;
+
 void RunDirTests(Str Td, Str Tl )
 {
 int _DBH = -1
@@ -160,34 +165,35 @@ int _DBH = -1
 
 Str pgname = "xx";
 Str pgxname = "xy";
+//pgname.aslpinfo();
+//
 
-
-  //pgname.aslpinfo();
   
-//Tl.info(1)
+//Tl.pinfo()
 
 //ri=Tl.info()
 
       chdir(Testdir)
-
       chdir(Td)
       Curr_dir = getDir();
-  
-     // Run2Test(Td);
+     // <<"$Curr_dir $Td\n"
+//allowDB("spe_proc,",1)
 
-      Tl.DeWhite()
+  //   Tl.DeWhite()
+//allowDB("spe_,rdp_",0)      
+       dwtl = Dewhite(Tl)
       Tp = Split(Tl,",");
 
       np = Caz(Tp);
-      
-     // <<"%V $Td $Tl $np\n"
-      
+   //   np.pinfo()
+    //  <<"%V $Td $Tl $np\n"
+      kp =0
       for (i=0 ; i < np; i++) {
 
-
+//<<"[$i] <|$Tp[i]|>  \n"
 	    pgname = Tp[i];
-
-//<<"[$i]  <|$Tp[i]|>  $pgname\n"
+kp++
+//<<"[$i] $kp <|$Tp[i]|>  $pgname\n"
 
             nl = slen(pgname);
 
@@ -198,17 +204,20 @@ Str pgxname = "xy";
 
          if (nl > 0) {
 
-        <<[_DBH]"%V $pgname \n"
+       // <<[_DBH]"%V $pgname \n"
 
           cart(pgname);
 
-<<[_DBH]"%V $pgname xic \n"
+//<<[_DBH]"%V $pgname xic \n"
 
-        cart_xic (pgname);
-//ans=ask(DB_prompt,2        )
-         }
+        cart_xic (pgxname);
+
+//ans=ask(DB_prompt,2 )
+
+           }
       
       }
+ // Tl.pinfo()    
 }
 //====================//
 
@@ -476,7 +485,7 @@ Str prg;
 
 void cart_xic(Str prg)
 {
-
+//<<"IN $_proc  $prg \n"
 int _DBH = -1
 
 //aprg.pinfo()

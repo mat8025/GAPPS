@@ -2022,3 +2022,8 @@ rdp_tokquote.cpp                    1.81  04/01/2024 12:23:26  revise rdp for to
 rdp_tokfunc.cpp                     1.78  04/01/2024 12:24:19  revise rdp for tokres 
 spil_getsvarg.cpp                   2.24  04/01/2024 12:39:06  catf,catsvar
 spil_args.cpp                       1.10  04/01/2024 12:39:56  catf
+rdp_token.cpp                       1.82  04/08/2024 10:00:59  codeerror fatal for unfound variable
+rdp_variable.cpp                    1.83  04/08/2024 10:01:59  codeerror fatal for autodec
+gscom_debug.cpp                     1.72  04/08/2024 14:00:50  glitch option to continue
+spe_proc.cpp                        2.75  04/08/2024 15:55:20  next st after return
+pex_pfmtexpand.cpp                  1.36  04/10/2024 08:43:37  deref ptr sivp

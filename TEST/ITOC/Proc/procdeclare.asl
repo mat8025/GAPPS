@@ -19,6 +19,15 @@ myScript = getScript();
 
 chkIn(_dblevel)
 
+ db_allow = 0;
+   db_ask = 0
+   db_allow = 1
+   if (_dblevel == 1) db_allow = 1
+
+   <<"%V $_dblevel $db_allow\n";
+
+ allowDB("spe_statex,spe_proc,",db_allow)
+seen = 0;
 int foo(int a)
 {
 <<"in $_proc\n"
@@ -89,8 +98,8 @@ void voo(int a)
 
  int s1 = a * 5
 
-<<"in %V$a local a * 5 $s1\n"
-
+<<"in %V $a local a * 5 $s1 \n"
+   
 }
 
 //===========================//
@@ -102,7 +111,7 @@ float roo(float a, float b)
 
  float s1 = a * b;
 
-<<"in float vers %V$a local a * b $s1\n"
+<<"in float vers %V $a local a * b $s1\n"
 
   return s1;
 }
@@ -116,7 +125,7 @@ double roo(double a, double b)
 
  double s1 = a * b;
 
-<<"in double vers %V$a local a * b $s1\n"
+<<"in double vers %V $a local a * b $s1\n"
 
   return s1;
 }
@@ -129,13 +138,22 @@ k= woo(5)
 
 <<"woo returns $k\n"
 
+<<" calling voo \n"
 
 voo(7)
 
+seen = 1
+<<" lets see this after voo $seen !\n" ; 
+<<"2 after voo !\n"
+
+
+ans = ask("do roo(3.2,4.5) ",0)
 
 f= roo(3.2,4.5)
 
 <<"roo returns $f\n"
+ans = ask("roo return  ",0)
+
 chkR(f,14.4)
 
 
@@ -148,7 +166,7 @@ f= roo(x,y)
 
 
 chkR(f,12.54)
-
+chkN(seen,1)
 chkOut()
 exit()
 

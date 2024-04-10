@@ -24,7 +24,7 @@ ignoreErrors();
 //#define  DBG <<	
 
 
-gssys= GetEnv("GS_SYS")
+gssys= GetEnv("GS_APPS")
 
 <<" ENV $gssys \n"
 <<" looking for manual in $gssys\n"
@@ -252,7 +252,7 @@ int kloop = 1;
 
             i= fseek(A,k,0) // reset position
 
-            i=search_file(A,npat,0,1,0)   // try looking for pat without underlines in function name
+            i=search_file(A,npat,0,1,0) ;  // try looking for pat without underlines in function name
 
                   if (i == -1) {
                    <<" $npat not found in DOC \n";
