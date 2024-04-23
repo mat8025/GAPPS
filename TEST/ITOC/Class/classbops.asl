@@ -52,6 +52,14 @@ real goo( real x)
 }
 //==================//
 
+
+  int hoo (int h, int m)
+  {
+   htmp = h * m
+   return htmp
+  }
+//////////////////////////////////////////////////////
+
 //allowDB("spe_,ds_,oo_")
 
 b=goo(1.2)
@@ -68,12 +76,18 @@ b=goo(sin(0.7))
    b=goo(77.6)
 <<"goo $b\n"
 
-  int hoo (int h, int m)
-  {
-   htmp = h * m
-   return htmp
+ba = 32.34
+   b=goo(ba)
+<<"goo $b\n"
 
-  }
+
+
+ba = -23.45
+   b=goo(ba)
+<<"goo $b\n"
+
+
+
 
   kr = hoo (4, 3)
 
@@ -90,9 +104,24 @@ b=goo(sin(0.7))
 
 
 
+  for (i=0; i< 3; i++) {
+  ba = i
+   b=goo(ba)
+  chkN(b,(i*2))
+<<"goo $b\n"
+ }
+ 
 
-ans=ask(DB_prompt,DB_action);
+  
+
+ans=ask("goo $b 0K ? ",0);
+
+
+
 /// must have a CONS -- else crash in xic??
+//rejectDB("ic,oo,spe,parse", 1)
+
+//allowDB("clearall", 1)
 
 class Point
   {
@@ -105,10 +134,18 @@ class Point
 //============================//
 
 
-     float setx (real m) {
+     float Setx (real m) {
       m.pinfo()
       x = m;
       <<"$_proc $m $x  \n"; 
+      return x;
+      }
+
+     float Setxy (real m, real z) {
+      m.pinfo()
+      x = m;
+      y = z
+      <<"$_proc $m $z $x $y  \n"; 
       return x;
       }
 
@@ -167,7 +204,7 @@ class Point
     
     float Gety()
      {
-      <<"getting $y  $_cobj  \n"; 
+     // <<"getting $y  $_cobj  \n"; 
       return y;
       }
 
@@ -215,7 +252,13 @@ v= y.isVector()
     // same name as class is the constructor
      y=2;
      x=4;
+     DV[0] = 0.23;
+     DV[1] = 1.23
+     DV[2] = 2.23;
+     DV[3] = 3.23;     
+     
 <<"cons $_proc  %V $x $y \n"
+   <<"$DV \n"
    }
 
 }
@@ -225,25 +268,60 @@ v= y.isVector()
 ////////////////////////////////////////////
 
 
+
 // 
 
 //wdb=  DBaction((DBSTEP_),ON_)
 
   Point A;
 
+ans=ask("Point A OK?\n",0)
+
   rx  =  Sin(d2r(90)) 
 
   chkR(rx,1.0)
+
+  rx=   A.Getx();
+  
+//allowDB("spe,oo,ic,opera",1)
+  rx = A.Setx(1.2)
+
+ans=ask("proc_svn $rx OK?",db_ask)
+
+
+  rx= A.Setx(2.4)
+ans=ask("proc_svn $rx OK?",db_ask)
+
+   rx= A.Getx()
+ans=ask("proc_svn $rx OK?",db_ask)
+
+  chkR(rx,2.4)
+
+//allowDB("clearall", 1)
+
+  rx=A.Setx(3)
+ans=ask("proc_svn $rx OK?",db_ask)  
+  rx=A.Setx(4)
+ans=ask("proc_svn $rx OK?",db_ask)  
+  rx=A.Setx(5)  
+ans=ask("proc_svn $rx OK?",db_ask)  
+  rx=A.Setxy(6,7)  
+ans=ask("proc_svn OK? $rx",db_ask)
+
+
+  dx = 4.5  
+  for (i=0; i< 5; i++) {
+  A.Setx(1)
+  A.Setx(dx)
+  rx=   A.Getx();
+  <<"%V $dx <|$rx|>\n"
+
+  chkN(rx,dx)
+  dx += 1;
+ }
  
 
 
-
-  rx=   A.Getx();
-
- <<"%V <|$rx|>\n"
-  chkN(rx,4.0)
-
-ans=ask(DB_prompt,DB_action);
 
 chkStage("class print OK?")
 
@@ -260,6 +338,27 @@ chkStage("class print OK?")
 
   chkR(x1,3.4)
 
+ A.y = 5.4
+
+  y1= A.y;
+
+<<"$y1\n"
+
+
+  chkR(y1,5.4)
+
+
+  xy = A.x + A.y
+
+  chkR(xy,8.8)
+
+
+
+ //chkOut(1)
+ 
+
+
+
   rx=   A.Getx();
  <<"%V <|$rx|>\n"
   chkN(rx,3.4)
@@ -269,7 +368,7 @@ chkStage("class print OK?")
 
    
 //allowDB("spe_proc,spe_state,spe_vmf,oo_")
-   A.setx(77.34)
+   A.Setx(77.34)
 
    A.pinfo()
 
@@ -331,7 +430,7 @@ real r2 = 4.5;
 
   r1.pinfo()
 
-  A.setx(r1);
+  A.Setx(r1);
 
   rx=   A.Getx();
 
@@ -341,6 +440,8 @@ real r2 = 4.5;
 
 
   r2.pinfo()
+
+//  OK 
 
 
   my = A.mul(r2 );
@@ -376,9 +477,10 @@ real r2 = 4.5;
   <<"%V$my $A.x  \n";
 
 
+  
 
 
-//allowDB("spe_proc,spe_state,spe_vmf,oo_")
+
 //wdb=  DBaction((DBSTEP_),ON_)
 //<<"$wdb \n"
 
@@ -398,7 +500,7 @@ real r2 = 4.5;
 
 //  ans=ask(DB_prompt,DB_action,5);
 
-
+// OK 
 
   B.set(4,2);
   rx=   B.Getx();
@@ -460,7 +562,7 @@ chkR(cy,0.2);
   
   ok=chkR(wx,0.15,5); 
 
-
+//OK
 
   A.set(47, 79);
   
@@ -475,7 +577,7 @@ chkR(cy,0.2);
   chkN(D.x,83); 
   
   D.Print(); 
-  //allowDB("spe,oo,ic,opera")
+  //allowDB("spe,oo,ic,opera",1)
   
   A_y = 77.0;
   D_y = 66.0;
@@ -504,15 +606,12 @@ ans=ask("%V  $D.y  ==  $A.y   ? ",db_ask);
 
 //ans=ask("%V $D.y   $(A.y+1)    ",db_ask); // TBF 2/10/24
 
-ans=ask(" $D.y   $(A.y+1)    ",db_ask);
+ans=ask("%V $D.y   $(A.y+1)    ",db_ask);
 
   D.Print(); 
-  
- 
 
 
-
-  chkN(D.y,A.y); 
+  chkN(D.y,(A.y+1)); 
   
   
   <<" 1/////////////////\n"; 
@@ -521,9 +620,14 @@ ans=ask(" $D.y   $(A.y+1)    ",db_ask);
   
   wy = A.Gety();
   
-  <<"%V $wy $A.Gety()\n"; // TBF  2/10/24 cmf in <<" "  does not work
+ // <<"%V $wy $A.Gety() \n"; // TBF  2/10/24 cmf in <<" "  does not work
+
+//  <<"%V $wy $(A.Gety())\n"; // TBF  2/10/24 cmf in <<" "  even worse spins
+//ans=ask("%V $D.y   $(A.y+1) $(A.Gety())   ",1);
+
+ans=ask("%V $D.y   $(A.y+1)   ",0);  
   
-  
+
   ok=chkR(wy,79,5); 
   <<"%Vok y $wy 79\n"; 
   
@@ -537,22 +641,34 @@ ans=ask(" $D.y   $(A.y+1)    ",db_ask);
   <<"A %V $ax \n";
   
   chkR(ax,47,5);
+
   ay = A.Gety();
   <<"A %V $ay \n"; 
 
   chkR(ay,79,5); 
   
   A.Print();
-  
+
+// OK 
+
+//allowDB("spe/ic,opera",db_allow)
+   
+
    axy = A.Getx() + A.Gety();
+   ayx = A.Gety() + A.Getx();
 
-<<"%V $axy $ax $ay\n"
+<<"%V $ax $ay $axy $ayx\n"
+ans = ask ( "$axy == $ayx OK? ",0)
 
-   axy = A.Gety() + A.Getx();
+  chkN(axy,ayx)
+  
+
+
    axy2 = ax + ay;
-   axy3 = ax + ay;   
-<<"%V $axy $axy2 $axy3 $ax $ay\n"
+   axy3 = ay + aa;   
 
+<<"%V $axy $axy2 $axy3 $ax $ay\n"
+<<"%V $axy $ax $ay  $(ax+ay)\n"
   chkR(axy,(ax+ay),5);
 
   bx = B.Getx();
@@ -567,11 +683,20 @@ ans=ask(" $D.y   $(A.y+1)    ",db_ask);
 
 <<"%V $bxy $bx $by\n"
 
+  ax = A.Getx() ;
+
+  ay =  A.Gety();
+
+<<"%V $ax $ay\n"
+
   axy = A.Getx() + A.Gety();
 
 <<"%V $axy $ax $ay\n"
+
+
   
   chkR(axy,(ax+ay),5); 
+
 
 
   bxy = B.Getx() + B.Gety(); 
@@ -619,7 +744,7 @@ ans=ask(" $D.y   $(A.y+1)    ",db_ask);
   chkProgress(" 4"); 
   v  = 1.3; 
   
-  
+
 //  ws = nsc(20,'\')   // escaped ' ??
 //<<"$ws\n"
   
@@ -674,7 +799,7 @@ ans=ask("%V $pre_by $B.y $post_by $v ",db_ask);
   <<"%V$ok $my $v\n"; 
   ok=chkR(my,v,5); 
 
-//allowDB("spe_,ds_,oo_,rdp,opera")
+
 //wdb=DBaction((DBSTEP_| DBSTRACE_),ON_)
 
   v = A.Getx(); 
@@ -783,17 +908,22 @@ ans=ask("%V $pre_by $B.y $post_by $v ",db_ask);
 //ans=ask(DB_prompt,DB_action,5);
 
 cmf_arg =1
+
+//allowDB("clearall", 1)
+
 if (cmf_arg) {
 
-// wdb=DBaction((DBSTEP_| DBSTRACE_),ON_)
+//wdb=DBaction((DBSTEP_| DBSTRACE_),ON_)
 // <<" %x $wdb\n"
+//setDebug(1)
    my3 = B.Getx() ;
 
    my3 = A.mul( my3 ); 
 
-chkR(my3,my2,3); 
+  chkR(my3,my2,3); 
 
-  my3 = A.mul( B.Getx() ); // TBF -- svarg arg bad  after nesting ?
+   
+ my3 = A.mul( B.Getx() ); // TBF -- svarg arg bad  after nesting ?
 
 
 
@@ -805,16 +935,15 @@ chkR(my3,my2,3);
 
 }
 
-
-
 //DBaction((DBSTEP_| DBSTRACE_),ON_)
+
+//allowDB("ic,oo,spe,parse,svar", 1)
+
 
    b=goo(65.6)
 
 <<"goo $b\n"
-//ans=ask(DB_prompt,DB_action,5);
 
-<<"checking out \n":
 
   chkOut(1); 
 

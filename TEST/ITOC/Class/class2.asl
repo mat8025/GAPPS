@@ -36,7 +36,7 @@ int db_step = 0; // set to zero for no step
 
  Str pset(str val, int wf)
   {
-     loc[wf] = val;
+    loc[wf] = val;
     return loc[wf];
   }
 
@@ -44,6 +44,8 @@ int db_step = 0; // set to zero for no step
 #include "arec.asl"
 
 #include "add_class.asl"
+
+allowDB("oo_,ic,spe_,tok_func,ic_",0)
 
   Str bike ="bike harder"
 
@@ -69,9 +71,9 @@ ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
 
 <<"%V $ans \n"
 
-  pinfo(ans)
+//  pinfo(ans)
 //ask("¿Es eso correcto?  [y,n,q]",DB_action);
-//allowDB("oo_,ic,spe_,tok_func,ic_")
+
   wi = 7;
 
 
@@ -92,23 +94,26 @@ Arec R;
 
   ans = "Est-ce exact?"
   ans.pinfo()
-//allowDB("oo_,spe_proc,tok_func,ic_")
+
 //wdb=DBaction((DBSTEP_),ON_)
 
   Str tans = "OK";
 
-  pinfo(tans)
+  tans.pinfo()
   
   // error msg should say prototype and call args don't match can't promote/demote or ambiguous
 
-
+//allowDB("oo_,ic,spe_,ic_,ds_store",1)
+//wdb=DBaction((DBSTEP_),ON_)
   R.Set(tans,5)
-  //allowDB("oo_,ic,spe_,tok_func,ic_")
+
   wans =R.Set(tans,4)
   
-
+  chkStr(wans,tans)
 
   gans = R.Get(4)
+
+  chkStr(gans,tans)
 
  <<"%V $ans $wans $gans\n"
 //ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
@@ -129,6 +134,16 @@ Arec T;
 
 //ask(" %V  $__FILE__ $__FUNC__ $__LINE__ $_proc $_scope $_include $_script [y,n,q]",DB_action);
 
+
+allowDB("oo_,ic,spe_,ic_",0)
+
+  Arec FI[5];
+
+  FI.pinfo()
+
+  ans=ask("FI[10]¿Es eso correcto?  [y,n,q]",0);
+
+
  Arec AI[5];
 
  ans = "le plus tôt possible"
@@ -139,27 +154,19 @@ Arec T;
 
  <<"%V $ans $wans $gans\n"
 
-//  ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
+  ans=ask("¿AI[10]Es eso correcto?  [y,n,q]",0);
 
-
-
-
-
-
-  
-  //ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
-
-  Arec FI[5];
-
+  chkStage("OBj array")
+// chkOut(1)
  ans = "Ich denke, also bin ich"
 
-   wans = FI[2].Set(ans,4)
+ wans = FI[2].Set(ans,4)
 
   gans = FI[2].Get(4)
 
  <<"%V $ans $wans $gans\n"
 
-  //ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
+  ans=ask("¿Es eso correcto?  [y,n,q]",0);
 
 
 
@@ -177,7 +184,7 @@ Arec T;
 
   <<"$FI[0].srec[2] \n";
   
-//ask("¿Es eso correcto?  [y,n,q]",DB_action);
+ans=ask("¿Es eso correcto? we ?  [y,n,q]",0);
 
   <<"$FI[0].srec[0:2:1] \n";
 
@@ -195,13 +202,26 @@ Arec T;
 
   chkStr(r01,"did");
 
-
-
-  r02 = FI[0].Get(2);
+  r02 = FI[0].srec[2];
 
   chkStr(r02,"we");
+ 
+  rg2 = FI[0].Get(2);
 
-  <<"%V $r00 $r01 $r02\n";
+  rg2.pinfo()
+
+  chkStr(rg2,"we");
+
+  rg3 = FI[0].Get(3);
+
+  rg3.pinfo()
+
+  chkStr(rg3,"get");
+
+  <<"%V $r00 $r01 $r02 $rg2 $rg3\n";
+
+
+
 
   FI[1].srec = Split("just evolved with many trials");
 
@@ -234,7 +254,7 @@ Arec T;
 //ask("¿Es eso correcto? <|$r10|> <|$r11|> $r12 [y,n,q]",DB_action);
 
 
-//allowDB("array,spe,rdp,ic")
+
 
   ans=FI[3].Set("Yes",2);
 
@@ -370,7 +390,7 @@ wdb=  DBaction((DBSTEP_),db_step)
 
   }
 
-//allowDB("oo_,ic,spe_,tok_func,ic_")
+
 
   Turnpt  Wtp[5];
 
@@ -385,9 +405,7 @@ wdb=  DBaction((DBSTEP_),db_step)
 
   <<"%V $SV[1] \n"
   <<"%V $SV[2] \n"
-  
 
-  //allowDB("spe,opera_,array,rdp_,ds,ic,oo")
 
   Wtp[1].Tset(SV);
 
@@ -395,7 +413,7 @@ wdb=  DBaction((DBSTEP_),db_step)
 
   <<"%V $Wtp[1].Lon \n";
 
-  chkOut();
+  chkOut(1);
 
 
 //==============\_(^-^)_/==================//

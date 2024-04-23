@@ -31,7 +31,6 @@
 
   <<"%V$otype\n";
   otype = k;
-     //otype.info(1);
 
   otype.pinfo();
 
@@ -108,7 +107,7 @@ svtype = sa;
 
   <<"$_proc  Get %V $otype\n";
 
-  otype.pinfo();
+ // otype.pinfo();
 
   return otype;
 

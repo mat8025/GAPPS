@@ -15,9 +15,10 @@
    if (_dblevel == 1) db_allow = 1
 
    <<"%V $_dblevel $db_allow\n";
-
+do_next_ask =0
    int rt_crash = 0;
-//int rt_fail = 0
+
+    int rt_fail= 0
 
    int rt_pass = 0;
 
@@ -51,8 +52,8 @@ int rt = -1;
 
    FailedList.LiDelete(0);
 
-   allowDB("spe_statex,spe_proc,vmf",db_allow);
-   rejectDB("spe_proc_sivs",db_allow);
+   //allowDB("spe_statex,spe_proc,vmf",db_allow);
+   //rejectDB("spe_proc_sivs",db_allow);
 
 
    int cart (Str prg)
@@ -235,11 +236,11 @@ ans=ask("$wprg OK?", 0) ; if (ans @= "q") exit(-1);
    <<"FAIL $_proc  lprg <|$lprg|> ==  prg <|$prg|> \n";
 
    }
-   allowDB("spe_,pex_",1);
+//   allowDB("spe_,pex_",1);
   prgx = "${prg}.xic";
 
   <<"  <|$prg|> looking for xic file <|$prgx|>  \n";
-ans= ask("correct name  ?  <|$prgx|> ",1)
+ans= ask("correct name  ?  <|$prgx|> ",0)
   foundit = fexist(prgx) ;
 
 
@@ -267,7 +268,7 @@ ans= ask("correct name  ?  <|$prgx|> ",1)
 
      <<"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -dx ${prg}.xic  \n  ";
 
-     ans = query("$prg run it?");
+    // ans = query("$prg run it?");
 
      if (ans @="q") {
 
@@ -338,7 +339,7 @@ ans= ask("correct name  ?  <|$prgx|> ",1)
   Curr_dir = getDir();
      // <<"$Curr_dir $Td\n"
 !!"rclup "
-  allowDB("spe_proc,",1);
+  //allowDB("spe_proc,",1);
   Tl.DeWhite()
 //allowDB("spe_,rdp_",0)      
 
@@ -405,7 +406,7 @@ ans=ask("$np OK?", db_ask) ; if (ans @= "q") exit(-1);
    
    }
 
-ans=ask("LOOP_<$i> $pgname %V $ntest  $rt_pass OK?", 1)
+ans=ask("LOOP_<$i> $pgname %V $ntest  $rt_pass OK?", 0)
   }
 
 
@@ -473,21 +474,16 @@ ans=ask("loop $i OK?", 0)
 
  RunDirTests("Logic","logic,logicops,logicdef")
 
- ans= ask("do next set ?",1)
+ ans= ask("do OO next set ?",do_next_ask)
+ 
+// RunDirTests("OO","oa,rpS,rp2,oa2,class_array,simple_class");
+ 
+ RunDirTests("Class","classbops,classmfcall,class2,classvar");
 
-RunDirTests("Proc","procra")
-
- ans= ask("do next set ?",1)
-
-RunDirTests("Proc","procrefarg,procrefstrarg,proclocmainvar,procra")
-
-
- ans= ask("do next set ?",1)
+ ans= ask("do next set ?",do_next_ask)
  
   RunDirTests("Proc","procdeclare,proc,procret,procsv0");
 
- ans= ask("do next set ?",1)
- RunDirTests("Logic","logic,logicops,logicdef")
  
 
   <<"Done tests $ntest !\n";

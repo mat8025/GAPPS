@@ -1,4 +1,3 @@
-
 ///
 ///  our simple class for testing
 ///
@@ -8,23 +7,30 @@
 class Arec {
 
   public:
-
-  Svar srec;
+  Svar srec[20];
 
   int a;
 
   int id;
 
+  Str sr;
+  int IV[20]
+
   Str Get( int wf) {
+  
    Str val;
   <<"wf $wf \n"
+
   wf.pinfo()
+
+  srec.pinfo()
+
   val = srec[wf];
   
   <<"$val \n"
 
-  pinfo(val);
-//ask("%V $__FILE__   $__FUNC__  $__LINE__ $_scope $_include $_script [y,n,q]",DB_action);
+  val.pinfo()
+//ans=ask("%V $val $__FILE__   $__FUNC__  $__LINE__ $_scope $_include $_script [y,n,q]",0);
   return val;
   };
 
@@ -33,7 +39,8 @@ class Arec {
   srec[wf] = val;
   rval =  srec[wf];
 //  return srec[wf];
-
+  rval.pinfo()
+  
      return rval;
   };
 // currently need cmf keyword for constructor
@@ -49,12 +56,14 @@ class Arec {
   {
 
   id=Rec_id++;
-
   a = id;
-      //id = Rec_id;
-
-  <<"constructing  %V $id  $Rec_id\n";
-
+  <<"cons $a $id\n"
+  IV.pinfo()
+  IV[id] = id;
+//  srec = "xxx $id";
+    sr.pinfo();
+    sr = "xxx $id";
+  <<"cons  %V $sr  $IV\n";
   };
 
   }

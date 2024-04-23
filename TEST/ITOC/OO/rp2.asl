@@ -35,7 +35,7 @@ int db_ask = 0; // set to zero for no ask
 int db_step = 0; // set to zero for no step
 int db_allow = 0; // set to zero for internal debug print
 
-
+  allowDB("ic,oo,spe_proc", 0)
 
   Nhouses = 0;
 
@@ -49,7 +49,7 @@ int db_allow = 0; // set to zero for internal debug print
     int setRooms(int val)
     {
       rooms = val;
-     <<" $_proc  $_cobj set rooms  $val $rooms  for house $number  \n"; 
+    <<" $_proc  $_cobj set rooms  $val $rooms  for house $number  \n"; 
       return rooms; 
      }
     
@@ -64,7 +64,9 @@ int db_allow = 0; // set to zero for internal debug print
     
     int getRooms()
     {
-      <<"$_proc %V  $_cobj $rooms for house  $number \n"
+      <<"$_proc getRooms %V  $_cobj $rooms for house  $number \n"
+         int nrooms = rooms;
+	 // TBF  return rooms  - does not get the correct house -- offset into house array wrong
          return rooms;
     }
     
@@ -100,15 +102,17 @@ int db_allow = 0; // set to zero for internal debug print
 
 
 
- //ans=ask("%V $__LINE__  ynq [y]\n",1);
+ //ans=ask("%V $__LINE__  ynq [y]\n",db_ask);
 
  DBaction((DBSTEP_),db_step)
 
-  if (db_allow) {
- allowDB("array,spe_proc,parse,ic,oo")
-}
+ 
+ allowDB("array,spe_proc,parse,ic,oo",db_allow)
+
   c2r = C[2].getRooms(); 
-  
+
+
+
   <<"house 2 has $c2r rooms \n"; 
   chkN(c2r,4)
 
@@ -160,7 +164,7 @@ int db_allow = 0; // set to zero for internal debug print
 
   y = C[a].getRooms(); 
 
- ans=ask("%V $y  $a $__LINE__  ynq [y]\n",1);
+ ans=ask("%V $y  $a $__LINE__  ynq [y]\n",db_ask);
 
   <<"house $a has $y rooms \n"; 
 
@@ -174,7 +178,7 @@ int db_allow = 0; // set to zero for internal debug print
 
 
 
-ans=ask("%V $y  $__LINE__  ynq [y]\n",1);
+ans=ask("%V $y  $__LINE__  ynq [y]\n",db_ask);
 
   x=C[a+1].setRooms(19); 
     
@@ -199,13 +203,21 @@ ans=ask("%V $y  $__LINE__  ynq [y]\n",1);
   
   chkStage("[a-1] ")
 
+  ar2 = = C[a+1].getRooms();
 
+  ar = C[a].getRooms();
 
+<<" do the problem state\n"
+allowDB("ic,oo,spe", 0)
   x=C[a+1].setRooms(C[a].getRooms()); 
   
-  <<"house ${a}+1 has $x rooms \n"; 
+  <<"house $a has $ar rooms   sets   ${a}+1 had $ar2 now has $x rooms \n"; 
 
- chkN(x,15); 
+ chkN(x,15);
+ 
+
+
+
 
   x=C[a+1].setRooms(C[a-1].getRooms()); 
   
@@ -235,10 +247,10 @@ ans=ask("%V $y  $__LINE__  ynq [y]\n",1);
 
  C[a].setRooms(13);
 
-ans=ask(" allowDB(array,spe_proc,ic)  $__LINE__  ynq [y]\n",1);
-if (ans == "y") {
- allowDB("array,spe_proc,parse,ic,oo")
-}
+
+
+ allowDB("array,spe_proc,parse,ic,oo",db_allow)
+
   am1r =C[a-1].getRooms();
 
   ar =C[a].getRooms();
@@ -254,7 +266,7 @@ if (ans == "y") {
 
   chkN(z,z2)
 
- ans=ask("%V $z $z2  $__LINE__  ynq [y]\n",1);
+ ans=ask("%V $z $z2  $__LINE__  ynq [y]\n",db_ask);
 
 //chkOut(1)
 
@@ -268,7 +280,7 @@ if (ans == "y") {
 
   chkStage(" C[2].getRooms() + C[3].getRooms()")
 
- //ans=ask("%V  $c2r $c3r $z3 $__LINE__  ynq [y]\n",1);
+ //ans=ask("%V  $c2r $c3r $z3 $__LINE__  ynq [y]\n",db_ask)
     
 
   b= a-1
@@ -314,7 +326,7 @@ if (ans == "y") {
 
   ar = C[a].getRooms()) ;
 
- //ans=ask("%V  $am1r + $am1c $c3r $ar ynq [y]\n",1);
+ //ans=ask("%V  $am1r + $am1c $c3r $ar ynq [y]\n",,db_ask)
  
   chkN(am1r,am1c)
 
@@ -400,11 +412,11 @@ ans=ask("%V  $w2r $a2r   yn!q [y]\n",db_ask)
 
   chkN(a4r,a2r);
   
-if (db_allow) {
- allowDB("array,spe_proc,ic")
-}
 
-// allowDB("array,spe_proc,ic")
+ allowDB("array,spe_proc,ic",db_allow)
+
+
+
 
   d2r = D[2].getRooms()  ; 
 
@@ -422,7 +434,7 @@ if (db_allow) {
   c5r= C[5].getRooms()
   d2rb = D[2].getRooms()  ;
   
-ans=ask("%V  $d2r $d2rb $w2r $a5r $c2r $c5rb $c5r  ynq [y]\n",1)
+ans=ask("%V  $d2r $d2rb $w2r $a5r $c2r $c5rb $c5r  ynq [y]\n",db_ask)
 
   chkN(w2r,c2r)
   
@@ -453,25 +465,45 @@ ans=ask("%V  $res $c5r $w2 $car ynq [y]\n",db_ask);
   ans=ask("%V  $res $c5r $w2  ynq [y]\n",db_ask);
 
 
-  //chkOut(1)
 
+
+C[1].setRooms(11) ;
+C[2].setRooms(22) ;
+C[3].setRooms(33) ;
+C[4].setRooms(44) ;
+C[5].setRooms(55) ;
+C[6].setRooms(66) ;
 
   a1r= C[1].getRooms() ;
   a2r= C[2].getRooms() ;
-  
   a3r= C[3].getRooms() ;
-  
+  a4r= C[4].getRooms() ;
+  a5r= C[5].getRooms() ;    
   a6r= C[6].getRooms() ;
   
-  <<"%V $a1r $a2r $a3r $a6r\n"
+  <<"%V $a1r $a2r $a3r $a4r $a5r $a6r\n"
+
+  ans=ask("%V  $a1r $a2r $a3r $a4r $a5r $a6r \n",db_ask);
+  chkN(a1r,11)
+  chkN(a2r,22)
+  chkN(a3r,33)
+  
+
 
   res=C[6].setRooms( C[3].setRooms(C[2].getRooms()) + C[1].getRooms()) ;
 
+  ans=ask("%V  $a1r $a2r $a3r $a4r $a5r $a6r \n",db_ask);
+  
   a1r= C[1].getRooms() ;
   a2r= C[2].getRooms() ;
   a3r= C[3].getRooms() ;
+  a4r= C[4].getRooms() ;
+  a5r= C[5].getRooms() ;  
   a6r= C[6].getRooms() ;
-  <<"%V $a1r $a2r $a3r $a6r $res\n"
+
+  ans=ask("%V  $a1r $a2r $a3r $a4r $a5r $a6r \n",db_ask);
+
+  <<"%V $a1r $a2r = $a3r $a6r = $a2r +$a3r  = $a6r ==  $res\n"
 
   chkN(res,33);
   
@@ -479,9 +511,10 @@ ans=ask("%V  $res $c5r $w2 $car ynq [y]\n",db_ask);
   
   chkN(a6r,33);
   
+  ans=ask("%V  $res $a6r  \n",db_ask);
 
 
-
+  
   res= C[7].setRooms(C[2].getRooms() + C[3].setRooms(C[1].getRooms())) ;
 
   a1r= C[1].getRooms() ;
@@ -491,7 +524,7 @@ ans=ask("%V  $res $c5r $w2 $car ynq [y]\n",db_ask);
   
 <<"%V $a1r $a2r $a3r $a7r $res\n"
   chkN(res,33);
-  chkN(a3r,22); 
+  chkN(a3r,11); 
   chkN(a6r,33); 
 
 

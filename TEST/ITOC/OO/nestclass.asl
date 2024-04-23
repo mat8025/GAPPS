@@ -2,11 +2,26 @@
 ///
 ///
 
+#include "debug"
+
+if (_dblevel >0) {
+   debugON()
+
+
+}
+
+
+
+allowErrors(-1)
+int db_ask = 0; // set to zero for no ask
+int db_step = 0; // set to zero for no step
+int db_allow = 0; // set to zero for internal debug print
 
 #include "act.asl"
 
 
-
+  chkIn(_dblevel); 
+  
 
   <<" /////////////////// Nested Class /////////////\n";
 
@@ -24,10 +39,11 @@
 
   int w_day;
 
-
+  Act B;
  /// now an array 
 
   Act A[10] ;
+  
 // FIXME each cons of A tacks on anotherstatement ??
 //
 //Act A[10];

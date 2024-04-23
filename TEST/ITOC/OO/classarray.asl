@@ -1,5 +1,5 @@
 //%*********************************************** 
-//*  @script class_array.asl 
+//*  @script classarray.asl 
 //* 
 //*  @comment check array assignment within object 
 //*  @release CARBON 
@@ -48,11 +48,7 @@ MIV[0:12] = -16
 
 MIV.pinfo();
 
-
-
-
-
-
+allowDB("spe,oo",0)
 class Dil {
 
 public:
@@ -108,7 +104,7 @@ int Set(int s)
  
   }
 
- cmf Dil() 
+ void Dil() 
  {
  <<"Starting cons \n"
      id = OC;
@@ -116,17 +112,29 @@ int Set(int s)
      OC++;
 
     type.pinfo();
-n_actv.pinfo()
+    n_actv.pinfo()
+   IV.pinfo() 
 
-IV.pinfo()
+  IV[0]= 7;
+  IV[1]= 8;
+  IV[2]= 9;    
 
- IV[0:12] = 1;
+ IV.pinfo()
+ 
+  iv4 = IV[4]
 
-IV.pinfo()
+<<"%V $iv4\n"
 
 
-<<"%V$I \n"
-     <<"cons for $_cobj  $id \n"
+ IV[10:20] = 1;
+
+  IV.pinfo()
+
+ans=ask("IV[0:12] OK ?\n",0)
+
+//     <<"cons for $_cobj  $id \n"
+  id.pinfo()
+     <<"cons for   $id \n"
 
    //  IV[23] = SC++ ;
 
@@ -141,11 +149,11 @@ IV.pinfo()
 
     IV[1] = 28;
 
- <<"%V$I \n" 
 
-     k = IV[0];
 
-<<"%V$k \n"
+     k = IV[1];
+
+<<"%V $k \n"
  <<"Done cons \n"
  
  }
@@ -159,20 +167,18 @@ agv.pinfo();
 
 Dil E;
 
-E.pinfo()
+   E.pinfo()
+ans=ask("Dil E OK?\n",0)
 
-   E->showIV();
+   E.showIV();
 
-  E->Set(5)
+  E.Set(5)
 
 
-
+//chkOut(1)
 nbytes = 10 * 4
 
 <<"%V$nbytes \n"
-
-
-
 <<"%V$OC\n"
 
 
@@ -191,103 +197,103 @@ C[0] = 1;
 Dil D;
 
 <<" after cons\n"
-  D->showIV();
+  D.showIV();
 
 
 
-  D->Set(5,32)
+  D.Set(5,32)
   
 <<" after set\n"
-  D->showIV();
+  D.showIV();
 
 <<" done dec of D\n"
 
 
 
-  D->Print(5);
+  D.Print(5);
 
-  D->showIV()
+  D.showIV()
 
-  k = D->IV[5];
+  k = D.IV[5];
    
-<<" trying %V $k $D->IV[5]  \n"
+<<" trying %V $k $D.IV[5]  \n"
 
-  E->showIV();
-  D->showIV()
+  E.showIV();
+  D.showIV()
 
 
 
-   D->IV[5] = 33;
+   D.IV[5] = 33;
 
-   D->IV[6] = 1634;
+   D.IV[6] = 1634;
    
-   k = D->IV[5]
+   k = D.IV[5]
 
-<<" after set D->IV[5] = 33 $k\n"
+<<" after set D.IV[5] = 33 $k\n"
 
-  D->IV[9] = 78;
+  D.IV[9] = 78;
 
-<<"%V $D->IV[9]  78? \n"
-  D->showIV()
+<<"%V $D.IV[9]  78? \n"
+  D.showIV()
 
 
-  E->IV[9] = 93;
+  E.IV[9] = 93;
 
-<<"%V $E->IV[9]  93? \n"
+<<"%V $E.IV[9]  93? \n"
 
-  E->IV[8] = 79
+  E.IV[8] = 79
 
-<<"%V $E->IV[8]  79? \n"
+<<"%V $E.IV[8]  79? \n"
 
-  vi = E->IV[8];
+  vi = E.IV[8];
 
 
 <<"%V $vi = 79? \n"
-<<"%V $E->IV[9] \n"
+<<"%V $E.IV[9] \n"
 
 
- chkN (E->IV[9],93);
+ chkN (E.IV[9],93);
 
 
-  D->Set(8,47)
+  D.Set(8,47)
 
 <<" show D \n"
 
 
 
 
-  D->IV[2] =79;
+  D.IV[2] =79;
 
 
-  D->showIV()
+  D.showIV()
 
-chkN (D->IV[2],79);
+chkN (D.IV[2],79);
 
 
 
-  E->showIV()
+  E.showIV()
 
-  D->showIV()
+  D.showIV()
 
-  D->IV[4] =80;
+  D.IV[4] =80;
 
-  D->showIV()
+  D.showIV()
 
-  E->IV[2] = 16
+  E.IV[2] = 16
 
-  E->showIV()
+  E.showIV()
 
-  D->Set(8,47)
+  D.Set(8,47)
 
-  D->showIV()
+  D.showIV()
 
-  chkN (D->IV[8],47)
+  chkN (D.IV[8],47)
 
-  val = D->IV[8]
+  val = D.IV[8]
 
-  D->Set(67)
+  D.Set(67)
 <<"%V $val\n"
-   val = D->Get()
+   val = D.Get()
 
 
 
@@ -297,9 +303,9 @@ chkN (D->IV[2],79);
 
 Dil X[5];
 
-X[3]->Set(5)
+X[3].Set(5)
 
- val = X[3]->Get()
+ val = X[3].Get()
 
 <<"Got $val\n"
 
@@ -311,18 +317,18 @@ j= 2
 j.pinfo()
 k= 44;
 
- X[j]->Set(k)
+ X[j].Set(k)
 
- val = X[j]->Get()
+ val = X[j].Get()
 
 <<"Got $val\n"
 
  chkN (val,44)
 
 
- X[j]->Set(89)
+ X[j].Set(89)
 
- val = X[j]->Get()
+ val = X[j].Get()
 
 <<"Got $val\n"
 
@@ -330,16 +336,19 @@ k= 44;
 
 sval = 92
 
-X[j]->Set(sval)
+X[j].Set(sval)
 
-val = X[j]->Get()
+val = X[j].Get()
 
 <<"Got $val\n"
 
-chkN (val,sval
+chkN (val,sval)
 
 
-chkOut ()
+chkOut (1)
+
+
+
 
 
 

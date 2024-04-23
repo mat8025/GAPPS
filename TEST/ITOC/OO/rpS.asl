@@ -35,7 +35,7 @@ int db_step = 1; // set to zero for no step
 <<"init %V $Nhouses\n"
 
 
-
+   allowDB("spe,opera,ic",0)
 
 Class house {
     
@@ -48,7 +48,9 @@ Class house {
       <<" $_proc  $_cobj $val \n"; 
       rooms = val;
     
-      <<" $_proc  $_cobj set rooms  $rooms  for house $number  \n"; 
+      <<" $_proc  $_cobj set rooms  $rooms  for house $number  \n";
+        // int nrooms = rooms;
+      //  return nrooms;
       return rooms; 
      }
     
@@ -62,7 +64,8 @@ Class house {
 
     int getrooms() {
          <<"getrooms $_cobj $rooms for house  $number \n"
-         return rooms;
+       //  int nrooms = rooms;
+        return rooms;
     }
 
     int getarea() {
@@ -96,12 +99,12 @@ Class house {
   //===============================//
 
 // crash unless type of rmchk specified -- want to work anyway -- default gen type
-int  checkRooms( int rmchk)
+  int checkRooms( int rmchk)
   {
      crooms = rmchk +1;
 
      return crooms;
- }
+   }
 
  //===============================//
 
@@ -110,6 +113,7 @@ int  checkRooms( int rmchk)
    AAr= AA.getrooms() ;
   <<"%V $AAr \n"
    chkN(AAr,4);
+ allowDB("clearall",1)
 
 
    AAr=AA.setrooms(7) ;
@@ -119,6 +123,8 @@ int  checkRooms( int rmchk)
    AAr= AA.getrooms() ;
   <<"%V $AAr \n"
    chkN(AAr,7);
+
+
 
     house AS;
 
@@ -156,6 +162,7 @@ chkN(BSr,4);
 
    BSr= BS.setrooms(8) ;
   <<"%V $BSr \n"
+  BSr.pinfo()
 
  chkN(BSr,8); 
 
@@ -169,6 +176,9 @@ CSr= CS.getrooms() ;
 <<"%V $CSr \n"
 
  chkN(CSr,9); 
+
+
+
 
    DSr= DS.setrooms(10) ;
   <<"%V $DSr \n"
@@ -210,11 +220,7 @@ CSr= CS.getrooms() ;
 
 <<"%V $ASr $BSr  $CSr $DSr  \n"
 
-   ans=ask("debug",db_ask);
 
-if (ans == "y") {
-   allowDB("spe,opera,ic")
-}
 
   x1= DS.setrooms(BS.getrooms() + AS.getrooms()) ;
 
@@ -227,6 +233,7 @@ if (ans == "y") {
 <<"%V $ASr $BSr    $x1 $x2 \n"
 
 <<"%V $x2  should be $res ?\n"
+   chkN(x2,res)
 
 ans=ask("%V $x2  should be $res ?",db_ask);
 
@@ -254,37 +261,80 @@ ans=ask("%V $x2  should be $res ?",db_ask);
 
 
 y1=AS.getrooms();
+
+<<"%V $y1 AS.getrooms()\n"
 y2= CS.setrooms(AS.getrooms());
+<<"%V $y2 \n"
 y3 = BS.getrooms();
+<<"%V $y3 \n"
+
 y4 = DS.setrooms(y3+y2);
 
+<<"%V $y4 \n"
+
+ans=ask("%V $y1 $y2 $y3 $y4 OK ?",0)
+
+ allowDB("spe_proc,oo,ic",0)
+
+
+ y = DS.setrooms(BS.getrooms() + CS.setrooms(AS.getrooms())) ;
+
+ y5 = DS.setrooms(BS.getrooms() + CS.setrooms(AS.getrooms())) ;
+
+ans=ask("%V $y5  OK ?",0)
+
+  chkN(y5,12)
+
+  cr =checkRooms(2) ;
+
+  chkN(cr,3)
+
+  cr =checkRooms(AS.getrooms()) ;
+
+  chkN(cr,5)
+
+ y6 = DS.setrooms(BS.setrooms(checkRooms(4))) ;
+
+  chkN(y6,5)
 
 
 
-y5 =DS.setrooms(BS.getrooms() + CS.setrooms(checkRooms(AS.getrooms()))) ;
 
-y=DS.setrooms(BS.getrooms() + CS.setrooms(AS.getrooms())) ;
+ y7 = DS.setrooms(BS.getrooms() + CS.setrooms(checkRooms(4))) ;
 
-<<"%V $y $y1 $y2 $y3 $y4 $y5\n"
+  chkN(y7,10)
+
+ y8 = DS.setrooms(BS.getrooms() + CS.setrooms(checkRooms(AS.getrooms()))) ;
+
+<<"%V $y $y1 $y2 $y3 $y4 $y5 $y6 $y7 $y8\n"
+
+ chkN(y8,10)
+
+
+ans=ask("%V $y  OK ?",0)
 
 
    chkN(y,y4); 
+
 
 
    ASr= AS.getrooms() ;
   <<"%V $ASr \n"
 
    res2= BS.getrooms() ;
+   res2.pinfo()
 
 <<"%V $BSr $res2 \n"
 
-   chkN(BSr,res2);
+   chkN(5,res2);
    
 
    CSr= CS.getrooms() ;
 
+
+   ASr=AS.setrooms(CS.getrooms()) ;
+
 <<"%V $CSr \n"
-   Asr=AS.setrooms(CS.getrooms()) ;
 
   chkN(CSr,ASr);
 
@@ -293,4 +343,4 @@ y=DS.setrooms(BS.getrooms() + CS.setrooms(AS.getrooms())) ;
 
   chkOut(1);
   
-
+ <<"DONE \n"

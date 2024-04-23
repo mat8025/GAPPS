@@ -2027,3 +2027,12 @@ rdp_variable.cpp                    1.83  04/08/2024 10:01:59  codeerror fatal f
 gscom_debug.cpp                     1.72  04/08/2024 14:00:50  glitch option to continue
 spe_proc.cpp                        2.75  04/08/2024 15:55:20  next st after return
 pex_pfmtexpand.cpp                  1.36  04/10/2024 08:43:37  deref ptr sivp
+ic_stack.cpp                        1.72  04/11/2024 08:59:26  verify INUSE
+oo_stack.cpp                        2.3  04/14/2024 07:55:33  cmfnest
+spe_declare_type.cpp                2.47  04/15/2024 08:26:15  vc size,nd check
+ic_pushobj.cpp                      1.6  04/18/2024 14:03:28  mbrp last_xic
+ic_xic.cpp                          1.82  04/18/2024 14:06:06  pushmbrp/copypush
+ic_wic.cpp                          1.76  04/18/2024 14:09:53  use Wffl
+spe_proc_return.cpp                 3.53  04/20/2024 10:18:14  revise
+df_asl_sig.cpp                      1.64  04/21/2024 07:05:20  error linum
+spe_proc.cpp                        2.76  04/23/2024 01:13:29  getCmfSindex sunbs for getCmfnest

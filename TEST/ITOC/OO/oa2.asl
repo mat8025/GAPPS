@@ -39,7 +39,7 @@ int db_step = 0; // set to zero for no step
   <<"$Use_\n";
 
   }
-
+  db_ask =0
   allowErrors(-1);
 
   chkIn(_dblevel);
@@ -113,8 +113,8 @@ SVS = split("estoy bien y tu");
 
   <<"$val\n";
 
-wdb=  DBaction((DBSTEP_),db_step)
-<<"$wdb \n"
+//wdb=  DBaction((DBSTEP_),db_step)
+//<<"$wdb \n"
 
 sv = Pset(SVS);
 
@@ -129,7 +129,7 @@ int obid = -1;
 
   a.pinfo();
 
-//allowDB("spe_proc,spe_vmf")
+//
 //wdb=  DBaction((DBSTEP_),ON_)
 //<<"$wdb \n"
 
@@ -241,8 +241,9 @@ ans=ask("%V $obid $__LINE__  ynq [y]\n",db_ask);
 //chkOut();
 //svar SV;
 //allowDB("spe_,pexpnd")
-wdb=  DBaction((DBSTEP_),db_step)
-<<"$wdb \n"
+
+//wdb=  DBaction((DBSTEP_),db_step)
+//<<"$wdb \n"
   SV = split("estoy bien y tu");
 
   <<"$SV[0] $SV[1] $SV[2] $SV[3] \n";
@@ -388,6 +389,8 @@ ans=ask("%V $obid $__LINE__  ynq [y]\n",db_ask);
 
   <<"\n; //////////////// Direct Set-Get /////////////////\n";
 
+
+
   pass = 1;
 
   X[0].otype = 50;
@@ -479,7 +482,7 @@ ans=ask("%V $obid $__LINE__  ynq [y]\n",db_ask);
   <<"PASS? $pass \n";
 
   chkStage(" Array Direct Get/Set");
-
+allowDB("spe_proc,spe_vmf",0)
   <<"\n; //////////////// cmf Set-Get /////////////////\n";
 
   pass = 1;
@@ -494,6 +497,8 @@ ans=ask("%V $obid $__LINE__  ynq [y]\n",db_ask);
 
   <<"%V $yst\n";
 
+//wdb=  DBaction((DBSTEP_),1)
+//<<"$wdb \n"
 
   yst =  X[3].Set(m2);
 
@@ -515,8 +520,7 @@ ans=ask("%V $obid $__LINE__  ynq [y]\n",db_ask);
   j = 0;
 
 //allowDB("spe_,oo")
-wdb=  DBaction((DBSTEP_),db_step)
-<<"$wdb \n"
+
 
   for (i = 0; i < 4; i++) {
 
@@ -533,7 +537,7 @@ wdb=  DBaction((DBSTEP_),db_step)
   pass = 0;
 
   }
-ans=ask("%V $otype $yt $ygt $__LINE__  ynq [y]\n", db_ask);
+ans=ask("%V  $yt $ygt \n", db_ask);
   chkN(ygt,j);
 
   j++;

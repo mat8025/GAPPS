@@ -405,10 +405,10 @@ w.pinfo()
 
      <<" $wr\n";
 
-     <<" $acalc.geta() \n";
+    // <<" $acalc.geta() \n";
 //<<" $acalc.x\n"  // should give error
 
-     <<"%V $acalc.x  $w\n";
+    // <<"%V $acalc.x  $w\n";
 
 ans=ask("2 acalc.mul  [y,n]",db_ask);
  if (ans == "y") {

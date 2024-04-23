@@ -447,8 +447,8 @@ outcome("BOPS")
    if ((do_all || do_oo ) && (do_oo != -1)) {
     inflsz = caz(FailedList)
 
-    //RunDirTests("OO","oa2,rpS,rp2,wintersect,oa,class_array,simple_class");
-    RunDirTests("OO","oa,rpS,rp2,oa2,class_array,simple_class");
+    //RunDirTests("OO","oa2,rpS,rp2,wintersect,oa,classarray,simpleclass");
+    RunDirTests("OO","oa,rpS,rp2,oa2,classarray,simpleclass");
 
     RunDirTests("Obcopy","obcopy,obprocarg");
 
