@@ -210,12 +210,12 @@ rdp_tokget - was checking tokresult before set from l6
 tbd: rdp parser needs revision for sanity checks
 //==========================
 
-#num 108 04/23/24  6.5 7 PENDING
+#num 108 04/23/24  6.5 7 FIXED
 descr:
-  nested class  - the ASSIGN_CLASS within a another CLASS fails
+  nested class  - the ASSIGN_CLASS within an another CLASS fails
 
 fix: needs to declare the nested class obj before including in the upper class definition
-
+oo_declare_class - type check need to do class_hash
 
 tbd:
 
@@ -233,8 +233,32 @@ fix:
 tbd:
 
 //////////////////////////////////////////////////////////
+#num 110 04/23/24  6.5 7 FIXED
+descr:
+   A.B.t  - nested member evaluation --- parse fix
+
+fix: 
+varGetClassMember - recursion check 
+
+tbd:
+
+//////////////////////////////////////////////////////////
 
 
+//////////////////////////////////////////////////////////
+#num 110 04/23/24  6.5 6 FIXED
+descr:
+    <<"FIRST $(xov--) \n";
+    xov double decrement
+
+fix: 
+   ? pex  function/expression eval
+   was doing expression eval for both cppline and aslline
+
+tbd:
+  do only the cppline for CPP preprocess ?
+
+//////////////////////////////////////////////////////////
 
 
 

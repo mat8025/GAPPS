@@ -35,7 +35,7 @@ int db_allow = 0; // set to zero for internal debug print
 
   chkIn(_dblevel); 
 
-allowDB("spe,oo",0)
+//allowDB("spe,oo",0)
 
 Act MA;
 
@@ -369,6 +369,8 @@ ans= ask(" OK ??",0);
 
   chkN(xov,19);
 
+
+
   G[0].A[0].t = 60;
 
   G[1].A[1].t = 18;
@@ -432,7 +434,7 @@ ans= ask(" OK ??",0);
 
   
 
-  k = 7;
+  k = 8;
 
   for (i = 0; i < 3 ; i++) {
 
@@ -450,7 +452,7 @@ ans= ask(" OK ??",0);
 
   }
 
- chkOut(1)
+
 
   ndiy = 10;
 
