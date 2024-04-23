@@ -210,6 +210,30 @@ rdp_tokget - was checking tokresult before set from l6
 tbd: rdp parser needs revision for sanity checks
 //==========================
 
+#num 108 04/23/24  6.5 7 PENDING
+descr:
+  nested class  - the ASSIGN_CLASS within a another CLASS fails
+
+fix: needs to declare the nested class obj before including in the upper class definition
+
+
+tbd:
+
+//////////////////////////////////////////////////////////
+
+
+#num 109 04/23/24  6.5 5 PENDING
+descr:
+   error message  uses LastInclude as src code - each statement needs index to
+   include code files
+
+fix: 
+
+
+tbd:
+
+//////////////////////////////////////////////////////////
+
 
 
 

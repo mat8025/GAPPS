@@ -105,7 +105,7 @@ svtype = sa;
   int Get()
   {
 
-  <<"$_proc  Get %V $otype\n";
+  <<"$_procGet %V $otype\n";
 
  // otype.pinfo();
 
@@ -126,7 +126,7 @@ svtype = sa;
 
   }
 
-  cmf Act()
+  void Act()
   {
 // FIXME   <<"cons of Act $_cobj $(_cobj.obid())  $(IDof(&_cobj))\n" 
 //   co = _cobj.offset()
@@ -141,17 +141,21 @@ svtype = sa;
 
   mins = 10;
 
-  t = 0;
+  t = id*2;
+  t.pinfo()
+//ans=ask("Act $t set ?",1)
 
   a_day = Act_ocnt;
 
   a_day.pinfo();   
 
-<<"Act CONS ID is $id \n"
+//<<"Act CONS ID is $id \n"
 
 <<"Act CONS of %V $_cobj $id $Act_ocnt  $a_day $mins $otype\n"
 
   }
 
   }
+
+
 //================================//

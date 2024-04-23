@@ -1,3 +1,18 @@
+/* 
+ *  @script nestclass.asl                                               
+ * 
+ *  @comment test Obj nested within Obj                                 
+ *  @release Carbon                                                     
+ *  @vers 1.5 B Boron [asl 6.5 : C B]                                   
+ *  @date 04/23/2024 15:12:03                                           
+ *  @cdate Tue Apr 28 19:55:01 2020                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
+ * 
+ */ 
+
+
+//-----------------<v_&_v>--------------------------//                       
 ///
 ///
 ///
@@ -6,8 +21,6 @@
 
 if (_dblevel >0) {
    debugON()
-
-
 }
 
 
@@ -21,13 +34,23 @@ int db_allow = 0; // set to zero for internal debug print
 
 
   chkIn(_dblevel); 
-  
+
+allowDB("spe,oo",0)
+
+Act MA;
+
+<<"%V $MA.t \n"
+
+ans=ask("Act $MA.t set ?",0)
 
   <<" /////////////////// Nested Class /////////////\n";
 
-  int dil_ocnt = 0;
+  int Dil_ocnt = 0;
 
-  <<"%V $dil_ocnt \n";
+  <<"%V $Dil_ocnt \n";
+
+
+
 
   class Dil {
 
@@ -39,7 +62,10 @@ int db_allow = 0; // set to zero for internal debug print
 
   int w_day;
 
+  int nt;
+  
   Act B;
+  
  /// now an array 
 
   Act A[10] ;
@@ -48,7 +74,7 @@ int db_allow = 0; // set to zero for internal debug print
 //
 //Act A[10];
 
-  cmf Get()
+  int Get()
   {
 
   <<"$_proc  \n";
@@ -59,15 +85,19 @@ int db_allow = 0; // set to zero for internal debug print
   return w_day;
   }
 
-  cmf Dil()
+  void Dil()
   {
 
-  dil_ocnt++;
-  w_day = dil_ocnt;
+  Dil_ocnt++;
+  w_day = Dil_ocnt;
 
-  <<"cons of Dil $_cobj $w_day $dil_ocnt\n";
+  nt = B.t;
+  
+  <<"cons of Dil $_cobj $w_day $nt $Dil_ocnt\n";
 
-  w_day.pinfo();
+//  w_day.pinfo();
+
+
   }
 
   }
@@ -78,7 +108,9 @@ int db_allow = 0; // set to zero for internal debug print
   <<" attempting Dil E \n";
 
   Dil E;
- //E.pinfo()
+
+
+  E.pinfo()
 
   <<"$_scope\n";
 
@@ -86,22 +118,45 @@ int db_allow = 0; // set to zero for internal debug print
 
   <<"stack $(showstack())\n";
 
-  <<"%V $dil_ocnt \n";
+ <<"%V $Dil_ocnt \n";
 
+  <<"%V $Act_ocnt \n";
+
+
+//  find E then class mbr B  then its member t which 2*id
+
+  mnt = E.B.t
+
+<<"%V $mnt \n"
+
+   chkN(mnt,2)
+
+  <<"%V $E.B.t \n";
+
+ans= ask(" OK ??",0);
+
+
+  
   od =E.Get();
 
   <<"E.w_day $od  $E.w_day\n";
 
   od.pinfo();
+
+  <<"%V $E.B.t \n";
+
 //E.w_day.pinfo();  // broke
 
   chkN(od,1);
+
+
+
 
   Dil H[2];
 
   <<" after class def Dil H[2] \n";
 
-  <<"%V $dil_ocnt \n";
+  <<"%V $Dil_ocnt \n";
 
   H.pinfo();
 
@@ -125,14 +180,14 @@ int db_allow = 0; // set to zero for internal debug print
 
   E.B.t = syt;
 
-  <<"%V $E.B.t \n";
+
 
   tys = E.B.t;
 
   <<"%V $syt  $tys \n";
 
   chkN(syt,tys);
-//chkOut()
+
 
   gyt = E.B.t;
 
@@ -210,7 +265,7 @@ int db_allow = 0; // set to zero for internal debug print
   <<"%V $yt1 \n";
 
   chkN(yt1,29);
-//chkOut()
+
 
   yt2 = E.A[2].t;
 
@@ -225,7 +280,7 @@ int db_allow = 0; // set to zero for internal debug print
 
   chkN(yt3,75);
  checkProgress()
-// exit()
+
 
   j = 2;
 
@@ -299,6 +354,10 @@ int db_allow = 0; // set to zero for internal debug print
   chkN(yt8,58);
 ///  Needs XIC FIX
 
+  chkStage("E.A[n].t ")
+
+ 
+
   <<"; ///////////////G[i].A[j].otype////////////////////////////\n";
 //////////////////////////////////////////////////////////////////
 
@@ -371,7 +430,7 @@ int db_allow = 0; // set to zero for internal debug print
 
   <<"\n";
 
-  chkOut();
+  
 
   k = 7;
 
@@ -390,6 +449,8 @@ int db_allow = 0; // set to zero for internal debug print
   }
 
   }
+
+ chkOut(1)
 
   ndiy = 10;
 
@@ -435,6 +496,8 @@ int db_allow = 0; // set to zero for internal debug print
 
   <<" done dec of D \n";
 
-  chkOut();
+  chkOut(1);
 
-  exit();
+
+
+
