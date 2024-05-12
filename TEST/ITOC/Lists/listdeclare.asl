@@ -1,5 +1,5 @@
 //%*********************************************** 
-//*  @script list-declare.asl 
+//*  @script list_declare.asl 
 //* 
 //*  @comment test list declare 
 //*  @release CARBON 
@@ -10,6 +10,8 @@
 //*  @Copyright © RootMeanSquare  2010,2020 → 
 //* 
 //***********************************************%
+
+
 #include "debug"
 
    if (_dblevel >0) {
@@ -20,13 +22,23 @@
 
    chkIn(_dblevel);
 
-   str le;
 
-   str le12;
+  db_ask = 1;
+
+ //allowDB("spe,ds,ic_call,pex,vmf", 1)
+ allowDB("spe_declare,pex,vmf,list,ds_sivlist,spil", 1)
+
+   Str le;
+
+   Str le12;
 
    Mol = ( "JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC" ) ;
 
    <<"List is $Mol \n";
+
+   Mol.pinfo()
+   
+   ans= ask("Mol ...  OK?",db_ask)
 
    sz = caz(Mol);
 
@@ -35,6 +47,9 @@
    <<"$(typeof(Mol)) size $(caz(Mol)) $sz \n";
 
    chkN(sz,12);
+
+
+   ans= ask("Mol ...  OK?",db_ask)
 
    <<"first month $Mol[0]\n";
 
@@ -77,7 +92,7 @@
 
    chkStr(Mol[1],"FEB");
 
-   chkOut();
+   chkOut(1);
 //////////////////////////////////
 
 //===***===//

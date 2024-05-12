@@ -246,10 +246,10 @@ int do_tests = 0;
 
  CrashList = ( "xxx",  )  // empty list
  
- CrashList.LiDelete(0) ; // make empty
+ CrashList.Delete(0) ; // make empty
 
  FailedList = ( "fail",  )  // empty list --- bug first item null? 
- FailedList.LiDelete(0)
+ FailedList.Delete(0)
  
 
 
@@ -1026,7 +1026,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
    if ((do_all || do_lists ) && (do_lists != -1)) {
      inflsz = caz(FailedList)
-     RunDirTests("Lists","list_declare,lists,list_ele,list_ins_del");
+     RunDirTests("Lists","lists,listdeclare,listele,listinsdel");
      //RunDirTests("Lists","lists");
      outcome("LISTS")
     }

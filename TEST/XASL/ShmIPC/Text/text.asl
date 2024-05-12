@@ -27,7 +27,7 @@
 
 int Graphic = 0;
 
-
+  Graphic = checkGWM()
 
  if (!Graphic) {
     Xgm_pid = spawnGWM("Text")
@@ -36,7 +36,7 @@ int Graphic = 0;
 
        int our_pid = getpid();
        printf("our pid %d\n",our_pid);
-  Graphic = checkGWM()
+
 
 <<"%V $Graphic \n"
 
@@ -215,6 +215,15 @@ Textr txr;
 
 sWo(_WOID,stwo,_Wfont,F_BIG_,_wtextr,"$txt",0.1,0.6,0,0,GREEN_);
 
+
+ans=ask("Waiting on an event?",0)
+
+
+
+
+
+
+
 while (1) {
 
  <<"Waiting on an event?\n"
@@ -225,6 +234,7 @@ while (1) {
       button = Gev.getEventButton();
       ekeyw = Gev.getEventKeyWord() ;
 <<"%V $msg $woname $button $ekeyw \n"
+
 
    if (do_txt_stuff) {
     txr.setTextr("$msg",0.1,0.8,BLACK_,0);
@@ -240,12 +250,14 @@ while (1) {
 
 //      sWo(_WOID,txwos,_Wclear);
 
-     txt=woGetText(ipwo);
- <<" got $txt  \n";
-      // rotated text??
+ //    txt=woGetText(ipwo);
+     
+ //<<" got $txt  \n";
+
+// rotated text??
       deftxt ="says me";
 
-      //txt = woGetValue(ipwo)
+      txt = woGetValue(ipwo)
       <<"ipwo_txt: $txt \n"
 
 
@@ -268,7 +280,7 @@ while (1) {
       sWo(_WOID,two,_Wfont,F_BIG_,_wprint,"$txt"); 
 
 
-    sWo(_woid,stwo,__Wfont,F_SMALL_,wprint,"%V $woname $button \n");
+    sWo(_woid,stwo,_Wfont,F_SMALL_,_WPRINT,"%V $woname $button \n");
 
       mnum++;
       //sWo(_WOID,ipwo,_Wvalue,"");

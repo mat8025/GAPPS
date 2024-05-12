@@ -16,7 +16,7 @@
 ///
 ///
 
-#include "debug";
+#include "debug"
 
    if (_dblevel >0) {
 
@@ -30,25 +30,46 @@
    ws = getScript();
 
    <<"%V $ws  $_script\n";
-   
+
+    allowDB("spe,ds,ic_call,pex,vmf", 0)
+
     List LS(STRV_);
 
     LS.pinfo()
 
     LS.insert( LIEND_,"restart", "math", "modules")
 
-<<"$LS \n"
-
-
+    LS.pinfo()
+    
+   <<"$LS \n"
 
    sli = LS.getLitem(LIBEG_);
 
    sli.pinfo();
-    
 
 <<"hot item is $sli \n";
 
+   chkStr(sli,"restart")
+   
+   sli = LS.getLitem(1);
 
+   sli.pinfo();
+
+<<"hot item is $sli \n";
+
+   chkStr(sli,"math")
+
+  sli = LS.getLitem(-1);
+
+   sli.pinfo();
+
+<<"hot item is $sli \n";
+
+   chkStr(sli,"modules")
+
+
+
+   //chkOut(1)
 
    List L0(STRV_);
 
@@ -73,6 +94,7 @@
 
  chkStr(li,"list");
 
+chkOut(1)
 
 
 
@@ -191,9 +213,7 @@
   L3.pinfo()
   
   <<"%V  $L3 \n";
-
-
-
+  
   fw = L3.getLitem(0)
 
   <<"%V$fw $(typeof(fw))\n";
@@ -253,6 +273,8 @@
 
  // fw = L[0];
 
+  allowDB("spe,pex", 1)
+
   fw = L.getLitem(0)
 
 
@@ -285,9 +307,9 @@
 <<"$L[1:3] \n";
 
 
-  <<"%v\s$L[1:-3] \n";
+  <<"%V $L[1:-3] \n";
 
-  <<"% V$L \n";
+  <<"%V $L \n";
 
 //chkOut(); // bad here
 
@@ -297,7 +319,7 @@
 
   <<" $(typeof(L3)) \n";
 
-  <<"%V$L3 \n";
+  <<"%V $L3 \n";
 
   fw = L3[0];
 
@@ -305,6 +327,9 @@
 
   chkStr(fw,"lovely");
 
+ <<"%V $L3 \n";
+
+ans=ask("L3 fulllist?")
 
   litem = "focus";
 
@@ -342,9 +367,42 @@
 
   chkStr(fw,"first");
 
+  L.pinfo()
+
+<<"%V $L \n"
+
+  L3 = L[1:6];  ///  ==> L3 = L(1,6)
+
+  L3.pinfo()
+
+<<"%V $L3 \n"
+
+ans=ask("L3 fulllist?")
 
 
   L3 = L[1:-2];  ///  ==> L3 = L(1,-2)
+
+  L3.pinfo()
+
+<<"%V $L3 \n"
+
+ans=ask("L3 fulllist?")
+
+
+
+
+
+  w2l3 = L3[2]
+
+  L3.pinfo()
+
+  <<"%V $w2l3 \n";
+
+
+
+  chkOut(1)
+
+
 
   // L3 = L.getRange(1,-2)
 
@@ -359,9 +417,9 @@
 
   L3 = L[-3:2:-1];
 
-  <<"-3->2%V$L3 \n";
+  <<"-3->2 %V$L3 \n";
 
-  <<" %V$L3[1:7:2] \n";
+  <<" %V $L3[1:7:2] \n";
 // FIXME <<" %V$L3[-3:1:-1] \n"
 // FIMXME
 //<<"%v\s$L3[-1:0:] \n"
@@ -369,7 +427,7 @@
 
   m = Caz(L);
 
-  <<" %v$m \n";
+  <<" %V $m \n";
 
   chkN(m,11);
 
@@ -504,7 +562,7 @@
 
   <<"insert %V$L    $n\n";
 
-  chkOut();
+  chkOut(1);
   
 //////////////////// TBD //////////////////////
 //  FIX XIC is doing a copypush_siv and push_siv - should just be copypush_siv

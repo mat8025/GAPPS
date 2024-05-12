@@ -13,79 +13,143 @@
  */ 
 
 
-#include "debug.asl";
+#include "debug.asl"
 
    debugON();
 
+ if (_dblevel >0) {
+
+     debugON();
+
+     }
+
+   
+
    chkIn(_dblevel);
 
-   sdb(1,"step")
+   db_ask = 0;
+
+ //allowDB("spe,ds,ic_call,pex,vmf", 1)
+ allowDB("spe_declare,pex,vmf,list,ds_sivlist,spil", 1)
+
     // empty list --- bug first item null?;
-   ShoppingList = ("xxx","abc","exp_e"  )  ;
+
+ //  List  ShoppingList(STRV_);
+
+    ShoppingList = ("xxx","abc","exp_e"  )  ;
+
+
+
+ //  ShoppingList.insert(LIBEG_,"xxx","abc","exp_e"  )  ;
 
    ShoppingList.pinfo();
 
 
    <<" $ShoppingList \n";
 
-
-
+ans= ask("debe ...  OK?",db_ask)
 
    flsz = caz(ShoppingList);
 
    <<"Shopping list size $flsz \n";
 
+   chkN(flsz,3)
+
+   ShoppingList.pinfo();
+
+
+   //chkOut(1)
+
+
    ShoppingList.Insert(LIEND_,"list_ops");
+
+   <<" $ShoppingList \n";
+    ShoppingList.pinfo();
+
+   flsz = caz(ShoppingList);
+
+   <<"Shopping list size $flsz \n";
+
+   chkN(flsz,4)
+
 
    ShoppingList.Insert(LIBEG_,"vmf_list");
 
    <<" $ShoppingList \n";
-   
+    ShoppingList.pinfo();
 
-  // ShoppingList.LiDelete(0);
+  // ShoppingList.Delete(0);
   
-//   flsz = caz(ShoppingList);
-
-
+   flsz = caz(ShoppingList);
 
    <<"Shopping list size $flsz \n";
 
-  ShoppingList.deleteSli("list_ops",LIBEG_,1);
-  
+     chkN(flsz,5)
+     
+ ShoppingList.deleteStr("abc",LIBEG_,1);
+
+ ShoppingList.pinfo();
+
     <<" $ShoppingList \n";
+
+   flsz = caz(ShoppingList);
+
+        chkN(flsz,4)
+
+
+ ShoppingList.deleteStr("list_ops",LIBEG_,1);
+
+ ShoppingList.pinfo();
+
+    <<" $ShoppingList \n";
+
+   flsz = caz(ShoppingList);
+
+        chkN(flsz,3)
 
   //tname = "debe esforzarse más"
 
+
+   //chkOut(1)
+
+
    tname = "debe esforzarse mas";
+
+
+
+   ShoppingList.pinfo();
+
+   preval = ShoppingList.getPrevLitem();
+
+   <<"preval  <|$preval|>\n";
+
+   ShoppingList.Insert(LIBEG_,tname);
 
    <<"inserting <$tname> into Shopping list \n";
 
    ShoppingList.pinfo();
 
-   preval = ShoppingList.getPrevLitem();
-
-   <<"preval  <|$preval|>\n";
-
-   ShoppingList.Insert(tname);
-
-
    flsz = caz(ShoppingList);
 
    <<"Shopping list size $flsz \n";
 
+   <<" $ShoppingList \n";
+
+   ans= ask("debe ...  OK?",db_ask)
+
    preval = ShoppingList.getPrevLitem();
 
    <<"preval  <|$preval|>\n";
 
-   <<" $ShoppingList \n";
 
-   ShoppingList.Insert("declare_e");
+
+   ShoppingList.Insert(LIBEG_,"declare_e");
 
    tname = "Camino a cinco kilometros al dia";
 
    <<"inserting <$tname> into Shopping list \n";
 
-   ShoppingList.Insert(tname);
+   ShoppingList.Insert(LIHOT_,tname);
 
    flsz = caz(ShoppingList);
 
@@ -99,11 +163,11 @@
 //  flab = cab(ShoppingList)
 //<<"Shopping list bounds $flab \n"
 
-   ShoppingList.Insert("Debo organizar mi vida");
+   ShoppingList.Insert(LIHOT_,"Debo organizar mi vida");
 
-   ShoppingList.Insert("Irse a tiempo","leave on time"); // multiple inserts;
+   ShoppingList.Insert(LIHOT_,"Irse a tiempo","leave on time"); // multiple inserts;
 
-   ShoppingList.Insert("lost in  space"); //  same initial letter -cause a swop;
+   ShoppingList.Insert(LIEND_,"lost in  space"); //  same initial letter -cause a swop;
 
    flsz = caz(ShoppingList);
 
@@ -141,7 +205,7 @@
 
    tname = "tail here";
 
-   ShoppingList.Insert(-1,tname);
+   ShoppingList.Insert(LIEND_,tname);
 
    flsz = caz(ShoppingList);
 
@@ -174,7 +238,7 @@
 // clear
 // delete current, head, tail
 
-   ShoppingList.LiDelete(-1);
+   ShoppingList.Delete(-1);
 
    <<" $ShoppingList \n";
 
@@ -182,7 +246,7 @@
 
    <<"Shopping list size $flsz \n";
 
-   ShoppingList.LiDelete(0);
+   ShoppingList.Delete(0);
 
    <<" $ShoppingList \n";
 
@@ -191,15 +255,16 @@
    <<"Shopping list size $flsz \n";
 // delete nth item
 
-   ShoppingList.LiDelete(2);
+   ShoppingList.Delete(2);
 
    <<" $ShoppingList \n";
 
    flsz = caz(ShoppingList);
 
    <<"Shopping list size $flsz \n";
+   ShoppingList.pinfo()
 
-   chkN(flsz,7);
+   chkN(flsz,11);
 
    <<" %(1,<|, ,|>\n)$ShoppingList \n";
 
@@ -207,42 +272,79 @@
 
    ltail = ShoppingList[-1];
 
-   lval = ShoppingList.getLitem();
+   lval = ShoppingList.getLitem(0);
 
    <<"%V $lhead $ltail $lval\n";
 
    nxtval = ShoppingList.getNextLitem();
 
    <<"%V  $nxtval\n";
+      ans= ask("next $nxtval  OK?",db_ask)
 
    nxtval = ShoppingList.getNextLitem();
 
    <<"%V  $nxtval\n";
+
+      ans= ask("next $nxtval  OK?",db_ask)
+
+   nxtval = ShoppingList.getNextLitem();
+
+   <<"%V  $nxtval\n";
+
+      ans= ask("next $nxtval  OK?",db_ask)
+      
+
 
    preval = ShoppingList.getPrevLitem();
 
    <<"%V  $preval\n";
 // for (i=0;i < (flsz+10); i++) {
 
-     for (i=0;i < (flsz-1); i++) {
+    
+        flsz = caz(ShoppingList);
+   lval = ShoppingList.getLitem(-1);
+
+<<"%V $lval\n"
+
+     for (i=0; i < (flsz-1); i++) {
+
+       ShoppingList.pinfo()
 
        preval = ShoppingList.getPrevLitem();
 
+       preval.pinfo()
+       
        <<"$i  $preval\n";
-
+       ans= ask("$i $preval  OK?",db_ask)
        }
 
-     for (i=0; i < (flsz+10); i++) {
+
+  fval = ShoppingList.getLitem(0);
+
+<<"%V $fval\n"
+
+     for (i=0; i < flsz; i++) {
+
+       ShoppingList.pinfo()
 
        nxtval = ShoppingList.getNextLitem();
 
+       nxtval.pinfo()
+       
        <<"$i   $nxtval\n";
-
+  ans= ask("next $nxtval  OK?",db_ask)
        }
 
      ShoppingList.Insert(0,"top item");
 
      flsz = caz(ShoppingList);
+    ShoppingList.pinfo();
+
+<<"$ShoppingList \n"
+
+   ans= ask("List OK?",db_ask)
+
+     Str hval;
 
      hval = ShoppingList.getLitem(0);
 
@@ -264,7 +366,11 @@
 
      <<" $ShoppingList \n";
 
-     AList = ("0","1","2","3"  )  ; // empty list --- bug first item null?;
+//     AList = ("0","1","2","3"  )  ; // empty list --- bug first item null?;
+
+       List AList(STRV_);
+
+ AList.insert( LIEND_,"0","1","2","3"  )  ; // empty list --- bug first item null?;
 
      <<" $AList \n";
 
@@ -306,4 +412,5 @@
 
      chkOut();
 
-//===***===//
+
+
