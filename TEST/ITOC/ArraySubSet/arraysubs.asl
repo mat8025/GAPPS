@@ -1,5 +1,7 @@
 
+
 // test array indexing
+
 #include "debug"
 
 if (_dblevel >0) {
@@ -8,7 +10,7 @@ if (_dblevel >0) {
 
 
 chkIn (_dblevel);
-
+allowDB("spe_declare,parse,array", 1)
 
 N = 20
 int nloop = 1
@@ -18,15 +20,32 @@ int nloop = 1
 
 M = 7
 
+float MM[]
 
 while ( nloop < M) {
+
+ ans=ask(" top of loop %V $nloop  ",0)
 
    YV = Grand(N)
 
   <<" $(typeof(YV)) \n"
-   <<" %6.2f %v $YV \n"
+   <<" %6.2f %V $YV \n"
 
-    MM = YV[0:nloop]
+  //  MM = YV[0:nloop:1]
+
+ <<"what is happening ?\n"
+ 
+//      X = YV[0:nloop*2:2]
+
+//         X = YV[0:nloop*2:]
+
+         X = YV[0:nloop]
+
+//X = YV *2
+
+    X.pinfo()
+
+/*
 
   <<" $(typeof(MM)) \n"
 
@@ -37,10 +56,13 @@ while ( nloop < M) {
   <<" $(typeof(SM)) \n"
 
   <<"$nloop %V %6.2f $SM \n"
+*/
 
 
+    nloop++
+ 
+ ans=ask("%V $nloop incr?? ",0)
 
- nloop++
 }
 
 chkN(nloop,7)
@@ -52,7 +74,7 @@ dmn = Cab(YV)
 <<" $dmn \n"
 
 <<" $YV \n"
-
+ans=ask("%V $YV ",0)
 
  av = YV[2][0]
 
@@ -112,4 +134,4 @@ while (j < 2) {
 
 
 
-chkOut()
+chkOut(1)

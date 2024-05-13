@@ -23,16 +23,16 @@
    chkIn(_dblevel);
 
 
-  db_ask = 1;
+  db_ask = 0;
 
  //allowDB("spe,ds,ic_call,pex,vmf", 1)
- allowDB("spe_declare,pex,vmf,list,ds_sivlist,spil", 1)
+ allowDB("spe_declare,pex,vmf,list,ds_sivlist,spil,ic", 1)
 
    Str le;
 
    Str le12;
 
-   Mol = ( "JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC" ) ;
+   Mol = ( "JAN","FEB","MAR","APR" ,"MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC" ) ;
 
    <<"List is $Mol \n";
 
@@ -55,6 +55,8 @@
 
    <<"second month $Mol[1]\n";
 
+   ans= ask("$Mol[1] ...  OK?",db_ask)
+
    <<"twelveth month $Mol[11]\n";
 
    le4 = Mol[3];
@@ -63,6 +65,8 @@
    <<"le4 $le4 \n";
 
    chkStr(le4,"APR");
+
+
 
    le12 = Mol[11];
 

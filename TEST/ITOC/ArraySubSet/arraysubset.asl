@@ -74,6 +74,6 @@ ans=ask(DB_prompt,DB_action)
 
    chkN(B[1],1);
 
-   chkOut();
+   chkOut(1);
 
 //==============\_(^-^)_/==================//

@@ -1,5 +1,5 @@
 //%*********************************************** 
-//*  @script array-subsref.asl 
+//*  @script arraysubsref.asl 
 //* 
 //*  @comment test vector range spec - forward,backward 
 //*  @release CARBON 
@@ -27,8 +27,6 @@ if (_dblevel >0) {
    
 }
 
-filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
-filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
 
 
 chkIn(_dblevel)
@@ -135,7 +133,7 @@ sz = Caz(IV)
  chkN(IV[4],YV[14])
 
 
- chkOut()
+ chkOut(1)
 
 
 

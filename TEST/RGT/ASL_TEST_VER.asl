@@ -737,7 +737,7 @@ if ((do_all || do_array ) && (do_array != -1)) {
 
    RunDirTests("Subrange","subrange");
 
-   RunDirTests("VVcopy","range_copy,vvcopy")
+   RunDirTests("VVcopy","rangecopy,vvcopy")
 
    RunDirTests("ArraySubSet","arraysubset,arraysubvec")
 
