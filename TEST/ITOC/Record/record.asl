@@ -13,7 +13,7 @@
  */ 
 
 
-///Record
+/// Record
 /// test record type
 /// each record is an Svar
 ///
@@ -29,9 +29,15 @@
 
   }
 
-fileDB(ALLOW_,"rec_,spe_scope,spe_varcon,spe_create,spe_exp,spe_declare,array_")
-  
+
+  db_ask = 1;
+  db_allow = 1;
+
+<<"%V $db_allow \n"
+
   chkIn(_dblevel);
+
+  allowDB("spe,parse,array,record,ds_record,rdp_store", 1)
 
   chkT(1);
 
@@ -55,9 +61,11 @@ fileDB(ALLOW_,"rec_,spe_scope,spe_varcon,spe_create,spe_exp,spe_declare,array_")
 
   <<"num of records $Nrecs  num cols $Ncols\n";
 
-  R.aslpinfo();
+  R.pinfo();
+
+   ans=ask("Record OK ?", db_ask)
 // ',' parsed as CHAR
-// split intreprets via s->makeStrFromArg ()
+// split interprets via s->makeStrFromArg ()
 // single character string  e.g. as ","
 
   S = Split("80,1,2,3,40,5,6,7,8,9",',');
@@ -70,12 +78,27 @@ fileDB(ALLOW_,"rec_,spe_scope,spe_varcon,spe_create,spe_exp,spe_declare,array_")
   <<"%V $S[4]\n";
 
   R[0] = S;
+  
 // R[0] = Split("80,1,2,3,40,5,6,7,8,9",','); 
 
   <<"%V $R[0] \n";
 
   <<"%V $R[0][3] \n";
-//Str val = "opq";
+  <<"%V $R[0][4] \n";
+    <<"%V $R[0][5] \n";
+        <<"%V $R[0][9] \n";
+
+
+ Str val = "opq";
+
+  // storeCopyRecord  --- for a field should type val as STRV
+  // else as Svar
+
+  val = R[0][0];
+
+  val.pinfo();
+
+ <<"%V$val \n";
 
   val = R[0][4];
 
@@ -114,10 +137,6 @@ fileDB(ALLOW_,"rec_,spe_scope,spe_varcon,spe_create,spe_exp,spe_declare,array_")
 
   <<"21 $R[21]\n";
 
-  chkOut();
-
-  exit(-1);
-
   R[2] = Split("82,7,6,5,40,5,6,7,8,9",',');
 
   <<" $R[2] \n";
@@ -138,9 +157,11 @@ fileDB(ALLOW_,"rec_,spe_scope,spe_varcon,spe_create,spe_exp,spe_declare,array_")
 
   <<" $R[6] \n";
 
-  R.aslpinfo();
+  R.pinfo();
 
   <<" $R[4] \n";
+
+//chkOut(1)
 
   for(i=0;i< 20; i++) {
 
@@ -161,17 +182,16 @@ fileDB(ALLOW_,"rec_,spe_scope,spe_varcon,spe_create,spe_exp,spe_declare,array_")
 //wsv=Split("80,1,2,3,79,5,6,7,8,9",',');
 
   wsv=Split("80,1,2,3,79,5,6,7,8,9", ",");
-!pwsv
 
-  R.aslpinfo();
+  wsv.pinfo()
+
+  R.pinfo();
 
   lastRX = R[Nrecs-1];
 
   <<"%V $lastRX\n";
 
   rval = R[0][4];
-//!prval
-//!irval
 
   <<"%V$R[0]\n";
 
@@ -194,7 +214,7 @@ fileDB(ALLOW_,"rec_,spe_scope,spe_varcon,spe_create,spe_exp,spe_declare,array_")
 
   <<"R7 $R[7]\n";
 
-  R.aslpinfo();
+  R.pinfo();
 
   <<"%V$R[1]\n";
 
@@ -266,9 +286,9 @@ fileDB(ALLOW_,"rec_,spe_scope,spe_varcon,spe_create,spe_exp,spe_declare,array_")
 
   <<"ival $ival  bounds $(Cab(ival)) sz   $(csz(ival))\n";
 
-  sz.aslpinfo();
+  sz.pinfo();
 
-  ivs=ival.aslpinfo();
+  ivs=ival.pinfo();
 
   <<"$ivs\n";
 
@@ -328,7 +348,7 @@ fileDB(ALLOW_,"rec_,spe_scope,spe_varcon,spe_create,spe_exp,spe_declare,array_")
 
   <<" $R[::] \n";
 
-  R.aslpinfo();
+  R.pinfo();
 
   recinfo = info(R);
 
@@ -362,11 +382,11 @@ fileDB(ALLOW_,"rec_,spe_scope,spe_varcon,spe_create,spe_exp,spe_declare,array_")
 
   <<" $R[::] \n";
 
-  R.aslpinfo();
+  R.pinfo();
 
   R[11] = Split("91,5,4,3,40,5,6,7,Sn,50",",");
 
-  R.aslpinfo();
+  R.pinfo();
 
   R[12] = Split("92,7,6,5,40,5,6,7,Sb,51",",");
 
@@ -386,7 +406,7 @@ fileDB(ALLOW_,"rec_,spe_scope,spe_varcon,spe_create,spe_exp,spe_declare,array_")
 
   <<"$recinfo \n";
 
-  R.aslpinfo();
+  R.pinfo();
 //////////////////////////////////////////
 
   R[1] = Split("10,12,23,34,45,56,67,78,89,90",",");
@@ -401,7 +421,7 @@ fileDB(ALLOW_,"rec_,spe_scope,spe_varcon,spe_create,spe_exp,spe_declare,array_")
 
   <<"ival $ival  bounds $(Cab(ival))    $(csz(ival))  $sz\n";
 
-  ival.aslpinfo();
+  ival.pinfo();
 
   chkN(sz,0);
 
@@ -544,7 +564,7 @@ fileDB(ALLOW_,"rec_,spe_scope,spe_varcon,spe_create,spe_exp,spe_declare,array_")
 
   <<"inrecord[3] we have:- $R[3] \n";
 
-  R.aslpinfo();
+  R.pinfo();
 
   sr1 = R[3][2];
 
@@ -584,7 +604,7 @@ fileDB(ALLOW_,"rec_,spe_scope,spe_varcon,spe_create,spe_exp,spe_declare,array_")
 
   sr3 = R[3][2];
 
-  sr3.aslpinfo();
+  sr3.pinfo();
 
   <<"%V $sr3\n";
 

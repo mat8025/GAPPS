@@ -21,7 +21,12 @@ if (_dblevel >0) {
 }
 
 
+int db_allow = 0
+
+
 chkIn(_dblevel)
+
+allowDB("spe,pex,vmf,list,ds_sivlist,spil,rdp,ic", db_allow)
 
 <<" $(GREEN_) \n"
 
@@ -38,7 +43,7 @@ S->sort()
 a= 23;
 
 V=variables(1)
-V->sort()
+V.sort()
 //<<"%(1,,,\n)$V\n"
 
 D=defines()
@@ -57,37 +62,60 @@ if (!scmp(C[0],"PC_",3)) {
 
 
 
-proc localv()
+void localv()
 {
 
  int FF[10];
  FF[1] = 71;
  <<"$FF[1] \n"
- 
+ FF[2] = 82
  ::FF[2] = 584;
- 
-  for (i= 5; i<10; i++) {
-    FF[i] = i;
-  }
 
+<<"%V $FF[2]\n"
+
+
+<<"%V $::FF[2]\n"
+
+
+  for (i= 5; i<10; i++) {
+  
+    FF[i] = i;
+  ans = ask("<$i> local var set $FF[i]\n",0)
+}
+ j = 0;
  for (i= 5; i<10; i++) {
     ::FF[i] = -i;
-  }
+ j++
+ans = ask("<$i><$j> Main var set $::FF[i]\n",0)
+ if (j > 6)
+    break
+}
 
 
 
  FF[2] = 28
  chkN(FF[2],28)
- <<"%V $FF \n"
+ <<"local %V $FF \n"
 }
 
-localv()
+  localv()
 
 
- <<"$FF \n"
+ <<"main %V $FF \n"
+ FF.pinfo()
 
 chkN(FF[1],51)
-chkN(FF[5],-5)
+
+ val = -5
+ <<"%V $val\n"
+
+val =FF[5]
+
+chkN(FF[5],val)
+
+
+chkN(FF[5],-5) ; // TBF rdp unary bug?
+
 chkN(FF[2],584)
 
-chkOut()
+chkOut(1)

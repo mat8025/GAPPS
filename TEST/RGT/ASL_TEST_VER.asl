@@ -240,16 +240,21 @@ int do_tests = 0;
   pdir=updir()
   chdir("ITOC")
   Testdir = getdir()
+  
 <<[_DBH]"Test Dir is $Testdir\n"
 
 
+List CrashList(STRV_);
 
- CrashList = ( "xxx",  )  // empty list
- 
- CrashList.Delete(0) ; // make empty
+// CrashList = ( ""  )  // empty list
+// CrashList.Delete(0) ; // make empty
 
- FailedList = ( "fail",  )  // empty list --- bug first item null? 
- FailedList.Delete(0)
+
+
+//   FailList = ( ""  )  // empty list --- bug first item null? 
+
+  List FailList(STRV_);
+
  
 
 
@@ -387,13 +392,13 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
   if ((do_bops || do_all) && (do_bops != -1)) {
 
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
 
     RunDirTests("Bops","bops,fvmeq,fsc1,mainvar,snew");
     
 
 
-   RunDirTests("Assign","assign");
+  // RunDirTests("Assign","assign");
 
     Run2Test("Bops")
 
@@ -401,13 +406,17 @@ if ((do_include || do_all ) && (do_include != -1)) {
 // !!!! if basics fail warn/ask before going on to rest of testsuite
   rt_script = "bops"
   rt_arg1 = "7"
+  rt_arg2 = "9"
+  
   cart(rt_script,rt_arg1)
 
   cart_xic(rt_script,rt_arg1)
+  
   rt_script = "fvmeq"
-  cart(rt_script,rt_arg1)
+  //cart(rt_script,rt_arg2)
 
-  cart_xic(rt_script,rt_arg1)
+  //cart_xic(rt_script,rt_arg2)
+  
   updir()
 
   chdir ("Contin")
@@ -428,7 +437,7 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
   do_carts("info")
 
-   //RunDirTests("Assign","assign");
+  RunDirTests("Assign","assign");
 
 outcome("BOPS")
    }
@@ -437,7 +446,7 @@ outcome("BOPS")
 
 
    if ((do_all || do_class )  && (do_class != -1)) {
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
         RunDirTests("Class","classbops,classmfcall,class2,classvar");
        outcome("CLASS")
     }
@@ -445,7 +454,7 @@ outcome("BOPS")
 
 
    if ((do_all || do_oo ) && (do_oo != -1)) {
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
 
     //RunDirTests("OO","oa2,rpS,rp2,wintersect,oa,classarray,simpleclass");
     RunDirTests("OO","oa,rpS,rp2,oa2,classarray,simpleclass");
@@ -461,7 +470,7 @@ outcome("BOPS")
 ////////////// IF ///////////////////////
 
 if ((do_if || do_all) && (do_if != -1)) {
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
   
     RunDirTests("If","if,ifand")
 
@@ -476,7 +485,7 @@ if ((do_if || do_all) && (do_if != -1)) {
 ////////////// Define ///////////////////////
 
 if ((do_define || do_all) && (do_define != -1)) {
-      inflsz = caz(FailedList)
+      inflsz = caz(FailList)
   RunDirTests("Define","define")
 
 
@@ -488,7 +497,7 @@ if ((do_define || do_all) && (do_define != -1)) {
 
 if ((do_enum || do_all) && (do_enum != -1)) {
 
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
     RunDirTests("Enum","enum,colors_enum")
 
     outcome("ENUM")
@@ -499,7 +508,7 @@ if ((do_enum || do_all) && (do_enum != -1)) {
 
 
 if ((do_bit || do_all) && (do_bit != -1)) {
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
 //  Run2Test("Bitwise");
 //  cart("bitwise");
    RunDirTests("Bitwise","bitwise")
@@ -510,7 +519,7 @@ if ((do_bit || do_all) && (do_bit != -1)) {
 
   if ((do_logic || do_all) && (do_logic != -1)) {
   
-   inflsz = caz(FailedList)
+   inflsz = caz(FailList)
    //<<"%V $inflsz \n"
 
    RunDirTests("Compare","compare")
@@ -524,7 +533,7 @@ if ((do_bit || do_all) && (do_bit != -1)) {
 
  if ((do_for || do_all) && (do_for != -1)) {
 
-  inflsz = caz(FailedList)
+  inflsz = caz(FailList)
 
   RunDirTests("For","for,for_exp")
    
@@ -538,7 +547,7 @@ if ((do_bit || do_all) && (do_bit != -1)) {
  
 
   if ((do_all || do_while ) && (do_while != -1)) {
-        inflsz = caz(FailedList);
+        inflsz = caz(FailList);
        RunDirTests("While","while_nest,while")
       outcome("WHILE")
     }
@@ -550,13 +559,13 @@ if ((do_bit || do_all) && (do_bit != -1)) {
 
 
 if ((do_all || do_do ) && (do_do != -1)) {
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
       RunDirTests("Do","do")
       outcome("DO")
     }
 
 if ((do_all || do_try ) && (do_try != -1)) {
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
       RunDirTests("TryThrowCatch","trythrowcatch")
 outcome("TRY")
     }
@@ -566,7 +575,7 @@ outcome("TRY")
 //======================================//
     if ((do_switch || do_all) && (do_switch != -1)) {
 
-       inflsz = caz(FailedList)
+       inflsz = caz(FailList)
      
 
        RunDirTests("Switch","switch")
@@ -577,7 +586,7 @@ outcome("TRY")
 //======================================//
 
     if ( (do_types || do_all) && (do_types != -1)) {
-      inflsz = caz(FailedList)
+      inflsz = caz(FailList)
       RunDirTests("Types","types");
       
       RunDirTests("Cast","cast,cast-vec")
@@ -591,12 +600,12 @@ outcome("TYPES")
 //======================================//
 
   if ((do_vops || do_all ) && (do_vops != -1)) {
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
 
 
      RunDirTests("Vops","vops")
 outcome("VOPS")
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
      RunDirTests("Vector","vector")
 outcome("VECTOR")
      RunDirTests("Reverse","reverse") ; // BUG needs more than one
@@ -608,13 +617,13 @@ outcome("VECTOR")
 
   if ( (do_sops || do_all) && (do_sops != -1)) {
       //  need more str ops tests than this!
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
    RunDirTests("Sops","sops");
 
     outcome("SOPS")
  
   // RunDirTests("Str","str-proc,str-arg,str-lit");
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
   RunDirTests("Str","str_proc,str_arg");
 
 outcome("STR")
@@ -636,7 +645,7 @@ outcome("STR")
 /////////////////////////////////////////////////
 
   if ((do_fops || do_all) && (do_fops != -1)) {
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
   RunDirTests("Fops","fops")
   RunDirTests("Fh","fh")  
 
@@ -654,7 +663,7 @@ outcome("STR")
 
 if ((do_all  || do_declare ) && (do_declare != -1))  {
 
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
     RunDirTests("Declare","declare,decc,decchar,decpan,decvec");
    
     outcome("DECLARE")
@@ -701,7 +710,7 @@ chdir(Testdir)
 
  if ((do_exp || do_all) && (do_exp != -1)) {
 
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
 
    RunDirTests("Sexp","sexp");
 
@@ -713,7 +722,7 @@ outcome("EXP")
 //rdb()
 
  if ((do_all || do_paraex ) && (do_paraex != -1)) {
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
   Run2Test("ParaEx")
 
   cart("paraex")
@@ -728,7 +737,7 @@ outcome("PARAEX")
 
 if ((do_all || do_array ) && (do_array != -1)) {
 
-  inflsz = caz(FailedList)
+  inflsz = caz(FailList)
 
   RunDirTests("VVcomp","vvcomp");
 
@@ -739,16 +748,15 @@ if ((do_all || do_array ) && (do_array != -1)) {
 
    RunDirTests("VVcopy","rangecopy,vvcopy")
 
-   RunDirTests("ArraySubSet","arraysubset,arraysubvec")
+   RunDirTests("ArraySubSet","arraysubset,arraysubvec,arrayeleincr")
 
-  // RunDirTests("ArraySubSet","array_subsref,arraysubscbyvec,array_ele_incr,vdec")
-   RunDirTests("ArraySubSet","array_subsref,arraysubscbyvec,vdec")
+   RunDirTests("ArraySubSet","arraysubsref,arraysubscbyvec,vdec")
 
    RunDirTests("Array","ae,arraycmp,arrayele")
 
    RunDirTests("Array","dynarray,lhe,vec_cat,array_sr,mdele,vsp")
 
-   RunDirTests("ArrayRange","arrayrange,array_subsrange,lhrange")
+   RunDirTests("ArrayRange","arrayrange,arraysubsrange,lhrange")
 
   
 
@@ -767,8 +775,6 @@ if ((do_all || do_array ) && (do_array != -1)) {
 
   RunDirTests("Sgen","sgen")
 
-  //do_carts("sgen")
-
    RunDirTests("VVgen","vvgen")
 
   outcome("ARRAY")
@@ -780,7 +786,7 @@ if ((do_all || do_array ) && (do_array != -1)) {
 /////////////////////////////////////////
 
  if ((do_all || do_matrix ) && (do_matrix != -1)) {
-     inflsz = caz(FailedList)
+     inflsz = caz(FailList)
    RunDirTests("Mdimn","mdimn")
 
 
@@ -797,7 +803,7 @@ if ((do_all || do_array ) && (do_array != -1)) {
 /////////////////////////////////////////
 
  if ((do_all || do_dynv ) && (do_dynv != -1)) {
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
     //hdg("DYNAMIC_V")
 
     RunDirTests("Dynv","dynv");
@@ -808,7 +814,7 @@ if ((do_all || do_array ) && (do_array != -1)) {
 /////////////////////////////////////////
 
 if ((do_all || do_lhsubsc )   && (do_lhsubsc != -1)) {
-      inflsz = caz(FailedList)
+      inflsz = caz(FailList)
   RunDirTests("Subscript","vecsubset,lharraysubsrange")
   outcome("SUBSCRIPT")
     }
@@ -816,7 +822,7 @@ if ((do_all || do_lhsubsc )   && (do_lhsubsc != -1)) {
 /////////////////////////////////////////
 
 if ((do_all || do_func ) && (do_func != -1)) {
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
 
 //  Run2Test("Func")
   
@@ -848,7 +854,7 @@ if ((do_all || do_func ) && (do_func != -1)) {
 
 
 if ((do_all || do_iproc ) && (do_iproc != -1)) {
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
 
   RunDirTests("Iproc","iproc")
 
@@ -860,7 +866,7 @@ if ((do_all || do_iproc ) && (do_iproc != -1)) {
 /////////////////////////////////////////
 
    if ((do_all || do_vmf) && (do_vmf != -1)) {
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
     RunDirTests("Vmf","vmf_trim,vmf_range,vmf_cut,vmf_substitute,genv")
     RunDirTests("Vmf","vmf_prune,vmf_bubblesort,vmf_rotate,vmf_white")    
     outcome("VMF")
@@ -870,7 +876,7 @@ if ((do_all || do_iproc ) && (do_iproc != -1)) {
 
 
 if ((do_all || do_unary ) && (do_unary != -1)) {
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
 
   RunDirTests("Unary","unaryif,unaryexp")
   outcome("UNARY")
@@ -879,7 +885,7 @@ if ((do_all || do_unary ) && (do_unary != -1)) {
 /////////////////////////////////////////
 //rdb()
    if ((do_all || do_command ) && (do_command != -1)) {
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
      RunDirTests("Command","command,command_parse")
      outcome("COMMAND")
     }
@@ -887,7 +893,7 @@ if ((do_all || do_unary ) && (do_unary != -1)) {
 
 /////////////////////////////////////////
 if ((do_all || do_proc ) && (do_proc != -1)) {
-  inflsz = caz(FailedList)
+  inflsz = caz(FailList)
   
   //RunDirTests("Proc","procdeclare,proc,procret,procarg,procsv0");
   RunDirTests("Proc","procdeclare,proc,procret,procsv0");
@@ -909,7 +915,7 @@ if ((do_all || do_proc ) && (do_proc != -1)) {
   
   RunDirTests("Static","static");
 
-   outflsz = caz(FailedList)
+   outflsz = caz(FailList)
 
    outcome("PROC")
 
@@ -918,7 +924,7 @@ if ((do_all || do_proc ) && (do_proc != -1)) {
 
 //rdb()
   if ((do_all || do_scope ) && (do_scope != -1)) {
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
    RunDirTests("Scope","scope") ; 
 
   outcome("SCOPE")
@@ -928,7 +934,7 @@ if ((do_all || do_proc ) && (do_proc != -1)) {
  chdir(Testdir)
 
 if ((do_all || do_recurse ) && (do_recurse != -1)) {
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
      //hdg("RECURSION")
     
      RunDirTests("Fact","fact")
@@ -946,7 +952,7 @@ if ((do_all || do_recurse ) && (do_recurse != -1)) {
 
 if ((do_all || do_mops ) && (do_mops != -1)) {
 
-   inflsz = caz(FailedList)
+   inflsz = caz(FailList)
 
     RunDirTests("Mops","mops")
 
@@ -962,7 +968,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
    if ((do_all || do_svar ) && (do_svar != -1)) {
 
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
 
     RunDirTests("Svar","svar");
 
@@ -972,7 +978,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
     }
 
   if ((do_all || do_ivar ) && (do_ivar != -1)) {
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
      RunDirTests("Ivar","ivar")
     outcome("IVAR")
     }
@@ -980,7 +986,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
   if ((do_all || do_record ) && (do_record != -1)) {
 
-       inflsz = caz(FailedList)
+       inflsz = caz(FailList)
 
    RunDirTests("Record","record,rec_read,rec_prt,rec_atof,rec_lhs,rec_test,rec_md,rec_dyn");
 
@@ -989,7 +995,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
  chdir(Testdir)
 
  if ((do_all || do_mops ) && (do_mops != -1)) {
-      inflsz = caz(FailedList)
+      inflsz = caz(FailList)
     RunDirTests("Math","inewton,inewton_cbrt,opxeq")
 
 /*
@@ -1006,14 +1012,14 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
  chdir(Testdir)
 
  if ((do_all || do_stat ) && (do_stat != -1)) {
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
 //    hdg("STAT")
 
     RunDirTests("Polynom","checkvm,polynom")
 }
 
  if ((do_all || do_pan )  && (do_pan != -1)) {
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
     hdg("PAN")
 // TBD - more tests -- xic is using double for pan consts??
     //RunDirTests("Pan","pan,pan-loop-test,pancmp,panarray")
@@ -1025,14 +1031,14 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
 
    if ((do_all || do_lists ) && (do_lists != -1)) {
-     inflsz = caz(FailedList)
+     inflsz = caz(FailList)
      RunDirTests("Lists","lists,listdeclare,listele,listinsdel");
      //RunDirTests("Lists","lists");
      outcome("LISTS")
     }
 
    if ((do_all || do_ptrs ) && (do_ptrs != -1)) {
-       inflsz = caz(FailedList)
+       inflsz = caz(FailList)
       RunDirTests("Swap","swap,swap1");
       RunDirTests("Ptrs","ptrs,ptr_vec,ptr_numvec,ptr_svarvec,ptr_varvec,indirect");
       outcome("PTRS")
@@ -1041,7 +1047,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
 
  if ((do_all || do_sfunc ) && (do_sfunc != -1)) {
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
     //hdg("S-FUNCTIONS")
 
     RunSFtests("Fio,Sscan,Scpy,Fscanf,Bscan,Cut,Cmp,Sel,Shift,Median,Findval,Lip");
@@ -1080,7 +1086,7 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 //////////////////// BUGFIXs/////////////////////////////////////////
   
   if ((do_all || do_bugs )  && (do_bugs != -1)) {
-      inflsz = caz(FailedList)
+      inflsz = caz(FailList)
       //cart("bf_40")   // this has intentional error and exits before test checks
     chdir(Testdir)
 
@@ -1102,7 +1108,7 @@ bflist="$BFS"
 
 
   if ((do_all || do_tests ) && (do_tests != -1)) {
-    inflsz = caz(FailedList)
+    inflsz = caz(FailList)
     chdir(Testdir)
 //  get a list of asl files in this dir and run them
      chdir("Tests")
@@ -1144,7 +1150,7 @@ if ((do_all || do_threads )) {
        rt_tests =1;
    pcc = rt_pass/(1.0*rt_tests) * 100
 
-   flsz = caz(FailedList)
+   flsz = caz(FailList)
    
 
     fseek(Tlogf,0,2)
@@ -1157,34 +1163,35 @@ if ((do_all || do_threads )) {
 <<[Opf]"\n$flsz modules  failed! \n"
 <<[Tlogf]"\n$flsz modules  failed! \n"
 
-   FailedList.Sort()
+   FailList.Sort()
 
-//<<" %(2,\t, ,\n)$FailedList \n"  // would like this to work like for vectors ---
+//<<" %(2,\t, ,\n)$FailList \n"  // would like this to work like for vectors ---
 
    for (i = 0; i < flsz ; i++) {
-       <<"\t\t\t$FailedList[i]"
+       <<"\t\t\t$FailList[i]"
 
     if (i> 0)
        <<"\n"
        
-       <<[Opf]"$FailedList[i]"
+       <<[Opf]"$FailList[i]"
 
-      <<[Tff]"$FailedList[i] \n"
+      <<[Tff]"$FailList[i] \n"
        
-       <<[Tlogf]"$i $FailedList[i] \n"       
+       <<[Tlogf]"$i $FailList[i] \n"       
     }
 }
 
 //<<"\n----------------------------------------------------------------------------\n"
 
-  
+   flsz = caz(FailList)
    lsz = caz(CrashList)
-//<<"failed list size $flsz crash $lsz \n"
+   
+<<"FailList size $flsz CrashList size $lsz \n"
 //   flsz<-info(1)
 //   lsz<-info(1)
    
 
-if (lsz >= 1) {
+if (lsz > 0) {
 
 <<"\n\t\t\t$lsz modules   crashed! \n"
 <<[Opf]"\n$lsz modules   crashed! \n"

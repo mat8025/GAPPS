@@ -28,9 +28,10 @@
    chkIn(_dblevel);
 
    db_ask = 0;
+   db_allow = 0;   
 
  //allowDB("spe,ds,ic_call,pex,vmf", 1)
- allowDB("spe_declare,pex,vmf,list,ds_sivlist,spil", 1)
+ allowDB("spe_declare,pex,vmf,list,ds_sivlist,spil", db_allow)
 
     // empty list --- bug first item null?;
 
@@ -322,8 +323,9 @@ ans= ask("debe ...  OK?",db_ask)
   fval = ShoppingList.getLitem(0);
 
 <<"%V $fval\n"
+<<"%V $flsz\n"
 
-     for (i=0; i < flsz; i++) {
+     for (i=0; i < flsz ; i++) {
 
        ShoppingList.pinfo()
 

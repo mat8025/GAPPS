@@ -2050,3 +2050,18 @@ list_ops.cpp                        1.4  05/13/2024 11:44:28  revise get item
 ds_sivlist.cpp                      1.70  05/13/2024 11:46:43  revise newlist
 parse_var.cpp                       2.91  05/13/2024 19:50:50  findVar
 ic_wic.cpp                          1.77  05/13/2024 19:53:33  DB tidy
+gslists.cpp                         1.75  05/14/2024 09:02:32  fix run-pastnext prev
+parse_var.cpp                                2.92  05/15/2024 08:05:59  getVarValue
+parse_var.cpp                                2.92  05/15/2024 08:07:17  getVarValue 
+rdp_store.cpp                                2.9  05/15/2024 10:17:33  list store
+parse_var.cpp                                2.92  05/15/2024 10:18:40  getVarValue
+ds_getvarasstr.cpp                           2.74  05/15/2024 10:19:45  ptr var
+array_range.cpp                              2.83  05/15/2024 10:20:56  getVarVal
+gscom_debug.cpp                              1.73  05/15/2024 10:23:00  dbff revise
+rdp_token.cpp                                1.83  05/15/2024 14:24:07  transfer/sottore scalar
+rdp_l5.cpp                                   1.67  05/15/2024 14:24:43  unary transfer
+rdp_primitive.cpp                            1.67  05/15/2024 14:25:29  DB
+rdp_l1.cpp                                   1.66  05/15/2024 14:25:55  DB 
+rdp_l6.cpp                                   1.69  05/15/2024 14:26:21  DB 
+rdp_l3.cpp                                   1.68  05/15/2024 14:26:39  DB 
+rdp_l2.cpp                                   1.64  05/15/2024 14:27:01  DB 

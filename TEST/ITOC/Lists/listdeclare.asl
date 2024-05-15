@@ -1,5 +1,5 @@
 //%*********************************************** 
-//*  @script list_declare.asl 
+//*  @script listdeclare.asl 
 //* 
 //*  @comment test list declare 
 //*  @release CARBON 
@@ -24,9 +24,10 @@
 
 
   db_ask = 0;
+  db_allow = 1;  
 
  //allowDB("spe,ds,ic_call,pex,vmf", 1)
- allowDB("spe_declare,pex,vmf,list,ds_sivlist,spil,ic", 1)
+ allowDB("spe_declare,pex,vmf,list,ds_sivlist,spil,rdp,ic", db_allow)
 
    Str le;
 
@@ -59,6 +60,14 @@
 
    <<"twelveth month $Mol[11]\n";
 
+   le = Mol[0];
+
+   <<"$(typeof(le)) %V$le\n";
+
+   chkStr(le,"JAN");
+
+
+
    le4 = Mol[3];
 //<<"$(typeof(le4)) %V$le4\n"
 
@@ -72,11 +81,6 @@
 
    <<"$(typeof(le12)) %V$le12\n";
 
-   le = Mol[0];
-
-   <<"$(typeof(le)) %V$le\n";
-
-   chkStr(le,"JAN");
 
    <<"le checked\n";
 

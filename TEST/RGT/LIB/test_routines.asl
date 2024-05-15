@@ -1,16 +1,16 @@
 /* 
- *  @script test_routines.asl 
+ *  @script test_routines.asl                                           
  * 
- *  @comment routines for ASL testing 
- *  @release CARBON 
- *  @vers 1.2 He Helium [asl 6.3.30 C-Li-Zn]                                
- *  @date 03/13/2021 13:11:47 
- *  @cdate 3/13/2021 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
+ *  @comment routines for ASL testing                                   
+ *  @release Carbon                                                     
+ *  @vers 1.3 Li Lithium [asl 6.11 : C Na]                              
+ *  @date 05/14/2024 10:10:03                                           
+ *  @cdate 3/13/2021                                                    
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
  * 
- *  \\-----------------<v_&_v>--------------------------//  
  */ 
+
 
 
 int Nsuites =0;
@@ -23,7 +23,7 @@ int outcome (Str title)
 {
   <<" $title \n"
    Nsuites++;
-   outflsz = caz(FailedList)
+   outflsz = caz(FailList)
 //     <<"%V $inflsz $outflsz \n"
    if ((inflsz == outflsz) && (rt_crash == last_ncrash)) {
    Nspassed++;
@@ -368,15 +368,15 @@ else {
 
 
           scored = 1;
+	  
 
-//          n_modules += 1
           n_modules++; 
 
           if (pcc != 100.0) {
-	  //<<"${Curr_dir} inserting $tname into failed list \n"
-            FailedList.Insert("${Curr_dir}/${itname}")
+	  <<[_DBH]"${Curr_dir} inserting $itname into failed list \n"
+            FailList.Insert(LIEND_,"${Curr_dir}/${itname}")
 	  //  <<"${Curr_dir}/${itname}\n"
-	  //<<[Tff]"${Curr_dir}/${tname}\n"  
+	  //<<[Tff]"${Curr_dir}/${itname}\n"  
           }
      }
 
@@ -392,91 +392,6 @@ else {
 //===============================
 
 int cbh = 0
-
-void doxictest(Str prog)
-{
-//<<"IN $_proc $prog \n"
-Str prg;
-
- if (f_exist("${prog}") != -1) {
-
-  !!"rm -f last_xic_test"
-
-  prg = scut(prog,2);
-
-//     !!"nohup $prog  | tee --append $ictout "
-
-        if (do_query) {
-<<"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx ${prog}.xic  \n  "
-         ans = query("$prog run it?")
-	 if (ans @="q") {
-          exit()
-         }
-	       if (ans @="r") {
-                  do_query = 0;
-               }	       
-
-         }
-
-//<<" run xic $wasl\n";
-
-      !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -x ${prog}.xic   > /dev/null "
-
-//      !!"ls -l *";
-      
-// what happens if prog crashes !!
-
-  ntest++
-
-  fflush(1)
-  }
-  else {
-   <<[2]" NO xic $prog to test\n"
-  }
-}
-//===============================
-
-
-void doxictest(Str prog, Str a1)
-{
-
-//<<"IN $_proc  $prog  $a1 \n"
-Str prg;
- if (f_exist("${prog}") != -1) {
-
-
-  !!"rm -f last_xic_test"
-
-  prg = scut(prog,2);
-  
-
-//<<"XIC test  $prog $a1\n"
-
-       // !!"nohup $prog  $a1 >> $ictout "
-
-
-
-     if (do_query) {
-<<"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx $prog $a1 "
-       query("$prog run it?")
-       	 if (ans @="q") {
-          exit()
-         }
-         }
-	 
-       !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -x $prog $a1  > /dev/null"
-
-// what happens if prog crashes !!
-
-  ntest++
-
-  fflush(1)
-  }
-  else {
-   <<" NO xic $prog to test\n"
-  }
-}
-//===============================
 
 
 // FIX --- optional args -- have to be default activated -- to work for XIC?
@@ -547,7 +462,7 @@ if (!scmp(lprg,prg)) {
 
 //<<" run xic $wasl <|${prg}.xic|>\n";
 
-    !!"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -x ${prg}.xic   > /dev/null "
+    !!"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -x ${prg}.xic   > /dev/null 2>&1 "
       
 // what happens if prg crashes !!
 
@@ -579,7 +494,7 @@ if (!scmp(lprg,prg)) {
        <<[Tcf]"#CRASH FAIL:--failed to run $prg\n"
        rt_crash++;
        
-       CrashList.Insert("${Curr_dir}/xic_${prg}")
+       CrashList.Insert(LIEND_,"${Curr_dir}/xic_${prg}")
      }
   }
   
@@ -588,10 +503,14 @@ if (!scmp(lprg,prg)) {
 
 void cart_xic(Str aprg, Str a1)
 {
-int wscore;
-  //<<"%V $_proc  $aprg $a1 \n"
 
-    if (fexist(aprg) != -1) {
+int wscore;
+
+//  <<"%V $_proc  $aprg $a1 \n"
+
+    foundit = fexist(aprg) ;
+
+    if (foundit) {
 
 
       tim = time() ;  //   TBC -- needs to reinstated
@@ -603,7 +522,9 @@ int wscore;
 
      // doxictest("./$aprg", "$a1")
 
-  doxictest(aprg, a1)
+      !!"$wasl -o ${aprg}.xout -e ${aprg}.xerr -t ${aprg}.xtst -x $aprg $a1  > /dev/null 2>&1 "
+
+  //    doxictest(aprg, a1)
       
       tst_file = "${aprg}.xtst";
 
@@ -626,7 +547,7 @@ if (!do_module) {
 
        <<[Tcf]"#CRASH FAIL:--failed to run $aprg\n"
        rt_crash++;
-       CrashList.Insert("${Curr_dir}/xic_${aprg}")
+       CrashList.Insert(LIEND_,"${Curr_dir}/xic_${aprg}")
      }
 
   }
@@ -643,14 +564,9 @@ void cart (Str prg)
   int wscore;
   int wlen;
 
- // aprg.pinfo()
- // prg.pinfo()
-//<<"$_proc  prg <|$prg|> ==   aprg <|$aprg|>  arg copied correctly?  \n"
 
   Str wStr ="";
- //  in_pargc = _pargc;
-//  aprg.pinfo();
-//  prg.pinfo();
+
   
   xwt_prog = "xxx";
 
@@ -688,8 +604,7 @@ void cart (Str prg)
 
 //    <<"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst $CFLAGS ${prg}.asl > /dev/null   2>&1";
 
-//!!"pwd"
-//!!"ls -l *";
+
   
 !!"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst $CFLAGS ${prg}.asl > /dev/null   2>&1";
 
@@ -725,7 +640,7 @@ void cart (Str prg)
        //<<"CRASH FAIL:--failed to run \n"
        // insert works??
        rt_crash++;
-       CrashList.Insert("${Curr_dir}/${prg}")
+       CrashList.Insert(LIEND_,"${Curr_dir}/${prg}")
 
      }
    
@@ -759,7 +674,7 @@ void cart (Str prg,  Str pa1)
 
 //pa1.aslpinfo()
 
-   Str aprg;
+   Str aprg = prg;
    Str a1;
 //   prg = aprg;
   
@@ -783,8 +698,6 @@ void cart (Str prg,  Str pa1)
    jpid  =0
    
 
-// <<" asl $CFLAGS ${aprg}.asl  $a1 \n"
-//  jpid = !!&"asl -o ${aprg}arg.out -e ${aprg}.err -t ${aprg}.tst  $CFLAGS ${aprg}.asl  $a1"
 
 
            if (do_query) {
@@ -793,7 +706,7 @@ void cart (Str prg,  Str pa1)
 	   ans= iread("$aprg run it?")
          }
 	 
-    !!"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst  $CFLAGS ${prg}.asl  $a1  > /dev/null"
+    !!"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst  $CFLAGS ${prg}.asl  $a1  > /dev/null 2>&1"
 
      wt_prog = "$tim ${prg}:$a1 "
      /*
@@ -806,9 +719,10 @@ void cart (Str prg,  Str pa1)
 */
       tst_file = "${prg}.tst";
     //  <<"%V $tst_file\n"
+    
       if (f_exist(tst_file) > 0) {
           // should test if DONE
-       !!"grep DONE ${aprg}.tst"
+          !!"grep DONE ${prg}.tst > /dev/null"
            
 	   
            wscore= scoreTest(tst_file, wt_prog)
@@ -817,7 +731,7 @@ void cart (Str prg,  Str pa1)
 
        //<<"CRASH FAIL:--failed to run inseting $aprg into crashed list\n"
       rt_crash++;
-      CrashList.Insert("${Curr_dir}/${prg}")
+      CrashList.Insert(LIEND_,"${Curr_dir}/${prg}")
 //	<<[Tcf]"${Curr_dir}/${aprg}\n"
      }
 
@@ -831,15 +745,7 @@ void cart (Str prg,  Str pa1)
     
   ntest++;
 
-//str aa = a1
-/*
-    str arg2 = "$a1";
-   
-    if (do_xic >0 ) {
 
-      cart_xic(aprg,arg2)
-    }
-*/
 //<<"DONE $_proc cart 2 args\n"
 
    return;
@@ -868,7 +774,7 @@ void do_carts (Str aprg)
 
 //
 Str wprg = "xx";
-//wprg.pinfo()
+
 wprg = aprg;
 
 //wprg.pinfo()
@@ -882,3 +788,94 @@ wprg = aprg;
 
 }
 //===============================
+
+
+
+// chain of str args bug ?
+#if 0
+void doxictest(Str prog)
+{
+<<"IN $_proc $prog \n"
+Str prg;
+
+ if (f_exist("${prog}") != -1) {
+
+  !!"rm -f last_xic_test"
+
+  prg = scut(prog,2);
+
+//     !!"nohup $prog  | tee --append $ictout "
+
+        if (do_query) {
+<<"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx ${prog}.xic  \n  "
+         ans = query("$prog run it?")
+	 if (ans @="q") {
+          exit()
+         }
+	       if (ans @="r") {
+                  do_query = 0;
+               }	       
+
+         }
+
+//<<" run xic $wasl\n";
+
+      !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -x ${prog}.xic   > /dev/null "
+
+//      !!"ls -l *";
+      
+// what happens if prog crashes !!
+
+  ntest++
+
+  fflush(1)
+  }
+  else {
+   <<[2]" NO xic $prog to test\n"
+  }
+}
+//===============================
+
+
+void doxictest(Str prog, Str a1)
+{
+
+<<"IN $_proc  $prog  $a1 \n"
+Str prg;
+
+ if (f_exist("${prog}") != -1) {
+
+
+  !!"rm -f last_xic_test"
+
+  prg = scut(prog,2);
+  
+
+//<<"XIC test  $prog $a1\n"
+
+       // !!"nohup $prog  $a1 >> $ictout "
+
+
+
+     if (do_query) {
+<<"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx $prog $a1 "
+       query("$prog run it?")
+       	 if (ans @="q") {
+          exit()
+         }
+         }
+	 
+       !!"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -x $prog $a1  > /dev/null 2>&1 "
+
+// what happens if prog crashes !!
+
+  ntest++
+
+  fflush(1)
+  }
+  else {
+   <<" NO xic $prog to test\n"
+  }
+}
+//===============================
+#endif

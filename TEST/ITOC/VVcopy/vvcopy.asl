@@ -37,18 +37,18 @@
 
 #include "debug"
 
-  if (_dblevel >0) {
+  if (_dblevel > 0) {
 
   debugON();
 
   <<"$Use_\n";
 
   }
-//   chkIn(_dblevel);
+   chkIn(_dblevel);
 
   db_allow = 0;
 
-  chkIn(1);
+
 
   B= vgen(INT_,100,0,1);
 
@@ -100,7 +100,7 @@
 
   if (db_allow) {
 
-  allowDB("spe,rdp,array,ic");
+  allowDB("spe,rdp,array,parse,svar,ic",1);
 
   }
 
@@ -256,14 +256,22 @@
 
   chkN(BM[99],99);
 
-  <<"%V$BM\n";
 
+
+  <<"%V$BM\n";
+  kt = 0;
+  js = 1
   for (i = 0; i < 3; i++) {
 
-  C= BM[i:19:1];
 
-  <<"$C \n";
+  //  C= BM[i:19:1];
+    C= BM[i:19:js];
 
+    kt++
+  <<"<$i><$kt> $C \n";
+  ans=ask("%V $i incr?? ",0)
+    if (kt > 10)
+        break;
   }
 //   nc=vvcopy(A,B,20,ALWAYS_,0,1,1,0,10);
 
@@ -287,18 +295,23 @@
 */
 
 
-  B.pinfo();
+  BM.pinfo();
+
+  <<"$BM\n";
 
   C= BM[10:19:1];
 
   <<"$C\n";
+  
+  C.pinfo()
 
   chkN(C[0],10);
-//sdb(2)
+
+
 
   C= BM[20:29:1];
 
-  B.pinfo();
+  BM.pinfo();
 //k= B[0]
 //!p k
 
