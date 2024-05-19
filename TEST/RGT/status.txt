@@ -3,7 +3,7 @@ module    status    (-3 crash, -2 stall, -1 partial, <100% some tests fail, 100%
 array	1      100 
 bops	1      100
 bugs	-1    77.27
-class	-1    96.46
+class	1      100 256
 command  -1    50.0
 declare	 1     100
 do		1	100
@@ -17,7 +17,7 @@ iproc         1	100 3
 include      1	100 8
 ivar          -3      0    1
 lhsubsc     1 	100 52
-lists         -2
+lists          1      100 44
 logic		1	100	44
 matrix	1	100  112
 mops	-1	90.79  152

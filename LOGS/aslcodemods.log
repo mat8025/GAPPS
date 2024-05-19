@@ -2065,3 +2065,11 @@ rdp_l1.cpp                                   1.66  05/15/2024 14:25:55  DB
 rdp_l6.cpp                                   1.69  05/15/2024 14:26:21  DB 
 rdp_l3.cpp                                   1.68  05/15/2024 14:26:39  DB 
 rdp_l2.cpp                                   1.64  05/15/2024 14:27:01  DB 
+rdp_variable.cpp                    1.84  05/16/2024 22:24:10  deref ptr
+rdp_l1.cpp                          1.67  05/16/2024 22:26:10  deref ptr 
+rdp_l2.cpp                          1.65  05/16/2024 22:29:52  deref ptr 
+rdp_l3.cpp                          1.69  05/16/2024 22:30:52  deref ptr 
+ds_storesiv.cpp                     1.91  05/16/2024 22:32:09  store rtet code
+ds_storevar.cpp                     1.83  05/16/2024 22:33:15  store list
+array_parse.cpp                     2.88  05/16/2024 22:37:09  LHS/RHS
+ds_storesiv.cpp                     1.92  05/19/2024 10:54:33  storeDeref SUBSC sotore

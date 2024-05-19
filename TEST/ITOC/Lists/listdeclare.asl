@@ -24,10 +24,10 @@
 
 
   db_ask = 0;
-  db_allow = 1;  
+  db_allow = 0;  
 
  //allowDB("spe,ds,ic_call,pex,vmf", 1)
- allowDB("spe_declare,pex,vmf,list,ds_sivlist,spil,rdp,ic", db_allow)
+ allowDB("pex,vmf,list,ds,spil,rdp,spe,array,", db_allow)
 
    Str le;
 
@@ -60,13 +60,6 @@
 
    <<"twelveth month $Mol[11]\n";
 
-   le = Mol[0];
-
-   <<"$(typeof(le)) %V$le\n";
-
-   chkStr(le,"JAN");
-
-
 
    le4 = Mol[3];
 //<<"$(typeof(le4)) %V$le4\n"
@@ -74,6 +67,14 @@
    <<"le4 $le4 \n";
 
    chkStr(le4,"APR");
+
+
+
+   le = Mol[0];
+
+   <<"$(typeof(le)) %V$le\n";
+
+   chkStr(le,"JAN");
 
 
 
@@ -101,6 +102,7 @@
    chkStr(Mol[1],"FEB");
 
    chkOut(1);
+   
 //////////////////////////////////
 
 //===***===//

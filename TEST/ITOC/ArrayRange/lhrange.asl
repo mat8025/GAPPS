@@ -14,10 +14,8 @@
                                                                 
 
 
-
-
 ///////////////////////
-
+//test using Compare
 
 
 #include "debug.asl"
@@ -31,6 +29,8 @@
 
   showUsage("Demo  of lhrange assignment")
 
+   db_allow = 0
+   
    chkIn(_dblevel);
 
    N= 20;
@@ -87,32 +87,52 @@
 
 //   TSN = RHV[1:5] + RHV[7:11];
 
-   <<" $RHV[1:5:1] \n";
+           RHV.pinfo()
+	   
+   <<" $RHV[1:5:1] \n"; // TBF  5/19/24  asl no vecprint  xic prints entire vec
 
     <<" $RHV[7:11] \n";
-   fileDB(ALLOW_,"opera_main","ds_arraycopy","rdp_l2","rdp_l5","rdp_l6","rdp_store","tokget","primitive");
-      fileDB(ALLOW_,"rdp_l3","rdp_l4","rdp_l5","rdp_store","rdp_token");
 
-     TSN = RHV[1:5:1] + RHV[7:11:1];
+allowDB("spe,rdp_,ic,pex,parse,array,ds_store",db_allow)
 
-   <<"%v $TSN \n";
 
+
+// FIXED 5/19/24 asl not making a local copy of each range for each item in RHS eqn!
+
+     TSN = RHV[1:5:1] + RHV[7:11:1]; 
+
+   <<"%V $TSN \n";
+
+   chkN(TSN[0],8);
+   
    chkN(TSN[1],10);
+   
+   chkN(TSN[2],12);
+   
+   chkN(TSN[4],16);   
 
-   TSN = RHV[0:-1:2] + RHV[1:-1:2];
 
-   <<"%v $RHV \n";
+    
 
-   <<"%v $TSN \n";
+   TSN = RHV[0:-1:2] + RHV[1:-1:2];  // 
+
+   <<"%V $RHV \n";
+
+   TSN.pinfo()
+
+   <<"%V $TSN \n";
 
    chkN(TSN[1],5);
 
-   TSN = RHV[0:-1:] + RHV[1:-1:1];
+  // TSN = RHV[1:-1:] + RHV[1:-1:1]; // TBF 5/19/24 stride not cleared
+
+   TSN2 = RHV[1:-1:1] + RHV[1:-1:1];
 
    <<"%v $RHV \n";
 
-   <<"%v $TSN \n";
-
+   <<"%v $TSN2 \n";
+   TSN2.pinfo()
+ 
    chkOut();
 
 //===***===//

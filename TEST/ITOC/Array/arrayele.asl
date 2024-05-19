@@ -24,9 +24,12 @@
 
 int db_allow = 0; // set to 1 for internal debug print
 int db_ask = 0
+
    chkIn (_dblevel);
 
+//allowDB("spe,opera_,array_parse,parse,rdp_,ds,ic,pex",1)
 
+allowDB("opera_,rdp_,ic,pex,parse,array",db_allow)
 
    int main_chk = 0;
 
@@ -59,15 +62,38 @@ int db_ask = 0
    <<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
 
 
-   j= 5;
+    j= 5;
+
 
    <<"$j $Real1[j]\n";
+
+      j1 = 4
+      j2 = 6
+
+     t3 = Real1[j1] - Real1[j2];
+
+    <<"%V $Real1[j1] \n"
+
+      <<"%V $Real1[j2] \n"
+
+     <<"%V %6.2f $t3  \n";
+
+     chkR (t3, -2);
+
+ans=ask("%V $Real1[j1]  $Real1[j2]",0)
+
+
+
+     chkStage(" MAIN");
+
+ans=ask("  where $__LINE__ ",0)
 
    float array_asg (float rl[])
    {
 
      <<"In $_proc \n";
      float val;
+
      rl.pinfo();
 
      int kp = 3;
@@ -78,21 +104,41 @@ int db_ask = 0
 //ans=query()
 
      rl[1] = 77;
+
+<<"%V $rl[1] \n"
      rl.pinfo();
-     
+
+
 <<"%V %6.2f $rl\n";
-      //allowDB("array,spe,parse,ic")
+ans= ask(" $rl ",db_ask)
+
      rl[kp] = 67;
      rl.pinfo();
+
 <<"%V %6.2f $rl\n";
 
+     chkR (rl[kp],67);
+
+ans= ask(" $rl[1] ",db_ask)
+
+
      rl[kp2] = 14;
+
      rl.pinfo();
+     
  <<"%V %6.2f $rl\n";
 
      val = rl[1];
+
+ <<"$rl[1]  $val\n";
+
      chkR (rl[1],77);
-     rl.pinfo();
+
+ans= ask(" $rl[1] ",0)
+
+
+
+      rl.pinfo();
 
  <<"%V $kp $val %6.2f $rl\n";
 
@@ -118,13 +164,13 @@ int db_ask = 0
    float array_sub (float rl[])
    {
 
-     <<"In $_proc   $rl\n";
+     <<"In %V $_proc   $rl\n";
 
  <<"PROC %V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
 
      rl.pinfo();
 
-ans=ask("rl ?", db_ask)
+ans=ask("$rl ?", db_ask)
 
      <<"PROC after pinfo %V  $_scope $_cmfnest $_proc $_pnest\n";
  //SA = SA + 1;
@@ -142,9 +188,9 @@ ans=ask("rl ?", db_ask)
      t1 = rl[2];
 
      t1.pinfo();
-if (db_allow) {
- allowDB("spe,opera_,array_parse,parse,rdp_,ds,ic,pex")
-}
+
+ 
+
 
      t1 = rl[4];
 
@@ -168,7 +214,7 @@ ans=ask("rl ?",db_ask)
 ans=ask("rl ?", db_ask)
 
 
-     j1 = 4;
+     j1 = 5;
 
      j2 = 6;
 
@@ -180,7 +226,12 @@ ans=ask("rl ?", db_ask)
      t3.pinfo()
      <<"%V $j1   \n";
      <<"%V %6.2f $t3  \n";
-     chkR (t3, 4);
+     chkR (t3, 5);
+
+
+      j1 = 4   
+
+
 
      t3 = rl[j2] ;
 
@@ -212,19 +263,42 @@ ans=ask("rl ?", db_ask)
 
 ans=ask("%V $rl ?",db_ask)
 
-     t3 = rl[j1] - rl[j2];
-rl.pinfo()
+
+       
+<<"%V $j1 $j2\n"
+
+    <<"%V $rl[j2] \n"
+     t3 = rl[j2] ;
+
+  t3.pinfo()
     <<"%V $rl[j1] \n"
-rl.pinfo()
+
+     t3 = rl[j1] ;
+
+  t3.pinfo()
+
+
+     t3 = rl[j1] - rl[j2];
+
+    <<"%V $rl[j1] \n"
+
       <<"%V $rl[j2] \n"
- rl.pinfo()     
+
      <<"%V %6.2f $t3  \n";
 
-     <<"$(Caz(t3))\n";
+  t3.pinfo()
+
+     <<"%V $(Caz(t3))\n";
+
+ <<"%V $j1 $j2 \n"
+
 
 ans=ask("%V $rl[j1]  $rl[j2]",db_ask)
 
      chkR (t3, -2);
+
+
+
 
      t4 = rl[j1 + 1];
 
@@ -241,15 +315,13 @@ ans=ask("%V $rl[j1]  $rl[j2]",db_ask)
     <<"%V $rl[j2] \n";
  Real2.pinfo();
 
-  if (db_allow) {
-      allowDB("array,spe,parse,ic,pex")
-  }
 
 <<"%V $rl[j1]    $rl[j2] \n";
  Real2.pinfo();
 
 
-//ans=ask(" $rl[j2]  ",1)
+
+ans=ask(" $rl[j2]  ",db_ask)
 
 
      rj1 = rl[j1];
@@ -280,7 +352,7 @@ ans=ask("%V $rl[j1]  $rl[j2]",db_ask)
 
  Real2.pinfo();
 
-//ans=ask("Real2?",1)
+ans=ask("Real2?",db_ask)
     <<"%V $kp  $j2 $j1 \n";
 
      <<"rl $rl \n";
@@ -336,6 +408,8 @@ ans=ask("%V $rl[j1]  $rl[j2]",db_ask)
 
      rl.pinfo();
 
+ans=ask(" $rl ?",db_ask)
+
      TA=testargs(rl[j1],rl[j2],jj,kp);
 
      <<"%(1,,,\n)$TA\n";
@@ -384,7 +458,10 @@ ans=ask("%V $rl[j1]  $rl[j2]",db_ask)
      }
 //////////////////////////////////////////////////////////////////////////////////////
 
-   chkR (Real1[2],2);
+ chkStage(" PROC_DEF");
+ ans=ask(" @ $__LINE__ ",0)
+
+chkR (Real1[2],2);
 
    Real2 = vgen (FLOAT_, 10, 0, 1);
 
@@ -396,13 +473,13 @@ ans=ask("%V $rl[j1]  $rl[j2]",db_ask)
 
  //  <<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
 
-   <<"%V$Real2\n";
+   <<"%V $Real2\n";
 
    val = array_asg (Real1);
 
    <<"%V $val\n";
 
-ans=ask("2 $val ?",0)
+   ans=ask("2 $val ?",db_ask)
 
 
 
@@ -413,7 +490,7 @@ ans=ask("2 $val ?",0)
    val = array_asg (Real2);
 
 
-ans=ask("2 $val ?",0)
+ans=ask("2 $val ?", db_ask)
 
    //ans= query("xic")
 
@@ -444,7 +521,7 @@ ans=ask("2 $val ?",0)
    val = array_sub (Real3);
 
  //  <<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
-//chkStage()
+
 ////////////////////
 //double Real[10];
 
@@ -526,8 +603,9 @@ ans=ask("2 $val ?",0)
 
    t4 = Real[j1 + 1];
 
-
-
+   chkT(1)
+   chkStage(" Nearly Done ")
+ ans=ask(" @ $__LINE__ ",0)
 
    <<"%V $t4  \n";
 
@@ -562,7 +640,7 @@ ans=ask("2 $val ?",0)
    t2 = Real[k];
 
    <<"%V$t2\n";
-//!a
+/
    <<"$(Caz(t2))\n";
 
    chkR (t2, -2);
@@ -587,7 +665,7 @@ ans=ask("2 $val ?",0)
    Real2.pinfo()
 
 
-//ans=ask("real2?",1)
+
 
    val = array_sub (Real2);
 
@@ -676,7 +754,9 @@ ans=ask("2 $val ?",0)
 
      }
      //EP////////////////////////////////////////////
-
+    chkT(1)
+    chkStage(" ...")
+ ans=ask(" @ $__LINE__ ",0)
    Re = fgen(10,10,1);
 
    <<"%i $Re\n";
@@ -703,6 +783,8 @@ ans=ask("2 $val ?",0)
 
    chkN (sz,10);
 
-   chkOut ();
+    chkStage(" END")
+
+   chkOut (1);
 
 
