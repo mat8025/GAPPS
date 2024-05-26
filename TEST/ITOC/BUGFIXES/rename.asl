@@ -6,19 +6,26 @@
 //   na=argc()
 //<<"%V $na\n"
 
-  for (i=1; i < argc(); i++) <<"git mv $_argv[i] $(scat(\"bf\",scut(_argv[i],6))) \n"     
+ // for (i=1; i < argc(); i++) <<"git mv $_argv[i] $(scat(\"bf\",scut(_argv[i],6))) \n"     
 
-/*
+
    for (i=1 ;i < argc() ; i++) {
      nm = _argv[i]
-     <<"git mv $nm $(scat(\"bf\",scut(nm,6))) \n"
-     <<"git mv $_argv[i] $(scat(\"bf\",scut(_argv[i],6))) \n"     
+     tail = scut(nm,7)
+     num = scut(tail,-4)
+     newnm = scat("bugfix",num,".asl")
+     //<<"$nm $tail  $num   $newnm\n"
+
+     <<"git mv $nm $newnm \n"
+     !!"git mv $nm $newnm "
+     
+     //<<"git mv $_argv[i] $(scat(\"bf\",scut(_argv[i],6))) \n"     
 
    }
 
 
 
-
+/*
    for (i=1 ;i < argc() ; i++) {
     nm = _argv[i]
   // tail = scut(nm,2)

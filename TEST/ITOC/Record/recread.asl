@@ -1,15 +1,16 @@
 /* 
- *  @script rec_read.asl                                       
+ *  @script recread.asl                                                 
  * 
- *  @comment test read file into record                                 
- *  @release Lanthanum                                                  
- *  @vers 1.3 Li Lithium [asl 5.57 : B La]                              
- *  @date 12/09/2023 19:02:54                                           
- *  @cdate 1/1/2018                                                     
- *  @author Mark Terry                                                  
- *  @Copyright © RootMeanSquare 2023 -->                               
+ *  @comment test read file into record                      
+ *  @release Carbon                                                     
+ *  @vers 1.4 Be Beryllium [asl 6.16 : C S]                             
+ *  @date 05/26/2024 16:13:21                                           
+ *  @cdate 1/1/2018                                            
+ *  @author Mark Terry                                        
+ *  @Copyright © RootMeanSquare 2024 -->                               
  * 
  */ 
+
 
 
    myScript = getScript();
@@ -23,10 +24,13 @@
 
    A=  ofr("favfoods.csv");
 
+   db_allow = 0
 
-   allowDB("array_,rec_,ds_,spe_exp,ic_,para");
+   allowDB("array_,rec_,ds_,spe_exp,ic_,para", db_allow);
 
-   DB_action = 1;
+   db_ask = 0;
+
+   DB_prompt = "continue ? !q to quit"
 
    Record RF;
 
@@ -40,7 +44,7 @@
 
      }
 
-   cf(A);
+  cf(A);
 
    recinfo = info(RF);
 
@@ -54,11 +58,11 @@
 
    <<"num of records $Nrecs  num cols $Ncols\n";
 
-   ans=ask(DB_prompt,DB_action);
+   ans=ask(DB_prompt,db_ask);
 
    <<" $RF[::] \n";
 
-   ans=ask(DB_prompt,DB_action);
+   ans=ask(DB_prompt,db_ask);
 
    for (i= 0; i < 3; i++) {
 
@@ -121,7 +125,7 @@
 
    <<" $RF[::] \n";
 
-   ans=ask(DB_prompt,DB_action);
+   ans=ask(DB_prompt,db_ask);
    //delete(RF)  ; // realloc of RF does not work for xic
 
    A=  ofr("favfoods.csv");
@@ -148,7 +152,7 @@
 
    <<" $RF[::] \n";
 
-   ans=ask(DB_prompt,DB_action);
+   ans=ask(DB_prompt,db_ask);
 
    chkT((nc >0));
 

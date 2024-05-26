@@ -988,11 +988,11 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
 
        inflsz = caz(FailList)
 
-   RunDirTests("Record","record,rec_read,rec_prt,rec_atof,rec_lhs,rec_test,rec_md,rec_dyn");
-
-  outcome("RECORD")
+   RunDirTests("Record","record,recread,recprt,recatof,reclhs,rectest,recmd,recdyn");
+   outcome("RECORD")
   }
- chdir(Testdir)
+
+chdir(Testdir)
 
  if ((do_all || do_mops ) && (do_mops != -1)) {
       inflsz = caz(FailList)
@@ -1004,8 +1004,8 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
     cart ("prime_127")
 */
 
-    RunDirTests("Pow","pow")
-  outcome("MATH")
+      RunDirTests("Pow","pow")
+      outcome("MATH")
     }
 
 
@@ -1033,7 +1033,6 @@ if ((do_all || do_mops ) && (do_mops != -1)) {
    if ((do_all || do_lists ) && (do_lists != -1)) {
      inflsz = caz(FailList)
      RunDirTests("Lists","lists,listdeclare,listele,listinsdel");
-     //RunDirTests("Lists","lists");
      outcome("LISTS")
     }
 

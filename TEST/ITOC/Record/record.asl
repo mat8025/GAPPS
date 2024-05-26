@@ -30,14 +30,14 @@
   }
 
 
-  db_ask = 1;
+  db_ask = 0;
   db_allow = 1;
 
 <<"%V $db_allow \n"
 
   chkIn(_dblevel);
 
-  allowDB("spe,parse,array,record,ds_record,rdp_store", 1)
+  allowDB("spe,parse,array,record,ds_record,rdp,ic,svar", db_allow)
 
   chkT(1);
 
@@ -57,7 +57,9 @@
 
   Nrecs = Caz(R);
 
-  Ncols = Caz(R,1);
+  Ncols = -1
+
+//  Ncols = Caz(R,1);
 
   <<"num of records $Nrecs  num cols $Ncols\n";
 
@@ -73,12 +75,21 @@
   S.pinfo();
 
   <<"$S\n";
-  ans=ask(DB_prompt,db_action)
+ // ans=ask(DB_prompt,db_action)
 
   <<"%V $S[4]\n";
+  
+  r_nows = R.getNrows()
+
+  <<"%V  $r_nows \n" 
 
   R[0] = S;
-  
+
+  Ncols = Caz(R,1);
+
+  <<"num of records $Nrecs  num cols $Ncols\n";
+
+
 // R[0] = Split("80,1,2,3,40,5,6,7,8,9",','); 
 
   <<"%V $R[0] \n";
@@ -94,11 +105,15 @@
   // storeCopyRecord  --- for a field should type val as STRV
   // else as Svar
 
-  val = R[0][0];
+  R[1] = Split("81,5,42,3,40,5,6,7,8,9",',');
+
+  val = R[1][2];
 
   val.pinfo();
 
- <<"%V$val \n";
+ <<"%V $val \n";
+ chkStr(val,"42");
+
 
   val = R[0][4];
 
@@ -106,11 +121,10 @@
 
   <<"%V$val \n";
 
-  chkStr(val,40);
-//  chkOut(); exit(-1);
+  chkStr(val,"40");
+  
 
-  R[1] = Split("81,5,4,3,40,5,6,7,8,9",',');
-
+  
   <<"%V $R[1][3] \n";
 
   val = R[1][3];
@@ -161,7 +175,18 @@
 
   <<" $R[4] \n";
 
-//chkOut(1)
+/*
+
+  T= R;
+
+  <<" done rec R ---> recT \n";
+
+  sz = Caz(T);
+
+  T.pinfo()
+  
+*/
+ 
 
   for(i=0;i< 20; i++) {
 
@@ -316,6 +341,8 @@
 
   <<"num of records $Nrecs  num cols $Ncols\n";
 
+
+
   for(i=0;i< 20; i++) {
 
   <<"[$i] $R[i] \n";
@@ -333,9 +360,9 @@
 
   <<"num of records $Nrecs  num cols $Ncols\n";
 
-  R.aslpinfo();
+  R.pinfo();
 
-  for(i=0;i< 20; i++) {
+  for(i=0;i< 10; i++) {
 
   <<"[$i] $R[i] \n";
 //  does not show empty records - repeats last non-empty
@@ -344,15 +371,12 @@
 
   <<" $R[::] \n";
 
-  deleteRows(R,1,-1);
+  de leteRows(R,1,-1);
 
   <<" $R[::] \n";
 
   R.pinfo();
 
-  recinfo = info(R);
-
-  <<"$recinfo \n";
 
   <<" $R[0] \n";
 
@@ -362,7 +386,7 @@
 
   <<" $R[1] \n";
 
-  R.aslpinfo();
+  R.pinfo();
 
   R[2] = Split("82,7,6,5,40,5,6,7,8,30",",");
 
@@ -376,13 +400,12 @@
 
   deleteRows(R,1,-1);
 
-  recinfo = info(R);
-
-  <<"$recinfo \n";
 
   <<" $R[::] \n";
 
   R.pinfo();
+
+  ans=ask("R rows ?",0)
 
   R[11] = Split("91,5,4,3,40,5,6,7,Sn,50",",");
 
@@ -807,6 +830,8 @@
 
   <<" $V \n";
 
+
+
   T= R;
 
   <<" done rec ---> rec \n";
@@ -819,6 +844,7 @@
 //xzz*zz
 
   <<" $T[0:3] \n";
+
 
   R[12] = Split("re-educate -- implement demo \n");
 

@@ -386,7 +386,8 @@ else {
           cf(RT);
     }
      
-
+    //scored.pinfo()
+    
     return scored;
 }
 //===============================

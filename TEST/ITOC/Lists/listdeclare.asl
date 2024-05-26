@@ -24,10 +24,10 @@
 
 
   db_ask = 0;
-  db_allow = 0;  
+  db_allow = 1;  
 
  //allowDB("spe,ds,ic_call,pex,vmf", 1)
- allowDB("pex,vmf,list,ds,spil,rdp,spe,array,", db_allow)
+ allowDB("list,ds_sivlist,spil,rdp,spe,array,", db_allow)
 
    Str le;
 
@@ -39,7 +39,7 @@
 
    Mol.pinfo()
    
-   ans= ask("Mol ...  OK?",db_ask)
+
 
    sz = caz(Mol);
 
@@ -48,6 +48,7 @@
    <<"$(typeof(Mol)) size $(caz(Mol)) $sz \n";
 
    chkN(sz,12);
+
 
 
    ans= ask("Mol ...  OK?",db_ask)

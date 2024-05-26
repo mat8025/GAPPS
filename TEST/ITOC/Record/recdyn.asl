@@ -21,7 +21,7 @@
 
    chkIn(_dblevel);
 
-   Record R[>2] ;
+   Record R[2] ;
 
    void recspecs()
    {
@@ -30,6 +30,12 @@
    <<"%V$sz $cb\n";
    R.pinfo();
    }
+
+   db_allow = 1
+
+   allowDB("array_,rec_,ds_,spe_exp,ic_,record", db_allow);
+
+   db_ask = 0;
 
   recspecs();
 
@@ -73,7 +79,7 @@
 
   <<"$R\n";
 
-  Ncols = 10;
+  Ncols = 7;
 
   Delc = 44;
 
@@ -81,13 +87,18 @@
 
   <<"$R\n";
 
-  nrw=writeRecord(B,R,@del,Delc,@ncols,Ncols);
+ // nrw=writeRecord(B,R,@del,Delc,@ncols,Ncols);
+
+  nrw=writeRecord(B,R,_DEL,Delc,_NCOLS,Ncols);   // tags
+
+  <<"%V $nrw \n"
+  
 
   cf(B);
 
-  chkStage();
+  chkStage("DYN OK?");
 
-  chkProgress("How Good");
+  chkProgress();
 
   chkOut();
 

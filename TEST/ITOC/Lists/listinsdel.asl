@@ -13,7 +13,7 @@
  */ 
 
 
-#include "debug.asl"
+//#include "debug.asl"
 
    debugON();
 
@@ -28,18 +28,16 @@
    chkIn(_dblevel);
 
    db_ask = 0;
-   db_allow = 0;   
+   db_allow = 1;   
 
- //allowDB("spe,ds,ic_call,pex,vmf", 1)
- allowDB("spe_declare,pex,vmf,list,ds_sivlist,spil", db_allow)
+// TBF can't use gslists ?
+   allowDB("spe_declare,vmf,list,ds_sivlist", db_allow)
 
     // empty list --- bug first item null?;
 
  //  List  ShoppingList(STRV_);
 
     ShoppingList = ("xxx","abc","exp_e"  )  ;
-
-
 
  //  ShoppingList.insert(LIBEG_,"xxx","abc","exp_e"  )  ;
 

@@ -75,10 +75,25 @@
 
    chkN(LHV[1],7);
 
-   <<" $RHV[12:14] \n";
+   allowDB("spe,ic,pex,parse,array",db_allow)
+
+   RHV.pinfo()
+
+   <<"%V $RHV[12:14:1] \n";
+
+//!b  allow margin code ops??
+
+
+
+  ans=ask(" RHV[12:14] ? ",0);
+
+
+
 
    LHV[5:9:2] = RHV[12:14];
 
+   LHV.pinfo()
+   
    <<" $LHV[5:9:2] \n";
 
    <<" $LHV \n";
@@ -87,13 +102,13 @@
 
 //   TSN = RHV[1:5] + RHV[7:11];
 
-           RHV.pinfo()
+      RHV.pinfo()
 	   
    <<" $RHV[1:5:1] \n"; // TBF  5/19/24  asl no vecprint  xic prints entire vec
 
     <<" $RHV[7:11] \n";
 
-allowDB("spe,rdp_,ic,pex,parse,array,ds_store",db_allow)
+
 
 
 
@@ -128,9 +143,9 @@ allowDB("spe,rdp_,ic,pex,parse,array,ds_store",db_allow)
 
    TSN2 = RHV[1:-1:1] + RHV[1:-1:1];
 
-   <<"%v $RHV \n";
+   <<"%V $RHV \n";
 
-   <<"%v $TSN2 \n";
+   <<"%V $TSN2 \n";
    TSN2.pinfo()
  
    chkOut();

@@ -83,7 +83,7 @@
 
   MD[0:3][0] = -34;
 
-  Record RSV[>3];
+  Record RSV[3];
 
   MD.pinfo();
 
@@ -133,7 +133,7 @@
 
   <<"$V\n";
 
-  Record RV[>3];
+  Record RV[3];
 
   RV =V;
 

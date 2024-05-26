@@ -9,10 +9,9 @@ debugON();
 
 setdebug(1,@trace,@~stderr,@pline,@showresults,@filter,0)
 //   nvm[np-1] += 1;  // FIX THIS!
-FilterFileDebug(REJECT_,"~storetype_e");
-FilterFuncDebug(REJECT_,"~ArraySpecs",);
+
    
-checkIn()
+chkIn()
 
 np = 7;
 char nvm[10];
@@ -178,6 +177,7 @@ dvm[jp] -= 1;  // FIX THIS!
 checkFnum(dvm[3],55)
 <<"%6.1f $dvm \n"
 
-checkOut() ; exit()
+chkOut(1) ;
+exit()
 
 
