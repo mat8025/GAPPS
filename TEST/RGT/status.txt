@@ -2,7 +2,6 @@ module    status    (-3 crash, -2 stall, -1 partial, <100% some tests fail, 100%
 
 array	1      100 
 bops	1      100
-bugs	-1    77.27
 class	1      100 256
 command  -1    50.0
 declare	 1     100
@@ -26,17 +25,17 @@ pan	       1	100 28
 paraex      1  100 6
 proc		1 100 250
 ptrs	        -1  89.3 118
-record	-1
+record	1 100 168
 redimn	1 100	8
 resize	1 100	20
 scope	1 100	12
 sfunc        -1 88.65   691
 sops		1 100	229
-stat	       -1    54	12
+stat	        1    100	34
 svar	        1    100   146
 switch	1	100 46
 threads     -1
-try		-3
+try		1 100  12
 types	1	100  142
 unary       1	100 18
 vops		1   100 164

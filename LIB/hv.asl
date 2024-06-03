@@ -36,7 +36,7 @@ Str Hdr_comment = "?";
 
    Str  rs = "comment ca va";
 
-  int vers2ele(Str& vstr)
+  int vers2ele(str& vstr)
   {
   //<<"%V $vstr\n"
    int pmaj = atoi(spat(vstr,".",-1));

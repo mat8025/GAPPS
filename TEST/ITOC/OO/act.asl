@@ -1,161 +1,174 @@
+/* 
+ *  @script act.asl 
+ * 
+ *  @comment class Act 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.18 : C Ar]                                   
+ *  @date 05/30/2024 10:36:26 
+ *  @cdate 05/30/2024 10:36:26 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare 2024
+ * 
+ */ 
+//-----------------<V_&_V>------------------------//
+
 ///
 ///
 ///
 
+   int Act_ocnt = 0;
 
-  int Act_ocnt = 0;
+   class Act {
 
-  class Act {
+        public:
 
-  public:
+        int otype;
 
-  int otype;
+        int mins;
 
-  int mins;
+        int t;
 
-  int t;
+        int id;
 
-  int id;
+        Svar svtype;
 
-  Svar svtype;
+        Str stype;
 
-  Str stype;
-
-  int a_day;
+        int a_day;
  //===================//
 
-  int Set(int k)
-  {
+        int Set(int k)
+        {
 
-  <<"Act_Set INT  $_cobj k $k\n";
+             <<"Act_Set INT  $_cobj k $k\n";
 
-  <<"%V$otype\n";
-  otype = k;
+             <<"%V$otype\n";
 
-  otype.pinfo();
+             otype = k;
 
-  return otype;
+             otype.pinfo();
 
-  }
+             return otype;
 
+        }
 
-  int SetO(int k)
-  {
+        int SetO(int k)
+        {
 
-  <<"Act_Set INT  $_cobj k $k\n";
+             <<"Act_Set INT  $_cobj k $k\n";
 
-  <<"%V$otype\n";
-  otype = k;
+             <<"%V$otype\n";
+
+             otype = k;
      //otype.info(1);
 
-  otype.pinfo();
+             otype.pinfo();
 
-  return otype;
+             return otype;
 
-  }
+        }
 
+        Svar Set(Svar sa)
+        {
 
-  Svar Set(Svar sa)
-  {
-
-  <<"Act Set SVAR $_cobj \n";
+             <<"Act Set SVAR $_cobj \n";
   //allowDB("svar,spe,array,pexpnd,oo");
-  
-  sa.pinfo();
- ans= ask("svar??",db_ask);
 
-svtype = sa;
+             sa.pinfo();
 
-  <<"$sa[1] : $sa[2]\n";
+             ans= ask("svar??",db_ask);
 
-  ans= ask("svar??",db_ask);
+             svtype = sa;
 
-  val = sa[1];
+             <<"$sa[1] : $sa[2]\n";
 
-  <<"%V $val\n";
+             ans= ask("svar??",db_ask);
+
+             val = sa[1];
+
+             <<"%V $val\n";
       //val1 = SV[1]
 
-  cval1 = SV[1];
+             cval1 = SV[1];
 
-  <<"%V $cval1\n";
+             <<"%V $cval1\n";
 
-  <<"stype  $sa $svtype\n";
+             <<"stype  $sa $svtype\n";
 
-  return svtype;
+             return svtype;
 
-  }
+        }
 
-  Str Set(Str sr)
-  {
+        Str Set(Str sr)
+        {
 
-  <<"Act Set  STR $_cobj <|$sr|> \n";
+             <<"Act Set  STR $_cobj <|$sr|> \n";
 
-  stype = sr; // fail?;
+             stype = sr; // fail?;
 
-  sr.pinfo();
+             sr.pinfo();
 
-  stype.pinfo();
+             stype.pinfo();
 
-  <<"sr  <|$sr|> stype <|$stype|>\n";
+             <<"sr  <|$sr|> stype <|$stype|>\n";
 
-  return stype;
+             return stype;
 
-  }
+        }
 
-  int Get()
-  {
+        int Get()
+        {
 
-  <<"$_procGet %V $otype\n";
+             <<"$_proc %V $otype\n";
 
- // otype.pinfo();
+             otype.pinfo();
 
-  return otype;
+             return otype;
 
-  }
+        }
 
-  int GetWD()
-  {
+        int GetWD()
+        {
 
-  <<"$_proc  GetWD\n";
+             <<"$_proc  GetWD\n";
 
-  a_day.pinfo();
+             a_day.pinfo();
 
-  <<"getting  $a_day\n";
+             <<"getting  $a_day\n";
 
-  return a_day;
+             return a_day;
 
-  }
+        }
 
-  void Act()
-  {
+        void Act()
+        {
 // FIXME   <<"cons of Act $_cobj $(_cobj.obid())  $(IDof(&_cobj))\n" 
 //   co = _cobj.offset()
 //allowDB("spe,oo")
-  id= Act_ocnt++ ;
 
-<<"%V $id\n"
+             id= Act_ocnt++ ;
 
-  id.pinfo()
+             <<"%V $id\n";
 
-  otype = 1;
+             id.pinfo();
 
-  mins = 10;
+             otype = 1;
 
-  t = id*2;
-  t.pinfo()
+             mins = 10;
+
+             t = id*2;
+
+             t.pinfo();
 //ans=ask("Act $t set ?",1)
 
-  a_day = Act_ocnt;
+             a_day = Act_ocnt;
 
-  a_day.pinfo();   
-
+             a_day.pinfo();
 //<<"Act CONS ID is $id \n"
 
-<<"Act CONS of %V $_cobj $id $Act_ocnt  $a_day $mins $otype\n"
+             <<"Act CONS of %V $_cobj $id $Act_ocnt  $a_day $mins $otype\n";
 
-  }
+        }
 
-  }
-
-
-//================================//
+   }
+//==============\_(^-^)_/==================//

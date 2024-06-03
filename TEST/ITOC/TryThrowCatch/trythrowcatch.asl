@@ -27,6 +27,8 @@ if (_dblevel >0) {
 
  chkIn(_dblevel); 
 
+ db_ask =0
+ 
 int tval = 7;
 
 na = argc();
@@ -57,7 +59,7 @@ if (_clarg[1] != "") {
 
 <<"%V $tval $na $_clarg[0] $_clarg[1]  \n"
 
-  askit(1)
+
 
 no_throws =0;
 caught = 0;
@@ -65,12 +67,8 @@ caught = 0;
  //tval.pinfo()
 
 
-
-
-
-
 //////////////////////////////////////////////////
-
+  allowDB("spe,ic",1)
 
 
 int test_try_throw_catch(int val)
@@ -82,40 +80,38 @@ int test_try_throw_catch(int val)
     just_one_try = 0;
     no_throws =0;
     
-    try     {
-      
-
-   
+    try  {
 
         if (val == 47)  {
-	
+       <<"should be throwing $val\n"	
            throw 47;
         }
+        just_one_try++;
+      <<" continue in try block $just_one_try\n"
 
-       if (val == 77) {
-       
+     if (val == 77) {
        <<"should be throwing $val\n"
            throw 77;
        }
+        just_one_try++;
+      <<" continue in try block $just_one_try\n"       
       
         if (val == 79)
 	{
        <<"should be throwing 79 $val\n"	
            throw 79;
         }
-	
+        just_one_try++;
+      <<" continue in try block $just_one_try\n"	
 	if (val == 80)
 	{
        <<"should be throwing 80 $val\n"	
            throw 80;
         }
-	
+        just_one_try++;
+      <<" continue in try block $just_one_try\n"	
 
 	<<"try no throw of $val $cball\n";
-
-        just_one_try++;
-	
-      <<" continue in try block $just_one_try\n"
       
    //     throw 0; // TBF
 	no_throws = 1;
@@ -127,12 +123,9 @@ int test_try_throw_catch(int val)
 //    val = 47;   // TBF  does not  cause a  syntax error
 
    catch ( int ball) {
-    
 
        cball = ball;
 <<"caught $ball   $cball\n";       
-
-//ans=query("next\n")
     }
     
   //<<"Out $_proc $no_throws $val  $(pt(val))  $cball\n";
@@ -145,22 +138,22 @@ int test_try_throw_catch(int val)
 
 int just_one_try = 0;
 
-val = 47;
+tval = 47;
 
 
 rball=test_try_throw_catch(tval)
 
-<<" after first try using $tval  - throw in $rball\n"
+ans=ask(" after first try in val $tval  - throw in $rball",db_ask)
 
-  askit(1)
+
 
 chkN(rball,tval);
 
 
   rball=test_try_throw_catch(76)
 
-<<" after second try in proc $rball\n"
-//ans=query("next\n")
+ans=ask(" after second try in val 76 $rball",db_ask)
+
 
 chkN(rball,-1);
 
@@ -168,29 +161,33 @@ chkN(rball,-1);
 
 rball=test_try_throw_catch(79)
 
+ans=ask(" after third try in val 79 $rball",db_ask);
 
-//ans=query("next\n")
-<<" after third try in proc $rball\n"
 chkN(rball,79);
 
 rball=test_try_throw_catch(77)
-<<" proc returns $rball\n"
-<<" after fourth try in proc $rball\n"
+
+ans=ask(" after fourth try in val 77 $rball",db_ask);
+
 chkN(rball,77)
 
 
 rball= test_try_throw_catch(47)
-<<" proc returns $rball\n"
-<<" after fifth try in proc $rball\n"
+
+ans=ask(" after fifth try in val 47 $rball",db_ask);
+
 chkN(rball,47)
 
 
 rball= test_try_throw_catch(50)
-<<" proc returns $rball\n"
+
+<<"50   try returns $rball\n"
+
+
 chkN(rball,-1)
 
 
 
-chkOut()
+chkOut(1)
 
-exit()
+

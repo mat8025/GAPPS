@@ -12,644 +12,645 @@
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
 
-
 <|Use_
-  Demo  of proc return ;
+   Demo  of proc return ;
 ///////////////////////
 |>
 
 #include "debug"
 
-  if (_dblevel >0) {
+   if (_dblevel >0) {
 
-  debugON();
+        debugON();
 
-  <<"$Use_\n";
+        <<"$Use_\n";
 
-  }
-  ask =0
+   }
 
- chkIn(_dblevel);
- db_allow = 0 ; // set to 1 for internal debug print;
+   ask =0;
 
- db_ask = 0;
+   chkIn(_dblevel);
 
-allowDB("opera_,spe_,svar,str_,array_parse,parse,rdp_,pex",db_allow);
+   db_allow = 1 ; // set to 1 for internal debug print;
 
+   db_ask = 0;
 
-  float Foo(float x,float  y)
-  {
+   allowDB("ic,opera_,spe_,svar,str_,array_parse,parse,rdp_,pex",db_allow);
 
-  <<"in float Foo\n";
+   float Foo(float x,float  y)
+   {
 
-  z = x * y;
+        <<"in float Foo\n";
 
-  return z;
+        z = x * y;
 
-  }
+        return z;
 
-  int Foo(int x,int  y)
-  {
+   }
 
-  <<"in int Foo $x $y \n";
+   int Foo(int x,int  y)
+   {
 
-  x.pinfo()
-  y.pinfo()
-  
-  z = x * y;
+        <<"in int Foo $x $y \n";
 
-  z.pinfo()
+        x.pinfo();
 
-  return z;
+        y.pinfo();
 
-  }
+        z = x * y;
 
+        z.pinfo();
 
-  x0 = 3
-  y0 = 2
-  z0 = x0 * y0
+        return z;
 
-  z0.pinfo()
+   }
+
+   x0 = 3;
+
+   y0 = 2;
+
+   z0 = x0 * y0;
+
+   z0.pinfo();
 
    chkN(z0,6);
 
+   a = Foo(2,3);
 
-  a = Foo(2,3);
+   a.pinfo();
 
-  a.pinfo()
-  askit(0)
+   askit(0);
 
-  chkN(a,6);
+   chkN(a,6);
 
-  a.pinfo();
+   a.pinfo();
 
-  <<"%v $a \n";
+   <<"%v $a \n";
 
-  b = Foo(4.0,3.0);
+   b = Foo(4.0,3.0);
 
-  chkR(b,12.0);
+   chkR(b,12.0);
 
-  a = 1;
+   a = 1;
 
-  while (a < 10) {
+   while (a < 10) {
 
-  c=Foo(2,a);
+        c=Foo(2,a);
 
-  <<"%V $a $c\n";
+        <<"%V $a $c\n";
 
-  a++;
+        a++;
 
-  <<" next iteration $a\n";
+        <<" next iteration $a\n";
 
-  }
+   }
 
-  b.pinfo();
+   b.pinfo();
 
-  <<"%v $b \n";
+   <<"%v $b \n";
 
-  Str Mele = "XYZ";
+   Str Mele = "XYZ";
 
-  Mele.pinfo();
+   Mele.pinfo();
 
-  Str say()
-  {
+   Str say()
+   {
 
-  <<"$_proc hey there I exist\n";
+        <<"$_proc hey there I exist\n";
 
-  isay="hey hey";
+        isay="hey hey";
 
-  <<"$isay $(typeof(isay))\n";
+        <<"$isay $(typeof(isay))\n";
 
-  return isay;
+        return isay;
 
-  }
+   }
 
-  ws = say();
+   ws = say();
 
-  ws.pinfo();
+   ws.pinfo();
 
-  <<"<|$ws|>\n";
+   <<"<|$ws|>\n";
 
-  chkStr(ws,"hey hey");
+   chkStr(ws,"hey hey");
 
-  Str vers2ele(Str vstr)
-  {
+   Str vers2ele(Str vstr)
+   {
 
-  <<"$_proc   <| $vstr |>\n";
+        <<"$_proc   <| $vstr |>\n";
 
-  vstr.pinfo();
+        vstr.pinfo();
 
-  pmaj.pinfo();
+        pmaj.pinfo();
 
-  pmaj = atoi(spat(vstr,".",-1));
+        pmaj = atoi(spat(vstr,".",-1));
 
-  pmaj.pinfo();
+        pmaj.pinfo();
 
-  <<"$pmaj \n";
+        <<"$pmaj \n";
 
-  <<"$(typeof(pmaj)) \n";
+        <<"$(typeof(pmaj)) \n";
 
-  <<"$(ptsym(pmaj)) \n";
+        <<"$(ptsym(pmaj)) \n";
 
-  pmin = atoi(spat(vstr,".",1));
+        pmin = atoi(spat(vstr,".",1));
 
-  <<"$pmin $(ptsym(pmin))\n";
+        <<"$pmin $(ptsym(pmin))\n";
 
-  elestr = pt(pmin);
+        elestr = pt(pmin);
 
-  elestr.pinfo();
+        elestr.pinfo();
 
-  Str ele = "XYZ";
+        Str ele = "XYZ";
 
-  ele.pinfo();
+        ele.pinfo();
 
-  es= spat(elestr,",");
+        es= spat(elestr,",");
 
-  <<"%V $es\n";
+        <<"%V $es\n";
 
-  es.pinfo();
+        es.pinfo();
 
-  ele = spat(elestr,",");
+        ele = spat(elestr,",");
 
-  ele.pinfo();
+        ele.pinfo();
 
-  <<"$ele $(typeof(ele))\n";
+        <<"$ele $(typeof(ele))\n";
 
-  <<"$ele\n";
+        <<"$ele\n";
 
-  return ele;
+        return ele;
 
-  }
+   }
 //===============================
 
-  int a1 = 2;
+   int a1 = 2;
 
-  int a2 = 4;
+   int a2 = 4;
 
-  c = Foo(a1,a2);
+   c = Foo(a1,a2);
 
-  chkR(c,8);
+   chkR(c,8);
 
-  c.pinfo();
+   c.pinfo();
 
-  <<"%v $b \n";
+   <<"%v $b \n";
 
-  j = 1;
+   j = 1;
 
-  n = 12;
+   n = 12;
 
-  while (j < 4) {
+   while (j < 4) {
 
-  a = Foo(j,n);
+        a = Foo(j,n);
 
-  j.pinfo();
+        j.pinfo();
 
-  <<" $j * $n  = $a\n";
+        <<" $j * $n  = $a\n";
 
-  j++;
+        j++;
 
-  }
+   }
 
-  int pmaj;
+   int pmaj;
 
-  int pmin;
+   int pmin;
 
-  cvers ="1.54";
+   cvers ="1.54";
 
-  cvers.pinfo();
+   cvers.pinfo();
 
-  nele = vers2ele(cvers);
+   nele = vers2ele(cvers);
 
-  <<"%V $cvers $nele\n";
+   <<"%V $cvers $nele\n";
 
-  nele.pinfo();
+   nele.pinfo();
 
-  chkStr(nele,"Xeon");
+   chkStr(nele,"Xeon");
 
-  int foo1(real a)
-  {
-  ret = 0;
+   int foo1(real a)
+   {
+        ret = 0;
 
-  <<" $_proc foo $a \n";
+        <<" $_proc foo $a \n";
 
-  if (a > 1) {
+        if (a > 1) {
 
-  <<" $a > 1 should be returning 1 !\n";
+             <<" $a > 1 should be returning 1 !\n";
 
-  ret =  1    ; // FIX?? needs a ; statement terminator;
+             ret =  1    ; // FIX?? needs a ; statement terminator;
 
-  }
+        }
 
-  else if (a < 0) {
+        else if (a < 0) {
 
-  <<" $a < 0 should be returning -1 !\n";
+             <<" $a < 0 should be returning -1 !\n";
 
-  ret =  -1;
+             ret =  -1;
 
-  }
+        }
 
-  else {
+        else {
 
-  <<" $a <= 1 should be returning 0 !\n";
+             <<" $a <= 1 should be returning 0 !\n";
 
-  }
+        }
 
-  return ret;
+        return ret;
 
-  }
+   }
 ////////////////////////////////////////
 
-  int foo1(int a)
-  {
-  ret = 0;
+   int foo1(int a)
+   {
+        ret = 0;
 
-  <<" $_proc foo $a \n";
+        <<" $_proc foo $a \n";
 
-  if (a > 1) {
+        if (a > 1) {
 
-  <<" $a > 1 should be returning 1 !\n";
+             <<" $a > 1 should be returning 1 !\n";
 
-  ret =  1;    // FIX?? needs a ; statement terminator;
+             ret =  1;    // FIX?? needs a ; statement terminator;
 
-  }
+        }
 
-  else if (a < 0) {
+        else if (a < 0) {
 
-  <<" $a < 0 should be returning -1 !\n";
+             <<" $a < 0 should be returning -1 !\n";
 
-  ret =  -1;
+             ret =  -1;
 
-  }
+        }
 
-  else {
+        else {
 
-  <<" $a <= 1 should be returning 0 !\n";
+             <<" $a <= 1 should be returning 0 !\n";
 
-  }
+        }
 
-  return ret;
+        return ret;
 
-  }
+   }
 
-  int foo2(int a)
-  {
+   int foo2(int a)
+   {
 
-  int fret = 0;
+        int fret = 0;
 
-  <<" $_proc foo2 $a \n";
+        <<" $_proc foo2 $a \n";
 
-  if (a > 300) {
+        if (a > 300) {
 
-  <<" $a > 300 foo2 should be returning 30 !\n";
+             <<" $a > 300 foo2 should be returning 30 !\n";
 
-  fret =30;
+             fret =30;
 
-  }
+        }
 
-  else if (a > 200) {
+        else if (a > 200) {
 
-  <<" $a > 200 foo2 vshould be returning 20 !\n";
+             <<" $a > 200 foo2 vshould be returning 20 !\n";
 
-  fret = 20;
+             fret = 20;
 
-  }
+        }
 
-  else if (a > 100) {
+        else if (a > 100) {
 
-  <<" $a > 100 foo2 should be returning 10 !\n";
+             <<" $a > 100 foo2 should be returning 10 !\n";
 
-  fret = 10;
+             fret = 10;
 
-  }
+        }
 //////////////////////////////////////////////
 
-  else if (a > 1) {
+        else if (a > 1) {
 
-  <<" $a > 1 should be returning 1 !\n";
+             <<" $a > 1 should be returning 1 !\n";
 
-  fret=  1;
+             fret=  1;
 
-  }
+        }
 
-  else if (a < 0) {
+        else if (a < 0) {
 
-  <<" $a > 1 should be returning -1 !\n";
+             <<" $a > 1 should be returning -1 !\n";
 
-  fret=  -1;
+             fret=  -1;
 
-  }
+        }
 
-  else {
+        else {
 
-  <<" $a <= 1 should be returning 0 !\n";
+             <<" $a <= 1 should be returning 0 !\n";
 
-  }
+        }
 
-  <<"return $fret\n";
+        <<"return $fret\n";
 
-  return fret;
+        return fret;
 
-  }
+   }
 //////////////////////////////////
 
-  int foo3(real a)
-  {
-  int ret = 0;
+   int foo3(real a)
+   {
+        int ret = 0;
 
-  <<" $_proc foo3 $a \n";
+        <<" $_proc foo3 $a \n";
 
-  a.pinfo();
+        a.pinfo();
 
-  if (a > 300) {
+        if (a > 300) {
 
-  <<" $a > 300 foo3 should be returning 30 !\n";
+             <<" $a > 300 foo3 should be returning 30 !\n";
 
-  ret = 30;
+             ret = 30;
 
-  }
+        }
 
-  else if (a > 200) {
+        else if (a > 200) {
 
-  <<" $a > 200 foo3 vshould be returning 20 !\n";
+             <<" $a > 200 foo3 vshould be returning 20 !\n";
 
-  ret = 20;
+             ret = 20;
 
-  }
+        }
 
-  else  if (a > 100) {
+        else  if (a > 100) {
 
-  <<" $a > 100 foo3 should be returning 10 !\n";
+             <<" $a > 100 foo3 should be returning 10 !\n";
 
-  ret = 10;
+             ret = 10;
 
-  }
+        }
 
-  return ret;
+        return ret;
 
-  }
+   }
 //========================
 
-  void goo(ptr a)
-  {
+   void goo(ptr a)
+   {
 
-  <<"$_proc $a \n";
+        <<"$_proc $a \n";
 
-  a.pinfo();
+        a.pinfo();
 //  fileDB(ALLOW_,"opera_")
-  $a += 1;
+
+        $a += 1;
   // this should increment what a is pointing to a should
  // be as before
 
-  a.pinfo();
-
-
+        a.pinfo();
 // does'nt really return anything
 // return on own crash TBF crash
 
-  return;
+        return;
 
-  }
+   }
 //==================================//
 
-  real hoo(real a)
-  {
+   real hoo(real a)
+   {
 
-  <<"$_proc $a\n";
+        <<"$_proc $a\n";
 
-  a.pinfo();
+        a.pinfo();
 
-  a += 1;
+        a += 1;
 
-  b = a;
+        b = a;
 // does'nt really return anything
-  b.pinfo()
-  return b;  // TBD crash;
 
-  }
+        b.pinfo();
+
+        return b;  // TBD crash;
+
+   }
 //==================================//
 
-  int moo(double a)
-  {
+   int moo(double a)
+   {
 
-  <<"$_proc $a\n";
+        <<"$_proc $a\n";
 
-  a += 1;
+        a += 1;
 
-  <<"%V $a\n";
+        <<"%V $a\n";
 
-  a.pinfo();
+        a.pinfo();
 
-  if (a >1) a += 1;
+        if (a >1) a += 1;
 // if (a >10)  return; // TBF needs {}
 
-  int mb = a;
+   int mb = a;
 
-  mb += 2;
+   mb += 2;
 
-  <<"%V $a\n";
+   <<"%V $a\n";
 
-  mb.pinfo();
+   mb.pinfo();
 
-  return mb;  // TBD crash;
+   return mb;  // TBD crash;
 
   }
 //==================================//
 
-  int roo(ptr a)
-  {
+   int roo(ptr a)
+   {
 
-  <<"$_proc $($a)\n";
+        <<"$_proc $($a)\n";
 
-  $a += 1;
+        $a += 1;
 
-  <<"%V $a\n";
+        <<"%V $a\n";
 
-  a.pinfo();
+        a.pinfo();
 
-  if ($a >1) $a += 1;
+        if ($a >1) $a += 1;
 // if (a >10)  return; // TBF needs {}
 
-  int mb = $a;
+   int mb = $a;
 
-  <<"%V $mb \n";
+   <<"%V $mb \n";
 
-  mb += 2;
+   mb += 2;
 
-  <<"%V $a\n";
+   <<"%V $a\n";
 
-  mb.pinfo();
+   mb.pinfo();
 
-  return mb;  // TBD crash;
+   return mb;  // TBD crash;
 
   }
 //==================================//
 
-  in = 2;
+   in = 2;
 
-  c = foo1(in);
+   c = foo1(in);
 
-  <<" $in $c \n";
+   <<" $in $c \n";
 
-  chkN(c,1);
+   chkN(c,1);
 
-  x= sin(0.5)
+   x= sin(0.5);
 
-  <<"%v $x\n"
+   <<"%v $x\n";
 
-  y = sin(0.5) * 2
-  
-<<"%V $x $y\n"
+   y = sin(0.5) * 2;
 
+   <<"%V $x $y\n";
 
-allowDB("opera_,spe_,svar,str_,array_parse,parse,rdp_,pex",db_allow);
-c = foo1(in) * 2;
+   allowDB("opera_,spe_,svar,str_,array_parse,parse,rdp_,pex",db_allow);
 
-  <<" $in $c \n";
+   c = foo1(in) * 2;
 
-ans = ask("%V $x $y ",0)
+   <<" $in $c \n";
 
-  chkN(c,2);
+   ans = ask("%V $x $y ",0);
 
+   chkN(c,2);
   //chkOut(1)
 
-  in = 1;
+   in = 1;
 
-  c = foo1(in);
+   c = foo1(in);
 
-  <<" $in $c \n";
+   <<" $in $c \n";
 
-  chkN(c,0);
+   chkN(c,0);
 
-  in = 3;
+   in = 3;
 
-  c = foo1(in);
+   c = foo1(in);
 
-  <<" $in out $c \n";
+   <<" $in out $c \n";
 
-  chkN(c,1);
+   chkN(c,1);
 
-  c = foo1(in) * 6;
+   c = foo1(in) * 6;
 
-  <<" $in $c \n";
+   <<" $in $c \n";
 
-  chkN(c,6);
+   chkN(c,6);
 
-  in = -4;
+   in = -4;
 
-  c = foo1(in) * 6;
+   c = foo1(in) * 6;
 
-  <<" $in $c \n";
+   <<" $in $c \n";
 
-  chkN(c,-6);
+   chkN(c,-6);
 
-  fin = 110.0;
+   fin = 110.0;
 
-  d = foo3(fin);
+   d = foo3(fin);
 
-  <<"ret will be  $d\n";
+   <<"ret will be  $d\n";
 
-  in = 210;
+   in = 210;
 
-  d = foo2(in);
+   d = foo2(in);
 
-  <<"ret will be  $d\n";
+   <<"ret will be  $d\n";
 
-  real rin = in;
+   real rin = in;
 
-  e = foo3(rin);
+   e = foo3(rin);
 
-  <<"ret will be  $e\n";
-  in.pinfo()
-  
-  e = foo3(in);
-  askit(0)
-  <<"ret will be  $e\n";
+   <<"ret will be  $e\n";
 
-  c = foo2(in);
+   in.pinfo();
 
-  c = foo2(in) * 6;
+   e = foo3(in);
 
-  <<"$c foo2(in) * 6\n";
+   askit(0);
 
-  chkN(c,120);
+   <<"ret will be  $e\n";
 
-  c = 6 * foo2(in);
+   c = foo2(in);
 
-  <<"$c  6 * foo2(in)\n";
+   c = foo2(in) * 6;
 
-  c.pinfo();
+   <<"$c foo2(in) * 6\n";
 
-  chkN(c,120);
+   chkN(c,120);
 
-  chkOut();
+   c = 6 * foo2(in);
 
-  in = 310;
+   <<"$c  6 * foo2(in)\n";
 
-  d = foo2(in);
+   c.pinfo();
 
-  <<"ret will be $d\n";
+   chkN(c,120);
 
-  e = foo3(fin);
+   in = 310;
 
-  <<"ret will be  $e\n";
+   d = foo2(in);
 
-  c = foo2(in) * 7;
+   <<"ret will be $d\n";
 
-  <<"%V $in $c \n";
+   e = foo3(fin);
 
-  chkN(c,210);
+   <<"ret will be  $e\n";
 
-  for (j = 0 ; j < 3; j++) {
+   c = foo2(in) * 7;
 
-  in = 3;
+   <<"%V $in $c \n";
 
-  c = foo1(in) * (j + 1);
+   chkN(c,210);
 
-  <<" $in  returned * 3  $c \n";
+   for (j = 0 ; j < 3; j++) {
 
+        in = 3;
 
-  chkN(c,(j+1));
+        c = foo1(in) * (j + 1);
 
-  }
+        <<" $in  returned * 3  $c \n";
 
-  x =1;
+        chkN(c,(j+1));
 
-  xp = &x;
+   }
 
-  xp.pinfo();
+   x =1;
 
-  askit(0);
+   xp = &x;
 
-  fileDB(ALLOW_,"spe_proc, opera_main")
+   xp.pinfo();
 
-  goo(xp);
+   askit(0);
 
-  <<"after call goo $x\n";
+   fileDB(ALLOW_,"spe_proc, opera_main");
 
-  chkN(x,2);
+   goo(xp);
 
-  x.pinfo()
+   <<"after call goo $x\n";
 
-  xr= hoo(x);
+   chkN(x,2);
 
-  <<"after call hoo $x $xr\n";
+   x.pinfo();
 
-  chkN(x,2);
+   xr= hoo(x);
 
-  chkN(xr,3);
+   <<"after call hoo $x $xr\n";
 
-  double xm=14.0;
+   chkN(x,2);
 
-  mr= moo(xm);
+   chkN(xr,3);
 
-  <<"%V $xm $mr\n";
+   double xm=14.0;
 
-  chkN(mr,18);
+   mr= moo(xm);
 
-  int ixm = 14;
+   <<"%V $xm $mr\n";
+
+   chkN(mr,18);
+
+   int ixm = 14;
  //  mr= roo(&ixm)
 //<<"%V $ixm $mr\n"
 
-  chkOut(1);
-
+   chkOut(1);
 //==============\_(^-^)_/==================//

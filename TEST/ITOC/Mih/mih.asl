@@ -1,205 +1,218 @@
-//%*********************************************** 
-//*  @script mih.asl 
-//* 
-//*  @comment test ineritance 
-//*  @release CARBON 
-//*  @vers 1.2 He Helium [asl 6.2.48 C-He-Cd]                                
-//*  @date Tue May 19 07:30:42 2020 
-//*  @cdate 1/1/2003 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
-;
+/* 
+ *  @script mih.asl                                                     
+ * 
+ *  @comment test ineritance                                            
+ *  @release Carbon                                                     
+ *  @vers 1.3 Li Lithium [asl 6.18 : C Ar]                              
+ *  @date 05/30/2024 13:19:28                                           
+ *  @cdate 1/1/2003                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
+ * 
+ */ 
+
 <|Use_=
-Demo  of multiple inheritance
+   Demo  of multiple inheritance
 ///////////////////////
 |>
 
 #include "debug"
-#include "hv.asl"
+//#include "hv.asl"
 
-if (_dblevel >0) {
-  debugON()
-    <<"$Use_\n"   
-}
+   if (_dblevel >0) {
 
- allowErrors(-1)
+        debugON();
 
-<<"$hdr_vers \n"
+        <<"$Use_\n";
 
-chkIn(_dblevel)
+   }
 
+   allowErrors(-1);
 
-int barns = 2;
+   chkIn(_dblevel);
 
-barns = 10;
+   allowDB("spe_proc,spe_vmf,ic",1);
 
-<<"%V $barns \n"
+   int barns = 2;
 
-class building {
+   barns = 10;
 
- int rooms
- int floors
- int area
+   <<"%V $barns \n";
 
- cmf setrooms(int val)
- {
-   rooms = val
- }
+   class building {
 
- cmf getrooms()
- {
-   return rooms 
- }
+        int rooms;
 
- cmf setfloors(int val)
- {
-   floors = val
- }
+        int floors;
 
- cmf getfloors()
- {
-   return floors
- }
+        int area;
 
- cmf print()
- {
-   <<"$_cobj has %V $rooms $floors\n"
- }
+        void setrooms(int val)
+        {
 
+             rooms = val;
+        }
 
- cmf building()
- {
-  <<"$_cobj constructor \n"
-  floors = 2
-  rooms = 4
- }
+        int getrooms()
+        {
 
-}
+             return rooms;
+        }
 
+        void setfloors(int val)
+        {
 
-<<" finished class def building \n"
+             floors = val;
+        }
 
-   building b
+        int getfloors()
+        {
 
-   b->print()
+             return floors;
+        }
 
+        void print()
+        {
 
+             <<"$_cobj has %V $rooms $floors\n";
+        }
 
-class A {
+         cmf building()
+        {
 
- int x;
+             <<"$_cobj constructor \n";
 
- cmf setval(int val)
- {
-   x = val
- }
+             floors = 2;
 
- cmf getval()
- {
-   return x 
- }
+             rooms = 4;
+        }
 
+   }
 
- cmf print()
- {
-   <<"$_cobj has %V $x\n"
- }
+   <<" finished class def building \n";
 
+   building b;
 
- cmf A()
- {
-  <<"$_cobj constructor \n"
-   x = 4
- }
+   b.print();
 
-}
-//======================================//
-<<" finished class A  \n"
+   class A {
 
+        int x;
 
-class B {
+        void setval(int val)
+        {
 
- int y
+             x = val;
+        }
 
- cmf setval(int val)
- {
-   y = val
- }
+        int getval()
+        {
 
- cmf getval()
- {
-   return y 
- }
+             return x;
+        }
 
+        void print()
+        {
 
- cmf print()
- {
-   <<"$_cobj has %V $y\n"
- }
+             <<"$_cobj has %V $x\n";
+        }
 
+        cmf A()
+        {
 
- cmf B()
- {
-  <<"$_cobj constructor \n"
-   y = 4
- }
+             <<"$_cobj constructor \n";
 
-}
+             x = 4;
+        }
+
+   }
 //======================================//
 
-<<" finished class B  \n"
+   <<" finished class A  \n";
 
+   class B {
 
-class C : A : B {
+        int y;
 
-  int z;
+        void setval(int val)
+        {
 
- cmf print()
- {
-  <<"$_cobj has %V $x $y $z\n"
+             y = val;
+        }
 
- }
+        int getval()
+        {
 
+             return y;
+        }
 
- cmf C()
- {
-   <<"$_proc  constructor \n"
-   z = 3
- }
+        void print()
+        {
 
-}
+             <<"$_cobj has %V $y\n";
+        }
+
+        cmf B()
+        {
+
+             <<"$_cobj constructor \n";
+
+             y = 4;
+        }
+
+   }
 //======================================//
-<<" finished class C  \n"
 
-  A a ;
-  
-  a->print()
+   <<" finished class B  \n";
 
-  B bc
+   class C : A : B {
 
-  bc->print()
+        int z;
 
-  C c
+        void print()
+        {
 
+             <<"$_cobj has %V $x $y $z\n";
 
-  c->print()
+        }
 
-  c->y = 56
+        cmf C()
+        {
 
-  c->setval(77)
+             <<"$_proc  constructor \n";
 
-  c->print()
+             z = 3;
+        }
 
-  v = c->getval()
+   }
+//======================================//
 
-  chkN(c->y,56)
+   <<" finished class C  \n";
 
-  chkN(v,77)
+   A a ;
 
-  chkOut()
+   a.print();
 
+   B bc;
 
+   bc.print();
 
+   C c;
 
+   c.print();
+
+   c.y = 56;
+
+   c.setval(77);
+
+   c.print();
+
+   v = c.getval();
+
+   chkN(c.y,56);
+
+   chkN(v,77);
+
+   chkOut(1);
+
+//==============\_(^-^)_/==================//

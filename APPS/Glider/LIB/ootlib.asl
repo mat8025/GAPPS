@@ -51,15 +51,11 @@
 
   float LongE= 104.8;
 
-
-   float MidLat = (LatN - LatS)/2.0 + LatS;
-
+  float MidLat = (LatN - LatS)/2.0 + LatS;
 
    float Margin = 0.05;
 
    float MidLong = (LongW - LongE)/2.0 + LongE;
- 
-
 
   Str Units = "KM";
 
@@ -94,8 +90,6 @@ float   nm_to_km = 6080.0/3281.0;
   Vec<float> IGCTIM(7000);
 
 // DBG <<"%V $Igcfn \n"
-
-
 
   float computeGCD(float la1,float la2,float lo1,float lo2)
   {
@@ -333,14 +327,20 @@ ssele= IGCELE.stats();
   float la;
   float y;
   Str wd;
-//DBG"in $_proc $the_ang \n"
+
+<<"in $_proc $the_ang \n"
 
   Svar the_parts;
   the_parts.split(the_ang,',');
 
   int sz = the_parts.caz();
-//DBG"sz $sz $(typeof(the_parts))\n"
-    //DBG"%V $the_parts[::] \n"
+
+ // ans=ask("$sz the_parts.caz();  ",1)
+
+   <<"sz $sz $(typeof(the_parts))\n"
+
+
+//DBG"%V $the_parts[::] \n"
 //FIX    float the_deg = atof(the_parts[0])
 
   wd = the_parts[0];

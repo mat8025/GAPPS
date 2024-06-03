@@ -18,8 +18,14 @@ chkIn(_dblevel)
 
 prog = GetScript()
 
-//N = GetArgI()
-N = 24
+N = GetArgI()
+
+<<"%V $N \n"
+
+ans=ask("$N ?",0)
+if (N == 0) {
+ N = 24
+}
 //tt = GetArgI()
 
 tt = 18
@@ -56,8 +62,6 @@ k = 2
 //int a
   for ( k = 1; k <= N ; k++) {
 
-//<<" for begin loop val $k < $M \n"
-
   a= k * tt
 
  <<" $k * $tt = $a \n"
@@ -72,7 +76,7 @@ k = 2
 
  b = cnt * tt
 
-<<"%i $a ? ==  %i $b \n"
+<<"%v $a ? ==  %v $b \n"
 
 
    chkN(a, b)
@@ -80,6 +84,7 @@ k = 2
 
    chkN(a, (cnt * tt))
 
+/*
 A=ofr("for.asl")
 
 jc = 0;
@@ -93,8 +98,8 @@ for (j=0; j<3; j++) {
 
 
 chkN(jc,3)
-
-   chkOut()
+*/
+   chkOut(1)
 
 
 

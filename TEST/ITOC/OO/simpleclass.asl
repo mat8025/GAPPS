@@ -1,157 +1,171 @@
-///
-///
-///
+/* 
+ *  @script simpleclass.asl 
+ * 
+ *  @comment test basic class syntax 
+ *  @release CARBON 
+ *  @vers 1.2 He Helium [asl 6.18 : C Ar]                                   
+ *  @date 05/30/2024 11:17:15 
+ *  @cdate 05/30/2024 11:17:15 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare 2024
+ * 
+ */ 
+//-----------------<V_&_V>------------------------//
 
+///
+///
+///
 <|Use_=
-  demo some OO syntax/ops
+   demo some OO syntax/ops
 |>
-
 
 #include "debug"
 
+   if (_dblevel >0) {
 
-if (_dblevel >0) {
-   debugON()
-    <<"$Use_\n"   
+        debugON();
 
-}
+        <<"$Use_\n";
 
-allowErrors(-1)
+   }
 
-   
+   allowErrors(-1);
 
-chkIn (_dblevel);
+   chkIn (_dblevel);
 
+  allowDB("spe_proc,spe_vmf,ic",0)
 
-class Simple {
+   class Simple {
 
+        public:
 
- public:
+        int sa;
 
- int sa;
- str pn;
+        Str pn;
 
- void Print()
-  {
-    <<"$sa\n"
-   pn = pt(sa)
-    <<"$pn\n"
-  }
+        void Print()
+        {
 
+             <<"$sa\n";
 
- void Set (int val)
-  {
-     sa = val;
+             pn = pt(sa);
 
-  }
+             <<"$pn\n";
+        }
 
- int Get ()
-  {
-     
-     sa.pinfo();
-     return sa;
-  }
+        void Set (int val)
+        {
+             sa = val;
 
- int Getlocalpv ()
-  {
-     int new_sa;
-     new_sa = sa+1;
-     <<"%V $sa $new_sa\n"
-     return new_sa;
-  }
+        }
 
-  void Simple()
-  {
-    
-    sa = 19;
-    <<"%V$sa\n"
-    pn = pt(sa)
-   <<"$pn"
-  }
+        int Get ()
+        {
 
-}
+             sa.pinfo();   // VMF should leave OBJ on stack
+     //    ans=ask("vmf class mbr",1)
+             return sa;
+
+        }
+
+        int Getlocalpv ()
+        {
+             int new_sa;
+             new_sa = sa+1;
+
+             <<"%V $sa $new_sa\n";
+             return new_sa;
+        }
+
+        cmf Simple()
+        {
+
+             sa = 19;
+
+             <<"%V$sa\n";
+
+             pn = pt(sa);
+
+             <<"$pn";
+
+        }
+
+   }
 //----------------------------------------------
 
+   Simple S;
 
- Simple S;
+   S.Set(67);
 
+   S.Print();
 
- S.Set(67)
+   val = S.Get();
 
- S.Print();
+   chkN(val,67);
 
- val = S.Get();
+   S.Set(71);
 
- chkN(val,67);
+   S.Print();   //  TBF  - xic has two PUSH_OBJ instructions - only one needed
 
- S.Set(71)
+   mval = 63;
 
- S.Print();
+   S.Set(mval);
 
-mval = 63;
+   S.Print();   
 
-
- S.Set(mval)
-
- S.Print();
-
-nval = S.Get()
-
+   nval = S.Get();
 //!i nval
 
+   Simple oa[5];
 
-Simple oa[5];
+   mval = 37;
 
-mval = 37;
+   oa[1].Set(mval);
 
- oa[1].Set(mval)
+   nval = oa[1].Get();
 
-nval = oa[1].Get()
+   nval.pinfo();
 
-  nval.pinfo()
+   mval = 79;
 
-mval = 79
- oa[3].Set(mval)
+   oa[3].Set(mval);
 
-nval = oa[3].Get()
+   nval = oa[3].Get();
 
- nval.pinfo()
+   nval.pinfo();
 
+   mval = 82;
 
-mval = 82
-wo = 4;
- oa[wo].Set(mval)
+   wo = 4;
 
-nval = oa[wo].Get()
+   oa[wo].Set(mval);
 
+   nval = oa[wo].Get();
 
-nval = oa[wo].Getlocalpv()
+   nval = oa[wo].Getlocalpv();
 
+   mval = 33;
 
+   wo = 2;
 
-mval = 33
-wo = 2;
+   oa[wo].Set(mval);
 
-oa[wo].Set(mval)
+   nval = oa[wo].Get();
 
-nval = oa[wo].Get()
+   nval = oa[wo].Getlocalpv();
 
+   mval = 33;
 
-nval = oa[wo].Getlocalpv()
+   wo = 3;
 
+   oa[wo].Set(34);
 
-mval = 33
-wo = 3;
+   nval = oa[wo].Get();
 
- oa[wo].Set(34)
+   nval = oa[wo].Getlocalpv();
 
-nval = oa[wo].Get()
+   nval.pinfo();
 
+   chkOut(1);
 
-nval = oa[wo].Getlocalpv()
-
-nval.pinfo()
-
-
-chkOut()
-
+//==============\_(^-^)_/==================//

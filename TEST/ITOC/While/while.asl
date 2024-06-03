@@ -15,6 +15,9 @@
 ///
 ///
 
+db_allow = 1
+db_ask = 0
+allowDB("ic,spe_,svar,str_,parse,pex",db_allow);
 
 #include "debug.asl"
 #include "hv.asl"
@@ -25,13 +28,12 @@
      }
 
 
-   <<"$Hdr_comment\n"
+  <<"$Hdr_comment\n"
 
    chkIn(_dblevel);
 
-db_allow = 1
 
-   askit(0)
+
 
 
    int k = 0;
@@ -155,10 +157,10 @@ k.pinfo()
    int ok =0;
 
    <<"always trying forever \n";
-
+   k = 0
    while (1) {
 
-     if (k++ > 20) {
+     if (k++ > 5) {
 
        <<"break $k\n";
 
@@ -168,8 +170,8 @@ k.pinfo()
 
      k++;
 
-     <<"forever! $k\n";
-
+    
+ans=ask("forever! $k", db_ask)
      }
 
    k = 0;
@@ -190,7 +192,7 @@ k.pinfo()
 
        }
 
-     };
+     }
 
      <<"%V$k == ? 9 \n";
 

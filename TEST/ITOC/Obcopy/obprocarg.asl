@@ -24,7 +24,7 @@
    if (_dblevel >0) {
 
      debugON();
-
+<<" $Use_ \n"
      }
 
   allowErrors(-1);
@@ -33,7 +33,7 @@
 
    int Nfruits = 0;
 
-   class fruit  {
+   class Fruit  {
 #  variable list
 
      public:
@@ -106,7 +106,7 @@
        }
 // constructor
 
-     void fruit()  {
+     void Fruit()  {
 
        <<" doing constructor for %v $_cobj \n";
 
@@ -138,7 +138,7 @@
    <<" after class definition !\n";
  /////
 
-   void eat(fruit oba)
+   void eat(Fruit oba)
    {
 
      <<" $_proc $_cobj \n";
@@ -189,7 +189,7 @@
      }
 //////////////
 
-   void objcopy(fruit oba,  fruit obb)
+   void objcopy(Fruit oba,  Fruit obb)
    {
 
      <<" copying $obb.color to $oba.color \n";
@@ -216,7 +216,7 @@
    <<" %V  Edible $(Yorn(Edible))  \n";
 # object declaration
 
-   fruit apple;
+   Fruit apple;
 
    <<" after object declaration !\n";
 
@@ -248,7 +248,7 @@
 
    eat(apple);
 
-   fruit cherry;
+   Fruit cherry;
 
    <<" after object declaration of $cherry !\n";
 
@@ -267,7 +267,7 @@
    cherry.print();
 /////////////////////////////////////////
 
-   fruit orange;
+   Fruit orange;
 
    <<"$(Infoof(orange))\n";
 
@@ -306,7 +306,7 @@
 
    chkStr(cherry.color,"blue");
 
-   <<"fruit thine name is $apple.name \n";
+   <<"Fruit thine name is $apple.name \n";
 
    <<" obj now copy orange apple \n";
 

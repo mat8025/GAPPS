@@ -25,11 +25,11 @@ Str Use_= "Demo svar type use";
 
      }
      
- db_allow = 0 ; // set to 1 for internal debug print;
+ db_allow = 1 ; // set to 1 for internal debug print;
 
  db_ask = 0;
 
-allowDB("opera_,spe_,svar,str_,array_parse,parse,rdp_,pex",db_allow);
+ allowDB("opera_,spe_,svar,str_,array_parse,parse,rdp_,pex",db_allow);
 
 
 
@@ -50,8 +50,10 @@ allowDB("opera_,spe_,svar,str_,array_parse,parse,rdp_,pex",db_allow);
    E.pinfo();
 
    ans=ask("Svar array filled OK",db_ask)
-
+   Str eles;
    W= E[3:7];
+
+   W.pinfo()
 
    <<"$(typeof(W)) \n";
 
@@ -60,8 +62,16 @@ allowDB("opera_,spe_,svar,str_,array_parse,parse,rdp_,pex",db_allow);
    <<"$W[1]\n";
 
    W.pinfo()
+ans=ask(" $W  OK",db_ask)
 
- ans=ask(" $W  OK",db_ask)
+  eles = "$E[3:6]"
+
+  <<" <|$eles|> \n"
+
+  chkStr(eles,"Li Be B C")
+  
+   ans=ask("%V $eles  OK",db_ask)
+ 
 
    chkStr(W[1],"Be");
 
@@ -81,6 +91,10 @@ allowDB("opera_,spe_,svar,str_,array_parse,parse,rdp_,pex",db_allow);
    <<"$sz\n";
 
    chkN(sz,9);
+
+//   chkOut(1)
+
+
 
    T= E[4:9];
 

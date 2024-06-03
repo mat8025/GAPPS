@@ -13,9 +13,11 @@
 
                                                                        
   
- //Str Vers2ele(Str& vstr)
-// allowDB("spe_")
-//DBaction((DBSTEP_,ON_)  
+ db_ask = 0;
+ db_allow = 0;
+
+
+ allowDB("ispe_proc,spe_state,spe_args,spe_cmf,spe_scope,tok_func",db_allow)
 
 int DBH = -1
 
@@ -48,7 +50,9 @@ int DBH = -1
   // if script found
   // then  read current vers and  bump number and update date
   // if no @vers line -- then prepend the vers header lines
-  
+
+
+
   srcfile = _clarg[1];
   
   if (srcfile @= "") {
@@ -77,7 +81,7 @@ int DBH = -1
   // should be maj.min e.g 1.1 ,6.1, ... limits 1 to 100  
   }
   
-//   allowDB("ic_,oo_,spe_proc,spe_state,spe_args,spe_cmf,spe_scope,tok_func")
+//   
 
   
   
@@ -156,9 +160,9 @@ int DBH = -1
 <<"reading last mod message $mans\n"
 
 
- ans=iread("asl code-what is the modification? $mans :")
+ mans=ask("$mans ",1)
 
-<<"$ans\n"
+<<"$mans\n"
 
 if (ans == "q") {
   <<"abandon!"
@@ -182,7 +186,7 @@ long where;
 //where.pinfo()
 
 
-Str T;
+ Str T;
 
 //T.pinfo();
 
@@ -190,7 +194,7 @@ Str Pad;
 
 
 
-Svar L;
+ Svar L;
 
 // L.pinfo()
  
@@ -214,8 +218,12 @@ Str old_comment ="yyy"
     T = readline(A);
    
 //<<[DBH]"$i line is $T \n"
-   if (i ==2) {
-     old_comment =T;
+   if (i ==3) {
+  // T.pinfo()
+   //<<"%V $T\n"
+ans = ask("%V $old_comment", db_ask);
+    old_comment =T;
+    ans = ask("%V $old_comment", db_ask);
    }
    where = ftell(A)
 
@@ -244,7 +252,8 @@ Str old_comment ="yyy"
 
    }
     else if (scmp(L[1],"@comment")) {
-     comment = "$L[2::]";
+     comment = "$L[2:-1:1]";
+         ans = ask("%V $comment", db_ask);
    }
  //   else if (scmp(L[1],"@release")) {
  //     release = "$L[2::]";
@@ -289,7 +298,7 @@ Str old_comment ="yyy"
    }
 */
 
-//allowDB("spe_,tok_func")
+
 <<"%V $cvers \n"
 //cvers.pinfo()
 //if (found_vers) {
@@ -358,6 +367,8 @@ Str old_comment ="yyy"
 
   cf(A);
 
+    ans = ask("%V $comment", db_ask);
+
 A=ofile(srcfile,"w")
 
 
@@ -421,16 +432,16 @@ cf(A);
 
 // lets' log this change 
 
-logfile= "~gapps/LOGS/aslcodemods.log"
+logfile= "~/gapps/LOGS/aslcodemods.log"
 A=ofile(logfile,"r+")
 fseek(A,0,2)
 
 // Use LTM MEM
 
+<<"ltmwrt  $mans\n"
 
-
- if (ans != "") {
-  ltmWrt("cbump",ans,1)
+ if (mans != "") {
+  ltmWrt("cbump",mans,1)
 }
 else {
  ans = mans
@@ -440,7 +451,7 @@ else {
 len = slen(srcfile)
 nsp = 32-len
 ws=nsc(nsp," ")
-<<[A]"$srcfile $ws  ${pmaj}.$pmin  $(date(16))  $ans\n"
+<<[A]"$srcfile $ws  ${pmaj}.$pmin  $(date(16))  $mans\n"
 cf(A)
 
 

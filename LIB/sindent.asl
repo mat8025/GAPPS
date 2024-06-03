@@ -2,14 +2,15 @@
  *  @script sindent.asl                                                 
  * 
  *  @comment format asl scripts                                         
- *  @release Nickel                                                     
- *  @vers 1.23 V Vanadium [asl ]                                        
- *  @date 10/14/2023 07:08:14                                           
+ *  @release Carbon                                                     
+ *  @vers 1.24 Cr Chromium [asl 6.19 : C K]                             
+ *  @date 06/01/2024 15:28:26                                           
  *  @cdate 1/1/2015                                                     
  *  @author Mark Terry                                                  
- *  @Copyright © RootMeanSquare  -->                                   
+ *  @Copyright © RootMeanSquare 2024 -->                               
  * 
  */ 
+
 
 //----------------<v_&_v>-------------------------//                               
 
@@ -23,8 +24,10 @@
 #define MARGINCALL 3
 #define EMPTYLN 5
 
-int match[2];
-seen_ESL = 0;
+int match[6];
+int dqvec[10];
+
+   seen_ESL = 0;
    allowErrors(-1) ;  // keep going
 
 void doTrailingComment()
@@ -175,6 +178,8 @@ ESL='//==============\_(^-^)_/==================//';
   int conline = 0;
   int foldline = 0;
   int ll_fold = 0;
+
+
   while (1) {
     
     is_comment = 0;
@@ -216,7 +221,7 @@ ESL='//==============\_(^-^)_/==================//';
 
     NL = L;
     
-<<[EO]"in: \033[1;32m $NL  \033[0m\n" ;
+<<[EO]"in: \033[1;32m <|$NL|>  \033[0m\n" ;
 
 //<<[EO]"in: $NL   \n" ;
 
@@ -339,6 +344,7 @@ ESL='//==============\_(^-^)_/==================//';
       }
     
     is_cbe = 0;
+    is_cbesc = 0;
     is_cbs = 0;
     is_equ = 0;
 
@@ -346,20 +352,33 @@ ESL='//==============\_(^-^)_/==================//';
     
     if (slen(NL) > 0) {
 
-      nls=ssub(NL,"str ","Str ",1);
-      NL=ssub(nls,"svar ","Svar ",1);
-
-
       is_cbs = scmp(NL,"{",-1,0,0);
       
       is_cbe = scmp(NL,"}",-1,0,0);
-      is_cbe = scmp(NL,"};",-2,0,0);
+
+
+      
+      is_cbesc = scmp(NL,"};",-2,0,0);
+
+//      if (is_cbesc) {
+//           <<" $NL ? }; \n"
+//       }
 
       is_equ = scin(NL,"=[]",1);
 
       }
-    //<<[EO]"<|$L|> <|$NL|> %V $nw $is_cbs $is_cbe \n"; 
-    
+
+/*
+  if (is_cbe || is_cbs || is_cbesc) { 
+    <<"<|$L|> <|$NL|> %V $nw $is_cbs $is_cbe $is_cbesc \n"; 
+   ans = ask("%V $is_cbs $is_cbe $is_cbe found",1)
+  }
+*/  
+    if (is_cbesc) {
+      is_cbe = 1
+    }
+
+
     is_proc = scmp(NL,"proc",4,0);
     if (is_proc) {
        nls=ssub(NL,"proc ","void ",1);
@@ -388,20 +407,25 @@ ESL='//==============\_(^-^)_/==================//';
 
     is_if = scmp(NL,"if",2,0);
 
+    tws = nsc(nw," ");    
 
-    tws = nsc(nw," ");
     if (is_cbs) {
-      nw += 2;
+      nw += 5;
   //<<[EO]"PROC %v$nw \n"
       //<<[EO]"CBS %v$nw \n"; 
       }
     
     if (is_cbe) {
       
-      nw -= 2;
+      nw -= 5;
+      tws = nsc(nw," ");    
       //<<[EO]"CBE %v$nw \n"; 
       }
-    
+
+    if (nw < 2) {
+        nw =2;
+    }
+
     
     len = slen(NL);
 
@@ -431,11 +455,16 @@ ESL='//==============\_(^-^)_/==================//';
 
 //
 //    check for trailing comment - if so eol is just before
-
+       dqvec = findDQ(NL)
+       if (dqvec[0] > 0) {
+     //  <<" $NL \n"
+     //  <<"%V $dqvec \n"
+       }
+       
        spat(NL,"//",0,-1,match);
        
-       if (match[0]) {
-         // ; before //
+       if (match[0] && (match[3] > dqvec[2])) {
+         // ; before //  and not in a DQ
          if (!is_case) {	 
            doTrailingComment()
         }
@@ -517,14 +546,14 @@ ESL='//==============\_(^-^)_/==================//';
       && !ll_fold \
       && (last_ltype != PROCCALL)) {
 <<[EO]"adding empty line for spacing  %V $foldline $ll_fold \n";      
-             <<[B]"\n"; 
+            <<[B]"\n"; 
 
       }
 
          
 
          if (!is_empty_line || in_txt_blk) {
-             <<[EO]"${tws}$NL\n";
+//             <<[1]"${tws}$NL\n";
           <<[B]"${tws}$NL\n";
 	 }
 	 else {

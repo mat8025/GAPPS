@@ -31,41 +31,45 @@
 
   int MD[5][10];
 
-  chkN("init Array zero ",MD[0][1],0);
 
-  chkN("init Array zero ",MD[0][-1],0);
+  chkN(MD[0][1],0)
+
+  chkN(MD[0][-1],0)
+
+  chkN(MD[0][-1],0,"init Array zero ")
 
   MD[0][1] = 79;
 
-  mda =  MD[0][1];
+  mdv =  MD[0][1];
 
-  <<"%V $MD[0][1] $mda \n";
+  <<"%V $MD[0][1] $mdv \n";
 
-  chkN("Set element",MD[0][1],79);
+
+  chkN(MD[0][1],79,"Set element")
 
   MD[0][0:8:1] = 77;
 
   <<"$MD[0][::]\n";
 
-  chkN("set subset of elements",MD[0][8],77);
+  chkN(MD[0][8],77,"set subset of elements")
 
   MD[1][::] = 80;
 
-  chkN("set default range",MD[1][1],80);
+  chkN(MD[1][1],80,"set default range")
 
   <<"$MD\n";
 
   MD[0][5:9:1] = 54;
 
-  chkN("set subset of eles",MD[0][5],54);
+  chkN(MD[0][5],54,"set subset of eles")
 
   MD[1][3:8:1] = 28;
 
-  chkN("set subset of eles",MD[1][6],28);
+  chkN(MD[1][6],28),"set subset of eles")
 
   MD[1][3:8:] = 27;
 
-  chkN("set subset of eles-default step",MD[1][6],27);
+  chkN(MD[1][6],27,"set subset of eles-default step")
 
   <<"$MD\n";
 
@@ -73,11 +77,11 @@
 
   <<"$MD\n";
 
-  chkN("set subset of eles",MD[3][6],77);
+  chkN(MD[3][6],77,"set subset of eles")
 
   MD[2:4:1][4:9:] = 78;
 
-  chkN("set subset of eles-default stride",MD[3][9],78);
+  chkN(MD[3][9],78,"set subset of eles-default stride")
 
   MD[2:4][0:3] = 85;
 
@@ -141,7 +145,7 @@
 
   <<"$RV\n";
 
-  chkOut();
+  chkOut(1);
 /*
    Should be able to specify a subset of a MD array for operations
 */

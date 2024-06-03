@@ -61,13 +61,8 @@ int run_asl = runASL();
 
   //debugON();
 
-ignoreErrors();
+ ignoreErrors();
  echolines(0)
-
-// filterFileDebug(REJECT_,"declare_e.cpp","scope_e","pr_state.cpp");
-
-
-
 
 
 
@@ -120,11 +115,13 @@ float Dur[20];
   Str try_place = "xxx";
   Str try_start = "xxx";
   Str nxttpt = "Laramie";
-
+Str ans;
 
 //<<"%V $nxttpt \n"
 
 //#include "conv.asl"
+
+//ans=ask(" ??",0)
 
 #include "tpclass.asl"
 
@@ -171,7 +168,7 @@ Glide::glideTask(Svarg * sarg)
 
 //DBaction((DBSTEP_),ON_)
 
-  Str ans;
+  
 
   int  Main_init = 1;
   float Leg[20];
@@ -213,7 +210,7 @@ Glide::glideTask(Svarg * sarg)
 //  int nerror = 0;
 
   int use_cup = 1;
- //allowDB("ic_,oo_,spe_,rdp_,pexpnd,tok,array")
+  allowDB("ic_,oo_,spe_,rdp_,pexpnd,array",0)
   if (use_cup) {
 
   AFH=ofr("CUP/bbrief.cup")  ; // open turnpoint file;
@@ -341,8 +338,9 @@ while (ac < na) {
     printf("setting Units to SM %d\n",Units);
   }
 
-  ac++;
+    ac++;
     istpt = 0;
+    
   }
 
 
@@ -651,6 +649,7 @@ while (ac < na) {
 
 
 // NEXT TURN POINT
+//ans=ask("NEXT TURN POINT ",1)
 
   int more_legs = 1;
 
@@ -792,7 +791,7 @@ while (ac < na) {
 
 //cout << n_legs <<" @2 " << where << endl;
 
-
+//ans=ask("NEXT 2 ",1)
   if (use_cup) {
 
  //  nwr = Wval.readWords(AFH,0,',');
@@ -819,9 +818,12 @@ while (ac < na) {
 
 
    GT_Wtp[n_legs].TPCUPset(Wval);
-//<<"%V $n_legs  $GT_Wtp[n_legs].Place $GT_Wtp[n_legs].Ladeg \n"
-   //Wval.pinfo();
 
+
+//<<"%V $n_legs  $GT_Wtp[n_legs].Place $GT_Wtp[n_legs].Ladeg \n"
+ //  Wval.pinfo();
+
+//ans=ask("NEXT TURN 3 ",1)
 
    AGL[n_legs] = GT_Wtp[n_legs].Alt;
 //<<"%V $n_tp $n_legs   $GT_Wtp[n_legs].Alt   $AGL[n_legs] \n"
@@ -836,8 +838,9 @@ while (ac < na) {
 
 //<<"read $nwr words \n"
 //<<" $Wval[0]  $Wval[1]  $Wval[2]\n"
-
+  //ans=ask(" %V $Wval  ",1)
    GT_Wtp[n_legs].TPset(Wval);
+  //ans=ask(" %V $Wval  ",1)
 
 #if __ASL__
      if (AFH != K_AFH) {

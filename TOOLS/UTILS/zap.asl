@@ -69,22 +69,22 @@ mypid=getAslPid()
   //<<"$A[0] $A[1]\n"
   //<<"%(,,\n,,)$A[0:5] \n"
 
-match = 0;
-
+   int match[6]
+   int smatch[6]
   for (i = 0; i < nl ; i++) {
 
     C=Split(A[i]);
     lsz = Caz(C);
     //   <<" ${C[1]} \n"
 
-    spat(C[10],zapp,1,1,&match);
+    spat(C[10],zapp,1,1,match);
     smatch = 0;
       // <<" $lsz ${C[5]} \n"
       if ( ! (C[5] @= "")) {
 	//      <<" ${C[*]} \n"
-        spat(C[5],zapp,1,1,&smatch);
+        spat(C[5],zapp,1,1,smatch);
       }
- if(match || smatch) {
+ if(match[0] || smatch[0]) {
     pid = atoi(C[1]);
     if (pid != mypid) {
       <<" found process $pid $C[1] id $C[0] \n";
@@ -107,13 +107,9 @@ match = 0;
     <<"Killing $pid \n";
     !!"kill -9 $pid ";
      }
-
-
    }
  }
 }
-
-
 
 
 

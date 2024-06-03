@@ -461,7 +461,7 @@ outcome("BOPS")
 
     RunDirTests("Obcopy","obcopy,obprocarg");
 
-    RunDirTests("Mih","sh,mih")
+    RunDirTests("Mih","sh,mih,sih")
 
     outcome("OO")
   }
@@ -567,7 +567,7 @@ if ((do_all || do_do ) && (do_do != -1)) {
 if ((do_all || do_try ) && (do_try != -1)) {
     inflsz = caz(FailList)
       RunDirTests("TryThrowCatch","trythrowcatch")
-outcome("TRY")
+       outcome("TRY")
     }
 ////////////////////////////////////////////////////////////////////////
 
@@ -900,7 +900,7 @@ if ((do_all || do_proc ) && (do_proc != -1)) {
 
   RunDirTests("Proc","procrefarg,procra,procrefstrarg,proclocmainvar")
 
-  RunDirTests("Proc"," proc_var_define,procnest_args");
+  RunDirTests("Proc","proc_var_define,procnest_args");
   
   RunDirTests("ProcArray","procarray,poffset,arrayarg1,arrayarg2")
 
@@ -1013,9 +1013,10 @@ chdir(Testdir)
 
  if ((do_all || do_stat ) && (do_stat != -1)) {
     inflsz = caz(FailList)
-//    hdg("STAT")
+    hdg("STAT")
 
     RunDirTests("Polynom","checkvm,polynom")
+     outcome("STAT")
 }
 
  if ((do_all || do_pan )  && (do_pan != -1)) {

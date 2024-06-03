@@ -42,7 +42,7 @@ chkIn(_dblevel);
    }
    //======================
 
-   int new_main = 1;
+   int new_main = 0;
    A= -1;
    int BERR=ofw("err_shead");  // error file err	
    // if script found
@@ -60,7 +60,7 @@ chkIn(_dblevel);
    
    <<[BERR]" RW sz $sz \n"
 
-   int mas[2];
+   int mas[6];
    p=spat(srcfile,".asl",0,1,mas)
    is_asl_script = 0;
    if (mas[0] ) {
@@ -95,7 +95,15 @@ chkIn(_dblevel);
    <<[BERR]"%V $na $cdate \n"
    comment ="";
    comment2 ="";
-   
+
+
+///  get remaning args
+///  vers
+///  comment
+///  cpp template
+///  date 
+
+
    if (na > 2) {
 
     comment = _clarg[2];
@@ -103,6 +111,11 @@ chkIn(_dblevel);
    }
 
    Str new_vers = "1.1";
+
+
+
+
+
 
    if (na > 3) {
     set_vers = 1;   
@@ -114,7 +127,10 @@ chkIn(_dblevel);
     set_cdate = 1;   
     cdate = _clarg[4]; // use M/D/YYYY
    }
-   
+
+
+
+
    file= fexist(srcfile,ISFILE_,0);
    
    //<<[2]" FILE $file \n"
@@ -203,7 +219,7 @@ if (found_vers) {
    cf(A);
    
  
- !!"cp $srcfile old-$srcfile"  ; // 
+ !!"cp $srcfile old_$srcfile"  ; // 
    
    //ns = spat(srcfile,".asl",-1)
 //  Str newsrc=srcfile;
@@ -241,7 +257,7 @@ if (found_vers) {
 ESL='//==============\_(^-^)_/==================//';
 
  if ( new_main ) {
-if (is_asl_script) {
+    if (is_asl_script) {
 
 <<[A]"Str Use_= \" Demo  of $comment \";";
 <<[A]"\n"
@@ -294,9 +310,9 @@ ans=ask(DB_prompt,1);
      
    }
 //<<[A]"$T[i]"  // bug
-<<" a new main \n"
-if (new_main) {
 
+if (new_main) {
+<<" a new main \n"
 
 <<[A]"\n\n#if _CPP_           \n"   
   //////////////////////////////////

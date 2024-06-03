@@ -2,300 +2,331 @@
  *  @script sih.asl                                                     
  * 
  *  @comment test inheritance                                           
- *  @release Platinum                                                   
- *  @vers 1.3 Li Lithium [asl 5.78 : B Pt]                              
- *  @date 01/21/2024 07:33:18                                           
+ *  @release Carbon                                                     
+ *  @vers 1.4 Be Beryllium [asl 6.18 : C Ar]                            
+ *  @date 05/30/2024 14:12:51                                           
  *  @cdate 1/1/2003                                                     
  *  @author Mark Terry                                                  
  *  @Copyright © RootMeanSquare 2024 -->                               
  * 
  */ 
 
-
-
-
-
 <|Use_=
-Demo  of inheritance
+   Demo  of inheritance
 ///////////////////////
 |>
 
 #include "debug"
 //#include "hv.asl"
 
-if (_dblevel >0) {
-  debugON()
-    <<"$Use_\n"   
-}
+   if (_dblevel >0) {
 
- allowErrors(-1)
+        debugON();
 
+        <<"$Use_\n";
 
+   }
 
+   allowErrors(-1);
 
+   db_ask =0;
 
+   db_allow =0;
 
+   allowDB("spe_proc,spe_vmf,ic",db_allow);
 
-chkIn(_dblevel)
+   chkIn(_dblevel);
 //chkIn(1)
 //sdb(1,@trace)
 
+   class building {
 
-class building {
+        int rooms;
 
- int rooms;
- int floors;
- int area;
+        int floors;
 
- cmf setrooms(int val)
- {
-   rooms = val
- }
+        int area;
 
- cmf getrooms()
- {
-   return rooms 
- }
+        void setrooms(int val)
+        {
 
- cmf setfloors(int val)
- {
-   floors = val
- }
+             rooms = val;
+        }
 
- cmf getfloors(val)
- {
- <<" in getfloors \n"
-   return floors
+        int getrooms()
+        {
 
- }
+             return rooms;
+        }
 
- cmf print()
- {
-   <<"$_cobj has %V $rooms $floors\n"
- }
+        void setfloors(int val)
+        {
 
+             floors = val;
+        }
 
- cmf building()
- {
-  <<"$_proc constructor \n"
-  floors = 2
-  rooms = 4
- }
+        int getfloors()
+        {
 
-}
+             <<" in getfloors \n";
 
+             return floors;
 
-<<" finished class def building \n"
+        }
 
+        void print()
+        {
 
-class house : building {
+             <<"$_cobj has %V $rooms $floors\n";
+        }
 
-  int bedrooms;
-  int baths
+        cmf building()
+        {
 
- cmf setbaths(int val)
- {
-   baths = val
- }
+             <<"$_proc constructor \n";
 
- cmf getbaths()
- {
-   return baths
- }
+             floors = 2;
 
+             rooms = 4;
+        }
 
- cmf print()
- {
-  
+   }
+
+   <<" finished class def building \n";
+
+   class house : building {
+
+        int bedrooms;
+
+        int baths;
+
+        void setbaths(int val)
+        {
+
+             baths = val;
+        }
+
+        int getbaths()
+        {
+
+             return baths;
+        }
+
+        void print()
+        {
   //rr = getrooms(); // ERROR TBF 9/3/21
-  rr = rooms;
-  ff = floors;
-  <<"%V $_cobj $bedrooms $baths $ff\n"
-  <<"$_cobj has $bedrooms bedrooms $baths bathrooms and $ff floors $rr rooms %V $rooms $floors\n"
 
- }
+             rr = rooms;
 
+             ff = floors;
 
- cmf house()
- {
-   <<"$_proc  constructor \n"
-   bedrooms = 1
-   baths = 1
-   <<"$_proc  %V $rooms $floors $baths\n"
- }
+             <<"%V $_cobj $bedrooms $baths $ff\n";
 
-}
+             <<"$_cobj has $bedrooms bedrooms $baths bathrooms and $ff floors $rr rooms %V $rooms $floors\n";
 
+        }
 
-<<" finished class def house \n"
+        cmf house()
+        {
 
-class room : house {
+             <<"$_proc  constructor \n";
 
-  int chairs;
+             bedrooms = 1;
 
- cmf setchairs(val)
- {
-   chairs = val
- }
+             baths = 1;
 
- cmf getchairs()
- {
-   return chairs
- }
+             <<"$_proc  %V $rooms $floors $baths\n";
+        }
 
- cmf room()
- {
-  <<" $_proc CONS \n"
-  chairs = 2
- }
+   }
 
-}
+   <<" finished class def house \n";
+
+   class Room : house {
+
+        int chairs;
+
+        int carpets;
+
+        void setchairs(int val)
+        {
+
+             chairs = val;
+        }
+
+        int getchairs()
+        {
+
+             return chairs;
+        }
+
+        void setcarpets(int val)
+        {
+
+             carpets = val;
+        }
+
+        int getcarpets()
+        {
+
+             return carpets;
+        }
+
+        cmf Room()
+        {
+
+             <<" $_proc CONS \n";
+
+             chairs = 2;
+             carpets = 1;
+        }
+
+   }
 //======================================//
-<<" finished class def room \n"
 
-   building b
+   <<" finished class def room \n";
 
+   building b;
 // only initial constructor is called at the moment
 
-   nr = 0
+   nr = 0;
 
-   nr = b.getrooms()
+   nr = b.getrooms();
 
-<<" %v $nr \n"
+   <<" %v $nr \n";
 
-   mr = 25
+   mr = 25;
 
-<<"reset rooms to $mr \n"
+   <<"reset rooms to $mr \n";
 
-   b.setrooms(mr)
+   b.setrooms(mr);
 
-   nr = b.getrooms()
+   nr = b.getrooms();
 
-<<"%v $nr \n"
-   b.setfloors(6)
-   b.print()
+   <<"%v $nr \n";
 
-<<"make a house \n"
+   b.setfloors(6);
 
-   house h
+   b.print();
 
+   <<"make a house \n";
 
-<<"after house $h \n"
-h.pinfo()
+   house h;
 
+   <<"after house $h \n";
 
-   h.print()
+   h.pinfo();
 
+   h.print();
 
+   nr = h.getrooms();
 
-   nr = h.getrooms()
+   <<"%v $nr \n";
 
-<<"%v $nr \n"
+   h.setrooms(5);
 
+   h.setfloors(3);
 
-   h.setrooms(5)
+   h.print();
 
-   h.setfloors(3)
+   b.print();
 
-   h.print()
+   h.setrooms(7);
 
+   h.setfloors(12);
 
+   h.print();
 
+   hf = h.floors;
 
-   b.print()
+   <<"%v $hf \n";
 
+   hr = h.rooms;
 
-   h.setrooms(7)
-   h.setfloors(12)
+   <<"%v $hr \n";
 
+   hr = h.getrooms();
 
-   h.print()
+   <<"%v $hr \n";
 
-   hf = h.floors
+   nr = h.getrooms();
 
-<<"%v $hf \n"
+   <<" %v $nr \n";
 
-   hr = h.rooms
+   h.setrooms(18);
 
-<<"%v $hr \n"
+   nr = h.getrooms();
 
+   <<" %v $nr \n";
 
-   hr = h.getrooms()
+   h.setbaths(20);
 
-<<"%v $hr \n"
+   nbaths = h.getbaths();
 
+   <<" %v $nbaths \n";
 
-   nr = h.getrooms()
+   <<" make house c \n";
 
-<<" %v $nr \n"
+   house c;
 
-   h.setrooms(18)
+   <<" after house c dec !! \n";
 
-   nr = h.getrooms()
+   c.print();
 
-<<" %v $nr \n"
+   <<" make house d \n";
 
-   h.setbaths(20)
+   house d;
 
-   nbaths = h.getbaths()
+   d.print();
 
-<<" %v $nbaths \n"
+   Room r;
 
-<<" make house c \n"
+   ans=ask(" after Room 1",db_ask);
 
-   house c
+   int nf;
 
-<<" after house c dec !! \n"
+   nc = r.getchairs();
 
-   c.print()   
+   ans=ask(" Room r has $nc chairs",db_ask);
 
+   ncpt = r.getcarpets();
 
-<<" make house d \n"
+   ans=ask(" Room r has $ncpt carpets ",db_ask);
 
-   house d
+   nf = r.getfloors();
 
-   d.print()   
+   ans=ask(" Room r is in a building that has $nf floors ?",db_ask);
 
+   chkN(2,nf);
 
-   room r
+   <<" grandparent constructor called %V $nf  from room object\n";
 
-<<" after room 1\n"
+   rnf = 10;
 
-   int nf
+   <<" now set %v $rnf building member from room object \n";
 
-   nf = r.getfloors()
-
-  chkN(2,nf)
-
-<<" grandparent constructor called %v $nf  from room object\n"
-
-
-
-   rnf = 10
-
-<<" now set %v $rnf building member from room object \n"
-
-   r.setfloors(rnf)
-
+   r.setfloors(rnf);
 // can reach back to grandparent !! ok
 // parent constructor is called
 
-   nf = r.getfloors()
+   nf = r.getfloors();
 
-<<" %I $nf \n"
+   ans=ask(" Room r is in a building that now has $nf floors ?",db_ask);
 
-  chkN(nf,10)
+   chkN(nf,10);
 
-   r.print()
+   r.print();
 
-   r.setbaths(3)
+   r.setbaths(3);
 
-   nb = r.getbaths()
+   nb = r.getbaths();
 
-   r.print()
+   r.print();
 
-<<" baths $nb \n"
+   <<" baths $nb \n";
 
-  chkN(nb,3)
+   chkN(nb,3);
 
-  chkOut()
+   chkOut(1);
+
+//==============\_(^-^)_/==================//

@@ -14,8 +14,11 @@ if (_dblevel > 0) {
    showUsage("How to use ref args") ;
    DB_action = 0;
 
-
+db_allow = 1
 ans=ask(DB_prompt,DB_action)
+
+allowDB("ic,spe_,svar,str_,parse,pex",db_allow);
+
 //   if (_dblevel <= 1) {
 
 //  }

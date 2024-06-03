@@ -19,7 +19,7 @@ int dblevel = _dblevel;
 
 int _DBH = -1; // dbg FH set -1 for nop --set to 2 for error output;
 
-<<"%V   $_dblevel\n"
+//<<"%V   $_dblevel\n"
 Str _My_script = getScript()
 Str _Usage = " ... "
 

@@ -118,8 +118,12 @@ class Turnpt
 
 //<<"TPset $_proc $wval \n"
 
-//      wval->info(1)
+//   wval.pinfo()
+
+
 //<<": $wval[0] 1: $wval[1] 2: $wval[2] 3: $wval[3] 4: $wval[4] \n"
+ //ans=ask(" wval $wval  ",1)
+
      is_airport =0;
      is_mtn =0;
      is_mtn_pass =0;     
@@ -311,6 +315,7 @@ int lastc = -1;
 
 //<<"Radio <|$Radio|> wval[9] $val  \n"
 //ans=query("??");
+//ans=ask("%V $Radio ",1)
 
 
 //     
