@@ -1,5 +1,5 @@
 /* 
-   *  @script while_nest.asl
+   *  @script whilenest.asl
    *
    *  @comment test while loops
    *  @release CARBON
@@ -11,7 +11,6 @@
    *
    *  \\-----------------<v_&_v>--------------------------//
  */ 
-
 
 
 #include "debug.asl"
@@ -94,4 +93,6 @@
 
    k.pinfo();
 
-   chkOut();
+   chkOut(1);
+
+

@@ -548,7 +548,7 @@ if ((do_bit || do_all) && (do_bit != -1)) {
 
   if ((do_all || do_while ) && (do_while != -1)) {
         inflsz = caz(FailList);
-       RunDirTests("While","while_nest,while")
+       RunDirTests("While","whilenest,while")
       outcome("WHILE")
     }
 ////////////////////////////////////////////////////////////////////////

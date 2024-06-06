@@ -15,7 +15,7 @@
 ///
 ///
 
-db_allow = 1
+db_allow = 0
 db_ask = 0
 allowDB("ic,spe_,svar,str_,parse,pex",db_allow);
 

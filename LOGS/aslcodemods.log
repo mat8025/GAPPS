@@ -2080,3 +2080,32 @@ pex_parrayexpand.cpp                2.79  05/27/2024 11:42:51  LHS/RHS range
 
 str_sop.cpp                         2.1  05/29/2024 11:33:37  scmp short word fix
 ic_xic.cpp                          1.83  05/30/2024 14:18:49  last_xic refresh
+spe_vmf.cpp                         3.58  06/03/2024 10:45:12  vmf ptr
+ic_wic.cpp                          1.78  06/03/2024 10:47:09  proc_def update
+ic_call.cpp                         1.65  06/03/2024 10:47:51  vmf ptr
+vmf_svar.cpp                        1.28  06/03/2024 10:49:18  str cast slen
+ds_types.cpp                        1.92  06/03/2024 10:51:48  rework GetType for proc_def xic
+parse_debug.cpp                     2.2  06/03/2024 10:53:02  rework call formatting
+spe_proc_def.cpp                    2.74  06/03/2024 10:54:43  rework proc_def xic
+ic_parse.cpp                        1.62  06/03/2024 10:56:18  rework proc_def xic  
+spe_statex.cpp                      1.42  06/03/2024 10:57:36  rework proc_def xic    
+icode.h                             1.35  06/03/2024 11:00:15  added stid,lnum
+parse.h                             2.10  06/03/2024 11:01:55  proc_def mods
+spe_engine.cpp                      2.28  06/03/2024 11:03:29  DB
+test_l.cpp                          1.61  06/03/2024 11:06:01  color pass/fail - rework commnetfor chkNto be last
+str_pat.cpp                         1.11  06/03/2024 11:08:33  add first last positions
+vsh_cw.cpp                          1.79  06/03/2024 11:09:43  edit rdline
+spe_print.cpp                       2.54  06/03/2024 11:11:34  findMatchDQuote
+spe_command.cpp                     2.37  06/03/2024 11:12:29  findMatchDQuote  
+ds_recordstore.cpp                  1.87  06/03/2024 11:15:37  rework as Record type
+array_transfer.cpp                  2.82  06/03/2024 11:17:11  rework as transfer record
+ic_rcb.cpp                          1.68  06/06/2024 16:35:41  reorder codeblocks after readexe
+spe_include.cpp                     2.27  06/06/2024 16:37:03  process codeblocks after readexe  
+ic_parse.cpp                        1.63  06/06/2024 16:38:06  procdef xic version
+ic_wic.cpp                          1.79  06/06/2024 16:39:34  procdef xic version  
+spe_proc_def.cpp                    2.75  06/06/2024 16:40:44  procdef xic version    
+spe_statex.cpp                      1.43  06/06/2024 16:41:17  procdef xic version      
+spil_sdebug.cpp                     1.50  06/06/2024 16:43:45  remove parse srcf 
+parse_var.cpp                       2.93  06/06/2024 16:45:24  remove parse srcf   
+oo_cmf.cpp                          2.48  06/07/2024 00:31:26  allow real promote/demote
+ds_types.cpp                        1.93  06/07/2024 00:33:28  allow real promote/demote  

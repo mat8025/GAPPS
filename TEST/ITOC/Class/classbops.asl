@@ -28,7 +28,8 @@ if (_dblevel > 0) {
 allowErrors(-1) ; // keep going
 
 chkIn(_dblevel);
-int db_ask = 0
+db_ask = 0
+db_allow = 1
 
 #include "abc.asl"
 
@@ -135,6 +136,7 @@ class Point
 
 
      float Setx (real m) {
+   //  float Setx (double m) {
       m.pinfo()
       x = m;
       <<"$_proc $m $x  \n"; 
@@ -142,6 +144,7 @@ class Point
       }
 
      float Setxy (real m, real z) {
+   //  float Setxy (double m, double z) {
       m.pinfo()
       x = m;
       y = z
@@ -150,9 +153,9 @@ class Point
       }
 
 
-    void setr (real m, real n) 
+    void setr (double m, double n) 
     {
-  <<"IN $_proc set via real %V $m $n  \n";
+  <<"IN $_proc set via double %V $m $n  \n";
        x = m;
        y = n;
        y.pinfo()
@@ -208,7 +211,7 @@ class Point
       return y;
       }
 
-    double  mul(real a)
+    double  mul(double a)
     {
       double tmp;
       x.pinfo()
@@ -283,14 +286,14 @@ ans=ask("Point A OK?\n",0)
 
   rx=   A.Getx();
   
-//allowDB("spe,oo,ic,opera",1)
+//
   rx = A.Setx(1.2)
 
-ans=ask("proc_svn $rx OK?",db_ask)
+ans=ask("proc_svn $rx OK?",0)
 
-
+allowDB("spe,oo,ic,opera",db_allow)
   rx= A.Setx(2.4)
-ans=ask("proc_svn $rx OK?",db_ask)
+ans=ask("proc_svn $rx OK?",0)
 
    rx= A.Getx()
 ans=ask("proc_svn $rx OK?",db_ask)
@@ -319,14 +322,9 @@ ans=ask("proc_svn OK? $rx",db_ask)
   chkN(rx,dx)
   dx += 1;
  }
- 
-
 
 
 chkStage("class print OK?")
-
-
-
 
   A.pinfo()
 
@@ -351,13 +349,6 @@ chkStage("class print OK?")
   xy = A.x + A.y
 
   chkR(xy,8.8)
-
-
-
- //chkOut(1)
- 
-
-
 
   rx=   A.Getx();
  <<"%V <|$rx|>\n"
@@ -408,17 +399,21 @@ chkStage("class print OK?")
 
   chkR(rx,4.0);
 
-//ans=ask(DB_prompt,DB_action);
+//
 
 real r1 = 2.3;
-real r2 = 4.5;
+double r2 = 4.5;
 
 
  <<"%V <|$r1|>\n"
 
+ans=ask("%V $r1 OK?",db_ask);
+
+
   rx=   A.Getx();
-  
- <<"%V <|$rx|>\n"
+
+
+ans=ask("%V $rx OK?",db_ask);
 
     chkR(rx,4.0);
 
@@ -433,6 +428,8 @@ real r2 = 4.5;
   A.Setx(r1);
 
   rx=   A.Getx();
+
+ans=ask("%V $rx OK?",db_ask);
 
   chkR(r1,rx)
 <<"%V $r1  $rx \n"

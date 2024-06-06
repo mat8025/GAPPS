@@ -36,14 +36,14 @@ Str Hdr_comment = "?";
 
    Str  rs = "comment ca va";
 
-  int vers2ele(str& vstr)
+  int vers2ele(Str& vstr)
   {
-  //<<"%V $vstr\n"
-   int pmaj = atoi(spat(vstr,".",-1));
-//   <<[2]"$pmaj $(typeof(pmaj)) $(ptsym(pmaj)) \n"  
+  <<"%V $vstr\n"
+   int pmaj = atoi( spat(vstr,".",-1));
+<<[2]"$pmaj $(typeof(pmaj)) $(ptsym(pmaj)) \n"  
    int pmin = atoi(spat(vstr,".",1));
 
-//<<[2]"$pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
+<<"$pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
    Str elestr = periodicName(pmin); // need CPP
    H_ele =" ";
    H_ele = spat(elestr,",");
