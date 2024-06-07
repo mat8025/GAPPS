@@ -6,13 +6,14 @@
  *  @vers 1.10 Ne Neon [asl 6.4.31 C-Be-Ga]                             
  *  @date 06/17/2022 07:53:06                                           
  *  @cdate Sun Dec 23 09:23:42 2018                                     
- *  @author Mark Terry 23 09:23:42 2018                                 
+ *  @author Mark Terry 
  *  @Copyright © RootMeanSquare 2022 -->                               
  * 
  */ 
 //----------------<v_&_v>-------------------------//                 
 
-  // allowDB("spe")
+
+
 #include "debug";
 
 if (_dblevel > 0) {
@@ -23,7 +24,8 @@ allowErrors(-1) ; // keep going
 
 chkIn(_dblevel);
 
-<<"%V $_DBH \n"
+ rvers = getversion()
+ <<"%V $rvers\n"
 
 
    Str vers2ele(Str& vstr)
@@ -49,19 +51,26 @@ chkIn(_dblevel);
    // then  read current vers and  bump number and update date
    // if no @vers line -- then prepend the vers header lines
    
-   Str srcfile = _clarg[1];
+   Str aslfile = _clarg[1];
+
+   if (aslfile == "-h") {
+   <<" shead new.asl  \"test does what?\" vers(maj.min e.g. 1.2)  date(01/01/2020)\n"
+   <<" if newasl does not exist then creates a template\n"
+    exit(1)
+   }
+
    
-   if (srcfile == "") {
+   if (aslfile == "") {
    <<[BERR]"no script file entered\n"
      exit();
    }
    
-   sz= fexist(srcfile,RW_,0);
+   sz= fexist(aslfile,RW_,0);
    
-   <<[BERR]" RW sz $sz \n"
+   //<<" RW sz $sz \n"
 
    int mas[6];
-   p=spat(srcfile,".asl",0,1,mas)
+   p=spat(aslfile,".asl",0,1,mas)
    is_asl_script = 0;
    if (mas[0] ) {
       is_asl_script = 1;
@@ -69,18 +78,18 @@ chkIn(_dblevel);
    create_template =0;
 
    if (sz == -1) {
-   <<[BERR]"can't find script file $srcfile\n"
+   <<"can't find script file $aslfile  so create template\n"
    ans=query("create minimal template y/n ?")
    if (ans != "y") {
          exit()
    }
 
-
+   A=ofw(aslfile)
+   <<[A]"----- \n" // stub
+   cf(A)
    create_template =1;
-    A=ofw(srcfile);
-    <<[A]"///\n chkOut();\n  exit();\n;///--------(^-^)--------///\n"
-    cf(A);
-   
+   new_main = 1
+       
    }
 
 
@@ -113,10 +122,6 @@ chkIn(_dblevel);
    Str new_vers = "1.1";
 
 
-
-
-
-
    if (na > 3) {
     set_vers = 1;   
     new_vers = _clarg[3];
@@ -131,16 +136,17 @@ chkIn(_dblevel);
 
 
 
-   file= fexist(srcfile,ISFILE_,0);
+   file= fexist(aslfile,ISFILE_,0);
    
    //<<[2]" FILE $file \n"
    
-   dir= fexist(srcfile,ISDIR_,0);
+   dir= fexist(aslfile,ISDIR_,0);
    
    <<[BERR]" DIR $dir \n"
    author = "Mark Terry"
-   fname = srcfile
-   release = "CARBON"
+   fname = aslfile
+   // current release is 
+   release = rvers
 
 
    pmaj = 1;
@@ -169,19 +175,9 @@ chkIn(_dblevel);
    //<<[2]" $(nsc(5,\"\\n\"))\n"
 Svar T;
 
-   A=ofr(srcfile);
+   A=ofr(aslfile);
    T=readfile(A);
    tsz= Caz(T);
-//<<[2]"$tsz $T[0] \n"
-
-//for (i = 0 ; i < tsz; i++)
-//{
-//<<"$i $T[i] \n"
-//}
-
-
-
-
 
    fseek(A,0,0);
 
@@ -204,12 +200,11 @@ Svar L;
    found_where = where;
   }
 
-if (found_vers) {
+  if (found_vers) {
 
-<<"Already has a header $srcfile - exiting!\n"
- exit(-1);
-
-}
+  <<"Already has a header $aslfile - exiting!\n"
+    exit(-1);
+  }
 
 
 
@@ -219,16 +214,15 @@ if (found_vers) {
    cf(A);
    
  
- !!"cp $srcfile old_$srcfile"  ; // 
-   
-   //ns = spat(srcfile,".asl",-1)
-//  Str newsrc=srcfile;
-  newsrc=srcfile;
+ !!"cp $aslfile old_$aslfile"  ; // 
+
+  newsrc=aslfile;
 <<"$newsrc \n"
   //newsrc.pinfo();
-   if (!create_template) {
+
+  if (!create_template) {
    
-      newsrc=scat("hd_",srcfile)
+      newsrc=scat("hd_",aslfile)
 
   }
    
@@ -255,7 +249,8 @@ if (found_vers) {
 <<[A]"\n";
 
 ESL='//==============\_(^-^)_/==================//';
-
+ new_main = 1
+ 
  if ( new_main ) {
     if (is_asl_script) {
 
@@ -278,10 +273,10 @@ ESL='//==============\_(^-^)_/==================//';
 <<[A]" \n\n\n"
 
 
-<<[A]"// goes after procs\n"
+<<[A]"// CPP main statment goes after all procs\n"
 <<[A]"#if _CPP_\n"
 
-<<[A]"int main( int argc, char *argv[] ) { // main start \n"
+<<[A]"   int main( int argc, char *argv[] ) { // main start \n"
 ///
 <<[A]"#endif       \n"        
 
@@ -294,7 +289,7 @@ fflush(A)
 
 <<[_DBH]"now tack on file %V $tsz\n"
 
-ans=ask(DB_prompt,1);
+//ans=ask(DB_prompt,1);
 
    int klines = 0;
    for (i = 0; i < tsz; i++) {
@@ -317,17 +312,17 @@ if (new_main) {
 <<[A]"\n\n#if _CPP_           \n"   
   //////////////////////////////////
 <<[A]"  exit(-1); \n"
-<<[A]"  }  /// end of C++ main \n"
+<<[A]"  }  // end of C++ main \n"
 <<[A]"#endif     \n"       
 
 
-   <<[A]"\n\n///\n\n chkOut();\n\n  exit();\n\n$ESL\n"
+   <<[A]"\n\n///\n\n  chkOut(1);\n\n  exit();\n\n$ESL\n"
 }
    fflush(A)
    cf(A)
 
 <<"output to $newsrc\n"
    
-//!!"mv $newsrc $srcfile"
+//!!"mv $newsrc $aslfile"
 cf(BERR);
 /////

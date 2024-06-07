@@ -1,18 +1,52 @@
+/* 
+ *  @script info.asl 
+ * 
+ *  @comment info for a variable -- x.pinfo()  
+ *  @release 6.23 : C V 
+ *  @vers 1.2 He Helium [asl 6.23 : C V]                                    
+ *  @date 06/07/2024 13:07:43 
+ *  @cdate 06/07/2024 13:07:43 
+ *  @author Mark Terry 
+ *  @Copyright © RootMeanSquare 2024
+ * 
+ */ 
+//-----------------<V_&_V>------------------------//
+
+Str Use_= " Demo  of info for a variable -- x.pinfo()  ";
+
+#define _CPP_ 0
+
+#define _ASL_ 1
 
 
+#include "debug" 
+
+  if (_dblevel >0) { 
+   debugON() 
+   <<"$Use_ \n" 
+} 
+
+   allowErrors(-1); // set number of errors allowed -1 keep going 
+
+  chkIn(_dblevel) ;
+
+  chkT(1);
+
+ 
 
 
-#include "debug"
+// CPP main statment goes after all procs
+#if _CPP_
+   int main( int argc, char *argv[] ) { // main start 
+#endif       
+
+///
+///
+///
 
 
-if (_dblevel >0) {
-   debugON()
-}
-
-
-  filterFileDebug(REJECT_,"store")
   
-  chkIn(_dblevel)
+ 
   
   void goo()
   {
@@ -29,12 +63,15 @@ if (_dblevel >0) {
   
   }
   
-  int ok;
+  int ok =0;
   int a = 1;
   
-  a.pinfo()
+  sa= a.pinfo(1)
 
-  ok = a.checkinfo("INT"); // check for this str in the info
+
+  ans=ask("pinfo returns <|$sa|>",0)
+
+ ok = a.checkinfo("INT"); // check for this str in the info
 
   if (ok) {
 <<" $a is an INT\n"
@@ -48,12 +85,14 @@ if (_dblevel >0) {
 
   }
 
+  ans=ask("checkinfo ?",0)
 
-
-  ai = a.info()
+  ai = a.pinfo(1)
   
   
   <<"%V $a  $ai\n"
+
+ans=ask("pinfo returns <|$ai|>",0)
 
 
    chkN(1,a)
@@ -100,5 +139,18 @@ chkN(offs[2],4)
   <<"%V $obid \n"
   chkN(obid,-1)
   
-  
-  chkOut()
+
+
+#if _CPP_           
+  exit(-1); 
+  }  // end of C++ main 
+#endif     
+
+
+///
+
+  chkOut(1);
+
+  exit();
+
+//==============\_(^-^)_/==================//

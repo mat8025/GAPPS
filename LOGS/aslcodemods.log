@@ -2109,3 +2109,4 @@ spil_sdebug.cpp                     1.50  06/06/2024 16:43:45  remove parse srcf
 parse_var.cpp                       2.93  06/06/2024 16:45:24  remove parse srcf   
 oo_cmf.cpp                          2.48  06/07/2024 00:31:26  allow real promote/demote
 ds_types.cpp                        1.93  06/07/2024 00:33:28  allow real promote/demote  
+vmf_l.cpp                           1.75  06/07/2024 13:53:50  info routines
