@@ -160,7 +160,7 @@ ictout ="ictestoutput"
 //cart("bops","78")
 //chkT(0)
 
-CFLAGS = "-cwl"
+CFLAGS = "-Rcwl"
 
 //CFLAGS = "-cwlm"     // m to mask src lines in exe file --- broke
 
@@ -439,7 +439,7 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
   RunDirTests("Assign","assign");
 
-outcome("BOPS")
+    outcome("BOPS")
    }
 
 ////////////// OO ///////////////////////
@@ -1187,8 +1187,7 @@ if ((do_all || do_threads )) {
    lsz = caz(CrashList)
    
 <<"FailList size $flsz CrashList size $lsz \n"
-//   flsz<-info(1)
-//   lsz<-info(1)
+
    
 
 if (lsz > 0) {

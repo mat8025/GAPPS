@@ -454,7 +454,7 @@ if (!scmp(lprg,prg)) {
 //     !!"nohup $prg  | tee --append $ictout "
 
         if (do_query) {
-<<"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -dx ${prg}.xic  \n  "
+<<"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -dRxu ${prg}.xic  \n  "
          ans = query("$prg run it?")
 	 if (ans @="q") {
           exit()
@@ -463,7 +463,7 @@ if (!scmp(lprg,prg)) {
 
 //<<" run xic $wasl <|${prg}.xic|>\n";
 
-    !!"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -x ${prg}.xic   > /dev/null 2>&1 "
+    !!"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -dRxu ${prg}.xic   > /dev/null 2>&1 "
       
 // what happens if prg crashes !!
 

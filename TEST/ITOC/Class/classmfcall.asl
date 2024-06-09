@@ -24,6 +24,7 @@
 ///  need to sort out procrefargs
 ///
 
+//   fastxic(1); // use asl -R to enable fastxic in asl and xic 
 
 
 #include "debug"
@@ -39,8 +40,10 @@
    chkIn (_dblevel);
 
    allowErrors(-1)
-   echolines(0)
+   echolines(1)
    ok = 1;
+
+
    
    int showVec(int vect[], int j, int k)
    {
@@ -62,7 +65,7 @@
 ///////////////////////////////////////////////////////////////////
 ans ="y"
 //DBaction((DBSTEP_),ON_)
-// allowDB("ic_,oo_,spe_proc,spe_state,spe_cmf,rdp")
+allowDB("ic_,oo_,spe_proc,spe_state,spe_cmf,rdp",1)
 
 db_ask = 0;
 
@@ -345,7 +348,7 @@ double y = 1.707;
      double w = 3.3;
      
 <<"%V $ans\n"
-ans = ask("1 step  debug? [yes,no]",db_ask);
+ans = ask("1 step  debug? [yes,no]",0);
 ans.pinfo()
 <<"%V $ans\n"
 if (ans == "yes") {
@@ -644,10 +647,22 @@ class Instrum
 
 int Showmxy_cnt = 0;
 
+/*
+ * TBF  should be able to do either
+ * float ShowMxy(Instrum wins[],int j, int k)  i.e. an array of objs or type Instrum
+ * call  ShowMxy(VB_ins, ...
+ * float ShowMxy(Instrum win ,int j, int k)  i.e. an ele of objs or type Instrum
+ *  call  ShowMxy(VB_ins[j] , ...
+ * float ShowMxy(Instrum* win ,int j, int k)  i.e. ptr to an ele of objs or type Instrum
+*/
+
+
+//float ShowMxy(Instrum& wins,int j, int k)
 float ShowMxy(Instrum wins[],int j, int k)
+//float ShowMxy(Instrum wins,int j, int k)
 {
 
-Showmxy_cnt++;
+  Showmxy_cnt++;
   <<"$_proc  $j $k $Showmxy_cnt\n";
   j.pinfo()
 
@@ -659,6 +674,7 @@ Showmxy_cnt++;
   x.pinfo();
   
   x = wins[j].mx;
+  
    <<"%V $x  \n";
   y = wins[k].my;
 
@@ -666,7 +682,7 @@ Showmxy_cnt++;
    
    <<" $VB_ins[j].mx   $VB_ins[k].my\n";
 
-return y;
+  return y;
 }
 
 float sx;
@@ -809,16 +825,15 @@ allowDB("ic_,oo_,spe_proc,spe,array")
 
 <<"%V $ok \n"
 
+
+  for (m= 0; m < 4; m++) {
      j1++;
      k1++;
-     
-
-
 
      gmx= ShowMxy(VB_ins,j1, k1);
      
-<<"%V $gmx\n"
-
+ans=ask("%V $m $gmx",0)
+  }
 
    ok = chkN(gmx,-1.0,GT_)
 

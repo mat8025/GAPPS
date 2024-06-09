@@ -89,7 +89,7 @@
 
    db_ask = 0;
 
-   allowDB("opera_,spe_,str_,array_parse,parse,rdp_,pex",db_allow);
+   allowDB("opera_,spe_,str_,array_parse,parse,rdp_,pex,ic",db_allow);
 
 #endif
 
@@ -484,13 +484,13 @@ Str ans = " weird "
 
   for (k1 = 2 ; k1 < N;  k1++) {
 
-  <<"%V $k1 $sum $mi \n" 
+
 
   sum += k1 
 
   mi *= k1 
 
-  <<"%V $k1 $sum $mi \n" 
+ans=ask("%V $k1 $sum $mi ",db_ask) 
 
   }
 
