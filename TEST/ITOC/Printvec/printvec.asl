@@ -27,7 +27,7 @@ Str Use_ =  "Demo  of print format for vectors";
 
      }
 
-   chkIn(_dblevel);
+   chkIn();
 
  //  filterFileDebug(REJECT_,"array","args","exp");
 

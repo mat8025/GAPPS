@@ -27,7 +27,7 @@
 
   ask =0;
 
-  chkIn(_dblevel);
+  chkIn();
 
   int V[20];
 

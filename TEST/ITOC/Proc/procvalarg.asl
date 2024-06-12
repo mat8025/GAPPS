@@ -13,7 +13,7 @@
 
      }
 
-   chkIn(_dblevel);
+   chkIn();
 
  showUsage("How to use val args") ;
 

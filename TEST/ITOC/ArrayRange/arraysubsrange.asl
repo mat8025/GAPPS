@@ -32,7 +32,7 @@ filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar","#arra
 
 
 
-chkIn(_dblevel)
+chkIn()
 
 
 do_circ = 1;

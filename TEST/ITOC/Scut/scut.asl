@@ -31,7 +31,7 @@ if (_dblevel >0) {
 }
 
 
-chkIn(_dblevel)
+chkIn()
 
 str w1 = "Je le sais bien"
 

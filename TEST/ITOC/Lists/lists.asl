@@ -25,7 +25,7 @@
      }
 //<<[2]"running lists $_script\n"     
 
-   chkIn(_dblevel);
+   chkIn();
 
    ws = getScript();
 

@@ -19,7 +19,7 @@
 //include "debug"
 //debugON()
 
-  chkIn(_dblevel)
+  chkIn()
 
 proc Foo()
 {

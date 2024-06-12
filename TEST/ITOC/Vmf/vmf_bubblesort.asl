@@ -27,7 +27,7 @@ if (_dblevel >0) {
       <<"$Use_ \n"       
 }
 
-chkIn(_dblevel)
+chkIn()
 
 I = vgen(INT_,30,0,1)
 

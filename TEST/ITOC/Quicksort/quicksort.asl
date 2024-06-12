@@ -17,7 +17,7 @@
 
 filterFileDebug(REJECT_,"array_","exp","store","tok","args")
 
-chkIn(_dblevel)
+chkIn()
 
 // test quicksort
 

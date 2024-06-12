@@ -29,7 +29,7 @@
 
    allowErrors(-1);
 
-   chkIn(_dblevel);
+   chkIn();
 
    allowDB("spe_proc,spe_vmf,ic",1);
 

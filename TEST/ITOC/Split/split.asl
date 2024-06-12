@@ -14,7 +14,7 @@
 
 #define NULL ""
 
-   chkIn(_dblevel);
+   chkIn();
 
    A= split("once upon a time");
 

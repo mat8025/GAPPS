@@ -29,7 +29,7 @@
 //filterFileDebug(REJECT_,"scope","args","rdp","exp");		
 //filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
 
-   chkIn(_dblevel);
+   chkIn();
 
 int do_minus_range =1;
 int do_test = 0;

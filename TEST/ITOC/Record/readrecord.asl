@@ -27,7 +27,7 @@ if (_dblevel >0) {
 
 Str myName_ =" readRecord.asl - test record class"
 
-chkIn(_dblevel);
+chkIn();
 
 
 

@@ -12,7 +12,7 @@
 //***********************************************%
 
 
-chkIn(_dblevel)
+chkIn()
 na= argc()
 <<"there are $na Cl args\n"
 

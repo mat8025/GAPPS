@@ -31,7 +31,7 @@ o= 0;
 p= 0;
 
 
-chkIn(_dblevel)
+chkIn()
 
  z = a*d - b*c;
 

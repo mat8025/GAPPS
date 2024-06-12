@@ -30,7 +30,7 @@
 //filterFileDebug(REJECT_,"scopesindex_e.cpp","array_parse.cpp");
 //filterFuncDebug(REJECT_,"~storeSiv","checkProcFunc");
 
-   chkIn(_dblevel);
+   chkIn();
 
    int I[] = vgen(INT_,20,0,1);
 

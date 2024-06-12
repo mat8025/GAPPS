@@ -17,7 +17,7 @@
 
 N= 10;
 
-chkIn(_dblevel)
+chkIn()
 
 pan A[10];
 

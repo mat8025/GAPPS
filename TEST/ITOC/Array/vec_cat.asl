@@ -22,7 +22,7 @@
 
      }
 
-   chkIn(_dblevel);
+   chkIn();
 
    showUsage("test vec cat expand ops" );
 

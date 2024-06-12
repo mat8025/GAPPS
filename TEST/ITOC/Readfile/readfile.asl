@@ -36,7 +36,7 @@ if (_dblevel >0) {
 
 
 
-chkIn(_dblevel)
+chkIn()
 
 // if no supplied  file use this file as default
 

@@ -30,7 +30,7 @@
  showUsage("Ptr Demo")
 
 
-chkIn(_dblevel);
+chkIn();
 
   x =7;
 

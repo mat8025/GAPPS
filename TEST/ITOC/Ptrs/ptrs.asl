@@ -31,7 +31,7 @@
 
   allowErrors(-1);
 
-  chkIn(_dblevel);
+  chkIn();
 
   KI = vgen(INT_,10,0,1);
 

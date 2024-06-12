@@ -21,7 +21,7 @@
 
    showUsage(" test readfile function ");
 
-   chkIn(_dblevel);
+   chkIn();
 //sdb(1,@step)
 
    A = ofr("fops.asl");

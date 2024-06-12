@@ -15,7 +15,7 @@ if (_dblevel >0) {
    debugON()
 }
   
-chkIn(_dblevel)
+chkIn()
 
 
   b = 72

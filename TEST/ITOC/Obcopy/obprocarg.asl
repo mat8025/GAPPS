@@ -31,7 +31,7 @@
 
   allowErrors(-1);
 
-   chkIn(_dblevel);
+   chkIn();
 
    int Nfruits = 0;
 

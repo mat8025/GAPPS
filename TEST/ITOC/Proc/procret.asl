@@ -29,7 +29,7 @@
 
    ask =0;
 
-   chkIn(_dblevel);
+   chkIn();
 
    db_allow = 1 ; // set to 1 for internal debug print;
 

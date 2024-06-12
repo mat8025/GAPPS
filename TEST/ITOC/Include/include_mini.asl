@@ -29,7 +29,7 @@ allowErrors();
    
    <<"does nested includes\n"; 
    
-   chkIn(_dblevel); 
+   chkIn(); 
    
    ws = getScript(); 
    

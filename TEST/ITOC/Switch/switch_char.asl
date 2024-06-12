@@ -1,6 +1,6 @@
 
 
-chkIn(_dblevel)
+chkIn()
 #define BLUE 4
 
 k = RED_

@@ -35,7 +35,7 @@ if n less than zero the tails are compared for n elements.
 /}
 
 
-chkIn(_dblevel)
+chkIn()
 
 
 

@@ -33,7 +33,7 @@ if (_dblevel >0) {
 
 #define DBP <<
 
-chkIn(_dblevel)
+chkIn()
 
 // want to use ulong
 

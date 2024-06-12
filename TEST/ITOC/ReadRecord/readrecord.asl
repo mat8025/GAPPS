@@ -38,7 +38,7 @@ allowErrors(-1) ; // keep going
 
 filterFileDebug(REJECT_,"array_","exp","store","tok","args")
 
-chkIn(_dblevel)
+chkIn()
 
 
 /*

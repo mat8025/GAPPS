@@ -33,7 +33,7 @@ if (_dblevel >0) {
 
 allowErrors(-1) ; // keep going
 
-chkIn(_dblevel)
+chkIn()
 
 
 svar  S = "una larga noche"

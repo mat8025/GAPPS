@@ -22,7 +22,7 @@ if (_dblevel >0) {
 
 
 
-chkIn(_dblevel)
+chkIn()
 
 prec=setap(20)
 

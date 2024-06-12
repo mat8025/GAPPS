@@ -1,6 +1,6 @@
 # test ASL function 
 
-chkIn(_dblevel)
+chkIn()
 
 
 

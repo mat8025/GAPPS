@@ -27,7 +27,7 @@ proc changeDir(str td)
 //===============================
 
  
-  chkIn(_dblevel); 
+  chkIn(); 
 
 Curr_dir = "XYZ"
 

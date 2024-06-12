@@ -35,7 +35,7 @@
 //filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e","ds_storesiv");
 //filterFuncDebug(REJECT_,"vrealloc","init","varIndex");
 
-   chkIn(_dblevel);
+   chkIn();
 
    int I[];
 

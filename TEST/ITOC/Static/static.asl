@@ -34,7 +34,7 @@
 
 ignoreErrors();
 
-   chkIn(_dblevel);
+   chkIn();
 
    
    void  Foo ()

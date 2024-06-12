@@ -33,7 +33,7 @@
 //FilterFileDebug(REJECT_,"storetype_e");
 // FilterFuncDebug(REJECT_,"~ArraySpecs",);
 
-   chkIn(_dblevel);
+   chkIn();
 // test array indexing
 
    N = 20;

@@ -33,7 +33,7 @@
 
 
 
-   chkIn(_dblevel);
+   chkIn();
 // test array indexing
   if (_dblevel > 1) {
    allowDB("spe,opera_,array_parse,rdp_,ds,ic_")

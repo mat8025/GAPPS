@@ -31,7 +31,7 @@
 
    db_allow = 0
    
-   chkIn(_dblevel);
+   chkIn();
 
    N= 20;
 

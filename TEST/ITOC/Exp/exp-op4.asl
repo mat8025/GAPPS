@@ -16,7 +16,7 @@ filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
 filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
 
 
-chkIn(_dblevel)
+chkIn()
 
 n_legs = 3;
 

@@ -42,7 +42,7 @@ int outcome (Str title)
    
    last_npass = rt_pass;
    last_ncrash = rt_crash;
-   <<"out: $rt_pass $rt_crash \n"
+ //  <<"out: $rt_pass $rt_crash \n"
     return rt_pass
 }
 
@@ -463,7 +463,8 @@ if (!scmp(lprg,prg)) {
 
 //<<" run xic $wasl <|${prg}.xic|>\n";
 
-    !!"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -dRxu ${prg}.xic   > /dev/null 2>&1 "
+  //  !!"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -dRxu ${prg}.xic   
+    !!"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -Rxu ${prg}.xic   > /dev/null 2>&1 "
       
 // what happens if prg crashes !!
 
@@ -523,6 +524,7 @@ int wscore;
 
      // doxictest("./$aprg", "$a1")
 
+ //     !!"$wasl -o ${aprg}.xout -e ${aprg}.xerr -t ${aprg}.xtst -x $aprg $a1  > /dev/null 2>&1 "
       !!"$wasl -o ${aprg}.xout -e ${aprg}.xerr -t ${aprg}.xtst -x $aprg $a1  > /dev/null 2>&1 "
 
   //    doxictest(aprg, a1)
@@ -603,11 +605,11 @@ void cart (Str prg)
            }
    
 
-//    <<"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst $CFLAGS ${prg}.asl > /dev/null   2>&1";
+   //<<"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst $CFLAGS ${prg}.asl > /dev/null   2>&1";
 
 
   
-!!"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst $CFLAGS ${prg}.asl > /dev/null   2>&1";
+  !!"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst $CFLAGS ${prg}.asl  > /dev/null   2>&1";
 
      // !!"ls -l *";
        wstr= prg

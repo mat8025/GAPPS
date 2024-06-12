@@ -15,7 +15,7 @@
 
 #include "debug.asl"
 
-   chkIn(_dblevel);
+   chkIn();
 
 
 #define C3 3

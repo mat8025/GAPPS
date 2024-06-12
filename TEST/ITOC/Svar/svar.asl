@@ -35,7 +35,7 @@ Str Use_= "Demo svar type use";
 
    allowErrors(-1);
  //  sdb(1,"soe")
-   chkIn(_dblevel);
+   chkIn();
    
    chkT(1)
    

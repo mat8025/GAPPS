@@ -16,7 +16,7 @@ if (_dblevel >0) {
 }
 
 
-chkIn(_dblevel)
+chkIn()
 
 
 I= Igen(20,0,1)

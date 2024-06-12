@@ -26,7 +26,7 @@ Str Use_= " Demo  of words that can be spelled using PT ";
 
    allowErrors(-1); // set number of errors allowed -1 keep going 
 
-  chkIn(_dblevel) ;
+  chkIn() ;
 
   chkT(1);
 

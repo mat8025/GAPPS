@@ -30,7 +30,7 @@ if (_dblevel >0) {
 //filterFileDebug(REJECT_,"scopesindex_e.cpp","array_parse.cpp");
 //filterFuncDebug(REJECT_,"~storeSiv","checkProcFunc");
 
-chkIn(_dblevel)
+chkIn()
 
 
 

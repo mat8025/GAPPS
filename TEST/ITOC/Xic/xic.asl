@@ -30,7 +30,7 @@ Demo  of speed test
 
    allowErrors(-1); 
 
-  chkIn(_dblevel)
+  chkIn()
 
 myscript = getScript();
 

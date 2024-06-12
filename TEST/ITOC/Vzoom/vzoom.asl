@@ -17,7 +17,7 @@ R=vzoom(A,newsz,{"spline"})
 linearly interpolates vector  A to newsz, return result to new vector R 
 optionally a cubic spline interpolation can be used.
 */
-chkIn(_dblevel)
+chkIn()
  F = Vgen(DOUBLE_,8,0,1)
 
  fsz = Caz(F)

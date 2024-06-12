@@ -24,7 +24,7 @@ if (_dblevel >0) {
 }
   
 
-chkIn(_dblevel);
+chkIn();
 
 //sdb(_dblevel,@~trace)
    

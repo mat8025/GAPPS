@@ -19,7 +19,7 @@ debugON();
 
 //setDebug(1,@pline,@trace,"~step")
 
-chkIn(_dblevel)
+chkIn()
 
 record R[10];
 

@@ -12,7 +12,7 @@
 #include "debug"
 
 
-chkIn(_dblevel);
+chkIn();
 
 N = 200;
 int K = 1;

@@ -30,7 +30,7 @@ filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e","ds_storesiv");
 filterFuncDebug(REJECT_,"vrealloc","init");
 
 
-chkIn(_dblevel)
+chkIn()
 
 float F = 3.142;
 <<"%V $F\n"

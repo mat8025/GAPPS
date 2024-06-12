@@ -14,6 +14,8 @@
 
 //<<"Including  debug \n"
 
+_dblevel = getDebugLevel()
+
 int hold_dbl = _dblevel;
 int dblevel = _dblevel;
 

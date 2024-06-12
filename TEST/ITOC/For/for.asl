@@ -13,7 +13,7 @@
 
 //chkIn()
 
-chkIn(_dblevel)
+chkIn()
 
 
 prog = GetScript()

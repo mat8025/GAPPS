@@ -16,7 +16,7 @@
 //<<"$_clarg[0] $_clarg[1] \n"
 #include "debug"
 
-chkIn(_dblevel);
+chkIn();
 
 if (_dblevel >0) {
    debugON()

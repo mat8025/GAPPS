@@ -28,7 +28,7 @@ if (_dblevel >0) {
    showUse();
 }
   
-chkIn(_dblevel)
+chkIn()
 
 pan a = 1
 

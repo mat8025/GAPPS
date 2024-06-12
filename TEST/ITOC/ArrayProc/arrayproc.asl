@@ -6,7 +6,7 @@ if (_dblevel >0) {
 }
 
 
-chkIn(_dblevel)
+chkIn()
 
 
 float array_sub(float rl[])

@@ -35,7 +35,7 @@
 
 <<"%V $db_allow \n"
 
-  chkIn(_dblevel);
+  chkIn();
 
   allowDB("spe,parse,array,record,ds_record,rdp,ic,svar", db_allow)
 

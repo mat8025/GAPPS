@@ -34,7 +34,7 @@
   
   _dblevel.pinfo()
 
-   chkIn(_dblevel);
+   chkIn();
 
 //ans = ask(" dbl $_dblevel  $k $j $g",1)
 

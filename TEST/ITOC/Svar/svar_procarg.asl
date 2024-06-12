@@ -30,7 +30,7 @@ if (_dblevel >0) {
 
 _dblevel = hold_dbl ;
 
-   chkIn(_dblevel);
+   chkIn();
 
    svar E[] = { "the first ten elements are:", "H", "He", "Li", "Be" ,"B" ,"C", "N", "O", "F", "Ne"  };
    

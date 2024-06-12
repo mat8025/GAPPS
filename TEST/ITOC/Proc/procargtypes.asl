@@ -55,7 +55,7 @@ int main(void) {
 
      }
 
-   chkIn(_dblevel);
+   chkIn();
   ask =1
  showUsage("How to use ref,pr,val args") ;
  fileDB(REJECT_ALL_,"xyz")

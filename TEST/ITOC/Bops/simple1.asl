@@ -9,7 +9,7 @@ if (_dblevel >0) {
 }
 
 
-chkIn(_dblevel)
+chkIn()
 
 
  fv = vgen(FLOAT_,10,0,1)

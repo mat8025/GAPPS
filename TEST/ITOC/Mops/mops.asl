@@ -31,7 +31,7 @@
 
    PI = 4.0 * atan(1.0)
 
-  chkIn(_dblevel);
+  chkIn();
 
   int a = 14;
 

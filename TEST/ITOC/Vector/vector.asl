@@ -28,7 +28,7 @@
      }
 
 askit(0)
-   chkIn(_dblevel);
+   chkIn();
 
    V= vgen(FLOAT_,10,0,1);
 

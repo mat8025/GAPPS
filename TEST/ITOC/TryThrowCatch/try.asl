@@ -26,7 +26,7 @@ Str Use_= " [num]   numbers 7,14,>=30 are caught - any other number is not"
 
    allowErrors(-1) ; // keep going;
 
-   chkIn(_dblevel);
+   chkIn();
 
    int tval = 7;
 

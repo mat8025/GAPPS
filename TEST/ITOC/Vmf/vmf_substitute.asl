@@ -28,7 +28,7 @@ if (_dblevel >0) {
    debugON()
  <<"$Use_ \n"    
 }
-chkIn(_dblevel)
+chkIn()
 
 
 svar  TS;

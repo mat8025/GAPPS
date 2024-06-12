@@ -36,7 +36,7 @@ void limit_vec()
 }
 
 
-chkIn(_dblevel)
+chkIn()
 
 I = vgen(INT_,20,0,1)
 

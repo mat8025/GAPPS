@@ -20,7 +20,7 @@ DBG"%v $na\n"
 
 int ac = 1;
 
-chkIn(_dblevel)
+chkIn()
 
 while (ac < na) {
 

@@ -26,7 +26,7 @@
 
      }
 
-   chkIn(_dblevel);
+   chkIn();
 
    record R[10];
 

@@ -35,7 +35,7 @@ db_ask = 0
      }
 
 
-  chkIn(_dblevel)
+  chkIn()
 
   int vers_ele(str& vstr)
   {

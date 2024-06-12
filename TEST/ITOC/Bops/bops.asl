@@ -82,7 +82,7 @@
 //ans=ask("?? $argc",1)
  allowErrors(-1)
 
- chkIn(_dblevel)
+ chkIn()
 
  chkT(1) 
   db_allow = 0; // set to 1 for internal debug print;

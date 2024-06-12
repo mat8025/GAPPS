@@ -23,7 +23,7 @@
 
   }
 
-  chkIn(_dblevel);
+  chkIn();
 
   double Foo(double a)
   {

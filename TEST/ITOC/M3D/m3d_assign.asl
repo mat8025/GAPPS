@@ -30,7 +30,7 @@
 
    allowErrors(-1);
 
-   chkIn(_dblevel);
+   chkIn();
 
 
    nrows = 7;

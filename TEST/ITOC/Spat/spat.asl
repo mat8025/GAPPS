@@ -53,7 +53,7 @@ if first entry in pma is [-1,-1] then the pattern was not found.
 
   }
 
-  chkIn(_dblevel);
+  chkIn();
 
   int match[2];
 

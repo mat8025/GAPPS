@@ -23,7 +23,7 @@ if (_dblevel >0) {
 
 <<"  check str compare syntax     s == "string" ;  s != "abc" \n"
 
-chkIn(_dblevel)
+chkIn()
 
 
 f = 3.0

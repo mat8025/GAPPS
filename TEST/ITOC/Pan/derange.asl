@@ -20,7 +20,7 @@ myScript = getScript();
 ///  --> 1/e
 
 
-chkIn(_dblevel)
+chkIn()
 
 float g;
 

@@ -35,7 +35,7 @@
 
    ignoreErrors();
 
-   chkIn(_dblevel);
+   chkIn();
    
 /////////////////////  simple scalar ///////////////////
   db_ask = 0;

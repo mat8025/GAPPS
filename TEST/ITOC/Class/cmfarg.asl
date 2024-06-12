@@ -12,7 +12,7 @@ if (_dblevel >0) {
 
 allowErrors(-1) ; // keep going
 
-chkIn(_dblevel);
+chkIn();
 
 float hoo( float ya) {
 <<"$_proc getting $ya   \n";

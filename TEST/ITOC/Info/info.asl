@@ -28,7 +28,7 @@ Str Use_= " Demo  of info for a variable -- x.pinfo()  ";
 
    allowErrors(-1); // set number of errors allowed -1 keep going 
 
-  chkIn(_dblevel) ;
+  chkIn() ;
 
   chkT(1);
 

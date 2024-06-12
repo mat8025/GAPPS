@@ -28,7 +28,7 @@ Demo  of test arg passing in nested proc calls
 
    allowErrors(-1); 
 
-  chkIn(_dblevel)
+  chkIn()
 
    long sc_startday = 223345;
 

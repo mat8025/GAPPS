@@ -41,7 +41,7 @@ chkR(H[0],-6)
 chkR(H[19],6)
 
 
-F->limit(-5,5)
+F.limit(-5,5)
 
 
 <<"%6.1f$F \n"
@@ -54,7 +54,7 @@ a = 7;
 
 <<"$a\n"
 
-a->limit(0,2)
+a.limit(0,2)
 
 <<"$a\n"
 chkN(a,2);
@@ -63,7 +63,7 @@ b = -7;
 
 <<"$a\n"
 
-b->limit(0,2)
+b.limit(0,2)
 
 <<"$b\n"
 chkN(b,0);

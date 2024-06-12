@@ -30,7 +30,7 @@ allowDB("ic,spe_,svar,str_,parse,pex",db_allow);
 
   <<"$Hdr_comment\n"
 
-   chkIn(_dblevel);
+   chkIn();
 
 
 

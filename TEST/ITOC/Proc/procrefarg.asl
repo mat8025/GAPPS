@@ -9,7 +9,7 @@ if (_dblevel > 0) {
   debugON()
 }
 
-   chkIn(_dblevel);
+   chkIn();
 
    showUsage("How to use ref args") ;
    DB_action = 0;

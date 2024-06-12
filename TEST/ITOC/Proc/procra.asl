@@ -18,7 +18,7 @@ if (_dblevel > 0) {
 }
 
 
-chkIn(_dblevel)
+chkIn()
  db_allow = 0;
    db_ask = 0
 

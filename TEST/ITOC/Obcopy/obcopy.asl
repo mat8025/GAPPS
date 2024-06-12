@@ -39,7 +39,7 @@
 
 //   filterFileDebug(REJECT_,"store","tok");
 
-   chkIn(_dblevel);
+   chkIn();
 
 int Val = 8;
 int X = 0;

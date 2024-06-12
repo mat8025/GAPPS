@@ -32,7 +32,7 @@
 
 
    db_ask = 0;
-   chkIn(_dblevel);
+   chkIn();
 
    int voo(int vect[])
    {

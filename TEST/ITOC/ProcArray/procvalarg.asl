@@ -1,7 +1,7 @@
 
 #include "debug"
 
-chkIn(_dblevel)
+chkIn()
 
 
 proc sumarg (int v, int u)

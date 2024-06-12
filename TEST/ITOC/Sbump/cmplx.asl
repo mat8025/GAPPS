@@ -34,7 +34,7 @@ filterFileDebug(REJECT_,"scope","args","ds_store","tok");
 filterFuncDebug(REJECT_,"store","vrealloc","init");
 
 
-chkIn(_dblevel)
+chkIn()
 
 
 int k = 371:

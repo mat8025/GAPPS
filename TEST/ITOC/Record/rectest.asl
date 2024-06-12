@@ -24,7 +24,7 @@ if (_dblevel >0) {
 
 
 
-chkIn(_dblevel)
+chkIn()
 
 Record R[10]
 

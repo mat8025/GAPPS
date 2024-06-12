@@ -21,7 +21,7 @@ if (_dblevel >0) {
 
 filterFileDebug(REJECT_,"scopesindex_e","scope_e","scope_findvar","rdp_token");
 
-chkIn(_dblevel)
+chkIn()
 
 
 void goo(ptr a)

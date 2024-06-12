@@ -25,7 +25,7 @@ if (_dblevel >0) {
    <<"$Use_ \n" 
 } 
 
-chkIn(_dblevel)
+chkIn()
 
 
  float M[] = {4,7,2,6} 

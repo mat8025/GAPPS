@@ -16,7 +16,7 @@
    
 //debugOFF()
    
-   chkIn(_dblevel);
+   chkIn();
    
 //prog= GetScript()
    

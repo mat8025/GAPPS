@@ -44,7 +44,7 @@
   <<"$Use_\n";
 
   }
-   chkIn(_dblevel);
+   chkIn();
 
   db_allow = 0;
 

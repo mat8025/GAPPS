@@ -19,7 +19,7 @@ if (_dblevel >0) {
 }
 
 
-chkIn(_dblevel)
+chkIn()
 
 
 int V[] = {1,2,3,4,5,6,7}

@@ -28,7 +28,7 @@
 
   ask =0;
 
-  chkIn(_dblevel);
+  chkIn();
 
   Svar Wans;
 

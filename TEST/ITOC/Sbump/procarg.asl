@@ -27,7 +27,7 @@ if (_dblevel >0) {
 }
 
 
-chkIn(_dblevel)
+chkIn()
 
 int sumarg(int a, int b)
 {

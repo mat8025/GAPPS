@@ -36,7 +36,7 @@ Str Use_= "   Demo  of MD4";
 
    ignoreErrors();
 
-   chkIn(_dblevel);
+   chkIn();
 
    N = 3;
 

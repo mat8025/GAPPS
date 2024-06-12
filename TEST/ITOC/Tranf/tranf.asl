@@ -16,7 +16,7 @@
 // test Sin function
 //
 
-chkIn(_dblevel)
+chkIn()
 
  a = 1.0;
 

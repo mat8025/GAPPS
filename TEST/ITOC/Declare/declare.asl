@@ -26,7 +26,7 @@
 
   }
 
-  chkIn(_dblevel);
+  chkIn();
 
   void Foo(int a)
   {

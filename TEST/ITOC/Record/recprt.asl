@@ -13,7 +13,7 @@
 
    myScript = getScript();
 
-   chkIn(_dblevel);
+   chkIn();
 
    record R[5];
 

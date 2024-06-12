@@ -160,7 +160,7 @@ ictout ="ictestoutput"
 //cart("bops","78")
 //chkT(0)
 
-CFLAGS = "-Rdcwlu"
+CFLAGS = "-Rcwlu"
 
 //CFLAGS = "-cwlm"     // m to mask src lines in exe file --- broke
 
@@ -483,7 +483,7 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
     RunDirTests("Obcopy","obcopy,obprocarg");
 
-    RunDirTests("Mih","sh,mih,sih")
+    RunDirTests("Mih","mih,sih")
 
     outcome("OO")
   }

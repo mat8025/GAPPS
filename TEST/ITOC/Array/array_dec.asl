@@ -17,7 +17,7 @@ filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
 
 
 
-chkIn(_dblevel)
+chkIn()
 
 
 int F[] = { 1,2,3,4 };

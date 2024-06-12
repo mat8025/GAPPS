@@ -29,7 +29,7 @@ if (_dblevel >0) {
     <<"$Use_\n"   
 }
 
-chkIn(_dblevel);
+chkIn();
 
 db_allow = 0; // set to 1 for internal debug print
 db_ask = 0

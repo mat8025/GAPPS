@@ -3,7 +3,7 @@
 ////
 allowErrors(-1) ; // keep going
 
-chkIn(_dblevel);
+chkIn();
 
 
 chkT(1)

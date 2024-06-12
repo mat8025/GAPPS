@@ -25,7 +25,7 @@ if (_dblevel >0) {
 filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar","array_parse","array_subset")
 
 
-chkIn(_dblevel)
+chkIn()
 
 checkMemory(1,1)
 

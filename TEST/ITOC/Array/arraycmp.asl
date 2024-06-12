@@ -30,7 +30,7 @@
 
      }
 
-   chkIn(_dblevel);
+   chkIn();
 
    A= vgen(INT_,10,0,1);
 

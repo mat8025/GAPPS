@@ -14,7 +14,7 @@
 
 #include "debug"
 
-chkIn(_dblevel)
+chkIn()
 
  x = vgen(INT_,5,0,1)
 

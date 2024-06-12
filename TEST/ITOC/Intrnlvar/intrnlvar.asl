@@ -5,7 +5,7 @@
 #include "debug"
 debugON()
 
-chkIn(_dblevel)
+chkIn()
 
 
 filterFuncDebug(REJECT_,"SprocSM","ProcArgs","getLsiv")

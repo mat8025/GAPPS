@@ -31,7 +31,7 @@
 
   allowErrors(-1);
 
-  chkIn(_dblevel);
+  chkIn();
 
 
   int on = 0;

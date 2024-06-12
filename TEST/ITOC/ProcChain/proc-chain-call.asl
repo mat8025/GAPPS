@@ -21,7 +21,7 @@ debugON()
 filterFuncDebug(REJECT_,"SprocSM","ProcArgs","getSivs","CopySivTable","checkLoop","findSiv")
 filterFuncDebug(REJECT_,"getLSiv")
 
-chkIn(_dblevel)
+chkIn()
 
 proc sumargs (int v, int u)
 {

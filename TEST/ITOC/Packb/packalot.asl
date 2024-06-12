@@ -19,7 +19,7 @@ if (_dblevel >0) {
 }
 
 
-chkIn(_dblevel)
+chkIn()
 
 int i = 5;
 float f = 3.1;

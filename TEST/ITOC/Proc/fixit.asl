@@ -20,7 +20,7 @@ ignoreErrors()
 allowErrors(-1)
 
 
-chkIn(_dblevel)
+chkIn()
 
  Str S = "abcde";
 

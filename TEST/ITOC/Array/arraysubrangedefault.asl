@@ -14,7 +14,7 @@ if (_dblevel >0) {
 }
 
 
-chkIn(_dblevel)
+chkIn()
 
 
 int M[10][6]

@@ -10,7 +10,7 @@ if (_dblevel >0) {
    debugON()
 }
   
- chkIn(_dblevel);
+ chkIn();
 
 N = 1000;
 y= 0.0;

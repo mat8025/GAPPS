@@ -17,7 +17,7 @@ setAP(0)
 
 #include "debug"
 
-chkIn(_dblevel)
+chkIn()
 
 nlb = 10
 nkg = 10 * _lb2kg

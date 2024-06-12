@@ -22,7 +22,7 @@ if (_dblevel >0) {
 }
 
 int Rn = 0;
-chkIn(_dblevel)
+chkIn()
 
 Str pstrarg (str v, str u)
 {

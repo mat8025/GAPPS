@@ -30,7 +30,7 @@ if (_dblevel >0) {
 }
 
 
-chkIn(_dblevel)
+chkIn()
 
 void pstr( str val)
 {

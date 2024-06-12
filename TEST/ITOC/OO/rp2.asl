@@ -29,7 +29,7 @@ if (_dblevel >0) {
 allowErrors(-1) ; // keep going
 
 
-  chkIn(_dblevel); 
+  chkIn(); 
   
 int db_ask = 0; // set to zero for no ask
 int db_step = 0; // set to zero for no step
@@ -104,7 +104,7 @@ int db_allow = 0; // set to zero for internal debug print
 
  //ans=ask("%V $__LINE__  ynq [y]\n",db_ask);
 
- DBaction((DBSTEP_),db_step)
+ //DBaction((DBSTEP_),db_step)
 
  
  allowDB("array,spe_proc,parse,ic,oo",db_allow)

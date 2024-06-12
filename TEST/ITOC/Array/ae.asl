@@ -23,7 +23,7 @@ if (_dblevel >0) {
 
 
 
-chkIn(_dblevel);
+chkIn();
 
 I = vgen(INT_,30,0,1)
 

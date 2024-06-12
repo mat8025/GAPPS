@@ -36,7 +36,7 @@ int f = 7;
 
 <<"%V $f \n"
 
-chkIn(_dblevel);
+chkIn();
 
 chkR(f,7);
 

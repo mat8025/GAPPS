@@ -95,8 +95,9 @@ int db_step = 0;
 
 
  ans=ask(DB_prompt,db_action)
-wdb=  DBaction((DBSTEP_),db_step)
-<<"$wdb \n"
+
+//wdb=  DBaction((DBSTEP_),db_step)
+//<<"$wdb \n"
 
 //allowDB("spe,ic,rdp,oo")
 

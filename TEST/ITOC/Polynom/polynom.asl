@@ -18,7 +18,7 @@
 // stats are in the math lib -- for now
 
 
-chkIn(_dblevel)
+chkIn()
 
 float z[5]
 

@@ -20,21 +20,23 @@
 
 #include "debug"
 
-  if (_dblevel >0) {
+  if (_dblevel > 0) {
 
-  debugON();
+     debugON();
 
   <<"$Use_\n";
 
   }
 
-  chkIn(_dblevel);
-
-  db_allow = 1 ; // set to 1 for internal debug print;
-
   db_ask = 0;
+  <<" dblevel $_dblevel\n"
+  chkIn(0);
+
+  db_allow = 0 ; // set to 1 for internal debug print;
 
 
+
+  allowDB("spe_,vmf,array,ic",db_allow);
 
   int k = 371;
 
@@ -118,7 +120,7 @@
 
   g.pinfo()
 
-  allowDB("spe_,vmf,array,ic",db_allow);
+
 
   a.set(3.5,-0.5);
 
@@ -127,7 +129,7 @@
 //  chkOut(1);
 
 
-  g[0].set(80,15);
+  g[0].set(80,15);  // TBF
 
   g.pinfo()
 
@@ -144,7 +146,7 @@
   g.pinfo()
 
   <<"%V $g[2]\n"
-  chkOut(1)
+//  chkOut(1)
 
 
 
@@ -195,7 +197,7 @@
    g.pinfo()
 
 
-ans = ask("Set CMPLX ARRAY correct?",1)
+ans = ask("Set CMPLX ARRAY correct?",0)
 
   g[1:2].SetImag({6.1,6.2});
 

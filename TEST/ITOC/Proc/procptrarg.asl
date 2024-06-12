@@ -12,7 +12,7 @@
 
      }
 
-   chkIn(_dblevel);
+   chkIn();
 
  showUsage("How to use ptr args") ;
 

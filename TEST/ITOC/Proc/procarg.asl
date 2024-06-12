@@ -26,7 +26,7 @@
 
   showUsage("Demo  of proc arg scalar")
   
-  chkIn(_dblevel);
+  chkIn();
 
   db_ask = 0;
   db_step = 0;  

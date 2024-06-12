@@ -5,7 +5,7 @@
 //#include "debug"
 
 
-chkIn(_dblevel)
+chkIn()
 
 int veci = 3;
 

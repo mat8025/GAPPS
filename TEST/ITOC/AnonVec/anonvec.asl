@@ -20,7 +20,7 @@
 //debugON()
 //debugAllowErrors();
 
-chkIn(_dblevel)
+chkIn()
 
 
 int veci[] = {1,2,3}

@@ -13,7 +13,7 @@
 
 
 //M = {2,3,4,5,6,7 };   // should work - but needs fix
-chkIn(_dblevel)
+chkIn()
 
 int M[] = {2,3,4,5,6,7 };  // explicit  dec works
 

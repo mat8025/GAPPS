@@ -27,7 +27,7 @@ if (_dblevel >0) {
 
 //allowErrors(-1)
 
-chkIn(_dblevel)
+chkIn()
 
 int cart( int pn)
 {

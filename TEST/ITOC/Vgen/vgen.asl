@@ -23,7 +23,7 @@
 
   allowErrors(-1);
 
-  chkIn(_dblevel);
+  chkIn();
 
   ask =0;
   fileDB(ALLOW_,"ds_sivbounds","num_gen","spe_storetype","rdp_store","array_transfer","spe_exp","~pan_copy","ds_storesiv")

@@ -11,7 +11,7 @@ debugON()
 
 #include "consts"
 
-chkIn(_dblevel)
+chkIn()
 
 
 a= _PI

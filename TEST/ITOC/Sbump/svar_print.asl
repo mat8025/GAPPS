@@ -28,7 +28,7 @@ Demo  of test svar range print
 
    allowErrors(-1); 
 
-  chkIn(_dblevel)
+  chkIn()
 
   chkT(1);
 

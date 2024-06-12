@@ -46,7 +46,7 @@ if (_dblevel >0) {
 }
 
 
-chkIn(_dblevel)
+chkIn()
 
 
 s1 = "hey"

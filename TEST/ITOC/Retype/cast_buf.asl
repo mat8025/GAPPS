@@ -15,7 +15,7 @@
 
 #include "debug"
 
-chkIn(_dblevel)
+chkIn()
 
 uchar IV[];
 

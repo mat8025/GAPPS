@@ -45,7 +45,7 @@ Str Use_= " Demo  of basic ops ";
 
    allowErrors(-1); // set number of errors allowed -1 keep going 
 
-  chkIn(_dblevel) ;
+  chkIn() ;
 
   chkT(1);
 

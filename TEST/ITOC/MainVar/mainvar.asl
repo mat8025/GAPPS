@@ -26,7 +26,7 @@ FF[1] = 51;
 
  <<"$FF[1] \n"
 
-chkIn(_dblevel)
+chkIn()
 
 
 chkN(FF[1],51)

@@ -32,7 +32,7 @@ setap(50);    // set precision to 100? decimal places
 // FIX pan N  = GetArgN()
 
 
-chkIn(_dblevel);
+chkIn();
 
 
 x = 2.1234567

@@ -33,7 +33,7 @@ int db_allow = 0; // set to zero for internal debug print
 #include "act.asl"
 
 
-  chkIn(_dblevel); 
+  chkIn(); 
 
 //allowDB("spe,oo",0)
 

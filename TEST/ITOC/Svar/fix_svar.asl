@@ -9,7 +9,7 @@ if (_dblevel >0) {
    debugON()
 }
 
-   chkIn(_dblevel);
+   chkIn();
 
 
 IV = vgen(INT_,10,1,-1)

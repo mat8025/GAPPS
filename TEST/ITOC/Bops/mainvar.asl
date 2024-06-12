@@ -24,7 +24,7 @@ if (_dblevel >0) {
 int db_allow = 0
 
 
-chkIn(_dblevel)
+chkIn()
 
 allowDB("spe,pex,vmf,list,ds_sivlist,spil,rdp,ic", db_allow)
 

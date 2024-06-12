@@ -42,7 +42,7 @@ int db_step = 0; // set to zero for no step
   db_ask =0
   allowErrors(-1);
 
-  chkIn(_dblevel);
+  chkIn();
 
   int i = 0;
 //<<" $(i.info()) \n"  // TBF recurses 

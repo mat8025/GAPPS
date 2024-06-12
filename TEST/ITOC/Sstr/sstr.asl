@@ -19,7 +19,7 @@ vers = "1.3"
 
 <<"%V$vers\n"
 
-chkIn(_dblevel)
+chkIn()
 
 str A = "keep going until world tour"
 str B = "unti"

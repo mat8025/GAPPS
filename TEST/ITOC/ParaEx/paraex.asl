@@ -17,7 +17,7 @@
 ///
 
 
-chkIn(_dblevel)
+chkIn()
 
   void vers2ele(str vstr)
   {

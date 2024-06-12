@@ -32,7 +32,7 @@ filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
 filterFuncDebug(REJECT_,"vrealloc","Svar","init");
 
 
-chkIn(_dblevel)
+chkIn()
 
 int MD[5][20];
 

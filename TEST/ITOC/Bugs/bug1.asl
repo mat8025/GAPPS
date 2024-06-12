@@ -8,7 +8,7 @@ if (_dblevel >0) {
 }
 
 
-chkIn(_dblevel)
+chkIn()
 
 Dur = vgen (FLOAT_,10,1,0.5)
 

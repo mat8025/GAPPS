@@ -35,7 +35,7 @@
 
    allowDB("spe_proc,spe_vmf,ic",db_allow);
 
-   chkIn(_dblevel);
+   chkIn();
 //chkIn(1)
 //sdb(1,@trace)
 

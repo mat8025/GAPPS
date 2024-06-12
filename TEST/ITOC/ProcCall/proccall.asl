@@ -25,7 +25,7 @@
 
   allowErrors(-1) ;  // keep going;
 
-  chkIn(_dblevel);
+  chkIn();
   
    if (_dblevel < 1) DB_action = 0;
    

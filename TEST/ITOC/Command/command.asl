@@ -24,7 +24,7 @@ if (_dblevel >0) {
  ignoreErrors();
 
 
-chkIn(_dblevel)
+chkIn()
 
 //  issue shell command
 

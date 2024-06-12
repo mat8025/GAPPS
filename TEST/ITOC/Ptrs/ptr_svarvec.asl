@@ -25,7 +25,7 @@
 allowErrors(-1) ; // keep going
 //filterFileDebug(REJECT_,"exp");
 
- chkIn(_dblevel);
+ chkIn();
    
    svar S;
    

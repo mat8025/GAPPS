@@ -22,7 +22,7 @@
 
 */
 
-chkIn(_dblevel)
+chkIn()
 
 A= vgen(INT_,10,-1,1)
 

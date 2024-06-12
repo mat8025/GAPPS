@@ -19,7 +19,7 @@
      }
 ///
  allowErrors(-1);
-chkIn(_dblevel)
+chkIn()
 
 
 int MI[4][5];

@@ -27,7 +27,7 @@ Str Use_= "Demo svar field use";
 
    allowErrors(-1);	
 
-   chkIn(_dblevel);
+   chkIn();
    
   chkT(1)
 

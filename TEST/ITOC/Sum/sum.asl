@@ -26,7 +26,7 @@ if (_dblevel >0) {
 }
 
 
-chkIn(_dblevel)
+chkIn()
 
 
 int A[3] = {1,2,3,4}

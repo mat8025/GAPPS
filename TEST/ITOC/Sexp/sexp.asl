@@ -22,7 +22,7 @@ if (_dblevel >0) {
   
 
 <<"Running $_script\n"
-chkIn(_dblevel)
+chkIn()
 
 
   zz = 75 * 40 ;

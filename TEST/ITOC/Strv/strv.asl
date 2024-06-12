@@ -14,7 +14,7 @@ if (_dblevel >0) {
    <<"$Use_\n"   
 }
 
-chkIn(_dblevel)
+chkIn()
 
 int a = 79;
 

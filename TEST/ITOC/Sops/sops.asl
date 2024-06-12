@@ -21,7 +21,7 @@ if (_dblevel >0) {
 }
 
 
-chkIn(_dblevel)
+chkIn()
 
  S = "hey how are you?"
 

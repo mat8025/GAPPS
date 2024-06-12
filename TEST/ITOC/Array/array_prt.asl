@@ -20,7 +20,7 @@
 
 //setDebug(1,@pline,@trace,"~step")
 
-chkIn(_dblevel)
+chkIn()
 
 
 rl =vgen (FLOAT_, 10, 0, 1);

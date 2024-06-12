@@ -10,7 +10,7 @@ proc Wrong()
 }
 ////////////////////////
 
- chkIn(_dblevel)
+ chkIn()
 
  x = vgen(DOUBLE_,5,0,1)
 

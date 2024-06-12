@@ -16,11 +16,11 @@
 // test rowZoom  func
 // zoom each row to a new size --- interpolate or spline values 
 
-chkIn(_dblevel)
+chkIn()
 
 R = vgen(FLOAT_,12, 0,1)
 
-R->redimn(3,4)
+R.redimn(3,4)
 
 <<"$R\n"
 

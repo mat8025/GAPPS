@@ -9,7 +9,7 @@
 
    allowErrors(-1) ; // keep going;
 
-   chkIn(_dblevel);
+   chkIn();
 
 allowDB("ic_,oo_,spe_exp,spe_proc,spe_state,spe_cmf,spe_scope,ds_sivbounds")
 

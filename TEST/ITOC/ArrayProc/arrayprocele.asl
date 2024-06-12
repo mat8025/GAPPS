@@ -5,7 +5,7 @@ if (_dblevel >0) {
 }
 
 
-chkIn(_dblevel)
+chkIn()
 
 
 proc array_sub(float rl[])

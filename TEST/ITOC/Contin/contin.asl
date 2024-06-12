@@ -33,7 +33,7 @@ if (_dblevel >0) {
 // continue line test
 //
 
-chkIn(_dblevel)
+chkIn()
 
 a = 5.0
 b = 57

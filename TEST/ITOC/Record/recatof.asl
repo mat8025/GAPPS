@@ -19,7 +19,7 @@
 
      }
 
-   chkIn(_dblevel);
+   chkIn();
 
    void Score()
    {

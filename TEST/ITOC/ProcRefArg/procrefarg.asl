@@ -55,7 +55,7 @@ int main(void) {
 
      }
 
-   chkIn(_dblevel);
+   chkIn();
 
 
 int a = 5;

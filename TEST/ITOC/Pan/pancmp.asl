@@ -3,7 +3,7 @@
 ///
 
 
-chkIn(_dblevel)
+chkIn()
 
 checkMemory(1); // 1 - track memory use
 pan psum = 0;
