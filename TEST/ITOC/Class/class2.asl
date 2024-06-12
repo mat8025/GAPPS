@@ -34,6 +34,9 @@
 DB_action = 0;
 int db_step = 0; // set to zero for no step
 
+db_ask =0
+db_allow = 1
+
  Str pset(str val, int wf)
   {
     loc[wf] = val;
@@ -45,7 +48,7 @@ int db_step = 0; // set to zero for no step
 
 #include "add_class.asl"
 
-allowDB("oo_,ic,spe_,tok_func,ic_",0)
+//allowDB("oo_,ic,spe_,tok_func,ic_",db_allow)
 
   Str bike ="bike harder"
 
@@ -58,10 +61,10 @@ allowDB("oo_,ic,spe_,tok_func,ic_",0)
 
 <<"%V $lyons \n"
 
-ans=ask("¿Es eso correcto?  [y,n,q]",DB_action);
+ans=ask("¿Es eso correcto?  [y,n,q]",0);
 
 
-
+allowDB("oo_,ic,spe_,ic_",0)
 
   Svar loc;
 
@@ -135,22 +138,29 @@ Arec T;
 //ask(" %V  $__FILE__ $__FUNC__ $__LINE__ $_proc $_scope $_include $_script [y,n,q]",DB_action);
 
 
-allowDB("oo_,ic,spe_,ic_",0)
 
-  Arec FI[5];
 
-  FI.pinfo()
+  Arec FL[10];
 
-  ans=ask("FI[10]¿Es eso correcto?  [y,n,q]",0);
+
+
+  FL.pinfo()
+
+  ans=ask("FL[10]¿Es eso correcto?  [y,n,q]",0);
 
 
  Arec AI[5];
 
  ans = "le plus tôt possible"
+  gans = AI[2].Get(3)
+ //  wans = AI[2].SetVal(ans,3)
 
-   wans = AI[2].Set(ans,3)
+wans = AI[2].Set(ans,3)
 
   gans = AI[2].Get(3)
+
+   wans = AI[2].SetVal(ans,3)
+
 
  <<"%V $ans $wans $gans\n"
 
@@ -160,9 +170,9 @@ allowDB("oo_,ic,spe_,ic_",0)
 // chkOut(1)
  ans = "Ich denke, also bin ich"
 
- wans = FI[2].Set(ans,4)
+ wans = FL[2].Set(ans,4)
 
-  gans = FI[2].Get(4)
+  gans = FL[2].Get(4)
 
  <<"%V $ans $wans $gans\n"
 
@@ -180,39 +190,152 @@ allowDB("oo_,ic,spe_,ic_",0)
   <<"$loc[1]\n";
 //<<"$loc[::]\n"
 
-  FI[0].srec = Split("how did we get here");
+  FL[0].srec = Split("how did we get here");
 
-  <<"$FI[0].srec[2] \n";
+  <<"$FL[0].srec[2] \n";
+
+  <<"$FL[0].srec[3] \n";
   
-ans=ask("¿Es eso correcto? we ?  [y,n,q]",0);
+ans=ask("¿Es eso correcto? we ?  [y,n,q]",db_ask);
 
-  <<"$FI[0].srec[0:2:1] \n";
+  FL[1].srec = Split("just evolved with many trials");
 
-  <<"$FI[0].srec[::] \n";
 
-  r00 = FI[0].srec[0];
+  <<"$FL[1].srec[2] \n";
+    <<"$FL[1].srec[3] \n";
+allowDB("oo_,rdp,spe_,ds_",1)  
+ans=ask("¿Es eso correcto? with ?  [y,n,q]",db_ask);
+
+    <<"$FL[0].srec[3] \n";
+    
+//  FL[1].srec = Split("Be positive focus forward with strength")
+   FL[3].srec = Split("ABCD HOW DID WE GET HERE WXYZ");
+   FL[3].Describe()
+
+   val0 = FL[3].srec[0]
+   val0.pinfo()
+   val6 = FL[3].srec[6]
+   val6.pinfo()
+<<"%V $val0 $val6\n"
+
+
+  <<"$FL[3].srec[0] \n";
+
+  <<"$FL[3].srec[6] \n";
+
+
+   FL[2].srec = Split("XXX how did we get here YYYY");
+
+   FL[2].Describe()
+
+   val0 = FL[2].srec[0]
+   val0.pinfo()
+   val6 = FL[2].srec[6]
+   val6.pinfo()
+<<"%V $val0 $val6\n"
+
+  <<"$FL[2].srec[0] \n";
+
+   
+  <<"$FL[2].srec[6] \n";
+
+ans=ask("¿Es eso correcto? focus ?  [y,n,q]",0);
+
+   FL[8].srec = Split("XXX how did we get here YYYY");
+
+   FL[8].Describe()
+
+   val0 = FL[8].srec[0]
+   val0.pinfo()
+   val6 = FL[8].srec[6]
+   val6.pinfo()
+<<"%V $val0 $val6\n"
+
+  <<"$FL[8].srec[0] \n";
+
+   
+  <<"$FL[8].srec[6] \n";
+
+
+ans=ask("¿Es eso correcto? focus ?  [y,n,q]",0);
+
+
+
+   FL[3].Describe()
+
+   FL[2].Describe()
+
+   FL[1].Describe()
+
+   FL[0].Describe()
+
+
+
+
+
+  <<"$FL[0].srec[0:2:1] \n";
+
+  <<"$FL[0].srec[::] \n";
+
+  r00 = FL[0].srec[0];
 
   <<"%V $r00 \n";
 
   chkStr(r00,"how");
 
-  r01 = FI[0].srec[1];
+  r10 = FL[1].srec[0];
+
+  chkStr(r10,"just");
+
+  r01 = FL[0].srec[1];
 
   <<"%V $r01 \n";
 
   chkStr(r01,"did");
 
-  r02 = FI[0].srec[2];
+  r02 = FL[0].srec[2];
 
   chkStr(r02,"we");
  
-  rg2 = FI[0].Get(2);
+  rg2 = FL[1].srec[2];
 
   rg2.pinfo()
 
-  chkStr(rg2,"we");
+ans=ask("$rg2 with ",db_ask)
 
-  rg3 = FI[0].Get(3);
+  chkStr(rg2,"with");
+
+  rg3 = FL[0].Get(2);
+
+  rg3.pinfo()
+
+  chkStr(rg3,"we");
+
+
+
+  r32 = FL[3].srec[2];
+
+  r32.pinfo()
+
+
+ chkStr(r32,"DID");
+
+ans=ask("$r32 focus ",db_ask)
+
+
+  rg4 = FL[1].Get(2);
+
+  rg4.pinfo()
+
+  chkStr(rg4,"with");
+
+
+ans=ask("$rg4 with ",0)
+
+
+  //chkOut(1)
+
+  rg3 = FL[0].Get(3);
 
   rg3.pinfo()
 
@@ -223,25 +346,25 @@ ans=ask("¿Es eso correcto? we ?  [y,n,q]",0);
 
 
 
-  FI[1].srec = Split("just evolved with many trials");
 
-  <<"$FI[1].srec[::] \n";
 
-  r10 = FI[1].srec[0];
+  <<"$FL[1].srec[::] \n";
 
-  r11 = FI[1].srec[1];
+  r10 = FL[1].srec[0];
 
-  r12 = FI[1].Get(2);
+  r11 = FL[1].srec[1];
+
+  r12 = FL[1].Get(2);
 
   <<"%V $r10 $r11 $r12\n";
 
-  r10 = FI[1].srec[0];
+  r10 = FL[1].srec[0];
 
-  r11 = FI[1].srec[1];
+  r11 = FL[1].srec[1];
 
-  r12 = FI[1].srec[2];
+  r12 = FL[1].srec[2];
 
-  <<"%V $FI[1].srec[2]\n";
+  <<"%V $FL[1].srec[2]\n";
 
   <<"%V $r10 $r11 $r12\n";
 
@@ -256,11 +379,11 @@ ans=ask("¿Es eso correcto? we ?  [y,n,q]",0);
 
 
 
-  ans=FI[3].Set("Yes",2);
+  ans=FL[3].Set("Yes",2);
 
 //ask("¿Es eso correcto?  after set 2 <|$ans|> [y,n,q]",DB_action);
 
-  r32 = FI[3].Get(2);
+  r32 = FL[3].Get(2);
 
 //ask("¿Es eso correcto?  after get 2 <|$ans|> [y,n,q]",DB_action);
 
@@ -270,7 +393,7 @@ ans=ask("¿Es eso correcto? we ?  [y,n,q]",0);
 
 
 
-  r12 = FI[1].Get(2);
+  r12 = FL[1].Get(2);
 
   chkStr(r12,"with");
 ////////////////////////
@@ -417,3 +540,7 @@ wdb=  DBaction((DBSTEP_),db_step)
 
 
 //==============\_(^-^)_/==================//
+
+
+//  TBF  current OBJ ele on stack is broke
+//   TBF FI  2 corrupt

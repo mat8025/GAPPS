@@ -7,7 +7,8 @@
 class Arec {
 
   public:
-  Svar srec[20];
+  
+  Svar srec;
 
   int a;
 
@@ -30,9 +31,30 @@ class Arec {
   <<"$val \n"
 
   val.pinfo()
-//ans=ask("%V $val $__FILE__   $__FUNC__  $__LINE__ $_scope $_include $_script [y,n,q]",0);
+ans=ask("%V $val $__FILE__   $__FUNC__  $__LINE__ $_scope $_include $_script [y,n,q]",0);
   return val;
   };
+
+  void Describe()
+  {
+    <<"$_proc \n"
+
+   <<" $srec \n"
+
+
+  }
+
+
+ Str SetVal(Str val, int wf) {
+  wf.pinfo()
+  srec[wf] = val;
+  rval =  srec[wf];
+//  return srec[wf];
+  rval.pinfo()
+  
+     return rval;
+  };
+
 
   Str Set(Str val, int wf) {
   wf.pinfo()
@@ -44,6 +66,19 @@ class Arec {
      return rval;
   };
 // currently need cmf keyword for constructor
+
+/*
+  Str Oset(Str val) {
+    int si =3
+  srec[si] = val;
+  rval =  srec[si];
+//  return srec[wf];
+  rval.pinfo()
+  
+     return rval;
+  };
+*/
+
 
  int get_a()
  {

@@ -32,8 +32,6 @@ Str Use_= " Demo  of info for a variable -- x.pinfo()  ";
 
   chkT(1);
 
- 
-
 
 // CPP main statment goes after all procs
 #if _CPP_
@@ -130,7 +128,7 @@ ans=ask("pinfo returns <|$ai|>",0)
 chkN(offs[2],4)
 
   
-  IVi = IV->info()
+  IVi = IV.info()
   
   <<"$IVi \n"
   vid = IV.varid()

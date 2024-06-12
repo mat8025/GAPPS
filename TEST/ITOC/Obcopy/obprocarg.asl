@@ -15,7 +15,9 @@
 
 <|Use_=
  Demo want to show that can use  obj name and &obj as an arg
- to deliver ptr to that object to a script procedure
+ to deliver ptr to that object to a script procedure.
+ At the moment using obj/class name and obj at call -  is used as reference
+ do we need ptr ?
 |>
 
 
@@ -58,14 +60,17 @@
 /////////////////////
 #  method list
 
-     void print () {
+     void describe () {
+
+      <<"$_proc   \n"
+
  //<<" %V $id $color $x\n $y\n $z\n edible $(Yorn(edible))  \n"
 //    str yt;
 
        yt= Yorn(edible);
 //<<" %V $id $color $x\n $y\n $z\n edible $edible $yt  \n"
 
-       <<" %V$id $color $x $y $z is it edible $(yorn(edible))  \n";
+       <<" %V $id $color $x $y $z is it edible $(yorn(edible))  \n";
 
        }
 
@@ -105,7 +110,7 @@
 
        }
 // constructor
-
+// c++ translate removes the void ? for cons and destr? // do we have destruct?
      void Fruit()  {
 
        <<" doing constructor for %v $_cobj \n";
@@ -150,7 +155,7 @@
      float d = exp(1);
      <<"$k $d\n";
 
-     oba.print();
+     oba.describe();
 
      oba.isEdible(1);
 /*
@@ -159,11 +164,12 @@
        oba.isEdible(1);
        }
      else {
+q
        oba.isEdible(0);
        }
 */ 
 
-     oba.print();
+     oba.describe();
 
      obc = oba.color;
      
@@ -172,15 +178,24 @@
 //   BUG - ptr to ptr assignment 11/22/21
 
      oba.pinfo()
+ans = ask("locfruit Debug [y,n] ",0)
+ if (ans == "y") {
+stepping=  DBaction(DBSTEP_,1)
+<<"$stepping \n"
+allowDB("spe,rdp,ic,vmf",1)
+}
 
-     locfruit = &oba;  // means locfruit is a ptr to passed in fruit;
-     // locfruit = oba ; // should be the same 
+     //locfruit = &oba;  // means locfruit is a ptr to fruit obj;
+     locfruit = oba ; // should be now be  ptr  == oba
      locfruit.pinfo()
 
-     locfruit.print();
+
+
+     locfruit.describe();
      locc = locfruit.color;
 
 <<"%V$obc $locc\n"
+ans = ask("locfruit Debug [y,n] ",0)
     chkStr(obc,locc);
 
 
@@ -188,6 +203,12 @@
 
      }
 //////////////
+
+///  obj arg  acts as a reference
+///  Fruit oba   === Fruit  &oba  == Fruit& oba
+///  do not use Fruit *oba and oba-> syntax ??  -- allow
+
+
 
    void objcopy(Fruit oba,  Fruit obb)
    {
@@ -218,12 +239,38 @@
 
    Fruit apple;
 
-   <<" after object declaration !\n";
+<<" after object declaration !\n";
 
-   apple.print();
+   apple.describe();
 
+ans = ask(" apple.describe ",0)
+
+   
+//stepping=  DBaction((DBSTEP_),1)
+stepping=  DBaction(DBSTEP_,0)
+<<"$stepping \n"
+   apple.describe();
+
+   apple.color = "green";
+ 
+   apc = apple.color;
+   
    <<"$(examine(apple))\n";
 # set some object memebers
+
+     locfruit = &apple;  // means locfruit is a ptr to fruit obj;
+     // locfruit = oba ; // should be the same ?? copy of obj
+
+     locfruit.pinfo()
+
+     locfruit.describe();
+
+
+
+     locc = locfruit.color;
+
+<<"%V$apc $locc\n"
+ans = ask(" locfruit.describe ",0)
 
    <<" doing class member assign \n";
 
@@ -233,13 +280,13 @@
 
    apple.set_y(5);
 
-   apple.color = "green";
+  
 
    apple.name = "Apple";
 
    <<" %v $apple.color \n";
 
-   apple.print();
+   apple.describe();
 
 <<" eat via ref arg \n"
 
@@ -264,7 +311,7 @@
 
    cherry.name = "Cherry";
 
-   cherry.print();
+   cherry.describe();
 /////////////////////////////////////////
 
    Fruit orange;
@@ -284,7 +331,7 @@
 
    orange.isEdible(1);
 
-   orange.print();
+   orange.describe();
 
    <<" %V$orange.color \n";
 
@@ -314,9 +361,9 @@
 
    orange.color = "orange";
 
-   apple.print();
+   apple.describe();
 
-   orange.print();
+   orange.describe();
 // use ref - objs   are not treated like arrays ??
 
    <<"$(examine(apple))\n";
@@ -328,28 +375,31 @@
    <<"$(examine(&orange))\n";
 
     eat(orange);
+ apple.color = "green";
 
+   apple.describe();
 
-   objcopy( orange, apple);
+   objcopy(orange, apple);
 
-   //eat(&apple);
-//  objcopy( orange, apple)
+   apple.describe();
 
-   apple.print();
+   orange.describe();
 
-   orange.print();
+ans= ask("$apple.color ",0)
 
    eat(orange);
 
    chkStr(orange.color,"green");
 
+   apple.describe()
+   
    chkStr(apple.color,"green");
 
-   chkStr(apple.color,orange.color);
+  // chkStr(apple.color,orange.color);
 
    orange.color = "orange";
 
-   orange.print();
+   orange.describe();
 
    apple.color = orange.color;
 
@@ -359,7 +409,7 @@
 
    chkStr(apple.color,"blue");
 
-   apple.print();
+   apple.describe();
 
    apple.color = "red";
 
@@ -371,20 +421,20 @@
 //<<" %I$orange.color \n"
 //<<" %I$cherry.color \n"
 
-   apple.print();
+   apple.describe();
 
-   cherry.print();
+   cherry.describe();
 
    apple.color = "green";
 //<<" %I$apple.color \n"
 
-   eat(&cherry);
+   eat(cherry);
 
-   apple.print();
+   apple.describe();
 
-   cherry.print();
+   cherry.describe();
 
-   orange.print();
+   orange.describe();
 
    chkOut(1);
 

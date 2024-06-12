@@ -160,7 +160,7 @@ ictout ="ictestoutput"
 //cart("bops","78")
 //chkT(0)
 
-CFLAGS = "-Rcwl"
+CFLAGS = "-Rdcwlu"
 
 //CFLAGS = "-cwlm"     // m to mask src lines in exe file --- broke
 
@@ -196,6 +196,7 @@ int do_define = 0;
 int do_recurse = 0;
 
 int do_syntax = 0;
+int do_basic = 0;
 int do_include = 0;
 int do_if = 0;
 int do_enum = 0;
@@ -279,21 +280,29 @@ List CrashList(STRV_);
 
       wt = _argv[i]
 
-    if (wt @= "") {
+<<"arg $i  $_argv[i] $wt \n"
+
+    wt.pinfo()
+ans = ask("whats this arg $i $wt\n",0)
+
+    if (wt == "") {
       break
     }
 
-      if (wt @= "-fix") {
+      if (wt == "-fix") {
         Report_pass = 0  
      }
     
     
-     if (wt @= "bops") {
-        do_bops = 1  
+     if (wt == "bops") {
+        do_bops = 1
+	<<" %V $do_bops \n"
      }
    
       do_arg = "do_$wt"
-     
+
+<<"arg $i  $_argv[i] $wt $do_arg \n"
+
 
     if (scmp(wt,"~",1) ){
         wt=scut (wt,1);
@@ -305,7 +314,7 @@ List CrashList(STRV_);
       $do_arg = 1;
      }
      
-<<[_DBH]" $i $wt $do_arg \n"
+<<" $i $wt $do_arg \n"
 
      i++;
     // TBF {} needed
@@ -341,9 +350,7 @@ if (do_level2) {
     do_types =1;    
 }
 
-
-if (do_syntax ==1) {
-
+if (do_basic ==1) {
  do_if = 1;
  do_logic = 1;
  do_for = 1;
@@ -352,7 +359,21 @@ if (do_syntax ==1) {
  do_while = 1;
  do_scope = 1;  
  do_include = 1;
- //do_try = 1;  
+ do_try = 1;
+ do_bops =1;
+}
+
+
+if (do_syntax ==1) {
+ do_if = 1;
+ do_logic = 1;
+ do_for = 1;
+ do_do = 1;
+ do_switch = 1;
+ do_while = 1;
+ do_scope = 1;  
+ do_include = 1;
+ do_try = 1;  
 }
 
 if (do_syntax == -1) {
@@ -363,6 +384,7 @@ if (do_syntax == -1) {
  do_do = -1;
  do_switch = -1;
  do_while = -1;
+ do_try = 1;
  do_scope = -1;
  do_include = -1;  
 
@@ -1091,9 +1113,9 @@ chdir(Testdir)
     chdir(Testdir)
 
      chdir("BUGFIX")
-//<<"Doing bug tests"
+<<"Doing bug tests"
 //!!"pwd"
-
+/*
 BFS=!!"ls bf*.asl "
 //<<"$(typeof(BFS)) $BFS\n"
 bflist="$BFS"
@@ -1104,6 +1126,7 @@ bflist="$BFS"
 
       RunDirTests("BUGFIX",bug_list)
       outcome("BUGFIX")
+*/      
   }
 
 

@@ -169,8 +169,12 @@ Str ans = " weird "
 <<"%V $dv $ds $dt $adt \n"
   
 //  ans = query(" cos/sin/tan   continue? :[y/n]") ;
-//allowDB("spe,rdp")
-  int ab = 2 + 3 
+
+allowDB("spe,rdp,ic",1)
+
+
+
+int ab = 2 + 3 
 
   <<"%V$ab\n" 
 
