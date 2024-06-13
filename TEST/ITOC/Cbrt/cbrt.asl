@@ -33,5 +33,5 @@ f= Cbrt(125.0)
 
 chkR(f,5.0)
 
-chkOut()
+chkOut(1)
 

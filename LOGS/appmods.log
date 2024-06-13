@@ -497,3 +497,13 @@ svarele.asl              1.6	05/27/2024 11:35:09 dballow
 mih.asl                  1.3	05/30/2024 13:19:28 dot ref
 sih.asl                  1.4	05/30/2024 14:12:51 proc args[A
 sindent.asl              1.24	06/01/2024 15:28:26 no str-->Str
+fio.asl                  1.3	06/12/2024 17:48:39 tests++
+cmp.asl                  1.4	06/12/2024 18:02:49 [Atests++
+shift.asl                1.3	06/12/2024 18:06:45 use dot for vmf mbr func
+rowzoom.asl              1.3	06/12/2024 18:09:56 DB
+findval.asl              1.4	06/13/2024 14:33:19 [ATidy
+skeyval.asl              1.4	06/13/2024 17:35:40 DB
+bubblesort.asl           1.4	06/13/2024 18:12:47 [A-> vs .
+caz.asl                  1.7	06/13/2024 18:16:14 [A[A-> vs .
+fscanv.asl               1.2	06/13/2024 18:20:07 -> vs .
+mdrange.asl              1.2	06/13/2024 18:56:15 chkN comment

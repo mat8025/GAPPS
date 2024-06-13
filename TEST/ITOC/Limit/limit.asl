@@ -26,6 +26,19 @@ This is an inplace operation.
 
 */
 
+#include "debug"
+
+  if (_dblevel >0) {
+
+  debugON();
+
+  }
+
+  allowErrors(-1) ; // keep going;
+
+
+
+
 chkIn()
 
 F= vgen(FLOAT_,20,-7,1)

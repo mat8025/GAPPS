@@ -36,6 +36,9 @@
 
    chkIn();
 
+  db_allow =1
+  allowDB("ic,opera_,spe,parse,rdp_,ds,pex",db_allow);
+
    I= vgen(INT_,10,0,1);
 
    <<"$I\n";
@@ -141,4 +144,4 @@
 
   chkOut();
 
-//===***===//
+//==============\_(^-^)_/==================//

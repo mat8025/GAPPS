@@ -56,8 +56,9 @@ int main( int argc, char *argv[] ) { // main start
 
 
   ok=ltmWrt("tot","maybe not",1);
+  
 <<" %V $ok\n"
-
+  ok=ltmWrt("mtot","maybe not",1);
   if (ok > 0) {
      val = ltmRead("tot")
 
@@ -115,7 +116,7 @@ val = ltmRead("str 3")
 
 <<"strange $i \n"
 
- ok=ltmWrt("tot","most certainly will ",1)
+ ok=ltmWrt("tot","most certainly will",1)
  <<" %V $ok\n"
   if (ok) {
 <<"update tot\n"

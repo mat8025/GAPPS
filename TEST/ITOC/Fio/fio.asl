@@ -1,15 +1,16 @@
-//%*********************************************** 
-//*  @script fio.asl 
-//* 
-//*  @comment test file IO 
-//*  @release CARBON 
-//*  @vers 1.2 He Helium [asl 6.2.99 C-He-Es]                                
-//*  @date Thu Dec 24 09:53:49 2020 
-//*  @cdate 1/1/2005 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script fio.asl                                                     
+ * 
+ *  @comment test file IO                                               
+ *  @release Carbon                                                     
+ *  @vers 1.3 Li Lithium [asl 6.28 : C Ni]                              
+ *  @date 06/12/2024 17:48:39                                           
+ *  @cdate 1/1/2005                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
+ * 
+ */ 
+
 
 #include "debug"
 
@@ -24,11 +25,11 @@
 
    <<"%V $dblevel";
 
-   db_allow = _dblevel; // set to 1 for internal debug print;
+   db_allow = 1; // set to 1 for internal debug print;
 
    db_ask = 0;
 
-   allowDB("opera_,spe_args,str_,array_parse,parse,rdp_,pex",db_allow);
+
 
    int ok = 0;
 
@@ -51,7 +52,7 @@
    M.pinfo();
 
    <<"%V $M\n";
-
+   allowDB("ic,opera_,parse,rdp_,pex",db_allow);
    for (i= 0; i < 5; i++) {
 
      a++; b++; c++;
@@ -61,12 +62,15 @@
      <<"$i %V $a $b $c  \n";
 
      //<<[C]"$i $M[0:4]  ";  // TBF 3/30/24 adds a \n
-      <<[C]"$i $M[0] $M[1] $M[2] \n"; 
- <<"$i $M[0] $M[1] $M[2] $M[3]\n"; 
+      <<[C]"$i $M[0] $M[1] $M[2] $M[3] \n";
+      <<"$i  M2   $M[2] \n"
+     <<"$i $M[0] $M[1] $M[2] $M[3]\n"; 
    //  <<"$i $M  \n";
 
      M =  M * 2;
-
+     M.pinfo()
+     <<" $M \n"
+ans = ask(" $M ",0)
      }
 
    cf(C);

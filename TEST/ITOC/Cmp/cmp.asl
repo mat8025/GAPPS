@@ -1,15 +1,16 @@
-//%*********************************************** 
-//*  @script cmp.asl 
-//* 
-//*  @comment test SF Cmp  
-//*  @release CARBON 
-//*  @vers 1.3 Li Lithium [asl 6.2.98 C-He-Cf]                           
-//*  @date Tue Dec 22 22:06:47 2020 020 
-//*  @cdate 1/1/2018 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script cmp.asl                                                     
+ * 
+ *  @comment test SF Cmp                                                
+ *  @release Carbon                                                     
+ *  @vers 1.4 Be Beryllium [asl 6.28 : C Ni]                            
+ *  @date 06/12/2024 18:02:49                                           
+ *  @cdate 1/1/2018                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
+ * 
+ */ 
+
 
 /{
 
@@ -75,13 +76,29 @@ V=vgen(INT_,60,0,1)
 
 A3D= V
 
-A3D->redimn(3,5,4)
+A3D.redimn(3,5,4)
 
 <<"$A3D \n"
 
+ iele = A3D[0][0][0];
+ A3D.pinfo()
+ <<"$iele \n"
+
+
 chkN(A3D[0][0][0],0)
 
-chkN(A3D[2][4][3],59)
+ iele = A3D[2][4][2];
+
+ ChkN(iele,58)
+
+ iele = A3D[2][3][2];
+
+ ChkN(iele,54)
+
+
+ans= ask("%V $A3D[2][3][2]  = $iele",0)
+
+ chkN(A3D[2][4][3],59)  ; // TBF iele correct
 
 B3D = A3D
 

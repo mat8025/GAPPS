@@ -1,16 +1,16 @@
 /* 
-  *  @script skeyval.asl
-  *
-  *  @comment test sort of lookup table via value,num
-  *  @release CARBON
-  *  @vers 1.3 Li Lithium [asl 6.3.55 C-Li-Cs]
-  *  @date 10/15/2021 10:36:07
-  *  @cdate 1/1/2005
-  *  @author Mark Terry
-  *  @Copyright © RootMeanSquare  2010,2021 →
-  *
-  *  \\-----------------<v_&_v>--------------------------; //
+ *  @script skeyval.asl                                                 
+ * 
+ *  @comment test sort of lookup table via value,num                    
+ *  @release Carbon                                                     
+ *  @vers 1.4 Be Beryllium [asl 6.29 : C Cu]                            
+ *  @date 06/13/2024 17:35:40                                           
+ *  @cdate 1/1/2005                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
+ * 
  */ 
+
 
 // key-val pairs via Svar
 <|Use=
@@ -20,7 +20,7 @@
 |>
 
 
-  proc showUse()
+  void showUse()
   {
 
   <<"$Use\n";
@@ -35,7 +35,7 @@
   }
 
   allowErrors(-1) ; // keep going;
-//filterFileDebug(REJECT_,"array_","exp","store","tok","args")
+
 
   chkIn();
 
@@ -50,7 +50,7 @@
   sz=Caz(S);
 
   <<"%V$sz $S\n";
-!i S
+
 
   chkStr(S[5],"ele 5");
 
@@ -77,24 +77,26 @@
   iv = kv.lookup("smarter");
 
   <<"%V$iv \n";
-!i iv
-!i kv
+//!i iv
+//!i kv
 
   iv = kv.lookup("work");
 
   <<"%V$iv \n";
 
-!i iv
+//!i iv
 
   chkStr(iv,"when");
-!z
+//!z
 
   wi = kv.findVal("work");
-
+  wi.pinfo()
   <<"%V $wi \n";
-!i wi
+//!i wi
 
   chkN(wi[0],4);
+
+ans=ask("kv.findVal(work);",0)
 
   wi = kv.keySort();
 
@@ -134,18 +136,18 @@
   <<"%(2,, ,\n)$kvn \n";
 
   <<"\n$kvn\n";
-!i kvn
-!z
+//!i kvn
+//!z
 
   sz=Caz(kvn);
 
   ws= kvn[1];
 
   <<"%V$sz $ws\n";
-!i ws
+//!i ws
 
   kvn.pinfo();
-!i kvn
+//!i kvn
 
   ws= kvn[4];
 

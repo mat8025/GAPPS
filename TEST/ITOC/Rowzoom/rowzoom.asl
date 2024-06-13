@@ -1,54 +1,51 @@
 /* 
- *  @script rowzoom.asl 
+ *  @script rowzoom.asl                                                 
  * 
- *  @comment test rowzoom SF 
- *  @release CARBON 
- *  @vers 1.2 He Helium [asl 6.3.8 C-Li-O]                                  
- *  @date Tue Jan 12 19:59:04 2021 
- *  @cdate 1/1/2007 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
+ *  @comment test rowzoom SF                                            
+ *  @release Carbon                                                     
+ *  @vers 1.3 Li Lithium [asl 6.28 : C Ni]                              
+ *  @date 06/12/2024 18:09:56                                           
+ *  @cdate 1/1/2007                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
  * 
- *  \\-----------------<v_&_v>--------------------------//  
  */ 
-
 
 // test rowZoom  func
 // zoom each row to a new size --- interpolate or spline values 
 
-chkIn()
+   chkIn();
 
-R = vgen(FLOAT_,12, 0,1)
+   R = vgen(FLOAT_,12, 0,1);
 
-R.redimn(3,4)
+   R.redimn(3,4);
 
-<<"$R\n"
+   <<"$R\n";
 
-NR = rowZoom(R,6,0)
+   NR = rowZoom(R,6,0);
 
-<<"$NR\n"
+   <<"$NR\n";
 
+   NR = rowZoom(R,6,1);
 
-NR = rowZoom(R,6,1)
+   <<"$NR\n";
 
-<<"$NR\n"
+   nd=Cab(NR);
 
-nd=Cab(NR)
+   <<"$nd\n";
 
-<<"$nd\n"
+   chkN(nd[1],6);
 
-chkN(nd[1],6)
+   NR = colZoom(R,6,0);
 
+   <<"$NR\n";
 
-NR = colZoom(R,6,0)
+   nd=Cab(NR);
 
-<<"$NR\n"
+   <<"$nd\n";
 
-nd=Cab(NR)
+   chkN(nd[0],6);
 
-<<"$nd\n"
+   chkOut();
 
-chkN(nd[0],6)
-
-
-chkOut()
+//==============\_(^-^)_/==================//

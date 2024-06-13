@@ -44,13 +44,9 @@ if (_dblevel >0) {
    <<"$Use_\n"
 }
 
-
-//filterFileDebug(REJECT_,"scopesindex_e.cpp","scope_e.cpp","scope_findvar");
-//filterFileDebug(REJECT_,"ds_sivbounds","ds_sivmem","exp_lhs_e");
-
-//filterFuncDebug(ALLOWALL_,"xxx");
-//filterFileDebug(ALLOWALL_,"yyy");
-
+  // TBF range spec ops need to validated   (20,10,1)
+  // should move forward till end and then restart at 0 until 10
+  // a circular wrap ??
 
 chkIn()
 
@@ -60,7 +56,7 @@ chkIn()
 Vec<int> I(30,-10,1);
 
 <<"$I \n"
-!a
+//!a
 chkR(I[0],-10)
 chkR(I[29],19)
 
@@ -72,7 +68,7 @@ chkR(R[0],100)
 chkR(R[29],500)
 
 <<"I.rng(0,30,2)   $I.rng(0,30,2)   \n"
-!a
+//!a
  I.pinfo();
 
 SI = I.rng(0,12,1);
@@ -80,7 +76,7 @@ SI = I.rng(0,12,1);
 SI.pinfo()
 
 <<"%V $SI\n"
-!a
+//!a
 chkN(SI[0],-10)
 chkN(SI[10],0)
 
@@ -139,43 +135,61 @@ lastStatement(9);
 
 
 <<"%V$I2 \n"
+ I.pinfo()
 
 SI= I.rng(20,10,1) ;
+   SI.pinfo()
+
 
 <<" $SI\n"
 
-<<"%V$I[20]\n"
+ans=ask(" SI OK?",0)
 
-<<"%V$I[10]\n"
+<<"%V $I[20]\n"
+
+<<"%V $I[10]\n"
 
 
 
 sz=Caz(SI)
 <<"%V $sz\n"
 chkN(sz,21)
-chkN(SI[0],20)
-chkN(SI[20],10)
+
+ chkN(SI[0],10)
+
+  chkN(SI[20],0)
 
 
 
 <<"%V $I.rng(20,10,1) \n"
 // TBF print out not working
 
+ I.pinfo()
+ SI= I ;   // all ?? TBF 6/13/24 xic bug?
 
-SI= I ;   // all
+ SI.pinfo()
+ sz=Caz(SI)
 
-sz=Caz(SI)
-<<"%V $sz\n"
+
+ <<"%V $sz\n"
+ans=ask(" SI OK?",0)
+
 
 <<"%V$SI\n"
 <<"%V$I\n"
 
 chkN(sz,30)
-chkN(SI[0],0)
-chkN(SI[29],29)
+
+chkN(SI[0],-10)
+
+chkN(SI[29],19)
 
 
-chkOut(); exit(-1);
+chkOut();
+
+
+
+exit(-1);
 
 //  start from 2
 

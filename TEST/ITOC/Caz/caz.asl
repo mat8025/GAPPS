@@ -1,181 +1,191 @@
 /* 
- *  @script caz.asl 
+ *  @script caz.asl                                                     
  * 
- *  @comment test Caz func 
- *  @release CARBON 
- *  @vers 1.6 C Carbon [asl 6.3.27 C-Li-Co] 
- *  @date 02/27/2021 09:36:03 
- *  @cdate Tue Mar 12 07:50:33 2019 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
+ *  @comment test Caz func                                              
+ *  @release Carbon                                                     
+ *  @vers 1.7 N Nitrogen [asl 6.29 : C Cu]                              
+ *  @date 06/13/2024 18:16:14                                           
+ *  @cdate Tue Mar 12 07:50:33 2019                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
  * 
- *  \\-----------------<v_&_v>--------------------------//  
  */ 
-
 
 //<<"$_clarg[0] $_clarg[1] \n"
 #include "debug"
 
-chkIn();
+   chkIn();
 
-if (_dblevel >0) {
-   debugON()
-}
+   if (_dblevel >0) {
 
+        debugON();
 
-int D[5];
+   }
 
-D[1] = 1
+   int D[5];
 
-D[4] = 4
+   D[1] = 1;
 
-int d;
+   D[4] = 4;
 
-d = 79;
+   int d;
 
-d->info(1)
+   d = 79;
 
-<<"$d $(typeof(d))\n"
+   d->info(1);
 
+   <<"$d $(typeof(d))\n";
 
+   <<" $d scalar $(Sizeof(d))\n";
 
-<<" $d scalar $(Sizeof(d))\n"
+   <<"array size of $d $(typeof(d))   \n";
 
-<<"array size of $d $(typeof(d))   \n"
-
-asz= Csz(&d)
-
+   asz= Csz(&d);
 //d->Info(1)
 
-<<"array size of $d $(typeof(d))  is: $asz \n"
+   <<"array size of $d $(typeof(d))  is: $asz \n";
 
+   d.pinfo();
 
-d->pinfo()
-nd = Cnd(&d)
-<<"number of dimensions are: $nd \n"
-chkN(nd,0)
+   nd = Cnd(&d);
 
-ab = Cab(&d)
-<<"bounds are: $ab \n"
+   <<"number of dimensions are: $nd \n";
 
-ab->pinfo()
-chkN(ab[0],0)
+   chkN(nd,0);
 
+   ab = Cab(&d);
 
+   <<"bounds are: $ab \n";
 
+   ab.pinfo();
 
-chkN(asz,0)
-D->info(1)
-asz= Csz(&D)
+   chkN(ab[0],0);
+
+   chkN(asz,0);
+
+   D.info(1);
+
+   asz= Csz(&D);
 //<<"%V$asz\n"
-//D->info(1)
+//D.info(1)
 
-<<"array size of $D $(typeof(D))  is: $asz \n"
-chkN(asz,5)
-nd = Cnd(&D)
-<<"number of dimensions are: $nd \n"
-chkN(nd,1)
-D->info(1)
-ab = Cab(&D)
-<<"bounds are: $ab \n"
-ab->info(1)
+   <<"array size of $D $(typeof(D))  is: $asz \n";
 
-chkN(ab[0],5)
+   chkN(asz,5);
 
+   nd = Cnd(&D);
 
+   <<"number of dimensions are: $nd \n";
+
+   chkN(nd,1);
+
+   D.info(1);
+
+   ab = Cab(&D);
+
+   <<"bounds are: $ab \n";
+
+   ab.info(1);
+
+   chkN(ab[0],5);
 ////////////////////////////////
 
-<<"\n Svar vector \n"
+   <<"\n Svar vector \n";
 
-Svar S;
+   Svar S;
 
-<<"$S scalar $(Sizeof(S))\n"
+   <<"$S scalar $(Sizeof(S))\n";
 
-S[0] = "hey"
+   S[0] = "hey";
 
-S[1] = "mark"
+   S[1] = "mark";
 
-asz= Csz(S)
+   asz= Csz(S);
 
-<<"$asz  $(Cab(S))\n"
+   <<"$asz  $(Cab(S))\n";
 
-<<"\n vector \n"
+   <<"\n vector \n";
 
-int A[6]  = { 1,2,4,9,8,6 }
+  int A[6]  = { 1,2,4,9,8,6 };
 
-a= A[0]
+   a= A[0];
 
-<<"$a\n"
-<<"$A\n"
+   <<"$a\n";
 
-asz= Csz(A)
-<<"array size (number of elements) is: $asz \n"
-chkN(asz,6);
+   <<"$A\n";
 
-nd = Cnd(A)
-<<"number of dimensions are: $nd \n"
-chkN(nd,1)
-ab = Cab(A)
+   asz= Csz(A);
 
+   <<"array size (number of elements) is: $asz \n";
 
+   chkN(asz,6);
 
-<<"bounds are: $ab \n"
+   nd = Cnd(A);
 
+   <<"number of dimensions are: $nd \n";
 
-<<" $(Caz(A)) $(typeof(A)) \n"
+   chkN(nd,1);
 
+   ab = Cab(A);
 
+   <<"bounds are: $ab \n";
+
+   <<" $(Caz(A)) $(typeof(A)) \n";
 //<<"%I $A \n"   // will crash why?
 
- d= Cab(A)
+   d= Cab(A);
 
-<<"%V $d \n"
-
-
+   <<"%V $d \n";
 /////////////////////////////////////////
-<<"////\n Two dimensions \n"
+
+   <<"////\n Two dimensions \n";
 // FIXME  -- won't fill in rows
 
-int  B[6] = { 0,3,2,-1,1,-2} ;
+   int  B[6] = { 0,3,2,-1,1,-2} ;
 
- <<"%V $B\n"
+   <<"%V $B\n";
 
+   asz= Csz(B);
 
-asz= Csz(B)
-<<"array size (number of elements) is: $asz \n"
-chkN(asz,6);
-nd2 = Cnd(B)
-<<"number of dimensions are: $nd2 \n"
-chkN(nd2,1)
-ab = Cab(B)
+   <<"array size (number of elements) is: $asz \n";
 
-<<"bounds are: $ab \n"
+   chkN(asz,6);
 
- d= Cab(B)
+   nd2 = Cnd(B);
 
-<<"%V $d \n"
+   <<"number of dimensions are: $nd2 \n";
 
+   chkN(nd2,1);
 
-  B->redimn(2,3)
+   ab = Cab(B);
 
+   <<"bounds are: $ab \n";
 
-asz= Csz(B)
-<<"array size (number of elements) is: $asz \n"
-chkN(asz,6);
-nd2 = Cnd(B)
-<<"number of dimensions are: $nd2 \n"
-chkN(nd2,2)
-ab = Cab(B)
+   d= Cab(B);
 
-<<"bounds are: $ab \n"
+   <<"%V $d \n";
 
- d= Cab(B);
+   B.redimn(2,3);
 
+   asz= Csz(B);
 
-chkOut()
+   <<"array size (number of elements) is: $asz \n";
 
+   chkN(asz,6);
 
+   nd2 = Cnd(B);
 
+   <<"number of dimensions are: $nd2 \n";
+
+   chkN(nd2,2);
+
+   ab = Cab(B);
+
+   <<"bounds are: $ab \n";
+
+   d= Cab(B);
+
+   chkOut();
 /*
 
 
@@ -218,3 +228,5 @@ ab = Cab(B)
 
 <<"%V $d \n"
 */
+
+//==============\_(^-^)_/==================//

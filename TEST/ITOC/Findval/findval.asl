@@ -1,229 +1,227 @@
-//%*********************************************** 
-//*  @script findval.asl 
-//* 
-//*  @comment test findval SF 
-//*  @release CARBON 
-//*  @vers 1.3 Li Lithium [asl 6.2.70 C-He-Yb]                               
-//*  @date Wed Sep  2 09:33:15 2020 
-//*  @cdate 1/1/2002 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
-<<"Running $_script\n"
-///
-///
-///
+/* 
+ *  @script findval.asl                                                 
+ * 
+ *  @comment test findval SF                                            
+ *  @release Carbon                                                     
+ *  @vers 1.4 Be Beryllium [asl 6.28 : C Ni]                            
+ *  @date 06/13/2024 14:33:19                                           
+ *  @cdate 1/1/2002                                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
+ * 
+ */ 
 
+///
+///
+///
 # test ASL function findval
 #include "debug.asl";
+#include "hv.asl";
 
+   if (_dblevel >0) {
 
+        debugON();
 
-if (_dblevel >0) {
-   debugON()
-//filterFileDebug(ALLOWALL_,"yyy");  // all files
-//filterFuncDebug(ALLOWALL_,"xxx") ; // all funcs should see all DBC debug
+   }
 
-}
-
-chkIn()
-
-
-
+   chkIn();
 ////  debug ON
 
+   db_allow =0;
 
-//#define ASK ans=iread();
-#define ASK ;
+   allowDB("ic,spe_proc",db_allow);
 
-<<"hey mark onward ever upward - higher and higher!!\n"
+   <<"hey mark onward ever upward - $Hdr_vers\n";
 
+   the_ele = vers2ele(Hdr_vers);
+//!a
 
-Csum=vgen(FLOAT_,10,0)
+   ans=ask("%V $the_ele",0);
 
+   chkT(1);
 
+   Csum=vgen(FLOAT_,10,0);
 
-Csum[4] = 1;
-<<"$Csum\n"
-   ivec = findVal(Csum,0,0,-1,1,0,LT_)
+   Csum[4] = 1;
 
-   le = ivec[0];
-   if (le == -1) {
-     le = 0;
-   }
-<<"%V $ivec $le\n"
+   <<"$Csum\n";
 
-chkN(le,4)
-
-
-
-   ivec = findVal(Csum,0,0,-1,1,0,"<")
+   ivec = findVal(Csum,0,0,-1,1,0,LT_);
 
    le = ivec[0];
+
    if (le == -1) {
-     le = 0;
+
+        le = 0;
+
    }
-<<"%V $ivec $le\n"
 
-chkN(le,4)
+   <<"%V $ivec $le\n";
 
+   chkN(le,4);
 
+   ivec = findVal(Csum,0,0,-1,1,0,"<");
 
+   le = ivec[0];
 
-I= Igen(20,0,1)
+   if (le == -1) {
 
+        le = 0;
 
-<<" $I \n"
+   }
 
+   <<"%V $ivec $le\n";
+
+   chkN(le,4);
+
+   I= Igen(20,0,1);
+
+   <<" $I \n";
 //<<" $I[3:7] \n"
 
-int fi;
+   int fi;
 
-int si = 0;
-
+   int si = 0;
 //int found[];
-
 //found.info(1)
 
-found= findval(I,6,si,-1,1,0)
+   found= findval(I,6,si,-1,1,0);
 
-nd= Cab(found);
-sz = Caz(found);
-<<"%V $nd $sz $(Cab(found))  \n"
+   nd= Cab(found);
 
-<<"%V $found  \n"
+   sz = Caz(found);
 
+   <<"%V $nd $sz $(Cab(found))  \n";
 
-fi = found[0]
+   <<"%V $found  \n";
 
-<<"%V $fi \n"
+   fi = found[0];
 
+   <<"%V $fi \n";
 
-chkN(fi,6)
-
+   chkN(fi,6);
 //chkOut(); exit();
 
-found= findval(I,8,si,-1,1,0)
+   found= findval(I,8,si,-1,1,0);
 
+   nd= Cab(found);
 
-nd= Cab(found);
-sz = Caz(found);
-<<"%V $nd $sz $(Cab(found))  \n"
+   sz = Caz(found);
 
-<<"%V $found  \n"
+   <<"%V $nd $sz $(Cab(found))  \n";
 
-
-fi = found[0]
-
-<<"%V $fi \n"
-
-
-chkN(fi,8)
-
-
-
-
-
-
-   found= findval(I,6,si,-1,1,LTE_)
-
-nd= Cab(found);
-sz = Caz(found);
-<<"%V $nd $sz $(Cab(found))  \n"
-
-<<"%V $found  \n"
-
-fi = found[0];
-
-<<"%V $fi \n"
-
-
-chkN(fi,6)
-
-
-
-
-   found= I.findval(7,si,-1,-1,1)
-
-fi = found[0];
-
-chkN(fi,7)
-
-<<"%V $fi \n"
-
-
-
-si = 19;
-
-   found= I.findval(17,si,-1,-1,1)
-<<" $(Cab(found))  \n"
-   fi = found[0];
-
-<<"%V $fi \n"
-
-chkN(fi,-1)
-
-si = -1;
-   found= I.findval(17,si,0,0)
+   <<"%V $found  \n";
 
    fi = found[0];
 
-<<"%V $fi \n"
-chkN(fi,17)
+   <<"%V $fi \n";
 
+   chkN(fi,8);
 
-si = 19;
+   found= findval(I,6,si,-1,1,LTE_);
 
-   found= I.findval(17,si,-1,0)
+   nd= Cab(found);
 
+   sz = Caz(found);
 
-<<"%V $fi \n"
-chkN(fi,17)
+   <<"%V $nd $sz $(Cab(found))  \n";
 
+   <<"%V $found  \n";
 
+   fi = found[0];
 
-si = 19;
+   <<"%V $fi \n";
 
+   chkN(fi,6);
+
+   I.pinfo();
+
+   found= I.findval(7,si,-1,-1,1);
+
+   found.pinfo();
+
+   fi = found[0];
+
+   chkN(fi,7);
+
+   <<"%V $fi \n";
+//chkOut(1)
+
+   si = 19;
+
+   I.pinfo();
+
+   found= I.findval(17,si,-1,-1,1);
+
+   <<" $(Cab(found))  \n";
+
+   fi = found[0];
+
+   <<"%V $fi \n";
+
+   chkN(fi,-1);
+
+   si = -1;
+
+   found= I.findval(17,si,0,0);
+
+   fi = found[0];
+
+   <<"%V $fi \n";
+
+   chkN(fi,17);
+
+   si = 19;
+
+   found= I.findval(17,si,-1,0);
+
+   <<"%V $fi \n";
+
+   chkN(fi,17);
+
+   si = 19;
 //   found= I.findval(17,-1,-1,1,'>=')
 
-   found= I.findval(17,-1,-1,0,1,GTE_)
+   found= I.findval(17,-1,-1,0,1,GTE_);
 
-nd= Cab(found);
-sz = Caz(found);
-<<"%V $nd $sz $(Cab(found))  \n"
+   nd= Cab(found);
 
-<<"%V $found  \n"
+   sz = Caz(found);
 
-<<"%V $fi \n"
-chkN(fi,17)
+   <<"%V $nd $sz $(Cab(found))  \n";
 
+   <<"%V $found  \n";
 
-F= Fgen(20,0,1);
+   <<"%V $fi \n";
 
+   chkN(fi,17);
 
-<<" $F \n"
+   F= Fgen(20,0,1);
 
-<<" $F[3:7] \n"
+   <<" $F \n";
 
-si = 0;
+   <<" $F[3:7] \n";
 
+   si = 0;
 
-found= findval(F,8,si,-1,1,0)
+   found= findval(F,8,si,-1,1,0);
 
-fi = found[0];
+   fi = found[0];
 
-<<"$found $fi \n"
+   <<"$found $fi \n";
 
-chkN(fi,8)
+   chkN(fi,8);
 
-   found= F.findval(7,si,-1,1,0)
+   found= F.findval(7,si,-1,1,0);
 
-fi = found[0];
+   fi = found[0];
 
-<<"$found $fi \n"
+   <<"$found $fi \n";
 
-chkN(fi,7)
+   chkN(fi,7);
 
-chkOut();
-exit();
+   chkOut();
+
+   exit();
+
+//==============\_(^-^)_/==================//

@@ -184,10 +184,10 @@ void   showComment()
 
 //printf("Hdr_vers %s\n",Hdr_vers.cptr());
 
-  the_ele =vers2ele(Hdr_vers);
+//  the_ele =vers2ele(Hdr_vers);
 
 H_ele_vers = Hdr_vers;
-
+/*
  if (_DBH != -1) {
       hv_show = 1
  }
@@ -209,7 +209,7 @@ if (hv_show) {
   if (hv_found) {
     ScriptVers(Hdr_vers);
  }
-
+*/
 
 //printf("Done hv %s\n", Hdr_vers.cptr());
 //==============\_(^-^)_/==================//;
