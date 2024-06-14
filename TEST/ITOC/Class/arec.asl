@@ -17,7 +17,8 @@ class Arec {
   Str sr;
   int IV[20]
 
-  Str Get( int wf) {
+  Str Get(int wf)
+  {
   
    Str val;
   <<"wf $wf \n"
@@ -35,6 +36,7 @@ ans=ask("%V $val $__FILE__   $__FUNC__  $__LINE__ $_scope $_include $_script [y,
   return val;
   };
 
+//[MF]================//
   void Describe()
   {
     <<"$_proc \n"
@@ -43,9 +45,11 @@ ans=ask("%V $val $__FILE__   $__FUNC__  $__LINE__ $_scope $_include $_script [y,
 
 
   }
-
+  
+//[MF]================//
 
  Str SetVal(Str val, int wf) {
+   <<"$_proc  $val  $wf \n"
   wf.pinfo()
   srec[wf] = val;
   rval =  srec[wf];

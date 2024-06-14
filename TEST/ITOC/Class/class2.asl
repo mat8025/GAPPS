@@ -25,7 +25,7 @@
 
   allowErrors(-1);
 
-  chkIn();
+  chkIn(_dblevel);
 /// simple class test
 
 
@@ -35,14 +35,15 @@ DB_action = 0;
 int db_step = 0; // set to zero for no step
 
 db_ask =0
-db_allow = 1
+db_allow = 0
 
  Str pset(str val, int wf)
   {
     loc[wf] = val;
     return loc[wf];
   }
-
+  
+allowDB("oo_,ic,spe_proc,ic_,ds_store",db_allow)
 ///////////////////////////////////////
 #include "arec.asl"
 
@@ -106,13 +107,16 @@ Arec R;
   
   // error msg should say prototype and call args don't match can't promote/demote or ambiguous
 
-//allowDB("oo_,ic,spe_,ic_,ds_store",1)
+
+
 //wdb=DBaction((DBSTEP_),ON_)
-  R.Set(tans,5)
+
+  R.Set(tans,5)  ; // TBF 6/14/24 
 
   wans =R.Set(tans,4)
   
   chkStr(wans,tans)
+
 
   gans = R.Get(4)
 

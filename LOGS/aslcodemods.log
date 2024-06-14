@@ -2119,3 +2119,4 @@ spe_proc_process.cpp                2.66  06/13/2024 14:31:40  reformat  VMF/CMF
 svar_ltm.cpp                        1.56  06/13/2024 15:11:47  
 svar_ltm.cpp                        1.57  06/13/2024 15:12:26  no space
 svar_ltm.cpp                        1.58  06/13/2024 15:13:00  no trailing space
+spe_proc_process.cpp                2.67  06/14/2024 12:31:33  needs refactoring
