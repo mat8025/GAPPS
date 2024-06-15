@@ -1,0 +1,96 @@
+
+///          MAIN /////////////
+               
+  cprintf(" AFTER procs start of main script   cmain %d \n",cmain);
+               
+  cmain=addem (47,79);
+               
+  cprintf(" added 47 and 79 and got %d\n",cmain);
+               
+               
+  int i = 0;
+  int j = 2;
+  short k = 65;
+  // terbium
+               
+  float d = 3.142  ;// ;
+               
+               
+  if  ( i  && j)  {
+               
+  cprintf("fold 0   i %d  j %d\n",i,j);
+               
+  chkTrue(1);
+               
+  }
+               
+  chkN(j,2);
+               
+  cprintf(" PI is approx   d %f  k %d\n",d,k);
+               
+               
+  cprintf("Can we see   i %d  j %d  d %f\n",i,j,d);
+               
+  Str mydir = "West";
+               
+               
+  cprintf("  mydir %s \n",mydir);
+               
+  woo(mydir);
+               
+  cmain=addem (47,79);
+  j = 0;
+  while  (1)  {
+               
+  j++;
+               
+  if  (j> 3)  {
+  break;
+  }
+               
+  }
+               
+  cprintf(" break out of while %d\n",j);
+  k = -1;
+  do  {        
+               
+  k++;
+               
+  }
+  while  ( !(k > 5));
+               
+               
+               
+               
+  cprintf(" Do While  %d > 5 \n",k);
+               
+  k = 0;
+  do  {        
+               
+  k++;
+               
+  }
+  while  ( k < 5);
+               
+  cprintf(" Do While %d >= 5 \n",k);
+               
+               
+     for (j= 0; j < 5; j++) {
+               
+  cprintf("for loop %d\n",j);
+  }
+               
+  cprintf(" end of for loop   j %d  k %d \n",j,k);
+  cprintf("trying forever loop\n");
+  j = 0;
+     for ( ; ;  ) {
+  j++;
+  k++;
+  cprintf("forever loop %d\n",j);
+  if  (j>3)  {
+  break;
+  }
+  }
+               
+               
+ 

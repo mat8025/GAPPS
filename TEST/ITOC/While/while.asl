@@ -15,7 +15,7 @@
 ///
 ///
 
-db_allow = 0
+db_allow = 1
 db_ask = 0
 allowDB("ic,spe_,svar,str_,parse,pex",db_allow);
 
@@ -28,7 +28,7 @@ allowDB("ic,spe_,svar,str_,parse,pex",db_allow);
      }
 
 
-  <<"$Hdr_comment\n"
+ // <<"$Hdr_comment\n"
 
    chkIn();
 
@@ -87,6 +87,7 @@ k.pinfo()
 
      while (tl < Nrecs) {
 
+<<"%V $tl $Nrecs \n"
        tl++;
 
        if (tl < Nrecs) {
@@ -110,6 +111,7 @@ k.pinfo()
    int readData() 
    {
 
+    <<"$_proc \n"
      int tl = 0;
 
      while (tl < Nrecs) {
@@ -398,4 +400,5 @@ ans=ask("forever! $k", db_ask)
 
 /////////////////////////////////////////////////////////////////////
 
-///    TBF single line if 
+///    TBF single line if
+///    TBF 6/14/24

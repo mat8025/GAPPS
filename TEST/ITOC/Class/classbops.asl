@@ -28,8 +28,11 @@ if (_dblevel > 0) {
 allowErrors(-1) ; // keep going
 
 chkIn();
+
 db_ask = 0
 db_allow = 1
+
+allowDB("oo_,ic,spe_proc,ic_,ds_store",db_allow)
 
 #include "abc.asl"
 
@@ -202,7 +205,7 @@ class Point
 //     <<"%V $z  $x\n"
        x.pinfo()
       
-      return x;
+       return x;
       }
     
     float Gety()
@@ -285,6 +288,7 @@ ans=ask("Point A OK?\n",0)
   chkR(rx,1.0)
 
   rx=   A.Getx();
+ ans=ask("Getx $rx OK",0) 
   
 //
   rx = A.Setx(1.2)
@@ -295,7 +299,8 @@ allowDB("spe,oo,ic,opera",db_allow)
   rx= A.Setx(2.4)
 ans=ask("proc_svn $rx OK?",0)
 
-   rx= A.Getx()
+   rx= A.Getx();
+
 ans=ask("proc_svn $rx OK?",db_ask)
 
   chkR(rx,2.4)
@@ -318,7 +323,7 @@ ans=ask("proc_svn OK? $rx",db_ask)
   A.Setx(dx)
   rx=   A.Getx();
   <<"%V $dx <|$rx|>\n"
-
+ ans=ask("Getx $rx OK",db_ask) 
   chkN(rx,dx)
   dx += 1;
  }
@@ -350,12 +355,14 @@ chkStage("class print OK?")
 
   chkR(xy,8.8)
 
-  rx=   A.Getx();
- <<"%V <|$rx|>\n"
+  rx=   A.Getx()
+ ans=ask("Getx $rx OK",0)   
+
   chkN(rx,3.4)
 
    A.pinfo()
 
+//  chkOut(1)
 
    
 //allowDB("spe_proc,spe_state,spe_vmf,oo_")

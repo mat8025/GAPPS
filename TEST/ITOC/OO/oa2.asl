@@ -27,7 +27,7 @@ int db_ask = -17; // set to zero for no ask
  }
 
 int db_step = 0; // set to zero for no step
-
+db_allow = 0;
 //ans=ask("%V $db_ask $__LINE__  ynq [y]\n",1);
 
 #include "debug"
@@ -125,6 +125,7 @@ sv = Pset(SVS);
 
 int obid = -1;
 //allowDB("spe,oo")
+allowDB("spe,oo,ic,opera",db_allow)
   Act a;
 
   a.pinfo();

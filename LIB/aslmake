@@ -15,6 +15,7 @@ $(info TAR = $(TAR))
 LFLAGS =  -fPIC -DPIC -Wall  -I../../libs -I$(gasp_sys)/include -I/usr/include  -c
 
 # how many libs need to be loaded for cpp  produced via asl
+# libmda ??
 
 LDADD = -L$(gasp_sys)/lib  \
 	-lvec_asl \

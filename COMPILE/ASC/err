@@ -1,0 +1,61 @@
+g++ -g -x c++   -fpermissive  -rdynamic -o sivvec sivvec.asc  -I/home/mark/gasp-CARBON/include -ldl  -L/home/mark/gasp-CARBON/lib -lvec_asl -lmat_asl -lfop_asl -lnum_asl -lstr_asl -lrecord_asl -lspil_asl -ltest_asl -lmath_asl -ldf_asl -lds_asl -lsvar_asl -llist_asl -ldsp_asl -lpan_asl -lgscom_asl -lwcom_asl -lm -ldl -lpthread
+In file included from sivvec.asc:15:
+cpp_head.h:9:2: warning: #warning USING_CPP [-Wcpp]
+    9 | #warning USING_CPP
+      |  ^~~~~~~
+In file included from /home/mark/gasp-CARBON/include/uac.h:37,
+                 from cpp_head.h:18,
+                 from sivvec.asc:15:
+/home/mark/gasp-CARBON/include/cppi.h:23:2: warning: #warning INCLUDING CPPI.H [-Wcpp]
+   23 | #warning INCLUDING CPPI.H
+      |  ^~~~~~~
+In file included from cpp_head.h:17,
+                 from sivvec.asc:15:
+/home/mark/gasp-CARBON/include/vec.h: In member function ‘const long int Vec<T>::getRange()’:
+/home/mark/gasp-CARBON/include/vec.h:250:45: warning: ISO C++ forbids declaration of ‘type name’ with no type [-fpermissive]
+  250 |   const long getRange() { const long rng = (const) vrng.range;  return rng;};
+      |                                             ^~~~~
+/home/mark/gasp-CARBON/include/vec.h: At global scope:
+/home/mark/gasp-CARBON/include/vec.h:423:11: warning: redeclaration of ‘Vec<T>& Vec<T>::rng(int, int, int)’ may not have default arguments [-fpermissive]
+  423 | Vec<T>&   Vec<T>::rng(int beg=0, int end=-1, int stride=1)
+      |           ^~~~~~
+/home/mark/gasp-CARBON/include/vec.h:439:11: warning: redeclaration of ‘Vec<T>& Vec<T>::srng(int, int, int)’ may not have default arguments [-fpermissive]
+  439 | Vec<T>&   Vec<T>::srng(int beg=0, int end=-1, int stride=1)
+      |           ^~~~~~
+/home/mark/gasp-CARBON/include/vec.h: In function ‘void vec_sop(X*, Y, int, int)’:
+/home/mark/gasp-CARBON/include/vec.h:1248:34: warning: there are no arguments to ‘optype’ that depend on a template parameter, so a declaration of ‘optype’ must be available [-fpermissive]
+ 1248 |   cdbp("sop op %d %s sz %d\n",op,optype(op),sz);//
+      |                                  ^~~~~~
+In file included from /home/mark/gasp-CARBON/include/siv.h:25,
+                 from /home/mark/gasp-CARBON/include/sitypes.h:6,
+                 from /home/mark/gasp-CARBON/include/pf.h:41,
+                 from /home/mark/gasp-CARBON/include/vec.h:46,
+                 from cpp_head.h:17,
+                 from sivvec.asc:15:
+/home/mark/gasp-CARBON/include/vec.h:1250:34: warning: there are no arguments to ‘optype’ that depend on a template parameter, so a declaration of ‘optype’ must be available [-fpermissive]
+ 1250 |   IDBF("sop op %d %s sz %d\n",op,optype(op),sz);//
+      |                                  ^~~~~~
+In file included from cpp_head.h:17,
+                 from sivvec.asc:15:
+/home/mark/gasp-CARBON/include/vec.h: At global scope:
+/home/mark/gasp-CARBON/include/vec.h:1690:1: warning: redeclaration of ‘void Vec<T>::addGrand(int)’ may not have default arguments [-fpermissive]
+ 1690 | Vec<T>::addGrand(int seed = 0)
+      | ^~~~~~
+/home/mark/gasp-CARBON/include/vec.h: In member function ‘void Vec<T>::addGrand(int)’:
+/home/mark/gasp-CARBON/include/vec.h:1696:24: warning: there are no arguments to ‘get_time_seed’ that depend on a template parameter, so a declaration of ‘get_time_seed’ must be available [-fpermissive]
+ 1696 |                 seed = get_time_seed ();
+      |                        ^~~~~~~~~~~~~
+/home/mark/gasp-CARBON/include/vec.h:1711:15: warning: there are no arguments to ‘grand’ that depend on a template parameter, so a declaration of ‘grand’ must be available [-fpermissive]
+ 1711 |         val = grand (&idum);
+      |               ^~~~~
+/home/mark/gasp-CARBON/include/vec.h: In member function ‘Vec<T>& Vec<T>::operator=(const Vec<double>&)’:
+/home/mark/gasp-CARBON/include/vec.h:1851:80: warning: ISO C++ forbids declaration of ‘type name’ with no type [-fpermissive]
+ 1851 |         cdbp("this = const v this range %d v_range %d  RALL %d\n",getRange(), (const) v.vrng.range,RALL) ;
+      |                                                                                ^~~~~
+sivvec.asc: In function ‘int main(int, char**)’:
+sivvec.asc:56:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   56 |   cprintf("%f\n",T);
+      |           ^~~~~~
+sivvec.asc:63:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   63 |   cprintf("%d\n",R);
+      |           ^~~~~~

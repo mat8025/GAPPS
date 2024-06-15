@@ -2120,3 +2120,7 @@ svar_ltm.cpp                        1.56  06/13/2024 15:11:47
 svar_ltm.cpp                        1.57  06/13/2024 15:12:26  no space
 svar_ltm.cpp                        1.58  06/13/2024 15:13:00  no trailing space
 spe_proc_process.cpp                2.67  06/14/2024 12:31:33  needs refactoring
+parse.h                             2.11  06/14/2024 16:23:04  getCmfnest floor -1
+ds_sivflags.cpp                     1.97  06/14/2024 20:34:24  trap null svar fields -nargs set wrong
+spe_proc_return.cpp                 3.54  06/14/2024 22:54:23  remove db for pt_result
+spe_statex.cpp                      1.44  06/14/2024 22:55:36  remove db for current proc

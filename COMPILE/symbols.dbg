@@ -1,0 +1,11 @@
+     DEBUG FILE for symbols.dbg debug level 1  vers 1.2
+     Wed Sep 20 20:41:39 2023
+trying resetMem()
+ResetMem  size 0 newsize 20
+ResetMem newsize 20  0x1774ad0   0x1774ad0
+trying resetMem()
+ResetMem  size 0 newsize 3
+ResetMem newsize 3  0x17789a0   0x17789a0
+trying resetMem()
+ResetMem  size 0 newsize 3
+ResetMem newsize 3  0x17789c0   0x17789c0

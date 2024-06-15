@@ -1,0 +1,63 @@
+TAR = mat2cpp
+g++ -x c++  -g -fpermissive  -rdynamic -o mat2cpp mat2cpp.asc  -DMYFILE=\"mat2cpp.asc\" -I/home/mark/gasp-CARBON/include -ldl  -L/home/mark/gasp-CARBON/lib -lvec_asl -lmatrix_asl -lfop_asl -lnum_asl -lstr_asl -lrecord_asl -lspil_asl -ltest_asl -lmath_asl -ldf_asl -lds_asl -lsvar_asl -llist_asl -lgslists_asl -ldsp_asl -lpan_asl -lgscom_asl -lwcom_asl -lplot_asl -lm -ldl -lpthread 
+In file included from mat2cpp.asc:20:
+/home/mark/gasp-CARBON/include/cpp_head.h:19:2: warning: #warning USING_CPP [-Wcpp]
+   19 | #warning USING_CPP
+      |  ^~~~~~~
+In file included from /home/mark/gasp-CARBON/include/uac.h:37,
+                 from /home/mark/gasp-CARBON/include/cpp_head.h:34,
+                 from mat2cpp.asc:20:
+/home/mark/gasp-CARBON/include/cppi.h:23:2: warning: #warning INCLUDING CPPI.H [-Wcpp]
+   23 | #warning INCLUDING CPPI.H
+      |  ^~~~~~~
+mat2cpp.asc:40:2: warning: #warning USING_CPP [-Wcpp]
+   40 | #warning USING_CPP
+      |  ^~~~~~~
+mat2cpp.asc:42: warning: "CDB" redefined
+   42 | #define CDB ans=query("?","go on",__LINE__,__FILE__);
+      | 
+In file included from /home/mark/gasp-CARBON/include/siv.h:25,
+                 from /home/mark/gasp-CARBON/include/sitypes.h:6,
+                 from /home/mark/gasp-CARBON/include/pf.h:41,
+                 from /home/mark/gasp-CARBON/include/vec.h:46,
+                 from /home/mark/gasp-CARBON/include/cpp_head.h:32,
+                 from mat2cpp.asc:20:
+/home/mark/gasp-CARBON/include/debug.h:231: note: this is the location of the previous definition
+  231 | #define CDB 0
+      | 
+<command-line>: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+mat2cpp.asc:21:22: note: in expansion of macro ‘MYFILE’
+   21 |         Str myvers = MYFILE;
+      |                      ^~~~~~
+mat2cpp.asc: In function ‘int showMat(Mat)’:
+mat2cpp.asc:60:3: warning: no return statement in function returning non-void [-Wreturn-type]
+   60 |   }
+      |   ^
+mat2cpp.asc: In function ‘int main(int, char**)’:
+mat2cpp.asc:67:21: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   67 |         init_debug ("mat.dbg", 1, "1.2");
+      |                     ^~~~~~~~~
+mat2cpp.asc:67:35: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   67 |         init_debug ("mat.dbg", 1, "1.2");
+      |                                   ^~~~~
+mat2cpp.asc:68:17: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   68 |         cprintf("%s\n",MYFILE);
+      |                 ^~~~~~
+mat2cpp.asc:115:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  115 |   cprintf("  val %f\n",val) ;
+      |           ^~~~~~~~~~~~
+mat2cpp.asc:136:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  136 |   cprintf("  val %f\n",val) ;
+      |           ^~~~~~~~~~~~
+mat2cpp.asc:156:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  156 |   cprintf("cvec  rvec \n") ;
+      |           ^~~~~~~~~~~~~~~
+mat2cpp.asc:167:13: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  167 |   Str ans = "M($rvec , $cvec)";
+      |             ^~~~~~~~~~~~~~~~~~
+mat2cpp.asc:169:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  169 |   cprintf("%S\n",ans)      ;
+      |           ^~~~~~
+mat2cpp.asc:250:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  250 |   cprintf("Exit CPP \n");
+      |           ^~~~~~~~~~~~~

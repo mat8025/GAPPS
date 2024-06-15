@@ -1,0 +1,1299 @@
+               
+  int i = 0;
+               
+  int j = 2;
+  if  ( i   && j)  {
+               
+  cprintf("fold 0   i %d  j %d\n",i,j);
+               
+  chkT(1);
+               
+  }
+               
+  chkN(j,2);
+               
+  if  (i == 2)  {
+               
+  cprintf(" %d == 2 \n",i);
+               
+  j = 1;
+               
+  }
+               
+  else if
+  (i > 2)  {
+               
+  cprintf(" %d > 2 \n",i);
+               
+  j = -4;
+               
+  }
+               
+  else
+  {       
+               
+  j = -2;
+               
+  cprintf(" %d < 2 \n",i);
+               
+  }
+               
+  cprintf("  j %d\n",j);
+               
+  chkN(j,-2);
+               
+  j = -1;
+               
+  chkN(j,-1);
+//checkOut()   
+//exit()       
+               
+  i = 3;
+               
+  j = 0;
+               
+  if  (i == 2)  {
+               
+  cprintf(" %d == 2 \n",i);
+               
+  j = 1;
+               
+  }
+               
+  else if
+  (i > 2)  {
+               
+  cprintf(" %d > 2 \n",i);
+               
+  j = 2;
+               
+  }
+               
+  else
+  {       
+               
+  cprintf(" %d < 2 \n",i);
+               
+  j = -1;
+               
+  }
+               
+  chkN(j,2);
+               
+  i = 0;
+               
+  j = 0;
+               
+  if  (i == 2)  {
+               
+  cprintf("the if %d == 2 \n",i);
+               
+  j = 1;
+               
+  }
+               
+  else if
+  (i > 2)  {
+               
+  cprintf("the-else-if %d > 2 \n",i);
+               
+  j = 2;
+               
+  }
+               
+  else
+  {       
+               
+  cprintf("the else %d < 2 \n",i);
+               
+  j = -1;
+               
+  }
+               
+  cprintf("  j %d\n",j);
+               
+  chkN(j,-1);
+               
+  N = getArgI();
+               
+  cprintf(" supplied arg is [ % ] testing for <,=, or > than 1\n",N);
+               
+  prog = GetScript();
+               
+  cprintf(" % \n",prog);
+               
+  cprintf(" %: \n",prog);
+               
+////  Test If variations;
+               
+  itest = 1;
+               
+  a = 2;
+//<<" $a $gt $eq $lt \n"
+               
+  gt = 0;
+               
+  eq = 0;
+               
+  lt = 0;
+               
+  if  (a > 0)  {
+               
+  gt =1;
+               
+  }
+               
+  chkN(a,2);
+               
+  chkN(gt,1);
+               
+  cprintf("  a % > 0 ? \t:  lt %  eq %  gt % \n",a,lt,eq,gt);
+               
+  gt = 0;
+               
+  eq = 0;
+               
+  lt = 0;
+               
+  cprintf(" test eqv to \n");
+               
+  a = 0;
+               
+  if  (a == 0)  {
+               
+  eq = 1;
+               
+  }
+               
+  chkN(a,0);
+               
+  chkN(eq,1);
+               
+  cprintf("  a % == 0 ? \t:  lt %  eq %  gt % \n",a,lt,eq,gt);
+               
+  a--;
+               
+  gt = 0;
+               
+  eq = 0;
+               
+  lt = 0;
+               
+  if  (a < 0)  {
+               
+  lt = 1;
+               
+  }
+               
+  chkN(lt,1);
+               
+  cprintf("  a % < 0 ? \t:  lt %  eq %  gt % \n",a,lt,eq,gt);
+               
+  a--;
+               
+  tot = gt + lt + eq;
+               
+  a =1;
+               
+  cprintf(" \n");
+               
+  gt = 0;
+               
+  eq = 0;
+               
+  lt = 0;
+               
+  if  (a > 0)               
+  gt =1;
+               
+  chkN(gt,1);
+               
+  cprintf("  a % ? 0 \t:  lt %  eq %  gt % \n",a,lt,eq,gt);
+               
+  a--;
+               
+  if  (a == 0)               
+  eq = 1;
+               
+  chkN(eq,1);
+               
+  cprintf("  a % ? 0 \t:  lt %  eq %  gt % \n",a,lt,eq,gt);
+               
+  a--;
+               
+  if  (a < 0)               
+  lt = 1;
+               
+  chkN(lt,1);
+               
+  cprintf("  a % ? 0 \t:  lt %  eq %  gt % \n",a,lt,eq,gt);
+               
+  a--;
+               
+  tot = gt + lt + eq;
+               
+  a =1;
+               
+  while  (a > -2)  {
+               
+  cprintf(" first in while \n");
+               
+  gt = 0;
+               
+  eq = 0;
+               
+  lt = 0;
+               
+  cprintf(" before first if in while \n");
+               
+  if  (a > 0)  {
+               
+  gt =1;
+               
+  }
+               
+  cprintf(" after first if in while \n");
+               
+  if  (a == 0)  {
+               
+  eq = 1;
+               
+  }
+               
+  if  (a < 0)  {
+               
+  lt = 1;
+               
+  }
+               
+  tot = gt + lt + eq;
+               
+  cprintf("  a % ? 0 \t:  lt %  eq %  gt % \n",a,lt,eq,gt);
+               
+  a--;
+               
+  cprintf(" last st in while \n");
+               
+  }
+               
+  a = 1;
+               
+  cprintf(" \n");
+               
+  while  (a > -2)  {
+               
+  gt = 0;
+               
+  eq = 0;
+               
+  lt = 0;
+               
+  if  (a > 0)               
+  gt =1;
+               
+  if  (a == 0)               
+  eq = 1;
+               
+  if  (a < 0)               
+  lt = 1;
+               
+  cprintf(" missed ? \n");
+               
+  cprintf("  a % ? 0 \t:  lt %  eq %  gt % \n",a,lt,eq,gt);
+               
+  tot = gt + lt + eq;
+               
+  a--;
+               
+  }
+               
+  islt = 0;
+               
+  isgt = 0;
+               
+  iseq = 0;
+               
+  nwr = 1;
+               
+  N = 1;
+               
+  bad = 0;
+               
+  if  (N > 1 )               
+  bad++;
+               
+  if  (N > 1 )  chkN(N,0)
+               
+  if  (N < 1 )  chkN(N,0)
+               
+  if  (N == 1 )  chkN(N,1)
+               
+  chkStage("if-0");
+               
+  float ICAO_SA[10][4];
+               
+  ICAO_SA[0][0] = 3;
+               
+  cprintf(" %f \n",ICAO_SA[0][0]);
+               
+  ICAO_SA[0][3] = 7;
+               
+  cprintf(" %f \n",ICAO_SA[0][3]);
+               
+  ICAO_SA[2][3] = 18;
+               
+  cprintf("  ICAO<87><float>{
+ 87 ICAO_SA 2216 FLOAT SIV_V sz(40,160) nds(2,[10][4]) off(0,11,0,0)(VOK|ARRAY|ELE|GLOBAL|) 
+ (AOP_SET|) 
+ |0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+|>> } _SA[2][3] %f] \n",ICAO_SA[2][3]);
+               
+  chkR(ICAO_SA[2][3],18,6);
+               
+  chkR(ICAO_SA[0][3],7,6);
+               
+  i = 1;
+               
+  int k = 2;
+               
+  ICAO_SA[i][k] = 69;
+               
+  ICAO_SA[k][i] = 73;
+               
+  cprintf(" %f \n",ICAO_SA[i][k]);
+               
+  cprintf(" %f \n",ICAO_SA[k][i]);
+               
+  chkR(ICAO_SA[i][k],69,6);
+               
+  chkR(ICAO_SA[k][i],73,6);
+               
+  y = k * 2;
+  // this would have to be autodeclare in cpp
+               
+  y.pinfo();
+               
+  cprintf("  y % \n",y);
+               
+  ICAO_SA[k][i] = (k * 2);
+               
+  cprintf("%f  should be 4 !\n",ICAO_SA[k][i]);
+               
+  cprintf("%f\n",ICAO_SA);
+               
+  chkR(ICAO_SA[k][i],4,6);
+               
+  ICAO_SA[k][i] = 5;
+               
+  cprintf("%f\n",ICAO_SA);
+               
+  cprintf(" ICAO_SA[k][i] %f  should be 5 !\n",ICAO_SA[k][i]);
+               
+  ICAO_SA[k][i] = (k * 3);
+               
+  cprintf("%f  should be 6 !\n",ICAO_SA[k][i]);
+               
+  cprintf("%f\n",ICAO_SA);
+               
+  j= (k * 3);
+               
+  ICAO_SA[k][i] = 707;
+               
+  cprintf("%f\n",ICAO_SA);
+               
+  j = 787;
+               
+  ICAO_SA[k][i+1] = j;
+               
+  cprintf("%f\n",ICAO_SA);
+               
+  chkR(ICAO_SA[k][i+1],787,3);
+               
+  ICAO_SA[k][i] = k;
+               
+  cprintf("  ICAO<87><float>{
+ 87 ICAO_SA 2216 FLOAT SIV_V sz(40,160) nds(2,[10][4]) off(0,8,0,0)(VOK|ARRAY|ELE|GLOBAL|) 
+ (AOP_SET|) 
+ |0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+|>> } _SA[k][i] %f><float>{
+ 87 ICAO_SA 2216 FLOAT ,ICAO_SA[k][i]);
+               
+  chkN(ICAO_SA[k][i],k);
+               
+  i = 5;
+               
+  ICAO_SA[i][k] = i * 2;
+               
+  cprintf("  ICAO<87><float>{
+ 87 ICAO_SA 2216 FLOAT SIV_V sz(40,160) nds(2,[10][4]) off(0,2,0,0)(VOK|ARRAY|ELE|GLOBAL|) 
+ (AOP_SET|) 
+ |0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+|>> } _SA[i][k] %f><float>{
+ 87 ICAO,ICAO_SA[i][k]);
+               
+  chkN(ICAO_SA[i][k], (i *2));
+               
+  cprintf(" ; ///////////// \n");
+               
+  k = 3;
+               
+    for (i = 1; i < 10; i++) {
+               
+  cprintf(" %d %d \n",i,k);
+               
+  ICAO_SA[i][k] = i * 2;
+               
+  cprintf("  ICAO_SA[i][k] %f \n",ICAO_SA[i][k]);
+               
+  z = i * 2;
+               
+  y = ICAO_SA[i][k];
+               
+  cprintf("  y % \n",y);
+               
+  cprintf("%d %d %d %d \n",i,k,z,y);
+//FIXME   <<" %4r${ICAO_SA[i][0:2]} \n"
+               
+  }
+               
+  i = 6;
+               
+  cprintf("  ICAO<87><float>{
+ 87 ICAO_SA 2216 FLOAT SIV_V sz(40,160) nds(2,[10][4]) off(0,2,0,0)(VOK|ARRAY|ELE|GLOBAL|) 
+ (AOP_SET|) 
+ |0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+0.0000 0.0000 0.0000 0.0000 
+|>> } _SA[i][k] %f><float>{
+ 87 ICAO,ICAO_SA[i][k]);
+               
+  cprintf(" ; ///////////// \n");
+//FIXME <<"%4r $ICAO_SA \n"
+               
+  cprintf(" %f \n",ICAO_SA);
+               
+  chkStage("if 1");
+//uint j = 429000000
+//uint j = 120000000
+//uint j = 120000000
+               
+  d = pow(2,8) -5;
+               
+  cprintf(" d % \n",d);
+               
+  uint k5 =  2^3;
+               
+  cprintf(" k5 %u \n",k5);
+               
+  uint j5 = d;
+               
+  cprintf(" j5 %u \n",j5);
+               
+  uint ts_secs = j5-4;
+               
+  chkN(ts_secs,(j5-4));
+               
+  uint last_ts_secs = j5;
+               
+  cprintf("  ts_secs %u   last_ts_secs %u \n",ts_secs,last_ts_secs);
+               
+  chkN(last_ts_secs,j5);
+               
+  int n = 0;
+               
+  cprintf("  n %d \n",n);
+               
+  chkN(0,n);
+               
+    for (i= 0; i < 5; i++) {
+               
+  if  (ts_secs == last_ts_secs)  {
+               
+  cprintf("  ts_secs %u ==  last_ts_secs %u \n",ts_secs,last_ts_secs);
+               
+  n++;
+               
+  }
+               
+  ts_secs++;
+               
+  cprintf("  i %d  ts_secs %u \n",i,ts_secs);
+               
+  }
+               
+  chkN(1,n);
+               
+  chkStage (" if - 5");
+//%*********************************************** 
+//*  @script if6.asl 
+//*            
+//*  @comment if syntax tests 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                  
+//*  @date Mon Apr  8 09:56:09 2019 
+//*  @cdate Mon Apr  8 09:56:09 2019 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//*            
+//***********************************************%
+               
+  do_all = 1;
+               
+  do_bops = 1;
+               
+  cprintf("  do_all %  do_bops % \n",do_all,do_bops);
+               
+  if  ((do_all == 6))  {
+               
+  cprintf("is   do_all % == 6 TRUE? is TRUE\n",do_all);
+               
+  }
+               
+  else
+  {       
+               
+  cprintf(" ELSE   do_all % != 6 TRUE? is TRUE\n",do_all);
+               
+  chkN(1,do_all);
+               
+  }
+               
+  do_all = 6;
+               
+  if  (do_all == 6)  {
+               
+  cprintf("is   do_all % == 6 TRUE? is TRUE\n",do_all);
+               
+  chkN(6,do_all);
+               
+  }
+               
+  else
+  {       
+               
+  cprintf(" ELSE   do_all % != 6 TRUE? is TRUE\n",do_all);
+               
+  }
+               
+  if  (do_all)  {
+               
+  cprintf("is   do_all % value TRUE is correct?\n",do_all);
+               
+  chkN(6,do_all);
+               
+  }
+               
+  else
+  {       
+               
+  cprintf(" ELSE   do_all % is FALSE is correct?\n",do_all);
+               
+  }
+               
+  if  (do_bops)  {
+               
+  cprintf("is   do_bops % value TRUE is correct?\n",do_bops);
+               
+  chkN(1,do_bops);
+               
+  }
+               
+  else
+  {       
+               
+  cprintf(" ELSE   do_bops % is FALSE is correct?\n",do_bops);
+               
+  }
+               
+  if  ((do_all == 4))  {
+               
+  cprintf("is   do_all % == 4 TRUE? is TRUE\n",do_all);
+               
+  }
+               
+  else
+  {       
+               
+  cprintf(" ELSE   do_all % != 4 TRUE? is TRUE\n",do_all);
+               
+  chkN(6,do_all);
+               
+  }
+               
+  if  ( do_bops == 2 )  {
+               
+  cprintf("  do_bops % == 2 TRUE? is TRUE\n",do_bops);
+               
+  }
+               
+  else
+  {       
+               
+  cprintf("  do_bops % == 2 TRUE? is FALSE\n",do_bops);
+               
+  }
+               
+  if  (do_bops || do_all)  {
+               
+  cprintf("  do_bops % ||   do_all % TRUE? is TRUE\n",do_bops,do_all);
+               
+  }
+               
+  else
+  {       
+               
+  cprintf("  do_bops % ||   do_all % FALSE? is TRUE\n",do_bops,do_all);
+               
+  }
+               
+  do_bops = 0;
+               
+  cprintf("  do_bops %   FALSE \n",do_bops);
+               
+  if  ( do_bops || do_all)  {
+               
+  cprintf("  do_bops % ||   do_all % TRUE? is TRUE\n",do_bops,do_all);
+               
+  chkN(0,do_bops);
+               
+  }
+               
+  else
+  {       
+               
+  cprintf("  do_bops % ||   do_all % FALSE? is TRUE\n",do_bops,do_all);
+               
+  }
+               
+  do_bops = 2;
+               
+  if  (do_bops && do_all)  {
+               
+  cprintf("  do_bops % &&   do_all % \n",do_bops,do_all);
+               
+  chkN(2,do_bops);
+               
+  }
+               
+  else
+  {       
+               
+  cprintf("  do_bops % &&   do_all % is FALSE\n",do_bops,do_all);
+               
+  }
+               
+  chkStage("if -6");
+//%*********************************************** 
+//*  @script ifnest.asl 
+//*            
+//*  @comment test ifnest and sindent 
+//*  @release CARBON 
+//*  @vers 1.1 H Hydrogen                                                  
+//*  @date Mon Apr  8 09:07:32 2019 
+//*  @cdate Mon Apr  8 09:07:32 2019 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//*            
+//***********************************************%
+//N = atoi( _clarg[1])
+               
+  N =5;
+               
+  cprintf(" %  testing for <,=, or > than 1\n",N);
+               
+  nwr = 4;
+               
+  jlt =0;
+               
+  jeq = 0;
+               
+  jgt = 0;
+               
+  j = 1;
+               
+  M = N + 3;
+               
+  if  (N > j)  {
+               
+  while  (j <= M)  {
+               
+  if  (nwr == 4)  {
+               
+  if  (N > j )               
+  {
+               
+  cprintf("% > %d \n",N,j);
+               
+  jlt++;
+               
+  j++;
+               
+  cprintf("  j %d  jlt %d do we see this if true line ?\n",j,jlt);
+               
+  }
+               
+  else if
+  (N ==j)  {
+               
+  cprintf("% == %d \n",N,j);
+               
+  j++;
+               
+  jeq++;
+               
+  cprintf("  j %d ==  N %d do we see this else if line ?\n",j,N);
+               
+  }
+               
+  else
+  {    
+               
+  cprintf("% < %d \n",N,j);
+               
+  j++;
+               
+  jgt++;
+               
+  cprintf("  j %d  jgt %d do we see this else line ?\n",j,jgt);
+               
+  }
+               
+  }
+               
+  }
+               
+  }
+               
+  else
+  {       
+               
+  cprintf(" N<=j \n");
+               
+  }
+               
+  chkN(jlt,4);
+               
+  chkN(jeq,1);
+               
+  chkN(jgt,3);
+               
+  cprintf("  jlt %  jeq %  jgt %\n",jlt,jeq,jgt);
+               
+  chkStage("if - nest");
+//%*********************************************** 
+//*  @script if_fold.asl 
+//*            
+//*  @comment if syntax tests 
+//*  @release CARBON 
+//*  @vers 1.2 He Helium                                                   
+//*  @date Mon Apr  8 13:59:31 2019 
+//*  @cdate Mon Apr  8 09:56:09 2019 
+//*  @author Mark Terry 
+//*  @Copyright  RootMeanSquare  2010,2019 --> 
+//*            
+//***********************************************%
+               
+  a=1;
+               
+  b=1;
+               
+  c=1;
+               
+  if  ( a && b && c)  {
+               
+  cprintf("  a %  b %  c % all +ve\n",a,b,c);
+               
+  chkT(1);
+               
+  }
+  if  ( a   && c)  {
+               
+  cprintf("fold 0   a %  b %  c % all +ve\n",a,b,c);
+               
+  chkT(1);
+               
+  }
+  if  ( a   && b   && c)  {
+               
+  cprintf("fold 1   a %  b %  c % all +ve\n",a,b,c);
+               
+  chkT(1);
+               
+  }
+               
+  else
+  {       
+               
+  cprintf("  a %  b %  c % not all +ve\n",a,b,c);
+               
+  }
+  if  ( a   && b   && c)  {
+               
+  chkT(1);
+               
+  cprintf("fold 2   a %  b %  c % all +ve\n",a,b,c);
+               
+  }
+               
+  else
+  {       
+               
+  cprintf("  a %  b %  c % not all +ve\n",a,b,c);
+               
+  }
+               
+  b = 0;
+  if  ( a   && b   && c)               
+  {
+               
+  chkT(0);
+               
+  cprintf("Fold 3   a %  b %  c % all +ve\n",a,b,c);
+               
+  }
+               
+  else
+  {       
+               
+  chkT(1);
+               
+  cprintf("fold 3  a %  b %  c % not all +ve\n",a,b,c);
+               
+  }
+               
+  c = 0;
+  if  ( a   && b   && c)  {
+               
+  chkT(0);
+               
+  cprintf("fold 4   a %  b %  c % all +ve\n",a,b,c);
+               
+  }
+               
+  else
+  {       
+               
+  chkT(1);
+               
+  cprintf("fold 4   a %  b %  c % not all +ve\n",a,b,c);
+               
+  }
+               
+  is_comment =0;
+               
+  is_proc =0;
+               
+  is_if  =0;
+               
+  cs ="ABCDefg";
+               
+  sl = slen(cs);
+               
+  ts=sstr(";/{}\\",cs,1);
+               
+  cprintf(" is_if %  sl %  ts %\n",is_if,sl,ts);
+               
+  if  ( (  sstr(";/{}\\",cs,1) == -1) )  {
+               
+  cprintf("Pass exp test\n");
+               
+  chkT(1);
+               
+  }
+               
+  else
+  {       
+               
+  cprintf("Fail exp test\n");
+               
+  chkT(0);
+               
+  }
+               
+  if  ( (sl >0 ) && (  sstr(";/{}\\",cs,1) == -1) )  {
+               
+  chkT(1);
+               
+  cprintf("Pass exp && exp test\n");
+               
+  }
+               
+  else
+  {       
+               
+  cprintf("Fail exp && exp test\n");
+               
+  chkT(0);
+               
+  }
+               
+  if  (!is_comment && (sl>0) && (  sstr(";/{}\\",cs,1) == -1) )  {
+               
+  chkT(1);
+               
+  cprintf("Pass not && exp && exp test\n");
+               
+  }
+               
+  else
+  {       
+               
+  cprintf("Fail not && exp && exp test\n");
+               
+  chkT(0);
+               
+  }
+               
+  if  (!is_comment && !is_proc &&  (sl>0) && (  sstr(";/{}\\",cs,1) == -1) )  {
+               
+  chkT(1);
+               
+  cprintf("Pass not && exp && exp test\n");
+               
+  }
+               
+  else
+  {       
+               
+  chkT(0);
+               
+  cprintf("Fail not && exp && exp test\n");
+               
+  }
+               
+  if  ( !is_comment && !is_proc && !is_if  && (sl > 0) && (  sstr(";/{}\\",cs,1) == -1) )  {
+               
+  chkT(1);
+               
+  cprintf("all tests true  is_comment &&  is_proc % &&  is_if %  sl %\n",is_proc,is_if,sl);
+               
+  }
+               
+  else
+  {       
+               
+  chkT(0);
+               
+  cprintf("Fail not && not &&  exp && exp test\n");
+               
+  }
+               
+  vv = sstr(";/{}\\",cs,1);
+               
+  cprintf(" vv %  cs %\n",vv,cs);
+               
+  if  (  (sstr(";/{}\\",cs,1) == -1) )  {
+               
+  cprintf(" vv %  cs %  sStr test correct\n",vv,cs);
+               
+  }
+               
+  vv.pinfo();
+               
+  cprintf( "   % &&   %    vv[0] %\n",vv[0]);
+// if ( !is_comment && !is_proc && !is_if  && (sl > 0)   && (sstr(";/{}\\",cs,1) == -1) ) {
+               
+  if  ( !is_comment && !is_proc && !is_if  && (sl > 0)   && (  vv[0] == -1) )  {
+               
+  chkT(1);
+               
+  cprintf("fold 5 all tests true  is_comment &&  is_proc % &&  is_if %  sl %d\n",is_proc,is_if,sl);
+               
+  }
+               
+  else
+  {       
+               
+  chkT(0);
+               
+  cprintf("fold 5 not correct!\n");
+               
+  }
+               
+               
+               
+               
+  if  ( !is_comment && !is_proc && !is_if  && (sl > 0) &&  (  sstr(";/{}\\",cs,1) == -1) )  {
+               
+  chkT(1);
+               
+  cprintf("fold 6 all tests true  is_comment &&  is_proc % &&  is_if %  sl %d\n",is_proc,is_if,sl);
+               
+  }
+               
+  else
+  {       
+               
+  chkT(0);
+               
+  cprintf("fold 6 not correct!\n");
+               
+  }
+  if  ( !is_comment && !is_proc &&       !is_if  && (sl > 0) &&   (  sstr(";/{}\\",cs,1) == -1) )  {
+               
+  chkT(1);
+               
+  cprintf("fold 7 all tests true  is_comment &&  is_proc % &&  is_if %  sl %d\n",is_proc,is_if,sl);
+               
+  }
+               
+  else
+  {       
+               
+  chkT(0);
+               
+  cprintf("fold 7 not correct!  WS after fold control?\n");
+               
+  }
+               
+  if  ( !is_comment   && !is_proc   && !is_if    && (sl > 0)   && (  sstr(";/{}\\",cs,1) == -1) )               
+  {
+               
+  chkT(1);
+               
+  cprintf("fold 8 all tests true  is_comment &&  is_proc % &&  is_if %  sl %d\n",is_proc,is_if,sl);
+               
+  }
+               
+  else
+  {       
+               
+  chkT(0);
+               
+  cprintf("fold 8 not correct!  WS after fold control?\n");
+               
+  }
+               
+  chkStage("if - fold");
+///            
+///            
+               
+  void woo(Str c_dir)
+  {
+               
+  int la = 1;
+               
+  Str the_dir ="W";
+               
+  the_dir = c_dir;
+// FIXIT --- XIC won't do the second -unless the first pass did the second comparision
+               
+  if  (the_dir == "E")  {
+               
+  cprintf("East is East \n");
+               
+  la = 90;
+               
+  }
+               
+  if  (the_dir == "S")  {
+               
+  cprintf("South is South \n");
+               
+  la = 180;
+               
+  }
+               
+  if  (the_dir == "W")  {
+               
+  cprintf("West is West \n");
+               
+  la = 270;
+               
+  }
+               
+  if  (the_dir == "N")  {
+               
+  cprintf("North is Cold \n");
+               
+  la = 360;
+               
+  }
+               
+  cprintf("  c_dir %s  the_dir %s  la %d \n",c_dir,the_dir,la);
+               
+  return la;
+               
+  }
+               
+  k = woo("E");
+               
+  cprintf("%d\n",k);
+               
+  chkN(k,90);
+               
+  k = woo("S");
+               
+  chkN(k,180);
+               
+  cprintf("%d\n",k);
+               
+  k = woo("W");
+               
+  chkN(k,270);
+               
+  k = woo("N");
+               
+  chkN(k,360);
+               
+  cprintf("%d\n",k);
+               
+  chkStage("logic chain");
+///            
+///            
+///            
+  int tf;
+               
+  Str fname="afile";
+               
+  fname = _clarg[1];
+               
+  sv = "";
+               
+  cprintf("sv %)  <|%|> \n"UNSET,sv);
+               
+  cprintf("ca1 <|%s|>\n",fname);
+               
+  tf= (fname == "");
+               
+  cprintf("%)   tf %d \n"INT,tf);
+               
+  int ntf = 0;
+               
+  ntf= !(fname == "");
+               
+  cprintf("%)   ntf %d \n"INT,ntf);
+               
+  stf= scmp(fname,"");
+               
+  cprintf("%)   stf % \n"UNSET,stf);
+               
+  int ans = 0;
+               
+  if  (ans)  {
+               
+  cprintf("ans != 0   ans %d\n",ans);
+               
+  }
+               
+  else
+  {       
+               
+  cprintf(" correct %d == 0\n",ans);
+               
+  chkN(ans,0);
+               
+  }
+               
+  if  (!ans)  {
+               
+  cprintf("correct ans == 0 !ans   ans %d\n",ans);
+               
+  chkN(ans,0);
+               
+  }
+               
+  else
+  {       
+               
+  cprintf("incorrect  %d != 0\n",ans);
+               
+  }
+               
+  if  (!(ans))  {
+               
+  cprintf("correct ans == 0 !ans   ans %d\n",ans);
+               
+  }
+               
+  else
+  {       
+               
+  cprintf(" %d != 0\n",ans);
+               
+  }
+               
+  if  (!(ans == 1))  {
+               
+  cprintf("correct !(ans == 1)   ans %d\n",ans);
+               
+  chkN(ans,0);
+               
+  }
+               
+  else
+  {       
+               
+  cprintf(" %d != 0\n",ans);
+               
+  }
+               
+  if  (fname == "")  {
+               
+  cprintf("ca1 <|%s|> is NULL\n",fname);
+               
+  }
+               
+  if  ((fname == "") != 1)  {
+               
+  cprintf("ca1 <|%s|> has value1\n",fname);
+               
+  }
+               
+  else
+  {       
+               
+  cprintf("ca1 <|%s|> is NULL\n",fname);
+               
+  }
+               
+  if  (!(fname == ""))  {
+               
+  cprintf("ca1 <|%s|> has value2\n",fname);
+               
+  }
+               
+  else
+  {       
+               
+  cprintf("ca1 <|%s|> is NULL\n",fname);
+               
+  }
+               
+  chkStage("chk null");
+               
+  chkOut();

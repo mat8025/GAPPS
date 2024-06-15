@@ -1,0 +1,116 @@
+///            
+///  test svar 
+///            
+               
+  #define ASL 0  
+  #define CPP 1  
+  #define USE_GRAPHICS 0
+               
+                            
+//#include "debug.asl"
+#if CPP        
+#include "cpp_head.h"                       
+#endif               
+               
+///////////////  GLOBALS //////////////////
+               
+               
+////////////////////////////////////////////////
+               
+               
+#if CPP        
+               
+int main( int argc, char *argv[] ) { // main start
+///            
+#endif               
+               
+               
+               
+               
+  ignoreErrors();
+               
+  Table_init();
+               
+  Svar R;
+               
+  Str sv = "this is a string";
+               
+  cprintf("  sv %S \n",sv);
+               
+  Svar Sv;
+               
+  Sv = split ("This is an svar array of strings");
+               
+               
+  cprintf("  Sv %A\n",&Sv);
+               
+  Svar S= functions() ;
+               
+               
+// <<"%(1, , ,\n)$S[0:50:5]\n"
+               
+ //<<" $S\n"   
+               
+/*             
+   F= S[100:200:10];  // range for cpp ?
+               
+// does  F= S(100,200,5)  work in asl ?
+               
+ <<"%(1, , ,\n)$F\n"
+               
+               
+               
+  G= S(10,100,4);  // range for cpp ?
+               
+               
+// what is C++ equivalent of "%(1, , ,\n) ?
+               
+ <<"Svar range op (10:100:4)\n"
+ <<" $G\n"     
+ //sr=iread("Svar range op (,,) ");
+               
+ // ==> cprintf("%A\n",&F);
+               
+<<"%(1, , ,\n)$F\n"
+               
+<<"//////////////////////////\n"
+               
+//  cprintf("%S\n",S);
+               
+*/              
+               
+  double x= 1.5;
+               
+  double y = atan(x);
+               
+  double p = sin(4* x);
+               
+  cprintf("  x %f  p %f  y %f \n",x,p,y);
+               
+ // S.pinfo()   // pinfo for svar - rather than Siv pinfo
+/*             
+ F= search(S," atan (");
+ <<"%(1, , ,\n)$F\n"
+               
+               
+ F= search(S," sin (");
+ <<"%(1, , ,\n)$F\n"
+               
+               
+ F= search(S," search (");
+ <<"%(1, , ,\n)$F\n"
+               
+ F= search(S," functions (");
+ <<"%(1, , ,\n)$F\n"
+*/             
+///////////////////////////////////////
+               
+               
+#if CPP              
+  //////////////////////////////////
+  exit(-1);    
+ }  /// end of C++ main   
+#endif               
+               
+               
+///////////////////////////    END OF SCRIPT ///////////////////////////////

@@ -1,13 +1,18 @@
+#  this is the make file  for compiling asc files to cpp exe
+#  the asc file is produced by translating and asl file with  asl -T option
+#  asl can use a subset of C++ syntax
+
 
 gasp_sys = /home/mark/gasp-CARBON
 
 LFLAGS =  -fPIC -DPIC -Wall  -I../../libs -I$(gasp_sys)/include -I/usr/include  -c
 
 # how many libs need to be loaded for cpp  produced via asl
+# no array,parse,opera libs -- use C++ libs or equiv
 
 LDADD = -L$(gasp_sys)/lib  \
 	-lvec_asl \
-	-lmat_asl \
+	-lmatrix_asl \
 	-lfop_asl \
 	-lnum_asl \
 	-lstr_asl \
@@ -23,7 +28,7 @@ LDADD = -L$(gasp_sys)/lib  \
 	-ldsp_asl \
 	-lpan_asl \
 	-lgscom_asl \
-	-lwcom_asl \
+        -lwcom_asl \
 	-lm -ldl -lpthread
 
 

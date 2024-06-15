@@ -2,8 +2,16 @@
 ///
 ///
 
+  OBSOLETE
+  use asl -T to produce  asc file
+  use a make on the asc file to produce cpp exe
 
-  asl2cpp  -- use to parse out asl specific statments and convert to cpp if possible
+
+
+
+
+
+  asl2cpp  -- use to parse out asl specific statements and convert to cpp if possible
 
 ASL   ==>  C++ compile
 

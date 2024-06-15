@@ -1,0 +1,164 @@
+///            
+///  test svar 
+///            
+               
+  #define ASL 0  
+  #define CPP 1  
+  #define USE_GRAPHICS 0
+               
+                            
+//#include "debug.asl"
+#if CPP        
+#include "cpp_head.h"                       
+#endif               
+               
+///////////////  GLOBALS //////////////////
+               
+               
+////////////////////////////////////////////////
+               
+               
+#if CPP        
+               
+int main( int argc, char *argv[] ) { // main start
+///            
+#endif               
+               
+               
+               
+               
+  ignoreErrors();
+
+  Table_init();
+               
+  Str sv = "this is a string";
+               
+  cprintf("  sv %S \n",sv);
+               
+               
+//  Svar Sv = split ("This is an svar array of strings");
+
+  
+ Svar Sv("Sv") ;
+ Sv.split ("This is an svar array of strings and we want to print out a subset");
+
+  Str sr = iread("print Sv:");
+
+
+  cprintf(" %A \n",&Sv);
+
+ sr = iread("OK1?:");     
+
+ sr = iread("print subrange ??:");
+
+  cprintf(" %A \n",&Sv(1,8,2));
+
+  sr = iread("OK2?:");               
+
+Svar G("G");
+
+  G = Sv(0,14,1);
+
+cprintf("G = Sv \n %A\n",&G);
+
+  cprintf("print  Sv \n %A\n",&Sv(0,14,1));
+
+  sr = iread("OK3?:");               
+
+
+
+  G = Sv(0,12,1);
+
+  sr = iread("OK4 G =Sv ?:");               
+
+  cprintf("G = Sv \n %A\n",&G);
+
+
+
+  sr = iread("OK5?:");               
+ // Svar S= functions() ;
+
+ Svar S("S");
+
+  S= functions() ;
+
+  sr = iread("OK6?:");    
+  S.sort();
+
+  sr = iread("OK7?:");    
+//  Svar G = Sv;
+  
+
+  cprintf("printf has nulled  fields?\n");
+
+
+
+  //Svar F;
+  // range for cpp ?
+
+  Svar F = S(100,200,5);
+               
+  cprintf("Svar range op \n");
+  cprintf("F : \n %A\n",&F);
+sr = iread("OK8?:");    
+
+//cprintf("G = ? %A\n",G); // null the fields?
+
+ 
+
+   sr = iread("now range print:");
+cprintf("%S\n",sr);
+
+ cprintf(" S range print\n");
+
+cprintf("%A\n",&S(10,50,3));
+               
+ //<<" $S\n"   
+               
+ sr = iread("printed S(10,50,3) ?");
+
+  sr = iread("OK9?:");    
+
+  cprintf("//////////////////////////\n");
+               
+//  cprintf("%S\n",S);
+               
+               
+               
+  double x= 1.5;
+               
+  double y = atan(x);
+               
+  double p = sin(4* x);
+               
+  cprintf("  x %f  p %f  y %f \n",x,p,y);
+               
+               
+               
+ // S.pinfo()   // pinfo for svar - rather than Siv pinfo
+               
+//  F= search(S," atan (");
+//  cprintf("%A\n",F);
+               
+/*               
+ F= search(S," sin (");
+ <<"%(1, , ,\n)$F\n"
+               
+               
+ F= search(S," search (");
+ <<"%(1, , ,\n)$F\n"
+               
+ F= search(S," functions (");
+ <<"%(1, , ,\n)$F\n"
+*/             
+///////////////////////////////////////
+               
+               
+#if CPP              
+  //////////////////////////////////
+  exit(-1);    
+ }  /// end of C++ main   
+#endif               
+               
+               
+///////////////////////////    END OF SCRIPT ///////////////////////////////
