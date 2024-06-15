@@ -1,0 +1,46 @@
+///            
+///  test auto_dec_via_func
+///            
+               
+  #define ASL 1 
+  #define CPP 0  
+  #define USE_GRAPHICS 0
+               
+                            
+//#include "debug.asl"
+#if CPP        
+#include "cpp_head.h"                       
+#endif               
+               
+///////////////  GLOBALS //////////////////
+               
+               
+////////////////////////////////////////////////
+               
+               
+#if CPP        
+               
+int main( int argc, char *argv[] ) { // main start
+///            
+#endif               
+               
+               
+               
+  ignoreErrors();
+               
+            
+  double x= 1.5;
+               
+  double y = atan(x);
+               
+  double p = sin(4* x);
+  double z = x * y;
+  cprintf("  x %f  y %f  z %f\n",x,y,z) ;
+#if CPP              
+  //////////////////////////////////
+  exit(-1);
+ }  /// end of C++ main   
+#endif               
+               
+///////////////////////////    END OF SCRIPT ///////////////////////////////
+  

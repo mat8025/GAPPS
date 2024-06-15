@@ -94,9 +94,19 @@ int main( int argc, char *argv[] ) { // main start
                
     bldlng = dmstodd("105,16,13.9 W");
                
-<<"BOULDER $bldlat $bldlng \n"               
+<<"BOULDER $bldlat $bldlng \n"
 
+
+//Laramie     	LAR	41,18.75,N	105,40.47,W	7277	03/21	122.95	TA 
+    larlat = dmstodd("41,18,55 N");  // TBF make 41,18.75,N work
                
+    larlng = dmstodd("105,40,30 W")
+               
+<<"LARAMIE $larlat $larlng \n"               
+
+
+
+
                
     toklat = dmstodd("35,39,10 N");
                
@@ -120,9 +130,13 @@ int main( int argc, char *argv[] ) { // main start
                
   
   
-   ldn_tok =  howfar(lndlng,lndlat,toklng,toklat,2);
-               
-<<"LONDON $lndlat $lndlng \n"
+    dist =  howfar(lndlng,lndlat,toklng,toklat,2);
+
+<<"Howfar $dist \n"
+
+    dist =  howfar(bldlng,bldlat,larlng,larlat,2);
+
+<<"Howfar Boulder => Laramie $dist \n"
 
 
 #if CPP              

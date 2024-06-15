@@ -2124,3 +2124,7 @@ parse.h                             2.11  06/14/2024 16:23:04  getCmfnest floor 
 ds_sivflags.cpp                     1.97  06/14/2024 20:34:24  trap null svar fields -nargs set wrong
 spe_proc_return.cpp                 3.54  06/14/2024 22:54:23  remove db for pt_result
 spe_statex.cpp                      1.44  06/14/2024 22:55:36  remove db for current proc
+ds_siv.cpp                          2.77  06/15/2024 19:14:08  relocate copy/promote ops from opera to ds_siv
+opera_cathold.cpp                   1.46  06/15/2024 19:15:58  
+opera_copy.cpp                      1.48  06/15/2024 19:16:44  relocate copy/promote ops from opera to ds_siv.cpp
+opera_promote.cpp                   1.57  06/15/2024 19:17:21  relocate copy/promote ops from opera to ds_siv.cpp 

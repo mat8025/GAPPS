@@ -1,0 +1,11 @@
+# Sat Jun 15 20:01:51 2024 fix_auto_dec.asl 6.30
+5     1     DEFINE                #define ASL 1    
+6     2     DEFINE                #define CPP 0     
+7     3     DEFINE                #define USE_GRAPHICS 0   
+29    4     PFCALL                ignoreErrors();   
+32    5     EXPRESSION_T          x= 1.5;   
+34    6     EXPRESSION_T          y = atan(x);   
+36    7     EXPRESSION_T          p = sin(4* x);   
+38    8     EXPRESSION_T          z = x * y;   
+40    9     PRSTDOUT              <<"%V $x $y $z\n"   
+51    10    FUNCTION              codeend();   
