@@ -1,0 +1,395 @@
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0 180624 17464 ?        Ss   Jun05   0:22 /usr/lib/systemd/systemd rhgb --switched-root --system --deserialize 31
+root           2  0.0  0.0      0     0 ?        S    Jun05   0:01 [kthreadd]
+root           3  0.0  0.0      0     0 ?        I<   Jun05   0:00 [rcu_gp]
+root           4  0.0  0.0      0     0 ?        I<   Jun05   0:00 [rcu_par_gp]
+root           5  0.0  0.0      0     0 ?        I<   Jun05   0:00 [slub_flushwq]
+root           6  0.0  0.0      0     0 ?        I<   Jun05   0:00 [netns]
+root          10  0.0  0.0      0     0 ?        I<   Jun05   0:00 [mm_percpu_wq]
+root          12  0.0  0.0      0     0 ?        I    Jun05   0:00 [rcu_tasks_kthread]
+root          13  0.0  0.0      0     0 ?        I    Jun05   0:00 [rcu_tasks_rude_kthread]
+root          14  0.0  0.0      0     0 ?        I    Jun05   0:00 [rcu_tasks_trace_kthread]
+root          15  0.0  0.0      0     0 ?        S    Jun05   0:05 [ksoftirqd/0]
+root          16  0.0  0.0      0     0 ?        I    Jun05   6:23 [rcu_preempt]
+root          17  0.0  0.0      0     0 ?        S    Jun05   0:01 [migration/0]
+root          19  0.0  0.0      0     0 ?        S    Jun05   0:00 [cpuhp/0]
+root          20  0.0  0.0      0     0 ?        S    Jun05   0:00 [cpuhp/1]
+root          21  0.0  0.0      0     0 ?        S    Jun05   0:01 [migration/1]
+root          22  0.0  0.0      0     0 ?        S    Jun05   0:02 [ksoftirqd/1]
+root          24  0.0  0.0      0     0 ?        I<   Jun05   0:00 [kworker/1:0H-events_highpri]
+root          25  0.0  0.0      0     0 ?        S    Jun05   0:00 [cpuhp/2]
+root          26  0.0  0.0      0     0 ?        S    Jun05   0:01 [migration/2]
+root          27  0.0  0.0      0     0 ?        S    Jun05   0:01 [ksoftirqd/2]
+root          29  0.0  0.0      0     0 ?        I<   Jun05   0:00 [kworker/2:0H-kblockd]
+root          30  0.0  0.0      0     0 ?        S    Jun05   0:00 [cpuhp/3]
+root          31  0.0  0.0      0     0 ?        S    Jun05   0:01 [migration/3]
+root          32  0.0  0.0      0     0 ?        S    Jun05   0:01 [ksoftirqd/3]
+root          34  0.0  0.0      0     0 ?        I<   Jun05   0:00 [kworker/3:0H-events_highpri]
+root          35  0.0  0.0      0     0 ?        S    Jun05   0:00 [cpuhp/4]
+root          36  0.0  0.0      0     0 ?        S    Jun05   0:01 [migration/4]
+root          37  0.0  0.0      0     0 ?        S    Jun05   0:01 [ksoftirqd/4]
+root          39  0.0  0.0      0     0 ?        I<   Jun05   0:00 [kworker/4:0H-kblockd]
+root          40  0.0  0.0      0     0 ?        S    Jun05   0:00 [cpuhp/5]
+root          41  0.0  0.0      0     0 ?        S    Jun05   0:01 [migration/5]
+root          42  0.0  0.0      0     0 ?        S    Jun05   0:00 [ksoftirqd/5]
+root          44  0.0  0.0      0     0 ?        I<   Jun05   0:00 [kworker/5:0H-events_highpri]
+root          45  0.0  0.0      0     0 ?        S    Jun05   0:00 [cpuhp/6]
+root          46  0.0  0.0      0     0 ?        S    Jun05   0:02 [migration/6]
+root          47  0.0  0.0      0     0 ?        S    Jun05   0:44 [ksoftirqd/6]
+root          49  0.0  0.0      0     0 ?        I<   Jun05   0:00 [kworker/6:0H-events_highpri]
+root          50  0.0  0.0      0     0 ?        S    Jun05   0:00 [cpuhp/7]
+root          51  0.0  0.0      0     0 ?        S    Jun05   0:02 [migration/7]
+root          52  0.0  0.0      0     0 ?        S    Jun05   0:00 [ksoftirqd/7]
+root          54  0.0  0.0      0     0 ?        I<   Jun05   0:00 [kworker/7:0H-kblockd]
+root          55  0.0  0.0      0     0 ?        S    Jun05   0:00 [kdevtmpfs]
+root          56  0.0  0.0      0     0 ?        I<   Jun05   0:00 [inet_frag_wq]
+root          57  0.0  0.0      0     0 ?        S    Jun05   0:00 [kauditd]
+root          58  0.0  0.0      0     0 ?        S    Jun05   0:00 [oom_reaper]
+root          60  0.0  0.0      0     0 ?        I<   Jun05   0:00 [writeback]
+root          61  0.0  0.0      0     0 ?        S    Jun05   0:18 [kcompactd0]
+root          62  0.0  0.0      0     0 ?        SN   Jun05   0:00 [ksmd]
+root          63  0.0  0.0      0     0 ?        SN   Jun05   0:00 [khugepaged]
+root          64  0.0  0.0      0     0 ?        I<   Jun05   0:00 [cryptd]
+root          65  0.0  0.0      0     0 ?        I<   Jun05   0:00 [kintegrityd]
+root          66  0.0  0.0      0     0 ?        I<   Jun05   0:00 [kblockd]
+root          67  0.0  0.0      0     0 ?        I<   Jun05   0:00 [blkcg_punt_bio]
+root          68  0.0  0.0      0     0 ?        I<   Jun05   0:00 [tpm_dev_wq]
+root          69  0.0  0.0      0     0 ?        I<   Jun05   0:00 [ata_sff]
+root          70  0.0  0.0      0     0 ?        I<   Jun05   0:00 [md]
+root          71  0.0  0.0      0     0 ?        I<   Jun05   0:00 [edac-poller]
+root          72  0.0  0.0      0     0 ?        S    Jun05   0:00 [watchdogd]
+root          76  0.0  0.0      0     0 ?        S    Jun05   0:00 [kswapd0]
+root          84  0.0  0.0      0     0 ?        I<   Jun05   0:00 [kthrotld]
+root          90  0.0  0.0      0     0 ?        S    Jun05   0:00 [irq/122-aerdrv]
+root          91  0.0  0.0      0     0 ?        S    Jun05   0:00 [irq/122-pcie-dpc]
+root          92  0.0  0.0      0     0 ?        S    Jun05   0:00 [irq/123-aerdrv]
+root          93  0.0  0.0      0     0 ?        S    Jun05   0:00 [irq/123-pcie-dpc]
+root          94  0.0  0.0      0     0 ?        S    Jun05   0:00 [irq/124-aerdrv]
+root          95  0.0  0.0      0     0 ?        S    Jun05   0:00 [irq/124-pcie-dpc]
+root         100  0.0  0.0      0     0 ?        I<   Jun05   0:00 [acpi_thermal_pm]
+root         101  0.0  0.0      0     0 ?        S    Jun05   0:00 [xenbus_probe]
+root         104  0.0  0.0      0     0 ?        S    Jun05   0:00 [scsi_eh_0]
+root         105  0.0  0.0      0     0 ?        I<   Jun05   0:00 [scsi_tmf_0]
+root         106  0.0  0.0      0     0 ?        S    Jun05   0:00 [scsi_eh_1]
+root         107  0.0  0.0      0     0 ?        I<   Jun05   0:00 [scsi_tmf_1]
+root         108  0.0  0.0      0     0 ?        S    Jun05   0:00 [scsi_eh_2]
+root         109  0.0  0.0      0     0 ?        I<   Jun05   0:00 [scsi_tmf_2]
+root         112  0.0  0.0      0     0 ?        I<   Jun05   0:00 [dm_bufio_cache]
+root         113  0.0  0.0      0     0 ?        I<   Jun05   0:00 [mld]
+root         114  0.0  0.0      0     0 ?        I<   Jun05   0:00 [ipv6_addrconf]
+root         119  0.0  0.0      0     0 ?        I<   Jun05   0:00 [kstrp]
+root         133  0.0  0.0      0     0 ?        I<   Jun05   0:00 [zswap-shrink]
+root         247  0.0  0.0      0     0 ?        I<   Jun05   0:24 [kworker/7:1H-events_highpri]
+root         248  0.0  0.0      0     0 ?        I<   Jun05   0:46 [kworker/4:1H-kblockd]
+root         249  0.0  0.0      0     0 ?        I<   Jun05   0:10 [kworker/2:1H-kblockd]
+root         288  0.0  0.0      0     0 ?        I<   Jun05   0:09 [kworker/3:1H-events_highpri]
+root         292  0.0  0.0      0     0 ?        I<   Jun05   0:16 [kworker/1:1H-events_highpri]
+root         293  0.0  0.0      0     0 ?        I<   Jun05   0:15 [kworker/6:1H-kblockd]
+root         303  0.0  0.0      0     0 ?        I<   Jun05   0:00 [ipmi-msghandler]
+root         431  0.0  0.0      0     0 ?        I<   Jun05   0:14 [kworker/5:1H-kblockd]
+root         546  0.0  0.0      0     0 ?        I<   Jun05   0:00 [uas]
+root         548  0.0  0.0      0     0 ?        S    Jun05   0:00 [scsi_eh_3]
+root         549  0.0  0.0      0     0 ?        I<   Jun05   0:00 [scsi_tmf_3]
+root         551  0.0  0.0      0     0 ?        S    Jun05   0:00 [card0-crtc0]
+root         552  0.0  0.0      0     0 ?        S    Jun05   0:00 [card0-crtc1]
+root         553  0.0  0.0      0     0 ?        S    Jun05   0:00 [card0-crtc2]
+root         586  0.0  0.0      0     0 ?        I<   Jun05   0:00 [kdmflush/253:0]
+root         596  0.0  0.0      0     0 ?        I<   Jun05   0:00 [kdmflush/253:1]
+root         613  0.0  0.0      0     0 ?        S    Jun05   0:18 [jbd2/dm-0-8]
+root         614  0.0  0.0      0     0 ?        I<   Jun05   0:00 [ext4-rsv-conver]
+root         726  0.0  0.2 138056 82608 ?        Ss   Jun05   1:48 /usr/lib/systemd/systemd-journald
+root         740  0.0  0.0  36532 13876 ?        Ss   Jun05   0:51 /usr/lib/systemd/systemd-udevd
+root         793  0.0  0.0      0     0 ?        S    Jun05   0:00 [irq/129-mei_me]
+root         845  0.0  0.0      0     0 ?        I<   Jun05   0:00 [kdmflush/253:2]
+root         895  0.0  0.0      0     0 ?        I<   Jun05   0:00 [cfg80211]
+root         913  0.0  0.0      0     0 ?        S    Jun05   7:14 [irq/131-rtw88_pci]
+root        1164  0.0  0.0      0     0 ?        S    Jun05   1:22 [jbd2/dm-2-8]
+root        1165  0.0  0.0      0     0 ?        I<   Jun05   0:00 [ext4-rsv-conver]
+root        1168  0.0  0.0      0     0 ?        S    Jun05   0:00 [jbd2/sda3-8]
+root        1169  0.0  0.0      0     0 ?        I<   Jun05   0:00 [ext4-rsv-conver]
+systemd+    1192  0.2  0.0  17160  6292 ?        Ss   Jun05  41:37 /usr/lib/systemd/systemd-oomd
+systemd+    1193  0.0  0.0  41340 28416 ?        Ss   Jun05   2:36 /usr/lib/systemd/systemd-resolved
+root        1194  0.0  0.0  90580  2244 ?        S<sl Jun05   0:01 /sbin/auditd
+root        1196  0.0  0.0      0     0 ?        I<   Jun05   0:00 [rpciod]
+root        1197  0.0  0.0      0     0 ?        I<   Jun05   0:00 [xprtiod]
+root        1198  0.0  0.0   7580  3140 ?        S<   Jun05   0:00 /usr/sbin/sedispatch
+dbus        1217  0.0  0.0  10960  4780 ?        Ss   Jun05   0:01 /usr/bin/dbus-broker-launch --scope system --audit
+dbus        1218  0.0  0.0  11848  7376 ?        S    Jun05   1:41 dbus-broker --log 4 --controller 9 --machine-id 1897a90c3b2e47848a1e607b2a394496 --max-bytes 536870912 --max-fds 4096 --max-matches 131072 --audit
+avahi       1219  0.0  0.0   8136  3600 ?        Ss   Jun05   0:23 avahi-daemon: running [neptune.local]
+root        1220  0.0  0.0   9792  5048 ?        Ss   Jun05   0:00 /usr/libexec/bluetooth/bluetoothd
+avahi       1221  0.0  0.0   7956   316 ?        S    Jun05   0:00 avahi-daemon: chroot helper
+root        1228  0.0  0.0  79200  2904 ?        Ssl  Jun05   1:54 /usr/sbin/irqbalance --foreground
+root        1230  0.0  0.0 229596  4456 ?        SLsl Jun05   0:00 /usr/libexec/low-memory-monitor
+root        1231  0.0  0.0   2756  1704 ?        Ss   Jun05   0:00 /usr/sbin/mcelog --daemon --foreground
+polkitd     1233  0.0  0.0 3198632 27480 ?       Ssl  Jun05   0:16 /usr/lib/polkit-1/polkitd --no-debug
+root        1234  0.0  0.0 451796  7180 ?        Ssl  Jun05   0:00 /usr/libexec/power-profiles-daemon
+root        1240  0.0  0.0      0     0 ?        S    Jun05   0:00 [psimon]
+root        1247  0.0  0.0 317572  6476 ?        Ssl  Jun05   0:50 /usr/sbin/rngd -f -x pkcs11 -x nist
+root        1250  0.0  0.1 999412 59804 ?        Ssl  Jun05   2:09 /usr/sbin/rsyslogd -n
+rtkit       1251  0.0  0.0 153916  1556 ?        SNsl Jun05   0:13 /usr/libexec/rtkit-daemon
+root        1260  0.0  0.0  11640  5972 ?        Ss   Jun05   0:00 /usr/sbin/smartd -n -q never --capabilities=mail
+root        1262  0.0  0.0 527760  9984 ?        Ssl  Jun05   0:08 /usr/libexec/accounts-daemon
+root        1277  0.0  0.0 448156  4744 ?        Ssl  Jun05   0:00 /usr/libexec/switcheroo-control
+root        1278  0.0  0.0  53504 12848 ?        Ss   Jun05   0:03 /usr/lib/systemd/systemd-logind
+root        1279  0.0  0.0  17320  8500 ?        Ss   Jun05   0:02 /usr/lib/systemd/systemd-machined
+root        1280  0.0  0.0 457460 10776 ?        Ssl  Jun05   2:50 /usr/sbin/thermald --systemd --dbus-enable --adaptive
+root        1281  0.0  0.0 394496 15288 ?        Ssl  Jun05   4:30 /usr/libexec/udisks2/udisksd
+root        1311  0.0  0.0   4712  1640 ?        SNs  Jun05   0:00 /usr/sbin/alsactl -s -n 19 -c -E ALSA_CONFIG_PATH=/etc/alsa/alsactl.conf --initfile=/lib/alsa/init/00main rdaemon
+root        1323  0.0  0.0 454004  9080 ?        Ssl  Jun05   1:34 /usr/libexec/upowerd
+root        1326  0.0  0.0 465088 12480 ?        Ssl  Jun05   0:00 /usr/sbin/abrtd -d -s
+root        1327  0.0  0.0 390308 11928 ?        Ssl  Jun05   0:00 /usr/sbin/ModemManager
+root        1328  0.0  0.1 351880 40648 ?        Ssl  Jun05   0:00 /usr/bin/python3 -s /usr/sbin/firewalld --nofork --nopid
+chrony      1333  0.0  0.0  84568  2384 ?        S    Jun05   0:02 /usr/sbin/chronyd -F 2
+root        1354  0.0  0.0 547392 21748 ?        Ssl  Jun05   5:45 /usr/sbin/NetworkManager --no-daemon
+root        1369  0.0  0.0 246752 11292 ?        Ss   Jun05   0:00 /usr/sbin/cupsd -l
+root        1371  0.0  0.0  18052  2752 ?        Ss   Jun05   0:00 /bin/bash /snap/alsa-utils/68/bin/alsa-stated
+root        1377  0.0  0.0 268964  3472 ?        Ssl  Jun05   0:00 /usr/sbin/gssproxy -D
+root        1426  0.0  0.1 1080820 35864 ?       Ss   Jun05   0:10 /usr/bin/abrt-dump-journal-core -D -T -f -e
+root        1427  0.0  0.1 1087732 41696 ?       Ss   Jun05   0:05 /usr/bin/abrt-dump-journal-oops -fxtD
+root        1430  0.0  0.0 1063032 31944 ?       Ss   Jun05   0:05 /usr/bin/abrt-dump-journal-xorg -fxtD
+colord      1432  0.0  0.0 530340 12112 ?        Ssl  Jun05   0:00 /usr/libexec/colord
+root        1488  0.0  0.0  14248  9252 ?        Ss   Jun05   1:04 /usr/sbin/wpa_supplicant -c /etc/wpa_supplicant/wpa_supplicant.conf -u -s
+root        1499  0.0  0.0   3440  1076 ?        Ss   Jun05   0:00 /usr/sbin/atd -f
+root        1500  0.0  0.0 223912  3672 ?        Ss   Jun05   0:02 /usr/sbin/crond -n
+root        1501  0.0  0.0 452604  8292 ?        Ssl  Jun05   0:00 /usr/sbin/gdm
+root        1511  0.0  0.0 232916  5028 ?        Ssl  Jun05   0:00 /usr/libexec/uresourced
+dnsmasq     1655  0.0  0.0   9984  2128 ?        S    Jun05   0:00 /usr/sbin/dnsmasq --conf-file=/var/lib/libvirt/dnsmasq/default.conf --leasefile-ro --dhcp-script=/usr/libexec/libvirt_leaseshelper
+root        1656  0.0  0.0   9956   360 ?        S    Jun05   0:00 /usr/sbin/dnsmasq --conf-file=/var/lib/libvirt/dnsmasq/default.conf --leasefile-ro --dhcp-script=/usr/libexec/libvirt_leaseshelper
+root        1676  0.0  0.0   4380   696 ?        S    Jun05   0:00 sleep infinity
+root        1752  0.0  4.9 2209276 1608800 ?     Ssl  Jun05   5:10 /usr/libexec/packagekitd
+root        1988  0.0  0.0      0     0 ?        S<   Jun05   0:00 [krfcommd]
+root        2163  0.0  0.0 386492 13816 ?        Sl   Jun05   0:00 gdm-session-worker [pam/gdm-password]
+mark        2194  0.0  0.0  23208 15576 ?        Ss   Jun05   0:05 /usr/lib/systemd/systemd --user
+mark        2202  0.0  0.0 175360  6704 ?        S    Jun05   0:00 (sd-pam)
+mark        2213  0.0  0.0 452400  6108 ?        Sl   Jun05   0:00 /usr/bin/gnome-keyring-daemon --daemonize --login
+mark        2243  0.0  0.0 374160  5868 tty2     Ssl+ Jun05   0:00 /usr/libexec/gdm-wayland-session --register-session /usr/libexec/plasma-dbus-run-session-if-needed /usr/bin/startplasma-wayland
+mark        2258  0.0  0.0  10456  4216 ?        Ss   Jun05   0:00 /usr/bin/dbus-broker-launch --scope user
+mark        2261  0.0  0.0   8568  6128 ?        S    Jun05   0:11 dbus-broker --log 4 --controller 10 --machine-id 1897a90c3b2e47848a1e607b2a394496 --max-bytes 100000000000000 --max-fds 25000000000000 --max-matches 5000000000
+mark        2265  0.0  0.1 406184 39296 tty2     Sl+  Jun05   0:00 /usr/bin/startplasma-wayland
+mark        2297  0.0  0.0 364064 19220 ?        Ssl  Jun05   0:00 /usr/bin/kwin_wayland_wrapper --xwayland
+mark        2299  0.0  0.0 159184  4752 ?        Ssl  Jun05   0:00 /usr/libexec/uresourced --user
+mark        2302  0.0  0.0 268958832 26356 ?     SNsl Jun05   0:33 /usr/libexec/baloo_file
+mark        2303  0.5  1.4 2977544 466264 ?      Sl   Jun05 100:53 /usr/bin/kwin_wayland --wayland-fd 7 --socket wayland-0 --xwayland-fd 8 --xwayland-fd 9 --xwayland-display :0 --xwayland-xauthority /run/user/1000/xauth_xdyLkW --xwayland
+mark        2382  0.1  0.2 908424 86836 ?        Sl   Jun05  34:19 /usr/bin/Xwayland :0 -auth /run/user/1000/xauth_xdyLkW -listen 57 -listen 58 -displayfd 49 -rootless -wm 52
+mark        2417  0.0  0.1 492820 45664 ?        Ssl  Jun05   0:31 /usr/bin/ksmserver
+mark        2419  0.0  0.2 1531820 80632 ?       Ssl  Jun05   5:21 /usr/bin/kded5
+mark        2437  0.0  0.1 831620 37072 ?        Ssl  Jun05   0:00 /usr/libexec/kactivitymanagerd
+mark        2446  0.0  0.0 444048 24248 ?        Ssl  Jun05   0:28 /usr/bin/gmenudbusmenuproxy
+mark        2447  0.0  0.3 1414708 105852 ?      Ssl  Jun05   0:00 /usr/libexec/kf5/polkit-kde-authentication-agent-1
+mark        2448  0.0  0.1 775468 45796 ?        Ssl  Jun05   1:14 /usr/libexec/org_kde_powerdevil
+mark        2449  0.0  0.0 443176 24956 ?        Ssl  Jun05   0:41 /usr/bin/xembedsniproxy
+mark        2451  0.0  0.0   6136   460 ?        Ss   Jun05   0:00 /usr/bin/ssh-agent -a /run/user/1000/ssh-agent.socket
+mark        2571  0.0  0.0 520432 19708 ?        Ssl  Jun05   0:01 /usr/bin/abrt-applet --gapplication-service
+mark        2572  0.0  0.1 999036 64424 ?        Ssl  Jun05   0:02 /usr/libexec/evolution-data-server/evolution-alarm-notify
+mark        2577  0.0  0.1 629400 55156 ?        Ssl  Jun05   0:00 /usr/bin/python3 /usr/bin/seapplet
+mark        2592  0.0  0.0 449656  5376 ?        Ssl  Jun05   0:00 /usr/libexec/geoclue-2.0/demos/agent
+mark        2594  0.0  0.1 496204 46016 ?        Ssl  Jun05   0:45 /usr/bin/kaccess
+mark        2597  0.0  0.1 986308 55640 ?        Ssl  Jun05   2:12 /usr/libexec/DiscoverNotifier
+mark        2603  0.0  0.2 788592 69324 ?        Ssl  Jun05   0:06 /usr/bin/korgac
+mark        2615  0.0  0.0 452664  8768 ?        Ssl  Jun05   0:00 /usr/libexec/imsettings-daemon
+mark        2621  0.0  0.0 452184  7828 ?        Ssl  Jun05   0:00 /usr/libexec/gvfsd
+mark        2640  0.0  0.0 156008  5752 ?        Ssl  Jun05   0:00 /usr/libexec/dconf-service
+mark        2644  0.0  0.0 454700  6208 ?        Sl   Jun05   0:00 /usr/libexec/gvfsd-fuse /run/user/1000/gvfs -f
+mark        2650  0.0  0.0   7464  3684 ?        S    Jun05   0:00 /usr/bin/xsettingsd
+mark        2651  0.0  0.0 308460  6564 ?        Ssl  Jun05   0:00 /usr/libexec/at-spi-bus-launcher
+mark        2657  0.0  0.0  10332  4036 ?        S    Jun05   0:00 /usr/bin/dbus-broker-launch --config-file=/usr/share/defaults/at-spi2/accessibility.conf --scope user
+mark        2658  0.0  0.0   4984  2664 ?        S    Jun05   0:00 dbus-broker --log 4 --controller 9 --machine-id 1897a90c3b2e47848a1e607b2a394496 --max-bytes 100000000000000 --max-fds 6400000 --max-matches 5000000000
+root        2675  0.0  0.0 465632 11820 ?        Ssl  Jun05   0:02 /usr/sbin/abrt-dbus -t133
+mark        2702  0.0  0.0  45840  6948 ?        Ss   Jun05   0:00 /usr/libexec/bluetooth/obexd
+mark        2901  0.1  0.0 527308 13028 ?        Sl   Jun05  25:31 /usr/bin/ibus-daemon -r --xim
+mark        2905  0.0  0.0 449100  6860 ?        Sl   Jun05   0:00 /usr/libexec/ibus-dconf
+mark        2906  0.0  0.1 676884 35888 ?        Sl   Jun05   5:04 /usr/libexec/ibus-ui-gtk3
+mark        2913  0.0  0.1 607864 48276 ?        Sl   Jun05   4:19 /usr/libexec/ibus-extension-gtk3
+mark        2915  0.0  0.1 1088056 63124 ?       Sl   Jun05   8:07 /usr/libexec/ibus-x11 --kill-daemon
+mark        2916  0.0  0.0 449044  6616 ?        Ssl  Jun05   0:00 /usr/libexec/ibus-portal
+mark        2929  0.0  0.0 161532  7064 ?        Ssl  Jun05   0:00 /usr/libexec/at-spi2-registryd --use-gnome-session
+mark        2949  0.0  0.0 891160 17192 ?        Ssl  Jun05   0:42 /usr/libexec/xdg-desktop-portal
+mark        2956  0.0  0.3 1265424 102668 ?      SLsl Jun05   0:00 /usr/bin/kwalletd5
+mark        2962  0.0  0.0 743512  6184 ?        Ssl  Jun05   0:00 /usr/libexec/xdg-document-portal
+mark        2965  0.0  0.0 447924  6036 ?        Ssl  Jun05   0:04 /usr/libexec/xdg-permission-store
+root        2970  0.0  0.0   2652  1020 ?        Ss   Jun05   0:00 fusermount -o rw,nosuid,nodev,fsname=portal,auto_unmount,subtype=portal -- /run/user/1000/doc
+mark        2977  0.0  0.0 754512 29592 ?        Ssl  Jun05   0:26 /usr/libexec/xdg-desktop-portal-gnome
+mark        2988  0.0  0.0 375648  8296 ?        Sl   Jun05   4:09 /usr/libexec/ibus-engine-simple
+mark        2998  0.0  0.1 898900 49080 ?        Ssl  Jun05   0:13 /usr/libexec/xdg-desktop-portal-kde
+mark        3003  0.0  0.0 600888 32640 ?        Ssl  Jun05   0:26 /usr/libexec/xdg-desktop-portal-gtk
+mark        3009  0.9  0.2 410992 71196 ?        S<sl Jun05 177:41 /usr/bin/pipewire
+mark        3010  0.0  0.0 474904 21088 ?        S<sl Jun05   0:07 /usr/bin/wireplumber
+mark        3023  0.0  0.0 452240  7788 ?        Ssl  Jun05   0:00 /usr/bin/gnome-keyring-daemon --start --foreground --components=secrets
+mark        3061  0.0  0.0 1220276 27020 ?       Ssl  Jun05   0:00 /usr/libexec/evolution-source-registry
+mark        3075  0.0  0.1 826980 36352 ?        Ssl  Jun05   0:01 /usr/libexec/goa-daemon
+mark        3078  0.0  0.1 714272 45800 ?        Sl   Jun05   0:13 /usr/bin/akonadi_control
+mark        3089  0.0  0.0 456012  8752 ?        Ssl  Jun05   1:50 /usr/libexec/goa-identity-service
+mark        3090  0.0  0.1 2671016 37536 ?       Sl   Jun05   0:31 /usr/bin/akonadiserver
+mark        3106  0.0  0.0 1594340 32012 ?       Ssl  Jun05   0:01 /usr/libexec/evolution-calendar-factory
+mark        3123  0.0  0.0 964516 28564 ?        Ssl  Jun05   0:01 /usr/libexec/evolution-addressbook-factory
+mark        3139  0.0  0.2 2695992 74548 ?       Sl   Jun05   3:54 /usr/libexec/mysqld --defaults-file=/home/mark/.local/share/akonadi/mysql.conf --datadir=/home/mark/.local/share/akonadi/db_data/ --socket=/run/user/1000/akonadi/mysql.socket --pid-file=/run/user/1000/akonadi/mysql.pid
+mark        3140  1.4  0.1 326156 52240 ?        S<Lsl Jun05 261:27 /usr/bin/pipewire-pulse
+mark        3193  0.0  0.1 645964 47588 ?        Sl   Jun05   0:00 /usr/bin/akonadi_akonotes_resource --identifier akonadi_akonotes_resource_0
+mark        3194  0.0  0.3 1689692 124612 ?      Sl   Jun05   0:02 /usr/bin/akonadi_archivemail_agent --identifier akonadi_archivemail_agent
+mark        3195  0.0  0.1 648356 48028 ?        Sl   Jun05   0:00 /usr/bin/akonadi_birthdays_resource --identifier akonadi_birthdays_resource
+mark        3196  0.0  0.1 646836 47228 ?        Sl   Jun05   0:00 /usr/bin/akonadi_contacts_resource --identifier akonadi_contacts_resource_0
+mark        3201  0.0  0.1 721648 50500 ?        Sl   Jun05   2:09 /usr/bin/akonadi_followupreminder_agent --identifier akonadi_followupreminder_agent
+mark        3208  0.0  0.1 647976 49468 ?        Sl   Jun05   0:00 /usr/bin/akonadi_ical_resource --identifier akonadi_ical_resource_0
+mark        3212  0.0  0.1 652648 50388 ?        SNl  Jun05   0:00 /usr/bin/akonadi_indexing_agent --identifier akonadi_indexing_agent
+mark        3226  0.0  0.1 645956 47720 ?        Sl   Jun05   0:00 /usr/bin/akonadi_maildir_resource --identifier akonadi_maildir_resource_0
+mark        3235  0.0  0.1 720760 49800 ?        Sl   Jun05   2:21 /usr/bin/akonadi_maildispatcher_agent --identifier akonadi_maildispatcher_agent
+mark        3241  0.0  0.3 1689788 124836 ?      Sl   Jun05   0:00 /usr/bin/akonadi_mailfilter_agent --identifier akonadi_mailfilter_agent
+mark        3243  0.0  0.1 726312 51544 ?        Sl   Jun05   2:21 /usr/bin/akonadi_mailmerge_agent --identifier akonadi_mailmerge_agent
+mark        3247  0.0  0.1 646984 47532 ?        Sl   Jun05   0:00 /usr/bin/akonadi_migration_agent --identifier akonadi_migration_agent
+mark        3253  0.0  0.1 659480 53092 ?        Sl   Jun05   0:00 /usr/bin/akonadi_newmailnotifier_agent --identifier akonadi_newmailnotifier_agent
+mark        3254  0.0  0.3 1683324 121304 ?      Sl   Jun05   2:07 /usr/bin/akonadi_sendlater_agent --identifier akonadi_sendlater_agent
+mark        3256  0.0  0.3 1615952 122812 ?      Sl   Jun05   0:00 /usr/bin/akonadi_unifiedmailbox_agent --identifier akonadi_unifiedmailbox_agent
+mark        4136  0.0  0.4 1301068 138288 ?      Sl   Jun05   2:38 /usr/bin/konsole --workdir /home/mark
+mark        4148  0.0  0.0 224476  5896 pts/1    Ss+  Jun05   0:00 /bin/bash
+root        4192  0.0  0.0      0     0 ?        S    Jun05   0:00 [scsi_eh_4]
+root        4193  0.0  0.0      0     0 ?        I<   Jun05   0:00 [scsi_tmf_4]
+root        4195  0.0  0.0      0     0 ?        S    Jun05   0:34 [usb-storage]
+root        8350  0.0  0.1 269336 39924 ?        Ss   Jun05  16:11 /usr/libexec/sssd/sssd_kcm --uid 0 --gid 0 --logger=files
+mark        8453  3.7  2.0 4860204 670316 ?      Sl   Jun05 668:14 /usr/lib64/firefox/firefox
+mark        8564  0.0  0.1 250200 52132 ?        Sl   Jun05   0:00 /usr/lib64/firefox/firefox -contentproc -parentBuildID 20221124214937 -prefsLen 32548 -prefMapSize 232553 -appDir /usr/lib64/firefox/browser {7b731b80-1bf7-49ff-a268-695ea44709f7} 8453 socket
+root        8570  0.0  0.0 2699348 9124 ?        Ssl  Jun05   0:01 /usr/sbin/pcscd --foreground --auto-exit
+mark        8633  0.0  0.4 2781728 157288 ?      Sl   Jun05   3:06 /usr/lib64/firefox/firefox -contentproc -childID 1 -isForBrowser -prefsLen 32586 -prefMapSize 232553 -jsInitLen 246704 -parentBuildID 20221124214937 -appDir /usr/lib64/firefox/browser {4c06aaf6-ccfc-44f8-b73b-a5d5b7bb4dfd} 8453 tab
+mark        8755  0.0  0.3 2704600 125100 ?      Sl   Jun05   0:48 /usr/lib64/firefox/firefox -contentproc -childID 5 -isForBrowser -prefsLen 37832 -prefMapSize 232553 -jsInitLen 246704 -parentBuildID 20221124214937 -appDir /usr/lib64/firefox/browser {bea0582f-0663-4f6b-9337-5db75935bc81} 8453 tab
+mark        9175  0.0  0.0 465528  9664 ?        Sl   Jun05   3:00 /usr/lib64/speech-dispatcher-modules/sd_espeak-ng /etc/speech-dispatcher/modules/espeak-ng.conf
+mark        9218  0.0  0.0 161000  5100 ?        Sl   Jun05   3:00 /usr/lib64/speech-dispatcher-modules/sd_dummy /etc/speech-dispatcher/modules/dummy.conf
+mark        9221  0.0  0.0 372220  4416 ?        Ssl  Jun05   0:00 /usr/bin/speech-dispatcher --spawn --communication-method unix_socket --socket-path /run/user/1000/speech-dispatcher/speechd.sock
+mark        9285  1.4  0.1 429064 61016 ?        Sl   Jun05 260:57 /usr/lib64/firefox/firefox -contentproc -parentBuildID 20221124214937 -prefsLen 37848 -prefMapSize 232553 -appDir /usr/lib64/firefox/browser {ed13db72-7d8c-477f-9369-9ceb0138a76b} 8453 rdd
+mark        9296  0.0  0.1 331972 58484 ?        Sl   Jun05   0:14 /usr/lib64/firefox/firefox -contentproc -parentBuildID 20221124214937 -sandboxingKind 0 -prefsLen 37848 -prefMapSize 232553 -appDir /usr/lib64/firefox/browser {689c0c63-7ed1-4cb9-9378-ce85c3f96394} 8453 utility
+mark       10318  0.0  0.4 1318352 157068 ?      Sl   Jun05   9:43 /usr/bin/konsole --workdir /home/mark
+mark       10330  0.0  0.0 224476  6096 pts/2    Ss+  Jun05   0:00 /bin/bash
+mark       10392  0.2  0.4 1068192 140984 pts/2  Sl   Jun05  44:08 emacs spe/spe_proc_def.cpp
+mark       10734  0.1  0.5 1341628 181032 ?      Sl   Jun05  18:08 /usr/bin/konsole --workdir /home/mark
+mark       10746  0.0  0.0 225692  7292 pts/3    Ss+  Jun05   0:04 /bin/bash
+mark       10810  0.2  1.0 1084956 330604 pts/3  Sl   Jun05  43:19 emacs fix_strrefarg.asl
+mark       21708  0.0  0.0 680952 11688 ?        Ssl  Jun05   0:39 /usr/libexec/gvfs-udisks2-volume-monitor
+mark       21715  0.0  0.0 448364  6484 ?        Ssl  Jun05   0:00 /usr/libexec/gvfs-mtp-volume-monitor
+mark       21719  0.0  0.0 448304  6240 ?        Ssl  Jun05   0:00 /usr/libexec/gvfs-goa-volume-monitor
+mark       21723  0.0  0.0 526472  7660 ?        Ssl  Jun05   0:28 /usr/libexec/gvfs-afc-volume-monitor
+mark       21728  0.0  0.0 450212  7152 ?        Ssl  Jun05   0:00 /usr/libexec/gvfs-gphoto2-volume-monitor
+mark       21732  0.0  0.0 526392  8480 ?        Sl   Jun05   0:00 /usr/libexec/gvfsd-trash --spawner :1.25 /org/gtk/gvfs/exec_spaw/0
+mark       21753  0.0  0.0 526664  8424 ?        Sl   Jun05   0:00 /usr/libexec/gvfsd-network --spawner :1.25 /org/gtk/gvfs/exec_spaw/1
+mark       21780  0.0  0.0 528436  8524 ?        Sl   Jun05   0:00 /usr/libexec/gvfsd-dnssd --spawner :1.25 /org/gtk/gvfs/exec_spaw/3
+mark       22742  0.0  0.4 1295424 132864 ?      Sl   Jun05   2:20 /usr/bin/konsole --workdir /home/mark
+mark       22754  0.0  0.0 224872  6524 pts/4    Ss+  Jun05   0:00 /bin/bash
+mark       22890  0.0  0.4 1309244 147480 ?      Sl   Jun05   5:07 /usr/bin/konsole --workdir /home/mark
+mark       22902  0.0  0.0 224576  6104 pts/5    Ss+  Jun05   0:00 /bin/bash
+mark       30437  0.0  0.0 226444  7988 pts/6    Ss+  Jun05   0:01 /bin/bash
+mark       59164  0.0  0.4 1293448 131028 ?      Sl   Jun06   2:08 /usr/bin/konsole --workdir /home/mark
+mark       59176  0.0  0.0 224344  5816 pts/7    Ss+  Jun06   0:00 /bin/bash
+mark       61497  0.0  0.0 224896  6492 pts/8    Ss+  Jun06   0:00 /bin/bash
+mark       76067  0.0  0.3 823288 106668 pts/5   Sl   Jun06   1:24 emacs ASL_TEST_VER.asl
+root      112826  0.0  0.0 221932   492 ?        Ss   Jun07   0:00 /sbin/mount.ntfs /dev/sda1 /run/media/mark/0B850B340B850B34 -o rw,nodev,nosuid,uid=1000,gid=1000,windows_names,uhelper=udisks2
+mark      204682  0.9  1.4 34644012 477216 ?     Sl   Jun09 125:20 /opt/google/chrome/chrome
+mark      204686  0.0  0.0      0     0 ?        Z    Jun09   0:00 [cat] <defunct>
+mark      204687  0.0  0.0      0     0 ?        Z    Jun09   0:00 [cat] <defunct>
+mark      204701  0.0  0.1 34142384 61328 ?      S    Jun09   0:00 /opt/google/chrome/chrome --type=zygote --no-zygote-sandbox --crashpad-handler-pid=204693 --enable-crash-reporter=664635b6-c39e-4cdd-8eff-20b05c7157a3, --change-stack-guard-on-fork=enable
+mark      204702  0.0  0.1 34142376 61556 ?      S    Jun09   0:00 /opt/google/chrome/chrome --type=zygote --crashpad-handler-pid=204693 --enable-crash-reporter=664635b6-c39e-4cdd-8eff-20b05c7157a3, --change-stack-guard-on-fork=enable
+mark      204704  0.0  0.0 34142404 16896 ?      S    Jun09   0:16 /opt/google/chrome/chrome --type=zygote --crashpad-handler-pid=204693 --enable-crash-reporter=664635b6-c39e-4cdd-8eff-20b05c7157a3, --change-stack-guard-on-fork=enable
+mark      204730  0.3  0.6 34724268 207940 ?     Sl   Jun09  43:14 /opt/google/chrome/chrome --type=gpu-process --crashpad-handler-pid=204693 --enable-crash-reporter=664635b6-c39e-4cdd-8eff-20b05c7157a3, --change-stack-guard-on-fork=enable --gpu-preferences=WAAAAAAAAAAgAAAEAAAAAAAAAAAAAAAAAABgAAEAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAGAAAAAAAAAAYAAAAAAAAAAgAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --shared-files --field-trial-handle=3,i,11603332605473943424,9452486368261072213,262144 --variations-seed-version
+mark      204732  0.4  0.4 34211212 149664 ?     Sl   Jun09  57:01 /opt/google/chrome/chrome --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --crashpad-handler-pid=204693 --enable-crash-reporter=664635b6-c39e-4cdd-8eff-20b05c7157a3, --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,11603332605473943424,9452486368261072213,262144 --variations-seed-version
+mark      204742  0.0  0.1 34210100 59592 ?      Sl   Jun09   3:24 /opt/google/chrome/chrome --type=utility --utility-sub-type=storage.mojom.StorageService --lang=en-US --service-sandbox-type=utility --crashpad-handler-pid=204693 --enable-crash-reporter=664635b6-c39e-4cdd-8eff-20b05c7157a3, --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,11603332605473943424,9452486368261072213,262144 --variations-seed-version
+mark      204786  0.1  0.5 1186880224 172500 ?   Sl   Jun09  12:59 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=204693 --enable-crash-reporter=664635b6-c39e-4cdd-8eff-20b05c7157a3, --extension-process --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1717565805992981 --launch-time-ticks=350536108896 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,11603332605473943424,9452486368261072213,262144 --variations-seed-version
+mark      205048  0.3  1.1 1186906240 374660 ?   Sl   Jun09  38:31 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=204693 --enable-crash-reporter=664635b6-c39e-4cdd-8eff-20b05c7157a3, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=59 --time-ticks-at-unix-epoch=-1717565805992981 --launch-time-ticks=350569026247 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,11603332605473943424,9452486368261072213,262144 --variations-seed-version
+mark      205086  0.0  0.3 1186852696 125448 ?   Sl   Jun09   0:21 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=204693 --enable-crash-reporter=664635b6-c39e-4cdd-8eff-20b05c7157a3, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=69 --time-ticks-at-unix-epoch=-1717565805992981 --launch-time-ticks=350571680342 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,11603332605473943424,9452486368261072213,262144 --variations-seed-version
+mark      205147  0.1  3.0 1186870636 989324 ?   Sl   Jun09  16:17 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=204693 --enable-crash-reporter=664635b6-c39e-4cdd-8eff-20b05c7157a3, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=27 --time-ticks-at-unix-epoch=-1717565805992981 --launch-time-ticks=350575520466 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,11603332605473943424,9452486368261072213,262144 --variations-seed-version
+mark      205212  0.0  0.2 34216796 81056 ?      Sl   Jun09   1:01 /opt/google/chrome/chrome --type=utility --utility-sub-type=audio.mojom.AudioService --lang=en-US --service-sandbox-type=none --crashpad-handler-pid=204693 --enable-crash-reporter=664635b6-c39e-4cdd-8eff-20b05c7157a3, --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,11603332605473943424,9452486368261072213,262144 --variations-seed-version
+mark      205246  0.0  0.7 1191845232 243744 ?   Sl   Jun09   5:18 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=204693 --enable-crash-reporter=664635b6-c39e-4cdd-8eff-20b05c7157a3, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=60 --time-ticks-at-unix-epoch=-1717565805992981 --launch-time-ticks=350584535886 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,11603332605473943424,9452486368261072213,262144 --variations-seed-version
+mark      205489  0.0  0.8 1193480660 267892 ?   Sl   Jun09   6:09 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=204693 --enable-crash-reporter=664635b6-c39e-4cdd-8eff-20b05c7157a3, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=20 --time-ticks-at-unix-epoch=-1717565805992981 --launch-time-ticks=350609018048 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,11603332605473943424,9452486368261072213,262144 --variations-seed-version
+mark      216851  0.0  0.7 1186890580 229272 ?   Sl   Jun09   4:19 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=204693 --enable-crash-reporter=664635b6-c39e-4cdd-8eff-20b05c7157a3, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=21 --time-ticks-at-unix-epoch=-1717565805992981 --launch-time-ticks=369917936760 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,11603332605473943424,9452486368261072213,262144 --variations-seed-version
+mark      259807  0.0  0.4 1297640 136084 ?      Sl   Jun10   2:41 /usr/bin/konsole --workdir /home/mark
+mark      259820  0.0  0.0 224476  6016 pts/9    Ss   Jun10   0:00 /bin/bash
+mark      273211  0.0  0.4 1305188 142244 ?      Sl   Jun10   1:35 /usr/bin/konsole --workdir /home/mark
+mark      273223  0.0  0.0 224476  6104 pts/10   Ss   Jun10   0:00 /bin/bash
+mark      276761  0.7  1.4 4331752 466984 ?      Ssl  Jun10  81:08 /usr/bin/plasmashell --no-respawn
+mark      279211  0.0  0.4 1303472 141240 ?      Sl   Jun10   1:28 /usr/bin/konsole --workdir /home/mark
+mark      279223  0.0  0.0 224476  6084 pts/11   Ss+  Jun10   0:00 /bin/bash
+mark      361008  0.0  0.4 1311768 148300 ?      Sl   Jun11   2:27 /usr/bin/konsole --workdir /home/mark
+mark      361022  0.0  0.0 224476  6012 pts/12   Ss+  Jun11   0:00 /bin/bash
+root      361123  0.0  0.0  14032  7952 ?        Ss   Jun11   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+mark      361558  0.0  0.4 1304688 142436 ?      Sl   Jun11   1:42 /usr/bin/konsole --workdir /home/mark
+mark      361570  0.0  0.0 224856  6508 pts/13   Ss+  Jun11   0:00 /bin/bash
+mark      369857  0.0  0.4 1313196 150072 ?      Sl   Jun11   2:57 /usr/bin/konsole --workdir /home/mark
+mark      369869  0.0  0.0 224992  6560 pts/14   Ss+  Jun11   0:00 /bin/bash
+mark      371040  0.0  0.3 818108 100016 pts/10  Sl   Jun11   0:06 emacs bops.asl
+mark      371171  0.0  0.0 224476  6116 pts/15   Ss+  Jun11   0:00 /bin/bash
+mark      566224  0.0  0.4 2756468 156788 ?      Sl   Jun13   4:48 /usr/lib64/firefox/firefox -contentproc -childID 421 -isForBrowser -prefsLen 39387 -prefMapSize 232553 -jsInitLen 246704 -parentBuildID 20221124214937 -appDir /usr/lib64/firefox/browser {20ac75c7-5bbc-41c8-9975-7708a66afb38} 8453 tab
+mark      580234  0.0  0.3 2673632 104516 ?      Sl   Jun13   0:09 /usr/lib64/firefox/firefox -contentproc -childID 438 -isForBrowser -prefsLen 39250 -prefMapSize 232553 -jsInitLen 246704 -parentBuildID 20221124214937 -appDir /usr/lib64/firefox/browser {c765df3a-c995-4946-84ae-d59c74f90103} 8453 tab
+mark      580244  0.0  0.4 2865656 151796 ?      Sl   Jun13   4:47 /usr/lib64/firefox/firefox -contentproc -childID 439 -isForBrowser -prefsLen 39250 -prefMapSize 232553 -jsInitLen 246704 -parentBuildID 20221124214937 -appDir /usr/lib64/firefox/browser {cb3f57fa-5953-47b5-8a4b-e133486eb89d} 8453 tab
+mark      580378  0.0  0.3 2673644 104896 ?      Sl   Jun13   0:09 /usr/lib64/firefox/firefox -contentproc -childID 440 -isForBrowser -prefsLen 39250 -prefMapSize 232553 -jsInitLen 246704 -parentBuildID 20221124214937 -appDir /usr/lib64/firefox/browser {0a3d6e3c-ed95-4a96-9008-b768a348cc5e} 8453 tab
+mark      678309  0.1  0.3 2681580 107352 ?      Sl   Jun15   5:23 /usr/lib64/firefox/firefox -contentproc -childID 441 -isForBrowser -prefsLen 39177 -prefMapSize 232553 -jsInitLen 246704 -parentBuildID 20221124214937 -appDir /usr/lib64/firefox/browser {d2f3e267-99b5-4538-ada6-4f4d5760c8c5} 8453 tab
+mark      678314  0.0  0.3 2688260 108236 ?      Sl   Jun15   0:15 /usr/lib64/firefox/firefox -contentproc -childID 442 -isForBrowser -prefsLen 39177 -prefMapSize 232553 -jsInitLen 246704 -parentBuildID 20221124214937 -appDir /usr/lib64/firefox/browser {eed49b84-d734-4141-a838-2de5453d2d3e} 8453 tab
+mark      678322  0.0  0.3 2675952 105472 ?      Sl   Jun15   0:09 /usr/lib64/firefox/firefox -contentproc -childID 443 -isForBrowser -prefsLen 39177 -prefMapSize 232553 -jsInitLen 246704 -parentBuildID 20221124214937 -appDir /usr/lib64/firefox/browser {ab653e50-d359-4db2-89e9-0c67572608cc} 8453 tab
+mark      678398  0.1  0.3 2681044 106848 ?      Sl   Jun15   4:35 /usr/lib64/firefox/firefox -contentproc -childID 444 -isForBrowser -prefsLen 39177 -prefMapSize 232553 -jsInitLen 246704 -parentBuildID 20221124214937 -appDir /usr/lib64/firefox/browser {2f3347ee-2229-4b4d-b3f9-63569577d7f2} 8453 tab
+mark      678450  0.1  0.3 2774256 106996 ?      Sl   Jun15   6:55 /usr/lib64/firefox/firefox -contentproc -childID 445 -isForBrowser -prefsLen 39177 -prefMapSize 232553 -jsInitLen 246704 -parentBuildID 20221124214937 -appDir /usr/lib64/firefox/browser {75e6dfc2-e208-4ab3-9523-9c9f2e37901f} 8453 tab
+mark      678453  0.0  0.3 2680308 109964 ?      Sl   Jun15   0:14 /usr/lib64/firefox/firefox -contentproc -childID 446 -isForBrowser -prefsLen 39177 -prefMapSize 232553 -jsInitLen 246704 -parentBuildID 20221124214937 -appDir /usr/lib64/firefox/browser {6d59848c-5d2e-4fb7-bd3c-e8a2e077f792} 8453 tab
+mark      678503  0.1  0.3 2693636 100264 ?      Sl   Jun15   4:20 /usr/lib64/firefox/firefox -contentproc -childID 447 -isForBrowser -prefsLen 39177 -prefMapSize 232553 -jsInitLen 246704 -parentBuildID 20221124214937 -appDir /usr/lib64/firefox/browser {4ecf5951-d212-4c66-ac5a-f723b532e93f} 8453 tab
+mark      678548  0.0  0.5 2769012 164600 ?      Sl   Jun15   2:57 /usr/lib64/firefox/firefox -contentproc -childID 450 -isForBrowser -prefsLen 39177 -prefMapSize 232553 -jsInitLen 246704 -parentBuildID 20221124214937 -appDir /usr/lib64/firefox/browser {1795d7c3-8cd3-404e-812b-2bc79288c992} 8453 tab
+mark      693757  0.0  0.2 807592 90508 pts/10   Sl+  Jun15   0:05 emacs CUP/bbrief.cup
+mark      761924  0.0  0.4 1186853440 130664 ?   Sl   Jun16   0:03 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=204693 --enable-crash-reporter=664635b6-c39e-4cdd-8eff-20b05c7157a3, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=5251 --time-ticks-at-unix-epoch=-1717565805992981 --launch-time-ticks=996921405559 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,11603332605473943424,9452486368261072213,262144 --variations-seed-version
+mark      762093  0.0  0.4 1186855560 143696 ?   Sl   Jun16   0:05 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=204693 --enable-crash-reporter=664635b6-c39e-4cdd-8eff-20b05c7157a3, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=6 --time-ticks-at-unix-epoch=-1717565805992981 --launch-time-ticks=997112257860 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,11603332605473943424,9452486368261072213,262144 --variations-seed-version
+mark      763563  0.0  0.0 224476  5980 pts/17   Ss   Jun16   0:00 /bin/bash
+mark      765446  0.0  0.0 224344  5852 pts/18   Ss+  Jun16   0:00 /bin/bash
+mark      781315  0.0  0.0 224344  5680 pts/19   Ss+  Jun16   0:00 /bin/bash
+root      790712  0.0  0.0 225740   916 ?        Ssl  00:38   0:02 gpg-agent --homedir /var/cache/PackageKit/35/metadata/fedora-cisco-openh264-35-x86_64.tmp/gpgdir --use-standard-socket --daemon
+root      790714  0.0  0.0  78596  1376 ?        SLl  00:38   0:00 scdaemon --multi-server --homedir /var/cache/PackageKit/35/metadata/fedora-cisco-openh264-35-x86_64.tmp/gpgdir
+root      790728  0.0  0.0 225740   900 ?        Ssl  00:38   0:02 gpg-agent --homedir /var/cache/PackageKit/35/metadata/google-chrome-35-x86_64.tmp/gpgdir --use-standard-socket --daemon
+root      790730  0.0  0.0  78596  1384 ?        SLl  00:38   0:00 scdaemon --multi-server --homedir /var/cache/PackageKit/35/metadata/google-chrome-35-x86_64.tmp/gpgdir
+root      790741  0.0  0.0 225740   940 ?        Ssl  00:38   0:02 gpg-agent --homedir /var/cache/PackageKit/35/metadata/rpmfusion-nonfree-updates-35-x86_64.tmp/gpgdir --use-standard-socket --daemon
+root      790743  0.0  0.0  78596  1380 ?        SLl  00:38   0:00 scdaemon --multi-server --homedir /var/cache/PackageKit/35/metadata/rpmfusion-nonfree-updates-35-x86_64.tmp/gpgdir
+root      790756  0.0  0.0 225740   896 ?        Ssl  00:38   0:02 gpg-agent --homedir /var/cache/PackageKit/35/metadata/rpmfusion-free-35-x86_64.tmp/gpgdir --use-standard-socket --daemon
+root      790758  0.0  0.0  78596  1376 ?        SLl  00:38   0:00 scdaemon --multi-server --homedir /var/cache/PackageKit/35/metadata/rpmfusion-free-35-x86_64.tmp/gpgdir
+root      790773  0.0  0.0 225740   840 ?        Ssl  00:38   0:02 gpg-agent --homedir /var/cache/PackageKit/35/metadata/updates-35-x86_64.tmp/gpgdir --use-standard-socket --daemon
+root      790775  0.0  0.0  78596  1380 ?        SLl  00:38   0:00 scdaemon --multi-server --homedir /var/cache/PackageKit/35/metadata/updates-35-x86_64.tmp/gpgdir
+root      790800  0.0  0.0 225740   940 ?        Ssl  00:39   0:02 gpg-agent --homedir /var/cache/PackageKit/35/metadata/fedora-modular-35-x86_64.tmp/gpgdir --use-standard-socket --daemon
+root      790802  0.0  0.0  78596  1380 ?        SLl  00:39   0:00 scdaemon --multi-server --homedir /var/cache/PackageKit/35/metadata/fedora-modular-35-x86_64.tmp/gpgdir
+root      790818  0.0  0.0 225740   840 ?        Ssl  00:39   0:02 gpg-agent --homedir /var/cache/PackageKit/35/metadata/rpmfusion-free-updates-35-x86_64.tmp/gpgdir --use-standard-socket --daemon
+root      790820  0.0  0.0  78596  1376 ?        SLl  00:39   0:00 scdaemon --multi-server --homedir /var/cache/PackageKit/35/metadata/rpmfusion-free-updates-35-x86_64.tmp/gpgdir
+root      790833  0.0  0.0 225740   924 ?        Ssl  00:39   0:02 gpg-agent --homedir /var/cache/PackageKit/35/metadata/rpmfusion-nonfree-35-x86_64.tmp/gpgdir --use-standard-socket --daemon
+root      790835  0.0  0.0  78596  1376 ?        SLl  00:39   0:00 scdaemon --multi-server --homedir /var/cache/PackageKit/35/metadata/rpmfusion-nonfree-35-x86_64.tmp/gpgdir
+root      790849  0.0  0.0 225740   888 ?        Ssl  00:39   0:02 gpg-agent --homedir /var/cache/PackageKit/35/metadata/fedora-35-x86_64.tmp/gpgdir --use-standard-socket --daemon
+root      790851  0.0  0.0  78596  1376 ?        SLl  00:39   0:00 scdaemon --multi-server --homedir /var/cache/PackageKit/35/metadata/fedora-35-x86_64.tmp/gpgdir
+root      790865  0.0  0.0      0     0 ?        I    00:39   0:08 [kworker/5:1-events]
+root      790910  0.0  0.0 225740   924 ?        Ssl  00:41   0:02 gpg-agent --homedir /var/cache/PackageKit/35/metadata/updates-modular-35-x86_64.tmp/gpgdir --use-standard-socket --daemon
+root      790912  0.0  0.0  78596  1380 ?        SLl  00:41   0:00 scdaemon --multi-server --homedir /var/cache/PackageKit/35/metadata/updates-modular-35-x86_64.tmp/gpgdir
+root      800733  0.0  0.0      0     0 ?        I    06:06   0:13 [kworker/1:0-events]
+root      803619  0.0  0.0      0     0 ?        I    07:43   0:04 [kworker/2:2-events]
+mark      823616  0.2  0.5 1188536600 189380 ?   Sl   17:31   0:46 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=204693 --enable-crash-reporter=664635b6-c39e-4cdd-8eff-20b05c7157a3, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=5990 --time-ticks-at-unix-epoch=-1717565805992981 --launch-time-ticks=1098021412463 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,11603332605473943424,9452486368261072213,262144 --variations-seed-version
+mark      825868  0.0  0.0 220988   264 pts/9    S+   18:07   0:00 tail -f fix_auto_dec.idb
+root      826576  0.0  0.0      0     0 ?        I    18:21   0:01 [kworker/7:1-events]
+root      829424  0.0  0.0      0     0 ?        I    18:55   0:00 [kworker/7:0-events]
+mark      829450  0.0  0.3 2674660 105812 ?      Sl   18:55   0:00 /usr/lib64/firefox/firefox -contentproc -childID 505 -isForBrowser -prefsLen 39303 -prefMapSize 232553 -jsInitLen 246704 -parentBuildID 20221124214937 -appDir /usr/lib64/firefox/browser {6bdf79fc-64d4-4eb6-bda2-ea22a66c6ff2} 8453 tab
+mark      829453  0.0  0.2 2660148 85648 ?       Sl   18:55   0:00 /usr/lib64/firefox/firefox -contentproc -childID 506 -isForBrowser -prefsLen 39303 -prefMapSize 232553 -jsInitLen 246704 -parentBuildID 20221124214937 -appDir /usr/lib64/firefox/browser {00c6e4ab-de9c-419f-932b-86f3fef019cf} 8453 tab
+mark      829531  0.0  0.2 2660148 85580 ?       Sl   18:55   0:00 /usr/lib64/firefox/firefox -contentproc -childID 507 -isForBrowser -prefsLen 39303 -prefMapSize 232553 -jsInitLen 246704 -parentBuildID 20221124214937 -appDir /usr/lib64/firefox/browser {20e6835b-9aa5-4b72-ad5f-1802c8fe5e2f} 8453 tab
+root      829871  0.0  0.0      0     0 ?        I    19:02   0:00 [kworker/5:0-events]
+root      832357  0.0  0.0      0     0 ?        I    20:24   0:01 [kworker/1:1-events]
+root      832703  0.0  0.0      0     0 ?        I    20:35   0:03 [kworker/3:0-events]
+root      832990  0.0  0.0      0     0 ?        I    20:44   0:02 [kworker/u16:0-flush-253:0]
+root      834685  0.0  0.0      0     0 ?        I<   21:41   0:01 [kworker/u17:3-i915_flip]
+root      834687  0.0  0.0      0     0 ?        I    21:41   0:01 [kworker/u16:4-flush-253:2]
+root      834706  0.0  0.0      0     0 ?        I    21:41   0:00 [kworker/2:1-events]
+mark      834767  0.0  0.2 2660148 85728 ?       Sl   21:41   0:00 /usr/lib64/firefox/firefox -contentproc -childID 508 -isForBrowser -prefsLen 39205 -prefMapSize 232553 -jsInitLen 246704 -parentBuildID 20221124214937 -appDir /usr/lib64/firefox/browser {11e491a5-f747-4893-a4ca-93f0d9f7e2d9} 8453 tab
+root      835309  0.0  0.0      0     0 ?        I    21:51   0:01 [kworker/u16:3-events_unbound]
+root      835533  0.0  0.0      0     0 ?        I    21:56   0:00 [kworker/3:1-events]
+mark      835535  0.0  0.3 1188500612 125240 ?   Sl   21:56   0:00 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=204693 --enable-crash-reporter=664635b6-c39e-4cdd-8eff-20b05c7157a3, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=6108 --time-ticks-at-unix-epoch=-1717565805992981 --launch-time-ticks=1113921414668 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,11603332605473943424,9452486368261072213,262144 --variations-seed-version
+root      836146  0.0  0.0      0     0 ?        D<   22:06   0:00 [kworker/u17:2+i915_flip]
+root      836449  0.0  0.0      0     0 ?        I    22:12   0:00 [kworker/u16:1-phy0]
+root      836680  0.0  0.0      0     0 ?        I    22:17   0:00 [kworker/0:0-kacpi_notify]
+root      836681  0.0  0.0      0     0 ?        I<   22:17   0:00 [kworker/0:1H-acpi_thermal_pm]
+root      836915  0.0  0.0      0     0 ?        I    22:21   0:00 [kworker/4:2-mm_percpu_wq]
+root      837032  0.0  0.0      0     0 ?        I<   22:23   0:00 [kworker/u17:1-rtw_tx_wq]
+root      837035  0.0  0.0      0     0 ?        I    22:23   0:00 [kworker/0:2-kacpi_notify]
+root      837036  0.0  0.0      0     0 ?        I<   22:23   0:00 [kworker/0:0H-events_highpri]
+root      837038  0.0  0.0      0     0 ?        I    22:23   0:00 [kworker/6:1-events]
+root      837181  0.0  0.0      0     0 ?        I    22:26   0:00 [kworker/4:1-mm_percpu_wq]
+root      837249  0.0  0.0      0     0 ?        I    22:29   0:00 [kworker/6:2-events]
+root      837314  0.0  0.0      0     0 ?        I<   22:31   0:00 [kworker/u17:0]
+root      837320  0.0  0.0      0     0 ?        I    22:31   0:00 [kworker/0:1-events_freezable]
+root      837321  0.0  0.0      0     0 ?        I<   22:31   0:00 [kworker/0:2H-acpi_thermal_pm]
+root      837331  0.0  0.0      0     0 ?        I    22:31   0:00 [kworker/u16:2-i915]
+mark      837345  0.0  0.1 1186803064 64824 ?    Sl   22:31   0:00 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=204693 --enable-crash-reporter=664635b6-c39e-4cdd-8eff-20b05c7157a3, --enable-dinosaur-easter-egg-alt-images --change-stack-guard-on-fork=enable --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=6123 --time-ticks-at-unix-epoch=-1717565805992981 --launch-time-ticks=1116021419451 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,11603332605473943424,9452486368261072213,262144 --variations-seed-version
+root      837395  0.0  0.0      0     0 ?        I    22:32   0:00 [kworker/4:0-kdmflush/253:0]
+root      837488  0.0  0.0      0     0 ?        I    22:34   0:00 [kworker/6:0-mm_percpu_wq]
+root      837568  0.0  0.0  36532  7788 ?        S    22:35   0:00 /usr/lib/systemd/systemd-udevd
+mark      837569  0.0  0.0  23244 16260 pts/17   S+   22:35   0:00 /usr/local/GASP/bin/asl -x /usr/local/GASP/bin/zap asl
+mark      837570  0.0  0.0 222520  3480 pts/17   S+   22:35   0:00 sh -c ps -auwx > ps_list_tmp
+mark      837571  0.0  0.0 225292  2276 pts/17   R+   22:35   0:00 ps -auwx

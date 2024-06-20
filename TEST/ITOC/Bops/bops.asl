@@ -170,7 +170,7 @@ Str ans = " weird "
   
 //  ans = query(" cos/sin/tan   continue? :[y/n]") ;
 
-allowDB("spe,rdp,ic",1)
+  allowDB("spe,rdp,ic,opera,ds,svar",1)
 
 
 
@@ -184,14 +184,35 @@ int ab = 2 + 3
 
    d = 7 + 8
 
-  chkN(d,15) 
+  chkN(d,15)
+  m1 = 7;
+  n1 = 9;
+  q1 = 3;
+  p1 = m1 + n1
+<<"%V $p1  $m1 $n1 \n"
+
+
+  chkN(p1,16) 
+
+
+  p1 = m1 + n1 * q1;
+
+<<"%V $p1  $m1 $n1 $q1 \n"
+ 
+   chkN(p1,34)
+
+
 
    c =    addem (7, 9)
 
 
 <<"%V $c\n"
 
+
+
   chkN(c,16) 
+
+  chkOut(1)
 
 
    d =    addem (17, 19)

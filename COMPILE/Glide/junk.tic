@@ -1,0 +1,25 @@
+# Sun Jun 16 20:56:09 2024 junk.asl 6.31
+4     1     DEFINE                #define GT_DB 1   
+6     2     DEFINE                #define ASL 0   
+8     3     DEFINE                #define TPCLASS_ 1   
+10    4     DECLARE               int Tleg_id = 1;   
+24    5     IF                    if   
+24    6     EXPRESSION_T          (Tleg_id == 1)   
+24    7     CODE_IF_START         {   
+26    8     PRSTDOUT              <<"%V $Tleg_id \n"   
+28    9     CODE_IF_END           }   
+31    10    DEF_CLASS             class Tleg    
+32    11    CODE_BLK_START        {   
+34    12    LABEL_ST              public:   
+37    13    DECLARE               int tpA;   
+38    14    DECLARE               int tpB;   
+40    15    DECLARE               float dist   
+41    16    DECLARE               float pc   
+43    17    PROC_DEF              cmf Tleg()     
+44    18    CODE_PROC_START       {   
+46    19    EXPRESSION_T          dist = 0.0;   
+47    20    EXPRESSION_T          pc = 0.0;   
+50    21    CODE_PROC_END         }   
+52    22    CODE_BLK_END          }   
+52    23    NOT_KNOWN_STATE       ;   
+57    24    FUNCTION              codeend();   

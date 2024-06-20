@@ -2128,3 +2128,8 @@ ds_siv.cpp                          2.77  06/15/2024 19:14:08  relocate copy/pro
 opera_cathold.cpp                   1.46  06/15/2024 19:15:58  
 opera_copy.cpp                      1.48  06/15/2024 19:16:44  relocate copy/promote ops from opera to ds_siv.cpp
 opera_promote.cpp                   1.57  06/15/2024 19:17:21  relocate copy/promote ops from opera to ds_siv.cpp 
+pex_paramexpand.cpp                 2.80  06/18/2024 16:53:27  fix cpp print for _proc internal var
+vmf_table.cpp                       1.5  06/18/2024 23:57:07  findVmfReturnType
+opera_main.cpp                      1.54  06/19/2024 00:00:03  PCW_PP skip processing
+rdp_tokfunc.cpp                     1.79  06/20/2024 16:26:03  PCW_PP skip processing func
+ds_storesiv.cpp                     1.93  06/20/2024 16:27:56  deref scalar fix - reset var

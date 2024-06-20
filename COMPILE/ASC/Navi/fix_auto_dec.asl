@@ -2,45 +2,91 @@
 ///  test auto_dec_via_func
 ///            
                
-  #define ASL 1 
-  #define CPP 0  
-  #define USE_GRAPHICS 0
-               
+  #define _ASL_ 1 
+  #define _CPP_ 0  
+
+#define USE_GRAPHICS 0
+
+#if _ASL_
+    int run_asl = runasl()
+    <<"still in ASL leave section"
+#endif    
+
                             
 //#include "debug.asl"
-#if CPP        
+#if _CPP_
 #include "cpp_head.h"                       
-#endif               
+#endif
+
+
                
 ///////////////  GLOBALS //////////////////
+  AG = 77         
                
+////////////////////////////////////////////////
+
+///////////////  INCLUDES  OF ASL CODE //////////////////
+#include "extra.asl"               
+               
+////////////////////////////////////////////////
+
+///////////////  INCLUDES  OF COMPILED ASL   i.e. ASC FILES //////////////////
+//#include "extra.asc"               
                
 ////////////////////////////////////////////////
                
-               
-#if CPP        
+#if _CPP_        
                
 int main( int argc, char *argv[] ) { // main start
-///            
+
+ cout << "In CPP main " << endl ;
+///
+  // CPP section
+
+#else
+<<" NOT CPP section\n"
+<<" so ASL rules here ?\n"
+#endif               
+
+#if _ASL_
+<<"  $(_ASL_)  in main \n"
+<<" not seen when translating !\n"
 #endif               
                
-               
-               
-  ignoreErrors();
-               
-            
-    x= 1.5;
-               
-    y = atan(x);
-               
-    p = sin(4* x);
+    ignoreErrors()
 
-    z = x * y;
+    fs = "now check vmf slen return"
 
+    len = fs.slen()
+
+
+
+    x= 1.5
+
+     j = sin(4* x)
+ 
+
+    y = atan(x)
+    run_asl = runASL();
+    p = sin(4* x)
+  
+    z = x * y
+ 
    <<"%V $x $y $z\n"
 
-#if CPP              
+    w= addem(x,y)
+
+   <<"$x + $y == $w\n"
+
+   int AFH= -1
+
+   <<"GLOBAL $AG\n"
+
+<<" making for the exit\n"
+#if _CPP_
+  
   //////////////////////////////////
+  cout << " cpp_exit " << endl ; 
   exit(-1);
  }  /// end of C++ main   
 #endif               
