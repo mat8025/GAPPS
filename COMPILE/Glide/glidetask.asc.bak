@@ -47,7 +47,7 @@ using namespace std;
 #undef GT_DB
 #define GT_DB 0 
 
-#define CPP_DB 1
+#define CPP_DB 0
 
 #endif
 
@@ -114,7 +114,7 @@ using namespace std;
  
   Str the_start = "Longmont";
   Str try_place = "xxx";
-  Str ry_start = "xxx";
+  Str try_start = "xxx";
   Str nxttpt = "Laramie";
 
   Str ans;
@@ -125,420 +125,7 @@ using namespace std;
 
 //ans=ask(" ??",0)
 
-///#include "tpclass.asl"
-
-///////////////////////////////////////////////////////////////
-
-
-  class Tleg 
-  {
-
-      public:
-
-  
-      int tpA;
-      int tpB;
-  
-      float dist;
-      float pc;
-      float tfga;
-  //  msl is part of class should not clash with global msl
-      float msl;
-
-      Str Tow;
-      Str Tplace;
-
-//  use cmf for cons,destruct
-//  preprocess to asc will remove cmf
-   Tleg()   
-      {
- //<<"Starting cons \n"
-          dist = 0.0;
-          pc = 0.0;
-          tfga =0;
-          msl = 0.0;
- // <<"Done cons $dist $pc\n"
-      }
- 
-      Str getPlace ()   
-      {
-          return Tplace;
-      }
-
-   ~Tleg()   
-      {
-    //<<"destructing Tleg \n";
-      }
-  }  ;
-
-
-
-  int Ntp_id = 0;  // ids for turnpt objs
-
-
-  class Turnpt 
-  {
-
-      public:
- //static uint Ntp_id;
-      Str Lat;
-      Str Lon;
-      Str Place;
-  
-      Str Idnt;
-      Str rway;
-      Str tptype;
-  
-      Str Cltpt;
-      Str Radio;
-      float Alt;
-      float fga;  // final glide msl to next TP?
-      float Ladeg;
-      float Longdeg;
-      int is_airport;
-      int is_strip;
-      int is_mtn;
-      int is_mtn_pass;
-  
-      int id;
-  //int match[2];
-      int match;
-      Str smat;  ;
-  
-//  int amat;
-
-//  method list
-
-// for cpp  either use reference or ptr
-// else copy constructor - memory corruption  - it makes a copy of the svar then
-// there will double resf to mem pointers
-//  either Svar* ot Svar& MUST be used
-
-
-      void TPset (Svar& wval)
-      {
-
-//<<"TPset $_proc $wval \n"
-
-//   wval.pinfo()
-
-
-//<<": $wval[0] 1: $wval[1] 2: $wval[2] 3: $wval[3] 4: $wval[4] \n"
- //ans=ask(" wval $wval  ",1)
-
-          is_airport =0;
-          is_mtn =0;
-          is_mtn_pass =0;
-     
-          Place = wval[0];  // wayp 
-
-          Idnt =  wval[1];
-
-    //cout  << "Idnt  "  << Idnt  << endl ;
-
-
-          Lat = wval[2];  // wayp 
-
-          Lon = wval[3];
-     
-          Alt = atof(wval[4]);
-     
-          rway = wval[5];
-     
-          Radio = wval[6];
-
-          tptype = wval[7];
-
-          if  (tptype == "TPA")  {
-              is_airport = 1;
-          }
-          if  (tptype == "TPM")  {
-              is_mtn = 1;
-          }
-          if  (tptype == "TPP")  {
-              is_mtn_pass = 1;
-          }
-     
-     //smat = spat (&tptype, "A",-1,-1,match);
-
-          Ladeg =  coorToDeg(Lat);  // wayp
-     
-          Longdeg = coorToDeg(Lon);
-
-      }
-//=========================//
-
-
-
-//void TPCUPset (Svar& wval)
-      void TPCUPset (Svar& wval)
-      {
-
-//<<"IN $_proc \n"
-          Str val;
-
-          Str val2;
-//    wval.pinfo();
- //<<"%V $Alt\n";
-          int lastc = -1;
-//<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
-
-//<<"%V $wval\n"
-          val = wval[0];
-     
-//<<"%V $val\n"
-
-
-//cout << "val " << val << endl;
-//pa(wval); // crash ??
-
-
-//      val.aslpinfo();
-
-          val.dewhite();  // TBF ? corrupting vars ?
-  //    <<"%V $val\n"
-//<<"%V $AFH\n"
-//DBaction((DBSTEP_),ON_)
-//allowDB("ic_,oo_,spe_,rdp_,pexpnd,tok,array")
-
-          val.scut(1);
-
-  //    <<"%V $val\n"
-
-
-     //val.scut(-1);
-          val.scut(lastc);
-
-  //    <<"%V $val\n"
-
-          Place = val;  // wayp 
-
-//<<"%V $place \n";
-
-          val =  wval[1];
-
-          val.scut(lastc);
-     
-          val.scut(1);
-
-          Idnt = val;
-//<<"%V $AFH\n"
-
-//  <<"%V$Idnt\n"
-//Idnt->info(1)
-
-          Lat = wval[3];  // wayp
-     
-
-
-          ccoor(Lat);
-//<<"%V $Lat \n"     
- 
-          Lon = wval[4];
-
-          ccoor(Lon);
-
-// <<"%V$Lon  \n"
-  
-          val = wval[5];
-
-//<<" %V $val \n";
-
-    // pa(val);
-    // ft or m
-
-//ans=query("?","sele",__LINE__);
-
-          val2 = sele(val,-1,-2);
-
-//<<"%V $val2\n"
-          if  (val2 == "ft")  {
-
-              val.scut(-2);
-//<<"ft  $val\n";
-              Alt = atof(val);
-          }
-          else  {
-              val.scut(-1);
-//<<"m $val\n";       
-              Alt = atof(val);
-              Alt *= 3.280839 ;
-
-          }
- //<<"%V$val $val2 $Alt  \n"
-
-
-//cout  <<"Alt "<< Alt  <<endl ; 
-//    pa(val,Alt);
-
-          is_airport =0;
-          is_mtn =0;
-          is_mtn_pass =0;
-          is_strip = 0;
-          rway = wval[6];
-
-//cout << "rway " << rway  << endl;
-
-          if  (rway == "5")  {
-              is_airport =1;
-          }
-
-          if  (rway == "3")  {
-              is_strip =1;
-          }
-
-          if  (rway == "7")  {
-              is_mtn =1;
-          }
-
-          if  (rway == "8")  {
-              is_mtn_pass =1;
-          }
-
-          rway = wval[7];
-
-          if  (rway != "")  {
-       //  is_airport =1;
-          }
-
-
-
-          val = wval[9];
-
-
-     //Radio = atof(wval[9]);
-
-          Radio = wval[9];
-
-          if  (Radio == "")  {
-              Radio = "    -    ";
-          }
-
-
-//<<"Radio <|$Radio|> wval[9] $val  \n"
-//ans=query("??");
-//ans=ask("%V $Radio ",1)
-
-
-//     
- //cout  <<"Radio "<< Radio  <<endl ; 
-
-          tptype = wval[10];
-     
-// spat (tptype,"A",-1,-1,&is_airport);
-//<<"%V $Lat \n";
-//allowDB("ic,spe_,rdp")
-
-          Ladeg =  coorToDeg(Lat,2);
- 
- 
-//<<"%V $Lat $Ladeg \n";
-//ans=ask("¿Es eso correcto?  [y,n,q]",1);
-
- //cout  <<"Lat " << Lat <<" Ladeg "<< Ladeg  <<endl ; 
-
-          Longdeg = coorToDeg(Lon,2);
-
-//cout  <<"Lon " << Lon <<" Longdeg "<< Longdeg  <<endl ; 
-
-//<<"%V $Lon $Longdeg \n";
-//<<"%V $Place $is_airport \n"
-
-
-      }
-
-
-//=========================//
-
-      void SetPlace (Str val)   
-      {
-          Place = val;
-      }
-//=========================//
-
-      Str GetPlace ()   
-      {
-          return Place;
-      }
-//=========================//
-      void Print ()    
-      {
-     //<<"$Place $Idnt $Lat $Lon $Alt $rway $Radio $Ladeg $Longdeg\n"
-
-  cprintf(" %S  %S %S %S\n",Place,Lat,Lon,Radio) ;
-
-      }
-//=========================//
-
-
-      int GetTA()   
-      {
-          int amat[4];  // TBF 6/21/24 should not get translated to Vec<int>
-     // spat (tptype.cptr(),"A",-1,-1,amat);
-          spat (tptype,"A",-1,-1,amat);
-    //  pa("amat ",amat);
-          return amat[0];
-      }
-//=========================//
-
-   Turnpt()
-      {
-          Ntp_id++;
-          id = Ntp_id;
-          Place = " ";
-          Ladeg = 0.0;
-          Longdeg = 0.0;
-          Alt = -1.5;
-    //<<"CONS $id $Ntp_id\n"
-      }
-//=========================//
-
-  }  ;
-//======================================//
-
-//float ComputeTC(Turnpt& wtp,int j, int k)
-// need to get Turnpt wtp[]  to work?
-//  TBF float ComputeTC(Turnpt wtp[],int j, int k)  - bad translate to
-//  Vec<not_known_dtype> ComputeTC ()  ;  - which is wrong
-
-
-  float ComputeTC(Turnpt wtp[],int j, int k)
-  {
-
-  cprintf("%s   j %d  k %d\n",__FUNCTION__,j,k);
-  // TBF 6/20/24  wtp[] syntax does not get j or k
-  //wtp.pinfo();
-
-      float L1,L2,lo1,lo2,km,tc;  // TMP fix
-
-      km = 0.0;  // TBF 6/21/24 should sac to double does not -- in PROC ??
-
-      tc = 0.0;
-
-
-      L1 = wtp[j].Ladeg;  // TBF 6/21/24  does not look up Turnpt mbr Ladeg
-
-      L2 = wtp[k].Ladeg;
-//<<"%V $L1 $L2 \n";
-
-      lo1 = wtp[j].Longdeg;
-
-      lo2 = wtp[k].Longdeg;
-//<<"%V $lo1 $lo2 \n";
-//  tc = TrueCourse(L1,lo1,L2,lo2);
-
-      tc = TrueCourse(lo1,L1,lo2,L2);  // TBF 6/21/24  does not look up TrueCourse
-  //printargs(j, k ,L1 ,lo2 ,"tc=", tc);
-
-  cprintf(" Leg %d %f \n",k,tc)  ;
-
-      return tc;
-
-  }
-
-//===========================//
-/////////////////////////////////////////////////////////
-
+  #include "tpclass.asc"
 
 
 
@@ -570,7 +157,6 @@ using namespace std;
 
 #if __CPP__
 int main( int argc, char *argv[] ) { // main start
-   RunCPP = 1;
    for (int i= 0; i <argc; i++) {
      sargs.cpy(argv[i],i);
    }
@@ -589,7 +175,7 @@ int main( int argc, char *argv[] ) { // main start
 
   ignoreErrors();  // put in glide.h ??
 
-                 allowErrors(-1) ;
+     allowErrors(-1) ;
 
 //DBaction((DBSTEP_),ON_)
 
@@ -598,12 +184,13 @@ int main( int argc, char *argv[] ) { // main start
   int  Main_init = 1;
   float Leg[20];
 
+ 
   CSK = 70.0;
 
 
   Cruise_speed = (CSK * nm_to_km);
   //printf(" Cruise speed %f \n",Cruise_speed);
-  cprintf("   Cruise_speed %f  \n",Cruise_speed);
+  //<<" %V $Cruise_speed  \n";
 
   GT_Wtp[1].Alt = 100.0;
 
@@ -635,23 +222,23 @@ int main( int argc, char *argv[] ) { // main start
 
   int use_cup = 1;
   #if __ASL__
-                 allowDB("ic_,oo_,spe_,rdp_,pexpnd,array",1) ;
+     allowDB("ic_,oo_,spe_,rdp_,pexpnd,array",1) ;
 #endif
 
   if  (use_cup)  {
 
-                 AFH=ofr("CUP/bbrief.cup")  ; ;
+     AFH=ofr("CUP/bbrief.cup")  ; ;
   // open turnpoint file;
 
-                 printf( "opened CUP/bbrief.cup AFH %d \n",AFH); ; ;
+     printf( "opened CUP/bbrief.cup AFH %d \n",AFH); ; ;
 
   }
 
   else  {
 
-                   AFH=ofr("DAT/turnptsA.dat")  ; ;
+       AFH=ofr("DAT/turnptsA.dat")  ; ;
   // open turnpoint file;
-                   printf("opened  DAT/turnptsA.dat %d \n" ,AFH ); ; ;
+       printf("opened  DAT/turnptsA.dat %d \n" ,AFH ); ; ;
   }
 
   if  (AFH == -1)  {
@@ -737,18 +324,18 @@ int main( int argc, char *argv[] ) { // main start
 
       sz = targ.slen();
 
-  cprintf(" <| targ %S|>  sz %d\n",targ,sz);
+//<<"%V <|$targ|> $sz\n";
 
       ac++;
 
       if  (sz > 0)  {
 
-  cprintf(" <| targ %S|>  sz %d   ac %d \n",targ,sz,ac);
-                     targ.pinfo() ;
+//<<"%V <|$targ|> $sz  $ac \n";
+//  targ.pinfo()
   
           if  (targ == "LD")  {
 
-              targ = sargs.cptr(ac);  // for CPP copy argv to svar sa
+              targ = sargs[ac];  // for CPP copy argv to svar sa
 
 
               LoD= atof(targ);
@@ -770,7 +357,7 @@ int main( int argc, char *argv[] ) { // main start
       //targ.pinfo();  // print variable status
       // isthere = targ.checkVarInfo("SI_PROC_REF_ARG")  ;  // check variable status for this string
 
-              targ = sargs.cptr(ac);
+              targ = sargs[ac];
      
 
               if  (targ == "KM")  {
@@ -792,8 +379,8 @@ int main( int argc, char *argv[] ) { // main start
 
           if  (targ == "CS")  {
 
-      // targ = sargs[ac]  ; // should work index Svar array? TBC 6/17/24 
-              targ = sargs.cptr(ac);
+              targ = sargs[ac]  ;  // should work index Svar array? TBC 6/17/24 
+      //targ = sargs.cptr(ac);
       
 
               CSK = atof(targ);
@@ -813,9 +400,8 @@ int main( int argc, char *argv[] ) { // main start
 
               via_file = 1;
 
-//  Str byfile = sargs.cptr(ac);  
-  byfile = sargs.cptr(ac);
-  // TBF 6/19/24 sjould sac to Str byfile
+  Str byfile = sargs[ac];
+//     byfile = sargs.cptr(ac); // TBF 6/19/24 sjould sac to Str byfile
 
               ac++;
 	//<<" opening taskfile $byfile \n"
@@ -899,7 +485,7 @@ int main( int argc, char *argv[] ) { // main start
 
           }
 
-  cprintf("  ac %d   targ %S  sz %d \n",ac,targ,sz) ;
+  // <<"%V $ac  $targ $sz \n"
 
       }  // arg was valid
 
@@ -986,7 +572,7 @@ int main( int argc, char *argv[] ) { // main start
           if  (i == -1)  {
               printf("the_start  %s not found \n", the_start);
 
-  Str try_start = nameMangle(the_start);
+              try_start = nameMangle(the_start);
   
               i=searchFile(AFH,try_start,0,1,0,0);
               if  (i != -1)  {
@@ -1062,7 +648,7 @@ int main( int argc, char *argv[] ) { // main start
   
           nwr = Wval.readWords(AFH,0,',');
 
-  cprintf(" CUP read of  %d words \n",nwr) ;
+   //<<" CUP read of  $nwr words \n"
 
       }
       else  {
@@ -1175,7 +761,7 @@ int main( int argc, char *argv[] ) { // main start
 
           AFH = K_AFH;
 
-          try_start = "";
+
 
 //<<"$AFH  $K_AFH  <|$nxttpt|> \n"
 
@@ -1443,7 +1029,7 @@ int main( int argc, char *argv[] ) { // main start
 
 //  Dur[nl+1] = Leg[nl]/ Cruise_speed;
 
-                                                                       Dur[nl] = tkm / Cruise_speed; ; ;
+                                                           Dur[nl] = tkm / Cruise_speed; ; ;
  //<<"%V $Leg[nl] $tkm $Dur[nl+1] \n"
 
       totalDur += Dur[nl];
@@ -1457,7 +1043,7 @@ int main( int argc, char *argv[] ) { // main start
   }
 
 //  int wk = 0;
-  int                                                                        wk = 0     ;// TBF 6/21/24 sac to int wk = 0;
+  int                                                            wk = 0     ;// TBF 6/21/24 sac to int wk = 0;
   //int tplen = tpb.slen();  
   int tplen  =tpb.slen();
    
@@ -1513,7 +1099,7 @@ int main( int argc, char *argv[] ) { // main start
 
       if  (totalD > 0)  {
 
-                                                                             pc_tot = the_leg/totalD * 100.0; ; ;
+                                                                 pc_tot = the_leg/totalD * 100.0; ; ;
 
           GT_Wleg[nl].pc = pc_tot;
 
@@ -1527,7 +1113,7 @@ int main( int argc, char *argv[] ) { // main start
 
   msl = alt;
 
-                                                                               ght = (Leg[nl] * km_to_feet) / LoD; ; ;
+                                                                   ght = (Leg[nl] * km_to_feet) / LoD; ; ;
 
   if  (nl == n_legs)  {
 
@@ -1591,7 +1177,7 @@ int main( int argc, char *argv[] ) { // main start
 
   tot_time += Dur[li];
 
-                                                                                       pc_tot = GT_Wleg[li].dist/totalD * 100.0; ; ;
+                                                                           pc_tot = GT_Wleg[li].dist/totalD * 100.0; ; ;
 
   GT_Wleg[li].pc = pc_tot;
      
@@ -1644,7 +1230,7 @@ cprintf("%d  %-10S %-5S %-8S  %6.0fft  ",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Ra
   printf("Total distance\t %8.2f km\t%8.2f sm\t%6.2f  nm  LOD %6.1f  \n", totalD,(totalD*km_to_sm),(totalD*km_to_nm),LoD);
 //ans=query("totalD ?");
 #endif
-
+      printf(" Cruise speed %f kmh\n",Cruise_speed);
       printf("totalD  %6.2f km to fly - %6.2f hrs - bon voyage!\n ", totalD, totalDur);
 
   }

@@ -34,14 +34,17 @@
 //#include "extra.asc"               
                
 ////////////////////////////////////////////////
-               
+Svar sargs;               
 #if _CPP_        
                
 int main( int argc, char *argv[] ) { // main start
 
  cout << "In CPP main " << endl ;
-///
-  // CPP section
+///// CPP section
+   for (int i= 0; i <argc; i++) {
+     sargs.cpy(argv[i],i);
+   }
+#endif
 
 #else
 <<" NOT CPP section\n"
@@ -62,7 +65,7 @@ int main( int argc, char *argv[] ) { // main start
 nwr =0;  // TBF 6/21/24  sac to int nwr = 0;
   w = "xyz" ; // TBF 6/21/24  sac to Str = 0;
 
-  
+     byfile = sargs[1]
 
     x= 1.5
 

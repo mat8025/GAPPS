@@ -18,8 +18,7 @@
 
 //<<" TPCLASS\n"
 
-   Tleg_id= 0;
-
+int Tleg_id = 0;
 #if ASL
 
 //<<"GT_DB $(GT_DB) \n"
@@ -69,7 +68,7 @@ class Tleg
 
  cmf ~Tleg()   
  {
-    //<<"destructing Tleg \n";
+    <<"destructing Tleg \n";
  }
 };   
 
@@ -112,10 +111,7 @@ class Turnpt
 //  method list
 
 // for cpp  either use reference or ptr
-// else copy constructor - memory corruption  - it makes a copy of the svar then
-// there will double resf to mem pointers
-//  either Svar* ot Svar& MUST be used
-
+// else copy constructor - memory corruption??
 
   void TPset (Svar& wval)
    {
@@ -173,7 +169,7 @@ class Turnpt
 
 
 //void TPCUPset (Svar& wval)
-void TPCUPset (Svar& wval)
+void TPCUPset (Svar wval)
  {
 
 //<<"IN $_proc \n"
@@ -375,7 +371,7 @@ void SetPlace (Str val)
 
  int GetTA()   
    {
-      int amat[4]; // TBF 6/21/24 should not get translated to Vec<int>
+      int amat[2];
      // spat (tptype.cptr(),"A",-1,-1,amat);
       spat (tptype,"A",-1,-1,amat);
     //  pa("amat ",amat);
@@ -387,7 +383,7 @@ cmf Turnpt()
  {
             Ntp_id++;
 	    id = Ntp_id;
-      Place = " ";
+      Place=" ";
       Ladeg = 0.0;
       Longdeg = 0.0;
       Alt = -1.5;
@@ -397,46 +393,5 @@ cmf Turnpt()
 
 };
 //======================================//
-
-//float ComputeTC(Turnpt& wtp,int j, int k)
-// need to get Turnpt wtp[]  to work?
-//  TBF float ComputeTC(Turnpt wtp[],int j, int k)  - bad translate to
-//  Vec<not_known_dtype> ComputeTC ()  ;  - which is wrong
-
-
-   float ComputeTC(Turnpt wtp[],int j, int k)
-   {
-
-        //<<"$_proc %V $j $k\n";   // TBF 6/20/24  wtp[] syntax does not get j or k
-  //wtp.pinfo();
-
- float L1,L2,lo1,lo2,km,tc;   // TMP fix
-
-        km = 0.0;  // TBF 6/21/24 should sac to double does not -- in PROC ??
-
-        tc = 0.0;
-
-
-        L1 = wtp[j].Ladeg;  // TBF 6/21/24  does not look up Turnpt mbr Ladeg
-
-        L2 = wtp[k].Ladeg;
-//<<"%V $L1 $L2 \n";
-
-        lo1 = wtp[j].Longdeg;
-
-        lo2 = wtp[k].Longdeg;
-//<<"%V $lo1 $lo2 \n";
-//  tc = TrueCourse(L1,lo1,L2,lo2);
-
-        tc = TrueCourse(lo1,L1,lo2,L2);  // TBF 6/21/24  does not look up TrueCourse
-  //printargs(j, k ,L1 ,lo2 ,"tc=", tc);
-
-       //<<" Leg $k $tc \n" 
-
-        return tc;
-
-   }
-
-//===========================//
 
 #endif

@@ -1,4 +1,4 @@
-# Fri Jun 21 21:55:25 2024 fix_auto_dec 6.34
+# Sat Jun 22 18:27:13 2024 fix_auto_dec 6.35
 5     1     DEFINE                #define _ASL_ 1    
 6     2     DEFINE                #define _CPP_ 0     
 8     3     DEFINE                #define USE_GRAPHICS 0   
@@ -11,13 +11,25 @@
 9     33    PROC_RETURN           return c;   
 11    34    CODE_PROC_END         }   
 12    35    FUNCTION              codeend();   
-47    6     PRSTDOUT              <<" NOT CPP section\n"   
-48    7     PRSTDOUT              <<" so ASL rules here ?\n"   
-56    8     PFCALL                ignoreErrors()   
-58    9     EXPRESSION_T          fs = "now check vmf slen return"   
-60    10    EXPRESSION_T          len = fs.slen()   
-62    11    EXPRESSION_T          nwr =0;   
-62    12    COMMENT               // TBF 6/21/24  sac to int nwr = 0;   
-63    13    EXPRESSION_T          w = "xyz" ;   
-63    14    COMMENT               // TBF 6/21/24  sac to Str = 0;   
-67    15    EXPRESSION_T          x= 1.5   
+37    6     DECLARE               Svar sargs;   
+59    7     PFCALL                ignoreErrors()   
+61    8     EXPRESSION_T          fs = "now check vmf slen return"   
+63    9     EXPRESSION_T          len = fs.slen()   
+65    10    EXPRESSION_T          nwr =0;   
+65    11    COMMENT               // TBF 6/21/24  sac to int nwr = 0;   
+66    12    EXPRESSION_T          w = "xyz" ;   
+66    13    COMMENT               // TBF 6/21/24  sac to Str = 0;   
+68    14    EXPRESSION_T          byfile = sargs[1]   
+70    15    EXPRESSION_T          x= 1.5   
+72    16    EXPRESSION_T          j = sin(4* x)   
+75    17    EXPRESSION_T          y = atan(x)   
+76    18    EXPRESSION_T          run_asl = runASL();   
+77    19    EXPRESSION_T          p = sin(4* x)   
+79    20    EXPRESSION_T          z = x * y   
+81    21    PRSTDOUT              <<"%V $x $y $z\n"   
+83    22    EXPRESSION_T          w= addem(x,y)   
+85    23    PRSTDOUT              <<"$x + $y == $w\n"   
+87    24    DECLARE               int AFH= -1   
+89    25    PRSTDOUT              <<"GLOBAL $AG\n"   
+91    26    PRSTDOUT              <<" making for the exit\n"   
+103   27    FUNCTION              codeend();   

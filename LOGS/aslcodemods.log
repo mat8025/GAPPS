@@ -2150,3 +2150,4 @@ prep_firstpass.cpp                  2.39  06/21/2024 20:28:24  CLASS_DEF
 rdp_tokfunc.cpp                     1.80  06/21/2024 20:30:26  PP_guard
 gscom_debug.cpp                     1.75  06/22/2024 03:06:24  -T allowALL DBF
 gscom_debug.cpp                     1.76  06/22/2024 05:57:51  -T fix error color 
+prep_preprocess.cpp                 1.18  06/22/2024 18:14:58  re-examine st EXPRESSION for CLASS_ASSIGN
