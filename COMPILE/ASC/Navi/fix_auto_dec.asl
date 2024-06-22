@@ -59,7 +59,10 @@ int main( int argc, char *argv[] ) { // main start
 
     len = fs.slen()
 
+nwr =0;  // TBF 6/21/24  sac to int nwr = 0;
+  w = "xyz" ; // TBF 6/21/24  sac to Str = 0;
 
+  
 
     x= 1.5
 

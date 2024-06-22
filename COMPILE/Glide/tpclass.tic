@@ -1,7 +1,7 @@
-# Wed Jun 19 16:02:55 2024 tpclass 6.32
+# Fri Jun 21 20:17:38 2024 tpclass.asl 6.34
 17    1     DEFINE                #define TPCLASS_ 1   
 21    2     DECLARE               int Tleg_id = 0;   
-34    3     DEF_CLASS             class Tleg    
+34    3     CLASS_DEF             class Tleg    
 35    4     CODE_BLK_START        {   
 37    5     LABEL_ST              public:   
 40    6     DECLARE               int tpA;   
@@ -25,173 +25,186 @@
 67    24    CODE_PROC_END         }   
 69    25    PROC_DEF              cmf ~Tleg()      
 70    26    CODE_PROC_START       {   
-71    27    PRSTDOUT              <<"destructing Tleg \n";   
-72    28    CODE_PROC_END         }   
-73    29    CODE_BLK_END          }   
-73    30    NOT_KNOWN_STATE       ;   
-77    31    DECLARE               int Ntp_id = 0;   
-77    32    COMMENT               // ids for turnpt objs   
-80    33    DEF_CLASS             class Turnpt    
-81    34    CODE_BLK_START        {   
-83    35    LABEL_ST              public:   
-85    36    DECLARE               Str Lat;   
-86    37    DECLARE               Str Lon;   
-87    38    DECLARE               Str Place;   
-89    39    DECLARE               Str Idnt;   
-90    40    DECLARE               Str rway;   
-91    41    DECLARE               Str tptype;   
-93    42    DECLARE               Str Cltpt;   
-94    43    DECLARE               Str Radio;   
-95    44    DECLARE               float Alt;   
-96    45    DECLARE               float fga;   
-96    46    COMMENT               // final glide msl to next TP?   
-97    47    DECLARE               float Ladeg;   
-98    48    DECLARE               float Longdeg;   
-99    49    DECLARE               int is_airport;   
-100   50    DECLARE               int is_strip;   
-101   51    DECLARE               int is_mtn;   
-102   52    DECLARE               int is_mtn_pass;   
-104   53    DECLARE               int id;   
-106   54    DECLARE               int match;   
-107   55    DECLARE               Str smat;   
-107   56    N_STATE               ;   
-116   57    PROC_DEF              void TPset (Svar& wval)   
-117   58    CODE_PROC_START       {   
-127   59    EXPRESSION_T          is_airport =0;   
-128   60    EXPRESSION_T          is_mtn =0;   
-129   61    EXPRESSION_T          is_mtn_pass =0;   
-131   62    EXPRESSION_T          Place = wval[0];   
-131   63    COMMENT               // wayp    
-133   64    EXPRESSION_T          Idnt =  wval[1];   
-138   65    EXPRESSION_T          Lat = wval[2];   
-138   66    COMMENT               // wayp    
-140   67    EXPRESSION_T          Lon = wval[3];   
-142   68    EXPRESSION_T          Alt = atof(wval[4]);   
-144   69    EXPRESSION_T          rway = wval[5];   
-146   70    EXPRESSION_T          Radio = wval[6];   
-148   71    EXPRESSION_T          tptype = wval[7];   
-150   72    IF                    if   
-150   73    EXPRESSION_T          (tptype == "TPA")   
-150   74    CODE_IF_START         {   
-151   75    EXPRESSION_T          is_airport = 1;   
-152   76    CODE_IF_END           }   
-153   77    IF                    if   
-153   78    EXPRESSION_T          (tptype == "TPM")   
-153   79    CODE_IF_START         {   
-154   80    EXPRESSION_T          is_mtn = 1;   
-155   81    CODE_IF_END           }   
-156   82    IF                    if   
-156   83    EXPRESSION_T          (tptype == "TPP")   
-156   84    CODE_IF_START         {   
-157   85    EXPRESSION_T          is_mtn_pass = 1;   
-158   86    CODE_IF_END           }   
-162   87    EXPRESSION_T          Ladeg =  coorToDeg(Lat);   
-162   88    COMMENT               // wayp   
-164   89    EXPRESSION_T          Longdeg = coorToDeg(Lon);   
-166   90    CODE_PROC_END         }   
-172   91    PROC_DEF              void TPCUPset (Svar wval)   
-173   92    CODE_PROC_START       {   
-176   93    DECLARE               Str val;   
-178   94    DECLARE               Str val2;   
-181   95    DECLARE               int lastc = -1;   
-185   96    EXPRESSION_T          val = wval[0];   
-196   97    PFCALL                val.dewhite();   
-196   98    COMMENT               // TBF ? corrupting vars ?   
-202   99    PFCALL                val.scut(1);   
-208   100   PFCALL                val.scut(lastc);   
-212   101   EXPRESSION_T          Place = val;   
-212   102   COMMENT               // wayp    
-216   103   EXPRESSION_T          val =  wval[1];   
-218   104   PFCALL                val.scut(lastc);   
-220   105   PFCALL                val.scut(1);   
-222   106   EXPRESSION_T          Idnt = val;   
-228   107   EXPRESSION_T          Lat = wval[3];   
-228   108   COMMENT               // wayp   
-232   109   PFCALL                ccoor(Lat);   
-235   110   EXPRESSION_T          Lon = wval[4];   
-237   111   PFCALL                ccoor(Lon);   
-241   112   EXPRESSION_T          val = wval[5];   
-250   113   EXPRESSION_T          val2 = sele(val,-1,-2);   
-253   114   IF                    if   
-253   115   EXPRESSION_T          (val2 == "ft")   
-253   116   CODE_IF_START         {   
-255   117   PFCALL                val.scut(-2);   
-257   118   EXPRESSION_T          Alt = atof(val);   
-258   119   CODE_IF_END           }   
-259   120   ELSE                  else   
-259   121   CODE_BLK_START        {   
-260   122   PFCALL                val.scut(-1);   
-262   123   EXPRESSION_T          Alt = atof(val);   
-263   124   EXPRESSION_T          Alt *= 3.280839 ;   
-265   125   CODE_BLK_END          }   
-272   126   EXPRESSION_T          is_airport =0;   
-273   127   EXPRESSION_T          is_mtn =0;   
-274   128   EXPRESSION_T          is_mtn_pass =0;   
-275   129   EXPRESSION_T          is_strip = 0;   
-276   130   EXPRESSION_T          rway = wval[6];   
-280   131   IF                    if   
-280   132   EXPRESSION_T          (rway == "5")   
-280   133   CODE_IF_START         {   
-281   134   EXPRESSION_T          is_airport =1;   
-282   135   CODE_IF_END           }   
-284   136   IF                    if   
-284   137   EXPRESSION_T          (rway == "3")   
-284   138   CODE_IF_START         {   
-285   139   EXPRESSION_T          is_strip =1;   
-286   140   CODE_IF_END           }   
-288   141   IF                    if   
-288   142   EXPRESSION_T          (rway == "7")   
-288   143   CODE_IF_START         {   
-289   144   EXPRESSION_T          is_mtn =1;   
-290   145   CODE_IF_END           }   
-292   146   IF                    if   
-292   147   EXPRESSION_T          (rway == "8")   
-292   148   CODE_IF_START         {   
-293   149   EXPRESSION_T          is_mtn_pass =1;   
-294   150   CODE_IF_END           }   
-296   151   EXPRESSION_T          rway = wval[7];   
-298   152   IF                    if   
-298   153   EXPRESSION_T          (rway != "")   
-298   154   CODE_IF_START         {   
-300   155   CODE_IF_END           }   
-304   156   EXPRESSION_T          val = wval[9];   
-309   157   EXPRESSION_T          Radio = wval[9];   
-311   158   IF                    if   
-311   159   EXPRESSION_T          (Radio == "")   
-311   160   CODE_IF_START         {   
-312   161   EXPRESSION_T          Radio = "    -    ";   
-313   162   CODE_IF_END           }   
-324   163   EXPRESSION_T          tptype = wval[10];   
-330   164   EXPRESSION_T          Ladeg =  coorToDeg(Lat,2);   
-338   165   EXPRESSION_T          Longdeg = coorToDeg(Lon,2);   
-346   166   CODE_PROC_END         }   
-351   167   PROC_DEF              void SetPlace (Str val)      
-352   168   CODE_PROC_START       {   
-353   169   EXPRESSION_T          Place = val;   
-354   170   CODE_PROC_END         }   
-357   171   PROC_DEF              Str GetPlace ()      
-358   172   CODE_PROC_START       {   
-359   173   PROC_RETURN           return Place;   
-360   174   CODE_PROC_END         }   
-362   175   PROC_DEF              void Print ()       
-363   176   CODE_PROC_START       {   
-366   177   PRSTDOUT              <<" $Place  $Lat $Lon $Radio\n"   
-368   178   CODE_PROC_END         }   
-372   179   PROC_DEF              int GetTA()      
-373   180   CODE_PROC_START       {   
-374   181   DECLARE               int amat[2];   
-376   182   EXPRESSION_T          spat (tptype,"A",-1,-1,amat);   
-378   183   PROC_RETURN           return amat[0];   
-379   184   CODE_PROC_END         }   
-382   185   PROC_DEF              cmf Turnpt()   
-383   186   CODE_PROC_START       {   
-384   187   EXPRESSION_T          Ntp_id++;   
-385   188   EXPRESSION_T          id = Ntp_id;   
-386   189   EXPRESSION_T          Place = " ";   
-387   190   EXPRESSION_T          Ladeg = 0.0;   
-388   191   EXPRESSION_T          Longdeg = 0.0;   
-389   192   EXPRESSION_T          Alt = -1.5;   
-391   193   CODE_PROC_END         }   
-394   194   CODE_BLK_END          }   
-394   195   NOT_KNOWN_STATE       ;   
-398   196   FUNCTION              codeend();   
+72    27    CODE_PROC_END         }   
+73    28    CODE_BLK_END          }   
+73    29    NOT_KNOWN_STATE       ;   
+77    30    DECLARE               int Ntp_id = 0;   
+77    31    COMMENT               // ids for turnpt objs   
+80    32    CLASS_DEF             class Turnpt    
+81    33    CODE_BLK_START        {   
+83    34    LABEL_ST              public:   
+85    35    DECLARE               Str Lat;   
+86    36    DECLARE               Str Lon;   
+87    37    DECLARE               Str Place;   
+89    38    DECLARE               Str Idnt;   
+90    39    DECLARE               Str rway;   
+91    40    DECLARE               Str tptype;   
+93    41    DECLARE               Str Cltpt;   
+94    42    DECLARE               Str Radio;   
+95    43    DECLARE               float Alt;   
+96    44    DECLARE               float fga;   
+96    45    COMMENT               // final glide msl to next TP?   
+97    46    DECLARE               float Ladeg;   
+98    47    DECLARE               float Longdeg;   
+99    48    DECLARE               int is_airport;   
+100   49    DECLARE               int is_strip;   
+101   50    DECLARE               int is_mtn;   
+102   51    DECLARE               int is_mtn_pass;   
+104   52    DECLARE               int id;   
+106   53    DECLARE               int match;   
+107   54    DECLARE               Str smat;   
+107   55    N_STATE               ;   
+119   56    PROC_DEF              void TPset (Svar& wval)   
+120   57    CODE_PROC_START       {   
+130   58    EXPRESSION_T          is_airport =0;   
+131   59    EXPRESSION_T          is_mtn =0;   
+132   60    EXPRESSION_T          is_mtn_pass =0;   
+134   61    EXPRESSION_T          Place = wval[0];   
+134   62    COMMENT               // wayp    
+136   63    EXPRESSION_T          Idnt =  wval[1];   
+141   64    EXPRESSION_T          Lat = wval[2];   
+141   65    COMMENT               // wayp    
+143   66    EXPRESSION_T          Lon = wval[3];   
+145   67    EXPRESSION_T          Alt = atof(wval[4]);   
+147   68    EXPRESSION_T          rway = wval[5];   
+149   69    EXPRESSION_T          Radio = wval[6];   
+151   70    EXPRESSION_T          tptype = wval[7];   
+153   71    IF                    if   
+153   72    EXPRESSION_T          (tptype == "TPA")   
+153   73    CODE_IF_START         {   
+154   74    EXPRESSION_T          is_airport = 1;   
+155   75    CODE_IF_END           }   
+156   76    IF                    if   
+156   77    EXPRESSION_T          (tptype == "TPM")   
+156   78    CODE_IF_START         {   
+157   79    EXPRESSION_T          is_mtn = 1;   
+158   80    CODE_IF_END           }   
+159   81    IF                    if   
+159   82    EXPRESSION_T          (tptype == "TPP")   
+159   83    CODE_IF_START         {   
+160   84    EXPRESSION_T          is_mtn_pass = 1;   
+161   85    CODE_IF_END           }   
+165   86    EXPRESSION_T          Ladeg =  coorToDeg(Lat);   
+165   87    COMMENT               // wayp   
+167   88    EXPRESSION_T          Longdeg = coorToDeg(Lon);   
+169   89    CODE_PROC_END         }   
+175   90    PROC_DEF              void TPCUPset (Svar& wval)   
+176   91    CODE_PROC_START       {   
+179   92    DECLARE               Str val;   
+181   93    DECLARE               Str val2;   
+184   94    DECLARE               int lastc = -1;   
+188   95    EXPRESSION_T          val = wval[0];   
+199   96    PFCALL                val.dewhite();   
+199   97    COMMENT               // TBF ? corrupting vars ?   
+205   98    PFCALL                val.scut(1);   
+211   99    PFCALL                val.scut(lastc);   
+215   100   EXPRESSION_T          Place = val;   
+215   101   COMMENT               // wayp    
+219   102   EXPRESSION_T          val =  wval[1];   
+221   103   PFCALL                val.scut(lastc);   
+223   104   PFCALL                val.scut(1);   
+225   105   EXPRESSION_T          Idnt = val;   
+231   106   EXPRESSION_T          Lat = wval[3];   
+231   107   COMMENT               // wayp   
+235   108   PFCALL                ccoor(Lat);   
+238   109   EXPRESSION_T          Lon = wval[4];   
+240   110   PFCALL                ccoor(Lon);   
+244   111   EXPRESSION_T          val = wval[5];   
+253   112   EXPRESSION_T          val2 = sele(val,-1,-2);   
+256   113   IF                    if   
+256   114   EXPRESSION_T          (val2 == "ft")   
+256   115   CODE_IF_START         {   
+258   116   PFCALL                val.scut(-2);   
+260   117   EXPRESSION_T          Alt = atof(val);   
+261   118   CODE_IF_END           }   
+262   119   ELSE                  else   
+262   120   CODE_BLK_START        {   
+263   121   PFCALL                val.scut(-1);   
+265   122   EXPRESSION_T          Alt = atof(val);   
+266   123   EXPRESSION_T          Alt *= 3.280839 ;   
+268   124   CODE_BLK_END          }   
+275   125   EXPRESSION_T          is_airport =0;   
+276   126   EXPRESSION_T          is_mtn =0;   
+277   127   EXPRESSION_T          is_mtn_pass =0;   
+278   128   EXPRESSION_T          is_strip = 0;   
+279   129   EXPRESSION_T          rway = wval[6];   
+283   130   IF                    if   
+283   131   EXPRESSION_T          (rway == "5")   
+283   132   CODE_IF_START         {   
+284   133   EXPRESSION_T          is_airport =1;   
+285   134   CODE_IF_END           }   
+287   135   IF                    if   
+287   136   EXPRESSION_T          (rway == "3")   
+287   137   CODE_IF_START         {   
+288   138   EXPRESSION_T          is_strip =1;   
+289   139   CODE_IF_END           }   
+291   140   IF                    if   
+291   141   EXPRESSION_T          (rway == "7")   
+291   142   CODE_IF_START         {   
+292   143   EXPRESSION_T          is_mtn =1;   
+293   144   CODE_IF_END           }   
+295   145   IF                    if   
+295   146   EXPRESSION_T          (rway == "8")   
+295   147   CODE_IF_START         {   
+296   148   EXPRESSION_T          is_mtn_pass =1;   
+297   149   CODE_IF_END           }   
+299   150   EXPRESSION_T          rway = wval[7];   
+301   151   IF                    if   
+301   152   EXPRESSION_T          (rway != "")   
+301   153   CODE_IF_START         {   
+303   154   CODE_IF_END           }   
+307   155   EXPRESSION_T          val = wval[9];   
+312   156   EXPRESSION_T          Radio = wval[9];   
+314   157   IF                    if   
+314   158   EXPRESSION_T          (Radio == "")   
+314   159   CODE_IF_START         {   
+315   160   EXPRESSION_T          Radio = "    -    ";   
+316   161   CODE_IF_END           }   
+327   162   EXPRESSION_T          tptype = wval[10];   
+333   163   EXPRESSION_T          Ladeg =  coorToDeg(Lat,2);   
+341   164   EXPRESSION_T          Longdeg = coorToDeg(Lon,2);   
+349   165   CODE_PROC_END         }   
+354   166   PROC_DEF              void SetPlace (Str val)      
+355   167   CODE_PROC_START       {   
+356   168   EXPRESSION_T          Place = val;   
+357   169   CODE_PROC_END         }   
+360   170   PROC_DEF              Str GetPlace ()      
+361   171   CODE_PROC_START       {   
+362   172   PROC_RETURN           return Place;   
+363   173   CODE_PROC_END         }   
+365   174   PROC_DEF              void Print ()       
+366   175   CODE_PROC_START       {   
+369   176   PRSTDOUT              <<" $Place  $Lat $Lon $Radio\n"   
+371   177   CODE_PROC_END         }   
+375   178   PROC_DEF              int GetTA()      
+376   179   CODE_PROC_START       {   
+377   180   DECLARE               int amat[4];   
+379   181   EXPRESSION_T          spat (tptype,"A",-1,-1,amat);   
+381   182   PROC_RETURN           return amat[0];   
+382   183   CODE_PROC_END         }   
+385   184   PROC_DEF              cmf Turnpt()   
+386   185   CODE_PROC_START       {   
+387   186   EXPRESSION_T          Ntp_id++;   
+388   187   EXPRESSION_T          id = Ntp_id;   
+389   188   EXPRESSION_T          Place = " ";   
+390   189   EXPRESSION_T          Ladeg = 0.0;   
+391   190   EXPRESSION_T          Longdeg = 0.0;   
+392   191   EXPRESSION_T          Alt = -1.5;   
+394   192   CODE_PROC_END         }   
+397   193   CODE_BLK_END          }   
+397   194   NOT_KNOWN_STATE       ;   
+406   195   PROC_DEF              float ComputeTC(Turnpt wtp[],int j, int k)   
+407   196   CODE_PROC_START       {   
+409   197   PRSTDOUT              <<"$_proc %V $j $k\n";   
+409   198   COMMENT               // TBF 6/20/24  wtp[] syntax does not get j or k   
+412   199   EXPRESSION_T          km = 0.0;   
+414   200   EXPRESSION_T          tc = 0.0;   
+417   201   EXPRESSION_T          L1 = wtp[j].Ladeg;   
+419   202   EXPRESSION_T          L2 = wtp[k].Ladeg;   
+422   203   EXPRESSION_T          lo1 = wtp[j].Longdeg;   
+424   204   EXPRESSION_T          lo2 = wtp[k].Longdeg;   
+428   205   EXPRESSION_T          tc = TrueCourse(lo1,L1,lo2,L2);   
+431   206   PRSTDOUT              <<" Leg $k $tc \n"    
+433   207   PROC_RETURN           return tc;   
+435   208   CODE_PROC_END         }   
+440   209   FUNCTION              codeend();   

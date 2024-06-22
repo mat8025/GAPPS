@@ -10,55 +10,61 @@ In file included from /home/mark/gasp-CARBON/include/uac.h:37,
 /home/mark/gasp-CARBON/include/cppi.h:23:2: warning: #warning INCLUDING CPPI.H [-Wcpp]
    23 | #warning INCLUDING CPPI.H
       |  ^~~~~~~
-glidetask.asc:113:19: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  113 |   Str the_start = "Longmont";
-      |                   ^~~~~~~~~~
-glidetask.asc:114:19: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  114 |   Str try_place = "xxx";
-      |                   ^~~~~
 glidetask.asc:115:19: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  115 |   Str try_start = "xxx";
+  115 |   Str the_start = "Longmont";
+      |                   ^~~~~~~~~~
+glidetask.asc:116:19: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  116 |   Str try_place = "xxx";
       |                   ^~~~~
-glidetask.asc:116:16: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  116 |   Str nxttpt = "Laramie";
+glidetask.asc:117:18: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  117 |   Str ry_start = "xxx";
+      |                  ^~~~~
+glidetask.asc:118:16: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  118 |   Str nxttpt = "Laramie";
       |                ^~~~~~~~~
-In file included from glidetask.asc:128:
-tpclass.asc: In member function ‘void Turnpt::Print()’:
-tpclass.asc:367:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  367 |   cprintf(" %S  %S %S %S\n",Place,Lat,Lon,Radio) ;
+glidetask.asc: In member function ‘void Turnpt::Print()’:
+glidetask.asc:468:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  468 |   cprintf(" %S  %S %S %S\n",Place,Lat,Lon,Radio) ;
       |           ^~~~~~~~~~~~~~~~~
-tpclass.asc: In member function ‘int Turnpt::GetTA()’:
-tpclass.asc:378:24: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  378 |           spat (tptype,"A",-1,-1,amat);
+glidetask.asc: In member function ‘int Turnpt::GetTA()’:
+glidetask.asc:478:24: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  478 |           spat (tptype,"A",-1,-1,amat);
       |                        ^~~
-In file included from glidetask.asc:136:
+glidetask.asc: In function ‘float ComputeTC(Turnpt*, int, int)’:
+glidetask.asc:508:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  508 |   cprintf("%s   j %d  k %d\n",__FUNCTION__,j,k);
+      |           ^~~~~~~~~~~~~~~~~~~
+glidetask.asc:533:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  533 |   cprintf(" Leg %d %f \n",k,tc)  ;
+      |           ^~~~~~~~~~~~~~~
+In file included from glidetask.asc:548:
 ootlib.asc: At global scope:
-ootlib.asc:25:19: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-   25 |   Str task_file = "XXX";
-      |                   ^~~~~
-ootlib.asc:58:15: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-   58 |   Str Units = "KM";
+ootlib.asc:28:19: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   28 |   Str task_file = "";
+      |                   ^~
+ootlib.asc:61:15: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   61 |   Str Units = "KM";
       |               ^~~~
-ootlib.asc:60:13: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-   60 |   Str lat = "A";
+ootlib.asc:63:13: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   63 |   Str lat = "A";
       |             ^~~
-ootlib.asc:62:16: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-   62 |   Str longit = "B";
+ootlib.asc:65:16: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   65 |   Str longit = "B";
       |                ^~~
 ootlib.asc: In function ‘void processIGC()’:
-ootlib.asc:152:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  152 |   cprintf("sz %d %d   %d\n",Ntpts);
+ootlib.asc:155:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  155 |   cprintf("sz %d %d   %d\n",Ntpts);
       |           ^~~~~~~~~~~~~~~~~
 ootlib.asc: In function ‘float getDeg(Str)’:
-ootlib.asc:309:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  309 |   cprintf("in  %S \n",the_ang);
+ootlib.asc:302:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  302 |   cprintf("in  %S \n",the_ang);
       |           ^~~~~~~~~~~
-ootlib.asc:318:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  318 |   cprintf("sz %d %d\n",sz);
+ootlib.asc:311:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  311 |   cprintf("sz %d %d\n",sz);
       |           ^~~~~~~~~~~~
 ootlib.asc: In function ‘void IGC_Read(Str)’:
-ootlib.asc:367:18: warning: invalid user-defined conversion from ‘Str’ to ‘char*’ [-fpermissive]
-  367 |       int fh=ofr(igc_file);
+ootlib.asc:360:18: warning: invalid user-defined conversion from ‘Str’ to ‘char*’ [-fpermissive]
+  360 |       int fh=ofr(igc_file);
       |                  ^~~~~~~~
 In file included from /home/mark/gasp-CARBON/include/vargs.h:31,
                  from glidetask.asc:43:
@@ -74,35 +80,37 @@ In file included from /home/mark/gasp-CARBON/include/si.h:53,
 /home/mark/gasp-CARBON/include/fop.h:36:17: note:   initializing argument 1 of ‘int ofr(char*)’
    36 | int ofr ( char *fname);
       |           ~~~~~~^~~~~
-In file included from glidetask.asc:136:
-ootlib.asc:372:18: warning: return-statement with a value, in function returning ‘void’ [-fpermissive]
-  372 |           return 0;
+In file included from glidetask.asc:548:
+ootlib.asc:365:18: warning: return-statement with a value, in function returning ‘void’ [-fpermissive]
+  365 |           return 0;
       |                  ^
-ootlib.asc:389:14: warning: return-statement with a value, in function returning ‘void’ [-fpermissive]
-  389 |       return ntps;
+ootlib.asc:382:14: warning: return-statement with a value, in function returning ‘void’ [-fpermissive]
+  382 |       return ntps;
       |              ^~~~
-ootlib.asc: In function ‘float ComputeTC(Turnpt*, int, int)’:
-ootlib.asc:401:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  401 |   cprintf("   j %  k %\n",j,k);
-      |           ^~~~~~~~~~~~~~~
-ootlib.asc:423:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  423 |   cprintf("  tc %f\n",tc);
-      |           ^~~~~~~~~~~
 glidetask.asc: In function ‘int main(int, char**)’:
-glidetask.asc:186:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  186 |   cprintf("   Cruise_speed %f  \n",Cruise_speed);
+glidetask.asc:600:19: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  600 |   Str try_start = "";
+      |                   ^~
+glidetask.asc:607:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  607 |   cprintf("   Cruise_speed %f  \n",Cruise_speed);
       |           ^~~~~~~~~~~~~~~~~~~~~~~~
-glidetask.asc:204:12: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  204 |   Str tpb ="";
+glidetask.asc:625:12: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  625 |   Str tpb ="";
       |            ^~
-glidetask.asc:221:14: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  221 |      AFH=ofr("CUP/bbrief.cup")  ; ; ;
-      |              ^~~~~~~~~~~~~~~~
-glidetask.asc:230:16: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  230 |        AFH=ofr("DAT/turnptsA.dat")  ; ; ;
-      |                ^~~~~~~~~~~~~~~~~~
-glidetask.asc:391:24: warning: invalid user-defined conversion from ‘Str’ to ‘char*’ [-fpermissive]
-  391 |               TF = ofr(byfile);
+glidetask.asc:644:26: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  644 |                  AFH=ofr("CUP/bbrief.cup")  ; ;
+      |                          ^~~~~~~~~~~~~~~~
+glidetask.asc:653:28: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  653 |                    AFH=ofr("DAT/turnptsA.dat")  ; ;
+      |                            ^~~~~~~~~~~~~~~~~~
+glidetask.asc:741:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  741 |   cprintf(" <| targ %S|>  sz %d\n",targ,sz);
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~
+glidetask.asc:747:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  747 |   cprintf(" <| targ %S|>  sz %d   ac %d \n",targ,sz,ac);
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+glidetask.asc:824:24: warning: invalid user-defined conversion from ‘Str’ to ‘char*’ [-fpermissive]
+  824 |               TF = ofr(byfile);
       |                        ^~~~~~
 In file included from /home/mark/gasp-CARBON/include/vargs.h:31,
                  from glidetask.asc:43:
@@ -118,12 +126,21 @@ In file included from /home/mark/gasp-CARBON/include/si.h:53,
 /home/mark/gasp-CARBON/include/fop.h:36:17: note:   initializing argument 1 of ‘int ofr(char*)’
    36 | int ofr ( char *fname);
       |           ~~~~~~^~~~~
-glidetask.asc:465:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  465 |   cprintf("  ac %d   targ %S  sz %d \n",ac,targ,sz) ;
+glidetask.asc:903:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  903 |   cprintf("  ac %d   targ %S  sz %d \n",ac,targ,sz) ;
       |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-glidetask.asc:996:28: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
-  996 |   Str ws =  nsc((10-tplen)," ");
+glidetask.asc:1032:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+ 1032 |   Str w = "xyz" ;
+      |           ^~~~~
+glidetask.asc:1066:11: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+ 1066 |   cprintf(" CUP read of  %d words \n",nwr) ;
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+glidetask.asc:1465:28: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+ 1465 |   Str ws =  nsc((10-tplen)," ");
       |                            ^~~
-glidetask.asc:1000:27: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
- 1000 |   Str wsi= nsc((10-idlen)," ");
+glidetask.asc:1469:27: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+ 1469 |   Str wsi= nsc((10-idlen)," ");
       |                           ^~~
+glidetask.asc:1608:9: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+ 1608 | cprintf("%d  %-10S %-5S %-8S  %6.0fft  ",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Radio,GT_Wtp[li].Alt);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

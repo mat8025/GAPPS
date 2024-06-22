@@ -1,15 +1,16 @@
 /* 
- *  @script ootlib.asl 
+ *  @script ootlib.asl                                                  
  * 
- *  @comment task-planner library 
- *  @release CARBON 
- *  @vers 4.5 B 6.3.83 C-Li-Bi 
- *  @date 02/17/2022 08:34:41          
- *  @cdate 9/17/1997 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare 2022
+ *  @comment task-planner library                                       
+ *  @release Carbon                                                     
+ *  @vers 4.6 C Carbon [asl 6.33 : C As]                                
+ *  @date 06/20/2024 22:24:23                                           
+ *  @cdate 9/17/1997                                                    
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
  * 
  */ 
+
 //----------------<v_&_v>-------------------------//;                      
 
 ///
@@ -17,19 +18,21 @@
 #ifndef OOTLIB_
 #define OOTLIB_ 1
 
-   Ntpts = 0;
 
-   Igcfn = -1;
 
-   task_file = "XXX";
+   Ntpts=0
 
-   MSL=0.0;
+   Igcfn=-1;
 
-   Ntaskpts = 0;
+   task_file = "";
 
-   Min_lat = 90.0;
+   MSL=0.0
 
-   Max_lat = 0.0;
+   Ntaskpts=0;
+
+   Min_lat=90.0;
+
+   Max_lat= 0.0
 
    Min_ele = 0.0;
 
@@ -92,8 +95,8 @@
    {
 ///  input lat and long degrees - GCD in km
   //float rL1,rL2,rlo1,rlo2,D,km;
-  // TBF 6/17/24  - why no autodec of rL1,rlo2, D   
-
+  // TBF 6/17/24  - why no autodec of rL1,rlo2, D   -- FIXED?
+        float km;  // TBF 6/17/24  why no autodec of km?
         rL1 = d2r(la1);
 
         rL2 = d2r(la2);
@@ -274,25 +277,15 @@
    {
 //<<"$_proc $aname \n";
 
-        Str fname;
-
         Str nname=aname;
-//  <<" %V $nname $aname \n";  // TBF
 
         kc = nname.slen();
 
         if (kc >7) {
-
              nname.svowrm();
-
         }
-  //fname.scpy(nname);
 
-        fname = nname;
-// <<"%V $kc  $nname --> $fname \n"
-// is this going to work as cpp 
-
-        return fname;
+        return nname;
 
    }
 //======================================//
@@ -390,43 +383,6 @@
 
    }
 //========================
-//float ComputeTC(Turnpt& wtp,int j, int k)
-// need to get Turnpt wtp[]  to work?
-//  TBF float ComputeTC(Turnpt wtp[],int j, int k)  - bad translate to
-//  Vec<not_known_dtype> ComputeTC ()  ;  - which is wrong
-
-
-   float ComputeTC(Turnpt wtp[],int j, int k)
-   {
-
-        <<"$_proc %V $j $k\n";   // TBF 6/20/24  wtp[] syntax does not get j or k
-  //wtp.pinfo();
-
-        km = 0.0;
-
-        tc = 0.0;
-//  float L1,L2,lo1,lo2;
-
-        L1 = wtp[j].Ladeg;
-
-        L2 = wtp[k].Ladeg;
-//<<"%V $L1 $L2 \n";
-
-        lo1 = wtp[j].Longdeg;
-
-        lo2 = wtp[k].Longdeg;
-//<<"%V $lo1 $lo2 \n";
-//  tc = TrueCourse(L1,lo1,L2,lo2);
-
-        tc = TrueCourse(lo1,L1,lo2,L2);
-  //printargs(j, k ,L1 ,lo2 ,"tc=", tc);
-
-        <<"%V $tc\n";
-
-        return tc;
-
-   }
-//===========================//
 #endif
 
 

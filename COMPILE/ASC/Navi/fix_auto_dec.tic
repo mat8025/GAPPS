@@ -1,31 +1,23 @@
-# Wed Jun 19 16:17:32 2024 fix_auto_dec 6.32
+# Fri Jun 21 21:55:25 2024 fix_auto_dec 6.34
 5     1     DEFINE                #define _ASL_ 1    
 6     2     DEFINE                #define _CPP_ 0     
 8     3     DEFINE                #define USE_GRAPHICS 0   
 24    4     EXPRESSION_T          AG = 77            
 29    5     INCLUDE               #include "extra.asl"                  
-4     25    PROC_DEF              double addem (float a, float b)   
-5     26    CODE_PROC_START       {   
-6     27    PRSTDOUT              <<" $_proc $a $b \n"   
-7     28    EXPRESSION_T          c= a +b   
-9     29    PROC_RETURN           return c;   
-11    30    CODE_PROC_END         }   
-12    31    FUNCTION              codeend();   
+4     29    PROC_DEF              double addem (float a, float b)   
+5     30    CODE_PROC_START       {   
+6     31    PRSTDOUT              <<" $_proc $a $b \n"   
+7     32    EXPRESSION_T          c= a +b   
+9     33    PROC_RETURN           return c;   
+11    34    CODE_PROC_END         }   
+12    35    FUNCTION              codeend();   
 47    6     PRSTDOUT              <<" NOT CPP section\n"   
 48    7     PRSTDOUT              <<" so ASL rules here ?\n"   
 56    8     PFCALL                ignoreErrors()   
 58    9     EXPRESSION_T          fs = "now check vmf slen return"   
 60    10    EXPRESSION_T          len = fs.slen()   
-64    11    EXPRESSION_T          x= 1.5   
-66    12    EXPRESSION_T          j = sin(4* x)   
-69    13    EXPRESSION_T          y = atan(x)   
-70    14    EXPRESSION_T          run_asl = runASL();   
-71    15    EXPRESSION_T          p = sin(4* x)   
-73    16    EXPRESSION_T          z = x * y   
-75    17    PRSTDOUT              <<"%V $x $y $z\n"   
-77    18    EXPRESSION_T          w= addem(x,y)   
-79    19    PRSTDOUT              <<"$x + $y == $w\n"   
-81    20    DECLARE               int AFH= -1   
-83    21    PRSTDOUT              <<"GLOBAL $AG\n"   
-85    22    PRSTDOUT              <<" making for the exit\n"   
-97    23    FUNCTION              codeend();   
+62    11    EXPRESSION_T          nwr =0;   
+62    12    COMMENT               // TBF 6/21/24  sac to int nwr = 0;   
+63    13    EXPRESSION_T          w = "xyz" ;   
+63    14    COMMENT               // TBF 6/21/24  sac to Str = 0;   
+67    15    EXPRESSION_T          x= 1.5   

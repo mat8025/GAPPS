@@ -2133,3 +2133,20 @@ vmf_table.cpp                       1.5  06/18/2024 23:57:07  findVmfReturnType
 opera_main.cpp                      1.54  06/19/2024 00:00:03  PCW_PP skip processing
 rdp_tokfunc.cpp                     1.79  06/20/2024 16:26:03  PCW_PP skip processing func
 ds_storesiv.cpp                     1.93  06/20/2024 16:27:56  deref scalar fix - reset var
+prep_preprocess.cpp                 1.16  06/21/2024 05:16:34  fix for recognizing mbr .,->
+prep_prstate.cpp                    1.34  06/21/2024 20:18:49  CLASS_DEF
+prep_preprocess.cpp                 1.17  06/21/2024 20:19:29  CLASS_DEF 
+ic_state.cpp                        1.64  06/21/2024 20:20:20  CLASS_DEF  
+parse_utils.cpp                     1.3  06/21/2024 20:21:02  CLASS_DEF   
+sidefs.h                            2.2  06/21/2024 20:21:45  CLASS_DEF    
+prep_defines.cpp                    2.70  06/21/2024 20:22:21  CLASS_DEF     
+spe_stateparse.cpp                  2.63  06/21/2024 20:22:52  CLASS_DEF      
+spe_scopesindex.cpp                 2.92  06/21/2024 20:23:53  CLASS_DEF       
+spe_statex.cpp                      1.45  06/21/2024 20:24:21  CLASS_DEF        
+prep_secondpass.cpp                 2.39  06/21/2024 20:24:58  CLASS_DEF         
+ds_types.cpp                        1.94  06/21/2024 20:25:29  CLASS_DEF          
+dbug.cpp                            1.57  06/21/2024 20:27:18  ALLOW_ALL init
+prep_firstpass.cpp                  2.39  06/21/2024 20:28:24  CLASS_DEF
+rdp_tokfunc.cpp                     1.80  06/21/2024 20:30:26  PP_guard
+gscom_debug.cpp                     1.75  06/22/2024 03:06:24  -T allowALL DBF
+gscom_debug.cpp                     1.76  06/22/2024 05:57:51  -T fix error color 

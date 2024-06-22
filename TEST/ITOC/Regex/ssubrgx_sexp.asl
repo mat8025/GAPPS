@@ -20,16 +20,9 @@ debugON()
 
 W= "abc(SUBSC_ARRAY) || def(SUBSC_LOCK)"
 
-
-
 dir = 1;
 
-
-
 //
-
-
-
 
 
 <<"\n$W \n"
@@ -86,3 +79,10 @@ dir = -1;
 T= ssubrgx(W,"([^_])SUBSC_([A-N])",'\1SI_SUBSC_\2',dir)
 
 <<"$T \n"
+
+
+  W="can=0"
+
+T = ssubrgx(W,"([a-zA-Z])=",'\1 = ',dir)
+
+<<" $W  $T\n"
