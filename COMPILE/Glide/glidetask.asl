@@ -1219,11 +1219,11 @@ cprintf("%d  %-10S %-5S %-8S  %6.0fft  ",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Ra
 
   <<" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n";
 #else
-  printf("Total distance\t %8.2f km\t%8.2f sm\t%6.2f  nm  LOD %6.1f  \n", totalD,(totalD*km_to_sm),(totalD*km_to_nm),LoD);
+  printf("\tTotal distance\t %8.2f km\t%8.2f sm\t%6.2f  nm  LOD %6.1f  \n", totalD,(totalD*km_to_sm),(totalD*km_to_nm),LoD);
 //ans=query("totalD ?");
 #endif
-     printf(" Cruise speed %f kmh\n",Cruise_speed);
-     printf("totalD  %6.2f km to fly - %6.2f hrs - bon voyage!\n ", totalD, totalDur);
+     printf("\tCruise speed %f kmh\n",Cruise_speed);
+     printf("\ttotalD  %6.2f km to fly - %6.2f hrs - bon voyage!\n ", totalD, totalDur);
 
 }
 
