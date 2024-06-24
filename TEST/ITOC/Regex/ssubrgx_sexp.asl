@@ -17,6 +17,7 @@ debugON()
 
 //sed 's/\([^_]\)SUBSC_/\1SI_SUBSC_/g' 
 
+ chkIn(1)
 
 W= "abc(SUBSC_ARRAY) || def(SUBSC_LOCK)"
 
@@ -86,3 +87,7 @@ T= ssubrgx(W,"([^_])SUBSC_([A-N])",'\1SI_SUBSC_\2',dir)
 T = ssubrgx(W,"([a-zA-Z])=",'\1 = ',dir)
 
 <<" $W  $T\n"
+
+chkStr("$T","can = 0")
+
+chkOut(1)

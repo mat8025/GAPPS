@@ -257,8 +257,8 @@ ESL='//==============\_(^-^)_/==================//';
 <<[A]"Str Use_= \" Demo  of $comment \";";
 <<[A]"\n"
 
-<<[A]"\n#define _CPP_ 0\n"
-<<[A]"\n#define _ASL_ 1\n"
+<<[A]"\n#define __CPP__ 0\n"
+<<[A]"\n#define __ASL__ 1\n"
 
 <<[A]"\n\n#include \"debug\" \n\n"
 
@@ -273,10 +273,10 @@ ESL='//==============\_(^-^)_/==================//';
 <<[A]" \n\n\n"
 
 
-<<[A]"// CPP main statment goes after all procs\n"
-<<[A]"#if _CPP_\n"
+<<[A]"// CPP main statement goes after all procs\n"
+<<[A]"#if __CPP__\n"
 
-<<[A]"   int main( int argc, char *argv[] ) { // main start \n"
+<<[A]"   int main( int argc, char *argv[] ) {  \n"
 ///
 <<[A]"#endif       \n"        
 
@@ -309,7 +309,7 @@ fflush(A)
 if (new_main) {
 <<" a new main \n"
 
-<<[A]"\n\n#if _CPP_           \n"   
+<<[A]"\n\n#if __CPP__           \n"   
   //////////////////////////////////
 <<[A]"  exit(-1); \n"
 <<[A]"  }  // end of C++ main \n"

@@ -2151,3 +2151,9 @@ rdp_tokfunc.cpp                     1.80  06/21/2024 20:30:26  PP_guard
 gscom_debug.cpp                     1.75  06/22/2024 03:06:24  -T allowALL DBF
 gscom_debug.cpp                     1.76  06/22/2024 05:57:51  -T fix error color 
 prep_preprocess.cpp                 1.18  06/22/2024 18:14:58  re-examine st EXPRESSION for CLASS_ASSIGN
+svar_regex.cpp                      1.4  06/22/2024 22:38:06  strSubRGX
+svar.h                              2.9  06/22/2024 22:39:12  strSubRGX 
+prep_firstpass.cpp                  2.40  06/24/2024 05:18:46  fix EMPTY_LINE
+prep_preprocess.cpp                 1.19  06/24/2024 05:20:02  refactor turn_on_CPP
+prep_secondpass.cpp                 2.40  06/24/2024 05:22:04  refactor 
+svar_regex.cpp                      1.5  06/24/2024 05:23:35  strSubRGX

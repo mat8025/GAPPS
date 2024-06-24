@@ -160,7 +160,7 @@ ictout ="ictestoutput"
 //cart("bops","78")
 //chkT(0)
 
-CFLAGS = "-Rcwlu"
+CFLAGS = "-Rdcwlu"
 
 //CFLAGS = "-cwlm"     // m to mask src lines in exe file --- broke
 
@@ -483,7 +483,7 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
     RunDirTests("Obcopy","obcopy,obprocarg");
 
-    RunDirTests("Mih","mih,sih")
+    RunDirTests("Mih","sh,mih,sih")
 
     outcome("OO")
   }
@@ -659,7 +659,7 @@ outcome("STR")
   // make this a pattern OP
 
  // RunSFtests("Date,Sele,Sstr,Spat,Str,Split,Regex,Fread,Trunc,Tranf");
-   RunSFtests("Scmp,Date,Sele,Sstr,Spat,Split,Regex,Fread,Trunc,Tranf");
+   RunSFtests("Scut,Ssub,Scmp,Date,Sele,Sstr,Spat,Split,Regex,Fread,Trunc,Tranf");
 
 
   }
