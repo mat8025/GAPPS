@@ -1,41 +1,67 @@
 /* 
- *  @script mops.asl 
+ *  @script mops.asl                                                    
  * 
- *  @comment test some math SF 
- *  @release CARBON 
- *  @vers 1.2 He Helium [asl 6.3.6 C-Li-C] 
- *  @date Mon Jan  4 14:15:49 2021 
- *  @cdate Sun Apr 12 13:35:08 2020 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
+ *  @comment test some math SF                                          
+ *  @release Carbon                                                     
+ *  @vers 1.3 Li Lithium [asl 6.36 : C Kr]                              
+ *  @date 06/25/2024 02:40:24                                           
+ *  @cdate Sun Apr 12 13:35:08 2020                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
  * 
- *  \\-----------------<v_&_v>--------------------------//  
  */ 
 
+
 ///    Mops -- test some SF mops
-<|Use_=
+
+
+
+
+#define __CPP__ 0
+
+#define __ASL__ 1
+
+#if __ASL__
+
+<|Use_ =
   Demo  of math ops
-///////////////////////
 |>
 
-#include "debug"
+/*
+#include "debug" 
+  if (_dblevel >0) { 
+   debugON() 
+  } 
+*/
 
-  if (_dblevel >0) {
+<<"$Use_ \n" 
 
-  debugON();
+#endif
 
-  <<"$Use_\n";
 
-  }
-  DB_action =0
+ 
+
+
+// CPP main statement goes after all procs
+#if __CPP__
+   int main( int argc, char *argv[] ) {  
+#endif       
+
+   allowErrors(-1); // set number of errors allowed -1 keep going 
+
+  chkIn(1) ;
+
+  chkT(1);
+
+
+   DB_action =0
 
    PI = 4.0 * atan(1.0)
 
-  chkIn();
 
-  int a = 14;
+  a = 14;
 
-  int b = 16;
+  b = 16;
 
   short xyv[20];
 
@@ -44,7 +70,12 @@
   chkN (xyv[0],0);
 
   xyv.pinfo()
-allowDB("array_,ds_store,spe_exp")
+
+#if __ASL__
+  <<"don't translate here\n"
+  allowDB("array_,ds_store,spe_exp",1)
+#endif
+
   xyv[{2,4,7,a}] = 36;
 
   xyv.pinfo()
@@ -73,11 +104,14 @@ allowDB("array_,ds_store,spe_exp")
   B[{2,4,a}] = 77;
 
   <<"%V$B\n";
-ans=ask(DB_prompt,DB_action)
+
+#if __ASL__
+  ans=ask(DB_prompt,DB_action)
   if (ans == "q") {
     exit(-1)
   }
-  
+#endif
+
   chkN(B[2],77);
 
   chkN (B[0],0);
@@ -102,17 +136,22 @@ ans=ask(DB_prompt,DB_action)
   B[{2,4 ,7,a}] = 37;
 
   <<"%V$B\n";
-B.pinfo()
+  B.pinfo()
+
+
   chkN (B[0],0);
 
   chkN (B[4],37);
 
   <<"%V$B\n";
+
+
+#if __ASL__
 ans=ask(DB_prompt,DB_action)
   if (ans == "q") {
     exit(-1)
   }
-
+#endif
 
 
   xyv[{2,4,7,a}] = 77;
@@ -154,10 +193,12 @@ testargs(" TRY HARDER $xyv[2] ")
   sz = Caz(xyv);
 
 <<"%V $sz\n"
-ans=ask(DB_prompt,DB_action)
+  ans=ask("%V $sz",0)
   if (ans == "q") {
     exit(-1)
   }
+
+
   chkN(sz,20);
 
   chkN(Caz(xyv),20);
@@ -211,7 +252,7 @@ ans=ask(DB_prompt,DB_action)
 
   chkN(xyv[2],77);
 
-  chkOut();
+
 
   chkN(xyv[6],77);
 
@@ -312,11 +353,6 @@ ans=ask(DB_prompt,DB_action)
   A.pinfo()
 
 
-  F=Atof(A);
-ans=ask(DB_prompt,DB_action)
-  if (ans == "q") {
-    exit(-1)
-  }
  
   sz = Caz(F);
 
@@ -361,5 +397,15 @@ ans=ask(DB_prompt,DB_action)
   chkStage("dec2hex");
 
   chkOut();
+
+
+
+
+#if __CPP__           
+  exit(-1); 
+  }  // end of C++ main 
+#endif     
+
+
 
 //==============\_(^-^)_/==================//

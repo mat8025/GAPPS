@@ -13,26 +13,31 @@
 //----------------<v_&_v>-------------------------//                  
 
 
-
-
-
-
-
 //#include "debug.asl"
 
  
 #define DB_IT    0
 #define GT_DB   0
-#define __ASL__ 1
+
+#define __ASL__ 0
 #define __CPP__ 0
 
+_dblevel  = 1
+<<" asl $(__ASL__)  CPP $(__CPP__)  TRANS $_dblevel\n"
 
-#if __ASL__
+
+
+#if 1
 // this include  when cpp compiling will re-define __ASL__ 0 and __CPP__ 1
 //#include "compile.asl"
+#undef __ASL__
+#define __ASL__ 1
+<<" doing TRANS $(__ASL__)\n"
 
 #endif
 
+<<" asl $(__ASL__)  CPP $(__CPP__)  TRANS $_dblevel\n"
+dans=ask(" ASL CPP ",1)
 
 #if __CPP__
 #include <iostream>
@@ -124,12 +129,9 @@ float Dur[20];
 
 //ans=ask(" ??",0)
 
+// should not re-translate the include if it is a asc file!
+
 #include "tpclass.asl"
-
-
-
-///////////////////////////////////////////////////
-// should not translate the include if it is a asc file!
 
 #include "ootlib.asl"
 
@@ -159,6 +161,8 @@ int main( int argc, char *argv[] ) { // main start
    for (int i= 0; i <argc; i++) {
      sargs.cpy(argv[i],i);
    }
+   init_cpp();
+   k = 0
 #endif
 
   int na;
@@ -167,8 +171,8 @@ int main( int argc, char *argv[] ) { // main start
 
 #if __ASL__
 
-  na = _clargc;
-  sargs = _clarg;
+  na = _clargc
+  sargs = _clarg
 
 #endif
 

@@ -22,13 +22,19 @@ chkIn()
 #define RED_LIGHT  1
 #define ORANGE_LIGHT  2
 #define GREEN_LIGHT  3 
-
+#define STRV str
 
 #define MAXN 10
 
-hue = GREEN_
+hue = GREEN_LIGHT
 
-<<"$hue GREEN \n"
+Str s = " $(ORANGE_LIGHT) "
+
+STRV s2 = " $(GREEN_LIGHT) "
+
+<<"%V $s $s2\n"
+
+<<"%V $hue GREEN \n"
 
 
 <<" MAXN defined as $(MAXN) \n"

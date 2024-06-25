@@ -13,8 +13,7 @@
 //-----------------<V_&_V>------------------------//
 
         
-#define __CPP__ 0
-#define __ASL__ 1
+
 
 
 
@@ -29,6 +28,8 @@
 
    }
 */  // this should not be seen line 32
+
+#define __CPP__ 0
 
 #if __CPP__
 #include <iostream>
@@ -85,6 +86,11 @@ using namespace std;
    chkIn(1) ;
 
 //   <<" $TB\n";
+#if __ASL__
+
+<<" ASL section no translate \n"
+
+#endif
 
    chkT(1);
 

@@ -25,30 +25,6 @@ int _DBH = -1; // dbg FH set -1 for nop --set to 2 for error output;
 Str _My_script = getScript()
 Str _Usage = " ... "
 
-//<<"%V$hold_dbl \n"
-
-//sdb(1,@~pline,@~step,@~trace)
-
-//sdb(dblevel,@~pline,@~step,@~trace)
-//filterFuncDebug(REJECTALL_,"proc");
-//filterFileDebug(REJECTALL_,"yyy");
-
-
-//<<"%V $hold_dbl\n"
-//dblevel = -1;
-
-// working variables
-
-//_IV = vgen(INT_,10,0,1)
-//_DV = vgen(DOUBLE_,10,0,1)
-//Str _S = "abcde";
-//Svar _SV;
-//Pan _P ;
-//_P= 4.0*atan(1.0);
-//!p _P
-//dbid = IDof("_DBH");
-//<<"%V dbid _DBH\n"
-//sdb(1,@keep);
 // if there are errors keep  idb,xdb file in .GASP/WORK/Debug
 // will be overwritten by scripts  unless unique/local options used
 
@@ -102,10 +78,9 @@ void errorFile()
 void debugOFF()
   {
 
-  setdebug(-1,_~pline,_~step,_~trace,_~showresults,1);
+
 
   filterFuncDebug(REJECT_ALL_,"proc");
-
   filterFileDebug(REJECT_ALL_,"yyy");
 
   _dblevel = 0;
@@ -135,21 +110,6 @@ void debugOFF()
     <<"asl $_My_script    \n\t$_Usage\n";
   }
 
-  //_dblevel = hold_dbl;
-
-  //sdb(hold_dbl,_keep,_~trace);
-
-/*
-  if (_dblevel > 1) {
-  
-  //sdb(_dblevel,_keep,_trace)
-  
-   printf("_dblevel %d\n",_dblevel);
-
-  }
-*/
-
-//printf("_dblevel %d\n",_dblevel);
 
 //////////
 //<<" %V $_include  $_dblevel DONE debug.asl\n"
