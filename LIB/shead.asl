@@ -43,10 +43,26 @@ chkIn(_dblevel);
     
    }
    //======================
+ Str padHdr(Str ln)
+  {
+    Str pad;
+    Str hl = ln;
+    Str el;
+ //   <<[2]"$ln\n"
+    pad = nsc(70- slen(ln)," ")
+  //  <<[2]"$hl $pad\n"
+   //<<[A]"$hl $pad\n"
+    el = "$hl $pad"
+    return el;
+ }
+
 
    int new_main = 0;
    A= -1;
-   int BERR=ofw("err_shead");  // error file err	
+   //int BERR=ofw("err_shead");  // error file err
+
+  int BERR= 2  // error file err
+   
    // if script found
    // then  read current vers and  bump number and update date
    // if no @vers line -- then prepend the vers header lines
@@ -75,7 +91,8 @@ chkIn(_dblevel);
    if (mas[0] ) {
       is_asl_script = 1;
    }
-   create_template =0;
+   
+   create_template =0;   
 
    if (sz == -1) {
    <<"can't find script file $aslfile  so create template\n"
@@ -89,7 +106,6 @@ chkIn(_dblevel);
    cf(A)
    create_template =1;
    new_main = 1
-       
    }
 
 
@@ -105,8 +121,7 @@ chkIn(_dblevel);
    comment ="";
    comment2 ="";
 
-
-///  get remaning args
+///  get remaining args
 ///  vers
 ///  comment
 ///  cpp template
@@ -114,9 +129,7 @@ chkIn(_dblevel);
 
 
    if (na > 2) {
-
     comment = _clarg[2];
-   
    }
 
    Str new_vers = "1.1";
@@ -134,8 +147,6 @@ chkIn(_dblevel);
    }
 
 
-
-
    file= fexist(aslfile,ISFILE_,0);
    
    //<<[2]" FILE $file \n"
@@ -143,6 +154,7 @@ chkIn(_dblevel);
    dir= fexist(aslfile,ISDIR_,0);
    
    <<[BERR]" DIR $dir \n"
+   
    author = "Mark Terry"
    fname = aslfile
    // current release is 
@@ -173,7 +185,7 @@ chkIn(_dblevel);
    //<<[2]" $(nsc(5,sp))\n"
    
    //<<[2]" $(nsc(5,\"\\n\"))\n"
-Svar T;
+  Svar T;
 
    A=ofr(aslfile);
    T=readfile(A);
@@ -182,41 +194,125 @@ Svar T;
    fseek(A,0,0);
 
    found_vers =0;
-Str R;
-Svar L;
+  Str R;
+  Svar L;
+  Svar M;
 
-   for (i = 0; i < 5;i++) {
-    R = readline(A);
-   <<[BERR]"$i $R\n"   
+  int i = 0;
+   
+   while (1) {
+
+    M = readline(A);
+   
+<<[2]"$i line is <|$M|> \n"
+    L.clear()
+
+ //  L.vfree();
+
+
    where = ftell(A)
-   L = Split(R);
-   if (scmp(L[1],"@vers")) {
+   L.Split(M);
+   sz = Caz(L);
+<<[2] "sz $(caz(L)) \n"
+<<[2]"$i $sz $where  $L \n"
+
+   if (sz >2) {
+   
+<<[2]"L1 $L[0] $L[1]  \n"
+
+    if (scmp(L[1],"@vers")) {
      found_vers =1;
-     release = L[2];    
-     cvers = L[3];
-     <<[BERR]"$where $R\n"
-     break;
+     cvers = L[2];
+     <<[2]"$where $cvers $L[2]\n"
    }
-   found_where = where;
-  }
+    else if (scmp(L[1],"@cdate")) {
+     cdate = "$L[2] ";
+     
+<<"found cdate  $L\n"     
+<<[2]"cdate <|$cdate|>  $L[2]\n"     
+   }
+    else if (scmp(L[1],"@comment")) {
+     comment = "$L[2::]";
+   }
+  //  else if (scmp(L[1],"@release")) {
+      //release = "$L[2::]";
+  //    release = "$L[2]";
+//<<[2]"release: <|$release|>  $L[2]\n"           
+ //  }
+    else if (scmp(L[1],"@author")) {
+      author = "$L[2] $L[3]";
+   }
+   
+   }
+   
+   //found_where = where;
+   i++;
+   if (i >16) {
+<<[2]"not an sheader\n"
+    found_vers = 0;
+    break;
+   }
 
-  if (found_vers) {
+    if (scmp(L[0],"//****",6)) {
+      <<[2]"old header end? line $i\n"
+      break;
+    }
 
-  <<"Already has a header $aslfile - exiting!\n"
-    exit(-1);
-  }
+    if (scmp(L[0],"*/",2)) {
+<<[2]"header end? line $i\n"
+    // check for new
+        M = readline(A);
+        L.Split(M);
+       if (scmp(L[0],";//-",4)) {
+      <<[2]" <|$M|>\n"       
+      <<[2]"new header end? line $i\n"
+       }
+       else {
+         <<[BERR]"step back \n"
+	 fseek(A,where,0);
+       }
+    break;
+    }
 
+   //     ans=ask("? $i one-line?  ")	 
+}
 
+  where = ftell(A);
 
-   fseek(A,0,0);
+<<" end of current header is $where \n";
+
+  T.clear()
+
+  B=ofw("body");
+
+  int kl = 1;
+  while (1) {
   
+         T = readline(A);
+         <<[B]"$T[0]";
+	// <<"<||$T[0]||>"
+       // ans=ask("? $kl one-line?  ")	 
+	 if (feof(A)) {
+	     break;
+	 }
+	 kl++;
+  }
+
+  cf(B);
+
+<<"\nwrote $kl lines to body\n"
 
    cf(A);
-   
- 
+  
  !!"cp $aslfile old_$aslfile"  ; // 
 
   newsrc=aslfile;
+
+
+////////////////////////////////////////////////////
+
+
+
 <<"$newsrc \n"
   //newsrc.pinfo();
 
@@ -227,39 +323,59 @@ Svar L;
   }
    
 // allines should be padded out to 70
-   A=ofw(newsrc);
+   vers = cvers
 
-   vers="@vers ${pmaj}.$pmin $min_ele $min_name [asl $(getversion())]"
-   vlen = slen(vers);
-   pad = nsc(70-vlen," ")
+
+   A=ofw(newsrc);
+   Str hl="xxx";
+
+   padHdr(" *  @script $fname ")
+
    <<[A]"/* \n"
-   <<[A]" *  @script $fname \n"
+   hl=padHdr(" *  @script $fname ")
+   <<[A]"$hl\n"
    <<[A]" * \n"
-   <<[A]" *  @comment $comment \n"
-   <<[A]" *  @release $release \n"   
-   <<[A]" *  $vers $pad\n"
-   <<[A]" *  @date $date \n"
-   <<[A]" *  @cdate $cdate \n"      
-   <<[A]" *  @author $author \n"
-   <<[A]" *  @Copyright © RootMeanSquare $(date(GS_YEAR_))\n"           
+   hl=padHdr(" *  @comment $comment ");
+   <<[A]"$hl\n"
+
+<<[BERR]" %V $vers $release \n"
+
+  hl=padHdr(" *  @release $release ");
+   <<[A]"$hl\n"
+   
+   hl=padHdr(" *  @vers $vers                 ");
+   <<[A]"$hl\n"
+   hl=padHdr(" *  @date $date                ")
+   <<[A]"$hl\n"
+   hl=padHdr(" *  @cdate $cdate            ")
+   <<[A]"$hl\n"
+   hl=padHdr(" *  @author $author           ");
+   <<[A]"$hl\n"
+   hl=padHdr(" *  @Copyright © RootMeanSquare $(date(8)) -->");           
+   <<[A]"$hl\n"
    <<[A]" * \n"
    <<[A]" */ \n"
-   <<[A]"//-----------------<V_&_V>------------------------//\n"                          
-
-<<[A]"\n";
-
+   <<[A]"\n";
+     here = ftell(A);
+<<[2]"%V $where $here  \n"
+    if (where > here) {
+     Pad = nsc(where-here-2," ")
+    <<[A]"$Pad\n";  
+    }
+    fflush(A);
+  
 ESL='//==============\_(^-^)_/==================//';
- new_main = 1
+
+
+new_main = 1
  
  if ( new_main ) {
     if (is_asl_script) {
 
-<<[A]"Str Use_= \" Demo  of $comment \";";
-<<[A]"\n"
+<<[A]"\n#define __CPP__ 0\n\n"
 
-<<[A]"\n#define __CPP__ 0\n"
-<<[A]"\n#define __ASL__ 1\n"
-
+<<[A]"#if __ASL__\n"
+<<[A]"\Str Use_= \" Demo  of $comment \";";
 <<[A]"\n\n#include \"debug\" \n\n"
 
 <<[A]"  if (_dblevel >0) { \n"
@@ -267,62 +383,81 @@ ESL='//==============\_(^-^)_/==================//';
 <<[A]"   <<\"\$Use_ \\n\" \n"
 <<[A]"} \n\n"
 <<[A]"   allowErrors(-1); // set number of errors allowed -1 keep going \n\n"
+<<[A]"#endif       \n"
 
-<<[A]"  chkIn(_dblevel) ;\n\n"
-<<[A]"  chkT(1);\n\n"
-<<[A]" \n\n\n"
 
+<<[A]"\n"
 
 <<[A]"// CPP main statement goes after all procs\n"
 <<[A]"#if __CPP__\n"
 
-<<[A]"   int main( int argc, char *argv[] ) {  \n"
+<<[A]"#include <iostream>\n"
+<<[A]"#include <ostream>\n"
+
+<<[A]"using namespace std;\n"
+<<[A]"#include \"vargs.h\"\n"
+<<[A]"#include \"cpp_head.h\"\n"
+<<[A]"#define PXS  cout<<\n"
+<<[A]"\n"
+<<[A]"#define CPP_DB 0\n\n"
+
+
+<<[A]"  int main( int argc, char *argv[] ) {  \n"
 ///
+<<[A]"    init_cpp() ; \n\n"
 <<[A]"#endif       \n"        
 
-fflush(A)
+<<[A]"\n\n  chkIn(1) ;\n\n"
+<<[A]"  chkT(1);\n\n"
+<<[A]" \n\n"
 
-
-
+  fflush(A)
+ }
 }
-}
 
-<<[_DBH]"now tack on file %V $tsz\n"
+<<[_DBH]"now tack on body %V $tsz\n"
 
-//ans=ask(DB_prompt,1);
+ B=ofr("body");
 
-   int klines = 0;
-   for (i = 0; i < tsz; i++) {
-    ln = T[i];
-  // <<"$i $ln\n"
-   <<[A]"$ln"
+  kl = 1;
+  T.clear()
+  Str wmyln =""
+  while (1) {
+  
+         T = readline(B);
+	 wmyln = T[0];
+	 in= sstr(T[0],"chkin",1)
+         out = sstr(T[0],"chkout",1)	 
+	 if (in == -1 && out == -1) {
+         <<[A]"$T[0]";
+	}
+	// <<"<||$T[0]||>"
+       // ans=ask("? $kl one-line?  ")	 
+	 if (feof(B)) {
+	     break;
+	 }
+	 kl++;
+  }
 
-     klines++;
-  <<[_DBH]"[${klines}] $ln\n"
-     if (_DBH > 0 && (klines > 1000)) {
-<<[_DBH]" db break $klines \n"
-     }
-     
-   }
-//<<[A]"$T[i]"  // bug
+   cf(B);
+
 
 if (new_main) {
 <<" a new main \n"
-
+ <<[A]"\n\n///\n\n  chkOut(1);\n"
 <<[A]"\n\n#if __CPP__           \n"   
   //////////////////////////////////
 <<[A]"  exit(-1); \n"
 <<[A]"  }  // end of C++ main \n"
 <<[A]"#endif     \n"       
-
-
-   <<[A]"\n\n///\n\n  chkOut(1);\n\n  exit();\n\n$ESL\n"
+<<[A]"\n \n\n$ESL\n"
 }
-   fflush(A)
+
+  fflush(A)
    cf(A)
 
 <<"output to $newsrc\n"
    
 //!!"mv $newsrc $aslfile"
-cf(BERR);
+//cf(BERR);
 /////

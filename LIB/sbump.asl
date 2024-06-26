@@ -283,6 +283,7 @@ L.pinfo()
     }
 
 }
+
  
   where = ftell(A);
 
@@ -373,7 +374,7 @@ cf(A);
 
     fseek(A,0,0)
 
-// all lines shold be padded out to 70
+// all lines should be padded out to 70
 Str hl="xxx";
    padHdr(" *  @script $fname ")
 
