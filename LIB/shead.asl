@@ -323,7 +323,19 @@ chkIn(_dblevel);
   }
    
 // allines should be padded out to 70
-   vers = cvers
+ vers2ele(cvers)
+    pmin++;
+   
+   if (pmin > 100) {
+       pmin =1;
+       pmaj++;
+   }
+
+ vers="@vers ${pmaj}.$pmin $min_ele $min_name [asl $(getversion())]"
+
+
+
+
 
 
    A=ofw(newsrc);
@@ -343,7 +355,7 @@ chkIn(_dblevel);
   hl=padHdr(" *  @release $release ");
    <<[A]"$hl\n"
    
-   hl=padHdr(" *  @vers $vers                 ");
+   hl=padHdr(" *  $vers                 ");
    <<[A]"$hl\n"
    hl=padHdr(" *  @date $date                ")
    <<[A]"$hl\n"
@@ -444,7 +456,7 @@ new_main = 1
 
 if (new_main) {
 <<" a new main \n"
- <<[A]"\n\n///\n\n  chkOut(1);\n"
+ <<[A]"\n\n///\n\n  chkOut(1);\n\n"
 <<[A]"\n\n#if __CPP__           \n"   
   //////////////////////////////////
 <<[A]"  exit(-1); \n"

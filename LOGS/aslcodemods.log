@@ -2160,3 +2160,6 @@ svar_regex.cpp                      1.5  06/24/2024 05:23:35  strSubRGX
 test_l.cpp                          1.62  06/24/2024 18:59:41  cpp file handle
 spil_args.cpp                       1.11  06/24/2024 19:00:35  setasloption
 gscom_debug.cpp                     1.77  06/24/2024 19:03:42  init_cpp()
+vmf_svar.cpp                        1.29  06/26/2024 22:30:41  added clear index ot index -1 all fields
+debug.h                             2.3  06/28/2024 19:00:50  Wffl has comment parameter
+stack.h                             1.6  06/28/2024 21:33:25  popDoubleStackVal correct return

@@ -16,7 +16,7 @@
 
 _dblevel = getDebugLevel()
 
-int hold_dbl = _dblevel;
+  hold_dbl = _dblevel;
 int dblevel = _dblevel;
 
 int _DBH = -1; // dbg FH set -1 for nop --set to 2 for error output;

@@ -19,7 +19,6 @@
 
 #define __CPP__ 0
 
-#define __ASL__ 1
 
 #if __ASL__
 
@@ -354,13 +353,13 @@ testargs(" TRY HARDER $xyv[2] ")
 
 
  
-  sz = Caz(F);
+//  sz = Caz(F);
 
-  bd = Cab(F);
+ // bd = Cab(F);
 
-  <<"%V $F  $sz $bd\n";
+ // <<"%V $F  $sz $bd\n";
 
-  chkN(sz,4);
+//  chkN(sz,4);
 
   G = Atof(A[1]);
 

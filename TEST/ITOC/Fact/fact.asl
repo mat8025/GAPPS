@@ -16,8 +16,7 @@
 //int N = $2
 //double M
 
-<|Use_=
-Demo  of recursion
+<|Use_= Demo  of recursion
 
 ///////////////////////
 |>
@@ -137,6 +136,9 @@ pan FactbyMP(pan pf)
 long n = 1;
 long N = 20;
 int k= atoi(_clarg[1])
+
+Pan p = k;
+
 if (k != 0) {
    N= k
 }
@@ -148,6 +150,13 @@ else {
 // compute initial conditions 1,2 - first for xic to work
 // then statement is closed -so no more WIC/XIC
 
+Pan res
+
+  res = FactbyMP(p)
+
+   //res = Fact(p)
+
+<<"%V $res \n"
 
 m= Fact(n)
 <<"%V $m $n\n"
@@ -348,3 +357,4 @@ chkOut()
 
 
 ///////////////////////////////
+//  TBD needs FIX for pan recursion
