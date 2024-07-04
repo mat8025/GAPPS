@@ -12,9 +12,9 @@
  */ 
 
 
-#define _ASL_ 1
 
-#define _CPP_ 0
+
+#define __CPP__ 0
 
 //  use the asl  -T  flag to produce cpp compilable code
 //  asl -wT xyz.asl
@@ -34,32 +34,13 @@
 //   asc code
 //
 
-#if _CPP_
+#if __CPP__
 #include "cpp_head.h" 
 #endif
 
 
 
-
-
-#if _TRANS_
-
-  Svar argv
-//  allowDB("spe,rdp")
-  argc = argc()  ;  // want this to be evaluated  in translation
-                          // but  not to be compiled  by cpp
-			  // or interpreted by asl
-			  
-
-//ans=query("translating hint argc $argc continue? :[y/n]") ;   if (ans != "y")    exit(-1) ;
-//<<"%V $ans \n"
-
-<<"%V $argc \n"
-
-#endif
-
-
-#if _ASL_
+#if __ASL__
 
 // this code section will be interpreted/executed by asl
 // but will not be compiled 
@@ -68,9 +49,7 @@
 
   if (_dblevel >0)    debugON()
 
- // Svar argv
-
-//  argc = argc()  ;  //
+ argc = argc();
 
 <<"%V $argc \n"
 
@@ -107,15 +86,26 @@ int addem (int m, int n)
 }
 
 //  Vec<double> fv(10)
+ Svar argv;
 
-
-#if _CPP_
+#if __CPP__
 
 int main( int argc, char *argv[] ) { // main start
+
+   for (int i= 0; i <argc; i++) {
+     sargs.cpy(argv[i],i);
+   }
+   init_cpp();
+
 ///
 #endif      
 
+#if __ASL__
 
+  na = _clargc
+  argv = _clarg
+
+#endif
 
   <<"%V $argc\n" 
 
@@ -564,7 +554,7 @@ ans=ask("%V $k1 $sum $mi ",db_ask)
   
   chkOut()
   
-#if _CPP_              
+#if __CPP__              
   //////////////////////////////////
   exit(0);       // want to report code errors exit status
  }  /// end of C++ main   

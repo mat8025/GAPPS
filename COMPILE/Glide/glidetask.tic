@@ -1,7 +1,940 @@
-# Tue Jun 25 06:03:31 2024 glidetask 6.36
-19    1     DEFINE                #define DB_IT    0   
-20    2     DEFINE                #define GT_DB   0   
-21    3     DEFINE                #define __ASL__ 1   
-22    4     DEFINE                #define __CPP__ 0   
-24    5     PRSTDOUT              <<" asl $__ASL__  CPP $__CPP__ \n"   
-56    6     PP_IF_ST              #if __ASL__   
+# Thu Jul  4 19:45:01 2024 glidetask 6.41
+21    1     DEFINE                #define __CPP__ 0   
+24    2     DEFINE                #define DB_IT    0   
+25    3     DEFINE                #define GT_DB   0   
+78    4     DECLARE               int TF;   
+78    5     COMMENT               // task file FH   
+80    6     DECLARE               int AFH= -1;   
+82    7     DECLARE               float CSK;   
+83    8     DECLARE               float Cruise_speed;   
+85    9     DECLARE               float TC[20];   
+86    10    DECLARE               float Dur[20];   
+89    11    DECLARE               Svar Task;   
+91    12    EXPRESSION_T          totalD = 0.0;   
+93    13    EXPRESSION_T          totalDur = 0.0;   
+95    14    DECLARE               float TKM[20];   
+96    15    DECLARE               float AGL[20];   
+97    16    DECLARE               char  Hey[10] = "hey hey";   
+98    17    DECLARE               float L1;   
+99    18    DECLARE               float L2;   
+101   19    DECLARE               float lo1;   
+102   20    DECLARE               float lo2;   
+103   21    DECLARE               double tkm;   
+104   22    DECLARE               double tkm2;   
+105   23    DECLARE               float tcd;   
+106   24    DECLARE               float rmsl;   
+107   25    DECLARE               float tmsl;   
+108   26    DECLARE               float msl;   
+109   27    DECLARE               int nl,li;   
+110   28    DECLARE               Str ident;   
+111   29    DECLARE               Str byfile;   
+112   30    EXPRESSION_T          n_legs = 0;   
+113   31    EXPRESSION_T          n_tp = 0;   
+114   32    EXPRESSION_T          k_tp= 0;   
+116   33    EXPRESSION_T          the_start = "Longmont";   
+117   34    EXPRESSION_T          try_place = "xxx";   
+118   35    EXPRESSION_T          try_start = "xxx";   
+119   36    EXPRESSION_T          nxttpt = "Laramie";   
+121   37    DECLARE               Str ans;   
+131   38    INCLUDE               #include "tpclass.asl"   
+17    557   DEFINE                #define TPCLASS_ 1   
+21    558   EXPRESSION_T          Tleg_id= 0;   
+35    559   CLASS_DEF             class Tleg    
+36    560   CODE_BLK_START        {   
+38    561   LABEL_ST              public:   
+41    562   DECLARE               int tpA;   
+42    563   DECLARE               int tpB;   
+44    564   DECLARE               float dist;   
+45    565   DECLARE               float pc;   
+46    566   DECLARE               float tfga;   
+48    567   DECLARE               float msl;   
+50    568   DECLARE               Str Tow;   
+51    569   DECLARE               Str Tplace;   
+55    570   PROC_DEF              cmf Tleg()      
+56    571   CODE_PROC_START       {   
+58    572   EXPRESSION_T          dist = 0.0;   
+59    573   EXPRESSION_T          pc = 0.0;   
+60    574   EXPRESSION_T          tfga =0;   
+61    575   EXPRESSION_T          msl = 0.0;   
+63    576   CODE_PROC_END         }   
+65    577   PROC_DEF              Str getPlace ()      
+66    578   CODE_PROC_START       {   
+67    579   PROC_RETURN           return Tplace;   
+68    580   CODE_PROC_END         }   
+70    581   PROC_DEF              cmf ~Tleg()      
+71    582   CODE_PROC_START       {   
+73    583   CODE_PROC_END         }   
+74    584   CODE_BLK_END          }   
+74    585   NOT_KNOWN_STATE       ;   
+78    586   DECLARE               int Ntp_id = 0;   
+78    587   COMMENT               // ids for turnpt objs   
+81    588   CLASS_DEF             class Turnpt    
+82    589   CODE_BLK_START        {   
+84    590   LABEL_ST              public:   
+86    591   DECLARE               Str Lat;   
+87    592   DECLARE               Str Lon;   
+88    593   DECLARE               Str Place;   
+90    594   DECLARE               Str Idnt;   
+91    595   DECLARE               Str rway;   
+92    596   DECLARE               Str tptype;   
+94    597   DECLARE               Str Cltpt;   
+95    598   DECLARE               Str Radio;   
+96    599   DECLARE               float Alt;   
+97    600   DECLARE               float fga;   
+97    601   COMMENT               // final glide msl to next TP?   
+98    602   DECLARE               float Ladeg;   
+99    603   DECLARE               float Longdeg;   
+100   604   DECLARE               int is_airport;   
+101   605   DECLARE               int is_strip;   
+102   606   DECLARE               int is_mtn;   
+103   607   DECLARE               int is_mtn_pass;   
+105   608   DECLARE               int id;   
+107   609   DECLARE               int match;   
+108   610   DECLARE               Str smat;   
+108   611   N_STATE               ;   
+120   612   PROC_DEF              void TPset (Svar& wval)   
+121   613   CODE_PROC_START       {   
+131   614   EXPRESSION_T          is_airport =0;   
+132   615   EXPRESSION_T          is_mtn =0;   
+133   616   EXPRESSION_T          is_mtn_pass =0;   
+135   617   EXPRESSION_T          Place = wval[0];   
+135   618   COMMENT               // wayp    
+137   619   EXPRESSION_T          Idnt =  wval[1];   
+142   620   EXPRESSION_T          Lat = wval[2];   
+142   621   COMMENT               // wayp    
+144   622   EXPRESSION_T          Lon = wval[3];   
+146   623   EXPRESSION_T          Alt = atof(wval[4]);   
+148   624   EXPRESSION_T          rway = wval[5];   
+150   625   EXPRESSION_T          Radio = wval[6];   
+152   626   EXPRESSION_T          tptype = wval[7];   
+154   627   IF                    if   
+154   628   EXPRESSION_T          (tptype == "TPA")   
+154   629   CODE_IF_START         {   
+155   630   EXPRESSION_T          is_airport = 1;   
+156   631   CODE_IF_END           }   
+157   632   IF                    if   
+157   633   EXPRESSION_T          (tptype == "TPM")   
+157   634   CODE_IF_START         {   
+158   635   EXPRESSION_T          is_mtn = 1;   
+159   636   CODE_IF_END           }   
+160   637   IF                    if   
+160   638   EXPRESSION_T          (tptype == "TPP")   
+160   639   CODE_IF_START         {   
+161   640   EXPRESSION_T          is_mtn_pass = 1;   
+162   641   CODE_IF_END           }   
+166   642   EXPRESSION_T          Ladeg =  coorToDeg(Lat);   
+166   643   COMMENT               // wayp   
+168   644   EXPRESSION_T          Longdeg = coorToDeg(Lon);   
+170   645   CODE_PROC_END         }   
+176   646   PROC_DEF              void TPCUPset (Svar& wval)   
+177   647   CODE_PROC_START       {   
+180   648   DECLARE               Str val;   
+182   649   DECLARE               Str val2;   
+185   650   DECLARE               int lastc = -1;   
+189   651   EXPRESSION_T          val = wval[0];   
+200   652   PFCALL                val.dewhite();   
+200   653   COMMENT               // TBF ? corrupting vars ?   
+206   654   PFCALL                val.scut(1);   
+212   655   PFCALL                val.scut(lastc);   
+216   656   EXPRESSION_T          Place = val;   
+216   657   COMMENT               // wayp    
+220   658   EXPRESSION_T          val =  wval[1];   
+222   659   PFCALL                val.scut(lastc);   
+224   660   PFCALL                val.scut(1);   
+226   661   EXPRESSION_T          Idnt = val;   
+232   662   EXPRESSION_T          Lat = wval[3];   
+232   663   COMMENT               // wayp   
+236   664   PFCALL                ccoor(Lat);   
+239   665   EXPRESSION_T          Lon = wval[4];   
+241   666   PFCALL                ccoor(Lon);   
+245   667   EXPRESSION_T          val = wval[5];   
+254   668   EXPRESSION_T          val2 = sele(val,-1,-2);   
+257   669   IF                    if   
+257   670   EXPRESSION_T          (val2 == "ft")   
+257   671   CODE_IF_START         {   
+259   672   PFCALL                val.scut(-2);   
+261   673   EXPRESSION_T          Alt = atof(val);   
+262   674   CODE_IF_END           }   
+263   675   ELSE                  else   
+263   676   CODE_BLK_START        {   
+264   677   PFCALL                val.scut(-1);   
+266   678   EXPRESSION_T          Alt = atof(val);   
+267   679   EXPRESSION_T          Alt *= 3.280839 ;   
+269   680   CODE_BLK_END          }   
+276   681   EXPRESSION_T          is_airport =0;   
+277   682   EXPRESSION_T          is_mtn =0;   
+278   683   EXPRESSION_T          is_mtn_pass =0;   
+279   684   EXPRESSION_T          is_strip = 0;   
+280   685   EXPRESSION_T          rway = wval[6];   
+284   686   IF                    if   
+284   687   EXPRESSION_T          (rway == "5")   
+284   688   CODE_IF_START         {   
+285   689   EXPRESSION_T          is_airport =1;   
+286   690   CODE_IF_END           }   
+288   691   IF                    if   
+288   692   EXPRESSION_T          (rway == "3")   
+288   693   CODE_IF_START         {   
+289   694   EXPRESSION_T          is_strip =1;   
+290   695   CODE_IF_END           }   
+292   696   IF                    if   
+292   697   EXPRESSION_T          (rway == "7")   
+292   698   CODE_IF_START         {   
+293   699   EXPRESSION_T          is_mtn =1;   
+294   700   CODE_IF_END           }   
+296   701   IF                    if   
+296   702   EXPRESSION_T          (rway == "8")   
+296   703   CODE_IF_START         {   
+297   704   EXPRESSION_T          is_mtn_pass =1;   
+298   705   CODE_IF_END           }   
+300   706   EXPRESSION_T          rway = wval[7];   
+302   707   IF                    if   
+302   708   EXPRESSION_T          (rway != "")   
+302   709   CODE_IF_START         {   
+304   710   CODE_IF_END           }   
+308   711   EXPRESSION_T          val = wval[9];   
+313   712   EXPRESSION_T          Radio = wval[9];   
+315   713   IF                    if   
+315   714   EXPRESSION_T          (Radio == "")   
+315   715   CODE_IF_START         {   
+316   716   EXPRESSION_T          Radio = "    -    ";   
+317   717   CODE_IF_END           }   
+328   718   EXPRESSION_T          tptype = wval[10];   
+334   719   EXPRESSION_T          Ladeg =  coorToDeg(Lat,2);   
+342   720   EXPRESSION_T          Longdeg = coorToDeg(Lon,2);   
+350   721   CODE_PROC_END         }   
+355   722   PROC_DEF              void SetPlace (Str val)      
+356   723   CODE_PROC_START       {   
+357   724   EXPRESSION_T          Place = val;   
+358   725   CODE_PROC_END         }   
+361   726   PROC_DEF              Str GetPlace ()      
+362   727   CODE_PROC_START       {   
+363   728   PROC_RETURN           return Place;   
+364   729   CODE_PROC_END         }   
+366   730   PROC_DEF              void Print ()       
+367   731   CODE_PROC_START       {   
+370   732   PRSTDOUT              <<" $Place  $Lat $Lon $Radio\n"   
+372   733   CODE_PROC_END         }   
+376   734   PROC_DEF              int GetTA()      
+377   735   CODE_PROC_START       {   
+378   736   DECLARE               int amat[4];   
+378   737   COMMENT               // TBF 6/21/24 should not get translated to Vec<int>   
+380   738   EXPRESSION_T          spat (tptype,"A",-1,-1,amat);   
+382   739   PROC_RETURN           return amat[0];   
+383   740   CODE_PROC_END         }   
+386   741   PROC_DEF              cmf Turnpt()   
+387   742   CODE_PROC_START       {   
+388   743   EXPRESSION_T          Ntp_id++;   
+389   744   EXPRESSION_T          id = Ntp_id;   
+390   745   EXPRESSION_T          Place = " ";   
+391   746   EXPRESSION_T          Ladeg = 0.0;   
+392   747   EXPRESSION_T          Longdeg = 0.0;   
+393   748   EXPRESSION_T          Alt = -1.5;   
+395   749   CODE_PROC_END         }   
+398   750   CODE_BLK_END          }   
+398   751   NOT_KNOWN_STATE       ;   
+407   752   PROC_DEF              float ComputeTC(Turnpt wtp[],int j, int k)   
+408   753   CODE_PROC_START       {   
+413   754   DECLARE               float L1,L2,lo1,lo2;   
+413   755   COMMENT               // TMP fix   
+414   756   DECLARE               float tc;   
+416   757   EXPRESSION_T          L1 = wtp[j].Ladeg;   
+416   758   COMMENT               // TBF 6/21/24  does not look up Turnpt mbr Ladeg   
+418   759   EXPRESSION_T          L2 = wtp[k].Ladeg;   
+421   760   EXPRESSION_T          lo1 = wtp[j].Longdeg;   
+423   761   EXPRESSION_T          lo2 = wtp[k].Longdeg;   
+427   762   EXPRESSION_T          tc = TrueCourse(lo1,L1,lo2,L2);   
+427   763   COMMENT               // TBF 6/21/24  does not look up TrueCourse   
+432   764   PROC_RETURN           return tc;   
+434   765   CODE_PROC_END         }   
+439   766   FUNCTION              codeend();   
+133   39    INCLUDE               #include "ootlib.asl"   
+19    768   DEFINE                #define OOTLIB_ 1   
+23    769   EXPRESSION_T          Ntpts=0   
+25    770   EXPRESSION_T          Igcfn=-1;   
+27    771   EXPRESSION_T          task_file = "";   
+29    772   EXPRESSION_T          MSL=0.0   
+31    773   EXPRESSION_T          Ntaskpts=0;   
+33    774   EXPRESSION_T          Min_lat=90.0;   
+35    775   EXPRESSION_T          Max_lat= 0.0   
+37    776   EXPRESSION_T          Min_ele = 0.0;   
+39    777   EXPRESSION_T          Max_ele = 0.0;   
+41    778   EXPRESSION_T          Min_W = 109.0;   
+43    779   EXPRESSION_T          Max_W = 105.0;   
+46    780   EXPRESSION_T          LatS = 37.5;   
+48    781   EXPRESSION_T          LatN = 42.0;   
+50    782   EXPRESSION_T          LongW= 108.5;   
+52    783   EXPRESSION_T          LongE= 104.8;   
+54    784   EXPRESSION_T          MidLat = (LatN - LatS)/2.0 + LatS;   
+56    785   EXPRESSION_T          Margin = 0.05;   
+58    786   EXPRESSION_T          MidLong = (LongW - LongE)/2.0 + LongE;   
+60    787   EXPRESSION_T          Units = "KM";   
+62    788   EXPRESSION_T          lat = "A";   
+64    789   EXPRESSION_T          longit = "B";   
+66    790   EXPRESSION_T          LegK =  0.5 * (7915.6 * 0.86838);   
+74    791   EXPRESSION_T          km_to_feet = 3281.0;   
+76    792   EXPRESSION_T          km_to_nm = 3281.0/6080.0;   
+78    793   EXPRESSION_T          km_to_sm = 3281.0/5280.0;   
+80    794   EXPRESSION_T          nm_to_sm = 6080.0/5280.0;   
+82    795   EXPRESSION_T          nm_to_km = 6080.0/3281.0;   
+85    796   DECLARE               Vec<float> IGCLONG(7000);   
+87    797   DECLARE               Vec<float> IGCLAT(7000);   
+89    798   DECLARE               Vec<float> IGCELE(7000);   
+91    799   DECLARE               Vec<float> IGCTIM(7000);   
+94    800   PROC_DEF              float computeGCD(float la1,float la2,float lo1,float lo2)   
+95    801   CODE_PROC_START       {   
+99    802   DECLARE               float km;   
+99    803   COMMENT               // TBF 6/17/24  why no autodec of km?   
+100   804   EXPRESSION_T          rL1 = d2r(la1);   
+102   805   EXPRESSION_T          rL2 = d2r(la2);   
+104   806   EXPRESSION_T          rlo1 = d2r(lo1);   
+106   807   EXPRESSION_T          rlo2 = d2r(lo2);   
+108   808   EXPRESSION_T          D= acos (sin(rL1) * sin(rL2) + cos(rL1) * cos(rL2) * cos(rlo1-rlo2));   
+110   809   EXPRESSION_T          km = LegK * D  * nm_to_km;   
+113   810   PROC_RETURN           return km;   
+115   811   CODE_PROC_END         }   
+118   812   PROC_DEF              void processIGC()   
+119   813   CODE_PROC_START       {   
+120   814   DECLARE               int i;   
+122   815   DECLARE               Vec<double> sslng(14);   
+124   816   DECLARE               Vec<double> sslat(14);   
+126   817   DECLARE               Vec<double> ssele(14);   
+128   818   EXPRESSION_T          IGCTIM = 1.2;   
+132   819   EXPRESSION_T          IGCLAT = 3.4;   
+134   820   EXPRESSION_T          IGCLONG = 4.5;   
+136   821   EXPRESSION_T          IGCELE = 5.6;   
+138   822   EXPRESSION_T          IGCLAT[2] = 77.66;   
+140   823   EXPRESSION_T          IGCLONG[2] = 47.68;   
+142   824   EXPRESSION_T          IGCELE[4] = 12345.678;   
+144   825   PFCALL                IGCELE.pinfo();   
+152   826   EXPRESSION_T          Ntpts= readIGC(Igcfn, IGCTIM, IGCLAT, IGCLONG, IGCELE);   
+154   827   PRSTDOUT              <<"sz $Ntpts $(Caz(IGCLONG))   $(Caz(IGCLAT))\n";   
+158   828   FOR                   for   
+158   829   EXPRESSION_T          i=0;   
+158   830   EXPRESSION_T           i < 100;   
+158   831   EXPRESSION_T           i++   
+158   832   CODE_BLK_START        {   
+161   833   PFCALL                printf("%d %f %f %f %f\n",i,IGCTIM[i] ,IGCELE[i] ,IGCLAT[i]  ,IGCLONG[i] );   
+163   834   CODE_BLK_END          }   
+167   835   EXPRESSION_T          sslng=  IGCLONG.stats();   
+169   836   FOR                   for   
+169   837   EXPRESSION_T          i=0;   
+169   838   EXPRESSION_T           i < 12;   
+169   839   EXPRESSION_T           i++   
+169   840   CODE_BLK_START        {   
+171   841   PFCALL                printf("i %d %f \n",i,sslng[i]);   
+173   842   CODE_BLK_END          }   
+177   843   EXPRESSION_T          sslat= IGCLAT.stats();   
+177   844   COMMENT               // also works;   
+179   845   FOR                   for   
+179   846   EXPRESSION_T          i=0;   
+179   847   EXPRESSION_T           i < 12;   
+179   848   EXPRESSION_T           i++   
+179   849   CODE_BLK_START        {   
+181   850   PFCALL                printf("i %d %f \n",i,sslat[i]);   
+183   851   CODE_BLK_END          }   
+187   852   EXPRESSION_T          ssele= IGCELE.stats();   
+189   853   FOR                   for   
+189   854   EXPRESSION_T          i=0;   
+189   855   EXPRESSION_T           i < 12;   
+189   856   EXPRESSION_T           i++   
+189   857   CODE_BLK_START        {   
+191   858   PFCALL                printf("i %d %f \n",i,ssele[i]);   
+193   859   CODE_BLK_END          }   
+206   860   EXPRESSION_T          Min_ele = ssele[5];   
+208   861   EXPRESSION_T          Max_ele = ssele[6];   
+211   862   DECLARE               float min_lng = sslng[5];   
+213   863   DECLARE               float max_lng = sslng[6];   
+216   864   DECLARE               float min_lat = sslat[5];   
+218   865   DECLARE               float max_lat = sslat[6];   
+221   866   EXPRESSION_T          LatS = min_lat -Margin;   
+223   867   EXPRESSION_T          LatN = max_lat+Margin;   
+225   868   EXPRESSION_T          MidLat = (LatN - LatS)/2.0 + LatS;   
+228   869   DECLARE               float dlat = max_lat - min_lat;   
+233   870   EXPRESSION_T          LongW = max_lng + Margin;   
+235   871   EXPRESSION_T          LongE = min_lng - Margin;   
+237   872   EXPRESSION_T          MidLong = (LongW - LongE)/2.0 + LongE;   
+240   873   DECLARE               float dlng = max_lng - min_lng;   
+242   874   DECLARE               float da = dlat;   
+246   875   IF                    if   
+246   876   EXPRESSION_T          ( dlng > dlat )   
+248   877   CODE_IF_START         {   
+250   878   EXPRESSION_T          da = dlng;   
+253   879   CODE_IF_END           }   
+255   880   ELSE                  else   
+255   881   CODE_BLK_START        {   
+258   882   CODE_BLK_END          }   
+264   883   EXPRESSION_T          LongW = MidLong + da/2.0;   
+266   884   EXPRESSION_T          LongE = MidLong - da/2.0;   
+272   885   CODE_PROC_END         }   
+276   886   PROC_DEF              Str nameMangle(Str aname)   
+277   887   CODE_PROC_START       {   
+280   888   DECLARE               Str nname=aname;   
+282   889   EXPRESSION_T          kc = nname.slen();   
+284   890   IF                    if   
+284   891   EXPRESSION_T          (kc >7)   
+284   892   CODE_IF_START         {   
+285   893   PFCALL                nname.svowrm();   
+286   894   CODE_IF_END           }   
+288   895   PROC_RETURN           return nname;   
+290   896   CODE_PROC_END         }   
+293   897   DECLARE               float totalK = 0;   
+295   898   PROC_DEF              float getDeg (Str the_ang)   
+296   899   CODE_PROC_START       {   
+297   900   DECLARE               Str the_dir;   
+298   901   DECLARE               float la;   
+299   902   DECLARE               float y;   
+300   903   DECLARE               Str wd;   
+302   904   PRSTDOUT              <<"in  $the_ang \n";   
+304   905   DECLARE               Svar the_parts;   
+306   906   PFCALL                the_parts.split(the_ang,',');   
+308   907   DECLARE               int sz = the_parts.caz();   
+311   908   PRSTDOUT              <<"sz $sz $(typeof(the_parts))\n";   
+315   909   EXPRESSION_T          wd = the_parts[0];   
+317   910   DECLARE               float the_deg = atof(wd);   
+321   911   EXPRESSION_T          wd = the_parts[1];   
+323   912   DECLARE               float the_min = atof(wd);   
+329   913   EXPRESSION_T          the_dir = the_parts[2];   
+331   914   EXPRESSION_T          y = the_min/60.0;   
+333   915   EXPRESSION_T          la = the_deg + y;   
+335   916   IF                    if   
+335   917   EXPRESSION_T          ((the_dir == "E") || (the_dir == "S"))   
+335   918   CODE_IF_START         {   
+337   919   EXPRESSION_T          la *= -1;   
+339   920   CODE_IF_END           }   
+341   921   PROC_RETURN           return (la);   
+343   922   CODE_PROC_END         }   
+346   923   PROC_DEF              void nearest (int tp)   
+347   924   CODE_PROC_START       {   
+352   925   CODE_PROC_END         }   
+355   926   PROC_DEF              void IGC_Read(Str igc_file)   
+356   927   CODE_PROC_START       {   
+360   928   DECLARE               int fh=ofr(igc_file);   
+362   929   IF                    if   
+362   930   EXPRESSION_T          (fh == -1)   
+362   931   CODE_IF_START         {   
+365   932   PROC_RETURN           return 0;   
+367   933   CODE_IF_END           }   
+369   934   DECLARE               int ntps =0;   
+372   935   EXPRESSION_T          ntps = readIGC(fh,IGCTIM,IGCLAT,IGCLONG,IGCELE);   
+372   936   COMMENT               // vec siv base;   
+374   937   EXPRESSION_T          IGCELE *= 3.280839 ;   
+380   938   PFCALL                cf(fh);   
+382   939   PROC_RETURN           return ntps;   
+384   940   CODE_PROC_END         }   
+391   941   FUNCTION              codeend();   
+136   40    EXPRESSION_T          Turnpt  GT_Wtp[50];   
+138   41    EXPRESSION_T          Tleg  GT_Wleg[20];   
+146   42    DECLARE               int via_keyb = 0;   
+147   43    DECLARE               int via_file = 0;   
+149   44    DECLARE               int via_cl = 1;   
+150   45    DECLARE               int ok_to_compute = 1;   
+151   46    DECLARE               long where ;   
+163   47    DECLARE               int na;   
+166   48    PFCALL                ignoreErrors();   
+166   49    COMMENT               // put in glide.h ??   
+168   50    EXPRESSION_T          allowErrors(-1)   
+174   51    DECLARE               int  Main_init = 1;   
+175   52    DECLARE               float Leg[20];   
+178   53    EXPRESSION_T          CSK = 70.0;   
+181   54    EXPRESSION_T          Cruise_speed = (CSK * nm_to_km);   
+186   55    EXPRESSION_T          GT_Wtp[1].Alt = 100.0;   
+188   56    EXPRESSION_T          GT_Wtp[40].Alt = 5300.0;   
+196   57    DECLARE               Str tlon;   
+197   58    DECLARE               Str tplace;   
+199   59    DECLARE               Svar Wval;   
+200   60    DECLARE               Svar Wval2;   
+202   61    DECLARE               Str tpb ="";   
+204   62    EXPRESSION_T          Units= "KM";   
+214   63    DECLARE               int use_cup = 1;   
+219   64    IF                    if   
+219   65    EXPRESSION_T          (use_cup)   
+219   66    CODE_IF_START         {   
+221   67    EXPRESSION_T          AFH=ofr("CUP/bbrief.cup")  ;   
+221   68    COMMENT               // open turnpoint file;   
+223   69    EXPRESSION_T          printf( "used TP file CUP/bbrief.cup \n");   
+225   70    CODE_IF_END           }   
+227   71    ELSE                  else   
+227   72    CODE_BLK_START        {   
+229   73    EXPRESSION_T          AFH=ofr("DAT/turnptsA.dat")  ;   
+229   74    COMMENT               // open turnpoint file;   
+230   75    EXPRESSION_T          printf("opened  DAT/turnptsA.dat %d \n" ,AFH );   
+231   76    CODE_BLK_END          }   
+233   77    IF                    if   
+233   78    EXPRESSION_T          (AFH == -1)   
+233   79    CODE_IF_START         {   
+235   80    PFCALL                printf( " can't find turnpts file \n");   
+236   81    EXPRESSION_T          exit(-1);   
+238   82    CODE_IF_END           }   
+240   83    DECLARE               int brief = 0;   
+242   84    DECLARE               int show_dist = 1;   
+244   85    DECLARE               int show_title = 1;   
+248   86    EXPRESSION_T          na = argc;   
+253   87    DECLARE               int ac = 0;   
+255   88    DECLARE               float LoD = 35;   
+257   89    DECLARE               int istpt = 1;   
+259   90    DECLARE               int cltpt = 0;   
+260   91    DECLARE               int sz;   
+262   92    DECLARE               Str targ;   
+268   93    WHILE                 while   
+268   94    EXPRESSION_T          (ac < na)   
+268   95    CODE_WHILE_START      {   
+270   96    EXPRESSION_T          istpt = 1;   
+272   97    EXPRESSION_T          targ = argv[ac];   
+281   98    EXPRESSION_T          sz = targ.slen();   
+285   99    EXPRESSION_T          ac++;   
+287   100   IF                    if   
+287   101   EXPRESSION_T          (sz > 0)   
+287   102   CODE_IF_START         {   
+292   103   IF                    if   
+292   104   EXPRESSION_T          (targ == "LD")   
+292   105   CODE_IF_START         {   
+294   106   EXPRESSION_T          targ = argv[ac];   
+294   107   COMMENT               // for CPP copy argv to svar sa   
+297   108   EXPRESSION_T          LoD= atof(targ);   
+300   109   EXPRESSION_T          ac++;   
+302   110   EXPRESSION_T          istpt = 0;   
+309   111   CODE_IF_END           }   
+311   112   IF                    if   
+311   113   EXPRESSION_T          (targ == "units")   
+311   114   CODE_IF_START         {   
+316   115   EXPRESSION_T          targ = argv[ac];   
+319   116   IF                    if   
+319   117   EXPRESSION_T          (targ == "KM")   
+319   118   CODE_IF_START         {   
+320   119   EXPRESSION_T          Units = "KM";   
+321   120   CODE_IF_END           }   
+322   121   ELSE_IF               else if   
+322   122   EXPRESSION_T          (targ == "NM")   
+322   123   CODE_BLK_START        {   
+323   124   EXPRESSION_T          Units = "NM";   
+324   125   CODE_BLK_END          }   
+325   126   ELSE_IF               else if   
+325   127   EXPRESSION_T          (targ == "SM")   
+325   128   CODE_BLK_START        {   
+326   129   EXPRESSION_T          Units = "SM";   
+327   130   PFCALL                printf("setting Units to SM %d\n",Units);   
+328   131   CODE_BLK_END          }   
+330   132   EXPRESSION_T          ac++;   
+331   133   EXPRESSION_T          istpt = 0;   
+333   134   CODE_IF_END           }   
+336   135   IF                    if   
+336   136   EXPRESSION_T          (targ == "CS")   
+336   137   CODE_IF_START         {   
+338   138   EXPRESSION_T          targ = argv[ac]  ;   
+338   139   COMMENT               // should work index Svar array? TBC 6/17/24    
+342   140   EXPRESSION_T          CSK = atof(targ);   
+344   141   EXPRESSION_T          ac++;   
+346   142   EXPRESSION_T          istpt = 0;   
+348   143   EXPRESSION_T          Cruise_speed = (CSK * nm_to_km);   
+350   144   IF                    if   
+350   145   EXPRESSION_T          (GT_DB)   
+350   146   PFCALL                printf("setting CS CSK %f knots Cruise_speed %f kmh \n",CSK,Cruise_speed);   
+352   147   CODE_IF_END           }   
+354   148   IF                    if   
+354   149   EXPRESSION_T          ( targ == "task")   
+354   150   CODE_IF_START         {   
+356   151   EXPRESSION_T          via_keyb = 0;   
+358   152   EXPRESSION_T          via_file = 1;   
+360   153   EXPRESSION_T          byfile = argv[ac];   
+362   154   EXPRESSION_T          ac++;   
+365   155   EXPRESSION_T          TF = ofr(byfile);   
+367   156   IF                    if   
+367   157   EXPRESSION_T          (TF == -1 )   
+367   158   CODE_IF_START         {   
+369   159   PFCALL                printf ("file error");   
+370   160   EXPRESSION_T          exit(-1);   
+372   161   CODE_IF_END           }   
+374   162   PFCALL                Task.readFile(TF);   
+381   163   EXPRESSION_T          istpt = 0;   
+383   164   CODE_IF_END           }   
+386   165   IF                    if   
+386   166   EXPRESSION_T          (targ == ">")   
+386   167   CODE_IF_START         {   
+388   168   BREAK                 break;   
+390   169   CODE_IF_END           }   
+393   170   IF                    if   
+393   171   EXPRESSION_T          (targ == "brief")   
+393   172   CODE_IF_START         {   
+395   173   EXPRESSION_T          brief = 1;   
+397   174   CODE_IF_END           }   
+399   175   IF                    if   
+399   176   EXPRESSION_T          (targ == "tasklist")   
+399   177   CODE_IF_START         {   
+401   178   EXPRESSION_T          show_dist = 0;   
+403   179   EXPRESSION_T          show_title = 0;   
+405   180   EXPRESSION_T          istpt = 0;   
+407   181   CODE_IF_END           }   
+411   182   IF                    if   
+411   183   EXPRESSION_T          (istpt)   
+411   184   CODE_IF_START         {   
+413   185   EXPRESSION_T          via_keyb = 0;   
+415   186   EXPRESSION_T          via_cl = 1;   
+419   187   EXPRESSION_T          cltpt++;   
+421   188   CODE_IF_END           }   
+425   189   CODE_IF_END           }   
+425   190   COMMENT               // arg was valid   
+427   191   CODE_WHILE_END        }   
+432   192   DECLARE               float N = 0.0;   
+433   193   DECLARE               int ki;   
+434   194   DECLARE               int cnttpt = 0;   
+434   195   COMMENT               // TBF 1 for cpp? -clargv copy   
+435   196   DECLARE               int input_lat_long = 0;   
+436   197   DECLARE               int i = -1;   
+439   198   IF                    if   
+439   199   EXPRESSION_T          (GT_DB)   
+439   200   PFCALL                printf("DONE ARGS  ac %d cltpt %d \n", ac,cltpt);   
+446   201   EXPRESSION_T          i = -1;   
+447   202   DECLARE               int k;   
+448   203   DECLARE               int got_start = 0;   
+449   204   DECLARE               int K_AFH = AFH;   
+451   205   EXPRESSION_T          cnttpt = 1;   
+453   206   WHILE                 while   
+453   207   EXPRESSION_T          ( !got_start)   
+453   208   CODE_WHILE_START      {   
+460   209   PFCALL                fseek(AFH,0,0);   
+462   210   IF                    if   
+462   211   EXPRESSION_T          (via_cl)   
+462   212   CODE_IF_START         {   
+464   213   EXPRESSION_T          the_start = argv[cnttpt];   
+471   214   EXPRESSION_T          cnttpt++;   
+473   215   IF                    if   
+473   216   EXPRESSION_T          (cnttpt > cltpt)   
+473   217   CODE_IF_START         {   
+475   218   EXPRESSION_T          the_start = "done";   
+477   219   CODE_IF_END           }   
+480   220   IF                    if   
+480   221   EXPRESSION_T          (the_start == "done")   
+480   222   CODE_IF_START         {   
+481   223   PFCALL                exit(0);   
+482   224   CODE_IF_END           }   
+484   225   IF                    if   
+484   226   EXPRESSION_T          (the_start == "input")   
+484   227   CODE_IF_START         {   
+486   228   EXPRESSION_T          input_lat_long = 1;   
+488   229   EXPRESSION_T          i = 0;   
+490   230   BREAK                 break;   
+492   231   CODE_IF_END           }   
+493   232   PRSTDOUT              <<" %V is $the_start \n"   
+497   233   EXPRESSION_T          i=searchFile(AFH,the_start,0,1,0,0);   
+501   234   IF                    if   
+501   235   EXPRESSION_T          (i == -1)   
+501   236   CODE_IF_START         {   
+502   237   PFCALL                printf("the_start  %s not found \n", the_start);   
+504   238   EXPRESSION_T          try_start = nameMangle(the_start);   
+506   239   EXPRESSION_T          i=searchFile(AFH,try_start,0,1,0,0);   
+507   240   IF                    if   
+507   241   EXPRESSION_T          (i != -1)   
+507   242   CODE_IF_START         {   
+508   243   EXPRESSION_T          the_start = try_start;   
+509   244   CODE_IF_END           }   
+511   245   CODE_IF_END           }   
+515   246   IF                    if   
+515   247   EXPRESSION_T          (i == -1)   
+515   248   CODE_IF_START         {   
+517   249   PFCALL                printf("the_start not found \n");   
+517   250   NOT_KNOWN_STATE       ;   
+523   251   EXPRESSION_T          ok_to_compute = 0;   
+525   252   IF                    if   
+525   253   EXPRESSION_T          (!via_keyb)   
+525   254   CODE_IF_START         {   
+527   255   EXPRESSION_T          exit(-1);   
+529   256   CODE_IF_END           }   
+531   257   CODE_IF_END           }   
+534   258   CODE_IF_END           }   
+536   259   EXPRESSION_T          got_start =1;   
+537   260   CODE_WHILE_END        }   
+537   261   COMMENT               // end while   
+544   262   EXPRESSION_T          nwr =0;   
+544   263   COMMENT               // TBF 6/21/24  sac to int nwr = 0;   
+545   264   EXPRESSION_T          w = "xyz" ;   
+545   265   COMMENT               // TBF 6/21/24  sac to Str = 0;   
+547   266   IF                    if   
+547   267   EXPRESSION_T          (input_lat_long)   
+547   268   CODE_IF_START         {   
+550   269   CODE_IF_END           }   
+552   270   ELSE                  else   
+552   271   CODE_BLK_START        {   
+554   272   PFCALL                fseek(AFH,i,0);   
+556   273   IF                    if   
+556   274   EXPRESSION_T          (via_keyb)   
+556   275   CODE_IF_START         {   
+558   276   EXPRESSION_T          w=pclFile(AFH);   
+560   277   CODE_IF_END           }   
+562   278   ELSE                  else   
+562   279   CODE_BLK_START        {   
+565   280   CODE_BLK_END          }   
+567   281   EXPRESSION_T          ki = seekLine(AFH,0);   
+574   282   IF                    if   
+574   283   EXPRESSION_T          (use_cup)   
+574   284   CODE_IF_START         {   
+576   285   EXPRESSION_T          nwr = Wval.readWords(AFH,0,',');   
+580   286   CODE_IF_END           }   
+581   287   ELSE                  else   
+581   288   CODE_BLK_START        {   
+582   289   EXPRESSION_T          nwr = Wval.readWords(AFH);   
+583   290   CODE_BLK_END          }   
+585   291   EXPRESSION_T          tplace = Wval[0];   
+587   292   IF                    if   
+587   293   EXPRESSION_T          (use_cup)   
+587   294   CODE_IF_START         {   
+588   295   EXPRESSION_T          tlon = Wval[4];   
+589   296   CODE_IF_END           }   
+590   297   ELSE                  else   
+590   298   CODE_BLK_START        {   
+591   299   EXPRESSION_T          tlon = Wval[3];   
+592   300   CODE_BLK_END          }   
+602   301   EXPRESSION_T          n_tp++;   
+603   302   IF                    if   
+603   303   EXPRESSION_T          (use_cup)   
+603   304   CODE_IF_START         {   
+607   305   EXPRESSION_T          GT_Wtp[0].TPCUPset(Wval);   
+611   306   CODE_IF_END           }   
+612   307   ELSE                  else   
+612   308   CODE_BLK_START        {   
+613   309   EXPRESSION_T          GT_Wtp[n_legs].TPset(Wval);   
+614   310   CODE_BLK_END          }   
+616   311   EXPRESSION_T          AGL[n_legs] = GT_Wtp[n_legs].Alt;   
+618   312   CODE_BLK_END          }   
+624   313   DECLARE               int more_legs = 1;   
+626   314   EXPRESSION_T          ok_to_compute = 1;   
+629   315   DECLARE               float the_leg;   
+632   316   WHILE                 while   
+632   317   EXPRESSION_T          (more_legs == 1)   
+632   318   CODE_WHILE_START      {   
+636   319   IF                    if   
+636   320   EXPRESSION_T          (via_cl)   
+636   321   CODE_IF_START         {   
+638   322   EXPRESSION_T          nxttpt = argv[cnttpt];   
+652   323   EXPRESSION_T          cnttpt++;   
+656   324   IF                    if   
+656   325   EXPRESSION_T          (cnttpt > cltpt)   
+656   326   CODE_IF_START         {   
+660   327   EXPRESSION_T          nxttpt = "done";   
+662   328   CODE_IF_END           }   
+664   329   CODE_IF_END           }   
+673   330   IF                    if   
+673   331   EXPRESSION_T          ((nxttpt == "done") || (nxttpt == "finish") || (nxttpt == "quit") )   
+673   332   CODE_IF_START         {   
+675   333   EXPRESSION_T          more_legs = 0;   
+677   334   CODE_IF_END           }   
+679   335   ELSE                  else   
+679   336   CODE_BLK_START        {   
+689   337   EXPRESSION_T          AFH = K_AFH;   
+695   338   EXPRESSION_T          where = searchFile(AFH,nxttpt,0,1,0,0);   
+701   339   IF                    if   
+701   340   EXPRESSION_T          (where  == -1)   
+701   341   CODE_IF_START         {   
+703   342   EXPRESSION_T          try_start = nameMangle(nxttpt);   
+705   343   EXPRESSION_T          where = searchFile(AFH,try_start,0,1,0,0);   
+707   344   IF                    if   
+707   345   EXPRESSION_T          (AFH != K_AFH)   
+707   346   CODE_IF_START         {   
+708   347   PFCALL                printf(" ferr AFH %d\n",AFH);   
+709   348   CODE_IF_END           }   
+710   349   CODE_IF_END           }   
+713   350   IF                    if   
+713   351   EXPRESSION_T          (where  == -1)   
+713   352   CODE_IF_START         {   
+715   353   PFCALL                printf("not found! %s ",nxttpt);   
+717   354   EXPRESSION_T          ok_to_compute = 0;   
+719   355   IF                    if   
+719   356   EXPRESSION_T          (!via_keyb)   
+719   357   CODE_IF_START         {   
+720   358   PFCALL                printf ("nxttpt not found %s",nxttpt);   
+721   359   EXPRESSION_T          exit(-1);   
+723   360   CODE_IF_END           }   
+725   361   CODE_IF_END           }   
+726   362   ELSE                  else   
+726   363   CODE_BLK_START        {   
+728   364   IF                    if   
+728   365   EXPRESSION_T          (GT_DB)   
+728   366   PFCALL                printf ("n_legs %d where %d found %s ",n_legs, where,nxttpt);   
+730   367   CODE_BLK_END          }   
+732   368   CODE_BLK_END          }   
+734   369   IF                    if   
+734   370   EXPRESSION_T          (more_legs)   
+734   371   CODE_IF_START         {   
+737   372   EXPRESSION_T          where = fseek(AFH,where,0);   
+739   373   EXPRESSION_T          n_legs++;   
+741   374   IF                    if   
+741   375   EXPRESSION_T          (GT_DB)   
+741   376   PFCALL                printf("n_legs %d where %d AFH %d\n",n_legs,where , AFH);   
+745   377   IF                    if   
+745   378   EXPRESSION_T          (via_keyb)   
+745   379   CODE_IF_START         {   
+747   380   PFCALL                pclFile(AFH);   
+749   381   CODE_IF_END           }   
+751   382   ELSE                  else   
+751   383   CODE_BLK_START        {   
+754   384   CODE_BLK_END          }   
+757   385   EXPRESSION_T          where  = seekLine(AFH,0);   
+765   386   IF                    if   
+765   387   EXPRESSION_T          (use_cup)   
+765   388   CODE_IF_START         {   
+769   389   EXPRESSION_T          nwr = Wval.readWords(AFH,0,44);   
+790   390   EXPRESSION_T          GT_Wtp[n_legs].TPCUPset(Wval);   
+798   391   EXPRESSION_T          AGL[n_legs] = GT_Wtp[n_legs].Alt;   
+803   392   CODE_IF_END           }   
+805   393   ELSE                  else   
+805   394   CODE_BLK_START        {   
+807   395   EXPRESSION_T          nwr = Wval.readWords(AFH);   
+812   396   EXPRESSION_T          GT_Wtp[n_legs].TPset(Wval);   
+821   397   CODE_BLK_END          }   
+825   398   CODE_IF_END           }   
+827   399   EXPRESSION_T          L1 = GT_Wtp[nl].Ladeg;   
+829   400   CODE_WHILE_END        }   
+835   401   DECLARE               float rtime = 0.0;   
+836   402   DECLARE               float tot_time = 0.0;   
+837   403   DECLARE               float rtotal = 0.0;   
+838   404   DECLARE               float nleg,wleg;   
+839   405   DECLARE               float agl,ght,pc_tot,alt;   
+841   406   IF                    if   
+841   407   EXPRESSION_T          (ok_to_compute)   
+841   408   CODE_IF_START         {   
+844   409   EXPRESSION_T          totalD = 0;   
+846   410   IF                    if   
+846   411   EXPRESSION_T          (show_title)   
+846   412   CODE_IF_START         {   
+849   413   EXPRESSION_T          printf(" ++++++++++++++++++++++++++++++*****++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n");   
+850   414   PFCALL                printf("Leg TP     ID    RADIO     AMSL            HDG         Dist    FGA          Dur      RunTotD RunTime  PC LAT LONG \n");   
+853   415   CODE_IF_END           }   
+855   416   DECLARE               int nl1=0;   
+857   417   FOR                   for   
+857   418   EXPRESSION_T          nl = 0;   
+857   419   EXPRESSION_T           nl < n_legs ;   
+857   420   EXPRESSION_T           nl++   
+857   421   CODE_BLK_START        {   
+863   422   EXPRESSION_T          L1 = GT_Wtp[nl].Ladeg;   
+864   423   EXPRESSION_T          ki = nl+1;   
+865   424   EXPRESSION_T          L2 = GT_Wtp[nl+1].Ladeg;   
+865   425   COMMENT               //  TBF icode   
+869   426   EXPRESSION_T          lo1 = GT_Wtp[nl].Longdeg;   
+871   427   EXPRESSION_T          lo2 = GT_Wtp[(nl+1)].Longdeg;   
+871   428   COMMENT               // TBF   
+878   429   EXPRESSION_T          tkm = HowFar(lo1 ,L1, lo2, L2);   
+881   430   EXPRESSION_T          tkm2 = HowFar( GT_Wtp[nl].Longdeg , GT_Wtp[nl].Ladeg, GT_Wtp[nl+1].Longdeg, GT_Wtp[nl+1].Ladeg);   
+891   431   EXPRESSION_T          TKM[nl] = tkm;   
+893   432   EXPRESSION_T          Leg[nl] = tkm;   
+895   433   EXPRESSION_T          GT_Wleg[nl].dist = tkm;   
+897   434   IF                    if   
+897   435   EXPRESSION_T          (Units == "NM")   
+897   436   CODE_IF_START         {   
+899   437   EXPRESSION_T          GT_Wleg[nl].dist = tkm * km_to_nm;   
+901   438   CODE_IF_END           }   
+903   439   ELSE_IF               else if   
+903   440   EXPRESSION_T          (Units == "SM")   
+903   441   CODE_BLK_START        {   
+905   442   EXPRESSION_T          GT_Wleg[nl].dist = tkm * km_to_sm;   
+907   443   CODE_BLK_END          }   
+912   444   EXPRESSION_T          nl1 = nl + 1;   
+917   445   EXPRESSION_T          tcd =  ComputeTC(GT_Wtp,nl, nl+1);   
+917   446   COMMENT               // this should work   
+921   447   EXPRESSION_T          L1 = GT_Wtp[nl].Ladeg;   
+923   448   EXPRESSION_T          L2 = GT_Wtp[nl+1].Ladeg;   
+925   449   EXPRESSION_T          lo1 = GT_Wtp[nl].Longdeg;   
+927   450   EXPRESSION_T          lo2 = GT_Wtp[nl+1].Longdeg;   
+932   451   EXPRESSION_T          tcd = TrueCourse(lo1,L1,lo2,L2);   
+937   452   EXPRESSION_T          TC[nl] = tcd;   
+941   453   EXPRESSION_T          Dur[nl] = tkm / Cruise_speed;   
+944   454   EXPRESSION_T          totalDur += Dur[nl];   
+946   455   EXPRESSION_T          totalD += tkm;   
+952   456   CODE_BLK_END          }   
+955   457   EXPRESSION_T          wk = 0    // TBF 6/21/24 sac to int wk = 0;   
+957   458   EXPRESSION_T          tplen  =tpb.slen();   
+959   459   DECLARE               Str ws =  nsc((10-tplen)," ");   
+961   460   DECLARE               int idlen = ident.slen();   
+963   461   DECLARE               Str wsi= nsc((10-idlen)," ");   
+966   462   EXPRESSION_T          tct = 0.0;   
+968   463   EXPRESSION_T          dct = 0.0;   
+970   464   EXPRESSION_T          rmsl = 0.0;   
+972   465   EXPRESSION_T          msl = 0.0;   
+974   466   EXPRESSION_T          pc_tot = 0.0;   
+982   467   EXPRESSION_T          k_tp = 1;   
+986   468   EXPRESSION_T          msl =  GT_Wtp[k_tp].Alt;   
+988   469   EXPRESSION_T          rmsl = AGL[k_tp];   
+991   470   EXPRESSION_T          rtotal = 0;   
+993   471   FOR                   for   
+993   472   EXPRESSION_T          nl = 0;   
+993   473   EXPRESSION_T           nl <= n_legs ;   
+993   474   EXPRESSION_T           nl++   
+993   475   CODE_BLK_START        {   
+995   476   IF                    if   
+995   477   EXPRESSION_T          (nl == 0)   
+995   478   CODE_IF_START         {   
+997   479   EXPRESSION_T          the_leg = Leg[0];   
+999   480   EXPRESSION_T          pc_tot = 0.0;   
+1001  481   CODE_IF_END           }   
+1003  482   ELSE                  else   
+1003  483   CODE_BLK_START        {   
+1005  484   EXPRESSION_T          the_leg = Leg[nl-1];   
+1007  485   EXPRESSION_T          pc_tot = 0.0;   
+1009  486   IF                    if   
+1009  487   EXPRESSION_T          (totalD > 0)   
+1009  488   CODE_IF_START         {   
+1011  489   EXPRESSION_T          pc_tot = the_leg/totalD * 100.0;   
+1013  490   EXPRESSION_T          GT_Wleg[nl].pc = pc_tot;   
+1015  491   CODE_IF_END           }   
+1017  492   CODE_BLK_END          }   
+1019  493   EXPRESSION_T          nleg = the_leg * km_to_nm;   
+1021  494   EXPRESSION_T          alt =  GT_Wtp[nl].Alt;   
+1023  495   EXPRESSION_T          msl = alt;   
+1025  496   EXPRESSION_T          ght = (Leg[nl] * km_to_feet) / LoD;   
+1027  497   IF                    if   
+1027  498   EXPRESSION_T          (nl == n_legs)   
+1027  499   CODE_IF_START         {   
+1029  500   EXPRESSION_T          agl = 1200 + msl;   
+1031  501   CODE_IF_END           }   
+1033  502   ELSE                  else   
+1033  503   CODE_BLK_START        {   
+1034  504   EXPRESSION_T          wk = nl +1;   
+1035  505   EXPRESSION_T          rmsl =  GT_Wtp[wk].Alt;   
+1036  506   EXPRESSION_T          agl = ght + 1200.0 + rmsl;   
+1039  507   CODE_BLK_END          }   
+1041  508   EXPRESSION_T          GT_Wtp[nl].fga = agl;   
+1043  509   EXPRESSION_T          tpb = GT_Wtp[nl].Place;   
+1049  510   EXPRESSION_T          ident = GT_Wtp[nl].Idnt;   
+1051  511   EXPRESSION_T          li = nl;   
+1053  512   IF                    if   
+1053  513   EXPRESSION_T          (Units == "KM")   
+1053  514   CODE_IF_START         {   
+1055  515   EXPRESSION_T          wleg = the_leg ;   
+1057  516   CODE_IF_END           }   
+1059  517   ELSE                  else   
+1059  518   CODE_BLK_START        {   
+1061  519   EXPRESSION_T          wleg = nleg ;   
+1063  520   CODE_BLK_END          }   
+1066  521   IF                    if   
+1066  522   EXPRESSION_T          (li > 0)   
+1066  523   CODE_IF_START         {   
+1068  524   EXPRESSION_T          rtime = Dur[li-1];   
+1070  525   CODE_IF_END           }   
+1074  526   IF                    if   
+1074  527   EXPRESSION_T          (li == 0)   
+1074  528   CODE_IF_START         {   
+1076  529   EXPRESSION_T          wleg = 0.0;   
+1080  530   CODE_IF_END           }   
+1082  531   EXPRESSION_T          rtotal += GT_Wleg[li].dist;   
+1087  532   EXPRESSION_T          tot_time += Dur[li];   
+1089  533   EXPRESSION_T          pc_tot = GT_Wleg[li].dist/totalD * 100.0;   
+1091  534   EXPRESSION_T          GT_Wleg[li].pc = pc_tot;   
+1102  535   EXPRESSION_T          cprintf("%d  %-10S %-5S %-8S  %6.0fft  ",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Radio,GT_Wtp[li].Alt);   
+1108  536   PFCALL                printf("\t%6.0f ",TC[li]);   
+1109  537   PFCALL                printf("\t%5.1f ",GT_Wleg[li].dist);   
+1110  538   PFCALL                printf("%6.0fft ",GT_Wtp[li].fga);   
+1116  539   PFCALL                printf("\t%6.2f",Dur[li]);   
+1118  540   PFCALL                printf("\t%6.2f %6.2f ",rtotal,tot_time);   
+1119  541   PFCALL                printf("\t%6.2f%% ",GT_Wleg[li].pc);   
+1124  542   PFCALL                printf("%s %s \n",GT_Wtp[li].Lat.cptr(),GT_Wtp[li].Lon.cptr());   
+1131  543   CODE_BLK_END          }   
+1133  544   IF                    if   
+1133  545   EXPRESSION_T          (show_dist)   
+1133  546   CODE_IF_START         {   
+1139  547   EXPRESSION_T          printf("\tTotal distance\t %8.2f km\t%8.2f sm\t%6.2f  nm  LOD %6.1f  \n", totalD,(totalD*km_to_sm),(totalD*km_to_nm),LoD);   
+1142  548   PFCALL                printf("\tCruise speed %f kmh\n",Cruise_speed);   
+1143  549   EXPRESSION_T          printf("\ttotalD  %6.2f km to fly - %6.2f hrs - bon voyage!\n ", totalD, totalDur);   
+1145  550   CODE_IF_END           }   
+1147  551   ELSE                  else   
+1147  552   CODE_BLK_START        {   
+1151  553   CODE_BLK_END          }   
+1153  554   CODE_IF_END           }   
+1178  555   FUNCTION              codeend();   

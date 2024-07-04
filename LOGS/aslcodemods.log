@@ -2163,3 +2163,9 @@ gscom_debug.cpp                     1.77  06/24/2024 19:03:42  init_cpp()
 vmf_svar.cpp                        1.29  06/26/2024 22:30:41  added clear index ot index -1 all fields
 debug.h                             2.3  06/28/2024 19:00:50  Wffl has comment parameter
 stack.h                             1.6  06/28/2024 21:33:25  popDoubleStackVal correct return
+vec.h                               1.12  06/29/2024 03:09:20  set siv parent bounds
+ic_wic.cpp                          1.80  06/30/2024 13:16:25  set wic debug file
+ic_print.cpp                        1.64  06/30/2024 13:16:55  
+spe_declare.cpp                     2.42  06/30/2024 14:04:05  fillSvar parse mbf
+vec.h                               1.13  07/03/2024 18:26:22  adapted for Vec of Strs - but needs more 
+version.cpp                         1.21  07/04/2024 20:46:36  xgs bump

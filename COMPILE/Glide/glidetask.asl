@@ -16,28 +16,23 @@
 //#include "debug.asl"
 
  
+
+
+#define __CPP__ 0
+
+
 #define DB_IT    0
 #define GT_DB   0
 
-#define __ASL__ 0
-#define __CPP__ 0
+#if __ASL__
 
 _dblevel  = 1
-<<" asl $(__ASL__)  CPP $(__CPP__)  TRANS $_dblevel\n"
 
 
 
-#if 1
-// this include  when cpp compiling will re-define __ASL__ 0 and __CPP__ 1
-//#include "compile.asl"
-#undef __ASL__
-#define __ASL__ 1
-<<" doing TRANS $(__ASL__)\n"
+//dans=ask(" ASL CPP ",1)
 
 #endif
-
-<<" asl $(__ASL__)  CPP $(__CPP__)  TRANS $_dblevel\n"
-dans=ask(" ASL CPP ",1)
 
 #if __CPP__
 #include <iostream>
@@ -71,6 +66,8 @@ using namespace std;
 
  ignoreErrors();
  //echolines(0)
+ Svar argv = _argv;  // allows asl and cpp to refer to clargs
+ argc = argc();
 
 #endif
 
@@ -111,7 +108,7 @@ float Dur[20];
   float msl;
   int nl,li;
   Str ident;
-  
+  Str byfile;
   n_legs = 0;
   n_tp = 0;
   k_tp= 0;
@@ -154,27 +151,17 @@ float Dur[20];
   long where ;
 /////////////////////////////////////
 
- Svar sargs;
+ 
 
 #if __CPP__
 int main( int argc, char *argv[] ) { // main start
-   for (int i= 0; i <argc; i++) {
-     sargs.cpy(argv[i],i);
-   }
+
    init_cpp();
-   k = 0
+   cout << "Running CPP  " << argv[0] << endl;
 #endif
 
   int na;
 
-
-
-#if __ASL__
-
-  na = _clargc
-  sargs = _clarg
-
-#endif
 
   ignoreErrors(); // put in glide.h ??
 
@@ -208,7 +195,7 @@ int main( int argc, char *argv[] ) { // main start
 
   Str tlon;
   Str tplace;
-  Svar CLTPT;
+//  Svar CLTPT;
   Svar Wval;
   Svar Wval2;  
 
@@ -258,17 +245,8 @@ int main( int argc, char *argv[] ) { // main start
 
 //main
 
-
-    //na = sargs.getNarg(); // TBC no asl version??
-
-
-#if __CPP__
   na = argc;
-#endif
 
-#if __ASL__
-  na = _clargc;
-#endif  
 
   //printf(" na %d\n",na);
 
@@ -285,40 +263,20 @@ int main( int argc, char *argv[] ) { // main start
 
 
   //<<" %V $LoD \n";
-#if __ASL__
-  ac =1;
-#endif
-
 
 
 while (ac < na) {
 
   istpt = 1;
 
-#if __ASL__
-  targ = _argv[ac];
-#endif
-
-#if __CPP__
   targ = argv[ac];
-#endif
 
 
+ //printf("ac %d targ %s\n",ac,targ);
+ //targ.pinfo();
 
+  //dans=ask(" $targ ",1) 
 
-#if GT_DB
- printf("ac %d targ %s\n",ac,targ);
- targ.pinfo();
- ans=ask("%V $ac $targ\n",0)
-#endif
- 
-
-
-/*
- targ.pinfo();
-  ok= targ.aslcheckinfo("GLOBAL");
- <<" $ok   targ is a GLOBAL \n";
-*/
 
   sz = targ.slen();
 
@@ -333,7 +291,7 @@ while (ac < na) {
   
   if (targ == "LD") {
 
-    targ = sargs[ac];  // for CPP copy argv to svar sa
+    targ = argv[ac];  // for CPP copy argv to svar sa
 
 
     LoD= atof(targ);
@@ -355,7 +313,7 @@ while (ac < na) {
       //targ.pinfo();  // print variable status
       // isthere = targ.checkVarInfo("SI_PROC_REF_ARG")  ;  // check variable status for this string
 
-     targ = sargs[ac];
+     targ = argv[ac];
      
 
   if (targ == "KM") {
@@ -377,7 +335,7 @@ while (ac < na) {
 
   if (targ == "CS") {
 
-       targ = sargs[ac]  ; // should work index Svar array? TBC 6/17/24 
+       targ = argv[ac]  ; // should work index Svar array? TBC 6/17/24 
       //targ = sargs.cptr(ac);
       
 
@@ -399,8 +357,7 @@ while (ac < na) {
 
   via_file = 1;
 
-  byfile = sargs[ac];  
-//     byfile = sargs.cptr(ac); // TBF 6/19/24 sjould sac to Str byfile
+  byfile = argv[ac];  
 
   ac++;
 	//<<" opening taskfile $byfile \n"
@@ -411,7 +368,6 @@ while (ac < na) {
 
    printf ("file error");
    exit(-1);
-
 
    }
 
@@ -460,26 +416,6 @@ while (ac < na) {
 
  // 
 
-
-
-#if __ASL__
-  //CLTPT[cltpt] = targ;   // TBF 02/24/22
-
-//<<"%V $targ $cltpt \n"
-
-   CLTPT.cpy(targ,cltpt);
-
-   if (GT_DB)  {
-    <<"%V $targ $sz $cltpt $CLTPT[cltpt] \n"
-    <<"CLTPTs  $CLTPT\n"
-    }
-    
-#else
- CLTPT.cpy(targ,cltpt);
- if (CPP_DB) cout  <<"cltpt "<< cltpt  <<" CLTPT[cltpt] "<< CLTPT[cltpt]  <<endl ; 
-#endif
-
-
    cltpt++;
 
    }
@@ -512,11 +448,7 @@ while (ac < na) {
  int got_start = 0;
  int K_AFH = AFH;
  
- cnttpt = 0;
-// if CPP cnttpt should be 1 ?
-#if __CPP__
-   cnttpt = 1;
-#endif
+ cnttpt = 1;
 
  while ( !got_start) {
 
@@ -529,17 +461,12 @@ while (ac < na) {
 
   if (via_cl) {
 
-  the_start = CLTPT[cnttpt];
+  the_start = argv[cnttpt];
   
 #if GT_DB
-  <<"$the_start $cnttpt $CLTPT[cnttpt] \n"
+  <<"$the_start $cnttpt $argv[cnttpt] \n"
 #endif
 
-#if CPP_DB
-
-    cout << the_start << "  " << cnttpt  << endl;
-
-#endif
 
   cnttpt++;
 
@@ -563,6 +490,9 @@ while (ac < na) {
   break;
 
   }
+<<" %V is $the_start \n"
+
+//dans=ask(" $the_start ",1)
 
   i=searchFile(AFH,the_start,0,1,0,0);
 
@@ -705,7 +635,7 @@ while (ac < na) {
 
   if (via_cl) {
 
-  nxttpt = CLTPT[cnttpt];
+  nxttpt = argv[cnttpt];
 
 
 #if GT_DB
@@ -895,23 +825,8 @@ while (ac < na) {
   }
 
   L1 = GT_Wtp[nl].Ladeg;
- // printf("n_legs [%d] L1 %f\n",n_legs, L1);
-   //<<"$GT_Wtp[n_legs].Place \n";
-  //ans=query("??");
+
 }
-
-
-
-
-    //      prompt("%v $more_legs next turn %-> ")
-// compute legs
- //<<"compute \n"
-
-//  ild= abs(LoD);
-
-//  <<"%V  $CSK knots $Cruise_speed kmh\n";
-  //cout  <<"CSK "<< CSK  << "knots "  <<"Cruise_speed "<< Cruise_speed  << "kmh "  <<endl ;
-//  ans=query("show");
 
   
 // get totals
@@ -923,8 +838,6 @@ while (ac < na) {
   float nleg,wleg;
   float agl,ght,pc_tot,alt;
 
- 
-
   if (ok_to_compute) {
    //computeHTD()
 
@@ -933,7 +846,7 @@ while (ac < na) {
   if (show_title) {
   
 
-  printf(" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n");
+  printf(" ++++++++++++++++++++++++++++++*****++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n");
  printf("Leg TP     ID    RADIO     AMSL            HDG         Dist    FGA          Dur      RunTotD RunTime  PC LAT LONG \n");
 
 

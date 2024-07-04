@@ -2,14 +2,15 @@
  *  @script colors.asl                                                  
  * 
  *  @comment test color selection                                       
- *  @release Boron                                                      
- *  @vers 1.6 C Carbon [asl 5.85 : B At]                                
- *  @date 03/10/2024 10:32:29                                           
+ *  @release Carbon                                                     
+ *  @vers 1.7 N Nitrogen [asl 6.41 : C Nb]                              
+ *  @date 07/04/2024 23:23:58                                           
  *  @cdate Sun Mar 22 11:05:34 2020                                     
  *  @author Mark Terry                                                  
  *  @Copyright © RootMeanSquare 2024 -->                               
  * 
  */ 
+
 
 //-----------------<V_&_V>------------------------//
 
@@ -193,17 +194,16 @@ sWi(_WOID,vp3,_WREDRAW,ON_);
 <<"%(,,\,,)4.2f$frgb \n"
 
 
-//  sWo(rgbwo,_CSV,"0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,\
-//           0.65,0.7,0.75,0.8,0.85,0.9,0.95,1.0", 20,_REDRAW)
 
      cvals= "0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1.0"
 
-i=0;
+     i=0;
+
     while (rgbwo[i] >0 ) {
 
 //sWo(_WOID, rgbwo[i],_CSV,"%(,,\,,)4.2f$frgb",20,_WREDRAW,ON_)
 
-sWo(_WOID,rgbwo[i++],_CSV,cvals,20,_WREDRAW);
+     sWo(_WOID,rgbwo[i++],_CSV,cvals,20,_WREDRAW);
       <<"%V$i $rgbwo[i]\n"
 
     }
@@ -292,7 +292,7 @@ int htwo[4]
 <<"%V $redv $greenv $bluev \n"
  rwoval.pinfo()
 <<"%V $rwoval $gwoval $bwoval \n"
- ans = ask("$redv $rwoval ",1)
+ //ans = ask("$redv $rwoval ",1)
 
 
 i= 0;
@@ -328,13 +328,17 @@ txw = txr.getTxt()
 <<"%V $txw\n"
 
 
-
+   int ke=0;
    while (1) {
 
     eventWait()
+    ke++;
+    
+      rwoval = wogetValue(rwo)
+      gwoval = wogetValue(gwo)
+      bwoval = wogetValue(bwo)      
 
-    rval   = wogetValue(rwo);
-
+<<"GOT EVENT %V $ke  $GEV_button $GEV_woid $rwoval $gwoval $bwoval \n"
 
    sWo(_WOID,rwo,_WBHUE,r_index,_WCLEARCLIP,r_index,_WCLIPBORDER,RED_);
    sWo(_WOID,rwo,_WBHUE,r_index,_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f Red $redv ",0.1,0.21,_WCLIPBORDER,RED_);
@@ -345,8 +349,50 @@ txw = txr.getTxt()
    sWo(_WOID,bwo,_WBHUE,b_index,_WCLEARCLIP,b_index,_WCLIPBORDER,RED_);
    sWo(_WOID,bwo,_WBHUE,b_index,_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f Blue $bluev ",0.1,0.21,_WCLIPBORDER,RED_);
 
+   if (GEV_woid == rwo) {
 
-   if (GEV_woid == nxtcolwo) {
+     if (GEV_button == LEFT_) {
+           redv += 0.1
+	}
+	else {
+	   redv -= 0.1
+        }
+
+        redv = limitval(redv,0.0,1.0)
+
+   }
+
+   else if (GEV_woid == gwo) {
+     if (GEV_button == LEFT_) {
+           greenv += 0.1
+	}
+	else {
+	   greenv -= 0.1
+        }
+
+          greenv = limitval(greenv,0.0,1.0)
+
+   }
+
+   else if (GEV_woid == bwo) {
+
+     if (GEV_button == LEFT_) {
+           bluev += 0.1
+	}
+	else {
+	   bluev -= 0.1
+        }
+
+          bluev = limitval(bluev,0.0,1.0)
+
+
+   }
+
+
+
+
+
+if (GEV_woid == nxtcolwo) {
 <<"just next $cindex \n"
     cindex++
     rgb = getRGB(cindex)
@@ -374,14 +420,9 @@ txw = txr.getTxt()
 
   sWo(_WOID,rwo,_WVALUE,redv)
   sWo(_WOID,bwo,_WVALUE,bluev)
-    sWo(_WOID,gwo,_WVALUE,-4.5)
+  sWo(_WOID,gwo,_WVALUE,greenv)
   
-      rwoval = wogetValue(rwo)
-      gwoval = wogetValue(gwo)
-      bwoval = wogetValue(bwo)      
- rwoval.pinfo()
- 
-<<"%V $rwoval $gwoval $bwoval \n"
+
   // sWo(rgbwo,_redraw)
   // TBC ?
    sWo(_WOID,two,_WCLEAR,ON_,_wtextr," RGB %V %6.2f $redv $greenv $bluev",0,0.5); 
@@ -431,33 +472,43 @@ txw = txr.getTxt()
 
    //windex++
 
-   sWo(_WOID,htwo[3],_WBHUE,rgb_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,rgb_index,_WCLIPBORDER,RED_);
-   
-     sWo(_WOID,awo[3],_WBHUE,rgb_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,rgb_index,_WTEXTR,"%6.2f Red $redv Green $greenv Blue $bluev ",0.1,0.61,_WCLIPBORDER,RED_);
-     sWo(_WOID,awo[3],_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f ReD $redv Green $greenv Blue $bluev ",0.1,0.21,_WCLIPBORDER,RED_);     
-
-          sWo(_WOID,awo[0],_WBHUE,rg_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,rg_index,_WCLIPBORDER,RED_);
-
-     sWo(_WOID,awo[0],_WTEXTHUE,BLACK_,_WTEXTR,"%6.1f Red $redv Green $greenv  ",0.1,0.61,_WCLIPBORDER,RED_);
-     sWo(_WOID,awo[0],_WTEXTHUE,WHITE_,_WTEXTR,"%6.1f Red $redv Green $greenv  ",0.1,0.21,_WCLIPBORDER,RED_);     
 
 
-          sWo(_WOID,awo[1],_WBHUE,rb_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,rb_index,_WCLIPBORDER,RED_);
+
+    sWo(_WOID,awo[0],_WBHUE,rg_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,rg_index,_WCLIPBORDER,RED_);
+
+     sWo(_WOID,awo[0],_WTEXTHUE,BLACK_,_WTEXTR,"%6.2f Red $redv Green $greenv  ",0.1,0.61,_WCLIPBORDER,RED_);
+
+     sWo(_WOID,awo[0],_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f Red $redv Green $greenv  ",0.1,0.21,_WCLIPBORDER,RED_);     
 
 
-     sWo(_WOID,awo[1],_WTEXTHUE,BLACK_,_WTEXTR, " REd $redv Blue $bluev  ",0.1,0.61,_WCLIPBORDER,RED_);
+     sWo(_WOID,awo[1],_WBHUE,rb_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,rb_index,_WCLIPBORDER,RED_);
 
-     sWo(_WOID,awo[1],_WTEXTHUE,WHITE_,_WTEXTR,"%d Red $redv BlUe $bluev  ",0.1,0.21,_WCLIPBORDER,RED_);     
+     sWo(_WOID,awo[1],_WTEXTHUE,BLACK_,_WTEXTR, "%6.2f Red $redv Blue $bluev  ",0.1,0.61,_WCLIPBORDER,RED_);
+
+     sWo(_WOID,awo[1],_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f  Red $redv Blue $bluev  ",0.1,0.21,_WCLIPBORDER,RED_);     
+
 
      sWo(_WOID,awo[2],_WBHUE,gb_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,gb_index,_WCLIPBORDER,RED_);
+
+     //sWo(_WOID,awo[2],_WTEXTR,txr,_WCLIPBORDER,RED_);
+     
+     sWo(_WOID,awo[2],_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f Green $greenv Blue $bluev  ",0.1,0.21,_WCLIPBORDER,RED_);
+
+     sWo(_WOID,awo[2],_WTEXTHUE,BLACK_,_WTEXTR,"%6.2f Green $greenv Blue $bluev  ",0.1,0.61,_WCLIPBORDER,RED_);     
+
+
+    sWo(_WOID,awo[3],_WBHUE,rgb_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,rgb_index,_WCLIPBORDER,RED_);
+
+     sWo(_WOID,awo[3],_WTEXTHUE,BLACK_,_WTEXTR,"%6.2f Red $redv Green $greenv Blue $bluev ",0.1,0.61,_WCLIPBORDER,RED_);
+     
+     sWo(_WOID,awo[3],_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f Red $redv Green $greenv Blue $bluev ",0.1,0.21,_WCLIPBORDER,RED_);     
 
      // use Textr asl function to process the text parameters during the sWo call --  compatible with  cpp version
      // which uses a Textr object and passes that via this pointer
      //   so this still looks like and tag, value pair to both asl and cpp
 
-     sWo(_WOID,awo[2],_WTEXTR,txr,_WCLIPBORDER,RED_);
-     
-     sWo(_WOID,awo[2],_WTEXTR,"%6.2f GreeN $greenv Blue $bluev  ",0.1,0.21, WHITE_,_WCLIPBORDER,RED_);     
+ 
 
     <<"%V $GEV_woid  $qwo \n"
 

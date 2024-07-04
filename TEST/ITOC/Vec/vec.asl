@@ -17,7 +17,7 @@
 #if __ASL__
 Str Use_= " Demo  of test vec class      ";
 
-  allowDB("spe_declare,ic_",1)
+  allowDB("spe_declare,ic_,prep_",1)
 
 #include "debug" 
 
@@ -51,30 +51,40 @@ using namespace std;
 
   chkT(1);
 
-  int ka = 23;
+  ka = 23
 
-  n = 12;
 
 //  n.pinfo();
 
-  m = 128;
+  m = 128
+  
+  n= 10;
+  Vec U92(<int >,n,m,1) ;
+  U92.pinfo();  
+  <<"U92 \n"
+  
+  Vec<int> V1(12,32,1);  // TBF 6/26/24  trans ===> Vec<int> V(12,255,0)
 
-  Vec U(int_,n,m,1) ;
+ // Vec U1(INT_,n,m,1) ;
+
+//  U1.pinfo()
+
+
 //NIF 11/05/21 - declare via function
 
-  U.pinfo();
 
+  Vec U(<int>,n,m,1) ;
 
   chkN(U[0],128);
 
-  chkN(U[11],139);
+  chkN(U[9],137);
 
 
  // type  num_of_vals, initial_value , step_value
 
 
-  Vec V(<int>,12,32,1);  // TBF 6/26/24  trans ===> Vec<int> V(12,255,0);
-
+  Vec V(< int>,12,32,1);  // TBF 6/26/24  trans ===> Vec<int> V(12,255,0);
+  // does  Vec V(int,12,32,1)  work or can be parsed correctly also < int > ?
   V.pinfo();
 
   chkN(V[0],32);
@@ -85,7 +95,7 @@ using namespace std;
 
 
 
-  n= 10;
+
 
  // Vec D(double_,n,0.1,0.1) ;
   Vec D(<double>,n,0.1,0.2,1) ;
@@ -130,7 +140,6 @@ using namespace std;
   chkN(C[0],1);
 
   chkN(C[n-1],10);
-
 
 ///
 

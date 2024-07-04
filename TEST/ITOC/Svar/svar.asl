@@ -43,13 +43,35 @@ Str Use_= "Demo svar type use";
 
    Svar E[] = { "the first ten elements are:", "H", "He", "Li", "Be" ,"B" ,"C", "N", "O", "F", "Ne"  };
 
-   <<"$E\n";
+   E.pinfo()
 
+
+   <<"$E\n";
+   <<"$E[0] \n";
    <<"$E[1] \n";
+
+   boron = E[5]
+
+<<"%V $boron $E[5] \n"
+
+
+   E[1] = "Hydrogen";
+
+
 
    E.pinfo();
 
-   ans=ask("Svar array filled OK",db_ask)
+   
+
+   chkStr(boron,"B")
+   chkStr(boron,E[5])
+
+
+
+ans=ask("Svar array filled OK",db_ask)
+
+
+
    Str eles;
    W= E[3:7];
 
@@ -839,67 +861,6 @@ chkN(IV3[0], 79);
 
   }
 //===============================//
-//======================
-/*
-  class Turnpt
-  {
-  public:
-  str Lat;
-  str Lon;
-  str Place;
-  str Idnt;
-  str rway;
-  str tptype;
-  str Cltpt;
-  float Radio;
-  float Alt;
-  float Ladeg;
-  float Longdeg;
-//  method list
-  cmf Set (svar wval)
-  {
-  <<"$_proc $(typeof(wval)) $wval[::] \n"
-//<<"%V$_cproc  %i$_cobj   %i$wval \n"
-     //sz = wval->Caz()
-  sz = Caz(wval);
- // <<"%V$sz \n"
-  <<"$sz 0: $wval[0] 1: $wval[1] 2: $wval[2] 3: $wval[3] 4: $wval[4] \n"
-      //   <<"$wval[0]\n"
-       //  <<"$(typeof(wval))\n"
-       //ans = iread("-->");
-  Place = wval[0];
-  <<"%V$Place\n"
-  Idnt =  wval[1];
-  <<"%V$Idnt\n"
- //    <<"%V$wval[2]\n"
-  Lat = wval[2];
-     //   <<"%V$Lat  <| $wval[2] |>\n"
-     //   <<"%V$wval[3]\n"	 
-  Lon = wval[3];
-     //       <<"%V$Lon  <| $wval[3] |>\n" 
-  Alt = wval[4];
-  rway = wval[5];
-  Radio = atof(wval[6]);
-  tptype = wval[7];
-  <<"%V$Lat $Lon \n"
-     //  <<" $(typeof(Lat)) \n"
-     // <<" $(typeof(Lon)) \n"
-     //  <<" $(typeof(Ladeg)) \n"	 
-  Ladeg =  getDeg(Lat);
-     //       <<" $(typeof(Longdeg)) \n"	 
-  Longdeg = getDeg(Lon);
-  <<"%V $Ladeg $Longdeg \n"
-  }
-  }
-//=================================
-  P=split("Jamestwn    	jmt	40,07.00,N	105,24.00,W	8470	0/0	_	T ");
-  P.pinfo()
-  pSv(P)
-  Turnpt  Tp;
-  Tp->Set(P);
-  P= Split("AngelFire    	AXX	36,24.75,N	105,18.00,W	8383	17/35	122.8	TA")
-  Tp->Set(P);
- */
 
 
   chkStage("Proc");

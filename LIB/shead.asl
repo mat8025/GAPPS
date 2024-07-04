@@ -2,14 +2,15 @@
  *  @script shead.asl                                                   
  * 
  *  @comment shead.asl                                                  
- *  @release CARBON                                                     
- *  @vers 1.10 Ne Neon [asl 6.4.31 C-Be-Ga]                             
- *  @date 06/17/2022 07:53:06                                           
+ *  @release Carbon                                                     
+ *  @vers 1.11 Na Sodium [asl 6.40 : C Zr]                              
+ *  @date 06/30/2024 14:43:37                                           
  *  @cdate Sun Dec 23 09:23:42 2018                                     
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare 2022 -->                               
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
  * 
  */ 
+
 //----------------<v_&_v>-------------------------//                 
 
 
@@ -127,6 +128,7 @@ chkIn(_dblevel);
 ///  cpp template
 ///  date 
 
+<<"%V $na \n"
 
    if (na > 2) {
     comment = _clarg[2];
@@ -136,9 +138,11 @@ chkIn(_dblevel);
 
 
    if (na > 3) {
+   
     set_vers = 1;   
     new_vers = _clarg[3];
-// should be maj.min e.g 1.1 ,6.1, ... limits 1 to 100  
+// should be maj.min e.g 1.1 ,6.1, ... limits 1 to 100
+<<"new_vers set to $new_vers \n"
    }
 
    if (na > 4) {
@@ -191,7 +195,7 @@ chkIn(_dblevel);
    T=readfile(A);
    tsz= Caz(T);
 
-   fseek(A,0,0);
+
 
    found_vers =0;
   Str R;
@@ -281,6 +285,11 @@ chkIn(_dblevel);
 
 <<" end of current header is $where \n";
 
+  if (!found_vers) {
+<<" No Header - back to start of file for body \n"
+   fseek(A,0,0);
+  }
+
   T.clear()
 
   B=ofw("body");
@@ -290,8 +299,6 @@ chkIn(_dblevel);
   
          T = readline(A);
          <<[B]"$T[0]";
-	// <<"<||$T[0]||>"
-       // ans=ask("? $kl one-line?  ")	 
 	 if (feof(A)) {
 	     break;
 	 }
@@ -323,13 +330,16 @@ chkIn(_dblevel);
   }
    
 // allines should be padded out to 70
- vers2ele(cvers)
+ if (found_vers) {
+   vers2ele(cvers)
+ 
     pmin++;
    
    if (pmin > 100) {
        pmin =1;
        pmaj++;
    }
+ }
 
  vers="@vers ${pmaj}.$pmin $min_ele $min_name [asl $(getversion())]"
 
@@ -387,7 +397,12 @@ new_main = 1
 <<[A]"\n#define __CPP__ 0\n\n"
 
 <<[A]"#if __ASL__\n"
-<<[A]"\Str Use_= \" Demo  of $comment \";";
+<<[A]"\n Str Use_= \" Demo  of $comment \";\n";
+
+
+<<[A]"\n Svar argv = _argv;  // allows asl and cpp to refer to clargs\n"
+<<[A]" argc = argc();\n"
+
 <<[A]"\n\n#include \"debug\" \n\n"
 
 <<[A]"  if (_dblevel >0) { \n"

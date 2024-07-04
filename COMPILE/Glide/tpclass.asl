@@ -410,12 +410,8 @@ cmf Turnpt()
         //<<"$_proc %V $j $k\n";   // TBF 6/20/24  wtp[] syntax does not get j or k
   //wtp.pinfo();
 
- float L1,L2,lo1,lo2,km,tc;   // TMP fix
-
-        km = 0.0;  // TBF 6/21/24 should sac to double does not -- in PROC ??
-
-        tc = 0.0;
-
+ float L1,L2,lo1,lo2;   // TMP fix
+ float tc;
 
         L1 = wtp[j].Ladeg;  // TBF 6/21/24  does not look up Turnpt mbr Ladeg
 
