@@ -14,46 +14,77 @@
 
 //-----------------<V_&_V>------------------------//
 
-Str Use_= " Demo  of test color selection ";
-
-#define _CPP_ 0
 
 
+
+#define __CPP__ 0
+
+#if __ASL__
 #include "debug" 
 
   if (_dblevel >0) { 
    debugON() 
-   <<"$Use_ \n" 
-} 
+  } 
 
    allowErrors(-1); // set number of errors allowed -1 keep going 
 
+
+ Svar argv = _argv;  // allows asl and cpp to refer to clargs
+ argc = argc();
+
+
+
   chkIn(_dblevel) ;
 
-  chkT(1);
 
- 
 
+#endif
+
+
+#if __CPP__
+#include <iostream>
+#include <ostream>
+
+using namespace std;
+#include "vargs.h"
+#include "utils.h"
+#include "vec.h"
+//#include "uac.h"
+#include "cppi.h"
+#include "consts.h"
+#define PXS  cout<<
+
+// GRAPHICS
+#include "gline.h"
+#include "glargs.h"
+#include "winargs.h"
+#include "woargs.h"
+#include "gevent.h"
+#include "event.h"
+#include  "textr.h"
+#endif
+
+Str Use_= " Demo  of test color selection ";
 
 // goes after procs
-#if _CPP_
-int main( int argc, char *argv[] ) { // main start 
+#if __CPP__
+int main( int argc, char *argv[] ) { // main start
+
+   init_cpp();
+   cout << "Running CPP  " << argv[0] << endl;
 #endif       
 //
 // Show some colors
 //
 
 
-
-#define _ASL_ 1
-
 Graphic = checkGWM()
 
   if (!Graphic) {
-    Xgm = spawnGWM()
+    Xgm = spawnGWM("colors")
   }
 
-openDll("image");
+  openDll("image");
 
 int index = 150;
 int rgb_index =  index++;  // place this outside of most colors
@@ -63,27 +94,27 @@ int gb_index = index++
 int r_index = index++
 int g_index = index++
 int b_index = index++
-
+int k = 0
 
  redv = 0.5;
  greenv = 0.45;
  bluev = 0.75;
 
- redv.pinfo()
- greenv.pinfo()
- bluev.pinfo()
- 
+     openDll("plot")
 
-#include "tbqrd"
+ask_here = 1
+
+//#include "tbqrd.asl"  // 7/7/24 -- want a precompiled vers of this
 
   //  bvp = cWi("title","Button",_pixmapon,_drawon,"save",_bhue,WHITE_)
 
-  bvp = cWi("Button")
+  bvp = cWi("Button") ; // TBF 7/6/24 should autodec int bvp FIXED
+  
   sWi(_WOID,bvp,_WDRAW,ON_,_WPIXMAP,ON_,_WSAVE,ON_,_WBHUE,WHITE_);
 
  //   txtwin = cWi("title","MC_INFO",_pixmapon,_drawon,"save","bhue","white")
 
-   txtwin= cWi("MC_INFO");
+  txtwin= cWi("MC_INFO");
 
    sWi(_WOID,txtwin,_WDRAW,ON_,_WPIXMAP,ON_,_WSAVE,ON_,_WBHUE,WHITE_);
 
@@ -96,15 +127,18 @@ sWi(_WOID,cvp,_WNAME,"Colors",_WDRAW,ON_,_WPIXMAP,ON_,_WSAVE,ON_,_WBHUE,YELLOW_)
 
    vp3 = cWi("HTML_Colors")
 
-sWi(_WOID,vp3,_WDRAW,ON_,_WPIXMAP,ON_,_WSAVE,ON_,_WBHUE,YELLOW_);
+  sWi(_WOID,vp3,_WDRAW,ON_,_WPIXMAP,ON_,_WSAVE,ON_,_WBHUE,YELLOW_);
 
   int allwins[] =  {cvp,bvp,vp3,txtwin,-1};
   <<"$allwins\n"
-  w_rctile(allwins,0.1,0.1,0.9,0.9,2,2,0);
 
-  titleButtonsQRD(bvp);
+//  wrctile(allwins,0.1,0.1,0.9,0.9,2,2,0); // TBF 7/6/24 CPP
 
-sWi(_WOID,vp3,_WREDRAW,ON_);
+    wrctile(allwins,0.1,0.1,0.9,0.9,2,2);
+
+ // titleButtonsQRD(bvp);  // TBF 7/6/24
+
+  sWi(_WOID,vp3,_WREDRAW,ON_);
 
   rx = 0.2
   rX = 0.3
@@ -124,33 +158,21 @@ sWi(_WOID,vp3,_WREDRAW,ON_);
   cbX = 0.5
 
 
-  bwo=cWo(bvp,WO_BS_,"BLUE");
+  bwo=cWo(bvp,WO_BS_); // TBF 7/6/24 should autodec bwo FIXED
 
  // sWo(_WOID,bwo,_WNAME,"Blue",_WVALUE,bluev,_WBHUE,BLUE_);
-  sWo(_WOID,bwo,_WVALUE,bluev,_WBHUE,BLUE_);
+  sWo(_WOID,bwo,_WTYPE,WO_BS_,_WVALUE,bluev,_WBHUE,BLUE_);
 
  // rwo=cWo(bvp,_BS,_name,"Red",_value,redv)
 
-    rwo=cWo(bvp,WO_BS_,"RED");
+    rwo=cWo(bvp,WO_BS_);
 
-    sWo(_WOID,rwo,_WVALUE,redv,_WHUE,RED_);
+    sWo(_WOID,rwo,_WNAME,"RED",_WVALUE,redv,_WHUE,RED_);
 
-  //sWo(rwo,_color,r_index,_bhue,RED_)
-  //sWo(rwo,_color,RED_,_bhue,r_index)    // bhue is main background fill hue --
-  //sWo(rwo,_color,RED_,_bhue,RED_)
-
-//  gwo=cWo(bvp,_BS,_clipbhue,GREEN_,_name,"Green",_value,greenv)
-
-//  sWo(gwo,_color,GREEN_)
-
-  gwo=cWo(bvp,WO_BS_,"GREEN");
+  gwo=cWo(bvp,WO_BS_);
 
   sWo(_WOID,gwo,_WVALUE,greenv,_WHUE,GREEN_);
 
-
- // bwo=cWo(bvp,_BS,_bhue,BLUE_,_NAME,"Blue",_value,bluev)
-
-  //sWo(bwo,_color,BLUE_,_penhue,WHITE_)
 
 
 
@@ -162,7 +184,7 @@ sWi(_WOID,vp3,_WREDRAW,ON_);
   
  // sWo(rgbwo,_style,"SVL",_WDRAWON,_penhue,BLACK_,_symbol,TRI_,_eo)
 
-  wovtile( rgbwo, cbx,cby,cbX,cbY,0.05);
+  wovtile( rgbwo, cbx,cby,cbX,cbY,3);
   i=0;
   while (rgbwo[i] >0 ) {
    sWo( _WOID, rgbwo[i++],_WSTYLE,"SVL",_WDRAW,ON_,_WHUE,BLACK_,_WSYMBOL,TRI_,_WREDRAW,ON_);
@@ -172,26 +194,35 @@ sWi(_WOID,vp3,_WREDRAW,ON_);
 
 
  
-//  qwo=cWo(bvp,_BN,_name,"QUIT?",_VALUE,"QUIT",_color,"orange",_resize_fr,bx,by,bX,bY,_eo)
+
 
     qwo=cWo(bvp,WO_BN_);
-    sWo(_WOID, qwo,_WNAME,"QUIT?",_WVALUE,"QUIT",_WCOLOR,ORANGE_,_WRESIZE_FR,wbox(bx,by,bX,bY));
+    sWo(_WOID, qwo,_WNAME,"QUIT?",_WVALUE,"QUIT",_WCOLOR,ORANGE_,_WRESIZE,wbox(bx,by,bX,bY));
 
   by = bY + 0.02
   bY = by + dY
 
-  nxtcolwo=cWo(bvp,_BN,_name,"Next",_VALUE,"NextColor",_WCOLOR,CYAN_,_WRESIZE_FR,wbox(bx,by,bX,bY))
+  nxtcolwo=cWo(bvp,WO_BN_)
 
-  sWo(_WOID,qwo,_WBORDER,_WDRAW,ON_,_WCLIPBORDER,BLACK_,_WFONTHUE,BLACK_, _WSTYLE, "SVB", _WREDRAW,ON_)
+  //sWo(_WOID,nxtcolwo,_WNAME,"Next",_WVALUE,"NextColor",_WCOLOR,CYAN_,_WRESIZE_FR,wbox(bx,by,bX,bY))
+
+  //_WRESIZE_FR not recognized CPP TBF 7/6/24
+  // TBF missing tag,val pair  show ERROR CPP compile will fail! --- shows error(glitch)  marks statement as SBAD continues
+
+  sWo(_WOID,nxtcolwo,_WNAME,"Next",_WVALUE,"NextColor",_WCOLOR,CYAN_,_WRESIZE,wbox(bx,by,bX,bY))
+
+  sWo(_WOID,qwo,_WBORDER,ON_,_WDRAW,ON_,_WCLIPBORDER,BLACK_,_WFONTHUE,BLACK_, _WSTYLE, "SVB", _WREDRAW,ON_)
 
   sWo(_WOID,nxtcolwo,_WBORDER,ON_,_WDRAW,ON_,_WCLIPBORDER,ON_,_WFONTHUE,BLACK_, _WSTYLE, "SVB", _WREDRAW,ON_)
 
   // these are a list of values that the color wo can have  - each click cycles thru them
 
 
-  frgb = vgen(FLOAT_,20,0,0.05)
+ // frgb = vgen(FLOAT_,20,0,0.05)
 
-<<"%(,,\,,)4.2f$frgb \n"
+     Vec frgb(<float>,20,0,0.05)
+     
+//<<"%(,,\,,)4.2f$frgb \n"
 
 
 
@@ -203,7 +234,7 @@ sWi(_WOID,vp3,_WREDRAW,ON_);
 
 //sWo(_WOID, rgbwo[i],_CSV,"%(,,\,,)4.2f$frgb",20,_WREDRAW,ON_)
 
-     sWo(_WOID,rgbwo[i++],_CSV,cvals,20,_WREDRAW);
+     sWo(_WOID,rgbwo[i++],_WCSV,cvals,_WREDRAW,ON_);
       <<"%V$i $rgbwo[i]\n"
 
     }
@@ -225,7 +256,7 @@ sWi(_WOID,vp3,_WREDRAW,ON_);
  // ?  _pixmapoff ?
 
 
-int awo[4]
+     int awo[4]
 
      index = 150;
 
@@ -241,7 +272,7 @@ int awo[4]
 
   //sWo(awo,_border,_drawon,_CLIPBORDER)
 
-  wo_vtile(awo,0.1,0.1,0.9,0.9)
+  wovtile(awo,0.1,0.1,0.9,0.9,4)
 
 
   // contrast ?
@@ -263,7 +294,7 @@ int htwo[4]
 <<"%V$htwo \n"
 
 
-  wo_vtile(htwo,0.1,0.1,0.9,0.9)
+  wovtile(htwo,0.1,0.1,0.9,0.9, 4)
 
 
 
@@ -271,7 +302,7 @@ int htwo[4]
  greenv = 0.63;
  bluev = 0.74;
 
-  redv.pinfo();
+  //redv.pinfo();
   
 <<"%V $redv $greenv $bluev \n"
 
@@ -279,23 +310,21 @@ int htwo[4]
   sWo(_WOID,bwo,_WVALUE,bluev)
     sWo(_WOID,gwo,_WVALUE,greenv)
   
-      rwoval = wogetValue(rwo)
-      gwoval = wogetValue(gwo)
-      bwoval = wogetValue(bwo)      
+      rwoval = woGetValue(rwo)
+      gwoval = woGetValue(gwo)
+      bwoval = woGetValue(bwo)      
 
-
-
-   redv   = atof( wogetValue(rwo));
-   greenv = atof ( wogetValue(gwo))
-   bluev  =  atof ( wogetValue(bwo))
+   redv   = satof( woGetValue(rwo));
+   greenv = satof ( woGetValue(gwo))
+   bluev  =  satof ( woGetValue(bwo))
 
 <<"%V $redv $greenv $bluev \n"
- rwoval.pinfo()
+// rwoval.pinfo()
 <<"%V $rwoval $gwoval $bwoval \n"
  //ans = ask("$redv $rwoval ",1)
 
 
-i= 0;
+  i= 0;
   while (rgbwo[i] > 0) {
     sWo(_WOID,rgbwo[i++],_WVALUE,0.4,_WREDRAW,ON_);
 //    i++;
@@ -307,51 +336,90 @@ i= 0;
 
 //////////////////// BKG LOOP ////////////////////////////////
 // Event vars
-<<"include gevent?\n"
 
-#include "gevent.asl"
+
+
+  Gevent Gev ;
+
+  Gev.pinfo();
+
+
 
 Str icname = "blue";
 Str cname = "red";
+Str scname = "red";
+Str txw;
 
-bctx=0.4;
-   wctx =0.6
+  cindex = 0;
+  icindex = 0;
+  scindex = 0;
+  
+  bctx=0.4;
 
-Textr txr;
-  txr.setTextr("%6.2f Green $greenv Blue $bluev  ",0.1,0.61,BLACK_,0)
+  wctx =0.6;
+ //allowDB("vmf,plot,spe",1)
+  Textr txr;
+  ctxt=<<"Green $greenv Blue $bluev  "
+  
+  txr.setTextr(ctxt,0.1,0.61,BLACK_,0)
    
-  txr.info()
+  txr.pinfo()
 
-txw = txr.getTxt()
+  txw = txr.getTxt() ;  // want this to go to a str
+  
+  <<"%V $txw \n"
   
 
-<<"%V $txw\n"
+//ans= ask("%V $txw ?",1)  // TBF 7/6/24 need an CPP trans
+///////////////////////////////////////////////////// interactive loop ////
+Vec<float> rgb(4);
+
+// easy ref  items 
+int button;
+int woid;
+
 
 
    int ke=0;
-   while (1) {
 
-    eventWait()
+while (1) {
+
+    Gev.eventWait()
     ke++;
-    
-      rwoval = wogetValue(rwo)
-      gwoval = wogetValue(gwo)
-      bwoval = wogetValue(bwo)      
 
-<<"GOT EVENT %V $ke  $GEV_button $GEV_woid $rwoval $gwoval $bwoval \n"
+      button=Gev.getEventButton();
+      woid = Gev.getEventWoid();
+
+
+      rwoval = woGetValue(rwo)
+      gwoval = woGetValue(gwo)
+      bwoval = woGetValue(bwo)      
+
+<<"GOT EVENT %V $ke  $button $woid $rwoval $gwoval $bwoval \n"
 
    sWo(_WOID,rwo,_WBHUE,r_index,_WCLEARCLIP,r_index,_WCLIPBORDER,RED_);
-   sWo(_WOID,rwo,_WBHUE,r_index,_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f Red $redv ",0.1,0.21,_WCLIPBORDER,RED_);
+     ctxt=<<" Red $redv "
+     
+   sWo(_WOID,rwo,_WBHUE,r_index,_WTEXTHUE,WHITE_,_WTEXTR,txr.setTextr(ctxt,0.1,0.21,GREEN_),_WCLIPBORDER,RED_);
 
-   sWo(_WOID,gwo,_WBHUE,g_index,_WCLEARCLIP,g_index,_WCLIPBORDER,RED_);
-   sWo(_WOID,gwo,_WBHUE,g_index,_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f Green $greenv ",0.1,0.21,_WCLIPBORDER,RED_);
-
+   sWo(_WOID,gwo,_WBHUE,g_index,_WCLEARCLIP,g_index,_WCLIPBORDER,RED_);  
+ctxt = <<"Green  $greenv "
+sWo(_WOID,gwo,_WBHUE,g_index,_WTEXTHUE,WHITE_,_WTEXTR,txr.setTextr(ctxt,0.1,0.21,RED_),_WCLIPBORDER,RED_);
+ctxt = <<"%V $bluev "
    sWo(_WOID,bwo,_WBHUE,b_index,_WCLEARCLIP,b_index,_WCLIPBORDER,RED_);
-   sWo(_WOID,bwo,_WBHUE,b_index,_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f Blue $bluev ",0.1,0.21,_WCLIPBORDER,RED_);
+txr.setTextr( ctxt,  0.1,0.21,WHITE_)
+sWo(_WOID,bwo,_WBHUE,b_index,_WTEXTHUE,WHITE_,_WTEXTR,txr,_WCLIPBORDER,RED_);
 
-   if (GEV_woid == rwo) {
+    //ans= ask("check stack $(txr.getTxt())",0) // TBF vmf in pex ?
 
-     if (GEV_button == LEFT_) {
+ blueval  =  woGetValue(bwo)
+ bfv = satof ( woGetValue(bwo))
+
+ <<" %V $blueval $bfv\n" 
+
+   if (woid == rwo) {
+
+     if (button == LEFT_) {
            redv += 0.1
 	}
 	else {
@@ -360,10 +428,11 @@ txw = txr.getTxt()
 
         redv = limitval(redv,0.0,1.0)
 
-   }
 
-   else if (GEV_woid == gwo) {
-     if (GEV_button == LEFT_) {
+}
+
+   else if (woid == gwo) {
+     if (button == LEFT_) {
            greenv += 0.1
 	}
 	else {
@@ -374,9 +443,9 @@ txw = txr.getTxt()
 
    }
 
-   else if (GEV_woid == bwo) {
+   else if (woid == bwo) {
 
-     if (GEV_button == LEFT_) {
+     if (button == LEFT_) {
            bluev += 0.1
 	}
 	else {
@@ -388,17 +457,24 @@ txw = txr.getTxt()
 
    }
 
+  
 
+   
+ 
+ if (woid == nxtcolwo) {
 
-
-
-if (GEV_woid == nxtcolwo) {
-<<"just next $cindex \n"
     cindex++
-    rgb = getRGB(cindex)
+ <<"just next $cindex \n"
+    //rgb = getRGB(cindex)
+    rgb[0] = getRed(cindex)
+    rgb[1] = getGreen(cindex)    
+    rgb[2] = getBlue(cindex)    
+    <<"getRGB  $rgb[0] $rgb[1] $rgb[2] \n"
+
     redv = rgb[0]
     greenv = rgb[1]
     bluev = rgb[2]
+
    setRGB(r_index,redv,0,0)
    setRGB(rgb_index,redv,greenv,bluev)
    setRGB(rg_index,redv,greenv,0)
@@ -424,8 +500,14 @@ if (GEV_woid == nxtcolwo) {
   
 
   // sWo(rgbwo,_redraw)
-  // TBC ?
-   sWo(_WOID,two,_WCLEAR,ON_,_wtextr," RGB %V %6.2f $redv $greenv $bluev",0,0.5); 
+  // TBC ?tr
+ //   ctxt= <<" RGB %V %6.2f $redv $greenv $bluev"
+    ctxt= <<" RGB %V $redv $greenv $bluev"
+txr.setTextr(ctxt,0,0.5)
+    <<"%V $ctxt\n"
+
+    sWo(_WOID,two,_WCLEAR,ON_,_WTEXTR,txr); 
+ //  sWo(_WOID,two,_WCLEAR,ON_,_WTEXTR,txr.setTextr(ctxt,0,0.5)); 
 
    //sWo(awo,_bhue,cindex,_clear,_clipborder,_redraw)  // clears repaints
    //sWo(awo,_clearclip,_redraw)  // clears repaints
@@ -434,28 +516,38 @@ if (GEV_woid == nxtcolwo) {
 
 
    cname = getColorName(cindex);
-   <<"%V $cname $cindex \n"
+   //<<"%V $cname $cindex \n"
 
-   sWo(_WOID,two,_wtextr,"CN %V $cname $cindex ",0,0.4,_WCLIPBORDER,RED_);
+    ctxt= <<"CN %V $cname $cindex" 
+   txr.setTextr(ctxt,0,0.4)
+   sWo(_WOID,two,_WTEXTR,txr,_WCLIPBORDER,RED_);
 
-   sWo(_WOID,htwo[0],_WTEXTHUE,BLACK_,_WTEXTR,"$cname",bctx,0.52,_WCLIPBORDER,RED_);
-   sWo(_WOID,htwo[0],_WTEXTHUE,WHITE_,_WTEXTR,"$cname",wctx,0.5,_WCLIPBORDER,RED_);
+  // sWo(_WOID,htwo[0],_WTEXTHUE,BLACK_,_WTEXTR,txr.setTextr("$cname",bctx,0.52),_WCLIPBORDER,RED_)); // TBF should be flagged as SBAD -- extra )
+    ctxt= <<"$cname" 
+   txr.setTextr(ctxt,bctx,0.52)
+   sWo(_WOID,htwo[0],_WTEXTHUE,BLACK_,_WTEXTR,txr,_WCLIPBORDER,RED_);
+   txr.setTextr(ctxt,wctx,0.52)
+txr.setXY(0.1, 0.21);  txr.setHue(WHITE_);
+   sWo(_WOID,htwo[0],_WTEXTHUE,WHITE_,_WTEXTR,txr,_WCLIPBORDER,RED_);
    //sWo(_WOID,htwo[1],_texthue,"white",_textr,"$cname",wctx,0.5,_eo); //?
 
    icindex = getColorIndexFromRGB(1-redv,1-greenv,1-bluev)
 
 
-<<"%V $icindex \n";
+   //<<"%V $icindex \n";
 
    sWo(_WOID,htwo[1],_WBHUE,icindex,_WTEXTHUE,BLACK_,_WCLEARCLIP,icindex,_WCLIPBORDER,RED_);
    
    icname = getColorName(icindex)
-   
+   ctxt= <<"$icname" 
 //ask=query("where are we? $icname");
-   sWo(_WOID,htwo[1],_WTEXTHUE,BLACK_,_WTEXTR,"$icname",bctx,0.5,_WCLIPBORDER,RED_);
-   sWo(_WOID,htwo[1],_WTEXTHUE,WHITE_,_WTEXTR,"$icname",wctx,0.52);
 
-   <<"%V $icname $icindex \n"
+   txr.setTextr(ctxt,bctx,0.52)
+   sWo(_WOID,htwo[1],_WTEXTHUE,BLACK_,_WTEXTR,txr,_WCLIPBORDER,RED_);
+   txr.setTextr(ctxt,wctx,0.52,WHITE_)
+   sWo(_WOID,htwo[1],_WTEXTHUE,WHITE_,_WTEXTR,txr);
+
+   //<<"%V $icname $icindex \n"
 
 
    // swap red & blue
@@ -464,45 +556,104 @@ if (GEV_woid == nxtcolwo) {
 
    sWo(_WOID,htwo[2],_WBHUE,scindex,_WTEXTHUE,BLACK_,_WCLEARCLIP,scindex,_WCLIPBORDER,RED_);
 
+ctxt= <<"$scname"
 
-   sWo(_WOID,htwo[2],_WTEXTHUE,BLACK_,_WTEXTR,"$scname ",bctx,0.51,_wclipborder,RED_);
-   sWo(_WOID,htwo[2],_WTEXTHUE,WHITE_,_WTEXTR,"$scname ",wctx,0.5,_wclipborder,RED_);
+txr.setTextr(ctxt,bctx,0.51)
+   sWo(_WOID,htwo[2],_WTEXTHUE,BLACK_,_WTEXTR,txr,_WCLIPBORDER,RED_);
+   txr.setTextr(ctxt,wctx,0.5)
+   sWo(_WOID,htwo[2],_WTEXTHUE,WHITE_,_WTEXTR,txr,_WCLIPBORDER,RED_);
+ // swap green & blue
+   scindex = getColorIndexFromRGB(redv,bluev,greenv)
+   scname = getColorName(scindex)
+
+ctxt= <<"$scname"
+
+txr.setTextr(ctxt,bctx,0.51)
+    sWo(_WOID,htwo[3],_WBHUE,scindex,_WTEXTHUE,BLACK_,_WCLEARCLIP,scindex,_WCLIPBORDER,RED_);
+
+   sWo(_WOID,htwo[3],_WTEXTHUE,BLACK_,_WTEXTR,txr,_WCLIPBORDER,RED_);
+   txr.setTextr(ctxt,wctx,0.5)
+   sWo(_WOID,htwo[3],_WTEXTHUE,WHITE_,_WTEXTR,txr,_WCLIPBORDER,RED_);
 
    //cname = getColorName(windex)
 
    //windex++
 
+    awo0 = awo[0]
+    ctxt = <<"%6.2f Red $redv + Green $greenv  "
+    txr.setTextr(ctxt,0.1,0.61);
+    txw = txr.getTxt();
 
-
+#if __ASL__
+ ans= ask("%V $txw ?", 0) ; // want to kill ask if ans !c
+ if (ans == "!c") {  ask_here = 0; }
+#endif
 
     sWo(_WOID,awo[0],_WBHUE,rg_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,rg_index,_WCLIPBORDER,RED_);
 
-     sWo(_WOID,awo[0],_WTEXTHUE,BLACK_,_WTEXTR,"%6.2f Red $redv Green $greenv  ",0.1,0.61,_WCLIPBORDER,RED_);
+  txw = txr.getTxt()
+//  ans= ask("%V $txw ?",0)
+   txr.setHue(BLACK_);
+  sWo(_WOID, awo0, _WTEXTHUE, BLACK_, _WTEXTR, txr, _WCLIPBORDER, RED_);
 
-     sWo(_WOID,awo[0],_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f Red $redv Green $greenv  ",0.1,0.21,_WCLIPBORDER,RED_);     
+  txr.setXY(0.1, 0.21);  txr.setHue(WHITE_);
+
+   sWo(_WOID, awo[0], _WTEXTHUE, WHITE_, _WTEXTR, txr, _WCLIPBORDER, RED_);     
+
+    awo1 = awo[1]
+     ctxt = <<"%6.2f Red $redv + Blue $bluev " 
+     txr.setTextr(ctxt, 0.1, 0.61, BLACK_, 0)
+
+    sWo(_WOID, awo[1], _WBHUE, rb_index, _WTEXTHUE, BLACK_, _WCLEARCLIP, rb_index, _WCLIPBORDER, RED_);
+
+    blk= WHITE_;
+
+   sWo(_WOID, awo[1], _WTEXTHUE, blk, _WTEXTR,  txr , _WCLIPBORDER,  RED_);
+
+   txr.pinfo()
+   txw = txr.getTxt()
+ //  ans= ask("%V $txw ?", 0)
+   txr.setXY(0.1, 0.21);
+   txr.setHue(WHITE_);
 
 
-     sWo(_WOID,awo[1],_WBHUE,rb_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,rb_index,_WCLIPBORDER,RED_);
-
-     sWo(_WOID,awo[1],_WTEXTHUE,BLACK_,_WTEXTR, "%6.2f Red $redv Blue $bluev  ",0.1,0.61,_WCLIPBORDER,RED_);
-
-     sWo(_WOID,awo[1],_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f  Red $redv Blue $bluev  ",0.1,0.21,_WCLIPBORDER,RED_);     
-
-
-     sWo(_WOID,awo[2],_WBHUE,gb_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,gb_index,_WCLIPBORDER,RED_);
+    sWo(_WOID, awo[1], _WTEXTHUE, WHITE_, _WTEXTR, txr, _WCLIPBORDER, RED_);     
 
      //sWo(_WOID,awo[2],_WTEXTR,txr,_WCLIPBORDER,RED_);
+
+    ctxt= <<"%6.2f Green $greenv + Blue $bluev  "
+
+    <<"%V $ctxt\n"
+
+
+    txr.setTextr( ctxt , 0.1, 0.61, 1, 0)
      
-     sWo(_WOID,awo[2],_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f Green $greenv Blue $bluev  ",0.1,0.21,_WCLIPBORDER,RED_);
+     sWo(_WOID, awo[2], _WBHUE, gb_index, _WTEXTHUE, BLACK_, _WCLEARCLIP, gb_index, _WCLIPBORDER, RED_);
+     txr.setHue(WHITE_); txr.setXY(0.1, 0.61);
 
-     sWo(_WOID,awo[2],_WTEXTHUE,BLACK_,_WTEXTR,"%6.2f Green $greenv Blue $bluev  ",0.1,0.61,_WCLIPBORDER,RED_);     
-
-
-    sWo(_WOID,awo[3],_WBHUE,rgb_index,_WTEXTHUE,BLACK_,_WCLEARCLIP,rgb_index,_WCLIPBORDER,RED_);
-
-     sWo(_WOID,awo[3],_WTEXTHUE,BLACK_,_WTEXTR,"%6.2f Red $redv Green $greenv Blue $bluev ",0.1,0.61,_WCLIPBORDER,RED_);
+     // TBF 7/8/24 can't do txr.setTextr( ctxt , 0.1, 0.61, 1, 0) as an arg ASL?
      
-     sWo(_WOID,awo[3],_WTEXTHUE,WHITE_,_WTEXTR,"%6.2f Red $redv Green $greenv Blue $bluev ",0.1,0.21,_WCLIPBORDER,RED_);     
+     sWo(_WOID, awo[2], _WTEXTHUE, WHITE_, _WTEXTR, txr, _WCLIPBORDER, RED_);
+
+     txr.setXY(0.1, 0.21); txr.setHue(BLACK_);
+  
+    //sWo(_WOID,awo[2],_WTEXTHUE,BLACK_,_WTEXTR,txr_WCLIPBORDER,RED_);  // bad parse detected labelled SBAD no XIC 
+    sWo(_WOID, awo[2], _WTEXTHUE, BLACK_, _WTEXTR, txr, _WCLIPBORDER, RED_);     
+
+     ctxt= <<"%6.2f Red $redv + Green $greenv + Blue $bluev"
+
+     txr.setTextr(ctxt, 0.1, 0.61, BLACK_, 0)
+
+
+     sWo(_WOID, awo[3], _WBHUE, rgb_index, _WTEXTHUE, BLACK_, _WCLEARCLIP, rgb_index, _WCLIPBORDER, RED_);
+     
+ //    txr.setHue(BLACK_); txr.setXY(0.1,0.61);
+
+
+     sWo(_WOID,  awo[3],  _WTEXTHUE,  BLACK_,  _WTEXTR,  txr,  _WCLIPBORDER,  RED_);
+      // txr.setXY((0.1,0.21);
+      txr.setXY(0.1, 0.21); txr.setHue(LILAC_);
+     sWo(_WOID, awo[3], _WTEXTHUE, WHITE_, _WTEXTR, txr, _WCLIPBORDER, RED_);     
 
      // use Textr asl function to process the text parameters during the sWo call --  compatible with  cpp version
      // which uses a Textr object and passes that via this pointer
@@ -510,9 +661,9 @@ if (GEV_woid == nxtcolwo) {
 
  
 
-    <<"%V $GEV_woid  $qwo \n"
+    //<<"%V $woid  $qwo \n"
 
-   if (GEV_woid == qwo) {
+   if (woid == qwo) {
        break
    }
 
@@ -521,23 +672,15 @@ if (GEV_woid == nxtcolwo) {
   }
 
 
- exit_gs()
+// exit_gs() // TBF 7/6/24
 
+   chkOut(1);
 
-
-
-
-
-#if _CPP_           
+#if __CPP__
+  exit_cpp();
   exit(-1); 
   }  /// end of C++ main 
 #endif     
 
-
-///
-
- chkOut();
-
-  exit();
 
 //==============\_(^-^)_/==================//

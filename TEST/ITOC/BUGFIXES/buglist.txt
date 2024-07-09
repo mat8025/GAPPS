@@ -259,7 +259,14 @@ tbd:
   do only the cppline for CPP preprocess ?
 
 //////////////////////////////////////////////////////////
+//==========================
+#112 07/06/24 6.43  5 PENDING
+descr:  <type >     WS glitch in CPP trans
 
+fix: review regex subs
+ 
+tbd: 
+//==========================
 
 
 

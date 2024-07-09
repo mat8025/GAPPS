@@ -59,7 +59,7 @@ using namespace std;
   m = 128
   
   n= 10;
-  Vec U92(<int >,n,m,1) ;
+  Vec U92(< int >,n,m,1) ;
   U92.pinfo();  
   <<"U92 \n"
   
@@ -142,6 +142,21 @@ using namespace std;
   chkN(C[n-1],10);
 
 ///
+//  int rwo,bwo,gwo = 1; // TBF 7/6/24
+
+  rwo = 1
+  bwo = 2
+  gwo = 3
+
+  int rgbiv[] = {rwo, gwo, bwo,  -1 , 4, 8} 
+
+<<" %V $rgbiv[2] \n"
+
+//  Vec<int> rgbwo( {rwo, gwo, bwo,  -1 , 4, 8} );
+
+
+
+  //rgbwo.pinfo()
 
   chkOut(1);
 

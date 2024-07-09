@@ -1,6 +1,1 @@
-///
-///  current bug list and fix status
-///
-
-
-   see buglist.txt in gapps/TEST/ITOC/BUGFIXES
+/home/mark/gapps/TEST/ITOC/BUGFIXES/buglist.txt

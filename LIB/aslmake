@@ -18,8 +18,7 @@ LFLAGS =  -fPIC -DPIC -Wall  -I../../libs -I$(gasp_sys)/include -I/usr/include  
 # libmda ??
 
 LDADD = -L$(gasp_sys)/lib  \
-	-lvec_asl \
-	-lmatrix_asl \
+	-lvec_asl 	-lmatrix_asl -limage_asl \
 	-lfop_asl \
 	-lnum_asl \
 	-lstr_asl \

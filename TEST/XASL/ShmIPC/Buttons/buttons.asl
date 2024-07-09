@@ -103,7 +103,7 @@ init_debug ("cpp_debug.txt", 1, "1.7");
 
   setScreen()
 
-//#include "gevent.asl"
+
 // our Gevent variable - holds last message
                             // could use another or an array to compare events
 
@@ -120,7 +120,7 @@ int b
    // <<"%V $GEV__name $GEV__button $GEV__keyw $GEV__woname $GEV__keyc \n"
 
   
-
+ 
 /*
       if (GEV__ekeyw= "EXIT_ON_WIN_INTRP") {
 <<"have win interup -- exiting!\n"
