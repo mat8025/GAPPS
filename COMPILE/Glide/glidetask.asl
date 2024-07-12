@@ -156,7 +156,7 @@ float Dur[20];
 #if __CPP__
 int main( int argc, char *argv[] ) { // main start
 
-   init_cpp();
+   init_cpp(argv[0]);
    cout << "Running CPP  " << argv[0] << endl;
 #endif
 

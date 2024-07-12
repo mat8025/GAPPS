@@ -64,7 +64,7 @@
  chkIn()
 
  chkT(1) 
-  db_allow = 0; // set to 1 for internal debug print;
+  db_allow = 1; // set to 1 for internal debug print;
 
    db_ask = 0;
 
@@ -72,7 +72,7 @@
 
 #endif
 
-
+allowDB("opera_,spe_,str_,array_parse,parse,rdp_,pex,ic",db_allow);
 
 
 int addem (int m, int n)
@@ -136,7 +136,7 @@ int main( int argc, char *argv[] ) { // main start
   <<"args listed  try query \n" 
 Str ans = " weird "
 
-<<"%V $ans "
+<<"%V $ans \n"
 
 //  ans = query(" argc $argc continue? :[y/n]") ;
 //printf("ans %s\n",ans.cptr());

@@ -38,7 +38,8 @@
   chkIn();
 
   allowDB("spe,parse,array,record,ds_record,rdp,ic,svar", db_allow)
-
+  ignoreErrors()
+  
   chkT(1);
 
   int ra = 2;
@@ -659,6 +660,10 @@
 
   fpat = searchRecord( R, "and");
 
+  fpat.pinfo();
+
+  ans=ask("fpat ?",0)
+
   <<" $(typeof(fpat)) $(Cab(fpat)) \n";
 
   <<" $R[::] \n";
@@ -678,6 +683,10 @@
   }
 
   fpat = searchRecord( R, "and");
+
+  fpat.pinfo();
+
+  ans=ask("fpat ?",0)
 
   row = fpat[0][0];
 

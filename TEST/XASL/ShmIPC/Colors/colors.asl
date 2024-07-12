@@ -161,7 +161,7 @@ sWi(_WOID,cvp,_WNAME,"Colors",_WDRAW,ON_,_WPIXMAP,ON_,_WSAVE,ON_,_WBHUE,YELLOW_)
   bwo=cWo(bvp,WO_BS_); // TBF 7/6/24 should autodec bwo FIXED
 
  // sWo(_WOID,bwo,_WNAME,"Blue",_WVALUE,bluev,_WBHUE,BLUE_);
-  sWo(_WOID,bwo,_WTYPE,WO_BS_,_WVALUE,bluev,_WBHUE,BLUE_);
+  sWo(_WOID,bwo,_WNAME,"Blue",_WVALUE,bluev,_WBHUE,BLUE_);
 
  // rwo=cWo(bvp,_BS,_name,"Red",_value,redv)
 
@@ -171,12 +171,7 @@ sWi(_WOID,cvp,_WNAME,"Colors",_WDRAW,ON_,_WPIXMAP,ON_,_WSAVE,ON_,_WBHUE,YELLOW_)
 
   gwo=cWo(bvp,WO_BS_);
 
-  sWo(_WOID,gwo,_WVALUE,greenv,_WHUE,GREEN_);
-
-
-
-
-
+  sWo(_WOID,gwo,_WNAME,"Green",_WVALUE,greenv,_WHUE,GREEN_);
 
 
 
@@ -234,14 +229,12 @@ sWi(_WOID,cvp,_WNAME,"Colors",_WDRAW,ON_,_WPIXMAP,ON_,_WSAVE,ON_,_WBHUE,YELLOW_)
 
 //sWo(_WOID, rgbwo[i],_CSV,"%(,,\,,)4.2f$frgb",20,_WREDRAW,ON_)
 
-     sWo(_WOID,rgbwo[i++],_WCSV,cvals,_WREDRAW,ON_);
-      <<"%V$i $rgbwo[i]\n"
+     sWo(_WOID,rgbwo[i],_WCSV,cvals,_WREDRAW,ON_);
+
+    // ans=ask("%V$i $rgbwo[i]",1)
+     i++;
 
     }
-
-//sWo(bwo,_CSV,"0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,\
-//            0.65,0.7,0.75,0.8,0.85,0.9,0.95,1.0", 20, _WREDRAW)
-
 
 
     
@@ -412,52 +405,13 @@ sWo(_WOID,bwo,_WBHUE,b_index,_WTEXTHUE,WHITE_,_WTEXTR,txr,_WCLIPBORDER,RED_);
 
     //ans= ask("check stack $(txr.getTxt())",0) // TBF vmf in pex ?
 
- blueval  =  woGetValue(bwo)
- bfv = satof ( woGetValue(bwo))
 
- <<" %V $blueval $bfv\n" 
+ 
+  bluev= satof ( woGetValue(bwo))
+  redv= satof ( woGetValue(rwo))
+  greenv= satof ( woGetValue(gwo))
 
-   if (woid == rwo) {
-
-     if (button == LEFT_) {
-           redv += 0.1
-	}
-	else {
-	   redv -= 0.1
-        }
-
-        redv = limitval(redv,0.0,1.0)
-
-
-}
-
-   else if (woid == gwo) {
-     if (button == LEFT_) {
-           greenv += 0.1
-	}
-	else {
-	   greenv -= 0.1
-        }
-
-          greenv = limitval(greenv,0.0,1.0)
-
-   }
-
-   else if (woid == bwo) {
-
-     if (button == LEFT_) {
-           bluev += 0.1
-	}
-	else {
-	   bluev -= 0.1
-        }
-
-          bluev = limitval(bluev,0.0,1.0)
-
-
-   }
-
-  
+ <<" %V $bluev $redv $greenv" 
 
    
  

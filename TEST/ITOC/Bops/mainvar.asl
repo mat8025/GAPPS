@@ -14,6 +14,13 @@
 ///
 ///
 
+#define __CPP__ 0
+
+#if __CPP__
+#include "cpp_head.h" 
+#endif
+
+
 #include "debug"
 
 if (_dblevel >0) {
