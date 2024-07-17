@@ -64,7 +64,7 @@ b = 2;
    }
 
    
-chkOut(1)
+
 
    int Goo()
    {

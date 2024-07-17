@@ -1,7 +1,7 @@
 ///
 ///  Screen setup for showtask
 ///
-;
+
 
 
 A=ofw("MENUS/TP.m")

@@ -2,14 +2,15 @@
  *  @script ASL_TEST_VER.asl                                            
  * 
  *  @comment asl test modules                                           
- *  @release Beryllium                                                  
- *  @vers 1.64 Gd Gadolinium [asl 6.4.80 C-Be-Hg]                       
- *  @date 03/12/2023 12:15:34                                           
+ *  @release Carbon                                                     
+ *  @vers 1.65 Tb Terbium [asl 6.30 : C Zn]                             
+ *  @date 07/16/2024 19:16:25                                           
  *  @cdate 1/1/2005                                                     
  *  @author Mark Terry                                                  
- *  @Copyright © RootMeanSquare 2023 -->                               
+ *  @Copyright © RootMeanSquare 2024 -->                               
  * 
  */ 
+
 //----------------<v_&_v>-------------------------//;                  
 
 
@@ -17,18 +18,19 @@
 // test asl first and second stage (xic)
 //
 
-
-
+Str ans;
+/*
 #include "debug.asl"
 
 
 if (_dblevel > 0) {
    debugON()
 }
-
+*/
 
 #include "hv.asl"
 
+_DBH = -1
 
 int inflsz = 0;
 int outflsz = 0;
@@ -59,7 +61,7 @@ wasl = "asl"
 
 !!"mkdir -p Scores"
 
-
+ans= ask("scores OK",0)
 
 //str Progname = "abcd";
 //str Dirname = "Fact"
@@ -173,7 +175,7 @@ int do_level2 = 0;
 int do_query = 0;
 int do_help = 0;
 int do_module = 0;
-int do_release = 0;
+int do_dev = 0;
 
 
 
@@ -280,10 +282,10 @@ List CrashList(STRV_);
 
       wt = _argv[i]
 
-<<"arg $i  $_argv[i] $wt \n"
+//<<"arg $i  $_argv[i] $wt \n"
 
-    wt.pinfo()
-ans = ask("whats this arg $i $wt\n",0)
+    //wt.pinfo()
+//ans = ask("whats this arg $i $wt\n",0)
 
     if (wt == "") {
       break
@@ -296,12 +298,12 @@ ans = ask("whats this arg $i $wt\n",0)
     
      if (wt == "bops") {
         do_bops = 1
-	<<" %V $do_bops \n"
+	//<<" %V $do_bops \n"
      }
    
       do_arg = "do_$wt"
 
-<<"arg $i  $_argv[i] $wt $do_arg \n"
+<<[_DBH]"arg $i  $_argv[i] $wt $do_arg \n"
 
 
     if (scmp(wt,"~",1) ){
@@ -314,7 +316,7 @@ ans = ask("whats this arg $i $wt\n",0)
       $do_arg = 1;
      }
      
-<<" $i $wt $do_arg \n"
+//<<" $i $wt $do_arg \n"
 
      i++;
     // TBF {} needed
@@ -337,12 +339,19 @@ ans = ask("whats this arg $i $wt\n",0)
 
 
 
-if (do_release) {
+if (do_dev) {
   wasl = "aslx"
-//  <<"testing release vers \n"
-  !!"$wasl -v"
+  <<"testing  DEVELOPMENT version aslx \n"
+}
+else {
+  <<"testing lastest RELEASE version asl\n"
+// could look at gasp-RELEASE dir to find latest 
+// or could link /home/mark/gasp-RELEASE/gasp-CARBON
+// to older specific release gasp-CARBON-6.xx
+
 }
 
+  !!"$wasl -v"
 
 if (do_level2) {
     do_bops =1;
@@ -398,7 +407,7 @@ if (do_math) {
 //<<" check Include $do_include $do_types\n"
 
 //<<"%V $do_query\n"
-
+   allowDB("spe_,ic",1);
 
 if ((do_include || do_all ) && (do_include != -1)) {
 
@@ -540,14 +549,14 @@ if ((do_bit || do_all) && (do_bit != -1)) {
 
 
   if ((do_logic || do_all) && (do_logic != -1)) {
-  
+
+
    inflsz = caz(FailList)
    //<<"%V $inflsz \n"
 
-   RunDirTests("Compare","compare")
-
    RunDirTests("Logic","logic,logicops,logicdef")
 
+   RunDirTests("Compare","compare")
 
   outcome("LOGIC")
 

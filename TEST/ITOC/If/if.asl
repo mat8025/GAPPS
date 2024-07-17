@@ -300,7 +300,7 @@ bad = 0
   if (N == 1 )  chkN(N,1)
 
 
- chkStage("if-0")
+ //chkStage("if-0")
 
 
 
@@ -1119,9 +1119,14 @@ else {
 
 chkStage("chk null")
 
+ if (77 > 23) {
+
+    chkT(1)
+ }
 
 
-chkOut()
+
+chkOut(i)
 
 
 

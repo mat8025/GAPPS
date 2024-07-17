@@ -152,7 +152,7 @@ using namespace std;
 
 <<" %V $rgbiv[2] \n"
 
-//  Vec<int> rgbwo( {rwo, gwo, bwo,  -1 , 4, 8} );
+//  Vec<int> rgbwo( {rwo, gwo, bwo,  -1 , 4, 8} ); // TBF 7/6/24 ASL
 
 
 

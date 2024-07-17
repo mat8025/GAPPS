@@ -525,17 +525,19 @@ ans=ask("2 $val ?", db_ask)
 ////////////////////
 //double Real[10];
 
-   Real = vgen (DOUBLE_,10, 0, 1);
+   //Real = fgen (10, 0, 1);
 
-   <<"Real %6.2f $Real \n";
+   Vec<double> Rvec(10,0,1)
 
-   Real.pinfo();
+   <<"Rvec %6.2f $Rvec \n";
 
-   val = array_sub (Real);
+   Rvec.pinfo();
+
+   val = array_sub (Rvec);
 
 //   <<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";
 
-   val = Real[3];
+   val = Rvec[3];
 
    <<"%V$val \n";
 
@@ -543,13 +545,13 @@ ans=ask("2 $val ?", db_ask)
 
    k = 4;
 
-   val = Real[k];
+   val = Rvec[k];
 
    <<"%V$val \n";
 
    chkR (val, 4);
 
-   sz = Csz (Real);
+   sz = Csz (Rvec);
 
    <<" done Caz %V$sz\n";
 
@@ -565,7 +567,7 @@ ans=ask("2 $val ?", db_ask)
 
    <<" done Caz !\n";
 
-   t1 = Real[4] ;
+   t1 = Rvec[4] ;
 
    <<"%V $t1  $(typeof(t1))\n";
 
@@ -579,7 +581,7 @@ ans=ask("2 $val ?", db_ask)
 
    k = 5;
 
-   t2 = Real[k];
+   t2 = Rvec[k];
 
    <<"%V$t2\n";
 
@@ -591,7 +593,7 @@ ans=ask("2 $val ?", db_ask)
 
    j2 = 6;
 
-   t3 = Real[j1] - Real[j2];
+   t3 = Rvec[j1] - Rvec[j2];
 
    <<"%V $t3  \n";
 
@@ -599,9 +601,9 @@ ans=ask("2 $val ?", db_ask)
 
    chkR (t3, -2);
 
-   <<"$Real[j1]\n";
+   <<"$Rvec[j1]\n";
 
-   t4 = Real[j1 + 1];
+   t4 = Rvec[j1 + 1];
 
    chkT(1)
    chkStage(" Nearly Done ")
@@ -613,31 +615,31 @@ ans=ask("2 $val ?", db_ask)
 
    chkR (t4, 5);
 
-   <<"%6.2f$Real \n";
+   <<"%6.2f$Rvec \n";
 
    <<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";   // TBF ++
 
-   Real[k] = Real[j1] - Real[j2];
+   Rvec[k] = Rvec[j1] - Rvec[j2];
 
-   diff = Real[j1] - Real[j2];
+   diff = Rvec[j1] - Rvec[j2];
 
-   <<"%V $k $j1 $j2 $diff $Real[k] $Real[j1] $Real[j2]\n";
+   <<"%V $k $j1 $j2 $diff $Rvec[k] $Rvec[j1] $Rvec[j2]\n";
 //ans=ask(DB_prompt,DB_action)
 
-   <<"ele[${k}] %6.2f $Real[k] \n";
+   <<"ele[${k}] %6.2f $Rvec[k] \n";
 
-   Real.pinfo();
+   Rvec.pinfo();
 
    <<"MAIN %V  $_scope $_cmfnest $_proc $_pnest\n";
 
 
 
 <<"%V $k \n";
-   <<"%6.2f$Real \n";
+   <<"%6.2f$Rvec \n";
 
-   chkR (Real[k], -2);
+   chkR (Rvec[k], -2);
 
-   t2 = Real[k];
+   t2 = Rvec[k];
 
    <<"%V$t2\n";
 /
@@ -645,29 +647,29 @@ ans=ask("2 $val ?", db_ask)
 
    chkR (t2, -2);
 
-   <<"$Real[0:3]\n";
+   <<"$Rvec[0:3]\n";
 
-   Real[j1] = Real[j1] - Real[j2];
+   Rvec[j1] = Rvec[j1] - Rvec[j2];
 
-   <<"$Real\n";
+   <<"$Rvec\n";
 
-   <<"just Real[j1] $Real[j1]\n";
+   <<"just Rvec[j1] $Rvec[j1]\n";
 
-   chkR (Real[j1], -2);
+   chkR (Rvec[j1], -2);
 
-   chkR (Real[4], -2);
+   chkR (Rvec[4], -2);
 ////// Now inside proc -- with proc stack variables  //////////////////////////////
 
-   Real2 = fgen (10, 0, 1);
+   Rvec2 = fgen (10, 0, 1);
 
-   <<"%V$Real2\n";
+   <<"%V$Rvec2\n";
 
-   Real2.pinfo()
-
-
+   Rvec2.pinfo()
 
 
-   val = array_sub (Real2);
+
+
+   val = array_sub (Rvec2);
 
    <<"%V  $_scope $_cmfnest $_proc $_pnest\n";
 
@@ -786,5 +788,6 @@ ans=ask("2 $val ?", db_ask)
     chkStage(" END")
 
    chkOut (1);
+   
 
 

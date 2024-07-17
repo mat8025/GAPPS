@@ -19,6 +19,11 @@ int Nspassed =0;
 int last_npass = 0
 int last_ncrash = 0
 
+
+float pcc;
+
+/// ?? auto-create ?
+
 int outcome (Str title)
 {
   <<" $title \n"
@@ -158,15 +163,18 @@ void Run2Test(Str td)
 
 //Str pgname;
 
-void RunDirTests(Str Td, Str Tl )
+void RunDirTests(Str Td, Str Tla )
 {
 int _DBH = -1
-//<<"$_proc $Td  <|$Tl|> \n"
+<<[_DBH]"$_proc $Td  <|$Tla|> \n"
 
 Str pgname = "xx";
 Str pgxname = "xy";
+Svar Tp;
 //pgname.aslpinfo();
 //
+Str Tl = Tla;
+
 
   
 //Tl.pinfo()
@@ -180,9 +188,21 @@ Str pgxname = "xy";
 //allowDB("spe_proc,",1)
 
   //   Tl.DeWhite()
-//allowDB("spe_,rdp_",0)      
-       dwtl = Dewhite(Tl)
+//allowDB("spe_,rdp_",0)
+//Tl.pinfo()
+
+//<<"$Tl\n"
+
+//ans= ask("Tl $Tl ",0);
+     //  dwtl = Dewhite(Tl)
+     Tl.dewhite()
+     
+//ans= ask("Tl $Tl ",0);
+
       Tp = Split(Tl,",");
+//Tp.pinfo()
+
+//ans= ask("Tp? ",0);
 
       np = Caz(Tp);
    //   np.pinfo()
@@ -264,7 +284,7 @@ int _DBH = -1
  int scored = 0;
  int ntests;
  int npass;
- 
+ Svar rtl;
 //  wt_prog.pinfo()
 // ans=ask("second str arg?",1)
  
@@ -297,7 +317,12 @@ int _DBH = -1
 //<<"LL @ $posn\n";
 
           rtl = readline(RT)
-//<<"%V<$rtl>\n"	  
+
+
+//<<[_DBH}"%V<$rtl>\n"
+
+<<[_DBH]"%V<$rtl>\n"
+
           rtwords = Split(rtl);
 	  
 <<[_DBH]"%V $rtwords \n"
@@ -307,6 +332,7 @@ int _DBH = -1
 
 	  
 <<[_DBH]"%V $rtwords[2] $rtwords[4]\n"
+
 
 
 <<[_DBH]"%V $ntests $npass\n"
@@ -323,7 +349,7 @@ int _DBH = -1
 	  tmsecs =atoi(took);
 	  wextn = scut(itname,-4);
 	 // <<"$tname $wextn \n"
-          if ((sele(itname,-1,-4)) @= "xtst") {
+          if ((sele(itname,-1,-4)) == "xtst") {
             x_time += tmsecs; 
 	    	    //<<"%V $x_time\n"
           }
@@ -343,7 +369,10 @@ int _DBH = -1
     }
 
   blue= PGREEN ;
-//<<"%V $pcc\n"
+
+//<<"%V $pcc  $ntests \n"
+
+
 if ((pcc < 100) && (pcc >90) ) {
  <<"\t$(PWCOLOR_)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs $(POFF_)\n\n"
 }
@@ -447,7 +476,7 @@ if (!scmp(lprg,prg)) {
     
         //sleep(0.5);
 
-        !!"rm -f last_xic_test"
+        !!"rm -f last_xic_test &"
 
      //  prg = scut(prg,2);
 
@@ -456,7 +485,7 @@ if (!scmp(lprg,prg)) {
         if (do_query) {
 <<"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -dRxu ${prg}.xic  \n  "
          ans = query("$prg run it?")
-	 if (ans @="q") {
+	 if (ans =="q") {
           exit()
          }
          }
@@ -580,7 +609,7 @@ void cart (Str prg)
 //<<"rm -f $aprg  ${aprg}.tst  last_test* \n"
 //<<"rm -f $prg  ${prg}.tst  last_test* \n"
  
-  !!"rm -f $prg  ${prg}.tst  last_test*"
+ !!"rm -f $prg  ${prg}.tst  last_test* &"
 
    jpid  =0
       
@@ -594,10 +623,10 @@ void cart (Str prg)
       <<"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst $CFLAGS ${prg}.asl \n"
            
 	       ans= i_read("run it?")
-	       if (ans @="q") {
+	       if (ans =="q") {
                   exit()
                }
-	       if (ans @="r") {
+	       if (ans =="r") {
                   do_query = 0;
                }	       
 
@@ -695,7 +724,7 @@ void cart (Str prg,  Str pa1)
    Str tim = time();
 
  
-  !!"rm -f $prg  ${prg}.tst  last_test*"
+  !!"rm -f $prg  ${prg}.tst  last_test* &"
 
 
    jpid  =0
@@ -803,7 +832,7 @@ Str prg;
 
  if (f_exist("${prog}") != -1) {
 
-  !!"rm -f last_xic_test"
+  !!"rm -f last_xic_test &"
 
   prg = scut(prog,2);
 
@@ -812,10 +841,10 @@ Str prg;
         if (do_query) {
 <<"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx ${prog}.xic  \n  "
          ans = query("$prog run it?")
-	 if (ans @="q") {
+	 if (ans =="q") {
           exit()
          }
-	       if (ans @="r") {
+	       if (ans =="r") {
                   do_query = 0;
                }	       
 
@@ -849,7 +878,7 @@ Str prg;
  if (f_exist("${prog}") != -1) {
 
 
-  !!"rm -f last_xic_test"
+  !!"rm -f last_xic_test &"
 
   prg = scut(prog,2);
   
@@ -863,7 +892,7 @@ Str prg;
      if (do_query) {
 <<"$wasl -o ${prog}.xout -e ${prog}.xerr -t ${prog}.xtst -dx $prog $a1 "
        query("$prog run it?")
-       	 if (ans @="q") {
+       	 if (ans =="q") {
           exit()
          }
          }

@@ -13,7 +13,7 @@
 
 
 
-
+//#define __ASL__ 1
 #define __CPP__ 0
 
 //  use the asl  -T  flag to produce cpp compilable code
@@ -107,6 +107,7 @@ int main( int argc, char *argv[] ) { // main start
 
 #endif
 
+   argc = argc();
   <<"%V $argc\n" 
 
   i = 0 

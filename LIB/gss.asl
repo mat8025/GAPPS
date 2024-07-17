@@ -25,6 +25,7 @@ int Curr_page = 1;
 int Npgs = 1;
 int Nrows = 0;
 
+_DB = 2
 
 swaprow_a = 1;
 swaprow_b = 2;
@@ -119,7 +120,7 @@ void READ()
        // isok =sWo(cellwo,_Wsheetread,fname,2)
             A= ofr(fname)
 
-            R= readRecord(A,_del,Delc) ; // tag?
+            R.readRecord(A,_del,Delc) ; // tag?
 	    
            cf(A)
            sz = Caz(R);
@@ -134,7 +135,9 @@ void READ()
 
 //////////////////////   these records needed and used for any GSS /////////////////////
 
-Record R[>15];
+//Record R[>15];
+
+Record R[100];
 
 // need CPP version cons  Record R(15,+)   ??
 
@@ -143,7 +146,7 @@ Record R[>15];
 
 Rn = 5;
 
-Record DF[>3];
+Record DF[3];
 
    DF.pinfo();
 
@@ -460,9 +463,7 @@ void PGUP()
    <<"%V $cellwo  $Npgs $rows $cols $Page_rows $Curr_row \n"
 
    //setdebug(1,_Wtrace);
-   if (current_row <0) {
-       current_rwo = 0;
-   }
+   
    sWo(_WOID,cellwo,_Wselectrows,tuple(Curr_row,Curr_row+Page_rows,0));
 
    Curr_row -= Page_rows/2;
