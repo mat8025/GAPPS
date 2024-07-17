@@ -18,17 +18,11 @@ Str Use_= "  test the SpreadSheet";
 
 
 //#include "debug"
-//setdebug(1,@keep,@pline,@~trace);
-//FilterFileDebug(REJECT_,"~storetype_e");
-//FilterFuncDebug(REJECT_,"~ArraySpecs",);
 
    //debugON();
  // scriptDBON()
 
 #include "hv.asl"
-
-
-
 #include "gss.asl"
 
 
@@ -54,12 +48,9 @@ Graphic = CheckGwm()
         X=spawngwm()
      }
 
-//#include "tbqrd"
+#include "tbqrd"
 
 #include "gss_screen"
-
-
-
 
 
     READ();
@@ -75,9 +66,9 @@ Graphic = CheckGwm()
    tags_col = cols-1;
    
 
-   sWo(_WOID,cellwo,_Wsetrowscols,tuple(rows+5,cols+1)); 
+   sWo(_woid,cellwo,_wsetrowscols,tuple(rows+5,cols+1)); 
 
-   sWo(_WOID,cellwo,_Wselectrowscols,tuple(0,rows-1,0,cols-1,ON_));
+   sWo(_woid,cellwo,_wselectrowscols,tuple(0,rows-1,0,cols-1,ON_));
 
 int cv = 0;
 
@@ -85,27 +76,27 @@ int cv = 0;
 
     for (i = 1; i< rows ; i++) {
      for (j = 0; j< cols ; j++) {
-         sWo(_WOID,cellwo,_Wcellbhue,tuple(i,j,YELLOW_));
-	 sWo(_WOID,cellwo,_Wsheetcol,i,j,"");
+         sWo(_woid,cellwo,_wcellbhue,tuple(i,j,YELLOW_));
+	 sWo(_woid,cellwo,_wsheetcol,i,j,"");
 	 cv++;
        }
      }
 
-   sWo(_WOID,cellwo,_Wcellval,R);
+   sWo(_woid,cellwo,_Wcellval,R);
   
  //  default
 
 
-  sWo(_WOID,cellwo,_Wselectrowscols,tuple(0,rows-1,0,cols-1,ON_));
+  sWo(_woid,cellwo,_Wselectrowscols,tuple(0,rows-1,0,cols-1,ON_));
 
-// sWo(_WOID,cellwo,@cellbhue,1,-2,LILAC_); // row,col wr,-2 all cells in row
-  sWi(_WOID,vp,_Wredraw,ON_)
-
-
-//sWo(_WOID,ssmods,_Wredraw,ON) ; //need loop thru ssmods
+// sWo(_woid,cellwo,@cellbhue,1,-2,LILAC_); // row,col wr,-2 all cells in row
+  sWi(_woid,vp,_Wredraw,ON_)
 
 
-   sWo(_WOID,cellwo,_Wredraw,ON_);
+//sWo(_woid,ssmods,_Wredraw,ON) ; //need loop thru ssmods
+
+
+   sWo(_woid,cellwo,_Wredraw,ON_);
 
 
  PGUP()
@@ -117,16 +108,18 @@ int cv = 0;
  
 
 #include "gevent.asl"
+
+
 int the_row;
+
 
    while (1) {
 
-
-
-         eventWait();
-          mr = _GEV_row;
-	  mc = _GEV_col;
-	   <<"$_GEV_keyw $_GEV_woname $_GEV_button \n";
+         eventWait() ; 
+	 
+          mr = erow;
+	  mc = ecol;
+	   <<"$ekeyw $ewoname $ebutton \n";
 
 
 
@@ -134,8 +127,8 @@ int the_row;
             the_row = mr;
          }
 
-        if (_GEV_ewoid == cellwo) {
- 	               if (_GEV_ebutton == LEFT_ && mr > 0) {
+        if (woid == cellwo) {
+ 	               if (button == LEFT_ && mr > 0) {
                         //mc->info(1);
  	                //mr->info(1);
                           if (mc == 2) {
@@ -147,76 +140,77 @@ int the_row;
 
 
           
-         // sWo(_WOID,ssmods,@redraw);
+         // sWo(_woid,ssmods,@redraw);
        
  
          whue = YELLOW_;
  	
-         if (mc == 0  && (mr >= 0) && (_GEV_button == RIGHT_)) {
+         if (mc == 0  && (mr >= 0) && (ebutton == RIGHT_)) {
            if ((mr % 2)) {
             whue = LILAC_;
  	   }
  
-          sWo(_WOID,cellwo,_Wcellbhue,tuple(swaprow_a,0,swaprow_a,cols,whue));         	 	 
+          sWo(_woid,cellwo,_Wcellbhue,dectuple(swaprow_a,0,swaprow_a,cols,whue));         	 	 
  
           swaprow_b = swaprow_a;
  	  swaprow_a = mr;
  	 
 // <<[_DB]"%V $swaprow_a $swaprow_b\n"
  
-          sWo(_WOID,cellwo,_Wcellbhue,tuple(swaprow_a,0,CYAN_));         
+          sWo(_woid,cellwo,_Wcellbhue,dectuple(swaprow_a,0,CYAN_));         
           }
                 
+		
               
-       if (mr == 0 && (mc >= 0) && (_GEV_button == RIGHT_)) {
+       if (mr == 0 && (mc >= 0) && (ebutton == RIGHT_)) {
  
-          sWo(_WOID,cellwo,_Wcellbhue,tuple(0,swapcol_a,0,cols,YELLOW_));   
+          sWo(_woid,cellwo,_Wcellbhue,dectuple(0,swapcol_a,0,cols,YELLOW_));   
           swapcol_b = swapcol_a;
   	  swapcol_a = mc;
-          sWo(_WOID,cellwo,_Wcellbhue,tuple(0,swapcol_a,CYAN_));         	 
+          sWo(_woid,cellwo,_Wcellbhue,dectuple(0,swapcol_a,CYAN_));         	 
 
 <<[_DB]"%V $swapcol_a $swapcol_b\n"
           }
  
-         sWo(_WOID,cellwo,_Wredraw,ON_);
+         sWo(_woid,cellwo,_Wredraw,ON_);
  
-         if (mr == 0 && (mc == tags_col) && (_GEV_button == RIGHT_)) {
+         if (mr == 0 && (mc == tags_col) && (ebutton == RIGHT_)) {
                
                  clearTags();   
          }
  
-         if (mr > 0 && (mc == tags_col) && (_GEV_button == RIGHT_)) {
+         if (mr > 0 && (mc == tags_col) && (ebutton == RIGHT_)) {
 <<[_DB]"mark tags <|$R[mr][tags_col]|>\n"
 
                 if (R[mr][tags_col] == "x") {
 		R[mr][tags_col] = " "
- 		sWo(_WOID,cellwo,_Wcellval,mr,tags_col," ")
+ 		sWo(_woid,cellwo,_Wcellval,mr,tags_col," ")
 		}
 		else {
 		R[mr][tags_col] = "x"
- 		sWo(_WOID,cellwo,_Wcellval,mr,tags_col,"x")
+ 		sWo(_woid,cellwo,_Wcellval,mr,tags_col,"x")
                 }
- 		sWo(_WOID,cellwo,_Wcelldraw,mr,tags_col)
+ 		sWo(_woid,cellwo,_Wcelldraw,mr,tags_col)
          }
     
     else {
 
-       if (_GEV_name == "PRESS") {
-<<"PRESS $_GEV_name  callback func $_GEV_woname !\n"
+       if (ename == "PRESS") {
+<<"PRESS $ename  callback func $ewoname !\n"
  
-          if (!(_GEV_woname == "")) {
+          if (!(ewoname == "")) {
 
-             if (_GEV_woname == "SORT") {
+             if (ewoname == "SORT") {
                        SORT();
              }
-             else if (_GEV_woname == "SWOPROWS") {
+             else if (ewoname == "SWOPROWS") {
                   SWOPROWS()
             }
-             else if (_GEV_woname == "SWOPCOLS") {
+             else if (ewoname == "SWOPCOLS") {
                   SWOPCOLS()
             }	    
              else {
-             $_GEV_woname();
+             $ewoname();
  
 <<" after indirect callback\n"
              }
@@ -224,8 +218,8 @@ int the_row;
          }
        }
 
-          sWo(_WOID,cellwo,_Wsetcolsize,3,3,1);
-          sWi(_WOID,vp,_Wredraw,_ON);
+          sWo(_woid,cellwo,_Wsetcolsize,3,3,1);
+          sWi(_woid,vp,_Wredraw,_ON);
     }
 
 //  ?? has to be a following statement after while

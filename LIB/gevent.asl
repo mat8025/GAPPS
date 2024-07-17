@@ -31,44 +31,44 @@ Vec<int> MPOS__( 16);
 
 
 int _last_eid = -1;
-int ewsz = 0;
+int  ewsz = 0;
 
-int GEV_loop = 0;
+int eloop = 0;
 
-float GEV_rx = -1.234;
-float GEV_ry = -1.2345;
+float erx = -1.234;
+float ery = -1.2345;
 
-int GEV_x = -15;
-int GEV_y = 0;
+int ex = -15;
+int ey = 0;
 
-int GEV_type = 0;
-int GEV_row = -1;
-int GEV_col = -1;
-int GEV_button = 0;
-int GEV_id = 0;
-int GEV_keyc;
-int GEV_woid;
-int GEV_woaw;
-int GEV_wid;
+int etype = 0;
+int erow = -1;
+int ecol = -1;
+int ebutton = 0;
+int eid = 0;
+int ekeyc;
+int ewoid;
+int ewoaw;
+int ewid;
 
-Svar GEV_msgwd;
-Svar GEV_words;
+Svar emsgwd;
+Svar ewords;
 
-Str GEV_name;
+Str ename;
 
-Str GEV_keyw = "nada";
-Str GEV_keyw2 = "nada2";
-Str GEV_keyw3 = "nada3";
+Str ekeyw = "nada";
+Str ekeyw2 = "nada2";
+Str ekeyw3 = "nada3";
 
-Str GEV_msg = "";
+Str emsg = "";
 
-Str GEV_value = "abc";
+Str evalue = "abc";
 
-Str GEV_woname = "noname";
+Str ewoname = "noname";
 
-Str GEV_woval = "yyy";
+Str ewoval = "yyy";
 
-Str GEV_woproc = "abc";
+Str ewoproc = "abc";
 
 
 
@@ -93,78 +93,78 @@ void eventDecode()
 
 #if ASLGEV_
 
-  GEV_name = Gev.getEventparameters   (GEV_id,GEV_type,GEV_woid,GEV_woaw,GEV_button,GEV_keyc,GEV_woproc,GEV_x,GEV_y,GEV_woval);
+  ename = Gev.getEventparameters   (eid,etype,ewoid,ewoaw,ebutton,ekeyc,ewoproc,ex,ey,ewoval);
    
-   <<"ASLGEV %V $GEV_name $GEV_type $GEV_button $GEV_keyc\n"
+   <<"ASLGEV %V $ename $etype $ebutton $ekeyc\n"
 #else
-   GEV_name = Gev.getEventName();
+   ename = Gev.getEventName();
    
-   GEV_button = Gev.getEventButton(); // or Gev.ebutton
-<<"getting %V $GEV_button\n"
+   ebutton = Gev.getEventButton(); // or Gev.ebutton
+<<"getting %V $ebutton\n"
 
-   GEV_keyc = Gev.getEventKey();
+   ekeyc = Gev.getEventKey();
 
 #endif     
-//<<"$_proc %V $GEV_x $GEV_y  $GEV_woid\n"
+//<<"$_proc %V $ex $ey  $ewoid\n"
 
-   GEV_woval = Gev.getEventWoValue();
+   ewoval = Gev.getEventWoValue();
    
-//  <<"%V $GEV_woval \n"       
+//  <<"%V $ewoval \n"       
     MPOS__[0] = -1;
     
-    GEV_wid = -1;
+    ewid = -1;
 
      if (checkTerm()) {
-       GEV_keyw =  "EXIT_ON_WIN_INTRP";
+       ekeyw =  "EXIT_ON_WIN_INTRP";
     }
     else {
-//  <<"$_proc %V $GEV_msg \n"
-    if (GEV_msg != "") {
+//  <<"$_proc %V $emsg \n"
+    if (emsg != "") {
      // split the msg into separate words
-     GEV_words.Split(GEV_msg); 
+     ewords.Split(emsg); 
 
-    ewsz=GEV_words.getSize();
-//<<"%V $ewsz $GEV_words\n"
-    //pa(GEV_msg, GEV_words);
+    ewsz=ewords.getSize();
+//<<"%V $ewsz $ewords\n"
+    //pa(emsg, ewords);
     if (ewsz >= 1) {
-    GEV_keyw = GEV_words[0];   // TBC
+    ekeyw = ewords[0];   // TBC
 
-//<<"%V $GEV_value $GEV_msg  $GEV_keyw \n"
-     GEV_value =   spat(GEV_msg,GEV_keyw,1);
-//<<"%V $GEV_value \n"   
-     GEV_value.eatWhiteEnds();
-//<<"%V $GEV_value \n"
+//<<"%V $evalue $emsg  $ekeyw \n"
+     evalue =   spat(emsg,ekeyw,1);
+//<<"%V $evalue \n"   
+     evalue.eatWhiteEnds();
+//<<"%V $evalue \n"
 
   if (ewsz >= 2) {
-    GEV_keyw2 = GEV_words[1];
+    ekeyw2 = ewords[1];
      if (ewsz >= 3) 
-    GEV_keyw3 = GEV_words[2];
+    ekeyw3 = ewords[2];
     }
 
 
-//<<"proc $GEV_woproc \n"
-     if (GEV_woid < 32767) {
-         GEV_wid = GEV_woid;
+//<<"proc $ewoproc \n"
+     if (ewoid < 32767) {
+         ewid = ewoid;
        }
        else {
-           GEV_wid = (GEV_woid & 0xFFFF0000) >> 16 ;  
+           ewid = (ewoid & 0xFFFF0000) >> 16 ;  
      }
     }
     
-     GEV_woname = Gev.getEventWoName();
-//     GEV_woproc = Gev.getEventWoProc();
+     ewoname = Gev.getEventWoName();
+//     ewoproc = Gev.getEventWoProc();
   
 //  Motion event -- will have 1 or more 'event' readings
 //  read these into array or rxy and erow-col
 
-  //  Gev.geteventxy(&GEV_x,&GEV_y);
+  //  Gev.geteventxy(&ex,&ey);
 
 
-    Gev.getEventRowCol(GEV_row,GEV_col);
+    Gev.getEventRowCol(erow,ecol);
 
 //  Mouse  pos, screen pos?
 // needed?
-     MPOS__[2] = GEV_button;
+     MPOS__[2] = ebutton;
 
     }
 
@@ -177,31 +177,31 @@ void eventWait()
 {
     int ret = 1;
 
-    GEV_loop++;
-    GEV_keyc = 0;
-    GEV_woid = -1;
-    GEV_row = -1;
-    GEV_col = -1;    
-    GEV_woname = "";
-    GEV_woval = "";
-    GEV_msg = "";
-    GEV_keyw = "";
-     GEV_msg = Gev.eventWait();
-//<<"$_proc  %V $GEV_msg\n"
-    // Gev.getEventRxRy(&GEV_rx,GEV_ry); // crash
-    GEV_rx = -0.004;
-    GEV_ry = -0.005;
+    eloop++;
+    ekeyc = 0;
+    ewoid = -1;
+    erow = -1;
+    ecol = -1;    
+    ewoname = "";
+    ewoval = "";
+    emsg = "";
+    ekeyw = "";
+     emsg = Gev.eventWait();
+//<<"$_proc  %V $emsg\n"
+    // Gev.getEventRxRy(&erx,ery); // crash
+    erx = -0.004;
+    ery = -0.005;
     
-     Gev.getEventRxRy(GEV_rx,GEV_ry); //  SF func should process as a reference arg
+     Gev.getEventRxRy(erx,ery); //  SF func should process as a reference arg
      
      
-     GEV_woid=Gev.getEventWoid();
+     ewoid=Gev.getEventWoid();
 
-<<"$_proc  %V $GEV_woid $GEV_rx $GEV_ry\n"     
+<<"$_proc  %V $ewoid $erx $ery\n"     
 
      eventDecode();
 /*     
-     if (GEV_keyw == "EXIT_ON_WIN_INTRP") {
+     if (ekeyw == "EXIT_ON_WIN_INTRP") {
      
        ret = 0;
         <<"exit on WIN_INTRP ? $ret\n"
@@ -213,8 +213,8 @@ void eventWait()
 
 void eventRead()
 {
-    GEV_msg = Gev.eventRead();
-    GEV_loop++;
+    emsg = Gev.eventRead();
+    eloop++;
     eventDecode();
 }
 //==============================
@@ -230,6 +230,6 @@ int bt;
   return bt;
 }
 
-//<<" %V $_include $GEV_msg\n"
+//<<" %V $_include $emsg\n"
 
 //====================================
