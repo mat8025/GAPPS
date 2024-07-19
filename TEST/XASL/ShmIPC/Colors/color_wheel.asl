@@ -302,4 +302,4 @@ CC[kc++] = ci
   }
 
 
-exit_gs()
+exitGS()

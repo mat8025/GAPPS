@@ -118,16 +118,22 @@ int main( int argc, char *argv[] ) { // main start
 // 
  
  
-Graphic = checkGWM() 
+  Graphic = checkGWM() 
  
   if (!Graphic) { 
     Xgm = spawnGWM("colors") 
   } 
  
  
-    openDll("image"); 
+     openDll("image"); 
+
+     openDll("plot") 
+
+     rainbow();  // update the XGS CMAP
 
 // where is top of current loaded map?
+
+    ans=ask("CMAP loaded?",0)
 
 int index = 1000; 
 int rgb_index =  index++;  // place this outside of most colors 
@@ -145,7 +151,7 @@ int k = 0
  greenv = 0.45; 
  bluev = 0.75; 
  
-     openDll("plot") 
+
  
 ask_here = 1 
 #if __ASL__ 
@@ -266,7 +272,7 @@ sWi(_woid,cvp,_wname,"Colors",_wdraw,ON_,_wpixmap,ON_,_wsave,ON_,_wbhue,YELLOW_)
  
   sWo(_woid,nxtcolwo,_wborder,ON_,_wdraw,ON_,_wclipborder,ON_,_wfonthue,BLACK_, _wstyle, "SVB", _wredraw,ON_)
 
-   sWo(_woid,cindexwo,_wborder,ON_,_wdraw,ON_,_wfunc,"inputValue",_wclipborder,ON_,_wfonthue,BLACK_, _wstyle, "SVB", _wredraw,ON_)
+  sWo(_woid,cindexwo,_wborder,ON_,_wdraw,ON_,_wfunc,"inputValue",_wclipborder,ON_,_wfonthue,BLACK_, _wstyle, "SVB", _wredraw,ON_)
 
   
   
@@ -570,7 +576,7 @@ while (1) {
   // sWo(_woid,htwo[0],_wtexthue,BLACK_,_wtextr,txr.setTextr("$cname",bctx,0.52),_wclipborder,RED_)); // TBF should be flagged as SBAD -- extra ) 
 
 
-  sWo(_woid,htwo[0],_wbhue,cindex,_wtexthue,BLACK_,_wclearclip,cindex,_wclipborder,RED__,_wredraw,ON_) 
+  sWo(_woid,htwo[0],_wbhue,cindex,_wtexthue,BLACK_,_wclearclip,cindex,_wclipborder,RED_,_wredraw,ON_) 
    ctxt= <<"$cname"  
    txr.setTextr(ctxt,bctx,0.5,BLACK_) 
 
@@ -580,21 +586,35 @@ while (1) {
    sWo(_woid,htwo[0],_wtexthue,WHITE_,_wtextr,txr,_wclipborder,RED_); 
    //sWo(_woid,htwo[1],_texthue,"white",_textr,"$cname",wctx,0.5,_eo); //? 
 
-
-
    icindex = getColorIndexFromRGB(1-redv,1-greenv,1-bluev) 
    //<<"%V $icindex \n"; 
- 
-   sWo(_woid,htwo[1],_wbhue,icindex,_wtexthue,BLACK_,_wclearclip,icindex,_wclipborder,RED__,_wredraw,ON_) 
+
+   fcv = getRGBfromIndex(icindex);
+   fcv.pinfo()
+   
+
+   sWo(_woid,htwo[1],_wbhue,icindex,_wtexthue,BLACK_,_wclearclip, icindex,_wclipborder,RED_,_wredraw,ON_) 
     
    icname = getColorName(icindex) 
    ctxt= <<"$icname"  
+
+   windex = getCmapIndexFromName(icname);
+   
+
+   html_index = getHTMLindexFromname (icname)
+
+<<"%V $windex $html_index \n"
+   fhtmlv = getRGBfromHTMLindex(html_index);
+   fhtmlv.pinfo()
+   
 //ask=query("where are we? $icname"); 
  
    txr.setTextr(ctxt,bctx,0.55,BLACK_)
-   sWo(_woid,htwo[1],_wtexthue,BLACK_,_wtextr,txr,_wclipborder,RED_); 
+   sWo(_woid,htwo[1],_wtextr,txr,_wclipborder,RED_); 
    txr.setTextr(ctxt,wctx,0.5,WHITE_) 
-   sWo(_woid,htwo[1],_wtexthue,WHITE_,_wtextr,txr); 
+   sWo(_woid,htwo[1],_wtextr,txr); 
+
+
 
 
 
@@ -617,7 +637,9 @@ while (1) {
 // swap green & blue 
    sgbindex = getColorIndexFromRGB(redv,bluev,greenv) 
    sgbname = getColorName(sgbindex) 
- 
+
+
+
     ctxt= <<"$sgbname" 
  
 
@@ -744,8 +766,9 @@ while (1) {
  
 
  
-   chkOut(1); 
-   exitGS() // TBF 7/6/24  
+   chkOut(); 
+   exitGS() 
+
 #if __CPP__ 
   exit_cpp(); 
   exit(-1);  
