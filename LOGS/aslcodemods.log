@@ -2185,3 +2185,7 @@ ic_state.cpp                        1.65  07/11/2024 00:54:19  SBAD
 ic_xic.cpp                          1.84  07/11/2024 00:55:00  SBAD 
 woargs.h                            1.7  07/11/2024 04:41:58  WCSV
 aop.h                               1.16  07/11/2024 04:43:28  dynamic bounds
+spil_dll.cpp                        1.12  07/17/2024 16:43:45  use aslx libs if running aslx
+plot_wo_tile.cpp                    1.89  07/17/2024 17:03:38   vpad for wovtile now set-- need fix for wohtile
+str_sop.cpp                         2.2  07/17/2024 23:05:06  ssubrgx now in function table
+num_conv.cpp                        2.93  07/19/2024 01:42:30  satoi
