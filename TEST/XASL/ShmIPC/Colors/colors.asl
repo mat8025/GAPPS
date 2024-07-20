@@ -3,18 +3,14 @@
  * 
  *  @comment test color selection                                       
  *  @release Carbon                                                     
- *  @vers 1.9 F Fluorine [asl 6.49 : C In]                              
- *  @date 07/18/2024 16:21:07                                           
- *  @cdate Sun Mar 22 11:05:34 2020 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare 2024 -->                               
+ *  @vers 1.11 Na Sodium [asl 6.50 : C Sn]                              
+ *  @date 07/20/2024 15:13:32                                           
+ *  @cdate Sun Mar 22 11:05:34 2020                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright Â© RootMeanSquare 2024 -->                               
  * 
  */ 
 
-
-          
- 
- 
 //-----------------<V_&_V>------------------------// 
  
  
@@ -23,7 +19,7 @@
 #define __CPP__ 0 
 #define __ASL__ 1 
  
-#if __ASL__ 
+#if __ASL__	
 #include "debug.asl"  
  
   if (_dblevel >0) {  
@@ -135,7 +131,7 @@ int main( int argc, char *argv[] ) { // main start
 
     ans=ask("CMAP loaded?",0)
 
-int index = 1000; 
+int index = 2000; 
 int rgb_index =  index++;  // place this outside of most colors 
 int rg_index = index++ 
 int rb_index = index++ 
@@ -313,7 +309,7 @@ sWi(_woid,cvp,_wname,"Colors",_wdraw,ON_,_wpixmap,ON_,_wsave,ON_,_wbhue,YELLOW_)
  
     twot=cWo(txtwin,WO_TEXT_); 
     
-    sWo(_woid,twot,_wname,"Text",_wvalue,"howdy",_wcolor,ORANGE_,_wresize,wbox(0.1,0.1,0.9,0.9)); 
+    sWo(_woid,twot,_wname,"Text",_wvalue,"howdy",_wcolor,ORANGE_,_wresize,wbox(0.01,0.1,0.95,0.9)); 
  
     sWo(_woid,twot,_wborder,BLACK_,_wdraw, ON_,_wclipborder,BROWN_,_wfonthue,BLUE_, _wredraw,ON_); 
  
@@ -576,7 +572,7 @@ while (1) {
   // sWo(_woid,htwo[0],_wtexthue,BLACK_,_wtextr,txr.setTextr("$cname",bctx,0.52),_wclipborder,RED_)); // TBF should be flagged as SBAD -- extra ) 
 
 
-  sWo(_woid,htwo[0],_wbhue,cindex,_wtexthue,BLACK_,_wclearclip,cindex,_wclipborder,RED_,_wredraw,ON_) 
+   sWo(_woid,htwo[0],_wbhue,cindex,_wtexthue,BLACK_,_wclearclip,cindex,_wclipborder,RED_,_wredraw,ON_) 
    ctxt= <<"$cname"  
    txr.setTextr(ctxt,bctx,0.5,BLACK_) 
 
@@ -586,14 +582,18 @@ while (1) {
    sWo(_woid,htwo[0],_wtexthue,WHITE_,_wtextr,txr,_wclipborder,RED_); 
    //sWo(_woid,htwo[1],_texthue,"white",_textr,"$cname",wctx,0.5,_eo); //? 
 
-   icindex = getColorIndexFromRGB(1-redv,1-greenv,1-bluev) 
+   iredv = 1-redv
+   igreenv = 1-greenv
+   ibluev = 1-bluev
+   
+   icindex = getColorIndexFromRGB(iredv,igreenv,ibluev) 
    //<<"%V $icindex \n"; 
 
    fcv = getRGBfromIndex(icindex);
    fcv.pinfo()
    
 
-   sWo(_woid,htwo[1],_wbhue,icindex,_wtexthue,BLACK_,_wclearclip, icindex,_wclipborder,RED_,_wredraw,ON_) 
+   sWo(_woid,htwo[1],_wbhue,icindex,_wredraw,ON_) 
     
    icname = getColorName(icindex) 
    ctxt= <<"$icname"  
@@ -625,19 +625,20 @@ while (1) {
    srbindex = getColorIndexFromRGB(bluev,greenv,redv) 
    srbname = getColorName(srbindex) 
  
-   sWo(_woid,htwo[2],_wbhue,srbindex,_wtexthue,BLACK_,_wclearclip,srbindex,_wclipborder,RED_,_wredraw,ON_) 
+   sWo(_woid,htwo[2],_wbhue,srbindex,_wredraw,ON_) 
  
   ctxt= <<"$srbname" 
  
    txr.setTextr(ctxt,bctx,0.55,BLACK_)
    sWo(_woid,htwo[2],_wtexthue,BLACK_,_wtextr,txr,_wclipborder,RED_); 
    txr.setTextr(ctxt,wctx,0.5,WHITE_) 
-   sWo(_woid,htwo[2],_wtexthue,WHITE_,_wtextr,txr,_wclipborder,RED_); 
-
+   sWo(_woid,htwo[2],_wtexthue,WHITE_,_wtextr,txr,_wclipborder,RED_);  // wtextr is cleared by redraw
+   
 // swap green & blue 
    sgbindex = getColorIndexFromRGB(redv,bluev,greenv) 
    sgbname = getColorName(sgbindex) 
 
+   
 
 
     ctxt= <<"$sgbname" 
@@ -645,25 +646,26 @@ while (1) {
 
     sWo(_woid,htwo[3],_wbhue,sgbindex,_wtexthue,BLACK_,_wclearclip,sgbindex,_wclipborder,RED_,_wredraw,ON_) 
    txr.setTextr(ctxt,bctx,0.55,BLACK_)  
-   sWo(_woid,htwo[3],_wtexthue,BLACK_,_wtextr,txr,_wclipborder,RED_); 
+   sWo(_woid,htwo[3],_wtextr,txr,_wclipborder,RED_); 
    txr.setTextr(ctxt,wctx,0.5,WHITE_) 
-   sWo(_woid,htwo[3],_wtexthue,WHITE_,_wtextr,txr,_wclipborder,RED_,_wredraw,ON_) 
+   sWo(_woid,htwo[3],_wtextr,txr,_wclipborder,RED_) 
 
-
-   ctxt= <<"CN %V $cindex $cname "  
+   gflush()
+   
+   ctxt= <<"CN $cindex $cname %6.2f R $redv G $greenv  B $bluev"  
    txr.setTextr(ctxt,0,0.5) 
    sWo(_woid,twot,_wtextr,txr,_wclipborder,RED_);
 
-   ctxt= <<"ICN %V $icindex $icname" 
+   ctxt= <<"ICN $icindex $icname %6.2f R $iredv G $igreenv  B $ibluev"  
 
    txr.setTextr(ctxt,0,0.4) 
    sWo(_woid,twot,_wtextr,txr,_wclipborder,RED_);
 
-   ctxt= <<"SRBN %V $srbindex $srbname"
+   ctxt= <<"SRBN $srbindex $srbname %6.2f R $bluev G $greenv  B $redv"  
    txr.setTextr(ctxt,0,0.3) 
    sWo(_woid,twot,_wtextr,txr,_wclipborder,RED_);
 
-   ctxt= <<"SGBN %V $sgbindex $sgbname "
+   ctxt= <<"SGBN $sgbindex $sgbname %6.2f R $redv G $bluev  B $greenv"  
    txr.setTextr(ctxt,0,0.2) 
    sWo(_woid,twot,_wtextr,txr,_wclipborder,RED_); 
 
@@ -750,16 +752,13 @@ while (1) {
      // use Textr asl function to process the text parameters during the sWo call --  compatible with  cpp version 
      // which uses a Textr object and passes that via this pointer 
      //   so this still looks like and tag, value pair to both asl and cpp 
- 
   
- 
     //<<"%V $woid  $qwo \n" 
  
    if (ewoid == qwo) { 
        break 
    } 
- 
- 
+
  
   } 
  

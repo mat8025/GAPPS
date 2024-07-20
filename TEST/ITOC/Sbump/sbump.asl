@@ -2,14 +2,15 @@
  *  @script sbump.asl                                                   
  * 
  *  @comment update the script date&vers                                
- *  @release Beryllium                                                  
- *  @vers 1.14 Si Silicon [asl 6.4.34 C-Be-Se]                          
- *  @date 06/21/2022 07:03:49                                           
+ *  @release Carbon                                                     
+ *  @vers 1.15 P Phosphorus [asl 6.50 : C Sn]                           
+ *  @date 07/20/2024 15:11:17                                           
  *  @cdate Sun Dec 23 09:22:34 2018                                     
  *  @author Mark Terry                                                  
- *  @Copyright © RootMeanSquare 2022 -->                               
+ *  @Copyright © RootMeanSquare 2024 -->                               
  * 
  */ 
+
 //----------------<v_&_v>-------------------------//;                  
 
 
@@ -54,7 +55,7 @@ if (_dblevel >0) {
     Str el;
  //   <<[2]"$ln\n"
     pad = nsc(70- slen(ln)," ")
-  //  <<[2]"$hl $pad\n"
+  <<[2]"$hl $pad\n"
    //<<[A]"$hl $pad\n"
     el = "$hl $pad"
     return el;
@@ -208,12 +209,15 @@ L.pinfo()
    
    while (1) {
 
-    T = readline(A);
+    T = readline(A,-1,1);
     
    
-//<<[2]"$i line is $T \n"
-// L.clear()
+<<[2]"$i line is <||$T||> \n"
+   L.clear()
    L.vfree();
+
+//ans = ask("line OK?",1)
+//if (ans == "q") exit()
 
 
    where = ftell(A)
@@ -230,9 +234,10 @@ L.pinfo()
      <<[2]"$where $cvers $L[2]\n"
    }
     else if (scmp(L[1],"@cdate")) {
-     cdate = "$L[2::]";
+     
 <<"found cdate  $L\n"     
 <<[2]"cdate <|$cdate|>  $L[2]\n"     
+    cdate = "$L[2::]";
    }
     else if (scmp(L[1],"@comment")) {
      comment = "$L[2::]";
@@ -243,7 +248,7 @@ L.pinfo()
 //<<[2]"release: <|$release|>  $L[2]\n"           
  //  }
     else if (scmp(L[1],"@author")) {
-      author = "$L[2::]";
+      author = "$L[2:-1:1]";
    }
    
    }
@@ -417,7 +422,8 @@ cf(A);
 
 ans=iread("app code -what modification?:")
 <<"$ans\n"
-
+if (ans =="q") exit()
+   
 log_it = 1;
 
 if (log_it) {

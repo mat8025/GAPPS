@@ -1,16 +1,20 @@
 /* 
- *  @script mat_sum.asl  
+ *  @script mat_sum.asl                                                 
  * 
- *  @comment test matrix sum function 
- *  @release CARBON 
- *  @vers 1.5 B Boron [asl 6.3.66 C-Li-Dy] 
- *  @date 12/12/2021 00:08:55          
- *  @cdate 11/03/2021 12:03:14 
- *  @author Mark Terry 
- *  @Copyright © RootMeanSquare  2010,2021 → 
+ *  @comment test matrix sum function                                   
+ *  @release Carbon                                                     
+ *  @vers 1.9 F Fluorine [asl 6.50 : C Sn]                              
+ *  @date 07/20/2024 15:10:16                                           
+ *  @cdate Sun Mar 22 11:05:34 2020                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
  * 
  */ 
-;//-----------------<v_&_v>--------------------------//;             
+
+   
+
+
+
 
 
 <|Use_= 

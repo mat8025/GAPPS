@@ -2189,3 +2189,5 @@ spil_dll.cpp                        1.12  07/17/2024 16:43:45  use aslx libs if 
 plot_wo_tile.cpp                    1.89  07/17/2024 17:03:38   vpad for wovtile now set-- need fix for wohtile
 str_sop.cpp                         2.2  07/17/2024 23:05:06  ssubrgx now in function table
 num_conv.cpp                        2.93  07/19/2024 01:42:30  satoi
+color.h                             1.34  07/20/2024 15:21:36  RGB functions
+siv.h                               2.13  07/20/2024 15:24:02  aop dynamic
