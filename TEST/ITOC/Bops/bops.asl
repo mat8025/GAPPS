@@ -13,7 +13,7 @@
 
 
 
-//#define __ASL__ 1
+#define __ASL__ 1
 #define __CPP__ 0
 
 //  use the asl  -T  flag to produce cpp compilable code
@@ -51,7 +51,7 @@
 
  argc = argc();
 
-<<"%V $argc \n"
+<<" $argc \n"
 
 //ans=query(" argc $argc continue? :[y/n]") ;
 //f (ans != "y")    exit(-1) ;
@@ -212,7 +212,7 @@ int ab = 2 + 3
 
 //  chkOut(1)
   
-  int n1 = 1 
+  n1 = 1 
 
   <<"%V $n1 \n" 
 

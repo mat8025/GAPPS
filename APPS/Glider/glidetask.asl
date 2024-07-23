@@ -62,6 +62,7 @@ int run_asl = runASL();
   //debugON();
 
  ignoreErrors();
+ //checkSVpool()
  echolines(0)
 
 
@@ -124,10 +125,14 @@ Str ans;
 //ans=ask(" ??",0)
 
 #include "tpclass.asl"
+  allowDB("ic_,oo_,spe_,rdp_,pexpnd,array",1)
 
 Turnpt  GT_Wtp[50];
 
 Tleg  GT_Wleg[20];
+// checkSVpool()
+
+//ans=ask("SV pool ?",1)
 
 #include "ootlib.asl"
 
@@ -210,7 +215,7 @@ Glide::glideTask(Svarg * sarg)
 //  int nerror = 0;
 
   int use_cup = 1;
-  allowDB("ic_,oo_,spe_,rdp_,pexpnd,array",0)
+
   if (use_cup) {
 
   AFH=ofr("CUP/bbrief.cup")  ; // open turnpoint file;
@@ -1131,8 +1136,8 @@ while (ac < na) {
      pc_tot = GT_Wleg[li].dist/totalD * 100.0;
 
      GT_Wleg[li].pc = pc_tot;
-     
-
+      //checkSVpool()
+//ans=ask("SV pool ?",1)
 // printf("%d %-5s  \t%s\t%s   %6.0fft   %6.0fft         \n",li,ident,GT_Wtp[li].Lat,GT_Wtp[li].Lon, GT_Wtp[li].fga, GT_Wtp[li].Alt);
   //
 #if __ASL__

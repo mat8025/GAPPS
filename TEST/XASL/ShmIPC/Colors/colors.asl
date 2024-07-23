@@ -99,7 +99,7 @@ void  setRGBfromCindex()
    setRGB(g_index,0,greenv,0) 
    setRGB(b_index,0,0,bluev);        
 }
-
+//[EP]/////////////////////////////////////////////////////
 
 
 // goes after procs 
@@ -146,12 +146,17 @@ int k = 0
  redv = 0.5; 
  greenv = 0.45; 
  bluev = 0.75; 
+
+ iredv = 1.0 -redv
+ igreenv = 1.0 -greenv
+  ibluev = 1.0 - bluev
  
+
 
  
 ask_here = 1 
 #if __ASL__ 
-allowDB("prep,spe",1) 
+allowDB("prep,spe",0) 
 #endif 
  
 //#include "tbqrd.asl"  // 7/7/24 -- want a precompiled vers of this 
@@ -211,7 +216,7 @@ sWi(_woid,cvp,_wname,"Colors",_wdraw,ON_,_wpixmap,ON_,_wsave,ON_,_wbhue,YELLOW_)
   bwo=cWo(bvp,WO_BS_); // TBF 7/6/24 should autodec bwo FIXED 
  
  // sWo(_woid,bwo,_wname,"Blue",_wvalue,bluev,_wbhue,BLUE_); 
-  sWo(_woid,bwo,_wname,"Blue",_wvalue,bluev,_wbhue,BLUE_); 
+   sWo(_woid,bwo,_wname,"Blue",_wvalue,bluev,_wbhue,BLUE_); 
  
  // rwo=cWo(bvp,_BS,_name,"Red",_value,redv) 
  
@@ -219,7 +224,7 @@ sWi(_woid,cvp,_wname,"Colors",_wdraw,ON_,_wpixmap,ON_,_wsave,ON_,_wbhue,YELLOW_)
  
     sWo(_woid,rwo,_wname,"RED",_wvalue,redv,_whue,RED_); 
  
-  gwo=cWo(bvp,WO_BS_); 
+   gwo=cWo(bvp,WO_BS_); 
  
   sWo(_woid,gwo,_wname,"Green",_wvalue,greenv,_whue,GREEN_); 
  
@@ -256,6 +261,7 @@ sWi(_woid,cvp,_wname,"Colors",_wdraw,ON_,_wpixmap,ON_,_wsave,ON_,_wbhue,YELLOW_)
  
   sWo(_woid,nxtcolwo,_wname,"Next",_wvalue,"NextColor",_wcolor,CYAN_,_wresize,wbox(bx,by,bX,bY)) 
 
+
   cindexwo=cWo(bvp,WO_BV_) 
 
   by = bY + 0.02 
@@ -264,11 +270,21 @@ sWi(_woid,cvp,_wname,"Colors",_wdraw,ON_,_wpixmap,ON_,_wsave,ON_,_wbhue,YELLOW_)
   sWo(_woid, cindexwo,_wname,"CINDEX",_wvalue,"1",_wcolor,LILAC_,_wresize,wbox(bx,by,bX,bY)); 
 
 
+  cnamewo=cWo(bvp,WO_BV_) 
+
+  by = bY + 0.02 
+  bY = by + dY
+
+  sWo(_woid, cnamewo,_wname,"CNAME",_wvalue,"SkyBlue",_wcolor,LILAC_,_wresize,wbox(bx,by,bX,bY));
+
+
   sWo(_woid,qwo,_wborder,ON_,_wdraw,ON_,_wclipborder,BLACK_,_wfonthue,BLACK_, _wstyle, "SVB", _wredraw,ON_) 
  
   sWo(_woid,nxtcolwo,_wborder,ON_,_wdraw,ON_,_wclipborder,ON_,_wfonthue,BLACK_, _wstyle, "SVB", _wredraw,ON_)
 
   sWo(_woid,cindexwo,_wborder,ON_,_wdraw,ON_,_wfunc,"inputValue",_wclipborder,ON_,_wfonthue,BLACK_, _wstyle, "SVB", _wredraw,ON_)
+
+  sWo(_woid,cnamewo,_wborder,ON_,_wdraw,ON_,_wfunc,"inputValue",_wclipborder,ON_,_wfonthue,BLACK_, _wstyle, "SVB", _wredraw,ON_)
 
   
   
@@ -311,7 +327,7 @@ sWi(_woid,cvp,_wname,"Colors",_wdraw,ON_,_wpixmap,ON_,_wsave,ON_,_wbhue,YELLOW_)
     
     sWo(_woid,twot,_wname,"Text",_wvalue,"howdy",_wcolor,ORANGE_,_wresize,wbox(0.01,0.1,0.95,0.9)); 
  
-    sWo(_woid,twot,_wborder,BLACK_,_wdraw, ON_,_wclipborder,BROWN_,_wfonthue,BLUE_, _wredraw,ON_); 
+    sWo(_woid,twot,_wclip, wbox(0.01,0.01,0.95,0.95),_wborder,BLACK_,_wdraw, ON_,_wclipborder,BROWN_,_wfonthue,BLUE_, _wredraw,ON_); 
  
  // ?  _pixmapoff ? 
  
@@ -452,6 +468,10 @@ Vec<float> rgb(4);
    }
 
 cindex = 0; // need to know where HTML starts
+cname = "limegreen"
+icindex =0
+srbindex = 0;
+sgbindex = 0;
 
 while (1) { 
  
@@ -462,6 +482,13 @@ while (1) {
     cindex  = satoi(woGetValue(cindexwo))
     setRGBfromCindex()
  }
+  else if (ewoid == cnamewo) { 
+    cname  = woGetValue(cnamewo)
+    cindex = getCmapIndexFromName(cname);
+     setRGBfromCindex()
+ }
+
+
  else if (ewoid == nxtcolwo) { 
  
     cindex++
@@ -532,19 +559,9 @@ while (1) {
 
     //ans= ask("check stack $(txr.getTxt())",0) // TBF vmf in pex ? 
  
- 
   
-
- 
  <<" %V $bluev $redv $greenv"  
  
-    
-  
-
-
-
-
-
  
   // sWo(rgbwo,_redraw) 
   // TBC ?tr 
@@ -563,11 +580,6 @@ while (1) {
    cname = getColorName(cindex); 
    //<<"%V $cname $cindex \n" 
  
-
-
-
-
-
 
   // sWo(_woid,htwo[0],_wtexthue,BLACK_,_wtextr,txr.setTextr("$cname",bctx,0.52),_wclipborder,RED_)); // TBF should be flagged as SBAD -- extra ) 
 
@@ -608,24 +620,24 @@ while (1) {
    fhtmlv.pinfo()
    
 //ask=query("where are we? $icname"); 
- 
+
+
    txr.setTextr(ctxt,bctx,0.55,BLACK_)
    sWo(_woid,htwo[1],_wtextr,txr,_wclipborder,RED_); 
    txr.setTextr(ctxt,wctx,0.5,WHITE_) 
    sWo(_woid,htwo[1],_wtextr,txr); 
 
-
-
-
-
    //<<"%V $icname $icindex \n" 
  
  
-   // swap red & blue 
+   // swap red & blue
+
    srbindex = getColorIndexFromRGB(bluev,greenv,redv) 
    srbname = getColorName(srbindex) 
- 
-   sWo(_woid,htwo[2],_wbhue,srbindex,_wredraw,ON_) 
+
+<<"%V $redv $greenv $bluev $srbindex\n"
+
+sWo(_woid,htwo[2],_wbhue,srbindex,_wclearclip, srbindex, _wredraw,ON_) 
  
   ctxt= <<"$srbname" 
  
@@ -634,12 +646,11 @@ while (1) {
    txr.setTextr(ctxt,wctx,0.5,WHITE_) 
    sWo(_woid,htwo[2],_wtexthue,WHITE_,_wtextr,txr,_wclipborder,RED_);  // wtextr is cleared by redraw
    
-// swap green & blue 
+// swap green & blue
+
    sgbindex = getColorIndexFromRGB(redv,bluev,greenv) 
    sgbname = getColorName(sgbindex) 
-
-   
-
+<<"%V $redv $greenv $bluev $sgbindex\n"
 
     ctxt= <<"$sgbname" 
  
@@ -652,23 +663,26 @@ while (1) {
 
    gflush()
    
-   ctxt= <<"CN $cindex $cname %6.2f R $redv G $greenv  B $bluev"  
+   ctxt= <<" CN   %6.2f R $redv G $greenv  B $bluev $cindex $cname"  
    txr.setTextr(ctxt,0,0.5) 
-   sWo(_woid,twot,_wtextr,txr,_wclipborder,RED_);
+  // sWo(_woid,twot,_wtextr,txr,_wclipborder,RED_);
+   wtext(twot,ctxt,0.1,0.5)
 
-   ctxt= <<"ICN $icindex $icname %6.2f R $iredv G $igreenv  B $ibluev"  
+   ctxt= <<" ICN  %6.2f R $iredv G $igreenv  B $ibluev $icindex $icname "  
+
+   wtext(twot,ctxt,0.1,0.4)
 
    txr.setTextr(ctxt,0,0.4) 
-   sWo(_woid,twot,_wtextr,txr,_wclipborder,RED_);
+   //sWo(_woid,twot,_wtextr,txr,_wclipborder,RED_);
 
-   ctxt= <<"SRBN $srbindex $srbname %6.2f R $bluev G $greenv  B $redv"  
+   ctxt= <<" SRBN %6.2f R $bluev G $greenv  B $redv $srbindex $srbname "  
    txr.setTextr(ctxt,0,0.3) 
-   sWo(_woid,twot,_wtextr,txr,_wclipborder,RED_);
-
-   ctxt= <<"SGBN $sgbindex $sgbname %6.2f R $redv G $bluev  B $greenv"  
+   //sWo(_woid,twot,_wtextr,txr,_wclipborder,RED_);
+   wtext(twot,ctxt,0.1,0.3)
+   ctxt= <<" SGBN %6.2f R $redv G $bluev  B $greenv  $sgbindex $sgbname"  
    txr.setTextr(ctxt,0,0.2) 
-   sWo(_woid,twot,_wtextr,txr,_wclipborder,RED_); 
-
+   //sWo(_woid,twot,_wtextr,txr,_wclipborder,RED_); 
+   wtext(twot,ctxt,0.1,0.2)
    //cname = getColorName(windex) 
  
    //windex++ 

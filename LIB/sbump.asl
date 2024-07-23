@@ -223,10 +223,11 @@ L.pinfo()
    where = ftell(A)
    L.Split(T);
    sz = Caz(L);
+   hiw= Chi(L);
 <<[2] "sz $(caz(L)) \n"
 <<[2]"$i $sz $where  $L \n"
    if (sz >2) {
-<<[2]"L1 $L[1]  $L[::]\n"
+<<[2]"L1 $L[1]  $L[:hwi:]\n"
 
     if (scmp(L[1],"@vers")) {
      found_vers =1;
@@ -237,10 +238,10 @@ L.pinfo()
      
 <<"found cdate  $L\n"     
 <<[2]"cdate <|$cdate|>  $L[2]\n"     
-    cdate = "$L[2::]";
+    cdate = "$L[2:hwi:]";
    }
     else if (scmp(L[1],"@comment")) {
-     comment = "$L[2::]";
+     comment = "$L[2:hiw:]";
    }
   //  else if (scmp(L[1],"@release")) {
       //release = "$L[2::]";
@@ -248,7 +249,7 @@ L.pinfo()
 //<<[2]"release: <|$release|>  $L[2]\n"           
  //  }
     else if (scmp(L[1],"@author")) {
-      author = "$L[2:-1:1]";
+      author = "$L[2:hwi:1]";
    }
    
    }
