@@ -17,7 +17,7 @@
  
  
 #define __CPP__ 0 
-#define __ASL__ 1 
+//#define __ASL__ 0
  
 #if __ASL__	
 #include "debug.asl"  
@@ -32,7 +32,7 @@
  Svar argv = _argv;  // allows asl and cpp to refer to clargs 
  argc = argc(); 
  
- 
+ //ans=ask("debug inc?",1)
  
   chkIn(_dblevel) ; 
  
@@ -64,7 +64,7 @@ using namespace std;
 #include "gevent.h" 
 #include "event.h" 
 #include  "textr.h" 
-#include "wevent.asl"
+//#include "wevent.asl"
 
 int Aslx =0;   // need a cpp holdall for any Asl only Globals? 
 
@@ -72,15 +72,50 @@ int Aslx =0;   // need a cpp holdall for any Asl only Globals?
  
 Str Use_= " Demo  of test color selection "; 
 
+// GLOBALS
+ cindex = 0; // need to know where HTML starts
+ cname = "limegreen"
+ icindex,windex = 0
+ html_index = 0
 
+ srbindex = 0;
+ sgbindex = 0;
+ srbname = ""
+ sgbname = ""
+
+icname = "blue"; 
+scname = "red"; 
+txw =""; 
+
+int index = 2000; 
+int rgb_index;  // place this outside of most colors 
+int rg_index;
+int rb_index; 
+int gb_index;
+int r_index;
+int g_index;
+int b_index;
+
+
+#include "wevent.asl" 
+
+
+ //Vec rgb(<float>,4)  ; // trans needs to know float rgb[4]
+
+ float rgb[4] ; // trans to Vec <float> rgb(4)
 // this should be in an include file
+
+///////////////////////////////////////////////////
+#if __ASL__
+   openDll("image"); 
+#endif
 
 void  setRGBfromCindex()
 {
     if (cindex > 1000)
         cindex =0; // need to know where HTML sets ends 
     //rgb = getRGB(cindex) 
-    rgb[0] = getRed(cindex) 
+    rgb[0] = getRed(cindex)  ; // trans bad 7/25/24  ?? 
     rgb[1] = getGreen(cindex)     
     rgb[2] = getBlue(cindex)     
     <<"getRGB  $rgb[0] $rgb[1] $rgb[2] \n" 
@@ -114,54 +149,39 @@ int main( int argc, char *argv[] ) { // main start
 // 
  
  
-  Graphic = checkGWM() 
+  Graphic = checkGWM()  ; // trans bad fname ?? spil_dll
  
   if (!Graphic) { 
     Xgm = spawnGWM("colors") 
-  } 
- 
- 
-     openDll("image"); 
+  }   
 
-     openDll("plot") 
-
-     rainbow();  // update the XGS CMAP
-
-// where is top of current loaded map?
-
-    ans=ask("CMAP loaded?",0)
-
-int index = 2000; 
-int rgb_index =  index++;  // place this outside of most colors 
-int rg_index = index++ 
-int rb_index = index++ 
-int gb_index = index++ 
-int r_index = index++ 
-int g_index = index++ 
-int b_index = index++
-
-
-int k = 0 
- 
- redv = 0.5; 
- greenv = 0.45; 
- bluev = 0.75; 
-
- iredv = 1.0 -redv
- igreenv = 1.0 -greenv
-  ibluev = 1.0 - bluev
- 
-
+  openDll("plot")  // should add in plot funcs?? in trans 
 
  
-ask_here = 1 
-#if __ASL__ 
-allowDB("prep,spe",0) 
-#endif 
  
-//#include "tbqrd.asl"  // 7/7/24 -- want a precompiled vers of this 
+  openDll("image"); 
+
+ rainbow();  // update the XGS CMAP
+
+  int k = 0 ;
  
-  
+  float redv =  0.5;
+  float greenv =  0.45;
+  float bluev =  0.75;
+
+  float    iredv =  1.0 -redv ;
+  float    igreenv =  1.0 -greenv ;
+  float    ibluev =  1.0 - bluev ;
+ 
+  rgb_index =  index++;  // place this outside of most colors 
+     rg_index = index++ ;
+     rb_index = index++ ;
+     gb_index = index++ ;
+     r_index = index++ ;
+     g_index = index++ ;
+     b_index = index++ ;
+
+ 
  
   bvp = cWi("Button") ; // TBF 7/6/24 should autodec int bvp FIXED 
    
@@ -207,7 +227,7 @@ sWi(_woid,cvp,_wname,"Colors",_wdraw,ON_,_wpixmap,ON_,_wsave,ON_,_wbhue,YELLOW_)
   bY = 0.3 
   dY = bY -by 
   cby = 0.1 
-  cbY = 0.8 
+  cbY = 0.5 
  
   cbx = 0.1 
   cbX = 0.5 
@@ -216,7 +236,7 @@ sWi(_woid,cvp,_wname,"Colors",_wdraw,ON_,_wpixmap,ON_,_wsave,ON_,_wbhue,YELLOW_)
   bwo=cWo(bvp,WO_BS_); // TBF 7/6/24 should autodec bwo FIXED 
  
  // sWo(_woid,bwo,_wname,"Blue",_wvalue,bluev,_wbhue,BLUE_); 
-   sWo(_woid,bwo,_wname,"Blue",_wvalue,bluev,_wbhue,BLUE_); 
+  sWo(_woid,bwo,_wname,"Blue",_wvalue,bluev,_wbhue,BLUE_); 
  
  // rwo=cWo(bvp,_BS,_name,"Red",_value,redv) 
  
@@ -224,7 +244,7 @@ sWi(_woid,cvp,_wname,"Colors",_wdraw,ON_,_wpixmap,ON_,_wsave,ON_,_wbhue,YELLOW_)
  
     sWo(_woid,rwo,_wname,"RED",_wvalue,redv,_whue,RED_); 
  
-   gwo=cWo(bvp,WO_BS_); 
+  gwo=cWo(bvp,WO_BS_); 
  
   sWo(_woid,gwo,_wname,"Green",_wvalue,greenv,_whue,GREEN_); 
  
@@ -234,7 +254,7 @@ sWi(_woid,cvp,_wname,"Colors",_wdraw,ON_,_wpixmap,ON_,_wsave,ON_,_wbhue,YELLOW_)
    
  // sWo(rgbwo,_style,"SVL",_wdrawon, 
  
-  wovtile( rgbwo, cbx,cby,cbX,cbY,0.03); 
+  wovtile( rgbwo, cbx,cby,cbX,cbY,0.01); 
   i=0; 
   while (rgbwo[i] >0 ) { 
    sWo( _woid, rgbwo[i++],_wstyle,"SVL",_wdraw,ON_,_whue,BLACK_,_wsymbol,TRI_,_wredraw,ON_); 
@@ -260,38 +280,36 @@ sWi(_woid,cvp,_wname,"Colors",_wdraw,ON_,_wpixmap,ON_,_wsave,ON_,_wbhue,YELLOW_)
   // TBF missing tag,val pair  show ERROR CPP compile will fail! --- shows error(glitch)  marks statement as SBAD continues 
  
   sWo(_woid,nxtcolwo,_wname,"Next",_wvalue,"NextColor",_wcolor,CYAN_,_wresize,wbox(bx,by,bX,bY)) 
-
-
-  cindexwo=cWo(bvp,WO_BV_) 
-
-  by = bY + 0.02 
-  bY = by + dY
-
-  sWo(_woid, cindexwo,_wname,"CINDEX",_wvalue,"1",_wcolor,LILAC_,_wresize,wbox(bx,by,bX,bY)); 
-
-
-  cnamewo=cWo(bvp,WO_BV_) 
-
-  by = bY + 0.02 
-  bY = by + dY
-
-  sWo(_woid, cnamewo,_wname,"CNAME",_wvalue,"SkyBlue",_wcolor,LILAC_,_wresize,wbox(bx,by,bX,bY));
-
-
+ 
   sWo(_woid,qwo,_wborder,ON_,_wdraw,ON_,_wclipborder,BLACK_,_wfonthue,BLACK_, _wstyle, "SVB", _wredraw,ON_) 
  
-  sWo(_woid,nxtcolwo,_wborder,ON_,_wdraw,ON_,_wclipborder,ON_,_wfonthue,BLACK_, _wstyle, "SVB", _wredraw,ON_)
+  sWo(_woid,nxtcolwo,_wborder,ON_,_wdraw,ON_,_wclipborder,ON_,_wfonthue,BLACK_, _wstyle, "SVB", _wredraw,ON_) 
 
-  sWo(_woid,cindexwo,_wborder,ON_,_wdraw,ON_,_wfunc,"inputValue",_wclipborder,ON_,_wfonthue,BLACK_, _wstyle, "SVB", _wredraw,ON_)
 
-  sWo(_woid,cnamewo,_wborder,ON_,_wdraw,ON_,_wfunc,"inputValue",_wclipborder,ON_,_wfonthue,BLACK_, _wstyle, "SVB", _wredraw,ON_)
+  cindexwo = cWo(bvp,WO_BV_) ;
+
+     by = bY + 0.02 ;
+     bY = by + dY ;
+
+  sWo(_woid, cindexwo,_wname,"CINDEX",_wvalue,"1",_wcolor,LILAC_,_wresize,wbox(bx,by,bX,bY));
+
+
+  cnamewo = cWo(bvp,WO_BV_) ;
+
+     by = bY + 0.02 ;
+     bY = by + dY ;
+     
+  sWo(_woid, cnamewo,_wname,"CNAME",_wvalue,"SkyBlue",_wcolor,LILAC_,_wresize,vbox(0.6,by,bX,bY));
+
+
+
+   sWo(_woid,cindexwo,_wborder,ON_,_wdraw,ON_,_wfunc,"inputValue",_wclipborder,ON_,_wfonthue,BLACK_, _wstyle, "SVB", _wredraw,ON_) ;
+
+
+     sWo(_woid,cnamewo,_wborder,ON_,_wdraw,ON_,_wfunc,"inputValue",_wclipborder,ON_,_wfonthue,BLACK_, _wstyle, "SVB", _wredraw,ON_) ;
 
   
   
-  
-
-
-
 
   // these are a list of values that the color wo can have  - each click cycles thru them 
  
@@ -323,20 +341,27 @@ sWi(_woid,cvp,_wname,"Colors",_wdraw,ON_,_wpixmap,ON_,_wsave,ON_,_wbhue,YELLOW_)
      
  // setgwin(bvp,"woredrawall") 
  
-    twot=cWo(txtwin,WO_TEXT_); 
+   twot=cWo(txtwin,WO_TEXT_); 
     
-    sWo(_woid,twot,_wname,"Text",_wvalue,"howdy",_wcolor,ORANGE_,_wresize,wbox(0.01,0.1,0.95,0.9)); 
+    sWo(_woid,twot,_wname,"Text",_wvalue,"howdy",_wcolor,ORANGE_,_wresize,wbox(0.1,0.1,0.9,0.9)); 
  
-    sWo(_woid,twot,_wclip, wbox(0.01,0.01,0.95,0.95),_wborder,BLACK_,_wdraw, ON_,_wclipborder,BROWN_,_wfonthue,BLUE_, _wredraw,ON_); 
+    sWo(_woid,twot,_wborder,BLACK_,_wdraw, ON_,_wclipborder,BROWN_,_wfonthue,BLUE_, _wredraw,ON_); 
  
  // ?  _pixmapoff ? 
  
  
-     int awo[5] ; awo[4] = -1;
+
+
+
+
+
+int awo[5] ;
+  awo[4] = -1;
  
-     index = 150; 
+  index = 150;
  
-     for (k = 0; k < 4; k++) {  
+
+     for (k =0  ; k  < 4 ; k++) {
   //      awo[k]=cWo(cvp,_GRAPH,_name,"${k}_col",_color,index,_value,k) 
              awo[k]=cWo(cvp,WO_GRAPH_) 
 	     sWo(_woid,awo[k],_wname,"${k}_col",_wcolor,index,_wvalue,k); 
@@ -344,7 +369,7 @@ sWi(_woid,cvp,_wname,"Colors",_wdraw,ON_,_wpixmap,ON_,_wsave,ON_,_wbhue,YELLOW_)
      } 
  
  
-<<"%V$awo \n" 
+   <<"%V $awo \n" 
  
   //sWo(awo,_border,_drawon,_CLIPBORDER) 
  
@@ -421,14 +446,9 @@ int htwo[5]  ; htwo[4] = -1;
 
 
 // Event vars 
-#if __ASL__ 
-#include "wevent.asl" 
-#endif 
+
  
-Str icname = "blue"; 
-Str cname = "red"; 
-Str scname = "red"; 
-Str txw; 
+
  
   cindex = 0; 
   icindex = 0; 
@@ -445,14 +465,14 @@ Str txw;
     
   txr.pinfo() 
  
-  txw = txr.getTxt() ;  // want this to go to a str 
+//  txw = txr.getTxt() ;  // want this to go to a str 
    
   <<"%V $txw \n" 
    
  
 //ans= ask("%V $txw ?",1)  // TBF 7/6/24 need an CPP trans 
 ///////////////////////////////////////////////////// interactive loop //// 
-Vec<float> rgb(4); 
+//Vec<float> rgb(4); 
  
  
    int ke=0; 
@@ -467,11 +487,7 @@ Vec<float> rgb(4);
 
    }
 
-cindex = 0; // need to know where HTML starts
-cname = "limegreen"
-icindex =0
-srbindex = 0;
-sgbindex = 0;
+
 
 while (1) { 
  
@@ -567,7 +583,7 @@ while (1) {
   // TBC ?tr 
  //   ctxt= <<" RGB %V %6.2f $redv $greenv $bluev" 
 
-    ctxt= <<" RGB %V $redv $greenv $bluev" 
+    ctxt= <<" RGB %V %6.2f $redv $greenv $bluev" 
     txr.setTextr(ctxt,0,0.9) 
     <<"%V $ctxt\n" 
      sWo(_woid,twot,_wclear,ON_,_wtextr,txr);  
@@ -666,11 +682,12 @@ sWo(_woid,htwo[2],_wbhue,srbindex,_wclearclip, srbindex, _wredraw,ON_)
    ctxt= <<" CN   %6.2f R $redv G $greenv  B $bluev $cindex $cname"  
    txr.setTextr(ctxt,0,0.5) 
   // sWo(_woid,twot,_wtextr,txr,_wclipborder,RED_);
-   wtext(twot,ctxt,0.1,0.5)
+
+   Text(twot,ctxt,0.1,0.5)
 
    ctxt= <<" ICN  %6.2f R $iredv G $igreenv  B $ibluev $icindex $icname "  
 
-   wtext(twot,ctxt,0.1,0.4)
+   Text(twot,ctxt,0.1,0.4)
 
    txr.setTextr(ctxt,0,0.4) 
    //sWo(_woid,twot,_wtextr,txr,_wclipborder,RED_);
@@ -678,11 +695,11 @@ sWo(_woid,htwo[2],_wbhue,srbindex,_wclearclip, srbindex, _wredraw,ON_)
    ctxt= <<" SRBN %6.2f R $bluev G $greenv  B $redv $srbindex $srbname "  
    txr.setTextr(ctxt,0,0.3) 
    //sWo(_woid,twot,_wtextr,txr,_wclipborder,RED_);
-   wtext(twot,ctxt,0.1,0.3)
+   Text(twot,ctxt,0.1,0.3)
    ctxt= <<" SGBN %6.2f R $redv G $bluev  B $greenv  $sgbindex $sgbname"  
    txr.setTextr(ctxt,0,0.2) 
    //sWo(_woid,twot,_wtextr,txr,_wclipborder,RED_); 
-   wtext(twot,ctxt,0.1,0.2)
+   Text(twot,ctxt,0.1,0.2)
    //cname = getColorName(windex) 
  
    //windex++ 
@@ -780,7 +797,7 @@ sWo(_woid,htwo[2],_wbhue,srbindex,_wclearclip, srbindex, _wredraw,ON_)
 
  
    chkOut(); 
-   exitGS() 
+   exitXGS() 
 
 #if __CPP__ 
   exit_cpp(); 
