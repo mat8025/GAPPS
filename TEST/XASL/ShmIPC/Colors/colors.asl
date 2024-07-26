@@ -87,7 +87,7 @@ icname = "blue";
 scname = "red"; 
 txw =""; 
 
-int index = 2000; 
+
 int rgb_index;  // place this outside of most colors 
 int rg_index;
 int rb_index; 
@@ -172,8 +172,8 @@ int main( int argc, char *argv[] ) { // main start
   float    iredv =  1.0 -redv ;
   float    igreenv =  1.0 -greenv ;
   float    ibluev =  1.0 - bluev ;
- 
-  rgb_index =  index++;  // place this outside of most colors 
+ int index = 2000; 
+    rgb_index =  index;  // place this outside of most colors 
      rg_index = index++ ;
      rb_index = index++ ;
      gb_index = index++ ;
@@ -298,8 +298,9 @@ sWi(_woid,cvp,_wname,"Colors",_wdraw,ON_,_wpixmap,ON_,_wsave,ON_,_wbhue,YELLOW_)
 
      by = bY + 0.02 ;
      bY = by + dY ;
-     
-  sWo(_woid, cnamewo,_wname,"CNAME",_wvalue,"SkyBlue",_wcolor,LILAC_,_wresize,vbox(0.6,by,bX,bY));
+     bx = 0.6;
+     bz = 0.1;
+  sWo(_woid, cnamewo,_wname,"CNAME",_wvalue,"SkyBlue",_wcolor,LILAC_,_wresize,vbox(bx,by,bX,bY));
 
 
 
@@ -618,6 +619,7 @@ while (1) {
    //<<"%V $icindex \n"; 
 
    fcv = getRGBfromIndex(icindex);
+
    fcv.pinfo()
    
 
@@ -629,7 +631,7 @@ while (1) {
    windex = getCmapIndexFromName(icname);
    
 
-   html_index = getHTMLindexFromname (icname)
+   html_index = getHTMLindexFromName (icname)
 
 <<"%V $windex $html_index \n"
    fhtmlv = getRGBfromHTMLindex(html_index);
@@ -639,8 +641,11 @@ while (1) {
 
 
    txr.setTextr(ctxt,bctx,0.55,BLACK_)
+   
    sWo(_woid,htwo[1],_wtextr,txr,_wclipborder,RED_); 
-   txr.setTextr(ctxt,wctx,0.5,WHITE_) 
+
+txr.setTextr(ctxt,wctx,0.5,WHITE_)
+   
    sWo(_woid,htwo[1],_wtextr,txr); 
 
    //<<"%V $icname $icindex \n" 

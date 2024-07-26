@@ -164,7 +164,7 @@ int DBH = -1
 
 <<"$mans\n"
 
-if (ans == "q") {
+if (mans == "q") {
   <<"abandon!"
   exit(-1);
 }

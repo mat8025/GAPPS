@@ -2191,3 +2191,6 @@ str_sop.cpp                         2.2  07/17/2024 23:05:06  ssubrgx now in fun
 num_conv.cpp                        2.93  07/19/2024 01:42:30  satoi
 color.h                             1.34  07/20/2024 15:21:36  RGB functions
 siv.h                               2.13  07/20/2024 15:24:02  aop dynamic
+spe_storetype.cpp                   2.72  07/26/2024 23:29:57  SF_to_SIV
+spe_storetype.cpp                   2.72  07/26/2024 23:32:21  SF_to_SIV 
+ds_storesiv.cpp                     1.94  07/26/2024 23:33:05  SF_to_SIV  
