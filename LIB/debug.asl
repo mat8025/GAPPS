@@ -78,10 +78,8 @@ void errorFile()
 void debugOFF()
   {
 
-
-
-  filterFuncDebug(REJECT_ALL_,"proc");
-  filterFileDebug(REJECT_ALL_,"yyy");
+//  filterFuncDebug(REJECT_ALL_,"proc");
+//  filterFileDebug(REJECT_ALL_,"yyy");
 
   _dblevel = 0;
 

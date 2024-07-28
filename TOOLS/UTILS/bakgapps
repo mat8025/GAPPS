@@ -5,6 +5,7 @@ echo $z
 #echo $z | sed sNgappsNBAK/gappsN
 w=`echo $z | sed sNgappsNBAK/gappsN`
 echo $w
+mkdir $w
 for y in $*
 do
 echo cp $y $w

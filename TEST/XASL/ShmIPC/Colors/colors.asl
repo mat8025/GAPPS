@@ -300,7 +300,7 @@ sWi(_woid,cvp,_wname,"Colors",_wdraw,ON_,_wpixmap,ON_,_wsave,ON_,_wbhue,YELLOW_)
      bY = by + dY ;
      bx = 0.6;
      bz = 0.1;
-  sWo(_woid, cnamewo,_wname,"CNAME",_wvalue,"SkyBlue",_wcolor,LILAC_,_wresize,vbox(bx,by,bX,bY));
+  sWo(_woid, cnamewo,_wname,"CNAME",_wvalue,"SkyBlue",_wcolor,LILAC_,_wresize,vbox(bx,by,bX,bY,bz));
 
 
 

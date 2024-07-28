@@ -6769,6 +6769,25 @@ if there is a match of name return color index else -1.
 .EF
 =============================================================
 .BF
+getColorName ()
+.(x
+getColorName
+.)x
+.FD
+getColorName 
+        <Str> getColorName(index) finds color name for color map index 
+=======================================================
+.BF
+getHTMLcolorName ()
+.(x
+getHTMLcolorName
+.)x
+.FD
+getHTMLcolorName 
+        <Str> getHTMLcolorName(int index)  finds color name from HTML color map  
+=======================================================
+
+.BF
 set_buf()
 .(x
 setbuf
