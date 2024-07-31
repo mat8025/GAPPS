@@ -16,15 +16,19 @@
 
 #if __ASL__
 Str Use_= " Demo  of test vec class      ";
-
+ Svar argv = _argv;  // allows asl and cpp to refer to clargs
+ argc = argc();
+ 
   allowDB("spe_declare,ic_,prep_",1)
 
+/*
 #include "debug" 
 
   if (_dblevel >0) { 
    debugON() 
    <<"$Use_ \n" 
 } 
+*/
 
    allowErrors(-1); // set number of errors allowed -1 keep going 
 
@@ -32,6 +36,9 @@ Str Use_= " Demo  of test vec class      ";
 
 // CPP main statement goes after all procs
 #if __CPP__
+
+#define USE_GRAPHICS 0
+
 #include <iostream>
 #include <ostream>
 using namespace std;
@@ -42,7 +49,7 @@ using namespace std;
 #define CPP_DB 0
 
   int main( int argc, char *argv[] ) {  
-    init_cpp() ; 
+     init_cpp(argv[0]); 
 
 #endif       
 
@@ -120,12 +127,21 @@ using namespace std;
 
   F[2] = 0.787;
 
-  <<"F[2] $F[2] \n"
+  f3 = F[3]
+  f4 = F[4]
+  <<"F[2] $F[2] $f3 $f4\n"
 
   Vec<short> S(n,1,1) ;
 
 
   S.pinfo();
+
+  S[2] = 77
+
+  s3 = S[3]
+
+  <<"%V $S[2] $s3 \n"
+
 
   chkN(S[0],1);
 

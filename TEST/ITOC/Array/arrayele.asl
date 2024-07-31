@@ -29,7 +29,7 @@ int db_ask = 0
 
 //allowDB("spe,opera_,array_parse,parse,rdp_,ds,ic,pex",1)
 
-allowDB("opera_,rdp_,ic,pex,parse,array",db_allow)
+   allowDB("opera_,rdp_,ic,pex,parse,array",db_allow)
 
    int main_chk = 0;
 
@@ -160,7 +160,7 @@ ans= ask(" $rl[1] ",0)
 //======================================//
 
    int SA =0;
-
+// TBF 7/27/24  rl[]  bad proc arg? float rl[]   use float* rl   Siv* rl
    float array_sub (float rl[])
    {
 

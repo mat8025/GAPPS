@@ -36,6 +36,9 @@
 
 // CPP main statement goes after all procs
 #if __CPP__
+
+#define USE_GRAPHICS 0
+
 #include <iostream>
 #include <ostream>
 using namespace std;
@@ -80,46 +83,55 @@ using namespace std;
 
    cname = getHTMLcolorName(cindex)
 
-
+  <<"%V $cname\n"
 
    fcv = getRGBfromHTMLindex(cindex);
 
    fcv.pinfo()
 
+ans=iread("fcv");
+
 //   ans = ask(" $fcv OK?", db_ask)
 
-Siv fcv2[5]
+Siv fcv2
  i= 0;
  for (i=1; i< 10 ; i++) {
+ 
   fcv2=getRGBfromHTMLindex(i);
   
 
-<<"$fcv2 \n"
+<<"$i $fcv2[0] $fcv2[1] $fcv[2]\n"
 }
 
-  Siv fcv3
+ans=iread("fcv2");
 
-  fcv3.pinfo()
+//  Siv fcv3
+  fc = fcv2[1]
+
+<<" %V $fc\n"
+
+ans=iread("fcv3");
 
   fcv3 = getRGBfromHTMLindex(i)
 
   fcv3.pinfo()
 
 <<"$fcv3 \n"
+ans=iread("fcv3");
 
-
-Siv fcv4 = 49
+Siv fcv4 = 49 
   fcv4.pinfo()
 
-  <<"$fcv4 \n"
-
+  <<"$fcv4 \n" ; // would need to know it is an int scalar
+ans=iread("fcv4");
  int fcv5 = 50
 
 
   <<"$fcv5 \n"
 
-   rgb = getRGBfromHTMLindex(49)
-
+   rgb = getRGBfromHTMLindex(49) ; // doesn't init  declare via function
+//  has to translate to Siv rgb ; rgb = getRGBfromHTMLindex(49)
+//  check if we have constructor   Siv( float *) ?? that could work
 
    rgb.pinfo()
 

@@ -96,6 +96,11 @@ int r_index;
 int g_index;
 int b_index;
 
+Str bwoval
+Str gwoval
+Str rwoval
+
+Str ctxt;
 
 #include "wevent.asl" 
 
@@ -156,12 +161,10 @@ int main( int argc, char *argv[] ) { // main start
   }   
 
   openDll("plot")  // should add in plot funcs?? in trans 
-
- 
  
   openDll("image"); 
 
- rainbow();  // update the XGS CMAP
+  rainbow();  // update the XGS CMAP
 
   int k = 0 ;
  
@@ -300,7 +303,7 @@ sWi(_woid,cvp,_wname,"Colors",_wdraw,ON_,_wpixmap,ON_,_wsave,ON_,_wbhue,YELLOW_)
      bY = by + dY ;
      bx = 0.6;
      bz = 0.1;
-  sWo(_woid, cnamewo,_wname,"CNAME",_wvalue,"SkyBlue",_wcolor,LILAC_,_wresize,vbox(bx,by,bX,bY,bz));
+  sWo(_woid, cnamewo,_wname,"CNAME",_wvalue,"SkyBlue",_wcolor,LILAC_,_wresize,wbox(bx,by,bX,bY,bz));
 
 
 
@@ -684,7 +687,8 @@ sWo(_woid,htwo[2],_wbhue,srbindex,_wclearclip, srbindex, _wredraw,ON_)
 
    gflush()
    
-   ctxt= <<" CN   %6.2f R $redv G $greenv  B $bluev $cindex $cname"  
+   ctxt= <<" CN   %6.2f R $redv G $greenv  B $bluev $cindex $cname"
+   
    txr.setTextr(ctxt,0,0.5) 
   // sWo(_woid,twot,_wtextr,txr,_wclipborder,RED_);
 
@@ -801,8 +805,9 @@ sWo(_woid,htwo[2],_wbhue,srbindex,_wclearclip, srbindex, _wredraw,ON_)
  
 
  
-   chkOut(); 
-   exitXGS() 
+   chkOut();
+   
+   exitGWM() 
 
 #if __CPP__ 
   exit_cpp(); 
