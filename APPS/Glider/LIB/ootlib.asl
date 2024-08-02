@@ -51,11 +51,19 @@
 
   float LongE= 104.8;
 
-  float MidLat = (LatN - LatS)/2.0 + LatS;
+//   float MidLong = (LongW - LongE)/2.0 + LongE;
+   float MidLong;
+
+  
+
+  MidLong = (LongW - LongE)/2.0 + LongE;
+
+
+  float MidLat = (LatN - LatS) /2.0 + LatS;
 
    float Margin = 0.05;
 
-   float MidLong = (LongW - LongE)/2.0 + LongE;
+
 
   Str Units = "KM";
 
@@ -431,12 +439,12 @@ ssele= IGCELE.stats();
   //wtp.pinfo();
   float km = 0.0;
   float tc = 0.0;
-  float L1,L2,lo1,lo2;
+ // float l1,l2,lo1,lo2;
 
   
-  L1 = wtp[j].Ladeg;
+  l1 = wtp[j].Ladeg;
 
-  L2 = wtp[k].Ladeg;
+  l2 = wtp[k].Ladeg;
 
 //<<"%V $L1 $L2 \n";
 
@@ -447,7 +455,7 @@ ssele= IGCELE.stats();
 //<<"%V $lo1 $lo2 \n";
 //  tc = TrueCourse(L1,lo1,L2,lo2);
 
-  tc = TrueCourse(lo1,L1,lo2,L2);
+  tc = TrueCourse(lo1,l1,lo2,l2);
 
   //printargs(j, k ,L1 ,lo2 ,"tc=", tc);
 //<<"%V $tc\n"

@@ -641,7 +641,9 @@ while (ac < na) {
 
      GT_Wtp[0].TPCUPset(Wval);
 
-//<<"%V $GT_Wtp[n_legs].Ladeg \n"
+<<"%V $GT_Wtp[n_legs].Ladeg \n"
+
+
 
    }
   else {
@@ -705,8 +707,9 @@ while (ac < na) {
   }
 */
 
-  if ((nxttpt == "done") || (nxttpt == "finish") || (nxttpt == "quit") ) {
-
+ // if ((nxttpt == "done") || (nxttpt == "finish") || (nxttpt == "quit") ) {  // 6.54 fail
+ 
+if ((nxttpt == "done")  ) {  // 6.54 fail 
      more_legs = 0;
 
   }

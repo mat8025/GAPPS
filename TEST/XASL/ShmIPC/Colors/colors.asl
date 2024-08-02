@@ -692,11 +692,11 @@ sWo(_woid,htwo[2],_wbhue,srbindex,_wclearclip, srbindex, _wredraw,ON_)
    txr.setTextr(ctxt,0,0.5) 
   // sWo(_woid,twot,_wtextr,txr,_wclipborder,RED_);
 
-   Text(twot,ctxt,0.1,0.5)
+   TextStr(twot,ctxt,0.1,0.5)
 
    ctxt= <<" ICN  %6.2f R $iredv G $igreenv  B $ibluev $icindex $icname "  
 
-   Text(twot,ctxt,0.1,0.4)
+   TextStr(twot,ctxt,0.1,0.4)
 
    txr.setTextr(ctxt,0,0.4) 
    //sWo(_woid,twot,_wtextr,txr,_wclipborder,RED_);
@@ -704,11 +704,11 @@ sWo(_woid,htwo[2],_wbhue,srbindex,_wclearclip, srbindex, _wredraw,ON_)
    ctxt= <<" SRBN %6.2f R $bluev G $greenv  B $redv $srbindex $srbname "  
    txr.setTextr(ctxt,0,0.3) 
    //sWo(_woid,twot,_wtextr,txr,_wclipborder,RED_);
-   Text(twot,ctxt,0.1,0.3)
+   TextStr(twot,ctxt,0.1,0.3)
    ctxt= <<" SGBN %6.2f R $redv G $bluev  B $greenv  $sgbindex $sgbname"  
    txr.setTextr(ctxt,0,0.2) 
    //sWo(_woid,twot,_wtextr,txr,_wclipborder,RED_); 
-   Text(twot,ctxt,0.1,0.2)
+   TextStr(twot,ctxt,0.1,0.2)
    //cname = getColorName(windex) 
  
    //windex++ 
