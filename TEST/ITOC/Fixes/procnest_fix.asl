@@ -1,21 +1,23 @@
 ///
+//
+//
+//
 
-
-proc goo(str a1, str a2)
+Str goo(str a1, str a2)
 {
 <<"$_proc $a1 $a2\n"
-a1->info(1)
+a1.pinfo()
 ina1 =a1
 ina2 =a2
 <<"$_proc $ina1 $ina2\n"
-ina1->info(1)
+ina1.pinfo()
 a1s= scat(a1,a2)
         a2r=goo2(a1,a1s)
 <<"$a2r\n"
        return a2r;
 }
 
-proc goo2(str a1, str a2)
+Str goo2(str a1, str a2)
 {
 <<"$_proc $a1 $a2\n"
 a2s= scat(a2,a1)
@@ -24,7 +26,7 @@ a2s= scat(a2,a1)
       return a3r;
 }
 
-proc goo3(str a1, str a2)
+Str goo3(str a1, str a2)
 {
 <<"$_proc $a1 $a2\n"
 
@@ -43,3 +45,5 @@ proc goo3(str a1, str a2)
 
 
 <<"$gr\n"
+
+

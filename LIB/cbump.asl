@@ -19,7 +19,7 @@
 
  allowDB("ispe_proc,spe_state,spe_args,spe_cmf,spe_scope,tok_func",db_allow)
 
-int DBH = -1
+int DBH_ = -1
 
  Str Vers2ele(Str vstr)
   {
@@ -56,18 +56,18 @@ int DBH = -1
   srcfile = _clarg[1];
   
   if (srcfile @= "") {
-  <<[DBH]"no script file entered\n"
+  <<[DBH_]"no script file entered\n"
     exit();
   }
   
   sz= fexist(srcfile,RW_,0);
   
-  //<<[DBH]" RW sz $sz \n"
+  //<<[DBH_]" RW sz $sz \n"
 
   !!"cp $srcfile ${srcfile}.bak"
 
   if (sz == -1) {
-  <<[DBH]"can't find script file $srcfile\n"
+  <<[DBH_]"can't find script file $srcfile\n"
     exit();
   }
   
@@ -77,7 +77,7 @@ int DBH = -1
   if (na > 2) {
    set_vers = 1;
    new_vers = _clarg[2];
-   <<[DBH]"%V $new_vers\n"
+   <<[DBH_]"%V $new_vers\n"
   // should be maj.min e.g 1.1 ,6.1, ... limits 1 to 100  
   }
   
@@ -87,11 +87,11 @@ int DBH = -1
   
   file= fexist(srcfile,ISFILE_,0);
   
-  //<<[DBH]" FILE $file \n"
+  //<<[DBH_]" FILE $file \n"
   
   dir= fexist(srcfile,ISDIR_,0);
   
-  //<<[DBH]" DIR $dir \n"
+  //<<[DBH_]" DIR $dir \n"
   Author = "Mark Terry"
   fname = srcfile
 
@@ -109,22 +109,22 @@ int DBH = -1
   len = slen(fname);
   
   ind = (80-len)/2;
-  //<<[DBH]"$(date()) $(date(8)) \n"
-  //<<[DBH]" $len $ind\n"
+  //<<[DBH_]"$(date()) $(date(8)) \n"
+  //<<[DBH_]" $len $ind\n"
   insp = nsc((60-len)/2," ")
   len= slen(insp)
-  //<<[DBH]"$len <|$insp|> \n"
+  //<<[DBH_]"$len <|$insp|> \n"
   sp="\n"
-  //<<[DBH]" $(nsc(5,sp))\n"
+  //<<[DBH_]" $(nsc(5,sp))\n"
   
-  //<<[DBH]" $(nsc(5,\"\\n\"))\n"
+  //<<[DBH_]" $(nsc(5,\"\\n\"))\n"
 
 
   release = "";
   //release.pinfo()
   TR = Split(split(getversion()),".")
 
-<<[DBH]"%V $TR[0]  $TR[1]\n"
+<<[DBH_]"%V $TR[0]  $TR[1]\n"
   k= ptan(ptname(TR[0]))
  //k.pinfo()
 //<<"%V $k \n"
@@ -171,7 +171,7 @@ if (mans == "q") {
 
   A=ofile(srcfile,"r");
   //T=readfile(A);
- //<<[DBH]"opened for read/write? $A\n"
+ //<<[DBH_]"opened for read/write? $A\n"
   if (A == -1) {
 <<"bad file ?\n"
    exit()
@@ -217,7 +217,7 @@ Str old_comment ="yyy"
 
     T = readline(A);
    
-//<<[DBH]"$i line is $T \n"
+//<<[DBH_]"$i line is $T \n"
    if (i ==3) {
   // T.pinfo()
    //<<"%V $T\n"
@@ -235,20 +235,20 @@ ans = ask("%V $old_comment", db_ask);
    L.Split(T);
    sz = Caz(L);
 // <<"sz $(caz(L)) \n"
-//<<[DBH]"$i $sz $where  $L \n"
+//<<[DBH_]"$i $sz $where  $L \n"
    if (sz >2) {
-<<[DBH]"L1 $L[1]\n"
+<<[DBH_]"L1 $L[1]\n"
 
     if (scmp(L[1],"@vers")) {
      found_vers =1;
      cvers = L[2];
-     <<[DBH]"$where $cvers $L[2]\n"
+     <<[DBH_]"$where $cvers $L[2]\n"
    }
     else if (scmp(L[1],"@cdate")) {
      cdate = "$L[2:-1:1]";
      
-<<[DBH]"cdate  <|$cdate|>  $L[2]\n"
-<<[DBH]"cdate             <|$L|>   \n"
+<<[DBH_]"cdate  <|$cdate|>  $L[2]\n"
+<<[DBH_]"cdate             <|$L|>   \n"
 
    }
     else if (scmp(L[1],"@comment")) {
@@ -268,14 +268,14 @@ ans = ask("%V $old_comment", db_ask);
    //found_where = where;
    i++;
    if (i >17) {
-<<[DBH]"not an C header\n"
+<<[DBH_]"not an C header\n"
     found_vers = 0;
     break;
    }
 
 
     if (spat(L[0],"///////<v_&_v>//") != "") {
-<<[DBH]"@header end? line $i\n"
+<<[DBH_]"@header end? line $i\n"
       break;
     }
 
@@ -310,12 +310,12 @@ ans = ask("%V $old_comment", db_ask);
 
 // nele = 7;
 
-<<[DBH]"found_vers $cvers \n"
+<<[DBH_]"found_vers $cvers \n"
 // }
 
 /*
  else {
- <<[DBH]" does not have vers number in header\n";
+ <<[DBH_]" does not have vers number in header\n";
  exit();
  }
 */
@@ -353,15 +353,13 @@ ans = ask("%V $old_comment", db_ask);
   min_name = ptname(pmin);
 
 
-
  <<"///  @vers $release ${pmaj}.$pmin ${maj_ele}.$min_ele $min_name    \n"
-
 
    vers=" @vers ${pmaj}.$pmin $min_ele $min_name "
    vlen = slen(vers);
 
 
-<<[DBH]"vlen $vlen <|$Pad|>\n"
+<<[DBH_]"vlen $vlen <|$Pad|>\n"
 
  fseek(A,0,0);
 
@@ -408,7 +406,7 @@ A=ofile(srcfile,"w")
 //<<"$Y \n";
   ysz= Y.getSize();
 
-<<[DBH]"%V$ysz \n";
+<<[DBH_]"%V$ysz \n";
    Y.write(D);
  //wfile(D,Y);
 //  wfile(D,Y[2]);

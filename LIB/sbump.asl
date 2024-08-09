@@ -3,13 +3,14 @@
  * 
  *  @comment update the script date&vers                                
  *  @release Carbon                                                     
- *  @vers 1.15 P Phosphorus [asl 6.50 : C Sn]                           
- *  @date 07/20/2024 15:11:17                                           
- *  @cdate Sun Dec 23 09:22:34 2018                                     
- *  @author Mark Terry                                                  
+ *  @vers 1.16 S Sulfur [asl 6.54 : C Xe]                               
+ *  @date 08/03/2024 00:49:55                                           
+ *  @cdate Sun Dec 23 09:22:34 2018 : C Sn]                             
+ *  @author Mark Terry 23 09:22:34 2018 : C Sn]                         
  *  @Copyright © RootMeanSquare 2024 -->                               
  * 
  */ 
+
 
 //----------------<v_&_v>-------------------------//;                  
 
@@ -17,7 +18,7 @@
                     
 
   
-
+int DBH_ = -1
 
 #include "debug"
 
@@ -35,10 +36,10 @@ if (_dblevel >0) {
   {
   //<<"%V $vstr\n"
    pmaj = atoi(spat(vstr,".",-1))
-   <<[2]"$pmaj $(typeof(pmaj)) $(ptsym(pmaj)) \n"  
+   <<[DBH_]"$pmaj $(typeof(pmaj)) $(ptsym(pmaj)) \n"  
    pmin = atoi(spat(vstr,".",1))
 
-//<<[2]"$pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
+//<<[DBH_]"$pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin))\n"
    elestr = pt(pmin);
    str ele =" ";
    ele = spat(elestr,",")
@@ -53,9 +54,9 @@ if (_dblevel >0) {
     Str pad;
     Str hl = ln;
     Str el;
- //   <<[2]"$ln\n"
+ //   <<[DBH_]"$ln\n"
     pad = nsc(70- slen(ln)," ")
-  <<[2]"$hl $pad\n"
+  <<[DBH_]"$hl $pad\n"
    //<<[A]"$hl $pad\n"
     el = "$hl $pad"
     return el;
@@ -81,22 +82,22 @@ Str cdate ="";
 
 
   if (srcfile @= "") {
-  <<[2]"no script file entered\n"
+  <<[DBH_]"no script file entered\n"
     exit();
   }
   
   sz= fexist(srcfile,RW_,0);
   
-  //<<[2]" RW sz $sz \n"
+  //<<[DBH_]" RW sz $sz \n"
   
   if (sz == -1) {
-  <<[2]"can't find script file $srcfile\n";
+  <<[DBH_]"can't find script file $srcfile\n";
     exit(-1);
   }
 
 pid=getpid()
 
-<<[2]"make a bakup ${srcfile}.${pid}.bak \n"
+<<[DBH_]"make a bakup ${srcfile}.${pid}.bak \n"
 
   !!"cp $srcfile  ${srcfile}.${pid}.bak"
 
@@ -108,7 +109,7 @@ pid=getpid()
   if (na > 2) {
    set_vers = 1;
    new_vers = _clarg[2];
-   <<[2]"%V $new_vers\n"
+   <<[DBH_]"%V $new_vers\n"
   // should be maj.min e.g 1.1 ,6.1, ... limits 1 to 100  
   }
   
@@ -117,15 +118,15 @@ Str cvers ="0.0";
   
   file= fexist(srcfile,ISFILE_,0);
   
-  <<[2]" FILE $file \n"
+  <<[DBH_]" FILE $file \n"
   
   dir= fexist(srcfile,ISDIR_,0);
   
-  <<[2]" DIR $dir \n"
+  <<[DBH_]" DIR $dir \n"
 
  if (dir) {
 
- <<[2]"error $srcfile is DIR! \n"
+ <<[DBH_]"error $srcfile is DIR! \n"
 }
 
 
@@ -148,15 +149,15 @@ Str cvers ="0.0";
   len = slen(fname);
   
   ind = (80-len)/2;
-  <<[2]"$(date()) $(date(8)) \n"
-  <<[2]" $len $ind\n"
+  <<[DBH_]"$(date()) $(date(8)) \n"
+  <<[DBH_]" $len $ind\n"
   insp = nsc((60-len)/2," ")
   len= slen(insp)
-  //<<[2]"$len <|$insp|> \n"
+  //<<[DBH_]"$len <|$insp|> \n"
   sp="\n"
-  //<<[2]" $(nsc(5,sp))\n"
+  //<<[DBH_]" $(nsc(5,sp))\n"
   
-  //<<[2]" $(nsc(5,\"\\n\"))\n"
+  //<<[DBH_]" $(nsc(5,\"\\n\"))\n"
 
 
 
@@ -173,7 +174,7 @@ Str cvers ="0.0";
 
   A=ofile(srcfile,"r+")
   //T=readfile(A);
- <<[2]"opened for read/write? $A\n"
+ <<[DBH_]"opened for read/write? $A\n"
   if (A == -1) {
 <<"bad file ?\n"
    exit()
@@ -206,42 +207,51 @@ L.pinfo()
 
 //   tsz = Caz(T)
    i = 0;
-   
+   int hwi;
    while (1) {
 
     T = readline(A,-1,1);
-    
-   
-<<[2]"$i line is <||$T||> \n"
-   L.clear()
-   L.vfree();
 
-//ans = ask("line OK?",1)
+  
+   
+<<[DBH_]"$i line is <||$T||> \n"
+
+  // L.clear()
+//ans = ask("line OK? L.clear()",1)   
+ //  L.vfree();
+
+//ans = ask("line OK? L.vfree()",1)
 //if (ans == "q") exit()
 
 
    where = ftell(A)
    L.Split(T);
+
+   hwi= Chi(L);
+   
+
+
    sz = Caz(L);
-   hiw= Chi(L);
-<<[2] "sz $(caz(L)) \n"
-<<[2]"$i $sz $where  $L \n"
-   if (sz >2) {
-<<[2]"L1 $L[1]  $L[:hwi:]\n"
+<<[DBH_] "%V $sz $(caz(L)) $hwi \n"
+ans=ask("%V $hwi $sz",0)
+
+<<[DBH_]"$i $sz $where  $L \n"
+   if (hwi >2) {
+<<[DBH_]"L1 $L[1]  $L[:hwi:]\n"
 
     if (scmp(L[1],"@vers")) {
      found_vers =1;
      cvers = L[2];
-     <<[2]"$where $cvers $L[2]\n"
+     <<[DBH_]"$where $cvers $L[2]\n"
    }
     else if (scmp(L[1],"@cdate")) {
      
 <<"found cdate  $L\n"     
-<<[2]"cdate <|$cdate|>  $L[2]\n"     
+<<[DBH_]"cdate <|$cdate|>  $L[2]\n"     
     cdate = "$L[2:hwi:]";
    }
     else if (scmp(L[1],"@comment")) {
-     comment = "$L[2:hiw:]";
+     comment = "$L[2:hwi:]";
    }
   //  else if (scmp(L[1],"@release")) {
       //release = "$L[2::]";
@@ -249,7 +259,7 @@ L.pinfo()
 //<<[2]"release: <|$release|>  $L[2]\n"           
  //  }
     else if (scmp(L[1],"@author")) {
-      author = "$L[2:hwi:1]";
+      author = "$L[2:-1:1]";
    }
    
    }
@@ -257,7 +267,7 @@ L.pinfo()
    //found_where = where;
    i++;
    if (i >16) {
-<<[2]"not an sheader\n"
+<<[DBH_]"not an sheader\n"
     found_vers = 0;
     break;
    }
@@ -273,13 +283,13 @@ L.pinfo()
 
 
     if (scmp(L[0],"*/",2)) {
-<<[2]"header end? line $i\n"
+<<[DBH_]"header end? line $i\n"
     // check for new
         T = readline(A);
         L.Split(T);
        if (scmp(L[0],";//-",4)) {
-      <<[2]" <|$T|>\n"       
-      <<[2]"new header end? line $i\n"
+      <<[DBH_]" <|$T|>\n"       
+      <<[DBH_]"new header end? line $i\n"
        }
        else {
          // step back
@@ -319,7 +329,7 @@ int kl = 1;
   vers2ele(cvers)
 // nele = 7;
 
-<<[2]"found_vers $cvers \n"
+<<[DBH_]"found_vers $cvers \n"
  }
  else {
  <<[2]" does not have vers number in header\n";
@@ -342,7 +352,7 @@ int kl = 1;
        pmin =1;
        pmaj++;
    }
-   <<[2]"bumped to $pmaj $pmin\n"
+   <<[DBH_]"bumped to $pmaj $pmin\n"
    if (pmaj > 100) {
  <<" need a new major release current \n"
    exit();
@@ -356,7 +366,7 @@ int kl = 1;
 
 
 
- <<[2]"///  @vers $release ${pmaj}.$pmin ${maj_ele}.$min_ele $min_name    \n"
+ <<[DBH_]"///  @vers $release ${pmaj}.$pmin ${maj_ele}.$min_ele $min_name    \n"
 
 
    vers=" @vers ${pmaj}.$pmin $min_ele $min_name [asl $(getversion())]"
@@ -414,7 +424,7 @@ Str hl="xxx";
   
  
 
-<<[2]"%V$where $here\n"
+<<[DBH_]"%V$where $here\n"
 
 
 cf(A);
@@ -468,3 +478,4 @@ cf(A)
 
 
 */
+

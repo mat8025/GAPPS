@@ -382,9 +382,9 @@ cmf Turnpt()
  {
 
 
-//id = Ntp_id++;
-            Ntp_id++;
-	    id = Ntp_id;
+
+      Ntp_id++;
+      id = Ntp_id;
       Place=" ";
       Ladeg = 0.0;
       Longdeg = 0.0;

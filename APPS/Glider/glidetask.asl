@@ -65,8 +65,6 @@ int run_asl = runASL();
  //checkSVpool()
  echolines(0)
 
-
-
 #undef  ASL_DB
 #define ASL_DB 0
 
@@ -125,7 +123,10 @@ Str ans;
 //ans=ask(" ??",0)
 
 #include "tpclass.asl"
-  allowDB("ic_,oo_,spe_,rdp_,pexpnd,array",1)
+
+
+//allowDB("ic_,oo_,spe_,rdp_,pexpnd,array",0)
+allowDB("ic_,oo_,spe_,pexpnd,array",0)
 
 Turnpt  GT_Wtp[50];
 

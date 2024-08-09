@@ -425,7 +425,7 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
     inflsz = caz(FailList)
 
-    RunDirTests("Bops","bops,fvmeq,fsc1,mainvar,snew");
+    RunDirTests("Bops","bops,fvmeq,fsc1,mainvar,snew,parse_exp");
     
 
 

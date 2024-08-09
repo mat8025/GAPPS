@@ -52,7 +52,7 @@
   float LongE= 104.8;
 
 //   float MidLong = (LongW - LongE)/2.0 + LongE;
-   float MidLong;
+//   float MidLong;
 
   
 
@@ -439,9 +439,9 @@ ssele= IGCELE.stats();
   //wtp.pinfo();
   float km = 0.0;
   float tc = 0.0;
- // float l1,l2,lo1,lo2;
+  float l1,l2,lo1,lo2 = 0;
 
-  
+ // <<"%V $lo1 $lo2 $l1 $l2 \n"
   l1 = wtp[j].Ladeg;
 
   l2 = wtp[k].Ladeg;
@@ -454,7 +454,7 @@ ssele= IGCELE.stats();
 
 //<<"%V $lo1 $lo2 \n";
 //  tc = TrueCourse(L1,lo1,L2,lo2);
-
+//<<"%V $lo1 $lo2 $l1 $l2 \n"
   tc = TrueCourse(lo1,l1,lo2,l2);
 
   //printargs(j, k ,L1 ,lo2 ,"tc=", tc);

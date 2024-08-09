@@ -161,7 +161,7 @@ Str ans = " weird "
   
 //  ans = query(" cos/sin/tan   continue? :[y/n]") ;
 
-  allowDB("spe,rdp,ic,opera,ds,svar",1)
+
 
 
 
@@ -314,7 +314,8 @@ int ab = 2 + 3
   z = sin(0.9) 
 
   <<" %v $z \n" 
-
+   z.pinfo()
+ans=ask("%V $z",0)
   x = cos(0.9) 
 
   <<" %v $z $x \n" 
@@ -365,11 +366,15 @@ int ab = 2 + 3
 
   chkN(n,3) 
 
-  <<"%V $n \n" 
-
+  <<"%V $n \n"
+   z.pinfo()
+ans=ask("%V $z",0)
   z = n++ + 1 
 
-  <<"%V $z \n" 
+  <<"%V $z \n"
+  z.pinfo()
+
+ans=ask("%V $z",0)
 
   chkN(n,4) 
 
@@ -500,13 +505,11 @@ int ab = 2 + 3
 
   for (k1 = 2 ; k1 < N;  k1++) {
 
-
-
   sum += k1 
 
   mi *= k1 
-
-ans=ask("%V $k1 $sum $mi ",db_ask) 
+ <<"%V $k1 $sum $mi \n"
+  //ans=ask("%V $k1 $sum $mi ",db_ask) 
 
   }
 

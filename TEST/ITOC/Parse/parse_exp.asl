@@ -1,15 +1,18 @@
-//%*********************************************** 
-//*  @script parse_exp.asl
-//* 
-//*  @comment   (a >=3 || b == 2)
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                 
-//*  @date Tue Mar 12 07:50:33 2019 
-//*  @cdate Tue Mar 12 07:50:33 2019 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%//
+/* 
+ *  @script parse_exp.asl                                               
+ * 
+ *  @comment (a >=3 || b == 2)                                          
+ *  @release Carbon                                                     
+ *  @vers 1.4 Be Beryllium [asl 6.54 : C Xe]                            
+ *  @date 08/03/2024 00:48:36                                           
+ *  @cdate Tue Mar 12 07:50:33 2019 : C Xe]                             
+ *  @author Mark Terry 12 07:50:33 2019 : C Xe]                         
+ *  @Copyright © RootMeanSquare 2024 -->                               
+ * 
+ */ 
+
+
+
 
 ///
 ///  this should test parsing of simple and  (very) complex expressions  
@@ -159,19 +162,30 @@ else {
    chkT(0)
   }
 
-
+  a = 2; b = 2 
   if (a >=3 || b == 2) {
-<<"$a >= 1 || $b == 2\n"
+<<"$a >= 3 || $b == 2\n"
    chkT(1)
   }
   else {
-<<"XXX - should not see!\n"
+<<"XXX - should not see!  $a >= 3   || $b == 2\n"
+   chkT(0)
+  }
+
+  a = 3; b = 0
+  if (a >=3 || b == 2) {
+<<"$a >= 3 || $b == 2\n"
+   chkT(1)
+  }
+  else {
+<<"XXX - should not see!  $a >= 3   || $b == 2\n"
    chkT(0)
   }
 
 
+  a= 2
   if (a >=3 || b != 3) {
-<<"$a >= 1 || $b != 3\n"
+<<"$a >= 3 || $b != 3\n"
    chkT(1)
   }
   else {
@@ -191,7 +205,7 @@ else {
    chkT(1)
   }
 
-
+  a =2 ; b =2
   if (a >=1 && b == 2) {
 <<"$a >= 1 && $b == 2\n"
    chkT(1)
@@ -250,7 +264,80 @@ d=2
   }
 
 
+  if ((( a * b * 2 ) <  (c * d))) {
 
+<<"XXX  $a * $b *2 <  $c * $d \n"
+
+  }
+  else {
+
+<<"Y $a *  (b*3) $(b *3) <  $c * $d \n"
+  }
+
+ la = 1
+
+ the_dir = "S"
+
+<<" %V $the_dir \n"
+
+ if ( the_dir == "E" || the_dir == "S") {   // TBF 8/3/24  does not see second
+<<" %V $the_dir \n"
+  la = 2;
+
+  }
+
+ chkN(la,2)
+
+ if ( the_dir == "S" || the_dir == "E") {   // 
+<<" %V $the_dir \n"
+  la  = 3;
+
+  }
+
+ chkN(la,3)
+
+ if ((the_dir == "E") || (the_dir == "S")) {  // TBF 8/3/24  unbalanced bracks
+
+  la = 4;
+
+  }
+
+ chkN(la,4)
+ float l1,l2,lo1,lo2 = 1.2;    // TBF 8/3/24
+
+  <<"%V $lo1 $lo2 $l1 $l2 \n"
+
+ chkN(lo1,1.2)
+ 
+chkN(l1,1.2)
+
+  f = 66.77
+  d= getIncr(f)
+
+<<"%V $f $d\n"
+
+  f = 0.77
+  d= getIncr(f)
+
+<<"%V $f $d\n"
+  f = 12.77
+  d= getIncr(f)
+
+<<"%V $f $d\n"
+  f = 123.77
+  d= getIncr(f)
+
+<<"%V $f $d\n"
+
+  f = 1234.77
+  d= getIncr(f)
+
+<<"%V $f $d\n"
+
+  f = 1234567.77
+  d= getIncr(f)
+
+<<"%V $f $d\n"
 
 chkOut()
 

@@ -56,7 +56,7 @@ int DB_step = 0;
     }
 
 
-  setmaxcodeerrors(-1); //  unlimited
+  setmaxcodeerrors(-1,7) ; //  unlimited
 
   setmaxicerrors(-1);
 

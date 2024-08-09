@@ -37,7 +37,7 @@ allowDB("spe,pex,vmf,list,ds_sivlist,spil,rdp,ic", db_allow)
 
 <<" $(GREEN_) \n"
 
- FF = vgen(INT_,10,50,1);
+ FF = vgen(INT_,20,50,1);
 <<"$FF\n"
 
 chkN(FF[1],51)
@@ -57,7 +57,7 @@ D=defines()
 //D->sort()
 //<<"%(1,,,\n)$D[0:10]\n"
 sz= Caz(D)
-/{
+/*
 for (i=0;i<sz;i++) {
 C=split(D[i])
 if (!scmp(C[0],"PC_",3)) {
@@ -65,14 +65,14 @@ if (!scmp(C[0],"PC_",3)) {
 }
 
 }
-/}
+*/
 
 
 
 void localv()
 {
 
- int FF[10];
+ int FF[20];
  FF[1] = 71;
  <<"$FF[1] \n"
  FF[2] = 82
@@ -83,17 +83,21 @@ void localv()
 
 <<"%V $::FF[2]\n"
 
-
+ j=0
   for (i= 5; i<10; i++) {
   
-    FF[i] = i;
-  ans = ask("<$i> local var set $FF[i]\n",0)
-}
+    FF[j] = i;
+  ans = ask("<$i> $j local var set $FF[i]\n",1)
+j++
+   if (j > 6)
+    break
+  }
+
  j = 0;
- for (i= 5; i<10; i++) {
+ for (i= 15; i<20; i++) {
     ::FF[i] = -i;
  j++
-ans = ask("<$i><$j> Main var set $::FF[i]\n",0)
+ans = ask("<$i><$j> Main var set $::FF[i]\n",1)
  if (j > 6)
     break
 }
@@ -104,7 +108,7 @@ ans = ask("<$i><$j> Main var set $::FF[i]\n",0)
  chkN(FF[2],28)
  <<"local %V $FF \n"
 }
-
+//EP//////////////////////////////
   localv()
 
 
@@ -121,8 +125,14 @@ val =FF[5]
 chkN(FF[5],val)
 
 
-chkN(FF[5],-5) ; // TBF rdp unary bug?
+chkN(FF[19],-19) ; // TBF rdp unary bug?
 
 chkN(FF[2],584)
 
 chkOut(1)
+
+
+/* 
+6.54 broke
+  not parsing ::FF ?
+*/
