@@ -266,7 +266,7 @@ Record RX;
   int wScreen = 0;
 //////////////////////  WOS ///////////////////////////
 
-
+//wdb=DBaction((DBSTEP_),ON_)
 
 
   int Symsz= 5;
@@ -606,6 +606,8 @@ float ae = EXTV[15];
     exit()
  }
 */
+
+
    openDll("plot");
 
   int Graphic = checkGWM();

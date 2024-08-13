@@ -28,7 +28,7 @@ if (_dblevel >0) {
 }
 
  db_ask = 0;
-  db_allow = 1
+  db_allow = 0
 
  checkMemory(0)
  alm =alignMemory(32)

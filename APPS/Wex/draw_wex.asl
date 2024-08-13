@@ -128,6 +128,7 @@
 
   void  drawMonths(int wwo)
   {
+  //
   // as either Months Jan,Feb, ... Dec  
   // or quarter and cross-quarter days
   // Candlemass Feb 2
@@ -141,6 +142,8 @@
   //
   // Equinoxes Dec 21, March 21, June 21, Sep 21 -
   // winter ,vernal, midsummer, fall
+  <<"$_proc  $wwo\n"
+
   int match[2]
   int sd
 

@@ -855,4 +855,4 @@ ans=ask("2 $val ?", db_ask)
    chkOut (1);
    
 
-
+////

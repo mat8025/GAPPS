@@ -182,11 +182,6 @@ int DBH_ = 1
 memUsed()
 
 
-
-//  for (i= 20; i < 30; i++) {
-//<<"$i $X[i]\n"
-//  }
-
  mans = ltmRead("cbump")
 
 <<"reading last mod message $mans\n"
@@ -215,15 +210,7 @@ if (mans == "q") {
 Str comment ="xxx";
 long where;
 
-//where.pinfo()
-
-
  Str T;
-
-//T.pinfo();
-
-Str Pad;
-
 
 
  Svar L;
@@ -391,7 +378,7 @@ ans = ask("%V $old_comment", db_ask);
    vlen = slen(vers);
 
 
-//<<[DBH_]"vlen $vlen <|$Pad|>\n"
+
 
  fseek(A,0,0);
 
@@ -422,10 +409,8 @@ A=ofile(srcfile,"w")
 
   here = ftell(A);
 
-//Pad = nsc(where-here-2," ")
-//   <<[A]"$Pad\n";  
  
-    fflush(A);
+  fflush(A);
 
 // which line is end of old hdr?
 
@@ -438,13 +423,10 @@ A=ofile(srcfile,"w")
  ysz= Y.getSize();
  <<"%V $ysz \n"
 
-ans=ask("rest of file $ysz",1)
+ans=ask("%V $end_ln rest of file $ysz",0)
 
  D=ofile("stem","w");
  
-//<<"$Y \n";
- 
-
 <<[DBH_]"%V$ysz \n";
    Y.write(D);
  //wfile(D,Y);

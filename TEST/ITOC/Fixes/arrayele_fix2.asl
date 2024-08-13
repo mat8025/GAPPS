@@ -6,7 +6,7 @@ call_sf = 1;
 call_vmf = 1;
 <<"%V $call_sf $call_vmf \n"
 
-Proc goo(double val)
+void goo(double val)
 {
 <<"$_proc nothing much to see $val\n"
 //  val->info(1)
@@ -21,7 +21,7 @@ Proc goo(double val)
 
 //======================================//
 
-Proc pscalar (double sd)
+double pscalar (double sd)
 {
  <<"$_proc  scale arg  $sd\n";
 
@@ -39,12 +39,12 @@ Proc pscalar (double sd)
 
 //======================================//
 
-Proc p_vec (float rl[])
+float p_vec (float rl[])
 
 {
 
   <<"$_proc  array arg $rl\n";
-  rl->info(1)
+  rl.pinfo()
   
   float t1;
   float t2;
@@ -55,7 +55,7 @@ Proc p_vec (float rl[])
   //<<"%V$rl \n";
 
   t1 = rl[0];
-  rl->info(1) // TBC
+  rl.pinfo() // TBC
 
   t2 = rl[1];
   t3 = rl[2];
@@ -67,7 +67,7 @@ Proc p_vec (float rl[])
 
 <<"$rl \n"
 
-  rl->info(1) // TBC
+  rl.pinfo() // TBC
   int j1 = 4;
   int j2 = 6;
   
@@ -79,7 +79,7 @@ Proc p_vec (float rl[])
 
 <<"%V $rl[j1]\n"
 
-query()
+
 
   kp = 3;
 
@@ -121,7 +121,7 @@ fv = vgen(FLOAT_,10,0,1)
  fv->info()
 
  <<"%V $fv[1] \n"
-query()
+
 
  p_vec(fv)
 
@@ -139,3 +139,5 @@ fv[0] = -32;
  <<"$f\n"
 
   chkOut ();
+
+/////////

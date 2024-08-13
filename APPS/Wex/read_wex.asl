@@ -10,17 +10,18 @@
  *  @Copyright © RootMeanSquare 2022
  * 
  */ 
-//----------------<v_&_v>-------------------------//                                                                                                
+//----------------<v_&_v>-------------------------//
 
+allowDB("prep,opera_,spe,rdp_,ic,pex_,parse,array,ds",1)
   
 void fillInObsVec()
 {
 
-float tex;
-int iyd = Yd;
- float wrk_sleep  ;
+  int iyd = Yd;
+  float tex;
+  float mywt;
+  float wrk_sleep  ;
 
- float mywt;
 
 
 if (Yd >= 0) {
@@ -188,12 +189,12 @@ if (Yd >= 0) {
    // will need separate day vector for the food carb/protein/fat/calorie totals
    // -( we count/estimate those) 
    // variables are plotted against dates (juldays - birthday)
-
+  
   fillInObsVec();
 
   tl++;
 
-  <<"%V $tl  $day $mywt $Wex_Nrecs\n"
+//ans=ask("%V $tl  $day $mywt $Wex_Nrecs\n",1)
 
   if (tl >= Wex_Nrecs) {
 
@@ -203,7 +204,7 @@ if (Yd >= 0) {
 
   }
 
- ans=ask("readDATA proceed?",0);
+ //ans=ask("readDATA proceed?",1);
   printf("Wex_Nrecs %d there were Nobs %d measurements ",Wex_Nrecs,Nobs);
 
   return tl;
@@ -298,7 +299,7 @@ if (Yd >= 0) {
 
 
 
- ans=ask("readCC proceed?",0);
+ //ans=ask("readCC proceed?",0);
 
   }
 
