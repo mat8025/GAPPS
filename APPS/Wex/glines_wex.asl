@@ -56,9 +56,8 @@
 
 
   if ((wt_gl == -1)  || (ext_gl == -1)) {
-#if _ASL_ 
-   exit(-1);
-#endif
+
+   <<"Gline %V $wt_gl $ext_gl  ERROR\n"
 
   }
 
@@ -75,7 +74,7 @@ gw_gl = -1;
 
   if (  bp_gl == -1) {
 
-  exit_si();
+<<"%V $bp_gl ERROR\n"
 
   }
 

@@ -136,7 +136,7 @@ int ExTim (int wb)
 
   //<<" In $_proc  $lcpx  $rcpx\n";
   //cout <<"In ZIN " << lcpx  << endl;
-  <<"In ZIN  $GEV_woname  $GEV_button   $wb  cursor @ $lcpx \n"      
+  <<"In ZIN  $ewoname  $ebutton   $wb  cursor @ $lcpx \n"      
    sc_zstart = lcpx;
 
    sc_zend = rcpx;
@@ -150,7 +150,7 @@ int ExTim (int wb)
 
   int ZOUT(int wb)
   {
- <<"In ZOUT  $GEV_woname  $GEV_button  $wb   cursor @ $lcpx \n"      
+ <<"In ZOUT  $ewoname  $ebutton  $wb   cursor @ $lcpx \n"      
   sc_zstart -= 10;
 
   sc_zend  += 10;
@@ -179,14 +179,14 @@ int WTLB(int wb)
 
 //pa("proc  setting cursors ", _proc, " Button", Button);
 
-  <<"In WTLB  $GEV_woname  $GEV_button     cursor @ $GEV_rx \n"      
+  <<"In WTLB  $ewoname  $ebutton     cursor @ $erx \n"      
  long wt_day = 0;
  
-       if (GEV_button == 1) {
+       if (ebutton == 1) {
 
-         lcpx = GEV_rx;
+         lcpx = erx;
 
-	 sGl(_GLID,lc_gl,_GLHUE,RED_,_GLCURSOR,rbox(lcpx,0,lcpx,300,Wex_CL_init),_GLDRAW,ON_);
+	 sGl(_GLID,lc_gl,_GLHUE,RED_,_GLCURSOR,wbox(lcpx,0,lcpx,300,Wex_CL_init),_GLDRAW,ON_);
 	 
 	 Wex_CL_init = 0;
 	 
@@ -203,12 +203,12 @@ int WTLB(int wb)
 
         }
 
-       if (GEV_button == 3) {
+       if (ebutton == 3) {
        
-         rcpx = GEV_rx;
+         rcpx = erx;
 
       
-	 sGl(_GLID,rc_gl,_GLHUE,BLUE_,_GLCURSOR,rbox(rcpx,0,rcpx,310,Wex_CR_init),_GLDRAW,ON_);
+	 sGl(_GLID,rc_gl,_GLHUE,BLUE_,_GLCURSOR,wbox(rcpx,0,rcpx,310,Wex_CR_init),_GLDRAW,ON_);
 	 
          Wex_CR_init = 0;
 
@@ -256,9 +256,9 @@ int WTLB(int wb)
 void setCursors()
 {
 <<"$_proc : $_lcpx\n"
-        sGl(_GLID,lc_gl,_GLCURSOR, rbox(lcpx,0,lcpx,300));
+        sGl(_GLID,lc_gl,_GLCURSOR, wbox(lcpx,0,lcpx,300));
 
-        sGl(_GLID,rc_gl,_GLCURSOR, rbox(rcpx,0,rcpx,300));
+        sGl(_GLID,rc_gl,_GLCURSOR, wbox(rcpx,0,rcpx,300));
 	
 }
 

@@ -1,19 +1,19 @@
 /* 
  *  @script glidetask.asl                                               
  * 
- *  @comment task-planner cpp script                                    
- *  @release Beryllium                                                  
- *  @vers 4.8 O Oxygen [asl 6.4.76 C-Be-Os]                             
- *  @date 02/07/2023 10:34:08                                           
- *  @cdate 9/17/1997                                                    
- *  @author Mark Terry                                                  
- *  @Copyright © RootMeanSquare 2023 -->                               
+ *  @comment  cpp script                                                
+ *  @release Carbon                                                     
+ *  @vers 4.9 F Fluorine [asl 6.54 : C Xe]                              
+ *  @date 08/16/2024 04:38:22                                           
+ *  @cdate 9/17/1997 10:34:08 
+ *  @author Mark Terry 
  * 
  */ 
+
 //----------------<v_&_v>-------------------------//                  
 
 
-char vers[6] ="5.1";
+char vers[6] ="5.3";
 
 
 
@@ -40,61 +40,56 @@ char vers[6] ="5.1";
 using namespace std;
 #include "vargs.h"
 
-#define PXS  cout<<
+#define pxs  cout<<
 
-#define __ASL___DB 0
-#define CPP_DB 0
+#define __asl___db 0
+#define cpp_db 0
 
 #endif
 
 ///////////////////////
-//uint Turnpt::Ntp_id = 0;
+//uint turnpt::ntp_id = 0;
 
-#if __ASL__
+#if __asl__
 
-#define CPP_DB 0
+#define cpp_db 0
 
-#define COUT //
+#define cout //
 
-int run_asl = runASL();
-//<<" running as ASL \n";
+int run_asl = runasl();
+//<<" running as asl \n";
 
-  //debugON();
+  //debugon();
 
- ignoreErrors();
- //checkSVpool()
+ ignoreerrors();
+ //checksvpool()
  echolines(0)
 
-#undef  ASL_DB
-#define ASL_DB 0
+#undef  asl_db
+#define asl_db 0
 
 
 #endif
 
 
+int tf; // task file fh
+int afh= -1;
+float csk;
+float cruise_speed;
+
+double TC[30];
+double Dur[30];
 
 
-
-int TF; // task file FH
-int AFH= -1;
-float CSK;
-float Cruise_speed;
-
-float TC[20];
-float Dur[20];
-
-
-  Svar Task;
+  Svar task;
 
   float totalD = 0;
 
   float totalDur = 0.0;
-
-  float TKM[20];
-  float AGL[20];
-  char  Hey[10] = "hey hey";
-  float L1;
-  float L2;
+  
+  char  hey[10] = "hey hey";
+  float l1;
+  float l2;
   //float lo1,lo2;
   float lo1;
   float lo2;
@@ -105,16 +100,16 @@ float Dur[20];
   float tmsl;
   float msl;
   int nl,li;
-  Str ident;
+  str ident;
   int n_legs = 0;
   int n_tp = 0;
   int k_tp;
 
-  Str the_start = "Longmont";
-  Str try_place = "xxx";
-  Str try_start = "xxx";
-  Str nxttpt = "Laramie";
-Str ans;
+  str the_start = "longmont";
+  str try_place = "xxx";
+  str try_start = "xxx";
+  str nxttpt = "laramie";
+str ans;
 
 //<<"%V $nxttpt \n"
 
@@ -130,10 +125,12 @@ allowDB("ic_,oo_,spe_,pexpnd,array",0)
 
 Turnpt  GT_Wtp[50];
 
+//  GT_Wtp[1].pinfo()
+
 Tleg  GT_Wleg[20];
 // checkSVpool()
 
-//ans=ask("SV pool ?",1)
+ans=ask("Turnpt ?",0)
 
 #include "ootlib.asl"
 
@@ -237,6 +234,9 @@ Glide::glideTask(Svarg * sarg)
   exit(-1);
 
   }
+
+//wdb=DBaction((DBSTEP_),ON_)
+
 
   int brief = 0;
 
@@ -990,9 +990,13 @@ if ((nxttpt == "done")  ) {  // 6.54 fail
 //COUT(tcd);
 
 
+//wdb=DBaction((DBSTEP_),ON_)
+
+
   TC[nl] = tcd;
 
 //  Dur[nl+1] = Leg[nl]/ Cruise_speed;
+<<"%V $tkm  $Cruise_speed \n"
 
     Dur[nl] = tkm / Cruise_speed;
  //<<"%V $Leg[nl] $tkm $Dur[nl+1] \n"
@@ -1032,7 +1036,7 @@ if ((nxttpt == "done")  ) {  // 6.54 fail
 
   k_tp = 1;
 
-//<<"%V $k_tp   $GT_Wtp[k_tp].Alt  $AGL[k_tp] \n"
+<<"%V $k_tp   $GT_Wtp[k_tp].Alt  $AGL[k_tp] \n"
 
   msl =  GT_Wtp[k_tp].Alt;
 
@@ -1134,6 +1138,9 @@ if ((nxttpt == "done")  ) {  // 6.54 fail
   
  // <<"$li $GT_Wleg[li]->dist  $GT_Wleg[li]->pc_tot \n"
  //<<"$li ${tpb}${ws}${ident}${wsi} %9.3f${GT_Wtp[li]->Lat} %11.3f${GT_Wtp[li]->Lon}\s%10.0f${GT_Wtp[li]->fga} ${GT_Wtp[li]->Alt} %4.1f$GT_Wleg[li]->pc ";
+
+//<<"%V $tot_time  $li  $Dur[li]  \n"
+  //tot_time.pinfo()
 
    tot_time += Dur[li];
 

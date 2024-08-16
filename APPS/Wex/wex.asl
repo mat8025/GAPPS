@@ -193,7 +193,7 @@ using namespace std;
   long tday2,Sday,Sday2,yday,eday;
 
 
-  Str emsg;
+//  Str emsg;
 
   Svar GoalsC;
    
@@ -257,7 +257,7 @@ Record RX;
 
 
 //////////////////////  SCREEN ///////////////////////////
-//#include "gevent.asl"
+#include "wevent.asl"
 // use Gevent asl variable and vmf (member methods)  == cpp compatible
 
 
@@ -656,17 +656,17 @@ float ae = EXTV[15];
 
 
 //  <<" %(1,,,\n) $EXTV \n"
- Str tit_msg = "Tomorrow's wt will be %6.2f $PWT1 +week $PWT7  + month $PWT30"
+  Str tit_msg = "Tomorrow's wt will be %6.2f $PWT1 +week $PWT7  + month $PWT30"
  //titleMessage("Tomorrow's wt will be %6.2f $PWT1 +week $PWT7  + month $PWT30")
 
-titleMessage(vp,tit_msg)
+  titleMessage(vp,tit_msg)
 
 
-int nevent = 0;
+ int nevent = 0;
 
- //ans=query(" screen interact proceed?");
-drawScreens();
-int rcb = 0;
+//ans=query(" screen interact proceed?");
+  drawScreens();
+  int rcb = 0;
 
      Graphic = checkGWM();
 
@@ -675,30 +675,30 @@ int rcb = 0;
      while (Graphic) {
 
 
-       eventWait();
+         eventWait();
 
 
 
          nevent++;
   
        
-      if (GEV_woname == "REDRAW") {
+      if (ewoname == "REDRAW") {
              drawScreens();
        }
 
-       else if (GEV_woname == "RESIZE") {
+       else if (ewoname == "RESIZE") {
              drawScreens();
        }
-      else if (GEV_woname == "XZIN") {
-              ZIN(GEV_button)
+      else if (ewoname == "XZIN") {
+              ZIN(ebutton)
        }       
-       else if (GEV_button > 0)       {
-         <<"trying $GEV_woname $GEV_button \n"
+       else if (ebutton > 0)       {
+         <<"trying $ewoname $ebutton \n"
 
-           rcb= $GEV_woname(GEV_button)
+           rcb= $ewoname(ebutton)
 
 
-            //rcb=runproc(GEV_woname,GEV_button)
+            //rcb=runproc(ewoname,ebutton)
 
             // ZIN(); ZOUT , WTLB
        }

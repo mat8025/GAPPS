@@ -32,7 +32,7 @@ if (Yd >= 0) {
   mywt = atof(Col[j++]);
   
 
-  <<" %V $mywt \n"
+ // <<" %V $mywt \n"
 
   if (mywt > 0.0) {  // we have an entry = not all days are logged
 
@@ -239,7 +239,7 @@ if (Yd >= 0) {
   long jday;
   Str day;
   int jn = 5;
-  <<"%V $tl $NCCrecs \n"
+  //<<"%V $tl $NCCrecs \n"
   while (tl < NCCrecs) {
   
 
