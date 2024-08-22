@@ -1,7 +1,21 @@
-#/* -*- c -*- */
-// plotxy
+/* 
+ *  @script plotxy.asl                                                  
+ * 
+ *  @comment test plotxy record column data                                      
+ *  @release Carbon                                                     
+ *  @vers 1.11 Na Sodium [asl 6.50 : C Sn]                              
+ *  @date 07/20/2024 15:13:32                                           
+ *  @cdate Sun Mar 22 11:05:34 2020                                     
+ *  @author Mark Terry                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                               
+ * 
+ */ 
 
-setdebug(0)
+//-----------------<V_&_V>------------------------// 
+ 
+// plotxy
+// col0 is x col1,col2 ... are the y's
+
 
 // default pipe records to script
 // choose  Y cols
@@ -16,7 +30,7 @@ ln_label = "";
 
 
 
-proc redraw_fig()
+void redraw_fig()
  {
    sWo(grwo,@clipborder,@border);
     axnum(grwo,2);
@@ -55,7 +69,7 @@ A = 0  // read on stdio
 
 ncols = 2
 
-int YCOL[10+]
+int YCOL[10]
 
  YCOL[0] = 0
  int ac =2
@@ -98,11 +112,16 @@ ycol = 1
   ////////////////////////////////////////////////////////////////////////////////////
 
 
-     R = ReadRecord(A,@type,FLOAT_,@NCOLS,ncols,@del,',')
+Record RX;
 
-  sz = Caz(R);
+  Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST);
 
-dmn = Cab(R);
+
+//     R = ReadRecord(A,@type,FLOAT_,@NCOLS,ncols,@del,',')
+
+  sz = Caz(RX);
+
+dmn = Cab(RX);
 
 nrows = dmn[0]
 
@@ -110,17 +129,20 @@ nrows = dmn[0]
 
 <<"%V$sz $dmn\n"
 
-sz = Caz(R)
+sz = Caz(RX)
 
 // check # cols
 
-  YV = R[::][1]
+  YV = RX[::][1]
 
   Redimn(YV)
 
   sz = Caz(YV)
 <<"ysz $sz \n"
 
+
+
+  
   // if want to exclude neg and 0
   MM= Stats(YV,">",0)
   // but we don't
@@ -250,7 +272,7 @@ axnum(grwo,1);
 
 ////////////////////////////////////////////////////////
 
- /{
+/*
 
     woysp = 0.03
     woht = 0.07
@@ -312,13 +334,13 @@ axnum(grwo,1);
     prwo=w_CreateWO(aw,"ONOFF","PANR",1,wox,woy,woX,woY,2,"red","medium","white")
     woset(prwo,"help","Pan right ")
  
-/}
+*/
 
 
 
 
 
-/{
+/*
    while (1) {
 
     WoRedraw(plw)
@@ -409,9 +431,9 @@ axnum(grwo,1);
 
  }
 
- /}
+*/
 
 
 
 
-STOP!
+

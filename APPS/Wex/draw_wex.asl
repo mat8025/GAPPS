@@ -298,7 +298,7 @@
 //<<" $_proc \n"
 
 
-<<"%V $sc_startday  $sc_end \n";
+<<"%V $_proc $sc_startday  $sc_end \n";
 
 
 // sc_startday.pinfo()
@@ -537,7 +537,7 @@ Text(carbwo,"FOOD (g) ",0.1,0.89);
   Wex_CR_init = 1;
   Wex_CL_init = 1;
  //sc_startday.pinfo();
-//  <<"Done drawScreens\n";
+  <<"Done drawScreens\n";
   }
   
  }

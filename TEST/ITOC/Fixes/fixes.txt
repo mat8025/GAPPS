@@ -1,0 +1,552 @@
+6.3.62  C-Li-Sm 11/27/21
+# P pending F fixed D needs development
+
+<|F=
+1
+str-proc.asl  xic 
+ int k = iv[3];
+ PUSH_LH_SIVELELOC -  LHS/RHS ?
+ test RHS in exp_e set SLH OFF
+ Fixed  took 0.75
+ |>
+ 
+<|F=
+2
+vops.asl
+vmf operator replace <-  for .
+09:59  10:01
+Fixed 
+|>
+
+<|F=
+3
+vector.asl xic
+vec5 = vec1 @+  vec2 @+ vec3 ;
+STRCAT_@+  ? push onto stack
+clear CW flasg pushTV
+11:30 12:30
+Fixed
+|>
+
+<|F=
+4
+svar.asl
+sz = Caz(SV);
+SV prog_argref
+crash  call_xic_func
+11/27/21 12:45 
+Fixed
+|>
+
+<|F=
+5
+genv.asl
+ F[0:j:3].Rand(3.0) - fails to call vmf rand func
+11/27/21 14:09
+Fixed
+|>
+
+<|F=
+6
+11/28/21 06:30
+resize.asl
+did not force dynamic
+Fixed
+|>
+
+<|F=
+7
+11/28/21 07:30
+vmf_cut.asl
+asl does not cut - xic does
+Fixed
+11/28/21
+|>
+
+<|F=
+8
+11/28/21 12:30
+record - 
+chkStr(R[1][2],"foo")
+LH/RH offset bug
+Fixed
+11/28/21 14:30
+|>
+
+
+<|F=
+9
+11/28/21 14:30
+svar.asl
+svar %6.f format not working
+Fixed
+11/28/21 18:30
+|>
+
+<|F=
+10
+11/29/21 07:53
+switch.asl
+ c = '\t';
+ produces xic litstring when it should be PUSHC
+ args_process_e.cpp
+ paramexpand.cpp
+ tokget.cpp
+ utils_e.cpp
+ Fixed  check for '\t' '\s' ... in tokget
+ 11/29/21 09:10
+|>
+
+<|P=
+11
+11/29/21 09:10
+ cmplx.asl
+<<"%v $(AV.getImag()) \n" ;
+run away rhs sivs in exp_e.cpp
+|>
+
+<|F=
+12
+11/29/21 09:19
+lists.asl
+str fw = L1[9];  // fails;
+declare str RHS ele
+Fixed ic_pushsivele.cpp  set offset
+11/29/21 10:18
+|>
+
+<|P
+13
+11/29/21 15:57
+cmpsetv
+storeSiv
+Fixed argref flag sticks
+11/29/21 17:23
+|>
+
+<|F
+14
+11/30/21 08:05
+msquare.asl
+array_subset
+Fixed  I[0][::]  range sep parse
+11/30/21 09:05
+|>
+
+<|F
+15
+12/04/21 08:51
+vvcopy
+ic_pushref.cpp
+PUSH_REFARG - clears range,subsc flags
+12/04/21 09:14
+|>
+
+<|F
+16
+12/05/21 07:06
+oa2.asl
+ds_storestr
+rework storetype ds_storestr
+12/05/21 10:06
+|>
+
+<|F
+17
+12/05/21 10:57
+lists.asl
+vmf_list,gs_lists cpp
+storeStr,:expandStr
+12/05/21 14:23
+|>
+
+<|F
+18
+12/06/21 06:53
+class2.asl
+public: member    svar srec;
+main reference<<"$FI[0]->srec[::] \n"
+ic_getsiv.cpp GetObjMemberSivp: @514 ERROR can't find objsivp!
+work around - remove call in Pic - no obj on stack
+12/06/21 09:30
+|>
+
+<|F
+19
+12/06/21 15:51
+trythrowcatch.asl
+try_e.cpp  sexp(throw_expression,&result)
+throw_val = result->getAsInt()
+12/07/21 13:08
+|>
+
+<|F
+20
+12/08/21 09:00
+arrayrange  <"%V$B[3:0:-1] \n" - not following range spec
+parrayexpand
+12/08/21 12:23
+|>
+
+<|F
+21
+12/09/21 09:24
+arrayrange  - neg start - mem corruption?
+ds_sivrange
+12/09/21 15:55
+|>
+
+<|F
+22
+12/09/21 17:00
+skeyval
+ds_arraycopy
+UNSET array copy - resetOffSets for working variable xic_result
+12/09/21 17:12
+|>
+
+<|F
+23
+12/10/21 08:50
+fexist.asl
+svar_pf.cpp
+gave error when checking permissions - now just a warning
+12/10/21 08:55
+|>
+
+<|F
+24
+12/10/21 09:30
+func.asl
+ds_storestr
+GENERIC promote STRV
+12/10/21 09:40
+|>
+
+<|P
+25
+12/10/21 09:54
+plot_tresults.asl
+titleVers
+scope_findvar
+fix_date
+|>
+
+<|P
+26
+12/10/21 12:32
+ptr_svarvec
+store
+ps[4]= "trop"
+ps PTR to svar - assign str to field 4 of svar
+exp_e -- ptr -ele  copy to esp result
+fix_date
+|>
+
+<|F
+27
+12/10/21 20:00
+ptrs.asl
+storetype_e storeScalar - deref PTR var
+igonored PTR type
+12/10/21 20:08
+|>
+
+<|P
+28
+12/10/21 20:44
+prepostop.asl
+opera/icode
+b= A[++k--]; - b gets k ele not ++k in xic
+fix_date
+|>
+
+<|F
+29
+12/10/21 20:50
+titleVers
+store?
+crash of Wex <<"$ele\n"  - ele not declared
+now just gives codeError
+12/10/21 22:30
+|>
+
+<|F
+30
+12/11/21 10:59
+asl:svar_print.asl
+cpp:paramexpsvar
+descr: bdate = "$L[2::]";   - range not applied correctly
+12/12/21 08:41
+|>
+
+<|P
+31
+12/12/21 09:34
+asl:sbump.asl
+cpp:paramexpand
+descr:"$var"  adds space after var expansion - not for single ele
+fix_date
+|>
+
+<|F
+32
+12/12/21 10:47
+asl: paraex.asl
+cpp:exp_e.cpp ds_storesvar.cpp
+descr: str srcfile = _clarg[1];  // error srcfile 'promoted' to svar -
+exp_e.cpp - treat STRV not as array unless subscripted -- checkWholeArrayRef
+12/12/21 11:55
+|>
+
+<|P
+33
+12/14/21 21:30
+all
+ic_wic,ic_xic
+descr: revise ic_wic,ic_xic,ic_push for faster sivp access
+fix_date
+|>
+
+<|P
+34
+12/16/21 10:34
+sindent.asl
+cpp
+descr:broke parsing comment header
+fix_date
+|>
+
+<|F
+35
+12/16/21 10:34
+vmf_range
+ic_store
+descr:xic range in store  J[0:7] = 6; range not obeyed
+bug when revise ic_wic,xic
+12/16/21 16:36
+|>
+
+<|F
+36
+12/16/21 21:00
+fh
+ic_wic,ic_xic,ic_print
+prt_fh - corrupt memory classified as icode when was icip
+revise wic,xic
+12/16/21 21:52
+|>
+
+<|D
+37
+12/19/21 09:00
+any asl for cpp 
+cpp2asl
+descr: function for cpp to call asl script functions
+needs statements to work out FMT
+Ladeg =  coorToDeg(Lat,1); asl
+   FMT[0] = '\0';
+    strcat(FMT,typeid(Lat).name());
+    strcat(FMT,",");
+    strcat(FMT,typeid(2).name());
+    strcat(FMT,",");
+and a statement to call with ... args
+Ladeg = cpp2asl ("coorToDeg",FMT,&Lat,1); cpp
+
+12/22/21 11:22
+|>
+
+<|F
+38
+12/22/21 11:22
+any asl
+include, ic_rw
+descr: masking src for xic fails in nested includes
+12/22/21 13:07
+|>
+
+<|F
+39
+12/22/21 11:22
+any asl
+include, ic_rw
+descr: need to write out included asl code blocks as separate xic files
+01/03/22 09:47
+|>
+
+<|P
+40
+12/22/21 11:25
+any asl
+include , engine
+descr: include "foo" - use foo.xic unless foo.asl more recent or no xic
+fix_date
+|>
+
+<|P
+41
+01/03/22 09:47
+include_mini,mini, mini2.asl
+ic_rw.cpp
+descr: now needs first stament and link written/read for xic include blocks
+fix_date
+|>
+
+<|P
+42
+01/03/22 09:47
+asl compile function call
+asl2cpp
+descr: args nad call pre prep  process of asl script before cpp compile
+fix_date
+|>
+
+<|F
+43
+01/03/22 09:00
+include.asl
+ic_rw.cpp
+descr: nested include broke - rework into ic_wcb, ic_rcb
+01/06/22 13:04
+|>
+
+
+<|P
+44
+08/20/24 9:45
+asl
+cpp
+descr:  S[1:4:] = R;    // not inserting into positions 1 : 4  initial pos 1 and should last insert at ele 4
+ need to test step
+fix_date
+|>
+
+
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+
+<|P
+id
+in_date
+asl
+cpp
+descr:
+fix_date
+|>
+
+
+# put this into tsv form for xss.dispay

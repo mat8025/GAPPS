@@ -16,7 +16,7 @@
    
 //////////////////  WED SCREEN --- WINDOWS //////////////// 
 //ans=query("graphic?\n") 
-int  do_keys = 0 
+int  do_keys = 0
  
   
 

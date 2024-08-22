@@ -431,7 +431,7 @@ new_main = 1
 
 <<[A]"  int main( int argc, char *argv[] ) {  \n"
 ///
-<<[A]"    init_cpp() ; \n\n"
+<<[A]"    init_cpp(argv[0]) ; \n\n"
 <<[A]"#endif       \n"        
 
 <<[A]"\n\n  chkIn(1) ;\n\n"

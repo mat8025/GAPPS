@@ -25,7 +25,53 @@
   chkIn (_dblevel);
   db_allow  =1;
   chkT(1)
+
+//wdb=DBaction((DBSTEP_|DBSTRACE_),ON_)
+
+//wdb=DBaction((DBSTEP_),ON_)
+
+
+//  Svar animals = split("Owl,Wolf,Bear,Fox,Crow,RedHawk,Magpie",44)
+
+ Svar animals = { "Owl","Wolf","Bear","Fox","Crow","RedHawk","Magpie" }
+ //animals.pinfo()
+
+<<" $animals \n"
+
+ <<" $animals[3] \n"
+
+
+
+
+
+ chkStr(animals[6],"Magpie")
+ chkStr(animals[0],"Owl")
+  chkStr(animals[1],"Wolf")
+
+ bird = animals[4]
+
+<<"%V $bird \n"
+
+   chkStr(bird,"Crow")
+
+//wdb=DBaction((DBSTEP_|DBSTRACE_),ON_)
+  Svar birds = splitViaDel("Owl,Crow,RedHawk,Magpie,Nightingale",44)
+
+  birds.pinfo()
+  ans=ask("OK",1)
   
+ chkStr(birds[0],"Owl")
+
+ chkStr(birds[2],"RedHawk")
+
+ bird = birds[3]
+
+<<"%V $bird \n"
+
+  chkStr(bird,"Magpie")
+
+
+
   just_once = 0;
 
   LD_libs = 0;
@@ -49,18 +95,35 @@
 
   //EP=====================//
 
-
- int Owl (int k, int m)
+ int Owl (int k)
   {
-    w= k * m;
+    w= k * 22;
 
     return w;
    }
 
 
- float Crow (float k, float m)
+
+ int Crow (int k)
   {
-   float  w= k / m;
+    w= k * 91;
+
+    return w;
+   }
+
+
+ int Magpie (int k)
+  {
+    int  w= k * 57
+
+    return w;
+   }
+
+  //EP=====================//
+
+ int Nightingale (int k)
+  {
+    int  w= k * 83
 
     return w;
    }
@@ -68,12 +131,24 @@
   //EP=====================//
 
 
- int Fox ()
+ int Fox (int k)
   {
-    w= K * 80;
+    w= k * 28;
 
     return w;
    }
+
+ int RedHawk (int k)
+  {
+    w= k * 80;
+
+    return w;
+   }
+//===============================
+ makeproctable ("Owl,Fox,...")
+
+//================================
+
 
 int K = 4;
 
@@ -85,7 +160,7 @@ if (db_allow) {
 
   <<" after direct call of Wolf returns $wc \n";
 
-  wc = Fox();
+  wc = Fox(2);
 
   <<" after direct call of Fox returns $wc \n";
 K= 5
@@ -94,7 +169,7 @@ K= 5
 <<"indirect call of $cbname\n"
 
 
-  wc = $cbname();  
+  wc = $cbname(3);  
 
 
   <<" after indirect call of Fox returns $wc \n";
@@ -129,7 +204,10 @@ K= 5
 
    for (i = 0 ; i < 5; i++) {
 
-    if (i < 3) {
+    if (i == 0) {
+       cbname = "2"
+    }
+    else if (i < 3) {
     <<" call Bear\n"
       cbname = "Bear"
     }
@@ -139,35 +217,78 @@ K= 5
     }
 
     wc = $cbname(5);  
+<<"%V $wc  $cbname \n"
 
- <<"[$i] after Indirect call of $cbname returns $wc \n";
+ans=ask("[$i] after Indirect call of $cbname returns $wc \n",0);
 
    }
 
 
-   wc = Owl( 93,7)
+   wc = Owl( 371)
 
 <<" Owl  says $wc \n"
 
   cbname = "Owl"
 
-   wc = $cbname(5,14);  
+   wc = $cbname(371);  
 
-<<" Owl  says 5 * 14 = $wc \n"
+<<" Owl  says  = $wc \n"
 
    x = 6; y = 7;
 
-   wc = $cbname(x,y);  
+   wc = $cbname(6);  
 
-<<" Owl  says $x * $y = $wc \n"
+<<" Owl  says  = $wc \n"
 
 
   cbname = "Crow"
 
-   wcf = $cbname(x,y);  
+   wcf = $cbname(13);  
 
-<<" Crow says $x / $y = $wcf \n"
+<<" Crow says  = $wcf \n"
+
+//Svar animals = {"Owl,Wolf,Bear,Fox,Crow,RedHawk,Magpie"}
+
+  birds.pinfo()
+
+  nf= Caz(birds)
+
+
+
+   for (i = 0; i < nf; i++) {
+
+    cbname = birds[i]
+    if (cbname != "") {
+    bcall = $cbname(5);  // iproc (cbname)
+<<"%V [$i]   $cbname  rets $bcall \n"
+    }
+    }
 
 
 
    chkOut(1)
+
+
+/*
+    CPP version has to construct a  table of ptrs to funcs (procs)
+    int *pf(int)
+    then use hash of name of str to index the table and
+    execute the function
+
+    the translation of asl script  has to say which  procs/funcs are addes to this
+    table
+
+    and then the iproc statement  bcall = $cbname(5);  
+    translates to bcall =  (pf * )lookupfunptr(cbname) (arg)
+
+
+    makefuncptrtable ("Owl,Magpie,RedHawk, ...)
+    all those functions need same form (signature)  int *pf(int) 
+
+
+
+
+
+
+
+*/

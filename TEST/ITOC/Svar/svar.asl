@@ -29,7 +29,7 @@ Str Use_= "Demo svar type use";
 
  db_ask = 0;
 
- allowDB("opera_,spe_,svar,str_,array_parse,parse,rdp_,pex",db_allow);
+ allowDB("spe,rdp,svar,str_,array_parse,parse,ds",db_allow);
 
 
 
@@ -44,7 +44,7 @@ Str Use_= "Demo svar type use";
    Svar E[] = { "the first ten elements are:", "H", "He", "Li", "Be" ,"B" ,"C", "N", "O", "F", "Ne"  };
 
    E.pinfo()
-
+ans=ask(" $E ",1)
 
    <<"$E\n";
    <<"$E[0] \n";
@@ -108,13 +108,15 @@ ans=ask(" $W  OK",db_ask)
 
    <<"$T\n";
 
-   sz=T.Caz();
+   T.pinfo()
 
-   <<"$sz\n";
+   sz=T.Caz();
+   hiw = Chi(T)
+   
+   <<"$sz  $hiw\n";
 
    chkN(sz,9);
 
-//   chkOut(1)
 
 
 
@@ -159,10 +161,17 @@ ans=ask(" $W  OK",db_ask)
     
 
    Ivec.pinfo();
+   
+   E.pinfo()
 
-   chkStr(E[1],"H");
+
+   chkStr(E[1],"Hydrogen");
 
    <<"$E[2] \n";
+
+
+
+
 
    svar  S[] = {"una larga noche"};
 
@@ -301,7 +310,11 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
    <<"$R\n";
 
-   S[1:4:] = R;
+   chkStr(R[0],"47")
+
+   S.pinfo()
+   
+   S[1:4:] = R;    // TBF 8/19/24   not inserting into 1 : 4  initial and should stop at ele 4
 
    <<"%V$S\n";
 
@@ -309,9 +322,13 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
    S.pinfo();
 
+
+
    chkStr(S[1],"47");
 
    chkStr(S[2],"79");
+
+
 
    chkStage ("lh range assign");
 
@@ -329,8 +346,13 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
    chkStage ("lh range stride 2 assign");
 
-   S[1:4:] = R[1:4];
+   S.pinfo()
+   R.pinfo()
 
+   S[1:4:] = R[1:4];
+   R.pinfo()
+   S.pinfo()
+   
    <<"$S\n";
 
    chkStr(S[1],"79");
@@ -934,3 +956,15 @@ Str Sr ="all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,
   chkOut();
 
 //===***===//
+/*
+
+ 1. fix errors
+
+ 2. make cpp translation work -- 
+    may need  E[1:10:2]  ==> E(1,10,2)  ??
+
+
+
+
+
+*/

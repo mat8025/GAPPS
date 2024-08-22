@@ -76,9 +76,9 @@ pars = i
 
    //<<" $YCOL \n"
 
-ycol = 0
+ycol = 1
 
-allowDB("spe,vmf,plot,fop,svar,record,math,wcom",1) 
+allowDB("spe,vmf,plot,fop,svar,record,math",1) 
    
    /*
    D= readfile(A,1)
@@ -112,10 +112,7 @@ allowDB("spe,vmf,plot,fop,svar,record,math,wcom",1)
     <<" no data file via clarg !\n"
     exit(-1)
    }
-     wcol = _clarg[2]
-if (wcol != "") {
-  ycol = atoi(wcol)  
-}
+       
      A=ofr(fname);
 
 Record RX;
@@ -146,10 +143,6 @@ Nrecs=RX.readRecord(A,_RDEL,-1,_RTYPE,FLOAT_);
   nrows = dmn[0]
   ncols = dmn[1]
 
-    if (ycol >= ncols) {
-        ycol = ncols-1
-    }
-    
 <<"%V$nrows $ncols\n"
 
     <<"%V$sz $dmn \n"  // TBF dmn just dmn[1]
@@ -180,7 +173,7 @@ while (wr < Nrecs) {
 // check # cols
   ans=ask("readRecord $Nrecs OK?",0)
 
-    YV = RX[::][ycol]
+    YV = RX[::][0]
 
     Redimn(YV)
 
@@ -199,13 +192,15 @@ while (wr < Nrecs) {
     // MM= Stats(YV,">",0)
   // but we don't
     
-    MM = Stats(YV)
+    mms= Stats(YV)
 
-    MM.pinfo()
+    mms.pinfo()
 
     npts = Caz(YV)
     
-    ans=ask("$npts $MM OK?",0)
+    ans=ask("$npts $mms OK?",1)
+    
+    exit(-1)
     
 
 <<"%V8.6f$YV \n"
@@ -240,7 +235,7 @@ while (wr < Nrecs) {
 
  // want num of bins  +1  so the ymin values and ymax values fall into a bin and are not excluded
 
-    /*
+
   H = Hist(YV, yr, ymin, ymax) 
 
   sz = Caz(H)
@@ -261,36 +256,34 @@ while (wr < Nrecs) {
   HS = HS * hs
 
 <<"Hist scaled \n $HS \n"
-    */
-
 
 
   Graphic = CheckGwm()
 
   if (!Graphic) {
-    Xgm = spawnGwm("PLOT_Y")
+    Xgm = spawnGwm()
   }
 
 
 
 
-  // aslw = asl_w("PLOT_Y")
+  aslw = asl_w("PLOT_Y")
 
 
  void drawScreens()
   {
 
-    <<"drawScreens $_proc \n"
+    //<<"drawScreens $_cproc \n"
  
-    sWi(_woid,aw,_wclearclip,WHITE__)
-      sWo(_woid,grwo,_wclipborder,BLACK_)
+    sWi(aw,_wclearclip)
+    sWo(grwo,_wclearclip,_wclipborder)
     axnum(grwo,2)
     axnum(grwo,1)
-      sGl(_glid,refgl,_gldraw,ON_)
+    sGl(refgl,_wdraw)
 
 //   setGwob(histwo,_wclearclip,_wclipborder,_wredraw)
 //   setGline(histgl,_wdraw)
-      // sWo(fewos,_wredraw)
+     sWo(fewos,_wredraw)
   }
 
 
@@ -324,12 +317,12 @@ void TimeSeries()
 
        if (button == 1) {
            lcpx = Rinfo[1]
-	     sGl(lc_gl,_wcursor,wbox(lcpx,wymin,lcpx,wymax),_wdraw,ON_)
+	     sGl(lc_gl,_wcursor,lcpx,wymin,lcpx,wymax,_wdraw)
         }
 
        if (button == 3) {
            rcpx = Rinfo[1]
-	     sGl(rc_gl,_wcursor,wbox(rcpx,wymin,rcpx,wymax),_wdraw,ON_)
+	     sGl(rc_gl,_wcursor,rcpx,wymin,rcpx,wymax,_wdraw)
        }
 
 }
@@ -338,7 +331,6 @@ void TimeSeries()
 
 void Zin()
 {
-  <<"calling Zin\n"
      if (button == 1) {
 
          sWo(grwo,_wxscales,lcpx,rcpx) 
@@ -347,19 +339,13 @@ void Zin()
 	  }
 }
 //------------------------------------
-void ZIN()
-{
-  <<"calling $_proc\n"
-  Zin()
-
-}
 
 wdir = "xout"
 
 void Zout()
 {
   // increase current by 10% ?
-<<"$_proc    \n"
+<<"$_proc   Zout \n"
   zoomwo(grwo,wdir,5);
 
   rs=woGetRscales(grwo)
@@ -380,19 +366,11 @@ void Zout()
   drawScreens()
 }
 //--------------------------------------------------
-void ZOUT()
+void Quit()
 {
-  <<"calling $_proc\n"
-  Zout()
 
-}
-
-
- void Quit()
-{
-  <<"calling $_proc\n"
   exitgs();
-  exit(0)
+
 }
 
   
@@ -406,27 +384,21 @@ void ZOUT()
 
 // Window
 
-  aw= cWi("PLOTY")
-
-
+    aw= cWi(_wtitle,"PLOTY",_wscales,xmin,ymin,xmax+xpad,ymax,_wsavescales,0)
 
 //<<" CGW $aw \n"
 
-  sWi(_woid, aw,_wresize,wbox(0.1,0.1,0.9,0.7,0))
-  sWi(_woid,aw,_wclip,wbox(0.1,0.1,0.8,0.9))
+    sWi(aw,_wresize,0.1,0.1,0.9,0.7,0)
+    sWi(aw,_wdrawon)
+    sWi(aw,_wclip,0.1,0.1,0.8,0.9)
 
-  sWi(_woid,aw,_wscales,wbox(xmin,ymin,xmax+xpad,ymax),_wsavescales,0)
-  
   // GraphWo
 
 
-  grwo=cWo(aw,WO_GRAPH_);
+   grwo=cWo(aw,_wgraph,_wresize,0.05,0.15,0.8,0.95,_wname,"TimeSeries",_wcolor,"white")
 
-   sWo(_woid,grwo,_wresize,wbox(0.05,0.15,0.8,0.95),_wname,"TimeSeries",_wcolor,WHITE_)
-
-
-     sWo(_woid,grwo,_wdraw,ON_,_wpixmap,ON_,_wclip,wbox(0.1,0.1,0.9,0.9))
-     sWo(_woid,grwo,_wscales,wbox(xmin,ymin-0.1,xmax,ymax*1.1),_wsavescales,0)
+  //  setgwob(grwo,_wdrawon,_wpixmapon,_wclip,0.1,0.1,0.9,0.9,_wscales,xmin,ymin-0.5,xmax+xpad,ymax,_wsavescales,0)
+   sWo(grwo,_wdrawon,_wpixmapon,_wclip,0.1,0.1,0.9,0.9,_wscales,xmin,ymin-0.1,xmax,ymax*1.1,_wsavescales,0)
 
   //   histwo=createGWOB(aw,_wGRAPH,_wresize,0.85,0.15,0.99,0.95,_wname,"Histogram",_wcolor,"white")
   //   setgwob(histwo,_wdrawon,_wpixmapon,_wclip,0.1,0.1,0.9,0.9,_wscales,ymin,0,ymax+0.1,10000,_wsavescales,0)
@@ -442,12 +414,9 @@ void ZOUT()
 //////////////////////////// GLINES & SYMBOLS //////////////////////////////////////////
 
 
+   refgl=cGl(grwo, _glTY, YV, _glcolor, "blue",_glusescales,0)
 
-  refgl=cGl(grwo)
-    
-    sGl(_GLID, refgl, _GLTY, YV, _GLCOLOR, GREEN_,_GLSYMLINE,DIAMOND_,_GLUSESCALES,0)
-
-    sGl(_glid,refgl,_gldraw,ON_)
+   sGl(refgl,_gldraw)
 
       // redraw
       // if not gwm -exit
@@ -458,13 +427,10 @@ void ZOUT()
   //  setGline(histgl,@draw)
 
 //  CURSORS
-  lc_gl   = cGl(grwo);
 
-  sGl(_GLID,lc_gl,_GLTYPE_CURS, ON_,_GLHUE,RED_,_GLDRAW,ON_);
+  lc_gl   = cGl(grwo,_gltype,"XY",_glcolor,"orange",_glltype,"cursor")
 
-  rc_gl   = cGl(grwo);
-
-  sGl(_GLID,rc_gl,_GLTYPE_CURS, ON_,_GLHUE,BLUE_,_GLDRAW,ON_);
+  rc_gl   = cGl(grwo,_gltype,"XY",_glcolor,"blue",_glltype,"cursor")
 
 
 
@@ -479,27 +445,18 @@ void ZOUT()
   /////////////////  BUTTONS /////////////////////////////////
 
   // zinwo=cWo(aw,_wname,"ZIN",_wcolor,"hotpink")
-    zinwo=cWo(aw,WO_BN_)
-    
-	    sWo(_woid,zinwo,_wname,"ZIN",_wcolor,"hotpink",_wcallback,"Zin")
+  zinwo=cWo(aw,_wONOFF,_wname,"ZIN",_wcolor,"hotpink",_wcallback,"Zin")
 
-  zoomwo=cWo(aw,WO_BN_)
-    
-	     sWo(_woid,zoomwo,_wname,"ZOUT",_wcolor,"cadetblue",_wcallback,"Zout")
+  zoomwo=cWo(aw,_wONOFF,_wname,"ZOUT",_wcolor,"cadetblue",_wcallback,"Zout")
 
-  quitwo=cWo(aw,WO_BN_)
-
-	    sWo(_woid,quitwo, _wname,"Quit",_wcolor,"cadetblue",_wcallback,"Quit")
-
-
-    
+  quitwo=cWo(aw,_wONOFF,_wname,"Quit",_wcolor,"cadetblue",_wcallback,"Quit")
 
 
   int fewos[] = {zinwo,zoomwo, quitwo };
 
   wo_htile( fewos, 0.03,0.01,0.3,0.08,0.05)
   /////////////////////////////////////////////
-  //    sWo(fewos,_wredraw,ON_)
+  sWo(fewos,_wredraw)
 
 
   //  RedrawGraph(aw)
@@ -512,11 +469,10 @@ void ZOUT()
 
 
 
-    
+    setGwob(grwo,_wclipborder)
     axnum(grwo,2)
     axnum(grwo,1)
-
-    sGl(refgl,_gldraw,ON_)
+    sGl(refgl,_gldraw)
 
    //sWo(histwo,@clearclip,@clipborder,@redraw)
 
@@ -530,70 +486,62 @@ E =1
 int m_num = 0
 int button = 0
 
-    sWo(_woid,grwo,_wdraw,ON_,_wpixmap,ON_)
+   sWo(grwo,_wsave,_wredraw,_wdrawon,_wpixmapon)
 
    drawScreens()
 
-
+   Keyw = ""
    lcpx = 50.0
    rcpx = 100.0
 
+   sGl(lc_gl,_glcursor,lcpx,0,lcpx,300)
 
-   sGl(_glid,lc_gl,_glcursor,wbox(lcpx,0,lcpx,300))
-
-  sGl(_glid,rc_gl,_glcursor,wbox(rcpx,0,rcpx,300))
+    sGl(rc_gl,_glcursor,rcpx,0,rcpx,300)
 
    drawScreens()
 
-    #include "wevent.asl" 
-
-
-      drawScreens()
    while (1) {
 
         m_num++
 
-       eventWait()
+        msg  = E->waitForMsg()
 
-       DBPR"%V$m_num $emsg $ekeyc $etype $ekeyw\n"
+        msgw = split(msg)
+
+        Keyw = E->getEventKeyw()
+
+       DBPR"%V$m_num $msg $Keyw \n"
+
+       button = E->getEventButton()
+
+       woname = E->getEventWoname()
+
+       Rinfo = E->getEventRinfo()
+
+       Evtype = E->getEventType()    
+<<"%V$Evtype \n"
+       Woproc = E->getEventWoProc()
 
 
-
-
-
-    if ( (ekeyw == "REDRAW") || (ekeyw == "RESIZE") || (ekeyw == "RESCALE") || (ekeyw == "PRINT")) {
-      <<"%V $ekeyw so  drawScreens()\n"
+    if ( (msg @= "REDRAW") || (msg @= "RESIZE") || (msg @= "RESCALE") || (msg @= "PRINT")) {
       drawScreens()
-      //continue
+      continue
     }
 
-	//  if (ename == "PRESS" ) {
-	  if (etype == PRESS_ ) {
-	       //    TBF 8/22/24
-	   
-
-          if ( !(ewoproc == "")) {
-          <<" trying callback iproc via ewoproc <|$ewoproc|>\n"
-	    $ewoproc()        
-            // continue
+       if (Evtype @= "PRESS") {
+          if ( !(Woproc @= "")) {
+             $Woproc()        
+             continue
           }
 
-		     /*		     
-          if ( !(ewoname == "")) {
-	     <<" trying iproc via woname <|$ewoname|>\n"
-	      $ewoname()        
-            // continue
-          }		     
-		     */
-	  
        }
 
-       /* 
-       if (!(ekeyw == "")) {
-         DBPR"calling function via keyword <|$ekeyw|>  $(typeof(ekeyw))\n"
-	   $ekeyw()        
+        
+       if (!(Keyw @= "")) {
+         DBPR"calling function via keyword |${Keyw}| $(typeof(Keyw))\n"
+         $Keyw()        
          }
-       */
+
 
         DBPR"%V$lcpx $rcpx \n"
    }

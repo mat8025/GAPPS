@@ -689,10 +689,11 @@ float ae = EXTV[15];
        else if (ewoname == "RESIZE") {
              drawScreens();
        }
-      else if (ewoname == "XZIN") {
+      else if (ewoname == "ZIN") {
               ZIN(ebutton)
        }       
        else if (ebutton > 0)       {
+       
          <<"trying $ewoname $ebutton \n"
 
            rcb= $ewoname(ebutton)
