@@ -120,6 +120,8 @@ if (wcol != "") {
 
 Record RX;
 
+//wdb= DBaction(DBSTEP_)
+  
 RX.pinfo()
 
 //Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST);
@@ -146,11 +148,13 @@ Nrecs=RX.readRecord(A,_RDEL,-1,_RTYPE,FLOAT_);
   nrows = dmn[0]
   ncols = dmn[1]
 
+    <<"%V$nrows $ncols\n"
+    
     if (ycol >= ncols) {
         ycol = ncols-1
     }
     
-<<"%V$nrows $ncols\n"
+
 
     <<"%V$sz $dmn \n"  // TBF dmn just dmn[1]
     <<"%V $dmn[0] $dmn[1] \n" // TBF 8/21/24  not correct ele of dmn
@@ -180,15 +184,49 @@ while (wr < Nrecs) {
 // check # cols
   ans=ask("readRecord $Nrecs OK?",0)
 
-    YV = RX[::][ycol]
+    RX.pinfo()
+    
+    //YV = RX[::][ycol]
+    YV = RX[::][::]
 
-    Redimn(YV)
+
 
     YV.pinfo()
 
+    dim = Cab(YV)
+    sz = Caz(YV)
+    <<"%V $sz $dim\n"
     
-        sz = Caz(YV)
-    <<"%V $sz \n"
+
+    //   Redimn(YV)
+
+    <<"RX $RX[0][1]  $RX[1][1] \n"
+    
+
+
+    kr = RX[2][1]
+
+    <<"%V RX[2][1] $kr\n"
+    for (i = 0 ; i <nrows; i++) {
+     kr = RX[i][1]
+    <<"[$i] $kr\n"
+    }
+
+wdb= DBaction(DBSTEP_)
+     kr = YV[1][1]
+
+    <<"%V YV[1][1] $kr\n"
+
+    
+    
+
+    <<"%V $YV\n"
+
+        <<"YV $YV[0][1]  $YV[1][1] \n"
+    
+
+    
+    exit(-1)
 
     <<"%V $YV[0] $YV[1] \n" // TBF
 
@@ -443,9 +481,9 @@ void ZOUT()
 
 
 
-  refgl=cGl(grwo)
+    refgl=cGl(grwo)
     
-    sGl(_GLID, refgl, _GLTY, YV, _GLCOLOR, GREEN_,_GLSYMLINE,DIAMOND_,_GLUSESCALES,0)
+    sGl(_GLID, refgl, _glty, YV, _glcolor, GREEN_,_glsymline,DIAMOND_,_glusescales,0)
 
     sGl(_glid,refgl,_gldraw,ON_)
 
@@ -570,12 +608,11 @@ int button = 0
 	//  if (ename == "PRESS" ) {
 	  if (etype == PRESS_ ) {
 	       //    TBF 8/22/24
-	   
 
           if ( !(ewoproc == "")) {
           <<" trying callback iproc via ewoproc <|$ewoproc|>\n"
 	    $ewoproc()        
-            // continue
+	      // continue
           }
 
 		     /*		     
