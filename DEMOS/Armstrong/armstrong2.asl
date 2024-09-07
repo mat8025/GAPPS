@@ -11,10 +11,10 @@ int np = 7;
 int totn=0;
 
       for (i=0; i < np ;i++) {
-            totn += 9*10^i ;
+            totn += 9*10`i ;
       }
 
-int ks = 1 * 10^(np-1);
+int ks = 1 * 10`(np-1);
 <<" from $ks to $totn\n";
 
 n= 0;
@@ -22,7 +22,7 @@ n= 0;
 int pw[10];
 
       for (i=0; i < 10 ;i++) {
-            pw[i] = i^np ;
+            pw[i] = i`np ;
 //	    <<"<$i>$pw[i] \n"
       }
 
@@ -30,7 +30,7 @@ int pw[10];
 int pt[10];
 
       for (i=0; i < 10 ;i++) {
-            pt[i] = 10^i ;
+            pt[i] = 10`i ;
 	//    <<"<$i>$pt[i] \n"
       }
 
@@ -46,7 +46,7 @@ int pt[10];
       nkr = (kr/10 *10);
       m = kr -nkr;
 
-//                sum += (m*(10^i));
+//                sum += (m*(10`i));
               //  sum += (m*pt[i]);
 		
 //		psum += m^np; // replace with array pw[m]

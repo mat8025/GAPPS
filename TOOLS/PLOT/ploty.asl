@@ -78,7 +78,7 @@ pars = i
 
 ycol = 0
 
-allowDB("spe,vmf,plot,fop,svar,record,math,wcom",1) 
+allowDB("spe,vmf,plot,fop,svar,parse,record,math,wcom,ic",1) 
    
    /*
    D= readfile(A,1)
@@ -124,20 +124,14 @@ Record RX;
   
 RX.pinfo()
 
-//Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST);
+
 
 Nrecs=RX.readRecord(A,_RDEL,-1,_RTYPE,FLOAT_);
 
- 
-
-//     R = ReadRecord(A,@type,FLOAT_,@NCOLS,ncols,@del,',')
 
   sz = Caz(RX);
 
   RX.pinfo()
-
-
-  
 
     
   glr = 0.0
@@ -183,26 +177,84 @@ while (wr < Nrecs) {
     
 // check # cols
   ans=ask("readRecord $Nrecs OK?",0)
-
+    int scz = -1;
     RX.pinfo()
+    WVSC = "xyz"
+/*
+    for (i=0 ;i < 5 ; i++) {
+     WVSC = "WV$i"
+     $WVSC = fgen(10,i,1)
+     pinfo($WVSC,2)		       
+     ans=ask("$WVSC built OK?",0)
+
+     scz = Caz($WVSC)
+
+     ans=ask(" $scz $WVSC  OK?",0)
+		       
+    }
+
+   WV0.pinfo()
+   WV1.pinfo()
+ans=ask("%V WV1 OK?",0)   
+   WV1.pinfo()   
+   WV3.pinfo()   
+
+     pinfo(WV4,2)		       
+   
+ans=ask("%V WV4 OK?",0)
+
+           pinfo(WV1,2)		       
+
+      
+      WVSC = "WV1"
+      pinfo($WVSC,2)		
+
+ans=ask("%V $WVSC OK?",0)
+
+*/
+  
+    YVSC = "xyz"
     
-    //YV = RX[::][ycol]
-    YV = RX[::][::]
+    for (i=0; i< ncols ; i++) {
+
+      YVSC = "YV$i"
+      
+      $YVSC = RX[::][i]
+      
+      pinfo($YVSC,2)
+      
+      //    Redimn($YVSC)
+       scz = Caz($YVSC)
+  
+      
+      //$YVSC.pinfo()
+      
+     ans=ask(" $scz $YVSC built OK?",0)
+      
+    }
 
 
-
-    YV.pinfo()
-
-    dim = Cab(YV)
-    sz = Caz(YV)
-    <<"%V $sz $dim\n"
+       
+    scz = Caz($YVSC)
+    sz = Caz(YV2)
+    dim = Cab(YV2)
+    <<"%V $YVSC $sz $dim\n"
     
+    sz.pinfo()
 
-    //   Redimn(YV)
+    ans=ask("%V $YVSC $sz $scz OK?",0)
 
+    YV0.pinfo()
+
+    YV1.pinfo()    
+    
+    YV2.pinfo()
+
+    ans=ask(" YV2 built OK?",0)
+    
     <<"RX $RX[0][1]  $RX[1][1] \n"
-    
-
+ 
+    YV0 *= 0.1  // want glines to have own scaling max/min
 
     kr = RX[2][1]
 
@@ -212,41 +264,35 @@ while (wr < Nrecs) {
     <<"[$i] $kr\n"
     }
 
-wdb= DBaction(DBSTEP_)
-     kr = YV[1][1]
-
-    <<"%V YV[1][1] $kr\n"
-
-    
-    
-
+//wdb= DBaction(DBSTEP_)
+/*
+kr = YV[1][1]
+        <<"%V YV[1][1] $kr\n"
     <<"%V $YV\n"
-
         <<"YV $YV[0][1]  $YV[1][1] \n"
-    
-
-    
-    exit(-1)
-
     <<"%V $YV[0] $YV[1] \n" // TBF
 
     <<"%V $YV \n"
-    
+*/    
     
   // if want to exclude neg and 0
     // MM= Stats(YV,">",0)
   // but we don't
-    
-    MM = Stats(YV)
+
+    YVSC = "YV1"
+
+    MM = Stats($YVSC)
 
     MM.pinfo()
 
-    npts = Caz(YV)
-    
-    ans=ask("$npts $MM OK?",0)
+    npts = Caz($YVSC)
+
+ <<"%V $npts \n"   
+
+    ans=ask("%V $npts OK?",0)
     
 
-<<"%V8.6f$YV \n"
+<<"%V8.6f$YV2 \n"
 
 <<"%6.2f$(typeof(MM)) $MM \n"
 
@@ -267,7 +313,7 @@ wdb= DBaction(DBSTEP_)
     
   <<"%V$xmin $xmax \n"
 
-
+    ans=ask(" $MM OK?",0)
   xrange = fabs(xmax-xmin)
   xpad=xrange * 0.05
 
@@ -276,32 +322,12 @@ wdb= DBaction(DBSTEP_)
 
   yr = (ymax-ymin) / 255.0
 
- // want num of bins  +1  so the ymin values and ymax values fall into a bin and are not excluded
-
-    /*
-  H = Hist(YV, yr, ymin, ymax) 
-
-  sz = Caz(H)
+<<" $YV2[::] \n"
 
 
-<<"Hist sz $sz \n $H \n"
-
-  // scale this related to total number of pts
-
-   float HS[];
-
-  HS = H
-  hs = (1.0 / npts) * 200000
-
-  //  hs = 0.5
-<<"Hist scalar $hs \n"
-
-  HS = HS * hs
-
-<<"Hist scaled \n $HS \n"
-    */
-
-
+    ans=ask("$npts YV2 OK?",0)
+    
+    
 
   Graphic = CheckGwm()
 
@@ -309,10 +335,7 @@ wdb= DBaction(DBSTEP_)
     Xgm = spawnGwm("PLOT_Y")
   }
 
-
-
-
-  // aslw = asl_w("PLOT_Y")
+  // aslw = asl_w("PLOT_Y") // ? does this work?
 
 
  void drawScreens()
@@ -321,14 +344,14 @@ wdb= DBaction(DBSTEP_)
     <<"drawScreens $_proc \n"
  
     sWi(_woid,aw,_wclearclip,WHITE__)
-      sWo(_woid,grwo,_wclipborder,BLACK_)
+    sWo(_woid,grwo,_wclipborder,BLACK_,_wredraw,ON_)
     axnum(grwo,2)
     axnum(grwo,1)
-      sGl(_glid,refgl,_gldraw,ON_)
 
-//   setGwob(histwo,_wclearclip,_wclipborder,_wredraw)
-//   setGline(histgl,_wdraw)
-      // sWo(fewos,_wredraw)
+      for(i=0; i< ncols; i++) {  
+          sGl(_glid, refgl[i],_gldraw,ON_)
+      }
+
   }
 
 
@@ -354,51 +377,55 @@ void RESIZE()
 //-------------------------------------------
 //---------------------------------------------
 
-void TimeSeries()
-{
 
-       DBPR" setting cursors $button $Rinfo\n"
+void YMEASURES()
+{
+// ymin,ymax - needed
+      <<" $_proc setting cursors $ebutton $btn\n"
 	 //  need v cursors -- 
 
-       if (button == 1) {
-           lcpx = Rinfo[1]
-	     sGl(lc_gl,_wcursor,wbox(lcpx,wymin,lcpx,wymax),_wdraw,ON_)
+       if (ebutton == 1) {
+           lcpx = erx
+	     sGl(_GLID,lc_gl,_GLHUE,RED_,_glcursor,wbox(lcpx,0,lcpx,50,GCL_init),_gldraw,ON_)
+	     ki = round(lcpx);
+	     <<"[$ki] $YV0[ki]  $YV1[ki] \n"
+	     YV0.pinfo()
+             YV1.pinfo()	     
+	     
+	     titleMessage(aw, "[$ki] $YV0[ki]  $YV1[ki]  $YV2[ki]")
+	     GCL_init =0
         }
 
-       if (button == 3) {
-           rcpx = Rinfo[1]
-	     sGl(rc_gl,_wcursor,wbox(rcpx,wymin,rcpx,wymax),_wdraw,ON_)
-       }
+       if (ebutton == 3) {
+           rcpx = erx
+	     sGl(_GLID,rc_gl,_GLHUE,BLUE_,_glcursor,wbox(rcpx,0,rcpx,50,GCR_init),_gldraw,ON_)
+             GCR_init =0
+      }
 
 }
 
 //------------------------------------------------------------
 
-void Zin()
+void ZIN()
 {
-  <<"calling Zin\n"
-     if (button == 1) {
+  <<"In $_proc  Zin\n"
+     if (ebutton == 1) {
 
-         sWo(grwo,_wxscales,lcpx,rcpx) 
+       sWo(_woid, grwo,_wxscales,lcpx,rcpx) 
 
          drawScreens()
 	  }
 }
 //------------------------------------
-void ZIN()
-{
-  <<"calling $_proc\n"
-  Zin()
 
-}
+wdir = 8 ; // need ZOOMOUT,IN PAN defined
 
-wdir = "xout"
-
-void Zout()
+void ZOUT()
 {
   // increase current by 10% ?
-<<"$_proc    \n"
-  zoomwo(grwo,wdir,5);
+<<"IN $_proc    \n"
+
+ // zoomwo(zoomwo,wdir,5);
 
   rs=woGetRscales(grwo)
 
@@ -413,20 +440,14 @@ void Zout()
 
 <<"%V$xmin $xmax\n"
 
-  sWo(grwo,_wxscales,xmin,xmax) 
+  sWo(_woid, grwo,_wxscales,xmin,xmax) 
 
   drawScreens()
 }
 //--------------------------------------------------
-void ZOUT()
-{
-  <<"calling $_proc\n"
-  Zout()
-
-}
 
 
- void Quit()
+ void QUIT()
 {
   <<"calling $_proc\n"
   exitgs();
@@ -453,49 +474,68 @@ void ZOUT()
   sWi(_woid, aw,_wresize,wbox(0.1,0.1,0.9,0.7,0))
   sWi(_woid,aw,_wclip,wbox(0.1,0.1,0.8,0.9))
 
-  sWi(_woid,aw,_wscales,wbox(xmin,ymin,xmax+xpad,ymax),_wsavescales,0)
+   //  sWi(_woid,aw,_wscales,wbox(xmin,ymin,xmax+xpad,ymax),_wsavescales,0)
+     sWi(_woid,aw,_wscales,wbox(xmin,0,xmax+xpad,ymax),_wsavescales,0,_wsave,ON_)
   
   // GraphWo
 
 
   grwo=cWo(aw,WO_GRAPH_);
 
-   sWo(_woid,grwo,_wresize,wbox(0.05,0.15,0.8,0.95),_wname,"TimeSeries",_wcolor,WHITE_)
+   sWo(_woid,grwo,_wresize,wbox(0.05,0.15,0.8,0.95),_wname,"TimeSeries",_wcallback,"YMEASURES",_wcolor,WHITE_)
 
 
      sWo(_woid,grwo,_wdraw,ON_,_wpixmap,ON_,_wclip,wbox(0.1,0.1,0.9,0.9))
-     sWo(_woid,grwo,_wscales,wbox(xmin,ymin-0.1,xmax,ymax*1.1),_wsavescales,0)
+   //sWo(_woid,grwo,_wscales,wbox(xmin,ymin-0.1,xmax,ymax*1.1),_wsavescales,0)
+     sWo(_woid,grwo,_wscales,wbox(xmin,0,xmax,100),_wsavescales,1)
+     sWo(_woid,grwo,_wscales,wbox(xmin,0,xmax,15),_wsavescales,0)          
 
   //   histwo=createGWOB(aw,_wGRAPH,_wresize,0.85,0.15,0.99,0.95,_wname,"Histogram",_wcolor,"white")
   //   setgwob(histwo,_wdrawon,_wpixmapon,_wclip,0.1,0.1,0.9,0.9,_wscales,ymin,0,ymax+0.1,10000,_wsavescales,0)
   //////////////////////////////////////////////////////////////////////////////////
 
  
-   dmn = Cab(YV)
+   dmn = Cab($YVSC)
 
 <<"$dmn \n"
 
-<<"${YV[0:10]} \n"
+   //<<"$${YVSC[0:10]} \n" // does that work?
 
 //////////////////////////// GLINES & SYMBOLS //////////////////////////////////////////
 
+int refgl[5]
+     
+     lncol = RED_
+     wsc = 0;
+     for (i = 0; i < ncols ; i++) {
+      refgl[i]=cGl(grwo)
+      YVSC="YV$i"
+<<"$i $YVSC $refgl[i]  $wcol\n"
+      sGl(_GLID, refgl[i], _glty, $YVSC, _glcolor, lncol,_glsymline,DIAMOND_,_glusescales,wsc)
+	//	if (i == 0) wsc++;
+      lncol++;
+     }
 
-
-    refgl=cGl(grwo)
     
-    sGl(_GLID, refgl, _glty, YV, _glcolor, GREEN_,_glsymline,DIAMOND_,_glusescales,0)
+   /*
+     YVSC = "YV1"
+     <<"%V $YVSC \n"
+     YV1.pinfo()
+     sGl(_GLID, refgl[1], _glty, $YVSC, _glcolor, RED_,_glsymline,DIAMOND_,_glusescales,0)
+   */
 
-    sGl(_glid,refgl,_gldraw,ON_)
+  ans=ask(" %V set $refgl[0]  $refgl[1]  OK?",0)
 
+     for (i = 0; i < ncols ; i++) {     
+      sGl(_glid,refgl[i],_GLDRAW,ON_)
+     }
+     
+  ans=ask(" draw $YVSC  OK?",0)
       // redraw
       // if not gwm -exit
 
-  // histgl=cGL(histwo, @TH, HS, yr, @color, "red",@usescales,0)
-
-
-  //  setGline(histgl,@draw)
-
 //  CURSORS
+     
   lc_gl   = cGl(grwo);
 
   sGl(_GLID,lc_gl,_GLTYPE_CURS, ON_,_GLHUE,RED_,_GLDRAW,ON_);
@@ -519,21 +559,21 @@ void ZOUT()
   // zinwo=cWo(aw,_wname,"ZIN",_wcolor,"hotpink")
     zinwo=cWo(aw,WO_BN_)
     
-	    sWo(_woid,zinwo,_wname,"ZIN",_wcolor,"hotpink",_wcallback,"Zin")
+	    sWo(_woid,zinwo,_wname,"Zin",_wcolor,"hotpink",_wcallback,"ZIN")
 
-  zoomwo=cWo(aw,WO_BN_)
+  zoutwo=cWo(aw,WO_BN_)
     
-	     sWo(_woid,zoomwo,_wname,"ZOUT",_wcolor,"cadetblue",_wcallback,"Zout")
+	     sWo(_woid,zoutwo,_wname,"Zout",_wcolor,LILAC_,_wcallback,"ZOUT")
 
-  quitwo=cWo(aw,WO_BN_)
+ // quitwo=cWo(aw,WO_BN_)
 
-	    sWo(_woid,quitwo, _wname,"Quit",_wcolor,"cadetblue",_wcallback,"Quit")
+//	    sWo(_woid,quitwo, _wname,"Quit",_wcolor,"cadetblue",_wcallback,"QUIT")
 
 
     
 
 
-  int fewos[] = {zinwo,zoomwo, quitwo };
+    int fewos[] = {zinwo,zoutwo, -1 };
 
   wo_htile( fewos, 0.03,0.01,0.3,0.08,0.05)
   /////////////////////////////////////////////
@@ -554,7 +594,7 @@ void ZOUT()
     axnum(grwo,2)
     axnum(grwo,1)
 
-    sGl(refgl,_gldraw,ON_)
+    sGl(refgl[1],_gldraw,ON_)
 
    //sWo(histwo,@clearclip,@clipborder,@redraw)
 
@@ -584,35 +624,43 @@ int button = 0
    drawScreens()
 
     #include "wevent.asl" 
+#include "tbqrd.asl"
+
+titleButtonsQRD(aw);
 
 
       drawScreens()
-   while (1) {
+
+     wo_htile( fewos, 0.03,0.01,0.3,0.08,0.05)
+
+    while (1) {
 
         m_num++
 
        eventWait()
 
-       DBPR"%V$m_num $emsg $ekeyc $etype $ekeyw\n"
+       DBPR"%V$m_num $emsg $ebutton $ekeyc $etype $ekeyw\n"
 
-
+       ans=ask("why not waiting?",0);
 
 
 
     if ( (ekeyw == "REDRAW") || (ekeyw == "RESIZE") || (ekeyw == "RESCALE") || (ekeyw == "PRINT")) {
       <<"%V $ekeyw so  drawScreens()\n"
       drawScreens()
-      //continue
+      continue
     }
 
 	//  if (ename == "PRESS" ) {
+	 // if (etype == PRESS_ || etype == MOTION_) {
 	  if (etype == PRESS_ ) {
 	       //    TBF 8/22/24
 
           if ( !(ewoproc == "")) {
-          <<" trying callback iproc via ewoproc <|$ewoproc|>\n"
+	    ebutton.pinfo()
+          <<" trying callback iproc via ewoproc <|$ewoproc|> $ebutton\n"
 	    $ewoproc()        
-	      // continue
+	    continue
           }
 
 		     /*		     

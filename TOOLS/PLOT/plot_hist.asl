@@ -267,7 +267,7 @@ while (wr < Nrecs) {
 
 
 
-  aslw = asl_w("PLOT_Y")
+  aslw = asl_w("PLOT_H")
 
 
  void drawScreens()

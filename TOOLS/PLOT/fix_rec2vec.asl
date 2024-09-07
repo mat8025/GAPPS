@@ -17,7 +17,7 @@ if (wcol != "") {
 
 
 allowDB("spe,vmf,plot,fop,svar,record,math,wcom",1) 
-   wdb= DBaction(DBSTEP_)
+   //wdb= DBaction(DBSTEP_)
 Record RX;
 
 RX.pinfo()
@@ -103,6 +103,17 @@ dim = Cab(WV1)
     sz = Caz(WV1)
     <<"%V $sz $dim\n"
 
+
+    scz = Caz($YVC)
+    <<"%V $scz \n"
+  ans=ask("%V $scz OK?",1)
+    
+
+  YVC = "WV1"
+
+    $YVC = RX[::][1]
+
+
    YVC = "WV2"
 
     $YVC = RX[::][2]
@@ -116,11 +127,20 @@ dim = Cab(WV1)
 // this should work as arg ptr ?
 //sGl(_GLID, refgl, _glty, $YVC, _glcolor, GREEN_,_glsymline,DIAMOND_,_glusescales,0)
     
+
+
+    MV = Stats($YVC)
+
+    MV.pinfo()
+
+
     MM = Stats(NV)
 
     MM.pinfo()
 
-    MV = Stats($YVC)
+ YVC = "WV1"
+ 
+MV = Stats($YVC)
 
     MV.pinfo()
 

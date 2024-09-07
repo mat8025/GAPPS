@@ -140,6 +140,9 @@ void titleMessage(int wid, Str msg)
 
   sWi(_WOID,wid,_WMSG,"$msg");
 
+  sWo(_WOID,grwo,_WMSG,"$msg");
+  
+
 }
 
 void titleMsg(int wid,Str msg)

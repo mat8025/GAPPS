@@ -29,7 +29,7 @@ Str Use_= "Demo svar type use";
 
  db_ask = 0;
 
- allowDB("spe,rdp,svar,str_,array_parse,parse,ds",db_allow);
+// allowDB("spe,rdp,svar,str_,array_parse,parse,ds",db_allow);
 
 
 
@@ -41,7 +41,7 @@ Str Use_= "Demo svar type use";
    
  //allowDB("spe_,ic",1)
 
-   Svar E[] = { "the first ten elements are:", "H", "He", "Li", "Be" ,"B" ,"C", "N", "O", "F", "Ne"  };
+   Svar E = { "the first ten elements are:", "H", "He", "Li", "Be" ,"B" ,"C", "N", "O", "F", "Ne"  };
 
    E.pinfo()
 ans=ask(" $E ",1)
@@ -57,11 +57,9 @@ ans=ask(" $E ",1)
 
    E[1] = "Hydrogen";
 
-
-
    E.pinfo();
 
-   
+   ans=ask("hydrogen [1]?  $E ",1)
 
    chkStr(boron,"B")
    chkStr(boron,E[5])
@@ -73,6 +71,7 @@ ans=ask("Svar array filled OK",db_ask)
 
 
    Str eles;
+   
    W= E[3:7];
 
    W.pinfo()
@@ -84,7 +83,7 @@ ans=ask("Svar array filled OK",db_ask)
    <<"$W[1]\n";
 
    W.pinfo()
-ans=ask(" $W  OK",db_ask)
+ans=ask(" $W  OK",0)
 
   eles = "$E[3:6]"
 
@@ -169,6 +168,7 @@ ans=ask(" $W  OK",db_ask)
 
    <<"$E[2] \n";
 
+ans=ask(" $E[1]",1)
 
 
 
@@ -417,19 +417,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
    chkStr(T[0],W[2]);
 /////////////////////////
-//%*********************************************** 
-//*  @script svar_declare.asl 
-//* 
-//*  @comment test list declare 
-//*  @release CARBON 
-//*  @vers 1.41 Nb Niobium                                                 
-//*  @date Mon Apr  8 09:51:04 2019 
-//*  @cdate 1/1/2004 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
-#
+
 
    civ = 0;
 
@@ -453,6 +441,10 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
    <<"List is $Mol \n";
 
+   Mol.pinfo()
+
+   ans=ask(" Mol should type LIST!",0);
+
    sz = caz(Mol);
 
    <<"%V$sz\n";
@@ -467,23 +459,27 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
    Mol.pinfo();
 
+   le2 = Mol[2];
+
+   <<"$(typeof(le2)) $le2\n";
+
    le12 = Mol[11];
 
-   <<"$(typeof(le12)) %V$le12\n";
+   <<"$(typeof(le12)) $le12\n";
 
    le = Mol[0];
 
-   <<"$(typeof(le)) %V$le\n";
+   <<"$(typeof(le)) $le\n";
 
    chkStr(le,"JAN");
 
    <<"le checked\n";
 
-   <<"%V $Mol[0] \n";
 
-   chkStr(Mol[0],"JAN");
 
-   <<"Mol[0] checked\n";
+
+
+
 
    le = Mol[1];
 
@@ -499,10 +495,22 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
    <<"$Mol[1] Mol[1] checked\n";
 
-   chkStr(Mol[1],"FEB");
-//checkProgress()
+   le = Mol[0];
 
-   <<" DONE Lists \n";
+   <<"%V$le $Mol[0] checked\n";
+
+   <<"$(typeof(le)) \n";
+
+   chkStr(le,"JAN");
+
+   <<"$(typeof(le)) %V$le\n";
+
+   chkStr("JAN",Mol[0]);
+
+   <<"$Mol[0] Mol[1] checked\n";
+
+   chkStage(" DONE Lists" )
+
 //////////////////////////////////
 
    Svar Mo[] = {"JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC" };
@@ -527,16 +535,19 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
   chkStr(Mo[0],"JAN");
 
   chkStr(Mo[11],"DEC");
-
+ //allowDB("spe_args,parse",1)
   int A[] = {0,1,2,3,4,5,6,7,8};
 
   <<"$A\n";
 
   <<"sz $(Caz(A)) cab $(Cab(A))\n";
-
+  A.pinfo()
+  
   chkN(A[1],1);
 
   chkN(A[8],8);
+
+
 
   IV= vgen(INT_,20,0,1);
 
@@ -565,7 +576,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
  ans= ask(" IV2 type ?",0)
 
-  R= M[3:-1:];
+  R= M[3:-1:];  // TBF  R sz M sz -3
 
   <<"$R \n";
 
@@ -585,7 +596,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
   IV3.pinfo();
 
-  ans=ask("IV3 int?",db_ask)
+  ans=ask("IV3 int?",0)
 
   <<"%V $IV3\n";
 
@@ -600,6 +611,8 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
   IV3 *= 2;
 
   chkN(IV3[0],6);
+
+
 
   <<"%V $IV3\n";
   
@@ -678,20 +691,24 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
   //IV3= atoi(M);
 // allowDB("spe_,rdp,ds,ic",1)
+   //rejectDB("spe_proc",1)
   IV3= M;   // should give error !! - now does 3/16/24
 
   <<"$IV3\n";
 
   IV3.pinfo()
-
+ // allowDB("vmf_l,spe_args,spil,pex,array",1)
   kt = pinfo(IV3,TYPE_INFO_)
+ // kt = pinfo(IV3)
+
+  kt.pinfo()
   <<" %V $kt\n"
 
  chkStr(kt,"INT")
 
 
 
-  ans=ask("IV3=M   int? $kt error",db_ask)
+  ans=ask("IV3=M   int? $kt error",0)
 
   kt = pinfo(IV3,OFFS_INFO_)
   <<" %V $kt\n"
@@ -714,7 +731,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
 // should be an error
   //IV3= M[3:-1:];
-allowDB("opera_,spe_,svar,str_,array_parse,parse,rdp_,pex",1);
+//allowDB("opera_,spe_,svar,str_,array_parse,parse,rdp_,pex",1);
  IV3= atoi(M[3:-1:]); // TBF does not do the range specified
    M.pinfo()
    IV3.pinfo();
@@ -768,16 +785,44 @@ chkN(IV3[0], 79);
 ///
 /// svar as proc arg
 /// 
-
-  void pSv (svar SV)
+ans=ask(" before proc pSv  OK?",0)
+  void pSv (Svar SV)
   {
-//<<" $SV\n"
+  
+<<"IN pSv $_proc $SV\n"
+ //allowDB("spe,parse,ds",1)
+//wdb= DBaction((DBSTEP_),ON_)
+static int k = 1;
+
 
   SV.pinfo();
 
-  static int k = 1;
+  s2 = SV[2];
+  s3 = SV[3]
+  s1 = SV[1]
+  s4 = SV[4]
+  
+  s0 = SV[0]
 
-  str w2;
+<<"%V $s3 \n"
+
+<<"%V $SV[3] \n"
+
+ans=ask("$s3 $SV[3] ",0)
+
+<<"%V $s0 $s1 $s2 $s3 $s4 \n"
+
+<<"%V $SV[3] $SV[4] $SV[1] $SV[0]\n"
+
+ans=ask("$s4 $SV[4] ",0)
+
+
+ 
+ 
+
+<<"%V $k\n"
+
+  Str w2;
 
   sz = Caz(SV);
 
@@ -822,6 +867,19 @@ chkN(IV3[0], 79);
   S = Split("how did we get here");
 
   S.pinfo();
+  s0 = S[0]
+  s2 = S[2];
+  s3 = S[3]
+  s1 = S[1]
+  s4 = S[4]
+
+  s2.pinfo()
+<<"%V $s0 $s1 $s2 $s3 $s4 \n"
+<<"%V $S[0] $S[1] $S[2] $S[3] $S[4]  \n"
+<<"%V $S \n"
+
+ans=ask("$s1 $s2 $s3   OK? now call pSv",0)
+
 
   pSv(S);
 
@@ -832,7 +890,7 @@ chkN(IV3[0], 79);
   pSv(TS2);
 //===========
 
-  proc getDeg (str the_ang)
+  float getDeg (str the_ang)
   {
   str the_dir;
   float la;
@@ -887,14 +945,36 @@ chkN(IV3[0], 79);
 
   chkStage("Proc");
 //==============================//
+ //allowDB("spe,rdp,svar,str_,array_parse,parse,list",1);
 
-  Svar Opts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,",",");
+ //wdb= DBaction((DBSTEP_),ON_)
+ 
+ Svar Opts = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,",",");
 
+  Opts.pinfo()
+  
   <<"$Opts \n";
 
   chkStr("all",Opts[0]);
 
   chkStr("matrix",Opts[2]);
+
+  chkStr("if",Opts[12]);
+
+
+ Svar Optd = SplitViaDel("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,",44);
+
+  Optd.pinfo()
+  
+  <<"$Optd \n";
+
+  chkStr("all",Optd[0]);
+
+  chkStr("matrix",Optd[2]);
+
+  chkStr("if",Optd[12]);
+
+
 
   //str Sr ="all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex,proc,switch,types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc,svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help";
 
@@ -910,12 +990,12 @@ Str Sr ="all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,
 
   <<"%V %(5,, ,\n)$Mopts[::] \n";
 
-//allowDB("spe_,rdp,ds,svar,ic",1)
+ 
   chkStr("all",Mopts[0]);
 
   chkStr("matrix",Mopts[2]);
 
-  Svar Sopts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex",",");
+  Svar Sopts = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex",",");
 
   <<"%V $Sopts \n";
 
@@ -923,13 +1003,18 @@ Str Sr ="all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,
 
   chkStr("class",Sopts[8]);
 
-  Svar Popts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex,proc,switch,types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc,svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help",",");
+  chkStr("if",Sopts[12]);
+  
+  chkStr("paraex",Sopts[16]);
+    
+
+  Svar Popts = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex,proc,switch,types,func,command,lhsubsc,dynv,mops,scope,oo,sfunc,svar,record,ivar,lists,stat,threads,while,pan,unary,ptrs,help",",");
 
 //
 
  //allowDB("spe_,pex,ds,ic,split",1)
 
-// Svar Popts = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex,proc,switch,types,func,command",",");
+// Svar Popts[] = Split("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,for,do,paraex,proc,switch,types,func,command",",");
 
 
    Popts.pinfo()
@@ -945,7 +1030,7 @@ Str Sr ="all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,
 
   chkStr("array",Popts[1]);
 
-  Ropts = Popts[13:21]
+  Ropts = Popts[13:21:1]
 
   Ropts.pinfo()
 

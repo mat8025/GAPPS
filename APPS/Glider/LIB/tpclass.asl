@@ -229,7 +229,7 @@ int lastc = -1;
      
 
 
-     ccoor(Lat);
+     ccoor(Lat);   // ccoor is an SF === tries to call proc ccoor
 //<<"%V $Lat \n"     
  
      Lon = wval[4];

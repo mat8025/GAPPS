@@ -579,7 +579,9 @@ if ((do_bit || do_all) && (do_bit != -1)) {
 
   if ((do_all || do_while ) && (do_while != -1)) {
         inflsz = caz(FailList);
+	
        RunDirTests("While","whilenest,while")
+       RunDirTests("Continue","continue");
       outcome("WHILE")
     }
 ////////////////////////////////////////////////////////////////////////
@@ -622,7 +624,7 @@ if ((do_all || do_try ) && (do_try != -1)) {
       
       RunDirTests("Cast","cast,cast-vec")
 
-      RunDirTests("Efmt","efmt",);
+      RunDirTests("Efmt","efmt");
 
       RunDirTests("Swab","swab")
 outcome("TYPES")

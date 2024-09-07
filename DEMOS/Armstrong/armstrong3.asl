@@ -12,10 +12,10 @@ int totn=0;
 
 char nv[20];
 
-int ks = 1 * 10^(np-1);
+int ks = 1 * 10`(np-1);
 
       for (i=0; i < np ;i++) {
-            totn += 9*10^i ;
+            totn += 9*10`i ;
       }
 
    ks= 15440000;
@@ -37,7 +37,7 @@ n= 0;
 int pw[10];
 
       for (i=0; i < 10 ;i++) {
-            pw[i] = i^np ;
+            pw[i] = i`np ;
 //	    <<"<$i>$pw[i] \n"
       }
 

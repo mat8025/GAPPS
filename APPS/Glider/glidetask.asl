@@ -63,7 +63,7 @@ int run_asl = runasl();
 
  ignoreerrors();
  //checksvpool()
- echolines(0)
+// echolines(0)
 
 #undef  asl_db
 #define asl_db 0
@@ -203,7 +203,7 @@ Glide::glideTask(Svarg * sarg)
   Str tpb ="";
 
   Units= "KM";
-   echolines(0)
+  // echolines(0)
 //<<" done defines \n"
 
 // dynamic variables no need to declare and set to default

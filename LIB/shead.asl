@@ -110,6 +110,7 @@ chkIn(_dblevel);
    }
 
 
+allowDB("spe_proc",1)
 
 
    set_vers = 0;
@@ -373,8 +374,10 @@ chkIn(_dblevel);
    <<[A]"$hl\n"
    hl=padHdr(" *  @author $author           ");
    <<[A]"$hl\n"
+//<<" *  @Copyright © RootMeanSquare $(date(8)) -->\n";           
    hl=padHdr(" *  @Copyright © RootMeanSquare $(date(8)) -->");           
-   <<[A]"$hl\n"
+
+  <<[A]"$hl\n"
    <<[A]" * \n"
    <<[A]" */ \n"
    <<[A]"\n";

@@ -5,7 +5,7 @@
 openDll("uac")
 
 //proc getArmN (char  cna[])
-proc getArmN (char  cna)
+Pan getArmN (char  cna)
 {
 Pan psum = 0;
 //<<"%V $cna[::] \n"
@@ -54,7 +54,7 @@ Pan pw[10];
 
 <<" $np powers 0 to 9\n"
       for (i=0; i < 10 ;i++) {
-            pw[i] = i^^np ;
+            pw[i] = i`np ;
 	    <<"<$i>$pw[i] \n"
       }
 

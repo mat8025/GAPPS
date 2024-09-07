@@ -14,7 +14,7 @@ int z;
      for (b=1; b<=9; b++) {
        for (c=0; c<=9; c++) {
           d =    b * 10 + c ;
-          z =    b^2 + c^2 ;
+          z =    b`2 + c`2 ;
 //<<"$b $c  $d $z\n"
          if (z == d) {
 	  ++n;
@@ -35,16 +35,20 @@ int z;
      for (b=0; b<=9; b++) {
        for (c=0; c<=9; c++) {
          d=  a*100 + b * 10 + c ;
-          z =  a^3 + b^3 + c^3 ;
+          z =  pow(a,3) + pow(b,3) + pow(c,3) ;
+
          if (z == d) {
 	  ++n;
 	 <<"$n  $z\n";
-	 }
+	  <<"%V $a $b $c $d $z\n"
+          }
        }
      }
   }
 
 <<" there are $n anums for 3 digit nums \n"
+
+ans=ask("$n ?",1)
 
 <<" 4 digit \n"
   n= 0  
@@ -53,7 +57,7 @@ int z;
      for (b=0; b<=9; b++) {
        for (c=0; c<=9; c++) {
          d= e*1000 + a*100 + b * 10 + c ;
-          z = e^4 + a^4 + b^4 + c^4 ;
+          z = e`4 + a`4 + b`4 + c`4 ;
          if (z == d) {
 	  ++n;
 	 <<"$n  $z\n";
@@ -73,7 +77,7 @@ int z;
      for (b=0; b<=9; b++) {
        for (c=0; c<=9; c++) {
          d= f*10000 + e*1000 + a*100 + b * 10 + c ;
-          z = f^5 + e^5 + a^5 + b^5 + c^5 ;
+          z = f`5 + e`5 + a`5 + b`5 + c`5 ;
          if (z == d) {
 	  ++n;
 	 <<"$n  $z     \t                                       \t\n";
@@ -99,7 +103,7 @@ int z;
      for (b=0; b<=9; b++) {
        for (c=0; c<=9; c++) {
          d= g*100000 + f*10000 + e*1000 + a*100 + b * 10 + c ;
-          z = g^6 + f^6 + e^6 + a^6 + b^6 + c^6 ;
+          z = g`6 + f`6 + e`6 + a`6 + b`6 + c`6 ;
          if (z == d) {
 	  ++n;
 	 <<"$n  $z                                                         \n";
@@ -115,4 +119,6 @@ int z;
 }
 }
 
-STOP!
+
+
+exit(0)
