@@ -162,7 +162,7 @@ ictout ="ictestoutput"
 //cart("bops","78")
 //chkT(0)
 
-CFLAGS = "-Rdcwlu"
+CFLAGS = "-Rcwlu"
 
 //CFLAGS = "-cwlm"     // m to mask src lines in exe file --- broke
 
@@ -319,7 +319,7 @@ List CrashList(STRV_);
 
       }
      
- <<" $i $wt $do_arg \n"
+ <<[_DBH]" $i $wt $do_arg \n"
 
      i++;
     // TBF {} needed
@@ -556,8 +556,9 @@ if ((do_bit || do_all) && (do_bit != -1)) {
 
    inflsz = caz(FailList)
    //<<"%V $inflsz \n"
-
+ //  echolines(1)
    RunDirTests("Logic","logic,logicops,logicdef")
+   //RunDirTests("Logic","logic,logicops")
 
    RunDirTests("Compare","compare")
 

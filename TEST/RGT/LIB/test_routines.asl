@@ -26,23 +26,25 @@ float pcc;
 
 int outcome (Str title)
 {
-  <<" $title \n"
+
    Nsuites++;
    outflsz = caz(FailList)
 //     <<"%V $inflsz $outflsz \n"
+   len = slen(title);
+   Pad = nsc(12-len," ")
+	
    if ((inflsz == outflsz) && (rt_crash == last_ncrash)) {
    Nspassed++;
-   len = slen(title);
-        Pad = nsc(12-len," ")
+
 	rtn = (rt_pass - last_npass);
 	rta = "$rtn";
 	len= slen(rta)
 	Pad2 =nsc(5-len,"/") 
-    <<"/////////////// ${title}$Pad///PASS/////${Pad2}$rta///////////\n"
+    <<"$(PBLUE_)/////// ${title}$Pad PASS /////${Pad2}$rta tests///////////$(POFF_)\n"
    }
    else {
    //<<"%V$inflsz  $outflsz \n"
-<<"$(PRED_)/////////////////// $title FAIL $(outflsz-inflsz) /////CRASH $(rt_crash-last_ncrash)///$(POFF_)/////////\n"
+<<"$(PRED_)/////// ${title}$Pad FAIL $(outflsz-inflsz) /////CRASH $(rt_crash-last_ncrash)///$(POFF_)/////////\n"
    }
    
    last_npass = rt_pass;
@@ -195,7 +197,7 @@ Str Tl = Tla;
 
       np = Caz(Tp);
    //   np.pinfo()
-   <<[DBH_]"%V $Td $Tl $np\n"
+//   <<[_DBH]"%V $Td $Tl $np\n"
       kp =0
       for (i=0 ; i < np; i++) {
 
@@ -214,7 +216,7 @@ kp++
 
          if (nl > 0) {
 
-//ask ("%V $pgname ",0)
+//ask ("%V $pgname ",1)
 
           cart(pgname);
 
@@ -266,38 +268,26 @@ void RunSFtests(Str Td)
 
 int scoreTest(Str itname, Str wt_prog)
 {
-// dbh = -1 no debug , 2 stderr print 
 
-//<<"$_proc <|$itname|>  <|$wt_prog|> \n"
 
-<<[_DBH]"$_proc <|$itname|>  \n"
+
+<<[_DBH]"$_proc <|$itname|>   <|$wt_prog|> \n"
 
  int scored = 0;
  int ntests;
  int npass;
  Svar rtl;
-//  wt_prog.pinfo()
-// ans=ask("second str arg?",1)
- 
- Str tname;
 
-   //itname.aslpinfo();
-
- //  tname = itname;
-
-   //tname.aslpinfo();
-
-        RT=ofr(itname);
+  RT=ofr(itname);
        
 <<[_DBH]"%V fh $RT \n"
-
-    //RT.pinfo()
 
 
       if (RT != -1) {
 
        
-<<[_DBH]"RT SCORING  $RT  \n"
+//<<[_DBH]"RT SCORING  $RT  \n"
+
 
           posn = fseek(RT,0,2)
 
@@ -359,7 +349,7 @@ int scoreTest(Str itname, Str wt_prog)
 	 <<[Opf]"${wt_prog}$padit"
     }
 
-  blue= PGREEN ;
+
 
 //<<"%V $pcc  $ntests \n"
 
@@ -369,7 +359,7 @@ if ((pcc < 100) && (pcc >90) ) {
 }
 else if ((pcc < 100) && (pcc >= 70) ){
 
-<<"\t$(PBLUE)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs \033[0m \n\n"
+<<"\t$(PBLUE_)DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs \033[0m \n\n"
 }
 else if (pcc < 70) {
 
@@ -379,7 +369,7 @@ else if (pcc < 70) {
 else {
  if (Report_pass) {
 <<"$(PGREEN_)\tDONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs $(POFF_)\n"
- //<<"\t$(blue) DONE tests $ntests\tpass $npass\tscore %5.2f$pcc\% took $took msecs \n"
+
  }
 }
 
@@ -407,7 +397,7 @@ else {
     }
      
     //scored.pinfo()
-    
+
     return scored;
 }
 //===============================
@@ -580,6 +570,7 @@ if (!do_module) {
 void cart (Str prg)
 {
 
+
 <<[_DBH]"$_proc <|$prg|> \n"
 
 
@@ -599,12 +590,10 @@ void cart (Str prg)
 //<<"rm -f $aprg  ${aprg}.tst  last_test* \n"
 //<<"rm -f $prg  ${prg}.tst  last_test* \n"
  
- !!"rm -f $prg  ${prg}.tst  last_test* &"
+ !!"rm -f $prg  ${prg}.tst  last_test* "
 
    jpid  =0
       
-
-
 
            if (do_query) {
 	   
@@ -621,13 +610,10 @@ void cart (Str prg)
                   do_query = 0;
                }	       
 
-
            }
    
 
    //<<"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst $CFLAGS ${prg}.asl > /dev/null   2>&1";
-
-
   
   !!"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst $CFLAGS ${prg}.asl  > /dev/null   2>&1";
 
@@ -640,30 +626,25 @@ void cart (Str prg)
 
       kt =f_exist(tst_file);
  
- //     ask("cart  $kt\n",0)
+     //ask("cart  $kt $tst_file\n",1)
+  //   <<" %V $kt\n"
+//wdb=DBaction((DBSTEP_),ON_)
 
-  //    if (f_exist(tst_file) > 0) {  // TBF asl ERROR 12/8/23
+     if (kt >0) {
 
-      if ( kt > 0) {
-
+//<<"$kt > 0 scoring \n"
          wt_prog = "$(time()) ${wstr}: "
-/*
-         wlen = slen(wt_prog)
-         padit =nsc(40-wlen," ")
-	 if (!do_module) {
-         <<"${wt_prog}$padit";  // keep
+//	 wt_prog.pinfo()
+//	 ans = ask("$kt  $wt_prog ",1)
 
-         <<[Opf]"${wt_prog}$padit"	 
-         }
-*/	 
          wscore = scoreTest(tst_file, wt_prog)
 	
-      //<<"%V $wscore\n"
+    //  <<"%V $wscore\n"
       
      }
      else {
 
-       //<<"CRASH FAIL:--failed to run \n"
+       <<"CRASH FAIL:--failed to run \n"
        // insert works??
        rt_crash++;
        CrashList.Insert(LIEND_,"${Curr_dir}/${prg}")
