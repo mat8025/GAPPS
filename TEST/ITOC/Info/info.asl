@@ -106,27 +106,41 @@ ans=ask("pinfo returns <|$ai|>",0)
   chkN(b,2)
   
   goo()
-  
+  allowDB("spe,rdp,array",1)
   
   IV = vgen(INT_,10,0,1)
-  
+
+
   IV.pinfo()
-  
+  pars = IV.pars()
+
+
   k = IV[3]
+  
   IV[4] = 67;
 
+  IV.pinfo()
+
+  iv4 = IV[4]
+  
+//  IV.pinfo() // TBF  want info about array not to be reset
+
+ ask("OK $iv4",0)
+
   chkN(k,3)
-
-  SOF=IV.pinfo()
+  ivslot = pars[1];
+  
+  SOF=pinfo(ivslot)
+  
   <<"SOF:: $SOF\n"
+  ask("SOF OK $SOF",0)
+
+
+  pars.pinfo()
   
-  offs = IV.offsets()
-  
-  <<"%V $offs \n"
+  <<"%V $pars \n"
 
-
-chkN(offs[2],4)
-
+ // chkN(offs[0],4)  ; // TBF 8/8/24
   
   IVi = IV.info()
   

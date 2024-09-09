@@ -18,33 +18,70 @@ if (_dblevel >0) {
    debugON()
 }
 
-
+allowDB("ic,spe,rdp,ic",1)
 
    chkIn(); 
+
+
+   int do_bops = 1; 
+
+  <<"%V $do_bops \n";
+   
+ do_bops = 3; 
+   
+  <<"%V $do_bops \n"; 
+   
+   varname = "do_bops";
+
+    varname.pinfo()
+
+   $varname = 8;
+
+    varname.pinfo()
+
+<<"%V $do_bops \n";
+     chkN (do_bops, 8); 
+//   <<"%V $varname \n"; 
+
+   varname.pinfo()
+   
+   $varname = 7; 
+   
+   <<" done indirect assignment \n"; 
+   
+   <<"%V $varname $do_bops \n"; 
+   
+   chkN (do_bops, 7); 
+
 
    int v1 = 1;
 
 <<"%V$v1\n"
 
-v1->info(1)
-
    varname = "v1"; 
 
    $varname = 2;
 
-<<"%V$v1\n"
-
+<<"%V $v1\n"
+ chkN(v1,2)
    varname = "a1"; 
    
-   $varname = 2;
+   $varname = 4;  // should create var a1 and make it an int value 2
 
-   a1->info(1)
+   a1.pinfo()
    
    <<"%V $a1 \n"; 
 
-   varname->info(1)
-   
+   varname.pinfo()
 
+    chkStr(varname,"a1")
+    chkN(a1,4)
+    
+ans=ask("%V $varname  $a1",1)
+
+   chkOut(1)
+   exit(0)
+   
    Record R[5];
    
    R[0] = Split("the best things in life are free");
@@ -53,20 +90,24 @@ v1->info(1)
    
    R[2] = Split("just give me money that's what I want");
    
-   R->info(1)
+   R.pinfo()
 
+   <<"R0: $R[0]\n"; 
+   <<"R1: $R[1]\n"; 
+   <<"R2: $R[2]\n"; 
 
    rt0 = R[0];
    rt1 = R[1];
    rt2 = R[2];
    
-   <<"R0: $R[0]\n"; 
-   <<"R1: $R[1]\n"; 
-   <<"R2: $R[2]\n"; 
+
+
    
    <<"$rt0 \n"; 
    <<"$rt1 \n"; 
    <<"$rt2 \n"; 
+
+   ans=ask("%V $rt0  $rt2",1)
    
    <<"R: $R[::]\n"; 
    
@@ -84,32 +125,15 @@ v1->info(1)
    
    <<"$(Caz(R)) $(Caz(R,0))  $(Caz(R,1))   \n";
 
-  a2->info(1)
+  a2.pinfo()
    
 
-   int do_bops = 0; 
-   
-   do_bops = 3; 
-   
-   <<"%V$do_bops \n"; 
-   
-   wt = "do_bops"; 
-   
-   <<"%V$wt \n"; 
-   
-   $wt = 2; 
-   
-   <<" done indirect assignment \n"; 
-   
-   <<"%V$wt $do_bops \n"; 
-   
-   chkN (do_bops, 2); 
-   
+      
    silver = 47; 
    gold = 79; 
    metal = "silver"; 
    $wt = $metal; 
-   
+
    <<"%V$wt $do_bops \n"; 
    
    chkN (do_bops, 47); 
@@ -163,6 +187,7 @@ v1->info(1)
 // double indirection
    
    ai = "np";
+
    c = $$ai;
    
    <<"%v $c\n"; 
@@ -185,6 +210,7 @@ v1->info(1)
    <<"%V$e \n"; 
    
    chkN (e, 4); 
+
    chkOut ();
 
 

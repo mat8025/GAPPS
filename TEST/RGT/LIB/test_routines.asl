@@ -94,7 +94,6 @@ void hdg(Str atit)
 {
 //<<"IN $_proc   $atit \n"
 
-   //atit.aslpinfo()
 
   int len = slen(atit)
 //<<"%V $len\n"
@@ -143,9 +142,8 @@ void Run2Test(Str td)
 {
 
 //<<" $_proc $td $Testdir\n"
-
-  //td.aslpinfo()
 //!a
+
   chdir(Testdir)
 
   hdg(td);
@@ -165,7 +163,7 @@ void Run2Test(Str td)
 
 void RunDirTests(Str Td, Str Tla )
 {
-int _DBH = -1
+
 <<[_DBH]"$_proc $Td  <|$Tla|> \n"
 
 Str pgname = "xx";
@@ -185,35 +183,27 @@ Str Tl = Tla;
       chdir(Td)
       Curr_dir = getDir();
      // <<"$Curr_dir $Td\n"
-//allowDB("spe_proc,",1)
-
-  //   Tl.DeWhite()
-//allowDB("spe_,rdp_",0)
-//Tl.pinfo()
-
-//<<"$Tl\n"
-
-//ans= ask("Tl $Tl ",0);
-     //  dwtl = Dewhite(Tl)
      Tl.dewhite()
      
-//ans= ask("Tl $Tl ",0);
 
-      Tp = Split(Tl,",");
-//Tp.pinfo()
+
+      Tp = SplitViaDel(Tl,44);
+
+      //Tp.pinfo()
 
 //ans= ask("Tp? ",0);
 
       np = Caz(Tp);
    //   np.pinfo()
-    //  <<"%V $Td $Tl $np\n"
+   <<[DBH_]"%V $Td $Tl $np\n"
       kp =0
       for (i=0 ; i < np; i++) {
 
-//<<"[$i] <|$Tp[i]|>  \n"
+
 	    pgname = Tp[i];
 kp++
-//<<"[$i] $kp <|$Tp[i]|>  $pgname\n"
+
+<<[_DBH]"[$i] $kp $Tp[i] $pgname\n"
 
             nl = slen(pgname);
 
@@ -224,11 +214,13 @@ kp++
 
          if (nl > 0) {
 
-       // <<[_DBH]"%V $pgname \n"
+//ask ("%V $pgname ",0)
 
           cart(pgname);
 
 //<<[_DBH]"%V $pgname xic \n"
+
+//ans=ask ("%V $pgxname ",1)
 
         cart_xic (pgxname);
 
@@ -275,7 +267,6 @@ void RunSFtests(Str Td)
 int scoreTest(Str itname, Str wt_prog)
 {
 // dbh = -1 no debug , 2 stderr print 
-int _DBH = -1
 
 //<<"$_proc <|$itname|>  <|$wt_prog|> \n"
 
@@ -431,7 +422,7 @@ int cbh = 0
 void cart_xic(Str prg)
 {
 //<<"IN $_proc  $prg \n"
-int _DBH = -1
+
 
 //aprg.pinfo()
 int wscore;
@@ -440,8 +431,7 @@ Str lprg = "xxxxxxxxxxxxxxxxx";
 
 lprg = prg;
 
-//prg.pinfo();
-//lprg.pinfo();
+
 
 if (!scmp(lprg,prg)) {
 <<"FAIL $_proc  lprg <|$lprg|> ==  prg <|$prg|> \n"
@@ -454,7 +444,6 @@ if (!scmp(lprg,prg)) {
 
      foundit = fexist(prgx) ;
 
-     //prg.pinfo();
 
 <<[_DBH]"looking for xic file <|$prgx|>  found? $foundit \n"
 
@@ -485,15 +474,15 @@ if (!scmp(lprg,prg)) {
         if (do_query) {
 <<"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -dRxu ${prg}.xic  \n  "
          ans = query("$prg run it?")
-	 if (ans =="q") {
-          exit()
-         }
-         }
+	 <<"%V $ans\n"
+	 if (ans =="q")  exit(-1);
+      }
 
 //<<" run xic $wasl <|${prg}.xic|>\n";
 
-  //  !!"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -dRxu ${prg}.xic   
-    !!"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -Rxu ${prg}.xic   > /dev/null 2>&1 "
+ //   !!"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -dRxu ${prg}.xic"
+    
+  !!"$wasl -o ${prg}.xout -e ${prg}.xerr -t ${prg}.xtst -Rxu ${prg}.xic   > /dev/null 2>&1 "
       
 // what happens if prg crashes !!
 
@@ -503,8 +492,10 @@ if (!scmp(lprg,prg)) {
   
 
       tst_file = "${prg}.xtst";
-      
-//  <<"%V <|$prg|> <|$tst_file|>\n"
+
+      kt = f_exist(tst_file);
+
+        <<[_DBH]"%V $prg $tst_file   $kt\n"
 
 
       if (f_exist(tst_file) > 0) {
@@ -537,7 +528,7 @@ void cart_xic(Str aprg, Str a1)
 
 int wscore;
 
-//  <<"%V $_proc  $aprg $a1 \n"
+<<[_DBH]"%V $_proc  $aprg $a1 \n"
 
     foundit = fexist(aprg) ;
 
@@ -549,7 +540,6 @@ int wscore;
    // wt_prog = "$tim "
 
      xwt_prog = "$tim ./${aprg}:$a1"
-//Str aa = a1
 
      // doxictest("./$aprg", "$a1")
 
@@ -590,9 +580,9 @@ if (!do_module) {
 void cart (Str prg)
 {
 
-//<<"$_proc <|$prg|> \n"
+<<[_DBH]"$_proc <|$prg|> \n"
 
-  //aprg.pinfo()
+
   int wscore;
   int wlen;
 
@@ -613,16 +603,17 @@ void cart (Str prg)
 
    jpid  =0
       
-   //   aprg.pinfo()
+
 
 
            if (do_query) {
 	   
-      //<<"$wasl -o ${aprg}.out -e ${aprg}.err -t ${aprg}.tst $CFLAGS ${aprg}.asl \n"
 
       <<"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst $CFLAGS ${prg}.asl \n"
            
-	       ans= i_read("run it?")
+	       ans= ask("run it?",1)
+
+//<<"%V $ans\n"
 	       if (ans =="q") {
                   exit()
                }
@@ -640,18 +631,19 @@ void cart (Str prg)
   
   !!"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst $CFLAGS ${prg}.asl  > /dev/null   2>&1";
 
-     // !!"ls -l *";
+
+
        wstr= prg
 //<<"%V$wstr \n"
 
       tst_file = "${prg}.tst";
-      //  <<"%V $tst_file\n"
 
-  //tst_file.pinfo()
-  kt =f_exist(tst_file);
- // <<"%V $kt\n"
+      kt =f_exist(tst_file);
+ 
+ //     ask("cart  $kt\n",0)
 
   //    if (f_exist(tst_file) > 0) {  // TBF asl ERROR 12/8/23
+
       if ( kt > 0) {
 
          wt_prog = "$(time()) ${wstr}: "
@@ -665,8 +657,10 @@ void cart (Str prg)
          }
 */	 
          wscore = scoreTest(tst_file, wt_prog)
-	//<<"%V $wscore\n"
-      }
+	
+      //<<"%V $wscore\n"
+      
+     }
      else {
 
        //<<"CRASH FAIL:--failed to run \n"
@@ -702,20 +696,17 @@ void cart (Str prg,  Str pa1)
   int wscore;
   //str tim;
 //   <<"%V $_pstack \n"
-//   aprg.pinfo()
 
-//pa1.aslpinfo()
+
+
 
    Str aprg = prg;
    Str a1;
 //   prg = aprg;
   
- //  prg->pinfo()
+
 
    a1= pa1;
-
-
-//   a1.pinfo()
 
    in_pargc = _pargc;
   
@@ -791,7 +782,7 @@ void cart (Str prg,  Str pa1)
 void do_carts (Str aprg)
 {
 //  <<"%V$_proc  <|$aprg>\n"
-//  aprg.pinfo()
+
 
 //!!"pwd"
 //Str bprg = "XYZF";  // TBF fails
@@ -801,21 +792,19 @@ void do_carts (Str aprg)
 
 //bprg = aprg;  // TBF fails
 
-//aprg.pinfo()
-//bprg.pinfo()
 
 //
 Str wprg = "xx";
 
 wprg = aprg;
 
-//wprg.pinfo()
+
 //  <<"run carts vers  <|$wprg|>  <|$aprg|> \n"
 
    cart (wprg);
 
 //  <<"run xic vers  $wprg \n"
-//  wprg.pinfo()
+
        cart_xic (wprg);
 
 }
@@ -872,7 +861,7 @@ Str prg;
 void doxictest(Str prog, Str a1)
 {
 
-<<"IN $_proc  $prog  $a1 \n"
+//<<"IN $_proc  $prog  $a1 \n"
 Str prg;
 
  if (f_exist("${prog}") != -1) {

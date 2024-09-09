@@ -12,9 +12,10 @@
 //***********************************************%
 
 #include "debug.asl"
-debugON()
 
-//sdb(1,@pline)
+ debugON()
+
+
 
 chkIn()
 
@@ -59,9 +60,6 @@ chkN(ir,4)
 
   chkR(f,2,6)
 
-chkOut()
-
-stop!
 
 
 for (mr = 1 ; mr < 16 ; mr++) {
@@ -90,7 +88,7 @@ for (i = 1; i <= 32 ; i++) {
 }
 
 <<"%V $mr $cnt $ncnt \n"
-;
+
 
 
 chkOut()

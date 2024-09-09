@@ -83,7 +83,7 @@ wd= chdir(hdir)
 wdir = getdIr()
 <<[_DBH]"%V $wd $hdir $wdir\n"
 
-
+wasl = "aslx"
 //ans=query("where are we")
 
 
@@ -282,10 +282,11 @@ List CrashList(STRV_);
 
       wt = _argv[i]
 
-//<<"arg $i  $_argv[i] $wt \n"
 
-    //wt.pinfo()
-//ans = ask("whats this arg $i $wt\n",0)
+
+   // wt.pinfo()
+
+<<[_DBH]"what's this arg $i <|$wt|> \n"
 
     if (wt == "") {
       break
@@ -296,27 +297,29 @@ List CrashList(STRV_);
      }
     
     
-     if (wt == "bops") {
-        do_bops = 1
-	//<<" %V $do_bops \n"
-     }
+   //  if (wt == "bops") {
+  //      do_bops = 1
+  //	<<" %V $do_bops \n"
+  //   }
    
       do_arg = "do_$wt"
 
-<<[_DBH]"arg $i  $_argv[i] $wt $do_arg \n"
+<<[_DBH]"arg $i  $_argv[i] <|$wt|> <|$do_arg|> \n"
+//ans=ask("arg $i  $_argv[i] <|$wt|> <|$do_arg|>",1)
 
-
-    if (scmp(wt,"~",1) ){
+     if (scmp(wt,"~",1) ){
         wt=scut (wt,1);
 	<<"don't run $wt\n"
 	do_arg = "do_$wt"
 	$do_arg = -1;
-     }
+      }
       else {
+      
       $do_arg = 1;
-     }
+
+      }
      
-//<<" $i $wt $do_arg \n"
+ <<" $i $wt $do_arg \n"
 
      i++;
     // TBF {} needed
@@ -332,8 +335,9 @@ List CrashList(STRV_);
       exit();
   }
 
-<<[_DBH]"%V $do_all $do_bops $do_mops \n"
+<<[_DBH]"%V $do_all $do_bops $do_mops $do_query \n"
 
+//ask("DONE ARGS %V $wasl  $do_query $do_bops",0)
 
 //================
 
@@ -406,8 +410,9 @@ if (do_math) {
 
 //<<" check Include $do_include $do_types\n"
 
-//<<"%V $do_query\n"
    allowDB("spe_,ic",1);
+
+//ans=ask("%V $do_query",1)
 
 if ((do_include || do_all ) && (do_include != -1)) {
 
@@ -426,8 +431,6 @@ if ((do_include || do_all ) && (do_include != -1)) {
     inflsz = caz(FailList)
 
     RunDirTests("Bops","bops,fvmeq,fsc1,mainvar,snew,parse_exp");
-    
-
 
   // RunDirTests("Assign","assign");
 
