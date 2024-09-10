@@ -45,8 +45,13 @@
 
   chkIn();
 
+  allowDB("spe,array,rdp",1)
+
   int Veci[];  // TBC 10/20/23
+  
   Veci.setDynamic(1,10)
+
+  Veci.pinfo();
 
   Veci[3] = 79;
 
@@ -65,12 +70,14 @@
   int J[];
   
   J.pinfo();
-  J.setDynamic(1,10)
+//  J.setDynamic(1,10)  //
+  J.setDynamic(1,30)  //
+  
   <<"$(Cab(J)) \n";
 
   <<"$J \n";
 
-  J[0:20].Set(10,1);
+  J[0:20].Set(10,1); // TBF spec of 0:20  is not expanding the vector when needed
 
   <<"$J \n";
  // askit(1)
@@ -200,6 +207,7 @@
   <<"%(10,, ,\n)$I \n";
 
   chkOut();
+  
 ////////////////  TBD /////////////////
 /*
   Array range
@@ -211,6 +219,9 @@
   a start or end value of negative indicates a postion relative to end of array
   N.B -1 is the end index ultimate, -2 penultimate ...
   negative step backwards iteration -- array is treated as a ring
+
+// TBF 9/10/24 spec of 0:20  is not expanding the vector when needed
+
 */
 
 

@@ -44,7 +44,7 @@ Str Use_= "Demo svar type use";
    Svar E = { "the first ten elements are:", "H", "He", "Li", "Be" ,"B" ,"C", "N", "O", "F", "Ne"  };
 
    E.pinfo()
-ans=ask(" $E ",1)
+ans=ask(" $E ",0)
 
    <<"$E\n";
    <<"$E[0] \n";
@@ -59,7 +59,7 @@ ans=ask(" $E ",1)
 
    E.pinfo();
 
-   ans=ask("hydrogen [1]?  $E ",1)
+   ans=ask("hydrogen  $E ",0)
 
    chkStr(boron,"B")
    chkStr(boron,E[5])
@@ -168,7 +168,7 @@ ans=ask(" $W  OK",0)
 
    <<"$E[2] \n";
 
-ans=ask(" $E[1]",1)
+ans=ask(" $E[1]",0)
 
 
 

@@ -82,7 +82,7 @@
   Svar S;
 
   S.pinfo()
- // fileDB(ALLOW_,"rdp_store,rdp_l1,ds_sivarray,ds_arraycopy,ds_storesvar")
+
   S=readfile(B);
 
   S.pinfo()
@@ -91,12 +91,22 @@
 
   <<"%V$S[1]\n";
 
-  LL = S[-7]
+  dbAllow("rdp,array,spe",1)
+
+  LL = S[1]
+
+<<"1 $LL \n"
   
   LL.pinfo()
 
   LL = S[-1]
+
+<<"-1 $LL \n"
+
+  LL = S[-7]
   
+<<"-7 $LL \n"
+
   LL.pinfo()
 
 
