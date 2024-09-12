@@ -14,10 +14,6 @@
                                                                                               
 
 
-
-
-
-
 #include "debug"
 
 if (_dblevel >0) {
@@ -27,10 +23,12 @@ if (_dblevel >0) {
 
 chkIn()
 
-  setmaxcodeerrors(1); // 
+  setmaxcodeerrors(-1); // 
 
-  setmaxicerrors(1);
+  setmaxicerrors(-1);
+db_ask = 0
 
+ allowDB("spe,array,pex",1)
 i = 0;
 j = 2;
 
@@ -57,6 +55,41 @@ chkN(j,-2)
 
 //checkOut()
 //exit()
+
+
+ uint k5 =  2`4
+
+<<"%V$k5 \n"
+
+
+ uint j5 = 3`8
+
+<<"%v$j5 \n"
+
+
+ ts_secs = j5-4
+
+
+
+chkN(ts_secs,(j5-4))
+
+ last_ts_secs = j5
+
+   <<"%V $ts_secs  \n"
+   <<"%V $last_ts_secs \n"
+
+ans = ask ("%V $last_ts_secs",db_ask)
+
+
+<<"%V $ts_secs  $last_ts_secs \n"
+
+<<"%V $j5 $ts_secs  $last_ts_secs \n"
+
+ans = ask ("%V $j5 $ts_secs  $last_ts_secs",db_ask)
+
+
+
+//////////////////////////
 
 
 i = 3
@@ -367,17 +400,33 @@ j= (k * 3)
 ICAO_SA[k][i] = 707
 
 <<"$ICAO_SA\n"
-j = 787
-ICAO_SA[k][i+1] = j
+ j = 787
+
+ ICAO_SA[k][i+1] = j
 
 <<"$ICAO_SA\n"
+
+ jval =  ICAO_SA[k][i+1]
+
+ <<"%V $jval $k $i $(i+1) $ICAO_SA[k][i+1]  $j\n"
+
+//<<"%V $jval $k $i $(i+1) $ICAO_SA[k][i+1  $j\n"   ; // this breaks following code really bad
+//<<"  $ICAO_SA[k][i+1  \n"   ; // this breaks following code really bad
+
+
+
+
+
+ans = ask("$jval $ICAO_SA[k][i+1]",db_ask) ; 
+
+
 
 chkR(ICAO_SA[k][i+1],787,3)
 
 
-ICAO_SA[k][i] = k
+ ICAO_SA[k][i] = k
 
-<<"%I $ICAO_SA[k][i]  should be $k !\n"
+<<"%V $ICAO_SA[k][i]  should be $k !\n"
 
 
 chkN(ICAO_SA[k][i],k)
@@ -405,7 +454,7 @@ chkN(ICAO_SA[i][k], (i *2))
     ICAO_SA[i][k] = i * 2;
 
 <<" $ICAO_SA[i][k] \n"
-askit(0)
+
     z = i * 2;
 
     y = ICAO_SA[i][k];
@@ -442,24 +491,33 @@ d = pow(2,8) -5
 <<"%V$d \n"
 
 
-uint k5 =  2^3
+ k5 =  2`3
 
 <<"%V$k5 \n"
 
 
-uint j5 = d
+ j5 = d
 
 <<"%v$j5 \n"
 
+ ts_secs = j5-4
 
-uint ts_secs = j5-4
 
 
 chkN(ts_secs,(j5-4))
 
-uint last_ts_secs = j5
+ last_ts_secs = j5
 
-   <<"%V $ts_secs  $last_ts_secs \n"
+   <<"%V $ts_secs  \n"
+   <<"%V $last_ts_secs \n"
+
+ans = ask ("%V $last_ts_secs",db_ask)
+
+
+<<"%V $ts_secs  $last_ts_secs \n"
+
+ans = ask ("%V $ts_secs  $last_ts_secs",db_ask)
+
 
 chkN(last_ts_secs,j5)
 
@@ -474,23 +532,26 @@ chkN(0,n)
 
 
    if (ts_secs == last_ts_secs) {
+   <<"%V $ts_secs  \n"
+   <<"%V $last_ts_secs \n"
 
-   <<"%V $ts_secs == $last_ts_secs \n"
-
+   //<<"%V $ts_secs == $last_ts_secs \n"
+//ans = ask ("%V $i $ts_secs  $last_ts_secs",db_ask)
+ans = ask ("%V $last_ts_secs",db_ask)
    n++
 
    }
 
    ts_secs++
 
- <<"%V $i $ts_secs \n"
+ <<"%V  $ts_secs \n"
 
  }
 
 
 chkN(1,n)
 
-chkStage (" if - 5")
+//chkStage (" if - 5")
 
 //%*********************************************** 
 //*  @script if6.asl 
@@ -515,7 +576,8 @@ chkStage (" if - 5")
 
   if ((do_all == 6)) {
 
-     <<"is %v $do_all == 6 TRUE? is TRUE\n"
+     //<<"is %v $do_all == 6 TRUE? is TRUE\n"
+     <<"is $do_all == 6 TRUE? is TRUE\n"
 
   }
   else {
@@ -528,12 +590,12 @@ chkStage (" if - 5")
 
   if (do_all == 6) {
 
-     <<"is %v $do_all == 6 TRUE? is TRUE\n"
+     <<"is  $do_all == 6 TRUE? is TRUE\n"
        chkN(6,do_all)
   }
   else {
 
-    <<" ELSE %v $do_all != 6 TRUE? is TRUE\n"
+    <<" ELSE $do_all != 6 TRUE? is TRUE\n"
 
   }
 
@@ -637,7 +699,7 @@ chkStage (" if - 5")
   }
 
 
-chkStage("if -6")
+//chkStage("if -6")
 
 
 
@@ -703,7 +765,7 @@ chkStage("if -6")
    chkN(jgt,3); 
    
    <<"%V $jlt $jeq $jgt\n"; 
-   chkStage("if - nest"); 
+   //chkStage("if - nest"); 
    
 //%*********************************************** 
 //*  @script if_fold.asl 
@@ -891,7 +953,7 @@ ts=sstr(";/{}\\",cs,1)
 <<"fold 5 not correct!\n";
  }
 
-chkOut()
+
 
  if ( !is_comment && !is_proc && !is_if  && (sl > 0) &&\  
      (  sstr(";/{}\\",cs,1) == -1) )  {
@@ -937,7 +999,7 @@ chkOut()
  }
 
 
-chkStage("if - fold")
+//chkStage("if - fold")
 
 ///
 ///
@@ -1001,7 +1063,7 @@ chkN(k,360)
 
 <<"$k\n"
 
-chkStage("logic chain")
+//chkStage("logic chain")
 
 
 
@@ -1037,52 +1099,52 @@ chkStage("logic chain")
 
 
 
-int ans = 0;
+int dans = 0;
 
-if (ans) {
+if (dans) {
 
-<<"ans != 0 %V $ans\n"
-
-}
-else {
-
-<<" correct $ans == 0\n"
-chkN(ans,0)
-}
-
-
-
-if (!ans) {
-
-<<"correct ans == 0 !ans %V $ans\n"
-chkN(ans,0)
-}
-else {
-
-<<"incorrect  $ans != 0\n"
-
-}
-
-
-if (!(ans)) {
-
-<<"correct ans == 0 !ans %V $ans\n"
+<<"ans != 0 %V $dans\n"
 
 }
 else {
 
-<<" $ans != 0\n"
-
+<<" correct $dans == 0\n"
+chkN(dans,0)
 }
 
-if (!(ans == 1)) {
 
-<<"correct !(ans == 1) %V $ans\n"
-chkN(ans,0)
+
+if (!dans) {
+
+<<"correct ans == 0 !dans %V $dans\n"
+chkN(dans,0)
 }
 else {
 
-<<" $ans != 0\n"
+<<"incorrect  $dans != 0\n"
+
+}
+
+
+if (!(dans)) {
+
+<<"correct dans == 0 !dans %V $dans\n"
+
+}
+else {
+
+<<" $dans != 0\n"
+
+}
+
+if (!(dans == 1)) {
+
+<<"correct !(dans == 1) %V $dans\n"
+chkN(dans,0)
+}
+else {
+
+<<" $dans != 0\n"
 
 }
 
@@ -1117,7 +1179,7 @@ else {
 }
 
 
-chkStage("chk null")
+//chkStage("chk null")
 
  if (77 > 23) {
 
@@ -1126,7 +1188,8 @@ chkStage("chk null")
 
 
 
-chkOut(i)
+chkOut()
 
+exit(0)
 
 

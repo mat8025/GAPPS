@@ -276,7 +276,9 @@ List CrashList(STRV_);
 <<[_DBH]"%V $do_all \n"
 
   i = 1;
-//allowDB("spe_exp,ic_,para");
+
+
+
     while (1) {
 
 
@@ -410,9 +412,9 @@ if (do_math) {
 
 //<<" check Include $do_include $do_types\n"
 
-   allowDB("spe_,ic",1);
+allowDB("spil,pex,ds,ic",1);
 
-//ans=ask("%V $do_query",1)
+
 
 if ((do_include || do_all ) && (do_include != -1)) {
 
@@ -429,6 +431,8 @@ if ((do_include || do_all ) && (do_include != -1)) {
   if ((do_bops || do_all) && (do_bops != -1)) {
 
     inflsz = caz(FailList)
+
+//<<"bops,fvmeq,fsc1,mainvar,snew,parse_exp\n";
 
     RunDirTests("Bops","bops,fvmeq,fsc1,mainvar,snew,parse_exp");
 
@@ -464,14 +468,18 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
   cart("mod")
 
-  updir()
+ // updir()
 
 
-  chdir("Info")
+  //chdir("Info")
 
-  do_carts("info")
+//  do_carts("info")
 
   RunDirTests("Assign","assign");
+
+  RunDirTests("Info","info");
+
+
 
     outcome("BOPS")
    }
@@ -506,7 +514,7 @@ if ((do_include || do_all ) && (do_include != -1)) {
 if ((do_if || do_all) && (do_if != -1)) {
     inflsz = caz(FailList)
   
-    RunDirTests("If","if,ifand")
+    RunDirTests("If","ifand,if,ifelse")
 
 
 

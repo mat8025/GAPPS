@@ -23,7 +23,7 @@
 
   showUsage("   Demo  of test file handle ");
 
-  ask =0;
+  db_ask =1;
 
   allowErrors(-1);
 
@@ -32,7 +32,7 @@
 ////
 ////
 
-  A=ofw("log");
+  A=ofw("log2");
 
   <<"first line in script  stdout\n";
 
@@ -69,7 +69,7 @@
 
   cf(A);
 
-  !!"cat log";
+  !!"cat log2";
 
   
 
@@ -77,21 +77,28 @@
 
   wcv = countWords(B)
 
-<<"$wcv \n"
+  wcv.pinfo()
+
+
 
   Svar S;
 
   S.pinfo()
 
+  dbAllow("rdp,array,spe",1)
+
   S=readfile(B);
 
   S.pinfo()
+  nl = Caz(S)
   
-  <<"S[0]$S[0]\n";
+ans = ask("n lines in file $nl",db_ask) 
 
-  <<"%V$S[1]\n";
+  <<"S[0] $S[0]\n";
 
-  dbAllow("rdp,array,spe",1)
+  <<"%V $S[1]\n";
+
+
 
   LL = S[1]
 
@@ -99,20 +106,29 @@
   
   LL.pinfo()
 
+  LL = S[0]
+
+<<"0 $LL \n"
+
   LL = S[-1]
 
 <<"-1 $LL \n"
 
-  LL = S[-7]
+
+  LL = S[-2]
+
+<<"-2 $LL \n"
+
+  LL = S[-3]
+
+<<"-3 $LL \n"
+
+  LL = S[-6]
   
-<<"-7 $LL \n"
-
-  LL.pinfo()
+<<"-6 $LL \n"
 
 
-
-
-  <<"%V$S[-1]\n";
+  <<"%V $S[-1]\n";
 
   chkStr(S[0],"first line in log file - not stdout\n");
 

@@ -702,6 +702,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
  // kt = pinfo(IV3)
 
   kt.pinfo()
+  
   <<" %V $kt\n"
 
  chkStr(kt,"INT")

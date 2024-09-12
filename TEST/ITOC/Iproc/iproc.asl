@@ -58,7 +58,7 @@
   Svar birds = splitViaDel("Owl,Crow,RedHawk,Magpie,Nightingale",44)
 
   birds.pinfo()
-  ans=ask("OK",1)
+  ans=ask("OK",0)
   
  chkStr(birds[0],"Owl")
 

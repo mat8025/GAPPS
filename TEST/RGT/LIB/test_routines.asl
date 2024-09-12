@@ -166,7 +166,7 @@ void Run2Test(Str td)
 void RunDirTests(Str Td, Str Tla )
 {
 
-<<[_DBH]"$_proc $Td  <|$Tla|> \n"
+<<[_DBH] "$_proc $Td  <|$Tla|> \n"
 
 Str pgname = "xx";
 Str pgxname = "xy";
@@ -175,25 +175,23 @@ Svar Tp;
 //
 Str Tl = Tla;
 
+    //Tl.pinfo()
 
-  
-//Tl.pinfo()
+
 
 //ri=Tl.info()
 
       chdir(Testdir)
       chdir(Td)
       Curr_dir = getDir();
-     // <<"$Curr_dir $Td\n"
+    // <<"$Curr_dir $Td\n"
      Tl.dewhite()
-     
-
 
       Tp = SplitViaDel(Tl,44);
 
-      //Tp.pinfo()
+     // Tp.pinfo()
 
-//ans= ask("Tp? ",0);
+ans= ask("$Tp ",0);
 
       np = Caz(Tp);
    //   np.pinfo()
@@ -615,16 +613,19 @@ void cart (Str prg)
 
    //<<"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst $CFLAGS ${prg}.asl > /dev/null   2>&1";
   
-  !!"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst $CFLAGS ${prg}.asl  > /dev/null   2>&1";
+  ok=!!"$wasl -o ${prg}.out -e ${prg}.err -t ${prg}.tst $CFLAGS ${prg}.asl  > /dev/null   2>&1";
 
 
 
        wstr= prg
 //<<"%V$wstr \n"
-
+      nsecs = 1
       tst_file = "${prg}.tst";
-
-      kt =f_exist(tst_file);
+      //if (prg == "if") {
+      //  nsecs = 3
+     // }
+      
+      kt =f_exist(tst_file,0,nsecs);
  
      //ask("cart  $kt $tst_file\n",1)
   //   <<" %V $kt\n"

@@ -23,11 +23,20 @@
      }
 //openDll("plot")
 
+   db_ask = 0
+
    myScript = getScript();
 
    myScript.pinfo();
 
    <<"%V $myScript \n";
+
+nas = "47"
+chkStr(nas,"47");
+
+ans = ask("%V $nas ",db_ask);
+
+
 
    int na;
 
@@ -82,11 +91,12 @@
    k = 0;
 
    A = testargs(k++,help,47,f,"hey",1.2,1,',',"*",c,F,D,R,P,_Whue,"red",&F[2]);
-// A = testargs(k++,help,47,f,"hey",1.2,1,',',"*",c,F,D,@hue,"red",&F[2])
+
+   sz= Caz(A)
 
    <<"%(1,-->, , \n)$A\n";
-//asn=iread(":");
-//<<"%(1,,,\n)$A\n"
+
+ans= ask("%V $sz  $A[11]",db_ask)
 
    <<"%V$k \n";
 
@@ -96,15 +106,17 @@
 
    <<"%V %c $b $(',') $c\n";
 
-   for (i = 0; i <10; i++) {
+   for (i = 0; i < sz; i++) {
 
-     <<"<$i> value $A[i] \n";
+     <<"<$i>  $A[i] \n";
 
      }
 
-   ans = A[11];
+   aval = A[11];
 
-   chkStr(ans,"47");
+ans= ask("%V $aval  $A[11]",db_ask)
+   <<"%V $ans\n"
+//   chkStr(aval,"47");
 
    <<"$help\n";
 
@@ -127,3 +139,11 @@
    chkOut();
 
 //==============\_(^-^)_/==================//
+
+
+/*
+    want getargvalue as string
+
+
+
+*/
