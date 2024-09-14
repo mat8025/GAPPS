@@ -104,35 +104,70 @@
 
   }
 
+allowDB("spe,array,pex",1)
+//wdb=dbAction(DBSTEP_)
+  <<"A: $A\n";
+  <<"B: $B\n";
+
+
   vvcopy(&B[3],A,5);
+
+  <<"B: $B\n";
 
   B.pinfo();
 
+
   <<"B: $B\n";
+
+  <<"B: $B[::]\n";
+
+  <<"B: $B[1:5:1]\n";
 
   <<"A: $A\n";
 
   <<"%V $B[3]  $A[0] \n";
 
   <<"%V $B[4]  $A[1] \n";
+  
+ <<"A: $A\n"
+ <<"B: $B\n"
+ 
 
   chkN(B[3],A[0]);
 
   chkN(B[4],A[1]);
+
+  //chkOut(-1)
+  
+
 //    do the same with vec ops
 ////////////////////////////////////////////////////////////
-
+//wdb=dbAction(DBSTEP_)
   B = C;
 
   <<"C $C\n";
 
+ chkV(B,C)
   <<"B $B\n";
 
   <<"A $A\n";
 
+//!bs  -want margin codes
+
+
   B[4:8:] = A[1:5];
 
-  <<"$B\n";
+
+  
+
+  <<"B: $B\n";
+  
+  <<"B: $B[::]\n";
+
+    B.pinfo()
+
+    chkN(B[4],A[1]);
+
 
   int ki = 2;
 
@@ -140,6 +175,7 @@
 
   vvcopy(&B[ki],A,5);
 
+  <<"A: $A\n";
   <<"B: $B\n";
 
   chkN(B[ki],A[0]);
@@ -186,6 +222,8 @@
 
   <<"%V $bval $aval\n";
 
+ans =ask("offset OK?",0)
+
   A.pinfo();
 
   chkN(bval,aval);
@@ -196,7 +234,7 @@
 
   <<"A: should be 0 $A\n";
 
-  A = B;
+  A = B;  // both A,B shoul reset offs
 
   <<"B: $B\n";
 

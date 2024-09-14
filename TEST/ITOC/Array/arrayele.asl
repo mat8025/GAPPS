@@ -27,7 +27,7 @@ int db_ask = 0
 
 <<"%V $db_ask $db_allow\n"
  db_ask.pinfo()
-ans= ask("%V $db_ask $db_allow",1)
+ans= ask("%V $db_ask $db_allow",0)
 
    chkIn (_dblevel);
 
