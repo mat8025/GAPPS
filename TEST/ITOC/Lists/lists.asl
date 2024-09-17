@@ -31,7 +31,7 @@
 
    <<"%V $ws  $_script\n";
 
-    allowDB("spe,ds,ic_call,pex,vmf", 0)
+    allowDB("spe,ds,ic_call,pex,vmf", 1)
 
     List LS(STRV_);
 
@@ -329,7 +329,7 @@ chkOut(1)
 
  <<"%V $L3 \n";
 
-ans=ask("L3 fulllist?")
+ans=ask("L3 fulllist?",0)
 
   litem = "focus";
 
@@ -377,7 +377,7 @@ ans=ask("L3 fulllist?")
 
 <<"%V $L3 \n"
 
-ans=ask("L3 fulllist?")
+ans=ask("L3 fulllist?",0)
 
 
   L3 = L[1:-2];  ///  ==> L3 = L(1,-2)
@@ -386,7 +386,7 @@ ans=ask("L3 fulllist?")
 
 <<"%V $L3 \n"
 
-ans=ask("L3 fulllist?")
+ans=ask("L3 fulllist?",0)
 
 
 

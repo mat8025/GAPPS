@@ -27,6 +27,7 @@ float pcc;
 int outcome (Str title)
 {
 
+   Test_suite = title;
    Nsuites++;
    outflsz = caz(FailList)
 //     <<"%V $inflsz $outflsz \n"
@@ -322,8 +323,10 @@ int scoreTest(Str itname, Str wt_prog)
 	  else {
           pcc = 0.0;
           }
+	  
           rt_tests += ntests;
           rt_pass += npass;
+	  
 	  took = rtwords[10];
 	  tmsecs =atoi(took);
 	  wextn = scut(itname,-4);
@@ -331,10 +334,12 @@ int scoreTest(Str itname, Str wt_prog)
           if ((sele(itname,-1,-4)) == "xtst") {
             x_time += tmsecs; 
 	    	    //<<"%V $x_time\n"
+             rtx_fail += (ntests-npass)
           }
 	  else {
 	    i_time += tmsecs;
 	    //<<"%V $i_time\n"
+	    rt_fail  += (ntests-npass)
           }
 	  
  if (!do_module) {

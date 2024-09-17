@@ -53,7 +53,7 @@ setmaxicerrors(-1);
 //wasl = "aslx"   // alsx should be stable
 
 wasl = "asl"
-
+Str Test_suite ="XYZ"
 
 //<<"using $wasl for testing \n"
 
@@ -141,8 +141,9 @@ do_xic = 1;   // option?
 int n_modules = 0
 int rt_tests = 0
 int rt_pass = 0
-int rt_crash = 0
 int rt_fail = 0
+int rtx_fail = 0
+int rt_crash = 0
 int i_time = 0;
 int x_time = 0;
 
@@ -436,6 +437,10 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
     RunDirTests("Bops","bops,fvmeq,fsc1,mainvar,snew,parse_exp");
 
+  RunDirTests("Assign","assign");
+
+  RunDirTests("Info","info");
+
   // RunDirTests("Assign","assign");
 
     Run2Test("Bops")
@@ -475,9 +480,7 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
 //  do_carts("info")
 
-  RunDirTests("Assign","assign");
 
-  RunDirTests("Info","info");
 
 
 
@@ -1267,10 +1270,14 @@ if (!do_module) {
 if (Nsuites == 0) {
  Nsuites = 1
 }
-<<"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$flsz Crash $lsz vers $(get_version())\n"
+   len = slen(Test_suite);
+   Pad = nsc(16-len," ")
+
+
+<<"$(slower(Test_suite)) $Pad%6.3f$pcc %d \t$n_modules\t$rt_tests\t$rt_pass\t$rt_fail\t$rtx_fail\t$lsz\tvers $(get_version()) $(date(1))\n"
 <<"TestSuites: $Nsuites passed $Nspassed  %6.2f $(Nspassed/(Nsuites*1.0) *100.0)%%\n"  
-<<[Opf]"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$flsz Crash $lsz $(get_version())\n"
-<<[Tlogf]"$(date(1)) Modules $n_modules Tests $rt_tests  Passed $rt_pass  Score %6.2f$pcc Fail %d$flsz Crash $lsz $(get_version())\n"    
+<<[Opf]"$(date(1)) Modules $n_modules Tests $rt_tests    Passed   $rt_pass Fail $rt_fail Xfail $rtx_fail  Crash $lsz Score %6.2f$pcc $(get_version())\n" 
+<<[Tlogf]"$(date(1)) Modules $n_modules Tests $rt_tests  Passed   $rt_pass Fail $rt_fail Xfail $rtx_fail  Crash $lsz Score %6.2f$pcc $(get_version())\n"    
 }
 
 fflush(Opf)

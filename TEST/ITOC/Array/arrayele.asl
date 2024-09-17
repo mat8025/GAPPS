@@ -13,6 +13,7 @@
 
 //----------------<v_&_v>-------------------------//                                  
 
+
 #include "debug"
 
    if (_dblevel >0) {
@@ -24,16 +25,19 @@
 
 int db_allow = 1; // set to 1 for internal debug print
 int db_ask = 0
-
+db_ask_yes = 1
+db_ask_no = 0
 <<"%V $db_ask $db_allow\n"
  db_ask.pinfo()
 ans= ask("%V $db_ask $db_allow",0)
 
    chkIn (_dblevel);
 
-//allowDB("spe,opera_,array_parse,parse,rdp_,ds,ic,pex",1)
 
-   allowDB("prep,opera_,spe,rdp_,ic,pex,parse,array",db_allow)
+
+   allowDB("spe_proc",1)
+
+  // rejectDB("pex,spe_state,spe_proc,ds_storestr,spe_print",1)
 
 
    float array_asg (float rl[])
@@ -82,7 +86,7 @@ ans= ask(" $rl[1] ",db_ask)
 
      chkR (rl[1],77);
 
-ans= ask(" $rl[1] ",0)
+ans= ask(" $rl[1] ",db_ask)
 
 
 
@@ -135,6 +139,7 @@ ans=ask("%V $rl ? $db_ask", db_ask)
      
      t1 = rl[2];
 
+ans=ask("%V$t1 $rl[2] ?",db_ask_no)     
      t1.pinfo();
 
  
@@ -143,7 +148,7 @@ ans=ask("%V $rl ? $db_ask", db_ask)
      t1 = rl[4];
 
      rl.pinfo()
-ans=ask("rl ?",db_ask)     
+ans=ask("%V$t1  $rl[4] ?",db_ask_no)     
 
 //  <<"%6.2f%V$t1\n";
 
@@ -159,7 +164,7 @@ ans=ask("rl ?",db_ask)
 
      rl.pinfo()
 
-ans=ask("rl ?", db_ask)
+ans=ask("%V $k  $rl[k] $t2 ?", db_ask_no)     
 
 
      j1 = 5;
@@ -183,11 +188,13 @@ ans=ask("rl ?", db_ask)
 
      t3 = rl[j2] ;
 
-     <<"%V $j2 %6.2f $t3  \n";
+     <<"%V $j2 $rl[j2] $t3  \n";
 
      chkR (t3, 6);
 
      rl.pinfo()
+
+     //rejectDB("spe,array",1)   
 
     <<"%V $j1 $j2 \n"
 
@@ -309,39 +316,48 @@ ans=ask("Real2?",db_ask)
 
 rl.pinfo()
 
+     rl[kp]   =  787;
+
+ans=ask("%V $kp $rl[kp] == 787 ?",db_ask_no)     
+ chkN(rl[kp],787)
+
      rl[kp] = rl[j1] - rl[j2];
 
 rl.pinfo()
 
-//ans=ask("%V $j1 $j2 $kp",1)
-ans=ask("%V $j1 ?",0)
-
   <<"rl $rl \n";
 
-   fval = rl[1]
-   fval.pinfo()
-ans=ask(" $fval ?",0)
-   fval = rl[j1]
-   fval.pinfo()
+ans=ask("%V $kp $j1 $j2 $rl[kp] == -2 ?",db_ask_no)     
 
-ans=ask("rl[j1] $j1 $fval ?",0)
+   chkN(rl[kp],-2)
+   
+   
+   
+   fval = rl[1]
+   
+   ans=ask("%V $rl[1] $fval ?", db_ask_no)     
+
+   fval = rl[j1]
+
+
+   ans=ask("%V $rl[j1] $j1 $fval ?",db_ask_no)     
 
    fval = rl[kp]
-   fval.pinfo()
 
-ans=ask("rl[kp] $kp $fval ?",0)
+
+ans=ask("rl[kp] $kp $fval ?",db_ask_no)     
 
 
 
  //wdb=DBaction((DBSTEP_),ON_)
 
-     <<"-2.0   $rl[kp] \n";
+     <<"%V -2.0 $kp   $rl[kp] \n";
 
 
      <<"%V $rl[kp] 3 -2\n";
 
 
-<<"%V $rl[j1]  4 \n";
+     <<"%V $rl[j1]  4 \n";
      <<" should be array elements $rl[j1] \n"
 
     <<"%V $rl[j2]  6 \n";
@@ -358,19 +374,24 @@ ans=ask("rl[kp] $kp $fval ?",0)
 
   <<"%V $rl[j2]  $rl[j1] $rl[6] $rl[5]  $rl[j1] $rl[kp] \n";
 
-     <<"rl $rl \n";
+  <<"rl $rl \n";
 
  <<"%V $rl[j2]  $rl[j1] $rl[6] $rl[5] $rl[kp] $rl[j1] \n";
 
-      <<"%V $rl[4]  $rl[6] \n";
+ <<"%V $rl[kp] $rl[4]  $rl[6] \n";
 
-ans=ask("$rl[kp] $kp  ?",0)
+   ans=ask("$rl[kp] $kp  ?",0)
 
 
 //<<"%6.2f$rl \n";
-//  <<"%V $rl[kp] \n";
+  <<"rl $rl \n"
+  
+  <<"%V $rl[kp] \n";
 
      wrl = rl[kp];
+
+ans=ask("%V $kp $rl[kp] $rwl  ?", db_ask_no)     
+
 
      <<"%V $wrl  $rl[kp] = $rl[j1] - $rl[j2]\n";
 
@@ -405,13 +426,13 @@ ans=ask(" $rl ?",0)
 
 <<" %V $rl[j1] $rl[j2]  $jj $kp \n"
 
-ans=ask(" $rl[1] prior testargs ?",0)
+ans=ask(" $rl[1] prior testargs ?",db_ask_no)     
 
      TA = testargs(rl[j1],rl[j2],jj,kp);  // does not WIC create TA
 
      TA.pinfo()
 
-ans=ask(" post testargs ?",0)     
+ans=ask(" post testargs ?",db_ask_no)          
 
    <<"%(1,,,\n)$TA\n";
 
@@ -438,7 +459,7 @@ ans=ask(" post testargs ?",0)
 
      chkR (rl[4], 4);
 
-     <<"rl vec $rl[0:-1]\n";
+ //    <<"rl vec $rl[0:-1]\n";  // TBF 9/16/24
 
      chkR (rl[5], 5);
 
@@ -510,16 +531,16 @@ ans=ask(" post testargs ?",0)
 
      chkR (t3, -2);
 
-ans=ask("%V $Real1[j1]  $Real1[j2]",0)
+ans=ask("%V $Real1[j1]  $Real1[j2]",db_ask_no)     
 
 
 
      chkStage(" MAIN");
 
-ans=ask("  where $__LINE__ ",0)
+ans=ask("  where $__LINE__ ",db_ask_no)     
 
  chkStage(" PROC_DEF");
- ans=ask(" @ $__LINE__ ",0)
+ ans=ask(" @ $__LINE__ ",db_ask_no)     
 
   chkR (Real1[2],2);
 
@@ -667,34 +688,54 @@ ans=ask("2 $val ?", db_ask)
 
    chkT(1)
    chkStage(" Nearly Done ")
- ans=ask(" @ $__LINE__ ",0)
+ ans=ask(" @ $__LINE__ ",db_ask_no)     
 
    <<"%V $t4  \n";
 
    <<"$(Caz(t4))\n";
 
    chkR (t4, 5);
-
+   allowDB("spe,parse,rdp,ds",1)
+  // rejectDB("array",1)   
    <<"%6.2f$Rvec \n";
 
    <<"%V $(main_chk++) $_scope $_cmfnest $_proc $_pnest\n";   // TBF ++
 
-   Rvec[k] = Rvec[j1] - Rvec[j2];
 
-   diff = Rvec[j1] - Rvec[j2];
 
-   <<"%V $k $j1 $j2 $diff $Rvec[k] $Rvec[j1] $Rvec[j2]\n";
-//ans=ask(DB_prompt,DB_action)
+   diff = 52.3;
+
+   Rvec[k] = diff;
+ <<"%V $k $j1 $j2 $diff $Rvec[k] $Rvec[j1] $Rvec[j2]\n";
+
+chkR (Rvec[k], 52.3);
+
+
+
+   Rvec[k] = diff;
+
+ <<"%V $k $j1 $j2 $diff $Rvec[k] $Rvec[j1] $Rvec[j2]\n";
+
+    diff = Rvec[j1] - Rvec[j2];
+
+ <<"%V $k $j1 $j2 $diff $Rvec[k] $Rvec[j1] $Rvec[j2]\n";
+
+   chkR (diff, -2.0);
+
+  
 
    <<"ele[${k}] %6.2f $Rvec[k] \n";
 
+   Rvec[k] = Rvec[j1] - Rvec[j2];
+
    Rvec.pinfo();
+
+   ans=ask("%V $diff $k $Rvec[k] ",db_ask_no)     
 
    <<"MAIN %V  $_scope $_cmfnest $_proc $_pnest\n";
 
-
-
-<<"%V $k \n";
+   <<"%V $k \n";
+   
    <<"%6.2f$Rvec \n";
 
    chkR (Rvec[k], -2);
@@ -702,11 +743,11 @@ ans=ask("2 $val ?", db_ask)
    t2 = Rvec[k];
 
    <<"%V$t2\n";
-/
+
    <<"$(Caz(t2))\n";
 
    chkR (t2, -2);
-
+   ans=ask("%V $t2 -2",db_ask_no)     
    <<"$Rvec[0:3]\n";
 
    Rvec[j1] = Rvec[j1] - Rvec[j2];
@@ -821,7 +862,7 @@ ans=ask("2 $val ?", db_ask)
     
     chkStage(" ...")
     
-    ans=ask(" @ $__LINE__ ",1)
+    ans=ask(" @ $__LINE__ ",db_ask_no)     
 
 
    Re = fgen(10,10,1);
