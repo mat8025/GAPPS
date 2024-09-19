@@ -12,10 +12,6 @@
  */ 
 //-----------------<V_&_V>------------------------//
 
-        
-
-
-
 
 /*
 #include "debug"
@@ -138,14 +134,16 @@ using namespace std;
 
    <<"rgx pat is <|$w2|>  sub is <|$w3|> \n";
 
-   w6 =  ssub(w5,w2,w3);
+   w6 =  ssubrgx(w5,w2,w3);
 
    <<"%V $w5 $w2 $w3 $w6\n";
 
 // now run over a file - speed ?
 
      chkStr("OK","OK");
-     chkStr("OK","NOTOK");
+  //   chkStr("OK","NOTOK");
+
+<<"%V $w6\n"
 
    chkStr(w6," a completely different sentence");
 

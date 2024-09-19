@@ -19,9 +19,9 @@
  db_ask = 0;
  db_allow = 1;
 
- checkMemory(1)
- alm =alignMemory(32)
- <<"%V $alm\n"
+ //checkMemory(1)
+// alm =alignMemory(32)
+ //<<"%V $alm\n"
  
   allowDB("proc,spe,rdp,pex,ic,fop,svar",db_allow)
 
@@ -473,7 +473,7 @@ ws=nsc(nsp," ")
 <<[A]"$srcfile $ws  ${pmaj}.$pmin  $(date(16))  $mans\n"
 cf(A)
 
- memUsed()
+ //memUsed()
  
 exit()
 

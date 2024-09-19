@@ -13,13 +13,15 @@
  */ 
 
                                                               
-
+/*
 #include "debug"
 
 if (_dblevel >0) {
    debugON()
 }
-
+*/
+// has to be at least 3 char len 
+rejectDB("spe,ds_,parse,array,ic_,pex")
 
 chkIn()
 
@@ -312,9 +314,12 @@ chkStr(T,"aaabbbcccdddxxxccceeeqqqfffhhh")
 
 dir = 0
 T= ssub(W,"ccc","qqq",dir)
+<<"ORIG: $W\n"
 <<"SSUB(dir $dir): $T\n"
 
 chkStr(T,"aaabbbqqqdddxxxqqqeeeqqqfffhhh")
+
+
 
 
  W= "aaabbbcccdddxxxccceeecccfffhhh"
@@ -334,17 +339,22 @@ T= ssubrgx(W,"ccc","qqq",dir)
 
 chkStr(T,"aaabbbcccdddxxxccceeeqqqfffhhh")
 
-dir = 2
+dir = 0 ; // global
+<<"ORIG: $W\n"
+T= ssubrgx(W,"ccc","qqq",dir)
+<<"SSUBRGX(dir $dir): $T\n"
+
+chkStr(T,"aaabbbqqqdddxxxqqqeeeqqqfffhhh")
+
+
+dir = 2  // number of subs
+<<"ORIG: $W\n"
 T= ssubrgx(W,"ccc","qqq",dir)
 <<"SSUBRGX(dir $dir): $T\n"
 
 chkStr(T,"aaabbbqqqdddxxxqqqeeecccfffhhh")
 
-dir = 0
-T= ssubrgx(W,"ccc","qqq",dir)
-<<"SSUBRGX(dir $dir): $T\n"
 
-chkStr(T,"aaabbbqqqdddxxxqqqeeeqqqfffhhh")
 
 
 dir = 0

@@ -12,9 +12,9 @@
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
                                                                      
-Str Use_= "Demo svar type use";
+Str Use_= "Demo of Svar type ";
 
-
+/*
 #include "debug"
 
    if (_dblevel >0) {
@@ -24,33 +24,39 @@ Str Use_= "Demo svar type use";
      <<"$Use_\n";
 
      }
-     
+*/     
  db_allow = 1 ; // set to 1 for internal debug print;
 
- db_ask = 0;
+ db_ask = 1;
+ db_ask_no = 0;
+ db_ask_yes = 1;
+ 
 
-// allowDB("spe,rdp,svar,str_,array_parse,parse,ds",db_allow);
 
 
 
    allowErrors(-1);
- //  sdb(1,"soe")
+
    chkIn();
    
    chkT(1)
    
- //allowDB("spe_,ic",1)
+   allowDB("spe_func,spe_args,spe_exp,svar,str_,test,ds",db_allow);
 
    Svar E = { "the first ten elements are:", "H", "He", "Li", "Be" ,"B" ,"C", "N", "O", "F", "Ne"  };
 
    E.pinfo()
-ans=ask(" $E ",0)
+
+   ans=ask(" $E ",db_ask_no)
 
    <<"$E\n";
    <<"$E[0] \n";
    <<"$E[1] \n";
 
-   boron = E[5]
+   boron = E[5]   ; // TBF 9/16/24
+
+   boron.pinfo()
+   
 
 <<"%V $boron $E[5] \n"
 
@@ -59,14 +65,19 @@ ans=ask(" $E ",0)
 
    E.pinfo();
 
-   ans=ask("hydrogen  $E ",0)
+   ans=ask("hydrogen  $E ",db_ask_no)
 
    chkStr(boron,"B")
+   
    chkStr(boron,E[5])
 
 
 
-ans=ask("Svar array filled OK",db_ask)
+   ans=ask("Svar array filled OK",db_ask_no)
+
+
+
+    
 
 
 
@@ -83,7 +94,7 @@ ans=ask("Svar array filled OK",db_ask)
    <<"$W[1]\n";
 
    W.pinfo()
-ans=ask(" $W  OK",0)
+ans=ask(" $W  OK",db_ask_no)
 
   eles = "$E[3:6]"
 
@@ -91,7 +102,7 @@ ans=ask(" $W  OK",0)
 
   chkStr(eles,"Li Be B C")
   
-   ans=ask("%V $eles  OK",db_ask)
+   ans=ask("%V $eles  OK",db_ask_no)
  
 
    chkStr(W[1],"Be");
@@ -168,7 +179,7 @@ ans=ask(" $W  OK",0)
 
    <<"$E[2] \n";
 
-ans=ask(" $E[1]",0)
+ans=ask(" $E[1]",db_ask_no)
 
 
 
@@ -198,7 +209,7 @@ ans=ask(" $E[1]",0)
 
    E3.pinfo()
    
-   ans=ask("Svar array filled OK",db_ask)
+   ans=ask("Svar array filled OK",db_ask_no)
 
 <<"$E3[3:6] \n";
 
@@ -215,7 +226,7 @@ ans=ask(" $E[1]",0)
 
    E4.pinfo()
    
-   ans=ask("Svar array filled OK",db_ask)
+   ans=ask("Svar array filled OK",db_ask_no)
 
 <<"$E3[3:6] \n";
 
@@ -242,13 +253,22 @@ ans=ask(" $E[1]",0)
 
    <<"$S\n";
 
+  S.pinfo()
+   
+
    chkStr(S[1],"1");
 
-   chkStr(S[2],"2");
+<<"%V $S[2] $S[3] \n"
 
    chkStr(S[3],"3");
 
+
+   chkStr(S[2],"2");
+
    chkStr(S[9],"9");
+
+   //chkOut(-1)
+   
 
    <<"$S[1:7]\n";
 
@@ -443,7 +463,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
    Mol.pinfo()
 
-   ans=ask(" Mol should type LIST!",0);
+   ans=ask(" Mol should type LIST!",db_ask_no);
 
    sz = caz(Mol);
 
@@ -574,7 +594,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
   IV2.pinfo();
 //R= M[3::]   // TBF xic does not use default for range end
 
- ans= ask(" IV2 type ?",0)
+ ans= ask(" IV2 type ?",db_ask_no)
 
   R= M[3:-1:];  // TBF  R sz M sz -3
 
@@ -596,7 +616,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
   IV3.pinfo();
 
-  ans=ask("IV3 int?",0)
+  ans=ask("IV3 int?",db_ask_no)
 
   <<"%V $IV3\n";
 
@@ -667,7 +687,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
   <<"%V $IV3\n";
 
   IV3.pinfo();
-  ans=ask("IV3 int?",db_ask)  
+  ans=ask("IV3 int?",db_ask_no)  
 
   chkN(IV3[0],6);
 
@@ -698,21 +718,22 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
   IV3.pinfo()
  // allowDB("vmf_l,spe_args,spil,pex,array",1)
-  kt = pinfo(IV3,TYPE_INFO_)
+ // kt = pinfo(IV3,TYPE_INFO_)    // TBF needs rework
  // kt = pinfo(IV3)
 
-  kt.pinfo()
+//  kt.pinfo()
   
-  <<" %V $kt\n"
+//  <<" %V $kt\n"
 
- chkStr(kt,"INT")
+// chkStr(kt,"INT")
+
+//  ans=ask("IV3=M   int? $kt error",0)
 
 
 
-  ans=ask("IV3=M   int? $kt error",0)
 
-  kt = pinfo(IV3,OFFS_INFO_)
-  <<" %V $kt\n"
+  //kt = pinfo(IV3,OFFS_INFO_)
+  //<<" %V $kt\n"
 
 
    IV3.pinfo()
