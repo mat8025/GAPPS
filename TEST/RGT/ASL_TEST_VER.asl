@@ -668,13 +668,13 @@ outcome("VECTOR")
     inflsz = caz(FailList)
    RunDirTests("Sops","sops");
 
-    outcome("SOPS")
+ 
  
   // RunDirTests("Str","str-proc,str-arg,str-lit");
     inflsz = caz(FailList)
   RunDirTests("Str","str_proc,str_arg");
 
-outcome("STR")
+//outcome("STR")
    //hdg("Strops");
    
    RunDirTests("Strops","strops,scmp_syntax");
@@ -687,7 +687,7 @@ outcome("STR")
  // RunSFtests("Date,Sele,Sstr,Spat,Str,Split,Regex,Fread,Trunc,Tranf");
    RunSFtests("Scut,Ssub,Scmp,Date,Sele,Sstr,Spat,Split,Regex,Fread,Trunc,Tranf");
 
-
+   outcome("SOPS")
   }
 
 /////////////////////////////////////////////////
@@ -812,7 +812,7 @@ if ((do_all || do_array ) && (do_array != -1)) {
 
   RunDirTests("Scalarvec","scalarvec")
 
-  RunDirTests("Vgen","vgen,vgen_pan")
+
 
   RunDirTests("PrePostOp","prepostop");
 
@@ -824,6 +824,8 @@ if ((do_all || do_array ) && (do_array != -1)) {
   RunDirTests("Sgen","sgen")
 
    RunDirTests("VVgen","vvgen")
+
+  RunDirTests("Vgen","vgen,vgen_pan")
 
   outcome("ARRAY")
 
@@ -945,14 +947,14 @@ if ((do_all || do_proc ) && (do_proc != -1)) {
   
   //RunDirTests("Proc","procdeclare,proc,procret,procarg,procsv0");
   RunDirTests("Proc","procdeclare,proc,procret,procsv0");
-
+  RunDirTests("ProcCall","proccall")
   RunDirTests("Proc","procrefarg,procra,procrefstrarg,proclocmainvar")
 
   RunDirTests("Proc","proc_var_define,procnest_args");
   
   RunDirTests("ProcArray","procarray,poffset,arrayarg1,arrayarg2")
 
-  RunDirTests("ProcCall","proccall")
+
   
 
   

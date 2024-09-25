@@ -1,16 +1,16 @@
 /* 
-   *  @script fh.asl
-   *
-  *  @comment test file handle
-  *  @release CARBON
-  *  @vers 1.2 He Helium [asl 6.3.66 C-Li-Dy]
-  *  @date 12/16/2021 22:03:56
-  *  @cdate 1/1/2003
-  *  @author Mark Terry
-  *  @Copyright © RootMeanSquare  2010,2021 →
-  *
-  *  \\-----------------<v_&_v>--------------------------; //
- */
+ *  @script fh.asl                                                      
+ * 
+ *  @comment  file handle                                               
+ *  @release Carbon                                                     
+ *  @vers 1.3 Li Lithium [asl 6.54 : C Xe]                              
+ *  @date 09/19/2024 14:21:26                                           
+ *  @cdate 1/1/2003 22:03:56 Helium [asl 6.3.66 C-Li-Dy]                
+ *  @author Mark Terry Helium [asl 6.3.66 C-Li-Dy]                      
+ *  @Copyright © RootMeanSquare 2024 -->                               
+ * 
+ */ 
+
 
 
 #include "debug.asl"
@@ -21,9 +21,10 @@
 
   }
 
+
   showUsage("   Demo  of test file handle ");
 
-  db_ask =1;
+  db_ask =0;
 
   allowErrors(-1);
 
@@ -40,7 +41,7 @@
 
   <<[A]"second line in log file\n";
 
-  svar W;
+  Svar W;
 
   W.pinfo()
   
@@ -67,13 +68,18 @@
 
   <<[A]"last line using file handle $A\n";
 
+   ka = A
+
   cf(A);
 
   !!"cat log2";
 
-  
 
-  B=ofr("log");
+
+
+
+
+  B=ofr("log2");
 
   wcv = countWords(B)
 
@@ -128,8 +134,9 @@ ans = ask("n lines in file $nl",db_ask)
 <<"-6 $LL \n"
 
 
-  <<"%V $S[-1]\n";
+  <<"%V $S[-1]  $A $ka\n";
 
+  
   chkStr(S[0],"first line in log file - not stdout\n");
 
   chkStr(S[-1],"last line using file handle $A\n");

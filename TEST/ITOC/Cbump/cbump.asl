@@ -17,7 +17,7 @@
  //   debugON()                                                                   
   
  db_ask = 0;
- db_allow = 1;
+ db_allow = 0;
 
  //checkMemory(1)
 // alm =alignMemory(32)
@@ -25,7 +25,7 @@
  
   allowDB("proc,spe,rdp,pex,ic,fop,svar",db_allow)
 
-int DBH_ = 1
+int DBH_ = -1
 
  Str Vers2ele(Str vstr)
   {
@@ -63,19 +63,18 @@ int DBH_ = 1
 
   Str cb = "abcd  then append the Svar to the new"
 
-<<"%V $cb \n"
+//<<"%V $cb \n"
 
   Author = "Mark Terry $cb read current vers "  // tokpara expand bad
 
   
 
-<<"%V $Author \n"
+//<<"%V $Author \n"
 
-  chkStr( Author, "Mark Terry $cb read current vers ")
+ // chkStr( Author, "Mark Terry $cb read current vers ")
   
- memUsed()
+// memUsed()
 
-//  exit(-1)
   srcfile = _clarg[1];
   
   if (srcfile @= "") {
@@ -95,8 +94,11 @@ int DBH_ = 1
     exit();
   }
 
+ans=ask(" Cbump processing  $srcfile",0)
 
+  <<"cp $srcfile ${srcfile}.bak"
 
+// !!"cp $srcfile bak2 "
 
   !!"cp $srcfile ${srcfile}.bak"
 
@@ -116,7 +118,7 @@ int DBH_ = 1
   
   file= fexist(srcfile,ISFILE_,0);
   
-  //<<[DBH_]" FILE $file \n"
+  <<[DBH_]" FILE $file \n"
   
   dir= fexist(srcfile,ISDIR_,0);
   
@@ -178,8 +180,8 @@ int DBH_ = 1
   
   fsz= XSRCF.getSize();
 
-<<"%V$fsz\n"
-memUsed()
+<<[DBH_]"%V$fsz\n"
+//memUsed()
 
 
  mans = ltmRead("cbump")
@@ -187,7 +189,7 @@ memUsed()
 <<"reading last mod message $mans\n"
 
 
- mans=ask("$mans ",1)
+ mans=ask("what is the new modification?: $mans ",1)
 
 <<"$mans\n"
 
@@ -215,15 +217,8 @@ long where;
 
  Svar L;
 
-// L.pinfo()
- 
-// pinfo(L)
-
-
 
   found_vers =0;
-
-
 
   fseek(A,0,0);
 
@@ -236,11 +231,12 @@ Str old_comment ="yyy"
 
     T = readline(A);
    
-//<<[DBH_]"$i line is $T \n"
-   if (i ==3) {
+<<[DBH_]"$i line is $T \n"
+
+  if (i ==3) {
   // T.pinfo()
    //<<"%V $T\n"
-ans = ask("%V $old_comment", db_ask);
+    ans = ask("%V $old_comment", db_ask);
     old_comment =T;
     ans = ask("%V $old_comment", db_ask);
    }
@@ -248,13 +244,14 @@ ans = ask("%V $old_comment", db_ask);
 
    sz = Caz(L);
 //<<"Lsz $sz\n"
-    L[0:-1:1] = "";
+    //L[0:-1:1] = "";
+    L.clear(0) ;
 //<<"clear L $L\n"
 
    L.Split(T);
    sz = Caz(L);
-// <<"sz $(caz(L)) \n"
-//<<[DBH_]"$i $sz $where  $L \n"
+<<[DBH_]"sz $(caz(L)) \n"
+<<[DBH_]"$i $sz $where  $L \n"
    if (sz >2) {
 <<[DBH_]"L1 $L[1]\n"
 
@@ -271,8 +268,9 @@ ans = ask("%V $old_comment", db_ask);
 
    }
     else if (scmp(L[1],"@comment")) {
-     comment = "$L[2:-1:1]";
-         ans = ask("%V $comment", db_ask);
+<<"comment             <|$L|>   \n"     ; //  reset L range spec  FIX
+     comment = "$L[2::]";
+         ans = ask("%V $comment", 0);
    }
  //   else if (scmp(L[1],"@release")) {
  //     release = "$L[2::]";
@@ -421,9 +419,9 @@ A=ofile(srcfile,"w")
  Y = XSRCF[end_ln:-1:1];
 
  ysz= Y.getSize();
- <<"%V $ysz \n"
+ //<<"%V $ysz \n"
 
-ans=ask("%V $end_ln rest of file $ysz",0)
+//ans=ask("%V $end_ln rest of file $ysz",0)
 
  D=ofile("stem","w");
  

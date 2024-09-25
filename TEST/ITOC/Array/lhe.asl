@@ -68,11 +68,12 @@
    chkN(Data[3],36);
 
    chkN(Data[2],-3);
+   allowDB("spe_exp,spe_args,array_parse,parse,rdp,ic_",1)
 
    Data.pinfo();
-
+  
    i = 2;
-
+   ival = i
    j = 4;
 
    Data[i] = 80;
@@ -81,7 +82,15 @@
 
    Data.pinfo();
 
+   ival = Data[i]
+
+   ask("%V $i  $Data[i]  $ival ",0)
+
    chkN(Data[i],80);
+
+
+   
+
 
    H[8] = 76;
 
@@ -92,14 +101,27 @@
 
    chkN(Data[3],1)
 
+ 
 
    //Data[(H[1] *1)] = 47;
-   Data[H[8]-75] = 47;
 
+   <<"%V $H[8] \n"
+
+   Hindex = H[7]-75
+   
+   <<"%V $Hindex \n"
+
+   Data[(H[8]-75)] = 47;
+
+  <<"%V $Data \n"
+   
    Data.pinfo();
 
-   <<"$H[1] $Data[1]\n";
+   <<"%V $Data[1]\n";
+   ans=ask("$Data[1] == 47?",0)
 
+   H.pinfo()
+   
    <<"%V$H\n";
 
    <<"%V$Data \n";
@@ -108,13 +130,21 @@
 
    chkN(Data[1],47)
 
+   
 
-
-   Data[H[2]] = 65;
+   Data[H[2]] = 65
 
    <<"%V$Data \n";
 
-   Data[H[3]] = H[9];
+   Data[H[3]] = H[9]
+
+   H.pinfo()
+    
+   ans=ask("$Data[2] == 65?",0)
+
+chkN(Data[2],65)
+
+//   chkOut(-1)
 
    Data[H[4]] = H[M[8]];
 
@@ -166,11 +196,11 @@
 
    <<"$Data \n";
 
-   chkOut();
+  // chkOut();
 
-   exit();
+ //  exit();
 
-   int k = 0;
+    k = 0;
 ///////////////////////////////////////////////////////
 
    Data[1] = 47;
@@ -191,7 +221,7 @@
 
    chkN(Data[k],79);
 
-   int Vec[10];
+   int Lvec[10];
 
    int LP[10];
 
@@ -244,19 +274,23 @@
    chkN(Data[1],k);
 
    chkN(Data[2],k);
-
-   while (1) {
+   br = 0;
+   while (k < 7) {
 
      k++;
 
-     <<"%V$k\n";
 
-     Data[1] = k;
 
-     Data[2] = Data[1];
+     Data[1] = k;  // OK 
 
-     <<"%V $Data[1] $Data[2] $k $i\n";
-//ans =iread()
+     Data[2] = Data[1] ;  // XIC broke RH shold be push val not location
+
+     Data.pinfo()
+
+
+     <<"%V $Data[1] $Data[2] $k $i\n";  // XIC broke 
+     ask("%V $Data[1] == $Data[2] == $k ?",0)     
+
 
      chkN(Data[1],k);
 
@@ -270,10 +304,15 @@
 
      <<"$Data \n";
 
-     if (k > 5)
-
-     break;
-
+     br = (k >= 4) ;   // TBF 9/21/24  br not set
+     
+     <<"%V $br $k >= 4 so break\n"
+     // TBF 9/21/24   if eval broke?
+     if (k > 5) {
+     <<"%V $k > 5 so if break\n"
+         break;
+     }
+     <<" breakout $k\n"
      }
 
    chkOut();

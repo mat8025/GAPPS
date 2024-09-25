@@ -3,14 +3,13 @@
  * 
  *  @comment update the script date&vers                                
  *  @release Carbon                                                     
- *  @vers 1.16 S Sulfur [asl 6.54 : C Xe]                               
- *  @date 08/03/2024 00:49:55                                           
- *  @cdate Sun Dec 23 09:22:34 2018 : C Sn]                             
- *  @author Mark Terry 23 09:22:34 2018 : C Sn]                         
+ *  @vers 1.15 P Phosphorus [asl 6.50 : C Sn]                           
+ *  @date 07/20/2024 15:11:17                                           
+ *  @cdate Sun Dec 23 09:22:34 2018                                     
+ *  @author Mark Terry                                                  
  *  @Copyright © RootMeanSquare 2024 -->                               
  * 
  */ 
-
 
 //----------------<v_&_v>-------------------------//;                  
 
@@ -53,13 +52,26 @@ if (_dblevel >0) {
   {
     Str pad;
     Str hl = ln;
-    Str el;
+    static Str sel = "xxxxxxxxxx"
  //   <<[DBH_]"$ln\n"
-    pad = nsc(70- slen(ln)," ")
-  <<[DBH_]"$hl $pad\n"
+    ll = slen(ln)
+ //   <<"%V $ll\n"
+   pad = nsc(70- ll," ")
+
+
+ // <<"$hl $pad end\n"
    //<<[A]"$hl $pad\n"
-    el = "$hl $pad"
-    return el;
+ //   pl = "$hl $pad"
+
+//<<"%V $pl\n"
+    sel = "$hl    $ll   "
+//<<"%V $sel\n"
+
+    sel = "$hl    $pad   "
+//<<"%V $sel\n"
+
+
+   return sel;
  }
 
   int A = -1;
@@ -223,7 +235,7 @@ L.pinfo()
 //ans = ask("line OK? L.vfree()",1)
 //if (ans == "q") exit()
 
-
+   L.clear(0)
    where = ftell(A)
    L.Split(T);
 

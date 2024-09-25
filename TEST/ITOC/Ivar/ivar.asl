@@ -77,10 +77,8 @@ allowDB("ic,spe,rdp,ic",1)
     chkStr(varname,"a1")
     chkN(a1,4)
     
-ans=ask("%V $varname  $a1",1)
+ans=ask("%V $varname  $a1",0)
 
-   chkOut(1)
-   exit(0)
    
    Record R[5];
    

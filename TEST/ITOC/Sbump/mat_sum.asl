@@ -1,17 +1,18 @@
 /* 
- *  @script mat_sum.asl                                                 
+ *  @script mat_sum.asl                                                       
  * 
- *  @comment test matrix sum function                                   
- *  @release Carbon                                                     
- *  @vers 1.9 F Fluorine [asl 6.50 : C Sn]                              
- *  @date 07/20/2024 15:10:16                                           
- *  @cdate Sun Mar 22 11:05:34 2020                                     
- *  @author Mark Terry                                                  
- *  @Copyright © RootMeanSquare 2024 -->                               
+ *  @comment  function                                                        
+ *  @release Carbon                                                           
+ *  @vers 1.11 Na Sodium [asl 6.54 : C Xe]                                    
+ *  @date 09/25/2024 05:03:02                                                 
+ *  @cdate 11/03/2021 12:03:14                                                
+ *  @author Mark Terry Boron                                                  
+ *  @Copyright © RootMeanSquare 2024 -->                                     
  * 
  */ 
 
-   
+
+
 
 
 

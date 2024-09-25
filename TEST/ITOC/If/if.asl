@@ -417,11 +417,11 @@ ICAO_SA[k][i] = 707
 
 
 
-ans = ask("$jval $ICAO_SA[k][i+1]",db_ask) ; 
+ans = ask("%V $i $jval $ICAO_SA[k][i+1]",1) ; 
 
 
 
-chkR(ICAO_SA[k][i+1],787,3)
+chkR(ICAO_SA[k][i+1],787,4)
 
 
  ICAO_SA[k][i] = k

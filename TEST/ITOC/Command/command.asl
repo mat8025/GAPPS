@@ -1,15 +1,17 @@
-//%*********************************************** 
-//*  @script command.asl 
-//* 
-//*  @comment test shell command & 
-//*  @release CARBON 
-//*  @vers 1.2 He Helium [asl 6.3.2 C-Li-He]                                 
-//*  @date Mon Dec 28 13:33:21 2020 
-//*  @cdate 1/1/2005 
-//*  @author Mark Terry 
-//*  @Copyright © RootMeanSquare  2010,2020 → 
-//* 
-//***********************************************%
+/* 
+ *  @script command.asl                                                       
+ * 
+ *  @comment  shell command &                                                 
+ *  @release Carbon                                                           
+ *  @vers 1.4 Be Beryllium [asl 6.54 : C Xe]                                  
+ *  @date 09/25/2024 05:03:55                                                 
+ *  @cdate 1/1/2005                                                           
+ *  @author Mark Terry                                                        
+ *  @Copyright © RootMeanSquare 2024 -->                                     
+ * 
+ */ 
+
+
 #
 
 #include "debug.asl";
@@ -31,18 +33,27 @@ chkIn()
 //E=!!"./pan_type"
 //<<"$E\n"
 
+
+!!" date "
+!!"pwd"
+!!"whoami"
+
 ret= !!" date > keep-the-date "
 
 <<"%V $ret \n"
 
+ask()
 
-!!" date "
+ans=ask(" $ret OK?")
+<<"%V $ans\n"
+
 
 Str  ws 
 vs = "a str"
 
-<<"%I $ws \n"
-<<"%I $vs \n"
+   ws.pinfo()
+   vs.pinfo()
+   
 
 
 vs = "command"
@@ -84,28 +95,28 @@ wd = !!" ls "
 
 <<"%V$ws \n"
 
- if (ws @= "AAA_COMMAND") {
+ if (ws == "AAA_COMMAND.asl") {
 
-<<" ls correct $ws @= command\n")
+<<" ls correct $ws == command\n")
 
  }
 
 
 
 
-vs = "AAA_COMMAND"
+vs = "AAA_COMMAND.asl"
 
 
- if (ws @= vs) {
+ if (ws == vs) {
 
 <<" ls correct $ws @= $vs\n")
 
  }
 
 
-chkStr(ws,"AAA_COMMAND")
+chkStr(ws,"AAA_COMMAND.asl")
 
-chkStr(wd[0],"AAA_COMMAND")
+chkStr(wd[0],"AAA_COMMAND.asl")
 
 
 chkStr(ws,vs)

@@ -52,13 +52,26 @@ if (_dblevel >0) {
   {
     Str pad;
     Str hl = ln;
-    Str el;
+    static Str sel = "xxxxxxxxxx"
  //   <<[DBH_]"$ln\n"
-    pad = nsc(70- slen(ln)," ")
-  <<[DBH_]"$hl $pad\n"
+    ll = slen(ln)
+ //   <<"%V $ll\n"
+   pad = nsc(70- ll," ")
+
+
+ // <<"$hl $pad end\n"
    //<<[A]"$hl $pad\n"
-    el = "$hl $pad"
-    return el;
+ //   pl = "$hl $pad"
+
+//<<"%V $pl\n"
+    sel = "$hl    $ll   "
+//<<"%V $sel\n"
+
+    sel = "$hl    $pad   "
+//<<"%V $sel\n"
+
+
+   return sel;
  }
 
   int A = -1;
@@ -222,7 +235,7 @@ L.pinfo()
 //ans = ask("line OK? L.vfree()",1)
 //if (ans == "q") exit()
 
-
+   L.clear(0)
    where = ftell(A)
    L.Split(T);
 

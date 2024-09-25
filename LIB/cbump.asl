@@ -11,13 +11,19 @@
  * 
  */ 
 
-                                                                       
+//#include "debug.asl"
+
+
+ //   debugON()                                                                   
   
  db_ask = 0;
  db_allow = 0;
 
-
- allowDB("ispe_proc,spe_state,spe_args,spe_cmf,spe_scope,tok_func",db_allow)
+ //checkMemory(1)
+// alm =alignMemory(32)
+ //<<"%V $alm\n"
+ 
+  allowDB("proc,spe,rdp,pex,ic,fop,svar",db_allow)
 
 int DBH_ = -1
 
@@ -39,7 +45,7 @@ int DBH_ = -1
   //======================
  int  A=-1;
 
-
+//dbi = allowDB("rdp",db_allow)
  // ? read the entire file into an Svar
  // write the new hdr into a new file
  // skip/delete from the Svar the old
@@ -51,7 +57,23 @@ int DBH_ = -1
   // then  read current vers and  bump number and update date
   // if no @vers line -- then prepend the vers header lines
 
+  //Str cb = "abcdefghijklm "
 
+
+
+  Str cb = "abcd  then append the Svar to the new"
+
+//<<"%V $cb \n"
+
+  Author = "Mark Terry $cb read current vers "  // tokpara expand bad
+
+  
+
+//<<"%V $Author \n"
+
+ // chkStr( Author, "Mark Terry $cb read current vers ")
+  
+// memUsed()
 
   srcfile = _clarg[1];
   
@@ -64,13 +86,22 @@ int DBH_ = -1
   
   //<<[DBH_]" RW sz $sz \n"
 
-  !!"cp $srcfile ${srcfile}.bak"
+
+
+  <<[DBH_]" $sz script file $srcfile\n"
 
   if (sz == -1) {
-  <<[DBH_]"can't find script file $srcfile\n"
     exit();
   }
-  
+
+ans=ask(" Cbump processing  $srcfile",0)
+
+  <<"cp $srcfile ${srcfile}.bak"
+
+// !!"cp $srcfile bak2 "
+
+  !!"cp $srcfile ${srcfile}.bak"
+
   set_vers = 0;
   na = argc();
    
@@ -87,12 +118,15 @@ int DBH_ = -1
   
   file= fexist(srcfile,ISFILE_,0);
   
-  //<<[DBH_]" FILE $file \n"
+  <<[DBH_]" FILE $file \n"
   
   dir= fexist(srcfile,ISDIR_,0);
   
-  //<<[DBH_]" DIR $dir \n"
+  <<[DBH_]" DIR $dir \n"
+  //Author = "Mark Terry"
+  
   Author = "Mark Terry"
+
   fname = srcfile
 
   // get this from asl -v
@@ -140,27 +174,22 @@ int DBH_ = -1
 
 
   B= ofile(srcfile,"r")
-  Svar X;
-  X=readfile(B);
+  Svar XSRCF;
+  XSRCF= readfile(B);
   cf(B);
   
-  fsz= X.getSize();
+  fsz= XSRCF.getSize();
 
-//<<"%V$fsz\n"
+<<[DBH_]"%V$fsz\n"
+//memUsed()
 
-//<<"$X\n"
-
-
-//  for (i= 20; i < 30; i++) {
-//<<"$i $X[i]\n"
-//  }
 
  mans = ltmRead("cbump")
 
 <<"reading last mod message $mans\n"
 
 
- mans=ask("$mans ",1)
+ mans=ask("what is the new modification?: $mans ",1)
 
 <<"$mans\n"
 
@@ -183,28 +212,13 @@ if (mans == "q") {
 Str comment ="xxx";
 long where;
 
-//where.pinfo()
-
-
  Str T;
-
-//T.pinfo();
-
-Str Pad;
-
 
 
  Svar L;
 
-// L.pinfo()
- 
-// pinfo(L)
-
-
 
   found_vers =0;
-
-
 
   fseek(A,0,0);
 
@@ -217,11 +231,12 @@ Str old_comment ="yyy"
 
     T = readline(A);
    
-//<<[DBH_]"$i line is $T \n"
-   if (i ==3) {
+<<[DBH_]"$i line is $T \n"
+
+  if (i ==3) {
   // T.pinfo()
    //<<"%V $T\n"
-ans = ask("%V $old_comment", db_ask);
+    ans = ask("%V $old_comment", db_ask);
     old_comment =T;
     ans = ask("%V $old_comment", db_ask);
    }
@@ -229,13 +244,14 @@ ans = ask("%V $old_comment", db_ask);
 
    sz = Caz(L);
 //<<"Lsz $sz\n"
-    L[0:-1:1] = "";
+    //L[0:-1:1] = "";
+    L.clear(0) ;
 //<<"clear L $L\n"
 
    L.Split(T);
    sz = Caz(L);
-// <<"sz $(caz(L)) \n"
-//<<[DBH_]"$i $sz $where  $L \n"
+<<[DBH_]"sz $(caz(L)) \n"
+<<[DBH_]"$i $sz $where  $L \n"
    if (sz >2) {
 <<[DBH_]"L1 $L[1]\n"
 
@@ -252,8 +268,9 @@ ans = ask("%V $old_comment", db_ask);
 
    }
     else if (scmp(L[1],"@comment")) {
-     comment = "$L[2:-1:1]";
-         ans = ask("%V $comment", db_ask);
+<<"comment             <|$L|>   \n"     ; //  reset L range spec  FIX
+     comment = "$L[2::]";
+         ans = ask("%V $comment", 0);
    }
  //   else if (scmp(L[1],"@release")) {
  //     release = "$L[2::]";
@@ -359,7 +376,7 @@ ans = ask("%V $old_comment", db_ask);
    vlen = slen(vers);
 
 
-<<[DBH_]"vlen $vlen <|$Pad|>\n"
+
 
  fseek(A,0,0);
 
@@ -390,22 +407,24 @@ A=ofile(srcfile,"w")
 
   here = ftell(A);
 
-//Pad = nsc(where-here-2," ")
-//   <<[A]"$Pad\n";  
  
-    fflush(A);
+  fflush(A);
 
 // which line is end of old hdr?
-//<<"%V $end_ln\n"
 
 
- Y = X[end_ln:-1:1];
+ <<"%V $end_ln\n"
+
+
+ Y = XSRCF[end_ln:-1:1];
+
+ ysz= Y.getSize();
+ //<<"%V $ysz \n"
+
+//ans=ask("%V $end_ln rest of file $ysz",0)
 
  D=ofile("stem","w");
  
-//<<"$Y \n";
-  ysz= Y.getSize();
-
 <<[DBH_]"%V$ysz \n";
    Y.write(D);
  //wfile(D,Y);
@@ -452,6 +471,7 @@ ws=nsc(nsp," ")
 <<[A]"$srcfile $ws  ${pmaj}.$pmin  $(date(16))  $mans\n"
 cf(A)
 
-
+ //memUsed()
+ 
 exit()
 

@@ -11,11 +11,8 @@
  * 
  */ 
 
+ Str Use_ = "Demo  of class ops"
 
-<|Use_= 
-Demo  of class ops
-/////////////////////// 
-|>
 
    <<"$Use_ \n" 
 
@@ -118,7 +115,7 @@ ba = -23.45
 
   
 
-ans=ask("goo $b 0K ? ",0);
+   ask("goo $b 0K ? ",0);
 
 
 
@@ -281,40 +278,40 @@ v= y.isVector()
 
   Point A;
 
-ans=ask("Point A OK?\n",0)
+   ask("Point A OK?\n",0)
 
   rx  =  Sin(d2r(90)) 
 
   chkR(rx,1.0)
 
   rx=   A.Getx();
- ans=ask("Getx $rx OK",0) 
+    ask("Getx $rx OK",0) 
   
 //
   rx = A.Setx(1.2)
 
-ans=ask("proc_svn $rx OK?",0)
+   ask("proc_svn $rx OK?",0)
 
 allowDB("spe,oo,ic,opera",db_allow)
   rx= A.Setx(2.4)
-ans=ask("proc_svn $rx OK?",0)
+   ask("proc_svn $rx OK?",0)
 
    rx= A.Getx();
 
-ans=ask("proc_svn $rx OK?",db_ask)
+   ask("proc_svn $rx OK?",db_ask)
 
   chkR(rx,2.4)
 
 //allowDB("clearall", 1)
 
   rx=A.Setx(3)
-ans=ask("proc_svn $rx OK?",db_ask)  
+   ask("proc_svn $rx OK?",db_ask)  
   rx=A.Setx(4)
-ans=ask("proc_svn $rx OK?",db_ask)  
+   ask("proc_svn $rx OK?",db_ask)  
   rx=A.Setx(5)  
-ans=ask("proc_svn $rx OK?",db_ask)  
+   ask("proc_svn $rx OK?",db_ask)  
   rx=A.Setxy(6,7)  
-ans=ask("proc_svn OK? $rx",db_ask)
+   ask("proc_svn OK? $rx",db_ask)
 
 
   dx = 4.5  
@@ -323,7 +320,7 @@ ans=ask("proc_svn OK? $rx",db_ask)
   A.Setx(dx)
   rx=   A.Getx();
   <<"%V $dx <|$rx|>\n"
- ans=ask("Getx $rx OK",db_ask) 
+    ask("Getx $rx OK",db_ask) 
   chkN(rx,dx)
   dx += 1;
  }
@@ -356,7 +353,7 @@ chkStage("class print OK?")
   chkR(xy,8.8)
 
   rx=   A.Getx()
- ans=ask("Getx $rx OK",0)   
+    ask("Getx $rx OK",0)   
 
   chkN(rx,3.4)
 
@@ -414,17 +411,17 @@ double r2 = 4.5;
 
  <<"%V <|$r1|>\n"
 
-ans=ask("%V $r1 OK?",db_ask);
+   ask("%V $r1 OK?",db_ask);
 
 
   rx=   A.Getx();
 
 
-ans=ask("%V $rx OK?",db_ask);
+   ask("%V $rx OK?",db_ask);
 
     chkR(rx,4.0);
 
-//ans=ask(DB_prompt,DB_action);
+//   ask(DB_prompt,DB_action);
 
 //wdb=  DBaction((DBSTEP_|DBSTRACE_|DBALLOW_ALL_),ON_)
  //<<"$wdb \n"
@@ -436,7 +433,7 @@ ans=ask("%V $rx OK?",db_ask);
 
   rx=   A.Getx();
 
-ans=ask("%V $rx OK?",db_ask);
+   ask("%V $rx OK?",db_ask);
 
   chkR(r1,rx)
 <<"%V $r1  $rx \n"
@@ -502,7 +499,7 @@ ans=ask("%V $rx OK?",db_ask);
   ok=chkR(A.x,0.15,5);
   chkR(A.x,0.15,5);
 
-//  ans=ask(DB_prompt,DB_action,5);
+//     ask(DB_prompt,DB_action,5);
 
 // OK 
 
@@ -522,7 +519,7 @@ ans=ask("%V $rx OK?",db_ask);
 
   A.Print(); 
  
-  //ans=ask(DB_prompt,DB_action,5);
+  //   ask(DB_prompt,DB_action,5);
 
   
   
@@ -593,7 +590,7 @@ chkR(cy,0.2);
   chkN(D_y,77); 
 
 
-ans=ask("%V  $D_y  == $A_y   ? ",db_ask);
+   ask("%V  $D_y  == $A_y   ? ",db_ask);
 
 
 
@@ -602,15 +599,15 @@ ans=ask("%V  $D_y  == $A_y   ? ",db_ask);
 
   chkN(D.y,79); 
 
-ans=ask("%V  $D.y  ==  $A.y   ? ",db_ask);
+   ask("%V  $D.y  ==  $A.y   ? ",db_ask);
 
     D.y = A.y + 1;
 
   chkN(D.y,80); 
 
-//ans=ask("%V $D.y   $(A.y+1)    ",db_ask); // TBF 2/10/24
+//   ask("%V $D.y   $(A.y+1)    ",db_ask); // TBF 2/10/24
 
-ans=ask("%V $D.y   $(A.y+1)    ",db_ask);
+   ask("%V $D.y   $(A.y+1)    ",db_ask);
 
   D.Print(); 
 
@@ -627,9 +624,9 @@ ans=ask("%V $D.y   $(A.y+1)    ",db_ask);
  // <<"%V $wy $A.Gety() \n"; // TBF  2/10/24 cmf in <<" "  does not work
 
 //  <<"%V $wy $(A.Gety())\n"; // TBF  2/10/24 cmf in <<" "  even worse spins
-//ans=ask("%V $D.y   $(A.y+1) $(A.Gety())   ",1);
+//   ask("%V $D.y   $(A.y+1) $(A.Gety())   ",1);
 
-ans=ask("%V $D.y   $(A.y+1)   ",0);  
+   ask("%V $D.y   $(A.y+1)   ",0);  
   
 
   ok=chkR(wy,79,5); 
@@ -761,7 +758,7 @@ ans = ask ( "$axy == $ayx OK? ",0)
     post_by = B.y
 <<"%V $B.y \n"
    v  =  B.y/2.0;
-ans=ask("%V $pre_by $B.y $post_by $v ",db_ask);
+   ask("%V $pre_by $B.y $post_by $v ",db_ask);
 
 ///
   for (i = 0; i < 4 ; i++) {
@@ -774,7 +771,7 @@ ans=ask("%V $pre_by $B.y $post_by $v ",db_ask);
     <<"%V$ok $i $my $v $B.y\n"; 
     B.y += 0.2; 
     v  =  B.y/2.0;
-     ans=ask("%V $i $my $B.y $v",db_ask);
+        ask("%V $i $my $B.y $v",db_ask);
     }
   
 //<<"$(nsc(20,'/'))\n"
@@ -839,7 +836,7 @@ ans=ask("%V $pre_by $B.y $post_by $v ",db_ask);
   
   
   <<" %V $A.x $B.x \n"; 
-//ans=ask(DB_prompt,DB_action,5);
+//   ask(DB_prompt,DB_action,5);
 
   my = A.mul ( B.x );   // TBF 12/11/23 obj.arg
   
@@ -848,7 +845,7 @@ ans=ask("%V $pre_by $B.y $post_by $v ",db_ask);
 
   val = A.x * B.x;
   <<"%V $val\n"
-//ans=ask(DB_prompt,DB_action,5);  
+//   ask(DB_prompt,DB_action,5);  
   chkR(my,3901,6); 
   
   my = A.mul(B.y) + B.mul(A.x); 
@@ -891,7 +888,7 @@ ans=ask("%V $pre_by $B.y $post_by $v ",db_ask);
   <<"%V$my $A.x  \n"; 
 
 
-//ans=ask(DB_prompt,DB_action,5);  
+//   ask(DB_prompt,DB_action,5);  
 
   r1 = B.Getx()
 
@@ -903,15 +900,15 @@ ans=ask("%V $pre_by $B.y $post_by $v ",db_ask);
 
 
 
-  my2 = A.x    * B.Getx()
+  my2 = A.x * B.Getx()
 
 <<" %V $my $my2 $A.x $B.x \n";
 
    b=goo(77.6)
 <<"goo $b\n"
-//ans=ask(DB_prompt,DB_action,5);
+//   ask(DB_prompt,DB_action,5);
 
-cmf_arg =1
+cmf_arg =0  // TBF 9/21/24
 
 //allowDB("clearall", 1)
 

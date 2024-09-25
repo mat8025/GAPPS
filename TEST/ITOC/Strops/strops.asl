@@ -17,20 +17,28 @@
 
 #if __ASL__
 
+   db_ask = 0;
+   db_allow = 1;
+
+
+ allowDB("str,",db_allow)
+
  Str Use_= " Demo  of sops ,sel,scat, splice, paste ";
 
  Svar argv = _argv;  // allows asl and cpp to refer to clargs
  argc = argc();
 
-
+/*
 #include "debug" 
 
   if (_dblevel >0) { 
    debugON() 
    <<"$Use_ \n" 
 } 
-
+*/
    allowErrors(-1); // set number of errors allowed -1 keep going 
+
+
 
 #endif       
 
@@ -54,22 +62,9 @@ using namespace std;
   chkIn(1) ;
 
   chkT(1);
-
- 
-
 ///
 ///
 ///
-
-
-
-   db_ask = 0;
-   db_allow = 1;
-
-
- allowDB("str,",db_allow)
-
-
 
  astr = "Cheese and Pickle"
 

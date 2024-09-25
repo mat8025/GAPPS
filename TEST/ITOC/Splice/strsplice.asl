@@ -26,9 +26,9 @@ if (_dblevel >0) {
 
 chkIn()
 
-//str S;
 
-//svar S; //TBF   which field
+
+Svar S; //TBF   which field
 
   S= " a  word";
   <<"$S\n"

@@ -34,19 +34,16 @@ if (_dblevel >0) {
 }
 
 
-/*
-  FilterFileDebug(REJECT_,"~storetype_e");
-  FilterFuncDebug(REJECT_,"~ArraySpecs",);
- */
+allowDB("opera",1)
   
   chkIn();
 
   V= vgen(INT_,10,0,1)
   T= V;
 
-
-<<"$V\n"
-<<"$T\n"
+V.pinfo()
+<<"%V $V\n"
+<<"%V $T\n"
 
 R= vvcomp(V,T)
 
@@ -54,13 +51,14 @@ R= vvcomp(V,T)
 
 chkR(R[2],0)
 
-  V +=1
+  V += 1
 
-<<"$V\n"
+<<"+= %V $V\n"
 
 R= vvcomp(V,T)
 
-<<"$R\n"
+<<"%V $R\n"
+<<"%V $T\n"
 
 chkR(R[2],2)
 
