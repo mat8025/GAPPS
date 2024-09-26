@@ -18,7 +18,7 @@
 
   
 int DBH_ = -1
-
+/*
 #include "debug"
 
 
@@ -28,7 +28,10 @@ if (_dblevel >0) {
 
 <<"update asl script version \n" ;
 
-  ignoreErrors();
+*/  
+  // if script found
+  // then  read current vers and  bump number and update date
+  // if no @vers line -- then prepend the vers header lines
 
 
   void vers2ele(Str& vstr)
@@ -52,6 +55,7 @@ if (_dblevel >0) {
   {
     Str pad;
     Str hl = ln;
+    Str wl;
     static Str sel = "xxxxxxxxxx"
  //   <<[DBH_]"$ln\n"
     ll = slen(ln)
@@ -66,13 +70,26 @@ if (_dblevel >0) {
 //<<"%V $pl\n"
     sel = "$hl    $ll   "
 //<<"%V $sel\n"
-
     sel = "$hl    $pad   "
 //<<"%V $sel\n"
+    wl = "$hl    $ll   "
+    wl.pinfo()
+    wl = "$hl    $pad   "
+  //  ask("$wl ")
 
-
-   return sel;
+  return sel;
  }
+/////////////////////////////////////////////
+
+
+
+   Str srcfile = _clarg[1];
+
+   len = slen(srcfile);
+
+<<"$len $srcfile|\n"
+
+  ignoreErrors();
 
   int A = -1;
 
@@ -81,16 +98,6 @@ Str release ="xyz";
 Str cdate ="";
 
 
-  
-  // if script found
-  // then  read current vers and  bump number and update date
-  // if no @vers line -- then prepend the vers header lines
-  
-   Str srcfile = _clarg[1];
-
-   len = slen(srcfile);
-
-<<"$len $srcfile|\n"
 
 
   if (srcfile @= "") {
@@ -112,7 +119,7 @@ pid=getpid()
 <<[DBH_]"make a bakup ${srcfile}.${pid}.bak \n"
 
   !!"cp $srcfile  ${srcfile}.${pid}.bak"
-
+////////////////////////////////////////
 
 
   set_vers = 0;
@@ -396,13 +403,14 @@ j= 0;
 
 
 cf(A);
+   
 
  A=ofw("hdr_tmp");
 
     fseek(A,0,0)
 
 // all lines shold be padded out to 70
-Str hl="xxx";
+    hl="xxx";
    padHdr(" *  @script $fname ")
 
    <<[A]"/* \n"
@@ -443,7 +451,7 @@ cf(A);
 
 
 
-ans=iread("app code -what modification?:")
+ans=iread("app code -what modification?:",1)
 <<"$ans\n"
 if (ans =="q") exit()
    

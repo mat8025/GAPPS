@@ -10,53 +10,53 @@
  *  @Copyright © RootMeanSquare 2022
  * 
  */ 
-;//----------------<v_&_v>-------------------------//;
+//----------------<v_&_v>-------------------------//;
 
   //ignoreErrors();
 
   setmaxcodeerrors(-1); // just keep going;
   setmaxicerrors(-1);
 
-<<[2]" trying vbump !\n"
+  DBH_ = -1
   
-  Str Vers2ele(Str& vstr)
+  Str VersToele(Str& vstr)
   {
   
    pmaj = atoi(spat(vstr,"."))
    pmin = atoi(spat(vstr,".",1))
-  <<[2]"%V $pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin)) \n"
+  <<[DBH_]"%V $pmaj $(ptsym(pmaj)) $pmin $(ptsym(pmin)) \n"
    elestr = pt(pmin);
    str ele =" ";
    ele = spat(elestr,",")
   //<<"$ele $(typeof(ele))\n";
-  //<<"$ele";
+ // <<"$ele";
    return ele;
    
   }
   //======================
   A= -1;
-
+<<[DBH_]" trying vbump !\n"
   
   // if script found
   // then  read current vers and  bump number and update date
   // if no @vers line -- then prepend the vers header lines
   
   srcfile = _clarg[1];
-  <<[2]"$srcfile \n"
+  <<[DBH_]"$srcfile \n"
 
   if (srcfile == "") {
-  <<[2]"no script file entered\n"
+  <<[DBH_]"no script file entered\n"
     exit();
   }
   
   sz= fexist(srcfile,RW_,0);
   
-  <<[2]" RW sz $sz \n"
+  <<[DBH_]" RW sz $sz \n"
 
   !!"cp $srcfile ${srcfile}.bak"
 
   if (sz == -1) {
-  <<[2]"can't find script file $srcfile\n"
+  <<[DBH_]"can't find script file $srcfile\n"
     exit();
   }
   
@@ -66,7 +66,7 @@
   if (na > 2) {
    set_vers = 1;
    new_vers = _clarg[2];
-   <<[2]"%V $new_vers\n"
+   <<[DBH_]"%V $new_vers\n"
   // should be maj.min e.g 1.1 ,6.1, ... limits 1 to 100  
   }
   
@@ -75,11 +75,11 @@
   
   file= fexist(srcfile,ISFILE_,0);
   
-  <<[2]" FILE $file \n"
+  <<[DBH_]" FILE $file \n"
   
   dir= fexist(srcfile,ISDIR_,0);
   
-  //<<[2]" DIR $dir \n"
+  //<<[DBH_]" DIR $dir \n"
   Author = "Mark Terry"
   fname = srcfile
   release = "BORON"
@@ -95,79 +95,80 @@
   len = slen(fname);
   
   ind = (80-len)/2;
-  //<<[2]"$(date()) $(date(8)) \n"
-  //<<[2]" $len $ind\n"
+  //<<[DBH_]"$(date()) $(date(8)) \n"
+  //<<[DBH_]" $len $ind\n"
   insp = nsc((60-len)/2," ")
   len= slen(insp)
-  //<<[2]"$len <|$insp|> \n"
+  //<<[DBH_]"$len <|$insp|> \n"
   sp="\n"
-  //<<[2]" $(nsc(5,sp))\n"
+  //<<[DBH_]" $(nsc(5,sp))\n"
   
-  //<<[2]" $(nsc(5,\"\\n\"))\n"
+  //<<[DBH_]" $(nsc(5,\"\\n\"))\n"
 
 
  
 
   A=ofile(srcfile,"r+")
   //T=readfile(A);
- //<<[2]"opened for read/write? $A\n"
+ //<<[DBH_]"opened for read/write? $A\n"
   if (A == -1) {
-<<[2]"bad file ?\n"
+<<[DBH_]"bad file ?\n"
    exit()
   }
   //<<"nlines ? $tsz\n"
   cvers = "1.1"
   //<<"%(1,,,)$T\n"
   
-Str comment ="xxx";
-long where;
+ Str comment ="xxx";
+ long where;
 
 
-Str T;
+ Str T;
 
 
-Str Pad;
+ Str Pad;
 
-Svar L;
+ Svar L;
 
 
   found_vers =0;
 
-  fseek(A,0,0);
+cd  fseek(A,0,0);
 
 //   tsz = Caz(T)
    i = 0;
 
 Str old_comment ="yyy"
-   
+   allowDB("spe,opera,ic",1)
    while (1) {
 
     T = readline(A);
    
-//<<[2]"$i line is $T \n"
+<<[DBH_]"[$i] line is $T \n"
    if (i ==2) {
      old_comment =T;
    }
    where = ftell(A)
-     L[0:-1:1] = "";
+//     L[0:-1:1] = "";
+      L.clear(0)
      L.Split(T);
    sz = Caz(L);
 
 // <<"sz $(caz(L)) \n"
-//<<[2]"$i $sz $where  $L \n"
+//<<[DBH_]"$i $sz $where  $L \n"
    if (sz >2) {
-//<<[2]"L1 $L[1]\n"
+<<[DBH_]"L1 $L[1]\n"
 
     if (scmp(L[1],"@vers")) {
      found_vers =1;
      cvers = L[2];
-     <<[2]"VERS $where $cvers $L[2]\n"
+     <<[DBH_]"VERS $where $cvers $L[2]\n"
      //q=iread("?")
    }
     else if (scmp(L[1],"@cdate")) {
      cdate = "$L[2:-1:1]";
 //<<"found cdate  $L\n"     
-<<[2]"%V$cdate  $L[2]\n"     
+<<[DBH_]"%V$cdate  $L[2]\n"     
    }
     else if (scmp(L[1],"@comment")) {
      comment = "$L[2::]";
@@ -183,17 +184,19 @@ Str old_comment ="yyy"
    
    //found_where = where;
    i++;
-   if (i >17) {
-<<[2]"not an C header\n"
+  // <<" testing%V $i\n"
+   if (i > 17) {
+<<[DBH_]"$i not an C header\n"
     found_vers = 0;
     break;
    }
 
 
     if (spat(L[0],"///////<v_&_v>//") != "") {
-<<[2]"@header end? line $i\n"
+<<[DBH_]"@header end? line $i\n"
       break;
     }
+    ans=ask("$L[0] ?",0)
 }
 
    where = ftell(A);
@@ -201,33 +204,36 @@ Str old_comment ="yyy"
 do_old = 0;
 
 if (do_old) {
-<<[2]"oldc $old_comment\n"
+<<[DBH_]"oldc $old_comment\n"
    L.Split(old_comment);
    sz = Caz(L);
-<<[2]"$sz $L[0]  $L[1] $L[2]\n"
+<<[DBH_]"$sz $L[0]  $L[1] $L[2]\n"
    if (L[1] != "") {
 
     comment = "$L[1::]";
-<<[2]"update comment $L[1] $comment\n"
+<<[DBH_]"update comment $L[1] $comment\n"
    }
 }
 
+
+Str new_ele = "1.1"
+
 if (found_vers) {
  
-  Vers2ele(cvers)
+  new_ele = VersToele(cvers)
 // nele = 7;
 
-<<[2]"found_vers $cvers \n"
+<<[DBH_]"found_vers $new_ele $cvers \n"
 
  }
  else {
- <<[2]" does not have vers number in header\n";
+ <<[DBH_]" does not have vers number in header\n";
  exit();
  }
 
  if (set_vers) {
  // set to _clarg[2] - if correct format
-  vers2ele(new_vers)
+    new_ele= VersToele(new_vers)
  }
  else {
 
@@ -237,9 +243,9 @@ if (found_vers) {
        pmin =1;
        pmaj++;
    }
-   <<[2]"bumped to major $pmaj minor $pmin\n"
+   <<[DBH_]"bumped to major $pmaj minor $pmin\n"
    if (pmaj > 100) {
- <<[2]" need a new major release current \n"
+ <<[DBH_]" need a new major release current \n"
    exit();
    }
  }
@@ -252,15 +258,15 @@ if (found_vers) {
 
    avers = getversion();
 
-<<[2]"getversion  $avers\n"
+<<[DBH_]"getversion  $avers\n"
 
- <<[2]"///  @vers $release ${pmaj}.$pmin ${maj_ele}.$min_ele $min_name $avers   \n"
+ <<[DBH_]"///  @vers $release ${pmaj}.$pmin ${maj_ele}.$min_ele $min_name $avers   \n"
 
    vers=" @vers ${pmaj}.$pmin $min_ele  $avers "
    vlen = slen(vers);
 
 
-<<[2]"vlen $vlen <|$Pad|>\n"
+<<[DBH_]"vlen $vlen <|$Pad|>\n"
 
  fseek(A,0,0);
 

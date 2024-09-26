@@ -1,10 +1,10 @@
 /* 
  *  @script command.asl                                                       
  * 
- *  @comment  shell command &                                                 
+ *  @comment  &                                                               
  *  @release Carbon                                                           
- *  @vers 1.4 Be Beryllium [asl 6.54 : C Xe]                                  
- *  @date 09/25/2024 05:03:55                                                 
+ *  @vers 1.6 C Carbon [asl 6.54 : C Xe]                                      
+ *  @date 09/25/2024 14:18:43                                                 
  *  @cdate 1/1/2005                                                           
  *  @author Mark Terry                                                        
  *  @Copyright © RootMeanSquare 2024 -->                                     
@@ -12,11 +12,7 @@
  */ 
 
 
-#
-
 #include "debug.asl";
-
-
 
 if (_dblevel >0) {
    debugON()

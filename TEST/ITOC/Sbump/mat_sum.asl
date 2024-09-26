@@ -1,15 +1,25 @@
 /* 
  *  @script mat_sum.asl                                                       
  * 
- *  @comment  function                                                        
+ *  @comment                                                                  
  *  @release Carbon                                                           
- *  @vers 1.11 Na Sodium [asl 6.54 : C Xe]                                    
- *  @date 09/25/2024 05:03:02                                                 
+ *  @vers 1.21 Sc Scandium [asl 6.54 : C Xe]                                  
+ *  @date 09/25/2024 22:47:33                                                 
  *  @cdate 11/03/2021 12:03:14                                                
  *  @author Mark Terry Boron                                                  
  *  @Copyright © RootMeanSquare 2024 -->                                     
  * 
  */ 
+
+
+
+
+
+
+
+
+
+
 
 
 
