@@ -1,17 +1,19 @@
 /* 
- *  @script sbump.asl                                                   
+ *  @script sbump.asl                                                         
  * 
- *  @comment update the script date&vers                                
- *  @release Carbon                                                     
- *  @vers 1.15 P Phosphorus [asl 6.50 : C Sn]                           
- *  @date 07/20/2024 15:11:17                                           
- *  @cdate Sun Dec 23 09:22:34 2018                                     
- *  @author Mark Terry                                                  
- *  @Copyright © RootMeanSquare 2024 -->                               
+ *  @comment  the script date&vers                                            
+ *  @release Carbon                                                           
+ *  @vers 1.16 S Sulfur [asl 6.55 : C Cs]                                     
+ *  @date 09/27/2024 14:39:52                                                 
+ *  @cdate Sun Dec 23 09:22:34 2018                                           
+ *  @author Mark Terry                                                        
+ *  @Copyright © RootMeanSquare 2024 -->                                     
  * 
  */ 
 
-//----------------<v_&_v>-------------------------//;                  
+
+//----------------<v_&_v>-------------------------//
+
 
 
                     

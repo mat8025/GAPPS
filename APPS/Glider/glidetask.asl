@@ -17,17 +17,18 @@ char vers[6] ="5.3";
 
 
 
-#include "debug.asl"
+
 
  
 #define DB_IT    0
-#define GT_DB   0
+#define GT_DB   1
 #define __ASL__ 1
 #define __CPP__ 0
 
 
 #if __ASL__
 // this include  when cpp compiling will re-define __ASL__ 0 and __CPP__ 1
+#include "debug.asl"
 #include "compile.asl"
 
 #endif
@@ -38,21 +39,22 @@ char vers[6] ="5.3";
 #include <ostream>
 
 using namespace std;
+#include "cpp_head.h" 
 #include "vargs.h"
 
 #define pxs  cout<<
 
-#define __asl___db 0
-#define cpp_db 0
+#define ASL_DB 0
+#define CPP_DB 1
 
 #endif
 
 ///////////////////////
 //uint turnpt::ntp_id = 0;
 
-#if __asl__
+#if __ASL__
 
-#define cpp_db 0
+#define CPP_DB 0
 
 #define cout //
 
@@ -65,12 +67,17 @@ int run_asl = runasl();
  //checksvpool()
 // echolines(0)
 
-#undef  asl_db
-#define asl_db 0
+#undef  ASL_DB
+#define ASL_DB 0
 
 
 #endif
 
+
+  // GLOBALS needed for CPP
+  // ASL will autodec most of these
+  // translater needs to declare them global ? e.g. int ::AFH when seen
+  // or place them  above main or in main  block
 
 int tf; // task file fh
 int afh= -1;
@@ -81,18 +88,18 @@ double TC[30];
 double Dur[30];
 
 
-  Svar task;
+  Svar Task;
 
   float totalD = 0;
 
   float totalDur = 0.0;
   
   char  hey[10] = "hey hey";
-  float l1;
-  float l2;
+//  float l1;
+  //float l2;
   //float lo1,lo2;
-  float lo1;
-  float lo2;
+  //float lo1;
+  //float lo2;
   double tkm;
   double tkm2;
   float tcd;
@@ -100,16 +107,19 @@ double Dur[30];
   float tmsl;
   float msl;
   int nl,li;
-  str ident;
+
   int n_legs = 0;
   int n_tp = 0;
   int k_tp;
 
-  str the_start = "longmont";
-  str try_place = "xxx";
-  str try_start = "xxx";
-  str nxttpt = "laramie";
-str ans;
+  Str the_start = "longmont";
+  Str try_place = "xxx";
+  Str try_start = "xxx";
+  Str nxttpt = "laramie";
+  Str ans;
+  Str ident;
+  float L1;
+  float AGL[30];
 
 //<<"%V $nxttpt \n"
 
@@ -121,16 +131,16 @@ str ans;
 
 
 //allowDB("ic_,oo_,spe_,rdp_,pexpnd,array",0)
-allowDB("ic_,oo_,spe_,pexpnd,array",0)
+//allowDB("vmf",1)
 
 Turnpt  GT_Wtp[50];
 
-//  GT_Wtp[1].pinfo()
 
 Tleg  GT_Wleg[20];
-// checkSVpool()
 
-ans=ask("Turnpt ?",0)
+
+
+//ans=ask("Turnpt ?",0)
 
 #include "ootlib.asl"
 
@@ -144,25 +154,31 @@ ans=ask("Turnpt ?",0)
   long where ;
 /////////////////////////////////////
 
-
+ Svar sargs(20);
 
 #if __CPP__
-void
-Glide::glideTask(Svarg * sarg)  
-{
- int run_asl = runASL();
- Svar sa;
- sa.findWords(sarg->getArgStr(0)) ;
- printf("CPP vers %s\n",vers);
+
+int main( int argc, char *argv[] ) { // main start
+
+   for (int i= 0; i <argc; i++) {
+    sargs.cpy(argv[i],i);
+   }
+
+   init_cpp(argv[0]); 
+
 #endif
 
   int na;
 
 #if __ASL__
- Svar sa;
- na = _clargc;
- sa = _clarg;
 
+ na = _clargc;
+// _clarg.pinfo() ; // TBF  else  sa = clarg uses clarg offset
+ //<<" $_clarg[1] $_clarg[2] \n"
+ //sa.clear(0)
+ sargs = _clarg;
+ //sargs.pinfo()
+<<" $sargs\n" 
 #endif
 
   ignoreErrors(); // put in glide.h ??
@@ -170,8 +186,6 @@ Glide::glideTask(Svarg * sarg)
   allowErrors(-1)
 
 //DBaction((DBSTEP_),ON_)
-
-  
 
   int  Main_init = 1;
   float Leg[20];
@@ -181,23 +195,23 @@ Glide::glideTask(Svarg * sarg)
 
   Cruise_speed = (CSK * nm_to_km);
 
-  //printf(" Cruise speed %f \n",Cruise_speed);
-  <<" %V $Cruise_speed  \n";
+#if GT_DB
+ printf(" Cruise speed %f \n",Cruise_speed);
+#endif 
 
   GT_Wtp[1].Alt = 100.0;
 
   GT_Wtp[40].Alt = 5300.0;
 
-//  <<"$GT_Wtp[1].Alt\n";
+
 
 //  GT_Wtp.pinfo() ;  // should identify Obj
 
-//ans =query("??");
 
   Str tlon;
   Str tplace;
   Svar CLTPT;
-  Svar Wval;
+  Svar Wval(20);
   Svar Wval2;  
 
   Str tpb ="";
@@ -216,19 +230,19 @@ Glide::glideTask(Svarg * sarg)
 
   if (use_cup) {
 
-  AFH=ofr("CUP/bbrief.cup")  ; // open turnpoint file;
+  afh=ofr("CUP/bbrief.cup")  ; // open turnpoint file;
 
-  printf( "opened CUP/bbrief.cup AFH %d \n",AFH);
+    printf( "opened CUP/bbrief.cup afh %d \n", afh);
 
   }
 
   else {
 
-  AFH=ofr("DAT/turnptsA.dat")  ; // open turnpoint file;
-  printf("opened  DAT/turnptsA.dat %d \n" ,AFH );
+  afh=ofr("DAT/turnptsA.dat")  ; // open turnpoint file;
+  printf("opened  DAT/turnptsA.dat %d \n" , afh );
   }
 
-  if (AFH == -1) {
+  if ( afh == -1) {
 
   printf( " can't find turnpts file \n");
   exit(-1);
@@ -247,35 +261,33 @@ Glide::glideTask(Svarg * sarg)
 //main
 
 
-    //na = sa.getNarg(); // TBC no asl version??
+
 
 
 #if __CPP__
-  na = sa.getNarg();
+  na = argc;
 #else
   na = _clargc;
 #endif  
 
-
-//printf(" na %d\n",na);
-
+#if GT_DB
+printf(" na %d\n",na);
+#endif
 
   int ac = 0;
-
   float LoD = 35;
-
   int istpt = 1;
 
   int cltpt = 0;
   int sz;
   
-  Str targ;
+  Str targ = "xyz"
 
 
   //<<" %V $LoD \n";
-#if __ASL__
-ac =1;
-#endif
+  // ac 1  is name of asl script or if CPP name of exe
+  ac =1;
+
 
 
 
@@ -283,20 +295,14 @@ while (ac < na) {
 
   istpt = 1;
 
-
-  targ = sa.cptr(ac);
+  targ = sargs.cptr(ac);  // TBF   CPP store?
 
 
 #if GT_DB
- printf("ac %d targ %s\n",ac,targ);
+ printf("ac %d targ  %s\n",ac,sargs[ac]);
  targ.pinfo();
 #endif
 
-/*
- targ.pinfo();
-  ok= targ.aslcheckinfo("GLOBAL");
- <<" $ok   targ is a GLOBAL \n";
-*/
 
   sz = targ.slen();
 
@@ -308,10 +314,12 @@ while (ac < na) {
 
   if (targ == "LD") {
 
+//allowDB("spe,rdp",1)
 
-    targ = sa.cptr(ac);
 
-   // LoD= atof(sa.cptr(ac));
+
+    targ = sargs.cptr(ac);
+
     LoD= atof(targ);
 
 //<<"parsing %V $LoD \n";
@@ -320,8 +328,7 @@ while (ac < na) {
     istpt = 0;
 
 #if GT_DB
-     printf("setting LD %f ",LoD);
-     LoD.pinfo();
+     printf("setting LD %f \n",LoD);
 #endif
 
     }
@@ -331,7 +338,7 @@ while (ac < na) {
       //targ.pinfo();  // print variable status
       // isthere = targ.checkVarInfo("SI_PROC_REF_ARG")  ;  // check variable status for this string
 
-     targ = sa.cptr(ac);
+     targ = sargs.cptr(ac);
 
   if (targ == "KM") {
     Units = "KM";
@@ -353,7 +360,7 @@ while (ac < na) {
   if (targ == "CS") {
 
 
-  targ = sa.cptr(ac);
+  targ = sargs.cptr(ac);
 
   CSK = atof(targ);
 
@@ -363,7 +370,9 @@ while (ac < na) {
 
   Cruise_speed = (CSK * nm_to_km);
 
-  if (GT_DB) printf("setting CS CSK %f knots Cruise_speed %f kmh \n",CSK,Cruise_speed);
+#if GT_DB
+  printf("setting CS CSK %f knots Cruise_speed %f kmh \n",CSK,Cruise_speed);
+#endif
 
   }
 
@@ -373,7 +382,7 @@ while (ac < na) {
 
   via_file = 1;
 
-  Str byfile = sa.cptr(ac);
+  Str byfile = sargs.cptr(ac);
 
   ac++;
 	//<<" opening taskfile $byfile \n"
@@ -428,15 +437,12 @@ while (ac < na) {
   via_keyb = 0;
 
   via_cl = 1;
-
  // 
-
-
 
 #if __ASL__
   //CLTPT[cltpt] = targ;   // TBF 02/24/22
 
-//<<"%V $targ $cltpt \n"
+<<"%V $cltpt $targ  \n"
 
    CLTPT.cpy(targ,cltpt);
 
@@ -444,17 +450,18 @@ while (ac < na) {
     <<"%V $targ $sz $cltpt $CLTPT[cltpt] \n"
     <<"CLTPTs  $CLTPT\n"
     }
+
+
 #else
  CLTPT.cpy(targ,cltpt);
- if (CPP_DB) cout  <<"cltpt "<< cltpt  <<" CLTPT[cltpt] "<< CLTPT[cltpt]  <<endl ; 
+ if (CPP_DB) cout  <<"CPP cltpt "<< cltpt  <<" CLTPT[cltpt] "<< CLTPT[cltpt]  <<endl ; 
 #endif
-
 
    cltpt++;
 
    }
 
-// <<"%V $ac  $targ $sz \n"
+
 
  } // arg was valid
 
@@ -480,7 +487,7 @@ while (ac < na) {
   i = -1;
  int k;
  int got_start = 0;
- int K_AFH = AFH;
+ int k_afh = afh;
  cnttpt = 0;
 
  while ( !got_start) {
@@ -490,7 +497,7 @@ while (ac < na) {
  <<" %V $cnttpt $i    $via_keyb $via_cl\n";
 #endif
 
-  fseek(AFH,0,0);
+  fseek(afh,0,0);
 
   if (via_cl) {
 
@@ -501,9 +508,7 @@ while (ac < na) {
 #endif
 
 #if CPP_DB
-
-    cout << the_start << "  " << cnttpt  << endl;
-
+    cout << "the start " << the_start << "  " << cnttpt  << endl;
 #endif
 
   cnttpt++;
@@ -529,16 +534,16 @@ while (ac < na) {
 
   }
 
-  i=searchFile(AFH,the_start,0,1,0,0);
+  i=searchFile(afh,the_start,0,1,0,0);
 
-  //printf("AFH %d i %d\n",AFH,i);
+  //printf("afh %d i %d\n",afh,i);
 
   if (i == -1) {
    printf("the_start  %s not found \n", the_start);
 
   try_start = nameMangle(the_start);
   
-  i=searchFile(AFH,try_start,0,1,0,0);
+  i=searchFile(afh,try_start,0,1,0,0);
     if (i != -1) {
        the_start = try_start;
     }
@@ -571,8 +576,6 @@ while (ac < na) {
   got_start =1;
 }  // end while
 
-
-// pa("start ", the_start);
 // -------------------------------
 //<<"%V$input_lat_long  $i \n"
 
@@ -586,11 +589,11 @@ while (ac < na) {
 
   else {
 
-  fseek(AFH,i,0);
+  fseek(afh,i,0);
 
   if (via_keyb) {
 
-   w=pclFile(AFH);
+   w=pclFile(afh);
 
    }
 
@@ -599,7 +602,7 @@ while (ac < na) {
 	    //w=pcl_file(A,0,1,0)
    }
 
-  ki = seekLine(AFH,0);
+  ki = seekLine(afh,0);
 
   //DB//printf("reset to file start %d\n",ki);
 
@@ -607,15 +610,15 @@ while (ac < na) {
 	  // need to step back a line
 
   if (use_cup) {
-  //  nwr = Wval.readWords(AFH,0,44);
+  //  nwr = Wval.readWords(afh,0,44);
 
-    nwr = Wval.readWords(AFH,0,',');
+    nwr = Wval.readWords(afh,0,',');
 
-//<<" CUP read of  $nwr words \n"
+<<" CUP read of  $nwr words \n"
 
    }
   else {
-   nwr = Wval.readWords(AFH);
+   nwr = Wval.readWords(afh);
    }
 
   tplace = Wval[0];
@@ -627,24 +630,13 @@ while (ac < na) {
     tlon = Wval[3];
    }
 
-#if ASL_DB
-<<"%V $nwr \n"
-<<"$Wval\n"
-<<"$Wval[0] $Wval[1] $Wval[2] $Wval[3]\n"	  
-<<"start ? %V $n_legs \n";
-#endif
+
 
 
   n_tp++;
   if (use_cup) {
 
-//<<"start %V $n_legs  $Wval \n"
-
      GT_Wtp[0].TPCUPset(Wval);
-
-<<"%V $GT_Wtp[n_legs].Ladeg \n"
-
-
 
    }
   else {
@@ -654,6 +646,15 @@ while (ac < na) {
   AGL[n_legs] = GT_Wtp[n_legs].Alt;
 
  }
+ 
+#if ASL_DB
+<<"%V $nwr \n"
+<<"$Wval\n"
+<<"$Wval[0] $Wval[1] $Wval[2] $Wval[3]\n"	  
+<<"start ? %V $n_legs \n";
+<<"%V $GT_Wtp[n_legs].Ladeg \n"
+#endif
+
 
 
 // NEXT TURN POINT
@@ -665,11 +666,11 @@ while (ac < na) {
  // FIX
 
   float the_leg;
-//<<"%V $AFH\n";
+//<<"%V $afh\n";
 
   while (more_legs == 1) {
 
- // fseek(AFH,0,0);
+ // fseek(afh,0,0);
 
   if (via_cl) {
 
@@ -720,20 +721,20 @@ if ((nxttpt == "done")  ) {  // 6.54 fail
 #if __CPP__
  if (GT_DB) cout <<"looking for " << nxttpt << endl;
 #else
- //<<"AFH $AFH looking for $nxttpt \n";
+ <<"afh $afh looking for $nxttpt \n";
 #endif
 
-//<<"%V $AFH\n"
+//<<"%V $afh\n"
 
-  AFH = K_AFH;
+  afh = k_afh;
 
 
 
-//<<"$AFH  $K_AFH  <|$nxttpt|> \n"
+<<"$afh   $nxttpt \n"
 
-  where = searchFile(AFH,nxttpt,0,1,0,0);
+  where = searchFile(afh,nxttpt,0,1,0,0);
 
-//<<"%V $AFH $where \n"
+//<<"%V $afh $where \n"
 
 //cout <<"Found? " << nxttpt << " @ " << where <<endl;
 
@@ -741,10 +742,10 @@ if ((nxttpt == "done")  ) {  // 6.54 fail
 
         try_start = nameMangle(nxttpt);
 
-      where = searchFile(AFH,try_start,0,1,0,0);
+        where = searchFile(afh,try_start,0,1,0,0);
       
-       if (AFH != K_AFH) {
-        printf(" ferr AFH %d\n",AFH);
+       if (afh != k_afh) {
+        printf(" ferr afh %d\n",afh);
 	}
     }
 
@@ -763,7 +764,7 @@ if ((nxttpt == "done")  ) {  // 6.54 fail
 
    }
    else {
-//<<"%V $AFH\n"
+//<<"%V $afh\n"
     if (GT_DB) printf ("n_legs %d where %d found %s ",n_legs, where,nxttpt);
     
    }
@@ -773,27 +774,27 @@ if ((nxttpt == "done")  ) {  // 6.54 fail
   if (more_legs) {
 
 
-  where = fseek(AFH,where,0);
+  where = fseek(afh,where,0);
 
   n_legs++;
 
-  if (GT_DB) printf("n_legs %d where %d AFH %d\n",n_legs,where , AFH);
+  if (GT_DB) printf("n_legs %d where %d afh %d\n",n_legs,where , afh);
 
 //cout << " n_legs "<< n_legs <<" @ " << where << endl;
 
   if (via_keyb) {
 
-      pclFile(AFH);
+      pclFile(afh);
 
    }
 
   else {
-	      // w=pclFile(AFH,0,1,0)
+	      // w=pclFile(afh,0,1,0)
 
    }
 	// fseek(A,w,0)
 
-      where  = seekLine(AFH,0);
+      where  = seekLine(afh,0);
 
 
 
@@ -803,14 +804,11 @@ if ((nxttpt == "done")  ) {  // 6.54 fail
 //ans=ask("NEXT 2 ",1)
   if (use_cup) {
 
- //  nwr = Wval.readWords(AFH,0,',');
+ //  nwr = Wval.readWords(afh,0,',');
  
-   nwr = Wval.readWords(AFH,0,44);
+   nwr = Wval.readWords(afh,0,44);
 
 //  <<"CUP READ $nwr words \n"
-
-
-
 
 
   //  cout <<" next  nwr " << nwr << endl;
@@ -821,7 +819,7 @@ if ((nxttpt == "done")  ) {  // 6.54 fail
 #if ASL_DB
 <<"%V $nwr \n"
 <<"$Wval \n";
-<<"%V $AFH $n_legs $Wval[0] $Wval[1]  $Wval[4] \n"
+<<"%V $afh $n_legs $Wval[0] $Wval[1]  $Wval[4] \n"
 #endif
 
 
@@ -843,7 +841,7 @@ if ((nxttpt == "done")  ) {  // 6.54 fail
 
   else {
 
-   nwr = Wval.readWords(AFH);
+   nwr = Wval.readWords(afh);
 
 //<<"read $nwr words \n"
 //<<" $Wval[0]  $Wval[1]  $Wval[2]\n"
@@ -852,8 +850,8 @@ if ((nxttpt == "done")  ) {  // 6.54 fail
   //ans=ask(" %V $Wval  ",1)
 
 #if __ASL__
-     if (AFH != K_AFH) {
-       <<" ferr %V $AFH\n"
+     if (afh != k_afh) {
+       <<" ferr %V $afh\n"
      }
 #endif
 
@@ -864,7 +862,7 @@ if ((nxttpt == "done")  ) {  // 6.54 fail
   }
 
   L1 = GT_Wtp[nl].Ladeg;
- // printf("n_legs [%d] L1 %f\n",n_legs, L1);
+ printf("n_legs [%d] L1 %f\n",n_legs, L1);
    //<<"$GT_Wtp[n_legs].Place \n";
   //ans=query("??");
 }
@@ -909,42 +907,37 @@ if ((nxttpt == "done")  ) {  // 6.54 fail
   }
 
  int nl1=0;
-  
+
+// float L1;  // TBF 10/6/24   declare within loop
+ float lo1 ;
+ 
   for (nl = 0; nl < n_legs ; nl++) {
 #if ASL_DB
 <<"%V $nl   $n_legs  $GT_Wtp[nl].Place  $GT_Wtp[nl+1].Place  $GT_Wtp[nl].Alt $GT_Wtp[nl].Ladeg  \n"
 // ans=query("??");
 #endif
 
-  L1 = GT_Wtp[nl].Ladeg;
+  L1 = GT_Wtp[nl].Ladeg;  // TBF - no autodec
   ki = nl+1;
-  L2 = GT_Wtp[nl+1].Ladeg;  //  TBF icode
-  //L2 = GT_Wtp[ki].Ladeg;  //  TBF icode
-       //DBG"%V $L1 $L2 \n"
+  L2 = GT_Wtp[nl+1].Ladeg;  
 
-  lo1 = GT_Wtp[nl].Longdeg;
+  lo1 = GT_Wtp[nl].Longdeg;   // TBF - no autodec
 
-  lo2 = GT_Wtp[(nl+1)].Longdeg; // TBF
-
- // lo2 = GT_Wtp[ki].Longdeg; 
-  
-       //DBG"%V $lo1 $lo2 \n"
-      // tkm = ComputeTPD(nl, nl+1);
+  lo2 = GT_Wtp[(nl+1)].Longdeg; 
 
   tkm = HowFar(lo1 ,L1, lo2, L2);
 
- // tkm2 = HowFar( GT_Wtp[nl].Longdeg , GT_Wtp[nl].Ladeg, GT_Wtp[ki].Longdeg, GT_Wtp[ki].Ladeg);
-  tkm2 = HowFar( GT_Wtp[nl].Longdeg , GT_Wtp[nl].Ladeg, GT_Wtp[nl+1].Longdeg, GT_Wtp[nl+1].Ladeg);
+  tkm2 = HowFar( GT_Wtp[nl].Longdeg , GT_Wtp[nl].Ladeg, GT_Wtp[nl+1].Longdeg, GT_Wtp[nl+1].Ladeg);  // TBF 10/6/24 XIC
   
 //cout << "L1 " << L1 << " lo1 " << lo1 << " L2 " << L2 << " lo2 " << lo2 << " tkm " << tkm << endl;
 
+//<<"%V $nl $tkm $tkm2\n"
+
 #if ASL_DB
 <<"%V  $GT_Wtp[nl].Place $GT_Wtp[nl].Alt $GT_Wtp[nl].Longdeg $GT_Wtp[nl].Ladeg  $GT_Wtp[nl+1].Place $GT_Wtp[nl+1].Longdeg    $GT_Wtp[nl+1].Ladeg \n";
-
 <<"%V $nl $tkm $tkm2\n"
 
 #endif
-  TKM[nl] = tkm;
 
   Leg[nl] = tkm;
 
@@ -996,7 +989,7 @@ if ((nxttpt == "done")  ) {  // 6.54 fail
   TC[nl] = tcd;
 
 //  Dur[nl+1] = Leg[nl]/ Cruise_speed;
-<<"%V $tkm  $Cruise_speed \n"
+//<<"%V $tkm  $Cruise_speed \n"
 
     Dur[nl] = tkm / Cruise_speed;
  //<<"%V $Leg[nl] $tkm $Dur[nl+1] \n"
@@ -1036,7 +1029,7 @@ if ((nxttpt == "done")  ) {  // 6.54 fail
 
   k_tp = 1;
 
-<<"%V $k_tp   $GT_Wtp[k_tp].Alt  $AGL[k_tp] \n"
+//<<"%V $k_tp   $GT_Wtp[k_tp].Alt  $AGL[k_tp] \n"
 
   msl =  GT_Wtp[k_tp].Alt;
 
@@ -1214,17 +1207,11 @@ cprintf("%d  %-10S %-5S %-8S  %6.0fft  ",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Ra
 
 
 #if __CPP__
-}
+
+ exit(0);       // want to report code errors exit status
+ }  /// end of C++ main   
+
 ////////////////////////////////////////////////////////////////////////////////////////
-extern "C" int glidertask(Svarg * sarg)  {
-
-    Glide *o_glide = new Glide;
-
-    o_glide->glideTask(sarg);
-//   cout << "total D " << ::totalD    <<endl ;
-
-  }
-
 #endif
 
 
@@ -1237,4 +1224,4 @@ extern "C" int glidertask(Svarg * sarg)  {
 
 //==============\_(^-^)_/==================//
 
-LocalWords:  asl
+//LocalWords:  asl

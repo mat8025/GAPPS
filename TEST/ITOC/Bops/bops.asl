@@ -13,7 +13,7 @@
 
 
 
-#define __ASL__ 1
+#define __ASL__ 0
 #define __CPP__ 0
 
 //  use the asl  -T  flag to produce cpp compilable code
@@ -38,6 +38,7 @@
 #include "cpp_head.h" 
 #endif
 
+int argc =0;
 
 
 #if __ASL__
@@ -49,7 +50,7 @@
 
   if (_dblevel >0)    debugON()
 
- argc = argc();
+   argc = argc();
 
 <<" $argc \n"
 
@@ -72,31 +73,32 @@
 
 #endif
 
-allowDB("opera_,spe_,str_,array_parse,parse,rdp_,pex,ic",db_allow);
+
 
 
 int addem (int m, int n)
 {
 
-  int p = 0;
+  pa = 0
+  
 
-  p = m + n
-<<"%V $p  $m $n \n"
-  return p
+  pa = m + n
+<<"%V $pa  $m $n \n"
+  return pa
 }
 
 //  Vec<double> fv(10)
- Svar argv;
+// Svar argv;
 
 #if __CPP__
 
 int main( int argc, char *argv[] ) { // main start
 
-   for (int i= 0; i <argc; i++) {
-     sargs.cpy(argv[i],i);
-   }
-   init_cpp();
+ //  for (int i= 0; i <argc; i++) {
+ //    sargs.cpy(argv[i],i);
+ //  }
 
+   init_cpp(argv[0]); 
 ///
 #endif      
 
@@ -105,10 +107,12 @@ int main( int argc, char *argv[] ) { // main start
   na = _clargc
   argv = _clarg
 
-#endif
-
    argc = argc();
   <<"%V $argc\n" 
+
+#endif
+
+
 
   i = 0 
 
@@ -314,8 +318,8 @@ int ab = 2 + 3
   z = sin(0.9) 
 
   <<" %v $z \n" 
-   z.pinfo()
-ans=ask("%V $z",0)
+//   z.pinfo()
+//ans=ask("%V $z",0)
   x = cos(0.9) 
 
   <<" %v $z $x \n" 
@@ -367,14 +371,14 @@ ans=ask("%V $z",0)
   chkN(n,3) 
 
   <<"%V $n \n"
-   z.pinfo()
-ans=ask("%V $z",0)
+//   z.pinfo()
+//ans=ask("%V $z",0)
   z = n++ + 1 
 
   <<"%V $z \n"
-  z.pinfo()
+ // z.pinfo()
 
-ans=ask("%V $z",0)
+//ans=ask("%V $z",0)
 
   chkN(n,4) 
 

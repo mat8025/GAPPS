@@ -9,7 +9,9 @@
  *  @author Mark Terry                                                  
  *  @Copyright © RootMeanSquare 2024 -->                               
  * 
- */ 
+ */
+
+
 
  Str Use_ = "Demo  of class ops"
 
@@ -250,8 +252,8 @@ v= y.isVector()
       }
       
 
-   void Point()
-   {
+ void Point()
+    {
     // same name as class is the constructor
      y=2;
      x=4;
@@ -260,9 +262,11 @@ v= y.isVector()
      DV[2] = 2.23;
      DV[3] = 3.23;     
      
-<<"cons $_proc  %V $x $y \n"
-   <<"$DV \n"
-   }
+   <<"CONS $_proc  %V $x $y \n"
+
+  <<"$DV \n"
+ask("CONS  $x $_cobj ",0)
+  }
 
 }
 
@@ -391,9 +395,20 @@ chkStage("class print OK?")
 
   Point B;
 
+  rx= B.Getx();
+
+  rx.pinfo()
+  
+<<"%V $rx\n"
+
+ask("Point B OK?\n",0)
+
+
   Point C;
 
   Point D;
+
+
 
   rx= D.Getx();
 
@@ -403,6 +418,7 @@ chkStage("class print OK?")
 
   chkR(rx,4.0);
 
+ask("%V $rx",0)
 //
 
 real r1 = 2.3;

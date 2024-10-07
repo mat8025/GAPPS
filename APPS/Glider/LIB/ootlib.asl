@@ -136,8 +136,6 @@ float   nm_to_km = 6080.0/3281.0;
 
    //IGCTIM.pinfo();
 
-
-//sdb(2)
    IGCLAT = 3.4;
   IGCLONG = 4.5;
   IGCELE = 5.6;
@@ -145,8 +143,6 @@ float   nm_to_km = 6080.0/3281.0;
   IGCLONG[2] = 47.68;
   IGCELE[4] = 12345.678;
   IGCELE.pinfo();
-//sdb(1)
-  //pa("processIGC Igcfn   ",Igcfn);
 
    //  for (i=0; i < 100; i++) {
    //  <<"$i $IGCTIM[i] $IGCELE[i] $IGCLAT[i]  $IGCLONG[i] \n";
@@ -158,21 +154,16 @@ float   nm_to_km = 6080.0/3281.0;
   Ntpts= readIGC(Igcfn, IGCTIM, IGCLAT, IGCLONG, IGCELE);
   
 
-   <<"sz $Ntpts $(Caz(IGCLONG))   $(Caz(IGCLAT))\n"
+//   <<"sz $Ntpts $(Caz(IGCLONG))   $(Caz(IGCLAT))\n" // TRANS bad
 
   
 //<<"%(10,, ,\n) $IGCLONG[0:30] \n"
 //<<"%(10,, ,\n) $IGCLONG[k:Ntpts-1] \n"
 
      for (i=0; i < 100; i++) {
-     //<<"$i $IGCTIM[i] $IGCELE[i] $IGCLAT[i]  $IGCLONG[i] \n";
+
      printf("%d %f %f %f %f\n",i,IGCTIM[i] ,IGCELE[i] ,IGCLAT[i]  ,IGCLONG[i] );
      }
-
-
-
-
-//pa("stats 2do ");
 
  // sslng= stats( IGCLONG);
 
@@ -286,9 +277,7 @@ ssele= IGCELE.stats();
   
   
   LongE = MidLong - da/2.0;
-  //VCOUT(LongW,LongE);
 
- //pa(LongW,LongE);
 //CDBP("LongW")
 //AST
 
@@ -306,6 +295,18 @@ ssele= IGCELE.stats();
   Str nname=aname;
 
 //  <<" %V $nname $aname \n";  // TBF
+#if __ASL__
+
+   kc =slen(nname)
+
+   if (kc >7) {
+    nname=svowrm(nname)
+   }
+
+#endif
+
+#if __CPP__
+ 
 
   int kc = nname.slen();
 
@@ -314,6 +315,8 @@ ssele= IGCELE.stats();
      nname.svowrm();
 
   }
+
+#endif
 
   //fname.scpy(nname);
   fname = nname;
@@ -431,15 +434,18 @@ ssele= IGCELE.stats();
 //========================
 
 
-  //float ComputeTC(Turnpt wtp[],int j, int k)
-  float ComputeTC(Turnpt wtp,int j, int k)
+  float ComputeTC(Turnpt wtp[],int j, int k)
   {
 
  // <<"$_proc %V $j $k\n";
   //wtp.pinfo();
   float km = 0.0;
   float tc = 0.0;
-  float l1,l2,lo1,lo2 = 0;
+  float l1,l2,lo1,lo2 = 0.0;
+ // float l1
+//  float l2
+///  float lo1
+//  float lo2 = 0
 
  // <<"%V $lo1 $lo2 $l1 $l2 \n"
   l1 = wtp[j].Ladeg;

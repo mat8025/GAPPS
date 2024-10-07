@@ -11,7 +11,7 @@ TAR = "vops"
 $(info TAR = $(TAR))
 
 
-LFLAGS =  -fPIC -DPIC -Wall  -I../../libs -I$(gasp_sys)/include -I/usr/include  -c
+LFLAGS =  -fPIC -DPIC -Wall  -I../../libs -I$(gasp_sys)/include -I$(gasp_sys)/include/Class -I/usr/include  -c
 
 # how many libs need to be loaded for cpp  produced via aslx
 # libmda ??
@@ -39,5 +39,5 @@ LDADD = -L$(gasp_sys)/lib  \
 
 
 out:
-	g++ -x c++  -g -fpermissive  -rdynamic -o $(TAR) $(TAR).asc  -DMYFILE=\"$(TAR).asc\" -I$(gasp_sys)/include -ldl  $(LDADD) 
+	g++ -x c++  -g -fpermissive  -rdynamic -o $(TAR) $(TAR).asc  -DMYFILE=\"$(TAR).asc\" -I$(gasp_sys)/include -I$(gasp_sys)/include/Class -ldl  $(LDADD) 
 

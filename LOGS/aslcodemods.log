@@ -2266,3 +2266,8 @@ svar_regex.cpp                      1.6  09/25/2024 03:57:50  upper/lower case m
 rdp_tokget.cpp                      1.78  09/25/2024 04:00:24  tvc varcon 
 pex_paramexpand.cpp                 2.81  09/25/2024 04:02:56  froffset
 svar_init.cpp                       1.68  09/26/2024 02:26:51  clearField - no init just set field cp[0] 0
+svar_ops.cpp                        1.67  10/02/2024 17:20:07  dewhite leave sz asis
+svar_init.cpp                       1.69  10/02/2024 17:21:17  nfields = narg
+pex_paramexpand.cpp                 2.82  (date(16))  do_PEX_CPP =1
+spe_func.cpp                        3.60  (date(16))  lookupsfunc - remove pool Svar
+prep_preprocess.cpp                 1.20  (date(16))  svar cpy specify field

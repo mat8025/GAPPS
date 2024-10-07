@@ -51,24 +51,28 @@ class Tleg
 
 //  use cmf for cons,destruct
 //  preprocess to asc will remove cmf
- cmf Tleg()   
- {
- //<<"Starting cons \n"
-  dist = 0.0;
-  pc = 0.0;
-  tfga =0;
-  msl = 0.0;
- // <<"Done cons $dist $pc\n"
- }
+
  
  Str getPlace ()   
    {
        return Tplace; 
    }
 
+ cmf Tleg()   
+ {
+// <<"Starting cons $Tleg_id \n"
+  dist = 0.0;
+  pc = 0.0;
+  tfga =0;
+  msl = 0.0;
+  Tleg_id++;
+ // <<"Done cons $dist $pc\n"
+ }
+
+
  cmf ~Tleg()   
  {
-    <<"destructing Tleg \n";
+ //   <<"destructing Tleg \n";
  }
 };   // need ;
 
@@ -173,60 +177,50 @@ void TPCUPset (Svar wval)
  {
 
 //<<"IN $_proc \n"
-Str val;
+Str valX;
+
+ //     valX.pinfo()
 
 Str val2;
-//    wval.pinfo();
- //<<"%V $Alt\n";
-int lastc = -1;
+
 //<<"cmf %V $_scope $_cmfnest $_proc $_pnest\n"
 
-//<<"%V $wval\n"
-     val = wval[0];
+//<<"%V $wval \n"
+
+//   wval.pinfo();
+
+//ask("wval OK ")
+
+int lastc = -1;
+
+//allowDB("spe,rdp,parse_var",1)
+//rejectDB("spe_statex,spe_stateparse,spe_exp",1)
+
+
+     valX = wval[0];  // ? OK -- XIC OK ?
+
+//<<"%V $wval[0] $valX \n"
+
+      valX.dewhite(); // TBF ? corrupting vars ?
+
+     valX.scut(1);
+
+     valX.scut(lastc);
+
+     Place = valX; // wayp 
+
+ //   <<"%V $place \n";
+
+     valX =  wval[1];
+
+     valX.scut(lastc);
      
-//<<"%V $val\n"
+     valX.scut(1);
 
-
-//cout << "val " << val << endl;
-//pa(wval); // crash ??
-
-
-//      val.aslpinfo();
-
-      val.dewhite(); // TBF ? corrupting vars ?
-  //    <<"%V $val\n"
-//<<"%V $AFH\n"
-//DBaction((DBSTEP_),ON_)
-//allowDB("ic_,oo_,spe_,rdp_,pexpnd,tok,array")
-
-     val.scut(1);
-
-  //    <<"%V $val\n"
-
-
-     //val.scut(-1);
-     val.scut(lastc);
-
-  //    <<"%V $val\n"
-
-     Place = val; // wayp 
-
-//<<"%V $place \n";
-
-     val =  wval[1];
-
-     val.scut(lastc);
-     
-     val.scut(1);
-
-     Idnt = val;
-//<<"%V $AFH\n"
-
-//  <<"%V$Idnt\n"
-//Idnt->info(1)
+     Idnt = valX;
 
      Lat = wval[3]; // wayp
-     
+//     <<"%V $Lat $wval[3] \n"
 
 
      ccoor(Lat);   // ccoor is an SF === tries to call proc ccoor
@@ -237,37 +231,35 @@ int lastc = -1;
      ccoor(Lon);
 
 // <<"%V$Lon  \n"
-  
-     val = wval[5];
 
-//<<" %V $val \n";
+    valX = wval[5];
+//  <<"%V <|$wval[5]|> <|$valX|>\n"
 
-    // pa(val);
-    // ft or m
+    val2 = sele(valX,-1,-2);
 
-//ans=query("?","sele",__LINE__);
-
-    val2 = sele(val,-1,-2);
-
-//<<"%V $val2\n"
+    //valX.pinfo()
+    
     if (val2 == "ft") {
 
-      val.scut(-2); 
-//<<"ft  $val\n";
-      Alt = atof(val);
+      valX.scut(-2); 
+      //valX.pinfo()
+//ask("%V ft $valX ",1)
+
+      Alt = atof(valX);
    }
     else {
-       val.scut(-1);
-//<<"m $val\n";       
-            Alt = atof(val);
+    
+            valX.scut(-1);
+      //valX.pinfo()
+//ask("%V $valX ",1)
+
+            Alt = atof(valX);
 	    Alt *= 3.280839 ;
 
     }
- //<<"%V$val $val2 $Alt  \n"
+    
+//<<"%V $valX $val2 $Alt  \n"
 
-
-//cout  <<"Alt "<< Alt  <<endl ; 
-//    pa(val,Alt);
 
      is_airport =0;
      is_mtn =0;
@@ -301,7 +293,7 @@ int lastc = -1;
 
 
 
-    val = wval[9];
+    valX = wval[9];
 
 
      //Radio = atof(wval[9]);
@@ -313,27 +305,11 @@ int lastc = -1;
      } 
 
 
-//<<"Radio <|$Radio|> wval[9] $val  \n"
-//ans=query("??");
-//ans=ask("%V $Radio ",1)
-
-
-//     
- //cout  <<"Radio "<< Radio  <<endl ; 
-
      tptype = wval[10];
      
-// spat (tptype,"A",-1,-1,&is_airport);
-//<<"%V $Lat \n";
-//allowDB("ic,spe_,rdp")
 
      Ladeg =  coorToDeg(Lat,2); 
  
- 
-//<<"%V $Lat $Ladeg \n";
-//ans=ask("¿Es eso correcto?  [y,n,q]",1);
-
- //cout  <<"Lat " << Lat <<" Ladeg "<< Ladeg  <<endl ; 
 
      Longdeg = coorToDeg(Lon,2);
 
@@ -342,6 +318,8 @@ int lastc = -1;
 //<<"%V $Lon $Longdeg \n";
 //<<"%V $Place $is_airport \n"
 
+//allowDB("vmf",1)
+//rejectDB("spe",1)
 
  }
 
