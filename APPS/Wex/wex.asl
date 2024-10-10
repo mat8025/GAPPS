@@ -62,9 +62,9 @@ using namespace std;
 ////////////////////////////////////////  Globals //////////////////////////////
 
 #if _ASL_
-#define cout //
-#define COUT //
-#define VCOUT //
+#define cout NOP
+#define COUT NOP
+#define VCOUT NOP
 #endif
 
 
@@ -72,8 +72,35 @@ using namespace std;
 //#include "hv.asl"
 
 
-#include "rates_wex.asl"
+//#include "rates_wex.asl"
 
+
+
+float rpm = 0.0166667;
+float w_rate = 397.0 * rpm;
+float h_rate = 477.0 * rpm;
+float c_rate = 636.0 * rpm;
+float run_rate = 795.0 * rpm;
+float wex_rate = 350.0 * rpm;
+float swim_rate = 477.0 * rpm;
+float yard_rate =  318.3 *rpm;
+
+//  metabolic rate slowdown ??
+
+float metaf = 0.95;
+
+float office_rate =  119.3 * rpm * metaf;
+float sleep_rate = 71.5 * rpm  * metaf;
+
+
+float sleep_burn = 8 * 60 * sleep_rate;
+float office_burn = 16 * 60 * office_rate;
+float day_burn = sleep_burn + office_burn;
+
+//<<"%V $day_burn \n"
+
+float out_cal = day_burn * 5/4;
+float in_cal =  day_burn * 3/4;
 
 
 
@@ -307,11 +334,6 @@ Record RX;
 
 #include "callbacks_wex.asl"
 
-
-  
-
-
-
 /////////////////////////////////////////////////  SET GOALS  ////////////////////////////////////////
 ///
 ///        long-term and current weight loss goals 
@@ -337,7 +359,8 @@ Record RX;
 
   Bday = Julian("04/09/1949");
 
-  Jan1 = Julian("01/01/2024"); // Str adate ; adate.strPrintf("01/01/%s",Year.cptr()");
+  Jan1 = Julian("01/01/2024");
+  // Str adate ; adate.strPrintf("01/01/%s",Year.cptr()");
 
   Yday = jtoday -Jan1;
 
@@ -353,13 +376,13 @@ Record RX;
    Str stmp;
    Svar Goals;
    
-   Goals.Split("02/17/2024 04/09/2024 175");
+   Goals.Split("10/01/2024 12/01/2024 175");
 
 //<<"Setting goals $Goals\n"
 
    Svar Goals2;
    
-   Goals2.Split("02/17/2024 03/31/2024 185");
+   Goals2.Split("10/01/2024  10/31/2024 185");
 ////////////////////==============/////////////////
 
 // move these down 10 when reached -- until we are at desired operating weight!
@@ -465,13 +488,11 @@ Record RX;
 
   Wex_Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST);  // no back ptr to Siv?
 
-//  <<" readRecord  $Wex_Nrecs\n";
+/ <<" readRecord  $Wex_Nrecs\n";
 
 // reader in readRecord closes file
 
-//  RX.pinfo();
-
-//   pa (Wex_Nrecs);
+  RX.pinfo();
 
 
   //<<"%V $Wex_Nrecs $RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n";
@@ -537,19 +558,11 @@ Record RX;
 
      nrd= readCCData();
 
-
-
 //<<"exit  readCCData() $nrd \n"
 
-//   <<" CC $nrd\n" ;
-
-
-
-
- //   <<" $nrd \n"
   /////////////////////  part 1 ////////////////////////////
 
-//ans=query("after readData proceed?");
+//ans= ask("after readCCData proceed?",1);
 
 //   init_period = 32;
 

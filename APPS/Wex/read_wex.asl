@@ -12,7 +12,7 @@
  */ 
 //----------------<v_&_v>-------------------------//
 
-allowDB("prep,opera_,spe,rdp_,ic,pex_,parse,array,ds",1)
+allowDB("prep,opera_,spe,rdp_,ic,pex_,parse,array,ds",0)
   
 void fillInObsVec()
 {
@@ -38,7 +38,7 @@ if (Yd >= 0) {
 
   WTVEC[Yd] = mywt;
   
-  //<<"mywt $Yd  $WTVEC[Yd] \n";
+  <<"mywt $Yd  $WTVEC[Yd] \n";
 
   if (mywt > 0.0) {
 
@@ -118,7 +118,7 @@ if (Yd >= 0) {
 
   Nobs++;
 
-   //printf("Nobs %d  exer_burn %f\n",Nobs ,exer_burn);
+   printf("Nobs %d  exer_burn %f\n",Nobs ,exer_burn);
   }
 
   }
@@ -151,10 +151,10 @@ if (Yd >= 0) {
   while (tl < Wex_Nrecs) {
 
 
+
   Col= RX.getRecord(tl);
-  
-
-
+ // RX.pinfo()
+//  Col.pinfo()
   day = Col[0];
   mywt = Col[1];
 
@@ -194,7 +194,7 @@ if (Yd >= 0) {
 
   tl++;
 
-//ans=ask("%V $tl  $day $mywt $Wex_Nrecs\n",1)
+//ans=ask("%V $tl  $day $mywt $Wex_Nrecs\n",0)
 
   if (tl >= Wex_Nrecs) {
 
@@ -292,6 +292,7 @@ if (Yd >= 0) {
 
   //<<"%V $tl $NCCrecs \n"
   if (tl >= NCCrecs) {
+
 
     break;
 

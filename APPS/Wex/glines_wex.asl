@@ -170,7 +170,7 @@ sGl(_GLID,ext_gl,_GLSYMBOL, DIAMOND_, _GLSYMSIZE, Symsz, _GLSYMHUE,RED_);
 
   sGl(_GLID,carb_gl,_GLSYMBOL,ITRI_,_GLSYMHUE,BROWN_,_GLNAME,"carb");
 
-COUT(carb_gl);
+//COUT(carb_gl);
 
   sGl(_GLID,fibre_gl,_GLSYMBOL,DIAMOND_,_GLSYMHUE,PINK_,_GLNAME,"fibre");
 
