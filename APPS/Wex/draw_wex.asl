@@ -297,7 +297,7 @@
 
 
 
-//<<"%V $_proc $sc_startday  $sc_end \n";
+<<"%V $_proc $sc_startday  $sc_end \n";
 
 
 // sc_startday.pinfo()
@@ -305,8 +305,8 @@
 //<<"RESET? %V $sc_startday  $sc_end \n"
 
 
-int wedwos[10] = { wtwo, calwo,  carbwo, extwo,-1  };
-
+//int wedwos[10] = { wtwo, calwo,  carbwo, extwo,-1  };  // TBC 10/13/24 - xic error?
+// better to declare as global screen_wex
 //  Str ans;
 
 //<<"DrawScreens\n";
@@ -315,7 +315,7 @@ int wedwos[10] = { wtwo, calwo,  carbwo, extwo,-1  };
 
   if ( wScreen == 0) {
 
-//<<"%V $sc_zstart $minWt $sc_zend $upperWt\n";
+<<"%V $sc_zstart $minWt $sc_zend $upperWt\n";
 
 // sWo(wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0,_WFLUSH);
 
@@ -323,12 +323,14 @@ int wedwos[10] = { wtwo, calwo,  carbwo, extwo,-1  };
   COUT(sc_zend);
 
 for (i = 0; i< 10; i++) {
+<<"$i $wedwos[i] \n"
       if (wedwos[i] <=0) {
          break;
 	 }
         sWo(_WOID,wedwos[i],_WXSCALES, wpt(sc_zstart,sc_zend));
-//printf("%d xscales %f %f\n",i,sc_zstart,sc_zend);
-        sWo(_WOID,wedwos[i],_WCLEARCLIP,WHITE_,_WSAVE,ON_,_WCLEARPIXMAP,ON_,_WCLIPBORDER,BLACK_,_WREDRAW,ON_,_WSAVEPIXMAP,ON_);
+printf("%d xscales %f %f\n",i,sc_zstart,sc_zend);
+
+        sWo(_WOID,wedwos[i],_wclearclip,WHITE_,_wsave,ON_,_wclearpixmap,ON_,_wclipborder,BLACK_,_wredraw,ON_,_wsavepixmap,ON_);
   }
 
   drawGoals( wScreen);
@@ -372,11 +374,9 @@ for (i = 0; i< 10; i++) {
 //  sWo(_WOID,extwo,"Exercise Time (mins)",wpt( 0.8,0.7),1,0,RED_);
    Text(extwo,"Exercise Time (mins)",0.8,0.7,1,0,RED_);
 
-  int allgls[] = { wt_gl,  ext_gl, carb_gl,  fibre_gl,  fat_gl,  prot_gl,  calc_gl,  calb_gl,   -1};
+//  int allgls[] = { wt_gl,  ext_gl, carb_gl,  fibre_gl,  fat_gl,  prot_gl,  calc_gl,  calb_gl,   -1};
 
-  int foodgls[] = { carb_gl, fibre_gl,fat_gl, prot_gl, -1 };
 
-  int calgls[] = { calb_gl, calc_gl, -1 };
 
    // <<"%V $calc_gl $calb_gl $calgls  \n"
    // int allgls[] = {wt_gl2,wt_gl, wt_gl3,-1};
@@ -675,6 +675,9 @@ Text(carbwo,"FOOD (g) ",0.1,0.89);
   cbm = CALBURN[dindex];
   xtm = EXTV[dindex];
   carb= CARBSCON[dindex];
+  prot= PROTCON[dindex];
+  fat = FATCON[dindex];
+  fiber = FIBRCON[dindex];    
 //<<"%V $xtm \n"
   xtm = fround(xtm,1);
 //<<"round %V $xtm \n"  
@@ -690,12 +693,22 @@ Text(carbwo,"FOOD (g) ",0.1,0.89);
 
   woSetValue(carbewo,"%6.1f$carb");
 
+  woSetValue(protewo,"%6.1f$prot");
+
+  woSetValue(fatewo,"%6.1f$fat");
+
+  woSetValue(fibewo,"%6.1f$fiber");
+
   woSetValue(xtmwo,"%6.1f$xtm");
 
   sWo(_WOID,cbmwo,_WREDRAW,1);
   sWo(_WOID,wtmwo,_WREDRAW,1);
   sWo(_WOID,xtmwo,_WREDRAW,1);
   sWo(_WOID,carbewo,_WREDRAW,1);
+  sWo(_WOID,protewo,_WREDRAW,1);
+  sWo(_WOID,fatewo,_WREDRAW,1);
+  sWo(_WOID,fibewo,_WREDRAW,1);  
+  
   
   sWo(_WOID,dtmwo,_WSTRVALUE ,mdy,_WREDRAW,1);
 

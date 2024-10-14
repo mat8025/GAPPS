@@ -126,9 +126,7 @@ COUT(sc_zstart);
  
 //  sWo(wedwos,_wclip,CXY,_wcolor,RED_,_wclipbhue,ORANGE_,_wbhue,LILAC_,_wfont, F_SMALL_,_wsave,_wsavepixmap,_WEO); 
  
- 
- 
-COUT(sc_end); 
+  COUT(sc_end); 
  
   sWo(_woid,extwo,_wscales,wbox(sc_startday,10,sc_end,300),_wsavescales,0); 
  
@@ -141,7 +139,7 @@ COUT(sc_end);
   sWo(_woid,calwo,_wscales,wbox(sc_startday,0,sc_end,CalsY1),_wsavescales,0); 
 
  
-COUT(calwo); 
+  COUT(calwo); 
  
  
   swo= cWo(vp1,WO_GRAPH_); 
@@ -251,8 +249,6 @@ COUT(swo);
   dtmwo=cWo(vp,WO_BV_); 
   sWo(_woid,dtmwo,_wname,"DAY",_wclipbhue,RED_,_whelp," date on day "); 
  
- 
- 
  // obswo=cWo(vp,WO_BV_); 
 //  sWo(_woid,obswo,_wname,"OBS",_wclipbhue,YELLOW_,_whelp," obs day "); 
  
@@ -263,18 +259,27 @@ COUT(swo);
    
   sWo(_woid,cbmwo,_wname,"CBM",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," cals burnt on day "); 
  
- 
   carbewo=cWo(vp,WO_BV_); 
    
-  sWo(_woid,carbewo,_wname,"CARB",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," carbs eaten on day "); 
- 
- 
+  sWo(_woid,carbewo,_wname,"CARB",_wclipbhue,RED_,_wfonthue,BLACK_,_whelp," carbs eaten on day "); 
+
+  protewo=cWo(vp,WO_BV_); 
+   
+  sWo(_woid,protewo,_wname,"PROT",_wclipbhue,GREEN_,_wfonthue,BLACK_,_whelp," protein eaten on day ");
+
+  fatewo=cWo(vp,WO_BV_); 
+   
+  sWo(_woid,fatewo,_wname,"FAT",_wclipbhue,BLUE_,_wfonthue,WHITE_,_whelp," fat eaten on day ");
+
+  fibewo=cWo(vp,WO_BV_); 
+   
+  sWo(_woid,fibewo,_wname,"FIBER",_wclipbhue,BROWN_,_wfonthue,BLACK_,_whelp," fiber eaten on day "); 
  
  
   xtmwo=cWo(vp,WO_BV_); 
   sWo(_woid,xtmwo,_wname,"ExTim",_wcolor,BLUE_,_whelp," xtime on day "); 
  
-  int mwos[] = { dtmwo, wtmwo, cbmwo, xtmwo, carbewo, -1}; 
+  int mwos[] = { dtmwo, wtmwo, cbmwo, xtmwo, carbewo, protewo, fatewo, fibewo, -1}; 
  
    
   wovtile( mwos, 0.01,0.4,0.085,0.9); 
@@ -283,16 +288,13 @@ COUT(swo);
    if (mwos[i] <0 ) { 
    break; 
    } 
-    
-   //sWo(_woid,mwos[i],_wstyle,WO_SVB_,_wredraw,ON_); 
  
     sWo(_woid,mwos[i],_wstyle,SVB_,_wredraw,ON_); 
  
- 
- 
   } 
  
- 
+                                                                                
+
  
 /////////////////////////////////////////////  KEYS /////////////////////////////////////////// 
   //  keypos = wogetposition (carbwo); 

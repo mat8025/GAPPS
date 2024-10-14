@@ -142,7 +142,10 @@ int ExTim (int wb)
 
    sc_zend = rcpx;
 
-  <<"In ZIN  $sc_zstart $sc_zend \n"      
+  <<"In ZIN  $sc_zstart $sc_zend \n"
+
+ // sc_startday = sc_zstart
+ // sc_end = sc_zend
 
    drawScreens();
 
@@ -169,6 +172,10 @@ int ExTim (int wb)
   sc_zend =  sc_end;
 
   }
+  
+ // sc_startday = sc_zstart
+ // sc_end = sc_zend
+
 
   drawScreens();
 

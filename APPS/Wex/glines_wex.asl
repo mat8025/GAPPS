@@ -190,6 +190,12 @@ sGl(_GLID,ext_gl,_GLSYMBOL, DIAMOND_, _GLSYMSIZE, Symsz, _GLSYMHUE,RED_);
 
   sGl(_GLID,rc_gl,_GLTYPE_CURS, ON_,_GLHUE,BLUE_,_GLDRAW,ON_);
 
+  int allgls[] = { wt_gl,  ext_gl, carb_gl,  fibre_gl,  fat_gl,  prot_gl,  calc_gl,  calb_gl,   -1};
+
+  int foodgls[] = { carb_gl, fibre_gl,fat_gl, prot_gl, -1 };
+
+  int calgls[] = { calb_gl, calc_gl, -1 };
+
 
 //cout<<"glines setup\n";
 
