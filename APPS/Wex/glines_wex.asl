@@ -164,21 +164,19 @@ sGl(_GLID,ext_gl,_GLSYMBOL, DIAMOND_, _GLSYMSIZE, Symsz, _GLSYMHUE,RED_);
   sGl(_GLID,calb_gl,_GLSYMBOL,DIAMOND_,_GLSYMHUE,RED_,_GLNAME,"cals_out");
 
   sGl(_GLID,calc_gl,_GLSYMBOL,TRI_,_GLSYMHUE,BLUE_,_GLNAME,"cals_in");
-//  sGl(carb_gl,_GLSYMBOL,"circle",_GLSYMHUE,BLUE_)
 
 
 
-  sGl(_GLID,carb_gl,_GLSYMBOL,ITRI_,_GLSYMHUE,BROWN_,_GLNAME,"carb");
+
+  sGl(_GLID,carb_gl,_GLSYMBOL,ITRI_,_GLSYMHUE,RED_,_GLNAME,"carb");
 
 //COUT(carb_gl);
 
-  sGl(_GLID,fibre_gl,_GLSYMBOL,DIAMOND_,_GLSYMHUE,PINK_,_GLNAME,"fibre");
+  sGl(_GLID,fibre_gl,_GLSYMBOL,DIAMOND_,_GLSYMHUE,BROWN_,_GLNAME,"fiber");
 
   sGl(_GLID,fat_gl,_GLSYMBOL,CROSS_,_GLSYMHUE,BLUE_,_GLNAME,"fat");
 
-  sGl(_GLID,prot_gl,_GLSYMBOL,TRI_,_GLSYMHUE,RED_,_GLNAME,"prot");
-
-
+  sGl(_GLID,prot_gl,_GLSYMBOL,TRI_,_GLSYMHUE,GREEN_,_GLNAME,"prot");
 
   sGl(_GLID,bp_gl,_GLSYMBOL,ITRI_);
 //  CURSORS

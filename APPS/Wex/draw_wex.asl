@@ -70,7 +70,7 @@
   {
 
 
-<<" SHOW_COMPUTE %V $Nxy_obs $Nsel_exeburn $Nsel_lbs  $xhrs \n"
+//<<" SHOW_COMPUTE %V $Nxy_obs $Nsel_exeburn $Nsel_lbs  $xhrs \n"
 
   sWo(_WOID,nobswo,_WVALUE,"%d $Nxy_obs",_WUPDATE,ON_)
 
@@ -142,7 +142,7 @@
   //
   // Equinoxes Dec 21, March 21, June 21, Sep 21 -
   // winter ,vernal, midsummer, fall
-  <<"$_proc  $wwo\n"
+  //<<"$_proc  $wwo\n"
 
   int match[2]
   int sd
@@ -295,10 +295,9 @@
   int i,j;
 
 
-//<<" $_proc \n"
 
 
-<<"%V $_proc $sc_startday  $sc_end \n";
+//<<"%V $_proc $sc_startday  $sc_end \n";
 
 
 // sc_startday.pinfo()
@@ -537,7 +536,7 @@ Text(carbwo,"FOOD (g) ",0.1,0.89);
   Wex_CR_init = 1;
   Wex_CL_init = 1;
  //sc_startday.pinfo();
-  <<"Done drawScreens\n";
+//  <<"Done drawScreens\n";
   }
   
  }
@@ -637,7 +636,7 @@ Text(carbwo,"FOOD (g) ",0.1,0.89);
 //  long getDay(long dayv)
   {
 
-<<" $_proc   $dayv \n"
+//<<" $_proc   $dayv \n"
 
   dayv.pinfo();
   

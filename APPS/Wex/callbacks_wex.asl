@@ -114,6 +114,7 @@ int ExTim (int wb)
 
      showWL(sc_zstart, sc_zend);
   }
+  
 //--------------------------------------------------
 
   void YRI()
@@ -133,13 +134,15 @@ int ExTim (int wb)
 
   int ZIN(int wb)
   {
-
+  
   //<<" In $_proc  $lcpx  $rcpx\n";
   //cout <<"In ZIN " << lcpx  << endl;
   <<"In ZIN  $ewoname  $ebutton   $wb  cursor @ $lcpx \n"      
    sc_zstart = lcpx;
 
    sc_zend = rcpx;
+
+  <<"In ZIN  $sc_zstart $sc_zend \n"      
 
    drawScreens();
 

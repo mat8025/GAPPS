@@ -224,7 +224,8 @@ if (Yd >= 0) {
   CARBSCON[Yd] = atof(Col[2]);
 
   NCCobs++;
-//<<"Yd $NCCobs $CALSCON[Yd] $CARBSCON[Yd] \n"
+
+<<"Yd $NCCobs $CALSCON[Yd] $CARBSCON[Yd] \n"
 
   }
 
@@ -284,6 +285,8 @@ if (Yd >= 0) {
 
   FIBRCON[Yd] = fiber;
 <<"%V $day $cals $carbs $fat $prot $fiber\n"
+//ans=ask("CC read OK?",1)
+
 
   NCCobs++;
   }

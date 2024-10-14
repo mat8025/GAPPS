@@ -300,7 +300,7 @@ Record RX;
 //=========================================
   float CalsY1 = 5000.0;
 
-  float carb_upper = 200;
+  float carb_upper = 100;
 
   int sc_end ;
 
@@ -612,14 +612,6 @@ float ae = EXTV[15];
 
   predictWL();
 
-/*
- ans=query("after predict proceed with Graphics?");
-
- if (ans != "y") {
-    exit()
- }
-*/
-
 
    openDll("plot");
 
@@ -653,6 +645,10 @@ float ae = EXTV[15];
 #include "screen_wex.asl"
 
 #include "glines_wex.asl"
+
+
+
+
 
    computeGoalLine();
  
@@ -690,10 +686,9 @@ float ae = EXTV[15];
 
          eventWait();
 
-
-
          nevent++;
-  
+
+<<"$nevent $ewoname \n"
        
       if (ewoname == "REDRAW") {
              drawScreens();
@@ -702,9 +697,10 @@ float ae = EXTV[15];
        else if (ewoname == "RESIZE") {
              drawScreens();
        }
-      else if (ewoname == "ZIN") {
-              ZIN(ebutton)
-       }       
+     // else if (ewoname == "ZIN") {
+    //  <<" calling ZIN"
+     //         ZIN(ebutton)
+    //   }       
        else if (ebutton > 0)       {
        
          <<"trying $ewoname $ebutton \n"
