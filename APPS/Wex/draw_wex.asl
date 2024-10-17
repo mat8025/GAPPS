@@ -294,10 +294,7 @@
   {
   int i,j;
 
-
-
-
-<<"%V $_proc $sc_startday  $sc_end \n";
+//<<"%V $_proc $sc_startday  $sc_end \n";
 
 
 // sc_startday.pinfo()
@@ -307,15 +304,11 @@
 
 //int wedwos[10] = { wtwo, calwo,  carbwo, extwo,-1  };  // TBC 10/13/24 - xic error?
 // better to declare as global screen_wex
-//  Str ans;
-
-//<<"DrawScreens\n";
-
 
 
   if ( wScreen == 0) {
 
-<<"%V $sc_zstart $minWt $sc_zend $upperWt\n";
+//<<"%V $sc_zstart $minWt $sc_zend $upperWt\n";
 
 // sWo(wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0,_WFLUSH);
 
@@ -323,12 +316,12 @@
   COUT(sc_zend);
 
 for (i = 0; i< 10; i++) {
-<<"$i $wedwos[i] \n"
+//<<"$i $wedwos[i] \n"
       if (wedwos[i] <=0) {
          break;
 	 }
         sWo(_WOID,wedwos[i],_WXSCALES, wpt(sc_zstart,sc_zend));
-printf("%d xscales %f %f\n",i,sc_zstart,sc_zend);
+//printf("%d xscales %f %f\n",i,sc_zstart,sc_zend);
 
         sWo(_WOID,wedwos[i],_wclearclip,WHITE_,_wsave,ON_,_wclearpixmap,ON_,_wclipborder,BLACK_,_wredraw,ON_,_wsavepixmap,ON_);
   }

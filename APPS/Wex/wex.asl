@@ -12,7 +12,7 @@
  */ 
 //----------------<v_&_v>-------------------------//;                  
 
-  Str Wex_Vers= "2.63  ";
+  Str Wex_Vers= "2.63";
 
 ///
 /// exercise weight display
@@ -722,7 +722,7 @@ float ae = EXTV[15];
 	   break;
 	   }
      }
-
+  exitGS(1)
   exit(0)
 
 #if _CPP_

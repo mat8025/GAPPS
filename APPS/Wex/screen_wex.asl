@@ -24,11 +24,11 @@ int  do_keys = 0
  
 here = 1; 
  
-  Str vptitle = "Wex V$Wex_Vers"; 
+  Str vptitle = "Wex_V$Wex_Vers"; 
+
+ ans = ask("$Wex_Vers    <|$vptitle|> ",0) 
  
- //ans = ask("$Wex_Vers    $vptitle ",0) 
- 
- wdb= DBaction(DBSTEP_,1)  // TBF 8/11/24 not stepping 
+ //wdb= DBaction(DBSTEP_,1)  // TBF 8/11/24 not stepping 
  
    vp =  cWi(vptitle); 
   
@@ -303,7 +303,7 @@ COUT(swo);
  float keyposr[10]; 
  
 if (do_keys ) { 
-    keyposr = wogetrxy (calwo,0); 
+    keyret = wogetrxy (calwo,keyposr); 
     krx= keyposr[1]; 
     kry= keyposr[2]; 
    
@@ -317,7 +317,7 @@ if (do_keys ) {
  
   //  sWo(_woid,keycalwo,_wresize,wbox(kcalx+0.03,kry+0.01,kcalx+0.11,keyposr[4]-0.05,0),_wpixmap,ON_,_wredraw,ON_); 
  
-    keyposr = wogetrxy (carbwo,0); 
+    keyret = wogetrxy (carbwo,keyposr); 
  
     keyposr.pinfo(); 
  
@@ -362,13 +362,58 @@ int zoomwos[] = {zoomwo, zinwo, -1};
  
 sWo(_woid,zoomwo,_wstyle,WO_SVB_,_wredraw,ON_); 
 sWo(_woid,zinwo,_wstyle,WO_SVB_,_wredraw,ON_); 
- 
+
+
+//  check for lyo - layout file 
+
+ lyo_ok=f_exist("${vptitle}.lyo",0,1)
+float wrx,wry,wrX,wrY = 0;
+ if (lyo_ok > 7) {
+<<" have lyo file $lyo_ok %V $vp $vp1 \n"
+    lyosv= readFile("${vptitle}.lyo")
+    n2relay= Caz(lyosv)
+    for (j=0;j< n2relay; j++) {
+<<"$j :: $lyosv[j]\n"
+ CA= split(lyosv[j])
+ <<" $CA[0] $CA[1] $CA[2] $CA[3] $CA[4] $CA[5] $CA[6]\n"
+  wid =atoi(CA[2])
+  won = atoi(CA[1])
+  wrx = atof(CA[4])
+  wry = atof(CA[5])
+ wrX = atof(CA[6])
+  wrY = atof(CA[7])
+
+
+
+  woid = ((wid<< 16) + won);
+
+<<"%V $woid $wrx $wry $wrX $wrY\n"
+
+  ret= wogetrxy (woid,keyposr);
+
+
+//  ret= wogetrxy (xtmwo,keyposr); 
+  
+<<" $keyposr[1] $keyposr[2]  $keyposr[3]  $keyposr[4]\n"
+
+ask("CA $j %V $woid $xtmwo $wid $won $wrx $wry $keyposr[1] $keyposr[2] \n",0)
+
+
+
+   sWo(_woid,woid,_wresize,wbox(wrx,wry,wrX,wrY,0),_wclipborder,ON_,_wredraw,ON_); 
+
+  ret=wogetrxy (woid,keyposr);
+  <<" %V $woid $keyposr[1] $keyposr[2] \n"
+
+  
+
+  }
+   sWi(_woid,vp,_wredraw,1);
+ }
+
 cout<<"Screen DONE\n"; 
  
- // titleVers(); 
-//sleep(0.1) 
-//======================================// 
-//<<[_DB]"$_include \n" 
+
  
 //==============\_(^-^)_/==================// 
  
