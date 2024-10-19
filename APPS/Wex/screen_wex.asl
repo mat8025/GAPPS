@@ -234,11 +234,11 @@ COUT(swo);
       break; 
      } 
 //   <<"$i SVB for $xwos[i] \n" 
-     sWo(_woid,xwos[i],_wstyle,WO_SVB_,_wredraw,ON_); 
+     sWo(_woid,xwos[i],_wstyle,WS_SVB_,_wredraw,ON_); 
  
   } 
    
-   //sWo(xwos,_wstyle,WO_SVB,_wredraw,_WEO); 
+   //sWo(xwos,_wstyle,WS_SVB,_wredraw,_WEO); 
  
    sWo(_woid,wtwo,_wshowpixmap,ON_,_wsave,ON_); 
  
@@ -355,13 +355,13 @@ if (do_keys ) {
   } 
 */ 
  
-  //sWo(goalwos,_wstyle,WO_SVB,_wredraw,_WEO); 
+  //sWo(goalwos,_wstyle,WS_SVB,_wredraw,_WEO); 
 int zoomwos[] = {zoomwo, zinwo, -1}; 
  
-// sWo(zoomwos,_wstyle,WO_SVB,_wredraw,_WEO); 
+// sWo(zoomwos,_wstyle,WS_SVB,_wredraw,_WEO); 
  
-sWo(_woid,zoomwo,_wstyle,WO_SVB_,_wredraw,ON_); 
-sWo(_woid,zinwo,_wstyle,WO_SVB_,_wredraw,ON_); 
+sWo(_woid,zoomwo,_wstyle,WS_SVB_,_wredraw,ON_); 
+sWo(_woid,zinwo,_wstyle,WS_SVB_,_wredraw,ON_); 
 
 
 //  check for lyo - layout file 
@@ -400,7 +400,9 @@ ask("CA $j %V $woid $xtmwo $wid $won $wrx $wry $keyposr[1] $keyposr[2] \n",0)
 
 
 
-   sWo(_woid,woid,_wresize,wbox(wrx,wry,wrX,wrY,0),_wclipborder,ON_,_wredraw,ON_); 
+ sWo(_woid,woid,_wresize,wbox(wrx,wry,wrX,wrY,0),_wattron,WOA_UMOD_,_wclipborder,ON_,_wredraw,ON_);
+
+//sWo(_woid,woid,_wresize,wbox(wrx,wry,wrX,wrY,0),_wattron,4,_wclipborder,ON_,_wredraw,ON_); 
 
   ret=wogetrxy (woid,keyposr);
   <<" %V $woid $keyposr[1] $keyposr[2] \n"
