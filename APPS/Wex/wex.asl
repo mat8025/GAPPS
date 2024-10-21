@@ -258,9 +258,7 @@ Record RX;
   int FirstGoalWt;
   float mid_date;
 
-  float   DX_NEW = 200.0;  // never exceed
 
-  float   DX_MEW = GoalWt+5;  // max dx effort above
 
   Record RCC; // TBC has to be at least 1;
 

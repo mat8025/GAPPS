@@ -124,7 +124,7 @@ COUT(sc_zstart);
  
   sWo(_woid,wtwo,_wclip,CXY,_wcolor,ORANGE_,_wclipbhue,WHITE_,_wbhue,WHITE_,_wfont,F_SMALL_,_wredraw,ON_,_wsavepixmap,ON_); 
  
-//  sWo(wedwos,_wclip,CXY,_wcolor,RED_,_wclipbhue,ORANGE_,_wbhue,LILAC_,_wfont, F_SMALL_,_wsave,_wsavepixmap,_WEO); 
+
  
   COUT(sc_end); 
  

@@ -13,6 +13,11 @@
 //----------------<v_&_v>-------------------------//                                                                                                
 
 
+  float   DX_NEW = 190.0;  // never exceed
+
+  float   DX_MEW = GoalWt+5;  // max dx effort above
+
+
   void showTarget()
   {
 // target wt and date
@@ -330,9 +335,6 @@ for (i = 0; i< 10; i++) {
 
   drawGrids( wScreen);
 
- //sWo(wtwo,_WCLEARCLIP,CYAN_,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_,_WFLUSH);
-// sWo(calwo,_WCLEARCLIP,YELLOW_,_WSAVE,_WCLEARPIXMAP,_WCLIPBORDER,BLACK_,_WFLUSH);
-// sWo(wtwo,_WSCALES,wbox(sc_startday,150,sc_end,220),_WFLUSH);
  
   if (ALL_LINES) {
 
@@ -451,9 +453,7 @@ for (i = 0; i< 10; i++) {
          break;
 	 }
 
-     // sWo(_WOID,wedwos[i],_WCLIPBORDER,BLACK_,_WPIXMAP,ON_,_WREDRAW,ON_,_WSAVEPIXMAP,ON_);
-     // sWo(_WOID,wedwos[i],_WCLIPBORDER,BLACK_,_WREDRAW,ON_);
-     // sWo(_WOID,wedwos[i],_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_);
+
    }
 
 
