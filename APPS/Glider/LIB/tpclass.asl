@@ -172,8 +172,8 @@ class Turnpt
 
 
 
-//void TPCUPset (Svar& wval)
-void TPCUPset (Svar wval)
+void TPCUPset (Svar& wval)
+//void TPCUPset (Svar wval)  // TBF copy construct cpp fail on destruct?
  {
 
 //<<"IN $_proc \n"

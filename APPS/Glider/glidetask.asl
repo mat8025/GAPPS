@@ -15,13 +15,9 @@
 
 char vers[6] ="5.3";
 
-
-
-
-
  
 #define DB_IT    0
-#define GT_DB   1
+#define GT_DB   0
 #define __ASL__ 1
 #define __CPP__ 0
 
@@ -232,7 +228,7 @@ int main( int argc, char *argv[] ) { // main start
 
   afh=ofr("CUP/bbrief.cup")  ; // open turnpoint file;
 
-    printf( "opened CUP/bbrief.cup afh %d \n", afh);
+    //printf( "opened CUP/bbrief.cup afh %d \n", afh);
 
   }
 
@@ -442,7 +438,7 @@ while (ac < na) {
 #if __ASL__
   //CLTPT[cltpt] = targ;   // TBF 02/24/22
 
-<<"%V $cltpt $targ  \n"
+//<<"%V $cltpt $targ  \n"
 
    CLTPT.cpy(targ,cltpt);
 
@@ -614,7 +610,7 @@ while (ac < na) {
 
     nwr = Wval.readWords(afh,0,',');
 
-<<" CUP read of  $nwr words \n"
+//<<" CUP read of  $nwr words \n"
 
    }
   else {
@@ -718,19 +714,20 @@ if ((nxttpt == "done")  ) {  // 6.54 fail
 
   else {
 
+/*
 #if __CPP__
  if (GT_DB) cout <<"looking for " << nxttpt << endl;
 #else
  <<"afh $afh looking for $nxttpt \n";
 #endif
-
+*/
 //<<"%V $afh\n"
 
   afh = k_afh;
 
 
 
-<<"$afh   $nxttpt \n"
+//<<"$afh   $nxttpt \n"
 
   where = searchFile(afh,nxttpt,0,1,0,0);
 
@@ -862,7 +859,7 @@ if ((nxttpt == "done")  ) {  // 6.54 fail
   }
 
   L1 = GT_Wtp[nl].Ladeg;
- printf("n_legs [%d] L1 %f\n",n_legs, L1);
+ //printf("n_legs [%d] L1 %f\n",n_legs, L1);
    //<<"$GT_Wtp[n_legs].Place \n";
   //ans=query("??");
 }
