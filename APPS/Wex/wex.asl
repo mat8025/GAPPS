@@ -486,7 +486,7 @@ Record RX;
 
   Wex_Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST);  // no back ptr to Siv?
 
-/ <<" readRecord  $Wex_Nrecs\n";
+ <<" readRecord  $Wex_Nrecs\n";
 
 // reader in readRecord closes file
 
