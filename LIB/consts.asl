@@ -20,9 +20,6 @@
 
 const double E_ = exp(1.0);
 
-
-
-
 const double G_ = 6.672e-11
 
 const double g_ = 9.8 // m per sec per sec -- grav acc
