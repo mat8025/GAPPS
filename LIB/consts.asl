@@ -52,6 +52,7 @@ const double EarthMass_ = 5.980e24
 
 const double Avogadro_ = 6.022140e23
 
+const double PI_ = 4.0 *atan(1.0)
 
 
 <<"%v $EarthMass_ \n"
@@ -129,11 +130,10 @@ void units()
 }
 
 <<"   formats in sci format \%e e.g.  1.38e-23 \n"
+
 void consts()
 {
-<<"MKS  - note consts are preceeded by underscore \n"
-<<"%V$PI_ \n"
-<<"%V$E_ \n"
+<<"MKS  - note consts are followed by underscore \n"
 <<"%V$g_  grav acceleration meters per sec per sec \n"
 <<"%V %e$G_ Gravitational Constant 6.672 x 10E-11 Nm^2/Kg^2  \n"
 <<"%V %e$c_ speed of light    m/s\n"
@@ -144,6 +144,8 @@ void consts()
 <<"%V$EarthRadius_  meters \n"
 <<"%V%e$EarthMass_ Kg\n"
 <<"%V%e$Avogadro_ entities per mole\n"
+<<"%V$PI_ \n"
+<<"%V$E_ \n"
 
 <<"\n"
 

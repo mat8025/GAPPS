@@ -8,4 +8,6 @@ make install
 popd
 fi
 done
-mka
+cd GM
+make install
+
