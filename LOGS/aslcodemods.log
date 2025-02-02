@@ -2273,3 +2273,21 @@ spe_func.cpp                        3.60  (date(16))  lookupsfunc - remove pool 
 prep_preprocess.cpp                 1.20  (date(16))  svar cpy specify field
 gwm_interact.cpp                    1.28  10/18/2024 16:15:45  
 gwm_resize.cpp                      1.36  10/20/2024 15:18:25  fill in wp px,py
+pr_state.cpp                        1.35  01/26/2025 09:48:53  empty header at top
+pr_state.cpp                        1.36  01/26/2025 10:02:17  
+pr_state.cpp                        1.37  01/26/2025 10:03:10  ds_storevar de ref bug?
+pr_state.cpp                        1.38  01/26/2025 10:04:41  moving on
+pr_state.cpp                        1.39  01/26/2025 10:06:29  just a bit
+pr_state.cpp                        1.40  01/26/2025 10:10:42  again
+spe_print.cpp                       2.55  01/26/2025 10:16:21  
+spe_print.cpp                       2.56  01/26/2025 10:17:11  
+spe_print.cpp                       2.55  01/26/2025 10:20:27  guard fh -1
+spe_print.cpp                       2.57  01/26/2025 10:31:21  
+spe_print.cpp                       2.58  01/26/2025 10:32:12  
+spe_print.cpp                       2.59  01/26/2025 10:32:39  
+spe_print.cpp                       2.60  01/26/2025 10:35:47  no debug
+ic_print.cpp                        1.65  01/26/2025 10:39:32  guard fh -1 Jf NULL
+spil_cprintf.cpp                    1.5  01/28/2025 12:31:24  cpp_pex
+fop_ops.cpp                         1.86  02/01/2025 12:12:12  use a+ for ofa
+svar_read.cpp                       1.63  02/01/2025 12:13:14  readFile Str option
+vmf_fop.cpp                         1.4  02/01/2025 12:15:07  svar readFile fh/str

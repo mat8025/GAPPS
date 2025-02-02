@@ -1,3 +1,4 @@
+
 /* 
  *  @script classbops.asl                                               
  * 
@@ -29,7 +30,7 @@ allowErrors(-1) ; // keep going
 chkIn();
 
 db_ask = 0
-db_allow = 1
+db_allow = 0
 
 allowDB("oo_,ic,spe_proc,ic_,ds_store",db_allow)
 
@@ -137,17 +138,35 @@ class Point
 //============================//
 
 
-     float Setx (real m) {
-   //  float Setx (double m) {
-      m.pinfo()
+   //  float Setx (real m)
+     float Setx (double m)
+     {
+      <<" $m   \n"; 
+
+//  float Setx (double m) {
+     // m.pinfo()   ; // TBF can we do this?
       x = m;
-      <<"$_proc $m $x  \n"; 
+      <<" double arg set $x  \n"; 
+      <<"$_proc   \n"; 
       return x;
       }
 
-     float Setxy (real m, real z) {
+
+     float Setx (int mi)
+     {
+      <<" $mi   \n"; 
+     // m.pinfo()   ; // TBF can we do this?
+      x = mi;
+      <<" int arg set $x  \n"; 
+      <<"$_proc   \n"; 
+      return x;
+      }
+
+
+     float Setxy (real m, real z)
+     {
    //  float Setxy (double m, double z) {
-      m.pinfo()
+     // m.pinfo()
       x = m;
       y = z
       <<"$_proc $m $z $x $y  \n"; 
@@ -256,7 +275,7 @@ v= y.isVector()
     {
     // same name as class is the constructor
      y=2;
-     x=4;
+     x=4.1234;
      DV[0] = 0.23;
      DV[1] = 1.23
      DV[2] = 2.23;
@@ -289,12 +308,41 @@ ask("CONS  $x $_cobj ",0)
   chkR(rx,1.0)
 
   rx=   A.Getx();
-    ask("Getx $rx OK",0) 
+  
+  ask("Getx $rx 4.1234 ? OK",0) 
   
 //
-  rx = A.Setx(1.2)
+ // rx = A.Setx(1.2)
+   float srx = 5.6789;
 
-   ask("proc_svn $rx OK?",0)
+   A.Setx(srx)
+
+  rx=   A.Getx();
+  
+  ask("Getx $rx $srx ? OK",0) 
+
+   int sxi = 99.66
+
+   A.Setx(sxi)
+
+
+  rx=   A.Getx();
+
+ask("Getx $rx $sri ? OK",0) 
+
+
+   A.Setx(1.2)
+
+
+  rx=   A.Getx();
+
+
+
+
+
+
+
+   ask("proc_svn $rx 1.2  OK?",0)
 
 allowDB("spe,oo,ic,opera",db_allow)
   rx= A.Setx(2.4)
@@ -302,9 +350,15 @@ allowDB("spe,oo,ic,opera",db_allow)
 
    rx= A.Getx();
 
-   ask("proc_svn $rx OK?",db_ask)
+   ask("proc_svn $rx 2.4 OK?",0)
 
   chkR(rx,2.4)
+
+
+
+
+///////////////////////////////////////////////////////////////////////////
+
 
 //allowDB("clearall", 1)
 

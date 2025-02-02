@@ -1,3 +1,4 @@
+
 /* 
  *  @script shead.asl                                                   
  * 
@@ -354,7 +355,7 @@ allowDB("spe_proc",1)
 
    padHdr(" *  @script $fname ")
 
-   <<[A]"/* \n"
+   <<[A]"\n/* \n"
    hl=padHdr(" *  @script $fname ")
    <<[A]"$hl\n"
    <<[A]" * \n"

@@ -1,3 +1,4 @@
+
 /* 
  *  @script cbump.asl                                                   
  * 
@@ -78,7 +79,7 @@ int DBH_ = -1
   srcfile = _clarg[1];
   
   if (srcfile @= "") {
-  <<[DBH_]"no script file entered\n"
+  <<"no scrfile file entered\n"
     exit();
   }
   
@@ -86,11 +87,12 @@ int DBH_ = -1
   
   //<<[DBH_]" RW sz $sz \n"
 
-
+  //<<"\n $sz script file $srcfile $DBH_ \n"
 
   <<[DBH_]" $sz script file $srcfile\n"
 
   if (sz == -1) {
+  <<"can't find scrfile $srcfile \n"
     exit();
   }
 
@@ -191,9 +193,10 @@ ans=ask(" Cbump processing  $srcfile",0)
 
  mans=ask("what is the new modification?: $mans ",1)
 
+ //mans.pinfo()
 <<"$mans\n"
 
-if (mans == "q") {
+ if (mans == "q") {
   <<"abandon!"
   exit(-1);
 }
@@ -387,7 +390,7 @@ Str old_comment ="yyy"
 A=ofile(srcfile,"w")
 
 
-<<[A]"/*//////////////////////////////////<**|**>///////////////////////////////////\n"
+<<[A]"\n/*//////////////////////////////////<***|***>///////////////////////////////////\n"
 <<[A]"//$insp $fname \n"
 <<[A]"//		          \n"
 <<[A]"//    @comment  $comment \n"

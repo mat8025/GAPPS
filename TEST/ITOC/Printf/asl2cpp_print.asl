@@ -1,3 +1,4 @@
+
 /* 
  *  @script asl2cpp_print.asl                                           
  * 
@@ -11,7 +12,7 @@
  * 
  */ 
 
-
+#define __ASL__ 1
 #define __CPP__ 0
 
 #if __ASL__
@@ -22,12 +23,6 @@
  argc = argc();
 
 
-#include "debug" 
-
-  if (_dblevel >0) { 
-   debugON() 
-   <<"$Use_ \n" 
-} 
 
    allowErrors(-1); // set number of errors allowed -1 keep going 
 
@@ -44,7 +39,8 @@ using namespace std;
 
 #define CPP_DB 0
 
-  int main( int argc, char *argv[] ) {  
+  int main( int argc, char *argv[] ) {
+  
     init_cpp(argv[0]) ; 
 
 #endif       
@@ -88,14 +84,24 @@ using namespace std;
   // r2 = <<[A]" Print %v $a $A\n" ;  // TBF fixed 1/22/25
 
   cf(A)
-  
 
-  
+Str ts
+
+   ts =     " paramexpand these $a $A "
+
+<<"\n ts expanded to $ts \n"
+
+   as = " auto paramexpand these $a $A $ts "
+
+<<"\n as expanded to $as \n"
+
+  as.pinfo()
 
 ///
 
   chkOut(1);
 
+<<"que pasa?\n"
 
 
 #if __CPP__           

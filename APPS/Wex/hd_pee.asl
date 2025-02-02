@@ -1,4 +1,3 @@
-
 /* 
  *  @script pee.asl                                                     
  * 
@@ -62,56 +61,35 @@ using namespace std;
 
 bmt = "p"
 val = "1"
-dt = "1"
+
 dt = date()
-int A = -1
+
 <<" $dt  $bmt $val\n"
 
 fname ="peefrq.dat"
-sz=fexist(fname, 0,1)
+sz=f_exist(fname, 0,1)
  
 if (sz == -1) {
-A=ofw(fname)
+A=o_file(fname,"w+")
 }
 else { 
-A=ofa(fname) ;
+A=o_file(fname,"r+") ;
 }
 
 //<<" %V $A\n"
 
-fseek(A,0,2)
-
-<<"$dt $bmt $val\n"
-
+f_seek(A,0,2)
 
 <<[A],"$dt $bmt $val\n"
- fseek(A,0,0)
+f_seek(A,0,0)
 
-// cf(A)
-
- Svar C
-
-//A=ofr(fname) ;
-
-
-  C.readFile(A) ; // TBD  allow FH
-
-
-// C.readFile(fname) ; 
-
-
-
-
-
-<<"0 $C[0] \n"
-
-<<"[2] $C[2] \n"
-<<"[3] $C[3] \n"
-<<" $C \n"
-
-<<"[-1] $C[-1] \n"
+C=readfile(A)
 
 cf(A)
+
+<<" $C \n"
+
+
 
 ///
 
