@@ -1,3 +1,4 @@
+
 /* 
  *  @script wex.asl                                                     
  * 
@@ -12,7 +13,7 @@
  */ 
 //----------------<v_&_v>-------------------------//;                  
 
-  Str Wex_Vers= "2.63";
+  Str Wex_Vers= "2.64";
 
 ///
 /// exercise weight display
@@ -340,9 +341,9 @@ Record RX;
 
 
   
-   yday = Julian("01/01/2024")   ; // this should be found from data file
+   yday = Julian("01/01/2025")   ; // this should be found from data file
 
-   eday = Julian("12/31/2024");
+   eday = Julian("12/31/2025");
 
   
   today = getDate(2);
@@ -357,7 +358,7 @@ Record RX;
 
   Bday = Julian("04/09/1949");
 
-  Jan1 = Julian("01/01/2024");
+  Jan1 = Julian("01/01/2025");
   // Str adate ; adate.strPrintf("01/01/%s",Year.cptr()");
 
   Yday = jtoday -Jan1;
@@ -374,13 +375,13 @@ Record RX;
    Str stmp;
    Svar Goals;
    
-   Goals.Split("10/01/2024 12/01/2024 175");
+   Goals.Split("10/01/2025 12/01/2025 175");
 
 //<<"Setting goals $Goals\n"
 
    Svar Goals2;
    
-   Goals2.Split("10/01/2024  10/31/2024 185");
+   Goals2.Split("10/01/2025  10/31/2025 185");
 ////////////////////==============/////////////////
 
 // move these down 10 when reached -- until we are at desired operating weight!
@@ -460,7 +461,7 @@ Record RX;
 
   Mo.Split ("JAN,FEB,MAR,APR ,MAY,JUN, JUL, AUG, SEP, OCT, NOV , DEC",44);
 
-  GoalsC.Split("02/17/2024 04/09/2024 175");
+  GoalsC.Split("02/01/2025 04/09/2025 175");
 
 
   maxday = Julian("04/09/2049") -Bday;
@@ -471,7 +472,7 @@ Record RX;
 
 //  Onwards();
 
-  int A=ofr("~/gapps/DAT/wex2024.tsv");
+  int A=ofr("~/gapps/DAT/wex2025.tsv");
 
   if (A == -1) {
 
