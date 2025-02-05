@@ -1,3 +1,4 @@
+
 /* 
  *  @script ootlib.asl 
  * 
@@ -348,7 +349,7 @@ ssele= IGCELE.stats();
 
  // ans=ask("$sz the_parts.caz();  ",1)
 
-   <<"sz $sz $(typeof(the_parts))\n"
+ //  <<"sz $sz $(typeof(the_parts))\n" ;  //TBD cpp $(exp) => args
 
 
 //DBG"%V $the_parts[::] \n"

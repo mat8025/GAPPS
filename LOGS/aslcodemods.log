@@ -2291,3 +2291,10 @@ spil_cprintf.cpp                    1.5  01/28/2025 12:31:24  cpp_pex
 fop_ops.cpp                         1.86  02/01/2025 12:12:12  use a+ for ofa
 svar_read.cpp                       1.63  02/01/2025 12:13:14  readFile Str option
 vmf_fop.cpp                         1.4  02/01/2025 12:15:07  svar readFile fh/str
+svar_env.cpp                        1.5  02/02/2025 08:49:32  rework GS_HOME
+spil_cprintf.cpp                    1.6  02/03/2025 08:57:59  svar cptr(i)
+prep_preprocess.cpp                 1.21  02/03/2025 09:29:20  vecrange spec in translate
+svar.h                              2.10  02/03/2025 09:32:49  
+vec.h                               1.14  02/04/2025 09:02:06  rearrange template defs
+svar_opera.cpp                      2.6  02/04/2025 09:08:47  tidy DB
+spil_utils.cpp                      2.70  02/04/2025 09:10:43  

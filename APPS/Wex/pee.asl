@@ -50,15 +50,15 @@ using namespace std;
 
 #endif       
 
-
+ // showenv() ; // TBD need cpp
+  
   chkIn(1) ;
 
-  chkT(1);
+//  chkT(1);
 
  
 
-
-# PeeFrq
+// PeeFrq
 
 bmt = "p"
 val = "1"
@@ -90,7 +90,7 @@ fseek(A,0,2)
 // cf(A)
 
  Svar C
-
+ Str sve = "XX"
 //A=ofr(fname) ;
 
 
@@ -103,15 +103,21 @@ fseek(A,0,2)
 
 
 
-<<"0 $C[0] \n"
+//<<"0 $C[0] \n" ;  // need cpp pex for svar element
 
-<<"[2] $C[2] \n"
-<<"[3] $C[3] \n"
+//<<"[2] $C[2] \n"
+//<<"[3] $C[3] \n"
 <<" $C \n"
 
-<<"[-1] $C[-1] \n"
+//<<"[-1] $C[-1] \n"
 
 cf(A)
+
+  sve = C[2]
+
+<<" %V $sve\n"
+
+<<" C[1:4]  \n $C[1:4] \n"
 
 ///
 
