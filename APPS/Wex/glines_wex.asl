@@ -14,16 +14,12 @@
 
 ///////////////////// GLINES & SYMBOLS ///////////////////////////////
 //<<[_DB]"\n%(10,, ,\n)$DVEC \n"
-
+   //oknow = Ask ("que pasa? $_proc ",1)
 
 
 // COUT(pwt_gl)
 
-  ext_gl  = cGl(extwo) 
 
-// set as XYVECTOR
-
- sGl(_GLID,ext_gl,_GLXVEC,DVEC,_GLYVEC,EXTV,_GLHUE,BLACK_,_GLSYMLINE, DIAMOND_)
 
 //<<"%V $ext_gl \n"
 
@@ -47,12 +43,15 @@
 
   wt_gl = cGl(wtwo);
 
+  sGl(_GLID,wt_gl, _GLHUE, RED_, _GLXVEC, DVEC, _GLYVEC, WTVEC,_GLSYMLINE, TRI_,_GLNAME,"weight")
 
+  ext_gl  = cGl(extwo) 
 
+// set as XYVECTOR
 
-  sGl(_GLID,wt_gl, _GLHUE, RED_, _GLXVEC, DVEC, _GLYVEC, WTVEC,_GLSYMLINE, TRI_);
+  sGl(_GLID,ext_gl,_GLXVEC,DVEC,_GLYVEC,EXTV,_GLHUE,BLACK_,_GLSYMLINE, DIAMOND_,_GLNAME,"exer time")
+
   
-  pa(wt_gl);
 
 
   if ((wt_gl == -1)  || (ext_gl == -1)) {
@@ -80,32 +79,34 @@ gw_gl = -1;
 
   calb_gl = cGl(calwo);
 
-  sGl(_GLID,calb_gl,_GLXVEC,DVEC,_GLYVEC,CALBURN,_GLHUE,RED_,_GLSYMBOL,DIAMOND_,_GLSYMHUE, RED_);
+  sGl(_GLID,calb_gl,_GLXVEC,DVEC,_GLYVEC,CALBURN,_GLHUE,RED_,_GLSYMBOL,"diamond",_GLSYMHUE, RED_,_GLNAME,"cals burnt")
+
 // calc_gl = cGl(calwo,_GLTXY,DFVEC,CALCON,_GLHUE,RED_,_GLSYMBOL,"triangle",_GLSYMHUE, BLUE_,GLEO);
 
 //COUT(calb_gl)
 
   calc_gl = cGl(calwo);
 
-  sGl(_GLID,calc_gl, _GLXVEC,DVEC,_GLYVEC,CALSCON,_GLHUE,RED_,_GLSYMBOL,STAR_,_GLSYMHUE, RED_);
+  sGl(_GLID,calc_gl, _GLXVEC,DVEC,_GLYVEC,CALSCON,_GLHUE,RED_,_GLSYMBOL,"star",_GLSYMHUE, RED_,_GLNAME,"cals consumed")
 
-  carb_gl = cGl(carbwo);
+ // carb_gl = cGl(carbwo);
+  carb_gl = cGl(extwo);
 
-  sGl(_GLID,carb_gl,_GLXVEC,DVEC,_GLYVEC,CARBSCON,_GLHUE,BLUE_,_GLSYMBOL,TRI_,_GLSYMHUE, BROWN_);
+  sGl(_GLID,carb_gl,_GLXVEC,DVEC,_GLYVEC,CARBSCON,_GLHUE,BLUE_,_GLSYMBOL,DIAMOND_,_GLSYMHUE, RED_,_GLNAME,"carbs consumed")
 
 //COUT(carb_gl)
 
   fibre_gl = cGl(carbwo);
 
-  sGl(_GLID,fibre_gl,_GLXVEC,DVEC,_GLYVEC,FIBRCON,_GLHUE,BLUE_,_GLSYMBOL,DIAMOND_,_GLSYMHUE, PINK_);
+  sGl(_GLID,fibre_gl,_GLXVEC,DVEC,_GLYVEC,FIBRCON,_GLHUE,BLUE_,_GLSYMBOL,CROSS_,_GLSYMHUE, PINK_,_GLNAME,"fibre")
 
   fat_gl = cGl(carbwo);
 
-  sGl(_GLID,fat_gl,_GLXVEC,DVEC,_GLYVEC,FATCON,_GLHUE,BLUE_,_GLSYMBOL,CROSS_,_GLSYMHUE, PINK_);
+  sGl(_GLID,fat_gl,_GLXVEC,DVEC,_GLYVEC,FATCON,_GLHUE,BLUE_,_GLSYMBOL,CROSS_,_GLSYMHUE, GREEN_,_GLNAME,"fat")
 
   prot_gl = cGl(carbwo);
 
-  sGl(_GLID,prot_gl,_GLXVEC,DVEC,_GLYVEC,PROTCON,_GLHUE,BLUE_,_GLSYMBOL,CROSS_,_GLSYMHUE, PINK_);
+  sGl(_GLID,prot_gl,_GLXVEC,DVEC,_GLYVEC,PROTCON,_GLHUE,BLUE_,_GLSYMBOL,CROSS_,_GLSYMHUE, LILAC_,_GLNAME,"protein")
 // ave_ext_gl  = cGl(extwo,_GLXVEC,DVEC,AVE_EXTV,_GLHUE,RED_,LINE_)
 
   se_gl   = cGl(extwo);
@@ -143,21 +144,13 @@ gw_gl = -1;
 
   //sGl(_GLID,ext_gl,_GLSYMBOL,TRI_, _GLSYMSIZE, Symsz,_GLSYMFILL,ON_);
 
-sGl(_GLID,ext_gl,_GLSYMBOL, DIAMOND_, _GLSYMSIZE, Symsz, _GLSYMHUE,RED_);
-
-  
+  sGl(_GLID,ext_gl,_GLSYMBOL, DIAMOND_, _GLSYMSIZE, Symsz, _GLSYMHUE,RED_,_GLNAME,"exer time");
 
   sGl(_GLID,cardio_gl,_GLSYMBOL,DIAMOND_);
 
-  
-
   sGl(_GLID,strength_gl,_GLSYMBOL, STAR5_);
 
-  sGl(_GLID,wt_gl,_GLSYMBOL,TRI_,_GLSYMSIZE, Symsz, _GLSYMHUE,BLUE_);
-
-  
-
-
+  sGl(_GLID,wt_gl,_GLSYMBOL,DIAMOND_,_GLSYMSIZE, Symsz, _GLSYMHUE,BLUE_,_GLNAME,"weight");
 
   sGl(_GLID,se_gl,_GLSYMBOL,DIAMOND_);
 
@@ -165,10 +158,7 @@ sGl(_GLID,ext_gl,_GLSYMBOL, DIAMOND_, _GLSYMSIZE, Symsz, _GLSYMHUE,RED_);
 
   sGl(_GLID,calc_gl,_GLSYMBOL,TRI_,_GLSYMHUE,BLUE_,_GLNAME,"cals_in");
 
-
-
-
-  sGl(_GLID,carb_gl,_GLSYMBOL,ITRI_,_GLSYMHUE,RED_,_GLNAME,"carb");
+  sGl(_GLID,carb_gl,_GLSYMBOL,DIAMOND_,_GLSYMHUE,RED_,_GLNAME,"carb");
 
 //COUT(carb_gl);
 
@@ -176,7 +166,7 @@ sGl(_GLID,ext_gl,_GLSYMBOL, DIAMOND_, _GLSYMSIZE, Symsz, _GLSYMHUE,RED_);
 
   sGl(_GLID,fat_gl,_GLSYMBOL,CROSS_,_GLSYMHUE,BLUE_,_GLNAME,"fat");
 
-  sGl(_GLID,prot_gl,_GLSYMBOL,TRI_,_GLSYMHUE,GREEN_,_GLNAME,"prot");
+  sGl(_GLID,prot_gl,_GLSYMBOL,ITRI_,_GLSYMHUE,GREEN_,_GLNAME,"prot");
 
   sGl(_GLID,bp_gl,_GLSYMBOL,ITRI_);
 //  CURSORS
@@ -197,6 +187,6 @@ sGl(_GLID,ext_gl,_GLSYMBOL, DIAMOND_, _GLSYMSIZE, Symsz, _GLSYMHUE,RED_);
   int calgls[] = { calb_gl, calc_gl, -1 };
 
 
-//cout<<"glines setup\n";
+<<"glines setup % $wt_gl $carb_gl\n";
 
 //==============\_(^-^)_/==================//

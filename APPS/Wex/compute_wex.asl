@@ -27,11 +27,11 @@ float Nsel_calsinout = 0.0;
 
      GVEC[0] = StartWt;  // start  Wt
 
-     GVEC[1] = NextGoalWt;
+     GVEC[1] = FirstGoalWt;
 
      long ty_gsday = gsday;
 
-     float gwt =  NextGoalWt;
+     float gwt =  FirstGoalWt;
 
      GVEC[ngday-1] = gwt;  // goal wt
 
@@ -42,7 +42,7 @@ float Nsel_calsinout = 0.0;
 
      float lpd = 4.0/7.0;      // 4 lb a  week
 
-     float try_lpd = (StartWt - NextGoalWt) / (1.0 * ngday);
+     float try_lpd = (StartWt - FirstGoalWt) / (1.0 * ngday);
 
      float lw = StartWt;
 
@@ -78,8 +78,9 @@ float Nsel_calsinout = 0.0;
  //    <<[_DB]"%6.1f%(7,, ,\n)$GVEC\n";
 //ans=query("done computeGoalLine()?");
 
-      //<<" exit computeGoalLine()\n";
-     }
+      <<" exit computeGoalLine()\n";
+ //oknow = Ask ("que pasa? $_proc",1)
+  }
      
 //==================================//
 
@@ -140,7 +141,7 @@ void computeWL(long wlsday, long wleday)
    xhrs = (Nsel_exemins/60.0);
 
 //<<"%V$Nxy_obs %6.2f $Nsel_exemins $(Nsel_exemins/60.0) $Nsel_exeburn $Nsel_calsinout $Nsel_lbs $xhrs\n"
-
+//oknow = Ask ("que pasa? $_proc",1)
 }
 //=========================
 float PWT1 = 0.0;
@@ -156,14 +157,14 @@ double pw;
 Vec<double> pwl(10);
 pwl[0] = 0.0;
 pwl[1] = 1.0;
-double xv[5];
-double yv[5];
+double xv[7];
+double yv[7];
 int i;
 
-int k = Yday-3; // 
-
+int k = Yday-2;
+  
 <<"$Yday $k\n"
-
+//  oknow = Ask ("%V $Yday $k ",1)
   if (Yday > 5) {
     for (i =0; i < 3; i++) {   
        xv[i] =  i;
@@ -194,10 +195,7 @@ int k = Yday-3; //
   }
 
 <<"\n Tomorrow's wt will be %6.2f $pw +week $PWT7  + month $PWT30\n"
-
-
-
-
+// oknow = Ask ("que pasa? $_proc",1)
   return pw;
 }
 

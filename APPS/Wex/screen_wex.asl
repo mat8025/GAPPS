@@ -181,7 +181,8 @@ COUT(swo);
  
  
   int allwo[] = {wtwo, calwo,  extwo , carbwo,swo,-1}; 
-//<<"%V $allwo \n" 
+
+  <<"%V $allwo \n" 
  
  
    

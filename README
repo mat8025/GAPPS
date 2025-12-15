@@ -58,3 +58,6 @@
 //      built, and the  TEST/XASL/ShmIPC directory 
 //      has a number   of example scripts of using asl with the Xwindow app xgs.
 //
+
+
+//  will be adding str and chr class to take care of wchar, char options

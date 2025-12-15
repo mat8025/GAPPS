@@ -13,7 +13,7 @@
  */ 
 //----------------<v_&_v>-------------------------//;                  
 
-  Str Wex_Vers= "2.64";
+  Str Wex_Vers= "2.65";
 
 ///
 /// exercise weight display
@@ -182,15 +182,15 @@ float in_cal =  day_burn * 3/4;
 
   char sep = 47;
 
-  float minWt = 150;
+  float minWt = 160;
 
-  float upperWt = 235;  // this is way too much
+  float upperWt = 210;  // this is way too much
 //StartWt = 205;
 // rates per min
 
  float   GoalWt = 175;  // ideal -- flying weight
 
- float   StartWt = 206;
+ float   StartWt = 205;
 
  float   MinWt = 160;
 
@@ -255,8 +255,8 @@ Record RX;
   long gday;
   long gsday;
   
-  int NextGoalWt;
   int FirstGoalWt;
+  int TargetGoalWt;
   float mid_date;
 
 
@@ -299,7 +299,7 @@ Record RX;
 //=========================================
   float CalsY1 = 5000.0;
 
-  float carb_upper = 100;
+  float carb_upper = 300;
 
   int sc_end ;
 
@@ -375,13 +375,13 @@ Record RX;
    Str stmp;
    Svar Goals;
    
-   Goals.Split("10/01/2025 12/01/2025 175");
+   Goals.Split("12/01/2025 12/31/2025 175");
 
 //<<"Setting goals $Goals\n"
 
    Svar Goals2;
    
-   Goals2.Split("10/01/2025  10/31/2025 185");
+   Goals2.Split("12/01/2025  12/15/2025 185");
 ////////////////////==============/////////////////
 
 // move these down 10 when reached -- until we are at desired operating weight!
@@ -400,23 +400,20 @@ Record RX;
    
 
    long tarxday = Julian(Goals[1]) -Jan1;
-   long targetday = Julian(Goals[1]);
+   long targetday = Julian(Goals[1]) -Jan1;
 
-   targetday -= Jan1;
 	  
 //<<"%V $tjd $Jan1 $Sday $targetday  $tarxday; \n"
 
-
-
-   NextGoalWt = atoi(Goals[2]);
+//   FirstGoalWt = atoi(Goals[2]);
 
    Sday2 = Julian(Goals2[0]) -Jan1 ; // start date
 
    tday2 = Julian(Goals2[1]) -Jan1;
 
-   FirstGoalWt = atoi(Goals[2]);
+   TargetGoalWt = atoi(Goals[2]);
 
-   NextGoalWt = atoi(Goals2[2]);
+   FirstGoalWt = atoi(Goals2[2]);
 
    gsday = Sday;
 
@@ -426,14 +423,14 @@ Record RX;
 
 //   Onwards();
 
-  sc_startday = (jtoday - Jan1) -20;
+  sc_startday = (jtoday - Jan1) -7;
 
   if (sc_startday <0)
      sc_startday =0;
 
 //  sc_endday = targetday + 7;
 
-    sc_endday = sc_startday + 30;
+    sc_endday = sc_startday + 35;
 //   <<"%V$sc_startday $targetday $sc_endday \n"
 
 
@@ -455,6 +452,8 @@ Record RX;
      }
 
    kdays = k;
+
+// oknow = Ask ("que pasa? $_proc",1)
 
 /////////////////////////////////////////////////  READ RECORDS ////////////////////////////////////////
   int n = 0;
@@ -511,7 +510,7 @@ Record RX;
 ///////////// Cals & Carb Consumed ////////
 // so far not logged often 
 
-  int ACC=ofr("~/gapps/DAT/cc2024.tsv");
+  int ACC=ofr("~/gapps/DAT/cc2025.tsv");
 
 <<"%V $ACC\n"
 
@@ -567,7 +566,7 @@ Record RX;
 
 
 
-  float gwt = NextGoalWt;
+  float gwt = FirstGoalWt;
 // ans=query("computeGoalLine()?");
 
 
@@ -647,38 +646,43 @@ float ae = EXTV[15];
 
 
 
-
+//ans=Ask("  proceed?",1);
 
    computeGoalLine();
  
 
   lcpx = sc_startday;
   rcpx = sc_endday;
-  
+
+//ans=Ask(" draw screens proceed?",1);
+
   drawScreens();
+//
 
   showTarget();
 
 
-  drawScreens();
+
+ // drawScreens();
 
 
 //  <<" %(1,,,\n) $EXTV \n"
   Str tit_msg = "Tomorrow's wt will be %6.2f $PWT1 +week $PWT7  + month $PWT30"
- //titleMessage("Tomorrow's wt will be %6.2f $PWT1 +week $PWT7  + month $PWT30")
+ 
 
   titleMessage(vp,tit_msg)
 
+ans=Ask(" show target proceed?",1);
 
  int nevent = 0;
 
-//ans=query(" screen interact proceed?");
-  drawScreens();
+oknow = Ask ("que pasa? $_proc",1)      
+
+//  drawScreens();
   int rcb = 0;
 
      Graphic = checkGWM();
-
-      
+oknow = Ask ("que pasa? $_proc",1)      
 
      while (Graphic) {
 
@@ -688,6 +692,7 @@ float ae = EXTV[15];
          nevent++;
 
 <<"$nevent $ewoname \n"
+       //ans = ask("$nevent $ewoname \n",1)
        
       if (ewoname == "REDRAW") {
              drawScreens();

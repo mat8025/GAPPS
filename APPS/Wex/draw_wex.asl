@@ -21,22 +21,21 @@
   void showTarget()
   {
 // target wt and date
-//  <<"$_proc $gday $NextGoalWt $last_known_day\n"
-//  plot(gwo,_Wsymbol,gday,NextGoalWt, TRI_,1, YELLOW_);
-//  plot(gwo,_Wsymbol,gday-1,NextGoalWt, 3,1,GREEN_);
+//  <<"$_proc $gday $FirstGoalWt $last_known_day\n"
 
-  //<<"%V $last_known_day $PWT $PWT7 $PWT14  $tday2 $FirstGoalWt \n";
+
+  //<<"%V $last_known_day $PWT $PWT7 $PWT14  $tday2 $TargetGoalWt \n";
 
 
 // cout<<"showTarget()\n";
   
-  plotSymbol(wtwo,tday2,FirstGoalWt,TRI_,Symsz,BLACK_,1);
+  plotSymbol(wtwo,targetday,TargetGoalWt,DIAMOND_,Symsz,GREEN_,1);
 
   //cout<<"plotSymbol\n";
 
-  plotSymbol(wtwo,gday,NextGoalWt,DIAMOND_,Symsz,BLUE_, 1);
+  plotSymbol(wtwo,tday2,FirstGoalWt,DIAMOND_,Symsz,BLUE_, 1);
 
-  plotSymbol(wtwo,last_known_day,NextGoalWt,DIAMOND_,Symsz,RED_,1);
+  plotSymbol(wtwo,last_known_day,FirstGoalWt,DIAMOND_,Symsz,RED_,1);
 
   plotSymbol(wtwo,last_known_day+2,PWT,DIAMOND_,Symsz,GREEN_,1);
 
@@ -44,13 +43,13 @@
 
   plotSymbol(wtwo,last_known_day+15,PWT14,DIAMOND_,Symsz,PINK_,1);
 
-  hlng = (last_known_wt - NextGoalWt) / 0.43;
+  hlng = (last_known_wt - FirstGoalWt) / 0.43;
 
   if (hlng  > 0) {
 
  // <<"%v $hlng\n";
 
-  plotSymbol(wtwo,last_known_day+hlng,NextGoalWt,STAR_,Symsz, BLUE_);
+  plotSymbol(wtwo,last_known_day+hlng,FirstGoalWt,STAR_,Symsz, BLUE_);
 
   plotSymbol(wtwo,last_known_day+hlng,last_known_wt,CROSS_,Symsz,GREEN_);
  // <<"$_proc %v $hlng\n"
@@ -94,21 +93,25 @@
   void drawGoals(int ws)
   {
 
+   //oknow = Ask ("que pasa? $ws $_proc",1)
+
   if (ws == 0) {
    // Plot(wtwo,_WBOX,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_)  // never go above
 
   plotBox(wtwo,sc_zstart,DX_NEW,sc_zend,DX_NEW+20, RED_, FILL_)  
 
-  plotBox(wtwo,sc_zstart,DX_MEW,sc_zend,DX_NEW, ORANGE_, FILL_)  
+  plotBox(wtwo,sc_zstart,180.0,sc_zend,DX_NEW, ORANGE_, FILL_)  
 
-  plotBox(wtwo,sc_zstart,GoalWt-5,sc_zend,GoalWt+5, LIGHTGREEN_,FILL_)  //
+  plotBox(wtwo,sc_zstart,170.0,sc_zend,180, YELLOW_, FILL_)  
+
+  plotBox(wtwo,sc_zstart,GoalWt-2,sc_zend,GoalWt+3, LIGHTGREEN_,FILL_)  //
     //Plot(calwo,_WLINE,sc_startday,day_burn,sc_end,day_burn, GREEN_)
 
   plotLine(calwo,sc_zstart,day_burn,sc_zend,day_burn, GREEN_)
 
   plotLine(calwo,sc_startday,out_cal,sc_end,out_cal, BLUE_)
 
-  plotLine(calwo,sc_startday,in_cal,sc_end,in_cal, RED_)
+  plotLine(calwo,sc_startday,in_cal,sc_end,in_cal, BLACK_)
 
   plotLine(calwo,sc_startday,50,sc_end,50, GREEN_)
 
@@ -116,7 +119,7 @@
   
     // use todays date and wt to the intermediate short-term goal
 
-  plotLine(wtwo,last_known_day,last_known_wt,tday2,FirstGoalWt, RED_) 
+  plotLine(wtwo,last_known_day,last_known_wt,targetday,TargetGoalWt, BLACK_) 
 
   }
 
@@ -148,7 +151,7 @@
   // Equinoxes Dec 21, March 21, June 21, Sep 21 -
   // winter ,vernal, midsummer, fall
   //<<"$_proc  $wwo\n"
-
+  // oknow = Ask ("que pasa? $_proc $wwo",1)
   int match[2]
   int sd
 
@@ -239,7 +242,8 @@
   void  drawGrids(int  ws )
   {
     int i,j
-// <<[_DB]" $ws \n"
+ <<" $ws \n"
+oknow = Ask ("que pasa? $_proc $ws",1)
 
   if (ws == 0) {
 
@@ -247,32 +251,34 @@
 
   //sWo(extwo,_WFONT,"small",_WEO) // check font can accept a int or char *
 
+<<"%V $carbwo $extwo \n"
+//oknow = Ask ("que pasa? $_proc",1)
 
   sWo(_WOID,carbwo,_WAXNUM,AXIS_LEFT_)
 
-  sWo(_WOID,carbwo,_WYSCALES,wpt(-5,carb_upper),_WSAVESCALES,0)
+  sWo(_WOID,carbwo,_WYSCALES,wpt(-10,carb_upper),_WSAVESCALES,0)
 
   sWo(_WOID,calwo,_WUSESCALES,0,_WAXNUM,  AXIS_LEFT_)
 //  sWo(carbwo,_WAXNUM,2)
 
-  sWo(_WOID,extwo,_WYSCALES,wpt(0,upperWt),_WSAVESCALES,1)
+  sWo(_WOID,extwo,_WYSCALES,wpt(0,300),_WSAVESCALES,1)
 
   sWo(_WOID,extwo,_WAXNUM,AXIS_LEFT_)
 
-  sWo(_WOID,wtwo,_WYSCALES,wpt(160,220))
+  sWo(_WOID,wtwo,_WYSCALES,wpt(160,205))
 
     sWo(_WOID,wtwo,_WAXNUM,AXIS_LEFT_)
   //sWo(extwo,_WAXNUM,2,0,sc_endday,20,10)
   Text(wtwo, "Weight (lbs)",0.1,1.0,RED_,0,0,2)
 
- // axisLabel(wtwo,AXIS_BOTTOM_,"Weight (lbs)",0.5,1.7)
+  axisLabel(wtwo,AXIS_BOTTOM_,"Weight (lbs)",0.5,1.7)
 
  // axisLabel(calwo,AXIS_BOTTOM_,"Calories",0.5,1.7)
    //axisLabel(extwo,AXIS_LEFT_,"Exercise Time (mins)",0.1,0.7) // TBF
 
  // axisLabel(extwo,AXIS_LEFT_,"Mins",0.1,4.0) // TBF
 
- // axisLabel(carbwo,AXIS_LEFT_,"Carbs",0.1,4)
+  axisLabel(carbwo,AXIS_LEFT_,"Carbs",0.1,4)
  
 
   }
@@ -291,6 +297,9 @@
          break;
       sWo(_WOID,allwo[i],_WSHOWPIXMAP,ON_,_WSAVE,ON_,_WCLIPBORDER,BLACK_)
     }
+
+//oknow = Ask ("que pasa? $_proc",1)
+
   }
 //---------------------------------------------------------------------------------
 #define ALL_LINES 1
@@ -298,6 +307,8 @@
   void drawScreens()
   {
   int i,j;
+
+//oknow = Ask ("que pasa? $_proc",1)
 
 //<<"%V $_proc $sc_startday  $sc_end \n";
 
@@ -330,7 +341,9 @@ for (i = 0; i< 10; i++) {
 
         sWo(_WOID,wedwos[i],_wclearclip,WHITE_,_wsave,ON_,_wclearpixmap,ON_,_wclipborder,BLACK_,_wredraw,ON_,_wsavepixmap,ON_);
   }
-
+  
+  wScreen= 0
+//oknow = Ask ("que pasa? $_proc $wScreen ",1)
   drawGoals( wScreen);
 
   drawGrids( wScreen);
@@ -338,7 +351,7 @@ for (i = 0; i< 10; i++) {
  
   if (ALL_LINES) {
 
- // <<[_DB]" draw lines \n";
+  ok=ask(" draw lines \n",2);
 
   //dGl(exgls);
       //dGl(cardio_gl);
@@ -350,9 +363,6 @@ for (i = 0; i< 10; i++) {
 
       //Text(calwo,"Calories Burnt", 0.8,0.9,1)      
 
- // plotSymbol(calwo,_WKEYSYMBOL,wpt(0.78 ,0.8),DIAMOND_,Symsz,RED_,1);
-
-//  sWo(_WOID,calwo,_WTEXTR,"Calories Ate", wpt(0.8,0.82),1,0,BLACK_);
 
     Text(calwo,"Calories Ate", 0.8,0.82,1,0,BLACK_);
 
@@ -369,39 +379,16 @@ for (i = 0; i< 10; i++) {
 //  sWo(_WOID,extwo,"Exercise Time (mins)",wpt( 0.8,0.7),1,0,RED_);
    Text(extwo,"Exercise Time (mins)",0.8,0.7,1,0,RED_);
 
-//  int allgls[] = { wt_gl,  ext_gl, carb_gl,  fibre_gl,  fat_gl,  prot_gl,  calc_gl,  calb_gl,   -1};
-
-
-
-   // <<"%V $calc_gl $calb_gl $calgls  \n"
-   // int allgls[] = {wt_gl2,wt_gl, wt_gl3,-1};
-
-//<<"%V $allgls\n"
-
-
-  sGl(_GLID,wt_gl,_GLDRAW,ON_);
-
-  sGl(_GLID,ext_gl,_GLDRAW,ON_);
-
-  sGl(_GLID,calb_gl,_GLDRAW,ON_);
-
-  sGl(_GLID,carb_gl,_GLDRAW,ON_);
-
-  sGl(_GLID,calc_gl,_GLDRAW,ON_);
-
-  sGl(_GLID,prot_gl,_GLDRAW,ON_);
-
-  sGl(_GLID,fat_gl,_GLDRAW,ON_);
-
-
    int gi=0;
 
   //while ( allgls[gi] >= 0)  {    // ?? bug
- do_all_gls = 1;
+  
+  do_all_gls = 1;
   if (do_all_gls) {
   while ( 1) {
-
- //<<"%V $gi $allgls[gi] \n"
+  gname = glineGetName(allgls[gi]);
+  
+  ok=ask("%V $gi $allgls[gi] $gname",1);
 
   sGl(_GLID,allgls[gi],_GLDRAW,ON_);
   
@@ -412,6 +399,7 @@ for (i = 0; i< 10; i++) {
     }
 
   }
+  
   for (i = 0; i< 10; i++) {
         if (wedwos[i] <=0) {
          break;
@@ -430,15 +418,14 @@ for (i = 0; i< 10; i++) {
 
 //ans=query("proceed?");
 
-  int allwo[] = {wtwo, swo, calwo,  extwo , carbwo,-1};
- // int allwo[] = {gwo,-1};
+//  int allwo[] = {wtwo, swo, calwo, extwo , carbwo,-1};
    
    
   drawMonths(wtwo);
 
-  drawMonths(calwo);
+  //drawMonths(calwo);
 
-  drawMonths(carbwo);
+  //drawMonths(carbwo);
 
   drawMonths(extwo);
       //Text(extwo,"Exercise mins",-4,0.5,4,-90)
@@ -524,12 +511,14 @@ Text(carbwo,"FOOD (g) ",0.1,0.89);
 
   //sWo(fewos,_WREDRAW);
 
- // sWo(tw_wo,_WMOVE,wpt(targetday,NextGoalWt),wtwo,_WREDRAW); // ?? parent wo
+ // sWo(tw_wo,_WMOVE,wpt(targetday,FirstGoalWt),wtwo,_WREDRAW); // ?? parent wo
 
   Wex_CR_init = 1;
   Wex_CL_init = 1;
  //sc_startday.pinfo();
-//  <<"Done drawScreens\n";
+<<"Done drawScreens\n";
+oknow = Ask ("que pasa? $_proc",1)
+  
   }
   
  }
@@ -605,9 +594,11 @@ Text(carbwo,"FOOD (g) ",0.1,0.89);
          break;
   sWo(_WOID,wedwos[i],_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
   }
+  
   sWo(_WOID,swo,_WXSCALES,wpt(rx,rX));
-
+  // want to use left and right scales
   sWo(_WOID,wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0);
+  //sWo(_WOID,wtwo,_WSCALES,wbox(rx,0,rX,upperWt),_WSAVESCALES,0);
 
   drawScreens();
 

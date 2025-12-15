@@ -234,30 +234,7 @@ int WTLB(int wb)
 
   void setGoals()
   {
-/*
-  Str wtv = getWoValue(gwtwo);
-
-  NextGoalWt = atof(wtv);
-
-  <<"%V$wtv $NextGoalWt\n";
-
-  ssday = getWoValue(sdwo);
-
-  sgday = getWoValue(gdwo);
-
-  long lsday =julian(ssday) -bday ; // start date;
-
-  targetday = julian(sgday) -bday;
-
-  //<<"%V$wtv $NextGoalWt $ssday $sgday $lsday $targetday\n";
-
-  //computeGoalLine();
- //  sGl(gw_gl,@TXY,WDVEC,GVEC,@color,RED_)
-
-  drawScreens();
-
-  sWo(_WOID,tw_wo,_WMOVETO,targetday,NextGoalWt,wtwo,_WREDRAW,1);
-*/
+   <<"SetGoals ??\n"
   }
 
 
