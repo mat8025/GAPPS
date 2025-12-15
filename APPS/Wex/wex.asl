@@ -184,7 +184,7 @@ float in_cal =  day_burn * 3/4;
 
   float minWt = 160;
 
-  float upperWt = 210;  // this is way too much
+  float upperWt = 205;  // this is way too much
 //StartWt = 205;
 // rates per min
 

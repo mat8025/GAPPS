@@ -166,7 +166,7 @@ COUT(swo);
  
   float bp_upper = 400.0; 
  
-  float wt_upper = 220; 
+  float wt_upper = 205; 
  
   sWo(_woid,swo,_wscales,wbox(sc_startday,110,sc_end,bp_upper)); 
  
@@ -177,7 +177,7 @@ COUT(swo);
  
   //<<"SCALES %V$sc_startday $sc_endday $carb_upper\n"; 
  
-  sWo(_woid,wtwo,_wscales,wbox(sc_startday,155,sc_end,250)); 
+  sWo(_woid,wtwo,_wscales,wbox(sc_startday,minWt,sc_end,upperWt)); 
  
  
   int allwo[] = {wtwo, calwo,  extwo , carbwo,swo,-1}; 

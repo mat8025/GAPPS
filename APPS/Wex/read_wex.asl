@@ -32,7 +32,7 @@ if (Yd >= 0) {
   mywt = atof(Col[j++]);
   
 
- // <<" %V $mywt \n"
+  <<" %V $mywt \n"
 
   if (mywt > 0.0) {  // we have an entry = not all days are logged
 
@@ -204,9 +204,9 @@ if (Yd >= 0) {
 
   }
 
- //ans=ask("readDATA proceed?",1);
-  printf("Wex_Nrecs %d there were Nobs %d measurements ",Wex_Nrecs,Nobs);
 
+  printf("Wex_Nrecs %d there were Nobs %d measurements ",Wex_Nrecs,Nobs);
+  ans=ask("readDATA proceed?",1);
   return tl;
 
   }

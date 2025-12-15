@@ -89,8 +89,8 @@ gw_gl = -1;
 
   sGl(_GLID,calc_gl, _GLXVEC,DVEC,_GLYVEC,CALSCON,_GLHUE,RED_,_GLSYMBOL,"star",_GLSYMHUE, RED_,_GLNAME,"cals consumed")
 
- // carb_gl = cGl(carbwo);
-  carb_gl = cGl(extwo);
+  carb_gl = cGl(carbwo);
+  
 
   sGl(_GLID,carb_gl,_GLXVEC,DVEC,_GLYVEC,CARBSCON,_GLHUE,BLUE_,_GLSYMBOL,DIAMOND_,_GLSYMHUE, RED_,_GLNAME,"carbs consumed")
 

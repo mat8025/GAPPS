@@ -98,7 +98,9 @@
   if (ws == 0) {
    // Plot(wtwo,_WBOX,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_)  // never go above
 
-  plotBox(wtwo,sc_zstart,DX_NEW,sc_zend,DX_NEW+20, RED_, FILL_)  
+ // sWo(_WOID,wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0);
+
+  plotBox(wtwo,sc_zstart,DX_NEW,sc_zend,upperWt, RED_, FILL_)  
 
   plotBox(wtwo,sc_zstart,180.0,sc_zend,DX_NEW, ORANGE_, FILL_)  
 
@@ -115,7 +117,7 @@
 
   plotLine(calwo,sc_startday,50,sc_end,50, GREEN_)
 
-    plotLine(carbwo,sc_startday,30,sc_end,30, RED_)
+  plotLine(carbwo,sc_startday,35,sc_end,35, RED_)
   
     // use todays date and wt to the intermediate short-term goal
 
@@ -326,7 +328,7 @@ oknow = Ask ("que pasa? $_proc $ws",1)
 
 //<<"%V $sc_zstart $minWt $sc_zend $upperWt\n";
 
-// sWo(wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0,_WFLUSH);
+ //sWo(wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0,_WFLUSH);
 
   COUT(sc_zstart);
   COUT(sc_zend);
@@ -598,7 +600,7 @@ oknow = Ask ("que pasa? $_proc",1)
   sWo(_WOID,swo,_WXSCALES,wpt(rx,rX));
   // want to use left and right scales
   sWo(_WOID,wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0);
-  //sWo(_WOID,wtwo,_WSCALES,wbox(rx,0,rX,upperWt),_WSAVESCALES,0);
+
 
   drawScreens();
 
