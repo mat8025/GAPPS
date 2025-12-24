@@ -2298,3 +2298,6 @@ svar.h                              2.10  02/03/2025 09:32:49
 vec.h                               1.14  02/04/2025 09:02:06  rearrange template defs
 svar_opera.cpp                      2.6  02/04/2025 09:08:47  tidy DB
 spil_utils.cpp                      2.70  02/04/2025 09:10:43  
+dbug_parse.cpp                      2.3  12/18/2025 11:10:41  move from parse to dbug dir
+dbug_error.cpp                      1.51  12/18/2025 11:11:32  
+plot_wo_set.cpp                     1.99  12/18/2025 11:14:09  fix RHT input bug

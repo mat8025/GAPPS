@@ -29,19 +29,19 @@
 
 // cout<<"showTarget()\n";
   
-  plotSymbol(wtwo,targetday,TargetGoalWt,DIAMOND_,Symsz,GREEN_,1);
+  plotSymbol(wt_wo,targetday,TargetGoalWt,DIAMOND_,Symsz,GREEN_,1);
 
   //cout<<"plotSymbol\n";
 
-  plotSymbol(wtwo,tday2,FirstGoalWt,DIAMOND_,Symsz,BLUE_, 1);
+  plotSymbol(wt_wo,tday2,FirstGoalWt,DIAMOND_,Symsz,BLUE_, 1);
 
-  plotSymbol(wtwo,last_known_day,FirstGoalWt,DIAMOND_,Symsz,RED_,1);
+  plotSymbol(wt_wo,last_known_day,FirstGoalWt,DIAMOND_,Symsz,RED_,1);
 
-  plotSymbol(wtwo,last_known_day+2,PWT,DIAMOND_,Symsz,GREEN_,1);
+  plotSymbol(wt_wo,last_known_day+2,PWT,DIAMOND_,Symsz,GREEN_,1);
 
-  plotSymbol(wtwo,last_known_day+8,PWT7,DIAMOND_,Symsz,LILAC_,1);
+  plotSymbol(wt_wo,last_known_day+8,PWT7,DIAMOND_,Symsz,LILAC_,1);
 
-  plotSymbol(wtwo,last_known_day+15,PWT14,DIAMOND_,Symsz,PINK_,1);
+  plotSymbol(wt_wo,last_known_day+15,PWT14,DIAMOND_,Symsz,PINK_,1);
 
   hlng = (last_known_wt - FirstGoalWt) / 0.43;
 
@@ -49,21 +49,21 @@
 
  // <<"%v $hlng\n";
 
-  plotSymbol(wtwo,last_known_day+hlng,FirstGoalWt,STAR_,Symsz, BLUE_);
+  plotSymbol(wt_wo,last_known_day+hlng,FirstGoalWt,STAR_,Symsz, BLUE_);
 
-  plotSymbol(wtwo,last_known_day+hlng,last_known_wt,CROSS_,Symsz,GREEN_);
+  plotSymbol(wt_wo,last_known_day+hlng,last_known_wt,CROSS_,Symsz,GREEN_);
  // <<"$_proc %v $hlng\n"
 
-  plotSymbol(wtwo,last_known_day+hlng,GoalWt,STAR_,Symsz, RED_);
+  plotSymbol(wt_wo,last_known_day+hlng,GoalWt,STAR_,Symsz, RED_);
 
-  plotSymbol(wtwo,last_known_day+hlng,last_known_wt,CROSS_,Symsz,GREEN_);
+  plotSymbol(wt_wo,last_known_day+hlng,last_known_wt,CROSS_,Symsz,GREEN_);
 
   }
 
- sWo(_WOID,wtwo,_WSHOWPIXMAP,ON_);
+ sWo(_WOID,wt_wo,_WSHOWPIXMAP,ON_);
 
 //cout<<"Done showTarget\n";
-  //plotSymbol(wtwo,targetday,GoalWt,STAR_,Symsz, LILAC_);
+  //plotSymbol(wt_wo,targetday,GoalWt,STAR_,Symsz, LILAC_);
 //  dGl(gw_gl);
 //sc_startday.pinfo();
 
@@ -96,32 +96,32 @@
    //oknow = Ask ("que pasa? $ws $_proc",1)
 
   if (ws == 0) {
-   // Plot(wtwo,_WBOX,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_)  // never go above
+   // Plot(wt_wo,_WBOX,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_)  // never go above
 
- // sWo(_WOID,wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0);
+ // sWo(_WOID,wt_wo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0);
 
-  plotBox(wtwo,sc_zstart,DX_NEW,sc_zend,upperWt, RED_, FILL_)  
+  plotBox(wt_wo,sc_zstart,DX_NEW,sc_zend,upperWt, RED_, FILL_)  
 
-  plotBox(wtwo,sc_zstart,180.0,sc_zend,DX_NEW, ORANGE_, FILL_)  
+  plotBox(wt_wo,sc_zstart,180.0,sc_zend,DX_NEW, ORANGE_, FILL_)  
 
-  plotBox(wtwo,sc_zstart,170.0,sc_zend,180, YELLOW_, FILL_)  
+  plotBox(wt_wo,sc_zstart,170.0,sc_zend,180, YELLOW_, FILL_)  
 
-  plotBox(wtwo,sc_zstart,GoalWt-2,sc_zend,GoalWt+3, LIGHTGREEN_,FILL_)  //
-    //Plot(calwo,_WLINE,sc_startday,day_burn,sc_end,day_burn, GREEN_)
+  plotBox(wt_wo,sc_zstart,GoalWt-2,sc_zend,GoalWt+3, LIGHTGREEN_,FILL_)  //
+    //Plot(cal_wo,_WLINE,sc_startday,day_burn,sc_end,day_burn, GREEN_)
 
-  plotLine(calwo,sc_zstart,day_burn,sc_zend,day_burn, GREEN_)
+  plotLine(cal_wo,sc_zstart,day_burn,sc_zend,day_burn, GREEN_)
 
-  plotLine(calwo,sc_startday,out_cal,sc_end,out_cal, BLUE_)
+  plotLine(cal_wo,sc_startday,out_cal,sc_end,out_cal, BLUE_)
 
-  plotLine(calwo,sc_startday,in_cal,sc_end,in_cal, BLACK_)
+  plotLine(cal_wo,sc_startday,in_cal,sc_end,in_cal, BLACK_)
 
-  plotLine(calwo,sc_startday,50,sc_end,50, GREEN_)
+  plotLine(cal_wo,sc_startday,50,sc_end,50, GREEN_)
 
-  plotLine(carbwo,sc_startday,35,sc_end,35, RED_)
+  plotLine(carb_wo,sc_startday,35,sc_end,35, RED_)
   
     // use todays date and wt to the intermediate short-term goal
 
-  plotLine(wtwo,last_known_day,last_known_wt,targetday,TargetGoalWt, BLACK_) 
+  plotLine(wt_wo,last_known_day,last_known_wt,targetday,TargetGoalWt, BLACK_) 
 
   }
 
@@ -245,42 +245,43 @@
   {
     int i,j
  <<" $ws \n"
-oknow = Ask ("que pasa? $_proc $ws",1)
+//oknow = Ask ("que pasa? $_proc $ws",1)
 
   if (ws == 0) {
 
-  //sWo({extwo,calwo,wtwo},_WFONT,"small")
+  //sWo({carb_wo,cal_wo,wt_wo},_WFONT,"small")
 
-  //sWo(extwo,_WFONT,"small",_WEO) // check font can accept a int or char *
+  //sWo(carb_wo,_WFONT,"small",_WEO) // check font can accept a int or char *
 
-<<"%V $carbwo $extwo \n"
+<<"%V $food_wo $carb_wo \n"
 //oknow = Ask ("que pasa? $_proc",1)
 
-  sWo(_WOID,carbwo,_WAXNUM,AXIS_LEFT_)
+  sWo(_WOID,food_wo,_WAXNUM,AXIS_LEFT_)
 
-  sWo(_WOID,carbwo,_WYSCALES,wpt(-10,carb_upper),_WSAVESCALES,0)
+  sWo(_WOID,food_wo,_WYSCALES,wpt(-10,carb_upper),_WSAVESCALES,0)
 
-  sWo(_WOID,calwo,_WUSESCALES,0,_WAXNUM,  AXIS_LEFT_)
-//  sWo(carbwo,_WAXNUM,2)
+  sWo(_WOID,cal_wo,_WUSESCALES,0,_WAXNUM,  AXIS_LEFT_)
+//  sWo(food_wo,_WAXNUM,2)
 
-  sWo(_WOID,extwo,_WYSCALES,wpt(0,300),_WSAVESCALES,1)
+  sWo(_WOID,carb_wo,_WYSCALES,wpt(-5,200),_WSAVESCALES,1)
 
-  sWo(_WOID,extwo,_WAXNUM,AXIS_LEFT_)
+  sWo(_WOID,carb_wo,_WAXNUM,AXIS_LEFT_)
 
-  sWo(_WOID,wtwo,_WYSCALES,wpt(160,205))
+  sWo(_WOID,wt_wo,_WYSCALES,wpt(160,205))
 
-    sWo(_WOID,wtwo,_WAXNUM,AXIS_LEFT_)
-  //sWo(extwo,_WAXNUM,2,0,sc_endday,20,10)
-  Text(wtwo, "Weight (lbs)",0.1,1.0,RED_,0,0,2)
+    sWo(_WOID,wt_wo,_WAXNUM,AXIS_LEFT_)
+  //sWo(carb_wo,_WAXNUM,2,0,sc_endday,20,10)
+  Text(wt_wo, "Weight (lbs)",0.1,1.0,RED_,0,0,2)
+  Text(carb_wo, "Carbs ",0.1,1.0,RED_,0,0,2)
 
-  axisLabel(wtwo,AXIS_BOTTOM_,"Weight (lbs)",0.5,1.7)
+  axisLabel(wt_wo,AXIS_BOTTOM_,"Weight (lbs)",0.5,1.7)
 
- // axisLabel(calwo,AXIS_BOTTOM_,"Calories",0.5,1.7)
-   //axisLabel(extwo,AXIS_LEFT_,"Exercise Time (mins)",0.1,0.7) // TBF
+ // axisLabel(cal_wo,AXIS_BOTTOM_,"Calories",0.5,1.7)
+   //axisLabel(carb_wo,AXIS_LEFT_,"Exercise Time (mins)",0.1,0.7) // TBF
 
- // axisLabel(extwo,AXIS_LEFT_,"Mins",0.1,4.0) // TBF
+ // axisLabel(carb_wo,AXIS_LEFT_,"Mins",0.1,4.0) // TBF
 
-  axisLabel(carbwo,AXIS_LEFT_,"Carbs",0.1,4)
+  axisLabel(food_wo,AXIS_LEFT_,"Carbs",0.1,4)
  
 
   }
@@ -293,7 +294,7 @@ oknow = Ask ("que pasa? $_proc $ws",1)
   //sWo(xwo,_WCLIPBORDER,BLACK_,_WSAVE,_WEO)
 
   }
-  int allwo[] = {wtwo,swo, calwo,  extwo , carbwo,-1}
+  int allwo[] = {wt_wo,swo, cal_wo,  carb_wo , food_wo,-1}
     for (i = 0; i< 10; i++) {
       if (allwo[i] <=0)
          break;
@@ -320,7 +321,7 @@ oknow = Ask ("que pasa? $_proc $ws",1)
 //<<"RESET? %V $sc_startday  $sc_end \n"
 
 
-//int wedwos[10] = { wtwo, calwo,  carbwo, extwo,-1  };  // TBC 10/13/24 - xic error?
+//int wedwos[10] = { wt_wo, cal_wo,  food_wo, carb_wo,-1  };  // TBC 10/13/24 - xic error?
 // better to declare as global screen_wex
 
 
@@ -328,7 +329,7 @@ oknow = Ask ("que pasa? $_proc $ws",1)
 
 //<<"%V $sc_zstart $minWt $sc_zend $upperWt\n";
 
- //sWo(wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0,_WFLUSH);
+ //sWo(wt_wo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0,_WFLUSH);
 
   COUT(sc_zstart);
   COUT(sc_zend);
@@ -353,33 +354,33 @@ for (i = 0; i< 10; i++) {
  
   if (ALL_LINES) {
 
-  ok=ask(" draw lines \n",2);
+  //ok=ask(" draw lines \n",2);
 
   //dGl(exgls);
       //dGl(cardio_gl);
       //dGl(strength_gl);
 
-  sWo(_WOID,calwo,_WFONT,F_SMALL_);
+  sWo(_WOID,cal_wo,_WFONT,F_SMALL_);
       /// these need to be a separate wo to contain key  symbol and text
-     // plot(calwo,_Wkeysymbol,0.78 ,0.9,DIAMOND_,Symsz,BLUE_,1);
+     // plot(cal_wo,_Wkeysymbol,0.78 ,0.9,DIAMOND_,Symsz,BLUE_,1);
 
-      //Text(calwo,"Calories Burnt", 0.8,0.9,1)      
-
-
-    Text(calwo,"Calories Ate", 0.8,0.82,1,0,BLACK_);
+      //Text(cal_wo,"Calories Burnt", 0.8,0.9,1)      
 
 
-     // plot(calwo,_Wkeysymbol,0.78 ,0.7,TRI_,Symsz,RED_,1,_Wfonthue,WHITE_);      
-      //Text(calwo,"Carbs Ate", 0.8,0.72,1)
-
-  sWo(_WOID,extwo,_WFONT,F_SMALL_);
-
-//plot(extwo,_Wkeysymbol,0.78,0.7,TRI_,Symsz,GREEN_,1);
+    Text(cal_wo,"Calories Ate", 0.8,0.82,1,0,BLACK_);
 
 
+     // plot(cal_wo,_Wkeysymbol,0.78 ,0.7,TRI_,Symsz,RED_,1,_Wfonthue,WHITE_);      
+      //Text(cal_wo,"Carbs Ate", 0.8,0.72,1)
 
-//  sWo(_WOID,extwo,"Exercise Time (mins)",wpt( 0.8,0.7),1,0,RED_);
-   Text(extwo,"Exercise Time (mins)",0.8,0.7,1,0,RED_);
+  sWo(_WOID,carb_wo,_WFONT,F_SMALL_);
+
+//plot(carb_wo,_Wkeysymbol,0.78,0.7,TRI_,Symsz,GREEN_,1);
+
+
+
+//  sWo(_WOID,carb_wo,"Exercise Time (mins)",wpt( 0.8,0.7),1,0,RED_);
+   Text(carb_wo,"Exercise Time (mins)",0.8,0.7,1,0,RED_);
 
    int gi=0;
 
@@ -390,7 +391,7 @@ for (i = 0; i< 10; i++) {
   while ( 1) {
   gname = glineGetName(allgls[gi]);
   
-  ok=ask("%V $gi $allgls[gi] $gname",1);
+  //ok=ask("%V $gi $allgls[gi] $gname",1);
 
   sGl(_GLID,allgls[gi],_GLDRAW,ON_);
   
@@ -401,7 +402,9 @@ for (i = 0; i< 10; i++) {
     }
 
   }
-  
+
+  sGl(_GLID,ext_gl,_GLUSESCALES,1,_GLDRAW,ON_);
+
   for (i = 0; i< 10; i++) {
         if (wedwos[i] <=0) {
          break;
@@ -420,18 +423,18 @@ for (i = 0; i< 10; i++) {
 
 //ans=query("proceed?");
 
-//  int allwo[] = {wtwo, swo, calwo, extwo , carbwo,-1};
+//  int allwo[] = {wt_wo, swo, cal_wo, carb_wo , food_wo,-1};
    
    
-  drawMonths(wtwo);
+  drawMonths(wt_wo);
 
-  //drawMonths(calwo);
+  //drawMonths(cal_wo);
 
-  //drawMonths(carbwo);
+  //drawMonths(food_wo);
 
-  drawMonths(extwo);
-      //Text(extwo,"Exercise mins",-4,0.5,4,-90)
-      //Text(wtwo,  "Weight (lbs)",0.8,0.8,1)
+  drawMonths(carb_wo);
+      //Text(carb_wo,"Exercise mins",-4,0.5,4,-90)
+      //Text(wt_wo,  "Weight (lbs)",0.8,0.8,1)
        //dGl(wt_gl)
        //dGl(wt_gl)
 
@@ -454,37 +457,37 @@ for (i = 0; i< 10; i++) {
 ////////////////////////////////////////// KEYS /////////////////////////////////////
  if (do_keys) {
 float keypos[10]
-  keypos = wogetposition (keycalwo);
-//   <<"keycalwo $keypos \n";
-    sWo(_WOID,keycalwo,_WHMOVE,ON_);
+  keypos = wogetposition (keycal_wo);
+//   <<"keycal_wo $keypos \n";
+    sWo(_WOID,keycal_wo,_WHMOVE,ON_);
     sWo(_WOID,keywo,_WHMOVE,ON_);
-//    womove(keycalwo,PANLEFT_,10);  // move left
-//keypos = wogetposition (keycalwo);
+//    womove(keycal_wo,PANLEFT_,10);  // move left
+//keypos = wogetposition (keycal_wo);
 
-   <<"movewo keycalwo $keypos \n";
-     //womove(keycalwo,PANLEFT_,10);
-    sWo(_WOID,calwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_)
-    sWo(_WOID,keycalwo,_WSCALES,wbox(0.0,0.0,1.0,1.0))
-    sWo(_WOID,keycalwo,_WCLIPBORDER,ON_,_WREDRAW,ON_,_WKEYGLINE,calgls);
-    sWo(_WOID,carbwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_)
+   <<"movewo keycal_wo $keypos \n";
+     //womove(keycal_wo,PANLEFT_,10);
+    sWo(_WOID,cal_wo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_)
+    sWo(_WOID,keycal_wo,_WSCALES,wbox(0.0,0.0,1.0,1.0))
+    sWo(_WOID,keycal_wo,_WCLIPBORDER,ON_,_WREDRAW,ON_,_WKEYGLINE,calgls);
+    sWo(_WOID,food_wo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_)
 
   //womove(keywo,PANLEFT_,10);
-    sWo(_WOID,carbwo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_)
+    sWo(_WOID,food_wo,_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_)
     sWo(_WOID,keywo,_WSCALES,wbox(0.0,0.0,1.0,1.0))
     sWo(_WOID,keywo,_WCLIPBORDER,ON_,_WREDRAW,ON_,_WKEYGLINE,foodgls);
 
   keypos = wogetposition (keywo);
 
-   //<<"keycarbwo $keypos \n";
+   //<<"keyfood_wo $keypos \n";
 }
 
-Text(calwo,"CALS In/Out",0.2,0.90);
+Text(cal_wo,"CALS In/Out",0.2,0.90);
 
-//Textr(calwo,"Cals In/Out",155,1500);
+//Textr(cal_wo,"Cals In/Out",155,1500);
 
-Text(carbwo,"FOOD (g) ",0.1,0.89);
+Text(food_wo,"FOOD fat,fiber, protein (g) ",0.1,0.89);
 
-//Textr(carbwo,"Food",140,50);
+//Textr(food_wo,"Food",140,50);
 
  //sWo(_WOID,tbqrd_tv,_WCLEAR,ON_,_WCLEARCLIP,ON_,_WREDRAW,ON_);
  //textr(TBqrd_tv,Wex_Vers)
@@ -513,13 +516,13 @@ Text(carbwo,"FOOD (g) ",0.1,0.89);
 
   //sWo(fewos,_WREDRAW);
 
- // sWo(tw_wo,_WMOVE,wpt(targetday,FirstGoalWt),wtwo,_WREDRAW); // ?? parent wo
+ // sWo(tw_wo,_WMOVE,wpt(targetday,FirstGoalWt),wt_wo,_WREDRAW); // ?? parent wo
 
   Wex_CR_init = 1;
   Wex_CL_init = 1;
  //sc_startday.pinfo();
 <<"Done drawScreens\n";
-oknow = Ask ("que pasa? $_proc",1)
+//oknow = Ask ("que pasa? $_proc",1)
   
   }
   
@@ -545,9 +548,9 @@ oknow = Ask ("que pasa? $_proc",1)
 // decrement - and set rx,RX to jan 1, dec 31 of that year
 // then label 1/4 days
   int i,j;
-  int wedwos[] = { wtwo, calwo,  carbwo, extwo,-1  };
+  int wedwos[] = { wt_wo, cal_wo,  food_wo, carb_wo,-1  };
   float rx,ry,rX,rY;
-  RS=wgetrscales(wtwo);
+  RS=wgetrscales(wt_wo);
 // just plot at mid - the date
 
   mid_date = (RS[3] - RS[1])/2 + RS[1];
@@ -599,8 +602,8 @@ oknow = Ask ("que pasa? $_proc",1)
   
   sWo(_WOID,swo,_WXSCALES,wpt(rx,rX));
   // want to use left and right scales
-  sWo(_WOID,wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0);
-
+ // sWo(_WOID,wt_wo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0);
+  sWo(_WOID,wt_wo,_WSCALES,wbox(rx,minWt,rX,upperWt));
 
   drawScreens();
 

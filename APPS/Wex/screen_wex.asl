@@ -66,23 +66,23 @@ cout<<"  titleButtonsQRD(vp);\n";
 ////////////////  WOBS /////////////// 
  
  
-  wtwo=cWo(vp,WO_GRAPH_); 
+  wt_wo=cWo(vp,WO_GRAPH_); 
  
-  sWo(_woid,wtwo,_wname,"WTLB",_wvalue,0,_wclipborder,YELLOW_,_wpixmap,ON_); //   weight; 
+  sWo(_woid,wt_wo,_wname,"WTLB",_wvalue,0,_wclipborder,YELLOW_,_wpixmap,ON_); //   weight; 
  
-  calwo=cWo(vp,WO_GRAPH_); 
+  cal_wo=cWo(vp,WO_GRAPH_); 
  
-   sWo(_woid,calwo,_wname,"CAL",_wvalue,0,_wclipborder,BLACK_,_wpixmap,ON_,_wdraw,ON_) ; // cals; 
+   sWo(_woid,cal_wo,_wname,"CAL",_wvalue,0,_wclipborder,BLACK_,_wpixmap,ON_,_wdraw,ON_) ; // cals; 
  
-  carbwo=cWo(vp,WO_GRAPH_); 
+  food_wo=cWo(vp,WO_GRAPH_); 
    
-  sWo(_woid,carbwo,_wname,"CARB",_wvalue,0,_wclipborder,BLACK_,_wpixmap,ON_) ; // carbs; 
+  sWo(_woid,food_wo,_wname,"CARB",_wvalue,0,_wclipborder,BLACK_,_wpixmap,ON_) ; // carbs; 
  
-  extwo=cWo(vp,WO_GRAPH_); 
+  carb_wo=cWo(vp,WO_GRAPH_); 
    
-  sWo(_woid,extwo,_wname,"XT",_wvalue,0,_wclipborder,RED_,_wpixmap,ON_); // exercise time; 
+  sWo(_woid,carb_wo,_wname,"XT",_wvalue,0,_wclipborder,RED_,_wpixmap,ON_); // exercise time; 
  
-  int wedwos[] = { wtwo, calwo,  carbwo, extwo,-1  }; 
+  int wedwos[] = { wt_wo, cal_wo,  food_wo, carb_wo,-1  }; 
 //<<[_DB]"%V$wedwo \n" 
  
   cout<<" vtile before set clip!\n";   // _ASL_ defines cout as NOP
@@ -114,32 +114,39 @@ cout <<"aftertitleButtons\n";
 COUT(sc_zstart); 
  //  _WFONT arg wfont(char*) wfont(int) ---  
  
-  sWo(_woid,carbwo,_wclip,CXY,_wcolor,WHITE_,_wclipbhue,WHITE_,_wbhue,WHITE_,_wfont,F_SMALL_,_wredraw,ON_,_wsavepixmap,ON_); 
+  sWo(_woid,food_wo,_wclip,CXY,_wcolor,WHITE_,_wclipbhue,WHITE_,_wbhue,WHITE_,_wfont,F_SMALL_,_wredraw,ON_,_wsavepixmap,ON_); 
  
  
- // sWo(carbwo,_wclip,CXY,_wcolor,WHITE_,_wclipbhue,RED_,_wbhue,RED_  ,_wfont,F_SMALL_,_wfonthue,WHITE_,_WEO); 
-  sWo(_woid,calwo,_wclip,CXY,_wcolor,WHITE_,_wclipbhue,WHITE_,_wbhue,WHITE_  ,_wfont,F_SMALL_,_wredraw,ON_,_wsavepixmap,ON_); 
+ // sWo(food_wo,_wclip,CXY,_wcolor,WHITE_,_wclipbhue,RED_,_wbhue,RED_  ,_wfont,F_SMALL_,_wfonthue,WHITE_,_WEO); 
+  sWo(_woid,cal_wo,_wclip,CXY,_wcolor,WHITE_,_wclipbhue,WHITE_,_wbhue,WHITE_  ,_wfont,F_SMALL_,_wredraw,ON_,_wsavepixmap,ON_); 
  
-  sWo(_woid,extwo,_wclip,CXY,_wcolor,YELLOW_,_wclipbhue,GREEN_,_wbhue,YELLOW_,_wfont,F_SMALL_,_wredraw,ON_,_wsavepixmap,ON_); 
+  sWo(_woid,carb_wo,_wclip,CXY,_wcolor,YELLOW_,_wclipbhue,GREEN_,_wbhue,YELLOW_,_wfont,F_SMALL_,_wredraw,ON_,_wsavepixmap,ON_); 
  
-  sWo(_woid,wtwo,_wclip,CXY,_wcolor,ORANGE_,_wclipbhue,WHITE_,_wbhue,WHITE_,_wfont,F_SMALL_,_wredraw,ON_,_wsavepixmap,ON_); 
+  sWo(_woid,wt_wo,_wclip,CXY,_wcolor,ORANGE_,_wclipbhue,WHITE_,_wbhue,WHITE_,_wfont,F_SMALL_,_wredraw,ON_,_wsavepixmap,ON_); 
  
+  //sWo(_WOID,wt_wo,_WRHTSCALES,wbox(rx,0,rX,300),_WSAVESCALES,1);
+  sWo(_WOID,cal_wo,_WRHTSCALES,wbox(sc_startday,0.0, sc_end,300.0,0));
+//  ok =ask("RHTSCALES ?",1)
+// margin codes ?
+//!b
+
 
  
   COUT(sc_end); 
  
-  sWo(_woid,extwo,_wscales,wbox(sc_startday,10,sc_end,300),_wsavescales,0); 
+  sWo(_woid,carb_wo,_wscales,wbox(sc_startday,-5,sc_end,200),_wsavescales,0); 
  
 //cout <<"SCALES " << sc_startday << " sc_end " <<sc_end << endl; 
  
 //ans=query("Scales ?"); 
  
-//  sWo(extwo,_wsavescales,0,_WEO); 
+//  sWo(carb_wo,_wsavescales,0,_WEO); 
  
-  sWo(_woid,calwo,_wscales,wbox(sc_startday,0,sc_end,CalsY1),_wsavescales,0); 
+  //sWo(_woid,cal_wo,_wscales,wbox(sc_startday,0,sc_end,CalsY1),_wsavescales,0);
+  sWo(_woid,cal_wo,_wscales,wbox(sc_startday,0,sc_end,CalsY1))
 
  
-  COUT(calwo); 
+  COUT(cal_wo); 
  
  
   swo= cWo(vp1,WO_GRAPH_); 
@@ -155,7 +162,7 @@ COUT(swo);
 //  sWo(swos[0],_wclip,CXY,_wcolor,WHITE_,_wclipborder,BLACK_,_WEO); 
 ///  measurement 
  
-  tw_wo= cWo(wtwo,WO_BS_); 
+  tw_wo= cWo(wt_wo,WO_BS_); 
    
   sWo(_woid,tw_wo,_wresize,wbox(0.1,0.1,0.15,0.25,0),_wname,"TW",_wvalue,"175"); 
  
@@ -173,14 +180,14 @@ COUT(swo);
   cout<<"scales " << sc_startday << " sc_end " << sc_end << " bp_upper " << bp_upper << endl; 
   //<<"SCALES %V$sc_startday $sc_endday $bp_upper\n"; 
  
-  sWo(_woid,carbwo,_wscales,wbox(sc_startday,-5,sc_end,carb_upper)); 
+  sWo(_woid,food_wo,_wscales,wbox(sc_startday,-5,sc_end,carb_upper)); 
  
   //<<"SCALES %V$sc_startday $sc_endday $carb_upper\n"; 
  
-  sWo(_woid,wtwo,_wscales,wbox(sc_startday,minWt,sc_end,upperWt)); 
+  sWo(_woid,wt_wo,_wscales,wbox(sc_startday,minWt,sc_end,upperWt)); 
  
  
-  int allwo[] = {wtwo, calwo,  extwo , carbwo,swo,-1}; 
+  int allwo[] = {wt_wo, cal_wo,  carb_wo , food_wo,swo,-1}; 
 
   <<"%V $allwo \n" 
  
@@ -241,9 +248,9 @@ COUT(swo);
    
    //sWo(xwos,_wstyle,WS_SVB,_wredraw,_WEO); 
  
-   sWo(_woid,wtwo,_wshowpixmap,ON_,_wsave,ON_); 
+   sWo(_woid,wt_wo,_wshowpixmap,ON_,_wsave,ON_); 
  
- // sWo(calwo,_wshowpixmap,_wsave,_WEO); 
+ // sWo(cal_wo,_wshowpixmap,_wsave,_WEO); 
   //sleep(0.1) 
   // Measure WOBS 
  
@@ -298,27 +305,27 @@ COUT(swo);
 
  
 /////////////////////////////////////////////  KEYS /////////////////////////////////////////// 
-  //  keypos = wogetposition (carbwo); 
+  //  keypos = wogetposition (food_wo); 
  //  <<"%V $keypos \n"; 
  
  float keyposr[10]; 
  
 if (do_keys ) { 
-    keyret = wogetrxy (calwo,keyposr); 
+    keyret = wogetrxy (cal_wo,keyposr); 
     krx= keyposr[1]; 
     kry= keyposr[2]; 
    
     
-    keycalwo=cWo(vp,WO_BV_); 
+    keycal_wo=cWo(vp,WO_BV_); 
     kcalx = keyposr[3] - 0.1; 
     kcalY= keyposr[4]-0.05; 
-   sWo(_woid,keycalwo,_wname,"KeyCals",_wclip,CXY,_wstyle,SVO_) 
+   sWo(_woid,keycal_wo,_wname,"KeyCals",_wclip,CXY,_wstyle,SVO_) 
  
-   sWo(_woid,keycalwo,_wresize,wbox(kcalx+0.02,kry+0.01,kcalx+0.09,kcalY,0),_wclipborder,ON_,_wredraw,ON_); 
+   sWo(_woid,keycal_wo,_wresize,wbox(kcalx+0.02,kry+0.01,kcalx+0.09,kcalY,0),_wclipborder,ON_,_wredraw,ON_); 
  
-  //  sWo(_woid,keycalwo,_wresize,wbox(kcalx+0.03,kry+0.01,kcalx+0.11,keyposr[4]-0.05,0),_wpixmap,ON_,_wredraw,ON_); 
+  //  sWo(_woid,keycal_wo,_wresize,wbox(kcalx+0.03,kry+0.01,kcalx+0.11,keyposr[4]-0.05,0),_wpixmap,ON_,_wredraw,ON_); 
  
-    keyret = wogetrxy (carbwo,keyposr); 
+    keyret = wogetrxy (food_wo,keyposr); 
  
     keyposr.pinfo(); 
  
@@ -342,10 +349,10 @@ if (do_keys ) {
   gdwo=cWo(vp,WO_BV_); 
   sWo(_woid,gdwo,_wname,"GoalDay",_wclipbhue,ORANGE_,_wvalue,"$Goals[1]",_whelp," goalday "); 
  
-  gwtwo=cWo(vp,WO_BV_); 
-  sWo(_woid,gwtwo,_wname,"WtGoal",_wvalue,"$Goals[2]",_wclipbhue,BLUE_,_wfonthue,WHITE_,_whelp," next goal wt "); 
+  gwt_wo=cWo(vp,WO_BV_); 
+  sWo(_woid,gwt_wo,_wname,"WtGoal",_wvalue,"$Goals[2]",_wclipbhue,BLUE_,_wfonthue,WHITE_,_whelp," next goal wt "); 
  
-  int  goalwos[5] = { sdwo, gdwo, gwtwo, -1}; 
+  int  goalwos[5] = { sdwo, gdwo, gwt_wo, -1}; 
  
   wovtile( goalwos, 0.02,0.1,0.08,0.45 ); 
   i = 0; 

@@ -323,10 +323,10 @@ Record RX;
 
 
   int vp,vp1;
-  int wtwo,calwo,calcwo,carbwo,extwo;
+  int wt_wo,cal_wo,calcwo,food_wo,carb_wo;
   int swo,tw_wo,zinwo,zoomwo;
   int nobswo,xtwo,xbwo,xlbswo,dlbswo;
-  int dtmwo,obswo,cbmwo,xtmwo,sdwo,gdwo,gwtwo,wtmwo;
+  int dtmwo,obswo,cbmwo,xtmwo,sdwo,gdwo,gwt_wo,wtmwo;
 
 
 #include "draw_wex.asl"
@@ -375,13 +375,13 @@ Record RX;
    Str stmp;
    Svar Goals;
    
-   Goals.Split("12/01/2025 12/31/2025 175");
+   Goals.Split("12/01/2025 01/23/2026 175");
 
 //<<"Setting goals $Goals\n"
 
    Svar Goals2;
    
-   Goals2.Split("12/01/2025  12/15/2025 185");
+   Goals2.Split("12/01/2025  12/30/2025 185");
 ////////////////////==============/////////////////
 
 // move these down 10 when reached -- until we are at desired operating weight!
@@ -667,22 +667,22 @@ float ae = EXTV[15];
 
 
 //  <<" %(1,,,\n) $EXTV \n"
-  Str tit_msg = "Tomorrow's wt will be %6.2f $PWT1 +week $PWT7  + month $PWT30"
+  Str tit_msg = "Tomorrow's wt will be %6.2f $PWT1 +week $PWT7  + fortnight $PWT14"
  
 
   titleMessage(vp,tit_msg)
 
-ans=Ask(" show target proceed?",1);
+//ans=Ask(" show target proceed?",1);
 
  int nevent = 0;
 
-oknow = Ask ("que pasa? $_proc",1)      
+//oknow = Ask ("que pasa? $_proc",1)      
 
 //  drawScreens();
   int rcb = 0;
 
      Graphic = checkGWM();
-oknow = Ask ("que pasa? $_proc",1)      
+//oknow = Ask ("que pasa? $_proc",1)      
 
      while (Graphic) {
 

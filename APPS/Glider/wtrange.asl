@@ -36,7 +36,7 @@
    <<"%V $arg1 \n"
 <<" we are in ASL mode $argc and arg1 is $arg1\n"
 //<<" $argv[0] $argv[1] $argv[2] \n"
- wat = ask("using $current_wt_lbs for current weight OK?",1)
+ //wat = ask("using $current_wt_lbs for current weight OK?",1)
 #include "debug" 
 
   if (_dblevel >0) { 
@@ -94,7 +94,7 @@ using namespace std;
 /}
 
  
-   
+   sdb(1, "step")  ; // step thru code ?
    thin_lbs = 175.0
    fat_lbs  = 195.0
 
@@ -150,21 +150,20 @@ using namespace std;
 
    hook_tw = thin + hookwt + kit
 
-   <<"my range  with hook3 wing $(hook_tw * kg2lb_) --> $(hook_cw * kg2lb_) $(80 *2.2) $(100 *2.2) lbs \n"
-   <<"my range  with hook3 wing $hook_tw  --> $hook_cw  (80-100) kg  \n"
+   <<"\tmy range  with hook3 wing $(hook_tw * kg2lb_) --> $(hook_cw * kg2lb_) $(80 *2.2) $(100 *2.2) lbs \n"
+   <<"\tmy range  with hook3 wing $hook_tw  --> $hook_cw  (80-100) kg  \n"
 
      best_hook3_wt_lbs = 95*2.2 - hookwt*2.2 - kit*2.2
- <<" my best weight - bathroom for hook3 25 is $best_hook3_wt_lbs !   \n"
-
-    if (best_hook3_wt_lbs < current_wt_lbs) {
-     <<"\n Slim down for hook wing!! \n"
-    }
-
+ <<"\tmy best weight - bathroom for hook3 25 is $best_hook3_wt_lbs !   \n"
     max_hook3_wt_lbs = 100*2.2 - hookwt*2.2 -kit*2.2 
-   <<" my max weight - bathroom for hook3 25 is $max_hook3_wt_lbs !   \n"
+   <<"\tmy max weight - bathroom for hook3 25 is $max_hook3_wt_lbs !   \n"
 
+    dw = (current_wt_lbs -best_hook3_wt_lbs)
+    if ( dw > 0) {
+     <<"\t\t\tSlim down $dw - for hook wing!! \n"
+    }
     if (max_hook3_wt_lbs < current_wt_lbs) {
-     <<"\ntoo fat for hook wing!! diet!!!!\n"
+     <<"\t\tAlas too fat for hook wing!! diet!!!!\n"
     }
 
 
@@ -174,21 +173,19 @@ using namespace std;
    
    theta_tw = thin + thwt + kit
 
-   <<"my range with theta uls wing $theta_tw --> $theta_cw ideal (82 - 95,max 99) kg \n"
-   <<"my range with theta uls wing $(theta_tw * kg2lb_) --> $(theta_cw * kg2lb_) lbs \n"
-
-
-
+   <<"\tmy range with theta uls wing $theta_tw --> $theta_cw ideal (82 - 95,max 99) kg \n"
+   <<"\tmy range with theta uls wing $(theta_tw * kg2lb_) --> $(theta_cw * kg2lb_) lbs \n"
     best_theta_wt_lbs = 90*2.2 - thwt*2.2 - kit*2.2
- <<" my best weight - bathroom for theta 25 is $best_theta_wt_lbs !   \n"
-   if (best_theta_wt_lbs < current_wt_lbs) {
-     <<"\n Slim down for theta wing!! \n"
-    }
+ <<"\tmy best weight - bathroom for theta 25 is $best_theta_wt_lbs !   \n"
     max_theta_wt_lbs = 95*2.2 - thwt*2.2 - kit*2.2
-   <<" my max weight - bathroom for theta 25 is $max_theta_wt_lbs !   \n"
+   <<"\tmy max weight - bathroom for theta 25 is $max_theta_wt_lbs !   \n"
+     dw = (current_wt_lbs -best_theta_wt_lbs)
+    if ( dw > 0) {
+     <<"\t\tSlim down $dw for theta wing!! \n"
+    }
 
     if (max_theta_wt_lbs < current_wt_lbs) {
-     <<"\ntoo fat for theta wing!! diet!\n"
+     <<"\t\tAlas too fat for theta wing!! diet!\n"
     }
 
 

@@ -206,7 +206,7 @@ if (Yd >= 0) {
 
 
   printf("Wex_Nrecs %d there were Nobs %d measurements ",Wex_Nrecs,Nobs);
-  ans=ask("readDATA proceed?",1);
+  //ans=ask("readDATA proceed?",1);
   return tl;
 
   }

@@ -161,7 +161,7 @@ double xv[7];
 double yv[7];
 int i;
 
-int k = Yday-2;
+int k = Yday-3;
   
 <<"$Yday $k\n"
 //  oknow = Ask ("%V $Yday $k ",1)
@@ -172,13 +172,15 @@ int k = Yday-2;
 
       <<"$i $k  $WTVEC[k] $xv[i] $yv[i]\n"; // TBF
        k++;
-     //  ans=ask("?",1)
+      // ans=ask("?",1)
    }
   <<"%V $xv\n"
   <<"%V $yv\n"
-   
+
+       //ans=ask("? $yv",1)
+
    pwl = Lfit(xv,yv,3);
-//   <<"pwl $pwl \n"
+   <<"pwl $pwl \n"
    // next day prediction
 
     pw1 = yv[0] + (pwl[1] *3);
@@ -194,7 +196,7 @@ int k = Yday-2;
 //ans=ask("$PWT1  $PWT7 ",1)
   }
 
-<<"\n Tomorrow's wt will be %6.2f $pw +week $PWT7  + month $PWT30\n"
+<<"\n Tomorrow's wt will be %6.2f $pw +week $PWT7  + fortnight $PWT14\n"
 // oknow = Ask ("que pasa? $_proc",1)
   return pw;
 }

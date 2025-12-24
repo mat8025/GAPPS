@@ -26,10 +26,10 @@
 // find mid-date 
 // adjust to a 90 day resolution
 // shift up/down by 30
-   int wedwos[] = { wtwo, calwo,  carbwo, extwo,-1  };
+   int wedwos[] = { wt_wo, cal_wo,  food_wo, carb_wo,-1  };
    float rx,ry,rX,rY;
 
-   RS=wgetrscales(wtwo);
+   RS=wgetrscales(wt_wo);
 // just plot at mid - the date
 
   mid_date = (RS[3] - RS[1])/2 + RS[1];
@@ -60,7 +60,7 @@
 
   //sWo(wedwos,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
 
-  sWo(_WOID,wtwo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0);
+  sWo(_WOID,wt_wo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0);
 
   sWo(_WOID,swo,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
 
