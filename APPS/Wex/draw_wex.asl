@@ -93,7 +93,7 @@
   void drawGoals(int ws)
   {
 
-   //oknow = Ask ("que pasa? $ws $_proc",1)
+ //  oknow = Ask ("que pasa? $ws $_proc",1)
 
   if (ws == 0) {
    // Plot(wt_wo,_WBOX,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_)  // never go above
@@ -334,7 +334,7 @@
   COUT(sc_zstart);
   COUT(sc_zend);
 
-for (i = 0; i< 10; i++) {
+ for (i = 0; i< 10; i++) {
 //<<"$i $wedwos[i] \n"
       if (wedwos[i] <=0) {
          break;
@@ -510,8 +510,6 @@ Text(food_wo,"FOOD fat,fiber, protein (g) ",0.1,0.89);
 
   //sWo(allwo,_WCLIPBORDER,GREEN_);
 
-
-
   }
 
   //sWo(fewos,_WREDRAW);
@@ -527,6 +525,7 @@ Text(food_wo,"FOOD fat,fiber, protein (g) ",0.1,0.89);
   }
   
  }
+
  
 //=================================================
 
@@ -622,10 +621,9 @@ Text(food_wo,"FOOD fat,fiber, protein (g) ",0.1,0.89);
  //[EP]/////////////////////////////////////////////// 
 
   void getDay(long dayv)
-//  long getDay(long dayv)
   {
 
-//<<" $_proc   $dayv \n"
+<<" $_proc   $dayv \n"
 
   dayv.pinfo();
   
@@ -643,10 +641,10 @@ Text(food_wo,"FOOD fat,fiber, protein (g) ",0.1,0.89);
 
 
 
-  m_day= dayv + Jan1 -1;  // ? OBO;
+  m_day= dayv + Jan1  ;  // ? OBO;
 
   Str mdy = Julmdy(m_day);
- int dindex = dayv -1;
+ int dindex = dayv ;
  
 <<"%V $dayv $m_day $Jan1 $mdy $dindex\n"
 

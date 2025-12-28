@@ -142,7 +142,9 @@ if (Yd >= 0) {
   
   int got_start = 0;
 
-//  <<"get data from record Wex_Nrecs \n";
+ <<"get data from record Wex_Nrecs \n";
+
+//ans = Ask("readData $_proc ?",1)
 
 // access of record row Rx(i)
 // access of record Col Rx(i,j)
@@ -196,6 +198,8 @@ if (Yd >= 0) {
 
 //ans=ask("%V $tl  $day $mywt $Wex_Nrecs\n",0)
 
+<<"%V $tl  $day $mywt $Wex_Nrecs\n"
+
   if (tl >= Wex_Nrecs) {
 
      break;
@@ -240,7 +244,7 @@ if (Yd >= 0) {
   long jday;
   Str day;
   int jn = 5;
-  //<<"%V $tl $NCCrecs \n"
+  <<"%V $tl $NCCrecs \n"
   while (tl < NCCrecs) {
   
 
@@ -263,7 +267,7 @@ if (Yd >= 0) {
   CALSCON[Yd] = cals;
 
   float ccals =  CALSCON[Yd];
-//<<"calscon $Yd   $CALSCON[Yd]  cals <|$cals|>  ccals $ccals \n"
+<<"calscon $Yd   $CALSCON[Yd]  cals <|$cals|>  ccals $ccals \n"
 
   float carbs = atof(RCC.getRC(tl,3));
 
@@ -284,8 +288,8 @@ if (Yd >= 0) {
   float fiber = atof(RCC.getRC(tl,4));
 
   FIBRCON[Yd] = fiber;
-<<"%V $day $cals $carbs $fat $prot $fiber\n"
-//ans=ask("CC read OK?",1)
+<<"%V $tl $Yd $day $cals $carbs $fat $prot $fiber\n"
+
 
 
   NCCobs++;
@@ -293,7 +297,7 @@ if (Yd >= 0) {
 //
   tl++;
 
-  //<<"%V $tl $NCCrecs \n"
+  <<"%V $tl $NCCrecs \n"
   if (tl >= NCCrecs) {
 
 
@@ -303,10 +307,11 @@ if (Yd >= 0) {
 
 
 
- //ans=ask("readCC proceed?",0);
+ //
 
   }
 
+ans=ask("readCC %V $Yd $tl $NCCobs proceed?",0);
 
    return tl;
   }

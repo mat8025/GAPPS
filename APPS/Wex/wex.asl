@@ -13,7 +13,7 @@
  */ 
 //----------------<v_&_v>-------------------------//;                  
 
-  Str Wex_Vers= "2.65";
+  Str Wex_Vers= "2.66";
 
 ///
 /// exercise weight display
@@ -113,13 +113,13 @@ float in_cal =  day_burn * 3/4;
  ///   all procs/funcs  should be after globals and before main
  //
 
-
+  int Nrecrd = 0;
   int i = 0;
   Str ans="xyz";
   
   Vec<double> Vtst(10,10,1);
 
-  Vec<float> DVEC(400,1,1);
+  Vec<float> DVEC(400,0,1); // day 1 in year is array ele 0 in DVEC ?
 
   Vec<float> DFVEC(400);
 
@@ -415,7 +415,8 @@ Record RX;
 
    FirstGoalWt = atoi(Goals2[2]);
 
-   gsday = Sday;
+//   gsday = Sday;
+   gsday = Sday ; // is Jan1 day0 or day1 in DVEC
 
    gday =  targetday;    // next goal day;
 
@@ -423,7 +424,7 @@ Record RX;
 
 //   Onwards();
 
-  sc_startday = (jtoday - Jan1) -7;
+  sc_startday = (jtoday - Jan1) -7  ;
 
   if (sc_startday <0)
      sc_startday =0;
@@ -453,7 +454,7 @@ Record RX;
 
    kdays = k;
 
-// oknow = Ask ("que pasa? $_proc",1)
+ //oknow = Ask ("que pasa? $_proc",1)
 
 /////////////////////////////////////////////////  READ RECORDS ////////////////////////////////////////
   int n = 0;
@@ -471,7 +472,7 @@ Record RX;
 
 //  Onwards();
 
-  int A=ofr("~/gapps/DAT/wex2025.tsv");
+  int A=ofr("~/GAPPS/DAT/wex2025.tsv");
 
   if (A == -1) {
 
@@ -510,7 +511,7 @@ Record RX;
 ///////////// Cals & Carb Consumed ////////
 // so far not logged often 
 
-  int ACC=ofr("~/gapps/DAT/cc2025.tsv");
+  int ACC=ofr("~/GAPPS/DAT/cc2025.tsv");
 
 <<"%V $ACC\n"
 
@@ -524,25 +525,31 @@ Record RX;
 
   else {
 
-  int nrc =RCC.readRecord(ACC,_RDEL,-1);  
+  Nrecrd =RCC.readRecord(ACC,_RDEL,-1);  
 
 
  // cf(ACC);
-  //RCC->info(1);
+ RCC->info(1);
 
-  NCCrecs = RCC.getNrows();
+  NCCrecs = RCC.getNrowsrd(); // this get size of record array - not num of records just read
   
   //cout << "NCCrecs " << NCCrecs << endl;
 //ans = query("NCCrecs");
   //NCCrecs->info(1)
 
- // <<"%V $NCCrecs \n";
-/*
- for (i=0; i < NCCrecs ;i++) {
-  <<[_DB]"$RCC[i] \n"
-  }
-*/
+  <<"%V $NCCrecs $Nrecrd \n";
 
+ for (i=0; i < Nrecrd ;i++) {
+//  <<"[$i]  $RCC[i]       \n" ; // BUG
+  }
+
+
+ans= ask("readCCData %V $Nrecrd $NCCrecs proceed?",0);
+
+  if (ans =="q") {
+       exit()
+  }
+  NCCrecs = Nrecrd;
  // <<[_DB]"; /////////\n";
 
   }
@@ -552,7 +559,7 @@ Record RX;
 
 ////////////////// READ CEX DATA ///////////////////
 
-    nrd= readData();
+     nrd= readData();
 
      nrd= readCCData();
 
@@ -681,8 +688,14 @@ float ae = EXTV[15];
 //  drawScreens();
   int rcb = 0;
 
+     oknow = Ask ("que pasa? %V $Nrecrd $Yd",0)      
+
      Graphic = checkGWM();
-//oknow = Ask ("que pasa? $_proc",1)      
+
+
+     getDay(Yd)
+
+
 
      while (Graphic) {
 
@@ -753,6 +766,7 @@ float ae = EXTV[15];
 //  can we add comments
 //
 //  1/12/22   - startup with yesterdays date and display of activity - for last 7 days (average?)
-//
+//  12/28/25 - show yesterdays values - add calorie deficit measure
+
 
 ;//==============\_(^-^)_/==================//;
