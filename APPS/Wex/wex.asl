@@ -73,37 +73,7 @@ using namespace std;
 //#include "hv.asl"
 
 
-//#include "rates_wex.asl"
-
-
-
-float rpm = 0.0166667;
-float w_rate = 397.0 * rpm;
-float h_rate = 477.0 * rpm;
-float c_rate = 636.0 * rpm;
-float run_rate = 795.0 * rpm;
-float wex_rate = 350.0 * rpm;
-float swim_rate = 477.0 * rpm;
-float yard_rate =  318.3 *rpm;
-
-//  metabolic rate slowdown ??
-
-float metaf = 0.95;
-
-float office_rate =  119.3 * rpm * metaf;
-float sleep_rate = 71.5 * rpm  * metaf;
-
-
-float sleep_burn = 8 * 60 * sleep_rate;
-float office_burn = 16 * 60 * office_rate;
-float day_burn = sleep_burn + office_burn;
-
-//<<"%V $day_burn \n"
-
-float out_cal = day_burn * 5/4;
-float in_cal =  day_burn * 3/4;
-
-
+#include "rates_wex.asl"
 
 
  //float DVEC = vgen(FLOAT_,400,1,1);
@@ -383,7 +353,7 @@ Record RX;
 
    Svar Goals2;
    
-   Goals2.Split("12/01/2025  12/30/2025 185");
+   Goals2.Split("12/01/2025  01/07/2026 185");
 ////////////////////==============/////////////////
 
 // move these down 10 when reached -- until we are at desired operating weight!
@@ -433,7 +403,7 @@ Record RX;
 
 //  sc_endday = targetday + 7;
 
-    sc_endday = sc_startday + 35;
+    sc_endday = sc_startday + 42;
 //   <<"%V$sc_startday $targetday $sc_endday \n"
 
 

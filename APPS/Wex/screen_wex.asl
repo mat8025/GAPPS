@@ -124,8 +124,8 @@ COUT(sc_zstart);
  
   sWo(_woid,wt_wo,_wclip,CXY,_wcolor,ORANGE_,_wclipbhue,WHITE_,_wbhue,WHITE_,_wfont,F_SMALL_,_wredraw,ON_,_wsavepixmap,ON_); 
  
-  //sWo(_WOID,wt_wo,_WRHTSCALES,wbox(rx,0,rX,300),_WSAVESCALES,1);
- // sWo(_WOID,cal_wo,_WRHTSCALES,wbox(sc_startday,0.0, sc_end,300.0,0));
+ //sWo(_WOID,wt_wo,_WRHTSCALES,wbox(rx,0,rX,300),_WSAVESCALES,1);
+ sWo(_WOID,wt_wo,_WRHTSCALES,wbox(sc_startday,0.0, sc_end,300.0,0),_WSAVESCALES,1);
 //  ok =ask("RHTSCALES ?",1)
 // margin codes ?
 //!b
@@ -199,7 +199,7 @@ COUT(swo);
  
   zinwo=cWo(vp,WO_BN_); 
    
-  sWo(_woid,zinwo,_wname,"ZIN",_wcolor,PINK_,_whelp," zoom in on selected days "); 
+  sWo(_woid,zinwo,_wname,"ZIN",_wcolor,PINK_,_wclipborder,ON_,_whelp," zoom in on selected days "); 
  
   zoomwo=cWo(vp,WO_BN_); 
   sWo(_woid,zoomwo,_wname,"ZOUT",_wcolor,BLUE_); 
@@ -250,8 +250,6 @@ COUT(swo);
  
    sWo(_woid,wt_wo,_wshowpixmap,ON_,_wsave,ON_); 
  
- // sWo(cal_wo,_wshowpixmap,_wsave,_WEO); 
-  //sleep(0.1) 
   // Measure WOBS 
  
   dtmwo=cWo(vp,WO_BV_); 
@@ -265,8 +263,11 @@ COUT(swo);
  
   calburnwo=cWo(vp,WO_BV_); 
 
-  sWo(_woid,calburnwo,_wname,"CBURN",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," cals burnt on day "); 
+  sWo(_woid,calburnwo,_wname,"CBURN",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," cals burnt on day ");
 
+  calexbwo=cWo(vp,WO_BV_); 
+
+  sWo(_woid,calexbwo,_wname,"CEXB",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp,"exer cals burnt on day "); 
 
   calconwo=cWo(vp,WO_BV_); 
    
@@ -292,10 +293,10 @@ COUT(swo);
   xtmwo=cWo(vp,WO_BV_); 
   sWo(_woid,xtmwo,_wname,"ExTim",_wcolor,BLUE_,_whelp," xtime on day "); 
  
-  int mwos[] = { dtmwo, wtmwo, calburnwo, calconwo, xtmwo, carbewo, protewo, fatewo, fibewo, -1}; 
+  int mwos[] = { dtmwo, wtmwo, calburnwo, calconwo,  calexbwo, xtmwo, carbewo, protewo, fatewo, fibewo, -1}; 
  
    
-  wovtile( mwos, 0.01,0.4,0.085,0.9); 
+  wovtile( mwos, 0.01,0.2,0.085,0.9); 
  
   for (i= 0; i< 10; i++) { 
    if (mwos[i] <0 ) { 
@@ -374,7 +375,7 @@ int zoomwos[] = {zoomwo, zinwo, -1};
 // sWo(zoomwos,_wstyle,WS_SVB,_wredraw,_WEO); 
  
 sWo(_woid,zoomwo,_wstyle,WS_SVB_,_wredraw,ON_); 
-sWo(_woid,zinwo,_wstyle,WS_SVB_,_wredraw,ON_); 
+sWo(_woid,zinwo,_wstyle,WS_SVO_,_wredraw,ON_,_wcolor,BLUE_,_wclipbhue,YELLOW_,_wborder,BLACK_); 
 
 
 //  check for lyo - layout file 

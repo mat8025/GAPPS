@@ -45,12 +45,12 @@
 
   sGl(_GLID,wt_gl, _GLHUE, RED_, _GLXVEC, DVEC, _GLYVEC, WTVEC,_GLSYMLINE, TRI_,_GLNAME,"weight")
 
-//  ext_gl  = cGl(carb_wo)
-  ext_gl  = cGl(cal_wo) 
+
+  ext_gl  = cGl(wt_wo) 
 
 // set as XYVECTOR
 
- // sGl(_GLID,ext_gl,_GLXVEC,DVEC,_GLYVEC,EXTV,_GLHUE,BLUE_,_GLSYMLINE, STAR_,_GLUSESCALES,1,_GLNAME,"exer time")
+ sGl(_GLID,ext_gl,_GLXVEC,DVEC,_GLYVEC,EXTV,_GLHUE,BLUE_,_GLSYMLINE, STAR_,_GLUSESCALES,1,_GLNAME,"exer_time")
 
   
 
@@ -95,6 +95,13 @@ gw_gl = -1;
 
   sGl(_GLID,cald_gl, _GLXVEC,DVEC,_GLYVEC,CALSDEF,_GLHUE,ORANGE_,_GLSYMBOL,CROSS_,_GLSYMHUE, GREEN_,GLNAME,"calorie deficit")
 
+
+  calx_gl = cGl(cal_wo);
+
+  sGl(_GLID,calx_gl, _GLXVEC,DVEC,_GLYVEC,EXEBURN,_GLHUE,ORANGE_,_GLSYMBOL,CROSS_,_GLSYMHUE, GREEN_,GLNAME,"calorie exer burn")
+
+
+
   carb_gl = cGl(carb_wo);
 
   sGl(_GLID,carb_gl,_GLXVEC,DVEC,_GLYVEC,CARBSCON,_GLHUE,BLUE_,_GLSYMBOL,DIAMOND_,_GLSYMHUE, RED_,_GLNAME,"carbs consumed")
@@ -121,9 +128,9 @@ gw_gl = -1;
 
 // TRANS OK ?
 
-  int allgl[] = {bp_gl, ext_gl, se_gl, calb_gl, calc_gl, cald_gl, carb_gl, cardio_gl, wt_gl, strength_gl,-1};  // remove gw_gl
+  int allgl[] = {bp_gl, ext_gl, se_gl, calb_gl, calc_gl, cald_gl, calx_gl,carb_gl, cardio_gl, wt_gl, strength_gl,-1};  // remove gw_gl
 
-  int wedgl[] = { ext_gl, calb_gl, se_gl, calc_gl, cald_gl,carb_gl, fibre_gl,fat_gl,prot_gl, cardio_gl, wt_gl, strength_gl,-1};
+  int wedgl[] = { ext_gl, calb_gl, se_gl, calc_gl, cald_gl,calx_gl,carb_gl, fibre_gl,fat_gl,prot_gl, cardio_gl, wt_gl, strength_gl,-1};
 
   int exgls[] = {ext_gl, cardio_gl,strength_gl,-1};
 //<<[_DB]"%V$allgl \n"
@@ -149,7 +156,7 @@ gw_gl = -1;
 
   //sGl(_GLID,ext_gl,_GLSYMBOL,TRI_, _GLSYMSIZE, Symsz,_GLSYMFILL,ON_);
 
-  sGl(_GLID,ext_gl,_GLSYMBOL, STAR_, _GLSYMSIZE, Symsz, _GLSYMHUE,GREEN_,_GLNAME,"exer time");
+  sGl(_GLID,ext_gl,_GLSYMBOL, STAR_, _GLSYMSIZE, Symsz, _GLSYMHUE,GREEN_,_GLNAME,"exer_time");
 
   sGl(_GLID,cardio_gl,_GLSYMBOL,DIAMOND_);
 
@@ -164,6 +171,8 @@ gw_gl = -1;
   sGl(_GLID,calc_gl,_GLSYMBOL,TRI_,_GLSYMHUE,BLUE_,_GLNAME,"cals_in");
 
   sGl(_GLID,cald_gl,_GLSYMBOL,STAR_,_GLSYMHUE,GREEN_,_GLNAME,"cal_deficit");
+
+  sGl(_GLID,calx_gl,_GLSYMBOL,STAR_,_GLSYMHUE,RED_,_GLNAME,"cal_xburn");
 
   sGl(_GLID,carb_gl,_GLSYMBOL,DIAMOND_,_GLSYMHUE,RED_,_GLNAME,"carb");
 
@@ -187,11 +196,11 @@ gw_gl = -1;
 
   sGl(_GLID,rc_gl,_GLTYPE_CURS, ON_,_GLHUE,BLUE_,_GLDRAW,ON_);
 
-  int allgls[] = { wt_gl,  ext_gl, carb_gl,  fibre_gl,  fat_gl,  prot_gl,  calc_gl,  cald_gl,calb_gl,   -1};
+  int allgls[] = { wt_gl,  ext_gl, carb_gl,  fibre_gl,  fat_gl,  prot_gl,  calc_gl,  cald_gl,calx_gl,calb_gl,   -1};
 
   int foodgls[] = { carb_gl, fibre_gl,fat_gl, prot_gl, -1 };
 
-  int calgls[] = { calb_gl, calc_gl, cald_gl, -1 };
+  int calgls[] = { calb_gl, calc_gl, cald_gl, calx_gl, -1 };
 
 
 <<"glines setup % $wt_gl $carb_gl\n";

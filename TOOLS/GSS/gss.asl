@@ -1,5 +1,5 @@
 //%*********************************************** 
-//*  @script stuff2do.asl 
+//*  @script gss.asl 
 //* 
 //*  @comment  
 //*  @release CARBON 
@@ -25,9 +25,9 @@
 // and the sheet is update xgs sid
 // user can enter text into cells via the gui interface
 
-include "debug.asl"
-include "gevent.asl"
-include "hv.asl"
+#include "debug.asl"
+#include "gevent.asl"
+#include "hv.asl"
 vers = "xxx";
 
 debugON();
@@ -114,13 +114,13 @@ StartDateCol= 6;
 UpdateDateCol= 7;
 PCDoneCol= 8;
 
-
+int Nrecs;
 //  fname = "pp.rec"
   fname = _clarg[1];
 
 
   if (fname @= "")  {
-   fname = "stuff2do.csv";
+   fname = "alltasks.csv";
   }
 
 
@@ -155,8 +155,9 @@ today = date(2);
 //Task,Code,Priority,Difficulty,TimeEst,TimeSpent,Startdate,Update,%Done,Tags,
    DF[0] = Split("?,?,3,3,1,0,$today,$today,0, ,",',');
    
+   Nrecs=R.readRecord(A,_RDEL,-1,_RLAST);
 
-   R= readRecord(A,@del,',')
+<<"%V $Nrecs \n"
    cf(A);
    sz = Caz(R);
 
@@ -174,16 +175,14 @@ Graphic = CheckGwm()
      }
 
 
-include "tbqrd.asl"
+#include "tbqrd.asl"
 
-include "stuff2do_scrn.asl"
 
-include "gss.asl"
 
 
 //===============
 //
-include "stuff2do_ssp.asl"
+#include "procs_gss.asl"
 
 
 gflush()

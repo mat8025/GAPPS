@@ -66,11 +66,11 @@ if (Yd >= 0) {
 
    float yardwrk =  atof(Col[j++]);
 
-   float wex = atof(Col[j++]);
+   float gym = atof(Col[j++]);
 
-   tex = ( walk + hike + run + cycle + swim + yardwrk + wex);
+   tex = ( walk + hike + run + cycle + swim + yardwrk + gym);
 
-//  <<"%V $tex \n"
+
 //COUT(tex);
 
   EXTV[Yd] = tex; 
@@ -79,7 +79,7 @@ if (Yd >= 0) {
 
   CARDIO[Yd] = ( walk + hike + run + cycle + swim );
 
-  STRENGTH[Yd] = (yardwrk + wex);
+  STRENGTH[Yd] = (yardwrk + gym);
 
   tot_exetime = tot_exetime + EXTV[Yd];
 
@@ -91,20 +91,22 @@ if (Yd >= 0) {
   tex = EXTV[Yd];
 
   float  exer_burn =   walk * w_rate;
-
+  walk_burn = exer_burn;
   exer_burn += hike * h_rate;
 
   exer_burn += run * run_rate;
-
+  cycle_burn = cycle * c_rate;
   exer_burn +=  cycle * c_rate;
 
   exer_burn += swim * swim_rate;
 
   exer_burn += yardwrk * yard_rate;
 
-  exer_burn += wex * wex_rate;
+  exer_burn += gym * gym_rate;
 
   EXEBURN[Yd] =  exer_burn;
+
+ <<"%V $tex $walk + $walk_burn  $hike + $run + $cycle $cycle_burn + $swim + $yardwrk + $gym * rates = $exer_burn\n"
 
   tot_exeburn += exer_burn;
 

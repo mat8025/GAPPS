@@ -28,12 +28,12 @@
 
 
 // cout<<"showTarget()\n";
-  
+    sWo(_WOID,wt_wo,_WSCALES,wbox(sc_zstart,minWt,sc_zend,upperWt),_WSAVESCALES,0);
   plotSymbol(wt_wo,targetday,TargetGoalWt,DIAMOND_,Symsz,GREEN_,1);
 
   //cout<<"plotSymbol\n";
 
-  plotSymbol(wt_wo,tday2,FirstGoalWt,DIAMOND_,Symsz,BLUE_, 1);
+  plotSymbol(wt_wo,tday2,FirstGoalWt,STAR_,Symsz,BROWN_, 1);
 
   plotSymbol(wt_wo,last_known_day,FirstGoalWt,DIAMOND_,Symsz,RED_,1);
 
@@ -43,13 +43,13 @@
 
   plotSymbol(wt_wo,last_known_day+15,PWT14,DIAMOND_,Symsz,PINK_,1);
 
-  hlng = (last_known_wt - FirstGoalWt) / 0.43;
+  hlng = (last_known_wt - TargetGoalWt) / 0.65;  // from here how long to reach target wt  lb a day
 
   if (hlng  > 0) {
 
- // <<"%v $hlng\n";
+  ans=ask("%V $last_known_day $hlng\n",0);
 
-  plotSymbol(wt_wo,last_known_day+hlng,FirstGoalWt,STAR_,Symsz, BLUE_);
+  plotSymbol(wt_wo,last_known_day+hlng,TargetGoalWt,STAR_,Symsz, BLUE_);
 
   plotSymbol(wt_wo,last_known_day+hlng,last_known_wt,CROSS_,Symsz,GREEN_);
  // <<"$_proc %v $hlng\n"
@@ -93,12 +93,12 @@
   void drawGoals(int ws)
   {
 
- //  oknow = Ask ("que pasa? $ws $_proc",1)
+   oknow = Ask ("que pasa? $ws $_proc",0)
 
   if (ws == 0) {
    // Plot(wt_wo,_WBOX,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_)  // never go above
 
- // sWo(_WOID,wt_wo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0);
+  sWo(_WOID,wt_wo,_WSCALES,wbox(sc_zstart,minWt,sc_zend,upperWt),_WSAVESCALES,0);
 
   plotBox(wt_wo,sc_zstart,DX_NEW,sc_zend,upperWt, RED_, FILL_)  
 
@@ -349,7 +349,7 @@
          break;
 	 }
         sWo(_WOID,wedwos[i],_WXSCALES, wpt(sc_zstart,sc_zend));
-//printf("%d xscales %f %f\n",i,sc_zstart,sc_zend);
+  printf("%d xscales %f %f\n",i,sc_zstart,sc_zend);
 
         sWo(_WOID,wedwos[i],_wclearclip,WHITE_,_wsave,ON_,_wclearpixmap,ON_,_wclipborder,BLACK_,_wredraw,ON_,_wsavepixmap,ON_);
   }
@@ -374,7 +374,7 @@
      // plot(cal_wo,_Wkeysymbol,0.78 ,0.9,DIAMOND_,Symsz,BLUE_,1);
 
       //Text(cal_wo,"Calories Burnt", 0.8,0.9,1)      
- plotLine(cal_wo,sc_zstart,day_burn,sc_zend,day_burn, GREEN_)
+  plotLine(cal_wo,sc_zstart,day_burn,sc_zend,day_burn, GREEN_)
 
   plotLine(cal_wo,sc_startday,out_cal,sc_end,out_cal, BLUE_)
 
@@ -402,7 +402,7 @@
   while ( 1) {
   gname = glineGetName(allgls[gi]);
   
-  //ok=ask("%V $gi $allgls[gi] $gname",1);
+  ok=ask("%V $gi $allgls[gi] $gname",0);
 
   sGl(_GLID,allgls[gi],_GLDRAW,ON_);
   
@@ -414,7 +414,7 @@
 
   }
 
-  //sGl(_GLID,ext_gl,_GLUSESCALES,1,_GLDRAW,ON_);
+  sGl(_GLID,ext_gl,_GLUSESCALES,1,_GLDRAW,ON_);
 
   for (i = 0; i< 10; i++) {
         if (wedwos[i] <=0) {
@@ -496,7 +496,7 @@ Text(cal_wo,"CALS In/Out",0.2,0.90);
 
 //Textr(cal_wo,"Cals In/Out",155,1500);
 
-Text(food_wo,"Fat,Fiber, Protein (dailyreq %%) ",0.1,0.89);
+Text(food_wo,"Fat,Fiber, Protein (\% drq) ",0.1,0.89);
 
 //Textr(food_wo,"Food",140,50);
 
@@ -671,7 +671,8 @@ Text(food_wo,"Fat,Fiber, Protein (dailyreq %%) ",0.1,0.89);
 
   wtm = WTVEC[dindex];
   cbm = CALSBURN[dindex];
-  ccon = CALSCON[dindex];  
+  ccon = CALSCON[dindex];
+  cexb = EXEBURN[dindex];
   xtm = EXTV[dindex];
   carb= CARBSCON[dindex];
   prot= PROTCON[dindex];
@@ -691,6 +692,8 @@ Text(food_wo,"Fat,Fiber, Protein (dailyreq %%) ",0.1,0.89);
   woSetValue(calburnwo,"%6.1f$cbm");
 
   woSetValue(calconwo,"%6.1f$ccon");
+
+  woSetValue(calexbwo,"%6.1f$cexb");
 
   woSetValue(carbewo,"%6.1f$carb");
 

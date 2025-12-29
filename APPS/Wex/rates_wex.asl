@@ -1,7 +1,7 @@
 /* 
- *  @script wex_rates.asl 
+ *  @script rates_wex.asl 
  * 
- *  @comment wex_rates.asl 
+ *  @comment rates 
  *  @release CARBON 
  *  @vers 1.2 He 6.3.97 C-Li-Bk 
  *  @date 03/17/2022 21:57:39          
@@ -16,11 +16,11 @@
 
 
 float rpm = 0.0166667;
-float w_rate = 397.0 * rpm;
+float w_rate = 350.0 * rpm; // 3 miles an hour ? 180 lbs
 float h_rate = 477.0 * rpm;
 float c_rate = 636.0 * rpm;
 float run_rate = 795.0 * rpm;
-float wex_rate = 350.0 * rpm;
+float gym_rate = 350.0 * rpm;
 float swim_rate = 477.0 * rpm;
 float yard_rate =  318.3 *rpm;
 
