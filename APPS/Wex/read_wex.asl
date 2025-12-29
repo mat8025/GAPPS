@@ -114,7 +114,7 @@ if (Yd >= 0) {
 
    wrk_sleep  = (sleep_burn + (16 * 60 - tex) * office_rate )  ;
 
-  CALBURN[Yd] =  wrk_sleep + exer_burn ;
+  CALSBURN[Yd] =  wrk_sleep + exer_burn ;
 
   Nobs++;
 
@@ -227,10 +227,12 @@ if (Yd >= 0) {
 
   CARBSCON[Yd] = atof(Col[2]);
 
+  CALSDEF[Yd] = CALSBURN[Yd] - CALSCON[Yd];
+  
   NCCobs++;
 
-<<"Yd $NCCobs $CALSCON[Yd] $CARBSCON[Yd] \n"
-
+<<"Yd $NCCobs $CALSCON[Yd] $CARBSCON[Yd] $CALSDEF[Yd] \n"
+ans=ask("cal deficit $CALSDEF[Yd] ",1)
   }
 
   }
@@ -289,8 +291,11 @@ if (Yd >= 0) {
 
   FIBRCON[Yd] = fiber;
 <<"%V $tl $Yd $day $cals $carbs $fat $prot $fiber\n"
+ 
 
+  CALSDEF[Yd] = CALSBURN[Yd] - CALSCON[Yd];
 
+<<"%V $tl $Yd $day $cals $carbs $fat $prot $fiber $CALSDEF[Yd] \n"
 
   NCCobs++;
   }

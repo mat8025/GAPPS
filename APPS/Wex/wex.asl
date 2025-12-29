@@ -146,9 +146,11 @@ float in_cal =  day_burn * 3/4;
 
   Vec<float> EXEBURN(400);
 
-  Vec<float> CALBURN(400);
+  Vec<float> CALSBURN(400);
 
   Vec<float> CALSCON(400);
+
+  Vec<float> CALSDEF(400);
 
 
   Vec<float> CARDIO(400);
@@ -273,7 +275,7 @@ Record RX;
 
 
 //////////////////// GLINES /////////////////
-  int calc_gl,calb_gl,carb_gl,fibre_gl,fat_gl,prot_gl,se_gl,bp_gl,pwt_gl,ext_gl, gw_gl,wt_gl,lc_gl,rc_gl;
+  int calc_gl,calb_gl,cald_gl, carb_gl,fibre_gl,fat_gl,prot_gl,se_gl,bp_gl,pwt_gl,ext_gl, gw_gl,wt_gl,lc_gl,rc_gl;
 
 
 
@@ -326,7 +328,7 @@ Record RX;
   int wt_wo,cal_wo,calcwo,food_wo,carb_wo;
   int swo,tw_wo,zinwo,zoomwo;
   int nobswo,xtwo,xbwo,xlbswo,dlbswo;
-  int dtmwo,obswo,cbmwo,xtmwo,sdwo,gdwo,gwt_wo,wtmwo;
+  int dtmwo,obswo,calburnwo,calcon,xtmwo,sdwo,gdwo,gwt_wo,wtmwo;
 
 
 #include "draw_wex.asl"

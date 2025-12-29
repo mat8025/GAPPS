@@ -124,7 +124,7 @@ void computeWL(long wlsday, long wleday)
 
         ccals = CALSCON[i];
 
-        bcals = CALBURN[i];
+        bcals = CALSBURN[i];
 	
         Nsel_calsinout +=  (ccals - bcals);
 

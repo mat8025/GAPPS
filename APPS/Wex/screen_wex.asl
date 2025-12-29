@@ -72,15 +72,15 @@ cout<<"  titleButtonsQRD(vp);\n";
  
   cal_wo=cWo(vp,WO_GRAPH_); 
  
-   sWo(_woid,cal_wo,_wname,"CAL",_wvalue,0,_wclipborder,BLACK_,_wpixmap,ON_,_wdraw,ON_) ; // cals; 
+   sWo(_woid,cal_wo,_wname,"CALS",_wvalue,0,_wclipborder,BLACK_,_wpixmap,ON_,_wdraw,ON_) ; // cals; 
  
   food_wo=cWo(vp,WO_GRAPH_); 
    
-  sWo(_woid,food_wo,_wname,"CARB",_wvalue,0,_wclipborder,BLACK_,_wpixmap,ON_) ; // carbs; 
+  sWo(_woid,food_wo,_wname,"FatProtFibr",_wvalue,0,_wclipborder,BLACK_,_wpixmap,ON_) ; // fat prtien fibre 
  
   carb_wo=cWo(vp,WO_GRAPH_); 
    
-  sWo(_woid,carb_wo,_wname,"XT",_wvalue,0,_wclipborder,RED_,_wpixmap,ON_); // exercise time; 
+  sWo(_woid,carb_wo,_wname,"Carbs",_wvalue,0,_wclipborder,RED_,_wpixmap,ON_); // carbs
  
   int wedwos[] = { wt_wo, cal_wo,  food_wo, carb_wo,-1  }; 
 //<<[_DB]"%V$wedwo \n" 
@@ -125,7 +125,7 @@ COUT(sc_zstart);
   sWo(_woid,wt_wo,_wclip,CXY,_wcolor,ORANGE_,_wclipbhue,WHITE_,_wbhue,WHITE_,_wfont,F_SMALL_,_wredraw,ON_,_wsavepixmap,ON_); 
  
   //sWo(_WOID,wt_wo,_WRHTSCALES,wbox(rx,0,rX,300),_WSAVESCALES,1);
-  sWo(_WOID,cal_wo,_WRHTSCALES,wbox(sc_startday,0.0, sc_end,300.0,0));
+ // sWo(_WOID,cal_wo,_WRHTSCALES,wbox(sc_startday,0.0, sc_end,300.0,0));
 //  ok =ask("RHTSCALES ?",1)
 // margin codes ?
 //!b
@@ -142,8 +142,8 @@ COUT(sc_zstart);
  
 //  sWo(carb_wo,_wsavescales,0,_WEO); 
  
-  //sWo(_woid,cal_wo,_wscales,wbox(sc_startday,0,sc_end,CalsY1),_wsavescales,0);
-  sWo(_woid,cal_wo,_wscales,wbox(sc_startday,0,sc_end,CalsY1))
+  sWo(_woid,cal_wo,_wscales,wbox(sc_startday,-1000,sc_end,CalsY1),_wsavescales,0);
+  
 
  
   COUT(cal_wo); 
@@ -180,7 +180,7 @@ COUT(swo);
   cout<<"scales " << sc_startday << " sc_end " << sc_end << " bp_upper " << bp_upper << endl; 
   //<<"SCALES %V$sc_startday $sc_endday $bp_upper\n"; 
  
-  sWo(_woid,food_wo,_wscales,wbox(sc_startday,-5,sc_end,carb_upper)); 
+  sWo(_woid,food_wo,_wscales,wbox(sc_startday,-5,sc_end,120)); 
  
   //<<"SCALES %V$sc_startday $sc_endday $carb_upper\n"; 
  
@@ -263,9 +263,14 @@ COUT(swo);
   wtmwo=cWo(vp,WO_BV_); 
   sWo(_woid,wtmwo,_wname,"WTM",_wclipbhue,RED_,_whelp," wt on day "); 
  
-  cbmwo=cWo(vp,WO_BV_); 
+  calburnwo=cWo(vp,WO_BV_); 
+
+  sWo(_woid,calburnwo,_wname,"CBURN",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," cals burnt on day "); 
+
+
+  calconwo=cWo(vp,WO_BV_); 
    
-  sWo(_woid,cbmwo,_wname,"CBM",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," cals burnt on day "); 
+  sWo(_woid,calconwo,_wname,"CCON",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," cals consumed on day ");
  
   carbewo=cWo(vp,WO_BV_); 
    
@@ -287,7 +292,7 @@ COUT(swo);
   xtmwo=cWo(vp,WO_BV_); 
   sWo(_woid,xtmwo,_wname,"ExTim",_wcolor,BLUE_,_whelp," xtime on day "); 
  
-  int mwos[] = { dtmwo, wtmwo, cbmwo, xtmwo, carbewo, protewo, fatewo, fibewo, -1}; 
+  int mwos[] = { dtmwo, wtmwo, calburnwo, calconwo, xtmwo, carbewo, protewo, fatewo, fibewo, -1}; 
  
    
   wovtile( mwos, 0.01,0.4,0.085,0.9); 

@@ -115,7 +115,16 @@
 
   plotLine(cal_wo,sc_startday,in_cal,sc_end,in_cal, BLACK_)
 
-  plotLine(cal_wo,sc_startday,50,sc_end,50, GREEN_)
+  plotLine(cal_wo,sc_zstart,0,sc_zend,0, RED_)
+
+  plotBox(cal_wo,sc_zstart,-1000,sc_zend,0, RED_, FILL_)
+
+  // but we are getting RD% not gramss!
+ // plotLine(food_wo,sc_startday,180,sc_end,180, GREEN_) ; //daily req protein (g)
+
+//  plotLine(food_wo,sc_startday,50,sc_end,50, BLUE_) ; //daily req fat (g)
+
+//   plotLine(food_wo,sc_startday,30,sc_end,30, BROWN_) ; //daily req fibre (g)
 
   plotLine(carb_wo,sc_startday,35,sc_end,35, RED_)
   
@@ -258,7 +267,7 @@
 
   sWo(_WOID,food_wo,_WAXNUM,AXIS_LEFT_)
 
-  sWo(_WOID,food_wo,_WYSCALES,wpt(-10,carb_upper),_WSAVESCALES,0)
+  sWo(_WOID,food_wo,_WYSCALES,wpt(-10,200),_WSAVESCALES,0) ; // rqdaily %
 
   sWo(_WOID,cal_wo,_WUSESCALES,0,_WAXNUM,  AXIS_LEFT_)
 //  sWo(food_wo,_WAXNUM,2)
@@ -272,7 +281,7 @@
     sWo(_WOID,wt_wo,_WAXNUM,AXIS_LEFT_)
   //sWo(carb_wo,_WAXNUM,2,0,sc_endday,20,10)
   Text(wt_wo, "Weight (lbs)",0.1,1.0,RED_,0,0,2)
-  Text(carb_wo, "Carbs ",0.1,1.0,RED_,0,0,2)
+  Text(carb_wo, "Carbs (grams) ",0.1,1.0,RED_,0,0,2)
 
   axisLabel(wt_wo,AXIS_BOTTOM_,"Weight (lbs)",0.5,1.7)
 
@@ -365,7 +374,9 @@
      // plot(cal_wo,_Wkeysymbol,0.78 ,0.9,DIAMOND_,Symsz,BLUE_,1);
 
       //Text(cal_wo,"Calories Burnt", 0.8,0.9,1)      
+ plotLine(cal_wo,sc_zstart,day_burn,sc_zend,day_burn, GREEN_)
 
+  plotLine(cal_wo,sc_startday,out_cal,sc_end,out_cal, BLUE_)
 
     Text(cal_wo,"Calories Ate", 0.8,0.82,1,0,BLACK_);
 
@@ -403,7 +414,7 @@
 
   }
 
-  sGl(_GLID,ext_gl,_GLUSESCALES,1,_GLDRAW,ON_);
+  //sGl(_GLID,ext_gl,_GLUSESCALES,1,_GLDRAW,ON_);
 
   for (i = 0; i< 10; i++) {
         if (wedwos[i] <=0) {
@@ -485,7 +496,7 @@ Text(cal_wo,"CALS In/Out",0.2,0.90);
 
 //Textr(cal_wo,"Cals In/Out",155,1500);
 
-Text(food_wo,"FOOD fat,fiber, protein (g) ",0.1,0.89);
+Text(food_wo,"Fat,Fiber, Protein (dailyreq %%) ",0.1,0.89);
 
 //Textr(food_wo,"Food",140,50);
 
@@ -659,7 +670,8 @@ Text(food_wo,"FOOD fat,fiber, protein (g) ",0.1,0.89);
 //<<"%V $dindex \n"
 
   wtm = WTVEC[dindex];
-  cbm = CALBURN[dindex];
+  cbm = CALSBURN[dindex];
+  ccon = CALSCON[dindex];  
   xtm = EXTV[dindex];
   carb= CARBSCON[dindex];
   prot= PROTCON[dindex];
@@ -676,7 +688,9 @@ Text(food_wo,"FOOD fat,fiber, protein (g) ",0.1,0.89);
 
   woSetValue(wtmwo,"%6.1f$wtm");
   
-  woSetValue(cbmwo,"%6.1f$cbm");
+  woSetValue(calburnwo,"%6.1f$cbm");
+
+  woSetValue(calconwo,"%6.1f$ccon");
 
   woSetValue(carbewo,"%6.1f$carb");
 
@@ -688,7 +702,8 @@ Text(food_wo,"FOOD fat,fiber, protein (g) ",0.1,0.89);
 
   woSetValue(xtmwo,"%6.1f$xtm");
 
-  sWo(_WOID,cbmwo,_WREDRAW,1);
+  sWo(_WOID,calburnwo,_WREDRAW,1);
+  sWo(_WOID,calconwo,_WREDRAW,1);  
   sWo(_WOID,wtmwo,_WREDRAW,1);
   sWo(_WOID,xtmwo,_WREDRAW,1);
   sWo(_WOID,carbewo,_WREDRAW,1);

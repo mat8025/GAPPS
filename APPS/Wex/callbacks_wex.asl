@@ -237,6 +237,30 @@ int WTLB(int wb)
    <<"SetGoals ??\n"
   }
 
+int FatProtFibr(int wb)
+{
+<<"In $_proc  $ewoname  $ebutton     cursor @ $erx $ery \n"      
+ // display x,y
+ <<"%V $erx $ery \n"
+
+}
+//=========================================
+int Carbs(int wb)
+{
+<<"In $_proc  $ewoname  $ebutton     cursor @ $erx $ery \n"      
+ // display x,y
+ <<"$_proc day $erx  $ery \n"
+
+}
+//=========================================
+int CALS(int wb)
+{
+<<"In $_proc  $ewoname  $ebutton     cursor @ $erx $ery \n"      
+ // display x,y
+ <<"$_proc day $erx   $ery \n"
+
+}
+//=========================================
 
 
 
