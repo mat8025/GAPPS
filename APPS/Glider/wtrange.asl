@@ -94,7 +94,7 @@ using namespace std;
 /}
 
  
-   sdb(1, "step")  ; // step thru code ?
+//   sdb(1, "step")  ; // step thru code ?
    thin_lbs = 175.0
    fat_lbs  = 195.0
 

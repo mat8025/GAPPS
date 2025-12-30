@@ -259,7 +259,7 @@ COUT(swo);
 //  sWo(_woid,obswo,_wname,"OBS",_wclipbhue,YELLOW_,_whelp," obs day "); 
  
   wtmwo=cWo(vp,WO_BV_); 
-  sWo(_woid,wtmwo,_wname,"WTM",_wclipbhue,RED_,_whelp," wt on day "); 
+  sWo(_woid,wtmwo,_wname,"WTM",_wclipbhue,CYAN_,_whelp," wt on day "); 
  
   calburnwo=cWo(vp,WO_BV_); 
 
@@ -273,32 +273,32 @@ COUT(swo);
    
   sWo(_woid,calconwo,_wname,"CCON",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," cals consumed on day ");
  
-  carbewo=cWo(vp,WO_BV_); 
+  carbmwo=cWo(vp,WO_BV_); 
    
-  sWo(_woid,carbewo,_wname,"CARB",_wclipbhue,RED_,_wfonthue,BLACK_,_whelp," carbs eaten on day "); 
+  sWo(_woid,carbmwo,_wname,"CARB",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," carbs eaten on day "); 
 
-  protewo=cWo(vp,WO_BV_); 
+  protmwo=cWo(vp,WO_BV_); 
    
-  sWo(_woid,protewo,_wname,"PROT",_wclipbhue,GREEN_,_wfonthue,BLACK_,_whelp," protein eaten on day ");
+  sWo(_woid,protmwo,_wname,"PROT",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," protein eaten on day ");
 
-  fatewo=cWo(vp,WO_BV_); 
+  fatmwo=cWo(vp,WO_BV_); 
    
-  sWo(_woid,fatewo,_wname,"FAT",_wclipbhue,BLUE_,_wfonthue,WHITE_,_whelp," fat eaten on day ");
+  sWo(_woid,fatmwo,_wname,"FAT",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," fat eaten on day ");
 
-  fibewo=cWo(vp,WO_BV_); 
+  fibmwo=cWo(vp,WO_BV_); 
    
-  sWo(_woid,fibewo,_wname,"FIBER",_wclipbhue,BROWN_,_wfonthue,BLACK_,_whelp," fiber eaten on day "); 
+  sWo(_woid,fibmwo,_wname,"FIBER",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," fiber eaten on day "); 
  
  
   xtmwo=cWo(vp,WO_BV_); 
-  sWo(_woid,xtmwo,_wname,"ExTim",_wcolor,BLUE_,_whelp," xtime on day "); 
+  sWo(_woid,xtmwo,_wname,"ExTim",_wclipbhue,CYAN_,_wcolor,BLUE_,_whelp," xtime on day "); 
  
-  int mwos[] = { dtmwo, wtmwo, calburnwo, calconwo,  calexbwo, xtmwo, carbewo, protewo, fatewo, fibewo, -1}; 
+  int mwos[] = { dtmwo, wtmwo, xtmwo, calburnwo, calconwo,  calexbwo, protmwo, fatmwo, fibmwo, carbmwo, -1}; 
  
    
   wovtile( mwos, 0.01,0.2,0.085,0.9); 
  
-  for (i= 0; i< 10; i++) { 
+  for (i= 0; i< 12; i++) { 
    if (mwos[i] <0 ) { 
    break; 
    } 

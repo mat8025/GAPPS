@@ -201,7 +201,7 @@ int WTLB(int wb)
 	 Wex_CL_init = 0;
 	 
 	 wt_day = fround(lcpx,0);
-	 
+	 sel_day = wt_day;
 
   wt_day.pinfo();
   //lcpx.pinfo();

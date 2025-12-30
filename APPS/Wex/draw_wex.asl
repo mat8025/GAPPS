@@ -24,24 +24,25 @@
 //  <<"$_proc $gday $FirstGoalWt $last_known_day\n"
 
 
-  //<<"%V $last_known_day $PWT $PWT7 $PWT14  $tday2 $TargetGoalWt \n";
+ ask("%V $last_known_day $PWT $PWT7 $PWT14  $tday2 $TargetGoalWt \n",0);
 
 
 // cout<<"showTarget()\n";
     sWo(_WOID,wt_wo,_WSCALES,wbox(sc_zstart,minWt,sc_zend,upperWt),_WSAVESCALES,0);
-  plotSymbol(wt_wo,targetday,TargetGoalWt,DIAMOND_,Symsz,GREEN_,1);
+  plotSymbol(wt_wo,DIAMOND_,targetday,TargetGoalWt,GREEN_,Symsz);
 
   //cout<<"plotSymbol\n";
 
-  plotSymbol(wt_wo,tday2,FirstGoalWt,STAR_,Symsz,BROWN_, 1);
+ // plotSymbol(wt_wo,tday2,FirstGoalWt,STAR_,Symsz,BROWN_, 1);
+  plotSymbol(wt_wo,STAR_,tday2,FirstGoalWt,BROWN_,Symsz);
 
-  plotSymbol(wt_wo,last_known_day,FirstGoalWt,DIAMOND_,Symsz,RED_,1);
+  plotSymbol(wt_wo,DIAMOND_,last_known_day,FirstGoalWt,RED_,Symsz,1);
 
-  plotSymbol(wt_wo,last_known_day+2,PWT,DIAMOND_,Symsz,GREEN_,1);
+  plotSymbol(wt_wo,DIAMOND_,last_known_day+2,PWT,PINK_,Symsz,1);
 
-  plotSymbol(wt_wo,last_known_day+8,PWT7,DIAMOND_,Symsz,LILAC_,1);
+  plotSymbol(wt_wo,DIAMOND_,last_known_day+8,PWT7,LILAC_,Symsz,1);
 
-  plotSymbol(wt_wo,last_known_day+15,PWT14,DIAMOND_,Symsz,PINK_,1);
+  plotSymbol(wt_wo,DIAMOND_,last_known_day+15,PWT14,PINK_,Symsz,1);
 
   hlng = (last_known_wt - TargetGoalWt) / 0.65;  // from here how long to reach target wt  lb a day
 
@@ -49,14 +50,14 @@
 
   ans=ask("%V $last_known_day $hlng\n",0);
 
-  plotSymbol(wt_wo,last_known_day+hlng,TargetGoalWt,STAR_,Symsz, BLUE_);
+  plotSymbol(wt_wo,STAR_,last_known_day+hlng,TargetGoalWt,BLUE_,Symsz);
 
-  plotSymbol(wt_wo,last_known_day+hlng,last_known_wt,CROSS_,Symsz,GREEN_);
+  plotSymbol(wt_wo,CROSS_,last_known_day+hlng,last_known_wt,GREEN_,Symsz);
  // <<"$_proc %v $hlng\n"
 
-  plotSymbol(wt_wo,last_known_day+hlng,GoalWt,STAR_,Symsz, RED_);
+  plotSymbol(wt_wo,STAR_,last_known_day+hlng,GoalWt,RED_,Symsz);
 
-  plotSymbol(wt_wo,last_known_day+hlng,last_known_wt,CROSS_,Symsz,GREEN_);
+  plotSymbol(wt_wo,CROSS,last_known_day+hlng,last_known_wt,GREEN_,Symsz);
 
   }
 
@@ -695,27 +696,45 @@ Text(food_wo,"Fat,Fiber, Protein (\% drq) ",0.1,0.89);
 
   woSetValue(calexbwo,"%6.1f$cexb");
 
-  woSetValue(carbewo,"%6.1f$carb");
+  woSetValue(carbmwo,"%6.1f$carb");
 
-  woSetValue(protewo,"%6.1f$prot");
+  woSetValue(protmwo,"%6.1f$prot");
 
-  woSetValue(fatewo,"%6.1f$fat");
+  woSetValue(fatmwo,"%6.1f$fat");
 
-  woSetValue(fibewo,"%6.1f$fiber");
+  woSetValue(fibmwo,"%6.1f$fiber");
 
   woSetValue(xtmwo,"%6.1f$xtm");
 
   sWo(_WOID,calburnwo,_WREDRAW,1);
-  sWo(_WOID,calconwo,_WREDRAW,1);  
+  sWo(_WOID,calconwo,_WREDRAW,1);
+  sWo(_WOID,calexbwo,_WREDRAW,1);  
   sWo(_WOID,wtmwo,_WREDRAW,1);
   sWo(_WOID,xtmwo,_WREDRAW,1);
-  sWo(_WOID,carbewo,_WREDRAW,1);
-  sWo(_WOID,protewo,_WREDRAW,1);
-  sWo(_WOID,fatewo,_WREDRAW,1);
-  sWo(_WOID,fibewo,_WREDRAW,1);  
+  sWo(_WOID,carbmwo,_WREDRAW,1);
+  sWo(_WOID,protmwo,_WREDRAW,1);
+  sWo(_WOID,fatmwo,_WREDRAW,1);
+  sWo(_WOID,fibmwo,_WREDRAW,1);  
   
   
   sWo(_WOID,dtmwo,_WSTRVALUE ,mdy,_WREDRAW,1);
+
+  // draw symbols into wo
+          msymx = 0.8;
+	  msymy = 0.3;
+	  msize = 12;
+          plotsymbol(wtmwo,DIAMOND_,msymx,msymy,BLUE_,msize);
+          plotsymbol(xtmwo,STAR_,msymx,msymy,GREEN_,msize);	  
+          plotsymbol(calexbwo,STAR_,msymx,msymy,RED_,msize);
+	            plotsymbol(calburnwo,DIAMOND_,msymx,msymy,RED_,msize);
+	            plotsymbol(calconwo,TRI_,msymx,msymy,BLUE_,msize);		    
+
+	  plotsymbol(protmwo,DIAMOND_,msymx,msymy,GREEN_,msize);
+	  plotsymbol(fibmwo,ITRI_,msymx,msymy,BROWN_,msize,1);
+	  plotsymbol(fatmwo,CROSS_,msymx,msymy,BLUE_,msize,1);	  
+          plotsymbol(carbmwo,DIAMOND_,msymx, msymy,RED_,msize);
+// could add to wo a sym ,x,y for a redraw name_sym box
+    
 
 
   //  return m_day;

@@ -13,7 +13,7 @@
  */ 
 //----------------<v_&_v>-------------------------//;                  
 
-  Str Wex_Vers= "2.66";
+  Str Wex_Vers= "2.67";
 
 ///
 /// exercise weight display
@@ -444,7 +444,7 @@ Record RX;
 
 //  Onwards();
 
-  int A=ofr("~/GAPPS/DAT/wex2025.tsv");
+  int A=ofr("~/GAPPS/DAT/wex.tsv");
 
   if (A == -1) {
 
@@ -483,7 +483,7 @@ Record RX;
 ///////////// Cals & Carb Consumed ////////
 // so far not logged often 
 
-  int ACC=ofr("~/GAPPS/DAT/cc2025.tsv");
+  int ACC=ofr("~/GAPPS/DAT/ccfpf.tsv");
 
 <<"%V $ACC\n"
 
@@ -664,13 +664,15 @@ float ae = EXTV[15];
 
      Graphic = checkGWM();
 
+     sel_day = Yd
 
-     getDay(Yd)
-
+     getDay(sel_day)
 
 
      while (Graphic) {
 
+        showTarget();
+        getDay(sel_day)
 
          eventWait();
 
