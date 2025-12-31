@@ -452,7 +452,7 @@ cf(A);
 
 // lets' log this change 
 
-logfile= "~/gapps/LOGS/aslcodemods.log"
+logfile= "~/GAPPS/LOGS/aslcodemods.log"
 A=ofile(logfile,"r+")
 fseek(A,0,2)
 

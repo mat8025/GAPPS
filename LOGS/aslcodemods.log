@@ -2301,3 +2301,7 @@ spil_utils.cpp                      2.70  02/04/2025 09:10:43
 dbug_parse.cpp                      2.3  12/18/2025 11:10:41  move from parse to dbug dir
 dbug_error.cpp                      1.51  12/18/2025 11:11:32  
 plot_wo_set.cpp                     1.99  12/18/2025 11:14:09  fix RHT input bug
+record_rd.cpp                       1.91  12/28/2025 12:48:32  added nrowsrd
+vmf_record.cpp                      1.7  12/28/2025 13:17:42  added getnowsrd
+vmf_table.cpp                       1.6  12/28/2025 16:03:27  
+plot_po.cpp                         1.83  12/29/2025 20:03:41  plotsymbol(wid,synum,x,y,hue,size,fill,ang,hsx,hsy,gc)

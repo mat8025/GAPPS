@@ -1,15 +1,16 @@
 /* 
  *  @script sbump.asl                                                         
  * 
- *  @comment  the script date&vers                                            
+ *  @comment the script date&vers      *                                      
  *  @release Carbon                                                           
- *  @vers 1.16 S Sulfur [asl 6.55 : C Cs]                                     
- *  @date 09/27/2024 14:39:52                                                 
- *  @cdate Sun Dec 23 09:22:34 2018                                           
+ *  @vers 1.17 Cl Chlorine [asl 6.65 : C Tb]                                  
+ *  @date 12/30/2025 10:46:43                                                 
+ *  @cdate Sun Dec 23 09:22:34 2018    *                                      
  *  @author Mark Terry                                                        
- *  @Copyright © RootMeanSquare 2024 -->                                     
+ *  @Copyright © RootMeanSquare 2025 -->                                     
  * 
  */ 
+
 
 
 //----------------<v_&_v>-------------------------//
@@ -19,7 +20,7 @@
                     
 
   
-int DBH_ = -1
+int DBH_ = 2
 /*
 #include "debug"
 
@@ -102,7 +103,7 @@ Str cdate ="";
 
 
 
-  if (srcfile @= "") {
+  if (srcfile == "") {
   <<[DBH_]"no script file entered\n"
     exit();
   }
@@ -219,7 +220,7 @@ Str Pad;
 
 Svar L;
 
-L.pinfo()
+   L.pinfo()
 
 
    found_vers =0;
@@ -248,17 +249,17 @@ L.pinfo()
    where = ftell(A)
    L.Split(T);
 
-   hwi= Chi(L);
+ //  hwi= Chi(L);
    
 
 
    sz = Caz(L);
 <<[DBH_] "%V $sz $(caz(L)) $hwi \n"
-ans=ask("%V $hwi $sz",0)
+
 
 <<[DBH_]"$i $sz $where  $L \n"
-   if (hwi >2) {
-<<[DBH_]"L1 $L[1]  $L[:hwi:]\n"
+   
+<<[DBH_]"L1 $L[1]  $L[:-1:]\n"
 
     if (scmp(L[1],"@vers")) {
      found_vers =1;
@@ -283,7 +284,7 @@ ans=ask("%V $hwi $sz",0)
       author = "$L[2:-1:1]";
    }
    
-   }
+   
    
    //found_where = where;
    i++;
@@ -461,7 +462,7 @@ log_it = 1;
 
 if (log_it) {
 // lets' log this change 
-logfile= "~/gapps/LOGS/appmods.log"
+logfile= "~/GAPPS/LOGS/appmods.log"
 //logfile= "LOGS/appmods.log"
 A=ofile(logfile,"r+")
 fseek(A,0,2)

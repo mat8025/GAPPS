@@ -1,16 +1,16 @@
-
 /* 
- *  @script wex.asl                                                     
+ *  @script wex.asl                                                           
  * 
- *  @comment exercise/diet logger cpp vers                              
- *  @release CARBON                                                     
- *  @vers 2.56 Ba Barium [asl 6.4.31 C-Be-Ga]                           
- *  @date 06/17/2022 07:54:49                                           
- *  @cdate Fri Jan 1 08:00:00 2010                                      
- *  @author Mark Terry                                                  
- *  @Copyright © RootMeanSquare 2022 -->                               
+ *  @comment exercise/diet logger cpp vers     *                              
+ *  @release Carbon                                                           
+ *  @vers 2.57 La Lanthanum [asl 6.65 : C Tb]                                 
+ *  @date 12/30/2025 10:48:12                                                 
+ *  @cdate Fri Jan 1 08:00:00 2010    *                                       
+ *  @author Mark Terry                                                        
+ *  @Copyright © RootMeanSquare 2025 -->                                     
  * 
  */ 
+
 //----------------<v_&_v>-------------------------//;                  
 
   Str Wex_Vers= "2.67";

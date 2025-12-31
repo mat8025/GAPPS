@@ -1,24 +1,27 @@
 /* 
- *  @script sbump.asl                                                   
+ *  @script sbump.asl                                                         
  * 
- *  @comment update the script date&vers                                
- *  @release Carbon                                                     
- *  @vers 1.15 P Phosphorus [asl 6.50 : C Sn]                           
- *  @date 07/20/2024 15:11:17                                           
- *  @cdate Sun Dec 23 09:22:34 2018                                     
- *  @author Mark Terry                                                  
- *  @Copyright © RootMeanSquare 2024 -->                               
+ *  @comment the script date&vers      *                                      
+ *  @release Carbon                                                           
+ *  @vers 1.17 Cl Chlorine [asl 6.65 : C Tb]                                  
+ *  @date 12/30/2025 10:46:43                                                 
+ *  @cdate Sun Dec 23 09:22:34 2018    *                                      
+ *  @author Mark Terry                                                        
+ *  @Copyright © RootMeanSquare 2025 -->                                     
  * 
  */ 
 
-//----------------<v_&_v>-------------------------//;                  
+
+
+//----------------<v_&_v>-------------------------//
+
 
 
                     
 
   
-int DBH_ = -1
-
+int DBH_ = 2
+/*
 #include "debug"
 
 
@@ -28,7 +31,10 @@ if (_dblevel >0) {
 
 <<"update asl script version \n" ;
 
-  ignoreErrors();
+*/  
+  // if script found
+  // then  read current vers and  bump number and update date
+  // if no @vers line -- then prepend the vers header lines
 
 
   void vers2ele(Str& vstr)
@@ -52,6 +58,7 @@ if (_dblevel >0) {
   {
     Str pad;
     Str hl = ln;
+    Str wl;
     static Str sel = "xxxxxxxxxx"
  //   <<[DBH_]"$ln\n"
     ll = slen(ln)
@@ -66,13 +73,26 @@ if (_dblevel >0) {
 //<<"%V $pl\n"
     sel = "$hl    $ll   "
 //<<"%V $sel\n"
-
     sel = "$hl    $pad   "
 //<<"%V $sel\n"
+    wl = "$hl    $ll   "
+    wl.pinfo()
+    wl = "$hl    $pad   "
+  //  ask("$wl ")
 
-
-   return sel;
+  return sel;
  }
+/////////////////////////////////////////////
+
+
+
+   Str srcfile = _clarg[1];
+
+   len = slen(srcfile);
+
+<<"$len $srcfile|\n"
+
+  ignoreErrors();
 
   int A = -1;
 
@@ -81,19 +101,9 @@ Str release ="xyz";
 Str cdate ="";
 
 
-  
-  // if script found
-  // then  read current vers and  bump number and update date
-  // if no @vers line -- then prepend the vers header lines
-  
-   Str srcfile = _clarg[1];
-
-   len = slen(srcfile);
-
-<<"$len $srcfile|\n"
 
 
-  if (srcfile @= "") {
+  if (srcfile == "") {
   <<[DBH_]"no script file entered\n"
     exit();
   }
@@ -112,7 +122,7 @@ pid=getpid()
 <<[DBH_]"make a bakup ${srcfile}.${pid}.bak \n"
 
   !!"cp $srcfile  ${srcfile}.${pid}.bak"
-
+////////////////////////////////////////
 
 
   set_vers = 0;
@@ -210,7 +220,7 @@ Str Pad;
 
 Svar L;
 
-L.pinfo()
+   L.pinfo()
 
 
    found_vers =0;
@@ -239,17 +249,17 @@ L.pinfo()
    where = ftell(A)
    L.Split(T);
 
-   hwi= Chi(L);
+ //  hwi= Chi(L);
    
 
 
    sz = Caz(L);
 <<[DBH_] "%V $sz $(caz(L)) $hwi \n"
-ans=ask("%V $hwi $sz",0)
+
 
 <<[DBH_]"$i $sz $where  $L \n"
-   if (hwi >2) {
-<<[DBH_]"L1 $L[1]  $L[:hwi:]\n"
+   
+<<[DBH_]"L1 $L[1]  $L[:-1:]\n"
 
     if (scmp(L[1],"@vers")) {
      found_vers =1;
@@ -274,7 +284,7 @@ ans=ask("%V $hwi $sz",0)
       author = "$L[2:-1:1]";
    }
    
-   }
+   
    
    //found_where = where;
    i++;
@@ -396,13 +406,14 @@ j= 0;
 
 
 cf(A);
+   
 
  A=ofw("hdr_tmp");
 
     fseek(A,0,0)
 
 // all lines shold be padded out to 70
-Str hl="xxx";
+    hl="xxx";
    padHdr(" *  @script $fname ")
 
    <<[A]"/* \n"
@@ -443,7 +454,7 @@ cf(A);
 
 
 
-ans=iread("app code -what modification?:")
+ans=iread("app code -what modification?:",1)
 <<"$ans\n"
 if (ans =="q") exit()
    
@@ -451,7 +462,7 @@ log_it = 1;
 
 if (log_it) {
 // lets' log this change 
-logfile= "~/gapps/LOGS/appmods.log"
+logfile= "~/GAPPS/LOGS/appmods.log"
 //logfile= "LOGS/appmods.log"
 A=ofile(logfile,"r+")
 fseek(A,0,2)
