@@ -53,6 +53,7 @@
 // filter data using readrecord pick options
 
 
+
 A = 0  
 
 ncols = 1
@@ -70,7 +71,7 @@ ncols = 1
  double ymax
 
 
-i = 1
+i = 2
 ncols = i
 pars = i
 
@@ -79,33 +80,7 @@ pars = i
 ycol = 0
 
 allowDB("spe,vmf,plot,fop,svar,parse,record,math,wcom,ic",1) 
-   
-   /*
-   D= readfile(A,1)
-   
-   // <<"$D\n"
-    sz= Caz(D)
-    <<"%V$sz\n"
-    sz.pinfo()
-    str grs
-    gki = 0.0
-   for (i=0;i< sz; i++) {
-    // C=D[i]
-     E=split(D[i])
-     grs= E[0]
-     gr = atof(E[0])
-     kr = atof(E[1])
-     if (kr > 0) 
-     gki = gr/18.0/kr
-    // <<"[$i] <|$E[0]|> $E[1] \n"
-     if (grs != "#"  && gr > 0) {
-    
-     <<"[$i] %6.2f $gr $kr $gki\n"
-     }
-   }
-   ans=ask("readfile OK?",1)
-   */
-
+   /////
 
      fname = _clarg[1]
    if (fname == "") {
@@ -118,17 +93,25 @@ if (wcol != "") {
 }
      A=ofr(fname);
 
+csv_del = 0
+csv_del = spat(fname,".csv")
+
 Record RX;
 
 //wdb= DBaction(DBSTEP_)
   
 RX.pinfo()
 
+  if (csv_del) {
+  <<"its a csv del file !\n"
+      Nrecs=RX.readRecord(A,_RDEL,44,_RTYPE,FLOAT_); // make record a float
+  }
+  else {
+    <<"its a tabsv del file !\n"
+    Nrecs=RX.readRecord(A,_RDEL,-1,_RTYPE,FLOAT_); // make record a float
+  }
 
-
-Nrecs=RX.readRecord(A,_RDEL,-1,_RTYPE,FLOAT_);
-
-
+ ask("%V $csv_del ",0)
   sz = Caz(RX);
 
   RX.pinfo()
@@ -142,7 +125,7 @@ Nrecs=RX.readRecord(A,_RDEL,-1,_RTYPE,FLOAT_);
   nrows = dmn[0]
   ncols = dmn[1]
 
-    <<"%V$nrows $ncols\n"
+    ask("%V $csv_del $nrows $ncols\n",0)
     
     if (ycol >= ncols) {
         ycol = ncols-1
@@ -154,73 +137,80 @@ Nrecs=RX.readRecord(A,_RDEL,-1,_RTYPE,FLOAT_);
     <<"%V $dmn[0] $dmn[1] \n" // TBF 8/21/24  not correct ele of dmn
 
   glr = RX[0][0]
-  <<"%V $glr \n"  
+  glr00 = RX[0][0] ; // converts Svar ascii value to float
+  glr11 = RX[1][1]
+  glr22 = RX[2][2]
+  glr33 = RX[3][3]
+  glr53 = RX[5][3]
+  
+  
+  
+  
+ ask("%V $glr00 $glr11 $glr22 $glr33 $glr53\n",1)
 
- 
-    
+ Siv YCOLS[5]
+
+// now get a col to double vec
+   YV0 = RX.getCol(0)   // be =0 (or 1,2,3 ..), ee = -1 (-2,3 or +ve 
+   YV0.pinfo();
+   wc = 1;
+   YV1 = RX.getCol(wc)   // be =0 (or 1,2,3 ..), ee = -1 (-2,3 or +ve 
+   YV1.pinfo();
+
+   YV2 = RX.getCol(2)   // be =0 (or 1,2,3 ..), ee = -1 (-2,3 or +ve 
+   YV2.pinfo();
+
+   YV3 = RX.getCol(3)   // be =0 (or 1,2,3 ..), ee = -1 (-2,3 or +ve 
+   YV3.pinfo();
+
+
+<<"%V $YV3 \n"
+<<"%V $YV3[0] $YV[1] \n"
+
+
+  // YCOLS[0] =  RX.getCol(0)  ;
+     YCOLS[0] = "ycol0"
+
+   YCOLS[0].pinfo()
+
+ask("arrayof Sivs work?",1)
+
+
+/*    
+// check # cols
+    YVSC = "xyz"
+    i = 3
+    YVSC = "YV$i"
+
+<<"%V $YVSC $i\n"
+
+  $YVSC  = RX.getCol(i);
+
+  $YVSC.pinfo()
+  YV3.pinfo()
+
+*/
   wr= 0
 
-    /*
-// IF recordtype is ascii/svar  
-while (wr < Nrecs) {
 
-
-  Col= RX.getRecord(wr);
-
-  glr = atof(Col[0]);
-  kr =  atof(Col[1]);
-  <<"[$wr] $glr $kr \n"
-  wr++
-  }
-    */
 
     
 // check # cols
-  ans=ask("readRecord $Nrecs OK?",0)
+  ans=ask("readRecord $Nrecs OK?",1)
     int scz = -1;
     RX.pinfo()
-    WVSC = "xyz"
-/*
-    for (i=0 ;i < 5 ; i++) {
-     WVSC = "WV$i"
-     $WVSC = fgen(10,i,1)
-     pinfo($WVSC,2)		       
-     ans=ask("$WVSC built OK?",0)
 
-     scz = Caz($WVSC)
-
-     ans=ask(" $scz $WVSC  OK?",0)
-		       
-    }
-
-   WV0.pinfo()
-   WV1.pinfo()
-ans=ask("%V WV1 OK?",0)   
-   WV1.pinfo()   
-   WV3.pinfo()   
-
-     pinfo(WV4,2)		       
-   
-ans=ask("%V WV4 OK?",0)
-
-           pinfo(WV1,2)		       
-
-      
-      WVSC = "WV1"
-      pinfo($WVSC,2)		
-
-ans=ask("%V $WVSC OK?",0)
-
-*/
   
-    YVSC = "xyz"
-    
+
+
+/{/*
+
     for (i=0; i< ncols ; i++) {
 
       YVSC = "YV$i"
       
-      $YVSC = RX[::][i]
-      
+      //$YVSC = RX[::][i]  ; // extract as double and auto create named double vec ??
+      $YVSC  = RX.getCol(i, 0, -1);
       pinfo($YVSC,2)
       
       //    Redimn($YVSC)
@@ -229,11 +219,9 @@ ans=ask("%V $WVSC OK?",0)
       
       //$YVSC.pinfo()
       
-     ans=ask(" $scz $YVSC built OK?",0)
+     ans=ask(" $scz $YVSC built OK?",1)
       
     }
-
-
        
     scz = Caz($YVSC)
     sz = Caz(YV2)
@@ -242,7 +230,9 @@ ans=ask("%V $WVSC OK?",0)
     
     sz.pinfo()
 
-    ans=ask("%V $YVSC $sz $scz OK?",0)
+    ans=ask("%V $YVSC $sz $scz OK?",1)
+/}*/
+
 
     YV0.pinfo()
 
@@ -250,7 +240,7 @@ ans=ask("%V $WVSC OK?",0)
     
     YV2.pinfo()
 
-    ans=ask(" YV2 built OK?",0)
+    ans=ask(" YV2 built OK?",1)
     
     <<"RX $RX[0][1]  $RX[1][1] \n"
  
@@ -265,15 +255,6 @@ ans=ask("%V $WVSC OK?",0)
     }
 
 //wdb= DBaction(DBSTEP_)
-/*
-kr = YV[1][1]
-        <<"%V YV[1][1] $kr\n"
-    <<"%V $YV\n"
-        <<"YV $YV[0][1]  $YV[1][1] \n"
-    <<"%V $YV[0] $YV[1] \n" // TBF
-
-    <<"%V $YV \n"
-*/    
     
   // if want to exclude neg and 0
     // MM= Stats(YV,">",0)
@@ -289,7 +270,7 @@ kr = YV[1][1]
 
  <<"%V $npts \n"   
 
-    ans=ask("%V $npts OK?",0)
+    ans=ask("%V $npts OK?",1)
     
 
 <<"%V8.6f$YV2 \n"
@@ -326,8 +307,12 @@ kr = YV[1][1]
 
 
     ans=ask("$npts YV2 OK?",0)
+
     
-    
+//////////////////////////
+
+
+
 
   Graphic = CheckGwm()
 
@@ -690,3 +675,78 @@ titleButtonsQRD(aw);
 
 ///////////////////////////////////////////////////////////
 
+
+   /*
+   D= readfile(A,1)
+   
+   // <<"$D\n"
+    sz= Caz(D)
+    <<"%V$sz\n"
+    sz.pinfo()
+    str grs
+    gki = 0.0
+   for (i=0;i< sz; i++) {
+    // C=D[i]
+     E=split(D[i])
+     grs= E[0]
+     gr = atof(E[0])
+     kr = atof(E[1])
+     if (kr > 0) 
+     gki = gr/18.0/kr
+    // <<"[$i] <|$E[0]|> $E[1] \n"
+     if (grs != "#"  && gr > 0) {
+    
+     <<"[$i] %6.2f $gr $kr $gki\n"
+     }
+   }
+   ans=ask("readfile OK?",1)
+   */
+
+    /*
+// IF recordtype is ascii/svar  
+while (wr < Nrecs) {
+
+
+  Col= RX.getRecord(wr);
+
+  glr = atof(Col[0]);
+  kr =  atof(Col[1]);
+  <<"[$wr] $glr $kr \n"
+  wr++
+  }
+    */
+
+
+    
+/*
+    for (i=0 ;i < 5 ; i++) {
+     WVSC = "WV$i"
+     $WVSC = fgen(10,i,1)
+     pinfo($WVSC,2)		       
+     ans=ask("$WVSC built OK?",0)
+
+     scz = Caz($WVSC)
+
+     ans=ask(" $scz $WVSC  OK?",0)
+		       
+    }
+
+   WV0.pinfo()
+   WV1.pinfo()
+ans=ask("%V WV1 OK?",0)   
+   WV1.pinfo()   
+   WV3.pinfo()   
+
+     pinfo(WV4,2)		       
+   
+ans=ask("%V WV4 OK?",1)
+
+           pinfo(WV1,2)		       
+
+      
+      WVSC = "WV1"
+      pinfo($WVSC,2)		
+
+ans=ask("%V $WVSC OK?",0)
+
+*/

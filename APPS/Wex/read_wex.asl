@@ -151,7 +151,13 @@ if (Yd >= 0) {
 // access of record row Rx(i)
 // access of record Col Rx(i,j)
   int max_n =3;
-  
+
+// kinda lame  - should be able to get one row as vector
+//             - or one column as a vector
+               - or even a sub matrix
+
+
+
   while (tl < Wex_Nrecs) {
 
 

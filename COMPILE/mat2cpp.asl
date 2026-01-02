@@ -143,6 +143,7 @@ int index = 6;
 
 #if _CPP_
    M( rows(0,3,1), cols(1,3,2))  = 23.34;   // range setting  bes
+   // since we know it is rows,cols =  M( rng(0,3,1), rng(1,3,2))
 #else
    M[0:3:1][1:3:2] = 23.34
 #endif

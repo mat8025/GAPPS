@@ -150,6 +150,9 @@ using namespace std;
 
    hook_tw = thin + hookwt + kit
 
+   hook_minw = 80 ; //kg
+   hook_maxw = 100 ; 
+   
    <<"\tmy range  with hook3 wing $(hook_tw * kg2lb_) --> $(hook_cw * kg2lb_) $(80 *2.2) $(100 *2.2) lbs \n"
    <<"\tmy range  with hook3 wing $hook_tw  --> $hook_cw  (80-100) kg  \n"
 
@@ -157,13 +160,15 @@ using namespace std;
  <<"\tmy best weight - bathroom for hook3 25 is $best_hook3_wt_lbs !   \n"
     max_hook3_wt_lbs = 100*2.2 - hookwt*2.2 -kit*2.2 
    <<"\tmy max weight - bathroom for hook3 25 is $max_hook3_wt_lbs !   \n"
-
+    hook_hue = GREEN_;
     dw = (current_wt_lbs -best_hook3_wt_lbs)
     if ( dw > 0) {
+          hook_hue = ORANGE_;
      <<"\t\t\tSlim down $dw - for hook wing!! \n"
     }
     if (max_hook3_wt_lbs < current_wt_lbs) {
      <<"\t\tAlas too fat for hook wing!! diet!!!!\n"
+     hook_hue = RED_;
     }
 
 
@@ -172,6 +177,10 @@ using namespace std;
    theta_cw = current_wt + thwt + kit
    
    theta_tw = thin + thwt + kit
+
+   theta_minw = 82 ; // kg
+   theta_maxw = 95 ; 
+   theta_hue = GREEN_;
 
    <<"\tmy range with theta uls wing $theta_tw --> $theta_cw ideal (82 - 95,max 99) kg \n"
    <<"\tmy range with theta uls wing $(theta_tw * kg2lb_) --> $(theta_cw * kg2lb_) lbs \n"
@@ -182,15 +191,94 @@ using namespace std;
      dw = (current_wt_lbs -best_theta_wt_lbs)
     if ( dw > 0) {
      <<"\t\tSlim down $dw for theta wing!! \n"
-    }
+      theta_hue = ORANGE_;
+     }
 
     if (max_theta_wt_lbs < current_wt_lbs) {
+         theta_hue = RED_;
      <<"\t\tAlas too fat for theta wing!! diet!\n"
     }
 
 
+    #include "wevent.asl" 
+#include "tbqrd.asl"
 
 
+  Symsz = 2
+
+
+  Graphic = CheckGwm()
+
+  if (!Graphic) {
+    Xgm = spawnGwm("PG_WTRANGE")
+  }
+
+ void drawScreens()
+  {
+
+    <<"drawScreens $_proc \n"
+ 
+    sWi(_woid,aw,_wclearclip,WHITE__)
+    sWo(_woid,wtrwo,_wclipborder,BLACK_,_wredraw,ON_)
+    axnum(wtrwo,2)
+    axnum(wtrwo,1)
+
+      <<"drawScreens $_proc \n"
+ 
+    sWi(_woid,aw,_wclearclip,WHITE__)
+    sWo(_woid,wtrwo,_wclipborder,BLACK_,_wredraw,ON_)
+    axnum(wtrwo,2)
+    axnum(wtrwo,1)
+
+  // hook3 wtrange box
+     plotBox(wtrwo,2,hook_minw,4,hook_maxw, LILAC_, FILL_)  
+     plotSymbol(wtrwo,DIAMOND_,3,95,BLUE_,Symsz,1);
+     plotSymbol(wtrwo,STAR_,3,hook_cw,hook_hue,Symsz,1);
+
+  // advance theta wtrange box
+     plotBox(wtrwo,6,theta_minw,8,theta_maxw, PINK_, FILL_)  
+     plotSymbol(wtrwo,DIAMOND_,7,90,BLUE_,Symsz,1);
+     
+     plotSymbol(wtrwo,STAR_,7,theta_cw,theta_hue,Symsz,1);     
+
+}
+
+
+
+  aw =cWi("WT_RANGE");
+
+titleButtonsQRD(aw);
+//<<" CGW $aw \n"
+
+  sWi(_woid, aw,_wresize,wbox(0.1,0.1,0.9,0.7,0))
+  sWi(_woid,aw,_wclip,wbox(0.1,0.1,0.8,0.9))
+    xmin = 0
+     xmax = 10
+
+    sWi(_woid,aw,_wscales,wbox(xmin,0,xmax,120),_wsavescales,0,_wsave,ON_)
+
+
+    wtrwo=cWo(aw,WO_GRAPH_);
+
+     sWo(_woid,wtrwo,_wresize,wbox(0.05,0.15,0.8,0.95),_wcolor,WHITE_)
+
+ 
+     sWo(_woid,wtrwo,_wdraw,ON_,_wpixmap,ON_,_wclip,wbox(0.1,0.1,0.9,0.9))
+
+     sWo(_woid,wtrwo,_wscales,wbox(xmin,70,xmax,110),_wsavescales,0)          
+
+       drawScreens()
+
+
+m_num = 0;
+ while (1) {
+
+        m_num++
+
+       eventWait()
+       drawScreens()
+}
+//////////
 
    //units()
    // to be fixed   !\n - ! cancels \

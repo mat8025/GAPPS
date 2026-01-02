@@ -457,7 +457,7 @@ Record RX;
 
   Svar rx;
 
-  Wex_Nrecs=RX.readRecord(A,_RDEL,-1,_RLAST);  // no back ptr to Siv?
+  Wex_Nrecs=RX.readRecord(A,_RDEL,-1);  // no back ptr to Siv?
 
  <<" readRecord  $Wex_Nrecs\n";
 

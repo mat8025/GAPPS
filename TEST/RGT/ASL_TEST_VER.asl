@@ -55,7 +55,7 @@ setmaxicerrors(-1);
 wasl = "asl"
 Str Test_suite ="XYZ"
 
-//<<"using $wasl for testing \n"
+<<"using $wasl for testing \n"
 
 !!"asl -v"
 
@@ -83,7 +83,7 @@ wd= chdir(hdir)
 wdir = getdIr()
 <<[_DBH]"%V $wd $hdir $wdir\n"
 
-wasl = "aslx"
+
 //ans=query("where are we")
 
 
@@ -435,11 +435,11 @@ if ((do_include || do_all ) && (do_include != -1)) {
 
 //<<"bops,fvmeq,fsc1,mainvar,snew,parse_exp\n";
 
-    RunDirTests("Bops","bops,fvmeq,fsc1,mainvar,snew,parse_exp");
+    RunDirTests("Bops","bops,fvmeq,fsc1,mainvar,snew");
 
-  RunDirTests("Assign","assign");
+    RunDirTests("Assign","assign");
 
-  RunDirTests("Info","info");
+    RunDirTests("Info","info");
 
   // RunDirTests("Assign","assign");
 
@@ -569,9 +569,9 @@ if ((do_bit || do_all) && (do_bit != -1)) {
    //<<"%V $inflsz \n"
  //  echolines(1)
    RunDirTests("Logic","logic,logicops,logicdef")
-   //RunDirTests("Logic","logic,logicops")
-
+  
    RunDirTests("Compare","compare")
+   RunDirTests("Parse","parse")
 
   outcome("LOGIC")
 
