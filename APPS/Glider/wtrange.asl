@@ -94,11 +94,16 @@ using namespace std;
 /}
 
  
-//   sdb(1, "step")  ; // step thru code ?
+rejectDB("array")
+
    thin_lbs = 175.0
    fat_lbs  = 195.0
 
-
+   min_kg = 60
+   max_kg = 110;
+   min_lbs = min_kg *2.2;
+   max_lbs = max_kg *2.2;
+   
 
    helmet = 0.4  ; /* check /
    adv_harness = 2.15
@@ -160,15 +165,25 @@ using namespace std;
  <<"\tmy best weight - bathroom for hook3 25 is $best_hook3_wt_lbs !   \n"
     max_hook3_wt_lbs = 100*2.2 - hookwt*2.2 -kit*2.2 
    <<"\tmy max weight - bathroom for hook3 25 is $max_hook3_wt_lbs !   \n"
-    hook_hue = GREEN_;
+       min_hook3_wt_lbs = 80*2.2 - hookwt*2.2 -kit*2.2 
+   <<"\tmy min weight - bathroom for hook3 25 is $min_hook3_wt_lbs !   \n"
+    hook_hue = BLACK_;
+    hook_bhue = GREEN_
     dw = (current_wt_lbs -best_hook3_wt_lbs)
-    if ( dw > 0) {
-          hook_hue = ORANGE_;
+    if ( fabs(dw) > 8) {
+          hook_bhue = ORANGE_;
      <<"\t\t\tSlim down $dw - for hook wing!! \n"
     }
     if (max_hook3_wt_lbs < current_wt_lbs) {
      <<"\t\tAlas too fat for hook wing!! diet!!!!\n"
-     hook_hue = RED_;
+     hook_bhue = RED_;
+     hook_hue = RED_;     
+    }
+
+    if (min_hook3_wt_lbs > current_wt_lbs) {
+     <<"\t\tAlas too light for hook wing!! add ballast!!!!\n"
+     hook_bhue = RED_;
+     hook_hue = RED_;     
     }
 
 
@@ -180,7 +195,8 @@ using namespace std;
 
    theta_minw = 82 ; // kg
    theta_maxw = 95 ; 
-   theta_hue = GREEN_;
+   theta_hue = BLACK_;
+      theta_bhue = GREEN_;
 
    <<"\tmy range with theta uls wing $theta_tw --> $theta_cw ideal (82 - 95,max 99) kg \n"
    <<"\tmy range with theta uls wing $(theta_tw * kg2lb_) --> $(theta_cw * kg2lb_) lbs \n"
@@ -188,15 +204,27 @@ using namespace std;
  <<"\tmy best weight - bathroom for theta 25 is $best_theta_wt_lbs !   \n"
     max_theta_wt_lbs = 95*2.2 - thwt*2.2 - kit*2.2
    <<"\tmy max weight - bathroom for theta 25 is $max_theta_wt_lbs !   \n"
+
+    min_theta_wt_lbs = 82*2.2 - thwt*2.2 - kit*2.2
+   <<"\tmy min weight - bathroom for theta 25 is $min_theta_wt_lbs !   \n"
      dw = (current_wt_lbs -best_theta_wt_lbs)
-    if ( dw > 0) {
+
+
+    if ( fabs(dw) > 3) {
      <<"\t\tSlim down $dw for theta wing!! \n"
-      theta_hue = ORANGE_;
+      theta_bhue = ORANGE_;
      }
 
     if (max_theta_wt_lbs < current_wt_lbs) {
-         theta_hue = RED_;
+         theta_bhue = RED_;
+         theta_hue = RED_;	 
      <<"\t\tAlas too fat for theta wing!! diet!\n"
+    }
+
+    if (min_theta_wt_lbs > current_wt_lbs) {
+         theta_bhue = RED_;
+         theta_hue = RED_;	 
+     <<"\t\tAlas too thin for theta wing!! \n"
     }
 
 
@@ -205,7 +233,7 @@ using namespace std;
 
 
   Symsz = 2
-
+  openDll("image")
 
   Graphic = CheckGwm()
 
@@ -218,25 +246,52 @@ using namespace std;
 
     <<"drawScreens $_proc \n"
  
-    sWi(_woid,aw,_wclearclip,WHITE__)
+    sWi(_woid,aw,_wclearclip,WHITE_)
     sWo(_woid,wtrwo,_wclipborder,BLACK_,_wredraw,ON_)
-    axnum(wtrwo,2)
-    axnum(wtrwo,1)
+
 
       <<"drawScreens $_proc \n"
  
     sWi(_woid,aw,_wclearclip,WHITE__)
-    sWo(_woid,wtrwo,_wclipborder,BLACK_,_wredraw,ON_)
-    axnum(wtrwo,2)
-    axnum(wtrwo,1)
+    // _clip for wo is clip area with the wob
+    i= 2
+    hue_name = getColorName(i)
+    	ask("$hue_name $i",0);
+        <<"hues are  $i $hue_name  $(getColorName(i+1))\n"
+    i++
+        <<"hues are  $i $hue_name  $(getColorName(i+1))\n"
+	ask("$hue_name $i",0);
+    //for (i = 0 ; i < 3; i++) {
+
+    sWo(_woid,wtrwo,_wname,"WtRange",_wdraw,ON_,_wpixmap,ON_,_wclip,wbox(0.1,0.1,0.8,0.9,4),_wcolor,WHITE_)
+    sWo(_woid,wtrwo,_whue,i,_wbhue,PINK_,_wclipborder,BLACK_,_wredraw,ON_)
+    sWo(_woid,wtrwo,_wclipborder,BLACK_,_wclipbhue,LILAC_,_wclipfhue,ORANGE_,_wupdate,ON_)
+
+    // sleep(0.2)
+    //}
+    
+    axnum(wtrwo,2,min_kg,max_kg,5,2,"2.0f")
+    
+    //axnum(wtrwo,2,min_kg,max_kg,5,-3,"2.0f")
+    // want to use rht scales which should be scales 1
+    sWo(_woid,wtrwo,_wusescales,1)    
+
+    axnum(wtrwo,8,160,220,10,1,"2.0f")  ; // lets use 5,6,7 8 to force use of scales 1
+    axnum(wtrwo,4,min_kg,max_kg,10,1,"2.0f")  ; // lets use 5,6,7 8 to force use of scales 1        
+
+    sWo(_woid,wtrwo,_wusescales,0)    
+
+    //axnum(wtrwo,1,xmin,xmax,1,-1,"2.0f")
+
+    axnum(wtrwo,1,xmin,xmax,1,1,"2.0f")
 
   // hook3 wtrange box
-     plotBox(wtrwo,2,hook_minw,4,hook_maxw, LILAC_, FILL_)  
+     plotBox(wtrwo,2,hook_minw,4,hook_maxw, hook_bhue, FILL_)  
      plotSymbol(wtrwo,DIAMOND_,3,95,BLUE_,Symsz,1);
      plotSymbol(wtrwo,STAR_,3,hook_cw,hook_hue,Symsz,1);
 
   // advance theta wtrange box
-     plotBox(wtrwo,6,theta_minw,8,theta_maxw, PINK_, FILL_)  
+     plotBox(wtrwo,6,theta_minw,8,theta_maxw, theta_bhue, FILL_)  
      plotSymbol(wtrwo,DIAMOND_,7,90,BLUE_,Symsz,1);
      
      plotSymbol(wtrwo,STAR_,7,theta_cw,theta_hue,Symsz,1);     
@@ -247,26 +302,32 @@ using namespace std;
 
   aw =cWi("WT_RANGE");
 
-titleButtonsQRD(aw);
+  titleButtonsQRD(aw);
 //<<" CGW $aw \n"
 
   sWi(_woid, aw,_wresize,wbox(0.1,0.1,0.9,0.7,0))
-  sWi(_woid,aw,_wclip,wbox(0.1,0.1,0.8,0.9))
+  sWi(_woid,aw,_wclip,wbox(0.05,0.1,0.95,0.9))
     xmin = 0
      xmax = 10
 
     sWi(_woid,aw,_wscales,wbox(xmin,0,xmax,120),_wsavescales,0,_wsave,ON_)
 
 
-    wtrwo=cWo(aw,WO_GRAPH_);
 
-     sWo(_woid,wtrwo,_wresize,wbox(0.05,0.15,0.8,0.95),_wcolor,WHITE_)
+      wtrwo=cWo(aw,WO_GRAPH_);
+
+     sWo(_woid,wtrwo,_wresize,wbox(0.15,0.15,0.8,0.95),_wcolor,WHITE_)
 
  
-     sWo(_woid,wtrwo,_wdraw,ON_,_wpixmap,ON_,_wclip,wbox(0.1,0.1,0.9,0.9))
+     sWo(_woid,wtrwo,_wname,"WTRANGE",_wdraw,ON_,_wpixmap,ON_,_wclip,wbox(0.4,0.1,0.8,0.9),_wcolor,PINK_)
+//sdb(1, "step","stderr")  ; // step thru code ?
 
-     sWo(_woid,wtrwo,_wscales,wbox(xmin,70,xmax,110),_wsavescales,0)          
-
+     sWo(_woid,wtrwo,_wscales,wbox(xmin,min_kg,xmax,max_kg),_wsavescales,0)
+     //if (ask("use RHT scaling ?",1) == "y" ){
+     <<"using RHT scales !\n"
+     sWo(_woid,wtrwo,_wrhtscales,wbox(xmin,min_lbs,xmax,max_lbs),_wsavescales,1)
+   //  sWo(_woid,wtrwo,_wusescales,1)    
+     
        drawScreens()
 
 

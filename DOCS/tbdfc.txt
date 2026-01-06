@@ -1,0 +1,7 @@
+//    TBDFC   done,fixed,checked
+// priority  1-5     MUST 5 ASAP 4 MODERATE 3  CANWAIT 2 COSMETIC 1 
+// status P pending, A analyzing, C coding, D debugging, R revision needed, F fixed
+num, code_type,  desc,  priority,  code, status, date  update
+1,   asl,   'csv record blank end 2 rows',  3  , 'record array ', A, 1/1/2026, 1/1/2026
+2,   script, 'sindent busted -procs header', 3, ' script, translate', A,1/1/2026, 1/1/2026
+3,   asl, ' plot wrhtscales - gline scale selection' , 4, ' plot code', C, A,1/1/2026, 1/1/2026

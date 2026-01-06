@@ -132,6 +132,12 @@ if step is set, then value is incremented by step for each element.
 For complex vectors each real imag pair is set to value and then the step is incremented.
 -----------------------------------------------------
 
+ There are number of libraries  image,audio, ...
+ that require to be dynamically linked to access their functions - use OpenDll(libname)
+ e.g.
+  openDll("image")
+  openDll("audio")  
+  
 
 .HE 
 SYNTAX
@@ -4270,6 +4276,18 @@ ofr(fname) - opens file for reading
 .EF
 =============================================================
 .BF
+openDll()
+.(x
+opendll
+.)x 
+.FD
+   openDll(libname)  will dynamically link a library e.g. audio, image
+  e.g. 
+   openDll("audio")  
+  However this is generally done automatically via the function name.
+
+
+.BF
 popen()
 .(x
 popen
@@ -6775,7 +6793,8 @@ getColorName
 .)x
 .FD
 getColorName 
-        <Str> getColorName(index) finds color name for color map index 
+        <Str> getColorName(index) finds color name for color map index
+	requires link to image library - openDll("image")
 =======================================================
 .BF
 getHTMLcolorName ()
@@ -6784,7 +6803,8 @@ getHTMLcolorName
 .)x
 .FD
 getHTMLcolorName 
-        <Str> getHTMLcolorName(int index)  finds color name from HTML color map  
+        <Str> getHTMLcolorName(int index)  finds color name from HTML color map
+		requires link to image library - openDll("image")
 =======================================================
 
 .BF
@@ -6800,7 +6820,7 @@ sets signal buffer number associated with window wid
 .EF
 =============================================================
 .BF
-setdebug()
+setdebug(), sdb
 .(x
 setdebug
 .)x 
@@ -6812,7 +6832,7 @@ If no errors and debug level is 0, (the default) the debug file is
 removed on exit.
 
 e.g.
-setDebug(1,@keep,@pline,@filter,0)
+setDebug(1,"keep","pline","filter",1)
 
 tag value options are :-
 
@@ -6834,8 +6854,10 @@ prun - causes the program to run (default)
 trace -  shows internal function call sequence --
 ~trace - turns off tracing. 
 
-filter - filter internal code via name , 0 no filter, 1 allow named, 2 reject named, 3 reject all
+stderr - debug statements to stderr - (will also go to debug file)
 
+filter - filter internal code debug via name
+~filter - turns off filter
 to set named functions or named code files to debug use
 filterDebug and/or filterFileDebug
 e.g
@@ -8566,9 +8588,9 @@ sWo(_WOID,wo_id) --- set a window object's attributes
 sWo (_WOID, wo_id, [action, value,...])
 
 the arguments to sWi are of the form tag,value 
-where the tag is the action, which is followed by an optional list of values
+where the tag is the action, by a value 
 
-tag,{value,...}
+
 Actions will require values or parameters. 
 
 constants or variables.
@@ -8577,11 +8599,11 @@ with a list following args
 
 e.g.
 sWo(_WOID,wo_id,_WDRAW,ON_,_WPIXMAP,ON_,_WHUE,BLACK_,_WFUNC,"ip_wo_value",_WREDRAW,ON_);
-sWo(_WOID,wo_id,_WSCALES,wbox(0.0,0.0,1.0,1.0));
+sWo(_WOID,wo_id,_WSCALES,wbox(0.0,0.0,1.0,1.0,1));
 
 
-the window object referred to by wo_id has the attribute of @drawon
-@func is set to ip_wo_value -- so that a click in the window object 
+the window object referred to by wo_id has the attribute of _wdraw
+_wfunc is set to ip_wo_value -- so that a click in the window object 
 then allows user to update its text value via keyboard
 redraw - the window object is redrawn after this setgwob call
 
@@ -8609,6 +8631,16 @@ the resize to be done as fractional size (0),
 or pixel offset (1) of the parent window
 or relative to real scales (2) of the parent window
 or as grid position (3) of the parent window - default grid is 10x10
+
+ the wbox is a function return pointer to a float array size 5.
+
+for sizing the clip area  options are offsets to the wob area in pixels option 0 or proportional values option 4 
+sWo(wo_id,_wclip, wbox(10,10,10,10,0))
+i.e 10 pixels from the Wob border
+sWo(wo_id,_wclip, wbox(0.1,0.2,0.7,0.9,4))
+ i.e. set the clip rectangle to a porportion of the wob area.
+
+
 
 TBD  === update this discussion for new form of sWo
 

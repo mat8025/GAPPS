@@ -179,7 +179,7 @@ long f_i = 0;
   <<"looking up $pat in manual \n"
      int A= -1;
 
-     A=ofr("~/gapps/DOCS/ASLMAN.txt")
+     A=ofr("~/GAPPS/DOCS/ASLMAN.txt")
 
 
     if (A <= 0 ) {
