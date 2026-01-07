@@ -674,6 +674,7 @@ Text(food_wo,"Fat,Fiber, Protein (\% drq) ",0.1,0.89);
   cbm = CALSBURN[dindex];
   ccon = CALSCON[dindex];
   cexb = EXEBURN[dindex];
+  cdef = CALSDEF[dindex];
   xtm = EXTV[dindex];
   carb= CARBSCON[dindex];
   prot= PROTCON[dindex];
@@ -694,6 +695,8 @@ Text(food_wo,"Fat,Fiber, Protein (\% drq) ",0.1,0.89);
 
   woSetValue(calconwo,"%6.1f$ccon");
 
+  woSetValue(caldwo,"%6.1f$cdef");
+
   woSetValue(calexbwo,"%6.1f$cexb");
 
   woSetValue(carbmwo,"%6.1f$carb");
@@ -706,6 +709,15 @@ Text(food_wo,"Fat,Fiber, Protein (\% drq) ",0.1,0.89);
 
   woSetValue(xtmwo,"%6.1f$xtm");
 
+for (i= 0; i< 14; i++) { 
+   if (mwos[i] <0 ) { 
+   break; 
+   } 
+ 
+    sWo(_woid,mwos[i],_wredraw,ON_); 
+ 
+  } 
+ /*
   sWo(_WOID,calburnwo,_WREDRAW,1);
   sWo(_WOID,calconwo,_WREDRAW,1);
   sWo(_WOID,calexbwo,_WREDRAW,1);  
@@ -715,7 +727,7 @@ Text(food_wo,"Fat,Fiber, Protein (\% drq) ",0.1,0.89);
   sWo(_WOID,protmwo,_WREDRAW,1);
   sWo(_WOID,fatmwo,_WREDRAW,1);
   sWo(_WOID,fibmwo,_WREDRAW,1);  
-  
+  */
   
   sWo(_WOID,dtmwo,_WSTRVALUE ,mdy,_WREDRAW,1);
 
@@ -726,6 +738,7 @@ Text(food_wo,"Fat,Fiber, Protein (\% drq) ",0.1,0.89);
           plotsymbol(wtmwo,DIAMOND_,msymx,msymy,BLUE_,msize);
           plotsymbol(xtmwo,STAR_,msymx,msymy,GREEN_,msize);	  
           plotsymbol(calexbwo,STAR_,msymx,msymy,RED_,msize);
+          plotsymbol(caldwo,CROSS_,msymx,msymy,GREEN_,msize);	  
 	            plotsymbol(calburnwo,DIAMOND_,msymx,msymy,RED_,msize);
 	            plotsymbol(calconwo,TRI_,msymx,msymy,BLUE_,msize);		    
 

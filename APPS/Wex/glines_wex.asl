@@ -170,7 +170,7 @@ gw_gl = -1;
 
   sGl(_GLID,calc_gl,_GLSYMBOL,TRI_,_GLSYMHUE,BLUE_,_GLNAME,"cals_in");
 
-  sGl(_GLID,cald_gl,_GLSYMBOL,STAR_,_GLSYMHUE,GREEN_,_GLNAME,"cal_deficit");
+  sGl(_GLID,cald_gl,_GLSYMBOL,CROSS_,_GLSYMHUE,GREEN_,_GLNAME,"cal_deficit");
 
   sGl(_GLID,calx_gl,_GLSYMBOL,STAR_,_GLSYMHUE,RED_,_GLNAME,"cal_xburn");
 

@@ -267,7 +267,11 @@ COUT(swo);
 
   calexbwo=cWo(vp,WO_BV_); 
 
-  sWo(_woid,calexbwo,_wname,"CEXB",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp,"exer cals burnt on day "); 
+  sWo(_woid,calexbwo,_wname,"CEXB",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp,"exer cals burnt on day ");
+
+  caldwo=cWo(vp,WO_BV_); 
+
+  sWo(_woid,caldwo,_wname,"CDEF",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp,"calorie deficit on day "); 
 
   calconwo=cWo(vp,WO_BV_); 
    
@@ -293,12 +297,12 @@ COUT(swo);
   xtmwo=cWo(vp,WO_BV_); 
   sWo(_woid,xtmwo,_wname,"ExTim",_wclipbhue,CYAN_,_wcolor,BLUE_,_whelp," xtime on day "); 
  
-  int mwos[] = { dtmwo, wtmwo, xtmwo, calburnwo, calconwo,  calexbwo, protmwo, fatmwo, fibmwo, carbmwo, -1}; 
+  int mwos[] = { dtmwo, wtmwo, xtmwo, calburnwo, calconwo, caldwo,  calexbwo, protmwo, fatmwo, fibmwo, carbmwo, -1}; 
  
    
   wovtile( mwos, 0.01,0.2,0.085,0.9); 
  
-  for (i= 0; i< 12; i++) { 
+  for (i= 0; i< 14; i++) { 
    if (mwos[i] <0 ) { 
    break; 
    } 

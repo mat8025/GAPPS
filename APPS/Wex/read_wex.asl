@@ -240,7 +240,7 @@ if (Yd >= 0) {
   NCCobs++;
 
 <<"Yd $NCCobs $CALSCON[Yd] $CARBSCON[Yd] $CALSDEF[Yd] \n"
-ans=ask("cal deficit $CALSDEF[Yd] ",1)
+    ans=ask("cal deficit $CALSDEF[Yd] ",1)
   }
 
   }
@@ -300,11 +300,11 @@ ans=ask("cal deficit $CALSDEF[Yd] ",1)
   FIBRCON[Yd] = fiber;
 <<"%V $tl $Yd $day $cals $carbs $fat $prot $fiber\n"
  
-
   CALSDEF[Yd] = CALSBURN[Yd] - CALSCON[Yd];
 
 <<"%V $tl $Yd $day $cals $carbs $fat $prot $fiber $CALSDEF[Yd] \n"
-
+//  ans=ask("cal deficit $CALSDEF[Yd] ",1)
+    
   NCCobs++;
   }
 //

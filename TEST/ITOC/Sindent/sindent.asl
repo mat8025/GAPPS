@@ -30,6 +30,7 @@ int dqvec[10];
 
    seen_ESL = 0;
    allowErrors(-1) ;  // keep going
+   rejectDB("xxarray_parse")
 
 void doTrailingComment()
 {
@@ -107,7 +108,7 @@ int cr =0;
 
    do_query = 0;
    
-   EO = -1  ; // error output to NULL
+   EO = 1  ; // error output to NULL
    
 // use an indent of 2 spaces - for all non-comment lines
 
@@ -145,8 +146,8 @@ ESL='//==============\_(^-^)_/==================//';
    exit()
   }
 
-
-  char nsv[];
+  ASKIT = 1;
+  char nsv[128]; // but should be dynamic
   char lastc;
   char lc;
   
@@ -224,34 +225,48 @@ ESL='//==============\_(^-^)_/==================//';
     
 <<[EO]"in: \033[1;32m <|$NL|>  \033[0m\n" ;
 
-//<<[EO]"in: $NL   \n" ;
 
-//ans=query("2pp")
+ans= ask("in: $NL   \n", ASKIT)
   
     nc = Caz(NL); 
     sl = Slen(NL);
 
 
     if (sl >= 1) {
-         is_empty_line = 0;   
-      scpy(nsv,eatWhiteEnds(NL));
-      //<<[EO]"check comment $nsv[0] $nsv[1] \n"; 
+         is_empty_line = 0;
+	 
+       scpy(nsv,eatWhiteEnds(NL));
+      
+      <<[EO]"check comment $nsv[0] $nsv[1] $nsv[2]\n"; 
 
        is_define = scmp(nsv,"#define",7);
        is_include = scmp(nsv,"#include",8);
        is_case = scmp(nsv,"case",4);
 
-//<<[EO]"%s $nsv %v %d $is_define $is_include $is_case\n"
-//<<[EO]"nsv[0],[1]  $nsv[0]  $nsv[1]\n"
+<<[EO]"%s $nsv %v %d $is_define $is_include $is_case\n"
+
+  ask("$nsv, [0]  $nsv[0] [1] $nsv[1]\n",ASKIT)
+
+if ((nsv[0] == '/')) {
+   <<"first is a / \n"
+}
+  <<"nsv[1]  $nsv[1] ?? is \n"
+if ((nsv[1] == '*')) {
+   <<"second is a * \n"
+}
+
+if ((nsv[1] == 42)) {
+   <<"second is a * 42 \n"
+}
 
       if ((nsv[0] == '/') && (nsv[1] == '/')) {
         is_comment = 1;
-        //<<[EO]"comment $NL\n"; 
+        <<[EO]"comment // $NL\n"; 
         }
       else if ((nsv[0] == '/') && (nsv[1] == '*')) {
         is_comment = 1;
 	in_comment_blk = 1;
-        //<<[EO]"comment $NL\n"; 
+        ask("comment /* $NL $is_comment $in_comment_blk\n", ASKIT); 
         }
       else if ((nsv[0] == '*') && (nsv[1] == '/')) {
         is_comment = 1;
@@ -276,7 +291,7 @@ ESL='//==============\_(^-^)_/==================//';
         }		
       else if (nsv[0] == '#') {
         is_comment = 1;
-        //<<[EO]"comment $NL\n"; 
+        <<[EO]"comment $NL\n"; 
         }
        else if (nsv[0] == '!'  && (scin("apweitz",nsv[1]))) {
         is_margin_call = 1;
@@ -623,7 +638,6 @@ cf(B);
 //==================================//
 
 // Defaults /t indent for all lines except #define, #include
-
 
 /*--------------  TBDFC ------------------------------
 
