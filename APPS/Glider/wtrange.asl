@@ -168,7 +168,9 @@ rejectDB("array")
        min_hook3_wt_lbs = 80*2.2 - hookwt*2.2 -kit*2.2 
    <<"\tmy min weight - bathroom for hook3 25 is $min_hook3_wt_lbs !   \n"
     hook_hue = BLACK_;
-    hook_bhue = GREEN_
+    hook_bhue = GREEN_;
+    hook_75 = (hook_maxw - hook_minw) *.75 + hook_minw ;
+    
     dw = (current_wt_lbs -best_hook3_wt_lbs)
     if ( fabs(dw) > 8) {
           hook_bhue = ORANGE_;
@@ -194,7 +196,9 @@ rejectDB("array")
    theta_tw = thin + thwt + kit
 
    theta_minw = 82 ; // kg
-   theta_maxw = 95 ; 
+   theta_maxw = 95 ;
+
+   theta_75 = (theta_maxw - theta_minw) *.75 + theta_minw
    theta_hue = BLACK_;
       theta_bhue = GREEN_;
 
@@ -217,13 +221,13 @@ rejectDB("array")
 
     if (max_theta_wt_lbs < current_wt_lbs) {
          theta_bhue = RED_;
-         theta_hue = RED_;	 
+         theta_hue = BLUE_;	 
      <<"\t\tAlas too fat for theta wing!! diet!\n"
     }
 
     if (min_theta_wt_lbs > current_wt_lbs) {
          theta_bhue = RED_;
-         theta_hue = RED_;	 
+         theta_hue = BLUE_;	 
      <<"\t\tAlas too thin for theta wing!! \n"
     }
 
@@ -287,12 +291,12 @@ rejectDB("array")
 
   // hook3 wtrange box
      plotBox(wtrwo,2,hook_minw,4,hook_maxw, hook_bhue, FILL_)  
-     plotSymbol(wtrwo,DIAMOND_,3,95,BLUE_,Symsz,1);
+     plotSymbol(wtrwo,DIAMOND_,3,hook_75,BLUE_,Symsz,1);
      plotSymbol(wtrwo,STAR_,3,hook_cw,hook_hue,Symsz,1);
 
   // advance theta wtrange box
      plotBox(wtrwo,6,theta_minw,8,theta_maxw, theta_bhue, FILL_)  
-     plotSymbol(wtrwo,DIAMOND_,7,90,BLUE_,Symsz,1);
+     plotSymbol(wtrwo,DIAMOND_,7,theta_75,BLUE_,Symsz,1);
      
      plotSymbol(wtrwo,STAR_,7,theta_cw,theta_hue,Symsz,1);     
 
@@ -327,7 +331,8 @@ rejectDB("array")
      <<"using RHT scales !\n"
      sWo(_woid,wtrwo,_wrhtscales,wbox(xmin,min_lbs,xmax,max_lbs),_wsavescales,1)
    //  sWo(_woid,wtrwo,_wusescales,1)    
-     
+
+<<"%V $hook_75 $theta_75 \n"
        drawScreens()
 
 

@@ -161,31 +161,35 @@ double xv[7];
 double yv[7];
 int i;
 
-int k = Yday-3;
+int k = Yday-4;
   
 <<"$Yday $k\n"
 //  oknow = Ask ("%V $Yday $k ",1)
   if (Yday > 5) {
-    for (i =0; i < 3; i++) {   
+     nco = 0;
+  for (i =0; i < 5; i++) {   
        xv[i] =  i;
        yv[i] =  WTVEC[k];
-
+       if (yv[i] == 0)
+          break
       <<"$i $k  $WTVEC[k] $xv[i] $yv[i]\n"; // TBF
        k++;
-      // ans=ask("?",1)
+       nco++
+       ans=ask("? $k $nco",1)
    }
+   
   <<"%V $xv\n"
   <<"%V $yv\n"
 
        //ans=ask("? $yv",1)
 
-   pwl = Lfit(xv,yv,3);
+   pwl = Lfit(xv,yv,nco);
    <<"pwl $pwl \n"
    // next day prediction
 
-    pw1 = yv[0] + (pwl[1] *3);
+    pw1 = yv[0] + (pwl[1] * nco);
 
-    pw = fround((yv[0] + (pwl[1] *3)),2);
+    pw = fround((yv[0] + (pwl[1] * nco)),2);
 
 
     PWT1 = pw;
@@ -193,7 +197,7 @@ int k = Yday-3;
     PWT14 = yv[0] + (pwl[1] * 16);
     PWT30 =  yv[0] + (pwl[1] * 30);
 
-//ans=ask("$PWT1  $PWT7 ",1)
+  ans=ask("$PWT1  $PWT7 ",1)
   }
 
 <<"\n Tomorrow's wt will be %6.2f $pw +week $PWT7  + fortnight $PWT14\n"
