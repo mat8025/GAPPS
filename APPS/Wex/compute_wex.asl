@@ -175,18 +175,18 @@ int k = Yday-4;
       <<"$i $k  $WTVEC[k] $xv[i] $yv[i]\n"; // TBF
        k++;
        nco++
-       ans=ask("? $k $nco",1)
+       //ans=ask("? $k $nco",1)
    }
    
   <<"%V $xv\n"
   <<"%V $yv\n"
 
-       //ans=ask("? $yv",1)
 
    pwl = Lfit(xv,yv,nco);
    <<"pwl $pwl \n"
    // next day prediction
-
+   // needs at least three previous days for trend
+   
     pw1 = yv[0] + (pwl[1] * nco);
 
     pw = fround((yv[0] + (pwl[1] * nco)),2);
@@ -197,7 +197,7 @@ int k = Yday-4;
     PWT14 = yv[0] + (pwl[1] * 16);
     PWT30 =  yv[0] + (pwl[1] * 30);
 
-  ans=ask("$PWT1  $PWT7 ",1)
+  ans=ask("$PWT1  $PWT7 ",0)
   }
 
 <<"\n Tomorrow's wt will be %6.2f $pw +week $PWT7  + fortnight $PWT14\n"

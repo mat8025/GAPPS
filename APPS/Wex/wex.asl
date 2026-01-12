@@ -185,7 +185,8 @@ using namespace std;
 
   long Yday ;
   long Yd ;
-
+  long YesterYd;
+  
   long sc_endday;
 
 //////////////////////  Set Dates /////////////////////////////////
@@ -463,7 +464,7 @@ Record RX;
 
 // reader in readRecord closes file
 
-  RX.pinfo();
+  //RX.pinfo();
 
 
   //<<"%V $Wex_Nrecs $RX[0] \n $(Caz(RX))  $(Caz(RX,0)) \n";
@@ -594,7 +595,7 @@ float ae = EXTV[15];
 
   int Graphic = checkGWM();
 
-  Graphic.pinfo();
+  //Graphic.pinfo();
 
   int Xgm;
 
@@ -657,7 +658,6 @@ float ae = EXTV[15];
 
 //oknow = Ask ("que pasa? $_proc",1)      
 
-//  drawScreens();
   int rcb = 0;
 
      oknow = Ask ("que pasa? %V $Nrecrd $Yd",0)      
@@ -740,7 +740,11 @@ float ae = EXTV[15];
 //  can we add comments
 //
 //  1/12/22   - startup with yesterdays date and display of activity - for last 7 days (average?)
-//  12/28/25 - show yesterdays values - add calorie deficit measure
+//  12/28/25 - show yesterday's values - add calorie deficit measure
 
+//  retry cpp version
+//  
+/////////////////////  TBDFC ///////////////////////
+// redraw,resize not re-displaying 1/9/2026 
 
 ;//==============\_(^-^)_/==================//;

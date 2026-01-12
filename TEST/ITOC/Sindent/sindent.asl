@@ -30,7 +30,7 @@ int dqvec[10];
 
    seen_ESL = 0;
    allowErrors(-1) ;  // keep going
-   rejectDB("xxarray_parse")
+   rejectDB("array_parse")
 
 void doTrailingComment()
 {
@@ -105,10 +105,12 @@ int last_ltype = 0;
 
 int cr =0;
 
+// OPTIONS //
+   space_lines = 1;
 
-   do_query = 0;
+   do_query = 1;
    
-   EO = 1  ; // error output to NULL
+   EO = -1  ; // error output to NULL
    
 // use an indent of 2 spaces - for all non-comment lines
 
@@ -141,12 +143,13 @@ ESL='//==============\_(^-^)_/==================//';
 //  ofname = scut(fname,-4);
   ofname = scat("pp_",fname);
   B=ofw(ofname);
+
   if (B ==-1) {
   <<"can't write $ofname \n"
    exit()
   }
 
-  ASKIT = 1;
+  ASKIT = 0;
   char nsv[128]; // but should be dynamic
   char lastc;
   char lc;
@@ -181,6 +184,7 @@ ESL='//==============\_(^-^)_/==================//';
   int foldline = 0;
   int ll_fold = 0;
 
+//sdb(1,"step,stderr")
 
   while (1) {
     
@@ -223,10 +227,10 @@ ESL='//==============\_(^-^)_/==================//';
 
     NL = L;
     
-<<[EO]"in: \033[1;32m <|$NL|>  \033[0m\n" ;
+<<[1]"in: \033[1;32m <|$NL|>  \033[0m\n" ;
 
 
-ans= ask("in: $NL   \n", ASKIT)
+    ans= ask("in: $NL   \n", ASKIT)
   
     nc = Caz(NL); 
     sl = Slen(NL);
@@ -243,21 +247,11 @@ ans= ask("in: $NL   \n", ASKIT)
        is_include = scmp(nsv,"#include",8);
        is_case = scmp(nsv,"case",4);
 
-<<[EO]"%s $nsv %v %d $is_define $is_include $is_case\n"
+//<<[EO]"%s $nsv %v %d $is_define $is_include $is_case\n"
 
-  ask("$nsv, [0]  $nsv[0] [1] $nsv[1]\n",ASKIT)
+   // ask("$nsv, [0]  $nsv[0] [1] $nsv[1]\n",ASKIT)
 
-if ((nsv[0] == '/')) {
-   <<"first is a / \n"
-}
-  <<"nsv[1]  $nsv[1] ?? is \n"
-if ((nsv[1] == '*')) {
-   <<"second is a * \n"
-}
-
-if ((nsv[1] == 42)) {
-   <<"second is a * 42 \n"
-}
+   
 
       if ((nsv[0] == '/') && (nsv[1] == '/')) {
         is_comment = 1;
@@ -296,21 +290,19 @@ if ((nsv[1] == 42)) {
        else if (nsv[0] == '!'  && (scin("apweitz",nsv[1]))) {
         is_margin_call = 1;
         is_comment = 1; // treat as	
-        //<<[EO]"margin call $NL\n"; 
+        <<[EO]"margin call $NL\n"; 
         }	
       else {
         ws = dewhite(NL); 
         if (slen(ws) == 0) {
-          //<<[EO]"empty? $sl  $L\n"; 
+          <<[EO]"empty? $sl  $L\n"; 
           is_empty_line = 1;
           }
         }
 
-
-      if (!is_empty_line && !is_comment) {
+       if (!is_empty_line && !is_comment) {
         empty_line_cnt = 0;
         }
-
       }
    
     
@@ -318,7 +310,7 @@ if ((nsv[1] == 42)) {
       if (!in_txt_blk) {
         empty_line_cnt++;
 	}
-      //<<[EO]"%V $empty_line_cnt\n"; 
+      <<[EO]"%V $empty_line_cnt\n"; 
       ltype = EMPTYLN;
     }
 
@@ -356,22 +348,19 @@ if ((nsv[1] == 42)) {
  <<[EO]"$L $sl %c $lastc $iv[0] \n"
 
     if (slen(NL) >0) {
-      NL=eatWhiteEnds(NL);
-      }
+      NL=eatWhiteEnds(NL,TAIL_);
+    }
     
     is_cbe = 0;
     is_cbesc = 0;
     is_cbs = 0;
     is_equ = 0;
-
-
     
     if (slen(NL) > 0) {
 
       is_cbs = scmp(NL,"{",-1,0,0);
       
       is_cbe = scmp(NL,"}",-1,0,0);
-
 
       
       is_cbesc = scmp(NL,"};",-2,0,0);
@@ -384,16 +373,15 @@ if ((nsv[1] == 42)) {
 
       }
 
-/*
-  if (is_cbe || is_cbs || is_cbesc) { 
-    <<"<|$L|> <|$NL|> %V $nw $is_cbs $is_cbe $is_cbesc \n"; 
-   ans = ask("%V $is_cbs $is_cbe $is_cbe found",1)
-  }
-*/  
+//
+//  if (is_cbe || is_cbs || is_cbesc) { 
+//    <<"<|$L|> <|$NL|> %V $nw $is_cbs $is_cbe $is_cbesc \n"; 
+//   ans = ask("%V $is_cbs $is_cbe $is_cbe found",1)
+//  }
+  
     if (is_cbesc) {
       is_cbe = 1
     }
-
 
     is_proc = scmp(NL,"proc",4,0);
     if (is_proc) {
@@ -427,7 +415,7 @@ if ((nsv[1] == 42)) {
 
     if (is_cbs) {
       nw += 5;
-  //<<[EO]"PROC %v$nw \n"
+      <<[EO]"PROC %v$nw \n"
       //<<[EO]"CBS %v$nw \n"; 
       }
     
@@ -447,6 +435,7 @@ if ((nsv[1] == 42)) {
 
 
 
+
     if (len > 500) {
        Conline()
     }
@@ -460,14 +449,10 @@ if ((nsv[1] == 42)) {
       <<[EO]"last char? $ln  $lastc $sl $ind %s $lastc \n";
       }
 
-
-
-
     if (is_empty_line && (empty_line_cnt > 1)) {
       <<[EO]"%V $empty_line_cnt\n"; 
       }
-    else  if ( !is_comment && !is_proc && !is_if  \
-                 && (sl > 0) ) {
+    else  if ( !is_comment && !is_proc && !is_if && (sl > 0) ) {
 
 //
 //    check for trailing comment - if so eol is just before
@@ -504,7 +489,7 @@ if ((nsv[1] == 42)) {
 	<<[EO]" %v $needs_semi_colon\n";
        }
 
-     if (is_case || in_comment_blk || in_txt_blk) {
+       if (is_case || in_comment_blk || in_txt_blk) {
              needs_semi_colon = 0;
        }
 
@@ -512,11 +497,8 @@ if ((nsv[1] == 42)) {
 <<"found foldline \\ \n";       
            foldline = 1;
        }
-     
-       
       //<<[EO]" needs ; ? $needs_semi_colon <|$lastc|>\n";
       //<<[EO]" needs ; $NL\n";
-      
       }
 
 
@@ -529,6 +511,7 @@ if ((nsv[1] == 42)) {
         }
       else if ((is_empty_line) && (empty_line_cnt < 1) && !in_comment_blk  && !in_txt_blk ) {
         //<<[EO]"adding empty line! $empty_line_cnt\n"
+	//ask(" add one emptyline ",1)
         <<[B]"\n"; 
         }
 /*
@@ -539,18 +522,20 @@ if ((nsv[1] == 42)) {
 */	
       else if (is_define || is_include) {
                //<<[EO]"define/include\n"
-      <<[B]"$NL\n"; 
+     // <<[B]"@525$NL\n"; 
       }      
       else if (is_comment || in_comment_blk ) {
                //<<[EO]"comment\n"
-               <<[B]"$L\n"; 
+              // <<[B]"@529$L\n"; 
       }
       else if (needs_semi_colon) {
                      //<<[EO]"add ; \n"
-      if (empty_line_cnt == 0) {
-             <<[B]"\n"; 
+      if (empty_line_cnt == 0 ) {
+            //<<[B]"\n"; 
        }
-          <<[B]"${tws}$NL;\n"; 
+       if (!is_empty_line) {
+      // <<[B]"@537 ${tws}$NL ;\n";
+       }
       }
       else {
 
@@ -562,44 +547,52 @@ if ((nsv[1] == 42)) {
       && !ll_fold \
       && (last_ltype != PROCCALL)) {
 <<[EO]"adding empty line for spacing  %V $foldline $ll_fold \n";      
-            <<[B]"\n"; 
-
+       <<[B]"\n"; 
+       }
       }
 
-         
-
          if (!is_empty_line || in_txt_blk) {
-//             <<[1]"${tws}$NL\n";
-          <<[B]"${tws}$NL\n";
+          //<<[1]"out:${tws}$NL\n";
+
+         //<<[B]"@556 ${tws}$NL\n";
 	 }
 	 else {
 //<<"empty ? <|$NL|> \n"
           ;
          }
-      }
+      
 
        ll_fold = 0;
     if (foldline) {
        ll_fold = 1;
     }
 
-    if (needs_semi_colon) {
-   <<[EO]"\033[1;34m out:${tws}${NL};\n \033[0m";
+   if (needs_semi_colon) {
+   //<<[EO]"\033[1;34m out:${tws}${NL};\n \033[0m";
+   NL=scat  (NL," ;");
    }
    else {
-   <<[EO]"\033[1;34m out:${tws}$NL  \033[0m\n";
+   //<<[EO]"\033[1;34m out:${tws}$NL  \033[0m\n";
    }
 
-  //<<"${tws}$NL\n"; 
-
-  //<<[B]"${tws}$NL\n";
   
   tws = nsc(nw,"x");
  // <<[EO]"%V$nw $tws\n";
    fflush();
 
+   
+    last_ltype = ltype;
+
+  if (LL == ESL) {
+       seen_ESL = 1;
+  }
+
+<<[B]"$NL \n "
+<<"\033[1;34mout: <|$NL|>\033[0m\n "
+
   if (do_query) {
-   ans=query("pp correct? [n,q,c]");
+
+    ans=ask("pp correct? [n,q,c]",2);
    
     if (ans == "n") {
          break;
@@ -612,17 +605,8 @@ if ((nsv[1] == 42)) {
       <<"%V $do_query\n"
     }
   }
-  
-    last_ltype = ltype;
-
- if (LL == ESL) {
-       seen_ESL = 1;
-  }
 
 }
-
-<<"LL: <|$LL|>\n"
-
 //  ESL.pinfo()
 //  LL.pinfo()
 //fileDB(ALLOW_,"rdp_l2,rdp_l3,opera_main,")

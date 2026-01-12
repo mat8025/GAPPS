@@ -203,6 +203,6 @@ gw_gl = -1;
   int calgls[] = { calb_gl, calc_gl, cald_gl, calx_gl, -1 };
 
 
-<<"glines setup % $wt_gl $carb_gl\n";
+<<"glines setup %V $wt_gl $carb_gl\n";
 
 //==============\_(^-^)_/==================//

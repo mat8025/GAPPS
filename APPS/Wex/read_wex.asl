@@ -32,13 +32,13 @@ if (Yd >= 0) {
   mywt = atof(Col[j++]);
   
 
-  <<" %V $mywt \n"
+  //<<" %V $mywt \n"
 
   if (mywt > 0.0) {  // we have an entry = not all days are logged
 
   WTVEC[Yd] = mywt;
   
-  <<"mywt $Yd  $WTVEC[Yd] \n";
+  //<<"mywt $Yd  $WTVEC[Yd] \n";
 
   if (mywt > 0.0) {
 
@@ -106,7 +106,7 @@ if (Yd >= 0) {
 
   EXEBURN[Yd] =  exer_burn;
 
- <<"%V $tex $walk + $walk_burn  $hike + $run + $cycle $cycle_burn + $swim + $yardwrk + $gym * rates = $exer_burn\n"
+ //<<"%V $tex $walk + $walk_burn  $hike + $run + $cycle $cycle_burn + $swim + $yardwrk + $gym * rates = $exer_burn\n"
 
   tot_exeburn += exer_burn;
 
@@ -144,7 +144,7 @@ if (Yd >= 0) {
   
   int got_start = 0;
 
- <<"get data from record Wex_Nrecs \n";
+// <<"get data from record Wex_Nrecs \n";
 
 //ans = Ask("readData $_proc ?",1)
 
@@ -206,7 +206,7 @@ if (Yd >= 0) {
 
 //ans=ask("%V $tl  $day $mywt $Wex_Nrecs\n",0)
 
-<<"%V $tl  $day $mywt $Wex_Nrecs\n"
+//<<"%V $tl  $day $mywt $Wex_Nrecs\n"
 
   if (tl >= Wex_Nrecs) {
 
@@ -239,8 +239,8 @@ if (Yd >= 0) {
   
   NCCobs++;
 
-<<"Yd $NCCobs $CALSCON[Yd] $CARBSCON[Yd] $CALSDEF[Yd] \n"
-    ans=ask("cal deficit $CALSDEF[Yd] ",1)
+//<<"Yd $NCCobs $CALSCON[Yd] $CARBSCON[Yd] $CALSDEF[Yd] \n"
+    ans=ask("cal deficit $CALSDEF[Yd] ",0)
   }
 
   }
@@ -250,11 +250,15 @@ if (Yd >= 0) {
   {
 
   int tl = 0;
+
+  float cals;
+  float carbs;
+  float ccals;
   
   long jday;
   Str day;
   int jn = 5;
-  <<"%V $tl $NCCrecs \n"
+  //<<"%V $tl $NCCrecs \n"
   while (tl < NCCrecs) {
   
 
@@ -268,20 +272,37 @@ if (Yd >= 0) {
 
   Yd = jday - Jan1;  // so 0 - 364;
 
+
+  if (Yd >= 400) {
+
+  <<"bizare day %V $tl $Yd $YesterYd $NCCrecs \n";
+  // ran off end of data - check RCC NCCrecs
+  // or date wrong - year 2096 instead of 2026
+   Yd = YesterYd;
+   break;
+  }
   lday = Yd;
+  YesterYd = Yd;
 
-  float cals = atof(RCC.getRC(tl,6));
+  //float cals = atof(RCC.getRC(tl,6));
 
-
+  // CALSCON.pinfo()
+  
+  cals = atof(RCC.getRC(tl,6));
 
   CALSCON[Yd] = cals;
 
-  float ccals =  CALSCON[Yd];
-<<"calscon $Yd   $CALSCON[Yd]  cals <|$cals|>  ccals $ccals \n"
+  //float ccals =  CALSCON[Yd];
 
-  float carbs = atof(RCC.getRC(tl,3));
+  ccals =  CALSCON[Yd];
 
-<<"$day $carbs\n"
+  ask("calscon $Yd   $CALSCON[Yd]  cals <|$cals|>  ccals $ccals \n",0)
+
+  //float carbs = atof(RCC.getRC(tl,3));
+
+  carbs = atof(RCC.getRC(tl,3));
+
+//<<"$day $carbs\n"
 
 
 
@@ -298,11 +319,11 @@ if (Yd >= 0) {
   float fiber = atof(RCC.getRC(tl,4));
 
   FIBRCON[Yd] = fiber;
-<<"%V $tl $Yd $day $cals $carbs $fat $prot $fiber\n"
+//<<"%V $tl $Yd $day $cals $carbs $fat $prot $fiber\n"
  
   CALSDEF[Yd] = CALSBURN[Yd] - CALSCON[Yd];
 
-<<"%V $tl $Yd $day $cals $carbs $fat $prot $fiber $CALSDEF[Yd] \n"
+//<<"%V $tl $Yd $day $cals $carbs $fat $prot $fiber $CALSDEF[Yd] \n"
 //  ans=ask("cal deficit $CALSDEF[Yd] ",1)
     
   NCCobs++;
@@ -310,7 +331,7 @@ if (Yd >= 0) {
 //
   tl++;
 
-  <<"%V $tl $NCCrecs \n"
+  //<<"%V $tl $NCCrecs \n"
   if (tl >= NCCrecs) {
 
 

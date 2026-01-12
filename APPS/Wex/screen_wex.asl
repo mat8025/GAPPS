@@ -85,7 +85,7 @@ cout<<"  titleButtonsQRD(vp);\n";
   int wedwos[] = { wt_wo, cal_wo,  food_wo, carb_wo,-1  }; 
 //<<[_DB]"%V$wedwo \n" 
  
-  cout<<" vtile before set clip!\n";   // _ASL_ defines cout as NOP
+  //<<" vtile before set clip!\n";   // _ASL_ defines cout as NOP
  
   wovtile(wedwos,0.1,0.08,0.99,0.99)   ; // vertically tile the drawing areas into the main window; 
     //cx = 0.05 ; cX = 0.95 ; cy = 0.2 ; cY = 0.97; 

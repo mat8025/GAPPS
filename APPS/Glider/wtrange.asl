@@ -261,10 +261,10 @@ rejectDB("array")
     i= 2
     hue_name = getColorName(i)
     	ask("$hue_name $i",0);
-        <<"hues are  $i $hue_name  $(getColorName(i+1))\n"
+        //<<"hues are  $i $hue_name  $(getColorName(i+1))\n"
     i++
-        <<"hues are  $i $hue_name  $(getColorName(i+1))\n"
-	ask("$hue_name $i",0);
+        //<<"hues are  $i $hue_name  $(getColorName(i+1))\n"
+	//ask("$hue_name $i",0);
     //for (i = 0 ; i < 3; i++) {
 
     sWo(_woid,wtrwo,_wname,"WtRange",_wdraw,ON_,_wpixmap,ON_,_wclip,wbox(0.1,0.1,0.8,0.9,4),_wcolor,WHITE_)
@@ -328,7 +328,7 @@ rejectDB("array")
 
      sWo(_woid,wtrwo,_wscales,wbox(xmin,min_kg,xmax,max_kg),_wsavescales,0)
      //if (ask("use RHT scaling ?",1) == "y" ){
-     <<"using RHT scales !\n"
+     //<<"using RHT scales !\n"
      sWo(_woid,wtrwo,_wrhtscales,wbox(xmin,min_lbs,xmax,max_lbs),_wsavescales,1)
    //  sWo(_woid,wtrwo,_wusescales,1)    
 

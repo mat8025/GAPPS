@@ -63,8 +63,8 @@ using namespace std;
 //k =  _argv[2]
 
 
-glr = atof(argv[1])
-kr = atof(argv[2])
+  float glr = atof(argv[1])
+float kr = atof(argv[2])
 
 
   gki = glr/18.0 / kr

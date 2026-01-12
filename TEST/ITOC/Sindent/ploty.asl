@@ -13,6 +13,11 @@
 
 
 
+void EXIT()
+{
+  exit_gs()
+}
+//-------------------------------------------
 
 
 //  use following line for debug print 
@@ -50,6 +55,15 @@
 
 
 // filter data using readrecord pick options
+
+ void REDRAW()
+ {
+  drawScreens()
+ }
+void MOVE()
+ {
+  drawScreens()
+ }
 
 
 
@@ -141,6 +155,7 @@ RX.pinfo()
   glr11 = RX[1][1]
   glr22 = RX[2][2]
   glr33 = RX[3][3]
+  
   glr53 = RX[5][3]
 
 
@@ -155,11 +170,12 @@ RX.pinfo()
   RX.pinfo()
 
 
-
+//sdb(1,"step","stderr","trace")
   glr00 = RX[0][0] ; // converts Svar ascii value to float
   glr11 = RX[1][1]
   glr22 = RX[2][2]
-sdb(1,"step","stderr","trace")
+
+
   glr33 = RX[3][3]
 
 
@@ -238,19 +254,7 @@ ask(" RX bounds correct\n",1)
 
 
 ////////////////////////KEYW CALLBACKS///////////////////////////////////////
-void EXIT()
-{
-  exit_gs()
-}
-//-------------------------------------------
-void REDRAW()
-{
-  drawScreens()
-}
-void MOVE()
-{
-  drawScreens()
-}
+
 //-------------------------------------------
 void RESIZE()
 {

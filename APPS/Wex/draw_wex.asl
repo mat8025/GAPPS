@@ -57,7 +57,7 @@
 
   plotSymbol(wt_wo,STAR_,last_known_day+hlng,GoalWt,RED_,Symsz);
 
-  plotSymbol(wt_wo,CROSS,last_known_day+hlng,last_known_wt,GREEN_,Symsz);
+  plotSymbol(wt_wo,CROSS_,last_known_day+hlng,last_known_wt,GREEN_,Symsz);
 
   }
 
@@ -637,7 +637,7 @@ Text(food_wo,"Fat,Fiber, Protein (\% drq) ",0.1,0.89);
 
 <<" $_proc   $dayv \n"
 
-  dayv.pinfo();
+  //dayv.pinfo();
   
   long m_day;  // int ?;
 

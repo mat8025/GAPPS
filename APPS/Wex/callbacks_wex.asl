@@ -189,7 +189,7 @@ int WTLB(int wb)
 
 //pa("proc  setting cursors ", _proc, " Button", Button);
 
-  <<"In WTLB  $ewoname  $ebutton     cursor @ $erx \n"      
+ // <<"In WTLB  $ewoname  $ebutton     cursor @ $erx \n"      
  long wt_day = 0;
  
        if (ebutton == 1) {
@@ -203,7 +203,7 @@ int WTLB(int wb)
 	 wt_day = fround(lcpx,0);
 	 sel_day = wt_day;
 
-  wt_day.pinfo();
+  //wt_day.pinfo();
   //lcpx.pinfo();
 
 <<"%V $wt_day $lcpx \n";
