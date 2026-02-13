@@ -1,16 +1,16 @@
-
 /* 
- *  @script wtrange.asl                                                 
+ *  @script wtrange.asl                                                       
  * 
- *  @comment                                                            
- *  @release 6.61 : C Pm                                                
- *  @vers 1.1 H Hydrogen [asl 6.61 : C Pm]                              
- *  @date 12/14/2025 18:25:14                                           
- *  @cdate 12/14/2025 18:25:14                                          
- *  @author Mark Terry                                                  
- *  @Copyright © RootMeanSquare 2025 -->                               
+ *  @comment         *                                                        
+ *  @release Carbon                                                           
+ *  @vers 1.2 He Helium [asl 6.67 : C Ho]                                     
+ *  @date 02/12/2026 18:04:07                                                 
+ *  @cdate 12/14/2025 18:25:14       *                                        
+ *  @author Mark Terry                                                        
+ *  @Copyright © RootMeanSquare 2026 -->                                     
  * 
- */
+ */ 
+
 
 ///   
 
