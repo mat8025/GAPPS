@@ -1,7 +1,69 @@
+/* 
+ *  @script axnum.asl                                                         
+ * 
+ *  @comment Demo Axis number/label      *                                    
+ *  @release Carbon                                                           
+ *  @vers 1.3 Li Lithium [asl 6.67 : C Ho]                                    
+ *  @date 02/13/2026 11:09:40                                                 
+ *  @cdate 02/13/2026 08:35:12       *                                        
+ *  @author Mark Terry                                                        
+ *  @Copyright © RootMeanSquare 2026 -->                                     
+ * 
+ */ 
+
+
+#define __CPP__ 0
+
+#if __ASL__
+
+ Str Use_= " Demo  of Demo Axis number/label ";
+
+ Svar argv = _argv;  // allows asl and cpp to refer to clargs
+ argc = argc();
+
+
+#include "debug" 
+
+  if (_dblevel >0) { 
+   debugON() 
+   <<"$Use_ \n" 
+} 
+
+   allowErrors(-1); // set number of errors allowed -1 keep going 
+
+#endif       
+
+// CPP main statement goes after all procs
+#if __CPP__
+#include <iostream>
+#include <ostream>
+using namespace std;
+#include "vargs.h"
+#include "cpp_head.h"
+#define PXS  cout<<
+
+#define CPP_DB 0
+
+  int main( int argc, char *argv[] ) {  
+    init_cpp(argv[0]) ; 
+
+#endif       
+
+
+  chkIn(1) ;
+
+  chkT(1);
+
+ 
+
+
 //////// axnum.asl ////////////////////
 
-setdebug(0)
 
+#include "wevent.asl" 
+#include "tbqrd.asl"
+
+ 
 Graphic = checkGWM()
 
   if (!Graphic) {
@@ -11,141 +73,97 @@ Graphic = checkGWM()
 
 // need some labels --- and font manipulation
 
-Pi = 4.0 atan(1.0);
-
+float  Pi = 4.0 * atan(1.0);
+<<"%V $Pi\n"
 
  x_label = "Freq (Khz)"
  y_label = "Magnitude"
 
-    txtw = CreateGwindow("title","MC_INFO","resize",0.01,0.76,0.75,0.99,0)
+    txtw = cWi("MC_INFO")
+    sWi(_woid,txtw, _wresize,wbox(0.01,0.76,0.75,0.99,0))
 
-//    sWi(txtw,@pixmapon,@drawon,@save,@bhue,"white",@sticky,1)
-    sWi(txtw,@pixmapon,@drawon,@save,@bhue,"white",@sticky,0)
-
-
-    two=createGWOB(txtw,"TEXT",@name,"Text",@VALUE,"howdy",@color,"orange",@resize_fr,0.1,0.5,0.9,0.9)
-
-    sWo(two,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw,@pixmapoff)
-    sWo(two,@SCALES,0,0,1,1)
-
-    qwo=createGWOB(txtw,"BN",@name,"QUIT?",@VALUE,"QUIT",@color,"teal",@resize,0.7,0.1,0.9,0.3)
-
-    sWo(qwo,@BORDER,@DRAWON,@CLIPBORDER,@FONTHUE,"black", @redraw)
+    sWi(txtw,_wpixmap, OFF_,_wdraw, ON_,_wsave,ON_,_wbhue,WHITE_,_wsticky,OFF_)
 
 
-    vp = CreateGwindow(@title,"GRAPH_XY",@resize,0.01,0.01,0.9,0.75,0)
+    two=cWo(txtw,WO_TEXT_);
+    sWo(_woid,two,_wname,"Text",_wvalue,"howdy",_wcolor,ORANGE_,_wresize,wbox(0.1,0.1,0.9,0.9,1))
 
-    sWi(vp,@pixmapon,@drawon,@save,@bhue,"white")
+    sWo(_woid,two,_wborder,BLACK_,_wdraw,ON_,_wpixmap,OFF_,_wredraw,ON_)
+
+    sWo(_woid,two,_wscales,wbox(0,0,1,1,0),_wsavescales,0)
+
+    //qwo=cWo(txtw,WO_BN_)
+    //sWo(_woid,qwo,_wname,"QUIT?",_wvalue,"QUIT",_wcolor,TEAL_,_wresize,wbox(0.7,0.1,0.9,0.3,0))
+    //sWo(_woid,qwo,_wredraw,ON_)
 
 
+    vp = cWi("GRAPH_XY"),
 
-    sWi(vp,"clip",0.2,0.2,0.9,0.9)
-    sWi(vp,@bhue,"white",@clipborder,"black",@redraw,@save)
+    sWi(_woid,vp,_wresize,wbox(0.01,0.01,0.9,0.9,0),_wpixmap, ON_,_wdraw,ON_,_wbhue,WHITE_)
 
-    grwo=createGWOB(vp,"GRAPH",@name,"pic",@color,"yellow",@resize,0.1,0.1,0.9,0.9)
-    sWo(grwo,@BORDER,@DRAWON,@PIXMAPON,@CLIPBORDER,@FONTHUE,"red", )
-    sWo(grwo,@bhue,"teal",@fhue,"red",@clipbhue,"skyblue",@clipfhue,"brown",@FONTHUE,"green")
-    sWo(grwo,@SCALES,-2,-20,2,20)
-    sWo(grwo,@clip,0.2,0.2,0.8,0.8)
+    sWi(_woid,vp,_wclip,wbox(0.2,0.2,0.9,0.9,0),_wbhue,PINK_,_wclipborder,BLACK_,_wredraw,ON_,_wsae,ON_)
 
-    setgwin(txtw,@redraw)
-    setgwin(vp,@redraw)
+    grwo=cWo(vp,WO_GRAPH_)
+    sWo(_woid,grwo,_wname,"pic",_wcolor,YELLOW_,_wresize,wbox(0.1,0.1,0.9,0.9,1))
+    sWo(_woid,grwo,_wborder,BLACK_,_wfonthue,RED_ )
+    sWo(_woid,grwo,_wbhue,TEAL_,_wfhue,RED_,_wclipbhue,SKYBLUE_,_wclipfhue,BROWN_,_wfonthue,GREEN_)
+    sWo(_woid,grwo,_wscales,wbox(-2,-2,2,2,0),_wsavescales,0,_wclip,wbox(0.2,0.2,0.9,0.9))
 
+    sWi(_woid,txtw,_wredraw,ON_)
+    sWi(_woid,vp,_wredraw,ON_)
+
+ titleButtonsQRD(vp);
 
 //  now loop wait for message  and print
 
-proc checkEvents()
-{
-//   Mf = Split(msg)
-   <<"msg $msg \n"
-  // E->getEventState(evs)
-   kloop++;
-   Woname = E->getEventWoName()    
-   Evtype = E->getEventType()    
-   Woid = E->getEventWoId()
-<<"%V$Woname $Woid \n"
-   Woproc = E->getEventWoProc()
-   Woaw =  E->getEventWoAw()
-
-   Woval = getWoValue(Woid)
-<<"%V$Woval \n"
-   button = E->getEventButton()
-   keyc = E->getEventKey()
-   keyw = E->getEventKeyW()
-
-  
-sWo(two,@clear,@texthue,"black",@textr,"%V$Woid\n$Woname\n $button\n $keyc\n $keyw\n$Woval",-0.9,0.3)
-
-   if (Woid == qwo) {
-    exit_gs()
-   }
-}
-//----------------------------------------------
 
 Svar msg
 
-E =1 // event handle
-
-int evs[20];
-
-button = 0
-Woid = 0
-Woname = ""
-Woproc = "foo"
-Woval = ""
-Evtype = ""
-int Woaw = 0
-keyc = ""
-keyw = ""
 
 int kloop =0
 
 
-int Minfo[]
-float Rinfo[]
 
-xp = 0.1
+xp = 0.8
 yp = 0.5
-dx = 1.0
-dy = 5.0
+
+dx = 0.2
+dy = 0.2
 
 xfoff = 1.0   // font offset relative to axis
 
-yfoff = 3.0   //  string offset relative to y axis -- neg means inside clip
+yfoff = -3.0   //  string offset relative to y axis -- neg means inside clip
 
 ang = 0.0;
 
-   ten_deg = Pi / 180.0 * 10;
+   five_deg = Pi / 180.0 * 5;
 
 
-   sWo(grwo,@clear,"skyblue",@clearclip,"teal");
-
-
-
-
-
+   sWo(_woid,grwo,_wclear,SKYBLUE_,_wclearclip,TEAL_);
 
 
    while (1) {
 
-     msg = E->waitForMsg()
+     
+     eventWait()
 
-     <<"%V$kloop  $msg \n"
-     checkEvents()
-     sWi(vp,@clear)
+     <<"%V$kloop  $emsg \n"
+  //   sWi(_woid,vp,_wclear,ON_)
 
 
-     sWo(grwo,@clear)
+//   sWo(_woid,grwo,_wclearclip,ON_,_wredraw,ON_)
+   sWo(_woid,grwo,_wclearclip,PINK_)
 
    xp = Sin(ang)
    yp = Cos(ang)
 
-   ang += ten_deg
+   ang += five_deg
 
 
-//   sWo(grwo,@clear,"skyblue",@clearclip,"magenta")
 
-   sWo(grwo,@line,0,0,xp,yp)
+   sWo(_woid,grwo,_wline,wbox(0,0,xp,yp,4))
+
+      sWo(_woid,grwo,_wline,wbox(0,0,yp,xp,3))
 
    RP = wogetrscales(grwo)
 
@@ -155,9 +173,8 @@ ang = 0.0;
    ry = RP[2]
    rY = RP[4]
 
-   sWo(grwo,@fonthue,BLACK_,@FONT,"small");
+   sWo(grwo,_wfonthue,BLACK_,_wfont,"small");
 
-   //axnum(grwo,1,rx,rX,dx, xfoff, "g")
    axnum(grwo,1)
    axnum(grwo,-1)
 
@@ -167,9 +184,7 @@ ang = 0.0;
 
    axnum(grwo,4,ry,rY,dy, yfoff, "g")
 
-   sWo(grwo,@fonthue,"green") 
-
-   //axnum(grwo,1,rx,rX,dx, -xfoff, "g")
+   sWo(_woid,grwo,_wfonthue,GREEN_) 
 
    axnum(grwo,3,rx,rX,dx, -xfoff, "g")
 
@@ -177,18 +192,37 @@ ang = 0.0;
 
    axnum(grwo,4,ry,rY,dy, -yfoff, "g")
 
-   sWo(grwo,@border,@clipborder)
+    sWo(_woid,grwo,_wfont,"medium");
 
-
-    sWo(grwo,@FONT,"medium");
     Axlabel(grwo,1,x_label,0.5,2,BLACK_,2)
 
     Axlabel(grwo,2,y_label,0.6,2,BLACK_,1,90)
+   sWi(_woid,txtw,_wclear,ON_)
+   sWo(_woid,two,_wclear,WHITE_,_wclearclip,PINK_,_wredraw,ON_)
+   
+   <<"$emsg $rx $ry $rX $rY $dx $dy $ang \n"
 
-   sWo(two,@clear,@textr,"$msg $rx $ry $rX $rY $dx $dy $ang ",0.1,0.8)
-   sWo(two,@clear,@textr,"%V6.2f$xp $yp  ",0.01,0.6)
+   plotText(two,"$emsg $rx $ry $rX $rY $dx $dy $ang ",0.1,0.8)
+
+   plotText(two,"%V %6.2f$xp $yp  ",0.02,0.5)
 
   }
 
 
  exit_gs()
+
+
+///
+
+  chkOut(1);
+
+
+
+#if __CPP__           
+  exit(-1); 
+  }  // end of C++ main 
+#endif     
+
+ 
+
+//==============\_(^-^)_/==================//

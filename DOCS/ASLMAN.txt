@@ -8526,7 +8526,7 @@ far left of title area.
 .EF
 =============================================================
 .BF
-createGwindow()
+createGwindow,cWi()
 .(x
 cWi
 .)x 
