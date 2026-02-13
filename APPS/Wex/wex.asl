@@ -86,57 +86,63 @@ using namespace std;
   int Nrecrd = 0;
   int i = 0;
   Str ans="xyz";
-  
+  nrecdays = 730;   
   Vec<double> Vtst(10,10,1);
 
-  Vec<float> DVEC(400,0,1); // day 1 in year is array ele 0 in DVEC ?
+  Vec<float> DVEC(nrecdays,0,1); // day 1 in year is array ele 0 in DVEC ?
 
-  Vec<float> DFVEC(400);
+  Vec<float> DFVEC(nrecdays);
 
-  Vec<float> DXVEC(400);
+  Vec<float> DXVEC(nrecdays);
 
-  Vec<float> WTVEC(400);
-//Vec<float> PWTVEC(400) ;
+  Vec<float> WTVEC(nrecdays);
+//Vec<float> PWTVEC(nrecdays) ;
 
-  Vec<float> WTPMV(400);
+  Vec<float> WTPMV(nrecdays);
 
-  Vec<float> GVEC(400); // goal line;
+  Vec<float> GVEC(nrecdays); // goal line;
 
-  Vec<float> BPVEC(400);
+  Vec<float> BPVEC(nrecdays);
 
-  Vec<float> SEVEC(400);
+  Vec<float> SEVEC(nrecdays);
 
-  Vec<float> CARBV(400);
+  Vec<float> CARBV(nrecdays);
 
-  Vec<float> WDVEC(400);
+  Vec<float> WDVEC(nrecdays);
 
-  Vec<float> EXTV(400);
+  Vec<float> EXTV(nrecdays);
 
-  Vec<float> AVE_EXTV(400);
+  Vec<float> AVE_EXTV(nrecdays);
 
-  Vec<float> EXEBURN(400);
+  Vec<float> EXEBURN(nrecdays);
 
-  Vec<float> CALSBURN(400);
+  Vec<float> CALSBURN(nrecdays);
 
-  Vec<float> CALSCON(400);
+  Vec<float> CALSCON(nrecdays);
 
-  Vec<float> CALSDEF(400);
+  Vec<float> CALSDEF(nrecdays);
 
+  Vec<float> CARDIO(nrecdays);
 
-  Vec<float> CARDIO(400);
-
-  Vec<float> STRENGTH(400);
+  Vec<float> STRENGTH(nrecdays);
 // cals,carbs consumed & when
 
 
 
-  Vec<float> CARBSCON(400);
+  Vec<float> CARBSCON(nrecdays);
 
-  Vec<float> FATCON(400);
+  Vec<float> FATCON(nrecdays);
 
-  Vec<float> PROTCON(400);
+  Vec<float> PROTCON(nrecdays);
 
-  Vec<float> FIBRCON(400);
+  Vec<float> FIBRCON(nrecdays);
+
+  Vec<float> GLUCOSE(nrecdays);
+
+  Vec<float> KETONE(nrecdays);
+
+  Vec<float> GKI(nrecdays);
+
 ////////////////////////////////////////////////////
 
   int Wex_Nrecs;
@@ -311,8 +317,6 @@ Record RX;
 ///        long-term and current weight loss goals 
 ///
 //  SET     START DATE      END DATE  TARGET WEIGHT
-
-
   
    yday = Julian("01/01/2025")   ; // this should be found from data file
 
@@ -348,13 +352,13 @@ Record RX;
    Str stmp;
    Svar Goals;
    
-   Goals.Split("12/01/2025 01/23/2026 175");
+   Goals.Split("12/01/2025 02/10/2026 175");
 
 //<<"Setting goals $Goals\n"
 
    Svar Goals2;
    
-   Goals2.Split("12/01/2025  01/07/2026 185");
+   Goals2.Split("12/01/2025  01/20/2026 185");
 ////////////////////==============/////////////////
 
 // move these down 10 when reached -- until we are at desired operating weight!
@@ -396,8 +400,8 @@ Record RX;
 //COUT(gday);
 
 //   Onwards();
-
-  sc_startday = (jtoday - Jan1) -7  ;
+  // context two weeks
+  sc_startday = (jtoday - Jan1) -14  ;
 
   if (sc_startday <0)
      sc_startday =0;

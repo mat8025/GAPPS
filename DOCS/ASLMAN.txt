@@ -1837,7 +1837,7 @@ plot(wid,@box,x,y,X,Y,BLUE,@line,x,y,X,Y,RED)  - which plots a blue outline box 
 .EF
 =============================================================
 .BF
-@point()
+point()
 .(x
 point
 .)x 
@@ -2001,9 +2001,9 @@ plots box on screen with wcreen coors (int)  x,y X,Y in specified hue and either
 =============================================================
 
 .BF
-symbol()
+wsymbol,symbol(), 
 .(x
-symbol
+symbol, wsymbol
 .)x 
 .FD
 plot({wid},@symbol,x,y, symbol_number,symbol_size,hue,{fill, ang, gcontext, hsx,hsy})
@@ -2031,6 +2031,25 @@ Circle    8
 Star5    9
 Cross  10
 Plane  11
+===============================
+Use the following constants to select symbol in sWo(..  wsymbol, TRI_ )
+  X_ == SYM_X
+  TRI_ == SYM_TRIANGLE
+  ITRI_ == SYM_INVTRI
+  LTRI_ == SYM_LEFTTRI
+  RTRI_ == SYM_RIGHTTRI
+  SQUARE_ == SYM_SQUARE
+  CIRCLE_ == SYM_CIRCLE
+  CROSS_ == SYM_CROSS
+  STAR_ == SYM_STAR
+  STAR4_ == SYM_STAR4
+  STAR5_ == SYM_STAR5
+  STARDAVID_ == SYM_STARDAVID
+  ARROW_ == SYM_ARROW
+  PLANE_ == SYM_PLANE
+  ==================
+  Use the following constants to select symbol size in sWo(..  wsymsize, 50 )
+  where size is percentage of wob area
 .fi
 .EF
 =============================================================
@@ -2270,7 +2289,7 @@ nc=unpackb (UCV,[swapbytes],"I5",ivec)
 
  these functions (see packb) allow a variable number of extractions and storage  governed
 by the format string and supplied variables.
-
+.EF
 ============================================================
 .BF
 timeconvert()

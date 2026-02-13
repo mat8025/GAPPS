@@ -28,7 +28,7 @@
 
 
 // cout<<"showTarget()\n";
-    sWo(_WOID,wt_wo,_WSCALES,wbox(sc_zstart,minWt,sc_zend,upperWt),_WSAVESCALES,0);
+  sWo(_WOID,wt_wo,_WSCALES,wbox(sc_zstart,minWt,sc_zend,upperWt),_WSAVESCALES,0);
   plotSymbol(wt_wo,DIAMOND_,targetday,TargetGoalWt,GREEN_,Symsz);
 
   //cout<<"plotSymbol\n";
@@ -90,7 +90,7 @@
 
   }
 //========================================================
-
+  float Cscales[60];
   void drawGoals(int ws)
   {
 
@@ -98,9 +98,16 @@
 
   if (ws == 0) {
    // Plot(wt_wo,_WBOX,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_)  // never go above
+  sWo(_WOID,wt_wo,_WLHBSCALES,wbox(sc_zstart,minWt,sc_zend,upperWt,0));
+//sdb(1,"step,stderr")
+  sWo(_WOID,wt_wo,_WSCALES,wbox(sc_zstart,minWt,sc_zend,upperWt,0));
+  sWo(_WOID,wt_wo,_WUSESCALES,0);
+  cscales = wogetscales(wt_wo, Cscales)
+  <<"%V $Cscales\n"
 
-  sWo(_WOID,wt_wo,_WSCALES,wbox(sc_zstart,minWt,sc_zend,upperWt),_WSAVESCALES,0);
+  // set current scales
 
+  oknow = Ask ("box? $ws $minWt $upperWt",0)
   plotBox(wt_wo,sc_zstart,DX_NEW,sc_zend,upperWt, RED_, FILL_)  
 
   plotBox(wt_wo,sc_zstart,180.0,sc_zend,DX_NEW, ORANGE_, FILL_)  
@@ -109,7 +116,8 @@
 
   plotBox(wt_wo,sc_zstart,GoalWt-2,sc_zend,GoalWt+3, LIGHTGREEN_,FILL_)  //
     //Plot(cal_wo,_WLINE,sc_startday,day_burn,sc_end,day_burn, GREEN_)
-
+  gflush()
+  
   plotLine(cal_wo,sc_zstart,day_burn,sc_zend,day_burn, GREEN_)
 
   plotLine(cal_wo,sc_startday,out_cal,sc_end,out_cal, BLUE_)
@@ -117,6 +125,11 @@
   plotLine(cal_wo,sc_startday,in_cal,sc_end,in_cal, BLACK_)
 
   plotLine(cal_wo,sc_zstart,0,sc_zend,0, RED_)
+  sWo(ket_wo,_WUSESCALES,1)
+  plotLine(ket_wo,sc_zstart,1,sc_zend,1, BLUE_)
+  sWo(ket_wo,_WUSESCALES,0)
+plotLine(ket_wo,sc_zstart,100,sc_zend,100, GREEN_)
+
 
   plotBox(cal_wo,sc_zstart,-1000,sc_zend,0, RED_, FILL_)
 
@@ -127,7 +140,7 @@
 
 //   plotLine(food_wo,sc_startday,30,sc_end,30, BROWN_) ; //daily req fibre (g)
 
-  plotLine(carb_wo,sc_startday,35,sc_end,35, RED_)
+  plotLine(food_wo,sc_startday,35,sc_end,35, RED_)
   
     // use todays date and wt to the intermediate short-term goal
 
@@ -259,9 +272,7 @@
 
   if (ws == 0) {
 
-  //sWo({carb_wo,cal_wo,wt_wo},_WFONT,"small")
 
-  //sWo(carb_wo,_WFONT,"small",_WEO) // check font can accept a int or char *
 
 <<"%V $food_wo $carb_wo \n"
 //oknow = Ask ("que pasa? $_proc",1)
@@ -273,13 +284,10 @@
   sWo(_WOID,cal_wo,_WUSESCALES,0,_WAXNUM,  AXIS_LEFT_)
 //  sWo(food_wo,_WAXNUM,2)
 
-  sWo(_WOID,carb_wo,_WYSCALES,wpt(-5,200),_WSAVESCALES,1)
-
-  sWo(_WOID,carb_wo,_WAXNUM,AXIS_LEFT_)
 
   sWo(_WOID,wt_wo,_WYSCALES,wpt(160,205))
 
-    sWo(_WOID,wt_wo,_WAXNUM,AXIS_LEFT_)
+  sWo(_WOID,wt_wo,_WAXNUM,AXIS_LEFT_)
   //sWo(carb_wo,_WAXNUM,2,0,sc_endday,20,10)
   Text(wt_wo, "Weight (lbs)",0.1,1.0,RED_,0,0,2)
   Text(carb_wo, "Carbs (grams) ",0.1,1.0,RED_,0,0,2)
@@ -287,10 +295,7 @@
   axisLabel(wt_wo,AXIS_BOTTOM_,"Weight (lbs)",0.5,1.7)
 
  // axisLabel(cal_wo,AXIS_BOTTOM_,"Calories",0.5,1.7)
-   //axisLabel(carb_wo,AXIS_LEFT_,"Exercise Time (mins)",0.1,0.7) // TBF
-
- // axisLabel(carb_wo,AXIS_LEFT_,"Mins",0.1,4.0) // TBF
-
+  
   axisLabel(food_wo,AXIS_LEFT_,"Carbs",0.1,4)
  
 
@@ -304,7 +309,7 @@
   //sWo(xwo,_WCLIPBORDER,BLACK_,_WSAVE,_WEO)
 
   }
-  int allwo[] = {wt_wo,swo, cal_wo,  carb_wo , food_wo,-1}
+  int allwo[] = {wt_wo,swo, cal_wo, ket_wo, exer_wo , food_wo,-1}
     for (i = 0; i< 10; i++) {
       if (allwo[i] <=0)
          break;
@@ -331,8 +336,6 @@
 //<<"RESET? %V $sc_startday  $sc_end \n"
 
 
-//int wedwos[10] = { wt_wo, cal_wo,  food_wo, carb_wo,-1  };  // TBC 10/13/24 - xic error?
-// better to declare as global screen_wex
 
 
   if ( wScreen == 0) {
@@ -344,6 +347,8 @@
   COUT(sc_zstart);
   COUT(sc_zend);
 
+  drawGoals( wScreen);
+
  for (i = 0; i< 10; i++) {
 //<<"$i $wedwos[i] \n"
       if (wedwos[i] <=0) {
@@ -352,12 +357,13 @@
         sWo(_WOID,wedwos[i],_WXSCALES, wpt(sc_zstart,sc_zend));
   printf("%d xscales %f %f\n",i,sc_zstart,sc_zend);
 
-        sWo(_WOID,wedwos[i],_wclearclip,WHITE_,_wsave,ON_,_wclearpixmap,ON_,_wclipborder,BLACK_,_wredraw,ON_,_wsavepixmap,ON_);
+   sWo(_WOID,wedwos[i],_wclearclip,WHITE_,_wsave,ON_,_wclearpixmap,ON_,_wclipborder,BLACK_,_wredraw,ON_,_wsavepixmap,ON_);
   }
   
   wScreen= 0
 //oknow = Ask ("que pasa? $_proc $wScreen ",1)
-  drawGoals( wScreen);
+
+
 
   drawGrids( wScreen);
 
@@ -385,28 +391,35 @@
      // plot(cal_wo,_Wkeysymbol,0.78 ,0.7,TRI_,Symsz,RED_,1,_Wfonthue,WHITE_);      
       //Text(cal_wo,"Carbs Ate", 0.8,0.72,1)
 
-  sWo(_WOID,carb_wo,_WFONT,F_SMALL_);
-
-//plot(carb_wo,_Wkeysymbol,0.78,0.7,TRI_,Symsz,GREEN_,1);
+  sWo(_WOID,exer_wo,_WFONT,F_SMALL_);
 
 
 
-//  sWo(_WOID,carb_wo,"Exercise Time (mins)",wpt( 0.8,0.7),1,0,RED_);
-   Text(carb_wo,"Exercise Time (mins)",0.8,0.7,1,0,RED_);
+   sWo(_WOID,exer_wo,"Exercise Time (mins)",wpt( 0.8,0.7),1,0,RED_);
+   Text(exer_wo,"Exercise Time (mins)",0.8,0.7,1,0,RED_);
 
    int gi=0;
 
-  //while ( allgls[gi] >= 0)  {    // ?? bug
+  drawGoals(0)
+
+  //sWo(_woid,cal_wo,_wscales,wbox(sc_startday,-1000,sc_end,CalsY1));
+  //sWo(_WOID,ket_wo,_WRHTSCALES,wbox(sc_startday,0.0, sc_end,12.5));
+  //  sWo(_WOID,ket_wo,_wlhbscales,wbox(sc_startday,0.0, sc_end,200));
+
+
+  ask("plot the glines ?",0)
   
   do_all_gls = 1;
+
   if (do_all_gls) {
-  while ( 1) {
-  gname = glineGetName(allgls[gi]);
+   while ( 1) {
+   gname = glineGetName(allgls[gi]);
   
+  dGl(allgls[gi]);  
+  wogetscales(carb_wo,Cscales)
+ // ask(" %V $carb_wo, %(4,\t, ,\n) %4.2f $Cscales[1:12] ",0)
   ok=ask("%V $gi $allgls[gi] $gname",0);
 
-  sGl(_GLID,allgls[gi],_GLDRAW,ON_);
-  
   gi++;
 
     if (allgls[gi] < 0)  {
@@ -415,9 +428,9 @@
 
   }
 
-  sGl(_GLID,ext_gl,_GLUSESCALES,1,_GLDRAW,ON_);
 
-  for (i = 0; i< 10; i++) {
+
+  for (i = 0; i< 14; i++) {
         if (wedwos[i] <=0) {
          break;
 	 }
@@ -426,38 +439,29 @@
      // sWo(_WOID,wedwos[i],_WSHOWPIXMAP,ON_,_WCLIPBORDER,BLACK_);
    }
 
+ 
 
  }
 
-
-
-
-
-//ans=query("proceed?");
-
-//  int allwo[] = {wt_wo, swo, cal_wo, carb_wo , food_wo,-1};
    
-   
-  drawMonths(wt_wo);
+   drawMonths(wt_wo);
 
   //drawMonths(cal_wo);
 
   //drawMonths(food_wo);
 
-  drawMonths(carb_wo);
-      //Text(carb_wo,"Exercise mins",-4,0.5,4,-90)
+  drawMonths(exer_wo);
+      Text(exer_wo,"Exercise mins",-4,0.5,4,-90)
       //Text(wt_wo,  "Weight (lbs)",0.8,0.8,1)
        //dGl(wt_gl)
        //dGl(wt_gl)
 
-     showTarget();
+   showTarget();
 
    for (i = 0; i< 10; i++) {
         if (wedwos[i] <=0) {
          break;
 	 }
-
-
    }
 
 
@@ -491,20 +495,17 @@ float keypos[10]
   keypos = wogetposition (keywo);
 
    //<<"keyfood_wo $keypos \n";
-}
+ }
 
-Text(cal_wo,"CALS In/Out",0.2,0.90);
+ Text(cal_wo,"CALS In/Out",0.2,0.90);
 
-//Textr(cal_wo,"Cals In/Out",155,1500);
+ Text(food_wo,"Fat,Fiber, Protein (\% drq) ",0.1,0.89);
 
-Text(food_wo,"Fat,Fiber, Protein (\% drq) ",0.1,0.89);
+ Text(ket_wo,"Glucose,Ketones, GKI ",0.1,0.89);
 
-//Textr(food_wo,"Food",140,50);
+ Text(exer_wo," Exercise Time BPress ",0.1,0.89);
 
- //sWo(_WOID,tbqrd_tv,_WCLEAR,ON_,_WCLEARCLIP,ON_,_WREDRAW,ON_);
- //textr(TBqrd_tv,Wex_Vers)
-
-}
+ }
 
   if ( wScreen == 1) {
 
@@ -559,7 +560,7 @@ Text(food_wo,"Fat,Fiber, Protein (\% drq) ",0.1,0.89);
 // decrement - and set rx,RX to jan 1, dec 31 of that year
 // then label 1/4 days
   int i,j;
-  int wedwos[] = { wt_wo, cal_wo,  food_wo, carb_wo,-1  };
+
   float rx,ry,rX,rY;
   RS=wgetrscales(wt_wo);
 // just plot at mid - the date
@@ -608,13 +609,13 @@ Text(food_wo,"Fat,Fiber, Protein (\% drq) ",0.1,0.89);
   for (i = 0; i< 10; i++) {
       if (wedwos[i] <=0)
          break;
-  sWo(_WOID,wedwos[i],_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
+  sWo(_WOID,wedwos[i],_WXSCALES,wpt(rx,rX));
   }
   
   sWo(_WOID,swo,_WXSCALES,wpt(rx,rX));
   // want to use left and right scales
- // sWo(_WOID,wt_wo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0);
-  sWo(_WOID,wt_wo,_WSCALES,wbox(rx,minWt,rX,upperWt));
+ // sWo(_WOID,wt_wo,_WSCALES,wbox(rx,minWt,rX,upperWt));
+ // sWo(_WOID,wt_wo,_WSCALES,wbox(rx,minWt,rX,upperWt));
 
   drawScreens();
 
@@ -679,7 +680,12 @@ Text(food_wo,"Fat,Fiber, Protein (\% drq) ",0.1,0.89);
   carb= CARBSCON[dindex];
   prot= PROTCON[dindex];
   fat = FATCON[dindex];
-  fiber = FIBRCON[dindex];    
+  fiber = FIBRCON[dindex];
+  glu = GLUCOSE[dindex];
+  ket = KETONE[dindex];
+  gki = GKI[dindex];
+
+
 //<<"%V $xtm \n"
   xtm = fround(xtm,1);
 //<<"round %V $xtm \n"  
@@ -705,29 +711,26 @@ Text(food_wo,"Fat,Fiber, Protein (\% drq) ",0.1,0.89);
 
   woSetValue(fatmwo,"%6.1f$fat");
 
+
   woSetValue(fibmwo,"%6.1f$fiber");
+
+  woSetValue(glumwo,"%6.1f$glu");
+
+   woSetValue(ketmwo,"%6.1f$ket");
+
+  woSetValue(gkimwo,"%6.1f$gki");
+
 
   woSetValue(xtmwo,"%6.1f$xtm");
 
-for (i= 0; i< 14; i++) { 
+for (i= 0; i< 18; i++) { 
    if (mwos[i] <0 ) { 
    break; 
    } 
  
     sWo(_woid,mwos[i],_wredraw,ON_); 
  
-  } 
- /*
-  sWo(_WOID,calburnwo,_WREDRAW,1);
-  sWo(_WOID,calconwo,_WREDRAW,1);
-  sWo(_WOID,calexbwo,_WREDRAW,1);  
-  sWo(_WOID,wtmwo,_WREDRAW,1);
-  sWo(_WOID,xtmwo,_WREDRAW,1);
-  sWo(_WOID,carbmwo,_WREDRAW,1);
-  sWo(_WOID,protmwo,_WREDRAW,1);
-  sWo(_WOID,fatmwo,_WREDRAW,1);
-  sWo(_WOID,fibmwo,_WREDRAW,1);  
-  */
+  }
   
   sWo(_WOID,dtmwo,_WSTRVALUE ,mdy,_WREDRAW,1);
 
@@ -746,6 +749,9 @@ for (i= 0; i< 14; i++) {
 	  plotsymbol(fibmwo,ITRI_,msymx,msymy,BROWN_,msize,1);
 	  plotsymbol(fatmwo,CROSS_,msymx,msymy,BLUE_,msize,1);	  
           plotsymbol(carbmwo,DIAMOND_,msymx, msymy,RED_,msize);
+          plotsymbol(glumwo,CROSS_,msymx, msymy,GREEN_,msize);
+          plotsymbol(ketmwo,DIAMOND_,msymx, msymy,BLUE_,msize);
+          plotsymbol(gkimwo,STAR_,msymx, msymy,ORANGE_,msize);	  	  	  
 // could add to wo a sym ,x,y for a redraw name_sym box
     
 
@@ -754,6 +760,53 @@ for (i= 0; i< 14; i++) {
     
   }
 //[EM]=================================//
+
+/*
+ sWo(_WOID,wt_wo,_WRHTSCALES,wbox(sc_startday,0.0, sc_end,300.0,0));
+ sGl(_GLID,ext_gl,_GLUSESCALES,1,_GLDRAW,ON_);
+  sWo(_WOID,carb_wo,_wrhtscales,wbox(sc_startday,0.0, sc_end,10.0));
+  
+  sWo(_WOID,carb_wo,_wlhbscales,wbox(sc_startday,-5, sc_end,310.0));
+ //gflush()
+  
+  wogetscales(carb_wo,Cscales)
+  ask(" %V $carb_wo, %(4,\t, ,\n) %4.2f $Cscales[1:12] ",0)
+
+  //sGl(_GLID,carb_gl,_GLUSESCALES,0,_GLDRAW,ON_); // GL draw uses scale 0 - makes that current
+   sGl(_GLID,carb_gl,_GLDRAW,ON_);
+  wogetscales(carb_wo,Cscales)
+  ask("scale0? %V $carb_gl, %4.2f  %(4,\t, ,\n) $Cscales[1:12] ",0)
+
+
+  //sGl(_GLID,ket_gl,_GLUSESCALES,1,_GLDRAW,ON_); // GL draw uses scale 1 - makes that current
+  sGl(_GLID,ket_gl,_GLDRAW,ON_);
+  wogetscales(carb_wo,Cscales)
+  ask("scale1? %V $ket_gl, %4.2f  %(4,\t, ,\n) $Cscales[1:12] ",0)
+
+ // sGl(_GLID,glu_gl,_GLUSESCALES,0,_GLDRAW,ON_);
+  sGl(_GLID,glu_gl,_GLDRAW,ON_);
+
+  wogetscales(carb_wo,Cscales)
+  ask("scale0? %V $glu_gl, %4.2f  %(4,\t, ,\n) $Cscales[1:12] ",0)
+
+  //sGl(_GLID,gki_gl,_GLUSESCALES,1,_GLDRAW,ON_);
+  sGl(_GLID,gki_gl,_GLDRAW,ON_);
+
+  wogetscales(carb_wo,Cscales)
+  ask("scale1? %V $gki_gl, %4.2f  %(4,\t, ,\n) $Cscales[1:12] ",1)
+
+//  sWo(_WOID,carb_wo,_WUSESCALES,0);
+
+    sWo(_woid,wt_wo,_wlhbscales,wbox(sc_startday,minWt,sc_end,upperWt));
+    sGl(_GLID,wt_gl,_GLUSESCALES,0,_GLDRAW,ON_);
+    sGl(_GLID,prot_gl,_GLUSESCALES,0,_GLDRAW,ON_);
+    sGl(_GLID,fibre_gl,_GLUSESCALES,0,_GLDRAW,ON_);
+    sGl(_GLID,fat_gl,_GLUSESCALES,0,_GLDRAW,ON_);
+    sGl(_GLID,cald_gl,_GLUSESCALES,0,_GLDRAW,ON_);
+    sGl(_GLID,calb_gl,_GLUSESCALES,0,_GLDRAW,ON_);
+    sGl(_GLID,calc_gl,_GLUSESCALES,0,_GLDRAW,ON_);
+    sGl(_GLID,calx_gl,_GLUSESCALES,0,_GLDRAW,ON_);
+*/
 
 
 //==============\_(^-^)_/==================//

@@ -1,21 +1,22 @@
-/*  
- *  @script screen_wex.asl  
- *  
- *  @comment   
- *  @release CARBON  
- *  @vers 1.5 B 6.3.78 C-Li-Pt  
- *  @date 01/31/2022 08:58:38           
- *  @cdate Sun Dec 23 09:22:34 2018  
- *  @author Mark Terry  
- *  @Copyright © RootMeanSquare 2022 
- *  
- */  
+/* 
+ *  @script screen_wex.asl                                                    
+ * 
+ *  @comment  ketones,food, exer                                                               
+ *  @release Carbon                                                           
+ *  @vers 1.6 C Carbon [asl 6.67 : C Ho]                                      
+ *  @date 01/15/2026 09:05:57                                                 
+ *  @cdate Sun Dec 23 09:22:34 2018                                          
+ *  @author Mark Terry                                                        
+ *  @Copyright © RootMeanSquare 2026 -->                                     
+ * 
+ */ 
+
 //----------------<v_&_v>-------------------------//                                                                                                 
  
   
    
 //////////////////  WED SCREEN --- WINDOWS //////////////// 
-//ans=query("graphic?\n") 
+
 int  do_keys = 0
  
   
@@ -72,33 +73,34 @@ cout<<"  titleButtonsQRD(vp);\n";
  
   cal_wo=cWo(vp,WO_GRAPH_); 
  
-   sWo(_woid,cal_wo,_wname,"CALS",_wvalue,0,_wclipborder,BLACK_,_wpixmap,ON_,_wdraw,ON_) ; // cals; 
+  sWo(_woid,cal_wo,_wname,"CALS",_wvalue,0,_wclipborder,BLACK_,_wpixmap,ON_,_wdraw,ON_) ; // cals; 
  
   food_wo=cWo(vp,WO_GRAPH_); 
    
-  sWo(_woid,food_wo,_wname,"FatProtFibr",_wvalue,0,_wclipborder,BLACK_,_wpixmap,ON_) ; // fat prtien fibre 
+  sWo(_woid,food_wo,_wname,"FatProtFibr",_wvalue,0,_wclipborder,BLACK_,_wpixmap,ON_) ; // fat protein fibre 
  
-  carb_wo=cWo(vp,WO_GRAPH_); 
+  ket_wo=cWo(vp,WO_GRAPH_); 
    
-  sWo(_woid,carb_wo,_wname,"Carbs",_wvalue,0,_wclipborder,RED_,_wpixmap,ON_); // carbs
- 
-  int wedwos[] = { wt_wo, cal_wo,  food_wo, carb_wo,-1  }; 
+  sWo(_woid,ket_wo,_wname,"Ketones",_wvalue,0,_wclipborder,RED_,_wpixmap,ON_); // ketones
+
+  exer_wo=cWo(vp,WO_GRAPH_); 
+   
+  sWo(_woid,exer_wo,_wname,"Exercise",_wvalue,0,_wclipborder,RED_,_wpixmap,ON_); // ketones
+
+
+  int wedwos[] = { wt_wo, cal_wo,  food_wo, ket_wo, exer_wo, -1  }; 
 //<<[_DB]"%V$wedwo \n" 
  
   //<<" vtile before set clip!\n";   // _ASL_ defines cout as NOP
  
   wovtile(wedwos,0.1,0.08,0.99,0.99)   ; // vertically tile the drawing areas into the main window; 
     //cx = 0.05 ; cX = 0.95 ; cy = 0.2 ; cY = 0.97; 
- 
- 
- 
- 
+  
  
   float CXY[4] = { 0.05 ,0.2,0.95 ,0.97}; 
-//<<"%V$CXY\n" 
  
    
-cout <<"aftertitleButtons\n"; 
+
  //////////////////////////////// TITLE BUTTON QUIT //////////////////////////////////////////////// 
 //<<"after proc - next statement missed? \n" // MUST FIX 
  
@@ -120,41 +122,35 @@ COUT(sc_zstart);
  // sWo(food_wo,_wclip,CXY,_wcolor,WHITE_,_wclipbhue,RED_,_wbhue,RED_  ,_wfont,F_SMALL_,_wfonthue,WHITE_,_WEO); 
   sWo(_woid,cal_wo,_wclip,CXY,_wcolor,WHITE_,_wclipbhue,WHITE_,_wbhue,WHITE_  ,_wfont,F_SMALL_,_wredraw,ON_,_wsavepixmap,ON_); 
  
-  sWo(_woid,carb_wo,_wclip,CXY,_wcolor,YELLOW_,_wclipbhue,GREEN_,_wbhue,YELLOW_,_wfont,F_SMALL_,_wredraw,ON_,_wsavepixmap,ON_); 
+  sWo(_woid,ket_wo,_wclip,CXY,_wcolor,YELLOW_,_wclipbhue,GREEN_,_wbhue,YELLOW_,_wfont,F_SMALL_,_wredraw,ON_,_wsavepixmap,ON_); 
  
-  sWo(_woid,wt_wo,_wclip,CXY,_wcolor,ORANGE_,_wclipbhue,WHITE_,_wbhue,WHITE_,_wfont,F_SMALL_,_wredraw,ON_,_wsavepixmap,ON_); 
+  sWo(_woid,wt_wo,_wclip,CXY,_wcolor,ORANGE_,_wclipbhue,WHITE_,_wbhue,WHITE_,_wfont,F_SMALL_,_wredraw,ON_,_wsavepixmap,ON_);
+
+  sWo(_woid,exer_wo,_wclip,CXY,_wcolor,LILAC_,_wclipbhue,WHITE_,_wbhue,WHITE_,_wfont,F_SMALL_,_wredraw,ON_,_wsavepixmap,ON_); 
  
- //sWo(_WOID,wt_wo,_WRHTSCALES,wbox(rx,0,rX,300),_WSAVESCALES,1);
- sWo(_WOID,wt_wo,_WRHTSCALES,wbox(sc_startday,0.0, sc_end,300.0,0),_WSAVESCALES,1);
-//  ok =ask("RHTSCALES ?",1)
-// margin codes ?
-//!b
+
+  sWo(_woid,wt_wo,_wlhbscales,wbox(sc_startday,minWt,sc_end,upperWt,0));
+
+  sWo(_WOID,wt_wo,_WRHTSCALES,wbox(sc_startday,0.0, sc_end,300.0,1))
+
+  sWo(_woid,exer_wo,_wlhbscales,wbox(sc_startday,0,sc_end,360,0));
+ 
+  sWo(_woid,ket_wo,_wlhbscales,wbox(sc_startday,0 ,sc_end,250));
+
+  sWo(_WOID,ket_wo,_WRHTSCALES,wbox(sc_startday,0.0, sc_end,12.5));
 
 
- 
-  COUT(sc_end); 
- 
-  sWo(_woid,carb_wo,_wscales,wbox(sc_startday,-5,sc_end,200),_wsavescales,0); 
- 
-//cout <<"SCALES " << sc_startday << " sc_end " <<sc_end << endl; 
- 
-//ans=query("Scales ?"); 
- 
-//  sWo(carb_wo,_wsavescales,0,_WEO); 
- 
-  sWo(_woid,cal_wo,_wscales,wbox(sc_startday,-1000,sc_end,CalsY1),_wsavescales,0);
+  // -1000 in case eat too much no deficit
+  sWo(_woid,cal_wo,_wscales,wbox(sc_startday,-1000,sc_end,CalsY1));
+  sWo(_woid,cal_wo,_wlhbscales,wbox(sc_startday,-1000,sc_end,CalsY1));
   
-
- 
-  COUT(cal_wo); 
- 
  
   swo= cWo(vp1,WO_GRAPH_); 
  
  
 //  sWo(swo,_wname,"BenchPress",_wcolor,WHITE_,_WEO); 
  
-COUT(swo); 
+
   int swos[] = { swo,-1 }; 
  
 //  wovtile(swos,0.01,0.05,0.97,0.97)   ; // vertically tile the drawing areas into the main window; 
@@ -162,11 +158,11 @@ COUT(swo);
 //  sWo(swos[0],_wclip,CXY,_wcolor,WHITE_,_wclipborder,BLACK_,_WEO); 
 ///  measurement 
  
-  tw_wo= cWo(wt_wo,WO_BS_); 
+//  tw_wo= cWo(wt_wo,WO_BS_); 
    
-  sWo(_woid,tw_wo,_wresize,wbox(0.1,0.1,0.15,0.25,0),_wname,"TW",_wvalue,"175"); 
+//  sWo(_woid,tw_wo,_wresize,wbox(0.1,0.1,0.15,0.25,0),_wname,"TW",_wvalue,"175"); 
  
-  COUT(tw_wo); 
+  
  
 //////////////////////////// SCALES ////////////////////////////////////////// 
 //<<[_DB]" Days $k \n" 
@@ -180,20 +176,14 @@ COUT(swo);
   cout<<"scales " << sc_startday << " sc_end " << sc_end << " bp_upper " << bp_upper << endl; 
   //<<"SCALES %V$sc_startday $sc_endday $bp_upper\n"; 
  
-  sWo(_woid,food_wo,_wscales,wbox(sc_startday,-5,sc_end,120)); 
- 
-  //<<"SCALES %V$sc_startday $sc_endday $carb_upper\n"; 
- 
-  sWo(_woid,wt_wo,_wscales,wbox(sc_startday,minWt,sc_end,upperWt)); 
+  sWo(_woid,food_wo,_wlhbscales,wbox(sc_startday,-5,sc_end,120)); 
  
  
-  int allwo[] = {wt_wo, cal_wo,  carb_wo , food_wo,swo,-1}; 
+  int allwo[] = {wt_wo, cal_wo,  ket_wo , food_wo,exer_wo, swo,-1}; 
 
   <<"%V $allwo \n" 
  
- 
-   
-//sleep(0.2) 
+
 /////////////////////////////////////////////////////////// 
   //quitwo=cWo(vp,WO_BN,_wname,"QUIT",_wcolor,"red") 
  
@@ -276,7 +266,8 @@ COUT(swo);
   calconwo=cWo(vp,WO_BV_); 
    
   sWo(_woid,calconwo,_wname,"CCON",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," cals consumed on day ");
- 
+
+  // buttons
   carbmwo=cWo(vp,WO_BV_); 
    
   sWo(_woid,carbmwo,_wname,"CARB",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," carbs eaten on day "); 
@@ -291,18 +282,29 @@ COUT(swo);
 
   fibmwo=cWo(vp,WO_BV_); 
    
-  sWo(_woid,fibmwo,_wname,"FIBER",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," fiber eaten on day "); 
- 
+  sWo(_woid,fibmwo,_wname,"FIBER",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," fiber eaten on day ");
+
+  glumwo=cWo(vp,WO_BV_); 
+   
+  sWo(_woid,glumwo,_wname,"GLUCOSE",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," glucose on day ");
+
+  ketmwo=cWo(vp,WO_BV_); 
+   
+  sWo(_woid,ketmwo,_wname,"KETONE",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," ketone on day ");
+
+  gkimwo=cWo(vp,WO_BV_); 
+   
+  sWo(_woid,gkimwo,_wname,"GKI",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," GKI ration on day "); 
  
   xtmwo=cWo(vp,WO_BV_); 
   sWo(_woid,xtmwo,_wname,"ExTim",_wclipbhue,CYAN_,_wcolor,BLUE_,_whelp," xtime on day "); 
  
-  int mwos[] = { dtmwo, wtmwo, xtmwo, calburnwo, calconwo, caldwo,  calexbwo, protmwo, fatmwo, fibmwo, carbmwo, -1}; 
+  int mwos[] = { dtmwo, wtmwo, xtmwo, calburnwo, calconwo, caldwo,  calexbwo, protmwo, fatmwo, fibmwo, carbmwo, glumwo, ketmwo, gkimwo,-1}; 
  
    
-  wovtile( mwos, 0.01,0.2,0.085,0.9); 
+  wovtile( mwos, 0.01,0.15,0.085,0.9); 
  
-  for (i= 0; i< 14; i++) { 
+  for (i= 0; i< 18; i++) { 
    if (mwos[i] <0 ) { 
    break; 
    } 
@@ -310,10 +312,7 @@ COUT(swo);
     sWo(_woid,mwos[i],_wstyle,SVB_,_wredraw,ON_); 
  
   } 
- 
-                                                                                
-
- 
+  
 /////////////////////////////////////////////  KEYS /////////////////////////////////////////// 
   //  keypos = wogetposition (food_wo); 
  //  <<"%V $keypos \n"; 

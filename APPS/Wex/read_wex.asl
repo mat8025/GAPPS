@@ -304,22 +304,33 @@ if (Yd >= 0) {
 
 //<<"$day $carbs\n"
 
+  glu = atof(RCC.getRC(tl,7));
 
+  GLUCOSE[Yd] = glu;
+  
+  ket = atof(RCC.getRC(tl,8));
+
+  KETONE[Yd] = ket;
+
+  gki = atof(RCC.getRC(tl,9));
+
+  GKI[Yd] = gki;
 
   CARBSCON[Yd] = carbs;
 
-  float fat = atof(RCC.getRC(tl,2));
+  fat = atof(RCC.getRC(tl,2));
 
   FATCON[Yd] = fat;
 
-  float prot = atof(RCC.getRC(tl,5));
+  prot = atof(RCC.getRC(tl,5));
 
   PROTCON[Yd] = prot;
 
   float fiber = atof(RCC.getRC(tl,4));
 
   FIBRCON[Yd] = fiber;
-//<<"%V $tl $Yd $day $cals $carbs $fat $prot $fiber\n"
+
+//<<"%V $tl $Yd $day $cals $carbs $fat $prot $fiber $gku $ket $gki\n"
  
   CALSDEF[Yd] = CALSBURN[Yd] - CALSCON[Yd];
 
