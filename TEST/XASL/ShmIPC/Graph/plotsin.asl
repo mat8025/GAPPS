@@ -30,20 +30,22 @@ Str Use_= " Demo  of plot sin ";
    void drawFPGraph()
    {
 
-   sWo(fpwo,_wgridhue,BLUE_,_WEO);
+   sWo(_woid,fpwo,_wgridhue,BLUE_);
 
-   sWo(fpwo,_wscales,xmin,ymin,xmax,ymax,_WEO);
+   sWo(_woid,fpwo,_wscales,wbox(xmin,ymin,xmax,ymax));
 
-   sGl(sin_gl,_GLDRAW);
+   sGl(_glid,sin_gl,_GLDRAW);
 
    axnum(fpwo,1);
 
    axnum(fpwo,2);
 
-   sWo(fpwo,_wclipborder,_wborder,_WEO);
+   sWo(_woid,fpwo,_wclipborder,PINK_,_wborder,GREEN_);
 
    }
-
+   
+  sdb(1,"~step")
+ 
   Graphic = CheckGwm();
 
   if (!Graphic) {
@@ -52,9 +54,9 @@ Str Use_= " Demo  of plot sin ";
 
    }
 
-  pi = 4.0 * atan(1.0);
+  Pi = 4.0 * atan(1.0);
 
-  dx = 4*pi/500.0;
+  dx = 4*Pi/500.0;
 
   XV = vgen(FLOAT_,500,0,dx);
 
@@ -65,25 +67,31 @@ Str Use_= " Demo  of plot sin ";
 
   xmin = 0;
 
-  xmax = 4 * pi;
+  xmax = 4 * Pi;
 
   ymin = -1.5;
 
   ymax = 1.5;
 
-  aw= cWi(_wtitle,"SIN",_wscales,xmin,ymin,xmax,ymax,_wsavescales,0);
+  aw= cWi(_wtitle,"SIN")
+  sWi(_woid,aw,_wscales,wbox(xmin,ymin,xmax,ymax),_wsavescales,0);
 //<<" CGW $aw \n"
 
-  sWi(aw,_wresize,0.01,0.01,0.98,0.98,0);
+  sWi(_woid,aw,_wresize,wbox(0.01,0.01,0.98,0.98,0));
 
-  sWi(aw,_wclip,0.01,0.01,0.98,0.98);
+  sWi(_woid,aw,_wclip,wbox(0.01,0.01,0.98,0.98));
 
-  fpwo=cWo(aw,_GRAPH,_wresize,0.01,0.01,0.97,0.98,_wname,"PFP",_wcolor,WHITE_,_wsave,_wstore,_WEO);
+  fpwo=cWo(aw,_GRAPH)
+  
+  sWo(_woid,fpwo,_wresize,wbox(0.1,0.1,0.9,0.9),_wname,"PFP",_wcolor,WHITE_,_wsave,ON_,_wstore,ON_);
 
-  sWo(fpwo,_wdrawon,_wpixmapoff,_wclip,0.1,0.1,0.95,0.95,_wscales,xmin,ymin,xmax,ymax,_wsavescales,0,_WEO);
-  //////////////////////////////////////////////////////////////////////////////////
+  sWo(_woid,fpwo,_wdraw,ON_,_wpixmap,OFF_,_wclip,wbox(0.1,0.1,0.9,0.9),_wscales,wbox(xmin,ymin,xmax,ymax),_wsavescales,0);
 
-  include "tbqrd";
+//////////////////////////////////////////////////////////////////////////////////
+  
+#include "wevent.asl" 
+#include "tbqrd.asl"
+ 
 
   titleButtonsQRD(aw);
 
@@ -91,12 +99,13 @@ Str Use_= " Demo  of plot sin ";
 
   sin_gl=cGl(fpwo);
 
-  sGl(sin_gl,_GLTXY,XV, YV, _GLHUE, ORANGE_,_GLEO);
+  sGl(_glid,sin_gl,_GLTXY,XV, YV, _GLHUE, ORANGE_,_GLEO);
 
-  sWi(aw,_wredraw);
+  sWi(_woid,aw,_wredraw);
 
   drawFPGraph();
-#include "gevent"   // adds event class
+  
+
 
   f = 1.0;
 
@@ -108,7 +117,7 @@ Str Use_= " Demo  of plot sin ";
 
   while (1) {
 
-   eventWait();
+ //  eventWait();
 
    redraw_screen = 0;
 
@@ -116,7 +125,7 @@ Str Use_= " Demo  of plot sin ";
 
    YV = sin(XV2) * g;
 
-   sGl(sin_gl,_GLTXY,XV, YV, _GLHUE, hue++,_GLEO);
+   sGl(_glid,sin_gl,_GLTXY,XV, YV, _GLHUE, hue++,_GLEO);
 
    drawFPGraph();
 
