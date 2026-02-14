@@ -383,7 +383,7 @@ class Wing
 
    // sWo(_woid,wtrwo,_wusescales,1)    
     sWo(_woid,wtrwo,_wscales,wbox(xmin,min_lbs,xmax,max_lbs),_wsavescales,1)
-    axnum(wtrwo,8,min_lbs,max_lbs,12,-3,"2.0f")  ; // lets use 5,6,7 8 to force use of scales 1
+    axnum(wtrwo,8,min_lbs,max_lbs,12,-3,"2.0f")  ; // lets use 9-12 to force use of scales 1
 
     sWo(_woid,wtrwo,_wscales,wbox(xmin,min_kg,xmax,max_kg),_wsavescales,0)
 
