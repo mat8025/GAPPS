@@ -29,7 +29,7 @@
 
   Gevent Gev;  // event type - can inspect for all event attributes
 
-//  Gev.pinfo();
+  Gev.pinfo();
 
   Vec<int> WPOS__( 16);
   Vec<int> MPOS__( 16);
@@ -314,6 +314,7 @@ cprintf("getting   _ebutton %d _ename %S\n",_ebutton,_ename) ;
 
   void eventRead()
   {
+     <<"$_proc\n"
       _emsg = Gev.eventRead();
       _eloop++;
       eventDecode();

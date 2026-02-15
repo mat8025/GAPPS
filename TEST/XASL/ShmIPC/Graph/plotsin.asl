@@ -29,7 +29,7 @@ Str Use_= " Demo  of plot sin ";
 
    void drawFPGraph()
    {
-
+   <<" $_proc \n"
    sWo(_woid,fpwo,_wgridhue,BLUE_);
 
    sWo(_woid,fpwo,_wscales,wbox(xmin,ymin,xmax,ymax));
@@ -40,7 +40,7 @@ Str Use_= " Demo  of plot sin ";
 
    axnum(fpwo,2);
 
-   sWo(_woid,fpwo,_wclipborder,PINK_,_wborder,GREEN_);
+   sWo(_woid,fpwo,_wclipborder,eloop,_wborder,GREEN_);
 
    }
    
@@ -117,9 +117,12 @@ Str Use_= " Demo  of plot sin ";
 
   while (1) {
 
- //  eventWait();
 
-   redraw_screen = 0;
+   sleep(0.1)
+   <<"Done sleeping ! $_eloop $_ekeyw $f $g\n"
+   eventRead();
+   <<"Done reading ! $_eloop $_ekeyw $f $g\n"
+   redraw_screen = 1;
 
    XV2 = XV * f;
 
@@ -134,8 +137,7 @@ Str Use_= " Demo  of plot sin ";
    g -= 0.05;
 
    if (_ekeyw == "RESIZE")
-
-   redraw_screen = 1;
+     redraw_screen = 1;
 
    if (_ekeyw == "REDRAW")
 
@@ -172,6 +174,10 @@ Str Use_= " Demo  of plot sin ";
 
      print_screen = 0;
 
+     }
+
+     if (hue > 20) {
+         hue = 0
      }
 
    }
