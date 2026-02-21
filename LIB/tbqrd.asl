@@ -106,23 +106,19 @@ sWo(_WOID,td,_WDRAW,ON_,_WPIXMAP,ON_,_WFONTHUE,RED_,_WCOLOR,WHITE_,_WSYMSIZE,45,
  
 }
 //============================//
-//void titleComment(Str& msg)
+
 void titleComment(Str msg)
 {
  // msg.pinfo()
 //<<"titlecomment %V $msg \n"
- //sWo(_WOID,TBqrd_tv,_WVALUE,msg.cptr(),_WCLEAR,ON_,_WCLEARCLIP,ON_,_WREDRAW,ON_);
+
  sWo(_WOID,TBqrd_tv,_WVALUE,msg,_WCLEAR,ON_,_WCLEARCLIP,ON_,_WREDRAW,ON_);
 
 }
 //============================//
-//void titleVers(Str &vers)
+
 void titleVers(Str vers)
 {
-// Str tit = "$_ele_vers $_ele";
-//Str tit = scriptVers();
-// Str tit = "xyz";
- //<<"script vers $tit\n"
 
    titleComment(vers);
 
@@ -148,10 +144,7 @@ void titleMessage(int wid, Str msg)
 void titleMsg(int wid,Str msg)
 {
   //<<"titleMsg $_tbqrd_msg  $msg\n"
-// sWo(_WOID,tbqrd_msg,_WVALUE,msg.cptr(),_WCLEAR,ON_,_WREDRAW,ON_);
- // woSetValue(TBqrd_msg, msg);
-  
-  //sWo(_WOID,tbqrd_msg,_WVALUE,msg,_WCLEAR,ON_,_WREDRAW,ON_);
+
   sWi(_WOID,wid,_WMSG,"$msg");
 
 }

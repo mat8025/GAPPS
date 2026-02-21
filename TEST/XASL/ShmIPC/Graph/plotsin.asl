@@ -10,7 +10,7 @@
  *  @Copyright © RootMeanSquare 2022
  * 
  */ 
-;//-----------------<v_&_v>------------------------//
+//-----------------<v_&_v>------------------------//
 
 Str Use_= " Demo  of plot sin ";
 
@@ -118,10 +118,13 @@ Str Use_= " Demo  of plot sin ";
   while (1) {
 
 
-   sleep(0.1)
-   <<"Done sleeping ! $_eloop $_ekeyw $f $g\n"
-   eventRead();
-   <<"Done reading ! $_eloop $_ekeyw $f $g\n"
+  // sleep(0.1)
+  //  <<"Done sleeping ! $_eloop $_ekeyw $f $g\n"
+  // eventRead();  // reads whatever is in queue
+  
+     eventWait() ; // eventWait() -- wait forever else value set 
+   <<"Done waiting ! $_eloop $_ekeyw $f $g\n"
+   
    redraw_screen = 1;
 
    XV2 = XV * f;

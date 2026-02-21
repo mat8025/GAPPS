@@ -1480,14 +1480,23 @@ the description and value (where possible) of the argument.
 .EF
 =============================================================
 .BF
-fprintargs()
+tagarg
 .(x
-fprintargs
+tagarg
 .)x 
 .FD
-fprintargs(Fh,a1,a2,...)
-use for debug -- function will print to file using file handle (see ofile) 
-the description and value (where possible) of the argument.
+
+In a multi argment control list like
+
+ sWo(_woid, id, _wclear, WHITE_, _wresize, wbox(0,0,1,1,0),_wredraw,ON_)
+
+tags args _abcd like _wclear. _wredraw signal begining of set of following parameters
+where the end is signalled by another tag arg or termination ).
+The tag args are internally defined and user declared variables should avoid
+beginning with _
+For C++ translation - the set of following parameters should be one value or variable
+or a function returning a vector e.g. wbox(0,0,1,1,0) which is a vector of 5 doubles.
+
 .EF
 =============================================================
 .BF
@@ -1825,14 +1834,14 @@ arg4 y
 arg5 "red"
 
 e.g.
-plot(wid,@point,x,y,"red")
-plot(wid,@line,x,y,X,Y,BLUE)   -- WHITE_,BLACK_,RED_,ORANGE_,YELLOW_,GREEN_,BLUE_
+plot(wid,_point,x,y,"red")
+plot(wid,_line,x,y,X,Y,BLUE)   -- WHITE_,BLACK_,RED_,ORANGE_,YELLOW_,GREEN_,BLUE_
 are known defines.
 
 The @argument starts an argument list and there can be multiple argument lists for one plot statement.
-Optional arguments are permissible since the next @argument ( a tag argument) starts a new list.
+Optional arguments are permissible since the next argument ( a tag argument) starts a new list.
 e.g.
-plot(wid,@box,x,y,X,Y,BLUE,@line,x,y,X,Y,RED)  - which plots a blue outline box with a red diagonal line
+plot(wid,@box,x,y,X,Y,BLUE,_line,x,y,X,Y,RED)  - which plots a blue outline box with a red diagonal line
 
 .EF
 =============================================================
@@ -1842,11 +1851,11 @@ point()
 point
 .)x 
 .FD
-plot(wid,@point,x,y,{hue})
+plot(wid,_point,x,y,{hue})
 plots point at x,y real coors position in window wid.
 By default in current window pen color.
 If hue -1 a dark move is made.
-plot(wid,@points,RPTS)
+plot(wid,_points,RPTS)
 RPTS is a float matrix of nrows of 2 cols where each row is x,y values,
 the point is drawn at x,y value using current window foreground hue.
 
@@ -1858,7 +1867,7 @@ Line()
 line
 .)x 
 .FD
-Plot(wid,@line,{x,y},X,Y,{hue})
+Plot(wid,_line,{x,y},X,Y,{hue})
 plots line from x,y real coors position to X,Y in current window.
 if x and y are not specified then the line is plotted from the
 current pen position to X,Y.
@@ -1872,10 +1881,10 @@ Lines()
 lines
 .)x 
 .FD
-Plot(wid,@lines,RL)
+Plot(wid,_lines,RL)
 RL is a float matrix of nrows of 4 cols where each row is x,y,X,Y values per line.
 
-Plot(wid,@lines,RL)
+Plot(wid,_lines,RL)
 RL is a float matrix of nrows of 2 cols where each row is x,y values,
 the line is drawn between current x,y and the next x,y pair
 
@@ -1887,7 +1896,7 @@ LineTo()
 LineTo
 .)x 
 .FD
-Plot(wid,@lineto,{x,y},{hue},{GC})
+Plot(wid,_lineto,{x,y},{hue},{GC})
 plots line from last position to x,y real coors position current window drawing
 area.
 If hue is set to -1 a dark move is made.
@@ -1895,7 +1904,7 @@ GC parameter is either "xor" or "copy" - default is copy.
 If xor graphic context mode is chosen then there isa xor operation with underlying pixels
 and subsequent draw with xor will erase the line and restores underlying pixels.
 
-Plot(wid,@linesto,RL,{hue},{GC})
+Plot(wid,_linesto,RL,{hue},{GC})
 RL is a float matrix of nrows of 2 cols where each row is x,y values per line,
 the first x,y is a dark move to and then a line is drawn to the next x,y pair and so on.
 
@@ -1907,7 +1916,7 @@ Circle()
 Circle
 .)x 
 .FD
-plot({wid},@circle,x,y,r,{hue},{fill})
+plot({wid},_circle,x,y,r,{hue},{fill})
 
 plots circle from x,y real coors position radius r
 in current window.
@@ -1920,7 +1929,7 @@ Ellipse()
 Ellipse
 .)x 
 .FD
-plot({wid},@ellipse,x,y,a,b,{hue})
+plot({wid},_ellipse,x,y,a,b,{hue})
 plots ellipse from x,y real coors position major a, minor b,
 axis in current window.
 .EF
@@ -1961,13 +1970,13 @@ Box()
 Box
 .)x 
 .FD
-Plot(wid,@box,x,y,X,Y,{hue,fill})
+Plot(wid,_box,x,y,X,Y,{hue,fill})
 
 plots box from x,y real coors position to X,Y in current window.
 box color set to hue. Will fill box area if fill set to 1.
-the second form Plot(wid,@box,x,y,X,Y,{hue,fill})
+the second form Plot(wid,_box,x,y,X,Y,{hue,fill})
 is a general way of calling plot function for a graph type, e.g. line,point, box, symbol
-the type is prefixed by @ sign ( it can also be used as between quotes e.g. "box") the following parameters
+the type is prefixed by _ sign ( it can also be used as between quotes e.g. "box") the following parameters
 are position, [size], color, angle and fill.
 
 .EF
@@ -1978,11 +1987,11 @@ Wbox()
 Wbox
 .)x 
 .FD
-Plot(wid,@wbox,ix,iy,iX,iY,{hue,fill,origin})
+Plot(wid,_wbox,ix,iy,iX,iY,{hue,fill,origin})
 
 plots box specified as pixel offset  from specified origin  (1 window x,y : 2 basewo x,t 3 :basewo CR x,y)
 box color set to hue. Will fill box area if fill set to 1.
-e.g. plot(vp,@wbox,10,10, 90, 90, RED_, 1)
+e.g. plot(vp,_wbox,10,10, 90, 90, RED_, 1)
 plots a red filled box at offset 10,10  80 pixel square rectangle from  a windows Left bottom corner.
 the origin can also be  the basewo position or the clip region position of the base wo.
 
@@ -2006,7 +2015,7 @@ wsymbol,symbol(),
 symbol, wsymbol
 .)x 
 .FD
-plot({wid},@symbol,x,y, symbol_number,symbol_size,hue,{fill, ang, gcontext, hsx,hsy})
+plot({wid},_symbol,x,y, symbol_number,symbol_size,hue,{fill, ang, gcontext, hsx,hsy})
 plots symbol at x,y position in current window.
 Size is a percentage of window size.
 Shape and hue can be indicated via number or word
@@ -2059,7 +2068,7 @@ symbols()
 symbols
 .)x 
 .FD
-plot({wid},@symbols,Pts, symbol_number,symbol_size,hue,{fill, ang, hsx,hsy})
+plot({wid},_symbols,Pts, symbol_number,symbol_size,hue,{fill, ang, hsx,hsy})
 plots array of symbols at x,y position from Pts array (x,y) in current window.
 Size is a percentage of window size.
 Shape and hue can be indicated via number or word ( "diamond" or 5,  "red" or 1)
@@ -2076,7 +2085,7 @@ wosymbol()
 wosymbol
 .)x 
 .FD
-plot({wid},@wosymbol,symbol_number,symbol_size,hue,{ang,fill,hsx,hsy})
+plot({wid},_wosymbol,symbol_number,symbol_size,hue,{ang,fill,hsx,hsy})
 plots symbol in middle of window object.
 Size is a percentage of window size.
 Shape and hue can be indicated via number or word
@@ -5421,27 +5430,27 @@ readrecord
 .FD
 R=ReadTable(A,[ OPTIONS ])
 
-R=ReadTable(A,[@type,RECORD_],
+R=ReadTable(A,[_type,RECORD_],
 
 reads a file/table  of ascii records into an array of Svars - 
 each row is an Svar - each word (or delimited field) is an element of the row Svar.
 
 
 
-MI=ReadTable(A,[@type,INT_],
+MI=ReadTable(A,[_type,INT_],
 reads a file of ascii records into an integer 2D array.  
 
-MF=ReadRecord(A,[@type,FLOAT_],
+MF=ReadRecord(A,[_type,FLOAT_],
 reads a file of ascii records into an float 2D array.
 
 
 A selection of rows and fields can be made at the initial read using pickrow, pickcol options.
 
-[@pickrow,column,value],
-[@pickcond,"<=",column,value],
-[@pickrange,column,value1,value2],
-[@pickbetween,column,value1,value2],
-[@skip,nskiprecords],[@nrecords,nr],[@del,','])
+[_pickrow,column,value],
+[_pickcond,"<=",column,value],
+[_pickrange,column,value1,value2],
+[_pickbetween,column,value1,value2],
+[_skip,nskiprecords],[_nrecords,nr],[_del,','])
 
  will read an ascii file of records optionally converting to type ("int","double","float","char")
   The type governs the conversion - float,double will use atof to convert the ascii field,
@@ -5452,12 +5461,12 @@ A selection of rows and fields can be made at the initial read using pickrow, pi
 Any line starting with # is treated as comment line.
 The default comment is a # as first character on a line.
 The comment str can be changed with an option
-[@comment, string]
+[_comment, string]
 so 
-[@comment, "*"]  would ignore records starting with a * character.
+[_comment, "*"]  would ignore records starting with a * character.
 
 The delmiter between record fields is white spaces but can be selected
-[@del,',']
+[_del,',']
 would use a comma as in csv files.
 
 If option pickrow is specified - only those records
@@ -5486,10 +5495,10 @@ by default to be the same as the number of
 fields in the fixed ascii records -- however the fields can be selected.
 The number of output cols can be set to a number if less than the input number of columns
 this results in only the first n columns being selected.
-[@ncols, n].
+[_ncols, n].
 
 You can supply an integer array with the indices of the record fields you want selected.
-[@selcols, SV]  where SV is a vector with the requested field indices  e.g. int SV[] = {1,3,14} ; 
+[_selcols, SV]  where SV is a vector with the requested field indices  e.g. int SV[] = {1,3,14} ; 
 
 
 .EF
@@ -6033,9 +6042,9 @@ scrollClip()
 wscroll
 .)x 
 .FD
-sWo(won,@scrollclip,dir,nofpixs)
+sWo(won,_scrollclip,dir,nofpixs)
 scrolls wo clip  image left -1,right 1,up 2,down -2, by nofpixs
-sWo(picwo,@scrollclip,DOWN_,10)
+sWo(picwo,_scrollclip,DOWN_,10)
 
 .EF
 =============================================================
@@ -8123,7 +8132,7 @@ creategwob,createwo,cWo()
 cWo, create window object
 .)x 
 .FD
-cWo(wid,"type",@resize,x,y,X,Y,[rel])
+cWo(wid,"type",_resize,x,y,X,Y,[rel])
 returns window object number.
 
 The type field specifies the function served by the window object.
@@ -8150,16 +8159,16 @@ BUTTON_VALUE,BV shows name in box plus current value
 	activated via mouse click.
 	This value can be obtained via get_wo_value call.
 
-wo_id = createGwob(wid,@bv,@name,"FRQ",@value,100,@style,"SVB",@resize,x,y,X,Y,[rel])
+wo_id = createGwob(wid,_bv,_name,"FRQ",_value,100,_style,"SVB",_resize,x,y,X,Y,[rel])
  creates a button with name FRQ and a shown value of 100
 
 The value for a 'button' can be shown alongside,below, above the name of that button
-using the @style tag-value e.g.
- @style,"SVB"     below
- @style,"SVR"     right
- @style,"SVL"     left
- @style,"SVT"     top
- @style,"SVO"     only the value is shown 
+using the _style tag-value e.g.
+ _style,"SVB"     below
+ _style,"SVR"     right
+ _style,"SVL"     left
+ _style,"SVT"     top
+ _style,"SVO"     only the value is shown 
 
 
 .EF
@@ -8676,27 +8685,27 @@ or
 ??---- a name e.g. html color name like lilac - sinfo htmlcolors gives curren table
 
 
-@textr, string,x,y, position, rotation, hue
+_textr, string,x,y, position, rotation, hue
 
-@textf, string,x,y, position, rotation, hue
+_textf, string,x,y, position, rotation, hue
 
 
 
-@func, string {inputValue,wo_menu, ...)
+_func, string {inputValue,wo_menu, ...)
 e.g.
 
-sWo(won,@value,"3",@func,"inputValue")
+sWo(won,_value,"3",_func,"inputValue")
  would allow user when cliking on the Wo to enter a new value via the grapic interface.
  an option of wo_menu - would pop up a menu (menu items - can be set via a comma delimited list)
  allowing user to set value via menu selection.
   e.g.
-sWo(won,@value,"Veg",@func,"wo_menu",@menu,"Meat,Fish,Veg,Fruit")
+sWo(won,_value,"Veg",_func,"wo_menu",_menu,"Meat,Fish,Veg,Fruit")
   
 
 
 There are a number of window object attributes that can be set
 e.g.
- sWo(frq1wo,@highlight,1,@update)
+ sWo(frq1wo,_highlight,1,_update)
  would set highlight on for frq1wo  object.
 
 Plot operations using Swo :
@@ -8704,13 +8713,13 @@ Plot operations using Swo :
 followed by a number of parameters controlled the plot operation.
 e.g. 
 
-sWo(grwo,@line,x,y,X,Y)
+sWo(grwo,_line,x,y,X,Y)
 most are the same as described via the plot function
 e.g.
-plot(grwo,@line,x,y,X,Y);
+plot(grwo,_line,x,y,X,Y);
 
-won=cWo(cp,@BS, ...);
-sWo(won,@CSV,"a,b,c,4,5", [2]);
+won=cWo(cp,_BS, ...);
+sWo(won,_CSV,"a,b,c,4,5", [2]);
 
 sets the value fields on an wo button state object so that on subsequent clicks the value
 returned cycles through the list.
@@ -8736,7 +8745,7 @@ clears draw area of window object wo_id
 .BF.BF
 sWo()
 .(x 
-sWo(woid,@clipsize,[0.1,0.1,0.9,0.9]) --- sets the draw area of window object
+sWo(woid,_clipsize,[0.1,0.1,0.9,0.9]) --- sets the draw area of window object
 .)x 
 .FD
 sets the draw area of window object  as fractional  size of whole wobj area.
@@ -8902,10 +8911,10 @@ returns array of html colors
 .BF
 savepixmap()
 .(x 
-sWo (woid,@savepixmap)
+sWo (woid,_savepixmap)
 .)x 
 .FD
-sWo (woid, @savepixmap)
+sWo (woid, _savepixmap)
 see sWo.
 
 .EF
@@ -8916,7 +8925,7 @@ clearpixmap()
 sWo (woid)
 .)x 
 .FD
-sWo (woid, @clearpixmap)
+sWo (woid, _clearpixmap)
 see sWo.
 
 .EF
@@ -8927,7 +8936,7 @@ textr()
 sWo (woid)
 .)x 
 .FD
-sWo (woid, @textr, "string", x,y, str_posn, rotate, hue)
+sWo (woid, _textr, "string", x,y, str_posn, rotate, hue)
 prints text at x,y position using window object scales, 
 the string will start, center, or end at
 the x,y, position if str_posn at 0,1,2 respectively. The string can be rotated.
@@ -8941,7 +8950,7 @@ textf()
 sWo (woid)
 .)x 
 .FD
-sWo (woid, @textf, "string", x,y, str_posn, rotate, hue)
+sWo (woid, _textf, "string", x,y, str_posn, rotate, hue)
 prints text at x,y fractional position of clip window, 
 the string will start, center, or end at
 the x,y, position if value of str_posn is 0,1,2 respectively. 
@@ -9151,9 +9160,9 @@ creategline,cGl
 .)x 
 .FD
 
-cGl(wid,@TY,YV)
-cGl(wid,@TXY,XV,YV)
-cGl(wid,@TXYP,XYV)
+cGl(wid,_TY,YV)
+cGl(wid,_TXY,XV,YV)
+cGl(wid,_TXYP,XYV)
 Y vector of y values
 XV,YV  vecotrs of X and Y values
 XYV vector of XYpairs
@@ -9170,7 +9179,7 @@ returns handle for gline that can then be drawn.
 
 Attributes of the gline are set via tag,value pairs
 e.g. "X",x , "type", "XY"
-where the tag is a string naming the attribute or property  (written as @tag, to distinguish
+where the tag is a string naming the attribute or property  (written as _tag, to distinguish
 from the following value arguments)
 and the value is
 a constant or variable (scalar or vector) containing the value.
@@ -9180,9 +9189,9 @@ The types of lines that can be drawn are :-
 "HIST" where the values are shown as filled rectangles with base width
 set by "X",x 
 e.g.
-refgl=CreateGline(wid,@THIST,H,binwidth,@color,RED_,@name,"rainfall")
+refgl=CreateGline(wid,_THIST,H,binwidth,_color,RED_,_name,"rainfall")
 
-xygl=CreateGline(wid,@TXY,XV,YV,@color,BLUE_)
+xygl=CreateGline(wid,_TXY,XV,YV,_color,BLUE_)
 where XV and YV are vectors of values for xy positions.
 
 the line can then be drawn by calling DrawGline
@@ -9193,11 +9202,11 @@ Current values can be changed by calling
 setgline(handle, [tag,value, ...]
 and then redrawn
 
-xygl=cGl(wid,@TXY,xvec,yvec,@color,RED_,@name,"XYPLOT")
-xypgl=CreateGline(wid,@TXYP,xyvec,@color,RED_,@name,"XYPLOT")
+xygl=cGl(wid,_TXY,xvec,yvec,_color,RED_,_name,"XYPLOT")
+xypgl=CreateGline(wid,_TXYP,xyvec,_color,RED_,_name,"XYPLOT")
 
-the tag TXY is used for XY plots -- @TXY is followed by two args which are the x vector and y vector to be plotted.
-the tag TY is used for Y plots -- @TY is followed by one arg which is y vector to be plotted 
+the tag TXY is used for XY plots -- _TXY is followed by two args which are the x vector and y vector to be plotted.
+the tag TY is used for Y plots -- _TY is followed by one arg which is y vector to be plotted 
  (against an implied linear x vector with unit increments) 
 
 (see setgline)
@@ -11062,39 +11071,39 @@ S= scat(S," made even longer")
 ==================================================
 # SpreadSheet Functions
 .BF
-sWo(won,@setrowscols)
+sWo(won,_setrowscols)
 .(x
-sWo(won,@setrowscols)
+sWo(won,_setrowscols)
 .)x 
 .FD
-sWo(sswo,@setrowscols,Nrows,Ncols)
+sWo(sswo,_setrowscols,Nrows,Ncols)
 
 for the SpreadSheet sswo set the number of rows and cols.
 .EF
 ==================================================
 .BF
-sWo(won,@selectrowscols)
+sWo(won,_selectrowscols)
 .(x
-sWo(won,@selectrowscols)
+sWo(won,_selectrowscols)
 .)x 
 .FD
-sWo(sswo,@selectrowscols,startrow,endrow,startcol,endcol,[ONOFF])
+sWo(sswo,_selectrowscols,startrow,endrow,startcol,endcol,[ONOFF])
 for the SpreadSheet sswo select which rows and cols to display.
 Can be used to select non-consectutive regions for display.
 
 .EF
 ==================================================
 .BF
-sWo(won,@setcolsize)
+sWo(won,_setcolsize)
 .(x
-sWo(won,@setcolsize)
+sWo(won,_setcolsize)
 .)x 
 .FD
-sWo(sswo,@setcolsize,startcol,numofconsecutivecols,unitsize)
+sWo(sswo,_setcolsize,startcol,numofconsecutivecols,unitsize)
 
 allows columns or rows to be set to different unit sizes.
 i.e. in multiples of unit size.
-also sWo(won,@setrowsize)
+also sWo(won,_setrowsize)
 
 .EF
 ==================================================

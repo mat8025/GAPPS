@@ -1,11 +1,11 @@
 /* 
  *  @script wtrange.asl                                                       
  * 
- *  @comment         *                                                        
+ *  @comment                                                                 
  *  @release Carbon                                                           
  *  @vers 1.2 He Helium [asl 6.67 : C Ho]                                     
  *  @date 02/12/2026 18:04:07                                                 
- *  @cdate 12/14/2025 18:25:14       *                                        
+ *  @cdate 12/14/2025 18:25:14                                                
  *  @author Mark Terry                                                        
  *  @Copyright © RootMeanSquare 2026 -->                                     
  * 
@@ -208,7 +208,7 @@ class Wing
 
    current_wt = current_wt_lbs/kg2lb_ ;
 
-   min_kg = 60
+   min_kg = 70
    max_kg = 120;
    min_lbs = min_kg *kg2lb_ 
    max_lbs = max_kg *kg2lb_
@@ -350,7 +350,7 @@ class Wing
   if (!Graphic) {
     Xgm = spawnGwm("PG_WTRANGE")
   }
-
+ sleep (2)
  void drawScreens()
   {
  
@@ -406,9 +406,15 @@ class Wing
      plotSymbol(wtrwo,DIAMOND_,3,Hook3.best_75,BLUE_,Symsz,1);
      plotSymbol(wtrwo,STAR_,3,Hook3.allupwt,Hook3.hue,Symsz,1);
      plotText(wtrwo,Hook3.name,3,Hook3.min -2,BLACK_,0,1)
+     plotText(wtrwo,"%6.1f$Hook3.allupwt",3,Hook3.min -4,BLACK_,0,1)
+     
      plotText(wtrwo,Theta.name,6,Theta.min -2,BLACK_,0,1)
+     plotText(wtrwo,"%6.1f$Theta.allupwt",6,Theta.min -4,BLACK_,0,1)
+     
      plotText(wtrwo,Epsilon10_26.name,9,Epsilon10_26.min-2,BLACK_,0,1)
-     plotText(wtrwo,Epsilon10_28.name,12,Epsilon10_28.min-2,BLACK_,0,1)     
+     plotText(wtrwo,"%6.1f$Epsilon10_26.allupwt",9,Epsilon10_26.min-4,BLACK_,0,1)          
+     plotText(wtrwo,Epsilon10_28.name,12,Epsilon10_28.min-2,BLACK_,0,1)
+     plotText(wtrwo,"%6.1f$Epsilon10_28.allupwt",12,Epsilon10_28.min-4,BLACK_,0,1)          
      
 
   // advance theta wtrange box
@@ -481,7 +487,10 @@ class Wing
      //<<"using RHT scales !\n"
 
       wtbwo=cWo(aw,WO_BV_); 
-      sWo(_woid,wtbwo,_wname,"WT",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," Pilot WT lbs "); 
+      sWo(_woid,wtbwo,_wname,"WT",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," Pilot WT lbs ");
+
+      wtkgbwo=cWo(aw,WO_BV_); 
+      sWo(_woid,wtkgbwo,_wname,"WTKG",_wclipbhue,PINK_,_wfonthue,BLACK_,_whelp," Pilot WT kg "); 
 
       harbwo=cWo(aw,WO_BV_); 
       sWo(_woid,harbwo,_wname,"Harness",_wclipbhue,LILAC_,_wfonthue,BLACK_,_whelp," Harness type "); 
@@ -492,7 +501,7 @@ class Wing
       downbwo=cWo(aw,WO_SYM_); 
       sWo(_woid,downbwo,_wname,"DOWNWT",_wclipbhue,CYAN_,_wfonthue,BLACK_,_wsymbol,ITRI_,_wsymsize,25,_whelp," decrease WT lbs "); 
 
-      int mwos[] = { upbwo, wtbwo,downbwo, harbwo, -1 }
+      int mwos[] = { upbwo, wtbwo,wtkgbwo, downbwo, harbwo, -1 }
      
       wovtile( mwos, 0.01,0.15,0.1,0.7,0.1);
 
@@ -500,21 +509,22 @@ class Wing
 
       woSetValue(harbwo,"$harness");
      sWo(_woid,wtbwo ,_wstyle,SVB_,_wredraw,ON_);
+     sWo(_woid,wtkgbwo ,_wstyle,SVB_,_wredraw,ON_);     
      sWo(_woid,harbwo ,_wstyle,SVB_,_wredraw,ON_);
   
      drawScreens()
 
 
-m_num = 0;
- while (1) {
+  m_num = 0;
+  while (1) {
 
         m_num++
        recompute = 0
        eventWait()
 
-       if (ewoname == "WT") {
+       if ( ewoname_ == "WT") {
          recompute = 1
-	 if (ebutton == 1) {
+	 if (ebutton_ == 1) {
          current_wt_lbs += 2.5
 	 }
 	 else {
@@ -522,22 +532,25 @@ m_num = 0;
          }
          current_wt = current_wt_lbs/kg2lb_ ;	 
 	 woSetValue(wtbwo,"$current_wt_lbs");
+	 woSetValue(wtkgbwo,"%4.1f$current_wt");	 
        }
 
-       if (ewoname == "UPWT") {
+       if (ewoname_ == "UPWT") {
                 recompute = 1
            current_wt_lbs += 1
            current_wt = current_wt_lbs/kg2lb_ ;	 
 	   woSetValue(wtbwo,"$current_wt_lbs");
+	   woSetValue(wtkgbwo,"%4.1f$current_wt");	 	   
        }
-       if (ewoname == "DOWNWT") {
+       if (ewoname_ == "DOWNWT") {
                 recompute = 1
            current_wt_lbs -= 1
            current_wt = current_wt_lbs/kg2lb_ ;	 
 	   woSetValue(wtbwo,"$current_wt_lbs");
+	   woSetValue(wtkgbwo,"%4.1f$current_wt");	 	   
        }
        
-            if (ewoname == "Harness") {
+            if (ewoname_ == "Harness") {
 
              if (c_harness == "adv") {
                  c_harness = "gin"
@@ -550,16 +563,13 @@ m_num = 0;
 
              woSetValue(harbwo,"$c_harness");
                 recompute = 1
-                Theta.Compute()
-		Hook3.Compute()
-		Epsilon10_26.Compute()				
-		Epsilon10_28.Compute()		
              }
            
 
                if( recompute) {
                 Theta.Compute()
 		Hook3.Compute()
+		Epsilon10_26.Compute()				
 		Epsilon10_28.Compute()		
                }
 

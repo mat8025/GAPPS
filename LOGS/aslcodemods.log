@@ -2306,3 +2306,8 @@ vmf_record.cpp                      1.7  12/28/2025 13:17:42  added getnowsrd
 vmf_table.cpp                       1.6  12/28/2025 16:03:27  
 plot_po.cpp                         1.83  12/29/2025 20:03:41  plotsymbol(wid,synum,x,y,hue,size,fill,ang,hsx,hsy,gc)
 gline.h                             1.23  01/03/2026 14:51:20  use void ptrs for record/matrix
+wcom_msg.cpp                        1.93  02/17/2026 19:32:56  revise eventwait
+spil_args.cpp                       1.12  02/18/2026 08:02:28  vardef default set of var if UNSET
+spil_args.cpp                       1.12  02/18/2026 08:03:12  
+ds_arraycopy.cpp                    2.76  02/20/2026 10:04:22  takes care of convert if needed
+rdp_store.cpp                       2.10  02/20/2026 10:05:51  
