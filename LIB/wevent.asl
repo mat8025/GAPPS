@@ -209,7 +209,8 @@ cprintf("getting   ebutton_ %d ename_ %S\n",ebutton_,ename_) ;
       ekeyw_ = "";
       secs.pinfo()
    //  <<"$_proc ENTER from Gev.eventWait  $secs\n"
-     emsg_ = Gev.eventWait(secs);
+
+      emsg_ = Gev.eventWait(secs);
 
 
 

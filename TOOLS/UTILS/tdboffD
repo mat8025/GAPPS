@@ -14,7 +14,7 @@ j=${NME[1]}
 
 
 echo  $j
-cp $j.h /usr/local/GASP/gasp/BAK
+
 cat $j.h | sed s/DBON/DBOFF/ > $j.new
 cp $j.new $j.h
 rm $j.new
