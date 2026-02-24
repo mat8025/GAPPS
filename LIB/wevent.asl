@@ -207,7 +207,8 @@ cprintf("getting   ebutton_ %d ename_ %S\n",ebutton_,ename_) ;
       ewoval_ = "";
       emsg_ = "";
       ekeyw_ = "";
-      secs.pinfo()
+      
+      //secs.pinfo()
    //  <<"$_proc ENTER from Gev.eventWait  $secs\n"
 
       emsg_ = Gev.eventWait(secs);
@@ -227,7 +228,7 @@ cprintf("getting   ebutton_ %d ename_ %S\n",ebutton_,ename_) ;
       ewoid_ =Gev.getEventWoid();
 
      // cprintf("%s    ewoid %d  erx %f  ery %f\n",__FUNCTION__,ewoid,erx,ery)      ;
-      <<" %V $ewoid \n"
+    
       eventDecode();
 /*     
      if (ekeyw_ == "EXIT_ON_WIN_INTRP") {

@@ -96,68 +96,86 @@ init_debug ("cpp_debug.txt", 1, "1.7");
  
 // TBF Gev; name instead of Gev  Gevent Gev; // event type - can inspect for all event attributes 
  
-   
-  Gevent Gev ; 
+#include "wevent.asl"
+
+  //Gevent Gev ; 
  
-  Gev.pinfo(); 
+  //Gev.pinfo(); 
  
   setScreen() 
  
  
 // our Gevent variable - holds last message 
-                            // could use another or an array to compare events 
+                       // could use another or an array to compare events 
  
 //sWi( allwins ,_wredraw,ON_) 
 int b 
  
    int fhue =1; 
-   int bhue = 3; 
- 
+   int bhue = 3;
+
+
+  // sdb(1,"step")
+   typos = -0.9;
+   txpos = -0.9;
    while (Graphic) { 
  
-      Gev.eventWait(); 
- 
+      eventWait(1); 
+
+     //eventRead()
+
+//sleep(3)
+
    // <<"%V $GEV__name $GEV__button $GEV__keyw $GEV__woname $GEV__keyc \n" 
  
    
   
-/* 
-      if (GEV__ekeyw= "EXIT_ON_WIN_INTRP") { 
-<<"have win interup -- exiting!\n" 
-      break; 
-      } 
-*/ 
-    //  sWo(_woid,two,_wtexthue,BLACK_,_wclear,ON_) 
- 
+
+     sWo(_woid,two,_wtexthue,BLACK_,_wclear,ON_,_wclearclip,WHITE_) 
+      // this should be @ rx,ry according to scales
+      Textr(two, "%6.2f$txpos $typos %V $bhue $ewoname_  ",txpos,typos, bhue,0,0);         
+  typos += 0.05;       txpos += 0.05;     
+      if (typos > 0.95)
+          typos = -0.9;
+
+      if (txpos > 0.95)
+          txpos = -0.9;
+
+  
+      b= ebutton_; 
+      if ((bhue % 2) == 0) {
+      //sWi(_woid,txtwin,_wdraw,ON_,_wbhue,PINK_,_wclearclip,ON_,_wredraw,ON_)
+      <<"PINK \n"
+      }
+       else {
+       
+    //sWi(_woid,txtwin,_wdraw,ON_,_wbhue,bhue,_wclearclip,ON_,_wredraw,ON_)
+      <<"LILAC \n"
+     }
+       
+      //sWo(_woid,two,_wdraw,ON_,_wclipbhue,bhue,_wclearclip,ON_,_wupdate,ON_)
       
- 
-      b= Gev.getEventButton(); 
-      
-      woname = Gev.getEventName(); 
      // Textr(two, "$b ",-0.9,0.5);  // TBF no cpp 
- 
-     //  Textr(two, " $woname $b ",-0.9,0); 
+     <<"%V $ewoname_ $b "
  
  
      // processKeys(Gev.getEventKey()) 
-      sWo(_woid,lwo,_wborder, bhue+1,_wfhue,fhue,_wclipbhue,bhue,_wredraw,ON_) 
- 
+     // sWo(_woid,lwo,_wborder, bhue+1,_wfhue,fhue,_wclipbhue,bhue,_wredraw,ON_) 
+
       fhue += 1 
-      bhue +=2 
-      if (fhue > 30)  fhue = 1 
+      bhue += 1
+
+<<"%V $fhue $bhue \n"
+ ans=ask("$bue ",0)
+
+      if (fhue > 7)  {
+        fhue = 1 
+       }
        
-      if (bhue > 30) 
-          bhue = 1 
-       
-/* 
-     if (GEV__name == "PRESS") { 
- 
-       <<"trying $GEV__woname $GEV__button \n" 
- 
-          rcb=runproc(GEV__woname,GEV__button) 
-     } 
-*/  
- 
+     if (bhue > 12) {
+          bhue = 1
+     }
+	  
  } 
  
  
@@ -173,7 +191,22 @@ int b
  }  /// end of C++ main    
 #endif                
  
-  
+/* 
+      if (GEV__ekeyw= "EXIT_ON_WIN_INTRP") { 
+<<"have win interup -- exiting!\n" 
+      break; 
+      } 
+*/   
+
+
+/* 
+     if (GEV__name == "PRESS") { 
+ 
+       <<"trying $GEV__woname $GEV__button \n" 
+ 
+          rcb=runproc(GEV__woname,GEV__button) 
+     } 
+*/    
  
  
  

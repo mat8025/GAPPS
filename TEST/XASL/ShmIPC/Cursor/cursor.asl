@@ -1,20 +1,21 @@
-//%*********************************************** 
-//*  @script cursor.asl 
-//* 
-//*  @comment test cursors 
-//*  @release CARBON 
-//*  @vers 1.1 H Hydrogen                                                 
-//*  @date Wed Feb  6 15:00:37 2019 
-//*  @cdate Wed Feb  6 15:00:37 2019 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script cursor.asl                                                        
+ * 
+ *  @comment test cursors
+ *  @release Carbon                                                           
+ *  @vers 1.2 He Helium [asl 6.67 : C Ho]                                     
+ *  @date 02/21/2026 19:39:29                                                 
+ *  @cdate Wed Feb 6 15:00:37 2019 
+ *  @author Mark Terry                                                        
+ *  @Copyright © RootMeanSquare 2026 -->                                     
+ * 
+ */ 
 
 
 
-include "debug.asl"
-include "hv.asl"
+
+#include "debug.asl"
+#include "hv.asl"
 
 Graphic = checkGWM()
 
@@ -22,64 +23,89 @@ Graphic = checkGWM()
     Xgm_pid = spawnGWM()
 <<"xgs pid ? $Xgm_pid \n"
 
-}
+ }
 
     rsig=checkTerm();
 
 
-    vp = cWi(@title,"Cursors")
+    vp = cWi("Cursors")
 
 <<"%V$vp \n"
 
-    sWi(vp,@pixmapon,@drawon,@save,@bhue,"white")
+    sWi(_woid,vp,_wpixmap,ON_,_wdraw,ON_,_wsave,ON_,_wbhue,WHITE_)
 
-    sWi(vp,@clip,0.05,0.1,0.95,0.95)
+    sWi(_woid,vp,_wclip,wbox(0.05,0.1,0.95,0.95))
 
-    sWi(vp,@scales,0.0,0.0,1.0,1.0)
+    sWi(_woid,vp,_wscales,wbox(0.0,0.0,1.0,1.0),_wsavesales,0)
 
- gwo=cWo(vp,@BV,@name,"Cursors",@color,GREEN_,@resize,0.1,0.1,0.9,0.9);
+    gwo=cWo(vp,WO_BV_,)
+    sWo(_woid,gwo,_wtitle,"Cursors",_wcolor,GREEN_,_wresize,wbox(0.2,0.1,0.9,0.9));
 
- sWo(gwo,@clip,0.1,0.1,0.9,0.9,@scales,0.0,0.0,1.0,1.0);
+    sWo(_woid,gwo,_wclip,wbox(0.1,0.1,0.9,0.9),_wscales,wbox(-10.0,-10.0,10,10),_wsavescales,0);
 
-include "tbqrd";
+
+
+   timwo= cWo(vp,WO_BV_);
+
+   sWo(_woid,timwo,_wname,"TIME",_wcolor,WHITE_,_wstyle,SVB_,_wdraw,ON_,_wpixmap,ON);
+
+   bpmwo= cWo(vp,WO_BV_);
+
+   sWo(_woid,bpmwo, _wname,"BPM",_wcolor,GREEN_,_wfonthue,RED_,_wstyle,SVB_);
+
+   elevwo= cWo(vp,WO_BV_);
+
+   sWo(_woid,elevwo,_wname,"ELEV",_wcolor,RED_,_wfonthue,BLACK_,_wdraw,ON_,_wstyle,SVB_);
+
+   spdwo= cWo(vp,WO_BV_);
+
+   sWo(_woid,spdwo,_wname,"SPD",_wcolor,BLUE_,_wfonthue,BLACK_,_wstyle,SVB_);
+
+   distwo= cWo(vp,WO_BV_);
+
+   sWo(_woid,distwo,_wname,"DIST",_wcolor,BLUE_,_wfonthue,BLACK_,_wdraw,ON_,_wstyle,SVB_,_wredraw,ON_);
+
+  int measwos[] = {timwo, distwo, elevwo, bpmwo, spdwo,-1 };
+
+   wovtile(measwos,0.05,0.05,0.15,0.95,0.02);
+
+
+#include "tbqrd";
 
  titleButtonsQRD(vp);
  titleVers();
  
- sWi(vp,@redraw)
+ sWi(_woid,vp,_wredraw,ON_)
+  sWo(_woid,gwo,_wredraw,ON_)
 
 
- mousecursor("spider",vp,0.5,0.1)
+ mousecursor(vp,"spider",0.5,0.1)
 
-include "gevent" ;
+#include "wevent.asl" ;
 
 curs_id = 34
-
 
  while (1) {
 
 
    eventWait();
 
-<<"%V$curs_id \n"
+<<"%V $curs_id $ewoid_ $ewoname_ $etype_ $ebutton_ $erx_ $ery_\n"
   curs_id++;
   
-   if (_ekeyw @= "EXIT_ON_WIN_INTRP") {
+   if (ekeyw_ == "EXIT_ON_WIN_INTRP") {
 <<"have win interup -- exiting!\n"
       break;
    }
 
-/{/*
-  if ((curs_id % 2) == 0) {
-   <<"mousecursor spider\n"
-   mousecursor("spider",-1)
-  }
-/}*/
 
   <<"mousecursor $curs_id\n"
-    mousecursor(curs_id,vp,0.5,0.5);
-
-
+    mousecursor(vp,curs_id,0.5,0.5);
+sWo(_woid,gwo,_wredraw,ON_)
+   //
  }
+
+
+//    Cursor does not stick
 
 exit()
