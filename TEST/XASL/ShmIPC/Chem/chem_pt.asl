@@ -13,8 +13,19 @@
  */ 
 
 
+  <<" $_clarg[0] $_clarg[1] $_clarg[2] \n" 
+ int show
+ show = atoi(_clarg[1])
+
+// ans=ask("%V $show ",1)
+
+ show.pinfo()
+
+
  Svar argv = _argv;  // allows asl and cpp to refer to clargs
  argc = argc();
+
+
 
 
 #include "debug" 
@@ -55,7 +66,10 @@ using namespace std;
 
 
 
-setdebug(0)
+ 
+
+
+sdb(1,"~step")
 
 Graphic = CheckGwm()
 
@@ -72,61 +86,74 @@ spawn_it = 1
        spawn_it  = 0;
      }
 
-    //vp = cWi(@title,"Periodic_Table_Of_Elements",@resize,0.01,0.2,0.95,0.9,0)
+#include "wevent.asl"
+#include "tbqrd.asl"
+
     vp = cWi("Periodic_Table_Of_Elements")
-    sWi(_woid,vp,_wresize,wbox(0.01,0.2,0.95,0.9,0))
 
-    sWi(_woid,vp,_wpixmap,ON_,_wdraw,ON_,_wsave,ON_,_wbhue,WHITE_)
+    sWi(_woid,vp,_wresize,wbox(0.01,0.1,0.95,0.95),_wredraw,ON_)
 
-    sWi(_woid,vp,_wgrid,11,20)
+    sWi(_woid,vp,_wpixmap,OFF_,_wdraw,ON_,_wsave,ON_,_wbhue,WHITE_)
     
-    sWi(_woid,vp,_wclip,wbox(0.2,0.2,0.8,0.8))
+    sWi(_woid,vp,_wclipborder,PINK_,_wcliphue,RED_,_wclearclip,BLUE_,_wredraw,ON_)
 
+    sWi(_woid,vp,_wsetgrid,12,20)
+    
+
+  titleButtonsQRD(vp);
+  ans=ask("see it?",1)
+  if (ans == "n") {
+    exitgs();
+    exit(-1);
+  }
 //////// Wob //////////////////
 
- bx = 0.1
- bX = 0.3
- yht = 0.2
- ypad = 0.05
 
- bY = 0.95
- by = bY - yht
 
- void eleSpec(i) 
+ void eleSpec(int i) 
  {
   elespec = Pt(i)
-  elef = split(elespec,",")
-  ewo[i]=cWo(vp,WO_BV_)
- 
-  sWo(_woid,ewo[i],_wname,"$elef[1]  $elef[2]",_wcolor,ecolor[i],_wresize,wbox(col,rb,col+1,rt,3))
 
-  sWo(_woid,ewo[i],_wborder,BLUE_,_wdraw,ON_,_wclipborder,GREEN_,_wfonthue,BLACK_,_wvalue,"$elef[0]\n $elef[3]",_wstyle,SVB_)
+  ans=ask(" $elespec \n",0)
+  
+  <<" %V $elespec $Pt(i) \n"
+  
+  elef = split(elespec,",")
+
+  ewo[i]=cWo(vp,WO_BN_)
+  <<"$i  $ewo[i] $elef[1]  $elef[2] \n"
+  <<"resize $col,$rb,$(col+1),$rt \n"
+  sWo(_woid,ewo[i],_wname,"$elef[1] $elef[2] ",_wcolor,ecolor[i],_wresize,wbox(col,rb,col+1,rt,WGRID_),_wredraw,ON_)
+
+  sWo(_woid,ewo[i],_wborder,BLUE_,_wdraw,ON_,_wclipborder,GREEN_,_wfonthue,BLACK_,_wvalue,"$elef[1]\n $elef[3]",_wstyle,SIV_)
   
  if (show) {
   sWo(_woid,ewo[i],_wredraw,ON_)
  }
  else {
- sWo(_woid,ewo[i],_wclear,ON_)
+  sWo(_woid,ewo[i],_wclear,ON_)
  }
  sWo(_woid,ewo[i],_whelp,"$elespec")
  col++;
  }
 
 
- void peleSpec(si,fi) 
+ void peleSpec(int si,int fi) 
  {
  for (i = si ; i <=fi; i++) {
  elespec = Pt(i)
+ <<"$i  $Pt(i) \n"
  elef = split(elespec,",")
- ewo[i]=cWo(vp,"BV",_wname,"$elef[1]  $elef[2]",_wcolor,ecolor[i],_wresize,col,rb,col+1,rt,3)
- setgwob(ewo[i],_wBORDER,_wDRAWON,_wCLIPBORDER,_wFONTHUE,BLACK_,_wVALUE,"$elef[0]\n $elef[3]",_wSTYLE,"SVB")
+ ewo[i]=cWo(vp,WO_BN_)
+ sWo(_woid,ewo[i],_wname,"$elef[1] $elef[2] ",_wcolor,ecolor[i],_wresize,wbox(col,rb,col+1,rt,WGRID_))
+ sWo(_woid,ewo[i],_wborder,RED_,_wdraw,ON_,_wclipborder,GREEN_,_wfonthue,BLACK_,_wvalue,"$elef[0]\n $elef[3]",_wstyle,SIN_)
  if (show) {
-    setgwob(ewo[i],_wredraw,ON_)
+    sWo(_woid,ewo[i],_wredraw,ON_)
  }
  else {
-    setgwob(ewo[i],_wclear,ON_)
+    sWo(_woid,ewo[i],_wclear,ON_)
  }
- sWo(ewo[i],_whelp,"$elespec")
+ sWo(_woid,ewo[i],_whelp,"$elespec")
  col++;
  }
  }
@@ -136,6 +163,7 @@ spawn_it = 1
 
 
  int ewo[120]
+ int ewo_show[120]
  int ecolor[120]
 
  ecolor = YELLOW_;
@@ -152,14 +180,16 @@ spawn_it = 1
 
  int col =1;
 
- rb = 9.0;
+ rb = 9;
  rt = rb+1;
 
 
 
  
- show = atoi(_clarg[1])
 
+ 
+
+ //int show = 1
  
  // Hydrogen
  eleSpec(1) 
@@ -179,7 +209,7 @@ spawn_it = 1
       peleSpec(3,4) 
 
 
-
+//ans=ask("see it?",1)
 
 
 // ecolor = LILAC
@@ -278,19 +308,41 @@ spawn_it = 1
 
 ////////////////////   EVENT PROCESSING ////////////////////////////
 
-#include "wevent.asl"
 
 
 
 xp = 0.1
 yp = 0.5
 
+   //sWi(_woid,vp,_wredraw,ON_)
+
+   // toggle wo on/off ?
+
+   if (!show) {
+     // for (i = 1; i <= 112; i++) {
+
+         sWo(_woid,ewo,_wclear,LILAC_,_wborder,MAGENTA_,_wclipborder,PINK_,_wstyle,"SIN",_wredraw,ON_)
+	
+  //    }
+   }
+
+ans=ask("see it?",0)
+
    while (1) {
 
+      eventWait(4.0)   
 
-      eventWait()
+   if (!show) {
+      //for (i = 1; i <= 112; i++) {
+        sWo(_woid,ewo, _wborder,GREEN__,_wclipborder,RED_)
+      //}
+   }
 
 
+
+   <<"$ewoname_ $ewoid_\n"
+   
+   sWo(_woid,ewoid_,_wfonthue,BLUE_,_wstyle,SVO_,_wredraw,ON_)
      
 
   if (scmp(ewoname_,"QUIT",4)) {

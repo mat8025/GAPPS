@@ -136,7 +136,7 @@ int b
       Textr(two, "%6.2f$txpos $typos %V $bhue $ewoname_  ",txpos,typos, bhue,0,0);         
   typos += 0.05;       txpos += 0.05;     
       if (typos > 0.95)
-          typos = -0.9;
+          typos = -0.9; 
 
       if (txpos > 0.95)
           txpos = -0.9;
