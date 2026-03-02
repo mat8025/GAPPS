@@ -6021,7 +6021,7 @@ setfont("Times-Roman",12)
 To find out if rotated fonts are loaded
 xlsfonts | grep rot
 and can load them via
-xset fp+ /home/mark/gasp-CARBON/fonts
+xset fp+ /home/mark/GASP/fonts
 
 .EF
 =============================================================

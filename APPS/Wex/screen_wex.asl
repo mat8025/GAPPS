@@ -383,8 +383,10 @@ sWo(_woid,zinwo,_wstyle,WS_SVO_,_wredraw,ON_,_wcolor,BLUE_,_wclipbhue,YELLOW_,_w
 
 //  check for lyo - layout file 
 
+/*
+
  lyo_ok=f_exist("${vptitle}.lyo",0,1)
-float wrx,wry,wrX,wrY = 0;
+ float wrx,wry,wrX,wrY = 0;
  if (lyo_ok > 7) {
 <<" have lyo file $lyo_ok %V $vp $vp1 \n"
     lyosv= readFile("${vptitle}.lyo")
@@ -413,7 +415,7 @@ float wrx,wry,wrX,wrY = 0;
   
 <<" $keyposr[1] $keyposr[2]  $keyposr[3]  $keyposr[4]\n"
 
-ask("CA $j %V $woid $xtmwo $wid $won $wrx $wry $keyposr[1] $keyposr[2] \n",0)
+  ask("CA $j %V $woid $xtmwo $wid $won $wrx $wry $keyposr[1] $keyposr[2] \n",0)
 
 
 
@@ -429,6 +431,8 @@ ask("CA $j %V $woid $xtmwo $wid $won $wrx $wry $keyposr[1] $keyposr[2] \n",0)
   }
    sWi(_woid,vp,_wredraw,1);
  }
+
+*/
 
 cout<<"Screen DONE\n"; 
  

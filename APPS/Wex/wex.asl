@@ -318,9 +318,9 @@ Record RX;
 ///
 //  SET     START DATE      END DATE  TARGET WEIGHT
   
-   yday = Julian("01/01/2025")   ; // this should be found from data file
+   yday = Julian("01/01/2026")   ; // this should be found from data file
 
-   eday = Julian("12/31/2025");
+   eday = Julian("12/31/2026");
 
   
   today = getDate(2);
@@ -335,7 +335,7 @@ Record RX;
 
   Bday = Julian("04/09/1949");
 
-  Jan1 = Julian("01/01/2025");
+  Jan1 = Julian("01/01/2026");
   // Str adate ; adate.strPrintf("01/01/%s",Year.cptr()");
 
   Yday = jtoday -Jan1;
@@ -352,13 +352,13 @@ Record RX;
    Str stmp;
    Svar Goals;
    
-   Goals.Split("12/01/2025 02/10/2026 175");
+   Goals.Split("02/27/2026 04/09/2026 175");
 
 //<<"Setting goals $Goals\n"
 
    Svar Goals2;
    
-   Goals2.Split("12/01/2025  01/20/2026 185");
+   Goals2.Split("02/27/2026  04/01/2026 180");
 ////////////////////==============/////////////////
 
 // move these down 10 when reached -- until we are at desired operating weight!
@@ -438,7 +438,7 @@ Record RX;
 
   Mo.Split ("JAN,FEB,MAR,APR ,MAY,JUN, JUL, AUG, SEP, OCT, NOV , DEC",44);
 
-  GoalsC.Split("02/01/2025 04/09/2025 175");
+  GoalsC.Split("02/01/2026 04/09/2026 175");
 
 
   maxday = Julian("04/09/2049") -Bday;
@@ -638,7 +638,7 @@ float ae = EXTV[15];
   lcpx = sc_startday;
   rcpx = sc_endday;
 
-//ans=Ask(" draw screens proceed?",1);
+ ans=Ask(" draw screens proceed?",1);
 
   drawScreens();
 //
@@ -676,47 +676,44 @@ float ae = EXTV[15];
      while (Graphic) {
 
         showTarget();
-        getDay(sel_day)
 
-         eventWait();
+         getDay(sel_day)
+
+         eventWait(1.0);
 
          nevent++;
 
-<<"$nevent $ewoname \n"
-       //ans = ask("$nevent $ewoname \n",1)
+<<"$nevent $ewoname_ \n"
+       //ans = ask("$nevent $ewoname_ \n",1)
        
-      if (ewoname == "REDRAW") {
+      if (ewoname_ == "REDRAW") {
              drawScreens();
        }
 
-       else if (ewoname == "RESIZE") {
+       else if (ewoname_ == "RESIZE") {
              drawScreens();
        }
-     // else if (ewoname == "ZIN") {
+     // else if (ewoname_ == "ZIN") {
     //  <<" calling ZIN"
      //         ZIN(ebutton)
     //   }       
-       else if (ebutton > 0)       {
+       else if (ebutton_ > 0)       {
        
-         <<"trying $ewoname $ebutton \n"
+         <<"trying $ewoname_ $ebutton_ \n"
 
-           rcb= $ewoname(ebutton)
+           rcb= $ewoname_(ebutton_)
 
 
-            //rcb=runproc(ewoname,ebutton)
+            //rcb=runproc(ewoname_,ebutton_)
 
             // ZIN(); ZOUT , WTLB
        }
-
-
- // if (Button == 1 || Button == 3) 
- //         WTLB();
-
 
 	 if (nevent > 2000) {
 	   break;
 	   }
      }
+
   exitGS(1)
   exit(0)
 

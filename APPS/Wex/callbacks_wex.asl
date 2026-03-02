@@ -21,6 +21,139 @@
 #endif
 */
 
+
+
+
+  void getDay(long dayv)
+  {
+
+<<" $_proc   $dayv \n"
+
+  //dayv.pinfo();
+  
+  long m_day;  // int ?;
+
+  float cbm;
+
+  float xtm;
+
+  float wtm;
+
+  float carb;
+
+  int dt;
+
+
+
+  m_day= dayv + Jan1  ;  // ? OBO;
+
+  Str mdy = Julmdy(m_day);
+ int dindex = dayv ;
+ 
+<<"%V $dayv $m_day $Jan1 $mdy $dindex\n"
+
+
+  
+  //sWo(dtmwo,_WVALUE2 ,mdy,_WREDRAW );
+  woSetValue(dtmwo,mdy);
+
+// day of year is 0 or 1 for Jan1 ?
+ 
+
+//<<"%V $dindex \n"
+
+  wtm = WTVEC[dindex];
+  cbm = CALSBURN[dindex];
+  ccon = CALSCON[dindex];
+  cexb = EXEBURN[dindex];
+  cdef = CALSDEF[dindex];
+  xtm = EXTV[dindex];
+  carb= CARBSCON[dindex];
+  prot= PROTCON[dindex];
+  fat = FATCON[dindex];
+  fiber = FIBRCON[dindex];
+  glu = GLUCOSE[dindex];
+  ket = KETONE[dindex];
+  gki = GKI[dindex];
+
+
+//<<"%V $xtm \n"
+  xtm = fround(xtm,1);
+//<<"round %V $xtm \n"  
+
+
+// ? set the wo up to display float  rather than string
+  //  have XGS round the float ?
+
+
+  woSetValue(wtmwo,"%6.1f$wtm");
+  
+  woSetValue(calburnwo,"%6.1f$cbm");
+
+  woSetValue(calconwo,"%6.1f$ccon");
+
+  woSetValue(caldwo,"%6.1f$cdef");
+
+  woSetValue(calexbwo,"%6.1f$cexb");
+
+  woSetValue(carbmwo,"%6.1f$carb");
+
+  woSetValue(protmwo,"%6.1f$prot");
+
+  woSetValue(fatmwo,"%6.1f$fat");
+
+
+  woSetValue(fibmwo,"%6.1f$fiber");
+
+  woSetValue(glumwo,"%6.1f$glu");
+
+   woSetValue(ketmwo,"%6.1f$ket");
+
+  woSetValue(gkimwo,"%6.1f$gki");
+
+
+  woSetValue(xtmwo,"%6.1f$xtm");
+
+for (i= 0; i< 18; i++) { 
+   if (mwos[i] <0 ) { 
+   break; 
+   } 
+ 
+    sWo(_woid,mwos[i],_wredraw,ON_); 
+ 
+  }
+  
+  sWo(_woid,dtmwo,_wstrvalue ,mdy,_wredraw,1);
+
+  // draw symbols into wo
+          msymx = 0.8;
+	  msymy = 0.3;
+	  msize = 12;
+          plotsymbol(wtmwo,DIAMOND_,msymx,msymy,BLUE_,msize);
+          plotsymbol(xtmwo,STAR_,msymx,msymy,GREEN_,msize);	  
+          plotsymbol(calexbwo,STAR_,msymx,msymy,RED_,msize);
+          plotsymbol(caldwo,CROSS_,msymx,msymy,GREEN_,msize);	  
+	            plotsymbol(calburnwo,DIAMOND_,msymx,msymy,RED_,msize);
+	            plotsymbol(calconwo,TRI_,msymx,msymy,BLUE_,msize);		    
+
+	  plotsymbol(protmwo,DIAMOND_,msymx,msymy,GREEN_,msize);
+	  plotsymbol(fibmwo,ITRI_,msymx,msymy,BROWN_,msize,1);
+	  plotsymbol(fatmwo,CROSS_,msymx,msymy,BLUE_,msize,1);	  
+          plotsymbol(carbmwo,DIAMOND_,msymx, msymy,RED_,msize);
+          plotsymbol(glumwo,CROSS_,msymx, msymy,GREEN_,msize);
+          plotsymbol(ketmwo,DIAMOND_,msymx, msymy,BLUE_,msize);
+          plotsymbol(gkimwo,STAR_,msymx, msymy,ORANGE_,msize);	  	  	  
+// could add to wo a sym ,x,y for a redraw name_sym box
+    
+
+
+  //  return m_day;
+    
+  }
+//[EM]=================================//
+
+
+
   void adjustQrt(int updown)
   {
 // find mid-date 
@@ -137,7 +270,7 @@ int ExTim (int wb)
   
   //<<" In $_proc  $lcpx  $rcpx\n";
   //cout <<"In ZIN " << lcpx  << endl;
-  <<"In ZIN  $ewoname  $ebutton   $wb  cursor @ $lcpx \n"      
+  <<"In ZIN  $ewoname_  $ebutton_   $wb  cursor @ $lcpx \n"      
    sc_zstart = lcpx;
 
    sc_zend = rcpx;
@@ -156,7 +289,8 @@ int ExTim (int wb)
 
   int ZOUT(int wb)
   {
- <<"In ZOUT  $ewoname  $ebutton  $wb   cursor @ $lcpx \n"      
+ <<"In $_proc  $ewoname_  $ebutton_  $wb   cursor @ $lcpx \n"      
+
   sc_zstart -= 10;
 
   sc_zend  += 10;
@@ -186,13 +320,11 @@ int ExTim (int wb)
 int WTLB(int wb)
 {
 
+  <<"In WTLB  $ewoname_  $ebutton_     cursor @ $erx \n"      
 
-//pa("proc  setting cursors ", _proc, " Button", Button);
-
- // <<"In WTLB  $ewoname  $ebutton     cursor @ $erx \n"      
- long wt_day = 0;
+long wt_day = 0;
  
-       if (ebutton == 1) {
+       if (ebutton_ == 1) {
 
          lcpx = erx;
 
@@ -213,7 +345,7 @@ int WTLB(int wb)
 
         }
 
-       if (ebutton == 3) {
+       if (ebutton_ == 3) {
        
          rcpx = erx;
 
@@ -239,7 +371,7 @@ int WTLB(int wb)
 
 int FatProtFibr(int wb)
 {
-<<"In $_proc  $ewoname  $ebutton     cursor @ $erx $ery \n"      
+<<"In $_proc  $ewoname_  $ebutton_     cursor @ $erx $ery \n"      
  // display x,y
  <<"%V $erx $ery \n"
 
@@ -247,7 +379,7 @@ int FatProtFibr(int wb)
 //=========================================
 int Carbs(int wb)
 {
-<<"In $_proc  $ewoname  $ebutton     cursor @ $erx $ery \n"      
+<<"In $_proc  $ewoname_  $ebutton_     cursor @ $erx $ery \n"      
  // display x,y
  <<"$_proc day $erx  $ery \n"
 
@@ -255,7 +387,7 @@ int Carbs(int wb)
 //=========================================
 int CALS(int wb)
 {
-<<"In $_proc  $ewoname  $ebutton     cursor @ $erx $ery \n"      
+<<"In $_proc  $ewoname_  $ebutton_     cursor @ $erx $ery \n"      
  // display x,y
  <<"$_proc day $erx   $ery \n"
 
@@ -277,8 +409,6 @@ void setCursors()
 
 ////////////////////////KEYW CALLBACKS///////////////////////////////////////
 
-
-
  void REDRAW()
   {
    drawScreens();
@@ -291,6 +421,10 @@ void setCursors()
    drawScreens();
   }
 //-------------------------------------------
+
+
+
+
 /*
   void SWITCHSCREEN()
   {

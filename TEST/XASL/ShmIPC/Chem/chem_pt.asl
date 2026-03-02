@@ -67,7 +67,7 @@ using namespace std;
 
 
  
-
+openDll("image")
 
 sdb(1,"~step")
 
@@ -91,42 +91,61 @@ spawn_it = 1
 
     vp = cWi("Periodic_Table_Of_Elements")
 
-    sWi(_woid,vp,_wresize,wbox(0.01,0.1,0.95,0.95),_wredraw,ON_)
+    sWi(_woid,vp,_wresize,wbox(0.01,0.1,0.99,0.95),_wclip,wbox(0.01,0.1,0.99,0.9),_wredraw,ON_)
 
-    sWi(_woid,vp,_wpixmap,OFF_,_wdraw,ON_,_wsave,ON_,_wbhue,WHITE_)
-    
-    sWi(_woid,vp,_wclipborder,PINK_,_wcliphue,RED_,_wclearclip,BLUE_,_wredraw,ON_)
+    sWi(_woid,vp,_wpixmap,OFF_,_wdraw,ON_,_wsave,ON_,_wbhue,GREEN_,_wclipborder,ON_,_wredraw,ON_)
 
-    sWi(_woid,vp,_wsetgrid,12,20)
-    
+    sWi(_woid,vp,_wclipborder,PINK_,_wcliphue,RED_,_wclearclip,BLUE_,_wattron,WGRID_, _wredraw,ON_)
+
+
+    for (hue = 1; hue <= 7 ; hue++) {
+
+sWi(_woid,vp,_wclipborder,hue+2,_wcliphue,hue+1,_wclearclip,hue, _wredraw,ON_)
+       ans=ask("see it? $(getColorName(hue))  $hue",0)
+}
+
+    sWi(_woid,vp,_wsetgrid,12,19)
 
   titleButtonsQRD(vp);
-  ans=ask("see it?",1)
+  ans=ask("see it?",0)
   if (ans == "n") {
     exitgs();
     exit(-1);
   }
 //////// Wob //////////////////
 
-
+  do_ask =0;
 
  void eleSpec(int i) 
  {
+
   elespec = Pt(i)
 
   ans=ask(" $elespec \n",0)
   
-  <<" %V $elespec $Pt(i) \n"
+  //<<" %V $elespec $(Pt(i)) \n"
   
   elef = split(elespec,",")
 
-  ewo[i]=cWo(vp,WO_BN_)
-  <<"$i  $ewo[i] $elef[1]  $elef[2] \n"
-  <<"resize $col,$rb,$(col+1),$rt \n"
-  sWo(_woid,ewo[i],_wname,"$elef[1] $elef[2] ",_wcolor,ecolor[i],_wresize,wbox(col,rb,col+1,rt,WGRID_),_wredraw,ON_)
-
-  sWo(_woid,ewo[i],_wborder,BLUE_,_wdraw,ON_,_wclipborder,GREEN_,_wfonthue,BLACK_,_wvalue,"$elef[1]\n $elef[3]",_wstyle,SIV_)
+  ewo[i]=cWo(vp,WO_BV_)
+  //<<"$i  $ewo[i] $elef[1]  $elef[2] \n"
+  //<<"resize $col,$rb,$(col+1),$rt \n"
   
+  sWo(_woid,ewo[i],_wname,"$elef[1] $elef[2]",_wcolor,ecolor[i],_wresize,wbox(col,rb,col+1,rt,WGRID_), _wfont,F_TINY_)
+
+  sWo(_woid,ewo[i],_wborder,BLUE_,_wdraw,ON_,_wclipborder,GREEN_,_wfonthue,BLACK_,_wvalue,"$elef[0]",_wredraw,ON_)
+
+
+/*
+// TBF  does parse - use {} for else
+ans=ask("see it?",do_ask)
+   if (ans =="n") {
+    exit()
+   }
+   else
+     do_ask = 0;
+*/
+
  if (show) {
   sWo(_woid,ewo[i],_wredraw,ON_)
  }
@@ -134,6 +153,7 @@ spawn_it = 1
   sWo(_woid,ewo[i],_wclear,ON_)
  }
  sWo(_woid,ewo[i],_whelp,"$elespec")
+ 
  col++;
  }
 
@@ -142,11 +162,12 @@ spawn_it = 1
  {
  for (i = si ; i <=fi; i++) {
  elespec = Pt(i)
- <<"$i  $Pt(i) \n"
+ //<<"$i  $(Pt(i)) \n"
  elef = split(elespec,",")
- ewo[i]=cWo(vp,WO_BN_)
+ ewo[i]=cWo(vp,WO_BV_)
  sWo(_woid,ewo[i],_wname,"$elef[1] $elef[2] ",_wcolor,ecolor[i],_wresize,wbox(col,rb,col+1,rt,WGRID_))
- sWo(_woid,ewo[i],_wborder,RED_,_wdraw,ON_,_wclipborder,GREEN_,_wfonthue,BLACK_,_wvalue,"$elef[0]\n $elef[3]",_wstyle,SIN_)
+
+ sWo(_woid,ewo[i],_wborder,RED_,_wdraw,ON_,_wclipborder,GREEN_,_wfonthue,BLACK_,_wvalue,"$elef[0]",_wfont,F_TINY_,_wstyle,SIN_)
  if (show) {
     sWo(_woid,ewo[i],_wredraw,ON_)
  }
@@ -321,7 +342,7 @@ yp = 0.5
    if (!show) {
      // for (i = 1; i <= 112; i++) {
 
-         sWo(_woid,ewo,_wclear,LILAC_,_wborder,MAGENTA_,_wclipborder,PINK_,_wstyle,"SIN",_wredraw,ON_)
+         sWo(_woid,ewo,_wclear,LILAC_,_wborder,MAGENTA_,_wclipborder,PINK_,_wstyle,SIN_,_wredraw,ON_)
 	
   //    }
    }
@@ -342,7 +363,7 @@ ans=ask("see it?",0)
 
    <<"$ewoname_ $ewoid_\n"
    
-   sWo(_woid,ewoid_,_wfonthue,BLUE_,_wstyle,SVO_,_wredraw,ON_)
+   sWo(_woid,ewoid_,_wfonthue,BLUE_,_wstyle,SVB_,_wredraw,ON_)
      
 
   if (scmp(ewoname_,"QUIT",4)) {

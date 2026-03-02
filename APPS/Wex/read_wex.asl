@@ -154,7 +154,7 @@ if (Yd >= 0) {
 
 // kinda lame  - should be able to get one row as vector
 //             - or one column as a vector
-               - or even a sub matrix
+//               - or even a sub matrix
 
 
 
