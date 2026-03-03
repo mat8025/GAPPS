@@ -247,13 +247,18 @@ COUT(sc_zstart);
   // Measure WOBS 
  
   dtmwo=cWo(vp,WO_BV_); 
-  sWo(_woid,dtmwo,_wname,"DAY",_wclipbhue,RED_,_whelp," date on day "); 
- 
- // obswo=cWo(vp,WO_BV_); 
-//  sWo(_woid,obswo,_wname,"OBS",_wclipbhue,YELLOW_,_whelp," obs day "); 
- 
+  sWo(_woid,dtmwo,_wname,"DAY",_wclipbhue,RED_,_wresize, wbox (0.01,0.947,0.085,0.99),_wstyle, SBV_, _whelp,"date on day "); 
+
   wtmwo=cWo(vp,WO_BV_); 
-  sWo(_woid,wtmwo,_wname,"WTM",_wclipbhue,CYAN_,_whelp," wt on day "); 
+  sWo(_woid,wtmwo,_wname,"WTM",_wclipbhue, RED_,_wresize,  wbox(0.01,0.90,0.085,0.945),  _whelp," wt on day "); 
+
+ // obswo=cWo(vp,WO_BV_); 
+//  sWo(_woid,obswo,_wname,"OBS",_wclipbhue,YELLOW_,_whelp," obs day ");
+
+  xtmwo=cWo(vp,WO_BV_); 
+  sWo(_woid,xtmwo,_wname,"ExTim",_wclipbhue,CYAN_,_wcolor,BLUE_,_wresize,wbox(0.01,0.1,0.085,0.15) ,_whelp," xtime on day "); 
+ 
+
  
   calburnwo=cWo(vp,WO_BV_); 
 
@@ -274,48 +279,57 @@ COUT(sc_zstart);
   // buttons
   carbmwo=cWo(vp,WO_BV_); 
    
-  sWo(_woid,carbmwo,_wname,"CARB",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," carbs eaten on day "); 
+  sWo(_woid,carbmwo,_wname,"CARB",_wclipbhue,LILAC_,_wfonthue,BLACK_,_whelp," carbs eaten on day "); 
 
   protmwo=cWo(vp,WO_BV_); 
    
-  sWo(_woid,protmwo,_wname,"PROT",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," protein eaten on day ");
+  sWo(_woid,protmwo,_wname,"PROT",_wclipbhue,LILAC_,_wfonthue,BLACK_,_whelp," protein eaten on day ");
 
   fatmwo=cWo(vp,WO_BV_); 
    
-  sWo(_woid,fatmwo,_wname,"FAT",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," fat eaten on day ");
+  sWo(_woid,fatmwo,_wname,"FAT",_wclipbhue,LILAC_,_wfonthue,BLACK_,_whelp," fat eaten on day ");
 
   fibmwo=cWo(vp,WO_BV_); 
    
-  sWo(_woid,fibmwo,_wname,"FIBER",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," fiber eaten on day ");
+  sWo(_woid,fibmwo,_wname,"FIBER",_wclipbhue,LILAC_,_wfonthue,BLACK_,_whelp," fiber eaten on day ");
 
   glumwo=cWo(vp,WO_BV_); 
    
-  sWo(_woid,glumwo,_wname,"GLUCOSE",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," glucose on day ");
+  sWo(_woid,glumwo,_wname,"GLUCOSE",_wclipbhue,PINK_,_wfonthue,BLACK_,_whelp," glucose on day ");
 
   ketmwo=cWo(vp,WO_BV_); 
    
-  sWo(_woid,ketmwo,_wname,"KETONE",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," ketone on day ");
+  sWo(_woid,ketmwo,_wname,"KETONE",_wclipbhue,PINK_,_wfonthue,BLACK_,_whelp," ketone on day ");
 
   gkimwo=cWo(vp,WO_BV_); 
    
-  sWo(_woid,gkimwo,_wname,"GKI",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," GKI ration on day "); 
+  sWo(_woid,gkimwo,_wname,"GKI",_wclipbhue,PINK_,_wfonthue,BLACK_,_whelp," GKI ration on day "); 
  
-  xtmwo=cWo(vp,WO_BV_); 
-  sWo(_woid,xtmwo,_wname,"ExTim",_wclipbhue,CYAN_,_wcolor,BLUE_,_whelp," xtime on day "); 
- 
-  int mwos[] = { dtmwo, wtmwo,  calburnwo, calconwo, caldwo,  calexbwo, protmwo, fatmwo, fibmwo, carbmwo, glumwo, ketmwo, gkimwo,xtmwo,-1}; 
- 
-   
-  wovtile( mwos, 0.01,0.15,0.085,0.9); 
+
+
+
+  int mwos[] = { wtmwo,  calburnwo, calconwo, caldwo,  calexbwo, protmwo, fatmwo, fibmwo, carbmwo, glumwo, ketmwo, gkimwo,xtmwo,-1}; 
+
+  int calmwos[] = { calburnwo, calconwo, caldwo,  calexbwo,-1 };
+
+  int foodmwos[] = {  protmwo, fatmwo, fibmwo, carbmwo,-1 };
+
+  int ketmwos[] = { glumwo, ketmwo, gkimwo, -1} ;
+
+  //wovtile( mwos, 0.01,0.15,0.085,0.9);
+
+  wovtile( calmwos, 0.01,0.65,0.085,0.89);
+  wovtile( foodmwos, 0.01,0.4,0.085,0.64);
+   wovtile( ketmwos, 0.01,0.2,0.085,0.39); 
  
   for (i= 0; i< 18; i++) { 
    if (mwos[i] <0 ) { 
    break; 
    } 
- 
-    sWo(_woid,mwos[i],_wstyle,SVB_,_wredraw,ON_); 
- 
-  } 
+     sWo(_woid,mwos[i],_wstyle,SVB_,_wredraw,ON_); 
+   }
+
+    sWo(_woid,dtmwo,_wstyle,SVB_,_wredraw,ON_); 
   
 /////////////////////////////////////////////  KEYS /////////////////////////////////////////// 
   //  keypos = wogetposition (food_wo); 

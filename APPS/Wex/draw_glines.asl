@@ -30,7 +30,8 @@ void drawGlines()
 */
 
 
-
+  sWo(_woid,ket_wo,_wusescales,0);
+    sWo(_woid,food_wo,_wusescales,0);
 
   while ( 1) {
   

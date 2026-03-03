@@ -280,6 +280,9 @@ int ExTim (int wb)
  // sc_startday = sc_zstart
  // sc_end = sc_zend
 
+   //sWo(wedwos,_wxscales,wpt(sc_zstart,sc_zend),_wsavescales,0);
+  sWo(_woid,ket_wo,_wscales,wbox(sc_zstart,0.0, sc_zend,12.5),_wsavescales,1);
+      sWo(_woid,food_wo,_wscales,wbox(sc_zstart,-5, sc_zend,120),_wsavescales,0);
    drawScreens();
 
    showWL(sc_zstart, sc_zend);
@@ -309,6 +312,10 @@ int ExTim (int wb)
   
  // sc_startday = sc_zstart
  // sc_end = sc_zend
+
+   sWo(wedwos,_wxscales,wpt(sc_zstart,sc_zend),_wsavescales,0);
+   sWo(_woid,ket_wo,_wscales,wbox(sc_zstart,0.0, sc_zend,12.5),_wsavescales,1);
+   sWo(_woid,food_wo,_wscales,wbox(sc_zstart,-5, sc_zend,120),_wsavescales,0);
 
 
    drawScreens();
