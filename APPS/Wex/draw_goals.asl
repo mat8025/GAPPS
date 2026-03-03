@@ -11,7 +11,7 @@
 
   if (ws == 0) {
    // Plot(wt_wo,_wbox,(sc_startday,DX_NEW,sc_end,DX_NEW+20), ORANGE_)  // never go above
-  sWo(_WOID,wt_wo,_wlhbscales,wbox(sc_zstart,minWt,sc_zend,upperWt,0));
+  sWo(_woid,wt_wo,_wlhbscales,wbox(sc_zstart,minWt,sc_zend,upperWt,0));
 //sdb(1,"step,stderr")
   sWo(_woid,wt_wo,_wscales,wbox(sc_zstart,minWt,sc_zend,upperWt,0));
   sWo(_woid,wt_wo,_wusescales,0);
@@ -39,9 +39,9 @@
   plotLine(cal_wo,sc_startday,in_cal,sc_end,in_cal, BLACK_)
 
   plotLine(cal_wo,sc_zstart,0,sc_zend,0, RED_)
-  sWo(ket_wo,_WUSESCALES,1)
+  sWo(_woid,ket_wo,_WUSESCALES,1)
   plotLine(ket_wo,sc_zstart,1,sc_zend,1, BLUE_)
-  sWo(ket_wo,_WUSESCALES,0)
+  sWo(_woid,ket_wo,_WUSESCALES,0)
   plotLine(ket_wo,sc_zstart,100,sc_zend,100, GREEN_)
 
 
@@ -57,7 +57,7 @@
   plotLine(food_wo,sc_startday,35,sc_end,35, RED_)
   
     // use todays date and wt to the intermediate short-term goal
-
+  sWo(_woid,wt_wo,_WUSESCALES,0)
   plotLine(wt_wo,last_known_day,last_known_wt,targetday,TargetGoalWt, BLACK_) 
 
   <<"%V $last_known_day, $last_known_wt, $targetday, $TargetGoalWt \n" 
@@ -66,9 +66,9 @@
 
   if (ws == 1) {
 
-  //<<[_DB]"$ws $swo $kdays \n"
+  //<<[_DB]"$ws $bpwo $kdays \n"
 
-  plotLine(swo,0,150,kdays-10,250, BLUE_)
+  plotLine(bpwo,0,150,kdays-10,250, BLUE_)
 
   }
 

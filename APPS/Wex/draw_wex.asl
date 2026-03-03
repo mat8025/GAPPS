@@ -16,6 +16,7 @@
 #include "draw_goals.asl"
 #include "draw_months.asl"
 #include "draw_target.asl"
+#include "draw_glines.asl"
 
 
   float   DX_NEW = 190.0;  // never exceed
@@ -49,7 +50,8 @@
 
   sWo(_woid,wt_wo,_wclear,ON_);
   sWo(_woid,cal_wo,_wclear,ON_);
-  sWo(_woid,carb_wo,_wclear,ON_);  
+  sWo(_woid,carb_wo,_wclear,ON_);
+  sWo(_woid,ket_wo,_wclear,ON_);  
 
 
 
@@ -60,10 +62,10 @@
       if (wedwos[i] <=0) {
          break;
 	 }
-        sWo(_WOID,wedwos[i],_wxscales, wpt(sc_zstart,sc_zend));
+   sWo(_woid,wedwos[i],_wxscales, wpt(sc_zstart,sc_zend));
         //printf("%d xscales %f %f\n",i,sc_zstart,sc_zend);
 
-   sWo(_WOID,wedwos[i],_wclearclip,WHITE_,_wsave,ON_,_wclearpixmap,ON_,_wclipborder,BLACK_,_wredraw,ON_,_wsavepixmap,ON_);
+   sWo(_woid,wedwos[i],_wclearclip,WHITE_,_wsave,ON_,_wclearpixmap,ON_,_wclipborder,BLACK_,_wredraw,ON_,_wsavepixmap,ON_);
    
   }
   
@@ -73,23 +75,15 @@
   drawGrids( wScreen);
 
 
-  
-
-  if (ALL_LINES) {
-
-  //dGl(exgls);
-  //dGl(cardio_gl);
-  //dGl(strength_gl);
-
-   sWo(_WOID,cal_wo,_wfont,f_SMALL_);
+   sWo(_woid,cal_wo,_wfont,f_SMALL_);
 
 /// these need to be a separate wo to contain key  symbol and text
 
 // plot(cal_wo,_Wkeysymbol,0.78 ,0.9,DIAMOND_,Symsz,BLUE_,1);
 
   // want to use left and right scales
- // sWo(_WOID,wt_wo,_wscales,wbox(rx,minWt,rX,upperWt));
- // sWo(_WOID,wt_wo,_wscales,wbox(rx,minWt,rX,upperWt));
+ // sWo(_woid,wt_wo,_wscales,wbox(rx,minWt,rX,upperWt));
+ // sWo(_woid,wt_wo,_wscales,wbox(rx,minWt,rX,upperWt));
 
    plotLine(cal_wo,sc_zstart,day_burn,sc_zend,day_burn, GREEN_)
 
@@ -97,52 +91,16 @@
 
    Text(carb_wo,"Exercise Time (mins)",0.8,0.7,1,0,RED_);
 
+   drawMonths(wt_wo);
 
+  //drawMonths(cal_wo);
 
-  drawMonths(wt_wo);
+  //drawMonths(food_wo);
 
-  drawMonths(cal_wo);
+  //drawMonths(carb_wo);
 
-  drawMonths(food_wo);
-
-  drawMonths(carb_wo);
-
-   int gi=0;
-
-   do_all_gls = 1;
-
-  if (do_all_gls) {
+  drawGlines();
   
-  while ( 1) {
-  
-  gname = glineGetName(allgls[gi]);
-  
-  ok=ask("%V $gi $allgls[gi] $gname",0);
-
-  sGl(_GLID,allgls[gi],_GLDRAW,ON_);
-  
-  gi++;
-
-    if (allgls[gi] < 0)  {
-             break;
-    }
-
-  }
-
-  sGl(_GLID,ext_gl,_GLUSESCALES,1,_GLDRAW,ON_);
-
-  for (i = 0; i< 10; i++) {
-        if (wedwos[i] <=0) {
-         break;
-	 }
-
-     sWo(_woid,wedwos[i],_wclipborder,BLACK_,_wpixmap,ON_,_wsavepixmap,ON_);
-
-   }
-
-   }
-
-  }
  }
 
 }

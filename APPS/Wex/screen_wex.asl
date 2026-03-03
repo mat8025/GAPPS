@@ -134,11 +134,13 @@ COUT(sc_zstart);
 
   sWo(_woid,wt_wo,_wrhtscales,wbox(sc_startday,0.0, sc_end,300.0,1),_wsavescales,1);
 
-  sWo(_woid,exer_wo,_wlhbscales,wbox(sc_startday,0,sc_end,360,0),_wsavescales,0);
- 
-  sWo(_woid,ket_wo,_wlhbscales,wbox(sc_startday,0 ,sc_end,250),_wsavescales,0);
+  //sWo(_woid,exer_wo,_wlhbscales,wbox(sc_startday,0,sc_end,360,0),_wsavescales,0);
 
-  sWo(_woid,ket_wo,_wrhtscales,wbox(sc_startday,0.0, sc_end,12.5),_wsavescales,1);
+  sWo(_woid,exer_wo,_wscales,wbox(sc_startday,0,sc_end,360,0),_wsavescales,0);
+ 
+  sWo(_woid,ket_wo,_wscales,wbox(sc_startday,0 ,sc_end,250),_wsavescales,0);
+
+  sWo(_woid,ket_wo,_wscales,wbox(sc_startday,0.0, sc_end,12.5),_wsavescales,1);
 
 
   // -1000 in case eat too much no deficit
@@ -146,17 +148,17 @@ COUT(sc_zstart);
   sWo(_woid,cal_wo,_wlhbscales,wbox(sc_startday,-1000,sc_end,CalsY1));
   
  
-  swo= cWo(vp1,WO_GRAPH_); 
+  bpwo= cWo(vp1,WO_GRAPH_); 
  
  
-//  sWo(swo,_wname,"BenchPress",_wcolor,WHITE_,_WEO); 
+//  sWo(_woid,bpwo,_wname,"BenchPress",_wcolor,WHITE_,_WEO); 
  
 
-  int swos[] = { swo,-1 }; 
+  int swos[] = { bpwo,-1 }; 
  
 //  wovtile(swos,0.01,0.05,0.97,0.97)   ; // vertically tile the drawing areas into the main window; 
  
-//  sWo(swos[0],_wclip,CXY,_wcolor,WHITE_,_wclipborder,BLACK_,_WEO); 
+//  sWo(swos[0],_wclip,CXY,_wcolor,WHITE_,_wclipborder,BLACK_); 
 ///  measurement 
  
 //  tw_wo= cWo(wt_wo,WO_BS_); 
@@ -172,15 +174,16 @@ COUT(sc_zstart);
  
   float wt_upper = 205; 
  
-  sWo(_woid,swo,_wscales,wbox(sc_startday,110,sc_end,bp_upper)); 
+  sWo(_woid,bpwo,_wscales,wbox(sc_startday,110,sc_end,bp_upper)); 
  
   cout<<"scales " << sc_startday << " sc_end " << sc_end << " bp_upper " << bp_upper << endl; 
   //<<"SCALES %V$sc_startday $sc_endday $bp_upper\n"; 
+
+
+  sWo(_woid,food_wo,_wscales,wbox(sc_startday,-5,sc_end,120),_wsavescales,0); 
  
-  sWo(_woid,food_wo,_wlhbscales,wbox(sc_startday,-5,sc_end,120)); 
  
- 
-  int allwo[] = {wt_wo, cal_wo,  ket_wo , food_wo,exer_wo, swo,-1}; 
+  int allwo[] = {wt_wo, cal_wo,  ket_wo , food_wo,exer_wo, bpwo,-1}; 
 
   <<"%V $allwo \n" 
  
@@ -300,7 +303,7 @@ COUT(sc_zstart);
   xtmwo=cWo(vp,WO_BV_); 
   sWo(_woid,xtmwo,_wname,"ExTim",_wclipbhue,CYAN_,_wcolor,BLUE_,_whelp," xtime on day "); 
  
-  int mwos[] = { dtmwo, wtmwo, xtmwo, calburnwo, calconwo, caldwo,  calexbwo, protmwo, fatmwo, fibmwo, carbmwo, glumwo, ketmwo, gkimwo,-1}; 
+  int mwos[] = { dtmwo, wtmwo,  calburnwo, calconwo, caldwo,  calexbwo, protmwo, fatmwo, fibmwo, carbmwo, glumwo, ketmwo, gkimwo,xtmwo,-1}; 
  
    
   wovtile( mwos, 0.01,0.15,0.085,0.9); 

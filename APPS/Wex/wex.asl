@@ -303,7 +303,7 @@ Record RX;
 
   int vp,vp1;
   int wt_wo,cal_wo,calcwo,food_wo,carb_wo;
-  int swo,tw_wo,zinwo,zoomwo;
+  int bpwo,tw_wo,zinwo,zoomwo;
   int nobswo,xtwo,xbwo,xlbswo,dlbswo;
   int dtmwo,obswo,calburnwo,calcon,xtmwo,sdwo,gdwo,gwt_wo,wtmwo;
 

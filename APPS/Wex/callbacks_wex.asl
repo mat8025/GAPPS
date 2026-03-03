@@ -191,11 +191,11 @@ for (i= 0; i< 18; i++) {
 
   sc_endday = rX;
 
-  //sWo(wedwos,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
+  //sWo(wedwos,_wxscales,wpt(rx,rX),_wsavescales,0);
 
-  sWo(_WOID,wt_wo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0);
+  sWo(_woid,wt_wo,_wscales,wbox(rx,minWt,rX,upperWt),_wsavescales,0);
 
-  sWo(_WOID,swo,_WXSCALES,wpt(rx,rX),_WSAVESCALES,0);
+  sWo(_woid,bpwo,_wxscales,wpt(rx,rX),_wsavescales,0);
 
   drawScreens();
 

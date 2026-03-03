@@ -65,7 +65,7 @@
 
   float wdate = RS[1]
 
-  sWo(_WOID,wwo,_WFONT,"small")
+  sWo(_woid,wwo,_wfont,"small")
  //  AxText(wwo, 1, the_date, wdate, 0.25, BLUE_)
 
   int draw_months =1
