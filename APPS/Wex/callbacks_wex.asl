@@ -311,7 +311,7 @@ int ExTim (int wb)
  // sc_end = sc_zend
 
 
-  drawScreens();
+   drawScreens();
 
    showWL(sc_zstart, sc_zend);
    return 1;
@@ -320,13 +320,13 @@ int ExTim (int wb)
 int WTLB(int wb)
 {
 
-  <<"In WTLB  $ewoname_  $ebutton_     cursor @ $erx \n"      
-
+  <<"In WTLB  $ewoname_  $ebutton_     cursor @ $erx_ \n"      
+   ans=ask(" $ewoname_  $ebutton_     cursor @ $erx_ ",0)
 long wt_day = 0;
  
        if (ebutton_ == 1) {
 
-         lcpx = erx;
+         lcpx = erx_;
 
 	 sGl(_GLID,lc_gl,_GLHUE,RED_,_GLCURSOR,wbox(lcpx,0,lcpx,300,Wex_CL_init),_GLDRAW,ON_);
 	 
@@ -347,7 +347,7 @@ long wt_day = 0;
 
        if (ebutton_ == 3) {
        
-         rcpx = erx;
+         rcpx = erx_;
 
       
 	 sGl(_GLID,rc_gl,_GLHUE,BLUE_,_GLCURSOR,wbox(rcpx,0,rcpx,310,Wex_CR_init),_GLDRAW,ON_);

@@ -10,13 +10,14 @@
    oknow = Ask ("que pasa? $ws $_proc",0)
 
   if (ws == 0) {
-   // Plot(wt_wo,_WBOX,sc_startday,DX_NEW,sc_end,DX_NEW+20, ORANGE_)  // never go above
-  sWo(_WOID,wt_wo,_WLHBSCALES,wbox(sc_zstart,minWt,sc_zend,upperWt,0));
+   // Plot(wt_wo,_wbox,(sc_startday,DX_NEW,sc_end,DX_NEW+20), ORANGE_)  // never go above
+  sWo(_WOID,wt_wo,_wlhbscales,wbox(sc_zstart,minWt,sc_zend,upperWt,0));
 //sdb(1,"step,stderr")
-  sWo(_WOID,wt_wo,_WSCALES,wbox(sc_zstart,minWt,sc_zend,upperWt,0));
-  sWo(_WOID,wt_wo,_WUSESCALES,0);
+  sWo(_woid,wt_wo,_wscales,wbox(sc_zstart,minWt,sc_zend,upperWt,0));
+  sWo(_woid,wt_wo,_wusescales,0);
+
   cscales = wogetscales(wt_wo, Cscales)
-  <<"%V $Cscales\n"
+  <<"%V $Cscales[0:4]\n"
 
   // set current scales
 
@@ -41,7 +42,7 @@
   sWo(ket_wo,_WUSESCALES,1)
   plotLine(ket_wo,sc_zstart,1,sc_zend,1, BLUE_)
   sWo(ket_wo,_WUSESCALES,0)
-plotLine(ket_wo,sc_zstart,100,sc_zend,100, GREEN_)
+  plotLine(ket_wo,sc_zstart,100,sc_zend,100, GREEN_)
 
 
   plotBox(cal_wo,sc_zstart,-1000,sc_zend,0, RED_, FILL_)
@@ -59,6 +60,8 @@ plotLine(ket_wo,sc_zstart,100,sc_zend,100, GREEN_)
 
   plotLine(wt_wo,last_known_day,last_known_wt,targetday,TargetGoalWt, BLACK_) 
 
+  <<"%V $last_known_day, $last_known_wt, $targetday, $TargetGoalWt \n" 
+
   }
 
   if (ws == 1) {
@@ -73,4 +76,4 @@ plotLine(ket_wo,sc_zstart,100,sc_zend,100, GREEN_)
 //---------------------------------------------------------
 // what is current include?
 
-oknow = Ask (" include draw_goals ",1)
+oknow = Ask (" $_include  ",0)

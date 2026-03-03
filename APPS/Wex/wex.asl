@@ -358,7 +358,7 @@ Record RX;
 
    Svar Goals2;
    
-   Goals2.Split("02/27/2026  04/01/2026 180");
+   Goals2.Split("02/27/2026  03/10/2026 180");
 ////////////////////==============/////////////////
 
 // move these down 10 when reached -- until we are at desired operating weight!
@@ -638,7 +638,7 @@ float ae = EXTV[15];
   lcpx = sc_startday;
   rcpx = sc_endday;
 
- ans=Ask(" draw screens proceed?",1);
+ ans=Ask(" draw screens proceed?",0);
 
   drawScreens();
 //
@@ -660,7 +660,7 @@ float ae = EXTV[15];
 
  int nevent = 0;
 
-//oknow = Ask ("que pasa? $_proc",1)      
+
 
   int rcb = 0;
 
@@ -677,15 +677,16 @@ float ae = EXTV[15];
 
         showTarget();
 
-         getDay(sel_day)
 
-         eventWait(1.0);
+         eventWait(-1);
 
          nevent++;
 
 <<"$nevent $ewoname_ \n"
        //ans = ask("$nevent $ewoname_ \n",1)
-       
+
+         getDay(sel_day)
+	 
       if (ewoname_ == "REDRAW") {
              drawScreens();
        }
@@ -699,10 +700,11 @@ float ae = EXTV[15];
     //   }       
        else if (ebutton_ > 0)       {
        
-         <<"trying $ewoname_ $ebutton_ \n"
-
+         <<"trying  $ewoid_ $ewoname_ $ebutton_ \n"
+       
+         if ((ewoname_ == "WTLB") || (ewoname_ == "ZIN") || (ewoname_ == "ZOUT")) {
            rcb= $ewoname_(ebutton_)
-
+         }
 
             //rcb=runproc(ewoname_,ebutton_)
 

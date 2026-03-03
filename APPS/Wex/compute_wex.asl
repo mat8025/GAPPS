@@ -185,7 +185,7 @@ int i;
 int k = Yday-4;
   
 <<"$Yday $k\n"
-//  oknow = Ask ("%V $Yday $k ",1)
+  oknow = Ask ("%V $Yday $k ",0)
   if (Yday > 5) {
      nco = 0;
   for (i =0; i < 5; i++) {   
@@ -196,7 +196,7 @@ int k = Yday-4;
       <<"$i $k  $WTVEC[k] $xv[i] $yv[i]\n"; // TBF
        k++;
        nco++
-       //ans=ask("? $k $nco",1)
+
    }
    
   <<"%V $xv\n"

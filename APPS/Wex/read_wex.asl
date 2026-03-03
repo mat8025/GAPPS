@@ -120,7 +120,7 @@ if (Yd >= 0) {
 
   Nobs++;
 
-   printf("Nobs %d  exer_burn %f\n",Nobs ,exer_burn);
+  // printf("Nobs %d  exer_burn %f\n",Nobs ,exer_burn);
   }
 
   }

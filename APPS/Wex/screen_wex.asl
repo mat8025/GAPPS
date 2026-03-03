@@ -45,7 +45,8 @@ here = 1;
  
   sWi(_woid,vp1,_wclip,wbox(0.1,0.05,0.85,0.95),  _wredraw,ON_); 
  
- 
+
+ans=ask("vp1 ",0)
 
 cout<<"  titleButtonsQRD(vp);\n"; 
  
@@ -69,7 +70,7 @@ cout<<"  titleButtonsQRD(vp);\n";
  
   wt_wo=cWo(vp,WO_GRAPH_); 
  
-  sWo(_woid,wt_wo,_wname,"WTLB",_wvalue,0,_wclipborder,YELLOW_,_wpixmap,ON_); //   weight; 
+  sWo(_woid,wt_wo,_wname,"WTLB",_wvalue,0,_wclipborder,YELLOW_,_wpixmap,ON_,_wdraw,ON_); //   weight; 
  
   cal_wo=cWo(vp,WO_GRAPH_); 
  
@@ -77,15 +78,15 @@ cout<<"  titleButtonsQRD(vp);\n";
  
   food_wo=cWo(vp,WO_GRAPH_); 
    
-  sWo(_woid,food_wo,_wname,"FatProtFibr",_wvalue,0,_wclipborder,BLACK_,_wpixmap,ON_) ; // fat protein fibre 
+  sWo(_woid,food_wo,_wname,"FatProtFibr",_wvalue,0,_wclipborder,BLACK_,_wpixmap,ON_,_wdraw,ON_) ; // fat protein fibre 
  
   ket_wo=cWo(vp,WO_GRAPH_); 
    
-  sWo(_woid,ket_wo,_wname,"Ketones",_wvalue,0,_wclipborder,RED_,_wpixmap,ON_); // ketones
+  sWo(_woid,ket_wo,_wname,"Ketones",_wvalue,0,_wclipborder,RED_,_wpixmap,ON_,_wdraw,ON_); // ketones
 
   exer_wo=cWo(vp,WO_GRAPH_); 
    
-  sWo(_woid,exer_wo,_wname,"Exercise",_wvalue,0,_wclipborder,RED_,_wpixmap,ON_); // ketones
+  sWo(_woid,exer_wo,_wname,"Exercise",_wvalue,0,_wclipborder,RED_,_wpixmap,ON_,_wdraw,ON_);
 
 
   int wedwos[] = { wt_wo, cal_wo,  food_wo, ket_wo, exer_wo, -1  }; 
@@ -129,19 +130,19 @@ COUT(sc_zstart);
   sWo(_woid,exer_wo,_wclip,CXY,_wcolor,LILAC_,_wclipbhue,WHITE_,_wbhue,WHITE_,_wfont,F_SMALL_,_wredraw,ON_,_wsavepixmap,ON_); 
  
 
-  sWo(_woid,wt_wo,_wlhbscales,wbox(sc_startday,minWt,sc_end,upperWt,0));
+  sWo(_woid,wt_wo,_wlhbscales,wbox(sc_startday,minWt,sc_end,upperWt,0),_wsavescales,0);
 
-  sWo(_WOID,wt_wo,_WRHTSCALES,wbox(sc_startday,0.0, sc_end,300.0,1))
+  sWo(_woid,wt_wo,_wrhtscales,wbox(sc_startday,0.0, sc_end,300.0,1),_wsavescales,1);
 
-  sWo(_woid,exer_wo,_wlhbscales,wbox(sc_startday,0,sc_end,360,0));
+  sWo(_woid,exer_wo,_wlhbscales,wbox(sc_startday,0,sc_end,360,0),_wsavescales,0);
  
-  sWo(_woid,ket_wo,_wlhbscales,wbox(sc_startday,0 ,sc_end,250));
+  sWo(_woid,ket_wo,_wlhbscales,wbox(sc_startday,0 ,sc_end,250),_wsavescales,0);
 
-  sWo(_WOID,ket_wo,_WRHTSCALES,wbox(sc_startday,0.0, sc_end,12.5));
+  sWo(_woid,ket_wo,_wrhtscales,wbox(sc_startday,0.0, sc_end,12.5),_wsavescales,1);
 
 
   // -1000 in case eat too much no deficit
-  sWo(_woid,cal_wo,_wscales,wbox(sc_startday,-1000,sc_end,CalsY1));
+  sWo(_woid,cal_wo,_wscales,wbox(sc_startday,-1000,sc_end,CalsY1),_wsavescales,0);
   sWo(_woid,cal_wo,_wlhbscales,wbox(sc_startday,-1000,sc_end,CalsY1));
   
  
@@ -381,6 +382,7 @@ sWo(_woid,zoomwo,_wstyle,WS_SVB_,_wredraw,ON_);
 sWo(_woid,zinwo,_wstyle,WS_SVO_,_wredraw,ON_,_wcolor,BLUE_,_wclipbhue,YELLOW_,_wborder,BLACK_); 
 
 
+oknow = Ask (" $_include  ",0)
 //  check for lyo - layout file 
 
 /*

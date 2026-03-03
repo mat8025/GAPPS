@@ -42,30 +42,38 @@
 
 //<<"%V $sc_zstart $minWt $sc_zend $upperWt\n";
 
- //sWo(wt_wo,_WSCALES,wbox(rx,minWt,rX,upperWt),_WSAVESCALES,0,_WFLUSH);
+ //sWo(_woid,wt_wo,_WSCALES,wbox(rx,minWt,rX,upperWt),_wsavescales,0);
 
   COUT(sc_zstart);
   COUT(sc_zend);
 
+  sWo(_woid,wt_wo,_wclear,ON_);
+  sWo(_woid,cal_wo,_wclear,ON_);
+  sWo(_woid,carb_wo,_wclear,ON_);  
+
+
+
   drawGoals( wScreen);
 
  for (i = 0; i< 10; i++) {
-  ans=ask("$i $wedwos[i] ",1)
+  ans=ask("$i $wedwos[i] ",0)
       if (wedwos[i] <=0) {
          break;
 	 }
         sWo(_WOID,wedwos[i],_wxscales, wpt(sc_zstart,sc_zend));
-        printf("%d xscales %f %f\n",i,sc_zstart,sc_zend);
+        //printf("%d xscales %f %f\n",i,sc_zstart,sc_zend);
 
-  // sWo(_WOID,wedwos[i],_wclearclip,WHITE_,_wsave,ON_,_wclearpixmap,ON_,_wclipborder,BLACK_,_wredraw,ON_,_wsavepixmap,ON_);
+   sWo(_WOID,wedwos[i],_wclearclip,WHITE_,_wsave,ON_,_wclearpixmap,ON_,_wclipborder,BLACK_,_wredraw,ON_,_wsavepixmap,ON_);
    
   }
   
   wScreen= 0
-//oknow = Ask ("que pasa? $_proc $wScreen ",1)
+
 
   drawGrids( wScreen);
 
+
+  
 
   if (ALL_LINES) {
 
@@ -89,6 +97,16 @@
 
    Text(carb_wo,"Exercise Time (mins)",0.8,0.7,1,0,RED_);
 
+
+
+  drawMonths(wt_wo);
+
+  drawMonths(cal_wo);
+
+  drawMonths(food_wo);
+
+  drawMonths(carb_wo);
+
    int gi=0;
 
    do_all_gls = 1;
@@ -99,7 +117,7 @@
   
   gname = glineGetName(allgls[gi]);
   
-  ok=ask("%V $gi $allgls[gi] $gname",1);
+  ok=ask("%V $gi $allgls[gi] $gname",0);
 
   sGl(_GLID,allgls[gi],_GLDRAW,ON_);
   
