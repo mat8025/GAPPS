@@ -42,6 +42,7 @@
   float carb;
 
   int dt;
+  int hit;
 
 
 
@@ -115,7 +116,10 @@
 
   woSetValue(xtmwo,"%6.1f$xtm");
 
-   woSetValue(bpmwo,"%6.1f$bpm");
+  woSetValue(bpmwo,"%6.1f$bpm");
+
+
+   woSetValue(hitmwo,"$hit");
 
 for (i= 0; i< 18; i++) { 
    if (mwos[i] <0 ) { 
@@ -145,7 +149,9 @@ for (i= 0; i< 18; i++) {
           plotsymbol(carbmwo,DIAMOND_,msymx, msymy,RED_,msize);
           plotsymbol(glumwo,CROSS_,msymx, msymy,GREEN_,msize);
           plotsymbol(ketmwo,DIAMOND_,msymx, msymy,BLUE_,msize);
-          plotsymbol(gkimwo,STAR_,msymx, msymy,ORANGE_,msize);	  	  	  
+          plotsymbol(gkimwo,STAR_,msymx, msymy,ORANGE_,msize);
+          plotsymbol(bpmwo,STAR_,msymx, msymy,ORANGE_,msize);
+          plotsymbol(hitmwo,DIAMOND_,msymx, msymy,INDIGO_,msize);	  	  	  	  	  
 // could add to wo a sym ,x,y for a redraw name_sym box
     
 

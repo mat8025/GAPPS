@@ -359,7 +359,7 @@ oknow = Ask (" $_include  ",0)
   
 <<" $keyposr[1] $keyposr[2]  $keyposr[3]  $keyposr[4]\n"
 
-  ask("CA $j %V $woid $xtmwo $wid $won $wrx $wry $keyposr[1] $keyposr[2] \n",0)
+ // ask("CA $j %V $woid $xtmwo $wid $won $wrx $wry $keyposr[1] $keyposr[2] \n",0)
 
 
 
