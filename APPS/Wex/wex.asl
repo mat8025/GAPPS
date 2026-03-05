@@ -125,6 +125,8 @@ using namespace std;
   Vec<float> CARDIO(nrecdays);
 
   Vec<float> STRENGTH(nrecdays);
+
+  Vec<float> HITS(nrecdays);
 // cals,carbs consumed & when
 
 

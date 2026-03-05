@@ -191,24 +191,34 @@ COUT(sc_zstart);
 /////////////////////////////////////////////////////////// 
   //quitwo=cWo(vp,WO_BN,_wname,"QUIT",_wcolor,"red") 
  
-  zinwo=cWo(vp,WO_BN_); 
-   
-  sWo(_woid,zinwo,_wname,"ZIN",_wcolor,PINK_,_wclipborder,ON_,_whelp," zoom in on selected days "); 
- 
-  zoomwo=cWo(vp,WO_BN_); 
-  sWo(_woid,zoomwo,_wname,"ZOUT",_wcolor,BLUE_); 
- // yrdecwo= cWo(vp,WO_BN,_wname,"YRD",_wcolor,"violetred",_whelp," show previous Year  ") 
+
+
+// yrdecwo= cWo(vp,WO_BN,_wname,"YRD",_wcolor,"violetred",_whelp," show previous Year  ") 
 //  yrincwo= cWo(vp,WO_BN,_wname,"YRI",_wcolor,"purple",_whelp," show next Year  ") 
 //  qrtdwo=  cWo(vp,WO_BN,_wname,"QRTD",_wcolor,"violetred",_whelp," show previous Qtr period ") 
 //  qrtiwo=  cWo(vp,WO_BN,_wname,"QRTI",_wcolor,"purple",_whelp," show next Qtr period ") 
  // int fewos[] = {zinwo,zoomwo, yrdecwo, yrincwo, qrtdwo, qrtiwo } 
+
+  zinwo=cWo(vp,WO_BN_); 
+   
+  sWo(_woid,zinwo,_wname,"ZIN",_wcolor,PINK_,_wclipborder,ON_,_whelp," zoom in on selected days "); 
  
-  int fewos[] = {zinwo,zoomwo, -1 }; 
+  zoomwo=cWo(vp,WO_BN_);
+  
+  sWo(_woid,zoomwo,_wname,"ZOUT",_wcolor,BLUE_); 
+
+
+ int zoomwos[] = {zinwo, zoomwo, -1}; 
  
-  //pa(fewos); 
  
-  wohtile( fewos, 0.03,0.01,0.43,0.07); 
- 
+ //sWo(_woid,zoomwo,_wstyle,WS_BN_,_wredraw,ON_); 
+ sWo(_woid,zoomwos,_wstyle,WS_BN_,_wredraw,ON_,_wcolor,BLUE_,_wclipbhue,YELLOW_,_wborder,BLACK_);
+  
+   wohtile( zoomwos, 0.2,0.01,0.44,0.07);
+
+  //  sWo(_woid,zoomwos,_wstyle,WS_SVB_,_wredraw,ON_); 
+
+
   nobswo= cWo(vp,WO_BV_); 
    
   sWo(_woid,nobswo,_wname,"Nobs",_wclipbhue,CYAN_,_wvalue,0,_wstyle,SVB_); 
@@ -237,100 +247,17 @@ COUT(sc_zstart);
      } 
 //   <<"$i SVB for $xwos[i] \n" 
      sWo(_woid,xwos[i],_wstyle,WS_SVB_,_wredraw,ON_); 
- 
-  } 
+   } 
    
    //sWo(xwos,_wstyle,WS_SVB,_wredraw,_WEO); 
  
    sWo(_woid,wt_wo,_wshowpixmap,ON_,_wsave,ON_); 
  
-  // Measure WOBS 
- 
-  dtmwo=cWo(vp,WO_BV_); 
-  sWo(_woid,dtmwo,_wname,"DAY",_wclipbhue,RED_,_wresize, wbox (0.01,0.947,0.085,0.99),_wstyle, SBV_, _whelp,"date on day "); 
 
-  wtmwo=cWo(vp,WO_BV_); 
-  sWo(_woid,wtmwo,_wname,"WTM",_wclipbhue, RED_,_wresize,  wbox(0.01,0.90,0.085,0.945),  _whelp," wt on day "); 
-
- // obswo=cWo(vp,WO_BV_); 
-//  sWo(_woid,obswo,_wname,"OBS",_wclipbhue,YELLOW_,_whelp," obs day ");
-
-  xtmwo=cWo(vp,WO_BV_); 
-  sWo(_woid,xtmwo,_wname,"ExTim",_wclipbhue,CYAN_,_wcolor,BLUE_,_wresize,wbox(0.01,0.1,0.085,0.15) ,_whelp," xtime on day "); 
- 
-
- 
-  calburnwo=cWo(vp,WO_BV_); 
-
-  sWo(_woid,calburnwo,_wname,"CBURN",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," cals burnt on day ");
-
-  calexbwo=cWo(vp,WO_BV_); 
-
-  sWo(_woid,calexbwo,_wname,"CEXB",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp,"exer cals burnt on day ");
-
-  caldwo=cWo(vp,WO_BV_); 
-
-  sWo(_woid,caldwo,_wname,"CDEF",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp,"calorie deficit on day "); 
-
-  calconwo=cWo(vp,WO_BV_); 
-   
-  sWo(_woid,calconwo,_wname,"CCON",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," cals consumed on day ");
-
-  // buttons
-  carbmwo=cWo(vp,WO_BV_); 
-   
-  sWo(_woid,carbmwo,_wname,"CARB",_wclipbhue,LILAC_,_wfonthue,BLACK_,_whelp," carbs eaten on day "); 
-
-  protmwo=cWo(vp,WO_BV_); 
-   
-  sWo(_woid,protmwo,_wname,"PROT",_wclipbhue,LILAC_,_wfonthue,BLACK_,_whelp," protein eaten on day ");
-
-  fatmwo=cWo(vp,WO_BV_); 
-   
-  sWo(_woid,fatmwo,_wname,"FAT",_wclipbhue,LILAC_,_wfonthue,BLACK_,_whelp," fat eaten on day ");
-
-  fibmwo=cWo(vp,WO_BV_); 
-   
-  sWo(_woid,fibmwo,_wname,"FIBER",_wclipbhue,LILAC_,_wfonthue,BLACK_,_whelp," fiber eaten on day ");
-
-  glumwo=cWo(vp,WO_BV_); 
-   
-  sWo(_woid,glumwo,_wname,"GLUCOSE",_wclipbhue,PINK_,_wfonthue,BLACK_,_whelp," glucose on day ");
-
-  ketmwo=cWo(vp,WO_BV_); 
-   
-  sWo(_woid,ketmwo,_wname,"KETONE",_wclipbhue,PINK_,_wfonthue,BLACK_,_whelp," ketone on day ");
-
-  gkimwo=cWo(vp,WO_BV_); 
-   
-  sWo(_woid,gkimwo,_wname,"GKI",_wclipbhue,PINK_,_wfonthue,BLACK_,_whelp," GKI ration on day "); 
- 
+// Measure WOBS 
+#include "measure_wex.asl"
 
 
-
-  int mwos[] = { wtmwo,  calburnwo, calconwo, caldwo,  calexbwo, protmwo, fatmwo, fibmwo, carbmwo, glumwo, ketmwo, gkimwo,xtmwo,-1}; 
-
-  int calmwos[] = { calburnwo, calconwo, caldwo,  calexbwo,-1 };
-
-  int foodmwos[] = {  protmwo, fatmwo, fibmwo, carbmwo,-1 };
-
-  int ketmwos[] = { glumwo, ketmwo, gkimwo, -1} ;
-
-  //wovtile( mwos, 0.01,0.15,0.085,0.9);
-
-  wovtile( calmwos, 0.01,0.65,0.085,0.89);
-  wovtile( foodmwos, 0.01,0.4,0.085,0.64);
-   wovtile( ketmwos, 0.01,0.2,0.085,0.39); 
- 
-  for (i= 0; i< 18; i++) { 
-   if (mwos[i] <0 ) { 
-   break; 
-   } 
-     sWo(_woid,mwos[i],_wstyle,SVB_,_wredraw,ON_); 
-   }
-
-    sWo(_woid,dtmwo,_wstyle,SVB_,_wredraw,ON_); 
-  
 /////////////////////////////////////////////  KEYS /////////////////////////////////////////// 
   //  keypos = wogetposition (food_wo); 
  //  <<"%V $keypos \n"; 
@@ -391,12 +318,10 @@ if (do_keys ) {
 */ 
  
   //sWo(goalwos,_wstyle,WS_SVB,_wredraw,_WEO); 
-int zoomwos[] = {zoomwo, zinwo, -1}; 
- 
-// sWo(zoomwos,_wstyle,WS_SVB,_wredraw,_WEO); 
- 
-sWo(_woid,zoomwo,_wstyle,WS_SVB_,_wredraw,ON_); 
-sWo(_woid,zinwo,_wstyle,WS_SVO_,_wredraw,ON_,_wcolor,BLUE_,_wclipbhue,YELLOW_,_wborder,BLACK_); 
+
+
+
+
 
 
 oknow = Ask (" $_include  ",0)

@@ -160,7 +160,7 @@
 
   sGl(_GLID,wt_gl,_GLSYMBOL,DIAMOND_,_GLSYMSIZE, Symsz, _GLSYMHUE,BLUE_,_GLNAME,"weight");
 
-  sGl(_GLID,bp_gl,_GLSYMBOL,DIAMOND_);
+  sGl(_GLID,bp_gl,_GLSYMBOL,STAR_,_GLSYMHUE,RED_,_GLNAME,"benchpress lbs");
 
   sGl(_GLID,calb_gl,_GLSYMBOL,DIAMOND_,_GLSYMHUE,RED_,_GLNAME,"cals_out");
 

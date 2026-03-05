@@ -53,8 +53,6 @@
   sWo(_woid,carb_wo,_wclear,ON_);
   sWo(_woid,ket_wo,_wclear,ON_);  
 
-
-
   drawGoals( wScreen);
 
  for (i = 0; i< 10; i++) {

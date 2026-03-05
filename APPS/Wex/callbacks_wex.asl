@@ -75,7 +75,8 @@
   glu = GLUCOSE[dindex];
   ket = KETONE[dindex];
   gki = GKI[dindex];
-
+  bpm = BPVEC[dindex];
+  hit = HITS[dindex];
 
 //<<"%V $xtm \n"
   xtm = fround(xtm,1);
@@ -113,6 +114,8 @@
 
 
   woSetValue(xtmwo,"%6.1f$xtm");
+
+   woSetValue(bpmwo,"%6.1f$bpm");
 
 for (i= 0; i< 18; i++) { 
    if (mwos[i] <0 ) { 
@@ -428,6 +431,17 @@ void setCursors()
    drawScreens();
   }
 //-------------------------------------------
+
+  void showWL(long ws, long we)
+  {
+//<<"$_proc $ws $we\n"
+
+  computeWL( ws, we);
+
+  showCompute();
+
+  }
+//========================================================
 
 
 

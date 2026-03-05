@@ -58,7 +58,7 @@ if (Yd >= 0) {
 
    float hike = atof(Col[j++]);
 
-   float    run = atof(Col[j++]);
+   float run = atof(Col[j++]);
 
    float cycle =  atof(Col[j++]);
 
@@ -86,6 +86,9 @@ if (Yd >= 0) {
   SEVEC[Yd] =  wex;
 
   BPVEC[Yd] =  atof(Col[j++]);
+
+  HITS[Yd] =  atof(Col[j++]);
+
 // any extra activities ?
 
   tex = EXTV[Yd];
