@@ -53,7 +53,9 @@
   sWo(_woid,carb_wo,_wclear,ON_);
   sWo(_woid,ket_wo,_wclear,ON_);  
 
-  drawGoals( wScreen);
+
+
+
 
  for (i = 0; i< 10; i++) {
   ans=ask("$i $wedwos[i] ",0)
@@ -72,7 +74,8 @@
 
   drawGrids( wScreen);
 
-
+  drawGoals( wScreen);
+  
    sWo(_woid,cal_wo,_wfont,f_SMALL_);
 
 /// these need to be a separate wo to contain key  symbol and text
@@ -98,7 +101,9 @@
   //drawMonths(carb_wo);
 
   drawGlines();
-  
+
+  plotLine(wt_wo,last_known_day,last_known_wt,targetday,TargetGoalWt, BLACK_) ;  // does not show?
+
  }
 
 }

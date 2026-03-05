@@ -58,20 +58,21 @@
   
     // use todays date and wt to the intermediate short-term goal
   sWo(_woid,wt_wo,_WUSESCALES,0)
+
   plotLine(wt_wo,last_known_day,last_known_wt,targetday,TargetGoalWt, BLACK_) 
 
-  <<"%V $last_known_day, $last_known_wt, $targetday, $TargetGoalWt \n" 
+ 
+ ans=ASK("%V $last_known_day, $last_known_wt, $targetday, $TargetGoalWt \n" ,0);
+ 
 
-  }
+   if (ws == 1) {
 
-  if (ws == 1) {
+   //<<[_DB]"$ws $bpwo $kdays \n"
 
-  //<<[_DB]"$ws $bpwo $kdays \n"
+   plotLine(bpwo,0,150,kdays-10,250, BLUE_)
 
-  plotLine(bpwo,0,150,kdays-10,250, BLUE_)
-
-  }
-
+   }
+   }
   }
 //---------------------------------------------------------
 // what is current include?

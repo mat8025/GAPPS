@@ -212,9 +212,9 @@ COUT(sc_zstart);
  
  
  //sWo(_woid,zoomwo,_wstyle,WS_BN_,_wredraw,ON_); 
- sWo(_woid,zoomwos,_wstyle,WS_BN_,_wredraw,ON_,_wcolor,BLUE_,_wclipbhue,YELLOW_,_wborder,BLACK_);
+ sWo(_woid,zoomwos,_wstyle,WS_BN_,_wcolor,BLUE_,_wclipbhue,YELLOW_,_wborder,BLACK_);
   
-   wohtile( zoomwos, 0.2,0.01,0.44,0.07);
+   wohtile( zoomwos, 0.2,0.01,0.44,0.07,0.05);
 
   //  sWo(_woid,zoomwos,_wstyle,WS_SVB_,_wredraw,ON_); 
 

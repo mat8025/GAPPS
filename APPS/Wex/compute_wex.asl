@@ -26,7 +26,6 @@
 
   sWo(_woid,xbwo,_WVALUE,"%6.2f $Nsel_exeburn",_WREDRAW,ON_)
 
-  //sWo(_woid,xlbswo,_WVALUE,"%4.1f$Nsel_lbs",_WUPDATE,ON_)
   sWo(_woid,xlbswo,_WVALUE,"%4.1f $Nsel_lbs",_WUPDATE,ON_)
 
   sWo(_woid,dlbswo,_WVALUE,"%4.1f $Ndiet_lbs",_WUPDATE,ON_)

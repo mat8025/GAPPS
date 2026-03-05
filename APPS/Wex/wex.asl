@@ -360,7 +360,7 @@ Record RX;
 
    Svar Goals2;
    
-   Goals2.Split("02/27/2026  03/10/2026 180");
+   Goals2.Split("02/27/2026  03/21/2026 180");
 ////////////////////==============/////////////////
 
 // move these down 10 when reached -- until we are at desired operating weight!
