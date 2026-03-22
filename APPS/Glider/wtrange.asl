@@ -510,7 +510,7 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
       sWo(_woid,harbwo,_wname,"Harness",_wclipbhue,LILAC_,_wfonthue,BLACK_,_whelp," Harness type "); 
 
       wtkgbwo=cWo(aw,WO_BV_); 
-      sWo(_woid,wtkgbwo,_wname,"ALLUPWT_KG",_wclipbhue,PINK_,_wfonthue,BLACK_,_whelp," All upw WT kg "); 
+      sWo(_woid,wtkgbwo,_wname,"ALLUPWT",_wclipbhue,PINK_,_wfonthue,BLACK_,_whelp," All upw WT kg "); 
 
       upbwo=cWo(aw,WO_SYM_); 
       sWo(_woid,upbwo,_wname,"UPWT",_wclipbhue,CYAN_,_wfonthue,BLACK_,_wsymbol,TRI_,_wsymsize,25,_whelp," increase WT lbs ");
@@ -519,7 +519,7 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
       sWo(_woid,downbwo,_wname,"DOWNWT",_wclipbhue,CYAN_,_wfonthue,BLACK_,_wsymbol,ITRI_,_wsymsize,25,_whelp," decrease WT lbs ");
 
       ballastbwo=cWo(aw,WO_BV_); 
-      sWo(_woid,ballastbwo,_wname,"BALLAST_KG",_wclipbhue,CYAN_,_wfonthue,BLACK_,_wvalue,"0",_whelp," ballast WT kg "); 
+      sWo(_woid,ballastbwo,_wname,"BALLAST",_wclipbhue,CYAN_,_wfonthue,BLACK_,_wvalue,"0",_whelp," ballast WT kg "); 
 
 
 
@@ -570,7 +570,7 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
          sWo(_woid,wtbwo,_wotext,"%4.1f$body_wt $body_wt_lbs");	 
         }
 
-       if ( ewoname_ == "BALLAST_KG") {
+       if ( ewoname_ == "BALLAST") {
          recompute = 1
 	 if (ebutton_ == 1) {
          ballast_wt += 1.0
