@@ -21,9 +21,10 @@
    c_harness = "adv"
    
    c_harness = _argv[1]
-   
-   float current_wt_lbs = _argv[2]
-   <<"%V $current_wt_lbs \n"
+
+
+   float body_wt_lbs = _argv[2]
+   <<"%V $body_wt_lbs \n"
 
    
 
@@ -42,7 +43,7 @@
    <<"%V $arg1 \n"
 <<" we are in ASL mode $argc and arg1 is $arg1\n"
 //<<" $argv[0] $argv[1] $argv[2] \n"
- //wat = ask("using $current_wt_lbs for current weight OK?",1)
+ //wat = ask("using $current_wt_lbs for current weight OK?",0)
 #include "debug" 
 
   if (_dblevel >0) { 
@@ -140,10 +141,12 @@ class Wing
   int Compute ()
   {
 
-    wingwt = wt + harness + helmet + kit
-    allupwt = wingwt + current_wt;
+    wingwt = wt ;
+    allupwt = wingwt + body_wt + ballast_wt + harness_wt + helmet + kit
+    current_wt = allupwt;
+    current_wt_lbs = current_wt * kg2lb_ 
     
-<<"%V $name %4.1f $min $max $wt    $harness $helmet $wingwt $allupwt \n"
+<<"%V $name %4.1f $min $max $wt $c_harness $harness_wt $helmet $wingwt $ballast_wt $allupwt \n"
 
    <<"\tmy range %4.1f  with $name wing $min --> $max kg     $(min * kg2lb_) --> $(max * kg2lb_) lbs  \n" 
     best_75 = (max-min) *.75 + min;
@@ -169,14 +172,16 @@ class Wing
     if (max_wing_wt_lbs < current_wt_lbs) {
      <<"\t\tAlas too fat for $name!! diet!!!!\n"
      bhue = RED_;
-     hue = RED_;     
+     //hue = RED_;     
     }
 
     if (min_wing_wt_lbs > current_wt_lbs) {
      <<"\t\tAlas too light for $name wing!! add ballast!!!!\n"
      bhue = RED_;
-     hue = RED_;     
+    // hue = RED_;     
     }
+
+
 
     return bhue;
   }
@@ -204,10 +209,17 @@ class Wing
  };
 
 
+  
+   body_wt =  body_wt_lbs/kg2lb_ ;
 
+ans= ask("%V $body_wt $body_wt_lbs",0)
 
-   current_wt = current_wt_lbs/kg2lb_ ;
-
+   float current_wt = body_wt;
+   float current_wt_lbs = body_wt_lbs;
+   
+   wingwt = 2.0;
+   ballast_wt = 0.0;
+   ballast_wt_lbs = 0.0;
    min_kg = 70
    max_kg = 120;
    min_lbs = min_kg *kg2lb_ 
@@ -220,19 +232,17 @@ class Wing
 
    //  harnesses
    adv_harness = 2.15
-   gin_harness = 5.9
+   gin_harness = 6.0
 
-   harness = adv_harness
+   harness_wt = adv_harness
 
    if (c_harness == "gin") {
-
      harness = gin_harness
    }
 
 
    if (c_harness == "adv") {
-
-     harness = adv_harness
+     harness_wt = adv_harness
    }
 
 
@@ -330,13 +340,14 @@ class Wing
     theta_bhue = GREEN_;        
 
 
+   current_wt = body_wt + wingwt + harness_wt + kit + helmet + ballast_wt;
 
 
 
 //  compute_wts()
 
 
-
+ans= ask("%V $body_wt $body_wt_lbs",0)
 
 
 #include "wevent.asl" 
@@ -351,16 +362,17 @@ class Wing
     Xgm = spawnGwm("PG_WTRANGE")
   }
  sleep (2)
+ 
  void drawScreens()
   {
  
-    sWi(_woid,aw,_wclearclip,WHITE_)
-    sWo(_woid,wtrwo,_wclipborder,BLACK_,_wredraw,ON_)
+    sWi(_woid,aw,_wclearclip,PINK_,_whue,LILAC_,_wbhue,TURQUOISE_,_wredraw,ON_)
+    sWo(_woid,wtrwo,_wclipborder,BLACK_,_whue,LILAC_,_wbhue,MAGENTA_,_wredraw,ON_)
 
 
       <<"drawScreens $_proc \n"
  
-    sWi(_woid,aw,_wclearclip,WHITE__)
+ 
     // _clip for wo is clip area with the wob
     i= 2
     hue_name = getColorName(i)
@@ -371,9 +383,9 @@ class Wing
 	//ask("$hue_name $i",0);
 
 
-    sWo(_woid,wtrwo,_wname,"WtRange",_wdraw,ON_,_wpixmap,ON_,_wclip,wbox(0.1,0.1,0.8,0.9,4),_wcolor,WHITE_)
-    sWo(_woid,wtrwo,_whue,i,_wbhue,PINK_,_wclipborder,BLACK_,_wredraw,ON_)
-    sWo(_woid,wtrwo,_wclipborder,BLACK_,_wclipbhue,LILAC_,_wclipfhue,ORANGE_,_wupdate,ON_)
+    sWo(_woid,wtrwo,_woname,"WtRange",_wodraw,ON_,_wopixmap,OFF_,_woclip,wbox(0.1,0.1,0.8,0.9,4),_wocolor,WHITE_)
+    sWo(_woid,wtrwo,_wohue,i,_wobhue,WHITE_,_woclipborder,BLACK_,_woredraw,ON_)
+    sWo(_woid,wtrwo,_woclipborder,BLACK_,_woclipbhue,LILAC_,_woclipfhue,ORANGE_,_woupdate,ON_)
 
     
     axnum(wtrwo,2,min_kg,max_kg,5,2,"2.0f")
@@ -381,26 +393,26 @@ class Wing
     //axnum(wtrwo,2,min_kg,max_kg,5,-3,"2.0f")
     // want to use rht scales which should be scales 1
 
-   // sWo(_woid,wtrwo,_wusescales,1)    
-    sWo(_woid,wtrwo,_wscales,wbox(xmin,min_lbs,xmax,max_lbs),_wsavescales,1)
+   // sWo(_woid,wtrwo,_wousescales,1)    
+    sWo(_woid,wtrwo,_woscales,wbox(xmin,min_lbs,xmax,max_lbs),_wosavescales,1)
     axnum(wtrwo,8,min_lbs,max_lbs,12,-3,"2.0f")  ; // lets use 9-12 to force use of scales 1
 
-    sWo(_woid,wtrwo,_wscales,wbox(xmin,min_kg,xmax,max_kg),_wsavescales,0)
+    sWo(_woid,wtrwo,_woscales,wbox(xmin,min_kg,xmax,max_kg),_wosavescales,0)
 
 
-    sWo(_woid,wtrwo,_wusescales,0)    
+    sWo(_woid,wtrwo,_wousescales,0)    
 
 
     axnum(wtrwo,1,xmin,xmax,2,1,"2.0f")
 
-     mywt =helmet + harness + kit + current_wt
+     mywt =helmet + harness_wt + kit + body_wt
 
      magic_cw = magicw + mywt
 
      hook_cw = hookw + mywt
 
   // hook3 wtrange box
-    <<"%V $Hook3.min  $Hook3.max $Hook3.allupwt \n"
+   // <<"%V $Hook3.min  $Hook3.max $Hook3.allupwt \n"
      plotBox(wtrwo,2,Hook3.min,4,Hook3.max, Hook3.bhue, FILL_)  
 
      plotSymbol(wtrwo,DIAMOND_,3,Hook3.best_75,BLUE_,Symsz,1);
@@ -418,7 +430,7 @@ class Wing
      
 
   // advance theta wtrange box
-     <<"%V $Theta.min  $Theta.max $Theta.allupwt \n"
+   //  <<"%V $Theta.min  $Theta.max $Theta.allupwt \n"
      plotBox(wtrwo,5,Theta.min,7,Theta.max, Theta.bhue, FILL_)  
      plotSymbol(wtrwo,DIAMOND_,6,Theta.best_75,BLUE_,Symsz,1);
      plotSymbol(wtrwo,STAR_,6,Theta.allupwt,Theta.hue,Symsz,1);     
@@ -427,7 +439,7 @@ class Wing
      plotLine(wtrwo,5,Theta.ideal_max,7,Theta.ideal_max,BLACK_)
 
   // epsilon wtrange box
-     <<"%V $Epsilon10_26.min  $Epsilon10_26.max $Epsilon10_26.allupwt \n"
+   //  <<"%V $Epsilon10_26.min  $Epsilon10_26.max $Epsilon10_26.allupwt \n"
      plotBox(wtrwo,8,Epsilon10_26.min,10,Epsilon10_26.max, Epsilon10_26.bhue, FILL_)  
      plotSymbol(wtrwo,DIAMOND_,9,Epsilon10_26.best_75,BLUE_,Symsz,1);
      plotSymbol(wtrwo,STAR_,9,Epsilon10_26.allupwt,Epsilon10_26.hue,Symsz,1);
@@ -435,23 +447,26 @@ class Wing
      plotLine(wtrwo,8,Epsilon10_26.ideal_max,10,Epsilon10_26.ideal_max,BLACK_)
      
 
-     <<"%V $Epsilon10_28.min  $Epsilon10_28.max $Epsilon10_28.allupwt \n"
+   //  <<"%V $Epsilon10_28.min  $Epsilon10_28.max $Epsilon10_28.allupwt \n"
      plotBox(wtrwo,11,Epsilon10_28.min,13,Epsilon10_28.max, Epsilon10_28.bhue, FILL_)  
      plotSymbol(wtrwo,DIAMOND_,12,Epsilon10_28.best_75,BLUE_,Symsz,1);
      plotSymbol(wtrwo,STAR_,12,Epsilon10_28.allupwt,Epsilon10_28.hue,Symsz,1);     
      plotLine(wtrwo,11,Epsilon10_28.ideal_min,13,Epsilon10_28.ideal_min,BLACK_)
      plotLine(wtrwo,11,Epsilon10_28.ideal_max,13,Epsilon10_28.ideal_max,BLACK_)
 
+     current_wt = body_wt + wingwt + harness_wt + kit + helmet + ballast_wt;
+     current_wt_lbs = current_wt * kg2lb_;
+     
+     woSetValue(wtbwo,"%4.2f $body_wt $body_wt_lbs");
+     woSetValue(wtkgbwo,"%4.2f $current_wt $current_wt_lbs");     
+      
 
-
-      woSetValue(wtbwo,"%4.2f $current_wt_lbs");
-
-      woSetValue(harbwo,"$c_harness");
+      woSetValue(harbwo,"$c_harness $harness_wt");
 
     for (i=0;i<10;i++) {
     if (mwos[i] == -1)
         break;
-    sWo(_woid,mwos[i],_wredraw,ON_);
+    sWo(_woid,mwos[i],_woredraw,ON_);
 
     }
 }
@@ -463,115 +478,179 @@ class Wing
   titleButtonsQRD(aw);
 //<<" CGW $aw \n"
 
-  sWi(_woid, aw,_wresize,wbox(0.1,0.1,0.9,0.7,0))
-  sWi(_woid,aw,_wclip,wbox(0.05,0.1,0.95,0.9))
+  sWi(_woid, aw,_woresize,wbox(0.1,0.1,0.9,0.7,0))
+  sWi(_woid,aw,_woclip,wbox(0.05,0.1,0.95,0.9))
      xmin = 0
      xmax = 14
 
-    sWi(_woid,aw,_wscales,wbox(xmin,0,xmax,120),_wsavescales,0,_wsave,ON_)
+    sWi(_woid,aw,_woscales,wbox(xmin,0,xmax,120),_wosavescales,0,_wosave,ON_)
 
 
 
       wtrwo=cWo(aw,WO_GRAPH_);
 
-     sWo(_woid,wtrwo,_wresize,wbox(0.15,0.15,0.8,0.95),_wcolor,WHITE_)
+     sWo(_woid,wtrwo,_woresize,wbox(0.15,0.15,0.8,0.95),_wocolor,WHITE_)
 
  
-     sWo(_woid,wtrwo,_wname,"WTRANGE",_wdraw,ON_,_wpixmap,ON_,_wclip,wbox(0.4,0.1,0.8,0.9),_wcolor,PINK_)
+     sWo(_woid,wtrwo,_woname,"WTRANGE",_wodraw,ON_,_wopixmap,OFF_,_woclip,wbox(0.4,0.1,0.8,0.9),_wocolor,PINK_)
 //sdb(1, "step","stderr")  ; // step thru code ?
 
-     //sWo(_woid,wtrwo,_wrhtscales,wbox(xmin,min_lbs,xmax,max_lbs),_wsavescales,1)
-     sWo(_woid,wtrwo,_wscales,wbox(xmin,min_lbs,xmax,max_lbs),_wsavescales,1)
+     //sWo(_woid,wtrwo,_worhtscales,wbox(xmin,min_lbs,xmax,max_lbs),_wosavescales,1)
+     sWo(_woid,wtrwo,_woscales,wbox(xmin,min_lbs,xmax,max_lbs),_wosavescales,1)
 
-     sWo(_woid,wtrwo,_wscales,wbox(xmin,min_kg,xmax,max_kg),_wsavescales,0)
+     sWo(_woid,wtrwo,_woscales,wbox(xmin,min_kg,xmax,max_kg),_wosavescales,0)
      //<<"using RHT scales !\n"
 
       wtbwo=cWo(aw,WO_BV_); 
-      sWo(_woid,wtbwo,_wname,"WT",_wclipbhue,CYAN_,_wfonthue,BLACK_,_whelp," Pilot WT lbs ");
+      sWo(_woid,wtbwo,_woname,"BODYWT",_woclipbhue,CYAN_,_wofonthue,BLACK_,_wohelp," Pilot WT kg lbs ");
 
-      wtkgbwo=cWo(aw,WO_BV_); 
-      sWo(_woid,wtkgbwo,_wname,"WTKG",_wclipbhue,PINK_,_wfonthue,BLACK_,_whelp," Pilot WT kg "); 
+
 
       harbwo=cWo(aw,WO_BV_); 
       sWo(_woid,harbwo,_wname,"Harness",_wclipbhue,LILAC_,_wfonthue,BLACK_,_whelp," Harness type "); 
+
+      wtkgbwo=cWo(aw,WO_BV_); 
+      sWo(_woid,wtkgbwo,_wname,"ALLUPWT_KG",_wclipbhue,PINK_,_wfonthue,BLACK_,_whelp," All upw WT kg "); 
 
       upbwo=cWo(aw,WO_SYM_); 
       sWo(_woid,upbwo,_wname,"UPWT",_wclipbhue,CYAN_,_wfonthue,BLACK_,_wsymbol,TRI_,_wsymsize,25,_whelp," increase WT lbs ");
 
       downbwo=cWo(aw,WO_SYM_); 
-      sWo(_woid,downbwo,_wname,"DOWNWT",_wclipbhue,CYAN_,_wfonthue,BLACK_,_wsymbol,ITRI_,_wsymsize,25,_whelp," decrease WT lbs "); 
+      sWo(_woid,downbwo,_wname,"DOWNWT",_wclipbhue,CYAN_,_wfonthue,BLACK_,_wsymbol,ITRI_,_wsymsize,25,_whelp," decrease WT lbs ");
 
-      int mwos[] = { upbwo, wtbwo,wtkgbwo, downbwo, harbwo, -1 }
+      ballastbwo=cWo(aw,WO_BV_); 
+      sWo(_woid,ballastbwo,_wname,"BALLAST_KG",_wclipbhue,CYAN_,_wfonthue,BLACK_,_wvalue,"0",_whelp," ballast WT kg "); 
+
+
+
+
+      int mwos[] = { upbwo, wtbwo,downbwo, wtkgbwo,  harbwo,ballastbwo, -1 }
      
-      wovtile( mwos, 0.01,0.15,0.1,0.7,0.1);
+      wovtile( mwos, 0.01,0.15,0.12,0.7,0.1);
 
-      woSetValue(wtbwo,"%4.2f $current_wt_lbs");
+      woSetValue(wtbwo,"%4.2f $current_wt $current_wt_lbs");
 
       woSetValue(harbwo,"$harness");
      sWo(_woid,wtbwo ,_wstyle,SVB_,_wredraw,ON_);
      sWo(_woid,wtkgbwo ,_wstyle,SVB_,_wredraw,ON_);     
      sWo(_woid,harbwo ,_wstyle,SVB_,_wredraw,ON_);
-  
+       sWo(_woid,ballastbwo ,_wstyle,SVB_,_wredraw,ON_);
      drawScreens()
 
-
+ans= ask("%V $body_wt $body_wt_lbs",0)
   m_num = 0;
   while (1) {
 
+
+  <<"%V $wtbwo $wtkgbwo $body_wt $current_wt \n" 
         m_num++
        recompute = 0
        eventWait()
 
-       if ( ewoname_ == "WT") {
+       if ( ewoname_ == "BODYWT") {
          recompute = 1
 	 if (ebutton_ == 1) {
-         current_wt_lbs += 2.5
+         body_wt_lbs += 2.5
 	 }
 	 else {
-         current_wt_lbs -= 2.5
+         body_wt_lbs -= 2.5
          }
-         current_wt = current_wt_lbs/kg2lb_ ;	 
-	 woSetValue(wtbwo,"$current_wt_lbs");
-	 woSetValue(wtkgbwo,"%4.1f$current_wt");	 
+         body_wt = body_wt_lbs/kg2lb_ ;
+
+         current_wt = body_wt + wingwt + harness_wt + kit + helmet + ballast_wt;
+         current_wt_lbs = current_wt/kg2lb_;
+
+<<"%V $wtbwo $wtkgbwo $body_wt $current_wt \n"
+
+	 //woSetValue(wtbwo,"$bodywt $body_wt_lbs");
+
+
+
+         //woSetValue(wtkgbwo,"%4.1f$current_wt");	 
+         sWo(_woid,wtbwo,_wotext,"%4.1f$body_wt $body_wt_lbs");	 
+        }
+
+       if ( ewoname_ == "BALLAST_KG") {
+         recompute = 1
+	 if (ebutton_ == 1) {
+         ballast_wt += 1.0
+	 }
+	 else {
+         ballast_wt -= 1.0
+         }
+
+         if ( ballast_wt < 0) {
+            ballast_wt = 0;
+         }
+	 
+	 current_wt = body_wt + wingwt + harness_wt + kit + helmet + ballast_wt;
+         current_wt_lbs = current_wt *kg2lb_;
+         ballast_wt_lbs = ballast_wt *kg2lb_;
+         woSetValue(ballastbwo,"%4.1f$ballast_wt $ballast_wt_lbs");
+
+         woSetValue(wtkgbwo,"%4.1f$current_wt $current_wt_lbs");
+
+
+
        }
 
        if (ewoname_ == "UPWT") {
                 recompute = 1
-           current_wt_lbs += 1
-           current_wt = current_wt_lbs/kg2lb_ ;	 
-	   woSetValue(wtbwo,"$current_wt_lbs");
-	   woSetValue(wtkgbwo,"%4.1f$current_wt");	 	   
+           body_wt_lbs += 1
+           body_wt = body_wt_lbs/kg2lb_ ;
+	   
+	   //woSetValue(wtbwo,"$bodywt $body_wt_lbs");	 
+         current_wt = body_wt + wingwt + harness_wt + kit + helmet + ballast_wt;
+         current_wt_lbs = current_wt*kg2lb_;
+<<"%V $wtbwo $wtkgbwo $body_wt $body_wt_lbs $current_wt \n"
+
+
+         sWo(_woid,wtbwo,_wotext,"%4.1f$body_wt $body_wt_lbs");	 
+         // woSetValue(wtkgbwo,"%4.1f$current_wt");	 	   
        }
        if (ewoname_ == "DOWNWT") {
-                recompute = 1
-           current_wt_lbs -= 1
-           current_wt = current_wt_lbs/kg2lb_ ;	 
-	   woSetValue(wtbwo,"$current_wt_lbs");
-	   woSetValue(wtkgbwo,"%4.1f$current_wt");	 	   
+           recompute = 1
+           body_wt_lbs -= 1
+           body_wt = body_wt_lbs/kg2lb_ ;	 
+	//   woSetValue(wtbwo,"$bodywt $body_wt_lbs");	 		
+	 current_wt = body_wt + wingwt + harness_wt + kit + helmet + ballast_wt;
+         current_wt_lbs = current_wt*kg2lb_;
+	 sWo(_woid,wtbwo,_wotext,"%4.1f$body_wt $body_wt_lbs");	 
+         //  woSetValue(wtkgbwo,"%4.1f$current_wt");	 	   
        }
        
             if (ewoname_ == "Harness") {
 
              if (c_harness == "adv") {
                  c_harness = "gin"
-		 harness = gin_harness
+		 harness_wt = gin_harness
              }
              else {
                    c_harness = "adv"
-		   harness = adv_harness
+		   harness_wt = adv_harness
              }
+	    current_wt = body_wt + wingwt + harness_wt + kit + helmet + ballast_wt;
+            current_wt_lbs = current_wt*kg2lb_;
+	 
+             woSetValue(harbwo,"$c_harness %4.1f$harness_wt");
+           //  woSetValue(wtkgbwo,"%4.1f$current_wt");	 
 
-             woSetValue(harbwo,"$c_harness");
+//	     sWo(_woid,harbwo,_wotext,"$c_harness %4.1f$harness_wt");
+//	      woSetText(harbwo,"$c_harness %4.1f$harness_wt");	 
                 recompute = 1
              }
            
 
                if( recompute) {
+
                 Theta.Compute()
 		Hook3.Compute()
 		Epsilon10_26.Compute()				
-		Epsilon10_28.Compute()		
-               }
+		Epsilon10_28.Compute()
+		current_wt = body_wt + wingwt + harness_wt + kit + helmet + ballast_wt;
+                current_wt_lbs = current_wt*kg2lb_;	
+
+                }
 
        drawScreens()
  }

@@ -3913,13 +3913,24 @@ January 1, 1970, Coordinated Universal Time (UTC).
 .EF
 =============================================================
 .BF
-utime()
+utime(),gettime()
 .(x
 utime
 .)x 
 .FD
 utime() (or gettime() )
 returns Unix time in seconds.
+
+.EF
+==========================================================
+.BF
+getprogtime()
+.(x
+getprogtime
+.)x 
+.FD
+
+returns time in seconds since program started.
 
 .EF
 ==========================================================
@@ -4522,7 +4533,7 @@ or if not found enters a new tag-value pair.
 .EF
 =============================================================
 .BF
-sleep,si_pause()
+sleep,gspause()
 .(x
 sleep
 .)x 

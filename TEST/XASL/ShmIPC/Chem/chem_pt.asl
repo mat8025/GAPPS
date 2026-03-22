@@ -104,10 +104,10 @@ sWi(_woid,vp,_wclipborder,hue+2,_wcliphue,hue+1,_wclearclip,hue, _wredraw,ON_)
        ans=ask("see it? $(getColorName(hue))  $hue",0)
 }
 
-    sWi(_woid,vp,_wsetgrid,12,19)
+    sWi(_woid,vp,_wsetgrid,tuple(12,19))
 
   titleButtonsQRD(vp);
-  ans=ask("see it?",0)
+  ans=ask("see it?",1)
   if (ans == "n") {
     exitgs();
     exit(-1);
@@ -121,7 +121,7 @@ sWi(_woid,vp,_wclipborder,hue+2,_wcliphue,hue+1,_wclearclip,hue, _wredraw,ON_)
 
   elespec = Pt(i)
 
-  ans=ask(" $elespec \n",0)
+//  ans=ask(" $elespec \n",0)
   
   //<<" %V $elespec $(Pt(i)) \n"
   
@@ -390,3 +390,13 @@ ans=ask("see it?",0)
  
 
 //==============\_(^-^)_/==================//
+/*              DEV                        /
+  1 Improve speed by a group of woids that repeat
+    a set of wo commands via a block that is built
+    on the first loop -- i.e. parsed by the plot module
+    there is already a buffer  in the wcom module 
+
+  2. need some sort of looping parameter for sWo( array,   wbox( ele ) ) where ele is incremented when array of wo's are processed
+
+
+*/

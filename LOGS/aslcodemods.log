@@ -2311,3 +2311,67 @@ spil_args.cpp                       1.12  02/18/2026 08:02:28  vardef default se
 spil_args.cpp                       1.12  02/18/2026 08:03:12  
 ds_arraycopy.cpp                    2.76  02/20/2026 10:04:22  takes care of convert if needed
 rdp_store.cpp                       2.10  02/20/2026 10:05:51  
+spil_rtop.cpp                       1.16  03/07/2026 09:36:48  finetimesince free result mem prior
+spil_timedate.cpp                   1.20  03/08/2026 09:20:38  added getprogtime
+vmf_event.cpp                       1.28  03/08/2026 09:22:10  added geteventtime
+vmf_event.cpp                       1.28  03/08/2026 09:22:53  
+gwm_delete.cpp                      1.14  03/20/2026 06:41:28  moved in delete_all_aw
+gwm_delete.cpp                      1.14  03/20/2026 06:42:08  
+wo_resize.cpp                       1.32  03/20/2026 06:47:37  moved from gwmsi
+gwm_clock.cpp                       1.6  03/21/2026 08:19:36  WA/WC defines
+gwm_clip.cpp                        1.4  03/21/2026 08:20:25  
+gwm_colors.cpp                      1.7  03/21/2026 08:22:03  
+gwm_create.cpp                      1.8  03/21/2026 08:26:31  
+gwm_cursor.cpp                      1.10  03/21/2026 08:30:06  
+gwm_delete.cpp                      1.15  03/21/2026 08:32:41  
+gwm_dori.cpp                        1.15  03/21/2026 08:38:17  
+gwm_event.cpp                       1.17  03/21/2026 08:40:50  
+gwm_fonts.cpp                       1.49  03/21/2026 08:42:07  
+gwm_gmsg.cpp                        1.21  03/21/2026 08:43:26  
+gwm_graph.cpp                       1.17  03/21/2026 08:47:02  
+gwm_gs_cr.cpp                       1.18  03/21/2026 08:49:41  
+gwm_icon.cpp                        1.19  03/21/2026 08:52:49  
+gwm_image.cpp                       1.23  03/21/2026 08:53:48  
+gwm_interact.cpp                    1.29  03/21/2026 09:00:17  
+gwm_laser.cpp                       1.24  03/21/2026 09:03:09  
+gwm_mgr.cpp                         1.25  03/21/2026 09:06:21  
+gwm_mods.cpp                        1.44  03/21/2026 09:07:35  
+gwm_move.cpp                        1.30  03/21/2026 09:08:50  
+gwm_msg.cpp                         1.28  03/21/2026 09:10:37  
+gwm_navi.cpp                        1.27  03/21/2026 09:12:27  
+gwm_ops.cpp                         1.32  03/21/2026 09:15:08  
+gwm_panel.cpp                       1.30  03/21/2026 09:16:35  
+gwm_print.cpp                       1.31  03/21/2026 09:18:53  
+gwm_redraw.cpp                      1.32  03/21/2026 09:20:23  
+gwm_reply.cpp                       1.37  03/21/2026 09:21:15  
+gwm_resize.cpp                      1.37  03/21/2026 09:23:15  
+gwm_scale.cpp                       1.37  03/21/2026 09:25:12  
+gwm_screennav.cpp                   1.39  03/21/2026 09:28:20  
+gwm_scroll.cpp                      1.38  03/21/2026 09:29:27  
+gwm_sendmsg.cpp                     1.41  03/21/2026 09:31:09  
+gwm_shm.cpp                         1.42  03/21/2026 09:32:22  
+gwm_sig.cpp                         1.45  03/21/2026 09:34:08  
+gwm_socket.cpp                      1.43  03/21/2026 09:36:18  
+gwm_text.cpp                        1.47  03/21/2026 09:38:20  
+gwm_thread.cpp                      1.48  03/21/2026 09:40:22  
+gwm_title.cpp                       1.49  03/21/2026 09:43:00  
+gwm_vplot.cpp                       1.12  03/21/2026 09:43:41  
+wo_func.cpp                         1.51  03/21/2026 09:46:00  
+wo_resize.cpp                       1.33  03/21/2026 09:47:04  
+wo_win.cpp                          1.50  03/21/2026 09:48:15  
+wo_w.cpp                            1.66  03/21/2026 09:49:28  
+wo_button_w.cpp                     1.49  03/21/2026 09:50:28  
+wo_menu_w.cpp                       1.53  03/21/2026 09:51:46  
+wo_text_w.cpp                       1.63  03/21/2026 09:53:06  
+wo_plot_w.cpp                       1.53  03/21/2026 09:54:58  
+wo_posnsz_w.cpp                     1.57  03/21/2026 09:55:57  
+wo_draw_w.cpp                       1.50  03/21/2026 09:57:52  
+mc_xw_pixmap.cpp                    1.50  03/21/2026 10:06:01  
+menu.cpp                            1.37  03/21/2026 10:08:40  
+mc_gs.cpp                           1.50  03/21/2026 10:10:31  
+gasp.cpp                            1.57  03/21/2026 10:12:09  
+spawn.cpp                           1.61  03/21/2026 10:16:13  
+wcom_gs_sw.cpp                      1.90  03/21/2026 10:21:47  
+wcom_wgm.cpp                        1.95  03/21/2026 10:22:16  
+spil_spawn.cpp                      1.23  03/21/2026 10:27:12  
+spil_wop.cpp                        1.20  03/21/2026 10:27:19  

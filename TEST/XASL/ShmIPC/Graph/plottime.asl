@@ -1,5 +1,5 @@
 /* 
- *  @script plotsinwave.asl 
+ *  @script plottime.asl 
  * 
  *  @comment plot sin 
  *  @release CARBON 
@@ -22,7 +22,7 @@ Str Use_= " Demo  of plot sin ";
 } 
 
    allowErrors(-1); 
-
+  int qa =0
   chkIn(_dblevel)
 
   chkT(1);
@@ -45,7 +45,40 @@ Str Use_= " Demo  of plot sin ";
    }
    
   sdb(1,"~step")
- 
+
+  ft1=finetime()
+  ft1.pinfo()
+
+  wt1 = gettime()
+
+  wt1.pinfo();
+
+  gspause(2.1)
+
+  fdt= finetimesince(ft1)
+
+  fdt.pinfo()
+
+ans=ask("%V $fdt", qa)
+
+  wt2 = gettime()
+
+  wt2.pinfo();
+
+
+  hl= wt2-wt1;
+
+<<"%V $wt1 $wt2 $hl \n"
+
+  d1= time2date(wt1)
+
+<<"$wt1 --> $d1\n"
+
+//  exit(-1)
+
+
+
+
   Graphic = CheckGwm();
 
   if (!Graphic) {
@@ -62,6 +95,9 @@ Str Use_= " Demo  of plot sin ";
 
   YV = sin(XV);
 
+
+
+  
   aslw = asl_w("PLOT_SIN");
 // Window
 
@@ -124,8 +160,12 @@ Str Use_= " Demo  of plot sin ";
   
      eventWait() ; // eventWait() -- wait forever else value set
      // how long did I wait
-   <<"Done waiting ! $_eloop $_ekeyw $f $g\n"
-   
+ <<"%V $etime_ \n"
+<<"Done waiting ! $eloop_ $ekeyw_  $etime_ \n"
+
+
+
+
    redraw_screen = 1;
 
    XV2 = XV * f;

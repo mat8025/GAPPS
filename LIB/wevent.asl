@@ -44,7 +44,7 @@
 
   float erx_ = -1.234;
   float ery_ = -1.2345;
-
+  double esecs_ = 0.0;
   int ex_ = -15;
   int ey_ = 0;
 
@@ -57,7 +57,9 @@
   int ewoid_ 
   int ewoaw_ =0;
   int ewid_ =0;
-
+  uint etime_secs_ = 0;
+  uint etime_usecs_ = 0;
+  uint etime_[4];
   Svar emsgwd_;
   Svar ewords_;
 
@@ -122,7 +124,9 @@ void eventDecode()
    
       ebutton_ = Gev.getEventButton();  // or Gev.ebutton
 
-cprintf("getting   ebutton_ %d ename_ %S\n",ebutton_,ename_) ;
+      etime_ = Gev.getEventTime();
+      esecs_ = getProgTime()
+cprintf("getting   ebutton_ %d etimes %d %d %f\n",ebutton_, etime_[0], etime_[1],esecs_) ;
 
       ekeyc_ = Gev.getEventKey();
 
