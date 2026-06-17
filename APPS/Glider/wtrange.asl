@@ -16,7 +16,8 @@
 
   argc = argc();
   arg1= _clarg[1]
-<<"%V $argc $arg1\n"
+    arg2= _clarg[2]
+<<"%V $argc harness $arg1 wtlbs $arg2\n"
 
    c_harness = "adv"
    
@@ -26,6 +27,7 @@
    float body_wt_lbs = _argv[2]
    <<"%V $body_wt_lbs \n"
 
+ans = ask("%V $body_wt_lbs $c_harness ",0)
    
 
 #define __CPP__ 0
@@ -78,9 +80,6 @@ using namespace std;
   chkT(1);
 
 
-    float default_wt_lbs = 195.0
-   <<"%V $default_wt_lbs\n"
-   
 
 
 //   wtrange  for my glider wings
@@ -186,6 +185,18 @@ class Wing
     return bhue;
   }
 
+  void Plot(float pos)
+  {
+
+     plotBox(wtrwo,pos,min,pos+2,max, bhue, FILL_)  
+     plotSymbol(wtrwo,DIAMOND_,pos+1,best_75,BLUE_,Symsz,1);
+     plotSymbol(wtrwo,STAR_,pos+1,allupwt,hue,Symsz,1);
+     plotLine(wtrwo,pos,ideal_min,pos+2,ideal_min,BLACK_)
+     plotLine(wtrwo,pos,ideal_max,pos+2,ideal_max,BLACK_)
+     plotText(wtrwo,name,pos+1,min -2,BLACK_,0,1)
+     plotText(wtrwo,"%6.1f$allupwt",pos+1,min -4,BLACK_,0,1)
+
+  }
 
   void Print()
   {
@@ -208,11 +219,16 @@ class Wing
 
  };
 
-
+    float default_wt_lbs = 195.0
+   <<"%V $default_wt_lbs\n"
+   
+if ( body_wt_lbs == 0) {
+   body_wt_lbs = default_wt_lbs;
+}
   
    body_wt =  body_wt_lbs/kg2lb_ ;
 
-ans= ask("%V $body_wt $body_wt_lbs",0)
+
 
    float current_wt = body_wt;
    float current_wt_lbs = body_wt_lbs;
@@ -232,20 +248,19 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
 
    //  harnesses
    adv_harness = 2.15
-   gin_harness = 6.0
+   gin_harness = 3.5
 
    harness_wt = adv_harness
 
    if (c_harness == "gin") {
-     harness = gin_harness
+     harness_wt = gin_harness
    }
 
 
    if (c_harness == "adv") {
      harness_wt = adv_harness
    }
-
-
+  ask("%V $c_harness $harness_wt\n",0)
    // wing weights kg 
    magicw = 5.2
    hook3w = 5.3
@@ -276,17 +291,20 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
    Epsilon10_28.Compute()
    Epsilon10_28.Print()
 
-   Wing Epsilon10_26 ;
 
-   epsilon_minw = 79 ; //  26 kg
-   epsilon_maxw = 103 ; 
-   epsilonw = 4.1 ; // 26
 
-   Epsilon10_26.Set("Epsilon10_26",epsilon_minw,epsilon_maxw,epsilonw)
-   Epsilon10_26.setIdeal(86,99)
 
-   Epsilon10_26.Compute()
-   Epsilon10_26.Print()
+   Wing IotaDLS_25 ;
+
+   iota_minw = 80 ; //  
+   iota_maxw = 100 ; 
+   iotaw = 4.3 ; // 
+
+   IotaDLS_25.Set("IotaDLS_25",iota_minw,iota_maxw,iotaw)
+   IotaDLS_25.setIdeal(85,97)
+
+   IotaDLS_25.Compute()
+   IotaDLS_25.Print()
 
 
 
@@ -413,46 +431,32 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
 
   // hook3 wtrange box
    // <<"%V $Hook3.min  $Hook3.max $Hook3.allupwt \n"
+     Hook3.Plot(2)
+     /*
      plotBox(wtrwo,2,Hook3.min,4,Hook3.max, Hook3.bhue, FILL_)  
-
      plotSymbol(wtrwo,DIAMOND_,3,Hook3.best_75,BLUE_,Symsz,1);
      plotSymbol(wtrwo,STAR_,3,Hook3.allupwt,Hook3.hue,Symsz,1);
      plotText(wtrwo,Hook3.name,3,Hook3.min -2,BLACK_,0,1)
      plotText(wtrwo,"%6.1f$Hook3.allupwt",3,Hook3.min -4,BLACK_,0,1)
-     
-     plotText(wtrwo,Theta.name,6,Theta.min -2,BLACK_,0,1)
-     plotText(wtrwo,"%6.1f$Theta.allupwt",6,Theta.min -4,BLACK_,0,1)
-     
-     plotText(wtrwo,Epsilon10_26.name,9,Epsilon10_26.min-2,BLACK_,0,1)
-     plotText(wtrwo,"%6.1f$Epsilon10_26.allupwt",9,Epsilon10_26.min-4,BLACK_,0,1)          
-     plotText(wtrwo,Epsilon10_28.name,12,Epsilon10_28.min-2,BLACK_,0,1)
-     plotText(wtrwo,"%6.1f$Epsilon10_28.allupwt",12,Epsilon10_28.min-4,BLACK_,0,1)          
+     */
+
+     Theta.Plot(5)
+
      
 
   // advance theta wtrange box
    //  <<"%V $Theta.min  $Theta.max $Theta.allupwt \n"
-     plotBox(wtrwo,5,Theta.min,7,Theta.max, Theta.bhue, FILL_)  
-     plotSymbol(wtrwo,DIAMOND_,6,Theta.best_75,BLUE_,Symsz,1);
-     plotSymbol(wtrwo,STAR_,6,Theta.allupwt,Theta.hue,Symsz,1);     
-    // Text(wtrwo,Theta.name,6,Theta.min-2,BLACK_,0)
-     plotLine(wtrwo,5,Theta.ideal_min,7,Theta.ideal_min,BLACK_)
-     plotLine(wtrwo,5,Theta.ideal_max,7,Theta.ideal_max,BLACK_)
+ 
 
-  // epsilon wtrange box
-   //  <<"%V $Epsilon10_26.min  $Epsilon10_26.max $Epsilon10_26.allupwt \n"
-     plotBox(wtrwo,8,Epsilon10_26.min,10,Epsilon10_26.max, Epsilon10_26.bhue, FILL_)  
-     plotSymbol(wtrwo,DIAMOND_,9,Epsilon10_26.best_75,BLUE_,Symsz,1);
-     plotSymbol(wtrwo,STAR_,9,Epsilon10_26.allupwt,Epsilon10_26.hue,Symsz,1);
-     plotLine(wtrwo,8,Epsilon10_26.ideal_min,10,Epsilon10_26.ideal_min,BLACK_)
-     plotLine(wtrwo,8,Epsilon10_26.ideal_max,10,Epsilon10_26.ideal_max,BLACK_)
-     
+  // IotaDLS wtrange box
+   //  <<"%V $Iota2_27.min  $Iota2_27.max $Iota2_27.allupwt \n"
+      IotaDLS_25.Plot(8)
 
    //  <<"%V $Epsilon10_28.min  $Epsilon10_28.max $Epsilon10_28.allupwt \n"
-     plotBox(wtrwo,11,Epsilon10_28.min,13,Epsilon10_28.max, Epsilon10_28.bhue, FILL_)  
-     plotSymbol(wtrwo,DIAMOND_,12,Epsilon10_28.best_75,BLUE_,Symsz,1);
-     plotSymbol(wtrwo,STAR_,12,Epsilon10_28.allupwt,Epsilon10_28.hue,Symsz,1);     
-     plotLine(wtrwo,11,Epsilon10_28.ideal_min,13,Epsilon10_28.ideal_min,BLACK_)
-     plotLine(wtrwo,11,Epsilon10_28.ideal_max,13,Epsilon10_28.ideal_max,BLACK_)
+     Epsilon10_28.Plot(11)
+
+
+
 
      current_wt = body_wt + wingwt + harness_wt + kit + helmet + ballast_wt;
      current_wt_lbs = current_wt * kg2lb_;
@@ -564,8 +568,6 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
 
 	 //woSetValue(wtbwo,"$bodywt $body_wt_lbs");
 
-
-
          //woSetValue(wtkgbwo,"%4.1f$current_wt");	 
          sWo(_woid,wtbwo,_wotext,"%4.1f$body_wt $body_wt_lbs");	 
         }
@@ -645,8 +647,10 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
 
                 Theta.Compute()
 		Hook3.Compute()
-		Epsilon10_26.Compute()				
+		IotaDLS_25.Compute()				
 		Epsilon10_28.Compute()
+
+
 		current_wt = body_wt + wingwt + harness_wt + kit + helmet + ballast_wt;
                 current_wt_lbs = current_wt*kg2lb_;	
 

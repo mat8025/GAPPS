@@ -126,7 +126,7 @@ void eventDecode()
 
       etime_ = Gev.getEventTime();
       esecs_ = getProgTime()
-cprintf("getting   ebutton_ %d etimes %d %d %f\n",ebutton_, etime_[0], etime_[1],esecs_) ;
+//cprintf("getting   ebutton_ %d etimes %d %d %f\n",ebutton_, etime_[0], etime_[1],esecs_) ;
 
       ekeyc_ = Gev.getEventKey();
 

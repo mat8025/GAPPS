@@ -87,7 +87,7 @@ spawn_it = 1
     
     sWi(_woid,vp,_wsetgrid,tuple(12,12),_wclear,GREEN_,_wsavepixmap,ON_)
 
-    sWi(_woid,vp,_wclip,wbox(3,2,10,10,WGRID_),_wclipborder,YELLOW_,_wclipfhue,BLUE_,_wclipbhue,PINK_,_wredraw,ON_)
+    sWi(_woid,vp,_wclip,wbox(3,2,10,10,WGRID_),_wclipborder,YELLOW_,_wclipfhue,BLUE_,_wclipbhue,PINK_,_wcw,tuple(WC_SHOW_GRID_,ON),_wredraw,ON_)
 
 
     titleButtonsQRD(vp);
@@ -171,11 +171,11 @@ spawn_it = 1
 
  bwo=cWo(vp,WO_BV_)
  
- sWo(_woid,bwo,_wname,"BELL",_wcolor,BLUE,_woresize,wbox(9,0,12 ,3,WOGRID_),_woFUNC,"ringBell")
+ sWo(_woid,bwo,_wname,"BELL",_wcolor,BLUE,_woresize,wbox(9,0,12,3,WOGRID_),_woFUNC,"ringBell")
 
- sWo(_woid,bwo,_wBORDER,RED_,_wDRAW,ON_,_wCLIPBORDER,BROWN_,_wFONTHUE,BLACK,_wVALUE,"ON",_wSTYLE,SVB_,_wredraw,ON_)
+ sWo(_woid,bwo,_wBORDER,RED_,_wDRAW,ON_,_wCLIPBORDER,BROWN_,_wFONTHUE,BLACK,_wVALUE,"ON",_wSTYLE,SVB_)
 
-
+ sWo(_woid,bwo,_woattr,tuple(WOA_GRID_,ON_),_wredraw,ON_)
 
  mwo=cWo(vp,WO_BV_)
  
