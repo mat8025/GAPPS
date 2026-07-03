@@ -35,7 +35,7 @@ here = 1;
   
   sWi(_woid,vp,_wresize,wbox(0.01,0.05,0.90,0.95,0)  ); 
  
-  sWi(_woid,vp,_wclip,wbox(0.1,0.05,0.9,0.95),_wpixmap,ON_,  _wredraw,ON_,_wsave,ON_,_wsavepixmap,ON_); 
+  sWi(_woid,vp,_wclip,wbox(0.1,0.05,0.9,0.95),_wpixmap,OFF_,  _wredraw,ON_,_wsave,ON_,_wsavepixmap,OFF_); 
  
 //ans = ask("$(here++) $vp",1) 
  
@@ -70,7 +70,8 @@ cout<<"  titleButtonsQRD(vp);\n";
  
   wt_wo=cWo(vp,WO_GRAPH_); 
  
-  sWo(_woid,wt_wo,_wname,"WTLB",_wvalue,0,_wclipborder,YELLOW_,_wpixmap,ON_,_wdraw,ON_); //   weight; 
+  //sWo(_woid,wt_wo,_wname,"WTLB",_wvalue,0,_wclipborder,YELLOW_,_wpixmap,ON_,_wdraw,ON_); //   weight;
+    sWo(_woid,wt_wo,_wname,"WTLB",_wvalue,0,_wclipborder,YELLOW_,_wpixmap,OFF_,_wdraw,ON_); //   weight; 
  
   cal_wo=cWo(vp,WO_GRAPH_); 
  
@@ -86,7 +87,7 @@ cout<<"  titleButtonsQRD(vp);\n";
 
   exer_wo=cWo(vp,WO_GRAPH_); 
    
-  sWo(_woid,exer_wo,_wname,"Exercise",_wvalue,0,_wclipborder,RED_,_wpixmap,ON_,_wdraw,ON_);
+  sWo(_woid,exer_wo,_wname,"Exercise",_wvalue,0,_wclipborder,RED_,_wpixmap,OFF_,_wdraw,ON_);
 
 
   int wedwos[] = { wt_wo, cal_wo,  food_wo, ket_wo, exer_wo, -1  }; 
@@ -130,7 +131,7 @@ COUT(sc_zstart);
   sWo(_woid,exer_wo,_wclip,CXY,_wcolor,LILAC_,_wclipbhue,WHITE_,_wbhue,WHITE_,_wfont,F_SMALL_,_wredraw,ON_,_wsavepixmap,ON_); 
  
 
-  sWo(_woid,wt_wo,_wlhbscales,wbox(sc_startday,minWt,sc_end,upperWt,0),_wsavescales,0);
+  sWo(_woid,wt_wo,_wclip,CXY,_wlhbscales,wbox(sc_startday,minWt,sc_end,upperWt,0),_wsavescales,0);
 
   sWo(_woid,wt_wo,_wrhtscales,wbox(sc_startday,0.0, sc_end,300.0,1),_wsavescales,1);
 
@@ -251,7 +252,7 @@ COUT(sc_zstart);
    
    //sWo(xwos,_wstyle,WS_SVB,_wredraw,_WEO); 
  
-   sWo(_woid,wt_wo,_wshowpixmap,ON_,_wsave,ON_); 
+   sWo(_woid,wt_wo,_wshowpixmap,OFF_,_wsave,ON_); 
  
 
 // Measure WOBS 

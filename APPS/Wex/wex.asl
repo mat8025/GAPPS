@@ -164,7 +164,7 @@ using namespace std;
 
   float minWt = 160;
 
-  float upperWt = 205;  // this is way too much
+  float upperWt = 220;  // this is way too much
 //StartWt = 205;
 // rates per min
 
@@ -276,7 +276,7 @@ Record RX;
 //wdb=DBaction((DBSTEP_),ON_)
 
 
-  int Symsz= 5;
+  float Symsz= 2.0;
 //=========================================
   float CalsY1 = 5000.0;
 
@@ -440,7 +440,7 @@ Record RX;
 
   Mo.Split ("JAN,FEB,MAR,APR ,MAY,JUN, JUL, AUG, SEP, OCT, NOV , DEC",44);
 
-  GoalsC.Split("02/01/2026 04/09/2026 175");
+  GoalsC.Split("06/20/2026 08/04/2026 180");
 
 
   maxday = Julian("04/09/2049") -Bday;
@@ -462,7 +462,7 @@ Record RX;
   }
 // check period
 
-  Svar rx;
+  Svar svrx;
 
   Wex_Nrecs=RX.readRecord(A,_RDEL,-1);  // no back ptr to Siv?
 
@@ -480,8 +480,8 @@ Record RX;
 /*
   int irx = Wex_Nrecs -30;
   for (i = irx ; i < Wex_Nrecs; i++) {
-       rx= RX[i];
-       <<"$i  $rx \n"
+       svrx= RX[i];
+       <<"$i  $svrx \n"
   }
 */
  //  ans=query(" readRecord proceed?");

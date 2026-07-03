@@ -31,7 +31,7 @@
   {
   int i,j;
 
-//oknow = Ask ("que pasa? $_proc",1)
+
 
 //<<"%V $_proc $sc_startday  $sc_end \n";
 // sc_startday.pinfo()
@@ -65,7 +65,8 @@
    sWo(_woid,wedwos[i],_wxscales, wpt(sc_zstart,sc_zend));
         //printf("%d xscales %f %f\n",i,sc_zstart,sc_zend);
 
-   sWo(_woid,wedwos[i],_wclearclip,WHITE_,_wsave,ON_,_wclearpixmap,ON_,_wclipborder,BLACK_,_wredraw,ON_,_wsavepixmap,ON_);
+//   sWo(_woid,wedwos[i],_wclearclip,WHITE_,_wsave,ON_,_wclearpixmap,ON_,_wclipborder,BLACK_,_wredraw,ON_,_wsavepixmap,ON_);
+   sWo(_woid,wedwos[i],_wclearclip,WHITE_,_wsave,ON_,_wclearpixmap,OFF_,_wclipborder,BLACK_,_wredraw,ON_);
    
   }
   
@@ -75,7 +76,9 @@
   drawGrids( wScreen);
 
   drawGoals( wScreen);
-  
+
+oknow = Ask ("que pasa? $_proc",0)
+
    sWo(_woid,cal_wo,_wfont,f_SMALL_);
 
 /// these need to be a separate wo to contain key  symbol and text
@@ -83,14 +86,18 @@
 // plot(cal_wo,_Wkeysymbol,0.78 ,0.9,DIAMOND_,Symsz,BLUE_,1);
 
   // want to use left and right scales
- // sWo(_woid,wt_wo,_wscales,wbox(rx,minWt,rX,upperWt));
- // sWo(_woid,wt_wo,_wscales,wbox(rx,minWt,rX,upperWt));
+ sWo(_woid,wt_wo,_wscales,wbox(sc_zstart,minWt,sc_zend,upperWt));
 
-   plotLine(cal_wo,sc_zstart,day_burn,sc_zend,day_burn, GREEN_)
+<<" scale %V $sc_zstart $minWt $sc_zend $upperWt\n";
 
-   plotLine(cal_wo,sc_startday,out_cal,sc_end,out_cal, BLUE_)
+//   plotLine(cal_wo,sc_zstart,day_burn,sc_zend,day_burn, GREEN_)
 
-   Text(carb_wo,"Exercise Time (mins)",0.8,0.7,1,0,RED_);
+   sWo(_woid,cal_wo,_wline,wbox(sc_zstart,day_burn,sc_zend,day_burn, GREEN_))
+
+ //  plotLine(cal_wo,sc_startday,out_cal,sc_end,out_cal, BLUE_)
+
+  sWo(_woid,cal_wo,_wline,wbox(sc_startday,out_cal,sc_end,out_cal, BLUE_))
+  Text(carb_wo,"Exercise Time (mins)",0.8,0.7,1,0,RED_);
 
    drawMonths(wt_wo);
 
@@ -100,9 +107,17 @@
 
   //drawMonths(carb_wo);
 
+oknow = Ask ("que pasa pre Glines? $_proc",0)
+
   drawGlines();
 
-  plotLine(wt_wo,last_known_day,last_known_wt,targetday,TargetGoalWt, BLACK_) ;  // does not show?
+
+  //plotLine(wt_wo,last_known_day,last_known_wt,targetday,TargetGoalWt, BLACK_) ;  // does not show?
+
+ sWo(_woid,wt_wo,_wline,wbox(last_known_day,last_known_wt,targetday,TargetGoalWt, BLACK_)) ;  // does not show?
+
+oknow = Ask ("que pasa post Glines? $_proc",0)
+
 
  }
 

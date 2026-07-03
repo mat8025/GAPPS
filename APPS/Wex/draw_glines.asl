@@ -9,29 +9,14 @@ void drawGlines()
    int gi=0;
 
 
-/*
-  dGl(wt_gl);
 
-  dGl(calx_gl);
-  
-  dGl(ket_gl);
-
-   dGl(glu_gl);
-
-  dGl(glu_gl);
-
-  dGl(calc_gl);
-
-   dGl(carb_gl);
-
-  dGl(ext_gl);
-  dGl(prot_gl);
-    dGl(fat_gl);
-*/
 
 
   sWo(_woid,ket_wo,_wusescales,0);
-    sWo(_woid,food_wo,_wusescales,0);
+
+  sWo(_woid,food_wo,_wusescales,0);
+
+    sWo(_woid,wt_wo,_wusescales,0);
 
   while ( 1) {
   
@@ -58,6 +43,11 @@ void drawGlines()
 
    //  sWo(_woid,wedwos[i],_wclipborder,BLACK_,_wpixmap,ON_,_wsavepixmap,ON_);
    }
+
+oknow = Ask ("%V $ext_gl  ",0)
+
+oknow = Ask (" SEEME?  ",0)
+
      dGl(ext_gl);
 }
 oknow = Ask (" $_include  ",0)

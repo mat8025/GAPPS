@@ -135,7 +135,7 @@ for (i= 0; i< 18; i++) {
   // draw symbols into wo
           msymx = 0.8;
 	  msymy = 0.3;
-	  msize = 12;
+	  msize = 30;
           plotsymbol(wtmwo,DIAMOND_,msymx,msymy,BLUE_,msize);
           plotsymbol(xtmwo,STAR_,msymx,msymy,GREEN_,msize);	  
           plotsymbol(calexbwo,STAR_,msymx,msymy,RED_,msize);

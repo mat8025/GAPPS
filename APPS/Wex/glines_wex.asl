@@ -141,7 +141,7 @@
 
   while (1) {
   
-        sGl(_GLID,wedgl[ki],_GLMISSING,missing_val);
+        sGl(_GLID,wedgl[ki],_GLMISSING,missing_val,_GLUSESCALES,0);
         ki++;
 	if (wedgl[ki] <0) {
          break;
@@ -149,28 +149,33 @@
  }
 
   //cout<<"set symbols \n";
+  Symsz = 7.0;
 
-  sGl(_GLID,ext_gl,_GLSYMBOL,TRI_, _GLSYMSIZE, Symsz,_GLSYMFILL,ON_);
+ // sGl(_GLID,wt_gl,_GLSYMBOL,DIAMOND_,_GLSYMSIZE, Symsz, _GLSYMHUE,BLUE_,_GLNAME,"weight");
+  sGl(_GLID,wt_gl,_GLSYMBOL,DIAMOND_,_GLSYMSIZE, Symsz, _GLSYMHUE,BLUE_,_GLNAME,"weight");
 
-  sGl(_GLID,ext_gl,_GLSYMBOL, STAR_, _GLSYMSIZE, Symsz, _GLSYMHUE,GREEN_,_GLNAME,"exer_time");
 
-  sGl(_GLID,cardio_gl,_GLSYMBOL,DIAMOND_);
+
+  sGl(_GLID,ext_gl,_GLSYMBOL, DIAMOND_, _GLSYMSIZE, Symsz, _GLSYMHUE,GREEN_,_GLNAME,"exer_time");
+
+  sGl(_GLID,cardio_gl,_GLSYMBOL,DIAMOND_, _GLSYMSIZE, Symsz);
 
   //sGl(_GLID,se_gl,_GLSYMBOL, STAR5_);
 
-  sGl(_GLID,wt_gl,_GLSYMBOL,DIAMOND_,_GLSYMSIZE, Symsz, _GLSYMHUE,BLUE_,_GLNAME,"weight");
 
-  sGl(_GLID,bp_gl,_GLSYMBOL,STAR_,_GLSYMHUE,RED_,_GLNAME,"benchpress lbs");
 
-  sGl(_GLID,calb_gl,_GLSYMBOL,DIAMOND_,_GLSYMHUE,RED_,_GLNAME,"cals_out");
+  sGl(_GLID,bp_gl,_GLSYMBOL,TRI_,_GLSYMHUE,RED_,_GLNAME,"benchpress lbs");
 
-  sGl(_GLID,calc_gl,_GLSYMBOL,TRI_,_GLSYMHUE,BLUE_,_GLNAME,"cals_in");
+  sGl(_GLID,calb_gl,_GLSYMBOL,DIAMOND_,_GLSYMHUE,RED_,_GLSYMSIZE, Symsz,_GLNAME,"cals_out");
 
-  sGl(_GLID,cald_gl,_GLSYMBOL,CROSS_,_GLSYMHUE,GREEN_,_GLNAME,"cal_deficit");
+  sGl(_GLID,calc_gl,_GLSYMBOL,TRI_,_GLSYMHUE,BLUE_,_GLSYMSIZE, Symsz,_GLNAME,"cals_in");
 
-  sGl(_GLID,calx_gl,_GLSYMBOL,STAR_,_GLSYMHUE,RED_,_GLNAME,"cal_xburn");
+  sGl(_GLID,cald_gl,_GLSYMBOL,CROSS_,_GLSYMHUE,GREEN_,_GLSYMSIZE, Symsz,_GLNAME,"cal_deficit");
 
-  sGl(_GLID,carb_gl,_GLSYMBOL,DIAMOND_,_GLSYMHUE,RED_,_GLNAME,"carb");
+  sGl(_GLID,calx_gl,_GLSYMBOL,TRI_,_GLSYMHUE,RED_,_GLSYMSIZE, Symsz,_GLNAME,"cal_xburn");
+
+  sGl(_GLID,carb_gl,_GLSYMBOL,DIAMOND_,_GLSYMHUE,RED_,_GLSYMSIZE, Symsz,_GLNAME,"carb");
+
 
 
 

@@ -12,6 +12,7 @@
  */ 
 
 
+
 ///   
 
   argc = argc();
@@ -85,7 +86,7 @@ using namespace std;
 //   wtrange  for my glider wings
 //
 ///  What is my max and min weight for my PG wings ?
-///  Magic versa 27
+///  Magic motor 27
 ///  Advance Epsilon DLS 28
 ///  Hook 3 25
 ///  Advance Theta ULS 25
@@ -145,18 +146,18 @@ class Wing
     current_wt = allupwt;
     current_wt_lbs = current_wt * kg2lb_ 
     
-<<"%V $name %4.1f $min $max $wt $c_harness $harness_wt $helmet $wingwt $ballast_wt $allupwt \n"
+//<<"%V $name %4.1f $min $max $wt $c_harness $harness_wt $helmet $wingwt $ballast_wt $allupwt \n"
 
-   <<"\tmy range %4.1f  with $name wing $min --> $max kg     $(min * kg2lb_) --> $(max * kg2lb_) lbs  \n" 
+  // <<"\tmy range %4.1f  with $name wing $min --> $max kg     $(min * kg2lb_) --> $(max * kg2lb_) lbs  \n" 
     best_75 = (max-min) *.75 + min;
 
      best_wing_wt_lbs = best_75 *kg2lb_ - wingwt*kg2lb_ 
- <<"\tmy best weight - bathroom for $name is %4.1f $best_wing_wt_lbs !   \n"
+ //<<"\tmy best weight - bathroom for $name is %4.1f $best_wing_wt_lbs !   \n"
     max_wing_wt_lbs = max*kg2lb_ - wingwt*kg2lb_  
-   <<"\tmy max weight - bathroom for $name is %4.1f $max_wing_wt_lbs !   \n"
+   //<<"\tmy max weight - bathroom for $name is %4.1f $max_wing_wt_lbs !   \n"
 
     min_wing_wt_lbs = min *kg2lb_ - wingwt*kg2lb_  
-   <<"\tmy min weight - bathroom for $name is %4.1f $min_wing_wt_lbs !   \n"
+   //<<"\tmy min weight - bathroom for $name is %4.1f $min_wing_wt_lbs !   \n"
 
     hue = BLACK_;
     bhue = GREEN_;
@@ -267,10 +268,7 @@ if ( body_wt_lbs == 0) {
 
 
 
-
    // wings 
-
-
 
 
    Wing Hook3 ;
@@ -310,8 +308,8 @@ if ( body_wt_lbs == 0) {
 
    Wing Magic ;
    // wing ranges
-   magic_minw = 80.0 ; //kg
-   magic_maxw = 100.0 ;
+   magic_minw = 88.0 ; //kg
+   magic_maxw = 108.0 ;
 
    magic_name = "Magic"
    Magic.Set(magic_name,magic_minw,magic_maxw,magicw)
@@ -371,7 +369,7 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
 #include "wevent.asl" 
 #include "tbqrd.asl"
 
-  Symsz = 2
+  Symsz = 2.0;
   openDll("image")
 
   Graphic = CheckGwm()
@@ -401,7 +399,7 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
 	//ask("$hue_name $i",0);
 
 
-    sWo(_woid,wtrwo,_woname,"WtRange",_wodraw,ON_,_wopixmap,OFF_,_woclip,wbox(0.1,0.1,0.8,0.9,4),_wocolor,WHITE_)
+    sWo(_woid,wtrwo,_woname,"WtRange",_wodraw,ON_,_wopixmap,OFF_,_woclip,wbox(0.1,0.1,0.9,0.9,4),_wocolor,WHITE_)
     sWo(_woid,wtrwo,_wohue,i,_wobhue,WHITE_,_woclipborder,BLACK_,_woredraw,ON_)
     sWo(_woid,wtrwo,_woclipborder,BLACK_,_woclipbhue,LILAC_,_woclipfhue,ORANGE_,_woupdate,ON_)
 
@@ -432,13 +430,6 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
   // hook3 wtrange box
    // <<"%V $Hook3.min  $Hook3.max $Hook3.allupwt \n"
      Hook3.Plot(2)
-     /*
-     plotBox(wtrwo,2,Hook3.min,4,Hook3.max, Hook3.bhue, FILL_)  
-     plotSymbol(wtrwo,DIAMOND_,3,Hook3.best_75,BLUE_,Symsz,1);
-     plotSymbol(wtrwo,STAR_,3,Hook3.allupwt,Hook3.hue,Symsz,1);
-     plotText(wtrwo,Hook3.name,3,Hook3.min -2,BLACK_,0,1)
-     plotText(wtrwo,"%6.1f$Hook3.allupwt",3,Hook3.min -4,BLACK_,0,1)
-     */
 
      Theta.Plot(5)
 
@@ -456,7 +447,7 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
      Epsilon10_28.Plot(11)
 
 
-
+     Magic.Plot(14)
 
      current_wt = body_wt + wingwt + harness_wt + kit + helmet + ballast_wt;
      current_wt_lbs = current_wt * kg2lb_;
@@ -482,10 +473,10 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
   titleButtonsQRD(aw);
 //<<" CGW $aw \n"
 
-  sWi(_woid, aw,_woresize,wbox(0.1,0.1,0.9,0.7,0))
-  sWi(_woid,aw,_woclip,wbox(0.05,0.1,0.95,0.9))
+  sWi(_woid, aw,_woresize,wbox(0.1,0.1,0.9,0.8,0))
+  sWi(_woid,aw,_woclip,wbox(0.05,0.1,0.95,0.95))
      xmin = 0
-     xmax = 14
+     xmax = 18
 
     sWi(_woid,aw,_woscales,wbox(xmin,0,xmax,120),_wosavescales,0,_wosave,ON_)
 
@@ -493,7 +484,7 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
 
       wtrwo=cWo(aw,WO_GRAPH_);
 
-     sWo(_woid,wtrwo,_woresize,wbox(0.15,0.15,0.8,0.95),_wocolor,WHITE_)
+     sWo(_woid,wtrwo,_woresize,wbox(0.15,0.15,0.9,0.95),_wocolor,WHITE_)
 
  
      sWo(_woid,wtrwo,_woname,"WTRANGE",_wodraw,ON_,_wopixmap,OFF_,_woclip,wbox(0.4,0.1,0.8,0.9),_wocolor,PINK_)
@@ -507,7 +498,6 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
 
       wtbwo=cWo(aw,WO_BV_); 
       sWo(_woid,wtbwo,_woname,"BODYWT",_woclipbhue,CYAN_,_wofonthue,BLACK_,_wohelp," Pilot WT kg lbs ");
-
 
 
       harbwo=cWo(aw,WO_BV_); 
@@ -546,7 +536,7 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
   while (1) {
 
 
-  <<"%V $wtbwo $wtkgbwo $body_wt $current_wt \n" 
+
         m_num++
        recompute = 0
        eventWait()
@@ -564,7 +554,7 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
          current_wt = body_wt + wingwt + harness_wt + kit + helmet + ballast_wt;
          current_wt_lbs = current_wt/kg2lb_;
 
-<<"%V $wtbwo $wtkgbwo $body_wt $current_wt \n"
+//<<"%V $wtbwo $wtkgbwo $body_wt $current_wt \n"
 
 	 //woSetValue(wtbwo,"$bodywt $body_wt_lbs");
 
@@ -604,8 +594,9 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
 	   //woSetValue(wtbwo,"$bodywt $body_wt_lbs");	 
          current_wt = body_wt + wingwt + harness_wt + kit + helmet + ballast_wt;
          current_wt_lbs = current_wt*kg2lb_;
-<<"%V $wtbwo $wtkgbwo $body_wt $body_wt_lbs $current_wt \n"
 
+
+         Symsz += 1.0;
 
          sWo(_woid,wtbwo,_wotext,"%4.1f$body_wt $body_wt_lbs");	 
          // woSetValue(wtkgbwo,"%4.1f$current_wt");	 	   
@@ -619,8 +610,11 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
          current_wt_lbs = current_wt*kg2lb_;
 	 sWo(_woid,wtbwo,_wotext,"%4.1f$body_wt $body_wt_lbs");	 
          //  woSetValue(wtkgbwo,"%4.1f$current_wt");	 	   
-       }
-       
+         Symsz -= 2.0;
+        }
+
+
+
             if (ewoname_ == "Harness") {
 
              if (c_harness == "adv") {
@@ -644,7 +638,7 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
            
 
                if( recompute) {
-
+                Magic.Compute()
                 Theta.Compute()
 		Hook3.Compute()
 		IotaDLS_25.Compute()				
@@ -657,7 +651,8 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
                 }
 
        drawScreens()
- }
+  <<" Paras %V $wtbwo $wtkgbwo $body_wt $body_wt_lbs $current_wt $Symsz\n"	 
+}
 //////////
 
    //units()

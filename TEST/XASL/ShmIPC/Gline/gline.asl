@@ -1,19 +1,20 @@
-//%*********************************************** 
-//*  @script gline.asl 
-//* 
-//*  @comment test gline draw funcs 
-//*  @release CARBON 
-//*  @vers 1.3 Li Lithium                                                 
-//*  @date Sat Mar  2 12:55:33 2019 
-//*  @cdate 1/1/2003 
-//*  @author Mark Terry 
-//*  @Copyright  RootMeanSquare  2010,2019 --> 
-//* 
-//***********************************************%
+/* 
+ *  @script gline.asl                                                         
+ * 
+ *  @comment test gline draw funcs  
+ *  @release Carbon                                                           
+ *  @vers 1.4 Be Beryllium [asl 6.69 : C Tm]                                  
+ *  @date 06/28/2026 09:14:10                                                 
+ *  @cdate 1/1/2003        
+ *  @author Mark Terry                                                        
+ *  @Copyright © RootMeanSquare 2026 -->                                     
+ * 
+ */ 
+
   
-  include "debug.asl";
-  include "hv.asl";
-  include "tbqrd";
+  #include "debug.asl";
+ // #include "hv.asl";
+//  #include "tbqrd";
  // include "gevent.asl";
   
   debugON();
@@ -59,18 +60,21 @@
 
 /////////////////////////////  SCREEN --- WOB ///////////////
   
-  str vptitle = "WAVES"; 
+  Str vptitle = "WAVES"; 
   
 // main window on screen
 //
 //    CreateGwindow      cWi
   
-  vp = cWi(_title,"WAVES",_resize,0.05,0.01,0.99,0.9,0);
+  vp = cWi("WAVES")
+  vp =  cWi(vptitle); 
+
+  sWi(_woid,vp,_wresize,wbox(0.01,0.05,0.90,0.95,0)  ); 
+ 
+  sWi(_woid,vp,_wpixmap,ON_,_wdraw,ON_,_wsave,ON_,_wsavepixmap,ON_,_wbhue,RED_);
   
-  sWi(vp,_pixmapon,_drawon,_save,_savepixmap,_bhue,RED_,_flush);
-  
-  titleButtonsQRD(vp);
-  titleVers();
+ // titleButtonsQRD(vp);
+//  titleVers();
   
   cx = 0.1;
   cX = 0.9;
@@ -85,9 +89,9 @@
   
   gwo= cWo(vp,WO_GRAPH_);
 
-  sWo(gwo,_WNAME,"GL",_WCOLOR,RED_,_WFLUSH);
+  sWo(_woid,gwo,_WNAME,"GL",_WCOLOR,RED_);
   
-  sWo(gwo,_clip,cx,cy,cX,cY, _resize,0.05,0.1,0.99,0.95,0,_FLUSH);
+  sWo(_woid,gwo,_wclip,wbox(cx,cy,cX,cY), _wresize,wbox(0.05,0.1,0.99,0.95,0));
   
     // scales 
   sx = 0.0;
@@ -98,14 +102,14 @@
   <<"scales $sx $sX $sy $sY \n";
   
   
-  sWo(gwo,_scales, sx, sy, sX, sY,  _save,_redraw,_drawon,_pixmapon,_clipbhue,GREEN_,_EO);
+   sWo(_woid,gwo,_wscales,wbox( sx, sy, sX, sY),  _wsave,ON_,_wredraw,ON_,_wdraw,ON_,_wpixmap,ON_,_wclipbhue,GREEN_);
 
-   sWo(gwo,_WSAVEPIXMAP,_WFLUSH);
-   sWo(gwo,_WAXNUM,2,_WFLUSH);
-   sWo(gwo,_WAXNUM,1,_WFLUSH);
+   sWo(_woid,gwo,_WSAVEPIXMAP,ON_);
+   sWo(_woid,gwo,_WAXNUM,2);
+   sWo(_woid,gwo,_WAXNUM,1);
 
 
-  sWo(gwo,_WSHOWPIXMAP);
+  sWo(_woid,gwo,_WSHOWPIXMAP,ON_);
 
   
 ////////////////////////////// GLINE ////////////////////////////////////////
@@ -137,23 +141,23 @@
   
   // CreateGline   cGl
   
-//  xn_gl = cGl(_wid,gwo,@type,"XY",@xvec,Xvec,@yvec,Rnvec,@color,"red")
+
   
   xn_gl = cGl(gwo)
   
-  sGl(xn_gl,_GLTXY,Xvec,Rnvec,_GLHUE,RED_,_flush);
+  sGl(_GLID,xn_gl,_GLXVEC,Xvec,_GLYVEC,Rnvec,_GLHUE,RED_);
   
   xs_gl = cGl(gwo)
 
-  sGl(xs_gl,_GLTXY,Xvec,Svec,_GLHUE,BLUE_,_flush);
+  sGl(_GLID,xs_gl,_GLXVEC,Xvec,_GLYVEC,Svec,_GLHUE,BLUE_)
   
   xz_gl = cGl(gwo);
 
-  sGl(xz_gl,_GLTXY,Xvec,Zvec,_GLHUE,YELLOW_,_eo);
+  sGl(xz_gl,_GLXVEC,Xvec,_GLYVEC,Zvec,_GLHUE,YELLOW_);
   
-  sWo(gwo,_hue,GREEN_,_update,_FLUSH);
+  sWo(_woid,gwo,_whue,GREEN_,_wupdate,ON_);
   
-  sWo(gwo,_showpixmap,_eo);
+  sWo(_woid,gwo,_wshowpixmap,ON_);
   
   f = 0.5;
   
@@ -187,11 +191,11 @@
   int i = 0;
   
   
-  sGl(xn_gl,_GLHUE,RED_,_GLEO);
+  sGl(_GLID,xn_gl,_GLHUE,RED_);
   
-  sWo(gwo,_clearpixmap,_clipborder);
+  sWo(_woid,gwo,_wclearpixmap,ON_,_wclipborder,PINK_);
   //ans=query("listo?:");
-  
+  hue_line = 1;
   while (1) {
     
     Rnvec  = Grand(N)  * 0.1;
@@ -210,21 +214,29 @@
     Zvec = Rnvec + (CVEC * 0.5);
     
     
-   sWo(gwo,_clearpixmap,_clipborder,BLACK_,_flush);
-    
-    //sWo(gwo,_line,0.1,0.1,3.0,2.0 ,RED_,_flush);
+  //  sWo(_woid,gwo,_wclearpixmap,ON_,_wclipborder,BLACK_);
+   if ( (i % 10) == 0) { 
+  sWo(_woid,gwo,_wclearclip,ON_,_wclipborder,BLACK_);
+    }
 
-    //plot(gwo,_line,0.1,0.1,18.0,2 ,RED_);
-    
-    sWo(gwo,_line,0.1,0.1,15,f ,BLUE_,_flush);
+    <<" wline %V $f $hue_line\n"
+    sWo(_woid,gwo,_wline,wbox(0.1,0.1,15,f,hue_line) );
+
+
+	hue_line++
 	
-    sGl(xn_gl,_GLDRAW);  // DrawGline; 
+	if (hue_line > 12)
+	 hue_line =1;
+	 
+  //  sGl(_GLID,xn_gl,_GLDRAW,ON_);  // DrawGline; 
     
-    sGl(xs_gl,_GLDRAW); // if error should  warn and remove/skip  this line on next loop?
+
+    if (i == 15) {
+    sGl(_GLID,xs_gl,_GLDRAW,ON_); // if error should  warn and remove/skip  this line on next loop?
+    }
+//    sGl(_GLID,xz_gl,_GLDRAW,ON_);
     
-    sGl(xz_gl,_GLDRAW);
-    
-    sWo(gwo,_showpixmap,_clipborder,ORANGE_,_flush);
+ //   sWo(_woid,gwo,_wshowpixmap,ON_,_wclipborder,ORANGE_);
     
     if (i < M/2) {
       f += 0.005;
@@ -236,43 +248,41 @@
     
     i++;
 
-   if ((i % 50) == 0 0) {
- <<"loop $i\n"
-   }
-   if (i > 500) {
+
+   if (i > 100) {
       i = 0;
       break;
       }
     
   //  getMouseClick()
 
-//ans=query("again?",ans)
-//if (ans == "n") {
-//    break
-//}
+ans= Ask("again? loop $i",1)
+if (ans == "n") {
+    break
+}
    
     
     }
 //=====================================//
 
-   sWi(vp,_WCLEAR,ORANGE_,_WSAVEPIXMAP,_WEO);
+  sWi(vp,_WCLEAR,ORANGE_,_WSAVEPIXMAP,_WEO);
   sWi(vp,_WSHOWPIXMAP,_WEO);
 
-quit=query("quit");
 
-   sWo(gwo,_WCLEARCLIP,WHITE_,_WSAVEPIXMAP,_WFLUSH);
-   sWo(gwo,_WAXNUM,2,_WFLUSH);
-   sWo(gwo,_WAXNUM,1,_WFLUSH);
+
+   sWo(_woid,gwo,_WCLEARCLIP,WHITE_,_WSAVEPIXMAP,ON_);
+  // sWo(_woid,gwo,_WAXNUM,2);
+  // sWo(_woid,gwo,_WAXNUM,1);
   
 
 
 
-  sWo(gwo,_WSHOWPIXMAP);
+  sWo(_woid,gwo,_WSHOWPIXMAP,ON_);
 
 <<"out of loop - trying to quit!\n"
 
 
-//exitgs();
+exitgs();
  quit=query("quit");
 
 exit();
