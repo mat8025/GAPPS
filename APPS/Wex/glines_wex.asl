@@ -20,7 +20,8 @@
 
 // COUT(pwt_gl)
 
-
+  Symsz = 7.0;
+  
   int cardio_gl  = cGl(exer_wo)
 
 
@@ -44,7 +45,7 @@
 
   ext_gl  = cGl(exer_wo) 
 
-  sGl(_GLID,ext_gl,_GLXVEC,DVEC,_GLYVEC,EXTV,_GLHUE,BLUE_,_GLSYMLINE, STAR_,_GLUSESCALES,0,_GLNAME,"exer_time")
+  sGl(_GLID,ext_gl,_GLXVEC,DVEC,_GLYVEC,EXTV,_GLHUE,BLUE_,_GLSYMBOL, TRI_,_GLUSESCALES,0,_GLNAME,"exer_time")
 
 
   if ((wt_gl == -1)  || (ext_gl == -1)) {
@@ -66,15 +67,12 @@
 
   calb_gl = cGl(cal_wo);
 
-  sGl(_GLID,calb_gl,_GLXVEC,DVEC,_GLYVEC,CALSBURN,_GLHUE,RED_,_GLSYMBOL,"diamond",_GLSYMHUE, RED_,_GLNAME,"cals burnt")
+  sGl(_GLID,calb_gl,_GLXVEC,DVEC,_GLYVEC,CALSBURN,_GLHUE,RED_,_GLSYMBOL,DIAMOND_,_GLSYMHUE, RED_,_GLNAME,"cals burnt")
 
-// calc_gl = cGl(cal_wo,_GLTXY,DFVEC,CALCON,_GLHUE,RED_,_GLSYMBOL,"triangle",_GLSYMHUE, BLUE_,GLEO);
-
-//COUT(calb_gl)
 
   calc_gl = cGl(cal_wo);
 
-  sGl(_GLID,calc_gl, _GLXVEC,DVEC,_GLYVEC,CALSCON,_GLHUE,RED_,_GLSYMBOL,"star",_GLSYMHUE, RED_,_GLNAME,"cals consumed")
+  sGl(_GLID,calc_gl, _GLXVEC,DVEC,_GLYVEC,CALSCON,_GLHUE,RED_,_GLSYMBOL,TRI,_GLSYMHUE, RED_,_GLNAME,"cals consumed")
 
 
   cald_gl = cGl(cal_wo);
@@ -115,7 +113,7 @@
 
   gki_gl = cGl(ket_wo);
 
-  sGl(_GLID,gki_gl,_GLXVEC,DVEC,_GLYVEC,GKI,_GLHUE,ORANGE_,_GLSYMBOL,STAR_,_GLSYMHUE, ORANGE_, _GLUSESCALES,1,_GLNAME,"GKI")
+  sGl(_GLID,gki_gl,_GLXVEC,DVEC,_GLYVEC,GKI,_GLHUE,ORANGE_,_GLSYMBOL,TRI_,_GLSYMHUE, ORANGE_, _GLUSESCALES,1,_GLNAME,"GKI")
 
  // se_gl   = cGl(exer_wo);
 
@@ -137,31 +135,18 @@
   int wgl = 0;
   int ki = 0;
   
-  //while (wedgl[ki] > 0) {
-
-  while (1) {
   
-        sGl(_GLID,wedgl[ki],_GLMISSING,missing_val,_GLUSESCALES,0);
-        ki++;
-	if (wedgl[ki] <0) {
-         break;
-        }
- }
+
 
   //cout<<"set symbols \n";
-  Symsz = 7.0;
 
- // sGl(_GLID,wt_gl,_GLSYMBOL,DIAMOND_,_GLSYMSIZE, Symsz, _GLSYMHUE,BLUE_,_GLNAME,"weight");
+
+
   sGl(_GLID,wt_gl,_GLSYMBOL,DIAMOND_,_GLSYMSIZE, Symsz, _GLSYMHUE,BLUE_,_GLNAME,"weight");
-
-
 
   sGl(_GLID,ext_gl,_GLSYMBOL, DIAMOND_, _GLSYMSIZE, Symsz, _GLSYMHUE,GREEN_,_GLNAME,"exer_time");
 
   sGl(_GLID,cardio_gl,_GLSYMBOL,DIAMOND_, _GLSYMSIZE, Symsz);
-
-  //sGl(_GLID,se_gl,_GLSYMBOL, STAR5_);
-
 
 
   sGl(_GLID,bp_gl,_GLSYMBOL,TRI_,_GLSYMHUE,RED_,_GLNAME,"benchpress lbs");
@@ -175,9 +160,6 @@
   sGl(_GLID,calx_gl,_GLSYMBOL,TRI_,_GLSYMHUE,RED_,_GLSYMSIZE, Symsz,_GLNAME,"cal_xburn");
 
   sGl(_GLID,carb_gl,_GLSYMBOL,DIAMOND_,_GLSYMHUE,RED_,_GLSYMSIZE, Symsz,_GLNAME,"carb");
-
-
-
 
   sGl(_GLID,fibre_gl,_GLSYMBOL,ITRI_,_GLSYMHUE,BROWN_,_GLHUE,BROWN_,_GLNAME,"fiber");
 
@@ -198,6 +180,20 @@
   sGl(_GLID,rc_gl,_GLTYPE_CURS, ON_,_GLHUE,BLUE_,_GLDRAW,ON_);
 
   int allgls[] = { wt_gl,  ext_gl, fibre_gl,  fat_gl,  prot_gl,  calc_gl,  cald_gl,calx_gl,calb_gl, glu_gl, ket_gl, gki_gl,carb_gl,bp_gl,-1};  // 
+
+  ki =0
+  while (1) {
+  
+        sGl(_GLID,allgls[ki],_GLMISSING,missing_val,_GLSYMSIZE,Symsz,_GLUSESCALES,0);
+        ki++;
+	if (allgls[ki] <0) {
+         break;
+        }
+ }
+
+  sGl(_GLID,ket_gl,_GLUSESCALES,1)
+
+  sGl(_GLID,gki_gl,_GLUSESCALES,1)
 
   int foodgls[] = { carb_gl, fibre_gl,fat_gl, prot_gl, -1 };
 

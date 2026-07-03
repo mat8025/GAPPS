@@ -137,11 +137,11 @@ for (i= 0; i< 18; i++) {
 	  msymy = 0.3;
 	  msize = 30;
           plotsymbol(wtmwo,DIAMOND_,msymx,msymy,BLUE_,msize);
-          plotsymbol(xtmwo,STAR_,msymx,msymy,GREEN_,msize);	  
-          plotsymbol(calexbwo,STAR_,msymx,msymy,RED_,msize);
+          plotsymbol(xtmwo,TRI_,msymx,msymy,GREEN_,msize);	  
+          plotsymbol(calexbwo,TRI_,msymx,msymy,RED_,msize);
           plotsymbol(caldwo,CROSS_,msymx,msymy,GREEN_,msize);	  
-	            plotsymbol(calburnwo,DIAMOND_,msymx,msymy,RED_,msize);
-	            plotsymbol(calconwo,TRI_,msymx,msymy,BLUE_,msize);		    
+	  plotsymbol(calburnwo,DIAMOND_,msymx,msymy,RED_,msize);
+	  plotsymbol(calconwo,TRI_,msymx,msymy,BLUE_,msize);		    
 
 	  plotsymbol(protmwo,DIAMOND_,msymx,msymy,GREEN_,msize);
 	  plotsymbol(fibmwo,ITRI_,msymx,msymy,BROWN_,msize,1);
@@ -149,8 +149,8 @@ for (i= 0; i< 18; i++) {
           plotsymbol(carbmwo,DIAMOND_,msymx, msymy,RED_,msize);
           plotsymbol(glumwo,CROSS_,msymx, msymy,GREEN_,msize);
           plotsymbol(ketmwo,DIAMOND_,msymx, msymy,BLUE_,msize);
-          plotsymbol(gkimwo,STAR_,msymx, msymy,ORANGE_,msize);
-          plotsymbol(bpmwo,STAR_,msymx, msymy,ORANGE_,msize);
+          plotsymbol(gkimwo,TRI_,msymx, msymy,ORANGE_,msize);
+          plotsymbol(bpmwo,TRI_,msymx, msymy,ORANGE_,msize);
           plotsymbol(hitmwo,DIAMOND_,msymx, msymy,INDIGO_,msize);	  	  	  	  	  
 // could add to wo a sym ,x,y for a redraw name_sym box
     
