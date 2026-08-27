@@ -180,11 +180,11 @@ pwl[1] = 1.0;
 double xv[7];
 double yv[7];
 int i;
-
+int askit = 0;
 int k = Yday-4;
   
 <<"$Yday $k\n"
-  oknow = Ask ("%V $Yday $k ",0)
+  oknow = Ask ("%V $Yday $k ",askit)
   if (Yday > 5) {
      nco = 0;
   for (i =0; i < 5; i++) {   
@@ -217,7 +217,7 @@ int k = Yday-4;
     PWT14 = yv[0] + (pwl[1] * 16);
     PWT30 =  yv[0] + (pwl[1] * 30);
 
-  ans=ask("$PWT1  $PWT7 ",0)
+  ans=ask("$PWT1  $PWT7 ",askit)
   }
 
 <<"\n Tomorrow's wt will be %6.2f $pw +week $PWT7  + fortnight $PWT14\n"

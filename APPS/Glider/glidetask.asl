@@ -18,7 +18,7 @@ char vers[6] ="5.3";
 
  
 #define DB_IT    0
-#define GT_DB   0
+#define GT_DB   1
 #define __ASL__ 1
 #define __CPP__ 0
 
@@ -41,7 +41,7 @@ using namespace std;
 
 #define pxs  cout<<
 
-#define ASL_DB 0
+#define ASL_DB 1
 #define CPP_DB 1
 
 #endif

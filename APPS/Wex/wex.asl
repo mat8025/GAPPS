@@ -354,13 +354,13 @@ Record RX;
    Str stmp;
    Svar Goals;
    
-   Goals.Split("02/27/2026 04/09/2026 175");
+   Goals.Split("07/27/2026 08/16/2026 185");
 
 //<<"Setting goals $Goals\n"
 
    Svar Goals2;
    
-   Goals2.Split("02/27/2026  03/21/2026 180");
+   Goals2.Split("07/27/2026  08/4/2026 195");
 ////////////////////==============/////////////////
 
 // move these down 10 when reached -- until we are at desired operating weight!
@@ -651,6 +651,7 @@ float ae = EXTV[15];
 
  // drawScreens();
 
+  <<"Tomorrow's wt will be %6.2f $PWT1 +week $PWT7  + fortnight $PWT14"
 
 //  <<" %(1,,,\n) $EXTV \n"
   Str tit_msg = "Tomorrow's wt will be %6.2f $PWT1 +week $PWT7  + fortnight $PWT14"

@@ -202,7 +202,7 @@ while (1) {
    symname = symbolName(sym)
 //   sGl(_GLID,xy_gl,_GLSYMBOL,sym,_GLSYMSIZE,Symsz,_GLDRAW,ON_ ); // DrawGline;
    
- //  plotsymbol(gwo,sym,msymx,msymy,hue,Symsz,fill);
+  plotsymbol(gwo,sym,msymx,msymy,hue,Symsz,fill);
 
    if ((kloop % 2) == 0) {
    vvdraw(gwo,Xvec,Yvec)

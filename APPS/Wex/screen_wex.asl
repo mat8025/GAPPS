@@ -181,7 +181,7 @@ COUT(sc_zstart);
   //<<"SCALES %V$sc_startday $sc_endday $bp_upper\n"; 
 
 
-  sWo(_woid,food_wo,_wscales,wbox(sc_startday,-5,sc_end,120),_wsavescales,0); 
+  sWo(_woid,food_wo,_wscales,wbox(sc_startday,-5,sc_end,200),_wsavescales,0); 
  
  
   int allwo[] = {wt_wo, cal_wo,  ket_wo , food_wo,exer_wo, bpwo,-1}; 

@@ -118,17 +118,18 @@ class Wing
     float wt;
     float best_wing_wt_libs;
     float allupwt;
+    int heavy_light;
     Str name;
     int hue;
     int bhue;    
-
+    int shape;
   void Set( Str wname, float wmin, float wmax, float wwt)
   {
        name = wname;
        max = wmax;
        min = wmin;
        wt = wwt;
-       best_75 = (max-min) *.75 + min;
+//       best_75 = (max-min) *.75 + min;
   }
 
   void setIdeal( float wmin, float wmax)
@@ -136,6 +137,9 @@ class Wing
 
        ideal_max = wmax;
        ideal_min = wmin;
+              best_75 = (ideal_max-ideal_min) *.75 + ideal_min;
+	      <<"%V $ideal_max $ideal_min $best_75 \n ";
+	      
   }
 
   int Compute ()
@@ -146,39 +150,42 @@ class Wing
     current_wt = allupwt;
     current_wt_lbs = current_wt * kg2lb_ 
     
-//<<"%V $name %4.1f $min $max $wt $c_harness $harness_wt $helmet $wingwt $ballast_wt $allupwt \n"
+<<"%V $name %4.1f $min $max  $c_harness $body_wt $harness_wt $helmet $wingwt $kit $ballast_wt = $allupwt \n"
 
   // <<"\tmy range %4.1f  with $name wing $min --> $max kg     $(min * kg2lb_) --> $(max * kg2lb_) lbs  \n" 
-    best_75 = (max-min) *.75 + min;
-
-     best_wing_wt_lbs = best_75 *kg2lb_ - wingwt*kg2lb_ 
+    best_75 = (ideal_max-ideal_min) * 0.75 + ideal_min;
+    heavy_light = 0;
+    // best_wing_wt_lbs = best_75 * kg2lb_ - wingwt*kg2lb_
+     best_wing_wt_lbs = best_75 * kg2lb_ 
  //<<"\tmy best weight - bathroom for $name is %4.1f $best_wing_wt_lbs !   \n"
-    max_wing_wt_lbs = max*kg2lb_ - wingwt*kg2lb_  
+
+    //max_wing_wt_lbs = max * kg2lb_ - wingwt*kg2lb_
+    max_wing_wt_lbs = max * kg2lb_ 
    //<<"\tmy max weight - bathroom for $name is %4.1f $max_wing_wt_lbs !   \n"
 
-    min_wing_wt_lbs = min *kg2lb_ - wingwt*kg2lb_  
+//    min_wing_wt_lbs = min *kg2lb_ - wingwt*kg2lb_
+    min_wing_wt_lbs = min *kg2lb_   
    //<<"\tmy min weight - bathroom for $name is %4.1f $min_wing_wt_lbs !   \n"
 
     hue = BLACK_;
     bhue = GREEN_;
 
+    heavy_light = 0;
     
     dw = (current_wt_lbs -best_wing_wt_lbs)
-    if ( fabs(dw) > 5) {
-          bhue = ORANGE_;
+    if ( fabs(dw) < 5) {
+        heavy_light = 0;
      <<"\t\t\tAdjust %4.1f $(-1*dw) - for $name!! \n"
     }
     
-    if (max_wing_wt_lbs < current_wt_lbs) {
+    if (current_wt > ideal_max) { 
      <<"\t\tAlas too fat for $name!! diet!!!!\n"
-     bhue = RED_;
-     //hue = RED_;     
+         heavy_light = 1;
     }
 
-    if (min_wing_wt_lbs > current_wt_lbs) {
+    if ( current_wt < ideal_min) {
      <<"\t\tAlas too light for $name wing!! add ballast!!!!\n"
-     bhue = RED_;
-    // hue = RED_;     
+      heavy_light = -1;
     }
 
 
@@ -189,13 +196,47 @@ class Wing
   void Plot(float pos)
   {
 
-     plotBox(wtrwo,pos,min,pos+2,max, bhue, FILL_)  
-     plotSymbol(wtrwo,DIAMOND_,pos+1,best_75,BLUE_,Symsz,1);
-     plotSymbol(wtrwo,STAR_,pos+1,allupwt,hue,Symsz,1);
-     plotLine(wtrwo,pos,ideal_min,pos+2,ideal_min,BLACK_)
-     plotLine(wtrwo,pos,ideal_max,pos+2,ideal_max,BLACK_)
+     plotBox(wtrwo,pos,min,pos+2,max, ORANGE_, FILL_)  ;
+
+     show_max_min =0;
+     
+     shape = STAR_ ;
+
+     if (heavy_light == -1) {
+         hue = BROWN_ ;     
+         shape = TRI_;
+     }
+
+
+     
+     if (heavy_light == 1) {
+         hue = RED_ ; 
+         shape = ITRI_;
+     }
+
+      if (heavy_light == 0) {
+         hue = GREEN_ ;
+      }            
+
+     plotSymbol(wtrwo,CROSS_,pos+1,best_75,BLUE_,Symsz,1);
+
+     plotSymbol(wtrwo,shape,pos+0.1,allupwt,hue,Symsz,1,FILL_);
+
+     if (show_max_min) {
+          plotSymbol(wtrwo,LEFTARROW_,pos+0.1,max,BLACK_,Symsz,1);
+	  plotSymbol(wtrwo,LEFTARROW_,pos+0.1,min,BLACK_,Symsz,1);
+     }
+
+       //   plotSymbol(wtrwo,RIGHTARROW_,pos+0.1,ideal_max,GREEN_,Symsz,1);
+//	  plotSymbol(wtrwo,RIGHTARROW_,pos+0.1,ideal_min,GREEN_,Symsz,1);
+    // plotSymbol(wtrwo,shape,pos+0.1,allupwt,BLUE_,Symsz,1);	  
+
+     plotLine(wtrwo,pos,ideal_min,pos+2,ideal_min,BLUE_)
+     plotLine(wtrwo,pos,ideal_max,pos+2,ideal_max,RED_)
+
+     plot(wtrwo,_line,pos,ideal_min,pos+2,ideal_min,YELLOW_)
      plotText(wtrwo,name,pos+1,min -2,BLACK_,0,1)
-     plotText(wtrwo,"%6.1f$allupwt",pos+1,min -4,BLACK_,0,1)
+     plotText(wtrwo,"$heavy_light %6.1f$allupwt",pos+1,min -4,BLACK_,0,1)
 
   }
 
@@ -212,10 +253,12 @@ class Wing
     max = 100.0;
     min = 80.0;
     ideal_max = 100.0;
-    ideal_min = 80.0;    
+    ideal_min = 80.0;
+    heavy_light = 0;
     wt = 5.1;
     best_75 = (max-min) *.75 + min;
     hue = GREEN_;
+    shape = STAR_;
   }
 
  };
@@ -233,7 +276,7 @@ if ( body_wt_lbs == 0) {
 
    float current_wt = body_wt;
    float current_wt_lbs = body_wt_lbs;
-   
+   float kit = 4.0;
    wingwt = 2.0;
    ballast_wt = 0.0;
    ballast_wt_lbs = 0.0;
@@ -263,7 +306,7 @@ if ( body_wt_lbs == 0) {
    }
   ask("%V $c_harness $harness_wt\n",0)
    // wing weights kg 
-   magicw = 5.2
+
    hook3w = 5.3
 
 
@@ -274,7 +317,8 @@ if ( body_wt_lbs == 0) {
    Wing Hook3 ;
    hook_minw = 81.0 ; //kg
    hook_maxw = 101.0 ; 
-   Hook3.Set("Hook3",80.0,100.0, 5.3) 
+   Hook3.Set("Hook3",80.0,100.0, 5.3)
+   Hook3.setIdeal(81,98)
    Hook3.Compute()
    Hook3.Print()   
 
@@ -289,9 +333,6 @@ if ( body_wt_lbs == 0) {
    Epsilon10_28.Compute()
    Epsilon10_28.Print()
 
-
-
-
    Wing IotaDLS_25 ;
 
    iota_minw = 80 ; //  
@@ -304,15 +345,32 @@ if ( body_wt_lbs == 0) {
    IotaDLS_25.Compute()
    IotaDLS_25.Print()
 
+   Wing Phi_Maestro_22 ;
+
+   Phi_Maestro_22.Set("Phi_Maestro_22",83,108,4.95)
+   Phi_Maestro_22.setIdeal(83,103)
+
+   Phi_Maestro_22.Compute()
+   Phi_Maestro_22.Print()
 
 
-   Wing Magic ;
+   Wing Phi_Maestro_23 ;
+
+   Phi_Maestro_23.Set("Phi_Maestro_23",90,115,5.1)
+   Phi_Maestro_23.setIdeal(90,110)
+
+   Phi_Maestro_23.Compute()
+   Phi_Maestro_23.Print()
+
+
    // wing ranges
+   Wing Magic ;
    magic_minw = 88.0 ; //kg
    magic_maxw = 108.0 ;
-
+   magicw = 5.2 ;
    magic_name = "Magic"
    Magic.Set(magic_name,magic_minw,magic_maxw,magicw)
+   Magic.setIdeal(90,105)
    Magic.Compute()
    Magic.Print()
 
@@ -347,13 +405,15 @@ if ( body_wt_lbs == 0) {
 
 <<" clothes+shoes + waterbottle $d kg\n"
    cse_lbs = 8.0; // lets measure full kit
-   kit = cse_lbs/kg2lb_
+   
+   kit = cse_lbs/kg2lb_ ;
 
     // wing_status
     magic_bhue = GREEN_;        
     hook_bhue = GREEN_;
     epsilon_bhue = GREEN_;
-    theta_bhue = GREEN_;        
+    theta_bhue = GREEN_;
+    phi_bhue = GREEN_;        
 
 
    current_wt = body_wt + wingwt + harness_wt + kit + helmet + ballast_wt;
@@ -369,7 +429,7 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
 #include "wevent.asl" 
 #include "tbqrd.asl"
 
-  Symsz = 2.0;
+  Symsz = 4.0;
   openDll("image")
 
   Graphic = CheckGwm()
@@ -383,7 +443,7 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
   {
  
     sWi(_woid,aw,_wclearclip,PINK_,_whue,LILAC_,_wbhue,TURQUOISE_,_wredraw,ON_)
-    sWo(_woid,wtrwo,_wclipborder,BLACK_,_whue,LILAC_,_wbhue,MAGENTA_,_wredraw,ON_)
+    sWo(_woid,wtrwo,_wclipborder,BLACK_,_whue,LILAC_,_wbhue,PINK_,_wredraw,ON_)
 
 
       <<"drawScreens $_proc \n"
@@ -433,23 +493,29 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
 
      Theta.Plot(5)
 
-     
-
   // advance theta wtrange box
    //  <<"%V $Theta.min  $Theta.max $Theta.allupwt \n"
  
 
   // IotaDLS wtrange box
    //  <<"%V $Iota2_27.min  $Iota2_27.max $Iota2_27.allupwt \n"
-      IotaDLS_25.Plot(8)
-
-   //  <<"%V $Epsilon10_28.min  $Epsilon10_28.max $Epsilon10_28.allupwt \n"
-     Epsilon10_28.Plot(11)
+   //   IotaDLS_25.Plot(8)
 
 
-     Magic.Plot(14)
+  // Phi wtrange box
 
-     current_wt = body_wt + wingwt + harness_wt + kit + helmet + ballast_wt;
+     Phi_Maestro_22.Plot(8)
+     
+   //Phi_Maestro_23.Plot(8)
+   
+    Epsilon10_28.Plot(11)
+
+    Magic.Plot(14)
+
+    current_wt = body_wt + wingwt + harness_wt + kit + helmet + ballast_wt;
+
+<<"%V %6.4f $current_wt  $body_wt $wingwt $harness_wt $kit  $helmet $ballast_wt \n"     
+
      current_wt_lbs = current_wt * kg2lb_;
      
      woSetValue(wtbwo,"%4.2f $body_wt $body_wt_lbs");
@@ -465,7 +531,7 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
 
     }
 }
-
+/////////////////////////////////////////////////////////
 
 
   aw =cWi("WT_RANGE");
@@ -473,16 +539,14 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
   titleButtonsQRD(aw);
 //<<" CGW $aw \n"
 
-  sWi(_woid, aw,_woresize,wbox(0.1,0.1,0.9,0.8,0))
-  sWi(_woid,aw,_woclip,wbox(0.05,0.1,0.95,0.95))
+  sWi(_woid, aw,_wresize,wbox(0.05,0.1,0.95,0.9,0))
+  sWi(_woid,aw,_wclip,wbox(0.05,0.1,0.99,0.95))
      xmin = 0
      xmax = 18
 
     sWi(_woid,aw,_woscales,wbox(xmin,0,xmax,120),_wosavescales,0,_wosave,ON_)
 
-
-
-      wtrwo=cWo(aw,WO_GRAPH_);
+    wtrwo=cWo(aw,WO_GRAPH_);
 
      sWo(_woid,wtrwo,_woresize,wbox(0.15,0.15,0.9,0.95),_wocolor,WHITE_)
 
@@ -531,8 +595,9 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
        sWo(_woid,ballastbwo ,_wstyle,SVB_,_wredraw,ON_);
      drawScreens()
 
-ans= ask("%V $body_wt $body_wt_lbs",0)
+  ans= ask("%V $body_wt $body_wt_lbs",0)
   m_num = 0;
+
   while (1) {
 
 
@@ -596,7 +661,7 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
          current_wt_lbs = current_wt*kg2lb_;
 
 
-         Symsz += 1.0;
+        // Symsz += 1.0;
 
          sWo(_woid,wtbwo,_wotext,"%4.1f$body_wt $body_wt_lbs");	 
          // woSetValue(wtkgbwo,"%4.1f$current_wt");	 	   
@@ -610,7 +675,7 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
          current_wt_lbs = current_wt*kg2lb_;
 	 sWo(_woid,wtbwo,_wotext,"%4.1f$body_wt $body_wt_lbs");	 
          //  woSetValue(wtkgbwo,"%4.1f$current_wt");	 	   
-         Symsz -= 2.0;
+     //    Symsz -= 2.0;
         }
 
 
@@ -638,11 +703,20 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
            
 
                if( recompute) {
-                Magic.Compute()
-                Theta.Compute()
-		Hook3.Compute()
-		IotaDLS_25.Compute()				
-		Epsilon10_28.Compute()
+                  Magic.Compute()
+                  Theta.Compute()
+  		Hook3.Compute()
+
+
+//		IotaDLS_25.Compute()
+//		Phi_Maestro_23.Compute()
+//		Phi_Maestro_23.Print()
+
+		Phi_Maestro_22.Compute()
+		Phi_Maestro_22.Print()
+		
+	  	Epsilon10_28.Compute()
+	  			Epsilon10_28.Print()
 
 
 		current_wt = body_wt + wingwt + harness_wt + kit + helmet + ballast_wt;
@@ -651,7 +725,7 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
                 }
 
        drawScreens()
-  <<" Paras %V $wtbwo $wtkgbwo $body_wt $body_wt_lbs $current_wt $Symsz\n"	 
+//  <<" Paras %V $wtbwo $wtkgbwo $body_wt $body_wt_lbs $current_wt $Symsz\n"	 
 }
 //////////
 

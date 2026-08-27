@@ -80,7 +80,9 @@ class Tleg
 
 int Ntp_id = 0; // ids for turnpt objs
 
-
+ Str Place;
+   Str Idnt;
+   
 class Turnpt 
  {
 
@@ -88,9 +90,9 @@ class Turnpt
  //static uint Ntp_id;
   Str Lat;
   Str Lon;
-  Str Place;
+ // Str Place;
   
-  Str Idnt;
+//  Str Idnt;
   Str rway;
   Str tptype;
   
@@ -199,7 +201,7 @@ int lastc = -1;
 
      valX = wval[0];  // ? OK -- XIC OK ?
 
-//<<"%V $wval[0] $valX \n"
+<<"%V $wval[0] $valX \n"
 
       valX.dewhite(); // TBF ? corrupting vars ?
 
@@ -207,9 +209,11 @@ int lastc = -1;
 
      valX.scut(lastc);
 
+<<"%V $wval[0] $valX \n"
+
      Place = valX; // wayp 
 
- //   <<"%V $place \n";
+    <<"%V $Place \n";
 
      valX =  wval[1];
 
@@ -220,7 +224,7 @@ int lastc = -1;
      Idnt = valX;
 
      Lat = wval[3]; // wayp
-//     <<"%V $Lat $wval[3] \n"
+     <<"%V $Lat $wval[3] \n"
 
 
      ccoor(Lat);   // ccoor is an SF === tries to call proc ccoor
