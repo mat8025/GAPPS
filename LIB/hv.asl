@@ -1,3 +1,4 @@
+
 //%*********************************************** 
 //*  @script hv.asl 
 //* 
@@ -68,14 +69,18 @@ void   showComment()
      int header_valid = 1;
      int wln;
      int vl;
-     
+  
      for (wln = 1; wln <= 10; wln++) {
+
+ //     <<"%V $wln\n"
+
 
       fl = getcodeln(wln,0);
       
 
      vl = fl.slen();
-//    <<"$vl $fl\n"
+     
+   //  <<"%V $wln $vl $fl\n"
 
      if (header_valid  == 0) {
            break;
@@ -84,7 +89,7 @@ void   showComment()
          break;
          }
 
-//       <<"$wln <|$fl|>\n";
+     //  <<"$wln <|$fl|>\n";
 
          L.resize(1);
 	 
@@ -95,30 +100,32 @@ void   showComment()
 
          if (sz >= 3) {
 
-//	 <<"L1 <|$L[1]|> \n"
+	// <<"L0 <|$L[0]|> \n"
+	// <<"L1 <|$L[1]|> \n"
+	// <<"L2 <|$L[2]|> \n"	 
 
          rs = L[1];
-	// rs.pinfo()
+	 rs.pinfo()
 
          vl=slen(rs);
-//	 <<"vl $vl \n"
+	 <<"%V $vl $rs\n"
 
 
             if (vl > 0) {
-//           <<"$wln $rs $L[1] \n"
+           <<"$wln $rs $L[1] \n"
 
              if (scmp(rs,"@",1)) { // first @ should be @script 
 
-// val = spat(fl,rs,1);
-//	       val.pinfo()
+               val = spat(fl,rs,1);
+	       val.pinfo()
 
 
                if (!hv_found) {
-                   // rs.pinfo();
-//                   <<"$wln check $rs for @script \n";
+                   rs.pinfo();
+                 <<"$wln check $rs for @script \n";
 		   
                if (scmp(rs,"@script")) {
-//                <<"it is an asl script header!\n";
+               <<"it is an asl script header!\n";
                     hv_found = 1;
                }
                else {

@@ -45,7 +45,7 @@ int main(void) {
 /// procrefarg
 #include "debug"
 
-   allowErrors(-1) ; // keep going;
+   allowErrors(0) ; // keep going;
 
    if (_dblevel >0) {
 
@@ -61,34 +61,6 @@ int main(void) {
  fileDB(REJECT_ALL_,"xyz")
 
 
-/*
-   proc sumarg (ptr v, ptr u)
-   {
-
-    // code here would have to comply with the type pointed to
-    //
-     <<"args in %V  $v $u \n"
-     float z;
-     v->info(1)
-     u->info(1)
-     z = $v + $u;
-     <<"%V $v + $u = $z\n"
-     $v = $v +1;
-     <<" changing first arg to %V $v\n"
-     v->info(1)
-     lu = $u
-     <<"%V $lu \n"
-     $u = (lu * 2)
-   //$u = $u * 2;
-  // $u *= 2;
-     <<" changing second arg to %V $u \n"
-     u->info(1)
-     <<"args out %V $v $u $z\n"
-     <<" should return $z\n"
-     return z;
-     }
-//=======================//
-*/
 
 
  fileDB(ALLOW_,"spe_proc")
@@ -324,10 +296,6 @@ int main(void) {
 
 askit(ask)
 
-
-   n = 2;
-
-   m = 3;
 
 
 <<"should be calling sumarg int args vers with  ptr args\n";

@@ -25,7 +25,10 @@
   }
 
   showUsage("Demo  of proc arg scalar")
-  
+
+   allowErrors(0)
+ 
+  sbd(1,"soe");
   chkIn();
 
   db_ask = 0;
@@ -231,11 +234,11 @@ Svar SV = {"1","2","3"}
 
 k = 0
 
-db_ask = 1
+
 while (k < 10) {
 
   nwr = sen.ReadWords(A);
- ans=ask("$k $nwr OK?:",1)
+ ans=ask("$k $nwr OK?:",db_ask)
 
 
   if (nwr > 0) {

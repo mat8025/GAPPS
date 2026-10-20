@@ -27,7 +27,7 @@ Str Use_= "Demo of Svar type ";
 */     
  db_allow = 1 ; // set to 1 for internal debug print;
 
- db_ask = 1;
+ db_ask = 0;
  db_ask_no = 0;
  db_ask_yes = 1;
  
@@ -40,14 +40,211 @@ Str Use_= "Demo of Svar type ";
    chkIn();
    
    chkT(1)
-   
-   allowDB("spe_func,spe_args,spe_exp,svar,str_,test,ds",db_allow);
+
+
+  void pSv (Svar SV)
+  {
+  
+<<"IN pSv $_proc $SV\n"
+// SV is a proc arg and should not be deleted on proc exit
+//wdb= DBaction((DBSTEP_),ON_)
+
+  static int k = 1;
+
+  SV.pinfo();
+
+
+
+  s2 = SV[2];
+
+
+
+  s3 = SV[3]
+  
+  s1 = SV[1]
+  
+  s4 = SV[4]
+  
+  
+  s0 = SV[0]
+
+<<"%V $s3 \n"
+
+<<"%V $SV[3] \n"
+
+ans=ask("$s3 $SV[3] ",0)
+
+<<"%V $s0 $s1 $s2 $s3 $s4 \n"
+
+<<"%V $SV[3] $SV[4] $SV[1] $SV[0]\n"
+
+ans=ask("$s4 $SV[4] ",0)
+
+
+ 
+ 
+
+<<"%V $k\n"
+
+  Str w2;
+
+  sz = Caz(SV);
+
+  <<"%V $sz $SV[2] \n";
+
+  w2 = SV[2];
+
+  <<"%V $k $w2\n";
+
+  if (k==1) {
+
+  chkStr(w2,"we");
+
+  }
+
+  else if (k==2) {
+
+    chkStr(w2,"is");
+
+  }
+
+  else if (k==3) {
+
+  chkStr(w2,"40,07.00,N");
+
+  ang =getDeg(SV[2]);
+
+  <<"%V $ang\n";
+
+  ang = getDeg(SV[3]);
+
+  <<"%V $ang\n";
+
+  }
+
+  k++;
+
+  }
+//===========
+
+
+  float getDeg (Str the_ang)
+  {
+  str the_dir;
+  float la;
+  str wd;
+
+  <<"in $_proc  $the_ang\n";
+
+  the_parts = Split(the_ang,",");
+      //<<"%V$the_parts \n"
+//FIX    float the_deg = atof(the_parts[0])
+
+  wd = the_parts[0];
+
+  the_deg = atof(wd);
+
+  sz= Caz(the_deg);
+
+  <<" %V$sz $(typeof(the_deg)) $(Cab(the_deg))  \n";
+//    float the_min = atof(the_parts[1])
+
+  wd = the_parts[1];
+
+  the_min = atof(wd);
+
+  <<"%V$the_deg $the_min \n";
+
+  sz= Caz(the_min);
+
+  <<" %V$sz $(typeof(the_min))   $(Cab(the_min)) \n";
+
+  the_dir = the_parts[2];
+
+  y = the_min/60.0;
+
+  la = the_deg + y;
+
+  if ((the_dir @= "E") || (the_dir @= "S")) {
+
+  la *= -1;
+
+  }
+
+  <<"%V $la  $y  \n";
+
+  <<"%V $(caz(la))  $(Cab(la)) \n";
+
+  return (la);
+
+  }
+//===============================//
+
+
+  // allowDB("spe_func,spe_args,spe_exp,svar,str_,test,ds",db_allow);
+  
+  rejectDB("ic_,svar_cpy,svar_ops,pex_")
+
+   VF = vgen(FLOAT_,10,1,0.5);
+
+   <<"%V $VF\n";
+//TSV="%6.2f$(VF*2)"
+
+float FV[10]
+
+
+   FV.pinfo()
+
+
+float VFD[] = vgen(FLOAT_,10,1,0.5);
+
+//  VFD[] = vgen(FLOAT_,10,1,0.5);
+
+  VFD.pinfo()
+
+<<"VFD  %6.2f $VFD\n";
+
+
+  TSV="%6.1f$VF"
+  
+<<"%V $TSV \n"
+
+  TSV.pinfo()
+
+VF2 = VF*2
+
+   <<"%V $VF2\n";
+
+ RSV="$(VF+2)";   // 
+
+<<"%V $RSV \n"
+
+ RSV="$(VF*2)";   // -Dwcl bad Siv
+
+<<"%V $RSV \n"
+
+
+
+
+ Svar Optd = SplitViaDel("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,",44);
+
+  Optd.pinfo()
+  
+  <<"$Optd \n";
+
+  chkStr("all",Optd[0]);
+
+  chkStr("matrix",Optd[2]);
+
+  chkStr("if",Optd[12]);
+
+
 
    Svar E = { "the first ten elements are:", "H", "He", "Li", "Be" ,"B" ,"C", "N", "O", "F", "Ne"  };
 
    E.pinfo()
 
-   ans=ask(" $E ",db_ask_no)
+   ans=ask(" $E ",db_ask)
 
    <<"$E\n";
    <<"$E[0] \n";
@@ -65,7 +262,7 @@ Str Use_= "Demo of Svar type ";
 
    E.pinfo();
 
-   ans=ask("hydrogen  $E ",db_ask_no)
+   ans=ask("hydrogen  $E ",db_ask)
 
    chkStr(boron,"B")
    
@@ -73,28 +270,41 @@ Str Use_= "Demo of Svar type ";
 
 
 
-   ans=ask("Svar array filled OK",db_ask_no)
+   ans=ask("Svar array filled OK",0)
 
 
 
-    
-
-
-
-   Str eles;
+ans=ask(" W =  E[3:7]  ",1)
    
-   W= E[3:7];
+   W= E[3:7];   // this op unsets E 
 
    W.pinfo()
 
+ans=ask(" $W  OK",1)
+
+    E.pinfo()
    <<"$(typeof(W)) \n";
 
    <<"$W\n";
 
    <<"$W[1]\n";
-
+   ans=ask("Svar W OK",1)   
    W.pinfo()
-ans=ask(" $W  OK",db_ask_no)
+   E.pinfo()
+<<"$E[3:6] \n"
+
+ans=ask(" $W  OK",db_ask)
+
+
+
+
+<<"$(E[3:6]) \n"
+
+<<" $E[7:9] \n" ; // no print ?
+
+   Str eles;
+
+
 
   eles = "$E[3:6]"
 
@@ -102,7 +312,7 @@ ans=ask(" $W  OK",db_ask_no)
 
   chkStr(eles,"Li Be B C")
   
-   ans=ask("%V $eles  OK",db_ask_no)
+   ans=ask("%V $eles  OK",db_ask)
  
 
    chkStr(W[1],"Be");
@@ -158,10 +368,18 @@ ans=ask(" $W  OK",db_ask_no)
 
    Siv F(SVAR_);
 
-   F  = split ("uno dos tres" );
+   F  = Split ("uno dos tres" );
+
+  <<" F is $F[0] $F[1] \n"
 
    F.pinfo();
-   
+
+
+   ans=ask("F is $F",db_ask) 
+
+
+
+
    Siv Q(INT_,67);
 
    Q.pinfo();
@@ -179,12 +397,14 @@ ans=ask(" $W  OK",db_ask_no)
 
    <<"$E[2] \n";
 
-ans=ask(" $E[1]",db_ask_no)
+ans=ask(" $E[1]",db_ask)
 
 
 
 
-   svar  S[] = {"una larga noche"};
+ //  svar  S[] = {"una larga noche"};
+
+    Svar  S = {"una larga noche"};
 
    <<"%V $S\n";
 
@@ -204,14 +424,17 @@ ans=ask(" $E[1]",db_ask_no)
 
    <<"%V $S[2] \n";
 
-   //Svar E3[] = { "third row elements are:", "Na", "Mg", "Al", "Si" ,"P" ,"S", "Cl", "Ar" };
+  
    Svar E3 = { "third row elements are:", "Na", "Mg", "Al", "Si" ,"P" ,"S", "Cl", "Ar" };
 
    E3.pinfo()
    
-   ans=ask("Svar array filled OK",db_ask_no)
+
 
 <<"$E3[3:6] \n";
+
+
+   ans=ask("Svar E3 array filled OK",db_ask)
 
 
    Svar E4 = { "fourth row elements are:", "K", "Ca", "Sc", "Ti" ,"V" ,"Cr", "Mn", "Fe" , "Co", "Ni", "Cu", "Zn"};
@@ -226,11 +449,11 @@ ans=ask(" $E[1]",db_ask_no)
 
    E4.pinfo()
    
-   ans=ask("Svar array filled OK",db_ask_no)
-
-<<"$E3[3:6] \n";
 
 
+   <<"$E4[3:6] \n";
+
+   ans=ask("Svar E4 array filled OK",db_ask)
 
 
    chkStage("svar array ele");
@@ -239,21 +462,24 @@ ans=ask(" $E[1]",db_ask_no)
 
    <<"IV: $IV\n";
 
-   RS= Split("$IV");
+   RS= Split("1 2 3 4 5 6 7 8 9");
 
    RS.pinfo();
 
-   <<"RS: $RS\n";
+   ans=ask("RS: $RS  ",db_ask);
 
-   S.pinfo();
+   RS = Split("$IV");
+
+
+   ans=ask("RS: $RS  ",db_ask);
+
+<<"%V $IV \n"  
 
    S= Split("$IV");
 
    S.pinfo();
 
    <<"$S\n";
-
-  S.pinfo()
    
 
    chkStr(S[1],"1");
@@ -262,24 +488,21 @@ ans=ask(" $E[1]",db_ask_no)
 
    chkStr(S[3],"3");
 
+   
 
    chkStr(S[2],"2");
 
    chkStr(S[9],"9");
 
-   //chkOut(-1)
+
    
 
    <<"$S[1:7]\n";
 
    chkStage ("assign via Split");
 
-   VF = vgen(FLOAT_,10,1,0.5);
 
-   <<"%V $VF\n";
-//TSV="%6.2f$(VF*2)"
-
-   TSV="$(VF*2)";
+   TSV="$VF";
 
    <<"%V$TSV\n";
 
@@ -288,10 +511,14 @@ ans=ask(" $E[1]",db_ask_no)
    TS= "%6.2f$(vgen(FLOAT_,10,1,0.5))";
 
    <<"%V$TS\n";
+   TS.pinfo()
+ans=ask(" $TS OK?",db_ask)
 
-   T= Split(TS);
+ Svar  T2= Split(TS);
 
-   <<"$T\n";
+ T2.pinfo()
+
+   <<"T2 is : $T2\n";
 
 float TFV[] = vgen(FLOAT_,10,1,0.5);
 
@@ -299,15 +526,16 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
 <<"%V  %6.3f $TFV[2]\n";
 
-   T= Split("%6.2f$(vgen(FLOAT_,10,1,0.5))");
+//   T= Split("%6.2f$(vgen(FLOAT_,10,1,0.5))"); // split works
+
+   T= Split("%6.2f$TFV"); // split works
 
    <<"T: $T\n";
 
    T.pinfo();
 
 <<" $T[1] $T[2] $T[3] \n"
-
-
+ans=ask(" $T[1] $T[3] \n",db_ask)
 
    chkStr(T[1],"1.50");
 
@@ -453,7 +681,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
      }
 
-   str le;
+   Str le;
 
    Mol = ( "JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC" ) ;
 
@@ -463,7 +691,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
    Mol.pinfo()
 
-   ans=ask(" Mol should type LIST!",db_ask_no);
+   ans=ask(" Mol should type LIST!",db_ask);
 
    sz = caz(Mol);
 
@@ -533,8 +761,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
 //////////////////////////////////
 
-   Svar Mo[] = {"JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC" };
-//Svar Mo = {"JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC" }
+   Svar Mo = {"JAN","FEB","MAR","APR" ,"MAY","JUN", "JUL", "AUG", "SEP", "OCT", "NOV" , "DEC" };
 
   <<" Mo $(typeof(Mo)) \n";
 
@@ -594,7 +821,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
   IV2.pinfo();
 //R= M[3::]   // TBF xic does not use default for range end
 
- ans= ask(" IV2 type ?",db_ask_no)
+ ans= ask(" IV2 type ?",db_ask)
 
   R= M[3:-1:];  // TBF  R sz M sz -3
 
@@ -616,7 +843,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
 
   IV3.pinfo();
 
-  ans=ask("IV3 int?",db_ask_no)
+  ans=ask("IV3 int?",db_ask)
 
   <<"%V $IV3\n";
 
@@ -687,7 +914,7 @@ float TFV[] = vgen(FLOAT_,10,1,0.5);
   <<"%V $IV3\n";
 
   IV3.pinfo();
-  ans=ask("IV3 int?",db_ask_no)  
+  ans=ask("IV3 int?",db_ask)  
 
   chkN(IV3[0],6);
 
@@ -808,82 +1035,6 @@ chkN(IV3[0], 79);
 /// svar as proc arg
 /// 
 ans=ask(" before proc pSv  OK?",0)
-  void pSv (Svar SV)
-  {
-  
-<<"IN pSv $_proc $SV\n"
- //allowDB("spe,parse,ds",1)
-//wdb= DBaction((DBSTEP_),ON_)
-static int k = 1;
-
-
-  SV.pinfo();
-
-  s2 = SV[2];
-  s3 = SV[3]
-  s1 = SV[1]
-  s4 = SV[4]
-  
-  s0 = SV[0]
-
-<<"%V $s3 \n"
-
-<<"%V $SV[3] \n"
-
-ans=ask("$s3 $SV[3] ",0)
-
-<<"%V $s0 $s1 $s2 $s3 $s4 \n"
-
-<<"%V $SV[3] $SV[4] $SV[1] $SV[0]\n"
-
-ans=ask("$s4 $SV[4] ",0)
-
-
- 
- 
-
-<<"%V $k\n"
-
-  Str w2;
-
-  sz = Caz(SV);
-
-  <<"%V $sz $SV[2] \n";
-
-  w2 = SV[2];
-
-  <<"%V $k $w2\n";
-
-  if (k==1) {
-
-  chkStr(w2,"we");
-
-  }
-
-  else if (k==2) {
-
-  chkStr(w2,"is");
-
-  }
-
-  else if (k==3) {
-
-  chkStr(w2,"40,07.00,N");
-
-  ang =getDeg(SV[2]);
-
-  <<"%V $ang\n";
-
-  ang = getDeg(SV[3]);
-
-  <<"%V $ang\n";
-
-  }
-
-  k++;
-
-  }
-//===========
 //chkOut()
 
   S = Split("how did we get here");
@@ -912,58 +1063,6 @@ ans=ask("$s1 $s2 $s3   OK? now call pSv",0)
   pSv(TS2);
 //===========
 
-  float getDeg (str the_ang)
-  {
-  str the_dir;
-  float la;
-  str wd;
-
-  <<"in $_proc  $the_ang\n";
-
-  the_parts = Split(the_ang,",");
-      //<<"%V$the_parts \n"
-//FIX    float the_deg = atof(the_parts[0])
-
-  wd = the_parts[0];
-
-  the_deg = atof(wd);
-
-  sz= Caz(the_deg);
-
-  <<" %V$sz $(typeof(the_deg)) $(Cab(the_deg))  \n";
-//    float the_min = atof(the_parts[1])
-
-  wd = the_parts[1];
-
-  the_min = atof(wd);
-
-  <<"%V$the_deg $the_min \n";
-
-  sz= Caz(the_min);
-
-  <<" %V$sz $(typeof(the_min))   $(Cab(the_min)) \n";
-
-  the_dir = the_parts[2];
-
-  y = the_min/60.0;
-
-  la = the_deg + y;
-
-  if ((the_dir @= "E") || (the_dir @= "S")) {
-
-  la *= -1;
-
-  }
-
-  <<"%V $la  $y  \n";
-
-  <<"%V $(caz(la))  $(Cab(la)) \n";
-
-  return (la);
-
-  }
-//===============================//
-
 
   chkStage("Proc");
 //==============================//
@@ -984,17 +1083,7 @@ ans=ask("$s1 $s2 $s3   OK? now call pSv",0)
   chkStr("if",Opts[12]);
 
 
- Svar Optd = SplitViaDel("all,array,matrix,bugs,bops,vops,sops,fops,class,declare,include,exp,if,logic,",44);
 
-  Optd.pinfo()
-  
-  <<"$Optd \n";
-
-  chkStr("all",Optd[0]);
-
-  chkStr("matrix",Optd[2]);
-
-  chkStr("if",Optd[12]);
 
 
 

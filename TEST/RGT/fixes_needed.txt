@@ -1,0 +1,60 @@
+///   Revision  Oct 2025
+
+   Oct 8 
+
+Include PASS XIC FAIL 
+
+Bops  PASS
+fvmeq PASS
+fsc1  PASS
+mainvar XIC FAIL
+snew PASS
+
+
+Assign  PASS
+
+Info PASS
+
+Logic PASS
+
+For   PASS
+
+If    FAIL
+
+While XIC FAIL
+
+Do    PASS
+
+Continue PASS
+
+Define PASS
+
+Enum  PASS
+colors_enum XIC FAIL
+
+Bitwise PASS  -- some error messages
+
+Switch PASS
+
+
+TryThrowCatch FAIL
+
+OO
+  oa XIC FAIL
+  rpS FAIL
+  rp2 FAIL
+  oa2 FAIL
+  classarray FAIL
+  simpleclass PASS  XIC FAIL
+
+
+Pex  PASS Fixed Oct 8th
+Assign  PASS Fixed Oct 8th
+  
+
+
+
+////////
+
+
+

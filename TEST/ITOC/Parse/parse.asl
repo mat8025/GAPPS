@@ -29,7 +29,9 @@
 
  do_declare = atoi(_argv[1])
 
-  allowDB("rdp",1)
+ allowDB("spe,parse",1)
+
+db_ask = 0
 
    x = 2.0
 
@@ -93,13 +95,54 @@ else {
 
 <<"%V $x $y $z4\n"
 
+   // float t= x + y
+     t= x + y
 
-   float r =  (y -x)/2.0
+<<"%V  $t  $y  $x   \n"
+
+   //float r =  (y -x)/2.0   ;  // this zeros y and x  why
+
+//   float r =  3.142
+
+//<<"%V $r   $y  $x   \n"
+
+float  r =  (y -x)/2.0   ;  
+   
+
+<<"%V $r   $y  $x   \n"
+
+  y1 = y
+  x1 = x
+
+ans= ask(" $r =   $y - $x  /2.0\n",db_ask)   // TBF fails with -D debug 
+
+
+ans=ask("%V    $y1 - $x1   $r \n",db_ask)
+
+
+ans=ask("is this correct %V   $r \n",db_ask)
+
+
 
    ChkN(r, 1.0)
 
+<<" Moving ON\n"
 
 
+//ans=ask("%V    $y1 - $x1   $(y1-x1) ",db_ask) // TBF pex calc fails
+
+ans=ask("%V    $y1 - $x1    ",db_ask)
+
+//<<"%V    $y - $x  /2.0 $(y-x) \n"
+
+<<"%V $r   $y - $x  /2.0 \n"
+
+//ans= ask(" $r =   $y - $x  /2.0\n",db_ask)
+
+
+
+
+////////////////////////////////////////////////////////////////////
 
   float LatS = 37.5;
 
@@ -271,7 +314,8 @@ d=2
   }
   else {
 
-<<"Y $a *  (b*3) $(b *3) <  $c * $d \n"
+// <<"Y $a *  (b*3) $(b *3) <  $c * $d \n" // TBF  pex calc fail
+<<"Y $a *  (b*3)  <  $c * $d \n"
   }
 
  la = 1

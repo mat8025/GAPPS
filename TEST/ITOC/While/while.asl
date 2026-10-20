@@ -17,10 +17,10 @@
 
 db_allow = 1
 db_ask = 0
-allowDB("ic,spe_,svar,str_,parse,pex",db_allow);
+//allowDB("ic,spe_,svar,str_,parse,pex",db_allow);
 
 #include "debug.asl"
-#include "hv.asl"
+//#include "hv.asl"
 
    if (_dblevel >0) {
 
@@ -395,6 +395,97 @@ ans=ask("forever! $k", db_ask)
      <<"Out of while $k $N\n";
 
      chkN(k,N);
+
+
+
+/* 
+   *  @script whilenest.asl
+   *
+   *  @comment test while loops
+   *  @release CARBON
+   *  @vers 1.2 He Helium [asl 6.3.58 C-Li-Ce]
+   *  @date 11/08/2021 11:27:24
+   *  @cdate 1/1/2001
+   *  @author Mark Terry
+   *  @Copyright © RootMeanSquare  2010,2021 →
+   *
+   *  \\-----------------<v_&_v>--------------------------//
+ */ 
+
+
+
+///
+///
+///
+
+   N=3;
+
+   k= 0;
+
+   while (1) {
+
+     if (k >=N) {
+
+       break;
+
+       }
+
+     k++;
+
+     }
+
+   chkN(k,N);
+
+
+   k=0;
+
+   n = 0;
+
+   while (1) {
+
+     k=0;
+
+     done = 0;
+
+     while (!done) {
+
+       if (k <=N) {
+
+         k++;
+
+         }
+
+       else {
+
+         done =1;
+
+         break;
+
+         }
+
+       }
+
+     chkN(done,1);
+
+     n++;
+
+     if (n >5) {
+
+       break;
+
+       }
+
+     <<"%V$k $n\n";
+
+     }
+
+   chkN(n,6);
+
+   k.pinfo();
+
+   chkOut(1);
+
+
 
      chkOut(1);
 

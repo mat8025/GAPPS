@@ -1,15 +1,16 @@
 /* 
- *  @script ASLMAN.txt                                              
- *
- *  @comment docs for ASL commands and usage                            
- *  @release Holmium                                                    
- *  @vers 2.8 O Oxygen [asl 5.67 : B Ho]                                
- *  @date 12/31/2023 11:49:28                                           
- *  @cdate 1/1/2001 11:18:09                  
- *  @author Mark Terry                        
- *  @Copyright © RootMeanSquare 2023 -->                               
+ *  @script ASLMAN.txt                                                        
+ * 
+ *  @comment docs for ASL commands and usage                                 
+ *  @release Carbon                                                           
+ *  @vers 2.9 F Fluorine [asl 6.70 : C Yb]                                    
+ *  @date 08/30/2026 11:02:53                                                 
+ *  @cdate 1/1/2001 11:18:09                                                 
+ *  @author Mark Terry                                                        
+ *  @Copyright © RootMeanSquare 2026 -->                                     
  * 
  */ 
+
                      
 //----------------<v_&_v>-------------------------//                
 
@@ -6646,17 +6647,16 @@ split()
 split
 .)x 
 .FD
-A=split(string,{stringdel})
-splits a string into a list of sub-strings using a string delimiter (default white space)
+A=split(string,{viastring})
+splits a string intgo a list of sub-strings using a string delimiter (default white space)
 it returns svar array type - each element contains a sub-string
 e.g.
 Svar A= split("once upon a time")
-A[1] contains "once"
-A[2] contains "upon"
-A[3] contains "q"
+A[0] contains "once"
+A[1] contains "upon"
+A[2] contains "a"
+A[4] contains "time"
 ...
-
-A[0] contains the original string
 
 .EF
 =============================================================
@@ -6859,7 +6859,7 @@ sets signal buffer number associated with window wid
 .EF
 =============================================================
 .BF
-setdebug(), sdb
+sdb,setdebug()
 .(x
 setdebug
 .)x 

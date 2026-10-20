@@ -16,7 +16,7 @@ myScript = getScript();
 #include "debug"
 
 //debugON()
-
+allowErrors(0)
 chkIn()
 
  db_allow = 0;

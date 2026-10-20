@@ -41,6 +41,8 @@ ans = ask("%V $body_wt_lbs $c_harness ",0)
 
 <<" [0] $_argv[0] [1] $_argv[1] [2] $_argv[2] \n"
 
+rejectDB("array,spe_proc_process,spe_scopesindex,ic_wic,oo_")
+
  argc = argc();
 
    <<"%V $arg1 \n"
@@ -76,6 +78,8 @@ using namespace std;
 #endif       
 
 
+
+
   chkIn(1) ;
 
   chkT(1);
@@ -102,7 +106,10 @@ using namespace std;
 /}
 
  
-   rejectDB("array")
+ 
+
+
+
 
 
 class Wing
@@ -262,6 +269,111 @@ class Wing
   }
 
  };
+
+///////  Draw //////////////
+ // if this is placed later in main setup -- it never exists ?
+ 
+ void drawScreens()
+  {
+ 
+    sWi(_woid,aw,_wclearclip,PINK_,_whue,LILAC_,_wbhue,TURQUOISE_,_wredraw,ON_)
+    sWo(_woid,wtrwo,_wclipborder,BLACK_,_whue,LILAC_,_wbhue,PINK_,_wredraw,ON_)
+
+    sWo(_woid,wtptrrwo,_wclipborder,BLACK_,_whue,LILAC_,_wbhue,PINK_,_wredraw,ON_)
+
+
+      <<"drawScreens $_proc \n"
+ 
+ 
+    // _clip for wo is clip area with the wob
+    i= 2
+    hue_name = getColorName(i)
+    	ask("$hue_name $i",0);
+        //<<"hues are  $i $hue_name  $(getColorName(i+1))\n"
+    i++
+        //<<"hues are  $i $hue_name  $(getColorName(i+1))\n"
+	//ask("$hue_name $i",0);
+
+
+    sWo(_woid,wtrwo,_woname,"WtRange",_wodraw,ON_,_wopixmap,OFF_,_woclip,wbox(0.1,0.1,0.9,0.9,4),_wocolor,WHITE_)
+    sWo(_woid,wtrwo,_wohue,i,_wobhue,WHITE_,_woclipborder,BLACK_,_woredraw,ON_)
+    sWo(_woid,wtrwo,_woclipborder,BLACK_,_woclipbhue,LILAC_,_woclipfhue,ORANGE_,_woupdate,ON_)
+
+    
+    axnum(wtrwo,2,min_kg,max_kg,5,2,"2.0f")
+    
+    //axnum(wtrwo,2,min_kg,max_kg,5,-3,"2.0f")
+    // want to use rht scales which should be scales 1
+   // sWo(_woid,wtrwo,_wousescales,1)
+   
+    sWo(_woid,wtrwo,_woscales,wbox(xmin,min_lbs,xmax,max_lbs),_wosavescales,1)
+    axnum(wtrwo,8,min_lbs,max_lbs,12,-3,"2.0f")  ;
+     // lets use 9-12 to force use of scales 1
+
+    sWo(_woid,wtrwo,_woscales,wbox(xmin,min_kg,xmax,max_kg),_wosavescales,0)
+
+
+    sWo(_woid,wtrwo,_wousescales,0)    
+
+
+    axnum(wtrwo,1,xmin,xmax,2,1,"2.0f")
+
+     mywt =helmet + harness_wt + kit + body_wt
+
+     magic_cw = magicw + mywt
+
+     hook_cw = hookw + mywt
+
+  // hook3 wtrange box
+   // <<"%V $Hook3.min  $Hook3.max $Hook3.allupwt \n"
+     Hook3.Plot(2)
+
+     Theta.Plot(5)
+
+  // advance theta wtrange box
+   //  <<"%V $Theta.min  $Theta.max $Theta.allupwt \n"
+ 
+
+  // IotaDLS wtrange box
+   //  <<"%V $Iota2_27.min  $Iota2_27.max $Iota2_27.allupwt \n"
+   //   IotaDLS_25.Plot(8)
+
+
+  // Phi wtrange box
+
+     Phi_Maestro_22.Plot(8)
+     
+   //Phi_Maestro_23.Plot(8)
+   
+    Epsilon10_28.Plot(11)
+
+    Magic.Plot(14)
+
+    current_wt = body_wt + wingwt + harness_wt + kit + helmet + ballast_wt;
+
+<<"%V %6.4f $current_wt  $body_wt $wingwt $harness_wt $kit  $helmet $ballast_wt \n"     
+
+     current_wt_lbs = current_wt * kg2lb_;
+     
+     woSetValue(wtbwo,"%4.2f $body_wt $body_wt_lbs");
+     woSetValue(wtkgbwo,"%4.2f $current_wt $current_wt_lbs");     
+      
+
+      woSetValue(harbwo,"$c_harness $harness_wt");
+
+    for (i=0;i<10;i++) {
+    if (mwos[i] == -1)
+        break;
+    sWo(_woid,mwos[i],_woredraw,ON_);
+
+    }
+
+    <<"EXIT drawScreens \n"
+    
+}
+/////////////////////////////////////////////////////////
+
+
 
     float default_wt_lbs = 195.0
    <<"%V $default_wt_lbs\n"
@@ -438,100 +550,8 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
     Xgm = spawnGwm("PG_WTRANGE")
   }
  sleep (2)
- 
- void drawScreens()
-  {
- 
-    sWi(_woid,aw,_wclearclip,PINK_,_whue,LILAC_,_wbhue,TURQUOISE_,_wredraw,ON_)
-    sWo(_woid,wtrwo,_wclipborder,BLACK_,_whue,LILAC_,_wbhue,PINK_,_wredraw,ON_)
 
 
-      <<"drawScreens $_proc \n"
- 
- 
-    // _clip for wo is clip area with the wob
-    i= 2
-    hue_name = getColorName(i)
-    	ask("$hue_name $i",0);
-        //<<"hues are  $i $hue_name  $(getColorName(i+1))\n"
-    i++
-        //<<"hues are  $i $hue_name  $(getColorName(i+1))\n"
-	//ask("$hue_name $i",0);
-
-
-    sWo(_woid,wtrwo,_woname,"WtRange",_wodraw,ON_,_wopixmap,OFF_,_woclip,wbox(0.1,0.1,0.9,0.9,4),_wocolor,WHITE_)
-    sWo(_woid,wtrwo,_wohue,i,_wobhue,WHITE_,_woclipborder,BLACK_,_woredraw,ON_)
-    sWo(_woid,wtrwo,_woclipborder,BLACK_,_woclipbhue,LILAC_,_woclipfhue,ORANGE_,_woupdate,ON_)
-
-    
-    axnum(wtrwo,2,min_kg,max_kg,5,2,"2.0f")
-    
-    //axnum(wtrwo,2,min_kg,max_kg,5,-3,"2.0f")
-    // want to use rht scales which should be scales 1
-
-   // sWo(_woid,wtrwo,_wousescales,1)    
-    sWo(_woid,wtrwo,_woscales,wbox(xmin,min_lbs,xmax,max_lbs),_wosavescales,1)
-    axnum(wtrwo,8,min_lbs,max_lbs,12,-3,"2.0f")  ; // lets use 9-12 to force use of scales 1
-
-    sWo(_woid,wtrwo,_woscales,wbox(xmin,min_kg,xmax,max_kg),_wosavescales,0)
-
-
-    sWo(_woid,wtrwo,_wousescales,0)    
-
-
-    axnum(wtrwo,1,xmin,xmax,2,1,"2.0f")
-
-     mywt =helmet + harness_wt + kit + body_wt
-
-     magic_cw = magicw + mywt
-
-     hook_cw = hookw + mywt
-
-  // hook3 wtrange box
-   // <<"%V $Hook3.min  $Hook3.max $Hook3.allupwt \n"
-     Hook3.Plot(2)
-
-     Theta.Plot(5)
-
-  // advance theta wtrange box
-   //  <<"%V $Theta.min  $Theta.max $Theta.allupwt \n"
- 
-
-  // IotaDLS wtrange box
-   //  <<"%V $Iota2_27.min  $Iota2_27.max $Iota2_27.allupwt \n"
-   //   IotaDLS_25.Plot(8)
-
-
-  // Phi wtrange box
-
-     Phi_Maestro_22.Plot(8)
-     
-   //Phi_Maestro_23.Plot(8)
-   
-    Epsilon10_28.Plot(11)
-
-    Magic.Plot(14)
-
-    current_wt = body_wt + wingwt + harness_wt + kit + helmet + ballast_wt;
-
-<<"%V %6.4f $current_wt  $body_wt $wingwt $harness_wt $kit  $helmet $ballast_wt \n"     
-
-     current_wt_lbs = current_wt * kg2lb_;
-     
-     woSetValue(wtbwo,"%4.2f $body_wt $body_wt_lbs");
-     woSetValue(wtkgbwo,"%4.2f $current_wt $current_wt_lbs");     
-      
-
-      woSetValue(harbwo,"$c_harness $harness_wt");
-
-    for (i=0;i<10;i++) {
-    if (mwos[i] == -1)
-        break;
-    sWo(_woid,mwos[i],_woredraw,ON_);
-
-    }
-}
-/////////////////////////////////////////////////////////
 
 
   aw =cWi("WT_RANGE");
@@ -546,7 +566,7 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
 
     sWi(_woid,aw,_woscales,wbox(xmin,0,xmax,120),_wosavescales,0,_wosave,ON_)
 
-    wtrwo=cWo(aw,WO_GRAPH_);
+     wtrwo=cWo(aw,WO_GRAPH_);
 
      sWo(_woid,wtrwo,_woresize,wbox(0.15,0.15,0.9,0.95),_wocolor,WHITE_)
 
@@ -570,10 +590,10 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
       wtkgbwo=cWo(aw,WO_BV_); 
       sWo(_woid,wtkgbwo,_wname,"ALLUPWT",_wclipbhue,PINK_,_wfonthue,BLACK_,_whelp," All upw WT kg "); 
 
-      upbwo=cWo(aw,WO_SYM_); 
+      upbwo=cWo(aw,WO_SYMBOL_); 
       sWo(_woid,upbwo,_wname,"UPWT",_wclipbhue,CYAN_,_wfonthue,BLACK_,_wsymbol,TRI_,_wsymsize,25,_whelp," increase WT lbs ");
 
-      downbwo=cWo(aw,WO_SYM_); 
+      downbwo=cWo(aw,WO_SYMBOL_); 
       sWo(_woid,downbwo,_wname,"DOWNWT",_wclipbhue,CYAN_,_wfonthue,BLACK_,_wsymbol,ITRI_,_wsymsize,25,_whelp," decrease WT lbs ");
 
       ballastbwo=cWo(aw,WO_BV_); 
@@ -582,7 +602,8 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
 
 
 
-      int mwos[] = { upbwo, wtbwo,downbwo, wtkgbwo,  harbwo,ballastbwo, -1 }
+
+      int mwos[] = { upbwo, wtbwo,downbwo, wtkgbwo,  harbwo,ballastbwo,  -1 }
      
       wovtile( mwos, 0.01,0.15,0.12,0.7,0.1);
 
@@ -592,19 +613,52 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
      sWo(_woid,wtbwo ,_wstyle,SVB_,_wredraw,ON_);
      sWo(_woid,wtkgbwo ,_wstyle,SVB_,_wredraw,ON_);     
      sWo(_woid,harbwo ,_wstyle,SVB_,_wredraw,ON_);
-       sWo(_woid,ballastbwo ,_wstyle,SVB_,_wredraw,ON_);
-     drawScreens()
+     sWo(_woid,ballastbwo ,_wstyle,SVB_,_wredraw,ON_);
+
+     // WOINWO  - should be able to display and move around in the parent WO
+     wtptrwo=cWo(wrtwo,WO_SYMBOL_); 
+
+     sWo(_woid,wtptrwo,_wname,"WTPTR",_wclipbhue,ORANGE_,_wfonthue,RED_,_wvalue,"0",_whelp,"  WT ptr "); 
+
+ sWo(_woid,wtptrwo ,_wstyle,SVB_,_wsymbol,TRI_,_wresize,wbox(0.1,0.1,0.2,0.2,1),_wvmove, ON_,_wredraw,ON_);
+
+
+     // where is intial placement ?
+     // VMOVE only
+
+
+  
+  drawScreens()
 
   ans= ask("%V $body_wt $body_wt_lbs",0)
   m_num = 0;
 
   while (1) {
 
+       m_num++
 
-
-        m_num++
+ 
        recompute = 0
        eventWait()
+
+ <<"In LOOP $m_num clicked in $ewoname_  x $erx_ y $ery_  \n"
+
+       if ( ewoname_ == "WtRange") {
+          body_wt = ery_;
+	  body_wt_lbs = body_wt * 2.2;
+          current_wt = body_wt + wingwt + harness_wt + kit + helmet + ballast_wt;
+          current_wt_lbs = current_wt/kg2lb_;
+          sWo(_woid,wtbwo,_wotext,"%4.1f$body_wt $body_wt_lbs", _woredraw,ON_);
+          woSetValue(wtbwo,"%4.2f $body_wt $body_wt_lbs");
+
+          sWo(_woid,wtbwo, _woredraw,ON_);
+	  womove(wtptrwo,erx_,ery_)
+	  <<" moving ptr to $erx_ $ery_\n"
+	  sWo(_woid,wtptrwo, _woredraw,ON_);
+
+          recompute = 1
+       }
+
 
        if ( ewoname_ == "BODYWT") {
          recompute = 1
@@ -705,7 +759,7 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
                if( recompute) {
                   Magic.Compute()
                   Theta.Compute()
-  		Hook3.Compute()
+  		  Hook3.Compute()
 
 
 //		IotaDLS_25.Compute()
@@ -714,18 +768,32 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
 
 		Phi_Maestro_22.Compute()
 		Phi_Maestro_22.Print()
-		
+	//	Phi_Maestro_22.Plot(8)
+		 
 	  	Epsilon10_28.Compute()
-	  			Epsilon10_28.Print()
+	  	Epsilon10_28.Print()
 
+    // Hook3.Plot(2)
 
+   //  Theta.Plot(5)
+
+    // 	  	Epsilon10_28.Plot(11)
 		current_wt = body_wt + wingwt + harness_wt + kit + helmet + ballast_wt;
                 current_wt_lbs = current_wt*kg2lb_;	
 
                 }
 
+    for (i=0;i<10;i++) {
+    if (mwos[i] == -1)
+        break;
+    sWo(_woid,mwos[i],_woredraw,ON_);
+
+    }
+
        drawScreens()
 //  <<" Paras %V $wtbwo $wtkgbwo $body_wt $body_wt_lbs $current_wt $Symsz\n"	 
+
+<<"END OF LOOP $m_num \n"
 }
 //////////
 

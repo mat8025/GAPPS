@@ -12,7 +12,7 @@
  */ 
 //----------------<v_&_v>-------------------------//
 
-allowDB("prep,opera_,spe,rdp_,ic,pex_,parse,array,ds",0)
+
   
 void fillInObsVec()
 {
@@ -36,7 +36,8 @@ if (Yd >= 0) {
 
   if (mywt > 0.0) {  // we have an entry = not all days are logged
 
-  WTVEC[Yd] = mywt;
+    WTVEC[Yd] = mywt;
+  
   
   //<<"mywt $Yd  $WTVEC[Yd] \n";
 
@@ -109,32 +110,30 @@ if (Yd >= 0) {
 
   EXEBURN[Yd] =  exer_burn;
 
- //<<"%V $tex $walk + $walk_burn  $hike + $run + $cycle $cycle_burn + $swim + $yardwrk + $gym * rates = $exer_burn\n"
+// <<"%V %6.2f $tex $walk + $walk_burn  $hike + $run + $cycle $cycle_burn + $swim + $yardwrk + $gym * rates = $exer_burn\n"
+
+// <<"%V %6.2f $mywt  $walk + $walk_burn  $exer_burn\n"
 
   tot_exeburn += exer_burn;
 
-
-
-  // float wrk_sleep  = (sleep_burn + (16 * 60 - tex) * office_rate )  ;
-
-   wrk_sleep  = (sleep_burn + (16 * 60 - tex) * office_rate )  ;
+  wrk_sleep  = (sleep_burn + (16 * 60 - tex) * office_rate )  ;
 
   CALSBURN[Yd] =  wrk_sleep + exer_burn ;
 
   Nobs++;
 
-  // printf("Nobs %d  exer_burn %f\n",Nobs ,exer_burn);
+<<" $Yd2 $WTVEC[Yd2] \n" ; FIX
+
+ // ans=ask(" %V $Nobs $exer_burn ",0);
   }
 
   }
-
-
 
   }
 //====================================================//
 
 
-
+  int Yd2 = 0; // FIX
   int readData()
   {
 
@@ -144,12 +143,12 @@ if (Yd >= 0) {
   Str mywt;
  // RX->info(1)
   long sday;
-  
+  float wtv;
   int got_start = 0;
 
 // <<"get data from record Wex_Nrecs \n";
 
-//ans = Ask("readData $_proc ?",1)
+ans = Ask("readData $Wex_Nrecs ?",1)
 
 // access of record row Rx(i)
 // access of record Col Rx(i,j)
@@ -159,11 +158,10 @@ if (Yd >= 0) {
 //             - or one column as a vector
 //               - or even a sub matrix
 
-
+  Wex_Nrecs = 20;  // FIX
 
   while (tl < Wex_Nrecs) {
-
-
+   Yd2 = tl
 
   Col= RX.getRecord(tl);
  // RX.pinfo()
@@ -204,12 +202,18 @@ if (Yd >= 0) {
    // variables are plotted against dates (juldays - birthday)
   
   fillInObsVec();
+  
+  wtv = atof(mywt); // should return float FIX
+  // FIX
+  
+  WTVEC[tl] = wtv  // FIX
+  
+<<"$tl $Yd2 $day $mywt $wtv $WTVEC[tl] \n")
+
 
   tl++;
 
-//ans=ask("%V $tl  $day $mywt $Wex_Nrecs\n",0)
-
-//<<"%V $tl  $day $mywt $Wex_Nrecs\n"
+//ans=ask("%V $tl  $day $mywt \n",0)
 
   if (tl >= Wex_Nrecs) {
 

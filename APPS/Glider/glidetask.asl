@@ -18,7 +18,7 @@ char vers[6] ="5.3";
 
  
 #define DB_IT    0
-#define GT_DB   1
+#define GT_DB   0
 #define __ASL__ 1
 #define __CPP__ 0
 
@@ -762,22 +762,25 @@ if ((nxttpt == "done")  ) {  // 6.54 fail
 
    }
    else {
-//<<"%V $afh\n"
-    if (GT_DB) printf ("n_legs %d where %d found %s ",n_legs, where,nxttpt);
+
+    if (GT_DB) {
+     printf ("n_legs %d where %d found %s ",n_legs, where,nxttpt);
+    }
     
    }
 
   }
 
   if (more_legs) {
-
+//sdb(1,"step")
 
   where = fseek(afh,where,0);
 
   n_legs++;
 
-  if (GT_DB) printf("n_legs %d where %d afh %d\n",n_legs,where , afh);
-
+#if GT_DB
+  printf("n_legs %d where %d afh %d\n",n_legs,where , afh);
+#endif
 //cout << " n_legs "<< n_legs <<" @ " << where << endl;
 
   if (via_keyb) {
@@ -1143,7 +1146,11 @@ if ((nxttpt == "done")  ) {  // 6.54 fail
 // printf("%d %-5s  \t%s\t%s   %6.0fft   %6.0fft         \n",li,ident,GT_Wtp[li].Lat,GT_Wtp[li].Lon, GT_Wtp[li].fga, GT_Wtp[li].Alt);
   //
 #if __ASL__
-  printf("%d %-10s %-5s %-8s %6.0fft",li,GT_Wtp[li].Place,ident,GT_Wtp[li].Radio,GT_Wtp[li].Alt);
+
+// make a str of var plus n-len spaces 
+  printf("%d %-20s %-10s ",li,GT_Wtp[li].Place,ident);
+  
+  printf("%-10s %6.0f ",GT_Wtp[li].Radio,GT_Wtp[li].Alt);
 #else
  //printf("%d %-10s %-5s %-8s",li,GT_Wtp[li].Place.cptr(),ident.cptr(),GT_Wtp[li].Radio.cptr())  ;
  

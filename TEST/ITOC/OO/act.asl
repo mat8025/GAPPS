@@ -40,13 +40,13 @@
         int Set(int k)
         {
 
-             <<"Act_Set INT  $_cobj k $k\n";
-
-             <<"%V$otype\n";
-
+             <<"Act_Set INT  $_cobj $id k $k\n";
+      
              otype = k;
 
-             otype.pinfo();
+             //otype.pinfo();
+            ask("%V$otype  $k\n",1);
+            
 
              return otype;
 
@@ -62,7 +62,7 @@
              otype = k;
      //otype.info(1);
 
-             otype.pinfo();
+             //otype.pinfo();
 
              return otype;
 
@@ -106,11 +106,11 @@
 
              stype = sr; // fail?;
 
-             sr.pinfo();
+           //  sr.pinfo();
 
-             stype.pinfo();
+         //    stype.pinfo();
 
-             <<"sr  <|$sr|> stype <|$stype|>\n";
+             ask("Set_Str sr  <|$sr|> stype <|$stype|>\n",0);
 
              return stype;
 
@@ -121,12 +121,20 @@
 
              <<"$_proc %V $otype\n";
 
-             otype.pinfo();
+           //  otype.pinfo();
 
              return otype;
 
         }
 
+        void Print()
+	{
+
+        <<"Act  %V  $id $Act_ocnt  $a_day $mins $otype $stype\n";
+
+
+        }
+	
         int GetWD()
         {
 
@@ -140,6 +148,16 @@
 
         }
 
+      int GetID()
+        {
+
+             <<"$_proc  GetID $id\n";
+
+
+             return id;
+
+        }
+
         void Act()
         {
 // FIXME   <<"cons of Act $_cobj $(_cobj.obid())  $(IDof(&_cobj))\n" 
@@ -150,23 +168,25 @@
 
              <<"%V $id\n";
 
-             id.pinfo();
+//             stype = "$id xyz";
+	     
+         //    id.pinfo();
 
              otype = 1;
 
-             mins = 10;
+             mins = id * 10;
 
              t = id*2;
 
-             t.pinfo();
+          //   t.pinfo();
 //ans=ask("Act $t set ?",1)
 
              a_day = Act_ocnt;
 
-             a_day.pinfo();
+         //    a_day.pinfo();
 //<<"Act CONS ID is $id \n"
 
-             <<"Act CONS of %V $_cobj $id $Act_ocnt  $a_day $mins $otype\n";
+             <<"Act CONS of %V $_cobj $id $Act_ocnt  $a_day $mins $otype $stype \n";
 
         }
 

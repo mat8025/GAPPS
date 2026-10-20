@@ -362,7 +362,207 @@ b = 2;
        }
 #}
    
-   
+
+
+
+#define TRUE  1
+
+
+#{
+ x = TRUE
+<<"%V $x  \n"
+#}
+
+
+
+y = 1
+<<"%V $y \n"
+
+
+ a = 1
+ b = 0
+
+
+
+ if ( a && b) {
+
+  <<"  && is true $a $b \n"
+
+ }
+ else {
+
+  chkT(1)
+  <<"  && is NOT true $a $b \n"
+
+ }
+
+
+ if ( a AND_ b) {
+
+  <<"  AND is true $a $b \n"
+
+ }
+ else {
+  chkT(1)
+  <<"  AND is NOT true $a $b \n"
+
+ }
+
+
+ if ( a OR_ b) {
+  chkT(1)
+  <<"  OR is true $a $b \n"
+
+ }
+ else {
+
+  <<"  OR is NOT true $a $b \n"
+
+ }
+
+ if ( a XOR_ b) {
+  chkT(1)
+  <<"  XOR is true $a $b \n"
+ }
+ else {
+
+  <<"  XOR is NOT true $a $b \n"
+
+ }
+
+  if ( a &| b) {
+  chkT(1)
+  <<"  XOR is true $a $b \n"
+ }
+ else {
+
+  <<"  &| XOR is NOT true $a $b \n"
+
+ }
+
+ if ( a NAND_ b) {
+  chkT(1)
+  <<"  NAND is true $a $b \n"
+
+ }
+ else {
+  <<"  NAND is NOT true $a $b \n"
+ }
+
+ if ( a |& b) {
+  chkT(1)
+  <<"  |& NAND is true $a $b \n"
+
+ }
+ else {
+  <<"  NAND is NOT true $a $b \n"
+ }
+
+
+
+<<"   AND what do we make of this OR NOT \n"
+
+ c = a * b 
+
+<<"%V $a $b $c \n"
+
+
+a =1
+b = 1
+
+ if ( a XOR_ b) {
+  
+  <<"  XOR is true $a $b \n"
+ }
+ else {
+chkT(1)
+  <<"  XOR is NOT true $a $b \n"
+
+ }
+
+b = 0
+
+ if ( a XOR_ b) {
+chkT(1)  
+  <<"  XOR is true $a $b \n"
+ }
+ else {
+
+  <<"  XOR is NOT true $a $b \n"
+
+ }
+
+
+//#define RED  1
+//#define ORANGE  2
+//#define GREEN  3 
+
+
+
+
+
+
+
+
+chkN(2,RED_)
+chkN(ORANGE_,3)
+chkN(5,GREEN_)
+
+
+  color = RED_ ;
+
+ <<"%V $color  $(RED_ + 1) \n"
+
+ <<" rgb  ",RED_,"\n"
+
+  ocolor = ORANGE_ ;
+
+  int t_or_f = 0
+
+<<"%V$t_or_f  \n"
+
+      t_or_f = TRUE_
+
+<<"%V$t_or_f  \n"
+
+<<"%V $ocolor  \n"
+
+
+  color = GREEN_;
+
+
+<<"%V $color  \n"
+<<"AND %V $(AND_) \n"
+
+  if ( (ocolor == ORANGE_ ) AND_ (color == GREEN_ )) {
+
+        <<"$ocolor   AND $color  is TRUE $(TRUE_)\n"
+     
+
+     chkT(TRUE_)
+   }
+
+
+  if ( (ocolor == ORANGE_ ) OR_ (color == RED_ )) {
+
+        <<"$ocolor is  $(ORANGE_)  OR_ $color  is RED is  TRUE\n"
+        chkT(TRUE_)
+   }
+
+
+y = 1
+<<"%V $y \n"
+
+
+
+
+
+
+chkOut()
+
+
+///  TBD
+///  BXOR,BAND,  bit ops
    chkOut(1); 
    
    

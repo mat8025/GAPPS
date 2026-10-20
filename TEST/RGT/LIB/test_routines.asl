@@ -521,7 +521,9 @@ void cart_xic(Str aprg, Str a1)
 
 int wscore;
 
-<<[_DBH]"%V $_proc  $aprg $a1 \n"
+<<"%V $_proc  $aprg $a1 \n"
+
+ok=ask("%V $_proc  $aprg $a1 \n",1)
 
     foundit = fexist(aprg) ;
 

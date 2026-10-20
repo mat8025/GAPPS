@@ -177,22 +177,36 @@ double pw;
 Vec<double> pwl(10);
 pwl[0] = 0.0;
 pwl[1] = 1.0;
-double xv[7];
-double yv[7];
+double xv[14];
+double yv[14];
 int i;
 int askit = 0;
-int k = Yday-4;
+
+Yday = 20 ; // FIX
+int k = Yday-8;
+
+      WTVEC.pinfo()
+
+      for (i =0; i < 5; i++) {
+      pw = WTVEC[i] 
+      <<"$i $pw  $WTVEC[i] \n"; // FIX
+
+      }
   
 <<"$Yday $k\n"
-  oknow = Ask ("%V $Yday $k ",askit)
+  oknow = Ask ("%V $Yday $k ",1)
   if (Yday > 5) {
      nco = 0;
   for (i =0; i < 5; i++) {   
        xv[i] =  i;
        yv[i] =  WTVEC[k];
-       if (yv[i] == 0)
-          break
       <<"$i $k  $WTVEC[k] $xv[i] $yv[i]\n"; // TBF
+       if (yv[i] == 0) {
+         <<"bad wt measure \n"
+            break;
+        }
+
+ 
        k++;
        nco++
 
@@ -221,7 +235,7 @@ int k = Yday-4;
   }
 
 <<"\n Tomorrow's wt will be %6.2f $pw +week $PWT7  + fortnight $PWT14\n"
-// oknow = Ask ("que pasa? $_proc",1)
+  oknow = Ask ("que pasa? $_proc",1)
   return pw;
 }
 

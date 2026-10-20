@@ -94,6 +94,7 @@ void localv()
 <<"%V $::FF[2]\n"
 
  j=0
+ //sdb(1,"step")
   for (i= 5; i<10; i++) {
   
     FF[j] = i;

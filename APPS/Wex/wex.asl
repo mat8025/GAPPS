@@ -82,6 +82,7 @@ using namespace std;
  //////////////// put thme ahead of include asl modules //////////////
  ///   all procs/funcs  should be after globals and before main
  //
+rejectDB("prep,opera_,spe,rdp_,ic,pex_,parse,array,ds",0)
 
   int Nrecrd = 0;
   int i = 0;
@@ -354,13 +355,13 @@ Record RX;
    Str stmp;
    Svar Goals;
    
-   Goals.Split("07/27/2026 08/16/2026 185");
+   Goals.Split("10/10/2026 12/01/2026 180");
 
 //<<"Setting goals $Goals\n"
 
    Svar Goals2;
    
-   Goals2.Split("07/27/2026  08/4/2026 195");
+   Goals2.Split("10/10/2026  11/15/2026 190");
 ////////////////////==============/////////////////
 
 // move these down 10 when reached -- until we are at desired operating weight!
@@ -414,10 +415,7 @@ Record RX;
 //   <<"%V$sc_startday $targetday $sc_endday \n"
 
 
-
-
    int got_start = 0;
-
 
    int ngday = 7;
 
@@ -508,7 +506,7 @@ Record RX;
 
 
  // cf(ACC);
- RCC->info(1);
+ RCC->pinfo();
 
   NCCrecs = RCC.getNrowsrd(); // this get size of record array - not num of records just read
   
@@ -523,7 +521,7 @@ Record RX;
   }
 
 
-ans= ask("readCCData %V $Nrecrd $NCCrecs proceed?",0);
+ans= ask("readCCData %V $Nrecrd $NCCrecs proceed?",1);
 
   if (ans =="q") {
        exit()
@@ -546,7 +544,7 @@ ans= ask("readCCData %V $Nrecrd $NCCrecs proceed?",0);
 
   /////////////////////  part 1 ////////////////////////////
 
-//ans= ask("after readCCData proceed?",1);
+ans= ask("after readCCData proceed?",1);
 
 //   init_period = 32;
 
@@ -593,8 +591,10 @@ float ae = EXTV[15];
 
    ae = AVE_EXTV[15];
 
+   predictWL();
 
-  predictWL();
+   exit()
+
 
 
    openDll("plot");
@@ -640,16 +640,14 @@ float ae = EXTV[15];
   lcpx = sc_startday;
   rcpx = sc_endday;
 
- ans=Ask(" draw screens proceed?",0);
+ ans=Ask(" draw screens proceed?",1);
 
   drawScreens();
-//
+
+ ans=Ask(" after draw screens proceed?",1);
 
   showTarget();
 
-
-
- // drawScreens();
 
   <<"Tomorrow's wt will be %6.2f $PWT1 +week $PWT7  + fortnight $PWT14"
 
@@ -659,7 +657,7 @@ float ae = EXTV[15];
 
   titleMessage(vp,tit_msg)
 
-//ans=Ask(" show target proceed?",1);
+ans=Ask(" show target proceed?",1);
 
  int nevent = 0;
 
@@ -667,7 +665,7 @@ float ae = EXTV[15];
 
   int rcb = 0;
 
-     oknow = Ask ("que pasa? %V $Nrecrd $Yd",0)      
+     oknow = Ask ("que pasa? %V $Nrecrd $Yd",1)      
 
      Graphic = checkGWM();
 
