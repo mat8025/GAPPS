@@ -279,7 +279,7 @@ class Wing
     sWi(_woid,aw,_wclearclip,PINK_,_whue,LILAC_,_wbhue,TURQUOISE_,_wredraw,ON_)
     sWo(_woid,wtrwo,_wclipborder,BLACK_,_whue,LILAC_,_wbhue,PINK_,_wredraw,ON_)
 
-    sWo(_woid,wtptrrwo,_wclipborder,BLACK_,_whue,LILAC_,_wbhue,PINK_,_wredraw,ON_)
+    sWo(_woid,wtptrwo,_wclipborder,BLACK_,_whue,LILAC_,_wbhue,PINK_,_wredraw,ON_)
 
 
       <<"drawScreens $_proc \n"
@@ -368,7 +368,10 @@ class Wing
 
     }
 
-    <<"EXIT drawScreens \n"
+    sWo(_woid,wtptrwo,_wmove,wbox(1.5,body_wt,wtrwo,0),_wredraw,ON_);
+
+     plotSymbol(wtrwo,STAR_,1.0,bodywt,GREEN_,Symsz,1,FILL_);
+    <<"EXIT drawScreens plot ptr STAR %V $body_wt $Symsz \n"
     
 }
 /////////////////////////////////////////////////////////
@@ -616,12 +619,13 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
      sWo(_woid,ballastbwo ,_wstyle,SVB_,_wredraw,ON_);
 
      // WOINWO  - should be able to display and move around in the parent WO
-     wtptrwo=cWo(wrtwo,WO_SYMBOL_); 
+     wtptrwo=cWo(wtrwo,WO_SYMBOL_); 
 
      sWo(_woid,wtptrwo,_wname,"WTPTR",_wclipbhue,ORANGE_,_wfonthue,RED_,_wvalue,"0",_whelp,"  WT ptr "); 
 
- sWo(_woid,wtptrwo ,_wstyle,SVB_,_wsymbol,TRI_,_wresize,wbox(0.1,0.1,0.2,0.2,1),_wvmove, ON_,_wredraw,ON_);
+     sWo(_woid,wtptrwo ,_wsymbol,TRI_,_wresize,wbox(0.1,0.1,0.15,0.2),_wvmove, ON_,_wredraw,ON_);
 
+     sWo(_woid,wtptrwo, _wsymsize, 25,_wvmove, ON_, _wmove,wbox(0.5,90,wtrwo,0),_wredraw,ON_);
 
      // where is intial placement ?
      // VMOVE only
@@ -630,7 +634,7 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
   
   drawScreens()
 
-  ans= ask("%V $body_wt $body_wt_lbs",0)
+//  ans= wask("%V $body_wt $body_wt_lbs")
   m_num = 0;
 
   while (1) {
@@ -639,7 +643,8 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
 
  
        recompute = 0
-       eventWait()
+       
+       eventWait() ; // wait until event
 
  <<"In LOOP $m_num clicked in $ewoname_  x $erx_ y $ery_  \n"
 
@@ -652,9 +657,10 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
           woSetValue(wtbwo,"%4.2f $body_wt $body_wt_lbs");
 
           sWo(_woid,wtbwo, _woredraw,ON_);
-	  womove(wtptrwo,erx_,ery_)
+
 	  <<" moving ptr to $erx_ $ery_\n"
-	  sWo(_woid,wtptrwo, _woredraw,ON_);
+
+         sWo(_woid,wtptrwo,_wmove,wbox(1.5,body_wt,wtrwo,0),_woredraw,ON_);
 
           recompute = 1
        }
@@ -790,7 +796,10 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
 
     }
 
-       drawScreens()
+
+    drawScreens()
+
+
 //  <<" Paras %V $wtbwo $wtkgbwo $body_wt $body_wt_lbs $current_wt $Symsz\n"	 
 
 <<"END OF LOOP $m_num \n"

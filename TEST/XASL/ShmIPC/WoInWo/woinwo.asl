@@ -12,7 +12,7 @@
 //***********************************************%
 
 #include "debug.asl"
-//#include "hv.asl"
+//#include "hv.asl"  // BAD?
 #include "tbqrd.asl"
 #include "wevent.asl"
 
@@ -45,7 +45,10 @@ Graphic = CheckGwm();
    titleButtonsQRD(vp);
    titleVers();
 
-ans = ask("CONTINUE $vp?",1)
+
+//wans = wask("CONTINUE $vp?","y", "WOINWO")
+
+//<<" %V $wans\n"
 
     msgwo=cWo(vp,WO_TEXT_)
 
@@ -54,7 +57,7 @@ ans = ask("CONTINUE $vp?",1)
     sWo(msgwo,_wfonthue,RED_, _wdraw, ON_,_wsave,ON_,_wredraw,ON_)
 
 
-ans = ask("CONTINUE %V $msgwo?",1)
+//ans = wask("CONTINUE %V $msgwo?","GO_ON")
 
     gwo=cWo(vp,WO_SYMBOL_)
 
@@ -64,39 +67,37 @@ ans = ask("CONTINUE %V $msgwo?",1)
 
     sWo(_woid,gwo,_wdraw, ON_,_wscales,wbox(0,0,1,1), _wpixmap, ON,_wpenhue,BLACK_,_wredraw, ON_)
 
-ans = ask("CONTINUE %V $gwo?",1)
+//ans = wask("CONTINUE %V $gwo?")
 
     /////////////////////////////////////////
 
 
     rwo=cWo(gwo,WO_SYMBOL_)
 
-    sWo(_woid,rwo,_wresize,wbox(0.1,0.1,0.2,0.2),_wname,"RED",_wvalue,1.0,_wclip,wbox(0.01,0.01,0.99,0.99))
+    sWo(_woid,rwo,_wresize,wbox(0.1,0.1,0.2,0.2),_wname,"RED",_wvalue,1.0,_wclip,wbox(0.01,0.01,0.9,0.9))
 
-    sWo(rwo,_wcolor,RED_,_wpenhue,BLACK_,_wsymbol,DIAMOND_,_whvmove,ON_)
+    sWo(rwo,_wcolor,RED_,_wpenhue,BLACK_,_wsymbol,DIAMOND_,_whmove,ON_)
 
-    sWo(rwo,_wdraw,ON_,_wpixmap, ON_,_wredraw,ON_,_wsave,ON,_wsavepixmap,ON_)
-
-ans = ask("CONTINUE %V $rwo?",1)
+   // sWo(rwo,_wdraw,ON_,_wpixmap, ON_,_wredraw,ON_,_wsave,ON,_wsavepixmap,ON_)
 
 
-/*
-    bwo=cWo(gwo,@symbol,@resize,0.5,0.1,0.6,0.2,@name,"BLUE",@value,1.0,@clip,0.01,0.01,0.99,0.99)
+    bwo=cWo(gwo,WO_SYMBOL_)
+    
+    Swo(_woid,bwo,_wresize,wbox(0.5,0.1,0.6,0.2),_wname,"BLUE",_wvalue,1.0,_wclip,wbox(0.01,0.01,0.99,0.99))
 
-    sWo(bwo,@color,RED_,@penhue,BLACK_,@symbol,DIAMOND_,@hvmove,ON_)
+    sWo(_woid,bwo,_wcolor,RED_,_wpenhue,BLACK_,_wsymbol,DIAMOND_,_wvmove,ON_)
 
-    sWo(bwo,@drawoff,@pixmapon,@redraw,@save,@savepixmap)
 
-   // sWi(vp,@pixmapon,@drawon,@bhue,PINK_,@redraw,@savepixmap);
+    sym_size = 10;
 
-   // sWo(gwo,@scales,-1.2,-1.2,1.2,1.2,@savescales,0,@font,F_SMALL_,@redraw,@savepixmap_)
-*/
+    sWo(_woid,gwo,_wscales,wbox(-1.2,-1.2,1.2,1.2),_wsavescales,0,_wfont,F_SMALL_,_wsymsize,sym_size,_wredraw,ON_)
 
 
 
 
 
-sym_size = 50;
+
+
 
 // message info
 symbol_name = "diamond"
@@ -111,9 +112,9 @@ uint n_msg = 0;
 
      Text(gwo, "Weight (lbs)",0.5,0.7,4,-90)
 
-ans = ask("CONTINUE move WOS within WOS?",1)
+     wans = wask("CONTINUE move WOS within WOS?")
 
-
+<<"%V $wans \n"
 
 
 
@@ -125,18 +126,18 @@ ans = ask("CONTINUE move WOS within WOS?",1)
 
       n_msg++
 
-//<<"%V$_ewoname  $_ekeyw $_etype\n";
-    // AxText(gwo, 1, "XX", 0.5,  0.25, BLUE_);
+<<"%V $ewoname_  $ekeyw_ $etype_ \n";
+     AxText(gwo, 1, "XX", 0.5,  0.25, BLUE_);
 
     // AxText(vp, 1, "XX", 0.5,  0.25, BLUE_);
      
        AxText(gwo, 1, "YY", 0.5,  -2, BLACK_);
 
-   if (_etype  == PRESS_) {
+     if (etype_  == PRESS_ ) {
 
 
-       sWo(msgwo,@clear,@clipborder,BLUE_,@textr,_emsg,0.0,0.7)
-
+       sWo(msgwo,_wclear,ON_,_wclipborder,BLUE_)
+     
          
      if (symbol_num > 20) {
          symbol_num = 0
@@ -146,68 +147,63 @@ ans = ask("CONTINUE move WOS within WOS?",1)
          symbol_num = 0;
      }
 
-     if (_ebutton == 3) {
+     if (ebutton_ == 3) {
         ang += 10;
         if (ang > 360) {
             ang = 0;
         }
      }
-     else if (_ebutton == 2) {
-       symbol_num--
+     else if (ebutton_ == 2) {
+      // symbol_num--
+       symbol_num = 2;
        //symbol_name = "diamond"
      }
-     else if (_ebutton == 4) {
+     else if (ebutton_ == 4) {
       // sym_size-- ;
      }
-     else if (_ebutton == 5) {
+     else if (ebutton_ == 5) {
        //sym_size++ ;
      }
-     else if (_ebutton == 1) {
+     else if (ebutton_ == 1) {
        symbol_num++;
        if (sym_size > 99) {
            sym_size = 20;
        }
 
-/*
+
        symbol_name = getSymbolName(symbol_num);
-<<"%V$symbol_name\n";
-     if (symbol_num > 20) {
+         <<"%V$symbol_name\n";
+        if (symbol_num > 20) {
          symbol_num = 1;
+        }
      }
-*/
 
 
-     }
+     sWo(_woid,rwo,_wclearpixmap,ON_)
+     sWo(_woid,rwo,_wcolor,YELLOW_,_wsymbol,symbol_num,_wvmove,ON_,_wredraw,ON_)
+     sWo(_woid,rwo,_wcolor,PINK_,_wpenhue, BLACK_,_wsymbol,symbol_num,_wsymsize,sym_size,_wsymang,ang,_wredraw, ON_)
+     sWo(_woid, rwo,_wmove,wbox(rx+0.1,ry+0.1,gwo,0))
+
+
+
+     sWo(_woid,bwo,_wdraw, ON_,_wclearpixmap, ON_)
+     sWo(_woid,bwo,_wcolor,BLUE_,_wpenhue, BLACK_,_wsymbol,symbol_num+1,_wsymsize,sym_size,_wsymang,ang,_wredraw, ON_)
+     sWo(_woid, bwo,_wmove,wbox(rx,ry,gwo,0))
+
+
+    Text("%V $symbol_num $symbol_name $ang  $sym_size",0.0,0.1)
 
 /*
-
-     sWo(rwo,@drawon,@clearpixmap)
-     sWo(rwo,@color,"yellow",@penhue,"black",@symbolshape,symbol_num,@symsize,sym_size,@symang,ang,@redraw)
-
-
-     sWo(bwo,@drawon,@clearpixmap)
-     sWo(bwo,@color,BLUE_,@penhue,"black",@symbolshape,symbol_num+1,@symsize,sym_size,@symang,ang,@redraw)
-
-    sWo(rwo,@showpixmap)
-   //  sWo(gwo,@drawon,@clear)
-   //  sWo(gwo,@color,"magenta",@penhue,"brown",@symbolshape,symbol_num,@symsize,sym_size,@symang,ang,@redraw)
-     //sWo(gwo,@showpixmap)
-
-     sWo(msgwo,@textr,"%V$symbol_num $symbol_name $ang  $sym_size",0.0,0.1)
-
     sWo(gwo,@axnum,2,-1,1,0.1,-2,"2.1f");
     sWo(gwo,@axnum,1,-1,1,0.25,2,"2.1f");
     sWo(gwo,@axnum,4,-1,1,0.25,2,"2.1f");
     sWo(gwo,@axnum,3,-1,1,0.25,-2,"2.1f");
-
-    sWo(rwo,@move,rx,0.0,gwo)
-    
-    sWo(bwo,@move,rx,sin(rx*pi),gwo)
 */
-
-
     rx += rxstep
     ry += rystep
+
+<<"%V $rx $ry \n"
+
 
     if (rx > 0.9) {
        rxstep *= -1;
@@ -225,8 +221,11 @@ ans = ask("CONTINUE move WOS within WOS?",1)
        rystep *= -1;
     }
 
-
+    }
 
   }
 
 }
+
+
+

@@ -49,24 +49,24 @@ void  titleButtonsQRD(int v)
 {
  //printf("USING COMPILE version !\n");
 //////////////////////////////// TITLE BUTTON QUIT RESIZE REDRAW ////////////////////////////////////////////////
- int tq=cWo(v,TBS_);
+ int tq=cWo(v,WO_TITLE_BUTTON_);
 
 
 
  sWo(_woid,tq,_wname,"tbq",_wvalue,"QUIT",_wfunc,"window_term",_wresize,wbox(rsz),_wsymbol,X_);
  
-int  tr=cWo(v,TBS_);
+int  tr=cWo(v,WO_TITLE_BUTTON_);
 rsz[0] = 0.94;
 rsz[2] = 0.96;
  sWo(_woid,tr,_wname,"tbr",_wvalue,"RESIZE",_wfunc,"window_resize",_wresize,wbox(rsz),_wsymbol,CROSS_);
  
- int td=cWo(v,TBS_);
+ int td=cWo(v,WO_TITLE_BUTTON_);
  rsz[0] = 0.91;
  rsz[2] = 0.93;
  
 sWo(_woid,td, _wname,"tbd",_wvalue,"REDRAW",_wfunc,"window_redraw",_wresize,wbox(rsz),_wsymbol,DIAMOND_);
 
-//  TBqrd_tv = cWo(v,TBV_);
+//  TBqrd_tv = cWo(v,WO_TITLE_VALUE_);
 //rsz[0] = 0.2;
 //rsz[2] = 0.3;
 //sWo(_WOID,TBqrd_tv,_WNAME,"tbv",_WVALUE,"VERS",_WSTYLE,SVO_,_WRESIZE,rsz);
