@@ -12,7 +12,7 @@
  */ 
 //----------------<v_&_v>-------------------------//;
 
-ans = Ask (" $_include  ",1)                                          
+ans = Ask (" $_include  ",0)                                          
 
 /*
 #if CPP
@@ -26,12 +26,12 @@ ans = Ask (" $_include  ",1)
 
 
 
-  void getDay(long dayv)
+  void getDay(int dayv)
   {
 
 <<" $_proc   $dayv \n"
 
-  //dayv.pinfo();
+  dayv.pinfo();
   
   long m_day;  // int ?;
 
@@ -45,11 +45,12 @@ ans = Ask (" $_include  ",1)
 
   int dt;
   int hit;
-
-  m_day= dayv + Jan1  ;  // ? OBO;
+  <<"%V $dayv $Jan1 \n"
+  m_day = dayv + Jan1  ;  // ? OBO;
 
   Str mdy = Julmdy(m_day);
- int dindex = dayv ;
+
+  int dindex = dayv ;
  
 <<"%V $dayv $m_day $Jan1 $mdy $dindex\n"
 
@@ -61,7 +62,7 @@ ans = Ask (" $_include  ",1)
 // day of year is 0 or 1 for Jan1 ?
  
 
-//<<"%V $dindex \n"
+//ans = Ask("%V $dindex < 1000 ?  ",1)
 
   wtm = WTVEC[dindex];
   cbm = CALSBURN[dindex];
@@ -337,7 +338,7 @@ int WTLB(int wb)
 {
 
   <<"In WTLB  $ewoname_  $ebutton_     cursor @ $erx_ \n"      
-   ans=ask(" $ewoname_  $ebutton_     cursor @ $erx_ ",0)
+
 long wt_day = 0;
  
        if (ebutton_ == 1) {
@@ -357,6 +358,8 @@ long wt_day = 0;
 <<"%V $wt_day $lcpx \n";
 
         // mday =getDay(wt_day);
+	wt_day.pinfo()
+	
 	getDay(wt_day);
 
         }

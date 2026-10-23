@@ -46,7 +46,7 @@ float Nsel_calsinout = 0.0;
      int sz;
      long ngday = gday - gsday;
 
-ask=ans("%V $ngday = $gday - $gsday",1)
+ask=ans("%V $ngday = $gday - $gsday",0)
 
      GVEC[0] = StartWt;  // start  Wt
 
@@ -67,7 +67,7 @@ ask=ans("%V $ngday = $gday - $gsday",1)
 
      float try_lpd = (StartWt - FirstGoalWt) / (1.0 * ngday);
 
-ans=ask("%V $StartWt - $FirstGoalWt $ngday OK?",1)
+ans=ask("%V $StartWt - $FirstGoalWt $ngday OK?",0)
 
      float lw = StartWt;
 

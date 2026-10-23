@@ -12,7 +12,7 @@
  */ 
 
 //----------------<v_&_v>-------------------------//                                                                                                 
-ans = Ask (" $_include screen_wex?  ",1) 
+ans = Ask (" $_include   ",0) 
   
    
 //////////////////  WED SCREEN --- WINDOWS //////////////// 
@@ -37,7 +37,6 @@ here = 1;
  
   sWi(_woid,vp,_wclip,wbox(0.1,0.05,0.9,0.95),_wpixmap,OFF_,  _wredraw,ON_,_wsave,ON_,_wsavepixmap,OFF_); 
  
-//ans = ask("$(here++) $vp",1) 
  
   vp1 = cWi("XED"); 
  
@@ -46,7 +45,7 @@ here = 1;
   sWi(_woid,vp1,_wclip,wbox(0.1,0.05,0.85,0.95),  _wredraw,ON_); 
  
 
-ans=ask("vp1 ",0)
+
 
 cout<<"  titleButtonsQRD(vp);\n"; 
  
@@ -325,7 +324,7 @@ if (do_keys ) {
 
 
 
-oknow = Ask (" $_include  ",0)
+
 //  check for lyo - layout file 
 
 /*

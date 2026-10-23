@@ -2,12 +2,12 @@
 //  drawGoals
 //
 
-ans = Ask (" $_include  ",1)
+ans = Ask (" $_include  ",0)
 
   void drawGoals(int ws)
   {
 
-   oknow = Ask ("que pasa? $ws $_proc",0)
+   
 
   if (ws == 0) {
    // Plot(wt_wo,_wbox,(sc_startday,DX_NEW,sc_end,DX_NEW+20), ORANGE_)  // never go above
@@ -62,7 +62,7 @@ ans = Ask (" $_include  ",1)
   plotLine(wt_wo,last_known_day,last_known_wt,targetday,TargetGoalWt, BLACK_) 
 
  
- ans=ASK("%V $last_known_day, $last_known_wt, $targetday, $TargetGoalWt \n" ,0);
+ ans=ASK("%V $last_known_day, $last_known_wt, $targetday, $TargetGoalWt " ,0);
  
 
    if (ws == 1) {
@@ -75,6 +75,5 @@ ans = Ask (" $_include  ",1)
    }
   }
 //---------------------------------------------------------
-// what is current include?
 
-oknow = Ask (" $_include  ",0)
+

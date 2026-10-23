@@ -16,8 +16,6 @@ ans = Ask (" $_include   ",0)
 
 ///////////////////// GLINES & SYMBOLS ///////////////////////////////
 //<<[_DB]"\n%(10,, ,\n)$DVEC \n"
-   //oknow = Ask ("que pasa? $_proc ",1)
-
 
 // COUT(pwt_gl)
 

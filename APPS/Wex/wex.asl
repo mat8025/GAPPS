@@ -193,10 +193,12 @@ rejectDB("prep,opera_,spe,rdp_,ic,pex_,parse,array,ds,oo_",1)
   long Jan1;  // get the current year;
 
   long Yday ;
-  long Yd ;
+
   long YesterYd;
   
   long sc_endday;
+
+  int Yd = 0; // this is the index into the measure vectors will be less than 10000
 
 //////////////////////  Set Dates /////////////////////////////////
 
@@ -338,7 +340,7 @@ Record RX;
 
   Bday = Julian("04/09/1949");
 
-  Jan1 = Julian("01/01/2026");
+  Jan1 = Julian("01/01/2025");  // start from 2025 - although could add in 2024
   // Str adate ; adate.strPrintf("01/01/%s",Year.cptr()");
 
   Yday = jtoday -Jan1;
@@ -621,7 +623,7 @@ float ae = EXTV[15];
 }
 
 
-  ans=ask("%V Have $Graphic  - resize xgs window", 1);
+  ans=ask("%V Have $Graphic  - resize/position xgs window now ", 1);
 
 
 #include "screen_wex.asl"
@@ -630,7 +632,7 @@ float ae = EXTV[15];
 
 
 
-//ans=Ask("  proceed?",1);
+
 
    computeGoalLine();
  
@@ -638,7 +640,7 @@ float ae = EXTV[15];
   lcpx = sc_startday;
   rcpx = sc_endday;
 
- ans=Ask(" draw screens proceed?",1);
+// ans=Ask(" draw screens proceed?",0);
 
   sdb(2,"trace")
 
@@ -670,9 +672,15 @@ float ae = EXTV[15];
 
      Graphic = checkGWM();
 
-     sel_day = Yd
+     Yd.pinfo()
+     
+     int sel_day = Yd
+
+     sel_day.pinfo()
 
      getDay(sel_day)
+
+//Ask ("%V $Yd $sel_day",1)      
 
     
      while (Graphic) {

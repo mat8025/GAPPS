@@ -2,7 +2,7 @@
 //  drawMonths
 //
 
-ans = Ask (" $_include  ",1)
+ans = Ask (" $_include  ",0)
 
   void  drawMonths(int wwo)
   {
@@ -21,7 +21,7 @@ ans = Ask (" $_include  ",1)
   // Equinoxes Dec 21, March 21, June 21, Sep 21 -
   // winter ,vernal, midsummer, fall
   //<<"$_proc  $wwo\n"
-  // oknow = Ask ("que pasa? $_proc $wwo",1)
+
   int match[2]
   int sd
 

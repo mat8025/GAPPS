@@ -12,7 +12,7 @@
  */ 
 //----------------<v_&_v>-------------------------//
 
-
+ans = Ask (" $_include  ",0)                                          
   
 void fillInObsVec()
 {
@@ -84,7 +84,7 @@ if (Yd >= 0) {
 
   tot_exetime = tot_exetime + EXTV[Yd];
 
-  SEVEC[Yd] =  wex;
+ // SEVEC[Yd] =  wex;
 
   BPVEC[Yd] =  atof(Col[j++]);
 
@@ -138,7 +138,7 @@ if (Yd >= 0) {
   {
 
   int tl = 0;
-  long jday;
+  long jday =0;
   Str day;
   Str mywt;
  // RX->info(1)
@@ -158,7 +158,7 @@ ans = Ask("readData $Wex_Nrecs ?",0)
 //             - or one column as a vector
 //               - or even a sub matrix
 
-  Wex_Nrecs = 20;  // FIX
+//  Wex_Nrecs = 20;  // FIX
 
   while (tl < Wex_Nrecs) {
    Yd2 = tl
@@ -183,15 +183,19 @@ ans = Ask("readData $Wex_Nrecs ?",0)
 
   }
 
+// which Jan1  2025, 2026
+
   Yd = jday - Jan1;
   
-//<<"%V $jday  $Yd\n"
+<<"%V $jday  $Yd $Jan1\n"
 
   lday = Yd;
 
   if (Yd < 0) {
 
-  cout << " $Yd neg offset ! \n";
+ // cout << " $Yd neg offset ! \n";
+
+   << " $Yd neg offset ! \n";
 
   }
 
@@ -266,10 +270,14 @@ ans = Ask("readData $Wex_Nrecs ?",0)
   Str day;
   int jn = 5;
   //<<"%V $tl $NCCrecs \n"
+  day = "10/10/2026"
+  day.pinfo()
   while (tl < NCCrecs) {
   
 
   day = RCC.getRC(tl,0);
+
+  day.pinfo()
 
   if (day != "") {
 
@@ -279,8 +287,11 @@ ans = Ask("readData $Wex_Nrecs ?",0)
 
   Yd = jday - Jan1;  // so 0 - 364;
 
-
-  if (Yd >= 400) {
+  if (tl < 10) {
+   ask("%V $tl $day $jday  $Jan1 $Yd",0)
+  }
+  
+  if (Yd >= 1000) {
 
   <<"bizare day %V $tl $Yd $YesterYd $NCCrecs \n";
   // ran off end of data - check RCC NCCrecs
@@ -288,6 +299,7 @@ ans = Ask("readData $Wex_Nrecs ?",0)
    Yd = YesterYd;
    break;
   }
+  
   lday = Yd;
   YesterYd = Yd;
 
@@ -337,7 +349,7 @@ ans = Ask("readData $Wex_Nrecs ?",0)
 
   FIBRCON[Yd] = fiber;
 
-//<<"%V $tl $Yd $day $cals $carbs $fat $prot $fiber $gku $ket $gki\n"
+<<"%V $tl $Yd $day $cals $carbs $fat $prot $fiber $gku $ket $gki\n"
  
   CALSDEF[Yd] = CALSBURN[Yd] - CALSCON[Yd];
 
