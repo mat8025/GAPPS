@@ -12,6 +12,7 @@
  */ 
 
 //----------------<v_&_v>-------------------------//                                                                                              
+ans = Ask (" $_include   ",0)
 
 ///////////////////// GLINES & SYMBOLS ///////////////////////////////
 //<<[_DB]"\n%(10,, ,\n)$DVEC \n"
@@ -72,7 +73,7 @@
 
   calc_gl = cGl(cal_wo);
 
-  sGl(_GLID,calc_gl, _GLXVEC,DVEC,_GLYVEC,CALSCON,_GLHUE,RED_,_GLSYMBOL,TRI,_GLSYMHUE, RED_,_GLNAME,"cals consumed")
+  sGl(_GLID,calc_gl, _GLXVEC,DVEC,_GLYVEC,CALSCON,_GLHUE,RED_,_GLSYMBOL,TRI_,_GLSYMHUE, RED_,_GLNAME,"cals consumed")
 
 
   cald_gl = cGl(cal_wo);
@@ -94,11 +95,11 @@
 
   fibre_gl = cGl(food_wo);
 
-  sGl(_GLID,fibre_gl,_GLXVEC,DVEC,_GLYVEC,FIBRCON,_GLHUE,BLUE_,_GLSYMBOL,CROSS_,_GLSYMHUE, PINK_,_GLUSESCALES,0._GLNAME,"fibre")
+  sGl(_GLID,fibre_gl,_GLXVEC,DVEC,_GLYVEC,FIBRCON,_GLHUE,BLUE_,_GLSYMBOL,CROSS_,_GLSYMHUE, PINK_,_GLUSESCALES,0,_GLNAME,"fibre")
 
   fat_gl = cGl(food_wo);
 
-  sGl(_GLID,fat_gl,_GLXVEC,DVEC,_GLYVEC,FATCON,_GLHUE,BLUE_,_GLSYMBOL,CROSS_,_GLSYMHUE, GREEN_,_GLUSESCALES,0._GLNAME,"fat")
+  sGl(_GLID,fat_gl,_GLXVEC,DVEC,_GLYVEC,FATCON,_GLHUE,BLUE_,_GLSYMBOL,CROSS_,_GLSYMHUE, GREEN_,_GLUSESCALES,0,_GLNAME,"fat")
 
   prot_gl = cGl(food_wo);
 
@@ -148,7 +149,6 @@
 
   sGl(_GLID,cardio_gl,_GLSYMBOL,DIAMOND_, _GLSYMSIZE, Symsz);
 
-
   sGl(_GLID,bp_gl,_GLSYMBOL,TRI_,_GLSYMHUE,RED_,_GLNAME,"benchpress lbs");
 
   sGl(_GLID,calb_gl,_GLSYMBOL,DIAMOND_,_GLSYMHUE,RED_,_GLSYMSIZE, Symsz,_GLNAME,"cals_out");
@@ -163,7 +163,7 @@
 
   sGl(_GLID,fibre_gl,_GLSYMBOL,ITRI_,_GLSYMHUE,BROWN_,_GLHUE,BROWN_,_GLNAME,"fiber");
 
-  sGl(_GLID,fat_gl,_GLSYMBOL,CROSS_,_GLSYMHUE,BLUE_,_GLHUE,BLUE,_GLNAME,"fat");
+  sGl(_GLID,fat_gl,_GLSYMBOL,CROSS_,_GLSYMHUE,BLUE_,_GLHUE,BLUE_,_GLNAME,"fat");
 
   sGl(_GLID,prot_gl,_GLSYMBOL,DIAMOND_,_GLSYMHUE,GREEN_,_GLHUE,GREEN_,_GLNAME,"prot");
 

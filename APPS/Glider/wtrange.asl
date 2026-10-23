@@ -562,7 +562,7 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
   titleButtonsQRD(aw);
 //<<" CGW $aw \n"
 
-  sWi(_woid, aw,_wresize,wbox(0.05,0.1,0.95,0.9,0))
+  sWi(_woid, aw,_wresize,wbox(0.02,0.1,0.98,0.95,0))
   sWi(_woid,aw,_wclip,wbox(0.05,0.1,0.99,0.95))
      xmin = 0
      xmax = 18
@@ -653,7 +653,7 @@ ans= ask("%V $body_wt $body_wt_lbs",0)
 	  body_wt_lbs = body_wt * 2.2;
           current_wt = body_wt + wingwt + harness_wt + kit + helmet + ballast_wt;
           current_wt_lbs = current_wt/kg2lb_;
-          sWo(_woid,wtbwo,_wotext,"%4.1f$body_wt $body_wt_lbs", _woredraw,ON_);
+          sWo(_woid,wtbwo,_wotext,"%4.1f$body_wt\n $body_wt_lbs", _woredraw,ON_);
           woSetValue(wtbwo,"%4.2f $body_wt $body_wt_lbs");
 
           sWo(_woid,wtbwo, _woredraw,ON_);

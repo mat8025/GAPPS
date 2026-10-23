@@ -10,7 +10,7 @@
  *  @Copyright © RootMeanSquare 2022
  * 
  */ 
-//----------------<v_&_v>-------------------------//                                                                                                
+//----------------<v_&_v>-------------------------//                                                     ans = Ask (" $_include draw_wex?  ",1)                                           
 
 #include "draw_grids.asl"
 #include "draw_goals.asl"
@@ -79,7 +79,7 @@
 
 oknow = Ask ("que pasa? $_proc",0)
 
-   sWo(_woid,cal_wo,_wfont,f_SMALL_);
+   sWo(_woid,cal_wo,_wfont,F_SMALL_);
 
 /// these need to be a separate wo to contain key  symbol and text
 
@@ -107,16 +107,16 @@ oknow = Ask ("que pasa? $_proc",0)
 
   //drawMonths(carb_wo);
 
-oknow = Ask ("que pasa pre Glines? $_proc",0)
+//oknow = Ask ("que pasa pre Glines? $_proc",1)
 
   drawGlines();
 
 
   //plotLine(wt_wo,last_known_day,last_known_wt,targetday,TargetGoalWt, BLACK_) ;  // does not show?
-
+ <<" %V $last_known_day $last_known_wt $targetday $TargetGoalWt \n"
  sWo(_woid,wt_wo,_wline,wbox(last_known_day,last_known_wt,targetday,TargetGoalWt, BLACK_)) ;  // does not show?
 
-oknow = Ask ("que pasa post Glines? $_proc",0)
+//oknow = wask ("que pasa post Glines? $_proc")
 
 
  }

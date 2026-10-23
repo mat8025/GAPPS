@@ -148,7 +148,7 @@ if (Yd >= 0) {
 
 // <<"get data from record Wex_Nrecs \n";
 
-ans = Ask("readData $Wex_Nrecs ?",1)
+ans = Ask("readData $Wex_Nrecs ?",0)
 
 // access of record row Rx(i)
 // access of record Col Rx(i,j)
@@ -345,6 +345,7 @@ ans = Ask("readData $Wex_Nrecs ?",1)
 //  ans=ask("cal deficit $CALSDEF[Yd] ",1)
     
   NCCobs++;
+
   }
 //
   tl++;

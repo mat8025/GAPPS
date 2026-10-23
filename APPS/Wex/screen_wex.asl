@@ -12,7 +12,7 @@
  */ 
 
 //----------------<v_&_v>-------------------------//                                                                                                 
- 
+ans = Ask (" $_include screen_wex?  ",1) 
   
    
 //////////////////  WED SCREEN --- WINDOWS //////////////// 
@@ -212,8 +212,8 @@ COUT(sc_zstart);
  int zoomwos[] = {zinwo, zoomwo, -1}; 
  
  
- //sWo(_woid,zoomwo,_wstyle,WS_BN_,_wredraw,ON_); 
- sWo(_woid,zoomwos,_wstyle,WS_BN_,_wcolor,BLUE_,_wclipbhue,YELLOW_,_wborder,BLACK_);
+
+ sWo(_woid,zoomwos,_wstyle,WS_SVB_,_wcolor,BLUE_,_wclipbhue,YELLOW_,_wborder,BLACK_);
   
    wohtile( zoomwos, 0.2,0.01,0.44,0.07,0.05);
 

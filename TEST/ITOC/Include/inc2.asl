@@ -11,7 +11,7 @@
  * 
  *  \\-----------------<v_&_v>--------------------------//  
  */ 
-;//
+
 
 
    <<"inc2 including %V $_include $_scope \n"; 
@@ -29,7 +29,10 @@
      <<"$_proc $a * $b = $c\n"; 
      return c;
      }
-   
+
+ x =0.0;
+ xyz= 1/x
+
    #include "inc3";
    
    <<"included $_include _scope \n"; 

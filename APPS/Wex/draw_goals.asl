@@ -2,7 +2,7 @@
 //  drawGoals
 //
 
-
+ans = Ask (" $_include  ",1)
 
   void drawGoals(int ws)
   {

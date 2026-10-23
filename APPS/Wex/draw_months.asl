@@ -2,6 +2,8 @@
 //  drawMonths
 //
 
+ans = Ask (" $_include  ",1)
+
   void  drawMonths(int wwo)
   {
   //
@@ -96,9 +98,14 @@
   mday = spat(the_date, "/",-1,-1, match)
 
  // axisLabel(wwo, 1, mday, wdate, 0.7, BLUE_)
-  AxText(wwo, 1, mday, wdate, -0.25, MAGENTA_)
-  
-//   <<"%V $jd $wdate $RS[3] $the_date $mday $wday\n"
+
+
+  <<"%V $jd $wdate $RS[3] $the_date $mday $wday\n"
+
+ //  AxText(wwo, 1, mday, wdate, -0.25, MAGENTA_)
+ //  AxText(wo_id,axis,string, rp, sp,{hue, dir, pos})
+
+
 
   draw_months++
 

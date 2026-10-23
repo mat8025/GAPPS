@@ -12,9 +12,10 @@
  */ 
 //----------------<v_&_v>-------------------------//                                                                                 
 
-//ans=ask("include compute ",1)
 
-  void showCompute()
+ans = Ask (" $_include   ",0)
+
+void showCompute()
   {
 
 
@@ -45,6 +46,8 @@ float Nsel_calsinout = 0.0;
      int sz;
      long ngday = gday - gsday;
 
+ask=ans("%V $ngday = $gday - $gsday",1)
+
      GVEC[0] = StartWt;  // start  Wt
 
      GVEC[1] = FirstGoalWt;
@@ -63,6 +66,8 @@ float Nsel_calsinout = 0.0;
      float lpd = 4.0/7.0;      // 4 lb a  week
 
      float try_lpd = (StartWt - FirstGoalWt) / (1.0 * ngday);
+
+ans=ask("%V $StartWt - $FirstGoalWt $ngday OK?",1)
 
      float lw = StartWt;
 
@@ -194,7 +199,7 @@ int k = Yday-8;
       }
   
 <<"$Yday $k\n"
-  oknow = Ask ("%V $Yday $k ",1)
+
   if (Yday > 5) {
      nco = 0;
   for (i =0; i < 5; i++) {   
@@ -235,7 +240,7 @@ int k = Yday-8;
   }
 
 <<"\n Tomorrow's wt will be %6.2f $pw +week $PWT7  + fortnight $PWT14\n"
-  oknow = Ask ("que pasa? $_proc",1)
+  oknow = Ask ("que pasa? $_proc",0)
   return pw;
 }
 

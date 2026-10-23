@@ -82,7 +82,7 @@ using namespace std;
  //////////////// put thme ahead of include asl modules //////////////
  ///   all procs/funcs  should be after globals and before main
  //
-rejectDB("prep,opera_,spe,rdp_,ic,pex_,parse,array,ds",0)
+rejectDB("prep,opera_,spe,rdp_,ic,pex_,parse,array,ds,oo_",1)
 
   int Nrecrd = 0;
   int i = 0;
@@ -521,11 +521,9 @@ Record RX;
   }
 
 
-ans= ask("readCCData %V $Nrecrd $NCCrecs proceed?",1);
+ans= ask("readCCData %V $Nrecrd $NCCrecs proceed?",0);
 
-  if (ans =="q") {
-       exit()
-  }
+
   NCCrecs = Nrecrd;
  // <<[_DB]"; /////////\n";
 
@@ -544,7 +542,7 @@ ans= ask("readCCData %V $Nrecrd $NCCrecs proceed?",1);
 
   /////////////////////  part 1 ////////////////////////////
 
-ans= ask("after readCCData proceed?",1);
+ans= ask("after readCCData proceed?",0);
 
 //   init_period = 32;
 
@@ -593,7 +591,7 @@ float ae = EXTV[15];
 
    predictWL();
 
-   exit()
+   
 
 
 
@@ -623,7 +621,7 @@ float ae = EXTV[15];
 }
 
 
-  printf("Have Graphic %d now\n", Graphic);
+  ans=ask("%V Have $Graphic  - resize xgs window", 1);
 
 
 #include "screen_wex.asl"
@@ -642,9 +640,12 @@ float ae = EXTV[15];
 
  ans=Ask(" draw screens proceed?",1);
 
+  sdb(2,"trace")
+
+
   drawScreens();
 
- ans=Ask(" after draw screens proceed?",1);
+// ans=Ask(" after draw screens proceed?",0);
 
   showTarget();
 
@@ -657,7 +658,7 @@ float ae = EXTV[15];
 
   titleMessage(vp,tit_msg)
 
-ans=Ask(" show target proceed?",1);
+//ans=Ask(" show target proceed?",1);
 
  int nevent = 0;
 
@@ -665,7 +666,7 @@ ans=Ask(" show target proceed?",1);
 
   int rcb = 0;
 
-     oknow = Ask ("que pasa? %V $Nrecrd $Yd",1)      
+     //oknow = Ask ("que pasa? %V $Nrecrd $Yd",1)      
 
      Graphic = checkGWM();
 
@@ -673,12 +674,12 @@ ans=Ask(" show target proceed?",1);
 
      getDay(sel_day)
 
-
+    
      while (Graphic) {
 
         showTarget();
 
-
+<<"calling $nevent in main while loop  \n"
          eventWait(-1);
 
          nevent++;
@@ -715,7 +716,10 @@ ans=Ask(" show target proceed?",1);
 	 if (nevent > 2000) {
 	   break;
 	   }
-     }
+	   
+<<"END OF main while loop $nevent  \n"
+
+ }
 
   exitGS(1)
   exit(0)

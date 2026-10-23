@@ -240,7 +240,9 @@ void eventDecode()
        ret = 0;
         <<"exit on WIN_INTRP ? $ret\n"
      }
-*/     
+*/
+
+ <<" EXIT eventWait $eloop_ \n"
     // return ret;  // TBF 10/24/21
 
  }
